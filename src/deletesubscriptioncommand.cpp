@@ -39,83 +39,86 @@
 using namespace Akregator;
 using namespace boost;
 
-namespace {
+namespace
+{
 
 class DeleteNodeVisitor : public TreeNodeVisitor
 {
-    public:
-        explicit DeleteNodeVisitor( QWidget* parent ) : m_widget( parent ), m_job( 0 ) {}
+public:
+    explicit DeleteNodeVisitor(QWidget *parent) : m_widget(parent), m_job(0) {}
 
+    bool visitFolder(Folder *node)
+    {
+        const QString msg = node->title().isEmpty()
+                            ? i18n("<qt>Are you sure you want to delete this folder and its feeds and subfolders?</qt>")
+                            : i18n("<qt>Are you sure you want to delete folder <b>%1</b> and its feeds and subfolders?</qt>", node->title());
 
-        bool visitFolder( Folder* node )
-        {
-            const QString msg = node->title().isEmpty()
-                                ? i18n("<qt>Are you sure you want to delete this folder and its feeds and subfolders?</qt>")
-                                : i18n("<qt>Are you sure you want to delete folder <b>%1</b> and its feeds and subfolders?</qt>", node->title());
-
-            if ( KMessageBox::warningContinueCancel( m_widget,
-                                                     msg,
-                                                     i18n( "Delete Folder" ),
-                                                     KStandardGuiItem::del(),
-                                                     KStandardGuiItem::cancel(),
-                                                     QLatin1String("Disable delete folder confirmation") ) != KMessageBox::Continue )
-                return true;
-            m_job = reallyCreateJob( node );
-            //TODO: port focus
-            //m_widget->m_feedListView->setFocus();
+        if (KMessageBox::warningContinueCancel(m_widget,
+                                               msg,
+                                               i18n("Delete Folder"),
+                                               KStandardGuiItem::del(),
+                                               KStandardGuiItem::cancel(),
+                                               QLatin1String("Disable delete folder confirmation")) != KMessageBox::Continue) {
             return true;
         }
+        m_job = reallyCreateJob(node);
+        //TODO: port focus
+        //m_widget->m_feedListView->setFocus();
+        return true;
+    }
 
-        virtual bool visitFeed(Feed* node)
-        {
-            QString msg;
-            if (node->title().isEmpty())
-                msg = i18n("<qt>Are you sure you want to delete this feed?</qt>");
-            else
-                msg = i18n("<qt>Are you sure you want to delete feed <b>%1</b>?</qt>", node->title());
+    virtual bool visitFeed(Feed *node)
+    {
+        QString msg;
+        if (node->title().isEmpty()) {
+            msg = i18n("<qt>Are you sure you want to delete this feed?</qt>");
+        } else {
+            msg = i18n("<qt>Are you sure you want to delete feed <b>%1</b>?</qt>", node->title());
+        }
 
-            if ( KMessageBox::warningContinueCancel( m_widget,
-                                                     msg,
-                                                     i18n( "Delete Feed" ),
-                                                     KStandardGuiItem::del(),
-                                                     KStandardGuiItem::cancel(),
-                                                     QLatin1String("Disable delete feed confirmation") ) != KMessageBox::Continue )
-                return true;
-            m_job = reallyCreateJob( node );
-            //TODO: port focus
-            // m_widget->m_feedListView->setFocus();
+        if (KMessageBox::warningContinueCancel(m_widget,
+                                               msg,
+                                               i18n("Delete Feed"),
+                                               KStandardGuiItem::del(),
+                                               KStandardGuiItem::cancel(),
+                                               QLatin1String("Disable delete feed confirmation")) != KMessageBox::Continue) {
             return true;
         }
+        m_job = reallyCreateJob(node);
+        //TODO: port focus
+        // m_widget->m_feedListView->setFocus();
+        return true;
+    }
 
-
-        DeleteSubscriptionJob* createJob( TreeNode* node )
-        {
-            m_job = 0;
-            if ( node )
-                visit( node );
-            return m_job;
+    DeleteSubscriptionJob *createJob(TreeNode *node)
+    {
+        m_job = 0;
+        if (node) {
+            visit(node);
         }
+        return m_job;
+    }
 
-    private:
-        static DeleteSubscriptionJob* reallyCreateJob( TreeNode* node )
-        {
-            DeleteSubscriptionJob* job = new DeleteSubscriptionJob;
-            job->setSubscriptionId( node->id() );
-            return job;
-        }
+private:
+    static DeleteSubscriptionJob *reallyCreateJob(TreeNode *node)
+    {
+        DeleteSubscriptionJob *job = new DeleteSubscriptionJob;
+        job->setSubscriptionId(node->id());
+        return job;
+    }
 
-    private:
-        QPointer<QWidget> m_widget;
-        QPointer<DeleteSubscriptionJob> m_job;
+private:
+    QPointer<QWidget> m_widget;
+    QPointer<DeleteSubscriptionJob> m_job;
 };
 
 }
 
 class DeleteSubscriptionCommand::Private
 {
-    DeleteSubscriptionCommand* const q;
+    DeleteSubscriptionCommand *const q;
 public:
-    explicit Private( DeleteSubscriptionCommand* qq );
+    explicit Private(DeleteSubscriptionCommand *qq);
     ~Private();
 
     void startDelete();
@@ -125,9 +128,9 @@ public:
     int m_subscriptionId;
 };
 
-DeleteSubscriptionCommand::Private::Private( DeleteSubscriptionCommand* qq ) : q( qq ),
-                                                                               m_list(),
-                                                                               m_subscriptionId( -1 )
+DeleteSubscriptionCommand::Private::Private(DeleteSubscriptionCommand *qq) : q(qq),
+    m_list(),
+    m_subscriptionId(-1)
 {
 
 }
@@ -136,7 +139,7 @@ DeleteSubscriptionCommand::Private::~Private()
 {
 }
 
-DeleteSubscriptionCommand::DeleteSubscriptionCommand( QObject* parent ) : Command( parent ), d( new Private( this ) )
+DeleteSubscriptionCommand::DeleteSubscriptionCommand(QObject *parent) : Command(parent), d(new Private(this))
 {
 }
 
@@ -145,7 +148,7 @@ DeleteSubscriptionCommand::~DeleteSubscriptionCommand()
     delete d;
 }
 
-void DeleteSubscriptionCommand::setSubscription( const weak_ptr<FeedList>& feedList, int subId )
+void DeleteSubscriptionCommand::setSubscription(const weak_ptr<FeedList> &feedList, int subId)
 {
     d->m_list = feedList;
     d->m_subscriptionId = subId;
@@ -163,7 +166,7 @@ weak_ptr<FeedList> DeleteSubscriptionCommand::feedList() const
 
 void DeleteSubscriptionCommand::doStart()
 {
-    QTimer::singleShot( 0, this, SLOT(startDelete()) );
+    QTimer::singleShot(0, this, SLOT(startDelete()));
 }
 
 void DeleteSubscriptionCommand::Private::jobFinished()
@@ -174,20 +177,19 @@ void DeleteSubscriptionCommand::Private::jobFinished()
 void DeleteSubscriptionCommand::Private::startDelete()
 {
     const shared_ptr<FeedList> list = m_list.lock();
-    if ( !list ) {
+    if (!list) {
         q->done();
         return;
     }
-    TreeNode* const node = list->findByID( m_subscriptionId );
-    DeleteNodeVisitor visitor( q->parentWidget() );
-    DeleteSubscriptionJob* job = visitor.createJob( node );
-    if ( !job )
-    {
+    TreeNode *const node = list->findByID(m_subscriptionId);
+    DeleteNodeVisitor visitor(q->parentWidget());
+    DeleteSubscriptionJob *job = visitor.createJob(node);
+    if (!job) {
         q->done();
         return;
     }
 
-    QObject::connect( job, SIGNAL(finished(KJob*)), q, SLOT(jobFinished()) );
+    QObject::connect(job, SIGNAL(finished(KJob*)), q, SLOT(jobFinished()));
     job->start();
 }
 

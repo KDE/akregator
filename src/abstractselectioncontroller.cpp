@@ -24,7 +24,7 @@
 
 #include "abstractselectioncontroller.h"
 
-Akregator::AbstractSelectionController::AbstractSelectionController( QObject* parent ) : QObject( parent )
+Akregator::AbstractSelectionController::AbstractSelectionController(QObject *parent) : QObject(parent)
 {
 }
 

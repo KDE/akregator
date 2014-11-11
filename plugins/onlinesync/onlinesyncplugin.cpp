@@ -37,23 +37,24 @@ using namespace feedsync;
 
 K_PLUGIN_FACTORY(OnlineSyncPluginFactory,
                  registerPlugin<Akregator::OnlineSyncPluginIface>();
-)
+                )
 
-OnlineSyncPluginIface::OnlineSyncPluginIface( QObject* parent, const QList<QVariant>& args ) : Plugin( parent ), m_impl( new OnlineSyncPlugin( parent, args ) )
+OnlineSyncPluginIface::OnlineSyncPluginIface(QObject *parent, const QList<QVariant> &args) : Plugin(parent), m_impl(new OnlineSyncPlugin(parent, args))
 {
 }
 
-OnlineSyncPluginIface::~OnlineSyncPluginIface() {
+OnlineSyncPluginIface::~OnlineSyncPluginIface()
+{
     delete m_impl;
 }
 
-OnlineSyncPlugin::OnlineSyncPlugin( QObject* parent, const QList<QVariant>& args ) : KParts::Plugin( parent ), m_syncTool( new FeedSync( this ) )
-{ 
-    Q_UNUSED( args )
-    setComponentData( OnlineSyncPluginFactory::componentData() );
+OnlineSyncPlugin::OnlineSyncPlugin(QObject *parent, const QList<QVariant> &args) : KParts::Plugin(parent), m_syncTool(new FeedSync(this))
+{
+    Q_UNUSED(args)
+    setComponentData(OnlineSyncPluginFactory::componentData());
 
-    setXMLFile( "akregator_onlinesync_plugin.rc" , /*merge=*/true );
-    KActionCollection* coll = actionCollection();
+    setXMLFile("akregator_onlinesync_plugin.rc" , /*merge=*/true);
+    KActionCollection *coll = actionCollection();
     m_feedSyncMenu = coll->add<KActionMenu>("file_onlinesync_sync");
     m_feedSyncMenu->setText(i18n("Synchronize Feeds"));
 
@@ -71,35 +72,36 @@ void OnlineSyncPlugin::updateActions()
     qDebug();
 
     // Clear the menubar
-    Q_FOREACH( QAction * const i, m_feedSyncActions )
-        m_feedSyncMenu->removeAction( i );
-    qDeleteAll( m_feedSyncActions );
+    Q_FOREACH (QAction *const i, m_feedSyncActions) {
+        m_feedSyncMenu->removeAction(i);
+    }
+    qDeleteAll(m_feedSyncActions);
     m_feedSyncActions.clear();
 
     // Fill the menubar
-    KActionCollection* coll = actionCollection();
-    QAction * action;
+    KActionCollection *coll = actionCollection();
+    QAction *action;
     // Read configuration
     const KConfig config("akregator_feedsyncrc");
-    Q_FOREACH ( const QString& groupname, config.groupList() ) {
-        if ( groupname.startsWith( QLatin1String("FeedSyncSource_") ) ) {
+    Q_FOREACH (const QString &groupname, config.groupList()) {
+        if (groupname.startsWith(QLatin1String("FeedSyncSource_"))) {
             qDebug() << groupname;
-            KConfigGroup generalGroup( &config, groupname );
+            KConfigGroup generalGroup(&config, groupname);
 
             action = coll->addAction(groupname);
-            action->setProperty("ConfigGroup",groupname);
+            action->setProperty("ConfigGroup", groupname);
             action->setProperty("SyncType", m_syncTool->Get);
             action->setIcon(QIcon::fromTheme("mail-receive"));
-            action->setText(i18n("Get from %1",generalGroup.readEntry( "Identifier", QString() )));
+            action->setText(i18n("Get from %1", generalGroup.readEntry("Identifier", QString())));
             m_feedSyncMenu->addAction(action);
             m_feedSyncActions.append(action);
             connect(action, &QAction::triggered, m_syncTool, &feedsync::FeedSync::sync);
 
             action = coll->addAction(groupname);
-            action->setProperty("ConfigGroup",groupname);
+            action->setProperty("ConfigGroup", groupname);
             action->setProperty("SyncType", m_syncTool->Send);
             action->setIcon(QIcon::fromTheme("mail-send"));
-            action->setText(i18n("Send to %1",generalGroup.readEntry( "Identifier", QString() )));
+            action->setText(i18n("Send to %1", generalGroup.readEntry("Identifier", QString())));
             m_feedSyncMenu->addAction(action);
             m_feedSyncActions.append(action);
             connect(action, &QAction::triggered, m_syncTool, &feedsync::FeedSync::sync);
@@ -122,8 +124,8 @@ void OnlineSyncPlugin::doSynchronize()
 void OnlineSyncPlugin::slotFeedSyncManage()
 {
     qDebug();
-    feedsync::ConfigurationDialog* dlg = new feedsync::ConfigurationDialog();
-    dlg->setAttribute( Qt::WA_DeleteOnClose );
+    feedsync::ConfigurationDialog *dlg = new feedsync::ConfigurationDialog();
+    dlg->setAttribute(Qt::WA_DeleteOnClose);
     connect(dlg, &feedsync::ConfigurationDialog::finished, this, &OnlineSyncPlugin::slotFeedSyncManageDone);
     dlg->show();
 }
@@ -134,11 +136,13 @@ void OnlineSyncPlugin::slotFeedSyncManageDone()
     updateActions();
 }
 
-void OnlineSyncPluginIface::insertGuiClients( KXMLGUIClient* parent ) {
-    parent->insertChildClient( m_impl );
+void OnlineSyncPluginIface::insertGuiClients(KXMLGUIClient *parent)
+{
+    parent->insertChildClient(m_impl);
 }
 
-void OnlineSyncPluginIface::removeGuiClients( KXMLGUIClient* parent ) {
-    parent->removeChildClient( m_impl );
+void OnlineSyncPluginIface::removeGuiClients(KXMLGUIClient *parent)
+{
+    parent->removeChildClient(m_impl);
 }
 

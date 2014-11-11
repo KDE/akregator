@@ -34,41 +34,41 @@ class KUrl;
 class QIcon;
 class QString;
 
-namespace Akregator {
-
+namespace Akregator
+{
 
 class AKREGATOR_EXPORT FaviconListener
 {
 public:
     virtual ~FaviconListener();
-    
-    virtual void setFavicon( const QIcon& icon ) = 0; 
+
+    virtual void setFavicon(const QIcon &icon) = 0;
 };
 
 class AKREGATOR_EXPORT FeedIconManager : public QObject
 {
     Q_OBJECT
     Q_CLASSINFO("D-Bus Interface", "org.kde.akregator.feediconmanager")
-    
-    public:        
-        static FeedIconManager* self();
 
-        ~FeedIconManager();
+public:
+    static FeedIconManager *self();
 
-        void addListener( const KUrl& url, FaviconListener* listener );
-        void removeListener( FaviconListener* listener );
+    ~FeedIconManager();
 
-    private Q_SLOTS:
-        Q_SCRIPTABLE void slotIconChanged(bool, const QString&, const QString&);
+    void addListener(const KUrl &url, FaviconListener *listener);
+    void removeListener(FaviconListener *listener);
 
-    private:
-        FeedIconManager();
-        
-        class Private;
-        friend class ::Akregator::FeedIconManager::Private;
-        Private* const d;
-        
-        Q_PRIVATE_SLOT( d, void loadIcon( QString ) )
+private Q_SLOTS:
+    Q_SCRIPTABLE void slotIconChanged(bool, const QString &, const QString &);
+
+private:
+    FeedIconManager();
+
+    class Private;
+    friend class ::Akregator::FeedIconManager::Private;
+    Private *const d;
+
+    Q_PRIVATE_SLOT(d, void loadIcon(QString))
 };
 
 } // namespace Akregator

@@ -37,19 +37,19 @@
 #include "akregator_export.h"
 
 //transitional job classes
-namespace Akregator {
+namespace Akregator
+{
 
 class Article;
 class FeedList;
 class TreeNode;
 
-struct ArticleId
-{
+struct ArticleId {
     QString feedUrl;
     QString guid;
-    bool operator<( const ArticleId& other ) const
+    bool operator<(const ArticleId &other) const
     {
-        return feedUrl < other.feedUrl || ( feedUrl == other.feedUrl  && guid < other.guid );
+        return feedUrl < other.feedUrl || (feedUrl == other.feedUrl  && guid < other.guid);
     }
 };
 
@@ -59,8 +59,8 @@ class AKREGATOR_EXPORT CompositeJob : public KCompositeJob
 {
     Q_OBJECT
 public:
-    explicit CompositeJob( QObject* parent = 0 );
-    /* reimp */ bool addSubjob( KJob* job );
+    explicit CompositeJob(QObject *parent = 0);
+    /* reimp */ bool addSubjob(KJob *job);
     /* reimp */ void start();
 };
 
@@ -68,10 +68,10 @@ class AKREGATOR_EXPORT ArticleDeleteJob : public KJob
 {
     Q_OBJECT
 public:
-    explicit ArticleDeleteJob( QObject* parent = 0 );
+    explicit ArticleDeleteJob(QObject *parent = 0);
 
-    void appendArticleIds( const Akregator::ArticleIdList& ids );
-    void appendArticleId( const Akregator::ArticleId& id );
+    void appendArticleIds(const Akregator::ArticleIdList &ids);
+    void appendArticleId(const Akregator::ArticleId &id);
 
     void start();
 
@@ -87,11 +87,11 @@ class AKREGATOR_EXPORT ArticleModifyJob : public KJob
 {
     Q_OBJECT
 public:
-    explicit ArticleModifyJob( QObject* parent = 0 );
+    explicit ArticleModifyJob(QObject *parent = 0);
 
     // TODO replace this by passing modified item later
-    void setStatus( const ArticleId& id, int status );
-    void setKeep( const ArticleId& id, bool keep );
+    void setStatus(const ArticleId &id, int status);
+    void setKeep(const ArticleId &id, bool keep);
 
     void start();
 
@@ -104,15 +104,14 @@ private:
     QMap<ArticleId, int> m_status;
 };
 
-
 class AKREGATOR_EXPORT ArticleListJob : public KJob
 {
     Q_OBJECT
 public:
-    explicit ArticleListJob( TreeNode* parent = 0 );
+    explicit ArticleListJob(TreeNode *parent = 0);
 
     QList<Article> articles() const;
-    TreeNode* node() const;
+    TreeNode *node() const;
 
     /* reimp */ void start();
 

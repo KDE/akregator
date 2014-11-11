@@ -28,9 +28,10 @@
 
 #include <qdebug.h>
 
-namespace Akregator {
+namespace Akregator
+{
 
-BrowserRun::BrowserRun(const OpenUrlRequest& request, QWidget* parent)
+BrowserRun::BrowserRun(const OpenUrlRequest &request, QWidget *parent)
     : KParts::BrowserRun(request.url(), request.args(), request.browserArgs(), 0L, parent, /*removeReferrer=*/false, /*trustedSource=*/false, /*hideErrorDialog=*/true), m_request(request)
 {
     setEnableExternalBrowser(false);
@@ -40,27 +41,27 @@ BrowserRun::BrowserRun(const OpenUrlRequest& request, QWidget* parent)
 BrowserRun::~BrowserRun()
 {}
 
-void BrowserRun::foundMimeType(const QString& type)
+void BrowserRun::foundMimeType(const QString &type)
 {
     KParts::OpenUrlArguments args = m_request.args();
-    args.setMimeType( type );
-    m_request.setArgs( args );
-    m_request.setWasHandled( false );
+    args.setMimeType(type);
+    m_request.setArgs(args);
+    m_request.setWasHandled(false);
 
-    emit signalFoundMimeType( m_request );
+    emit signalFoundMimeType(m_request);
 
-    if ( m_request.wasHandled() ) {
+    if (m_request.wasHandled()) {
         setFinished(true);
         return;
     }
 
     KService::Ptr selectedService;
-    if ( handleNonEmbeddable( type, &selectedService ) == KParts::BrowserRun::NotHandled ) {
-        if ( selectedService ) {
-            KRun::setPreferredService( selectedService->desktopEntryName() );
-            KRun::foundMimeType( type );
+    if (handleNonEmbeddable(type, &selectedService) == KParts::BrowserRun::NotHandled) {
+        if (selectedService) {
+            KRun::setPreferredService(selectedService->desktopEntryName());
+            KRun::foundMimeType(type);
         } else {
-            KRun::displayOpenWithDialog( QList<QUrl>() << url(), m_window, false, suggestedFileName() );
+            KRun::displayOpenWithDialog(QList<QUrl>() << url(), m_window, false, suggestedFileName());
             setFinished(true);
         }
     }

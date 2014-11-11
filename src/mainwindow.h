@@ -46,12 +46,11 @@ class BrowserInterface : public KParts::BrowserInterface
     Q_OBJECT
 
 public:
-    BrowserInterface(Akregator::MainWindow *shell, const char *name );
+    BrowserInterface(Akregator::MainWindow *shell, const char *name);
 
 private:
     Akregator::MainWindow *m_shell;
 };
-
 
 /**
  * This is the application "Shell".  It has a menubar, toolbar, and
@@ -63,7 +62,7 @@ class MainWindow : public KParts::MainWindow
 {
     Q_OBJECT
 public:
-    explicit MainWindow( QWidget* parent=0, Qt::WindowFlags f=KDE_DEFAULT_WINDOWFLAGS );
+    explicit MainWindow(QWidget *parent = 0, Qt::WindowFlags f = KDE_DEFAULT_WINDOWFLAGS);
     ~MainWindow();
 
     /**
@@ -72,12 +71,11 @@ public:
      */
     void setupProgressWidgets();
 
-
     /**
      Loads the part
      @return Whether the part has been successfully created or not.
      */
-     bool loadPart();
+    bool loadPart();
 
 public slots:
     void slotClearStatusText();
@@ -101,7 +99,6 @@ protected:
      * Reimplemented to say if app will be running in system tray if necessary
      */
     bool queryClose();
-
 
 protected slots:
     void slotQuit();

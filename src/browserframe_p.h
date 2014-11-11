@@ -25,7 +25,6 @@
 #ifndef AKREGATOR_BROWSERFRAME_P_H
 #define AKREGATOR_BROWSERFRAME_P_H
 
-
 // TODO: cleanup unneeded includes
 
 #include "actionmanager.h"
@@ -47,94 +46,95 @@
 #include <kparts/browserextension.h>
 #include <kparts/part.h>
 
-namespace Akregator {
+namespace Akregator
+{
 
 class BrowserFrame::Private : public QObject
 {
     Q_OBJECT
 
-        BrowserFrame* const q;
+    BrowserFrame *const q;
 
-    public:
-        explicit Private(BrowserFrame* qq);
-        ~Private();
+public:
+    explicit Private(BrowserFrame *qq);
+    ~Private();
 
-        class HistoryEntry;
-        class HistoryAction;
+    class HistoryEntry;
+    class HistoryAction;
 
-        QList<HistoryEntry> history;
-        QList<HistoryEntry>::Iterator current;
-        QPointer<KParts::ReadOnlyPart> part;
-        QPointer<KParts::BrowserExtension> extension;
-        QPointer<QGridLayout> layout;
-        bool lockHistory;
-        bool isLoading;
+    QList<HistoryEntry> history;
+    QList<HistoryEntry>::Iterator current;
+    QPointer<KParts::ReadOnlyPart> part;
+    QPointer<KParts::BrowserExtension> extension;
+    QPointer<QGridLayout> layout;
+    bool lockHistory;
+    bool isLoading;
 
-        QString mimetype;
-        KService::Ptr service;
+    QString mimetype;
+    KService::Ptr service;
 
-        void connectPart();
-        void updateHistoryEntry();
-        void appendHistoryEntry(const KUrl& url);
-        void restoreHistoryEntry(const QList<HistoryEntry>::Iterator& entry);
-        bool loadPartForMimetype(const QString& mimetype);
+    void connectPart();
+    void updateHistoryEntry();
+    void appendHistoryEntry(const KUrl &url);
+    void restoreHistoryEntry(const QList<HistoryEntry>::Iterator &entry);
+    bool loadPartForMimetype(const QString &mimetype);
 
-    public slots:
-        void slotHistoryEntrySelected( const QList<BrowserFrame::Private::HistoryEntry>::Iterator& entry)
-        {
-            restoreHistoryEntry(entry);
-        }
-        void partDestroyed( QObject* obj );
+public slots:
+    void slotHistoryEntrySelected(const QList<BrowserFrame::Private::HistoryEntry>::Iterator &entry)
+    {
+        restoreHistoryEntry(entry);
+    }
+    void partDestroyed(QObject *obj);
 };
 
 class BrowserFrame::Private::HistoryEntry
 {
-    public:
+public:
 
-        KUrl url;
-        QString title;
-        QByteArray buffer;
-        int id;
-        QString mimetype;
-        QString strServiceName;
-        QByteArray postData;
-        QString postContentType;
-        bool doPost;
-        QString pageReferrer;
+    KUrl url;
+    QString title;
+    QByteArray buffer;
+    int id;
+    QString mimetype;
+    QString strServiceName;
+    QByteArray postData;
+    QString postContentType;
+    bool doPost;
+    QString pageReferrer;
 
-        HistoryEntry() : id(idCounter++) {}
+    HistoryEntry() : id(idCounter++) {}
 
-        bool operator==(const HistoryEntry& other) const
-        {
-            return id == other.id;
-        }
+    bool operator==(const HistoryEntry &other) const
+    {
+        return id == other.id;
+    }
 
-        bool operator!=(const HistoryEntry& other) const
-        {
-            return id != other.id;
-        }
+    bool operator!=(const HistoryEntry &other) const
+    {
+        return id != other.id;
+    }
 
-        static int idCounter;
+    static int idCounter;
 };
 
 class BrowserFrame::Private::HistoryAction : public QAction
 {
 
     Q_OBJECT
-    public:
-        HistoryAction(QList<HistoryEntry>::Iterator entry,
-                      QObject* q,
-                      Private* priv);
+public:
+    HistoryAction(QList<HistoryEntry>::Iterator entry,
+                  QObject *q,
+                  Private *priv);
 
-        QList<HistoryEntry>::Iterator m_entry;
+    QList<HistoryEntry>::Iterator m_entry;
 
-    public slots:
+public slots:
 
-        void slotTriggered(bool);
+    void slotTriggered(bool);
 
-    signals:
+signals:
 
-        void triggered(const QList<BrowserFrame::Private::HistoryEntry>::Iterator&);
+    void triggered(const QList<BrowserFrame::Private::HistoryEntry>::Iterator &);
 };
 
 } // namespace Akregator

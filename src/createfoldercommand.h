@@ -27,7 +27,8 @@
 
 #include "command.h"
 
-namespace Akregator {
+namespace Akregator
+{
 
 class Folder;
 class SubscriptionListView;
@@ -37,21 +38,21 @@ class CreateFolderCommand : public Command
 {
     Q_OBJECT
 public:
-    explicit CreateFolderCommand( QObject* parent = 0 );
+    explicit CreateFolderCommand(QObject *parent = 0);
     ~CreateFolderCommand();
-    
-    void setSubscriptionListView( SubscriptionListView* view );
-    void setSelectedSubscription( TreeNode* selected );
-    void setRootFolder( Folder* rootFolder );
-    
+
+    void setSubscriptionListView(SubscriptionListView *view);
+    void setSelectedSubscription(TreeNode *selected);
+    void setRootFolder(Folder *rootFolder);
+
 private:
     void doStart();
     void doAbort();
-    
+
 private:
     class Private;
-    Private* const d;
-    Q_PRIVATE_SLOT( d, void doCreate() )
+    Private *const d;
+    Q_PRIVATE_SLOT(d, void doCreate())
 };
 
 }

@@ -50,20 +50,20 @@
 
 using namespace Akregator;
 
-BrowserInterface::BrowserInterface( MainWindow *shell, const char *name )
-    : KParts::BrowserInterface( shell )
+BrowserInterface::BrowserInterface(MainWindow *shell, const char *name)
+    : KParts::BrowserInterface(shell)
 {
     setObjectName(QLatin1String(name));
     m_shell = shell;
 }
 
-MainWindow::MainWindow( QWidget* parent, Qt::WindowFlags f )
-    : KParts::MainWindow( parent, f )
-    , m_browserIface( new BrowserInterface( this, "browser_interface" ) )
+MainWindow::MainWindow(QWidget *parent, Qt::WindowFlags f)
+    : KParts::MainWindow(parent, f)
+    , m_browserIface(new BrowserInterface(this, "browser_interface"))
     , m_part()
-    , m_statusLabel( new KSqueezedTextLabel( this ) )
+    , m_statusLabel(new KSqueezedTextLabel(this))
 {
-    setPluginLoadingMode( DoNotLoadPlugins );
+    setPluginLoadingMode(DoNotLoadPlugins);
 
     // set the shell's ui resource file
     setXMLFile(QLatin1String("akregator_shell.rc"));
@@ -74,47 +74,49 @@ MainWindow::MainWindow( QWidget* parent, Qt::WindowFlags f )
     toolBar()->show();
     statusBar()->show();
 
-    int statH=fontMetrics().height()+2;
+    int statH = fontMetrics().height() + 2;
     m_statusLabel->setTextFormat(Qt::RichText);
-    m_statusLabel->setSizePolicy(QSizePolicy( QSizePolicy::Ignored, QSizePolicy::Fixed ));
-    m_statusLabel->setMinimumWidth( 0 );
-    m_statusLabel->setFixedHeight( statH );
-    statusBar()->addWidget( m_statusLabel, 1 );
+    m_statusLabel->setSizePolicy(QSizePolicy(QSizePolicy::Ignored, QSizePolicy::Fixed));
+    m_statusLabel->setMinimumWidth(0);
+    m_statusLabel->setFixedHeight(statH);
+    statusBar()->addWidget(m_statusLabel, 1);
 
     KStandardAction::quit(kapp, SLOT(quit()), actionCollection());
-    KStandardAction::showMenubar( menuBar(), SLOT(setVisible(bool)), actionCollection());
+    KStandardAction::showMenubar(menuBar(), SLOT(setVisible(bool)), actionCollection());
     setStandardToolBarMenuEnabled(true);
     createStandardStatusBarAction();
 
-    connect( KPIM::BroadcastStatus::instance(), SIGNAL(statusMsg(QString)),
-             this, SLOT(slotSetStatusBarText(QString)) );
+    connect(KPIM::BroadcastStatus::instance(), SIGNAL(statusMsg(QString)),
+            this, SLOT(slotSetStatusBarText(QString)));
 
     connect(qApp, SIGNAL(aboutToQuit()), this, SLOT(slotOnShutdown()));
 }
 
 bool MainWindow::loadPart()
 {
-    if ( m_part )
+    if (m_part) {
         return true;
+    }
     // this routine will find and load our Part.  it finds the Part by
     // name which is a bad idea usually.. but it's alright in this
     // case since our Part is made for this Shell
     KPluginLoader loader(QLatin1String("akregatorpart"));
-    KPluginFactory* const factory = loader.factory();
+    KPluginFactory *const factory = loader.factory();
     if (!factory) {
-        KMessageBox::error(this, i18n("Could not find the Akregator part; please check your installation.\n%1", loader.errorString()) );
+        KMessageBox::error(this, i18n("Could not find the Akregator part; please check your installation.\n%1", loader.errorString()));
         return false;
     }
 
-    m_part = static_cast<Akregator::Part*>( factory->create<KParts::ReadOnlyPart>(this) );
+    m_part = static_cast<Akregator::Part *>(factory->create<KParts::ReadOnlyPart>(this));
 
-    if ( !m_part )
+    if (!m_part) {
         return false;
+    }
 
     m_part->setObjectName(QLatin1String("akregator_part"));
     setCentralWidget(m_part->widget());
 
-    connect(m_part, SIGNAL(setWindowCaption(QString)), this, SLOT(setCaption(QString)) );
+    connect(m_part, SIGNAL(setWindowCaption(QString)), this, SLOT(setCaption(QString)));
 
     createGUI(m_part);
     browserExtension(m_part)->setBrowserInterface(m_browserIface);
@@ -124,8 +126,8 @@ bool MainWindow::loadPart()
 
 void MainWindow::setupProgressWidgets()
 {
-    KPIM::ProgressStatusBarWidget * progressStatusBarWidget = new KPIM::ProgressStatusBarWidget(statusBar(), this);
-    statusBar()->addPermanentWidget( progressStatusBarWidget->littleProgress(), 0 );
+    KPIM::ProgressStatusBarWidget *progressStatusBarWidget = new KPIM::ProgressStatusBarWidget(statusBar(), this);
+    statusBar()->addPermanentWidget(progressStatusBarWidget->littleProgress(), 0);
 }
 
 MainWindow::~MainWindow()
@@ -134,30 +136,33 @@ MainWindow::~MainWindow()
 
 void MainWindow::saveProperties(KConfigGroup &config)
 {
-    if (!m_part)
+    if (!m_part) {
         loadPart();
+    }
 
     m_part->saveProperties(config);
     config.writeEntry("docked", isHidden());
 }
 
-void MainWindow::readProperties(const KConfigGroup & config)
+void MainWindow::readProperties(const KConfigGroup &config)
 {
-    if (!m_part)
+    if (!m_part) {
         loadPart();
+    }
     m_part->readProperties(config);
-    setVisible( !Settings::showTrayIcon() || !config.readEntry("docked", false) );
+    setVisible(!Settings::showTrayIcon() || !config.readEntry("docked", false));
 }
 
 // TODO: move to part?
 void MainWindow::optionsConfigureKeys()
 {
-    KShortcutsDialog dlg( KShortcutsEditor::AllActions,
-      KShortcutsEditor::LetterShortcutsAllowed, this );
+    KShortcutsDialog dlg(KShortcutsEditor::AllActions,
+                         KShortcutsEditor::LetterShortcutsAllowed, this);
 
     dlg.addCollection(actionCollection());
-    if (m_part)
+    if (m_part) {
         dlg.addCollection(m_part->actionCollection());
+    }
 
     dlg.configure();
 }
@@ -165,8 +170,8 @@ void MainWindow::optionsConfigureKeys()
 // TODO: move to part?
 void MainWindow::optionsConfigureToolbars()
 {
-    KConfigGroup grp(KSharedConfig::openConfig().data()->group( autoSaveGroup()));
-    saveMainWindowSettings(grp );
+    KConfigGroup grp(KSharedConfig::openConfig().data()->group(autoSaveGroup()));
+    saveMainWindowSettings(grp);
     KEditToolBar dlg(factory());
     connect(&dlg, &KEditToolBar::newToolBarConfig, this, &MainWindow::applyNewToolbarConfig);
     dlg.exec();
@@ -175,12 +180,12 @@ void MainWindow::optionsConfigureToolbars()
 // TODO: move to part?
 void MainWindow::applyNewToolbarConfig()
 {
-    applyMainWindowSettings(KSharedConfig::openConfig()->group( autoSaveGroup()) );
+    applyMainWindowSettings(KSharedConfig::openConfig()->group(autoSaveGroup()));
 }
 
 KParts::BrowserExtension *MainWindow::browserExtension(KParts::ReadOnlyPart *p)
 {
-    return KParts::BrowserExtension::childObject( p );
+    return KParts::BrowserExtension::childObject(p);
 }
 
 void MainWindow::slotQuit()
@@ -195,10 +200,10 @@ void MainWindow::slotOnShutdown()
 
 bool MainWindow::queryClose()
 {
-    if ( kapp->sessionSaving() ) {
+    if (kapp->sessionSaving()) {
         return true;
     }
-    if ( !TrayIcon::getInstance() ) {
+    if (!TrayIcon::getInstance()) {
         delete m_part; // delete that here instead of dtor to ensure nested khtmlparts are deleted before singleton objects like KHTMLPageCache
         return true;
     }
@@ -212,7 +217,7 @@ void MainWindow::slotClearStatusText()
     m_statusLabel->setText(QString());
 }
 
-void MainWindow::slotSetStatusBarText( const QString & text )
+void MainWindow::slotSetStatusBarText(const QString &text)
 {
     m_statusLabel->setText(text);
 }

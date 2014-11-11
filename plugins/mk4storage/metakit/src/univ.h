@@ -11,8 +11,9 @@
 
 /////////////////////////////////////////////////////////////////////////////
 
-class c4_BaseArray {
-  public:
+class c4_BaseArray
+{
+public:
     c4_BaseArray();
     ~c4_BaseArray();
 
@@ -27,14 +28,15 @@ class c4_BaseArray {
     void InsertAt(int nIndex, int nCount);
     void RemoveAt(int nIndex, int nCount);
 
-  private:
+private:
     char *_data;
     int _size;
     //  char _buffer[4];
 };
 
-class c4_PtrArray {
-  public:
+class c4_PtrArray
+{
+public:
     c4_PtrArray();
     ~c4_PtrArray();
 
@@ -43,21 +45,22 @@ class c4_PtrArray {
 
     void *GetAt(int nIndex)const;
     void SetAt(int nIndex, const void *newElement);
-    void * &ElementAt(int nIndex);
+    void*&ElementAt(int nIndex);
 
     int Add(void *newElement);
 
     void InsertAt(int nIndex, void *newElement, int nCount = 1);
     void RemoveAt(int nIndex, int nCount = 1);
 
-  private:
+private:
     static int Off(int n_);
 
     c4_BaseArray _vector;
 };
 
-class c4_DWordArray {
-  public:
+class c4_DWordArray
+{
+public:
     c4_DWordArray();
     ~c4_DWordArray();
 
@@ -73,14 +76,15 @@ class c4_DWordArray {
     void InsertAt(int nIndex, t4_i32 newElement, int nCount = 1);
     void RemoveAt(int nIndex, int nCount = 1);
 
-  private:
+private:
     static int Off(int n_);
 
     c4_BaseArray _vector;
 };
 
-class c4_StringArray {
-  public:
+class c4_StringArray
+{
+public:
     c4_StringArray();
     ~c4_StringArray();
 
@@ -96,7 +100,7 @@ class c4_StringArray {
     void InsertAt(int nIndex, const char *newElement, int nCount = 1);
     void RemoveAt(int nIndex, int nCount = 1);
 
-  private:
+private:
     c4_PtrArray _ptrs;
 };
 
@@ -104,6 +108,6 @@ class c4_StringArray {
 
 #if q4_INLINE
 #include "univ.inl"
-#endif 
+#endif
 
 /////////////////////////////////////////////////////////////////////////////

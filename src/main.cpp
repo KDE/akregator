@@ -32,40 +32,42 @@
 #include <kontactinterface/pimuniqueapplication.h>
 #include <QtDBus/QtDBus>
 
-namespace Akregator {
+namespace Akregator
+{
 
-class Application : public KontactInterface::PimUniqueApplication {
-  public:
+class Application : public KontactInterface::PimUniqueApplication
+{
+public:
     Application() : mMainWindow(0) {}
     ~Application() {}
 
     int newInstance();
 
-  private:
+private:
     Akregator::MainWindow *mMainWindow;
 };
 
 int Application::newInstance()
 {
-  if (!isSessionRestored())
-  {
-    QDBusInterface akr(QLatin1String("org.kde.akregator"), QLatin1String("/Akregator"), QLatin1String("org.kde.akregator.part"));
+    if (!isSessionRestored()) {
+        QDBusInterface akr(QLatin1String("org.kde.akregator"), QLatin1String("/Akregator"), QLatin1String("org.kde.akregator.part"));
 
-    KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
+        KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
 
-    if ( !mMainWindow ) {
-      mMainWindow = new Akregator::MainWindow();
-      mMainWindow->loadPart();
-      mMainWindow->setupProgressWidgets();
-      if (!args->isSet("hide-mainwindow"))
-        mMainWindow->show();
-      akr.call( QLatin1String("openStandardFeedList"));
+        if (!mMainWindow) {
+            mMainWindow = new Akregator::MainWindow();
+            mMainWindow->loadPart();
+            mMainWindow->setupProgressWidgets();
+            if (!args->isSet("hide-mainwindow")) {
+                mMainWindow->show();
+            }
+            akr.call(QLatin1String("openStandardFeedList"));
+        }
+
+        akr.call(QLatin1String("handleCommandLine"));
+        args->clear();
     }
-
-    akr.call( QLatin1String("handleCommandLine") );
-    args->clear();
-  }
-  return KUniqueApplication::newInstance();
+    return KUniqueApplication::newInstance();
 }
 
 } // namespace Akregator
@@ -74,12 +76,12 @@ int main(int argc, char **argv)
 {
     Akregator::AboutData about;
     KCmdLineArgs::init(argc, argv, &about);
-    KCmdLineArgs::addCmdLineOptions( Akregator::akregator_options() );
+    KCmdLineArgs::addCmdLineOptions(Akregator::akregator_options());
     KUniqueApplication::addCmdLineOptions();
 
-    if ( !Akregator::Application::start() ) {
+    if (!Akregator::Application::start()) {
         qWarning() << "akregator is already running, exiting.";
-        exit( 0 );
+        exit(0);
     }
 
     Akregator::Application app;
@@ -88,12 +90,11 @@ int main(int argc, char **argv)
     //KNotifyClient::startDaemon();
 
     // see if we are starting with session management
-    if (app.isSessionRestored())
-    {
+    if (app.isSessionRestored()) {
 #undef RESTORE
 #define RESTORE(type) { int n = 1;\
-    while (KMainWindow::canBeRestored(n)){\
-        (new type)->restore(n, false);\
+        while (KMainWindow::canBeRestored(n)){\
+            (new type)->restore(n, false);\
             n++;}}
 
         RESTORE(Akregator::MainWindow);
@@ -101,5 +102,4 @@ int main(int argc, char **argv)
 
     return app.exec();
 }
-
 

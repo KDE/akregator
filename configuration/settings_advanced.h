@@ -32,32 +32,33 @@
 class QString;
 class QWidget;
 
-namespace Akregator {
+namespace Akregator
+{
 
 namespace Backend
 {
-    class StorageFactory;
+class StorageFactory;
 }
 
 class SettingsAdvanced : public QWidget, public Ui::SettingsAdvancedBase
 {
     Q_OBJECT
 
-    public:
-        explicit SettingsAdvanced(QWidget* parent=0, const char* name=0);
+public:
+    explicit SettingsAdvanced(QWidget *parent = 0, const char *name = 0);
 
-        /** returns the key of the currently selected factory */
-        QString selectedFactory() const;
-        
-        void selectFactory(const QString& key);
-        
-    public slots:
-        
-        void slotConfigureStorage();
-        void slotFactorySelected(int);
-        
-    private:
-        QHash<QString,Backend::StorageFactory*> m_factories;
+    /** returns the key of the currently selected factory */
+    QString selectedFactory() const;
+
+    void selectFactory(const QString &key);
+
+public slots:
+
+    void slotConfigureStorage();
+    void slotFactorySelected(int);
+
+private:
+    QHash<QString, Backend::StorageFactory *> m_factories;
 };
 
 } // namespace Akregator

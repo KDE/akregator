@@ -33,7 +33,8 @@ class QPoint;
 
 class KJob;
 
-namespace Akregator {
+namespace Akregator
+{
 
 class ArticleListJob;
 
@@ -43,14 +44,14 @@ class SelectionController : public AbstractSelectionController
 
 public:
 
-    explicit SelectionController( QObject* parent = 0 );
+    explicit SelectionController(QObject *parent = 0);
     ~SelectionController();
 
     //impl
-    void setFeedSelector( QAbstractItemView* feedSelector ) ;
+    void setFeedSelector(QAbstractItemView *feedSelector) ;
 
     //impl
-    void setArticleLister( Akregator::ArticleLister* lister );
+    void setArticleLister(Akregator::ArticleLister *lister);
 
     //impl
     Akregator::Article currentArticle() const;
@@ -62,42 +63,42 @@ public:
     QList<Akregator::Article> selectedArticles() const;
 
     //impl
-    void setSingleArticleDisplay( Akregator::SingleArticleDisplay* display );
+    void setSingleArticleDisplay(Akregator::SingleArticleDisplay *display);
 
     //impl
-    Akregator::TreeNode* selectedSubscription() const;
+    Akregator::TreeNode *selectedSubscription() const;
 
     //impl
-    void setFeedList( const boost::shared_ptr<FeedList>& list );
+    void setFeedList(const boost::shared_ptr<FeedList> &list);
 
     //impl
-    void setFolderExpansionHandler( Akregator::FolderExpansionHandler* handler );
+    void setFolderExpansionHandler(Akregator::FolderExpansionHandler *handler);
 
 public Q_SLOTS:
 
     //impl
-    void setFilters( const std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> >& );
+    void setFilters(const std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> > &);
 
     //impl
     void forceFilterUpdate();
 
 private Q_SLOTS:
 
-    void selectedSubscriptionChanged( const QModelIndex& index );
+    void selectedSubscriptionChanged(const QModelIndex &index);
     void articleSelectionChanged();
-    void articleIndexDoubleClicked( const QModelIndex& index );
-    void subscriptionContextMenuRequested( const QPoint& point );
-    void articleHeadersAvailable(KJob*);
+    void articleIndexDoubleClicked(const QModelIndex &index);
+    void subscriptionContextMenuRequested(const QPoint &point);
+    void articleHeadersAvailable(KJob *);
 
 private:
 
     boost::shared_ptr<FeedList> m_feedList;
     QPointer<QAbstractItemView> m_feedSelector;
-    Akregator::ArticleLister* m_articleLister;
-    Akregator::SingleArticleDisplay* m_singleDisplay;
-    Akregator::SubscriptionListModel* m_subscriptionModel;
-    Akregator::FolderExpansionHandler* m_folderExpansionHandler;
-    Akregator::ArticleModel* m_articleModel;
+    Akregator::ArticleLister *m_articleLister;
+    Akregator::SingleArticleDisplay *m_singleDisplay;
+    Akregator::SubscriptionListModel *m_subscriptionModel;
+    Akregator::FolderExpansionHandler *m_folderExpansionHandler;
+    Akregator::ArticleModel *m_articleModel;
     QPointer<TreeNode> m_selectedSubscription;
     QPointer<ArticleListJob> m_listJob;
 };

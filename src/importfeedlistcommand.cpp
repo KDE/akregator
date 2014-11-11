@@ -45,9 +45,9 @@ using namespace Akregator;
 
 class ImportFeedListCommand::Private
 {
-    ImportFeedListCommand* const q;
+    ImportFeedListCommand *const q;
 public:
-    explicit Private( ImportFeedListCommand* qq );
+    explicit Private(ImportFeedListCommand *qq);
 
     void doImport();
 
@@ -57,11 +57,11 @@ public:
     QString importedRootFolderName;
 };
 
-ImportFeedListCommand::Private::Private( ImportFeedListCommand* qq )
-    : q( qq )
+ImportFeedListCommand::Private::Private(ImportFeedListCommand *qq)
+    : q(qq)
     , targetList()
-    , rootFolderOption( Ask )
-    , importedRootFolderName( i18n("Imported Feeds") )
+    , rootFolderOption(Ask)
+    , importedRootFolderName(i18n("Imported Feeds"))
 {
 
 }
@@ -70,16 +70,16 @@ void ImportFeedListCommand::Private::doImport()
 {
     const shared_ptr<FeedList> target = targetList.lock();
 
-    if ( !target )
-    {
-        if ( !target )
+    if (!target) {
+        if (!target) {
             qWarning() << "Target list was deleted, could not import feed list";
+        }
         q->done();
         return;
     }
 
-    std::auto_ptr<FeedList> importedList( new FeedList( Kernel::self()->storage() ) );
-    const bool parsed = importedList->readFromOpml( document );
+    std::auto_ptr<FeedList> importedList(new FeedList(Kernel::self()->storage()));
+    const bool parsed = importedList->readFromOpml(document);
 
     // FIXME: parsing error, print some message
     if (!parsed) {
@@ -87,37 +87,36 @@ void ImportFeedListCommand::Private::doImport()
         return;
     }
 
+    QPointer<QObject> that(q);
 
-    QPointer<QObject> that( q );
+    bool ok = false;
 
-    bool ok=false;
+    if (rootFolderOption == ImportFeedListCommand::Ask)
+        importedRootFolderName = QInputDialog::getText(q->parentWidget(), i18n("Add Imported Folder"),
+                                 i18n("Imported folder name:"), QLineEdit::Normal,
+                                 importedRootFolderName,
+                                 &ok);
 
-    if ( rootFolderOption == ImportFeedListCommand::Ask )
-        importedRootFolderName = QInputDialog::getText( q->parentWidget(), i18n("Add Imported Folder"),
-                i18n("Imported folder name:"), QLineEdit::Normal,
-                importedRootFolderName,
-                &ok);
-
-
-    if ( !ok || !that ) {
-        if ( that )
+    if (!ok || !that) {
+        if (that) {
             q->done();
+        }
         return;
     }
 
-    Folder* folder = target->allFeedsFolder();
+    Folder *folder = target->allFeedsFolder();
 
-    if ( rootFolderOption != None ) {
-        folder = new Folder( importedRootFolderName );
-        target->allFeedsFolder()->appendChild( folder );
+    if (rootFolderOption != None) {
+        folder = new Folder(importedRootFolderName);
+        target->allFeedsFolder()->appendChild(folder);
     }
 
-    target->append( importedList.get(), folder );
+    target->append(importedList.get(), folder);
 
     q->done();
 }
 
-ImportFeedListCommand::ImportFeedListCommand( QObject* parent ) : Command( parent ), d( new Private( this ) )
+ImportFeedListCommand::ImportFeedListCommand(QObject *parent) : Command(parent), d(new Private(this))
 {
 }
 
@@ -126,20 +125,23 @@ ImportFeedListCommand::~ImportFeedListCommand()
     delete d;
 }
 
-void ImportFeedListCommand::setTargetList( const weak_ptr<FeedList>& feedList )
+void ImportFeedListCommand::setTargetList(const weak_ptr<FeedList> &feedList)
 {
     d->targetList = feedList;
 }
 
-void ImportFeedListCommand::setImportedRootFolderOption( RootFolderOption opt ) {
+void ImportFeedListCommand::setImportedRootFolderOption(RootFolderOption opt)
+{
     d->rootFolderOption = opt;
 }
 
-void ImportFeedListCommand::setImportedRootFolderName( const QString& defaultName ) {
+void ImportFeedListCommand::setImportedRootFolderName(const QString &defaultName)
+{
     d->importedRootFolderName = defaultName;
 }
 
-void ImportFeedListCommand::setFeedListDocument( const QDomDocument& doc ) {
+void ImportFeedListCommand::setFeedListDocument(const QDomDocument &doc)
+{
     d->document = doc;
 }
 
@@ -150,7 +152,7 @@ void ImportFeedListCommand::doAbort()
 
 void ImportFeedListCommand::doStart()
 {
-    QTimer::singleShot( 0, this, SLOT(doImport()) );
+    QTimer::singleShot(0, this, SLOT(doImport()));
 }
 
 #include "moc_importfeedlistcommand.cpp"

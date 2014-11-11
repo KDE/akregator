@@ -32,13 +32,13 @@ class QWidget;
 
 class KCMAkregatorBrowserConfig : public KCModule
 {
-  Q_OBJECT
+    Q_OBJECT
 
-  public:
-    KCMAkregatorBrowserConfig( QWidget *parent, const QVariantList &args );
+public:
+    KCMAkregatorBrowserConfig(QWidget *parent, const QVariantList &args);
 
-  private:
-      QWidget* m_widget;
+private:
+    QWidget *m_widget;
 };
 
 #endif // AKREGATOR_CONFIG_BROWSER_H

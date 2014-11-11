@@ -29,33 +29,33 @@
 #include <QAction>
 #include <QByteArray>
 
-
-namespace Akregator {
+namespace Akregator
+{
 
 class TreeNode;
 
-class SubscriptionListView : public QTreeView {
-Q_OBJECT
+class SubscriptionListView : public QTreeView
+{
+    Q_OBJECT
 public:
-    explicit SubscriptionListView( QWidget* parent = 0 );
+    explicit SubscriptionListView(QWidget *parent = 0);
     ~SubscriptionListView();
 // the following is all transitional, for easier porting from the item-based views
 
-    void startNodeRenaming( TreeNode* node );
+    void startNodeRenaming(TreeNode *node);
 
-    void ensureNodeVisible( TreeNode* node );
+    void ensureNodeVisible(TreeNode *node);
 
     //override
-    void setModel( QAbstractItemModel* model );
+    void setModel(QAbstractItemModel *model);
 
     void triggerUpdate() {}
 
     enum Column {
-        TitleColumn=0,
-        UnreadColumn=1,
-        TotalColumn=2
+        TitleColumn = 0,
+        UnreadColumn = 1,
+        TotalColumn = 2
     };
-
 
 public Q_SLOTS:
 
@@ -75,16 +75,14 @@ public Q_SLOTS:
 Q_SIGNALS:
     void userActionTakingPlace();
 
-
 private:
     void saveHeaderSettings();
     void loadHeaderSettings();
     void restoreHeaderState();
 
-
 private Q_SLOTS:
-    void showHeaderMenu( const QPoint& pos );
-    void headerMenuItemTriggered( QAction* action );
+    void showHeaderMenu(const QPoint &pos);
+    void headerMenuItemTriggered(QAction *action);
 
 private:
     QByteArray m_headerState;

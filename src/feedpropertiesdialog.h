@@ -32,74 +32,74 @@
 
 #include <QWidget>
 
-namespace Akregator {
-
+namespace Akregator
+{
 
 class FeedPropertiesWidget : public QWidget, public Ui::FeedPropertiesWidgetBase
 {
     Q_OBJECT
-    public:
-        explicit FeedPropertiesWidget(QWidget *parent = 0, const char *name = 0);
-        ~FeedPropertiesWidget();
+public:
+    explicit FeedPropertiesWidget(QWidget *parent = 0, const char *name = 0);
+    ~FeedPropertiesWidget();
 
-        enum IntervalStep 
-        { 
-            Minutes=0,
-            Hours,
-            Days,
-            Never };
+    enum IntervalStep {
+        Minutes = 0,
+        Hours,
+        Days,
+        Never
+    };
 
-    public Q_SLOTS:
-        void slotUpdateComboBoxActivated(int index);
-        void slotUpdateComboBoxLabels(int value);
-        void slotUpdateCheckBoxToggled(bool enabled);
+public Q_SLOTS:
+    void slotUpdateComboBoxActivated(int index);
+    void slotUpdateComboBoxLabels(int value);
+    void slotUpdateCheckBoxToggled(bool enabled);
 };
 
 class FeedPropertiesDialog : public QDialog
 {
     Q_OBJECT
-    public:
-        explicit FeedPropertiesDialog(QWidget *parent = 0, const char *name = 0);
-        ~FeedPropertiesDialog();
+public:
+    explicit FeedPropertiesDialog(QWidget *parent = 0, const char *name = 0);
+    ~FeedPropertiesDialog();
 
-        void setFeed(Feed* feed);
+    void setFeed(Feed *feed);
 
-        /** selects the text in the feed title lineedit */
-        void selectFeedName();
+    /** selects the text in the feed title lineedit */
+    void selectFeedName();
 
-    public slots:
-        
-        void accept();
-        
-    protected:
-        QString feedName() const;
-        QString url() const;
-        bool autoFetch() const;
-        int fetchInterval() const;
-        Feed::ArchiveMode archiveMode() const;
-        int maxArticleAge() const;
-        int maxArticleNumber() const;
-        bool markImmediatelyAsRead() const;
-        bool useNotification() const;
-        bool loadLinkedWebsite() const;
+public slots:
 
-        void setFeedName(const QString& title);
-        void setUrl(const QString& url);
-        void setAutoFetch(bool);
-        void setFetchInterval(int);
-        void setArchiveMode(Feed::ArchiveMode mode);
-        void setMaxArticleAge(int age);
-        void setMaxArticleNumber(int number);
-        void setMarkImmediatelyAsRead(bool enabled);
-        void setUseNotification(bool enabled);
-        void setLoadLinkedWebsite(bool enabled);
+    void accept();
 
-    private:
-        FeedPropertiesWidget *widget;
-        Feed* m_feed;
+protected:
+    QString feedName() const;
+    QString url() const;
+    bool autoFetch() const;
+    int fetchInterval() const;
+    Feed::ArchiveMode archiveMode() const;
+    int maxArticleAge() const;
+    int maxArticleNumber() const;
+    bool markImmediatelyAsRead() const;
+    bool useNotification() const;
+    bool loadLinkedWebsite() const;
 
-    private slots:
-        void slotSetWindowTitle(const QString&);
+    void setFeedName(const QString &title);
+    void setUrl(const QString &url);
+    void setAutoFetch(bool);
+    void setFetchInterval(int);
+    void setArchiveMode(Feed::ArchiveMode mode);
+    void setMaxArticleAge(int age);
+    void setMaxArticleNumber(int number);
+    void setMarkImmediatelyAsRead(bool enabled);
+    void setUseNotification(bool enabled);
+    void setLoadLinkedWebsite(bool enabled);
+
+private:
+    FeedPropertiesWidget *widget;
+    Feed *m_feed;
+
+private slots:
+    void slotSetWindowTitle(const QString &);
 };
 
 } // namespace Akregator

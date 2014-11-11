@@ -41,7 +41,7 @@ Command::Private::Private() : parentWidget()
 {
 }
 
-Command::Command( QObject* parent ) : QObject( parent ), d( new Private )
+Command::Command(QObject *parent) : QObject(parent), d(new Private)
 {
 
 }
@@ -51,12 +51,12 @@ Command::~Command()
     delete d;
 }
 
-QWidget* Command::parentWidget() const
+QWidget *Command::parentWidget() const
 {
     return d->parentWidget;
 }
 
-void Command::setParentWidget( QWidget* parentWidget )
+void Command::setParentWidget(QWidget *parentWidget)
 {
     d->parentWidget = parentWidget;
 }

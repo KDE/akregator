@@ -34,38 +34,40 @@
 #include <QStringList>
 
 //typedef unsigned int uint;
-namespace Akregator {
-namespace Backend {
+namespace Akregator
+{
+namespace Backend
+{
 
 class FeedStorageDummyImpl::FeedStorageDummyImplPrivate
 {
+public:
+    class Entry
+    {
     public:
-        class Entry
-        {
-            public:
-            Entry() : guidIsHash(false), guidIsPermaLink(false), status(0), pubDate(0), hash(0) {}
-            StorageDummyImpl* mainStorage;
-            QList<Category> categories;
-            QString title;
-            QString description;
-            QString content;
-            QString link;
-            QString authorName;
-            QString authorUri;
-            QString authorEMail;
-            QString commentsLink;
-            bool guidIsHash;
-            bool guidIsPermaLink;
-            int comments;
-            int status;
-            uint pubDate;
-            uint hash;
-            QStringList tags;
-            bool hasEnclosure;
-            QString enclosureUrl;
-            QString enclosureType;
-            int enclosureLength;
-        };
+        Entry() : guidIsHash(false), guidIsPermaLink(false), status(0), pubDate(0), hash(0) {}
+        StorageDummyImpl *mainStorage;
+        QList<Category> categories;
+        QString title;
+        QString description;
+        QString content;
+        QString link;
+        QString authorName;
+        QString authorUri;
+        QString authorEMail;
+        QString commentsLink;
+        bool guidIsHash;
+        bool guidIsPermaLink;
+        int comments;
+        int status;
+        uint pubDate;
+        uint hash;
+        QStringList tags;
+        bool hasEnclosure;
+        QString enclosureUrl;
+        QString enclosureType;
+        int enclosureLength;
+    };
 
     QHash<QString, Entry> entries;
 
@@ -78,16 +80,15 @@ class FeedStorageDummyImpl::FeedStorageDummyImplPrivate
     QList<Category> categories;
     QMap<Akregator::Backend::Category, QStringList> categorizedArticles;
 
-    Storage* mainStorage;
+    Storage *mainStorage;
     QString url;
 };
-
 
 void FeedStorageDummyImpl::convertOldArchive()
 {
 }
 
-FeedStorageDummyImpl::FeedStorageDummyImpl(const QString& url, StorageDummyImpl* main) : d(new FeedStorageDummyImplPrivate)
+FeedStorageDummyImpl::FeedStorageDummyImpl(const QString &url, StorageDummyImpl *main) : d(new FeedStorageDummyImplPrivate)
 {
     d->url = url;
     d->mainStorage = main;
@@ -140,71 +141,71 @@ void FeedStorageDummyImpl::setLastFetch(int lastFetch)
     d->mainStorage->setLastFetchFor(d->url, lastFetch);
 }
 
-QStringList FeedStorageDummyImpl::articles(const QString& tag) const
+QStringList FeedStorageDummyImpl::articles(const QString &tag) const
 {
     return tag.isNull() ? QStringList(d->entries.keys()) : d->taggedArticles.value(tag);
 }
 
-QStringList FeedStorageDummyImpl::articles(const Category& cat) const
+QStringList FeedStorageDummyImpl::articles(const Category &cat) const
 {
     return d->categorizedArticles.value(cat);
 }
 
-void FeedStorageDummyImpl::addEntry(const QString& guid)
+void FeedStorageDummyImpl::addEntry(const QString &guid)
 {
-    if (!d->entries.contains(guid))
-    {
+    if (!d->entries.contains(guid)) {
         d->entries[guid] = FeedStorageDummyImplPrivate::Entry();
-        setTotalCount(totalCount()+1);
+        setTotalCount(totalCount() + 1);
     }
 }
 
-bool FeedStorageDummyImpl::contains(const QString& guid) const
+bool FeedStorageDummyImpl::contains(const QString &guid) const
 {
     return d->entries.contains(guid);
 }
 
-void FeedStorageDummyImpl::deleteArticle(const QString& guid)
+void FeedStorageDummyImpl::deleteArticle(const QString &guid)
 {
-    if (!d->entries.contains(guid))
+    if (!d->entries.contains(guid)) {
         return;
+    }
 
     setDeleted(guid);
 
     d->entries.remove(guid);
 }
 
-int FeedStorageDummyImpl::comments(const QString& guid) const
+int FeedStorageDummyImpl::comments(const QString &guid) const
 {
 
     return contains(guid) ? d->entries[guid].comments : 0;
 }
 
-QString FeedStorageDummyImpl::commentsLink(const QString& guid) const
+QString FeedStorageDummyImpl::commentsLink(const QString &guid) const
 {
     return contains(guid) ? d->entries[guid].commentsLink : "";
 }
 
-bool FeedStorageDummyImpl::guidIsHash(const QString& guid) const
+bool FeedStorageDummyImpl::guidIsHash(const QString &guid) const
 {
     return contains(guid) ? d->entries[guid].guidIsHash : false;
 }
 
-bool FeedStorageDummyImpl::guidIsPermaLink(const QString& guid) const
+bool FeedStorageDummyImpl::guidIsPermaLink(const QString &guid) const
 {
     return contains(guid) ? d->entries[guid].guidIsPermaLink : false;
 }
 
-uint FeedStorageDummyImpl::hash(const QString& guid) const
+uint FeedStorageDummyImpl::hash(const QString &guid) const
 {
     return contains(guid) ? d->entries[guid].hash : 0;
 }
 
-
-void FeedStorageDummyImpl::setDeleted(const QString& guid)
+void FeedStorageDummyImpl::setDeleted(const QString &guid)
 {
-    if (!contains(guid))
+    if (!contains(guid)) {
         return;
+    }
 
     FeedStorageDummyImplPrivate::Entry entry = d->entries[guid];
 
@@ -212,22 +213,22 @@ void FeedStorageDummyImpl::setDeleted(const QString& guid)
     QStringList::ConstIterator it = entry.tags.constBegin();
     QStringList::ConstIterator end = entry.tags.constEnd();
 
-    for ( ; it != end; ++it)
-    {
+    for (; it != end; ++it) {
         d->taggedArticles[*it].removeAll(guid);
-        if (d->taggedArticles[*it].isEmpty())
+        if (d->taggedArticles[*it].isEmpty()) {
             d->tags.removeAll(*it);
+        }
     }
 
     // remove article from tag->category index
     QList<Category>::ConstIterator it2 = entry.categories.constBegin();
     QList<Category>::ConstIterator end2 = entry.categories.constEnd();
 
-    for ( ; it2 != end2; ++it2)
-    {
+    for (; it2 != end2; ++it2) {
         d->categorizedArticles[*it2].removeAll(guid);
-        if (d->categorizedArticles[*it2].isEmpty())
+        if (d->categorizedArticles[*it2].isEmpty()) {
             d->categories.removeAll(*it2);
+        }
     }
 
     entry.description = "";
@@ -237,207 +238,222 @@ void FeedStorageDummyImpl::setDeleted(const QString& guid)
     entry.commentsLink = "";
 }
 
-QString FeedStorageDummyImpl::link(const QString& guid) const
+QString FeedStorageDummyImpl::link(const QString &guid) const
 {
     return contains(guid) ? d->entries[guid].link : "";
 }
 
-uint FeedStorageDummyImpl::pubDate(const QString& guid) const
+uint FeedStorageDummyImpl::pubDate(const QString &guid) const
 {
     return contains(guid) ? d->entries[guid].pubDate : 0;
 }
 
-int FeedStorageDummyImpl::status(const QString& guid) const
+int FeedStorageDummyImpl::status(const QString &guid) const
 {
     return contains(guid) ? d->entries[guid].status : 0;
 }
 
-void FeedStorageDummyImpl::setStatus(const QString& guid, int status)
+void FeedStorageDummyImpl::setStatus(const QString &guid, int status)
 {
-    if (contains(guid))
+    if (contains(guid)) {
         d->entries[guid].status = status;
+    }
 }
 
-QString FeedStorageDummyImpl::title(const QString& guid) const
+QString FeedStorageDummyImpl::title(const QString &guid) const
 {
     return contains(guid) ? d->entries[guid].title : "";
 }
 
-QString FeedStorageDummyImpl::description(const QString& guid) const
+QString FeedStorageDummyImpl::description(const QString &guid) const
 {
     return contains(guid) ? d->entries[guid].description : "";
 }
 
-QString FeedStorageDummyImpl::content(const QString& guid) const
+QString FeedStorageDummyImpl::content(const QString &guid) const
 {
     return contains(guid) ? d->entries[guid].content : "";
 }
 
-QString FeedStorageDummyImpl::authorName(const QString& guid) const
+QString FeedStorageDummyImpl::authorName(const QString &guid) const
 {
     return contains(guid) ? d->entries[guid].authorName : QString();
 }
 
-QString FeedStorageDummyImpl::authorUri(const QString& guid) const
+QString FeedStorageDummyImpl::authorUri(const QString &guid) const
 {
     return contains(guid) ? d->entries[guid].authorUri : QString();
 }
 
-QString FeedStorageDummyImpl::authorEMail(const QString& guid) const
+QString FeedStorageDummyImpl::authorEMail(const QString &guid) const
 {
     return contains(guid) ? d->entries[guid].authorEMail : QString();
 }
 
-
-void FeedStorageDummyImpl::setPubDate(const QString& guid, uint pubdate)
+void FeedStorageDummyImpl::setPubDate(const QString &guid, uint pubdate)
 {
-    if (contains(guid))
+    if (contains(guid)) {
         d->entries[guid].pubDate = pubdate;
+    }
 }
 
-void FeedStorageDummyImpl::setGuidIsHash(const QString& guid, bool isHash)
+void FeedStorageDummyImpl::setGuidIsHash(const QString &guid, bool isHash)
 {
-    if (contains(guid))
+    if (contains(guid)) {
         d->entries[guid].guidIsHash = isHash;
+    }
 }
 
-void FeedStorageDummyImpl::setLink(const QString& guid, const QString& link)
+void FeedStorageDummyImpl::setLink(const QString &guid, const QString &link)
 {
-    if (contains(guid))
+    if (contains(guid)) {
         d->entries[guid].link = link;
+    }
 }
 
-void FeedStorageDummyImpl::setHash(const QString& guid, uint hash)
+void FeedStorageDummyImpl::setHash(const QString &guid, uint hash)
 {
-    if (contains(guid))
+    if (contains(guid)) {
         d->entries[guid].hash = hash;
+    }
 }
 
-void FeedStorageDummyImpl::setTitle(const QString& guid, const QString& title)
+void FeedStorageDummyImpl::setTitle(const QString &guid, const QString &title)
 {
-    if (contains(guid))
+    if (contains(guid)) {
         d->entries[guid].title = title;
+    }
 }
 
-void FeedStorageDummyImpl::setDescription(const QString& guid, const QString& description)
+void FeedStorageDummyImpl::setDescription(const QString &guid, const QString &description)
 {
-    if (contains(guid))
+    if (contains(guid)) {
         d->entries[guid].description = description;
+    }
 }
 
-void FeedStorageDummyImpl::setCommentsLink(const QString& guid, const QString& commentsLink)
+void FeedStorageDummyImpl::setCommentsLink(const QString &guid, const QString &commentsLink)
 {
-    if (contains(guid))
+    if (contains(guid)) {
         d->entries[guid].commentsLink = commentsLink;
+    }
 }
 
-
-void FeedStorageDummyImpl::setContent(const QString& guid, const QString& content)
+void FeedStorageDummyImpl::setContent(const QString &guid, const QString &content)
 {
-    if (contains(guid))
+    if (contains(guid)) {
         d->entries[guid].content = content;
+    }
 }
 
-void FeedStorageDummyImpl::setAuthorName(const QString& guid, const QString& author)
+void FeedStorageDummyImpl::setAuthorName(const QString &guid, const QString &author)
 {
-    if (contains(guid))
+    if (contains(guid)) {
         d->entries[guid].authorName = author;
+    }
 }
 
-void FeedStorageDummyImpl::setAuthorUri(const QString& guid, const QString& author)
+void FeedStorageDummyImpl::setAuthorUri(const QString &guid, const QString &author)
 {
-    if (contains(guid))
+    if (contains(guid)) {
         d->entries[guid].authorUri = author;
+    }
 }
 
-void FeedStorageDummyImpl::setAuthorEMail(const QString& guid, const QString& author)
+void FeedStorageDummyImpl::setAuthorEMail(const QString &guid, const QString &author)
 {
-    if (contains(guid))
+    if (contains(guid)) {
         d->entries[guid].authorEMail = author;
+    }
 }
 
-void FeedStorageDummyImpl::setComments(const QString& guid, int comments)
+void FeedStorageDummyImpl::setComments(const QString &guid, int comments)
 {
-    if (contains(guid))
+    if (contains(guid)) {
         d->entries[guid].comments = comments;
+    }
 }
 
-
-void FeedStorageDummyImpl::setGuidIsPermaLink(const QString& guid, bool isPermaLink)
+void FeedStorageDummyImpl::setGuidIsPermaLink(const QString &guid, bool isPermaLink)
 {
-    if (contains(guid))
+    if (contains(guid)) {
         d->entries[guid].guidIsPermaLink = isPermaLink;
+    }
 }
 
-void FeedStorageDummyImpl::addTag(const QString& guid, const QString& tag)
+void FeedStorageDummyImpl::addTag(const QString &guid, const QString &tag)
 {
-    if (contains(guid))
-    {
+    if (contains(guid)) {
         d->entries[guid].tags.append(tag);
-        if (!d->taggedArticles[tag].contains(guid))
+        if (!d->taggedArticles[tag].contains(guid)) {
             d->taggedArticles[tag].append(guid);
-        if (!d->tags.contains(tag))
+        }
+        if (!d->tags.contains(tag)) {
             d->tags.append(tag);
+        }
     }
 
 }
 
-void FeedStorageDummyImpl::addCategory(const QString& guid, const Category& cat)
+void FeedStorageDummyImpl::addCategory(const QString &guid, const Category &cat)
 {
-    if (!contains(guid))
+    if (!contains(guid)) {
         return;
+    }
 
     d->entries[guid].categories.append(cat);
 
-    if (d->categorizedArticles[cat].isEmpty())
+    if (d->categorizedArticles[cat].isEmpty()) {
         d->categories.append(cat);
+    }
     d->categorizedArticles[cat].append(guid);
 }
 
-QList<Category> FeedStorageDummyImpl::categories(const QString& guid) const
+QList<Category> FeedStorageDummyImpl::categories(const QString &guid) const
 {
-  if (!guid.isNull())
+    if (!guid.isNull()) {
         return contains(guid) ? d->entries[guid].categories : QList<Category>();
-    else
+    } else {
         return d->categories;
-}
-
-
-void FeedStorageDummyImpl::removeTag(const QString& guid, const QString& tag)
-{
-    if (contains(guid))
-    {
-        d->entries[guid].tags.removeAll(tag);
-        d->taggedArticles[tag].removeAll(guid);
-        if (d->taggedArticles[tag].isEmpty())
-            d->tags.removeAll(tag);
     }
 }
 
-QStringList FeedStorageDummyImpl::tags(const QString& guid) const
+void FeedStorageDummyImpl::removeTag(const QString &guid, const QString &tag)
 {
-    if (!guid.isNull())
+    if (contains(guid)) {
+        d->entries[guid].tags.removeAll(tag);
+        d->taggedArticles[tag].removeAll(guid);
+        if (d->taggedArticles[tag].isEmpty()) {
+            d->tags.removeAll(tag);
+        }
+    }
+}
+
+QStringList FeedStorageDummyImpl::tags(const QString &guid) const
+{
+    if (!guid.isNull()) {
         return contains(guid) ? d->entries[guid].tags : QStringList();
-    else
-    {
+    } else {
         return d->tags;
     }
 }
 
-void FeedStorageDummyImpl::add(FeedStorage* source)
+void FeedStorageDummyImpl::add(FeedStorage *source)
 {
     QStringList articles = source->articles();
-    for (QStringList::ConstIterator it = articles.constBegin(); it != articles.constEnd(); ++it)
+    for (QStringList::ConstIterator it = articles.constBegin(); it != articles.constEnd(); ++it) {
         copyArticle(*it, source);
+    }
     setUnread(source->unread());
     setLastFetch(source->lastFetch());
     setTotalCount(source->totalCount());
 }
 
-void FeedStorageDummyImpl::copyArticle(const QString& guid, FeedStorage* source)
+void FeedStorageDummyImpl::copyArticle(const QString &guid, FeedStorage *source)
 {
-    if (!contains(guid))
+    if (!contains(guid)) {
         addEntry(guid);
+    }
 
     setComments(guid, source->comments(guid));
     setCommentsLink(guid, source->commentsLink(guid));
@@ -452,8 +468,9 @@ void FeedStorageDummyImpl::copyArticle(const QString& guid, FeedStorage* source)
     setTitle(guid, source->title(guid));
     QStringList tags = source->tags(guid);
 
-    for (QStringList::ConstIterator it = tags.constBegin(); it != tags.constEnd(); ++it)
+    for (QStringList::ConstIterator it = tags.constBegin(); it != tags.constEnd(); ++it) {
         addTag(guid, *it);
+    }
 }
 
 void FeedStorageDummyImpl::clear()
@@ -463,10 +480,9 @@ void FeedStorageDummyImpl::clear()
     setTotalCount(0);
 }
 
-void FeedStorageDummyImpl::setEnclosure(const QString& guid, const QString& url, const QString& type, int length)
+void FeedStorageDummyImpl::setEnclosure(const QString &guid, const QString &url, const QString &type, int length)
 {
-    if (contains(guid))
-    {
+    if (contains(guid)) {
         FeedStorageDummyImplPrivate::Entry entry = d->entries[guid];
         entry.hasEnclosure = true;
         entry.enclosureUrl = url;
@@ -475,10 +491,9 @@ void FeedStorageDummyImpl::setEnclosure(const QString& guid, const QString& url,
     }
 }
 
-void FeedStorageDummyImpl::removeEnclosure(const QString& guid)
+void FeedStorageDummyImpl::removeEnclosure(const QString &guid)
 {
-    if (contains(guid))
-    {
+    if (contains(guid)) {
         FeedStorageDummyImplPrivate::Entry entry = d->entries[guid];
         entry.hasEnclosure = false;
         entry.enclosureUrl.clear();
@@ -487,18 +502,15 @@ void FeedStorageDummyImpl::removeEnclosure(const QString& guid)
     }
 }
 
-void FeedStorageDummyImpl::enclosure(const QString& guid, bool& hasEnclosure, QString& url, QString& type, int& length)  const
+void FeedStorageDummyImpl::enclosure(const QString &guid, bool &hasEnclosure, QString &url, QString &type, int &length)  const
 {
-    if (contains(guid))
-    {
+    if (contains(guid)) {
         FeedStorageDummyImplPrivate::Entry entry = d->entries[guid];
         hasEnclosure = entry.hasEnclosure;
         url = entry.enclosureUrl;
         type = entry.enclosureType;
         length = entry.enclosureLength;
-    }
-    else
-    {
+    } else {
         hasEnclosure = false;
         url.clear();
         type.clear();

@@ -30,30 +30,29 @@
 #include <QIcon>
 #include <KStatusNotifierItem>
 
-
-
-namespace Akregator {
+namespace Akregator
+{
 
 class AKREGATOR_EXPORT TrayIcon : public KStatusNotifierItem
 {
     Q_OBJECT
-    public:
-        static TrayIcon* getInstance();
-        static void setInstance(TrayIcon* trayIcon);
+public:
+    static TrayIcon *getInstance();
+    static void setInstance(TrayIcon *trayIcon);
 
-        explicit TrayIcon(QObject* parent = 0);
-        ~TrayIcon();
+    explicit TrayIcon(QObject *parent = 0);
+    ~TrayIcon();
 
-    public slots:
-        void settingsChanged();
-        void slotSetUnread(int unread);
-        void viewButtonClicked();
+public slots:
+    void settingsChanged();
+    void slotSetUnread(int unread);
+    void viewButtonClicked();
 
-    private:
-        static TrayIcon* m_instance;
+private:
+    static TrayIcon *m_instance;
 
-        QIcon m_defaultIcon;
-        int m_unread;
+    QIcon m_defaultIcon;
+    int m_unread;
 };
 
 } // namespace Akregator

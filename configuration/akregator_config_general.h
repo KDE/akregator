@@ -30,16 +30,15 @@
 
 class QWidget;
 
-
 class KCMAkregatorGeneralConfig : public KCModule
 {
-  Q_OBJECT
+    Q_OBJECT
 
-  public:
-    KCMAkregatorGeneralConfig( QWidget *parent, const QVariantList &args );
+public:
+    KCMAkregatorGeneralConfig(QWidget *parent, const QVariantList &args);
 
-  private:
-      QWidget* m_widget;
+private:
+    QWidget *m_widget;
 };
 
 #endif // AKREGATOR_CONFIG_GENERAL_H 

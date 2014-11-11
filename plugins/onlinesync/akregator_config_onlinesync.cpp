@@ -34,27 +34,26 @@
 using namespace Akregator;
 using namespace feedsync;
 
-K_PLUGIN_FACTORY( KCMAkregatorOnlineSyncConfigFactory, registerPlugin<KCMAkregatorOnlineSyncConfig>(); )
+K_PLUGIN_FACTORY(KCMAkregatorOnlineSyncConfigFactory, registerPlugin<KCMAkregatorOnlineSyncConfig>();)
 
-KCMAkregatorOnlineSyncConfig::KCMAkregatorOnlineSyncConfig( QWidget* parent, const QVariantList& args )
-    : KCModule( KCMAkregatorOnlineSyncConfigFactory::componentData(), parent, args ), m_widget( new ConfigurationWidget )
+KCMAkregatorOnlineSyncConfig::KCMAkregatorOnlineSyncConfig(QWidget *parent, const QVariantList &args)
+    : KCModule(KCMAkregatorOnlineSyncConfigFactory::componentData(), parent, args), m_widget(new ConfigurationWidget)
 {
-    QVBoxLayout* layout = new QVBoxLayout( this );
-    layout->addWidget( m_widget );
+    QVBoxLayout *layout = new QVBoxLayout(this);
+    layout->addWidget(m_widget);
 
-    K4AboutData* about = new K4AboutData( I18N_NOOP( "kcmakronlinesyncconfig" ), 0,
-                                        ki18n( "Configure Online Readers" ),
-                                        0, KLocalizedString(), K4AboutData::License_GPL,
-                                        ki18n( "(c), 2008 Didier Hoarau" ) );
+    K4AboutData *about = new K4AboutData(I18N_NOOP("kcmakronlinesyncconfig"), 0,
+                                         ki18n("Configure Online Readers"),
+                                         0, KLocalizedString(), K4AboutData::License_GPL,
+                                         ki18n("(c), 2008 Didier Hoarau"));
 
-    about->addAuthor( ki18n( "Didier Hoarau" ), KLocalizedString(), "did.hoarau@gmail.com" );
-    setAboutData( about );
+    about->addAuthor(ki18n("Didier Hoarau"), KLocalizedString(), "did.hoarau@gmail.com");
+    setAboutData(about);
 
-    addConfig( OnlineSyncSettings::self(), m_widget );
+    addConfig(OnlineSyncSettings::self(), m_widget);
 }
 
 KCMAkregatorOnlineSyncConfig::~KCMAkregatorOnlineSyncConfig()
 {
 }
-
 

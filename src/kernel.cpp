@@ -28,30 +28,30 @@
 #include "fetchqueue.h"
 #include "framemanager.h"
 
-
 using namespace boost;
 
 namespace Akregator
 {
 
-Kernel* Kernel::m_self = 0;
+Kernel *Kernel::m_self = 0;
 
-Kernel* Kernel::self()
+Kernel *Kernel::self()
 {
     static Kernel self;
-    if (!m_self)
+    if (!m_self) {
         m_self = &self;
+    }
     return m_self;
 }
 
 class Kernel::KernelPrivate
 {
-    public:
+public:
 
-    Backend::Storage* storage;
+    Backend::Storage *storage;
     shared_ptr<FeedList> feedList;
-    FetchQueue* fetchQueue;
-    FrameManager* frameManager;
+    FetchQueue *fetchQueue;
+    FrameManager *frameManager;
 };
 
 Kernel::Kernel() : d(new KernelPrivate)
@@ -69,12 +69,12 @@ Kernel::~Kernel()
     d = 0;
 }
 
-Backend::Storage* Kernel::storage()
+Backend::Storage *Kernel::storage()
 {
     return d->storage;
 }
 
-void Kernel::setStorage(Backend::Storage* storage)
+void Kernel::setStorage(Backend::Storage *storage)
 {
     d->storage = storage;
 }
@@ -84,17 +84,17 @@ shared_ptr<FeedList> Kernel::feedList() const
     return d->feedList;
 }
 
-void Kernel::setFeedList(const shared_ptr<FeedList>& feedList)
+void Kernel::setFeedList(const shared_ptr<FeedList> &feedList)
 {
     d->feedList = feedList;
 }
 
-FetchQueue* Kernel::fetchQueue()
+FetchQueue *Kernel::fetchQueue()
 {
     return d->fetchQueue;
 }
 
-FrameManager* Kernel::frameManager()
+FrameManager *Kernel::frameManager()
 {
     return d->frameManager;
 }

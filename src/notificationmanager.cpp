@@ -33,8 +33,8 @@
 
 #include <QTimer>
 
-
-namespace Akregator {
+namespace Akregator
+{
 
 NotificationManager::NotificationManager() : QObject()
 {
@@ -52,37 +52,34 @@ NotificationManager::~NotificationManager()
     m_self = 0;
 }
 
-void NotificationManager::setWidget(QWidget* widget, const KComponentData &inst)
+void NotificationManager::setWidget(QWidget *widget, const KComponentData &inst)
 {
     m_widget = widget;
     m_instance = inst.isValid() ? inst : KComponentData::mainComponent();
 }
 
-void NotificationManager::slotNotifyArticle(const Article& article)
+void NotificationManager::slotNotifyArticle(const Article &article)
 {
     m_articles.append(article);
     m_addedInLastInterval = true;
-    if (m_articles.count() >= m_maxArticles)
+    if (m_articles.count() >= m_maxArticles) {
         doNotify();
-    else if (!m_running)
-    {
+    } else if (!m_running) {
         m_running = true;
         QTimer::singleShot(m_checkInterval, this, SLOT(slotIntervalCheck()));
     }
 }
 
-void NotificationManager::slotNotifyFeeds(const QStringList& feeds)
+void NotificationManager::slotNotifyFeeds(const QStringList &feeds)
 {
-    if (feeds.count() == 1)
-    {
+    if (feeds.count() == 1) {
         //KNotifyClient::Instance inst(m_instance);
         //QT5 KNotification::event(QLatin1String("FeedAdded"), i18n("Feed added:\n %1", feeds[0]), QPixmap() ,m_widget, KNotification::CloseOnTimeout, m_instance);
-    }
-    else if (feeds.count() > 1)
-    {
+    } else if (feeds.count() > 1) {
         QString message;
-        for (QStringList::ConstIterator it = feeds.constBegin(); it != feeds.constEnd(); ++it)
+        for (QStringList::ConstIterator it = feeds.constBegin(); it != feeds.constEnd(); ++it) {
             message += *it + QLatin1Char('\n');
+        }
         //KNotifyClient::Instance inst(m_instance);
         //QT5 KNotification::event(QLatin1String("FeedAdded"), i18n("Feeds added:\n %1", message), QPixmap() ,m_widget, KNotification::CloseOnTimeout, m_instance);
     }
@@ -93,10 +90,8 @@ void NotificationManager::doNotify()
     QString message = QLatin1String("<html><body>");
     QString feedTitle;
 
-    Q_FOREACH( const Article& i, m_articles )
-    {
-        if (feedTitle != i.feed()->title())
-        {
+    Q_FOREACH (const Article &i, m_articles) {
+        if (feedTitle != i.feed()->title()) {
             feedTitle = i.feed()->title();
             message += QString::fromLatin1("<p><b>%1:</b></p>").arg(feedTitle);
         }
@@ -113,26 +108,27 @@ void NotificationManager::doNotify()
 
 void NotificationManager::slotIntervalCheck()
 {
-    if (!m_running)
+    if (!m_running) {
         return;
+    }
     m_intervalsLapsed++;
-    if (!m_addedInLastInterval || m_articles.count() >= m_maxArticles || m_intervalsLapsed >= m_maxIntervals)
+    if (!m_addedInLastInterval || m_articles.count() >= m_maxArticles || m_intervalsLapsed >= m_maxIntervals) {
         doNotify();
-    else
-    {
+    } else {
         m_addedInLastInterval = false;
         QTimer::singleShot(m_checkInterval, this, SLOT(slotIntervalCheck()));
     }
 
 }
 
-NotificationManager* NotificationManager::m_self = 0;
+NotificationManager *NotificationManager::m_self = 0;
 
-NotificationManager* NotificationManager::self()
+NotificationManager *NotificationManager::self()
 {
     static NotificationManager self;
-    if (!m_self)
+    if (!m_self) {
         m_self = &self;
+    }
     return m_self;
 }
 

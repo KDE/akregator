@@ -30,27 +30,27 @@
 
 using namespace feedsync;
 
-ConfigurationWidget::ConfigurationWidget( QWidget *parent ) : QWidget( parent )
+ConfigurationWidget::ConfigurationWidget(QWidget *parent) : QWidget(parent)
 {
     qDebug();
 
-    ui.setupUi( this );
+    ui.setupUi(this);
 
     refresh();
-    
+
     // Init
-    ui.cb_deleteFeeds->addItem( i18n("Nothing") , QVariant("Nothing") );
-    ui.cb_deleteFeeds->addItem( i18n("Categories") , QVariant("Category") );
-    ui.cb_deleteFeeds->addItem( i18n("Feeds") , QVariant("Feed") );
-    ui.cb_deleteFeeds->addItem( i18n("Ask") , QVariant("Ask") );
+    ui.cb_deleteFeeds->addItem(i18n("Nothing") , QVariant("Nothing"));
+    ui.cb_deleteFeeds->addItem(i18n("Categories") , QVariant("Category"));
+    ui.cb_deleteFeeds->addItem(i18n("Feeds") , QVariant("Feed"));
+    ui.cb_deleteFeeds->addItem(i18n("Ask") , QVariant("Ask"));
 
     // Read config
     KConfig config("akregator_feedsyncrc");
-    KConfigGroup generalGroup( &config, "FeedSyncConfig" );
-    if (ui.cb_deleteFeeds->findData( QVariant( generalGroup.readEntry( "RemovalPolicy", QString() ) ) ) < 0) {
-        ui.cb_deleteFeeds->setCurrentIndex( 0 );
+    KConfigGroup generalGroup(&config, "FeedSyncConfig");
+    if (ui.cb_deleteFeeds->findData(QVariant(generalGroup.readEntry("RemovalPolicy", QString()))) < 0) {
+        ui.cb_deleteFeeds->setCurrentIndex(0);
     } else {
-        ui.cb_deleteFeeds->setCurrentIndex( ui.cb_deleteFeeds->findData( QVariant(generalGroup.readEntry( "RemovalPolicy", QString() ) ) ) );
+        ui.cb_deleteFeeds->setCurrentIndex(ui.cb_deleteFeeds->findData(QVariant(generalGroup.readEntry("RemovalPolicy", QString()))));
     }
 
     // Slots
@@ -58,7 +58,6 @@ ConfigurationWidget::ConfigurationWidget( QWidget *parent ) : QWidget( parent )
     connect(ui.b_update, &QPushButton::clicked, this, &ConfigurationWidget::slotButtonUpdateClicked);
     connect(ui.b_remove, &QPushButton::clicked, this, &ConfigurationWidget::slotButtonRemoveClicked);
 }
-
 
 ConfigurationWidget::~ConfigurationWidget()
 {
@@ -80,15 +79,15 @@ void ConfigurationWidget::load()
     // Read configuration
     KConfig config("akregator_feedsyncrc");
     QList<QTreeWidgetItem *> items;
-    foreach ( const QString& groupname, config.groupList() ) {
-        if (groupname.left(15)=="FeedSyncSource_") {
+    foreach (const QString &groupname, config.groupList()) {
+        if (groupname.left(15) == "FeedSyncSource_") {
             qDebug() << groupname;
-            KConfigGroup generalGroup( &config, groupname );
+            KConfigGroup generalGroup(&config, groupname);
             QStringList line;
-            line.append( generalGroup.readEntry( "AggregatorType", QString() ) );
-            line.append( generalGroup.readEntry( "Identifier", QString() ) );
-            line.append( groupname );
-            items.append( new QTreeWidgetItem((QTreeWidget*)0,line) );
+            line.append(generalGroup.readEntry("AggregatorType", QString()));
+            line.append(generalGroup.readEntry("Identifier", QString()));
+            line.append(groupname);
+            items.append(new QTreeWidgetItem((QTreeWidget *)0, line));
         }
         ui.list_readerList->insertTopLevelItems(0, items);
     }
@@ -100,24 +99,27 @@ void ConfigurationWidget::slotButtonUpdateClicked()
 {
     qDebug();
     const QList<QTreeWidgetItem *> m_items = ui.list_readerList->selectedItems();
-    if (m_items.isEmpty() )
+    if (m_items.isEmpty()) {
         return;
+    }
     qDebug() << m_items.at(0)->text(2);
     KConfig config("akregator_feedsyncrc");
-    KConfigGroup configgroup( &config, m_items.at(0)->text(2) );
-    QPointer<ConfigurationDialogAdd> dlg = new ConfigurationDialogAdd( this );
-    dlg->load( configgroup );
-    if ( dlg->exec() == KDialog::Ok )
-         refresh();
+    KConfigGroup configgroup(&config, m_items.at(0)->text(2));
+    QPointer<ConfigurationDialogAdd> dlg = new ConfigurationDialogAdd(this);
+    dlg->load(configgroup);
+    if (dlg->exec() == KDialog::Ok) {
+        refresh();
+    }
     delete dlg;
 }
 
 void ConfigurationWidget::slotButtonAddClicked()
 {
     qDebug();
-    QPointer<ConfigurationDialogAdd> addDlg = new ConfigurationDialogAdd( this );
-    if ( addDlg->exec() == KDialog::Ok )
+    QPointer<ConfigurationDialogAdd> addDlg = new ConfigurationDialogAdd(this);
+    if (addDlg->exec() == KDialog::Ok) {
         refresh();
+    }
     delete addDlg;
 }
 
@@ -126,7 +128,7 @@ void ConfigurationWidget::slotButtonRemoveClicked()
     // qDebug();
 
     QList<QTreeWidgetItem *> m_items = ui.list_readerList->selectedItems();
-    if ( !m_items.isEmpty() ) {
+    if (!m_items.isEmpty()) {
         qDebug() << m_items.at(0)->text(2);
         {
             KConfig config("akregator_feedsyncrc");
@@ -136,13 +138,13 @@ void ConfigurationWidget::slotButtonRemoveClicked()
     }
 }
 
-void ConfigurationWidget::save() {
+void ConfigurationWidget::save()
+{
     qDebug();
     // Save the removal policy
     KConfig config("akregator_feedsyncrc");
-    KConfigGroup generalGroup( &config, "FeedSyncConfig" );
-    generalGroup.writeEntry( "RemovalPolicy", ui.cb_deleteFeeds->itemData( ui.cb_deleteFeeds->currentIndex() ) );
+    KConfigGroup generalGroup(&config, "FeedSyncConfig");
+    generalGroup.writeEntry("RemovalPolicy", ui.cb_deleteFeeds->itemData(ui.cb_deleteFeeds->currentIndex()));
     generalGroup.config()->sync();
 }
-
 

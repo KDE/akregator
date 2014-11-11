@@ -23,10 +23,11 @@ class c4_SaveContext; // not defined here
 
 /////////////////////////////////////////////////////////////////////////////
 
-class c4_Handler {
+class c4_Handler
+{
     c4_Property _property;
 
-  public:
+public:
     c4_Handler(const c4_Property &_prop);
     //: Constructor (this is an abstract base class).
     virtual ~c4_Handler();
@@ -81,15 +82,16 @@ class c4_Handler {
 
 /////////////////////////////////////////////////////////////////////////////
 
-class c4_HandlerSeq: public c4_Sequence {
+class c4_HandlerSeq: public c4_Sequence
+{
     c4_PtrArray _handlers;
     c4_Persist *_persist;
     c4_Field *_field;
     c4_HandlerSeq *_parent;
     int _numRows;
 
-  public:
-    c4_HandlerSeq(c4_Persist*);
+public:
+    c4_HandlerSeq(c4_Persist *);
     c4_HandlerSeq(c4_HandlerSeq &owner_, c4_Handler *handler_);
 
     virtual int NumRows()const;
@@ -98,7 +100,7 @@ class c4_HandlerSeq: public c4_Sequence {
     virtual int NumHandlers()const;
     virtual c4_Handler &NthHandler(int)const;
     virtual const c4_Sequence *HandlerContext(int)const;
-    virtual int AddHandler(c4_Handler*);
+    virtual int AddHandler(c4_Handler *);
 
     void DefineRoot();
     void Restructure(c4_Field &, bool remove_);
@@ -130,7 +132,7 @@ class c4_HandlerSeq: public c4_Sequence {
 
     static void BuildMeta(int, int, c4_View &, const c4_Field &);
 
-  protected:
+protected:
     virtual c4_Handler *CreateHandler(const c4_Property &);
 
     virtual ~c4_HandlerSeq();
@@ -140,7 +142,7 @@ class c4_HandlerSeq: public c4_Sequence {
 
 #if q4_INLINE
 #include "handler.inl"
-#endif 
+#endif
 
 /////////////////////////////////////////////////////////////////////////////
 

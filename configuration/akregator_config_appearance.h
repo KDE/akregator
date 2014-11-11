@@ -32,15 +32,14 @@
 
 class QWidget;
 
-
 class KCMAkregatorAppearanceConfig : public KCModule
 {
     Q_OBJECT
 public:
-    KCMAkregatorAppearanceConfig( QWidget *parent, const QVariantList &args );
-    
+    KCMAkregatorAppearanceConfig(QWidget *parent, const QVariantList &args);
+
 private:
-    QWidget* m_widget;
+    QWidget *m_widget;
     Akregator::Ui::SettingsAppearance m_ui;
 
 };

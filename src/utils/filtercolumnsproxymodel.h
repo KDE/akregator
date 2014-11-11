@@ -2,7 +2,7 @@
     This file is part of Akregator.
 
     Copyright (C) 2008 Frank Osterfeld <osterfeld@kde.org>
-    
+
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 2 of the License, or
@@ -28,7 +28,8 @@
 #include <QSortFilterProxyModel>
 #include <QVector>
 
-namespace Akregator {
+namespace Akregator
+{
 
 class FilterColumnsProxyModel : public QSortFilterProxyModel
 {
@@ -37,18 +38,18 @@ public:
         Blacklist,
         Whitelist
     };
-    
-    explicit FilterColumnsProxyModel( QObject* parent = 0 );
-    
-    void setColumnEnabled( int col, bool enabled=true );
-    bool isColumnEnabled( int col ) const;
-    
+
+    explicit FilterColumnsProxyModel(QObject *parent = 0);
+
+    void setColumnEnabled(int col, bool enabled = true);
+    bool isColumnEnabled(int col) const;
+
     Mode mode() const;
-    void setMode( Mode mode );
-    
+    void setMode(Mode mode);
+
 private:
-    /*reimpl*/ bool filterAcceptsColumn( int source_column, const QModelIndex& source_parent ) const;
-    
+    /*reimpl*/ bool filterAcceptsColumn(int source_column, const QModelIndex &source_parent) const;
+
 private:
     QVector<bool> m_columnStates;
     int m_vecSize;

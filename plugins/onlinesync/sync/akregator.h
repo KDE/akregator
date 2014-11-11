@@ -25,7 +25,6 @@
 #ifndef AKREGATOR_H
 #define AKREGATOR_H
 
-
 #include "aggregator.h"
 #include "subscriptionlist.h"
 
@@ -36,23 +35,23 @@ class Akregator: public Aggregator
 {
     Q_OBJECT
 
- public:
+public:
 
-    explicit Akregator( QObject* parent=0 );
+    explicit Akregator(QObject *parent = 0);
     ~Akregator();
     SubscriptionList getSubscriptionList() const;
     void load();
-    void add(const SubscriptionList & list);
-    void update(const SubscriptionList & list);
-    void remove(const SubscriptionList & list);
+    void add(const SubscriptionList &list);
+    void update(const SubscriptionList &list);
+    void remove(const SubscriptionList &list);
 
- private:
+private:
     SubscriptionList _subscriptionList;
 
- protected Q_SLOTS:
+protected Q_SLOTS:
     void sendSignalLoadDone();
 
- signals:
+signals:
     void loadDone();
     void addDone();
     void updateDone();

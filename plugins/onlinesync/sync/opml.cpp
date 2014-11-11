@@ -34,33 +34,33 @@
 namespace feedsync
 {
 
-Opml::Opml(const KConfigGroup& configgroup, QObject* parent)
-    : Aggregator( parent ),
-    _xmlDoc( 0 ),
-    _xmlFile( configgroup.readEntry("Filename") ),
-    _loaded( false )
+Opml::Opml(const KConfigGroup &configgroup, QObject *parent)
+    : Aggregator(parent),
+      _xmlDoc(0),
+      _xmlFile(configgroup.readEntry("Filename")),
+      _loaded(false)
 {
     qDebug();
 }
 
-Opml::~Opml() 
+Opml::~Opml()
 {
     qDebug();
     delete _xmlDoc;
 }
 
-SubscriptionList Opml::getSubscriptionList() const 
+SubscriptionList Opml::getSubscriptionList() const
 {
     qDebug();
     return _subscriptionList;
 }
 
-void Opml::load() 
+void Opml::load()
 {
     qDebug();
 
     // If not already done load the file
-    if ( !_loaded ) {
+    if (!_loaded) {
 
     }
 
@@ -84,7 +84,7 @@ void Opml::load()
     QDomNodeList nodeList = _xmlDoc->elementsByTagName("outline");
     bool firstCat = true;
     QString cat;
-    for (int i=0;i<nodeList.count();i++) {
+    for (int i = 0; i < nodeList.count(); i++) {
         QDomNode node = nodeList.at(i);
         if (!node.attributes().namedItem("xmlUrl").isNull()) {
             _subscriptionList.add(node.attributes().namedItem("xmlUrl").nodeValue(),
@@ -93,41 +93,42 @@ void Opml::load()
             firstCat = true;
         } else {
             if (firstCat) {
-              cat = "";
-              firstCat = false;
+                cat = "";
+                firstCat = false;
             } else {
-              cat += '/';
+                cat += '/';
             }
             cat += node.attributes().namedItem("text").nodeValue();
         }
     }
 
     // Send the signal
-    QTimer::singleShot( 0, this, SLOT(sendSignalLoadDone()) );
+    QTimer::singleShot(0, this, SLOT(sendSignalLoadDone()));
 }
 
-void Opml::sendSignalLoadDone() 
+void Opml::sendSignalLoadDone()
 {
     emit loadDone();
 }
 
-void Opml::add(const SubscriptionList & list) 
+void Opml::add(const SubscriptionList &list)
 {
-    if(!_xmlDoc)
-       return;
+    if (!_xmlDoc) {
+        return;
+    }
     qDebug();
     QDomNode nodeList = _xmlDoc->documentElement().firstChild().nextSibling();
 
     QString m_rss;
-    for (int i=0;i<list.count();i++) {
+    for (int i = 0; i < list.count(); i++) {
         m_rss = list.getRss(i);
 
         // Create element
         QDomElement m_element = _xmlDoc->createElement("outline");
-        m_element.setAttribute(QString("title"),list.getName(i));
-        m_element.setAttribute(QString("type"),QString("rss"));
-        m_element.setAttribute(QString("text"),list.getName(i));
-        m_element.setAttribute(QString("xmlUrl"),m_rss);
+        m_element.setAttribute(QString("title"), list.getName(i));
+        m_element.setAttribute(QString("type"), QString("rss"));
+        m_element.setAttribute(QString("text"), list.getName(i));
+        m_element.setAttribute(QString("xmlUrl"), m_rss);
 
         // append
         nodeList.appendChild(m_element);
@@ -137,17 +138,18 @@ void Opml::add(const SubscriptionList & list)
     QFile file;
     QTextStream out;
     file.setFileName("~/out.xml");
-    if (!file.open(QIODevice::WriteOnly))
+    if (!file.open(QIODevice::WriteOnly)) {
         return;
+    }
     out.setDevice(&file);
-    _xmlDoc->save(out,2);
+    _xmlDoc->save(out, 2);
     file.close();
 
     // Send signal
     emit addDone();
 }
 
-void Opml::update(const SubscriptionList & list) 
+void Opml::update(const SubscriptionList &list)
 {
     Q_UNUSED(list)
     qDebug();
@@ -156,7 +158,7 @@ void Opml::update(const SubscriptionList & list)
     emit updateDone();
 }
 
-void Opml::remove(const SubscriptionList & list) 
+void Opml::remove(const SubscriptionList &list)
 {
     Q_UNUSED(list)
     qDebug();

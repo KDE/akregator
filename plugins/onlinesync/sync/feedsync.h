@@ -31,7 +31,8 @@
 
 class KConfigGroup;
 
-namespace feedsync {
+namespace feedsync
+{
 
 class Aggregator;
 
@@ -39,22 +40,22 @@ class FeedSync : public QObject
 {
     Q_OBJECT
 
- public:
-    explicit FeedSync( QObject* parent=0 );
+public:
+    explicit FeedSync(QObject *parent = 0);
     ~FeedSync();
     enum SyncType { Get, Send };
 
- protected Q_SLOTS:
-    void error(const QString& msg);
+protected Q_SLOTS:
+    void error(const QString &msg);
     void sync();
     void slotLoadDone();
     void slotAddDone();
     void slotRemoveDone();
 
- private:
-    Aggregator * _aggrSend;
-    Aggregator * _aggrGet;
-    Aggregator * createAggregatorFactory(const KConfigGroup & configgroup);
+private:
+    Aggregator *_aggrSend;
+    Aggregator *_aggrGet;
+    Aggregator *createAggregatorFactory(const KConfigGroup &configgroup);
     int _syncstep;
     int _loadedAggrCount;
     SubscriptionList tmp_removelist;

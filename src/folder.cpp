@@ -41,25 +41,25 @@ using namespace Akregator;
 
 class Folder::FolderPrivate
 {
-        Folder* const q;
-    public:
-        explicit FolderPrivate( Folder* qq );
-        ~FolderPrivate();
+    Folder *const q;
+public:
+    explicit FolderPrivate(Folder *qq);
+    ~FolderPrivate();
 
-        /** List of children */
-        QList<TreeNode*> children;
-        /** caching unread count of children */
-        mutable int unread;
-        /** whether or not the folder is expanded */
-        bool open;
+    /** List of children */
+    QList<TreeNode *> children;
+    /** caching unread count of children */
+    mutable int unread;
+    /** whether or not the folder is expanded */
+    bool open;
 
-        /** caches guids for notifying added articles */
-        QList<Article> addedArticlesNotify;
-        /** caches guids for notifying removed articles */
-        QList<Article> removedArticlesNotify;
+    /** caches guids for notifying added articles */
+    QList<Article> addedArticlesNotify;
+    /** caches guids for notifying removed articles */
+    QList<Article> removedArticlesNotify;
 };
 
-Folder::FolderPrivate::FolderPrivate( Folder* qq ) : q( qq ), unread( 0 ), open( false )
+Folder::FolderPrivate::FolderPrivate(Folder *qq) : q(qq), unread(0), open(false)
 {
 }
 
@@ -72,25 +72,26 @@ Folder::FolderPrivate::~FolderPrivate()
     emit q->emitSignalDestroyed();
 }
 
-bool Folder::accept(TreeNodeVisitor* visitor)
+bool Folder::accept(TreeNodeVisitor *visitor)
 {
-    if (visitor->visitFolder(this))
+    if (visitor->visitFolder(this)) {
         return true;
-    else
+    } else {
         return visitor->visitTreeNode(this);
+    }
 }
 
-Folder* Folder::fromOPML(const QDomElement& e)
+Folder *Folder::fromOPML(const QDomElement &e)
 {
-    Folder* fg = new Folder(e.hasAttribute(QString::fromLatin1("text")) ? e.attribute(QString::fromLatin1("text")) : e.attribute(QString::fromLatin1("title")));
-    fg->setOpen( e.attribute(QString::fromLatin1("isOpen")) == QString::fromLatin1(("true")));
-    fg->setId( e.attribute(QString::fromLatin1("id")).toUInt() );
+    Folder *fg = new Folder(e.hasAttribute(QString::fromLatin1("text")) ? e.attribute(QString::fromLatin1("text")) : e.attribute(QString::fromLatin1("title")));
+    fg->setOpen(e.attribute(QString::fromLatin1("isOpen")) == QString::fromLatin1(("true")));
+    fg->setId(e.attribute(QString::fromLatin1("id")).toUInt());
     return fg;
 }
 
-Folder::Folder( const QString& title ) : TreeNode(), d( new FolderPrivate( this ) )
+Folder::Folder(const QString &title) : TreeNode(), d(new FolderPrivate(this))
 {
-    setTitle( title );
+    setTitle(title);
 }
 
 Folder::~Folder()
@@ -102,89 +103,96 @@ Folder::~Folder()
 QList<Article> Folder::articles()
 {
     QList<Article> seq;
-    Q_FOREACH( Feed* const i, feeds() )
+    Q_FOREACH (Feed *const i, feeds()) {
         seq += i->articles();
+    }
     return seq;
 }
 
-QDomElement Folder::toOPML( QDomElement parent, QDomDocument document ) const
+QDomElement Folder::toOPML(QDomElement parent, QDomDocument document) const
 {
-    QDomElement el = document.createElement( QLatin1String("outline") );
-    el.setAttribute( QLatin1String("text"), title() );
-    parent.appendChild( el );
+    QDomElement el = document.createElement(QLatin1String("outline"));
+    el.setAttribute(QLatin1String("text"), title());
+    parent.appendChild(el);
     el.setAttribute(QLatin1String("isOpen"), d->open ? QLatin1String("true") : QLatin1String("false"));
-    el.setAttribute( QLatin1String("id"), QString::number(id()) );
+    el.setAttribute(QLatin1String("id"), QString::number(id()));
 
-    Q_FOREACH ( const Akregator::TreeNode* i, d->children )
-        el.appendChild( i->toOPML(el, document) );
+    Q_FOREACH (const Akregator::TreeNode *i, d->children) {
+        el.appendChild(i->toOPML(el, document));
+    }
     return el;
 }
 
-
-QList<const TreeNode*> Folder::children() const
+QList<const TreeNode *> Folder::children() const
 {
-    QList<const TreeNode*> children;
-    Q_FOREACH( const TreeNode* i, d->children )
-        children.append( i );
+    QList<const TreeNode *> children;
+    Q_FOREACH (const TreeNode *i, d->children) {
+        children.append(i);
+    }
     return children;
 }
 
-QList<TreeNode*> Folder::children()
+QList<TreeNode *> Folder::children()
 {
     return d->children;
 }
 
-QVector<const Akregator::Feed*> Folder::feeds() const
+QVector<const Akregator::Feed *> Folder::feeds() const
 {
-    QHash<int, const Akregator::Feed*> feedsById;
-    Q_FOREACH( const TreeNode* i, d->children )
-        Q_FOREACH ( const Akregator::Feed* j, i->feeds() )
-            feedsById.insert( j->id(), j );
+    QHash<int, const Akregator::Feed *> feedsById;
+    Q_FOREACH (const TreeNode *i, d->children)
+        Q_FOREACH (const Akregator::Feed *j, i->feeds()) {
+            feedsById.insert(j->id(), j);
+        }
     return feedsById.values().toVector();
 }
 
-QVector<Akregator::Feed*> Folder::feeds()
+QVector<Akregator::Feed *> Folder::feeds()
 {
-    QHash<int, Akregator::Feed*> feedsById;
-    Q_FOREACH( TreeNode* i, d->children )
-        Q_FOREACH ( Akregator::Feed* j, i->feeds() )
-            feedsById.insert( j->id(), j );
+    QHash<int, Akregator::Feed *> feedsById;
+    Q_FOREACH (TreeNode *i, d->children)
+        Q_FOREACH (Akregator::Feed *j, i->feeds()) {
+            feedsById.insert(j->id(), j);
+        }
     return feedsById.values().toVector();
 }
 
-QVector<const Folder*> Folder::folders() const
+QVector<const Folder *> Folder::folders() const
 {
-    QHash<int, const Folder*> foldersById;
-    foldersById.insert( id(), this );
-    Q_FOREACH( const TreeNode* i, d->children )
-        Q_FOREACH ( const Folder* j, i->folders() )
-            foldersById.insert( j->id(), j );
+    QHash<int, const Folder *> foldersById;
+    foldersById.insert(id(), this);
+    Q_FOREACH (const TreeNode *i, d->children)
+        Q_FOREACH (const Folder *j, i->folders()) {
+            foldersById.insert(j->id(), j);
+        }
     return foldersById.values().toVector();
 }
 
-QVector<Folder*> Folder::folders()
+QVector<Folder *> Folder::folders()
 {
-    QHash<int, Folder*> foldersById;
-    foldersById.insert( id(), this );
-    Q_FOREACH( TreeNode* i, d->children )
-        Q_FOREACH ( Folder* j, i->folders() )
-            foldersById.insert( j->id(), j );
+    QHash<int, Folder *> foldersById;
+    foldersById.insert(id(), this);
+    Q_FOREACH (TreeNode *i, d->children)
+        Q_FOREACH (Folder *j, i->folders()) {
+            foldersById.insert(j->id(), j);
+        }
     return foldersById.values().toVector();
 }
 
-int Folder::indexOf( const TreeNode* node ) const
+int Folder::indexOf(const TreeNode *node) const
 {
-    return children().indexOf( node );
+    return children().indexOf(node);
 }
 
-void Folder::insertChild(TreeNode* node, TreeNode* after)
+void Folder::insertChild(TreeNode *node, TreeNode *after)
 {
     int pos = d->children.indexOf(after);
 
-    if (pos < 0)
+    if (pos < 0) {
         prependChild(node);
-    else
+    } else {
         insertChild(pos, node);
+    }
 }
 
 QIcon Folder::icon() const
@@ -192,15 +200,15 @@ QIcon Folder::icon() const
     return QIcon::fromTheme(QLatin1String("folder"));
 }
 
-void Folder::insertChild(int index, TreeNode* node)
+void Folder::insertChild(int index, TreeNode *node)
 {
 //    qDebug() <<"enter Folder::insertChild(int, node)" << node->title();
-    if (node)
-    {
-        if (index >= d->children.size())
+    if (node) {
+        if (index >= d->children.size()) {
             d->children.append(node);
-        else
+        } else {
             d->children.insert(index, node);
+        }
         node->setParent(this);
         connectToNode(node);
         updateUnreadCount();
@@ -212,11 +220,10 @@ void Folder::insertChild(int index, TreeNode* node)
 //    qDebug() <<"leave Folder::insertChild(int, node)" << node->title();
 }
 
-void Folder::appendChild(TreeNode* node)
+void Folder::appendChild(TreeNode *node)
 {
 //    qDebug() <<"enter Folder::appendChild()" << node->title();
-    if (node)
-    {
+    if (node) {
         d->children.append(node);
         node->setParent(this);
         connectToNode(node);
@@ -229,11 +236,10 @@ void Folder::appendChild(TreeNode* node)
 //    qDebug() <<"leave Folder::appendChild()" << node->title();
 }
 
-void Folder::prependChild(TreeNode* node)
+void Folder::prependChild(TreeNode *node)
 {
 //    qDebug() <<"enter Folder::prependChild()" << node->title();
-    if (node)
-    {
+    if (node) {
         d->children.prepend(node);
         node->setParent(this);
         connectToNode(node);
@@ -246,12 +252,13 @@ void Folder::prependChild(TreeNode* node)
 //    qDebug() <<"leave Folder::prependChild()" << node->title();
 }
 
-void Folder::removeChild(TreeNode* node)
+void Folder::removeChild(TreeNode *node)
 {
-    if (!node || !d->children.contains(node))
+    if (!node || !d->children.contains(node)) {
         return;
+    }
 
-    emit signalAboutToRemoveChild( node );
+    emit signalAboutToRemoveChild(node);
     node->setParent(0);
     d->children.removeOne(node);
     disconnectFromNode(node);
@@ -262,23 +269,22 @@ void Folder::removeChild(TreeNode* node)
     nodeModified();
 }
 
-
-TreeNode* Folder::firstChild()
+TreeNode *Folder::firstChild()
 {
     return d->children.isEmpty() ? 0 : children().first();
 }
 
-const TreeNode* Folder::firstChild() const
+const TreeNode *Folder::firstChild() const
 {
     return d->children.isEmpty() ? 0 : children().first();
 }
 
-TreeNode* Folder::lastChild()
+TreeNode *Folder::lastChild()
 {
     return d->children.isEmpty() ? 0 : children().last();
 }
 
-const TreeNode* Folder::lastChild() const
+const TreeNode *Folder::lastChild() const
 {
     return d->children.isEmpty() ? 0 : children().last();
 }
@@ -301,66 +307,71 @@ int Folder::unread() const
 int Folder::totalCount() const
 {
     int total = 0;
-    Q_FOREACH( const Feed* const i, feeds() )
+    Q_FOREACH (const Feed *const i, feeds()) {
         total += i->totalCount();
+    }
     return total;
 }
 
 void Folder::updateUnreadCount() const
 {
     int unread = 0;
-    Q_FOREACH ( const Feed* const i, feeds() )
+    Q_FOREACH (const Feed *const i, feeds()) {
         unread += i->unread();
+    }
     d->unread = unread;
 }
 
-KJob* Folder::createMarkAsReadJob()
+KJob *Folder::createMarkAsReadJob()
 {
-    std::auto_ptr<CompositeJob> job( new CompositeJob );
-    Q_FOREACH( Feed* const i, feeds() )
-        job->addSubjob( i->createMarkAsReadJob() );
+    std::auto_ptr<CompositeJob> job(new CompositeJob);
+    Q_FOREACH (Feed *const i, feeds()) {
+        job->addSubjob(i->createMarkAsReadJob());
+    }
     return job.release();
 }
 
-void Folder::slotChildChanged(TreeNode* /*node*/)
+void Folder::slotChildChanged(TreeNode * /*node*/)
 {
     updateUnreadCount();
     nodeModified();
 }
 
-void Folder::slotChildDestroyed(TreeNode* node)
+void Folder::slotChildDestroyed(TreeNode *node)
 {
     d->children.removeAll(node);
     updateUnreadCount();
     nodeModified();
 }
 
-bool Folder::subtreeContains( const TreeNode* node ) const
+bool Folder::subtreeContains(const TreeNode *node) const
 {
-    if ( node == this )
+    if (node == this) {
         return false;
-    const Folder* parent = node ? node->parent() : 0;
-    while ( parent )
-    {
-        if ( parent == this )
+    }
+    const Folder *parent = node ? node->parent() : 0;
+    while (parent) {
+        if (parent == this) {
             return true;
+        }
         parent = parent->parent();
     }
 
     return false;
 }
 
-void Folder::slotAddToFetchQueue(FetchQueue* queue, bool intervalFetchOnly)
+void Folder::slotAddToFetchQueue(FetchQueue *queue, bool intervalFetchOnly)
 {
-    Q_FOREACH( Feed* const i, feeds() )
-        i->slotAddToFetchQueue( queue, intervalFetchOnly );
+    Q_FOREACH (Feed *const i, feeds()) {
+        i->slotAddToFetchQueue(queue, intervalFetchOnly);
+    }
 }
 
 void Folder::doArticleNotification()
 {
 }
 
-void Folder::connectToNode(TreeNode* child)
+void Folder::connectToNode(TreeNode *child)
 {
     connect(child, SIGNAL(signalChanged(Akregator::TreeNode*)), this, SLOT(slotChildChanged(Akregator::TreeNode*)));
     connect(child, SIGNAL(signalDestroyed(Akregator::TreeNode*)), this, SLOT(slotChildDestroyed(Akregator::TreeNode*)));
@@ -369,90 +380,96 @@ void Folder::connectToNode(TreeNode* child)
     connect(child, SIGNAL(signalArticlesUpdated(Akregator::TreeNode*,QList<Akregator::Article>)), this, SIGNAL(signalArticlesUpdated(Akregator::TreeNode*,QList<Akregator::Article>)));
 }
 
-void Folder::disconnectFromNode(TreeNode* child)
+void Folder::disconnectFromNode(TreeNode *child)
 {
-    assert( child );
-    child->disconnect( this );
+    assert(child);
+    child->disconnect(this);
 }
 
-
-TreeNode* Folder::childAt( int pos )
+TreeNode *Folder::childAt(int pos)
 {
-    if ( pos < 0 || pos >= d->children.count() )
+    if (pos < 0 || pos >= d->children.count()) {
         return 0;
-    return d->children.at( pos );
+    }
+    return d->children.at(pos);
 }
 
-const TreeNode* Folder::childAt( int pos ) const
+const TreeNode *Folder::childAt(int pos) const
 {
-    if ( pos < 0 || pos >= d->children.count() )
+    if (pos < 0 || pos >= d->children.count()) {
         return 0;
-    return d->children.at( pos );
-}
-
-TreeNode* Folder::next()
-{
-    if ( firstChild() )
-        return firstChild();
-
-    if ( nextSibling() )
-        return nextSibling();
-
-    Folder* p = parent();
-    while (p)
-    {
-        if ( p->nextSibling() )
-            return p->nextSibling();
-        else
-            p = p->parent();
     }
-    return 0;
+    return d->children.at(pos);
 }
 
-const TreeNode* Folder::next() const
+TreeNode *Folder::next()
 {
-    if ( firstChild() )
+    if (firstChild()) {
         return firstChild();
-
-    if ( nextSibling() )
-        return nextSibling();
-
-    const Folder* p = parent();
-    while (p)
-    {
-        if ( p->nextSibling() )
-            return p->nextSibling();
-        else
-            p = p->parent();
     }
-    return 0;
-}
 
-QList<const TreeNode*> Folder::namedChildren( const QString& title ) const
-{
-    QList<const TreeNode*> nodeList;
-    foreach( const TreeNode * child, children() ) {
-        if ( child->title() == title ) {
-            nodeList.append( child );
+    if (nextSibling()) {
+        return nextSibling();
+    }
+
+    Folder *p = parent();
+    while (p) {
+        if (p->nextSibling()) {
+            return p->nextSibling();
+        } else {
+            p = p->parent();
         }
-        const Folder * fld = dynamic_cast<const Folder*>( child );
-        if ( fld ) {
-            nodeList += fld->namedChildren( title );
+    }
+    return 0;
+}
+
+const TreeNode *Folder::next() const
+{
+    if (firstChild()) {
+        return firstChild();
+    }
+
+    if (nextSibling()) {
+        return nextSibling();
+    }
+
+    const Folder *p = parent();
+    while (p) {
+        if (p->nextSibling()) {
+            return p->nextSibling();
+        } else {
+            p = p->parent();
+        }
+    }
+    return 0;
+}
+
+QList<const TreeNode *> Folder::namedChildren(const QString &title) const
+{
+    QList<const TreeNode *> nodeList;
+    foreach (const TreeNode *child, children()) {
+        if (child->title() == title) {
+            nodeList.append(child);
+        }
+        const Folder *fld = dynamic_cast<const Folder *>(child);
+        if (fld) {
+            nodeList += fld->namedChildren(title);
         }
     }
     return nodeList;
 }
 
-QList<TreeNode*> Folder::namedChildren( const QString& title )
+QList<TreeNode *> Folder::namedChildren(const QString &title)
 {
-    QList<TreeNode*> nodeList;
-    foreach( TreeNode * const child, children() ) {
-        if ( child->title() == title ) {
-            nodeList.append( child );
+    QList<TreeNode *> nodeList;
+    foreach (TreeNode *const child, children()) {
+        if (child->title() == title) {
+            nodeList.append(child);
         }
-        Folder * const fld = qobject_cast<Folder*>( child );
-        if ( fld )
-            nodeList += fld->namedChildren( title );
+        Folder *const fld = qobject_cast<Folder *>(child);
+        if (fld) {
+            nodeList += fld->namedChildren(title);
+        }
     }
     return nodeList;
 }

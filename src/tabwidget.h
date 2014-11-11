@@ -39,49 +39,49 @@ class TabWidget : public QTabWidget
 {
     Q_OBJECT
 
-    public:
-        explicit TabWidget(QWidget * parent = 0);
-        ~TabWidget();
+public:
+    explicit TabWidget(QWidget *parent = 0);
+    ~TabWidget();
 
-    public slots:
+public slots:
 
-        void slotSetTitle(Akregator::Frame* frame, const QString& title);
-        void slotSetIcon(Akregator::Frame* frame, const QIcon& icon);
-        void slotSettingsChanged();
-        void slotNextTab();
-        void slotPreviousTab();
-        void slotRemoveCurrentFrame();
-        void slotAddFrame(Akregator::Frame* f);
-        void slotRemoveFrame(int frameId);
-        void slotSelectFrame(int frameId);
-        void slotFrameZoomIn();
-        void slotFrameZoomOut();
-        void slotReloadAllTabs();
-        void slotActivateTab();
-    Q_SIGNALS:
-        void signalCurrentFrameChanged(int);
-        void signalRemoveFrameRequest(int);
-        void signalOpenUrlRequest(Akregator::OpenUrlRequest&);
-        void signalZoomInFrame(int);
-        void signalZoomOutFrame(int);
+    void slotSetTitle(Akregator::Frame *frame, const QString &title);
+    void slotSetIcon(Akregator::Frame *frame, const QIcon &icon);
+    void slotSettingsChanged();
+    void slotNextTab();
+    void slotPreviousTab();
+    void slotRemoveCurrentFrame();
+    void slotAddFrame(Akregator::Frame *f);
+    void slotRemoveFrame(int frameId);
+    void slotSelectFrame(int frameId);
+    void slotFrameZoomIn();
+    void slotFrameZoomOut();
+    void slotReloadAllTabs();
+    void slotActivateTab();
+Q_SIGNALS:
+    void signalCurrentFrameChanged(int);
+    void signalRemoveFrameRequest(int);
+    void signalOpenUrlRequest(Akregator::OpenUrlRequest &);
+    void signalZoomInFrame(int);
+    void signalZoomOutFrame(int);
 
-    private:
-        /*reimpl*/ void tabInserted( int );
-        /*reimpl*/ void tabRemoved( int );
+private:
+    /*reimpl*/ void tabInserted(int);
+    /*reimpl*/ void tabRemoved(int);
 
-    private Q_SLOTS:
-        void initiateDrag(int tab);
-        void slotDetachTab();
-        void slotCopyLinkAddress();
-        void slotCloseTab();
-        void slotCloseRequest(QWidget* widget);
-        void contextMenu (int item, const QPoint &p);
-        void slotTabChanged(int index);
+private Q_SLOTS:
+    void initiateDrag(int tab);
+    void slotDetachTab();
+    void slotCopyLinkAddress();
+    void slotCloseTab();
+    void slotCloseRequest(QWidget *widget);
+    void contextMenu(int item, const QPoint &p);
+    void slotTabChanged(int index);
 
-   private:
+private:
 
-       class Private;
-       Private* const d;
+    class Private;
+    Private *const d;
 };
 
 } // namespace Akregator

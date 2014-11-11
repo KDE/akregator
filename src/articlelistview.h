@@ -40,7 +40,8 @@ class QContextMenuEvent;
 class QPaintEvent;
 template <class T> class QList;
 
-namespace Akregator {
+namespace Akregator
+{
 
 class Article;
 
@@ -48,32 +49,34 @@ namespace Filters
 {
 }
 
-class AKREGATORPART_EXPORT FilterDeletedProxyModel : public QSortFilterProxyModel {
+class AKREGATORPART_EXPORT FilterDeletedProxyModel : public QSortFilterProxyModel
+{
     Q_OBJECT
 public:
 
-    explicit FilterDeletedProxyModel( QObject* parent = 0 );
+    explicit FilterDeletedProxyModel(QObject *parent = 0);
 
 private:
     //reimpl
-    bool filterAcceptsRow( int source_row, const QModelIndex& source_parent ) const;
+    bool filterAcceptsRow(int source_row, const QModelIndex &source_parent) const;
 };
 
-class AKREGATORPART_EXPORT SortColorizeProxyModel : public QSortFilterProxyModel {
+class AKREGATORPART_EXPORT SortColorizeProxyModel : public QSortFilterProxyModel
+{
     Q_OBJECT
 public:
 
-    explicit SortColorizeProxyModel( QObject* parent = 0 );
+    explicit SortColorizeProxyModel(QObject *parent = 0);
 
     //reimpl
-    QVariant data( const QModelIndex& index, int role=Qt::DisplayRole ) const;
+    QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
 
-    void setFilters( const std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> >& );
+    void setFilters(const std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> > &);
 
 private:
 
     //reimpl
-    bool filterAcceptsRow( int source_row, const QModelIndex& source_parent ) const;
+    bool filterAcceptsRow(int source_row, const QModelIndex &source_parent) const;
 
     QIcon m_keepFlagIcon;
     std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> > m_matchers;
@@ -82,49 +85,48 @@ private:
     QColor m_newColor;
 };
 
-
 class AKREGATORPART_EXPORT ArticleListView : public QTreeView, public ArticleLister
 {
     Q_OBJECT
 
 public:
 
-    explicit ArticleListView( QWidget* parent = 0 );
+    explicit ArticleListView(QWidget *parent = 0);
     ~ArticleListView();
 
     //impl ArticleLister
-    void setArticleModel( Akregator::ArticleModel* model );
+    void setArticleModel(Akregator::ArticleModel *model);
 
     //impl ArticleLister
-    QItemSelectionModel* articleSelectionModel() const;
+    QItemSelectionModel *articleSelectionModel() const;
 
     //impl ArticleLister
-    const QAbstractItemView* itemView() const;
+    const QAbstractItemView *itemView() const;
 
     //impl ArticleLister
-    QAbstractItemView* itemView();
+    QAbstractItemView *itemView();
 
     //impl ArticleLister
     QPoint scrollBarPositions() const;
 
     //impl ArticleLister
-    void setScrollBarPositions( const QPoint& p );
+    void setScrollBarPositions(const QPoint &p);
 
     //impl ArticleLister
-    void setFilters( const std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> >& );
+    void setFilters(const std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> > &);
 
     //impl ArticleLister
     void forceFilterUpdate();
 
-    void setIsAggregation( bool isAggregation );
+    void setIsAggregation(bool isAggregation);
 
-    /* reimp */ void setModel( QAbstractItemModel* model );
+    /* reimp */ void setModel(QAbstractItemModel *model);
 
 protected:
-    void mousePressEvent( QMouseEvent *ev );
+    void mousePressEvent(QMouseEvent *ev);
 
 signals:
-    void signalMouseButtonPressed( int, const KUrl );
+    void signalMouseButtonPressed(int, const KUrl);
 
 public Q_SLOTS:
 
@@ -148,18 +150,18 @@ private:
     void loadHeaderSettings();
 
     //reimpl
-    void paintEvent( QPaintEvent* e );
+    void paintEvent(QPaintEvent *e);
 
     //reimpl
-    void contextMenuEvent( QContextMenuEvent* event );
+    void contextMenuEvent(QContextMenuEvent *event);
 
-    void selectIndex( const QModelIndex& index );
+    void selectIndex(const QModelIndex &index);
 
     void setFeedMode();
     void setGroupMode();
 
 private Q_SLOTS:
-    void showHeaderMenu( const QPoint& pos );
+    void showHeaderMenu(const QPoint &pos);
     void startResizingTitleColumn();
     void finishResizingTitleColumn();
 
@@ -174,6 +176,5 @@ private:
 };
 
 } // namespace Akregator
-
 
 #endif // AKREGATOR_ARTICLELISTVIEW_H

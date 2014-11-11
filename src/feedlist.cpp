@@ -46,212 +46,212 @@
 
 using namespace boost;
 
-namespace Akregator {
+namespace Akregator
+{
 
 class FeedList::Private
 {
-    FeedList* const q;
+    FeedList *const q;
 
 public:
-    Private( Backend::Storage* st, FeedList* qq );
+    Private(Backend::Storage *st, FeedList *qq);
 
-    Akregator::Backend::Storage* storage;
-    QList<TreeNode*> flatList;
-    Folder* rootNode;
-    QHash<int, TreeNode*> idMap;
-    AddNodeVisitor* addNodeVisitor;
-    RemoveNodeVisitor* removeNodeVisitor;
-    QHash<QString, QList<Feed*> > urlMap;
+    Akregator::Backend::Storage *storage;
+    QList<TreeNode *> flatList;
+    Folder *rootNode;
+    QHash<int, TreeNode *> idMap;
+    AddNodeVisitor *addNodeVisitor;
+    RemoveNodeVisitor *removeNodeVisitor;
+    QHash<QString, QList<Feed *> > urlMap;
     mutable int unreadCache;
 };
 
 class FeedList::AddNodeVisitor : public TreeNodeVisitor
 {
-    public:
-        AddNodeVisitor(FeedList* list) : m_list(list) {}
+public:
+    AddNodeVisitor(FeedList *list) : m_list(list) {}
 
+    bool visitFeed(Feed *node)
+    {
+        m_list->d->idMap.insert(node->id(), node);
+        m_list->d->flatList.append(node);
+        m_list->d->urlMap[node->xmlUrl()].append(node);
+        connect(node, SIGNAL(fetchStarted(Akregator::Feed*)),
+                m_list, SIGNAL(fetchStarted(Akregator::Feed*)));
+        connect(node, SIGNAL(fetched(Akregator::Feed*)),
+                m_list, SIGNAL(fetched(Akregator::Feed*)));
+        connect(node, SIGNAL(fetchAborted(Akregator::Feed*)),
+                m_list, SIGNAL(fetchAborted(Akregator::Feed*)));
+        connect(node, SIGNAL(fetchError(Akregator::Feed*)),
+                m_list, SIGNAL(fetchError(Akregator::Feed*)));
+        connect(node, SIGNAL(fetchDiscovery(Akregator::Feed*)),
+                m_list, SIGNAL(fetchDiscovery(Akregator::Feed*)));
 
-        bool visitFeed(Feed* node)
-        {
-            m_list->d->idMap.insert(node->id(), node);
-            m_list->d->flatList.append(node);
-            m_list->d->urlMap[node->xmlUrl()].append(node);
-            connect( node, SIGNAL(fetchStarted(Akregator::Feed*)),
-                     m_list, SIGNAL(fetchStarted(Akregator::Feed*)) );
-            connect( node, SIGNAL(fetched(Akregator::Feed*)),
-                     m_list, SIGNAL(fetched(Akregator::Feed*)) );
-            connect( node, SIGNAL(fetchAborted(Akregator::Feed*)),
-                     m_list, SIGNAL(fetchAborted(Akregator::Feed*)) );
-            connect( node, SIGNAL(fetchError(Akregator::Feed*)),
-                     m_list, SIGNAL(fetchError(Akregator::Feed*)) );
-            connect( node, SIGNAL(fetchDiscovery(Akregator::Feed*)),
-                     m_list, SIGNAL(fetchDiscovery(Akregator::Feed*)) );
+        visitTreeNode(node);
+        return true;
+    }
 
+    void visit(TreeNode *node, bool preserveID)
+    {
+        m_preserveID = preserveID;
+        TreeNodeVisitor::visit(node);
+    }
 
-            visitTreeNode(node);
-            return true;
+    bool visitTreeNode(TreeNode *node)
+    {
+        if (!m_preserveID) {
+            node->setId(m_list->generateID());
+        }
+        m_list->d->idMap[node->id()] = node;
+        m_list->d->flatList.append(node);
+
+        connect(node, SIGNAL(signalDestroyed(Akregator::TreeNode*)), m_list, SLOT(slotNodeDestroyed(Akregator::TreeNode*)));
+        connect(node, SIGNAL(signalChanged(Akregator::TreeNode*)), m_list, SIGNAL(signalNodeChanged(Akregator::TreeNode*)));
+        emit m_list->signalNodeAdded(node);
+
+        return true;
+    }
+
+    bool visitFolder(Folder *node)
+    {
+        connect(node, SIGNAL(signalChildAdded(Akregator::TreeNode*)), m_list, SLOT(slotNodeAdded(Akregator::TreeNode*)));
+        connect(node, SIGNAL(signalAboutToRemoveChild(Akregator::TreeNode*)), m_list, SIGNAL(signalAboutToRemoveNode(Akregator::TreeNode*)));
+        connect(node, SIGNAL(signalChildRemoved(Akregator::Folder*,Akregator::TreeNode*)), m_list, SLOT(slotNodeRemoved(Akregator::Folder*,Akregator::TreeNode*)));
+
+        visitTreeNode(node);
+
+        for (TreeNode *i = node->firstChild(); i && i != node; i = i->next()) {
+            m_list->slotNodeAdded(i);
         }
 
-        void visit(TreeNode* node, bool preserveID)
-        {
-            m_preserveID = preserveID;
-            TreeNodeVisitor::visit(node);
-        }
+        return true;
+    }
 
-        bool visitTreeNode(TreeNode* node)
-        {
-            if (!m_preserveID)
-                node->setId(m_list->generateID());
-            m_list->d->idMap[node->id()] = node;
-            m_list->d->flatList.append(node);
-
-            connect(node, SIGNAL(signalDestroyed(Akregator::TreeNode*)), m_list, SLOT(slotNodeDestroyed(Akregator::TreeNode*)));
-            connect( node, SIGNAL(signalChanged(Akregator::TreeNode*)), m_list, SIGNAL(signalNodeChanged(Akregator::TreeNode*)) );
-            emit m_list->signalNodeAdded(node);
-
-            return true;
-        }
-
-        bool visitFolder(Folder* node)
-        {
-            connect(node, SIGNAL(signalChildAdded(Akregator::TreeNode*)), m_list, SLOT(slotNodeAdded(Akregator::TreeNode*)));
-            connect( node, SIGNAL(signalAboutToRemoveChild(Akregator::TreeNode*)), m_list, SIGNAL(signalAboutToRemoveNode(Akregator::TreeNode*)) );
-            connect(node, SIGNAL(signalChildRemoved(Akregator::Folder*,Akregator::TreeNode*)), m_list, SLOT(slotNodeRemoved(Akregator::Folder*,Akregator::TreeNode*)));
-
-            visitTreeNode(node);
-
-            for (TreeNode* i = node->firstChild(); i && i != node; i = i->next() )
-                m_list->slotNodeAdded(i);
-
-            return true;
-        }
-
-    private:
-        FeedList* m_list;
-        bool m_preserveID;
+private:
+    FeedList *m_list;
+    bool m_preserveID;
 };
 
 class FeedList::RemoveNodeVisitor : public TreeNodeVisitor
 {
-    public:
-        RemoveNodeVisitor(FeedList* list) : m_list(list) {}
+public:
+    RemoveNodeVisitor(FeedList *list) : m_list(list) {}
 
-        bool visitFeed(Feed* node)
-        {
-            visitTreeNode( node );
-            m_list->d->urlMap[node->xmlUrl()].removeAll(node);
-            return true;
-        }
+    bool visitFeed(Feed *node)
+    {
+        visitTreeNode(node);
+        m_list->d->urlMap[node->xmlUrl()].removeAll(node);
+        return true;
+    }
 
-        bool visitTreeNode(TreeNode* node)
-        {
-            m_list->d->idMap.remove(node->id());
-            m_list->d->flatList.removeAll(node);
-            m_list->disconnect( node );
-            return true;
-        }
+    bool visitTreeNode(TreeNode *node)
+    {
+        m_list->d->idMap.remove(node->id());
+        m_list->d->flatList.removeAll(node);
+        m_list->disconnect(node);
+        return true;
+    }
 
-        bool visitFolder(Folder* node)
-        {
-            visitTreeNode(node);
+    bool visitFolder(Folder *node)
+    {
+        visitTreeNode(node);
 
-            return true;
-        }
+        return true;
+    }
 
-    private:
-        FeedList* m_list;
+private:
+    FeedList *m_list;
 };
 
-FeedList::Private::Private( Backend::Storage* st, FeedList* qq )
-    : q( qq )
-    , storage( st )
-    , rootNode( 0 )
-    , addNodeVisitor( new AddNodeVisitor( q ) )
-    , removeNodeVisitor( new RemoveNodeVisitor( q ) )
-    , unreadCache( -1 ) {
-    Q_ASSERT( storage );
+FeedList::Private::Private(Backend::Storage *st, FeedList *qq)
+    : q(qq)
+    , storage(st)
+    , rootNode(0)
+    , addNodeVisitor(new AddNodeVisitor(q))
+    , removeNodeVisitor(new RemoveNodeVisitor(q))
+    , unreadCache(-1)
+{
+    Q_ASSERT(storage);
 }
 
-FeedList::FeedList( Backend::Storage* storage )
-    : QObject( 0 ), d( new Private( storage, this ) ) {
-    Folder* rootNode = new Folder( i18n("All Feeds") );
-    rootNode->setId( 1 );
-    setRootNode( rootNode );
-    addNode( rootNode, true );
+FeedList::FeedList(Backend::Storage *storage)
+    : QObject(0), d(new Private(storage, this))
+{
+    Folder *rootNode = new Folder(i18n("All Feeds"));
+    rootNode->setId(1);
+    setRootNode(rootNode);
+    addNode(rootNode, true);
 }
 
 QVector<int> FeedList::feedIds() const
 {
     QVector<int> ids;
-    Q_FOREACH ( const Feed* const i, feeds() )
+    Q_FOREACH (const Feed *const i, feeds()) {
         ids += i->id();
+    }
     return ids;
 }
 
-QVector<const Feed*> FeedList::feeds() const
+QVector<const Feed *> FeedList::feeds() const
 {
-    QVector<const Feed*> constList;
-    Q_FOREACH( const Feed* const i, d->rootNode->feeds() )
-        constList.append( i );
+    QVector<const Feed *> constList;
+    Q_FOREACH (const Feed *const i, d->rootNode->feeds()) {
+        constList.append(i);
+    }
     return constList;
 }
 
-QVector<Feed*> FeedList::feeds()
+QVector<Feed *> FeedList::feeds()
 {
     return d->rootNode->feeds();
 }
 
-QVector<const Folder*> FeedList::folders() const
+QVector<const Folder *> FeedList::folders() const
 {
-    QVector<const Folder*> constList;
-    Q_FOREACH( const Folder* const i, d->rootNode->folders() )
-        constList.append( i );
+    QVector<const Folder *> constList;
+    Q_FOREACH (const Folder *const i, d->rootNode->folders()) {
+        constList.append(i);
+    }
     return constList;
 }
 
-QVector<Folder*> FeedList::folders()
+QVector<Folder *> FeedList::folders()
 {
     return d->rootNode->folders();
 }
 
-void FeedList::addNode(TreeNode* node, bool preserveID)
+void FeedList::addNode(TreeNode *node, bool preserveID)
 {
     d->addNodeVisitor->visit(node, preserveID);
 }
 
-void FeedList::removeNode(TreeNode* node)
+void FeedList::removeNode(TreeNode *node)
 {
     d->removeNodeVisitor->visit(node);
 }
 
-void FeedList::parseChildNodes(QDomNode &node, Folder* parent)
+void FeedList::parseChildNodes(QDomNode &node, Folder *parent)
 {
     QDomElement e = node.toElement(); // try to convert the node to an element.
 
-    if( !e.isNull() )
-    {
+    if (!e.isNull()) {
         //QString title = e.hasAttribute("text") ? e.attribute("text") : e.attribute("title");
 
-        if (e.hasAttribute(QLatin1String("xmlUrl")) || e.hasAttribute(QLatin1String("xmlurl")) || e.hasAttribute(QLatin1String("xmlURL")) )
-        {
-            Feed* feed = Feed::fromOPML(e, d->storage);
-            if (feed)
-            {
-                if (!d->urlMap[feed->xmlUrl()].contains(feed))
+        if (e.hasAttribute(QLatin1String("xmlUrl")) || e.hasAttribute(QLatin1String("xmlurl")) || e.hasAttribute(QLatin1String("xmlURL"))) {
+            Feed *feed = Feed::fromOPML(e, d->storage);
+            if (feed) {
+                if (!d->urlMap[feed->xmlUrl()].contains(feed)) {
                     d->urlMap[feed->xmlUrl()].append(feed);
+                }
                 parent->appendChild(feed);
             }
-        }
-        else
-        {
-            Folder* fg = Folder::fromOPML(e);
+        } else {
+            Folder *fg = Folder::fromOPML(e);
             parent->appendChild(fg);
 
-            if (e.hasChildNodes())
-            {
+            if (e.hasChildNodes()) {
                 QDomNode child = e.firstChild();
-                while(!child.isNull())
-                {
+                while (!child.isNull()) {
                     parseChildNodes(child, fg);
                     child = child.nextSibling();
                 }
@@ -260,29 +260,27 @@ void FeedList::parseChildNodes(QDomNode &node, Folder* parent)
     }
 }
 
-bool FeedList::readFromOpml(const QDomDocument& doc)
+bool FeedList::readFromOpml(const QDomDocument &doc)
 {
     QDomElement root = doc.documentElement();
 
-    qDebug() <<"loading OPML feed" << root.tagName().toLower();
+    qDebug() << "loading OPML feed" << root.tagName().toLower();
 
-    qDebug() <<"measuring startup time: START";
+    qDebug() << "measuring startup time: START";
     QTime spent;
     spent.start();
 
-    if (root.tagName().toLower() != QLatin1String("opml"))
-    {
+    if (root.tagName().toLower() != QLatin1String("opml")) {
         return false;
     }
     QDomNode bodyNode = root.firstChild();
 
-    while (!bodyNode.isNull() && bodyNode.toElement().tagName().toLower() != QLatin1String("body"))
+    while (!bodyNode.isNull() && bodyNode.toElement().tagName().toLower() != QLatin1String("body")) {
         bodyNode = bodyNode.nextSibling();
+    }
 
-
-    if (bodyNode.isNull())
-    {
-        qDebug() <<"Failed to acquire body node, markup broken?";
+    if (bodyNode.isNull()) {
+        qDebug() << "Failed to acquire body node, markup broken?";
         return false;
     }
 
@@ -290,22 +288,20 @@ bool FeedList::readFromOpml(const QDomDocument& doc)
 
     QDomNode i = body.firstChild();
 
-    while( !i.isNull() )
-    {
+    while (!i.isNull()) {
         parseChildNodes(i, allFeedsFolder());
         i = i.nextSibling();
     }
 
-    for (TreeNode* i = allFeedsFolder()->firstChild(); i && i != allFeedsFolder(); i = i->next() )
-        if (i->id() == 0)
-    {
+    for (TreeNode *i = allFeedsFolder()->firstChild(); i && i != allFeedsFolder(); i = i->next())
+        if (i->id() == 0) {
             uint id = generateID();
             i->setId(id);
             d->idMap.insert(id, i);
-    }
+        }
 
-    qDebug() <<"measuring startup time: STOP," << spent.elapsed() <<"ms";
-    qDebug() <<"Number of articles loaded:" << allFeedsFolder()->totalCount();
+    qDebug() << "measuring startup time: STOP," << spent.elapsed() << "ms";
+    qDebug() << "Number of articles loaded:" << allFeedsFolder()->totalCount();
     return true;
 }
 
@@ -318,41 +314,44 @@ FeedList::~FeedList()
     delete d;
 }
 
-const Feed* FeedList::findByURL(const QString& feedURL) const
+const Feed *FeedList::findByURL(const QString &feedURL) const
 {
-    if ( !d->urlMap.contains( feedURL ) )
+    if (!d->urlMap.contains(feedURL)) {
         return 0;
-    const QList<Feed*>& v = d->urlMap[feedURL];
+    }
+    const QList<Feed *> &v = d->urlMap[feedURL];
     return !v.isEmpty() ? v.front() : 0;
 }
 
-Feed* FeedList::findByURL(const QString& feedURL)
+Feed *FeedList::findByURL(const QString &feedURL)
 {
-    if ( !d->urlMap.contains( feedURL ) )
+    if (!d->urlMap.contains(feedURL)) {
         return 0;
-    const QList<Feed*>& v = d->urlMap[feedURL];
+    }
+    const QList<Feed *> &v = d->urlMap[feedURL];
     return !v.isEmpty() ? v.front() : 0;
 }
 
-const Article FeedList::findArticle(const QString& feedURL, const QString& guid) const
+const Article FeedList::findArticle(const QString &feedURL, const QString &guid) const
 {
-    const Feed* feed = findByURL(feedURL);
+    const Feed *feed = findByURL(feedURL);
     return feed ? feed->findArticle(guid) : Article();
 }
 
-void FeedList::append(FeedList* list, Folder* parent, TreeNode* after)
+void FeedList::append(FeedList *list, Folder *parent, TreeNode *after)
 {
-    if ( list == this )
+    if (list == this) {
         return;
+    }
 
-    if ( !d->flatList.contains(parent) )
+    if (!d->flatList.contains(parent)) {
         parent = allFeedsFolder();
+    }
 
-    QList<TreeNode*> children = list->allFeedsFolder()->children();
+    QList<TreeNode *> children = list->allFeedsFolder()->children();
 
-    QList<TreeNode*>::ConstIterator end(  children.constEnd() );
-    for (QList<TreeNode*>::ConstIterator it = children.constBegin(); it != end; ++it)
-    {
+    QList<TreeNode *>::ConstIterator end(children.constEnd());
+    for (QList<TreeNode *>::ConstIterator it = children.constBegin(); it != end; ++it) {
         list->allFeedsFolder()->removeChild(*it);
         parent->insertChild(*it, after);
         after = *it;
@@ -362,53 +361,54 @@ void FeedList::append(FeedList* list, Folder* parent, TreeNode* after)
 QDomDocument FeedList::toOpml() const
 {
     QDomDocument doc;
-    doc.appendChild( doc.createProcessingInstruction( QLatin1String("xml"), QLatin1String("version=\"1.0\" encoding=\"UTF-8\"") ) );
+    doc.appendChild(doc.createProcessingInstruction(QLatin1String("xml"), QLatin1String("version=\"1.0\" encoding=\"UTF-8\"")));
 
-    QDomElement root = doc.createElement( QLatin1String("opml") );
-    root.setAttribute( QLatin1String("version"), QLatin1String("1.0") );
-    doc.appendChild( root );
+    QDomElement root = doc.createElement(QLatin1String("opml"));
+    root.setAttribute(QLatin1String("version"), QLatin1String("1.0"));
+    doc.appendChild(root);
 
-    QDomElement head = doc.createElement( QLatin1String("head") );
-    root.appendChild( head );
+    QDomElement head = doc.createElement(QLatin1String("head"));
+    root.appendChild(head);
 
-    QDomElement ti = doc.createElement( QLatin1String("text") );
-    head.appendChild( ti );
+    QDomElement ti = doc.createElement(QLatin1String("text"));
+    head.appendChild(ti);
 
-    QDomElement body = doc.createElement( QLatin1String("body") );
-    root.appendChild( body );
+    QDomElement body = doc.createElement(QLatin1String("body"));
+    root.appendChild(body);
 
-    foreach( const TreeNode* const i, allFeedsFolder()->children() )
-        body.appendChild( i->toOPML(body, doc) );
+    foreach (const TreeNode *const i, allFeedsFolder()->children()) {
+        body.appendChild(i->toOPML(body, doc));
+    }
 
     return doc;
 }
 
-const TreeNode* FeedList::findByID(int id) const
+const TreeNode *FeedList::findByID(int id) const
 {
     return d->idMap[id];
 }
 
-TreeNode* FeedList::findByID(int id)
+TreeNode *FeedList::findByID(int id)
 {
     return d->idMap[id];
 }
 
-QList<const TreeNode*> FeedList::findByTitle(const QString& title ) const
+QList<const TreeNode *> FeedList::findByTitle(const QString &title) const
 {
-    return allFeedsFolder()->namedChildren( title );
+    return allFeedsFolder()->namedChildren(title);
 }
 
-QList<TreeNode*> FeedList::findByTitle(const QString& title )
+QList<TreeNode *> FeedList::findByTitle(const QString &title)
 {
-    return allFeedsFolder()->namedChildren( title );
+    return allFeedsFolder()->namedChildren(title);
 }
 
-const Folder* FeedList::allFeedsFolder() const
+const Folder *FeedList::allFeedsFolder() const
 {
     return d->rootNode;
 }
 
-Folder* FeedList::allFeedsFolder()
+Folder *FeedList::allFeedsFolder()
 {
     return d->rootNode;
 }
@@ -418,25 +418,28 @@ bool FeedList::isEmpty() const
     return d->rootNode->firstChild() == 0;
 }
 
-void FeedList::rootNodeChanged() {
-    assert( d->rootNode );
+void FeedList::rootNodeChanged()
+{
+    assert(d->rootNode);
     const int newUnread = d->rootNode->unread();
-    if ( newUnread == d->unreadCache )
+    if (newUnread == d->unreadCache) {
         return;
+    }
     d->unreadCache = newUnread;
-    emit unreadCountChanged( newUnread );
+    emit unreadCountChanged(newUnread);
 }
 
-void FeedList::setRootNode(Folder* folder)
+void FeedList::setRootNode(Folder *folder)
 {
-    if ( folder == d->rootNode )
+    if (folder == d->rootNode) {
         return;
+    }
 
     delete d->rootNode;
     d->rootNode = folder;
     d->unreadCache = -1;
 
-    if ( d->rootNode ) {
+    if (d->rootNode) {
         d->rootNode->setOpen(true);
         connect(d->rootNode, &Folder::signalChildAdded, this, &FeedList::slotNodeAdded);
         connect(d->rootNode, &Folder::signalAboutToRemoveChild, this, &FeedList::signalAboutToRemoveNode);
@@ -451,64 +454,74 @@ int FeedList::generateID() const
     return KRandom::random();
 }
 
-void FeedList::slotNodeAdded(TreeNode* node)
+void FeedList::slotNodeAdded(TreeNode *node)
 {
-    if (!node) return;
-
-    Folder* parent = node->parent();
-    if ( !parent || !d->flatList.contains(parent) || d->flatList.contains(node) )
+    if (!node) {
         return;
+    }
+
+    Folder *parent = node->parent();
+    if (!parent || !d->flatList.contains(parent) || d->flatList.contains(node)) {
+        return;
+    }
 
     addNode(node, false);
 }
 
-void FeedList::slotNodeDestroyed(TreeNode* node)
+void FeedList::slotNodeDestroyed(TreeNode *node)
 {
-    if ( !node || !d->flatList.contains(node) )
+    if (!node || !d->flatList.contains(node)) {
         return;
+    }
     removeNode(node);
 }
 
-void FeedList::slotNodeRemoved(Folder* /*parent*/, TreeNode* node)
+void FeedList::slotNodeRemoved(Folder * /*parent*/, TreeNode *node)
 {
-    if ( !node || !d->flatList.contains(node) )
+    if (!node || !d->flatList.contains(node)) {
         return;
+    }
     removeNode(node);
-    emit signalNodeRemoved( node );
+    emit signalNodeRemoved(node);
 }
 
-int FeedList::unread() const {
-    if ( d->unreadCache == -1 )
+int FeedList::unread() const
+{
+    if (d->unreadCache == -1) {
         d->unreadCache = d->rootNode ? d->rootNode->unread() : 0;
+    }
     return d->unreadCache;
 }
 
-void FeedList::addToFetchQueue( FetchQueue* qu, bool intervalOnly ) {
-    if ( d->rootNode )
-        d->rootNode->slotAddToFetchQueue( qu, intervalOnly );
+void FeedList::addToFetchQueue(FetchQueue *qu, bool intervalOnly)
+{
+    if (d->rootNode) {
+        d->rootNode->slotAddToFetchQueue(qu, intervalOnly);
+    }
 }
 
-KJob* FeedList::createMarkAsReadJob() {
+KJob *FeedList::createMarkAsReadJob()
+{
     return d->rootNode ? d->rootNode->createMarkAsReadJob() : 0;
 }
 
-FeedListManagementImpl::FeedListManagementImpl( const shared_ptr<FeedList>& list ) : m_feedList( list )
+FeedListManagementImpl::FeedListManagementImpl(const shared_ptr<FeedList> &list) : m_feedList(list)
 {
 
 }
 
-void FeedListManagementImpl::setFeedList( const shared_ptr<FeedList>& list )
+void FeedListManagementImpl::setFeedList(const shared_ptr<FeedList> &list)
 {
     m_feedList = list;
 }
 
-static QString path_of_folder( const Folder* fol )
+static QString path_of_folder(const Folder *fol)
 {
-    assert( fol );
+    assert(fol);
     QString path;
-    const Folder* i = fol;
-    while ( i ) {
-        path = QString::number( i->id() ) + QLatin1Char('/') + path;
+    const Folder *i = fol;
+    while (i) {
+        path = QString::number(i->id()) + QLatin1Char('/') + path;
         i = i->parent();
     }
     return path;
@@ -516,41 +529,45 @@ static QString path_of_folder( const Folder* fol )
 
 QStringList FeedListManagementImpl::categories() const
 {
-    if ( !m_feedList )
+    if (!m_feedList) {
         return QStringList();
+    }
     QStringList cats;
-    Q_FOREACH ( const Folder* const i, m_feedList->folders() )
-        cats.append( path_of_folder( i ) );
+    Q_FOREACH (const Folder *const i, m_feedList->folders()) {
+        cats.append(path_of_folder(i));
+    }
     return cats;
 }
 
-QStringList FeedListManagementImpl::feeds( const QString& catId ) const
+QStringList FeedListManagementImpl::feeds(const QString &catId) const
 {
-    if ( !m_feedList )
+    if (!m_feedList) {
         return QStringList();
+    }
 
-    uint lastcatid = catId.split(QLatin1Char('/'),QString::SkipEmptyParts).last().toUInt();
+    uint lastcatid = catId.split(QLatin1Char('/'), QString::SkipEmptyParts).last().toUInt();
 
     QSet<QString> urls;
-    Q_FOREACH ( const Feed* const i, m_feedList->feeds() ) {
-        if ( lastcatid == i->parent()->id() ) {
-            urls.insert( i->xmlUrl() );
+    Q_FOREACH (const Feed *const i, m_feedList->feeds()) {
+        if (lastcatid == i->parent()->id()) {
+            urls.insert(i->xmlUrl());
         }
     }
     return urls.toList();
 }
 
-void FeedListManagementImpl::addFeed( const QString& url, const QString& catId )
+void FeedListManagementImpl::addFeed(const QString &url, const QString &catId)
 {
-    if ( !m_feedList )
+    if (!m_feedList) {
         return;
+    }
 
     qDebug() << "Name:" << url.left(20) << "Cat:" << catId;
-    uint folder_id = catId.split(QLatin1Char('/'),QString::SkipEmptyParts).last().toUInt();
+    uint folder_id = catId.split(QLatin1Char('/'), QString::SkipEmptyParts).last().toUInt();
 
     // Get the folder
-    Folder * m_folder = 0;
-    QVector<Folder*> vector = m_feedList->folders();
+    Folder *m_folder = 0;
+    QVector<Folder *> vector = m_feedList->folders();
     for (int i = 0; i < vector.size(); ++i) {
         if (vector.at(i)->id() == folder_id) {
             m_folder = vector.at(i);
@@ -559,59 +576,61 @@ void FeedListManagementImpl::addFeed( const QString& url, const QString& catId )
     }
 
     // Create new feed
-    std::auto_ptr<FeedList> new_feedlist( new FeedList( Kernel::self()->storage() ) );
-    Feed * new_feed = new Feed( Kernel::self()->storage() );
+    std::auto_ptr<FeedList> new_feedlist(new FeedList(Kernel::self()->storage()));
+    Feed *new_feed = new Feed(Kernel::self()->storage());
     new_feed->setXmlUrl(url);
     // new_feed->setTitle(url);
     new_feedlist->allFeedsFolder()->appendChild(new_feed);
 
     // Get last in the folder
-    TreeNode* m_last = m_folder->childAt( m_folder->totalCount() );
+    TreeNode *m_last = m_folder->childAt(m_folder->totalCount());
 
     // Add the feed
     m_feedList->append(new_feedlist.get(), m_folder, m_last);
 }
 
-void FeedListManagementImpl::removeFeed( const QString& url, const QString& catId )
+void FeedListManagementImpl::removeFeed(const QString &url, const QString &catId)
 {
     qDebug() << "Name:" << url.left(20) << "Cat:" << catId;
 
-    uint lastcatid = catId.split(QLatin1Char('/'),QString::SkipEmptyParts).last().toUInt();
+    uint lastcatid = catId.split(QLatin1Char('/'), QString::SkipEmptyParts).last().toUInt();
 
-    Q_FOREACH ( const Feed* const i, m_feedList->feeds() ) {
-        if ( lastcatid == i->parent()->id() ) {
-            if (i->xmlUrl().compare(url)==0) {
+    Q_FOREACH (const Feed *const i, m_feedList->feeds()) {
+        if (lastcatid == i->parent()->id()) {
+            if (i->xmlUrl().compare(url) == 0) {
                 qDebug() << "id:" << i->id();
-                DeleteSubscriptionJob* job = new DeleteSubscriptionJob;
-                job->setSubscriptionId( i->id() );
+                DeleteSubscriptionJob *job = new DeleteSubscriptionJob;
+                job->setSubscriptionId(i->id());
                 job->start();
             }
         }
     }
 }
 
-QString FeedListManagementImpl::addCategory( const QString& name, const QString& parentId ) const
+QString FeedListManagementImpl::addCategory(const QString &name, const QString &parentId) const
 {
-    Q_UNUSED( parentId )
+    Q_UNUSED(parentId)
 
-    if ( !m_feedList )
+    if (!m_feedList) {
         return QLatin1String("");
+    }
 
-    Folder * m_folder = new Folder(name);
+    Folder *m_folder = new Folder(name);
     m_feedList->allFeedsFolder()->appendChild(m_folder);
 
     return QString::number(m_folder->id());
 }
 
-QString FeedListManagementImpl::getCategoryName( const QString& catId ) const
+QString FeedListManagementImpl::getCategoryName(const QString &catId) const
 {
     QString catname;
 
-    if ( !m_feedList )
+    if (!m_feedList) {
         return catname;
+    }
 
-    QStringList list = catId.split(QLatin1Char('/'),QString::SkipEmptyParts);
-    for (int i=0;i<list.size();++i) {
+    QStringList list = catId.split(QLatin1Char('/'), QString::SkipEmptyParts);
+    for (int i = 0; i < list.size(); ++i) {
         int index = list.at(i).toInt();
         catname += m_feedList->findByID(index)->title() + QLatin1Char('/');
     }

@@ -31,7 +31,8 @@
 
 #include <boost/weak_ptr.hpp>
 
-namespace Akregator {
+namespace Akregator
+{
 
 class FeedList;
 
@@ -39,13 +40,13 @@ class ExpireItemsCommand : public Command
 {
     Q_OBJECT
 public:
-    explicit ExpireItemsCommand( QObject* parent = 0 );
+    explicit ExpireItemsCommand(QObject *parent = 0);
     ~ExpireItemsCommand();
 
-    void setFeedList( const boost::weak_ptr<FeedList>& feedList );
+    void setFeedList(const boost::weak_ptr<FeedList> &feedList);
     boost::weak_ptr<FeedList> feedList() const;
 
-    void setFeeds( const QVector<int>& feeds );
+    void setFeeds(const QVector<int> &feeds);
     QVector<int> feeds() const;
 
 private:
@@ -54,9 +55,9 @@ private:
 
 private:
     class Private;
-    Private* const d;
-    Q_PRIVATE_SLOT( d, void createDeleteJobs() )
-    Q_PRIVATE_SLOT( d, void jobFinished( KJob* ) )
+    Private *const d;
+    Q_PRIVATE_SLOT(d, void createDeleteJobs())
+    Q_PRIVATE_SLOT(d, void jobFinished(KJob *))
 };
 
 }

@@ -17,7 +17,7 @@ class c4_Sequence; // not defined here
 extern c4_Sequence *f4_CreateFilter(c4_Sequence &, c4_Cursor, c4_Cursor);
 extern c4_Sequence *f4_CreateSort(c4_Sequence &, c4_Sequence * = 0);
 extern c4_Sequence *f4_CreateProject(c4_Sequence &, c4_Sequence &, bool,
-  c4_Sequence * = 0);
+                                     c4_Sequence * = 0);
 
 /////////////////////////////////////////////////////////////////////////////
 

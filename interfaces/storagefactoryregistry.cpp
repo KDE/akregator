@@ -29,44 +29,48 @@
 #include <QString>
 #include <QStringList>
 
-namespace Akregator {
-namespace Backend {
+namespace Akregator
+{
+namespace Backend
+{
 
 class StorageFactoryRegistry::StorageFactoryRegistryPrivate
 {
-    public:
-        QHash<QString, StorageFactory*> map;
+public:
+    QHash<QString, StorageFactory *> map;
 };
 
-StorageFactoryRegistry* StorageFactoryRegistry::m_instance = 0;
+StorageFactoryRegistry *StorageFactoryRegistry::m_instance = 0;
 
-StorageFactoryRegistry* StorageFactoryRegistry::self()
+StorageFactoryRegistry *StorageFactoryRegistry::self()
 {
     static StorageFactoryRegistry instance;
-    if (!m_instance)
+    if (!m_instance) {
         m_instance = &instance;
+    }
     return m_instance;
 }
 
-bool StorageFactoryRegistry::registerFactory(StorageFactory* factory, const QString& typestr)
+bool StorageFactoryRegistry::registerFactory(StorageFactory *factory, const QString &typestr)
 {
-    if (containsFactory(typestr))
+    if (containsFactory(typestr)) {
         return false;
+    }
     d->map[typestr] = factory;
-    return true; 
+    return true;
 }
 
-void StorageFactoryRegistry::unregisterFactory(const QString& typestr)
+void StorageFactoryRegistry::unregisterFactory(const QString &typestr)
 {
     d->map.remove(typestr);
 }
 
-StorageFactory* StorageFactoryRegistry::getFactory(const QString& typestr)
+StorageFactory *StorageFactoryRegistry::getFactory(const QString &typestr)
 {
     return d->map[typestr];
 }
 
-bool StorageFactoryRegistry::containsFactory(const QString& typestr) const
+bool StorageFactoryRegistry::containsFactory(const QString &typestr) const
 {
     return d->map.contains(typestr);
 }
@@ -83,7 +87,7 @@ StorageFactoryRegistry::StorageFactoryRegistry() : d(new StorageFactoryRegistryP
 StorageFactoryRegistry::~StorageFactoryRegistry()
 {
     qDeleteAll(d->map);
-    delete d; 
+    delete d;
     d = 0;
 }
 

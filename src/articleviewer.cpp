@@ -73,25 +73,26 @@ using namespace boost;
 using namespace Akregator;
 using namespace Akregator::Filters;
 
-namespace Akregator {
+namespace Akregator
+{
 
 ArticleViewer::ArticleViewer(QWidget *parent)
     : QWidget(parent),
       m_url(0),
       m_htmlFooter(),
       m_currentText(),
-      m_imageDir( QUrl::fromLocalFile( QStandardPaths::writableLocation(QStandardPaths::CacheLocation) + QLatin1Char('/') + "akregator/Media/" )),
+      m_imageDir(QUrl::fromLocalFile(QStandardPaths::writableLocation(QStandardPaths::CacheLocation) + QLatin1Char('/') + "akregator/Media/")),
       m_node(0),
       m_viewMode(NormalView),
-      m_part( new ArticleViewerPart( this ) ),
-      m_normalViewFormatter( new DefaultNormalViewFormatter( m_imageDir, m_part->view() ) ),
-      m_combinedViewFormatter( new DefaultCombinedViewFormatter( m_imageDir, m_part->view() ) )
+      m_part(new ArticleViewerPart(this)),
+      m_normalViewFormatter(new DefaultNormalViewFormatter(m_imageDir, m_part->view())),
+      m_combinedViewFormatter(new DefaultCombinedViewFormatter(m_imageDir, m_part->view()))
 {
-    QGridLayout* layout = new QGridLayout(this);
+    QGridLayout *layout = new QGridLayout(this);
     layout->setMargin(0);
     layout->addWidget(m_part->widget(), 0, 0);
 
-    setFocusProxy( m_part->widget() );
+    setFocusProxy(m_part->widget());
 
     m_part->setFontScaleFactor(100);
     m_part->setZoomFactor(100);
@@ -103,33 +104,33 @@ ArticleViewer::ArticleViewer(QWidget *parent)
     m_part->setAutoloadImages(true);
     m_part->setStatusMessagesEnabled(false);
     m_part->view()->setAttribute(Qt::WA_InputMethodEnabled, true); //workaround to fix 216878
-    m_part->view()->setFrameStyle( QFrame::StyledPanel|QFrame::Sunken );
+    m_part->view()->setFrameStyle(QFrame::StyledPanel | QFrame::Sunken);
 
     // change the cursor when loading stuff...
-    connect( m_part, SIGNAL(started(KIO::Job*)),
-             this, SLOT(slotStarted(KIO::Job*)));
-    connect( m_part, SIGNAL(completed()),
-             this, SLOT(slotCompleted()));
+    connect(m_part, SIGNAL(started(KIO::Job*)),
+            this, SLOT(slotStarted(KIO::Job*)));
+    connect(m_part, SIGNAL(completed()),
+            this, SLOT(slotCompleted()));
 
-    KParts::BrowserExtension* ext = m_part->browserExtension();
+    KParts::BrowserExtension *ext = m_part->browserExtension();
     connect(ext, SIGNAL(popupMenu(QPoint,QUrl,mode_t,KParts::OpenUrlArguments,KParts::BrowserArguments,KParts::BrowserExtension::PopupFlags,KParts::BrowserExtension::ActionGroupMap)),
-             this, SLOT(slotPopupMenu(QPoint,QUrl,mode_t,KParts::OpenUrlArguments,KParts::BrowserArguments,KParts::BrowserExtension::PopupFlags))); // ActionGroupMap argument removed, unused by slot
+            this, SLOT(slotPopupMenu(QPoint,QUrl,mode_t,KParts::OpenUrlArguments,KParts::BrowserArguments,KParts::BrowserExtension::PopupFlags))); // ActionGroupMap argument removed, unused by slot
 
-    connect( ext, SIGNAL(openUrlRequestDelayed(QUrl,KParts::OpenUrlArguments,KParts::BrowserArguments)),
-             this, SLOT(slotOpenUrlRequestDelayed(QUrl,KParts::OpenUrlArguments,KParts::BrowserArguments)) );
+    connect(ext, SIGNAL(openUrlRequestDelayed(QUrl,KParts::OpenUrlArguments,KParts::BrowserArguments)),
+            this, SLOT(slotOpenUrlRequestDelayed(QUrl,KParts::OpenUrlArguments,KParts::BrowserArguments)));
 
     connect(ext, SIGNAL(createNewWindow(QUrl,
-            KParts::OpenUrlArguments,
-            KParts::BrowserArguments,
-            KParts::WindowArgs,
-            KParts::ReadOnlyPart**)),
+                                        KParts::OpenUrlArguments,
+                                        KParts::BrowserArguments,
+                                        KParts::WindowArgs,
+                                        KParts::ReadOnlyPart **)),
             this, SLOT(slotCreateNewWindow(QUrl,
-                         KParts::OpenUrlArguments,
-                         KParts::BrowserArguments,
-                         KParts::WindowArgs,
-                         KParts::ReadOnlyPart**)));
+                                           KParts::OpenUrlArguments,
+                                           KParts::BrowserArguments,
+                                           KParts::WindowArgs,
+                                           KParts::ReadOnlyPart **)));
 
-    QAction * action = 0;
+    QAction *action = 0;
 
     action = m_part->actionCollection()->addAction("copylinkaddress");
     action->setText(i18n("Copy &Link Address"));
@@ -153,61 +154,57 @@ ArticleViewer::~ArticleViewer()
 {
 }
 
-KParts::ReadOnlyPart* ArticleViewer::part() const
+KParts::ReadOnlyPart *ArticleViewer::part() const
 {
     return m_part;
 }
 
 int ArticleViewer::pointsToPixel(int pointSize) const
 {
-    return ( pointSize * m_part->view()->logicalDpiY() + 36 ) / 72 ;
+    return (pointSize * m_part->view()->logicalDpiY() + 36) / 72 ;
 }
 
-void ArticleViewer::slotOpenUrlRequestDelayed(const QUrl& url, const KParts::OpenUrlArguments& args, const KParts::BrowserArguments& browserArgs)
+void ArticleViewer::slotOpenUrlRequestDelayed(const QUrl &url, const KParts::OpenUrlArguments &args, const KParts::BrowserArguments &browserArgs)
 {
     OpenUrlRequest req(url);
     req.setArgs(args);
     req.setBrowserArgs(browserArgs);
-    if (req.options() == OpenUrlRequest::None)                // no explicit new window,
-        req.setOptions(OpenUrlRequest::NewTab);               // so must open new tab
-
-    if (m_part->button() == Qt::LeftButton)
-    {
-        switch (Settings::lMBBehaviour())
-        {
-            case Settings::EnumLMBBehaviour::OpenInExternalBrowser:
-                req.setOptions(OpenUrlRequest::ExternalBrowser);
-                break;
-            case Settings::EnumLMBBehaviour::OpenInBackground:
-                req.setOpenInBackground(true);
-                break;
-            default:
-                break;
-        }
+    if (req.options() == OpenUrlRequest::None) {              // no explicit new window,
+        req.setOptions(OpenUrlRequest::NewTab);    // so must open new tab
     }
-    else if (m_part->button() == Qt::MidButton)
-    {
-        switch (Settings::mMBBehaviour())
-        {
-            case Settings::EnumMMBBehaviour::OpenInExternalBrowser:
-                req.setOptions(OpenUrlRequest::ExternalBrowser);
-                break;
-            case Settings::EnumMMBBehaviour::OpenInBackground:
-                req.setOpenInBackground(true);
-                break;
-            default:
-                break;
+
+    if (m_part->button() == Qt::LeftButton) {
+        switch (Settings::lMBBehaviour()) {
+        case Settings::EnumLMBBehaviour::OpenInExternalBrowser:
+            req.setOptions(OpenUrlRequest::ExternalBrowser);
+            break;
+        case Settings::EnumLMBBehaviour::OpenInBackground:
+            req.setOpenInBackground(true);
+            break;
+        default:
+            break;
+        }
+    } else if (m_part->button() == Qt::MidButton) {
+        switch (Settings::mMBBehaviour()) {
+        case Settings::EnumMMBBehaviour::OpenInExternalBrowser:
+            req.setOptions(OpenUrlRequest::ExternalBrowser);
+            break;
+        case Settings::EnumMMBBehaviour::OpenInBackground:
+            req.setOpenInBackground(true);
+            break;
+        default:
+            break;
         }
     }
 
     emit signalOpenUrlRequest(req);
 }
 
-void ArticleViewer::slotCreateNewWindow(const QUrl& url,
-                                       const KParts::OpenUrlArguments& args,
-                                       const KParts::BrowserArguments& browserArgs,
-                                       const KParts::WindowArgs& /*windowArgs*/,
-                                       KParts::ReadOnlyPart** part)
+void ArticleViewer::slotCreateNewWindow(const QUrl &url,
+                                        const KParts::OpenUrlArguments &args,
+                                        const KParts::BrowserArguments &browserArgs,
+                                        const KParts::WindowArgs & /*windowArgs*/,
+                                        KParts::ReadOnlyPart **part)
 {
     OpenUrlRequest req;
     req.setUrl(url);
@@ -216,11 +213,12 @@ void ArticleViewer::slotCreateNewWindow(const QUrl& url,
     req.setOptions(OpenUrlRequest::NewTab);
 
     emit signalOpenUrlRequest(req);
-    if ( part )
+    if (part) {
         *part = req.part();
+    }
 }
 
-void ArticleViewer::slotPopupMenu(const QPoint& p, const QUrl& kurl, mode_t, const KParts::OpenUrlArguments&, const KParts::BrowserArguments&, KParts::BrowserExtension::PopupFlags kpf)
+void ArticleViewer::slotPopupMenu(const QPoint &p, const QUrl &kurl, mode_t, const KParts::OpenUrlArguments &, const KParts::BrowserArguments &, KParts::BrowserExtension::PopupFlags kpf)
 {
     const bool isLink = (kpf & KParts::BrowserExtension::ShowNavigationItems) == 0; // ## why not use kpf & IsLink ?
     const bool isSelection = (kpf & KParts::BrowserExtension::ShowTextSelectionItems) != 0;
@@ -230,28 +228,24 @@ void ArticleViewer::slotPopupMenu(const QPoint& p, const QUrl& kurl, mode_t, con
     m_url = url;
     QMenu popup;
 
-    if (isLink && !isSelection)
-    {
-        popup.addAction( createOpenLinkInNewTabAction( kurl, this, SLOT(slotOpenLinkInForegroundTab()), &popup ) );
-        popup.addAction( createOpenLinkInExternalBrowserAction( kurl, this, SLOT(slotOpenLinkInBrowser()), &popup ) );
+    if (isLink && !isSelection) {
+        popup.addAction(createOpenLinkInNewTabAction(kurl, this, SLOT(slotOpenLinkInForegroundTab()), &popup));
+        popup.addAction(createOpenLinkInExternalBrowserAction(kurl, this, SLOT(slotOpenLinkInBrowser()), &popup));
         popup.addSeparator();
-        popup.addAction( m_part->action("savelinkas") );
-        popup.addAction( m_part->action("copylinkaddress") );
-    }
-    else
-    {
-        if (isSelection)
-        {
-            popup.addAction( ActionManager::getInstance()->action("viewer_copy") );
+        popup.addAction(m_part->action("savelinkas"));
+        popup.addAction(m_part->action("copylinkaddress"));
+    } else {
+        if (isSelection) {
+            popup.addAction(ActionManager::getInstance()->action("viewer_copy"));
             popup.addSeparator();
         }
-        popup.addAction( ActionManager::getInstance()->action("viewer_print") );
-       //QAction *ac = action("setEncoding");
-       //if (ac)
-       //     ac->plug(&popup);
+        popup.addAction(ActionManager::getInstance()->action("viewer_print"));
+        //QAction *ac = action("setEncoding");
+        //if (ac)
+        //     ac->plug(&popup);
         popup.addSeparator();
-        popup.addAction( ActionManager::getInstance()->action("inc_font_sizes") );
-        popup.addAction( ActionManager::getInstance()->action("dec_font_sizes") );
+        popup.addAction(ActionManager::getInstance()->action("inc_font_sizes"));
+        popup.addAction(ActionManager::getInstance()->action("dec_font_sizes"));
     }
     popup.exec(p);
 }
@@ -260,15 +254,17 @@ void ArticleViewer::slotPopupMenu(const QPoint& p, const QUrl& kurl, mode_t, con
 void ArticleViewer::slotCopy()
 {
     QString text = m_part->selectedText();
-    text.replace( QChar( 0xa0 ), ' ' );
-    QClipboard* const cb = QApplication::clipboard();
-    assert( cb );
-    cb->setText( text, QClipboard::Clipboard );
+    text.replace(QChar(0xa0), ' ');
+    QClipboard *const cb = QApplication::clipboard();
+    assert(cb);
+    cb->setText(text, QClipboard::Clipboard);
 }
 
 void ArticleViewer::slotCopyLinkAddress()
 {
-    if(m_url.isEmpty()) return;
+    if (m_url.isEmpty()) {
+        return;
+    }
     QClipboard *cb = QApplication::clipboard();
     cb->setText(m_url.prettyUrl(), QClipboard::Clipboard);
     // don't set url to selection as it's a no-no according to a fd.o spec
@@ -311,16 +307,17 @@ void ArticleViewer::slotOpenLinkInBrowser()
 
 void ArticleViewer::slotSaveLinkAs()
 {
-    KUrl tmp( m_url );
+    KUrl tmp(m_url);
 
-    if ( tmp.fileName(KUrl::ObeyTrailingSlash).isEmpty() )
-        tmp.setFileName( "index.html" );
+    if (tmp.fileName(KUrl::ObeyTrailingSlash).isEmpty()) {
+        tmp.setFileName("index.html");
+    }
     KParts::BrowserRun::simpleSave(tmp, tmp.fileName());
 }
 
-void ArticleViewer::slotStarted(KIO::Job* job)
+void ArticleViewer::slotStarted(KIO::Job *job)
 {
-    m_part->widget()->setCursor( Qt::WaitCursor );
+    m_part->widget()->setCursor(Qt::WaitCursor);
     emit started(job);
 }
 
@@ -332,17 +329,15 @@ void ArticleViewer::slotCompleted()
 
 void ArticleViewer::slotZoomIn(int id)
 {
-    if (id != 0)
+    if (id != 0) {
         return;
+    }
 
     int zf = m_part->fontScaleFactor();
-    if (zf < 100)
-    {
+    if (zf < 100) {
         zf = zf - (zf % 20) + 20;
         m_part->setFontScaleFactor(zf);
-    }
-    else
-    {
+    } else {
         zf = zf - (zf % 50) + 50;
         m_part->setFontScaleFactor(zf < 300 ? zf : 300);
     }
@@ -350,17 +345,15 @@ void ArticleViewer::slotZoomIn(int id)
 
 void ArticleViewer::slotZoomOut(int id)
 {
-    if (id != 0)
+    if (id != 0) {
         return;
+    }
 
     int zf = m_part->fontScaleFactor();
-    if (zf <= 100)
-    {
+    if (zf <= 100) {
         zf = zf - (zf % 20) - 20;
         m_part->setFontScaleFactor(zf > 20 ? zf : 20);
-    }
-    else
-    {
+    } else {
         zf = zf - (zf % 50) - 50;
         m_part->setFontScaleFactor(zf);
     }
@@ -372,38 +365,36 @@ void ArticleViewer::slotSetZoomFactor(int percent)
 }
 
 // some code taken from KDevelop (lib/widgets/kdevhtmlpart.cpp)
-void ArticleViewer::slotPrint( )
+void ArticleViewer::slotPrint()
 {
     m_part->view()->print();
 }
 
-
-
-void ArticleViewer::connectToNode(TreeNode* node)
+void ArticleViewer::connectToNode(TreeNode *node)
 {
-    if (node)
-    {
-        if (m_viewMode == CombinedView)
-        {
-            connect( node, SIGNAL(signalChanged(Akregator::TreeNode*)), this, SLOT(slotUpdateCombinedView()) );
-            connect( node, SIGNAL(signalArticlesAdded(Akregator::TreeNode*,QList<Akregator::Article>)), this, SLOT(slotArticlesAdded(Akregator::TreeNode*,QList<Akregator::Article>)));
-            connect( node, SIGNAL(signalArticlesRemoved(Akregator::TreeNode*,QList<Akregator::Article>)), this, SLOT(slotArticlesRemoved(Akregator::TreeNode*,QList<Akregator::Article>)));
-            connect( node, SIGNAL(signalArticlesUpdated(Akregator::TreeNode*,QList<Akregator::Article>)), this, SLOT(slotArticlesUpdated(Akregator::TreeNode*,QList<Akregator::Article>)));
+    if (node) {
+        if (m_viewMode == CombinedView) {
+            connect(node, SIGNAL(signalChanged(Akregator::TreeNode*)), this, SLOT(slotUpdateCombinedView()));
+            connect(node, SIGNAL(signalArticlesAdded(Akregator::TreeNode*,QList<Akregator::Article>)), this, SLOT(slotArticlesAdded(Akregator::TreeNode*,QList<Akregator::Article>)));
+            connect(node, SIGNAL(signalArticlesRemoved(Akregator::TreeNode*,QList<Akregator::Article>)), this, SLOT(slotArticlesRemoved(Akregator::TreeNode*,QList<Akregator::Article>)));
+            connect(node, SIGNAL(signalArticlesUpdated(Akregator::TreeNode*,QList<Akregator::Article>)), this, SLOT(slotArticlesUpdated(Akregator::TreeNode*,QList<Akregator::Article>)));
         }
-        if (m_viewMode == SummaryView)
-            connect( node, SIGNAL(signalChanged(Akregator::TreeNode*)), this, SLOT(slotShowSummary(Akregator::TreeNode*)) );
+        if (m_viewMode == SummaryView) {
+            connect(node, SIGNAL(signalChanged(Akregator::TreeNode*)), this, SLOT(slotShowSummary(Akregator::TreeNode*)));
+        }
 
-        connect( node, SIGNAL(signalDestroyed(Akregator::TreeNode*)), this, SLOT(slotClear()) );
+        connect(node, SIGNAL(signalDestroyed(Akregator::TreeNode*)), this, SLOT(slotClear()));
     }
 }
 
-void ArticleViewer::disconnectFromNode(TreeNode* node)
+void ArticleViewer::disconnectFromNode(TreeNode *node)
 {
-    if (node)
-        node->disconnect( this );
+    if (node) {
+        node->disconnect(this);
+    }
 }
 
-void ArticleViewer::renderContent(const QString& text)
+void ArticleViewer::renderContent(const QString &text)
 {
     m_part->closeUrl();
     m_currentText = text;
@@ -417,13 +408,14 @@ void ArticleViewer::beginWriting()
 {
     QString head = QString("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\n <html><head><title>.</title>");
 
-    if (m_viewMode == CombinedView)
+    if (m_viewMode == CombinedView) {
         head += m_combinedModeCSS;
-    else
+    } else {
         head += m_normalModeCSS;
+    }
 
     head += "</style></head><body>";
-    m_part->view()->setContentsPos(0,0);
+    m_part->view()->setContentsPos(0, 0);
 
     //pass link to the KHTMLPart to make relative links work
     //add a bogus query item to distinguish from m_link
@@ -443,19 +435,16 @@ void ArticleViewer::endWriting()
     m_part->end();
 }
 
-
-void ArticleViewer::slotShowSummary(TreeNode* node)
+void ArticleViewer::slotShowSummary(TreeNode *node)
 {
     m_viewMode = SummaryView;
 
-    if (!node)
-    {
+    if (!node) {
         slotClear();
         return;
     }
 
-    if (node != m_node)
-    {
+    if (node != m_node) {
         disconnectFromNode(m_node);
         connectToNode(node);
         m_node = node;
@@ -468,10 +457,9 @@ void ArticleViewer::slotShowSummary(TreeNode* node)
     setArticleActionsEnabled(false);
 }
 
-void ArticleViewer::showArticle( const Akregator::Article& article )
+void ArticleViewer::showArticle(const Akregator::Article &article)
 {
-    if ( article.isNull() || article.isDeleted() )
-    {
+    if (article.isNull() || article.isDeleted()) {
         slotClear();
         return;
     }
@@ -481,35 +469,30 @@ void ArticleViewer::showArticle( const Akregator::Article& article )
     m_article = article;
     m_node = 0;
     m_link = article.link();
-    if (article.feed()->loadLinkedWebsite())
-    {
+    if (article.feed()->loadLinkedWebsite()) {
         openUrl(article.link());
-    }
-    else
-    {
-        renderContent( m_normalViewFormatter->formatArticle(article, ArticleFormatter::ShowIcon) );
+    } else {
+        renderContent(m_normalViewFormatter->formatArticle(article, ArticleFormatter::ShowIcon));
     }
 
     setArticleActionsEnabled(true);
 }
 
-bool ArticleViewer::openUrl(const KUrl& url)
+bool ArticleViewer::openUrl(const KUrl &url)
 {
-    if (!m_article.isNull() && m_article.feed()->loadLinkedWebsite())
-    {
+    if (!m_article.isNull() && m_article.feed()->loadLinkedWebsite()) {
         return m_part->openUrl(url);
-    }
-    else
-    {
+    } else {
         reload();
         return true;
     }
 }
 
-void ArticleViewer::setFilters(const std::vector< shared_ptr<const AbstractMatcher> >& filters )
+void ArticleViewer::setFilters(const std::vector< shared_ptr<const AbstractMatcher> > &filters)
 {
-    if ( filters == m_filters )
+    if (filters == m_filters) {
         return;
+    }
 
     m_filters = filters;
 
@@ -518,39 +501,41 @@ void ArticleViewer::setFilters(const std::vector< shared_ptr<const AbstractMatch
 
 void ArticleViewer::slotUpdateCombinedView()
 {
-    if (m_viewMode != CombinedView)
+    if (m_viewMode != CombinedView) {
         return;
+    }
 
-    if (!m_node)
+    if (!m_node) {
         return slotClear();
+    }
 
+    QString text;
 
-   QString text;
+    int num = 0;
+    QTime spent;
+    spent.start();
 
-   int num = 0;
-   QTime spent;
-   spent.start();
+    const std::vector< shared_ptr<const AbstractMatcher> >::const_iterator filterEnd = m_filters.end();
 
-   const std::vector< shared_ptr<const AbstractMatcher> >::const_iterator filterEnd = m_filters.end();
+    Q_FOREACH (const Article &i, m_articles) {
+        if (i.isDeleted()) {
+            continue;
+        }
 
-   Q_FOREACH( const Article& i, m_articles )
-   {
-       if ( i.isDeleted() )
-           continue;
+        if (std::find_if(m_filters.begin(), m_filters.end(), !bind(&AbstractMatcher::matches, _1, i)) != filterEnd) {
+            continue;
+        }
 
-       if ( std::find_if( m_filters.begin(), m_filters.end(), !bind( &AbstractMatcher::matches, _1, i ) ) != filterEnd )
-           continue;
+        text += "<p><div class=\"article\">" + m_combinedViewFormatter->formatArticle(i, ArticleFormatter::NoIcon) + "</div><p>";
+        ++num;
+    }
 
-       text += "<p><div class=\"article\">"+m_combinedViewFormatter->formatArticle( i, ArticleFormatter::NoIcon)+"</div><p>";
-       ++num;
-   }
-
-   qDebug() <<"Combined view rendering: (" << num <<" articles):" <<"generating HTML:" << spent.elapsed() <<"ms";
-   renderContent(text);
-   qDebug() <<"HTML rendering:" << spent.elapsed() <<"ms";
+    qDebug() << "Combined view rendering: (" << num << " articles):" << "generating HTML:" << spent.elapsed() << "ms";
+    renderContent(text);
+    qDebug() << "HTML rendering:" << spent.elapsed() << "ms";
 }
 
-void ArticleViewer::slotArticlesUpdated(TreeNode* /*node*/, const QList<Article>& /*list*/)
+void ArticleViewer::slotArticlesUpdated(TreeNode * /*node*/, const QList<Article> & /*list*/)
 {
     if (m_viewMode == CombinedView) {
         //TODO
@@ -558,17 +543,17 @@ void ArticleViewer::slotArticlesUpdated(TreeNode* /*node*/, const QList<Article>
     }
 }
 
-void ArticleViewer::slotArticlesAdded(TreeNode* /*node*/, const QList<Article>& list)
+void ArticleViewer::slotArticlesAdded(TreeNode * /*node*/, const QList<Article> &list)
 {
     if (m_viewMode == CombinedView) {
         //TODO sort list, then merge
         m_articles << list;
-        std::sort( m_articles.begin(), m_articles.end() );
+        std::sort(m_articles.begin(), m_articles.end());
         slotUpdateCombinedView();
     }
 }
 
-void ArticleViewer::slotArticlesRemoved(TreeNode* /*node*/, const QList<Article>& list )
+void ArticleViewer::slotArticlesRemoved(TreeNode * /*node*/, const QList<Article> &list)
 {
     Q_UNUSED(list)
 
@@ -588,12 +573,13 @@ void ArticleViewer::slotClear()
     renderContent(QString());
 }
 
-void ArticleViewer::showNode(TreeNode* node)
+void ArticleViewer::showNode(TreeNode *node)
 {
     m_viewMode = CombinedView;
 
-    if (node != m_node)
+    if (node != m_node) {
         disconnectFromNode(m_node);
+    }
 
     connectToNode(node);
 
@@ -607,38 +593,39 @@ void ArticleViewer::showNode(TreeNode* node)
     connect(m_listJob.data(), &ArticleListJob::finished, this, &ArticleViewer::slotArticlesListed);
     m_listJob->start();
 
-
-
     slotUpdateCombinedView();
 }
 
-void ArticleViewer::slotArticlesListed( KJob* job ) {
-    assert( job );
-    assert( job == m_listJob );
+void ArticleViewer::slotArticlesListed(KJob *job)
+{
+    assert(job);
+    assert(job == m_listJob);
 
-    TreeNode* node = m_listJob->node();
+    TreeNode *node = m_listJob->node();
 
-    if ( job->error() || !node ) {
-        if ( !node )
+    if (job->error() || !node) {
+        if (!node) {
             qWarning() << "Node to be listed is already deleted";
-        else
+        } else {
             qWarning() << job->errorText();
+        }
         slotUpdateCombinedView();
         return;
     }
 
     m_articles = m_listJob->articles();
-    std::sort( m_articles.begin(), m_articles.end() );
+    std::sort(m_articles.begin(), m_articles.end());
 
-    if (node && !m_articles.isEmpty())
+    if (node && !m_articles.isEmpty()) {
         m_link = m_articles.first().link();
-    else
+    } else {
         m_link = KUrl();
+    }
 
     slotUpdateCombinedView();
 }
 
-void ArticleViewer::keyPressEvent(QKeyEvent* e)
+void ArticleViewer::keyPressEvent(QKeyEvent *e)
 {
     e->ignore();
 }
@@ -668,26 +655,26 @@ void ArticleViewer::displayAboutPage()
 {
     QString location = QStandardPaths::locate(QStandardPaths::GenericDataLocation, "akregator/about/main.html");
 
-    m_part->begin(QUrl::fromLocalFile( location ));
+    m_part->begin(QUrl::fromLocalFile(location));
     QString info =
-            i18nc("%1: Akregator version; %2: homepage URL; "
-            "--- end of comment ---",
-    "<h2 style='margin-top: 0px;'>Welcome to Akregator %1</h2>"
-            "<p>Akregator is a KDE news feed reader. "
-            "Feed readers provide a convenient way to browse different kinds of "
-            "content, including news, blogs, and other content from online sites. "
-            "Instead of checking all your favorite web sites manually for updates, "
-            "Akregator collects the content for you.</p>"
-            "<p>For more information about using Akregator, check the "
-            "<a href=\"%2\">Akregator website</a>. If you do not want to see this page "
-            "anymore, <a href=\"config:/disable_introduction\">click here</a>.</p>"
-            "<p>We hope that you will enjoy Akregator.</p>\n"
-            "<p>Thank you,</p>\n"
-            "<p style='margin-bottom: 0px'>&nbsp; &nbsp; The Akregator Team</p>\n",
-    KDEPIM_VERSION,
-    "http://akregator.kde.org/"); // Akregator homepage URL
+        i18nc("%1: Akregator version; %2: homepage URL; "
+              "--- end of comment ---",
+              "<h2 style='margin-top: 0px;'>Welcome to Akregator %1</h2>"
+              "<p>Akregator is a KDE news feed reader. "
+              "Feed readers provide a convenient way to browse different kinds of "
+              "content, including news, blogs, and other content from online sites. "
+              "Instead of checking all your favorite web sites manually for updates, "
+              "Akregator collects the content for you.</p>"
+              "<p>For more information about using Akregator, check the "
+              "<a href=\"%2\">Akregator website</a>. If you do not want to see this page "
+              "anymore, <a href=\"config:/disable_introduction\">click here</a>.</p>"
+              "<p>We hope that you will enjoy Akregator.</p>\n"
+              "<p>Thank you,</p>\n"
+              "<p style='margin-bottom: 0px'>&nbsp; &nbsp; The Akregator Team</p>\n",
+              KDEPIM_VERSION,
+              "http://akregator.kde.org/"); // Akregator homepage URL
 
-    QString fontSize = QString::number( pointsToPixel( Settings::mediumFontSize() ));
+    QString fontSize = QString::number(pointsToPixel(Settings::mediumFontSize()));
     QString appTitle = i18n("Akregator");
     QString catchPhrase = ""; //not enough space for a catch phrase at default window size i18n("Part of the Kontact Suite");
     QString quickDescription = i18n("A KDE news feed reader.");
@@ -701,15 +688,15 @@ void ArticleViewer::displayAboutPage()
     QString content = QString::fromLocal8Bit(f.readAll());
     f.close();
 
-    QString infocss = QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kdeui/about/kde_infopage.css" );
-    QString rtl = kapp->isRightToLeft() ? QString("@import \"%1\";" ).arg( QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kdeui/about/kde_infopage_rtl.css" )) : QString();
+    QString infocss = QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kdeui/about/kde_infopage.css");
+    QString rtl = kapp->isRightToLeft() ? QString("@import \"%1\";").arg(QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kdeui/about/kde_infopage_rtl.css")) : QString();
 
-    m_part->write( content.arg( infocss, rtl, fontSize, appTitle, catchPhrase, quickDescription, info ) );
+    m_part->write(content.arg(infocss, rtl, fontSize, appTitle, catchPhrase, quickDescription, info));
     m_part->end();
 }
 
-ArticleViewerPart::ArticleViewerPart(QWidget* parent) : KHTMLPart(parent),
-     m_button(-1)
+ArticleViewerPart::ArticleViewerPart(QWidget *parent) : KHTMLPart(parent),
+    m_button(-1)
 {
     setXMLFile(QStandardPaths::locate(QStandardPaths::GenericDataLocation, "akregator/articleviewer.rc"), true);
 }
@@ -727,18 +714,16 @@ bool ArticleViewerPart::closeUrl()
 }
 
 bool ArticleViewerPart::urlSelected(const QString &url, int button, int state, const QString &_target,
-                                    const KParts::OpenUrlArguments& args,
-                                    const KParts::BrowserArguments& browserArgs)
+                                    const KParts::OpenUrlArguments &args,
+                                    const KParts::BrowserArguments &browserArgs)
 {
     m_button = button;
-    if(url == "config:/disable_introduction")
-    {
+    if (url == "config:/disable_introduction") {
         KGuiItem yesButton(KStandardGuiItem::yes());
         yesButton.setText(i18n("Disable"));
         KGuiItem noButton(KStandardGuiItem::no());
         noButton.setText(i18n("Keep Enabled"));
-        if(KMessageBox::questionYesNo( widget(), i18n("Are you sure you want to disable this introduction page?"), i18n("Disable Introduction Page"), yesButton, noButton) == KMessageBox::Yes)
-        {
+        if (KMessageBox::questionYesNo(widget(), i18n("Are you sure you want to disable this introduction page?"), i18n("Disable Introduction Page"), yesButton, noButton) == KMessageBox::Yes) {
             KConfigGroup conf(Settings::self()->config(), "General");
             conf.writeEntry("Disable Introduction", "true");
             conf.sync();
@@ -746,9 +731,9 @@ bool ArticleViewerPart::urlSelected(const QString &url, int button, int state, c
         }
 
         return false;
+    } else {
+        return KHTMLPart::urlSelected(url, button, state, _target, args, browserArgs);
     }
-    else
-        return KHTMLPart::urlSelected(url,button,state,_target,args,browserArgs);
 }
 
 void ArticleViewer::updateCss()
@@ -757,16 +742,16 @@ void ArticleViewer::updateCss()
     m_combinedModeCSS = m_combinedViewFormatter->getCss();
 }
 
-void ArticleViewer::setNormalViewFormatter( const shared_ptr<ArticleFormatter>& formatter )
+void ArticleViewer::setNormalViewFormatter(const shared_ptr<ArticleFormatter> &formatter)
 {
-    assert( formatter );
+    assert(formatter);
     m_normalViewFormatter = formatter;
     m_normalViewFormatter->setPaintDevice(m_part->view());
 }
 
-void ArticleViewer::setCombinedViewFormatter( const shared_ptr<ArticleFormatter>& formatter )
+void ArticleViewer::setCombinedViewFormatter(const shared_ptr<ArticleFormatter> &formatter)
 {
-    assert( formatter );
+    assert(formatter);
     m_combinedViewFormatter = formatter;
     m_combinedViewFormatter->setPaintDevice(m_part->view());
 }
@@ -777,5 +762,4 @@ void ArticleViewer::setArticleActionsEnabled(bool enabled)
 }
 
 } // namespace Akregator
-
 

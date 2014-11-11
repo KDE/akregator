@@ -17,21 +17,21 @@
 #pragma warning(disable: 4710) // function ... not inlined
 #pragma warning(disable: 4711) // ... selected for automatic inline expansion
 #pragma warning(disable: 4100) // unreferenced formal parameter
-#endif 
+#endif
 
 #if _MSC_VER >= 1100
 #define q4_BOOL 1     // 5.0 supports the bool datatype
-#else 
+#else
 #define q4_NO_NS 1      // 4.x doesn't use namespaces for STL
-#endif 
+#endif
 
 #if defined (_MT)
 #define q4_MULTI 1      // uses multi-threading
-#endif 
+#endif
 
 #if defined (_DEBUG) && !defined (q4_CHECK) // use assertions in debug build
 #define q4_CHECK 1
-#endif 
+#endif
 
 #if !q4_STD && !q4_UNIV && !defined (q4_MFC)
 #define d4_FW_H "mfc.h"   // default for MSVC is to use MFC

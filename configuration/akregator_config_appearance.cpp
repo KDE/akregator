@@ -34,42 +34,42 @@ using namespace Akregator;
 
 K_PLUGIN_FACTORY(KCMAkregatorAppearanceConfigFactory, registerPlugin<KCMAkregatorAppearanceConfig>();)
 
-KCMAkregatorAppearanceConfig::KCMAkregatorAppearanceConfig( QWidget* parent, const QVariantList& args )
-    : KCModule( parent, args ), m_widget( new QWidget )
-{  
-    m_ui.setupUi( m_widget );
+KCMAkregatorAppearanceConfig::KCMAkregatorAppearanceConfig(QWidget *parent, const QVariantList &args)
+    : KCModule(parent, args), m_widget(new QWidget)
+{
+    m_ui.setupUi(m_widget);
 
-    QVBoxLayout* layout = new QVBoxLayout( this );
-    layout->addWidget( m_widget );
-   
-    connect( m_ui.kcfg_UseCustomColors, SIGNAL(toggled(bool)),m_ui.kcfg_ColorUnreadArticles, SLOT(setEnabled(bool)) );
-    connect( m_ui.kcfg_UseCustomColors, SIGNAL(toggled(bool)), m_ui.kcfg_ColorNewArticles, SLOT(setEnabled(bool)) );
-    connect( m_ui.kcfg_UseCustomColors, SIGNAL(toggled(bool)), m_ui.lbl_newArticles, SLOT(setEnabled(bool)) );
-    connect( m_ui.kcfg_UseCustomColors, SIGNAL(toggled(bool)), m_ui.lbl_unreadArticles, SLOT(setEnabled(bool)) );
+    QVBoxLayout *layout = new QVBoxLayout(this);
+    layout->addWidget(m_widget);
 
-    connect( m_ui.slider_minimumFontSize, SIGNAL(valueChanged(int)),m_ui.kcfg_MinimumFontSize , SLOT(setValue(int)) );
-    connect( m_ui.slider_mediumFontSize, SIGNAL(valueChanged(int)), m_ui.kcfg_MediumFontSize , SLOT(setValue(int)) );
+    connect(m_ui.kcfg_UseCustomColors, SIGNAL(toggled(bool)), m_ui.kcfg_ColorUnreadArticles, SLOT(setEnabled(bool)));
+    connect(m_ui.kcfg_UseCustomColors, SIGNAL(toggled(bool)), m_ui.kcfg_ColorNewArticles, SLOT(setEnabled(bool)));
+    connect(m_ui.kcfg_UseCustomColors, SIGNAL(toggled(bool)), m_ui.lbl_newArticles, SLOT(setEnabled(bool)));
+    connect(m_ui.kcfg_UseCustomColors, SIGNAL(toggled(bool)), m_ui.lbl_unreadArticles, SLOT(setEnabled(bool)));
 
-    connect( m_ui.slider_minimumFontSize, SIGNAL(sliderMoved(int)), m_ui.kcfg_MinimumFontSize , SLOT(setValue(int)) );
-    connect( m_ui.slider_mediumFontSize, SIGNAL(sliderMoved(int)), m_ui.kcfg_MediumFontSize , SLOT(setValue(int)) );
+    connect(m_ui.slider_minimumFontSize, SIGNAL(valueChanged(int)), m_ui.kcfg_MinimumFontSize , SLOT(setValue(int)));
+    connect(m_ui.slider_mediumFontSize, SIGNAL(valueChanged(int)), m_ui.kcfg_MediumFontSize , SLOT(setValue(int)));
 
-    connect( m_ui.kcfg_MinimumFontSize, SIGNAL(valueChanged(int)), m_ui.slider_minimumFontSize, SLOT(setValue(int)) );
-    connect( m_ui.kcfg_MediumFontSize, SIGNAL(valueChanged(int)), m_ui.slider_mediumFontSize, SLOT(setValue(int)) );
-    KAboutData *about = new KAboutData( QLatin1String( "kcmakrappearanceconfig" ),
-                                        i18n( "Configure Feed Reader Appearance" ),
-                                        QString(), QString(), KAboutLicense::GPL,
-                                        i18n( "(c), 2004 - 2008 Frank Osterfeld" ) );
+    connect(m_ui.slider_minimumFontSize, SIGNAL(sliderMoved(int)), m_ui.kcfg_MinimumFontSize , SLOT(setValue(int)));
+    connect(m_ui.slider_mediumFontSize, SIGNAL(sliderMoved(int)), m_ui.kcfg_MediumFontSize , SLOT(setValue(int)));
 
-    about->addAuthor( i18n( "Frank Osterfeld" ), QString(), QStringLiteral("osterfeld@kde.org") );
+    connect(m_ui.kcfg_MinimumFontSize, SIGNAL(valueChanged(int)), m_ui.slider_minimumFontSize, SLOT(setValue(int)));
+    connect(m_ui.kcfg_MediumFontSize, SIGNAL(valueChanged(int)), m_ui.slider_mediumFontSize, SLOT(setValue(int)));
+    KAboutData *about = new KAboutData(QLatin1String("kcmakrappearanceconfig"),
+                                       i18n("Configure Feed Reader Appearance"),
+                                       QString(), QString(), KAboutLicense::GPL,
+                                       i18n("(c), 2004 - 2008 Frank Osterfeld"));
 
-    setAboutData( about );
+    about->addAuthor(i18n("Frank Osterfeld"), QString(), QStringLiteral("osterfeld@kde.org"));
 
-    m_ui.slider_minimumFontSize->setDisabled( Settings::self()->isImmutable(QLatin1String("MinimumFontSize")) );
-    m_ui.slider_mediumFontSize->setDisabled( Settings::self()->isImmutable(QLatin1String("MediumFontSize")) );
-    m_ui.lbl_MinimumFontSize->setDisabled( Settings::self()->isImmutable(QLatin1String("MinimumFontSize")) );
-    m_ui.lbl_MediumFontSize->setDisabled( Settings::self()->isImmutable(QLatin1String("MediumFontSize")) );
+    setAboutData(about);
 
-    addConfig( Settings::self(), m_widget );
+    m_ui.slider_minimumFontSize->setDisabled(Settings::self()->isImmutable(QLatin1String("MinimumFontSize")));
+    m_ui.slider_mediumFontSize->setDisabled(Settings::self()->isImmutable(QLatin1String("MediumFontSize")));
+    m_ui.lbl_MinimumFontSize->setDisabled(Settings::self()->isImmutable(QLatin1String("MinimumFontSize")));
+    m_ui.lbl_MediumFontSize->setDisabled(Settings::self()->isImmutable(QLatin1String("MediumFontSize")));
+
+    addConfig(Settings::self(), m_widget);
 }
 
 #include "akregator_config_appearance.moc"

@@ -26,84 +26,85 @@
 #define AKREGATOR_ARTICLEFORMATTER_H
 
 #include <kurl.h>
-    
+
 class QPaintDevice;
 class QString;
 
-namespace Akregator {
+namespace Akregator
+{
 
 class Article;
 class TreeNode;
 
 class ArticleFormatter
 {
-    public:
-        
-        enum IconOption {
-            NoIcon,
-            ShowIcon
-        };
-        
-        explicit ArticleFormatter( QPaintDevice* device = 0 );
-        
-        virtual ~ArticleFormatter();
-        
-        void setPaintDevice(QPaintDevice* device);
-         
-        virtual QString formatArticle(const Article& article, IconOption icon) const = 0;
-        
-        virtual QString formatSummary(TreeNode* node) const = 0;
-        
-        virtual QString getCss() const = 0;
-        
-    protected:
-        
-        int pointsToPixel(int pointSize) const;
-        
-    private:
-        class Private;
-        Private* const d;
-        Q_DISABLE_COPY( ArticleFormatter )
+public:
+
+    enum IconOption {
+        NoIcon,
+        ShowIcon
+    };
+
+    explicit ArticleFormatter(QPaintDevice *device = 0);
+
+    virtual ~ArticleFormatter();
+
+    void setPaintDevice(QPaintDevice *device);
+
+    virtual QString formatArticle(const Article &article, IconOption icon) const = 0;
+
+    virtual QString formatSummary(TreeNode *node) const = 0;
+
+    virtual QString getCss() const = 0;
+
+protected:
+
+    int pointsToPixel(int pointSize) const;
+
+private:
+    class Private;
+    Private *const d;
+    Q_DISABLE_COPY(ArticleFormatter)
 };
 
 class DefaultNormalViewFormatter : public ArticleFormatter
 {
-    public:
-        
-        explicit DefaultNormalViewFormatter( const KUrl& imageDir, QPaintDevice* device = 0 );
-        ~DefaultNormalViewFormatter();
-        
-        QString formatArticle(const Article& article, IconOption option) const;
-        
-        QString formatSummary(TreeNode* node) const;
-        
-        QString getCss() const;
-        
-    private:
-        DefaultNormalViewFormatter();
-        
-        KUrl m_imageDir;
-        class SummaryVisitor;
-        SummaryVisitor* m_summaryVisitor;
+public:
+
+    explicit DefaultNormalViewFormatter(const KUrl &imageDir, QPaintDevice *device = 0);
+    ~DefaultNormalViewFormatter();
+
+    QString formatArticle(const Article &article, IconOption option) const;
+
+    QString formatSummary(TreeNode *node) const;
+
+    QString getCss() const;
+
+private:
+    DefaultNormalViewFormatter();
+
+    KUrl m_imageDir;
+    class SummaryVisitor;
+    SummaryVisitor *m_summaryVisitor;
 };
 
 class DefaultCombinedViewFormatter : public ArticleFormatter
 {
-            
-    public:
-        
-        explicit DefaultCombinedViewFormatter( const KUrl& imageDir, QPaintDevice* device = 0 );
-        
-        QString formatArticle(const Article& article, IconOption option) const;
-        
-        QString formatSummary(TreeNode* node) const;
-        
-        QString getCss() const;
-        
-    private:
-        DefaultCombinedViewFormatter();
-        
-        KUrl m_imageDir;
+
+public:
+
+    explicit DefaultCombinedViewFormatter(const KUrl &imageDir, QPaintDevice *device = 0);
+
+    QString formatArticle(const Article &article, IconOption option) const;
+
+    QString formatSummary(TreeNode *node) const;
+
+    QString getCss() const;
+
+private:
+    DefaultCombinedViewFormatter();
+
+    KUrl m_imageDir;
 };
 
 } // namespace Akregator

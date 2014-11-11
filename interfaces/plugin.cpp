@@ -24,24 +24,20 @@
 
 #include "plugin.h"
 
+namespace Akregator
+{
 
-namespace Akregator {
-
-
-Plugin::Plugin( QObject* parent, const QVariantList& ) : QObject( parent )
+Plugin::Plugin(QObject *parent, const QVariantList &) : QObject(parent)
 {}
-
 
 Plugin::~Plugin()
 {}
 
-
 void
-Plugin::addPluginProperty( const QString& key, const QString& value )
+Plugin::addPluginProperty(const QString &key, const QString &value)
 {
     m_properties[key.toLower()] = value;
 }
-
 
 void Plugin::initialize()
 {
@@ -49,23 +45,22 @@ void Plugin::initialize()
 }
 
 QString
-Plugin::pluginProperty( const QString& key ) const
+Plugin::pluginProperty(const QString &key) const
 {
-    if ( m_properties.find( key.toLower() ) == m_properties.end() )
+    if (m_properties.find(key.toLower()) == m_properties.end()) {
         return QLatin1String("false");
+    }
 
     return m_properties[key.toLower()];
 }
 
-
 bool
-Plugin::hasPluginProperty( const QString& key ) const
+Plugin::hasPluginProperty(const QString &key) const
 {
-    return m_properties.find( key.toLower() ) != m_properties.end();
+    return m_properties.find(key.toLower()) != m_properties.end();
 }
 
-
-void Plugin::insertGuiClients( KXMLGUIClient* ) {}
-void Plugin::removeGuiClients( KXMLGUIClient* ) {}
+void Plugin::insertGuiClients(KXMLGUIClient *) {}
+void Plugin::removeGuiClients(KXMLGUIClient *) {}
 
 }

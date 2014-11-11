@@ -32,7 +32,8 @@ class KActionCollection;
 
 class QWidget;
 
-namespace Akregator {
+namespace Akregator
+{
 
 class ArticleListView;
 class ArticleViewer;
@@ -51,41 +52,41 @@ class ActionManagerImpl : public ActionManager
 {
     Q_OBJECT
 
-    public:
+public:
 
-        explicit ActionManagerImpl(Part* part, QObject* parent=0);
-        virtual ~ActionManagerImpl();
+    explicit ActionManagerImpl(Part *part, QObject *parent = 0);
+    virtual ~ActionManagerImpl();
 
-        virtual QAction* action(const char* name);
-        virtual QWidget* container(const char* name);
+    virtual QAction *action(const char *name);
+    virtual QWidget *container(const char *name);
 
-        void initMainWidget(MainWidget* mainWidget);
-        void initArticleViewer(ArticleViewer* articleViewer);
-        void initArticleListView(ArticleListView* articleList);
-        void initSubscriptionListView(SubscriptionListView* subscriptionListView);
-        void initTabWidget(TabWidget* tabWidget);
-        void initFrameManager(FrameManager* frameManager);
+    void initMainWidget(MainWidget *mainWidget);
+    void initArticleViewer(ArticleViewer *articleViewer);
+    void initArticleListView(ArticleListView *articleList);
+    void initSubscriptionListView(SubscriptionListView *subscriptionListView);
+    void initTabWidget(TabWidget *tabWidget);
+    void initFrameManager(FrameManager *frameManager);
 
-        void setArticleActionsEnabled( bool enabled );
-        void setTrayIcon(TrayIcon* trayIcon);
+    void setArticleActionsEnabled(bool enabled);
+    void setTrayIcon(TrayIcon *trayIcon);
 
-    public slots:
+public slots:
 
-        void slotNodeSelected(Akregator::TreeNode* node);
+    void slotNodeSelected(Akregator::TreeNode *node);
 
-    protected:
+protected:
 
-        KActionCollection* actionCollection();
+    KActionCollection *actionCollection();
 
-    private:
+private:
 
-        void initPart();
+    void initPart();
 
-        friend class NodeSelectVisitor;
-        class NodeSelectVisitor;
+    friend class NodeSelectVisitor;
+    class NodeSelectVisitor;
 
-        class ActionManagerImplPrivate;
-        ActionManagerImplPrivate* d;
+    class ActionManagerImplPrivate;
+    ActionManagerImplPrivate *d;
 };
 
 } // namespace Akregator

@@ -27,10 +27,10 @@
 
 #include "command.h"
 
-
 #include <boost/weak_ptr.hpp>
 
-namespace Akregator {
+namespace Akregator
+{
 
 class FeedList;
 
@@ -38,10 +38,10 @@ class DeleteSubscriptionCommand : public Command
 {
     Q_OBJECT
 public:
-    explicit DeleteSubscriptionCommand( QObject* parent = 0 );
+    explicit DeleteSubscriptionCommand(QObject *parent = 0);
     ~DeleteSubscriptionCommand();
 
-    void setSubscription( const boost::weak_ptr<FeedList>& feedList, int subId );
+    void setSubscription(const boost::weak_ptr<FeedList> &feedList, int subId);
 
     int subscriptionId() const;
     boost::weak_ptr<FeedList> feedList() const;
@@ -52,9 +52,9 @@ private:
 
 private:
     class Private;
-    Private* const d;
-    Q_PRIVATE_SLOT( d, void startDelete() )
-    Q_PRIVATE_SLOT( d, void jobFinished() )
+    Private *const d;
+    Q_PRIVATE_SLOT(d, void startDelete())
+    Q_PRIVATE_SLOT(d, void jobFinished())
 };
 
 }

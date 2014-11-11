@@ -39,38 +39,38 @@ class Feed;
 class AddFeedWidget : public QWidget, public Ui::AddFeedWidgetBase
 {
     Q_OBJECT
-    public:
-        explicit AddFeedWidget(QWidget *parent = 0, const char *name = 0);
-        ~AddFeedWidget();
+public:
+    explicit AddFeedWidget(QWidget *parent = 0, const char *name = 0);
+    ~AddFeedWidget();
 };
 
 class AddFeedDialog : public QDialog
 {
     Q_OBJECT
-    public:
-        explicit AddFeedDialog(QWidget *parent = 0, const char *name = 0);
-        ~AddFeedDialog();
+public:
+    explicit AddFeedDialog(QWidget *parent = 0, const char *name = 0);
+    ~AddFeedDialog();
 
-        QSize sizeHint() const;
+    QSize sizeHint() const;
 
-        void setUrl(const QString& t);
-        Feed* feed();
+    void setUrl(const QString &t);
+    Feed *feed();
 
-    public slots:
-        void accept();
+public slots:
+    void accept();
 
-        void fetchCompleted(Akregator::Feed *);
-        void fetchDiscovery(Akregator::Feed *);
-        void fetchError(Akregator::Feed *);
+    void fetchCompleted(Akregator::Feed *);
+    void fetchDiscovery(Akregator::Feed *);
+    void fetchError(Akregator::Feed *);
 
-    private slots:
-        void textChanged(const QString&);
+private slots:
+    void textChanged(const QString &);
 
-    private:
-        AddFeedWidget *widget;
-        QString feedUrl;
-        Feed* m_feed;
-        QPushButton *mOkButton;
+private:
+    AddFeedWidget *widget;
+    QString feedUrl;
+    Feed *m_feed;
+    QPushButton *mOkButton;
 };
 
 } // namespace Akregator

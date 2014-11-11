@@ -15,18 +15,20 @@
 
 #if !q4_INLINE
 #include "mk4.inl"
-#endif 
+#endif
 
 /////////////////////////////////////////////////////////////////////////////
 // c4_ThreadLock
 
-class c4_ThreadLock {
-  public:
+class c4_ThreadLock
+{
+public:
     c4_ThreadLock();
     ~c4_ThreadLock();
 
-    class Hold {
-      public:
+    class Hold
+    {
+    public:
         Hold();
         ~Hold();
     };
@@ -52,25 +54,29 @@ class c4_ThreadLock {
 
 #if q4_MSVC && !q4_STRICT
 #pragma warning(disable: 4201) // nonstandard extension used : ...
-#endif 
+#endif
 #include <windows.h>
 
 static CRITICAL_SECTION gCritSect;
 
-c4_ThreadLock::c4_ThreadLock() {
-  InitializeCriticalSection(&gCritSect);
+c4_ThreadLock::c4_ThreadLock()
+{
+    InitializeCriticalSection(&gCritSect);
 }
 
-c4_ThreadLock::~c4_ThreadLock() {
-  DeleteCriticalSection(&gCritSect);
+c4_ThreadLock::~c4_ThreadLock()
+{
+    DeleteCriticalSection(&gCritSect);
 }
 
-c4_ThreadLock::Hold::Hold() {
-  EnterCriticalSection(&gCritSect);
+c4_ThreadLock::Hold::Hold()
+{
+    EnterCriticalSection(&gCritSect);
 }
 
-c4_ThreadLock::Hold::~Hold() {
-  LeaveCriticalSection(&gCritSect);
+c4_ThreadLock::Hold::~Hold()
+{
+    LeaveCriticalSection(&gCritSect);
 }
 
 #else /* q4_WIN32 */
@@ -79,22 +85,26 @@ c4_ThreadLock::Hold::~Hold() {
 
 static pthread_mutex_t gMutex;
 
-d4_inline c4_ThreadLock::c4_ThreadLock() {
-  pthread_mutex_init(&gMutex, 0);
+d4_inline c4_ThreadLock::c4_ThreadLock()
+{
+    pthread_mutex_init(&gMutex, 0);
 }
 
-d4_inline c4_ThreadLock::~c4_ThreadLock() {
-  pthread_mutex_destroy(&gMutex);
+d4_inline c4_ThreadLock::~c4_ThreadLock()
+{
+    pthread_mutex_destroy(&gMutex);
 }
 
-d4_inline c4_ThreadLock::Hold::Hold() {
-  d4_dbgdef(int r = )pthread_mutex_lock(&gMutex);
-  d4_assert(r == 0);
+d4_inline c4_ThreadLock::Hold::Hold()
+{
+    d4_dbgdef(int r =)pthread_mutex_lock(&gMutex);
+    d4_assert(r == 0);
 }
 
-d4_inline c4_ThreadLock::Hold::~Hold() {
-  d4_dbgdef(int r = )pthread_mutex_unlock(&gMutex);
-  d4_assert(r == 0);
+d4_inline c4_ThreadLock::Hold::~Hold()
+{
+    d4_dbgdef(int r =)pthread_mutex_unlock(&gMutex);
+    d4_assert(r == 0);
 }
 
 #endif /* q4_WIN32 */
@@ -103,15 +113,15 @@ d4_inline c4_ThreadLock::Hold::~Hold() {
 
 //  All other implementations revert to the simple "thread-less" case.
 
-d4_inline c4_ThreadLock::c4_ThreadLock(){}
+d4_inline c4_ThreadLock::c4_ThreadLock() {}
 
-d4_inline c4_ThreadLock::~c4_ThreadLock(){}
+d4_inline c4_ThreadLock::~c4_ThreadLock() {}
 
-d4_inline c4_ThreadLock::Hold::Hold(){}
+d4_inline c4_ThreadLock::Hold::Hold() {}
 
-d4_inline c4_ThreadLock::Hold::~Hold(){}
+d4_inline c4_ThreadLock::Hold::~Hold() {}
 
-#endif 
+#endif
 
 /////////////////////////////////////////////////////////////////////////////
 
@@ -120,21 +130,23 @@ d4_inline c4_ThreadLock::Hold::~Hold(){}
 static FILE *sPropModsFile = 0;
 static int sPropModsProp =  - 1;
 
-FILE *f4_LogPropMods(FILE *fp_, int propId_) {
-  FILE *prevfp = sPropModsFile;
-  sPropModsFile = fp_;
-  sPropModsProp = propId_;
-  return prevfp;
+FILE *f4_LogPropMods(FILE *fp_, int propId_)
+{
+    FILE *prevfp = sPropModsFile;
+    sPropModsFile = fp_;
+    sPropModsProp = propId_;
+    return prevfp;
 }
 
-void f4_DoLogProp(const c4_Handler *hp_, int id_, const char *fmt_, int arg_) {
-  if (sPropModsFile != 0 && (sPropModsProp < 0 || sPropModsProp == id_)) {
-    fprintf(sPropModsFile, "handler 0x%x id %d: ", hp_, id_);
-    fprintf(sPropModsFile, fmt_, arg_);
-  }
+void f4_DoLogProp(const c4_Handler *hp_, int id_, const char *fmt_, int arg_)
+{
+    if (sPropModsFile != 0 && (sPropModsProp < 0 || sPropModsProp == id_)) {
+        fprintf(sPropModsFile, "handler 0x%x id %d: ", hp_, id_);
+        fprintf(sPropModsFile, fmt_, arg_);
+    }
 }
 
-#endif 
+#endif
 
 /////////////////////////////////////////////////////////////////////////////
 
@@ -167,50 +179,58 @@ void f4_DoLogProp(const c4_Handler *hp_, int id_, const char *fmt_, int arg_) {
  */
 
 /// Construct a view based on a sequence
-c4_View::c4_View(c4_Sequence *seq_): _seq(seq_) {
-  if (!_seq)
-    _seq = d4_new c4_HandlerSeq(0);
+c4_View::c4_View(c4_Sequence *seq_): _seq(seq_)
+{
+    if (!_seq) {
+        _seq = d4_new c4_HandlerSeq(0);
+    }
 
-  _IncSeqRef();
+    _IncSeqRef();
 }
 
 /// Construct a view based on a custom viewer
-c4_View::c4_View(c4_CustomViewer *viewer_): _seq(0) {
-  d4_assert(viewer_);
+c4_View::c4_View(c4_CustomViewer *viewer_): _seq(0)
+{
+    d4_assert(viewer_);
 
-  _seq = d4_new c4_CustomSeq(viewer_);
+    _seq = d4_new c4_CustomSeq(viewer_);
 
-  _IncSeqRef();
+    _IncSeqRef();
 }
 
 /// Construct a view based on an input stream
-c4_View::c4_View(c4_Stream *stream_): _seq(c4_Persist::Load(stream_)) {
-  if (_seq == 0)
-    _seq = d4_new c4_HandlerSeq(0);
+c4_View::c4_View(c4_Stream *stream_): _seq(c4_Persist::Load(stream_))
+{
+    if (_seq == 0) {
+        _seq = d4_new c4_HandlerSeq(0);
+    }
 
-  _IncSeqRef();
+    _IncSeqRef();
 }
 
 /// Construct an empty view with one property
-c4_View::c4_View(const c4_Property &prop_): _seq(d4_new c4_HandlerSeq(0)) {
-  _IncSeqRef();
+c4_View::c4_View(const c4_Property &prop_): _seq(d4_new c4_HandlerSeq(0))
+{
+    _IncSeqRef();
 
-  _seq->PropIndex(prop_);
+    _seq->PropIndex(prop_);
 }
 
 /// Copy constructor
-c4_View::c4_View(const c4_View &view_): _seq(view_._seq) {
-  _IncSeqRef();
+c4_View::c4_View(const c4_View &view_): _seq(view_._seq)
+{
+    _IncSeqRef();
 }
 
 /// Makes this view the same as another one.
-c4_View &c4_View::operator = (const c4_View &view_) {
-  if (_seq != view_._seq) {
-    _DecSeqRef();
-    _seq = view_._seq;
-    _IncSeqRef();
-  }
-  return  *this;
+c4_View &c4_View::operator = (const c4_View &view_)
+{
+    if (_seq != view_._seq) {
+        _DecSeqRef();
+        _seq = view_._seq;
+        _IncSeqRef();
+    }
+    return  *this;
 }
 
 /** Get a single data item in a generic way
@@ -219,43 +239,49 @@ c4_View &c4_View::operator = (const c4_View &view_) {
  * Useful for c4_CustomViewers which are based on other views.
  * @return true if the item is non-empty
  */
-bool c4_View::GetItem(int row_, int col_, c4_Bytes &buf_)const {
-  const c4_Property &prop = NthProperty(col_);
-  return prop(GetAt(row_)).GetData(buf_);
+bool c4_View::GetItem(int row_, int col_, c4_Bytes &buf_)const
+{
+    const c4_Property &prop = NthProperty(col_);
+    return prop(GetAt(row_)).GetData(buf_);
 }
 
 /// Set a single data item in a generic way
-void c4_View::SetItem(int row_, int col_, const c4_Bytes &buf_)const {
-  const c4_Property &prop = NthProperty(col_);
-  prop(GetAt(row_)).SetData(buf_);
+void c4_View::SetItem(int row_, int col_, const c4_Bytes &buf_)const
+{
+    const c4_Property &prop = NthProperty(col_);
+    prop(GetAt(row_)).SetData(buf_);
 }
 
 /// Set an entry, growing the view if needed
-void c4_View::SetAtGrow(int index_, const c4_RowRef &newElem_) {
-  if (index_ >= GetSize())
-    SetSize(index_ + 1);
+void c4_View::SetAtGrow(int index_, const c4_RowRef &newElem_)
+{
+    if (index_ >= GetSize()) {
+        SetSize(index_ + 1);
+    }
 
-  _seq->SetAt(index_, &newElem_);
+    _seq->SetAt(index_, &newElem_);
 }
 
 /** Add a new entry, same as "SetAtGrow(GetSize(), ...)"
  * @return the index of the newly added row
  */
-int c4_View::Add(const c4_RowRef &newElem_) {
-  int i = GetSize();
-  InsertAt(i, newElem_);
-  return i;
+int c4_View::Add(const c4_RowRef &newElem_)
+{
+    int i = GetSize();
+    InsertAt(i, newElem_);
+    return i;
 }
 
 /** Construct a new view with a copy of the data
  *
  * The copy is a deep copy, because subviews are always copied in full.
  */
-c4_View c4_View::Duplicate()const {
-  // insert all rows, sharing any subviews as needed
-  c4_View result = Clone();
-  result.InsertAt(0, _seq);
-  return result;
+c4_View c4_View::Duplicate()const
+{
+    // insert all rows, sharing any subviews as needed
+    c4_View result = Clone();
+    result.InsertAt(0, _seq);
+    return result;
 }
 
 /** Constructs a new view with the same structure but no data
@@ -263,46 +289,52 @@ c4_View c4_View::Duplicate()const {
  * Structural information can only be maintain for the top level,
  * subviews will be included but without any properties themselves.
  */
-c4_View c4_View::Clone()const {
-  c4_View view;
+c4_View c4_View::Clone()const
+{
+    c4_View view;
 
-  for (int i = 0; i < NumProperties(); ++i)
-    view._seq->PropIndex(NthProperty(i));
+    for (int i = 0; i < NumProperties(); ++i) {
+        view._seq->PropIndex(NthProperty(i));
+    }
 
-  return view;
+    return view;
 }
 
 /** Adds a property column to a view if not already present
  * @return 0-based column position of the property
  */
-int c4_View::AddProperty(const c4_Property &prop_) {
-  return _seq->PropIndex(prop_);
+int c4_View::AddProperty(const c4_Property &prop_)
+{
+    return _seq->PropIndex(prop_);
 }
 
 /** Returns the N-th property (using zero-based indexing)
  * @return reference to the specified property
  */
-const c4_Property &c4_View::NthProperty(int index_  
-  ///< the zero-based property index
-)const {
-  return _seq->NthHandler(index_).Property();
+const c4_Property &c4_View::NthProperty(int index_
+                                        ///< the zero-based property index
+                                       )const
+{
+    return _seq->NthHandler(index_).Property();
 }
 
 /** Find the index of a property, given its name
  * @return 0-based column index
  * @retval -1 property not present in this view
  */
-int c4_View::FindPropIndexByName(const char *name_  
-  ///< property name (case insensitive)
-)const {
-  // use a slow linear scan to find the untyped property by name
-  for (int i = 0; i < NumProperties(); ++i) {
-    c4_String s = NthProperty(i).Name();
-    if (s.CompareNoCase(name_) == 0)
-      return i;
-  }
+int c4_View::FindPropIndexByName(const char *name_
+                                 ///< property name (case insensitive)
+                                )const
+{
+    // use a slow linear scan to find the untyped property by name
+    for (int i = 0; i < NumProperties(); ++i) {
+        c4_String s = NthProperty(i).Name();
+        if (s.CompareNoCase(name_) == 0) {
+            return i;
+        }
+    }
 
-  return  - 1;
+    return  - 1;
 }
 
 /** Defines a column for a property.
@@ -315,52 +347,60 @@ int c4_View::FindPropIndexByName(const char *name_
  * @return the new view object (without any data rows)
  * @sa c4_Property
  */
-c4_View c4_View::operator, (const c4_Property &prop_)const {
-  c4_View view = Clone();
-  view.AddProperty(prop_);
-  return view;
+c4_View c4_View::operator, (const c4_Property &prop_)const
+{
+    c4_View view = Clone();
+    view.AddProperty(prop_);
+    return view;
 }
 
 /// Insert copies of all rows of the specified view
-void c4_View::InsertAt(int index_, const c4_View &view_) {
-  int n = view_.GetSize();
-  if (n > 0) {
-    c4_Row empty;
+void c4_View::InsertAt(int index_, const c4_View &view_)
+{
+    int n = view_.GetSize();
+    if (n > 0) {
+        c4_Row empty;
 
-    InsertAt(index_, empty, n);
+        InsertAt(index_, empty, n);
 
-    for (int i = 0; i < n; ++i)
-      SetAt(index_ + i, view_[i]);
-  }
+        for (int i = 0; i < n; ++i) {
+            SetAt(index_ + i, view_[i]);
+        }
+    }
 }
 
-bool c4_View::IsCompatibleWith(const c4_View &dest_)const {
-  // can't determine table without handlers (and can't be a table)
-  if (NumProperties() == 0 || dest_.NumProperties() == 0)
-    return false;
+bool c4_View::IsCompatibleWith(const c4_View &dest_)const
+{
+    // can't determine table without handlers (and can't be a table)
+    if (NumProperties() == 0 || dest_.NumProperties() == 0) {
+        return false;
+    }
 
-  c4_Sequence *s1 = _seq;
-  c4_Sequence *s2 = dest_._seq;
-  c4_HandlerSeq *h1 = (c4_HandlerSeq*)s1->HandlerContext(0);
-  c4_HandlerSeq *h2 = (c4_HandlerSeq*)s2->HandlerContext(0);
+    c4_Sequence *s1 = _seq;
+    c4_Sequence *s2 = dest_._seq;
+    c4_HandlerSeq *h1 = (c4_HandlerSeq *)s1->HandlerContext(0);
+    c4_HandlerSeq *h2 = (c4_HandlerSeq *)s2->HandlerContext(0);
 
-  // both must be real handler views, not derived ones
-  if (h1 != s1 || h2 != s2)
-    return false;
+    // both must be real handler views, not derived ones
+    if (h1 != s1 || h2 != s2) {
+        return false;
+    }
 
-  // both must not contain any temporary handlers
-  if (s1->NumHandlers() != h1->NumFields() || s2->NumHandlers() != h2
-    ->NumFields())
-    return false;
+    // both must not contain any temporary handlers
+    if (s1->NumHandlers() != h1->NumFields() || s2->NumHandlers() != h2
+            ->NumFields()) {
+        return false;
+    }
 
-  // both must be in the same storage
-  if (h1->Persist() == 0 || h1->Persist() != h2->Persist())
-    return false;
+    // both must be in the same storage
+    if (h1->Persist() == 0 || h1->Persist() != h2->Persist()) {
+        return false;
+    }
 
-  // both must have the same structure (is this expensive?)
-  c4_String d1 = h1->Definition().Description(true);
-  c4_String d2 = h2->Definition().Description(true);
-  return d1 == d2; // ignores all names
+    // both must have the same structure (is this expensive?)
+    c4_String d1 = h1->Definition().Description(true);
+    c4_String d2 = h2->Definition().Description(true);
+    return d1 == d2; // ignores all names
 }
 
 /** Move attached rows to somewhere else in same storage
@@ -370,37 +410,41 @@ bool c4_View::IsCompatibleWith(const c4_View &dest_)const {
  * use copying when potentially large memo's and subviews are involved.
  * In that case, the best solution is really to move pointers, not data.
  */
-void c4_View::RelocateRows(int from_, int count_, c4_View &dest_, int pos_) {
-  if (count_ < 0)
-    count_ = GetSize() - from_;
-  if (pos_ < 0)
-    pos_ = dest_.GetSize();
+void c4_View::RelocateRows(int from_, int count_, c4_View &dest_, int pos_)
+{
+    if (count_ < 0) {
+        count_ = GetSize() - from_;
+    }
+    if (pos_ < 0) {
+        pos_ = dest_.GetSize();
+    }
 
-  d4_assert(0 <= from_ && from_ <= GetSize());
-  d4_assert(0 <= count_ && from_ + count_ <= GetSize());
-  d4_assert(0 <= pos_ && pos_ <= dest_.GetSize());
+    d4_assert(0 <= from_ && from_ <= GetSize());
+    d4_assert(0 <= count_ && from_ + count_ <= GetSize());
+    d4_assert(0 <= pos_ && pos_ <= dest_.GetSize());
 
-  if (count_ > 0) {
-    // the destination must not be inside the source rows
-    d4_assert(&dest_ != this || from_ > pos_ || pos_ >= from_ + count_);
+    if (count_ > 0) {
+        // the destination must not be inside the source rows
+        d4_assert(&dest_ != this || from_ > pos_ || pos_ >= from_ + count_);
 
-    // this test is slow, so do it only as a debug check
-    d4_assert(IsCompatibleWith(dest_));
+        // this test is slow, so do it only as a debug check
+        d4_assert(IsCompatibleWith(dest_));
 
-    // make space, swap rows, drop originals
-    c4_Row empty;
-    dest_.InsertAt(pos_, empty, count_);
+        // make space, swap rows, drop originals
+        c4_Row empty;
+        dest_.InsertAt(pos_, empty, count_);
 
-    // careful if insert moves origin
-    if (&dest_ == this && pos_ <= from_)
-      from_ += count_;
+        // careful if insert moves origin
+        if (&dest_ == this && pos_ <= from_) {
+            from_ += count_;
+        }
 
-    for (int i = 0; i < count_; ++i)
-      ((c4_HandlerSeq*)_seq)->ExchangeEntries(from_ + i, *(c4_HandlerSeq*)
-        dest_._seq, pos_ + i);
+        for (int i = 0; i < count_; ++i)
+            ((c4_HandlerSeq *)_seq)->ExchangeEntries(from_ + i, *(c4_HandlerSeq *)
+                    dest_._seq, pos_ + i);
 
-    RemoveAt(from_, count_);
-  }
+        RemoveAt(from_, count_);
+    }
 }
 
 /** Create view with all rows in natural (property-wise) order
@@ -411,8 +455,9 @@ void c4_View::RelocateRows(int from_, int count_, c4_View &dest_, int pos_) {
  * limitations with this scheme - one of them being that deriving another
  * view from this sorted one will not properly track changes.
  */
-c4_View c4_View::Sort()const {
-  return f4_CreateSort(*_seq);
+c4_View c4_View::Sort()const
+{
+    return f4_CreateSort(*_seq);
 }
 
 /** Create view sorted according to the specified properties
@@ -423,10 +468,11 @@ c4_View c4_View::Sort()const {
  * limitations with this scheme - one of them being that deriving another
  * view from this sorted one will not properly track changes.
  */
-c4_View c4_View::SortOn(const c4_View &up_)const {
-  c4_Sequence *seq = f4_CreateProject(*_seq,  *up_._seq, true);
+c4_View c4_View::SortOn(const c4_View &up_)const
+{
+    c4_Sequence *seq = f4_CreateProject(*_seq,  *up_._seq, true);
 
-  return f4_CreateSort(*seq);
+    return f4_CreateSort(*seq);
 }
 
 /** Create sorted view, with some properties sorted in reverse
@@ -437,13 +483,14 @@ c4_View c4_View::SortOn(const c4_View &up_)const {
  * limitations with this scheme - one of them being that deriving another
  * view from this sorted one will not properly track changes.
  */
-c4_View c4_View::SortOnReverse(const c4_View &up_,  
-  ///< the view which defines the sort order
-const c4_View &down_  ///< subset of up_, defines reverse order
-)const {
-  c4_Sequence *seq = f4_CreateProject(*_seq,  *up_._seq, true);
+c4_View c4_View::SortOnReverse(const c4_View &up_,
+                               ///< the view which defines the sort order
+                               const c4_View &down_  ///< subset of up_, defines reverse order
+                              )const
+{
+    c4_Sequence *seq = f4_CreateProject(*_seq,  *up_._seq, true);
 
-  return f4_CreateSort(*seq, down_._seq);
+    return f4_CreateSort(*seq, down_._seq);
 }
 
 /** Create view with rows matching the specified value
@@ -454,8 +501,9 @@ const c4_View &down_  ///< subset of up_, defines reverse order
  * which properly generate change notifications (.e. raw views, other
  * selections, and projections).
  */
-c4_View c4_View::Select(const c4_RowRef &crit_)const {
-  return f4_CreateFilter(*_seq, &crit_, &crit_);
+c4_View c4_View::Select(const c4_RowRef &crit_)const
+{
+    return f4_CreateFilter(*_seq, &crit_, &crit_);
 }
 
 /** Create view with row values within the specified range
@@ -466,11 +514,12 @@ c4_View c4_View::Select(const c4_RowRef &crit_)const {
  * which properly generate change notifications (.e. raw views, other
  * selections, and projections).
  */
-c4_View c4_View::SelectRange(const c4_RowRef &low_,  
-  ///< values of the lower bounds (inclusive)
-const c4_RowRef &high_  ///< values of the upper bounds (inclusive)
-)const {
-  return f4_CreateFilter(*_seq, &low_, &high_);
+c4_View c4_View::SelectRange(const c4_RowRef &low_,
+                             ///< values of the lower bounds (inclusive)
+                             const c4_RowRef &high_  ///< values of the upper bounds (inclusive)
+                            )const
+{
+    return f4_CreateFilter(*_seq, &low_, &high_);
 }
 
 /** Create view with the specified property arrangement
@@ -481,8 +530,9 @@ const c4_RowRef &high_  ///< values of the upper bounds (inclusive)
  * which properly generate change notifications (.e. raw views, selections,
  * and other projections).
  */
-c4_View c4_View::Project(const c4_View &in_)const {
-  return f4_CreateProject(*_seq,  *in_._seq, false);
+c4_View c4_View::Project(const c4_View &in_)const
+{
+    return f4_CreateProject(*_seq,  *in_._seq, false);
 }
 
 /** Create derived view with some properties omitted
@@ -493,8 +543,9 @@ c4_View c4_View::Project(const c4_View &in_)const {
  * which properly generate change notifications (.e. raw views, selections,
  * and other projections).
  */
-c4_View c4_View::ProjectWithout(const c4_View &out_)const {
-  return f4_CreateProject(*_seq,  *_seq, false, out_._seq);
+c4_View c4_View::ProjectWithout(const c4_View &out_)const
+{
+    return f4_CreateProject(*_seq,  *_seq, false, out_._seq);
 }
 
 /** Create view which is a segment/slice (default is up to end)
@@ -506,8 +557,9 @@ c4_View c4_View::ProjectWithout(const c4_View &out_)const {
  *
  * This view operation is based on a custom viewer and is modifiable.
  */
-c4_View c4_View::Slice(int first_, int limit_, int step_)const {
-  return f4_CustSlice(*_seq, first_, limit_, step_);
+c4_View c4_View::Slice(int first_, int limit_, int step_)const
+{
+    return f4_CustSlice(*_seq, first_, limit_, step_);
 }
 
 /** Create view which is the cartesian product with given view
@@ -519,8 +571,9 @@ c4_View c4_View::Slice(int first_, int limit_, int step_)const {
  *
  * This view operation is based on a read-only custom viewer.
  */
-c4_View c4_View::Product(const c4_View &view_)const {
-  return f4_CustProduct(*_seq, view_);
+c4_View c4_View::Product(const c4_View &view_)const
+{
+    return f4_CustProduct(*_seq, view_);
 }
 
 /** Create view which remaps another given view
@@ -533,8 +586,9 @@ c4_View c4_View::Product(const c4_View &view_)const {
  *
  * This view operation is based on a custom viewer and is modifiable.
  */
-c4_View c4_View::RemapWith(const c4_View &view_)const {
-  return f4_CustRemapWith(*_seq, view_);
+c4_View c4_View::RemapWith(const c4_View &view_)const
+{
+    return f4_CustRemapWith(*_seq, view_);
 }
 
 /** Create view which pairs each row with corresponding row
@@ -545,8 +599,9 @@ c4_View c4_View::RemapWith(const c4_View &view_)const {
  *
  * This view operation is based on a custom viewer and is modifiable.
  */
-c4_View c4_View::Pair(const c4_View &view_)const {
-  return f4_CustPair(*_seq, view_);
+c4_View c4_View::Pair(const c4_View &view_)const
+{
+    return f4_CustPair(*_seq, view_);
 }
 
 /** Create view with rows from another view appended
@@ -559,16 +614,18 @@ c4_View c4_View::Pair(const c4_View &view_)const {
  *
  * This view operation is based on a custom viewer and is modifiable.
  */
-c4_View c4_View::Concat(const c4_View &view_)const {
-  return f4_CustConcat(*_seq, view_);
+c4_View c4_View::Concat(const c4_View &view_)const
+{
+    return f4_CustConcat(*_seq, view_);
 }
 
 /** Create view with one property renamed (must be of same type)
  *
  * This view operation is based on a custom viewer and is modifiable.
  */
-c4_View c4_View::Rename(const c4_Property &old_, const c4_Property &new_)const {
-  return f4_CustRename(*_seq, old_, new_);
+c4_View c4_View::Rename(const c4_Property &old_, const c4_Property &new_)const
+{
+    return f4_CustRename(*_seq, old_, new_);
 }
 
 /** Create view with a subview, grouped by the specified properties
@@ -583,11 +640,12 @@ c4_View c4_View::Rename(const c4_Property &old_, const c4_Property &new_)const {
  *
  * This view operation is based on a read-only custom viewer.
  */
-c4_View c4_View::GroupBy(const c4_View &keys_,  
-  ///< properties in this view determine grouping
-const c4_ViewProp &result_  ///< name of new subview defined in result
-)const {
-  return f4_CustGroupBy(*_seq, keys_, result_);
+c4_View c4_View::GroupBy(const c4_View &keys_,
+                         ///< properties in this view determine grouping
+                         const c4_ViewProp &result_  ///< name of new subview defined in result
+                        )const
+{
+    return f4_CustGroupBy(*_seq, keys_, result_);
 }
 
 /** Create view with count of duplicates, when grouped by key
@@ -597,20 +655,22 @@ const c4_ViewProp &result_  ///< name of new subview defined in result
  *
  * This view operation is based on a read-only custom viewer.
  */
-c4_View c4_View::Counts(const c4_View &keys_,  
-  ///< properties in this view determine grouping
-const c4_IntProp &result_  ///< new count property defined in result
-)const {
-  return f4_CustGroupBy(*_seq, keys_, result_); // third arg is c4_IntProp
+c4_View c4_View::Counts(const c4_View &keys_,
+                        ///< properties in this view determine grouping
+                        const c4_IntProp &result_  ///< new count property defined in result
+                       )const
+{
+    return f4_CustGroupBy(*_seq, keys_, result_); // third arg is c4_IntProp
 }
 
 /** Create view with all duplicate rows omitted
  *
  * This view operation is based on a read-only custom viewer.
  */
-c4_View c4_View::Unique()const {
-  c4_IntProp count("#N#");
-  return Counts(Clone(), count).ProjectWithout(count);
+c4_View c4_View::Unique()const
+{
+    c4_IntProp count("#N#");
+    return Counts(Clone(), count).ProjectWithout(count);
 }
 
 /** Create view which is the set union (assumes no duplicate rows)
@@ -620,8 +680,9 @@ c4_View c4_View::Unique()const {
  *
  * This view operation is based on a read-only custom viewer.
  */
-c4_View c4_View::Union(const c4_View &view_)const {
-  return Concat(view_).Unique();
+c4_View c4_View::Union(const c4_View &view_)const
+{
+    return Concat(view_).Unique();
 }
 
 /** Create view with all rows also in the given view (no dups)
@@ -631,12 +692,13 @@ c4_View c4_View::Union(const c4_View &view_)const {
  *
  * This view operation is based on a read-only custom viewer.
  */
-c4_View c4_View::Intersect(const c4_View &view_)const {
-  c4_View v = Concat(view_);
+c4_View c4_View::Intersect(const c4_View &view_)const
+{
+    c4_View v = Concat(view_);
 
-  // assume neither view has any duplicates
-  c4_IntProp count("#N#");
-  return v.Counts(Clone(), count).Select(count[2]).ProjectWithout(count);
+    // assume neither view has any duplicates
+    c4_IntProp count("#N#");
+    return v.Counts(Clone(), count).Select(count[2]).ProjectWithout(count);
 }
 
 /** Create view with all rows not in both views (no dups)
@@ -646,12 +708,13 @@ c4_View c4_View::Intersect(const c4_View &view_)const {
  *
  * This view operation is based on a read-only custom viewer.
  */
-c4_View c4_View::Different(const c4_View &view_)const {
-  c4_View v = Concat(view_);
+c4_View c4_View::Different(const c4_View &view_)const
+{
+    c4_View v = Concat(view_);
 
-  // assume neither view has any duplicates
-  c4_IntProp count("#N#");
-  return v.Counts(Clone(), count).Select(count[1]).ProjectWithout(count);
+    // assume neither view has any duplicates
+    c4_IntProp count("#N#");
+    return v.Counts(Clone(), count).Select(count[1]).ProjectWithout(count);
 }
 
 /** Create view with all rows not in the given view (no dups)
@@ -663,9 +726,10 @@ c4_View c4_View::Different(const c4_View &view_)const {
  * This view operation is based on a read-only custom viewer.
  */
 c4_View c4_View::Minus(const c4_View &view_  ///< the second view
-)const {
-  // inefficient: calculate difference, then keep only those in self
-  return Intersect(Different(view_));
+                      )const
+{
+    // inefficient: calculate difference, then keep only those in self
+    return Intersect(Different(view_));
 }
 
 /** Create view with a specific subview expanded, like a join
@@ -676,32 +740,35 @@ c4_View c4_View::Minus(const c4_View &view_  ///< the second view
  *
  * This view operation is based on a read-only custom viewer.
  */
-c4_View c4_View::JoinProp(const c4_ViewProp &sub_,  
-  ///< name of the subview to expand
-bool outer_  ///< true: keep rows with empty subviews
-)const {
-  return f4_CustJoinProp(*_seq, sub_, outer_);
+c4_View c4_View::JoinProp(const c4_ViewProp &sub_,
+                          ///< name of the subview to expand
+                          bool outer_  ///< true: keep rows with empty subviews
+                         )const
+{
+    return f4_CustJoinProp(*_seq, sub_, outer_);
 }
 
 /** Create view which is the relational join on the given keys
  *
  * This view operation is based on a read-only custom viewer.
  */
-c4_View c4_View::Join(const c4_View &keys_,  
-  ///< properties in this view determine the join
-const c4_View &view_,  ///< second view participating in the join
-bool outer_  ///< true: keep rows with no match in second view
-)const {
-  // inefficient: calculate difference, then keep only those in self
-  return f4_CustJoin(*_seq, keys_, view_, outer_);
+c4_View c4_View::Join(const c4_View &keys_,
+                      ///< properties in this view determine the join
+                      const c4_View &view_,  ///< second view participating in the join
+                      bool outer_  ///< true: keep rows with no match in second view
+                     )const
+{
+    // inefficient: calculate difference, then keep only those in self
+    return f4_CustJoin(*_seq, keys_, view_, outer_);
 }
 
 /** Create an identity view which only allows reading
  *
  * This view operation is based on a custom viewer.
  */
-c4_View c4_View::ReadOnly()const {
-  return f4_CreateReadOnly(*_seq);
+c4_View c4_View::ReadOnly()const
+{
+    return f4_CreateReadOnly(*_seq);
 }
 
 /** Create mapped view which adds a hash lookup layer
@@ -730,14 +797,15 @@ c4_View c4_View::ReadOnly()const {
  *  hash.Add(...)
  * @endcode
  */
-c4_View c4_View::Hash(const c4_View &map_, int numKeys_)const {
-  return f4_CreateHash(*_seq, numKeys_, map_._seq);
+c4_View c4_View::Hash(const c4_View &map_, int numKeys_)const
+{
+    return f4_CreateHash(*_seq, numKeys_, map_._seq);
 }
 
 /** Create mapped view which blocks its rows in two levels
  *
  * This view acts like a large flat view, even though the actual rows are
- * stored in blocks, which are rebalanced automatically to maintain a good 
+ * stored in blocks, which are rebalanced automatically to maintain a good
  * trade-off between block size and number of blocks.
  *
  * The underlying view must be defined with a single view property, with
@@ -749,11 +817,12 @@ c4_View c4_View::Hash(const c4_View &map_, int numKeys_)const {
  *  ... flat.GetSize() ...
  *  flat.InsertAt(...)
  * @endcode
- * 
+ *
  * This view operation is based on a custom viewer and is modifiable.
  */
-c4_View c4_View::Blocked()const {
-  return f4_CreateBlocked(*_seq);
+c4_View c4_View::Blocked()const
+{
+    return f4_CreateBlocked(*_seq);
 }
 
 /** Create mapped view which keeps its rows ordered
@@ -772,8 +841,9 @@ c4_View c4_View::Blocked()const {
  * This view can be combined with c4_View::Blocked, to create a 2-level
  * btree structure.
  */
-c4_View c4_View::Ordered(int numKeys_)const {
-  return f4_CreateOrdered(*_seq, numKeys_);
+c4_View c4_View::Ordered(int numKeys_)const
+{
+    return f4_CreateOrdered(*_seq, numKeys_);
 }
 
 /** Create mapped view which maintains an index permutation
@@ -790,8 +860,9 @@ c4_View c4_View::Ordered(int numKeys_)const {
  * deleted from the view.
  */
 c4_View c4_View::Indexed(const c4_View &map_, const c4_View &props_, bool
-  unique_)const {
-  return f4_CreateIndexed(*_seq,  *map_._seq, props_, unique_);
+                         unique_)const
+{
+    return f4_CreateIndexed(*_seq,  *map_._seq, props_, unique_);
 }
 
 /** Return the index of the specified row in this view (or -1)
@@ -799,15 +870,17 @@ c4_View c4_View::Indexed(const c4_View &map_, const c4_View &props_, bool
  * This function can be used to "unmap" an index of a derived view back
  * to the original underlying view.
  */
-int c4_View::GetIndexOf(const c4_RowRef &row_)const {
-  c4_Cursor cursor = &row_;
+int c4_View::GetIndexOf(const c4_RowRef &row_)const
+{
+    c4_Cursor cursor = &row_;
 
-  return cursor._seq->RemapIndex(cursor._index, _seq);
+    return cursor._seq->RemapIndex(cursor._index, _seq);
 }
 
 /// Restrict the search range for rows
-int c4_View::RestrictSearch(const c4_RowRef &c_, int &pos_, int &count_) {
-  return _seq->RestrictSearch(&c_, pos_, count_) ? 0 : ~0;
+int c4_View::RestrictSearch(const c4_RowRef &c_, int &pos_, int &count_)
+{
+    return _seq->RestrictSearch(&c_, pos_, count_) ? 0 : ~0;
 }
 
 /** Find index of the next entry matching the specified key.
@@ -819,124 +892,140 @@ int c4_View::RestrictSearch(const c4_RowRef &c_, int &pos_, int &count_) {
  * @retval -1 if not found
  */
 int c4_View::Find(const c4_RowRef &crit_,  ///< the value to look for
-int start_  ///< the index to start with
-)const {
-  d4_assert(start_ >= 0);
+                  int start_  ///< the index to start with
+                 )const
+{
+    d4_assert(start_ >= 0);
 
-  c4_Row copy = crit_; // the lazy (and slow) solution: make a copy
+    c4_Row copy = crit_; // the lazy (and slow) solution: make a copy
 
-  int count = GetSize() - start_;
-  if (_seq->RestrictSearch(&copy, start_, count)) {
-    c4_View refView = copy.Container();
-    c4_Sequence *refSeq = refView._seq;
-    d4_assert(refSeq != 0);
+    int count = GetSize() - start_;
+    if (_seq->RestrictSearch(&copy, start_, count)) {
+        c4_View refView = copy.Container();
+        c4_Sequence *refSeq = refView._seq;
+        d4_assert(refSeq != 0);
 
-    c4_Bytes data;
+        c4_Bytes data;
 
-    for (int j = 0; j < count; ++j) {
-      int i;
+        for (int j = 0; j < count; ++j) {
+            int i;
 
-      for (i = 0; i < refSeq->NumHandlers(); ++i) {
-        c4_Handler &h = refSeq->NthHandler(i); // no context issues
+            for (i = 0; i < refSeq->NumHandlers(); ++i) {
+                c4_Handler &h = refSeq->NthHandler(i); // no context issues
 
-        if (!_seq->Get(start_ + j, h.PropId(), data))
-          h.ClearBytes(data);
+                if (!_seq->Get(start_ + j, h.PropId(), data)) {
+                    h.ClearBytes(data);
+                }
 
-        if (h.Compare(0, data) != 0)
-        // always row 0
-          break;
-      }
+                if (h.Compare(0, data) != 0)
+                    // always row 0
+                {
+                    break;
+                }
+            }
 
-      if (i == refSeq->NumHandlers())
-        return start_ + j;
+            if (i == refSeq->NumHandlers()) {
+                return start_ + j;
+            }
+        }
     }
-  }
 
-  return  - 1;
+    return  - 1;
 }
 
 /** Search for a key, using the native sort order of the view
  * @return position where found, or where it may be inserted,
  *  this position can also be just past the last row
  */
-int c4_View::Search(const c4_RowRef &crit_)const {
-  int l =  - 1, u = GetSize();
-  while (l + 1 != u) {
-    const int m = (l + u) >> 1;
-    if (_seq->Compare(m, &crit_) < 0)
-    //if (crit_ > (*this)[m]) // Dec 2001: see comments below
-      l = m;
-    else
-      u = m;
-  }
+int c4_View::Search(const c4_RowRef &crit_)const
+{
+    int l =  - 1, u = GetSize();
+    while (l + 1 != u) {
+        const int m = (l + u) >> 1;
+        if (_seq->Compare(m, &crit_) < 0)
+            //if (crit_ > (*this)[m]) // Dec 2001: see comments below
+        {
+            l = m;
+        } else {
+            u = m;
+        }
+    }
 
-  return u;
+    return u;
 }
 
 /// Return number of matching keys, and pos of first one as arg
-int c4_View::Locate(const c4_RowRef &crit_, int *pos_)const {
-  // Dec 2001: fixed a problem with searching of partial rows.
-  //
-  // There is an *extremely* tricky issue in here, in that the
-  // comparison operator for rows is not symmetric.  So in the
-  // general case, "a == b" is not euivalent to "b == a".  This
-  // is without doubt a design mistake (and should have at least
-  // been named differently).
-  //
-  // The reason is that the number of properties in both rowrefs
-  // need not be the same.  Only the properties of the leftmost
-  // rowref are compared against the other one.  This also applies
-  // to the other comparisons, i.e. !=, <, >, <=, and >=.
-  //
-  // All Compare calls below have been changed to use comparisons
-  // in the proper order and now use "rowref <op> rowref" syntax.
+int c4_View::Locate(const c4_RowRef &crit_, int *pos_)const
+{
+    // Dec 2001: fixed a problem with searching of partial rows.
+    //
+    // There is an *extremely* tricky issue in here, in that the
+    // comparison operator for rows is not symmetric.  So in the
+    // general case, "a == b" is not euivalent to "b == a".  This
+    // is without doubt a design mistake (and should have at least
+    // been named differently).
+    //
+    // The reason is that the number of properties in both rowrefs
+    // need not be the same.  Only the properties of the leftmost
+    // rowref are compared against the other one.  This also applies
+    // to the other comparisons, i.e. !=, <, >, <=, and >=.
+    //
+    // All Compare calls below have been changed to use comparisons
+    // in the proper order and now use "rowref <op> rowref" syntax.
 
-  c4_Cursor curr(*(c4_Sequence*)_seq, 0); // loses const
+    c4_Cursor curr(*(c4_Sequence *)_seq, 0); // loses const
 
-  int l =  - 1, u = GetSize();
-  while (l + 1 != u) {
-    curr._index = (l + u) >> 1;
-    if (crit_ >  *curr)
-      l = curr._index;
-    else
-      u = curr._index;
-  }
+    int l =  - 1, u = GetSize();
+    while (l + 1 != u) {
+        curr._index = (l + u) >> 1;
+        if (crit_ >  *curr) {
+            l = curr._index;
+        } else {
+            u = curr._index;
+        }
+    }
 
-  if (pos_ != 0)
-    *pos_ = u;
+    if (pos_ != 0) {
+        *pos_ = u;
+    }
 
-  // only look for more if the search hit an exact match
-  curr._index = u;
-  if (u == GetSize() || crit_ !=  *curr)
-    return 0;
+    // only look for more if the search hit an exact match
+    curr._index = u;
+    if (u == GetSize() || crit_ !=  *curr) {
+        return 0;
+    }
 
-  // as Jon Bentley wrote in DDJ Apr 2000, setting l2 to -1 is better than u
-  int l2 =  - 1, u2 = GetSize();
-  while (l2 + 1 != u2) {
-    curr._index = (l2 + u2) >> 1;
-    if (crit_ >=  *curr)
-      l2 = curr._index;
-    else
-      u2 = curr._index;
-  }
+    // as Jon Bentley wrote in DDJ Apr 2000, setting l2 to -1 is better than u
+    int l2 =  - 1, u2 = GetSize();
+    while (l2 + 1 != u2) {
+        curr._index = (l2 + u2) >> 1;
+        if (crit_ >=  *curr) {
+            l2 = curr._index;
+        } else {
+            u2 = curr._index;
+        }
+    }
 
-  return u2 - u;
+    return u2 - u;
 }
 
 /// Compare two views lexicographically (rows 0..N-1).
-int c4_View::Compare(const c4_View &view_)const {
-  if (_seq == view_._seq)
-    return 0;
+int c4_View::Compare(const c4_View &view_)const
+{
+    if (_seq == view_._seq) {
+        return 0;
+    }
 
-  int na = GetSize();
-  int nb = view_.GetSize();
-  int i;
+    int na = GetSize();
+    int nb = view_.GetSize();
+    int i;
 
-  for (i = 0; i < na && i < nb; ++i)
-    if (GetAt(i) != view_.GetAt(i))
-      return GetAt(i) < view_.GetAt(i) ?  - 1:  + 1;
+    for (i = 0; i < na && i < nb; ++i)
+        if (GetAt(i) != view_.GetAt(i)) {
+            return GetAt(i) < view_.GetAt(i) ?  - 1 :  + 1;
+        }
 
-  return na == nb ? 0 : i < na ?  + 1:  - 1;
+    return na == nb ? 0 : i < na ?  + 1 :  - 1;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -946,11 +1035,11 @@ int c4_View::Compare(const c4_View &view_)const {
  *  An iterator for collections of rows (views).
  *
  *  Cursor objects can be used to point to specific entries in a view.
- *  A cursor acts very much like a pointer to a row in a view, and is 
+ *  A cursor acts very much like a pointer to a row in a view, and is
  *  returned when taking the address of a c4_RowRef.  Dereferencing
  *  a cursor leads to the original row reference again.  You can construct a
  *  cursor for a c4_Row, but since such rows are not part of a collection,
- *  incrementing or decrementing these cursors is meaningless (and wrong). 
+ *  incrementing or decrementing these cursors is meaningless (and wrong).
  *
  *  The usual range of pointer operations can be applied to these objects:
  *  pre/post-increment and decrement, adding or subtracting integer offsets,
@@ -980,75 +1069,84 @@ int c4_View::Compare(const c4_View &view_)const {
 /////////////////////////////////////////////////////////////////////////////
 // c4_Row
 
-c4_Row::c4_Row(): c4_RowRef(*Allocate()){}
+c4_Row::c4_Row(): c4_RowRef(*Allocate()) {}
 
-c4_Row::c4_Row(const c4_Row &row_): c4_RowRef(*Allocate()) {
-  operator = (row_);
+c4_Row::c4_Row(const c4_Row &row_): c4_RowRef(*Allocate())
+{
+    operator = (row_);
 }
 
-c4_Row::c4_Row(const c4_RowRef &rowRef_): c4_RowRef(*Allocate()) {
-  operator = (rowRef_);
+c4_Row::c4_Row(const c4_RowRef &rowRef_): c4_RowRef(*Allocate())
+{
+    operator = (rowRef_);
 }
 
-c4_Row::~c4_Row() {
-  Release(_cursor);
+c4_Row::~c4_Row()
+{
+    Release(_cursor);
 }
 
-c4_Row &c4_Row::operator = (const c4_Row &row_) {
-  return operator = ((const c4_RowRef &)row_);
+c4_Row &c4_Row::operator = (const c4_Row &row_)
+{
+    return operator = ((const c4_RowRef &)row_);
 }
 
 /// Assignment from a reference to a row.
-c4_Row &c4_Row::operator = (const c4_RowRef &rowRef_) {
-  d4_assert(_cursor._seq != 0);
+c4_Row &c4_Row::operator = (const c4_RowRef &rowRef_)
+{
+    d4_assert(_cursor._seq != 0);
 
-  if (_cursor !=  &rowRef_) {
-    d4_assert(_cursor._index == 0);
-    _cursor._seq->SetAt(0, &rowRef_);
-  }
+    if (_cursor !=  &rowRef_) {
+        d4_assert(_cursor._index == 0);
+        _cursor._seq->SetAt(0, &rowRef_);
+    }
 
-  return  *this;
+    return  *this;
 }
 
 /// Adds all properties and values into this row.
-void c4_Row::ConcatRow(const c4_RowRef &rowRef_) {
-  d4_assert(_cursor._seq != 0);
+void c4_Row::ConcatRow(const c4_RowRef &rowRef_)
+{
+    d4_assert(_cursor._seq != 0);
 
-  c4_Cursor cursor = &rowRef_; // trick to access private rowRef_._cursor
-  d4_assert(cursor._seq != 0);
+    c4_Cursor cursor = &rowRef_; // trick to access private rowRef_._cursor
+    d4_assert(cursor._seq != 0);
 
-  c4_Sequence &rhSeq =  *cursor._seq;
+    c4_Sequence &rhSeq =  *cursor._seq;
 
-  c4_Bytes data;
+    c4_Bytes data;
 
-  for (int i = 0; i < rhSeq.NumHandlers(); ++i) {
-    c4_Handler &h = rhSeq.NthHandler(i);
+    for (int i = 0; i < rhSeq.NumHandlers(); ++i) {
+        c4_Handler &h = rhSeq.NthHandler(i);
 
-    h.GetBytes(cursor._index, data);
-    _cursor._seq->Set(_cursor._index, h.Property(), data);
-  }
+        h.GetBytes(cursor._index, data);
+        _cursor._seq->Set(_cursor._index, h.Property(), data);
+    }
 }
 
-c4_Row operator + (const c4_RowRef &a_, const c4_RowRef &b_) {
-  c4_Row row = a_;
-  row.ConcatRow(b_);
-  return row;
+c4_Row operator + (const c4_RowRef &a_, const c4_RowRef &b_)
+{
+    c4_Row row = a_;
+    row.ConcatRow(b_);
+    return row;
 }
 
-c4_Cursor c4_Row::Allocate() {
-  c4_Sequence *seq = d4_new c4_HandlerSeq(0);
-  seq->IncRef();
+c4_Cursor c4_Row::Allocate()
+{
+    c4_Sequence *seq = d4_new c4_HandlerSeq(0);
+    seq->IncRef();
 
-  seq->Resize(1);
+    seq->Resize(1);
 
-  return c4_Cursor(*seq, 0);
+    return c4_Cursor(*seq, 0);
 }
 
-void c4_Row::Release(c4_Cursor row_) {
-  d4_assert(row_._seq != 0);
-  d4_assert(row_._index == 0);
+void c4_Row::Release(c4_Cursor row_)
+{
+    d4_assert(row_._seq != 0);
+    d4_assert(row_._index == 0);
 
-  row_._seq->DecRef();
+    row_._seq->DecRef();
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1073,90 +1171,101 @@ static c4_StringArray *sPropNames = 0;
 static c4_DWordArray *sPropCounts = 0;
 
 /// Call this to get rid of some internal datastructues (on exit)
-void c4_Property::CleanupInternalData() {
-  delete sPropNames;
-  sPropNames = 0; // race
+void c4_Property::CleanupInternalData()
+{
+    delete sPropNames;
+    sPropNames = 0; // race
 
-  delete sPropCounts;
-  sPropCounts = 0; // race
+    delete sPropCounts;
+    sPropCounts = 0; // race
 
-  delete sThreadLock;
-  sThreadLock = 0; // race
+    delete sThreadLock;
+    sThreadLock = 0; // race
 }
 
-c4_Property::c4_Property(char type_, const char *name_): _type(type_) {
-  if (sThreadLock == 0)
-    sThreadLock = d4_new c4_ThreadLock;
-
-  c4_ThreadLock::Hold lock; // grabs the lock until end of scope
-
-  if (sPropNames == 0)
-    sPropNames = d4_new c4_StringArray;
-
-  if (sPropCounts == 0)
-    sPropCounts = d4_new c4_DWordArray;
-
-  c4_String temp = name_;
-
-  _id = sPropNames->GetSize();
-  while (--_id >= 0) {
-    const char *p = sPropNames->GetAt(_id);
-    // optimize for first char case-insensitive match
-    if (((*p ^  *name_) &~0x20) == 0 && temp.CompareNoCase(p) == 0)
-      break;
-  }
-
-  if (_id < 0) {
-    int size = sPropCounts->GetSize();
-
-    for (_id = 0; _id < size; ++_id)
-      if (sPropCounts->GetAt(_id) == 0)
-        break;
-
-    if (_id >= size) {
-      sPropCounts->SetSize(_id + 1);
-      sPropNames->SetSize(_id + 1);
+c4_Property::c4_Property(char type_, const char *name_): _type(type_)
+{
+    if (sThreadLock == 0) {
+        sThreadLock = d4_new c4_ThreadLock;
     }
 
-    sPropCounts->SetAt(_id, 0);
-    sPropNames->SetAt(_id, name_);
-  }
+    c4_ThreadLock::Hold lock; // grabs the lock until end of scope
 
-  Refs( + 1);
+    if (sPropNames == 0) {
+        sPropNames = d4_new c4_StringArray;
+    }
+
+    if (sPropCounts == 0) {
+        sPropCounts = d4_new c4_DWordArray;
+    }
+
+    c4_String temp = name_;
+
+    _id = sPropNames->GetSize();
+    while (--_id >= 0) {
+        const char *p = sPropNames->GetAt(_id);
+        // optimize for first char case-insensitive match
+        if (((*p ^  *name_) & ~0x20) == 0 && temp.CompareNoCase(p) == 0) {
+            break;
+        }
+    }
+
+    if (_id < 0) {
+        int size = sPropCounts->GetSize();
+
+        for (_id = 0; _id < size; ++_id)
+            if (sPropCounts->GetAt(_id) == 0) {
+                break;
+            }
+
+        if (_id >= size) {
+            sPropCounts->SetSize(_id + 1);
+            sPropNames->SetSize(_id + 1);
+        }
+
+        sPropCounts->SetAt(_id, 0);
+        sPropNames->SetAt(_id, name_);
+    }
+
+    Refs(+ 1);
 }
 
 c4_Property::c4_Property(const c4_Property &prop_): _id(prop_.GetId()), _type
-  (prop_.Type()) {
-  c4_ThreadLock::Hold lock;
+    (prop_.Type())
+{
+    c4_ThreadLock::Hold lock;
 
-  d4_assert(sPropCounts != 0);
-  d4_assert(sPropCounts->GetAt(_id) > 0);
+    d4_assert(sPropCounts != 0);
+    d4_assert(sPropCounts->GetAt(_id) > 0);
 
-  Refs( + 1);
+    Refs(+ 1);
 }
 
-c4_Property::~c4_Property() {
-  c4_ThreadLock::Hold lock;
+c4_Property::~c4_Property()
+{
+    c4_ThreadLock::Hold lock;
 
-  Refs( - 1);
+    Refs(- 1);
 }
 
-void c4_Property::operator = (const c4_Property &prop_) {
-  c4_ThreadLock::Hold lock;
+void c4_Property::operator = (const c4_Property &prop_)
+{
+    c4_ThreadLock::Hold lock;
 
-  prop_.Refs( + 1);
-  Refs( - 1);
+    prop_.Refs(+ 1);
+    Refs(- 1);
 
-  _id = prop_.GetId();
-  _type = prop_.Type();
+    _id = prop_.GetId();
+    _type = prop_.Type();
 }
 
 /// Return the name of this property
-const char *c4_Property::Name()const {
-  c4_ThreadLock::Hold lock;
+const char *c4_Property::Name()const
+{
+    c4_ThreadLock::Hold lock;
 
-  d4_assert(sPropNames != 0);
-  return sPropNames->GetAt(_id);
+    d4_assert(sPropNames != 0);
+    return sPropNames->GetAt(_id);
 }
 
 /** Adjust the reference count
@@ -1164,20 +1273,22 @@ const char *c4_Property::Name()const {
  *  This is part of the implementation and shouldn't normally be called.
  *  This code is only called with the lock held, and always thread-safe.
  */
-void c4_Property::Refs(int diff_)const {
-  d4_assert(diff_ ==  - 1 || diff_ ==  + 1);
+void c4_Property::Refs(int diff_)const
+{
+    d4_assert(diff_ ==  - 1 || diff_ ==  + 1);
 
-  d4_assert(sPropCounts != 0);
-  sPropCounts->ElementAt(_id) += diff_;
+    d4_assert(sPropCounts != 0);
+    sPropCounts->ElementAt(_id) += diff_;
 
 #if q4_CHECK
-  // get rid of the cache when the last property goes away
-  static t4_i32 sPropTotals;
+    // get rid of the cache when the last property goes away
+    static t4_i32 sPropTotals;
 
-  sPropTotals += diff_;
-  if (sPropTotals == 0)
-    CleanupInternalData();
-#endif 
+    sPropTotals += diff_;
+    if (sPropTotals == 0) {
+        CleanupInternalData();
+    }
+#endif
 }
 
 /////////////////////////////////////////////////////////////////////////////

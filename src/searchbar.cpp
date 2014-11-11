@@ -32,7 +32,6 @@
 #include <klineedit.h>
 #include <KLocalizedString>
 
-
 #include <khbox.h>
 #include <QIcon>
 
@@ -42,7 +41,6 @@
 #include <QTimer>
 #include <QStandardPaths>
 #include <QHBoxLayout>
-
 
 using namespace boost;
 using namespace Akregator;
@@ -56,30 +54,32 @@ class SearchBar::SearchBarPrivate
 public:
     QString searchText;
     QTimer timer;
-    KLineEdit* searchLine;
-    KComboBox* searchCombo;
+    KLineEdit *searchLine;
+    KComboBox *searchCombo;
     int delay;
     std::vector<shared_ptr<const AbstractMatcher> > matchers;
-    void triggerTimer() {
-        if (timer.isActive())
+    void triggerTimer()
+    {
+        if (timer.isActive()) {
             timer.stop();
+        }
 
         timer.start(200);
     }
 };
 
-SearchBar::SearchBar(QWidget* parent) : QWidget(parent), d(new SearchBar::SearchBarPrivate)
+SearchBar::SearchBar(QWidget *parent) : QWidget(parent), d(new SearchBar::SearchBarPrivate)
 {
     d->delay = 400;
     QHBoxLayout *layout = new QHBoxLayout;
 
     layout->setMargin(2);
     layout->setSpacing(5);
-    setSizePolicy( QSizePolicy( QSizePolicy::Minimum, QSizePolicy::Fixed ) );
+    setSizePolicy(QSizePolicy(QSizePolicy::Minimum, QSizePolicy::Fixed));
 
-    QLabel* searchLabel = new QLabel(this);
+    QLabel *searchLabel = new QLabel(this);
     layout->addWidget(searchLabel);
-    searchLabel->setText( i18nc("Title of article searchbar", "S&earch:") );
+    searchLabel->setText(i18nc("Title of article searchbar", "S&earch:"));
 
     d->searchLine = new KLineEdit(this);
     d->searchLine->setClearButtonShown(true);
@@ -89,8 +89,8 @@ SearchBar::SearchBar(QWidget* parent) : QWidget(parent), d(new SearchBar::Search
 
     searchLabel->setBuddy(d->searchLine);
 
-    QLabel* statusLabel = new QLabel(this);
-    statusLabel->setText( i18n("Status:") );
+    QLabel *statusLabel = new QLabel(this);
+    statusLabel->setText(i18n("Status:"));
     layout->addWidget(statusLabel);
 
     d->searchCombo = new KComboBox(this);
@@ -99,15 +99,15 @@ SearchBar::SearchBar(QWidget* parent) : QWidget(parent), d(new SearchBar::Search
     QIcon iconAll = KIconLoader::global()->loadIcon("system-run", KIconLoader::Small);
     QIcon iconNew(QStandardPaths::locate(QStandardPaths::GenericDataLocation, "akregator/pics/kmmsgnew.png"));
     QIcon iconUnread(QStandardPaths::locate(QStandardPaths::GenericDataLocation, "akregator/pics/kmmsgunseen.png"));
-    const QIcon iconKeep = QIcon::fromTheme( "mail-mark-important" );
+    const QIcon iconKeep = QIcon::fromTheme("mail-mark-important");
 
     d->searchCombo->addItem(iconAll, i18n("All Articles"));
     d->searchCombo->addItem(iconUnread, i18nc("Unread articles filter", "Unread"));
     d->searchCombo->addItem(iconNew, i18nc("New articles filter", "New"));
     d->searchCombo->addItem(iconKeep, i18nc("Important articles filter", "Important"));
 
-    d->searchLine->setToolTip( i18n( "Enter space-separated terms to filter article list" ) );
-    d->searchCombo->setToolTip( i18n( "Choose what kind of articles to show in article list" ) );
+    d->searchLine->setToolTip(i18n("Enter space-separated terms to filter article list"));
+    d->searchCombo->setToolTip(i18n("Choose what kind of articles to show in article list"));
 
     connect(d->searchCombo, static_cast<void (KComboBox::*)(int)>(&KComboBox::activated), this, &SearchBar::slotSearchComboChanged);
 
@@ -143,8 +143,7 @@ int SearchBar::delay() const
 
 void SearchBar::slotClearSearch()
 {
-    if (status() != 0 || !d->searchLine->text().isEmpty())
-    {
+    if (status() != 0 || !d->searchLine->text().isEmpty()) {
         d->searchLine->clear();
         d->searchCombo->setCurrentIndex(0);
         d->timer.stop();
@@ -154,11 +153,11 @@ void SearchBar::slotClearSearch()
 
 void SearchBar::slotSetStatus(int status)
 {
-     d->searchCombo->setCurrentIndex(status);
-     d->triggerTimer();
+    d->searchCombo->setCurrentIndex(status);
+    d->triggerTimer();
 }
 
-void SearchBar::slotSetText(const QString& text)
+void SearchBar::slotSetText(const QString &text)
 {
     d->searchLine->setText(text);
     d->triggerTimer();
@@ -169,12 +168,12 @@ void SearchBar::slotSearchComboChanged(int /*index*/)
     d->triggerTimer();
 }
 
-std::vector<shared_ptr<const AbstractMatcher> > SearchBar::matchers() const {
+std::vector<shared_ptr<const AbstractMatcher> > SearchBar::matchers() const
+{
     return d->matchers;
 }
 
-
-void SearchBar::slotSearchStringChanged(const QString& search)
+void SearchBar::slotSearchStringChanged(const QString &search)
 {
     d->searchText = search;
     d->triggerTimer();
@@ -185,53 +184,47 @@ void SearchBar::slotActivateSearch()
     QList<Criterion> textCriteria;
     QList<Criterion> statusCriteria;
 
-    if (!d->searchText.isEmpty())
-    {
-        Criterion subjCrit( Criterion::Title, Criterion::Contains, d->searchText);
+    if (!d->searchText.isEmpty()) {
+        Criterion subjCrit(Criterion::Title, Criterion::Contains, d->searchText);
         textCriteria << subjCrit;
-        Criterion crit1( Criterion::Description, Criterion::Contains, d->searchText);
+        Criterion crit1(Criterion::Description, Criterion::Contains, d->searchText);
         textCriteria << crit1;
-        Criterion authCrit( Criterion::Author, Criterion::Contains, d->searchText);
+        Criterion authCrit(Criterion::Author, Criterion::Contains, d->searchText);
         textCriteria << authCrit;
     }
 
-    if (d->searchCombo->currentIndex())
-    {
-        switch (d->searchCombo->currentIndex())
-        {
-            case 1: // Unread
-            {
-                Criterion crit1( Criterion::Status, Criterion::Equals, New);
-                Criterion crit2( Criterion::Status, Criterion::Equals, Unread);
-                statusCriteria << crit1;
-                statusCriteria << crit2;
-                break;
-            }
-            case 2: // New
-            {
-                Criterion crit( Criterion::Status, Criterion::Equals, New);
-                statusCriteria << crit;
-                break;
-            }
-            case 3: // Keep flag set
-            {
-                Criterion crit( Criterion::KeepFlag, Criterion::Equals, true);
-                statusCriteria << crit;
-                break;
-            }
-            default:
-                break;
+    if (d->searchCombo->currentIndex()) {
+        switch (d->searchCombo->currentIndex()) {
+        case 1: { // Unread
+            Criterion crit1(Criterion::Status, Criterion::Equals, New);
+            Criterion crit2(Criterion::Status, Criterion::Equals, Unread);
+            statusCriteria << crit1;
+            statusCriteria << crit2;
+            break;
+        }
+        case 2: { // New
+            Criterion crit(Criterion::Status, Criterion::Equals, New);
+            statusCriteria << crit;
+            break;
+        }
+        case 3: { // Keep flag set
+            Criterion crit(Criterion::KeepFlag, Criterion::Equals, true);
+            statusCriteria << crit;
+            break;
+        }
+        default:
+            break;
         }
     }
 
     std::vector<boost::shared_ptr<const AbstractMatcher> > matchers;
 
-    matchers.push_back( boost::shared_ptr<const AbstractMatcher>( new ArticleMatcher( textCriteria, ArticleMatcher::LogicalOr ) ) );
-    matchers.push_back( boost::shared_ptr<const AbstractMatcher>( new ArticleMatcher( statusCriteria, ArticleMatcher::LogicalOr ) ) );
-    Settings::setStatusFilter( d->searchCombo->currentIndex() );
-    Settings::setTextFilter( d->searchText );
+    matchers.push_back(boost::shared_ptr<const AbstractMatcher>(new ArticleMatcher(textCriteria, ArticleMatcher::LogicalOr)));
+    matchers.push_back(boost::shared_ptr<const AbstractMatcher>(new ArticleMatcher(statusCriteria, ArticleMatcher::LogicalOr)));
+    Settings::setStatusFilter(d->searchCombo->currentIndex());
+    Settings::setTextFilter(d->searchText);
     d->matchers = matchers;
-    emit signalSearch( matchers );
+    emit signalSearch(matchers);
 }
 
 }

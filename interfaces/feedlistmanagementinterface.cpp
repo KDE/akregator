@@ -26,14 +26,14 @@
 
 using namespace Akregator;
 
-FeedListManagementInterface* FeedListManagementInterface::m_instance = 0;
+FeedListManagementInterface *FeedListManagementInterface::m_instance = 0;
 
-FeedListManagementInterface* FeedListManagementInterface::instance()
+FeedListManagementInterface *FeedListManagementInterface::instance()
 {
     return m_instance;
 }
 
-void FeedListManagementInterface::setInstance( FeedListManagementInterface* iface )
+void FeedListManagementInterface::setInstance(FeedListManagementInterface *iface)
 {
     m_instance = iface;
 }

@@ -28,8 +28,10 @@
 
 #include "storage.h"
 
-namespace Akregator {
-namespace Backend {
+namespace Akregator
+{
+namespace Backend
+{
 
 /**
  * Metakit implementation of Storage interface
@@ -37,91 +39,88 @@ namespace Backend {
 class StorageMK4Impl : public Storage
 {
     Q_OBJECT
-    public:
+public:
 
-        StorageMK4Impl();     
-        StorageMK4Impl(const StorageMK4Impl&);
-        StorageMK4Impl &operator =(const StorageMK4Impl&);
-        ~StorageMK4Impl();
+    StorageMK4Impl();
+    StorageMK4Impl(const StorageMK4Impl &);
+    StorageMK4Impl &operator =(const StorageMK4Impl &);
+    ~StorageMK4Impl();
 
+    /** KGlobal::dirs()->saveLocation("data", "akregator")+"/Archive" */
+    static QString defaultArchivePath();
 
-        /** KGlobal::dirs()->saveLocation("data", "akregator")+"/Archive" */
-        static QString defaultArchivePath();
-        
-        /** sets the directory where the metakit files will be stored.
-            
-            @param archivePath the path to the archive, or QString() to reset it to the default.
-         */   
-        void setArchivePath(const QString& archivePath);
+    /** sets the directory where the metakit files will be stored.
 
-        /** returns the path to the metakit archives */
-        QString archivePath() const;
+        @param archivePath the path to the archive, or QString() to reset it to the default.
+     */
+    void setArchivePath(const QString &archivePath);
 
-        
-        
-        void initialize(const QStringList& params);
-        /**
-         * Open storage and prepare it for work.
-         * @return true on success.
-         */
-        bool open(bool autoCommit = false);
+    /** returns the path to the metakit archives */
+    QString archivePath() const;
 
-        /**
-         * Commit changes made in feeds and articles, making them persistent.
-         * @return true on success.
-         */
-        bool commit();
+    void initialize(const QStringList &params);
+    /**
+     * Open storage and prepare it for work.
+     * @return true on success.
+     */
+    bool open(bool autoCommit = false);
 
-        /**
-         * Rollback changes made in feeds and articles, reverting to last committed values.
-         * @returns true on success.
-         */
-        bool rollback();
+    /**
+     * Commit changes made in feeds and articles, making them persistent.
+     * @return true on success.
+     */
+    bool commit();
 
-        /**
-         * Closes storage, freeing all allocated resources. Called from destructor, so you don't need to call it directly.
-         * @return true on success.
-         */
-        bool close();
+    /**
+     * Rollback changes made in feeds and articles, reverting to last committed values.
+     * @returns true on success.
+     */
+    bool rollback();
 
-        /**
-         * @return Article archive for feed at given url.
-         */
-        FeedStorage* archiveFor(const QString &url);
-        const FeedStorage* archiveFor(const QString &url) const;
+    /**
+     * Closes storage, freeing all allocated resources. Called from destructor, so you don't need to call it directly.
+     * @return true on success.
+     */
+    bool close();
 
-        bool autoCommit() const;
-        int unreadFor(const QString &url) const;
-        void setUnreadFor(const QString &url, int unread);
-        int totalCountFor(const QString &url) const;
-        void setTotalCountFor(const QString &url, int total);
-        int lastFetchFor(const QString& url) const;
-        void setLastFetchFor(const QString& url, int lastFetch);
+    /**
+     * @return Article archive for feed at given url.
+     */
+    FeedStorage *archiveFor(const QString &url);
+    const FeedStorage *archiveFor(const QString &url) const;
 
-        QStringList feeds() const;
+    bool autoCommit() const;
+    int unreadFor(const QString &url) const;
+    void setUnreadFor(const QString &url, int unread);
+    int totalCountFor(const QString &url) const;
+    void setTotalCountFor(const QString &url, int total);
+    int lastFetchFor(const QString &url) const;
+    void setLastFetchFor(const QString &url, int lastFetch);
 
-        void storeFeedList(const QString& opmlStr);
-        QString restoreFeedList() const;
+    QStringList feeds() const;
 
-        void storeTagSet(const QString& xmlStr);
-        QString restoreTagSet() const; 
+    void storeFeedList(const QString &opmlStr);
+    QString restoreFeedList() const;
 
-        /** adds all feed storages from a source to this storage
-            existing articles are replaced
-        */
-        void add(Storage* source);
-        
-        /** deletes all feed storages in this archive */
-        void clear();
-        
-        void markDirty();
+    void storeTagSet(const QString &xmlStr);
+    QString restoreTagSet() const;
 
-    protected slots:
-        void slotCommit();
-        
-    private:
-        class StorageMK4ImplPrivate;
-        StorageMK4ImplPrivate *d;
+    /** adds all feed storages from a source to this storage
+        existing articles are replaced
+    */
+    void add(Storage *source);
+
+    /** deletes all feed storages in this archive */
+    void clear();
+
+    void markDirty();
+
+protected slots:
+    void slotCommit();
+
+private:
+    class StorageMK4ImplPrivate;
+    StorageMK4ImplPrivate *d;
 };
 
 } // namespace Backend

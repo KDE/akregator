@@ -27,7 +27,8 @@
 
 #include "command.h"
 
-namespace Akregator {
+namespace Akregator
+{
 
 class Folder;
 class MainWidget;
@@ -38,14 +39,14 @@ class CreateFeedCommand : public Command
 {
     Q_OBJECT
 public:
-    explicit CreateFeedCommand( MainWidget* parent = 0 );
+    explicit CreateFeedCommand(MainWidget *parent = 0);
     ~CreateFeedCommand();
 
-    void setSubscriptionListView( SubscriptionListView* view );
-    void setRootFolder( Folder* rootFolder );
-    void setUrl( const QString& url );
-    void setPosition( Folder* parent, TreeNode* after );
-    void setAutoExecute( bool autoexec );
+    void setSubscriptionListView(SubscriptionListView *view);
+    void setRootFolder(Folder *rootFolder);
+    void setUrl(const QString &url);
+    void setPosition(Folder *parent, TreeNode *after);
+    void setAutoExecute(bool autoexec);
 
 private:
     void doStart();
@@ -53,8 +54,8 @@ private:
 
 private:
     class Private;
-    Private* const d;
-    Q_PRIVATE_SLOT( d, void doCreate() )
+    Private *const d;
+    Q_PRIVATE_SLOT(d, void doCreate())
 };
 
 }

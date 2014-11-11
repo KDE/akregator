@@ -36,26 +36,26 @@ using namespace Akregator;
 
 K_PLUGIN_FACTORY(KCMAkregatorBrowserConfigFactory, registerPlugin<KCMAkregatorBrowserConfig>();)
 
-KCMAkregatorBrowserConfig::KCMAkregatorBrowserConfig( QWidget* parent, const QVariantList& args )
-    : KCModule( parent, args ), m_widget( new QWidget )
-{  
+KCMAkregatorBrowserConfig::KCMAkregatorBrowserConfig(QWidget *parent, const QVariantList &args)
+    : KCModule(parent, args), m_widget(new QWidget)
+{
     Ui::SettingsBrowser ui;
-    ui.setupUi( m_widget );
+    ui.setupUi(m_widget);
 
-    QVBoxLayout* layout = new QVBoxLayout( this );
-    layout->addWidget( m_widget );
-    
-    connect( ui.kcfg_ExternalBrowserUseCustomCommand, SIGNAL(toggled(bool)), 
-             ui.kcfg_ExternalBrowserCustomCommand, SLOT(setEnabled(bool)) );
-    KAboutData *about = new KAboutData( QLatin1String( "kcmakrbrowserconfig" ),
-                                        i18n( "Configure Feed Reader Browser" ),
-                                        QString(), QString(), KAboutLicense::GPL,
-                                        i18n( "(c), 2004 - 2008 Frank Osterfeld" ) );
+    QVBoxLayout *layout = new QVBoxLayout(this);
+    layout->addWidget(m_widget);
 
-    about->addAuthor( i18n( "Frank Osterfeld" ), QString(), QStringLiteral("osterfeld@kde.org") );
+    connect(ui.kcfg_ExternalBrowserUseCustomCommand, SIGNAL(toggled(bool)),
+            ui.kcfg_ExternalBrowserCustomCommand, SLOT(setEnabled(bool)));
+    KAboutData *about = new KAboutData(QLatin1String("kcmakrbrowserconfig"),
+                                       i18n("Configure Feed Reader Browser"),
+                                       QString(), QString(), KAboutLicense::GPL,
+                                       i18n("(c), 2004 - 2008 Frank Osterfeld"));
 
-    setAboutData( about );
-    addConfig( Settings::self(), m_widget );
+    about->addAuthor(i18n("Frank Osterfeld"), QString(), QStringLiteral("osterfeld@kde.org"));
+
+    setAboutData(about);
+    addConfig(Settings::self(), m_widget);
 }
 #include "akregator_config_browser.moc"
 

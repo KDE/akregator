@@ -26,23 +26,21 @@
 
 #include <qdebug.h>
 
-
 using namespace feedsync;
 
-ConfigurationDialogAdd::ConfigurationDialogAdd( QWidget *parent) : KDialog(parent)
+ConfigurationDialogAdd::ConfigurationDialogAdd(QWidget *parent) : KDialog(parent)
 {
     qDebug();
 
     // UI setup
-    QWidget *widget = new QWidget( parent );
+    QWidget *widget = new QWidget(parent);
     ui.setupUi(widget);
-    setMainWidget( widget );
+    setMainWidget(widget);
 
-    setWindowTitle( i18n("Modify Online Reader Account") );
-    ui.cb_AggregatorType->addItem( i18n("Google Reader") , QVariant("GoogleReader") );
+    setWindowTitle(i18n("Modify Online Reader Account"));
+    ui.cb_AggregatorType->addItem(i18n("Google Reader") , QVariant("GoogleReader"));
     /* TODO OPML not available for the first version
     ui.cb_AggregatorType->addItem( i18n("OPML file") , QVariant("Opml") ); */
-
 
     slotUpdateUI();
 
@@ -58,12 +56,14 @@ void ConfigurationDialogAdd::accept()
 {
     qDebug();
 
-    if (ui.cb_AggregatorType->itemData( ui.cb_AggregatorType->currentIndex() ) == "GoogleReader") {
+    if (ui.cb_AggregatorType->itemData(ui.cb_AggregatorType->currentIndex()) == "GoogleReader") {
 
-        if (ui.le_loginGoogleReader->text().isEmpty())
+        if (ui.le_loginGoogleReader->text().isEmpty()) {
             return;
-        if (ui.le_passwdGoogleReader->text().isEmpty())
+        }
+        if (ui.le_passwdGoogleReader->text().isEmpty()) {
             return;
+        }
         // Remove old
         if (!_baseconfigname.isEmpty()) {
             KConfig config("akregator_feedsyncrc");
@@ -71,16 +71,17 @@ void ConfigurationDialogAdd::accept()
         }
         // Insert new
         KConfig config("akregator_feedsyncrc");
-        KConfigGroup generalGroup( &config, "FeedSyncSource_GoogleReader" + ui.le_loginGoogleReader->text() );
-        generalGroup.writeEntry( "AggregatorType", ui.cb_AggregatorType->itemData( ui.cb_AggregatorType->currentIndex() ) );
-        generalGroup.writeEntry( "Login", ui.le_loginGoogleReader->text() );
-        generalGroup.writeEntry( "Password", ui.le_passwdGoogleReader->text() );
-        generalGroup.writeEntry( "Identifier", ui.le_loginGoogleReader->text() );
+        KConfigGroup generalGroup(&config, "FeedSyncSource_GoogleReader" + ui.le_loginGoogleReader->text());
+        generalGroup.writeEntry("AggregatorType", ui.cb_AggregatorType->itemData(ui.cb_AggregatorType->currentIndex()));
+        generalGroup.writeEntry("Login", ui.le_loginGoogleReader->text());
+        generalGroup.writeEntry("Password", ui.le_passwdGoogleReader->text());
+        generalGroup.writeEntry("Identifier", ui.le_loginGoogleReader->text());
         generalGroup.config()->sync();
-    } else if (ui.cb_AggregatorType->itemData( ui.cb_AggregatorType->currentIndex() ) == "Opml") {
+    } else if (ui.cb_AggregatorType->itemData(ui.cb_AggregatorType->currentIndex()) == "Opml") {
 
-        if (ui.filerequester->url().isEmpty() )
+        if (ui.filerequester->url().isEmpty()) {
             return;
+        }
         // Remove old
         if (!_baseconfigname.isEmpty()) {
             KConfig config("akregator_feedsyncrc");
@@ -89,30 +90,30 @@ void ConfigurationDialogAdd::accept()
         // Insert new
         KConfig config("akregator_feedsyncrc");
         const KUrl url = ui.filerequester->url();
-        KConfigGroup generalGroup( &config, "FeedSyncSource_Opml" + url.url() );
-        generalGroup.writeEntry( "AggregatorType", ui.cb_AggregatorType->itemData( ui.cb_AggregatorType->currentIndex() ) );
-        generalGroup.writeEntry( "Filename", url.url() );
-        generalGroup.writeEntry( "Identifier", url.url() );
+        KConfigGroup generalGroup(&config, "FeedSyncSource_Opml" + url.url());
+        generalGroup.writeEntry("AggregatorType", ui.cb_AggregatorType->itemData(ui.cb_AggregatorType->currentIndex()));
+        generalGroup.writeEntry("Filename", url.url());
+        generalGroup.writeEntry("Identifier", url.url());
         generalGroup.config()->sync();
     }
-    done( KDialog::Ok );
+    done(KDialog::Ok);
 }
 
-void ConfigurationDialogAdd::load( const KConfigGroup& group )
+void ConfigurationDialogAdd::load(const KConfigGroup &group)
 {
     qDebug();
     _baseconfigname = group.name();
 
-    ui.cb_AggregatorType->setCurrentIndex( ui.cb_AggregatorType->findData( group.readEntry( "AggregatorType", QString() ) ) );
+    ui.cb_AggregatorType->setCurrentIndex(ui.cb_AggregatorType->findData(group.readEntry("AggregatorType", QString())));
 
-    if ( group.readEntry( "AggregatorType", QString() ) == "GoogleReader") {
+    if (group.readEntry("AggregatorType", QString()) == "GoogleReader") {
 
-        ui.le_loginGoogleReader->setText( group.readEntry( "Login", QString() ) );
-        ui.le_passwdGoogleReader->setText( group.readEntry( "Password", QString() ) );
+        ui.le_loginGoogleReader->setText(group.readEntry("Login", QString()));
+        ui.le_passwdGoogleReader->setText(group.readEntry("Password", QString()));
 
-    } else if ( group.readEntry( "AggregatorType", QString() ) == "Opml") {
+    } else if (group.readEntry("AggregatorType", QString()) == "Opml") {
 
-        ui.filerequester->setUrl( group.readEntry( "Filename", QString() ) );
+        ui.filerequester->setUrl(group.readEntry("Filename", QString()));
 
     } else {
 
@@ -125,11 +126,11 @@ void ConfigurationDialogAdd::slotUpdateUI()
 {
     qDebug();
 
-    if (ui.cb_AggregatorType->itemData( ui.cb_AggregatorType->currentIndex() ) == "GoogleReader") {
+    if (ui.cb_AggregatorType->itemData(ui.cb_AggregatorType->currentIndex()) == "GoogleReader") {
         ui.groupOpml->hide();
         ui.groupGoogleReader->show();
 
-    } else if (ui.cb_AggregatorType->itemData( ui.cb_AggregatorType->currentIndex() ) == "Opml") {
+    } else if (ui.cb_AggregatorType->itemData(ui.cb_AggregatorType->currentIndex()) == "Opml") {
         ui.groupGoogleReader->hide();
         ui.groupOpml->show();
 

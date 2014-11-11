@@ -41,14 +41,15 @@
 #include <QPushButton>
 #include <QVBoxLayout>
 
-namespace Akregator {
+namespace Akregator
+{
 
-AddFeedWidget::AddFeedWidget(QWidget *parent, const char* name)
-   : QWidget(parent)
+AddFeedWidget::AddFeedWidget(QWidget *parent, const char *name)
+    : QWidget(parent)
 {
     setObjectName(name);
     setupUi(this);
-    pixmapLabel1->setPixmap(KIconLoader::global()->loadIcon( "applications-internet",KIconLoader::Desktop,KIconLoader::SizeHuge, KIconLoader::DefaultState, QStringList(), 0, true));
+    pixmapLabel1->setPixmap(KIconLoader::global()->loadIcon("applications-internet", KIconLoader::Desktop, KIconLoader::SizeHuge, KIconLoader::DefaultState, QStringList(), 0, true));
     statusLabel->setText(QString());
 }
 
@@ -63,19 +64,19 @@ QSize AddFeedDialog::sizeHint() const
     return sh;
 }
 
-Feed* AddFeedDialog::feed()
+Feed *AddFeedDialog::feed()
 {
     return m_feed;
 }
 
 AddFeedDialog::AddFeedDialog(QWidget *parent, const char *name)
-   : QDialog(parent
-     /*Qt::WStyle_DialogBorder*/), m_feed( 0 )
+    : QDialog(parent
+          /*Qt::WStyle_DialogBorder*/), m_feed(0)
 {
     setObjectName(name);
     widget = new AddFeedWidget(this);
     setWindowTitle(i18n("Add Feed"));
-    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok|QDialogButtonBox::Cancel);
+    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
     QVBoxLayout *mainLayout = new QVBoxLayout;
     setLayout(mainLayout);
     mainLayout->addWidget(widget);
@@ -95,7 +96,7 @@ AddFeedDialog::AddFeedDialog(QWidget *parent, const char *name)
 AddFeedDialog::~AddFeedDialog()
 {}
 
-void AddFeedDialog::setUrl(const QString& t)
+void AddFeedDialog::setUrl(const QString &t)
 {
     widget->urlEdit->setText(t);
 }
@@ -106,23 +107,25 @@ void AddFeedDialog::accept()
     feedUrl = widget->urlEdit->text().trimmed();
 
     delete m_feed;
-    m_feed = new Feed( Kernel::self()->storage() );
+    m_feed = new Feed(Kernel::self()->storage());
 
     // HACK: make weird wordpress links ("feed:http://foobar/rss") work
-    if (feedUrl.startsWith(QLatin1String("feed:http")))
-        feedUrl = feedUrl.right( feedUrl.length() - 5 );
+    if (feedUrl.startsWith(QLatin1String("feed:http"))) {
+        feedUrl = feedUrl.right(feedUrl.length() - 5);
+    }
 
-    if (feedUrl.indexOf(":/") == -1)
+    if (feedUrl.indexOf(":/") == -1) {
         feedUrl.prepend("http://");
+    }
 
-    KUrl asUrl( feedUrl );
-    if ( asUrl.scheme() == QLatin1String("feed") ) {
-        asUrl.setScheme( "http" );
+    KUrl asUrl(feedUrl);
+    if (asUrl.scheme() == QLatin1String("feed")) {
+        asUrl.setScheme("http");
         feedUrl = asUrl.url();
     }
     m_feed->setXmlUrl(feedUrl);
 
-    widget->statusLabel->setText( i18n("Downloading %1", feedUrl) );
+    widget->statusLabel->setText(i18n("Downloading %1", feedUrl));
 
     connect(m_feed, &Feed::fetched, this, &AddFeedDialog::fetchCompleted);
     connect(m_feed, &Feed::fetchError, this, &AddFeedDialog::fetchError);
@@ -144,11 +147,11 @@ void AddFeedDialog::fetchError(Feed *)
 
 void AddFeedDialog::fetchDiscovery(Feed *f)
 {
-    widget->statusLabel->setText( i18n("Feed found, downloading...") );
-    feedUrl=f->xmlUrl();
+    widget->statusLabel->setText(i18n("Feed found, downloading..."));
+    feedUrl = f->xmlUrl();
 }
 
-void AddFeedDialog::textChanged(const QString& text)
+void AddFeedDialog::textChanged(const QString &text)
 {
     mOkButton->setEnabled(!text.isEmpty());
 }

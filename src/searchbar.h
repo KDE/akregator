@@ -37,45 +37,45 @@ namespace Akregator
 
 namespace Filters
 {
-    class AbstractMatcher;
+class AbstractMatcher;
 }
 
 class SearchBar : public QWidget
 {
     Q_OBJECT
 
-    public:
+public:
 
-        explicit SearchBar(QWidget* parent=0);
-        ~SearchBar();
+    explicit SearchBar(QWidget *parent = 0);
+    ~SearchBar();
 
-        QString text() const;
-        int status() const;
+    QString text() const;
+    int status() const;
 
-        void setDelay(int ms);
-        int delay() const;
+    void setDelay(int ms);
+    int delay() const;
 
-        std::vector<boost::shared_ptr<const Filters::AbstractMatcher> > matchers() const;
+    std::vector<boost::shared_ptr<const Filters::AbstractMatcher> > matchers() const;
 
-    signals:
-        /** emitted when the text and status filters were updated. Params are textfilter, statusfilter */
-        void signalSearch( const std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> > & );
+signals:
+    /** emitted when the text and status filters were updated. Params are textfilter, statusfilter */
+    void signalSearch(const std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> > &);
 
-    public slots:
-        void slotClearSearch();
-        void slotSetStatus(int status);
-        void slotSetText(const QString& text);
+public slots:
+    void slotClearSearch();
+    void slotSetStatus(int status);
+    void slotSetText(const QString &text);
 
-    private slots:
+private slots:
 
-        void slotSearchStringChanged(const QString& search);
-        void slotSearchComboChanged(int index);
-        void slotActivateSearch();
+    void slotSearchStringChanged(const QString &search);
+    void slotSearchComboChanged(int index);
+    void slotActivateSearch();
 
-    private:
+private:
 
-        class SearchBarPrivate;
-        SearchBarPrivate* d;
+    class SearchBarPrivate;
+    SearchBarPrivate *d;
 };
 
 } // namespace Akregator

@@ -36,27 +36,27 @@ using namespace Akregator;
 
 K_PLUGIN_FACTORY(KCMAkregatorGeneralConfigFactory, registerPlugin<KCMAkregatorGeneralConfig>();)
 
-KCMAkregatorGeneralConfig::KCMAkregatorGeneralConfig( QWidget* parent, const QVariantList& args )
-    : KCModule( parent, args ), m_widget( new QWidget )
-{  
+KCMAkregatorGeneralConfig::KCMAkregatorGeneralConfig(QWidget *parent, const QVariantList &args)
+    : KCModule(parent, args), m_widget(new QWidget)
+{
     Ui::SettingsGeneral ui;
-    ui.setupUi( m_widget );
+    ui.setupUi(m_widget);
 
-    QVBoxLayout* layout = new QVBoxLayout( this );
-    layout->addWidget( m_widget );
+    QVBoxLayout *layout = new QVBoxLayout(this);
+    layout->addWidget(m_widget);
 
     ui.kcfg_AutoFetchInterval->setSuffix(ki18np(" minute", " minutes"));
-    
-    connect( ui.kcfg_UseIntervalFetch, SIGNAL(toggled(bool)),ui.kcfg_AutoFetchInterval, SLOT(setEnabled(bool)) );
-    connect( ui.kcfg_UseIntervalFetch, SIGNAL(toggled(bool)),ui.autoFetchIntervalLabel, SLOT(setEnabled(bool)) );
-    KAboutData *about = new KAboutData( QLatin1String( "kcmakrgeneralconfig" ),
-                                        i18n( "Configure Feeds" ),
-                                        QString(), QString(), KAboutLicense::GPL,
-                                        i18n( "(c), 2004 - 2008 Frank Osterfeld" ) );
 
-    about->addAuthor( i18n( "Frank Osterfeld" ), QString(), QStringLiteral("osterfeld@kde.org") );
+    connect(ui.kcfg_UseIntervalFetch, SIGNAL(toggled(bool)), ui.kcfg_AutoFetchInterval, SLOT(setEnabled(bool)));
+    connect(ui.kcfg_UseIntervalFetch, SIGNAL(toggled(bool)), ui.autoFetchIntervalLabel, SLOT(setEnabled(bool)));
+    KAboutData *about = new KAboutData(QLatin1String("kcmakrgeneralconfig"),
+                                       i18n("Configure Feeds"),
+                                       QString(), QString(), KAboutLicense::GPL,
+                                       i18n("(c), 2004 - 2008 Frank Osterfeld"));
 
-    setAboutData( about );
-    addConfig( Settings::self(), m_widget );
+    about->addAuthor(i18n("Frank Osterfeld"), QString(), QStringLiteral("osterfeld@kde.org"));
+
+    setAboutData(about);
+    addConfig(Settings::self(), m_widget);
 }
 #include "akregator_config_general.moc"

@@ -28,20 +28,21 @@
 #include <QVariant>
 
 class QWidget;
-namespace feedsync {
-    class ConfigurationWidget;
+namespace feedsync
+{
+class ConfigurationWidget;
 }
 
 class KCMAkregatorOnlineSyncConfig : public KCModule
 {
-  Q_OBJECT
+    Q_OBJECT
 
-  public:
-    KCMAkregatorOnlineSyncConfig( QWidget* parent, const QVariantList &args );
+public:
+    KCMAkregatorOnlineSyncConfig(QWidget *parent, const QVariantList &args);
     ~KCMAkregatorOnlineSyncConfig();
 
-  private:
-    feedsync::ConfigurationWidget* m_widget;
+private:
+    feedsync::ConfigurationWidget *m_widget;
 
 };
 

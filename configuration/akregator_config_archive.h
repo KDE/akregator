@@ -34,20 +34,20 @@ class QButtonGroup;
 
 class KCMAkregatorArchiveConfig : public KCModule
 {
-  Q_OBJECT
+    Q_OBJECT
 
-  public:
-    KCMAkregatorArchiveConfig( QWidget *parent, const QVariantList &args );
+public:
+    KCMAkregatorArchiveConfig(QWidget *parent, const QVariantList &args);
 
-    void setArchiveMode( int mode );
+    void setArchiveMode(int mode);
     int archiveMode() const;
 
     /*reimp*/ void load();
     /*reimp*/ void save();
 
-  private:
-      QWidget* m_widget;
-      QButtonGroup* m_archiveModeGroup;
+private:
+    QWidget *m_widget;
+    QButtonGroup *m_archiveModeGroup;
 };
 
 #endif // AKREGATOR_CONFIG_ARCHIVE_H

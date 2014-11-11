@@ -35,29 +35,30 @@
 
 #include <cassert>
 
-namespace Akregator {
+namespace Akregator
+{
 
 class TreeNode::TreeNodePrivate
 {
-    public:
+public:
     TreeNodePrivate();
     bool doNotify;
     bool nodeChangeOccurred;
     bool articleChangeOccurred;
     QString title;
-    Folder* parent;
+    Folder *parent;
     uint id;
     bool signalDestroyedEmitted;
     QPoint scrollBarPositions;
 };
 
-TreeNode::TreeNodePrivate::TreeNodePrivate() : doNotify( true ),
-                                               nodeChangeOccurred( false ),
-                                               articleChangeOccurred( false ),
-                                               title(),
-                                               parent( 0 ),
-                                               id ( 0 ),
-                                               signalDestroyedEmitted( false )
+TreeNode::TreeNodePrivate::TreeNodePrivate() : doNotify(true),
+    nodeChangeOccurred(false),
+    articleChangeOccurred(false),
+    title(),
+    parent(0),
+    id(0),
+    signalDestroyedEmitted(false)
 {
 }
 
@@ -68,10 +69,10 @@ TreeNode::TreeNode()
 
 void TreeNode::emitSignalDestroyed()
 {
-    if (!d->signalDestroyedEmitted)
-    {
-        if ( parent() )
-            parent()->removeChild( this );
+    if (!d->signalDestroyedEmitted) {
+        if (parent()) {
+            parent()->removeChild(this);
+        }
         emit signalDestroyed(this);
         d->signalDestroyedEmitted = true;
     }
@@ -79,7 +80,7 @@ void TreeNode::emitSignalDestroyed()
 
 TreeNode::~TreeNode()
 {
-    assert( d->signalDestroyedEmitted || !"TreeNode subclasses must call emitSignalDestroyed in their destructor" );
+    assert(d->signalDestroyedEmitted || !"TreeNode subclasses must call emitSignalDestroyed in their destructor");
     delete d;
     d = 0;
 }
@@ -89,106 +90,108 @@ QString TreeNode::title() const
     return d->title;
 }
 
-void TreeNode::setTitle(const QString& title)
+void TreeNode::setTitle(const QString &title)
 {
 
-    if (d->title != title)
-    {
+    if (d->title != title) {
         d->title = title;
         nodeModified();
     }
 }
 
-TreeNode* TreeNode::nextSibling()
+TreeNode *TreeNode::nextSibling()
 {
-    if (!d->parent)
+    if (!d->parent) {
         return 0;
-    const QList<TreeNode*> children = parent()->children();
-    const int idx = children.indexOf( this );
+    }
+    const QList<TreeNode *> children = parent()->children();
+    const int idx = children.indexOf(this);
 
-    return (idx+1 < children.size()) ? children.at(idx+1) : 0L;
+    return (idx + 1 < children.size()) ? children.at(idx + 1) : 0L;
 }
 
-const TreeNode* TreeNode::nextSibling() const
+const TreeNode *TreeNode::nextSibling() const
 {
-    if (!d->parent)
+    if (!d->parent) {
         return 0;
-    const QList<const TreeNode*> children = parent()->children();
-    const int idx = children.indexOf( this );
+    }
+    const QList<const TreeNode *> children = parent()->children();
+    const int idx = children.indexOf(this);
 
-    return (idx+1 < children.size()) ? children.at(idx+1) : 0L;
+    return (idx + 1 < children.size()) ? children.at(idx + 1) : 0L;
 }
 
-TreeNode* TreeNode::prevSibling()
+TreeNode *TreeNode::prevSibling()
 {
-    if (!d->parent)
+    if (!d->parent) {
         return 0;
-    const QList<TreeNode*> children = parent()->children();
+    }
+    const QList<TreeNode *> children = parent()->children();
 
-    const int idx = children.indexOf( this );
-    return (idx > 0) ? children.at(idx-1) : 0L;
+    const int idx = children.indexOf(this);
+    return (idx > 0) ? children.at(idx - 1) : 0L;
 }
 
-const TreeNode* TreeNode::prevSibling() const
+const TreeNode *TreeNode::prevSibling() const
 {
-    if (!d->parent)
+    if (!d->parent) {
         return 0;
-    const QList<const TreeNode*> children = parent()->children();
-    const int idx = children.indexOf( this );
-    return (idx > 0) ? children.at(idx-1) : 0L;
+    }
+    const QList<const TreeNode *> children = parent()->children();
+    const int idx = children.indexOf(this);
+    return (idx > 0) ? children.at(idx - 1) : 0L;
 }
 
-const Folder* TreeNode::parent() const
+const Folder *TreeNode::parent() const
 {
     return d->parent;
 }
 
-Folder* TreeNode::parent()
+Folder *TreeNode::parent()
 {
     return d->parent;
 }
 
-QList<const TreeNode*> TreeNode::children() const
+QList<const TreeNode *> TreeNode::children() const
 {
-    return QList<const TreeNode*>();
+    return QList<const TreeNode *>();
 }
 
-QList<TreeNode*> TreeNode::children()
+QList<TreeNode *> TreeNode::children()
 {
-    return QList<TreeNode*>();
+    return QList<TreeNode *>();
 }
 
-const TreeNode* TreeNode::childAt( int pos ) const
+const TreeNode *TreeNode::childAt(int pos) const
 {
-    Q_UNUSED( pos )
+    Q_UNUSED(pos)
     return 0;
 }
 
-TreeNode* TreeNode::childAt( int pos )
+TreeNode *TreeNode::childAt(int pos)
 {
-    Q_UNUSED( pos )
+    Q_UNUSED(pos)
     return 0;
 }
 
-void TreeNode::setParent(Folder* parent)
+void TreeNode::setParent(Folder *parent)
 {
     d->parent = parent;
 }
 
-void TreeNode::setNotificationMode( bool doNotify )
+void TreeNode::setNotificationMode(bool doNotify)
 {
-    if ( doNotify && !d->doNotify ) // turned on
-    {
+    if (doNotify && !d->doNotify) { // turned on
         d->doNotify = true;
-        if ( d->nodeChangeOccurred )
-            emit signalChanged( this );
-        if ( d->articleChangeOccurred )
+        if (d->nodeChangeOccurred) {
+            emit signalChanged(this);
+        }
+        if (d->articleChangeOccurred) {
             doArticleNotification();
+        }
         d->nodeChangeOccurred = false;
         d->articleChangeOccurred = false;
-    }
-    else if ( !doNotify && d->doNotify ) //turned off
-    {
+    } else if (!doNotify && d->doNotify) { //turned off
         d->nodeChangeOccurred = false;
         d->articleChangeOccurred = false;
         d->doNotify = false;
@@ -207,18 +210,20 @@ void TreeNode::setId(uint id)
 
 void TreeNode::nodeModified()
 {
-    if (d->doNotify)
+    if (d->doNotify) {
         emit signalChanged(this);
-    else
+    } else {
         d->nodeChangeOccurred = true;
+    }
 }
 
 void TreeNode::articlesModified()
 {
-    if (d->doNotify)
+    if (d->doNotify) {
         doArticleNotification();
-    else
+    } else {
         d->articleChangeOccurred = true;
+    }
 }
 
 void TreeNode::doArticleNotification()
@@ -230,13 +235,14 @@ QPoint TreeNode::listViewScrollBarPositions() const
     return d->scrollBarPositions;
 }
 
-void TreeNode::setListViewScrollBarPositions( const QPoint& pos )
+void TreeNode::setListViewScrollBarPositions(const QPoint &pos)
 {
     d->scrollBarPositions = pos;
 }
 
-ArticleListJob* TreeNode::createListJob() {
-    return new ArticleListJob( this );
+ArticleListJob *TreeNode::createListJob()
+{
+    return new ArticleListJob(this);
 }
 
 } // namespace Akregator

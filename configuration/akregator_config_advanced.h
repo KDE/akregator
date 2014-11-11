@@ -28,22 +28,23 @@
 
 #include <QVariant>
 
-namespace Akregator {
-    class SettingsAdvanced;
+namespace Akregator
+{
+class SettingsAdvanced;
 }
 
 class KCMAkregatorAdvancedConfig : public KCModule
 {
     Q_OBJECT
 
-    public:
-      KCMAkregatorAdvancedConfig( QWidget *parent, const QVariantList &args );
+public:
+    KCMAkregatorAdvancedConfig(QWidget *parent, const QVariantList &args);
 
-      /*reimpl*/ void load();
-      /*reimpl*/ void save();
-      
-    private:
-        Akregator::SettingsAdvanced* m_widget;
+    /*reimpl*/ void load();
+    /*reimpl*/ void save();
+
+private:
+    Akregator::SettingsAdvanced *m_widget;
 };
 
 #endif

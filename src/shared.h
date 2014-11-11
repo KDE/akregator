@@ -13,13 +13,18 @@
 
 namespace Akregator
 {
-        struct Shared
-        {
-                Shared() : count(1) { }
-                void ref() { count++; }
-                bool deref() { return !--count; }
-                unsigned int count;
-        };
+struct Shared {
+    Shared() : count(1) { }
+    void ref()
+    {
+        count++;
+    }
+    bool deref()
+    {
+        return !--count;
+    }
+    unsigned int count;
+};
 
 }
 

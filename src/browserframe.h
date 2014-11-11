@@ -40,82 +40,83 @@ class KUrl;
 
 namespace KParts
 {
-    class OpenUrlArguments;
-    class ReadOnlyPart;
+class OpenUrlArguments;
+class ReadOnlyPart;
 }
 
-namespace Akregator {
+namespace Akregator
+{
 
 class AKREGATOR_EXPORT BrowserFrame : public Frame, public virtual FaviconListener
 {
     Q_OBJECT
 
-    public:
+public:
 
-        explicit BrowserFrame(QWidget* parent=0);
-        ~BrowserFrame();
+    explicit BrowserFrame(QWidget *parent = 0);
+    ~BrowserFrame();
 
-        KUrl url() const;
+    KUrl url() const;
 
-        KParts::ReadOnlyPart* part() const;
+    KParts::ReadOnlyPart *part() const;
 
-        bool canGoForward() const;
-        bool canGoBack() const;
-        bool isReloadable() const;
-        bool isLoading() const;
+    bool canGoForward() const;
+    bool canGoBack() const;
+    bool isReloadable() const;
+    bool isLoading() const;
 
-        bool openUrl(const OpenUrlRequest& request);
+    bool openUrl(const OpenUrlRequest &request);
 
-        /* reimp */ void setFavicon( const QIcon& icon );
+    /* reimp */ void setFavicon(const QIcon &icon);
 
-        void loadConfig( const KConfigGroup& config, const QString& prefix);
-        void saveConfig( KConfigGroup& config, const QString& prefix);
+    void loadConfig(const KConfigGroup &config, const QString &prefix);
+    void saveConfig(KConfigGroup &config, const QString &prefix);
 
-        bool hasZoom() const;
-        int  getZoomFactor() const;
-        void setZoomFactor(int);
-    public slots:
+    bool hasZoom() const;
+    int  getZoomFactor() const;
+    void setZoomFactor(int);
+public slots:
 
-        void slotHistoryForward();
-        void slotHistoryBack();
-        void slotReload();
-        void slotStop();
-        void slotHistoryBackAboutToShow();
-        void slotHistoryForwardAboutToShow();
+    void slotHistoryForward();
+    void slotHistoryBack();
+    void slotReload();
+    void slotStop();
+    void slotHistoryBackAboutToShow();
+    void slotHistoryForwardAboutToShow();
 
-        void slotPaletteOrFontChanged();
-        void slotOpenLinkInBrowser();
-        void slotOpenLinkInNewTab();
-        void slotZoomIn(int);
-        void slotZoomOut(int);
+    void slotPaletteOrFontChanged();
+    void slotOpenLinkInBrowser();
+    void slotOpenLinkInNewTab();
+    void slotZoomIn(int);
+    void slotZoomOut(int);
 
-    private slots:
+private slots:
 
-        void slotOpenUrlRequestDelayed(const QUrl&, const KParts::OpenUrlArguments&, const KParts::BrowserArguments&);
-        void slotCreateNewWindow(const QUrl& url,
-                                 const KParts::OpenUrlArguments& args,
-                                 const KParts::BrowserArguments& browserArgs,
-                                 const KParts::WindowArgs& windowArgs,
-                                 KParts::ReadOnlyPart** part);
-        void slotOpenUrlNotify();
-        void slotSetLocationBarUrl(const QString& url);
-        void slotSetIconUrl(const QUrl& url);
-        void slotSpeedProgress(int);
+    void slotOpenUrlRequestDelayed(const QUrl &, const KParts::OpenUrlArguments &, const KParts::BrowserArguments &);
+    void slotCreateNewWindow(const QUrl &url,
+                             const KParts::OpenUrlArguments &args,
+                             const KParts::BrowserArguments &browserArgs,
+                             const KParts::WindowArgs &windowArgs,
+                             KParts::ReadOnlyPart **part);
+    void slotOpenUrlNotify();
+    void slotSetLocationBarUrl(const QString &url);
+    void slotSetIconUrl(const QUrl &url);
+    void slotSpeedProgress(int);
 
-        void slotPopupMenu(const QPoint& global,
-                           const QUrl& url,
-                           mode_t mode,
-                           const KParts::OpenUrlArguments& args,
-                           const KParts::BrowserArguments& browserArgs,
-                           KParts::BrowserExtension::PopupFlags flags,
-                           const KParts::BrowserExtension::ActionGroupMap& actionGroups );
+    void slotPopupMenu(const QPoint &global,
+                       const QUrl &url,
+                       mode_t mode,
+                       const KParts::OpenUrlArguments &args,
+                       const KParts::BrowserArguments &browserArgs,
+                       KParts::BrowserExtension::PopupFlags flags,
+                       const KParts::BrowserExtension::ActionGroupMap &actionGroups);
 
-    signals:
-        void signalPartDestroyed(int id);
+signals:
+    void signalPartDestroyed(int id);
 
-    private:
-        class Private;
-        Private* const d;
+private:
+    class Private;
+    Private *const d;
 };
 
 } // namespace Akregator

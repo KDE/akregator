@@ -28,7 +28,8 @@
 #include "akregator_export.h"
 #include <k4aboutdata.h>
 
-namespace Akregator {
+namespace Akregator
+{
 /**
 @author Teemu Rytilahti
 */

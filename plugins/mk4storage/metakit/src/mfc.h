@@ -9,9 +9,9 @@
 
 #if q4_WIN && !q4_WIN32
 #include <afxwin.h>
-#else 
+#else
 #include <afxcoll.h>
-#endif 
+#endif
 
 #undef d4_assert
 #define d4_assert ASSERT

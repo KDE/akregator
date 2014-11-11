@@ -29,7 +29,8 @@
 
 #include <boost/shared_ptr.hpp>
 
-namespace Akregator {
+namespace Akregator
+{
 
 class FeedList;
 class SubscriptionListView;
@@ -38,16 +39,15 @@ class EditSubscriptionCommand : public Command
 {
     Q_OBJECT
 public:
-    explicit EditSubscriptionCommand( QObject* parent = 0 );
+    explicit EditSubscriptionCommand(QObject *parent = 0);
     ~EditSubscriptionCommand();
 
-    void setSubscription( const boost::shared_ptr<FeedList>& feedList, int subId );
+    void setSubscription(const boost::shared_ptr<FeedList> &feedList, int subId);
     int subscriptionId() const;
     boost::shared_ptr<FeedList> feedList() const;
 
-    SubscriptionListView* subscriptionListView() const;
-    void setSubscriptionListView( SubscriptionListView* view );
-
+    SubscriptionListView *subscriptionListView() const;
+    void setSubscriptionListView(SubscriptionListView *view);
 
 private:
     void doStart();
@@ -55,8 +55,8 @@ private:
 
 private:
     class Private;
-    Private* const d;
-    Q_PRIVATE_SLOT( d, void startEdit() )
+    Private *const d;
+    Q_PRIVATE_SLOT(d, void startEdit())
 };
 
 }

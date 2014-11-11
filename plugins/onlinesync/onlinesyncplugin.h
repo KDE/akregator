@@ -33,49 +33,52 @@
 
 class KActionMenu;
 
-namespace feedsync {
-    class FeedSync;
+namespace feedsync
+{
+class FeedSync;
 }
 
-namespace Akregator {
+namespace Akregator
+{
 
 class OnlineSyncPlugin;
 
-class OnlineSyncPluginIface : public Plugin {
+class OnlineSyncPluginIface : public Plugin
+{
     Q_OBJECT
 public:
-    explicit OnlineSyncPluginIface( QObject* parent=0, const QList<QVariant>& args=QList<QVariant>() );    
+    explicit OnlineSyncPluginIface(QObject *parent = 0, const QList<QVariant> &args = QList<QVariant>());
     ~OnlineSyncPluginIface();
 
-    /* reimp */ void insertGuiClients( KXMLGUIClient* parent );
-    /* reimp */ void removeGuiClients( KXMLGUIClient* parent );
+    /* reimp */ void insertGuiClients(KXMLGUIClient *parent);
+    /* reimp */ void removeGuiClients(KXMLGUIClient *parent);
 
     /* reimp */ void doInitialize() {}
 private:
     QPointer<OnlineSyncPlugin> m_impl;
 };
-        
+
 class OnlineSyncPlugin : public KParts::Plugin
 {
     Q_OBJECT
 
-  public:
-    explicit OnlineSyncPlugin( QObject* parent=0, const QList<QVariant>& args=QList<QVariant>() );
-    ~OnlineSyncPlugin(); 
+public:
+    explicit OnlineSyncPlugin(QObject *parent = 0, const QList<QVariant> &args = QList<QVariant>());
+    ~OnlineSyncPlugin();
 
-  private:
+private:
     void updateActions();
 
-  private Q_SLOTS:
+private Q_SLOTS:
     void doSynchronize();
     /** open the feed synchronization management */
     void slotFeedSyncManage();
     void slotFeedSyncManageDone();
 
 private:
-    feedsync::FeedSync* m_syncTool;
-    KActionMenu* m_feedSyncMenu;
-    QList<KAction*> m_feedSyncActions;
+    feedsync::FeedSync *m_syncTool;
+    KActionMenu *m_feedSyncMenu;
+    QList<KAction *> m_feedSyncActions;
 };
 
 } // namespace Akregator

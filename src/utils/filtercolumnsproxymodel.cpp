@@ -2,7 +2,7 @@
     This file is part of Akregator.
 
     Copyright (C) 2008 Frank Osterfeld <osterfeld@kde.org>
-    
+
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 2 of the License, or
@@ -28,41 +28,38 @@
 
 using namespace Akregator;
 
-FilterColumnsProxyModel::FilterColumnsProxyModel( QObject* parent )
-    : QSortFilterProxyModel( parent ), m_vecSize( 0 ), m_mode( Whitelist )
+FilterColumnsProxyModel::FilterColumnsProxyModel(QObject *parent)
+    : QSortFilterProxyModel(parent), m_vecSize(0), m_mode(Whitelist)
 {
-    
+
 }
 
-bool FilterColumnsProxyModel::filterAcceptsColumn( int source_column, const QModelIndex& ) const
+bool FilterColumnsProxyModel::filterAcceptsColumn(int source_column, const QModelIndex &) const
 {
     return source_column >= m_vecSize ? m_mode == Blacklist : m_columnStates[source_column];
 }
 
-void FilterColumnsProxyModel::setColumnEnabled( int col, bool enabled )
+void FilterColumnsProxyModel::setColumnEnabled(int col, bool enabled)
 {
-    if ( col >= m_columnStates.count() )
-    {
-        m_columnStates.resize( col + 1 );
+    if (col >= m_columnStates.count()) {
+        m_columnStates.resize(col + 1);
         m_vecSize = col + 1;
     }
     m_columnStates[col] = enabled;
 }
 
-
-bool FilterColumnsProxyModel::isColumnEnabled( int col ) const
+bool FilterColumnsProxyModel::isColumnEnabled(int col) const
 {
-    assert( col >= 0 );
+    assert(col >= 0);
     return col < m_columnStates.count() ? m_columnStates[col] : m_mode == Blacklist;
 }
-
 
 FilterColumnsProxyModel::Mode FilterColumnsProxyModel::mode() const
 {
     return m_mode;
 }
 
-void FilterColumnsProxyModel::setMode( Mode mode )
+void FilterColumnsProxyModel::setMode(Mode mode)
 {
     m_mode = mode;
 }

@@ -35,22 +35,23 @@
 
 #include <cassert>
 
-namespace Akregator {
+namespace Akregator
+{
 
-SettingsAdvanced::SettingsAdvanced(QWidget* parent, const char* name) : QWidget(parent)
+SettingsAdvanced::SettingsAdvanced(QWidget *parent, const char *name) : QWidget(parent)
 {
     setObjectName(QLatin1String(name));
     setupUi(this);
 
     const QStringList backends = Backend::StorageFactoryRegistry::self()->list();
-    Q_FOREACH( const QString& i, backends)
-    {
-        Backend::StorageFactory* const factory = Backend::StorageFactoryRegistry::self()->getFactory( i );
-        if ( !factory )
+    Q_FOREACH (const QString &i, backends) {
+        Backend::StorageFactory *const factory = Backend::StorageFactoryRegistry::self()->getFactory(i);
+        if (!factory) {
             continue;
+        }
 
-        m_factories.insert( factory->key(), factory );
-        cbBackend->addItem( factory->name(), factory->key() );
+        m_factories.insert(factory->key(), factory);
+        cbBackend->addItem(factory->name(), factory->key());
     }
 
     connect(pbBackendConfigure, &QPushButton::clicked, this, &SettingsAdvanced::slotConfigureStorage);
@@ -62,36 +63,37 @@ SettingsAdvanced::SettingsAdvanced(QWidget* parent, const char* name) : QWidget(
 
 QString SettingsAdvanced::selectedFactory() const
 {
-    return cbBackend->itemData( cbBackend->currentIndex() ).toString();
+    return cbBackend->itemData(cbBackend->currentIndex()).toString();
 }
 
-void SettingsAdvanced::selectFactory( const QString& key )
+void SettingsAdvanced::selectFactory(const QString &key)
 {
-    const int idx = cbBackend->findData( key );
-    if ( idx < 0 )
+    const int idx = cbBackend->findData(key);
+    if (idx < 0) {
         return;
-    cbBackend->setCurrentIndex( idx );
-    const Backend::StorageFactory* const factory = m_factories.value( key );
-    assert( factory );
-    pbBackendConfigure->setEnabled( factory->isConfigurable() );
+    }
+    cbBackend->setCurrentIndex(idx);
+    const Backend::StorageFactory *const factory = m_factories.value(key);
+    assert(factory);
+    pbBackendConfigure->setEnabled(factory->isConfigurable());
 }
 
 void SettingsAdvanced::slotConfigureStorage()
 {
-    const QString key = cbBackend->itemData( cbBackend->currentIndex() ).toString();
-    if( !key.isEmpty() ) {
-        Backend::StorageFactory* const factory = m_factories.value( key );
-        assert( factory );
+    const QString key = cbBackend->itemData(cbBackend->currentIndex()).toString();
+    if (!key.isEmpty()) {
+        Backend::StorageFactory *const factory = m_factories.value(key);
+        assert(factory);
         factory->configure();
     }
 }
 
-void SettingsAdvanced::slotFactorySelected( int pos )
+void SettingsAdvanced::slotFactorySelected(int pos)
 {
-    const QString key = cbBackend->itemData( pos ).toString();
-    const Backend::StorageFactory* const factory = m_factories.value( key );
-    assert( factory );
-    pbBackendConfigure->setEnabled( factory->isConfigurable() );
+    const QString key = cbBackend->itemData(pos).toString();
+    const Backend::StorageFactory *const factory = m_factories.value(key);
+    assert(factory);
+    pbBackendConfigure->setEnabled(factory->isConfigurable());
 }
 
 } //namespace Akregator

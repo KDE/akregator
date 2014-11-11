@@ -33,11 +33,10 @@
 #include <Plasma/DataEngineManager>
 #include <Plasma/ServiceJob>
 
-
 K_PLUGIN_FACTORY(SharePluginFactory, registerPlugin<SharePluginIface>();)
 
-SharePluginIface::SharePluginIface( QObject* parent, const QVariantList& args )
-: Plugin( parent, args ), m_impl( new SharePlugin( parent, args ) )
+SharePluginIface::SharePluginIface(QObject *parent, const QVariantList &args)
+    : Plugin(parent, args), m_impl(new SharePlugin(parent, args))
 {
 }
 
@@ -51,22 +50,22 @@ void SharePluginIface::doInitialize()
     connect(parent(), SIGNAL(signalArticlesSelected(QList<Akregator::Article>)), m_impl, SLOT(articlesSelected(QList<Akregator::Article>)));
 }
 
-void SharePluginIface::insertGuiClients( KXMLGUIClient* parent )
+void SharePluginIface::insertGuiClients(KXMLGUIClient *parent)
 {
-    parent->insertChildClient( m_impl );
+    parent->insertChildClient(m_impl);
 }
 
-void SharePluginIface::removeGuiClients( KXMLGUIClient* parent )
+void SharePluginIface::removeGuiClients(KXMLGUIClient *parent)
 {
-    parent->removeChildClient( m_impl );
+    parent->removeChildClient(m_impl);
 }
 
-SharePlugin::SharePlugin( QObject* parent, const QVariantList& args )
-    : KParts::Plugin( parent ), m_shareMenu(0), m_sharePopupMenu(0),
+SharePlugin::SharePlugin(QObject *parent, const QVariantList &args)
+    : KParts::Plugin(parent), m_shareMenu(0), m_sharePopupMenu(0),
       m_username(QString()), m_service(0)
 {
     Q_UNUSED(args);
-    setComponentData( SharePluginFactory::componentData() );
+    setComponentData(SharePluginFactory::componentData());
 
     // Share feature provided by Plasma
     m_engine = Plasma::DataEngineManager::self()->loadEngine(QLatin1String("microblog"));
@@ -78,16 +77,16 @@ SharePlugin::SharePlugin( QObject* parent, const QVariantList& args )
     refreshConfig();
 
     // configure the ui with the actions
-    setXMLFile( QLatin1String("akregator_sharemicroblog_plugin.rc"), /*merge=*/ true );
-    KActionCollection* coll = actionCollection();
+    setXMLFile(QLatin1String("akregator_sharemicroblog_plugin.rc"), /*merge=*/ true);
+    KActionCollection *coll = actionCollection();
     m_shareMenu = coll->add<KActionMenu>(QLatin1String("article_share"));
-    m_shareMenu->setText( i18n( "Share Article" ) );
+    m_shareMenu->setText(i18n("Share Article"));
     m_shareMenu->setShortcut(QKeySequence(QLatin1String("Ctrl+S")));
     m_shareMenu->setEnabled(false);
     connect(m_shareMenu, &KActionMenu::triggered, this, &SharePlugin::shareArticles);
 
     m_sharePopupMenu = coll->add<KActionMenu>(QLatin1String("article_share_popup"));
-    m_sharePopupMenu->setText( i18n( "Share Article" ) );
+    m_sharePopupMenu->setText(i18n("Share Article"));
     m_sharePopupMenu->setEnabled(false);
     connect(m_sharePopupMenu, &KActionMenu::triggered, this, &SharePlugin::shareArticles);
 }
@@ -126,8 +125,12 @@ void SharePlugin::refreshConfig()
 void SharePlugin::articlesSelected(const QList<Akregator::Article> &articles)
 {
     m_articles = articles;
-    if (m_shareMenu) m_shareMenu->setEnabled(true);
-    if (m_sharePopupMenu) m_sharePopupMenu->setEnabled(true);
+    if (m_shareMenu) {
+        m_shareMenu->setEnabled(true);
+    }
+    if (m_sharePopupMenu) {
+        m_sharePopupMenu->setEnabled(true);
+    }
 }
 
 void SharePlugin::shareArticles()
@@ -146,9 +149,9 @@ void SharePlugin::shareArticles()
 
     // setup the service and create the status message
     KConfigGroup cg = m_service->operationDescription(QLatin1String("update"));
-    foreach(const Akregator::Article& article, m_articles) {
+    foreach (const Akregator::Article &article, m_articles) {
         QString status = QString::fromLatin1("%1 - %2 #share").arg(article.title(),
-                                                       article.link().prettyUrl());
+                         article.link().prettyUrl());
         cg.writeEntry("status", status);
         m_service->startOperationCall(cg);
     }
@@ -169,5 +172,4 @@ void SharePlugin::dataUpdated(const QString &source, const Plasma::DataEngine::D
     Q_UNUSED(source);
     Q_UNUSED(data);
 }
-
 

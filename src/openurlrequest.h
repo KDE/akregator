@@ -41,68 +41,67 @@ class Frame;
 
 class AKREGATOR_EXPORT OpenUrlRequest
 {
-    public:
+public:
 
-        /**
-         * Akregator-specific options specifying how a link should be handled.
-         * TODO: check what can be done by overriding KURLArgs flags.
-         */
-        enum Options
-        {
-            None=0, /**< no explicit options, use default */
-            NewTab, /**< open in new tab */
-            ExternalBrowser /**< open in external browser */
-        };
+    /**
+     * Akregator-specific options specifying how a link should be handled.
+     * TODO: check what can be done by overriding KURLArgs flags.
+     */
+    enum Options {
+        None = 0, /**< no explicit options, use default */
+        NewTab, /**< open in new tab */
+        ExternalBrowser /**< open in external browser */
+    };
 
-        explicit OpenUrlRequest(const KUrl& url=KUrl());
+    explicit OpenUrlRequest(const KUrl &url = KUrl());
 
-        /**
-         * the Id of the frame that sent the request */
-        int frameId() const;
-        void setFrameId(int frameId);
+    /**
+     * the Id of the frame that sent the request */
+    int frameId() const;
+    void setFrameId(int frameId);
 
-        KUrl url() const;
-        void setUrl(const KUrl& url);
+    KUrl url() const;
+    void setUrl(const KUrl &url);
 
-        KParts::OpenUrlArguments args() const;
-        void setArgs(const KParts::OpenUrlArguments& args);
+    KParts::OpenUrlArguments args() const;
+    void setArgs(const KParts::OpenUrlArguments &args);
 
-        KParts::BrowserArguments browserArgs() const;
-        void setBrowserArgs(const KParts::BrowserArguments& args);
+    KParts::BrowserArguments browserArgs() const;
+    void setBrowserArgs(const KParts::BrowserArguments &args);
 
-        Options options() const;
-        void setOptions(Options options);
+    Options options() const;
+    void setOptions(Options options);
 
-        bool openInBackground() const;
-        void setOpenInBackground(bool background);
+    bool openInBackground() const;
+    void setOpenInBackground(bool background);
 
-        /**
-         * The part that was created for a "NewTab" request.
-         *
-         * It must be set after creating the tab, so that the initiating
-         * part can load the URL into the new part. This works only synchronously
-         * and requires args().serviceType to be set.
-         *
-         * @see KParts::BrowserExtension::createNewWindow()
-         */
-        KParts::ReadOnlyPart* part() const;
-        void setPart(KParts::ReadOnlyPart* part);
+    /**
+     * The part that was created for a "NewTab" request.
+     *
+     * It must be set after creating the tab, so that the initiating
+     * part can load the URL into the new part. This works only synchronously
+     * and requires args().serviceType to be set.
+     *
+     * @see KParts::BrowserExtension::createNewWindow()
+     */
+    KParts::ReadOnlyPart *part() const;
+    void setPart(KParts::ReadOnlyPart *part);
 
-        QString debugInfo() const;
+    QString debugInfo() const;
 
-        bool wasHandled() const;
-        void setWasHandled(bool handled);
+    bool wasHandled() const;
+    void setWasHandled(bool handled);
 
-    private:
+private:
 
-        int m_frameId;
-        KUrl m_url;
-        KParts::OpenUrlArguments m_args;
-        KParts::BrowserArguments m_browserArgs;
-        Options m_options;
-        QPointer<KParts::ReadOnlyPart> m_part;
-        bool m_inBackground;
-        bool m_wasHandled;
+    int m_frameId;
+    KUrl m_url;
+    KParts::OpenUrlArguments m_args;
+    KParts::BrowserArguments m_browserArgs;
+    Options m_options;
+    QPointer<KParts::ReadOnlyPart> m_part;
+    bool m_inBackground;
+    bool m_wasHandled;
 };
 
 } // namespace Akregator

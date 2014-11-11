@@ -33,7 +33,8 @@ class QAction;
 
 class QWidget;
 
-namespace Akregator {
+namespace Akregator
+{
 
 /**
  * interface for accessing actions, popup menus etc. from
@@ -45,25 +46,25 @@ class AKREGATOR_EXPORT ActionManager : public QObject
 {
     Q_OBJECT
 
-    public:
+public:
 
-        static ActionManager* getInstance();
-        static void setInstance(ActionManager* manager);
+    static ActionManager *getInstance();
+    static void setInstance(ActionManager *manager);
 
-        explicit ActionManager(QObject* parent=0);
-        virtual ~ActionManager();
+    explicit ActionManager(QObject *parent = 0);
+    virtual ~ActionManager();
 
-        virtual QAction* action(const char* name) = 0;
-        virtual QWidget* container(const char* name) = 0;
+    virtual QAction *action(const char *name) = 0;
+    virtual QWidget *container(const char *name) = 0;
 
-        virtual void setArticleActionsEnabled( bool enabled ) = 0;
+    virtual void setArticleActionsEnabled(bool enabled) = 0;
 
-    private:
+private:
 
-        static ActionManager* m_self;
+    static ActionManager *m_self;
 
-        class ActionManagerPrivate;
-        ActionManagerPrivate* d;
+    class ActionManagerPrivate;
+    ActionManagerPrivate *d;
 };
 
 } // namespace Akregator

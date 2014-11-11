@@ -38,10 +38,12 @@
 
 class KJob;
 
-namespace Akregator {
+namespace Akregator
+{
 
-namespace Filters {
-    class AbstractMatcher;
+namespace Filters
+{
+class AbstractMatcher;
 }
 
 class ArticleFormatter;
@@ -54,183 +56,181 @@ class ArticleViewerPart;
 class AKREGATORPART_EXPORT ArticleViewer : public QWidget
 {
     Q_OBJECT
-    public:
-        explicit ArticleViewer(QWidget* parent);
-        ~ArticleViewer();
+public:
+    explicit ArticleViewer(QWidget *parent);
+    ~ArticleViewer();
 
+    /** Repaints the view. */
+    void reload();
 
-        /** Repaints the view. */
-        void reload();
+    void displayAboutPage();
 
-        void displayAboutPage();
+    KParts::ReadOnlyPart *part() const;
 
-        KParts::ReadOnlyPart* part() const;
+    void setNormalViewFormatter(const boost::shared_ptr<ArticleFormatter> &formatter);
 
-        void setNormalViewFormatter(const boost::shared_ptr<ArticleFormatter>& formatter);
+    void setCombinedViewFormatter(const boost::shared_ptr<ArticleFormatter> &formatter);
 
-        void setCombinedViewFormatter(const boost::shared_ptr<ArticleFormatter>& formatter);
+    void showArticle(const Article &article);
 
-        void showArticle( const Article& article );
+    /** Shows the articles of the tree node @c node (combined view).
+     * Changes in the node will update the view automatically.
+     *
+     *  @param node The node to observe */
+    void showNode(Akregator::TreeNode *node);
 
-        /** Shows the articles of the tree node @c node (combined view).
-         * Changes in the node will update the view automatically.
-         *
-         *  @param node The node to observe */
-        void showNode(Akregator::TreeNode* node);
+    QSize sizeHint() const;
 
-        QSize sizeHint() const;
+public slots:
 
-    public slots:
+    void slotZoomIn(int);
+    void slotZoomOut(int);
+    void slotSetZoomFactor(int percent);
+    void slotPrint();
 
-        void slotZoomIn(int);
-        void slotZoomOut(int);
-        void slotSetZoomFactor(int percent);
-        void slotPrint();
+    /** Set filters which will be used if the viewer is in combined view mode
+     */
+    void setFilters(const std::vector< boost::shared_ptr<const Akregator::Filters::AbstractMatcher> > &filters);
 
-        /** Set filters which will be used if the viewer is in combined view mode
-         */
-        void setFilters( const std::vector< boost::shared_ptr<const Akregator::Filters::AbstractMatcher> >& filters );
+    /** Update view if combined view mode is set. Has to be called when
+     * the displayed node gets modified.
+     */
+    void slotUpdateCombinedView();
 
-        /** Update view if combined view mode is set. Has to be called when
-         * the displayed node gets modified.
-         */
-        void slotUpdateCombinedView();
+    /**
+     * Clears the canvas and disconnects from the currently observed node
+     * (if in combined view mode).
+     */
+    void slotClear();
 
-        /**
-         * Clears the canvas and disconnects from the currently observed node
-         * (if in combined view mode).
-         */
-        void slotClear();
+    void slotShowSummary(Akregator::TreeNode *node);
 
-        void slotShowSummary(Akregator::TreeNode *node);
+    void slotPaletteOrFontChanged();
 
-        void slotPaletteOrFontChanged();
+signals:
 
-    signals:
+    /** This gets emitted when url gets clicked */
+    void signalOpenUrlRequest(Akregator::OpenUrlRequest &);
 
-        /** This gets emitted when url gets clicked */
-        void signalOpenUrlRequest(Akregator::OpenUrlRequest&);
+    void started(KIO::Job *);
+    void selectionChanged();
+    void completed();
 
-        void started(KIO::Job*);
-        void selectionChanged();
-        void completed();
+protected: // methods
+    int pointsToPixel(int points) const;
 
-    protected: // methods
-        int pointsToPixel(int points) const;
+    bool openUrl(const KUrl &url);
 
-        bool openUrl(const KUrl &url);
+protected slots:
 
-    protected slots:
+    void slotOpenUrlRequestDelayed(const QUrl &, const KParts::OpenUrlArguments &, const KParts::BrowserArguments &);
 
-        void slotOpenUrlRequestDelayed(const QUrl&, const KParts::OpenUrlArguments&, const KParts::BrowserArguments&);
+    void slotCreateNewWindow(const QUrl &url,
+                             const KParts::OpenUrlArguments &args,
+                             const KParts::BrowserArguments &browserArgs,
+                             const KParts::WindowArgs &windowArgs,
+                             KParts::ReadOnlyPart **part);
 
-        void slotCreateNewWindow(const QUrl& url,
-                                    const KParts::OpenUrlArguments& args,
-                                    const KParts::BrowserArguments& browserArgs,
-                                    const KParts::WindowArgs& windowArgs,
-                                    KParts::ReadOnlyPart** part);
+    void slotPopupMenu(const QPoint &, const QUrl &, mode_t, const KParts::OpenUrlArguments &, const KParts::BrowserArguments &, KParts::BrowserExtension::PopupFlags);
 
-        void slotPopupMenu(const QPoint&, const QUrl&, mode_t, const KParts::OpenUrlArguments&, const KParts::BrowserArguments&, KParts::BrowserExtension::PopupFlags);
+    /** Copies current link to clipboard. */
+    void slotCopyLinkAddress();
 
-        /** Copies current link to clipboard. */
-        void slotCopyLinkAddress();
+    /** Copies currently selected text to clipboard */
+    void slotCopy();
 
-        /** Copies currently selected text to clipboard */
-        void slotCopy();
+    /** Opens @c m_url inside this viewer */
+    void slotOpenLinkInternal();
 
-        /** Opens @c m_url inside this viewer */
-        void slotOpenLinkInternal();
+    /** Opens @c m_url in external viewer, eg. Konqueror */
+    void slotOpenLinkInBrowser();
 
-        /** Opens @c m_url in external viewer, eg. Konqueror */
-        void slotOpenLinkInBrowser();
+    /** Opens @c m_url in foreground tab */
+    void slotOpenLinkInForegroundTab();
 
-        /** Opens @c m_url in foreground tab */
-        void slotOpenLinkInForegroundTab();
+    /** Opens @c m_url in background tab */
+    void slotOpenLinkInBackgroundTab();
 
-        /** Opens @c m_url in background tab */
-        void slotOpenLinkInBackgroundTab();
+    void slotSaveLinkAs();
 
-        void slotSaveLinkAs();
+    /** This changes cursor to wait cursor */
+    void slotStarted(KIO::Job *);
 
-        /** This changes cursor to wait cursor */
-        void slotStarted(KIO::Job *);
+    /** This reverts cursor back to normal one */
+    void slotCompleted();
 
-        /** This reverts cursor back to normal one */
-        void slotCompleted();
+    void slotSelectionChanged();
 
-        void slotSelectionChanged();
+    void slotArticlesListed(KJob *job);
 
-        void slotArticlesListed(KJob* job);
-
-        void slotArticlesUpdated(Akregator::TreeNode* node, const QList<Akregator::Article>& list);
-        void slotArticlesAdded(Akregator::TreeNode* node, const QList<Akregator::Article>& list);
-        void slotArticlesRemoved(Akregator::TreeNode* node, const QList<Akregator::Article>& list);
-
+    void slotArticlesUpdated(Akregator::TreeNode *node, const QList<Akregator::Article> &list);
+    void slotArticlesAdded(Akregator::TreeNode *node, const QList<Akregator::Article> &list);
+    void slotArticlesRemoved(Akregator::TreeNode *node, const QList<Akregator::Article> &list);
 
     // from ArticleViewer
-    private:
+private:
 
-        virtual void keyPressEvent(QKeyEvent* e);
+    virtual void keyPressEvent(QKeyEvent *e);
 
-        /** renders @c body. Use this method whereever possible.
-         *  @param body html to render, without header and footer */
-        void renderContent(const QString& body);
+    /** renders @c body. Use this method whereever possible.
+     *  @param body html to render, without header and footer */
+    void renderContent(const QString &body);
 
-        /** Resets the canvas and adds writes the HTML header to it.
-            */
-        void beginWriting();
+    /** Resets the canvas and adds writes the HTML header to it.
+        */
+    void beginWriting();
 
-        /** Finishes writing to the canvas and completes the HTML (by adding closing tags) */
-        void endWriting();
+    /** Finishes writing to the canvas and completes the HTML (by adding closing tags) */
+    void endWriting();
 
-        void updateCss();
+    void updateCss();
 
-        void connectToNode(TreeNode* node);
-        void disconnectFromNode(TreeNode* node);
+    void connectToNode(TreeNode *node);
+    void disconnectFromNode(TreeNode *node);
 
-        void setArticleActionsEnabled(bool enabled);
+    void setArticleActionsEnabled(bool enabled);
 
-    private:
-        KUrl m_url;
-        QString m_normalModeCSS;
-        QString m_combinedModeCSS;
-        QString m_htmlFooter;
-        QString m_currentText;
-        KUrl m_imageDir;
-        QPointer<TreeNode> m_node;
-        QPointer<ArticleListJob> m_listJob;
-        Article m_article;
-        QList<Article> m_articles;
-        KUrl m_link;
-        std::vector<boost::shared_ptr<const Filters::AbstractMatcher> > m_filters;
-        enum ViewMode { NormalView, CombinedView, SummaryView };
-        ViewMode m_viewMode;
-        ArticleViewerPart* m_part;
-        boost::shared_ptr<ArticleFormatter> m_normalViewFormatter;
-        boost::shared_ptr<ArticleFormatter> m_combinedViewFormatter;
+private:
+    KUrl m_url;
+    QString m_normalModeCSS;
+    QString m_combinedModeCSS;
+    QString m_htmlFooter;
+    QString m_currentText;
+    KUrl m_imageDir;
+    QPointer<TreeNode> m_node;
+    QPointer<ArticleListJob> m_listJob;
+    Article m_article;
+    QList<Article> m_articles;
+    KUrl m_link;
+    std::vector<boost::shared_ptr<const Filters::AbstractMatcher> > m_filters;
+    enum ViewMode { NormalView, CombinedView, SummaryView };
+    ViewMode m_viewMode;
+    ArticleViewerPart *m_part;
+    boost::shared_ptr<ArticleFormatter> m_normalViewFormatter;
+    boost::shared_ptr<ArticleFormatter> m_combinedViewFormatter;
 };
 
 class ArticleViewerPart : public KHTMLPart
 {
     Q_OBJECT
 
-    public:
-        explicit ArticleViewerPart(QWidget* parent);
+public:
+    explicit ArticleViewerPart(QWidget *parent);
 
-        bool closeUrl();
+    bool closeUrl();
 
-        int button() const;
+    int button() const;
 
-    protected:
+protected:
 
-        /** reimplemented to get the mouse button */
-        bool urlSelected(const QString &url, int button, int state, const QString &_target,
-                         const KParts::OpenUrlArguments& args = KParts::OpenUrlArguments(),
-                         const KParts::BrowserArguments& browserArgs = KParts::BrowserArguments());
+    /** reimplemented to get the mouse button */
+    bool urlSelected(const QString &url, int button, int state, const QString &_target,
+                     const KParts::OpenUrlArguments &args = KParts::OpenUrlArguments(),
+                     const KParts::BrowserArguments &browserArgs = KParts::BrowserArguments());
 
-    private:
+private:
 
-        int m_button;
+    int m_button;
 };
 
 } // namespace Akregator

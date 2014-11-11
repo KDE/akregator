@@ -36,22 +36,21 @@ using namespace Akregator;
 
 K_PLUGIN_FACTORY(KCMAkregatorAdvancedConfigFactory, registerPlugin<KCMAkregatorAdvancedConfig>();)
 
-KCMAkregatorAdvancedConfig::KCMAkregatorAdvancedConfig( QWidget* parent, const QVariantList& args )
-    : KCModule( parent, args ), m_widget( new SettingsAdvanced )
-{  
-    QVBoxLayout* layout = new QVBoxLayout( this );
-    layout->addWidget( m_widget );
-    KAboutData *about = new KAboutData( QLatin1String( "kcmakradvancedconfig" ),
-                                        i18n( "Advanced Feed Reader Settings" ),
-                                        QString(), QString(), KAboutLicense::GPL,
-                                        i18n( "(c), 2004 - 2008 Frank Osterfeld" ) );
+KCMAkregatorAdvancedConfig::KCMAkregatorAdvancedConfig(QWidget *parent, const QVariantList &args)
+    : KCModule(parent, args), m_widget(new SettingsAdvanced)
+{
+    QVBoxLayout *layout = new QVBoxLayout(this);
+    layout->addWidget(m_widget);
+    KAboutData *about = new KAboutData(QLatin1String("kcmakradvancedconfig"),
+                                       i18n("Advanced Feed Reader Settings"),
+                                       QString(), QString(), KAboutLicense::GPL,
+                                       i18n("(c), 2004 - 2008 Frank Osterfeld"));
 
-    about->addAuthor( i18n( "Frank Osterfeld" ), QString(), QStringLiteral("osterfeld@kde.org") );
+    about->addAuthor(i18n("Frank Osterfeld"), QString(), QStringLiteral("osterfeld@kde.org"));
 
-    setAboutData( about );
-    addConfig( Settings::self(), m_widget );
+    setAboutData(about);
+    addConfig(Settings::self(), m_widget);
 }
-
 
 void KCMAkregatorAdvancedConfig::load()
 {
@@ -61,7 +60,7 @@ void KCMAkregatorAdvancedConfig::load()
 
 void KCMAkregatorAdvancedConfig::save()
 {
-    Settings::setArchiveBackend( m_widget->selectedFactory() );
+    Settings::setArchiveBackend(m_widget->selectedFactory());
     KCModule::save();
 }
 

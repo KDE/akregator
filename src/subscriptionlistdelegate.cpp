@@ -35,100 +35,88 @@
 
 using namespace Akregator;
 
-
-Akregator::SubscriptionListDelegate::SubscriptionListDelegate( QWidget *parent )
-    : QStyledItemDelegate( parent )
+Akregator::SubscriptionListDelegate::SubscriptionListDelegate(QWidget *parent)
+    : QStyledItemDelegate(parent)
 {
     connect(KGlobalSettings::self(), &KGlobalSettings::appearanceChanged, this, &SubscriptionListDelegate::recalculateRowHeight);
     recalculateRowHeight();
 }
 
-
 Akregator::SubscriptionListDelegate::~SubscriptionListDelegate()
 {
 }
 
-
-QSize Akregator::SubscriptionListDelegate::sizeHint( const QStyleOptionViewItem &option,
-                                                     const QModelIndex &index ) const
+QSize Akregator::SubscriptionListDelegate::sizeHint(const QStyleOptionViewItem &option,
+        const QModelIndex &index) const
 {
-    QSize size = QStyledItemDelegate::sizeHint( option, index );
-    size.setHeight( qMax( size.height(), ( m_viewIconHeight + 2 ) ) );
-                                                        // +2 for row top/bottom margin
-    return ( size );
+    QSize size = QStyledItemDelegate::sizeHint(option, index);
+    size.setHeight(qMax(size.height(), (m_viewIconHeight + 2)));
+    // +2 for row top/bottom margin
+    return (size);
 }
 
-
-void Akregator::SubscriptionListDelegate::paint( QPainter *painter,
-                                                 const QStyleOptionViewItem &option,
-                                                 const QModelIndex &index ) const
+void Akregator::SubscriptionListDelegate::paint(QPainter *painter,
+        const QStyleOptionViewItem &option,
+        const QModelIndex &index) const
 {
     QStyleOptionViewItem newOption = option;
-    if ( index.data( SubscriptionListModel::HasUnreadRole ).toBool() )
-    {                                                  // feed has unread articles
+    if (index.data(SubscriptionListModel::HasUnreadRole).toBool()) {
+        // feed has unread articles
         newOption.font.setBold(true);
     }
 
-     //fix [Bug 190052] numeric columns aligned to the left
-     if ( index.column() == SubscriptionListModel::UnreadCountColumn ||
-         index.column() == SubscriptionListModel::TotalCountColumn )
-     {
-         newOption.displayAlignment = Qt::AlignRight;
-     }
+    //fix [Bug 190052] numeric columns aligned to the left
+    if (index.column() == SubscriptionListModel::UnreadCountColumn ||
+            index.column() == SubscriptionListModel::TotalCountColumn) {
+        newOption.displayAlignment = Qt::AlignRight;
+    }
 
     // No need to translate the painter here - the item is vertically centered
     // within its sizeHint rectangle.
-    QStyledItemDelegate::paint( painter, newOption, index );
+    QStyledItemDelegate::paint(painter, newOption, index);
 }
-
 
 void Akregator::SubscriptionListDelegate::recalculateRowHeight()
 {
     KIconTheme *iconTheme = KIconLoader::global()->theme();
-    m_viewIconHeight = ( iconTheme != NULL ) ? iconTheme->defaultSize( KIconLoader::Small ) : 0;
+    m_viewIconHeight = (iconTheme != NULL) ? iconTheme->defaultSize(KIconLoader::Small) : 0;
     qDebug() << "icon height" << m_viewIconHeight;
 }
 
-
-void Akregator::SubscriptionListDelegate::initStyleOption( QStyleOptionViewItem *option,
-                                                           const QModelIndex &index ) const
+void Akregator::SubscriptionListDelegate::initStyleOption(QStyleOptionViewItem *option,
+        const QModelIndex &index) const
 {
-    QStyledItemDelegate::initStyleOption( option, index );
+    QStyledItemDelegate::initStyleOption(option, index);
 
-    if ( index.column() != 0 )
-    {
+    if (index.column() != 0) {
         // Append unread count to the title column only (it is always the first
         // one)
         return;
     }
 
-    QTreeView *view = static_cast< QTreeView * >( parent() );
-    if ( !view->header()->isSectionHidden( SubscriptionListModel::UnreadCountColumn ) )
-    {
+    QTreeView *view = static_cast< QTreeView * >(parent());
+    if (!view->header()->isSectionHidden(SubscriptionListModel::UnreadCountColumn)) {
         // Do not append unread count to the title if the unread count column
         // is visible
         return;
     } else {
-        view->header()->resizeSection( SubscriptionListModel::UnreadCountColumn, QHeaderView::ResizeToContents );
+        view->header()->resizeSection(SubscriptionListModel::UnreadCountColumn, QHeaderView::ResizeToContents);
     }
 
-    if ( !view->header()->isSectionHidden( SubscriptionListModel::TotalCountColumn ) ) {
-        view->header()->resizeSection( SubscriptionListModel::TotalCountColumn, QHeaderView::ResizeToContents );
+    if (!view->header()->isSectionHidden(SubscriptionListModel::TotalCountColumn)) {
+        view->header()->resizeSection(SubscriptionListModel::TotalCountColumn, QHeaderView::ResizeToContents);
     }
 
-    QStyleOptionViewItemV4 *optionV4 = qstyleoption_cast< QStyleOptionViewItemV4 * >( option );
-    if ( !optionV4 )
-    {
+    QStyleOptionViewItemV4 *optionV4 = qstyleoption_cast< QStyleOptionViewItemV4 * >(option);
+    if (!optionV4) {
         // Should never happen, but play it safe
         return;
     }
 
-    QModelIndex unreadIndex = index.sibling( index.row(), SubscriptionListModel::UnreadCountColumn );
+    QModelIndex unreadIndex = index.sibling(index.row(), SubscriptionListModel::UnreadCountColumn);
     int unread = unreadIndex.data().toInt();
-    if ( unread > 0 )
-    {
-        optionV4->text += QString( " (%1)" ).arg( unread );
+    if (unread > 0) {
+        optionV4->text += QString(" (%1)").arg(unread);
     }
 }
-
 

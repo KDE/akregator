@@ -38,58 +38,59 @@ using namespace Akregator;
 
 class CreateFolderCommand::Private
 {
-    CreateFolderCommand* const q;
+    CreateFolderCommand *const q;
 public:
-    explicit Private( CreateFolderCommand* qq );
-    
+    explicit Private(CreateFolderCommand *qq);
+
     void doCreate();
-    
-    TreeNode* m_selectedSubscription;
-    Folder* m_rootFolder;
-    SubscriptionListView* m_subscriptionListView;
+
+    TreeNode *m_selectedSubscription;
+    Folder *m_rootFolder;
+    SubscriptionListView *m_subscriptionListView;
 };
 
-CreateFolderCommand::Private::Private( CreateFolderCommand* qq ) 
-  : q( qq ),
-    m_selectedSubscription( 0 ), 
-    m_rootFolder( 0 ),
-    m_subscriptionListView( 0 )
+CreateFolderCommand::Private::Private(CreateFolderCommand *qq)
+    : q(qq),
+      m_selectedSubscription(0),
+      m_rootFolder(0),
+      m_subscriptionListView(0)
 {
-    
+
 }
 
 void CreateFolderCommand::Private::doCreate()
 {
-    assert( m_rootFolder );
-    assert( m_subscriptionListView );
+    assert(m_rootFolder);
+    assert(m_subscriptionListView);
     bool ok;
-    const QString name = QInputDialog::getText( q->parentWidget(), i18n( "Add Folder" ), 
-                                                i18n( "Folder name:" ), QLineEdit::Normal, 
-                                                QString(), 
-                                                &ok);
-    if ( !ok )
-    {
+    const QString name = QInputDialog::getText(q->parentWidget(), i18n("Add Folder"),
+                         i18n("Folder name:"), QLineEdit::Normal,
+                         QString(),
+                         &ok);
+    if (!ok) {
         q->done();
         return;
     }
 
-    Folder* parentFolder = qobject_cast<Folder*>( m_selectedSubscription ); 
-    if ( !parentFolder )
+    Folder *parentFolder = qobject_cast<Folder *>(m_selectedSubscription);
+    if (!parentFolder) {
         parentFolder = m_selectedSubscription ? m_selectedSubscription->parent() : 0;
-    if ( !parentFolder )
+    }
+    if (!parentFolder) {
         parentFolder = m_rootFolder;
-        
-    TreeNode* const after = ( m_selectedSubscription && m_selectedSubscription->isGroup() ) ? m_selectedSubscription : 0;
+    }
 
-    Folder* const newFolder = new Folder( name );
-    parentFolder->insertChild( newFolder, after );
-    m_subscriptionListView->ensureNodeVisible( newFolder );
+    TreeNode *const after = (m_selectedSubscription && m_selectedSubscription->isGroup()) ? m_selectedSubscription : 0;
+
+    Folder *const newFolder = new Folder(name);
+    parentFolder->insertChild(newFolder, after);
+    m_subscriptionListView->ensureNodeVisible(newFolder);
     q->done();
 }
 
-CreateFolderCommand::CreateFolderCommand( QObject* parent ) : Command( parent ), d( new Private( this ) )
+CreateFolderCommand::CreateFolderCommand(QObject *parent) : Command(parent), d(new Private(this))
 {
-    
+
 }
 
 CreateFolderCommand::~CreateFolderCommand()
@@ -97,28 +98,28 @@ CreateFolderCommand::~CreateFolderCommand()
     delete d;
 }
 
-void CreateFolderCommand::setSubscriptionListView( SubscriptionListView* view )
+void CreateFolderCommand::setSubscriptionListView(SubscriptionListView *view)
 {
     d->m_subscriptionListView = view;
 }
 
-void CreateFolderCommand::setSelectedSubscription( TreeNode* selected )
+void CreateFolderCommand::setSelectedSubscription(TreeNode *selected)
 {
     d->m_selectedSubscription = selected;
 }
 
-void CreateFolderCommand::setRootFolder( Folder* rootFolder )
+void CreateFolderCommand::setRootFolder(Folder *rootFolder)
 {
     d->m_rootFolder = rootFolder;
 }
 
 void CreateFolderCommand::doStart()
 {
-    QTimer::singleShot( 0, this, SLOT(doCreate()) );
+    QTimer::singleShot(0, this, SLOT(doCreate()));
 }
 
 void CreateFolderCommand::doAbort()
 {
-    
+
 }
 #include "moc_createfoldercommand.cpp"

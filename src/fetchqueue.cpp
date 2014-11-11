@@ -36,16 +36,15 @@ using namespace Akregator;
 
 class FetchQueue::FetchQueuePrivate
 {
-    public:
+public:
 
-        QList<Feed*> queuedFeeds;
-        QList<Feed*> fetchingFeeds;
+    QList<Feed *> queuedFeeds;
+    QList<Feed *> fetchingFeeds;
 };
 
-
-FetchQueue::FetchQueue(QObject* parent): QObject(parent), d(new FetchQueuePrivate) {
+FetchQueue::FetchQueue(QObject *parent): QObject(parent), d(new FetchQueuePrivate)
+{
 }
-
 
 FetchQueue::~FetchQueue()
 {
@@ -56,15 +55,15 @@ FetchQueue::~FetchQueue()
 
 void FetchQueue::slotAbort()
 {
-    foreach( Feed* const i, d->fetchingFeeds )
-    {
-        disconnectFromFeed( i );
+    foreach (Feed *const i, d->fetchingFeeds) {
+        disconnectFromFeed(i);
         i->slotAbortFetch();
     }
     d->fetchingFeeds.clear();
 
-    foreach ( Feed* const i, d->queuedFeeds )
-        disconnectFromFeed( i );
+    foreach (Feed *const i, d->queuedFeeds) {
+        disconnectFromFeed(i);
+    }
     d->queuedFeeds.clear();
 
     emit signalStopped();
@@ -72,8 +71,7 @@ void FetchQueue::slotAbort()
 
 void FetchQueue::addFeed(Feed *f)
 {
-    if (!d->queuedFeeds.contains(f) && !d->fetchingFeeds.contains(f))
-    {
+    if (!d->queuedFeeds.contains(f) && !d->fetchingFeeds.contains(f)) {
         connectToFeed(f);
         d->queuedFeeds.append(f);
         fetchNextFeed();
@@ -82,11 +80,11 @@ void FetchQueue::addFeed(Feed *f)
 
 void FetchQueue::fetchNextFeed()
 {
-    if (!d->queuedFeeds.isEmpty() && d->fetchingFeeds.count() < Settings::concurrentFetches())
-    {
-        if (d->fetchingFeeds.isEmpty() && d->queuedFeeds.count() == 1)
+    if (!d->queuedFeeds.isEmpty() && d->fetchingFeeds.count() < Settings::concurrentFetches()) {
+        if (d->fetchingFeeds.isEmpty() && d->queuedFeeds.count() == 1) {
             emit signalStarted();
-        Feed* f = *(d->queuedFeeds.begin());
+        }
+        Feed *f = *(d->queuedFeeds.begin());
         d->queuedFeeds.pop_front();
         d->fetchingFeeds.append(f);
         f->fetch(false);
@@ -121,30 +119,30 @@ void FetchQueue::feedDone(Feed *f)
 {
     disconnectFromFeed(f);
     d->fetchingFeeds.removeAll(f);
-    if (isEmpty())
+    if (isEmpty()) {
         emit signalStopped();
-    else
+    } else {
         fetchNextFeed();
+    }
 }
 
-void FetchQueue::connectToFeed(Feed* feed)
+void FetchQueue::connectToFeed(Feed *feed)
 {
-    connect (feed, SIGNAL(fetched(Akregator::Feed*)), this, SLOT(slotFeedFetched(Akregator::Feed*)));
-    connect (feed, SIGNAL(fetchError(Akregator::Feed*)), this, SLOT(slotFetchError(Akregator::Feed*)));
-    connect (feed, SIGNAL(fetchAborted(Akregator::Feed*)), this, SLOT(slotFetchAborted(Akregator::Feed*)));
-    connect (feed, SIGNAL(signalDestroyed(Akregator::TreeNode*)), this, SLOT(slotNodeDestroyed(Akregator::TreeNode*)));
+    connect(feed, SIGNAL(fetched(Akregator::Feed*)), this, SLOT(slotFeedFetched(Akregator::Feed*)));
+    connect(feed, SIGNAL(fetchError(Akregator::Feed*)), this, SLOT(slotFetchError(Akregator::Feed*)));
+    connect(feed, SIGNAL(fetchAborted(Akregator::Feed*)), this, SLOT(slotFetchAborted(Akregator::Feed*)));
+    connect(feed, SIGNAL(signalDestroyed(Akregator::TreeNode*)), this, SLOT(slotNodeDestroyed(Akregator::TreeNode*)));
 }
 
-void FetchQueue::disconnectFromFeed(Feed* feed)
+void FetchQueue::disconnectFromFeed(Feed *feed)
 {
-    feed->disconnect( this );
+    feed->disconnect(this);
 }
 
-
-void FetchQueue::slotNodeDestroyed(TreeNode* node)
+void FetchQueue::slotNodeDestroyed(TreeNode *node)
 {
-    Feed* const feed = qobject_cast<Feed*>( node );
-    assert( feed );
+    Feed *const feed = qobject_cast<Feed *>(node);
+    assert(feed);
 
     d->fetchingFeeds.removeAll(feed);
     d->queuedFeeds.removeAll(feed);

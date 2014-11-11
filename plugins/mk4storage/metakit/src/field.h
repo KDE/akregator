@@ -10,19 +10,20 @@
 
 #ifndef __K4CONF_H__
 #error Please include "k4conf.h" before this header file
-#endif 
+#endif
 
 /////////////////////////////////////////////////////////////////////////////
 
-class c4_Field {
+class c4_Field
+{
     c4_PtrArray _subFields;
     c4_String _name;
     char _type;
     c4_Field *_indirect;
 
-  public:
+public:
     /* Construction / destruction */
-    c4_Field(const char * &, c4_Field * = 0);
+    c4_Field(const char*&, c4_Field * = 0);
     //: Constructs a new field.
     ~c4_Field();
 
@@ -46,7 +47,7 @@ class c4_Field {
     c4_String DescribeSubFields(bool anonymous_ = false)const;
     //: Describes just the subfields, omit names if anonymous.
 
-  private:
+private:
     c4_Field(const c4_Field &); // not implemented
     void operator = (const c4_Field &); // not implemented
 };
@@ -55,7 +56,7 @@ class c4_Field {
 
 #if q4_INLINE
 #include "field.inl"
-#endif 
+#endif
 
 /////////////////////////////////////////////////////////////////////////////
 

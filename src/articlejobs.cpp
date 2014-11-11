@@ -39,162 +39,163 @@
 
 using namespace Akregator;
 
-Akregator::ArticleDeleteJob::ArticleDeleteJob( QObject* parent ) : KJob( parent ), m_feedList( Kernel::self()->feedList() )
+Akregator::ArticleDeleteJob::ArticleDeleteJob(QObject *parent) : KJob(parent), m_feedList(Kernel::self()->feedList())
 {
-    assert( m_feedList );
+    assert(m_feedList);
 }
 
-void Akregator::ArticleDeleteJob::appendArticleIds( const QList<Akregator::ArticleId>& ids )
+void Akregator::ArticleDeleteJob::appendArticleIds(const QList<Akregator::ArticleId> &ids)
 {
     m_ids += ids;
 }
 
-void Akregator::ArticleDeleteJob::appendArticleId( const Akregator::ArticleId& id )
+void Akregator::ArticleDeleteJob::appendArticleId(const Akregator::ArticleId &id)
 {
     m_ids += id;
 }
 
-
 void Akregator::ArticleDeleteJob::start()
 {
-    QTimer::singleShot( 20, this, SLOT(doStart()) );
+    QTimer::singleShot(20, this, SLOT(doStart()));
 }
 
 void Akregator::ArticleDeleteJob::doStart()
 {
-    if ( !m_feedList )
-    {
+    if (!m_feedList) {
         qWarning() << "Feedlist object was deleted, items not deleted";
         emitResult();
         return;
     }
-    std::vector<Akregator::Feed*> feeds;
+    std::vector<Akregator::Feed *> feeds;
 
-    Q_FOREACH ( const Akregator::ArticleId& id, m_ids )
-    {
-        Akregator::Article article = m_feedList->findArticle( id.feedUrl, id.guid );
-        if ( article.isNull() )
+    Q_FOREACH (const Akregator::ArticleId &id, m_ids) {
+        Akregator::Article article = m_feedList->findArticle(id.feedUrl, id.guid);
+        if (article.isNull()) {
             continue;
+        }
 
-        if ( Feed* const feed = m_feedList->findByURL( id.feedUrl ) )
-        {
-            feeds.push_back( feed );
-            feed->setNotificationMode( false );
+        if (Feed *const feed = m_feedList->findByURL(id.feedUrl)) {
+            feeds.push_back(feed);
+            feed->setNotificationMode(false);
         }
         article.setDeleted();
     }
 
-    Q_FOREACH ( Akregator::Feed* const i, feeds )
-        i->setNotificationMode( true );
+    Q_FOREACH (Akregator::Feed *const i, feeds) {
+        i->setNotificationMode(true);
+    }
 
     emitResult();
 }
 
-Akregator::ArticleModifyJob::ArticleModifyJob( QObject* parent ) : KJob( parent ), m_feedList( Kernel::self()->feedList() )
+Akregator::ArticleModifyJob::ArticleModifyJob(QObject *parent) : KJob(parent), m_feedList(Kernel::self()->feedList())
 {
-    Q_ASSERT( m_feedList );
+    Q_ASSERT(m_feedList);
 }
 
-void Akregator::ArticleModifyJob::setStatus( const ArticleId& id, int status )
+void Akregator::ArticleModifyJob::setStatus(const ArticleId &id, int status)
 {
     m_status[id] = status;
 }
 
-void Akregator::ArticleModifyJob::setKeep( const ArticleId& id, bool keep )
+void Akregator::ArticleModifyJob::setKeep(const ArticleId &id, bool keep)
 {
     m_keepFlags[id] = keep;
 }
 
 void Akregator::ArticleModifyJob::start()
 {
-    QTimer::singleShot( 20, this, SLOT(doStart()) );
+    QTimer::singleShot(20, this, SLOT(doStart()));
 }
 
 void Akregator::ArticleModifyJob::doStart()
 {
 
-    if ( !m_feedList )
-    {
+    if (!m_feedList) {
         qWarning() << "Feedlist object was deleted, items not modified";
         emitResult();
         return;
     }
-    std::vector<Akregator::Feed*> feeds;
+    std::vector<Akregator::Feed *> feeds;
 
-    Q_FOREACH ( const Akregator::ArticleId& id, m_keepFlags.keys() ) //krazy:exclude=foreach
-    {
-        Akregator::Feed* feed = m_feedList->findByURL( id.feedUrl );
-        if ( !feed )
+    Q_FOREACH (const Akregator::ArticleId &id, m_keepFlags.keys()) { //krazy:exclude=foreach
+        Akregator::Feed *feed = m_feedList->findByURL(id.feedUrl);
+        if (!feed) {
             continue;
-        feed->setNotificationMode( false );
-        feeds.push_back( feed );
-        Akregator::Article article = feed->findArticle( id.guid );
-        if ( !article.isNull() )
-            article.setKeep( m_keepFlags[id] );
+        }
+        feed->setNotificationMode(false);
+        feeds.push_back(feed);
+        Akregator::Article article = feed->findArticle(id.guid);
+        if (!article.isNull()) {
+            article.setKeep(m_keepFlags[id]);
+        }
     }
 
-    Q_FOREACH ( const Akregator::ArticleId& id, m_status.keys() ) //krazy:exclude=foreach
-    {
-        Akregator::Feed* feed = m_feedList->findByURL( id.feedUrl );
-        if ( !feed )
+    Q_FOREACH (const Akregator::ArticleId &id, m_status.keys()) { //krazy:exclude=foreach
+        Akregator::Feed *feed = m_feedList->findByURL(id.feedUrl);
+        if (!feed) {
             continue;
-        feed->setNotificationMode( false );
-        feeds.push_back( feed );
-        Akregator::Article article = feed->findArticle( id.guid );
-        if ( !article.isNull() )
-            article.setStatus( m_status[id] );
+        }
+        feed->setNotificationMode(false);
+        feeds.push_back(feed);
+        Akregator::Article article = feed->findArticle(id.guid);
+        if (!article.isNull()) {
+            article.setStatus(m_status[id]);
+        }
     }
 
-    Q_FOREACH ( Akregator::Feed* const i, feeds )
-        i->setNotificationMode( true );
+    Q_FOREACH (Akregator::Feed *const i, feeds) {
+        i->setNotificationMode(true);
+    }
     emitResult();
 }
 
-CompositeJob::CompositeJob( QObject* parent ) : KCompositeJob( parent )
+CompositeJob::CompositeJob(QObject *parent) : KCompositeJob(parent)
 {
 
 }
 
-bool CompositeJob::addSubjob( KJob* job )
+bool CompositeJob::addSubjob(KJob *job)
 {
-    return KCompositeJob::addSubjob( job );
+    return KCompositeJob::addSubjob(job);
 }
-
 
 void CompositeJob::start()
 {
-    if ( subjobs().isEmpty() )
-    {
+    if (subjobs().isEmpty()) {
         emitResult();
         return;
     }
-    Q_FOREACH( KJob* const i, subjobs() )
-    {
+    Q_FOREACH (KJob *const i, subjobs()) {
         i->start();
     }
 }
 
-ArticleListJob::ArticleListJob( TreeNode* p ) : KJob( p ), m_node( p ) {}
+ArticleListJob::ArticleListJob(TreeNode *p) : KJob(p), m_node(p) {}
 
-void ArticleListJob::start() {
-    QTimer::singleShot( 20, this, SLOT(doList()) );
+void ArticleListJob::start()
+{
+    QTimer::singleShot(20, this, SLOT(doList()));
 }
 
-void ArticleListJob::doList() {
-    if ( m_node )
+void ArticleListJob::doList()
+{
+    if (m_node) {
         m_articles = m_node->articles();
-    else {
-        setError( ListingFailed );
-        setErrorText( i18n("The feed to be listed was already removed.") );
+    } else {
+        setError(ListingFailed);
+        setErrorText(i18n("The feed to be listed was already removed."));
     }
     emitResult();
 }
 
-TreeNode* ArticleListJob::node() const {
+TreeNode *ArticleListJob::node() const
+{
     return m_node;
 }
 
-QList<Article> ArticleListJob::articles() const {
+QList<Article> ArticleListJob::articles() const
+{
     return m_articles;
 }
 

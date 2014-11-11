@@ -28,33 +28,31 @@
 
 #include <KLocalizedString>
 
-
-
-
-namespace Akregator {
+namespace Akregator
+{
 
 AboutData::AboutData()
     : K4AboutData("akregator", 0, ki18n("Akregator"), KDEPIM_VERSION, ki18n("A KDE Feed Reader"),
-                 License_GPL, ki18n("Copyright © 2004–2010 Akregator authors"), KLocalizedString(),
-                     "http://akregator.kde.org/")
+                  License_GPL, ki18n("Copyright © 2004–2010 Akregator authors"), KLocalizedString(),
+                  "http://akregator.kde.org/")
 {
     setOrganizationDomain("kde.org"); // needed to get org.kde.akregator used for DBUS
-    addAuthor( ki18n("Frank Osterfeld"), ki18n("Maintainer"), "osterfeld@kde.org" );
-    addAuthor( ki18n("Teemu Rytilahti"), ki18n("Developer"), "tpr@d5k.net" );
-    addAuthor( ki18n("Sashmit Bhaduri"), ki18n("Developer"), "sashmit@vfemail.net" );
-    addAuthor( ki18n("Pierre Habouzit"), ki18n("Developer"), "pierre.habouzit@m4x.org" );
-    addAuthor( ki18n("Stanislav Karchebny"), ki18n("Developer"), "Stanislav.Karchebny@kdemail.net" );
-    addAuthor( ki18n("Gary Cramblitt"), ki18n("Contributor"), "garycramblitt@comcast.net");
-    addAuthor( ki18n("Stephan Binner"), ki18n("Contributor"), "binner@kde.org" );
-    addAuthor( ki18n("Christof Musik"), ki18n("Contributor"), "christof@freenet.de" );
-    addCredit( ki18n("Anne-Marie Mahfouf"), ki18n("Handbook"), "annma@kde.org" );
-    addCredit( ki18n("Frerich Raabe"), ki18n("Author of librss"), "raabe@kde.org" );
-    addCredit( ki18n("Eckhart Woerner"), ki18n("Bug tracker management, Usability improvements"), "kde@ewsoftware.de");
-    addCredit( ki18n("Heinrich Wendel"), ki18n("Tons of bug fixes"), "h_wendel@cojobo.net");
-    addCredit( ki18n("Eike Hein"), ki18n("'Delayed mark as read' feature"), "sho@eikehein.com" );
-    addCredit( ki18n("Marcel Dierkes"), ki18n("Icons"), "marcel.dierkes@gmx.de");
-    addCredit( ki18n("George Staikos"), ki18n("Insomnia"), "staikos@kde.org" );
-    addCredit( ki18n("Philipp Droessler"), ki18n("Gentoo Ebuild"), "kingmob@albert-unser.net");
+    addAuthor(ki18n("Frank Osterfeld"), ki18n("Maintainer"), "osterfeld@kde.org");
+    addAuthor(ki18n("Teemu Rytilahti"), ki18n("Developer"), "tpr@d5k.net");
+    addAuthor(ki18n("Sashmit Bhaduri"), ki18n("Developer"), "sashmit@vfemail.net");
+    addAuthor(ki18n("Pierre Habouzit"), ki18n("Developer"), "pierre.habouzit@m4x.org");
+    addAuthor(ki18n("Stanislav Karchebny"), ki18n("Developer"), "Stanislav.Karchebny@kdemail.net");
+    addAuthor(ki18n("Gary Cramblitt"), ki18n("Contributor"), "garycramblitt@comcast.net");
+    addAuthor(ki18n("Stephan Binner"), ki18n("Contributor"), "binner@kde.org");
+    addAuthor(ki18n("Christof Musik"), ki18n("Contributor"), "christof@freenet.de");
+    addCredit(ki18n("Anne-Marie Mahfouf"), ki18n("Handbook"), "annma@kde.org");
+    addCredit(ki18n("Frerich Raabe"), ki18n("Author of librss"), "raabe@kde.org");
+    addCredit(ki18n("Eckhart Woerner"), ki18n("Bug tracker management, Usability improvements"), "kde@ewsoftware.de");
+    addCredit(ki18n("Heinrich Wendel"), ki18n("Tons of bug fixes"), "h_wendel@cojobo.net");
+    addCredit(ki18n("Eike Hein"), ki18n("'Delayed mark as read' feature"), "sho@eikehein.com");
+    addCredit(ki18n("Marcel Dierkes"), ki18n("Icons"), "marcel.dierkes@gmx.de");
+    addCredit(ki18n("George Staikos"), ki18n("Insomnia"), "staikos@kde.org");
+    addCredit(ki18n("Philipp Droessler"), ki18n("Gentoo Ebuild"), "kingmob@albert-unser.net");
 }
 
 AboutData::~AboutData()

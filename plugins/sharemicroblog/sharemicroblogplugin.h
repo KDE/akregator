@@ -33,8 +33,9 @@
 
 class KActionMenu;
 
-namespace Plasma {
-    class ServiceJob;
+namespace Plasma
+{
+class ServiceJob;
 }
 
 class SharePlugin : public KParts::Plugin
@@ -42,14 +43,14 @@ class SharePlugin : public KParts::Plugin
     Q_OBJECT
 
 public:
-    explicit SharePlugin( QObject *parent=0, const QList<QVariant>& args=QList<QVariant>() );
+    explicit SharePlugin(QObject *parent = 0, const QList<QVariant> &args = QList<QVariant>());
     ~SharePlugin();
 
 public slots:
     void dataUpdated(const QString &source, const Plasma::DataEngine::Data &data);
 
 protected slots:
-    void articlesSelected( const QList<Akregator::Article> &articles );
+    void articlesSelected(const QList<Akregator::Article> &articles);
     void slotServiceFinished(Plasma::ServiceJob *job);
     void shareArticles();
 
@@ -61,26 +62,24 @@ private:
     QString m_username;
     QString m_serviceUrl;
     QList<Akregator::Article> m_articles;
-    Plasma::DataEngine* m_engine;
-    Plasma::Service* m_service;
+    Plasma::DataEngine *m_engine;
+    Plasma::Service *m_service;
 };
-
 
 class SharePluginIface : public Akregator::Plugin
 {
     Q_OBJECT
 
 public:
-    SharePluginIface( QObject* parent, const QVariantList& params );
+    SharePluginIface(QObject *parent, const QVariantList &params);
     ~SharePluginIface();
 
     /* reimp */ void doInitialize();
-    /* reimp */ void insertGuiClients( KXMLGUIClient* parent );
-    /* reimp */ void removeGuiClients( KXMLGUIClient* parent );
+    /* reimp */ void insertGuiClients(KXMLGUIClient *parent);
+    /* reimp */ void removeGuiClients(KXMLGUIClient *parent);
 
 private:
     QPointer<SharePlugin> m_impl;
 };
-
 
 #endif // AKREGATOR_SHAREPLUGIN_H

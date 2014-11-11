@@ -30,19 +30,24 @@
 class QString;
 class QStringList;
 
-namespace Akregator {
-namespace Backend {
+namespace Akregator
+{
+namespace Backend
+{
 
 class Storage;
 
 class StorageFactoryMK4Impl : public StorageFactory
 {
-    public:
+public:
     virtual QString key() const;
     virtual QString name() const;
     virtual void configure();
-    virtual Storage* createStorage(const QStringList& params) const;
-    virtual bool isConfigurable() const { return false; }
+    virtual Storage *createStorage(const QStringList &params) const;
+    virtual bool isConfigurable() const
+    {
+        return false;
+    }
 };
 
 } // namespace Backend

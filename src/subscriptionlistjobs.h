@@ -31,7 +31,8 @@
 
 #include "akregator_export.h"
 
-namespace Akregator {
+namespace Akregator
+{
 
 class FeedList;
 
@@ -41,10 +42,10 @@ class AKREGATOR_EXPORT  MoveSubscriptionJob : public KJob
 {
     Q_OBJECT
 public:
-    explicit MoveSubscriptionJob( QObject* parent = 0 );
+    explicit MoveSubscriptionJob(QObject *parent = 0);
 
-    void setSubscriptionId( int id );
-    void setDestination( int folder, int afterChild );
+    void setSubscriptionId(int id);
+    void setDestination(int folder, int afterChild);
 
     void start();
 
@@ -62,10 +63,10 @@ class AKREGATOR_EXPORT RenameSubscriptionJob : public KJob
 {
     Q_OBJECT
 public:
-    explicit RenameSubscriptionJob( QObject* parent = 0 );
+    explicit RenameSubscriptionJob(QObject *parent = 0);
 
-    void setSubscriptionId( int id );
-    void setName( const QString& name );
+    void setSubscriptionId(int id);
+    void setName(const QString &name);
 
     void start();
 
@@ -82,9 +83,9 @@ class AKREGATOR_EXPORT DeleteSubscriptionJob : public KJob
 {
     Q_OBJECT
 public:
-    explicit DeleteSubscriptionJob( QObject* parent = 0 );
+    explicit DeleteSubscriptionJob(QObject *parent = 0);
 
-    void setSubscriptionId( int id );
+    void setSubscriptionId(int id);
 
     void start();
 

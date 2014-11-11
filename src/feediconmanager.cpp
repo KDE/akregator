@@ -40,46 +40,45 @@
 
 #define FAVICONINTERFACE "org.kde.FavIcon"
 
-
 using namespace Akregator;
 
 FaviconListener::~FaviconListener() {}
 
 class FeedIconManager::Private
 {
-    FeedIconManager* const q;
+    FeedIconManager *const q;
 public:
 
-    static FeedIconManager* m_instance;
+    static FeedIconManager *m_instance;
 
-    explicit Private( FeedIconManager* qq );
+    explicit Private(FeedIconManager *qq);
     ~Private();
 
+    void loadIcon(const QString &url);
+    QString iconLocation(const KUrl &) const;
 
-    void loadIcon( const QString& url );
-    QString iconLocation( const KUrl& ) const;
-
-    QHash<FaviconListener*,QString> m_listeners;
-    QMultiHash<QString, FaviconListener*> urlDict;
+    QHash<FaviconListener *, QString> m_listeners;
+    QMultiHash<QString, FaviconListener *> urlDict;
     QDBusInterface *m_favIconsModule;
 };
 
-namespace {
+namespace
+{
 
-QString getIconUrl( const KUrl& url )
+QString getIconUrl(const KUrl &url)
 {
     return QLatin1String("http://") + url.host() + QLatin1Char('/');
 }
 
 }
 
-FeedIconManager::Private::Private( FeedIconManager* qq ) : q( qq )
+FeedIconManager::Private::Private(FeedIconManager *qq) : q(qq)
 {
     QDBusConnection::sessionBus().registerObject(QLatin1String("/FeedIconManager"), q, QDBusConnection::ExportScriptableSlots);
     m_favIconsModule = new QDBusInterface(QLatin1String("org.kde.kded"), QLatin1String("/modules/favicons"), QLatin1String(FAVICONINTERFACE));
-    Q_ASSERT( m_favIconsModule );
-    q->connect( m_favIconsModule, SIGNAL(iconChanged(bool,QString,QString)),
-                q, SLOT(slotIconChanged(bool,QString,QString)) );
+    Q_ASSERT(m_favIconsModule);
+    q->connect(m_favIconsModule, SIGNAL(iconChanged(bool,QString,QString)),
+               q, SLOT(slotIconChanged(bool,QString,QString)));
 }
 
 FeedIconManager::Private::~Private()
@@ -89,64 +88,63 @@ FeedIconManager::Private::~Private()
 
 FeedIconManager *FeedIconManager::Private::m_instance = 0;
 
-
-QString FeedIconManager::Private::iconLocation(const KUrl & url) const
+QString FeedIconManager::Private::iconLocation(const KUrl &url) const
 {
-    QDBusReply<QString> reply = m_favIconsModule->call( QLatin1String("iconForUrl"), url.url() );
+    QDBusReply<QString> reply = m_favIconsModule->call(QLatin1String("iconForUrl"), url.url());
     return reply.isValid() ? reply.value() : QString();
 }
 
-
-void FeedIconManager::Private::loadIcon( const QString & url_ )
+void FeedIconManager::Private::loadIcon(const QString &url_)
 {
     const KUrl url(url_);
 
-    QString iconFile = iconLocation( url );
+    QString iconFile = iconLocation(url);
 
-    if ( iconFile.isEmpty() ) // cache miss
-    {
-        const QDBusReply<void> reply = m_favIconsModule->call( QLatin1String("downloadHostIcon"), url.url() );
-        if ( !reply.isValid() )
+    if (iconFile.isEmpty()) { // cache miss
+        const QDBusReply<void> reply = m_favIconsModule->call(QLatin1String("downloadHostIcon"), url.url());
+        if (!reply.isValid()) {
             qWarning() << "Couldn't reach favicon service. Request favicon for " << url << " failed";
-    }
-    else {
-        q->slotIconChanged( false, url.host(), iconFile );
+        }
+    } else {
+        q->slotIconChanged(false, url.host(), iconFile);
     }
 }
 
-FeedIconManager* FeedIconManager::self()
+FeedIconManager *FeedIconManager::self()
 {
     static FeedIconManager instance;
-    if (!Private::m_instance)
+    if (!Private::m_instance) {
         Private::m_instance = &instance;
+    }
     return Private::m_instance;
 }
 
-void FeedIconManager::addListener( const KUrl& url, FaviconListener* listener )
+void FeedIconManager::addListener(const KUrl &url, FaviconListener *listener)
 {
-    assert( listener );
-    removeListener( listener );
-    const QString iconUrl = getIconUrl( url );
-    d->m_listeners.insert( listener, iconUrl );
-    d->urlDict.insert( iconUrl, listener );
-    d->urlDict.insert( url.host(), listener );
-    QMetaObject::invokeMethod( this, "loadIcon", Qt::QueuedConnection, Q_ARG( QString, iconUrl ) );
+    assert(listener);
+    removeListener(listener);
+    const QString iconUrl = getIconUrl(url);
+    d->m_listeners.insert(listener, iconUrl);
+    d->urlDict.insert(iconUrl, listener);
+    d->urlDict.insert(url.host(), listener);
+    QMetaObject::invokeMethod(this, "loadIcon", Qt::QueuedConnection, Q_ARG(QString, iconUrl));
 }
 
-void FeedIconManager::removeListener( FaviconListener* listener )
+void FeedIconManager::removeListener(FaviconListener *listener)
 {
-    assert( listener );
-    if ( !d->m_listeners.contains( listener ) )
+    assert(listener);
+    if (!d->m_listeners.contains(listener)) {
         return;
-    const QString url = d->m_listeners.value( listener );
-    d->urlDict.remove( KUrl( url ).host(), listener );
-    d->urlDict.remove( url, listener );
-    d->m_listeners.remove( listener );
+    }
+    const QString url = d->m_listeners.value(listener);
+    d->urlDict.remove(KUrl(url).host(), listener);
+    d->urlDict.remove(url, listener);
+    d->m_listeners.remove(listener);
 }
 
 FeedIconManager::FeedIconManager()
     : QObject()
-    , d( new Private( this ) )
+    , d(new Private(this))
 {
 }
 
@@ -155,14 +153,15 @@ FeedIconManager::~FeedIconManager()
     delete d;
 }
 
-void FeedIconManager::slotIconChanged( bool isHost,
-                                       const QString& hostOrUrl,
-                                       const QString& iconName )
+void FeedIconManager::slotIconChanged(bool isHost,
+                                      const QString &hostOrUrl,
+                                      const QString &iconName)
 {
-    Q_UNUSED( isHost );
-    const QIcon icon( QStandardPaths::locate(QStandardPaths::CacheLocation, iconName+QLatin1String(".png") ) );
-    Q_FOREACH( FaviconListener* const l, d->urlDict.values( hostOrUrl ) )
-        l->setFavicon( icon );
+    Q_UNUSED(isHost);
+    const QIcon icon(QStandardPaths::locate(QStandardPaths::CacheLocation, iconName + QLatin1String(".png")));
+    Q_FOREACH (FaviconListener *const l, d->urlDict.values(hostOrUrl)) {
+        l->setFavicon(icon);
+    }
 }
 
 #include "moc_feediconmanager.cpp"

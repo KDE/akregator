@@ -92,22 +92,23 @@ using namespace Solid;
 Akregator::MainWidget::~MainWidget()
 {
     // if m_shuttingDown is false, slotOnShutdown was not called. That
-     // means that not the whole app is shutdown, only the part. So it
+    // means that not the whole app is shutdown, only the part. So it
     // should be no risk to do the cleanups now
-    if (!m_shuttingDown)
+    if (!m_shuttingDown) {
         slotOnShutdown();
+    }
 }
 
-Akregator::MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImpl* actionManager, const char *name)
-     : QWidget(parent),
-     m_feedList(),
-     m_viewMode(NormalView),
-     m_actionManager(actionManager),
-     m_feedListManagementInterface( new FeedListManagementImpl )
+Akregator::MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionManager, const char *name)
+    : QWidget(parent),
+      m_feedList(),
+      m_viewMode(NormalView),
+      m_actionManager(actionManager),
+      m_feedListManagementInterface(new FeedListManagementImpl)
 {
     setObjectName(name);
 
-    FeedListManagementInterface::setInstance( m_feedListManagementInterface );
+    FeedListManagementInterface::setInstance(m_feedListManagementInterface);
 
     m_actionManager->initMainWidget(this);
     m_actionManager->initFrameManager(Kernel::self()->frameManager());
@@ -116,7 +117,7 @@ Akregator::MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImp
     m_displayingAboutPage = false;
     setFocusPolicy(Qt::StrongFocus);
 
-    QVBoxLayout *lt = new QVBoxLayout( this );
+    QVBoxLayout *lt = new QVBoxLayout(this);
     lt->setMargin(0);
 
     m_horizontalSplitter = new QSplitter(Qt::Horizontal, this);
@@ -125,16 +126,16 @@ Akregator::MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImp
     lt->addWidget(m_horizontalSplitter);
 
     connect(Kernel::self()->fetchQueue(), SIGNAL(signalStarted()),
-             this, SLOT(slotFetchingStarted()));
+            this, SLOT(slotFetchingStarted()));
     connect(Kernel::self()->fetchQueue(), SIGNAL(signalStopped()),
-             this, SLOT(slotFetchingStopped()));
+            this, SLOT(slotFetchingStopped()));
 
-    m_feedListView = new SubscriptionListView( m_horizontalSplitter );
-    m_feedListView->setObjectName( "feedtree" );
-    m_actionManager->initSubscriptionListView( m_feedListView );
+    m_feedListView = new SubscriptionListView(m_horizontalSplitter);
+    m_feedListView->setObjectName("feedtree");
+    m_actionManager->initSubscriptionListView(m_feedListView);
 
-    connect( m_feedListView, SIGNAL(userActionTakingPlace()),
-             this, SLOT(ensureArticleTabVisible()) );
+    connect(m_feedListView, SIGNAL(userActionTakingPlace()),
+            this, SLOT(ensureArticleTabVisible()));
 
     // FIXME:
     // connect(m_feedListView, SIGNAL(signalDropped (KUrl::List &, Akregator::TreeNode*,
@@ -145,123 +146,125 @@ Akregator::MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImp
     m_tabWidget = new TabWidget(m_horizontalSplitter);
     m_actionManager->initTabWidget(m_tabWidget);
 
-    connect( m_part, SIGNAL(signalSettingsChanged()),
-             m_tabWidget, SLOT(slotSettingsChanged()));
+    connect(m_part, SIGNAL(signalSettingsChanged()),
+            m_tabWidget, SLOT(slotSettingsChanged()));
 
-    connect( m_tabWidget, SIGNAL(signalCurrentFrameChanged(int)),
-             Kernel::self()->frameManager(), SLOT(slotChangeFrame(int)));
+    connect(m_tabWidget, SIGNAL(signalCurrentFrameChanged(int)),
+            Kernel::self()->frameManager(), SLOT(slotChangeFrame(int)));
 
-    connect( m_tabWidget, SIGNAL(signalRemoveFrameRequest(int)),
-             Kernel::self()->frameManager(), SLOT(slotRemoveFrame(int)));
+    connect(m_tabWidget, SIGNAL(signalRemoveFrameRequest(int)),
+            Kernel::self()->frameManager(), SLOT(slotRemoveFrame(int)));
 
-    connect( m_tabWidget, SIGNAL(signalOpenUrlRequest(Akregator::OpenUrlRequest&)),
-             Kernel::self()->frameManager(), SLOT(slotOpenUrlRequest(Akregator::OpenUrlRequest&)));
+    connect(m_tabWidget, SIGNAL(signalOpenUrlRequest(Akregator::OpenUrlRequest&)),
+            Kernel::self()->frameManager(), SLOT(slotOpenUrlRequest(Akregator::OpenUrlRequest&)));
 
-    connect( Kernel::self()->frameManager(), SIGNAL(signalFrameAdded(Akregator::Frame*)),
-             m_tabWidget, SLOT(slotAddFrame(Akregator::Frame*)));
+    connect(Kernel::self()->frameManager(), SIGNAL(signalFrameAdded(Akregator::Frame*)),
+            m_tabWidget, SLOT(slotAddFrame(Akregator::Frame*)));
 
-    connect( Kernel::self()->frameManager(), SIGNAL(signalSelectFrame(int)),
-             m_tabWidget, SLOT(slotSelectFrame(int)) );
+    connect(Kernel::self()->frameManager(), SIGNAL(signalSelectFrame(int)),
+            m_tabWidget, SLOT(slotSelectFrame(int)));
 
-    connect( Kernel::self()->frameManager(), SIGNAL(signalFrameRemoved(int)),
-             m_tabWidget, SLOT(slotRemoveFrame(int)));
+    connect(Kernel::self()->frameManager(), SIGNAL(signalFrameRemoved(int)),
+            m_tabWidget, SLOT(slotRemoveFrame(int)));
 
-    connect( Kernel::self()->frameManager(), SIGNAL(signalRequestNewFrame(int&)),
-             this, SLOT(slotRequestNewFrame(int&)) );
+    connect(Kernel::self()->frameManager(), SIGNAL(signalRequestNewFrame(int&)),
+            this, SLOT(slotRequestNewFrame(int&)));
 
-    connect( Kernel::self()->frameManager(), SIGNAL(signalFrameAdded(Akregator::Frame*)),
-             this, SLOT(slotFramesChanged()));
-    connect( Kernel::self()->frameManager(), SIGNAL(signalFrameRemoved(int)),
-             this, SLOT(slotFramesChanged()));
-    connect( Solid::Networking::notifier(), SIGNAL(statusChanged(Solid::Networking::Status)),
-             this,SLOT(slotNetworkStatusChanged(Solid::Networking::Status)));
+    connect(Kernel::self()->frameManager(), SIGNAL(signalFrameAdded(Akregator::Frame*)),
+            this, SLOT(slotFramesChanged()));
+    connect(Kernel::self()->frameManager(), SIGNAL(signalFrameRemoved(int)),
+            this, SLOT(slotFramesChanged()));
+    connect(Solid::Networking::notifier(), SIGNAL(statusChanged(Solid::Networking::Status)),
+            this, SLOT(slotNetworkStatusChanged(Solid::Networking::Status)));
 
-    m_tabWidget->setWhatsThis( i18n("You can view multiple articles in several open tabs."));
+    m_tabWidget->setWhatsThis(i18n("You can view multiple articles in several open tabs."));
 
     m_mainTab = new QWidget(this);
     m_mainTab->setObjectName("Article Tab");
-    m_mainTab->setWhatsThis( i18n("Articles list."));
+    m_mainTab->setWhatsThis(i18n("Articles list."));
 
-    QVBoxLayout *mainTabLayout = new QVBoxLayout( m_mainTab);
+    QVBoxLayout *mainTabLayout = new QVBoxLayout(m_mainTab);
     mainTabLayout->setMargin(0);
 
     m_searchBar = new SearchBar(m_mainTab);
-    if ( !Settings::showQuickFilter() )
+    if (!Settings::showQuickFilter()) {
         m_searchBar->hide();
+    }
 
     mainTabLayout->addWidget(m_searchBar);
 
     m_articleSplitter = new QSplitter(Qt::Vertical, m_mainTab);
     m_articleSplitter->setObjectName("panner2");
 
-    m_articleListView = new ArticleListView( m_articleSplitter );
-    connect( m_articleListView, SIGNAL(userActionTakingPlace()),
-             this, SLOT(ensureArticleTabVisible()) );
+    m_articleListView = new ArticleListView(m_articleSplitter);
+    connect(m_articleListView, SIGNAL(userActionTakingPlace()),
+            this, SLOT(ensureArticleTabVisible()));
 
-    m_selectionController = new SelectionController( this );
-    m_selectionController->setArticleLister( m_articleListView );
-    m_selectionController->setFeedSelector( m_feedListView );
+    m_selectionController = new SelectionController(this);
+    m_selectionController->setArticleLister(m_articleListView);
+    m_selectionController->setFeedSelector(m_feedListView);
 
     connect(m_searchBar, SIGNAL(signalSearch(std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> >)),
-            m_selectionController, SLOT(setFilters(std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> >)) );
+            m_selectionController, SLOT(setFilters(std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> >)));
 
-    FolderExpansionHandler* expansionHandler = new FolderExpansionHandler( this );
-    connect( m_feedListView, SIGNAL(expanded(QModelIndex)), expansionHandler, SLOT(itemExpanded(QModelIndex)) );
-    connect( m_feedListView, SIGNAL(collapsed(QModelIndex)), expansionHandler, SLOT(itemCollapsed(QModelIndex)) );
+    FolderExpansionHandler *expansionHandler = new FolderExpansionHandler(this);
+    connect(m_feedListView, SIGNAL(expanded(QModelIndex)), expansionHandler, SLOT(itemExpanded(QModelIndex)));
+    connect(m_feedListView, SIGNAL(collapsed(QModelIndex)), expansionHandler, SLOT(itemCollapsed(QModelIndex)));
 
-    m_selectionController->setFolderExpansionHandler( expansionHandler );
+    m_selectionController->setFolderExpansionHandler(expansionHandler);
 
-    connect( m_selectionController, SIGNAL(currentSubscriptionChanged(Akregator::TreeNode*)),
-             this, SLOT(slotNodeSelected(Akregator::TreeNode*)) );
+    connect(m_selectionController, SIGNAL(currentSubscriptionChanged(Akregator::TreeNode*)),
+            this, SLOT(slotNodeSelected(Akregator::TreeNode*)));
 
-    connect( m_selectionController, SIGNAL(currentArticleChanged(Akregator::Article)),
-             this, SLOT(slotArticleSelected(Akregator::Article)) );
+    connect(m_selectionController, SIGNAL(currentArticleChanged(Akregator::Article)),
+            this, SLOT(slotArticleSelected(Akregator::Article)));
 
-    connect( m_selectionController, SIGNAL(articleDoubleClicked(Akregator::Article)),
-             this, SLOT(slotOpenArticleInBrowser(Akregator::Article)) );
+    connect(m_selectionController, SIGNAL(articleDoubleClicked(Akregator::Article)),
+            this, SLOT(slotOpenArticleInBrowser(Akregator::Article)));
 
     m_actionManager->initArticleListView(m_articleListView);
 
-    connect( m_articleListView, SIGNAL(signalMouseButtonPressed(int,KUrl)),
-             this, SLOT(slotMouseButtonPressed(int,KUrl)));
+    connect(m_articleListView, SIGNAL(signalMouseButtonPressed(int,KUrl)),
+            this, SLOT(slotMouseButtonPressed(int,KUrl)));
 
-/*
-    connect( m_part, SIGNAL(signalSettingsChanged()),
-             m_articleListView, SLOT(slotPaletteOrFontChanged()));
-*/
+    /*
+        connect( m_part, SIGNAL(signalSettingsChanged()),
+                 m_articleListView, SLOT(slotPaletteOrFontChanged()));
+    */
 
     m_articleViewer = new ArticleViewer(m_articleSplitter);
     m_actionManager->initArticleViewer(m_articleViewer);
     m_articleListView->setFocusProxy(m_articleViewer);
-    setFocusProxy( m_articleViewer );
+    setFocusProxy(m_articleViewer);
 
-    connect( m_articleViewer, SIGNAL(signalOpenUrlRequest(Akregator::OpenUrlRequest&)),
-             Kernel::self()->frameManager(), SLOT(slotOpenUrlRequest(Akregator::OpenUrlRequest&)) );
-    connect( m_articleViewer->part()->browserExtension(), SIGNAL(mouseOverInfo(KFileItem)),
-             this, SLOT(slotMouseOverInfo(KFileItem)) );
-    connect( m_part, SIGNAL(signalSettingsChanged()),
-             m_articleViewer, SLOT(slotPaletteOrFontChanged()));
+    connect(m_articleViewer, SIGNAL(signalOpenUrlRequest(Akregator::OpenUrlRequest&)),
+            Kernel::self()->frameManager(), SLOT(slotOpenUrlRequest(Akregator::OpenUrlRequest&)));
+    connect(m_articleViewer->part()->browserExtension(), SIGNAL(mouseOverInfo(KFileItem)),
+            this, SLOT(slotMouseOverInfo(KFileItem)));
+    connect(m_part, SIGNAL(signalSettingsChanged()),
+            m_articleViewer, SLOT(slotPaletteOrFontChanged()));
     connect(m_searchBar, SIGNAL(signalSearch(std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> >)),
-            m_articleViewer, SLOT(setFilters(std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> >)) );
+            m_articleViewer, SLOT(setFilters(std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> >)));
 
-    m_articleViewer->part()->widget()->setWhatsThis( i18n("Browsing area."));
+    m_articleViewer->part()->widget()->setWhatsThis(i18n("Browsing area."));
 
-    mainTabLayout->addWidget( m_articleSplitter );
+    mainTabLayout->addWidget(m_articleSplitter);
 
-    m_mainFrame = new MainFrame( this, m_part, m_mainTab );
-    m_mainFrame->slotSetTitle( i18n("Articles") );
+    m_mainFrame = new MainFrame(this, m_part, m_mainTab);
+    m_mainFrame->slotSetTitle(i18n("Articles"));
     Kernel::self()->frameManager()->slotAddFrame(m_mainFrame);
 
     const QList<int> sp1sizes = Settings::splitter1Sizes();
-    if ( sp1sizes.count() >= m_horizontalSplitter->count() )
-        m_horizontalSplitter->setSizes( sp1sizes );
+    if (sp1sizes.count() >= m_horizontalSplitter->count()) {
+        m_horizontalSplitter->setSizes(sp1sizes);
+    }
     const QList<int> sp2sizes = Settings::splitter2Sizes();
-    if ( sp2sizes.count() >= m_articleSplitter->count() )
-        m_articleSplitter->setSizes( sp2sizes );
+    if (sp2sizes.count() >= m_articleSplitter->count()) {
+        m_articleSplitter->setSizes(sp2sizes);
+    }
 
     KConfigGroup conf(Settings::self()->config(), "General");
-    if(!conf.readEntry("Disable Introduction", false))
-    {
+    if (!conf.readEntry("Disable Introduction", false)) {
         m_articleListView->hide();
         m_searchBar->hide();
         m_articleViewer->displayAboutPage();
@@ -270,45 +273,44 @@ Akregator::MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImp
     }
 
     m_fetchTimer = new QTimer(this);
-    connect( m_fetchTimer, SIGNAL(timeout()),
-             this, SLOT(slotDoIntervalFetches()) );
-    m_fetchTimer->start(1000*60);
+    connect(m_fetchTimer, SIGNAL(timeout()),
+            this, SLOT(slotDoIntervalFetches()));
+    m_fetchTimer->start(1000 * 60);
 
     // delete expired articles once per hour
     m_expiryTimer = new QTimer(this);
     connect(m_expiryTimer, SIGNAL(timeout()),
-            this, SLOT(slotDeleteExpiredArticles()) );
-    m_expiryTimer->start(3600*1000);
+            this, SLOT(slotDeleteExpiredArticles()));
+    m_expiryTimer->start(3600 * 1000);
 
     m_markReadTimer = new QTimer(this);
     m_markReadTimer->setSingleShot(true);
-    connect(m_markReadTimer, SIGNAL(timeout()), this, SLOT(slotSetCurrentArticleReadDelayed()) );
+    connect(m_markReadTimer, SIGNAL(timeout()), this, SLOT(slotSetCurrentArticleReadDelayed()));
 
-    setFeedList( shared_ptr<FeedList>( new FeedList( Kernel::self()->storage() ) ) );
+    setFeedList(shared_ptr<FeedList>(new FeedList(Kernel::self()->storage())));
 
-    switch (Settings::viewMode())
-    {
-        case CombinedView:
-            slotCombinedView();
-            break;
-        case WidescreenView:
-            slotWidescreenView();
-            break;
-        default:
-            slotNormalView();
+    switch (Settings::viewMode()) {
+    case CombinedView:
+        slotCombinedView();
+        break;
+    case WidescreenView:
+        slotWidescreenView();
+        break;
+    default:
+        slotNormalView();
     }
 
-    if ( !Settings::resetQuickFilterOnNodeChange() )
-    {
-        m_searchBar->slotSetStatus( Settings::statusFilter() );
-        m_searchBar->slotSetText( Settings::textFilter() );
+    if (!Settings::resetQuickFilterOnNodeChange()) {
+        m_searchBar->slotSetStatus(Settings::statusFilter());
+        m_searchBar->slotSetText(Settings::textFilter());
     }
 
-        //Check network status
-    if(Solid::Networking::status() == Solid::Networking::Connected ||Solid::Networking::status() == Solid::Networking::Unknown)
-     this->m_networkAvailable=true;
-    else if(Solid::Networking::status() == Solid::Networking::Unconnected)
-      this->m_networkAvailable=false;
+    //Check network status
+    if (Solid::Networking::status() == Solid::Networking::Connected || Solid::Networking::status() == Solid::Networking::Unknown) {
+        this->m_networkAvailable = true;
+    } else if (Solid::Networking::status() == Solid::Networking::Unconnected) {
+        this->m_networkAvailable = false;
+    }
 }
 
 void Akregator::MainWidget::slotOnShutdown()
@@ -317,13 +319,13 @@ void Akregator::MainWidget::slotOnShutdown()
 
     // close all pageviewers in a controlled way
     // fixes bug 91660, at least when no part loading data
-    while ( m_tabWidget->count() > 1 ) { // remove frames until only the main frame remains
-        m_tabWidget->setCurrentIndex( m_tabWidget->count() - 1 ); // select last page
+    while (m_tabWidget->count() > 1) {   // remove frames until only the main frame remains
+        m_tabWidget->setCurrentIndex(m_tabWidget->count() - 1);   // select last page
         m_tabWidget->slotRemoveCurrentFrame();
     }
 
     Kernel::self()->fetchQueue()->slotAbort();
-    setFeedList( shared_ptr<FeedList>() );
+    setFeedList(shared_ptr<FeedList>());
 
     delete m_feedListManagementInterface;
     delete m_feedListView; // call delete here, so that the header settings will get saved
@@ -336,27 +338,27 @@ void Akregator::MainWidget::slotOnShutdown()
     Settings::self()->save();
 }
 
-
 void Akregator::MainWidget::saveSettings()
 {
     const QList<int> spl1 = m_horizontalSplitter->sizes();
-    if ( std::count( spl1.begin(), spl1.end(), 0 ) == 0 )
-        Settings::setSplitter1Sizes( spl1 );
+    if (std::count(spl1.begin(), spl1.end(), 0) == 0) {
+        Settings::setSplitter1Sizes(spl1);
+    }
     const QList<int> spl2 = m_articleSplitter->sizes();
-    if ( std::count( spl2.begin(), spl2.end(), 0 ) == 0 )
-        Settings::setSplitter2Sizes( spl2 );
-    Settings::setViewMode( m_viewMode );
+    if (std::count(spl2.begin(), spl2.end(), 0) == 0) {
+        Settings::setSplitter2Sizes(spl2);
+    }
+    Settings::setViewMode(m_viewMode);
     Settings::self()->save();
 }
 
-
-void Akregator::MainWidget::slotRequestNewFrame(int& frameId)
+void Akregator::MainWidget::slotRequestNewFrame(int &frameId)
 {
-    BrowserFrame* frame = new BrowserFrame(m_tabWidget);
+    BrowserFrame *frame = new BrowserFrame(m_tabWidget);
 
-    connect( m_part, SIGNAL(signalSettingsChanged()), frame, SLOT(slotPaletteOrFontChanged()));
-    connect( m_tabWidget, SIGNAL(signalZoomInFrame(int)), frame, SLOT(slotZoomIn(int)));
-    connect( m_tabWidget, SIGNAL(signalZoomOutFrame(int)), frame, SLOT(slotZoomOut(int)));
+    connect(m_part, SIGNAL(signalSettingsChanged()), frame, SLOT(slotPaletteOrFontChanged()));
+    connect(m_tabWidget, SIGNAL(signalZoomInFrame(int)), frame, SLOT(slotZoomIn(int)));
+    connect(m_tabWidget, SIGNAL(signalZoomOutFrame(int)), frame, SLOT(slotZoomOut(int)));
 
     Kernel::self()->frameManager()->slotAddFrame(frame);
 
@@ -368,121 +370,120 @@ void Akregator::MainWidget::sendArticle(bool attach)
     QByteArray text;
     QString title;
 
-    Frame* frame = Kernel::self()->frameManager()->currentFrame();
+    Frame *frame = Kernel::self()->frameManager()->currentFrame();
 
     if (frame && frame->id() > 0) { // are we in some other tab than the articlelist?
         text = frame->url().prettyUrl().toLatin1();
         title = frame->title();
-    }
-    else { // nah, we're in articlelist..
-         const Article article =  m_selectionController->currentArticle();
-         if(!article.isNull()) {
-             text = article.link().prettyUrl().toLatin1();
-             title = article.title();
-         }
+    } else { // nah, we're in articlelist..
+        const Article article =  m_selectionController->currentArticle();
+        if (!article.isNull()) {
+            text = article.link().prettyUrl().toLatin1();
+            title = article.title();
+        }
     }
 
-    if(text.isEmpty())
+    if (text.isEmpty()) {
         return;
-
-    if(attach)
-    {
-        KToolInvocation::invokeMailer(QString(),
-                           QString(),
-                           QString(),
-                           title,
-                           QString(),
-                           QString(),
-                           QStringList(text),
-                           text);
     }
-    else
-    {
+
+    if (attach) {
         KToolInvocation::invokeMailer(QString(),
-                           QString(),
-                           QString(),
-                           title,
-                           text,
-                           QString(),
-                           QStringList(),
-                           text);
+                                      QString(),
+                                      QString(),
+                                      title,
+                                      QString(),
+                                      QString(),
+                                      QStringList(text),
+                                      text);
+    } else {
+        KToolInvocation::invokeMailer(QString(),
+                                      QString(),
+                                      QString(),
+                                      title,
+                                      text,
+                                      QString(),
+                                      QStringList(),
+                                      text);
     }
 }
 
-void MainWidget::importFeedList( const QDomDocument& doc )
+void MainWidget::importFeedList(const QDomDocument &doc)
 {
-    std::auto_ptr<ImportFeedListCommand> cmd( new ImportFeedListCommand );
-    cmd->setParentWidget( this );
-    cmd->setFeedListDocument( doc );
-    cmd->setTargetList( m_feedList );
+    std::auto_ptr<ImportFeedListCommand> cmd(new ImportFeedListCommand);
+    cmd->setParentWidget(this);
+    cmd->setFeedListDocument(doc);
+    cmd->setTargetList(m_feedList);
     cmd.release()->start();
 }
 
-void Akregator::MainWidget::setFeedList( const shared_ptr<FeedList>& list )
+void Akregator::MainWidget::setFeedList(const shared_ptr<FeedList> &list)
 {
-    if ( list == m_feedList )
+    if (list == m_feedList) {
         return;
+    }
     const shared_ptr<FeedList> oldList = m_feedList;
 
     m_feedList = list;
-    if ( m_feedList ) {
-        connect( m_feedList.get(), SIGNAL(unreadCountChanged(int)),
-                 this, SLOT(slotSetTotalUnread()) );
+    if (m_feedList) {
+        connect(m_feedList.get(), SIGNAL(unreadCountChanged(int)),
+                this, SLOT(slotSetTotalUnread()));
     }
 
     slotSetTotalUnread();
 
-    m_feedListManagementInterface->setFeedList( m_feedList );
-    Kernel::self()->setFeedList( m_feedList );
-    ProgressManager::self()->setFeedList( m_feedList );
-    m_selectionController->setFeedList( m_feedList );
+    m_feedListManagementInterface->setFeedList(m_feedList);
+    Kernel::self()->setFeedList(m_feedList);
+    ProgressManager::self()->setFeedList(m_feedList);
+    m_selectionController->setFeedList(m_feedList);
 
-    if ( oldList )
-        oldList->disconnect( this );
+    if (oldList) {
+        oldList->disconnect(this);
+    }
 
     slotDeleteExpiredArticles();
 }
 
-void Akregator::MainWidget::deleteExpiredArticles( const shared_ptr<FeedList>& list )
+void Akregator::MainWidget::deleteExpiredArticles(const shared_ptr<FeedList> &list)
 {
-    if ( !list )
+    if (!list) {
         return;
-    ExpireItemsCommand* cmd = new ExpireItemsCommand( this );
-    cmd->setParentWidget( this );
-    cmd->setFeedList( list );
-    cmd->setFeeds( list->feedIds() );
+    }
+    ExpireItemsCommand *cmd = new ExpireItemsCommand(this);
+    cmd->setParentWidget(this);
+    cmd->setFeedList(list);
+    cmd->setFeeds(list->feedIds());
     cmd->start();
 }
 
 void Akregator::MainWidget::slotDeleteExpiredArticles()
 {
-    deleteExpiredArticles( m_feedList );
+    deleteExpiredArticles(m_feedList);
 }
 
 QDomDocument Akregator::MainWidget::feedListToOPML()
 {
     QDomDocument dom;
-    if ( m_feedList ) {
+    if (m_feedList) {
         dom = m_feedList->toOpml();
     }
     return dom;
 }
 
-void Akregator::MainWidget::addFeedToGroup(const QString& url, const QString& groupName)
+void Akregator::MainWidget::addFeedToGroup(const QString &url, const QString &groupName)
 {
     // Locate the group.
-    QList<TreeNode *> namedGroups = m_feedList->findByTitle( groupName );
-    Folder* group = 0;
-    foreach( TreeNode* const candidate, namedGroups ) {
-        if ( candidate->isGroup() ) {
-            group =  static_cast<Folder*>( candidate );
+    QList<TreeNode *> namedGroups = m_feedList->findByTitle(groupName);
+    Folder *group = 0;
+    foreach (TreeNode *const candidate, namedGroups) {
+        if (candidate->isGroup()) {
+            group =  static_cast<Folder *>(candidate);
             break;
         }
     }
 
-    if (!group)
-    {
-        Folder* g = new Folder( groupName );
+    if (!group) {
+        Folder *g = new Folder(groupName);
         m_feedList->allFeedsFolder()->appendChild(g);
         group = g;
     }
@@ -493,72 +494,77 @@ void Akregator::MainWidget::addFeedToGroup(const QString& url, const QString& gr
 
 void Akregator::MainWidget::slotNormalView()
 {
-    if (m_viewMode == NormalView)
+    if (m_viewMode == NormalView) {
         return;
+    }
 
-    if (m_viewMode == CombinedView)
-    {
+    if (m_viewMode == CombinedView) {
         m_articleListView->show();
 
         const Article article =  m_selectionController->currentArticle();
 
-        if (!article.isNull())
+        if (!article.isNull()) {
             m_articleViewer->showArticle(article);
-        else
-            m_articleViewer->slotShowSummary( m_selectionController->selectedSubscription() );
+        } else {
+            m_articleViewer->slotShowSummary(m_selectionController->selectedSubscription());
+        }
     }
 
     m_articleSplitter->setOrientation(Qt::Vertical);
     m_viewMode = NormalView;
 
-    Settings::setViewMode( m_viewMode );
+    Settings::setViewMode(m_viewMode);
 }
 
 void Akregator::MainWidget::slotWidescreenView()
 {
-    if (m_viewMode == WidescreenView)
+    if (m_viewMode == WidescreenView) {
         return;
+    }
 
-    if (m_viewMode == CombinedView)
-    {
+    if (m_viewMode == CombinedView) {
         m_articleListView->show();
 
         Article article =  m_selectionController->currentArticle();
 
-        if (!article.isNull())
+        if (!article.isNull()) {
             m_articleViewer->showArticle(article);
-        else
-            m_articleViewer->slotShowSummary( m_selectionController->selectedSubscription() );
+        } else {
+            m_articleViewer->slotShowSummary(m_selectionController->selectedSubscription());
+        }
     }
 
     m_articleSplitter->setOrientation(Qt::Horizontal);
     m_viewMode = WidescreenView;
 
-    Settings::setViewMode( m_viewMode );
+    Settings::setViewMode(m_viewMode);
 }
 
 void Akregator::MainWidget::slotCombinedView()
 {
-    if (m_viewMode == CombinedView)
+    if (m_viewMode == CombinedView) {
         return;
+    }
 
     m_articleListView->slotClear();
     m_articleListView->hide();
     m_viewMode = CombinedView;
 
-    Settings::setViewMode( m_viewMode );
+    Settings::setViewMode(m_viewMode);
 }
 
 void Akregator::MainWidget::slotMoveCurrentNodeUp()
 {
-    TreeNode* current = m_selectionController->selectedSubscription();
-    if (!current)
+    TreeNode *current = m_selectionController->selectedSubscription();
+    if (!current) {
         return;
-    TreeNode* prev = current->prevSibling();
-    Folder* parent = current->parent();
+    }
+    TreeNode *prev = current->prevSibling();
+    Folder *parent = current->parent();
 
-    if (!prev || !parent)
+    if (!prev || !parent) {
         return;
+    }
 
     parent->removeChild(prev);
     parent->insertChild(prev, current);
@@ -567,14 +573,16 @@ void Akregator::MainWidget::slotMoveCurrentNodeUp()
 
 void Akregator::MainWidget::slotMoveCurrentNodeDown()
 {
-    TreeNode* current = m_selectionController->selectedSubscription();
-    if (!current)
+    TreeNode *current = m_selectionController->selectedSubscription();
+    if (!current) {
         return;
-    TreeNode* next = current->nextSibling();
-    Folder* parent = current->parent();
+    }
+    TreeNode *next = current->nextSibling();
+    Folder *parent = current->parent();
 
-    if (!next || !parent)
+    if (!next || !parent) {
         return;
+    }
 
     parent->removeChild(current);
     parent->insertChild(current, next);
@@ -583,12 +591,13 @@ void Akregator::MainWidget::slotMoveCurrentNodeDown()
 
 void Akregator::MainWidget::slotMoveCurrentNodeLeft()
 {
-    TreeNode* current = m_selectionController->selectedSubscription();
-    if (!current || !current->parent() || !current->parent()->parent())
+    TreeNode *current = m_selectionController->selectedSubscription();
+    if (!current || !current->parent() || !current->parent()->parent()) {
         return;
+    }
 
-    Folder* parent = current->parent();
-    Folder* grandparent = current->parent()->parent();
+    Folder *parent = current->parent();
+    Folder *grandparent = current->parent()->parent();
 
     parent->removeChild(current);
     grandparent->insertChild(current, parent);
@@ -597,202 +606,209 @@ void Akregator::MainWidget::slotMoveCurrentNodeLeft()
 
 void Akregator::MainWidget::slotMoveCurrentNodeRight()
 {
-    TreeNode* current = m_selectionController->selectedSubscription();
-    if (!current || !current->parent())
+    TreeNode *current = m_selectionController->selectedSubscription();
+    if (!current || !current->parent()) {
         return;
-    TreeNode* prev = current->prevSibling();
+    }
+    TreeNode *prev = current->prevSibling();
 
-    if ( prev && prev->isGroup() )
-    {
-        Folder* fg = static_cast<Folder*>(prev);
+    if (prev && prev->isGroup()) {
+        Folder *fg = static_cast<Folder *>(prev);
         current->parent()->removeChild(current);
         fg->appendChild(current);
         m_feedListView->ensureNodeVisible(current);
     }
 }
 
-void Akregator::MainWidget::slotNodeSelected(TreeNode* node)
+void Akregator::MainWidget::slotNodeSelected(TreeNode *node)
 {
     m_markReadTimer->stop();
 
-    if (m_displayingAboutPage)
-    {
+    if (m_displayingAboutPage) {
         m_mainFrame->slotSetTitle(i18n("Articles"));
-        if (m_viewMode != CombinedView)
+        if (m_viewMode != CombinedView) {
             m_articleListView->show();
-        if (Settings::showQuickFilter())
+        }
+        if (Settings::showQuickFilter()) {
             m_searchBar->show();
+        }
         m_displayingAboutPage = false;
     }
 
-    m_tabWidget->setCurrentWidget( m_mainFrame );
-    if ( Settings::resetQuickFilterOnNodeChange() )
+    m_tabWidget->setCurrentWidget(m_mainFrame);
+    if (Settings::resetQuickFilterOnNodeChange()) {
         m_searchBar->slotClearSearch();
-
-    if (m_viewMode == CombinedView)
-    {
-        m_articleViewer->showNode(node);
     }
-    else
-    {
+
+    if (m_viewMode == CombinedView) {
+        m_articleViewer->showNode(node);
+    } else {
         m_articleViewer->slotShowSummary(node);
     }
 
-    if (node)
-       m_mainFrame->setWindowTitle(node->title());
+    if (node) {
+        m_mainFrame->setWindowTitle(node->title());
+    }
 
     m_actionManager->slotNodeSelected(node);
 }
 
-
 void Akregator::MainWidget::slotFeedAdd()
 {
-    Folder* group = 0;
-    if ( !m_selectionController->selectedSubscription() )
+    Folder *group = 0;
+    if (!m_selectionController->selectedSubscription()) {
         group = m_feedList->allFeedsFolder();
-    else
-    {
-        if ( m_selectionController->selectedSubscription()->isGroup())
-            group = static_cast<Folder*>( m_selectionController->selectedSubscription() );
-        else
-            group= m_selectionController->selectedSubscription()->parent();
+    } else {
+        if (m_selectionController->selectedSubscription()->isGroup()) {
+            group = static_cast<Folder *>(m_selectionController->selectedSubscription());
+        } else {
+            group = m_selectionController->selectedSubscription()->parent();
+        }
 
     }
 
-    TreeNode* const lastChild = !group->children().isEmpty() ? group->children().last() : 0;
+    TreeNode *const lastChild = !group->children().isEmpty() ? group->children().last() : 0;
 
     addFeed(QString::null, lastChild, group, false);        //krazy:exclude=nullstrassign for old broken gcc
 }
 
-void Akregator::MainWidget::addFeed(const QString& url, TreeNode *after, Folder* parent, bool autoExec)
+void Akregator::MainWidget::addFeed(const QString &url, TreeNode *after, Folder *parent, bool autoExec)
 {
-    CreateFeedCommand* cmd( new CreateFeedCommand( this ) );
-    cmd->setParentWidget( this );
-    cmd->setPosition( parent, after );
-    cmd->setRootFolder( m_feedList->allFeedsFolder() );
-    cmd->setAutoExecute( autoExec );
-    cmd->setUrl( url );
-    cmd->setSubscriptionListView( m_feedListView );
+    CreateFeedCommand *cmd(new CreateFeedCommand(this));
+    cmd->setParentWidget(this);
+    cmd->setPosition(parent, after);
+    cmd->setRootFolder(m_feedList->allFeedsFolder());
+    cmd->setAutoExecute(autoExec);
+    cmd->setUrl(url);
+    cmd->setSubscriptionListView(m_feedListView);
     cmd->start();
 }
 
 void Akregator::MainWidget::slotFeedAddGroup()
 {
-    CreateFolderCommand* cmd = new CreateFolderCommand( this );
-    cmd->setParentWidget( this );
-    cmd->setSelectedSubscription( m_selectionController->selectedSubscription() );
-    cmd->setRootFolder( m_feedList->allFeedsFolder() );
-    cmd->setSubscriptionListView( m_feedListView );
+    CreateFolderCommand *cmd = new CreateFolderCommand(this);
+    cmd->setParentWidget(this);
+    cmd->setSelectedSubscription(m_selectionController->selectedSubscription());
+    cmd->setRootFolder(m_feedList->allFeedsFolder());
+    cmd->setSubscriptionListView(m_feedListView);
     cmd->start();
 }
 
 void Akregator::MainWidget::slotFeedRemove()
 {
-    TreeNode* selectedNode = m_selectionController->selectedSubscription();
+    TreeNode *selectedNode = m_selectionController->selectedSubscription();
 
     // don't delete root element! (safety valve)
-    if (!selectedNode || selectedNode == m_feedList->allFeedsFolder())
+    if (!selectedNode || selectedNode == m_feedList->allFeedsFolder()) {
         return;
+    }
 
-    DeleteSubscriptionCommand* cmd = new DeleteSubscriptionCommand( this );
-    cmd->setParentWidget( this );
-    cmd->setSubscription( m_feedList, selectedNode->id() );
+    DeleteSubscriptionCommand *cmd = new DeleteSubscriptionCommand(this);
+    cmd->setParentWidget(this);
+    cmd->setSubscription(m_feedList, selectedNode->id());
     cmd->start();
 }
 
 void Akregator::MainWidget::slotFeedModify()
 {
-    TreeNode* const node = m_selectionController->selectedSubscription();
-    if ( !node )
+    TreeNode *const node = m_selectionController->selectedSubscription();
+    if (!node) {
         return;
-    EditSubscriptionCommand* cmd = new EditSubscriptionCommand( this );
-    cmd->setParentWidget( this );
-    cmd->setSubscription( m_feedList, node->id() );
-    cmd->setSubscriptionListView( m_feedListView );
+    }
+    EditSubscriptionCommand *cmd = new EditSubscriptionCommand(this);
+    cmd->setParentWidget(this);
+    cmd->setSubscription(m_feedList, node->id());
+    cmd->setSubscriptionListView(m_feedListView);
     cmd->start();
 }
 
 void Akregator::MainWidget::slotNextUnreadArticle()
 {
     ensureArticleTabVisible();
-    if (m_viewMode == CombinedView)
-    {
+    if (m_viewMode == CombinedView) {
         m_feedListView->slotNextUnreadFeed();
         return;
     }
-    TreeNode* sel = m_selectionController->selectedSubscription();
-    if (sel && sel->unread() > 0)
+    TreeNode *sel = m_selectionController->selectedSubscription();
+    if (sel && sel->unread() > 0) {
         m_articleListView->slotNextUnreadArticle();
-    else
+    } else {
         m_feedListView->slotNextUnreadFeed();
+    }
 }
 
 void Akregator::MainWidget::slotPrevUnreadArticle()
 {
     ensureArticleTabVisible();
-    if (m_viewMode == CombinedView)
-    {
+    if (m_viewMode == CombinedView) {
         m_feedListView->slotPrevUnreadFeed();
         return;
     }
-    TreeNode* sel = m_selectionController->selectedSubscription();
-    if (sel && sel->unread() > 0)
+    TreeNode *sel = m_selectionController->selectedSubscription();
+    if (sel && sel->unread() > 0) {
         m_articleListView->slotPreviousUnreadArticle();
-    else
+    } else {
         m_feedListView->slotPrevUnreadFeed();
+    }
 }
 
 void Akregator::MainWidget::slotMarkAllFeedsRead()
 {
-    KJob* job = m_feedList->createMarkAsReadJob();
-    connect(job, SIGNAL(finished(KJob*)), m_selectionController, SLOT(forceFilterUpdate()) );
+    KJob *job = m_feedList->createMarkAsReadJob();
+    connect(job, SIGNAL(finished(KJob*)), m_selectionController, SLOT(forceFilterUpdate()));
     job->start();
 }
 
 void Akregator::MainWidget::slotMarkAllRead()
 {
-    if(!m_selectionController->selectedSubscription())
+    if (!m_selectionController->selectedSubscription()) {
         return;
-    KJob* job = m_selectionController->selectedSubscription()->createMarkAsReadJob();
-    connect(job, SIGNAL(finished(KJob*)), m_selectionController, SLOT(forceFilterUpdate()) );
+    }
+    KJob *job = m_selectionController->selectedSubscription()->createMarkAsReadJob();
+    connect(job, SIGNAL(finished(KJob*)), m_selectionController, SLOT(forceFilterUpdate()));
     job->start();
 }
 
 void Akregator::MainWidget::slotSetTotalUnread()
 {
-    emit signalUnreadCountChanged( m_feedList ? m_feedList->unread() : 0 );
+    emit signalUnreadCountChanged(m_feedList ? m_feedList->unread() : 0);
 }
 
 void Akregator::MainWidget::slotDoIntervalFetches()
 {
-    if ( !m_feedList )
+    if (!m_feedList) {
         return;
+    }
 #if 0
     // the following solid check apparently doesn't work reliably and causes
     // interval fetching not working although the user is actually online (but solid reports he's not
     const Networking::Status status = Solid::Networking::status();
-    if ( status != Networking::Connected && status != Networking::Unknown )
+    if (status != Networking::Connected && status != Networking::Unknown) {
         return;
+    }
 #endif
     m_feedList->addToFetchQueue(Kernel::self()->fetchQueue(), true);
 }
 
 void Akregator::MainWidget::slotFetchCurrentFeed()
 {
-    if ( !m_selectionController->selectedSubscription())
+    if (!m_selectionController->selectedSubscription()) {
         return;
-    if(isNetworkAvailable())
-      m_selectionController->selectedSubscription()->slotAddToFetchQueue(Kernel::self()->fetchQueue());
-    else
-      m_mainFrame->slotSetStatusText(i18n("Networking is not available."));
+    }
+    if (isNetworkAvailable()) {
+        m_selectionController->selectedSubscription()->slotAddToFetchQueue(Kernel::self()->fetchQueue());
+    } else {
+        m_mainFrame->slotSetStatusText(i18n("Networking is not available."));
+    }
 }
 
 void Akregator::MainWidget::slotFetchAllFeeds()
 {
-    if ( m_feedList && isNetworkAvailable() )
-        m_feedList->addToFetchQueue( Kernel::self()->fetchQueue() );
-    else if (m_feedList)
+    if (m_feedList && isNetworkAvailable()) {
+        m_feedList->addToFetchQueue(Kernel::self()->fetchQueue());
+    } else if (m_feedList) {
         m_mainFrame->slotSetStatusText(i18n("Networking is not available."));
+    }
 }
 
 void Akregator::MainWidget::slotFetchingStarted()
@@ -809,70 +825,71 @@ void Akregator::MainWidget::slotFetchingStopped()
     m_mainFrame->slotSetStatusText(QString());
 }
 
-void Akregator::MainWidget::slotArticleSelected(const Akregator::Article& article)
+void Akregator::MainWidget::slotArticleSelected(const Akregator::Article &article)
 {
-    if (m_viewMode == CombinedView)
+    if (m_viewMode == CombinedView) {
         return;
+    }
 
     m_markReadTimer->stop();
 
-    assert( article.isNull() || article.feed() );
+    assert(article.isNull() || article.feed());
 
     QList<Article> articles = m_selectionController->selectedArticles();
-    emit signalArticlesSelected( articles );
+    emit signalArticlesSelected(articles);
 
-    KToggleAction* const maai = qobject_cast<KToggleAction*>( m_actionManager->action( "article_set_status_important" ) );
-    assert( maai );
-    maai->setChecked( article.keep() );
+    KToggleAction *const maai = qobject_cast<KToggleAction *>(m_actionManager->action("article_set_status_important"));
+    assert(maai);
+    maai->setChecked(article.keep());
 
-    m_articleViewer->showArticle( article );
+    m_articleViewer->showArticle(article);
     if (m_selectionController->selectedArticles().count() == 0) {
         m_articleListView->setCurrentIndex(m_selectionController->currentArticleIndex());
     }
 
-    if ( article.isNull() || article.status() == Akregator::Read )
+    if (article.isNull() || article.status() == Akregator::Read) {
         return;
+    }
 
-    if ( !Settings::useMarkReadDelay() )
+    if (!Settings::useMarkReadDelay()) {
         return;
+    }
 
     const int delay = Settings::markReadDelay();
 
-    if ( delay > 0 )
-    {
-        m_markReadTimer->start( delay * 1000 );
-    }
-    else
-    {
-        Akregator::ArticleModifyJob* job = new Akregator::ArticleModifyJob;
+    if (delay > 0) {
+        m_markReadTimer->start(delay * 1000);
+    } else {
+        Akregator::ArticleModifyJob *job = new Akregator::ArticleModifyJob;
         const Akregator::ArticleId aid = { article.feed()->xmlUrl(), article.guid() };
-        job->setStatus( aid, Akregator::Read );
+        job->setStatus(aid, Akregator::Read);
         job->start();
     }
 }
 
-void Akregator::MainWidget::slotMouseButtonPressed(int button, const KUrl& url)
+void Akregator::MainWidget::slotMouseButtonPressed(int button, const KUrl &url)
 {
-    if (button != Qt::MidButton)
+    if (button != Qt::MidButton) {
         return;
+    }
 
-    if (!url.isValid())
+    if (!url.isValid()) {
         return;
+    }
 
     OpenUrlRequest req(url);
 
-    switch (Settings::mMBBehaviour())
-    {
-        case Settings::EnumMMBBehaviour::OpenInExternalBrowser:
-            req.setOptions(OpenUrlRequest::ExternalBrowser);
-            break;
-        case Settings::EnumMMBBehaviour::OpenInBackground:
-            req.setOptions(OpenUrlRequest::NewTab);
-            req.setOpenInBackground(true);
-            break;
-        default:
-            req.setOptions(OpenUrlRequest::NewTab);
-            req.setOpenInBackground(false);
+    switch (Settings::mMBBehaviour()) {
+    case Settings::EnumMMBBehaviour::OpenInExternalBrowser:
+        req.setOptions(OpenUrlRequest::ExternalBrowser);
+        break;
+    case Settings::EnumMMBBehaviour::OpenInBackground:
+        req.setOptions(OpenUrlRequest::NewTab);
+        req.setOpenInBackground(true);
+        break;
+    default:
+        req.setOptions(OpenUrlRequest::NewTab);
+        req.setOpenInBackground(false);
     }
 
     Kernel::self()->frameManager()->slotOpenUrlRequest(req);
@@ -880,15 +897,15 @@ void Akregator::MainWidget::slotMouseButtonPressed(int button, const KUrl& url)
 
 void Akregator::MainWidget::slotOpenHomepage()
 {
-    Feed* feed = dynamic_cast<Feed *>( m_selectionController->selectedSubscription() );
+    Feed *feed = dynamic_cast<Feed *>(m_selectionController->selectedSubscription());
 
-    if (!feed)
+    if (!feed) {
         return;
+    }
 
     KUrl url(feed->htmlUrl());
 
-    if (url.isValid())
-    {
+    if (url.isValid()) {
         OpenUrlRequest req(feed->htmlUrl());
         req.setOptions(OpenUrlRequest::ExternalBrowser);
         Kernel::self()->frameManager()->slotOpenUrlRequest(req);
@@ -899,38 +916,37 @@ void Akregator::MainWidget::slotOpenSelectedArticlesInBrowser()
 {
     const QList<Article> articles = m_selectionController->selectedArticles();
 
-    Q_FOREACH( const Akregator::Article& article, articles )
-        slotOpenArticleInBrowser( article );
+    Q_FOREACH (const Akregator::Article &article, articles) {
+        slotOpenArticleInBrowser(article);
+    }
 }
 
-void Akregator::MainWidget::slotOpenArticleInBrowser(const Akregator::Article& article)
+void Akregator::MainWidget::slotOpenArticleInBrowser(const Akregator::Article &article)
 {
-    if (!article.isNull() && article.link().isValid())
-    {
+    if (!article.isNull() && article.link().isValid()) {
         OpenUrlRequest req(article.link());
         req.setOptions(OpenUrlRequest::ExternalBrowser);
         Kernel::self()->frameManager()->slotOpenUrlRequest(req);
     }
 }
 
-
-void Akregator::MainWidget::openSelectedArticles( bool openInBackground )
+void Akregator::MainWidget::openSelectedArticles(bool openInBackground)
 {
     const QList<Article> articles = m_selectionController->selectedArticles();
 
-    Q_FOREACH( const Akregator::Article& article, articles )
-    {
+    Q_FOREACH (const Akregator::Article &article, articles) {
         const KUrl url = article.link();
-        if ( !url.isValid() )
-          continue;
+        if (!url.isValid()) {
+            continue;
+        }
 
-        OpenUrlRequest req( url );
-        req.setOptions( OpenUrlRequest::NewTab );
-        if( openInBackground ) {
-            req.setOpenInBackground( true );
-            Kernel::self()->frameManager()->slotOpenUrlRequest( req, false /*don't use settings for open in background*/ );
+        OpenUrlRequest req(url);
+        req.setOptions(OpenUrlRequest::NewTab);
+        if (openInBackground) {
+            req.setOpenInBackground(true);
+            Kernel::self()->frameManager()->slotOpenUrlRequest(req, false /*don't use settings for open in background*/);
         } else {
-            Kernel::self()->frameManager()->slotOpenUrlRequest( req );
+            Kernel::self()->frameManager()->slotOpenUrlRequest(req);
         }
     }
 
@@ -940,12 +956,12 @@ void Akregator::MainWidget::slotCopyLinkAddress()
 {
     const Article article =  m_selectionController->currentArticle();
 
-    if(article.isNull())
-       return;
+    if (article.isNull()) {
+        return;
+    }
 
     QString link;
-    if (article.link().isValid())
-    {
+    if (article.link().isValid()) {
         link = article.link().url();
         QClipboard *cb = QApplication::clipboard();
         cb->setText(link, QClipboard::Clipboard);
@@ -954,25 +970,24 @@ void Akregator::MainWidget::slotCopyLinkAddress()
     }
 }
 
-void Akregator::MainWidget::slotFeedUrlDropped(KUrl::List &urls, TreeNode* after, Folder* parent)
+void Akregator::MainWidget::slotFeedUrlDropped(KUrl::List &urls, TreeNode *after, Folder *parent)
 {
-    Q_FOREACH ( const KUrl& i, urls )
-        addFeed( i.prettyUrl(), after, parent, false );
+    Q_FOREACH (const KUrl &i, urls) {
+        addFeed(i.prettyUrl(), after, parent, false);
+    }
 }
 
 void Akregator::MainWidget::slotToggleShowQuickFilter()
 {
-    if ( Settings::showQuickFilter() )
-    {
+    if (Settings::showQuickFilter()) {
         Settings::setShowQuickFilter(false);
         m_searchBar->slotClearSearch();
         m_searchBar->hide();
-    }
-    else
-    {
+    } else {
         Settings::setShowQuickFilter(true);
-        if (!m_displayingAboutPage)
+        if (!m_displayingAboutPage) {
             m_searchBar->show();
+        }
     }
 
 }
@@ -980,95 +995,99 @@ void Akregator::MainWidget::slotToggleShowQuickFilter()
 void Akregator::MainWidget::slotArticleDelete()
 {
 
-    if ( m_viewMode == CombinedView )
+    if (m_viewMode == CombinedView) {
         return;
+    }
 
     const QList<Article> articles = m_selectionController->selectedArticles();
 
     QString msg;
-    switch (articles.count())
-    {
-        case 0:
-            return;
-        case 1:
-            msg = i18n("<qt>Are you sure you want to delete article <b>%1</b>?</qt>", articles.first().title().toHtmlEscaped());
-            break;
-        default:
-            msg = i18np("<qt>Are you sure you want to delete the selected article?</qt>", "<qt>Are you sure you want to delete the %1 selected articles?</qt>", articles.count());
+    switch (articles.count()) {
+    case 0:
+        return;
+    case 1:
+        msg = i18n("<qt>Are you sure you want to delete article <b>%1</b>?</qt>", articles.first().title().toHtmlEscaped());
+        break;
+    default:
+        msg = i18np("<qt>Are you sure you want to delete the selected article?</qt>", "<qt>Are you sure you want to delete the %1 selected articles?</qt>", articles.count());
     }
 
-    if ( KMessageBox::warningContinueCancel( this,
-                                             msg, i18n( "Delete Article" ),
-                                             KStandardGuiItem::del(),
-                                             KStandardGuiItem::cancel(),
-                                             "Disable delete article confirmation" ) != KMessageBox::Continue )
+    if (KMessageBox::warningContinueCancel(this,
+                                           msg, i18n("Delete Article"),
+                                           KStandardGuiItem::del(),
+                                           KStandardGuiItem::cancel(),
+                                           "Disable delete article confirmation") != KMessageBox::Continue) {
         return;
+    }
 
-    TreeNode* const selected = m_selectionController->selectedSubscription();
+    TreeNode *const selected = m_selectionController->selectedSubscription();
 
-    if ( selected )
-        selected->setNotificationMode( false );
+    if (selected) {
+        selected->setNotificationMode(false);
+    }
 
-    Akregator::ArticleDeleteJob* job = new Akregator::ArticleDeleteJob;
-    Q_FOREACH( const Akregator::Article& i, articles )
-    {
-        Feed* const feed = i.feed();
-        if ( !feed )
+    Akregator::ArticleDeleteJob *job = new Akregator::ArticleDeleteJob;
+    Q_FOREACH (const Akregator::Article &i, articles) {
+        Feed *const feed = i.feed();
+        if (!feed) {
             continue;
+        }
         const Akregator::ArticleId aid = { feed->xmlUrl(), i.guid() };
-        job->appendArticleId( aid );
+        job->appendArticleId(aid);
     }
 
     job->start();
 
-    if ( selected )
-        selected->setNotificationMode( true );
+    if (selected) {
+        selected->setNotificationMode(true);
+    }
 }
 
 void Akregator::MainWidget::slotFramesChanged()
 {
     // We need to wait till the frame is fully loaded
-    QMetaObject::invokeMethod( m_part, "slotAutoSave", Qt::QueuedConnection );
+    QMetaObject::invokeMethod(m_part, "slotAutoSave", Qt::QueuedConnection);
 }
 
-void Akregator::MainWidget::slotArticleToggleKeepFlag( bool )
+void Akregator::MainWidget::slotArticleToggleKeepFlag(bool)
 {
     const QList<Article> articles = m_selectionController->selectedArticles();
 
-    if (articles.isEmpty())
+    if (articles.isEmpty()) {
         return;
-
-    bool allFlagsSet = true;
-    Q_FOREACH ( const Akregator::Article& i, articles )
-    {
-        allFlagsSet = allFlagsSet && i.keep();
-        if ( !allFlagsSet )
-            break;
     }
 
-    Akregator::ArticleModifyJob* job = new Akregator::ArticleModifyJob;
-    Q_FOREACH ( const Akregator::Article& i, articles )
-    {
+    bool allFlagsSet = true;
+    Q_FOREACH (const Akregator::Article &i, articles) {
+        allFlagsSet = allFlagsSet && i.keep();
+        if (!allFlagsSet) {
+            break;
+        }
+    }
+
+    Akregator::ArticleModifyJob *job = new Akregator::ArticleModifyJob;
+    Q_FOREACH (const Akregator::Article &i, articles) {
         const Akregator::ArticleId aid = { i.feed()->xmlUrl(), i.guid() };
-        job->setKeep( aid, !allFlagsSet );
+        job->setKeep(aid, !allFlagsSet);
     }
     job->start();
 }
 
-namespace {
+namespace
+{
 
-void setSelectedArticleStatus( const Akregator::AbstractSelectionController* controller, int status )
+void setSelectedArticleStatus(const Akregator::AbstractSelectionController *controller, int status)
 {
     const QList<Akregator::Article> articles = controller->selectedArticles();
 
-    if (articles.isEmpty())
+    if (articles.isEmpty()) {
         return;
+    }
 
-    Akregator::ArticleModifyJob* job = new Akregator::ArticleModifyJob;
-    Q_FOREACH ( const Akregator::Article& i, articles )
-    {
+    Akregator::ArticleModifyJob *job = new Akregator::ArticleModifyJob;
+    Q_FOREACH (const Akregator::Article &i, articles) {
         const Akregator::ArticleId aid = { i.feed()->xmlUrl(), i.guid() };
-        job->setStatus( aid, status );
+        job->setStatus(aid, status);
     }
     job->start();
 }
@@ -1077,89 +1096,81 @@ void setSelectedArticleStatus( const Akregator::AbstractSelectionController* con
 
 void Akregator::MainWidget::slotSetSelectedArticleRead()
 {
-    ::setSelectedArticleStatus( m_selectionController, Akregator::Read );
+    ::setSelectedArticleStatus(m_selectionController, Akregator::Read);
 }
 
 void Akregator::MainWidget::slotTextToSpeechRequest()
 {
-    if (Kernel::self()->frameManager()->currentFrame() == m_mainFrame)
-    {
-        if (m_viewMode != CombinedView)
-        {
+    if (Kernel::self()->frameManager()->currentFrame() == m_mainFrame) {
+        if (m_viewMode != CombinedView) {
 #if 0 //QT5
             // in non-combined view, read selected articles
             SpeechClient::self()->slotSpeak(m_selectionController->selectedArticles());
             // TODO: if article viewer has a selection, read only the selected text?
 #endif
-        }
-        else
-        {
-            if (m_selectionController->selectedSubscription())
-            {
+        } else {
+            if (m_selectionController->selectedSubscription()) {
                 //TODO: read articles in current node, respecting quick filter!
             }
         }
-    }
-    else
-    {
+    } else {
         // TODO: read selected page viewer
     }
 }
 
 void Akregator::MainWidget::slotSetSelectedArticleUnread()
 {
-    ::setSelectedArticleStatus( m_selectionController, Akregator::Unread );
+    ::setSelectedArticleStatus(m_selectionController, Akregator::Unread);
 }
 
 void Akregator::MainWidget::slotSetSelectedArticleNew()
 {
-    ::setSelectedArticleStatus( m_selectionController, Akregator::New );
+    ::setSelectedArticleStatus(m_selectionController, Akregator::New);
 }
 
 void Akregator::MainWidget::slotSetCurrentArticleReadDelayed()
 {
     const Article article =  m_selectionController->currentArticle();
 
-    if (article.isNull())
+    if (article.isNull()) {
         return;
+    }
 
-    Akregator::ArticleModifyJob* const job = new Akregator::ArticleModifyJob;
+    Akregator::ArticleModifyJob *const job = new Akregator::ArticleModifyJob;
     const Akregator::ArticleId aid = { article.feed()->xmlUrl(), article.guid() };
-    job->setStatus( aid, Akregator::Read );
+    job->setStatus(aid, Akregator::Read);
     job->start();
 }
 
-void Akregator::MainWidget::slotMouseOverInfo(const KFileItem& kifi)
+void Akregator::MainWidget::slotMouseOverInfo(const KFileItem &kifi)
 {
-    m_mainFrame->slotSetStatusText( kifi.isNull() ? QString() : kifi.url().toDisplayString() );
+    m_mainFrame->slotSetStatusText(kifi.isNull() ? QString() : kifi.url().toDisplayString());
 }
 
 void Akregator::MainWidget::readProperties(const KConfigGroup &config)
 {
-    if ( !Settings::resetQuickFilterOnNodeChange() )
-    {
+    if (!Settings::resetQuickFilterOnNodeChange()) {
         // read filter settings
         m_searchBar->slotSetText(config.readEntry("searchLine"));
         m_searchBar->slotSetStatus(config.readEntry("searchCombo").toInt());
     }
     // Reopen tabs
-    QStringList childList = config.readEntry( QString::fromLatin1( "Children" ),
-        QStringList() );
-    Q_FOREACH( const QString& framePrefix, childList )
-    {
-        BrowserFrame* const frame = new BrowserFrame(m_tabWidget);
-        frame->loadConfig( config, framePrefix + QLatin1Char( '_' ) );
+    QStringList childList = config.readEntry(QString::fromLatin1("Children"),
+                            QStringList());
+    Q_FOREACH (const QString &framePrefix, childList) {
+        BrowserFrame *const frame = new BrowserFrame(m_tabWidget);
+        frame->loadConfig(config, framePrefix + QLatin1Char('_'));
 
-        connect( m_part, SIGNAL(signalSettingsChanged()), frame, SLOT(slotPaletteOrFontChanged()));
-        connect( m_tabWidget, SIGNAL(signalZoomInFrame(int)), frame, SLOT(slotZoomIn(int)));
-        connect( m_tabWidget, SIGNAL(signalZoomOutFrame(int)), frame, SLOT(slotZoomOut(int)));
+        connect(m_part, SIGNAL(signalSettingsChanged()), frame, SLOT(slotPaletteOrFontChanged()));
+        connect(m_tabWidget, SIGNAL(signalZoomInFrame(int)), frame, SLOT(slotZoomIn(int)));
+        connect(m_tabWidget, SIGNAL(signalZoomOutFrame(int)), frame, SLOT(slotZoomOut(int)));
 
         Kernel::self()->frameManager()->slotAddFrame(frame);
 
     }
 }
 
-void Akregator::MainWidget::saveProperties(KConfigGroup & config)
+void Akregator::MainWidget::saveProperties(KConfigGroup &config)
 {
     // save filter settings
     config.writeEntry("searchLine", m_searchBar->text());
@@ -1170,44 +1181,38 @@ void Akregator::MainWidget::saveProperties(KConfigGroup & config)
 
 void Akregator::MainWidget::ensureArticleTabVisible()
 {
-    m_tabWidget->setCurrentWidget( m_mainFrame );
+    m_tabWidget->setCurrentWidget(m_mainFrame);
 }
 
 void MainWidget::slotReloadAllTabs()
 {
-  this->m_tabWidget->slotReloadAllTabs();
+    this->m_tabWidget->slotReloadAllTabs();
 }
-
 
 bool MainWidget::isNetworkAvailable()
 {
-  return m_networkAvailable;
+    return m_networkAvailable;
 }
 
 void MainWidget::slotNetworkStatusChanged(Solid::Networking::Status status)
 {
-  if(status==Solid::Networking::Connected || Solid::Networking::status() == Solid::Networking::Unknown)
-  {
-    m_networkAvailable=true;
-    m_mainFrame->slotSetStatusText(i18n("Networking is available now."));
-    this->slotFetchAllFeeds();
-  }
-  else if(Solid::Networking::Unconnected)
-  {
-    m_networkAvailable=false;
-    m_mainFrame->slotSetStatusText(i18n("Networking is not available."));
-  }
+    if (status == Solid::Networking::Connected || Solid::Networking::status() == Solid::Networking::Unknown) {
+        m_networkAvailable = true;
+        m_mainFrame->slotSetStatusText(i18n("Networking is available now."));
+        this->slotFetchAllFeeds();
+    } else if (Solid::Networking::Unconnected) {
+        m_networkAvailable = false;
+        m_mainFrame->slotSetStatusText(i18n("Networking is not available."));
+    }
 }
 
 void Akregator::MainWidget::slotOpenSelectedArticles()
 {
-    openSelectedArticles( false );
+    openSelectedArticles(false);
 }
-
 
 void Akregator::MainWidget::slotOpenSelectedArticlesInBackground()
 {
-    openSelectedArticles( true );
+    openSelectedArticles(true);
 }
-
 

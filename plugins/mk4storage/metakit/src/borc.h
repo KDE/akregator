@@ -13,7 +13,7 @@
 #pragma warn -par // Parameter 'parameter' is never used.
 #pragma warn -sig // Conversion may lose significant digits
 #pragma warn -use // 'identifier' declared but never used
-#endif 
+#endif
 
 #if __BORLANDC__ >= 0x500
 #define q4_BOOL 1     // supports the bool datatype
@@ -21,11 +21,11 @@
 #undef false
 #undef true
 #undef bool
-#endif 
+#endif
 
 #if !defined (q4_EXPORT)
 #define q4_EXPORT 1     // requires export/import specifiers
-#endif 
+#endif
 
 #if defined (__MT__)
 #define q4_MULTI 1      // uses multi-threading

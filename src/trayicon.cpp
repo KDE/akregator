@@ -35,30 +35,28 @@
 #include <QPainter>
 #include <QFontDatabase>
 
+namespace Akregator
+{
 
-namespace Akregator {
+TrayIcon *TrayIcon::m_instance = 0;
 
-TrayIcon* TrayIcon::m_instance = 0;
-
-TrayIcon* TrayIcon::getInstance()
+TrayIcon *TrayIcon::getInstance()
 {
     return m_instance;
 }
 
-void TrayIcon::setInstance(TrayIcon* trayIcon)
+void TrayIcon::setInstance(TrayIcon *trayIcon)
 {
     m_instance = trayIcon;
 }
 
-
-TrayIcon::TrayIcon(QObject* parent)
-        : KStatusNotifierItem(parent), m_defaultIcon(QLatin1String("akregator") ), m_unread(0)
+TrayIcon::TrayIcon(QObject *parent)
+    : KStatusNotifierItem(parent), m_defaultIcon(QLatin1String("akregator")), m_unread(0)
 {
-    setToolTipTitle( i18n("Akregator") );
-    setToolTipIconByName( i18n("Akregator") );
-    setIconByName( QLatin1String("akregator") );
+    setToolTipTitle(i18n("Akregator"));
+    setToolTipIconByName(i18n("Akregator"));
+    setIconByName(QLatin1String("akregator"));
 }
-
 
 TrayIcon::~TrayIcon()
 {}
@@ -67,34 +65,30 @@ void TrayIcon::slotSetUnread(int unread)
 {
     m_unread = unread;
 
-    this->setToolTip( m_defaultIcon.name(), i18n("Akregator"), unread == 0 ? i18n("There are no unread articles")  : i18np( "1 unread article", "%1 unread articles", unread ) );
-    setStatus( unread > 0 ? KStatusNotifierItem::Active : KStatusNotifierItem::Passive );
+    this->setToolTip(m_defaultIcon.name(), i18n("Akregator"), unread == 0 ? i18n("There are no unread articles")  : i18np("1 unread article", "%1 unread articles", unread));
+    setStatus(unread > 0 ? KStatusNotifierItem::Active : KStatusNotifierItem::Passive);
 
-    if (unread <= 0 || !Settings::enableTrayIconUnreadArticleCount())
-    {
-        setIconByName( m_defaultIcon.name() );
-    }
-    else
-    {
+    if (unread <= 0 || !Settings::enableTrayIconUnreadArticleCount()) {
+        setIconByName(m_defaultIcon.name());
+    } else {
         // adapted from KMSystemTray::updateCount()
         int oldWidth = KIconLoader::SizeSmallMedium;
 
-        QString countStr = QString::number( unread );
+        QString countStr = QString::number(unread);
         QFont f = QFontDatabase::systemFont(QFontDatabase::GeneralFont);
         f.setBold(true);
 
         float pointSize = f.pointSizeF();
         QFontMetrics fm(f);
         int w = fm.width(countStr);
-        if( w > (oldWidth - 2) )
-        {
+        if (w > (oldWidth - 2)) {
             pointSize *= float(oldWidth - 2) / float(w);
             f.setPointSizeF(pointSize);
         }
 
         // overlay
-        QPixmap overlayImg( oldWidth, oldWidth );
-        overlayImg.fill( Qt::transparent );
+        QPixmap overlayImg(oldWidth, oldWidth);
+        overlayImg.fill(Qt::transparent);
 
         QPainter p(&overlayImg);
         p.setFont(f);
@@ -117,19 +111,19 @@ void TrayIcon::slotSetUnread(int unread)
         p.drawText(overlayImg.rect(), Qt::AlignCenter, countStr);
         p.end();
 
-        QPixmap iconPixmap = m_defaultIcon.pixmap( oldWidth, oldWidth );
+        QPixmap iconPixmap = m_defaultIcon.pixmap(oldWidth, oldWidth);
 
-        QPainter pp( &iconPixmap );
-        pp.drawPixmap( 0, 0, overlayImg );
+        QPainter pp(&iconPixmap);
+        pp.drawPixmap(0, 0, overlayImg);
         pp.end();
 
-        setIconByPixmap( iconPixmap );
+        setIconByPixmap(iconPixmap);
     }
 }
 
 void TrayIcon::viewButtonClicked()
 {
-    QWidget* p = static_cast<QWidget*>(parent());
+    QWidget *p = static_cast<QWidget *>(parent());
     KWindowSystem::activateWindow(p->winId());
 }
 

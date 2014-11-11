@@ -32,19 +32,18 @@
 
 class QWidget;
 
-
 class KCMAkregatorShareConfig : public KCModule
 {
-  Q_OBJECT
+    Q_OBJECT
 
-  public:
-    KCMAkregatorShareConfig( QWidget* parent, const QVariantList &args );
+public:
+    KCMAkregatorShareConfig(QWidget *parent, const QVariantList &args);
     ~KCMAkregatorShareConfig();
 
-  public slots:
+public slots:
     virtual void load();
 
-  private:
+private:
     QWidget *m_widget;
     Ui::ConfigurationWidget ui;
 };

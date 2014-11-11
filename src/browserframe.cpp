@@ -53,7 +53,7 @@
 using namespace KParts;
 using namespace Akregator;
 
-BrowserFrame::BrowserFrame(QWidget* parent) : Frame(parent), d( new Private( this ) )
+BrowserFrame::BrowserFrame(QWidget *parent) : Frame(parent), d(new Private(this))
 {
 }
 
@@ -69,7 +69,7 @@ KUrl BrowserFrame::url() const
 
 bool BrowserFrame::canGoForward() const
 {
-    return !d->history.isEmpty() && d->current != d->history.end()-1 && d->current != d->history.end();
+    return !d->history.isEmpty() && d->current != d->history.end() - 1 && d->current != d->history.end();
 }
 
 bool BrowserFrame::canGoBack() const
@@ -82,36 +82,37 @@ void BrowserFrame::slotOpenUrlNotify()
     // TODO: inform the world that a new url was opened
 }
 
-void BrowserFrame::slotSetLocationBarUrl(const QString& /*url*/)
+void BrowserFrame::slotSetLocationBarUrl(const QString & /*url*/)
 {
     // TODO: use this to update URLs for dragging (like tab drag etc.)
 }
 
-void BrowserFrame::slotSetIconUrl(const QUrl& url )
+void BrowserFrame::slotSetIconUrl(const QUrl &url)
 {
-    FeedIconManager::self()->removeListener( this );
-    FeedIconManager::self()->addListener( url, this );
+    FeedIconManager::self()->removeListener(this);
+    FeedIconManager::self()->addListener(url, this);
 }
 
-void BrowserFrame::setFavicon( const QIcon& icon )
+void BrowserFrame::setFavicon(const QIcon &icon)
 {
-    emit signalIconChanged( this, icon );
+    emit signalIconChanged(this, icon);
 }
 
 void BrowserFrame::slotSpeedProgress(int /*bytesPerSecond*/)
 {
 }
 
-namespace {
-
-static OpenUrlRequest requestFromSender( QObject* sender, int id )
+namespace
 {
-    QAction* const action = qobject_cast<QAction*>( sender );
-    assert( action );
+
+static OpenUrlRequest requestFromSender(QObject *sender, int id)
+{
+    QAction *const action = qobject_cast<QAction *>(sender);
+    assert(action);
     const KUrl url = action->data().value<KUrl>();
     OpenUrlRequest req;
-    req.setFrameId( id );
-    req.setUrl( url );
+    req.setFrameId(id);
+    req.setUrl(url);
     return req;
 }
 
@@ -119,32 +120,34 @@ static OpenUrlRequest requestFromSender( QObject* sender, int id )
 
 void BrowserFrame::slotOpenLinkInBrowser()
 {
-    OpenUrlRequest req = requestFromSender( sender(), id() );
-    req.setOptions( OpenUrlRequest::ExternalBrowser );
-    emit signalOpenUrlRequest( req );
+    OpenUrlRequest req = requestFromSender(sender(), id());
+    req.setOptions(OpenUrlRequest::ExternalBrowser);
+    emit signalOpenUrlRequest(req);
 }
 
 void BrowserFrame::slotOpenLinkInNewTab()
 {
-    OpenUrlRequest req = requestFromSender( sender(), id() );
-    req.setOptions( OpenUrlRequest::NewTab );
-    emit signalOpenUrlRequest( req );
+    OpenUrlRequest req = requestFromSender(sender(), id());
+    req.setOptions(OpenUrlRequest::NewTab);
+    emit signalOpenUrlRequest(req);
 }
 
 bool BrowserFrame::hasZoom() const
 {
-    return qobject_cast<KHTMLPart *>( d->part ) != 0;
+    return qobject_cast<KHTMLPart *>(d->part) != 0;
 }
 
 void BrowserFrame::slotZoomIn(int zoomid)
 {
-    if ( zoomid != id() )
+    if (zoomid != id()) {
         return;
+    }
 
-    if ( !d->part )
+    if (!d->part) {
         return;
+    }
 
-    if ( KHTMLPart * const khtml_part = qobject_cast<KHTMLPart *>( d->part ) ) {
+    if (KHTMLPart *const khtml_part = qobject_cast<KHTMLPart *>(d->part)) {
         int zf = khtml_part->fontScaleFactor();
         if (zf < 100) {
             zf = zf - (zf % 20) + 20;
@@ -158,13 +161,15 @@ void BrowserFrame::slotZoomIn(int zoomid)
 
 void BrowserFrame::slotZoomOut(int zoomid)
 {
-    if ( zoomid != id() )
+    if (zoomid != id()) {
         return;
+    }
 
-    if ( !d->part )
+    if (!d->part) {
         return;
+    }
 
-    if (  KHTMLPart * const khtml_part = qobject_cast<KHTMLPart *>( d->part ) ) {
+    if (KHTMLPart *const khtml_part = qobject_cast<KHTMLPart *>(d->part)) {
         int zf = khtml_part->fontScaleFactor();
         if (zf <= 100) {
             zf = zf - (zf % 20) - 20;
@@ -178,47 +183,52 @@ void BrowserFrame::slotZoomOut(int zoomid)
 
 int BrowserFrame::getZoomFactor() const
 {
-    if ( KHTMLPart * const khtml_part = qobject_cast<KHTMLPart *>( d->part ) )
+    if (KHTMLPart *const khtml_part = qobject_cast<KHTMLPart *>(d->part)) {
         return khtml_part->fontScaleFactor();
+    }
 
     return -1;
 }
 
-void BrowserFrame::setZoomFactor( int zf )
+void BrowserFrame::setZoomFactor(int zf)
 {
-    if (KHTMLPart* const khtml_part = qobject_cast<KHTMLPart *>( d->part ) )
-        khtml_part->setFontScaleFactor( zf );
+    if (KHTMLPart *const khtml_part = qobject_cast<KHTMLPart *>(d->part)) {
+        khtml_part->setFontScaleFactor(zf);
+    }
 }
 
-namespace {
+namespace
+{
 
 enum SeparatorOption {
     ShowSeparatorIfNotEmpty,
     NoSeparator
 };
 
-void addActionsToMenu( QMenu* menu, const QList<QAction*> actions, SeparatorOption option )
+void addActionsToMenu(QMenu *menu, const QList<QAction *> actions, SeparatorOption option)
 {
-    if ( !actions.isEmpty() && option != NoSeparator )
+    if (!actions.isEmpty() && option != NoSeparator) {
         menu->addSeparator();
-    Q_FOREACH( QAction* const i, actions )
-            menu->addAction( i );
+    }
+    Q_FOREACH (QAction *const i, actions) {
+        menu->addAction(i);
+    }
 }
 
 }
 
 void BrowserFrame::slotPopupMenu(
-                   const QPoint& global,
-                   const QUrl& url,
-                   mode_t mode,
-                   const OpenUrlArguments& args,
-                   const BrowserArguments& browserArgs,
-                   BrowserExtension::PopupFlags flags,
-                   const KParts::BrowserExtension::ActionGroupMap& actionGroups )
+    const QPoint &global,
+    const QUrl &url,
+    mode_t mode,
+    const OpenUrlArguments &args,
+    const BrowserArguments &browserArgs,
+    BrowserExtension::PopupFlags flags,
+    const KParts::BrowserExtension::ActionGroupMap &actionGroups)
 {
-    Q_UNUSED( mode )
-    Q_UNUSED( args )
-    Q_UNUSED( browserArgs )
+    Q_UNUSED(mode)
+    Q_UNUSED(args)
+    Q_UNUSED(browserArgs)
 
     const bool showReload = (flags & BrowserExtension::ShowReload) != 0;
     const bool showNavigationItems = (flags & BrowserExtension::ShowNavigationItems) != 0;
@@ -227,51 +237,46 @@ void BrowserFrame::slotPopupMenu(
 
     bool isFirst = true;
 
-    QPointer<QMenu> popup( new QMenu() );
+    QPointer<QMenu> popup(new QMenu());
 
-    if (showNavigationItems)
-    {
-        popup->addAction( ActionManager::getInstance()->action( "browser_back" ) );
-        popup->addAction( ActionManager::getInstance()->action( "browser_forward" ) );
+    if (showNavigationItems) {
+        popup->addAction(ActionManager::getInstance()->action("browser_back"));
+        popup->addAction(ActionManager::getInstance()->action("browser_forward"));
         isFirst = false;
     }
-    if (showReload)
-    {
-        popup->addAction( ActionManager::getInstance()->action( "browser_reload" ) );
+    if (showReload) {
+        popup->addAction(ActionManager::getInstance()->action("browser_reload"));
         isFirst = false;
     }
 
 #define addSeparatorIfNotFirst() if ( !isFirst ) popup->addSeparator(); isFirst = false;
 
-    if (isLink)
-    {
+    if (isLink) {
         addSeparatorIfNotFirst();
-        popup->addAction( createOpenLinkInNewTabAction( url, this, SLOT(slotOpenLinkInNewTab()), popup ) );
-        popup->addAction( createOpenLinkInExternalBrowserAction( url, this, SLOT(slotOpenLinkInBrowser()), popup ) );
-        addActionsToMenu( popup, actionGroups.value( QLatin1String("linkactions") ), ShowSeparatorIfNotEmpty );
+        popup->addAction(createOpenLinkInNewTabAction(url, this, SLOT(slotOpenLinkInNewTab()), popup));
+        popup->addAction(createOpenLinkInExternalBrowserAction(url, this, SLOT(slotOpenLinkInBrowser()), popup));
+        addActionsToMenu(popup, actionGroups.value(QLatin1String("linkactions")), ShowSeparatorIfNotEmpty);
     }
 
-    if (isSelection)
-    {
+    if (isSelection) {
         addSeparatorIfNotFirst();
-        addActionsToMenu( popup, actionGroups.value( QLatin1String("editactions") ), NoSeparator );
+        addActionsToMenu(popup, actionGroups.value(QLatin1String("editactions")), NoSeparator);
     }
 
-    if (hasZoom())
-    {
+    if (hasZoom()) {
         addSeparatorIfNotFirst();
-        popup->addAction( ActionManager::getInstance()->action("inc_font_sizes") );
-        popup->addAction( ActionManager::getInstance()->action("dec_font_sizes") );
+        popup->addAction(ActionManager::getInstance()->action("inc_font_sizes"));
+        popup->addAction(ActionManager::getInstance()->action("dec_font_sizes"));
     }
 
     addSeparatorIfNotFirst();
-    addActionsToMenu( popup, actionGroups.value( QLatin1String("part") ), NoSeparator );
+    addActionsToMenu(popup, actionGroups.value(QLatin1String("part")), NoSeparator);
 
-    popup->exec( global );
+    popup->exec(global);
     delete popup;
 }
 
-void BrowserFrame::slotOpenUrlRequestDelayed(const QUrl& url, const OpenUrlArguments& args, const BrowserArguments& browserArgs)
+void BrowserFrame::slotOpenUrlRequestDelayed(const QUrl &url, const OpenUrlArguments &args, const BrowserArguments &browserArgs)
 {
     OpenUrlRequest req;
 
@@ -283,11 +288,11 @@ void BrowserFrame::slotOpenUrlRequestDelayed(const QUrl& url, const OpenUrlArgum
     emit signalOpenUrlRequest(req);
 }
 
-void BrowserFrame::slotCreateNewWindow(const QUrl& url,
-                                       const OpenUrlArguments& args,
-                                       const BrowserArguments& browserArgs,
-                                       const WindowArgs& /*windowArgs*/,
-                                       ReadOnlyPart** part)
+void BrowserFrame::slotCreateNewWindow(const QUrl &url,
+                                       const OpenUrlArguments &args,
+                                       const BrowserArguments &browserArgs,
+                                       const WindowArgs & /*windowArgs*/,
+                                       ReadOnlyPart **part)
 {
     OpenUrlRequest req;
     req.setFrameId(id());
@@ -297,59 +302,62 @@ void BrowserFrame::slotCreateNewWindow(const QUrl& url,
     req.setOptions(OpenUrlRequest::NewTab);
 
     emit signalOpenUrlRequest(req);
-    if ( part )
+    if (part) {
         *part = req.part();
+    }
 }
 
-bool BrowserFrame::openUrl(const OpenUrlRequest& request)
+bool BrowserFrame::openUrl(const OpenUrlRequest &request)
 {
     const QString serviceType = request.args().mimeType();
 
-    if ( serviceType.isEmpty() )
+    if (serviceType.isEmpty()) {
         return false;
+    }
 
     d->updateHistoryEntry();
 
     qDebug() << "serviceType: " << serviceType;
-    if ( !d->loadPartForMimetype( serviceType ) )
+    if (!d->loadPartForMimetype(serviceType)) {
         return false;
+    }
 
-    assert( d->part );
-    d->part->setArguments( request.args() );
+    assert(d->part);
+    d->part->setArguments(request.args());
 
-    if ( !request.url().isValid() )
+    if (!request.url().isValid()) {
         return false;
+    }
 
-    if ( !d->part->openUrl( request.url() ) )
+    if (!d->part->openUrl(request.url())) {
         return false;
+    }
 
-    d->appendHistoryEntry( request.url() );
+    d->appendHistoryEntry(request.url());
     d->updateHistoryEntry();
     return true;
 }
 
-ReadOnlyPart* BrowserFrame::part() const
+ReadOnlyPart *BrowserFrame::part() const
 {
     return d->part;
 }
 
 void BrowserFrame::slotHistoryBackAboutToShow()
 {
-    QAction* ba = ActionManager::getInstance()->action("browser_back");
-    QMenu* popup = static_cast<KToolBarPopupAction*>(ba)->menu();
+    QAction *ba = ActionManager::getInstance()->action("browser_back");
+    QMenu *popup = static_cast<KToolBarPopupAction *>(ba)->menu();
     popup->clear();
 
-    if (!canGoBack())
+    if (!canGoBack()) {
         return;
+    }
 
-
-    QList<Private::HistoryEntry>::Iterator it = d->current-1;
+    QList<Private::HistoryEntry>::Iterator it = d->current - 1;
 
     int i = 0;
-    while( i < 10)
-    {
-        if ( it == d->history.begin() )
-        {
+    while (i < 10) {
+        if (it == d->history.begin()) {
             popup->addAction(new Private::HistoryAction(it, popup, d));
             return;
         }
@@ -362,21 +370,20 @@ void BrowserFrame::slotHistoryBackAboutToShow()
 
 void BrowserFrame::slotHistoryForwardAboutToShow()
 {
-    QAction* fw = ActionManager::getInstance()->action("browser_forward");
-    QMenu* popup = qobject_cast<KToolBarPopupAction*>(fw)->menu();
+    QAction *fw = ActionManager::getInstance()->action("browser_forward");
+    QMenu *popup = qobject_cast<KToolBarPopupAction *>(fw)->menu();
     popup->clear();
 
-    if (!canGoForward())
+    if (!canGoForward()) {
         return;
+    }
 
-    QList<Private::HistoryEntry>::Iterator it = d->current+1;
+    QList<Private::HistoryEntry>::Iterator it = d->current + 1;
 
     int i = 0;
-    while( i < 10)
-    {
-        if ( it == d->history.end()-1 )
-        {
-            popup->addAction( new Private::HistoryAction(it, popup, d));
+    while (i < 10) {
+        if (it == d->history.end() - 1) {
+            popup->addAction(new Private::HistoryAction(it, popup, d));
             return;
         }
 
@@ -388,19 +395,21 @@ void BrowserFrame::slotHistoryForwardAboutToShow()
 
 void BrowserFrame::slotHistoryForward()
 {
-    if (canGoForward())
-        d->restoreHistoryEntry(d->current+1);
+    if (canGoForward()) {
+        d->restoreHistoryEntry(d->current + 1);
+    }
 }
 
 void BrowserFrame::slotHistoryBack()
 {
-    if (canGoBack())
-        d->restoreHistoryEntry(d->current-1);
+    if (canGoBack()) {
+        d->restoreHistoryEntry(d->current - 1);
+    }
 }
 
 void BrowserFrame::slotReload()
 {
-    TemporaryValue<bool> lock( d->lockHistory, true );
+    TemporaryValue<bool> lock(d->lockHistory, true);
 
     OpenUrlRequest req(url());
     KParts::OpenUrlArguments args;
@@ -411,8 +420,9 @@ void BrowserFrame::slotReload()
 
 void BrowserFrame::slotStop()
 {
-    if (d->part)
+    if (d->part) {
         d->part->closeUrl();
+    }
     Frame::slotStop();
 }
 
@@ -430,24 +440,23 @@ bool BrowserFrame::isLoading() const
     return d->isLoading;
 }
 
-
-void BrowserFrame::loadConfig( const KConfigGroup& config, const QString& prefix)
+void BrowserFrame::loadConfig(const KConfigGroup &config, const QString &prefix)
 {
-    const QString url = config.readEntry( QString::fromLatin1( "url" ).prepend( prefix ), QString() );
-    const QString mimetype = config.readEntry( QString::fromLatin1( "mimetype" ).prepend( prefix ), QString() );
-    const int zf = config.readEntry( QString::fromLatin1( "zoom" ).prepend( prefix ), 100 );
+    const QString url = config.readEntry(QString::fromLatin1("url").prepend(prefix), QString());
+    const QString mimetype = config.readEntry(QString::fromLatin1("mimetype").prepend(prefix), QString());
+    const int zf = config.readEntry(QString::fromLatin1("zoom").prepend(prefix), 100);
     OpenUrlRequest req(url);
     KParts::OpenUrlArguments args;
     args.setMimeType(mimetype);
     req.setArgs(args);
     openUrl(req);
-    setZoomFactor( zf );
+    setZoomFactor(zf);
 }
 
-void BrowserFrame::saveConfig( KConfigGroup& config, const QString& prefix)
+void BrowserFrame::saveConfig(KConfigGroup &config, const QString &prefix)
 {
-    config.writeEntry( QString::fromLatin1( "url" ).prepend( prefix ), url().url() );
-    config.writeEntry( QString::fromLatin1( "mimetype" ).prepend( prefix ), d->mimetype );
-    config.writeEntry( QString::fromLatin1( "zoom" ).prepend( prefix ), getZoomFactor() );
+    config.writeEntry(QString::fromLatin1("url").prepend(prefix), url().url());
+    config.writeEntry(QString::fromLatin1("mimetype").prepend(prefix), d->mimetype);
+    config.writeEntry(QString::fromLatin1("zoom").prepend(prefix), getZoomFactor());
 }
 

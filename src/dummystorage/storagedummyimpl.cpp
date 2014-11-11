@@ -28,22 +28,24 @@
 #include <QString>
 #include <QStringList>
 
-namespace Akregator {
-namespace Backend {
+namespace Akregator
+{
+namespace Backend
+{
 
 class StorageDummyImpl::StorageDummyImplPrivate
 {
-    public:
+public:
     class Entry
     {
-        public:
+    public:
         int unread;
         int totalCount;
         int lastFetch;
-        FeedStorage* feedStorage;
+        FeedStorage *feedStorage;
     };
 
-    void addEntry(const QString& url, int unread, int totalCount, int lastFetch)
+    void addEntry(const QString &url, int unread, int totalCount, int lastFetch)
     {
         Entry entry;
         entry.unread = unread;
@@ -66,7 +68,7 @@ StorageDummyImpl::~StorageDummyImpl()
 {
     delete d; d = 0;
 }
-void StorageDummyImpl::initialize(const QStringList&) {}
+void StorageDummyImpl::initialize(const QStringList &) {}
 
 bool StorageDummyImpl::open(bool /*autoCommit*/)
 {
@@ -80,10 +82,9 @@ bool StorageDummyImpl::autoCommit() const
 
 bool StorageDummyImpl::close()
 {
-    for (QHash<QString, StorageDummyImplPrivate::Entry>::ConstIterator it = d->feeds.constBegin(); it != d->feeds.constEnd(); ++it)
-    {
+    for (QHash<QString, StorageDummyImplPrivate::Entry>::ConstIterator it = d->feeds.constBegin(); it != d->feeds.constEnd(); ++it) {
         (*it).feedStorage->close();
-        delete (*it).feedStorage;
+        delete(*it).feedStorage;
     }
     return true;
 }
@@ -105,10 +106,11 @@ int StorageDummyImpl::unreadFor(const QString &url) const
 
 void StorageDummyImpl::setUnreadFor(const QString &url, int unread)
 {
-    if (!d->feeds.contains(url))
-       d->addEntry(url, unread, unread, 0);
-    else
-       d->feeds[url].unread = unread;
+    if (!d->feeds.contains(url)) {
+        d->addEntry(url, unread, unread, 0);
+    } else {
+        d->feeds[url].unread = unread;
+    }
 }
 
 int StorageDummyImpl::totalCountFor(const QString &url) const
@@ -118,41 +120,45 @@ int StorageDummyImpl::totalCountFor(const QString &url) const
 
 void StorageDummyImpl::setTotalCountFor(const QString &url, int total)
 {
-    if (!d->feeds.contains(url))
-       d->addEntry(url, 0, total, 0);
-    else
-       d->feeds[url].totalCount = total;
+    if (!d->feeds.contains(url)) {
+        d->addEntry(url, 0, total, 0);
+    } else {
+        d->feeds[url].totalCount = total;
+    }
 }
 
-int StorageDummyImpl::lastFetchFor(const QString& url) const
+int StorageDummyImpl::lastFetchFor(const QString &url) const
 {
     return d->feeds.contains(url) ? d->feeds[url].lastFetch : 0;
 }
 
-void StorageDummyImpl::setLastFetchFor(const QString& url, int lastFetch)
+void StorageDummyImpl::setLastFetchFor(const QString &url, int lastFetch)
 {
-    if (!d->feeds.contains(url))
-       d->addEntry(url, 0, 0, lastFetch);
-    else 
-       d->feeds[url].lastFetch = lastFetch;
+    if (!d->feeds.contains(url)) {
+        d->addEntry(url, 0, 0, lastFetch);
+    } else {
+        d->feeds[url].lastFetch = lastFetch;
+    }
 }
-        
+
 void StorageDummyImpl::slotCommit()
 {
 }
 
-FeedStorage* StorageDummyImpl::archiveFor(const QString& url)
+FeedStorage *StorageDummyImpl::archiveFor(const QString &url)
 {
-    if (!d->feeds.contains(url))
+    if (!d->feeds.contains(url)) {
         d->feeds[url].feedStorage = new FeedStorageDummyImpl(url, this);
+    }
 
     return d->feeds[url].feedStorage;
 }
 
-const FeedStorage* StorageDummyImpl::archiveFor(const QString& url) const
+const FeedStorage *StorageDummyImpl::archiveFor(const QString &url) const
 {
-    if (!d->feeds.contains(url))
-        d->feeds[url].feedStorage = new FeedStorageDummyImpl(url, const_cast<StorageDummyImpl*>( this ) );
+    if (!d->feeds.contains(url)) {
+        d->feeds[url].feedStorage = new FeedStorageDummyImpl(url, const_cast<StorageDummyImpl *>(this));
+    }
 
     return d->feeds[url].feedStorage;
 }
@@ -161,28 +167,26 @@ QStringList StorageDummyImpl::feeds() const
 {
     return d->feeds.keys();
 }
-    
-void StorageDummyImpl::add(Storage* source)
+
+void StorageDummyImpl::add(Storage *source)
 {
     QStringList feeds = source->feeds();
-    for (QStringList::ConstIterator it = feeds.constBegin(); it != feeds.constEnd(); ++it)
-    {
-        FeedStorage* fa = archiveFor(*it);
+    for (QStringList::ConstIterator it = feeds.constBegin(); it != feeds.constEnd(); ++it) {
+        FeedStorage *fa = archiveFor(*it);
         fa->add(source->archiveFor(*it));
     }
 }
 
 void StorageDummyImpl::clear()
 {
-    for (QHash<QString, StorageDummyImplPrivate::Entry>::ConstIterator it = d->feeds.constBegin(); it != d->feeds.constEnd(); ++it)
-    {
-        delete (*it).feedStorage;
+    for (QHash<QString, StorageDummyImplPrivate::Entry>::ConstIterator it = d->feeds.constBegin(); it != d->feeds.constEnd(); ++it) {
+        delete(*it).feedStorage;
     }
     d->feeds.clear();
 
 }
 
-void StorageDummyImpl::storeFeedList(const QString& opmlStr)
+void StorageDummyImpl::storeFeedList(const QString &opmlStr)
 {
     d->feedList = opmlStr;
 }
@@ -192,7 +196,7 @@ QString StorageDummyImpl::restoreFeedList() const
     return d->feedList;
 }
 
-void StorageDummyImpl::storeTagSet(const QString& xmlStr)
+void StorageDummyImpl::storeTagSet(const QString &xmlStr)
 {
     d->tagSet = xmlStr;
 }

@@ -23,7 +23,8 @@ class c4_HandlerSeq; // not defined here
 
 /////////////////////////////////////////////////////////////////////////////
 
-class c4_SaveContext {
+class c4_SaveContext
+{
     c4_Strategy &_strategy;
     c4_Column *_walk;
     c4_Differ *_differ;
@@ -44,13 +45,13 @@ class c4_SaveContext {
     t4_byte *_limit;
     t4_byte _buffer[512];
 
-  public:
+public:
     c4_SaveContext(c4_Strategy &strategy_, bool fullScan_, int mode_, c4_Differ
-      *differ_, c4_Allocator *space_);
+                   *differ_, c4_Allocator *space_);
     ~c4_SaveContext();
 
     void SaveIt(c4_HandlerSeq &root_, c4_Allocator **spacePtr_, c4_Bytes
-      &rootWalk_);
+                &rootWalk_);
 
     void StoreValue(t4_i32 v_);
     bool CommitColumn(c4_Column &col_);
@@ -62,14 +63,15 @@ class c4_SaveContext {
     bool Serializing()const;
     void AllocDump(const char *, bool = false);
 
-  private:
+private:
     void FlushBuffer();
     void Write(const void *buf_, int len_);
 };
 
 /////////////////////////////////////////////////////////////////////////////
 
-class c4_Persist {
+class c4_Persist
+{
     c4_Allocator *_space;
     c4_Strategy &_strategy;
     c4_HandlerSeq *_root;
@@ -87,7 +89,7 @@ class c4_Persist {
 
     int OldRead(t4_byte *buf_, int len_);
 
-  public:
+public:
     c4_Persist(c4_Strategy &, bool owned_, int mode_);
     ~c4_Persist();
 
@@ -117,7 +119,7 @@ class c4_Persist {
 
     t4_i32 FreeBytes(t4_i32 *bytes_ = 0);
 
-    static c4_HandlerSeq *Load(c4_Stream*);
+    static c4_HandlerSeq *Load(c4_Stream *);
     static void Save(c4_Stream *, c4_HandlerSeq &root_);
 };
 

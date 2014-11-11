@@ -20,7 +20,8 @@ class c4_Strategy; // not defined here
 
 /////////////////////////////////////////////////////////////////////////////
 
-class c4_Column {
+class c4_Column
+{
     c4_PtrArray _segments;
     t4_i32 _position;
     t4_i32 _size;
@@ -29,7 +30,7 @@ class c4_Column {
     int _slack;
     bool _dirty;
 
-  public:
+public:
     c4_Column(c4_Persist *persist_);
     //: Constructs a column using the specified persistence manager.
     ~c4_Column();
@@ -50,7 +51,7 @@ class c4_Column {
 
     void SetLocation(t4_i32, t4_i32);
     //: Sets the position and size of this column on file.
-    void PullLocation(const t4_byte * &ptr_);
+    void PullLocation(const t4_byte*&ptr_);
     //: Extract position and size of this column.
 
     int AvailAt(t4_i32 offset_)const;
@@ -67,7 +68,7 @@ class c4_Column {
     //: Save the buffer to file.
 
     const t4_byte *FetchBytes(t4_i32 pos_, int len_, c4_Bytes &buffer_, bool
-      forceCopy_);
+                              forceCopy_);
     //: Returns pointer to data, use buffer only if non-contiguous.
     void StoreBytes(t4_i32 pos_, const c4_Bytes &buffer_);
     //: Stores a copy of the buffer in the column.
@@ -75,8 +76,8 @@ class c4_Column {
     bool RequiresMap()const;
     void ReleaseAllSegments();
 
-    static t4_i32 PullValue(const t4_byte * &ptr_);
-    static void PushValue(t4_byte * &ptr_, t4_i32 v_);
+    static t4_i32 PullValue(const t4_byte*&ptr_);
+    static void PushValue(t4_byte*&ptr_, t4_i32 v_);
 
     void InsertData(t4_i32 index_, t4_i32 count_, bool clear_);
     void RemoveData(t4_i32 index_, t4_i32 count_);
@@ -86,12 +87,12 @@ class c4_Column {
         kSegBits = 12, kSegMax = 1 << kSegBits, kSegMask = kSegMax - 1
     };
 
-  private:
+private:
     static int fSegIndex(t4_i32 offset_);
     static t4_i32 fSegOffset(int index_);
     static int fSegRest(t4_i32 offset_);
 
-    bool UsesMap(const t4_byte*)const;
+    bool UsesMap(const t4_byte *)const;
     bool IsMapped()const;
 
     void ReleaseSegment(int);
@@ -108,8 +109,9 @@ class c4_Column {
 
 /////////////////////////////////////////////////////////////////////////////
 
-class c4_ColOfInts: public c4_Column {
-  public:
+class c4_ColOfInts: public c4_Column
+{
+public:
     c4_ColOfInts(c4_Persist *persist_, int width_ = sizeof(t4_i32));
 
     int RowCount()const;
@@ -135,9 +137,9 @@ class c4_ColOfInts: public c4_Column {
 
     static int DoCompare(const c4_Bytes &b1_, const c4_Bytes &b2_);
 
-  private:
+private:
     typedef void(c4_ColOfInts:: *tGetter)(int);
-    typedef bool(c4_ColOfInts:: *tSetter)(int, const t4_byte*);
+    typedef bool(c4_ColOfInts:: *tSetter)(int, const t4_byte *);
 
     void Get_0b(int index_);
     void Get_1b(int index_);
@@ -181,14 +183,15 @@ class c4_ColOfInts: public c4_Column {
 
 /////////////////////////////////////////////////////////////////////////////
 
-class c4_ColIter {
+class c4_ColIter
+{
     c4_Column &_column;
     t4_i32 _limit;
     t4_i32 _pos;
     int _len;
     const t4_byte *_ptr;
 
-  public:
+public:
     c4_ColIter(c4_Column &col_, t4_i32 offset_, t4_i32 limit_);
     //  ~c4_ColIter ();
 
@@ -204,7 +207,7 @@ class c4_ColIter {
 
 #if q4_INLINE
 #include "column.inl"
-#endif 
+#endif
 
 /////////////////////////////////////////////////////////////////////////////
 

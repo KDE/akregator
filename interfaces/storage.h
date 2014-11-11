@@ -31,8 +31,10 @@
 class QString;
 class QStringList;
 
-namespace Akregator {
-namespace Backend {
+namespace Akregator
+{
+namespace Backend
+{
 
 class FeedStorage;
 
@@ -42,72 +44,72 @@ class FeedStorage;
 */
 class Storage : public QObject //krazy:exclude=qobject
 {
-    public:
+public:
 
-        virtual ~Storage() {}
+    virtual ~Storage() {}
 
-        /** initializes the storage object with given parameters */
+    /** initializes the storage object with given parameters */
 
-        virtual void initialize(const QStringList& params) = 0;
+    virtual void initialize(const QStringList &params) = 0;
 
-        /**
-         * Open storage and prepare it for work.
-         * @return true on success.
-         */
-        virtual bool open(bool autoCommit = false) = 0;
+    /**
+     * Open storage and prepare it for work.
+     * @return true on success.
+     */
+    virtual bool open(bool autoCommit = false) = 0;
 
-        /**
-         * Commit changes made in feeds and articles, making them persistent.
-         * @return true on success.
-         */
-        virtual bool commit() = 0;
+    /**
+     * Commit changes made in feeds and articles, making them persistent.
+     * @return true on success.
+     */
+    virtual bool commit() = 0;
 
-        /**
-         * Rollback changes made in feeds and articles, reverting to last committed values.
-         * @returns true on success.
-         */
-        virtual bool rollback() = 0;
+    /**
+     * Rollback changes made in feeds and articles, reverting to last committed values.
+     * @returns true on success.
+     */
+    virtual bool rollback() = 0;
 
-        /**
-         * Closes storage, freeing all allocated resources. Called from destructor, so you don't need to call it directly.
-         * @return true on success.
-         */
-        virtual bool close() = 0;
+    /**
+     * Closes storage, freeing all allocated resources. Called from destructor, so you don't need to call it directly.
+     * @return true on success.
+     */
+    virtual bool close() = 0;
 
-        /**
-         * @return Article archive for feed at given url.
-         */
-        virtual FeedStorage* archiveFor(const QString &url) = 0;
-        virtual const FeedStorage* archiveFor(const QString &url) const = 0;
-        virtual bool autoCommit() const  = 0;
-        virtual int unreadFor(const QString &url) const = 0;
-        virtual void setUnreadFor(const QString &url, int unread) = 0;
-        virtual int totalCountFor(const QString &url) const = 0;
-        virtual void setTotalCountFor(const QString &url, int total) = 0;
-        virtual int lastFetchFor(const QString& url) const = 0;
-        virtual void setLastFetchFor(const QString& url, int lastFetch) = 0;
+    /**
+     * @return Article archive for feed at given url.
+     */
+    virtual FeedStorage *archiveFor(const QString &url) = 0;
+    virtual const FeedStorage *archiveFor(const QString &url) const = 0;
+    virtual bool autoCommit() const  = 0;
+    virtual int unreadFor(const QString &url) const = 0;
+    virtual void setUnreadFor(const QString &url, int unread) = 0;
+    virtual int totalCountFor(const QString &url) const = 0;
+    virtual void setTotalCountFor(const QString &url, int total) = 0;
+    virtual int lastFetchFor(const QString &url) const = 0;
+    virtual void setLastFetchFor(const QString &url, int lastFetch) = 0;
 
-        /** stores the feed list in the storage backend. This is a fallback for the case that the
-            feeds.opml file gets corrupted
-            @param opmlStr the feed list in OPML format
-         */
-        virtual void storeFeedList(const QString& opmlStr) = 0;
-        virtual QString restoreFeedList() const = 0;
+    /** stores the feed list in the storage backend. This is a fallback for the case that the
+        feeds.opml file gets corrupted
+        @param opmlStr the feed list in OPML format
+     */
+    virtual void storeFeedList(const QString &opmlStr) = 0;
+    virtual QString restoreFeedList() const = 0;
 
-        virtual void storeTagSet(const QString& xmlStr) = 0;
-        virtual QString restoreTagSet() const = 0;
+    virtual void storeTagSet(const QString &xmlStr) = 0;
+    virtual QString restoreTagSet() const = 0;
 
-        /** returns a list of all feeds (URLs) stored in this archive */
+    /** returns a list of all feeds (URLs) stored in this archive */
 
-        virtual QStringList feeds() const = 0;
+    virtual QStringList feeds() const = 0;
 
-        /** adds all feed storages from a source to this storage
-            existing articles are replaced
-        */
-        virtual void add(Storage* source) = 0;
+    /** adds all feed storages from a source to this storage
+        existing articles are replaced
+    */
+    virtual void add(Storage *source) = 0;
 
-        /** deletes all feed storages in this archive */
-        virtual void clear() = 0;
+    /** deletes all feed storages in this archive */
+    virtual void clear() = 0;
 };
 
 } // namespace Backend

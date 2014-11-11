@@ -31,18 +31,19 @@
 
 class QWidget;
 
-namespace Akregator {
+namespace Akregator
+{
 
 class AKREGATORINTERFACES_EXPORT Command : public QObject
 {
     Q_OBJECT
 public:
-    explicit Command( QObject* parent = 0 );
+    explicit Command(QObject *parent = 0);
     virtual ~Command();
-    
-    QWidget* parentWidget() const;
-    void setParentWidget( QWidget* parentWidget );
-    
+
+    QWidget *parentWidget() const;
+    void setParentWidget(QWidget *parentWidget);
+
     void start();
     void abort();
 
@@ -51,17 +52,17 @@ public:
 Q_SIGNALS:
     void started();
     void finished();
-    void progress( int percent, const QString& msg );
-    
+    void progress(int percent, const QString &msg);
+
 protected:
     virtual void doStart() = 0;
     virtual void doAbort() = 0;
 
     void done();
-    
+
 private:
     class Private;
-    Private* const d;
+    Private *const d;
 };
 
 }

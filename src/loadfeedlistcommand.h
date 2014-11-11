@@ -31,36 +31,39 @@
 
 class QDomDocument;
 
-namespace Akregator {
+namespace Akregator
+{
 
-    namespace Backend {
-        class Storage;
-    }
+namespace Backend
+{
+class Storage;
+}
 
-    class FeedList;
+class FeedList;
 
-    class LoadFeedListCommand : public Command {
-        Q_OBJECT
-    public:
-        explicit LoadFeedListCommand( QObject* parent = 0 );
-        ~LoadFeedListCommand();
+class LoadFeedListCommand : public Command
+{
+    Q_OBJECT
+public:
+    explicit LoadFeedListCommand(QObject *parent = 0);
+    ~LoadFeedListCommand();
 
-        void setFileName( const QString& fileName );
-        void setDefaultFeedList( const QDomDocument& doc );
-        void setStorage( Backend::Storage* storage );
+    void setFileName(const QString &fileName);
+    void setDefaultFeedList(const QDomDocument &doc);
+    void setStorage(Backend::Storage *storage);
 
-    Q_SIGNALS:
-        void result( const boost::shared_ptr<Akregator::FeedList>& feedList );
+Q_SIGNALS:
+    void result(const boost::shared_ptr<Akregator::FeedList> &feedList);
 
-    private:
-        void doStart();
-        void doAbort();
+private:
+    void doStart();
+    void doAbort();
 
-    private:
-        class Private;
-        Private* const d;
-        Q_PRIVATE_SLOT( d, void doLoad() )
-    };
+private:
+    class Private;
+    Private *const d;
+    Q_PRIVATE_SLOT(d, void doLoad())
+};
 
 }
 

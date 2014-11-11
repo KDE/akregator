@@ -31,9 +31,10 @@
 #include <QStringList>
 #include <QTimer>
 
-namespace feedsync {
+namespace feedsync
+{
 
-Akregator::Akregator( QObject* p ) : Aggregator( p )
+Akregator::Akregator(QObject *p) : Aggregator(p)
 {
     qDebug();
 }
@@ -55,25 +56,25 @@ void Akregator::load()
 
     using namespace Akregator;
 
-    FeedListManagementInterface * ak_feedlist = FeedListManagementInterface::instance();
+    FeedListManagementInterface *ak_feedlist = FeedListManagementInterface::instance();
     QStringList catlist = ak_feedlist->categories();
-    for (int idcat=0;idcat<catlist.size();idcat++) {
+    for (int idcat = 0; idcat < catlist.size(); idcat++) {
         QStringList feedlist = ak_feedlist->feeds(catlist.at(idcat));
-        for (int idfeed=0;idfeed<feedlist.size();idfeed++) {
+        for (int idfeed = 0; idfeed < feedlist.size(); idfeed++) {
             QString tmpcat;
-            if (catlist.at(idcat).compare("1/")==0) {
+            if (catlist.at(idcat).compare("1/") == 0) {
                 tmpcat = "";
             } else {
                 tmpcat = ak_feedlist->getCategoryName(catlist.at(idcat));
             }
-            _subscriptionList.add( feedlist.at(idfeed),
-                                    feedlist.at(idfeed),
-                                    tmpcat );
+            _subscriptionList.add(feedlist.at(idfeed),
+                                  feedlist.at(idfeed),
+                                  tmpcat);
         }
     }
 
     // Send the signal
-    QTimer::singleShot( 0, this, SLOT(sendSignalLoadDone()) );
+    QTimer::singleShot(0, this, SLOT(sendSignalLoadDone()));
 }
 
 void Akregator::sendSignalLoadDone()
@@ -81,16 +82,16 @@ void Akregator::sendSignalLoadDone()
     emit loadDone();
 }
 
-void Akregator::add( const SubscriptionList & list)
+void Akregator::add(const SubscriptionList &list)
 {
     qDebug();
 
     using namespace Akregator;
 
-    for (int i=0; i<list.count(); i++) {
+    for (int i = 0; i < list.count(); i++) {
         qDebug() << list.getRss(i).left(20);
 
-        FeedListManagementInterface * ak_feedlist = FeedListManagementInterface::instance();
+        FeedListManagementInterface *ak_feedlist = FeedListManagementInterface::instance();
 
         // Look for the category id
         QString foundCatId;
@@ -100,10 +101,10 @@ void Akregator::add( const SubscriptionList & list)
             QStringList catlist = ak_feedlist->categories();
             int idcat = 0;
             QChar slash('/');
-            while (idcat<catlist.size() && foundCatId.isEmpty()) {
-                QString ak_catId = catlist.at(idcat).split(slash,QString::SkipEmptyParts).last();
-                QString ak_cat = ak_feedlist->getCategoryName(ak_catId).split(slash,QString::SkipEmptyParts).last();
-                if (ak_cat.compare(list.getCat(i),Qt::CaseInsensitive)==0) {
+            while (idcat < catlist.size() && foundCatId.isEmpty()) {
+                QString ak_catId = catlist.at(idcat).split(slash, QString::SkipEmptyParts).last();
+                QString ak_cat = ak_feedlist->getCategoryName(ak_catId).split(slash, QString::SkipEmptyParts).last();
+                if (ak_cat.compare(list.getCat(i), Qt::CaseInsensitive) == 0) {
                     foundCatId = ak_catId;
                 }
                 idcat++;
@@ -112,19 +113,19 @@ void Akregator::add( const SubscriptionList & list)
 
         // Cat not found --> Create
         if (foundCatId.isEmpty()) {
-            foundCatId = ak_feedlist->addCategory( list.getCat(i), "1" );
+            foundCatId = ak_feedlist->addCategory(list.getCat(i), "1");
         }
 
         // Add
         qDebug() << "Cat:" << foundCatId;
-        ak_feedlist->addFeed(list.getRss(i),foundCatId);
+        ak_feedlist->addFeed(list.getRss(i), foundCatId);
     }
 
     // Emit signal
     emit addDone();
 }
 
-void Akregator::update(const SubscriptionList & list)
+void Akregator::update(const SubscriptionList &list)
 {
     Q_UNUSED(list)
     qDebug();
@@ -133,33 +134,33 @@ void Akregator::update(const SubscriptionList & list)
     emit updateDone();
 }
 
-void Akregator::remove(const SubscriptionList & list)
+void Akregator::remove(const SubscriptionList &list)
 {
     qDebug();
 
-    for (int i=0; i<list.count(); i++) {
+    for (int i = 0; i < list.count(); i++) {
         qDebug() << list.getRss(i).left(20);
 
         using namespace Akregator;
 
-        FeedListManagementInterface * ak_feedlist = FeedListManagementInterface::instance();
+        FeedListManagementInterface *ak_feedlist = FeedListManagementInterface::instance();
 
         // Look for the category id
         QString foundCatId;
         QStringList catlist = ak_feedlist->categories();
         int idcat = 0;
         QChar slash('/');
-        while (idcat<catlist.size() && foundCatId.isEmpty()) {
-            QString ak_catId = catlist.at(idcat).split(slash,QString::SkipEmptyParts).last();
-            QString ak_cat = ak_feedlist->getCategoryName(ak_catId).split(slash,QString::SkipEmptyParts).last();
-            if (ak_cat.compare(list.getCat(i),Qt::CaseInsensitive)==0) {
+        while (idcat < catlist.size() && foundCatId.isEmpty()) {
+            QString ak_catId = catlist.at(idcat).split(slash, QString::SkipEmptyParts).last();
+            QString ak_cat = ak_feedlist->getCategoryName(ak_catId).split(slash, QString::SkipEmptyParts).last();
+            if (ak_cat.compare(list.getCat(i), Qt::CaseInsensitive) == 0) {
                 foundCatId = ak_catId;
             }
             idcat++;
         }
 
         // Remove
-        ak_feedlist->removeFeed(list.getRss(i),foundCatId);
+        ak_feedlist->removeFeed(list.getRss(i), foundCatId);
     }
 
     // Emit signal

@@ -31,7 +31,8 @@
 
 class QDomDocument;
 
-namespace Akregator {
+namespace Akregator
+{
 
 class FeedList;
 
@@ -39,11 +40,10 @@ class ImportFeedListCommand : public Command
 {
     Q_OBJECT
 public:
-    explicit ImportFeedListCommand( QObject* parent = 0 );
+    explicit ImportFeedListCommand(QObject *parent = 0);
     ~ImportFeedListCommand();
 
-
-    void setTargetList( const boost::weak_ptr<FeedList>& feedList );
+    void setTargetList(const boost::weak_ptr<FeedList> &feedList);
 
     enum RootFolderOption {
         None,
@@ -51,10 +51,10 @@ public:
         Ask
     };
 
-    void setImportedRootFolderOption( RootFolderOption opt );
-    void setImportedRootFolderName( const QString& defaultName );
+    void setImportedRootFolderOption(RootFolderOption opt);
+    void setImportedRootFolderName(const QString &defaultName);
 
-    void setFeedListDocument( const QDomDocument& doc );
+    void setFeedListDocument(const QDomDocument &doc);
 
 private:
     void doStart();
@@ -62,8 +62,8 @@ private:
 
 private:
     class Private;
-    Private* const d;
-    Q_PRIVATE_SLOT( d, void doImport() )
+    Private *const d;
+    Q_PRIVATE_SLOT(d, void doImport())
 };
 
 }

@@ -10,10 +10,11 @@
 
 /////////////////////////////////////////////////////////////////////////////
 
-class c4_Dependencies {
+class c4_Dependencies
+{
     c4_PtrArray _refs;
 
-  public:
+public:
     c4_Dependencies();
     ~c4_Dependencies();
 
@@ -25,12 +26,13 @@ class c4_Dependencies {
 
 /////////////////////////////////////////////////////////////////////////////
 
-class c4_Notifier {
+class c4_Notifier
+{
     c4_Sequence *_origin;
     c4_Notifier *_chain;
     c4_Notifier *_next;
 
-  public:
+public:
     enum {
         kNone, kSetAt, kInsertAt, kRemoveAt, kMove, kSet, kLimit
     };
@@ -53,22 +55,23 @@ class c4_Notifier {
     c4_Cursor *_cursor;
     const c4_Bytes *_bytes;
 
-  private:
+private:
     void Notify();
 };
 
 /////////////////////////////////////////////////////////////////////////////
 
-class c4_DerivedSeq: public c4_Sequence {
-  protected:
+class c4_DerivedSeq: public c4_Sequence
+{
+protected:
     c4_Sequence &_seq;
 
-  protected:
+protected:
     c4_DerivedSeq(c4_Sequence &seq_);
     virtual ~c4_DerivedSeq();
 
-  public:
-    virtual int RemapIndex(int, const c4_Sequence*)const;
+public:
+    virtual int RemapIndex(int, const c4_Sequence *)const;
 
     virtual int NumRows()const;
     virtual void SetNumRows(int size_);
@@ -76,7 +79,7 @@ class c4_DerivedSeq: public c4_Sequence {
     virtual int NumHandlers()const;
     virtual c4_Handler &NthHandler(int)const;
     virtual const c4_Sequence *HandlerContext(int)const;
-    virtual int AddHandler(c4_Handler*);
+    virtual int AddHandler(c4_Handler *);
     virtual c4_Handler *CreateHandler(const c4_Property &);
 
     virtual c4_Notifier *PreChange(c4_Notifier &nf_);
@@ -84,12 +87,13 @@ class c4_DerivedSeq: public c4_Sequence {
 
 /////////////////////////////////////////////////////////////////////////////
 
-class c4_StreamStrategy: public c4_Strategy {
+class c4_StreamStrategy: public c4_Strategy
+{
     c4_Stream *_stream;
     t4_byte *_buffer;
     t4_i32 _buflen;
     t4_i32 _position;
-  public:
+public:
     c4_StreamStrategy(t4_i32 buflen_);
     c4_StreamStrategy(c4_Stream *stream_);
     virtual ~c4_StreamStrategy();
@@ -104,7 +108,7 @@ class c4_StreamStrategy: public c4_Strategy {
 
 #if q4_INLINE
 #include "store.inl"
-#endif 
+#endif
 
 /////////////////////////////////////////////////////////////////////////////
 

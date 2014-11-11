@@ -38,22 +38,23 @@
 using namespace Akregator;
 using namespace boost;
 
-namespace {
+namespace
+{
 
 class EditNodePropertiesVisitor : public TreeNodeVisitor
 {
 public:
-    EditNodePropertiesVisitor( SubscriptionListView* subcriptionListView, QWidget* parent );
+    EditNodePropertiesVisitor(SubscriptionListView *subcriptionListView, QWidget *parent);
 
-    bool visitFolder(Folder* node)
+    bool visitFolder(Folder *node)
     {
-        m_subscriptionListView->startNodeRenaming( node );
+        m_subscriptionListView->startNodeRenaming(node);
         return true;
     }
 
-    bool visitFeed(Akregator::Feed* node)
+    bool visitFeed(Akregator::Feed *node)
     {
-        QPointer<FeedPropertiesDialog> dlg = new FeedPropertiesDialog( m_widget );
+        QPointer<FeedPropertiesDialog> dlg = new FeedPropertiesDialog(m_widget);
         dlg->setFeed(node);
         dlg->exec();
         delete dlg;
@@ -61,23 +62,23 @@ public:
     }
 private:
 
-    SubscriptionListView* m_subscriptionListView;
-    QWidget* m_widget;
+    SubscriptionListView *m_subscriptionListView;
+    QWidget *m_widget;
 };
 
 }
 
-EditNodePropertiesVisitor::EditNodePropertiesVisitor( SubscriptionListView* subscriptionListView, QWidget* parent ) : m_subscriptionListView( subscriptionListView ), m_widget( parent )
+EditNodePropertiesVisitor::EditNodePropertiesVisitor(SubscriptionListView *subscriptionListView, QWidget *parent) : m_subscriptionListView(subscriptionListView), m_widget(parent)
 {
-    assert( m_subscriptionListView );
-    assert( m_widget );
+    assert(m_subscriptionListView);
+    assert(m_widget);
 }
 
 class EditSubscriptionCommand::Private
 {
-    EditSubscriptionCommand* const q;
+    EditSubscriptionCommand *const q;
 public:
-    explicit Private( EditSubscriptionCommand* qq );
+    explicit Private(EditSubscriptionCommand *qq);
     ~Private();
 
     void startEdit();
@@ -85,13 +86,13 @@ public:
 
     shared_ptr<FeedList> m_list;
     int m_subscriptionId;
-    SubscriptionListView* m_subscriptionListView;
+    SubscriptionListView *m_subscriptionListView;
 };
 
-EditSubscriptionCommand::Private::Private( EditSubscriptionCommand* qq ) : q( qq ),
-                                                                               m_list(),
-                                                                               m_subscriptionId( -1 ),
-                                                                               m_subscriptionListView( 0 )
+EditSubscriptionCommand::Private::Private(EditSubscriptionCommand *qq) : q(qq),
+    m_list(),
+    m_subscriptionId(-1),
+    m_subscriptionListView(0)
 {
 
 }
@@ -100,7 +101,7 @@ EditSubscriptionCommand::Private::~Private()
 {
 }
 
-EditSubscriptionCommand::EditSubscriptionCommand( QObject* parent ) : Command( parent ), d( new Private( this ) )
+EditSubscriptionCommand::EditSubscriptionCommand(QObject *parent) : Command(parent), d(new Private(this))
 {
 }
 
@@ -109,7 +110,7 @@ EditSubscriptionCommand::~EditSubscriptionCommand()
     delete d;
 }
 
-void EditSubscriptionCommand::setSubscription( const shared_ptr<FeedList>& feedList, int subId )
+void EditSubscriptionCommand::setSubscription(const shared_ptr<FeedList> &feedList, int subId)
 {
     d->m_list = feedList;
     d->m_subscriptionId = subId;
@@ -125,32 +126,31 @@ shared_ptr<FeedList> EditSubscriptionCommand::feedList() const
     return d->m_list;
 }
 
-SubscriptionListView* EditSubscriptionCommand::subscriptionListView() const
+SubscriptionListView *EditSubscriptionCommand::subscriptionListView() const
 {
     return d->m_subscriptionListView;
 }
 
-void EditSubscriptionCommand::setSubscriptionListView( SubscriptionListView* view )
+void EditSubscriptionCommand::setSubscriptionListView(SubscriptionListView *view)
 {
     d->m_subscriptionListView = view;
 }
 
-
 void EditSubscriptionCommand::doStart()
 {
-    QTimer::singleShot( 0, this, SLOT(startEdit()) );
+    QTimer::singleShot(0, this, SLOT(startEdit()));
 }
 
 void EditSubscriptionCommand::Private::startEdit()
 {
-    TreeNode* const node = m_list->findByID( m_subscriptionId );
-    if ( !node ) {
+    TreeNode *const node = m_list->findByID(m_subscriptionId);
+    if (!node) {
         q->done();
         return;
     }
 
-    EditNodePropertiesVisitor visitor( m_subscriptionListView, q->parentWidget() );
-    visitor.visit( node );
+    EditNodePropertiesVisitor visitor(m_subscriptionListView, q->parentWidget());
+    visitor.visit(node);
     q->done();
 }
 

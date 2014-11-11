@@ -34,25 +34,24 @@ namespace Akregator
 
 class BrowserRun : public KParts::BrowserRun
 {
-        Q_OBJECT
-    public:
-        BrowserRun(const OpenUrlRequest& request, QWidget* parent);
-        ~BrowserRun();
+    Q_OBJECT
+public:
+    BrowserRun(const OpenUrlRequest &request, QWidget *parent);
+    ~BrowserRun();
 
-    signals:
+signals:
 
-        void signalFoundMimeType(Akregator::OpenUrlRequest& request);
+    void signalFoundMimeType(Akregator::OpenUrlRequest &request);
 
-    private:
-        /* reimp */ void foundMimeType(const QString& type);
+private:
+    /* reimp */ void foundMimeType(const QString &type);
 
-    private:
-        OpenUrlRequest m_request;
-        QWidget* m_window;
+private:
+    OpenUrlRequest m_request;
+    QWidget *m_window;
 };
 
 } // namespace Akregator
 
 #endif // AKREGATOR_BROWSERRUN_H
 
-// vim: set et ts=4 sts=4 sw=4:

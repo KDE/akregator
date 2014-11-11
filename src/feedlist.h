@@ -36,12 +36,13 @@
 class QDomDocument;
 class QDomNode;
 template <class T> class QList;
-template <class K,class T> class QHash;
+template <class K, class T> class QHash;
 class QString;
 
 class KJob;
 
-namespace Akregator {
+namespace Akregator
+{
 
 class Article;
 class Feed;
@@ -50,22 +51,23 @@ class FetchQueue;
 class Folder;
 class TreeNode;
 
-namespace Backend {
-    class Storage;
+namespace Backend
+{
+class Storage;
 }
 
-
-class AKREGATOR_EXPORT FeedListManagementImpl : public FeedListManagementInterface {
+class AKREGATOR_EXPORT FeedListManagementImpl : public FeedListManagementInterface
+{
 public:
-    explicit FeedListManagementImpl( const boost::shared_ptr<FeedList>& list=boost::shared_ptr<FeedList>() );
-    void setFeedList( const boost::shared_ptr<FeedList>& list );
+    explicit FeedListManagementImpl(const boost::shared_ptr<FeedList> &list = boost::shared_ptr<FeedList>());
+    void setFeedList(const boost::shared_ptr<FeedList> &list);
 
     /* reimp */ QStringList categories() const;
-    /* reimp */ QStringList feeds( const QString& catId ) const;
-    /* reimp */ void addFeed( const QString& url, const QString& catId );
-    /* reimp */ void removeFeed( const QString& url, const QString& catId );
-    /* reimp */ QString addCategory( const QString& name, const QString& parentId ) const;
-    /* reimp */ QString getCategoryName( const QString& catId ) const;
+    /* reimp */ QStringList feeds(const QString &catId) const;
+    /* reimp */ void addFeed(const QString &url, const QString &catId);
+    /* reimp */ void removeFeed(const QString &url, const QString &catId);
+    /* reimp */ QString addCategory(const QString &name, const QString &parentId) const;
+    /* reimp */ QString getCategoryName(const QString &catId) const;
 
 private:
     boost::shared_ptr<FeedList> m_feedList;
@@ -78,83 +80,82 @@ class AKREGATOR_EXPORT FeedList : public QObject
     Q_OBJECT
 public:
 
-    explicit FeedList(Akregator::Backend::Storage* storage);
+    explicit FeedList(Akregator::Backend::Storage *storage);
 
     /** Destructor. Contained nodes are deleted! */
     ~FeedList();
 
-    const Folder* allFeedsFolder() const;
-    Folder* allFeedsFolder();
+    const Folder *allFeedsFolder() const;
+    Folder *allFeedsFolder();
 
     bool isEmpty() const;
 
-    const TreeNode* findByID(int id) const;
-    TreeNode* findByID(int id);
+    const TreeNode *findByID(int id) const;
+    TreeNode *findByID(int id);
 
-    QList<const TreeNode*> findByTitle(const QString &title) const;
-    QList<TreeNode*> findByTitle(const QString &title);
-
+    QList<const TreeNode *> findByTitle(const QString &title) const;
+    QList<TreeNode *> findByTitle(const QString &title);
 
     /** returns the title of the feed list (as used in the OPML document) */
     QString title() const;
 
     /** sets the title of the feed list */
-    void setTitle(const QString& name);
+    void setTitle(const QString &name);
 
     /**
      * returns all feeds in this list
      */
-    QVector<const Feed*> feeds() const;
-    QVector<Feed*> feeds();
+    QVector<const Feed *> feeds() const;
+    QVector<Feed *> feeds();
 
     QVector<int> feedIds() const;
 
     /**
      * returns all folders in this list
      */
-    QVector<const Folder*> folders() const;
-    QVector<Folder*> folders();
+    QVector<const Folder *> folders() const;
+    QVector<Folder *> folders();
 
     /** appends another feed list as sub tree. The root node of @c list is ignored. NOTE: nodes are _moved_ from @c list to this feed list, not copied */
 
-    void append(FeedList* list, Folder* parent=0, TreeNode* after=0);
+    void append(FeedList *list, Folder *parent = 0, TreeNode *after = 0);
 
     /** reads an OPML document and appends the items to this list
         @param doc the OPML document to parse
         @return whether parsing was successful or not (TODO: make errors more detailed)
     */
-    bool readFromOpml(const QDomDocument& doc);
+    bool readFromOpml(const QDomDocument &doc);
 
     /** exports the feed list as OPML. The root node ("All Feeds") is ignored! */
     QDomDocument toOpml() const;
 
     /** returns a feed object for a given feed URL. If the feed list does not contain a feed with @c url, NULL is returned. If it contains the same feed multiple times, any of the Feed objects is returned. */
-    const Feed* findByURL(const QString& feedURL) const;
-    Feed* findByURL(const QString& feedURL);
+    const Feed *findByURL(const QString &feedURL) const;
+    Feed *findByURL(const QString &feedURL);
 
-    const Article findArticle(const QString& feedURL, const QString& guid) const;
+    const Article findArticle(const QString &feedURL, const QString &guid) const;
 
     int unread() const;
 
-    void addToFetchQueue( FetchQueue* queue, bool intervalOnly=false );
-    KJob* createMarkAsReadJob();
+    void addToFetchQueue(FetchQueue *queue, bool intervalOnly = false);
+    KJob *createMarkAsReadJob();
 
 signals:
 
-    void signalDestroyed(Akregator::FeedList*);
+    void signalDestroyed(Akregator::FeedList *);
 
     /** emitted when a node was added to the list */
-    void signalNodeAdded(Akregator::TreeNode*);
+    void signalNodeAdded(Akregator::TreeNode *);
 
     /** emitted when a node was removed from the list */
-    void signalNodeRemoved(Akregator::TreeNode*);
+    void signalNodeRemoved(Akregator::TreeNode *);
 
-    void signalAboutToRemoveNode( Akregator::TreeNode* );
+    void signalAboutToRemoveNode(Akregator::TreeNode *);
 
-    void signalNodeChanged( Akregator::TreeNode* );
+    void signalNodeChanged(Akregator::TreeNode *);
 
     /** emitted when fetching started */
-    void fetchStarted(Akregator::Feed*);
+    void fetchStarted(Akregator::Feed *);
 
     /** emitted when feed finished fetching */
     void fetched(Akregator::Feed *);
@@ -167,23 +168,23 @@ signals:
     /** emitted when a fetch is aborted */
     void fetchAborted(Akregator::Feed *);
 
-    void unreadCountChanged( int unread );
+    void unreadCountChanged(int unread);
 
 private:
 
-    void addNode(TreeNode* node, bool preserveID);
-    void removeNode(TreeNode* node);
+    void addNode(TreeNode *node, bool preserveID);
+    void removeNode(TreeNode *node);
 
     int generateID() const;
-    void setRootNode(Folder* folder);
+    void setRootNode(Folder *folder);
 
-    void parseChildNodes(QDomNode &node, Folder* parent);
+    void parseChildNodes(QDomNode &node, Folder *parent);
 
 private slots:
 
-    void slotNodeDestroyed(Akregator::TreeNode* node);
-    void slotNodeAdded(Akregator::TreeNode* node);
-    void slotNodeRemoved(Akregator::Folder* parent, Akregator::TreeNode* node);
+    void slotNodeDestroyed(Akregator::TreeNode *node);
+    void slotNodeAdded(Akregator::TreeNode *node);
+    void slotNodeRemoved(Akregator::Folder *parent, Akregator::TreeNode *node);
     void rootNodeChanged();
 
 private:
@@ -194,7 +195,7 @@ private:
     class RemoveNodeVisitor;
 
     class Private;
-    Private* const d;
+    Private *const d;
 };
 
 } // namespace Akregator

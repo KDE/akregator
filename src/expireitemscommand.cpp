@@ -42,65 +42,66 @@ using namespace Akregator;
 
 class ExpireItemsCommand::Private
 {
-    ExpireItemsCommand* const q;
+    ExpireItemsCommand *const q;
 public:
-    explicit Private( ExpireItemsCommand* qq );
+    explicit Private(ExpireItemsCommand *qq);
 
     void createDeleteJobs();
-    void addDeleteJobForFeed( Feed* feed );
-    void jobFinished( KJob* );
+    void addDeleteJobForFeed(Feed *feed);
+    void jobFinished(KJob *);
 
     weak_ptr<FeedList> m_feedList;
     QVector<int> m_feeds;
-    QSet<KJob*> m_jobs;
+    QSet<KJob *> m_jobs;
 };
 
-ExpireItemsCommand::Private::Private( ExpireItemsCommand* qq ) : q( qq ), m_feedList()
+ExpireItemsCommand::Private::Private(ExpireItemsCommand *qq) : q(qq), m_feedList()
 {
 
 }
 
-void ExpireItemsCommand::Private::addDeleteJobForFeed( Feed* feed )
+void ExpireItemsCommand::Private::addDeleteJobForFeed(Feed *feed)
 {
-    assert( feed );
-    ArticleDeleteJob* job = new ArticleDeleteJob( q );
-    connect( job, SIGNAL(finished(KJob*)), q, SLOT(jobFinished(KJob*)) );
-    m_jobs.insert( job );
-    feed->deleteExpiredArticles( job );
+    assert(feed);
+    ArticleDeleteJob *job = new ArticleDeleteJob(q);
+    connect(job, SIGNAL(finished(KJob*)), q, SLOT(jobFinished(KJob*)));
+    m_jobs.insert(job);
+    feed->deleteExpiredArticles(job);
     job->start();
 }
 
-void ExpireItemsCommand::Private::jobFinished( KJob* job )
+void ExpireItemsCommand::Private::jobFinished(KJob *job)
 {
-    assert( !m_jobs.isEmpty() );
-    m_jobs.remove( job );
-    emit q->progress( ( ( m_feeds.count() - m_jobs.count() ) * 100 ) / m_feeds.count(), QString() );
-    if ( m_jobs.isEmpty() )
+    assert(!m_jobs.isEmpty());
+    m_jobs.remove(job);
+    emit q->progress(((m_feeds.count() - m_jobs.count()) * 100) / m_feeds.count(), QString());
+    if (m_jobs.isEmpty()) {
         q->done();
+    }
 }
 
 void ExpireItemsCommand::Private::createDeleteJobs()
 {
-    assert( m_jobs.isEmpty() );
+    assert(m_jobs.isEmpty());
     const shared_ptr<FeedList> feedList = m_feedList.lock();
 
-    if ( m_feeds.isEmpty() || !feedList )
-    {
-        if ( !feedList )
+    if (m_feeds.isEmpty() || !feedList) {
+        if (!feedList) {
             qWarning() << "Associated feed list was deleted, could not expire items";
+        }
         q->done();
         return;
     }
 
-    Q_FOREACH ( const int i, m_feeds )
-    {
-        Feed* const feed = qobject_cast<Feed*>( feedList->findByID( i ) );
-        if ( feed )
-            addDeleteJobForFeed( feed );
+    Q_FOREACH (const int i, m_feeds) {
+        Feed *const feed = qobject_cast<Feed *>(feedList->findByID(i));
+        if (feed) {
+            addDeleteJobForFeed(feed);
+        }
     }
 }
 
-ExpireItemsCommand::ExpireItemsCommand( QObject* parent ) : Command( parent ), d( new Private( this ) )
+ExpireItemsCommand::ExpireItemsCommand(QObject *parent) : Command(parent), d(new Private(this))
 {
 }
 
@@ -109,7 +110,7 @@ ExpireItemsCommand::~ExpireItemsCommand()
     delete d;
 }
 
-void ExpireItemsCommand::setFeedList( const weak_ptr<FeedList>& feedList )
+void ExpireItemsCommand::setFeedList(const weak_ptr<FeedList> &feedList)
 {
     d->m_feedList = feedList;
 }
@@ -119,7 +120,7 @@ weak_ptr<FeedList> ExpireItemsCommand::feedList() const
     return d->m_feedList;
 }
 
-void ExpireItemsCommand::setFeeds( const QVector<int>& feeds )
+void ExpireItemsCommand::setFeeds(const QVector<int> &feeds)
 {
     d->m_feeds = feeds;
 }
@@ -131,13 +132,14 @@ QVector<int> ExpireItemsCommand::feeds() const
 
 void ExpireItemsCommand::doAbort()
 {
-    Q_FOREACH( KJob* const i, d->m_jobs )
+    Q_FOREACH (KJob *const i, d->m_jobs) {
         i->kill();
+    }
 }
 
 void ExpireItemsCommand::doStart()
 {
-    QTimer::singleShot( 0, this, SLOT(createDeleteJobs()) );
+    QTimer::singleShot(0, this, SLOT(createDeleteJobs()));
 }
 
 #include "moc_expireitemscommand.cpp"

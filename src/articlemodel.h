@@ -32,13 +32,15 @@
 #include <boost/shared_ptr.hpp>
 #include <vector>
 
-namespace Akregator {
+namespace Akregator
+{
 
 class Article;
 class TreeNode;
 
-namespace Filters {
-    class AbstractMatcher;
+namespace Filters
+{
+class AbstractMatcher;
 }
 
 class AKREGATORPART_EXPORT ArticleModel : public QAbstractTableModel
@@ -48,7 +50,7 @@ class AKREGATORPART_EXPORT ArticleModel : public QAbstractTableModel
 public:
 
     enum Column {
-        ItemTitleColumn=0,
+        ItemTitleColumn = 0,
         FeedTitleColumn,
         AuthorColumn,
         DateColumn,
@@ -58,7 +60,7 @@ public:
     };
 
     enum Role {
-        SortRole=Qt::UserRole,
+        SortRole = Qt::UserRole,
         LinkRole,
         GuidRole,
         ItemIdRole,
@@ -68,42 +70,42 @@ public:
         IsDeletedRole
     };
 
-    explicit ArticleModel( const QList<Article>& articles, QObject* parent = 0 );
+    explicit ArticleModel(const QList<Article> &articles, QObject *parent = 0);
     ~ArticleModel();
 
     //reimpl
-    int columnCount( const QModelIndex& parent = QModelIndex() ) const;
+    int columnCount(const QModelIndex &parent = QModelIndex()) const;
 
     //impl
-    int rowCount( const QModelIndex& parent = QModelIndex() ) const;
+    int rowCount(const QModelIndex &parent = QModelIndex()) const;
 
-    QVariant headerData( int section, Qt::Orientation, int role ) const;
+    QVariant headerData(int section, Qt::Orientation, int role) const;
     //impl
-    QVariant data( const QModelIndex& index, int role = Qt::DisplayRole ) const;
+    QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
 
-    bool rowMatches( int row, const boost::shared_ptr<const Akregator::Filters::AbstractMatcher>& matcher ) const;
+    bool rowMatches(int row, const boost::shared_ptr<const Akregator::Filters::AbstractMatcher> &matcher) const;
 
-    Article article( int row ) const;
+    Article article(int row) const;
 
     /* reimp */ QStringList mimeTypes() const;
 
-    /* reimp */ QMimeData* mimeData( const QModelIndexList& indexes ) const;
+    /* reimp */ QMimeData *mimeData(const QModelIndexList &indexes) const;
 
-    /* reimp */ Qt::ItemFlags flags( const QModelIndex& idx ) const;
+    /* reimp */ Qt::ItemFlags flags(const QModelIndex &idx) const;
 
 public Q_SLOTS:
 
-    void articlesAdded( Akregator::TreeNode*, const QList<Akregator::Article>& );
-    void articlesUpdated( Akregator::TreeNode*, const QList<Akregator::Article>& );
-    void articlesRemoved( Akregator::TreeNode*, const QList<Akregator::Article>& );
+    void articlesAdded(Akregator::TreeNode *, const QList<Akregator::Article> &);
+    void articlesUpdated(Akregator::TreeNode *, const QList<Akregator::Article> &);
+    void articlesRemoved(Akregator::TreeNode *, const QList<Akregator::Article> &);
     void clear();
 
 private:
-    ArticleModel( const ArticleModel& );
-    ArticleModel& operator=( const ArticleModel& );
+    ArticleModel(const ArticleModel &);
+    ArticleModel &operator=(const ArticleModel &);
 
     class Private;
-    Private* const d;
+    Private *const d;
 };
 
 } //namespace Akregator

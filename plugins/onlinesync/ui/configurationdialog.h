@@ -34,16 +34,16 @@ namespace feedsync
 class ConfigurationDialog : public KDialog
 {
     Q_OBJECT
-    public:
-        explicit ConfigurationDialog( QWidget *parent=0 );
+public:
+    explicit ConfigurationDialog(QWidget *parent = 0);
 
-    public Q_SLOTS:
-        /* reimp */ void accept();
-        
-    private:
-        Ui::ConfigurationWidget* m_widget;
+public Q_SLOTS:
+    /* reimp */ void accept();
+
+private:
+    Ui::ConfigurationWidget *m_widget;
 };
- 
+
 }
 
 #endif // CONFIGURATIONDIALOG_H

@@ -36,40 +36,40 @@ class KXMLGUIClient;
 
 #define AKREGATOR_PLUGIN_INTERFACE_VERSION 4
 
-namespace Akregator {
+namespace Akregator
+{
 
 class AKREGATORINTERFACES_EXPORT Plugin : public QObject
 {
     Q_OBJECT
-    public:
-        explicit Plugin( QObject* parent=0, const QVariantList& opts=QVariantList() );
+public:
+    explicit Plugin(QObject *parent = 0, const QVariantList &opts = QVariantList());
 
-        virtual ~Plugin();
+    virtual ~Plugin();
 
-        void initialize();
-        /**
-            * TODO @param parent you must parent the widget to parent
-            * @return the configure widget for your plugin, create it on the heap!
-            */
-            //TODO rename configureWidget( QWidget *parent )
-        // virtual PluginConfig* configure() const { return 0; }
+    void initialize();
+    /**
+        * TODO @param parent you must parent the widget to parent
+        * @return the configure widget for your plugin, create it on the heap!
+        */
+    //TODO rename configureWidget( QWidget *parent )
+    // virtual PluginConfig* configure() const { return 0; }
 
-        void addPluginProperty( const QString& key, const QString& value );
-        QString pluginProperty( const QString& key ) const;
-        bool hasPluginProperty( const QString& key ) const;
+    void addPluginProperty(const QString &key, const QString &value);
+    QString pluginProperty(const QString &key) const;
+    bool hasPluginProperty(const QString &key) const;
 
-        virtual void insertGuiClients( KXMLGUIClient* parent );
-        virtual void removeGuiClients( KXMLGUIClient* parent );
+    virtual void insertGuiClients(KXMLGUIClient *parent);
+    virtual void removeGuiClients(KXMLGUIClient *parent);
 
-    protected:
-        virtual void doInitialize() = 0;
+protected:
+    virtual void doInitialize() = 0;
 
-    private:
-        QHash<QString, QString> m_properties;
+private:
+    QHash<QString, QString> m_properties;
 };
 
 } //namespace Akregator
 
 #endif // AKREGATOR_PLUGIN_H
-
 

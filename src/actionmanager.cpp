@@ -30,20 +30,19 @@ namespace Akregator
 class ActionManager::ActionManagerPrivate
 {};
 
-ActionManager* ActionManager::m_self = 0;
+ActionManager *ActionManager::m_self = 0;
 
-ActionManager* ActionManager::getInstance()
+ActionManager *ActionManager::getInstance()
 {
     return m_self;
 }
 
-void ActionManager::setInstance(ActionManager* manager)
+void ActionManager::setInstance(ActionManager *manager)
 {
     m_self = manager;
 }
 
-
-ActionManager::ActionManager(QObject* parent) : QObject(parent), d(new ActionManagerPrivate)
+ActionManager::ActionManager(QObject *parent) : QObject(parent), d(new ActionManagerPrivate)
 {
 }
 

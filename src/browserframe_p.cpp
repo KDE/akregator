@@ -27,26 +27,27 @@
 
 using namespace Akregator;
 
-BrowserFrame::Private::Private( BrowserFrame* qq )
-  : QObject( qq ),
-    q( qq ),
-    history(),
-    current( history.end() ),
-    part( 0 ),
-    extension( 0 ),
-    layout( new QGridLayout( q ) ),
-    lockHistory( false ),
-    isLoading( false )
+BrowserFrame::Private::Private(BrowserFrame *qq)
+    : QObject(qq),
+      q(qq),
+      history(),
+      current(history.end()),
+      part(0),
+      extension(0),
+      layout(new QGridLayout(q)),
+      lockHistory(false),
+      isLoading(false)
 {
-    layout->setMargin( 0 );
-    q->setRemovable( true );
+    layout->setMargin(0);
+    q->setRemovable(true);
 }
 
 BrowserFrame::Private::~Private()
 {
-    FeedIconManager::self()->removeListener( q );
-    if ( part )
-        part->disconnect( this );
+    FeedIconManager::self()->removeListener(q);
+    if (part) {
+        part->disconnect(this);
+    }
     delete part;
 }
 
@@ -56,8 +57,8 @@ void BrowserFrame::Private::HistoryAction::slotTriggered(bool)
 }
 
 BrowserFrame::Private::HistoryAction::HistoryAction(QList<HistoryEntry>::Iterator entry,
-         QObject* q,
-         Private* priv) : QAction((*entry).title, q), m_entry(entry)
+        QObject *q,
+        Private *priv) : QAction((*entry).title, q), m_entry(entry)
 {
     connect(this, SIGNAL(triggered(bool)), this, SLOT(slotTriggered(bool)));
     connect(this, SIGNAL(triggered(QList<BrowserFrame::Private::HistoryEntry>::Iterator)), priv, SLOT(slotHistoryEntrySelected(QList<BrowserFrame::Private::HistoryEntry>::Iterator)));
@@ -65,32 +66,33 @@ BrowserFrame::Private::HistoryAction::HistoryAction(QList<HistoryEntry>::Iterato
 
 int BrowserFrame::Private::HistoryEntry::idCounter = 0;
 
-
-bool BrowserFrame::Private::loadPartForMimetype(const QString& mimetype)
+bool BrowserFrame::Private::loadPartForMimetype(const QString &mimetype)
 {
-    KService::List offers = KMimeTypeTrader::self()->query( mimetype, QLatin1String("KParts/ReadOnlyPart") );
+    KService::List offers = KMimeTypeTrader::self()->query(mimetype, QLatin1String("KParts/ReadOnlyPart"));
 
-    qDebug() <<"BrowserFrame::loadPartForMimetype("<< mimetype <<"):" << offers.size() <<" offers";
+    qDebug() << "BrowserFrame::loadPartForMimetype(" << mimetype << "):" << offers.size() << " offers";
 
-    if (offers.isEmpty())
+    if (offers.isEmpty()) {
         return false;
+    }
     // delete old part
     // FIXME: do this only if part can't be reused for the new mimetype
-    if (part)
-    {
-        part->disconnect( this );
+    if (part) {
+        part->disconnect(this);
         layout->removeWidget(part->widget());
         delete part;
         delete extension;
     }
 
     KService::Ptr ptr = offers.first();
-    KPluginFactory* factory = KPluginLoader(*ptr).factory();
-    if (!factory)
+    KPluginFactory *factory = KPluginLoader(*ptr).factory();
+    if (!factory) {
         return false;
+    }
     part = factory->create<KParts::ReadOnlyPart>(q);
-    if (!part)
+    if (!part) {
         return false;
+    }
 
     // Parts can be destroyed from within the part itself, thus we must listen to destroyed()
     // partDestroyed() requests deletion of this BrowserFrame, which deletes the part, which crashes as
@@ -107,41 +109,43 @@ bool BrowserFrame::Private::loadPartForMimetype(const QString& mimetype)
     return true;
 }
 
-void BrowserFrame::Private::partDestroyed( QObject* )
+void BrowserFrame::Private::partDestroyed(QObject *)
 {
-    emit q->signalPartDestroyed( q->id() );
+    emit q->signalPartDestroyed(q->id());
 }
 
-void BrowserFrame::Private::appendHistoryEntry(const KUrl& url)
+void BrowserFrame::Private::appendHistoryEntry(const KUrl &url)
 {
-    if (lockHistory)
+    if (lockHistory) {
         return;
+    }
 
     bool canBack = q->canGoBack();
     bool canForward = q->canGoForward();
 
-
-    if (current != history.end())
-    {
+    if (current != history.end()) {
         // if the new URL is equal to the previous one,
         // we do not create a new entry and exit here
-        if ((*current).url == url)
+        if ((*current).url == url) {
             return;
+        }
 
         // cut off history entries after the current one
-        history.erase(current+1, history.end());
+        history.erase(current + 1, history.end());
     }
     history.append(HistoryEntry());
 
-    current = history.end()-1;
+    current = history.end() - 1;
 
-    if (canBack != q->canGoBack())
+    if (canBack != q->canGoBack()) {
         emit q->signalCanGoBackToggled(q, !canBack);
-    if (canForward != q->canGoForward())
+    }
+    if (canForward != q->canGoForward()) {
         emit q->signalCanGoForwardToggled(q, !canForward);
+    }
 }
 
-void BrowserFrame::Private::restoreHistoryEntry( const QList<HistoryEntry>::Iterator& entry)
+void BrowserFrame::Private::restoreHistoryEntry(const QList<HistoryEntry>::Iterator &entry)
 {
     bool canBack = q->canGoBack();
     bool canForward = q->canGoForward();
@@ -151,105 +155,103 @@ void BrowserFrame::Private::restoreHistoryEntry( const QList<HistoryEntry>::Iter
     // TODO: set all fields to values from entry
     loadPartForMimetype((*entry).mimetype);
 
-    if (!part)
-        return; // FIXME: do something better
+    if (!part) {
+        return;    // FIXME: do something better
+    }
 
     {
-        TemporaryValue<bool> lock( lockHistory, true );
+        TemporaryValue<bool> lock(lockHistory, true);
         QDataStream stream(&((*entry).buffer), QIODevice::ReadOnly);
-        if (extension)
+        if (extension) {
             extension->restoreState(stream);
-        else
-        {
-            qDebug() <<"BrowserFrame::restoreHistoryEntry(): no BrowserExtension found, reloading page!";
+        } else {
+            qDebug() << "BrowserFrame::restoreHistoryEntry(): no BrowserExtension found, reloading page!";
             part->openUrl((*entry).url);
         }
         mimetype = entry->mimetype;
         current = entry;
     }
 
-    if (canForward != q->canGoForward())
+    if (canForward != q->canGoForward()) {
         emit q->signalCanGoForwardToggled(q, !canForward);
-    if (canBack != q->canGoBack())
+    }
+    if (canBack != q->canGoBack()) {
         emit q->signalCanGoBackToggled(q, !canBack);
+    }
 }
-
 
 void BrowserFrame::Private::updateHistoryEntry()
 {
-    if (lockHistory || !part || current == history.end() || !part->url().isValid())
+    if (lockHistory || !part || current == history.end() || !part->url().isValid()) {
         return;
+    }
 
-    qDebug() <<"BrowserFrame::updateHistoryEntry(): updating id=" << (*current).id <<" url=" << part->url().url();
+    qDebug() << "BrowserFrame::updateHistoryEntry(): updating id=" << (*current).id << " url=" << part->url().url();
 
     (*current).url = part->url();
     (*current).title = q->title();
     //(*current).strServiceName = service->desktopEntryName();
     (*current).mimetype = mimetype;
 
-    if (extension)
-    {
+    if (extension) {
         (*current).buffer.clear();
-        QDataStream stream( &((*current).buffer), QIODevice::WriteOnly );
+        QDataStream stream(&((*current).buffer), QIODevice::WriteOnly);
 
-        extension->saveState( stream );
+        extension->saveState(stream);
     }
 }
 
 void BrowserFrame::Private::connectPart()
 {
-    if (part)
-    {
-        connect( part, SIGNAL(setWindowCaption(QString)),
-                 q, SLOT(slotSetCaption(QString)) );
-        connect( part, SIGNAL(setStatusBarText(QString)),
-                 q, SLOT(slotSetStatusText(QString)) );
-        connect( part, SIGNAL(started(KIO::Job*)), q, SLOT(slotSetStarted()));
-        connect( part, SIGNAL(completed()), q, SLOT(slotSetCompleted()));
-        connect( part, SIGNAL(canceled(QString)),
-                 q, SLOT(slotSetCanceled(QString)) );
-        connect( part, SIGNAL(completed(bool)),
-                 q, SLOT(slotSetCompleted()) );
-        connect( part, SIGNAL(setWindowCaption(QString)),
-                 q, SLOT(slotSetTitle(QString)) );
+    if (part) {
+        connect(part, SIGNAL(setWindowCaption(QString)),
+                q, SLOT(slotSetCaption(QString)));
+        connect(part, SIGNAL(setStatusBarText(QString)),
+                q, SLOT(slotSetStatusText(QString)));
+        connect(part, SIGNAL(started(KIO::Job*)), q, SLOT(slotSetStarted()));
+        connect(part, SIGNAL(completed()), q, SLOT(slotSetCompleted()));
+        connect(part, SIGNAL(canceled(QString)),
+                q, SLOT(slotSetCanceled(QString)));
+        connect(part, SIGNAL(completed(bool)),
+                q, SLOT(slotSetCompleted()));
+        connect(part, SIGNAL(setWindowCaption(QString)),
+                q, SLOT(slotSetTitle(QString)));
 
-        KParts::BrowserExtension* ext = extension;
+        KParts::BrowserExtension *ext = extension;
 
-        if (ext)
-        {
-            connect( ext, SIGNAL(speedProgress(int)),
-                     q, SLOT(slotSpeedProgress(int)) );
-            connect( ext, SIGNAL(speedProgress(int)),
-                     q, SLOT(slotSetProgress(int)) );
-            connect( ext, SIGNAL(openUrlRequestDelayed(QUrl,
-                     KParts::OpenUrlArguments,
-                     KParts::BrowserArguments ) ),
-                     q, SLOT(slotOpenUrlRequestDelayed(QUrl,
-                                  KParts::OpenUrlArguments,
-                                  KParts::BrowserArguments)) );
+        if (ext) {
+            connect(ext, SIGNAL(speedProgress(int)),
+                    q, SLOT(slotSpeedProgress(int)));
+            connect(ext, SIGNAL(speedProgress(int)),
+                    q, SLOT(slotSetProgress(int)));
+            connect(ext, SIGNAL(openUrlRequestDelayed(QUrl,
+                                KParts::OpenUrlArguments,
+                                KParts::BrowserArguments)),
+                    q, SLOT(slotOpenUrlRequestDelayed(QUrl,
+                            KParts::OpenUrlArguments,
+                            KParts::BrowserArguments)));
             connect(ext, SIGNAL(setLocationBarUrl(QString)),
-                    q, SLOT(slotSetLocationBarUrl(QString)) );
+                    q, SLOT(slotSetLocationBarUrl(QString)));
             connect(ext, SIGNAL(setIconUrl(QUrl)),
-                    q, SLOT(slotSetIconUrl(QUrl)) );
+                    q, SLOT(slotSetIconUrl(QUrl)));
             connect(ext, SIGNAL(createNewWindow(QUrl,
-                    KParts::OpenUrlArguments,
-                    KParts::BrowserArguments,
-                    KParts::WindowArgs,
-                    KParts::ReadOnlyPart**)),
+                                                KParts::OpenUrlArguments,
+                                                KParts::BrowserArguments,
+                                                KParts::WindowArgs,
+                                                KParts::ReadOnlyPart **)),
                     q, SLOT(slotCreateNewWindow(QUrl,
-                                 KParts::OpenUrlArguments,
-                                 KParts::BrowserArguments,
-                                 KParts::WindowArgs,
-                                 KParts::ReadOnlyPart**)));
-            connect(ext, SIGNAL(popupMenu(QPoint,QUrl,mode_t,
-                    KParts::OpenUrlArguments, KParts::BrowserArguments,
-                    KParts::BrowserExtension::PopupFlags, KParts::BrowserExtension::ActionGroupMap)),
-                    q, SLOT(slotPopupMenu(QPoint,QUrl,mode_t,
-                    KParts::OpenUrlArguments, KParts::BrowserArguments,
-                    KParts::BrowserExtension::PopupFlags,
-                    KParts::BrowserExtension::ActionGroupMap )));
+                                                KParts::OpenUrlArguments,
+                                                KParts::BrowserArguments,
+                                                KParts::WindowArgs,
+                                                KParts::ReadOnlyPart **)));
+            connect(ext, SIGNAL(popupMenu(QPoint, QUrl, mode_t,
+                                          KParts::OpenUrlArguments, KParts::BrowserArguments,
+                                          KParts::BrowserExtension::PopupFlags, KParts::BrowserExtension::ActionGroupMap)),
+                    q, SLOT(slotPopupMenu(QPoint, QUrl, mode_t,
+                                          KParts::OpenUrlArguments, KParts::BrowserArguments,
+                                          KParts::BrowserExtension::PopupFlags,
+                                          KParts::BrowserExtension::ActionGroupMap)));
         }
     }
 }
-
 

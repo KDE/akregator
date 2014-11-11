@@ -12,8 +12,8 @@
 #if q4_68K
 #if !__option(IEEEdoubles)
 #error Cannot build Metakit with 10-byte doubles
-#endif 
-#endif 
+#endif
+#endif
 
 #if __option(bool)
 #define q4_BOOL 1
@@ -21,7 +21,7 @@
 #undef false
 #undef true
 #undef bool
-#endif 
+#endif
 
 #undef _MSC_VER
 

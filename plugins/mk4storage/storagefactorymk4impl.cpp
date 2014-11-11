@@ -28,14 +28,16 @@
 #include <QString>
 #include <QStringList>
 
-namespace Akregator {
-namespace Backend {
-
-Storage* StorageFactoryMK4Impl::createStorage(const QStringList& params) const
+namespace Akregator
 {
-        Storage* storage = new StorageMK4Impl;
-        storage->initialize(params);
-        return storage;
+namespace Backend
+{
+
+Storage *StorageFactoryMK4Impl::createStorage(const QStringList &params) const
+{
+    Storage *storage = new StorageMK4Impl;
+    storage->initialize(params);
+    return storage;
 }
 
 QString StorageFactoryMK4Impl::key() const
@@ -45,9 +47,8 @@ QString StorageFactoryMK4Impl::key() const
 
 QString StorageFactoryMK4Impl::name() const
 {
-   return i18n("Metakit");
+    return i18n("Metakit");
 }
-
 
 void StorageFactoryMK4Impl::configure()
 {

@@ -29,13 +29,14 @@
 #include <QString>
 typedef unsigned int uint;
 
-namespace Akregator {
-
-class AKREGATOR_EXPORT Utils 
+namespace Akregator
 {
-    public:
+
+class AKREGATOR_EXPORT Utils
+{
+public:
     /** removes HTML/XML tags (everything between &lt; and &gt;) from a string.  "<p><strong>foo</strong> bar</p>" becomes "foo bar" */
-    static QString stripTags(const QString& str);
+    static QString stripTags(const QString &str);
 
     /** taken from some website... -fo
     * djb2
@@ -43,15 +44,15 @@ class AKREGATOR_EXPORT Utils
     * many years ago in comp.lang.c
     */
 
-    static uint calcHash(const QString& str);
-    
+    static uint calcHash(const QString &str);
+
     /**
      * returns a file name for a URL, with chars like "/" ":"
      * replaced by "_". Too long URLs (>255 chars) are shortened and
      * appended with a hash value.
-     * 
+     *
      */
-    static QString fileNameForUrl(const QString& url);
+    static QString fileNameForUrl(const QString &url);
 
     static QString directionOf(const QString &str);
 };

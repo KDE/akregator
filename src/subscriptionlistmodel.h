@@ -30,7 +30,8 @@
 
 #include <boost/shared_ptr.hpp>
 
-namespace Akregator {
+namespace Akregator
+{
 
 class Feed;
 class FeedList;
@@ -39,11 +40,11 @@ class TreeNode;
 
 class AKREGATORPART_EXPORT SubscriptionListModel : public QAbstractItemModel
 {
-Q_OBJECT
+    Q_OBJECT
 public:
 
     enum Role {
-        SubscriptionIdRole=Qt::UserRole,
+        SubscriptionIdRole = Qt::UserRole,
         IsFetchableRole,
         IsGroupRole,
         IsAggregationRole,
@@ -54,70 +55,69 @@ public:
     };
 
     enum Column {
-        TitleColumn=0,
-        UnreadCountColumn=1,
-        TotalCountColumn=2,
-        ColumnCount=3
+        TitleColumn = 0,
+        UnreadCountColumn = 1,
+        TotalCountColumn = 2,
+        ColumnCount = 3
     };
 
-    explicit SubscriptionListModel( const boost::shared_ptr<const FeedList>& feedList, QObject* parent = 0 );
+    explicit SubscriptionListModel(const boost::shared_ptr<const FeedList> &feedList, QObject *parent = 0);
 
     //impl
-    int columnCount( const QModelIndex& parent = QModelIndex() ) const;
+    int columnCount(const QModelIndex &parent = QModelIndex()) const;
 
     //impl
-    int rowCount( const QModelIndex& parent = QModelIndex() ) const;
+    int rowCount(const QModelIndex &parent = QModelIndex()) const;
 
     //impl
-    QVariant data( const QModelIndex& index, int role = Qt::DisplayRole ) const;
+    QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
 
     //impl
-    QModelIndex index( int row, int column, const QModelIndex& parent = QModelIndex() ) const;
+    QModelIndex index(int row, int column, const QModelIndex &parent = QModelIndex()) const;
 
     //impl
-    QModelIndex parent( const QModelIndex& index ) const;
+    QModelIndex parent(const QModelIndex &index) const;
 
     //reimpl
-    QVariant headerData( int section, Qt::Orientation orientation, int role=Qt::DisplayRole ) const;
+    QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const;
 
     //reimpl
-    Qt::ItemFlags flags( const QModelIndex& index ) const;
+    Qt::ItemFlags flags(const QModelIndex &index) const;
 
     //reimpl
     QStringList mimeTypes() const;
 
     //reimpl
-    QMimeData* mimeData( const QModelIndexList& indexes ) const;
+    QMimeData *mimeData(const QModelIndexList &indexes) const;
 
     //reimpl
-    bool dropMimeData( const QMimeData* data, Qt::DropAction action, int row, int column, const QModelIndex& parent );
+    bool dropMimeData(const QMimeData *data, Qt::DropAction action, int row, int column, const QModelIndex &parent);
 
     //reimpl
-    bool setData( const QModelIndex& idx, const QVariant& value, int role = Qt::EditRole );
+    bool setData(const QModelIndex &idx, const QVariant &value, int role = Qt::EditRole);
 
-    uint nodeIdForIndex( const QModelIndex& index ) const;
+    uint nodeIdForIndex(const QModelIndex &index) const;
 
 private:
-    QModelIndex indexForNode( const TreeNode* node ) const;
+    QModelIndex indexForNode(const TreeNode *node) const;
 
 private Q_SLOTS:
 
-    void subscriptionAdded( Akregator::TreeNode* );
+    void subscriptionAdded(Akregator::TreeNode *);
 
-    void aboutToRemoveSubscription( Akregator::TreeNode* );
+    void aboutToRemoveSubscription(Akregator::TreeNode *);
 
-    void subscriptionRemoved( Akregator::TreeNode* );
+    void subscriptionRemoved(Akregator::TreeNode *);
 
-    void subscriptionChanged( Akregator::TreeNode* );
+    void subscriptionChanged(Akregator::TreeNode *);
 
-    void fetchStarted( Akregator::Feed* );
+    void fetchStarted(Akregator::Feed *);
 
-    void fetched( Akregator::Feed* );
+    void fetched(Akregator::Feed *);
 
-    void fetchError( Akregator::Feed* );
+    void fetchError(Akregator::Feed *);
 
-    void fetchAborted( Akregator::Feed* );
-
+    void fetchAborted(Akregator::Feed *);
 
 private:
 
@@ -127,29 +127,29 @@ private:
 
 }
 
-
-namespace Akregator {
+namespace Akregator
+{
 
 class AKREGATORPART_EXPORT FolderExpansionHandler : public QObject
 {
     Q_OBJECT
 
 public:
-    explicit FolderExpansionHandler( QObject* parent = 0 );
+    explicit FolderExpansionHandler(QObject *parent = 0);
 
-    void setFeedList( const boost::shared_ptr<FeedList>& feedList );
-    void setModel( Akregator::SubscriptionListModel* model );
+    void setFeedList(const boost::shared_ptr<FeedList> &feedList);
+    void setModel(Akregator::SubscriptionListModel *model);
 
 public Q_SLOTS:
-    void itemExpanded( const QModelIndex& index );
-    void itemCollapsed( const QModelIndex& index );
+    void itemExpanded(const QModelIndex &index);
+    void itemCollapsed(const QModelIndex &index);
 
 private:
-    void setExpanded( const QModelIndex& index, bool expanded );
+    void setExpanded(const QModelIndex &index, bool expanded);
 
 private:
     boost::shared_ptr<FeedList> m_feedList;
-    SubscriptionListModel* m_model;
+    SubscriptionListModel *m_model;
 };
 
 } // namespace Akregator

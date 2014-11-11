@@ -29,11 +29,12 @@
 
 #include "akregator_export.h"
 
-namespace Akregator {
+namespace Akregator
+{
 
 namespace Backend
 {
-    class Storage;
+class Storage;
 }
 
 class FeedList;
@@ -42,29 +43,29 @@ class FrameManager;
 
 class AKREGATOR_EXPORT Kernel
 {
-    public:
+public:
 
-        static Kernel* self();
+    static Kernel *self();
 
-        ~Kernel();
+    ~Kernel();
 
-        Backend::Storage* storage();
-        void setStorage(Backend::Storage* storage);
+    Backend::Storage *storage();
+    void setStorage(Backend::Storage *storage);
 
-        boost::shared_ptr<FeedList> feedList() const;
-        void setFeedList(const boost::shared_ptr<FeedList>& feedList);
+    boost::shared_ptr<FeedList> feedList() const;
+    void setFeedList(const boost::shared_ptr<FeedList> &feedList);
 
-        FetchQueue* fetchQueue();
+    FetchQueue *fetchQueue();
 
-        FrameManager* frameManager();
+    FrameManager *frameManager();
 
-    private:
-        Kernel();
+private:
+    Kernel();
 
-        static Kernel* m_self;
+    static Kernel *m_self;
 
-        class KernelPrivate;
-        KernelPrivate* d;
+    class KernelPrivate;
+    KernelPrivate *d;
 };
 
 } // namespace Akregator

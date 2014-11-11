@@ -31,19 +31,24 @@
 class QString;
 class QStringList;
 
-namespace Akregator {
-namespace Backend {
+namespace Akregator
+{
+namespace Backend
+{
 
 class Storage;
 
 class AKREGATORPART_EXPORT StorageFactoryDummyImpl : public StorageFactory
 {
-    public:
+public:
     virtual QString key() const;
     virtual QString name() const;
     virtual void configure();
-    virtual bool isConfigurable() const { return false; }
-    virtual Storage* createStorage(const QStringList& params) const;
+    virtual bool isConfigurable() const
+    {
+        return false;
+    }
+    virtual Storage *createStorage(const QStringList &params) const;
 };
 
 } // namespace Backend

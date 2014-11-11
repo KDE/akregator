@@ -29,18 +29,18 @@
 
 using namespace feedsync;
 
-ConfigurationDialog::ConfigurationDialog( QWidget *parent) : KDialog( parent )
+ConfigurationDialog::ConfigurationDialog(QWidget *parent) : KDialog(parent)
 {
     qDebug();
-    m_widget = new Ui::ConfigurationWidget( /*this*/ );
+    m_widget = new Ui::ConfigurationWidget(/*this*/);
     //setMainWidget( m_widget );
-    setWindowTitle( i18n("Online Reader Configuration") );
+    setWindowTitle(i18n("Online Reader Configuration"));
 }
 
-void ConfigurationDialog::accept() {
+void ConfigurationDialog::accept()
+{
     qDebug();
     //m_widget->save();
     KDialog::accept();
 }
-
 

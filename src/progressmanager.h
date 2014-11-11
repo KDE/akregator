@@ -41,28 +41,28 @@ class TreeNode;
 class ProgressManager : public QObject
 {
     Q_OBJECT
-    public:
+public:
 
-        static ProgressManager* self();
+    static ProgressManager *self();
 
-        ProgressManager();
-        ~ProgressManager();
+    ProgressManager();
+    ~ProgressManager();
 
-        /** sets the feed list to be managed */
-        void setFeedList( const boost::shared_ptr<FeedList>& feedList);
+    /** sets the feed list to be managed */
+    void setFeedList(const boost::shared_ptr<FeedList> &feedList);
 
-    protected slots:
+protected slots:
 
-        void slotNodeAdded(Akregator::TreeNode* node);
-        void slotNodeRemoved(Akregator::TreeNode* node);
-        void slotNodeDestroyed(Akregator::TreeNode* node);
+    void slotNodeAdded(Akregator::TreeNode *node);
+    void slotNodeRemoved(Akregator::TreeNode *node);
+    void slotNodeDestroyed(Akregator::TreeNode *node);
 
-    private:
+private:
 
-        static ProgressManager* m_self;
+    static ProgressManager *m_self;
 
-        class ProgressManagerPrivate;
-        ProgressManagerPrivate* d;
+    class ProgressManagerPrivate;
+    ProgressManagerPrivate *d;
 };
 
 /** this class handles the creation and deletion of progress items for one feed.
@@ -71,20 +71,20 @@ class ProgressManager : public QObject
 class ProgressItemHandler : public QObject
 {
     Q_OBJECT
-    public:
-        explicit ProgressItemHandler(Feed* feed);
-        ~ProgressItemHandler();
+public:
+    explicit ProgressItemHandler(Feed *feed);
+    ~ProgressItemHandler();
 
-    public slots:
+public slots:
 
-        void slotFetchStarted();
-        void slotFetchCompleted();
-        void slotFetchAborted();
-        void slotFetchError();
+    void slotFetchStarted();
+    void slotFetchCompleted();
+    void slotFetchAborted();
+    void slotFetchError();
 
-    private:
-        class ProgressItemHandlerPrivate;
-        ProgressItemHandlerPrivate* d;
+private:
+    class ProgressItemHandlerPrivate;
+    ProgressItemHandlerPrivate *d;
 };
 
 } // namespace Akregator
