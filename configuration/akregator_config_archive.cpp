@@ -86,7 +86,7 @@ void KCMAkregatorArchiveConfig::setArchiveMode(int mode)
     if (b) {
         b->setChecked(true);
     } else {
-        qWarning() << QString::fromLatin1("No button for %1 registered, ignoring call").arg(mode);
+        qWarning() << QStringLiteral("No button for %1 registered, ignoring call").arg(mode);
     }
 }
 
