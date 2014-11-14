@@ -368,14 +368,14 @@ void ActionManagerImpl::initMainWidget(MainWidget *mainWidget)
     action->setText(i18nc("as in: mark as read", "&Read"));
     action->setIcon(QIcon::fromTheme("mail-mark-read"));
     action->setToolTip(i18n("Mark selected article as read"));
-    action->setShortcut(QKeySequence("Ctrl+E"));
+    coll->setDefaultShortcut(action, QKeySequence("Ctrl+E"));
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotSetSelectedArticleRead()));
     statusMenu->addAction(action);
 
     action = coll->addAction("article_set_status_new");
     action->setText(i18nc("as in: mark as new", "&New"));
     action->setIcon(QIcon::fromTheme("mail-mark-unread-new"));
-    action->setShortcut(QKeySequence("Ctrl+N"));
+    coll->setDefaultShortcut(action, QKeySequence("Ctrl+N"));
     action->setToolTip(i18n("Mark selected article as new"));
     connect(action, SIGNAL(triggered(bool)),  d->mainWidget, SLOT(slotSetSelectedArticleNew()));
     statusMenu->addAction(action);
@@ -384,7 +384,7 @@ void ActionManagerImpl::initMainWidget(MainWidget *mainWidget)
     action->setText(i18nc("as in: mark as unread", "&Unread"));
     action->setIcon(QIcon::fromTheme("mail-mark-unread"));
     action->setToolTip(i18n("Mark selected article as unread"));
-    action->setShortcut(QKeySequence("Ctrl+U"));
+    coll->setDefaultShortcut(action, QKeySequence("Ctrl+U"));
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotSetSelectedArticleUnread()));
     statusMenu->addAction(action);
 
@@ -394,7 +394,7 @@ void ActionManagerImpl::initMainWidget(MainWidget *mainWidget)
     QList<QKeySequence> importantSC;
     importantSC << QKeySequence("Ctrl+I");
     importantSC << QKeySequence(Qt::Key_I);
-    importantAction->setShortcuts(importantSC);
+    coll->setDefaultShortcuts(importantAction, importantSC);
     importantAction->setCheckedState(KGuiItem(i18n("Remove &Important Mark")));
     connect(importantAction, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotArticleToggleKeepFlag(bool)));
 
@@ -463,11 +463,11 @@ void ActionManagerImpl::initArticleListView(ArticleListView *articleList)
     QAction *action = actionCollection()->addAction("go_previous_article");
     action->setText(i18n("&Previous Article"));
     connect(action, &QAction::triggered, articleList, &ArticleListView::slotPreviousArticle);
-    action->setShortcut(QKeySequence("Left"));
+    actionCollection()->setDefaultShortcut(action,QKeySequence("Left"));
     action = actionCollection()->addAction("go_next_article");
     action->setText(i18n("&Next Article"));
     connect(action, &QAction::triggered, articleList, &ArticleListView::slotNextArticle);
-    action->setShortcut(QKeySequence("Right"));
+    actionCollection()->setDefaultShortcut(action,QKeySequence("Right"));
 }
 
 void ActionManagerImpl::initSubscriptionListView(SubscriptionListView *subscriptionListView)
@@ -604,14 +604,14 @@ void ActionManagerImpl::initFrameManager(FrameManager *frameManager)
 
     KToolBarPopupAction *forward = new KToolBarPopupAction(QIcon::fromTheme(isRTL ? "go-previous" : "go-next"), i18nc("Go forward in browser history", "Forward"), this);
     d->actionCollection->addAction("browser_forward", forward);
-    forward->setShortcut(QKeySequence(isRTL ? "Alt+Left" : "Alt+Right"));
+    d->actionCollection->setDefaultShortcut(forward, QKeySequence(isRTL ? "Alt+Left" : "Alt+Right"));
     connect(forward, &KToolBarPopupAction::triggered, frameManager, &FrameManager::slotBrowserForward);
 
     connect(forward->menu(), SIGNAL(aboutToShow()), frameManager, SLOT(slotBrowserForwardAboutToShow()));
 
     KToolBarPopupAction *back = new KToolBarPopupAction(QIcon::fromTheme(isRTL ? "go-next" : "go-previous"), i18nc("Go back in browser history", "Back"), this);
     d->actionCollection->addAction("browser_back", back);
-    back->setShortcut(QKeySequence(isRTL ?  "Alt+Right" : "Alt+Left"));
+    d->actionCollection->setDefaultShortcut(back,QKeySequence(isRTL ?  "Alt+Right" : "Alt+Left"));
     connect(back, &KToolBarPopupAction::triggered, frameManager, &FrameManager::slotBrowserBack);
 
     connect(back->menu(), SIGNAL(aboutToShow()), frameManager, SLOT(slotBrowserBackAboutToShow()));
