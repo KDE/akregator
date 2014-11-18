@@ -32,7 +32,7 @@
 
 QAction *Akregator::createOpenLinkInNewTabAction(const KUrl &url, QObject *receiver, const char *slot, QObject *parent)
 {
-    QAction *action = new QAction(QIcon::fromTheme(QLatin1String("tab-new")), i18n("Open Link in New &Tab"), parent);
+    QAction *action = new QAction(QIcon::fromTheme(QStringLiteral("tab-new")), i18n("Open Link in New &Tab"), parent);
     action->setData(url);
     if (receiver && slot) {
         QObject::connect(action, SIGNAL(triggered(bool)), receiver, slot);
@@ -42,7 +42,7 @@ QAction *Akregator::createOpenLinkInNewTabAction(const KUrl &url, QObject *recei
 
 QAction *Akregator::createOpenLinkInExternalBrowserAction(const KUrl &url, QObject *receiver, const char *slot, QObject *parent)
 {
-    QAction *action = new QAction(QIcon::fromTheme(QLatin1String("window-new")), i18n("Open Link in External &Browser"), parent);
+    QAction *action = new QAction(QIcon::fromTheme(QStringLiteral("window-new")), i18n("Open Link in External &Browser"), parent);
     action->setData(url);
     if (receiver && slot) {
         QObject::connect(action, SIGNAL(triggered(bool)), receiver, slot);
