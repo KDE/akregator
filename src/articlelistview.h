@@ -33,8 +33,7 @@
 #include <QTreeView>
 
 #include <boost/shared_ptr.hpp>
-
-class KUrl;
+#include <KUrl>
 
 class QContextMenuEvent;
 class QPaintEvent;

@@ -29,7 +29,7 @@
 #include <QPointer>
 #include <QVector>
 
-#include <kurl.h>
+#include <qurl.h>
 #include <kparts/browserextension.h>
 #include <kparts/part.h>
 
@@ -37,7 +37,6 @@
 #include <kparts/readonlypart.h>
 
 class KConfigGroup;
-class KUrl;
 class KCMultiDialog;
 
 class QTimer;
@@ -125,7 +124,7 @@ public:
         Calls Akregator MainWidget's saveProperties. */
     virtual void saveProperties(KConfigGroup &config);
 
-    void exportFile(const KUrl &url);
+    void exportFile(const QUrl &url);
 
     bool handleCommandLine();
 
@@ -163,7 +162,7 @@ private:
     /** This must be implemented by each part */
     bool openFile();
 
-    void importFile(const KUrl &url);
+    void importFile(const QUrl &url);
 
     KParts::Part *hitTest(QWidget *widget, const QPoint &globalPos);
 

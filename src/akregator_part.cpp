@@ -526,7 +526,7 @@ bool Part::isTrayIconEnabled() const
     return Settings::showTrayIcon();
 }
 
-void Part::importFile(const KUrl &url)
+void Part::importFile(const QUrl &url)
 {
     QString filename;
 
@@ -561,7 +561,7 @@ void Part::importFile(const KUrl &url)
     }
 }
 
-void Part::exportFile(const KUrl &url)
+void Part::exportFile(const QUrl &url)
 {
     if (url.isLocalFile()) {
         const QString fname = url.toLocalFile();
