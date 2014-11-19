@@ -29,7 +29,6 @@
 #include <qdebug.h>
 
 #include <kurl.h>
-#include <KGlobal>
 
 #include <QIcon>
 #include <QMultiHash>

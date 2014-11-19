@@ -40,7 +40,6 @@
 #include <Syndication/Syndication>
 
 #include <qdebug.h>
-#include <kglobal.h>
 #include <QIcon>
 #include <QFileInfo>
 #include <QDir>
