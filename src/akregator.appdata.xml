@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <component type="desktop">
-  <id>akregator.desktop</id>
+  <id>org.kde.akregator.desktop</id>
   <metadata_license>CC0-1.0</metadata_license>
   <name>Akregator</name>
   <name xml:lang="ca">Akregator</name>
