@@ -25,6 +25,7 @@
 #include "utils.h"
 #include <QRegExp>
 #include <QString>
+#include <kdelibs4configmigrator.h>
 
 namespace Akregator
 {
@@ -58,5 +59,15 @@ QString Utils::directionOf(const QString &str)
 {
     return str.isRightToLeft() ? QLatin1String("rtl") : QLatin1String("ltr");
 }
+
+void Utils::migrateConfig()
+{
+    Kdelibs4ConfigMigrator migrate(QLatin1String("akregator"));
+    migrate.setConfigFiles(QStringList() << QLatin1String("akregatorrc") << QLatin1String("akregator.notifyrc"));
+    migrate.setUiFiles(QStringList() << QLatin1String("akregator_shell.rc") << QLatin1String("akregator_part.rc") << QLatin1String("pageviewer.rc")
+                       << QLatin1String("articleviewer.rc") << QLatin1String("akregator_sharemicroblog_plugin.rc") << QLatin1String("akregator_onlinesync_plugin.rc"));
+    migrate.migrate();
+}
+
 
 }

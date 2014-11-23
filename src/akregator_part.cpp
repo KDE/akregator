@@ -42,7 +42,7 @@
 #include "storagefactoryregistry.h"
 #include "trayicon.h"
 #include "dummystorage/storagefactorydummyimpl.h"
-
+#include "utils.h"
 #include <libkdepim/misc/broadcaststatus.h>
 #include "kdepim-version.h"
 
@@ -191,6 +191,7 @@ K_PLUGIN_FACTORY(AkregatorFactory, registerPlugin<Part>();)
 BrowserExtension::BrowserExtension(Part *p, const char *name)
     : KParts::BrowserExtension(p)
 {
+    Akregator::Utils::migrateConfig();
     setObjectName(name);
     m_part = p;
 }

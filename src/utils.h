@@ -55,6 +55,7 @@ public:
     static QString fileNameForUrl(const QString &url);
 
     static QString directionOf(const QString &str);
+    static void migrateConfig();
 };
 
 } // namespace Akregator

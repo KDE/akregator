@@ -25,7 +25,7 @@
 #include "aboutdata.h"
 #include "mainwindow.h"
 #include "akregator_options.h"
-
+#include "utils.h"
 #include <kcmdlineargs.h>
 #include <QDebug>
 #include <KLocalizedString>
@@ -79,6 +79,7 @@ int main(int argc, char **argv)
     KCmdLineArgs::addCmdLineOptions(Akregator::akregator_options());
     KUniqueApplication::addCmdLineOptions();
 
+    Akregator::Utils::migrateConfig();
     if (!Akregator::Application::start()) {
         qWarning() << "akregator is already running, exiting.";
         exit(0);
