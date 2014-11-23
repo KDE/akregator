@@ -1155,7 +1155,7 @@ void Akregator::MainWidget::readProperties(const KConfigGroup &config)
         m_searchBar->slotSetStatus(config.readEntry("searchCombo").toInt());
     }
     // Reopen tabs
-    QStringList childList = config.readEntry(QString::fromLatin1("Children"),
+    QStringList childList = config.readEntry(QStringLiteral("Children"),
                             QStringList());
     Q_FOREACH (const QString &framePrefix, childList) {
         BrowserFrame *const frame = new BrowserFrame(m_tabWidget);

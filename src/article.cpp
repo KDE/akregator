@@ -450,23 +450,23 @@ QString Article::authorAsHtml() const
 
     if (!email.isEmpty()) {
         if (!name.isEmpty()) {
-            return QString::fromLatin1("<a href=\"mailto:%1\">%2</a>").arg(email, name);
+            return QStringLiteral("<a href=\"mailto:%1\">%2</a>").arg(email, name);
         } else {
-            return QString::fromLatin1("<a href=\"mailto:%1\">%1</a>").arg(email);
+            return QStringLiteral("<a href=\"mailto:%1\">%1</a>").arg(email);
         }
     }
 
     const QString uri = authorUri();
     if (!name.isEmpty()) {
         if (!uri.isEmpty()) {
-            return QString::fromLatin1("<a href=\"%1\">%2</a>").arg(uri, name);
+            return QStringLiteral("<a href=\"%1\">%2</a>").arg(uri, name);
         } else {
             return name;
         }
     }
 
     if (!uri.isEmpty()) {
-        return QString::fromLatin1("<a href=\"%1\">%1</a>").arg(uri);
+        return QStringLiteral("<a href=\"%1\">%1</a>").arg(uri);
     }
     return QString();
 }

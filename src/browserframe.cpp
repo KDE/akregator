@@ -442,9 +442,9 @@ bool BrowserFrame::isLoading() const
 
 void BrowserFrame::loadConfig(const KConfigGroup &config, const QString &prefix)
 {
-    const QString url = config.readEntry(QString::fromLatin1("url").prepend(prefix), QString());
-    const QString mimetype = config.readEntry(QString::fromLatin1("mimetype").prepend(prefix), QString());
-    const int zf = config.readEntry(QString::fromLatin1("zoom").prepend(prefix), 100);
+    const QString url = config.readEntry(QStringLiteral("url").prepend(prefix), QString());
+    const QString mimetype = config.readEntry(QStringLiteral("mimetype").prepend(prefix), QString());
+    const int zf = config.readEntry(QStringLiteral("zoom").prepend(prefix), 100);
     OpenUrlRequest req(url);
     KParts::OpenUrlArguments args;
     args.setMimeType(mimetype);
@@ -455,8 +455,8 @@ void BrowserFrame::loadConfig(const KConfigGroup &config, const QString &prefix)
 
 void BrowserFrame::saveConfig(KConfigGroup &config, const QString &prefix)
 {
-    config.writeEntry(QString::fromLatin1("url").prepend(prefix), url().url());
-    config.writeEntry(QString::fromLatin1("mimetype").prepend(prefix), d->mimetype);
-    config.writeEntry(QString::fromLatin1("zoom").prepend(prefix), getZoomFactor());
+    config.writeEntry(QStringLiteral("url").prepend(prefix), url().url());
+    config.writeEntry(QStringLiteral("mimetype").prepend(prefix), d->mimetype);
+    config.writeEntry(QStringLiteral("zoom").prepend(prefix), getZoomFactor());
 }
 
