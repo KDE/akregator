@@ -27,7 +27,6 @@
 
 #include <KLocalizedString>
 #include <knotification.h>
-#include <kurl.h>
 #include <KComponentData>
 
 #include <QTimer>
