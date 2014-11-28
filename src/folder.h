@@ -160,7 +160,7 @@ public:
      */
     bool subtreeContains(const Akregator::TreeNode *node) const;
 
-    /* reimp */ KJob *createMarkAsReadJob();
+    /* reimp */ KJob *createMarkAsReadJob() Q_DECL_OVERRIDE;
 
 signals:
     /** emitted when a child was added */

@@ -60,8 +60,8 @@ class AKREGATOR_EXPORT CompositeJob : public KCompositeJob
     Q_OBJECT
 public:
     explicit CompositeJob(QObject *parent = 0);
-    /* reimp */ bool addSubjob(KJob *job);
-    /* reimp */ void start();
+    /* reimp */ bool addSubjob(KJob *job) Q_DECL_OVERRIDE;
+    /* reimp */ void start() Q_DECL_OVERRIDE;
 };
 
 class AKREGATOR_EXPORT ArticleDeleteJob : public KJob
