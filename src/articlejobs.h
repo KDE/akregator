@@ -113,7 +113,7 @@ public:
     QList<Article> articles() const;
     TreeNode *node() const;
 
-    /* reimp */ void start();
+    /* reimp */ void start() Q_DECL_OVERRIDE;
 
     enum Error {
         ListingFailed = KJob::UserDefinedError

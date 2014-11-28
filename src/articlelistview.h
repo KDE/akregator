@@ -119,7 +119,7 @@ public:
 
     void setIsAggregation(bool isAggregation);
 
-    /* reimp */ void setModel(QAbstractItemModel *model);
+    /* reimp */ void setModel(QAbstractItemModel *model) Q_DECL_OVERRIDE;
 
 protected:
     void mousePressEvent(QMouseEvent *ev);
