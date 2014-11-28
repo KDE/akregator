@@ -68,7 +68,7 @@ public:
     explicit SortColorizeProxyModel(QObject *parent = 0);
 
     //reimpl
-    QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
+    QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const Q_DECL_OVERRIDE;
 
     void setFilters(const std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> > &);
 
@@ -149,7 +149,7 @@ private:
     void loadHeaderSettings();
 
     //reimpl
-    void paintEvent(QPaintEvent *e);
+    void paintEvent(QPaintEvent *e) Q_DECL_OVERRIDE;
 
     //reimpl
     void contextMenuEvent(QContextMenuEvent *event);

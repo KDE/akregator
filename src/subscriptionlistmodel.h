@@ -64,13 +64,13 @@ public:
     explicit SubscriptionListModel(const boost::shared_ptr<const FeedList> &feedList, QObject *parent = 0);
 
     //impl
-    int columnCount(const QModelIndex &parent = QModelIndex()) const;
+    int columnCount(const QModelIndex &parent = QModelIndex()) const Q_DECL_OVERRIDE;
 
     //impl
-    int rowCount(const QModelIndex &parent = QModelIndex()) const;
+    int rowCount(const QModelIndex &parent = QModelIndex()) const Q_DECL_OVERRIDE;
 
     //impl
-    QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
+    QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const Q_DECL_OVERRIDE;
 
     //impl
     QModelIndex index(int row, int column, const QModelIndex &parent = QModelIndex()) const;
@@ -79,10 +79,10 @@ public:
     QModelIndex parent(const QModelIndex &index) const;
 
     //reimpl
-    QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const;
+    QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const Q_DECL_OVERRIDE;
 
     //reimpl
-    Qt::ItemFlags flags(const QModelIndex &index) const;
+    Qt::ItemFlags flags(const QModelIndex &index) const Q_DECL_OVERRIDE;
 
     //reimpl
     QStringList mimeTypes() const;
