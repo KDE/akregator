@@ -88,7 +88,7 @@ public:
     QStringList mimeTypes() const;
 
     //reimpl
-    QMimeData *mimeData(const QModelIndexList &indexes) const;
+    QMimeData *mimeData(const QModelIndexList &indexes) const Q_DECL_OVERRIDE;
 
     //reimpl
     bool dropMimeData(const QMimeData *data, Qt::DropAction action, int row, int column, const QModelIndex &parent);

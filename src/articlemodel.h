@@ -89,7 +89,7 @@ public:
 
     /* reimp */ QStringList mimeTypes() const;
 
-    /* reimp */ QMimeData *mimeData(const QModelIndexList &indexes) const;
+    /* reimp */ QMimeData *mimeData(const QModelIndexList &indexes) const Q_DECL_OVERRIDE;
 
     /* reimp */ Qt::ItemFlags flags(const QModelIndex &idx) const;
 
