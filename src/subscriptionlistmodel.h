@@ -76,7 +76,7 @@ public:
     QModelIndex index(int row, int column, const QModelIndex &parent = QModelIndex()) const;
 
     //impl
-    QModelIndex parent(const QModelIndex &index) const;
+    QModelIndex parent(const QModelIndex &index) const Q_DECL_OVERRIDE;
 
     //reimpl
     QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const Q_DECL_OVERRIDE;
