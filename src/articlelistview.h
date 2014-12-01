@@ -152,7 +152,7 @@ private:
     void paintEvent(QPaintEvent *e) Q_DECL_OVERRIDE;
 
     //reimpl
-    void contextMenuEvent(QContextMenuEvent *event);
+    void contextMenuEvent(QContextMenuEvent *event) Q_DECL_OVERRIDE;
 
     void selectIndex(const QModelIndex &index);
 
