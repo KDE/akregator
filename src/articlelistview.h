@@ -122,7 +122,7 @@ public:
     /* reimp */ void setModel(QAbstractItemModel *model) Q_DECL_OVERRIDE;
 
 protected:
-    void mousePressEvent(QMouseEvent *ev);
+    void mousePressEvent(QMouseEvent *ev) Q_DECL_OVERRIDE;
 
 signals:
     void signalMouseButtonPressed(int, const KUrl);
