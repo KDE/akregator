@@ -170,7 +170,7 @@ protected slots:
     // from ArticleViewer
 private:
 
-    virtual void keyPressEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
+    void keyPressEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
 
     /** renders @c body. Use this method whereever possible.
      *  @param body html to render, without header and footer */
