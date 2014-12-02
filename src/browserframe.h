@@ -53,7 +53,7 @@ class AKREGATOR_EXPORT BrowserFrame : public Frame, public virtual FaviconListen
 
 public:
 
-    explicit BrowserFrame(QWidget *parent = 0);
+    explicit BrowserFrame(QWidget *parent = Q_NULLPTR);
     ~BrowserFrame();
 
     KUrl url() const;

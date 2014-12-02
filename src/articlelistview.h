@@ -90,7 +90,7 @@ class AKREGATORPART_EXPORT ArticleListView : public QTreeView, public ArticleLis
 
 public:
 
-    explicit ArticleListView(QWidget *parent = 0);
+    explicit ArticleListView(QWidget *parent = Q_NULLPTR);
     ~ArticleListView();
 
     //impl ArticleLister

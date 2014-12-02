@@ -40,7 +40,7 @@ class TabWidget : public QTabWidget
     Q_OBJECT
 
 public:
-    explicit TabWidget(QWidget *parent = 0);
+    explicit TabWidget(QWidget *parent = Q_NULLPTR);
     ~TabWidget();
 
 public slots:

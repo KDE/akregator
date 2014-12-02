@@ -55,7 +55,7 @@ class AKREGATOR_EXPORT Frame : public QWidget
     Q_OBJECT
 
 public:
-    explicit Frame(QWidget *parent = 0);
+    explicit Frame(QWidget *parent = Q_NULLPTR);
     virtual ~Frame();
 
     enum State {Idle, Started, Completed, Canceled};

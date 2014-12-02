@@ -38,7 +38,7 @@ class SubscriptionListView : public QTreeView
 {
     Q_OBJECT
 public:
-    explicit SubscriptionListView(QWidget *parent = 0);
+    explicit SubscriptionListView(QWidget *parent = Q_NULLPTR);
     ~SubscriptionListView();
 // the following is all transitional, for easier porting from the item-based views
 

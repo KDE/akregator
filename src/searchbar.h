@@ -46,7 +46,7 @@ class SearchBar : public QWidget
 
 public:
 
-    explicit SearchBar(QWidget *parent = 0);
+    explicit SearchBar(QWidget *parent = Q_NULLPTR);
     ~SearchBar();
 
     QString text() const;

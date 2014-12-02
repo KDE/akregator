@@ -36,7 +36,7 @@ class SubscriptionListDelegate : public QStyledItemDelegate
     Q_OBJECT
 
 public:
-    explicit SubscriptionListDelegate(QWidget *parent = 0);
+    explicit SubscriptionListDelegate(QWidget *parent = Q_NULLPTR);
     ~SubscriptionListDelegate();
 
 protected:
