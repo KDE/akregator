@@ -39,7 +39,7 @@ class EditSubscriptionCommand : public Command
 {
     Q_OBJECT
 public:
-    explicit EditSubscriptionCommand(QObject *parent = 0);
+    explicit EditSubscriptionCommand(QObject *parent = Q_NULLPTR);
     ~EditSubscriptionCommand();
 
     void setSubscription(const boost::shared_ptr<FeedList> &feedList, int subId);

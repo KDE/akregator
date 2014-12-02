@@ -53,7 +53,7 @@ class AKREGATORPART_EXPORT FilterDeletedProxyModel : public QSortFilterProxyMode
     Q_OBJECT
 public:
 
-    explicit FilterDeletedProxyModel(QObject *parent = 0);
+    explicit FilterDeletedProxyModel(QObject *parent = Q_NULLPTR);
 
 private:
     //reimpl
@@ -65,7 +65,7 @@ class AKREGATORPART_EXPORT SortColorizeProxyModel : public QSortFilterProxyModel
     Q_OBJECT
 public:
 
-    explicit SortColorizeProxyModel(QObject *parent = 0);
+    explicit SortColorizeProxyModel(QObject *parent = Q_NULLPTR);
 
     //reimpl
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const Q_DECL_OVERRIDE;

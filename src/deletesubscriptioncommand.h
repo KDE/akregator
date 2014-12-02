@@ -38,7 +38,7 @@ class DeleteSubscriptionCommand : public Command
 {
     Q_OBJECT
 public:
-    explicit DeleteSubscriptionCommand(QObject *parent = 0);
+    explicit DeleteSubscriptionCommand(QObject *parent = Q_NULLPTR);
     ~DeleteSubscriptionCommand();
 
     void setSubscription(const boost::weak_ptr<FeedList> &feedList, int subId);

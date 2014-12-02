@@ -70,7 +70,7 @@ public:
         IsDeletedRole
     };
 
-    explicit ArticleModel(const QList<Article> &articles, QObject *parent = 0);
+    explicit ArticleModel(const QList<Article> &articles, QObject *parent = Q_NULLPTR);
     ~ArticleModel();
 
     //reimpl

@@ -96,7 +96,7 @@ class AbstractSelectionController : public QObject
     Q_OBJECT
 
 public:
-    explicit AbstractSelectionController(QObject *parent = 0);
+    explicit AbstractSelectionController(QObject *parent = Q_NULLPTR);
     virtual ~AbstractSelectionController();
 
     virtual void setFeedList(const boost::shared_ptr<FeedList> &list) = 0;

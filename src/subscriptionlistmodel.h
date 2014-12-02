@@ -61,7 +61,7 @@ public:
         ColumnCount = 3
     };
 
-    explicit SubscriptionListModel(const boost::shared_ptr<const FeedList> &feedList, QObject *parent = 0);
+    explicit SubscriptionListModel(const boost::shared_ptr<const FeedList> &feedList, QObject *parent = Q_NULLPTR);
 
     //impl
     int columnCount(const QModelIndex &parent = QModelIndex()) const Q_DECL_OVERRIDE;
@@ -135,7 +135,7 @@ class AKREGATORPART_EXPORT FolderExpansionHandler : public QObject
     Q_OBJECT
 
 public:
-    explicit FolderExpansionHandler(QObject *parent = 0);
+    explicit FolderExpansionHandler(QObject *parent = Q_NULLPTR);
 
     void setFeedList(const boost::shared_ptr<FeedList> &feedList);
     void setModel(Akregator::SubscriptionListModel *model);

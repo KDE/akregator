@@ -54,7 +54,7 @@ class ActionManagerImpl : public ActionManager
 
 public:
 
-    explicit ActionManagerImpl(Part *part, QObject *parent = 0);
+    explicit ActionManagerImpl(Part *part, QObject *parent = Q_NULLPTR);
     virtual ~ActionManagerImpl();
 
     virtual QAction *action(const char *name);

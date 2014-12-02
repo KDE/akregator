@@ -38,7 +38,7 @@ class CreateFolderCommand : public Command
 {
     Q_OBJECT
 public:
-    explicit CreateFolderCommand(QObject *parent = 0);
+    explicit CreateFolderCommand(QObject *parent = Q_NULLPTR);
     ~CreateFolderCommand();
 
     void setSubscriptionListView(SubscriptionListView *view);

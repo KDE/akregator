@@ -42,7 +42,7 @@ class AKREGATOR_EXPORT  MoveSubscriptionJob : public KJob
 {
     Q_OBJECT
 public:
-    explicit MoveSubscriptionJob(QObject *parent = 0);
+    explicit MoveSubscriptionJob(QObject *parent = Q_NULLPTR);
 
     void setSubscriptionId(int id);
     void setDestination(int folder, int afterChild);
@@ -63,7 +63,7 @@ class AKREGATOR_EXPORT RenameSubscriptionJob : public KJob
 {
     Q_OBJECT
 public:
-    explicit RenameSubscriptionJob(QObject *parent = 0);
+    explicit RenameSubscriptionJob(QObject *parent = Q_NULLPTR);
 
     void setSubscriptionId(int id);
     void setName(const QString &name);
@@ -83,7 +83,7 @@ class AKREGATOR_EXPORT DeleteSubscriptionJob : public KJob
 {
     Q_OBJECT
 public:
-    explicit DeleteSubscriptionJob(QObject *parent = 0);
+    explicit DeleteSubscriptionJob(QObject *parent = Q_NULLPTR);
 
     void setSubscriptionId(int id);
 

@@ -47,7 +47,7 @@ class AKREGATOR_EXPORT FrameManager : public QObject
 
 public:
 
-    explicit FrameManager(QWidget *mainWin = 0, QObject *parent = 0);
+    explicit FrameManager(QWidget *mainWin = 0, QObject *parent = Q_NULLPTR);
     ~FrameManager();
 
     Frame *currentFrame() const;

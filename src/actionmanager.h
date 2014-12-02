@@ -51,7 +51,7 @@ public:
     static ActionManager *getInstance();
     static void setInstance(ActionManager *manager);
 
-    explicit ActionManager(QObject *parent = 0);
+    explicit ActionManager(QObject *parent = Q_NULLPTR);
     virtual ~ActionManager();
 
     virtual QAction *action(const char *name) = 0;

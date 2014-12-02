@@ -44,7 +44,7 @@ class SelectionController : public AbstractSelectionController
 
 public:
 
-    explicit SelectionController(QObject *parent = 0);
+    explicit SelectionController(QObject *parent = Q_NULLPTR);
     ~SelectionController();
 
     //impl

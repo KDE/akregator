@@ -40,7 +40,7 @@ class ImportFeedListCommand : public Command
 {
     Q_OBJECT
 public:
-    explicit ImportFeedListCommand(QObject *parent = 0);
+    explicit ImportFeedListCommand(QObject *parent = Q_NULLPTR);
     ~ImportFeedListCommand();
 
     void setTargetList(const boost::weak_ptr<FeedList> &feedList);
