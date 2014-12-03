@@ -79,7 +79,7 @@ public:
      *  @param node The node to observe */
     void showNode(Akregator::TreeNode *node);
 
-    QSize sizeHint() const;
+    QSize sizeHint() const Q_DECL_OVERRIDE;
 
 public slots:
 

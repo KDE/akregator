@@ -51,7 +51,7 @@ public:
     explicit AddFeedDialog(QWidget *parent = Q_NULLPTR, const char *name = 0);
     ~AddFeedDialog();
 
-    QSize sizeHint() const;
+    QSize sizeHint() const Q_DECL_OVERRIDE;
 
     void setUrl(const QString &t);
     Feed *feed();
