@@ -108,7 +108,7 @@ class AKREGATOR_EXPORT ArticleListJob : public KJob
 {
     Q_OBJECT
 public:
-    explicit ArticleListJob(TreeNode *parent = 0);
+    explicit ArticleListJob(TreeNode *parent = Q_NULLPTR);
 
     QList<Article> articles() const;
     TreeNode *node() const;

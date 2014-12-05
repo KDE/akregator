@@ -39,7 +39,7 @@ class CreateFeedCommand : public Command
 {
     Q_OBJECT
 public:
-    explicit CreateFeedCommand(MainWidget *parent = 0);
+    explicit CreateFeedCommand(MainWidget *parent = Q_NULLPTR);
     ~CreateFeedCommand();
 
     void setSubscriptionListView(SubscriptionListView *view);

@@ -98,7 +98,7 @@ protected:
     /**
      * Reimplemented to say if app will be running in system tray if necessary
      */
-    bool queryClose();
+    bool queryClose() Q_DECL_OVERRIDE;
 
 protected slots:
     void slotQuit();
