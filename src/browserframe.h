@@ -75,7 +75,7 @@ public:
     bool hasZoom() const;
     int  getZoomFactor() const;
     void setZoomFactor(int);
-public slots:
+public Q_SLOTS:
 
     void slotHistoryForward();
     void slotHistoryBack();
@@ -90,7 +90,7 @@ public slots:
     void slotZoomIn(int);
     void slotZoomOut(int);
 
-private slots:
+private Q_SLOTS:
 
     void slotOpenUrlRequestDelayed(const QUrl &, const KParts::OpenUrlArguments &, const KParts::BrowserArguments &);
     void slotCreateNewWindow(const QUrl &url,
@@ -111,7 +111,7 @@ private slots:
                        KParts::BrowserExtension::PopupFlags flags,
                        const KParts::BrowserExtension::ActionGroupMap &actionGroups);
 
-signals:
+Q_SIGNALS:
     void signalPartDestroyed(int id);
 
 private:

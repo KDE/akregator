@@ -77,7 +77,7 @@ public:
      */
     bool loadPart();
 
-public slots:
+public Q_SLOTS:
     void slotClearStatusText();
     void slotSetStatusBarText(const QString &c);
 
@@ -100,14 +100,14 @@ protected:
      */
     bool queryClose() Q_DECL_OVERRIDE;
 
-protected slots:
+protected Q_SLOTS:
     void slotQuit();
 
 private:
 
     KParts::BrowserExtension *browserExtension(KParts::ReadOnlyPart *p);
 
-private slots:
+private Q_SLOTS:
 
     void optionsConfigureKeys();
     void optionsConfigureToolbars();

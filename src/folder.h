@@ -162,7 +162,7 @@ public:
 
     /* reimp */ KJob *createMarkAsReadJob() Q_DECL_OVERRIDE;
 
-signals:
+Q_SIGNALS:
     /** emitted when a child was added */
     void signalChildAdded(Akregator::TreeNode *);
 
@@ -171,7 +171,7 @@ signals:
 
     void signalAboutToRemoveChild(Akregator::TreeNode *);
 
-public slots:
+public Q_SLOTS:
 
     /** Called when a child was modified.
     @param node the child that was changed

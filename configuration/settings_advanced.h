@@ -52,7 +52,7 @@ public:
 
     void selectFactory(const QString &key);
 
-public slots:
+public Q_SLOTS:
 
     void slotConfigureStorage();
     void slotFactorySelected(int);

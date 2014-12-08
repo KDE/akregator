@@ -125,14 +125,14 @@ public:
         return m_viewMode;
     }
 
-signals:
+Q_SIGNALS:
     /** emitted when the unread count of "All Feeds" was changed */
     void signalUnreadCountChanged(int);
 
     /** emitted when the articles selected changed */
     void signalArticlesSelected(const QList<Akregator::Article> &);
 
-public slots:
+public Q_SLOTS:
 
     /** opens the current article (currentItem) in external browser
     TODO: use selected instead of current? */
@@ -241,7 +241,7 @@ protected:
 
     void addFeed(const QString &url, TreeNode *after, Folder *parent, bool autoExec = true);
 
-protected slots:
+protected Q_SLOTS:
 
     /** special behaviour in article list view (TODO: move code there?) */
     void slotMouseButtonPressed(int button, const KUrl &);

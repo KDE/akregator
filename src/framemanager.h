@@ -59,7 +59,7 @@ public:
     /** session management **/
     void saveProperties(KConfigGroup &config);
 
-public slots:
+public Q_SLOTS:
 
     void slotAddFrame(Frame *frame);
     void slotRemoveFrame(int frameId);
@@ -74,7 +74,7 @@ public slots:
     void slotBrowserBackAboutToShow();
     void slotBrowserForwardAboutToShow();
 
-signals:
+Q_SIGNALS:
 
     void signalFrameAdded(Akregator::Frame *);
     void signalFrameRemoved(int id);
@@ -102,7 +102,7 @@ private:
 
     void openInExternalBrowser(const OpenUrlRequest &request);
 
-private slots:
+private Q_SLOTS:
     void openUrl(Akregator::OpenUrlRequest &request);
     void slotSetStarted(Akregator::Frame *frame);
     void slotSetCanceled(Akregator::Frame *frame, const QString &reason);

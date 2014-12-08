@@ -43,7 +43,7 @@ public:
     explicit TrayIcon(QObject *parent = Q_NULLPTR);
     ~TrayIcon();
 
-public slots:
+public Q_SLOTS:
     void settingsChanged();
     void slotSetUnread(int unread);
     void viewButtonClicked();

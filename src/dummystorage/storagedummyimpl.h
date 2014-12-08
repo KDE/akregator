@@ -98,7 +98,7 @@ public:
     /** deletes all feed storages in this archive */
     void clear();
 
-protected slots:
+protected Q_SLOTS:
     void slotCommit();
 
 private:

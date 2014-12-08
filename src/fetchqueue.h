@@ -50,12 +50,12 @@ public:
     /** adds a feed to the queue */
     void addFeed(Feed *f);
 
-public slots:
+public Q_SLOTS:
 
     /** aborts currently fetching feeds and empties the queue */
     void slotAbort();
 
-signals:
+Q_SIGNALS:
 
     void signalStarted();
     void signalStopped();
@@ -71,7 +71,7 @@ protected:
     void connectToFeed(Feed *feed);
     void disconnectFromFeed(Feed *feed);
 
-protected slots:
+protected Q_SLOTS:
 
     void slotNodeDestroyed(Akregator::TreeNode *node);
     void slotFeedFetched(Akregator::Feed *);

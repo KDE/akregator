@@ -176,14 +176,14 @@ public:
 
     virtual KJob *createMarkAsReadJob() = 0;
 
-public slots:
+public Q_SLOTS:
 
     /** adds node to a fetch queue
         @param intervalFetchesOnly */
 
     virtual void slotAddToFetchQueue(Akregator::FetchQueue *queue, bool intervalFetchesOnly = false) = 0;
 
-signals:
+Q_SIGNALS:
 
     /** Emitted when this object is deleted. */
     void signalDestroyed(Akregator::TreeNode *);

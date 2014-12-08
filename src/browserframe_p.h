@@ -79,7 +79,7 @@ public:
     void restoreHistoryEntry(const QList<HistoryEntry>::Iterator &entry);
     bool loadPartForMimetype(const QString &mimetype);
 
-public slots:
+public Q_SLOTS:
     void slotHistoryEntrySelected(const QList<BrowserFrame::Private::HistoryEntry>::Iterator &entry)
     {
         restoreHistoryEntry(entry);
@@ -128,11 +128,11 @@ public:
 
     QList<HistoryEntry>::Iterator m_entry;
 
-public slots:
+public Q_SLOTS:
 
     void slotTriggered(bool);
 
-signals:
+Q_SIGNALS:
 
     void triggered(const QList<BrowserFrame::Private::HistoryEntry>::Iterator &);
 };

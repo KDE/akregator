@@ -70,7 +70,7 @@ public:
     void setArticleActionsEnabled(bool enabled);
     void setTrayIcon(TrayIcon *trayIcon);
 
-public slots:
+public Q_SLOTS:
 
     void slotNodeSelected(Akregator::TreeNode *node);
 

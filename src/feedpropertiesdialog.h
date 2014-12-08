@@ -67,7 +67,7 @@ public:
     /** selects the text in the feed title lineedit */
     void selectFeedName();
 
-public slots:
+public Q_SLOTS:
 
     void accept();
 
@@ -98,7 +98,7 @@ private:
     FeedPropertiesWidget *widget;
     Feed *m_feed;
 
-private slots:
+private Q_SLOTS:
     void slotSetWindowTitle(const QString &);
 };
 

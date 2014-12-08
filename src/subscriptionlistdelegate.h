@@ -50,7 +50,7 @@ protected:
     void initStyleOption(QStyleOptionViewItem *option,
                          const QModelIndex &index) const;
 
-private slots:
+private Q_SLOTS:
     void recalculateRowHeight();
 
 private:

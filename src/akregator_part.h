@@ -64,7 +64,7 @@ class BrowserExtension : public KParts::BrowserExtension
 
 public:
     explicit BrowserExtension(Part *p, const char *name = 0);
-public slots:
+public Q_SLOTS:
     void saveSettings();
 private:
     Part *m_part;
@@ -128,7 +128,7 @@ public:
 
     bool handleCommandLine();
 
-public slots:
+public Q_SLOTS:
     /** Used to save settings after changing them from configuration dialog. Calls AkregatorPart's saveSettings. */
     void saveSettings();
 
@@ -145,7 +145,7 @@ public slots:
     /** Call to auto save */
     void slotAutoSave();
 
-signals:
+Q_SIGNALS:
     void signalSettingsChanged();
     void signalArticlesSelected(const QList<Akregator::Article> &);
 
@@ -166,7 +166,7 @@ private:
 
     KParts::Part *hitTest(QWidget *widget, const QPoint &globalPos);
 
-private slots:
+private Q_SLOTS:
     void slotStarted();
 
     void slotOnShutdown();

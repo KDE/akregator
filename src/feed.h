@@ -225,7 +225,7 @@ public:
 
     /* reimp */ KJob *createMarkAsReadJob() Q_DECL_OVERRIDE;
 
-public slots:
+public Q_SLOTS:
     /** starts fetching */
     void fetch(bool followDiscovery = false);
 
@@ -236,7 +236,7 @@ public slots:
 
     void slotAddFeedIconListener();
 
-signals:
+Q_SIGNALS:
     /** emitted when fetching started */
     void fetchStarted(Akregator::Feed *);
     /** emitted when feed finished fetching */
@@ -292,7 +292,7 @@ private:
 
     void markAsFetchedNow();
 
-private slots:
+private Q_SLOTS:
 
     void fetchCompleted(Syndication::Loader *loader, Syndication::FeedPtr doc, Syndication::ErrorCode errorCode);
     void slotImageFetched(const QPixmap &image);

@@ -140,7 +140,7 @@ public:
     void addToFetchQueue(FetchQueue *queue, bool intervalOnly = false);
     KJob *createMarkAsReadJob();
 
-signals:
+Q_SIGNALS:
 
     void signalDestroyed(Akregator::FeedList *);
 
@@ -180,7 +180,7 @@ private:
 
     void parseChildNodes(QDomNode &node, Folder *parent);
 
-private slots:
+private Q_SLOTS:
 
     void slotNodeDestroyed(Akregator::TreeNode *node);
     void slotNodeAdded(Akregator::TreeNode *node);

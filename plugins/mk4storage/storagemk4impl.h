@@ -115,7 +115,7 @@ public:
 
     void markDirty();
 
-protected slots:
+protected Q_SLOTS:
     void slotCommit();
 
 private:

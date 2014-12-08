@@ -56,14 +56,14 @@ public:
     void setUrl(const QString &t);
     Feed *feed();
 
-public slots:
+public Q_SLOTS:
     void accept();
 
     void fetchCompleted(Akregator::Feed *);
     void fetchDiscovery(Akregator::Feed *);
     void fetchError(Akregator::Feed *);
 
-private slots:
+private Q_SLOTS:
     void textChanged(const QString &);
 
 private:

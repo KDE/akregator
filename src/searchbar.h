@@ -57,16 +57,16 @@ public:
 
     std::vector<boost::shared_ptr<const Filters::AbstractMatcher> > matchers() const;
 
-signals:
+Q_SIGNALS:
     /** emitted when the text and status filters were updated. Params are textfilter, statusfilter */
     void signalSearch(const std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> > &);
 
-public slots:
+public Q_SLOTS:
     void slotClearSearch();
     void slotSetStatus(int status);
     void slotSetText(const QString &text);
 
-private slots:
+private Q_SLOTS:
 
     void slotSearchStringChanged(const QString &search);
     void slotSearchComboChanged(int index);

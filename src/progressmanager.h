@@ -51,7 +51,7 @@ public:
     /** sets the feed list to be managed */
     void setFeedList(const boost::shared_ptr<FeedList> &feedList);
 
-protected slots:
+protected Q_SLOTS:
 
     void slotNodeAdded(Akregator::TreeNode *node);
     void slotNodeRemoved(Akregator::TreeNode *node);
@@ -75,7 +75,7 @@ public:
     explicit ProgressItemHandler(Feed *feed);
     ~ProgressItemHandler();
 
-public slots:
+public Q_SLOTS:
 
     void slotFetchStarted();
     void slotFetchCompleted();

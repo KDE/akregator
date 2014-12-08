@@ -40,7 +40,7 @@ public:
     KCMAkregatorShareConfig(QWidget *parent, const QVariantList &args);
     ~KCMAkregatorShareConfig();
 
-public slots:
+public Q_SLOTS:
     virtual void load();
 
 private:

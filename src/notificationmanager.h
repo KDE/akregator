@@ -48,7 +48,7 @@ public:
     /** the widget used for notification, normally either the mainwindow or the tray icon */
     void setWidget(QWidget *widget, const KComponentData &inst = KComponentData());
 
-public slots:
+public Q_SLOTS:
 
     /** notifies an article. Note that articles are not notified separately, but
     "collected" and notified all together */
@@ -61,7 +61,7 @@ protected:
 
     void doNotify();
 
-protected slots:
+protected Q_SLOTS:
 
     void slotIntervalCheck();
 

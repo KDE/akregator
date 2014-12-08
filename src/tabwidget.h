@@ -43,7 +43,7 @@ public:
     explicit TabWidget(QWidget *parent = Q_NULLPTR);
     ~TabWidget();
 
-public slots:
+public Q_SLOTS:
 
     void slotSetTitle(Akregator::Frame *frame, const QString &title);
     void slotSetIcon(Akregator::Frame *frame, const QIcon &icon);

@@ -121,7 +121,7 @@ public:
      * Save a frame to a config file for session management.
      */
     virtual void saveConfig(KConfigGroup & /*config*/, const QString & /*prefix*/) {}
-public slots:
+public Q_SLOTS:
 
     /** goes a step forward in the history, if possible. See also canGoForward(). */
     virtual void slotHistoryForward() {}
@@ -146,7 +146,7 @@ public slots:
     void slotSetTitle(const QString &);
     void slotSetStatusText(const QString &);
 
-signals:
+Q_SIGNALS:
     void signalCaptionChanged(Akregator::Frame *, const QString &);
     void signalTitleChanged(Akregator::Frame *, const QString &);
     void signalStarted(Akregator::Frame *);

@@ -39,7 +39,7 @@ public:
     BrowserRun(const OpenUrlRequest &request, QWidget *parent);
     ~BrowserRun();
 
-signals:
+Q_SIGNALS:
 
     void signalFoundMimeType(Akregator::OpenUrlRequest &request);
 

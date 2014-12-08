@@ -81,7 +81,7 @@ public:
 
     QSize sizeHint() const Q_DECL_OVERRIDE;
 
-public slots:
+public Q_SLOTS:
 
     void slotZoomIn(int);
     void slotZoomOut(int);
@@ -107,7 +107,7 @@ public slots:
 
     void slotPaletteOrFontChanged();
 
-signals:
+Q_SIGNALS:
 
     /** This gets emitted when url gets clicked */
     void signalOpenUrlRequest(Akregator::OpenUrlRequest &);
@@ -121,7 +121,7 @@ protected: // methods
 
     bool openUrl(const KUrl &url);
 
-protected slots:
+protected Q_SLOTS:
 
     void slotOpenUrlRequestDelayed(const QUrl &, const KParts::OpenUrlArguments &, const KParts::BrowserArguments &);
 
