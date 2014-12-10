@@ -57,7 +57,7 @@ public:
 
 private:
     //reimpl
-    bool filterAcceptsRow(int source_row, const QModelIndex &source_parent) const;
+    bool filterAcceptsRow(int source_row, const QModelIndex &source_parent) const Q_DECL_OVERRIDE;
 };
 
 class AKREGATORPART_EXPORT SortColorizeProxyModel : public QSortFilterProxyModel
@@ -75,7 +75,7 @@ public:
 private:
 
     //reimpl
-    bool filterAcceptsRow(int source_row, const QModelIndex &source_parent) const;
+    bool filterAcceptsRow(int source_row, const QModelIndex &source_parent) const Q_DECL_OVERRIDE;
 
     QIcon m_keepFlagIcon;
     std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> > m_matchers;
