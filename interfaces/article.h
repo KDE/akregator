@@ -40,7 +40,7 @@ template <class T> class QList;
 
 typedef unsigned int uint;
 
-class KUrl;
+class QUrl;
 
 namespace Syndication
 {
@@ -99,7 +99,7 @@ public:
     int status() const;
 
     QString title() const;
-    KUrl link() const;
+    QUrl link() const;
     QString description() const;
 
     QString content(ContentOption opt = ContentAndOnlyContent) const;
@@ -126,7 +126,7 @@ public:
 
     QDateTime pubDate() const;
 
-    KUrl commentsLink() const;
+    QUrl commentsLink() const;
 
     int comments() const;
 

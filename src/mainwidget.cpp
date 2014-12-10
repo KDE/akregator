@@ -378,7 +378,7 @@ void Akregator::MainWidget::sendArticle(bool attach)
     } else { // nah, we're in articlelist..
         const Article article =  m_selectionController->currentArticle();
         if (!article.isNull()) {
-            text = article.link().prettyUrl().toLatin1();
+            text = article.link().toDisplayString().toLatin1();
             title = article.title();
         }
     }

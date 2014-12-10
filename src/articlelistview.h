@@ -125,7 +125,7 @@ protected:
     void mousePressEvent(QMouseEvent *ev) Q_DECL_OVERRIDE;
 
 Q_SIGNALS:
-    void signalMouseButtonPressed(int, const KUrl);
+    void signalMouseButtonPressed(int, const KUrl&);
 
 public Q_SLOTS:
 
