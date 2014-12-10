@@ -68,7 +68,7 @@ public:
 Akregator::Backend::StorageMK4Impl::StorageMK4Impl() : d(new StorageMK4ImplPrivate)
 {
     d->q = this;
-    setArchivePath(QString::null); // set path to default        //krazy:exclude=nullstrassign for old broken gcc
+    setArchivePath(QString());
 }
 
 Akregator::Backend::FeedStorageMK4Impl *Akregator::Backend::StorageMK4Impl::StorageMK4ImplPrivate::createFeedStorage(const QString &url)
