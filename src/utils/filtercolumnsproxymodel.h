@@ -48,7 +48,7 @@ public:
     void setMode(Mode mode);
 
 private:
-    /*reimpl*/ bool filterAcceptsColumn(int source_column, const QModelIndex &source_parent) const;
+    /*reimpl*/ bool filterAcceptsColumn(int source_column, const QModelIndex &source_parent) const Q_DECL_OVERRIDE;
 
 private:
     QVector<bool> m_columnStates;

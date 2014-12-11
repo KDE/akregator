@@ -93,26 +93,26 @@ public:
         */
 
     //reimpl
-    QList<const TreeNode *> children() const;
+    QList<const TreeNode *> children() const Q_DECL_OVERRIDE;
 
     QList<const TreeNode *> namedChildren(const QString &title) const;
     QList<TreeNode *> namedChildren(const QString &title);
 
     //reimpl
-    QList<TreeNode *> children();
+    QList<TreeNode *> children() Q_DECL_OVERRIDE;
 
-    QVector<const Feed *> feeds() const;
-    QVector<Feed *> feeds();
-    QVector<const Folder *> folders() const;
-    QVector<Folder *> folders();
+    QVector<const Feed *> feeds() const Q_DECL_OVERRIDE;
+    QVector<Feed *> feeds() Q_DECL_OVERRIDE;
+    QVector<const Folder *> folders() const Q_DECL_OVERRIDE;
+    QVector<Folder *> folders() Q_DECL_OVERRIDE;
 
     int indexOf(const TreeNode *node) const;
 
     //reimpl
-    TreeNode *childAt(int pos);
+    TreeNode *childAt(int pos) Q_DECL_OVERRIDE;
 
     //reimpl
-    const TreeNode *childAt(int pos) const;
+    const TreeNode *childAt(int pos) const Q_DECL_OVERRIDE;
 
     /** inserts @c node as child after child node @c after.
     if @c after is not a child of this group, @c node will be inserted as first child
