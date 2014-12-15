@@ -53,7 +53,7 @@ namespace
 {
 static QString akregatorNamespace()
 {
-    return QString::fromLatin1("http://akregator.kde.org/StorageExporter#");
+    return QStringLiteral("http://akregator.kde.org/StorageExporter#");
 }
 
 enum TextMode {
@@ -246,7 +246,7 @@ static void writeItem(FeedStorage *storage, const QString &guid, QXmlStreamWrite
     Elements::instance.itemProperties.writeStartElement(writer);
 
     if (status & Deleted) {
-        Elements::instance.deleted.write(QString::fromLatin1("true"), writer);
+        Elements::instance.deleted.write(QStringLiteral("true"), writer);
         writer.writeEndElement(); // </itemProperties>
         writer.writeEndElement(); // </item>
         return;
@@ -254,15 +254,15 @@ static void writeItem(FeedStorage *storage, const QString &guid, QXmlStreamWrite
 
     Elements::instance.hash.write(QString::number(storage->hash(guid)), writer);
     if (storage->guidIsHash(guid)) {
-        Elements::instance.guidIsHash.write(QString::fromLatin1("true"), writer);
+        Elements::instance.guidIsHash.write(QStringLiteral("true"), writer);
     }
     if (status & New) {
-        Elements::instance.readStatus.write(QString::fromLatin1("new"), writer);
+        Elements::instance.readStatus.write(QStringLiteral("new"), writer);
     } else if ((status & Read) == 0) {
-        Elements::instance.readStatus.write(QString::fromLatin1("unread"), writer);
+        Elements::instance.readStatus.write(QStringLiteral("unread"), writer);
     }
     if (status & Keep) {
-        Elements::instance.important.write(QString::fromLatin1("true"), writer);
+        Elements::instance.important.write(QStringLiteral("true"), writer);
     }
     writer.writeEndElement(); // </itemProperties>
 
@@ -308,7 +308,7 @@ static void serialize(FeedStorage *storage, const QString &url, QIODevice *devic
     writer.writeNamespace(akregatorNamespace(), QLatin1String("akregator"));
     writer.writeNamespace(Syndication::itunesNamespace(), QLatin1String("itunes"));
 
-    Elements::instance.title.write(QString::fromLatin1("Akregator Export for %1").arg(url), writer, Html);
+    Elements::instance.title.write(QStringLiteral("Akregator Export for %1").arg(url), writer, Html);
 
     Q_FOREACH (const QString &i, storage->articles()) {
         writeItem(storage, i, writer);
@@ -325,7 +325,7 @@ static void serialize(Storage *storage, const QString &url, QIODevice *device)
 static KService::List queryStoragePlugins()
 {
     return KServiceTypeTrader::self()->query(QLatin1String("Akregator/Plugin"),
-            QString::fromLatin1("[X-KDE-akregator-framework-version] == %1 and [X-KDE-akregator-plugintype] == 'storage' and [X-KDE-akregator-rank] > 0").arg(QString::number(AKREGATOR_PLUGIN_INTERFACE_VERSION)));
+            QStringLiteral("[X-KDE-akregator-framework-version] == %1 and [X-KDE-akregator-plugintype] == 'storage' and [X-KDE-akregator-rank] > 0").arg(QString::number(AKREGATOR_PLUGIN_INTERFACE_VERSION)));
 }
 
 static Plugin *createFromService(const KService::Ptr &service)
@@ -333,7 +333,7 @@ static Plugin *createFromService(const KService::Ptr &service)
     KPluginLoader loader(*service);
     KPluginFactory *factory = loader.factory();
     if (!factory) {
-        qCritical() << QString::fromLatin1(" Could not create plugin factory for: %1\n"
+        qCritical() << QStringLiteral(" Could not create plugin factory for: %1\n"
                                            " Error message: %2").arg(service->library(), loader.errorString());
         return 0;
     }
@@ -349,7 +349,7 @@ static void printUsage()
 int main(int argc, char **argv)
 {
     KComponentData::setActiveComponent(KComponentData("akregatorstorageexporter"));
-    const QString backend = QString::fromLatin1("metakit");
+    const QString backend = QStringLiteral("metakit");
 
     if (argc < 2) {
         printUsage();
