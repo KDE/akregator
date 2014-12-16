@@ -41,14 +41,14 @@ public:
 
 protected:
     QSize sizeHint(const QStyleOptionViewItem &option,
-                   const QModelIndex &index) const;
+                   const QModelIndex &index) const Q_DECL_OVERRIDE;
 
     void paint(QPainter *painter,
                const QStyleOptionViewItem &option,
-               const QModelIndex &index) const;
+               const QModelIndex &index) const Q_DECL_OVERRIDE;
 
     void initStyleOption(QStyleOptionViewItem *option,
-                         const QModelIndex &index) const;
+                         const QModelIndex &index) const Q_DECL_OVERRIDE;
 
 private Q_SLOTS:
     void recalculateRowHeight();
