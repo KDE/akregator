@@ -57,7 +57,7 @@ public:
     Feed *feed();
 
 public Q_SLOTS:
-    void accept();
+    void accept() Q_DECL_OVERRIDE;
 
     void fetchCompleted(Akregator::Feed *);
     void fetchDiscovery(Akregator::Feed *);
