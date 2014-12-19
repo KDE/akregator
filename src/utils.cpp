@@ -69,5 +69,4 @@ void Utils::migrateConfig()
     migrate.migrate();
 }
 
-
 }

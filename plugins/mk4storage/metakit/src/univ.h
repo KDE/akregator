@@ -45,7 +45,7 @@ public:
 
     void *GetAt(int nIndex)const;
     void SetAt(int nIndex, const void *newElement);
-    void*&ElementAt(int nIndex);
+    void *&ElementAt(int nIndex);
 
     int Add(void *newElement);
 

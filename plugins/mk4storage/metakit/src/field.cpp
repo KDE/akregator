@@ -22,7 +22,7 @@ class c4_Field;
 /////////////////////////////////////////////////////////////////////////////
 // c4_Field
 
-c4_Field::c4_Field(const char*&description_, c4_Field *parent_): _type(0)
+c4_Field::c4_Field(const char *&description_, c4_Field *parent_): _type(0)
 {
     _indirect = this;
 

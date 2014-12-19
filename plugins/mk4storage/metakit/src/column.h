@@ -51,7 +51,7 @@ public:
 
     void SetLocation(t4_i32, t4_i32);
     //: Sets the position and size of this column on file.
-    void PullLocation(const t4_byte*&ptr_);
+    void PullLocation(const t4_byte *&ptr_);
     //: Extract position and size of this column.
 
     int AvailAt(t4_i32 offset_)const;
@@ -76,8 +76,8 @@ public:
     bool RequiresMap()const;
     void ReleaseAllSegments();
 
-    static t4_i32 PullValue(const t4_byte*&ptr_);
-    static void PushValue(t4_byte*&ptr_, t4_i32 v_);
+    static t4_i32 PullValue(const t4_byte *&ptr_);
+    static void PushValue(t4_byte *&ptr_, t4_i32 v_);
 
     void InsertData(t4_i32 index_, t4_i32 count_, bool clear_);
     void RemoveData(t4_i32 index_, t4_i32 count_);

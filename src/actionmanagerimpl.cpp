@@ -463,11 +463,11 @@ void ActionManagerImpl::initArticleListView(ArticleListView *articleList)
     QAction *action = actionCollection()->addAction("go_previous_article");
     action->setText(i18n("&Previous Article"));
     connect(action, &QAction::triggered, articleList, &ArticleListView::slotPreviousArticle);
-    actionCollection()->setDefaultShortcut(action,QKeySequence("Left"));
+    actionCollection()->setDefaultShortcut(action, QKeySequence("Left"));
     action = actionCollection()->addAction("go_next_article");
     action->setText(i18n("&Next Article"));
     connect(action, &QAction::triggered, articleList, &ArticleListView::slotNextArticle);
-    actionCollection()->setDefaultShortcut(action,QKeySequence("Right"));
+    actionCollection()->setDefaultShortcut(action, QKeySequence("Right"));
 }
 
 void ActionManagerImpl::initSubscriptionListView(SubscriptionListView *subscriptionListView)
@@ -611,7 +611,7 @@ void ActionManagerImpl::initFrameManager(FrameManager *frameManager)
 
     KToolBarPopupAction *back = new KToolBarPopupAction(QIcon::fromTheme(isRTL ? "go-next" : "go-previous"), i18nc("Go back in browser history", "Back"), this);
     d->actionCollection->addAction("browser_back", back);
-    d->actionCollection->setDefaultShortcut(back,QKeySequence(isRTL ?  "Alt+Right" : "Alt+Left"));
+    d->actionCollection->setDefaultShortcut(back, QKeySequence(isRTL ?  "Alt+Right" : "Alt+Left"));
     connect(back, &KToolBarPopupAction::triggered, frameManager, &FrameManager::slotBrowserBack);
 
     connect(back->menu(), SIGNAL(aboutToShow()), frameManager, SLOT(slotBrowserBackAboutToShow()));

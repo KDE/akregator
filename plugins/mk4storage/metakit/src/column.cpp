@@ -170,7 +170,7 @@ void c4_Column::SetLocation(t4_i32 pos_, t4_i32 size_)
     _dirty = pos_ == 0;
 }
 
-void c4_Column::PullLocation(const t4_byte*&ptr_)
+void c4_Column::PullLocation(const t4_byte *&ptr_)
 {
     d4_assert(_segments.GetSize() == 0);
 
@@ -822,7 +822,7 @@ This saves storage, but it is also byte order independent.
 Negative values are stored as a zero byte plus positive value.
  */
 
-t4_i32 c4_Column::PullValue(const t4_byte*&ptr_)
+t4_i32 c4_Column::PullValue(const t4_byte *&ptr_)
 {
     t4_i32 mask =  *ptr_ ? 0 : ~0;
 
@@ -837,7 +837,7 @@ t4_i32 c4_Column::PullValue(const t4_byte*&ptr_)
     return mask ^ (v - 0x80); // oops, last byte had bit 7 set
 }
 
-void c4_Column::PushValue(t4_byte*&ptr_, t4_i32 v_)
+void c4_Column::PushValue(t4_byte *&ptr_, t4_i32 v_)
 {
     if (v_ < 0) {
         v_ = ~v_;

@@ -334,7 +334,7 @@ static Plugin *createFromService(const KService::Ptr &service)
     KPluginFactory *factory = loader.factory();
     if (!factory) {
         qCritical() << QStringLiteral(" Could not create plugin factory for: %1\n"
-                                           " Error message: %2").arg(service->library(), loader.errorString());
+                                      " Error message: %2").arg(service->library(), loader.errorString());
         return 0;
     }
     return factory->create<Akregator::Plugin>();

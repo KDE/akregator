@@ -300,7 +300,7 @@ protected:
 private:
     t4_i32 Offset(int index_)const;
     bool ShouldBeMemo(int length_)const;
-    int ItemLenOffCol(int index_, t4_i32 &off_, c4_Column*&col_);
+    int ItemLenOffCol(int index_, t4_i32 &off_, c4_Column *&col_);
     bool CommitItem(c4_SaveContext &ar_, int index_);
     void InitOffsets(c4_ColOfInts &sizes_);
 
@@ -366,7 +366,7 @@ d4_inline bool c4_FormatB::ShouldBeMemo(int length_)const
     return length_ > 10000 || length_ > 100 && length_ > 1000000 / rows;
 }
 
-int c4_FormatB::ItemLenOffCol(int index_, t4_i32 &off_, c4_Column*&col_)
+int c4_FormatB::ItemLenOffCol(int index_, t4_i32 &off_, c4_Column *&col_)
 {
     col_ = (c4_Column *)_memos.GetAt(index_);
     if (col_ != 0) {
@@ -1005,7 +1005,7 @@ c4_HandlerSeq &c4_FormatV::At(int index_)
 {
     d4_assert(_inited);
 
-    c4_HandlerSeq*&hs = (c4_HandlerSeq*&)_subSeqs.ElementAt(index_);
+    c4_HandlerSeq *&hs = (c4_HandlerSeq *&)_subSeqs.ElementAt(index_);
     if (hs == 0) {
         hs = d4_new c4_HandlerSeq(Owner(), this);
         hs->IncRef();
@@ -1100,7 +1100,7 @@ int c4_FormatV::ItemSize(int index_)
     }
 
     // 06-02-2002: avoid creating empty subview
-    c4_HandlerSeq *hs = (c4_HandlerSeq*&)_subSeqs.ElementAt(index_);
+    c4_HandlerSeq *hs = (c4_HandlerSeq *&)_subSeqs.ElementAt(index_);
     return hs == 0 ? 0 : hs->NumRows();
 }
 
@@ -1111,7 +1111,7 @@ const void *c4_FormatV::Get(int index_, int &length_)
     }
 
     At(index_); // forces existence of a real entry
-    c4_HandlerSeq*&e = (c4_HandlerSeq*&)_subSeqs.ElementAt(index_);
+    c4_HandlerSeq *&e = (c4_HandlerSeq *&)_subSeqs.ElementAt(index_);
 
     length_ = sizeof(c4_HandlerSeq **);
     return  &e;
@@ -1138,7 +1138,7 @@ void c4_FormatV::Replace(int index_, c4_HandlerSeq *seq_)
         SetupAllSubviews();
     }
 
-    c4_HandlerSeq*&curr = (c4_HandlerSeq*&)_subSeqs.ElementAt(index_);
+    c4_HandlerSeq *&curr = (c4_HandlerSeq *&)_subSeqs.ElementAt(index_);
     if (seq_ == curr) {
         return ;
     }
@@ -1250,7 +1250,7 @@ bool c4_FormatV::HasSubview(int index_)
 
 void c4_FormatV::ForgetSubview(int index_)
 {
-    c4_HandlerSeq*&seq = (c4_HandlerSeq*&)_subSeqs.ElementAt(index_);
+    c4_HandlerSeq *&seq = (c4_HandlerSeq *&)_subSeqs.ElementAt(index_);
     if (seq != 0) {
         d4_assert(&seq->Parent() ==  &Owner());
         seq->DetachFromParent();

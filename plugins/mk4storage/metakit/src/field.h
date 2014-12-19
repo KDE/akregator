@@ -23,7 +23,7 @@ class c4_Field
 
 public:
     /* Construction / destruction */
-    c4_Field(const char*&, c4_Field * = 0);
+    c4_Field(const char *&, c4_Field * = 0);
     //: Constructs a new field.
     ~c4_Field();
 
