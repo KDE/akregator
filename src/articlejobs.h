@@ -73,7 +73,7 @@ public:
     void appendArticleIds(const Akregator::ArticleIdList &ids);
     void appendArticleId(const Akregator::ArticleId &id);
 
-    void start();
+    void start() Q_DECL_OVERRIDE;
 
 private Q_SLOTS:
     void doStart();
@@ -93,7 +93,7 @@ public:
     void setStatus(const ArticleId &id, int status);
     void setKeep(const ArticleId &id, bool keep);
 
-    void start();
+    void start() Q_DECL_OVERRIDE;
 
 private Q_SLOTS:
     void doStart();

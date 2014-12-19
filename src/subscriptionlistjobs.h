@@ -47,7 +47,7 @@ public:
     void setSubscriptionId(int id);
     void setDestination(int folder, int afterChild);
 
-    void start();
+    void start() Q_DECL_OVERRIDE;
 
 private Q_SLOTS:
     void doMove();
@@ -68,7 +68,7 @@ public:
     void setSubscriptionId(int id);
     void setName(const QString &name);
 
-    void start();
+    void start() Q_DECL_OVERRIDE;
 
 private Q_SLOTS:
     void doRename();
@@ -87,7 +87,7 @@ public:
 
     void setSubscriptionId(int id);
 
-    void start();
+    void start() Q_DECL_OVERRIDE;
 
 private Q_SLOTS:
     void doDelete();
