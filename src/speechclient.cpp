@@ -2,7 +2,7 @@
     This file is part of Akregator.
 
     Copyright (C) 2005 Frank Osterfeld <osterfeld@kde.org>
-    Copyright (C) 2009 Laurent Montel <montel@kde.org>
+    Copyright (c) 2009-2015 Laurent Montel <montel@kde.org>
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
