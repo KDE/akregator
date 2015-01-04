@@ -26,7 +26,7 @@
 #define AKREGATOR_ACTIONS_H
 
 #include "akregator_export.h"
-
+#include <QObject>
 class QAction;
 class QObject;
 
@@ -35,8 +35,8 @@ class KUrl;
 namespace Akregator
 {
 
-AKREGATOR_EXPORT QAction *createOpenLinkInNewTabAction(const KUrl &url, QObject *receiver = 0, const char *slot = 0, QObject *parent = 0);
-AKREGATOR_EXPORT QAction *createOpenLinkInExternalBrowserAction(const KUrl &url, QObject *receiver = 0, const char *slot = 0, QObject *parent = 0);
+AKREGATOR_EXPORT QAction *createOpenLinkInNewTabAction(const KUrl &url, QObject *receiver = 0, const char *slot = 0, QObject *parent = Q_NULLPTR);
+AKREGATOR_EXPORT QAction *createOpenLinkInExternalBrowserAction(const KUrl &url, QObject *receiver = 0, const char *slot = 0, QObject *parent = Q_NULLPTR);
 
 }
 
