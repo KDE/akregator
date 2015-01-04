@@ -142,7 +142,7 @@ Akregator::SubscriptionListView::SubscriptionListView(QWidget *parent) : QTreeVi
     setAcceptDrops(true);
     setUniformRowHeights(true);
     setItemDelegate(new SubscriptionListDelegate(this));
-    connect(header(), SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showHeaderMenu(QPoint)));
+    connect(header(), &QWidget::customContextMenuRequested, this, &SubscriptionListView::showHeaderMenu);
 
     loadHeaderSettings();
 }

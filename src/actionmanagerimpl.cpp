@@ -216,13 +216,13 @@ void ActionManagerImpl::initMainWidget(MainWidget *mainWidget)
     // Feed/Feed Group popup menu
     QAction *action = coll->addAction("feed_homepage");
     action->setText(i18n("&Open Homepage"));
-    connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotOpenHomepage()));
+    connect(action, &QAction::triggered, d->mainWidget, &MainWidget::slotOpenHomepage);
     coll->setDefaultShortcut(action, QKeySequence("Ctrl+H"));
 
     action = coll->addAction("reload_all_tabs");
     action->setIcon(QIcon::fromTheme("view-refresh"));
     action->setText(i18n("Reload All Tabs"));
-    connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotReloadAllTabs()));
+    connect(action, &QAction::triggered, d->mainWidget, &MainWidget::slotReloadAllTabs);
     coll->setDefaultShortcut(action, QKeySequence("Shift+F5"));
 
     action = coll->addAction("feed_add");
@@ -234,26 +234,26 @@ void ActionManagerImpl::initMainWidget(MainWidget *mainWidget)
     action = coll->addAction("feed_add_group");
     action->setIcon(QIcon::fromTheme("folder-new"));
     action->setText(i18n("Ne&w Folder..."));
-    connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotFeedAddGroup()));
+    connect(action, &QAction::triggered, d->mainWidget, &MainWidget::slotFeedAddGroup);
     coll->setDefaultShortcut(action, QKeySequence("Shift+Insert"));
 
     action = coll->addAction("feed_remove");
     action->setIcon(QIcon::fromTheme("edit-delete"));
     action->setText(i18n("&Delete Feed"));
-    connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotFeedRemove()));
+    connect(action, &QAction::triggered, d->mainWidget, &MainWidget::slotFeedRemove);
     coll->setDefaultShortcut(action, QKeySequence("Alt+Delete"));
 
     action = coll->addAction("feed_modify");
     action->setIcon(QIcon::fromTheme("document-properties"));
     action->setText(i18n("&Edit Feed..."));
-    connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotFeedModify()));
+    connect(action, &QAction::triggered, d->mainWidget, &MainWidget::slotFeedModify);
     coll->setDefaultShortcut(action, QKeySequence("F2"));
 
     // toolbar / View
     action = coll->addAction("normal_view");
     action->setIcon(QIcon::fromTheme("view-split-top-bottom"));
     action->setText(i18n("&Normal View"));
-    connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotNormalView()));
+    connect(action, &QAction::triggered, d->mainWidget, &MainWidget::slotNormalView);
     coll->setDefaultShortcut(action, QKeySequence("Ctrl+Shift+1"));
 
     action = coll->addAction("widescreen_view");

@@ -258,11 +258,11 @@ Part::Part(QWidget *parentWidget, QObject *parent, const QVariantList &)
     m_mainWidget = new Akregator::MainWidget(this, parentWidget, m_actionManager, "akregator_view");
     m_extension = new BrowserExtension(this, "ak_extension");
 
-    connect(Kernel::self()->frameManager(), SIGNAL(signalCaptionChanged(QString)), this, SIGNAL(setWindowCaption(QString)));
-    connect(Kernel::self()->frameManager(), SIGNAL(signalStatusText(QString)), this, SLOT(slotSetStatusText(QString)));
-    connect(Kernel::self()->frameManager(), SIGNAL(signalLoadingProgress(int)), m_extension, SIGNAL(loadingProgress(int)));
-    connect(Kernel::self()->frameManager(), SIGNAL(signalCanceled(QString)), this, SIGNAL(canceled(QString)));
-    connect(Kernel::self()->frameManager(), SIGNAL(signalStarted()), this, SLOT(slotStarted()));
+    connect(Kernel::self()->frameManager(), &FrameManager::signalCaptionChanged, this, &Part::setWindowCaption);
+    connect(Kernel::self()->frameManager(), &FrameManager::signalStatusText, this, &Part::slotSetStatusText);
+    connect(Kernel::self()->frameManager(), &FrameManager::signalLoadingProgress, m_extension, &BrowserExtension::loadingProgress);
+    connect(Kernel::self()->frameManager(), &FrameManager::signalCanceled, this, &ReadOnlyPart::canceled);
+    connect(Kernel::self()->frameManager(), &FrameManager::signalStarted, this, &Part::slotStarted);
     connect(Kernel::self()->frameManager(), SIGNAL(signalCompleted()), this, SIGNAL(completed()));
 
     // notify the part that this is our internal widget
