@@ -85,16 +85,16 @@ public:
     Qt::ItemFlags flags(const QModelIndex &index) const Q_DECL_OVERRIDE;
 
     //reimpl
-    QStringList mimeTypes() const;
+    QStringList mimeTypes() const Q_DECL_OVERRIDE;
 
     //reimpl
     QMimeData *mimeData(const QModelIndexList &indexes) const Q_DECL_OVERRIDE;
 
     //reimpl
-    bool dropMimeData(const QMimeData *data, Qt::DropAction action, int row, int column, const QModelIndex &parent);
+    bool dropMimeData(const QMimeData *data, Qt::DropAction action, int row, int column, const QModelIndex &parent) Q_DECL_OVERRIDE;
 
     //reimpl
-    bool setData(const QModelIndex &idx, const QVariant &value, int role = Qt::EditRole);
+    bool setData(const QModelIndex &idx, const QVariant &value, int role = Qt::EditRole) Q_DECL_OVERRIDE;
 
     uint nodeIdForIndex(const QModelIndex &index) const;
 

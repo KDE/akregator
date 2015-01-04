@@ -217,7 +217,7 @@ class ArticleViewerPart : public KHTMLPart
 public:
     explicit ArticleViewerPart(QWidget *parent);
 
-    bool closeUrl();
+    bool closeUrl() Q_DECL_OVERRIDE;
 
     int button() const;
 
@@ -226,7 +226,7 @@ protected:
     /** reimplemented to get the mouse button */
     bool urlSelected(const QString &url, int button, int state, const QString &_target,
                      const KParts::OpenUrlArguments &args = KParts::OpenUrlArguments(),
-                     const KParts::BrowserArguments &browserArgs = KParts::BrowserArguments());
+                     const KParts::BrowserArguments &browserArgs = KParts::BrowserArguments()) Q_DECL_OVERRIDE;
 
 private:
 
