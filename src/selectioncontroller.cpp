@@ -70,7 +70,7 @@ static QList<Akregator::Article> articlesForIndexes(const QModelIndexList &index
 static Akregator::TreeNode *subscriptionForIndex(const QModelIndex &index, Akregator::FeedList *feedList)
 {
     if (!index.isValid()) {
-        return 0L;
+        return Q_NULLPTR;
     }
 
     return feedList->findByID(index.data(Akregator::SubscriptionListModel::SubscriptionIdRole).toInt());

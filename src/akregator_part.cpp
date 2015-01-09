@@ -322,7 +322,7 @@ void Part::loadPlugins(const QString &type)
 
 void Part::slotStarted()
 {
-    emit started(0L);
+    emit started(Q_NULLPTR);
 }
 
 void Part::slotOnShutdown()
@@ -335,7 +335,7 @@ void Part::slotOnShutdown()
     m_mainWidget->slotOnShutdown();
     //delete m_mainWidget;
     delete TrayIcon::getInstance();
-    TrayIcon::setInstance(0L);
+    TrayIcon::setInstance(Q_NULLPTR);
     delete m_storage;
     m_storage = 0;
     //delete m_actionManager;
