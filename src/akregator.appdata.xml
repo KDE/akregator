@@ -3,6 +3,7 @@
   <id>org.kde.akregator.desktop</id>
   <metadata_license>CC0-1.0</metadata_license>
   <name>Akregator</name>
+  <name xml:lang="ar">أكريغاتور</name>
   <name xml:lang="ca">Akregator</name>
   <name xml:lang="cs">Akregator</name>
   <name xml:lang="da">Akregator</name>
@@ -32,6 +33,7 @@
       check for updates using a web browser. Akregator is designed to be both easy to use and to be powerful enough to read hundreds of news sources conveniently.
       It comes with Konqueror integration for adding news feeds and with an internal browser for easy news reading.
     </p>
+    <p xml:lang="ar">أكريغاتور قارئ تغذيات أخبار لسطح مكتب كدي. يمكّنك أكريغاتور من متابعة أخبار المواقع، والمدوّنات وأيّ مواقع وِبّ تمكّن RSS دون الحاجة لالتماس التّحديثات يدويًّا عبر متصفّح وِبّ. صُمِّم أكريغاتور ليكون سهل الاستخدام وقويًّا كفاية لقراءة مئات مصادر الأخبار براحة. كما يأتي مع تكامل كنكر لإضافة تغذيات الأخبار ومتصفّح داخليّ لتسهيل قراءة الأخبار.</p>
     <p xml:lang="ca">L'Akregator és un lector de fonts de notícies per a l'escriptori KDE. Permet que seguiu els llocs de notícies, blogs i altres llocs web amb el RSS/Atom habilitat, sense necessitat de comprovar manualment si hi ha actualitzacions mitjançant un navegador web. L'Akregator està dissenyat per a ser fàcil d'usar i prou potent com per llegir centenars de fonts de notícies convenientment. Ve amb integració amb el Konqueror per afegir els canals de notícies i amb un navegador intern per a facilitar la lectura de les notícies.</p>
     <p xml:lang="en-GB">Akregator is a news feed reader for the KDE desktop. It enables you to follow news sites, blogs and other RSS/Atom-enabled websites without the need to manually check for updates using a web browser. Akregator is designed to be both easy to use and to be powerful enough to read hundreds of news sources conveniently. It comes with Konqueror integration for adding news feeds and with an internal browser for easy news reading.</p>
     <p xml:lang="es">Akregator es un lector de noticias para el escritorio KDE. Le permite seguir sitios de noticias, blogs y otros sitios web con RSS/Atom activado, sin la necesidad de comprobar actualizaciones manualmente con un navegador web. Akregator está diseñado para ser fácil de usar y ser lo bastante potente para leer cientos de fuentes de noticias. Viene con integración con Konqueror para añadir fuentes de noticias y un navegador interno para la lectura fácil de las noticias.</p>
