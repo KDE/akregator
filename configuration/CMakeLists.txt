@@ -16,8 +16,8 @@ target_link_libraries(akregator_config_general
   KF5::KIOCore
 )
 
-install(FILES akregator_config_general.desktop DESTINATION ${SERVICES_INSTALL_DIR})
-install(TARGETS akregator_config_general DESTINATION ${PLUGIN_INSTALL_DIR})
+install(FILES akregator_config_general.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
+install(TARGETS akregator_config_general DESTINATION ${KDE_INSTALL_PLUGINDIR})
 
 ########### next target ###############
 
@@ -31,8 +31,8 @@ target_link_libraries(akregator_config_appearance
   KF5::KIOCore
 )
 
-install(FILES akregator_config_appearance.desktop DESTINATION ${SERVICES_INSTALL_DIR})
-install(TARGETS akregator_config_appearance DESTINATION ${PLUGIN_INSTALL_DIR})
+install(FILES akregator_config_appearance.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
+install(TARGETS akregator_config_appearance DESTINATION ${KDE_INSTALL_PLUGINDIR})
 
 ########### next target ###############
 
@@ -46,8 +46,8 @@ target_link_libraries(akregator_config_archive
   KF5::KIOCore
 )
 
-install(FILES akregator_config_archive.desktop DESTINATION ${SERVICES_INSTALL_DIR})
-install(TARGETS akregator_config_archive DESTINATION ${PLUGIN_INSTALL_DIR})
+install(FILES akregator_config_archive.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
+install(TARGETS akregator_config_archive DESTINATION ${KDE_INSTALL_PLUGINDIR})
 
 ########### next target ###############
 
@@ -61,8 +61,8 @@ target_link_libraries(akregator_config_browser
   KF5::KIOCore
 )
 
-install(FILES akregator_config_browser.desktop DESTINATION ${SERVICES_INSTALL_DIR})
-install(TARGETS akregator_config_browser DESTINATION ${PLUGIN_INSTALL_DIR})
+install(FILES akregator_config_browser.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
+install(TARGETS akregator_config_browser DESTINATION ${KDE_INSTALL_PLUGINDIR})
 
 ########### next target ###############
 
@@ -79,5 +79,5 @@ target_link_libraries(akregator_config_advanced
   KF5::KIOCore
 )
 
-install(FILES akregator_config_advanced.desktop DESTINATION ${SERVICES_INSTALL_DIR})
-install(TARGETS akregator_config_advanced DESTINATION ${PLUGIN_INSTALL_DIR})
+install(FILES akregator_config_advanced.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
+install(TARGETS akregator_config_advanced DESTINATION ${KDE_INSTALL_PLUGINDIR})

@@ -45,8 +45,8 @@ target_link_libraries(akregator_mk4storage_plugin
   akregatorinterfaces
 )
 
-install(TARGETS akregator_mk4storage_plugin DESTINATION ${PLUGIN_INSTALL_DIR})
+install(TARGETS akregator_mk4storage_plugin DESTINATION ${KDE_INSTALL_PLUGINDIR})
 
 ########### install files ###############
 
-install(FILES akregator_mk4storage_plugin.desktop DESTINATION ${SERVICES_INSTALL_DIR})
+install(FILES akregator_mk4storage_plugin.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR})

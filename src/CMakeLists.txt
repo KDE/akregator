@@ -26,7 +26,7 @@ target_link_libraries(akregator
   akregatorinterfaces
 )
 
-install(TARGETS akregator ${INSTALL_TARGETS_DEFAULT_ARGS})
+install(TARGETS akregator ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 
 ########### next target ###############
 
@@ -71,7 +71,7 @@ set_target_properties(akregatorprivate
   PROPERTIES VERSION ${KDEPIM_LIB_VERSION}
   SOVERSION ${KDEPIM_LIB_SOVERSION}
 )
-install(TARGETS akregatorprivate ${INSTALL_TARGETS_DEFAULT_ARGS} LIBRARY NAMELINK_SKIP)
+install(TARGETS akregatorprivate ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} LIBRARY NAMELINK_SKIP)
 
 ########### next target ###############
 
@@ -130,15 +130,15 @@ target_link_libraries(akregatorpart
   KF5::Syndication
 )
 
-install(TARGETS akregatorpart DESTINATION ${PLUGIN_INSTALL_DIR})
+install(TARGETS akregatorpart DESTINATION ${KDE_INSTALL_PLUGINDIR})
 
 ########### install files ###############
 
-install(PROGRAMS org.kde.akregator.desktop DESTINATION ${XDG_APPS_INSTALL_DIR})
-install(FILES akregator_part.desktop DESTINATION ${SERVICES_INSTALL_DIR})
-install(FILES akregator.appdata.xml DESTINATION ${CMAKE_INSTALL_METAINFODIR})
-install(FILES akregator_plugin.desktop DESTINATION ${SERVICETYPES_INSTALL_DIR})
-install(FILES akregator_shell.rc articleviewer.rc pageviewer.rc akregator_part.rc DESTINATION ${KXMLGUI_INSTALL_DIR}/akregator)
-install(FILES feed.protocol DESTINATION ${SERVICES_INSTALL_DIR})
-install(FILES org.kde.akregator.part.xml DESTINATION ${DBUS_INTERFACES_INSTALL_DIR})
-install(FILES akregator.notifyrc DESTINATION ${KNOTIFYRC_INSTALL_DIR} )
+install(PROGRAMS org.kde.akregator.desktop DESTINATION ${KDE_INSTALL_APPDIR})
+install(FILES akregator_part.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
+install(FILES akregator.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
+install(FILES akregator_plugin.desktop DESTINATION ${KDE_INSTALL_KSERVICETYPES5DIR})
+install(FILES akregator_shell.rc articleviewer.rc pageviewer.rc akregator_part.rc DESTINATION ${KDE_INSTALL_KXMLGUI5DIR}/akregator)
+install(FILES feed.protocol DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
+install(FILES org.kde.akregator.part.xml DESTINATION ${KDE_INSTALL_DBUSINTERFACEDIR})
+install(FILES akregator.notifyrc DESTINATION ${KDE_INSTALL_KNOTIFY5RCDIR} )

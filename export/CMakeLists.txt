@@ -14,5 +14,5 @@ target_link_libraries(akregatorstorageexporter
   akregatorinterfaces
 )
 
-install(TARGETS akregatorstorageexporter ${INSTALL_TARGETS_DEFAULT_ARGS})
+install(TARGETS akregatorstorageexporter ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 

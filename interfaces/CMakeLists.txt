@@ -23,6 +23,6 @@ target_link_libraries(akregatorinterfaces
 set_target_properties(akregatorinterfaces PROPERTIES VERSION ${KDEPIM_LIB_VERSION} SOVERSION ${KDEPIM_LIB_SOVERSION}
 )
 
-install(TARGETS akregatorinterfaces ${INSTALL_TARGETS_DEFAULT_ARGS})
-install(FILES akregator.kcfg DESTINATION ${KCFG_INSTALL_DIR})
+install(TARGETS akregatorinterfaces ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
+install(FILES akregator.kcfg DESTINATION ${KDE_INSTALL_KCFGDIR})
 

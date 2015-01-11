@@ -20,9 +20,9 @@ MESSAGE(STATUS "Akregator plasma plugin disabled")
 #  KF5::KIOCore
 #)
 
-#install(FILES akregator_sharemicroblog_plugin.desktop DESTINATION ${SERVICES_INSTALL_DIR})
-#install(TARGETS akregator_sharemicroblog_plugin DESTINATION ${PLUGIN_INSTALL_DIR})
-#install(FILES akregator_sharemicroblog_plugin.rc DESTINATION ${DATA_INSTALL_DIR}/akregator_sharemicroblog_plugin)
+#install(FILES akregator_sharemicroblog_plugin.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
+#install(TARGETS akregator_sharemicroblog_plugin DESTINATION ${KDE_INSTALL_PLUGINDIR})
+#install(FILES akregator_sharemicroblog_plugin.rc DESTINATION ${KDE_INSTALL_DATADIR}/akregator_sharemicroblog_plugin)
 
 ########### settings target ###############
 
@@ -39,5 +39,5 @@ target_link_libraries(akregator_config_sharemicroblog
   KF5::KIOCore
 )
 
-install(FILES akregator_config_sharemicroblog.desktop DESTINATION ${SERVICES_INSTALL_DIR})
-install(TARGETS akregator_config_sharemicroblog DESTINATION ${PLUGIN_INSTALL_DIR})
+install(FILES akregator_config_sharemicroblog.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
+install(TARGETS akregator_config_sharemicroblog DESTINATION ${KDE_INSTALL_PLUGINDIR})

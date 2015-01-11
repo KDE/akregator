@@ -31,8 +31,8 @@ target_link_libraries(akregator_config_onlinesync
   ${KDE4_KPARTS_LIBS}
 )
 
-install(FILES akregator_config_onlinesync.desktop DESTINATION ${SERVICES_INSTALL_DIR})
-install(TARGETS akregator_config_onlinesync DESTINATION ${PLUGIN_INSTALL_DIR})
+install(FILES akregator_config_onlinesync.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
+install(TARGETS akregator_config_onlinesync DESTINATION ${KDE_INSTALL_PLUGINDIR})
 
 ########### next target ###############
 
@@ -63,6 +63,6 @@ target_link_libraries(akregator_onlinesync_plugin
   ${KDE4_KPARTS_LIBS}
 )
 
-install(FILES akregator_onlinesync_plugin.desktop DESTINATION ${SERVICES_INSTALL_DIR})
-install(TARGETS akregator_onlinesync_plugin DESTINATION ${PLUGIN_INSTALL_DIR})
-install(FILES akregator_onlinesync_plugin.rc DESTINATION ${DATA_INSTALL_DIR}/akregator_onlinesync_plugin)
+install(FILES akregator_onlinesync_plugin.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
+install(TARGETS akregator_onlinesync_plugin DESTINATION ${KDE_INSTALL_PLUGINDIR})
+install(FILES akregator_onlinesync_plugin.rc DESTINATION ${KDE_INSTALL_DATADIR}/akregator_onlinesync_plugin)
