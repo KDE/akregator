@@ -28,7 +28,7 @@ add_library(akregator_config_onlinesync MODULE ${kcm_akronlinesyncconfig_SRCS})
 target_link_libraries(akregator_config_onlinesync
   akregatorinterfaces
   KF5::KIOCore
-  ${KDE4_KPARTS_LIBS}
+  KF5::Parts
 )
 
 install(FILES akregator_config_onlinesync.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
@@ -60,7 +60,7 @@ add_library(akregator_onlinesync_plugin MODULE ${akregator_onlinesync_plugin_SRC
 target_link_libraries(akregator_onlinesync_plugin
   akregatorinterfaces
   KF5::KIOCore
-  ${KDE4_KPARTS_LIBS}
+  KF5::Parts
 )
 
 install(FILES akregator_onlinesync_plugin.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
