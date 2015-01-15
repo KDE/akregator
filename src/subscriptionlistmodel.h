@@ -73,7 +73,7 @@ public:
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const Q_DECL_OVERRIDE;
 
     //impl
-    QModelIndex index(int row, int column, const QModelIndex &parent = QModelIndex()) const;
+    QModelIndex index(int row, int column, const QModelIndex &parent = QModelIndex()) const Q_DECL_OVERRIDE;
 
     //impl
     QModelIndex parent(const QModelIndex &index) const Q_DECL_OVERRIDE;
