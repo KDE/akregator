@@ -57,7 +57,7 @@ KCMAkregatorArchiveConfig::KCMAkregatorArchiveConfig(QWidget *parent, const QVar
     m_archiveModeGroup->addButton(m_ui.rb_DisableArchiving, Settings::EnumArchiveMode::disableArchiving);
     connect(m_archiveModeGroup, SIGNAL(buttonClicked(int)), this, SLOT(changed()));
 
-    KAboutData *about = new KAboutData(QLatin1String("kcmakrarchiveconfig"),
+    KAboutData *about = new KAboutData(QStringLiteral("kcmakrarchiveconfig"),
                                        i18n("Configure Feed Reader Archive"),
                                        QString(), QString(), KAboutLicense::GPL,
                                        i18n("(c), 2004 - 2008 Frank Osterfeld"));

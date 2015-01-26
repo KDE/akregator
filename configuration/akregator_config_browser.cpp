@@ -47,7 +47,7 @@ KCMAkregatorBrowserConfig::KCMAkregatorBrowserConfig(QWidget *parent, const QVar
 
     connect(ui.kcfg_ExternalBrowserUseCustomCommand, SIGNAL(toggled(bool)),
             ui.kcfg_ExternalBrowserCustomCommand, SLOT(setEnabled(bool)));
-    KAboutData *about = new KAboutData(QLatin1String("kcmakrbrowserconfig"),
+    KAboutData *about = new KAboutData(QStringLiteral("kcmakrbrowserconfig"),
                                        i18n("Configure Feed Reader Browser"),
                                        QString(), QString(), KAboutLicense::GPL,
                                        i18n("(c), 2004 - 2008 Frank Osterfeld"));
