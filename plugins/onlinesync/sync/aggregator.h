@@ -43,7 +43,7 @@ public:
     virtual void update(const SubscriptionList &list) = 0;
     virtual void remove(const SubscriptionList &list) = 0;
 
-signals:
+Q_SIGNALS:
     void loadDone();
     void addDone();
     void updateDone();

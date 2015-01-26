@@ -51,7 +51,7 @@ private:
 protected Q_SLOTS:
     void sendSignalLoadDone();
 
-signals:
+Q_SIGNALS:
     void loadDone();
     void addDone();
     void updateDone();

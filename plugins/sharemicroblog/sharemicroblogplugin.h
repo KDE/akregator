@@ -46,10 +46,10 @@ public:
     explicit SharePlugin(QObject *parent = 0, const QList<QVariant> &args = QList<QVariant>());
     ~SharePlugin();
 
-public slots:
+public Q_SLOTS:
     void dataUpdated(const QString &source, const Plasma::DataEngine::Data &data);
 
-protected slots:
+protected Q_SLOTS:
     void articlesSelected(const QList<Akregator::Article> &articles);
     void slotServiceFinished(Plasma::ServiceJob *job);
     void shareArticles();

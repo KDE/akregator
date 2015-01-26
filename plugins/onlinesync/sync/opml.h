@@ -57,7 +57,7 @@ private:
 public Q_SLOTS:
     void sendSignalLoadDone();
 
-signals:
+Q_SIGNALS:
     void addDone();
     void updateDone();
     void removeDone();

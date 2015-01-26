@@ -71,7 +71,7 @@ private:
     SubscriptionList _cursorList;
     void genError(const QString &msg);
 
-signals:
+Q_SIGNALS:
     void loadDone();
     void addDone();
     void updateDone();
