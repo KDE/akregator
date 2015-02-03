@@ -226,7 +226,7 @@ Part::Part(QWidget *parentWidget, QObject *parent, const QVariantList &)
     FeedIconManager::self(); // FIXME: registering the icon manager dbus iface here,
     // because otherwise we get a deadlock later
 
-    m_standardFeedList = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QLatin1String("/akregator/data/feeds.opml");
+    m_standardFeedList = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QStringLiteral("/akregator/data/feeds.opml");
     QFileInfo fileInfo(m_standardFeedList);
     QDir().mkpath(fileInfo.absolutePath());
 
@@ -235,7 +235,7 @@ Part::Part(QWidget *parentWidget, QObject *parent, const QVariantList &)
         // There was already a dummy factory registered.
         delete dummyFactory;
     }
-    loadPlugins(QLatin1String("storage"));   // FIXME: also unload them!
+    loadPlugins(QStringLiteral("storage"));   // FIXME: also unload them!
 
     m_storage = 0;
     Backend::StorageFactory *storageFactory = Backend::StorageFactoryRegistry::self()->getFactory(Settings::archiveBackend());
@@ -299,7 +299,7 @@ Part::Part(QWidget *parentWidget, QObject *parent, const QVariantList &)
 
     Syndication::FileRetriever::setUserAgent(useragent);
 
-    loadPlugins(QLatin1String("extension"));   // FIXME: also unload them!
+    loadPlugins(QStringLiteral("extension"));   // FIXME: also unload them!
 
     if (!readCrashProperties()) {
         autoReadProperties();
@@ -505,7 +505,7 @@ void Part::slotSaveFeedList()
 
     // the first time we overwrite the feed list, we create a backup
     if (!m_backedUpList) {
-        const QString backup = localFilePath() + QLatin1String("~");
+        const QString backup = localFilePath() + QStringLiteral("~");
         if (QFile::copy(localFilePath(), backup)) {
             m_backedUpList = true;
         }

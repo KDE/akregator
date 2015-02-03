@@ -55,7 +55,7 @@ KCMAkregatorAppearanceConfig::KCMAkregatorAppearanceConfig(QWidget *parent, cons
 
     connect(m_ui.kcfg_MinimumFontSize, SIGNAL(valueChanged(int)), m_ui.slider_minimumFontSize, SLOT(setValue(int)));
     connect(m_ui.kcfg_MediumFontSize, SIGNAL(valueChanged(int)), m_ui.slider_mediumFontSize, SLOT(setValue(int)));
-    KAboutData *about = new KAboutData(QLatin1String("kcmakrappearanceconfig"),
+    KAboutData *about = new KAboutData(QStringLiteral("kcmakrappearanceconfig"),
                                        i18n("Configure Feed Reader Appearance"),
                                        QString(), QString(), KAboutLicense::GPL,
                                        i18n("(c), 2004 - 2008 Frank Osterfeld"));
@@ -64,10 +64,10 @@ KCMAkregatorAppearanceConfig::KCMAkregatorAppearanceConfig(QWidget *parent, cons
 
     setAboutData(about);
 
-    m_ui.slider_minimumFontSize->setDisabled(Settings::self()->isImmutable(QLatin1String("MinimumFontSize")));
-    m_ui.slider_mediumFontSize->setDisabled(Settings::self()->isImmutable(QLatin1String("MediumFontSize")));
-    m_ui.lbl_MinimumFontSize->setDisabled(Settings::self()->isImmutable(QLatin1String("MinimumFontSize")));
-    m_ui.lbl_MediumFontSize->setDisabled(Settings::self()->isImmutable(QLatin1String("MediumFontSize")));
+    m_ui.slider_minimumFontSize->setDisabled(Settings::self()->isImmutable(QStringLiteral("MinimumFontSize")));
+    m_ui.slider_mediumFontSize->setDisabled(Settings::self()->isImmutable(QStringLiteral("MediumFontSize")));
+    m_ui.lbl_MinimumFontSize->setDisabled(Settings::self()->isImmutable(QStringLiteral("MinimumFontSize")));
+    m_ui.lbl_MediumFontSize->setDisabled(Settings::self()->isImmutable(QStringLiteral("MediumFontSize")));
 
     addConfig(Settings::self(), m_widget);
 }
