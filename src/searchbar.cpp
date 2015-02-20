@@ -32,7 +32,6 @@
 #include <klineedit.h>
 #include <KLocalizedString>
 
-#include <khbox.h>
 #include <QIcon>
 
 #include <QLabel>
