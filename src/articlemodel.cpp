@@ -36,7 +36,7 @@
 
 #include <KLocalizedString>
 #include <KLocale>
-#include <KUrl>
+#include <QUrl>
 
 #include <memory>
 
@@ -275,7 +275,7 @@ QMimeData *ArticleModel::mimeData(const QModelIndexList &indexes) const
     std::auto_ptr<QMimeData> md(new QMimeData);
     QList<QUrl> urls;
     Q_FOREACH (const QModelIndex &i, indexes) {
-        const QUrl url = i.data(ArticleModel::LinkRole).value<KUrl>();
+        const QUrl url = i.data(ArticleModel::LinkRole).value<QUrl>();
         if (url.isValid()) {
             urls.push_back(url);
         } else {

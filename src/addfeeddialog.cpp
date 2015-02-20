@@ -118,7 +118,7 @@ void AddFeedDialog::accept()
         feedUrl.prepend("http://");
     }
 
-    KUrl asUrl(feedUrl);
+    QUrl asUrl(feedUrl);
     if (asUrl.scheme() == QLatin1String("feed")) {
         asUrl.setScheme("http");
         feedUrl = asUrl.url();

@@ -53,7 +53,6 @@
 
 #include <kstandardaction.h>
 #include <ktoolinvocation.h>
-#include <kurl.h>
 #include <kglobalsettings.h>
 #include <kparts/browserextension.h>
 #include <kparts/browserrun.h>

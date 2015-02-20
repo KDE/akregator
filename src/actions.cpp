@@ -26,11 +26,11 @@
 
 #include <QIcon>
 #include <KLocalizedString>
-#include <KUrl>
+#include <QUrl>
 
 #include <QAction>
 
-QAction *Akregator::createOpenLinkInNewTabAction(const KUrl &url, QObject *receiver, const char *slot, QObject *parent)
+QAction *Akregator::createOpenLinkInNewTabAction(const QUrl &url, QObject *receiver, const char *slot, QObject *parent)
 {
     QAction *action = new QAction(QIcon::fromTheme(QStringLiteral("tab-new")), i18n("Open Link in New &Tab"), parent);
     action->setData(url);
@@ -40,7 +40,7 @@ QAction *Akregator::createOpenLinkInNewTabAction(const KUrl &url, QObject *recei
     return action;
 }
 
-QAction *Akregator::createOpenLinkInExternalBrowserAction(const KUrl &url, QObject *receiver, const char *slot, QObject *parent)
+QAction *Akregator::createOpenLinkInExternalBrowserAction(const QUrl &url, QObject *receiver, const char *slot, QObject *parent)
 {
     QAction *action = new QAction(QIcon::fromTheme(QStringLiteral("window-new")), i18n("Open Link in External &Browser"), parent);
     action->setData(url);

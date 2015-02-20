@@ -30,13 +30,13 @@
 class QAction;
 class QObject;
 
-class KUrl;
+class QUrl;
 
 namespace Akregator
 {
 
-AKREGATOR_EXPORT QAction *createOpenLinkInNewTabAction(const KUrl &url, QObject *receiver = 0, const char *slot = 0, QObject *parent = Q_NULLPTR);
-AKREGATOR_EXPORT QAction *createOpenLinkInExternalBrowserAction(const KUrl &url, QObject *receiver = 0, const char *slot = 0, QObject *parent = Q_NULLPTR);
+AKREGATOR_EXPORT QAction *createOpenLinkInNewTabAction(const QUrl &url, QObject *receiver = 0, const char *slot = 0, QObject *parent = Q_NULLPTR);
+AKREGATOR_EXPORT QAction *createOpenLinkInExternalBrowserAction(const QUrl &url, QObject *receiver = 0, const char *slot = 0, QObject *parent = Q_NULLPTR);
 
 }
 

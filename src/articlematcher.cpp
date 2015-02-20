@@ -32,7 +32,7 @@
 #include <kconfiggroup.h>
 #include <qdebug.h>
 #include <krandom.h>
-#include <kurl.h>
+#include <qurl.h>
 
 #include <QList>
 #include <QRegExp>

@@ -52,7 +52,7 @@
 #include <KCmdLineArgs>
 #include <kconfig.h>
 #include <kconfigdialog.h>
-#include <kfiledialog.h>
+#include <qfiledialog.h>
 #include <kmessagebox.h>
 
 #include <QTemporaryFile>
@@ -599,7 +599,7 @@ void Part::exportFile(const QUrl &url)
 
 void Part::fileImport()
 {
-    QUrl url = KFileDialog::getOpenUrl(QUrl(),
+    QUrl url = QFileDialog::getOpenFileUrl(0, QString(), QUrl(),
                                        "*.opml *.xml|" + i18n("OPML Outlines (*.opml, *.xml)")
                                        + "\n*|" + i18n("All Files"));
 
@@ -610,7 +610,7 @@ void Part::fileImport()
 
 void Part::fileExport()
 {
-    QUrl url = KFileDialog::getSaveUrl(QUrl(),
+    QUrl url = QFileDialog::getSaveFileUrl(0, QString(), QUrl(),
                                        "*.opml *.xml|" + i18n("OPML Outlines (*.opml, *.xml)")
                                        + "\n*|" + i18n("All Files"));
 

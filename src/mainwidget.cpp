@@ -63,7 +63,6 @@
 #include <solid/networking.h>
 
 #include <QAction>
-#include <kfiledialog.h>
 #include <kfileitem.h>
 #include <kiconloader.h>
 #include <KLocalizedString>
@@ -224,8 +223,8 @@ Akregator::MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl
 
     m_actionManager->initArticleListView(m_articleListView);
 
-    connect(m_articleListView, SIGNAL(signalMouseButtonPressed(int,KUrl)),
-            this, SLOT(slotMouseButtonPressed(int,KUrl)));
+    connect(m_articleListView, &ArticleListView::signalMouseButtonPressed,
+            this, &MainWidget::slotMouseButtonPressed);
 
     /*
         connect( m_part, SIGNAL(signalSettingsChanged()),

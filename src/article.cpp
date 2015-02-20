@@ -37,8 +37,7 @@
 #include <QList>
 
 #include <qdebug.h>
-#include <kurl.h>
-
+#include <QUrl>
 #include <cassert>
 
 using namespace boost;
