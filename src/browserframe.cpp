@@ -37,7 +37,7 @@
 #include <QWidget>
 
 #include <QAction>
-#include <qdebug.h>
+#include "akregator_debug.h"
 #include <klibloader.h>
 #include <QMenu>
 #include <kmimetypetrader.h>
@@ -317,7 +317,7 @@ bool BrowserFrame::openUrl(const OpenUrlRequest &request)
 
     d->updateHistoryEntry();
 
-    qDebug() << "serviceType: " << serviceType;
+    qCDebug(AKREGATOR_LOG) << "serviceType: " << serviceType;
     if (!d->loadPartForMimetype(serviceType)) {
         return false;
     }

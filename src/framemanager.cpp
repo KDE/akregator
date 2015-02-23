@@ -38,7 +38,7 @@
 #include <ktoolinvocation.h>
 #include <kparts/event.h>
 #include <kparts/guiactivateevent.h>
-#include <QDebug>
+#include "akregator_debug.h"
 
 #include <QtCore/QStringList>
 #include <QApplication>
@@ -318,7 +318,7 @@ void FrameManager::openInExternalBrowser(const OpenUrlRequest &request)
 
 void FrameManager::slotOpenUrlRequest(OpenUrlRequest &request, bool useOpenInBackgroundSetting)
 {
-    qDebug() << "FrameManager::slotOpenUrlRequest():" << request.debugInfo();
+    qCDebug(AKREGATOR_LOG) << "FrameManager::slotOpenUrlRequest():" << request.debugInfo();
 
     if (request.options() == OpenUrlRequest::ExternalBrowser) {
         openInExternalBrowser(request);

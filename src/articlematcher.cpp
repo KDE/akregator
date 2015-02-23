@@ -30,7 +30,7 @@
 
 #include <kapplication.h>
 #include <kconfiggroup.h>
-#include <qdebug.h>
+#include "akregator_debug.h"
 #include <krandom.h>
 #include <qurl.h>
 
@@ -203,7 +203,7 @@ bool Criterion::satisfiedBy(const Article &article) const
         satisfied = QRegExp(m_object.toString()).indexIn(concreteSubject.toString()) != -1;
         break;
     default:
-        qDebug() << "Internal inconsistency; predicateType should never be Negation";
+        qCDebug(AKREGATOR_LOG) << "Internal inconsistency; predicateType should never be Negation";
         break;
     }
 

@@ -28,7 +28,7 @@
 #include <QRegExp>
 
 #include <kactioncollection.h>
-#include <qdebug.h>
+#include "akregator_debug.h"
 #include <KLocalizedString>
 #include <kurl.h>
 #include <kparts/browserextension.h>

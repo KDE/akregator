@@ -24,6 +24,7 @@
 */
 
 #include "akregator_part.h"
+#include "akregator_debug.h"
 #include "akregatorconfig.h"
 #include "aboutdata.h"
 #include "actionmanagerimpl.h"
@@ -398,12 +399,12 @@ void Part::saveSettings()
 
 Part::~Part()
 {
-    qDebug() << "Part::~Part() enter";
+    qCDebug(AKREGATOR_LOG) << "Part::~Part() enter";
     if (!m_shuttingDown) {
         slotOnShutdown();
     }
     delete m_dialog;
-    qDebug() << "Part::~Part(): leaving";
+    qCDebug(AKREGATOR_LOG) << "Part::~Part(): leaving";
 }
 
 void Part::readProperties(const KConfigGroup &config)
@@ -626,7 +627,7 @@ void Part::fetchAllFeeds()
 
 void Part::fetchFeedUrl(const QString &s)
 {
-    qDebug() << "fetchFeedURL==" << s;
+    qCDebug(AKREGATOR_LOG) << "fetchFeedURL==" << s;
 }
 
 void Part::addFeedsToGroup(const QStringList &urls, const QString &group)

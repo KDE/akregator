@@ -12,7 +12,7 @@ include_directories(
 
 ########### next target ###############
 
-set(akregator_SRCS main.cpp mainwindow.cpp)
+set(akregator_SRCS main.cpp mainwindow.cpp akregator_debug.cpp)
 
 kde4_add_app_icon(akregator_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/icons/hi*-app-akregator.png")
 
@@ -31,6 +31,7 @@ install(TARGETS akregator ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 ########### next target ###############
 
 set(akregatorprivate_LIB_SRCS
+  akregator_debug.cpp
   aboutdata.cpp
   trayicon.cpp
   article.cpp
@@ -81,6 +82,7 @@ set(akregator_utils_SRCS
 
 set(akregatorpart_PART_SRCS
   ${akregator_utils_SRCS}
+  akregator_debug.cpp
   deletesubscriptioncommand.cpp
   abstractselectioncontroller.cpp
   articlematcher.cpp

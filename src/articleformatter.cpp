@@ -442,7 +442,7 @@ QString DefaultCombinedViewFormatter::formatArticle(const Article &article, Icon
     }
 
     text += "</div>";
-    //qDebug() << text;
+    //qCDebug(AKREGATOR_LOG) << text;
     return text;
 }
 

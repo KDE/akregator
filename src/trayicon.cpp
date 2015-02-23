@@ -26,7 +26,7 @@
 #include "akregatorconfig.h"
 
 #include <kwindowsystem.h>
-#include <qdebug.h>
+#include "akregator_debug.h"
 #include <KLocalizedString>
 #include <QMenu>
 #include <kiconloader.h>

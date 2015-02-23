@@ -36,7 +36,7 @@
 #include <QRegExp>
 #include <QList>
 
-#include <qdebug.h>
+#include "akregator_debug.h"
 #include <QUrl>
 #include <cassert>
 

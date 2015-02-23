@@ -29,7 +29,7 @@
 #include "subscriptionlistjobs.h"
 #include "treenode.h"
 
-#include <QDebug>
+#include "akregator_debug.h"
 #include <KIconLoader>
 #include <KLocalizedString>
 
@@ -277,7 +277,7 @@ void Akregator::SubscriptionListModel::subscriptionAdded(Akregator::TreeNode *su
 
 void Akregator::SubscriptionListModel::aboutToRemoveSubscription(Akregator::TreeNode *subscription)
 {
-    qDebug() << subscription->id() << endl;
+    qCDebug(AKREGATOR_LOG) << subscription->id() << endl;
     const Folder *const parent = subscription->parent();
     const int row = parent ? parent->indexOf(subscription) : -1;
     if (row < 0) {
@@ -289,7 +289,7 @@ void Akregator::SubscriptionListModel::aboutToRemoveSubscription(Akregator::Tree
 
 void Akregator::SubscriptionListModel::subscriptionRemoved(TreeNode *subscription)
 {
-    qDebug() << subscription->id() << endl;
+    qCDebug(AKREGATOR_LOG) << subscription->id() << endl;
     if (m_beganRemoval) {
         m_beganRemoval = false;
         endRemoveRows();

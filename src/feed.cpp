@@ -39,7 +39,7 @@
 
 #include <Syndication/Syndication>
 
-#include <qdebug.h>
+#include "akregator_debug.h"
 #include <QIcon>
 #include <QFileInfo>
 #include <QDir>

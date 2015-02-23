@@ -38,7 +38,7 @@
 #include <QMimeData>
 
 #include <kapplication.h>
-#include <qdebug.h>
+#include "akregator_debug.h"
 #include <QTabWidget>
 #include <qtabbar.h>
 #include <QMenu>
@@ -365,7 +365,7 @@ void TabWidget::contextMenu(int i, const QPoint &p)
 {
     QWidget *w = ActionManager::getInstance()->container("tab_popup");
     TemporaryValue<QWidget *> tmp(d->currentItem, widget(i));
-    //qDebug() << indexOf(d->currentItem);
+    //qCDebug(AKREGATOR_LOG) << indexOf(d->currentItem);
     // FIXME: do not hardcode index of maintab
     if (w && indexOf(d->currentItem) != 0) {
         static_cast<QMenu *>(w)->exec(p);

@@ -37,7 +37,7 @@
 #include "treenode.h"
 #include "utils.h"
 #include "openurlrequest.h"
-
+#include "akregator_debug.h"
 #include "kdepim-version.h"
 
 #include <QAction>
@@ -398,7 +398,7 @@ void ArticleViewer::renderContent(const QString &text)
     m_part->closeUrl();
     m_currentText = text;
     beginWriting();
-    //qDebug() << text;
+    //qCDebug(AKREGATOR_LOG) << text;
     m_part->write(text);
     endWriting();
 }
@@ -430,7 +430,7 @@ void ArticleViewer::beginWriting()
 void ArticleViewer::endWriting()
 {
     m_part->write(m_htmlFooter);
-    //qDebug() << m_htmlFooter;
+    //qCDebug(AKREGATOR_LOG) << m_htmlFooter;
     m_part->end();
 }
 
@@ -529,9 +529,9 @@ void ArticleViewer::slotUpdateCombinedView()
         ++num;
     }
 
-    qDebug() << "Combined view rendering: (" << num << " articles):" << "generating HTML:" << spent.elapsed() << "ms";
+    qCDebug(AKREGATOR_LOG) << "Combined view rendering: (" << num << " articles):" << "generating HTML:" << spent.elapsed() << "ms";
     renderContent(text);
-    qDebug() << "HTML rendering:" << spent.elapsed() << "ms";
+    qCDebug(AKREGATOR_LOG) << "HTML rendering:" << spent.elapsed() << "ms";
 }
 
 void ArticleViewer::slotArticlesUpdated(TreeNode * /*node*/, const QList<Article> & /*list*/)
@@ -604,9 +604,9 @@ void ArticleViewer::slotArticlesListed(KJob *job)
 
     if (job->error() || !node) {
         if (!node) {
-            qWarning() << "Node to be listed is already deleted";
+            qCWarning(AKREGATOR_LOG) << "Node to be listed is already deleted";
         } else {
-            qWarning() << job->errorText();
+            qCWarning(AKREGATOR_LOG) << job->errorText();
         }
         slotUpdateCombinedView();
         return;
@@ -680,7 +680,7 @@ void ArticleViewer::displayAboutPage()
 
     QFile f(location);
     if (!f.open(QIODevice::ReadOnly)) {
-        qWarning() << "Cannot load about page: " << f.errorString();
+        qCWarning(AKREGATOR_LOG) << "Cannot load about page: " << f.errorString();
         m_part->end();
         return;
     }

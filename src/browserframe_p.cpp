@@ -24,7 +24,7 @@
 
 #include "browserframe_p.h"
 #include "utils/temporaryvalue.h"
-
+#include "akregator_debug.h"
 using namespace Akregator;
 
 BrowserFrame::Private::Private(BrowserFrame *qq)
@@ -70,7 +70,7 @@ bool BrowserFrame::Private::loadPartForMimetype(const QString &mimetype)
 {
     KService::List offers = KMimeTypeTrader::self()->query(mimetype, QLatin1String("KParts/ReadOnlyPart"));
 
-    qDebug() << "BrowserFrame::loadPartForMimetype(" << mimetype << "):" << offers.size() << " offers";
+    qCDebug(AKREGATOR_LOG) << "BrowserFrame::loadPartForMimetype(" << mimetype << "):" << offers.size() << " offers";
 
     if (offers.isEmpty()) {
         return false;
@@ -165,7 +165,7 @@ void BrowserFrame::Private::restoreHistoryEntry(const QList<HistoryEntry>::Itera
         if (extension) {
             extension->restoreState(stream);
         } else {
-            qDebug() << "BrowserFrame::restoreHistoryEntry(): no BrowserExtension found, reloading page!";
+            qCDebug(AKREGATOR_LOG) << "BrowserFrame::restoreHistoryEntry(): no BrowserExtension found, reloading page!";
             part->openUrl((*entry).url);
         }
         mimetype = entry->mimetype;
@@ -186,7 +186,7 @@ void BrowserFrame::Private::updateHistoryEntry()
         return;
     }
 
-    qDebug() << "BrowserFrame::updateHistoryEntry(): updating id=" << (*current).id << " url=" << part->url().url();
+    qCDebug(AKREGATOR_LOG) << "BrowserFrame::updateHistoryEntry(): updating id=" << (*current).id << " url=" << part->url().url();
 
     (*current).url = part->url();
     (*current).title = q->title();

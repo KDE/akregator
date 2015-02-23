@@ -28,7 +28,7 @@
 #include "folder.h"
 #include "kernel.h"
 
-#include <QDebug>
+#include "akregator_debug.h"
 #include <QInputDialog>
 #include <KLocalizedString>
 
@@ -72,7 +72,7 @@ void ImportFeedListCommand::Private::doImport()
 
     if (!target) {
         if (!target) {
-            qWarning() << "Target list was deleted, could not import feed list";
+            qCWarning(AKREGATOR_LOG) << "Target list was deleted, could not import feed list";
         }
         q->done();
         return;

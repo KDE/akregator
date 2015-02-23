@@ -45,7 +45,7 @@
 #include <QAction>
 #include <KToggleAction>
 #include <kactioncollection.h>
-#include <qdebug.h>
+#include "akregator_debug.h"
 #include <KLocalizedString>
 #include <QMenu>
 #include <QKeySequence>

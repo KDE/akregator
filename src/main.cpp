@@ -27,7 +27,7 @@
 #include "akregator_options.h"
 #include "utils.h"
 #include <kcmdlineargs.h>
-#include <QDebug>
+#include "akregator_debug.h"
 #include <KLocalizedString>
 #include <kontactinterface/pimuniqueapplication.h>
 #include <QtDBus/QtDBus>
@@ -81,7 +81,7 @@ int main(int argc, char **argv)
 
     Akregator::Utils::migrateConfig();
     if (!Akregator::Application::start()) {
-        qWarning() << "akregator is already running, exiting.";
+        qCWarning(AKREGATOR_LOG) << "akregator is already running, exiting.";
         exit(0);
     }
 

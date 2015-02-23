@@ -31,7 +31,7 @@
 #include <QString>
 #include <QList>
 
-#include <qdebug.h>
+#include "akregator_debug.h"
 
 #include <cassert>
 

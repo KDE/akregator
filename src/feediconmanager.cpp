@@ -26,7 +26,7 @@
 #include "feediconmanager.h"
 
 #include <kapplication.h>
-#include <qdebug.h>
+#include "akregator_debug.h"
 
 #include <kurl.h>
 
@@ -102,7 +102,7 @@ void FeedIconManager::Private::loadIcon(const QString &url_)
     if (iconFile.isEmpty()) { // cache miss
         const QDBusReply<void> reply = m_favIconsModule->call(QLatin1String("downloadHostIcon"), url.url());
         if (!reply.isValid()) {
-            qWarning() << "Couldn't reach favicon service. Request favicon for " << url << " failed";
+            qCWarning(AKREGATOR_LOG) << "Couldn't reach favicon service. Request favicon for " << url << " failed";
         }
     } else {
         q->slotIconChanged(false, url.host(), iconFile);
