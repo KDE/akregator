@@ -32,7 +32,7 @@ namespace Akregator
 
 QString Utils::stripTags(const QString &str)
 {
-    return QString(str).remove(QRegExp(QLatin1String("<[^>]*>")));
+    return QString(str).remove(QRegExp(QStringLiteral("<[^>]*>")));
 }
 
 uint Utils::calcHash(const QString &str)
@@ -57,15 +57,15 @@ QString Utils::fileNameForUrl(const QString &url_p)
 // from kmail::headerstyle.cpp
 QString Utils::directionOf(const QString &str)
 {
-    return str.isRightToLeft() ? QLatin1String("rtl") : QLatin1String("ltr");
+    return str.isRightToLeft() ? QStringLiteral("rtl") : QStringLiteral("ltr");
 }
 
 void Utils::migrateConfig()
 {
-    Kdelibs4ConfigMigrator migrate(QLatin1String("akregator"));
-    migrate.setConfigFiles(QStringList() << QLatin1String("akregatorrc") << QLatin1String("akregator.notifyrc"));
-    migrate.setUiFiles(QStringList() << QLatin1String("akregator_shell.rc") << QLatin1String("akregator_part.rc") << QLatin1String("pageviewer.rc")
-                       << QLatin1String("articleviewer.rc") << QLatin1String("akregator_sharemicroblog_plugin.rc") << QLatin1String("akregator_onlinesync_plugin.rc"));
+    Kdelibs4ConfigMigrator migrate(QStringLiteral("akregator"));
+    migrate.setConfigFiles(QStringList() << QStringLiteral("akregatorrc") << QStringLiteral("akregator.notifyrc"));
+    migrate.setUiFiles(QStringList() << QStringLiteral("akregator_shell.rc") << QStringLiteral("akregator_part.rc") << QStringLiteral("pageviewer.rc")
+                       << QStringLiteral("articleviewer.rc") << QStringLiteral("akregator_sharemicroblog_plugin.rc") << QStringLiteral("akregator_onlinesync_plugin.rc"));
     migrate.migrate();
 }
 

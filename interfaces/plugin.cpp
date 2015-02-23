@@ -48,7 +48,7 @@ QString
 Plugin::pluginProperty(const QString &key) const
 {
     if (m_properties.find(key.toLower()) == m_properties.end()) {
-        return QLatin1String("false");
+        return QStringLiteral("false");
     }
 
     return m_properties[key.toLower()];

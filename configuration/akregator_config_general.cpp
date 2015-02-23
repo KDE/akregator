@@ -49,7 +49,7 @@ KCMAkregatorGeneralConfig::KCMAkregatorGeneralConfig(QWidget *parent, const QVar
 
     connect(ui.kcfg_UseIntervalFetch, SIGNAL(toggled(bool)), ui.kcfg_AutoFetchInterval, SLOT(setEnabled(bool)));
     connect(ui.kcfg_UseIntervalFetch, SIGNAL(toggled(bool)), ui.autoFetchIntervalLabel, SLOT(setEnabled(bool)));
-    KAboutData *about = new KAboutData(QLatin1String("kcmakrgeneralconfig"),
+    KAboutData *about = new KAboutData(QStringLiteral("kcmakrgeneralconfig"),
                                        i18n("Configure Feeds"),
                                        QString(), QString(), KAboutLicense::GPL,
                                        i18n("(c), 2004 - 2008 Frank Osterfeld"));

@@ -255,12 +255,12 @@ void BrowserFrame::slotPopupMenu(
         addSeparatorIfNotFirst();
         popup->addAction(createOpenLinkInNewTabAction(url, this, SLOT(slotOpenLinkInNewTab()), popup));
         popup->addAction(createOpenLinkInExternalBrowserAction(url, this, SLOT(slotOpenLinkInBrowser()), popup));
-        addActionsToMenu(popup, actionGroups.value(QLatin1String("linkactions")), ShowSeparatorIfNotEmpty);
+        addActionsToMenu(popup, actionGroups.value(QStringLiteral("linkactions")), ShowSeparatorIfNotEmpty);
     }
 
     if (isSelection) {
         addSeparatorIfNotFirst();
-        addActionsToMenu(popup, actionGroups.value(QLatin1String("editactions")), NoSeparator);
+        addActionsToMenu(popup, actionGroups.value(QStringLiteral("editactions")), NoSeparator);
     }
 
     if (hasZoom()) {
@@ -270,7 +270,7 @@ void BrowserFrame::slotPopupMenu(
     }
 
     addSeparatorIfNotFirst();
-    addActionsToMenu(popup, actionGroups.value(QLatin1String("part")), NoSeparator);
+    addActionsToMenu(popup, actionGroups.value(QStringLiteral("part")), NoSeparator);
 
     popup->exec(global);
     delete popup;

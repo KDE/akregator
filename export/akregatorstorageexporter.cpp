@@ -104,7 +104,7 @@ public:
             writer.writeStartElement(ns, name);
         }
         if (mode == Html) {
-            writer.writeAttribute(QLatin1String("type"), QLatin1String("html"));
+            writer.writeAttribute(QStringLiteral("type"), QStringLiteral("html"));
         }
         writer.writeCharacters(str);
         writer.writeEndElement();
@@ -115,31 +115,31 @@ struct Elements {
     Elements() : atomNS(Syndication::Atom::atom1Namespace()),
         akregatorNS(akregatorNamespace()),
         commentNS(Syndication::commentApiNamespace()),
-        title(atomNS, QLatin1String("title")),
-        summary(atomNS, QLatin1String("summary")),
-        content(atomNS, QLatin1String("content")),
-        link(atomNS, QLatin1String("link")),
-        language(atomNS, QLatin1String("language")),
-        feed(atomNS, QLatin1String("feed")),
-        guid(atomNS, QLatin1String("id")),
-        published(atomNS, QLatin1String("published")),
-        updated(atomNS, QLatin1String("updated")),
-        commentsCount(Syndication::slashNamespace(), QLatin1String("comments")),
-        commentsFeed(commentNS, QLatin1String("commentRss")),
-        commentPostUri(commentNS, QLatin1String("comment")),
-        commentsLink(akregatorNS, QLatin1String("commentsLink")),
-        hash(akregatorNS, QLatin1String("hash")),
-        guidIsHash(akregatorNS, QLatin1String("idIsHash")),
-        name(atomNS, QLatin1String("name")),
-        uri(atomNS, QLatin1String("uri")),
-        email(atomNS, QLatin1String("email")),
-        author(atomNS, QLatin1String("author")),
-        category(atomNS, QLatin1String("category")),
-        entry(atomNS, QLatin1String("entry")),
-        itemProperties(akregatorNS, QLatin1String("itemProperties")),
-        readStatus(akregatorNS, QLatin1String("readStatus")),
-        deleted(akregatorNS, QLatin1String("deleted")),
-        important(akregatorNS, QLatin1String("important"))
+        title(atomNS, QStringLiteral("title")),
+        summary(atomNS, QStringLiteral("summary")),
+        content(atomNS, QStringLiteral("content")),
+        link(atomNS, QStringLiteral("link")),
+        language(atomNS, QStringLiteral("language")),
+        feed(atomNS, QStringLiteral("feed")),
+        guid(atomNS, QStringLiteral("id")),
+        published(atomNS, QStringLiteral("published")),
+        updated(atomNS, QStringLiteral("updated")),
+        commentsCount(Syndication::slashNamespace(), QStringLiteral("comments")),
+        commentsFeed(commentNS, QStringLiteral("commentRss")),
+        commentPostUri(commentNS, QStringLiteral("comment")),
+        commentsLink(akregatorNS, QStringLiteral("commentsLink")),
+        hash(akregatorNS, QStringLiteral("hash")),
+        guidIsHash(akregatorNS, QStringLiteral("idIsHash")),
+        name(atomNS, QStringLiteral("name")),
+        uri(atomNS, QStringLiteral("uri")),
+        email(atomNS, QStringLiteral("email")),
+        author(atomNS, QStringLiteral("author")),
+        category(atomNS, QStringLiteral("category")),
+        entry(atomNS, QStringLiteral("entry")),
+        itemProperties(akregatorNS, QStringLiteral("itemProperties")),
+        readStatus(akregatorNS, QStringLiteral("readStatus")),
+        deleted(akregatorNS, QStringLiteral("deleted")),
+        important(akregatorNS, QStringLiteral("important"))
 
     {}
     const QString atomNS;
@@ -196,11 +196,11 @@ void writeAttributeIfNotEmpty(const QString &element, const QVariant &value, QXm
 void writeEnclosure(const QString &url, const QString &type, int length, QXmlStreamWriter &writer)
 {
     Elements::instance.link.writeStartElement(writer);
-    writer.writeAttribute(QLatin1String("rel"), QLatin1String("enclosure"));
-    writeAttributeIfNotEmpty(QLatin1String("href"), url, writer);
-    writeAttributeIfNotEmpty(QLatin1String("type"), type, writer);
+    writer.writeAttribute(QStringLiteral("rel"), QStringLiteral("enclosure"));
+    writeAttributeIfNotEmpty(QStringLiteral("href"), url, writer);
+    writeAttributeIfNotEmpty(QStringLiteral("type"), type, writer);
     if (length > 0) {
-        writer.writeAttribute(QLatin1String("length"), QString::number(length));
+        writer.writeAttribute(QStringLiteral("length"), QString::number(length));
     }
     writer.writeEndElement();
 }
@@ -211,8 +211,8 @@ void writeLink(const QString &url, QXmlStreamWriter &writer)
         return;
     }
     Elements::instance.link.writeStartElement(writer);
-    writer.writeAttribute(QLatin1String("rel"), QLatin1String("alternate"));
-    writeAttributeIfNotEmpty(QLatin1String("href"), url, writer);
+    writer.writeAttribute(QStringLiteral("rel"), QStringLiteral("alternate"));
+    writeAttributeIfNotEmpty(QStringLiteral("href"), url, writer);
     writer.writeEndElement();
 }
 
@@ -304,9 +304,9 @@ static void serialize(FeedStorage *storage, const QString &url, QIODevice *devic
     Elements::instance.feed.writeStartElement(writer);
 
     writer.writeDefaultNamespace(Syndication::Atom::atom1Namespace());
-    writer.writeNamespace(Syndication::commentApiNamespace(), QLatin1String("comment"));
-    writer.writeNamespace(akregatorNamespace(), QLatin1String("akregator"));
-    writer.writeNamespace(Syndication::itunesNamespace(), QLatin1String("itunes"));
+    writer.writeNamespace(Syndication::commentApiNamespace(), QStringLiteral("comment"));
+    writer.writeNamespace(akregatorNamespace(), QStringLiteral("akregator"));
+    writer.writeNamespace(Syndication::itunesNamespace(), QStringLiteral("itunes"));
 
     Elements::instance.title.write(QStringLiteral("Akregator Export for %1").arg(url), writer, Html);
 
@@ -324,7 +324,7 @@ static void serialize(Storage *storage, const QString &url, QIODevice *device)
 
 static KService::List queryStoragePlugins()
 {
-    return KServiceTypeTrader::self()->query(QLatin1String("Akregator/Plugin"),
+    return KServiceTypeTrader::self()->query(QStringLiteral("Akregator/Plugin"),
             QStringLiteral("[X-KDE-akregator-framework-version] == %1 and [X-KDE-akregator-plugintype] == 'storage' and [X-KDE-akregator-rank] > 0").arg(QString::number(AKREGATOR_PLUGIN_INTERFACE_VERSION)));
 }
 

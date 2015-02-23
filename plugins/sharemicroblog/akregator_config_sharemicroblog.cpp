@@ -42,7 +42,7 @@ KCMAkregatorShareConfig::KCMAkregatorShareConfig(QWidget *parent, const QVariant
     ui.setupUi(m_widget);
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->addWidget(m_widget);
-    KAboutData *about = new KAboutData(QLatin1String("kcmakrshareconfig"),
+    KAboutData *about = new KAboutData(QStringLiteral("kcmakrshareconfig"),
                                        i18n("Configure Share Services"),
                                        QString(), QString(), KAboutLicense::GPL,
                                        i18n("(c), 2004 - 2008 Frank Osterfeld"));
@@ -63,8 +63,8 @@ void KCMAkregatorShareConfig::load()
 
     KConfigGroup group(ShareSettings::self()->config(), "ShareService");
     QStringList services;
-    services << QLatin1String("https://identi.ca/api/");
-    services << QLatin1String("https://twitter.com");
+    services << QStringLiteral("https://identi.ca/api/");
+    services << QStringLiteral("https://twitter.com");
     ui.kcfg_ServiceUrl->clear();
     ui.kcfg_ServiceUrl->addItems(services);
 

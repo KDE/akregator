@@ -41,7 +41,7 @@ KCMAkregatorAdvancedConfig::KCMAkregatorAdvancedConfig(QWidget *parent, const QV
 {
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->addWidget(m_widget);
-    KAboutData *about = new KAboutData(QLatin1String("kcmakradvancedconfig"),
+    KAboutData *about = new KAboutData(QStringLiteral("kcmakradvancedconfig"),
                                        i18n("Advanced Feed Reader Settings"),
                                        QString(), QString(), KAboutLicense::GPL,
                                        i18n("(c), 2004 - 2008 Frank Osterfeld"));
