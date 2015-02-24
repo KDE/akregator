@@ -111,11 +111,11 @@ QList<Article> Folder::articles()
 
 QDomElement Folder::toOPML(QDomElement parent, QDomDocument document) const
 {
-    QDomElement el = document.createElement(QLatin1String("outline"));
-    el.setAttribute(QLatin1String("text"), title());
+    QDomElement el = document.createElement(QStringLiteral("outline"));
+    el.setAttribute(QStringLiteral("text"), title());
     parent.appendChild(el);
-    el.setAttribute(QLatin1String("isOpen"), d->open ? QLatin1String("true") : QLatin1String("false"));
-    el.setAttribute(QLatin1String("id"), QString::number(id()));
+    el.setAttribute(QStringLiteral("isOpen"), d->open ? QStringLiteral("true") : QStringLiteral("false"));
+    el.setAttribute(QStringLiteral("id"), QString::number(id()));
 
     Q_FOREACH (const Akregator::TreeNode *i, d->children) {
         el.appendChild(i->toOPML(el, document));
@@ -197,7 +197,7 @@ void Folder::insertChild(TreeNode *node, TreeNode *after)
 
 QIcon Folder::icon() const
 {
-    return QIcon::fromTheme(QLatin1String("folder"));
+    return QIcon::fromTheme(QStringLiteral("folder"));
 }
 
 void Folder::insertChild(int index, TreeNode *node)
