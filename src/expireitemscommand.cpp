@@ -33,11 +33,10 @@
 #include <QSet>
 #include <QTimer>
 
-#include <boost/shared_ptr.hpp>
+#include <QSharedPointer>
 
 #include <cassert>
 
-using namespace boost;
 using namespace Akregator;
 
 class ExpireItemsCommand::Private
@@ -50,7 +49,7 @@ public:
     void addDeleteJobForFeed(Feed *feed);
     void jobFinished(KJob *);
 
-    weak_ptr<FeedList> m_feedList;
+    QWeakPointer<FeedList> m_feedList;
     QVector<int> m_feeds;
     QSet<KJob *> m_jobs;
 };
@@ -62,7 +61,7 @@ ExpireItemsCommand::Private::Private(ExpireItemsCommand *qq) : q(qq), m_feedList
 
 void ExpireItemsCommand::Private::addDeleteJobForFeed(Feed *feed)
 {
-    assert(feed);
+    Q_ASSERT(feed);
     ArticleDeleteJob *job = new ArticleDeleteJob(q);
     connect(job, SIGNAL(finished(KJob*)), q, SLOT(jobFinished(KJob*)));
     m_jobs.insert(job);
@@ -72,7 +71,7 @@ void ExpireItemsCommand::Private::addDeleteJobForFeed(Feed *feed)
 
 void ExpireItemsCommand::Private::jobFinished(KJob *job)
 {
-    assert(!m_jobs.isEmpty());
+    Q_ASSERT(!m_jobs.isEmpty());
     m_jobs.remove(job);
     emit q->progress(((m_feeds.count() - m_jobs.count()) * 100) / m_feeds.count(), QString());
     if (m_jobs.isEmpty()) {
@@ -82,8 +81,8 @@ void ExpireItemsCommand::Private::jobFinished(KJob *job)
 
 void ExpireItemsCommand::Private::createDeleteJobs()
 {
-    assert(m_jobs.isEmpty());
-    const shared_ptr<FeedList> feedList = m_feedList.lock();
+    Q_ASSERT(m_jobs.isEmpty());
+    const QSharedPointer<FeedList> feedList = m_feedList.lock();
 
     if (m_feeds.isEmpty() || !feedList) {
         if (!feedList) {
@@ -110,12 +109,12 @@ ExpireItemsCommand::~ExpireItemsCommand()
     delete d;
 }
 
-void ExpireItemsCommand::setFeedList(const weak_ptr<FeedList> &feedList)
+void ExpireItemsCommand::setFeedList(const QWeakPointer<FeedList> &feedList)
 {
     d->m_feedList = feedList;
 }
 
-weak_ptr<FeedList> ExpireItemsCommand::feedList() const
+QWeakPointer<FeedList> ExpireItemsCommand::feedList() const
 {
     return d->m_feedList;
 }

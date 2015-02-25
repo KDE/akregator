@@ -27,7 +27,7 @@
 
 #include "command.h"
 
-#include <boost/shared_ptr.hpp>
+#include <QSharedPointer>
 
 class QDomDocument;
 
@@ -53,7 +53,7 @@ public:
     void setStorage(Backend::Storage *storage);
 
 Q_SIGNALS:
-    void result(const boost::shared_ptr<Akregator::FeedList> &feedList);
+    void result(const QSharedPointer<Akregator::FeedList> &feedList);
 
 private:
     void doStart();

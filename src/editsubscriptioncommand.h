@@ -27,7 +27,7 @@
 
 #include "command.h"
 
-#include <boost/shared_ptr.hpp>
+#include <QSharedPointer>
 
 namespace Akregator
 {
@@ -42,9 +42,9 @@ public:
     explicit EditSubscriptionCommand(QObject *parent = Q_NULLPTR);
     ~EditSubscriptionCommand();
 
-    void setSubscription(const boost::shared_ptr<FeedList> &feedList, int subId);
+    void setSubscription(const QSharedPointer<FeedList> &feedList, int subId);
     int subscriptionId() const;
-    boost::shared_ptr<FeedList> feedList() const;
+    QSharedPointer<FeedList> feedList() const;
 
     SubscriptionListView *subscriptionListView() const;
     void setSubscriptionListView(SubscriptionListView *view);

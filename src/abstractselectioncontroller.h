@@ -26,7 +26,6 @@
 
 #include <QObject>
 
-#include <boost/shared_ptr.hpp>
 #include <vector>
 
 class QAbstractItemView;
@@ -61,7 +60,7 @@ public:
 
     virtual void setIsAggregation(bool isAggregation) = 0;
 
-    virtual void setFilters(const std::vector<boost::shared_ptr<const Filters::AbstractMatcher> > &) = 0;
+    virtual void setFilters(const std::vector<QSharedPointer<const Filters::AbstractMatcher> > &) = 0;
 
     virtual void forceFilterUpdate() = 0;
 
@@ -99,7 +98,7 @@ public:
     explicit AbstractSelectionController(QObject *parent = Q_NULLPTR);
     virtual ~AbstractSelectionController();
 
-    virtual void setFeedList(const boost::shared_ptr<FeedList> &list) = 0;
+    virtual void setFeedList(const QSharedPointer<FeedList> &list) = 0;
 
     virtual void setFeedSelector(QAbstractItemView *feedSelector) = 0;
 
@@ -119,7 +118,7 @@ public:
 
 public Q_SLOTS:
 
-    virtual void setFilters(const std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> > &) = 0;
+    virtual void setFilters(const std::vector<QSharedPointer<const Akregator::Filters::AbstractMatcher> > &) = 0;
 
     virtual void forceFilterUpdate() = 0;
 

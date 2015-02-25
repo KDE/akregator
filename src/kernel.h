@@ -25,7 +25,7 @@
 #ifndef AKREGATOR_KERNEL_H
 #define AKREGATOR_KERNEL_H
 
-#include <boost/shared_ptr.hpp>
+#include <QSharedPointer>
 
 #include "akregator_export.h"
 
@@ -52,8 +52,8 @@ public:
     Backend::Storage *storage();
     void setStorage(Backend::Storage *storage);
 
-    boost::shared_ptr<FeedList> feedList() const;
-    void setFeedList(const boost::shared_ptr<FeedList> &feedList);
+    QSharedPointer<FeedList> feedList() const;
+    void setFeedList(const QSharedPointer<FeedList> &feedList);
 
     FetchQueue *fetchQueue();
 

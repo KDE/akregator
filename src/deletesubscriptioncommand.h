@@ -27,7 +27,7 @@
 
 #include "command.h"
 
-#include <boost/weak_ptr.hpp>
+#include <QWeakPointer>
 
 namespace Akregator
 {
@@ -41,10 +41,10 @@ public:
     explicit DeleteSubscriptionCommand(QObject *parent = Q_NULLPTR);
     ~DeleteSubscriptionCommand();
 
-    void setSubscription(const boost::weak_ptr<FeedList> &feedList, int subId);
+    void setSubscription(const QWeakPointer<FeedList> &feedList, int subId);
 
     int subscriptionId() const;
-    boost::weak_ptr<FeedList> feedList() const;
+    QWeakPointer<FeedList> feedList() const;
 
 private:
     void doStart();

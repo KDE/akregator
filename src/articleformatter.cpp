@@ -41,7 +41,6 @@
 #include <KLocalizedString>
 #include <KFormat>
 
-using namespace boost;
 using namespace Syndication;
 using namespace Akregator;
 

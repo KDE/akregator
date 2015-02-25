@@ -108,7 +108,7 @@ namespace
 static OpenUrlRequest requestFromSender(QObject *sender, int id)
 {
     QAction *const action = qobject_cast<QAction *>(sender);
-    assert(action);
+    Q_ASSERT(action);
     const KUrl url = action->data().value<KUrl>();
     OpenUrlRequest req;
     req.setFrameId(id);
@@ -322,7 +322,7 @@ bool BrowserFrame::openUrl(const OpenUrlRequest &request)
         return false;
     }
 
-    assert(d->part);
+    Q_ASSERT(d->part);
     d->part->setArguments(request.args());
 
     if (!request.url().isValid()) {

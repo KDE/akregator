@@ -41,7 +41,7 @@ using namespace Akregator;
 
 Akregator::ArticleDeleteJob::ArticleDeleteJob(QObject *parent) : KJob(parent), m_feedList(Kernel::self()->feedList())
 {
-    assert(m_feedList);
+    Q_ASSERT(m_feedList);
 }
 
 void Akregator::ArticleDeleteJob::appendArticleIds(const QList<Akregator::ArticleId> &ids)

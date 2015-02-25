@@ -50,7 +50,7 @@ void FilterColumnsProxyModel::setColumnEnabled(int col, bool enabled)
 
 bool FilterColumnsProxyModel::isColumnEnabled(int col) const
 {
-    assert(col >= 0);
+    Q_ASSERT(col >= 0);
     return col < m_columnStates.count() ? m_columnStates[col] : m_mode == Blacklist;
 }
 

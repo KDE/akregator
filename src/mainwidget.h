@@ -36,7 +36,7 @@
 
 #include <QWidget>
 
-#include <boost/shared_ptr.hpp>
+#include <QSharedPointer>
 
 class KConfig;
 class KFileItem;
@@ -92,7 +92,7 @@ public:
      */
     QDomDocument feedListToOPML();
 
-    void setFeedList(const boost::shared_ptr<FeedList> &feedList);
+    void setFeedList(const QSharedPointer<FeedList> &feedList);
 
     /**
      * Add a feed to a group.
@@ -103,7 +103,7 @@ public:
      */
     void addFeedToGroup(const QString &url, const QString &group);
 
-    boost::shared_ptr<FeedList> allFeedsList()
+    QSharedPointer<FeedList> allFeedsList()
     {
         return m_feedList;
     }
@@ -258,13 +258,13 @@ protected Q_SLOTS:
     void slotFramesChanged();
 
 private:
-    void deleteExpiredArticles(const boost::shared_ptr<FeedList> &feedList);
+    void deleteExpiredArticles(const QSharedPointer<FeedList> &feedList);
 
     /** opens current article in new tab, background/foreground depends on settings TODO: use selected instead of current? */
     void openSelectedArticles(bool openInBackground);
 
     AbstractSelectionController *m_selectionController;
-    boost::shared_ptr<FeedList> m_feedList;
+    QSharedPointer<FeedList> m_feedList;
 
     SubscriptionListView *m_feedListView;
     ArticleListView *m_articleListView;

@@ -31,7 +31,6 @@
 
 #include <Syndication/Person>
 #include <QSharedPointer>
-#include <boost/shared_ptr.hpp>
 
 class QDateTime;
 class QString;
@@ -136,7 +135,7 @@ public:
     QString authorAsHtml() const;
     QString authorShort() const;
 
-    boost::shared_ptr<const Syndication::Enclosure> enclosure() const;
+    QSharedPointer<const Syndication::Enclosure> enclosure() const;
 
     bool operator<(const Article &other) const;
     bool operator<=(const Article &other) const;

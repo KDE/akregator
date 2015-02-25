@@ -50,7 +50,6 @@
 
 #include <cassert>
 
-using namespace boost;
 using namespace Akregator;
 
 FilterDeletedProxyModel::FilterDeletedProxyModel(QObject *parent) : QSortFilterProxyModel(parent)
@@ -84,7 +83,7 @@ bool SortColorizeProxyModel::filterAcceptsRow(int source_row, const QModelIndex 
     return true;
 }
 
-void SortColorizeProxyModel::setFilters(const std::vector<shared_ptr<const Filters::AbstractMatcher> >  &matchers)
+void SortColorizeProxyModel::setFilters(const std::vector<QSharedPointer<const Filters::AbstractMatcher> >  &matchers)
 {
     if (m_matchers == matchers) {
         return;
@@ -582,7 +581,7 @@ void ArticleListView::forceFilterUpdate()
     }
 }
 
-void ArticleListView::setFilters(const std::vector<shared_ptr<const Filters::AbstractMatcher> > &matchers)
+void ArticleListView::setFilters(const std::vector<QSharedPointer<const Filters::AbstractMatcher> > &matchers)
 {
     if (m_matchers == matchers) {
         return;

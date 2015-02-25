@@ -27,7 +27,7 @@
 
 #include <QWidget>
 
-#include <boost/shared_ptr.hpp>
+#include <QSharedPointer>
 #include <vector>
 
 class QString;
@@ -55,11 +55,11 @@ public:
     void setDelay(int ms);
     int delay() const;
 
-    std::vector<boost::shared_ptr<const Filters::AbstractMatcher> > matchers() const;
+    std::vector<QSharedPointer<const Filters::AbstractMatcher> > matchers() const;
 
 Q_SIGNALS:
     /** emitted when the text and status filters were updated. Params are textfilter, statusfilter */
-    void signalSearch(const std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> > &);
+    void signalSearch(const std::vector<QSharedPointer<const Akregator::Filters::AbstractMatcher> > &);
 
 public Q_SLOTS:
     void slotClearSearch();

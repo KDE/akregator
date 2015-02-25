@@ -32,8 +32,6 @@
 
 #include <libkdepim/progresswidget/progressmanager.h>
 
-using namespace boost;
-
 namespace Akregator
 {
 
@@ -41,7 +39,7 @@ class ProgressManager::ProgressManagerPrivate
 {
 public:
     ProgressManagerPrivate() : feedList() {}
-    shared_ptr<FeedList> feedList;
+    QSharedPointer<FeedList> feedList;
     QHash<Feed *, ProgressItemHandler *> handlers;
 
 };
@@ -67,7 +65,7 @@ ProgressManager::~ProgressManager()
     d = 0;
 }
 
-void ProgressManager::setFeedList(const shared_ptr<FeedList> &feedList)
+void ProgressManager::setFeedList(const QSharedPointer<FeedList> &feedList)
 {
     if (feedList == d->feedList) {
         return;
@@ -87,8 +85,8 @@ void ProgressManager::setFeedList(const shared_ptr<FeedList> &feedList)
         foreach (TreeNode *i, list) {
             slotNodeAdded(i);
         }
-        connect(feedList.get(), SIGNAL(signalNodeAdded(Akregator::TreeNode*)), this, SLOT(slotNodeAdded(Akregator::TreeNode*)));
-        connect(feedList.get(), SIGNAL(signalNodeRemoved(Akregator::TreeNode*)), this, SLOT(slotNodeRemoved(Akregator::TreeNode*)));
+        connect(feedList.data(), SIGNAL(signalNodeAdded(Akregator::TreeNode*)), this, SLOT(slotNodeAdded(Akregator::TreeNode*)));
+        connect(feedList.data(), SIGNAL(signalNodeRemoved(Akregator::TreeNode*)), this, SLOT(slotNodeRemoved(Akregator::TreeNode*)));
     }
 }
 

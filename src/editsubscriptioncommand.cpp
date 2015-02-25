@@ -36,7 +36,6 @@
 #include <cassert>
 
 using namespace Akregator;
-using namespace boost;
 
 namespace
 {
@@ -70,8 +69,8 @@ private:
 
 EditNodePropertiesVisitor::EditNodePropertiesVisitor(SubscriptionListView *subscriptionListView, QWidget *parent) : m_subscriptionListView(subscriptionListView), m_widget(parent)
 {
-    assert(m_subscriptionListView);
-    assert(m_widget);
+    Q_ASSERT(m_subscriptionListView);
+    Q_ASSERT(m_widget);
 }
 
 class EditSubscriptionCommand::Private
@@ -84,7 +83,7 @@ public:
     void startEdit();
     void jobFinished();
 
-    shared_ptr<FeedList> m_list;
+    QSharedPointer<FeedList> m_list;
     int m_subscriptionId;
     SubscriptionListView *m_subscriptionListView;
 };
@@ -110,7 +109,7 @@ EditSubscriptionCommand::~EditSubscriptionCommand()
     delete d;
 }
 
-void EditSubscriptionCommand::setSubscription(const shared_ptr<FeedList> &feedList, int subId)
+void EditSubscriptionCommand::setSubscription(const QSharedPointer<FeedList> &feedList, int subId)
 {
     d->m_list = feedList;
     d->m_subscriptionId = subId;
@@ -121,7 +120,7 @@ int EditSubscriptionCommand::subscriptionId() const
     return d->m_subscriptionId;
 }
 
-shared_ptr<FeedList> EditSubscriptionCommand::feedList() const
+QSharedPointer<FeedList> EditSubscriptionCommand::feedList() const
 {
     return d->m_list;
 }

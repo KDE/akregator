@@ -33,7 +33,6 @@
 #include <kparts/browserextension.h>
 #include <kparts/part.h>
 
-#include <boost/shared_ptr.hpp>
 #include <kparts/readonlypart.h>
 
 class KConfigGroup;
@@ -173,7 +172,7 @@ private Q_SLOTS:
     void slotSettingsChanged();
     void slotSetStatusText(const QString &statusText);
 
-    void feedListLoaded(const boost::shared_ptr<Akregator::FeedList> &list);
+    void feedListLoaded(const QSharedPointer<Akregator::FeedList> &list);
 
     void flushAddFeedRequests();
 

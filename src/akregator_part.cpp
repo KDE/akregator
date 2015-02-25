@@ -79,8 +79,6 @@
 #include <QFontDatabase>
 #include <QStandardPaths>
 
-using namespace boost;
-
 namespace
 {
 
@@ -443,14 +441,14 @@ bool Part::openFile()
     if (m_loadFeedListCommand || m_standardListLoaded) {
         return true;
     }
-    std::auto_ptr<LoadFeedListCommand> cmd(new LoadFeedListCommand(m_mainWidget));
+    QScopedPointer<LoadFeedListCommand> cmd(new LoadFeedListCommand(m_mainWidget));
     cmd->setParentWidget(m_mainWidget);
     cmd->setStorage(Kernel::self()->storage());
     cmd->setFileName(localFilePath());
     cmd->setDefaultFeedList(createDefaultFeedList());
-    connect(cmd.get(), SIGNAL(result(boost::shared_ptr<Akregator::FeedList>)),
-            this, SLOT(feedListLoaded(boost::shared_ptr<Akregator::FeedList>)));
-    m_loadFeedListCommand = cmd.release();
+    connect(cmd.data(), SIGNAL(result(QSharedPointer<Akregator::FeedList>)),
+            this, SLOT(feedListLoaded(QSharedPointer<Akregator::FeedList>)));
+    m_loadFeedListCommand = cmd.take();
     m_loadFeedListCommand->start();
     return true;
 }
@@ -467,9 +465,9 @@ bool Part::writeToTextFile(const QString &data, const QString &filename) const
     return file.commit();
 }
 
-void Part::feedListLoaded(const shared_ptr<FeedList> &list)
+void Part::feedListLoaded(const QSharedPointer<FeedList> &list)
 {
-    assert(!m_standardListLoaded);
+    Q_ASSERT(!m_standardListLoaded);
     m_mainWidget->setFeedList(list);
     m_standardListLoaded = list != 0;
 

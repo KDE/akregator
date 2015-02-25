@@ -58,14 +58,11 @@
 #include <QPixmap>
 #include <QTimer>
 
-#include <boost/bind.hpp>
-
 #include <memory>
 #include <QStandardPaths>
 
 using Syndication::ItemPtr;
 using namespace Akregator;
-using namespace boost;
 
 class Akregator::Feed::Private
 {
@@ -321,8 +318,8 @@ Akregator::Feed::Private::Private(Backend::Storage *storage_, Akregator::Feed *q
       archive(0),
       totalCount(-1)
 {
-    assert(q);
-    assert(storage);
+    Q_ASSERT(q);
+    Q_ASSERT(storage);
 }
 
 Akregator::Feed::Feed(Backend::Storage *storage) : TreeNode(), d(new Private(storage, this))
@@ -501,12 +498,12 @@ QDomElement Akregator::Feed::toOPML(QDomElement parent, QDomDocument document) c
 
 KJob *Akregator::Feed::createMarkAsReadJob()
 {
-    std::auto_ptr<ArticleModifyJob> job(new ArticleModifyJob);
+    ArticleModifyJob* job = new ArticleModifyJob;
     Q_FOREACH (const Article &i, articles()) {
         const ArticleId aid = { xmlUrl(), i.guid() };
         job->setStatus(aid, Read);
     }
-    return job.release();
+    return job;
 }
 
 void Akregator::Feed::slotAddToFetchQueue(FetchQueue *queue, bool intervalFetchOnly)
@@ -851,7 +848,7 @@ void Akregator::Feed::setArticleChanged(Article &a, int oldStatus)
 int Akregator::Feed::totalCount() const
 {
     if (d->totalCount == -1) {
-        d->totalCount = std::count_if(d->articles.constBegin(), d->articles.constEnd(), !bind(&Article::isDeleted, _1));
+        d->totalCount = std::count_if(d->articles.constBegin(), d->articles.constEnd(), [](const Article& art) -> bool { return art.isDeleted(); });
     }
     return d->totalCount;
 }

@@ -74,7 +74,7 @@ void SettingsAdvanced::selectFactory(const QString &key)
     }
     cbBackend->setCurrentIndex(idx);
     const Backend::StorageFactory *const factory = m_factories.value(key);
-    assert(factory);
+    Q_ASSERT(factory);
     pbBackendConfigure->setEnabled(factory->isConfigurable());
 }
 
@@ -83,7 +83,7 @@ void SettingsAdvanced::slotConfigureStorage()
     const QString key = cbBackend->itemData(cbBackend->currentIndex()).toString();
     if (!key.isEmpty()) {
         Backend::StorageFactory *const factory = m_factories.value(key);
-        assert(factory);
+        Q_ASSERT(factory);
         factory->configure();
     }
 }
@@ -92,7 +92,7 @@ void SettingsAdvanced::slotFactorySelected(int pos)
 {
     const QString key = cbBackend->itemData(pos).toString();
     const Backend::StorageFactory *const factory = m_factories.value(key);
-    assert(factory);
+    Q_ASSERT(factory);
     pbBackendConfigure->setEnabled(factory->isConfigurable());
 }
 

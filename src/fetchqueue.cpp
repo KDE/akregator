@@ -142,7 +142,7 @@ void FetchQueue::disconnectFromFeed(Feed *feed)
 void FetchQueue::slotNodeDestroyed(TreeNode *node)
 {
     Feed *const feed = qobject_cast<Feed *>(node);
-    assert(feed);
+    Q_ASSERT(feed);
 
     d->fetchingFeeds.removeAll(feed);
     d->queuedFeeds.removeAll(feed);

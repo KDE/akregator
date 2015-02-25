@@ -29,7 +29,7 @@
 
 #include <QVector>
 
-#include <boost/weak_ptr.hpp>
+#include <QWeakPointer>
 
 namespace Akregator
 {
@@ -43,8 +43,8 @@ public:
     explicit ExpireItemsCommand(QObject *parent = Q_NULLPTR);
     ~ExpireItemsCommand();
 
-    void setFeedList(const boost::weak_ptr<FeedList> &feedList);
-    boost::weak_ptr<FeedList> feedList() const;
+    void setFeedList(const QWeakPointer<FeedList> &feedList);
+    QWeakPointer<FeedList> feedList() const;
 
     void setFeeds(const QVector<int> &feeds);
     QVector<int> feeds() const;

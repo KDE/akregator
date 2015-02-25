@@ -69,7 +69,7 @@ public:
     Akregator::TreeNode *selectedSubscription() const;
 
     //impl
-    void setFeedList(const boost::shared_ptr<FeedList> &list);
+    void setFeedList(const QSharedPointer<FeedList> &list);
 
     //impl
     void setFolderExpansionHandler(Akregator::FolderExpansionHandler *handler);
@@ -77,7 +77,7 @@ public:
 public Q_SLOTS:
 
     //impl
-    void setFilters(const std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> > &);
+    void setFilters(const std::vector<QSharedPointer<const Akregator::Filters::AbstractMatcher> > &);
 
     //impl
     void forceFilterUpdate();
@@ -92,7 +92,7 @@ private Q_SLOTS:
 
 private:
 
-    boost::shared_ptr<FeedList> m_feedList;
+    QSharedPointer<FeedList> m_feedList;
     QPointer<QAbstractItemView> m_feedSelector;
     Akregator::ArticleLister *m_articleLister;
     Akregator::SingleArticleDisplay *m_singleDisplay;

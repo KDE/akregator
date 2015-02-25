@@ -28,7 +28,7 @@
 
 #include <QAbstractItemModel>
 
-#include <boost/shared_ptr.hpp>
+#include <QSharedPointer>
 
 namespace Akregator
 {
@@ -61,7 +61,7 @@ public:
         ColumnCount = 3
     };
 
-    explicit SubscriptionListModel(const boost::shared_ptr<const FeedList> &feedList, QObject *parent = Q_NULLPTR);
+    explicit SubscriptionListModel(const QSharedPointer<const FeedList> &feedList, QObject *parent = Q_NULLPTR);
 
     //impl
     int columnCount(const QModelIndex &parent = QModelIndex()) const Q_DECL_OVERRIDE;
@@ -121,7 +121,7 @@ private Q_SLOTS:
 
 private:
 
-    boost::shared_ptr<const FeedList> m_feedList;
+    QSharedPointer<const FeedList> m_feedList;
     bool m_beganRemoval;
 };
 
@@ -137,7 +137,7 @@ class AKREGATORPART_EXPORT FolderExpansionHandler : public QObject
 public:
     explicit FolderExpansionHandler(QObject *parent = Q_NULLPTR);
 
-    void setFeedList(const boost::shared_ptr<FeedList> &feedList);
+    void setFeedList(const QSharedPointer<FeedList> &feedList);
     void setModel(Akregator::SubscriptionListModel *model);
 
 public Q_SLOTS:
@@ -148,7 +148,7 @@ private:
     void setExpanded(const QModelIndex &index, bool expanded);
 
 private:
-    boost::shared_ptr<FeedList> m_feedList;
+    QSharedPointer<FeedList> m_feedList;
     SubscriptionListModel *m_model;
 };
 

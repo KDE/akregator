@@ -32,7 +32,7 @@
 
 #include <QPointer>
 
-#include <boost/shared_ptr.hpp>
+#include <QSharedPointer>
 #include <vector>
 #include <KUrl>
 
@@ -67,9 +67,9 @@ public:
 
     KParts::ReadOnlyPart *part() const;
 
-    void setNormalViewFormatter(const boost::shared_ptr<ArticleFormatter> &formatter);
+    void setNormalViewFormatter(const QSharedPointer<ArticleFormatter> &formatter);
 
-    void setCombinedViewFormatter(const boost::shared_ptr<ArticleFormatter> &formatter);
+    void setCombinedViewFormatter(const QSharedPointer<ArticleFormatter> &formatter);
 
     void showArticle(const Article &article);
 
@@ -90,7 +90,7 @@ public Q_SLOTS:
 
     /** Set filters which will be used if the viewer is in combined view mode
      */
-    void setFilters(const std::vector< boost::shared_ptr<const Akregator::Filters::AbstractMatcher> > &filters);
+    void setFilters(const std::vector< QSharedPointer<const Akregator::Filters::AbstractMatcher> > &filters);
 
     /** Update view if combined view mode is set. Has to be called when
      * the displayed node gets modified.
@@ -202,12 +202,12 @@ private:
     Article m_article;
     QList<Article> m_articles;
     KUrl m_link;
-    std::vector<boost::shared_ptr<const Filters::AbstractMatcher> > m_filters;
+    std::vector<QSharedPointer<const Filters::AbstractMatcher> > m_filters;
     enum ViewMode { NormalView, CombinedView, SummaryView };
     ViewMode m_viewMode;
     ArticleViewerPart *m_part;
-    boost::shared_ptr<ArticleFormatter> m_normalViewFormatter;
-    boost::shared_ptr<ArticleFormatter> m_combinedViewFormatter;
+    QSharedPointer<ArticleFormatter> m_normalViewFormatter;
+    QSharedPointer<ArticleFormatter> m_combinedViewFormatter;
 };
 
 class ArticleViewerPart : public KHTMLPart

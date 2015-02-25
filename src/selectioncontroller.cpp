@@ -37,7 +37,6 @@
 #include <QAbstractItemView>
 #include <QMenu>
 
-using namespace boost;
 using namespace Akregator;
 
 namespace
@@ -83,7 +82,7 @@ Akregator::SelectionController::SelectionController(QObject *parent)
       m_feedSelector(),
       m_articleLister(0),
       m_singleDisplay(0),
-      m_subscriptionModel(new SubscriptionListModel(shared_ptr<FeedList>(), this)),
+      m_subscriptionModel(new SubscriptionListModel(QSharedPointer<FeedList>(), this)),
       m_folderExpansionHandler(0),
       m_articleModel(0),
       m_selectedSubscription()
@@ -150,7 +149,7 @@ Akregator::Article Akregator::SelectionController::currentArticle() const
     if (!m_articleLister || !m_articleLister->articleSelectionModel()) {
         return Article();
     }
-    return ::articleForIndex(m_articleLister->articleSelectionModel()->currentIndex(), m_feedList.get());
+    return ::articleForIndex(m_articleLister->articleSelectionModel()->currentIndex(), m_feedList.data());
 }
 
 QModelIndex SelectionController::currentArticleIndex() const
@@ -163,22 +162,22 @@ QList<Akregator::Article> Akregator::SelectionController::selectedArticles() con
     if (!m_articleLister || !m_articleLister->articleSelectionModel()) {
         return QList<Akregator::Article>();
     }
-    return ::articlesForIndexes(m_articleLister->articleSelectionModel()->selectedRows(), m_feedList.get());
+    return ::articlesForIndexes(m_articleLister->articleSelectionModel()->selectedRows(), m_feedList.data());
 }
 
 Akregator::TreeNode *Akregator::SelectionController::selectedSubscription() const
 {
-    return ::subscriptionForIndex(m_feedSelector->selectionModel()->currentIndex(), m_feedList.get());
+    return ::subscriptionForIndex(m_feedSelector->selectionModel()->currentIndex(), m_feedList.data());
 }
 
-void Akregator::SelectionController::setFeedList(const shared_ptr<FeedList> &list)
+void Akregator::SelectionController::setFeedList(const QSharedPointer<FeedList> &list)
 {
     if (m_feedList == list) {
         return;
     }
 
     m_feedList = list;
-    std::auto_ptr<SubscriptionListModel> oldModel(m_subscriptionModel);
+    QScopedPointer<SubscriptionListModel> oldModel(m_subscriptionModel);
     m_subscriptionModel = new SubscriptionListModel(m_feedList, this);
 
     if (m_folderExpansionHandler) {
@@ -208,8 +207,8 @@ void Akregator::SelectionController::setFolderExpansionHandler(Akregator::Folder
 
 void Akregator::SelectionController::articleHeadersAvailable(KJob *job)
 {
-    assert(job);
-    assert(job == m_listJob);
+    Q_ASSERT(job);
+    Q_ASSERT(job == m_listJob);
 
     if (job->error()) {
         qCWarning(AKREGATOR_LOG) << job->errorText();
@@ -217,8 +216,8 @@ void Akregator::SelectionController::articleHeadersAvailable(KJob *job)
     }
     TreeNode *const node = m_listJob->node();
 
-    assert(node);   // if there was no error, the node must still exist
-    assert(node == m_selectedSubscription);   //...and equal the previously selected node
+    Q_ASSERT(node);   // if there was no error, the node must still exist
+    Q_ASSERT(node == m_selectedSubscription);   //...and equal the previously selected node
 
     ArticleModel *const newModel = new ArticleModel(m_listJob->articles());
 
@@ -276,7 +275,7 @@ void Akregator::SelectionController::selectedSubscriptionChanged(const QModelInd
 void Akregator::SelectionController::subscriptionContextMenuRequested(const QPoint &point)
 {
     Q_ASSERT(m_feedSelector);
-    const TreeNode *const node = ::subscriptionForIndex(m_feedSelector->indexAt(point), m_feedList.get());
+    const TreeNode *const node = ::subscriptionForIndex(m_feedSelector->indexAt(point), m_feedList.data());
     if (!node) {
         return;
     }
@@ -300,11 +299,11 @@ void Akregator::SelectionController::articleSelectionChanged()
 
 void Akregator::SelectionController::articleIndexDoubleClicked(const QModelIndex &index)
 {
-    const Akregator::Article article = ::articleForIndex(index, m_feedList.get());
+    const Akregator::Article article = ::articleForIndex(index, m_feedList.data());
     emit articleDoubleClicked(article);
 }
 
-void SelectionController::setFilters(const std::vector<boost::shared_ptr<const Filters::AbstractMatcher> > &matchers)
+void SelectionController::setFilters(const std::vector<QSharedPointer<const Filters::AbstractMatcher> > &matchers)
 {
     Q_ASSERT(m_articleLister);
     m_articleLister->setFilters(matchers);

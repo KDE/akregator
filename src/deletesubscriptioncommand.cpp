@@ -37,7 +37,6 @@
 #include <QTimer>
 
 using namespace Akregator;
-using namespace boost;
 
 namespace
 {
@@ -124,7 +123,7 @@ public:
     void startDelete();
     void jobFinished();
 
-    weak_ptr<FeedList> m_list;
+    QWeakPointer<FeedList> m_list;
     int m_subscriptionId;
 };
 
@@ -148,7 +147,7 @@ DeleteSubscriptionCommand::~DeleteSubscriptionCommand()
     delete d;
 }
 
-void DeleteSubscriptionCommand::setSubscription(const weak_ptr<FeedList> &feedList, int subId)
+void DeleteSubscriptionCommand::setSubscription(const QWeakPointer<FeedList> &feedList, int subId)
 {
     d->m_list = feedList;
     d->m_subscriptionId = subId;
@@ -159,7 +158,7 @@ int DeleteSubscriptionCommand::subscriptionId() const
     return d->m_subscriptionId;
 }
 
-weak_ptr<FeedList> DeleteSubscriptionCommand::feedList() const
+QWeakPointer<FeedList> DeleteSubscriptionCommand::feedList() const
 {
     return d->m_list;
 }
@@ -176,7 +175,7 @@ void DeleteSubscriptionCommand::Private::jobFinished()
 
 void DeleteSubscriptionCommand::Private::startDelete()
 {
-    const shared_ptr<FeedList> list = m_list.lock();
+    const QSharedPointer<FeedList> list = m_list.lock();
     if (!list) {
         q->done();
         return;

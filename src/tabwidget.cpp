@@ -189,7 +189,7 @@ void TabWidget::slotAddFrame(Frame *frame)
 Frame *TabWidget::Private::currentFrame()
 {
     QWidget *w = q->currentWidget();
-    assert(frames.value(w));
+    Q_ASSERT(frames.value(w));
     return w ? frames.value(w) : 0;
 }
 

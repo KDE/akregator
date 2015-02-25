@@ -27,7 +27,7 @@
 
 #include <KJob>
 
-#include <boost/weak_ptr.hpp>
+#include <QWeakPointer>
 
 #include "akregator_export.h"
 
@@ -56,7 +56,7 @@ private:
     int m_id;
     int m_destFolderId;
     int m_afterId;
-    boost::weak_ptr<FeedList> m_feedList;
+    QWeakPointer<FeedList> m_feedList;
 };
 
 class AKREGATOR_EXPORT RenameSubscriptionJob : public KJob
@@ -76,7 +76,7 @@ private Q_SLOTS:
 private:
     int m_id;
     QString m_name;
-    boost::shared_ptr<FeedList> m_feedList;
+    QSharedPointer<FeedList> m_feedList;
 };
 
 class AKREGATOR_EXPORT DeleteSubscriptionJob : public KJob
@@ -94,7 +94,7 @@ private Q_SLOTS:
 
 private:
     int m_id;
-    boost::weak_ptr<FeedList> m_feedList;
+    QWeakPointer<FeedList> m_feedList;
 };
 
 }

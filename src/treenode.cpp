@@ -80,7 +80,7 @@ void TreeNode::emitSignalDestroyed()
 
 TreeNode::~TreeNode()
 {
-    assert(d->signalDestroyedEmitted || !"TreeNode subclasses must call emitSignalDestroyed in their destructor");
+    Q_ASSERT(d->signalDestroyedEmitted || !"TreeNode subclasses must call emitSignalDestroyed in their destructor");
     delete d;
     d = 0;
 }

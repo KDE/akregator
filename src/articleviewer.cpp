@@ -62,13 +62,11 @@
 #include <QClipboard>
 #include <QGridLayout>
 #include <QKeyEvent>
-#include <boost/bind.hpp>
 
 #include <memory>
 #include <cassert>
 #include <QStandardPaths>
 
-using namespace boost;
 using namespace Akregator;
 using namespace Akregator::Filters;
 
@@ -255,7 +253,7 @@ void ArticleViewer::slotCopy()
     QString text = m_part->selectedText();
     text.replace(QChar(0xa0), ' ');
     QClipboard *const cb = QApplication::clipboard();
-    assert(cb);
+    Q_ASSERT(cb);
     cb->setText(text, QClipboard::Clipboard);
 }
 
@@ -487,7 +485,7 @@ bool ArticleViewer::openUrl(const KUrl &url)
     }
 }
 
-void ArticleViewer::setFilters(const std::vector< shared_ptr<const AbstractMatcher> > &filters)
+void ArticleViewer::setFilters(const std::vector< QSharedPointer<const AbstractMatcher> > &filters)
 {
     if (filters == m_filters) {
         return;
@@ -514,14 +512,15 @@ void ArticleViewer::slotUpdateCombinedView()
     QTime spent;
     spent.start();
 
-    const std::vector< shared_ptr<const AbstractMatcher> >::const_iterator filterEnd = m_filters.end();
+    const std::vector< QSharedPointer<const AbstractMatcher> >::const_iterator filterEnd = m_filters.cend();
 
     Q_FOREACH (const Article &i, m_articles) {
         if (i.isDeleted()) {
             continue;
         }
 
-        if (std::find_if(m_filters.begin(), m_filters.end(), !bind(&AbstractMatcher::matches, _1, i)) != filterEnd) {
+        auto func = [i](const QSharedPointer<const Filters::AbstractMatcher>& matcher) -> bool { return !matcher->matches(i); };
+        if (std::find_if(m_filters.cbegin(), filterEnd, func) != filterEnd) {
             continue;
         }
 
@@ -597,8 +596,8 @@ void ArticleViewer::showNode(TreeNode *node)
 
 void ArticleViewer::slotArticlesListed(KJob *job)
 {
-    assert(job);
-    assert(job == m_listJob);
+    Q_ASSERT(job);
+    Q_ASSERT(job == m_listJob);
 
     TreeNode *node = m_listJob->node();
 
@@ -741,16 +740,16 @@ void ArticleViewer::updateCss()
     m_combinedModeCSS = m_combinedViewFormatter->getCss();
 }
 
-void ArticleViewer::setNormalViewFormatter(const shared_ptr<ArticleFormatter> &formatter)
+void ArticleViewer::setNormalViewFormatter(const QSharedPointer<ArticleFormatter> &formatter)
 {
-    assert(formatter);
+    Q_ASSERT(formatter);
     m_normalViewFormatter = formatter;
     m_normalViewFormatter->setPaintDevice(m_part->view());
 }
 
-void ArticleViewer::setCombinedViewFormatter(const shared_ptr<ArticleFormatter> &formatter)
+void ArticleViewer::setCombinedViewFormatter(const QSharedPointer<ArticleFormatter> &formatter)
 {
-    assert(formatter);
+    Q_ASSERT(formatter);
     m_combinedViewFormatter = formatter;
     m_combinedViewFormatter->setPaintDevice(m_part->view());
 }

@@ -36,11 +36,10 @@
 #include <QPointer>
 #include <QTimer>
 
-#include <boost/shared_ptr.hpp>
+#include <QSharedPointer>
 
 #include <cassert>
 
-using namespace boost;
 using namespace Akregator;
 
 class ImportFeedListCommand::Private
@@ -51,7 +50,7 @@ public:
 
     void doImport();
 
-    weak_ptr<FeedList> targetList;
+    QWeakPointer<FeedList> targetList;
     QDomDocument document;
     ImportFeedListCommand::RootFolderOption rootFolderOption;
     QString importedRootFolderName;
@@ -68,7 +67,7 @@ ImportFeedListCommand::Private::Private(ImportFeedListCommand *qq)
 
 void ImportFeedListCommand::Private::doImport()
 {
-    const shared_ptr<FeedList> target = targetList.lock();
+    const QSharedPointer<FeedList> target = targetList.lock();
 
     if (!target) {
         if (!target) {
@@ -78,7 +77,7 @@ void ImportFeedListCommand::Private::doImport()
         return;
     }
 
-    std::auto_ptr<FeedList> importedList(new FeedList(Kernel::self()->storage()));
+    QScopedPointer<FeedList> importedList(new FeedList(Kernel::self()->storage()));
     const bool parsed = importedList->readFromOpml(document);
 
     // FIXME: parsing error, print some message
@@ -111,7 +110,7 @@ void ImportFeedListCommand::Private::doImport()
         target->allFeedsFolder()->appendChild(folder);
     }
 
-    target->append(importedList.get(), folder);
+    target->append(importedList.data(), folder);
 
     q->done();
 }
@@ -125,7 +124,7 @@ ImportFeedListCommand::~ImportFeedListCommand()
     delete d;
 }
 
-void ImportFeedListCommand::setTargetList(const weak_ptr<FeedList> &feedList)
+void ImportFeedListCommand::setTargetList(const QWeakPointer<FeedList> &feedList)
 {
     d->targetList = feedList;
 }

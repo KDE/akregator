@@ -32,7 +32,6 @@
 
 #include <QTimer>
 
-using namespace boost;
 using namespace Akregator;
 
 MoveSubscriptionJob::MoveSubscriptionJob(QObject *parent) : KJob(parent), m_id(0), m_destFolderId(0), m_afterId(-1), m_feedList(Kernel::self()->feedList())
@@ -57,7 +56,7 @@ void MoveSubscriptionJob::start()
 
 void MoveSubscriptionJob::doMove()
 {
-    const shared_ptr<FeedList> feedList = m_feedList.lock();
+    const QSharedPointer<FeedList> feedList = m_feedList.lock();
 
     if (!feedList) {
         setErrorText(i18n("Feed list was deleted"));
@@ -137,7 +136,7 @@ void DeleteSubscriptionJob::start()
 
 void DeleteSubscriptionJob::doDelete()
 {
-    const shared_ptr<FeedList> feedList = m_feedList.lock();
+    const QSharedPointer<FeedList> feedList = m_feedList.lock();
     if (m_id > 0 && feedList) {
         delete feedList->findByID(m_id);
     }

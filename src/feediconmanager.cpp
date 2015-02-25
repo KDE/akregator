@@ -120,7 +120,7 @@ FeedIconManager *FeedIconManager::self()
 
 void FeedIconManager::addListener(const KUrl &url, FaviconListener *listener)
 {
-    assert(listener);
+    Q_ASSERT(listener);
     removeListener(listener);
     const QString iconUrl = getIconUrl(url);
     d->m_listeners.insert(listener, iconUrl);
@@ -131,7 +131,7 @@ void FeedIconManager::addListener(const KUrl &url, FaviconListener *listener)
 
 void FeedIconManager::removeListener(FaviconListener *listener)
 {
-    assert(listener);
+    Q_ASSERT(listener);
     if (!d->m_listeners.contains(listener)) {
         return;
     }

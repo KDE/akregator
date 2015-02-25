@@ -45,7 +45,7 @@ static QModelIndex prevIndex(const QModelIndex &idx)
         return QModelIndex();
     }
     const QAbstractItemModel *const model = idx.model();
-    assert(model);
+    Q_ASSERT(model);
 
     if (idx.row() > 0) {
         QModelIndex i = idx.sibling(idx.row() - 1, idx.column());
@@ -78,7 +78,7 @@ static QModelIndex prevUnreadFeedIndex(const QModelIndex &idx, bool allowPassed 
 
 static QModelIndex lastLeaveChild(const QAbstractItemModel *const model)
 {
-    assert(model);
+    Q_ASSERT(model);
     if (model->rowCount() == 0) {
         return QModelIndex();
     }
@@ -95,7 +95,7 @@ static QModelIndex nextIndex(const QModelIndex &idx)
         return QModelIndex();
     }
     const QAbstractItemModel *const model = idx.model();
-    assert(model);
+    Q_ASSERT(model);
     if (model->hasChildren(idx)) {
         return idx.child(0, idx.column());
     }
@@ -208,7 +208,7 @@ void Akregator::SubscriptionListView::showHeaderMenu(const QPoint &pos)
 
 void Akregator::SubscriptionListView::headerMenuItemTriggered(QAction *act)
 {
-    assert(act);
+    Q_ASSERT(act);
     const int col = act->data().toInt();
     if (act->isChecked()) {
         header()->showSection(col);

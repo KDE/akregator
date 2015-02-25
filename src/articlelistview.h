@@ -32,7 +32,7 @@
 #include <QSortFilterProxyModel>
 #include <QTreeView>
 
-#include <boost/shared_ptr.hpp>
+#include <QSharedPointer>
 #include <KUrl>
 
 class QContextMenuEvent;
@@ -70,7 +70,7 @@ public:
     //reimpl
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const Q_DECL_OVERRIDE;
 
-    void setFilters(const std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> > &);
+    void setFilters(const std::vector<QSharedPointer<const Akregator::Filters::AbstractMatcher> > &);
 
 private:
 
@@ -78,7 +78,7 @@ private:
     bool filterAcceptsRow(int source_row, const QModelIndex &source_parent) const Q_DECL_OVERRIDE;
 
     QIcon m_keepFlagIcon;
-    std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> > m_matchers;
+    std::vector<QSharedPointer<const Akregator::Filters::AbstractMatcher> > m_matchers;
 
     QColor m_unreadColor;
     QColor m_newColor;
@@ -112,7 +112,7 @@ public:
     void setScrollBarPositions(const QPoint &p);
 
     //impl ArticleLister
-    void setFilters(const std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> > &);
+    void setFilters(const std::vector<QSharedPointer<const Akregator::Filters::AbstractMatcher> > &);
 
     //impl ArticleLister
     void forceFilterUpdate();
@@ -169,7 +169,7 @@ private:
     enum ColumnMode { GroupMode, FeedMode };
     ColumnMode m_columnMode;
     QPointer<SortColorizeProxyModel> m_proxy;
-    std::vector<boost::shared_ptr<const Filters::AbstractMatcher> > m_matchers;
+    std::vector<QSharedPointer<const Filters::AbstractMatcher> > m_matchers;
     QByteArray m_feedHeaderState;
     QByteArray m_groupHeaderState;
 };

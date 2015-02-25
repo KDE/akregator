@@ -27,7 +27,7 @@
 
 #include "command.h"
 
-#include <boost/weak_ptr.hpp>
+#include <QWeakPointer>
 
 class QDomDocument;
 
@@ -43,7 +43,7 @@ public:
     explicit ImportFeedListCommand(QObject *parent = Q_NULLPTR);
     ~ImportFeedListCommand();
 
-    void setTargetList(const boost::weak_ptr<FeedList> &feedList);
+    void setTargetList(const QWeakPointer<FeedList> &feedList);
 
     enum RootFolderOption {
         None,

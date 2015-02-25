@@ -40,7 +40,6 @@
 #include <QUrl>
 #include <cassert>
 
-using namespace boost;
 using namespace Syndication;
 
 namespace
@@ -110,7 +109,7 @@ struct Article::Private : public Shared {
     int status;
     uint hash;
     QDateTime pubDate;
-    mutable shared_ptr<const Enclosure> enclosure;
+    mutable QSharedPointer<const Enclosure> enclosure;
 };
 
 namespace
@@ -176,7 +175,7 @@ Article::Private::Private(const ItemPtr &article, Feed *feed_, Backend::FeedStor
       status(New),
       hash(0)
 {
-    assert(archive);
+    Q_ASSERT(archive);
     const QList<PersonPtr> authorList = article->authors();
 
     QString author;
@@ -540,7 +539,7 @@ QDateTime Article::pubDate() const
     return d->pubDate;
 }
 
-shared_ptr<const Enclosure> Article::enclosure() const
+QSharedPointer<const Enclosure> Article::enclosure() const
 {
     if (!d->enclosure) {
         QString url;

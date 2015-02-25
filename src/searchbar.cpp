@@ -41,7 +41,6 @@
 #include <QStandardPaths>
 #include <QHBoxLayout>
 
-using namespace boost;
 using namespace Akregator;
 using namespace Akregator::Filters;
 
@@ -56,7 +55,7 @@ public:
     KLineEdit *searchLine;
     KComboBox *searchCombo;
     int delay;
-    std::vector<shared_ptr<const AbstractMatcher> > matchers;
+    std::vector<QSharedPointer<const AbstractMatcher> > matchers;
     void triggerTimer()
     {
         if (timer.isActive()) {
@@ -167,7 +166,7 @@ void SearchBar::slotSearchComboChanged(int /*index*/)
     d->triggerTimer();
 }
 
-std::vector<shared_ptr<const AbstractMatcher> > SearchBar::matchers() const
+std::vector<QSharedPointer<const AbstractMatcher> > SearchBar::matchers() const
 {
     return d->matchers;
 }
@@ -216,10 +215,10 @@ void SearchBar::slotActivateSearch()
         }
     }
 
-    std::vector<boost::shared_ptr<const AbstractMatcher> > matchers;
+    std::vector<QSharedPointer<const AbstractMatcher> > matchers;
 
-    matchers.push_back(boost::shared_ptr<const AbstractMatcher>(new ArticleMatcher(textCriteria, ArticleMatcher::LogicalOr)));
-    matchers.push_back(boost::shared_ptr<const AbstractMatcher>(new ArticleMatcher(statusCriteria, ArticleMatcher::LogicalOr)));
+    matchers.push_back(QSharedPointer<const AbstractMatcher>(new ArticleMatcher(textCriteria, ArticleMatcher::LogicalOr)));
+    matchers.push_back(QSharedPointer<const AbstractMatcher>(new ArticleMatcher(statusCriteria, ArticleMatcher::LogicalOr)));
     Settings::setStatusFilter(d->searchCombo->currentIndex());
     Settings::setTextFilter(d->searchText);
     d->matchers = matchers;

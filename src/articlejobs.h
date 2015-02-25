@@ -32,8 +32,6 @@
 #include <QPointer>
 #include <QString>
 
-#include <boost/shared_ptr.hpp>
-
 #include "akregator_export.h"
 
 //transitional job classes
@@ -79,7 +77,7 @@ private Q_SLOTS:
     void doStart();
 
 private:
-    boost::shared_ptr<FeedList> m_feedList;
+    QSharedPointer<FeedList> m_feedList;
     ArticleIdList m_ids;
 };
 
@@ -99,7 +97,7 @@ private Q_SLOTS:
     void doStart();
 
 private:
-    boost::shared_ptr<FeedList> m_feedList;
+    QSharedPointer<FeedList> m_feedList;
     QMap<ArticleId, bool> m_keepFlags;
     QMap<ArticleId, int> m_status;
 };

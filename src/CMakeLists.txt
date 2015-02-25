@@ -4,7 +4,6 @@ add_subdirectory(about)
 add_subdirectory(icons)
 
 include_directories(
-  ${Boost_INCLUDE_DIR}
   ${CMAKE_SOURCE_DIR}/akregator/interfaces
   ${CMAKE_BINARY_DIR}/akregator/interfaces
   ${CMAKE_SOURCE_DIR}/libkdepim/

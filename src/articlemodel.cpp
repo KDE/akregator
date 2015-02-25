@@ -224,7 +224,7 @@ void ArticleModel::Private::articlesRemoved(const QList<Article> &list)
     //might want to avoid indexOf() in case of performance problems
     Q_FOREACH (const Article &i, list) {
         const int row = articles.indexOf(i);
-        assert(row != -1);
+        Q_ASSERT(row != -1);
         q->removeRow(row, QModelIndex());
     }
 }
@@ -251,9 +251,9 @@ void ArticleModel::Private::articlesUpdated(const QList<Article> &list)
     emit q->dataChanged(q->index(rmin, 0), q->index(rmax, ColumnCount - 1));
 }
 
-bool ArticleModel::rowMatches(int row, const boost::shared_ptr<const Akregator::Filters::AbstractMatcher> &matcher) const
+bool ArticleModel::rowMatches(int row, const QSharedPointer<const Akregator::Filters::AbstractMatcher> &matcher) const
 {
-    assert(matcher);
+    Q_ASSERT(matcher);
     return matcher->matches(article(row));
 }
 
@@ -272,7 +272,7 @@ QStringList ArticleModel::mimeTypes() const
 
 QMimeData *ArticleModel::mimeData(const QModelIndexList &indexes) const
 {
-    std::auto_ptr<QMimeData> md(new QMimeData);
+    QScopedPointer<QMimeData> md(new QMimeData);
     QList<QUrl> urls;
     Q_FOREACH (const QModelIndex &i, indexes) {
         const QUrl url = i.data(ArticleModel::LinkRole).value<QUrl>();
@@ -286,7 +286,7 @@ QMimeData *ArticleModel::mimeData(const QModelIndexList &indexes) const
         }
     }
     md->setUrls(urls);
-    return md.release();
+    return md.take();
 }
 
 Qt::ItemFlags ArticleModel::flags(const QModelIndex &idx) const

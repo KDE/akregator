@@ -84,7 +84,6 @@
 #include <memory>
 #include <cassert>
 
-using namespace boost;
 using namespace Akregator;
 using namespace Solid;
 
@@ -203,8 +202,8 @@ Akregator::MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl
     m_selectionController->setArticleLister(m_articleListView);
     m_selectionController->setFeedSelector(m_feedListView);
 
-    connect(m_searchBar, SIGNAL(signalSearch(std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> >)),
-            m_selectionController, SLOT(setFilters(std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> >)));
+    connect(m_searchBar, SIGNAL(signalSearch(std::vector<QSharedPointer<const Akregator::Filters::AbstractMatcher> >)),
+            m_selectionController, SLOT(setFilters(std::vector<QSharedPointer<const Akregator::Filters::AbstractMatcher> >)));
 
     FolderExpansionHandler *expansionHandler = new FolderExpansionHandler(this);
     connect(m_feedListView, SIGNAL(expanded(QModelIndex)), expansionHandler, SLOT(itemExpanded(QModelIndex)));
@@ -242,8 +241,8 @@ Akregator::MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl
             this, SLOT(slotMouseOverInfo(KFileItem)));
     connect(m_part, SIGNAL(signalSettingsChanged()),
             m_articleViewer, SLOT(slotPaletteOrFontChanged()));
-    connect(m_searchBar, SIGNAL(signalSearch(std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> >)),
-            m_articleViewer, SLOT(setFilters(std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> >)));
+    connect(m_searchBar, SIGNAL(signalSearch(std::vector<QSharedPointer<const Akregator::Filters::AbstractMatcher> >)),
+            m_articleViewer, SLOT(setFilters(std::vector<QSharedPointer<const Akregator::Filters::AbstractMatcher> >)));
 
     m_articleViewer->part()->widget()->setWhatsThis(i18n("Browsing area."));
 
@@ -286,7 +285,7 @@ Akregator::MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl
     m_markReadTimer->setSingleShot(true);
     connect(m_markReadTimer, SIGNAL(timeout()), this, SLOT(slotSetCurrentArticleReadDelayed()));
 
-    setFeedList(shared_ptr<FeedList>(new FeedList(Kernel::self()->storage())));
+    setFeedList(QSharedPointer<FeedList>(new FeedList(Kernel::self()->storage())));
 
     switch (Settings::viewMode()) {
     case CombinedView:
@@ -324,7 +323,7 @@ void Akregator::MainWidget::slotOnShutdown()
     }
 
     Kernel::self()->fetchQueue()->slotAbort();
-    setFeedList(shared_ptr<FeedList>());
+    setFeedList(QSharedPointer<FeedList>());
 
     delete m_feedListManagementInterface;
     delete m_feedListView; // call delete here, so that the header settings will get saved
@@ -409,23 +408,23 @@ void Akregator::MainWidget::sendArticle(bool attach)
 
 void MainWidget::importFeedList(const QDomDocument &doc)
 {
-    std::auto_ptr<ImportFeedListCommand> cmd(new ImportFeedListCommand);
+    ImportFeedListCommand* cmd = new ImportFeedListCommand;
     cmd->setParentWidget(this);
     cmd->setFeedListDocument(doc);
     cmd->setTargetList(m_feedList);
-    cmd.release()->start();
+    cmd->start();
 }
 
-void Akregator::MainWidget::setFeedList(const shared_ptr<FeedList> &list)
+void Akregator::MainWidget::setFeedList(const QSharedPointer<FeedList> &list)
 {
     if (list == m_feedList) {
         return;
     }
-    const shared_ptr<FeedList> oldList = m_feedList;
+    const QSharedPointer<FeedList> oldList = m_feedList;
 
     m_feedList = list;
     if (m_feedList) {
-        connect(m_feedList.get(), SIGNAL(unreadCountChanged(int)),
+        connect(m_feedList.data(), SIGNAL(unreadCountChanged(int)),
                 this, SLOT(slotSetTotalUnread()));
     }
 
@@ -443,7 +442,7 @@ void Akregator::MainWidget::setFeedList(const shared_ptr<FeedList> &list)
     slotDeleteExpiredArticles();
 }
 
-void Akregator::MainWidget::deleteExpiredArticles(const shared_ptr<FeedList> &list)
+void Akregator::MainWidget::deleteExpiredArticles(const QSharedPointer<FeedList> &list)
 {
     if (!list) {
         return;
@@ -832,13 +831,13 @@ void Akregator::MainWidget::slotArticleSelected(const Akregator::Article &articl
 
     m_markReadTimer->stop();
 
-    assert(article.isNull() || article.feed());
+    Q_ASSERT(article.isNull() || article.feed());
 
     QList<Article> articles = m_selectionController->selectedArticles();
     emit signalArticlesSelected(articles);
 
     KToggleAction *const maai = qobject_cast<KToggleAction *>(m_actionManager->action("article_set_status_important"));
-    assert(maai);
+    Q_ASSERT(maai);
     maai->setChecked(article.keep());
 
     m_articleViewer->showArticle(article);

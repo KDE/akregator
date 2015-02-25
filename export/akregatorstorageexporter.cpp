@@ -294,8 +294,8 @@ static void writeItem(FeedStorage *storage, const QString &guid, QXmlStreamWrite
 
 static void serialize(FeedStorage *storage, const QString &url, QIODevice *device)
 {
-    assert(storage);
-    assert(device);
+    Q_ASSERT(storage);
+    Q_ASSERT(device);
     QXmlStreamWriter writer(device);
     writer.setAutoFormatting(true);
     writer.setAutoFormattingIndent(2);

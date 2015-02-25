@@ -40,7 +40,6 @@
 
 #include <cassert>
 
-using namespace boost;
 using namespace Akregator;
 using namespace Akregator::Backend;
 
@@ -51,7 +50,7 @@ public:
     explicit Private(LoadFeedListCommand *qq) : q(qq), storage(0) {}
     void handleDocument(const QDomDocument &doc);
     QString createBackup(const QString &path, bool *ok);
-    void emitResult(const shared_ptr<FeedList> &list);
+    void emitResult(const QSharedPointer<FeedList> &list);
     void doLoad();
 
     QString fileName;
@@ -59,7 +58,7 @@ public:
     Storage *storage;
 };
 
-void LoadFeedListCommand::Private::emitResult(const shared_ptr<FeedList> &list)
+void LoadFeedListCommand::Private::emitResult(const QSharedPointer<FeedList> &list)
 {
     emit q->result(list);
     q->done();
@@ -67,7 +66,7 @@ void LoadFeedListCommand::Private::emitResult(const shared_ptr<FeedList> &list)
 
 void LoadFeedListCommand::Private::handleDocument(const QDomDocument &doc)
 {
-    shared_ptr<FeedList> feedList(new FeedList(storage));
+    QSharedPointer<FeedList> feedList(new FeedList(storage));
     if (!feedList->readFromOpml(doc)) {
         bool backupCreated;
         const QString backupFile = createBackup(fileName, &backupCreated);
@@ -136,8 +135,8 @@ void LoadFeedListCommand::doAbort()
 
 void LoadFeedListCommand::Private::doLoad()
 {
-    assert(storage);
-    assert(!fileName.isNull());
+    Q_ASSERT(storage);
+    Q_ASSERT(!fileName.isNull());
     emit q->progress(0, i18n("Opening Feed List..."));
 
     QString str;

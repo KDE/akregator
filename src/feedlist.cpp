@@ -44,8 +44,6 @@
 
 #include <cassert>
 
-using namespace boost;
-
 namespace Akregator
 {
 
@@ -420,7 +418,7 @@ bool FeedList::isEmpty() const
 
 void FeedList::rootNodeChanged()
 {
-    assert(d->rootNode);
+    Q_ASSERT(d->rootNode);
     const int newUnread = d->rootNode->unread();
     if (newUnread == d->unreadCache) {
         return;
@@ -505,19 +503,19 @@ KJob *FeedList::createMarkAsReadJob()
     return d->rootNode ? d->rootNode->createMarkAsReadJob() : 0;
 }
 
-FeedListManagementImpl::FeedListManagementImpl(const shared_ptr<FeedList> &list) : m_feedList(list)
+FeedListManagementImpl::FeedListManagementImpl(const QSharedPointer<FeedList> &list) : m_feedList(list)
 {
 
 }
 
-void FeedListManagementImpl::setFeedList(const shared_ptr<FeedList> &list)
+void FeedListManagementImpl::setFeedList(const QSharedPointer<FeedList> &list)
 {
     m_feedList = list;
 }
 
 static QString path_of_folder(const Folder *fol)
 {
-    assert(fol);
+    Q_ASSERT(fol);
     QString path;
     const Folder *i = fol;
     while (i) {
@@ -576,7 +574,7 @@ void FeedListManagementImpl::addFeed(const QString &url, const QString &catId)
     }
 
     // Create new feed
-    std::auto_ptr<FeedList> new_feedlist(new FeedList(Kernel::self()->storage()));
+    QScopedPointer<FeedList> new_feedlist(new FeedList(Kernel::self()->storage()));
     Feed *new_feed = new Feed(Kernel::self()->storage());
     new_feed->setXmlUrl(url);
     // new_feed->setTitle(url);
@@ -586,7 +584,7 @@ void FeedListManagementImpl::addFeed(const QString &url, const QString &catId)
     TreeNode *m_last = m_folder->childAt(m_folder->totalCount());
 
     // Add the feed
-    m_feedList->append(new_feedlist.get(), m_folder, m_last);
+    m_feedList->append(new_feedlist.data(), m_folder, m_last);
 }
 
 void FeedListManagementImpl::removeFeed(const QString &url, const QString &catId)

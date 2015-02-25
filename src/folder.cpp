@@ -324,11 +324,11 @@ void Folder::updateUnreadCount() const
 
 KJob *Folder::createMarkAsReadJob()
 {
-    std::auto_ptr<CompositeJob> job(new CompositeJob);
+    CompositeJob* job = new CompositeJob;
     Q_FOREACH (Feed *const i, feeds()) {
         job->addSubjob(i->createMarkAsReadJob());
     }
-    return job.release();
+    return job;
 }
 
 void Folder::slotChildChanged(TreeNode * /*node*/)
@@ -382,7 +382,7 @@ void Folder::connectToNode(TreeNode *child)
 
 void Folder::disconnectFromNode(TreeNode *child)
 {
-    assert(child);
+    Q_ASSERT(child);
     child->disconnect(this);
 }
 

@@ -72,8 +72,8 @@ CreateFeedCommand::Private::Private(CreateFeedCommand *qq)
 
 void CreateFeedCommand::Private::doCreate()
 {
-    assert(m_rootFolder);
-    assert(m_subscriptionListView);
+    Q_ASSERT(m_rootFolder);
+    Q_ASSERT(m_subscriptionListView);
 
     QPointer<AddFeedDialog> afd = new AddFeedDialog(q->parentWidget(), "add_feed");
 
@@ -81,7 +81,7 @@ void CreateFeedCommand::Private::doCreate()
 
     if (url.isEmpty()) {
         const QClipboard *const clipboard = QApplication::clipboard();
-        assert(clipboard);
+        Q_ASSERT(clipboard);
         const QString clipboardText = clipboard->text();
         // Check for the hostname, since the isValid method is not strict enough
         if (!KUrl(clipboardText).host().isEmpty()) {

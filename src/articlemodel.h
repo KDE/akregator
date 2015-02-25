@@ -29,7 +29,7 @@
 
 #include "akregatorpart_export.h"
 
-#include <boost/shared_ptr.hpp>
+#include <QSharedPointer>
 #include <vector>
 
 namespace Akregator
@@ -83,7 +83,7 @@ public:
     //impl
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const Q_DECL_OVERRIDE;
 
-    bool rowMatches(int row, const boost::shared_ptr<const Akregator::Filters::AbstractMatcher> &matcher) const;
+    bool rowMatches(int row, const QSharedPointer<const Akregator::Filters::AbstractMatcher> &matcher) const;
 
     Article article(int row) const;
 

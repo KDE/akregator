@@ -27,7 +27,7 @@
 
 #include "feedlist.h"
 #include <QObject>
-#include <boost/shared_ptr.hpp>
+#include <QSharedPointer>
 
 namespace Akregator
 {
@@ -49,7 +49,7 @@ public:
     ~ProgressManager();
 
     /** sets the feed list to be managed */
-    void setFeedList(const boost::shared_ptr<FeedList> &feedList);
+    void setFeedList(const QSharedPointer<FeedList> &feedList);
 
 protected Q_SLOTS:
 
