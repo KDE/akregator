@@ -67,7 +67,7 @@ public:
 
     bool openUrl(const OpenUrlRequest &request);
 
-    /* reimp */ void setFavicon(const QIcon &icon) Q_DECL_OVERRIDE;
+    void setFavicon(const QIcon &icon) Q_DECL_OVERRIDE;
 
     void loadConfig(const KConfigGroup &config, const QString &prefix);
     void saveConfig(KConfigGroup &config, const QString &prefix);

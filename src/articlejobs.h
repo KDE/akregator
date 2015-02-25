@@ -60,8 +60,8 @@ class AKREGATOR_EXPORT CompositeJob : public KCompositeJob
     Q_OBJECT
 public:
     explicit CompositeJob(QObject *parent = Q_NULLPTR);
-    /* reimp */ bool addSubjob(KJob *job) Q_DECL_OVERRIDE;
-    /* reimp */ void start() Q_DECL_OVERRIDE;
+    bool addSubjob(KJob *job) Q_DECL_OVERRIDE;
+    void start() Q_DECL_OVERRIDE;
 };
 
 class AKREGATOR_EXPORT ArticleDeleteJob : public KJob
@@ -113,7 +113,7 @@ public:
     QList<Article> articles() const;
     TreeNode *node() const;
 
-    /* reimp */ void start() Q_DECL_OVERRIDE;
+    void start() Q_DECL_OVERRIDE;
 
     enum Error {
         ListingFailed = KJob::UserDefinedError

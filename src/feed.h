@@ -223,7 +223,7 @@ public:
     QVector<const Folder *> folders() const;
     QVector<Folder *> folders();
 
-    /* reimp */ KJob *createMarkAsReadJob() Q_DECL_OVERRIDE;
+    KJob *createMarkAsReadJob() Q_DECL_OVERRIDE;
 
 public Q_SLOTS:
     /** starts fetching */

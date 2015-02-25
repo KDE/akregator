@@ -44,7 +44,7 @@ Q_SIGNALS:
     void signalFoundMimeType(Akregator::OpenUrlRequest &request);
 
 private:
-    /* reimp */ void foundMimeType(const QString &type) Q_DECL_OVERRIDE;
+    void foundMimeType(const QString &type) Q_DECL_OVERRIDE;
 
 private:
     OpenUrlRequest m_request;
