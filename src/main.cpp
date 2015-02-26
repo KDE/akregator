@@ -50,7 +50,7 @@ private:
 int Application::newInstance()
 {
     if (!isSessionRestored()) {
-        QDBusInterface akr(QLatin1String("org.kde.akregator"), QLatin1String("/Akregator"), QLatin1String("org.kde.akregator.part"));
+        QDBusInterface akr(QStringLiteral("org.kde.akregator"), QStringLiteral("/Akregator"), QStringLiteral("org.kde.akregator.part"));
 
         KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
 
@@ -61,10 +61,10 @@ int Application::newInstance()
             if (!args->isSet("hide-mainwindow")) {
                 mMainWindow->show();
             }
-            akr.call(QLatin1String("openStandardFeedList"));
+            akr.call(QStringLiteral("openStandardFeedList"));
         }
 
-        akr.call(QLatin1String("handleCommandLine"));
+        akr.call(QStringLiteral("handleCommandLine"));
         args->clear();
     }
     return KUniqueApplication::newInstance();
