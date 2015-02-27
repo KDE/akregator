@@ -13,7 +13,8 @@ include_directories(
 
 set(akregator_SRCS main.cpp mainwindow.cpp akregator_debug.cpp)
 
-kde4_add_app_icon(akregator_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/icons/hi*-app-akregator.png")
+file(GLOB ICONS_AKREGATOR_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/icons/hi*-apps-akregator.png")
+ecm_add_app_icon(akregator_SRCS ICONS ${ICONS_AKREGATOR_SRCS})
 
 add_executable(akregator ${akregator_SRCS})
 
