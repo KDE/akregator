@@ -57,7 +57,7 @@ set(akregatorprivate_LIB_SRCS
   actions.cpp
 )
 
-add_library(akregatorprivate ${LIBRARY_TYPE} ${akregatorprivate_LIB_SRCS})
+add_library(akregatorprivate ${akregatorprivate_LIB_SRCS})
 generate_export_header(akregatorprivate BASE_NAME akregator)
 
 target_link_libraries(akregatorprivate
