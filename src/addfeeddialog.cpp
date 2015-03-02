@@ -32,8 +32,7 @@
 #include <KLocalizedString>
 #include <kmessagebox.h>
 #include <ksqueezedtextlabel.h>
-#include <kurl.h>
-
+#include <QUrl>
 #include <QCheckBox>
 #include <KConfigGroup>
 #include <QDialogButtonBox>
