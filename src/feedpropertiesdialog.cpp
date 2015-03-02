@@ -26,7 +26,6 @@
 #include "akregatorconfig.h"
 
 #include <kcombobox.h>
-#include <klineedit.h>
 #include <KLocalizedString>
 #include <kpassworddialog.h>
 

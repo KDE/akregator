@@ -29,7 +29,6 @@
 #include "akregator_debug.h"
 #include <kiconloader.h>
 #include <kicontheme.h>
-#include <klineedit.h>
 #include <KLocalizedString>
 #include <kmessagebox.h>
 #include <ksqueezedtextlabel.h>
