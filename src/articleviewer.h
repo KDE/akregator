@@ -34,7 +34,7 @@
 
 #include <QSharedPointer>
 #include <vector>
-#include <KUrl>
+#include <QUrl>
 
 class KJob;
 
@@ -119,7 +119,7 @@ Q_SIGNALS:
 protected: // methods
     int pointsToPixel(int points) const;
 
-    bool openUrl(const KUrl &url);
+    bool openUrl(const QUrl &url);
 
 protected Q_SLOTS:
 
@@ -191,17 +191,17 @@ private:
     void setArticleActionsEnabled(bool enabled);
 
 private:
-    KUrl m_url;
+    QUrl m_url;
     QString m_normalModeCSS;
     QString m_combinedModeCSS;
     QString m_htmlFooter;
     QString m_currentText;
-    KUrl m_imageDir;
+    QUrl m_imageDir;
     QPointer<TreeNode> m_node;
     QPointer<ArticleListJob> m_listJob;
     Article m_article;
     QList<Article> m_articles;
-    KUrl m_link;
+    QUrl m_link;
     std::vector<QSharedPointer<const Filters::AbstractMatcher> > m_filters;
     enum ViewMode { NormalView, CombinedView, SummaryView };
     ViewMode m_viewMode;

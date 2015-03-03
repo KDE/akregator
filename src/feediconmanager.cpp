@@ -28,7 +28,7 @@
 #include <kapplication.h>
 #include "akregator_debug.h"
 
-#include <kurl.h>
+#include <QUrl>
 
 #include <QIcon>
 #include <QMultiHash>
@@ -54,7 +54,7 @@ public:
     ~Private();
 
     void loadIcon(const QString &url);
-    QString iconLocation(const KUrl &) const;
+    QString iconLocation(const QUrl &) const;
 
     QHash<FaviconListener *, QString> m_listeners;
     QMultiHash<QString, FaviconListener *> urlDict;
@@ -64,7 +64,7 @@ public:
 namespace
 {
 
-QString getIconUrl(const KUrl &url)
+QString getIconUrl(const QUrl &url)
 {
     return QLatin1String("http://") + url.host() + QLatin1Char('/');
 }
@@ -87,7 +87,7 @@ FeedIconManager::Private::~Private()
 
 FeedIconManager *FeedIconManager::Private::m_instance = 0;
 
-QString FeedIconManager::Private::iconLocation(const KUrl &url) const
+QString FeedIconManager::Private::iconLocation(const QUrl &url) const
 {
     QDBusReply<QString> reply = m_favIconsModule->call(QLatin1String("iconForUrl"), url.url());
     return reply.isValid() ? reply.value() : QString();
@@ -95,7 +95,7 @@ QString FeedIconManager::Private::iconLocation(const KUrl &url) const
 
 void FeedIconManager::Private::loadIcon(const QString &url_)
 {
-    const KUrl url(url_);
+    const QUrl url(url_);
 
     QString iconFile = iconLocation(url);
 
@@ -118,7 +118,7 @@ FeedIconManager *FeedIconManager::self()
     return Private::m_instance;
 }
 
-void FeedIconManager::addListener(const KUrl &url, FaviconListener *listener)
+void FeedIconManager::addListener(const QUrl &url, FaviconListener *listener)
 {
     Q_ASSERT(listener);
     removeListener(listener);
@@ -136,7 +136,7 @@ void FeedIconManager::removeListener(FaviconListener *listener)
         return;
     }
     const QString url = d->m_listeners.value(listener);
-    d->urlDict.remove(KUrl(url).host(), listener);
+    d->urlDict.remove(QUrl(url).host(), listener);
     d->urlDict.remove(url, listener);
     d->m_listeners.remove(listener);
 }

@@ -33,7 +33,7 @@
 #include <QTreeView>
 
 #include <QSharedPointer>
-#include <KUrl>
+#include <QUrl>
 
 class QContextMenuEvent;
 class QPaintEvent;
@@ -125,7 +125,7 @@ protected:
     void mousePressEvent(QMouseEvent *ev) Q_DECL_OVERRIDE;
 
 Q_SIGNALS:
-    void signalMouseButtonPressed(int, const KUrl &);
+    void signalMouseButtonPressed(int, const QUrl &);
 
 public Q_SLOTS:
 

@@ -32,7 +32,7 @@
 #include "mainwidget.h"
 #include "subscriptionlistview.h"
 
-#include <KUrl>
+#include <QUrl>
 
 #include <QPointer>
 #include <QTimer>
@@ -84,7 +84,7 @@ void CreateFeedCommand::Private::doCreate()
         Q_ASSERT(clipboard);
         const QString clipboardText = clipboard->text();
         // Check for the hostname, since the isValid method is not strict enough
-        if (!KUrl(clipboardText).host().isEmpty()) {
+        if (!QUrl(clipboardText).host().isEmpty()) {
             url = clipboardText;
         }
     }

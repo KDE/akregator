@@ -25,7 +25,7 @@
 #ifndef AKREGATOR_ARTICLEFORMATTER_H
 #define AKREGATOR_ARTICLEFORMATTER_H
 
-#include <kurl.h>
+#include <QUrl>
 
 class QPaintDevice;
 class QString;
@@ -71,7 +71,7 @@ class DefaultNormalViewFormatter : public ArticleFormatter
 {
 public:
 
-    explicit DefaultNormalViewFormatter(const KUrl &imageDir, QPaintDevice *device = 0);
+    explicit DefaultNormalViewFormatter(const QUrl &imageDir, QPaintDevice *device = 0);
     ~DefaultNormalViewFormatter();
 
     QString formatArticle(const Article &article, IconOption option) const;
@@ -83,7 +83,7 @@ public:
 private:
     DefaultNormalViewFormatter();
 
-    KUrl m_imageDir;
+    QUrl m_imageDir;
     class SummaryVisitor;
     SummaryVisitor *m_summaryVisitor;
 };
@@ -93,7 +93,7 @@ class DefaultCombinedViewFormatter : public ArticleFormatter
 
 public:
 
-    explicit DefaultCombinedViewFormatter(const KUrl &imageDir, QPaintDevice *device = 0);
+    explicit DefaultCombinedViewFormatter(const QUrl &imageDir, QPaintDevice *device = 0);
 
     QString formatArticle(const Article &article, IconOption option) const;
 
@@ -104,7 +104,7 @@ public:
 private:
     DefaultCombinedViewFormatter();
 
-    KUrl m_imageDir;
+    QUrl m_imageDir;
 };
 
 } // namespace Akregator

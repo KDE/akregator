@@ -47,7 +47,7 @@
 #include <QIcon>
 #include <kiconloader.h>
 #include <ktoolinvocation.h>
-#include <kurl.h>
+#include <QUrl>
 #include <kmimetype.h>
 #include <kio/global.h>
 #include <kio/pixmaploader.h>
@@ -390,10 +390,10 @@ void TabWidget::slotCopyLinkAddress()
     Frame *frame = d->frames.value(d->selectedWidget());
 
     if (frame && frame->url().isValid()) {
-        KUrl url = frame->url();
+        QUrl url = frame->url();
         // don't set url to selection as it's a no-no according to a fd.o spec
-        //kapp->clipboard()->setText(url.prettyUrl(), QClipboard::Selection);
-        kapp->clipboard()->setText(url.prettyUrl(), QClipboard::Clipboard);
+        //kapp->clipboard()->setText(url.toDisplayString(), QClipboard::Selection);
+        kapp->clipboard()->setText(url.toDisplayString(), QClipboard::Clipboard);
     }
 }
 
@@ -414,12 +414,12 @@ void TabWidget::initiateDrag(int tab)
     Frame *frame = d->frames.value(widget(tab));
 
     if (frame && frame->url().isValid()) {
-        KUrl::List lst;
+        QList<QUrl> lst;
         lst.append(frame->url());
         QDrag *drag = new QDrag(this);
         QMimeData *md = new QMimeData;
         drag->setMimeData(md);
-        lst.populateMimeData(md);
+        md->setUrls(lst);
         drag->setPixmap(KIO::pixmapForUrl(lst.first(), 0, KIconLoader::Small));
         drag->start();
     }

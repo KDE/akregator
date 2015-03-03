@@ -28,7 +28,7 @@
 namespace Akregator
 {
 
-OpenUrlRequest::OpenUrlRequest(const KUrl &url) : m_frameId(-1), m_url(url),
+OpenUrlRequest::OpenUrlRequest(const QUrl &url) : m_frameId(-1), m_url(url),
     m_options(None), m_part(), m_inBackground(false), m_wasHandled(false)
 {
 }
@@ -43,12 +43,12 @@ void OpenUrlRequest::setFrameId(int frameId)
     m_frameId = frameId;
 }
 
-KUrl OpenUrlRequest::url() const
+QUrl OpenUrlRequest::url() const
 {
     return m_url;
 }
 
-void OpenUrlRequest::setUrl(const KUrl &url)
+void OpenUrlRequest::setUrl(const QUrl &url)
 {
     m_url = url;
 }

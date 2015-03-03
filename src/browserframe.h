@@ -36,7 +36,7 @@ class QPoint;
 class QString;
 class QWidget;
 
-class KUrl;
+class QUrl;
 
 namespace KParts
 {
@@ -56,7 +56,7 @@ public:
     explicit BrowserFrame(QWidget *parent = Q_NULLPTR);
     ~BrowserFrame();
 
-    KUrl url() const;
+    QUrl url() const;
 
     KParts::ReadOnlyPart *part() const;
 

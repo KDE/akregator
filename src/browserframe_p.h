@@ -41,7 +41,7 @@
 #include <klibloader.h>
 #include <kmimetypetrader.h>
 #include <ktoolbarpopupaction.h>
-#include <kurl.h>
+#include <QUrl>
 #include <kxmlguiclient.h>
 #include <kparts/browserextension.h>
 #include <kparts/part.h>
@@ -75,7 +75,7 @@ public:
 
     void connectPart();
     void updateHistoryEntry();
-    void appendHistoryEntry(const KUrl &url);
+    void appendHistoryEntry(const QUrl &url);
     void restoreHistoryEntry(const QList<HistoryEntry>::Iterator &entry);
     bool loadPartForMimetype(const QString &mimetype);
 
@@ -91,7 +91,7 @@ class BrowserFrame::Private::HistoryEntry
 {
 public:
 
-    KUrl url;
+    QUrl url;
     QString title;
     QByteArray buffer;
     int id;

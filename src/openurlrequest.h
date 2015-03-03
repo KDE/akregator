@@ -28,7 +28,7 @@
 #include <kparts/browserextension.h>
 #include <kparts/part.h>
 
-#include <kurl.h>
+#include <QUrl>
 
 #include <QPointer>
 
@@ -53,15 +53,15 @@ public:
         ExternalBrowser /**< open in external browser */
     };
 
-    explicit OpenUrlRequest(const KUrl &url = KUrl());
+    explicit OpenUrlRequest(const QUrl &url = QUrl());
 
     /**
      * the Id of the frame that sent the request */
     int frameId() const;
     void setFrameId(int frameId);
 
-    KUrl url() const;
-    void setUrl(const KUrl &url);
+    QUrl url() const;
+    void setUrl(const QUrl &url);
 
     KParts::OpenUrlArguments args() const;
     void setArgs(const KParts::OpenUrlArguments &args);
@@ -95,7 +95,7 @@ public:
 private:
 
     int m_frameId;
-    KUrl m_url;
+    QUrl m_url;
     KParts::OpenUrlArguments m_args;
     KParts::BrowserArguments m_browserArgs;
     Options m_options;

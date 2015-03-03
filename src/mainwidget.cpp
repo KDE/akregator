@@ -72,7 +72,7 @@
 
 #include <ktoggleaction.h>
 #include <ktoolinvocation.h>
-#include <kurl.h>
+#include <QUrl>
 
 #include <QClipboard>
 #include <QSplitter>
@@ -136,9 +136,9 @@ Akregator::MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl
             this, SLOT(ensureArticleTabVisible()));
 
     // FIXME:
-    // connect(m_feedListView, SIGNAL(signalDropped (KUrl::List &, Akregator::TreeNode*,
+    // connect(m_feedListView, SIGNAL(signalDropped (QList<QUrl> &, Akregator::TreeNode*,
     //         Akregator::Folder*)),
-    //         this, SLOT(slotFeedUrlDropped (KUrl::List &,
+    //         this, SLOT(slotFeedUrlDropped (QList<QUrl> &,
     //         Akregator::TreeNode*, Akregator::Folder*)));
 
     m_tabWidget = new TabWidget(m_horizontalSplitter);
@@ -371,7 +371,7 @@ void Akregator::MainWidget::sendArticle(bool attach)
     Frame *frame = Kernel::self()->frameManager()->currentFrame();
 
     if (frame && frame->id() > 0) { // are we in some other tab than the articlelist?
-        text = frame->url().prettyUrl().toLatin1();
+        text = frame->url().toString().toLatin1();
         title = frame->title();
     } else { // nah, we're in articlelist..
         const Article article =  m_selectionController->currentArticle();
@@ -865,7 +865,7 @@ void Akregator::MainWidget::slotArticleSelected(const Akregator::Article &articl
     }
 }
 
-void Akregator::MainWidget::slotMouseButtonPressed(int button, const KUrl &url)
+void Akregator::MainWidget::slotMouseButtonPressed(int button, const QUrl &url)
 {
     if (button != Qt::MidButton) {
         return;
@@ -901,7 +901,7 @@ void Akregator::MainWidget::slotOpenHomepage()
         return;
     }
 
-    KUrl url(feed->htmlUrl());
+    QUrl url(feed->htmlUrl());
 
     if (url.isValid()) {
         OpenUrlRequest req(feed->htmlUrl());
@@ -933,7 +933,7 @@ void Akregator::MainWidget::openSelectedArticles(bool openInBackground)
     const QList<Article> articles = m_selectionController->selectedArticles();
 
     Q_FOREACH (const Akregator::Article &article, articles) {
-        const KUrl url = article.link();
+        const QUrl url = article.link();
         if (!url.isValid()) {
             continue;
         }
@@ -968,10 +968,10 @@ void Akregator::MainWidget::slotCopyLinkAddress()
     }
 }
 
-void Akregator::MainWidget::slotFeedUrlDropped(KUrl::List &urls, TreeNode *after, Folder *parent)
+void Akregator::MainWidget::slotFeedUrlDropped(QList<QUrl> &urls, TreeNode *after, Folder *parent)
 {
-    Q_FOREACH (const KUrl &i, urls) {
-        addFeed(i.prettyUrl(), after, parent, false);
+    Q_FOREACH (const QUrl &i, urls) {
+        addFeed(i.toDisplayString(), after, parent, false);
     }
 }
 

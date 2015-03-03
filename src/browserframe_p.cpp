@@ -114,7 +114,7 @@ void BrowserFrame::Private::partDestroyed(QObject *)
     emit q->signalPartDestroyed(q->id());
 }
 
-void BrowserFrame::Private::appendHistoryEntry(const KUrl &url)
+void BrowserFrame::Private::appendHistoryEntry(const QUrl &url)
 {
     if (lockHistory) {
         return;

@@ -33,7 +33,7 @@
 
 #include "akregator_export.h"
 
-class KUrl;
+class QUrl;
 
 namespace KParts
 {
@@ -73,7 +73,7 @@ public:
     /**
      * returns the URL of the embedded part
      */
-    virtual KUrl url() const = 0;
+    virtual QUrl url() const = 0;
 
     QString title() const;
     QString caption() const;
@@ -189,7 +189,7 @@ public:
     MainFrame(QWidget *parent, KParts::ReadOnlyPart *part, QWidget *widget);
     virtual ~MainFrame();
 
-    virtual KUrl url() const;
+    virtual QUrl url() const;
 
     virtual bool openUrl(const OpenUrlRequest &)
     {

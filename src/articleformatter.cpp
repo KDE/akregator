@@ -119,8 +119,9 @@ public:
         if (!node->image().isNull()) { // image
             text += QString("<div class=\"body\">");
             QString file = Utils::fileNameForUrl(node->xmlUrl());
-            KUrl u(parent->m_imageDir);
-            u.setFileName(file);
+            QUrl u(parent->m_imageDir);
+            u = u.adjusted(QUrl::RemoveFilename);
+            u.setPath(u.path() + file);
             text += QString("<a href=\"%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(node->htmlUrl(), u.url());
         } else {
             text += "<div class=\"body\">";
@@ -214,8 +215,9 @@ QString DefaultNormalViewFormatter::formatArticle(const Article &article, IconOp
     if (icon == ShowIcon && article.feed() && !article.feed()->image().isNull()) {
         const Feed *feed = article.feed();
         QString file = Utils::fileNameForUrl(feed->xmlUrl());
-        KUrl u(m_imageDir);
-        u.setFileName(file);
+        QUrl u(m_imageDir);
+        u = u.adjusted(QUrl::RemoveFilename);
+        u.setPath(u.path() + file);
         text += QString("<a href=\"%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(feed->htmlUrl(), u.url());
     }
 
@@ -242,7 +244,7 @@ QString DefaultNormalViewFormatter::formatArticle(const Article &article, IconOp
         text += QString("<p><em>%1</em> %2</p>").arg(i18n("Enclosure:")).arg(enc);
     }
 
-    if (article.link().isValid() || (article.guidIsPermaLink() && KUrl(article.guid()).isValid())) {
+    if (article.link().isValid() || (article.guidIsPermaLink() && QUrl(article.guid()).isValid())) {
         text += "<p><a class=\"contentlink\" href=\"";
         // in case link isn't valid, fall back to the guid permaLink.
         if (article.link().isValid()) {
@@ -339,11 +341,11 @@ QString DefaultNormalViewFormatter::getCss() const
     return css;
 }
 
-DefaultCombinedViewFormatter::DefaultCombinedViewFormatter(const KUrl &imageDir, QPaintDevice *device) : ArticleFormatter(device), m_imageDir(imageDir)
+DefaultCombinedViewFormatter::DefaultCombinedViewFormatter(const QUrl &imageDir, QPaintDevice *device) : ArticleFormatter(device), m_imageDir(imageDir)
 {
 }
 
-DefaultNormalViewFormatter::DefaultNormalViewFormatter(const KUrl &imageDir, QPaintDevice *device)
+DefaultNormalViewFormatter::DefaultNormalViewFormatter(const QUrl &imageDir, QPaintDevice *device)
     : ArticleFormatter(device),
       m_imageDir(imageDir),
       m_summaryVisitor(new SummaryVisitor(this))
@@ -401,8 +403,9 @@ QString DefaultCombinedViewFormatter::formatArticle(const Article &article, Icon
     if (icon == ShowIcon && article.feed() && !article.feed()->image().isNull()) {
         const Feed *feed = article.feed();
         QString file = Utils::fileNameForUrl(feed->xmlUrl());
-        KUrl u(m_imageDir);
-        u.setFileName(file);
+        QUrl u(m_imageDir);
+        u = u.adjusted(QUrl::RemoveFilename);
+        u.setPath(u.path() + file);
         text += QString("<a href=\"%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(feed->htmlUrl(), u.url());
     }
 
@@ -429,7 +432,7 @@ QString DefaultCombinedViewFormatter::formatArticle(const Article &article, Icon
         text += QString("<p><em>%1</em> %2</p>").arg(i18n("Enclosure:")).arg(enc);
     }
 
-    if (article.link().isValid() || (article.guidIsPermaLink() && KUrl(article.guid()).isValid())) {
+    if (article.link().isValid() || (article.guidIsPermaLink() && QUrl(article.guid()).isValid())) {
         text += "<p><a class=\"contentlink\" href=\"";
         // in case link isn't valid, fall back to the guid permaLink.
         if (article.link().isValid()) {

@@ -57,7 +57,7 @@
 #include <kparts/browserextension.h>
 #include <kparts/browserrun.h>
 #include <KGlobal>
-#include <KUrl>
+#include <QUrl>
 
 #include <QClipboard>
 #include <QGridLayout>
@@ -263,11 +263,11 @@ void ArticleViewer::slotCopyLinkAddress()
         return;
     }
     QClipboard *cb = QApplication::clipboard();
-    cb->setText(m_url.prettyUrl(), QClipboard::Clipboard);
+    cb->setText(m_url.toString(), QClipboard::Clipboard);
     // don't set url to selection as it's a no-no according to a fd.o spec
     // which spec? Nobody seems to care (tested Firefox (3.5.10) Konqueror,and KMail (4.2.3)), so I re-enable the following line unless someone gives
     // a good reason to remove it again (bug 183022) --Frank
-    cb->setText(m_url.prettyUrl(), QClipboard::Selection);
+    cb->setText(m_url.toString(), QClipboard::Selection);
 }
 
 void ArticleViewer::slotSelectionChanged()
@@ -304,10 +304,11 @@ void ArticleViewer::slotOpenLinkInBrowser()
 
 void ArticleViewer::slotSaveLinkAs()
 {
-    KUrl tmp(m_url);
+    QUrl tmp(m_url);
 
-    if (tmp.fileName(KUrl::ObeyTrailingSlash).isEmpty()) {
-        tmp.setFileName("index.html");
+    if (tmp.fileName().isEmpty()) {
+        tmp = tmp.adjusted(QUrl::RemoveFilename);
+        tmp.setPath(tmp.path() + "index.html");
     }
     KParts::BrowserRun::simpleSave(tmp, tmp.fileName());
 }
@@ -419,7 +420,7 @@ void ArticleViewer::beginWriting()
     //fixes the Complete Story link if the url has an anchor (e.g. #reqRSS) in it
     //See bug 177754
 
-    KUrl url(m_link);
+    QUrl url(m_link);
     url.addQueryItem("akregatorPreviewMode", "true");
     m_part->begin(url);
     m_part->write(head);
@@ -475,7 +476,7 @@ void ArticleViewer::showArticle(const Akregator::Article &article)
     setArticleActionsEnabled(true);
 }
 
-bool ArticleViewer::openUrl(const KUrl &url)
+bool ArticleViewer::openUrl(const QUrl &url)
 {
     if (!m_article.isNull() && m_article.feed()->loadLinkedWebsite()) {
         return m_part->openUrl(url);
@@ -617,7 +618,7 @@ void ArticleViewer::slotArticlesListed(KJob *job)
     if (node && !m_articles.isEmpty()) {
         m_link = m_articles.first().link();
     } else {
-        m_link = KUrl();
+        m_link = QUrl();
     }
 
     slotUpdateCombinedView();

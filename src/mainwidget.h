@@ -30,7 +30,7 @@
 #include "akregatorpart_export.h"
 #include "feed.h"
 
-#include <kurl.h>
+#include <QUrl>
 
 #include <solid/networking.h>
 
@@ -162,7 +162,7 @@ public Q_SLOTS:
     void slotRequestNewFrame(int &frameId);
 
     /** called when URLs are dropped into the tree view */
-    void slotFeedUrlDropped(KUrl::List &urls, Akregator::TreeNode *after, Akregator::Folder *parent);
+    void slotFeedUrlDropped(QList<QUrl> &urls, Akregator::TreeNode *after, Akregator::Folder *parent);
 
     /** displays a URL in the status bar when the user moves the mouse over a link */
     void slotMouseOverInfo(const KFileItem &kifi);
@@ -244,7 +244,7 @@ protected:
 protected Q_SLOTS:
 
     /** special behaviour in article list view (TODO: move code there?) */
-    void slotMouseButtonPressed(int button, const KUrl &);
+    void slotMouseButtonPressed(int button, const QUrl &);
 
     /** opens the link of an article in the external browser */
     void slotOpenArticleInBrowser(const Akregator::Article &article);

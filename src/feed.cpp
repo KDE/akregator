@@ -44,7 +44,7 @@
 #include <QFileInfo>
 #include <QDir>
 
-#include <kurl.h>
+#include <QUrl>
 #include <KRandom>
 
 //#include <qtl.h>
@@ -531,7 +531,7 @@ void Akregator::Feed::slotAddToFetchQueue(FetchQueue *queue, bool intervalFetchO
 
 void Akregator::Feed::slotAddFeedIconListener()
 {
-    FeedIconManager::self()->addListener(KUrl(d->xmlUrl), this);
+    FeedIconManager::self()->addListener(QUrl(d->xmlUrl), this);
 }
 
 void Akregator::Feed::appendArticles(const Syndication::FeedPtr feed)
@@ -707,7 +707,7 @@ void Akregator::Feed::fetchCompleted(Syndication::Loader *l, Syndication::FeedPt
 
     loadArticles(); // TODO: make me fly: make this delayed
 
-    FeedIconManager::self()->addListener(KUrl(xmlUrl()), this);
+    FeedIconManager::self()->addListener(QUrl(xmlUrl()), this);
 
     d->fetchErrorCode = Syndication::Success;
 

@@ -293,7 +293,7 @@ void FrameManager::openUrl(OpenUrlRequest &request)
 
 void FrameManager::openInExternalBrowser(const OpenUrlRequest &request)
 {
-    KUrl url = request.url();
+    QUrl url = request.url();
     if (!url.isValid()) {
         return;
     }

@@ -29,7 +29,7 @@
 #include "akregator_export.h"
 #include <QObject>
 
-class KUrl;
+class QUrl;
 
 class QIcon;
 class QString;
@@ -55,7 +55,7 @@ public:
 
     ~FeedIconManager();
 
-    void addListener(const KUrl &url, FaviconListener *listener);
+    void addListener(const QUrl &url, FaviconListener *listener);
     void removeListener(FaviconListener *listener);
 
 private Q_SLOTS:

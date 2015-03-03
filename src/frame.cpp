@@ -30,7 +30,7 @@
 #include <kactioncollection.h>
 #include "akregator_debug.h"
 #include <KLocalizedString>
-#include <kurl.h>
+#include <QUrl>
 #include <kparts/browserextension.h>
 #include <kparts/part.h>
 
@@ -217,9 +217,9 @@ MainFrame::~MainFrame()
 {
 }
 
-KUrl MainFrame::url() const
+QUrl MainFrame::url() const
 {
-    return KUrl();
+    return QUrl();
 }
 
 } // namespace Akregator

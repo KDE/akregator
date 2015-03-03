@@ -42,7 +42,7 @@
 #include <QMenu>
 #include <kmimetypetrader.h>
 #include <ktoolbarpopupaction.h>
-#include <kurl.h>
+#include <QUrl>
 #include <kxmlguiclient.h>
 #include <kparts/browserextension.h>
 #include <kparts/part.h>
@@ -62,9 +62,9 @@ BrowserFrame::~BrowserFrame()
     delete d;
 }
 
-KUrl BrowserFrame::url() const
+QUrl BrowserFrame::url() const
 {
-    return d->part ? d->part->url() : KUrl();
+    return d->part ? d->part->url() : QUrl();
 }
 
 bool BrowserFrame::canGoForward() const
@@ -109,7 +109,7 @@ static OpenUrlRequest requestFromSender(QObject *sender, int id)
 {
     QAction *const action = qobject_cast<QAction *>(sender);
     Q_ASSERT(action);
-    const KUrl url = action->data().value<KUrl>();
+    const QUrl url = action->data().value<QUrl>();
     OpenUrlRequest req;
     req.setFrameId(id);
     req.setUrl(url);
