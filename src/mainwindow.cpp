@@ -32,7 +32,6 @@
 #include "libkdepim/progresswidget/statusbarprogresswidget.h"
 
 #include <KActionCollection>
-#include <KApplication>
 #include <KConfig>
 #include <KEditToolBar>
 #include <KLocalizedString>

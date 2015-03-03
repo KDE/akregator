@@ -25,7 +25,6 @@
 
 #include "feediconmanager.h"
 
-#include <kapplication.h>
 #include "akregator_debug.h"
 
 #include <QUrl>

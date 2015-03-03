@@ -27,8 +27,7 @@
 #include "articlematcher.h"
 #include "article.h"
 #include "types.h"
-
-#include <kapplication.h>
+#include <KConfig>
 #include <kconfiggroup.h>
 #include "akregator_debug.h"
 #include <krandom.h>
