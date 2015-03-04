@@ -6,7 +6,6 @@ add_subdirectory(icons)
 include_directories(
   ${CMAKE_SOURCE_DIR}/akregator/interfaces
   ${CMAKE_BINARY_DIR}/akregator/interfaces
-  ${CMAKE_SOURCE_DIR}/libkdepim/
 )
 
 ########### next target ###############
