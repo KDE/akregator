@@ -20,4 +20,3 @@
 #include "akregator_debug.h"
 Q_LOGGING_CATEGORY(AKREGATOR_LOG, "log_akregator")
 
-

@@ -408,7 +408,7 @@ void Akregator::MainWidget::sendArticle(bool attach)
 
 void MainWidget::importFeedList(const QDomDocument &doc)
 {
-    ImportFeedListCommand* cmd = new ImportFeedListCommand;
+    ImportFeedListCommand *cmd = new ImportFeedListCommand;
     cmd->setParentWidget(this);
     cmd->setFeedListDocument(doc);
     cmd->setTargetList(m_feedList);

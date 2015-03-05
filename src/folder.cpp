@@ -324,7 +324,7 @@ void Folder::updateUnreadCount() const
 
 KJob *Folder::createMarkAsReadJob()
 {
-    CompositeJob* job = new CompositeJob;
+    CompositeJob *job = new CompositeJob;
     Q_FOREACH (Feed *const i, feeds()) {
         job->addSubjob(i->createMarkAsReadJob());
     }

@@ -599,8 +599,8 @@ void Part::exportFile(const QUrl &url)
 void Part::fileImport()
 {
     QUrl url = QFileDialog::getOpenFileUrl(0, QString(), QUrl(),
-                                       "*.opml *.xml|" + i18n("OPML Outlines (*.opml, *.xml)")
-                                       + "\n*|" + i18n("All Files"));
+                                           "*.opml *.xml|" + i18n("OPML Outlines (*.opml, *.xml)")
+                                           + "\n*|" + i18n("All Files"));
 
     if (!url.isEmpty()) {
         importFile(url);
@@ -610,8 +610,8 @@ void Part::fileImport()
 void Part::fileExport()
 {
     QUrl url = QFileDialog::getSaveFileUrl(0, QString(), QUrl(),
-                                       "*.opml *.xml|" + i18n("OPML Outlines (*.opml, *.xml)")
-                                       + "\n*|" + i18n("All Files"));
+                                           "*.opml *.xml|" + i18n("OPML Outlines (*.opml, *.xml)")
+                                           + "\n*|" + i18n("All Files"));
 
     if (!url.isEmpty()) {
         exportFile(url);
