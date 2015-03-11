@@ -60,12 +60,13 @@ add_library(akregatorprivate ${akregatorprivate_LIB_SRCS})
 generate_export_header(akregatorprivate BASE_NAME akregator)
 
 target_link_libraries(akregatorprivate
-  kdepim
+PUBLIC
   KF5::KHtml
+PRIVATE
+  kdepim
   KF5::Syndication
   akregatorinterfaces
 )
-target_link_libraries(akregatorprivate LINK_INTERFACE_LIBRARIES KF5::KHtml)
 
 set_target_properties(akregatorprivate
   PROPERTIES VERSION ${KDEPIM_LIB_VERSION}
