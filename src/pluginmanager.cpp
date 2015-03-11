@@ -174,18 +174,17 @@ void
 PluginManager::dump(const KService::Ptr service)
 {
     qCDebug(AKREGATOR_LOG)
-            << "PluginManager Service Info:" << endl
-            << "---------------------------" << endl
-            << "name                          : " << service->name() << endl
-            << "library                       : " << service->library() << endl
-            << "desktopEntryPath              : " << service->entryPath() << endl
-            << "X-KDE-akregator-plugintype       : " << service->property("X-KDE-akregator-plugintype").toString() << endl
-            << "X-KDE-akregator-name             : " << service->property("X-KDE-akregator-name").toString() << endl
-            << "X-KDE-akregator-authors          : " << service->property("X-KDE-akregator-authors").toStringList() << endl
-            << "X-KDE-akregator-rank             : " << service->property("X-KDE-akregator-rank").toString() << endl
-            << "X-KDE-akregator-version          : " << service->property("X-KDE-akregator-version").toString() << endl
-            << "X-KDE-akregator-framework-version: " << service->property("X-KDE-akregator-framework-version").toString()
-            << endl;
+            << "PluginManager Service Info:"
+            << "---------------------------"
+            << "name                          : " << service->name()
+            << "library                       : " << service->library()
+            << "desktopEntryPath              : " << service->entryPath()
+            << "X-KDE-akregator-plugintype       : " << service->property("X-KDE-akregator-plugintype").toString()
+            << "X-KDE-akregator-name             : " << service->property("X-KDE-akregator-name").toString()
+            << "X-KDE-akregator-authors          : " << service->property("X-KDE-akregator-authors").toStringList()
+            << "X-KDE-akregator-rank             : " << service->property("X-KDE-akregator-rank").toString()
+            << "X-KDE-akregator-version          : " << service->property("X-KDE-akregator-version").toString()
+            << "X-KDE-akregator-framework-version: " << service->property("X-KDE-akregator-framework-version").toString();
 
 }
 

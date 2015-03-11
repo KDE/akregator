@@ -276,7 +276,7 @@ void Akregator::SubscriptionListModel::subscriptionAdded(Akregator::TreeNode *su
 
 void Akregator::SubscriptionListModel::aboutToRemoveSubscription(Akregator::TreeNode *subscription)
 {
-    qCDebug(AKREGATOR_LOG) << subscription->id() << endl;
+    qCDebug(AKREGATOR_LOG) << subscription->id();
     const Folder *const parent = subscription->parent();
     const int row = parent ? parent->indexOf(subscription) : -1;
     if (row < 0) {
@@ -288,7 +288,7 @@ void Akregator::SubscriptionListModel::aboutToRemoveSubscription(Akregator::Tree
 
 void Akregator::SubscriptionListModel::subscriptionRemoved(TreeNode *subscription)
 {
-    qCDebug(AKREGATOR_LOG) << subscription->id() << endl;
+    qCDebug(AKREGATOR_LOG) << subscription->id();
     if (m_beganRemoval) {
         m_beganRemoval = false;
         endRemoveRows();
