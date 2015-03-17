@@ -49,7 +49,7 @@ namespace {
         if ( enclosure.isNull() )
             return QString();
 
-        const QString title = !enclosure.title().isEmpty() ? enclosure.url() : enclosure.url();
+        const QString title = !enclosure.title().isEmpty() ? enclosure.title() : enclosure.url();
         const uint length = enclosure.length();
         const QString type = enclosure.type();
         QString inf;
