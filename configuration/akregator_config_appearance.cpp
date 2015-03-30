@@ -32,7 +32,7 @@
 
 using namespace Akregator;
 
-K_PLUGIN_FACTORY(KCMAkregatorAppearanceConfigFactory, registerPlugin<KCMAkregatorAppearanceConfig>();)
+K_PLUGIN_FACTORY_WITH_JSON(KCMAkregatorAppearanceConfigFactory, "akregator_config_appearance.json", registerPlugin<KCMAkregatorAppearanceConfig>();)
 
 KCMAkregatorAppearanceConfig::KCMAkregatorAppearanceConfig(QWidget *parent, const QVariantList &args)
     : KCModule(parent, args), m_widget(new QWidget)

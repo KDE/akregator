@@ -34,7 +34,7 @@
 
 using namespace Akregator;
 
-K_PLUGIN_FACTORY(KCMAkregatorBrowserConfigFactory, registerPlugin<KCMAkregatorBrowserConfig>();)
+K_PLUGIN_FACTORY_WITH_JSON(KCMAkregatorBrowserConfigFactory, "akregator_config_browser.json", registerPlugin<KCMAkregatorBrowserConfig>();)
 
 KCMAkregatorBrowserConfig::KCMAkregatorBrowserConfig(QWidget *parent, const QVariantList &args)
     : KCModule(parent, args), m_widget(new QWidget)
