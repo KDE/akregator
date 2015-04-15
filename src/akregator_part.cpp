@@ -216,7 +216,7 @@ Part::Part(QWidget *parentWidget, QObject *parent, const QVariantList &)
     setPluginLoadingMode(LoadPluginsIfEnabled);
     setPluginInterfaceVersion(AKREGATOR_PLUGIN_INTERFACE_VERSION);
 
-    //QT5 setComponentData( AkregatorFactory::componentData() );
+    setComponentName(QStringLiteral("akregator"), QStringLiteral("akregator"));
     setXMLFile("akregator_part.rc", true);
 
     new PartAdaptor(this);

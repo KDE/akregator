@@ -40,9 +40,7 @@ EXPORT_KONTACT_PLUGIN(AkregatorPlugin, akregator)
 AkregatorPlugin::AkregatorPlugin(KontactInterface::Core *core, const QVariantList &)
     : KontactInterface::Plugin(core, core, "akregator"), m_interface(Q_NULLPTR)
 {
-
-#pragma message("port QT5")
-    //QT5 setComponentData( KontactPluginFactory::componentData() );
+    setComponentName(QStringLiteral("akregator"), QStringLiteral("akregator"));
 
     QAction *action =
         new QAction(QIcon::fromTheme(QStringLiteral("bookmark-new")),
