@@ -34,7 +34,7 @@ class SubscriptionList;
 class Aggregator: public QObject
 {
 public:
-    explicit Aggregator(QObject *parent = 0) : QObject(parent) {}
+    explicit Aggregator(QObject *parent = Q_NULLPTR) : QObject(parent) {}
 
     virtual ~Aggregator() {};
     virtual SubscriptionList  getSubscriptionList() const = 0;

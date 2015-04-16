@@ -41,7 +41,7 @@ class FeedSync : public QObject
     Q_OBJECT
 
 public:
-    explicit FeedSync(QObject *parent = 0);
+    explicit FeedSync(QObject *parent = Q_NULLPTR);
     ~FeedSync();
     enum SyncType { Get, Send };
 

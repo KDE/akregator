@@ -47,7 +47,7 @@ class OnlineSyncPluginIface : public Plugin
 {
     Q_OBJECT
 public:
-    explicit OnlineSyncPluginIface(QObject *parent = 0, const QList<QVariant> &args = QList<QVariant>());
+    explicit OnlineSyncPluginIface(QObject *parent = Q_NULLPTR, const QList<QVariant> &args = QList<QVariant>());
     ~OnlineSyncPluginIface();
 
     /* reimp */ void insertGuiClients(KXMLGUIClient *parent);
@@ -63,7 +63,7 @@ class OnlineSyncPlugin : public KParts::Plugin
     Q_OBJECT
 
 public:
-    explicit OnlineSyncPlugin(QObject *parent = 0, const QList<QVariant> &args = QList<QVariant>());
+    explicit OnlineSyncPlugin(QObject *parent = Q_NULLPTR, const QList<QVariant> &args = QList<QVariant>());
     ~OnlineSyncPlugin();
 
 private:

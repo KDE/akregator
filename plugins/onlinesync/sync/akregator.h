@@ -37,7 +37,7 @@ class Akregator: public Aggregator
 
 public:
 
-    explicit Akregator(QObject *parent = 0);
+    explicit Akregator(QObject *parent = Q_NULLPTR);
     ~Akregator();
     SubscriptionList getSubscriptionList() const;
     void load();

@@ -39,7 +39,7 @@ class GoogleReader: public Aggregator
     Q_OBJECT
 
 public:
-    explicit GoogleReader(const KConfigGroup &configgroup, QObject *parent = 0);
+    explicit GoogleReader(const KConfigGroup &configgroup, QObject *parent = Q_NULLPTR);
     ~GoogleReader();
     SubscriptionList getSubscriptionList() const;
     void load();

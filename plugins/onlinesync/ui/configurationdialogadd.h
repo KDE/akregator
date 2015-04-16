@@ -36,7 +36,7 @@ class ConfigurationDialogAdd : public KDialog
 {
     Q_OBJECT
 public:
-    explicit ConfigurationDialogAdd(QWidget *parent = 0);
+    explicit ConfigurationDialogAdd(QWidget *parent = Q_NULLPTR);
     ~ConfigurationDialogAdd();
     void load(const KConfigGroup &group);
 

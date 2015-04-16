@@ -43,7 +43,7 @@ class SharePlugin : public KParts::Plugin
     Q_OBJECT
 
 public:
-    explicit SharePlugin(QObject *parent = 0, const QList<QVariant> &args = QList<QVariant>());
+    explicit SharePlugin(QObject *parent = Q_NULLPTR, const QList<QVariant> &args = QList<QVariant>());
     ~SharePlugin();
 
 public Q_SLOTS:
