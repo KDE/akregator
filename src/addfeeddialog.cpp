@@ -88,7 +88,6 @@ AddFeedDialog::AddFeedDialog(QWidget *parent, const char *name)
     widget->urlEdit->setFocus();
     connect(widget->urlEdit, &QLineEdit::textChanged, this, &AddFeedDialog::textChanged);
     mOkButton->setEnabled(false);
-    mainLayout->addWidget(widget);
 }
 
 AddFeedDialog::~AddFeedDialog()

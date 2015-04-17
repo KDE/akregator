@@ -86,11 +86,11 @@ FeedPropertiesDialog::FeedPropertiesDialog(QWidget *parent, const char *name)
     okButton->setShortcut(Qt::CTRL | Qt::Key_Return);
     connect(buttonBox, &QDialogButtonBox::accepted, this, &FeedPropertiesDialog::accept);
     connect(buttonBox, &QDialogButtonBox::rejected, this, &FeedPropertiesDialog::reject);
-    mainLayout->addWidget(buttonBox);
     buttonBox->button(QDialogButtonBox::Ok)->setDefault(true);
     setModal(true);
 
     mainLayout->addWidget(widget);
+    mainLayout->addWidget(buttonBox);
     widget->feedNameEdit->setFocus();
 
     widget->updateComboBox->insertItem(FeedPropertiesWidget::Minutes, i18np("Minute", "Minutes", 0));
