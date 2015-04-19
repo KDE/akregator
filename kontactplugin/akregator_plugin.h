@@ -72,6 +72,9 @@ protected:
     KParts::ReadOnlyPart *createPart() Q_DECL_OVERRIDE;
     KontactInterface::UniqueAppWatcher *mUniqueAppWatcher;
     OrgKdeAkregatorPartInterface *m_interface;
+
+private:
+    void setHelpText(QAction *action, const QString &text);
 };
 
 #endif
