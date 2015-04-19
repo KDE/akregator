@@ -102,7 +102,7 @@ class DefaultNormalViewFormatter::SummaryVisitor : public TreeNodeVisitor
 {
 public:
     SummaryVisitor(DefaultNormalViewFormatter *p) : parent(p) {}
-    virtual bool visitFeed(Feed *node)
+    bool visitFeed(Feed *node) Q_DECL_OVERRIDE
     {
         text = QString("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::isRightToLeft() ? "rtl" : "ltr");
         const QString strippedTitle = Utils::stripTags(node->title());
@@ -145,7 +145,7 @@ public:
         return true;
     }
 
-    virtual bool visitFolder(Folder *node)
+    bool visitFolder(Folder *node) Q_DECL_OVERRIDE
     {
         text = QString("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::isRightToLeft() ? "rtl" : "ltr");
         text += QString("<div class=\"headertitle\" dir=\"%1\">%2").arg(Utils::directionOf(Utils::stripTags(node->title())), node->title());
