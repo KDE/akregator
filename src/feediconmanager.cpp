@@ -73,7 +73,7 @@ QString getIconUrl(const QUrl &url)
 FeedIconManager::Private::Private(FeedIconManager *qq) : q(qq)
 {
     QDBusConnection::sessionBus().registerObject(QLatin1String("/FeedIconManager"), q, QDBusConnection::ExportScriptableSlots);
-    m_favIconsModule = new QDBusInterface(QLatin1String("org.kde.kded"), QLatin1String("/modules/favicons"), QLatin1String(FAVICONINTERFACE));
+    m_favIconsModule = new QDBusInterface(QLatin1String("org.kde.kded5"), QLatin1String("/modules/favicons"), QLatin1String(FAVICONINTERFACE));
     Q_ASSERT(m_favIconsModule);
     q->connect(m_favIconsModule, SIGNAL(iconChanged(bool,QString,QString)),
                q, SLOT(slotIconChanged(bool,QString,QString)));
