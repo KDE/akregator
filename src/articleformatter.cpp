@@ -101,13 +101,13 @@ class DefaultNormalViewFormatter::SummaryVisitor : public TreeNodeVisitor
 {
 public:
     SummaryVisitor(DefaultNormalViewFormatter *p) : parent(p) {}
-    bool visitFeed(Feed *node) Q_DECL_OVERRIDE
-    {
+    bool visitFeed(Feed *node) Q_DECL_OVERRIDE {
         text = QString("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::isRightToLeft() ? "rtl" : "ltr");
         const QString strippedTitle = Utils::stripTags(node->title());
         text += QString("<div class=\"headertitle\" dir=\"%1\">").arg(Utils::directionOf(strippedTitle));
         text += strippedTitle;
-        if (node->unread() == 0) {
+        if (node->unread() == 0)
+        {
             text += i18n(" (no unread articles)");
         } else {
             text += i18np(" (1 unread article)", " (%1 unread articles)", node->unread());
@@ -115,7 +115,8 @@ public:
         text += "</div>\n"; // headertitle
         text += "</div>\n"; // /headerbox
 
-        if (!node->image().isNull()) { // image
+        if (!node->image().isNull())   // image
+        {
             text += QString("<div class=\"body\">");
             QString file = Utils::fileNameForUrl(node->xmlUrl());
             QUrl u(parent->m_imageDir);
@@ -126,13 +127,15 @@ public:
             text += "<div class=\"body\">";
         }
 
-        if (!node->description().isEmpty()) {
+        if (!node->description().isEmpty())
+        {
             text += QString("<div dir=\"%1\">").arg(Utils::stripTags(Utils::directionOf(node->description())));
             text += i18n("<b>Description:</b> %1<br /><br />", node->description());
             text += "</div>\n"; // /description
         }
 
-        if (!node->htmlUrl().isEmpty()) {
+        if (!node->htmlUrl().isEmpty())
+        {
             text += QString("<div dir=\"%1\">").arg(Utils::directionOf(node->htmlUrl()));
             text += i18n("<b>Homepage:</b> <a href=\"%1\">%2</a>", node->htmlUrl(), node->htmlUrl());
             text += "</div>\n"; // / link
@@ -144,11 +147,11 @@ public:
         return true;
     }
 
-    bool visitFolder(Folder *node) Q_DECL_OVERRIDE
-    {
+    bool visitFolder(Folder *node) Q_DECL_OVERRIDE {
         text = QString("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::isRightToLeft() ? "rtl" : "ltr");
         text += QString("<div class=\"headertitle\" dir=\"%1\">%2").arg(Utils::directionOf(Utils::stripTags(node->title())), node->title());
-        if (node->unread() == 0) {
+        if (node->unread() == 0)
+        {
             text += i18n(" (no unread articles)");
         } else {
             text += i18np(" (1 unread article)", " (%1 unread articles)", node->unread());

@@ -66,14 +66,15 @@ class ActionManagerImpl::NodeSelectVisitor : public TreeNodeVisitor
 public:
     NodeSelectVisitor(ActionManagerImpl *manager) : m_manager(manager) {}
 
-    bool visitFeed(Feed *node) Q_DECL_OVERRIDE
-    {
+    bool visitFeed(Feed *node) Q_DECL_OVERRIDE {
         QAction *remove = m_manager->action("feed_remove");
-        if (remove) {
+        if (remove)
+        {
             remove->setEnabled(true);
         }
         QAction *hp = m_manager->action("feed_homepage");
-        if (hp) {
+        if (hp)
+        {
             hp->setEnabled(!node->htmlUrl().isEmpty());
         }
         m_manager->action("feed_fetch")->setText(i18n("&Fetch Feed"));
@@ -84,14 +85,15 @@ public:
         return true;
     }
 
-    bool visitFolder(Folder *node) Q_DECL_OVERRIDE
-    {
+    bool visitFolder(Folder *node) Q_DECL_OVERRIDE {
         QAction *remove = m_manager->action("feed_remove");
-        if (remove) {
+        if (remove)
+        {
             remove->setEnabled(node->parent());    // root nodes must not be deleted
         }
         QAction *hp = m_manager->action("feed_homepage");
-        if (hp) {
+        if (hp)
+        {
             hp->setEnabled(false);
         }
 

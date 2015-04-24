@@ -46,18 +46,18 @@ class DeleteNodeVisitor : public TreeNodeVisitor
 public:
     explicit DeleteNodeVisitor(QWidget *parent) : m_widget(parent), m_job(0) {}
 
-    bool visitFolder(Folder *node) Q_DECL_OVERRIDE
-    {
+    bool visitFolder(Folder *node) Q_DECL_OVERRIDE {
         const QString msg = node->title().isEmpty()
-                            ? i18n("<qt>Are you sure you want to delete this folder and its feeds and subfolders?</qt>")
-                            : i18n("<qt>Are you sure you want to delete folder <b>%1</b> and its feeds and subfolders?</qt>", node->title());
+        ? i18n("<qt>Are you sure you want to delete this folder and its feeds and subfolders?</qt>")
+        : i18n("<qt>Are you sure you want to delete folder <b>%1</b> and its feeds and subfolders?</qt>", node->title());
 
         if (KMessageBox::warningContinueCancel(m_widget,
-                                               msg,
-                                               i18n("Delete Folder"),
-                                               KStandardGuiItem::del(),
-                                               KStandardGuiItem::cancel(),
-                                               QLatin1String("Disable delete folder confirmation")) != KMessageBox::Continue) {
+        msg,
+        i18n("Delete Folder"),
+        KStandardGuiItem::del(),
+        KStandardGuiItem::cancel(),
+        QLatin1String("Disable delete folder confirmation")) != KMessageBox::Continue)
+        {
             return true;
         }
         m_job = reallyCreateJob(node);
@@ -66,21 +66,22 @@ public:
         return true;
     }
 
-    bool visitFeed(Feed *node) Q_DECL_OVERRIDE
-    {
+    bool visitFeed(Feed *node) Q_DECL_OVERRIDE {
         QString msg;
-        if (node->title().isEmpty()) {
+        if (node->title().isEmpty())
+        {
             msg = i18n("<qt>Are you sure you want to delete this feed?</qt>");
         } else {
             msg = i18n("<qt>Are you sure you want to delete feed <b>%1</b>?</qt>", node->title());
         }
 
         if (KMessageBox::warningContinueCancel(m_widget,
-                                               msg,
-                                               i18n("Delete Feed"),
-                                               KStandardGuiItem::del(),
-                                               KStandardGuiItem::cancel(),
-                                               QLatin1String("Disable delete feed confirmation")) != KMessageBox::Continue) {
+        msg,
+        i18n("Delete Feed"),
+        KStandardGuiItem::del(),
+        KStandardGuiItem::cancel(),
+        QLatin1String("Disable delete feed confirmation")) != KMessageBox::Continue)
+        {
             return true;
         }
         m_job = reallyCreateJob(node);
