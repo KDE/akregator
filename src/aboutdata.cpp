@@ -34,7 +34,7 @@ namespace Akregator
 AboutData::AboutData()
     : K4AboutData("akregator", 0, ki18n("Akregator"), KDEPIM_VERSION, ki18n("A KDE Feed Reader"),
                   License_GPL, ki18n("Copyright © 2004–2015 Akregator authors"), KLocalizedString(),
-                  "http://akregator.kde.org/")
+                  "https://userbase.kde.org/Akregator")
 {
     setOrganizationDomain("kde.org"); // needed to get org.kde.akregator used for DBUS
     addAuthor(ki18n("Frank Osterfeld"), ki18n("Maintainer"), "osterfeld@kde.org");
