@@ -41,10 +41,8 @@
 #include "akregator_debug.h"
 #include <QTabWidget>
 #include <qtabbar.h>
-#include <QMenu>
 #include <krun.h>
 #include <KLocalizedString>
-#include <QIcon>
 #include <kiconloader.h>
 #include <ktoolinvocation.h>
 #include <QUrl>

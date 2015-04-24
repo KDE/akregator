@@ -53,7 +53,6 @@
 #include <QDomDocument>
 #include <QDomElement>
 #include <QHash>
-#include <QIcon>
 #include <QList>
 #include <QPixmap>
 #include <QTimer>

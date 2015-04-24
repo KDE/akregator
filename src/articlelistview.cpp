@@ -43,7 +43,6 @@
 #include <QApplication>
 #include <QContextMenuEvent>
 #include <QHeaderView>
-#include <QMenu>
 #include <QPaintEvent>
 #include <QPalette>
 #include <QScrollBar>

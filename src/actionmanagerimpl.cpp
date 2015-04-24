@@ -52,7 +52,6 @@
 #include <kstandardshortcut.h>
 #include <kstandardaction.h>
 #include <kxmlguifactory.h>
-#include <QKeySequence>
 #include <KGuiItem>
 
 #include <QApplication>

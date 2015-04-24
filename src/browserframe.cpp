@@ -36,7 +36,6 @@
 #include <QString>
 #include <QWidget>
 
-#include <QAction>
 #include "akregator_debug.h"
 #include <klibloader.h>
 #include <QMenu>

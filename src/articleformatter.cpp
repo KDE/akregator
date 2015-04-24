@@ -38,7 +38,6 @@
 #include <QPaintDevice>
 #include <QPalette>
 #include <QString>
-#include <KLocalizedString>
 #include <KFormat>
 
 using namespace Syndication;
