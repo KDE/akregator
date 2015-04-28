@@ -39,7 +39,7 @@ class FeedPropertiesWidget : public QWidget, public Ui::FeedPropertiesWidgetBase
 {
     Q_OBJECT
 public:
-    explicit FeedPropertiesWidget(QWidget *parent = Q_NULLPTR, const char *name = 0);
+    explicit FeedPropertiesWidget(QWidget *parent = Q_NULLPTR, const char *name = Q_NULLPTR);
     ~FeedPropertiesWidget();
 
     enum IntervalStep {
@@ -59,7 +59,7 @@ class FeedPropertiesDialog : public QDialog
 {
     Q_OBJECT
 public:
-    explicit FeedPropertiesDialog(QWidget *parent = Q_NULLPTR, const char *name = 0);
+    explicit FeedPropertiesDialog(QWidget *parent = Q_NULLPTR, const char *name = Q_NULLPTR);
     ~FeedPropertiesDialog();
 
     void setFeed(Feed *feed);
