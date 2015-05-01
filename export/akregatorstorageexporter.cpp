@@ -36,7 +36,6 @@
 #include <QVariant>
 #include <QDebug>
 
-#include <KComponentData>
 #include <KPluginLoader>
 #include <KService>
 #include <KServiceTypeTrader>
@@ -348,7 +347,6 @@ static void printUsage()
 
 int main(int argc, char **argv)
 {
-    KComponentData::setActiveComponent(KComponentData("akregatorstorageexporter"));
     const QString backend = QStringLiteral("metakit");
 
     if (argc < 2) {
