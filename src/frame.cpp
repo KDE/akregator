@@ -43,7 +43,7 @@ void Frame::slotSetTitle(const QString &s)
 {
     if (m_title != s) {
         m_title = s;
-        emit signalTitleChanged(this, s);
+        Q_EMIT signalTitleChanged(this, s);
     }
 }
 
@@ -58,14 +58,14 @@ void Frame::slotSetCaption(const QString &s)
         m_progressItem->setLabel(s);
     }
     m_caption = s;
-    emit signalCaptionChanged(this, s);
+    Q_EMIT signalCaptionChanged(this, s);
 }
 
 void Frame::slotSetStatusText(const QString &s)
 {
     m_statusText = s;
     m_statusText.remove(QRegExp(QStringLiteral("<[^>]*>")));
-    emit signalStatusText(this, m_statusText);
+    Q_EMIT signalStatusText(this, m_statusText);
 }
 
 void Frame::slotSetProgress(int a)
@@ -74,7 +74,7 @@ void Frame::slotSetProgress(int a)
         m_progressItem->setProgress((int)a);
     }
     m_progress = a;
-    emit signalLoadingProgress(this, a);
+    Q_EMIT signalLoadingProgress(this, a);
 }
 
 void Frame::slotSetState(State state)
@@ -83,15 +83,15 @@ void Frame::slotSetState(State state)
 
     switch (m_state) {
     case Frame::Started:
-        emit signalStarted(this);
+        Q_EMIT signalStarted(this);
         break;
     case Frame::Canceled:
-        emit signalCanceled(this, QString());
+        Q_EMIT signalCanceled(this, QString());
         break;
     case Frame::Idle:
     case Frame::Completed:
     default:
-        emit signalCompleted(this);
+        Q_EMIT signalCompleted(this);
     }
 }
 
@@ -161,15 +161,15 @@ void Frame::slotSetStarted()
     m_progressItem->setStatus(i18n("Loading..."));
     //connect(m_progressItem, SIGNAL(progressItemCanceled(KPIM::ProgressItem*)), SLOT(slotAbortFetch()));
     m_state = Started;
-    emit signalStarted(this);
-    emit signalIsLoadingToggled(this, m_loading);
+    Q_EMIT signalStarted(this);
+    Q_EMIT signalIsLoadingToggled(this, m_loading);
 }
 
 void Frame::slotStop()
 {
     if (m_loading) {
         m_loading = false;
-        emit signalIsLoadingToggled(this, false);
+        Q_EMIT signalIsLoadingToggled(this, false);
     }
 }
 
@@ -182,8 +182,8 @@ void Frame::slotSetCanceled(const QString &s)
         m_progressItem = 0;
     }
     m_state = Canceled;
-    emit signalCanceled(this, s);
-    emit signalIsLoadingToggled(this, m_loading);
+    Q_EMIT signalCanceled(this, s);
+    Q_EMIT signalIsLoadingToggled(this, m_loading);
 }
 
 void Frame::slotSetCompleted()
@@ -195,8 +195,8 @@ void Frame::slotSetCompleted()
         m_progressItem = 0;
     }
     m_state = Completed;
-    emit signalCompleted(this);
-    emit signalIsLoadingToggled(this, m_loading);
+    Q_EMIT signalCompleted(this);
+    Q_EMIT signalIsLoadingToggled(this, m_loading);
 }
 
 int Frame::progress() const

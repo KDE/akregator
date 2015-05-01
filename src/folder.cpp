@@ -69,7 +69,7 @@ Folder::FolderPrivate::~FolderPrivate()
         // child removes itself from list in its destructor
         delete children.first();
     }
-    emit q->emitSignalDestroyed();
+    Q_EMIT q->emitSignalDestroyed();
 }
 
 bool Folder::accept(TreeNodeVisitor *visitor)
@@ -212,7 +212,7 @@ void Folder::insertChild(int index, TreeNode *node)
         node->setParent(this);
         connectToNode(node);
         updateUnreadCount();
-        emit signalChildAdded(node);
+        Q_EMIT signalChildAdded(node);
         d->addedArticlesNotify += node->articles();
         articlesModified();
         nodeModified();
@@ -228,7 +228,7 @@ void Folder::appendChild(TreeNode *node)
         node->setParent(this);
         connectToNode(node);
         updateUnreadCount();
-        emit signalChildAdded(node);
+        Q_EMIT signalChildAdded(node);
         d->addedArticlesNotify += node->articles();
         articlesModified();
         nodeModified();
@@ -244,7 +244,7 @@ void Folder::prependChild(TreeNode *node)
         node->setParent(this);
         connectToNode(node);
         updateUnreadCount();
-        emit signalChildAdded(node);
+        Q_EMIT signalChildAdded(node);
         d->addedArticlesNotify += node->articles();
         articlesModified();
         nodeModified();
@@ -258,12 +258,12 @@ void Folder::removeChild(TreeNode *node)
         return;
     }
 
-    emit signalAboutToRemoveChild(node);
+    Q_EMIT signalAboutToRemoveChild(node);
     node->setParent(0);
     d->children.removeOne(node);
     disconnectFromNode(node);
     updateUnreadCount();
-    emit signalChildRemoved(this, node);
+    Q_EMIT signalChildRemoved(this, node);
     d->removedArticlesNotify += node->articles();
     articlesModified(); // articles were removed, TODO: add guids to a list
     nodeModified();

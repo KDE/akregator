@@ -73,7 +73,7 @@ void ExpireItemsCommand::Private::jobFinished(KJob *job)
 {
     Q_ASSERT(!m_jobs.isEmpty());
     m_jobs.remove(job);
-    emit q->progress(((m_feeds.count() - m_jobs.count()) * 100) / m_feeds.count(), QString());
+    Q_EMIT q->progress(((m_feeds.count() - m_jobs.count()) * 100) / m_feeds.count(), QString());
     if (m_jobs.isEmpty()) {
         q->done();
     }

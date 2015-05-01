@@ -769,7 +769,7 @@ void Akregator::MainWidget::slotMarkAllRead()
 
 void Akregator::MainWidget::slotSetTotalUnread()
 {
-    emit signalUnreadCountChanged(m_feedList ? m_feedList->unread() : 0);
+    Q_EMIT signalUnreadCountChanged(m_feedList ? m_feedList->unread() : 0);
 }
 
 void Akregator::MainWidget::slotDoIntervalFetches()
@@ -834,7 +834,7 @@ void Akregator::MainWidget::slotArticleSelected(const Akregator::Article &articl
     Q_ASSERT(article.isNull() || article.feed());
 
     QList<Article> articles = m_selectionController->selectedArticles();
-    emit signalArticlesSelected(articles);
+    Q_EMIT signalArticlesSelected(articles);
 
     KToggleAction *const maai = qobject_cast<KToggleAction *>(m_actionManager->action("article_set_status_important"));
     Q_ASSERT(maai);

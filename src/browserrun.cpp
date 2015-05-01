@@ -48,7 +48,7 @@ void BrowserRun::foundMimeType(const QString &type)
     m_request.setArgs(args);
     m_request.setWasHandled(false);
 
-    emit signalFoundMimeType(m_request);
+    Q_EMIT signalFoundMimeType(m_request);
 
     if (m_request.wasHandled()) {
         setFinished(true);

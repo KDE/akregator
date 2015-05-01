@@ -105,7 +105,7 @@ public:
 
         connect(node, SIGNAL(signalDestroyed(Akregator::TreeNode*)), m_list, SLOT(slotNodeDestroyed(Akregator::TreeNode*)));
         connect(node, SIGNAL(signalChanged(Akregator::TreeNode*)), m_list, SIGNAL(signalNodeChanged(Akregator::TreeNode*)));
-        emit m_list->signalNodeAdded(node);
+        Q_EMIT m_list->signalNodeAdded(node);
 
         return true;
     }
@@ -305,7 +305,7 @@ bool FeedList::readFromOpml(const QDomDocument &doc)
 
 FeedList::~FeedList()
 {
-    emit signalDestroyed(this);
+    Q_EMIT signalDestroyed(this);
     setRootNode(0);
     delete d->addNodeVisitor;
     delete d->removeNodeVisitor;
@@ -424,7 +424,7 @@ void FeedList::rootNodeChanged()
         return;
     }
     d->unreadCache = newUnread;
-    emit unreadCountChanged(newUnread);
+    Q_EMIT unreadCountChanged(newUnread);
 }
 
 void FeedList::setRootNode(Folder *folder)
@@ -480,7 +480,7 @@ void FeedList::slotNodeRemoved(Folder * /*parent*/, TreeNode *node)
         return;
     }
     removeNode(node);
-    emit signalNodeRemoved(node);
+    Q_EMIT signalNodeRemoved(node);
 }
 
 int FeedList::unread() const

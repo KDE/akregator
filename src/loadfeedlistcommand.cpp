@@ -60,7 +60,7 @@ public:
 
 void LoadFeedListCommand::Private::emitResult(const QSharedPointer<FeedList> &list)
 {
-    emit q->result(list);
+    Q_EMIT q->result(list);
     q->done();
 }
 
@@ -137,7 +137,7 @@ void LoadFeedListCommand::Private::doLoad()
 {
     Q_ASSERT(storage);
     Q_ASSERT(!fileName.isNull());
-    emit q->progress(0, i18n("Opening Feed List..."));
+    Q_EMIT q->progress(0, i18n("Opening Feed List..."));
 
     QString str;
 

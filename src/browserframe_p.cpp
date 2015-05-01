@@ -53,7 +53,7 @@ BrowserFrame::Private::~Private()
 
 void BrowserFrame::Private::HistoryAction::slotTriggered(bool)
 {
-    emit triggered(m_entry);
+    Q_EMIT triggered(m_entry);
 }
 
 BrowserFrame::Private::HistoryAction::HistoryAction(QList<HistoryEntry>::Iterator entry,
@@ -111,7 +111,7 @@ bool BrowserFrame::Private::loadPartForMimetype(const QString &mimetype)
 
 void BrowserFrame::Private::partDestroyed(QObject *)
 {
-    emit q->signalPartDestroyed(q->id());
+    Q_EMIT q->signalPartDestroyed(q->id());
 }
 
 void BrowserFrame::Private::appendHistoryEntry(const QUrl &url)
@@ -138,10 +138,10 @@ void BrowserFrame::Private::appendHistoryEntry(const QUrl &url)
     current = history.end() - 1;
 
     if (canBack != q->canGoBack()) {
-        emit q->signalCanGoBackToggled(q, !canBack);
+        Q_EMIT q->signalCanGoBackToggled(q, !canBack);
     }
     if (canForward != q->canGoForward()) {
-        emit q->signalCanGoForwardToggled(q, !canForward);
+        Q_EMIT q->signalCanGoForwardToggled(q, !canForward);
     }
 }
 
@@ -173,10 +173,10 @@ void BrowserFrame::Private::restoreHistoryEntry(const QList<HistoryEntry>::Itera
     }
 
     if (canForward != q->canGoForward()) {
-        emit q->signalCanGoForwardToggled(q, !canForward);
+        Q_EMIT q->signalCanGoForwardToggled(q, !canForward);
     }
     if (canBack != q->canGoBack()) {
-        emit q->signalCanGoBackToggled(q, !canBack);
+        Q_EMIT q->signalCanGoBackToggled(q, !canBack);
     }
 }
 

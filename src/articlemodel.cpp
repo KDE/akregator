@@ -248,7 +248,7 @@ void ArticleModel::Private::articlesUpdated(const QList<Article> &list)
             }
         }
     }
-    emit q->dataChanged(q->index(rmin, 0), q->index(rmax, ColumnCount - 1));
+    Q_EMIT q->dataChanged(q->index(rmin, 0), q->index(rmax, ColumnCount - 1));
 }
 
 bool ArticleModel::rowMatches(int row, const QSharedPointer<const Akregator::Filters::AbstractMatcher> &matcher) const

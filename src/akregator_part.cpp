@@ -321,7 +321,7 @@ void Part::loadPlugins(const QString &type)
 
 void Part::slotStarted()
 {
-    emit started(Q_NULLPTR);
+    Q_EMIT started(Q_NULLPTR);
 }
 
 void Part::slotOnShutdown()
@@ -382,7 +382,7 @@ void Part::slotSettingsChanged()
         Settings::setMediumFontSize(Settings::minimumFontSize());
     }
     saveSettings();
-    emit signalSettingsChanged();
+    Q_EMIT signalSettingsChanged();
 }
 
 void Part::slotSetStatusText(const QString &statusText)

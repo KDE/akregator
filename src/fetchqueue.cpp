@@ -66,7 +66,7 @@ void FetchQueue::slotAbort()
     }
     d->queuedFeeds.clear();
 
-    emit signalStopped();
+    Q_EMIT signalStopped();
 }
 
 void FetchQueue::addFeed(Feed *f)
@@ -82,7 +82,7 @@ void FetchQueue::fetchNextFeed()
 {
     if (!d->queuedFeeds.isEmpty() && d->fetchingFeeds.count() < Settings::concurrentFetches()) {
         if (d->fetchingFeeds.isEmpty() && d->queuedFeeds.count() == 1) {
-            emit signalStarted();
+            Q_EMIT signalStarted();
         }
         Feed *f = *(d->queuedFeeds.begin());
         d->queuedFeeds.pop_front();
@@ -94,19 +94,19 @@ void FetchQueue::fetchNextFeed()
 
 void FetchQueue::slotFeedFetched(Feed *f)
 {
-    emit fetched(f);
+    Q_EMIT fetched(f);
     feedDone(f);
 }
 
 void FetchQueue::slotFetchError(Feed *f)
 {
-    emit fetchError(f);
+    Q_EMIT fetchError(f);
     feedDone(f);
 }
 
 void FetchQueue::slotFetchAborted(Feed *f)
 {
-    emit fetched(f); // FIXME: better use a signal like signalAborted(Feed*)
+    Q_EMIT fetched(f); // FIXME: better use a signal like signalAborted(Feed*)
     feedDone(f);
 }
 
@@ -120,7 +120,7 @@ void FetchQueue::feedDone(Feed *f)
     disconnectFromFeed(f);
     d->fetchingFeeds.removeAll(f);
     if (isEmpty()) {
-        emit signalStopped();
+        Q_EMIT signalStopped();
     } else {
         fetchNextFeed();
     }

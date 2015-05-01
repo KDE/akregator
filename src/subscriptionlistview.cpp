@@ -266,7 +266,7 @@ void Akregator::SubscriptionListView::slotNextFeed()
     if (!model()) {
         return;
     }
-    emit userActionTakingPlace();
+    Q_EMIT userActionTakingPlace();
     const QModelIndex current = currentIndex();
     QModelIndex next = nextFeedIndex(current);
     if (!next.isValid()) {
@@ -282,7 +282,7 @@ void Akregator::SubscriptionListView::slotPrevUnreadFeed()
     if (!model()) {
         return;
     }
-    emit userActionTakingPlace();
+    Q_EMIT userActionTakingPlace();
     const QModelIndex current = currentIndex();
     QModelIndex prev = prevUnreadFeedIndex(current);
     if (!prev.isValid()) {
@@ -298,7 +298,7 @@ void Akregator::SubscriptionListView::slotNextUnreadFeed()
     if (!model()) {
         return;
     }
-    emit userActionTakingPlace();
+    Q_EMIT userActionTakingPlace();
     const QModelIndex current = currentIndex();
     QModelIndex next = nextUnreadFeedIndex(current);
     if (!next.isValid()) {
@@ -314,7 +314,7 @@ void SubscriptionListView::slotItemBegin()
     if (!model()) {
         return;
     }
-    emit userActionTakingPlace();
+    Q_EMIT userActionTakingPlace();
     setCurrentIndex(nextFeedIndex(model()->index(0, 0)));
 }
 
@@ -323,7 +323,7 @@ void SubscriptionListView::slotItemEnd()
     if (!model()) {
         return;
     }
-    emit userActionTakingPlace();
+    Q_EMIT userActionTakingPlace();
     setCurrentIndex(lastLeaveChild(model()));
 }
 
@@ -332,7 +332,7 @@ void SubscriptionListView::slotItemLeft()
     if (!model()) {
         return;
     }
-    emit userActionTakingPlace();
+    Q_EMIT userActionTakingPlace();
     const QModelIndex current = currentIndex();
     if (!current.isValid()) {
         setCurrentIndex(nextFeedIndex(model()->index(0, 0)));
@@ -348,7 +348,7 @@ void SubscriptionListView::slotItemRight()
     if (!model()) {
         return;
     }
-    emit userActionTakingPlace();
+    Q_EMIT userActionTakingPlace();
     const QModelIndex current = currentIndex();
     if (!current.isValid()) {
         setCurrentIndex(nextFeedIndex(model()->index(0, 0)));
@@ -364,7 +364,7 @@ void SubscriptionListView::slotItemUp()
     if (!model()) {
         return;
     }
-    emit userActionTakingPlace();
+    Q_EMIT userActionTakingPlace();
     const QModelIndex current = currentIndex();
     QModelIndex prev = current.row() > 0 ? current.sibling(current.row() - 1, current.column()) : current.parent();
     if (!prev.isValid()) {
@@ -380,7 +380,7 @@ void SubscriptionListView::slotItemDown()
     if (!model()) {
         return;
     }
-    emit userActionTakingPlace();
+    Q_EMIT userActionTakingPlace();
     const QModelIndex current = currentIndex();
     if (current.row() >= model()->rowCount(current.parent())) {
         return;

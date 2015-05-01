@@ -301,7 +301,7 @@ void Akregator::SubscriptionListModel::subscriptionChanged(TreeNode *node)
     if (!idx.isValid()) {
         return;
     }
-    emit dataChanged(index(idx.row(), 0, idx.parent()),
+    Q_EMIT dataChanged(index(idx.row(), 0, idx.parent()),
                      index(idx.row(), ColumnCount - 1, idx.parent()));
 }
 

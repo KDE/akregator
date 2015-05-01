@@ -99,7 +99,7 @@ void FrameManager::slotAddFrame(Frame *frame)
 
     setPartGuiActive(frame->part(), false);
 
-    emit signalFrameAdded(frame);
+    Q_EMIT signalFrameAdded(frame);
 
     if (m_frames.count() == 1) {
         slotChangeFrame(frame->id());
@@ -125,7 +125,7 @@ void FrameManager::slotRemoveFrame(int id)
 
     m_frames.insert(id, 0);
     m_frames.remove(id);
-    emit signalFrameRemoved(id);
+    Q_EMIT signalFrameRemoved(id);
     delete frame;
 }
 
@@ -159,57 +159,57 @@ void FrameManager::slotChangeFrame(int frameId)
 
         switch (frame->state()) {
         case Frame::Started:
-            emit signalStarted();
+            Q_EMIT signalStarted();
             break;
         case Frame::Canceled:
-            emit signalCanceled(QString());
+            Q_EMIT signalCanceled(QString());
             break;
         case Frame::Idle:
         case Frame::Completed:
         default:
-            emit signalCompleted();
+            Q_EMIT signalCompleted();
         }
 
-        emit signalCaptionChanged(frame->caption());
-        emit signalTitleChanged(frame->title());
-        emit signalLoadingProgress(frame->progress());
-        emit signalStatusText(frame->statusText());
+        Q_EMIT signalCaptionChanged(frame->caption());
+        Q_EMIT signalTitleChanged(frame->title());
+        Q_EMIT signalLoadingProgress(frame->progress());
+        Q_EMIT signalStatusText(frame->statusText());
     } else {
-        emit signalCompleted();
-        emit signalCaptionChanged(QString());
-        emit signalTitleChanged(QString());
-        emit signalLoadingProgress(100);
-        emit signalStatusText(QString());
+        Q_EMIT signalCompleted();
+        Q_EMIT signalCaptionChanged(QString());
+        Q_EMIT signalTitleChanged(QString());
+        Q_EMIT signalLoadingProgress(100);
+        Q_EMIT signalStatusText(QString());
     }
 
-    emit signalCurrentFrameChanged(oldFrame, frame);
+    Q_EMIT signalCurrentFrameChanged(oldFrame, frame);
 }
 
 void FrameManager::slotSetStarted(Frame *frame)
 {
     if (frame == m_currentFrame) {
-        emit signalStarted();
+        Q_EMIT signalStarted();
     }
 }
 
 void FrameManager::slotSetCanceled(Frame *frame, const QString &reason)
 {
     if (frame == m_currentFrame) {
-        emit signalCanceled(reason);
+        Q_EMIT signalCanceled(reason);
     }
 }
 
 void FrameManager::slotSetCompleted(Frame *frame)
 {
     if (frame == m_currentFrame) {
-        emit signalCompleted();
+        Q_EMIT signalCompleted();
     }
 }
 
 void FrameManager::slotSetProgress(Frame *frame, int progress)
 {
     if (frame == m_currentFrame) {
-        emit signalLoadingProgress(progress);
+        Q_EMIT signalLoadingProgress(progress);
     }
 }
 
@@ -218,20 +218,20 @@ void FrameManager::slotSetIconChanged(Frame *frame, const QIcon &icon)
     if (frame != m_currentFrame) {
         return;
     }
-    emit signalIconChanged(icon);
+    Q_EMIT signalIconChanged(icon);
 }
 
 void FrameManager::slotSetCaption(Frame *frame, const QString &caption)
 {
     if (frame == m_currentFrame) {
-        emit signalCaptionChanged(caption);
+        Q_EMIT signalCaptionChanged(caption);
     }
 }
 
 void FrameManager::slotSetTitle(Frame *frame, const QString &title)
 {
     if (frame == m_currentFrame) {
-        emit signalTitleChanged(title);
+        Q_EMIT signalTitleChanged(title);
     }
 }
 
@@ -266,7 +266,7 @@ void FrameManager::slotIsLoadingToggled(Frame *frame, bool enabled)
 void FrameManager::slotSetStatusText(Frame *frame, const QString &statusText)
 {
     if (frame == m_currentFrame) {
-        emit signalStatusText(statusText);
+        Q_EMIT signalStatusText(statusText);
     }
 }
 
@@ -274,7 +274,7 @@ void FrameManager::openUrl(OpenUrlRequest &request)
 {
     if (request.browserArgs().newTab() || request.browserArgs().forcesNewWindow() || request.options() == OpenUrlRequest::NewTab) {
         int newFrameId = -1;
-        emit signalRequestNewFrame(newFrameId);
+        Q_EMIT signalRequestNewFrame(newFrameId);
         request.setFrameId(newFrameId);
     }
 
@@ -287,7 +287,7 @@ void FrameManager::openUrl(OpenUrlRequest &request)
     }
 
     if (!request.openInBackground()) {
-        emit signalSelectFrame(request.frameId());
+        Q_EMIT signalSelectFrame(request.frameId());
     }
 }
 

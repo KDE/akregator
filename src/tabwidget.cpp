@@ -178,7 +178,7 @@ void TabWidget::slotAddFrame(Frame *frame)
     connect(frame, &Frame::signalTitleChanged, this, &TabWidget::slotSetTitle);
     connect(frame, &Frame::signalIconChanged, this, &TabWidget::slotSetIcon);
 
-    if (frame->id() > 0) { // MainFrame doesn't emit signalPartDestroyed signals, neither should it
+    if (frame->id() > 0) { // MainFrame doesn't Q_EMIT signalPartDestroyed signals, neither should it
         connect(frame, SIGNAL(signalPartDestroyed(int)), this, SLOT(slotRemoveFrame(int)));
     }
     slotSetTitle(frame, frame->title());
@@ -196,7 +196,7 @@ void TabWidget::slotFrameZoomIn()
     if (!d->currentFrame()) {
         return;
     }
-    emit signalZoomInFrame(d->currentFrame()->id());
+    Q_EMIT signalZoomInFrame(d->currentFrame()->id());
 }
 
 void TabWidget::slotFrameZoomOut()
@@ -204,7 +204,7 @@ void TabWidget::slotFrameZoomOut()
     if (!d->currentFrame()) {
         return;
     }
-    emit signalZoomOutFrame(d->currentFrame()->id());
+    Q_EMIT signalZoomOutFrame(d->currentFrame()->id());
 }
 
 void TabWidget::slotTabChanged(int index)
@@ -212,7 +212,7 @@ void TabWidget::slotTabChanged(int index)
 
     Frame *frame = d->frames.value(widget(index));
     d->tabsClose->setEnabled(frame && frame->isRemovable());
-    emit signalCurrentFrameChanged(frame ? frame->id() : -1);
+    Q_EMIT signalCurrentFrameChanged(frame ? frame->id() : -1);
 }
 
 void TabWidget::tabInserted(int)
@@ -229,7 +229,7 @@ void TabWidget::slotRemoveCurrentFrame()
 {
     Frame *const frame = d->currentFrame();
     if (frame) {
-        emit signalRemoveFrameRequest(frame->id());
+        Q_EMIT signalRemoveFrameRequest(frame->id());
     }
 }
 
@@ -243,7 +243,7 @@ void TabWidget::slotRemoveFrame(int frameId)
     d->framesById.remove(frameId);
     f->disconnect(this);
     removeTab(indexOf(f));
-    emit signalRemoveFrameRequest(f->id());
+    Q_EMIT signalRemoveFrameRequest(f->id());
     if (d->currentFrame()) {
         d->setTitle(d->currentFrame()->title(), currentWidget());
     }
@@ -378,7 +378,7 @@ void TabWidget::slotDetachTab()
         OpenUrlRequest request;
         request.setUrl(frame->url());
         request.setOptions(OpenUrlRequest::ExternalBrowser);
-        emit signalOpenUrlRequest(request);
+        Q_EMIT signalOpenUrlRequest(request);
         slotCloseTab();
     }
 }
@@ -404,7 +404,7 @@ void TabWidget::slotCloseTab()
         return;
     }
 
-    emit signalRemoveFrameRequest(frame->id());
+    Q_EMIT signalRemoveFrameRequest(frame->id());
 }
 
 void TabWidget::initiateDrag(int tab)
@@ -433,7 +433,7 @@ void TabWidget::slotReloadAllTabs()
 void TabWidget::slotCloseRequest(QWidget *widget)
 {
     if (d->frames.value(widget)) {
-        emit signalRemoveFrameRequest(d->frames.value(widget)->id());
+        Q_EMIT signalRemoveFrameRequest(d->frames.value(widget)->id());
     }
 }
 

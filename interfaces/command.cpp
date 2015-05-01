@@ -64,7 +64,7 @@ void Command::setParentWidget(QWidget *parentWidget)
 void Command::start()
 {
     doStart();
-    emit started();
+    Q_EMIT started();
 }
 
 void Command::abort()
@@ -74,7 +74,7 @@ void Command::abort()
 
 void Command::done()
 {
-    emit finished();
+    Q_EMIT finished();
     deleteLater();
 }
 

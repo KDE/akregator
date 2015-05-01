@@ -653,7 +653,7 @@ void Akregator::Feed::fetch(bool followDiscovery)
         }
     }
 
-    emit fetchStarted(this);
+    Q_EMIT fetchStarted(this);
 
     tryFetch();
 }
@@ -690,15 +690,15 @@ void Akregator::Feed::fetchCompleted(Syndication::Loader *l, Syndication::FeedPt
     if (status != Syndication::Success) {
         if (status == Syndication::Aborted) {
             d->fetchErrorCode = Syndication::Success;
-            emit fetchAborted(this);
+            Q_EMIT fetchAborted(this);
         } else if (d->followDiscovery && (status == Syndication::InvalidXml) && (d->fetchTries < 3) && (l->discoveredFeedURL().isValid())) {
             d->fetchTries++;
             d->xmlUrl = l->discoveredFeedURL().url();
-            emit fetchDiscovery(this);
+            Q_EMIT fetchDiscovery(this);
             tryFetch();
         } else {
             d->fetchErrorCode = status;
-            emit fetchError(this);
+            Q_EMIT fetchError(this);
         }
         markAsFetchedNow();
         return;
@@ -734,7 +734,7 @@ void Akregator::Feed::fetchCompleted(Syndication::Loader *l, Syndication::FeedPt
     appendArticles(doc);
 
     markAsFetchedNow();
-    emit fetched(this);
+    Q_EMIT fetched(this);
 }
 
 void Akregator::Feed::markAsFetchedNow()
@@ -892,21 +892,21 @@ void Akregator::Feed::doArticleNotification()
         // copy list, otherwise the refcounting in Article::Private breaks for
         // some reason (causing segfaults)
         QList<Article> l = d->addedArticlesNotify;
-        emit signalArticlesAdded(this, l);
+        Q_EMIT signalArticlesAdded(this, l);
         d->addedArticlesNotify.clear();
     }
     if (!d->updatedArticlesNotify.isEmpty()) {
         // copy list, otherwise the refcounting in Article::Private breaks for
         // some reason (causing segfaults)
         QList<Article> l = d->updatedArticlesNotify;
-        emit signalArticlesUpdated(this, l);
+        Q_EMIT signalArticlesUpdated(this, l);
         d->updatedArticlesNotify.clear();
     }
     if (!d->removedArticlesNotify.isEmpty()) {
         // copy list, otherwise the refcounting in Article::Private breaks for
         // some reason (causing segfaults)
         QList<Article> l = d->removedArticlesNotify;
-        emit signalArticlesRemoved(this, l);
+        Q_EMIT signalArticlesRemoved(this, l);
         d->removedArticlesNotify.clear();
     }
     TreeNode::doArticleNotification();

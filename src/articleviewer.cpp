@@ -194,7 +194,7 @@ void ArticleViewer::slotOpenUrlRequestDelayed(const QUrl &url, const KParts::Ope
         }
     }
 
-    emit signalOpenUrlRequest(req);
+    Q_EMIT signalOpenUrlRequest(req);
 }
 
 void ArticleViewer::slotCreateNewWindow(const QUrl &url,
@@ -209,7 +209,7 @@ void ArticleViewer::slotCreateNewWindow(const QUrl &url,
     req.setBrowserArgs(browserArgs);
     req.setOptions(OpenUrlRequest::NewTab);
 
-    emit signalOpenUrlRequest(req);
+    Q_EMIT signalOpenUrlRequest(req);
     if (part) {
         *part = req.part();
     }
@@ -284,7 +284,7 @@ void ArticleViewer::slotOpenLinkInForegroundTab()
 {
     OpenUrlRequest req(m_url);
     req.setOptions(OpenUrlRequest::NewTab);
-    emit signalOpenUrlRequest(req);
+    Q_EMIT signalOpenUrlRequest(req);
 }
 
 void ArticleViewer::slotOpenLinkInBackgroundTab()
@@ -292,14 +292,14 @@ void ArticleViewer::slotOpenLinkInBackgroundTab()
     OpenUrlRequest req(m_url);
     req.setOptions(OpenUrlRequest::NewTab);
     req.setOpenInBackground(true);
-    emit signalOpenUrlRequest(req);
+    Q_EMIT signalOpenUrlRequest(req);
 }
 
 void ArticleViewer::slotOpenLinkInBrowser()
 {
     OpenUrlRequest req(m_url);
     req.setOptions(OpenUrlRequest::ExternalBrowser);
-    emit signalOpenUrlRequest(req);
+    Q_EMIT signalOpenUrlRequest(req);
 }
 
 void ArticleViewer::slotSaveLinkAs()
@@ -316,13 +316,13 @@ void ArticleViewer::slotSaveLinkAs()
 void ArticleViewer::slotStarted(KIO::Job *job)
 {
     m_part->widget()->setCursor(Qt::WaitCursor);
-    emit started(job);
+    Q_EMIT started(job);
 }
 
 void ArticleViewer::slotCompleted()
 {
     m_part->widget()->unsetCursor();
-    emit completed();
+    Q_EMIT completed();
 }
 
 void ArticleViewer::slotZoomIn(int id)
@@ -707,8 +707,8 @@ int ArticleViewerPart::button() const
 
 bool ArticleViewerPart::closeUrl()
 {
-    emit browserExtension()->loadingProgress(-1);
-    emit canceled(QString());
+    Q_EMIT browserExtension()->loadingProgress(-1);
+    Q_EMIT canceled(QString());
     return KHTMLPart::closeUrl();
 }
 

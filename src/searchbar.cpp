@@ -222,7 +222,7 @@ void SearchBar::slotActivateSearch()
     Settings::setStatusFilter(d->searchCombo->currentIndex());
     Settings::setTextFilter(d->searchText);
     d->matchers = matchers;
-    emit signalSearch(matchers);
+    Q_EMIT signalSearch(matchers);
 }
 
 }

@@ -250,7 +250,7 @@ void Akregator::SelectionController::selectedSubscriptionChanged(const QModelInd
     }
 
     m_selectedSubscription = selectedSubscription();
-    emit currentSubscriptionChanged(m_selectedSubscription);
+    Q_EMIT currentSubscriptionChanged(m_selectedSubscription);
 
     // using a timer here internally to simulate async data fetching (which is still synchronous),
     // to ensure the UI copes with async behavior later on
@@ -294,13 +294,13 @@ void Akregator::SelectionController::articleSelectionChanged()
     if (m_singleDisplay) {
         m_singleDisplay->showArticle(article);
     }
-    emit currentArticleChanged(article);
+    Q_EMIT currentArticleChanged(article);
 }
 
 void Akregator::SelectionController::articleIndexDoubleClicked(const QModelIndex &index)
 {
     const Akregator::Article article = ::articleForIndex(index, m_feedList.data());
-    emit articleDoubleClicked(article);
+    Q_EMIT articleDoubleClicked(article);
 }
 
 void SelectionController::setFilters(const std::vector<QSharedPointer<const Filters::AbstractMatcher> > &matchers)

@@ -94,7 +94,7 @@ void BrowserFrame::slotSetIconUrl(const QUrl &url)
 
 void BrowserFrame::setFavicon(const QIcon &icon)
 {
-    emit signalIconChanged(this, icon);
+    Q_EMIT signalIconChanged(this, icon);
 }
 
 void BrowserFrame::slotSpeedProgress(int /*bytesPerSecond*/)
@@ -121,14 +121,14 @@ void BrowserFrame::slotOpenLinkInBrowser()
 {
     OpenUrlRequest req = requestFromSender(sender(), id());
     req.setOptions(OpenUrlRequest::ExternalBrowser);
-    emit signalOpenUrlRequest(req);
+    Q_EMIT signalOpenUrlRequest(req);
 }
 
 void BrowserFrame::slotOpenLinkInNewTab()
 {
     OpenUrlRequest req = requestFromSender(sender(), id());
     req.setOptions(OpenUrlRequest::NewTab);
-    emit signalOpenUrlRequest(req);
+    Q_EMIT signalOpenUrlRequest(req);
 }
 
 bool BrowserFrame::hasZoom() const
@@ -284,7 +284,7 @@ void BrowserFrame::slotOpenUrlRequestDelayed(const QUrl &url, const OpenUrlArgum
     req.setArgs(args);
     req.setBrowserArgs(browserArgs);
 
-    emit signalOpenUrlRequest(req);
+    Q_EMIT signalOpenUrlRequest(req);
 }
 
 void BrowserFrame::slotCreateNewWindow(const QUrl &url,
@@ -300,7 +300,7 @@ void BrowserFrame::slotCreateNewWindow(const QUrl &url,
     req.setBrowserArgs(browserArgs);
     req.setOptions(OpenUrlRequest::NewTab);
 
-    emit signalOpenUrlRequest(req);
+    Q_EMIT signalOpenUrlRequest(req);
     if (part) {
         *part = req.part();
     }

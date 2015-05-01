@@ -73,7 +73,7 @@ void TreeNode::emitSignalDestroyed()
         if (parent()) {
             parent()->removeChild(this);
         }
-        emit signalDestroyed(this);
+        Q_EMIT signalDestroyed(this);
         d->signalDestroyedEmitted = true;
     }
 }
@@ -184,7 +184,7 @@ void TreeNode::setNotificationMode(bool doNotify)
     if (doNotify && !d->doNotify) { // turned on
         d->doNotify = true;
         if (d->nodeChangeOccurred) {
-            emit signalChanged(this);
+            Q_EMIT signalChanged(this);
         }
         if (d->articleChangeOccurred) {
             doArticleNotification();
@@ -211,7 +211,7 @@ void TreeNode::setId(uint id)
 void TreeNode::nodeModified()
 {
     if (d->doNotify) {
-        emit signalChanged(this);
+        Q_EMIT signalChanged(this);
     } else {
         d->nodeChangeOccurred = true;
     }
