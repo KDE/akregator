@@ -47,7 +47,6 @@ AkregatorPlugin::AkregatorPlugin(KontactInterface::Core *core, const QVariantLis
                     i18nc("@action:inmenu", "New Feed..."), this);
     actionCollection()->addAction(QStringLiteral("feed_new"), action);
     actionCollection()->setDefaultShortcut(action, QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_F));
-#pragma message("port QT5")
     setHelpText(action, i18nc("@info:status", "Create a new feed"));
     action->setWhatsThis(
         i18nc("@info:whatsthis",

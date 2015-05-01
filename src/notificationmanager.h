@@ -46,7 +46,7 @@ public:
     ~NotificationManager();
 
     /** the widget used for notification, normally either the mainwindow or the tray icon */
-    void setWidget(QWidget *widget, const KComponentData &inst = KComponentData());
+    void setWidget(QWidget *widget, const QString &componentName = QString());
 
 public Q_SLOTS:
 
@@ -76,7 +76,7 @@ private:
     bool m_running;
     bool m_addedInLastInterval;
     QWidget *m_widget;
-    KComponentData m_instance;
+    QString m_componantName;
 
     QList<Article> m_articles;
 

@@ -277,7 +277,7 @@ Part::Part(QWidget *parentWidget, QObject *parent, const QVariantList &)
         }
 
         QWidget *const notificationParent = isTrayIconEnabled() ? m_mainWidget->window() : 0;
-        //QT5 NotificationManager::self()->setWidget(notificationParent, componentData());
+        NotificationManager::self()->setWidget(notificationParent, componentData().componentName());
 
         connect(m_mainWidget, SIGNAL(signalUnreadCountChanged(int)), trayIcon, SLOT(slotSetUnread(int)));
         connect(m_mainWidget, SIGNAL(signalArticlesSelected(QList<Akregator::Article>)),
