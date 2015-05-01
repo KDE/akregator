@@ -29,7 +29,6 @@
 #include <QList>
 
 #include "article.h"
-#include <kcomponentdata.h>
 #include "akregator_export.h"
 
 namespace Akregator

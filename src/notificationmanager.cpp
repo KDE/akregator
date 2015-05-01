@@ -27,8 +27,7 @@
 
 #include <KLocalizedString>
 #include <knotification.h>
-#include <KComponentData>
-
+#include <KAboutData>
 #include <QTimer>
 
 namespace Akregator
@@ -53,7 +52,7 @@ NotificationManager::~NotificationManager()
 void NotificationManager::setWidget(QWidget *widget, const QString &componentName)
 {
     m_widget = widget;
-    m_componantName = componentName.isEmpty() ? KComponentData::mainComponent().componentName() : componentName;
+    m_componantName = componentName.isEmpty() ? KAboutData::applicationData().componentName() : componentName;
 }
 
 void NotificationManager::slotNotifyArticle(const Article &article)
