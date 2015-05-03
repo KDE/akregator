@@ -302,7 +302,7 @@ void Akregator::SubscriptionListModel::subscriptionChanged(TreeNode *node)
         return;
     }
     Q_EMIT dataChanged(index(idx.row(), 0, idx.parent()),
-                     index(idx.row(), ColumnCount - 1, idx.parent()));
+                       index(idx.row(), ColumnCount - 1, idx.parent()));
 }
 
 void SubscriptionListModel::fetchStarted(Akregator::Feed *node)
