@@ -89,7 +89,7 @@ public:
         return true;
     }
 
-    void visit(TreeNode *node, bool preserveID)
+    void visit2(TreeNode *node, bool preserveID)
     {
         m_preserveID = preserveID;
         TreeNodeVisitor::visit(node);
@@ -220,7 +220,7 @@ QVector<Folder *> FeedList::folders()
 
 void FeedList::addNode(TreeNode *node, bool preserveID)
 {
-    d->addNodeVisitor->visit(node, preserveID);
+    d->addNodeVisitor->visit2(node, preserveID);
 }
 
 void FeedList::removeNode(TreeNode *node)
