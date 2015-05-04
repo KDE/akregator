@@ -40,7 +40,7 @@ class AddFeedWidget : public QWidget, public Ui::AddFeedWidgetBase
 {
     Q_OBJECT
 public:
-    explicit AddFeedWidget(QWidget *parent = Q_NULLPTR, const char *name = 0);
+    explicit AddFeedWidget(QWidget *parent = Q_NULLPTR, const char *name = Q_NULLPTR);
     ~AddFeedWidget();
 };
 
@@ -48,7 +48,7 @@ class AddFeedDialog : public QDialog
 {
     Q_OBJECT
 public:
-    explicit AddFeedDialog(QWidget *parent = Q_NULLPTR, const char *name = 0);
+    explicit AddFeedDialog(QWidget *parent = Q_NULLPTR, const char *name = Q_NULLPTR);
     ~AddFeedDialog();
 
     QSize sizeHint() const Q_DECL_OVERRIDE;
