@@ -38,54 +38,66 @@ namespace Akregator
 class Application : public KontactInterface::PimUniqueApplication
 {
 public:
-    Application() : mMainWindow(0) {}
+    Application(int &argc, char **argv[])
+        : KontactInterface::PimUniqueApplication(argc, argv)
+        , mMainWindow(0)
+    {}
+
     ~Application() {}
 
-    int newInstance();
+    int activate(const QStringList &args) Q_DECL_OVERRIDE;
 
 private:
     Akregator::MainWindow *mMainWindow;
 };
 
-int Application::newInstance()
+int Application::activate(const QStringList &args)
 {
     if (!isSessionRestored()) {
         QDBusInterface akr(QStringLiteral("org.kde.akregator"), QStringLiteral("/Akregator"), QStringLiteral("org.kde.akregator.part"));
 
-        KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
+        QCommandLineParser parser;
+        Akregator::akregator_options(&parser);
+        parser.process(args);
 
         if (!mMainWindow) {
             mMainWindow = new Akregator::MainWindow();
             mMainWindow->loadPart();
             mMainWindow->setupProgressWidgets();
-            if (!args->isSet("hide-mainwindow")) {
+            if (!parser.isSet(QLatin1String("hide-mainwindow"))) {
                 mMainWindow->show();
             }
             akr.call(QStringLiteral("openStandardFeedList"));
         }
 
-        akr.call(QStringLiteral("handleCommandLine"));
-        args->clear();
+        akr.call(QStringLiteral("handleCommandLine"), args);
     }
-    return KUniqueApplication::newInstance();
+    return PimUniqueApplication::activate(args);
 }
 
 } // namespace Akregator
 
 int main(int argc, char **argv)
 {
+    Akregator::Application app(argc, &argv);
+
+    const QStringList args = QCoreApplication::arguments();
+
     Akregator::AboutData about;
-    KCmdLineArgs::init(argc, argv, &about);
-    KCmdLineArgs::addCmdLineOptions(Akregator::akregator_options());
-    KUniqueApplication::addCmdLineOptions();
+    Akregator::AboutData::setApplicationData(about);
+
+    QCommandLineParser parser;
+    about.setupCommandLine(&parser);
+    Akregator::akregator_options(&parser);
+
+    parser.process(args);
+    about.processCommandLine(&parser);
 
     Akregator::Utils::migrateConfig();
-    if (!Akregator::Application::start()) {
+    if (!Akregator::Application::start(args)) {
         qCWarning(AKREGATOR_LOG) << "akregator is already running, exiting.";
         exit(0);
     }
-
-    Akregator::Application app;
 
     // start knotifyclient if not already started. makes it work for people who doesn't use full kde, according to kmail devels
     //KNotifyClient::startDaemon();

@@ -125,7 +125,7 @@ public:
 
     void exportFile(const QUrl &url);
 
-    bool handleCommandLine();
+    bool handleCommandLine(const QStringList &args);
 
 public Q_SLOTS:
     /** Used to save settings after changing them from configuration dialog. Calls AkregatorPart's saveSettings. */

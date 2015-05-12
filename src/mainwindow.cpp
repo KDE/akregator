@@ -46,6 +46,7 @@
 #include <KSharedConfig>
 #include <KToolBar>
 #include <QMenuBar>
+#include <QApplication>
 
 using namespace Akregator;
 
@@ -80,7 +81,7 @@ MainWindow::MainWindow(QWidget *parent, Qt::WindowFlags f)
     m_statusLabel->setFixedHeight(statH);
     statusBar()->addWidget(m_statusLabel, 1);
 
-    KStandardAction::quit(kapp, SLOT(quit()), actionCollection());
+    KStandardAction::quit(qApp, SLOT(quit()), actionCollection());
     KStandardAction::showMenubar(menuBar(), SLOT(setVisible(bool)), actionCollection());
     setStandardToolBarMenuEnabled(true);
     createStandardStatusBarAction();
@@ -189,7 +190,7 @@ KParts::BrowserExtension *MainWindow::browserExtension(KParts::ReadOnlyPart *p)
 
 void MainWindow::slotQuit()
 {
-    kapp->quit();
+    qApp->quit();
 }
 
 void MainWindow::slotOnShutdown()
@@ -199,7 +200,7 @@ void MainWindow::slotOnShutdown()
 
 bool MainWindow::queryClose()
 {
-    if (kapp->sessionSaving()) {
+    if (qApp->isSavingSession()) {
         return true;
     }
     if (!TrayIcon::getInstance()) {

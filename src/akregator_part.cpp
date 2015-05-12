@@ -44,12 +44,12 @@
 #include "trayicon.h"
 #include "dummystorage/storagefactorydummyimpl.h"
 #include "utils.h"
+#include "akregator_options.h"
 #include <libkdepim/misc/broadcaststatus.h>
 #include "kdepim-version.h"
 
 #include <knotifyconfigwidget.h>
 #include <kaboutdata.h>
-#include <kapplication.h>
 #include <KCmdLineArgs>
 #include <kconfig.h>
 #include <kconfigdialog.h>
@@ -66,6 +66,7 @@
 #include <KCMultiDialog>
 #include <kstandardaction.h>
 
+#include <QApplication>
 #include <QFile>
 #include <QObject>
 #include <QStringList>
@@ -647,7 +648,7 @@ void Part::addFeed()
 void Part::showNotificationOptions()
 {
     const Akregator::AboutData about;
-    KNotifyConfigWidget::configure(m_mainWidget, about.appName());
+    KNotifyConfigWidget::configure(m_mainWidget, about.productName());
 }
 
 void Part::showOptions()
@@ -758,19 +759,21 @@ void Part::initFonts()
     }
 }
 
-bool Part::handleCommandLine()
+bool Part::handleCommandLine(const QStringList &args)
 {
-    KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
-    QString addFeedGroup = !args->getOption("group").isEmpty() ?
-                           args->getOption("group")
-                           : i18n("Imported Folder");
+    QCommandLineParser parser;
+    akregator_options(&parser);
+    parser.process(args);
 
-    QStringList feedsToAdd = args->getOptionList("addfeed");
+    const QString addFeedGroup = parser.isSet(QLatin1String("group"))
+                                    ? parser.value(QLatin1String(QLatin1String("group")))
+                                    : i18n("Imported Folder");
 
-    if (feedsToAdd.isEmpty() && args->count() > 0) {
-        QString url = args->url(0).url();
-        if (!url.isEmpty()) {
-            feedsToAdd.append(url);
+    QStringList feedsToAdd = parser.values(QLatin1String("addfeed"));
+
+    if (feedsToAdd.isEmpty() && !parser.positionalArguments().isEmpty()) {
+        for (const QString &url : parser.positionalArguments()) {
+          feedsToAdd.append(url);
         }
     }
 
@@ -856,7 +859,7 @@ void Part::autoSaveProperties()
 
 void Part::autoReadProperties()
 {
-    if (kapp->isSessionRestored()) {
+    if (qGuiApp->isSessionRestored()) {
         return;
     }
     KConfig config("autosaved", KConfig::SimpleConfig, QStandardPaths::ApplicationsLocation);
