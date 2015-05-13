@@ -307,7 +307,7 @@ Akregator::MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImp
     }
 
         //Check network status
-    if(Solid::Networking::status() == Solid::Networking::Connected ||Solid::Networking::status() == Solid::Networking::Unknown)
+    if(Solid::Networking::status() == Solid::Networking::Connected || Solid::Networking::status() == Solid::Networking::Unknown)
      this->m_networkAvailable=true;
     else if(Solid::Networking::status() == Solid::Networking::Unconnected)
       this->m_networkAvailable=false;
