@@ -38,8 +38,8 @@ namespace Akregator
 class Application : public KontactInterface::PimUniqueApplication
 {
 public:
-    Application(int &argc, char **argv[])
-        : KontactInterface::PimUniqueApplication(argc, argv)
+    Application(int &argc, char **argv[], KAboutData &about)
+        : KontactInterface::PimUniqueApplication(argc, argv, about)
         , mMainWindow(0)
     {}
 
@@ -56,15 +56,14 @@ int Application::activate(const QStringList &args)
     if (!isSessionRestored()) {
         QDBusInterface akr(QStringLiteral("org.kde.akregator"), QStringLiteral("/Akregator"), QStringLiteral("org.kde.akregator.part"));
 
-        QCommandLineParser parser;
-        Akregator::akregator_options(&parser);
-        parser.process(args);
+        QCommandLineParser *parser = cmdArgs();
+        parser->process(args);
 
         if (!mMainWindow) {
             mMainWindow = new Akregator::MainWindow();
             mMainWindow->loadPart();
             mMainWindow->setupProgressWidgets();
-            if (!parser.isSet(QLatin1String("hide-mainwindow"))) {
+            if (!parser->isSet(QLatin1String("hide-mainwindow"))) {
                 mMainWindow->show();
             }
             akr.call(QStringLiteral("openStandardFeedList"));
@@ -79,19 +78,15 @@ int Application::activate(const QStringList &args)
 
 int main(int argc, char **argv)
 {
-    Akregator::Application app(argc, &argv);
+    Akregator::AboutData about;
+
+    Akregator::Application app(argc, &argv, about);
+    QCommandLineParser *cmdArgs = app.cmdArgs();
+    Akregator::akregator_options(cmdArgs);
 
     const QStringList args = QCoreApplication::arguments();
-
-    Akregator::AboutData about;
-    Akregator::AboutData::setApplicationData(about);
-
-    QCommandLineParser parser;
-    about.setupCommandLine(&parser);
-    Akregator::akregator_options(&parser);
-
-    parser.process(args);
-    about.processCommandLine(&parser);
+    cmdArgs->process(args);
+    about.processCommandLine(cmdArgs);
 
     Akregator::Utils::migrateConfig();
     if (!Akregator::Application::start(args)) {
