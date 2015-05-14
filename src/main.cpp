@@ -63,7 +63,7 @@ int Application::activate(const QStringList &args)
             mMainWindow = new Akregator::MainWindow();
             mMainWindow->loadPart();
             mMainWindow->setupProgressWidgets();
-            if (!parser->isSet(QLatin1String("hide-mainwindow"))) {
+            if (!parser->isSet(QStringLiteral("hide-mainwindow"))) {
                 mMainWindow->show();
             }
             akr.call(QStringLiteral("openStandardFeedList"));

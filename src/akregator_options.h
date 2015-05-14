@@ -35,22 +35,22 @@ static void akregator_options(QCommandLineParser *parser)
 {
     QList<QCommandLineOption> options;
     options << QCommandLineOption(
-          QStringList() << QLatin1String("a") << QLatin1String("addfeed"),
+          QStringList() << QStringLiteral(("a") << QStringLiteral(("addfeed"),
           i18n("Add a feed with the given URL"),
-          QLatin1String("url"))
+          QStringLiteral(("url"))
     << QCommandLineOption(
-          QStringList() << QLatin1String("g") << QLatin1String("group"),
+          QStringList() << QStringLiteral(("g") << QStringLiteral(("group"),
           i18n("When adding feeds, place them in this group"),
-          QLatin1String("groupname")) //     "Imported"
+          QStringLiteral(("groupname")) //     "Imported"
     << QCommandLineOption(
-          QLatin1String("hide-mainwindow"),
+          QStringLiteral(("hide-mainwindow"),
           i18n("Hide main window on startup"));
 
     parser->addOptions(options);
     parser->addPositionalArgument(
-          QLatin1String("url"),
+          QStringLiteral(("url"),
           i18n("Add a feed with the given URL"),
-          QLatin1String("[url...]"));
+          QStringLiteral(("[url...]"));
 }
 
 }

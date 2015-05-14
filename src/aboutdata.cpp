@@ -32,14 +32,14 @@ namespace Akregator
 {
 
 AboutData::AboutData()
-    : KAboutData(QLatin1String("akregator"),
+    : KAboutData(QStringLiteral("akregator"),
                  i18n("Akregator"),
-                 QLatin1String(KDEPIM_VERSION),
+                 QStringLiteral(KDEPIM_VERSION),
                  i18n("A KDE Feed Reader"),
                  KAboutLicense::GPL,
                  i18n("Copyright © 2004–2015 Akregator authors"),
                  QString(),
-                 QLatin1String("https://userbase.kde.org/Akregator"))
+                 QStringLiteral("https://userbase.kde.org/Akregator"))
 {
     setOrganizationDomain("kde.org"); // needed to get org.kde.akregator used for DBUS
     addAuthor(i18n("Frank Osterfeld"), i18n("Maintainer"), "osterfeld@kde.org");

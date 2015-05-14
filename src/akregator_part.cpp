@@ -765,11 +765,11 @@ bool Part::handleCommandLine(const QStringList &args)
     akregator_options(&parser);
     parser.process(args);
 
-    const QString addFeedGroup = parser.isSet(QLatin1String("group"))
-                                    ? parser.value(QLatin1String(QLatin1String("group")))
+    const QString addFeedGroup = parser.isSet(QStringLiteral("group"))
+                                    ? parser.value(QStringLiteral("group"))
                                     : i18n("Imported Folder");
 
-    QStringList feedsToAdd = parser.values(QLatin1String("addfeed"));
+    QStringList feedsToAdd = parser.values(QStringLiteral("addfeed"));
 
     if (feedsToAdd.isEmpty() && !parser.positionalArguments().isEmpty()) {
         for (const QString &url : parser.positionalArguments()) {
