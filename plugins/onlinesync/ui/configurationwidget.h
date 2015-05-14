@@ -37,7 +37,7 @@ class ConfigurationWidget : public QWidget
     Q_OBJECT
 public:
     // Constructor if the dialog must be created
-    explicit ConfigurationWidget(QWidget *parent = 0);
+    explicit ConfigurationWidget(QWidget *parent = Q_NULLPTR);
     ~ConfigurationWidget();
 
     void load();
