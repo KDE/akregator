@@ -6,6 +6,7 @@ X-KDE-ServiceTypes=Kontact/Plugin,KPluginInfo
 X-KDE-Library=kontact_akregatorplugin
 X-KDE-KontactPluginVersion=10
 X-KDE-KontactPartLibraryName=akregatorpart
+X-KDE-KontactPartExecutableName=akregator
 X-KDE-KontactPartLoadOnStart=false
 
 X-KDE-PluginInfo-Name=kontact_akregatorplugin

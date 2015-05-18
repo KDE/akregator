@@ -37,8 +37,8 @@
 #include <QDrag>
 #include <QMimeData>
 
-#include <kapplication.h>
 #include "akregator_debug.h"
+#include <QApplication>
 #include <QTabWidget>
 #include <qtabbar.h>
 #include <krun.h>
@@ -390,8 +390,8 @@ void TabWidget::slotCopyLinkAddress()
     if (frame && frame->url().isValid()) {
         QUrl url = frame->url();
         // don't set url to selection as it's a no-no according to a fd.o spec
-        //kapp->clipboard()->setText(url.toDisplayString(), QClipboard::Selection);
-        kapp->clipboard()->setText(url.toDisplayString(), QClipboard::Clipboard);
+        //qApp->clipboard()->setText(url.toDisplayString(), QClipboard::Selection);
+        qApp->clipboard()->setText(url.toDisplayString(), QClipboard::Clipboard);
     }
 }
 

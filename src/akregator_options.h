@@ -25,22 +25,32 @@
 #ifndef AKREGATOR_OPTIONS_H
 #define AKREGATOR_OPTIONS_H
 
-#include <kcmdlineargs.h>
+#include <QCommandLineParser>
 #include <KLocalizedString>
 
 namespace Akregator
 {
 
-static KCmdLineOptions akregator_options()
+static void akregator_options(QCommandLineParser *parser)
 {
-    KCmdLineOptions options;
-    options.add("a");
-    options.add("addfeed <url>", ki18n("Add a feed with the given URL"));
-    options.add("g");
-    options.add("group <groupname>", ki18n("When adding feeds, place them in this group"), "Imported");
-    options.add("hide-mainwindow", ki18n("Hide main window on startup"));
-    options.add("+[url]", ki18n("Add a feed with the given URL"));
-    return options;
+    QList<QCommandLineOption> options;
+    options << QCommandLineOption(
+          QStringList() << QStringLiteral("a") << QStringLiteral("addfeed"),
+          i18n("Add a feed with the given URL"),
+          QStringLiteral("url"))
+    << QCommandLineOption(
+          QStringList() << QStringLiteral("g") << QStringLiteral("group"),
+          i18n("When adding feeds, place them in this group"),
+          QStringLiteral("groupname")) //     "Imported"
+    << QCommandLineOption(
+          QStringLiteral("hide-mainwindow"),
+          i18n("Hide main window on startup"));
+
+    parser->addOptions(options);
+    parser->addPositionalArgument(
+          QStringLiteral("url"),
+          i18n("Add a feed with the given URL"),
+          QStringLiteral("[url...]"));
 }
 
 }

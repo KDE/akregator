@@ -148,12 +148,12 @@ void AkregatorPlugin::saveProperties(KConfigGroup &config)
     }
 }
 
-void AkregatorUniqueAppHandler::loadCommandLineOptions()
+void AkregatorUniqueAppHandler::loadCommandLineOptions(QCommandLineParser *parser)
 {
-    KCmdLineArgs::addCmdLineOptions(Akregator::akregator_options());
+    Akregator::akregator_options(parser);
 }
 
-int AkregatorUniqueAppHandler::newInstance()
+int AkregatorUniqueAppHandler::activate(const QStringList &args)
 {
     // Ensure part is loaded
     (void)plugin()->part();
@@ -161,8 +161,8 @@ int AkregatorUniqueAppHandler::newInstance()
     org::kde::akregator::part akregator(
         QStringLiteral("org.kde.akregator"), QStringLiteral("/Akregator"), QDBusConnection::sessionBus());
     akregator.openStandardFeedList();
-    akregator.handleCommandLine();
+    akregator.handleCommandLine(args);
 
-    return KontactInterface::UniqueAppHandler::newInstance();
+    return KontactInterface::UniqueAppHandler::activate(args);
 }
 #include "akregator_plugin.moc"

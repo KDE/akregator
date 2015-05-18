@@ -42,7 +42,6 @@
 
 #include <QAction>
 #include <kactioncollection.h>
-#include <kapplication.h>
 #include <khtmlview.h>
 #include <kiconloader.h>
 #include <KLocalizedString>
@@ -62,6 +61,7 @@
 #include <QClipboard>
 #include <QGridLayout>
 #include <QKeyEvent>
+#include <QApplication>
 
 #include <memory>
 #include <cassert>
@@ -688,7 +688,9 @@ void ArticleViewer::displayAboutPage()
     f.close();
 
     QString infocss = QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kdeui/about/kde_infopage.css");
-    QString rtl = kapp->isRightToLeft() ? QString("@import \"%1\";").arg(QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kdeui/about/kde_infopage_rtl.css")) : QString();
+    QString rtl = (QApplication::layoutDirection() == Qt::RightToLeft)
+                    ? QStringLiteral("@import \"%1\";").arg(QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kdeui/about/kde_infopage_rtl.css"))
+                    : QString();
 
     m_part->write(content.arg(infocss, rtl, fontSize, appTitle, catchPhrase, quickDescription, info));
     m_part->end();

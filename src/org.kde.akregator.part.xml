@@ -17,6 +17,7 @@
     </method>
     <method name="addFeed" />
     <method name="handleCommandLine">
+      <arg name="args" type="as" direction="in"/>
       <arg name="result" type="b" direction="out"/>
     </method>
   </interface>
