@@ -26,7 +26,6 @@
 #include "mainwindow.h"
 #include "akregator_options.h"
 #include "utils.h"
-#include <kcmdlineargs.h>
 #include "akregator_debug.h"
 #include <KLocalizedString>
 #include <kontactinterface/pimuniqueapplication.h>

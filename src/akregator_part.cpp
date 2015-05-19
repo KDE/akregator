@@ -50,7 +50,6 @@
 
 #include <knotifyconfigwidget.h>
 #include <kaboutdata.h>
-#include <KCmdLineArgs>
 #include <kconfig.h>
 #include <kconfigdialog.h>
 #include <qfiledialog.h>
@@ -179,12 +178,6 @@ static QDomDocument createDefaultFeedList()
 
 namespace Akregator
 {
-
-static const KAboutData &createAboutData()
-{
-    static Akregator::AboutData about;
-    return about;
-}
 
 K_PLUGIN_FACTORY(AkregatorFactory, registerPlugin<Part>();)
 
