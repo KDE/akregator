@@ -46,7 +46,6 @@
 #include <kiconloader.h>
 #include <ktoolinvocation.h>
 #include <QUrl>
-#include <kmimetype.h>
 #include <kio/global.h>
 #include <kio/pixmaploader.h>
 

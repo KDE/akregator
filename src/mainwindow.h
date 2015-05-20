@@ -25,7 +25,6 @@
 #ifndef AKREGATOR_MAINWINDOW_H
 #define AKREGATOR_MAINWINDOW_H
 
-#include <kapplication.h>
 #include <kparts/mainwindow.h>
 #include <kparts/browserinterface.h>
 #include <kparts/browserextension.h>
