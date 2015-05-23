@@ -303,11 +303,12 @@ Akregator::MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl
         m_searchBar->slotSetText(Settings::textFilter());
     }
 
-        //Check network status
-    if(Solid::Networking::status() == Solid::Networking::Connected || Solid::Networking::status() == Solid::Networking::Unknown)
-     this->m_networkAvailable=true;
-    else if(Solid::Networking::status() == Solid::Networking::Unconnected)
-      this->m_networkAvailable=false;
+    //Check network status
+    if (Solid::Networking::status() == Solid::Networking::Connected || Solid::Networking::status() == Solid::Networking::Unknown) {
+        this->m_networkAvailable = true;
+    } else if (Solid::Networking::status() == Solid::Networking::Unconnected) {
+        this->m_networkAvailable = false;
+    }
 }
 
 void Akregator::MainWidget::slotOnShutdown()

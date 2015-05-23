@@ -759,14 +759,14 @@ bool Part::handleCommandLine(const QStringList &args)
     parser.process(args);
 
     const QString addFeedGroup = parser.isSet(QStringLiteral("group"))
-                                    ? parser.value(QStringLiteral("group"))
-                                    : i18n("Imported Folder");
+                                 ? parser.value(QStringLiteral("group"))
+                                 : i18n("Imported Folder");
 
     QStringList feedsToAdd = parser.values(QStringLiteral("addfeed"));
 
     if (feedsToAdd.isEmpty() && !parser.positionalArguments().isEmpty()) {
         for (const QString &url : parser.positionalArguments()) {
-          feedsToAdd.append(url);
+            feedsToAdd.append(url);
         }
     }
 
