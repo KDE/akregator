@@ -66,8 +66,8 @@ Q_SIGNALS:
     void signalZoomOutFrame(int);
 
 private:
-    /*reimpl*/ void tabInserted(int);
-    /*reimpl*/ void tabRemoved(int);
+    /*reimpl*/ void tabInserted(int) Q_DECL_OVERRIDE;
+    /*reimpl*/ void tabRemoved(int) Q_DECL_OVERRIDE;
 
 private Q_SLOTS:
     void initiateDrag(int tab);
