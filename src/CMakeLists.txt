@@ -30,6 +30,7 @@ install(TARGETS akregator ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 ########### next target ###############
 
 set(akregatorprivate_LIB_SRCS
+  akregratormigrateapplication.cpp
   akregator_debug.cpp
   aboutdata.cpp
   trayicon.cpp
@@ -66,6 +67,7 @@ PRIVATE
   kdepim
   KF5::Syndication
   akregatorinterfaces
+  pimcommon
 )
 
 set_target_properties(akregatorprivate
