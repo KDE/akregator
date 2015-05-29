@@ -23,6 +23,7 @@ target_link_libraries(akregator
   kdepim
   akregatorprivate
   akregatorinterfaces
+  pimcommon
 )
 
 install(TARGETS akregator ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
@@ -132,6 +133,7 @@ target_link_libraries(akregatorpart
   KF5::NotifyConfig
   kdepim
   KF5::Syndication
+  pimcommon
 )
 
 install(TARGETS akregatorpart DESTINATION ${KDE_INSTALL_PLUGINDIR})

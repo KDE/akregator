@@ -27,6 +27,7 @@
 #include "akregator_options.h"
 #include "utils.h"
 #include "akregator_debug.h"
+#include "akregratormigrateapplication.h"
 #include <KLocalizedString>
 #include <kontactinterface/pimuniqueapplication.h>
 #include <QtDBus/QtDBus>
@@ -87,11 +88,12 @@ int main(int argc, char **argv)
     cmdArgs->process(args);
     about.processCommandLine(cmdArgs);
 
-    Akregator::Utils::migrateConfig();
     if (!Akregator::Application::start(args)) {
         qCWarning(AKREGATOR_LOG) << "akregator is already running, exiting.";
         exit(0);
     }
+    AkregratorMigrateApplication migrate;
+    migrate.migrate();
 
     // start knotifyclient if not already started. makes it work for people who doesn't use full kde, according to kmail devels
     //KNotifyClient::startDaemon();

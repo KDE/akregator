@@ -19,8 +19,9 @@
 #define AKREGRATORMIGRATEAPPLICATION_H
 
 #include "pimcommon/migration/migrateapplicationfiles.h"
+#include "akregator_export.h"
 
-class AkregratorMigrateApplication
+class AKREGATOR_EXPORT AkregratorMigrateApplication
 {
 public:
     AkregratorMigrateApplication();

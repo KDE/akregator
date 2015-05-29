@@ -73,6 +73,7 @@
 #include <QTimer>
 #include <QWidget>
 #include <QDomDocument>
+#include "akregratormigrateapplication.h"
 #include "partadaptor.h"
 
 #include <memory>
@@ -184,7 +185,8 @@ K_PLUGIN_FACTORY(AkregatorFactory, registerPlugin<Part>();)
 BrowserExtension::BrowserExtension(Part *p, const char *name)
     : KParts::BrowserExtension(p)
 {
-    Akregator::Utils::migrateConfig();
+    AkregratorMigrateApplication migrate;
+    migrate.migrate();
     setObjectName(name);
     m_part = p;
 }

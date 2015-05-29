@@ -60,13 +60,4 @@ QString Utils::directionOf(const QString &str)
     return str.isRightToLeft() ? QStringLiteral("rtl") : QStringLiteral("ltr");
 }
 
-void Utils::migrateConfig()
-{
-    Kdelibs4ConfigMigrator migrate(QStringLiteral("akregator"));
-    migrate.setConfigFiles(QStringList() << QStringLiteral("akregatorrc") << QStringLiteral("akregator.notifyrc"));
-    migrate.setUiFiles(QStringList() << QStringLiteral("akregator_shell.rc") << QStringLiteral("akregator_part.rc") << QStringLiteral("pageviewer.rc")
-                       << QStringLiteral("articleviewer.rc") << QStringLiteral("akregator_sharemicroblog_plugin.rc") << QStringLiteral("akregator_onlinesync_plugin.rc"));
-    migrate.migrate();
-}
-
 }
