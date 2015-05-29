@@ -47,8 +47,8 @@ void AkregratorMigrateApplication::initializeMigrator()
     mMigrator.setConfigFileName(QStringLiteral("akregatorrc"));
     mMigrator.setCurrentConfigVersion(currentVersion);
 
-    // To migrate we need a version < currentVersion
-    const int initialVersion = currentVersion - 1;
+    // To migrate we need a version > currentVersion
+    const int initialVersion = currentVersion + 1;
 
     // Database
     PimCommon::MigrateFileInfo migrateInfoArchive;
