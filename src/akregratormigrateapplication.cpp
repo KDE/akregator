@@ -41,10 +41,28 @@ void AkregratorMigrateApplication::migrate()
 
 void AkregratorMigrateApplication::initializeMigrator()
 {
-    const int currentVersion = 1;
+    const int currentVersion = 2;
 
     mMigrator.setApplicationName(QStringLiteral("akreagator"));
     mMigrator.setConfigFileName(QStringLiteral("akregatorrc"));
     mMigrator.setCurrentConfigVersion(currentVersion);
+
+    // To migrate we need a version < currentVersion
+    const int initialVersion = currentVersion - 1;
+
+    // Database
+    PimCommon::MigrateFileInfo migrateInfoArchive;
+    migrateInfoArchive.setFolder(true);
+    migrateInfoArchive.setType(QStringLiteral("apps"));
+    migrateInfoArchive.setPath(QStringLiteral("Archive/"));
+    migrateInfoArchive.setVersion(initialVersion);
+    mMigrator.insertMigrateInfo(migrateInfoArchive);
+
+    PimCommon::MigrateFileInfo migrateInfoData;
+    migrateInfoData.setFolder(true);
+    migrateInfoData.setType(QStringLiteral("apps"));
+    migrateInfoData.setPath(QStringLiteral("data/"));
+    migrateInfoData.setVersion(initialVersion);
+    mMigrator.insertMigrateInfo(migrateInfoData);
     //TODO
 }
