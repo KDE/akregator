@@ -373,8 +373,8 @@ ArticleListView::ArticleListView(QWidget *parent)
                       "To view the web page of the article, you can open the article internally in a tab or in an external browser window."));
 
     //connect exactly once
-    disconnect(header(), SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showHeaderMenu(QPoint)));
-    connect(header(), SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showHeaderMenu(QPoint)));
+    disconnect(header(), &QWidget::customContextMenuRequested, this, &ArticleListView::showHeaderMenu);
+    connect(header(), &QWidget::customContextMenuRequested, this, &ArticleListView::showHeaderMenu);
     loadHeaderSettings();
 }
 

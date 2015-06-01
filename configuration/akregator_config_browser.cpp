@@ -45,8 +45,8 @@ KCMAkregatorBrowserConfig::KCMAkregatorBrowserConfig(QWidget *parent, const QVar
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->addWidget(m_widget);
 
-    connect(ui.kcfg_ExternalBrowserUseCustomCommand, SIGNAL(toggled(bool)),
-            ui.kcfg_ExternalBrowserCustomCommand, SLOT(setEnabled(bool)));
+    connect(ui.kcfg_ExternalBrowserUseCustomCommand, &QAbstractButton::toggled,
+            ui.kcfg_ExternalBrowserCustomCommand, &QWidget::setEnabled);
     KAboutData *about = new KAboutData(QStringLiteral("kcmakrbrowserconfig"),
                                        i18n("Configure Feed Reader Browser"),
                                        QString(), QString(), KAboutLicense::GPL,

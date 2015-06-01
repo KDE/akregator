@@ -43,10 +43,10 @@ KCMAkregatorArchiveConfig::KCMAkregatorArchiveConfig(QWidget *parent, const QVar
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->addWidget(m_widget);
 
-    connect(m_ui.rb_LimitArticleNumber, SIGNAL(toggled(bool)),
-            m_ui.kcfg_MaxArticleNumber, SLOT(setEnabled(bool)));
-    connect(m_ui.rb_LimitArticleAge, SIGNAL(toggled(bool)),
-            m_ui.kcfg_MaxArticleAge, SLOT(setEnabled(bool)));
+    connect(m_ui.rb_LimitArticleNumber, &QAbstractButton::toggled,
+            m_ui.kcfg_MaxArticleNumber, &QWidget::setEnabled);
+    connect(m_ui.rb_LimitArticleAge, &QAbstractButton::toggled,
+            m_ui.kcfg_MaxArticleAge, &QWidget::setEnabled);
 
     m_ui.kcfg_MaxArticleNumber->setSuffix(ki18ncp("Limit feed archive size to:", " article", " articles"));
     m_ui.kcfg_MaxArticleAge->setSuffix(ki18ncp("Delete articles older than:", " day", " days"));
