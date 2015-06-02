@@ -19,7 +19,6 @@ add_executable(akregator ${akregator_SRCS})
 
 target_link_libraries(akregator
   KF5::KontactInterface
-  KF5::KontactInterface
   kdepim
   akregatorprivate
   akregatorinterfaces
