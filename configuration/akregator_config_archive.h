@@ -42,8 +42,8 @@ public:
     void setArchiveMode(int mode);
     int archiveMode() const;
 
-    /*reimp*/ void load();
-    /*reimp*/ void save();
+    /*reimp*/ void load() Q_DECL_OVERRIDE;
+    /*reimp*/ void save() Q_DECL_OVERRIDE;
 
 private:
     QWidget *m_widget;

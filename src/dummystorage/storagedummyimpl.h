@@ -45,58 +45,58 @@ public:
     StorageDummyImpl(const StorageDummyImpl &);
     StorageDummyImpl &operator =(const StorageDummyImpl &);
     ~StorageDummyImpl();
-    void initialize(const QStringList &params);
+    void initialize(const QStringList &params) Q_DECL_OVERRIDE;
     /**
      * Open storage and prepare it for work.
      * @return true on success.
      */
-    bool open(bool autoCommit = false);
+    bool open(bool autoCommit = false) Q_DECL_OVERRIDE;
 
     /**
      * Commit changes made in feeds and articles, making them persistent.
      * @return true on success.
      */
-    bool commit();
+    bool commit() Q_DECL_OVERRIDE;
 
     /**
      * Rollback changes made in feeds and articles, reverting to last committed values.
      * @returns true on success.
      */
-    bool rollback();
+    bool rollback() Q_DECL_OVERRIDE;
 
     /**
      * Closes storage, freeing all allocated resources. Called from destructor, so you don't need to call it directly.
      * @return true on success.
      */
-    bool close();
+    bool close() Q_DECL_OVERRIDE;
 
     /**
      * @return Article archive for feed at given url.
      */
-    FeedStorage *archiveFor(const QString &url);
-    const FeedStorage *archiveFor(const QString &url) const;
-    bool autoCommit() const;
-    int unreadFor(const QString &url) const;
-    void setUnreadFor(const QString &url, int unread);
-    int totalCountFor(const QString &url) const;
-    void setTotalCountFor(const QString &url, int total);
-    int lastFetchFor(const QString &url) const;
-    void setLastFetchFor(const QString &url, int lastFetch);
-    QStringList feeds() const;
+    FeedStorage *archiveFor(const QString &url) Q_DECL_OVERRIDE;
+    const FeedStorage *archiveFor(const QString &url) const Q_DECL_OVERRIDE;
+    bool autoCommit() const Q_DECL_OVERRIDE;
+    int unreadFor(const QString &url) const Q_DECL_OVERRIDE;
+    void setUnreadFor(const QString &url, int unread) Q_DECL_OVERRIDE;
+    int totalCountFor(const QString &url) const Q_DECL_OVERRIDE;
+    void setTotalCountFor(const QString &url, int total) Q_DECL_OVERRIDE;
+    int lastFetchFor(const QString &url) const Q_DECL_OVERRIDE;
+    void setLastFetchFor(const QString &url, int lastFetch) Q_DECL_OVERRIDE;
+    QStringList feeds() const Q_DECL_OVERRIDE;
 
-    void storeFeedList(const QString &opmlStr);
-    QString restoreFeedList() const;
+    void storeFeedList(const QString &opmlStr) Q_DECL_OVERRIDE;
+    QString restoreFeedList() const Q_DECL_OVERRIDE;
 
-    void storeTagSet(const QString &xmlStr);
-    QString restoreTagSet() const;
+    void storeTagSet(const QString &xmlStr) Q_DECL_OVERRIDE;
+    QString restoreTagSet() const Q_DECL_OVERRIDE;
 
     /** adds all feed storages from a source to this storage
         existing articles are replaced
     */
-    void add(Storage *source);
+    void add(Storage *source) Q_DECL_OVERRIDE;
 
     /** deletes all feed storages in this archive */
-    void clear();
+    void clear() Q_DECL_OVERRIDE;
 
 protected Q_SLOTS:
     void slotCommit();
