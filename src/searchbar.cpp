@@ -70,6 +70,7 @@ SearchBar::SearchBar(QWidget *parent) : QWidget(parent), d(new SearchBar::Search
 {
     d->delay = 400;
     QHBoxLayout *layout = new QHBoxLayout;
+    setLayout(layout);
 
     layout->setMargin(2);
     layout->setSpacing(5);
