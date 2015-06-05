@@ -384,7 +384,7 @@ void ArticleListView::mousePressEvent(QMouseEvent *ev)
     QTreeView::mousePressEvent(ev);
 
     if (ev->button() == Qt::MidButton) {
-        const QUrl url = currentIndex().data(ArticleModel::LinkRole).value<QUrl>();
+        const QUrl url = currentIndex().data(ArticleModel::LinkRole).toUrl();
 
         Q_EMIT signalMouseButtonPressed(ev->button(), url);
     }

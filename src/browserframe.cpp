@@ -108,7 +108,7 @@ static OpenUrlRequest requestFromSender(QObject *sender, int id)
 {
     QAction *const action = qobject_cast<QAction *>(sender);
     Q_ASSERT(action);
-    const QUrl url = action->data().value<QUrl>();
+    const QUrl url = action->data().toUrl();
     OpenUrlRequest req;
     req.setFrameId(id);
     req.setUrl(url);

@@ -275,7 +275,7 @@ QMimeData *ArticleModel::mimeData(const QModelIndexList &indexes) const
     QScopedPointer<QMimeData> md(new QMimeData);
     QList<QUrl> urls;
     Q_FOREACH (const QModelIndex &i, indexes) {
-        const QUrl url = i.data(ArticleModel::LinkRole).value<QUrl>();
+        const QUrl url = i.data(ArticleModel::LinkRole).toUrl();
         if (url.isValid()) {
             urls.push_back(url);
         } else {
