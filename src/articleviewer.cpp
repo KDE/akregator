@@ -687,9 +687,9 @@ void ArticleViewer::displayAboutPage()
     QString content = QString::fromLocal8Bit(f.readAll());
     f.close();
 
-    QString infocss = QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kdeui/about/kde_infopage.css");
+    QString infocss = QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kf5/infopage/kde_infopage.css");
     QString rtl = (QApplication::layoutDirection() == Qt::RightToLeft)
-                  ? QStringLiteral("@import \"%1\";").arg(QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kdeui/about/kde_infopage_rtl.css"))
+                  ? QStringLiteral("@import \"%1\";").arg(QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kf5/infopage/kde_infopage_rtl.css"))
                   : QString();
 
     m_part->write(content.arg(infocss, rtl, fontSize, appTitle, catchPhrase, quickDescription, info));
