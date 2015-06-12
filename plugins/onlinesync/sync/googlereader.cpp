@@ -57,7 +57,7 @@ void GoogleReader::load()
     QByteArray data;
     data.append(QString(QString("Email=") + getUser() + QString("&Passwd=") + getPassword()).toUtf8());
 
-    KIO::StoredTransferJob *job = KIO::storedHttpPost(data, KUrl("https://www.google.com/accounts/ClientLogin"));
+    KIO::StoredTransferJob *job = KIO::storedHttpPost(data, QUrl("https://www.google.com/accounts/ClientLogin"));
     job->addMetaData("content-type", "application/x-www-form-urlencoded");
     job->addMetaData("cookies", "manual");
     connect(job, &KIO::StoredTransferJob::result, this, &GoogleReader::slotAuthenticationDone);
@@ -103,7 +103,7 @@ void GoogleReader::add(const SubscriptionList &list)
     getSubscriptionList().add(list.getRss(_cursor), list.getName(_cursor), list.getCat(_cursor));
 
     KIO::StoredTransferJob *job =
-        KIO::storedHttpPost(data, KUrl("http://www.google.com/reader/api/0/subscription/edit"));
+        KIO::storedHttpPost(data, QUrl("http://www.google.com/reader/api/0/subscription/edit"));
     job->addMetaData("cookies", "manual");
     job->addMetaData("setcookies", "SID=" + getSID());
     job->addMetaData("content-type", "application/x-www-form-urlencoded");
@@ -154,7 +154,7 @@ void GoogleReader::remove(const SubscriptionList &list)
     }
 
     KIO::StoredTransferJob *job =
-        KIO::storedHttpPost(data, KUrl("http://www.google.com/reader/api/0/subscription/edit"));
+        KIO::storedHttpPost(data, QUrl("http://www.google.com/reader/api/0/subscription/edit"));
     job->addMetaData("cookies", "manual");
     job->addMetaData("setcookies", "SID=" + getSID());
     job->addMetaData("content-type", "application/x-www-form-urlencoded");
@@ -281,7 +281,7 @@ void GoogleReader::slotAuthenticationDone(KJob *job_)
     qDebug() << "SID:" << _sid.left(10) + QString("...");
 
     // Next: get the list
-    KIO::StoredTransferJob *getjob = KIO::storedGet(KUrl("http://www.google.com/reader/api/0/subscription/list"));
+    KIO::StoredTransferJob *getjob = KIO::storedGet(QUrl("http://www.google.com/reader/api/0/subscription/list"));
     getjob->addMetaData("cookies", "manual");
     getjob->addMetaData("setcookies", "SID=" + getSID());
     connect(getjob, &KIO::StoredTransferJob::result, this, &GoogleReader::slotListDone);

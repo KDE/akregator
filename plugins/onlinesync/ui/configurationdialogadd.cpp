@@ -89,7 +89,7 @@ void ConfigurationDialogAdd::accept()
         }
         // Insert new
         KConfig config("akregator_feedsyncrc");
-        const KUrl url = ui.filerequester->url();
+        const QUrl url = ui.filerequester->url();
         KConfigGroup generalGroup(&config, "FeedSyncSource_Opml" + url.url());
         generalGroup.writeEntry("AggregatorType", ui.cb_AggregatorType->itemData(ui.cb_AggregatorType->currentIndex()));
         generalGroup.writeEntry("Filename", url.url());
