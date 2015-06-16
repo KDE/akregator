@@ -20,6 +20,7 @@
 
 #include <QObject>
 #include "pimcommon/texttospeech/texttospeech.h"
+#include "akregator_export.h"
 class QAction;
 namespace PimCommon
 {
@@ -29,7 +30,7 @@ class TextToSpeechActions;
 namespace Akregator
 {
 class AkregatorTextToSpeechInterface;
-class AkregatorTextToSpeech : public QObject
+class AKREGATOR_EXPORT AkregatorTextToSpeech : public QObject
 {
     Q_OBJECT
 public:

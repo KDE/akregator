@@ -22,6 +22,7 @@
     without including the source code for Qt in the source distribution.
 */
 
+#include "akregatortexttospeech.h"
 #include "actionmanagerimpl.h"
 #include "akregatorconfig.h"
 #include "akregator_part.h"
@@ -125,6 +126,7 @@ public:
     TabWidget *tabWidget;
     QAction *speakSelectedArticlesAction;
     FrameManager *frameManager;
+    AkregatorTextToSpeech *textToSpeech;
 };
 
 void ActionManagerImpl::slotNodeSelected(TreeNode *node)
@@ -148,6 +150,7 @@ ActionManagerImpl::ActionManagerImpl(Part *part, QObject *parent) : ActionManage
     d->frameManager = 0;
     d->speakSelectedArticlesAction = 0;
     d->actionCollection = part->actionCollection();
+    d->textToSpeech = new AkregatorTextToSpeech(this);
     initPart();
 }
 
