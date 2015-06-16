@@ -16,16 +16,29 @@
 */
 
 #include "akregatortexttospeech.h"
+#include "pimcommon/texttospeech/texttospeechactions.h"
 using namespace Akregator;
 
 AkregatorTextToSpeech::AkregatorTextToSpeech(QObject *parent)
-    : QObject(parent)
+    : QObject(parent),
+      mTextToSpeechActions(new PimCommon::TextToSpeechActions(this))
 {
-
+    //connect(mTextToSpeechActions, &PimCommon::TextToSpeechActions::)
 }
 
 AkregatorTextToSpeech::~AkregatorTextToSpeech()
 {
 
 }
+
+QAction *AkregatorTextToSpeech::stopAction() const
+{
+    return mTextToSpeechActions->stopAction();
+}
+
+QAction *AkregatorTextToSpeech::playPauseAction() const
+{
+    return mTextToSpeechActions->playPauseAction();
+}
+
 

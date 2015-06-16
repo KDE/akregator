@@ -19,6 +19,12 @@
 #define AKREGATORTEXTTOSPEECH_H
 
 #include <QObject>
+class QAction;
+namespace PimCommon
+{
+class TextToSpeechActions;
+}
+
 namespace Akregator
 {
 class AkregatorTextToSpeech : public QObject
@@ -28,6 +34,10 @@ public:
     explicit AkregatorTextToSpeech(QObject *parent = Q_NULLPTR);
     ~AkregatorTextToSpeech();
 
+    QAction *stopAction() const;
+    QAction *playPauseAction() const;
+private:
+    PimCommon::TextToSpeechActions *mTextToSpeechActions;
 };
 }
 
