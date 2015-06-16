@@ -31,6 +31,7 @@ install(TARGETS akregator ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 
 set(akregatorprivate_LIB_SRCS
   akregatortexttospeech.cpp
+  akregatortexttospeechinterface.cpp
   akregratormigrateapplication.cpp
   akregator_debug.cpp
   aboutdata.cpp

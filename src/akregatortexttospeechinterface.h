@@ -15,37 +15,26 @@
   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef AKREGATORTEXTTOSPEECH_H
-#define AKREGATORTEXTTOSPEECH_H
+#ifndef AKREGATORTEXTTOSPEECHINTERFACE_H
+#define AKREGATORTEXTTOSPEECHINTERFACE_H
 
-#include <QObject>
-#include "pimcommon/texttospeech/texttospeech.h"
-class QAction;
-namespace PimCommon
-{
-class TextToSpeechActions;
-}
-
-namespace Akregator
-{
-class AkregatorTextToSpeechInterface;
-class AkregatorTextToSpeech : public QObject
+#include <texttospeech/abstracttexttospeechinterface.h>
+#include "texttospeech/texttospeechwidget.h"
+namespace Akregator {
+class AkregatorTextToSpeechInterface: public PimCommon::AbstractTextToSpeechInterface
 {
     Q_OBJECT
 public:
-    explicit AkregatorTextToSpeech(QObject *parent = Q_NULLPTR);
-    ~AkregatorTextToSpeech();
+    explicit AkregatorTextToSpeechInterface(QObject *parent = Q_NULLPTR);
+    ~AkregatorTextToSpeechInterface();
 
-    QAction *stopAction() const;
-    QAction *playPauseAction() const;
 
-private Q_SLOTS:
-    void slotStateChanged(PimCommon::TextToSpeech::State state);
+    bool isReady() const Q_DECL_OVERRIDE;
+    void say(const QString &text) Q_DECL_OVERRIDE;
 
-private:
-    PimCommon::TextToSpeechActions *mTextToSpeechActions;
-    AkregatorTextToSpeechInterface *mSpeechInterface;
+public Q_SLOTS:
+    void stateChanged(PimCommon::TextToSpeechWidget::State state);
 };
 }
 
-#endif // AKREGATORTEXTTOSPEECH_H
+#endif // AKREGATORTEXTTOSPEECHINTERFACE_H

@@ -16,20 +16,39 @@
 */
 
 #include "akregatortexttospeech.h"
+#include "akregatortexttospeechinterface.h"
 #include "pimcommon/texttospeech/texttospeechactions.h"
 using namespace Akregator;
 
 AkregatorTextToSpeech::AkregatorTextToSpeech(QObject *parent)
     : QObject(parent),
-      mTextToSpeechActions(new PimCommon::TextToSpeechActions(this))
+      mTextToSpeechActions(new PimCommon::TextToSpeechActions(this)),
+      mSpeechInterface(new AkregatorTextToSpeechInterface(this))
 {
-    //connect(mTextToSpeechActions, &PimCommon::TextToSpeechActions::)
+    connect(mTextToSpeechActions, &PimCommon::TextToSpeechActions::stateChanged, mSpeechInterface, &AkregatorTextToSpeechInterface::stateChanged);
+    connect(PimCommon::TextToSpeech::self(), &PimCommon::TextToSpeech::stateChanged, this, &AkregatorTextToSpeech::slotStateChanged);
 }
 
 AkregatorTextToSpeech::~AkregatorTextToSpeech()
 {
 
 }
+
+void AkregatorTextToSpeech::slotStateChanged(PimCommon::TextToSpeech::State state)
+{
+    switch(state) {
+    case PimCommon::TextToSpeech::Ready: {
+        if (state == PimCommon::TextToSpeech::Ready) {
+            mTextToSpeechActions->setState(PimCommon::TextToSpeechWidget::Stop);
+        }
+        break;
+    }
+    default:
+        //TODO
+        break;
+    }
+}
+
 
 QAction *AkregatorTextToSpeech::stopAction() const
 {
