@@ -74,7 +74,7 @@ private Q_SLOTS:
     void slotDetachTab();
     void slotCopyLinkAddress();
     void slotCloseTab();
-    void slotCloseRequest(QWidget *widget);
+    void slotCloseRequest(int index);
     void contextMenu(int item, const QPoint &p);
     void slotTabChanged(int index);
 

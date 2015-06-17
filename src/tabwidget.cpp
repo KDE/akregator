@@ -107,7 +107,7 @@ TabWidget::TabWidget(QWidget *parent)
     setMovable(false);
     setDocumentMode(true);
     connect(this, &TabWidget::currentChanged, this, &TabWidget::slotTabChanged);
-    connect(this, SIGNAL(closeRequest(QWidget*)), this, SLOT(slotCloseRequest(QWidget*)));
+    connect(this, &QTabWidget::tabCloseRequested, this, &TabWidget::slotCloseRequest);
 
     setTabsClosable(Settings::closeButtonOnTabs());
 
@@ -429,10 +429,11 @@ void TabWidget::slotReloadAllTabs()
     }
 }
 
-void TabWidget::slotCloseRequest(QWidget *widget)
+void TabWidget::slotCloseRequest(int index)
 {
-    if (d->frames.value(widget)) {
-        Q_EMIT signalRemoveFrameRequest(d->frames.value(widget)->id());
+    QWidget *w = widget(index);
+    if (d->frames.value(w)) {
+        Q_EMIT signalRemoveFrameRequest(d->frames.value(w)->id());
     }
 }
 
