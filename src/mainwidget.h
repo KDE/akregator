@@ -125,6 +125,7 @@ public:
         return m_viewMode;
     }
 
+    QList<Akregator::Article> speakSelectedArticles();
 Q_SIGNALS:
     /** emitted when the unread count of "All Feeds" was changed */
     void signalUnreadCountChanged(int);
@@ -201,9 +202,6 @@ public Q_SLOTS:
     void slotSetSelectedArticleNew();
     /** marks the currenctly selected article as read after a user-set delay */
     void slotSetCurrentArticleReadDelayed();
-
-    /** reads the currently selected articles using KTTSD */
-    void slotTextToSpeechRequest();
 
     /** switches view mode to normal view */
     void slotNormalView();

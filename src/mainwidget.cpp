@@ -1097,15 +1097,12 @@ void Akregator::MainWidget::slotSetSelectedArticleRead()
     ::setSelectedArticleStatus(m_selectionController, Akregator::Read);
 }
 
-void Akregator::MainWidget::slotTextToSpeechRequest()
+QList<Akregator::Article> Akregator::MainWidget::speakSelectedArticles()
 {
+    QList<Akregator::Article> lst;
     if (Kernel::self()->frameManager()->currentFrame() == m_mainFrame) {
         if (m_viewMode != CombinedView) {
-#if 0 //QT5
-            // in non-combined view, read selected articles
-            SpeechClient::self()->slotSpeak(m_selectionController->selectedArticles());
-            // TODO: if article viewer has a selection, read only the selected text?
-#endif
+            lst = m_selectionController->selectedArticles();
         } else {
             if (m_selectionController->selectedSubscription()) {
                 //TODO: read articles in current node, respecting quick filter!
@@ -1114,6 +1111,7 @@ void Akregator::MainWidget::slotTextToSpeechRequest()
     } else {
         // TODO: read selected page viewer
     }
+    return lst;
 }
 
 void Akregator::MainWidget::slotSetSelectedArticleUnread()

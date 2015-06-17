@@ -212,6 +212,7 @@ void ActionManagerImpl::initMainWidget(MainWidget *mainWidget)
     }
 
     d->mainWidget = mainWidget;
+    d->textToSpeech->setMainWindow(d->mainWidget);
 
     KActionCollection *coll = actionCollection();
 

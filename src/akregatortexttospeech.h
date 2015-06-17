@@ -31,6 +31,7 @@ class TextToSpeechActions;
 namespace Akregator
 {
 class AkregatorTextToSpeechInterface;
+class MainWidget;
 class AKREGATOR_EXPORT AkregatorTextToSpeech : public QObject
 {
     Q_OBJECT
@@ -41,6 +42,7 @@ public:
     QAction *stopAction() const;
     QAction *playPauseAction() const;
 
+    void setMainWindow(Akregator::MainWidget *mainWidget);
 public Q_SLOTS:
     void stateChanged(PimCommon::TextToSpeechWidget::State state);
 
@@ -50,6 +52,7 @@ private Q_SLOTS:
 private:
     PimCommon::TextToSpeechActions *mTextToSpeechActions;
     AkregatorTextToSpeechInterface *mSpeechInterface;
+    Akregator::MainWidget *mMainWindow;
 };
 }
 

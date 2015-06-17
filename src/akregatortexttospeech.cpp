@@ -17,14 +17,19 @@
 
 #include "akregatortexttospeech.h"
 #include "akregatortexttospeechinterface.h"
+#include "mainwidget.h"
+
+#include <article.h>
 using namespace Akregator;
 
 AkregatorTextToSpeech::AkregatorTextToSpeech(QObject *parent)
     : QObject(parent),
       mTextToSpeechActions(new PimCommon::TextToSpeechActions(this)),
-      mSpeechInterface(new AkregatorTextToSpeechInterface(this))
+      mSpeechInterface(new AkregatorTextToSpeechInterface(this)),
+      mMainWindow(Q_NULLPTR)
 {
-    connect(mTextToSpeechActions, &PimCommon::TextToSpeechActions::stateChanged, mSpeechInterface, &AkregatorTextToSpeechInterface::stateChanged);
+    //connect(mTextToSpeechActions, &PimCommon::TextToSpeechActions::stateChanged, mSpeechInterface, &AkregatorTextToSpeechInterface::stateChanged);
+    connect(mTextToSpeechActions, &PimCommon::TextToSpeechActions::stateChanged, this, &AkregatorTextToSpeech::stateChanged);
     connect(PimCommon::TextToSpeech::self(), &PimCommon::TextToSpeech::stateChanged, this, &AkregatorTextToSpeech::slotStateChanged);
 }
 
@@ -33,8 +38,17 @@ AkregatorTextToSpeech::~AkregatorTextToSpeech()
 
 }
 
+void AkregatorTextToSpeech::setMainWindow(Akregator::MainWidget *mainWidget)
+{
+    mMainWindow = mainWidget;
+}
+
 void AkregatorTextToSpeech::stateChanged(PimCommon::TextToSpeechWidget::State state)
 {
+    if (mMainWindow) {
+        //const QList<Akregator::Article> lstArticle = mMainWindow->speakSelectedArticles();
+        //TODO speak
+    }
     //TODO
 }
 
