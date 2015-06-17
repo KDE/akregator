@@ -124,7 +124,6 @@ public:
     KActionMenu *tagMenu;
     KActionCollection *actionCollection;
     TabWidget *tabWidget;
-    QAction *speakSelectedArticlesAction;
     FrameManager *frameManager;
     AkregatorTextToSpeech *textToSpeech;
 };
@@ -148,7 +147,6 @@ ActionManagerImpl::ActionManagerImpl(Part *part, QObject *parent) : ActionManage
     d->tabWidget = 0;
     d->tagMenu = 0;
     d->frameManager = 0;
-    d->speakSelectedArticlesAction = 0;
     d->actionCollection = part->actionCollection();
     d->textToSpeech = new AkregatorTextToSpeech(this);
     initPart();
@@ -354,19 +352,12 @@ void ActionManagerImpl::initMainWidget(MainWidget *mainWidget)
     statusMenu->setText(i18n("&Mark As"));
     statusMenu->setEnabled(false);
 
-    d->speakSelectedArticlesAction = coll->addAction("akr_texttospeech");
-    d->speakSelectedArticlesAction->setIcon(QIcon::fromTheme("media-playback-start"));
-    d->speakSelectedArticlesAction->setText(i18n("&Speak Selected Articles"));
-    connect(d->speakSelectedArticlesAction, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotTextToSpeechRequest()));
+    QAction *speakSelectedArticlesAction = coll->addAction("akr_texttospeech");
+    speakSelectedArticlesAction->setIcon(QIcon::fromTheme("media-playback-start"));
+    speakSelectedArticlesAction->setText(i18n("&Speak Selected Articles"));
+    connect(speakSelectedArticlesAction, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotTextToSpeechRequest()));
 
-    action = coll->addAction("akr_aborttexttospeech");
-    action->setText(i18n("&Stop Speaking"));
-    action->setIcon(QIcon::fromTheme("media-playback-stop"));
-    //QT5 connect(action, SIGNAL(triggered(bool)),SpeechClient::self(), SLOT(slotAbortJobs()));
-    //action->setShortcuts(Qt::Key_Escape);
-    action->setEnabled(false);
-
-    //QT5 connect(SpeechClient::self(), SIGNAL(signalActivated(bool)), action, SLOT(setEnabled(bool)));
+    coll->addAction("akr_aborttexttospeech", d->textToSpeech->stopAction());
 
     action = coll->addAction("article_set_status_read");
     action->setText(i18nc("as in: mark as read", "&Read"));

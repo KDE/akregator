@@ -20,6 +20,7 @@
 
 #include <QObject>
 #include "pimcommon/texttospeech/texttospeech.h"
+#include "pimcommon/texttospeech/texttospeechactions.h"
 #include "akregator_export.h"
 class QAction;
 namespace PimCommon
@@ -39,6 +40,9 @@ public:
 
     QAction *stopAction() const;
     QAction *playPauseAction() const;
+
+public Q_SLOTS:
+    void stateChanged(PimCommon::TextToSpeechWidget::State state);
 
 private Q_SLOTS:
     void slotStateChanged(PimCommon::TextToSpeech::State state);

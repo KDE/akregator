@@ -17,7 +17,6 @@
 
 #include "akregatortexttospeech.h"
 #include "akregatortexttospeechinterface.h"
-#include "pimcommon/texttospeech/texttospeechactions.h"
 using namespace Akregator;
 
 AkregatorTextToSpeech::AkregatorTextToSpeech(QObject *parent)
@@ -32,6 +31,11 @@ AkregatorTextToSpeech::AkregatorTextToSpeech(QObject *parent)
 AkregatorTextToSpeech::~AkregatorTextToSpeech()
 {
 
+}
+
+void AkregatorTextToSpeech::stateChanged(PimCommon::TextToSpeechWidget::State state)
+{
+    //TODO
 }
 
 void AkregatorTextToSpeech::slotStateChanged(PimCommon::TextToSpeech::State state)
