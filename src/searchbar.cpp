@@ -95,10 +95,10 @@ SearchBar::SearchBar(QWidget *parent) : QWidget(parent), d(new SearchBar::Search
     d->searchCombo = new KComboBox(this);
     layout->addWidget(d->searchCombo);
 
-    QIcon iconAll = KIconLoader::global()->loadIcon("system-run", KIconLoader::Small);
-    QIcon iconNew(QStandardPaths::locate(QStandardPaths::GenericDataLocation, "akregator/pics/kmmsgnew.png"));
-    QIcon iconUnread(QStandardPaths::locate(QStandardPaths::GenericDataLocation, "akregator/pics/kmmsgunseen.png"));
-    const QIcon iconKeep = QIcon::fromTheme("mail-mark-important");
+    QIcon iconAll = KIconLoader::global()->loadIcon(QStringLiteral("system-run"), KIconLoader::Small);
+    QIcon iconNew(QStandardPaths::locate(QStandardPaths::GenericDataLocation, QStringLiteral("akregator/pics/kmmsgnew.png")));
+    QIcon iconUnread(QStandardPaths::locate(QStandardPaths::GenericDataLocation, QStringLiteral("akregator/pics/kmmsgunseen.png")));
+    const QIcon iconKeep = QIcon::fromTheme(QStringLiteral("mail-mark-important"));
 
     d->searchCombo->addItem(iconAll, i18n("All Articles"));
     d->searchCombo->addItem(iconUnread, i18nc("Unread articles filter", "Unread"));

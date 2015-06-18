@@ -45,9 +45,9 @@ namespace Akregator
 AddFeedWidget::AddFeedWidget(QWidget *parent, const char *name)
     : QWidget(parent)
 {
-    setObjectName(name);
+    setObjectName(QLatin1String(name));
     setupUi(this);
-    pixmapLabel1->setPixmap(KIconLoader::global()->loadIcon("applications-internet", KIconLoader::Desktop, KIconLoader::SizeHuge, KIconLoader::DefaultState, QStringList(), 0, true));
+    pixmapLabel1->setPixmap(KIconLoader::global()->loadIcon(QStringLiteral("applications-internet"), KIconLoader::Desktop, KIconLoader::SizeHuge, KIconLoader::DefaultState, QStringList(), 0, true));
     statusLabel->setText(QString());
 }
 
@@ -116,7 +116,7 @@ void AddFeedDialog::accept()
 
     QUrl asUrl(feedUrl);
     if (asUrl.scheme() == QLatin1String("feed")) {
-        asUrl.setScheme("http");
+        asUrl.setScheme(QStringLiteral("http"));
         feedUrl = asUrl.url();
     }
     m_feed->setXmlUrl(feedUrl);

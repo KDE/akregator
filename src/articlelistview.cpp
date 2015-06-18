@@ -61,7 +61,7 @@ bool FilterDeletedProxyModel::filterAcceptsRow(int source_row, const QModelIndex
     return !sourceModel()->index(source_row, 0, source_parent).data(ArticleModel::IsDeletedRole).toBool();
 }
 
-SortColorizeProxyModel::SortColorizeProxyModel(QObject *parent) : QSortFilterProxyModel(parent), m_keepFlagIcon(QIcon::fromTheme("mail-mark-important"))
+SortColorizeProxyModel::SortColorizeProxyModel(QObject *parent) : QSortFilterProxyModel(parent), m_keepFlagIcon(QIcon::fromTheme(QStringLiteral("mail-mark-important")))
 {
     m_unreadColor = KColorScheme(QPalette::Normal, KColorScheme::View).foreground(KColorScheme::PositiveText).color();
     m_newColor = KColorScheme(QPalette::Normal, KColorScheme::View).foreground(KColorScheme::NegativeText).color();
@@ -293,7 +293,7 @@ static int maxDateColumnWidth(const QFontMetrics &fm)
     int width = 0;
     KDateTime date(KDateTime::currentLocalDate(), QTime(23, 59));
     for (int x = 0; x < 10; x++, date = date.addDays(-1)) {
-        QString txt = ' ' + KLocale::global()->formatDateTime(date, KLocale::FancyShortDate) + ' ';
+        QString txt = QLatin1Char(' ') + KLocale::global()->formatDateTime(date, KLocale::FancyShortDate) + QLatin1Char(' ');
         width = qMax(width, fm.width(txt));
     }
     return width;

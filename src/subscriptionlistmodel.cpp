@@ -46,7 +46,7 @@
 using namespace Akregator;
 using namespace Syndication;
 
-#define AKREGATOR_TREENODE_MIMETYPE "akregator/treenode-id"
+#define AKREGATOR_TREENODE_MIMETYPE QStringLiteral("akregator/treenode-id")
 
 namespace
 {
@@ -379,7 +379,7 @@ Qt::ItemFlags SubscriptionListModel::flags(const QModelIndex &idx) const
 QStringList SubscriptionListModel::mimeTypes() const
 {
     QStringList types;
-    types << "text/uri-list" << AKREGATOR_TREENODE_MIMETYPE;
+    types << QStringLiteral("text/uri-list") << AKREGATOR_TREENODE_MIMETYPE;
     return types;
 }
 
