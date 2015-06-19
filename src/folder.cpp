@@ -39,6 +39,18 @@
 
 using namespace Akregator;
 
+// efficient alternative to hash.values().toVector():
+template <typename T>
+static QVector<T> hashValuesToVector(const QHash<int, T> &hash)
+{
+    QVector<T> result;
+    result.reserve(hash.count());
+    for (auto it = hash.cbegin(), end = hash.cend(); it != end; ++it)
+        result.append(it.value());
+
+    return result;
+}
+
 class Folder::FolderPrivate
 {
     Folder *const q;
@@ -144,7 +156,8 @@ QVector<const Akregator::Feed *> Folder::feeds() const
         Q_FOREACH (const Akregator::Feed *j, i->feeds()) {
             feedsById.insert(j->id(), j);
         }
-    return feedsById.values().toVector();
+
+    return hashValuesToVector<const Akregator::Feed *>(feedsById);
 }
 
 QVector<Akregator::Feed *> Folder::feeds()
@@ -154,7 +167,8 @@ QVector<Akregator::Feed *> Folder::feeds()
         Q_FOREACH (Akregator::Feed *j, i->feeds()) {
             feedsById.insert(j->id(), j);
         }
-    return feedsById.values().toVector();
+
+    return hashValuesToVector<Akregator::Feed *>(feedsById);
 }
 
 QVector<const Folder *> Folder::folders() const
@@ -165,7 +179,8 @@ QVector<const Folder *> Folder::folders() const
         Q_FOREACH (const Folder *j, i->folders()) {
             foldersById.insert(j->id(), j);
         }
-    return foldersById.values().toVector();
+
+    return hashValuesToVector<const Folder *>(foldersById);
 }
 
 QVector<Folder *> Folder::folders()
@@ -176,7 +191,7 @@ QVector<Folder *> Folder::folders()
         Q_FOREACH (Folder *j, i->folders()) {
             foldersById.insert(j->id(), j);
         }
-    return foldersById.values().toVector();
+    return hashValuesToVector<Folder *>(foldersById);
 }
 
 int Folder::indexOf(const TreeNode *node) const
