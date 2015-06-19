@@ -424,7 +424,7 @@ void TabWidget::initiateDrag(int tab)
 
 void TabWidget::slotReloadAllTabs()
 {
-    Q_FOREACH (Frame *frame, d->frames.values()) {
+    Q_FOREACH (Frame *frame, d->frames) {
         frame->slotReload();
     }
 }
