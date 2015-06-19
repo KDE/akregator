@@ -34,7 +34,6 @@
 #include "framemanager.h"
 #include "kernel.h"
 #include "mainwidget.h"
-//QT5 #include "speechclient.h"
 #include "subscriptionlistview.h"
 #include "tabwidget.h"
 #include "trayicon.h"

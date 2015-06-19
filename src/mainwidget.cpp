@@ -51,8 +51,6 @@
 #include "progressmanager.h"
 #include "searchbar.h"
 #include "selectioncontroller.h"
-//PORT to QtSpeech
-//QT5 #include "speechclient.h"
 #include "subscriptionlistjobs.h"
 #include "subscriptionlistmodel.h"
 #include "subscriptionlistview.h"
