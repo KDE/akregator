@@ -118,7 +118,8 @@ void Akregator::ArticleModifyJob::doStart()
     }
     std::vector<Akregator::Feed *> feeds;
 
-    Q_FOREACH (const Akregator::ArticleId &id, m_keepFlags.keys()) { //krazy:exclude=foreach
+    for (auto it = m_keepFlags.cbegin(), end = m_keepFlags.cend(); it != end; ++it) {
+        const Akregator::ArticleId &id = it.key();
         Akregator::Feed *feed = m_feedList->findByURL(id.feedUrl);
         if (!feed) {
             continue;
@@ -127,11 +128,12 @@ void Akregator::ArticleModifyJob::doStart()
         feeds.push_back(feed);
         Akregator::Article article = feed->findArticle(id.guid);
         if (!article.isNull()) {
-            article.setKeep(m_keepFlags[id]);
+            article.setKeep(it.value());
         }
     }
 
-    Q_FOREACH (const Akregator::ArticleId &id, m_status.keys()) { //krazy:exclude=foreach
+    for (auto it = m_status.cbegin(), end = m_status.cend(); it != end; ++it) {
+        const Akregator::ArticleId &id = it.key();
         Akregator::Feed *feed = m_feedList->findByURL(id.feedUrl);
         if (!feed) {
             continue;
@@ -140,7 +142,7 @@ void Akregator::ArticleModifyJob::doStart()
         feeds.push_back(feed);
         Akregator::Article article = feed->findArticle(id.guid);
         if (!article.isNull()) {
-            article.setStatus(m_status[id]);
+            article.setStatus(it.value());
         }
     }
 
