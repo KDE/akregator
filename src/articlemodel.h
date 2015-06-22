@@ -87,11 +87,11 @@ public:
 
     Article article(int row) const;
 
-    /* reimp */ QStringList mimeTypes() const;
+    QStringList mimeTypes() const Q_DECL_OVERRIDE;
 
     QMimeData *mimeData(const QModelIndexList &indexes) const Q_DECL_OVERRIDE;
 
-    /* reimp */ Qt::ItemFlags flags(const QModelIndex &idx) const;
+    Qt::ItemFlags flags(const QModelIndex &idx) const Q_DECL_OVERRIDE;
 
 public Q_SLOTS:
 

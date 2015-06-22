@@ -50,8 +50,8 @@ public:
     QVector<int> feeds() const;
 
 private:
-    void doStart();
-    void doAbort();
+    void doStart() Q_DECL_OVERRIDE;
+    void doAbort() Q_DECL_OVERRIDE;
 
 private:
     class Private;

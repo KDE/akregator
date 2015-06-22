@@ -59,24 +59,24 @@ public:
 
     ~Folder();
 
-    bool accept(TreeNodeVisitor *visitor);
+    bool accept(TreeNodeVisitor *visitor) Q_DECL_OVERRIDE;
 
     /** returns the number of unread articles in all children
     @return number of unread articles */
-    int unread() const;
+    int unread() const Q_DECL_OVERRIDE;
 
     /** returns the number of articles in all children
     @return number of articles */
-    int totalCount() const;
+    int totalCount() const Q_DECL_OVERRIDE;
 
     /** Helps the rest of the app to decide if node should be handled as group or not. */
-    bool isGroup() const
+    bool isGroup() const Q_DECL_OVERRIDE
     {
         return true;
     }
 
     //impl
-    bool isAggregation() const
+    bool isAggregation() const Q_DECL_OVERRIDE
     {
         return true;
     }
@@ -86,7 +86,7 @@ public:
     @param parent The parent element
     @param document The DOM document
     @return The newly created element representing this feed group */
-    QDomElement toOPML(QDomElement parent, QDomDocument document) const;
+    QDomElement toOPML(QDomElement parent, QDomDocument document) const Q_DECL_OVERRIDE;
 
     /** returns the (direct) children of this node.
     @return a list of pointers to the child nodes

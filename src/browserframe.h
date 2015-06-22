@@ -56,21 +56,21 @@ public:
     explicit BrowserFrame(QWidget *parent = Q_NULLPTR);
     ~BrowserFrame();
 
-    QUrl url() const;
+    QUrl url() const Q_DECL_OVERRIDE;
 
-    KParts::ReadOnlyPart *part() const;
+    KParts::ReadOnlyPart *part() const Q_DECL_OVERRIDE;
 
-    bool canGoForward() const;
-    bool canGoBack() const;
-    bool isReloadable() const;
-    bool isLoading() const;
+    bool canGoForward() const Q_DECL_OVERRIDE;
+    bool canGoBack() const Q_DECL_OVERRIDE;
+    bool isReloadable() const Q_DECL_OVERRIDE;
+    bool isLoading() const Q_DECL_OVERRIDE;
 
-    bool openUrl(const OpenUrlRequest &request);
+    bool openUrl(const OpenUrlRequest &request) Q_DECL_OVERRIDE;
 
     void setFavicon(const QIcon &icon) Q_DECL_OVERRIDE;
 
-    void loadConfig(const KConfigGroup &config, const QString &prefix);
-    void saveConfig(KConfigGroup &config, const QString &prefix);
+    void loadConfig(const KConfigGroup &config, const QString &prefix) Q_DECL_OVERRIDE;
+    void saveConfig(KConfigGroup &config, const QString &prefix) Q_DECL_OVERRIDE;
 
     bool hasZoom() const;
     int  getZoomFactor() const;
