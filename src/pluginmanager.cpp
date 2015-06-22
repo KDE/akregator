@@ -19,7 +19,6 @@ email                : markey@web.de
 #include <vector>
 #include <QString>
 
-#include <klibloader.h>
 #include "akregator_debug.h"
 #include <KLocalizedString>
 #include <kmessagebox.h>

@@ -37,7 +37,6 @@
 #include <QWidget>
 
 #include "akregator_debug.h"
-#include <klibloader.h>
 #include <QMenu>
 #include <kmimetypetrader.h>
 #include <ktoolbarpopupaction.h>
