@@ -948,6 +948,19 @@ void Akregator::MainWidget::openSelectedArticles(bool openInBackground)
 
 }
 
+void Akregator::MainWidget::currentArticleInfo(QString &link, QString &title)
+{
+    const Article article =  m_selectionController->currentArticle();
+
+    if (article.isNull()) {
+        return;
+    }
+    if (article.link().isValid()) {
+        link = article.link().url();
+        title = article.title();
+    }
+}
+
 void Akregator::MainWidget::slotCopyLinkAddress()
 {
     const Article article =  m_selectionController->currentArticle();

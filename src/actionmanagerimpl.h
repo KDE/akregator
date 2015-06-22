@@ -26,7 +26,7 @@
 #define AKREGATOR_ACTIONMANAGERIMPL_H
 
 #include "actionmanager.h"
-
+#include "pimcommon/shareserviceurl/shareserviceurlmanager.h"
 class QAction;
 class KActionCollection;
 
@@ -77,6 +77,9 @@ public Q_SLOTS:
 protected:
 
     KActionCollection *actionCollection();
+
+private Q_SLOTS:
+    void slotServiceUrlSelected(PimCommon::ShareServiceUrlManager::ServiceType type);
 
 private:
 

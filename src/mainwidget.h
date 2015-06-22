@@ -126,6 +126,7 @@ public:
     }
 
     QList<Akregator::Article> speakSelectedArticles();
+    void currentArticleInfo(QString &link, QString &title);
 Q_SIGNALS:
     /** emitted when the unread count of "All Feeds" was changed */
     void signalUnreadCountChanged(int);

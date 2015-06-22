@@ -40,8 +40,6 @@
 #include "treenode.h"
 #include "treenodevisitor.h"
 
-#include "pimcommon/shareserviceurl/shareserviceurlmanager.h"
-
 #include <kactionmenu.h>
 #include <ktoolbarpopupaction.h>
 #include <QAction>
@@ -428,7 +426,22 @@ void ActionManagerImpl::initMainWidget(MainWidget *mainWidget)
     action->setText(i18n("Send &File..."));
     connect(action, &QAction::triggered, mainWidget, &MainWidget::slotSendFile);
 
+    coll->addAction(QStringLiteral("share_serviceurl"), d->shareServiceManager->menu());
+    connect(d->shareServiceManager, &PimCommon::ShareServiceUrlManager::serviceUrlSelected, this, &ActionManagerImpl::slotServiceUrlSelected);
+
+
     setArticleActionsEnabled(false);
+}
+
+void ActionManagerImpl::slotServiceUrlSelected(PimCommon::ShareServiceUrlManager::ServiceType type)
+{
+    if (d->mainWidget) {
+        QString title;
+        QString link;
+        d->mainWidget->currentArticleInfo(link, title);
+        const QUrl url = d->shareServiceManager->generateServiceUrl(link, title, type);
+        d->shareServiceManager->openUrl(url);
+    }
 }
 
 void ActionManagerImpl::initArticleViewer(ArticleViewer *articleViewer)
@@ -658,6 +671,7 @@ void ActionManagerImpl::setArticleActionsEnabled(bool enabled)
     setActionEnabled("file_sendlink")
     setActionEnabled("file_sendfile")
     setActionEnabled("article_open_in_background")
+    setActionEnabled("share_serviceurl")
 #undef setActionEnabled
 }
 
