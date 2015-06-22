@@ -125,14 +125,14 @@ public:
         return m_viewMode;
     }
 
-    QList<Akregator::Article> speakSelectedArticles();
+    QVector<Article> speakSelectedArticles();
     void currentArticleInfo(QString &link, QString &title);
 Q_SIGNALS:
     /** emitted when the unread count of "All Feeds" was changed */
     void signalUnreadCountChanged(int);
 
     /** emitted when the articles selected changed */
-    void signalArticlesSelected(const QList<Akregator::Article> &);
+    void signalArticlesSelected(const QVector<Akregator::Article> &);
 
 public Q_SLOTS:
 

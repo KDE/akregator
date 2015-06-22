@@ -276,8 +276,8 @@ Part::Part(QWidget *parentWidget, QObject *parent, const QVariantList &)
         NotificationManager::self()->setWidget(notificationParent, componentData().componentName());
 
         connect(m_mainWidget, SIGNAL(signalUnreadCountChanged(int)), trayIcon, SLOT(slotSetUnread(int)));
-        connect(m_mainWidget, SIGNAL(signalArticlesSelected(QList<Akregator::Article>)),
-                this, SIGNAL(signalArticlesSelected(QList<Akregator::Article>)));
+        connect(m_mainWidget, &MainWidget::signalArticlesSelected,
+                this, &Part::signalArticlesSelected);
     }
 
     connect(qApp, SIGNAL(aboutToQuit()), this, SLOT(slotOnShutdown()));
@@ -350,8 +350,8 @@ void Part::slotSettingsChanged()
         }
 
         connect(m_mainWidget, SIGNAL(signalUnreadCountChanged(int)), trayIcon, SLOT(slotSetUnread(int)));
-        connect(m_mainWidget, SIGNAL(signalArticlesSelected(QList<Akregator::Article>)),
-                this, SIGNAL(signalArticlesSelected(QList<Akregator::Article>)));
+        connect(m_mainWidget, &MainWidget::signalArticlesSelected,
+                this, &Part::signalArticlesSelected);
 
         m_mainWidget->slotSetTotalUnread();
     }

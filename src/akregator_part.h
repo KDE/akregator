@@ -146,7 +146,7 @@ public Q_SLOTS:
 
 Q_SIGNALS:
     void signalSettingsChanged();
-    void signalArticlesSelected(const QList<Akregator::Article> &);
+    void signalArticlesSelected(const QVector<Akregator::Article> &);
 
 private:
 

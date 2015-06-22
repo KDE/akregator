@@ -46,7 +46,7 @@ void AkregatorTextToSpeech::setMainWindow(Akregator::MainWidget *mainWidget)
 void AkregatorTextToSpeech::stateChanged(PimCommon::TextToSpeechWidget::State state)
 {
     if (mMainWindow) {
-        //const QList<Akregator::Article> lstArticle = mMainWindow->speakSelectedArticles();
+        const QVector<Akregator::Article> lstArticle = mMainWindow->speakSelectedArticles();
         //TODO speak
     }
     //TODO

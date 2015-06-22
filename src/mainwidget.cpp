@@ -831,7 +831,7 @@ void Akregator::MainWidget::slotArticleSelected(const Akregator::Article &articl
 
     Q_ASSERT(article.isNull() || article.feed());
 
-    QList<Article> articles = m_selectionController->selectedArticles();
+    QVector<Article> articles = m_selectionController->selectedArticles();
     Q_EMIT signalArticlesSelected(articles);
 
     KToggleAction *const maai = qobject_cast<KToggleAction *>(m_actionManager->action("article_set_status_important"));
@@ -910,7 +910,7 @@ void Akregator::MainWidget::slotOpenHomepage()
 
 void Akregator::MainWidget::slotOpenSelectedArticlesInBrowser()
 {
-    const QList<Article> articles = m_selectionController->selectedArticles();
+    const QVector<Article> articles = m_selectionController->selectedArticles();
 
     Q_FOREACH (const Akregator::Article &article, articles) {
         slotOpenArticleInBrowser(article);
@@ -928,7 +928,7 @@ void Akregator::MainWidget::slotOpenArticleInBrowser(const Akregator::Article &a
 
 void Akregator::MainWidget::openSelectedArticles(bool openInBackground)
 {
-    const QList<Article> articles = m_selectionController->selectedArticles();
+    const QVector<Article> articles = m_selectionController->selectedArticles();
 
     Q_FOREACH (const Akregator::Article &article, articles) {
         const QUrl url = article.link();
@@ -1008,7 +1008,7 @@ void Akregator::MainWidget::slotArticleDelete()
         return;
     }
 
-    const QList<Article> articles = m_selectionController->selectedArticles();
+    const QVector<Article> articles = m_selectionController->selectedArticles();
 
     QString msg;
     switch (articles.count()) {
@@ -1060,7 +1060,7 @@ void Akregator::MainWidget::slotFramesChanged()
 
 void Akregator::MainWidget::slotArticleToggleKeepFlag(bool)
 {
-    const QList<Article> articles = m_selectionController->selectedArticles();
+    const QVector<Article> articles = m_selectionController->selectedArticles();
 
     if (articles.isEmpty()) {
         return;
@@ -1087,7 +1087,7 @@ namespace
 
 void setSelectedArticleStatus(const Akregator::AbstractSelectionController *controller, int status)
 {
-    const QList<Akregator::Article> articles = controller->selectedArticles();
+    const QVector<Akregator::Article> articles = controller->selectedArticles();
 
     if (articles.isEmpty()) {
         return;
@@ -1108,9 +1108,9 @@ void Akregator::MainWidget::slotSetSelectedArticleRead()
     ::setSelectedArticleStatus(m_selectionController, Akregator::Read);
 }
 
-QList<Akregator::Article> Akregator::MainWidget::speakSelectedArticles()
+QVector<Akregator::Article> Akregator::MainWidget::speakSelectedArticles()
 {
-    QList<Akregator::Article> lst;
+    QVector<Akregator::Article> lst;
     if (Kernel::self()->frameManager()->currentFrame() == m_mainFrame) {
         if (m_viewMode != CombinedView) {
             lst = m_selectionController->selectedArticles();

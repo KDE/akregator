@@ -112,7 +112,7 @@ public:
 
     virtual QModelIndex currentArticleIndex() const = 0;
 
-    virtual QList<Akregator::Article> selectedArticles() const = 0;
+    virtual QVector<Akregator::Article> selectedArticles() const = 0;
 
     virtual Akregator::TreeNode *selectedSubscription() const = 0;
 

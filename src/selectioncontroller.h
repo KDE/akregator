@@ -60,7 +60,7 @@ public:
     QModelIndex currentArticleIndex() const Q_DECL_OVERRIDE;
 
     //impl
-    QList<Akregator::Article> selectedArticles() const Q_DECL_OVERRIDE;
+    QVector<Akregator::Article> selectedArticles() const Q_DECL_OVERRIDE;
 
     //impl
     void setSingleArticleDisplay(Akregator::SingleArticleDisplay *display) Q_DECL_OVERRIDE;

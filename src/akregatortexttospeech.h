@@ -21,7 +21,6 @@
 #include <QObject>
 #include "pimcommon/texttospeech/texttospeech.h"
 #include "pimcommon/texttospeech/texttospeechactions.h"
-#include "akregator_export.h"
 class QAction;
 namespace PimCommon
 {
@@ -32,7 +31,7 @@ namespace Akregator
 {
 class AkregatorTextToSpeechInterface;
 class MainWidget;
-class AKREGATOR_EXPORT AkregatorTextToSpeech : public QObject
+class AkregatorTextToSpeech : public QObject
 {
     Q_OBJECT
 public:
