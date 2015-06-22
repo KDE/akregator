@@ -189,16 +189,16 @@ void ActionManagerImpl::initPart()
     QAction *action = d->actionCollection->addAction(QStringLiteral("file_import"));
     action->setText(i18n("&Import Feeds..."));
     action->setIcon(QIcon::fromTheme(QStringLiteral("document-import")));
-    connect(action, SIGNAL(triggered(bool)), d->part, SLOT(fileImport()));
+    connect(action, &QAction::triggered, d->part, &Part::fileImport);
     action = d->actionCollection->addAction(QStringLiteral("file_export"));
     action->setText(i18n("&Export Feeds..."));
     action->setIcon(QIcon::fromTheme(QStringLiteral("document-export")));
-    connect(action, SIGNAL(triggered(bool)), d->part, SLOT(fileExport()));
+    connect(action, &QAction::triggered, d->part, &Part::fileExport);
 
     QAction *configure = d->actionCollection->addAction(QStringLiteral("options_configure"));
     configure->setText(i18n("&Configure Akregator..."));
     configure->setIcon(QIcon::fromTheme(QStringLiteral("configure")));
-    connect(configure, SIGNAL(triggered()), d->part, SLOT(showOptions()));
+    connect(configure, &QAction::triggered, d->part, &Part::showOptions);
 
     KStandardAction::configureNotifications(d->part, SLOT(showNotificationOptions()), d->actionCollection); // options_configure_notifications
 
@@ -234,7 +234,7 @@ void ActionManagerImpl::initMainWidget(MainWidget *mainWidget)
     action = coll->addAction(QStringLiteral("feed_add"));
     action->setIcon(QIcon::fromTheme(QStringLiteral("feed-subscribe")));
     action->setText(i18n("&Add Feed..."));
-    connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotFeedAdd()));
+    connect(action, &QAction::triggered, d->mainWidget, &MainWidget::slotFeedAdd);
     coll->setDefaultShortcut(action, QKeySequence(QStringLiteral("Insert")));
 
     action = coll->addAction(QStringLiteral("feed_add_group"));
@@ -349,7 +349,7 @@ void ActionManagerImpl::initMainWidget(MainWidget *mainWidget)
     action = coll->addAction(QStringLiteral("article_delete"));
     action->setIcon(QIcon::fromTheme(QStringLiteral("edit-delete")));
     action->setText(i18n("&Delete"));
-    connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotArticleDelete()));
+    connect(action, &QAction::triggered, d->mainWidget, &MainWidget::slotArticleDelete);
     coll->setDefaultShortcut(action, QKeySequence(QStringLiteral("Delete")));
 
     KActionMenu *statusMenu = coll->add<KActionMenu>(QStringLiteral("article_set_status"));
@@ -448,8 +448,8 @@ void ActionManagerImpl::initArticleViewer(ArticleViewer *articleViewer)
     action = KStandardAction::copy(articleViewer, SLOT(slotCopy()), coll);
     coll->addAction(QStringLiteral("viewer_copy"), action);
 
-    connect(d->tabWidget, SIGNAL(signalZoomInFrame(int)), d->articleViewer, SLOT(slotZoomIn(int)));
-    connect(d->tabWidget, SIGNAL(signalZoomOutFrame(int)), d->articleViewer, SLOT(slotZoomOut(int)));
+    connect(d->tabWidget, &TabWidget::signalZoomInFrame, d->articleViewer, &ArticleViewer::slotZoomIn);
+    connect(d->tabWidget, &TabWidget::signalZoomOutFrame, d->articleViewer, &ArticleViewer::slotZoomOut);
 }
 
 void ActionManagerImpl::initArticleListView(ArticleListView *articleList)
@@ -545,12 +545,12 @@ void ActionManagerImpl::initTabWidget(TabWidget *tabWidget)
 
     QAction *action = coll->addAction(QStringLiteral("select_next_tab"));
     action->setText(i18n("Select Next Tab"));
-    connect(action, SIGNAL(triggered(bool)), d->tabWidget, SLOT(slotNextTab()));
+    connect(action, &QAction::triggered, d->tabWidget, &TabWidget::slotNextTab);
     coll->setDefaultShortcut(action, QKeySequence(QStringLiteral("Ctrl+Period")));
 
     action = coll->addAction(QStringLiteral("select_previous_tab"));
     action->setText(i18n("Select Previous Tab"));
-    connect(action, SIGNAL(triggered(bool)), d->tabWidget, SLOT(slotPreviousTab()));
+    connect(action, &QAction::triggered, d->tabWidget, &TabWidget::slotPreviousTab);
     coll->setDefaultShortcut(action, QKeySequence(QStringLiteral("Ctrl+Comma")));
 
     action = coll->addAction(QStringLiteral("tab_detach"));

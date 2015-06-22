@@ -283,7 +283,7 @@ Part::Part(QWidget *parentWidget, QObject *parent, const QVariantList &)
     connect(qApp, SIGNAL(aboutToQuit()), this, SLOT(slotOnShutdown()));
 
     m_autosaveTimer = new QTimer(this);
-    connect(m_autosaveTimer, SIGNAL(timeout()), this, SLOT(slotSaveFeedList()));
+    connect(m_autosaveTimer, &QTimer::timeout, this, &Part::slotSaveFeedList);
     m_autosaveTimer->start(5 * 60 * 1000); // 5 minutes
 
     QString useragent = QString("Akregator/%1; syndication").arg(KDEPIM_VERSION);
