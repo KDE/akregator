@@ -48,39 +48,39 @@ public:
     ~SelectionController();
 
     //impl
-    void setFeedSelector(QAbstractItemView *feedSelector) ;
+    void setFeedSelector(QAbstractItemView *feedSelector)  Q_DECL_OVERRIDE;
 
     //impl
-    void setArticleLister(Akregator::ArticleLister *lister);
+    void setArticleLister(Akregator::ArticleLister *lister) Q_DECL_OVERRIDE;
 
     //impl
-    Akregator::Article currentArticle() const;
+    Akregator::Article currentArticle() const Q_DECL_OVERRIDE;
 
     //impl
-    QModelIndex currentArticleIndex() const;
+    QModelIndex currentArticleIndex() const Q_DECL_OVERRIDE;
 
     //impl
-    QList<Akregator::Article> selectedArticles() const;
+    QList<Akregator::Article> selectedArticles() const Q_DECL_OVERRIDE;
 
     //impl
-    void setSingleArticleDisplay(Akregator::SingleArticleDisplay *display);
+    void setSingleArticleDisplay(Akregator::SingleArticleDisplay *display) Q_DECL_OVERRIDE;
 
     //impl
-    Akregator::TreeNode *selectedSubscription() const;
+    Akregator::TreeNode *selectedSubscription() const Q_DECL_OVERRIDE;
 
     //impl
-    void setFeedList(const QSharedPointer<FeedList> &list);
+    void setFeedList(const QSharedPointer<FeedList> &list) Q_DECL_OVERRIDE;
 
     //impl
-    void setFolderExpansionHandler(Akregator::FolderExpansionHandler *handler);
+    void setFolderExpansionHandler(Akregator::FolderExpansionHandler *handler) Q_DECL_OVERRIDE;
 
 public Q_SLOTS:
 
     //impl
-    void setFilters(const std::vector<QSharedPointer<const Akregator::Filters::AbstractMatcher> > &);
+    void setFilters(const std::vector<QSharedPointer<const Akregator::Filters::AbstractMatcher> > &) Q_DECL_OVERRIDE;
 
     //impl
-    void forceFilterUpdate();
+    void forceFilterUpdate() Q_DECL_OVERRIDE;
 
 private Q_SLOTS:
 

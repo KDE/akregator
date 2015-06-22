@@ -81,7 +81,7 @@ public:
      * Closes storage, freeing all allocated resources. Called from destructor, so you don't need to call it directly.
      * @return true on success.
      */
-    bool close();
+    bool close() Q_DECL_OVERRIDE;
 
     /**
      * @return Article archive for feed at given url.

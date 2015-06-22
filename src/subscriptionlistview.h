@@ -47,7 +47,7 @@ public:
     void ensureNodeVisible(TreeNode *node);
 
     //override
-    void setModel(QAbstractItemModel *model);
+    void setModel(QAbstractItemModel *model) Q_DECL_OVERRIDE;
 
     void triggerUpdate() {}
 

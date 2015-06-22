@@ -45,7 +45,7 @@ public:
     void setUnread(int unread) Q_DECL_OVERRIDE;
     int totalCount() const Q_DECL_OVERRIDE;
     int lastFetch() const Q_DECL_OVERRIDE;
-    void setLastFetch(int lastFetch);
+    void setLastFetch(int lastFetch) Q_DECL_OVERRIDE;
 
     QStringList articles(const QString &tag = QString()) const Q_DECL_OVERRIDE;
 
@@ -93,9 +93,9 @@ public:
     void setAuthorUri(const QString &guid, const QString &uri) Q_DECL_OVERRIDE;
     void setAuthorEMail(const QString &guid, const QString &email) Q_DECL_OVERRIDE;
 
-    QString authorName(const QString &guid) const;
-    QString authorUri(const QString &guid) const;
-    QString authorEMail(const QString &guid) const;
+    QString authorName(const QString &guid) const Q_DECL_OVERRIDE;
+    QString authorUri(const QString &guid) const Q_DECL_OVERRIDE;
+    QString authorEMail(const QString &guid) const Q_DECL_OVERRIDE;
 
     void close() Q_DECL_OVERRIDE;
     void commit() Q_DECL_OVERRIDE;
