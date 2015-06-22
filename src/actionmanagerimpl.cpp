@@ -40,6 +40,8 @@
 #include "treenode.h"
 #include "treenodevisitor.h"
 
+#include "pimcommon/shareserviceurl/shareserviceurlmanager.h"
+
 #include <kactionmenu.h>
 #include <ktoolbarpopupaction.h>
 #include <QAction>
@@ -125,6 +127,7 @@ public:
     TabWidget *tabWidget;
     FrameManager *frameManager;
     AkregatorTextToSpeech *textToSpeech;
+    PimCommon::ShareServiceUrlManager *shareServiceManager;
 };
 
 void ActionManagerImpl::slotNodeSelected(TreeNode *node)
@@ -148,6 +151,7 @@ ActionManagerImpl::ActionManagerImpl(Part *part, QObject *parent) : ActionManage
     d->frameManager = 0;
     d->actionCollection = part->actionCollection();
     d->textToSpeech = new AkregatorTextToSpeech(this);
+    d->shareServiceManager = new PimCommon::ShareServiceUrlManager(this);
     initPart();
 }
 
