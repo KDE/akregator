@@ -38,70 +38,70 @@ public:
     FeedStorageDummyImpl(const QString &url, StorageDummyImpl *main);
     virtual ~FeedStorageDummyImpl();
 
-    virtual void add(FeedStorage *source);
-    virtual void copyArticle(const QString &guid, FeedStorage *source);
+    void add(FeedStorage *source) Q_DECL_OVERRIDE;
+    void copyArticle(const QString &guid, FeedStorage *source) Q_DECL_OVERRIDE;
 
-    virtual void clear();
-    virtual int unread() const;
-    virtual void setUnread(int unread);
-    virtual int totalCount() const;
-    virtual int lastFetch() const;
-    virtual void setLastFetch(int lastFetch);
+    void clear() Q_DECL_OVERRIDE;
+    int unread() const Q_DECL_OVERRIDE;
+    void setUnread(int unread) Q_DECL_OVERRIDE;
+    int totalCount() const Q_DECL_OVERRIDE;
+    int lastFetch() const Q_DECL_OVERRIDE;
+    void setLastFetch(int lastFetch) Q_DECL_OVERRIDE;
 
-    virtual QStringList articles(const QString &tag = QString()) const;
+    QStringList articles(const QString &tag = QString()) const Q_DECL_OVERRIDE;
 
-    virtual QStringList articles(const Category &cat) const;
+    QStringList articles(const Category &cat) const Q_DECL_OVERRIDE;
 
-    virtual bool contains(const QString &guid) const;
-    virtual void addEntry(const QString &guid);
-    virtual void deleteArticle(const QString &guid);
-    virtual int comments(const QString &guid) const;
-    virtual QString commentsLink(const QString &guid) const;
-    virtual void setCommentsLink(const QString &guid, const QString &commentsLink);
-    virtual void setComments(const QString &guid, int comments);
-    virtual bool guidIsHash(const QString &guid) const;
-    virtual void setGuidIsHash(const QString &guid, bool isHash);
-    virtual bool guidIsPermaLink(const QString &guid) const;
-    virtual void setGuidIsPermaLink(const QString &guid, bool isPermaLink);
-    virtual uint hash(const QString &guid) const;
-    virtual void setHash(const QString &guid, uint hash);
-    virtual void setDeleted(const QString &guid);
-    virtual QString link(const QString &guid) const;
-    virtual void setLink(const QString &guid, const QString &link);
-    virtual uint pubDate(const QString &guid) const;
-    virtual void setPubDate(const QString &guid, uint pubdate);
-    virtual int status(const QString &guid) const;
-    virtual void setStatus(const QString &guid, int status);
-    virtual QString title(const QString &guid) const;
-    virtual void setTitle(const QString &guid, const QString &title);
-    virtual QString description(const QString &guid) const;
-    virtual void setDescription(const QString &guid, const QString &description);
-    virtual QString content(const QString &guid) const;
-    virtual void setContent(const QString &guid, const QString &content);
-    virtual void addTag(const QString &guid, const QString &tag);
-    virtual void removeTag(const QString &guid, const QString &tag);
-    virtual QStringList tags(const QString &guid = QString()) const;
+    bool contains(const QString &guid) const Q_DECL_OVERRIDE;
+    void addEntry(const QString &guid) Q_DECL_OVERRIDE;
+    void deleteArticle(const QString &guid) Q_DECL_OVERRIDE;
+    int comments(const QString &guid) const Q_DECL_OVERRIDE;
+    QString commentsLink(const QString &guid) const Q_DECL_OVERRIDE;
+    void setCommentsLink(const QString &guid, const QString &commentsLink) Q_DECL_OVERRIDE;
+    void setComments(const QString &guid, int comments) Q_DECL_OVERRIDE;
+    bool guidIsHash(const QString &guid) const Q_DECL_OVERRIDE;
+    void setGuidIsHash(const QString &guid, bool isHash) Q_DECL_OVERRIDE;
+    bool guidIsPermaLink(const QString &guid) const Q_DECL_OVERRIDE;
+    void setGuidIsPermaLink(const QString &guid, bool isPermaLink) Q_DECL_OVERRIDE;
+    uint hash(const QString &guid) const Q_DECL_OVERRIDE;
+    void setHash(const QString &guid, uint hash) Q_DECL_OVERRIDE;
+    void setDeleted(const QString &guid) Q_DECL_OVERRIDE;
+    QString link(const QString &guid) const Q_DECL_OVERRIDE;
+    void setLink(const QString &guid, const QString &link) Q_DECL_OVERRIDE;
+    uint pubDate(const QString &guid) const Q_DECL_OVERRIDE;
+    void setPubDate(const QString &guid, uint pubdate) Q_DECL_OVERRIDE;
+    int status(const QString &guid) const Q_DECL_OVERRIDE;
+    void setStatus(const QString &guid, int status) Q_DECL_OVERRIDE;
+    QString title(const QString &guid) const Q_DECL_OVERRIDE;
+    void setTitle(const QString &guid, const QString &title) Q_DECL_OVERRIDE;
+    QString description(const QString &guid) const Q_DECL_OVERRIDE;
+    void setDescription(const QString &guid, const QString &description) Q_DECL_OVERRIDE;
+    QString content(const QString &guid) const Q_DECL_OVERRIDE;
+    void setContent(const QString &guid, const QString &content) Q_DECL_OVERRIDE;
+    void addTag(const QString &guid, const QString &tag) Q_DECL_OVERRIDE;
+    void removeTag(const QString &guid, const QString &tag) Q_DECL_OVERRIDE;
+    QStringList tags(const QString &guid = QString()) const Q_DECL_OVERRIDE;
 
-    virtual void setEnclosure(const QString &guid, const QString &url, const QString &type, int length);
-    virtual void removeEnclosure(const QString &guid);
-    virtual void enclosure(const QString &guid, bool &hasEnclosure, QString &url, QString &type, int &length) const;
+    void setEnclosure(const QString &guid, const QString &url, const QString &type, int length) Q_DECL_OVERRIDE;
+    void removeEnclosure(const QString &guid) Q_DECL_OVERRIDE;
+    void enclosure(const QString &guid, bool &hasEnclosure, QString &url, QString &type, int &length) const Q_DECL_OVERRIDE;
 
-    virtual void addCategory(const QString &guid, const Category &category);
-    virtual QList<Category> categories(const QString &guid = QString()) const;
+    void addCategory(const QString &guid, const Category &category) Q_DECL_OVERRIDE;
+    QList<Category> categories(const QString &guid = QString()) const Q_DECL_OVERRIDE;
 
-    void setAuthorName(const QString &guid, const QString &authorName);
-    void setAuthorUri(const QString &guid, const QString &authorUri);
-    void setAuthorEMail(const QString &guid, const QString &authorEMail);
+    void setAuthorName(const QString &guid, const QString &authorName) Q_DECL_OVERRIDE;
+    void setAuthorUri(const QString &guid, const QString &authorUri) Q_DECL_OVERRIDE;
+    void setAuthorEMail(const QString &guid, const QString &authorEMail) Q_DECL_OVERRIDE;
 
-    virtual QString authorName(const QString &guid) const;
-    virtual QString authorUri(const QString &guid) const;
-    virtual QString authorEMail(const QString &guid) const;
+    QString authorName(const QString &guid) const Q_DECL_OVERRIDE;
+    QString authorUri(const QString &guid) const Q_DECL_OVERRIDE;
+    QString authorEMail(const QString &guid) const Q_DECL_OVERRIDE;
 
-    virtual void close();
-    virtual void commit();
-    virtual void rollback();
+    void close() Q_DECL_OVERRIDE;
+    void commit() Q_DECL_OVERRIDE;
+    void rollback() Q_DECL_OVERRIDE;
 
-    virtual void convertOldArchive();
+    void convertOldArchive() Q_DECL_OVERRIDE;
 private:
     /** finds article by guid, returns -1 if not in archive **/
     int findArticle(const QString &guid) const;

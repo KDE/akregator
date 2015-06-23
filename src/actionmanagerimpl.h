@@ -67,7 +67,7 @@ public:
     void initTabWidget(TabWidget *tabWidget);
     void initFrameManager(FrameManager *frameManager);
 
-    void setArticleActionsEnabled(bool enabled);
+    void setArticleActionsEnabled(bool enabled) Q_DECL_OVERRIDE;
     void setTrayIcon(TrayIcon *trayIcon);
 
 public Q_SLOTS:

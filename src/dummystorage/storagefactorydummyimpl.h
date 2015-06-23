@@ -27,8 +27,8 @@
 
 #include "akregatorpart_export.h"
 #include "storagefactory.h"
+#include <QString>
 
-class QString;
 class QStringList;
 
 namespace Akregator
@@ -41,14 +41,14 @@ class Storage;
 class AKREGATORPART_EXPORT StorageFactoryDummyImpl : public StorageFactory
 {
 public:
-    virtual QString key() const;
-    virtual QString name() const;
-    virtual void configure();
-    virtual bool isConfigurable() const
+    QString key() const Q_DECL_OVERRIDE;
+    QString name() const Q_DECL_OVERRIDE;
+    void configure() Q_DECL_OVERRIDE;
+    bool isConfigurable() const Q_DECL_OVERRIDE
     {
         return false;
     }
-    virtual Storage *createStorage(const QStringList &params) const;
+    Storage *createStorage(const QStringList &params) const Q_DECL_OVERRIDE;
 };
 
 } // namespace Backend

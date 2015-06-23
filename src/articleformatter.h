@@ -71,14 +71,14 @@ class DefaultNormalViewFormatter : public ArticleFormatter
 {
 public:
 
-    explicit DefaultNormalViewFormatter(const QUrl &imageDir, QPaintDevice *device = 0);
+    explicit DefaultNormalViewFormatter(const QUrl &imageDir, QPaintDevice *device = Q_NULLPTR);
     ~DefaultNormalViewFormatter();
 
-    QString formatArticle(const Article &article, IconOption option) const;
+    QString formatArticle(const Article &article, IconOption option) const Q_DECL_OVERRIDE;
 
-    QString formatSummary(TreeNode *node) const;
+    QString formatSummary(TreeNode *node) const Q_DECL_OVERRIDE;
 
-    QString getCss() const;
+    QString getCss() const Q_DECL_OVERRIDE;
 
 private:
     DefaultNormalViewFormatter();

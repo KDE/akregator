@@ -40,8 +40,8 @@ class KCMAkregatorAdvancedConfig : public KCModule
 public:
     KCMAkregatorAdvancedConfig(QWidget *parent, const QVariantList &args);
 
-    /*reimpl*/ void load() Q_DECL_OVERRIDE;
-    /*reimpl*/ void save() Q_DECL_OVERRIDE;
+    void load() Q_DECL_OVERRIDE;
+    void save() Q_DECL_OVERRIDE;
 
 private:
     Akregator::SettingsAdvanced *m_widget;

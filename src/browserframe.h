@@ -77,12 +77,12 @@ public:
     void setZoomFactor(int);
 public Q_SLOTS:
 
-    void slotHistoryForward();
-    void slotHistoryBack();
-    void slotReload();
-    void slotStop();
-    void slotHistoryBackAboutToShow();
-    void slotHistoryForwardAboutToShow();
+    void slotHistoryForward() Q_DECL_OVERRIDE;
+    void slotHistoryBack() Q_DECL_OVERRIDE;
+    void slotReload() Q_DECL_OVERRIDE;
+    void slotStop() Q_DECL_OVERRIDE;
+    void slotHistoryBackAboutToShow() Q_DECL_OVERRIDE;
+    void slotHistoryForwardAboutToShow() Q_DECL_OVERRIDE;
 
     void slotPaletteOrFontChanged();
     void slotOpenLinkInBrowser();

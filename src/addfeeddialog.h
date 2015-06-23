@@ -67,8 +67,8 @@ private Q_SLOTS:
     void textChanged(const QString &);
 
 private:
-    AddFeedWidget *widget;
     QString feedUrl;
+    AddFeedWidget *widget;
     Feed *m_feed;
     QPushButton *mOkButton;
 };

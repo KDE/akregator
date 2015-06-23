@@ -159,11 +159,11 @@ private:
     void loadPlugins(const QString &type);
 
     /** This must be implemented by each part */
-    bool openFile();
+    bool openFile() Q_DECL_OVERRIDE;
 
     void importFile(const QUrl &url);
 
-    KParts::Part *hitTest(QWidget *widget, const QPoint &globalPos);
+    KParts::Part *hitTest(QWidget *widget, const QPoint &globalPos) Q_DECL_OVERRIDE;
 
 private Q_SLOTS:
     void slotStarted();

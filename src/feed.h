@@ -151,7 +151,7 @@ public:
     void setImage(const QPixmap &p);
 
     /** sets the favicon (used in the tree view) */
-    void setFavicon(const QIcon &icon);
+    void setFavicon(const QIcon &icon) Q_DECL_OVERRIDE;
 
     /** returns the url of the actual feed source (rss/rdf/atom file) */
     QString xmlUrl() const;
@@ -182,24 +182,24 @@ public:
     Syndication::ErrorCode fetchErrorCode() const;
 
     /** returns the unread count for this feed */
-    int unread() const;
+    int unread() const Q_DECL_OVERRIDE;
 
     /** returns the number of total articles in this feed
     @return number of articles */
 
-    int totalCount() const;
+    int totalCount() const Q_DECL_OVERRIDE;
 
     /** returns if the article archive of this feed is loaded */
     bool isArticlesLoaded() const;
 
     /** returns if this node is a feed group (@c false here) */
-    bool isGroup() const
+    bool isGroup() const Q_DECL_OVERRIDE
     {
         return false;
     }
 
     //impl
-    bool isAggregation() const
+    bool isAggregation() const Q_DECL_OVERRIDE
     {
         return false;
     }
@@ -207,21 +207,21 @@ public:
     /** returns the next node in the tree.
     Calling next() unless it returns 0 iterates through the tree in pre-order
     */
-    const TreeNode *next() const;
-    TreeNode *next();
+    const TreeNode *next() const Q_DECL_OVERRIDE;
+    TreeNode *next() Q_DECL_OVERRIDE;
 
     //impl
-    QIcon icon() const;
+    QIcon icon() const Q_DECL_OVERRIDE;
 
     /** deletes expired articles */
     void deleteExpiredArticles(Akregator::ArticleDeleteJob *job);
 
     bool isFetching() const;
 
-    QVector<const Feed *> feeds() const;
-    QVector<Feed *> feeds();
-    QVector<const Folder *> folders() const;
-    QVector<Folder *> folders();
+    QVector<const Feed *> feeds() const Q_DECL_OVERRIDE;
+    QVector<Feed *> feeds() Q_DECL_OVERRIDE;
+    QVector<const Folder *> folders() const Q_DECL_OVERRIDE;
+    QVector<Folder *> folders() Q_DECL_OVERRIDE;
 
     KJob *createMarkAsReadJob() Q_DECL_OVERRIDE;
 

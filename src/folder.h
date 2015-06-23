@@ -150,10 +150,10 @@ public:
     /** returns the next node in the tree.
     Calling next() unless it returns 0 iterates through the tree in pre-order
         */
-    TreeNode *next();
-    const TreeNode *next() const;
+    TreeNode *next() Q_DECL_OVERRIDE;
+    const TreeNode *next() const Q_DECL_OVERRIDE;
 
-    QIcon icon() const;
+    QIcon icon() const Q_DECL_OVERRIDE;
 
     /* returns whether @p node is among the direct or indirect children of this
      * folder

@@ -94,30 +94,30 @@ public:
     ~ArticleListView();
 
     //impl ArticleLister
-    void setArticleModel(Akregator::ArticleModel *model);
+    void setArticleModel(Akregator::ArticleModel *model) Q_DECL_OVERRIDE;
 
     //impl ArticleLister
-    QItemSelectionModel *articleSelectionModel() const;
+    QItemSelectionModel *articleSelectionModel() const Q_DECL_OVERRIDE;
 
     //impl ArticleLister
-    const QAbstractItemView *itemView() const;
+    const QAbstractItemView *itemView() const Q_DECL_OVERRIDE;
 
     //impl ArticleLister
-    QAbstractItemView *itemView();
+    QAbstractItemView *itemView() Q_DECL_OVERRIDE;
 
     //impl ArticleLister
-    QPoint scrollBarPositions() const;
+    QPoint scrollBarPositions() const Q_DECL_OVERRIDE;
 
     //impl ArticleLister
-    void setScrollBarPositions(const QPoint &p);
+    void setScrollBarPositions(const QPoint &p) Q_DECL_OVERRIDE;
 
     //impl ArticleLister
-    void setFilters(const std::vector<QSharedPointer<const Akregator::Filters::AbstractMatcher> > &);
+    void setFilters(const std::vector<QSharedPointer<const Akregator::Filters::AbstractMatcher> > &) Q_DECL_OVERRIDE;
 
     //impl ArticleLister
-    void forceFilterUpdate();
+    void forceFilterUpdate() Q_DECL_OVERRIDE;
 
-    void setIsAggregation(bool isAggregation);
+    void setIsAggregation(bool isAggregation) Q_DECL_OVERRIDE;
 
     void setModel(QAbstractItemModel *model) Q_DECL_OVERRIDE;
 
