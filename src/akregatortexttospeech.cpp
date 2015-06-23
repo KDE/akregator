@@ -63,6 +63,7 @@ void AkregatorTextToSpeech::stateChanged(PimCommon::TextToSpeechWidget::State st
 
         }
         if (!speakMe.isEmpty()) {
+            mSpeechInterface->stateChanged(state);
             mSpeechInterface->say(speakMe);
         }
     }
