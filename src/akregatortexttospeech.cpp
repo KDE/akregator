@@ -17,6 +17,11 @@
 
 #include "akregatortexttospeech.h"
 #include "akregatortexttospeechinterface.h"
+#include "utils.h"
+
+#include <KLocalizedString>
+#include <kcharsets.h>
+
 #include "mainwidget.h"
 
 #include <article.h>
@@ -28,7 +33,6 @@ AkregatorTextToSpeech::AkregatorTextToSpeech(QObject *parent)
       mSpeechInterface(new AkregatorTextToSpeechInterface(this)),
       mMainWindow(Q_NULLPTR)
 {
-    //connect(mTextToSpeechActions, &PimCommon::TextToSpeechActions::stateChanged, mSpeechInterface, &AkregatorTextToSpeechInterface::stateChanged);
     connect(mTextToSpeechActions, &PimCommon::TextToSpeechActions::stateChanged, this, &AkregatorTextToSpeech::stateChanged);
     connect(PimCommon::TextToSpeech::self(), &PimCommon::TextToSpeech::stateChanged, this, &AkregatorTextToSpeech::slotStateChanged);
 }
@@ -46,10 +50,22 @@ void AkregatorTextToSpeech::setMainWindow(Akregator::MainWidget *mainWidget)
 void AkregatorTextToSpeech::stateChanged(PimCommon::TextToSpeechWidget::State state)
 {
     if (mMainWindow) {
+        QString speakMe;
         const QVector<Akregator::Article> lstArticle = mMainWindow->speakSelectedArticles();
-        //TODO speak
+        for (int i = 0; i < lstArticle.size(); ++i) {
+            if (!speakMe.isEmpty())
+                speakMe += ". . . . . . " + i18n("Next Article: ");
+            const Akregator::Article art = lstArticle.at(i);
+            speakMe += KCharsets::resolveEntities(Utils::stripTags((art).title()))
+                    + ". . . . "
+                    + KCharsets::resolveEntities(Utils::stripTags((art).description()));
+
+
+        }
+        if (!speakMe.isEmpty()) {
+            mSpeechInterface->say(speakMe);
+        }
     }
-    //TODO
 }
 
 void AkregatorTextToSpeech::slotStateChanged(PimCommon::TextToSpeech::State state)
