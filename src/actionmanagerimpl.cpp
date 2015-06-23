@@ -354,10 +354,7 @@ void ActionManagerImpl::initMainWidget(MainWidget *mainWidget)
     statusMenu->setText(i18n("&Mark As"));
     statusMenu->setEnabled(false);
 
-    QAction *speakSelectedArticlesAction = coll->addAction(QStringLiteral("akr_texttospeech"));
-    speakSelectedArticlesAction->setIcon(QIcon::fromTheme(QStringLiteral("media-playback-start")));
-    speakSelectedArticlesAction->setText(i18n("&Speak Selected Articles"));
-    connect(speakSelectedArticlesAction, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotTextToSpeechRequest()));
+    coll->addAction(QStringLiteral("akr_texttospeech"), d->textToSpeech->playPauseAction());
 
     coll->addAction(QStringLiteral("akr_aborttexttospeech"), d->textToSpeech->stopAction());
 
