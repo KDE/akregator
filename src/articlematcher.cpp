@@ -307,7 +307,7 @@ bool ArticleMatcher::operator!=(const AbstractMatcher &other) const
 
 bool ArticleMatcher::anyCriterionMatches(const Article &a) const
 {
-    if (m_criteria.count() == 0) {
+    if (m_criteria.isEmpty()) {
         return true;
     }
     QList<Criterion>::ConstIterator it = m_criteria.begin();
@@ -322,7 +322,7 @@ bool ArticleMatcher::anyCriterionMatches(const Article &a) const
 
 bool ArticleMatcher::allCriteriaMatch(const Article &a) const
 {
-    if (m_criteria.count() == 0) {
+    if (m_criteria.isEmpty()) {
         return true;
     }
     QList<Criterion>::ConstIterator it = m_criteria.begin();
