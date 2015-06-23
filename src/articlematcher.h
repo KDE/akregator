@@ -29,7 +29,7 @@
 #define AKREGATOR_ARTICLEMATCHER_H
 
 #include "akregatorpart_export.h"
-#include <QList>
+#include <QVector>
 #include <QString>
 #include <QVariant>
 
@@ -82,7 +82,7 @@ public:
     };
 
     ArticleMatcher();
-    ArticleMatcher(const QList<Criterion> &criteria, Association assoc);
+    ArticleMatcher(const QVector<Criterion> &criteria, Association assoc);
 
     ~ArticleMatcher();
 
@@ -101,7 +101,7 @@ private:
     bool anyCriterionMatches(const Article &a) const;
     bool allCriteriaMatch(const Article &a) const;
 
-    QList<Criterion> m_criteria;
+    QVector<Criterion> m_criteria;
     Association m_association;
 };
 

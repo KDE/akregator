@@ -61,7 +61,7 @@ BrowserFrame::Private::HistoryAction::HistoryAction(QList<HistoryEntry>::Iterato
         Private *priv) : QAction((*entry).title, q), m_entry(entry)
 {
     connect(this, SIGNAL(triggered(bool)), this, SLOT(slotTriggered(bool)));
-    connect(this, SIGNAL(triggered(QList<BrowserFrame::Private::HistoryEntry>::Iterator)), priv, SLOT(slotHistoryEntrySelected(QList<BrowserFrame::Private::HistoryEntry>::Iterator)));
+    connect(this, &BrowserFrame::Private::HistoryAction::triggered, priv, &BrowserFrame::Private::slotHistoryEntrySelected);
 }
 
 int BrowserFrame::Private::HistoryEntry::idCounter = 0;

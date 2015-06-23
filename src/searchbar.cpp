@@ -180,8 +180,8 @@ void SearchBar::slotSearchStringChanged(const QString &search)
 
 void SearchBar::slotActivateSearch()
 {
-    QList<Criterion> textCriteria;
-    QList<Criterion> statusCriteria;
+    QVector<Criterion> textCriteria;
+    QVector<Criterion> statusCriteria;
 
     if (!d->searchText.isEmpty()) {
         Criterion subjCrit(Criterion::Title, Criterion::Contains, d->searchText);

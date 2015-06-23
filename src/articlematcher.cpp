@@ -237,7 +237,7 @@ ArticleMatcher::~ArticleMatcher()
 {
 }
 
-ArticleMatcher::ArticleMatcher(const QList<Criterion> &criteria, Association assoc)
+ArticleMatcher::ArticleMatcher(const QVector<Criterion> &criteria, Association assoc)
     : m_criteria(criteria)
     , m_association(assoc)
 {
@@ -262,14 +262,11 @@ void ArticleMatcher::writeConfig(KConfigGroup *config) const
 
     config->writeEntry(QString::fromLatin1("matcherCriteriaCount"), m_criteria.count());
 
-    int index = 0;
-
     QString criterionGroupPrefix = config->name() + QString::fromLatin1("_Criterion");
 
-    for (QList<Criterion>::ConstIterator it = m_criteria.begin(); it != m_criteria.end(); ++it) {
+    for (int index = 0; index < m_criteria.size(); ++index) {
         *config = KConfigGroup(config->config(), criterionGroupPrefix + QString::number(index));
-        (*it).writeConfig(config);
-        ++index;
+        m_criteria.at(index).writeConfig(config);
     }
 }
 
@@ -310,10 +307,8 @@ bool ArticleMatcher::anyCriterionMatches(const Article &a) const
     if (m_criteria.isEmpty()) {
         return true;
     }
-    QList<Criterion>::ConstIterator it = m_criteria.begin();
-    QList<Criterion>::ConstIterator end = m_criteria.end();
-    for (; it != end; ++it) {
-        if ((*it).satisfiedBy(a)) {
+    for (int index = 0; index < m_criteria.size(); ++index) {
+        if (m_criteria.at(index).satisfiedBy(a)) {
             return true;
         }
     }
@@ -325,10 +320,8 @@ bool ArticleMatcher::allCriteriaMatch(const Article &a) const
     if (m_criteria.isEmpty()) {
         return true;
     }
-    QList<Criterion>::ConstIterator it = m_criteria.begin();
-    QList<Criterion>::ConstIterator end = m_criteria.end();
-    for (; it != end; ++it) {
-        if (!(*it).satisfiedBy(a)) {
+    for (int index = 0; index < m_criteria.size(); ++index) {
+        if (!m_criteria.at(index).satisfiedBy(a)) {
             return false;
         }
     }
