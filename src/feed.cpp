@@ -747,10 +747,10 @@ void Akregator::Feed::markAsFetchedNow()
 QIcon Akregator::Feed::icon() const
 {
     if (fetchErrorOccurred()) {
-        return QIcon::fromTheme(QLatin1String("dialog-error"));
+        return QIcon::fromTheme(QStringLiteral("dialog-error"));
     }
 
-    return !d->favicon.isNull() ? d->favicon : QIcon::fromTheme(QLatin1String("text-html"));
+    return !d->favicon.isNull() ? d->favicon : QIcon::fromTheme(QStringLiteral("text-html"));
 }
 
 void Akregator::Feed::deleteExpiredArticles(ArticleDeleteJob *deleteJob)
