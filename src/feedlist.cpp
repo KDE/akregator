@@ -235,7 +235,7 @@ void FeedList::parseChildNodes(QDomNode &node, Folder *parent)
     if (!e.isNull()) {
         //QString title = e.hasAttribute("text") ? e.attribute("text") : e.attribute("title");
 
-        if (e.hasAttribute(QLatin1String("xmlUrl")) || e.hasAttribute(QLatin1String("xmlurl")) || e.hasAttribute(QLatin1String("xmlURL"))) {
+        if (e.hasAttribute(QStringLiteral("xmlUrl")) || e.hasAttribute(QStringLiteral("xmlurl")) || e.hasAttribute(QStringLiteral("xmlURL"))) {
             Feed *feed = Feed::fromOPML(e, d->storage);
             if (feed) {
                 if (!d->urlMap[feed->xmlUrl()].contains(feed)) {

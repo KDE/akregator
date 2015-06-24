@@ -133,29 +133,29 @@ QString Akregator::Feed::archiveModeToString(ArchiveMode mode)
 Akregator::Feed *Akregator::Feed::fromOPML(QDomElement e, Backend::Storage *storage)
 {
 
-    if (!e.hasAttribute(QLatin1String("xmlUrl")) && !e.hasAttribute(QLatin1String("xmlurl")) && !e.hasAttribute(QLatin1String("xmlURL"))) {
+    if (!e.hasAttribute(QStringLiteral("xmlUrl")) && !e.hasAttribute(QStringLiteral("xmlurl")) && !e.hasAttribute(QStringLiteral("xmlURL"))) {
         return 0;
     }
 
-    QString title = e.hasAttribute(QLatin1String("text")) ? e.attribute(QLatin1String("text")) : e.attribute(QLatin1String("title"));
+    QString title = e.hasAttribute(QStringLiteral("text")) ? e.attribute(QStringLiteral("text")) : e.attribute(QStringLiteral("title"));
 
-    QString xmlUrl = e.hasAttribute(QLatin1String("xmlUrl")) ? e.attribute(QLatin1String("xmlUrl")) : e.attribute(QLatin1String("xmlurl"));
+    QString xmlUrl = e.hasAttribute(QStringLiteral("xmlUrl")) ? e.attribute(QStringLiteral("xmlUrl")) : e.attribute(QStringLiteral("xmlurl"));
     if (xmlUrl.isEmpty()) {
-        xmlUrl = e.attribute(QLatin1String("xmlURL"));
+        xmlUrl = e.attribute(QStringLiteral("xmlURL"));
     }
 
-    bool useCustomFetchInterval = e.attribute(QLatin1String("useCustomFetchInterval")) == QLatin1String("true");
+    bool useCustomFetchInterval = e.attribute(QStringLiteral("useCustomFetchInterval")) == QLatin1String("true");
 
-    QString htmlUrl = e.attribute(QLatin1String("htmlUrl"));
-    QString description = e.attribute(QLatin1String("description"));
-    int fetchInterval = e.attribute(QLatin1String("fetchInterval")).toInt();
-    ArchiveMode archiveMode = stringToArchiveMode(e.attribute(QLatin1String("archiveMode")));
-    int maxArticleAge = e.attribute(QLatin1String("maxArticleAge")).toUInt();
-    int maxArticleNumber = e.attribute(QLatin1String("maxArticleNumber")).toUInt();
-    bool markImmediatelyAsRead = e.attribute(QLatin1String("markImmediatelyAsRead")) == QLatin1String("true");
-    bool useNotification = e.attribute(QLatin1String("useNotification")) == QLatin1String("true");
-    bool loadLinkedWebsite = e.attribute(QLatin1String("loadLinkedWebsite")) == QLatin1String("true");
-    uint id = e.attribute(QLatin1String("id")).toUInt();
+    QString htmlUrl = e.attribute(QStringLiteral("htmlUrl"));
+    QString description = e.attribute(QStringLiteral("description"));
+    int fetchInterval = e.attribute(QStringLiteral("fetchInterval")).toInt();
+    ArchiveMode archiveMode = stringToArchiveMode(e.attribute(QStringLiteral("archiveMode")));
+    int maxArticleAge = e.attribute(QStringLiteral("maxArticleAge")).toUInt();
+    int maxArticleNumber = e.attribute(QStringLiteral("maxArticleNumber")).toUInt();
+    bool markImmediatelyAsRead = e.attribute(QStringLiteral("markImmediatelyAsRead")) == QLatin1String("true");
+    bool useNotification = e.attribute(QStringLiteral("useNotification")) == QLatin1String("true");
+    bool loadLinkedWebsite = e.attribute(QStringLiteral("loadLinkedWebsite")) == QLatin1String("true");
+    uint id = e.attribute(QStringLiteral("id")).toUInt();
 
     Feed *const feed = new Feed(storage);
     feed->setTitle(title);
