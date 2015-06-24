@@ -67,7 +67,7 @@ void CreateFolderCommand::Private::doCreate()
                          i18n("Folder name:"), QLineEdit::Normal,
                          QString(),
                          &ok);
-    if (!ok) {
+    if (!ok || name.trimmed().isEmpty()) {
         q->done();
         return;
     }
