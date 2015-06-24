@@ -20,14 +20,14 @@
 
 #include <texttospeech/abstracttexttospeechinterface.h>
 #include "texttospeech/texttospeechwidget.h"
-namespace Akregator {
+namespace Akregator
+{
 class AkregatorTextToSpeechInterface: public PimCommon::AbstractTextToSpeechInterface
 {
     Q_OBJECT
 public:
     explicit AkregatorTextToSpeechInterface(QObject *parent = Q_NULLPTR);
     ~AkregatorTextToSpeechInterface();
-
 
     bool isReady() const Q_DECL_OVERRIDE;
     void say(const QString &text) Q_DECL_OVERRIDE;

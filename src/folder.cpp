@@ -45,8 +45,9 @@ static QVector<T> hashValuesToVector(const QHash<int, T> &hash)
 {
     QVector<T> result;
     result.reserve(hash.count());
-    for (auto it = hash.cbegin(), end = hash.cend(); it != end; ++it)
+    for (auto it = hash.cbegin(), end = hash.cend(); it != end; ++it) {
         result.append(it.value());
+    }
 
     return result;
 }

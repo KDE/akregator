@@ -426,7 +426,6 @@ void ActionManagerImpl::initMainWidget(MainWidget *mainWidget)
     coll->addAction(QStringLiteral("share_serviceurl"), d->shareServiceManager->menu());
     connect(d->shareServiceManager, &PimCommon::ShareServiceUrlManager::serviceUrlSelected, this, &ActionManagerImpl::slotServiceUrlSelected);
 
-
     setArticleActionsEnabled(false);
 }
 

@@ -53,13 +53,13 @@ void AkregatorTextToSpeech::stateChanged(PimCommon::TextToSpeechWidget::State st
         QString speakMe;
         const QVector<Akregator::Article> lstArticle = mMainWindow->speakSelectedArticles();
         for (int i = 0; i < lstArticle.size(); ++i) {
-            if (!speakMe.isEmpty())
+            if (!speakMe.isEmpty()) {
                 speakMe += ". . . . . . " + i18n("Next Article: ");
+            }
             const Akregator::Article art = lstArticle.at(i);
             speakMe += KCharsets::resolveEntities(Utils::stripTags((art).title()))
-                    + ". . . . "
-                    + KCharsets::resolveEntities(Utils::stripTags((art).description()));
-
+                       + ". . . . "
+                       + KCharsets::resolveEntities(Utils::stripTags((art).description()));
 
         }
         if (!speakMe.isEmpty()) {
@@ -71,7 +71,7 @@ void AkregatorTextToSpeech::stateChanged(PimCommon::TextToSpeechWidget::State st
 
 void AkregatorTextToSpeech::slotStateChanged(PimCommon::TextToSpeech::State state)
 {
-    switch(state) {
+    switch (state) {
     case PimCommon::TextToSpeech::Ready: {
         if (state == PimCommon::TextToSpeech::Ready) {
             mTextToSpeechActions->setState(PimCommon::TextToSpeechWidget::Stop);
@@ -84,7 +84,6 @@ void AkregatorTextToSpeech::slotStateChanged(PimCommon::TextToSpeech::State stat
     }
 }
 
-
 QAction *AkregatorTextToSpeech::stopAction() const
 {
     return mTextToSpeechActions->stopAction();
@@ -94,5 +93,4 @@ QAction *AkregatorTextToSpeech::playPauseAction() const
 {
     return mTextToSpeechActions->playPauseAction();
 }
-
 

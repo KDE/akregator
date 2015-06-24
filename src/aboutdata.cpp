@@ -54,7 +54,7 @@ AboutData::AboutData()
     addCredit(i18n("Anne-Marie Mahfouf"), i18n("Handbook"), QStringLiteral("annma@kde.org"));
     addCredit(i18n("Frerich Raabe"), i18n("Author of librss"), QStringLiteral("raabe@kde.org"));
     addCredit(i18n("Eckhart Woerner"), i18n("Bug tracker management, Usability improvements"), QStringLiteral("kde@ewsoftware.de"));
-    addCredit(i18n("Heinrich Wendel"), i18n("Tons of bug fixes"),QStringLiteral( "h_wendel@cojobo.net"));
+    addCredit(i18n("Heinrich Wendel"), i18n("Tons of bug fixes"), QStringLiteral("h_wendel@cojobo.net"));
     addCredit(i18n("Eike Hein"), i18n("'Delayed mark as read' feature"), QStringLiteral("sho@eikehein.com"));
     addCredit(i18n("Marcel Dierkes"), i18n("Icons"), QStringLiteral("marcel.dierkes@gmx.de"));
     addCredit(i18n("George Staikos"), i18n("Insomnia"), QStringLiteral("staikos@kde.org"));
