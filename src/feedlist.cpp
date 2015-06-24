@@ -362,7 +362,7 @@ QDomDocument FeedList::toOpml() const
     doc.appendChild(doc.createProcessingInstruction(QLatin1String("xml"), QLatin1String("version=\"1.0\" encoding=\"UTF-8\"")));
 
     QDomElement root = doc.createElement(QLatin1String("opml"));
-    root.setAttribute(QLatin1String("version"), QLatin1String("1.0"));
+    root.setAttribute(QStringLiteral("version"), QLatin1String("1.0"));
     doc.appendChild(root);
 
     QDomElement head = doc.createElement(QLatin1String("head"));

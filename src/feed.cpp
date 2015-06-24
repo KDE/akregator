@@ -468,29 +468,29 @@ bool Akregator::Feed::isArticlesLoaded() const
 QDomElement Akregator::Feed::toOPML(QDomElement parent, QDomDocument document) const
 {
     QDomElement el = document.createElement(QLatin1String("outline"));
-    el.setAttribute(QLatin1String("text"), title());
-    el.setAttribute(QLatin1String("title"), title());
-    el.setAttribute(QLatin1String("xmlUrl"), d->xmlUrl);
-    el.setAttribute(QLatin1String("htmlUrl"), d->htmlUrl);
-    el.setAttribute(QLatin1String("id"), QString::number(id()));
-    el.setAttribute(QLatin1String("description"), d->description);
-    el.setAttribute(QLatin1String("useCustomFetchInterval"), (useCustomFetchInterval() ? QLatin1String("true") : QLatin1String("false")));
-    el.setAttribute(QLatin1String("fetchInterval"), QString::number(fetchInterval()));
-    el.setAttribute(QLatin1String("archiveMode"), archiveModeToString(d->archiveMode));
-    el.setAttribute(QLatin1String("maxArticleAge"), d->maxArticleAge);
-    el.setAttribute(QLatin1String("maxArticleNumber"), d->maxArticleNumber);
+    el.setAttribute(QStringLiteral("text"), title());
+    el.setAttribute(QStringLiteral("title"), title());
+    el.setAttribute(QStringLiteral("xmlUrl"), d->xmlUrl);
+    el.setAttribute(QStringLiteral("htmlUrl"), d->htmlUrl);
+    el.setAttribute(QStringLiteral("id"), QString::number(id()));
+    el.setAttribute(QStringLiteral("description"), d->description);
+    el.setAttribute(QStringLiteral("useCustomFetchInterval"), (useCustomFetchInterval() ? QLatin1String("true") : QLatin1String("false")));
+    el.setAttribute(QStringLiteral("fetchInterval"), QString::number(fetchInterval()));
+    el.setAttribute(QStringLiteral("archiveMode"), archiveModeToString(d->archiveMode));
+    el.setAttribute(QStringLiteral("maxArticleAge"), d->maxArticleAge);
+    el.setAttribute(QStringLiteral("maxArticleNumber"), d->maxArticleNumber);
     if (d->markImmediatelyAsRead) {
-        el.setAttribute(QLatin1String("markImmediatelyAsRead"), QLatin1String("true"));
+        el.setAttribute(QStringLiteral("markImmediatelyAsRead"), QLatin1String("true"));
     }
     if (d->useNotification) {
-        el.setAttribute(QLatin1String("useNotification"), QLatin1String("true"));
+        el.setAttribute(QStringLiteral("useNotification"), QLatin1String("true"));
     }
     if (d->loadLinkedWebsite) {
-        el.setAttribute(QLatin1String("loadLinkedWebsite"), QLatin1String("true"));
+        el.setAttribute(QStringLiteral("loadLinkedWebsite"), QLatin1String("true"));
     }
-    el.setAttribute(QLatin1String("maxArticleNumber"), d->maxArticleNumber);
-    el.setAttribute(QLatin1String("type"), QLatin1String("rss"));   // despite some additional fields, it is still "rss" OPML
-    el.setAttribute(QLatin1String("version"), QLatin1String("RSS"));
+    el.setAttribute(QStringLiteral("maxArticleNumber"), d->maxArticleNumber);
+    el.setAttribute(QStringLiteral("type"), QLatin1String("rss"));   // despite some additional fields, it is still "rss" OPML
+    el.setAttribute(QStringLiteral("version"), QLatin1String("RSS"));
     parent.appendChild(el);
     return el;
 }
