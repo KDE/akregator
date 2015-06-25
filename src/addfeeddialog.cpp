@@ -106,7 +106,7 @@ void AddFeedDialog::accept()
     m_feed = new Feed(Kernel::self()->storage());
 
     // HACK: make weird wordpress links ("feed:http://foobar/rss") work
-    if (feedUrl.startsWith(QLatin1String("feed:http"))) {
+    if (feedUrl.startsWith(QStringLiteral("feed:http"))) {
         feedUrl = feedUrl.right(feedUrl.length() - 5);
     }
 
