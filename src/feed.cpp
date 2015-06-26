@@ -644,10 +644,7 @@ void Akregator::Feed::fetch(bool followDiscovery)
     d->fetchTries = 0;
 
     // mark all new as unread
-    QList<Article> articles = d->articles.values();
-    QList<Article>::Iterator it;
-    QList<Article>::Iterator en = articles.end();
-    for (it = articles.begin(); it != en; ++it) {
+    for (auto it = d->articles.begin(), end = d->articles.end(); it != end; ++it) {
         if ((*it).status() == New) {
             (*it).setStatus(Unread);
         }
@@ -761,12 +758,11 @@ void Akregator::Feed::deleteExpiredArticles(ArticleDeleteJob *deleteJob)
 
     setNotificationMode(false);
 
-    const QList<Article> articles = d->articles.values();
     QList<ArticleId> toDelete;
     const QString feedUrl = xmlUrl();
     const bool useKeep = Settings::doNotExpireImportantArticles();
 
-    Q_FOREACH (const Article &i, articles) {
+    Q_FOREACH (const Article &i, d->articles) {
         if ((!useKeep || !i.keep()) && isExpired(i)) {
             const ArticleId aid = { feedUrl, i.guid() };
             toDelete.append(aid);
