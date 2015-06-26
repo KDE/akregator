@@ -39,7 +39,7 @@ K_PLUGIN_FACTORY(MK4PluginFactory,
 void MK4Plugin::doInitialize()
 {
     m_factory = new StorageFactoryMK4Impl();
-    StorageFactoryRegistry::self()->registerFactory(m_factory, QLatin1String("metakit"));
+    StorageFactoryRegistry::self()->registerFactory(m_factory, QStringLiteral("metakit"));
 }
 
 MK4Plugin::MK4Plugin(QObject *parent, const QVariantList &params) : Plugin(parent, params), m_factory(0)

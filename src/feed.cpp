@@ -480,17 +480,17 @@ QDomElement Akregator::Feed::toOPML(QDomElement parent, QDomDocument document) c
     el.setAttribute(QStringLiteral("maxArticleAge"), d->maxArticleAge);
     el.setAttribute(QStringLiteral("maxArticleNumber"), d->maxArticleNumber);
     if (d->markImmediatelyAsRead) {
-        el.setAttribute(QStringLiteral("markImmediatelyAsRead"), QLatin1String("true"));
+        el.setAttribute(QStringLiteral("markImmediatelyAsRead"), QStringLiteral("true"));
     }
     if (d->useNotification) {
-        el.setAttribute(QStringLiteral("useNotification"), QLatin1String("true"));
+        el.setAttribute(QStringLiteral("useNotification"), QStringLiteral("true"));
     }
     if (d->loadLinkedWebsite) {
-        el.setAttribute(QStringLiteral("loadLinkedWebsite"), QLatin1String("true"));
+        el.setAttribute(QStringLiteral("loadLinkedWebsite"), QStringLiteral("true"));
     }
     el.setAttribute(QStringLiteral("maxArticleNumber"), d->maxArticleNumber);
-    el.setAttribute(QStringLiteral("type"), QLatin1String("rss"));   // despite some additional fields, it is still "rss" OPML
-    el.setAttribute(QStringLiteral("version"), QLatin1String("RSS"));
+    el.setAttribute(QStringLiteral("type"), QStringLiteral("rss"));   // despite some additional fields, it is still "rss" OPML
+    el.setAttribute(QStringLiteral("version"), QStringLiteral("RSS"));
     parent.appendChild(el);
     return el;
 }

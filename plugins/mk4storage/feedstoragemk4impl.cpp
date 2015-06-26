@@ -122,7 +122,7 @@ void FeedStorageMK4Impl::convertOldArchive()
         return;
     }
 
-    Syndication::DocumentSource src(file.readAll(), QLatin1String("http://foo"));
+    Syndication::DocumentSource src(file.readAll(), QStringLiteral("http://foo"));
     file.close();
     Syndication::FeedPtr feed = Syndication::parse(src);
 
@@ -152,7 +152,7 @@ FeedStorageMK4Impl::FeedStorageMK4Impl(const QString &url, StorageMK4Impl *main)
     QString t = url2;
     QString t2 = url2;
     QString filePath = main->archivePath() + QLatin1Char('/') + t.replace(QLatin1Char('/'), QLatin1Char('_')).replace(QLatin1Char(':'), QLatin1Char('_'));
-    d->oldArchivePath = KGlobal::dirs()->saveLocation("data", QLatin1String("akregator/Archive/")) + t2.replace(QLatin1Char('/'), QLatin1Char('_')).replace(QLatin1Char(':'), QLatin1Char('_')) + QLatin1String(".xml");
+    d->oldArchivePath = KGlobal::dirs()->saveLocation("data", QStringLiteral("akregator/Archive/")) + t2.replace(QLatin1Char('/'), QLatin1Char('_')).replace(QLatin1Char(':'), QLatin1Char('_')) + QLatin1String(".xml");
     d->convert = !QFile::exists(filePath + QLatin1String(".mk4")) && QFile::exists(d->oldArchivePath);
     d->storage = new c4_Storage(QString(filePath + QLatin1String(".mk4")).toLocal8Bit(), true);
 
