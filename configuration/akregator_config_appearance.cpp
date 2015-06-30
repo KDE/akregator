@@ -42,16 +42,16 @@ KCMAkregatorAppearanceConfig::KCMAkregatorAppearanceConfig(QWidget *parent, cons
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->addWidget(m_widget);
 
-    connect(m_ui.kcfg_UseCustomColors, SIGNAL(toggled(bool)), m_ui.kcfg_ColorUnreadArticles, SLOT(setEnabled(bool)));
-    connect(m_ui.kcfg_UseCustomColors, SIGNAL(toggled(bool)), m_ui.kcfg_ColorNewArticles, SLOT(setEnabled(bool)));
-    connect(m_ui.kcfg_UseCustomColors, SIGNAL(toggled(bool)), m_ui.lbl_newArticles, SLOT(setEnabled(bool)));
-    connect(m_ui.kcfg_UseCustomColors, SIGNAL(toggled(bool)), m_ui.lbl_unreadArticles, SLOT(setEnabled(bool)));
+    connect(m_ui.kcfg_UseCustomColors, &QAbstractButton::toggled, m_ui.kcfg_ColorUnreadArticles, &QWidget::setEnabled);
+    connect(m_ui.kcfg_UseCustomColors, &QAbstractButton::toggled, m_ui.kcfg_ColorNewArticles, &QWidget::setEnabled);
+    connect(m_ui.kcfg_UseCustomColors, &QAbstractButton::toggled, m_ui.lbl_newArticles, &QWidget::setEnabled);
+    connect(m_ui.kcfg_UseCustomColors, &QAbstractButton::toggled, m_ui.lbl_unreadArticles, &QWidget::setEnabled);
 
-    connect(m_ui.slider_minimumFontSize, SIGNAL(valueChanged(int)), m_ui.kcfg_MinimumFontSize , SLOT(setValue(int)));
-    connect(m_ui.slider_mediumFontSize, SIGNAL(valueChanged(int)), m_ui.kcfg_MediumFontSize , SLOT(setValue(int)));
+    connect(m_ui.slider_minimumFontSize, &QAbstractSlider::valueChanged, m_ui.kcfg_MinimumFontSize , &QSpinBox::setValue);
+    connect(m_ui.slider_mediumFontSize, &QAbstractSlider::valueChanged, m_ui.kcfg_MediumFontSize , &QSpinBox::setValue);
 
-    connect(m_ui.slider_minimumFontSize, SIGNAL(sliderMoved(int)), m_ui.kcfg_MinimumFontSize , SLOT(setValue(int)));
-    connect(m_ui.slider_mediumFontSize, SIGNAL(sliderMoved(int)), m_ui.kcfg_MediumFontSize , SLOT(setValue(int)));
+    connect(m_ui.slider_minimumFontSize, &QAbstractSlider::sliderMoved, m_ui.kcfg_MinimumFontSize , &QSpinBox::setValue);
+    connect(m_ui.slider_mediumFontSize, &QAbstractSlider::sliderMoved, m_ui.kcfg_MediumFontSize , &QSpinBox::setValue);
 
     connect(m_ui.kcfg_MinimumFontSize, SIGNAL(valueChanged(int)), m_ui.slider_minimumFontSize, SLOT(setValue(int)));
     connect(m_ui.kcfg_MediumFontSize, SIGNAL(valueChanged(int)), m_ui.slider_mediumFontSize, SLOT(setValue(int)));

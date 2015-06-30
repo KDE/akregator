@@ -565,29 +565,29 @@ void ActionManagerImpl::initTabWidget(TabWidget *tabWidget)
     action = coll->addAction(QStringLiteral("tab_detach"));
     action->setIcon(QIcon::fromTheme(QStringLiteral("tab-detach")));
     action->setText(i18n("Detach Tab"));
-    connect(action, SIGNAL(triggered(bool)), d->tabWidget, SLOT(slotDetachTab()));
+    connect(action, &QAction::triggered, d->tabWidget, &TabWidget::slotDetachTab);
     coll->setDefaultShortcut(action, QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_B));
 
     action = coll->addAction(QStringLiteral("tab_copylinkaddress"));
     action->setText(i18n("Copy Link Address"));
-    connect(action, SIGNAL(triggered(bool)), d->tabWidget, SLOT(slotCopyLinkAddress()));
+    connect(action, &QAction::triggered, d->tabWidget, &TabWidget::slotCopyLinkAddress);
 
     action = coll->addAction(QStringLiteral("tab_remove"));
     action->setIcon(QIcon::fromTheme(QStringLiteral("tab-close")));
     action->setText(i18n("Close Tab"));
-    connect(action, SIGNAL(triggered(bool)), d->tabWidget, SLOT(slotCloseTab()));
+    connect(action, &QAction::triggered, d->tabWidget, &TabWidget::slotCloseTab);
     coll->setDefaultShortcuts(action, KStandardShortcut::close());
 
     action = coll->addAction(QStringLiteral("inc_font_sizes"));
     action->setIcon(QIcon::fromTheme(QStringLiteral("format-font-size-more")));
     action->setText(i18n("Enlarge Font"));
-    connect(action, SIGNAL(triggered(bool)), d->tabWidget, SLOT(slotFrameZoomIn()));
+    connect(action, &QAction::triggered, d->tabWidget, &TabWidget::slotFrameZoomIn);
     coll->setDefaultShortcut(action, QKeySequence::ZoomIn);
 
     action = coll->addAction(QStringLiteral("dec_font_sizes"));
     action->setIcon(QIcon::fromTheme(QStringLiteral("format-font-size-less")));
     action->setText(i18n("Shrink Font"));
-    connect(action, SIGNAL(triggered(bool)), d->tabWidget, SLOT(slotFrameZoomOut()));
+    connect(action, &QAction::triggered, d->tabWidget, &TabWidget::slotFrameZoomOut);
     coll->setDefaultShortcut(action, QKeySequence::ZoomOut);
 
     QString actionname;
@@ -596,7 +596,7 @@ void ActionManagerImpl::initTabWidget(TabWidget *tabWidget)
         action = new QAction(i18n("Activate Tab %1", i), this);
         coll->addAction(actionname, action);
         coll->setDefaultShortcut(action, QKeySequence(QStringLiteral("Alt+%1").arg(i)));
-        connect(action, SIGNAL(triggered(bool)), d->tabWidget, SLOT(slotActivateTab()));
+        connect(action, &QAction::triggered, d->tabWidget, &TabWidget::slotActivateTab);
     }
 
 }

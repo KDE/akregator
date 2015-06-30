@@ -58,6 +58,9 @@ public Q_SLOTS:
     void slotFrameZoomOut();
     void slotReloadAllTabs();
     void slotActivateTab();
+    void slotDetachTab();
+    void slotCopyLinkAddress();
+    void slotCloseTab();
 Q_SIGNALS:
     void signalCurrentFrameChanged(int);
     void signalRemoveFrameRequest(int);
@@ -71,9 +74,7 @@ private:
 
 private Q_SLOTS:
     void initiateDrag(int tab);
-    void slotDetachTab();
-    void slotCopyLinkAddress();
-    void slotCloseTab();
+
     void slotCloseRequest(int index);
     void contextMenu(int item, const QPoint &p);
     void slotTabChanged(int index);
