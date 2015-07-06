@@ -610,7 +610,7 @@ QString FeedListManagementImpl::addCategory(const QString &name, const QString &
     Q_UNUSED(parentId)
 
     if (!m_feedList) {
-        return QLatin1String("");
+        return QStringLiteral("");
     }
 
     Folder *m_folder = new Folder(name);

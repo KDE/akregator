@@ -117,17 +117,17 @@ QString Akregator::Feed::archiveModeToString(ArchiveMode mode)
 {
     switch (mode) {
     case keepAllArticles:
-        return QLatin1String("keepAllArticles");
+        return QStringLiteral("keepAllArticles");
     case disableArchiving:
-        return QLatin1String("disableArchiving");
+        return QStringLiteral("disableArchiving");
     case limitArticleNumber:
-        return QLatin1String("limitArticleNumber");
+        return QStringLiteral("limitArticleNumber");
     case limitArticleAge:
-        return QLatin1String("limitArticleAge");
+        return QStringLiteral("limitArticleAge");
     default:
         break;
     }
-    return QLatin1String("globalDefault");
+    return QStringLiteral("globalDefault");
 }
 
 Akregator::Feed *Akregator::Feed::fromOPML(QDomElement e, Backend::Storage *storage)
