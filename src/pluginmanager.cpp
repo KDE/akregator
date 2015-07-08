@@ -77,7 +77,7 @@ PluginManager::createFromQuery(const QString &constraint)
 }
 
 Plugin *
-PluginManager::createFromService(const KService::Ptr service, QObject *parent)
+PluginManager::createFromService(const KService::Ptr &service, QObject *parent)
 {
     qCDebug(AKREGATOR_LOG) << "Trying to load:" << service->library();
 

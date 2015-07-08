@@ -70,7 +70,7 @@ public:
      * @param service     Pointer to KService
      * @return            Pointer to Plugin, or NULL if error
      */
-    static Akregator::Plugin *createFromService(const KService::Ptr service, QObject *parent = Q_NULLPTR);
+    static Akregator::Plugin *createFromService(const KService::Ptr &service, QObject *parent = Q_NULLPTR);
 
     /**
      * Remove library and delete plugin
