@@ -85,8 +85,8 @@ void ProgressManager::setFeedList(const QSharedPointer<FeedList> &feedList)
         foreach (TreeNode *i, list) {
             slotNodeAdded(i);
         }
-        connect(feedList.data(), SIGNAL(signalNodeAdded(Akregator::TreeNode*)), this, SLOT(slotNodeAdded(Akregator::TreeNode*)));
-        connect(feedList.data(), SIGNAL(signalNodeRemoved(Akregator::TreeNode*)), this, SLOT(slotNodeRemoved(Akregator::TreeNode*)));
+        connect(feedList.data(), &FeedList::signalNodeAdded, this, &ProgressManager::slotNodeAdded);
+        connect(feedList.data(), &FeedList::signalNodeRemoved, this, &ProgressManager::slotNodeRemoved);
     }
 }
 
@@ -102,7 +102,7 @@ void ProgressManager::slotNodeAdded(TreeNode *node)
     }
 
     d->handlers[feed] = new ProgressItemHandler(feed);
-    connect(feed, SIGNAL(signalDestroyed(Akregator::TreeNode*)), this, SLOT(slotNodeDestroyed(Akregator::TreeNode*)));
+    connect(feed, &TreeNode::signalDestroyed, this, &ProgressManager::slotNodeDestroyed);
 }
 
 void ProgressManager::slotNodeRemoved(TreeNode *node)

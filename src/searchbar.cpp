@@ -110,7 +110,7 @@ SearchBar::SearchBar(QWidget *parent) : QWidget(parent), d(new SearchBar::Search
 
     connect(d->searchCombo, static_cast<void (KComboBox::*)(int)>(&KComboBox::activated), this, &SearchBar::slotSearchComboChanged);
 
-    connect(&(d->timer), SIGNAL(timeout()), this, SLOT(slotActivateSearch()));
+    connect(&(d->timer), &QTimer::timeout, this, &SearchBar::slotActivateSearch);
     d->timer.setSingleShot(true);
 }
 

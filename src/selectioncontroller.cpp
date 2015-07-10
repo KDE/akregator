@@ -221,10 +221,10 @@ void Akregator::SelectionController::articleHeadersAvailable(KJob *job)
 
     ArticleModel *const newModel = new ArticleModel(m_listJob->articles());
 
-    connect(node, SIGNAL(destroyed()), newModel, SLOT(clear()));
-    connect(node, SIGNAL(signalArticlesAdded(Akregator::TreeNode*,QList<Akregator::Article>)), newModel, SLOT(articlesAdded(Akregator::TreeNode*,QList<Akregator::Article>)));
-    connect(node, SIGNAL(signalArticlesRemoved(Akregator::TreeNode*,QList<Akregator::Article>)), newModel, SLOT(articlesRemoved(Akregator::TreeNode*,QList<Akregator::Article>)));
-    connect(node, SIGNAL(signalArticlesUpdated(Akregator::TreeNode*,QList<Akregator::Article>)), newModel, SLOT(articlesUpdated(Akregator::TreeNode*,QList<Akregator::Article>)));
+    connect(node, &QObject::destroyed, newModel, &ArticleModel::clear);
+    connect(node, &TreeNode::signalArticlesAdded, newModel, &ArticleModel::articlesAdded);
+    connect(node, &TreeNode::signalArticlesRemoved, newModel, &ArticleModel::articlesRemoved);
+    connect(node, &TreeNode::signalArticlesUpdated, newModel, &ArticleModel::articlesUpdated);
 
     m_articleLister->setIsAggregation(node->isAggregation());
     m_articleLister->setArticleModel(newModel);
@@ -265,8 +265,8 @@ void Akregator::SelectionController::selectedSubscriptionChanged(const QModelInd
     }
 
     ArticleListJob *const job(new ArticleListJob(m_selectedSubscription));
-    connect(job, SIGNAL(finished(KJob*)),
-            this, SLOT(articleHeadersAvailable(KJob*)));
+    connect(job, &KJob::finished,
+            this, &SelectionController::articleHeadersAvailable);
     m_listJob = job;
     m_listJob->start();
 

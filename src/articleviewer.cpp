@@ -113,19 +113,11 @@ ArticleViewer::ArticleViewer(QWidget *parent)
     connect(ext, SIGNAL(popupMenu(QPoint,QUrl,mode_t,KParts::OpenUrlArguments,KParts::BrowserArguments,KParts::BrowserExtension::PopupFlags,KParts::BrowserExtension::ActionGroupMap)),
             this, SLOT(slotPopupMenu(QPoint,QUrl,mode_t,KParts::OpenUrlArguments,KParts::BrowserArguments,KParts::BrowserExtension::PopupFlags))); // ActionGroupMap argument removed, unused by slot
 
-    connect(ext, SIGNAL(openUrlRequestDelayed(QUrl,KParts::OpenUrlArguments,KParts::BrowserArguments)),
-            this, SLOT(slotOpenUrlRequestDelayed(QUrl,KParts::OpenUrlArguments,KParts::BrowserArguments)));
+    connect(ext, &KParts::BrowserExtension::openUrlRequestDelayed,
+            this, &ArticleViewer::slotOpenUrlRequestDelayed);
 
-    connect(ext, SIGNAL(createNewWindow(QUrl,
-                                        KParts::OpenUrlArguments,
-                                        KParts::BrowserArguments,
-                                        KParts::WindowArgs,
-                                        KParts::ReadOnlyPart **)),
-            this, SLOT(slotCreateNewWindow(QUrl,
-                                           KParts::OpenUrlArguments,
-                                           KParts::BrowserArguments,
-                                           KParts::WindowArgs,
-                                           KParts::ReadOnlyPart **)));
+    connect(ext, &KParts::BrowserExtension::createNewWindow,
+            this, &ArticleViewer::slotCreateNewWindow);
 
     QAction *action = 0;
 
@@ -372,16 +364,16 @@ void ArticleViewer::connectToNode(TreeNode *node)
 {
     if (node) {
         if (m_viewMode == CombinedView) {
-            connect(node, SIGNAL(signalChanged(Akregator::TreeNode*)), this, SLOT(slotUpdateCombinedView()));
-            connect(node, SIGNAL(signalArticlesAdded(Akregator::TreeNode*,QList<Akregator::Article>)), this, SLOT(slotArticlesAdded(Akregator::TreeNode*,QList<Akregator::Article>)));
-            connect(node, SIGNAL(signalArticlesRemoved(Akregator::TreeNode*,QList<Akregator::Article>)), this, SLOT(slotArticlesRemoved(Akregator::TreeNode*,QList<Akregator::Article>)));
-            connect(node, SIGNAL(signalArticlesUpdated(Akregator::TreeNode*,QList<Akregator::Article>)), this, SLOT(slotArticlesUpdated(Akregator::TreeNode*,QList<Akregator::Article>)));
+            connect(node, &TreeNode::signalChanged, this, &ArticleViewer::slotUpdateCombinedView);
+            connect(node, &TreeNode::signalArticlesAdded, this, &ArticleViewer::slotArticlesAdded);
+            connect(node, &TreeNode::signalArticlesRemoved, this, &ArticleViewer::slotArticlesRemoved);
+            connect(node, &TreeNode::signalArticlesUpdated, this, &ArticleViewer::slotArticlesUpdated);
         }
         if (m_viewMode == SummaryView) {
-            connect(node, SIGNAL(signalChanged(Akregator::TreeNode*)), this, SLOT(slotShowSummary(Akregator::TreeNode*)));
+            connect(node, &TreeNode::signalChanged, this, &ArticleViewer::slotShowSummary);
         }
 
-        connect(node, SIGNAL(signalDestroyed(Akregator::TreeNode*)), this, SLOT(slotClear()));
+        connect(node, &TreeNode::signalDestroyed, this, &ArticleViewer::slotClear);
     }
 }
 
