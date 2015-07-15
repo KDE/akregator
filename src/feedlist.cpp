@@ -361,17 +361,17 @@ QDomDocument FeedList::toOpml() const
     QDomDocument doc;
     doc.appendChild(doc.createProcessingInstruction(QLatin1String("xml"), QStringLiteral("version=\"1.0\" encoding=\"UTF-8\"")));
 
-    QDomElement root = doc.createElement(QLatin1String("opml"));
+    QDomElement root = doc.createElement(QStringLiteral("opml"));
     root.setAttribute(QStringLiteral("version"), QStringLiteral("1.0"));
     doc.appendChild(root);
 
-    QDomElement head = doc.createElement(QLatin1String("head"));
+    QDomElement head = doc.createElement(QStringLiteral("head"));
     root.appendChild(head);
 
-    QDomElement ti = doc.createElement(QLatin1String("text"));
+    QDomElement ti = doc.createElement(QStringLiteral("text"));
     head.appendChild(ti);
 
-    QDomElement body = doc.createElement(QLatin1String("body"));
+    QDomElement body = doc.createElement(QStringLiteral("body"));
     root.appendChild(body);
 
     foreach (const TreeNode *const i, allFeedsFolder()->children()) {

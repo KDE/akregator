@@ -48,7 +48,7 @@ MK4Plugin::MK4Plugin(QObject *parent, const QVariantList &params) : Plugin(paren
 
 MK4Plugin::~MK4Plugin()
 {
-    StorageFactoryRegistry::self()->unregisterFactory(QLatin1String("metakit"));
+    StorageFactoryRegistry::self()->unregisterFactory(QStringLiteral("metakit"));
     delete m_factory;
 }
 

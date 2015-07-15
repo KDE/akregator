@@ -56,7 +56,7 @@ public:
         i18n("Delete Folder"),
         KStandardGuiItem::del(),
         KStandardGuiItem::cancel(),
-        QLatin1String("Disable delete folder confirmation")) != KMessageBox::Continue)
+        QStringLiteral("Disable delete folder confirmation")) != KMessageBox::Continue)
         {
             return true;
         }
@@ -80,7 +80,7 @@ public:
         i18n("Delete Feed"),
         KStandardGuiItem::del(),
         KStandardGuiItem::cancel(),
-        QLatin1String("Disable delete feed confirmation")) != KMessageBox::Continue)
+        QStringLiteral("Disable delete feed confirmation")) != KMessageBox::Continue)
         {
             return true;
         }

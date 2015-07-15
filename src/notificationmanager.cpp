@@ -70,19 +70,19 @@ void NotificationManager::slotNotifyArticle(const Article &article)
 void NotificationManager::slotNotifyFeeds(const QStringList &feeds)
 {
     if (feeds.count() == 1) {
-        KNotification::event(QLatin1String("FeedAdded"), i18n("Feed added:\n %1", feeds[0]), QPixmap() , m_widget, KNotification::CloseOnTimeout, m_componantName);
+        KNotification::event(QStringLiteral("FeedAdded"), i18n("Feed added:\n %1", feeds[0]), QPixmap() , m_widget, KNotification::CloseOnTimeout, m_componantName);
     } else if (feeds.count() > 1) {
         QString message;
         for (QStringList::ConstIterator it = feeds.constBegin(); it != feeds.constEnd(); ++it) {
             message += *it + QLatin1Char('\n');
         }
-        KNotification::event(QLatin1String("FeedAdded"), i18n("Feeds added:\n %1", message), QPixmap() , m_widget, KNotification::CloseOnTimeout, m_componantName);
+        KNotification::event(QStringLiteral("FeedAdded"), i18n("Feeds added:\n %1", message), QPixmap() , m_widget, KNotification::CloseOnTimeout, m_componantName);
     }
 }
 
 void NotificationManager::doNotify()
 {
-    QString message = QLatin1String("<html><body>");
+    QString message = QStringLiteral("<html><body>");
     QString feedTitle;
 
     Q_FOREACH (const Article &i, m_articles) {
@@ -93,7 +93,7 @@ void NotificationManager::doNotify()
         message += i.title() + QLatin1String("<br>");
     }
     message += QLatin1String("</body></html>");
-    KNotification::event(QLatin1String("NewArticles"), message, QPixmap() , m_widget, KNotification::CloseOnTimeout, m_componantName);
+    KNotification::event(QStringLiteral("NewArticles"), message, QPixmap() , m_widget, KNotification::CloseOnTimeout, m_componantName);
 
     m_articles.clear();
     m_running = false;

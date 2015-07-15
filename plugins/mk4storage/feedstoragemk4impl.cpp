@@ -550,19 +550,19 @@ void FeedStorageMK4Impl::setAuthorEMail(const QString &guid, const QString &auth
 QString FeedStorageMK4Impl::authorName(const QString &guid) const
 {
     int findidx = findArticle(guid);
-    return findidx != -1 ? QString::fromUtf8(d->pauthorName(d->archiveView.GetAt(findidx))) : QLatin1String("");
+    return findidx != -1 ? QString::fromUtf8(d->pauthorName(d->archiveView.GetAt(findidx))) : QString();
 }
 
 QString FeedStorageMK4Impl::authorUri(const QString &guid) const
 {
     int findidx = findArticle(guid);
-    return findidx != -1 ? QString::fromUtf8(d->pauthorUri(d->archiveView.GetAt(findidx))) : QLatin1String("");
+    return findidx != -1 ? QString::fromUtf8(d->pauthorUri(d->archiveView.GetAt(findidx))) : QString();
 }
 
 QString FeedStorageMK4Impl::authorEMail(const QString &guid) const
 {
     int findidx = findArticle(guid);
-    return findidx != -1 ? QString::fromUtf8(d->pauthorEMail(d->archiveView.GetAt(findidx))) : QLatin1String("");
+    return findidx != -1 ? QString::fromUtf8(d->pauthorEMail(d->archiveView.GetAt(findidx))) : QString();
 }
 
 void FeedStorageMK4Impl::setCommentsLink(const QString &guid, const QString &commentsLink)
