@@ -67,9 +67,9 @@ public:
     bool open;
 
     /** caches guids for notifying added articles */
-    QList<Article> addedArticlesNotify;
+    QVector<Article> addedArticlesNotify;
     /** caches guids for notifying removed articles */
-    QList<Article> removedArticlesNotify;
+    QVector<Article> removedArticlesNotify;
 };
 
 Folder::FolderPrivate::FolderPrivate(Folder *qq) : q(qq), unread(0), open(false)
@@ -113,9 +113,9 @@ Folder::~Folder()
     d = 0;
 }
 
-QList<Article> Folder::articles()
+QVector<Article> Folder::articles()
 {
-    QList<Article> seq;
+    QVector<Article> seq;
     Q_FOREACH (Feed *const i, feeds()) {
         seq += i->articles();
     }
@@ -391,9 +391,9 @@ void Folder::connectToNode(TreeNode *child)
 {
     connect(child, SIGNAL(signalChanged(Akregator::TreeNode*)), this, SLOT(slotChildChanged(Akregator::TreeNode*)));
     connect(child, SIGNAL(signalDestroyed(Akregator::TreeNode*)), this, SLOT(slotChildDestroyed(Akregator::TreeNode*)));
-    connect(child, SIGNAL(signalArticlesAdded(Akregator::TreeNode*,QList<Akregator::Article>)), this, SIGNAL(signalArticlesAdded(Akregator::TreeNode*,QList<Akregator::Article>)));
-    connect(child, SIGNAL(signalArticlesRemoved(Akregator::TreeNode*,QList<Akregator::Article>)), this, SIGNAL(signalArticlesRemoved(Akregator::TreeNode*,QList<Akregator::Article>)));
-    connect(child, SIGNAL(signalArticlesUpdated(Akregator::TreeNode*,QList<Akregator::Article>)), this, SIGNAL(signalArticlesUpdated(Akregator::TreeNode*,QList<Akregator::Article>)));
+    connect(child, SIGNAL(signalArticlesAdded(Akregator::TreeNode*,QVector<Akregator::Article>)), this, SIGNAL(signalArticlesAdded(Akregator::TreeNode*,QVector<Akregator::Article>)));
+    connect(child, SIGNAL(signalArticlesRemoved(Akregator::TreeNode*,QVector<Akregator::Article>)), this, SIGNAL(signalArticlesRemoved(Akregator::TreeNode*,QVector<Akregator::Article>)));
+    connect(child, SIGNAL(signalArticlesUpdated(Akregator::TreeNode*,QVector<Akregator::Article>)), this, SIGNAL(signalArticlesUpdated(Akregator::TreeNode*,QVector<Akregator::Article>)));
 }
 
 void Folder::disconnectFromNode(TreeNode *child)

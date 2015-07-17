@@ -153,5 +153,5 @@ private:
 };
 
 } // namespace Akregator
-
+Q_DECLARE_TYPEINFO(Akregator::Article, Q_MOVABLE_TYPE);
 #endif // AKREGATOR_ARTICLE_H

@@ -63,6 +63,17 @@
 using Syndication::ItemPtr;
 using namespace Akregator;
 
+template<typename Key, typename Value, template<typename, typename> class Container>
+QVector<Value> valuesToVector(const Container<Key, Value> &container)
+{
+    QVector<Value> values;
+    values.reserve(container.size());
+    foreach (const Value &value, container) {
+        values << value;
+    }
+    return values;
+}
+
 class Akregator::Feed::Private
 {
     Akregator::Feed *const q;
@@ -95,13 +106,13 @@ public:
     QHash<QString, Article> articles;
 
     /** list of deleted articles. This contains **/
-    QList<Article> deletedArticles;
+    QVector<Article> deletedArticles;
 
     /** caches guids of deleted articles for notification */
 
-    QList<Article> addedArticlesNotify;
-    QList<Article> removedArticlesNotify;
-    QList<Article> updatedArticlesNotify;
+    QVector<Article> addedArticlesNotify;
+    QVector<Article> removedArticlesNotify;
+    QVector<Article> updatedArticlesNotify;
 
     QPixmap imagePixmap;
     Syndication::ImagePtr image;
@@ -218,12 +229,12 @@ Article Akregator::Feed::findArticle(const QString &guid) const
     return a;
 }
 
-QList<Article> Akregator::Feed::articles()
+QVector<Article> Akregator::Feed::articles()
 {
     if (!d->articlesLoaded) {
         loadArticles();
     }
-    return d->articles.values();
+    return valuesToVector(d->articles);
 }
 
 Backend::Storage *Akregator::Feed::storage()
@@ -257,9 +268,9 @@ void Akregator::Feed::loadArticles()
 
 void Akregator::Feed::recalcUnreadCount()
 {
-    QList<Article> tarticles = articles();
-    QList<Article>::ConstIterator it;
-    QList<Article>::ConstIterator en = tarticles.constEnd();
+    QVector<Article> tarticles = articles();
+    QVector<Article>::ConstIterator it;
+    QVector<Article>::ConstIterator en = tarticles.constEnd();
 
     int oldUnread = d->archive->unread();
 
@@ -545,7 +556,7 @@ void Akregator::Feed::appendArticles(const Syndication::FeedPtr feed)
 
     int nudge = 0;
 
-    QList<Article> deletedArticles = d->deletedArticles;
+    QVector<Article> deletedArticles = d->deletedArticles;
 
     for (; it != en; ++it) {
         if (!d->articles.contains((*it)->id())) { // article not in list
@@ -586,9 +597,9 @@ void Akregator::Feed::appendArticles(const Syndication::FeedPtr feed)
         }
     }
 
-    QList<Article>::ConstIterator dit = deletedArticles.constBegin();
-    QList<Article>::ConstIterator dtmp;
-    QList<Article>::ConstIterator den = deletedArticles.constEnd();
+    QVector<Article>::ConstIterator dit = deletedArticles.constBegin();
+    QVector<Article>::ConstIterator dtmp;
+    QVector<Article>::ConstIterator den = deletedArticles.constEnd();
 
     // delete articles with delete flag set completely from archive, which aren't in the current feed source anymore
     while (dit != den) {
@@ -887,21 +898,21 @@ void Akregator::Feed::doArticleNotification()
     if (!d->addedArticlesNotify.isEmpty()) {
         // copy list, otherwise the refcounting in Article::Private breaks for
         // some reason (causing segfaults)
-        QList<Article> l = d->addedArticlesNotify;
+        QVector<Article> l = d->addedArticlesNotify;
         Q_EMIT signalArticlesAdded(this, l);
         d->addedArticlesNotify.clear();
     }
     if (!d->updatedArticlesNotify.isEmpty()) {
         // copy list, otherwise the refcounting in Article::Private breaks for
         // some reason (causing segfaults)
-        QList<Article> l = d->updatedArticlesNotify;
+        QVector<Article> l = d->updatedArticlesNotify;
         Q_EMIT signalArticlesUpdated(this, l);
         d->updatedArticlesNotify.clear();
     }
     if (!d->removedArticlesNotify.isEmpty()) {
         // copy list, otherwise the refcounting in Article::Private breaks for
         // some reason (causing segfaults)
-        QList<Article> l = d->removedArticlesNotify;
+        QVector<Article> l = d->removedArticlesNotify;
         Q_EMIT signalArticlesRemoved(this, l);
         d->removedArticlesNotify.clear();
     }
@@ -921,7 +932,7 @@ void Akregator::Feed::enforceLimitArticleNumber()
         return;
     }
 
-    QList<Article> articles = d->articles.values();
+    QVector<Article> articles = valuesToVector(d->articles);
     qSort(articles);
 
     int c = 0;

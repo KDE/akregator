@@ -252,7 +252,7 @@ private:
     Akregator::Backend::Storage *storage();
 
 private:
-    QList<Article> articles();
+    QVector<Article> articles();
 
     /** loads articles from archive **/
     void loadArticles();

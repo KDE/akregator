@@ -70,7 +70,7 @@ public:
         IsDeletedRole
     };
 
-    explicit ArticleModel(const QList<Article> &articles, QObject *parent = Q_NULLPTR);
+    explicit ArticleModel(const QVector<Article> &articles, QObject *parent = Q_NULLPTR);
     ~ArticleModel();
 
     //reimpl
@@ -95,9 +95,9 @@ public:
 
 public Q_SLOTS:
 
-    void articlesAdded(Akregator::TreeNode *, const QList<Akregator::Article> &);
-    void articlesUpdated(Akregator::TreeNode *, const QList<Akregator::Article> &);
-    void articlesRemoved(Akregator::TreeNode *, const QList<Akregator::Article> &);
+    void articlesAdded(Akregator::TreeNode *, const QVector<Akregator::Article> &);
+    void articlesUpdated(Akregator::TreeNode *, const QVector<Akregator::Article> &);
+    void articlesRemoved(Akregator::TreeNode *, const QVector<Akregator::Article> &);
     void clear();
 
 private:

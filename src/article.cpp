@@ -56,7 +56,7 @@ QString buildTitle(const QString &description)
     if (i != -1) {
         s = s.left(i + 1);
     }
-    QRegExp rx(QLatin1String("(<([^\\s>]*)(?:[^>]*)>)[^<]*"), Qt::CaseInsensitive);
+    QRegExp rx(QStringLiteral("(<([^\\s>]*)(?:[^>]*)>)[^<]*"), Qt::CaseInsensitive);
     QString tagName, toReplace, replaceWith;
     while (rx.indexIn(s) != -1) {
         tagName = rx.cap(2);
@@ -118,27 +118,27 @@ class EnclosureImpl : public Enclosure
 {
 public:
     EnclosureImpl(const QString &url, const QString &type, uint length) : m_url(url), m_type(type), m_length(length) {}
-    /* reimp */ QString url() const
+    QString url() const Q_DECL_OVERRIDE
     {
         return m_url;
     }
-    /* reimp */ QString type() const
+    QString type() const Q_DECL_OVERRIDE
     {
         return m_type;
     }
-    /* reimp */ QString title() const
+    QString title() const Q_DECL_OVERRIDE
     {
         return m_title;
     }
-    /* reimp */ uint length() const
+    uint length() const Q_DECL_OVERRIDE
     {
         return m_length;
     }
-    /* reimp */ uint duration() const
+    uint duration() const Q_DECL_OVERRIDE
     {
         return 0;
     }
-    /* reimp */ bool isNull() const
+    bool isNull() const Q_DECL_OVERRIDE
     {
         return m_url.isNull();
     }

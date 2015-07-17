@@ -26,7 +26,7 @@
 #define AKREGATOR_NOTIFICATIONMANAGER_H
 
 #include <qobject.h>
-#include <QList>
+#include <QVector>
 
 #include "article.h"
 #include "akregator_export.h"
@@ -77,7 +77,7 @@ private:
     QWidget *m_widget;
     QString m_componantName;
 
-    QList<Article> m_articles;
+    QVector<Article> m_articles;
 
     static NotificationManager *m_self;
 };

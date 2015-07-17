@@ -27,7 +27,7 @@
 
 #include <KCompositeJob>
 
-#include <QList>
+#include <QVector>
 #include <QMap>
 #include <QPointer>
 #include <QString>
@@ -108,7 +108,7 @@ class AKREGATOR_EXPORT ArticleListJob : public KJob
 public:
     explicit ArticleListJob(TreeNode *parent = Q_NULLPTR);
 
-    QList<Article> articles() const;
+    QVector<Article> articles() const;
     TreeNode *node() const;
 
     void start() Q_DECL_OVERRIDE;
@@ -122,7 +122,7 @@ private Q_SLOTS:
 
 private:
     const QPointer<TreeNode> m_node;
-    QList<Article> m_articles;
+    QVector<Article> m_articles;
 };
 
 } // namespace akregator

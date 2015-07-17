@@ -526,7 +526,7 @@ void ArticleViewer::slotUpdateCombinedView()
     qCDebug(AKREGATOR_LOG) << "HTML rendering:" << spent.elapsed() << "ms";
 }
 
-void ArticleViewer::slotArticlesUpdated(TreeNode * /*node*/, const QList<Article> & /*list*/)
+void ArticleViewer::slotArticlesUpdated(TreeNode * /*node*/, const QVector<Article> & /*list*/)
 {
     if (m_viewMode == CombinedView) {
         //TODO
@@ -534,7 +534,7 @@ void ArticleViewer::slotArticlesUpdated(TreeNode * /*node*/, const QList<Article
     }
 }
 
-void ArticleViewer::slotArticlesAdded(TreeNode * /*node*/, const QList<Article> &list)
+void ArticleViewer::slotArticlesAdded(TreeNode * /*node*/, const QVector<Article> &list)
 {
     if (m_viewMode == CombinedView) {
         //TODO sort list, then merge
@@ -544,7 +544,7 @@ void ArticleViewer::slotArticlesAdded(TreeNode * /*node*/, const QList<Article> 
     }
 }
 
-void ArticleViewer::slotArticlesRemoved(TreeNode * /*node*/, const QList<Article> &list)
+void ArticleViewer::slotArticlesRemoved(TreeNode * /*node*/, const QVector<Article> &list)
 {
     Q_UNUSED(list)
 

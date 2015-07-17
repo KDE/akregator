@@ -197,7 +197,7 @@ protected:
     void doArticleNotification();
 
 private:
-    QList<Article> articles();
+    QVector<Article> articles();
 
     void connectToNode(TreeNode *child);
     void disconnectFromNode(TreeNode *child);

@@ -163,9 +163,9 @@ protected Q_SLOTS:
 
     void slotArticlesListed(KJob *job);
 
-    void slotArticlesUpdated(Akregator::TreeNode *node, const QList<Akregator::Article> &list);
-    void slotArticlesAdded(Akregator::TreeNode *node, const QList<Akregator::Article> &list);
-    void slotArticlesRemoved(Akregator::TreeNode *node, const QList<Akregator::Article> &list);
+    void slotArticlesUpdated(Akregator::TreeNode *node, const QVector<Akregator::Article> &list);
+    void slotArticlesAdded(Akregator::TreeNode *node, const QVector<Akregator::Article> &list);
+    void slotArticlesRemoved(Akregator::TreeNode *node, const QVector<Akregator::Article> &list);
 
     // from ArticleViewer
 private:
@@ -200,7 +200,7 @@ private:
     QPointer<TreeNode> m_node;
     QPointer<ArticleListJob> m_listJob;
     Article m_article;
-    QList<Article> m_articles;
+    QVector<Article> m_articles;
     QUrl m_link;
     std::vector<QSharedPointer<const Filters::AbstractMatcher> > m_filters;
     enum ViewMode { NormalView, CombinedView, SummaryView };

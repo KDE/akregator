@@ -50,13 +50,13 @@ class ArticleModel::Private
 private:
     ArticleModel *const q;
 public:
-    Private(const QList<Article> &articles, ArticleModel *qq);
-    QList<Article> articles;
+    Private(const QVector<Article> &articles, ArticleModel *qq);
+    QVector<Article> articles;
     QVector<QString> titleCache;
 
-    void articlesAdded(const QList<Article> &);
-    void articlesRemoved(const QList<Article> &);
-    void articlesUpdated(const QList<Article> &);
+    void articlesAdded(const QVector<Article> &);
+    void articlesRemoved(const QVector<Article> &);
+    void articlesUpdated(const QVector<Article> &);
 
 };
 
@@ -71,7 +71,7 @@ static QString stripHtml(const QString &html)
     return str.simplified();
 }
 
-ArticleModel::Private::Private(const QList<Article> &articles_, ArticleModel *qq)
+ArticleModel::Private::Private(const QVector<Article> &articles_, ArticleModel *qq)
     : q(qq), articles(articles_)
 {
     titleCache.resize(articles.count());
@@ -80,7 +80,7 @@ ArticleModel::Private::Private(const QList<Article> &articles_, ArticleModel *qq
     }
 }
 
-Akregator::ArticleModel::ArticleModel(const QList<Article> &articles, QObject *parent) : QAbstractTableModel(parent), d(new Private(articles, this))
+Akregator::ArticleModel::ArticleModel(const QVector<Article> &articles, QObject *parent) : QAbstractTableModel(parent), d(new Private(articles, this))
 {
 }
 
@@ -188,21 +188,21 @@ void ArticleModel::clear()
     reset();
 }
 
-void ArticleModel::articlesAdded(TreeNode *, const QList<Article> &l)
+void ArticleModel::articlesAdded(TreeNode *, const QVector<Article> &l)
 {
     d->articlesAdded(l);
 }
 
-void ArticleModel::articlesRemoved(TreeNode *, const QList<Article> &l)
+void ArticleModel::articlesRemoved(TreeNode *, const QVector<Article> &l)
 {
     d->articlesRemoved(l);
 }
-void ArticleModel::articlesUpdated(TreeNode *, const QList<Article> &l)
+void ArticleModel::articlesUpdated(TreeNode *, const QVector<Article> &l)
 {
     d->articlesUpdated(l);
 }
 
-void ArticleModel::Private::articlesAdded(const QList<Article> &list)
+void ArticleModel::Private::articlesAdded(const QVector<Article> &list)
 {
     if (list.isEmpty()) { //assert?
         return;
@@ -219,7 +219,7 @@ void ArticleModel::Private::articlesAdded(const QList<Article> &list)
     q->endInsertRows();
 }
 
-void ArticleModel::Private::articlesRemoved(const QList<Article> &list)
+void ArticleModel::Private::articlesRemoved(const QVector<Article> &list)
 {
     //might want to avoid indexOf() in case of performance problems
     Q_FOREACH (const Article &i, list) {
@@ -229,7 +229,7 @@ void ArticleModel::Private::articlesRemoved(const QList<Article> &list)
     }
 }
 
-void ArticleModel::Private::articlesUpdated(const QList<Article> &list)
+void ArticleModel::Private::articlesUpdated(const QVector<Article> &list)
 {
     int rmin = 0;
     int rmax = 0;

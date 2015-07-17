@@ -26,8 +26,7 @@
 #define AKREGATOR_BACKEND_STORAGEFACTORYMK4IMPL_H
 
 #include "storagefactory.h"
-
-class QString;
+#include <QString>
 class QStringList;
 
 namespace Akregator
@@ -40,11 +39,11 @@ class Storage;
 class StorageFactoryMK4Impl : public StorageFactory
 {
 public:
-    virtual QString key() const;
-    virtual QString name() const;
-    virtual void configure();
-    virtual Storage *createStorage(const QStringList &params) const;
-    virtual bool isConfigurable() const
+    QString key() const Q_DECL_OVERRIDE;
+    QString name() const Q_DECL_OVERRIDE;
+    void configure() Q_DECL_OVERRIDE;
+    Storage *createStorage(const QStringList &params) const Q_DECL_OVERRIDE;
+    bool isConfigurable() const Q_DECL_OVERRIDE
     {
         return false;
     }

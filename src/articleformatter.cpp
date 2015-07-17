@@ -102,7 +102,7 @@ class DefaultNormalViewFormatter::SummaryVisitor : public TreeNodeVisitor
 public:
     SummaryVisitor(DefaultNormalViewFormatter *p) : parent(p) {}
     bool visitFeed(Feed *node) Q_DECL_OVERRIDE {
-        text = QString("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::isRightToLeft() ? "rtl" : "ltr");
+        text = QStringLiteral("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::isRightToLeft() ? "rtl" : "ltr");
         const QString strippedTitle = Utils::stripTags(node->title());
         text += QString("<div class=\"headertitle\" dir=\"%1\">").arg(Utils::directionOf(strippedTitle));
         text += strippedTitle;
@@ -136,7 +136,7 @@ public:
 
         if (!node->htmlUrl().isEmpty())
         {
-            text += QString("<div dir=\"%1\">").arg(Utils::directionOf(node->htmlUrl()));
+            text += QStringLiteral("<div dir=\"%1\">").arg(Utils::directionOf(node->htmlUrl()));
             text += i18n("<b>Homepage:</b> <a href=\"%1\">%2</a>", node->htmlUrl(), node->htmlUrl());
             text += "</div>\n"; // / link
         }
@@ -148,7 +148,7 @@ public:
     }
 
     bool visitFolder(Folder *node) Q_DECL_OVERRIDE {
-        text = QString("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::isRightToLeft() ? "rtl" : "ltr");
+        text = QStringLiteral("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::isRightToLeft() ? "rtl" : "ltr");
         text += QString("<div class=\"headertitle\" dir=\"%1\">%2").arg(Utils::directionOf(Utils::stripTags(node->title())), node->title());
         if (node->unread() == 0)
         {
@@ -156,7 +156,7 @@ public:
         } else {
             text += i18np(" (1 unread article)", " (%1 unread articles)", node->unread());
         }
-        text += QString("</div>\n");
+        text += QStringLiteral("</div>\n");
         text += "</div>\n"; // /headerbox
 
         return true;
@@ -192,7 +192,7 @@ QString DefaultNormalViewFormatter::formatArticle(const Article &article, IconOp
         text += "</div>\n";
     }
     if (article.pubDate().isValid()) {
-        text += QString("<span class=\"header\" dir=\"%1\">").arg(Utils::directionOf(i18n("Date")));
+        text += QStringLiteral("<span class=\"header\" dir=\"%1\">").arg(Utils::directionOf(i18n("Date")));
         text += QString("%1:").arg(i18n("Date"));
         text += "</span><span class=\"headertext\">";
         text += KLocale::global()->formatDateTime(article.pubDate(), KLocale::FancyLongDate) + "</span>\n"; // TODO: might need RTL?
@@ -267,7 +267,7 @@ QString DefaultNormalViewFormatter::getCss() const
     const QPalette &pal = QApplication::palette();
 
     // from kmail::headerstyle.cpp
-    QString css = QString(
+    QString css = QStringLiteral(
                       "<style type=\"text/css\">\n"
                       "@media screen, print {"
                       "body {\n"
@@ -455,7 +455,7 @@ QString DefaultCombinedViewFormatter::getCss() const
     const QPalette &pal = QApplication::palette();
 
     // from kmail::headerstyle.cpp
-    QString css = QString(
+    QString css = QStringLiteral(
                       "<style type=\"text/css\">\n"
                       "@media screen, print {"
                       "body {\n"

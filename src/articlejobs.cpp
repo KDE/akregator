@@ -196,7 +196,7 @@ TreeNode *ArticleListJob::node() const
     return m_node;
 }
 
-QList<Article> ArticleListJob::articles() const
+QVector<Article> ArticleListJob::articles() const
 {
     return m_articles;
 }

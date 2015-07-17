@@ -195,13 +195,13 @@ Q_SIGNALS:
         @param TreeNode* the node articles were added to
         @param QStringList the guids of the articles added
     */
-    void signalArticlesAdded(Akregator::TreeNode *, const QList<Akregator::Article> &guids);
+    void signalArticlesAdded(Akregator::TreeNode *, const QVector<Akregator::Article> &guids);
 
     /** emitted when articles were updated */
-    void signalArticlesUpdated(Akregator::TreeNode *, const QList<Akregator::Article> &guids);
+    void signalArticlesUpdated(Akregator::TreeNode *, const QVector<Akregator::Article> &guids);
 
     /** emitted when articles were removed from this subtree. Note that this has nothing to do with actual article deletion! The article might have moved somewhere else in the tree, e.g. if the user moved the feed */
-    void signalArticlesRemoved(Akregator::TreeNode *, const QList<Akregator::Article> &guids);
+    void signalArticlesRemoved(Akregator::TreeNode *, const QVector<Akregator::Article> &guids);
 
 protected:
 
@@ -225,7 +225,7 @@ private:
     /** Returns a sequence of the articles this node contains. For feed groups, this returns a concatenated list of all articles in the sub tree.
     @return sequence of articles */
 
-    virtual QList<Article> articles() = 0;
+    virtual QVector<Article> articles() = 0;
 
 private:
     class TreeNodePrivate;
