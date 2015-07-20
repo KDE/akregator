@@ -403,8 +403,8 @@ void FrameManager::saveProperties(KConfigGroup &config)
         }
     }
 
-    config.writeEntry(QString::fromLatin1("Children"), strlst);
-    config.writeEntry(QString::fromLatin1("activeChildIndex"),
+    config.writeEntry(QStringLiteral("Children"), strlst);
+    config.writeEntry(QStringLiteral("activeChildIndex"),
                       m_frames.key(m_currentFrame));
 }
 

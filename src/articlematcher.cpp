@@ -89,15 +89,15 @@ QString Criterion::predicateToString(Predicate pred)
 {
     switch (pred) {
     case Contains:
-        return QString::fromLatin1("Contains");
+        return QStringLiteral("Contains");
     case Equals:
-        return QString::fromLatin1("Equals");
+        return QStringLiteral("Equals");
     case Matches:
-        return QString::fromLatin1("Matches");
+        return QStringLiteral("Matches");
     case Negation:
-        return QString::fromLatin1("Negation");
+        return QStringLiteral("Negation");
     default:// hopefully never reached
-        return QString::fromLatin1("Contains");
+        return QStringLiteral("Contains");
     }
 }
 
@@ -343,11 +343,11 @@ QString ArticleMatcher::associationToString(Association association)
 {
     switch (association) {
     case LogicalAnd:
-        return QString::fromLatin1("LogicalAnd");
+        return QStringLiteral("LogicalAnd");
     case LogicalOr:
-        return QString::fromLatin1("LogicalOr");
+        return QStringLiteral("LogicalOr");
     default:
-        return QString::fromLatin1("None");
+        return QStringLiteral("None");
     }
 }
 
