@@ -27,10 +27,10 @@
 
 #include "akregatorinterfaces_export.h"
 
-#include <QtCore/QObject>
-#include <QtCore/QHash>
-#include <QtCore/QString>
-#include <QtCore/QVariant>
+#include <QObject>
+#include <QHash>
+#include <QString>
+#include <QVariant>
 
 class KXMLGUIClient;
 

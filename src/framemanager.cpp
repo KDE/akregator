@@ -40,7 +40,7 @@
 #include <kparts/guiactivateevent.h>
 #include "akregator_debug.h"
 
-#include <QtCore/QStringList>
+#include <QStringList>
 #include <QApplication>
 
 namespace Akregator
