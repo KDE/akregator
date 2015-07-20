@@ -56,7 +56,6 @@ public:
     explicit FilterDeletedProxyModel(QObject *parent = Q_NULLPTR);
 
 private:
-    //reimpl
     bool filterAcceptsRow(int source_row, const QModelIndex &source_parent) const Q_DECL_OVERRIDE;
 };
 
@@ -67,14 +66,11 @@ public:
 
     explicit SortColorizeProxyModel(QObject *parent = Q_NULLPTR);
 
-    //reimpl
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const Q_DECL_OVERRIDE;
 
     void setFilters(const std::vector<QSharedPointer<const Akregator::Filters::AbstractMatcher> > &);
 
 private:
-
-    //reimpl
     bool filterAcceptsRow(int source_row, const QModelIndex &source_parent) const Q_DECL_OVERRIDE;
 
     QIcon m_keepFlagIcon;
@@ -148,10 +144,8 @@ private:
     void saveHeaderSettings();
     void loadHeaderSettings();
 
-    //reimpl
     void paintEvent(QPaintEvent *e) Q_DECL_OVERRIDE;
 
-    //reimpl
     void contextMenuEvent(QContextMenuEvent *event) Q_DECL_OVERRIDE;
 
     void selectIndex(const QModelIndex &index);

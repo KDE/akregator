@@ -63,37 +63,26 @@ public:
 
     explicit SubscriptionListModel(const QSharedPointer<const FeedList> &feedList, QObject *parent = Q_NULLPTR);
 
-    //impl
     int columnCount(const QModelIndex &parent = QModelIndex()) const Q_DECL_OVERRIDE;
 
-    //impl
     int rowCount(const QModelIndex &parent = QModelIndex()) const Q_DECL_OVERRIDE;
 
-    //impl
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const Q_DECL_OVERRIDE;
 
-    //impl
     QModelIndex index(int row, int column, const QModelIndex &parent = QModelIndex()) const Q_DECL_OVERRIDE;
 
-    //impl
     QModelIndex parent(const QModelIndex &index) const Q_DECL_OVERRIDE;
 
-    //reimpl
     QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const Q_DECL_OVERRIDE;
 
-    //reimpl
     Qt::ItemFlags flags(const QModelIndex &index) const Q_DECL_OVERRIDE;
 
-    //reimpl
     QStringList mimeTypes() const Q_DECL_OVERRIDE;
 
-    //reimpl
     QMimeData *mimeData(const QModelIndexList &indexes) const Q_DECL_OVERRIDE;
 
-    //reimpl
     bool dropMimeData(const QMimeData *data, Qt::DropAction action, int row, int column, const QModelIndex &parent) Q_DECL_OVERRIDE;
 
-    //reimpl
     bool setData(const QModelIndex &idx, const QVariant &value, int role = Qt::EditRole) Q_DECL_OVERRIDE;
 
     uint nodeIdForIndex(const QModelIndex &index) const;

@@ -92,13 +92,11 @@ public:
     @return a list of pointers to the child nodes
         */
 
-    //reimpl
     QList<const TreeNode *> children() const Q_DECL_OVERRIDE;
 
     QList<const TreeNode *> namedChildren(const QString &title) const;
     QList<TreeNode *> namedChildren(const QString &title);
 
-    //reimpl
     QList<TreeNode *> children() Q_DECL_OVERRIDE;
 
     QVector<const Feed *> feeds() const Q_DECL_OVERRIDE;
@@ -108,10 +106,8 @@ public:
 
     int indexOf(const TreeNode *node) const;
 
-    //reimpl
     TreeNode *childAt(int pos) Q_DECL_OVERRIDE;
 
-    //reimpl
     const TreeNode *childAt(int pos) const Q_DECL_OVERRIDE;
 
     /** inserts @c node as child after child node @c after.

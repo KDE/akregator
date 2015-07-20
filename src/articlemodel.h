@@ -73,14 +73,12 @@ public:
     explicit ArticleModel(const QVector<Article> &articles, QObject *parent = Q_NULLPTR);
     ~ArticleModel();
 
-    //reimpl
     int columnCount(const QModelIndex &parent = QModelIndex()) const Q_DECL_OVERRIDE;
 
-    //impl
     int rowCount(const QModelIndex &parent = QModelIndex()) const Q_DECL_OVERRIDE;
 
     QVariant headerData(int section, Qt::Orientation, int role) const Q_DECL_OVERRIDE;
-    //impl
+
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const Q_DECL_OVERRIDE;
 
     bool rowMatches(int row, const QSharedPointer<const Akregator::Filters::AbstractMatcher> &matcher) const;
