@@ -113,7 +113,7 @@ bool MainWindow::loadPart()
         return false;
     }
 
-    m_part->setObjectName(QLatin1String("akregator_part"));
+    m_part->setObjectName(QStringLiteral("akregator_part"));
     setCentralWidget(m_part->widget());
 
     connect(m_part, SIGNAL(setWindowCaption(QString)), this, SLOT(setCaption(QString)));
