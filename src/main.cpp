@@ -38,8 +38,8 @@ namespace Akregator
 class Application : public KontactInterface::PimUniqueApplication
 {
 public:
-    Application(int &argc, char **argv[], KAboutData &about)
-        : KontactInterface::PimUniqueApplication(argc, argv, about)
+    Application(int &argc, char **argv[])
+        : KontactInterface::PimUniqueApplication(argc, argv)
         , mMainWindow(0)
     {}
 
@@ -78,9 +78,10 @@ int Application::activate(const QStringList &args)
 
 int main(int argc, char **argv)
 {
+    Akregator::Application app(argc, &argv);
     Akregator::AboutData about;
+    app.setAboutData(about);
 
-    Akregator::Application app(argc, &argv, about);
     QCommandLineParser *cmdArgs = app.cmdArgs();
     Akregator::akregator_options(cmdArgs);
 
