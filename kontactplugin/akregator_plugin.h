@@ -51,7 +51,6 @@ public:
     AkregatorPlugin(KontactInterface::Core *core, const QVariantList &);
     ~AkregatorPlugin();
 
-    QString tipFile() const Q_DECL_OVERRIDE;
     int weight() const Q_DECL_OVERRIDE
     {
         return 475;

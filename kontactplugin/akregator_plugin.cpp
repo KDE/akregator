@@ -93,14 +93,6 @@ OrgKdeAkregatorPartInterface *AkregatorPlugin::interface()
 
 }
 
-QString AkregatorPlugin::tipFile() const
-{
-    // TODO: tips file
-    //QString file = QStandardPaths::locate(QStandardPaths::GenericDataLocation, "akregator/tips");
-    QString file;
-    return file;
-}
-
 KParts::ReadOnlyPart *AkregatorPlugin::createPart()
 {
     KParts::ReadOnlyPart *part = loadPart();
