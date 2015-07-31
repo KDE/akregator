@@ -39,7 +39,7 @@
 
 using namespace Akregator;
 
-// efficient alternative to hash.values().toVector():
+// efficient alternative so we don't convert first to a temporary QList then to QVector
 template <typename T>
 static QVector<T> hashValuesToVector(const QHash<int, T> &hash)
 {
