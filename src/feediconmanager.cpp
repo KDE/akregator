@@ -88,7 +88,7 @@ FeedIconManager *FeedIconManager::Private::m_instance = 0;
 
 QString FeedIconManager::Private::iconLocation(const QUrl &url) const
 {
-    QDBusReply<QString> reply = m_favIconsModule->call(QLatin1String("iconForUrl"), url.url());
+    QDBusReply<QString> reply = m_favIconsModule->call(QStringLiteral("iconForUrl"), url.url());
     return reply.isValid() ? reply.value() : QString();
 }
 
@@ -99,7 +99,7 @@ void FeedIconManager::Private::loadIcon(const QString &url_)
     QString iconFile = iconLocation(url);
 
     if (iconFile.isEmpty()) { // cache miss
-        const QDBusReply<void> reply = m_favIconsModule->call(QLatin1String("downloadHostIcon"), url.url());
+        const QDBusReply<void> reply = m_favIconsModule->call(QStringLiteral("downloadHostIcon"), url.url());
         if (!reply.isValid()) {
             qCWarning(AKREGATOR_LOG) << "Couldn't reach favicon service. Request favicon for " << url << " failed";
         }

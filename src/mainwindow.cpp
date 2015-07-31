@@ -66,7 +66,7 @@ MainWindow::MainWindow(QWidget *parent, Qt::WindowFlags f)
     setPluginLoadingMode(DoNotLoadPlugins);
 
     // set the shell's ui resource file
-    setXMLFile(QLatin1String("akregator_shell.rc"));
+    setXMLFile(QStringLiteral("akregator_shell.rc"));
 
     KStandardAction::keyBindings(this, SLOT(optionsConfigureKeys()), actionCollection()); // options_configure_keybinding
     KStandardAction::configureToolbars(this, SLOT(optionsConfigureToolbars()), actionCollection()); // options_configure_toolbars
@@ -100,7 +100,7 @@ bool MainWindow::loadPart()
     // this routine will find and load our Part.  it finds the Part by
     // name which is a bad idea usually.. but it's alright in this
     // case since our Part is made for this Shell
-    KPluginLoader loader(QLatin1String("akregatorpart"));
+    KPluginLoader loader(QStringLiteral("akregatorpart"));
     KPluginFactory *const factory = loader.factory();
     if (!factory) {
         KMessageBox::error(this, i18n("Could not find the Akregator part; please check your installation.\n%1", loader.errorString()));
