@@ -68,8 +68,7 @@ Feed *AddFeedDialog::feed()
 }
 
 AddFeedDialog::AddFeedDialog(QWidget *parent, const char *name)
-    : QDialog(parent
-          /*Qt::WStyle_DialogBorder*/), m_feed(0)
+    : QDialog(parent), m_feed(0)
 {
     setObjectName(name);
     widget = new AddFeedWidget(this);
