@@ -116,7 +116,7 @@ void Akregator::SubscriptionListDelegate::initStyleOption(QStyleOptionViewItem *
     QModelIndex unreadIndex = index.sibling(index.row(), SubscriptionListModel::UnreadCountColumn);
     int unread = unreadIndex.data().toInt();
     if (unread > 0) {
-        optionV4->text += QString(" (%1)").arg(unread);
+        optionV4->text += QStringLiteral(" (%1)").arg(unread);
     }
 }
 

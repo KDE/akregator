@@ -75,10 +75,7 @@ namespace Akregator
 
 ArticleViewer::ArticleViewer(QWidget *parent)
     : QWidget(parent),
-      m_url(0),
-      m_htmlFooter(),
-      m_currentText(),
-      m_imageDir(QUrl::fromLocalFile(QStandardPaths::writableLocation(QStandardPaths::CacheLocation) + QLatin1Char('/') + "akregator/Media/")),
+      m_imageDir(QUrl::fromLocalFile(QString(QStandardPaths::writableLocation(QStandardPaths::CacheLocation) + QLatin1String("/akregator/Media/")))),
       m_node(0),
       m_viewMode(NormalView),
       m_part(new ArticleViewerPart(this)),
@@ -121,11 +118,11 @@ ArticleViewer::ArticleViewer(QWidget *parent)
 
     QAction *action = 0;
 
-    action = m_part->actionCollection()->addAction("copylinkaddress");
+    action = m_part->actionCollection()->addAction(QStringLiteral("copylinkaddress"));
     action->setText(i18n("Copy &Link Address"));
     connect(action, &QAction::triggered, this, &ArticleViewer::slotCopyLinkAddress);
 
-    action = m_part->actionCollection()->addAction("savelinkas");
+    action = m_part->actionCollection()->addAction(QStringLiteral("savelinkas"));
     action->setText(i18n("&Save Link As..."));
     connect(action, &QAction::triggered, this, &ArticleViewer::slotSaveLinkAs);
 
@@ -136,7 +133,7 @@ ArticleViewer::ArticleViewer(QWidget *parent)
     connect(KGlobalSettings::self(), &KGlobalSettings::kdisplayPaletteChanged, this, &ArticleViewer::slotPaletteOrFontChanged);
     connect(KGlobalSettings::self(), &KGlobalSettings::kdisplayFontChanged, this, &ArticleViewer::slotPaletteOrFontChanged);
 
-    m_htmlFooter = "</body></html>";
+    m_htmlFooter = QStringLiteral("</body></html>");
 }
 
 ArticleViewer::~ArticleViewer()
@@ -243,7 +240,7 @@ void ArticleViewer::slotPopupMenu(const QPoint &p, const QUrl &kurl, mode_t, con
 void ArticleViewer::slotCopy()
 {
     QString text = m_part->selectedText();
-    text.replace(QChar(0xa0), ' ');
+    text.replace(QChar(0xa0), QLatin1Char(' '));
     QClipboard *const cb = QApplication::clipboard();
     Q_ASSERT(cb);
     cb->setText(text, QClipboard::Clipboard);
@@ -300,7 +297,7 @@ void ArticleViewer::slotSaveLinkAs()
 
     if (tmp.fileName().isEmpty()) {
         tmp = tmp.adjusted(QUrl::RemoveFilename);
-        tmp.setPath(tmp.path() + "index.html");
+        tmp.setPath(tmp.path() + QLatin1String("index.html"));
     }
     KParts::BrowserRun::simpleSave(tmp, tmp.fileName());
 }
@@ -396,7 +393,7 @@ void ArticleViewer::renderContent(const QString &text)
 
 void ArticleViewer::beginWriting()
 {
-    QString head = QString("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\n <html><head><title>.</title>");
+    QString head = QStringLiteral("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\n <html><head><title>.</title>");
 
     if (m_viewMode == CombinedView) {
         head += m_combinedModeCSS;
@@ -404,7 +401,7 @@ void ArticleViewer::beginWriting()
         head += m_normalModeCSS;
     }
 
-    head += "</style></head><body>";
+    head += QLatin1String("</style></head><body>");
     m_part->view()->setContentsPos(0, 0);
 
     //pass link to the KHTMLPart to make relative links work
@@ -413,7 +410,7 @@ void ArticleViewer::beginWriting()
     //See bug 177754
 
     QUrl url(m_link);
-    url.addQueryItem("akregatorPreviewMode", "true");
+    url.addQueryItem(QStringLiteral("akregatorPreviewMode"), QStringLiteral("true"));
     m_part->begin(url);
     m_part->write(head);
 }
@@ -517,7 +514,7 @@ void ArticleViewer::slotUpdateCombinedView()
             continue;
         }
 
-        text += "<p><div class=\"article\">" + m_combinedViewFormatter->formatArticle(i, ArticleFormatter::NoIcon) + "</div><p>";
+        text += QLatin1String("<p><div class=\"article\">") + m_combinedViewFormatter->formatArticle(i, ArticleFormatter::NoIcon) + QLatin1String("</div><p>");
         ++num;
     }
 
@@ -644,7 +641,7 @@ QSize ArticleViewer::sizeHint() const
 
 void ArticleViewer::displayAboutPage()
 {
-    QString location = QStandardPaths::locate(QStandardPaths::GenericDataLocation, "akregator/about/main.html");
+    QString location = QStandardPaths::locate(QStandardPaths::GenericDataLocation, QStringLiteral("akregator/about/main.html"));
 
     m_part->begin(QUrl::fromLocalFile(location));
     QString info =
@@ -662,12 +659,12 @@ void ArticleViewer::displayAboutPage()
               "<p>We hope that you will enjoy Akregator.</p>\n"
               "<p>Thank you,</p>\n"
               "<p style='margin-bottom: 0px'>&nbsp; &nbsp; The Akregator Team</p>\n",
-              KDEPIM_VERSION,
-              "http://akregator.kde.org/"); // Akregator homepage URL
+              QLatin1String(KDEPIM_VERSION),
+              QStringLiteral("http://akregator.kde.org/")); // Akregator homepage URL
 
     QString fontSize = QString::number(pointsToPixel(Settings::mediumFontSize()));
     QString appTitle = i18n("Akregator");
-    QString catchPhrase = ""; //not enough space for a catch phrase at default window size i18n("Part of the Kontact Suite");
+    QString catchPhrase; //not enough space for a catch phrase at default window size i18n("Part of the Kontact Suite");
     QString quickDescription = i18n("A KDE news feed reader.");
 
     QFile f(location);
@@ -679,9 +676,9 @@ void ArticleViewer::displayAboutPage()
     QString content = QString::fromLocal8Bit(f.readAll());
     f.close();
 
-    QString infocss = QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kf5/infopage/kde_infopage.css");
+    QString infocss = QStandardPaths::locate(QStandardPaths::GenericDataLocation, QStringLiteral("kf5/infopage/kde_infopage.css"));
     QString rtl = (QApplication::layoutDirection() == Qt::RightToLeft)
-                  ? QStringLiteral("@import \"%1\";").arg(QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kf5/infopage/kde_infopage_rtl.css"))
+                  ? QStringLiteral("@import \"%1\";").arg(QStandardPaths::locate(QStandardPaths::GenericDataLocation, QStringLiteral("kf5/infopage/kde_infopage_rtl.css")))
                   : QString();
 
     m_part->write(content.arg(infocss, rtl, fontSize, appTitle, catchPhrase, quickDescription, info));
@@ -691,7 +688,7 @@ void ArticleViewer::displayAboutPage()
 ArticleViewerPart::ArticleViewerPart(QWidget *parent) : KHTMLPart(parent),
     m_button(-1)
 {
-    setXMLFile(QStandardPaths::locate(QStandardPaths::GenericDataLocation, "akregator/articleviewer.rc"), true);
+    setXMLFile(QStandardPaths::locate(QStandardPaths::GenericDataLocation, QStringLiteral("akregator/articleviewer.rc")), true);
 }
 
 int ArticleViewerPart::button() const
@@ -711,7 +708,7 @@ bool ArticleViewerPart::urlSelected(const QString &url, int button, int state, c
                                     const KParts::BrowserArguments &browserArgs)
 {
     m_button = button;
-    if (url == "config:/disable_introduction") {
+    if (url == QLatin1String("config:/disable_introduction")) {
         KGuiItem yesButton(KStandardGuiItem::yes());
         yesButton.setText(i18n("Disable"));
         KGuiItem noButton(KStandardGuiItem::no());

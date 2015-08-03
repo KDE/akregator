@@ -54,11 +54,11 @@ void AkregatorTextToSpeech::stateChanged(PimCommon::TextToSpeechWidget::State st
         const QVector<Akregator::Article> lstArticle = mMainWindow->speakSelectedArticles();
         for (int i = 0; i < lstArticle.size(); ++i) {
             if (!speakMe.isEmpty()) {
-                speakMe += ". . . . . . " + i18n("Next Article: ");
+                speakMe += QLatin1String(". . . . . . ") + i18n("Next Article: ");
             }
             const Akregator::Article art = lstArticle.at(i);
             speakMe += KCharsets::resolveEntities(Utils::stripTags((art).title()))
-                       + ". . . . "
+                       + QLatin1String(". . . . ")
                        + KCharsets::resolveEntities(Utils::stripTags((art).description()));
 
         }
