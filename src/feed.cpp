@@ -47,8 +47,6 @@
 #include <QUrl>
 #include <KRandom>
 
-//#include <qtl.h>
-
 #include <QDateTime>
 #include <QDomDocument>
 #include <QDomElement>
