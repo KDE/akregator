@@ -183,7 +183,7 @@ int FeedStorageDummyImpl::comments(const QString &guid) const
 
 QString FeedStorageDummyImpl::commentsLink(const QString &guid) const
 {
-    return contains(guid) ? d->entries[guid].commentsLink : "";
+    return contains(guid) ? d->entries[guid].commentsLink : QString();
 }
 
 bool FeedStorageDummyImpl::guidIsHash(const QString &guid) const
@@ -231,16 +231,16 @@ void FeedStorageDummyImpl::setDeleted(const QString &guid)
         }
     }
 
-    entry.description = "";
-    entry.content = "";
-    entry.title = "";
-    entry.link = "";
-    entry.commentsLink = "";
+    entry.description.clear();
+    entry.content.clear();
+    entry.title.clear();
+    entry.link.clear();
+    entry.commentsLink.clear();
 }
 
 QString FeedStorageDummyImpl::link(const QString &guid) const
 {
-    return contains(guid) ? d->entries[guid].link : "";
+    return contains(guid) ? d->entries[guid].link : QString();
 }
 
 uint FeedStorageDummyImpl::pubDate(const QString &guid) const
@@ -262,17 +262,17 @@ void FeedStorageDummyImpl::setStatus(const QString &guid, int status)
 
 QString FeedStorageDummyImpl::title(const QString &guid) const
 {
-    return contains(guid) ? d->entries[guid].title : "";
+    return contains(guid) ? d->entries[guid].title : QString();
 }
 
 QString FeedStorageDummyImpl::description(const QString &guid) const
 {
-    return contains(guid) ? d->entries[guid].description : "";
+    return contains(guid) ? d->entries[guid].description : QString();
 }
 
 QString FeedStorageDummyImpl::content(const QString &guid) const
 {
-    return contains(guid) ? d->entries[guid].content : "";
+    return contains(guid) ? d->entries[guid].content : QString();
 }
 
 QString FeedStorageDummyImpl::authorName(const QString &guid) const

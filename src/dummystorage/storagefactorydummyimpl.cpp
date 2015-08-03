@@ -42,7 +42,7 @@ Storage *StorageFactoryDummyImpl::createStorage(const QStringList &params) const
 
 QString StorageFactoryDummyImpl::key() const
 {
-    return "dummy";
+    return QStringLiteral("dummy");
 }
 
 QString StorageFactoryDummyImpl::name() const

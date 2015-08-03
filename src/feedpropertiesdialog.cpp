@@ -41,7 +41,7 @@ namespace Akregator
 FeedPropertiesWidget::FeedPropertiesWidget(QWidget *parent, const char *name)
     : QWidget(parent)
 {
-    setObjectName(name);
+    setObjectName(QLatin1String(name));
     setupUi(this);
     connect(cb_updateInterval, &QCheckBox::toggled, updateSpinBox, &QSpinBox::setEnabled);
     connect(cb_updateInterval, &QCheckBox::toggled, updateComboBox, &KComboBox::setEnabled);
@@ -73,9 +73,9 @@ void FeedPropertiesWidget::slotUpdateCheckBoxToggled(bool enabled)
 }
 
 FeedPropertiesDialog::FeedPropertiesDialog(QWidget *parent, const char *name)
-    : QDialog(parent/*, Qt::WStyle_DialogBorder*/)
+    : QDialog(parent)
 {
-    setObjectName(name);
+    setObjectName(QLatin1String(name));
     widget = new FeedPropertiesWidget(this);
     setWindowTitle(i18n("Feed Properties"));
     QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);

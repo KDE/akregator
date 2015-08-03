@@ -114,7 +114,7 @@ TabWidget::TabWidget(QWidget *parent)
     d->tabsClose = new QToolButton(this);
     connect(d->tabsClose, &QToolButton::clicked, this, &TabWidget::slotRemoveCurrentFrame);
 
-    d->tabsClose->setIcon(QIcon::fromTheme("tab-close"));
+    d->tabsClose->setIcon(QIcon::fromTheme(QStringLiteral("tab-close")));
     d->tabsClose->setEnabled(false);
     d->tabsClose->adjustSize();
     d->tabsClose->setToolTip(i18n("Close the current tab"));
@@ -264,7 +264,7 @@ uint TabWidget::Private::tabBarWidthForMaxChars(int maxLength)
         }
         QString newTitle = f->title();
         if (newTitle.length() > maxLength) {
-            newTitle = newTitle.left(maxLength - 3) + "...";
+            newTitle = newTitle.left(maxLength - 3) + QLatin1String("...");
         }
 
         int lw = fm.width(newTitle);
@@ -325,10 +325,10 @@ void TabWidget::Private::setTitle(const QString &title, QWidget *sender)
     QString newTitle = title;
     if (newTitle.length() > newMaxLength) {
         q->setTabToolTip(senderIndex, newTitle);
-        newTitle = newTitle.left(newMaxLength - 3) + "...";
+        newTitle = newTitle.left(newMaxLength - 3) + QLatin1String("...");
     }
 
-    newTitle.replace('&', "&&");
+    newTitle.replace(QLatin1Char('&'), QStringLiteral("&&"));
 
     if (q->tabText(senderIndex) != newTitle) {
         q->setTabText(senderIndex, newTitle);
@@ -346,10 +346,10 @@ void TabWidget::Private::setTitle(const QString &title, QWidget *sender)
 
             if (newTitle.length() > newMaxLength) {
                 q->setTabToolTip(index, newTitle);
-                newTitle = newTitle.left(newMaxLength - 3) + "...";
+                newTitle = newTitle.left(newMaxLength - 3) + QLatin1String("...");
             }
 
-            newTitle.replace('&', "&&");
+            newTitle.replace(QLatin1Char('&'), QStringLiteral("&&"));
             if (newTitle != q->tabText(index)) {
                 q->setTabText(index, newTitle);
             }

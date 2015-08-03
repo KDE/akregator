@@ -102,7 +102,7 @@ Akregator::MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl
       m_actionManager(actionManager),
       m_feedListManagementInterface(new FeedListManagementImpl)
 {
-    setObjectName(name);
+    setObjectName(QLatin1String(name));
 
     FeedListManagementInterface::setInstance(m_feedListManagementInterface);
 
@@ -127,7 +127,7 @@ Akregator::MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl
             this, SLOT(slotFetchingStopped()));
 
     m_feedListView = new SubscriptionListView(m_horizontalSplitter);
-    m_feedListView->setObjectName("feedtree");
+    m_feedListView->setObjectName(QStringLiteral("feedtree"));
     m_actionManager->initSubscriptionListView(m_feedListView);
 
     connect(m_feedListView, SIGNAL(userActionTakingPlace()),
@@ -176,7 +176,7 @@ Akregator::MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl
     m_tabWidget->setWhatsThis(i18n("You can view multiple articles in several open tabs."));
 
     m_mainTab = new QWidget(this);
-    m_mainTab->setObjectName("Article Tab");
+    m_mainTab->setObjectName(QStringLiteral("Article Tab"));
     m_mainTab->setWhatsThis(i18n("Articles list."));
 
     QVBoxLayout *mainTabLayout = new QVBoxLayout(m_mainTab);
@@ -190,7 +190,7 @@ Akregator::MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl
     mainTabLayout->addWidget(m_searchBar);
 
     m_articleSplitter = new QSplitter(Qt::Vertical, m_mainTab);
-    m_articleSplitter->setObjectName("panner2");
+    m_articleSplitter->setObjectName(QStringLiteral("panner2"));
 
     m_articleListView = new ArticleListView(m_articleSplitter);
     connect(m_articleListView, SIGNAL(userActionTakingPlace()),
@@ -390,14 +390,14 @@ void Akregator::MainWidget::sendArticle(bool attach)
                                       title,
                                       QString(),
                                       QString(),
-                                      QStringList(text),
+                                      QStringList()<<QLatin1String(text),
                                       text);
     } else {
         KToolInvocation::invokeMailer(QString(),
                                       QString(),
                                       QString(),
                                       title,
-                                      text,
+                                      QLatin1String(text),
                                       QString(),
                                       QStringList(),
                                       text);
@@ -1025,7 +1025,7 @@ void Akregator::MainWidget::slotArticleDelete()
                                            msg, i18n("Delete Article"),
                                            KStandardGuiItem::del(),
                                            KStandardGuiItem::cancel(),
-                                           "Disable delete article confirmation") != KMessageBox::Continue) {
+                                           QStringLiteral("Disable delete article confirmation")) != KMessageBox::Continue) {
         return;
     }
 

@@ -148,7 +148,7 @@ public:
     }
 
     bool visitFolder(Folder *node) Q_DECL_OVERRIDE {
-        text = QStringLiteral("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::isRightToLeft() ? "rtl" : "ltr");
+        text = QStringLiteral("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::isRightToLeft() ? QStringLiteral("rtl") : QStringLiteral("ltr"));
         text += QString::fromLatin1("<div class=\"headertitle\" dir=\"%1\">%2").arg(Utils::directionOf(Utils::stripTags(node->title())), node->title());
         if (node->unread() == 0)
         {
@@ -176,7 +176,7 @@ public:
 QString DefaultNormalViewFormatter::formatArticle(const Article &article, IconOption icon) const
 {
     QString text;
-    text = QString::fromLatin1("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::isRightToLeft() ? "rtl" : "ltr");
+    text = QString::fromLatin1("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::isRightToLeft() ? QStringLiteral("rtl") : QStringLiteral("ltr"));
     const QString enc = formatEnclosure(*article.enclosure());
 
     const QString strippedTitle = Utils::stripTags(article.title());
@@ -281,7 +281,7 @@ QString DefaultNormalViewFormatter::getCss() const
                        pal.color(QPalette::Text).name(),
                        pal.color(QPalette::Base).name());
     css += QString(
-               "a {\n"
+               QString::fromLatin1("a {\n")
                + QString::fromLatin1("  color: %1 ! important;\n")
                + QString(!Settings::underlineLinks() ? QLatin1String(" text-decoration: none ! important;\n") : QLatin1String(""))
                +       QLatin1String("}\n\n")
@@ -299,7 +299,7 @@ QString DefaultNormalViewFormatter::getCss() const
                                ".headertitle a:hover{ color: %1 ! important;\n text-decoration: none ! important;\n }\n"
                                ".headertitle a:active { color: %1 ! important;\n  text-decoration: none ! important;\n }\n")
            .arg(pal.color(QPalette::HighlightedText).name());
-    css += QString(
+    css += QString::fromLatin1(
                ".headertitle {\n"
                "  background: %1 ! important;\n"
                "  padding:2px;\n"
@@ -323,7 +323,7 @@ QString DefaultNormalViewFormatter::getCss() const
                pal.color(QPalette::Highlight).name(),
                pal.color(QPalette::HighlightedText).name());
 
-    css += QString(
+    css += QString::fromLatin1(
                "body { clear: none; }\n\n"
                ".content {\n"
                "  display: block;\n"
@@ -445,7 +445,7 @@ QString DefaultCombinedViewFormatter::formatArticle(const Article &article, Icon
         text += QLatin1String("\">") + i18n("Complete Story") + QLatin1String("</a></p>");
     }
 
-    text += "</div>";
+    text += QString::fromLatin1("</div>");
     //qCDebug(AKREGATOR_LOG) << text;
     return text;
 }
@@ -464,7 +464,7 @@ QString DefaultCombinedViewFormatter::getCss() const
                       "  color: %3 ! important;\n"
                       "  background: %4 ! important;\n"
                       "}\n\n").arg(Settings::standardFont(),
-                                   QString::number(pointsToPixel(Settings::mediumFontSize())) + "px",
+                                   QString(QString::number(pointsToPixel(Settings::mediumFontSize())) + QString::fromLatin1("px")),
                                    pal.color(QPalette::Text).name(),
                                    pal.color(QPalette::Base).name());
     css += QString(
@@ -472,13 +472,12 @@ QString DefaultCombinedViewFormatter::getCss() const
                + QString::fromLatin1("  color: %1 ! important;\n")
                + QString(!Settings::underlineLinks() ? QLatin1String(" text-decoration: none ! important;\n") : QLatin1String(""))
                +       QLatin1String("}\n\n")
-               + ".headerbox {\n"
-               + "  background: %2 ! important;\n"
-               + "  color: %3 ! important;\n"
-               + "  border:1px solid #000;\n"
-               + "  margin-bottom: 10pt;\n"
-//    +"  width: 99%;\n"
-               +        "}\n\n")
+               + QString::fromLatin1(".headerbox {\n")
+               + QString::fromLatin1("  background: %2 ! important;\n")
+               + QString::fromLatin1("  color: %3 ! important;\n")
+               + QString::fromLatin1("  border:1px solid #000;\n")
+               + QString::fromLatin1("  margin-bottom: 10pt;\n")
+               +        QString::fromLatin1("}\n\n"))
            .arg(pal.color(QPalette::Link).name(),
                 pal.color(QPalette::Background).name(),
                 pal.color(QPalette::Text).name());
@@ -488,7 +487,7 @@ QString DefaultCombinedViewFormatter::getCss() const
                                ".headertitle a:hover{ color: %1 ! important; text-decoration: none ! important;\n }\n"
                                ".headertitle a:active { color: %1 ! important; text-decoration: none ! important;\n }\n")
            .arg(pal.color(QPalette::HighlightedText).name());
-    css += QString(
+    css += QString::fromLatin1(
                ".headertitle {\n"
                "  background: %1 ! important;\n"
                "  padding:2px;\n"
@@ -511,7 +510,7 @@ QString DefaultCombinedViewFormatter::getCss() const
                "}\n\n").arg(pal.color(QPalette::Highlight).name(),
                             pal.color(QPalette::HighlightedText).name());
 
-    css += QString(
+    css += QString::fromLatin1(
                "body { clear: none; }\n\n"
                ".content {\n"
                "  display: block;\n"

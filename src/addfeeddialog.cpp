@@ -70,7 +70,7 @@ Feed *AddFeedDialog::feed()
 AddFeedDialog::AddFeedDialog(QWidget *parent, const char *name)
     : QDialog(parent), m_feed(0)
 {
-    setObjectName(name);
+    setObjectName(QLatin1String(name));
     widget = new AddFeedWidget(this);
     setWindowTitle(i18n("Add Feed"));
     QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
@@ -109,8 +109,8 @@ void AddFeedDialog::accept()
         feedUrl = feedUrl.right(feedUrl.length() - 5);
     }
 
-    if (feedUrl.indexOf(":/") == -1) {
-        feedUrl.prepend("http://");
+    if (feedUrl.indexOf(QStringLiteral(":/")) == -1) {
+        feedUrl.prepend(QStringLiteral("http://"));
     }
 
     QUrl asUrl(feedUrl);
