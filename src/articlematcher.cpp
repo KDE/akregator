@@ -258,9 +258,9 @@ bool ArticleMatcher::matches(const Article &a) const
 
 void ArticleMatcher::writeConfig(KConfigGroup *config) const
 {
-    config->writeEntry(QString::fromLatin1("matcherAssociation"), associationToString(m_association));
+    config->writeEntry(QStringLiteral("matcherAssociation"), associationToString(m_association));
 
-    config->writeEntry(QString::fromLatin1("matcherCriteriaCount"), m_criteria.count());
+    config->writeEntry(QStringLiteral("matcherCriteriaCount"), m_criteria.count());
 
     QString criterionGroupPrefix = config->name() + QString::fromLatin1("_Criterion");
 
