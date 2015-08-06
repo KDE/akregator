@@ -5,7 +5,6 @@ include_directories(
   ${CMAKE_SOURCE_DIR}/akregator/interfaces
   ${CMAKE_SOURCE_DIR}/akregator/plugins/mk4storage/metakit/include
   ${CMAKE_BINARY_DIR}/akregator
-  ${Boost_INCLUDE_DIR}
 )
 
 set(libmetakitlocal_SRCS

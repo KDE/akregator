@@ -1,7 +1,5 @@
 ########### next target ###############
 
-include_directories(${Boost_INCLUDE_DIR})
-
 set(akregatorinterfaces_LIB_SRCS
   command.cpp
   feedlistmanagementinterface.cpp
