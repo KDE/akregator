@@ -390,7 +390,7 @@ void Akregator::MainWidget::sendArticle(bool attach)
                                       title,
                                       QString(),
                                       QString(),
-                                      QStringList()<<QLatin1String(text),
+                                      QStringList() << QLatin1String(text),
                                       text);
     } else {
         KToolInvocation::invokeMailer(QString(),
