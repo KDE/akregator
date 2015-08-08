@@ -90,7 +90,7 @@ public:
     const FeedStorage *archiveFor(const QString &url) const Q_DECL_OVERRIDE;
 
     bool autoCommit() const Q_DECL_OVERRIDE;
-    int unreadFor(const QString &url) const;
+    int unreadFor(const QString &url) const Q_DECL_OVERRIDE;
     void setUnreadFor(const QString &url, int unread) Q_DECL_OVERRIDE;
     int totalCountFor(const QString &url) const Q_DECL_OVERRIDE;
     void setTotalCountFor(const QString &url, int total) Q_DECL_OVERRIDE;

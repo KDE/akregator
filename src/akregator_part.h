@@ -89,7 +89,7 @@ public:
         Opens feedlist
         @param url URL to feedlist
         */
-    bool openUrl(const QUrl &url);
+    bool openUrl(const QUrl &url) Q_DECL_OVERRIDE;
 
     /** Opens standard feedlist */
     void openStandardFeedList();

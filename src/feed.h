@@ -84,10 +84,10 @@ public:
     explicit Feed(Akregator::Backend::Storage *storage);
     ~Feed();
 
-    bool accept(TreeNodeVisitor *visitor);
+    bool accept(TreeNodeVisitor *visitor) Q_DECL_OVERRIDE;
 
     /** exports the feed settings to OPML */
-    QDomElement toOPML(QDomElement parent, QDomDocument document) const;
+    QDomElement toOPML(QDomElement parent, QDomDocument document) const Q_DECL_OVERRIDE;
 
     /**
         returns whether this feed uses its own fetch interval or the global setting
@@ -232,7 +232,7 @@ public Q_SLOTS:
     void slotAbortFetch();
 
     /** add this feed to the fetch queue @c queue */
-    void slotAddToFetchQueue(Akregator::FetchQueue *queue, bool intervalFetchOnly = false);
+    void slotAddToFetchQueue(Akregator::FetchQueue *queue, bool intervalFetchOnly = false) Q_DECL_OVERRIDE;
 
     void slotAddFeedIconListener();
 
@@ -252,7 +252,7 @@ private:
     Akregator::Backend::Storage *storage();
 
 private:
-    QVector<Article> articles();
+    QVector<Article> articles() Q_DECL_OVERRIDE;
 
     /** loads articles from archive **/
     void loadArticles();
@@ -260,7 +260,7 @@ private:
 
     void recalcUnreadCount();
 
-    void doArticleNotification();
+    void doArticleNotification() Q_DECL_OVERRIDE;
 
     /** sets the unread count for this feed */
     void setUnread(int unread);

@@ -181,7 +181,7 @@ public Q_SLOTS:
 
     /** enqueues children recursively for fetching
     @param queue a fetch queue */
-    void slotAddToFetchQueue(Akregator::FetchQueue *queue, bool intervalFetchesOnly = false);
+    void slotAddToFetchQueue(Akregator::FetchQueue *queue, bool intervalFetchesOnly = false) Q_DECL_OVERRIDE;
 
 protected:
 
@@ -190,10 +190,10 @@ protected:
     @param node the tree node to insert */
     void insertChild(int index, TreeNode *node);
 
-    void doArticleNotification();
+    void doArticleNotification() Q_DECL_OVERRIDE;
 
 private:
-    QVector<Article> articles();
+    QVector<Article> articles() Q_DECL_OVERRIDE;
 
     void connectToNode(TreeNode *child);
     void disconnectFromNode(TreeNode *child);

@@ -62,12 +62,12 @@ public:
     explicit FeedListManagementImpl(const QSharedPointer<FeedList> &list = QSharedPointer<FeedList>());
     void setFeedList(const QSharedPointer<FeedList> &list);
 
-    /* reimp */ QStringList categories() const Q_DECL_OVERRIDE;
-    /* reimp */ QStringList feeds(const QString &catId) const Q_DECL_OVERRIDE;
-    /* reimp */ void addFeed(const QString &url, const QString &catId) Q_DECL_OVERRIDE;
-    /* reimp */ void removeFeed(const QString &url, const QString &catId) Q_DECL_OVERRIDE;
-    /* reimp */ QString addCategory(const QString &name, const QString &parentId) const Q_DECL_OVERRIDE;
-    /* reimp */ QString getCategoryName(const QString &catId) const Q_DECL_OVERRIDE;
+    QStringList categories() const Q_DECL_OVERRIDE;
+    QStringList feeds(const QString &catId) const Q_DECL_OVERRIDE;
+    void addFeed(const QString &url, const QString &catId) Q_DECL_OVERRIDE;
+    void removeFeed(const QString &url, const QString &catId) Q_DECL_OVERRIDE;
+    QString addCategory(const QString &name, const QString &parentId) const Q_DECL_OVERRIDE;
+    QString getCategoryName(const QString &catId) const Q_DECL_OVERRIDE;
 
 private:
     QSharedPointer<FeedList> m_feedList;

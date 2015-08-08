@@ -95,11 +95,11 @@ public:
 
     explicit DefaultCombinedViewFormatter(const QUrl &imageDir, QPaintDevice *device = 0);
 
-    QString formatArticle(const Article &article, IconOption option) const;
+    QString formatArticle(const Article &article, IconOption option) const Q_DECL_OVERRIDE;
 
-    QString formatSummary(TreeNode *node) const;
+    QString formatSummary(TreeNode *node) const Q_DECL_OVERRIDE;
 
-    QString getCss() const;
+    QString getCss() const Q_DECL_OVERRIDE;
 
 private:
     DefaultCombinedViewFormatter();

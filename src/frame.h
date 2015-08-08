@@ -189,14 +189,14 @@ public:
     MainFrame(QWidget *parent, KParts::ReadOnlyPart *part, QWidget *widget);
     virtual ~MainFrame();
 
-    virtual QUrl url() const;
+    QUrl url() const Q_DECL_OVERRIDE;
 
-    virtual bool openUrl(const OpenUrlRequest &)
+    bool openUrl(const OpenUrlRequest &) Q_DECL_OVERRIDE
     {
         return false;
     }
 
-    virtual KParts::ReadOnlyPart *part() const
+    KParts::ReadOnlyPart *part() const Q_DECL_OVERRIDE
     {
         return m_part;
     }

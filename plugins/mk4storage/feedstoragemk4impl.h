@@ -80,14 +80,14 @@ public:
 
     void setEnclosure(const QString &guid, const QString &url, const QString &type, int length) Q_DECL_OVERRIDE;
     void removeEnclosure(const QString &guid) Q_DECL_OVERRIDE;
-    void enclosure(const QString &guid, bool &hasEnclosure, QString &url, QString &type, int &length) const;
+    void enclosure(const QString &guid, bool &hasEnclosure, QString &url, QString &type, int &length) const Q_DECL_OVERRIDE;
 
     void addTag(const QString &guid, const QString &tag) Q_DECL_OVERRIDE;
     void removeTag(const QString &guid, const QString &tag) Q_DECL_OVERRIDE;
-    QStringList tags(const QString &guid = QString()) const;
+    QStringList tags(const QString &guid = QString()) const Q_DECL_OVERRIDE;
 
     void addCategory(const QString &guid, const Category &category) Q_DECL_OVERRIDE;
-    QList<Category> categories(const QString &guid = QString()) const;
+    QList<Category> categories(const QString &guid = QString()) const Q_DECL_OVERRIDE;
 
     void setAuthorName(const QString &guid, const QString &name) Q_DECL_OVERRIDE;
     void setAuthorUri(const QString &guid, const QString &uri) Q_DECL_OVERRIDE;
