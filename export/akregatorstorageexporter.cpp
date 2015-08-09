@@ -174,15 +174,6 @@ struct Elements {
 
 const Elements Elements::instance;
 
-void writeAttributeIfNotEmpty(const QString &ns, const QString &element, const QVariant &value, QXmlStreamWriter &writer)
-{
-    const QString text = value.toString();
-    if (text.isEmpty()) {
-        return;
-    }
-    writer.writeAttribute(ns, element, text);
-}
-
 void writeAttributeIfNotEmpty(const QString &element, const QVariant &value, QXmlStreamWriter &writer)
 {
     const QString text = value.toString();
