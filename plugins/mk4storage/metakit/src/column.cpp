@@ -1285,7 +1285,7 @@ void c4_ColOfInts::SetAccessWidth(int bits_)
 
     _currWidth = (1 << l2bp1) >> 1;
 
-    if (l2bp1 > 4 && (_mustFlip || Persist() != 0 && Strategy()._bytesFlipped)) {
+    if (l2bp1 > 4 && (_mustFlip || (Persist() != 0 && Strategy()._bytesFlipped))) {
         l2bp1 += 3;
     }
     // switch to the trailing entries for byte flipping

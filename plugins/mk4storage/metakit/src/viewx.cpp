@@ -778,7 +778,7 @@ t4_i32 c4_Strategy::EndOfData(t4_i32 end_)
         }
 
         const bool isSkipTail = ((mark[0] & 0xF0) == 0x90 /* 2006-11-11 */ ||
-                                 mark[0] == 0x80 && count == 0) && offset > 0;
+                                 (mark[0] == 0x80 && count == 0)) && offset > 0;
         const bool isCommitTail = mark[0] == 0x80 && count > 0 && offset > 0;
         const bool isHeader = (mark[0] == 'J' || mark[0] == 'L') && (mark[0] ^
                               mark[1]) == ('J' ^ 'L') && mark[2] == 0x1A && (mark[3] & 0x40) == 0;

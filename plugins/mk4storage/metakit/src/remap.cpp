@@ -265,7 +265,7 @@ int c4_HashViewer::LookDict(t4_i32 hash_, c4_Cursor cursor_)const
     /* We use ~hash_ instead of hash_, as degenerate hash functions, such
     as for ints <sigh>, can have lots of leading zeros. It's not
     really a performance risk, but better safe than sorry. */
-    if (IsUnused(i) || Hash(i) == hash_ && KeySame(Row(i), cursor_)) {
+    if (IsUnused(i) || (Hash(i) == hash_ && KeySame(Row(i), cursor_))) {
         return i;
     }
 
