@@ -853,7 +853,7 @@ bool c4_JoinPropViewer::GetItem(int row_, int col_, c4_Bytes &buf_)
     c4_View v = _parent;
     int r = _base.GetAt(row_);
 
-    if (col_ >= _subPos)
+    if (col_ >= _subPos) {
         if (col_ >= _subPos + _subWidth) {
             col_ -= _subWidth - 1;
         } else {
@@ -870,6 +870,7 @@ bool c4_JoinPropViewer::GetItem(int row_, int col_, c4_Bytes &buf_)
             }
             // if subview doesn't have all properties
         }
+    }
 
     return v.GetItem(r, col_, buf_);
 }

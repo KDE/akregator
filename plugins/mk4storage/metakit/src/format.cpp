@@ -389,7 +389,7 @@ c4_Column *c4_FormatB::GetNthMemoCol(int index_, bool alloc_)
         col = d4_new c4_Column(_data.Persist());
         _memos.SetAt(index_, col);
 
-        if (n > 0)
+        if (n > 0) {
             if (_data.IsDirty()) {
                 c4_Bytes temp;
                 _data.FetchBytes(start, n, temp, true);
@@ -398,6 +398,7 @@ c4_Column *c4_FormatB::GetNthMemoCol(int index_, bool alloc_)
             } else {
                 col->SetLocation(_data.Position() + start, n);
             }
+        }
     }
 
     return col;

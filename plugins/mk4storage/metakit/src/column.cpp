@@ -455,7 +455,7 @@ void c4_Column::MoveGapTo(t4_i32 pos_)
         // move the gap up, ie. some bytes down
     {
         MoveGapUp(pos_);
-    } else if (_gap > pos_)
+    } else if (_gap > pos_) {
         // move the gap down, ie. some bytes up
         if (_gap - pos_ > _size - _gap + fSegRest(pos_)) {
             RemoveGap(); // it's faster to get rid of the gap instead
@@ -465,6 +465,7 @@ void c4_Column::MoveGapTo(t4_i32 pos_)
         {
             MoveGapDown(pos_);
         }
+    }
 
     d4_assert(_gap == pos_);
 

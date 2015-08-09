@@ -1167,12 +1167,13 @@ bool c4_IndexedViewer::RemoveRows(int pos_, int count_)
     int n = _map.GetSize();
     while (--n >= 0) {
         int v = _mapProp(_map[n]);
-        if (v >= pos_)
+        if (v >= pos_) {
             if (v < pos_ + count_) {
                 _map.RemoveAt(n);
             } else {
                 _mapProp(_map[n]) = v - count_;
             }
+        }
     }
 
     return true;

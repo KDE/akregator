@@ -322,7 +322,7 @@ c4_Notifier *c4_FilterSeq::PreChange(c4_Notifier &nf_)
         int r = (int)_revMap.GetAt(nf_._index);
 
         bool includeRow = r >= 0;
-        if (!pass)
+        if (!pass) {
             if (nf_._type == c4_Notifier::kSetAt) {
                 d4_assert(nf_._cursor != 0);
                 includeRow = Match(nf_._cursor->_index, *nf_._cursor->_seq);
@@ -331,6 +331,7 @@ c4_Notifier *c4_FilterSeq::PreChange(c4_Notifier &nf_)
             {
                 includeRow = MatchOne(nf_._propId,  *nf_._bytes);
             }
+        }
 
         if (r >= 0 && !includeRow) {
             chg->StartRemoveAt(r, 1);
@@ -396,7 +397,7 @@ void c4_FilterSeq::PostChange(c4_Notifier &nf_)
         int r = (int)_revMap.GetAt(nf_._index);
 
         bool includeRow = r >= 0;
-        if (!pass)
+        if (!pass) {
             if (nf_._type == c4_Notifier::kSetAt) {
                 d4_assert(nf_._cursor != 0);
                 includeRow = Match(nf_._cursor->_index, *nf_._cursor->_seq);
@@ -405,6 +406,7 @@ void c4_FilterSeq::PostChange(c4_Notifier &nf_)
             {
                 includeRow = MatchOne(nf_._propId,  *nf_._bytes);
             }
+        }
 
         if (r >= 0 && !includeRow) {
             _rowMap.RemoveAt(r);
