@@ -15,7 +15,7 @@
 
 /////////////////////////////////////////////////////////////////////////////
 
-#if !HAVE_MEMMOVE && !HAVE_BCOPY
+#if (!defined(HAVE_MEMMOVE) && !defined(HAVE_BCOPY)) || (!HAVE_MEMMOVE && !HAVE_BCOPY)
 // in case we have no library memmove, or one that can't handle overlap
 
 void f4_memmove(void *to_, const void *from_, int n_)
@@ -43,7 +43,7 @@ void f4_memmove(void *to_, const void *from_, int n_)
 c4_Column::c4_Column(c4_Persist *persist_): _position(0), _size(0), _persist
     (persist_), _gap(0), _slack(0), _dirty(false) {}
 
-#if q4_CHECK
+#if defined(q4_CHECK) && q4_CHECK
 
 // debugging version to verify that the internal data is consistent
 void c4_Column::Validate()const

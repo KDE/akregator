@@ -36,7 +36,7 @@ public:
 
 /////////////////////////////////////////////////////////////////////////////
 
-#if q4_MULTI
+#if defined(q4_MULTI) && q4_MULTI
 
 #if q4_WIN32
 
@@ -125,7 +125,7 @@ d4_inline c4_ThreadLock::Hold::~Hold() {}
 
 /////////////////////////////////////////////////////////////////////////////
 
-#if q4_LOGPROPMODS
+#if defined(q4_LOGPROPMODS) && q4_LOGPROPMODS
 
 static FILE *sPropModsFile = 0;
 static int sPropModsProp =  - 1;
@@ -1280,7 +1280,7 @@ void c4_Property::Refs(int diff_)const
     d4_assert(sPropCounts != 0);
     sPropCounts->ElementAt(_id) += diff_;
 
-#if q4_CHECK
+#if defined(q4_CHECK) && q4_CHECK
     // get rid of the cache when the last property goes away
     static t4_i32 sPropTotals;
 

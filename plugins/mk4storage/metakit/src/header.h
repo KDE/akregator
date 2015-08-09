@@ -44,8 +44,10 @@
 #define __K4CONF_H__    // skip section in "mk4.h", since we use "header.h"
 
 // if neither MFC nor STD are specified, default to Universal version
-#if !q4_MFC && !q4_STD && !defined (q4_UNIV)
-#define q4_UNIV 1
+#if (!defined(q4_MFC) && !defined(q4_STD)) || (!q4_MFC && !q4_STD)
+# if !defined(q4_UNIV)
+#  define q4_UNIV 1
+# endif
 #endif
 
 /////////////////////////////////////////////////////////////////////////////
@@ -115,21 +117,21 @@ defined(_AIX) || defined(__hpux)
 #define bool int
 #endif
 
-#if !q4_CHECK                   // disable assertions
+#if !defined(q4_CHECK) || !q4_CHECK                   // disable assertions
 #undef d4_assert
 #define d4_dbgdef(x)
 #define d4_assert(x)
 #endif
 
-#if q4_NO_NS                    // don't use namespaces
+#if defined(q4_NO_NS) && q4_NO_NS                    // don't use namespaces
 #define d4_std
 #else
 #define d4_std std
 #endif
 
-#if HAVE_MEMMOVE
+#if defined(HAVE_MEMMOVE) && HAVE_MEMMOVE
 #define d4_memmove(d,s,n)   memmove(d,s,n)
-#elif HAVE_BCOPY
+#elif defined(HAVE_BCOPY) && HAVE_BCOPY
 #define d4_memmove(d,s,n)   bcopy(s,d,n)
 #else
 #define d4_memmove f4_memmove
@@ -172,7 +174,7 @@ typedef unsigned char t4_byte; // create typedefs for t4_byte, etc.
 /////////////////////////////////////////////////////////////////////////////
 // Debug logging option, called internally where properties are modified
 
-#if q4_LOGPROPMODS
+#if defined(q4_LOGPROPMODS) && q4_LOGPROPMODS
 void f4_DoLogProp(const c4_Handler *, int, const char *, int);
 #else
 #define f4_LogPropMods(a,b) 0
@@ -183,11 +185,11 @@ void f4_DoLogProp(const c4_Handler *, int, const char *, int);
 
 #include "mk4.h"
 
-#if q4_MFC
+#if defined(q4_MFC) && q4_MFC
 #include "mfc.h"
-#elif q4_STD
+#elif defined(q4_STD) && q4_STD
 #include "std.h"
-#elif q4_UNIV
+#elif defined(q4_UNIV) && q4_UNIV
 #include "univ.h"
 #endif
 
@@ -200,11 +202,11 @@ void f4_DoLogProp(const c4_Handler *, int, const char *, int);
 /////////////////////////////////////////////////////////////////////////////
 // Report unexpected combinations of settings
 
-#if !q4_FIX
-#if (q4_DOS+q4_MAC+q4_UNIX+q4_VMS+q4_WIN) != 1
+#if !defined(q4_FIX) || !q4_FIX
+#if ((defined(q4_DOS) && q4_DOS) + (defined(q4_MAC) && q4_MAC) + (defined(q4_UNIX) && q4_UNIX) + (defined(q4_VMS) && q4_VMS) + (defined(q4_WIN) && q4_WIN)) != 1
 #error Exactly one operating system should have been defined
 #endif
-#if (q4_MFC+q4_STD+q4_UNIV) != 1
+#if ((defined(q4_MFC) && q4_MFC) + (defined(q4_STD) && q4_STD) + (defined(q4_UNIV) && q4_UNIV)) != 1
 #error Exactly one container library should have been defined
 #endif
 #endif

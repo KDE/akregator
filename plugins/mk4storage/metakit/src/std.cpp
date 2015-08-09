@@ -7,7 +7,7 @@
 
 #include "header.h"
 
-#if q4_STD // until end of source
+#if defined(q4_STD) && q4_STD // until end of source
 /////////////////////////////////////////////////////////////////////////////
 
 #include "column.h"   // c4_ColCache

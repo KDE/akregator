@@ -38,7 +38,7 @@ static char *_strdup(const char *p)
 //  The Borland C++ RTL does not want file handle objects to cross
 //  DLL boundaries, so we add special fopen/fclose hooks to this DLL.
 
-#if q4_BORC
+#if defined(q4_BORC) && q4_BORC
 #include <stdio.h>
 
 #if q4_WIN32

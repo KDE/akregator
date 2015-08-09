@@ -142,7 +142,7 @@ void c4_FormatX::Unmapped()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-#if !q4_TINY
+#if !defined(q4_TINY) || !q4_TINY
 /////////////////////////////////////////////////////////////////////////////
 
 class c4_FormatL: public c4_FormatX
@@ -489,7 +489,7 @@ void c4_FormatB::OldDefine(char type_, c4_Persist &pers_)
         if (type_ == 'B') {
             pers_.FetchOldLocation(sizes);
 
-#if !q4_OLD_IS_ALWAYS_V2
+#if !defined(q4_OLD_IS_ALWAYS_V2) || !q4_OLD_IS_ALWAYS_V2
 
             // WARNING - HUGE HACK AHEAD - THIS IS NOT 100% FULLPROOF!
             //
@@ -510,7 +510,7 @@ void c4_FormatB::OldDefine(char type_, c4_Persist &pers_)
                 t4_i32 s1 = sizes.ColSize();
                 t4_i32 s2 = _data.ColSize();
 
-#if !q4_OLD_IS_PRE_V2
+#if !defined(q4_OLD_IS_PRE_V2) || !q4_OLD_IS_PRE_V2
                 // if the size vector is clearly impossible, swap vectors
                 bool fix = c4_ColOfInts::CalcAccessWidth(rows, s1) < 0;
 
@@ -1314,7 +1314,7 @@ c4_Handler *f4_CreateFormat(const c4_Property &prop_, c4_HandlerSeq &seq_)
     switch (prop_.Type()) {
     case 'I':
         return d4_new c4_FormatX(prop_, seq_);
-#if !q4_TINY
+#if !defined(q4_TINY) || !q4_TINY
     case 'L':
         return d4_new c4_FormatL(prop_, seq_);
     case 'F':
@@ -1342,7 +1342,7 @@ int f4_ClearFormat(char type_)
     switch (type_) {
     case 'I':
         return sizeof(t4_i32);
-#if !q4_TINY
+#if !defined(q4_TINY) || !q4_TINY
     case 'L':
         return sizeof(t4_i64);
     case 'F':
@@ -1366,7 +1366,7 @@ int f4_CompareFormat(char type_, const c4_Bytes &b1_, const c4_Bytes &b2_)
     switch (type_) {
     case 'I':
         return c4_FormatX::DoCompare(b1_, b2_);
-#if !q4_TINY
+#if !defined(q4_TINY) || !q4_TINY
     case 'L':
         return c4_FormatL::DoCompare(b1_, b2_);
     case 'F':

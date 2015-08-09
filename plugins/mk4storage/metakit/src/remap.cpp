@@ -545,7 +545,7 @@ public:
 
 /////////////////////////////////////////////////////////////////////////////
 
-#if q4_CHECK
+#if defined(q4_CHECK) && q4_CHECK
 
 // debugging version to verify that the internal data is consistent
 void c4_BlockedViewer::Validate()const

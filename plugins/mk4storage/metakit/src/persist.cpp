@@ -354,7 +354,7 @@ t4_i32 c4_Allocator::ReduceFrags(int goal_, int sHi_, int sLo_)
     return loss;
 }
 
-#if q4_CHECK
+#if defined(q4_CHECK) && q4_CHECK
 #include <stdio.h>
 
 void c4_Allocator::Dump(const char *str_)
@@ -760,7 +760,7 @@ void c4_SaveContext::SaveIt(c4_HandlerSeq &root_, c4_Allocator **spacePtr_,
     if (!_fullScan && !inPlace) {
         c4_FileMark mark1(end0, 0);
         _strategy.DataWrite(end0, &mark1, sizeof mark1);
-#if q4_WIN32
+#if defined(q4_WIN32) && q4_WIN32
         /* March 8, 2002
          * On at least NT4 with NTFS, extending a file can cause it to be
          * rounded up further than expected.  To prevent creating a bad
