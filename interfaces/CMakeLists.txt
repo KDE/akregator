@@ -17,6 +17,8 @@ target_link_libraries(akregatorinterfaces
   KF5::Syndication
 )
 
+target_include_directories(akregatorinterfaces PUBLIC "$<BUILD_INTERFACE:${akregator_SOURCE_DIR}/interfaces;${akregator_BINARY_DIR}/interfaces>")
+
 set_target_properties(akregatorinterfaces PROPERTIES VERSION ${KDEPIM_LIB_VERSION} SOVERSION ${KDEPIM_LIB_SOVERSION}
 )
 

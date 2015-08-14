@@ -3,10 +3,6 @@
 add_subdirectory(about)
 add_subdirectory(icons)
 
-include_directories(
-  ${CMAKE_SOURCE_DIR}/akregator/interfaces
-  ${CMAKE_BINARY_DIR}/akregator/interfaces
-)
 
 ########### next target ###############
 
@@ -69,6 +65,8 @@ PRIVATE
   akregatorinterfaces
   pimcommon
 )
+
+target_include_directories(akregatorprivate PUBLIC "$<BUILD_INTERFACE:${akregator_SOURCE_DIR}/src;${akregator_BINARY_DIR}/src>")
 
 set_target_properties(akregatorprivate
   PROPERTIES VERSION ${KDEPIM_LIB_VERSION}
