@@ -30,7 +30,7 @@
 
 using namespace Akregator;
 
-class Command::Private
+class Q_DECL_HIDDEN Command::Private
 {
 public:
     Private();

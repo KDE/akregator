@@ -34,7 +34,7 @@ namespace Akregator
 namespace Backend
 {
 
-class StorageFactoryRegistry::StorageFactoryRegistryPrivate
+class Q_DECL_HIDDEN StorageFactoryRegistry::StorageFactoryRegistryPrivate
 {
 public:
     QHash<QString, StorageFactory *> map;
