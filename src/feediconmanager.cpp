@@ -42,7 +42,7 @@ using namespace Akregator;
 
 FaviconListener::~FaviconListener() {}
 
-class FeedIconManager::Private
+class Q_DECL_HIDDEN FeedIconManager::Private
 {
     FeedIconManager *const q;
 public:

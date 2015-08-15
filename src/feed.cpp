@@ -72,7 +72,7 @@ QVector<Value> valuesToVector(const Container<Key, Value> &container)
     return values;
 }
 
-class Akregator::Feed::Private
+class Q_DECL_HIDDEN Akregator::Feed::Private
 {
     Akregator::Feed *const q;
 public:

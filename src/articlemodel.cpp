@@ -45,7 +45,7 @@
 
 using namespace Akregator;
 
-class ArticleModel::Private
+class Q_DECL_HIDDEN ArticleModel::Private
 {
 private:
     ArticleModel *const q;

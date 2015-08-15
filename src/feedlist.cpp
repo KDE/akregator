@@ -47,7 +47,7 @@
 namespace Akregator
 {
 
-class FeedList::Private
+class Q_DECL_HIDDEN FeedList::Private
 {
     FeedList *const q;
 
