@@ -476,14 +476,14 @@ bool Akregator::Feed::isArticlesLoaded() const
 
 QDomElement Akregator::Feed::toOPML(QDomElement parent, QDomDocument document) const
 {
-    QDomElement el = document.createElement(QLatin1String("outline"));
+    QDomElement el = document.createElement(QStringLiteral("outline"));
     el.setAttribute(QStringLiteral("text"), title());
     el.setAttribute(QStringLiteral("title"), title());
     el.setAttribute(QStringLiteral("xmlUrl"), d->xmlUrl);
     el.setAttribute(QStringLiteral("htmlUrl"), d->htmlUrl);
     el.setAttribute(QStringLiteral("id"), QString::number(id()));
     el.setAttribute(QStringLiteral("description"), d->description);
-    el.setAttribute(QStringLiteral("useCustomFetchInterval"), (useCustomFetchInterval() ? QLatin1String("true") : QLatin1String("false")));
+    el.setAttribute(QStringLiteral("useCustomFetchInterval"), (useCustomFetchInterval() ? QStringLiteral("true") : QStringLiteral("false")));
     el.setAttribute(QStringLiteral("fetchInterval"), QString::number(fetchInterval()));
     el.setAttribute(QStringLiteral("archiveMode"), archiveModeToString(d->archiveMode));
     el.setAttribute(QStringLiteral("maxArticleAge"), d->maxArticleAge);

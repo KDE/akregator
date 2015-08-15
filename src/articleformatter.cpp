@@ -283,7 +283,7 @@ QString DefaultNormalViewFormatter::getCss() const
     css += QString(
                QString::fromLatin1("a {\n")
                + QString::fromLatin1("  color: %1 ! important;\n")
-               + QString(!Settings::underlineLinks() ? QLatin1String(" text-decoration: none ! important;\n") : QLatin1String(""))
+               + QString(!Settings::underlineLinks() ? QStringLiteral(" text-decoration: none ! important;\n") : QStringLiteral(""))
                +       QLatin1String("}\n\n")
                + QLatin1String(".headerbox {\n")
                + QLatin1String("  background: %2 ! important;\n")
@@ -363,7 +363,7 @@ QString DefaultCombinedViewFormatter::formatArticle(const Article &article, Icon
 {
     QString text;
     const QString enc = formatEnclosure(*article.enclosure());
-    text = QString::fromLatin1("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::isRightToLeft() ? QLatin1String("rtl") : QLatin1String("ltr"));
+    text = QString::fromLatin1("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::isRightToLeft() ? QStringLiteral("rtl") : QStringLiteral("ltr"));
 
     const QString strippedTitle = Utils::stripTags(article.title());
 
@@ -470,7 +470,7 @@ QString DefaultCombinedViewFormatter::getCss() const
     css += QString(
                QLatin1String("a {\n")
                + QString::fromLatin1("  color: %1 ! important;\n")
-               + QString(!Settings::underlineLinks() ? QLatin1String(" text-decoration: none ! important;\n") : QLatin1String(""))
+               + QString(!Settings::underlineLinks() ? QStringLiteral(" text-decoration: none ! important;\n") : QStringLiteral(""))
                +       QLatin1String("}\n\n")
                + QString::fromLatin1(".headerbox {\n")
                + QString::fromLatin1("  background: %2 ! important;\n")

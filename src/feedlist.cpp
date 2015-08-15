@@ -359,7 +359,7 @@ void FeedList::append(FeedList *list, Folder *parent, TreeNode *after)
 QDomDocument FeedList::toOpml() const
 {
     QDomDocument doc;
-    doc.appendChild(doc.createProcessingInstruction(QLatin1String("xml"), QStringLiteral("version=\"1.0\" encoding=\"UTF-8\"")));
+    doc.appendChild(doc.createProcessingInstruction(QStringLiteral("xml"), QStringLiteral("version=\"1.0\" encoding=\"UTF-8\"")));
 
     QDomElement root = doc.createElement(QStringLiteral("opml"));
     root.setAttribute(QStringLiteral("version"), QStringLiteral("1.0"));
