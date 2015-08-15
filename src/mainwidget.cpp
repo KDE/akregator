@@ -69,7 +69,6 @@
 #include <kshell.h>
 
 #include <ktoggleaction.h>
-#include <ktoolinvocation.h>
 #include <QUrl>
 
 #include <QClipboard>
@@ -77,6 +76,7 @@
 #include <QTextDocument>
 #include <QDomDocument>
 #include <QTimer>
+#include <QDesktopServices>
 
 #include <algorithm>
 #include <memory>
@@ -383,25 +383,16 @@ void Akregator::MainWidget::sendArticle(bool attach)
         return;
     }
 
+    QUrlQuery query;
+    query.addQueryItem(QStringLiteral("subject"), title);
+    query.addQueryItem(QStringLiteral("body", text);
     if (attach) {
-        KToolInvocation::invokeMailer(QString(),
-                                      QString(),
-                                      QString(),
-                                      title,
-                                      QString(),
-                                      QString(),
-                                      QStringList() << QLatin1String(text),
-                                      text);
-    } else {
-        KToolInvocation::invokeMailer(QString(),
-                                      QString(),
-                                      QString(),
-                                      title,
-                                      QLatin1String(text),
-                                      QString(),
-                                      QStringList(),
-                                      text);
+        query.addQueryItem(QStringLiteral("attach"), text);
     }
+    QUrl url;
+    url.setScheme(QStringLiteral("mailto"));
+    url.setQuery(query);
+    QDesktopServices::openUrl(url);
 }
 
 void MainWidget::importFeedList(const QDomDocument &doc)

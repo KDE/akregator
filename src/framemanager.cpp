@@ -35,13 +35,13 @@
 #include <kprocess.h>
 #include <kshell.h>
 #include <kconfiggroup.h>
-#include <ktoolinvocation.h>
 #include <kparts/event.h>
 #include <kparts/guiactivateevent.h>
 #include "akregator_debug.h"
 
 #include <QStringList>
 #include <QApplication>
+#include <QDesktopServices>
 
 namespace Akregator
 {
@@ -310,7 +310,7 @@ void FrameManager::openInExternalBrowser(const OpenUrlRequest &request)
     }
 
     if (request.args().mimeType().isEmpty()) {
-        KToolInvocation::self()->invokeBrowser(url.url(), "0");
+        QDesktopServices::openUrl(url);
     } else {
         KRun::runUrl(url, request.args().mimeType(), 0 /*window*/, false, false);
     }
