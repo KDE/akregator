@@ -385,9 +385,9 @@ void Akregator::MainWidget::sendArticle(bool attach)
 
     QUrlQuery query;
     query.addQueryItem(QStringLiteral("subject"), title);
-    query.addQueryItem(QStringLiteral("body", text);
+    query.addQueryItem(QStringLiteral("body"), QString::fromUtf8(text));
     if (attach) {
-        query.addQueryItem(QStringLiteral("attach"), text);
+        query.addQueryItem(QStringLiteral("attach"), QString::fromUtf8(text));
     }
     QUrl url;
     url.setScheme(QStringLiteral("mailto"));
