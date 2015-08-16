@@ -1,3 +1,4 @@
+project(akregator)
 include(CheckTypeSize)
 check_type_size("long" SIZEOF_LONG)
 configure_file(config-akregator.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-akregator.h)

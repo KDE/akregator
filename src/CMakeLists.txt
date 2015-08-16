@@ -14,6 +14,7 @@ ecm_add_app_icon(akregator_SRCS ICONS ${ICONS_AKREGATOR_SRCS})
 add_executable(akregator ${akregator_SRCS})
 
 target_link_libraries(akregator
+  KF5::Notifications
   KF5::KontactInterface
   kdepim
   akregatorprivate
@@ -60,6 +61,8 @@ target_link_libraries(akregatorprivate
 PUBLIC
   KF5::KHtml
 PRIVATE
+  KF5::Notifications
+  KF5::KDELibs4Support
   kdepim
   KF5::Syndication
   akregatorinterfaces
@@ -126,6 +129,7 @@ ki18n_wrap_ui(akregatorpart_PART_SRCS
 add_library(akregatorpart MODULE ${akregatorpart_PART_SRCS})
 generate_export_header(akregatorpart BASE_NAME akregatorpart)
 target_link_libraries(akregatorpart
+  KF5::KDELibs4Support
   akregatorinterfaces
   akregatorprivate
   KF5::KCMUtils
