@@ -840,7 +840,7 @@ void Part::slotAutoSave()
 
 void Part::autoSaveProperties()
 {
-    KConfig config(QStringLiteral("autosaved"), KConfig::SimpleConfig, QStandardPaths::ApplicationsLocation);
+    KConfig config(QStringLiteral("autosaved"), KConfig::SimpleConfig, QStandardPaths::AppDataLocation);
     KConfigGroup configGroup(&config, "Part");
     configGroup.deleteGroup();
 
@@ -854,7 +854,7 @@ void Part::autoReadProperties()
     if (qGuiApp->isSessionRestored()) {
         return;
     }
-    KConfig config(QStringLiteral("autosaved"), KConfig::SimpleConfig, QStandardPaths::ApplicationsLocation);
+    KConfig config(QStringLiteral("autosaved"), KConfig::SimpleConfig, QStandardPaths::AppDataLocation);
     KConfigGroup configGroup(&config, "Part");
 
     readProperties(configGroup);
