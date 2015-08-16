@@ -43,7 +43,7 @@ void AkregratorMigrateApplication::initializeMigrator()
 {
     const int currentVersion = 2;
 
-    mMigrator.setApplicationName(QStringLiteral("akreagator"));
+    mMigrator.setApplicationName(QStringLiteral("akregator"));
     mMigrator.setConfigFileName(QStringLiteral("akregatorrc"));
     mMigrator.setCurrentConfigVersion(currentVersion);
 
