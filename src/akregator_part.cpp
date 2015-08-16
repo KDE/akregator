@@ -781,7 +781,7 @@ void Part::clearCrashProperties()
         return;
     }
     KConfig config(QStringLiteral("crashed"), KConfig::SimpleConfig,
-                   QStandardPaths::ApplicationsLocation);
+                   QStandardPaths::AppDataLocation);
     KConfigGroup configGroup(&config, "Part");
     configGroup.writeEntry("crashed", false);
 }
@@ -792,7 +792,7 @@ void Part::saveCrashProperties()
         return;
     }
     KConfig config(QStringLiteral("crashed"), KConfig::SimpleConfig,
-                   QStandardPaths::ApplicationsLocation);
+                   QStandardPaths::AppDataLocation);
     KConfigGroup configGroup(&config, "Part");
     configGroup.deleteGroup();
 
@@ -804,7 +804,7 @@ void Part::saveCrashProperties()
 bool Part::readCrashProperties()
 {
     KConfig config(QStringLiteral("crashed"), KConfig::SimpleConfig,
-                   QStandardPaths::ApplicationsLocation);
+                   QStandardPaths::AppDataLocation);
     KConfigGroup configGroup(&config, "Part");
 
     if (!configGroup.readEntry("crashed", false)) {
