@@ -49,19 +49,19 @@ QString Criterion::subjectToString(Subject subj)
 {
     switch (subj) {
     case Title:
-        return QString::fromLatin1("Title");
+        return QStringLiteral("Title");
     case Link:
-        return QString::fromLatin1("Link");
+        return QStringLiteral("Link");
     case Description:
-        return QString::fromLatin1("Description");
+        return QStringLiteral("Description");
     case Status:
-        return QString::fromLatin1("Status");
+        return QStringLiteral("Status");
     case KeepFlag:
-        return QString::fromLatin1("KeepFlag");
+        return QStringLiteral("KeepFlag");
     case Author:
-        return QString::fromLatin1("Author");
+        return QStringLiteral("Author");
     default: // should never happen (TM)
-        return QString::fromLatin1("Description");
+        return QStringLiteral("Description");
     }
 }
 
