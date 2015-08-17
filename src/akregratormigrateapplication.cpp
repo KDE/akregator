@@ -53,15 +53,15 @@ void AkregratorMigrateApplication::initializeMigrator()
     // Database
     PimCommon::MigrateFileInfo migrateInfoArchive;
     migrateInfoArchive.setFolder(true);
-    migrateInfoArchive.setType(QStringLiteral("apps"));
-    migrateInfoArchive.setPath(QStringLiteral("Archive/"));
+    migrateInfoArchive.setType(QStringLiteral("data"));
+    migrateInfoArchive.setPath(QStringLiteral("akregator/Archive/"));
     migrateInfoArchive.setVersion(initialVersion);
     mMigrator.insertMigrateInfo(migrateInfoArchive);
 
     PimCommon::MigrateFileInfo migrateInfoData;
     migrateInfoData.setFolder(true);
-    migrateInfoData.setType(QStringLiteral("apps"));
-    migrateInfoData.setPath(QStringLiteral("data/"));
+    migrateInfoData.setType(QStringLiteral("data"));
+    migrateInfoData.setPath(QStringLiteral("akregator/data/"));
     migrateInfoData.setVersion(initialVersion);
     mMigrator.insertMigrateInfo(migrateInfoData);
     //TODO
