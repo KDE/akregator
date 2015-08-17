@@ -88,7 +88,7 @@ void NotificationManager::doNotify()
     Q_FOREACH (const Article &i, m_articles) {
         if (feedTitle != i.feed()->title()) {
             feedTitle = i.feed()->title();
-            message += QString::fromLatin1("<p><b>%1:</b></p>").arg(feedTitle);
+            message += QStringLiteral("<p><b>%1:</b></p>").arg(feedTitle);
         }
         message += i.title() + QLatin1String("<br>");
     }

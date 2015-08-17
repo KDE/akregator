@@ -104,7 +104,7 @@ public:
     bool visitFeed(Feed *node) Q_DECL_OVERRIDE {
         text = QStringLiteral("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::isRightToLeft() ? QStringLiteral("rtl") : QStringLiteral("ltr"));
         const QString strippedTitle = Utils::stripTags(node->title());
-        text += QString::fromLatin1("<div class=\"headertitle\" dir=\"%1\">").arg(Utils::directionOf(strippedTitle));
+        text += QStringLiteral("<div class=\"headertitle\" dir=\"%1\">").arg(Utils::directionOf(strippedTitle));
         text += strippedTitle;
         if (node->unread() == 0)
         {
@@ -117,19 +117,19 @@ public:
 
         if (!node->image().isNull())   // image
         {
-            text += QString::fromLatin1("<div class=\"body\">");
+            text += QLatin1String("<div class=\"body\">");
             QString file = Utils::fileNameForUrl(node->xmlUrl());
             QUrl u(parent->m_imageDir);
             u = u.adjusted(QUrl::RemoveFilename);
             u.setPath(u.path() + file);
-            text += QString::fromLatin1("<a href=\"%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(node->htmlUrl(), u.url());
+            text += QStringLiteral("<a href=\"%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(node->htmlUrl(), u.url());
         } else {
             text += QStringLiteral("<div class=\"body\">");
         }
 
         if (!node->description().isEmpty())
         {
-            text += QString::fromLatin1("<div dir=\"%1\">").arg(Utils::stripTags(Utils::directionOf(node->description())));
+            text += QStringLiteral("<div dir=\"%1\">").arg(Utils::stripTags(Utils::directionOf(node->description())));
             text += i18n("<b>Description:</b> %1<br /><br />", node->description());
             text += QStringLiteral("</div>\n"); // /description
         }
@@ -149,7 +149,7 @@ public:
 
     bool visitFolder(Folder *node) Q_DECL_OVERRIDE {
         text = QStringLiteral("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::isRightToLeft() ? QStringLiteral("rtl") : QStringLiteral("ltr"));
-        text += QString::fromLatin1("<div class=\"headertitle\" dir=\"%1\">%2").arg(Utils::directionOf(Utils::stripTags(node->title())), node->title());
+        text += QStringLiteral("<div class=\"headertitle\" dir=\"%1\">%2").arg(Utils::directionOf(Utils::stripTags(node->title())), node->title());
         if (node->unread() == 0)
         {
             text += i18n(" (no unread articles)");
@@ -176,12 +176,12 @@ public:
 QString DefaultNormalViewFormatter::formatArticle(const Article &article, IconOption icon) const
 {
     QString text;
-    text = QString::fromLatin1("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::isRightToLeft() ? QStringLiteral("rtl") : QStringLiteral("ltr"));
+    text = QStringLiteral("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::isRightToLeft() ? QStringLiteral("rtl") : QStringLiteral("ltr"));
     const QString enc = formatEnclosure(*article.enclosure());
 
     const QString strippedTitle = Utils::stripTags(article.title());
     if (!strippedTitle.isEmpty()) {
-        text += QString::fromLatin1("<div class=\"headertitle\" dir=\"%1\">\n").arg(Utils::directionOf(strippedTitle));
+        text += QStringLiteral("<div class=\"headertitle\" dir=\"%1\">\n").arg(Utils::directionOf(strippedTitle));
         if (article.link().isValid()) {
             text += QLatin1String("<a href=\"") + article.link().url() + QLatin1String("\">");
         }
@@ -193,21 +193,21 @@ QString DefaultNormalViewFormatter::formatArticle(const Article &article, IconOp
     }
     if (article.pubDate().isValid()) {
         text += QStringLiteral("<span class=\"header\" dir=\"%1\">").arg(Utils::directionOf(i18n("Date")));
-        text += QString::fromLatin1("%1:").arg(i18n("Date"));
+        text += QStringLiteral("%1:").arg(i18n("Date"));
         text += QLatin1String("</span><span class=\"headertext\">");
         text += KLocale::global()->formatDateTime(article.pubDate(), KLocale::FancyLongDate) + QLatin1String("</span>\n"); // TODO: might need RTL?
     }
     const QString author = article.authorAsHtml();
     if (!author.isEmpty()) {
-        text += QString::fromLatin1("<br/><span class=\"header\" dir=\"%1\">").arg(Utils::directionOf(i18n("Author")));
-        text += QString::fromLatin1("%1:").arg(i18n("Author"));
+        text += QStringLiteral("<br/><span class=\"header\" dir=\"%1\">").arg(Utils::directionOf(i18n("Author")));
+        text += QStringLiteral("%1:").arg(i18n("Author"));
         text += QLatin1String("</span><span class=\"headertext\">");
         text += author + QLatin1String("</span>\n"); // TODO: might need RTL?
     }
 
     if (!enc.isEmpty()) {
-        text += QString::fromLatin1("<br/><span class=\"header\" dir=\"%1\">").arg(Utils::directionOf(i18n("Enclosure")));
-        text += QString::fromLatin1("%1:").arg(i18n("Enclosure"));
+        text += QStringLiteral("<br/><span class=\"header\" dir=\"%1\">").arg(Utils::directionOf(i18n("Enclosure")));
+        text += QStringLiteral("%1:").arg(i18n("Enclosure"));
         text += QLatin1String("</span><span class=\"headertext\">");
         text += enc + QLatin1String("</span>\n"); // TODO: might need RTL?
     }
@@ -220,12 +220,12 @@ QString DefaultNormalViewFormatter::formatArticle(const Article &article, IconOp
         QUrl u(m_imageDir);
         u = u.adjusted(QUrl::RemoveFilename);
         u.setPath(u.path() + file);
-        text += QString::fromLatin1("<a href=\"%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(feed->htmlUrl(), u.url());
+        text += QStringLiteral("<a href=\"%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(feed->htmlUrl(), u.url());
     }
 
     const QString content = article.content(Article::DescriptionAsFallback);
     if (!content.isEmpty()) {
-        text += QString::fromLatin1("<div dir=\"%1\">").arg(Utils::directionOf(Utils::stripTags(content)));
+        text += QStringLiteral("<div dir=\"%1\">").arg(Utils::directionOf(Utils::stripTags(content)));
         text += QLatin1String("<span class=\"content\">") + content + QLatin1String("</span>");
         text += QLatin1String("</div>");
     }
@@ -243,7 +243,7 @@ QString DefaultNormalViewFormatter::formatArticle(const Article &article, IconOp
     }
 
     if (!enc.isEmpty()) {
-        text += QString::fromLatin1("<p><em>%1</em> %2</p>").arg(i18n("Enclosure:")).arg(enc);
+        text += QStringLiteral("<p><em>%1</em> %2</p>").arg(i18n("Enclosure:")).arg(enc);
     }
 
     if (article.link().isValid() || (article.guidIsPermaLink() && QUrl(article.guid()).isValid())) {
@@ -281,8 +281,8 @@ QString DefaultNormalViewFormatter::getCss() const
                        pal.color(QPalette::Text).name(),
                        pal.color(QPalette::Base).name());
     css += QString(
-               QString::fromLatin1("a {\n")
-               + QString::fromLatin1("  color: %1 ! important;\n")
+               QLatin1String("a {\n")
+               + QLatin1String("  color: %1 ! important;\n")
                + QString(!Settings::underlineLinks() ? QStringLiteral(" text-decoration: none ! important;\n") : QStringLiteral(""))
                +       QLatin1String("}\n\n")
                + QLatin1String(".headerbox {\n")
@@ -294,12 +294,12 @@ QString DefaultNormalViewFormatter::getCss() const
            .arg(pal.color(QPalette::Link).name(),
                 pal.color(QPalette::Background).name(),
                 pal.color(QPalette::Text).name());
-    css += QString::fromLatin1(".headertitle a:link { color: %1 ! important;\n text-decoration: none ! important;\n }\n"
+    css += QStringLiteral(".headertitle a:link { color: %1 ! important;\n text-decoration: none ! important;\n }\n"
                                ".headertitle a:visited { color: %1 ! important;\n text-decoration: none ! important;\n }\n"
                                ".headertitle a:hover{ color: %1 ! important;\n text-decoration: none ! important;\n }\n"
                                ".headertitle a:active { color: %1 ! important;\n  text-decoration: none ! important;\n }\n")
            .arg(pal.color(QPalette::HighlightedText).name());
-    css += QString::fromLatin1(
+    css += QStringLiteral(
                ".headertitle {\n"
                "  background: %1 ! important;\n"
                "  padding:2px;\n"
@@ -323,7 +323,7 @@ QString DefaultNormalViewFormatter::getCss() const
                pal.color(QPalette::Highlight).name(),
                pal.color(QPalette::HighlightedText).name());
 
-    css += QString::fromLatin1(
+    css += QLatin1String(
                "body { clear: none; }\n\n"
                ".content {\n"
                "  display: block;\n"
@@ -363,12 +363,12 @@ QString DefaultCombinedViewFormatter::formatArticle(const Article &article, Icon
 {
     QString text;
     const QString enc = formatEnclosure(*article.enclosure());
-    text = QString::fromLatin1("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::isRightToLeft() ? QStringLiteral("rtl") : QStringLiteral("ltr"));
+    text = QStringLiteral("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::isRightToLeft() ? QStringLiteral("rtl") : QStringLiteral("ltr"));
 
     const QString strippedTitle = Utils::stripTags(article.title());
 
     if (!strippedTitle.isEmpty()) {
-        text += QString::fromLatin1("<div class=\"headertitle\" dir=\"%1\">\n").arg(Utils::directionOf(strippedTitle));
+        text += QStringLiteral("<div class=\"headertitle\" dir=\"%1\">\n").arg(Utils::directionOf(strippedTitle));
         if (article.link().isValid()) {
             text += QLatin1String("<a href=\"") + article.link().url() + QLatin1String("\">");
         }
@@ -379,23 +379,23 @@ QString DefaultCombinedViewFormatter::formatArticle(const Article &article, Icon
         text += QStringLiteral("</div>\n");
     }
     if (article.pubDate().isValid()) {
-        text += QString::fromLatin1("<span class=\"header\" dir=\"%1\">").arg(Utils::directionOf(i18n("Date")));
-        text += QString::fromLatin1("%1:").arg(i18n("Date"));
+        text += QStringLiteral("<span class=\"header\" dir=\"%1\">").arg(Utils::directionOf(i18n("Date")));
+        text += QStringLiteral("%1:").arg(i18n("Date"));
         text += QLatin1String("</span><span class=\"headertext\">");
         text += KLocale::global()->formatDateTime(article.pubDate(), KLocale::FancyLongDate) + QLatin1String("</span>\n"); // TODO: might need RTL?
     }
 
     const QString author = article.authorAsHtml();
     if (!author.isEmpty()) {
-        text += QString::fromLatin1("<br/><span class=\"header\" dir=\"%1\">").arg(Utils::directionOf(i18n("Author")));
-        text += QString::fromLatin1("%1:").arg(i18n("Author"));
+        text += QStringLiteral("<br/><span class=\"header\" dir=\"%1\">").arg(Utils::directionOf(i18n("Author")));
+        text += QStringLiteral("%1:").arg(i18n("Author"));
         text += QLatin1String("</span><span class=\"headertext\">");
         text += author + QLatin1String("</span>\n"); // TODO: might need RTL?
     }
 
     if (!enc.isEmpty()) {
-        text += QString::fromLatin1("<br/><span class=\"header\" dir=\"%1\">").arg(Utils::directionOf(i18n("Enclosure")));
-        text += QString::fromLatin1("%1:").arg(i18n("Enclosure"));
+        text += QStringLiteral("<br/><span class=\"header\" dir=\"%1\">").arg(Utils::directionOf(i18n("Enclosure")));
+        text += QStringLiteral("%1:").arg(i18n("Enclosure"));
         text += QLatin1String("</span><span class=\"headertext\">");
         text += enc + QLatin1String("</span>\n"); // TODO: might need RTL?
     }
@@ -408,12 +408,12 @@ QString DefaultCombinedViewFormatter::formatArticle(const Article &article, Icon
         QUrl u(m_imageDir);
         u = u.adjusted(QUrl::RemoveFilename);
         u.setPath(u.path() + file);
-        text += QString::fromLatin1("<a href=\"%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(feed->htmlUrl(), u.url());
+        text += QStringLiteral("<a href=\"%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(feed->htmlUrl(), u.url());
     }
 
     const QString content = article.content(Article::DescriptionAsFallback);
     if (!content.isEmpty()) {
-        text += QString::fromLatin1("<div dir=\"%1\">").arg(Utils::directionOf(Utils::stripTags(content)));
+        text += QStringLiteral("<div dir=\"%1\">").arg(Utils::directionOf(Utils::stripTags(content)));
         text += QLatin1String("<span class=\"content\">") + content + QLatin1String("</span>");
         text += QLatin1String("</div>");
     }
@@ -431,7 +431,7 @@ QString DefaultCombinedViewFormatter::formatArticle(const Article &article, Icon
     }
 
     if (!enc.isEmpty()) {
-        text += QString::fromLatin1("<p><em>%1</em> %2</p>").arg(i18n("Enclosure:")).arg(enc);
+        text += QStringLiteral("<p><em>%1</em> %2</p>").arg(i18n("Enclosure:")).arg(enc);
     }
 
     if (article.link().isValid() || (article.guidIsPermaLink() && QUrl(article.guid()).isValid())) {
@@ -445,7 +445,7 @@ QString DefaultCombinedViewFormatter::formatArticle(const Article &article, Icon
         text += QLatin1String("\">") + i18n("Complete Story") + QLatin1String("</a></p>");
     }
 
-    text += QString::fromLatin1("</div>");
+    text += QLatin1String("</div>");
     //qCDebug(AKREGATOR_LOG) << text;
     return text;
 }
@@ -464,30 +464,30 @@ QString DefaultCombinedViewFormatter::getCss() const
                       "  color: %3 ! important;\n"
                       "  background: %4 ! important;\n"
                       "}\n\n").arg(Settings::standardFont(),
-                                   QString(QString::number(pointsToPixel(Settings::mediumFontSize())) + QString::fromLatin1("px")),
+                                   QString(QString::number(pointsToPixel(Settings::mediumFontSize())) + QLatin1String("px")),
                                    pal.color(QPalette::Text).name(),
                                    pal.color(QPalette::Base).name());
     css += QString(
                QLatin1String("a {\n")
-               + QString::fromLatin1("  color: %1 ! important;\n")
+               + QLatin1String("  color: %1 ! important;\n")
                + QString(!Settings::underlineLinks() ? QStringLiteral(" text-decoration: none ! important;\n") : QStringLiteral(""))
                +       QLatin1String("}\n\n")
-               + QString::fromLatin1(".headerbox {\n")
-               + QString::fromLatin1("  background: %2 ! important;\n")
-               + QString::fromLatin1("  color: %3 ! important;\n")
-               + QString::fromLatin1("  border:1px solid #000;\n")
-               + QString::fromLatin1("  margin-bottom: 10pt;\n")
-               +        QString::fromLatin1("}\n\n"))
+               + QLatin1String(".headerbox {\n")
+               + QLatin1String("  background: %2 ! important;\n")
+               + QLatin1String("  color: %3 ! important;\n")
+               + QLatin1String("  border:1px solid #000;\n")
+               + QLatin1String("  margin-bottom: 10pt;\n")
+               +        QLatin1String("}\n\n"))
            .arg(pal.color(QPalette::Link).name(),
                 pal.color(QPalette::Background).name(),
                 pal.color(QPalette::Text).name());
 
-    css += QString::fromLatin1(".headertitle a:link { color: %1  ! important; text-decoration: none ! important;\n }\n"
+    css += QStringLiteral(".headertitle a:link { color: %1  ! important; text-decoration: none ! important;\n }\n"
                                ".headertitle a:visited { color: %1 ! important; text-decoration: none ! important;\n }\n"
                                ".headertitle a:hover{ color: %1 ! important; text-decoration: none ! important;\n }\n"
                                ".headertitle a:active { color: %1 ! important; text-decoration: none ! important;\n }\n")
            .arg(pal.color(QPalette::HighlightedText).name());
-    css += QString::fromLatin1(
+    css += QStringLiteral(
                ".headertitle {\n"
                "  background: %1 ! important;\n"
                "  padding:2px;\n"
@@ -510,7 +510,7 @@ QString DefaultCombinedViewFormatter::getCss() const
                "}\n\n").arg(pal.color(QPalette::Highlight).name(),
                             pal.color(QPalette::HighlightedText).name());
 
-    css += QString::fromLatin1(
+    css += QLatin1String(
                "body { clear: none; }\n\n"
                ".content {\n"
                "  display: block;\n"

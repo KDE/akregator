@@ -67,17 +67,17 @@ QString Criterion::subjectToString(Subject subj)
 
 Criterion::Subject Criterion::stringToSubject(const QString &subjStr)
 {
-    if (subjStr == QString::fromLatin1("Title")) {
+    if (subjStr == QLatin1String("Title")) {
         return Title;
-    } else if (subjStr == QString::fromLatin1("Link")) {
+    } else if (subjStr == QLatin1String("Link")) {
         return Link;
-    } else if (subjStr == QString::fromLatin1("Description")) {
+    } else if (subjStr == QLatin1String("Description")) {
         return Description;
-    } else if (subjStr == QString::fromLatin1("Status")) {
+    } else if (subjStr == QLatin1String("Status")) {
         return Status;
-    } else if (subjStr == QString::fromLatin1("KeepFlag")) {
+    } else if (subjStr == QLatin1String("KeepFlag")) {
         return KeepFlag;
-    } else if (subjStr == QString::fromLatin1("Author")) {
+    } else if (subjStr == QLatin1String("Author")) {
         return Author;
     }
 
@@ -103,13 +103,13 @@ QString Criterion::predicateToString(Predicate pred)
 
 Criterion::Predicate Criterion::stringToPredicate(const QString &predStr)
 {
-    if (predStr == QString::fromLatin1("Contains")) {
+    if (predStr == QLatin1String("Contains")) {
         return Contains;
-    } else if (predStr == QString::fromLatin1("Equals")) {
+    } else if (predStr == QLatin1String("Equals")) {
         return Equals;
-    } else if (predStr == QString::fromLatin1("Matches")) {
+    } else if (predStr == QLatin1String("Matches")) {
         return Matches;
-    } else if (predStr == QString::fromLatin1("Negation")) {
+    } else if (predStr == QLatin1String("Negation")) {
         return Negation;
     }
 
@@ -131,23 +131,23 @@ Criterion::Criterion(Subject subject, Predicate predicate, const QVariant &objec
 
 void Criterion::writeConfig(KConfigGroup *config) const
 {
-    config->writeEntry(QString::fromLatin1("subject"), subjectToString(m_subject));
+    config->writeEntry(QStringLiteral("subject"), subjectToString(m_subject));
 
-    config->writeEntry(QString::fromLatin1("predicate"), predicateToString(m_predicate));
+    config->writeEntry(QStringLiteral("predicate"), predicateToString(m_predicate));
 
-    config->writeEntry(QString::fromLatin1("objectType"), QString::fromLatin1(m_object.typeName()));
+    config->writeEntry(QStringLiteral("objectType"), QString::fromLatin1(m_object.typeName()));
 
-    config->writeEntry(QString::fromLatin1("objectValue"), m_object);
+    config->writeEntry(QStringLiteral("objectValue"), m_object);
 }
 
 void Criterion::readConfig(KConfigGroup *config)
 {
-    m_subject = stringToSubject(config->readEntry(QString::fromLatin1("subject"), QString()));
-    m_predicate = stringToPredicate(config->readEntry(QString::fromLatin1("predicate"), QString()));
-    QVariant::Type type = QVariant::nameToType(config->readEntry(QString::fromLatin1("objType"), QString()).toLatin1());
+    m_subject = stringToSubject(config->readEntry(QStringLiteral("subject"), QString()));
+    m_predicate = stringToPredicate(config->readEntry(QStringLiteral("predicate"), QString()));
+    QVariant::Type type = QVariant::nameToType(config->readEntry(QStringLiteral("objType"), QString()).toLatin1());
 
     if (type != QVariant::Invalid) {
-        m_object = config->readEntry(QString::fromLatin1("objectValue"), QVariant(type));
+        m_object = config->readEntry(QStringLiteral("objectValue"), QVariant(type));
     }
 }
 
@@ -262,7 +262,7 @@ void ArticleMatcher::writeConfig(KConfigGroup *config) const
 
     config->writeEntry(QStringLiteral("matcherCriteriaCount"), m_criteria.count());
 
-    QString criterionGroupPrefix = config->name() + QString::fromLatin1("_Criterion");
+    QString criterionGroupPrefix = config->name() + QLatin1String("_Criterion");
 
     for (int index = 0; index < m_criteria.size(); ++index) {
         *config = KConfigGroup(config->config(), criterionGroupPrefix + QString::number(index));
@@ -273,11 +273,11 @@ void ArticleMatcher::writeConfig(KConfigGroup *config) const
 void ArticleMatcher::readConfig(KConfigGroup *config)
 {
     m_criteria.clear();
-    m_association = stringToAssociation(config->readEntry(QString::fromLatin1("matcherAssociation"), QString()));
+    m_association = stringToAssociation(config->readEntry(QStringLiteral("matcherAssociation"), QString()));
 
-    int count =  config->readEntry(QString::fromLatin1("matcherCriteriaCount"), 0);
+    int count =  config->readEntry(QStringLiteral("matcherCriteriaCount"), 0);
 
-    QString criterionGroupPrefix = config->name() + QString::fromLatin1("_Criterion");
+    QString criterionGroupPrefix = config->name() + QLatin1String("_Criterion");
 
     for (int i = 0; i < count; ++i) {
         Criterion c;
@@ -330,9 +330,9 @@ bool ArticleMatcher::allCriteriaMatch(const Article &a) const
 
 ArticleMatcher::Association ArticleMatcher::stringToAssociation(const QString &assocStr)
 {
-    if (assocStr == QString::fromLatin1("LogicalAnd")) {
+    if (assocStr == QLatin1String("LogicalAnd")) {
         return LogicalAnd;
-    } else if (assocStr == QString::fromLatin1("LogicalOr")) {
+    } else if (assocStr == QLatin1String("LogicalOr")) {
         return LogicalOr;
     } else {
         return None;
