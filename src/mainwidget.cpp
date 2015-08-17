@@ -142,14 +142,14 @@ Akregator::MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl
     m_tabWidget = new TabWidget(m_horizontalSplitter);
     m_actionManager->initTabWidget(m_tabWidget);
 
-    connect(m_part, SIGNAL(signalSettingsChanged()),
-            m_tabWidget, SLOT(slotSettingsChanged()));
+    connect(m_part, &Part::signalSettingsChanged,
+            m_tabWidget, &TabWidget::slotSettingsChanged);
 
-    connect(m_tabWidget, SIGNAL(signalCurrentFrameChanged(int)),
-            Kernel::self()->frameManager(), SLOT(slotChangeFrame(int)));
+    connect(m_tabWidget, &TabWidget::signalCurrentFrameChanged,
+            Kernel::self()->frameManager(), &FrameManager::slotChangeFrame);
 
-    connect(m_tabWidget, SIGNAL(signalRemoveFrameRequest(int)),
-            Kernel::self()->frameManager(), SLOT(slotRemoveFrame(int)));
+    connect(m_tabWidget, &TabWidget::signalRemoveFrameRequest,
+            Kernel::self()->frameManager(), &FrameManager::slotRemoveFrame);
 
     connect(m_tabWidget, SIGNAL(signalOpenUrlRequest(Akregator::OpenUrlRequest&)),
             Kernel::self()->frameManager(), SLOT(slotOpenUrlRequest(Akregator::OpenUrlRequest&)));

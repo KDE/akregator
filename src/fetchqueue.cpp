@@ -128,10 +128,10 @@ void FetchQueue::feedDone(Feed *f)
 
 void FetchQueue::connectToFeed(Feed *feed)
 {
-    connect(feed, SIGNAL(fetched(Akregator::Feed*)), this, SLOT(slotFeedFetched(Akregator::Feed*)));
-    connect(feed, SIGNAL(fetchError(Akregator::Feed*)), this, SLOT(slotFetchError(Akregator::Feed*)));
-    connect(feed, SIGNAL(fetchAborted(Akregator::Feed*)), this, SLOT(slotFetchAborted(Akregator::Feed*)));
-    connect(feed, SIGNAL(signalDestroyed(Akregator::TreeNode*)), this, SLOT(slotNodeDestroyed(Akregator::TreeNode*)));
+    connect(feed, &Feed::fetched, this, &FetchQueue::slotFeedFetched);
+    connect(feed, &Feed::fetchError, this, &FetchQueue::slotFetchError);
+    connect(feed, &Feed::fetchAborted, this, &FetchQueue::slotFetchAborted);
+    connect(feed, &TreeNode::signalDestroyed, this, &FetchQueue::slotNodeDestroyed);
 }
 
 void FetchQueue::disconnectFromFeed(Feed *feed)
