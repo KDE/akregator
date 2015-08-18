@@ -40,7 +40,7 @@ public:
     explicit AkregatorUniqueAppHandler(KontactInterface::Plugin *plugin)
         : KontactInterface::UniqueAppHandler(plugin) {}
     void loadCommandLineOptions(QCommandLineParser *parser) Q_DECL_OVERRIDE;
-    int activate(const QStringList &args) Q_DECL_OVERRIDE;
+    int activate(const QStringList &args, const QString &workingDir) Q_DECL_OVERRIDE;
 };
 
 class AkregatorPlugin : public KontactInterface::Plugin

@@ -145,7 +145,7 @@ void AkregatorUniqueAppHandler::loadCommandLineOptions(QCommandLineParser *parse
     Akregator::akregator_options(parser);
 }
 
-int AkregatorUniqueAppHandler::activate(const QStringList &args)
+int AkregatorUniqueAppHandler::activate(const QStringList &args, const QString &workingDir)
 {
     // Ensure part is loaded
     (void)plugin()->part();
@@ -155,6 +155,6 @@ int AkregatorUniqueAppHandler::activate(const QStringList &args)
     akregator.openStandardFeedList();
     akregator.handleCommandLine(args);
 
-    return KontactInterface::UniqueAppHandler::activate(args);
+    return KontactInterface::UniqueAppHandler::activate(args, workingDir);
 }
 #include "akregator_plugin.moc"
