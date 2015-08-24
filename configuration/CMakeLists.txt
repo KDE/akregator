@@ -15,6 +15,9 @@ target_link_libraries(akregator_config_general
   akregatorinterfaces
   KF5::KIOCore
   KF5::TextWidgets
+  KF5::KCMUtils
+  KF5::Completion
+  KF5::I18n
 )
 
 install(FILES akregator_config_general.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
@@ -32,6 +35,9 @@ target_link_libraries(akregator_config_appearance
   akregatorinterfaces
   KF5::KIOCore
   KF5::TextWidgets
+  KF5::KCMUtils
+  KF5::Completion
+  KF5::I18n
 )
 
 kcoreaddons_desktop_to_json(akregator_config_appearance akregator_config_appearance.desktop)
@@ -46,9 +52,12 @@ ki18n_wrap_ui(kcm_akrarchiveconfig_SRCS settings_archive.ui)
 add_library(akregator_config_archive MODULE ${kcm_akrarchiveconfig_SRCS})
 
 target_link_libraries(akregator_config_archive
+  KF5::KCMUtils
   akregatorinterfaces
   KF5::KIOCore
   KF5::TextWidgets
+  KF5::Completion
+  KF5::I18n   
 )
 #kcoreaddons_desktop_to_json(akregator_config_archive akregator_config_archive.desktop)
 install(FILES akregator_config_archive.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
@@ -64,6 +73,10 @@ add_library(akregator_config_browser MODULE ${kcm_akrbrowserconfig_SRCS})
 target_link_libraries(akregator_config_browser
   akregatorinterfaces
   KF5::KIOCore
+  KF5::KCMUtils
+  KF5::Completion
+  KF5::I18n
+
 )
 kcoreaddons_desktop_to_json(akregator_config_browser akregator_config_browser.desktop)
 
@@ -84,6 +97,9 @@ target_link_libraries(akregator_config_advanced
   akregatorinterfaces
   KF5::KIOCore
   KF5::TextWidgets
+  KF5::KCMUtils
+  KF5::Completion
+  KF5::I18n
 )
 
 kcoreaddons_desktop_to_json(akregator_config_advanced akregator_config_advanced.desktop)

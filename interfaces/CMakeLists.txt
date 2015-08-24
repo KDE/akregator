@@ -15,6 +15,7 @@ generate_export_header(akregatorinterfaces BASE_NAME akregatorinterfaces)
 target_link_libraries(akregatorinterfaces
   kdepim
   KF5::Syndication
+  KF5::ConfigGui
 )
 
 target_include_directories(akregatorinterfaces PUBLIC "$<BUILD_INTERFACE:${akregator_SOURCE_DIR}/interfaces;${akregator_BINARY_DIR}/interfaces>")
