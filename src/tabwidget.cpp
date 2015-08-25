@@ -62,7 +62,7 @@
 namespace Akregator
 {
 
-class TabWidget::Private
+class Q_DECL_HIDDEN TabWidget::Private
 {
 private:
     TabWidget *const q;

@@ -43,7 +43,7 @@
 using namespace Akregator;
 using namespace Akregator::Backend;
 
-class LoadFeedListCommand::Private
+class Q_DECL_HIDDEN LoadFeedListCommand::Private
 {
     LoadFeedListCommand *const q;
 public:
