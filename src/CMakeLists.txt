@@ -6,7 +6,10 @@ add_subdirectory(icons)
 
 ########### next target ###############
 
-set(akregator_SRCS main.cpp mainwindow.cpp akregator_debug.cpp)
+set(akregator_common_SRCS)
+ecm_qt_declare_logging_category(akregator_common_SRCS HEADER akregator_debug.h IDENTIFIER AKREGATOR_LOG CATEGORY_NAME log_akregator)
+
+set(akregator_SRCS main.cpp mainwindow.cpp ${akregator_common_SRCS})
 
 file(GLOB ICONS_AKREGATOR_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/icons/*-apps-akregator.png")
 ecm_add_app_icon(akregator_SRCS ICONS ${ICONS_AKREGATOR_SRCS})
@@ -28,7 +31,7 @@ install(TARGETS akregator ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 
 set(akregatorprivate_LIB_SRCS
   akregratormigrateapplication.cpp
-  akregator_debug.cpp
+  ${akregator_common_SRCS} 
   aboutdata.cpp
   trayicon.cpp
   article.cpp
@@ -87,7 +90,7 @@ set(akregatorpart_PART_SRCS
   ${akregator_utils_SRCS}
   akregatortexttospeech.cpp
   akregatortexttospeechinterface.cpp
-  akregator_debug.cpp
+  ${akregator_common_SRCS}
   deletesubscriptioncommand.cpp
   abstractselectioncontroller.cpp
   articlematcher.cpp
