@@ -101,7 +101,7 @@ public:
     bool doPost;
     QString pageReferrer;
 
-    HistoryEntry() : id(idCounter++) {}
+    HistoryEntry() : id(idCounter++), doPost(false) {}
 
     bool operator==(const HistoryEntry &other) const
     {
