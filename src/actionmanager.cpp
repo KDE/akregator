@@ -27,7 +27,7 @@
 namespace Akregator
 {
 
-class ActionManager::ActionManagerPrivate
+class Q_DECL_HIDDEN ActionManager::ActionManagerPrivate
 {};
 
 ActionManager *ActionManager::m_self = 0;
