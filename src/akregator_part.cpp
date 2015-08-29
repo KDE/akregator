@@ -60,6 +60,8 @@
 #include <kservice.h>
 #include <kxmlguifactory.h>
 #include <kio/netaccess.h>
+#include <KIO/StoredTransferJob>
+#include <KJobWidgets>
 #include <KPluginFactory>
 #include <KParts/Plugin>
 #include <KCMultiDialog>
@@ -577,17 +579,10 @@ void Part::exportFile(const QUrl &url)
 
         return;
     } else {
-        QTemporaryFile tmpfile;
-        tmpfile.open();
-
-        QTextStream stream(&tmpfile);
-        stream.setCodec("UTF-8");
-
-        stream << m_mainWidget->feedListToOPML().toString() << "\n";
-        stream.flush();
-
-        if (!KIO::NetAccess::upload(tmpfile.fileName(), url, m_mainWidget)) {
-            KMessageBox::error(m_mainWidget, KIO::NetAccess::lastErrorString());
+        auto job = KIO::storedPut(m_mainWidget->feedListToOPML().toString().toUtf8(), url, -1);
+        KJobWidgets::setWindow(job, m_mainWidget);
+        if (!job->exec()) {
+            KMessageBox::error(m_mainWidget, job->errorString());
         }
     }
 }
