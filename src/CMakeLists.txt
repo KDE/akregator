@@ -19,7 +19,7 @@ add_executable(akregator ${akregator_SRCS})
 target_link_libraries(akregator
   KF5::Notifications
   KF5::KontactInterface
-  kdepim
+  KF5::Libkdepim
   akregatorprivate
   akregatorinterfaces
   pimcommon
@@ -66,7 +66,7 @@ PUBLIC
 PRIVATE
   KF5::Notifications
   KF5::KDELibs4Support
-  kdepim
+  KF5::Libkdepim
   KF5::Syndication
   akregatorinterfaces
   pimcommon
@@ -137,7 +137,7 @@ target_link_libraries(akregatorpart
   akregatorprivate
   KF5::KCMUtils
   KF5::NotifyConfig
-  kdepim
+  KF5::Libkdepim
   KF5::Syndication
   pimcommon
 )

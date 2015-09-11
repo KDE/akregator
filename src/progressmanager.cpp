@@ -30,7 +30,7 @@
 
 #include <KLocalizedString>
 
-#include <libkdepim/progresswidget/progressmanager.h>
+#include <Libkdepim/ProgressManager>
 
 namespace Akregator
 {

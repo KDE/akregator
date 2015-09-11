@@ -13,7 +13,7 @@ add_library(akregatorinterfaces ${akregatorinterfaces_LIB_SRCS})
 generate_export_header(akregatorinterfaces BASE_NAME akregatorinterfaces)
 
 target_link_libraries(akregatorinterfaces
-  kdepim
+  KF5::Libkdepim
   KF5::Syndication
   KF5::ConfigGui
 )

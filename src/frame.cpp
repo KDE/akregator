@@ -34,7 +34,7 @@
 #include <kparts/browserextension.h>
 #include <kparts/part.h>
 
-#include <libkdepim/progresswidget/progressmanager.h>
+#include <Libkdepim/ProgressManager>
 
 namespace Akregator
 {

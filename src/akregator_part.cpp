@@ -45,7 +45,7 @@
 #include "dummystorage/storagefactorydummyimpl.h"
 #include "utils.h"
 #include "akregator_options.h"
-#include <libkdepim/misc/broadcaststatus.h>
+#include <Libkdepim/BroadcastStatus>
 #include "kdepim-version.h"
 
 #include <knotifyconfigwidget.h>
