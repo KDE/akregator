@@ -22,7 +22,7 @@ target_link_libraries(akregator
   KF5::Libkdepim
   akregatorprivate
   akregatorinterfaces
-  pimcommon
+  KF5::PimCommon
 )
 
 install(TARGETS akregator ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
@@ -69,7 +69,7 @@ PRIVATE
   KF5::Libkdepim
   KF5::Syndication
   akregatorinterfaces
-  pimcommon
+  KF5::PimCommon
 )
 
 target_include_directories(akregatorprivate PUBLIC "$<BUILD_INTERFACE:${akregator_SOURCE_DIR}/src;${akregator_BINARY_DIR}/src>")
@@ -139,7 +139,7 @@ target_link_libraries(akregatorpart
   KF5::NotifyConfig
   KF5::Libkdepim
   KF5::Syndication
-  pimcommon
+  KF5::PimCommon
 )
 
 install(TARGETS akregatorpart DESTINATION ${KDE_INSTALL_PLUGINDIR})

@@ -19,8 +19,8 @@
 #define AKREGATORTEXTTOSPEECH_H
 
 #include <QObject>
-#include "pimcommon/texttospeech/texttospeech.h"
-#include "pimcommon/texttospeech/texttospeechactions.h"
+#include "PimCommon/TextToSpeech"
+#include "PimCommon/TextToSpeechActions"
 class QAction;
 namespace PimCommon
 {

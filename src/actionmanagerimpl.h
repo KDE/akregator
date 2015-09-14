@@ -26,7 +26,7 @@
 #define AKREGATOR_ACTIONMANAGERIMPL_H
 
 #include "actionmanager.h"
-#include "pimcommon/shareserviceurl/shareserviceurlmanager.h"
+#include "PimCommon/ShareServiceUrlManager"
 class QAction;
 class KActionCollection;
 
