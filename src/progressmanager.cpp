@@ -163,7 +163,7 @@ void ProgressItemHandler::slotFetchStarted()
 
     d->progressItem = KPIM::ProgressManager::createProgressItem(KPIM::ProgressManager::getUniqueID(), d->feed->title(), QString(), true);
 
-    connect(d->progressItem, SIGNAL(progressItemCanceled(KPIM::ProgressItem*)), d->feed, SLOT(slotAbortFetch()));
+    connect(d->progressItem, &KPIM::ProgressItem::progressItemCanceled, d->feed, &Feed::slotAbortFetch);
 }
 
 void ProgressItemHandler::slotFetchCompleted()

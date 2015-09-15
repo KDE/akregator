@@ -31,6 +31,7 @@
 #include "article.h"
 #include "fetchqueue.h"
 #include "feediconmanager.h"
+#include "feedlist.h"
 #include "framemanager.h"
 #include "kernel.h"
 #include "loadfeedlistcommand.h"
@@ -277,12 +278,12 @@ Part::Part(QWidget *parentWidget, QObject *parent, const QVariantList &)
         QWidget *const notificationParent = isTrayIconEnabled() ? m_mainWidget->window() : 0;
         NotificationManager::self()->setWidget(notificationParent, componentData().componentName());
 
-        connect(m_mainWidget, SIGNAL(signalUnreadCountChanged(int)), trayIcon, SLOT(slotSetUnread(int)));
+        connect(m_mainWidget, &MainWidget::signalUnreadCountChanged, trayIcon, &TrayIcon::slotSetUnread);
         connect(m_mainWidget, &MainWidget::signalArticlesSelected,
                 this, &Part::signalArticlesSelected);
     }
 
-    connect(qApp, SIGNAL(aboutToQuit()), this, SLOT(slotOnShutdown()));
+    connect(qApp, &QCoreApplication::aboutToQuit, this, &Part::slotOnShutdown);
 
     m_autosaveTimer = new QTimer(this);
     connect(m_autosaveTimer, &QTimer::timeout, this, &Part::slotSaveFeedList);
@@ -351,7 +352,7 @@ void Part::slotSettingsChanged()
             trayIcon->setStatus(KStatusNotifierItem::Active);
         }
 
-        connect(m_mainWidget, SIGNAL(signalUnreadCountChanged(int)), trayIcon, SLOT(slotSetUnread(int)));
+        connect(m_mainWidget, &MainWidget::signalUnreadCountChanged, trayIcon, &TrayIcon::slotSetUnread);
         connect(m_mainWidget, &MainWidget::signalArticlesSelected,
                 this, &Part::signalArticlesSelected);
 
@@ -444,8 +445,8 @@ bool Part::openFile()
     cmd->setStorage(Kernel::self()->storage());
     cmd->setFileName(localFilePath());
     cmd->setDefaultFeedList(createDefaultFeedList());
-    connect(cmd.data(), SIGNAL(result(QSharedPointer<Akregator::FeedList>)),
-            this, SLOT(feedListLoaded(QSharedPointer<Akregator::FeedList>)));
+    connect(cmd.data(), &LoadFeedListCommand::result,
+            this, &Part::feedListLoaded);
     m_loadFeedListCommand = cmd.take();
     m_loadFeedListCommand->start();
     return true;
@@ -474,7 +475,7 @@ void Part::feedListLoaded(const QSharedPointer<FeedList> &list)
     }
 
     if (m_standardListLoaded) {
-        QTimer::singleShot(0, this, SLOT(flushAddFeedRequests()));
+        QTimer::singleShot(0, this, &Part::flushAddFeedRequests);
     }
 
     if (Settings::fetchOnStartup()) {

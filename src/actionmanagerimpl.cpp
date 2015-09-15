@@ -616,14 +616,14 @@ void ActionManagerImpl::initFrameManager(FrameManager *frameManager)
     d->actionCollection->setDefaultShortcut(forward, QKeySequence(isRTL ? QStringLiteral("Alt+Left") : QStringLiteral("Alt+Right")));
     connect(forward, &KToolBarPopupAction::triggered, frameManager, &FrameManager::slotBrowserForward);
 
-    connect(forward->menu(), SIGNAL(aboutToShow()), frameManager, SLOT(slotBrowserForwardAboutToShow()));
+    connect(forward->menu(), &QMenu::aboutToShow, frameManager, &FrameManager::slotBrowserForwardAboutToShow);
 
     KToolBarPopupAction *back = new KToolBarPopupAction(QIcon::fromTheme(isRTL ? QStringLiteral("go-next") : QStringLiteral("go-previous")), i18nc("Go back in browser history", "Back"), this);
     d->actionCollection->addAction(QStringLiteral("browser_back"), back);
     d->actionCollection->setDefaultShortcut(back, QKeySequence(isRTL ?  QStringLiteral("Alt+Right") : QStringLiteral("Alt+Left")));
     connect(back, &KToolBarPopupAction::triggered, frameManager, &FrameManager::slotBrowserBack);
 
-    connect(back->menu(), SIGNAL(aboutToShow()), frameManager, SLOT(slotBrowserBackAboutToShow()));
+    connect(back->menu(), &QMenu::aboutToShow, frameManager, &FrameManager::slotBrowserBackAboutToShow);
 
     QAction *action = d->actionCollection->addAction(QStringLiteral("browser_reload"));
     action->setIcon(QIcon::fromTheme(QStringLiteral("view-refresh")));

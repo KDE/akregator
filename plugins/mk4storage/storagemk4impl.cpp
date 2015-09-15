@@ -278,7 +278,7 @@ void Akregator::Backend::StorageMK4Impl::markDirty()
     if (!d->modified) {
         d->modified = true;
         // commit changes after 3 seconds
-        QTimer::singleShot(3000, this, SLOT(slotCommit()));
+        QTimer::singleShot(3000, this, &StorageMK4Impl::slotCommit);
     }
 }
 

@@ -56,7 +56,7 @@ void Akregator::ArticleDeleteJob::appendArticleId(const Akregator::ArticleId &id
 
 void Akregator::ArticleDeleteJob::start()
 {
-    QTimer::singleShot(20, this, SLOT(doStart()));
+    QTimer::singleShot(20, this, &ArticleDeleteJob::doStart);
 }
 
 void Akregator::ArticleDeleteJob::doStart()
@@ -105,7 +105,7 @@ void Akregator::ArticleModifyJob::setKeep(const ArticleId &id, bool keep)
 
 void Akregator::ArticleModifyJob::start()
 {
-    QTimer::singleShot(20, this, SLOT(doStart()));
+    QTimer::singleShot(20, this, &ArticleModifyJob::doStart);
 }
 
 void Akregator::ArticleModifyJob::doStart()
@@ -177,7 +177,7 @@ ArticleListJob::ArticleListJob(TreeNode *p) : KJob(p), m_node(p) {}
 
 void ArticleListJob::start()
 {
-    QTimer::singleShot(20, this, SLOT(doList()));
+    QTimer::singleShot(20, this, &ArticleListJob::doList);
 }
 
 void ArticleListJob::doList()

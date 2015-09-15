@@ -55,6 +55,7 @@
 #include <kglobalsettings.h>
 #include <kparts/browserextension.h>
 #include <kparts/browserrun.h>
+#include <kio/job.h>
 #include <KGlobal>
 #include <QUrl>
 
@@ -101,8 +102,8 @@ ArticleViewer::ArticleViewer(QWidget *parent)
     m_part->view()->setFrameStyle(QFrame::StyledPanel | QFrame::Sunken);
 
     // change the cursor when loading stuff...
-    connect(m_part, SIGNAL(started(KIO::Job*)),
-            this, SLOT(slotStarted(KIO::Job*)));
+    connect(m_part, &KParts::ReadOnlyPart::started,
+            this, &ArticleViewer::slotStarted);
     connect(m_part, SIGNAL(completed()),
             this, SLOT(slotCompleted()));
 

@@ -89,7 +89,7 @@ MainWindow::MainWindow(QWidget *parent, Qt::WindowFlags f)
     connect(KPIM::BroadcastStatus::instance(), SIGNAL(statusMsg(QString)),
             this, SLOT(slotSetStatusBarText(QString)));
 
-    connect(qApp, SIGNAL(aboutToQuit()), this, SLOT(slotOnShutdown()));
+    connect(qApp, &QCoreApplication::aboutToQuit, this, &MainWindow::slotOnShutdown);
 }
 
 bool MainWindow::loadPart()

@@ -25,6 +25,9 @@
 #include "browserframe_p.h"
 #include "utils/temporaryvalue.h"
 #include "akregator_debug.h"
+
+#include <kio/job.h>
+
 using namespace Akregator;
 
 BrowserFrame::Private::Private(BrowserFrame *qq)
@@ -98,7 +101,7 @@ bool BrowserFrame::Private::loadPartForMimetype(const QString &mimetype)
     // partDestroyed() requests deletion of this BrowserFrame, which deletes the part, which crashes as
     // the part is already half-destructed (destroyed() is emitted from the dtor) but the QPointer is not yet reset to 0.
     // Thus queue the signal to avoid he double deletion.
-    connect(part, SIGNAL(destroyed(QObject*)), this, SLOT(partDestroyed(QObject*)), Qt::QueuedConnection);
+    connect(part, &QObject::destroyed, this, &Private::partDestroyed, Qt::QueuedConnection);
 
     part->setObjectName(ptr->name());
     extension = KParts::BrowserExtension::childObject(part);
@@ -204,36 +207,36 @@ void BrowserFrame::Private::updateHistoryEntry()
 void BrowserFrame::Private::connectPart()
 {
     if (part) {
-        connect(part, SIGNAL(setWindowCaption(QString)),
-                q, SLOT(slotSetCaption(QString)));
-        connect(part, SIGNAL(setStatusBarText(QString)),
-                q, SLOT(slotSetStatusText(QString)));
-        connect(part, SIGNAL(started(KIO::Job*)), q, SLOT(slotSetStarted()));
+        connect(part, &KParts::Part::setWindowCaption,
+                q, &Frame::slotSetCaption);
+        connect(part, &KParts::Part::setStatusBarText,
+                q, &Frame::slotSetStatusText);
+        connect(part, &KParts::ReadOnlyPart::started, q, &Frame::slotSetStarted);
         connect(part, SIGNAL(completed()), q, SLOT(slotSetCompleted()));
-        connect(part, SIGNAL(canceled(QString)),
-                q, SLOT(slotSetCanceled(QString)));
+        connect(part, &KParts::ReadOnlyPart::canceled,
+                q, &Frame::slotSetCanceled);
         connect(part, SIGNAL(completed(bool)),
                 q, SLOT(slotSetCompleted()));
-        connect(part, SIGNAL(setWindowCaption(QString)),
-                q, SLOT(slotSetTitle(QString)));
+        connect(part, &KParts::Part::setWindowCaption,
+                q, &Frame::slotSetTitle);
 
         KParts::BrowserExtension *ext = extension;
 
         if (ext) {
-            connect(ext, SIGNAL(speedProgress(int)),
-                    q, SLOT(slotSpeedProgress(int)));
-            connect(ext, SIGNAL(speedProgress(int)),
-                    q, SLOT(slotSetProgress(int)));
+            connect(ext, &KParts::BrowserExtension::speedProgress,
+                    q, &BrowserFrame::slotSpeedProgress);
+            connect(ext, &KParts::BrowserExtension::speedProgress,
+                    q, &Frame::slotSetProgress);
             connect(ext, SIGNAL(openUrlRequestDelayed(QUrl,
                                 KParts::OpenUrlArguments,
                                 KParts::BrowserArguments)),
                     q, SLOT(slotOpenUrlRequestDelayed(QUrl,
                             KParts::OpenUrlArguments,
                             KParts::BrowserArguments)));
-            connect(ext, SIGNAL(setLocationBarUrl(QString)),
-                    q, SLOT(slotSetLocationBarUrl(QString)));
-            connect(ext, SIGNAL(setIconUrl(QUrl)),
-                    q, SLOT(slotSetIconUrl(QUrl)));
+            connect(ext, &KParts::BrowserExtension::setLocationBarUrl,
+                    q, &BrowserFrame::slotSetLocationBarUrl);
+            connect(ext, &KParts::BrowserExtension::setIconUrl,
+                    q, &BrowserFrame::slotSetIconUrl);
             connect(ext, SIGNAL(createNewWindow(QUrl,
                                                 KParts::OpenUrlArguments,
                                                 KParts::BrowserArguments,

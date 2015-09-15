@@ -389,11 +389,11 @@ void Folder::doArticleNotification()
 
 void Folder::connectToNode(TreeNode *child)
 {
-    connect(child, SIGNAL(signalChanged(Akregator::TreeNode*)), this, SLOT(slotChildChanged(Akregator::TreeNode*)));
-    connect(child, SIGNAL(signalDestroyed(Akregator::TreeNode*)), this, SLOT(slotChildDestroyed(Akregator::TreeNode*)));
-    connect(child, SIGNAL(signalArticlesAdded(Akregator::TreeNode*,QVector<Akregator::Article>)), this, SIGNAL(signalArticlesAdded(Akregator::TreeNode*,QVector<Akregator::Article>)));
-    connect(child, SIGNAL(signalArticlesRemoved(Akregator::TreeNode*,QVector<Akregator::Article>)), this, SIGNAL(signalArticlesRemoved(Akregator::TreeNode*,QVector<Akregator::Article>)));
-    connect(child, SIGNAL(signalArticlesUpdated(Akregator::TreeNode*,QVector<Akregator::Article>)), this, SIGNAL(signalArticlesUpdated(Akregator::TreeNode*,QVector<Akregator::Article>)));
+    connect(child, &TreeNode::signalChanged, this, &Folder::slotChildChanged);
+    connect(child, &TreeNode::signalDestroyed, this, &Folder::slotChildDestroyed);
+    connect(child, &TreeNode::signalArticlesAdded, this, &TreeNode::signalArticlesAdded);
+    connect(child, &TreeNode::signalArticlesRemoved, this, &TreeNode::signalArticlesRemoved);
+    connect(child, &TreeNode::signalArticlesUpdated, this, &TreeNode::signalArticlesUpdated);
 }
 
 void Folder::disconnectFromNode(TreeNode *child)

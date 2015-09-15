@@ -63,7 +63,7 @@ void NotificationManager::slotNotifyArticle(const Article &article)
         doNotify();
     } else if (!m_running) {
         m_running = true;
-        QTimer::singleShot(m_checkInterval, this, SLOT(slotIntervalCheck()));
+        QTimer::singleShot(m_checkInterval, this, &NotificationManager::slotIntervalCheck);
     }
 }
 
@@ -111,7 +111,7 @@ void NotificationManager::slotIntervalCheck()
         doNotify();
     } else {
         m_addedInLastInterval = false;
-        QTimer::singleShot(m_checkInterval, this, SLOT(slotIntervalCheck()));
+        QTimer::singleShot(m_checkInterval, this, &NotificationManager::slotIntervalCheck);
     }
 
 }
