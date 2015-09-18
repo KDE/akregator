@@ -31,7 +31,7 @@
 #include "openurlrequest.h"
 
 #include <QAction>
-#include <KCharMacroExpander>
+#include <KMacroExpander>
 #include <kprocess.h>
 #include <kshell.h>
 #include <kconfiggroup.h>

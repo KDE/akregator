@@ -56,7 +56,6 @@
 #include <kparts/browserextension.h>
 #include <kparts/browserrun.h>
 #include <kio/job.h>
-#include <KGlobal>
 #include <QUrl>
 
 #include <QClipboard>

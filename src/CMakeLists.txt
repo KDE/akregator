@@ -65,11 +65,12 @@ PUBLIC
   KF5::KHtml
 PRIVATE
   KF5::Notifications
-  KF5::KDELibs4Support
   KF5::Libkdepim
   KF5::Syndication
   akregatorinterfaces
   KF5::PimCommon
+  KF5::WindowSystem
+  KF5::IconThemes
 )
 
 target_include_directories(akregatorprivate PUBLIC "$<BUILD_INTERFACE:${akregator_SOURCE_DIR}/src;${akregator_BINARY_DIR}/src>")

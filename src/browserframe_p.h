@@ -37,7 +37,6 @@
 #include <QPointer>
 #include <QString>
 
-#include <klibloader.h>
 #include <kmimetypetrader.h>
 #include <ktoolbarpopupaction.h>
 #include <QUrl>
