@@ -34,10 +34,8 @@
 
 #include <qdom.h>
 #include <QFile>
-
 #include <qdebug.h>
-#include <kglobal.h>
-#include <kstandarddirs.h>
+#include <QStandardPaths>
 
 namespace
 {
@@ -152,7 +150,7 @@ FeedStorageMK4Impl::FeedStorageMK4Impl(const QString &url, StorageMK4Impl *main)
     QString t = url2;
     QString t2 = url2;
     QString filePath = main->archivePath() + QLatin1Char('/') + t.replace(QLatin1Char('/'), QLatin1Char('_')).replace(QLatin1Char(':'), QLatin1Char('_'));
-    d->oldArchivePath = KGlobal::dirs()->saveLocation("data", QStringLiteral("akregator/Archive/")) + t2.replace(QLatin1Char('/'), QLatin1Char('_')).replace(QLatin1Char(':'), QLatin1Char('_')) + QLatin1String(".xml");
+    d->oldArchivePath = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QStringLiteral("/akregator/Archive/") + t2.replace(QLatin1Char('/'), QLatin1Char('_')).replace(QLatin1Char(':'), QLatin1Char('_')) + QLatin1String(".xml");
     d->convert = !QFile::exists(filePath + QLatin1String(".mk4")) && QFile::exists(d->oldArchivePath);
     d->storage = new c4_Storage(QString(filePath + QLatin1String(".mk4")).toLocal8Bit(), true);
 
