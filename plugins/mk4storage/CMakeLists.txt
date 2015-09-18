@@ -42,6 +42,7 @@ target_link_libraries(akregator_mk4storage_plugin
   KF5::Syndication
   akregatorinterfaces
   KF5::I18n
+  KF5::CoreAddons
 )
 
 install(TARGETS akregator_mk4storage_plugin DESTINATION ${KDE_INSTALL_PLUGINDIR})
