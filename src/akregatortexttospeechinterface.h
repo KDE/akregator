@@ -18,8 +18,8 @@
 #ifndef AKREGATORTEXTTOSPEECHINTERFACE_H
 #define AKREGATORTEXTTOSPEECHINTERFACE_H
 
-#include <texttospeech/abstracttexttospeechinterface.h>
-#include "texttospeech/texttospeechwidget.h"
+#include <pimcommon/abstracttexttospeechinterface.h>
+#include "pimcommon/texttospeechwidget.h"
 namespace Akregator
 {
 class AkregatorTextToSpeechInterface: public PimCommon::AbstractTextToSpeechInterface
