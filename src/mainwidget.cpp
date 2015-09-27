@@ -74,6 +74,7 @@
 #include <QUrl>
 
 #include <QClipboard>
+#include <QNetworkConfigurationManager>
 #include <QSplitter>
 #include <QTextDocument>
 #include <QDomDocument>
@@ -85,7 +86,6 @@
 #include <cassert>
 
 using namespace Akregator;
-using namespace Solid;
 
 Akregator::MainWidget::~MainWidget()
 {
@@ -102,7 +102,8 @@ Akregator::MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl
       m_feedList(),
       m_viewMode(NormalView),
       m_actionManager(actionManager),
-      m_feedListManagementInterface(new FeedListManagementImpl)
+      m_feedListManagementInterface(new FeedListManagementImpl),
+      m_networkConfigManager(new QNetworkConfigurationManager(this))
 {
     setObjectName(QLatin1String(name));
 
@@ -172,7 +173,7 @@ Akregator::MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl
             this, &MainWidget::slotFramesChanged);
     connect(Kernel::self()->frameManager(), &FrameManager::signalFrameRemoved,
             this, &MainWidget::slotFramesChanged);
-    connect(Solid::Networking::notifier(), &Networking::Notifier::statusChanged,
+    connect(m_networkConfigManager, &QNetworkConfigurationManager::onlineStateChanged,
             this, &MainWidget::slotNetworkStatusChanged);
 
     m_tabWidget->setWhatsThis(i18n("You can view multiple articles in several open tabs."));
@@ -301,13 +302,6 @@ Akregator::MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl
     if (!Settings::resetQuickFilterOnNodeChange()) {
         m_searchBar->slotSetStatus(Settings::statusFilter());
         m_searchBar->slotSetText(Settings::textFilter());
-    }
-
-    //Check network status
-    if (Solid::Networking::status() == Solid::Networking::Connected || Solid::Networking::status() == Solid::Networking::Unknown) {
-        this->m_networkAvailable = true;
-    } else if (Solid::Networking::status() == Solid::Networking::Unconnected) {
-        this->m_networkAvailable = false;
     }
 }
 
@@ -1191,17 +1185,15 @@ void MainWidget::slotReloadAllTabs()
 
 bool MainWidget::isNetworkAvailable()
 {
-    return m_networkAvailable;
+    return m_networkConfigManager->isOnline();
 }
 
-void MainWidget::slotNetworkStatusChanged(Solid::Networking::Status status)
+void MainWidget::slotNetworkStatusChanged(bool status)
 {
-    if (status == Solid::Networking::Connected || Solid::Networking::status() == Solid::Networking::Unknown) {
-        m_networkAvailable = true;
+    if (status) {
         m_mainFrame->slotSetStatusText(i18n("Networking is available now."));
         this->slotFetchAllFeeds();
-    } else if (Solid::Networking::Unconnected) {
-        m_networkAvailable = false;
+    } else {
         m_mainFrame->slotSetStatusText(i18n("Networking is not available."));
     }
 }

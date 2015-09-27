@@ -32,8 +32,6 @@
 
 #include <QUrl>
 
-#include <solid/networking.h>
-
 #include <QWidget>
 
 #include <QSharedPointer>
@@ -43,6 +41,7 @@ class KFileItem;
 class KConfigGroup;
 
 class QDomDocument;
+class QNetworkConfigurationManager;
 class QSplitter;
 
 namespace Akregator
@@ -232,7 +231,7 @@ public Q_SLOTS:
         sendArticle(true);
     }
 
-    void slotNetworkStatusChanged(Solid::Networking::Status status);
+    void slotNetworkStatusChanged(bool status);
 
 protected:
 
@@ -288,10 +287,11 @@ private:
 
     bool m_shuttingDown;
     bool m_displayingAboutPage;
-    bool m_networkAvailable;
 
     ActionManagerImpl *m_actionManager;
     FeedListManagementImpl *const m_feedListManagementInterface;
+
+    QNetworkConfigurationManager *m_networkConfigManager;
 };
 
 } // namespace Akregator
