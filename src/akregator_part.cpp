@@ -60,7 +60,6 @@
 #include <QSaveFile>
 #include <kservice.h>
 #include <kxmlguifactory.h>
-#include <kio/netaccess.h>
 #include <KIO/StoredTransferJob>
 #include <KJobWidgets>
 #include <KPluginFactory>
@@ -528,16 +527,19 @@ bool Part::isTrayIconEnabled() const
 void Part::importFile(const QUrl &url)
 {
     QString filename;
-
-    bool isRemote = false;
+    QTemporaryFile tempFile;
 
     if (url.isLocalFile()) {
         filename = url.toLocalFile();
     } else {
-        isRemote = true;
+        if (!tempFile.open())
+            return;
+        filename = tempFile.fileName();
 
-        if (!KIO::NetAccess::download(url, filename, m_mainWidget)) {
-            KMessageBox::error(m_mainWidget, KIO::NetAccess::lastErrorString());
+        auto job = KIO::file_copy(url, QUrl::fromLocalFile(filename), -1, KIO::Overwrite | KIO::HideProgressInfo);
+        KJobWidgets::setWindow(job, m_mainWidget);
+        if (!job->exec()) {
+            KMessageBox::error(m_mainWidget, job->errorString());
             return;
         }
     }
@@ -553,10 +555,6 @@ void Part::importFile(const QUrl &url)
         }
     } else {
         KMessageBox::error(m_mainWidget, i18n("The file %1 could not be read, check if it exists or if it is readable for the current user.", filename), i18n("Read Error"));
-    }
-
-    if (isRemote) {
-        KIO::NetAccess::removeTempFile(filename);
     }
 }
 
