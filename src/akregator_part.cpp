@@ -532,8 +532,9 @@ void Part::importFile(const QUrl &url)
     if (url.isLocalFile()) {
         filename = url.toLocalFile();
     } else {
-        if (!tempFile.open())
+        if (!tempFile.open()) {
             return;
+        }
         filename = tempFile.fileName();
 
         auto job = KIO::file_copy(url, QUrl::fromLocalFile(filename), -1, KIO::Overwrite | KIO::HideProgressInfo);

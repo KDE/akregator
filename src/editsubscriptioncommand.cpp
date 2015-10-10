@@ -45,14 +45,12 @@ class EditNodePropertiesVisitor : public TreeNodeVisitor
 public:
     EditNodePropertiesVisitor(SubscriptionListView *subcriptionListView, QWidget *parent);
 
-    bool visitFolder(Folder *node) Q_DECL_OVERRIDE
-    {
+    bool visitFolder(Folder *node) Q_DECL_OVERRIDE {
         m_subscriptionListView->startNodeRenaming(node);
         return true;
     }
 
-    bool visitFeed(Akregator::Feed *node) Q_DECL_OVERRIDE
-    {
+    bool visitFeed(Akregator::Feed *node) Q_DECL_OVERRIDE {
         QPointer<FeedPropertiesDialog> dlg = new FeedPropertiesDialog(m_widget);
         dlg->setFeed(node);
         dlg->exec();

@@ -260,7 +260,7 @@ c4_String c4_String::Right(int nCount)const
 bool operator == (const c4_String &a, const c4_String &b)
 {
     return a._value == b._value || (a.GetLength() == b.GetLength() && memcmp
-           (a.Data(), b.Data(), a.GetLength()) == 0);
+                                    (a.Data(), b.Data(), a.GetLength()) == 0);
 }
 
 int c4_String::Compare(const char *str)const

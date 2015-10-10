@@ -68,7 +68,7 @@ private:
     friend class ::Akregator::FeedIconManager::Private;
     Private *const d;
 
-    Q_PRIVATE_SLOT(d, void loadIcon(const QString&))
+    Q_PRIVATE_SLOT(d, void loadIcon(const QString &))
 };
 
 } // namespace Akregator

@@ -191,8 +191,7 @@ public:
 
     QUrl url() const Q_DECL_OVERRIDE;
 
-    bool openUrl(const OpenUrlRequest &) Q_DECL_OVERRIDE
-    {
+    bool openUrl(const OpenUrlRequest &) Q_DECL_OVERRIDE {
         return false;
     }
 

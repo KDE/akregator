@@ -295,9 +295,9 @@ QString DefaultNormalViewFormatter::getCss() const
                 pal.color(QPalette::Background).name(),
                 pal.color(QPalette::Text).name());
     css += QStringLiteral(".headertitle a:link { color: %1 ! important;\n text-decoration: none ! important;\n }\n"
-                               ".headertitle a:visited { color: %1 ! important;\n text-decoration: none ! important;\n }\n"
-                               ".headertitle a:hover{ color: %1 ! important;\n text-decoration: none ! important;\n }\n"
-                               ".headertitle a:active { color: %1 ! important;\n  text-decoration: none ! important;\n }\n")
+                          ".headertitle a:visited { color: %1 ! important;\n text-decoration: none ! important;\n }\n"
+                          ".headertitle a:hover{ color: %1 ! important;\n text-decoration: none ! important;\n }\n"
+                          ".headertitle a:active { color: %1 ! important;\n  text-decoration: none ! important;\n }\n")
            .arg(pal.color(QPalette::HighlightedText).name());
     css += QStringLiteral(
                ".headertitle {\n"
@@ -483,9 +483,9 @@ QString DefaultCombinedViewFormatter::getCss() const
                 pal.color(QPalette::Text).name());
 
     css += QStringLiteral(".headertitle a:link { color: %1  ! important; text-decoration: none ! important;\n }\n"
-                               ".headertitle a:visited { color: %1 ! important; text-decoration: none ! important;\n }\n"
-                               ".headertitle a:hover{ color: %1 ! important; text-decoration: none ! important;\n }\n"
-                               ".headertitle a:active { color: %1 ! important; text-decoration: none ! important;\n }\n")
+                          ".headertitle a:visited { color: %1 ! important; text-decoration: none ! important;\n }\n"
+                          ".headertitle a:hover{ color: %1 ! important; text-decoration: none ! important;\n }\n"
+                          ".headertitle a:active { color: %1 ! important; text-decoration: none ! important;\n }\n")
            .arg(pal.color(QPalette::HighlightedText).name());
     css += QStringLiteral(
                ".headertitle {\n"
