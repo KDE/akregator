@@ -82,7 +82,7 @@ public:
     }
 
     uint tabBarWidthForMaxChars(int maxLength);
-    void setTitle(const QString &title , QWidget *sender);
+    void setTitle(const QString &title, QWidget *sender);
     void updateTabBarVisibility();
     Frame *currentFrame();
 };

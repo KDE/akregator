@@ -658,7 +658,7 @@ void c4_FormatB::SetOne(int index_, const c4_Bytes &xbuf_, bool ignoreMemos_)
     } else if (n < 0) {
         cp->Shrink(start,  - n);
     } else if (m == 0) {
-        return ;
+        return;
     }
     // no size change and no contents
 
@@ -922,7 +922,7 @@ void c4_FormatS::Set(int index_, const c4_Bytes &buf_)
         d4_assert(buf_.Contents()[m] == 0);
         if (m == 0) {
             SetOne(index_, c4_Bytes()); // don't store data for empty strings
-            return ;
+            return;
         }
     }
 
@@ -946,7 +946,7 @@ void c4_FormatS::Insert(int index_, const c4_Bytes &buf_, int count_)
         d4_assert(buf_.Contents()[m] == 0);
         if (m == 0) {
             c4_FormatB::Insert(index_, c4_Bytes(), count_);
-            return ;
+            return;
         }
     }
 
@@ -1141,7 +1141,7 @@ void c4_FormatV::Replace(int index_, c4_HandlerSeq *seq_)
 
     c4_HandlerSeq *&curr = (c4_HandlerSeq *&)_subSeqs.ElementAt(index_);
     if (seq_ == curr) {
-        return ;
+        return;
     }
 
     if (curr != 0) {

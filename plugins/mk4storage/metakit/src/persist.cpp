@@ -298,7 +298,7 @@ void c4_Allocator::InsertPair(int i_, t4_i32 from_, t4_i32 to_)
     //!d4_assert(to_ < GetAt(i_));
 
     if (to_ >= (t4_i32)GetAt(i_)) {
-        return ;
+        return;
     }
     // ignore 2nd allocation of used area
 
@@ -624,7 +624,7 @@ void c4_SaveContext::Write(const void *buf_, int len_)
 void c4_SaveContext::StoreValue(t4_i32 v_)
 {
     if (_walk == 0) {
-        return ;
+        return;
     }
 
     if (_curr + 10 >= _limit) {
@@ -642,7 +642,7 @@ void c4_SaveContext::SaveIt(c4_HandlerSeq &root_, c4_Allocator **spacePtr_,
 
     const t4_i32 size = _strategy.FileSize();
     if (_strategy._failure != 0) {
-        return ;
+        return;
     }
 
     const t4_i32 end = _fullScan ? 0 : size - _strategy._baseOffset;
@@ -690,7 +690,7 @@ void c4_SaveContext::SaveIt(c4_HandlerSeq &root_, c4_Allocator **spacePtr_,
     if (limit < 0) {
         // 2006-01-12 #2: catch file size exceeding 2 Gb
         _strategy._failure =  - 1; // unusual non-zero value flags this case
-        return ;
+        return;
     }
 
     bool changed = _fullScan || tempWalk != rootWalk_;
@@ -708,7 +708,7 @@ void c4_SaveContext::SaveIt(c4_HandlerSeq &root_, c4_Allocator **spacePtr_,
     }
 
     if (!changed) {
-        return ;
+        return;
     }
 
     //AllocDump("b1", false);
@@ -717,7 +717,7 @@ void c4_SaveContext::SaveIt(c4_HandlerSeq &root_, c4_Allocator **spacePtr_,
     if (_differ != 0) {
         int n = _differ->NewDiffID();
         _differ->CreateDiff(n, walk);
-        return ;
+        return;
     }
 
     d4_assert(_mode != 0 || _fullScan);
@@ -741,7 +741,7 @@ void c4_SaveContext::SaveIt(c4_HandlerSeq &root_, c4_Allocator **spacePtr_,
             _strategy.DataWrite(limit, &mark1, sizeof mark1);
             _strategy.DataCommit(0);
             if (_strategy._failure != 0) {
-                return ;
+                return;
             }
         }
 
@@ -802,7 +802,7 @@ void c4_SaveContext::SaveIt(c4_HandlerSeq &root_, c4_Allocator **spacePtr_,
         _strategy.DataWrite(_strategy.FileSize() - _strategy._baseOffset,  &mark2,
                             sizeof mark2);
 
-        return ;
+        return;
     }
 
     if (inPlace) {
@@ -815,7 +815,7 @@ void c4_SaveContext::SaveIt(c4_HandlerSeq &root_, c4_Allocator **spacePtr_,
     }
 
     if (walk.Position() == 0 || _strategy._failure != 0) {
-        return ;
+        return;
     }
 
     _strategy.DataCommit(0);
@@ -1095,7 +1095,7 @@ void c4_Persist::LoadAll()
 {
     c4_Column walk(this);
     if (!LoadIt(walk)) {
-        return ;
+        return;
     }
 
     if (_strategy._rootLen < 0) {

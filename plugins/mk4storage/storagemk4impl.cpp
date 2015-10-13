@@ -154,7 +154,7 @@ bool Akregator::Backend::StorageMK4Impl::autoCommit() const
 bool Akregator::Backend::StorageMK4Impl::close()
 {
     QMap<QString, FeedStorageMK4Impl *>::Iterator it;
-    QMap<QString, FeedStorageMK4Impl *>::Iterator end(d->feeds.end()) ;
+    QMap<QString, FeedStorageMK4Impl *>::Iterator end(d->feeds.end());
     for (it = d->feeds.begin(); it != end; ++it) {
         it.value()->close();
         delete it.value();
@@ -176,7 +176,7 @@ bool Akregator::Backend::StorageMK4Impl::close()
 bool Akregator::Backend::StorageMK4Impl::commit()
 {
     QMap<QString, FeedStorageMK4Impl *>::Iterator it;
-    QMap<QString, FeedStorageMK4Impl *>::Iterator end(d->feeds.end()) ;
+    QMap<QString, FeedStorageMK4Impl *>::Iterator end(d->feeds.end());
     for (it = d->feeds.begin(); it != end; ++it) {
         it.value()->commit();
     }
@@ -192,7 +192,7 @@ bool Akregator::Backend::StorageMK4Impl::commit()
 bool Akregator::Backend::StorageMK4Impl::rollback()
 {
     QMap<QString, FeedStorageMK4Impl *>::Iterator it;
-    QMap<QString, FeedStorageMK4Impl *>::Iterator end(d->feeds.end()) ;
+    QMap<QString, FeedStorageMK4Impl *>::Iterator end(d->feeds.end());
     for (it = d->feeds.begin(); it != end; ++it) {
         it.value()->rollback();
     }
@@ -306,7 +306,7 @@ QStringList Akregator::Backend::StorageMK4Impl::feeds() const
 void Akregator::Backend::StorageMK4Impl::add(Storage *source)
 {
     QStringList feeds = source->feeds();
-    QStringList::ConstIterator end(feeds.constEnd()) ;
+    QStringList::ConstIterator end(feeds.constEnd());
 
     for (QStringList::ConstIterator it = feeds.constBegin(); it != end; ++it) {
         FeedStorage *fa = archiveFor(*it);
@@ -321,7 +321,7 @@ void Akregator::Backend::StorageMK4Impl::clear()
     for (int i = 0; i < size; ++i) {
         feeds += QString::fromLatin1(d->purl(d->archiveView.GetAt(i)));
     }
-    QStringList::ConstIterator end(feeds.constEnd()) ;
+    QStringList::ConstIterator end(feeds.constEnd());
 
     for (QStringList::ConstIterator it = feeds.constBegin(); it != end; ++it) {
         FeedStorage *fa = archiveFor(*it);

@@ -88,7 +88,7 @@ public:
         }
     }
 
-    void write(const QVariant &value , QXmlStreamWriter &writer, TextMode mode = PlainText) const
+    void write(const QVariant &value, QXmlStreamWriter &writer, TextMode mode = PlainText) const
     {
         const QVariant qv(value);
         Q_ASSERT(qv.canConvert(QVariant::String));

@@ -793,7 +793,7 @@ void Akregator::Feed::setImage(const QPixmap &p)
     const QString filename = QStandardPaths::writableLocation(QStandardPaths::CacheLocation) + QLatin1Char('/') + QString(QLatin1String("akregator/Media/") + Utils::fileNameForUrl(d->xmlUrl) + QLatin1String(".png"));
     QFileInfo fileInfo(filename);
     QDir().mkpath(fileInfo.absolutePath());
-    d->imagePixmap.save(filename , "PNG");
+    d->imagePixmap.save(filename, "PNG");
     nodeModified();
 }
 

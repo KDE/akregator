@@ -202,7 +202,7 @@ void c4_String::Init(const void *p, int n)
         }
 
         _value = nullVec; // use this buffer as our empty string
-        return ; // done... that was quick, wasn't it?
+        return; // done... that was quick, wasn't it?
     }
 
     _value = new unsigned char[n + 3];

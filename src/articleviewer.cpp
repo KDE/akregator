@@ -147,7 +147,7 @@ KParts::ReadOnlyPart *ArticleViewer::part() const
 
 int ArticleViewer::pointsToPixel(int pointSize) const
 {
-    return (pointSize * m_part->view()->logicalDpiY() + 36) / 72 ;
+    return (pointSize * m_part->view()->logicalDpiY() + 36) / 72;
 }
 
 void ArticleViewer::slotOpenUrlRequestDelayed(const QUrl &url, const KParts::OpenUrlArguments &args, const KParts::BrowserArguments &browserArgs)

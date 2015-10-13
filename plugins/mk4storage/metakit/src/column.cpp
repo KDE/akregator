@@ -51,7 +51,7 @@ void c4_Column::Validate()const
     d4_assert(0 <= _slack && _slack < kSegMax);
 
     if (_segments.GetSize() == 0) {
-        return ;
+        return;
     }
     // ok, not initialized
 
@@ -1353,7 +1353,7 @@ void c4_ColOfInts::Set(int index_, const c4_Bytes &buf_)
     d4_assert(buf_.Size() == _dataWidth);
 
     if ((this->*_setter)(index_, buf_.Contents())) {
-        return ;
+        return;
     }
 
     d4_assert(buf_.Size() == sizeof(t4_i32));
@@ -1479,7 +1479,7 @@ void c4_ColOfInts::ResizeData(int index_, int count_, bool clear_)
         } else {
             RemoveData(index_ * w,  - count_ * w);
         }
-        return ;
+        return;
     }
 
     d4_assert(_currWidth == 1 || _currWidth == 2 || _currWidth == 4);

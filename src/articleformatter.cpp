@@ -94,7 +94,7 @@ void ArticleFormatter::setPaintDevice(QPaintDevice *device)
 
 int ArticleFormatter::pointsToPixel(int pointSize) const
 {
-    return (pointSize * d->device->logicalDpiY() + 36) / 72 ;
+    return (pointSize * d->device->logicalDpiY() + 36) / 72;
 }
 
 class DefaultNormalViewFormatter::SummaryVisitor : public TreeNodeVisitor

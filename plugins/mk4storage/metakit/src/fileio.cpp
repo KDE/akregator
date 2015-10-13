@@ -97,7 +97,7 @@ static int(*my_munmap)(char *, t4_u32) = fake_munmap;
 static void InitializeIO()
 {
     if (sfwRefCount++) {
-        return ;
+        return;
     }
     // race condition, infinitesimal risk
 
@@ -115,7 +115,7 @@ static void InitializeIO()
             }
         }
         if (!systemFramework || !CFBundleLoadExecutable(systemFramework)) {
-            return ;
+            return;
         }
 #define F(x) CFBundleGetFunctionPointerForName(systemFramework, CFSTR(#x))
         my_fopen = (FILE * (*)(const char *, const char *))F(fopen);
@@ -138,7 +138,7 @@ static void InitializeIO()
 static void FinalizeIO()
 {
     if (--sfwRefCount) {
-        return ;
+        return;
     }
     // race condition, infinitesimal risk
 
@@ -447,7 +447,7 @@ void c4_FileStrategy::DataCommit(t4_i32 limit_)
         _failure = ferror(_file);
         d4_assert(_failure != 0);
         d4_assert(true); // always force an assertion failure in debug mode
-        return ;
+        return;
     }
 
     if (limit_ > 0) {
