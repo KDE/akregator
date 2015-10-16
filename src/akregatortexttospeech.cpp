@@ -29,12 +29,12 @@ using namespace Akregator;
 
 AkregatorTextToSpeech::AkregatorTextToSpeech(QObject *parent)
     : QObject(parent),
-      mTextToSpeechActions(new PimCommon::TextToSpeechActions(this)),
+      mTextToSpeechActions(new KPIMTextEdit::TextToSpeechActions(this)),
       mSpeechInterface(new AkregatorTextToSpeechInterface(this)),
       mMainWindow(Q_NULLPTR)
 {
-    connect(mTextToSpeechActions, &PimCommon::TextToSpeechActions::stateChanged, this, &AkregatorTextToSpeech::stateChanged);
-    connect(PimCommon::TextToSpeech::self(), &PimCommon::TextToSpeech::stateChanged, this, &AkregatorTextToSpeech::slotStateChanged);
+    connect(mTextToSpeechActions, &KPIMTextEdit::TextToSpeechActions::stateChanged, this, &AkregatorTextToSpeech::stateChanged);
+    connect(KPIMTextEdit::TextToSpeech::self(), &KPIMTextEdit::TextToSpeech::stateChanged, this, &AkregatorTextToSpeech::slotStateChanged);
 }
 
 AkregatorTextToSpeech::~AkregatorTextToSpeech()
@@ -47,7 +47,7 @@ void AkregatorTextToSpeech::setMainWindow(Akregator::MainWidget *mainWidget)
     mMainWindow = mainWidget;
 }
 
-void AkregatorTextToSpeech::stateChanged(PimCommon::TextToSpeechWidget::State state)
+void AkregatorTextToSpeech::stateChanged(KPIMTextEdit::TextToSpeechWidget::State state)
 {
     if (mMainWindow) {
         QString speakMe;
@@ -69,12 +69,12 @@ void AkregatorTextToSpeech::stateChanged(PimCommon::TextToSpeechWidget::State st
     }
 }
 
-void AkregatorTextToSpeech::slotStateChanged(PimCommon::TextToSpeech::State state)
+void AkregatorTextToSpeech::slotStateChanged(KPIMTextEdit::TextToSpeech::State state)
 {
     switch (state) {
-    case PimCommon::TextToSpeech::Ready: {
-        if (state == PimCommon::TextToSpeech::Ready) {
-            mTextToSpeechActions->setState(PimCommon::TextToSpeechWidget::Stop);
+    case KPIMTextEdit::TextToSpeech::Ready: {
+        if (state == KPIMTextEdit::TextToSpeech::Ready) {
+            mTextToSpeechActions->setState(KPIMTextEdit::TextToSpeechWidget::Stop);
         }
         break;
     }

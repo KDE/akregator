@@ -20,9 +20,9 @@
 using namespace Akregator;
 
 AkregatorTextToSpeechInterface::AkregatorTextToSpeechInterface(QObject *parent)
-    : PimCommon::AbstractTextToSpeechInterface(parent)
+    : KPIMTextEdit::AbstractTextToSpeechInterface(parent)
 {
-    PimCommon::TextToSpeech::self(); //init
+    KPIMTextEdit::TextToSpeech::self(); //init
 }
 
 AkregatorTextToSpeechInterface::~AkregatorTextToSpeechInterface()
@@ -32,25 +32,25 @@ AkregatorTextToSpeechInterface::~AkregatorTextToSpeechInterface()
 
 bool AkregatorTextToSpeechInterface::isReady() const
 {
-    return PimCommon::TextToSpeech::self()->isReady();
+    return KPIMTextEdit::TextToSpeech::self()->isReady();
 }
 
 void AkregatorTextToSpeechInterface::say(const QString &text)
 {
-    PimCommon::TextToSpeech::self()->say(text);
+    KPIMTextEdit::TextToSpeech::self()->say(text);
 }
 
-void AkregatorTextToSpeechInterface::stateChanged(PimCommon::TextToSpeechWidget::State state)
+void AkregatorTextToSpeechInterface::stateChanged(KPIMTextEdit::TextToSpeechWidget::State state)
 {
     switch (state) {
-    case PimCommon::TextToSpeechWidget::Stop:
-        PimCommon::TextToSpeech::self()->stop();
+    case KPIMTextEdit::TextToSpeechWidget::Stop:
+        KPIMTextEdit::TextToSpeech::self()->stop();
         break;
-    case PimCommon::TextToSpeechWidget::Play:
-        PimCommon::TextToSpeech::self()->resume();
+    case KPIMTextEdit::TextToSpeechWidget::Play:
+        KPIMTextEdit::TextToSpeech::self()->resume();
         break;
-    case PimCommon::TextToSpeechWidget::Pause:
-        PimCommon::TextToSpeech::self()->pause();
+    case KPIMTextEdit::TextToSpeechWidget::Pause:
+        KPIMTextEdit::TextToSpeech::self()->pause();
         break;
     }
 }

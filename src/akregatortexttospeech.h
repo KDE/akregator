@@ -19,13 +19,9 @@
 #define AKREGATORTEXTTOSPEECH_H
 
 #include <QObject>
-#include "PimCommon/TextToSpeech"
-#include "PimCommon/TextToSpeechActions"
+#include "kpimtextedit/texttospeech.h"
+#include "kpimtextedit/texttospeechactions.h"
 class QAction;
-namespace PimCommon
-{
-class TextToSpeechActions;
-}
 
 namespace Akregator
 {
@@ -43,13 +39,13 @@ public:
 
     void setMainWindow(Akregator::MainWidget *mainWidget);
 public Q_SLOTS:
-    void stateChanged(PimCommon::TextToSpeechWidget::State state);
+    void stateChanged(KPIMTextEdit::TextToSpeechWidget::State state);
 
 private Q_SLOTS:
-    void slotStateChanged(PimCommon::TextToSpeech::State state);
+    void slotStateChanged(KPIMTextEdit::TextToSpeech::State state);
 
 private:
-    PimCommon::TextToSpeechActions *mTextToSpeechActions;
+    KPIMTextEdit::TextToSpeechActions *mTextToSpeechActions;
     AkregatorTextToSpeechInterface *mSpeechInterface;
     Akregator::MainWidget *mMainWindow;
 };

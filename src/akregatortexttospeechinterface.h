@@ -18,11 +18,11 @@
 #ifndef AKREGATORTEXTTOSPEECHINTERFACE_H
 #define AKREGATORTEXTTOSPEECHINTERFACE_H
 
-#include <pimcommon/abstracttexttospeechinterface.h>
-#include "pimcommon/texttospeechwidget.h"
+#include <KPIMTextEdit/kpimtextedit/abstracttexttospeechinterface.h>
+#include "kpimtextedit/texttospeechwidget.h"
 namespace Akregator
 {
-class AkregatorTextToSpeechInterface: public PimCommon::AbstractTextToSpeechInterface
+class AkregatorTextToSpeechInterface: public KPIMTextEdit::AbstractTextToSpeechInterface
 {
     Q_OBJECT
 public:
@@ -33,7 +33,7 @@ public:
     void say(const QString &text) Q_DECL_OVERRIDE;
 
 public Q_SLOTS:
-    void stateChanged(PimCommon::TextToSpeechWidget::State state);
+    void stateChanged(KPIMTextEdit::TextToSpeechWidget::State state);
 };
 }
 

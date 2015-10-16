@@ -23,6 +23,7 @@ target_link_libraries(akregator
   akregatorprivate
   akregatorinterfaces
   KF5::PimCommon
+  KF5::PimTextEdit
 )
 
 install(TARGETS akregator ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
@@ -71,6 +72,7 @@ PRIVATE
   KF5::PimCommon
   KF5::WindowSystem
   KF5::IconThemes
+  KF5::PimTextEdit
 )
 
 target_include_directories(akregatorprivate PUBLIC "$<BUILD_INTERFACE:${akregator_SOURCE_DIR}/src;${akregator_BINARY_DIR}/src>")
@@ -141,6 +143,7 @@ target_link_libraries(akregatorpart
   KF5::Libkdepim
   KF5::Syndication
   KF5::PimCommon
+  KF5::PimTextEdit
 )
 
 install(TARGETS akregatorpart DESTINATION ${KDE_INSTALL_PLUGINDIR})
