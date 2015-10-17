@@ -439,7 +439,7 @@ void TabWidget::slotCloseRequest(int index)
 
 void TabWidget::slotActivateTab()
 {
-    setCurrentIndex(sender()->objectName().right(2).toInt() - 1);
+    setCurrentIndex(sender()->objectName().rightRef(2).toInt() - 1);
 }
 
 } // namespace Akregator
