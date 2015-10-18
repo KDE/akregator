@@ -139,6 +139,7 @@ QDomElement Folder::toOPML(QDomElement parent, QDomDocument document) const
 QList<const TreeNode *> Folder::children() const
 {
     QList<const TreeNode *> children;
+    children.reserve(d->children.size());
     Q_FOREACH (const TreeNode *i, d->children) {
         children.append(i);
     }
