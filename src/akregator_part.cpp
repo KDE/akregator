@@ -396,10 +396,12 @@ void Part::saveSettings()
 Part::~Part()
 {
     qCDebug(AKREGATOR_LOG) << "Part::~Part() enter";
-    if (!m_shuttingDown) {
+    // If the widget is destroyed for some reason, KParts::Part will set its
+    // widget property to 0 and then delete itself (and therefore this object).
+    // In this case, it's not safe to do our normal shutdown routine.
+    if (widget() && !m_shuttingDown) {
         slotOnShutdown();
     }
-    delete m_dialog;
     qCDebug(AKREGATOR_LOG) << "Part::~Part(): leaving";
 }
 
