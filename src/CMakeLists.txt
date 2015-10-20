@@ -23,7 +23,6 @@ target_link_libraries(akregator
   akregatorprivate
   akregatorinterfaces
   KF5::PimCommon
-  KF5::PimTextEdit
 )
 
 install(TARGETS akregator ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
