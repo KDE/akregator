@@ -47,7 +47,7 @@ AddFeedWidget::AddFeedWidget(QWidget *parent, const char *name)
 {
     setObjectName(QLatin1String(name));
     setupUi(this);
-    pixmapLabel1->setPixmap(QIcon::fromTheme(QLatin1String("applications-internet")).pixmap(IconSize(KIconLoader::Desktop), IconSize(KIconLoader::Desktop)));
+    pixmapLabel1->setPixmap(QIcon::fromTheme(QStringLiteral("applications-internet")).pixmap(IconSize(KIconLoader::Desktop), IconSize(KIconLoader::Desktop)));
     statusLabel->setText(QString());
 }
 
