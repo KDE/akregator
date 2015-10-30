@@ -591,7 +591,7 @@ void Part::exportFile(const QUrl &url)
 
 void Part::fileImport()
 {
-    const QString filters = i18n("OPML Outlines (*.opml, *.xml);;All Files (*)");
+    const QString filters = i18n("OPML Outlines (*.opml *.xml);;All Files (*)");
     const QUrl url = QFileDialog::getOpenFileUrl(m_mainWidget, QString(), QUrl(), filters);
     if (!url.isEmpty()) {
         importFile(url);
@@ -600,7 +600,7 @@ void Part::fileImport()
 
 void Part::fileExport()
 {
-    const QString filters = i18n("OPML Outlines (*.opml, *.xml);;All Files (*)");
+    const QString filters = i18n("OPML Outlines (*.opml *.xml);;All Files (*)");
     const QUrl url = QFileDialog::getSaveFileUrl(m_mainWidget, QString(), QUrl(), filters);
 
     if (!url.isEmpty()) {
