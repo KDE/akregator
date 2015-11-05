@@ -64,7 +64,7 @@ void Frame::slotSetCaption(const QString &s)
 void Frame::slotSetStatusText(const QString &s)
 {
     m_statusText = s;
-    m_statusText.remove(QRegExp(QStringLiteral("<[^>]*>")));
+    m_statusText.remove(QRegExp(QLatin1String("<[^>]*>")));
     Q_EMIT signalStatusText(this, m_statusText);
 }
 

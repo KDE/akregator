@@ -32,7 +32,7 @@ namespace Akregator
 
 QString Utils::stripTags(const QString &str)
 {
-    return QString(str).remove(QRegExp(QStringLiteral("<[^>]*>")));
+    return QString(str).remove(QRegExp(QLatin1String("<[^>]*>")));
 }
 
 uint Utils::calcHash(const QString &str)
