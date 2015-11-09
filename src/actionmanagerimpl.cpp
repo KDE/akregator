@@ -336,13 +336,14 @@ void ActionManagerImpl::initMainWidget(MainWidget *mainWidget)
     action->setIcon(QIcon::fromTheme(QStringLiteral("go-previous")));
     action->setText(i18n("Pre&vious Unread Article"));
     connect(action, &QAction::triggered, d->mainWidget, &MainWidget::slotPrevUnreadArticle);
-    coll->setDefaultShortcut(action, QKeySequence(Qt::Key_Minus));
+    coll->setDefaultShortcuts(action, QList<QKeySequence>() << QKeySequence(Qt::Key_Minus) << QKeySequence(Qt::Key_Minus + Qt::KeypadModifier));
 
     action = coll->addAction(QStringLiteral("go_next_unread_article"));
     action->setIcon(QIcon::fromTheme(QStringLiteral("go-next")));
     action->setText(i18n("Ne&xt Unread Article"));
     connect(action, &QAction::triggered, d->mainWidget, &MainWidget::slotNextUnreadArticle);
-    coll->setDefaultShortcut(action, QKeySequence(Qt::Key_Plus, Qt::Key_Equal));
+    coll->setDefaultShortcuts(action, QList<QKeySequence>() << QKeySequence(Qt::Key_Plus) << QKeySequence(Qt::Key_Plus + Qt::KeypadModifier)
+                              << QKeySequence(Qt::Key_Equal) << QKeySequence(Qt::Key_Equal + Qt::KeypadModifier));
 
     action = coll->addAction(QStringLiteral("article_delete"));
     action->setIcon(QIcon::fromTheme(QStringLiteral("edit-delete")));
