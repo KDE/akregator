@@ -224,7 +224,7 @@ private: // attributes
     QTimer *m_autosaveTimer;
     /** did we backup the feed list already? */
     bool m_backedUpList;
-    MainWidget *m_mainWidget;
+    QPointer<MainWidget>m_mainWidget;
     Backend::Storage *m_storage;
     ActionManagerImpl *m_actionManager;
     KCMultiDialog *m_dialog;

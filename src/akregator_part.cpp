@@ -327,9 +327,11 @@ void Part::slotOnShutdown()
     autoSaveProperties();
     m_shuttingDown = true;
     m_autosaveTimer->stop();
-    saveSettings();
-    slotSaveFeedList();
-    m_mainWidget->slotOnShutdown();
+    if (m_mainWidget) {
+        saveSettings();
+        slotSaveFeedList();
+        m_mainWidget->slotOnShutdown();
+    }
     //delete m_mainWidget;
     delete TrayIcon::getInstance();
     TrayIcon::setInstance(Q_NULLPTR);
@@ -395,6 +397,7 @@ void Part::saveSettings()
 
 Part::~Part()
 {
+    disconnect(qApp, &QCoreApplication::aboutToQuit, this, &Part::slotOnShutdown);
     qCDebug(AKREGATOR_LOG) << "Part::~Part() enter";
     // If the widget is destroyed for some reason, KParts::Part will set its
     // widget property to 0 and then delete itself (and therefore this object).
