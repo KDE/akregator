@@ -277,8 +277,8 @@ Part::Part(QWidget *parentWidget, QObject *parent, const QVariantList &)
         QWidget *const notificationParent = isTrayIconEnabled() ? m_mainWidget->window() : 0;
         NotificationManager::self()->setWidget(notificationParent, componentData().componentName());
 
-        connect(m_mainWidget, &MainWidget::signalUnreadCountChanged, trayIcon, &TrayIcon::slotSetUnread);
-        connect(m_mainWidget, &MainWidget::signalArticlesSelected,
+        connect(m_mainWidget.data(), &MainWidget::signalUnreadCountChanged, trayIcon, &TrayIcon::slotSetUnread);
+        connect(m_mainWidget.data(), &MainWidget::signalArticlesSelected,
                 this, &Part::signalArticlesSelected);
     }
 
@@ -353,8 +353,8 @@ void Part::slotSettingsChanged()
             trayIcon->setStatus(KStatusNotifierItem::Active);
         }
 
-        connect(m_mainWidget, &MainWidget::signalUnreadCountChanged, trayIcon, &TrayIcon::slotSetUnread);
-        connect(m_mainWidget, &MainWidget::signalArticlesSelected,
+        connect(m_mainWidget.data(), &MainWidget::signalUnreadCountChanged, trayIcon, &TrayIcon::slotSetUnread);
+        connect(m_mainWidget.data(), &MainWidget::signalArticlesSelected,
                 this, &Part::signalArticlesSelected);
 
         m_mainWidget->slotSetTotalUnread();
