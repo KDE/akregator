@@ -89,7 +89,7 @@ public:
      * Dump properties from a service to stdout for debugging
      * @param service     Pointer to KService
      */
-    static void dump(const KService::Ptr service);
+    static void dump(const KService::Ptr &service);
 
     /**
       * Show modal info dialog about plugin

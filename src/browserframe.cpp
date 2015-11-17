@@ -203,7 +203,7 @@ enum SeparatorOption {
     NoSeparator
 };
 
-void addActionsToMenu(QMenu *menu, const QList<QAction *> actions, SeparatorOption option)
+void addActionsToMenu(QMenu *menu, const QList<QAction *> &actions, SeparatorOption option)
 {
     if (!actions.isEmpty() && option != NoSeparator) {
         menu->addSeparator();

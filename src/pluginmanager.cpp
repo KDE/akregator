@@ -170,7 +170,7 @@ PluginManager::showAbout(const QString &constraint)
 }
 
 void
-PluginManager::dump(const KService::Ptr service)
+PluginManager::dump(const KService::Ptr &service)
 {
     qCDebug(AKREGATOR_LOG)
             << "PluginManager Service Info:"
