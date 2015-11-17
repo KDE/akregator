@@ -538,7 +538,7 @@ void Akregator::Feed::slotAddFeedIconListener()
     FeedIconManager::self()->addListener(QUrl(d->xmlUrl), this);
 }
 
-void Akregator::Feed::appendArticles(const Syndication::FeedPtr feed)
+void Akregator::Feed::appendArticles(const Syndication::FeedPtr &feed)
 {
     d->setTotalCountDirty();
     bool changed = false;

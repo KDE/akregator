@@ -276,7 +276,7 @@ private:
         */
     void setArticleChanged(Article &a, int oldStatus = -1);
 
-    void appendArticles(const Syndication::FeedPtr feed);
+    void appendArticles(const Syndication::FeedPtr &feed);
 
     /** appends article @c a to the article list */
     void appendArticle(const Article &a);
