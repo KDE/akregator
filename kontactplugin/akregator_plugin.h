@@ -36,6 +36,7 @@ class OrgKdeAkregatorPartInterface;
 
 class AkregatorUniqueAppHandler : public KontactInterface::UniqueAppHandler
 {
+    Q_OBJECT
 public:
     explicit AkregatorUniqueAppHandler(KontactInterface::Plugin *plugin)
         : KontactInterface::UniqueAppHandler(plugin) {}
