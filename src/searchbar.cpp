@@ -28,7 +28,6 @@
 #include "article.h"
 
 #include <kcombobox.h>
-#include <kiconloader.h>
 #include <klineedit.h>
 #include <KLocalizedString>
 

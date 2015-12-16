@@ -64,7 +64,6 @@
 
 #include <QAction>
 #include <kfileitem.h>
-#include <kiconloader.h>
 #include <KLocalizedString>
 #include <kmessagebox.h>
 #include <krandom.h>

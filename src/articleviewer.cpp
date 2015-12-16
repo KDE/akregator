@@ -43,7 +43,6 @@
 #include <QAction>
 #include <kactioncollection.h>
 #include <khtmlview.h>
-#include <kiconloader.h>
 #include <KLocalizedString>
 #include <QMenu>
 #include <kmessagebox.h>
