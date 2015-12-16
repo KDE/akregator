@@ -95,7 +95,7 @@ SearchBar::SearchBar(QWidget *parent) : QWidget(parent), d(new SearchBar::Search
     d->searchCombo = new KComboBox(this);
     layout->addWidget(d->searchCombo);
 
-    QIcon iconAll = KIconLoader::global()->loadIcon(QStringLiteral("system-run"), KIconLoader::Small);
+    QIcon iconAll = QIcon::fromTheme(QStringLiteral("system-run"));
     const QIcon iconNew = QIcon::fromTheme(QStringLiteral("mail-mark-unread-new"));
     const QIcon iconUnread = QIcon::fromTheme(QStringLiteral("mail-mark-unread"));
     const QIcon iconKeep = QIcon::fromTheme(QStringLiteral("mail-mark-important"));
