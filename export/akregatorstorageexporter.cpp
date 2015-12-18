@@ -71,7 +71,8 @@ enum Status {
 class Element
 {
 public:
-    Element(const QString &ns_, const QString &name_) : ns(ns_), name(name_), qualifiedName(ns + QLatin1Char(':') + name)
+    Element(const QString &ns_, const QString &name_)
+        : ns(ns_), name(name_), qualifiedName(ns + QLatin1Char(':') + name)
     {
     }
 

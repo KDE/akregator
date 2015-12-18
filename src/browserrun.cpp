@@ -35,7 +35,7 @@ BrowserRun::BrowserRun(const OpenUrlRequest &request, QWidget *parent)
     : KParts::BrowserRun(request.url(), request.args(), request.browserArgs(), Q_NULLPTR, parent, /*removeReferrer=*/false, /*trustedSource=*/false, /*hideErrorDialog=*/true), m_request(request)
 {
     setEnableExternalBrowser(false);
-    m_window = parent; // remove member and use KRun::window() instead once we can depend on kdelibs >= 4.10
+    m_window = parent;
 }
 
 BrowserRun::~BrowserRun()
