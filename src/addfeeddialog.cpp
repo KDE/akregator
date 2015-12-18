@@ -148,7 +148,7 @@ void AddFeedDialog::fetchDiscovery(Feed *f)
 
 void AddFeedDialog::textChanged(const QString &text)
 {
-    mOkButton->setEnabled(!text.isEmpty());
+    mOkButton->setEnabled(!text.trimmed().isEmpty());
 }
 
 } // namespace Akregator
