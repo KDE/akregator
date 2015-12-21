@@ -55,9 +55,9 @@ public:
     QSharedPointer<FeedList> feedList() const;
     void setFeedList(const QSharedPointer<FeedList> &feedList);
 
-    FetchQueue *fetchQueue();
+    FetchQueue *fetchQueue() const;
 
-    FrameManager *frameManager();
+    FrameManager *frameManager() const;
 
 private:
     Kernel();

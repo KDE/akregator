@@ -87,12 +87,12 @@ void Kernel::setFeedList(const QSharedPointer<FeedList> &feedList)
     d->feedList = feedList;
 }
 
-FetchQueue *Kernel::fetchQueue()
+FetchQueue *Kernel::fetchQueue() const
 {
     return d->fetchQueue;
 }
 
-FrameManager *Kernel::frameManager()
+FrameManager *Kernel::frameManager() const
 {
     return d->frameManager;
 }
