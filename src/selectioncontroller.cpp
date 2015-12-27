@@ -280,7 +280,7 @@ void Akregator::SelectionController::subscriptionContextMenuRequested(const QPoi
         return;
     }
 
-    QWidget *w = ActionManager::getInstance()->container(node->isGroup() ? "feedgroup_popup" : "feeds_popup");
+    QWidget *w = ActionManager::getInstance()->container(node->isGroup() ? QStringLiteral("feedgroup_popup") : QStringLiteral("feeds_popup"));
     QMenu *popup = qobject_cast<QMenu *>(w);
     if (popup) {
         const QPoint globalPos = m_feedSelector->viewport()->mapToGlobal(point);

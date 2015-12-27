@@ -360,8 +360,8 @@ void TabWidget::Private::setTitle(const QString &title, QWidget *sender)
 
 void TabWidget::contextMenu(int i, const QPoint &p)
 {
-    QWidget *w = ActionManager::getInstance()->container("tab_popup");
-    TemporaryValue<QWidget *> tmp(d->currentItem, widget(i));
+    QWidget *w = ActionManager::getInstance()->container(QStringLiteral("tab_popup"));
+    //TemporaryValue<QWidget *> tmp(d->currentItem, widget(i));
     //qCDebug(AKREGATOR_LOG) << indexOf(d->currentItem);
     // FIXME: do not hardcode index of maintab
     if (w && indexOf(d->currentItem) != 0) {

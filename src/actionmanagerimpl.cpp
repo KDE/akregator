@@ -632,16 +632,16 @@ void ActionManagerImpl::initFrameManager(FrameManager *frameManager)
     connect(action, &QAction::triggered, frameManager, &FrameManager::slotBrowserStop);
 }
 
-QWidget *ActionManagerImpl::container(const char *name)
+QWidget *ActionManagerImpl::container(const QString &name)
 {
     if (d->part->factory()) {
-        return d->part->factory()->container(QString::fromLatin1(name), d->part);
+        return d->part->factory()->container(name, d->part);
     } else {
         return 0;
     }
 }
 
-KActionCollection *ActionManagerImpl::actionCollection()
+KActionCollection *ActionManagerImpl::actionCollection() const
 {
     return d->actionCollection;
 }

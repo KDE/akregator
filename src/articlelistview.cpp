@@ -412,7 +412,7 @@ static QStringList itemIdsForIndexes(const QModelIndexList &indexes)
 
 void ArticleListView::contextMenuEvent(QContextMenuEvent *event)
 {
-    QWidget *w = ActionManager::getInstance()->container("article_popup");
+    QWidget *w = ActionManager::getInstance()->container(QStringLiteral("article_popup"));
     QMenu *popup = qobject_cast<QMenu *>(w);
     if (popup) {
         popup->exec(event->globalPos());

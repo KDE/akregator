@@ -58,7 +58,7 @@ public:
     virtual ~ActionManagerImpl();
 
     QAction *action(const QString &name) Q_DECL_OVERRIDE;
-    QWidget *container(const char *name) Q_DECL_OVERRIDE;
+    QWidget *container(const QString &name) Q_DECL_OVERRIDE;
 
     void initMainWidget(MainWidget *mainWidget);
     void initArticleViewer(ArticleViewer *articleViewer);
@@ -76,7 +76,7 @@ public Q_SLOTS:
 
 protected:
 
-    KActionCollection *actionCollection();
+    KActionCollection *actionCollection() const;
 
 private Q_SLOTS:
     void slotServiceUrlSelected(PimCommon::ShareServiceUrlManager::ServiceType type);

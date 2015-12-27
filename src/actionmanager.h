@@ -55,7 +55,7 @@ public:
     virtual ~ActionManager();
 
     virtual QAction *action(const QString &name) = 0;
-    virtual QWidget *container(const char *name) = 0;
+    virtual QWidget *container(const QString &name) = 0;
 
     virtual void setArticleActionsEnabled(bool enabled) = 0;
 
