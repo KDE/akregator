@@ -85,8 +85,7 @@ void FrameManager::slotAddFrame(Frame *frame)
     connect(frame, &Frame::signalLoadingProgress, this, &FrameManager::slotSetProgress);
     connect(frame, &Frame::signalCompleted, this, &FrameManager::slotSetCompleted);
     connect(frame, &Frame::signalTitleChanged, this, &FrameManager::slotSetTitle);
-    connect(frame, &Frame::signalStatusText, this, &FrameManager::slotSetStatusText
-           );
+    connect(frame, &Frame::signalStatusText, this, &FrameManager::slotSetStatusText);
 
     connect(frame, SIGNAL(signalOpenUrlRequest(Akregator::OpenUrlRequest&)), this, SLOT(slotOpenUrlRequest(Akregator::OpenUrlRequest&)));
 

@@ -72,10 +72,10 @@ void FeedPropertiesWidget::slotUpdateCheckBoxToggled(bool enabled)
     updateSpinBox->setEnabled(enabled && updateComboBox->currentIndex() != Never);
 }
 
-FeedPropertiesDialog::FeedPropertiesDialog(QWidget *parent, const char *name)
+FeedPropertiesDialog::FeedPropertiesDialog(QWidget *parent, const QString &name)
     : QDialog(parent)
 {
-    setObjectName(QLatin1String(name));
+    setObjectName(name);
     widget = new FeedPropertiesWidget(this);
     setWindowTitle(i18n("Feed Properties"));
     QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);

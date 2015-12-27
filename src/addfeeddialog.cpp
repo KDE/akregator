@@ -52,7 +52,8 @@ AddFeedWidget::AddFeedWidget(QWidget *parent, const char *name)
 }
 
 AddFeedWidget::~AddFeedWidget()
-{}
+{
+}
 
 QSize AddFeedDialog::sizeHint() const
 {
@@ -62,15 +63,15 @@ QSize AddFeedDialog::sizeHint() const
     return sh;
 }
 
-Feed *AddFeedDialog::feed()
+Feed *AddFeedDialog::feed() const
 {
     return m_feed;
 }
 
-AddFeedDialog::AddFeedDialog(QWidget *parent, const char *name)
+AddFeedDialog::AddFeedDialog(QWidget *parent, const QString &name)
     : QDialog(parent), m_feed(0)
 {
-    setObjectName(QLatin1String(name));
+    setObjectName(name);
     widget = new AddFeedWidget(this);
     setWindowTitle(i18n("Add Feed"));
     QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);

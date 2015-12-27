@@ -65,7 +65,9 @@ private:
 
 }
 
-EditNodePropertiesVisitor::EditNodePropertiesVisitor(SubscriptionListView *subscriptionListView, QWidget *parent) : m_subscriptionListView(subscriptionListView), m_widget(parent)
+EditNodePropertiesVisitor::EditNodePropertiesVisitor(SubscriptionListView *subscriptionListView, QWidget *parent)
+    : m_subscriptionListView(subscriptionListView),
+      m_widget(parent)
 {
     Q_ASSERT(m_subscriptionListView);
     Q_ASSERT(m_widget);

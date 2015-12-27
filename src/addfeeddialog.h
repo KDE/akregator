@@ -48,13 +48,13 @@ class AddFeedDialog : public QDialog
 {
     Q_OBJECT
 public:
-    explicit AddFeedDialog(QWidget *parent = Q_NULLPTR, const char *name = Q_NULLPTR);
+    explicit AddFeedDialog(QWidget *parent = Q_NULLPTR, const QString &name = QString());
     ~AddFeedDialog();
 
     QSize sizeHint() const Q_DECL_OVERRIDE;
 
     void setUrl(const QString &t);
-    Feed *feed();
+    Feed *feed() const;
 
 public Q_SLOTS:
     void accept() Q_DECL_OVERRIDE;

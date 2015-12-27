@@ -75,7 +75,7 @@ void CreateFeedCommand::Private::doCreate()
     Q_ASSERT(m_rootFolder);
     Q_ASSERT(m_subscriptionListView);
 
-    QPointer<AddFeedDialog> afd = new AddFeedDialog(q->parentWidget(), "add_feed");
+    QPointer<AddFeedDialog> afd = new AddFeedDialog(q->parentWidget(), QStringLiteral("add_feed"));
 
     QString url = m_url;
 
@@ -112,7 +112,7 @@ void CreateFeedCommand::Private::doCreate()
         return;
     }
 
-    QPointer<FeedPropertiesDialog> dlg = new FeedPropertiesDialog(q->parentWidget(), "edit_feed");
+    QPointer<FeedPropertiesDialog> dlg = new FeedPropertiesDialog(q->parentWidget(), QStringLiteral("edit_feed"));
     dlg->setFeed(feed);
     dlg->selectFeedName();
 

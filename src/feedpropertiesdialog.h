@@ -59,7 +59,7 @@ class FeedPropertiesDialog : public QDialog
 {
     Q_OBJECT
 public:
-    explicit FeedPropertiesDialog(QWidget *parent = Q_NULLPTR, const char *name = Q_NULLPTR);
+    explicit FeedPropertiesDialog(QWidget *parent = Q_NULLPTR, const QString &name = QString());
     ~FeedPropertiesDialog();
 
     void setFeed(Feed *feed);
