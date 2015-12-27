@@ -67,40 +67,40 @@ public:
     NodeSelectVisitor(ActionManagerImpl *manager) : m_manager(manager) {}
 
     bool visitFeed(Feed *node) Q_DECL_OVERRIDE {
-        QAction *remove = m_manager->action("feed_remove");
+        QAction *remove = m_manager->action(QStringLiteral("feed_remove"));
         if (remove)
         {
             remove->setEnabled(true);
         }
-        QAction *hp = m_manager->action("feed_homepage");
+        QAction *hp = m_manager->action(QStringLiteral("feed_homepage"));
         if (hp)
         {
             hp->setEnabled(!node->htmlUrl().isEmpty());
         }
-        m_manager->action("feed_fetch")->setText(i18n("&Fetch Feed"));
-        m_manager->action("feed_remove")->setText(i18n("&Delete Feed"));
-        m_manager->action("feed_modify")->setText(i18n("&Edit Feed..."));
-        m_manager->action("feed_mark_all_as_read")->setText(i18n("&Mark Feed as Read"));
+        m_manager->action(QStringLiteral("feed_fetch"))->setText(i18n("&Fetch Feed"));
+        m_manager->action(QStringLiteral("feed_remove"))->setText(i18n("&Delete Feed"));
+        m_manager->action(QStringLiteral("feed_modify"))->setText(i18n("&Edit Feed..."));
+        m_manager->action(QStringLiteral("feed_mark_all_as_read"))->setText(i18n("&Mark Feed as Read"));
 
         return true;
     }
 
     bool visitFolder(Folder *node) Q_DECL_OVERRIDE {
-        QAction *remove = m_manager->action("feed_remove");
+        QAction *remove = m_manager->action(QStringLiteral("feed_remove"));
         if (remove)
         {
             remove->setEnabled(node->parent());    // root nodes must not be deleted
         }
-        QAction *hp = m_manager->action("feed_homepage");
+        QAction *hp = m_manager->action(QStringLiteral("feed_homepage"));
         if (hp)
         {
             hp->setEnabled(false);
         }
 
-        m_manager->action("feed_fetch")->setText(i18n("&Fetch Feeds"));
-        m_manager->action("feed_remove")->setText(i18n("&Delete Folder"));
-        m_manager->action("feed_modify")->setText(i18n("&Rename Folder"));
-        m_manager->action("feed_mark_all_as_read")->setText(i18n("&Mark Feeds as Read"));
+        m_manager->action(QStringLiteral("feed_fetch"))->setText(i18n("&Fetch Feeds"));
+        m_manager->action(QStringLiteral("feed_remove"))->setText(i18n("&Delete Folder"));
+        m_manager->action(QStringLiteral("feed_modify"))->setText(i18n("&Rename Folder"));
+        m_manager->action(QStringLiteral("feed_mark_all_as_read"))->setText(i18n("&Mark Feeds as Read"));
 
         return true;
     }
@@ -199,11 +199,6 @@ void ActionManagerImpl::initPart()
     connect(configure, &QAction::triggered, d->part, &Part::showOptions);
 
     KStandardAction::configureNotifications(d->part, SLOT(showNotificationOptions()), d->actionCollection); // options_configure_notifications
-
-    /*action = d->actionCollection->addAction("akregator_configure_akregator");
-    action->setIcon(QIcon::fromTheme("configure"));
-    action->setText(i18n("Configure &Akregator..."));
-    connect(action, SIGNAL(triggered(bool)), d->part, SLOT(showOptions()));*/
 }
 
 void ActionManagerImpl::initMainWidget(MainWidget *mainWidget)
@@ -651,24 +646,24 @@ KActionCollection *ActionManagerImpl::actionCollection()
     return d->actionCollection;
 }
 
-QAction *ActionManagerImpl::action(const char *name)
+QAction *ActionManagerImpl::action(const QString &name)
 {
-    return d->actionCollection != 0 ? d->actionCollection->action(QString::fromLatin1(name)) : 0;
+    return d->actionCollection != 0 ? d->actionCollection->action(name) : 0;
 }
 
 void ActionManagerImpl::setArticleActionsEnabled(bool enabled)
 {
 #undef setActionEnabled
 #define setActionEnabled(name) { QAction* const a = action( name ); if ( a ) a->setEnabled( enabled ); }
-    setActionEnabled("article_open")
-    setActionEnabled("article_open_external")
-    setActionEnabled("article_set_status_important")
-    setActionEnabled("article_set_status")
-    setActionEnabled("article_delete")
-    setActionEnabled("file_sendlink")
-    setActionEnabled("file_sendfile")
-    setActionEnabled("article_open_in_background")
-    setActionEnabled("share_serviceurl")
+    setActionEnabled(QStringLiteral("article_open"))
+    setActionEnabled(QStringLiteral("article_open_external"))
+    setActionEnabled(QStringLiteral("article_set_status_important"))
+    setActionEnabled(QStringLiteral("article_set_status"))
+    setActionEnabled(QStringLiteral("article_delete"))
+    setActionEnabled(QStringLiteral("file_sendlink"))
+    setActionEnabled(QStringLiteral("file_sendfile"))
+    setActionEnabled(QStringLiteral("article_open_in_background"))
+    setActionEnabled(QStringLiteral("share_serviceurl"))
 #undef setActionEnabled
 }
 

@@ -796,14 +796,14 @@ void Akregator::MainWidget::slotFetchAllFeeds()
 void Akregator::MainWidget::slotFetchingStarted()
 {
     m_mainFrame->slotSetState(Frame::Started);
-    m_actionManager->action("feed_stop")->setEnabled(true);
+    m_actionManager->action(QStringLiteral("feed_stop"))->setEnabled(true);
     m_mainFrame->slotSetStatusText(i18n("Fetching Feeds..."));
 }
 
 void Akregator::MainWidget::slotFetchingStopped()
 {
     m_mainFrame->slotSetState(Frame::Completed);
-    m_actionManager->action("feed_stop")->setEnabled(false);
+    m_actionManager->action(QStringLiteral("feed_stop"))->setEnabled(false);
     m_mainFrame->slotSetStatusText(QString());
 }
 
@@ -820,7 +820,7 @@ void Akregator::MainWidget::slotArticleSelected(const Akregator::Article &articl
     QVector<Article> articles = m_selectionController->selectedArticles();
     Q_EMIT signalArticlesSelected(articles);
 
-    KToggleAction *const maai = qobject_cast<KToggleAction *>(m_actionManager->action("article_set_status_important"));
+    KToggleAction *const maai = qobject_cast<KToggleAction *>(m_actionManager->action(QStringLiteral("article_set_status_important")));
     Q_ASSERT(maai);
     maai->setChecked(article.keep());
 

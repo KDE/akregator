@@ -238,12 +238,12 @@ void BrowserFrame::slotPopupMenu(
     QPointer<QMenu> popup(new QMenu());
 
     if (showNavigationItems) {
-        popup->addAction(ActionManager::getInstance()->action("browser_back"));
-        popup->addAction(ActionManager::getInstance()->action("browser_forward"));
+        popup->addAction(ActionManager::getInstance()->action(QStringLiteral("browser_back")));
+        popup->addAction(ActionManager::getInstance()->action(QStringLiteral("browser_forward")));
         isFirst = false;
     }
     if (showReload) {
-        popup->addAction(ActionManager::getInstance()->action("browser_reload"));
+        popup->addAction(ActionManager::getInstance()->action(QStringLiteral("browser_reload")));
         isFirst = false;
     }
 
@@ -263,8 +263,8 @@ void BrowserFrame::slotPopupMenu(
 
     if (hasZoom()) {
         addSeparatorIfNotFirst();
-        popup->addAction(ActionManager::getInstance()->action("inc_font_sizes"));
-        popup->addAction(ActionManager::getInstance()->action("dec_font_sizes"));
+        popup->addAction(ActionManager::getInstance()->action(QStringLiteral("inc_font_sizes")));
+        popup->addAction(ActionManager::getInstance()->action(QStringLiteral("dec_font_sizes")));
     }
 
     addSeparatorIfNotFirst();
@@ -343,7 +343,7 @@ ReadOnlyPart *BrowserFrame::part() const
 
 void BrowserFrame::slotHistoryBackAboutToShow()
 {
-    QAction *ba = ActionManager::getInstance()->action("browser_back");
+    QAction *ba = ActionManager::getInstance()->action(QStringLiteral("browser_back"));
     QMenu *popup = static_cast<KToolBarPopupAction *>(ba)->menu();
     popup->clear();
 
@@ -368,7 +368,7 @@ void BrowserFrame::slotHistoryBackAboutToShow()
 
 void BrowserFrame::slotHistoryForwardAboutToShow()
 {
-    QAction *fw = ActionManager::getInstance()->action("browser_forward");
+    QAction *fw = ActionManager::getInstance()->action(QStringLiteral("browser_forward"));
     QMenu *popup = qobject_cast<KToolBarPopupAction *>(fw)->menu();
     popup->clear();
 

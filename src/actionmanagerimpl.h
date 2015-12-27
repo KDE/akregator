@@ -57,7 +57,7 @@ public:
     explicit ActionManagerImpl(Part *part, QObject *parent = Q_NULLPTR);
     virtual ~ActionManagerImpl();
 
-    QAction *action(const char *name) Q_DECL_OVERRIDE;
+    QAction *action(const QString &name) Q_DECL_OVERRIDE;
     QWidget *container(const char *name) Q_DECL_OVERRIDE;
 
     void initMainWidget(MainWidget *mainWidget);

@@ -238,28 +238,28 @@ void FrameManager::slotSetTitle(Frame *frame, const QString &title)
 void FrameManager::slotCanGoBackToggled(Frame *frame, bool enabled)
 {
     if (frame == m_currentFrame) {
-        ActionManager::getInstance()->action("browser_back")->setEnabled(enabled);
+        ActionManager::getInstance()->action(QStringLiteral("browser_back"))->setEnabled(enabled);
     }
 }
 
 void FrameManager::slotCanGoForwardToggled(Frame *frame, bool enabled)
 {
     if (frame == m_currentFrame) {
-        ActionManager::getInstance()->action("browser_forward")->setEnabled(enabled);
+        ActionManager::getInstance()->action(QStringLiteral("browser_forward"))->setEnabled(enabled);
     }
 }
 
 void FrameManager::slotIsReloadableToggled(Frame *frame, bool enabled)
 {
     if (frame == m_currentFrame) {
-        ActionManager::getInstance()->action("browser_reload")->setEnabled(enabled);
+        ActionManager::getInstance()->action(QStringLiteral("browser_reload"))->setEnabled(enabled);
     }
 }
 
 void FrameManager::slotIsLoadingToggled(Frame *frame, bool enabled)
 {
     if (frame == m_currentFrame) {
-        ActionManager::getInstance()->action("browser_stop")->setEnabled(enabled);
+        ActionManager::getInstance()->action(QStringLiteral("browser_stop"))->setEnabled(enabled);
     }
 }
 

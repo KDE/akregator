@@ -221,16 +221,16 @@ void ArticleViewer::slotPopupMenu(const QPoint &p, const QUrl &kurl, mode_t, con
         popup.addAction(m_part->action("copylinkaddress"));
     } else {
         if (isSelection) {
-            popup.addAction(ActionManager::getInstance()->action("viewer_copy"));
+            popup.addAction(ActionManager::getInstance()->action(QStringLiteral("viewer_copy")));
             popup.addSeparator();
         }
-        popup.addAction(ActionManager::getInstance()->action("viewer_print"));
+        popup.addAction(ActionManager::getInstance()->action(QStringLiteral("viewer_print")));
         //QAction *ac = action("setEncoding");
         //if (ac)
         //     ac->plug(&popup);
         popup.addSeparator();
-        popup.addAction(ActionManager::getInstance()->action("inc_font_sizes"));
-        popup.addAction(ActionManager::getInstance()->action("dec_font_sizes"));
+        popup.addAction(ActionManager::getInstance()->action(QStringLiteral("inc_font_sizes")));
+        popup.addAction(ActionManager::getInstance()->action(QStringLiteral("dec_font_sizes")));
     }
     popup.exec(p);
 }
@@ -260,7 +260,7 @@ void ArticleViewer::slotCopyLinkAddress()
 
 void ArticleViewer::slotSelectionChanged()
 {
-    ActionManager::getInstance()->action("viewer_copy")->setEnabled(!m_part->selectedText().isEmpty());
+    ActionManager::getInstance()->action(QStringLiteral("viewer_copy"))->setEnabled(!m_part->selectedText().isEmpty());
 }
 
 void ArticleViewer::slotOpenLinkInternal()
