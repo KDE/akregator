@@ -72,6 +72,7 @@ PRIVATE
   KF5::WindowSystem
   KF5::IconThemes
   KF5::PimTextEdit
+  KF5::GrantleeTheme
 )
 
 target_include_directories(akregatorprivate PUBLIC "$<BUILD_INTERFACE:${akregator_SOURCE_DIR}/src;${akregator_BINARY_DIR}/src>")
@@ -143,6 +144,7 @@ target_link_libraries(akregatorpart
   KF5::Syndication
   KF5::PimCommon
   KF5::PimTextEdit
+  KF5::GrantleeTheme
 )
 
 install(TARGETS akregatorpart DESTINATION ${KDE_INSTALL_PLUGINDIR})

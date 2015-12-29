@@ -191,6 +191,7 @@ private:
     void setArticleActionsEnabled(bool enabled);
 
 private:
+    void paintAboutScreen(const QString &templateName, const QVariantHash &data);
     QUrl m_url;
     QString m_normalModeCSS;
     QString m_combinedModeCSS;

@@ -56,6 +56,7 @@
 #include <kparts/browserrun.h>
 #include <kio/job.h>
 #include <QUrl>
+#include <grantleetheme/grantleethememanager.h>
 
 #include <QClipboard>
 #include <QGridLayout>
@@ -637,6 +638,23 @@ QSize ArticleViewer::sizeHint() const
     sh.setHeight(qMax(sh.height(), 25 * fontMetrics().height()));
     return sh;
 }
+
+void ArticleViewer::paintAboutScreen(const QString &templateName, const QVariantHash &data)
+{
+    GrantleeTheme::ThemeManager manager(QStringLiteral("splashPage"),
+                                        QStringLiteral("splash.theme"),
+                                        Q_NULLPTR,
+                                        QStringLiteral("messageviewer/about/"));
+    GrantleeTheme::Theme theme = manager.theme(QStringLiteral("default"));
+    if (!theme.isValid()) {
+        qCDebug(AKREGATOR_LOG) << "Theme error: failed to find splash theme";
+    } else {
+        //mIntroPart->setHtml(theme.render(templateName, data),
+        //                    QUrl::fromLocalFile(theme.absolutePath() + QLatin1Char('/')));
+    }
+
+}
+
 
 void ArticleViewer::displayAboutPage()
 {
