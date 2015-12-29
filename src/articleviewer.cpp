@@ -699,8 +699,9 @@ void ArticleViewer::displayAboutPage()
     m_part->end();
 }
 
-ArticleViewerPart::ArticleViewerPart(QWidget *parent) : KHTMLPart(parent),
-    m_button(-1)
+ArticleViewerPart::ArticleViewerPart(QWidget *parent)
+    : KHTMLPart(parent),
+      m_button(-1)
 {
     setXMLFile(QStandardPaths::locate(QStandardPaths::GenericDataLocation, QStringLiteral("akregator/articleviewer.rc")), true);
 }
