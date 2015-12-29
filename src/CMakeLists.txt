@@ -149,9 +149,9 @@ install(TARGETS akregatorpart DESTINATION ${KDE_INSTALL_PLUGINDIR})
 
 ########### install files ###############
 
-install(PROGRAMS org.kde.akregator.desktop DESTINATION ${KDE_INSTALL_APPDIR})
+install(PROGRAMS data/org.kde.akregator.desktop DESTINATION ${KDE_INSTALL_APPDIR})
 install(FILES akregator_part.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
-install(FILES akregator.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
+install(FILES data/akregator.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
 install(FILES akregator_plugin.desktop DESTINATION ${KDE_INSTALL_KSERVICETYPES5DIR})
 install(FILES akregator_shell.rc articleviewer.rc pageviewer.rc akregator_part.rc DESTINATION ${KDE_INSTALL_KXMLGUI5DIR}/akregator)
 install(FILES feed.protocol DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
