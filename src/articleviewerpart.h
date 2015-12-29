@@ -1,7 +1,8 @@
 /*
     This file is part of Akregator.
 
-    Copyright (C) 2004 Stanislav Karchebny <Stanislav.Karchebny@kdemail.net>
+    Copyright (C) 2004 Teemu Rytilahti <tpr@d5k.net>
+                  2005 Frank Osterfeld <osterfeld@kde.org>
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -22,38 +23,34 @@
     without including the source code for Qt in the source distribution.
 */
 
-#ifndef AKREGATOR_TRAYICON_H
-#define AKREGATOR_TRAYICON_H
+#ifndef ARTICLEVIEWERPART_H
+#define ARTICLEVIEWERPART_H
 
-#include "akregator_export.h"
-
-#include <QIcon>
-#include <KStatusNotifierItem>
+#include <khtml_part.h>
 
 namespace Akregator
 {
-
-class AKREGATOR_EXPORT TrayIcon : public KStatusNotifierItem
+class ArticleViewerPart : public KHTMLPart
 {
     Q_OBJECT
+
 public:
-    static TrayIcon *getInstance();
-    static void setInstance(TrayIcon *trayIcon);
+    explicit ArticleViewerPart(QWidget *parent);
 
-    explicit TrayIcon(QObject *parent = Q_NULLPTR);
-    ~TrayIcon();
+    bool closeUrl() Q_DECL_OVERRIDE;
 
-public Q_SLOTS:
-    void settingsChanged();
-    void slotSetUnread(int unread);
+    int button() const;
+
+protected:
+
+    /** reimplemented to get the mouse button */
+    bool urlSelected(const QString &url, int button, int state, const QString &_target,
+                     const KParts::OpenUrlArguments &args = KParts::OpenUrlArguments(),
+                     const KParts::BrowserArguments &browserArgs = KParts::BrowserArguments()) Q_DECL_OVERRIDE;
 
 private:
-    static TrayIcon *m_instance;
 
-    QIcon m_defaultIcon;
-    int m_unread;
+    int m_button;
 };
-
-} // namespace Akregator
-
-#endif // AKREGATOR_TRAYICON_H
+}
+#endif // ARTICLEVIEWERPART_H

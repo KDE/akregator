@@ -89,7 +89,13 @@ set(akregator_utils_SRCS
   utils/filtercolumnsproxymodel.cpp
 )
 
+set(akregator_articleviewer_ng_SRCS
+  articleviewer-ng/articleviewerng.cpp
+)
+
+
 set(akregatorpart_PART_SRCS
+  ${akregator_articleviewer_ng_SRCS}
   ${akregator_utils_SRCS}
   akregatortexttospeech.cpp
   akregatortexttospeechinterface.cpp
@@ -103,6 +109,7 @@ set(akregatorpart_PART_SRCS
   subscriptionlistmodel.cpp
   searchbar.cpp
   articlelistview.cpp
+  articleviewerpart.cpp
   actionmanagerimpl.cpp
   createfeedcommand.cpp
   createfoldercommand.cpp
@@ -145,6 +152,8 @@ target_link_libraries(akregatorpart
   KF5::PimCommon
   KF5::PimTextEdit
   KF5::GrantleeTheme
+  KF5::WebKit 
+  Qt5::WebKitWidgets
 )
 
 install(TARGETS akregatorpart DESTINATION ${KDE_INSTALL_PLUGINDIR})

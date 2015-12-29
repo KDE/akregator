@@ -191,7 +191,6 @@ private:
     void setArticleActionsEnabled(bool enabled);
 
 private:
-    void paintAboutScreen(const QString &templateName, const QVariantHash &data);
     QUrl m_url;
     QString m_normalModeCSS;
     QString m_combinedModeCSS;
@@ -211,28 +210,7 @@ private:
     QSharedPointer<ArticleFormatter> m_combinedViewFormatter;
 };
 
-class ArticleViewerPart : public KHTMLPart
-{
-    Q_OBJECT
 
-public:
-    explicit ArticleViewerPart(QWidget *parent);
-
-    bool closeUrl() Q_DECL_OVERRIDE;
-
-    int button() const;
-
-protected:
-
-    /** reimplemented to get the mouse button */
-    bool urlSelected(const QString &url, int button, int state, const QString &_target,
-                     const KParts::OpenUrlArguments &args = KParts::OpenUrlArguments(),
-                     const KParts::BrowserArguments &browserArgs = KParts::BrowserArguments()) Q_DECL_OVERRIDE;
-
-private:
-
-    int m_button;
-};
 
 } // namespace Akregator
 

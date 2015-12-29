@@ -121,12 +121,6 @@ void TrayIcon::slotSetUnread(int unread)
     }
 }
 
-void TrayIcon::viewButtonClicked()
-{
-    QWidget *p = static_cast<QWidget *>(parent());
-    KWindowSystem::activateWindow(p->winId());
-}
-
 void TrayIcon::settingsChanged()
 {
     slotSetUnread(m_unread);

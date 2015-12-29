@@ -24,6 +24,8 @@
 */
 
 #include "articleviewer.h"
+#include "articleviewerpart.h"
+
 #include "akregatorconfig.h"
 #include "aboutdata.h"
 #include "actionmanager.h"
@@ -636,22 +638,6 @@ QSize ArticleViewer::sizeHint() const
     return sh;
 }
 
-void ArticleViewer::paintAboutScreen(const QString &templateName, const QVariantHash &data)
-{
-    GrantleeTheme::ThemeManager manager(QStringLiteral("splashPage"),
-                                        QStringLiteral("splash.theme"),
-                                        Q_NULLPTR,
-                                        QStringLiteral("messageviewer/about/"));
-    GrantleeTheme::Theme theme = manager.theme(QStringLiteral("default"));
-    if (!theme.isValid()) {
-        qCDebug(AKREGATOR_LOG) << "Theme error: failed to find splash theme";
-    } else {
-        //mIntroPart->setHtml(theme.render(templateName, data),
-        //                    QUrl::fromLocalFile(theme.absolutePath() + QLatin1Char('/')));
-    }
-
-}
-
 
 void ArticleViewer::displayAboutPage()
 {
@@ -697,48 +683,6 @@ void ArticleViewer::displayAboutPage()
 
     m_part->write(content.arg(infocss, rtl, fontSize, appTitle, catchPhrase, quickDescription, info));
     m_part->end();
-}
-
-ArticleViewerPart::ArticleViewerPart(QWidget *parent)
-    : KHTMLPart(parent),
-      m_button(-1)
-{
-    setXMLFile(QStandardPaths::locate(QStandardPaths::GenericDataLocation, QStringLiteral("akregator/articleviewer.rc")), true);
-}
-
-int ArticleViewerPart::button() const
-{
-    return m_button;
-}
-
-bool ArticleViewerPart::closeUrl()
-{
-    Q_EMIT browserExtension()->loadingProgress(-1);
-    Q_EMIT canceled(QString());
-    return KHTMLPart::closeUrl();
-}
-
-bool ArticleViewerPart::urlSelected(const QString &url, int button, int state, const QString &_target,
-                                    const KParts::OpenUrlArguments &args,
-                                    const KParts::BrowserArguments &browserArgs)
-{
-    m_button = button;
-    if (url == QLatin1String("config:/disable_introduction")) {
-        KGuiItem yesButton(KStandardGuiItem::yes());
-        yesButton.setText(i18n("Disable"));
-        KGuiItem noButton(KStandardGuiItem::no());
-        noButton.setText(i18n("Keep Enabled"));
-        if (KMessageBox::questionYesNo(widget(), i18n("Are you sure you want to disable this introduction page?"), i18n("Disable Introduction Page"), yesButton, noButton) == KMessageBox::Yes) {
-            KConfigGroup conf(Settings::self()->config(), "General");
-            conf.writeEntry("Disable Introduction", "true");
-            conf.sync();
-            return true;
-        }
-
-        return false;
-    } else {
-        return KHTMLPart::urlSelected(url, button, state, _target, args, browserArgs);
-    }
 }
 
 void ArticleViewer::updateCss()
