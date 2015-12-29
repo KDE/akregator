@@ -226,9 +226,6 @@ void ArticleViewer::slotPopupMenu(const QPoint &p, const QUrl &kurl, mode_t, con
             popup.addSeparator();
         }
         popup.addAction(ActionManager::getInstance()->action(QStringLiteral("viewer_print")));
-        //QAction *ac = action("setEncoding");
-        //if (ac)
-        //     ac->plug(&popup);
         popup.addSeparator();
         popup.addAction(ActionManager::getInstance()->action(QStringLiteral("inc_font_sizes")));
         popup.addAction(ActionManager::getInstance()->action(QStringLiteral("dec_font_sizes")));
