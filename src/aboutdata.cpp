@@ -37,7 +37,7 @@ AboutData::AboutData()
                  QStringLiteral(KDEPIM_VERSION),
                  i18n("A KDE Feed Reader"),
                  KAboutLicense::GPL,
-                 i18n("Copyright © 2004–2015 Akregator authors"),
+                 i18n("Copyright © 2004–2016 Akregator authors"),
                  QString(),
                  QStringLiteral("https://userbase.kde.org/Akregator"))
 {
