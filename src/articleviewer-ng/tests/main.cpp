@@ -15,6 +15,8 @@
   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
+#include "articleviewerngtest.h"
+
 #include <QStandardPaths>
 #include <QApplication>
 #include <QCommandLineParser>
@@ -36,6 +38,8 @@ int main(int argc, char **argv)
     parser.process(app);
     aboutData.processCommandLine(&parser);
 
+    ArticleViewerNgTest *article = new ArticleViewerNgTest;
+    article->show();
     app.exec();
     return 0;
 }
