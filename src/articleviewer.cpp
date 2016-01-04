@@ -364,8 +364,7 @@ void ArticleViewer::connectToNode(TreeNode *node)
             connect(node, &TreeNode::signalArticlesAdded, this, &ArticleViewer::slotArticlesAdded);
             connect(node, &TreeNode::signalArticlesRemoved, this, &ArticleViewer::slotArticlesRemoved);
             connect(node, &TreeNode::signalArticlesUpdated, this, &ArticleViewer::slotArticlesUpdated);
-        }
-        if (m_viewMode == SummaryView) {
+        } else if (m_viewMode == SummaryView) {
             connect(node, &TreeNode::signalChanged, this, &ArticleViewer::slotShowSummary);
         }
 
