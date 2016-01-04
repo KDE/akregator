@@ -57,6 +57,11 @@ protected:
     void wheelEvent(QWheelEvent *e) Q_DECL_OVERRIDE;
     void resizeEvent(QResizeEvent *e) Q_DECL_OVERRIDE;
     void contextMenuEvent(QContextMenuEvent *event) Q_DECL_OVERRIDE;
+
+private Q_SLOTS:
+    void slotOpenLinkInNewWindow();
+    void slotOpenLinkInCurrentTab();
+
 private:
     void paintAboutScreen(const QString &templateName, const QVariantHash &data);
     KActionCollection *mActionCollection;

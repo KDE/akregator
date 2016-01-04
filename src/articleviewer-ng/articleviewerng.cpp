@@ -20,7 +20,10 @@
 #include "akregator_debug.h"
 #include <MessageViewer/WebViewAccessKey>
 #include <MessageViewer/WebPage>
+#include <QWebSettings>
 
+#include <QMenu>
+#include <QMouseEvent>
 #include <grantleethememanager.h>
 using namespace Akregator;
 
@@ -31,6 +34,13 @@ ArticleViewerNg::ArticleViewerNg(KActionCollection *ac, QWidget *parent)
     setPage(new MessageViewer::WebPage(this));
     mWebViewAccessKey = new MessageViewer::WebViewAccessKey(this, this);
     mWebViewAccessKey->setActionCollection(mActionCollection);
+
+    setZoomFactor(100);
+    settings()->setAttribute(QWebSettings::JavascriptEnabled, false);
+    settings()->setAttribute(QWebSettings::JavaEnabled, false);
+    settings()->setAttribute(QWebSettings::PluginsEnabled, false);
+    settings()->setAttribute(QWebSettings::DnsPrefetchEnabled, true);
+    settings()->setAttribute(QWebSettings::AutoLoadImages, true);
 
     connect(this, &QWebView::loadStarted, mWebViewAccessKey, &MessageViewer::WebViewAccessKey::hideAccessKeys);
     connect(page(), &QWebPage::scrollRequested, mWebViewAccessKey, &MessageViewer::WebViewAccessKey::hideAccessKeys);
@@ -63,7 +73,9 @@ void ArticleViewerNg::paintAboutScreen(const QString &templateName, const QVaria
 
 void ArticleViewerNg::contextMenuEvent(QContextMenuEvent *event)
 {
+    QMenu popup;
     //TODO
+    popup.exec(event->globalPos());
 }
 
 void ArticleViewerNg::keyReleaseEvent(QKeyEvent *e)
@@ -98,4 +110,20 @@ void ArticleViewerNg::resizeEvent(QResizeEvent *e)
         mWebViewAccessKey->resizeEvent(e);
     }
     KWebView::resizeEvent(e);
+}
+
+void ArticleViewerNg::slotOpenLinkInNewWindow()
+{
+    QAction *a = qobject_cast<QAction*>(sender());
+    QUrl url(a->data().toUrl());
+
+    emit loadUrl(url, ArticleViewerNg::NewWindow);
+}
+
+void ArticleViewerNg::slotOpenLinkInCurrentTab()
+{
+    QAction *a = qobject_cast<QAction*>(sender());
+    QUrl url(a->data().toUrl());
+
+    emit loadUrl(url, ArticleViewerNg::CurrentTab);
 }
