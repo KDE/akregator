@@ -54,6 +54,11 @@ void ArticleViewerNg::paintAboutScreen(const QString &templateName, const QVaria
     }
 }
 
+void ArticleViewerNg::contextMenuEvent(QContextMenuEvent *event)
+{
+    //TODO
+}
+
 void ArticleViewerNg::keyReleaseEvent(QKeyEvent *e)
 {
     if (/*MessageViewer::MessageViewerSettings::self()->accessKeyEnabled()*/1) {
