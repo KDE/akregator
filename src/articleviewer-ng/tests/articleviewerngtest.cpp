@@ -17,11 +17,13 @@
 
 
 #include "articleviewerngtest.h"
+#include "../articleviewerwidgetng.h"
+#include <KActionCollection>
 
 ArticleViewerNgTest::ArticleViewerNgTest(QWidget *parent)
     : QMainWindow(parent)
 {
-
+    mArticleViewerWidget = new Akregator::ArticleViewerWidgetNg(new KActionCollection(this));
 }
 
 ArticleViewerNgTest::~ArticleViewerNgTest()

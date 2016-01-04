@@ -21,6 +21,7 @@
 
 #include <KWebView>
 #include <QVariantHash>
+#include <QWebHitTestResult>
 class KActionCollection;
 namespace MessageViewer
 {
@@ -64,6 +65,7 @@ private Q_SLOTS:
 
 private:
     void paintAboutScreen(const QString &templateName, const QVariantHash &data);
+    QWebHitTestResult mContextMenuHitResult;
     KActionCollection *mActionCollection;
     MessageViewer::WebViewAccessKey *mWebViewAccessKey;
 };

@@ -23,6 +23,7 @@
 #include <QWebSettings>
 
 #include <QMenu>
+#include <QWebFrame>
 #include <QMouseEvent>
 #include <grantleethememanager.h>
 using namespace Akregator;
@@ -73,7 +74,13 @@ void ArticleViewerNg::paintAboutScreen(const QString &templateName, const QVaria
 
 void ArticleViewerNg::contextMenuEvent(QContextMenuEvent *event)
 {
-    QMenu popup;
+    mContextMenuHitResult = page()->mainFrame()->hitTestContent(event->pos());
+    QMenu popup(this);
+    if (!mContextMenuHitResult.linkUrl().isEmpty()) {
+        //TODO we are in link.
+    } else {
+        //TODO
+    }
     //TODO
     popup.exec(event->globalPos());
 }

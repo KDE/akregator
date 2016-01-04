@@ -27,7 +27,7 @@
 #include "akregatorconfig.h"
 #include "akregator_part.h"
 #include "articlelistview.h"
-#include "articleviewer.h"
+#include "articleviewerwidget.h"
 #include "feed.h"
 #include "fetchqueue.h"
 #include "folder.h"
@@ -117,7 +117,7 @@ public:
     ArticleListView *articleList;
     SubscriptionListView *subscriptionListView;
     MainWidget *mainWidget;
-    ArticleViewer *articleViewer;
+    ArticleViewerWidget *articleViewer;
     Part *part;
     TrayIcon *trayIcon;
     KActionMenu *tagMenu;
@@ -135,7 +135,8 @@ void ActionManagerImpl::slotNodeSelected(TreeNode *node)
     }
 }
 
-ActionManagerImpl::ActionManagerImpl(Part *part, QObject *parent) : ActionManager(parent), d(new ActionManagerImplPrivate)
+ActionManagerImpl::ActionManagerImpl(Part *part, QObject *parent)
+    : ActionManager(parent), d(new ActionManagerImplPrivate)
 {
     d->nodeSelectVisitor = new NodeSelectVisitor(this);
     d->part = part;
@@ -174,11 +175,11 @@ void ActionManagerImpl::setTrayIcon(TrayIcon *trayIcon)
 
     QMenu *traypop = trayIcon->contextMenu();
 
-    if (actionCollection()->action(QStringLiteral("feed_fetch_all"))) {
-        traypop->addAction(actionCollection()->action(QStringLiteral("feed_fetch_all")));
+    if (QAction *act = actionCollection()->action(QStringLiteral("feed_fetch_all"))) {
+        traypop->addAction(act);
     }
-    if (actionCollection()->action(QStringLiteral("options_configure"))) {
-        traypop->addAction(actionCollection()->action(QStringLiteral("options_configure")));
+    if (QAction *act = actionCollection()->action(QStringLiteral("options_configure"))) {
+        traypop->addAction(act);
     }
 }
 
@@ -436,7 +437,7 @@ void ActionManagerImpl::slotServiceUrlSelected(PimCommon::ShareServiceUrlManager
     }
 }
 
-void ActionManagerImpl::initArticleViewer(ArticleViewer *articleViewer)
+void ActionManagerImpl::initArticleViewer(ArticleViewerWidget *articleViewer)
 {
     if (d->articleViewer) {
         return;
@@ -453,8 +454,8 @@ void ActionManagerImpl::initArticleViewer(ArticleViewer *articleViewer)
     action = KStandardAction::copy(articleViewer, SLOT(slotCopy()), coll);
     coll->addAction(QStringLiteral("viewer_copy"), action);
 
-    connect(d->tabWidget, &TabWidget::signalZoomInFrame, d->articleViewer, &ArticleViewer::slotZoomIn);
-    connect(d->tabWidget, &TabWidget::signalZoomOutFrame, d->articleViewer, &ArticleViewer::slotZoomOut);
+    connect(d->tabWidget, &TabWidget::signalZoomInFrame, d->articleViewer, &ArticleViewerWidget::slotZoomIn);
+    connect(d->tabWidget, &TabWidget::signalZoomOutFrame, d->articleViewer, &ArticleViewerWidget::slotZoomOut);
 }
 
 void ActionManagerImpl::initArticleListView(ArticleListView *articleList)

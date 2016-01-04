@@ -36,7 +36,7 @@ namespace Akregator
 {
 
 class ArticleListView;
-class ArticleViewer;
+class ArticleViewerWidget;
 class FrameManager;
 class MainWidget;
 class Part;
@@ -61,7 +61,7 @@ public:
     QWidget *container(const QString &name) Q_DECL_OVERRIDE;
 
     void initMainWidget(MainWidget *mainWidget);
-    void initArticleViewer(ArticleViewer *articleViewer);
+    void initArticleViewer(ArticleViewerWidget *articleViewer);
     void initArticleListView(ArticleListView *articleList);
     void initSubscriptionListView(SubscriptionListView *subscriptionListView);
     void initTabWidget(TabWidget *tabWidget);

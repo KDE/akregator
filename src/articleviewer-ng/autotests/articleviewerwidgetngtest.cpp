@@ -15,24 +15,18 @@
   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef ARTICLEVIEWERNGTEST_H
-#define ARTICLEVIEWERNGTEST_H
+#include "articleviewerwidgetngtest.h"
+#include <QTest>
 
-#include <QMainWindow>
-
-namespace Akregator
+ArticleViewerWidgetNgTest::ArticleViewerWidgetNgTest(QObject *parent)
+    : QObject(parent)
 {
-class ArticleViewerWidgetNg;
+
 }
 
-class ArticleViewerNgTest : public QMainWindow
+ArticleViewerWidgetNgTest::~ArticleViewerWidgetNgTest()
 {
-    Q_OBJECT
-public:
-    explicit ArticleViewerNgTest(QWidget *parent = Q_NULLPTR);
-    ~ArticleViewerNgTest();
-private:
-    Akregator::ArticleViewerWidgetNg *mArticleViewerWidget;
-};
 
-#endif // ARTICLEVIEWERNGTEST_H
+}
+
+QTEST_MAIN(ArticleViewerWidgetNgTest)
