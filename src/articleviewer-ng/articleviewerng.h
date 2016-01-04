@@ -45,7 +45,11 @@ public:
 
     explicit ArticleViewerNg(KActionCollection *ac, QWidget *parent = Q_NULLPTR);
     ~ArticleViewerNg();
-    void paintAboutScreen(const QString &templateName, const QVariantHash &data);
+
+    void showAbout();
+
+Q_SIGNALS:
+    void loadUrl(const QUrl &, ArticleViewerNg::OpenUrlType type);
 
 protected:
     void keyReleaseEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
@@ -54,6 +58,7 @@ protected:
     void resizeEvent(QResizeEvent *e) Q_DECL_OVERRIDE;
     void contextMenuEvent(QContextMenuEvent *event) Q_DECL_OVERRIDE;
 private:
+    void paintAboutScreen(const QString &templateName, const QVariantHash &data);
     KActionCollection *mActionCollection;
     MessageViewer::WebViewAccessKey *mWebViewAccessKey;
 };

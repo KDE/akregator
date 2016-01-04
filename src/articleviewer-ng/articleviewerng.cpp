@@ -39,6 +39,11 @@ ArticleViewerNg::~ArticleViewerNg()
 
 }
 
+void ArticleViewerNg::showAbout()
+{
+    //TODO call paintAboutScreen
+}
+
 void ArticleViewerNg::paintAboutScreen(const QString &templateName, const QVariantHash &data)
 {
     GrantleeTheme::ThemeManager manager(QStringLiteral("splashPage"),
