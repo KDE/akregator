@@ -18,14 +18,20 @@
 
 #include "articleviewerng.h"
 #include "akregator_debug.h"
+#include <MessageViewer/WebViewAccessKey>
 
 #include <grantleethememanager.h>
 using namespace Akregator;
 
-ArticleViewerNg::ArticleViewerNg(QWidget *parent)
-    : KWebView(parent, false)
+ArticleViewerNg::ArticleViewerNg(KActionCollection *ac, QWidget *parent)
+    : KWebView(parent, false),
+      mActionCollection(ac)
 {
+    mWebViewAccessKey = new MessageViewer::WebViewAccessKey(this, this);
+    mWebViewAccessKey->setActionCollection(mActionCollection);
 
+    connect(this, &QWebView::loadStarted, mWebViewAccessKey, &MessageViewer::WebViewAccessKey::hideAccessKeys);
+    connect(page(), &QWebPage::scrollRequested, mWebViewAccessKey, &MessageViewer::WebViewAccessKey::hideAccessKeys);
 }
 
 ArticleViewerNg::~ArticleViewerNg()
@@ -46,5 +52,38 @@ void ArticleViewerNg::paintAboutScreen(const QString &templateName, const QVaria
         setHtml(theme.render(templateName, data),
                             QUrl::fromLocalFile(theme.absolutePath() + QLatin1Char('/')));
     }
+}
 
+void ArticleViewerNg::keyReleaseEvent(QKeyEvent *e)
+{
+    if (/*MessageViewer::MessageViewerSettings::self()->accessKeyEnabled()*/1) {
+        mWebViewAccessKey->keyReleaseEvent(e);
+    }
+    KWebView::keyReleaseEvent(e);
+}
+
+void ArticleViewerNg::keyPressEvent(QKeyEvent *e)
+{
+    if (e && hasFocus()) {
+        if (/*MessageViewer::MessageViewerSettings::self()->accessKeyEnabled()*/1) {
+            mWebViewAccessKey->keyPressEvent(e);
+        }
+    }
+    KWebView::keyPressEvent(e);
+}
+
+void ArticleViewerNg::wheelEvent(QWheelEvent *e)
+{
+    if (/*MessageViewer::MessageViewerSettings::self()->accessKeyEnabled()*/1) {
+        mWebViewAccessKey->wheelEvent(e);
+    }
+    KWebView::wheelEvent(e);
+}
+
+void ArticleViewerNg::resizeEvent(QResizeEvent *e)
+{
+    if (/*MessageViewer::MessageViewerSettings::self()->accessKeyEnabled()*/1) {
+        mWebViewAccessKey->resizeEvent(e);
+    }
+    KWebView::resizeEvent(e);
 }

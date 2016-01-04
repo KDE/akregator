@@ -154,6 +154,7 @@ target_link_libraries(akregatorpart
   KF5::GrantleeTheme
   KF5::WebKit 
   Qt5::WebKitWidgets
+  KF5::MessageViewer
 )
 
 install(TARGETS akregatorpart DESTINATION ${KDE_INSTALL_PLUGINDIR})

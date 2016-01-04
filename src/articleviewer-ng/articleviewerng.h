@@ -21,16 +21,29 @@
 
 #include <KWebView>
 #include <QVariantHash>
-
+class KActionCollection;
+namespace MessageViewer
+{
+class WebViewAccessKey;
+}
 namespace Akregator
 {
 class ArticleViewerNg : public KWebView
 {
     Q_OBJECT
 public:
-    explicit ArticleViewerNg(QWidget *parent = Q_NULLPTR);
+    explicit ArticleViewerNg(KActionCollection *ac, QWidget *parent = Q_NULLPTR);
     ~ArticleViewerNg();
     void paintAboutScreen(const QString &templateName, const QVariantHash &data);
+
+protected:
+    void keyReleaseEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
+    void keyPressEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
+    void wheelEvent(QWheelEvent *e) Q_DECL_OVERRIDE;
+    void resizeEvent(QResizeEvent *e) Q_DECL_OVERRIDE;
+private:
+    KActionCollection *mActionCollection;
+    MessageViewer::WebViewAccessKey *mWebViewAccessKey;
 };
 }
 
