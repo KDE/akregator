@@ -32,6 +32,17 @@ class ArticleViewerNg : public KWebView
 {
     Q_OBJECT
 public:
+    enum OpenUrlType
+    {
+        CurrentTab,         ///< open url in current tab
+        NewTab,             ///< open url according to users settings
+        NewFocusedTab,      ///< open url in new tab and focus it
+        NewBackGroundTab,   ///< open url in new background tab
+        NewWindow,          ///< open url in new window
+        WebApp              ///< open url in a web app window
+    };
+
+
     explicit ArticleViewerNg(KActionCollection *ac, QWidget *parent = Q_NULLPTR);
     ~ArticleViewerNg();
     void paintAboutScreen(const QString &templateName, const QVariantHash &data);
