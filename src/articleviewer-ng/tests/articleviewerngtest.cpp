@@ -24,6 +24,7 @@ ArticleViewerNgTest::ArticleViewerNgTest(QWidget *parent)
     : QMainWindow(parent)
 {
     mArticleViewerWidget = new Akregator::ArticleViewerWidgetNg(new KActionCollection(this));
+    setCentralWidget(mArticleViewerWidget);
 }
 
 ArticleViewerNgTest::~ArticleViewerNgTest()
