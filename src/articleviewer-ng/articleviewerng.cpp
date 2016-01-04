@@ -19,6 +19,7 @@
 #include "articleviewerng.h"
 #include "akregator_debug.h"
 #include <MessageViewer/WebViewAccessKey>
+#include <MessageViewer/WebPage>
 
 #include <grantleethememanager.h>
 using namespace Akregator;
@@ -27,6 +28,7 @@ ArticleViewerNg::ArticleViewerNg(KActionCollection *ac, QWidget *parent)
     : KWebView(parent, false),
       mActionCollection(ac)
 {
+    setPage(new MessageViewer::WebPage(this));
     mWebViewAccessKey = new MessageViewer::WebViewAccessKey(this, this);
     mWebViewAccessKey->setActionCollection(mActionCollection);
 
