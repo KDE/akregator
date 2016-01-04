@@ -22,8 +22,8 @@
     without including the source code for Qt in the source distribution.
 */
 
-#ifndef AKREGATOR_ARTICLEVIEWER_H
-#define AKREGATOR_ARTICLEVIEWER_H
+#ifndef AKREGATOR_ARTICLEVIEWERWIDGET_H
+#define AKREGATOR_ARTICLEVIEWERWIDGET_H
 
 #include "article.h"
 #include "akregatorpart_export.h"
@@ -53,12 +53,12 @@ class TreeNode;
 
 class ArticleViewerPart;
 
-class AKREGATORPART_EXPORT ArticleViewer : public QWidget
+class AKREGATORPART_EXPORT ArticleViewerWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit ArticleViewer(QWidget *parent);
-    ~ArticleViewer();
+    explicit ArticleViewerWidget(QWidget *parent);
+    ~ArticleViewerWidget();
 
     /** Repaints the view. */
     void reload();

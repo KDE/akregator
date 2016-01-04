@@ -91,6 +91,7 @@ set(akregator_utils_SRCS
 
 set(akregator_articleviewer_ng_SRCS
   articleviewer-ng/articleviewerng.cpp
+  articleviewer-ng/articleviewerwidgetng.cpp
 )
 
 
@@ -114,7 +115,7 @@ set(akregatorpart_PART_SRCS
   createfeedcommand.cpp
   createfoldercommand.cpp
   expireitemscommand.cpp
-  articleviewer.cpp
+  articleviewerwidget.cpp
   articleformatter.cpp
   addfeeddialog.cpp
   loadfeedlistcommand.cpp

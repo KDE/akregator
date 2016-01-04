@@ -50,7 +50,7 @@ namespace Akregator
 class AbstractSelectionController;
 class ActionManagerImpl;
 class ArticleListView;
-class ArticleViewer;
+class ArticleViewerWidget;
 class Folder;
 class FeedList;
 class FeedListManagementImpl;
@@ -267,7 +267,7 @@ private:
     SubscriptionListView *m_feedListView;
     ArticleListView *m_articleListView;
 
-    ArticleViewer *m_articleViewer;
+    ArticleViewerWidget *m_articleViewer;
     TabWidget *m_tabWidget;
 
     QWidget *m_mainTab;

@@ -23,7 +23,7 @@
     without including the source code for Qt in the source distribution.
 */
 
-#include "articleviewer.h"
+#include "articleviewerwidget.h"
 #include "articleviewerpart.h"
 
 #include "akregatorconfig.h"
@@ -75,7 +75,7 @@ using namespace Akregator::Filters;
 namespace Akregator
 {
 
-ArticleViewer::ArticleViewer(QWidget *parent)
+ArticleViewerWidget::ArticleViewerWidget(QWidget *parent)
     : QWidget(parent),
       m_imageDir(QUrl::fromLocalFile(QString(QStandardPaths::writableLocation(QStandardPaths::CacheLocation) + QLatin1String("/akregator/Media/")))),
       m_node(0),
@@ -104,7 +104,7 @@ ArticleViewer::ArticleViewer(QWidget *parent)
 
     // change the cursor when loading stuff...
     connect(m_part, &KParts::ReadOnlyPart::started,
-            this, &ArticleViewer::slotStarted);
+            this, &ArticleViewerWidget::slotStarted);
     connect(m_part, SIGNAL(completed()),
             this, SLOT(slotCompleted()));
 
@@ -113,46 +113,46 @@ ArticleViewer::ArticleViewer(QWidget *parent)
             this, SLOT(slotPopupMenu(QPoint,QUrl,mode_t,KParts::OpenUrlArguments,KParts::BrowserArguments,KParts::BrowserExtension::PopupFlags))); // ActionGroupMap argument removed, unused by slot
 
     connect(ext, &KParts::BrowserExtension::openUrlRequestDelayed,
-            this, &ArticleViewer::slotOpenUrlRequestDelayed);
+            this, &ArticleViewerWidget::slotOpenUrlRequestDelayed);
 
     connect(ext, &KParts::BrowserExtension::createNewWindow,
-            this, &ArticleViewer::slotCreateNewWindow);
+            this, &ArticleViewerWidget::slotCreateNewWindow);
 
     QAction *action = 0;
 
     action = m_part->actionCollection()->addAction(QStringLiteral("copylinkaddress"));
     action->setText(i18n("Copy &Link Address"));
-    connect(action, &QAction::triggered, this, &ArticleViewer::slotCopyLinkAddress);
+    connect(action, &QAction::triggered, this, &ArticleViewerWidget::slotCopyLinkAddress);
 
     action = m_part->actionCollection()->addAction(QStringLiteral("savelinkas"));
     action->setText(i18n("&Save Link As..."));
-    connect(action, &QAction::triggered, this, &ArticleViewer::slotSaveLinkAs);
+    connect(action, &QAction::triggered, this, &ArticleViewerWidget::slotSaveLinkAs);
 
     updateCss();
 
-    connect(this, &ArticleViewer::selectionChanged, this, &ArticleViewer::slotSelectionChanged);
+    connect(this, &ArticleViewerWidget::selectionChanged, this, &ArticleViewerWidget::slotSelectionChanged);
 
-    connect(KGlobalSettings::self(), &KGlobalSettings::kdisplayPaletteChanged, this, &ArticleViewer::slotPaletteOrFontChanged);
-    connect(KGlobalSettings::self(), &KGlobalSettings::kdisplayFontChanged, this, &ArticleViewer::slotPaletteOrFontChanged);
+    connect(KGlobalSettings::self(), &KGlobalSettings::kdisplayPaletteChanged, this, &ArticleViewerWidget::slotPaletteOrFontChanged);
+    connect(KGlobalSettings::self(), &KGlobalSettings::kdisplayFontChanged, this, &ArticleViewerWidget::slotPaletteOrFontChanged);
 
     m_htmlFooter = QStringLiteral("</body></html>");
 }
 
-ArticleViewer::~ArticleViewer()
+ArticleViewerWidget::~ArticleViewerWidget()
 {
 }
 
-KParts::ReadOnlyPart *ArticleViewer::part() const
+KParts::ReadOnlyPart *ArticleViewerWidget::part() const
 {
     return m_part;
 }
 
-int ArticleViewer::pointsToPixel(int pointSize) const
+int ArticleViewerWidget::pointsToPixel(int pointSize) const
 {
     return (pointSize * m_part->view()->logicalDpiY() + 36) / 72;
 }
 
-void ArticleViewer::slotOpenUrlRequestDelayed(const QUrl &url, const KParts::OpenUrlArguments &args, const KParts::BrowserArguments &browserArgs)
+void ArticleViewerWidget::slotOpenUrlRequestDelayed(const QUrl &url, const KParts::OpenUrlArguments &args, const KParts::BrowserArguments &browserArgs)
 {
     OpenUrlRequest req(url);
     req.setArgs(args);
@@ -188,7 +188,7 @@ void ArticleViewer::slotOpenUrlRequestDelayed(const QUrl &url, const KParts::Ope
     Q_EMIT signalOpenUrlRequest(req);
 }
 
-void ArticleViewer::slotCreateNewWindow(const QUrl &url,
+void ArticleViewerWidget::slotCreateNewWindow(const QUrl &url,
                                         const KParts::OpenUrlArguments &args,
                                         const KParts::BrowserArguments &browserArgs,
                                         const KParts::WindowArgs & /*windowArgs*/,
@@ -206,7 +206,7 @@ void ArticleViewer::slotCreateNewWindow(const QUrl &url,
     }
 }
 
-void ArticleViewer::slotPopupMenu(const QPoint &p, const QUrl &kurl, mode_t, const KParts::OpenUrlArguments &, const KParts::BrowserArguments &, KParts::BrowserExtension::PopupFlags kpf)
+void ArticleViewerWidget::slotPopupMenu(const QPoint &p, const QUrl &kurl, mode_t, const KParts::OpenUrlArguments &, const KParts::BrowserArguments &, KParts::BrowserExtension::PopupFlags kpf)
 {
     const bool isLink = (kpf & KParts::BrowserExtension::ShowNavigationItems) == 0; // ## why not use kpf & IsLink ?
     const bool isSelection = (kpf & KParts::BrowserExtension::ShowTextSelectionItems) != 0;
@@ -236,7 +236,7 @@ void ArticleViewer::slotPopupMenu(const QPoint &p, const QUrl &kurl, mode_t, con
 }
 
 // taken from KDevelop
-void ArticleViewer::slotCopy()
+void ArticleViewerWidget::slotCopy()
 {
     QString text = m_part->selectedText();
     text.replace(QChar(0xa0), QLatin1Char(' '));
@@ -245,7 +245,7 @@ void ArticleViewer::slotCopy()
     cb->setText(text, QClipboard::Clipboard);
 }
 
-void ArticleViewer::slotCopyLinkAddress()
+void ArticleViewerWidget::slotCopyLinkAddress()
 {
     if (m_url.isEmpty()) {
         return;
@@ -258,24 +258,24 @@ void ArticleViewer::slotCopyLinkAddress()
     cb->setText(m_url.toString(), QClipboard::Selection);
 }
 
-void ArticleViewer::slotSelectionChanged()
+void ArticleViewerWidget::slotSelectionChanged()
 {
     ActionManager::getInstance()->action(QStringLiteral("viewer_copy"))->setEnabled(!m_part->selectedText().isEmpty());
 }
 
-void ArticleViewer::slotOpenLinkInternal()
+void ArticleViewerWidget::slotOpenLinkInternal()
 {
     openUrl(m_url);
 }
 
-void ArticleViewer::slotOpenLinkInForegroundTab()
+void ArticleViewerWidget::slotOpenLinkInForegroundTab()
 {
     OpenUrlRequest req(m_url);
     req.setOptions(OpenUrlRequest::NewTab);
     Q_EMIT signalOpenUrlRequest(req);
 }
 
-void ArticleViewer::slotOpenLinkInBackgroundTab()
+void ArticleViewerWidget::slotOpenLinkInBackgroundTab()
 {
     OpenUrlRequest req(m_url);
     req.setOptions(OpenUrlRequest::NewTab);
@@ -283,14 +283,14 @@ void ArticleViewer::slotOpenLinkInBackgroundTab()
     Q_EMIT signalOpenUrlRequest(req);
 }
 
-void ArticleViewer::slotOpenLinkInBrowser()
+void ArticleViewerWidget::slotOpenLinkInBrowser()
 {
     OpenUrlRequest req(m_url);
     req.setOptions(OpenUrlRequest::ExternalBrowser);
     Q_EMIT signalOpenUrlRequest(req);
 }
 
-void ArticleViewer::slotSaveLinkAs()
+void ArticleViewerWidget::slotSaveLinkAs()
 {
     QUrl tmp(m_url);
 
@@ -301,19 +301,19 @@ void ArticleViewer::slotSaveLinkAs()
     KParts::BrowserRun::simpleSave(tmp, tmp.fileName());
 }
 
-void ArticleViewer::slotStarted(KIO::Job *job)
+void ArticleViewerWidget::slotStarted(KIO::Job *job)
 {
     m_part->widget()->setCursor(Qt::WaitCursor);
     Q_EMIT started(job);
 }
 
-void ArticleViewer::slotCompleted()
+void ArticleViewerWidget::slotCompleted()
 {
     m_part->widget()->unsetCursor();
     Q_EMIT completed();
 }
 
-void ArticleViewer::slotZoomIn(int id)
+void ArticleViewerWidget::slotZoomIn(int id)
 {
     if (id != 0) {
         return;
@@ -329,7 +329,7 @@ void ArticleViewer::slotZoomIn(int id)
     }
 }
 
-void ArticleViewer::slotZoomOut(int id)
+void ArticleViewerWidget::slotZoomOut(int id)
 {
     if (id != 0) {
         return;
@@ -345,41 +345,41 @@ void ArticleViewer::slotZoomOut(int id)
     }
 }
 
-void ArticleViewer::slotSetZoomFactor(int percent)
+void ArticleViewerWidget::slotSetZoomFactor(int percent)
 {
     m_part->setFontScaleFactor(percent);
 }
 
 // some code taken from KDevelop (lib/widgets/kdevhtmlpart.cpp)
-void ArticleViewer::slotPrint()
+void ArticleViewerWidget::slotPrint()
 {
     m_part->view()->print();
 }
 
-void ArticleViewer::connectToNode(TreeNode *node)
+void ArticleViewerWidget::connectToNode(TreeNode *node)
 {
     if (node) {
         if (m_viewMode == CombinedView) {
-            connect(node, &TreeNode::signalChanged, this, &ArticleViewer::slotUpdateCombinedView);
-            connect(node, &TreeNode::signalArticlesAdded, this, &ArticleViewer::slotArticlesAdded);
-            connect(node, &TreeNode::signalArticlesRemoved, this, &ArticleViewer::slotArticlesRemoved);
-            connect(node, &TreeNode::signalArticlesUpdated, this, &ArticleViewer::slotArticlesUpdated);
+            connect(node, &TreeNode::signalChanged, this, &ArticleViewerWidget::slotUpdateCombinedView);
+            connect(node, &TreeNode::signalArticlesAdded, this, &ArticleViewerWidget::slotArticlesAdded);
+            connect(node, &TreeNode::signalArticlesRemoved, this, &ArticleViewerWidget::slotArticlesRemoved);
+            connect(node, &TreeNode::signalArticlesUpdated, this, &ArticleViewerWidget::slotArticlesUpdated);
         } else if (m_viewMode == SummaryView) {
-            connect(node, &TreeNode::signalChanged, this, &ArticleViewer::slotShowSummary);
+            connect(node, &TreeNode::signalChanged, this, &ArticleViewerWidget::slotShowSummary);
         }
 
-        connect(node, &TreeNode::signalDestroyed, this, &ArticleViewer::slotClear);
+        connect(node, &TreeNode::signalDestroyed, this, &ArticleViewerWidget::slotClear);
     }
 }
 
-void ArticleViewer::disconnectFromNode(TreeNode *node)
+void ArticleViewerWidget::disconnectFromNode(TreeNode *node)
 {
     if (node) {
         node->disconnect(this);
     }
 }
 
-void ArticleViewer::renderContent(const QString &text)
+void ArticleViewerWidget::renderContent(const QString &text)
 {
     m_part->closeUrl();
     m_currentText = text;
@@ -389,7 +389,7 @@ void ArticleViewer::renderContent(const QString &text)
     endWriting();
 }
 
-void ArticleViewer::beginWriting()
+void ArticleViewerWidget::beginWriting()
 {
     QString head = QStringLiteral("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\n <html><head><title>.</title>");
 
@@ -413,14 +413,14 @@ void ArticleViewer::beginWriting()
     m_part->write(head);
 }
 
-void ArticleViewer::endWriting()
+void ArticleViewerWidget::endWriting()
 {
     m_part->write(m_htmlFooter);
     //qCDebug(AKREGATOR_LOG) << m_htmlFooter;
     m_part->end();
 }
 
-void ArticleViewer::slotShowSummary(TreeNode *node)
+void ArticleViewerWidget::slotShowSummary(TreeNode *node)
 {
     m_viewMode = SummaryView;
 
@@ -442,7 +442,7 @@ void ArticleViewer::slotShowSummary(TreeNode *node)
     setArticleActionsEnabled(false);
 }
 
-void ArticleViewer::showArticle(const Akregator::Article &article)
+void ArticleViewerWidget::showArticle(const Akregator::Article &article)
 {
     if (article.isNull() || article.isDeleted()) {
         slotClear();
@@ -463,7 +463,7 @@ void ArticleViewer::showArticle(const Akregator::Article &article)
     setArticleActionsEnabled(true);
 }
 
-bool ArticleViewer::openUrl(const QUrl &url)
+bool ArticleViewerWidget::openUrl(const QUrl &url)
 {
     if (!m_article.isNull() && m_article.feed()->loadLinkedWebsite()) {
         return m_part->openUrl(url);
@@ -473,7 +473,7 @@ bool ArticleViewer::openUrl(const QUrl &url)
     }
 }
 
-void ArticleViewer::setFilters(const std::vector< QSharedPointer<const AbstractMatcher> > &filters)
+void ArticleViewerWidget::setFilters(const std::vector< QSharedPointer<const AbstractMatcher> > &filters)
 {
     if (filters == m_filters) {
         return;
@@ -484,7 +484,7 @@ void ArticleViewer::setFilters(const std::vector< QSharedPointer<const AbstractM
     slotUpdateCombinedView();
 }
 
-void ArticleViewer::slotUpdateCombinedView()
+void ArticleViewerWidget::slotUpdateCombinedView()
 {
     if (m_viewMode != CombinedView) {
         return;
@@ -521,7 +521,7 @@ void ArticleViewer::slotUpdateCombinedView()
     qCDebug(AKREGATOR_LOG) << "HTML rendering:" << spent.elapsed() << "ms";
 }
 
-void ArticleViewer::slotArticlesUpdated(TreeNode * /*node*/, const QVector<Article> & /*list*/)
+void ArticleViewerWidget::slotArticlesUpdated(TreeNode * /*node*/, const QVector<Article> & /*list*/)
 {
     if (m_viewMode == CombinedView) {
         //TODO
@@ -529,7 +529,7 @@ void ArticleViewer::slotArticlesUpdated(TreeNode * /*node*/, const QVector<Artic
     }
 }
 
-void ArticleViewer::slotArticlesAdded(TreeNode * /*node*/, const QVector<Article> &list)
+void ArticleViewerWidget::slotArticlesAdded(TreeNode * /*node*/, const QVector<Article> &list)
 {
     if (m_viewMode == CombinedView) {
         //TODO sort list, then merge
@@ -539,7 +539,7 @@ void ArticleViewer::slotArticlesAdded(TreeNode * /*node*/, const QVector<Article
     }
 }
 
-void ArticleViewer::slotArticlesRemoved(TreeNode * /*node*/, const QVector<Article> &list)
+void ArticleViewerWidget::slotArticlesRemoved(TreeNode * /*node*/, const QVector<Article> &list)
 {
     Q_UNUSED(list)
 
@@ -549,7 +549,7 @@ void ArticleViewer::slotArticlesRemoved(TreeNode * /*node*/, const QVector<Artic
     }
 }
 
-void ArticleViewer::slotClear()
+void ArticleViewerWidget::slotClear()
 {
     disconnectFromNode(m_node);
     m_node = 0;
@@ -559,7 +559,7 @@ void ArticleViewer::slotClear()
     renderContent(QString());
 }
 
-void ArticleViewer::showNode(TreeNode *node)
+void ArticleViewerWidget::showNode(TreeNode *node)
 {
     m_viewMode = CombinedView;
 
@@ -576,13 +576,13 @@ void ArticleViewer::showNode(TreeNode *node)
     delete m_listJob;
 
     m_listJob = node->createListJob();
-    connect(m_listJob.data(), &ArticleListJob::finished, this, &ArticleViewer::slotArticlesListed);
+    connect(m_listJob.data(), &ArticleListJob::finished, this, &ArticleViewerWidget::slotArticlesListed);
     m_listJob->start();
 
     slotUpdateCombinedView();
 }
 
-void ArticleViewer::slotArticlesListed(KJob *job)
+void ArticleViewerWidget::slotArticlesListed(KJob *job)
 {
     Q_ASSERT(job);
     Q_ASSERT(job == m_listJob);
@@ -611,25 +611,25 @@ void ArticleViewer::slotArticlesListed(KJob *job)
     slotUpdateCombinedView();
 }
 
-void ArticleViewer::keyPressEvent(QKeyEvent *e)
+void ArticleViewerWidget::keyPressEvent(QKeyEvent *e)
 {
     e->ignore();
 }
 
-void ArticleViewer::slotPaletteOrFontChanged()
+void ArticleViewerWidget::slotPaletteOrFontChanged()
 {
     updateCss();
     reload();
 }
 
-void ArticleViewer::reload()
+void ArticleViewerWidget::reload()
 {
     beginWriting();
     m_part->write(m_currentText);
     endWriting();
 }
 
-QSize ArticleViewer::sizeHint() const
+QSize ArticleViewerWidget::sizeHint() const
 {
     // Increase height a bit so that we can (roughly) read 25 lines of text
     QSize sh = QWidget::sizeHint();
@@ -638,7 +638,7 @@ QSize ArticleViewer::sizeHint() const
 }
 
 
-void ArticleViewer::displayAboutPage()
+void ArticleViewerWidget::displayAboutPage()
 {
     QString location = QStandardPaths::locate(QStandardPaths::GenericDataLocation, QStringLiteral("akregator/about/main.html"));
 
@@ -684,27 +684,27 @@ void ArticleViewer::displayAboutPage()
     m_part->end();
 }
 
-void ArticleViewer::updateCss()
+void ArticleViewerWidget::updateCss()
 {
     m_normalModeCSS =  m_normalViewFormatter->getCss();
     m_combinedModeCSS = m_combinedViewFormatter->getCss();
 }
 
-void ArticleViewer::setNormalViewFormatter(const QSharedPointer<ArticleFormatter> &formatter)
+void ArticleViewerWidget::setNormalViewFormatter(const QSharedPointer<ArticleFormatter> &formatter)
 {
     Q_ASSERT(formatter);
     m_normalViewFormatter = formatter;
     m_normalViewFormatter->setPaintDevice(m_part->view());
 }
 
-void ArticleViewer::setCombinedViewFormatter(const QSharedPointer<ArticleFormatter> &formatter)
+void ArticleViewerWidget::setCombinedViewFormatter(const QSharedPointer<ArticleFormatter> &formatter)
 {
     Q_ASSERT(formatter);
     m_combinedViewFormatter = formatter;
     m_combinedViewFormatter->setPaintDevice(m_part->view());
 }
 
-void ArticleViewer::setArticleActionsEnabled(bool enabled)
+void ArticleViewerWidget::setArticleActionsEnabled(bool enabled)
 {
     ActionManager::getInstance()->setArticleActionsEnabled(enabled);
 }

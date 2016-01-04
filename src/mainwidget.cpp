@@ -28,7 +28,7 @@
 #include "actionmanagerimpl.h"
 #include "addfeeddialog.h"
 #include "articlelistview.h"
-#include "articleviewer.h"
+#include "articleviewerwidget.h"
 #include "abstractselectioncontroller.h"
 #include "articlejobs.h"
 #include "articlematcher.h"
@@ -230,7 +230,7 @@ Akregator::MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl
                  m_articleListView, SLOT(slotPaletteOrFontChanged()));
     */
 
-    m_articleViewer = new ArticleViewer(m_articleSplitter);
+    m_articleViewer = new ArticleViewerWidget(m_articleSplitter);
     m_actionManager->initArticleViewer(m_articleViewer);
     m_articleListView->setFocusProxy(m_articleViewer);
     setFocusProxy(m_articleViewer);
@@ -240,9 +240,9 @@ Akregator::MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl
     connect(m_articleViewer->part()->browserExtension(), &KParts::BrowserExtension::mouseOverInfo,
             this, &MainWidget::slotMouseOverInfo);
     connect(m_part, &Part::signalSettingsChanged,
-            m_articleViewer, &ArticleViewer::slotPaletteOrFontChanged);
+            m_articleViewer, &ArticleViewerWidget::slotPaletteOrFontChanged);
     connect(m_searchBar, &SearchBar::signalSearch,
-            m_articleViewer, &ArticleViewer::setFilters);
+            m_articleViewer, &ArticleViewerWidget::setFilters);
 
     m_articleViewer->part()->widget()->setWhatsThis(i18n("Browsing area."));
 
