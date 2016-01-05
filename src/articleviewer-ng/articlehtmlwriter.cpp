@@ -45,7 +45,7 @@ void ArticleHtmlWriter::begin(const QString &css)
     }
 
     // clear the widget:
-    //mWebView->setUpdatesEnabled(false);
+    mWebView->setUpdatesEnabled(false);
     //mWebView->scrollUp(10);
     mWebView->load(QUrl());
     mState = Begun;
@@ -60,7 +60,7 @@ void ArticleHtmlWriter::end()
     mWebView->show();
     mHtml.clear();
 
-    //mWebView->setUpdatesEnabled(true);
+    mWebView->setUpdatesEnabled(true);
     mWebView->update();
     mState = Ended;
     Q_EMIT finished();
