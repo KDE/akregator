@@ -149,9 +149,7 @@ ArticleViewerWidget::~ArticleViewerWidget()
 
 int ArticleViewerWidget::pointsToPixel(int pointSize) const
 {
-    //TODO
-    //return (pointSize * m_part->view()->logicalDpiY() + 36) / 72;
-    return 9;
+    return (pointSize * m_articleViewerWidgetNg->articleViewerNg()->logicalDpiY() + 36) / 72;
 }
 
 void ArticleViewerWidget::slotOpenUrlRequestDelayed(const QUrl &url, const KParts::OpenUrlArguments &args, const KParts::BrowserArguments &browserArgs)
@@ -270,7 +268,7 @@ void ArticleViewerWidget::slotCopyLinkAddress()
 
 void ArticleViewerWidget::slotSelectionChanged()
 {
-    //TODO ActionManager::getInstance()->action(QStringLiteral("viewer_copy"))->setEnabled(!m_part->selectedText().isEmpty());
+    ActionManager::getInstance()->action(QStringLiteral("viewer_copy"))->setEnabled(!m_articleViewerWidgetNg->articleViewerNg()->selectedText().isEmpty());
 }
 
 void ArticleViewerWidget::slotOpenLinkInternal()
@@ -309,22 +307,6 @@ void ArticleViewerWidget::slotSaveLinkAs()
         tmp.setPath(tmp.path() + QLatin1String("index.html"));
     }
     KParts::BrowserRun::simpleSave(tmp, tmp.fileName());
-}
-
-void ArticleViewerWidget::slotStarted(KIO::Job *job)
-{
-#if 0 //TODO
-    m_part->widget()->setCursor(Qt::WaitCursor);
-    Q_EMIT started(job);
-#endif
-}
-
-void ArticleViewerWidget::slotCompleted()
-{
-#if 0 //TODO
-    m_part->widget()->unsetCursor();
-    Q_EMIT completed();
-#endif
 }
 
 void ArticleViewerWidget::slotZoomIn(int id)

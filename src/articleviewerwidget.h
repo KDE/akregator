@@ -107,9 +107,7 @@ Q_SIGNALS:
     /** This gets emitted when url gets clicked */
     void signalOpenUrlRequest(Akregator::OpenUrlRequest &);
 
-    void started(KIO::Job *);
     void selectionChanged();
-    void completed();
 
 protected: // methods
     int pointsToPixel(int points) const;
@@ -147,12 +145,6 @@ protected Q_SLOTS:
     void slotOpenLinkInBackgroundTab();
 
     void slotSaveLinkAs();
-
-    /** This changes cursor to wait cursor */
-    void slotStarted(KIO::Job *);
-
-    /** This reverts cursor back to normal one */
-    void slotCompleted();
 
     void slotSelectionChanged();
 
