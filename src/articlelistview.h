@@ -144,8 +144,6 @@ private:
     void saveHeaderSettings();
     void loadHeaderSettings();
 
-    void paintEvent(QPaintEvent *e) Q_DECL_OVERRIDE;
-
     void contextMenuEvent(QContextMenuEvent *event) Q_DECL_OVERRIDE;
 
     void selectIndex(const QModelIndex &index);

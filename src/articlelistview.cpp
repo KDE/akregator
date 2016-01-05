@@ -390,26 +390,6 @@ void ArticleListView::mousePressEvent(QMouseEvent *ev)
     }
 }
 
-#if 0 // unused
-namespace
-{
-static QString itemIdForIndex(const QModelIndex &index)
-{
-    return index.isValid() ? index.data(ArticleModel::ItemIdRole).toString() : QString();
-}
-
-static QStringList itemIdsForIndexes(const QModelIndexList &indexes)
-{
-    QStringList articles;
-    Q_FOREACH (const QModelIndex i, indexes) {
-        articles.append(itemIdForIndex(i));
-    }
-
-    return articles;
-}
-}
-#endif
-
 void ArticleListView::contextMenuEvent(QContextMenuEvent *event)
 {
     QWidget *w = ActionManager::getInstance()->container(QStringLiteral("article_popup"));
@@ -417,41 +397,6 @@ void ArticleListView::contextMenuEvent(QContextMenuEvent *event)
     if (popup) {
         popup->exec(event->globalPos());
     }
-}
-
-void ArticleListView::paintEvent(QPaintEvent *e)
-{
-    QTreeView::paintEvent(e);
-
-#ifdef __GNUC__
-#warning The distinction between empty node and 0 items after filtering is hard to port to interview
-#endif
-#if 0
-    QString message;
-
-    if (!model() || model()->rowCount() > 0) { // article list is not empty
-        if (visibleArticles() == 0) {
-            message = i18n("<div align=center>"
-                           "<h3>No matches</h3>"
-                           "Filter does not match any articles, "
-                           "please change your criteria and try again."
-                           "</div>");
-        }
-    } else if (!model()) { // article list is empty
-        if (!d->node) { // no node selected
-            message = i18n("<div align=center>"
-                           "<h3>No feed selected</h3>"
-                           "This area is article list. "
-                           "Select a feed from the feed list "
-                           "and you will see its articles here."
-                           "</div>");
-        }
-    }
-
-    if (!message.isNull()) {
-        paintInfoBox(message, viewport(), palette());
-    }
-#endif
 }
 
 void ArticleListView::setModel(QAbstractItemModel *m)
