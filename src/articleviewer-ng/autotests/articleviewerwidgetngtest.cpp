@@ -16,6 +16,7 @@
 */
 
 #include "articleviewerwidgetngtest.h"
+#include "../articleviewerwidgetng.h"
 #include <QTest>
 
 ArticleViewerWidgetNgTest::ArticleViewerWidgetNgTest(QObject *parent)
