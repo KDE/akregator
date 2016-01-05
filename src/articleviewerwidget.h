@@ -66,10 +66,6 @@ public:
 
     void displayAboutPage();
 
-    void setNormalViewFormatter(const QSharedPointer<ArticleFormatter> &formatter);
-
-    void setCombinedViewFormatter(const QSharedPointer<ArticleFormatter> &formatter);
-
     void showArticle(const Article &article);
 
     /** Shows the articles of the tree node @c node (combined view).

@@ -89,6 +89,7 @@ ArticleViewerWidget::ArticleViewerWidget(KActionCollection *ac, QWidget *parent)
     layout->addWidget(m_articleViewerWidgetNg);
 
     m_articleHtmlWriter = new Akregator::ArticleHtmlWriter(m_articleViewerWidgetNg->articleViewerNg(), this);
+    updateCss();
 #if 0
     layout->addWidget(m_part->widget(), 0, 0);
 
@@ -419,8 +420,9 @@ void ArticleViewerWidget::renderContent(const QString &text)
 void ArticleViewerWidget::beginWriting()
 {
     m_articleHtmlWriter->begin(QString());
-    QString head = QStringLiteral("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\n <html><head><title>.</title>");
+    //QString head = QStringLiteral("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\n <html><head><title>.</title>");
 
+    QString head = QStringLiteral("<html><head><title>.</title>");
     if (m_viewMode == CombinedView) {
         head += m_combinedModeCSS;
     } else {
@@ -753,20 +755,6 @@ void ArticleViewerWidget::updateCss()
 {
     m_normalModeCSS =  m_normalViewFormatter->getCss();
     m_combinedModeCSS = m_combinedViewFormatter->getCss();
-}
-
-void ArticleViewerWidget::setNormalViewFormatter(const QSharedPointer<ArticleFormatter> &formatter)
-{
-    Q_ASSERT(formatter);
-    m_normalViewFormatter = formatter;
-    //m_normalViewFormatter->setPaintDevice(m_part->view());
-}
-
-void ArticleViewerWidget::setCombinedViewFormatter(const QSharedPointer<ArticleFormatter> &formatter)
-{
-    Q_ASSERT(formatter);
-    m_combinedViewFormatter = formatter;
-    //m_combinedViewFormatter->setPaintDevice(m_part->view());
 }
 
 void ArticleViewerWidget::setArticleActionsEnabled(bool enabled)
