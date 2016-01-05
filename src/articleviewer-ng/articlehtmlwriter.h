@@ -29,10 +29,23 @@ public:
     explicit ArticleHtmlWriter(QWebView *view, QObject *parent = Q_NULLPTR);
     ~ArticleHtmlWriter();
 
-    void begin();
+    void begin(const QString &css);
     void end();
+    void reset();
+    void write(const QString &str);
+    void queue(const QString &str);
+    void flush();
+
+Q_SIGNALS:
+    void finished();
 
 private:
+    enum State {
+        Begun,
+        Queued,
+        Ended
+    } mState;
+
     QString mHtml;
     QWebView *mWebView;
 };
