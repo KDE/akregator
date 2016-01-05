@@ -19,6 +19,7 @@
 #include "articleviewerng.h"
 #include "akregator_debug.h"
 #include "../actions.h"
+#include "../actionmanager.h"
 #include <KActionCollection>
 #include <MessageViewer/WebViewAccessKey>
 #include <MessageViewer/WebPage>
@@ -48,6 +49,9 @@ ArticleViewerNg::ArticleViewerNg(KActionCollection *ac, QWidget *parent)
     connect(this, &QWebView::loadStarted, this, &ArticleViewerNg::slotLoadStarted);
     connect(this, &QWebView::loadFinished, this, &ArticleViewerNg::slotLoadFinished);
     connect(page(), &QWebPage::scrollRequested, mWebViewAccessKey, &MessageViewer::WebViewAccessKey::hideAccessKeys);
+    //TODO make it customizable
+    page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
+
 }
 
 ArticleViewerNg::~ArticleViewerNg()
@@ -91,35 +95,15 @@ void ArticleViewerNg::contextMenuEvent(QContextMenuEvent *event)
     mContextMenuHitResult = page()->mainFrame()->hitTestContent(event->pos());
     QMenu popup(this);
     mCurrentUrl = mContextMenuHitResult.linkUrl();
-    if (!mCurrentUrl.isEmpty()) {
+    const bool contentSelected = mContextMenuHitResult.isContentSelected();
+    if (!mCurrentUrl.isEmpty() && !contentSelected) {
         popup.addAction(createOpenLinkInNewTabAction(mCurrentUrl, this, SLOT(slotOpenLinkInForegroundTab()), &popup));
         popup.addAction(createOpenLinkInExternalBrowserAction(mCurrentUrl, this, SLOT(slotOpenLinkInBrowser()), &popup));
         popup.addSeparator();
         popup.addAction(mActionCollection->action(QStringLiteral("savelinkas")));
         popup.addAction(mActionCollection->action(QStringLiteral("copylinkaddress")));
-
-        //TODO we are in link.
     } else {
-        //TODO
-    }
-    //TODO
-#if 0
-    const bool isLink = (kpf & KParts::BrowserExtension::ShowNavigationItems) == 0; // ## why not use kpf & IsLink ?
-    const bool isSelection = (kpf & KParts::BrowserExtension::ShowTextSelectionItems) != 0;
-
-    QString url = kurl.url();
-
-    m_url = url;
-    QMenu popup;
-
-    if (isLink && !isSelection) {
-        popup.addAction(createOpenLinkInNewTabAction(kurl, this, SLOT(slotOpenLinkInForegroundTab()), &popup));
-        popup.addAction(createOpenLinkInExternalBrowserAction(kurl, this, SLOT(slotOpenLinkInBrowser()), &popup));
-        popup.addSeparator();
-        popup.addAction(m_part->action("savelinkas"));
-        popup.addAction(m_part->action("copylinkaddress"));
-    } else {
-        if (isSelection) {
+        if (contentSelected) {
             popup.addAction(ActionManager::getInstance()->action(QStringLiteral("viewer_copy")));
             popup.addSeparator();
         }
@@ -128,10 +112,7 @@ void ArticleViewerNg::contextMenuEvent(QContextMenuEvent *event)
         popup.addAction(ActionManager::getInstance()->action(QStringLiteral("inc_font_sizes")));
         popup.addAction(ActionManager::getInstance()->action(QStringLiteral("dec_font_sizes")));
     }
-    popup.exec(p);
-
-#endif
-    popup.exec(event->globalPos());
+    popup.exec(mapToGlobal(event->pos()));
 }
 
 void ArticleViewerNg::keyReleaseEvent(QKeyEvent *e)
