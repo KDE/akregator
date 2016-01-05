@@ -65,6 +65,7 @@ private Q_SLOTS:
 
 private:
     void paintAboutScreen(const QString &templateName, const QVariantHash &data);
+    QUrl mCurrentUrl;
     QWebHitTestResult mContextMenuHitResult;
     KActionCollection *mActionCollection;
     MessageViewer::WebViewAccessKey *mWebViewAccessKey;

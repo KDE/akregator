@@ -23,6 +23,8 @@
 #include <KLocalizedString>
 #include <QVBoxLayout>
 
+#include <KPIMTextEdit/kpimtextedit/texttospeechwidget.h>
+
 using namespace Akregator;
 
 ArticleViewerWidgetNg::ArticleViewerWidgetNg(KActionCollection *ac, QWidget *parent)
@@ -31,6 +33,11 @@ ArticleViewerWidgetNg::ArticleViewerWidgetNg(KActionCollection *ac, QWidget *par
     QVBoxLayout *layout = new QVBoxLayout;
     layout->setMargin(0);
     setLayout(layout);
+
+    mTextToSpeechWidget = new KPIMTextEdit::TextToSpeechWidget(this);
+    mTextToSpeechWidget->setObjectName(QStringLiteral("texttospeechwidget"));
+    layout->addWidget(mTextToSpeechWidget);
+
 
     mArticleViewerNg = new ArticleViewerNg(ac, this);
     mArticleViewerNg->setObjectName(QStringLiteral("articleviewerng"));

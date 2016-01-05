@@ -12,4 +12,5 @@ target_link_libraries(articleviewerngtest
     KF5::WebKit
     KF5::GrantleeTheme
     KF5::MessageViewer
+    KF5::PimTextEdit
 )

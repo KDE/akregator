@@ -28,6 +28,11 @@ namespace MessageViewer
 class FindBarWebView;
 }
 
+namespace KPIMTextEdit
+{
+class TextToSpeechWidget;
+}
+
 namespace Akregator
 {
 class ArticleViewerNg;
@@ -42,6 +47,7 @@ private:
     void initializeActions(KActionCollection *ac);
     MessageViewer::FindBarWebView *mFindBarWebView;
     ArticleViewerNg *mArticleViewerNg;
+    KPIMTextEdit::TextToSpeechWidget *mTextToSpeechWidget;
 };
 }
 

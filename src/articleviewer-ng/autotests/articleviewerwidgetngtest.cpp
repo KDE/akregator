@@ -21,6 +21,7 @@
 #include <MessageViewer/FindBarWebView>
 #include <KActionCollection>
 #include <QTest>
+#include <KPIMTextEdit/kpimtextedit/texttospeechwidget.h>
 
 ArticleViewerWidgetNgTest::ArticleViewerWidgetNgTest(QObject *parent)
     : QObject(parent)
@@ -41,6 +42,10 @@ void ArticleViewerWidgetNgTest::shouldHaveDefaultValue()
 
     MessageViewer::FindBarWebView *findBar = viewerwidget.findChild<MessageViewer::FindBarWebView *>(QStringLiteral("findbarwebview"));
     QVERIFY(findBar);
+
+
+    KPIMTextEdit::TextToSpeechWidget *textToSpeechWidget = viewerwidget.findChild<KPIMTextEdit::TextToSpeechWidget *>(QStringLiteral("texttospeechwidget"));
+    QVERIFY(textToSpeechWidget);
 }
 
 QTEST_MAIN(ArticleViewerWidgetNgTest)

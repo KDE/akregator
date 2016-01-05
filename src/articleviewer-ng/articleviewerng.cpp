@@ -76,7 +76,8 @@ void ArticleViewerNg::contextMenuEvent(QContextMenuEvent *event)
 {
     mContextMenuHitResult = page()->mainFrame()->hitTestContent(event->pos());
     QMenu popup(this);
-    if (!mContextMenuHitResult.linkUrl().isEmpty()) {
+    mCurrentUrl = mContextMenuHitResult.linkUrl();
+    if (!mCurrentUrl.isEmpty()) {
         //TODO we are in link.
     } else {
         //TODO
@@ -121,16 +122,10 @@ void ArticleViewerNg::resizeEvent(QResizeEvent *e)
 
 void ArticleViewerNg::slotOpenLinkInNewWindow()
 {
-    QAction *a = qobject_cast<QAction*>(sender());
-    QUrl url(a->data().toUrl());
-
-    emit loadUrl(url, ArticleViewerNg::NewWindow);
+    Q_EMIT loadUrl(mCurrentUrl, ArticleViewerNg::NewWindow);
 }
 
 void ArticleViewerNg::slotOpenLinkInCurrentTab()
 {
-    QAction *a = qobject_cast<QAction*>(sender());
-    QUrl url(a->data().toUrl());
-
-    emit loadUrl(url, ArticleViewerNg::CurrentTab);
+    Q_EMIT loadUrl(mCurrentUrl, ArticleViewerNg::CurrentTab);
 }

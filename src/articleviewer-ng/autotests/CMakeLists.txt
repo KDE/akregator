@@ -15,5 +15,6 @@ target_link_libraries(
   KF5::XmlGui
   KF5::WebKit
   KF5::GrantleeTheme
+  KF5::PimTextEdit
 )
 
