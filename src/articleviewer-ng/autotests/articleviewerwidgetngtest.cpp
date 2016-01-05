@@ -17,6 +17,9 @@
 
 #include "articleviewerwidgetngtest.h"
 #include "../articleviewerwidgetng.h"
+#include "../articleviewerng.h"
+#include <MessageViewer/FindBarWebView>
+#include <KActionCollection>
 #include <QTest>
 
 ArticleViewerWidgetNgTest::ArticleViewerWidgetNgTest(QObject *parent)
@@ -28,6 +31,16 @@ ArticleViewerWidgetNgTest::ArticleViewerWidgetNgTest(QObject *parent)
 ArticleViewerWidgetNgTest::~ArticleViewerWidgetNgTest()
 {
 
+}
+
+void ArticleViewerWidgetNgTest::shouldHaveDefaultValue()
+{
+    Akregator::ArticleViewerWidgetNg viewerwidget(new KActionCollection(this));
+    Akregator::ArticleViewerNg *viewer = viewerwidget.findChild<Akregator::ArticleViewerNg *>(QStringLiteral("articleviewerng"));
+    QVERIFY(viewer);
+
+    MessageViewer::FindBarWebView *findBar = viewerwidget.findChild<MessageViewer::FindBarWebView *>(QStringLiteral("findbarwebview"));
+    QVERIFY(findBar);
 }
 
 QTEST_MAIN(ArticleViewerWidgetNgTest)

@@ -27,6 +27,8 @@ class ArticleViewerWidgetNgTest : public QObject
 public:
     explicit ArticleViewerWidgetNgTest(QObject *parent = Q_NULLPTR);
     ~ArticleViewerWidgetNgTest();
+private Q_SLOTS:
+    void shouldHaveDefaultValue();
 };
 
 #endif // ARTICLEVIEWERWIDGETNGTEST_H
