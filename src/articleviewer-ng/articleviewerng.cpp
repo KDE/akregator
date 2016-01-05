@@ -36,20 +36,32 @@ ArticleViewerNg::ArticleViewerNg(KActionCollection *ac, QWidget *parent)
     mWebViewAccessKey = new MessageViewer::WebViewAccessKey(this, this);
     mWebViewAccessKey->setActionCollection(mActionCollection);
 
-    setZoomFactor(100);
+    //setZoomFactor(100);
     settings()->setAttribute(QWebSettings::JavascriptEnabled, false);
     settings()->setAttribute(QWebSettings::JavaEnabled, false);
     settings()->setAttribute(QWebSettings::PluginsEnabled, false);
     settings()->setAttribute(QWebSettings::DnsPrefetchEnabled, true);
     settings()->setAttribute(QWebSettings::AutoLoadImages, true);
 
-    connect(this, &QWebView::loadStarted, mWebViewAccessKey, &MessageViewer::WebViewAccessKey::hideAccessKeys);
+    connect(this, &QWebView::loadStarted, this, &ArticleViewerNg::slotLoadStarted);
+    connect(this, &QWebView::loadFinished, this, &ArticleViewerNg::slotLoadFinished);
     connect(page(), &QWebPage::scrollRequested, mWebViewAccessKey, &MessageViewer::WebViewAccessKey::hideAccessKeys);
 }
 
 ArticleViewerNg::~ArticleViewerNg()
 {
 
+}
+
+void ArticleViewerNg::slotLoadFinished()
+{
+    unsetCursor();
+}
+
+void ArticleViewerNg::slotLoadStarted()
+{
+    mWebViewAccessKey->hideAccessKeys();
+    setCursor(Qt::WaitCursor);
 }
 
 void ArticleViewerNg::showAbout()

@@ -230,21 +230,22 @@ Akregator::MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl
                  m_articleListView, SLOT(slotPaletteOrFontChanged()));
     */
 
-    m_articleViewer = new ArticleViewerWidget(m_articleSplitter);
+    m_articleViewer = new ArticleViewerWidget(m_actionManager->actionCollection(), m_articleSplitter);
     m_actionManager->initArticleViewer(m_articleViewer);
     m_articleListView->setFocusProxy(m_articleViewer);
     setFocusProxy(m_articleViewer);
 
     connect(m_articleViewer, SIGNAL(signalOpenUrlRequest(Akregator::OpenUrlRequest&)),
             Kernel::self()->frameManager(), SLOT(slotOpenUrlRequest(Akregator::OpenUrlRequest&)));
-    connect(m_articleViewer->part()->browserExtension(), &KParts::BrowserExtension::mouseOverInfo,
-            this, &MainWidget::slotMouseOverInfo);
+    //TODO Laurent port to new Articleviewerng
+    //connect(m_articleViewer->part()->browserExtension(), &KParts::BrowserExtension::mouseOverInfo,
+    //        this, &MainWidget::slotMouseOverInfo);
     connect(m_part, &Part::signalSettingsChanged,
             m_articleViewer, &ArticleViewerWidget::slotPaletteOrFontChanged);
     connect(m_searchBar, &SearchBar::signalSearch,
             m_articleViewer, &ArticleViewerWidget::setFilters);
 
-    m_articleViewer->part()->widget()->setWhatsThis(i18n("Browsing area."));
+    //TODO port to new articlewidgetng m_articleViewer->part()->widget()->setWhatsThis(i18n("Browsing area."));
 
     mainTabLayout->addWidget(m_articleSplitter);
 

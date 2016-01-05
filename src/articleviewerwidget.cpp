@@ -24,7 +24,8 @@
 */
 
 #include "articleviewerwidget.h"
-#include "articleviewerpart.h"
+
+#include "articleviewer-ng/articlehtmlwriter.h"
 
 #include "akregatorconfig.h"
 #include "aboutdata.h"
@@ -44,7 +45,6 @@
 
 #include <QAction>
 #include <kactioncollection.h>
-#include <khtmlview.h>
 #include <KLocalizedString>
 #include <QMenu>
 #include <kmessagebox.h>
@@ -59,14 +59,14 @@
 #include <kio/job.h>
 #include <QUrl>
 #include <grantleetheme/grantleethememanager.h>
+#include <articleviewer-ng/articleviewerwidgetng.h>
+#include <articleviewer-ng/articleviewerng.h>
 
 #include <QClipboard>
 #include <QGridLayout>
 #include <QKeyEvent>
 #include <QApplication>
 
-#include <memory>
-#include <cassert>
 #include <QStandardPaths>
 
 using namespace Akregator;
@@ -75,17 +75,21 @@ using namespace Akregator::Filters;
 namespace Akregator
 {
 
-ArticleViewerWidget::ArticleViewerWidget(QWidget *parent)
+ArticleViewerWidget::ArticleViewerWidget(KActionCollection *ac, QWidget *parent)
     : QWidget(parent),
       m_imageDir(QUrl::fromLocalFile(QString(QStandardPaths::writableLocation(QStandardPaths::CacheLocation) + QLatin1String("/akregator/Media/")))),
       m_node(0),
       m_viewMode(NormalView),
-      m_part(new ArticleViewerPart(this)),
-      m_normalViewFormatter(new DefaultNormalViewFormatter(m_imageDir, m_part->view())),
-      m_combinedViewFormatter(new DefaultCombinedViewFormatter(m_imageDir, m_part->view()))
+      m_articleViewerWidgetNg(new Akregator::ArticleViewerWidgetNg(ac, this)),
+      m_normalViewFormatter(new DefaultNormalViewFormatter(m_imageDir, m_articleViewerWidgetNg->articleViewerNg())),
+      m_combinedViewFormatter(new DefaultCombinedViewFormatter(m_imageDir, m_articleViewerWidgetNg->articleViewerNg()))
 {
     QGridLayout *layout = new QGridLayout(this);
     layout->setMargin(0);
+    layout->addWidget(m_articleViewerWidgetNg);
+
+    m_articleHtmlWriter = new Akregator::ArticleHtmlWriter(m_articleViewerWidgetNg->articleViewerNg(), this);
+#if 0
     layout->addWidget(m_part->widget(), 0, 0);
 
     setFocusProxy(m_part->widget());
@@ -134,7 +138,7 @@ ArticleViewerWidget::ArticleViewerWidget(QWidget *parent)
 
     connect(KGlobalSettings::self(), &KGlobalSettings::kdisplayPaletteChanged, this, &ArticleViewerWidget::slotPaletteOrFontChanged);
     connect(KGlobalSettings::self(), &KGlobalSettings::kdisplayFontChanged, this, &ArticleViewerWidget::slotPaletteOrFontChanged);
-
+#endif
     m_htmlFooter = QStringLiteral("</body></html>");
 }
 
@@ -142,18 +146,16 @@ ArticleViewerWidget::~ArticleViewerWidget()
 {
 }
 
-KParts::ReadOnlyPart *ArticleViewerWidget::part() const
-{
-    return m_part;
-}
-
 int ArticleViewerWidget::pointsToPixel(int pointSize) const
 {
-    return (pointSize * m_part->view()->logicalDpiY() + 36) / 72;
+    //TODO
+    //return (pointSize * m_part->view()->logicalDpiY() + 36) / 72;
+    return 9;
 }
 
 void ArticleViewerWidget::slotOpenUrlRequestDelayed(const QUrl &url, const KParts::OpenUrlArguments &args, const KParts::BrowserArguments &browserArgs)
 {
+#if 0
     OpenUrlRequest req(url);
     req.setArgs(args);
     req.setBrowserArgs(browserArgs);
@@ -186,6 +188,7 @@ void ArticleViewerWidget::slotOpenUrlRequestDelayed(const QUrl &url, const KPart
     }
 
     Q_EMIT signalOpenUrlRequest(req);
+#endif
 }
 
 void ArticleViewerWidget::slotCreateNewWindow(const QUrl &url,
@@ -194,6 +197,7 @@ void ArticleViewerWidget::slotCreateNewWindow(const QUrl &url,
                                         const KParts::WindowArgs & /*windowArgs*/,
                                         KParts::ReadOnlyPart **part)
 {
+#if 0
     OpenUrlRequest req;
     req.setUrl(url);
     req.setArgs(args);
@@ -204,10 +208,12 @@ void ArticleViewerWidget::slotCreateNewWindow(const QUrl &url,
     if (part) {
         *part = req.part();
     }
+#endif
 }
 
 void ArticleViewerWidget::slotPopupMenu(const QPoint &p, const QUrl &kurl, mode_t, const KParts::OpenUrlArguments &, const KParts::BrowserArguments &, KParts::BrowserExtension::PopupFlags kpf)
 {
+#if 0
     const bool isLink = (kpf & KParts::BrowserExtension::ShowNavigationItems) == 0; // ## why not use kpf & IsLink ?
     const bool isSelection = (kpf & KParts::BrowserExtension::ShowTextSelectionItems) != 0;
 
@@ -233,16 +239,19 @@ void ArticleViewerWidget::slotPopupMenu(const QPoint &p, const QUrl &kurl, mode_
         popup.addAction(ActionManager::getInstance()->action(QStringLiteral("dec_font_sizes")));
     }
     popup.exec(p);
+#endif
 }
 
 // taken from KDevelop
 void ArticleViewerWidget::slotCopy()
 {
+#if 0
     QString text = m_part->selectedText();
     text.replace(QChar(0xa0), QLatin1Char(' '));
     QClipboard *const cb = QApplication::clipboard();
     Q_ASSERT(cb);
     cb->setText(text, QClipboard::Clipboard);
+#endif
 }
 
 void ArticleViewerWidget::slotCopyLinkAddress()
@@ -260,7 +269,7 @@ void ArticleViewerWidget::slotCopyLinkAddress()
 
 void ArticleViewerWidget::slotSelectionChanged()
 {
-    ActionManager::getInstance()->action(QStringLiteral("viewer_copy"))->setEnabled(!m_part->selectedText().isEmpty());
+    //TODO ActionManager::getInstance()->action(QStringLiteral("viewer_copy"))->setEnabled(!m_part->selectedText().isEmpty());
 }
 
 void ArticleViewerWidget::slotOpenLinkInternal()
@@ -303,18 +312,23 @@ void ArticleViewerWidget::slotSaveLinkAs()
 
 void ArticleViewerWidget::slotStarted(KIO::Job *job)
 {
+#if 0 //TODO
     m_part->widget()->setCursor(Qt::WaitCursor);
     Q_EMIT started(job);
+#endif
 }
 
 void ArticleViewerWidget::slotCompleted()
 {
+#if 0 //TODO
     m_part->widget()->unsetCursor();
     Q_EMIT completed();
+#endif
 }
 
 void ArticleViewerWidget::slotZoomIn(int id)
 {
+    #if 0 //TODO
     if (id != 0) {
         return;
     }
@@ -327,10 +341,12 @@ void ArticleViewerWidget::slotZoomIn(int id)
         zf = zf - (zf % 50) + 50;
         m_part->setFontScaleFactor(zf < 300 ? zf : 300);
     }
+#endif
 }
 
 void ArticleViewerWidget::slotZoomOut(int id)
 {
+    #if 0 //TODO
     if (id != 0) {
         return;
     }
@@ -343,17 +359,22 @@ void ArticleViewerWidget::slotZoomOut(int id)
         zf = zf - (zf % 50) - 50;
         m_part->setFontScaleFactor(zf);
     }
+#endif
 }
 
 void ArticleViewerWidget::slotSetZoomFactor(int percent)
 {
+    #if 0 //TODO
     m_part->setFontScaleFactor(percent);
+#endif
 }
 
 // some code taken from KDevelop (lib/widgets/kdevhtmlpart.cpp)
 void ArticleViewerWidget::slotPrint()
 {
+    #if 0 //TODO
     m_part->view()->print();
+#endif
 }
 
 void ArticleViewerWidget::connectToNode(TreeNode *node)
@@ -381,16 +402,46 @@ void ArticleViewerWidget::disconnectFromNode(TreeNode *node)
 
 void ArticleViewerWidget::renderContent(const QString &text)
 {
+    m_currentText = text;
+    beginWriting();
+    m_articleHtmlWriter->queue(text);
+    endWriting();
+#if 0 //TODO
     m_part->closeUrl();
     m_currentText = text;
     beginWriting();
     //qCDebug(AKREGATOR_LOG) << text;
     m_part->write(text);
     endWriting();
+#endif
 }
 
 void ArticleViewerWidget::beginWriting()
 {
+    m_articleHtmlWriter->begin(QString());
+    QString head = QStringLiteral("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\n <html><head><title>.</title>");
+
+    if (m_viewMode == CombinedView) {
+        head += m_combinedModeCSS;
+    } else {
+        head += m_normalModeCSS;
+    }
+
+    head += QLatin1String("</style></head><body>");
+    //m_part->view()->setContentsPos(0, 0);
+
+    //pass link to the KHTMLPart to make relative links work
+    //add a bogus query item to distinguish from m_link
+    //fixes the Complete Story link if the url has an anchor (e.g. #reqRSS) in it
+    //See bug 177754
+
+    QUrl url(m_link);
+    url.addQueryItem(QStringLiteral("akregatorPreviewMode"), QStringLiteral("true"));
+    //m_part->begin(url);
+    //m_part->write(head);
+    m_articleHtmlWriter->queue(head);
+
+#if 0
     QString head = QStringLiteral("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\n <html><head><title>.</title>");
 
     if (m_viewMode == CombinedView) {
@@ -411,13 +462,18 @@ void ArticleViewerWidget::beginWriting()
     url.addQueryItem(QStringLiteral("akregatorPreviewMode"), QStringLiteral("true"));
     m_part->begin(url);
     m_part->write(head);
+#endif
 }
 
 void ArticleViewerWidget::endWriting()
 {
+    m_articleHtmlWriter->queue(m_htmlFooter);
+    m_articleHtmlWriter->end();
+#if 0
     m_part->write(m_htmlFooter);
     //qCDebug(AKREGATOR_LOG) << m_htmlFooter;
     m_part->end();
+#endif
 }
 
 void ArticleViewerWidget::slotShowSummary(TreeNode *node)
@@ -465,12 +521,16 @@ void ArticleViewerWidget::showArticle(const Akregator::Article &article)
 
 bool ArticleViewerWidget::openUrl(const QUrl &url)
 {
+#if 0
     if (!m_article.isNull() && m_article.feed()->loadLinkedWebsite()) {
         return m_part->openUrl(url);
     } else {
         reload();
         return true;
     }
+#else
+    return false;
+#endif
 }
 
 void ArticleViewerWidget::setFilters(const std::vector< QSharedPointer<const AbstractMatcher> > &filters)
@@ -624,9 +684,11 @@ void ArticleViewerWidget::slotPaletteOrFontChanged()
 
 void ArticleViewerWidget::reload()
 {
+#if 0
     beginWriting();
     m_part->write(m_currentText);
     endWriting();
+#endif
 }
 
 QSize ArticleViewerWidget::sizeHint() const
@@ -640,6 +702,7 @@ QSize ArticleViewerWidget::sizeHint() const
 
 void ArticleViewerWidget::displayAboutPage()
 {
+#if 0
     QString location = QStandardPaths::locate(QStandardPaths::GenericDataLocation, QStringLiteral("akregator/about/main.html"));
 
     m_part->begin(QUrl::fromLocalFile(location));
@@ -682,6 +745,8 @@ void ArticleViewerWidget::displayAboutPage()
 
     m_part->write(content.arg(infocss, rtl, fontSize, appTitle, catchPhrase, quickDescription, info));
     m_part->end();
+
+#endif
 }
 
 void ArticleViewerWidget::updateCss()
@@ -694,14 +759,14 @@ void ArticleViewerWidget::setNormalViewFormatter(const QSharedPointer<ArticleFor
 {
     Q_ASSERT(formatter);
     m_normalViewFormatter = formatter;
-    m_normalViewFormatter->setPaintDevice(m_part->view());
+    //m_normalViewFormatter->setPaintDevice(m_part->view());
 }
 
 void ArticleViewerWidget::setCombinedViewFormatter(const QSharedPointer<ArticleFormatter> &formatter)
 {
     Q_ASSERT(formatter);
     m_combinedViewFormatter = formatter;
-    m_combinedViewFormatter->setPaintDevice(m_part->view());
+    //m_combinedViewFormatter->setPaintDevice(m_part->view());
 }
 
 void ArticleViewerWidget::setArticleActionsEnabled(bool enabled)

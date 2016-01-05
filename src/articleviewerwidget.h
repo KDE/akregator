@@ -51,21 +51,20 @@ class ArticleListJob;
 class OpenUrlRequest;
 class TreeNode;
 
-class ArticleViewerPart;
+class ArticleViewerWidgetNg;
+class ArticleHtmlWriter;
 
 class AKREGATORPART_EXPORT ArticleViewerWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit ArticleViewerWidget(QWidget *parent);
+    explicit ArticleViewerWidget(KActionCollection *ac, QWidget *parent);
     ~ArticleViewerWidget();
 
     /** Repaints the view. */
     void reload();
 
     void displayAboutPage();
-
-    KParts::ReadOnlyPart *part() const;
 
     void setNormalViewFormatter(const QSharedPointer<ArticleFormatter> &formatter);
 
@@ -205,7 +204,8 @@ private:
     std::vector<QSharedPointer<const Filters::AbstractMatcher> > m_filters;
     enum ViewMode { NormalView, CombinedView, SummaryView };
     ViewMode m_viewMode;
-    ArticleViewerPart *m_part;
+    Akregator::ArticleViewerWidgetNg *m_articleViewerWidgetNg;
+    Akregator::ArticleHtmlWriter *m_articleHtmlWriter;
     QSharedPointer<ArticleFormatter> m_normalViewFormatter;
     QSharedPointer<ArticleFormatter> m_combinedViewFormatter;
 };

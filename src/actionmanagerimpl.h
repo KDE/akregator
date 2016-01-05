@@ -69,14 +69,12 @@ public:
 
     void setArticleActionsEnabled(bool enabled) Q_DECL_OVERRIDE;
     void setTrayIcon(TrayIcon *trayIcon);
+    KActionCollection *actionCollection() const;
 
 public Q_SLOTS:
 
     void slotNodeSelected(Akregator::TreeNode *node);
 
-protected:
-
-    KActionCollection *actionCollection() const;
 
 private Q_SLOTS:
     void slotServiceUrlSelected(PimCommon::ShareServiceUrlManager::ServiceType type);

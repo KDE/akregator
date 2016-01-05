@@ -62,7 +62,8 @@ protected:
 private Q_SLOTS:
     void slotOpenLinkInNewWindow();
     void slotOpenLinkInCurrentTab();
-
+    void slotLoadStarted();
+    void slotLoadFinished();
 private:
     void paintAboutScreen(const QString &templateName, const QVariantHash &data);
     QUrl mCurrentUrl;

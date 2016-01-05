@@ -43,6 +43,8 @@ public:
     explicit ArticleViewerWidgetNg(KActionCollection *ac, QWidget *parent = Q_NULLPTR);
     ~ArticleViewerWidgetNg();
 
+    ArticleViewerNg *articleViewerNg() const;
+
 private:
     void initializeActions(KActionCollection *ac);
     MessageViewer::FindBarWebView *mFindBarWebView;

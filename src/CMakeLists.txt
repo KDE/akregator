@@ -111,7 +111,6 @@ set(akregatorpart_PART_SRCS
   subscriptionlistmodel.cpp
   searchbar.cpp
   articlelistview.cpp
-  articleviewerpart.cpp
   actionmanagerimpl.cpp
   createfeedcommand.cpp
   createfoldercommand.cpp

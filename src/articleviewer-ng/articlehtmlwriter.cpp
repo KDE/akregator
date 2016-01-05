@@ -37,12 +37,11 @@ ArticleHtmlWriter::~ArticleHtmlWriter()
 
 void ArticleHtmlWriter::begin(const QString &css)
 {
-    // The stylesheet is now included CSSHelper::htmlHead()
-    Q_UNUSED(css);
     if (mState != Ended) {
         qCWarning(AKREGATOR_LOG) << "begin() called on non-ended session!";
         reset();
     }
+    //TODO add css
 
     // clear the widget:
     mWebView->setUpdatesEnabled(false);

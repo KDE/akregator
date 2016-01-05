@@ -59,3 +59,8 @@ void ArticleViewerWidgetNg::initializeActions(KActionCollection *ac)
 {
     //TODO
 }
+
+ArticleViewerNg *ArticleViewerWidgetNg::articleViewerNg() const
+{
+    return mArticleViewerNg;
+}
