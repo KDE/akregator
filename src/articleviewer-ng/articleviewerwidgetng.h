@@ -39,6 +39,7 @@ public:
     ~ArticleViewerWidgetNg();
 
 private:
+    void initializeActions(KActionCollection *ac);
     MessageViewer::FindBarWebView *mFindBarWebView;
     ArticleViewerNg *mArticleViewerNg;
 };

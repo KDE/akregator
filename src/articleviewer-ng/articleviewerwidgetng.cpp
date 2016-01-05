@@ -39,9 +39,16 @@ ArticleViewerWidgetNg::ArticleViewerWidgetNg(KActionCollection *ac, QWidget *par
     mFindBarWebView = new MessageViewer::FindBarWebView(mArticleViewerNg, this);
     mFindBarWebView->setObjectName(QStringLiteral("findbarwebview"));
     layout->addWidget(mFindBarWebView);
+
+    initializeActions(ac);
 }
 
 ArticleViewerWidgetNg::~ArticleViewerWidgetNg()
 {
 
+}
+
+void ArticleViewerWidgetNg::initializeActions(KActionCollection *ac)
+{
+    //TODO
 }
