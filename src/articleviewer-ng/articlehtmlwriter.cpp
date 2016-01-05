@@ -75,17 +75,12 @@ void ArticleHtmlWriter::reset()
     }
 }
 
-void ArticleHtmlWriter::write(const QString &str)
+void ArticleHtmlWriter::queue(const QString &str)
 {
     if (mState != Begun) {
         qCWarning(AKREGATOR_LOG) << "Called in Ended or Queued state!";
     }
     mHtml.append(str);
-}
-
-void ArticleHtmlWriter::queue(const QString &str)
-{
-    write(str);
 }
 
 void ArticleHtmlWriter::flush()

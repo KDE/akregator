@@ -20,6 +20,7 @@
 #include "akregator_debug.h"
 #include "../actions.h"
 #include "../actionmanager.h"
+#include "akregatorconfig.h"
 #include <KActionCollection>
 #include <MessageViewer/WebViewAccessKey>
 #include <MessageViewer/WebPage>
@@ -29,6 +30,7 @@
 #include <QWebFrame>
 #include <QMouseEvent>
 #include <grantleethememanager.h>
+#include <openurlrequest.h>
 using namespace Akregator;
 
 ArticleViewerNg::ArticleViewerNg(KActionCollection *ac, QWidget *parent)
@@ -51,6 +53,7 @@ ArticleViewerNg::ArticleViewerNg(KActionCollection *ac, QWidget *parent)
     connect(page(), &QWebPage::scrollRequested, mWebViewAccessKey, &MessageViewer::WebViewAccessKey::hideAccessKeys);
     //TODO make it customizable
     page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
+    connect(this, &ArticleViewerNg::linkClicked, this, &ArticleViewerNg::slotLinkClicked);
 
 }
 
@@ -149,12 +152,33 @@ void ArticleViewerNg::resizeEvent(QResizeEvent *e)
     KWebView::resizeEvent(e);
 }
 
-void ArticleViewerNg::slotOpenLinkInNewWindow()
+void ArticleViewerNg::slotLinkClicked(const QUrl &url)
 {
-    Q_EMIT loadUrl(mCurrentUrl, ArticleViewerNg::NewWindow);
+    mCurrentUrl = url;
+    OpenUrlRequest req(mCurrentUrl);
+    req.setOptions(OpenUrlRequest::NewTab);
+    Q_EMIT signalOpenUrlRequest(req);
+    //TODO open it.
 }
 
-void ArticleViewerNg::slotOpenLinkInCurrentTab()
+void ArticleViewerNg::slotOpenLinkInForegroundTab()
 {
-    Q_EMIT loadUrl(mCurrentUrl, ArticleViewerNg::CurrentTab);
+    OpenUrlRequest req(mCurrentUrl);
+    req.setOptions(OpenUrlRequest::NewTab);
+    Q_EMIT signalOpenUrlRequest(req);
+}
+
+void ArticleViewerNg::slotOpenLinkInBackgroundTab()
+{
+    OpenUrlRequest req(mCurrentUrl);
+    req.setOptions(OpenUrlRequest::NewTab);
+    req.setOpenInBackground(true);
+    Q_EMIT signalOpenUrlRequest(req);
+}
+
+void ArticleViewerNg::slotOpenLinkInBrowser()
+{
+    OpenUrlRequest req(mCurrentUrl);
+    req.setOptions(OpenUrlRequest::ExternalBrowser);
+    Q_EMIT signalOpenUrlRequest(req);
 }

@@ -22,6 +22,7 @@
 #include <KWebView>
 #include <QVariantHash>
 #include <QWebHitTestResult>
+#include <openurlrequest.h>
 class KActionCollection;
 namespace MessageViewer
 {
@@ -50,7 +51,7 @@ public:
     void showAbout();
 
 Q_SIGNALS:
-    void loadUrl(const QUrl &, ArticleViewerNg::OpenUrlType type);
+    void signalOpenUrlRequest(Akregator::OpenUrlRequest &);
 
 protected:
     void keyReleaseEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
@@ -60,10 +61,12 @@ protected:
     void contextMenuEvent(QContextMenuEvent *event) Q_DECL_OVERRIDE;
 
 private Q_SLOTS:
-    void slotOpenLinkInNewWindow();
-    void slotOpenLinkInCurrentTab();
     void slotLoadStarted();
     void slotLoadFinished();
+    void slotLinkClicked(const QUrl &url);
+    void slotOpenLinkInForegroundTab();
+    void slotOpenLinkInBackgroundTab();
+    void slotOpenLinkInBrowser();
 private:
     void paintAboutScreen(const QString &templateName, const QVariantHash &data);
     QUrl mCurrentUrl;

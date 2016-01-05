@@ -29,8 +29,15 @@ install(TARGETS akregator ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 
 ########### next target ###############
 
+set(akregator_articleviewer_ng_SRCS
+  articleviewer-ng/articleviewerng.cpp
+  articleviewer-ng/articleviewerwidgetng.cpp
+  articleviewer-ng/articlehtmlwriter.cpp
+)
+
 set(akregatorprivate_LIB_SRCS
   akregratormigrateapplication.cpp
+  ${akregator_articleviewer_ng_SRCS}
   ${akregator_common_SRCS} 
   aboutdata.cpp
   trayicon.cpp
@@ -49,12 +56,12 @@ set(akregatorprivate_LIB_SRCS
   fetchqueue.cpp
   frame.cpp
   framemanager.cpp
-  browserrun.cpp
   openurlrequest.cpp
   actionmanager.cpp
   browserframe.cpp
   browserframe_p.cpp
   actions.cpp
+  webviewframe.cpp
 )
 
 add_library(akregatorprivate ${akregatorprivate_LIB_SRCS})
@@ -73,6 +80,8 @@ PRIVATE
   KF5::IconThemes
   KF5::PimTextEdit
   KF5::GrantleeTheme
+  KF5::WebKit 
+  KF5::MessageViewer
 )
 
 target_include_directories(akregatorprivate PUBLIC "$<BUILD_INTERFACE:${akregator_SOURCE_DIR}/src;${akregator_BINARY_DIR}/src>")
@@ -89,15 +98,10 @@ set(akregator_utils_SRCS
   utils/filtercolumnsproxymodel.cpp
 )
 
-set(akregator_articleviewer_ng_SRCS
-  articleviewer-ng/articleviewerng.cpp
-  articleviewer-ng/articleviewerwidgetng.cpp
-  articleviewer-ng/articlehtmlwriter.cpp
-)
 
 
 set(akregatorpart_PART_SRCS
-  ${akregator_articleviewer_ng_SRCS}
+     ${akregator_articleviewer_ng_SRCS}
   ${akregator_utils_SRCS}
   akregatortexttospeech.cpp
   akregatortexttospeechinterface.cpp

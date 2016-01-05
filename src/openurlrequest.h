@@ -37,8 +37,6 @@
 namespace Akregator
 {
 
-class Frame;
-
 class AKREGATOR_EXPORT OpenUrlRequest
 {
 public:

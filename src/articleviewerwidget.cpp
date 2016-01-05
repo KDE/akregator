@@ -54,8 +54,6 @@
 #include <kstandardaction.h>
 #include <ktoolinvocation.h>
 #include <kglobalsettings.h>
-#include <kparts/browserextension.h>
-#include <kparts/browserrun.h>
 #include <kio/job.h>
 #include <QUrl>
 #include <grantleetheme/grantleethememanager.h>
@@ -89,6 +87,7 @@ ArticleViewerWidget::ArticleViewerWidget(KActionCollection *ac, QWidget *parent)
     layout->addWidget(m_articleViewerWidgetNg);
 
     m_articleHtmlWriter = new Akregator::ArticleHtmlWriter(m_articleViewerWidgetNg->articleViewerNg(), this);
+    connect(m_articleViewerWidgetNg->articleViewerNg(), &ArticleViewerNg::signalOpenUrlRequest, this, &ArticleViewerWidget::signalOpenUrlRequest);
     updateCss();
 #if 0
     layout->addWidget(m_part->widget(), 0, 0);
@@ -161,10 +160,9 @@ int ArticleViewerWidget::pointsToPixel(int pointSize) const
 {
     return (pointSize * m_articleViewerWidgetNg->articleViewerNg()->logicalDpiY() + 36) / 72;
 }
-
+#if 0
 void ArticleViewerWidget::slotOpenUrlRequestDelayed(const QUrl &url, const KParts::OpenUrlArguments &args, const KParts::BrowserArguments &browserArgs)
 {
-#if 0
     OpenUrlRequest req(url);
     req.setArgs(args);
     req.setBrowserArgs(browserArgs);
@@ -197,7 +195,6 @@ void ArticleViewerWidget::slotOpenUrlRequestDelayed(const QUrl &url, const KPart
     }
 
     Q_EMIT signalOpenUrlRequest(req);
-#endif
 }
 
 void ArticleViewerWidget::slotCreateNewWindow(const QUrl &url,
@@ -206,7 +203,6 @@ void ArticleViewerWidget::slotCreateNewWindow(const QUrl &url,
                                         const KParts::WindowArgs & /*windowArgs*/,
                                         KParts::ReadOnlyPart **part)
 {
-#if 0
     OpenUrlRequest req;
     req.setUrl(url);
     req.setArgs(args);
@@ -217,39 +213,8 @@ void ArticleViewerWidget::slotCreateNewWindow(const QUrl &url,
     if (part) {
         *part = req.part();
     }
-#endif
 }
-
-void ArticleViewerWidget::slotPopupMenu(const QPoint &p, const QUrl &kurl, mode_t, const KParts::OpenUrlArguments &, const KParts::BrowserArguments &, KParts::BrowserExtension::PopupFlags kpf)
-{
-#if 0
-    const bool isLink = (kpf & KParts::BrowserExtension::ShowNavigationItems) == 0; // ## why not use kpf & IsLink ?
-    const bool isSelection = (kpf & KParts::BrowserExtension::ShowTextSelectionItems) != 0;
-
-    QString url = kurl.url();
-
-    m_url = url;
-    QMenu popup;
-
-    if (isLink && !isSelection) {
-        popup.addAction(createOpenLinkInNewTabAction(kurl, this, SLOT(slotOpenLinkInForegroundTab()), &popup));
-        popup.addAction(createOpenLinkInExternalBrowserAction(kurl, this, SLOT(slotOpenLinkInBrowser()), &popup));
-        popup.addSeparator();
-        popup.addAction(m_part->action("savelinkas"));
-        popup.addAction(m_part->action("copylinkaddress"));
-    } else {
-        if (isSelection) {
-            popup.addAction(ActionManager::getInstance()->action(QStringLiteral("viewer_copy")));
-            popup.addSeparator();
-        }
-        popup.addAction(ActionManager::getInstance()->action(QStringLiteral("viewer_print")));
-        popup.addSeparator();
-        popup.addAction(ActionManager::getInstance()->action(QStringLiteral("inc_font_sizes")));
-        popup.addAction(ActionManager::getInstance()->action(QStringLiteral("dec_font_sizes")));
-    }
-    popup.exec(p);
 #endif
-}
 
 // taken from KDevelop
 void ArticleViewerWidget::slotCopy()
@@ -316,7 +281,7 @@ void ArticleViewerWidget::slotSaveLinkAs()
         tmp = tmp.adjusted(QUrl::RemoveFilename);
         tmp.setPath(tmp.path() + QLatin1String("index.html"));
     }
-    KParts::BrowserRun::simpleSave(tmp, tmp.fileName());
+    //KParts::BrowserRun::simpleSave(tmp, tmp.fileName());
 }
 
 void ArticleViewerWidget::slotZoomIn(int id)

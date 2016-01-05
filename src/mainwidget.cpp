@@ -32,6 +32,7 @@
 #include "abstractselectioncontroller.h"
 #include "articlejobs.h"
 #include "articlematcher.h"
+#include "webviewframe.h"
 #include "akregatorconfig.h"
 #include "akregator_part.h"
 #include "browserframe.h"
@@ -346,11 +347,13 @@ void Akregator::MainWidget::saveSettings()
 
 void Akregator::MainWidget::slotRequestNewFrame(int &frameId)
 {
-    BrowserFrame *frame = new BrowserFrame(m_tabWidget);
+    //BrowserFrame *frame = new BrowserFrame(m_tabWidget);
+    WebViewFrame *frame = new WebViewFrame(m_actionManager->actionCollection(), m_tabWidget);
+    //BrowserFrame *frame = new BrowserFrame(m_tabWidget);
 
-    connect(m_part, &Part::signalSettingsChanged, frame, &BrowserFrame::slotPaletteOrFontChanged);
-    connect(m_tabWidget, &TabWidget::signalZoomInFrame, frame, &BrowserFrame::slotZoomIn);
-    connect(m_tabWidget, &TabWidget::signalZoomOutFrame, frame, &BrowserFrame::slotZoomOut);
+    //connect(m_part, &Part::signalSettingsChanged, frame, &BrowserFrame::slotPaletteOrFontChanged);
+    //connect(m_tabWidget, &TabWidget::signalZoomInFrame, frame, &BrowserFrame::slotZoomIn);
+    //connect(m_tabWidget, &TabWidget::signalZoomOutFrame, frame, &BrowserFrame::slotZoomOut);
 
     Kernel::self()->frameManager()->slotAddFrame(frame);
 
@@ -1152,12 +1155,13 @@ void Akregator::MainWidget::readProperties(const KConfigGroup &config)
     QStringList childList = config.readEntry(QStringLiteral("Children"),
                             QStringList());
     Q_FOREACH (const QString &framePrefix, childList) {
-        BrowserFrame *const frame = new BrowserFrame(m_tabWidget);
+        //BrowserFrame *const frame = new BrowserFrame(m_tabWidget);
+        WebViewFrame *const frame = new WebViewFrame(m_actionManager->actionCollection(), m_tabWidget);
         frame->loadConfig(config, framePrefix + QLatin1Char('_'));
 
-        connect(m_part, &Part::signalSettingsChanged, frame, &BrowserFrame::slotPaletteOrFontChanged);
-        connect(m_tabWidget, &TabWidget::signalZoomInFrame, frame, &BrowserFrame::slotZoomIn);
-        connect(m_tabWidget, &TabWidget::signalZoomOutFrame, frame, &BrowserFrame::slotZoomOut);
+        //connect(m_part, &Part::signalSettingsChanged, frame, &BrowserFrame::slotPaletteOrFontChanged);
+        //connect(m_tabWidget, &TabWidget::signalZoomInFrame, frame, &BrowserFrame::slotZoomIn);
+        //connect(m_tabWidget, &TabWidget::signalZoomOutFrame, frame, &BrowserFrame::slotZoomOut);
 
         Kernel::self()->frameManager()->slotAddFrame(frame);
 

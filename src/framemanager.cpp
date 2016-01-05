@@ -26,10 +26,9 @@
 #include "akregatorconfig.h"
 #include "frame.h"
 #include "actionmanager.h"
-#include "browserrun.h"
 #include "browserframe.h"
 #include "openurlrequest.h"
-
+#include <KRun>
 #include <QAction>
 #include <KMacroExpander>
 #include <kprocess.h>
@@ -332,15 +331,17 @@ void FrameManager::slotOpenUrlRequest(OpenUrlRequest &request, bool useOpenInBac
                                         Settings::EnumLMBBehaviour::OpenInBackground);
         }
     }
-
+#if 0 //FIXME laurent
     // if no service type is set, determine it using BrowserRun.
     if (request.args().mimeType().isEmpty()) {
-        BrowserRun *run = new BrowserRun(request, m_mainWin);
-        connect(run, &BrowserRun::signalFoundMimeType, this, &FrameManager::openUrl);
+        //BrowserRun *run = new BrowserRun(request, m_mainWin);
+        //connect(run, &BrowserRun::signalFoundMimeType, this, &FrameManager::openUrl);
     } else { // serviceType is already set, so we open the page synchronously.
         openUrl(request);
     }
-
+#else
+    openUrl(request);
+#endif
 }
 
 void FrameManager::slotBrowserBackAboutToShow()

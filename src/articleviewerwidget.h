@@ -27,8 +27,7 @@
 
 #include "article.h"
 #include "akregatorpart_export.h"
-
-#include <khtml_part.h>
+#include <QWidget>
 
 #include <QPointer>
 
@@ -37,6 +36,7 @@
 #include <QUrl>
 
 class KJob;
+class KActionCollection;
 
 namespace Akregator
 {
@@ -115,7 +115,7 @@ protected: // methods
     bool openUrl(const QUrl &url);
 
 protected Q_SLOTS:
-
+#if 0
     void slotOpenUrlRequestDelayed(const QUrl &, const KParts::OpenUrlArguments &, const KParts::BrowserArguments &);
 
     void slotCreateNewWindow(const QUrl &url,
@@ -123,9 +123,7 @@ protected Q_SLOTS:
                              const KParts::BrowserArguments &browserArgs,
                              const KParts::WindowArgs &windowArgs,
                              KParts::ReadOnlyPart **part);
-
-    void slotPopupMenu(const QPoint &, const QUrl &, mode_t, const KParts::OpenUrlArguments &, const KParts::BrowserArguments &, KParts::BrowserExtension::PopupFlags);
-
+#endif
     /** Copies current link to clipboard. */
     void slotCopyLinkAddress();
 

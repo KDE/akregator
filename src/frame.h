@@ -199,7 +199,6 @@ public:
     {
         return m_part;
     }
-
 private:
     KParts::ReadOnlyPart *m_part;
 };

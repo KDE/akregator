@@ -20,7 +20,7 @@
 #define ARTICLEVIEWERWIDGETNG_H
 
 #include <QWidget>
-
+#include "articleviewerng.h"
 class KActionCollection;
 
 namespace MessageViewer
@@ -35,7 +35,6 @@ class TextToSpeechWidget;
 
 namespace Akregator
 {
-class ArticleViewerNg;
 class ArticleViewerWidgetNg : public QWidget
 {
     Q_OBJECT
@@ -44,6 +43,9 @@ public:
     ~ArticleViewerWidgetNg();
 
     ArticleViewerNg *articleViewerNg() const;
+
+Q_SIGNALS:
+    void loadUrl(const QUrl &, ArticleViewerNg::OpenUrlType type);
 
 private:
     void initializeActions(KActionCollection *ac);

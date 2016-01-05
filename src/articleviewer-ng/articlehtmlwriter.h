@@ -32,7 +32,6 @@ public:
     void begin(const QString &css);
     void end();
     void reset();
-    void write(const QString &str);
     void queue(const QString &str);
     void flush();
 
