@@ -140,6 +140,16 @@ ArticleViewerWidget::ArticleViewerWidget(KActionCollection *ac, QWidget *parent)
     connect(KGlobalSettings::self(), &KGlobalSettings::kdisplayPaletteChanged, this, &ArticleViewerWidget::slotPaletteOrFontChanged);
     connect(KGlobalSettings::self(), &KGlobalSettings::kdisplayFontChanged, this, &ArticleViewerWidget::slotPaletteOrFontChanged);
 #endif
+
+    QAction *action = ac->addAction(QStringLiteral("copylinkaddress"));
+    action->setText(i18n("Copy &Link Address"));
+    connect(action, &QAction::triggered, this, &ArticleViewerWidget::slotCopyLinkAddress);
+
+    action = ac->addAction(QStringLiteral("savelinkas"));
+    action->setText(i18n("&Save Link As..."));
+    connect(action, &QAction::triggered, this, &ArticleViewerWidget::slotSaveLinkAs);
+
+
     m_htmlFooter = QStringLiteral("</body></html>");
 }
 

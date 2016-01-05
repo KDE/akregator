@@ -55,7 +55,6 @@ void ArticleHtmlWriter::end()
     if (mState != Begun) {
         qCWarning(AKREGATOR_LOG) << "Called on non-begun or queued session!";
     }
-    qDebug()<<" mHtml"<<mHtml;
     mWebView->setHtml(mHtml, QUrl(QStringLiteral("file:///")));
     mWebView->show();
     mHtml.clear();
