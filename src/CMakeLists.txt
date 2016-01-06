@@ -56,6 +56,7 @@ set(akregatorprivate_LIB_SRCS
   subscriptionlistjobs.cpp
   fetchqueue.cpp
   frame.cpp
+  mainframe.cpp
   framemanager.cpp
   openurlrequest.cpp
   actionmanager.cpp

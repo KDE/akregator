@@ -204,23 +204,6 @@ int Frame::progress() const
     return m_progress;
 }
 
-MainFrame::MainFrame(QWidget *parent, KParts::ReadOnlyPart *part, QWidget *visibleWidget) : Frame(parent), m_part(part)
-{
-    setRemovable(false);
-    QGridLayout *layout = new QGridLayout(this);
-    layout->setMargin(0);
-    layout->addWidget(visibleWidget, 0, 0);
-    setLayout(layout);
-}
-
-MainFrame::~MainFrame()
-{
-}
-
-QUrl MainFrame::url() const
-{
-    return QUrl();
-}
 
 } // namespace Akregator
 

@@ -180,29 +180,6 @@ protected:
     static int m_idCounter;
 };
 
-class AKREGATOR_EXPORT MainFrame : public Frame
-{
-    Q_OBJECT
-
-public:
-
-    MainFrame(QWidget *parent, KParts::ReadOnlyPart *part, QWidget *widget);
-    virtual ~MainFrame();
-
-    QUrl url() const Q_DECL_OVERRIDE;
-
-    bool openUrl(const OpenUrlRequest &) Q_DECL_OVERRIDE {
-        return false;
-    }
-
-    KParts::ReadOnlyPart *part() const Q_DECL_OVERRIDE
-    {
-        return m_part;
-    }
-private:
-    KParts::ReadOnlyPart *m_part;
-};
-
 } // namespace Akregator
 
 #endif // AKREGATOR_FRAME_H
