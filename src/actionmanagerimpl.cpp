@@ -39,6 +39,8 @@
 #include "treenode.h"
 #include "treenodevisitor.h"
 
+#include <MessageViewer/ZoomActionMenu>
+
 #include <kactionmenu.h>
 #include <ktoolbarpopupaction.h>
 #include <QAction>
@@ -124,6 +126,7 @@ public:
     TabWidget *tabWidget;
     FrameManager *frameManager;
     PimCommon::ShareServiceUrlManager *shareServiceManager;
+    MessageViewer::ZoomActionMenu *zoomActionMenu;
 };
 
 void ActionManagerImpl::slotNodeSelected(TreeNode *node)
@@ -412,6 +415,9 @@ void ActionManagerImpl::initMainWidget(MainWidget *mainWidget)
     action->setIcon(QIcon::fromTheme(QStringLiteral("mail-message-new")));
     action->setText(i18n("Send &File..."));
     connect(action, &QAction::triggered, mainWidget, &MainWidget::slotSendFile);
+
+    d->zoomActionMenu = new MessageViewer::ZoomActionMenu(this);
+    coll->addAction(QStringLiteral("zoom_menu"), d->zoomActionMenu);
 
     coll->addAction(QStringLiteral("share_serviceurl"), d->shareServiceManager->menu());
     connect(d->shareServiceManager, &PimCommon::ShareServiceUrlManager::serviceUrlSelected, this, &ActionManagerImpl::slotServiceUrlSelected);

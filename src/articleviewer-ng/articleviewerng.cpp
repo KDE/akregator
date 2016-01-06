@@ -60,6 +60,7 @@ ArticleViewerNg::ArticleViewerNg(KActionCollection *ac, QWidget *parent)
     connect(this, &QWebView::loadFinished, this, &ArticleViewerNg::slotLoadFinished);
     connect(page(), &QWebPage::scrollRequested, mWebViewAccessKey, &MessageViewer::WebViewAccessKey::hideAccessKeys);
     page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
+    connect(page(), &QWebPage::linkHovered, this, &ArticleViewerNg::linkHovered);
     connect(this, &ArticleViewerNg::linkClicked, this, &ArticleViewerNg::slotLinkClicked);
 
 }

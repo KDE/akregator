@@ -114,10 +114,11 @@ public:
     //Returns true if networking is available
     bool isNetworkAvailable();
 
-    enum ViewMode { NormalView = 0,
-                    WidescreenView,
-                    CombinedView
-                  };
+    enum ViewMode {
+        NormalView = 0,
+        WidescreenView,
+        CombinedView
+    };
 
     ViewMode viewMode() const
     {
@@ -162,8 +163,6 @@ public Q_SLOTS:
 
     void slotRequestNewFrame(int &frameId);
 
-    /** called when URLs are dropped into the tree view */
-    void slotFeedUrlDropped(QList<QUrl> &urls, Akregator::TreeNode *after, Akregator::Folder *parent);
 
     /** displays a URL in the status bar when the user moves the mouse over a link */
     void slotMouseOverInfo(const KFileItem &kifi);

@@ -136,12 +136,6 @@ Akregator::MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl
     connect(m_feedListView, &SubscriptionListView::userActionTakingPlace,
             this, &MainWidget::ensureArticleTabVisible);
 
-    // FIXME:
-    // connect(m_feedListView, SIGNAL(signalDropped (QList<QUrl> &, Akregator::TreeNode*,
-    //         Akregator::Folder*)),
-    //         this, SLOT(slotFeedUrlDropped (QList<QUrl> &,
-    //         Akregator::TreeNode*, Akregator::Folder*)));
-
     m_tabWidget = new TabWidget(m_horizontalSplitter);
     m_actionManager->initTabWidget(m_tabWidget);
 
@@ -964,13 +958,6 @@ void Akregator::MainWidget::slotCopyLinkAddress()
         cb->setText(link, QClipboard::Clipboard);
         // don't set url to selection as it's a no-no according to a fd.o spec
         //cb->setText(link, QClipboard::Selection);
-    }
-}
-
-void Akregator::MainWidget::slotFeedUrlDropped(QList<QUrl> &urls, TreeNode *after, Folder *parent)
-{
-    Q_FOREACH (const QUrl &i, urls) {
-        addFeed(i.toDisplayString(), after, parent, false);
     }
 }
 

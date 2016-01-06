@@ -19,6 +19,7 @@
 #include "webviewframe.h"
 #include "webviewer.h"
 #include <QVBoxLayout>
+#include <QAction>
 
 using namespace Akregator;
 
@@ -85,11 +86,9 @@ bool WebViewFrame::openUrl(const OpenUrlRequest &request)
 void WebViewFrame::loadConfig(const KConfigGroup &config, const QString &prefix)
 {
     const QString url = config.readEntry(QStringLiteral("url").prepend(prefix), QString());
-    const QString mimetype = config.readEntry(QStringLiteral("mimetype").prepend(prefix), QString());
     const qreal zf = config.readEntry(QStringLiteral("zoom").prepend(prefix), 100);
     OpenUrlRequest req(url);
     KParts::OpenUrlArguments args;
-    args.setMimeType(mimetype);
     req.setArgs(args);
     openUrl(req);
     mArticleViewerWidgetNg->articleViewerNg()->setZoomFactor(zf);
@@ -98,7 +97,6 @@ void WebViewFrame::loadConfig(const KConfigGroup &config, const QString &prefix)
 void WebViewFrame::saveConfig(KConfigGroup &config, const QString &prefix)
 {
     config.writeEntry(QStringLiteral("url").prepend(prefix), url().url());
-    //config.writeEntry(QStringLiteral("mimetype").prepend(prefix), d->mimetype);
     config.writeEntry(QStringLiteral("zoom").prepend(prefix), mArticleViewerWidgetNg->articleViewerNg()->zoomFactor());
 }
 
@@ -119,13 +117,12 @@ void WebViewFrame::slotZoomOut()
 
 void WebViewFrame::slotHistoryForward()
 {
-
+    mArticleViewerWidgetNg->articleViewerNg()->pageAction(QWebPage::Forward)->trigger();
 }
 
 void WebViewFrame::slotHistoryBack()
 {
-    //TODO
-    //mArticleViewerWidgetNg->articleViewerNg()->();
+    mArticleViewerWidgetNg->articleViewerNg()->pageAction(QWebPage::Back)->trigger();
 }
 
 void WebViewFrame::slotReload()

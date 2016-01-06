@@ -74,11 +74,13 @@ public:
     class SummaryVisitor;
 };
 
-ArticleFormatter::Private::Private(QPaintDevice *device_) : device(device_)
+ArticleFormatter::Private::Private(QPaintDevice *device_)
+    : device(device_)
 {
 }
 
-ArticleFormatter::ArticleFormatter(QPaintDevice *device) : d(new Private(device))
+ArticleFormatter::ArticleFormatter(QPaintDevice *device)
+    : d(new Private(device))
 {
 }
 
@@ -343,7 +345,8 @@ QString DefaultNormalViewFormatter::getCss() const
     return css;
 }
 
-DefaultCombinedViewFormatter::DefaultCombinedViewFormatter(const QUrl &imageDir, QPaintDevice *device) : ArticleFormatter(device), m_imageDir(imageDir)
+DefaultCombinedViewFormatter::DefaultCombinedViewFormatter(const QUrl &imageDir, QPaintDevice *device)
+    : ArticleFormatter(device), m_imageDir(imageDir)
 {
 }
 

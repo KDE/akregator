@@ -50,6 +50,7 @@ public Q_SLOTS:
 
 Q_SIGNALS:
     void signalOpenUrlRequest(Akregator::OpenUrlRequest &);
+    void linkHovered(const QString &link, const QString &title, const QString &textContent);
 
 protected:
     void keyReleaseEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
