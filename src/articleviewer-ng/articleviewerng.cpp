@@ -33,16 +33,23 @@
 #include <openurlrequest.h>
 #include <QWebHistory>
 using namespace Akregator;
+namespace
+{
+qreal zoomBy()
+{
+    return 20;
+}
+}
 
 ArticleViewerNg::ArticleViewerNg(KActionCollection *ac, QWidget *parent)
     : KWebView(parent, false),
+      mZoomFactor(100),
       mActionCollection(ac)
 {
     setPage(new MessageViewer::WebPage(this));
     mWebViewAccessKey = new MessageViewer::WebViewAccessKey(this, this);
     mWebViewAccessKey->setActionCollection(mActionCollection);
 
-    //setZoomFactor(100);
     settings()->setAttribute(QWebSettings::JavascriptEnabled, false);
     settings()->setAttribute(QWebSettings::JavaEnabled, false);
     settings()->setAttribute(QWebSettings::PluginsEnabled, false);
@@ -52,7 +59,6 @@ ArticleViewerNg::ArticleViewerNg(KActionCollection *ac, QWidget *parent)
     connect(this, &QWebView::loadStarted, this, &ArticleViewerNg::slotLoadStarted);
     connect(this, &QWebView::loadFinished, this, &ArticleViewerNg::slotLoadFinished);
     connect(page(), &QWebPage::scrollRequested, mWebViewAccessKey, &MessageViewer::WebViewAccessKey::hideAccessKeys);
-    //TODO make it customizable
     page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
     connect(this, &ArticleViewerNg::linkClicked, this, &ArticleViewerNg::slotLinkClicked);
 
@@ -135,6 +141,30 @@ void ArticleViewerNg::contextMenuEvent(QContextMenuEvent *event)
         popup.addAction(ActionManager::getInstance()->action(QStringLiteral("dec_font_sizes")));
     }
     popup.exec(mapToGlobal(event->pos()));
+}
+
+void ArticleViewerNg::setZoomIn()
+{
+    if (mZoomFactor >= 300) {
+        return;
+    }
+    mZoomFactor += zoomBy();
+    if (mZoomFactor > 300) {
+        mZoomFactor = 300;
+    }
+    setZoomFactor(mZoomFactor / 100.0);
+}
+
+void ArticleViewerNg::setZoomOut()
+{
+    if (mZoomFactor <= 10) {
+        return;
+    }
+    mZoomFactor -= zoomBy();
+    if (mZoomFactor < 10) {
+        mZoomFactor = 10;
+    }
+    setZoomFactor(mZoomFactor / 100.0);
 }
 
 void ArticleViewerNg::keyReleaseEvent(QKeyEvent *e)

@@ -107,14 +107,14 @@ void WebViewFrame::setFavicon(const QIcon &icon)
     Q_EMIT signalIconChanged(this, icon);
 }
 
-void WebViewFrame::slotZoomIn(int value)
+void WebViewFrame::slotZoomIn()
 {
-    mArticleViewerWidgetNg->articleViewerNg()->setZoomFactor(value);
+    mArticleViewerWidgetNg->articleViewerNg()->setZoomIn();
 }
 
-void WebViewFrame::slotZoomOut(int value)
+void WebViewFrame::slotZoomOut()
 {
-    mArticleViewerWidgetNg->articleViewerNg()->setZoomFactor(value);
+    mArticleViewerWidgetNg->articleViewerNg()->setZoomOut();
 }
 
 void WebViewFrame::slotHistoryForward()

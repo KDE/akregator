@@ -44,6 +44,10 @@ public:
     bool canGoBack() const;
 
 
+public Q_SLOTS:
+    void setZoomIn();
+    void setZoomOut();
+
 Q_SIGNALS:
     void signalOpenUrlRequest(Akregator::OpenUrlRequest &);
 
@@ -64,6 +68,7 @@ private Q_SLOTS:
 private:
     void paintAboutScreen(const QString &templateName, const QVariantHash &data);
     QVariantHash introductionData();
+    qreal mZoomFactor;
     QUrl mCurrentUrl;
     QWebHitTestResult mContextMenuHitResult;
     KActionCollection *mActionCollection;

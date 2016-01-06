@@ -347,9 +347,7 @@ void Akregator::MainWidget::saveSettings()
 
 void Akregator::MainWidget::slotRequestNewFrame(int &frameId)
 {
-    //BrowserFrame *frame = new BrowserFrame(m_tabWidget);
     WebViewFrame *frame = new WebViewFrame(m_actionManager->actionCollection(), m_tabWidget);
-    //BrowserFrame *frame = new BrowserFrame(m_tabWidget);
 
     //connect(m_part, &Part::signalSettingsChanged, frame, &BrowserFrame::slotPaletteOrFontChanged);
     connect(m_tabWidget, &TabWidget::signalZoomInFrame, frame, &WebViewFrame::slotZoomIn);
@@ -1159,7 +1157,6 @@ void Akregator::MainWidget::readProperties(const KConfigGroup &config)
         WebViewFrame *const frame = new WebViewFrame(m_actionManager->actionCollection(), m_tabWidget);
         frame->loadConfig(config, framePrefix + QLatin1Char('_'));
 
-        //connect(m_part, &Part::signalSettingsChanged, frame, &BrowserFrame::slotPaletteOrFontChanged);
         connect(m_tabWidget, &TabWidget::signalZoomInFrame, frame, &WebViewFrame::slotZoomIn);
         connect(m_tabWidget, &TabWidget::signalZoomOutFrame, frame, &WebViewFrame::slotZoomOut);
 
