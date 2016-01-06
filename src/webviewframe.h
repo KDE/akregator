@@ -40,6 +40,10 @@ public:
     void saveConfig(KConfigGroup &, const QString &) Q_DECL_OVERRIDE;
     void setFavicon(const QIcon &icon) Q_DECL_OVERRIDE;
 
+public Q_SLOTS:
+    void slotZoomOut(int value);
+    void slotZoomIn(int value);
+
 private Q_SLOTS:
     void slotTitleChanged(const QString &title);
     void slotProgressChanged(int progress);

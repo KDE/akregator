@@ -352,8 +352,8 @@ void Akregator::MainWidget::slotRequestNewFrame(int &frameId)
     //BrowserFrame *frame = new BrowserFrame(m_tabWidget);
 
     //connect(m_part, &Part::signalSettingsChanged, frame, &BrowserFrame::slotPaletteOrFontChanged);
-    //connect(m_tabWidget, &TabWidget::signalZoomInFrame, frame, &BrowserFrame::slotZoomIn);
-    //connect(m_tabWidget, &TabWidget::signalZoomOutFrame, frame, &BrowserFrame::slotZoomOut);
+    connect(m_tabWidget, &TabWidget::signalZoomInFrame, frame, &WebViewFrame::slotZoomIn);
+    connect(m_tabWidget, &TabWidget::signalZoomOutFrame, frame, &WebViewFrame::slotZoomOut);
 
     Kernel::self()->frameManager()->slotAddFrame(frame);
 
@@ -1160,8 +1160,8 @@ void Akregator::MainWidget::readProperties(const KConfigGroup &config)
         frame->loadConfig(config, framePrefix + QLatin1Char('_'));
 
         //connect(m_part, &Part::signalSettingsChanged, frame, &BrowserFrame::slotPaletteOrFontChanged);
-        //connect(m_tabWidget, &TabWidget::signalZoomInFrame, frame, &BrowserFrame::slotZoomIn);
-        //connect(m_tabWidget, &TabWidget::signalZoomOutFrame, frame, &BrowserFrame::slotZoomOut);
+        connect(m_tabWidget, &TabWidget::signalZoomInFrame, frame, &WebViewFrame::slotZoomIn);
+        connect(m_tabWidget, &TabWidget::signalZoomOutFrame, frame, &WebViewFrame::slotZoomOut);
 
         Kernel::self()->frameManager()->slotAddFrame(frame);
 
