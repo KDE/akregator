@@ -37,6 +37,7 @@ WebViewFrame::WebViewFrame(KActionCollection *ac, QWidget *parent)
     mArticleViewerWidgetNg->articleViewerNg()->settings()->setAttribute(QWebSettings::AutoLoadImages, true);
 
     connect(mArticleViewerWidgetNg->articleViewerNg(), &ArticleViewerNg::titleChanged, this, &WebViewFrame::slotTitleChanged);
+    connect(mArticleViewerWidgetNg->articleViewerNg(), &ArticleViewerNg::signalOpenUrlRequest, this, &WebViewFrame::signalOpenUrlRequest);
     layout->addWidget(mArticleViewerWidgetNg);
 }
 
