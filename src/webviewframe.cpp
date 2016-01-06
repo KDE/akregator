@@ -37,12 +37,30 @@ WebViewFrame::WebViewFrame(KActionCollection *ac, QWidget *parent)
     mArticleViewerWidgetNg->articleViewerNg()->settings()->setAttribute(QWebSettings::AutoLoadImages, true);
 
     connect(mArticleViewerWidgetNg->articleViewerNg(), &ArticleViewerNg::titleChanged, this, &WebViewFrame::slotTitleChanged);
+    connect(mArticleViewerWidgetNg->articleViewerNg(), &ArticleViewerNg::loadProgress, this, &WebViewFrame::slotProgressChanged);
     connect(mArticleViewerWidgetNg->articleViewerNg(), &ArticleViewerNg::signalOpenUrlRequest, this, &WebViewFrame::signalOpenUrlRequest);
+    connect(mArticleViewerWidgetNg->articleViewerNg(), &ArticleViewerNg::loadStarted, this, &WebViewFrame::slotLoadStarted);
+    connect(mArticleViewerWidgetNg->articleViewerNg(), &ArticleViewerNg::loadFinished, this, &WebViewFrame::slotLoadFinished);
     layout->addWidget(mArticleViewerWidgetNg);
 }
 
 WebViewFrame::~WebViewFrame()
 {
+}
+
+void WebViewFrame::slotLoadFinished()
+{
+    Q_EMIT signalCompleted(this);
+}
+
+void WebViewFrame::slotLoadStarted()
+{
+    Q_EMIT signalStarted(this);
+}
+
+void WebViewFrame::slotProgressChanged(int progress)
+{
+    Q_EMIT signalLoadingProgress(this, progress);
 }
 
 void WebViewFrame::slotTitleChanged(const QString &title)

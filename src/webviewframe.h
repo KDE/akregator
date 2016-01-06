@@ -42,7 +42,9 @@ public:
 
 private Q_SLOTS:
     void slotTitleChanged(const QString &title);
-
+    void slotProgressChanged(int progress);
+    void slotLoadStarted();
+    void slotLoadFinished();
 private:
     Akregator::ArticleViewerWidgetNg *mArticleViewerWidgetNg;
 
