@@ -622,6 +622,7 @@ QSize ArticleViewerWidget::sizeHint() const
 
 void ArticleViewerWidget::displayAboutPage()
 {
+    m_articleViewerWidgetNg->articleViewerNg()->showAboutPage();
 #if 0
     QString location = QStandardPaths::locate(QStandardPaths::GenericDataLocation, QStringLiteral("akregator/about/main.html"));
 

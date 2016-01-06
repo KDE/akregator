@@ -73,8 +73,14 @@ void ArticleViewerNg::slotLoadStarted()
     setCursor(Qt::WaitCursor);
 }
 
-void ArticleViewerNg::showAbout()
+QVariantHash ArticleViewerNg::introductionData()
 {
+    return QVariantHash();
+}
+
+void ArticleViewerNg::showAboutPage()
+{
+    paintAboutScreen(QStringLiteral("introduction_akregator.html"), introductionData());
     //TODO call paintAboutScreen
 }
 

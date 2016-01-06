@@ -21,6 +21,7 @@
 
 #include <KWebView>
 #include <QVariantHash>
+#include <QVariantHash>
 #include <QWebHitTestResult>
 #include <openurlrequest.h>
 class KActionCollection;
@@ -48,7 +49,7 @@ public:
     explicit ArticleViewerNg(KActionCollection *ac, QWidget *parent = Q_NULLPTR);
     ~ArticleViewerNg();
 
-    void showAbout();
+    void showAboutPage();
 
 Q_SIGNALS:
     void signalOpenUrlRequest(Akregator::OpenUrlRequest &);
@@ -69,6 +70,7 @@ private Q_SLOTS:
     void slotOpenLinkInBrowser();
 private:
     void paintAboutScreen(const QString &templateName, const QVariantHash &data);
+    QVariantHash introductionData();
     QUrl mCurrentUrl;
     QWebHitTestResult mContextMenuHitResult;
     KActionCollection *mActionCollection;
