@@ -31,6 +31,7 @@
 #include <QMouseEvent>
 #include <grantleethememanager.h>
 #include <openurlrequest.h>
+#include <QWebHistory>
 using namespace Akregator;
 
 ArticleViewerNg::ArticleViewerNg(KActionCollection *ac, QWidget *parent)
@@ -82,6 +83,18 @@ void ArticleViewerNg::showAboutPage()
 {
     paintAboutScreen(QStringLiteral("introduction_akregator.html"), introductionData());
     //TODO call paintAboutScreen
+}
+
+bool ArticleViewerNg::canGoForward() const
+{
+    QWebHistory *history = page()->history();
+    return history->canGoForward();
+}
+
+bool ArticleViewerNg::canGoBack() const
+{
+    QWebHistory *history = page()->history();
+    return history->canGoBack();
 }
 
 void ArticleViewerNg::paintAboutScreen(const QString &templateName, const QVariantHash &data)

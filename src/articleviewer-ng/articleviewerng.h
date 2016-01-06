@@ -40,6 +40,10 @@ public:
 
     void showAboutPage();
 
+    bool canGoForward() const;
+    bool canGoBack() const;
+
+
 Q_SIGNALS:
     void signalOpenUrlRequest(Akregator::OpenUrlRequest &);
 

@@ -39,6 +39,18 @@
 namespace Akregator
 {
 
+Frame::Frame(QWidget *parent)
+    : QWidget(parent)
+{
+    m_title = i18n("Untitled");
+    m_state = Idle;
+    m_progress = -1;
+    m_progressItem = 0;
+    m_isRemovable = true;
+    m_loading = false;
+    m_id = m_idCounter++;
+}
+
 void Frame::slotSetTitle(const QString &s)
 {
     if (m_title != s) {
@@ -93,18 +105,6 @@ void Frame::slotSetState(State state)
     default:
         Q_EMIT signalCompleted(this);
     }
-}
-
-Frame::Frame(QWidget *parent)
-    : QWidget(parent)
-{
-    m_title = i18n("Untitled");
-    m_state = Idle;
-    m_progress = -1;
-    m_progressItem = 0;
-    m_isRemovable = true;
-    m_loading = false;
-    m_id = m_idCounter++;
 }
 
 int Frame::m_idCounter = 0;

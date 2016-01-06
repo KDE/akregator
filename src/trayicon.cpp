@@ -51,7 +51,9 @@ void TrayIcon::setInstance(TrayIcon *trayIcon)
 }
 
 TrayIcon::TrayIcon(QObject *parent)
-    : KStatusNotifierItem(parent), m_defaultIcon(QIcon::fromTheme(QStringLiteral("akregator"))), m_unread(0)
+    : KStatusNotifierItem(parent),
+      m_defaultIcon(QIcon::fromTheme(QStringLiteral("akregator"))),
+      m_unread(0)
 {
     setToolTipTitle(i18n("Akregator"));
     setToolTipIconByName(i18n("Akregator"));

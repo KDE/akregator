@@ -40,6 +40,8 @@ public:
     void saveConfig(KConfigGroup &, const QString &) Q_DECL_OVERRIDE;
     void setFavicon(const QIcon &icon) Q_DECL_OVERRIDE;
 
+    bool canGoForward() const Q_DECL_OVERRIDE;
+    bool canGoBack() const Q_DECL_OVERRIDE;
 public Q_SLOTS:
     void slotZoomOut(int value);
     void slotZoomIn(int value);

@@ -115,15 +115,6 @@ protected: // methods
     bool openUrl(const QUrl &url);
 
 protected Q_SLOTS:
-#if 0
-    void slotOpenUrlRequestDelayed(const QUrl &, const KParts::OpenUrlArguments &, const KParts::BrowserArguments &);
-
-    void slotCreateNewWindow(const QUrl &url,
-                             const KParts::OpenUrlArguments &args,
-                             const KParts::BrowserArguments &browserArgs,
-                             const KParts::WindowArgs &windowArgs,
-                             KParts::ReadOnlyPart **part);
-#endif
     /** Copies current link to clipboard. */
     void slotCopyLinkAddress();
 
