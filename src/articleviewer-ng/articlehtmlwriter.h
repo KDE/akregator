@@ -29,7 +29,7 @@ public:
     explicit ArticleHtmlWriter(QWebView *view, QObject *parent = Q_NULLPTR);
     ~ArticleHtmlWriter();
 
-    void begin(const QString &css);
+    void begin();
     void end();
     void reset();
     void queue(const QString &str);

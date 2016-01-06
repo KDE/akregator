@@ -35,14 +35,12 @@ ArticleHtmlWriter::~ArticleHtmlWriter()
 
 }
 
-void ArticleHtmlWriter::begin(const QString &css)
+void ArticleHtmlWriter::begin()
 {
     if (mState != Ended) {
         qCWarning(AKREGATOR_LOG) << "begin() called on non-ended session!";
         reset();
     }
-    //TODO add css
-
     // clear the widget:
     mWebView->setUpdatesEnabled(false);
     //mWebView->scrollUp(10);

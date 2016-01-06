@@ -281,6 +281,7 @@ void ArticleViewerWidget::slotSaveLinkAs()
         tmp = tmp.adjusted(QUrl::RemoveFilename);
         tmp.setPath(tmp.path() + QLatin1String("index.html"));
     }
+    //TODO
     //KParts::BrowserRun::simpleSave(tmp, tmp.fileName());
 }
 
@@ -364,22 +365,12 @@ void ArticleViewerWidget::renderContent(const QString &text)
     beginWriting();
     m_articleHtmlWriter->queue(text);
     endWriting();
-#if 0 //TODO
-    m_part->closeUrl();
-    m_currentText = text;
-    beginWriting();
-    //qCDebug(AKREGATOR_LOG) << text;
-    m_part->write(text);
-    endWriting();
-#endif
 }
 
 void ArticleViewerWidget::beginWriting()
 {
-    m_articleHtmlWriter->begin(QString());
-    //QString head = QStringLiteral("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\n <html><head><title>.</title>");
-
-    QString head = QStringLiteral("<html><head><title>.</title>");
+    m_articleHtmlWriter->begin();
+    QString head = QStringLiteral("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\n <html><head><title>.</title>");
     if (m_viewMode == CombinedView) {
         head += m_combinedModeCSS;
     } else {
@@ -396,43 +387,13 @@ void ArticleViewerWidget::beginWriting()
 
     QUrl url(m_link);
     url.addQueryItem(QStringLiteral("akregatorPreviewMode"), QStringLiteral("true"));
-    //m_part->begin(url);
-    //m_part->write(head);
     m_articleHtmlWriter->queue(head);
-
-#if 0
-    QString head = QStringLiteral("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\n <html><head><title>.</title>");
-
-    if (m_viewMode == CombinedView) {
-        head += m_combinedModeCSS;
-    } else {
-        head += m_normalModeCSS;
-    }
-
-    head += QLatin1String("</style></head><body>");
-    m_part->view()->setContentsPos(0, 0);
-
-    //pass link to the KHTMLPart to make relative links work
-    //add a bogus query item to distinguish from m_link
-    //fixes the Complete Story link if the url has an anchor (e.g. #reqRSS) in it
-    //See bug 177754
-
-    QUrl url(m_link);
-    url.addQueryItem(QStringLiteral("akregatorPreviewMode"), QStringLiteral("true"));
-    m_part->begin(url);
-    m_part->write(head);
-#endif
 }
 
 void ArticleViewerWidget::endWriting()
 {
     m_articleHtmlWriter->queue(m_htmlFooter);
     m_articleHtmlWriter->end();
-#if 0
-    m_part->write(m_htmlFooter);
-    //qCDebug(AKREGATOR_LOG) << m_htmlFooter;
-    m_part->end();
-#endif
 }
 
 void ArticleViewerWidget::slotShowSummary(TreeNode *node)
