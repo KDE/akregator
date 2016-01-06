@@ -45,9 +45,6 @@ public:
 
     ArticleViewerNg *articleViewerNg() const;
 
-Q_SIGNALS:
-    void loadUrl(const QUrl &, ArticleViewerNg::OpenUrlType type);
-
 private:
     void initializeActions(KActionCollection *ac);
     MessageViewer::FindBarWebView *mFindBarWebView;
