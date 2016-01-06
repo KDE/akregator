@@ -177,9 +177,6 @@ void TabWidget::slotAddFrame(Frame *frame)
     connect(frame, &Frame::signalTitleChanged, this, &TabWidget::slotSetTitle);
     connect(frame, &Frame::signalIconChanged, this, &TabWidget::slotSetIcon);
 
-    if (frame->id() > 0) { // MainFrame doesn't Q_EMIT signalPartDestroyed signals, neither should it
-        connect(frame, SIGNAL(signalPartDestroyed(int)), this, SLOT(slotRemoveFrame(int)));
-    }
     slotSetTitle(frame, frame->title());
 }
 

@@ -28,11 +28,17 @@ WebViewFrame::WebViewFrame(KActionCollection *ac, QWidget *parent)
     layout->setMargin(0);
     setRemovable(true);
     mArticleViewerWidgetNg = new Akregator::ArticleViewerWidgetNg(ac, this);
+    connect(mArticleViewerWidgetNg->articleViewerNg(), &ArticleViewerNg::titleChanged, this, &WebViewFrame::slotTitleChanged);
     layout->addWidget(mArticleViewerWidgetNg);
 }
 
 WebViewFrame::~WebViewFrame()
 {
+}
+
+void WebViewFrame::slotTitleChanged(const QString &title)
+{
+    Q_EMIT signalTitleChanged(this, title);
 }
 
 KParts::ReadOnlyPart *WebViewFrame::part() const

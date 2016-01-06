@@ -40,6 +40,9 @@ public:
     void saveConfig(KConfigGroup &, const QString &) Q_DECL_OVERRIDE;
     void setFavicon(const QIcon &icon) Q_DECL_OVERRIDE;
 
+private Q_SLOTS:
+    void slotTitleChanged(const QString &title);
+
 private:
     Akregator::ArticleViewerWidgetNg *mArticleViewerWidgetNg;
 
