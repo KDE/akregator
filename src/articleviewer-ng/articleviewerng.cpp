@@ -60,7 +60,7 @@ ArticleViewerNg::ArticleViewerNg(KActionCollection *ac, QWidget *parent)
 
 ArticleViewerNg::~ArticleViewerNg()
 {
-
+    disconnect(this, &QWebView::loadFinished, this, &ArticleViewerNg::slotLoadFinished);
 }
 
 void ArticleViewerNg::slotLoadFinished()
