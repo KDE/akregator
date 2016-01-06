@@ -19,18 +19,4 @@
     <p>{% i18n "Akregator is a KDE news feed reader." %}</p>
 </div>
 
-<table class="links">
-    {% for link in links %}
-    <tr>
-        <td>
-            <a href="{{ link.url }}">{% icon link.icon desktop %}</a>
-        <td>
-        <td>
-            <a href="{{ link.url }}">{{ link.title }}</a><br/>
-            <small>{{ link.subtext }}</small>
-        </td>
-    </tr>
-    {% endfor %}
-</table>
-
 {% endblock box %}
