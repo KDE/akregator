@@ -88,7 +88,6 @@ QVariantHash ArticleViewerNg::introductionData()
 void ArticleViewerNg::showAboutPage()
 {
     paintAboutScreen(QStringLiteral("introduction_akregator.html"), introductionData());
-    //TODO call paintAboutScreen
 }
 
 bool ArticleViewerNg::canGoForward() const
