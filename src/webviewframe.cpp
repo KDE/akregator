@@ -17,6 +17,7 @@
 
 #include "openurlrequest.h"
 #include "webviewframe.h"
+#include "webviewer.h"
 #include <QVBoxLayout>
 
 using namespace Akregator;
@@ -27,7 +28,8 @@ WebViewFrame::WebViewFrame(KActionCollection *ac, QWidget *parent)
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setMargin(0);
     setRemovable(true);
-    mArticleViewerWidgetNg = new Akregator::ArticleViewerWidgetNg(ac, this);
+    Akregator::WebViewer *viewer = new Akregator::WebViewer(ac, this);
+    mArticleViewerWidgetNg = new Akregator::ArticleViewerWidgetNg(viewer, ac, this);
 
     //setZoomFactor(100);
     mArticleViewerWidgetNg->articleViewerNg()->settings()->setAttribute(QWebSettings::JavascriptEnabled, true);

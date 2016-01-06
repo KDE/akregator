@@ -33,6 +33,7 @@ set(akregator_articleviewer_ng_SRCS
   articleviewer-ng/articleviewerng.cpp
   articleviewer-ng/articleviewerwidgetng.cpp
   articleviewer-ng/articlehtmlwriter.cpp
+  webviewer.cpp
 )
 
 set(akregatorprivate_LIB_SRCS

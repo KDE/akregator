@@ -39,6 +39,7 @@ class ArticleViewerWidgetNg : public QWidget
 {
     Q_OBJECT
 public:
+    explicit ArticleViewerWidgetNg(ArticleViewerNg *customViewer, KActionCollection *ac, QWidget *parent);
     explicit ArticleViewerWidgetNg(KActionCollection *ac, QWidget *parent = Q_NULLPTR);
     ~ArticleViewerWidgetNg();
 

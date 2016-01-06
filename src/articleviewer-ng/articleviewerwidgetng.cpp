@@ -27,6 +27,29 @@
 
 using namespace Akregator;
 
+ArticleViewerWidgetNg::ArticleViewerWidgetNg(ArticleViewerNg *customViewer, KActionCollection *ac, QWidget *parent)
+    : QWidget(parent)
+{
+    QVBoxLayout *layout = new QVBoxLayout;
+    layout->setMargin(0);
+    setLayout(layout);
+
+    mTextToSpeechWidget = new KPIMTextEdit::TextToSpeechWidget(this);
+    mTextToSpeechWidget->setObjectName(QStringLiteral("texttospeechwidget"));
+    layout->addWidget(mTextToSpeechWidget);
+
+
+    layout->addWidget(customViewer);
+    mArticleViewerNg = customViewer;
+
+    mFindBarWebView = new MessageViewer::FindBarWebView(mArticleViewerNg, this);
+    mFindBarWebView->setObjectName(QStringLiteral("findbarwebview"));
+    layout->addWidget(mFindBarWebView);
+
+    initializeActions(ac);
+
+}
+
 ArticleViewerWidgetNg::ArticleViewerWidgetNg(KActionCollection *ac, QWidget *parent)
     : QWidget(parent)
 {
