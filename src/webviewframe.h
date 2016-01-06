@@ -43,6 +43,10 @@ public:
 public Q_SLOTS:
     void slotZoomOut(int value);
     void slotZoomIn(int value);
+    void slotHistoryForward() Q_DECL_OVERRIDE;
+    void slotHistoryBack() Q_DECL_OVERRIDE;
+    void slotReload() Q_DECL_OVERRIDE;
+    void slotStop() Q_DECL_OVERRIDE;
 
 private Q_SLOTS:
     void slotTitleChanged(const QString &title);

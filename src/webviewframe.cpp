@@ -116,3 +116,25 @@ void WebViewFrame::slotZoomOut(int value)
 {
     mArticleViewerWidgetNg->articleViewerNg()->setZoomFactor(value);
 }
+
+void WebViewFrame::slotHistoryForward()
+{
+
+}
+
+void WebViewFrame::slotHistoryBack()
+{
+    //TODO
+    //mArticleViewerWidgetNg->articleViewerNg()->();
+}
+
+void WebViewFrame::slotReload()
+{
+    mArticleViewerWidgetNg->articleViewerNg()->reload();
+}
+
+void WebViewFrame::slotStop()
+{
+    mArticleViewerWidgetNg->articleViewerNg()->stop();
+}
+

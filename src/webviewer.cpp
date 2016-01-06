@@ -19,6 +19,7 @@
 
 #include <QContextMenuEvent>
 #include <QMenu>
+#include <QWebHistory>
 
 using namespace Akregator;
 
@@ -41,8 +42,14 @@ WebViewer::~WebViewer()
 void WebViewer::contextMenuEvent(QContextMenuEvent *event)
 {
     QMenu popup(this);
-    popup.addAction(pageAction(QWebPage::Back));
-    popup.addAction(pageAction(QWebPage::Forward));
+    QWebHistory *history = page()->history();
+    if (history->canGoBack()) {
+        popup.addAction(pageAction(QWebPage::Back));
+    }
+
+    if (history->canGoForward()) {
+        popup.addAction(pageAction(QWebPage::Forward));
+    }
     popup.addAction(pageAction(QWebPage::Reload));
 
     popup.exec(mapToGlobal(event->pos()));
