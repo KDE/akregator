@@ -59,8 +59,6 @@ set(akregatorprivate_LIB_SRCS
   framemanager.cpp
   openurlrequest.cpp
   actionmanager.cpp
-  browserframe.cpp
-  browserframe_p.cpp
   actions.cpp
   webviewframe.cpp
 )
@@ -69,9 +67,8 @@ add_library(akregatorprivate ${akregatorprivate_LIB_SRCS})
 generate_export_header(akregatorprivate BASE_NAME akregator)
 
 target_link_libraries(akregatorprivate
-PUBLIC
-  KF5::KHtml
 PRIVATE
+  KF5::Parts
   KF5::Notifications
   KF5::Libkdepim
   KF5::Syndication

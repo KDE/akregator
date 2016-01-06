@@ -26,7 +26,6 @@
 #include "akregatorconfig.h"
 #include "frame.h"
 #include "actionmanager.h"
-#include "browserframe.h"
 #include "openurlrequest.h"
 #include <KRun>
 #include <QAction>
@@ -37,6 +36,7 @@
 #include <kparts/event.h>
 #include <kparts/guiactivateevent.h>
 #include "akregator_debug.h"
+#include "webviewframe.h"
 
 #include <QStringList>
 #include <QApplication>
@@ -394,7 +394,7 @@ void FrameManager::saveProperties(KConfigGroup &config)
     QHash<int, Frame *>::const_iterator i;
     for (i = m_frames.constBegin(); i != m_frames.constEnd(); ++i) {
         // No need to save the main frame
-        if (i.value() && qobject_cast<BrowserFrame *>(i.value())) {
+        if (i.value() && qobject_cast<WebViewFrame *>(i.value())) {
 
             newPrefix = QLatin1Char('T') + QString::number(i.key());
             strlst.append(newPrefix);

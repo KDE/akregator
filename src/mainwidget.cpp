@@ -35,7 +35,6 @@
 #include "webviewframe.h"
 #include "akregatorconfig.h"
 #include "akregator_part.h"
-#include "browserframe.h"
 #include "createfeedcommand.h"
 #include "createfoldercommand.h"
 #include "deletesubscriptioncommand.h"
