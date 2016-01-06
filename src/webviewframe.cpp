@@ -32,11 +32,6 @@ WebViewFrame::WebViewFrame(KActionCollection *ac, QWidget *parent)
     mArticleViewerWidgetNg = new Akregator::ArticleViewerWidgetNg(viewer, ac, this);
 
     //setZoomFactor(100);
-    mArticleViewerWidgetNg->articleViewerNg()->settings()->setAttribute(QWebSettings::JavascriptEnabled, true);
-    mArticleViewerWidgetNg->articleViewerNg()->settings()->setAttribute(QWebSettings::JavaEnabled, true);
-    mArticleViewerWidgetNg->articleViewerNg()->settings()->setAttribute(QWebSettings::PluginsEnabled, true);
-    mArticleViewerWidgetNg->articleViewerNg()->settings()->setAttribute(QWebSettings::DnsPrefetchEnabled, true);
-    mArticleViewerWidgetNg->articleViewerNg()->settings()->setAttribute(QWebSettings::AutoLoadImages, true);
 
     connect(mArticleViewerWidgetNg->articleViewerNg(), &ArticleViewerNg::titleChanged, this, &WebViewFrame::slotTitleChanged);
     connect(mArticleViewerWidgetNg->articleViewerNg(), &ArticleViewerNg::loadProgress, this, &WebViewFrame::slotProgressChanged);
