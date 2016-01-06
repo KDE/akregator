@@ -22,7 +22,6 @@
     without including the source code for Qt in the source distribution.
 */
 
-#include "akregatortexttospeech.h"
 #include "actionmanagerimpl.h"
 #include "akregatorconfig.h"
 #include "akregator_part.h"
@@ -124,7 +123,6 @@ public:
     KActionCollection *actionCollection;
     TabWidget *tabWidget;
     FrameManager *frameManager;
-    AkregatorTextToSpeech *textToSpeech;
     PimCommon::ShareServiceUrlManager *shareServiceManager;
 };
 
@@ -149,7 +147,6 @@ ActionManagerImpl::ActionManagerImpl(Part *part, QObject *parent)
     d->tagMenu = 0;
     d->frameManager = 0;
     d->actionCollection = part->actionCollection();
-    d->textToSpeech = new AkregatorTextToSpeech(this);
     d->shareServiceManager = new PimCommon::ShareServiceUrlManager(this);
     initPart();
 }
@@ -209,7 +206,6 @@ void ActionManagerImpl::initMainWidget(MainWidget *mainWidget)
     }
 
     d->mainWidget = mainWidget;
-    d->textToSpeech->setMainWindow(d->mainWidget);
 
     KActionCollection *coll = actionCollection();
 
@@ -351,9 +347,6 @@ void ActionManagerImpl::initMainWidget(MainWidget *mainWidget)
     statusMenu->setText(i18n("&Mark As"));
     statusMenu->setEnabled(false);
 
-    coll->addAction(QStringLiteral("akr_texttospeech"), d->textToSpeech->playPauseAction());
-
-    coll->addAction(QStringLiteral("akr_aborttexttospeech"), d->textToSpeech->stopAction());
 
     action = coll->addAction(QStringLiteral("article_set_status_read"));
     action->setText(i18nc("as in: mark as read", "&Read"));

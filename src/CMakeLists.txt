@@ -102,8 +102,6 @@ set(akregator_utils_SRCS
 set(akregatorpart_PART_SRCS
      ${akregator_articleviewer_ng_SRCS}
   ${akregator_utils_SRCS}
-  akregatortexttospeech.cpp
-  akregatortexttospeechinterface.cpp
   ${akregator_common_SRCS}
   deletesubscriptioncommand.cpp
   abstractselectioncontroller.cpp
