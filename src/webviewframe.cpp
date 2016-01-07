@@ -32,8 +32,6 @@ WebViewFrame::WebViewFrame(KActionCollection *ac, QWidget *parent)
     Akregator::WebViewer *viewer = new Akregator::WebViewer(ac, this);
     mArticleViewerWidgetNg = new Akregator::ArticleViewerWidgetNg(viewer, ac, this);
 
-    //setZoomFactor(100);
-
     connect(mArticleViewerWidgetNg->articleViewerNg(), &ArticleViewerNg::titleChanged, this, &WebViewFrame::slotTitleChanged);
     connect(mArticleViewerWidgetNg->articleViewerNg(), &ArticleViewerNg::loadProgress, this, &WebViewFrame::slotProgressChanged);
     connect(mArticleViewerWidgetNg->articleViewerNg(), &ArticleViewerNg::signalOpenUrlRequest, this, &WebViewFrame::signalOpenUrlRequest);
@@ -87,6 +85,7 @@ void WebViewFrame::loadConfig(const KConfigGroup &config, const QString &prefix)
 {
     const QString url = config.readEntry(QStringLiteral("url").prepend(prefix), QString());
     const qreal zf = config.readEntry(QStringLiteral("zoom").prepend(prefix), 100);
+    //TODO save onlyText.
     OpenUrlRequest req(url);
     KParts::OpenUrlArguments args;
     req.setArgs(args);
@@ -98,6 +97,7 @@ void WebViewFrame::saveConfig(KConfigGroup &config, const QString &prefix)
 {
     config.writeEntry(QStringLiteral("url").prepend(prefix), url().url());
     config.writeEntry(QStringLiteral("zoom").prepend(prefix), mArticleViewerWidgetNg->articleViewerNg()->zoomFactor());
+    //TODO save zoomOnlyText
 }
 
 void WebViewFrame::setFavicon(const QIcon &icon)
