@@ -112,7 +112,7 @@ public:
     void saveProperties(KConfigGroup &config);
 
     //Returns true if networking is available
-    bool isNetworkAvailable();
+    bool isNetworkAvailable() const;
 
     enum ViewMode {
         NormalView = 0,

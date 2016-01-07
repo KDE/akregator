@@ -403,22 +403,6 @@ void TabWidget::slotCloseTab()
     Q_EMIT signalRemoveFrameRequest(frame->id());
 }
 
-void TabWidget::initiateDrag(int tab)
-{
-    Frame *frame = d->frames.value(widget(tab));
-
-    if (frame && frame->url().isValid()) {
-        QList<QUrl> lst;
-        lst.append(frame->url());
-        QDrag *drag = new QDrag(this);
-        QMimeData *md = new QMimeData;
-        drag->setMimeData(md);
-        md->setUrls(lst);
-        drag->setPixmap(KIO::pixmapForUrl(lst.first(), 0, KIconLoader::Small));
-        drag->start();
-    }
-}
-
 void TabWidget::slotReloadAllTabs()
 {
     Q_FOREACH (Frame *frame, d->frames) {

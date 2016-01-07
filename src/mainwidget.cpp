@@ -1165,10 +1165,10 @@ void Akregator::MainWidget::ensureArticleTabVisible()
 
 void MainWidget::slotReloadAllTabs()
 {
-    this->m_tabWidget->slotReloadAllTabs();
+    m_tabWidget->slotReloadAllTabs();
 }
 
-bool MainWidget::isNetworkAvailable()
+bool MainWidget::isNetworkAvailable() const
 {
     return m_networkConfigManager->isOnline();
 }

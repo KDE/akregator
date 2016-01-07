@@ -73,14 +73,11 @@ private:
     void tabRemoved(int) Q_DECL_OVERRIDE;
 
 private Q_SLOTS:
-    void initiateDrag(int tab);
-
     void slotCloseRequest(int index);
     void contextMenu(int item, const QPoint &p);
     void slotTabChanged(int index);
 
 private:
-
     class Private;
     Private *const d;
 };
