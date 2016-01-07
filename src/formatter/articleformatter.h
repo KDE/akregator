@@ -26,9 +26,9 @@
 #define AKREGATOR_ARTICLEFORMATTER_H
 
 #include <QUrl>
+#include <enclosure.h>
 
 class QPaintDevice;
-class QString;
 
 namespace Akregator
 {
@@ -45,7 +45,7 @@ public:
         ShowIcon
     };
 
-    explicit ArticleFormatter(QPaintDevice *device = 0);
+    explicit ArticleFormatter(QPaintDevice *device = Q_NULLPTR);
 
     virtual ~ArticleFormatter();
 
@@ -59,6 +59,7 @@ public:
 
 protected:
 
+    QString formatEnclosure(const Syndication::Enclosure &enclosure) const;
     int pointsToPixel(int pointSize) const;
 
 private:
@@ -66,47 +67,6 @@ private:
     Private *const d;
     Q_DISABLE_COPY(ArticleFormatter)
 };
-
-class DefaultNormalViewFormatter : public ArticleFormatter
-{
-public:
-
-    explicit DefaultNormalViewFormatter(const QUrl &imageDir, QPaintDevice *device = Q_NULLPTR);
-    ~DefaultNormalViewFormatter();
-
-    QString formatArticle(const Article &article, IconOption option) const Q_DECL_OVERRIDE;
-
-    QString formatSummary(TreeNode *node) const Q_DECL_OVERRIDE;
-
-    QString getCss() const Q_DECL_OVERRIDE;
-
-private:
-    DefaultNormalViewFormatter();
-
-    QUrl m_imageDir;
-    class SummaryVisitor;
-    SummaryVisitor *m_summaryVisitor;
-};
-
-class DefaultCombinedViewFormatter : public ArticleFormatter
-{
-
-public:
-
-    explicit DefaultCombinedViewFormatter(const QUrl &imageDir, QPaintDevice *device = 0);
-
-    QString formatArticle(const Article &article, IconOption option) const Q_DECL_OVERRIDE;
-
-    QString formatSummary(TreeNode *node) const Q_DECL_OVERRIDE;
-
-    QString getCss() const Q_DECL_OVERRIDE;
-
-private:
-    DefaultCombinedViewFormatter();
-
-    QUrl m_imageDir;
-};
-
 } // namespace Akregator
 
 #endif // AKREGATOR_ARTICLEFORMATTER_H
