@@ -1,5 +1,5 @@
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
-<kpartgui name="akregator_part" version="420" translationDomain="akregator">
+<kpartgui name="akregator_part" version="422" translationDomain="akregator">
   <MenuBar>
     <Menu name="file">
       <Action name="file_import"/>
@@ -23,8 +23,16 @@
       <Action name="widescreen_view"/>
       <Action name="combined_view"/>
       <Separator/>
-      <Action name="inc_font_sizes"/>
-      <Action name="dec_font_sizes"/>
+   <Menu noMerge="1" name="zoom" >
+     <text>Zoom</text>
+     <Action name="zoom_in"/>
+     <Action name="zoom_out"/>
+     <Separator/>
+     <Action name="zoom_reset"/>
+     <Separator/>
+     <Action name="toggle_zoomtextonly"/>
+   </Menu>
+
     </Menu>
 
     <Menu name="go">

@@ -416,9 +416,6 @@ void ActionManagerImpl::initMainWidget(MainWidget *mainWidget)
     action->setText(i18n("Send &File..."));
     connect(action, &QAction::triggered, mainWidget, &MainWidget::slotSendFile);
 
-    d->zoomActionMenu = new MessageViewer::ZoomActionMenu(this);
-    coll->addAction(QStringLiteral("zoom_menu"), d->zoomActionMenu);
-
     coll->addAction(QStringLiteral("share_serviceurl"), d->shareServiceManager->menu());
     connect(d->shareServiceManager, &PimCommon::ShareServiceUrlManager::serviceUrlSelected, this, &ActionManagerImpl::slotServiceUrlSelected);
 
@@ -585,6 +582,10 @@ void ActionManagerImpl::initTabWidget(TabWidget *tabWidget)
     action->setText(i18n("Shrink Font"));
     connect(action, &QAction::triggered, d->tabWidget, &TabWidget::slotFrameZoomOut);
     coll->setDefaultShortcut(action, QKeySequence::ZoomOut);
+
+    d->zoomActionMenu = new MessageViewer::ZoomActionMenu(this);
+    d->zoomActionMenu->setActionCollection(coll);
+    d->zoomActionMenu->createZoomActions();
 
     QString actionname;
     for (int i = 1; i < 10; ++i) {
