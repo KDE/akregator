@@ -31,7 +31,6 @@ WebViewer::WebViewer(KActionCollection *ac, QWidget *parent)
     settings()->setAttribute(QWebSettings::PluginsEnabled, true);
     settings()->setAttribute(QWebSettings::DnsPrefetchEnabled, true);
     settings()->setAttribute(QWebSettings::AutoLoadImages, true);
-
 }
 
 WebViewer::~WebViewer()

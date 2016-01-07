@@ -22,6 +22,7 @@
 #include <KActionCollection>
 #include <KLocalizedString>
 #include <QVBoxLayout>
+#include <QAction>
 
 #include <KPIMTextEdit/kpimtextedit/texttospeechwidget.h>
 
@@ -80,10 +81,34 @@ ArticleViewerWidgetNg::~ArticleViewerWidgetNg()
 
 void ArticleViewerWidgetNg::initializeActions(KActionCollection *ac)
 {
-    //TODO
+    mSpeakTextAction = new QAction(i18n("Speak Text"), this);
+    mSpeakTextAction->setIcon(QIcon::fromTheme(QStringLiteral("preferences-desktop-text-to-speech")));
+    ac->addAction(QStringLiteral("speak_text"), mSpeakTextAction);
+    connect(mSpeakTextAction, &QAction::triggered, this, &ArticleViewerWidgetNg::slotSpeakText);
+
+    mFindInMessageAction = new QAction(QIcon::fromTheme(QStringLiteral("edit-find")), i18n("&Find in Message..."), this);
+    ac->addAction(QStringLiteral("find_in_messages"), mFindInMessageAction);
+    connect(mFindInMessageAction, &QAction::triggered, this, &ArticleViewerWidgetNg::slotFind);
+    ac->setDefaultShortcut(mFindInMessageAction, KStandardShortcut::find().first());
 }
 
 ArticleViewerNg *ArticleViewerWidgetNg::articleViewerNg() const
 {
     return mArticleViewerNg;
+}
+
+void ArticleViewerWidgetNg::slotFind()
+{
+#if 0
+    if (mViewer->hasSelection()) {
+        mFindBarWebView->setText(mViewer->selectedText());
+    }
+    mSliderContainer->slideIn();
+#endif
+    mFindBarWebView->focusAndSetCursor();
+}
+
+void ArticleViewerWidgetNg::slotSpeakText()
+{
+
 }

@@ -22,7 +22,7 @@
 #include <QWidget>
 #include "articleviewerng.h"
 class KActionCollection;
-
+class QAction;
 namespace MessageViewer
 {
 class FindBarWebView;
@@ -45,11 +45,17 @@ public:
 
     ArticleViewerNg *articleViewerNg() const;
 
+private Q_SLOTS:
+    void slotSpeakText();
+    void slotFind();
+
 private:
     void initializeActions(KActionCollection *ac);
     MessageViewer::FindBarWebView *mFindBarWebView;
     ArticleViewerNg *mArticleViewerNg;
     KPIMTextEdit::TextToSpeechWidget *mTextToSpeechWidget;
+    QAction *mSpeakTextAction;
+    QAction *mFindInMessageAction;
 };
 }
 

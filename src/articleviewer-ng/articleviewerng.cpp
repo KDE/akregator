@@ -22,6 +22,7 @@
 #include "../actionmanager.h"
 #include "akregatorconfig.h"
 #include <KActionCollection>
+#include <KLocalizedString>
 #include <MessageViewer/WebViewAccessKey>
 #include <MessageViewer/WebPage>
 #include <QWebSettings>
@@ -62,13 +63,13 @@ ArticleViewerNg::ArticleViewerNg(KActionCollection *ac, QWidget *parent)
     page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
     connect(page(), &QWebPage::linkHovered, this, &ArticleViewerNg::linkHovered);
     connect(this, &ArticleViewerNg::linkClicked, this, &ArticleViewerNg::slotLinkClicked);
-
 }
 
 ArticleViewerNg::~ArticleViewerNg()
 {
     disconnect(this, &QWebView::loadFinished, this, &ArticleViewerNg::slotLoadFinished);
 }
+
 
 void ArticleViewerNg::slotLoadFinished()
 {
