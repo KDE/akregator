@@ -14,12 +14,6 @@
   <Action name="find"/>
   <Action name="findNext"/>
 </Menu> 
-<Menu noMerge="1" name="view">
-  <Separator/> 
-  
-  <Action name="inc_font_sizes"/>
-  <Action name="dec_font_sizes"/>
-</Menu> 
 
 </MenuBar>
 <!-- this menu doesn't show up in the app, just groups the actions -->

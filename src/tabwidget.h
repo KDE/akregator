@@ -55,8 +55,6 @@ public Q_SLOTS:
     void slotAddFrame(Akregator::Frame *f);
     void slotRemoveFrame(int frameId);
     void slotSelectFrame(int frameId);
-    void slotFrameZoomIn();
-    void slotFrameZoomOut();
     void slotReloadAllTabs();
     void slotActivateTab();
     void slotDetachTab();
@@ -67,8 +65,6 @@ Q_SIGNALS:
     void signalCurrentFrameChanged(int);
     void signalRemoveFrameRequest(int);
     void signalOpenUrlRequest(Akregator::OpenUrlRequest &);
-    void signalZoomInFrame(int);
-    void signalZoomOutFrame(int);
     void signalZoomChangedInFrame(int currentFrame, qreal value);
     void signalZoomTextOnlyInFrame(int currentFrame, bool zoomTextOnly);
 

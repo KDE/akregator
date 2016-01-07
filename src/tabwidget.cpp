@@ -203,22 +203,6 @@ void TabWidget::slotZoomTextOnlyChanged(bool zoomTextOnly)
     Q_EMIT signalZoomTextOnlyInFrame(d->currentFrame()->id(), zoomTextOnly);
 }
 
-void TabWidget::slotFrameZoomIn()
-{
-    if (!d->currentFrame()) {
-        return;
-    }
-    Q_EMIT signalZoomInFrame(d->currentFrame()->id());
-}
-
-void TabWidget::slotFrameZoomOut()
-{
-    if (!d->currentFrame()) {
-        return;
-    }
-    Q_EMIT signalZoomOutFrame(d->currentFrame()->id());
-}
-
 void TabWidget::slotTabChanged(int index)
 {
 

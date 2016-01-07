@@ -137,9 +137,6 @@ void ArticleViewerNg::contextMenuEvent(QContextMenuEvent *event)
             popup.addSeparator();
         }
         popup.addAction(ActionManager::getInstance()->action(QStringLiteral("viewer_print")));
-        popup.addSeparator();
-        popup.addAction(ActionManager::getInstance()->action(QStringLiteral("inc_font_sizes")));
-        popup.addAction(ActionManager::getInstance()->action(QStringLiteral("dec_font_sizes")));
     }
     popup.exec(mapToGlobal(event->pos()));
 }

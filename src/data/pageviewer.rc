@@ -1,5 +1,5 @@
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
-<kpartgui name="pageviewer" version="390">
+<kpartgui name="pageviewer" version="391">
 <ToolBar name="mainToolBar">
   <Separator/> 
   <Action name="pageviewer_back"/>
@@ -25,8 +25,6 @@
   <Separator/>
   <Action name="pageviewer_reload"/>
   <Action name="pageviewer_stop"/>
-  <Action name="inc_font_sizes"/>
-  <Action name="dec_font_sizes"/>
   <Action name="setEncoding"/>
   <Merge/>
 </Menu>

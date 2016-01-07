@@ -450,8 +450,8 @@ void ActionManagerImpl::initArticleViewer(ArticleViewerWidget *articleViewer)
     action = KStandardAction::copy(articleViewer, SLOT(slotCopy()), coll);
     coll->addAction(QStringLiteral("viewer_copy"), action);
 
-    connect(d->tabWidget, &TabWidget::signalZoomInFrame, d->articleViewer, &ArticleViewerWidget::slotZoomIn);
-    connect(d->tabWidget, &TabWidget::signalZoomOutFrame, d->articleViewer, &ArticleViewerWidget::slotZoomOut);
+    //connect(d->tabWidget, &TabWidget::signalZoomInFrame, d->articleViewer, &ArticleViewerWidget::slotZoomIn);
+    //connect(d->tabWidget, &TabWidget::signalZoomOutFrame, d->articleViewer, &ArticleViewerWidget::slotZoomOut);
 }
 
 void ActionManagerImpl::initArticleListView(ArticleListView *articleList)
@@ -570,18 +570,6 @@ void ActionManagerImpl::initTabWidget(TabWidget *tabWidget)
     action->setText(i18n("Close Tab"));
     connect(action, &QAction::triggered, d->tabWidget, &TabWidget::slotCloseTab);
     coll->setDefaultShortcuts(action, KStandardShortcut::close());
-
-    action = coll->addAction(QStringLiteral("inc_font_sizes"));
-    action->setIcon(QIcon::fromTheme(QStringLiteral("format-font-size-more")));
-    action->setText(i18n("Enlarge Font"));
-    connect(action, &QAction::triggered, d->tabWidget, &TabWidget::slotFrameZoomIn);
-    coll->setDefaultShortcut(action, QKeySequence::ZoomIn);
-
-    action = coll->addAction(QStringLiteral("dec_font_sizes"));
-    action->setIcon(QIcon::fromTheme(QStringLiteral("format-font-size-less")));
-    action->setText(i18n("Shrink Font"));
-    connect(action, &QAction::triggered, d->tabWidget, &TabWidget::slotFrameZoomOut);
-    coll->setDefaultShortcut(action, QKeySequence::ZoomOut);
 
     d->zoomActionMenu = new MessageViewer::ZoomActionMenu(this);
     connect(d->zoomActionMenu, &MessageViewer::ZoomActionMenu::zoomChanged, d->tabWidget, &TabWidget::slotZoomChanged);
