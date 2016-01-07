@@ -58,6 +58,9 @@
   </entry>
   <entry key="UnderlineLinks" type="Bool"> 
   </entry>
+  <entry key="AccessKeyEnabled" type="Bool">
+       <default>true</default>
+  </entry>
  </group>
   <group name="Archive">
    <entry key="ArchiveMode" type="Enum">
