@@ -43,13 +43,13 @@ public:
     bool canGoForward() const Q_DECL_OVERRIDE;
     bool canGoBack() const Q_DECL_OVERRIDE;
 public Q_SLOTS:
-    void slotZoomOut();
-    void slotZoomIn();
     void slotHistoryForward() Q_DECL_OVERRIDE;
     void slotHistoryBack() Q_DECL_OVERRIDE;
     void slotReload() Q_DECL_OVERRIDE;
     void slotStop() Q_DECL_OVERRIDE;
 
+    void slotZoomChangeInFrame(int frameId, qreal value);
+    void slotZoomTextOnlyInFrame(int frameId, bool textOnlyInFrame);
 private Q_SLOTS:
     void slotTitleChanged(const QString &title);
     void slotProgressChanged(int progress);
