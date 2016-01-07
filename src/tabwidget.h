@@ -44,6 +44,7 @@ public:
     ~TabWidget();
 
 public Q_SLOTS:
+    void slotZoomChanged(qreal value);
 
     void slotSetTitle(Akregator::Frame *frame, const QString &title);
     void slotSetIcon(Akregator::Frame *frame, const QIcon &icon);
@@ -61,12 +62,15 @@ public Q_SLOTS:
     void slotDetachTab();
     void slotCopyLinkAddress();
     void slotCloseTab();
+    void slotZoomTextOnlyChanged(bool zoomTextOnly);
 Q_SIGNALS:
     void signalCurrentFrameChanged(int);
     void signalRemoveFrameRequest(int);
     void signalOpenUrlRequest(Akregator::OpenUrlRequest &);
     void signalZoomInFrame(int);
     void signalZoomOutFrame(int);
+    void signalZoomChangedInFrame(int currentFrame, qreal value);
+    void signalZoomTextOnlyInFrame(int currentFrame, bool zoomTextOnly);
 
 private:
     void tabInserted(int) Q_DECL_OVERRIDE;

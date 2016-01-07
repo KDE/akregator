@@ -187,6 +187,22 @@ Frame *TabWidget::Private::currentFrame()
     return w ? frames.value(w) : 0;
 }
 
+void TabWidget::slotZoomChanged(qreal value)
+{
+    if (!d->currentFrame()) {
+        return;
+    }
+    Q_EMIT signalZoomChangedInFrame(d->currentFrame()->id(), value);
+}
+
+void TabWidget::slotZoomTextOnlyChanged(bool zoomTextOnly)
+{
+    if (!d->currentFrame()) {
+        return;
+    }
+    Q_EMIT signalZoomTextOnlyInFrame(d->currentFrame()->id(), zoomTextOnly);
+}
+
 void TabWidget::slotFrameZoomIn()
 {
     if (!d->currentFrame()) {
