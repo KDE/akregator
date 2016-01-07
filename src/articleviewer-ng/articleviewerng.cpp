@@ -225,7 +225,6 @@ void ArticleViewerNg::slotLinkClicked(const QUrl &url)
         return;
     }
 
-    qDebug()<<" url"<<url;
     mCurrentUrl = url;
     OpenUrlRequest req(mCurrentUrl);
     req.setOptions(OpenUrlRequest::NewTab);
