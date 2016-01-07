@@ -584,6 +584,9 @@ void ActionManagerImpl::initTabWidget(TabWidget *tabWidget)
     coll->setDefaultShortcut(action, QKeySequence::ZoomOut);
 
     d->zoomActionMenu = new MessageViewer::ZoomActionMenu(this);
+    //connect(mZoomActionMenu, &ZoomActionMenu::zoomChanged, mViewer, &MailWebView::slotZoomChanged);
+    //connect(mZoomActionMenu, &ZoomActionMenu::zoomTextOnlyChanged, mViewer, &MailWebView::slotZoomTextOnlyChanged);
+
     d->zoomActionMenu->setActionCollection(coll);
     d->zoomActionMenu->createZoomActions();
 
