@@ -257,8 +257,7 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
         m_articleSplitter->setSizes(sp2sizes);
     }
 
-    KConfigGroup conf(Settings::self()->config(), "General");
-    if (!conf.readEntry("Disable Introduction", false)) {
+    if (!Settings::self()->disableIntroduction()) {
         m_articleListView->hide();
         m_searchBar->hide();
         m_articleViewer->displayAboutPage();

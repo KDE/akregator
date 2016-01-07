@@ -153,6 +153,9 @@
    <whatsthis>Whether or not to show the number of unread articles in the tray icon. Disable this if you find the unread article count distracting.</whatsthis>
    <default>true</default>
   </entry>
+  <entry key="Disable Introduction" type="Bool" >
+     <default>false</default>
+  </entry>
  </group>
  <group name="Browser" >
   <entry key="Always Show Tab Bar" type="Bool">

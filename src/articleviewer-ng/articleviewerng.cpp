@@ -215,9 +215,8 @@ void ArticleViewerNg::slotLinkClicked(const QUrl &url)
         KGuiItem noButton(KStandardGuiItem::no());
         noButton.setText(i18n("Keep Enabled"));
         if (KMessageBox::questionYesNo(this, i18n("Are you sure you want to disable this introduction page?"), i18n("Disable Introduction Page"), yesButton, noButton) == KMessageBox::Yes) {
-            KConfigGroup conf(Settings::self()->config(), "General");
-            conf.writeEntry("Disable Introduction", "true");
-            conf.sync();
+            Settings::self()->setDisableIntroduction(true);
+            Settings::self()->save();
         }
         return;
     }
