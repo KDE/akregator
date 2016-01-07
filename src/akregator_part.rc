@@ -1,5 +1,5 @@
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
-<kpartgui name="akregator_part" version="419" translationDomain="akregator">
+<kpartgui name="akregator_part" version="420" translationDomain="akregator">
   <MenuBar>
     <Menu name="file">
       <Action name="file_import"/>
@@ -97,12 +97,6 @@
     <Action name="browser_forward"/>
     <Action name="browser_reload"/>
     <Action name="browser_stop"/>
-    <Merge/>
-  </ToolBar>
-
-  <ToolBar hidden="true" name="textToSpeechToolBar"><text>Speech Toolbar</text>
-    <Action name="akr_texttospeech"/>
-    <Action name="akr_aborttexttospeech"/>
     <Merge/>
   </ToolBar>
 
