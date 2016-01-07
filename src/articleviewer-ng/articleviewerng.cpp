@@ -22,6 +22,7 @@
 #include "../actionmanager.h"
 #include "akregatorconfig.h"
 #include <KActionCollection>
+#include <KMessageBox>
 #include <KAboutData>
 #include <KLocalizedString>
 #include <MessageViewer/WebViewAccessKey>
@@ -34,6 +35,7 @@
 #include <grantleethememanager.h>
 #include <openurlrequest.h>
 #include <QWebHistory>
+#include <KConfigGroup>
 using namespace Akregator;
 namespace
 {
@@ -207,6 +209,20 @@ void ArticleViewerNg::resizeEvent(QResizeEvent *e)
 
 void ArticleViewerNg::slotLinkClicked(const QUrl &url)
 {
+    if (url.toString() == QLatin1String("config:/disable_introduction")) {
+        KGuiItem yesButton(KStandardGuiItem::yes());
+        yesButton.setText(i18n("Disable"));
+        KGuiItem noButton(KStandardGuiItem::no());
+        noButton.setText(i18n("Keep Enabled"));
+        if (KMessageBox::questionYesNo(this, i18n("Are you sure you want to disable this introduction page?"), i18n("Disable Introduction Page"), yesButton, noButton) == KMessageBox::Yes) {
+            KConfigGroup conf(Settings::self()->config(), "General");
+            conf.writeEntry("Disable Introduction", "true");
+            conf.sync();
+        }
+        return;
+    }
+
+    qDebug()<<" url"<<url;
     mCurrentUrl = url;
     OpenUrlRequest req(mCurrentUrl);
     req.setOptions(OpenUrlRequest::NewTab);
