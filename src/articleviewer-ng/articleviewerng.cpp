@@ -28,6 +28,7 @@
 #include <MessageViewer/WebViewAccessKey>
 #include <MessageViewer/WebPage>
 #include <QWebSettings>
+#include <QDesktopServices>
 
 #include <QMenu>
 #include <QWebFrame>
@@ -218,6 +219,9 @@ void ArticleViewerNg::slotLinkClicked(const QUrl &url)
             Settings::self()->setDisableIntroduction(true);
             Settings::self()->save();
         }
+        return;
+    } else if (url.scheme() == QLatin1String("mailto")) {
+        QDesktopServices::openUrl(url);
         return;
     }
 
