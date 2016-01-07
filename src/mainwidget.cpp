@@ -87,7 +87,7 @@
 
 using namespace Akregator;
 
-Akregator::MainWidget::~MainWidget()
+MainWidget::~MainWidget()
 {
     // if m_shuttingDown is false, slotOnShutdown was not called. That
     // means that not the whole app is shutdown, only the part. So it
@@ -97,7 +97,7 @@ Akregator::MainWidget::~MainWidget()
     }
 }
 
-Akregator::MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionManager, const char *name)
+MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionManager, const char *name)
     : QWidget(parent),
       m_feedList(),
       m_viewMode(NormalView),
@@ -300,7 +300,7 @@ Akregator::MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl
     }
 }
 
-void Akregator::MainWidget::slotOnShutdown()
+void MainWidget::slotOnShutdown()
 {
     m_shuttingDown = true;
 
@@ -325,7 +325,7 @@ void Akregator::MainWidget::slotOnShutdown()
     Settings::self()->save();
 }
 
-void Akregator::MainWidget::saveSettings()
+void MainWidget::saveSettings()
 {
     const QList<int> spl1 = m_horizontalSplitter->sizes();
     if (std::count(spl1.begin(), spl1.end(), 0) == 0) {
@@ -339,7 +339,7 @@ void Akregator::MainWidget::saveSettings()
     Settings::self()->save();
 }
 
-void Akregator::MainWidget::slotRequestNewFrame(int &frameId)
+void MainWidget::slotRequestNewFrame(int &frameId)
 {
     WebViewFrame *frame = new WebViewFrame(m_actionManager->actionCollection(), m_tabWidget);
     connect(m_tabWidget, &TabWidget::signalZoomChangedInFrame, frame, &WebViewFrame::slotZoomChangeInFrame);
@@ -350,7 +350,7 @@ void Akregator::MainWidget::slotRequestNewFrame(int &frameId)
     frameId = frame->id();
 }
 
-void Akregator::MainWidget::sendArticle(bool attach)
+void MainWidget::sendArticle(bool attach)
 {
     QByteArray text;
     QString title;
@@ -393,7 +393,7 @@ void MainWidget::importFeedList(const QDomDocument &doc)
     cmd->start();
 }
 
-void Akregator::MainWidget::setFeedList(const QSharedPointer<FeedList> &list)
+void MainWidget::setFeedList(const QSharedPointer<FeedList> &list)
 {
     if (list == m_feedList) {
         return;
@@ -420,7 +420,7 @@ void Akregator::MainWidget::setFeedList(const QSharedPointer<FeedList> &list)
     slotDeleteExpiredArticles();
 }
 
-void Akregator::MainWidget::deleteExpiredArticles(const QSharedPointer<FeedList> &list)
+void MainWidget::deleteExpiredArticles(const QSharedPointer<FeedList> &list)
 {
     if (!list) {
         return;
@@ -432,12 +432,12 @@ void Akregator::MainWidget::deleteExpiredArticles(const QSharedPointer<FeedList>
     cmd->start();
 }
 
-void Akregator::MainWidget::slotDeleteExpiredArticles()
+void MainWidget::slotDeleteExpiredArticles()
 {
     deleteExpiredArticles(m_feedList);
 }
 
-QDomDocument Akregator::MainWidget::feedListToOPML()
+QDomDocument MainWidget::feedListToOPML()
 {
     QDomDocument dom;
     if (m_feedList) {
@@ -446,7 +446,7 @@ QDomDocument Akregator::MainWidget::feedListToOPML()
     return dom;
 }
 
-void Akregator::MainWidget::addFeedToGroup(const QString &url, const QString &groupName)
+void MainWidget::addFeedToGroup(const QString &url, const QString &groupName)
 {
     // Locate the group.
     QList<TreeNode *> namedGroups = m_feedList->findByTitle(groupName);
@@ -468,7 +468,7 @@ void Akregator::MainWidget::addFeedToGroup(const QString &url, const QString &gr
     addFeed(url, 0, group, true);
 }
 
-void Akregator::MainWidget::slotNormalView()
+void MainWidget::slotNormalView()
 {
     if (m_viewMode == NormalView) {
         return;
@@ -492,7 +492,7 @@ void Akregator::MainWidget::slotNormalView()
     Settings::setViewMode(m_viewMode);
 }
 
-void Akregator::MainWidget::slotWidescreenView()
+void MainWidget::slotWidescreenView()
 {
     if (m_viewMode == WidescreenView) {
         return;
@@ -516,7 +516,7 @@ void Akregator::MainWidget::slotWidescreenView()
     Settings::setViewMode(m_viewMode);
 }
 
-void Akregator::MainWidget::slotCombinedView()
+void MainWidget::slotCombinedView()
 {
     if (m_viewMode == CombinedView) {
         return;
@@ -529,7 +529,7 @@ void Akregator::MainWidget::slotCombinedView()
     Settings::setViewMode(m_viewMode);
 }
 
-void Akregator::MainWidget::slotMoveCurrentNodeUp()
+void MainWidget::slotMoveCurrentNodeUp()
 {
     TreeNode *current = m_selectionController->selectedSubscription();
     if (!current) {
@@ -547,7 +547,7 @@ void Akregator::MainWidget::slotMoveCurrentNodeUp()
     m_feedListView->ensureNodeVisible(current);
 }
 
-void Akregator::MainWidget::slotMoveCurrentNodeDown()
+void MainWidget::slotMoveCurrentNodeDown()
 {
     TreeNode *current = m_selectionController->selectedSubscription();
     if (!current) {
@@ -565,7 +565,7 @@ void Akregator::MainWidget::slotMoveCurrentNodeDown()
     m_feedListView->ensureNodeVisible(current);
 }
 
-void Akregator::MainWidget::slotMoveCurrentNodeLeft()
+void MainWidget::slotMoveCurrentNodeLeft()
 {
     TreeNode *current = m_selectionController->selectedSubscription();
     if (!current || !current->parent() || !current->parent()->parent()) {
@@ -580,7 +580,7 @@ void Akregator::MainWidget::slotMoveCurrentNodeLeft()
     m_feedListView->ensureNodeVisible(current);
 }
 
-void Akregator::MainWidget::slotMoveCurrentNodeRight()
+void MainWidget::slotMoveCurrentNodeRight()
 {
     TreeNode *current = m_selectionController->selectedSubscription();
     if (!current || !current->parent()) {
@@ -596,7 +596,7 @@ void Akregator::MainWidget::slotMoveCurrentNodeRight()
     }
 }
 
-void Akregator::MainWidget::slotNodeSelected(TreeNode *node)
+void MainWidget::slotNodeSelected(TreeNode *node)
 {
     m_markReadTimer->stop();
 
@@ -629,7 +629,7 @@ void Akregator::MainWidget::slotNodeSelected(TreeNode *node)
     m_actionManager->slotNodeSelected(node);
 }
 
-void Akregator::MainWidget::slotFeedAdd()
+void MainWidget::slotFeedAdd()
 {
     Folder *group = 0;
     if (!m_selectionController->selectedSubscription()) {
@@ -648,7 +648,7 @@ void Akregator::MainWidget::slotFeedAdd()
     addFeed(QString(), lastChild, group, false);
 }
 
-void Akregator::MainWidget::addFeed(const QString &url, TreeNode *after, Folder *parent, bool autoExec)
+void MainWidget::addFeed(const QString &url, TreeNode *after, Folder *parent, bool autoExec)
 {
     CreateFeedCommand *cmd(new CreateFeedCommand(this));
     cmd->setParentWidget(this);
@@ -660,7 +660,7 @@ void Akregator::MainWidget::addFeed(const QString &url, TreeNode *after, Folder 
     cmd->start();
 }
 
-void Akregator::MainWidget::slotFeedAddGroup()
+void MainWidget::slotFeedAddGroup()
 {
     CreateFolderCommand *cmd = new CreateFolderCommand(this);
     cmd->setParentWidget(this);
@@ -670,7 +670,7 @@ void Akregator::MainWidget::slotFeedAddGroup()
     cmd->start();
 }
 
-void Akregator::MainWidget::slotFeedRemove()
+void MainWidget::slotFeedRemove()
 {
     TreeNode *selectedNode = m_selectionController->selectedSubscription();
 
@@ -685,7 +685,7 @@ void Akregator::MainWidget::slotFeedRemove()
     cmd->start();
 }
 
-void Akregator::MainWidget::slotFeedModify()
+void MainWidget::slotFeedModify()
 {
     TreeNode *const node = m_selectionController->selectedSubscription();
     if (!node) {
@@ -698,7 +698,7 @@ void Akregator::MainWidget::slotFeedModify()
     cmd->start();
 }
 
-void Akregator::MainWidget::slotNextUnreadArticle()
+void MainWidget::slotNextUnreadArticle()
 {
     ensureArticleTabVisible();
     if (m_viewMode == CombinedView) {
@@ -713,7 +713,7 @@ void Akregator::MainWidget::slotNextUnreadArticle()
     }
 }
 
-void Akregator::MainWidget::slotPrevUnreadArticle()
+void MainWidget::slotPrevUnreadArticle()
 {
     ensureArticleTabVisible();
     if (m_viewMode == CombinedView) {
@@ -728,14 +728,14 @@ void Akregator::MainWidget::slotPrevUnreadArticle()
     }
 }
 
-void Akregator::MainWidget::slotMarkAllFeedsRead()
+void MainWidget::slotMarkAllFeedsRead()
 {
     KJob *job = m_feedList->createMarkAsReadJob();
     connect(job, &KJob::finished, m_selectionController, &AbstractSelectionController::forceFilterUpdate);
     job->start();
 }
 
-void Akregator::MainWidget::slotMarkAllRead()
+void MainWidget::slotMarkAllRead()
 {
     if (!m_selectionController->selectedSubscription()) {
         return;
@@ -745,12 +745,12 @@ void Akregator::MainWidget::slotMarkAllRead()
     job->start();
 }
 
-void Akregator::MainWidget::slotSetTotalUnread()
+void MainWidget::slotSetTotalUnread()
 {
     Q_EMIT signalUnreadCountChanged(m_feedList ? m_feedList->unread() : 0);
 }
 
-void Akregator::MainWidget::slotDoIntervalFetches()
+void MainWidget::slotDoIntervalFetches()
 {
     if (!m_feedList) {
         return;
@@ -766,7 +766,7 @@ void Akregator::MainWidget::slotDoIntervalFetches()
     m_feedList->addToFetchQueue(Kernel::self()->fetchQueue(), true);
 }
 
-void Akregator::MainWidget::slotFetchCurrentFeed()
+void MainWidget::slotFetchCurrentFeed()
 {
     if (!m_selectionController->selectedSubscription()) {
         return;
@@ -778,7 +778,7 @@ void Akregator::MainWidget::slotFetchCurrentFeed()
     }
 }
 
-void Akregator::MainWidget::slotFetchAllFeeds()
+void MainWidget::slotFetchAllFeeds()
 {
     if (m_feedList && isNetworkAvailable()) {
         m_feedList->addToFetchQueue(Kernel::self()->fetchQueue());
@@ -787,21 +787,21 @@ void Akregator::MainWidget::slotFetchAllFeeds()
     }
 }
 
-void Akregator::MainWidget::slotFetchingStarted()
+void MainWidget::slotFetchingStarted()
 {
     m_mainFrame->slotSetState(Frame::Started);
     m_actionManager->action(QStringLiteral("feed_stop"))->setEnabled(true);
     m_mainFrame->slotSetStatusText(i18n("Fetching Feeds..."));
 }
 
-void Akregator::MainWidget::slotFetchingStopped()
+void MainWidget::slotFetchingStopped()
 {
     m_mainFrame->slotSetState(Frame::Completed);
     m_actionManager->action(QStringLiteral("feed_stop"))->setEnabled(false);
     m_mainFrame->slotSetStatusText(QString());
 }
 
-void Akregator::MainWidget::slotArticleSelected(const Akregator::Article &article)
+void MainWidget::slotArticleSelected(const Akregator::Article &article)
 {
     if (m_viewMode == CombinedView) {
         return;
@@ -843,7 +843,7 @@ void Akregator::MainWidget::slotArticleSelected(const Akregator::Article &articl
     }
 }
 
-void Akregator::MainWidget::slotMouseButtonPressed(int button, const QUrl &url)
+void MainWidget::slotMouseButtonPressed(int button, const QUrl &url)
 {
     if (button != Qt::MidButton) {
         return;
@@ -871,7 +871,7 @@ void Akregator::MainWidget::slotMouseButtonPressed(int button, const QUrl &url)
     Kernel::self()->frameManager()->slotOpenUrlRequest(req);
 }
 
-void Akregator::MainWidget::slotOpenHomepage()
+void MainWidget::slotOpenHomepage()
 {
     Feed *feed = dynamic_cast<Feed *>(m_selectionController->selectedSubscription());
 
@@ -888,7 +888,7 @@ void Akregator::MainWidget::slotOpenHomepage()
     }
 }
 
-void Akregator::MainWidget::slotOpenSelectedArticlesInBrowser()
+void MainWidget::slotOpenSelectedArticlesInBrowser()
 {
     const QVector<Article> articles = m_selectionController->selectedArticles();
 
@@ -897,7 +897,7 @@ void Akregator::MainWidget::slotOpenSelectedArticlesInBrowser()
     }
 }
 
-void Akregator::MainWidget::slotOpenArticleInBrowser(const Akregator::Article &article)
+void MainWidget::slotOpenArticleInBrowser(const Akregator::Article &article)
 {
     if (!article.isNull() && article.link().isValid()) {
         OpenUrlRequest req(article.link());
@@ -906,7 +906,7 @@ void Akregator::MainWidget::slotOpenArticleInBrowser(const Akregator::Article &a
     }
 }
 
-void Akregator::MainWidget::openSelectedArticles(bool openInBackground)
+void MainWidget::openSelectedArticles(bool openInBackground)
 {
     const QVector<Article> articles = m_selectionController->selectedArticles();
 
@@ -928,7 +928,7 @@ void Akregator::MainWidget::openSelectedArticles(bool openInBackground)
 
 }
 
-void Akregator::MainWidget::currentArticleInfo(QString &link, QString &title)
+void MainWidget::currentArticleInfo(QString &link, QString &title)
 {
     const Article article =  m_selectionController->currentArticle();
 
@@ -941,7 +941,7 @@ void Akregator::MainWidget::currentArticleInfo(QString &link, QString &title)
     }
 }
 
-void Akregator::MainWidget::slotCopyLinkAddress()
+void MainWidget::slotCopyLinkAddress()
 {
     const Article article =  m_selectionController->currentArticle();
 
@@ -959,7 +959,7 @@ void Akregator::MainWidget::slotCopyLinkAddress()
     }
 }
 
-void Akregator::MainWidget::slotToggleShowQuickFilter()
+void MainWidget::slotToggleShowQuickFilter()
 {
     if (Settings::showQuickFilter()) {
         Settings::setShowQuickFilter(false);
@@ -974,7 +974,7 @@ void Akregator::MainWidget::slotToggleShowQuickFilter()
 
 }
 
-void Akregator::MainWidget::slotArticleDelete()
+void MainWidget::slotArticleDelete()
 {
 
     if (m_viewMode == CombinedView) {
@@ -1025,13 +1025,13 @@ void Akregator::MainWidget::slotArticleDelete()
     }
 }
 
-void Akregator::MainWidget::slotFramesChanged()
+void MainWidget::slotFramesChanged()
 {
     // We need to wait till the frame is fully loaded
     QMetaObject::invokeMethod(m_part, "slotAutoSave", Qt::QueuedConnection);
 }
 
-void Akregator::MainWidget::slotArticleToggleKeepFlag(bool)
+void MainWidget::slotArticleToggleKeepFlag(bool)
 {
     const QVector<Article> articles = m_selectionController->selectedArticles();
 
@@ -1076,12 +1076,12 @@ void setSelectedArticleStatus(const Akregator::AbstractSelectionController *cont
 
 }
 
-void Akregator::MainWidget::slotSetSelectedArticleRead()
+void MainWidget::slotSetSelectedArticleRead()
 {
     ::setSelectedArticleStatus(m_selectionController, Akregator::Read);
 }
 
-QVector<Akregator::Article> Akregator::MainWidget::speakSelectedArticles()
+QVector<Akregator::Article> MainWidget::speakSelectedArticles()
 {
     QVector<Akregator::Article> lst;
     if (Kernel::self()->frameManager()->currentFrame() == m_mainFrame) {
@@ -1098,17 +1098,17 @@ QVector<Akregator::Article> Akregator::MainWidget::speakSelectedArticles()
     return lst;
 }
 
-void Akregator::MainWidget::slotSetSelectedArticleUnread()
+void MainWidget::slotSetSelectedArticleUnread()
 {
     ::setSelectedArticleStatus(m_selectionController, Akregator::Unread);
 }
 
-void Akregator::MainWidget::slotSetSelectedArticleNew()
+void MainWidget::slotSetSelectedArticleNew()
 {
     ::setSelectedArticleStatus(m_selectionController, Akregator::New);
 }
 
-void Akregator::MainWidget::slotSetCurrentArticleReadDelayed()
+void MainWidget::slotSetCurrentArticleReadDelayed()
 {
     const Article article =  m_selectionController->currentArticle();
 
@@ -1122,12 +1122,12 @@ void Akregator::MainWidget::slotSetCurrentArticleReadDelayed()
     job->start();
 }
 
-void Akregator::MainWidget::slotMouseOverInfo(const KFileItem &kifi)
+void MainWidget::slotMouseOverInfo(const KFileItem &kifi)
 {
     m_mainFrame->slotSetStatusText(kifi.isNull() ? QString() : kifi.url().toDisplayString());
 }
 
-void Akregator::MainWidget::readProperties(const KConfigGroup &config)
+void MainWidget::readProperties(const KConfigGroup &config)
 {
     if (!Settings::resetQuickFilterOnNodeChange()) {
         // read filter settings
@@ -1149,7 +1149,7 @@ void Akregator::MainWidget::readProperties(const KConfigGroup &config)
     }
 }
 
-void Akregator::MainWidget::saveProperties(KConfigGroup &config)
+void MainWidget::saveProperties(KConfigGroup &config)
 {
     // save filter settings
     config.writeEntry("searchLine", m_searchBar->text());
@@ -1158,7 +1158,7 @@ void Akregator::MainWidget::saveProperties(KConfigGroup &config)
     Kernel::self()->frameManager()->saveProperties(config);
 }
 
-void Akregator::MainWidget::ensureArticleTabVisible()
+void MainWidget::ensureArticleTabVisible()
 {
     m_tabWidget->setCurrentWidget(m_mainFrame);
 }
@@ -1183,12 +1183,12 @@ void MainWidget::slotNetworkStatusChanged(bool status)
     }
 }
 
-void Akregator::MainWidget::slotOpenSelectedArticles()
+void MainWidget::slotOpenSelectedArticles()
 {
     openSelectedArticles(false);
 }
 
-void Akregator::MainWidget::slotOpenSelectedArticlesInBackground()
+void MainWidget::slotOpenSelectedArticlesInBackground()
 {
     openSelectedArticles(true);
 }
