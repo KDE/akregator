@@ -1,3 +1,7 @@
+include_directories(
+  ${CMAKE_CURRENT_SOURCE_DIR}/command/
+  ${CMAKE_CURRENT_SOURCE_DIR}/formatter/
+)
 
 
 add_subdirectory(about)
@@ -17,147 +21,155 @@ ecm_add_app_icon(akregator_SRCS ICONS ${ICONS_AKREGATOR_SRCS})
 add_executable(akregator ${akregator_SRCS})
 
 target_link_libraries(akregator
-  KF5::Notifications
-  KF5::KontactInterface
-  KF5::Libkdepim
-  akregatorprivate
-  akregatorinterfaces
-  KF5::PimCommon
-)
+    KF5::Notifications
+    KF5::KontactInterface
+    KF5::Libkdepim
+    akregatorprivate
+    akregatorinterfaces
+    KF5::PimCommon
+    )
 
 install(TARGETS akregator ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 
 ########### next target ###############
 
 set(akregator_articleviewer_ng_SRCS
-  articleviewer-ng/articleviewerng.cpp
-  articleviewer-ng/articleviewerwidgetng.cpp
-  articleviewer-ng/articlehtmlwriter.cpp
-  webviewer.cpp
-)
+    articleviewer-ng/articleviewerng.cpp
+    articleviewer-ng/articleviewerwidgetng.cpp
+    articleviewer-ng/articlehtmlwriter.cpp
+    webviewer.cpp
+    )
 
 set(akregatorprivate_LIB_SRCS
-  akregratormigrateapplication.cpp
-  ${akregator_articleviewer_ng_SRCS}
-  ${akregator_common_SRCS} 
-  aboutdata.cpp
-  trayicon.cpp
-  article.cpp
-  feed.cpp
-  feedlist.cpp
-  treenode.cpp
-  treenodevisitor.cpp
-  utils.cpp
-  feediconmanager.cpp
-  notificationmanager.cpp
-  articlejobs.cpp
-  folder.cpp
-  kernel.cpp
-  subscriptionlistjobs.cpp
-  fetchqueue.cpp
-  frame.cpp
-  mainframe.cpp
-  framemanager.cpp
-  openurlrequest.cpp
-  actionmanager.cpp
-  actions.cpp
-  webviewframe.cpp
-)
+    akregratormigrateapplication.cpp
+    ${akregator_articleviewer_ng_SRCS}
+    ${akregator_common_SRCS}
+    aboutdata.cpp
+    trayicon.cpp
+    article.cpp
+    feed.cpp
+    feedlist.cpp
+    treenode.cpp
+    treenodevisitor.cpp
+    utils.cpp
+    feediconmanager.cpp
+    notificationmanager.cpp
+    articlejobs.cpp
+    folder.cpp
+    kernel.cpp
+    subscriptionlistjobs.cpp
+    fetchqueue.cpp
+    frame.cpp
+    mainframe.cpp
+    framemanager.cpp
+    openurlrequest.cpp
+    actionmanager.cpp
+    actions.cpp
+    webviewframe.cpp
+    )
 
 add_library(akregatorprivate ${akregatorprivate_LIB_SRCS})
 generate_export_header(akregatorprivate BASE_NAME akregator)
 
 target_link_libraries(akregatorprivate
-PRIVATE
-  KF5::Parts
-  KF5::Notifications
-  KF5::Libkdepim
-  KF5::Syndication
-  akregatorinterfaces
-  KF5::PimCommon
-  KF5::WindowSystem
-  KF5::IconThemes
-  KF5::PimTextEdit
-  KF5::GrantleeTheme
-  KF5::WebKit 
-  KF5::MessageViewer
-)
+    PRIVATE
+    KF5::Parts
+    KF5::Notifications
+    KF5::Libkdepim
+    KF5::Syndication
+    akregatorinterfaces
+    KF5::PimCommon
+    KF5::WindowSystem
+    KF5::IconThemes
+    KF5::PimTextEdit
+    KF5::GrantleeTheme
+    KF5::WebKit
+    KF5::MessageViewer
+    )
 
 target_include_directories(akregatorprivate PUBLIC "$<BUILD_INTERFACE:${akregator_SOURCE_DIR}/src;${akregator_BINARY_DIR}/src>")
 
 set_target_properties(akregatorprivate
-  PROPERTIES VERSION ${KDEPIM_LIB_VERSION}
-  SOVERSION ${KDEPIM_LIB_SOVERSION}
-)
+    PROPERTIES VERSION ${KDEPIM_LIB_VERSION}
+    SOVERSION ${KDEPIM_LIB_SOVERSION}
+    )
 install(TARGETS akregatorprivate ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} LIBRARY NAMELINK_SKIP)
 
 ########### next target ###############
 
 set(akregator_utils_SRCS
-  utils/filtercolumnsproxymodel.cpp
-)
+    utils/filtercolumnsproxymodel.cpp
+    )
 
+set(akregatorpart_command_SRCS
+    command/deletesubscriptioncommand.cpp
+    command/createfeedcommand.cpp
+    command/createfoldercommand.cpp
+    command/expireitemscommand.cpp
+    command/loadfeedlistcommand.cpp
+    command/editsubscriptioncommand.cpp
+    command/importfeedlistcommand.cpp
+    )
 
+set(akregatorpart_formatter_SRCS
+    formatter/articleformatter.cpp
+    formatter/defaultnormalviewformatter.cpp
+    formatter/defaultcombinedviewformatter.cpp
+    )
 
 set(akregatorpart_PART_SRCS
-     ${akregator_articleviewer_ng_SRCS}
-  ${akregator_utils_SRCS}
-  ${akregator_common_SRCS}
-  deletesubscriptioncommand.cpp
-  abstractselectioncontroller.cpp
-  articlematcher.cpp
-  articlemodel.cpp
-  pluginmanager.cpp
-  selectioncontroller.cpp
-  subscriptionlistmodel.cpp
-  searchbar.cpp
-  articlelistview.cpp
-  actionmanagerimpl.cpp
-  createfeedcommand.cpp
-  createfoldercommand.cpp
-  expireitemscommand.cpp
-  articleviewerwidget.cpp
-  articleformatter.cpp
-  addfeeddialog.cpp
-  loadfeedlistcommand.cpp
-  editsubscriptioncommand.cpp
-  importfeedlistcommand.cpp
-  feedpropertiesdialog.cpp
-  tabwidget.cpp
-  progressmanager.cpp
-  akregator_part.cpp
-  mainwidget.cpp
-  subscriptionlistview.cpp
-  subscriptionlistdelegate.cpp
-  dummystorage/storagedummyimpl.cpp
-  dummystorage/storagefactorydummyimpl.cpp
-  dummystorage/feedstoragedummyimpl.cpp
-)
+    ${akregatorpart_command_SRCS}
+    ${akregator_articleviewer_ng_SRCS}
+    ${akregator_utils_SRCS}
+    ${akregator_common_SRCS}
+    ${akregatorpart_formatter_SRCS}
+    abstractselectioncontroller.cpp
+    articlematcher.cpp
+    articlemodel.cpp
+    pluginmanager.cpp
+    selectioncontroller.cpp
+    subscriptionlistmodel.cpp
+    searchbar.cpp
+    articlelistview.cpp
+    actionmanagerimpl.cpp
+    articleviewerwidget.cpp
+    addfeeddialog.cpp
+    feedpropertiesdialog.cpp
+    tabwidget.cpp
+    progressmanager.cpp
+    akregator_part.cpp
+    mainwidget.cpp
+    subscriptionlistview.cpp
+    subscriptionlistdelegate.cpp
+    dummystorage/storagedummyimpl.cpp
+    dummystorage/storagefactorydummyimpl.cpp
+    dummystorage/feedstoragedummyimpl.cpp
+    )
 
 qt5_add_dbus_adaptor(akregatorpart_PART_SRCS org.kde.akregator.part.xml akregator_part.h Akregator::Part)
 
 ki18n_wrap_ui(akregatorpart_PART_SRCS
-  ui/addfeedwidgetbase.ui
-  ui/feedpropertieswidgetbase.ui
-)
+    ui/addfeedwidgetbase.ui
+    ui/feedpropertieswidgetbase.ui
+    )
 
 add_library(akregatorpart MODULE ${akregatorpart_PART_SRCS})
 generate_export_header(akregatorpart BASE_NAME akregatorpart)
 target_link_libraries(akregatorpart
-  KF5::KDELibs4Support
-  akregatorinterfaces
-  akregatorprivate
-  KF5::KCMUtils
-  KF5::NotifyConfig
-  KF5::Libkdepim
-  KF5::Syndication
-  KF5::PimCommon
-  KF5::PimTextEdit
-  KF5::GrantleeTheme
-  KF5::WebKit 
-  Qt5::WebKitWidgets
-  KF5::MessageViewer
-)
+    KF5::KDELibs4Support
+    akregatorinterfaces
+    akregatorprivate
+    KF5::KCMUtils
+    KF5::NotifyConfig
+    KF5::Libkdepim
+    KF5::Syndication
+    KF5::PimCommon
+    KF5::PimTextEdit
+    KF5::GrantleeTheme
+    KF5::WebKit
+    Qt5::WebKitWidgets
+    KF5::MessageViewer
+    )
 
 install(TARGETS akregatorpart DESTINATION ${KDE_INSTALL_PLUGINDIR})
 
@@ -173,6 +185,6 @@ install(FILES org.kde.akregator.part.xml DESTINATION ${KDE_INSTALL_DBUSINTERFACE
 install(FILES akregator.notifyrc DESTINATION ${KDE_INSTALL_KNOTIFY5RCDIR} )
 
 if(BUILD_TESTING)
-  #add_subdirectory(articleviewer-ng/tests)
-  #add_subdirectory(articleviewer-ng/autotests)
+    #add_subdirectory(articleviewer-ng/tests)
+    #add_subdirectory(articleviewer-ng/autotests)
 endif()

@@ -77,10 +77,6 @@ public:
     QSize sizeHint() const Q_DECL_OVERRIDE;
 
 public Q_SLOTS:
-
-    void slotZoomIn(int);
-    void slotZoomOut(int);
-    void slotSetZoomFactor(int percent);
     void slotPrint();
 
     /** Set filters which will be used if the viewer is in combined view mode

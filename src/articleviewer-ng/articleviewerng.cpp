@@ -22,6 +22,7 @@
 #include "../actionmanager.h"
 #include "akregatorconfig.h"
 #include <KActionCollection>
+#include <KAboutData>
 #include <KLocalizedString>
 #include <MessageViewer/WebViewAccessKey>
 #include <MessageViewer/WebPage>
@@ -84,7 +85,12 @@ void ArticleViewerNg::slotLoadStarted()
 
 QVariantHash ArticleViewerNg::introductionData()
 {
-    return QVariantHash();
+    QVariantHash data;
+    data[QStringLiteral("icon")] = QStringLiteral("akregator");
+    data[QStringLiteral("name")] = i18n("Akregator");
+    data[QStringLiteral("subtitle")] = i18n("Akregator is a KDE news feed reader.");
+    data[QStringLiteral("version")] = KAboutData::applicationData().version();
+    return data;
 }
 
 void ArticleViewerNg::showAboutPage()
@@ -167,7 +173,7 @@ void ArticleViewerNg::setZoomOut()
 
 void ArticleViewerNg::keyReleaseEvent(QKeyEvent *e)
 {
-    if (/*MessageViewer::MessageViewerSettings::self()->accessKeyEnabled()*/1) {
+    if (Settings::self()->accessKeyEnabled()) {
         mWebViewAccessKey->keyReleaseEvent(e);
     }
     KWebView::keyReleaseEvent(e);
@@ -176,7 +182,7 @@ void ArticleViewerNg::keyReleaseEvent(QKeyEvent *e)
 void ArticleViewerNg::keyPressEvent(QKeyEvent *e)
 {
     if (e && hasFocus()) {
-        if (/*MessageViewer::MessageViewerSettings::self()->accessKeyEnabled()*/1) {
+        if (Settings::self()->accessKeyEnabled()) {
             mWebViewAccessKey->keyPressEvent(e);
         }
     }
@@ -185,7 +191,7 @@ void ArticleViewerNg::keyPressEvent(QKeyEvent *e)
 
 void ArticleViewerNg::wheelEvent(QWheelEvent *e)
 {
-    if (/*MessageViewer::MessageViewerSettings::self()->accessKeyEnabled()*/1) {
+    if (Settings::self()->accessKeyEnabled()) {
         mWebViewAccessKey->wheelEvent(e);
     }
     KWebView::wheelEvent(e);
@@ -193,7 +199,7 @@ void ArticleViewerNg::wheelEvent(QWheelEvent *e)
 
 void ArticleViewerNg::resizeEvent(QResizeEvent *e)
 {
-    if (/*MessageViewer::MessageViewerSettings::self()->accessKeyEnabled()*/1) {
+    if (Settings::self()->accessKeyEnabled()) {
         mWebViewAccessKey->resizeEvent(e);
     }
     KWebView::resizeEvent(e);

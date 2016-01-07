@@ -64,8 +64,10 @@
 #include <QGridLayout>
 #include <QKeyEvent>
 #include <QApplication>
+#include <defaultnormalviewformatter.h>
 
 #include <QStandardPaths>
+#include <defaultcombinedviewformatter.h>
 
 using namespace Akregator;
 using namespace Akregator::Filters;
@@ -283,49 +285,6 @@ void ArticleViewerWidget::slotSaveLinkAs()
     }
     //TODO
     //KParts::BrowserRun::simpleSave(tmp, tmp.fileName());
-}
-
-void ArticleViewerWidget::slotZoomIn(int id)
-{
-    #if 0 //TODO
-    if (id != 0) {
-        return;
-    }
-
-    int zf = m_part->fontScaleFactor();
-    if (zf < 100) {
-        zf = zf - (zf % 20) + 20;
-        m_part->setFontScaleFactor(zf);
-    } else {
-        zf = zf - (zf % 50) + 50;
-        m_part->setFontScaleFactor(zf < 300 ? zf : 300);
-    }
-#endif
-}
-
-void ArticleViewerWidget::slotZoomOut(int id)
-{
-    #if 0 //TODO
-    if (id != 0) {
-        return;
-    }
-
-    int zf = m_part->fontScaleFactor();
-    if (zf <= 100) {
-        zf = zf - (zf % 20) - 20;
-        m_part->setFontScaleFactor(zf > 20 ? zf : 20);
-    } else {
-        zf = zf - (zf % 50) - 50;
-        m_part->setFontScaleFactor(zf);
-    }
-#endif
-}
-
-void ArticleViewerWidget::slotSetZoomFactor(int percent)
-{
-    #if 0 //TODO
-    m_part->setFontScaleFactor(percent);
-#endif
 }
 
 // some code taken from KDevelop (lib/widgets/kdevhtmlpart.cpp)
@@ -623,51 +582,6 @@ QSize ArticleViewerWidget::sizeHint() const
 void ArticleViewerWidget::displayAboutPage()
 {
     m_articleViewerWidgetNg->articleViewerNg()->showAboutPage();
-#if 0
-    QString location = QStandardPaths::locate(QStandardPaths::GenericDataLocation, QStringLiteral("akregator/about/main.html"));
-
-    m_part->begin(QUrl::fromLocalFile(location));
-    QString info =
-        i18nc("%1: Akregator version; %2: homepage URL; "
-              "--- end of comment ---",
-              "<h2 style='margin-top: 0px;'>Welcome to Akregator %1</h2>"
-              "<p>Akregator is a KDE news feed reader. "
-              "Feed readers provide a convenient way to browse different kinds of "
-              "content, including news, blogs, and other content from online sites. "
-              "Instead of checking all your favorite web sites manually for updates, "
-              "Akregator collects the content for you.</p>"
-              "<p>For more information about using Akregator, check the "
-              "<a href=\"%2\">Akregator website</a>. If you do not want to see this page "
-              "anymore, <a href=\"config:/disable_introduction\">click here</a>.</p>"
-              "<p>We hope that you will enjoy Akregator.</p>\n"
-              "<p>Thank you,</p>\n"
-              "<p style='margin-bottom: 0px'>&nbsp; &nbsp; The Akregator Team</p>\n",
-              QLatin1String(KDEPIM_VERSION),
-              QStringLiteral("http://akregator.kde.org/")); // Akregator homepage URL
-
-    QString fontSize = QString::number(pointsToPixel(Settings::mediumFontSize()));
-    QString appTitle = i18n("Akregator");
-    QString catchPhrase; //not enough space for a catch phrase at default window size i18n("Part of the Kontact Suite");
-    QString quickDescription = i18n("A KDE news feed reader.");
-
-    QFile f(location);
-    if (!f.open(QIODevice::ReadOnly)) {
-        qCWarning(AKREGATOR_LOG) << "Cannot load about page: " << f.errorString();
-        m_part->end();
-        return;
-    }
-    QString content = QString::fromLocal8Bit(f.readAll());
-    f.close();
-
-    QString infocss = QStandardPaths::locate(QStandardPaths::GenericDataLocation, QStringLiteral("kf5/infopage/kde_infopage.css"));
-    QString rtl = (QApplication::layoutDirection() == Qt::RightToLeft)
-                  ? QStringLiteral("@import \"%1\";").arg(QStandardPaths::locate(QStandardPaths::GenericDataLocation, QStringLiteral("kf5/infopage/kde_infopage_rtl.css")))
-                  : QString();
-
-    m_part->write(content.arg(infocss, rtl, fontSize, appTitle, catchPhrase, quickDescription, info));
-    m_part->end();
-
-#endif
 }
 
 void ArticleViewerWidget::updateCss()
