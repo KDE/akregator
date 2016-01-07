@@ -15,8 +15,10 @@
 {% block box %}
 
 <div class="center">
-    <h2>{% i18n "Akregator version %1" _(version) %}</h2>
-    <p>{% i18n "Akregator is a KDE news feed reader." %}</p>
+    <p>{% i18n "Feed readers provide a convenient way to browse different kinds of content, including news, blogs, and other content from online sites. nstead of checking all your favorite web sites manually for updates, Akregator collects the content for you." %}</p>
+    <p>{% i18n_var "For more information about using Akregator, check the <a href=http://akregator.kde.org/>Akregator website</a>. If you do not want to see this page anymore, <a href=\"config:/disable_introduction\">click here</a>." as features %} {{ features|safe }}</p>
+    <p>{% i18n "We hope that you will enjoy Akregator." %}</p>
+    <p>{% i18n "Thank you, The Akregator Team" %} </p>
 </div>
 
 {% endblock box %}
