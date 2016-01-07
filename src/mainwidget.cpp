@@ -35,6 +35,7 @@
 #include "webviewframe.h"
 #include "akregatorconfig.h"
 #include "akregator_part.h"
+#include "Libkdepim/BroadcastStatus"
 #include "createfeedcommand.h"
 #include "createfoldercommand.h"
 #include "deletesubscriptioncommand.h"
@@ -230,18 +231,13 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
     m_articleListView->setFocusProxy(m_articleViewer);
     setFocusProxy(m_articleViewer);
 
+    connect(m_articleViewer, &ArticleViewerWidget::showStatusBarMessage, this, &MainWidget::slotShowStatusBarMessage);
     connect(m_articleViewer, SIGNAL(signalOpenUrlRequest(Akregator::OpenUrlRequest&)),
             Kernel::self()->frameManager(), SLOT(slotOpenUrlRequest(Akregator::OpenUrlRequest&)));
-    //TODO Laurent port to new Articleviewerng
-    //connect(m_articleViewer->part()->browserExtension(), &KParts::BrowserExtension::mouseOverInfo,
-    //        this, &MainWidget::slotMouseOverInfo);
     connect(m_part, &Part::signalSettingsChanged,
             m_articleViewer, &ArticleViewerWidget::slotPaletteOrFontChanged);
     connect(m_searchBar, &SearchBar::signalSearch,
             m_articleViewer, &ArticleViewerWidget::setFilters);
-
-    //TODO port to new articlewidgetng m_articleViewer->part()->widget()->setWhatsThis(i18n("Browsing area."));
-
     mainTabLayout->addWidget(m_articleSplitter);
 
     m_mainFrame = new MainFrame(this, m_part, m_mainTab);
@@ -343,6 +339,7 @@ void MainWidget::slotRequestNewFrame(int &frameId)
     WebViewFrame *frame = new WebViewFrame(m_actionManager->actionCollection(), m_tabWidget);
     connect(m_tabWidget, &TabWidget::signalZoomChangedInFrame, frame, &WebViewFrame::slotZoomChangeInFrame);
     connect(m_tabWidget, &TabWidget::signalZoomTextOnlyInFrame, frame, &WebViewFrame::slotZoomTextOnlyInFrame);
+    connect(frame, &WebViewFrame::showStatusBarMessage, this, &MainWidget::slotShowStatusBarMessage);
 
     Kernel::self()->frameManager()->slotAddFrame(frame);
 
@@ -1121,9 +1118,9 @@ void MainWidget::slotSetCurrentArticleReadDelayed()
     job->start();
 }
 
-void MainWidget::slotMouseOverInfo(const KFileItem &kifi)
+void MainWidget::slotShowStatusBarMessage(const QString &msg)
 {
-    m_mainFrame->slotSetStatusText(kifi.isNull() ? QString() : kifi.url().toDisplayString());
+    KPIM::BroadcastStatus::instance()->setStatusMsg(msg);
 }
 
 void MainWidget::readProperties(const KConfigGroup &config)
@@ -1142,6 +1139,7 @@ void MainWidget::readProperties(const KConfigGroup &config)
 
         connect(m_tabWidget, &TabWidget::signalZoomChangedInFrame, frame, &WebViewFrame::slotZoomChangeInFrame);
         connect(m_tabWidget, &TabWidget::signalZoomTextOnlyInFrame, frame, &WebViewFrame::slotZoomTextOnlyInFrame);
+        connect(frame, &WebViewFrame::showStatusBarMessage, this, &MainWidget::slotShowStatusBarMessage);
 
         Kernel::self()->frameManager()->slotAddFrame(frame);
 

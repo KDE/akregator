@@ -65,7 +65,7 @@ ArticleViewerNg::ArticleViewerNg(KActionCollection *ac, QWidget *parent)
     connect(this, &QWebView::loadFinished, this, &ArticleViewerNg::slotLoadFinished);
     connect(page(), &QWebPage::scrollRequested, mWebViewAccessKey, &MessageViewer::WebViewAccessKey::hideAccessKeys);
     page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
-    connect(page(), &QWebPage::linkHovered, this, &ArticleViewerNg::linkHovered);
+    connect(page(), &QWebPage::linkHovered, this, &ArticleViewerNg::slotLinkHovered);
     connect(this, &ArticleViewerNg::linkClicked, this, &ArticleViewerNg::slotLinkClicked);
 }
 
@@ -172,6 +172,12 @@ void ArticleViewerNg::setZoomOut()
         mZoomFactor = 10;
     }
     setZoomFactor(mZoomFactor / 100.0);
+}
+
+void ArticleViewerNg::slotLinkHovered(const QString &link, const QString &title, const QString &textContent)
+{
+    Q_EMIT showStatusBarMessage(link);
+    //TODO
 }
 
 void ArticleViewerNg::keyReleaseEvent(QKeyEvent *e)

@@ -42,6 +42,7 @@ public:
 
     bool canGoForward() const Q_DECL_OVERRIDE;
     bool canGoBack() const Q_DECL_OVERRIDE;
+
 public Q_SLOTS:
     void slotHistoryForward() Q_DECL_OVERRIDE;
     void slotHistoryBack() Q_DECL_OVERRIDE;

@@ -50,7 +50,8 @@ public Q_SLOTS:
 
 Q_SIGNALS:
     void signalOpenUrlRequest(Akregator::OpenUrlRequest &);
-    void linkHovered(const QString &link, const QString &title, const QString &textContent);
+    void showStatusBarMessage(const QString &link);
+
 
 protected:
     void keyReleaseEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
@@ -60,6 +61,7 @@ protected:
     void contextMenuEvent(QContextMenuEvent *event) Q_DECL_OVERRIDE;
 
 private Q_SLOTS:
+    void slotLinkHovered(const QString &link, const QString &title, const QString &textContent);
     void slotLoadStarted();
     void slotLoadFinished();
     void slotLinkClicked(const QUrl &url);

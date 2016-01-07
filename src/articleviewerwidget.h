@@ -102,6 +102,7 @@ Q_SIGNALS:
 
     /** This gets emitted when url gets clicked */
     void signalOpenUrlRequest(Akregator::OpenUrlRequest &);
+    void showStatusBarMessage(const QString &msg);
 
     void selectionChanged();
 

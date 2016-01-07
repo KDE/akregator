@@ -157,6 +157,7 @@ Q_SIGNALS:
     void signalIconChanged(Akregator::Frame *, const QIcon &icon);
 
     void signalOpenUrlRequest(Akregator::OpenUrlRequest &request);
+    void showStatusBarMessage(const QString &msg);
 
     void signalCanGoBackToggled(Akregator::Frame *, bool);
     void signalCanGoForwardToggled(Akregator::Frame *, bool);

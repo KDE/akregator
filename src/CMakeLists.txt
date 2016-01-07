@@ -123,6 +123,8 @@ set(akregatorpart_PART_SRCS
     ${akregator_utils_SRCS}
     ${akregator_common_SRCS}
     ${akregatorpart_formatter_SRCS}
+    urlhandlermanager.cpp
+    urlhandler.cpp
     abstractselectioncontroller.cpp
     articlematcher.cpp
     articlemodel.cpp
@@ -176,13 +178,13 @@ install(TARGETS akregatorpart DESTINATION ${KDE_INSTALL_PLUGINDIR})
 ########### install files ###############
 
 install(PROGRAMS data/org.kde.akregator.desktop DESTINATION ${KDE_INSTALL_APPDIR})
-install(FILES akregator_part.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
+install(FILES data/akregator_part.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
 install(FILES data/akregator.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
-install(FILES akregator_plugin.desktop DESTINATION ${KDE_INSTALL_KSERVICETYPES5DIR})
+install(FILES data/akregator_plugin.desktop DESTINATION ${KDE_INSTALL_KSERVICETYPES5DIR})
 install(FILES data/akregator_shell.rc data/articleviewer.rc data/pageviewer.rc data/akregator_part.rc DESTINATION ${KDE_INSTALL_KXMLGUI5DIR}/akregator)
 install(FILES feed.protocol DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
 install(FILES org.kde.akregator.part.xml DESTINATION ${KDE_INSTALL_DBUSINTERFACEDIR})
-install(FILES akregator.notifyrc DESTINATION ${KDE_INSTALL_KNOTIFY5RCDIR} )
+install(FILES data/akregator.notifyrc DESTINATION ${KDE_INSTALL_KNOTIFY5RCDIR} )
 
 if(BUILD_TESTING)
     #add_subdirectory(articleviewer-ng/tests)

@@ -37,6 +37,7 @@ WebViewFrame::WebViewFrame(KActionCollection *ac, QWidget *parent)
     connect(mArticleViewerWidgetNg->articleViewerNg(), &ArticleViewerNg::signalOpenUrlRequest, this, &WebViewFrame::signalOpenUrlRequest);
     connect(mArticleViewerWidgetNg->articleViewerNg(), &ArticleViewerNg::loadStarted, this, &WebViewFrame::slotLoadStarted);
     connect(mArticleViewerWidgetNg->articleViewerNg(), &ArticleViewerNg::loadFinished, this, &WebViewFrame::slotLoadFinished);
+    connect(mArticleViewerWidgetNg->articleViewerNg(), &ArticleViewerNg::showStatusBarMessage, this, &WebViewFrame::showStatusBarMessage);
     layout->addWidget(mArticleViewerWidgetNg);
 }
 

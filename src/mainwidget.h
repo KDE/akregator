@@ -164,9 +164,6 @@ public Q_SLOTS:
     void slotRequestNewFrame(int &frameId);
 
 
-    /** displays a URL in the status bar when the user moves the mouse over a link */
-    void slotMouseOverInfo(const KFileItem &kifi);
-
     /** adds a new feed to the feed tree */
     void slotFeedAdd();
     /** adds a feed group to the feed tree */
@@ -253,6 +250,9 @@ protected Q_SLOTS:
     void slotFetchingStopped();
 
     void slotFramesChanged();
+
+private Q_SLOTS:
+    void slotShowStatusBarMessage(const QString &msg);
 
 private:
     void deleteExpiredArticles(const QSharedPointer<FeedList> &feedList);

@@ -90,6 +90,7 @@ ArticleViewerWidget::ArticleViewerWidget(KActionCollection *ac, QWidget *parent)
 
     m_articleHtmlWriter = new Akregator::ArticleHtmlWriter(m_articleViewerWidgetNg->articleViewerNg(), this);
     connect(m_articleViewerWidgetNg->articleViewerNg(), &ArticleViewerNg::signalOpenUrlRequest, this, &ArticleViewerWidget::signalOpenUrlRequest);
+    connect(m_articleViewerWidgetNg->articleViewerNg(), &ArticleViewerNg::showStatusBarMessage, this, &ArticleViewerWidget::showStatusBarMessage);
     updateCss();
 #if 0
     layout->addWidget(m_part->widget(), 0, 0);
