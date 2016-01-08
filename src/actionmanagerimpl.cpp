@@ -448,9 +448,6 @@ void ActionManagerImpl::initArticleViewer(ArticleViewerWidget *articleViewer)
 
     action = KStandardAction::copy(articleViewer, SLOT(slotCopy()), coll);
     coll->addAction(QStringLiteral("viewer_copy"), action);
-
-    //connect(d->tabWidget, &TabWidget::signalZoomInFrame, d->articleViewer, &ArticleViewerWidget::slotZoomIn);
-    //connect(d->tabWidget, &TabWidget::signalZoomOutFrame, d->articleViewer, &ArticleViewerWidget::slotZoomOut);
 }
 
 void ActionManagerImpl::initArticleListView(ArticleListView *articleList)
