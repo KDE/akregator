@@ -70,6 +70,7 @@ private Q_SLOTS:
     void slotOpenLinkInBrowser();
 private:
     void paintAboutScreen(const QString &templateName, const QVariantHash &data);
+    QUrl linkOrImageUrlAt(const QPoint &global) const;
     QVariantHash introductionData();
     qreal mZoomFactor;
     QUrl mCurrentUrl;

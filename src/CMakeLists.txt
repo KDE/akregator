@@ -66,6 +66,9 @@ set(akregatorprivate_LIB_SRCS
     actionmanager.cpp
     actions.cpp
     webviewframe.cpp
+    urlhandlermanager.cpp
+    urlhandler.cpp
+
     )
 
 add_library(akregatorprivate ${akregatorprivate_LIB_SRCS})
@@ -123,8 +126,6 @@ set(akregatorpart_PART_SRCS
     ${akregator_utils_SRCS}
     ${akregator_common_SRCS}
     ${akregatorpart_formatter_SRCS}
-    urlhandlermanager.cpp
-    urlhandler.cpp
     abstractselectioncontroller.cpp
     articlematcher.cpp
     articlemodel.cpp

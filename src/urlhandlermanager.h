@@ -21,18 +21,19 @@
 
 #include <QObject>
 #include <QVector>
+#include "akregator_export.h"
 
 namespace Akregator
 {
 class URLHandler;
 class ArticleViewerNg;
-class URLHandlerManager : public QObject
+class AKREGATOR_EXPORT URLHandlerManager : public QObject
 {
     Q_OBJECT
 public:
     ~URLHandlerManager();
 
-    URLHandlerManager *instance();
+    static URLHandlerManager *instance();
     void registerHandler(const URLHandler *handler);
     void unregisterHandler(const URLHandler *handler);
 

@@ -93,7 +93,7 @@ class AkregatorConfigHandler : public URLHandler
 public:
     AkregatorConfigHandler()
         : URLHandler() {}
-    ~AkregatorConfigHandler() {}
+    virtual ~AkregatorConfigHandler() {}
     bool handleClick(const QUrl &, ArticleViewerNg *) const Q_DECL_OVERRIDE
     {
         return false;

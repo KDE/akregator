@@ -61,30 +61,62 @@ void URLHandlerManager::unregisterHandler(const URLHandler *handler)
 
 bool URLHandlerManager::handleClick(const QUrl &url, ArticleViewerNg *w) const
 {
+    HandlerList::const_iterator end(mHandlers.constEnd());
+    for (HandlerList::const_iterator it = mHandlers.constBegin(); it != end; ++it)
+        if ((*it)->handleClick(url, w)) {
+            return true;
+        }
     return false;
 }
 
 bool URLHandlerManager::handleShiftClick(const QUrl &url, ArticleViewerNg *window) const
 {
+    HandlerList::const_iterator end(mHandlers.constEnd());
+    for (HandlerList::const_iterator it = mHandlers.constBegin(); it != end; ++it)
+        if ((*it)->handleShiftClick(url, window)) {
+            return true;
+        }
     return false;
 }
 
 bool URLHandlerManager::handleContextMenuRequest(const QUrl &url, const QPoint &p, ArticleViewerNg *w) const
 {
+    HandlerList::const_iterator end(mHandlers.constEnd());
+    for (HandlerList::const_iterator it = mHandlers.constBegin(); it != end; ++it)
+        if ((*it)->handleContextMenuRequest(url, p, w)) {
+            return true;
+        }
     return false;
 }
 
 bool URLHandlerManager::willHandleDrag(const QUrl &url, ArticleViewerNg *window) const
 {
+    HandlerList::const_iterator end(mHandlers.constEnd());
+    for (HandlerList::const_iterator it = mHandlers.constBegin(); it != end; ++it)
+        if ((*it)->willHandleDrag(url, window)) {
+            return true;
+        }
     return false;
 }
 
 bool URLHandlerManager::handleDrag(const QUrl &url, ArticleViewerNg *window) const
 {
+    HandlerList::const_iterator end(mHandlers.constEnd());
+    for (HandlerList::const_iterator it = mHandlers.constBegin(); it != end; ++it)
+        if ((*it)->handleDrag(url, window)) {
+            return true;
+        }
     return false;
 }
 
 QString URLHandlerManager::statusBarMessage(const QUrl &url, ArticleViewerNg *w) const
 {
+    HandlerList::const_iterator end(mHandlers.constEnd());
+    for (HandlerList::const_iterator it = mHandlers.constBegin(); it != end; ++it) {
+        const QString msg = (*it)->statusBarMessage(url, w);
+        if (!msg.isEmpty()) {
+            return msg;
+        }
+    }
     return {};
 }

@@ -20,6 +20,7 @@
 #include "akregator_debug.h"
 #include "../actions.h"
 #include "../actionmanager.h"
+#include "urlhandlermanager.h"
 #include "akregatorconfig.h"
 #include <KActionCollection>
 #include <KMessageBox>
@@ -176,8 +177,15 @@ void ArticleViewerNg::setZoomOut()
 
 void ArticleViewerNg::slotLinkHovered(const QString &link, const QString &title, const QString &textContent)
 {
-    Q_EMIT showStatusBarMessage(link);
-    //TODO
+    Q_UNUSED(title);
+    Q_UNUSED(textContent);
+    QUrl url(linkOrImageUrlAt(QCursor::pos()));
+    QString msg = URLHandlerManager::instance()->statusBarMessage(url, this);
+    if (msg.isEmpty()) {
+        msg = link;
+    }
+
+    Q_EMIT showStatusBarMessage(msg);
 }
 
 void ArticleViewerNg::keyReleaseEvent(QKeyEvent *e)
@@ -258,4 +266,17 @@ void ArticleViewerNg::slotOpenLinkInBrowser()
     OpenUrlRequest req(mCurrentUrl);
     req.setOptions(OpenUrlRequest::ExternalBrowser);
     Q_EMIT signalOpenUrlRequest(req);
+}
+
+QUrl ArticleViewerNg::linkOrImageUrlAt(const QPoint &global) const
+{
+    const QPoint local = page()->view()->mapFromGlobal(global);
+    const QWebHitTestResult hit = page()->currentFrame()->hitTestContent(local);
+    if (!hit.linkUrl().isEmpty()) {
+        return hit.linkUrl();
+    } else if (!hit.imageUrl().isEmpty()) {
+        return hit.imageUrl();
+    } else {
+        return QUrl();
+    }
 }
