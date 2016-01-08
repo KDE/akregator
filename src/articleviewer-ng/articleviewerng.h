@@ -44,6 +44,10 @@ public:
 
     void disableIntroduction();
 
+public Q_SLOTS:
+    void slotPrintPreview();
+    void slotPrint();
+
 Q_SIGNALS:
     void signalOpenUrlRequest(Akregator::OpenUrlRequest &);
     void showStatusBarMessage(const QString &link);

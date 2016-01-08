@@ -36,6 +36,10 @@
 #include <openurlrequest.h>
 #include <QWebHistory>
 #include <KConfigGroup>
+#include <kpimprintpreviewdialog.h>
+#include <QPrinter>
+#include <QPrintDialog>
+#include <QPrintPreviewDialog>
 using namespace Akregator;
 
 ArticleViewerNg::ArticleViewerNg(KActionCollection *ac, QWidget *parent)
@@ -64,6 +68,27 @@ ArticleViewerNg::~ArticleViewerNg()
 {
     disconnect(this, &QWebView::loadFinished, this, &ArticleViewerNg::slotLoadFinished);
 }
+
+void ArticleViewerNg::slotPrintPreview()
+{
+    PimCommon::KPimPrintPreviewDialog previewdlg(this);
+    connect(&previewdlg, &QPrintPreviewDialog::paintRequested, this, [this](QPrinter * printer) {
+        print(printer);
+    });
+    previewdlg.exec();
+}
+
+void ArticleViewerNg::slotPrint()
+{
+    QPrinter printer;
+
+    QScopedPointer<QPrintDialog> dlg(new QPrintDialog(&printer));
+
+    if (dlg && dlg->exec() == QDialog::Accepted) {
+        print(&printer);
+    }
+}
+
 
 void ArticleViewerNg::slotLoadFinished()
 {

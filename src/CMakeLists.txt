@@ -28,6 +28,7 @@ target_link_libraries(akregator
     akregatorprivate
     akregatorinterfaces
     KF5::PimCommon
+    Qt5::PrintSupport
     )
 
 install(TARGETS akregator ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
@@ -89,6 +90,7 @@ target_link_libraries(akregatorprivate
     KF5::GrantleeTheme
     KF5::WebKit
     KF5::MessageViewer
+    Qt5::PrintSupport
     )
 
 target_include_directories(akregatorprivate PUBLIC "$<BUILD_INTERFACE:${akregator_SOURCE_DIR}/src;${akregator_BINARY_DIR}/src>")
