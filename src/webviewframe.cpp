@@ -108,15 +108,17 @@ void WebViewFrame::setFavicon(const QIcon &icon)
 
 void WebViewFrame::slotZoomChangeInFrame(int frameId, qreal value)
 {
-   if (frameId != id())
-       return;
-   mArticleViewerWidgetNg->articleViewerNg()->setZoomFactor(value);
+    if (frameId != id()) {
+        return;
+    }
+    mArticleViewerWidgetNg->articleViewerNg()->setZoomFactor(value);
 }
 
 void WebViewFrame::slotZoomTextOnlyInFrame(int frameId, bool textOnlyInFrame)
 {
-    if (frameId != id())
+    if (frameId != id()) {
         return;
+    }
     mArticleViewerWidgetNg->articleViewerNg()->settings()->setAttribute(QWebSettings::ZoomTextOnly, textOnlyInFrame);
 }
 

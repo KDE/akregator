@@ -15,7 +15,6 @@
   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-
 #ifndef ARTICLEVIEWERNG_H
 #define ARTICLEVIEWERNG_H
 
@@ -43,7 +42,6 @@ public:
     bool canGoForward() const;
     bool canGoBack() const;
 
-
 public Q_SLOTS:
     void setZoomIn();
     void setZoomOut();
@@ -51,7 +49,6 @@ public Q_SLOTS:
 Q_SIGNALS:
     void signalOpenUrlRequest(Akregator::OpenUrlRequest &);
     void showStatusBarMessage(const QString &link);
-
 
 protected:
     void keyReleaseEvent(QKeyEvent *e) Q_DECL_OVERRIDE;

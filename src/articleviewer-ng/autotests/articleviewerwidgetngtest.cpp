@@ -43,7 +43,6 @@ void ArticleViewerWidgetNgTest::shouldHaveDefaultValue()
     MessageViewer::FindBarWebView *findBar = viewerwidget.findChild<MessageViewer::FindBarWebView *>(QStringLiteral("findbarwebview"));
     QVERIFY(findBar);
 
-
     KPIMTextEdit::TextToSpeechWidget *textToSpeechWidget = viewerwidget.findChild<KPIMTextEdit::TextToSpeechWidget *>(QStringLiteral("texttospeechwidget"));
     QVERIFY(textToSpeechWidget);
 }

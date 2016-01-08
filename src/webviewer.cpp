@@ -53,8 +53,6 @@ void WebViewer::contextMenuEvent(QContextMenuEvent *event)
 
     popup.exec(mapToGlobal(event->pos()));
 
-
-
 #if 0
     //TODO
 

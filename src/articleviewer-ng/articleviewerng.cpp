@@ -15,7 +15,6 @@
   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-
 #include "articleviewerng.h"
 #include "akregator_debug.h"
 #include "../actions.h"
@@ -75,7 +74,6 @@ ArticleViewerNg::~ArticleViewerNg()
     disconnect(this, &QWebView::loadFinished, this, &ArticleViewerNg::slotLoadFinished);
 }
 
-
 void ArticleViewerNg::slotLoadFinished()
 {
     unsetCursor();
@@ -125,7 +123,7 @@ void ArticleViewerNg::paintAboutScreen(const QString &templateName, const QVaria
         qCDebug(AKREGATOR_LOG) << "Theme error: failed to find splash theme";
     } else {
         setHtml(theme.render(templateName, data),
-                            QUrl::fromLocalFile(theme.absolutePath() + QLatin1Char('/')));
+                QUrl::fromLocalFile(theme.absolutePath() + QLatin1Char('/')));
     }
 }
 

@@ -350,7 +350,6 @@ void ActionManagerImpl::initMainWidget(MainWidget *mainWidget)
     statusMenu->setText(i18n("&Mark As"));
     statusMenu->setEnabled(false);
 
-
     action = coll->addAction(QStringLiteral("article_set_status_read"));
     action->setText(i18nc("as in: mark as read", "&Read"));
     action->setIcon(QIcon::fromTheme(QStringLiteral("mail-mark-read")));

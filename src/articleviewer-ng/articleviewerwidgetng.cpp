@@ -39,7 +39,6 @@ ArticleViewerWidgetNg::ArticleViewerWidgetNg(ArticleViewerNg *customViewer, KAct
     mTextToSpeechWidget->setObjectName(QStringLiteral("texttospeechwidget"));
     layout->addWidget(mTextToSpeechWidget);
 
-
     layout->addWidget(customViewer);
     mArticleViewerNg = customViewer;
 
@@ -61,7 +60,6 @@ ArticleViewerWidgetNg::ArticleViewerWidgetNg(KActionCollection *ac, QWidget *par
     mTextToSpeechWidget = new KPIMTextEdit::TextToSpeechWidget(this);
     mTextToSpeechWidget->setObjectName(QStringLiteral("texttospeechwidget"));
     layout->addWidget(mTextToSpeechWidget);
-
 
     mArticleViewerNg = new ArticleViewerNg(ac, this);
     mArticleViewerNg->setObjectName(QStringLiteral("articleviewerng"));

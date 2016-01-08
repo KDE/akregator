@@ -163,7 +163,6 @@ public Q_SLOTS:
 
     void slotRequestNewFrame(int &frameId);
 
-
     /** adds a new feed to the feed tree */
     void slotFeedAdd();
     /** adds a feed group to the feed tree */

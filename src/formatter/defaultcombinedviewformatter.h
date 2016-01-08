@@ -15,14 +15,13 @@
   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-
 #ifndef DEFAULTCOMBINEDVIEWFORMATTER_H
 #define DEFAULTCOMBINEDVIEWFORMATTER_H
 
 #include "articleformatter.h"
 
-
-namespace Akregator {
+namespace Akregator
+{
 class DefaultCombinedViewFormatter : public ArticleFormatter
 {
 public:

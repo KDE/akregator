@@ -19,7 +19,6 @@
 #include "urlhandler.h"
 using std::remove;
 
-
 using namespace Akregator;
 
 URLHandlerManager *URLHandlerManager::self = 0;

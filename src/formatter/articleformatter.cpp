@@ -43,7 +43,6 @@
 using namespace Syndication;
 using namespace Akregator;
 
-
 class ArticleFormatter::Private
 {
 public:
@@ -97,5 +96,4 @@ QString ArticleFormatter::formatEnclosure(const Enclosure &enclosure) const
     QString str = i18n("<a href=\"%1\">%2</a> %3", enclosure.url(), title, inf);
     return str;
 }
-
 

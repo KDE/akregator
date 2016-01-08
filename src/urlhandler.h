@@ -124,7 +124,6 @@ public:
     QString statusBarMessage(const QUrl &, ArticleViewerNg *) const Q_DECL_OVERRIDE;
 };
 
-
 class ActionURLHandler : public URLHandler
 {
 public:
@@ -146,6 +145,5 @@ public:
 };
 
 }
-
 
 #endif // URLHANDLER_H

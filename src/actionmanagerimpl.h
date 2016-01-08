@@ -75,7 +75,6 @@ public Q_SLOTS:
 
     void slotNodeSelected(Akregator::TreeNode *node);
 
-
 private Q_SLOTS:
     void slotServiceUrlSelected(PimCommon::ShareServiceUrlManager::ServiceType type);
 

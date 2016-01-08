@@ -151,7 +151,6 @@ ArticleViewerWidget::ArticleViewerWidget(KActionCollection *ac, QWidget *parent)
     action->setText(i18n("&Save Link As..."));
     connect(action, &QAction::triggered, this, &ArticleViewerWidget::slotSaveLinkAs);
 
-
     m_htmlFooter = QStringLiteral("</body></html>");
 }
 
@@ -201,10 +200,10 @@ void ArticleViewerWidget::slotOpenUrlRequestDelayed(const QUrl &url, const KPart
 }
 
 void ArticleViewerWidget::slotCreateNewWindow(const QUrl &url,
-                                        const KParts::OpenUrlArguments &args,
-                                        const KParts::BrowserArguments &browserArgs,
-                                        const KParts::WindowArgs & /*windowArgs*/,
-                                        KParts::ReadOnlyPart **part)
+        const KParts::OpenUrlArguments &args,
+        const KParts::BrowserArguments &browserArgs,
+        const KParts::WindowArgs & /*windowArgs*/,
+        KParts::ReadOnlyPart **part)
 {
     OpenUrlRequest req;
     req.setUrl(url);
@@ -291,7 +290,7 @@ void ArticleViewerWidget::slotSaveLinkAs()
 // some code taken from KDevelop (lib/widgets/kdevhtmlpart.cpp)
 void ArticleViewerWidget::slotPrint()
 {
-    #if 0 //TODO
+#if 0 //TODO
     m_part->view()->print();
 #endif
 }
@@ -578,7 +577,6 @@ QSize ArticleViewerWidget::sizeHint() const
     sh.setHeight(qMax(sh.height(), 25 * fontMetrics().height()));
     return sh;
 }
-
 
 void ArticleViewerWidget::displayAboutPage()
 {

@@ -184,8 +184,6 @@ private:
     QSharedPointer<ArticleFormatter> m_combinedViewFormatter;
 };
 
-
-
 } // namespace Akregator
 
 #endif // AKREGATOR_ARTICLEVIEWER_H

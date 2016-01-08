@@ -20,7 +20,6 @@
 
 #include "frame.h"
 
-
 namespace Akregator
 {
 

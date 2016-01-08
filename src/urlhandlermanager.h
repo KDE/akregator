@@ -15,7 +15,6 @@
   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-
 #ifndef URLHANDLERMANAGER_H
 #define URLHANDLERMANAGER_H
 
@@ -36,7 +35,6 @@ public:
     static URLHandlerManager *instance();
     void registerHandler(const URLHandler *handler);
     void unregisterHandler(const URLHandler *handler);
-
 
     bool handleClick(const QUrl &url, ArticleViewerNg *w = Q_NULLPTR) const;
     bool handleShiftClick(const QUrl &url, ArticleViewerNg *window = Q_NULLPTR) const;
