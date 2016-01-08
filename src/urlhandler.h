@@ -27,6 +27,7 @@ class ArticleViewerNg;
 class URLHandler
 {
 public:
+    virtual ~URLHandler() {}
     /**
       * Called when LMB-clicking on a link in the reader. Should start
       * processing equivalent to "opening" the link.
@@ -103,6 +104,23 @@ public:
         return false;
     }
 
+    QString statusBarMessage(const QUrl &, ArticleViewerNg *) const Q_DECL_OVERRIDE;
+};
+
+class MailToURLHandler : public URLHandler
+{
+public:
+    MailToURLHandler() : URLHandler() {}
+    virtual ~MailToURLHandler() {}
+
+    bool handleClick(const QUrl &, ArticleViewerNg *) const Q_DECL_OVERRIDE
+    {
+        return false;
+    }
+    bool handleContextMenuRequest(const QUrl &, const QPoint &, ArticleViewerNg *) const Q_DECL_OVERRIDE
+    {
+        return false;
+    }
     QString statusBarMessage(const QUrl &, ArticleViewerNg *) const Q_DECL_OVERRIDE;
 };
 }

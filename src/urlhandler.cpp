@@ -19,6 +19,7 @@
 
 #include <articleviewer-ng/articleviewerng.h>
 #include <KLocalizedString>
+#include <KEmailAddress>
 using namespace Akregator;
 
 QString AkregatorConfigHandler::statusBarMessage(const QUrl &url, ArticleViewerNg *) const
@@ -27,4 +28,12 @@ QString AkregatorConfigHandler::statusBarMessage(const QUrl &url, ArticleViewerN
         return i18n("Configurate");
     }
     return {};
+}
+
+QString MailToURLHandler::statusBarMessage(const QUrl &url, ArticleViewerNg *) const
+{
+    if (url.scheme() == QLatin1String("mailto")) {
+        return KEmailAddress::decodeMailtoUrl(url);
+    }
+    return QString();
 }

@@ -28,6 +28,7 @@ URLHandlerManager::URLHandlerManager(QObject *parent)
     : QObject(parent)
 {
     registerHandler(new AkregatorConfigHandler());
+    registerHandler(new MailToURLHandler());
 }
 
 URLHandlerManager::~URLHandlerManager()
