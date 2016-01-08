@@ -188,7 +188,3 @@ install(FILES feed.protocol DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
 install(FILES org.kde.akregator.part.xml DESTINATION ${KDE_INSTALL_DBUSINTERFACEDIR})
 install(FILES data/akregator.notifyrc DESTINATION ${KDE_INSTALL_KNOTIFY5RCDIR} )
 
-if(BUILD_TESTING)
-    #add_subdirectory(articleviewer-ng/tests)
-    #add_subdirectory(articleviewer-ng/autotests)
-endif()

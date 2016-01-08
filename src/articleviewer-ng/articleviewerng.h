@@ -42,6 +42,8 @@ public:
     bool canGoForward() const;
     bool canGoBack() const;
 
+    void disableIntroduction();
+
 public Q_SLOTS:
     void setZoomIn();
     void setZoomOut();

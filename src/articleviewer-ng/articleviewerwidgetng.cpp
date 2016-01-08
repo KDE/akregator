@@ -26,32 +26,25 @@
 
 #include <KPIMTextEdit/kpimtextedit/texttospeechwidget.h>
 
+#include <kpimtextedit/slidecontainer.h>
+
 using namespace Akregator;
 
 ArticleViewerWidgetNg::ArticleViewerWidgetNg(ArticleViewerNg *customViewer, KActionCollection *ac, QWidget *parent)
     : QWidget(parent)
 {
-    QVBoxLayout *layout = new QVBoxLayout;
-    layout->setMargin(0);
-    setLayout(layout);
-
-    mTextToSpeechWidget = new KPIMTextEdit::TextToSpeechWidget(this);
-    mTextToSpeechWidget->setObjectName(QStringLiteral("texttospeechwidget"));
-    layout->addWidget(mTextToSpeechWidget);
-
-    layout->addWidget(customViewer);
     mArticleViewerNg = customViewer;
-
-    mFindBarWebView = new MessageViewer::FindBarWebView(mArticleViewerNg, this);
-    mFindBarWebView->setObjectName(QStringLiteral("findbarwebview"));
-    layout->addWidget(mFindBarWebView);
-
-    initializeActions(ac);
-
+    initializeLayout(ac);
 }
 
 ArticleViewerWidgetNg::ArticleViewerWidgetNg(KActionCollection *ac, QWidget *parent)
-    : QWidget(parent)
+    : QWidget(parent),
+      mArticleViewerNg(Q_NULLPTR)
+{
+    initializeLayout(ac);
+}
+
+void ArticleViewerWidgetNg::initializeLayout(KActionCollection *ac)
 {
     QVBoxLayout *layout = new QVBoxLayout;
     layout->setMargin(0);
@@ -61,14 +54,19 @@ ArticleViewerWidgetNg::ArticleViewerWidgetNg(KActionCollection *ac, QWidget *par
     mTextToSpeechWidget->setObjectName(QStringLiteral("texttospeechwidget"));
     layout->addWidget(mTextToSpeechWidget);
 
-    mArticleViewerNg = new ArticleViewerNg(ac, this);
+    if (!mArticleViewerNg) {
+        mArticleViewerNg = new ArticleViewerNg(ac, this);
+    }
     mArticleViewerNg->setObjectName(QStringLiteral("articleviewerng"));
     layout->addWidget(mArticleViewerNg);
 
+    mSliderContainer = new KPIMTextEdit::SlideContainer(this);
+    mSliderContainer->setObjectName(QStringLiteral("slidercontainer"));
     mFindBarWebView = new MessageViewer::FindBarWebView(mArticleViewerNg, this);
     mFindBarWebView->setObjectName(QStringLiteral("findbarwebview"));
-    layout->addWidget(mFindBarWebView);
-
+    connect(mFindBarWebView, &MessageViewer::FindBarBase::hideFindBar, mSliderContainer, &KPIMTextEdit::SlideContainer::slideOut);
+    mSliderContainer->setContent(mFindBarWebView);
+    layout->addWidget(mSliderContainer);
     initializeActions(ac);
 }
 
@@ -97,12 +95,10 @@ ArticleViewerNg *ArticleViewerWidgetNg::articleViewerNg() const
 
 void ArticleViewerWidgetNg::slotFind()
 {
-#if 0
-    if (mViewer->hasSelection()) {
-        mFindBarWebView->setText(mViewer->selectedText());
+    if (mArticleViewerNg->hasSelection()) {
+        mFindBarWebView->setText(mArticleViewerNg->selectedText());
     }
     mSliderContainer->slideIn();
-#endif
     mFindBarWebView->focusAndSetCursor();
 }
 

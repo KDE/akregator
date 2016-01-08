@@ -29,6 +29,7 @@ class FindBarWebView;
 
 namespace KPIMTextEdit
 {
+class SlideContainer;
 class TextToSpeechWidget;
 }
 
@@ -50,11 +51,13 @@ private Q_SLOTS:
 
 private:
     void initializeActions(KActionCollection *ac);
+    void initializeLayout(KActionCollection *ac);
     MessageViewer::FindBarWebView *mFindBarWebView;
     ArticleViewerNg *mArticleViewerNg;
     KPIMTextEdit::TextToSpeechWidget *mTextToSpeechWidget;
     QAction *mSpeakTextAction;
     QAction *mFindInMessageAction;
+    KPIMTextEdit::SlideContainer *mSliderContainer;
 };
 }
 

@@ -28,7 +28,6 @@
 #include <MessageViewer/WebViewAccessKey>
 #include <MessageViewer/WebPage>
 #include <QWebSettings>
-#include <QDesktopServices>
 
 #include <QMenu>
 #include <QWebFrame>
@@ -220,20 +219,22 @@ void ArticleViewerNg::resizeEvent(QResizeEvent *e)
     KWebView::resizeEvent(e);
 }
 
+void ArticleViewerNg::disableIntroduction()
+{
+    KGuiItem yesButton(KStandardGuiItem::yes());
+    yesButton.setText(i18n("Disable"));
+    KGuiItem noButton(KStandardGuiItem::no());
+    noButton.setText(i18n("Keep Enabled"));
+    if (KMessageBox::questionYesNo(this, i18n("Are you sure you want to disable this introduction page?"),
+                                   i18n("Disable Introduction Page"), yesButton, noButton) == KMessageBox::Yes) {
+        Settings::self()->setDisableIntroduction(true);
+        Settings::self()->save();
+    }
+}
+
 void ArticleViewerNg::slotLinkClicked(const QUrl &url)
 {
-    if (url.toString() == QLatin1String("config:/disable_introduction")) {
-        KGuiItem yesButton(KStandardGuiItem::yes());
-        yesButton.setText(i18n("Disable"));
-        KGuiItem noButton(KStandardGuiItem::no());
-        noButton.setText(i18n("Keep Enabled"));
-        if (KMessageBox::questionYesNo(this, i18n("Are you sure you want to disable this introduction page?"), i18n("Disable Introduction Page"), yesButton, noButton) == KMessageBox::Yes) {
-            Settings::self()->setDisableIntroduction(true);
-            Settings::self()->save();
-        }
-        return;
-    } else if (url.scheme() == QLatin1String("mailto")) {
-        QDesktopServices::openUrl(url);
+    if (URLHandlerManager::instance()->handleClick(url, this)) {
         return;
     }
 
