@@ -37,17 +37,9 @@
 #include <QWebHistory>
 #include <KConfigGroup>
 using namespace Akregator;
-namespace
-{
-qreal zoomBy()
-{
-    return 20;
-}
-}
 
 ArticleViewerNg::ArticleViewerNg(KActionCollection *ac, QWidget *parent)
     : KWebView(parent, false),
-      mZoomFactor(100),
       mActionCollection(ac)
 {
     setPage(new MessageViewer::WebPage(this));
@@ -146,30 +138,6 @@ void ArticleViewerNg::contextMenuEvent(QContextMenuEvent *event)
         popup.addAction(ActionManager::getInstance()->action(QStringLiteral("viewer_print")));
     }
     popup.exec(mapToGlobal(event->pos()));
-}
-
-void ArticleViewerNg::setZoomIn()
-{
-    if (mZoomFactor >= 300) {
-        return;
-    }
-    mZoomFactor += zoomBy();
-    if (mZoomFactor > 300) {
-        mZoomFactor = 300;
-    }
-    setZoomFactor(mZoomFactor / 100.0);
-}
-
-void ArticleViewerNg::setZoomOut()
-{
-    if (mZoomFactor <= 10) {
-        return;
-    }
-    mZoomFactor -= zoomBy();
-    if (mZoomFactor < 10) {
-        mZoomFactor = 10;
-    }
-    setZoomFactor(mZoomFactor / 100.0);
 }
 
 void ArticleViewerNg::slotLinkHovered(const QString &link, const QString &title, const QString &textContent)

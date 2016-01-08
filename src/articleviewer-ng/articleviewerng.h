@@ -44,10 +44,6 @@ public:
 
     void disableIntroduction();
 
-public Q_SLOTS:
-    void setZoomIn();
-    void setZoomOut();
-
 Q_SIGNALS:
     void signalOpenUrlRequest(Akregator::OpenUrlRequest &);
     void showStatusBarMessage(const QString &link);
@@ -71,7 +67,6 @@ private:
     void paintAboutScreen(const QString &templateName, const QVariantHash &data);
     QUrl linkOrImageUrlAt(const QPoint &global) const;
     QVariantHash introductionData();
-    qreal mZoomFactor;
     QUrl mCurrentUrl;
     QWebHitTestResult mContextMenuHitResult;
     KActionCollection *mActionCollection;
