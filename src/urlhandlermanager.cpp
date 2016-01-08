@@ -16,6 +16,9 @@
 */
 
 #include "urlhandlermanager.h"
+#include "urlhandler.h"
+using std::remove;
+
 
 using namespace Akregator;
 
@@ -38,4 +41,50 @@ URLHandlerManager *URLHandlerManager::instance()
         self = new URLHandlerManager();
     }
     return self;
+}
+
+void URLHandlerManager::registerHandler(const URLHandler *handler)
+{
+    if (!handler) {
+        return;
+    }
+    unregisterHandler(handler);   // don't produce duplicates
+    mHandlers.push_back(handler);
+}
+
+void URLHandlerManager::unregisterHandler(const URLHandler *handler)
+{
+    // don't delete them, only remove them from the list!
+    mHandlers.erase(remove(mHandlers.begin(), mHandlers.end(), handler), mHandlers.end());
+
+}
+
+bool URLHandlerManager::handleClick(const QUrl &url, ArticleViewerNg *w) const
+{
+    return false;
+}
+
+bool URLHandlerManager::handleShiftClick(const QUrl &url, ArticleViewerNg *window) const
+{
+    return false;
+}
+
+bool URLHandlerManager::handleContextMenuRequest(const QUrl &url, const QPoint &p, ArticleViewerNg *w) const
+{
+    return false;
+}
+
+bool URLHandlerManager::willHandleDrag(const QUrl &url, ArticleViewerNg *window) const
+{
+    return false;
+}
+
+bool URLHandlerManager::handleDrag(const QUrl &url, ArticleViewerNg *window) const
+{
+    return false;
+}
+
+QString URLHandlerManager::statusBarMessage(const QUrl &url, ArticleViewerNg *w) const
+{
+    return {};
 }

@@ -20,9 +20,12 @@
 #define URLHANDLERMANAGER_H
 
 #include <QObject>
+#include <QVector>
 
 namespace Akregator
 {
+class URLHandler;
+class ArticleViewerNg;
 class URLHandlerManager : public QObject
 {
     Q_OBJECT
@@ -30,10 +33,22 @@ public:
     ~URLHandlerManager();
 
     URLHandlerManager *instance();
+    void registerHandler(const URLHandler *handler);
+    void unregisterHandler(const URLHandler *handler);
+
+
+    bool handleClick(const QUrl &url, ArticleViewerNg *w = Q_NULLPTR) const;
+    bool handleShiftClick(const QUrl &url, ArticleViewerNg *window = Q_NULLPTR) const;
+    bool handleContextMenuRequest(const QUrl &url, const QPoint &p, ArticleViewerNg *w = Q_NULLPTR) const;
+    bool willHandleDrag(const QUrl &url, ArticleViewerNg *window = Q_NULLPTR) const;
+    bool handleDrag(const QUrl &url, ArticleViewerNg *window = Q_NULLPTR) const;
+    QString statusBarMessage(const QUrl &url, ArticleViewerNg *w = Q_NULLPTR) const;
 
 private:
     explicit URLHandlerManager(QObject *parent = Q_NULLPTR);
     static URLHandlerManager *self;
+    typedef QVector<const URLHandler *> HandlerList;
+    HandlerList mHandlers;
 };
 }
 
