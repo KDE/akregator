@@ -16,9 +16,15 @@
 */
 
 #include "urlhandler.h"
+
+#include <articleviewer-ng/articleviewerng.h>
+#include <KLocalizedString>
 using namespace Akregator;
 
-URLHandler::URLHandler()
+QString AkregatorConfigHandler::statusBarMessage(const QUrl &url, ArticleViewerNg *) const
 {
-
+    if (url.scheme() == QLatin1String("config")) {
+        return i18n("Configurate");
+    }
+    return {};
 }

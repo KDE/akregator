@@ -27,7 +27,7 @@ URLHandlerManager *URLHandlerManager::self = 0;
 URLHandlerManager::URLHandlerManager(QObject *parent)
     : QObject(parent)
 {
-
+    registerHandler(new AkregatorConfigHandler());
 }
 
 URLHandlerManager::~URLHandlerManager()
