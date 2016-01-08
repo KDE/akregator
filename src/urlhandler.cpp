@@ -19,8 +19,21 @@
 
 #include <articleviewer-ng/articleviewerng.h>
 #include <KLocalizedString>
+#include <QDesktopServices>
 #include <KEmailAddress>
 using namespace Akregator;
+
+bool AkregatorConfigHandler::handleClick(const QUrl &url, ArticleViewerNg *article) const
+{
+    if (url.scheme() == QLatin1String("config")) {
+        if (url.path() == QLatin1String("/disable_introduction")) {
+            article->disableIntroduction();
+            return true;
+        }
+    }
+    return false;
+}
+
 
 QString AkregatorConfigHandler::statusBarMessage(const QUrl &url, ArticleViewerNg *) const
 {
@@ -40,6 +53,16 @@ QString MailToURLHandler::statusBarMessage(const QUrl &url, ArticleViewerNg *) c
     return QString();
 }
 
+bool MailToURLHandler::handleClick(const QUrl &url, ArticleViewerNg *) const
+{
+    if (url.scheme() == QLatin1String("mailto")) {
+        QDesktopServices::openUrl(url);
+        return true;
+    }
+    return false;
+}
+
+
 QString ActionURLHandler::statusBarMessage(const QUrl &url, ArticleViewerNg *) const
 {
     if (url.scheme() == QLatin1String("akregatoraction")) {
@@ -58,4 +81,18 @@ QString ActionURLHandler::statusBarMessage(const QUrl &url, ArticleViewerNg *) c
         return {};
     }
     return {};
+}
+
+bool ActionURLHandler::handleClick(const QUrl &url, ArticleViewerNg *) const
+{
+    if (url.scheme() == QLatin1String("akregatoraction")) {
+        const QString urlPath(url.path());
+        if (urlPath == QLatin1String("delete")) {
+        } else if (urlPath == QLatin1String("markAsRead")) {
+        } else if (urlPath == QLatin1String("markAsUnRead")) {
+        } else if (urlPath == QLatin1String("markAsImportant")) {
+        } else if (urlPath == QLatin1String("sendUrlArticle")) {
+        }
+    }
+    return false;
 }

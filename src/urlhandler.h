@@ -95,10 +95,7 @@ public:
     AkregatorConfigHandler()
         : URLHandler() {}
     virtual ~AkregatorConfigHandler() {}
-    bool handleClick(const QUrl &, ArticleViewerNg *) const Q_DECL_OVERRIDE
-    {
-        return false;
-    }
+    bool handleClick(const QUrl &, ArticleViewerNg *) const Q_DECL_OVERRIDE;
     bool handleContextMenuRequest(const QUrl &, const QPoint &, ArticleViewerNg *) const Q_DECL_OVERRIDE
     {
         return false;
@@ -113,10 +110,7 @@ public:
     MailToURLHandler() : URLHandler() {}
     virtual ~MailToURLHandler() {}
 
-    bool handleClick(const QUrl &, ArticleViewerNg *) const Q_DECL_OVERRIDE
-    {
-        return false;
-    }
+    bool handleClick(const QUrl &, ArticleViewerNg *) const Q_DECL_OVERRIDE;
     bool handleContextMenuRequest(const QUrl &, const QPoint &, ArticleViewerNg *) const Q_DECL_OVERRIDE
     {
         return false;
@@ -130,10 +124,7 @@ public:
     ActionURLHandler() : URLHandler() {}
     virtual ~ActionURLHandler() {}
 
-    bool handleClick(const QUrl &, ArticleViewerNg *) const Q_DECL_OVERRIDE
-    {
-        return false;
-    }
+    bool handleClick(const QUrl &, ArticleViewerNg *) const Q_DECL_OVERRIDE;
     bool handleContextMenuRequest(const QUrl &, const QPoint &, ArticleViewerNg *) const Q_DECL_OVERRIDE
     {
         return false;
