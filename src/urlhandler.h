@@ -123,6 +123,28 @@ public:
     }
     QString statusBarMessage(const QUrl &, ArticleViewerNg *) const Q_DECL_OVERRIDE;
 };
+
+
+class ActionURLHandler : public URLHandler
+{
+public:
+    ActionURLHandler() : URLHandler() {}
+    virtual ~ActionURLHandler() {}
+
+    bool handleClick(const QUrl &, ArticleViewerNg *) const Q_DECL_OVERRIDE
+    {
+        return false;
+    }
+    bool handleContextMenuRequest(const QUrl &, const QPoint &, ArticleViewerNg *) const Q_DECL_OVERRIDE
+    {
+        return false;
+    }
+    QString statusBarMessage(const QUrl &, ArticleViewerNg *) const Q_DECL_OVERRIDE
+    {
+        return {};
+    }
+};
+
 }
 
 
