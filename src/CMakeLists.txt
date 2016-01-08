@@ -1,7 +1,8 @@
 include_directories(
-  ${CMAKE_CURRENT_SOURCE_DIR}/command/
-  ${CMAKE_CURRENT_SOURCE_DIR}/formatter/
-)
+    ${CMAKE_CURRENT_SOURCE_DIR}/command/
+    ${CMAKE_CURRENT_SOURCE_DIR}/formatter/
+    ${CMAKE_CURRENT_SOURCE_DIR}/subscription/
+    )
 
 
 add_subdirectory(about)
@@ -57,7 +58,7 @@ set(akregatorprivate_LIB_SRCS
     articlejobs.cpp
     folder.cpp
     kernel.cpp
-    subscriptionlistjobs.cpp
+    subscription/subscriptionlistjobs.cpp
     fetchqueue.cpp
     frame.cpp
     mainframe.cpp
@@ -131,7 +132,7 @@ set(akregatorpart_PART_SRCS
     articlemodel.cpp
     pluginmanager.cpp
     selectioncontroller.cpp
-    subscriptionlistmodel.cpp
+    subscription/subscriptionlistmodel.cpp
     searchbar.cpp
     articlelistview.cpp
     actionmanagerimpl.cpp
@@ -142,8 +143,8 @@ set(akregatorpart_PART_SRCS
     progressmanager.cpp
     akregator_part.cpp
     mainwidget.cpp
-    subscriptionlistview.cpp
-    subscriptionlistdelegate.cpp
+    subscription/subscriptionlistview.cpp
+    subscription/subscriptionlistdelegate.cpp
     dummystorage/storagedummyimpl.cpp
     dummystorage/storagefactorydummyimpl.cpp
     dummystorage/feedstoragedummyimpl.cpp
