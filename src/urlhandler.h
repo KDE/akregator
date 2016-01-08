@@ -138,10 +138,7 @@ public:
     {
         return false;
     }
-    QString statusBarMessage(const QUrl &, ArticleViewerNg *) const Q_DECL_OVERRIDE
-    {
-        return {};
-    }
+    QString statusBarMessage(const QUrl &, ArticleViewerNg *) const Q_DECL_OVERRIDE;
 };
 
 }

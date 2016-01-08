@@ -39,3 +39,23 @@ QString MailToURLHandler::statusBarMessage(const QUrl &url, ArticleViewerNg *) c
     }
     return QString();
 }
+
+QString ActionURLHandler::statusBarMessage(const QUrl &url, ArticleViewerNg *) const
+{
+    if (url.scheme() == QLatin1String("akregatoraction")) {
+        const QString urlPath(url.path());
+        if (urlPath == QLatin1String("delete")) {
+            return i18n("Delete Article");
+        } else if (urlPath == QLatin1String("markAsRead")) {
+            return i18n("Mark Article as Read");
+        } else if (urlPath == QLatin1String("markAsUnRead")) {
+            return i18n("Mark Article as Unread");
+        } else if (urlPath == QLatin1String("markAsImportant")) {
+            return i18n("Mark Article as Important");
+        } else if (urlPath == QLatin1String("sendUrlArticle")) {
+            return i18n("Send Url Article");
+        }
+        return {};
+    }
+    return {};
+}
