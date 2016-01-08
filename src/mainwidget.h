@@ -46,7 +46,7 @@ class QSplitter;
 
 namespace Akregator
 {
-
+class WebViewFrame;
 class AbstractSelectionController;
 class ActionManagerImpl;
 class ArticleListView;
@@ -255,6 +255,7 @@ private Q_SLOTS:
 
 private:
     void deleteExpiredArticles(const QSharedPointer<FeedList> &feedList);
+    void connectFrame(Akregator::WebViewFrame *frame);
 
     /** opens current article in new tab, background/foreground depends on settings TODO: use selected instead of current? */
     void openSelectedArticles(bool openInBackground);

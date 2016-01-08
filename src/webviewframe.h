@@ -51,6 +51,9 @@ public Q_SLOTS:
 
     void slotZoomChangeInFrame(int frameId, qreal value);
     void slotZoomTextOnlyInFrame(int frameId, bool textOnlyInFrame);
+    void slotCopyInFrame(int frameId);
+    void slotPrintInFrame(int frameId);
+    void slotPrintPreviewInFrame(int frameId);
 private Q_SLOTS:
     void slotTitleChanged(const QString &title);
     void slotProgressChanged(int progress);

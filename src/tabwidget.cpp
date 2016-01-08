@@ -379,6 +379,16 @@ void TabWidget::slotDetachTab()
     }
 }
 
+void TabWidget::slotPrint()
+{
+    Q_EMIT signalPrintInFrame(d->currentFrame()->id());
+}
+
+void TabWidget::slotCopy()
+{
+    Q_EMIT signalCopyInFrame(d->currentFrame()->id());
+}
+
 void TabWidget::slotCopyLinkAddress()
 {
     Frame *frame = d->frames.value(d->selectedWidget());

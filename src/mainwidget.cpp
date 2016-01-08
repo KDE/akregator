@@ -227,7 +227,6 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
     */
 
     m_articleViewer = new ArticleViewerWidget(m_actionManager->actionCollection(), m_articleSplitter);
-    m_actionManager->initArticleViewer(m_articleViewer);
     m_articleListView->setFocusProxy(m_articleViewer);
     setFocusProxy(m_articleViewer);
 
@@ -334,12 +333,19 @@ void MainWidget::saveSettings()
     Settings::self()->save();
 }
 
-void MainWidget::slotRequestNewFrame(int &frameId)
+void MainWidget::connectFrame(WebViewFrame *frame)
 {
-    WebViewFrame *frame = new WebViewFrame(m_actionManager->actionCollection(), m_tabWidget);
+    connect(m_tabWidget, &TabWidget::signalCopyInFrame, frame, &WebViewFrame::slotCopyInFrame);
+    connect(m_tabWidget, &TabWidget::signalPrintInFrame, frame, &WebViewFrame::slotPrintInFrame);
     connect(m_tabWidget, &TabWidget::signalZoomChangedInFrame, frame, &WebViewFrame::slotZoomChangeInFrame);
     connect(m_tabWidget, &TabWidget::signalZoomTextOnlyInFrame, frame, &WebViewFrame::slotZoomTextOnlyInFrame);
     connect(frame, &WebViewFrame::showStatusBarMessage, this, &MainWidget::slotShowStatusBarMessage);
+}
+
+void MainWidget::slotRequestNewFrame(int &frameId)
+{
+    WebViewFrame *frame = new WebViewFrame(m_actionManager->actionCollection(), m_tabWidget);
+    connectFrame(frame);
 
     Kernel::self()->frameManager()->slotAddFrame(frame);
 
@@ -1137,10 +1143,7 @@ void MainWidget::readProperties(const KConfigGroup &config)
         WebViewFrame *const frame = new WebViewFrame(m_actionManager->actionCollection(), m_tabWidget);
         frame->loadConfig(config, framePrefix + QLatin1Char('_'));
 
-        connect(m_tabWidget, &TabWidget::signalZoomChangedInFrame, frame, &WebViewFrame::slotZoomChangeInFrame);
-        connect(m_tabWidget, &TabWidget::signalZoomTextOnlyInFrame, frame, &WebViewFrame::slotZoomTextOnlyInFrame);
-        connect(frame, &WebViewFrame::showStatusBarMessage, this, &MainWidget::slotShowStatusBarMessage);
-
+        connectFrame(frame);
         Kernel::self()->frameManager()->slotAddFrame(frame);
 
     }

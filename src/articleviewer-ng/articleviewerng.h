@@ -34,6 +34,14 @@ class ArticleViewerNg : public KWebView
 {
     Q_OBJECT
 public:
+    enum ArticleAction {
+        DeleteAction = 0,
+        MarkAsRead,
+        MarkAsUnRead,
+        MarkAsImportant,
+        SendUrlArticle
+    };
+
     explicit ArticleViewerNg(KActionCollection *ac, QWidget *parent = Q_NULLPTR);
     ~ArticleViewerNg();
 
@@ -44,9 +52,12 @@ public:
 
     void disableIntroduction();
 
+    void setArticleAction(ArticleViewerNg::ArticleAction type, const QString &articleId);
+
 public Q_SLOTS:
     void slotPrintPreview();
     void slotPrint();
+    void slotCopy();
 
 Q_SIGNALS:
     void signalOpenUrlRequest(Akregator::OpenUrlRequest &);

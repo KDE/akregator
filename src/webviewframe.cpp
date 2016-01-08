@@ -106,6 +106,30 @@ void WebViewFrame::setFavicon(const QIcon &icon)
     Q_EMIT signalIconChanged(this, icon);
 }
 
+void WebViewFrame::slotCopyInFrame(int frameId)
+{
+    if (frameId != id()) {
+        return;
+    }
+    mArticleViewerWidgetNg->articleViewerNg()->slotCopy();
+}
+
+void WebViewFrame::slotPrintInFrame(int frameId)
+{
+    if (frameId != id()) {
+        return;
+    }
+    mArticleViewerWidgetNg->articleViewerNg()->slotPrint();
+}
+
+void WebViewFrame::slotPrintPreviewInFrame(int frameId)
+{
+    if (frameId != id()) {
+        return;
+    }
+    mArticleViewerWidgetNg->articleViewerNg()->slotPrintPreview();
+}
+
 void WebViewFrame::slotZoomChangeInFrame(int frameId, qreal value)
 {
     if (frameId != id()) {

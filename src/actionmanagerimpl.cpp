@@ -26,7 +26,6 @@
 #include "akregatorconfig.h"
 #include "akregator_part.h"
 #include "articlelistview.h"
-#include "articleviewerwidget.h"
 #include "feed.h"
 #include "fetchqueue.h"
 #include "folder.h"
@@ -118,7 +117,6 @@ public:
     ArticleListView *articleList;
     SubscriptionListView *subscriptionListView;
     MainWidget *mainWidget;
-    ArticleViewerWidget *articleViewer;
     Part *part;
     TrayIcon *trayIcon;
     KActionMenu *tagMenu;
@@ -144,7 +142,6 @@ ActionManagerImpl::ActionManagerImpl(Part *part, QObject *parent)
     d->subscriptionListView = 0;
     d->articleList = 0;
     d->trayIcon = 0;
-    d->articleViewer = 0;
     d->mainWidget = 0;
     d->tabWidget = 0;
     d->tagMenu = 0;
@@ -432,24 +429,6 @@ void ActionManagerImpl::slotServiceUrlSelected(PimCommon::ShareServiceUrlManager
     }
 }
 
-void ActionManagerImpl::initArticleViewer(ArticleViewerWidget *articleViewer)
-{
-    if (d->articleViewer) {
-        return;
-    } else {
-        d->articleViewer = articleViewer;
-    }
-
-    KActionCollection *coll = actionCollection();
-    QAction *action = 0;
-
-    action = KStandardAction::print(articleViewer, SLOT(slotPrint()), actionCollection());
-    coll->addAction(QStringLiteral("viewer_print"), action);
-
-    action = KStandardAction::copy(articleViewer, SLOT(slotCopy()), coll);
-    coll->addAction(QStringLiteral("viewer_copy"), action);
-}
-
 void ActionManagerImpl::initArticleListView(ArticleListView *articleList)
 {
     if (d->articleList) {
@@ -556,6 +535,14 @@ void ActionManagerImpl::initTabWidget(TabWidget *tabWidget)
     action->setText(i18n("Detach Tab"));
     connect(action, &QAction::triggered, d->tabWidget, &TabWidget::slotDetachTab);
     coll->setDefaultShortcut(action, QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_B));
+
+
+    action = KStandardAction::copy(d->tabWidget, SLOT(slotCopy()), coll);
+    coll->addAction(QStringLiteral("viewer_copy"), action);
+
+    action = KStandardAction::print(d->tabWidget, SLOT(slotPrint()), coll);
+    coll->addAction(QStringLiteral("viewer_print"), action);
+
 
     action = coll->addAction(QStringLiteral("tab_copylinkaddress"));
     action->setText(i18n("Copy Link Address"));

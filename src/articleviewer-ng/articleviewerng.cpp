@@ -89,6 +89,11 @@ void ArticleViewerNg::slotPrint()
     }
 }
 
+void ArticleViewerNg::slotCopy()
+{
+    //TODO
+}
+
 
 void ArticleViewerNg::slotLoadFinished()
 {
@@ -223,6 +228,11 @@ void ArticleViewerNg::disableIntroduction()
         Settings::self()->setDisableIntroduction(true);
         Settings::self()->save();
     }
+}
+
+void ArticleViewerNg::setArticleAction(ArticleViewerNg::ArticleAction type, const QString &articleId)
+{
+    //TODO
 }
 
 void ArticleViewerNg::slotLinkClicked(const QUrl &url)

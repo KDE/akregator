@@ -83,15 +83,26 @@ QString ActionURLHandler::statusBarMessage(const QUrl &url, ArticleViewerNg *) c
     return {};
 }
 
-bool ActionURLHandler::handleClick(const QUrl &url, ArticleViewerNg *) const
+bool ActionURLHandler::handleClick(const QUrl &url, ArticleViewerNg *articleViewer) const
 {
     if (url.scheme() == QLatin1String("akregatoraction")) {
         const QString urlPath(url.path());
+        const QString articleId = url.fragment();
         if (urlPath == QLatin1String("delete")) {
+            articleViewer->setArticleAction(ArticleViewerNg::DeleteAction, articleId);
+            return true;
         } else if (urlPath == QLatin1String("markAsRead")) {
+            articleViewer->setArticleAction(ArticleViewerNg::MarkAsRead, articleId);
+            return true;
         } else if (urlPath == QLatin1String("markAsUnRead")) {
+            articleViewer->setArticleAction(ArticleViewerNg::MarkAsUnRead, articleId);
+            return true;
         } else if (urlPath == QLatin1String("markAsImportant")) {
+            articleViewer->setArticleAction(ArticleViewerNg::MarkAsImportant, articleId);
+            return true;
         } else if (urlPath == QLatin1String("sendUrlArticle")) {
+            articleViewer->setArticleAction(ArticleViewerNg::SendUrlArticle, articleId);
+            return true;
         }
     }
     return false;

@@ -16,6 +16,7 @@
 */
 
 #include "webviewer.h"
+#include "actionmanager.h"
 
 #include <QContextMenuEvent>
 #include <QMenu>
@@ -41,6 +42,7 @@ WebViewer::~WebViewer()
 void WebViewer::contextMenuEvent(QContextMenuEvent *event)
 {
     QMenu popup(this);
+    popup.addAction(ActionManager::getInstance()->action(QStringLiteral("viewer_print")));
     QWebHistory *history = page()->history();
     if (history->canGoBack()) {
         popup.addAction(pageAction(QWebPage::Back));

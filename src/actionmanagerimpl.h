@@ -61,7 +61,6 @@ public:
     QWidget *container(const QString &name) Q_DECL_OVERRIDE;
 
     void initMainWidget(MainWidget *mainWidget);
-    void initArticleViewer(ArticleViewerWidget *articleViewer);
     void initArticleListView(ArticleListView *articleList);
     void initSubscriptionListView(SubscriptionListView *subscriptionListView);
     void initTabWidget(TabWidget *tabWidget);
