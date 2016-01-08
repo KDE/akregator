@@ -25,7 +25,9 @@ using namespace Akregator;
 QString AkregatorConfigHandler::statusBarMessage(const QUrl &url, ArticleViewerNg *) const
 {
     if (url.scheme() == QLatin1String("config")) {
-        return i18n("Configurate");
+        if (url.path() == QLatin1String("/disable_introduction")) {
+            return i18n("Disable Introduction");
+        }
     }
     return {};
 }
