@@ -63,6 +63,7 @@ public Q_SLOTS:
     void slotCloseTab();
     void slotZoomTextOnlyChanged(bool zoomTextOnly);
     void slotPrint();
+    void slotPrintPreview();
 Q_SIGNALS:
     void signalCurrentFrameChanged(int);
     void signalRemoveFrameRequest(int);
@@ -71,6 +72,7 @@ Q_SIGNALS:
     void signalZoomTextOnlyInFrame(int currentFrame, bool zoomTextOnly);
     void signalPrintInFrame(int currentFrame);
     void signalCopyInFrame(int currentFrame);
+    void signalPrintPreviewInFrame(int currentFrame);
 
 private:
     void tabInserted(int) Q_DECL_OVERRIDE;

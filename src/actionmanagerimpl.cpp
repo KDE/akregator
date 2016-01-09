@@ -543,6 +543,9 @@ void ActionManagerImpl::initTabWidget(TabWidget *tabWidget)
     action = KStandardAction::print(d->tabWidget, SLOT(slotPrint()), coll);
     coll->addAction(QStringLiteral("viewer_print"), action);
 
+    action = KStandardAction::printPreview(d->tabWidget, SLOT(slotPrintPreview()), coll);
+    coll->addAction(QStringLiteral("viewer_printpreview"), action);
+
 
     action = coll->addAction(QStringLiteral("tab_copylinkaddress"));
     action->setText(i18n("Copy Link Address"));

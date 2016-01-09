@@ -339,6 +339,7 @@ void MainWidget::connectFrame(WebViewFrame *frame)
     connect(m_tabWidget, &TabWidget::signalPrintInFrame, frame, &WebViewFrame::slotPrintInFrame);
     connect(m_tabWidget, &TabWidget::signalZoomChangedInFrame, frame, &WebViewFrame::slotZoomChangeInFrame);
     connect(m_tabWidget, &TabWidget::signalZoomTextOnlyInFrame, frame, &WebViewFrame::slotZoomTextOnlyInFrame);
+    connect(m_tabWidget, &TabWidget::signalPrintPreviewInFrame, frame, &WebViewFrame::slotPrintPreviewInFrame);
     connect(frame, &WebViewFrame::showStatusBarMessage, this, &MainWidget::slotShowStatusBarMessage);
 }
 

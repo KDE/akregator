@@ -379,6 +379,11 @@ void TabWidget::slotDetachTab()
     }
 }
 
+void TabWidget::slotPrintPreview()
+{
+    Q_EMIT signalPrintPreviewInFrame(d->currentFrame()->id());
+}
+
 void TabWidget::slotPrint()
 {
     Q_EMIT signalPrintInFrame(d->currentFrame()->id());
