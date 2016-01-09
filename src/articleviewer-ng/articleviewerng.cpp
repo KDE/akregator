@@ -17,8 +17,8 @@
 
 #include "articleviewerng.h"
 #include "akregator_debug.h"
-#include "../actions.h"
 #include "../actionmanager.h"
+#include "../actions.h"
 #include "urlhandlermanager.h"
 #include "akregatorconfig.h"
 #include <KActionCollection>
@@ -91,7 +91,7 @@ void ArticleViewerNg::slotPrint()
 
 void ArticleViewerNg::slotCopy()
 {
-    //TODO
+    triggerPageAction(QWebPage::Copy);
 }
 
 
@@ -166,6 +166,7 @@ void ArticleViewerNg::contextMenuEvent(QContextMenuEvent *event)
             popup.addSeparator();
         }
         popup.addAction(ActionManager::getInstance()->action(QStringLiteral("viewer_print")));
+        popup.addAction(ActionManager::getInstance()->action(QStringLiteral("viewer_printpreview")));
     }
     popup.exec(mapToGlobal(event->pos()));
 }

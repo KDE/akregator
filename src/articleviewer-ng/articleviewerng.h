@@ -78,13 +78,16 @@ private Q_SLOTS:
     void slotOpenLinkInForegroundTab();
     void slotOpenLinkInBackgroundTab();
     void slotOpenLinkInBrowser();
+
+protected:
+    QUrl mCurrentUrl;
+    QWebHitTestResult mContextMenuHitResult;
+    KActionCollection *mActionCollection;
+
 private:
     void paintAboutScreen(const QString &templateName, const QVariantHash &data);
     QUrl linkOrImageUrlAt(const QPoint &global) const;
     QVariantHash introductionData();
-    QUrl mCurrentUrl;
-    QWebHitTestResult mContextMenuHitResult;
-    KActionCollection *mActionCollection;
     MessageViewer::WebViewAccessKey *mWebViewAccessKey;
 };
 }
