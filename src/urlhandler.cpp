@@ -16,6 +16,7 @@
 */
 
 #include "urlhandler.h"
+#include "akregator_debug.h"
 
 #include <articleviewer-ng/articleviewerng.h>
 #include <KLocalizedString>
@@ -88,21 +89,25 @@ bool ActionURLHandler::handleClick(const QUrl &url, ArticleViewerNg *articleView
     if (url.scheme() == QLatin1String("akregatoraction")) {
         const QString urlPath(url.path());
         const QString articleId = url.fragment();
-        if (urlPath == QLatin1String("delete")) {
-            articleViewer->setArticleAction(ArticleViewerNg::DeleteAction, articleId);
-            return true;
-        } else if (urlPath == QLatin1String("markAsRead")) {
-            articleViewer->setArticleAction(ArticleViewerNg::MarkAsRead, articleId);
-            return true;
-        } else if (urlPath == QLatin1String("markAsUnRead")) {
-            articleViewer->setArticleAction(ArticleViewerNg::MarkAsUnRead, articleId);
-            return true;
-        } else if (urlPath == QLatin1String("markAsImportant")) {
-            articleViewer->setArticleAction(ArticleViewerNg::MarkAsImportant, articleId);
-            return true;
-        } else if (urlPath == QLatin1String("sendUrlArticle")) {
-            articleViewer->setArticleAction(ArticleViewerNg::SendUrlArticle, articleId);
-            return true;
+        if (!articleId.isEmpty()) {
+            if (urlPath == QLatin1String("delete")) {
+                articleViewer->setArticleAction(ArticleViewerNg::DeleteAction, articleId);
+                return true;
+            } else if (urlPath == QLatin1String("markAsRead")) {
+                articleViewer->setArticleAction(ArticleViewerNg::MarkAsRead, articleId);
+                return true;
+            } else if (urlPath == QLatin1String("markAsUnRead")) {
+                articleViewer->setArticleAction(ArticleViewerNg::MarkAsUnRead, articleId);
+                return true;
+            } else if (urlPath == QLatin1String("markAsImportant")) {
+                articleViewer->setArticleAction(ArticleViewerNg::MarkAsImportant, articleId);
+                return true;
+            } else if (urlPath == QLatin1String("sendUrlArticle")) {
+                articleViewer->setArticleAction(ArticleViewerNg::SendUrlArticle, articleId);
+                return true;
+            }
+        } else {
+            qCWarning(AKREGATOR_LOG) << "Undefined article id";
         }
     }
     return false;
