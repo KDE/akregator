@@ -80,7 +80,6 @@ private:
 
 private Q_SLOTS:
     void slotCloseRequest(int index);
-    void contextMenu(int item, const QPoint &p);
     void slotTabChanged(int index);
 
 private:
