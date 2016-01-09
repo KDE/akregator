@@ -145,7 +145,7 @@ void WebViewFrame::slotZoomTextOnlyInFrame(int frameId, bool textOnlyInFrame)
     if (frameId != id()) {
         return;
     }
-    mArticleViewerWidgetNg->articleViewerNg()->settings()->setAttribute(QWebSettings::ZoomTextOnly, textOnlyInFrame);
+    mArticleViewerWidgetNg->articleViewerNg()->slotZoomTextOnlyInFrame(textOnlyInFrame);
 }
 
 void WebViewFrame::slotHistoryForward()

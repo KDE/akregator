@@ -287,12 +287,9 @@ void ArticleViewerWidget::slotSaveLinkAs()
     //KParts::BrowserRun::simpleSave(tmp, tmp.fileName());
 }
 
-// some code taken from KDevelop (lib/widgets/kdevhtmlpart.cpp)
 void ArticleViewerWidget::slotPrint()
 {
-#if 0 //TODO
-    m_part->view()->print();
-#endif
+    m_articleViewerWidgetNg->articleViewerNg()->slotPrint();
 }
 
 void ArticleViewerWidget::connectToNode(TreeNode *node)

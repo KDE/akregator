@@ -283,3 +283,8 @@ QUrl ArticleViewerNg::linkOrImageUrlAt(const QPoint &global) const
         return QUrl();
     }
 }
+
+void ArticleViewerNg::slotZoomTextOnlyInFrame(bool textOnlyInFrame)
+{
+    settings()->setAttribute(QWebSettings::ZoomTextOnly, textOnlyInFrame);
+}
