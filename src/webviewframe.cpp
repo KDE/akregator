@@ -86,19 +86,21 @@ void WebViewFrame::loadConfig(const KConfigGroup &config, const QString &prefix)
 {
     const QString url = config.readEntry(QStringLiteral("url").prepend(prefix), QString());
     const qreal zf = config.readEntry(QStringLiteral("zoom").prepend(prefix), 100);
+    const bool onlyZoomFont = config.readEntry(QStringLiteral("onlyZoomFont").prepend(prefix), false);
     //TODO save onlyText.
     OpenUrlRequest req(url);
     KParts::OpenUrlArguments args;
     req.setArgs(args);
     openUrl(req);
     mArticleViewerWidgetNg->articleViewerNg()->setZoomFactor(zf);
+    mArticleViewerWidgetNg->articleViewerNg()->settings()->setAttribute(QWebSettings::ZoomTextOnly, onlyZoomFont);
 }
 
 void WebViewFrame::saveConfig(KConfigGroup &config, const QString &prefix)
 {
     config.writeEntry(QStringLiteral("url").prepend(prefix), url().url());
     config.writeEntry(QStringLiteral("zoom").prepend(prefix), mArticleViewerWidgetNg->articleViewerNg()->zoomFactor());
-    //TODO save zoomOnlyText
+    config.writeEntry(QStringLiteral("onlyZoomFont").prepend(prefix), mArticleViewerWidgetNg->articleViewerNg()->settings()->testAttribute(QWebSettings::ZoomTextOnly));
 }
 
 void WebViewFrame::setFavicon(const QIcon &icon)
