@@ -15,6 +15,7 @@
   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
+#include "articleviewerwidget.h"
 #include "mainframe.h"
 
 #include <QGridLayout>
@@ -22,7 +23,9 @@
 using namespace Akregator;
 
 MainFrame::MainFrame(QWidget *parent, KParts::ReadOnlyPart *part, QWidget *visibleWidget)
-    : Frame(parent), m_part(part)
+    : Frame(parent),
+      m_part(part),
+      mArticleViewer(Q_NULLPTR)
 {
     setRemovable(false);
     QGridLayout *layout = new QGridLayout(this);
@@ -38,4 +41,49 @@ MainFrame::~MainFrame()
 QUrl MainFrame::url() const
 {
     return QUrl();
+}
+
+void MainFrame::setArticleViewer(Akregator::ArticleViewerWidget *articleViewer)
+{
+    mArticleViewer = articleViewer;
+}
+
+void MainFrame::slotZoomChangeInFrame(int frameId, qreal value)
+{
+    if (frameId != 0) {
+        return;
+    }
+    //TODO
+}
+
+void MainFrame::slotZoomTextOnlyInFrame(int frameId, bool textOnlyInFrame)
+{
+    if (frameId != 0) {
+        return;
+    }
+    //TODO
+}
+
+void MainFrame::slotCopyInFrame(int frameId)
+{
+    if (frameId != 0) {
+        return;
+    }
+    //mArticleViewer->slotCopy();
+}
+
+void MainFrame::slotPrintInFrame(int frameId)
+{
+    if (frameId != 0) {
+        return;
+    }
+    //mArticleViewer->slotPrint();
+}
+
+void MainFrame::slotPrintPreviewInFrame(int frameId)
+{
+    if (frameId != 0) {
+        return;
+    }
+    //mArticleViewer->slotPrintPreview();
 }

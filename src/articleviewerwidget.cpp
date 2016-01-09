@@ -53,7 +53,7 @@
 
 #include <kstandardaction.h>
 #include <ktoolinvocation.h>
-#include <kglobalsettings.h>
+//#include <kglobalsettings.h>
 #include <kio/job.h>
 #include <QUrl>
 #include <grantleetheme/grantleethememanager.h>
@@ -218,16 +218,9 @@ void ArticleViewerWidget::slotCreateNewWindow(const QUrl &url,
 }
 #endif
 
-// taken from KDevelop
 void ArticleViewerWidget::slotCopy()
 {
-#if 0
-    QString text = m_part->selectedText();
-    text.replace(QChar(0xa0), QLatin1Char(' '));
-    QClipboard *const cb = QApplication::clipboard();
-    Q_ASSERT(cb);
-    cb->setText(text, QClipboard::Clipboard);
-#endif
+    m_articleViewerWidgetNg->articleViewerNg()->slotCopy();
 }
 
 void ArticleViewerWidget::slotCopyLinkAddress()
@@ -290,6 +283,11 @@ void ArticleViewerWidget::slotSaveLinkAs()
 void ArticleViewerWidget::slotPrint()
 {
     m_articleViewerWidgetNg->articleViewerNg()->slotPrint();
+}
+
+void ArticleViewerWidget::slotPrintPreview()
+{
+    m_articleViewerWidgetNg->articleViewerNg()->slotPrintPreview();
 }
 
 void ArticleViewerWidget::connectToNode(TreeNode *node)

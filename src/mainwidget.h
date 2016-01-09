@@ -59,7 +59,7 @@ class Part;
 class SearchBar;
 class SubscriptionListView;
 class TabWidget;
-
+class MainFrame;
 /**
     * This is the main widget of the view, containing tree view, article list, viewer etc.
     */
@@ -270,7 +270,7 @@ private:
     TabWidget *m_tabWidget;
 
     QWidget *m_mainTab;
-    Frame *m_mainFrame;
+    MainFrame *m_mainFrame;
 
     SearchBar *m_searchBar;
 

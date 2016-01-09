@@ -22,7 +22,7 @@
 
 namespace Akregator
 {
-
+class ArticleViewerWidget;
 class AKREGATOR_EXPORT MainFrame : public Frame
 {
     Q_OBJECT
@@ -42,8 +42,18 @@ public:
     {
         return m_part;
     }
+    void setArticleViewer(Akregator::ArticleViewerWidget *articleViewer);
+
+public Q_SLOTS:
+    void slotZoomChangeInFrame(int frameId, qreal value);
+    void slotZoomTextOnlyInFrame(int frameId, bool textOnlyInFrame);
+    void slotCopyInFrame(int frameId);
+    void slotPrintInFrame(int frameId);
+    void slotPrintPreviewInFrame(int frameId);
+
 private:
     KParts::ReadOnlyPart *m_part;
+    Akregator::ArticleViewerWidget *mArticleViewer;
 };
 
 } // namespace Akregator

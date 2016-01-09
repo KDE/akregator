@@ -241,6 +241,14 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
 
     m_mainFrame = new MainFrame(this, m_part, m_mainTab);
     m_mainFrame->slotSetTitle(i18n("Articles"));
+    m_mainFrame->setArticleViewer(m_articleViewer);
+    connect(m_tabWidget, &TabWidget::signalCopyInFrame, m_mainFrame, &MainFrame::slotCopyInFrame);
+    connect(m_tabWidget, &TabWidget::signalPrintInFrame, m_mainFrame, &MainFrame::slotPrintInFrame);
+    connect(m_tabWidget, &TabWidget::signalZoomChangedInFrame, m_mainFrame, &MainFrame::slotZoomChangeInFrame);
+    connect(m_tabWidget, &TabWidget::signalZoomTextOnlyInFrame, m_mainFrame, &MainFrame::slotZoomTextOnlyInFrame);
+    connect(m_tabWidget, &TabWidget::signalPrintPreviewInFrame, m_mainFrame, &MainFrame::slotPrintPreviewInFrame);
+
+
     Kernel::self()->frameManager()->slotAddFrame(m_mainFrame);
 
     const QList<int> sp1sizes = Settings::splitter1Sizes();

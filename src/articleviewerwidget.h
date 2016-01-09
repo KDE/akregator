@@ -98,6 +98,9 @@ public Q_SLOTS:
 
     void slotPaletteOrFontChanged();
 
+    void slotPrintPreview();
+    void slotCopy();
+
 Q_SIGNALS:
 
     /** This gets emitted when url gets clicked */
@@ -115,8 +118,6 @@ protected Q_SLOTS:
     /** Copies current link to clipboard. */
     void slotCopyLinkAddress();
 
-    /** Copies currently selected text to clipboard */
-    void slotCopy();
 
     /** Opens @c m_url inside this viewer */
     void slotOpenLinkInternal();
