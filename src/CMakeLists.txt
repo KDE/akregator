@@ -42,10 +42,18 @@ set(akregator_articleviewer_ng_SRCS
     webviewer.cpp
     )
 
+set(akregatorprivate_formatter_SRCS
+    formatter/articleformatter.cpp
+    formatter/defaultnormalviewformatter.cpp
+    formatter/defaultcombinedviewformatter.cpp
+    )
+
 set(akregatorprivate_LIB_SRCS
     akregratormigrateapplication.cpp
     ${akregator_articleviewer_ng_SRCS}
     ${akregator_common_SRCS}
+    ${akregatorprivate_formatter_SRCS}
+    articleviewerwidget.cpp
     aboutdata.cpp
     trayicon.cpp
     article.cpp
@@ -78,6 +86,7 @@ generate_export_header(akregatorprivate BASE_NAME akregator)
 
 target_link_libraries(akregatorprivate
     PRIVATE
+    KF5::KDELibs4Support
     KF5::Parts
     KF5::Notifications
     KF5::Libkdepim
@@ -117,17 +126,10 @@ set(akregatorpart_command_SRCS
     command/importfeedlistcommand.cpp
     )
 
-set(akregatorpart_formatter_SRCS
-    formatter/articleformatter.cpp
-    formatter/defaultnormalviewformatter.cpp
-    formatter/defaultcombinedviewformatter.cpp
-    )
-
 set(akregatorpart_PART_SRCS
     ${akregatorpart_command_SRCS}
     ${akregator_utils_SRCS}
     ${akregator_common_SRCS}
-    ${akregatorpart_formatter_SRCS}
     abstractselectioncontroller.cpp
     articlematcher.cpp
     articlemodel.cpp
@@ -137,7 +139,6 @@ set(akregatorpart_PART_SRCS
     searchbar.cpp
     articlelistview.cpp
     actionmanagerimpl.cpp
-    articleviewerwidget.cpp
     addfeeddialog.cpp
     feedpropertiesdialog.cpp
     tabwidget.cpp

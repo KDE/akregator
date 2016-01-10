@@ -69,7 +69,7 @@ void MainFrame::slotCopyInFrame(int frameId)
     if (frameId != 0) {
         return;
     }
-    //mArticleViewer->slotCopy();
+    mArticleViewer->slotCopy();
 }
 
 void MainFrame::slotPrintInFrame(int frameId)
@@ -77,7 +77,7 @@ void MainFrame::slotPrintInFrame(int frameId)
     if (frameId != 0) {
         return;
     }
-    //mArticleViewer->slotPrint();
+    mArticleViewer->slotPrint();
 }
 
 void MainFrame::slotPrintPreviewInFrame(int frameId)
@@ -85,5 +85,5 @@ void MainFrame::slotPrintPreviewInFrame(int frameId)
     if (frameId != 0) {
         return;
     }
-    //mArticleViewer->slotPrintPreview();
+    mArticleViewer->slotPrintPreview();
 }

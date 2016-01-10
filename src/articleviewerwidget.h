@@ -26,7 +26,7 @@
 #define AKREGATOR_ARTICLEVIEWERWIDGET_H
 
 #include "article.h"
-#include "akregatorpart_export.h"
+#include "akregator_export.h"
 #include <QWidget>
 
 #include <QPointer>
@@ -54,7 +54,7 @@ class TreeNode;
 class ArticleViewerWidgetNg;
 class ArticleHtmlWriter;
 
-class AKREGATORPART_EXPORT ArticleViewerWidget : public QWidget
+class AKREGATOR_EXPORT ArticleViewerWidget : public QWidget
 {
     Q_OBJECT
 public:

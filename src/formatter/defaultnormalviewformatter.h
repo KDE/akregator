@@ -19,10 +19,10 @@
 #define DEFAULTNORMALVIEWFORMATTER_H
 
 #include "articleformatter.h"
-
+#include "akregator_export.h"
 namespace Akregator
 {
-class DefaultNormalViewFormatter : public ArticleFormatter
+class AKREGATOR_EXPORT DefaultNormalViewFormatter : public ArticleFormatter
 {
 public:
 

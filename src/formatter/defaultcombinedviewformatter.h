@@ -19,10 +19,10 @@
 #define DEFAULTCOMBINEDVIEWFORMATTER_H
 
 #include "articleformatter.h"
-
+#include "akregator_export.h"
 namespace Akregator
 {
-class DefaultCombinedViewFormatter : public ArticleFormatter
+class AKREGATOR_EXPORT DefaultCombinedViewFormatter : public ArticleFormatter
 {
 public:
     explicit DefaultCombinedViewFormatter(const QUrl &imageDir, QPaintDevice *device = Q_NULLPTR);
