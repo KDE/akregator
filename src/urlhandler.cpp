@@ -118,6 +118,7 @@ bool ActionURLHandler::handleClick(const QUrl &url, ArticleViewerNg *articleView
             }
         } else {
             qCWarning(AKREGATOR_LOG) << "Undefined article id";
+            return true;
         }
     }
     return false;
