@@ -72,7 +72,7 @@ QString DefaultCombinedViewFormatter::formatArticle(const Article &article, Icon
         text += QLatin1String("</span><span class=\"headertext\">");
         text += author + QLatin1String("</span>\n"); // TODO: might need RTL?
     }
-    //TODO text += QStringLiteral("<div><a href=\"akregatoraction:markAsImportant?#%1\">Mark As Important</div>").arg(article.guid());
+    //TODO text += QStringLiteral("<div><a href=\"akregatoraction:markAsImportant?#%1\">Mark As Important</a></div>").arg(article.guid());
 
     if (!enc.isEmpty()) {
         text += QStringLiteral("<br/><span class=\"header\" dir=\"%1\">").arg(Utils::directionOf(i18n("Enclosure")));
