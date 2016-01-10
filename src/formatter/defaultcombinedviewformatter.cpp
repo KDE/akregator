@@ -150,7 +150,6 @@ QString DefaultCombinedViewFormatter::getCss() const
     css += QString(
                QLatin1String("a {\n")
                + QLatin1String("  color: %1 ! important;\n")
-               + QString(!Settings::underlineLinks() ? QStringLiteral(" text-decoration: none ! important;\n") : QStringLiteral(""))
                +       QLatin1String("}\n\n")
                + QLatin1String(".headerbox {\n")
                + QLatin1String("  background: %2 ! important;\n")

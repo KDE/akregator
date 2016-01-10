@@ -741,14 +741,6 @@ void Part::initFonts()
         }
         Settings::setMediumFontSize(medfs);
     }
-
-    if (!conf.hasKey("UnderlineLinks")) {
-        bool underline = true;
-        if (konq.hasKey("UnderlineLinks")) {
-            underline = konq.readEntry("UnderlineLinks", false);
-        }
-        Settings::setUnderlineLinks(underline);
-    }
 }
 
 bool Part::handleCommandLine(const QStringList &args)
