@@ -220,7 +220,7 @@ void ArticleViewerWidget::slotCreateNewWindow(const QUrl &url,
 
 void ArticleViewerWidget::slotZoomChangeInFrame(qreal value)
 {
-    m_articleViewerWidgetNg->articleViewerNg()->slotZoomTextOnlyInFrame(value);
+    m_articleViewerWidgetNg->articleViewerNg()->setZoomFactor(value);
 }
 
 void ArticleViewerWidget::slotZoomTextOnlyInFrame(bool textOnlyInFrame)

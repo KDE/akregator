@@ -19,6 +19,7 @@
 #include "mainframe.h"
 
 #include <QGridLayout>
+#include <QDebug>
 
 using namespace Akregator;
 
