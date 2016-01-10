@@ -2,6 +2,7 @@ include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/command/
     ${CMAKE_CURRENT_SOURCE_DIR}/formatter/
     ${CMAKE_CURRENT_SOURCE_DIR}/subscription/
+    ${CMAKE_CURRENT_SOURCE_DIR}/feed/
     )
 
 
@@ -57,12 +58,12 @@ set(akregatorprivate_LIB_SRCS
     aboutdata.cpp
     trayicon.cpp
     article.cpp
-    feed.cpp
-    feedlist.cpp
+    feed/feed.cpp
+    feed/feedlist.cpp
+    feed/feediconmanager.cpp
     treenode.cpp
     treenodevisitor.cpp
     utils.cpp
-    feediconmanager.cpp
     notificationmanager.cpp
     articlejobs.cpp
     folder.cpp
@@ -140,7 +141,7 @@ set(akregatorpart_PART_SRCS
     articlelistview.cpp
     actionmanagerimpl.cpp
     addfeeddialog.cpp
-    feedpropertiesdialog.cpp
+    feed/feedpropertiesdialog.cpp
     tabwidget.cpp
     progressmanager.cpp
     akregator_part.cpp
