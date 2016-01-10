@@ -46,15 +46,21 @@ void WebViewer::contextMenuEvent(QContextMenuEvent *event)
 {
     QMenu popup(this);
     QWebHistory *history = page()->history();
+    bool needSeparator = false;
     if (history->canGoBack()) {
         popup.addAction(pageAction(QWebPage::Back));
+        needSeparator = true;
     }
 
     if (history->canGoForward()) {
         popup.addAction(pageAction(QWebPage::Forward));
+        needSeparator = true;
+    }
+    if (needSeparator) {
+        popup.addSeparator();
     }
     popup.addAction(pageAction(QWebPage::Reload));
-
+    popup.addSeparator();
     mContextMenuHitResult = page()->mainFrame()->hitTestContent(event->pos());
     mCurrentUrl = mContextMenuHitResult.linkUrl();
     const bool contentSelected = mContextMenuHitResult.isContentSelected();
