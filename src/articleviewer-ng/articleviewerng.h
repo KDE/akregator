@@ -39,7 +39,9 @@ public:
         MarkAsRead,
         MarkAsUnRead,
         MarkAsImportant,
-        SendUrlArticle
+        SendUrlArticle,
+        OpenInExternalBrowser,
+        Share
     };
 
     explicit ArticleViewerNg(KActionCollection *ac, QWidget *parent = Q_NULLPTR);

@@ -78,6 +78,10 @@ QString ActionURLHandler::statusBarMessage(const QUrl &url, ArticleViewerNg *) c
             return i18n("Mark Article as Important");
         } else if (urlPath == QLatin1String("sendUrlArticle")) {
             return i18n("Send Url Article");
+        } else if (urlPath == QLatin1String("openInExternalBrowser")) {
+            return i18n("Open In External Browser");
+        } else if (urlPath == QLatin1String("share")) {
+            return i18n("Sahre");
         }
         return {};
     }
@@ -104,6 +108,12 @@ bool ActionURLHandler::handleClick(const QUrl &url, ArticleViewerNg *articleView
                 return true;
             } else if (urlPath == QLatin1String("sendUrlArticle")) {
                 articleViewer->setArticleAction(ArticleViewerNg::SendUrlArticle, articleId);
+                return true;
+            } else if (urlPath == QLatin1String("openInExternalBrowser")) {
+                articleViewer->setArticleAction(ArticleViewerNg::OpenInExternalBrowser, articleId);
+                return true;
+            } else if (urlPath == QLatin1String("share")) {
+                articleViewer->setArticleAction(ArticleViewerNg::Share, articleId);
                 return true;
             }
         } else {
