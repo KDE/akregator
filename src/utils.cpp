@@ -25,10 +25,18 @@
 #include "utils.h"
 #include <QRegExp>
 #include <QString>
+#include <QTextDocument>
 #include <kdelibs4configmigrator.h>
 
 namespace Akregator
 {
+
+QString Utils::convertHtmlTags(const QString &title)
+{
+    QTextDocument newText;
+    newText.setHtml(title);
+    return newText.toPlainText();
+}
 
 QString Utils::stripTags(const QString &str)
 {

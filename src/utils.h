@@ -55,6 +55,8 @@ public:
     static QString fileNameForUrl(const QString &url);
 
     static QString directionOf(const QString &str);
+
+    static QString convertHtmlTags(const QString &title);
 };
 
 } // namespace Akregator

@@ -25,6 +25,7 @@
 */
 
 #include "mainwidget.h"
+#include "utils.h"
 #include "actionmanagerimpl.h"
 #include "addfeeddialog.h"
 #include "articlelistview.h"
@@ -375,7 +376,7 @@ void MainWidget::sendArticle(bool attach)
         const Article article =  m_selectionController->currentArticle();
         if (!article.isNull()) {
             text = article.link().toDisplayString().toLatin1();
-            title = article.title();
+            title = Akregator::Utils::convertHtmlTags(article.title());
         }
     }
 
@@ -948,7 +949,7 @@ void MainWidget::currentArticleInfo(QString &link, QString &title)
     }
     if (article.link().isValid()) {
         link = article.link().url();
-        title = article.title();
+        title = Utils::convertHtmlTags(article.title());
     }
 }
 
