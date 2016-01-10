@@ -77,6 +77,7 @@ public:
     QSize sizeHint() const Q_DECL_OVERRIDE;
 
 public Q_SLOTS:
+    void slotZoomTextOnlyInFrame(bool textOnlyInFrame);
     void slotPrint();
 
     /** Set filters which will be used if the viewer is in combined view mode
@@ -101,6 +102,7 @@ public Q_SLOTS:
     void slotPrintPreview();
     void slotCopy();
 
+    void slotZoomChangeInFrame(qreal value);
 Q_SIGNALS:
 
     /** This gets emitted when url gets clicked */

@@ -53,7 +53,7 @@ void MainFrame::slotZoomChangeInFrame(int frameId, qreal value)
     if (frameId != 0) {
         return;
     }
-    //TODO
+    mArticleViewer->slotZoomChangeInFrame(value);
 }
 
 void MainFrame::slotZoomTextOnlyInFrame(int frameId, bool textOnlyInFrame)
@@ -61,7 +61,7 @@ void MainFrame::slotZoomTextOnlyInFrame(int frameId, bool textOnlyInFrame)
     if (frameId != 0) {
         return;
     }
-    //TODO
+    mArticleViewer->slotZoomTextOnlyInFrame(textOnlyInFrame);
 }
 
 void MainFrame::slotCopyInFrame(int frameId)

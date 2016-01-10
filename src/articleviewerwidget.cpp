@@ -218,6 +218,16 @@ void ArticleViewerWidget::slotCreateNewWindow(const QUrl &url,
 }
 #endif
 
+void ArticleViewerWidget::slotZoomChangeInFrame(qreal value)
+{
+    m_articleViewerWidgetNg->articleViewerNg()->slotZoomTextOnlyInFrame(value);
+}
+
+void ArticleViewerWidget::slotZoomTextOnlyInFrame(bool textOnlyInFrame)
+{
+    m_articleViewerWidgetNg->articleViewerNg()->slotZoomTextOnlyInFrame(textOnlyInFrame);
+}
+
 void ArticleViewerWidget::slotCopy()
 {
     m_articleViewerWidgetNg->articleViewerNg()->slotCopy();
