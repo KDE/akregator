@@ -20,6 +20,7 @@
 
 #include <QWidget>
 #include "articleviewerng.h"
+#include "akregator_export.h"
 class KActionCollection;
 class QAction;
 namespace MessageViewer
@@ -35,7 +36,7 @@ class TextToSpeechWidget;
 
 namespace Akregator
 {
-class ArticleViewerWidgetNg : public QWidget
+class AKREGATOR_EXPORT ArticleViewerWidgetNg : public QWidget
 {
     Q_OBJECT
 public:

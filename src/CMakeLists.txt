@@ -125,7 +125,6 @@ set(akregatorpart_formatter_SRCS
 
 set(akregatorpart_PART_SRCS
     ${akregatorpart_command_SRCS}
-    ${akregator_articleviewer_ng_SRCS}
     ${akregator_utils_SRCS}
     ${akregator_common_SRCS}
     ${akregatorpart_formatter_SRCS}

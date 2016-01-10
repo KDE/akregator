@@ -19,10 +19,11 @@
 #define ARTICLEHTMLWRITER_H
 
 #include <QObject>
+#include "akregator_export.h"
 class QWebView;
 namespace Akregator
 {
-class ArticleHtmlWriter : public QObject
+class AKREGATOR_EXPORT ArticleHtmlWriter : public QObject
 {
     Q_OBJECT
 public:

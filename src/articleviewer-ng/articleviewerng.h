@@ -19,7 +19,7 @@
 #define ARTICLEVIEWERNG_H
 
 #include <KWebView>
-#include <QVariantHash>
+#include "akregator_export.h"
 #include <QVariantHash>
 #include <QWebHitTestResult>
 #include <openurlrequest.h>
@@ -30,7 +30,7 @@ class WebViewAccessKey;
 }
 namespace Akregator
 {
-class ArticleViewerNg : public KWebView
+class AKREGATOR_EXPORT ArticleViewerNg : public KWebView
 {
     Q_OBJECT
 public:
