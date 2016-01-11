@@ -4,6 +4,7 @@ include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/subscription/
     ${CMAKE_CURRENT_SOURCE_DIR}/feed/
     ${CMAKE_CURRENT_SOURCE_DIR}/urlhandler/
+    ${CMAKE_CURRENT_SOURCE_DIR}/actions/
     )
 
 
@@ -75,8 +76,8 @@ set(akregatorprivate_LIB_SRCS
     mainframe.cpp
     framemanager.cpp
     openurlrequest.cpp
-    actionmanager.cpp
-    actions.cpp
+    actions/actionmanager.cpp
+    actions/actions.cpp
     webviewframe.cpp
     urlhandler/urlhandlermanager.cpp
     urlhandler/urlhandler.cpp
@@ -140,7 +141,7 @@ set(akregatorpart_PART_SRCS
     subscription/subscriptionlistmodel.cpp
     searchbar.cpp
     articlelistview.cpp
-    actionmanagerimpl.cpp
+    actions/actionmanagerimpl.cpp
     addfeeddialog.cpp
     feed/feedpropertiesdialog.cpp
     tabwidget.cpp
