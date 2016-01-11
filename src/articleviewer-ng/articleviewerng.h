@@ -98,7 +98,7 @@ private:
 
     void paintAboutScreen(const QString &templateName, const QVariantHash &data);
     QUrl linkOrImageUrlAt(const QPoint &global) const;
-    QVariantHash introductionData();
+    QVariantHash introductionData() const;
     MousePressedButtonType mLastButtonClicked;
     MessageViewer::WebViewAccessKey *mWebViewAccessKey;
 };

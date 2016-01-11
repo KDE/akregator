@@ -17,8 +17,8 @@
 
 #include "articleviewerng.h"
 #include "akregator_debug.h"
-#include "../actionmanager.h"
-#include "../actions.h"
+#include "actionmanager.h"
+#include "actions.h"
 #include "urlhandlermanager.h"
 #include "akregatorconfig.h"
 #include <KActionCollection>
@@ -114,7 +114,7 @@ void ArticleViewerNg::slotLoadStarted()
     setCursor(Qt::WaitCursor);
 }
 
-QVariantHash ArticleViewerNg::introductionData()
+QVariantHash ArticleViewerNg::introductionData() const
 {
     QVariantHash data;
     data[QStringLiteral("icon")] = QStringLiteral("akregator");
