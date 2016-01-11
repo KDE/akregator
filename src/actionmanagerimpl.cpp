@@ -246,19 +246,26 @@ void ActionManagerImpl::initMainWidget(MainWidget *mainWidget)
     coll->setDefaultShortcut(action, QKeySequence(QStringLiteral("F2")));
 
     // toolbar / View
+    QActionGroup *group = new QActionGroup(this);
     action = coll->addAction(QStringLiteral("normal_view"));
+    action->setCheckable(true);
+    group->addAction(action);
     action->setIcon(QIcon::fromTheme(QStringLiteral("view-split-top-bottom")));
     action->setText(i18n("&Normal View"));
     connect(action, &QAction::triggered, d->mainWidget, &MainWidget::slotNormalView);
     coll->setDefaultShortcut(action, QKeySequence(QStringLiteral("Ctrl+Shift+1")));
 
     action = coll->addAction(QStringLiteral("widescreen_view"));
+    action->setCheckable(true);
+    group->addAction(action);
     action->setIcon(QIcon::fromTheme(QStringLiteral("view-split-left-right")));
     action->setText(i18n("&Widescreen View"));
     connect(action, &QAction::triggered, d->mainWidget, &MainWidget::slotWidescreenView);
     coll->setDefaultShortcut(action, QKeySequence(QStringLiteral("Ctrl+Shift+2")));
 
     action = coll->addAction(QStringLiteral("combined_view"));
+    action->setCheckable(true);
+    group->addAction(action);
     action->setIcon(QIcon::fromTheme(QStringLiteral("view-list-text")));
     action->setText(i18n("C&ombined View"));
     connect(action, &QAction::triggered, d->mainWidget, &MainWidget::slotCombinedView);
