@@ -159,8 +159,12 @@ void ArticleViewerNg::paintAboutScreen(const QString &templateName, const QVaria
 void ArticleViewerNg::displayContextMenu(const QPoint &pos)
 {
     mContextMenuHitResult = page()->mainFrame()->hitTestContent(pos);
-    QMenu popup(this);
     mCurrentUrl = mContextMenuHitResult.linkUrl();
+    if (URLHandlerManager::instance()->handleContextMenuRequest(mCurrentUrl, pos, this)) {
+        return;
+    }
+
+    QMenu popup(this);
     const bool contentSelected = mContextMenuHitResult.isContentSelected();
     if (!mCurrentUrl.isEmpty() && !contentSelected) {
         popup.addAction(createOpenLinkInNewTabAction(mCurrentUrl, this, SLOT(slotOpenLinkInForegroundTab()), &popup));

@@ -35,6 +35,11 @@ bool AkregatorConfigHandler::handleClick(const QUrl &url, ArticleViewerNg *artic
     return false;
 }
 
+bool AkregatorConfigHandler::handleContextMenuRequest(const QUrl &url, const QPoint &, ArticleViewerNg *) const
+{
+    return (url.scheme() == QLatin1String("config"));
+}
+
 
 QString AkregatorConfigHandler::statusBarMessage(const QUrl &url, ArticleViewerNg *) const
 {

@@ -18,6 +18,7 @@
 #include "webviewer.h"
 #include "actionmanager.h"
 #include "actions.h"
+#include "urlhandlermanager.h"
 
 #include <KActionCollection>
 
@@ -44,6 +45,11 @@ WebViewer::~WebViewer()
 
 void WebViewer::displayContextMenu(const QPoint &pos)
 {
+    mContextMenuHitResult = page()->mainFrame()->hitTestContent(pos);
+    mCurrentUrl = mContextMenuHitResult.linkUrl();
+    if (URLHandlerManager::instance()->handleContextMenuRequest(mCurrentUrl, pos, this)) {
+        return;
+    }
     QMenu popup(this);
     QWebHistory *history = page()->history();
     bool needSeparator = false;
@@ -61,8 +67,6 @@ void WebViewer::displayContextMenu(const QPoint &pos)
     }
     popup.addAction(pageAction(QWebPage::Reload));
     popup.addSeparator();
-    mContextMenuHitResult = page()->mainFrame()->hitTestContent(pos);
-    mCurrentUrl = mContextMenuHitResult.linkUrl();
     const bool contentSelected = mContextMenuHitResult.isContentSelected();
     if (!mCurrentUrl.isEmpty() && !contentSelected) {
         popup.addAction(createOpenLinkInNewTabAction(mCurrentUrl, this, SLOT(slotOpenLinkInForegroundTab()), &popup));
