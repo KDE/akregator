@@ -59,6 +59,11 @@ QString MailToURLHandler::statusBarMessage(const QUrl &url, ArticleViewerNg *) c
     return QString();
 }
 
+bool MailToURLHandler::handleContextMenuRequest(const QUrl &url, const QPoint &, ArticleViewerNg *) const
+{
+    return (url.scheme() == QLatin1String("mailto"));
+}
+
 bool MailToURLHandler::handleClick(const QUrl &url, ArticleViewerNg *) const
 {
     if (url.scheme() == QLatin1String("mailto")) {
@@ -68,6 +73,10 @@ bool MailToURLHandler::handleClick(const QUrl &url, ArticleViewerNg *) const
     return false;
 }
 
+bool ActionURLHandler::handleContextMenuRequest(const QUrl &url, const QPoint &, ArticleViewerNg *) const
+{
+    return (url.scheme() == QLatin1String("akregatoraction"));
+}
 
 QString ActionURLHandler::statusBarMessage(const QUrl &url, ArticleViewerNg *) const
 {

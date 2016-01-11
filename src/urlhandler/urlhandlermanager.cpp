@@ -57,7 +57,6 @@ void URLHandlerManager::unregisterHandler(const URLHandler *handler)
 {
     // don't delete them, only remove them from the list!
     mHandlers.erase(remove(mHandlers.begin(), mHandlers.end(), handler), mHandlers.end());
-
 }
 
 bool URLHandlerManager::handleClick(const QUrl &url, ArticleViewerNg *w) const
