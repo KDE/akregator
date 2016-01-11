@@ -64,13 +64,16 @@ public Q_SLOTS:
 Q_SIGNALS:
     void signalOpenUrlRequest(Akregator::OpenUrlRequest &);
     void showStatusBarMessage(const QString &link);
+    void showContextMenu(const QPoint &pos);
 
 protected:
     void keyReleaseEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
     void keyPressEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
     void wheelEvent(QWheelEvent *e) Q_DECL_OVERRIDE;
     void resizeEvent(QResizeEvent *e) Q_DECL_OVERRIDE;
-    void contextMenuEvent(QContextMenuEvent *event) Q_DECL_OVERRIDE;
+    void mouseReleaseEvent(QMouseEvent *event) Q_DECL_OVERRIDE;
+
+    virtual void displayContextMenu(const QPoint &pos);
 
 private Q_SLOTS:
     void slotLinkHovered(const QString &link, const QString &title, const QString &textContent);
@@ -79,17 +82,24 @@ private Q_SLOTS:
     void slotLinkClicked(const QUrl &url);
     void slotOpenLinkInForegroundTab();
     void slotOpenLinkInBackgroundTab();
-    void slotOpenLinkInBrowser();
-
+    void slotOpenLinkInBrowser();    
+    void slotShowContextMenu(const QPoint &pos);
 protected:
     QUrl mCurrentUrl;
     QWebHitTestResult mContextMenuHitResult;
     KActionCollection *mActionCollection;
 
 private:
+    enum MousePressedButtonType {
+        RightButton = 0,
+        LeftButton,
+        MiddleButton,
+    };
+
     void paintAboutScreen(const QString &templateName, const QVariantHash &data);
     QUrl linkOrImageUrlAt(const QPoint &global) const;
     QVariantHash introductionData();
+    MousePressedButtonType mLastButtonClicked;
     MessageViewer::WebViewAccessKey *mWebViewAccessKey;
 };
 }

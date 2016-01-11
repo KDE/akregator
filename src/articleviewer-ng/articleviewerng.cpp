@@ -44,8 +44,10 @@ using namespace Akregator;
 
 ArticleViewerNg::ArticleViewerNg(KActionCollection *ac, QWidget *parent)
     : KWebView(parent, false),
-      mActionCollection(ac)
+      mActionCollection(ac),
+      mLastButtonClicked(LeftButton)
 {
+    setContextMenuPolicy(Qt::CustomContextMenu);
     setPage(new MessageViewer::WebPage(this));
     mWebViewAccessKey = new MessageViewer::WebViewAccessKey(this, this);
     mWebViewAccessKey->setActionCollection(mActionCollection);
@@ -62,11 +64,17 @@ ArticleViewerNg::ArticleViewerNg(KActionCollection *ac, QWidget *parent)
     page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
     connect(page(), &QWebPage::linkHovered, this, &ArticleViewerNg::slotLinkHovered);
     connect(this, &ArticleViewerNg::linkClicked, this, &ArticleViewerNg::slotLinkClicked);
+    connect(this, &ArticleViewerNg::showContextMenu, this, &ArticleViewerNg::slotShowContextMenu);
 }
 
 ArticleViewerNg::~ArticleViewerNg()
 {
     disconnect(this, &QWebView::loadFinished, this, &ArticleViewerNg::slotLoadFinished);
+}
+
+void ArticleViewerNg::slotShowContextMenu(const QPoint &pos)
+{
+    displayContextMenu(pos);
 }
 
 void ArticleViewerNg::slotPrintPreview()
@@ -148,9 +156,9 @@ void ArticleViewerNg::paintAboutScreen(const QString &templateName, const QVaria
     }
 }
 
-void ArticleViewerNg::contextMenuEvent(QContextMenuEvent *event)
+void ArticleViewerNg::displayContextMenu(const QPoint &pos)
 {
-    mContextMenuHitResult = page()->mainFrame()->hitTestContent(event->pos());
+    mContextMenuHitResult = page()->mainFrame()->hitTestContent(pos);
     QMenu popup(this);
     mCurrentUrl = mContextMenuHitResult.linkUrl();
     const bool contentSelected = mContextMenuHitResult.isContentSelected();
@@ -168,7 +176,7 @@ void ArticleViewerNg::contextMenuEvent(QContextMenuEvent *event)
         popup.addAction(ActionManager::getInstance()->action(QStringLiteral("viewer_print")));
         popup.addAction(ActionManager::getInstance()->action(QStringLiteral("viewer_printpreview")));
     }
-    popup.exec(mapToGlobal(event->pos()));
+    popup.exec(mapToGlobal(pos));
 }
 
 void ArticleViewerNg::slotLinkHovered(const QString &link, const QString &title, const QString &textContent)
@@ -236,6 +244,19 @@ void ArticleViewerNg::setArticleAction(ArticleViewerNg::ArticleAction type, cons
     //TODO
 }
 
+void ArticleViewerNg::mouseReleaseEvent(QMouseEvent *event)
+{
+    if (event->button() & Qt::RightButton) {
+        Q_EMIT showContextMenu(event->pos());
+        mLastButtonClicked = RightButton;
+    } else if (event->button() & Qt::MiddleButton) {
+        mLastButtonClicked = MiddleButton;
+    } else if (event->button() & Qt::LeftButton) {
+        mLastButtonClicked = LeftButton;
+    }
+    QWebView::mouseReleaseEvent(event);
+}
+
 void ArticleViewerNg::slotLinkClicked(const QUrl &url)
 {
     if (URLHandlerManager::instance()->handleClick(url, this)) {
@@ -245,8 +266,30 @@ void ArticleViewerNg::slotLinkClicked(const QUrl &url)
     mCurrentUrl = url;
     OpenUrlRequest req(mCurrentUrl);
     req.setOptions(OpenUrlRequest::NewTab);
+    if (mLastButtonClicked == LeftButton) {
+        switch (Settings::lMBBehaviour()) {
+        case Settings::EnumLMBBehaviour::OpenInExternalBrowser:
+            req.setOptions(OpenUrlRequest::ExternalBrowser);
+            break;
+        case Settings::EnumLMBBehaviour::OpenInBackground:
+            req.setOpenInBackground(true);
+            break;
+        default:
+            break;
+        }
+    } else if (mLastButtonClicked == MiddleButton) {
+        switch (Settings::mMBBehaviour()) {
+        case Settings::EnumMMBBehaviour::OpenInExternalBrowser:
+            req.setOptions(OpenUrlRequest::ExternalBrowser);
+            break;
+        case Settings::EnumMMBBehaviour::OpenInBackground:
+            req.setOpenInBackground(true);
+            break;
+        default:
+            break;
+        }
+    }
     Q_EMIT signalOpenUrlRequest(req);
-    //TODO open it.
 }
 
 void ArticleViewerNg::slotOpenLinkInForegroundTab()

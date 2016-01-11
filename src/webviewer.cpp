@@ -42,7 +42,7 @@ WebViewer::~WebViewer()
 
 }
 
-void WebViewer::contextMenuEvent(QContextMenuEvent *event)
+void WebViewer::displayContextMenu(const QPoint &pos)
 {
     QMenu popup(this);
     QWebHistory *history = page()->history();
@@ -61,7 +61,7 @@ void WebViewer::contextMenuEvent(QContextMenuEvent *event)
     }
     popup.addAction(pageAction(QWebPage::Reload));
     popup.addSeparator();
-    mContextMenuHitResult = page()->mainFrame()->hitTestContent(event->pos());
+    mContextMenuHitResult = page()->mainFrame()->hitTestContent(pos);
     mCurrentUrl = mContextMenuHitResult.linkUrl();
     const bool contentSelected = mContextMenuHitResult.isContentSelected();
     if (!mCurrentUrl.isEmpty() && !contentSelected) {
@@ -78,5 +78,5 @@ void WebViewer::contextMenuEvent(QContextMenuEvent *event)
         popup.addAction(ActionManager::getInstance()->action(QStringLiteral("viewer_print")));
         popup.addAction(ActionManager::getInstance()->action(QStringLiteral("viewer_printpreview")));
     }
-    popup.exec(mapToGlobal(event->pos()));
+    popup.exec(mapToGlobal(pos));
 }

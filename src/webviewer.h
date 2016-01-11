@@ -30,7 +30,7 @@ public:
     ~WebViewer();
 
 protected:
-    void contextMenuEvent(QContextMenuEvent *event) Q_DECL_OVERRIDE;
+    void displayContextMenu(const QPoint &pos) Q_DECL_OVERRIDE;
 };
 }
 #endif // WEBVIEWER_H
