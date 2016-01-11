@@ -53,7 +53,7 @@
 
 #include <kstandardaction.h>
 #include <ktoolinvocation.h>
-//#include <kglobalsettings.h>
+#include <KParts/BrowserRun>
 #include <kio/job.h>
 #include <QUrl>
 #include <grantleetheme/grantleethememanager.h>
@@ -287,7 +287,7 @@ void ArticleViewerWidget::slotSaveLinkAs()
         tmp.setPath(tmp.path() + QLatin1String("index.html"));
     }
     //TODO
-    //KParts::BrowserRun::simpleSave(tmp, tmp.fileName());
+    KParts::BrowserRun::simpleSave(tmp, tmp.fileName());
 }
 
 void ArticleViewerWidget::slotPrint()
