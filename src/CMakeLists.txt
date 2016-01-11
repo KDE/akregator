@@ -3,6 +3,7 @@ include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/formatter/
     ${CMAKE_CURRENT_SOURCE_DIR}/subscription/
     ${CMAKE_CURRENT_SOURCE_DIR}/feed/
+    ${CMAKE_CURRENT_SOURCE_DIR}/urlhandler/
     )
 
 
@@ -77,8 +78,8 @@ set(akregatorprivate_LIB_SRCS
     actionmanager.cpp
     actions.cpp
     webviewframe.cpp
-    urlhandlermanager.cpp
-    urlhandler.cpp
+    urlhandler/urlhandlermanager.cpp
+    urlhandler/urlhandler.cpp
 
     )
 
