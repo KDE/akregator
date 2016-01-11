@@ -95,7 +95,7 @@ QString ActionURLHandler::statusBarMessage(const QUrl &url, ArticleViewerNg *) c
         } else if (urlPath == QLatin1String("openInExternalBrowser")) {
             return i18n("Open In External Browser");
         } else if (urlPath == QLatin1String("share")) {
-            return i18n("Sahre");
+            return i18n("Share");
         }
         return {};
     }
