@@ -251,33 +251,6 @@ void ArticleViewerWidget::slotSelectionChanged()
     ActionManager::getInstance()->action(QStringLiteral("viewer_copy"))->setEnabled(!m_articleViewerWidgetNg->articleViewerNg()->selectedText().isEmpty());
 }
 
-void ArticleViewerWidget::slotOpenLinkInternal()
-{
-    openUrl(m_url);
-}
-
-void ArticleViewerWidget::slotOpenLinkInForegroundTab()
-{
-    OpenUrlRequest req(m_url);
-    req.setOptions(OpenUrlRequest::NewTab);
-    Q_EMIT signalOpenUrlRequest(req);
-}
-
-void ArticleViewerWidget::slotOpenLinkInBackgroundTab()
-{
-    OpenUrlRequest req(m_url);
-    req.setOptions(OpenUrlRequest::NewTab);
-    req.setOpenInBackground(true);
-    Q_EMIT signalOpenUrlRequest(req);
-}
-
-void ArticleViewerWidget::slotOpenLinkInBrowser()
-{
-    OpenUrlRequest req(m_url);
-    req.setOptions(OpenUrlRequest::ExternalBrowser);
-    Q_EMIT signalOpenUrlRequest(req);
-}
-
 void ArticleViewerWidget::slotSaveLinkAs()
 {
     QUrl tmp(m_url);

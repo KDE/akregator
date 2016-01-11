@@ -120,19 +120,6 @@ protected Q_SLOTS:
     /** Copies current link to clipboard. */
     void slotCopyLinkAddress();
 
-
-    /** Opens @c m_url inside this viewer */
-    void slotOpenLinkInternal();
-
-    /** Opens @c m_url in external viewer, eg. Konqueror */
-    void slotOpenLinkInBrowser();
-
-    /** Opens @c m_url in foreground tab */
-    void slotOpenLinkInForegroundTab();
-
-    /** Opens @c m_url in background tab */
-    void slotOpenLinkInBackgroundTab();
-
     void slotSaveLinkAs();
 
     void slotSelectionChanged();
