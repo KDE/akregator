@@ -246,9 +246,12 @@ void ActionManagerImpl::initMainWidget(MainWidget *mainWidget)
     coll->setDefaultShortcut(action, QKeySequence(QStringLiteral("F2")));
 
     // toolbar / View
+
+    const MainWidget::ViewMode viewMode = static_cast<MainWidget::ViewMode>(Settings::viewMode());
     QActionGroup *group = new QActionGroup(this);
     action = coll->addAction(QStringLiteral("normal_view"));
     action->setCheckable(true);
+    action->setChecked(viewMode == MainWidget::NormalView);
     group->addAction(action);
     action->setIcon(QIcon::fromTheme(QStringLiteral("view-split-top-bottom")));
     action->setText(i18n("&Normal View"));
@@ -257,6 +260,7 @@ void ActionManagerImpl::initMainWidget(MainWidget *mainWidget)
 
     action = coll->addAction(QStringLiteral("widescreen_view"));
     action->setCheckable(true);
+    action->setChecked(viewMode == MainWidget::WidescreenView);
     group->addAction(action);
     action->setIcon(QIcon::fromTheme(QStringLiteral("view-split-left-right")));
     action->setText(i18n("&Widescreen View"));
@@ -265,6 +269,7 @@ void ActionManagerImpl::initMainWidget(MainWidget *mainWidget)
 
     action = coll->addAction(QStringLiteral("combined_view"));
     action->setCheckable(true);
+    action->setChecked(viewMode == MainWidget::CombinedView);
     group->addAction(action);
     action->setIcon(QIcon::fromTheme(QStringLiteral("view-list-text")));
     action->setText(i18n("C&ombined View"));
