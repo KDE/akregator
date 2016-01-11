@@ -57,6 +57,7 @@
 #include <kmessagebox.h>
 
 #include <QTemporaryFile>
+#include <QWebSettings>
 #include <QSaveFile>
 #include <kservice.h>
 #include <kxmlguifactory.h>
@@ -717,6 +718,12 @@ void Part::initFonts()
         Settings::setSerifFont(fonts[3]);
     }
 
+    QWebSettings::globalSettings()->setFontFamily(QWebSettings::StandardFont, Settings::standardFont());
+    QWebSettings::globalSettings()->setFontFamily(QWebSettings::FixedFont, Settings::fixedFont());
+    QWebSettings::globalSettings()->setFontFamily(QWebSettings::SerifFont, Settings::serifFont());
+    QWebSettings::globalSettings()->setFontFamily(QWebSettings::SansSerifFont, Settings::sansSerifFont());
+    //TODO add CursiveFont, FantasyFont
+
     KConfigGroup conf(Settings::self()->config(), "HTML Settings");
 
     KConfig _konq(QStringLiteral("konquerorrc"), KConfig::NoGlobals);
@@ -741,6 +748,8 @@ void Part::initFonts()
         }
         Settings::setMediumFontSize(medfs);
     }
+    QWebSettings::globalSettings()->setFontSize(QWebSettings::MinimumFontSize, Settings::minimumFontSize());
+    QWebSettings::globalSettings()->setFontSize(QWebSettings::DefaultFontSize, Settings::mediumFontSize());
 }
 
 bool Part::handleCommandLine(const QStringList &args)
