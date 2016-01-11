@@ -315,6 +315,7 @@ void ArticleViewerWidget::beginWriting()
     }
 
     head += QLatin1String("</style></head><body>");
+    //TODO fix position
     //m_part->view()->setContentsPos(0, 0);
 
     //pass link to the KHTMLPart to make relative links work
@@ -541,6 +542,7 @@ void ArticleViewerWidget::slotPaletteOrFontChanged()
 
 void ArticleViewerWidget::reload()
 {
+    //TODO
 #if 0
     beginWriting();
     m_part->write(m_currentText);
