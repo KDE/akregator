@@ -672,12 +672,12 @@ void Part::showOptions()
         connect(m_dialog, SIGNAL(configCommitted()),
                 TrayIcon::getInstance(), SLOT(settingsChanged()));
 
-        // query for akregator's kcm modules
-        const QString constraint = QStringLiteral("[X-KDE-ParentApp] == 'akregator'");
-        const KService::List offers = KServiceTypeTrader::self()->query(QStringLiteral("KCModule"), constraint);
-        foreach (const KService::Ptr &service, offers) {
-            m_dialog->addModule(service->storageId());
-        }
+        m_dialog->addModule(QStringLiteral("akregator_config_general"));
+        m_dialog->addModule(QStringLiteral("akregator_config_appearance"));
+        m_dialog->addModule(QStringLiteral("akregator_config_archive"));
+        m_dialog->addModule(QStringLiteral("akregator_config_browser"));
+        m_dialog->addModule(QStringLiteral("akregator_config_advanced"));
+        m_dialog->addModule(QStringLiteral("akregator_config_adblock"));
     }
 
     m_dialog->show();
