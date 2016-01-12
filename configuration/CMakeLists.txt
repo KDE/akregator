@@ -120,6 +120,7 @@ target_link_libraries(akregator_config_adblock
   KF5::I18n
   KF5::MessageViewer
   KF5::ItemViews
+  KF5::IconThemes
 )
 
 kcoreaddons_desktop_to_json(akregator_config_adblock akregator_config_adblock.desktop)

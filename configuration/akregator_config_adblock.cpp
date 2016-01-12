@@ -18,7 +18,7 @@
 
 #include "akregator_config_adblock.h"
 #include "akregatorconfig.h"
-
+#include "messageviewer/messageviewersettings.h"
 #include <KAboutData>
 #include <KPluginFactory>
 #include <KLocalizedString>
@@ -50,12 +50,12 @@ KCMAkregatorAdBlockConfig::KCMAkregatorAdBlockConfig(QWidget *parent, const QVar
     lay->addWidget(mWidget);
     connect(mWidget, SIGNAL(changed(bool)), this, SIGNAL(changed(bool)));
     setLayout(lay);
-    mWidget->doLoadFromGlobalSettings();
 }
 
 void KCMAkregatorAdBlockConfig::save()
 {
     mWidget->save();
+    MessageViewer::MessageViewerSettings::self()->save();
 }
 
 void KCMAkregatorAdBlockConfig::load()
