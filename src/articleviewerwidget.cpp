@@ -378,17 +378,13 @@ void ArticleViewerWidget::showArticle(const Akregator::Article &article)
 }
 
 bool ArticleViewerWidget::openUrl(const QUrl &url)
-{
-#if 0
+{    
     if (!m_article.isNull() && m_article.feed()->loadLinkedWebsite()) {
-        return m_part->openUrl(url);
+        m_articleViewerWidgetNg->articleViewerNg()->load(url);
     } else {
         reload();
-        return true;
     }
-#else
-    return false;
-#endif
+    return true;
 }
 
 void ArticleViewerWidget::setFilters(const std::vector< QSharedPointer<const AbstractMatcher> > &filters)
@@ -542,12 +538,9 @@ void ArticleViewerWidget::slotPaletteOrFontChanged()
 
 void ArticleViewerWidget::reload()
 {
-    //TODO
-#if 0
     beginWriting();
-    m_part->write(m_currentText);
+    m_articleHtmlWriter->queue(m_currentText);
     endWriting();
-#endif
 }
 
 QSize ArticleViewerWidget::sizeHint() const
