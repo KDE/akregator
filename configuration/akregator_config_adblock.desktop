@@ -1,0 +1,14 @@
+[Desktop Entry]
+Icon=akregator
+Type=Service
+X-KDE-ServiceTypes=KCModule
+
+X-KDE-Library=akregator_config_adblock
+X-KDE-ParentApp=akregator
+X-KDE-ParentComponents=akregator,kontact_akregatorplugin
+X-KDE-CfgDlgHierarchy=Akregator
+X-KDE-Weight=100
+
+Name=AdBlock
+Comment=Configure AdBlock
+X-KDE-Keywords=akregator, configure, settings, AdBlock

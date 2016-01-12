@@ -105,3 +105,21 @@ target_link_libraries(akregator_config_advanced
 kcoreaddons_desktop_to_json(akregator_config_advanced akregator_config_advanced.desktop)
 install(FILES akregator_config_advanced.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
 install(TARGETS akregator_config_advanced DESTINATION ${KDE_INSTALL_PLUGINDIR})
+
+
+########### next target ###############
+
+set(kcm_akradblockconfig_SRCS
+  akregator_config_adblock.cpp
+)
+
+add_library(akregator_config_adblock MODULE ${kcm_akradblockconfig_SRCS})
+
+target_link_libraries(akregator_config_adblock
+  KF5::KCMUtils
+  KF5::I18n
+)
+
+kcoreaddons_desktop_to_json(akregator_config_adblock akregator_config_adblock.desktop)
+install(FILES akregator_config_adblock.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
+install(TARGETS akregator_config_adblock DESTINATION ${KDE_INSTALL_PLUGINDIR})
