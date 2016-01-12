@@ -133,12 +133,13 @@ QString DefaultNormalViewFormatter::formatSummary(TreeNode *node) const
 QString DefaultNormalViewFormatter::formatArticle(const Article &article, IconOption icon) const
 {
     QString text;
-    text = QStringLiteral("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::isRightToLeft() ? QStringLiteral("rtl") : QStringLiteral("ltr"));
+    const QString directionString = QApplication::isRightToLeft() ? QStringLiteral("rtl") : QStringLiteral("ltr");
+    text = QStringLiteral("<div class=\"headerbox\" dir=\"%1\">\n").arg(directionString);
     const QString enc = formatEnclosure(*article.enclosure());
 
     const QString strippedTitle = Utils::stripTags(article.title());
     if (!strippedTitle.isEmpty()) {
-        text += QStringLiteral("<div class=\"headertitle\" dir=\"%1\">\n").arg(Utils::directionOf(strippedTitle));
+        text += QStringLiteral("<div class=\"headertitle\" dir=\"%1\">\n").arg(directionString);
         if (article.link().isValid()) {
             text += QLatin1String("<a href=\"") + article.link().url() + QLatin1String("\">");
         }
@@ -149,21 +150,21 @@ QString DefaultNormalViewFormatter::formatArticle(const Article &article, IconOp
         text += QStringLiteral("</div>\n");
     }
     if (article.pubDate().isValid()) {
-        text += QStringLiteral("<span class=\"header\" dir=\"%1\">").arg(Utils::directionOf(i18n("Date")));
+        text += QStringLiteral("<span class=\"header\" dir=\"%1\">").arg(directionString);
         text += QStringLiteral("%1:").arg(i18n("Date"));
         text += QLatin1String("</span><span class=\"headertext\">");
         text += KLocale::global()->formatDateTime(article.pubDate(), KLocale::FancyLongDate) + QLatin1String("</span>\n"); // TODO: might need RTL?
     }
     const QString author = article.authorAsHtml();
     if (!author.isEmpty()) {
-        text += QStringLiteral("<br/><span class=\"header\" dir=\"%1\">").arg(Utils::directionOf(i18n("Author")));
+        text += QStringLiteral("<br/><span class=\"header\" dir=\"%1\">").arg(directionString);
         text += QStringLiteral("%1:").arg(i18n("Author"));
         text += QLatin1String("</span><span class=\"headertext\">");
         text += author + QLatin1String("</span>\n"); // TODO: might need RTL?
     }
 
     if (!enc.isEmpty()) {
-        text += QStringLiteral("<br/><span class=\"header\" dir=\"%1\">").arg(Utils::directionOf(i18n("Enclosure")));
+        text += QStringLiteral("<br/><span class=\"header\" dir=\"%1\">").arg(directionString);
         text += QStringLiteral("%1:").arg(i18n("Enclosure"));
         text += QLatin1String("</span><span class=\"headertext\">");
         text += enc + QLatin1String("</span>\n"); // TODO: might need RTL?
