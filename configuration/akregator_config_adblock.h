@@ -21,6 +21,11 @@
 #include <KCModule>
 
 #include <QVariant>
+namespace MessageViewer
+{
+class AdBlockSettingWidget;
+}
+
 namespace Akregator
 {
 class KCMAkregatorAdBlockConfig : public KCModule
@@ -31,6 +36,8 @@ public:
     void load() Q_DECL_OVERRIDE;
     void save() Q_DECL_OVERRIDE;
 
+private:
+    MessageViewer::AdBlockSettingWidget *mWidget;
 };
 }
 #endif // KCMAKREGATORADBLOCKCONFIG_H

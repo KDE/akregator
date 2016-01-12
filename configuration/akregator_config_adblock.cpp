@@ -25,6 +25,8 @@
 
 #include <QVBoxLayout>
 
+#include <MessageViewer/AdBlockSettingWidget>
+
 using namespace Akregator;
 
 K_PLUGIN_FACTORY(KCMAkregatorAdBlockConfigFactory, registerPlugin<KCMAkregatorAdBlockConfig>();)
@@ -32,16 +34,33 @@ K_PLUGIN_FACTORY(KCMAkregatorAdBlockConfigFactory, registerPlugin<KCMAkregatorAd
 KCMAkregatorAdBlockConfig::KCMAkregatorAdBlockConfig(QWidget *parent, const QVariantList &args)
     : KCModule(parent, args)
 {
+    QHBoxLayout *lay = new QHBoxLayout;
+    lay->setMargin(0);
 
+    KAboutData *about = new KAboutData(QStringLiteral("kcmakrablockconfig"),
+                                       i18n("Configure AdBlock"),
+                                       QString(), QString(), KAboutLicense::GPL,
+                                       i18n("(c), 2016 Laurent Montel"));
+
+    about->addAuthor(i18n("Laurent Montel"), QString(), QStringLiteral("montel@kde.org"));
+
+    setAboutData(about);
+
+    mWidget = new MessageViewer::AdBlockSettingWidget;
+    lay->addWidget(mWidget);
+    connect(mWidget, SIGNAL(changed(bool)), this, SIGNAL(changed(bool)));
+    setLayout(lay);
+    mWidget->doLoadFromGlobalSettings();
 }
 
 void KCMAkregatorAdBlockConfig::save()
 {
-
+    mWidget->save();
 }
 
 void KCMAkregatorAdBlockConfig::load()
 {
-
+    mWidget->doLoadFromGlobalSettings();
 }
+
 #include "akregator_config_adblock.moc"

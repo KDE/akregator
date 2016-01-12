@@ -118,6 +118,8 @@ add_library(akregator_config_adblock MODULE ${kcm_akradblockconfig_SRCS})
 target_link_libraries(akregator_config_adblock
   KF5::KCMUtils
   KF5::I18n
+  KF5::MessageViewer
+  KF5::ItemViews
 )
 
 kcoreaddons_desktop_to_json(akregator_config_adblock akregator_config_adblock.desktop)
