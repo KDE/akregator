@@ -49,6 +49,7 @@ set(akregatorprivate_formatter_SRCS
     formatter/articleformatter.cpp
     formatter/defaultnormalviewformatter.cpp
     formatter/defaultcombinedviewformatter.cpp
+    formatter/grantleeviewformatter.cpp
     )
 
 set(akregatorprivate_LIB_SRCS
@@ -100,6 +101,7 @@ target_link_libraries(akregatorprivate
     KF5::IconThemes
     KF5::PimTextEdit
     KF5::GrantleeTheme
+    Grantlee5::Templates
     KF5::WebKit
     KF5::MessageViewer
     Qt5::PrintSupport
