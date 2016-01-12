@@ -28,6 +28,7 @@
 
 #include <QPointer>
 #include <QVector>
+#include <KSharedConfig>
 
 #include <qurl.h>
 #include <kparts/browserextension.h>
@@ -127,6 +128,7 @@ public:
 
     bool handleCommandLine(const QStringList &args);
 
+    KSharedConfig::Ptr config();
 public Q_SLOTS:
     /** Used to save settings after changing them from configuration dialog. Calls AkregatorPart's saveSettings. */
     void saveSettings();
@@ -234,6 +236,7 @@ private: // attributes
     };
     QPointer<LoadFeedListCommand> m_loadFeedListCommand;
     QVector<AddFeedRequest> m_requests;
+    KSharedConfig::Ptr mConfig;
 };
 
 } // namespace Akregator

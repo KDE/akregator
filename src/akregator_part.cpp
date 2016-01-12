@@ -25,6 +25,7 @@
 
 #include "akregator_part.h"
 #include "akregator_debug.h"
+#include "messageviewer/messageviewersettings.h"
 #include "akregatorconfig.h"
 #include "aboutdata.h"
 #include "actionmanagerimpl.h"
@@ -185,6 +186,7 @@ namespace Akregator
 
 K_PLUGIN_FACTORY(AkregatorFactory, registerPlugin<Part>();)
 
+static Part *mySelf = Q_NULLPTR;
 BrowserExtension::BrowserExtension(Part *p, const char *name)
     : KParts::BrowserExtension(p)
 {
@@ -210,6 +212,9 @@ Part::Part(QWidget *parentWidget, QObject *parent, const QVariantList &)
     , m_dialog(0)
 
 {
+    mySelf = this;
+    //Make sure to initialize settings
+    Part::config();
     initFonts();
 
     setPluginLoadingMode(LoadPluginsIfEnabled);
@@ -303,6 +308,18 @@ Part::Part(QWidget *parentWidget, QObject *parent, const QVariantList &)
         autoReadProperties();
     }
 }
+
+KSharedConfig::Ptr Part::config()
+{
+    assert(mySelf);
+    if (!mySelf->mConfig) {
+        mySelf->mConfig = KSharedConfig::openConfig(QStringLiteral("akregatorrc"));
+        MessageViewer::MessageViewerSettings::self()->setSharedConfig(mySelf->mConfig);
+        MessageViewer::MessageViewerSettings::self()->load();
+    }
+    return mySelf->mConfig;
+}
+
 
 void Part::loadPlugins(const QString &type)
 {
