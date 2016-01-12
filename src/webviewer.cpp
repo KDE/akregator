@@ -65,8 +65,11 @@ void WebViewer::displayContextMenu(const QPoint &pos)
     if (needSeparator) {
         popup.addSeparator();
     }
+    popup.addAction(pageAction(QWebPage::Stop));
+    popup.addSeparator();
     popup.addAction(pageAction(QWebPage::Reload));
     popup.addSeparator();
+
     const bool contentSelected = mContextMenuHitResult.isContentSelected();
     if (!mCurrentUrl.isEmpty() && !contentSelected) {
         popup.addAction(createOpenLinkInNewTabAction(mCurrentUrl, this, SLOT(slotOpenLinkInForegroundTab()), &popup));
