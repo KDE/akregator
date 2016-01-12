@@ -50,6 +50,7 @@ set(akregatorprivate_formatter_SRCS
     formatter/defaultnormalviewformatter.cpp
     formatter/defaultcombinedviewformatter.cpp
     formatter/grantleeviewformatter.cpp
+    formatter/articlegrantleeobject.cpp
     )
 
 set(akregatorprivate_LIB_SRCS

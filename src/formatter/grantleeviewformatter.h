@@ -18,36 +18,20 @@
 #ifndef GRANTLEEVIEWFORMATTER_H
 #define GRANTLEEVIEWFORMATTER_H
 
-#include <QObject>
+#include "PimCommon/GenericGrantleeFormatter"
 #include "article.h"
 #include "articleformatter.h"
-#include <grantlee/templateloader.h>
-#include <QSharedPointer>
-
-namespace Grantlee
-{
-class Engine;
-class FileSystemTemplateLoader;
-}
 
 namespace Akregator
 {
-class GrantleeViewFormatter : public QObject
+class GrantleeViewFormatter : public PimCommon::GenericGrantleeFormatter
 {
     Q_OBJECT
 public:
     explicit GrantleeViewFormatter(const QString &themePath, QObject *parent = Q_NULLPTR);
     ~GrantleeViewFormatter();
 
-    QString formatArticle(const Article &article, ArticleFormatter::IconOption icon) const;
-
-private:
-    void changeGrantleePath(const QString &path);
-    void refreshTemplate();
-    QString mErrorMessage;
-    Grantlee::Engine *mEngine;
-    QSharedPointer<Grantlee::FileSystemTemplateLoader> mTemplateLoader;
-    Grantlee::Template mSelfcontainedTemplate;
+    QString formatArticle(const QVector<Article> &article, ArticleFormatter::IconOption icon) const;
 };
 }
 

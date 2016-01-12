@@ -28,12 +28,8 @@
 using namespace Akregator;
 
 GrantleeViewFormatter::GrantleeViewFormatter(const QString &themePath, QObject *parent)
-    : QObject(parent)
+    : PimCommon::GenericGrantleeFormatter(QStringLiteral("main.html"), themePath, parent)
 {
-    mEngine = new Grantlee::Engine;
-    mTemplateLoader = QSharedPointer<Grantlee::FileSystemTemplateLoader>(new Grantlee::FileSystemTemplateLoader);
-
-    changeGrantleePath(themePath);
 }
 
 GrantleeViewFormatter::~GrantleeViewFormatter()
@@ -41,32 +37,31 @@ GrantleeViewFormatter::~GrantleeViewFormatter()
 
 }
 
-QString GrantleeViewFormatter::formatArticle(const Article &article, ArticleFormatter::IconOption icon) const
+QString GrantleeViewFormatter::formatArticle(const QVector<Article> &article, ArticleFormatter::IconOption icon) const
 {
-    if (!mErrorMessage.isEmpty()) {
-        return mErrorMessage;
+    if (!errorMessage().isEmpty()) {
+        return errorMessage();
     }
     QVariantHash articleObject;
     const QString directionString = QApplication::isRightToLeft() ? QStringLiteral("rtl") : QStringLiteral("ltr");
     articleObject.insert(QStringLiteral("applicationDir"), directionString);
 
-    const QString strippedTitle = Akregator::Utils::stripTags(article.title());
-    articleObject.insert(QStringLiteral("strippedTitle"), strippedTitle);
     articleObject.insert(QStringLiteral("dateI18n"), i18n("Date"));
     articleObject.insert(QStringLiteral("commentI18n"), i18n("Comment"));
     articleObject.insert(QStringLiteral("completeStoryI18n"), i18n("Complete Story"));
+    articleObject.insert(QStringLiteral("authorI18n"), i18n("Author"));
+    articleObject.insert(QStringLiteral("enclosureI18n"), i18n("Enclosure"));
+#if 0
+    const QString strippedTitle = Akregator::Utils::stripTags(article.title());
+    articleObject.insert(QStringLiteral("strippedTitle"), strippedTitle);
     const QString author = article.authorAsHtml();
     if (!author.isEmpty()) {
-        articleObject.insert(QStringLiteral("authorI18n"), i18n("Author"));
         articleObject.insert(QStringLiteral("author"), author);
     }
-#if 0
     const QString enc = formatEnclosure(*article.enclosure());
     if (!enc.isEmpty()) {
-        articleObject.insert(QStringLiteral("enclosureI18n"), i18n("Enclosure"));
         articleObject.insert(QStringLiteral("enclosure"), enc);
     }
-#endif
     if (article.pubDate().isValid()) {
 
     }
@@ -76,7 +71,6 @@ QString GrantleeViewFormatter::formatArticle(const Article &article, ArticleForm
         articleObject.insert(QStringLiteral("content"), content);
     }
 
-#if 0
     QString text;
     const QString directionString = QApplication::isRightToLeft() ? QStringLiteral("rtl") : QStringLiteral("ltr");
     text = QStringLiteral("<div class=\"headerbox\" dir=\"%1\">\n").arg(directionString);
@@ -169,26 +163,6 @@ QString GrantleeViewFormatter::formatArticle(const Article &article, ArticleForm
 
     QVariantHash mapping;
     mapping.insert(QStringLiteral("article"), articleObject);
-    Grantlee::Context context(mapping);
-    const QString contentHtml = mSelfcontainedTemplate->render(&context);
-    return contentHtml;
+    return render(mapping);
 }
 
-void GrantleeViewFormatter::refreshTemplate()
-{
-    mSelfcontainedTemplate = mEngine->loadByName(QStringLiteral("theme.html"));
-    if (mSelfcontainedTemplate->error()) {
-        mErrorMessage += mSelfcontainedTemplate->errorString() + QLatin1String("<br>");
-    }
-}
-
-void GrantleeViewFormatter::changeGrantleePath(const QString &path)
-{
-    if (!mTemplateLoader) {
-        mTemplateLoader = QSharedPointer<Grantlee::FileSystemTemplateLoader>(new Grantlee::FileSystemTemplateLoader);
-    }
-    mTemplateLoader->setTemplateDirs(QStringList() << path);
-    mEngine->addTemplateLoader(mTemplateLoader);
-
-    refreshTemplate();
-}
