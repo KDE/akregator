@@ -1,1 +1,2 @@
-add_subdirectory(default)
+install(DIRECTORY default DESTINATION ${KDE_INSTALL_DATADIR}/akregator/grantleetheme/ )
+

@@ -1,0 +1,14 @@
+<body>
+{% if articles %}
+{% for article in articles %}
+  <p><div class="article">
+  <div class="headerbox" dir="{{ applicationDir }}">
+  <div class="headertitle" dir="{{ applicationDir }}"><a href="{{ article.articleLinkUrl }}">{{ article.strippedTitle }}</a></div>
+  <span class="header" dir="{{ applicationDir }}">{{ dateI18n }}:</span><span class="headertext">{{ article.articlePubDate }}</span>
+  <br/><span class="header" dir="{{ applicationDir }}">{{ authorI18n }}:</span><span class="headertext">{{ article.author }}</span>
+  </div>
+  </div><p>
+{% endfor %}
+{% endif %}
+
+</body>
