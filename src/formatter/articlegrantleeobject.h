@@ -33,6 +33,8 @@ class ArticleGrantleeObject : public QObject
     Q_PROPERTY(QString content READ content)
     Q_PROPERTY(QString articleLinkUrl READ articleLinkUrl)
     Q_PROPERTY(QString articlePubDate READ articlePubDate)
+    Q_PROPERTY(QString enclosure READ enclosure)
+    Q_PROPERTY(QString articleCompleteStoryLink READ articleCompleteStoryLink)
 
 public:
     explicit ArticleGrantleeObject(const Article &article, ArticleFormatter::IconOption icon, QObject *parent = Q_NULLPTR);
@@ -42,6 +44,9 @@ public:
     QString content() const;
     QString articleLinkUrl() const;
     QString articlePubDate() const;
+    QString enclosure() const;
+    QString articleCompleteStoryLink() const;
+
 private:
     Article mArticle;
     ArticleFormatter::IconOption mArticleFormatOption;

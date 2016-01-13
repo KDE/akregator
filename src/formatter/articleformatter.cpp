@@ -76,7 +76,7 @@ int ArticleFormatter::pointsToPixel(int pointSize) const
     return (pointSize * d->device->logicalDpiY() + 36) / 72;
 }
 
-QString ArticleFormatter::formatEnclosure(const Enclosure &enclosure) const
+QString ArticleFormatter::formatEnclosure(const Enclosure &enclosure)
 {
     if (enclosure.isNull()) {
         return QString();

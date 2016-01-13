@@ -57,9 +57,9 @@ public:
 
     virtual QString getCss() const = 0;
 
-protected:
+    static QString formatEnclosure(const Syndication::Enclosure &enclosure);
 
-    QString formatEnclosure(const Syndication::Enclosure &enclosure) const;
+protected:
     int pointsToPixel(int pointSize) const;
 
 private:

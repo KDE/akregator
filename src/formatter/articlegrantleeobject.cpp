@@ -16,6 +16,7 @@
 */
 
 #include "articlegrantleeobject.h"
+#include "articleformatter.h"
 #include "utils.h"
 #include <KLocale>
 #include <KGlobal>
@@ -61,4 +62,24 @@ QString ArticleGrantleeObject::articlePubDate() const
         return KLocale::global()->formatDateTime(mArticle.pubDate(), KLocale::FancyLongDate);
     }
     return {};
+}
+
+QString ArticleGrantleeObject::enclosure() const
+{
+    const QString enc = ArticleFormatter::formatEnclosure(*mArticle.enclosure());
+    return enc;
+}
+
+QString ArticleGrantleeObject::articleCompleteStoryLink() const
+{
+    QString link;
+    if (mArticle.link().isValid() || (mArticle.guidIsPermaLink() && QUrl(mArticle.guid()).isValid())) {
+        // in case link isn't valid, fall back to the guid permaLink.
+        if (mArticle.link().isValid()) {
+             link = mArticle.link().url();
+        } else {
+            link = mArticle.guid();
+        }
+    }
+    return link;
 }
