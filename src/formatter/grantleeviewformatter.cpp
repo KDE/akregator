@@ -16,6 +16,7 @@
 */
 
 #include "grantleeviewformatter.h"
+#include "articlegrantleeobject.h"
 #include "utils.h"
 #include <KLocalizedString>
 
@@ -24,6 +25,7 @@
 #include <QVariantHash>
 #include <QApplication>
 #include <QDateTime>
+#include <QVariantList>
 
 using namespace Akregator;
 
@@ -42,7 +44,19 @@ QString GrantleeViewFormatter::formatArticle(const QVector<Article> &article, Ar
     if (!errorMessage().isEmpty()) {
         return errorMessage();
     }
+
     QVariantHash articleObject;
+
+    QVariantList articlesList;
+    const int nbArticles(article.count());
+    articlesList.reserve(nbArticles);
+    for (int i = 0; i < nbArticles; ++i) {
+        ArticleGrantleeObject *articleObj = new ArticleGrantleeObject(article.at(i), icon);
+        articlesList << QVariant::fromValue(static_cast<QObject *>(articleObj));
+
+    }
+    articleObject.insert(QStringLiteral("article"), articlesList);
+
     const QString directionString = QApplication::isRightToLeft() ? QStringLiteral("rtl") : QStringLiteral("ltr");
     articleObject.insert(QStringLiteral("applicationDir"), directionString);
 
