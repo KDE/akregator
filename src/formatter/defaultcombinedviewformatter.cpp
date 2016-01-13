@@ -17,6 +17,7 @@
 
 #include "defaultcombinedviewformatter.h"
 #include "akregatorconfig.h"
+#include "akregator_debug.h"
 #include "article.h"
 #include "feed.h"
 #include "folder.h"
@@ -131,8 +132,8 @@ QString DefaultCombinedViewFormatter::formatArticle(const QVector<Article> &arti
 
         text += QLatin1String("</div>");
         text += QLatin1String("</div><p>");
-        //qCDebug(AKREGATOR_LOG) << text;
     }
+    //qCDebug(AKREGATOR_LOG) << text;
     return text;
 }
 
