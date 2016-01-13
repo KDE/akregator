@@ -16,6 +16,7 @@
 */
 
 #include "defaultcombinedviewformatter.h"
+#include "grantleeviewformatter.h"
 #include "akregatorconfig.h"
 #include "akregator_debug.h"
 #include "article.h"
@@ -38,10 +39,23 @@ using namespace Akregator;
 DefaultCombinedViewFormatter::DefaultCombinedViewFormatter(const QUrl &imageDir, QPaintDevice *device)
     : ArticleFormatter(device), m_imageDir(imageDir)
 {
+    const QString combinedPath = QStandardPaths::locate(QStandardPaths::GenericDataLocation,
+                                                        QStringLiteral("akregator/grantleetheme/default/combinedview/"),
+                                                        QStandardPaths::LocateDirectory);
+    mGrantleeViewFormatter = new GrantleeViewFormatter(m_imageDir, combinedPath);
+}
+
+DefaultCombinedViewFormatter::~DefaultCombinedViewFormatter()
+{
+    delete mGrantleeViewFormatter;
 }
 
 QString DefaultCombinedViewFormatter::formatArticle(const QVector<Article> &articles, IconOption icon) const
 {
+#if 0
+    //qDebug()<< "mGrantleeViewFormatter"<<mGrantleeViewFormatter->formatArticle(articles, icon);
+    return mGrantleeViewFormatter->formatArticle(articles, icon);
+#else
     QString text;
     for (int i = 0; i < articles.count(); ++i) {
         text += QLatin1String("<p><div class=\"article\">");
@@ -135,6 +149,7 @@ QString DefaultCombinedViewFormatter::formatArticle(const QVector<Article> &arti
     }
     //qCDebug(AKREGATOR_LOG) << text;
     return text;
+#endif
 }
 
 QString DefaultCombinedViewFormatter::getCss() const

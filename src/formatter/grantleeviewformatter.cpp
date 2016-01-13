@@ -26,6 +26,7 @@
 #include <QApplication>
 #include <QDateTime>
 #include <QVariantList>
+#include <QDebug>
 
 using namespace Akregator;
 
@@ -54,9 +55,8 @@ QString GrantleeViewFormatter::formatArticle(const QVector<Article> &article, Ar
     for (int i = 0; i < nbArticles; ++i) {
         ArticleGrantleeObject *articleObj = new ArticleGrantleeObject(mImageDir, article.at(i), icon);
         articlesList << QVariant::fromValue(static_cast<QObject *>(articleObj));
-
     }
-    articleObject.insert(QStringLiteral("article"), articlesList);
+    articleObject.insert(QStringLiteral("articles"), articlesList);
 
     const QString directionString = QApplication::isRightToLeft() ? QStringLiteral("rtl") : QStringLiteral("ltr");
     articleObject.insert(QStringLiteral("applicationDir"), directionString);
@@ -179,8 +179,6 @@ QString GrantleeViewFormatter::formatArticle(const QVector<Article> &article, Ar
 #endif
 
 
-    QVariantHash mapping;
-    mapping.insert(QStringLiteral("article"), articleObject);
-    return render(mapping);
+    return render(articleObject);
 }
 

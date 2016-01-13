@@ -22,10 +22,12 @@
 #include "akregator_export.h"
 namespace Akregator
 {
+class GrantleeViewFormatter;
 class AKREGATOR_EXPORT DefaultCombinedViewFormatter : public ArticleFormatter
 {
 public:
     explicit DefaultCombinedViewFormatter(const QUrl &imageDir, QPaintDevice *device = Q_NULLPTR);
+    ~DefaultCombinedViewFormatter();
 
     QString formatArticle(const QVector<Article> &articles, IconOption option) const Q_DECL_OVERRIDE;
 
@@ -35,6 +37,7 @@ public:
 
 private:
     DefaultCombinedViewFormatter();
+    GrantleeViewFormatter *mGrantleeViewFormatter;
 
     QUrl m_imageDir;
 };
