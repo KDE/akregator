@@ -56,6 +56,7 @@ public:
 
     void setArticleAction(ArticleViewerNg::ArticleAction type, const QString &articleId);
 
+    bool zoomTextOnlyInFrame() const;
 public Q_SLOTS:
     void slotPrintPreview();
     void slotPrint();

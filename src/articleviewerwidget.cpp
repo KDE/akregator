@@ -497,6 +497,16 @@ void ArticleViewerWidget::showNode(TreeNode *node)
     slotUpdateCombinedView();
 }
 
+qreal ArticleViewerWidget::zoomFactor() const
+{
+    return m_articleViewerWidgetNg->articleViewerNg()->zoomFactor();
+}
+
+bool ArticleViewerWidget::zoomTextOnlyInFrame() const
+{
+    return m_articleViewerWidgetNg->articleViewerNg()->zoomTextOnlyInFrame();
+}
+
 void ArticleViewerWidget::slotArticlesListed(KJob *job)
 {
     Q_ASSERT(job);

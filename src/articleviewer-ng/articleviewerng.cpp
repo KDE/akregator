@@ -332,6 +332,11 @@ QUrl ArticleViewerNg::linkOrImageUrlAt(const QPoint &global) const
     }
 }
 
+bool ArticleViewerNg::zoomTextOnlyInFrame() const
+{
+    return settings()->testAttribute(QWebSettings::ZoomTextOnly);
+}
+
 void ArticleViewerNg::slotZoomTextOnlyInFrame(bool textOnlyInFrame)
 {
     settings()->setAttribute(QWebSettings::ZoomTextOnly, textOnlyInFrame);

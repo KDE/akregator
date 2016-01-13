@@ -265,7 +265,6 @@ void TabWidget::slotZoomTextOnlyChanged(bool zoomTextOnly)
 
 void TabWidget::slotTabChanged(int index)
 {
-
     Frame *frame = d->frames.value(widget(index));
     d->tabsClose->setEnabled(frame && frame->isRemovable());
     Q_EMIT signalCurrentFrameChanged(frame ? frame->id() : -1);

@@ -85,7 +85,7 @@ bool WebViewFrame::openUrl(const OpenUrlRequest &request)
 void WebViewFrame::loadConfig(const KConfigGroup &config, const QString &prefix)
 {
     const QString url = config.readEntry(QStringLiteral("url").prepend(prefix), QString());
-    const qreal zf = config.readEntry(QStringLiteral("zoom").prepend(prefix), 100);
+    const qreal zf = config.readEntry(QStringLiteral("zoom").prepend(prefix), 1.0);
     const bool onlyZoomFont = config.readEntry(QStringLiteral("onlyZoomFont").prepend(prefix), false);
     //TODO save onlyText.
     OpenUrlRequest req(url);
@@ -177,3 +177,14 @@ bool WebViewFrame::canGoBack() const
 {
     return mArticleViewerWidgetNg->articleViewerNg()->canGoBack();
 }
+
+qreal WebViewFrame::zoomFactor() const
+{
+    return mArticleViewerWidgetNg->articleViewerNg()->zoomFactor();
+}
+
+bool WebViewFrame::zoomTextOnlyInFrame() const
+{
+    return mArticleViewerWidgetNg->articleViewerNg()->zoomTextOnlyInFrame();
+}
+

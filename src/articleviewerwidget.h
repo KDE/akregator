@@ -76,6 +76,9 @@ public:
 
     QSize sizeHint() const Q_DECL_OVERRIDE;
 
+    qreal zoomFactor() const;
+    bool zoomTextOnlyInFrame() const;
+
 public Q_SLOTS:
     void slotZoomTextOnlyInFrame(bool textOnlyInFrame);
     void slotPrint();

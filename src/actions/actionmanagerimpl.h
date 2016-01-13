@@ -32,6 +32,11 @@ class KActionCollection;
 
 class QWidget;
 
+namespace MessageViewer
+{
+class ZoomActionMenu;
+}
+
 namespace Akregator
 {
 
@@ -69,6 +74,7 @@ public:
     void setArticleActionsEnabled(bool enabled) Q_DECL_OVERRIDE;
     void setTrayIcon(TrayIcon *trayIcon);
     KActionCollection *actionCollection() const;
+    MessageViewer::ZoomActionMenu *zoomActionMenu() const;
 
 public Q_SLOTS:
 

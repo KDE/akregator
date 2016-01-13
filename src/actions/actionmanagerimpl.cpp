@@ -657,5 +657,10 @@ void ActionManagerImpl::setArticleActionsEnabled(bool enabled)
 #undef setActionEnabled
 }
 
+MessageViewer::ZoomActionMenu *ActionManagerImpl::zoomActionMenu() const
+{
+    return d->zoomActionMenu;
+}
+
 } // namespace Akregator
 

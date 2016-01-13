@@ -88,3 +88,13 @@ void MainFrame::slotPrintPreviewInFrame(int frameId)
     }
     mArticleViewer->slotPrintPreview();
 }
+
+qreal MainFrame::zoomFactor() const
+{
+    return mArticleViewer->zoomFactor();
+}
+
+bool MainFrame::zoomTextOnlyInFrame() const
+{
+    return mArticleViewer->zoomTextOnlyInFrame();
+}

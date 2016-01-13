@@ -64,6 +64,7 @@
 #include "types.h"
 #include "mainframe.h"
 #include <solid/networking.h>
+#include <MessageViewer/ZoomActionMenu>
 
 #include <QAction>
 #include <kfileitem.h>
@@ -145,7 +146,7 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
             m_tabWidget, &TabWidget::slotSettingsChanged);
 
     connect(m_tabWidget, &TabWidget::signalCurrentFrameChanged,
-            Kernel::self()->frameManager(), &FrameManager::slotChangeFrame);
+            this, &MainWidget::slotCurrentFrameChanged);
 
     connect(m_tabWidget, &TabWidget::signalRemoveFrameRequest,
             Kernel::self()->frameManager(), &FrameManager::slotRemoveFrame);
@@ -305,6 +306,9 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
 
 void MainWidget::slotOnShutdown()
 {
+    disconnect(m_tabWidget, &TabWidget::signalCurrentFrameChanged,
+            this, &MainWidget::slotCurrentFrameChanged);
+
     m_shuttingDown = true;
 
     // close all pageviewers in a controlled way
@@ -1201,5 +1205,12 @@ void MainWidget::slotOpenSelectedArticles()
 void MainWidget::slotOpenSelectedArticlesInBackground()
 {
     openSelectedArticles(true);
+}
+
+void MainWidget::slotCurrentFrameChanged(int frameId)
+{
+    Kernel::self()->frameManager()->slotChangeFrame(frameId);
+    m_actionManager->zoomActionMenu()->setZoomFactor(Kernel::self()->frameManager()->currentFrame()->zoomFactor() * 100);
+    m_actionManager->zoomActionMenu()->setZoomTextOnly(Kernel::self()->frameManager()->currentFrame()->zoomTextOnlyInFrame());
 }
 

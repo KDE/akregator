@@ -251,7 +251,8 @@ protected Q_SLOTS:
     void slotFramesChanged();
 
 private Q_SLOTS:
-    void slotShowStatusBarMessage(const QString &msg);
+    void slotShowStatusBarMessage(const QString &msg);    
+    void slotCurrentFrameChanged(int frameId);
 
 private:
     void deleteExpiredArticles(const QSharedPointer<FeedList> &feedList);
