@@ -269,7 +269,6 @@ void ArticleViewerNg::slotLinkClicked(const QUrl &url)
 
     mCurrentUrl = url;
     OpenUrlRequest req(mCurrentUrl);
-    req.setOptions(OpenUrlRequest::NewTab);
     if (mLastButtonClicked == LeftButton) {
         switch (Settings::lMBBehaviour()) {
         case Settings::EnumLMBBehaviour::OpenInExternalBrowser:
@@ -277,6 +276,7 @@ void ArticleViewerNg::slotLinkClicked(const QUrl &url)
             break;
         case Settings::EnumLMBBehaviour::OpenInBackground:
             req.setOpenInBackground(true);
+            req.setOptions(OpenUrlRequest::NewTab);
             break;
         default:
             break;
@@ -288,6 +288,7 @@ void ArticleViewerNg::slotLinkClicked(const QUrl &url)
             break;
         case Settings::EnumMMBBehaviour::OpenInBackground:
             req.setOpenInBackground(true);
+            req.setOptions(OpenUrlRequest::NewTab);
             break;
         default:
             break;
