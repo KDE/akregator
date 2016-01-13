@@ -28,10 +28,12 @@ class GrantleeViewFormatter : public PimCommon::GenericGrantleeFormatter
 {
     Q_OBJECT
 public:
-    explicit GrantleeViewFormatter(const QString &themePath, QObject *parent = Q_NULLPTR);
+    explicit GrantleeViewFormatter(const QUrl &imageDir, const QString &themePath, QObject *parent = Q_NULLPTR);
     ~GrantleeViewFormatter();
 
     QString formatArticle(const QVector<Article> &article, ArticleFormatter::IconOption icon) const;
+private:
+    QUrl mImageDir;
 };
 }
 

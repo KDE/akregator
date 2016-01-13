@@ -29,8 +29,9 @@
 
 using namespace Akregator;
 
-GrantleeViewFormatter::GrantleeViewFormatter(const QString &themePath, QObject *parent)
-    : PimCommon::GenericGrantleeFormatter(QStringLiteral("main.html"), themePath, parent)
+GrantleeViewFormatter::GrantleeViewFormatter(const QUrl &imageDir, const QString &themePath, QObject *parent)
+    : PimCommon::GenericGrantleeFormatter(QStringLiteral("main.html"), themePath, parent),
+      mImageDir(imageDir)
 {
 }
 
@@ -51,7 +52,7 @@ QString GrantleeViewFormatter::formatArticle(const QVector<Article> &article, Ar
     const int nbArticles(article.count());
     articlesList.reserve(nbArticles);
     for (int i = 0; i < nbArticles; ++i) {
-        ArticleGrantleeObject *articleObj = new ArticleGrantleeObject(article.at(i), icon);
+        ArticleGrantleeObject *articleObj = new ArticleGrantleeObject(mImageDir, article.at(i), icon);
         articlesList << QVariant::fromValue(static_cast<QObject *>(articleObj));
 
     }

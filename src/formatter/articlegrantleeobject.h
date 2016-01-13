@@ -35,9 +35,10 @@ class ArticleGrantleeObject : public QObject
     Q_PROPERTY(QString articlePubDate READ articlePubDate)
     Q_PROPERTY(QString enclosure READ enclosure)
     Q_PROPERTY(QString articleCompleteStoryLink READ articleCompleteStoryLink)
+    Q_PROPERTY(QString imageFeed READ imageFeed)
 
 public:
-    explicit ArticleGrantleeObject(const Article &article, ArticleFormatter::IconOption icon, QObject *parent = Q_NULLPTR);
+    explicit ArticleGrantleeObject(const QUrl &imageDir, const Article &article, ArticleFormatter::IconOption icon, QObject *parent = Q_NULLPTR);
     ~ArticleGrantleeObject();
     QString strippedTitle() const;
     QString author() const;
@@ -46,10 +47,11 @@ public:
     QString articlePubDate() const;
     QString enclosure() const;
     QString articleCompleteStoryLink() const;
-
+    QString imageFeed() const;
 private:
     Article mArticle;
     ArticleFormatter::IconOption mArticleFormatOption;
+    QUrl mImageDir;
 };
 }
 #endif // ARTICLEGRANTLEEOBJECT_H

@@ -18,15 +18,17 @@
 #include "articlegrantleeobject.h"
 #include "articleformatter.h"
 #include "utils.h"
+#include "feed.h"
 #include <KLocale>
 #include <KGlobal>
 #include <QDateTime>
 using namespace Akregator;
 
-ArticleGrantleeObject::ArticleGrantleeObject(const Article &article, ArticleFormatter::IconOption iconOption, QObject *parent)
+ArticleGrantleeObject::ArticleGrantleeObject(const QUrl &imageDir, const Article &article, ArticleFormatter::IconOption iconOption, QObject *parent)
     : QObject(parent),
       mArticle(article),
-      mArticleFormatOption(iconOption)
+      mArticleFormatOption(iconOption),
+      mImageDir(imageDir)
 {
 
 }
@@ -82,4 +84,18 @@ QString ArticleGrantleeObject::articleCompleteStoryLink() const
         }
     }
     return link;
+}
+
+QString ArticleGrantleeObject::imageFeed() const
+{
+    QString text;
+    if (mArticleFormatOption == ArticleFormatter::ShowIcon && mArticle.feed() && !mArticle.feed()->image().isNull()) {
+        const Feed *feed = mArticle.feed();
+        QString file = Utils::fileNameForUrl(feed->xmlUrl());
+        QUrl u(mImageDir);
+        u = u.adjusted(QUrl::RemoveFilename);
+        u.setPath(u.path() + file);
+        text += QStringLiteral("<a href=\"%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(feed->htmlUrl(), u.url());
+    }
+    return text;
 }
