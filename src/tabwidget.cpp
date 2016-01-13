@@ -106,6 +106,9 @@ TabWidget::TabWidget(QWidget *parent)
     setMinimumSize(250, 150);
     setMovable(false);
     setDocumentMode(true);
+    setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(this, &TabWidget::customContextMenuRequested, this, &TabWidget::slotTabContextMenuRequest);
+
     connect(this, &TabWidget::currentChanged, this, &TabWidget::slotTabChanged);
     connect(this, &QTabWidget::tabCloseRequested, this, &TabWidget::slotCloseRequest);
 
@@ -130,6 +133,60 @@ TabWidget::TabWidget(QWidget *parent)
 TabWidget::~TabWidget()
 {
     delete d;
+}
+
+void TabWidget::slotTabContextMenuRequest(const QPoint &pos)
+{
+
+    QTabBar *bar = tabBar();
+    if (count() <= 1) {
+        return;
+    }
+
+    const int indexBar = bar->tabAt(bar->mapFrom(this, pos));
+    if (indexBar == -1) {
+        return;
+    }
+    QMenu menu(this);
+    QAction *closeTab = menu.addAction(i18nc("@action:inmenu", "Close Tab"));
+    closeTab->setIcon(QIcon::fromTheme(QStringLiteral("tab-close")));
+
+    QAction *allOther = menu.addAction(i18nc("@action:inmenu", "Close All Other Tabs"));
+    allOther->setEnabled(count() > 1);
+    allOther->setIcon(QIcon::fromTheme(QStringLiteral("tab-close-other")));
+
+    QAction *allTab = menu.addAction(i18nc("@action:inmenu", "Close All Tabs"));
+    allTab->setEnabled(count() > 1);
+    allTab->setIcon(QIcon::fromTheme(QStringLiteral("tab-close")));
+
+    QAction *action = menu.exec(mapToGlobal(pos));
+
+    if (action == allOther) {   // Close all other tabs
+        slotCloseAllTabExcept(indexBar);
+    } else if (action == closeTab) {
+        slotCloseRequest(indexBar);
+    } else if (action == allTab) {
+        slotCloseAllTab();
+    }
+
+}
+
+void TabWidget::slotCloseAllTabExcept(int index)
+{
+    //Don't close first tab
+    for (int i = count() - 1; i > 0; --i) {
+        if (i == index) {
+            continue;
+        }
+        slotCloseRequest(i);
+    }
+}
+
+void TabWidget::slotCloseAllTab()
+{
+    for (int i = count() - 1; i > 0; --i) {
+        slotCloseRequest(i);
+    }
 }
 
 void TabWidget::slotSettingsChanged()
@@ -266,11 +323,11 @@ uint TabWidget::Private::tabBarWidthForMaxChars(int maxLength)
 
         int lw = fm.width(newTitle);
         int iw = q->tabBar()->tabIcon(i).pixmap(q->tabBar()->style()->pixelMetric(
-                QStyle::PM_SmallIconSize), QIcon::Normal
-                                               ).width() + 4;
+                                                    QStyle::PM_SmallIconSize), QIcon::Normal
+                                                ).width() + 4;
 
         x += (q->tabBar()->style()->sizeFromContents(QStyle::CT_TabBarTab, &o,
-                QSize(qMax(lw + hframe + iw, QApplication::globalStrut().width()), 0), q)).width();
+                                                     QSize(qMax(lw + hframe + iw, QApplication::globalStrut().width()), 0), q)).width();
     }
     return x;
 }

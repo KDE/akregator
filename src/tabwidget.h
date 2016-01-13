@@ -81,7 +81,9 @@ private:
 private Q_SLOTS:
     void slotCloseRequest(int index);
     void slotTabChanged(int index);
-
+    void slotCloseAllTab();
+    void slotTabContextMenuRequest(const QPoint &pos);
+    void slotCloseAllTabExcept(int index);
 private:
     class Private;
     Private *const d;
