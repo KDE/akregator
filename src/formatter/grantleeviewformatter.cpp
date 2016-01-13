@@ -66,6 +66,9 @@ QString GrantleeViewFormatter::formatArticle(const QVector<Article> &article, Ar
     articleObject.insert(QStringLiteral("completeStoryI18n"), i18n("Complete Story"));
     articleObject.insert(QStringLiteral("authorI18n"), i18n("Author"));
     articleObject.insert(QStringLiteral("enclosureI18n"), i18n("Enclosure"));
+
+    //TODO add akregator action here.
+
 #if 0
     const QString strippedTitle = Akregator::Utils::stripTags(article.title());
     articleObject.insert(QStringLiteral("strippedTitle"), strippedTitle);

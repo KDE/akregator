@@ -36,6 +36,13 @@ class ArticleGrantleeObject : public QObject
     Q_PROPERTY(QString enclosure READ enclosure)
     Q_PROPERTY(QString articleCompleteStoryLink READ articleCompleteStoryLink)
     Q_PROPERTY(QString imageFeed READ imageFeed)
+    Q_PROPERTY(QString deleteAction READ deleteAction)
+    Q_PROPERTY(QString markAsAction READ markAsAction)
+    Q_PROPERTY(QString markAsUnreadAction READ markAsUnreadAction)
+    Q_PROPERTY(QString markAsImportantAction READ markAsImportantAction)
+    Q_PROPERTY(QString sendUrlAction READ sendUrlAction)
+    Q_PROPERTY(QString openInExternalBrowser READ openInExternalBrowser)
+    Q_PROPERTY(QString share READ share)
 
 public:
     explicit ArticleGrantleeObject(const QUrl &imageDir, const Article &article, ArticleFormatter::IconOption icon, QObject *parent = Q_NULLPTR);
@@ -48,6 +55,16 @@ public:
     QString enclosure() const;
     QString articleCompleteStoryLink() const;
     QString imageFeed() const;
+
+    //Action
+    QString deleteAction() const;
+    QString markAsAction() const;
+    QString markAsUnreadAction() const;
+    QString markAsImportantAction() const;
+    QString sendUrlAction() const;
+    QString openInExternalBrowser() const;
+    QString share() const;
+
 private:
     Article mArticle;
     ArticleFormatter::IconOption mArticleFormatOption;

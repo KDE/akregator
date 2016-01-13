@@ -78,7 +78,7 @@ QString ArticleGrantleeObject::articleCompleteStoryLink() const
     if (mArticle.link().isValid() || (mArticle.guidIsPermaLink() && QUrl(mArticle.guid()).isValid())) {
         // in case link isn't valid, fall back to the guid permaLink.
         if (mArticle.link().isValid()) {
-             link = mArticle.link().url();
+            link = mArticle.link().url();
         } else {
             link = mArticle.guid();
         }
@@ -98,4 +98,46 @@ QString ArticleGrantleeObject::imageFeed() const
         text += QStringLiteral("<a href=\"%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(feed->htmlUrl(), u.url());
     }
     return text;
+}
+
+QString ArticleGrantleeObject::deleteAction() const
+{
+    //TODO
+    return QString();
+}
+
+QString ArticleGrantleeObject::markAsAction() const
+{
+    //TODO
+    return QString();
+}
+
+QString ArticleGrantleeObject::markAsUnreadAction() const
+{
+    //TODO
+    return QString();
+}
+
+QString ArticleGrantleeObject::markAsImportantAction() const
+{
+    //TODO
+    return QString();
+}
+
+QString ArticleGrantleeObject::sendUrlAction() const
+{
+    //TODO
+    return QString();
+}
+
+QString ArticleGrantleeObject::openInExternalBrowser() const
+{
+    //TODO
+    return QString();
+}
+
+QString ArticleGrantleeObject::share() const
+{
+    //TODO
+    return QString();
 }
