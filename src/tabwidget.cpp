@@ -171,7 +171,7 @@ void TabWidget::slotTabContextMenuRequest(const QPoint &pos)
 
 }
 
-void TabWidget::slotCloseAllTabExcept(int index)
+void TabWidget::closeAllTabExcept(int index)
 {
     //Don't close first tab
     for (int i = count() - 1; i > 0; --i) {
@@ -182,11 +182,14 @@ void TabWidget::slotCloseAllTabExcept(int index)
     }
 }
 
+void TabWidget::slotCloseAllTabExcept(int index)
+{
+    closeAllTabExcept(index);
+}
+
 void TabWidget::slotCloseAllTab()
 {
-    for (int i = count() - 1; i > 0; --i) {
-        slotCloseRequest(i);
-    }
+    closeAllTabExcept();
 }
 
 void TabWidget::slotSettingsChanged()

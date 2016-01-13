@@ -85,6 +85,7 @@ private Q_SLOTS:
     void slotTabContextMenuRequest(const QPoint &pos);
     void slotCloseAllTabExcept(int index);
 private:
+    void closeAllTabExcept(int index = -1);
     class Private;
     Private *const d;
 };
