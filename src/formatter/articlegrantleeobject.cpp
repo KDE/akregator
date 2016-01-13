@@ -102,42 +102,49 @@ QString ArticleGrantleeObject::imageFeed() const
 
 QString ArticleGrantleeObject::deleteAction() const
 {
-    //TODO
-    return QString();
+    //TODO fix image
+    const QString text = QStringLiteral("<a href=\"akregatoraction:delete#%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(mArticle.guid(), QStringLiteral("image"));
+    return text;
 }
 
 QString ArticleGrantleeObject::markAsAction() const
 {
-    //TODO
-    return QString();
+    //TODO fix image
+    const QString text = QStringLiteral("<a href=\"akregatoraction:markAsRead#%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(mArticle.guid(), QStringLiteral("image"));
+    return text;
 }
 
 QString ArticleGrantleeObject::markAsUnreadAction() const
 {
-    //TODO
-    return QString();
+    //TODO fix image
+    const QString text = QStringLiteral("<a href=\"akregatoraction:markAsUnRead#%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(mArticle.guid(), QStringLiteral("image"));
+    return text;
 }
 
 QString ArticleGrantleeObject::markAsImportantAction() const
 {
-    //TODO
-    return QString();
+    //TODO fix image
+    const QString text = QStringLiteral("<a href=\"akregatoraction:markAsImportant#%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(mArticle.guid(), QStringLiteral("image"));
+    return text;
 }
 
 QString ArticleGrantleeObject::sendUrlAction() const
 {
-    //TODO
-    return QString();
+    //TODO fix image
+    const QString text = QStringLiteral("<a href=\"akregatoraction:sendUrlArticle#%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(mArticle.guid(), QStringLiteral("image"));
+    return text;
 }
 
 QString ArticleGrantleeObject::openInExternalBrowser() const
 {
-    //TODO
-    return QString();
+    //Fix image url;
+    const QString text = QStringLiteral("<a href=\"akregatoraction:openInExternalBrowser\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(QStringLiteral("image"));
+    return text;
 }
 
 QString ArticleGrantleeObject::share() const
 {
-    //TODO
-    return QString();
+    //Fix image url;
+    const QString text = QStringLiteral("<a href=\"akregatoraction:share\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(QStringLiteral("image"));
+    return text;
 }
