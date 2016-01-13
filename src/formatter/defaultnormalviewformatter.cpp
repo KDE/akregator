@@ -130,9 +130,13 @@ QString DefaultNormalViewFormatter::formatSummary(TreeNode *node) const
     return m_summaryVisitor->formatSummary(node);
 }
 
-QString DefaultNormalViewFormatter::formatArticle(const Article &article, IconOption icon) const
+QString DefaultNormalViewFormatter::formatArticle(const QVector<Article> &articles, IconOption icon) const
 {
+    if (articles.count() != 1) {
+        return {};
+    }
     QString text;
+    Article article = articles.at(0);
     const QString directionString = QApplication::isRightToLeft() ? QStringLiteral("rtl") : QStringLiteral("ltr");
     text = QStringLiteral("<div class=\"headerbox\" dir=\"%1\">\n").arg(directionString);
     const QString enc = formatEnclosure(*article.enclosure());

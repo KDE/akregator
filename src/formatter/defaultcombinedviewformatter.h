@@ -27,7 +27,7 @@ class AKREGATOR_EXPORT DefaultCombinedViewFormatter : public ArticleFormatter
 public:
     explicit DefaultCombinedViewFormatter(const QUrl &imageDir, QPaintDevice *device = Q_NULLPTR);
 
-    QString formatArticle(const Article &article, IconOption option) const Q_DECL_OVERRIDE;
+    QString formatArticle(const QVector<Article> &articles, IconOption option) const Q_DECL_OVERRIDE;
 
     QString formatSummary(TreeNode *node) const Q_DECL_OVERRIDE;
 

@@ -27,6 +27,7 @@
 
 #include <QUrl>
 #include <enclosure.h>
+#include <QVector>
 
 class QPaintDevice;
 
@@ -51,7 +52,7 @@ public:
 
     void setPaintDevice(QPaintDevice *device);
 
-    virtual QString formatArticle(const Article &article, IconOption icon) const = 0;
+    virtual QString formatArticle(const QVector<Article> &article, IconOption icon) const = 0;
 
     virtual QString formatSummary(TreeNode *node) const = 0;
 

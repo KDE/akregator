@@ -371,7 +371,7 @@ void ArticleViewerWidget::showArticle(const Akregator::Article &article)
     if (article.feed()->loadLinkedWebsite()) {
         openUrl(article.link());
     } else {
-        renderContent(m_normalViewFormatter->formatArticle(article, ArticleFormatter::ShowIcon));
+        renderContent(m_normalViewFormatter->formatArticle(QVector<Akregator::Article>() << article, ArticleFormatter::ShowIcon));
     }
 
     setArticleActionsEnabled(true);
@@ -416,6 +416,7 @@ void ArticleViewerWidget::slotUpdateCombinedView()
 
     const std::vector< QSharedPointer<const AbstractMatcher> >::const_iterator filterEnd = m_filters.cend();
 
+    QVector<Article> articles;
     Q_FOREACH (const Article &i, m_articles) {
         if (i.isDeleted()) {
             continue;
@@ -425,10 +426,10 @@ void ArticleViewerWidget::slotUpdateCombinedView()
         if (std::find_if(m_filters.cbegin(), filterEnd, func) != filterEnd) {
             continue;
         }
-
-        text += QLatin1String("<p><div class=\"article\">") + m_combinedViewFormatter->formatArticle(i, ArticleFormatter::NoIcon) + QLatin1String("</div><p>");
+        articles << i;
         ++num;
     }
+    text = m_combinedViewFormatter->formatArticle(articles, ArticleFormatter::NoIcon);
 
     qCDebug(AKREGATOR_LOG) << "Combined view rendering: (" << num << " articles):" << "generating HTML:" << spent.elapsed() << "ms";
     renderContent(text);
