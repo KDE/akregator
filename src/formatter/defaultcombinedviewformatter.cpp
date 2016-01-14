@@ -52,7 +52,7 @@ DefaultCombinedViewFormatter::~DefaultCombinedViewFormatter()
 
 QString DefaultCombinedViewFormatter::formatArticle(const QVector<Article> &articles, IconOption icon) const
 {
-#if 0
+#if 1
     //qDebug()<< "mGrantleeViewFormatter"<<mGrantleeViewFormatter->formatArticle(articles, icon);
     return mGrantleeViewFormatter->formatArticle(articles, icon);
 #else
