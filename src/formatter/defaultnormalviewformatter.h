@@ -34,12 +34,11 @@ public:
 
     QString formatSummary(TreeNode *node) const Q_DECL_OVERRIDE;
 
-    QString getCss() const Q_DECL_OVERRIDE;
-
 private:
     DefaultNormalViewFormatter();
 
     QUrl m_imageDir;
+    QString m_DefaultThemePath;
     class SummaryVisitor;
     SummaryVisitor *m_summaryVisitor;
     GrantleeViewFormatter *mGrantleeViewFormatter;

@@ -149,8 +149,6 @@ private:
     /** Finishes writing to the canvas and completes the HTML (by adding closing tags) */
     void endWriting();
 
-    void updateCss();
-
     void connectToNode(TreeNode *node);
     void disconnectFromNode(TreeNode *node);
 
@@ -158,8 +156,6 @@ private:
 
 private:
     QUrl m_url;
-    QString m_normalModeCSS;
-    QString m_combinedModeCSS;
     QString m_htmlFooter;
     QString m_currentText;
     QUrl m_imageDir;

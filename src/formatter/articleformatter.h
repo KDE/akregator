@@ -56,8 +56,6 @@ public:
 
     virtual QString formatSummary(TreeNode *node) const = 0;
 
-    virtual QString getCss() const = 0;
-
     static QString formatEnclosure(const Syndication::Enclosure &enclosure);
 
 protected:

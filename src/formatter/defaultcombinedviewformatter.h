@@ -33,13 +33,9 @@ public:
 
     QString formatSummary(TreeNode *node) const Q_DECL_OVERRIDE;
 
-    QString getCss() const Q_DECL_OVERRIDE;
-
 private:
     DefaultCombinedViewFormatter();
     GrantleeViewFormatter *mGrantleeViewFormatter;
-
-    QUrl m_imageDir;
 };
 }
 #endif // DEFAULTCOMBINEDVIEWFORMATTER_H

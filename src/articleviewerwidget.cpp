@@ -91,57 +91,6 @@ ArticleViewerWidget::ArticleViewerWidget(KActionCollection *ac, QWidget *parent)
     m_articleHtmlWriter = new Akregator::ArticleHtmlWriter(m_articleViewerWidgetNg->articleViewerNg(), this);
     connect(m_articleViewerWidgetNg->articleViewerNg(), &ArticleViewerNg::signalOpenUrlRequest, this, &ArticleViewerWidget::signalOpenUrlRequest);
     connect(m_articleViewerWidgetNg->articleViewerNg(), &ArticleViewerNg::showStatusBarMessage, this, &ArticleViewerWidget::showStatusBarMessage);
-    updateCss();
-#if 0
-    layout->addWidget(m_part->widget(), 0, 0);
-
-    setFocusProxy(m_part->widget());
-
-    m_part->setFontScaleFactor(100);
-    m_part->setZoomFactor(100);
-    m_part->setJScriptEnabled(false);
-    m_part->setJavaEnabled(false);
-    m_part->setMetaRefreshEnabled(false);
-    m_part->setPluginsEnabled(false);
-    m_part->setDNDEnabled(true);
-    m_part->setAutoloadImages(true);
-    m_part->setStatusMessagesEnabled(false);
-    m_part->view()->setAttribute(Qt::WA_InputMethodEnabled, true); //workaround to fix 216878
-    m_part->view()->setFrameStyle(QFrame::StyledPanel | QFrame::Sunken);
-
-    // change the cursor when loading stuff...
-    connect(m_part, &KParts::ReadOnlyPart::started,
-            this, &ArticleViewerWidget::slotStarted);
-    connect(m_part, SIGNAL(completed()),
-            this, SLOT(slotCompleted()));
-
-    KParts::BrowserExtension *ext = m_part->browserExtension();
-    connect(ext, SIGNAL(popupMenu(QPoint,QUrl,mode_t,KParts::OpenUrlArguments,KParts::BrowserArguments,KParts::BrowserExtension::PopupFlags,KParts::BrowserExtension::ActionGroupMap)),
-            this, SLOT(slotPopupMenu(QPoint,QUrl,mode_t,KParts::OpenUrlArguments,KParts::BrowserArguments,KParts::BrowserExtension::PopupFlags))); // ActionGroupMap argument removed, unused by slot
-
-    connect(ext, &KParts::BrowserExtension::openUrlRequestDelayed,
-            this, &ArticleViewerWidget::slotOpenUrlRequestDelayed);
-
-    connect(ext, &KParts::BrowserExtension::createNewWindow,
-            this, &ArticleViewerWidget::slotCreateNewWindow);
-
-    QAction *action = 0;
-
-    action = m_part->actionCollection()->addAction(QStringLiteral("copylinkaddress"));
-    action->setText(i18n("Copy &Link Address"));
-    connect(action, &QAction::triggered, this, &ArticleViewerWidget::slotCopyLinkAddress);
-
-    action = m_part->actionCollection()->addAction(QStringLiteral("savelinkas"));
-    action->setText(i18n("&Save Link As..."));
-    connect(action, &QAction::triggered, this, &ArticleViewerWidget::slotSaveLinkAs);
-
-    updateCss();
-
-    connect(this, &ArticleViewerWidget::selectionChanged, this, &ArticleViewerWidget::slotSelectionChanged);
-
-    connect(KGlobalSettings::self(), &KGlobalSettings::kdisplayPaletteChanged, this, &ArticleViewerWidget::slotPaletteOrFontChanged);
-    connect(KGlobalSettings::self(), &KGlobalSettings::kdisplayFontChanged, this, &ArticleViewerWidget::slotPaletteOrFontChanged);
-#endif
 
     QAction *action = ac->addAction(QStringLiteral("copylinkaddress"));
     action->setText(i18n("Copy &Link Address"));
@@ -162,61 +111,6 @@ int ArticleViewerWidget::pointsToPixel(int pointSize) const
 {
     return (pointSize * m_articleViewerWidgetNg->articleViewerNg()->logicalDpiY() + 36) / 72;
 }
-#if 0
-void ArticleViewerWidget::slotOpenUrlRequestDelayed(const QUrl &url, const KParts::OpenUrlArguments &args, const KParts::BrowserArguments &browserArgs)
-{
-    OpenUrlRequest req(url);
-    req.setArgs(args);
-    req.setBrowserArgs(browserArgs);
-    if (req.options() == OpenUrlRequest::None) {              // no explicit new window,
-        req.setOptions(OpenUrlRequest::NewTab);    // so must open new tab
-    }
-
-    if (m_part->button() == Qt::LeftButton) {
-        switch (Settings::lMBBehaviour()) {
-        case Settings::EnumLMBBehaviour::OpenInExternalBrowser:
-            req.setOptions(OpenUrlRequest::ExternalBrowser);
-            break;
-        case Settings::EnumLMBBehaviour::OpenInBackground:
-            req.setOpenInBackground(true);
-            break;
-        default:
-            break;
-        }
-    } else if (m_part->button() == Qt::MidButton) {
-        switch (Settings::mMBBehaviour()) {
-        case Settings::EnumMMBBehaviour::OpenInExternalBrowser:
-            req.setOptions(OpenUrlRequest::ExternalBrowser);
-            break;
-        case Settings::EnumMMBBehaviour::OpenInBackground:
-            req.setOpenInBackground(true);
-            break;
-        default:
-            break;
-        }
-    }
-
-    Q_EMIT signalOpenUrlRequest(req);
-}
-
-void ArticleViewerWidget::slotCreateNewWindow(const QUrl &url,
-        const KParts::OpenUrlArguments &args,
-        const KParts::BrowserArguments &browserArgs,
-        const KParts::WindowArgs & /*windowArgs*/,
-        KParts::ReadOnlyPart **part)
-{
-    OpenUrlRequest req;
-    req.setUrl(url);
-    req.setArgs(args);
-    req.setBrowserArgs(browserArgs);
-    req.setOptions(OpenUrlRequest::NewTab);
-
-    Q_EMIT signalOpenUrlRequest(req);
-    if (part) {
-        *part = req.part();
-    }
-}
-#endif
 
 void ArticleViewerWidget::slotZoomChangeInFrame(qreal value)
 {
@@ -307,25 +201,6 @@ void ArticleViewerWidget::renderContent(const QString &text)
 void ArticleViewerWidget::beginWriting()
 {
     m_articleHtmlWriter->begin();
-    QString head = QStringLiteral("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\n <html><head><title>.</title>");
-    if (m_viewMode == CombinedView) {
-        head += m_combinedModeCSS;
-    } else {
-        head += m_normalModeCSS;
-    }
-
-    head += QLatin1String("</style></head><body>");
-    //TODO fix position
-    //m_part->view()->setContentsPos(0, 0);
-
-    //pass link to the KHTMLPart to make relative links work
-    //add a bogus query item to distinguish from m_link
-    //fixes the Complete Story link if the url has an anchor (e.g. #reqRSS) in it
-    //See bug 177754
-
-    QUrl url(m_link);
-    url.addQueryItem(QStringLiteral("akregatorPreviewMode"), QStringLiteral("true"));
-    m_articleHtmlWriter->queue(head);
 }
 
 void ArticleViewerWidget::endWriting()
@@ -543,7 +418,6 @@ void ArticleViewerWidget::keyPressEvent(QKeyEvent *e)
 
 void ArticleViewerWidget::slotPaletteOrFontChanged()
 {
-    updateCss();
     reload();
 }
 
@@ -565,12 +439,6 @@ QSize ArticleViewerWidget::sizeHint() const
 void ArticleViewerWidget::displayAboutPage()
 {
     m_articleViewerWidgetNg->articleViewerNg()->showAboutPage();
-}
-
-void ArticleViewerWidget::updateCss()
-{
-    m_normalModeCSS =  m_normalViewFormatter->getCss();
-    m_combinedModeCSS = m_combinedViewFormatter->getCss();
 }
 
 void ArticleViewerWidget::setArticleActionsEnabled(bool enabled)
