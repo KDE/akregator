@@ -25,6 +25,7 @@
   {% if article.enclosure %}
   <br/><span class="header" dir="{{ applicationDir }}">{{ enclosureI18n }}:</span><span class="headertext">{{ article.enclosure|safe }}</span>
   {% endif %}
+  </div>
 
   {% if article.imageFeed %}
   {{ article.imageFeed }}
@@ -46,8 +47,6 @@
   <p><a class="contentlink" href="{{ article.articleCompleteStoryLink }}">{{ completeStoryI18n }}</a></p>
   {% endif %}
   </div>
-  </div>
-  </div><p>
 {% endfor %}
 {% endif %}
 
