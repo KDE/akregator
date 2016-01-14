@@ -140,7 +140,7 @@ QString DefaultNormalViewFormatter::formatArticle(const QVector<Article> &articl
     if (articles.count() != 1) {
         return {};
     }
-#if 0
+#if 1
     return mGrantleeViewFormatter->formatArticle(articles, icon);
 #else
     QString text;
