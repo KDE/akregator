@@ -24,6 +24,7 @@
 
 namespace Akregator
 {
+class Folder;
 class GrantleeViewFormatter : public PimCommon::GenericGrantleeFormatter
 {
     Q_OBJECT
@@ -31,9 +32,12 @@ public:
     explicit GrantleeViewFormatter(const QString &htmlFileName, const QString &themePath, const QUrl &imageDir, QObject *parent = Q_NULLPTR);
     ~GrantleeViewFormatter();
 
-    QString formatArticle(const QVector<Article> &article, ArticleFormatter::IconOption icon) const;
+    QString formatArticle(const QVector<Article> &article, ArticleFormatter::IconOption icon);
+    QString formatFolder(Akregator::Folder *node);
+    QString formatFeed(Akregator::Feed *feed);
 private:
     QUrl mImageDir;
+    QString mHtmlArticleFileName;
 };
 }
 

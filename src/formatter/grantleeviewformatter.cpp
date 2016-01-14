@@ -27,12 +27,14 @@
 #include <QDateTime>
 #include <QVariantList>
 #include <QDebug>
+#include <folder.h>
 
 using namespace Akregator;
 
 GrantleeViewFormatter::GrantleeViewFormatter(const QString &htmlFileName, const QString &themePath, const QUrl &imageDir, QObject *parent)
     : PimCommon::GenericGrantleeFormatter(htmlFileName, themePath, parent),
-      mImageDir(imageDir)
+      mImageDir(imageDir),
+      mHtmlArticleFileName(htmlFileName)
 {
 }
 
@@ -41,8 +43,41 @@ GrantleeViewFormatter::~GrantleeViewFormatter()
 
 }
 
-QString GrantleeViewFormatter::formatArticle(const QVector<Article> &article, ArticleFormatter::IconOption icon) const
+QString GrantleeViewFormatter::formatFeed(Akregator::Feed *feed)
 {
+    setDefaultHtmlMainFile(QStringLiteral("defaultnormalvisitfeed.html"));
+    if (!errorMessage().isEmpty()) {
+        return errorMessage();
+    }
+    return {};
+}
+
+QString GrantleeViewFormatter::formatFolder(Akregator::Folder *node)
+{
+    setDefaultHtmlMainFile(QStringLiteral("defaultnormalvisitfolder.html"));
+    if (!errorMessage().isEmpty()) {
+        return errorMessage();
+    }
+    QVariantHash folderObject;
+    const QString directionString = QApplication::isRightToLeft() ? QStringLiteral("rtl") : QStringLiteral("ltr");
+    folderObject.insert(QStringLiteral("applicationDir"), directionString);
+    folderObject.insert(QStringLiteral("nodeTitle"), node->title());
+    QString numberOfArticle;
+    if (node->unread() == 0)
+    {
+        numberOfArticle = i18n(" (no unread articles)");
+    } else {
+        numberOfArticle = i18np(" (1 unread article)", " (%1 unread articles)", node->unread());
+    }
+
+    folderObject.insert(QStringLiteral("nodeCount"), numberOfArticle);
+    return render(folderObject);
+}
+
+
+QString GrantleeViewFormatter::formatArticle(const QVector<Article> &article, ArticleFormatter::IconOption icon)
+{
+    setDefaultHtmlMainFile(mHtmlArticleFileName);
     if (!errorMessage().isEmpty()) {
         return errorMessage();
     }
