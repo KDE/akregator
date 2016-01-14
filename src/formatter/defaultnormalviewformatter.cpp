@@ -17,6 +17,7 @@
 
 #include "defaultnormalviewformatter.h"
 #include "akregatorconfig.h"
+#include "grantleeviewformatter.h"
 #include "article.h"
 #include "feed.h"
 #include "folder.h"
@@ -118,6 +119,10 @@ DefaultNormalViewFormatter::DefaultNormalViewFormatter(const QUrl &imageDir, QPa
       m_imageDir(imageDir),
       m_summaryVisitor(new SummaryVisitor(this))
 {
+    const QString combinedPath = QStandardPaths::locate(QStandardPaths::GenericDataLocation,
+                                                        QStringLiteral("akregator/grantleetheme/default/normalview/"),
+                                                        QStandardPaths::LocateDirectory);
+    mGrantleeViewFormatter = new GrantleeViewFormatter(m_imageDir, combinedPath);
 }
 
 DefaultNormalViewFormatter::~DefaultNormalViewFormatter()
@@ -135,6 +140,9 @@ QString DefaultNormalViewFormatter::formatArticle(const QVector<Article> &articl
     if (articles.count() != 1) {
         return {};
     }
+#if 0
+    return mGrantleeViewFormatter->formatArticle(articles, icon);
+#else
     QString text;
     Article article = articles.at(0);
     const QString directionString = QApplication::isRightToLeft() ? QStringLiteral("rtl") : QStringLiteral("ltr");
@@ -222,6 +230,7 @@ QString DefaultNormalViewFormatter::formatArticle(const QVector<Article> &articl
     text += QLatin1String("</div>");
 
     return text;
+#endif
 }
 
 QString DefaultNormalViewFormatter::getCss() const

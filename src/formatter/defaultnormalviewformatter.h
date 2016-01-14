@@ -22,6 +22,7 @@
 #include "akregator_export.h"
 namespace Akregator
 {
+class GrantleeViewFormatter;
 class AKREGATOR_EXPORT DefaultNormalViewFormatter : public ArticleFormatter
 {
 public:
@@ -41,6 +42,7 @@ private:
     QUrl m_imageDir;
     class SummaryVisitor;
     SummaryVisitor *m_summaryVisitor;
+    GrantleeViewFormatter *mGrantleeViewFormatter;
 };
 }
 #endif // DEFAULTNORMALVIEWFORMATTER_H
