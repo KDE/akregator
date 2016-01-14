@@ -38,6 +38,7 @@ public:
 private:
     QUrl mImageDir;
     QString mHtmlArticleFileName;
+    QString mDirectionString;
 };
 }
 

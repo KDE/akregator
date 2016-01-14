@@ -36,6 +36,7 @@ GrantleeViewFormatter::GrantleeViewFormatter(const QString &htmlFileName, const 
       mImageDir(imageDir),
       mHtmlArticleFileName(htmlFileName)
 {
+    mDirectionString = QApplication::isRightToLeft() ? QStringLiteral("rtl") : QStringLiteral("ltr");
 }
 
 GrantleeViewFormatter::~GrantleeViewFormatter()
@@ -49,7 +50,10 @@ QString GrantleeViewFormatter::formatFeed(Akregator::Feed *feed)
     if (!errorMessage().isEmpty()) {
         return errorMessage();
     }
-    return {};
+    QVariantHash feedObject;
+
+
+    return render(feedObject);
 }
 
 QString GrantleeViewFormatter::formatFolder(Akregator::Folder *node)
@@ -59,8 +63,7 @@ QString GrantleeViewFormatter::formatFolder(Akregator::Folder *node)
         return errorMessage();
     }
     QVariantHash folderObject;
-    const QString directionString = QApplication::isRightToLeft() ? QStringLiteral("rtl") : QStringLiteral("ltr");
-    folderObject.insert(QStringLiteral("applicationDir"), directionString);
+    folderObject.insert(QStringLiteral("applicationDir"), mDirectionString);
     folderObject.insert(QStringLiteral("nodeTitle"), node->title());
     QString numberOfArticle;
     if (node->unread() == 0)
@@ -93,8 +96,7 @@ QString GrantleeViewFormatter::formatArticle(const QVector<Article> &article, Ar
     }
     articleObject.insert(QStringLiteral("articles"), articlesList);
 
-    const QString directionString = QApplication::isRightToLeft() ? QStringLiteral("rtl") : QStringLiteral("ltr");
-    articleObject.insert(QStringLiteral("applicationDir"), directionString);
+    articleObject.insert(QStringLiteral("applicationDir"), mDirectionString);
 
     articleObject.insert(QStringLiteral("dateI18n"), i18n("Date"));
     articleObject.insert(QStringLiteral("commentI18n"), i18n("Comment"));
