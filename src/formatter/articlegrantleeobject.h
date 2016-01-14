@@ -43,6 +43,8 @@ class ArticleGrantleeObject : public QObject
     Q_PROPERTY(QString sendUrlAction READ sendUrlAction)
     Q_PROPERTY(QString openInExternalBrowser READ openInExternalBrowser)
     Q_PROPERTY(QString share READ share)
+    Q_PROPERTY(QString commentLink READ commentLink)
+    Q_PROPERTY(QString commentNumber READ commentNumber)
 
 public:
     explicit ArticleGrantleeObject(const QUrl &imageDir, const Article &article, ArticleFormatter::IconOption icon, QObject *parent = Q_NULLPTR);
@@ -65,6 +67,8 @@ public:
     QString openInExternalBrowser() const;
     QString share() const;
 
+    QString commentLink() const;
+    QString commentNumber() const;
 private:
     Article mArticle;
     ArticleFormatter::IconOption mArticleFormatOption;

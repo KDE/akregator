@@ -5,7 +5,14 @@
   <div class="headerbox" dir="{{ applicationDir }}">
   <div class="headertitle" dir="{{ applicationDir }}"><a href="{{ article.articleLinkUrl }}">{{ article.strippedTitle }}</a></div>
   <span class="header" dir="{{ applicationDir }}">{{ dateI18n }}:</span><span class="headertext">{{ article.articlePubDate }}</span>
-  <br/><span class="header" dir="{{ applicationDir }}">{{ authorI18n }}:</span><span class="headertext">{{ article.author }}</span>
+  <br/><span class="header" dir="{{ applicationDir }}">{{ authorI18n }}:</span><span class="headertext">{{ article.author|safe }}</span>
+  <br/><span class="header" dir="{{ applicationDir }}">{{ enclosureI18n }}:</span><span class="headertext">{{ article.enclosure|safe }}</span>
+  {{ article.imageFeed }}
+  <div dir="{{ applicationDir }}"><span class="content">{{ article.content|safe }}</span>
+  <div class="body"><a class="contentlink" href="{{ article.commentLink }}">{{ commentI18n }} ({{ article.commentNumber }})</a>
+  <p><em>{{ enclosureI18n }}</em> {{ article.enclosure }}</p>
+  <p><a class="contentlink" href="{{ article.articleCompleteStoryLink }}">{{ completeStoryI18n }}</a></p>
+  </div>
   </div>
   </div><p>
 {% endfor %}

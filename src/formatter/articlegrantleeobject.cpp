@@ -100,6 +100,20 @@ QString ArticleGrantleeObject::imageFeed() const
     return text;
 }
 
+QString ArticleGrantleeObject::commentLink() const
+{
+    return mArticle.commentsLink().url();
+}
+
+QString ArticleGrantleeObject::commentNumber() const
+{
+    if (mArticle.comments()) {
+        return QString::number(mArticle.comments());
+    } else {
+        return {};
+    }
+}
+
 QString ArticleGrantleeObject::deleteAction() const
 {
     //TODO fix image
