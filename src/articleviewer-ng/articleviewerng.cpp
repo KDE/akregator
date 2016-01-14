@@ -172,6 +172,9 @@ void ArticleViewerNg::displayContextMenu(const QPoint &pos)
         popup.addSeparator();
         popup.addAction(mActionCollection->action(QStringLiteral("savelinkas")));
         popup.addAction(mActionCollection->action(QStringLiteral("copylinkaddress")));
+        if (mContextMenuHitResult.imageUrl().isEmpty()) {
+            //TODO
+        }
     } else {
         if (contentSelected) {
             popup.addAction(ActionManager::getInstance()->action(QStringLiteral("viewer_copy")));
@@ -246,6 +249,7 @@ void ArticleViewerNg::disableIntroduction()
 void ArticleViewerNg::setArticleAction(ArticleViewerNg::ArticleAction type, const QString &articleId)
 {
     //TODO
+    Q_EMIT articleAction(type, articleId);
 }
 
 void ArticleViewerNg::mouseReleaseEvent(QMouseEvent *event)

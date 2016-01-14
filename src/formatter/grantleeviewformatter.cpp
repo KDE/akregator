@@ -28,6 +28,7 @@
 #include <QVariantList>
 #include <QDebug>
 #include <folder.h>
+#include <feed.h>
 
 using namespace Akregator;
 
@@ -51,7 +52,17 @@ QString GrantleeViewFormatter::formatFeed(Akregator::Feed *feed)
         return errorMessage();
     }
     QVariantHash feedObject;
+    feedObject.insert(QStringLiteral("applicationDir"), mDirectionString);
+    feedObject.insert(QStringLiteral("strippedTitle"), Utils::stripTags(feed->title()));
+    QString numberOfArticle;
+    if (feed->unread() == 0)
+    {
+        numberOfArticle = i18n(" (no unread articles)");
+    } else {
+        numberOfArticle = i18np(" (1 unread article)", " (%1 unread articles)", feed->unread());
+    }
 
+    feedObject.insert(QStringLiteral("feedCount"), numberOfArticle);
 
     return render(feedObject);
 }

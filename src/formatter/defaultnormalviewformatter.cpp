@@ -51,6 +51,9 @@ public:
     }
 
     bool visitFeed(Feed *node) Q_DECL_OVERRIDE {
+#if 1
+        text = parent->mGrantleeViewFormatter->formatFeed(node);
+#else
         text = QStringLiteral("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::isRightToLeft() ? QStringLiteral("rtl") : QStringLiteral("ltr"));
         const QString strippedTitle = Utils::stripTags(node->title());
         text += QStringLiteral("<div class=\"headertitle\" dir=\"%1\">").arg(Utils::directionOf(strippedTitle));
@@ -92,7 +95,7 @@ public:
 
         //text += i18n("<b>Unread articles:</b> %1").arg(node->unread());
         text += QStringLiteral("</div>"); // /body
-
+#endif
         return true;
     }
 

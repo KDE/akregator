@@ -66,6 +66,7 @@ Q_SIGNALS:
     void signalOpenUrlRequest(Akregator::OpenUrlRequest &);
     void showStatusBarMessage(const QString &link);
     void showContextMenu(const QPoint &pos);
+    void articleAction(Akregator::ArticleViewerNg::ArticleAction type, const QString &articleId);
 
 protected:
     void keyReleaseEvent(QKeyEvent *e) Q_DECL_OVERRIDE;

@@ -31,7 +31,8 @@
 using namespace Akregator;
 
 ArticleViewerWidgetNg::ArticleViewerWidgetNg(ArticleViewerNg *customViewer, KActionCollection *ac, QWidget *parent)
-    : QWidget(parent)
+    : QWidget(parent),
+      mFindInMessageAction(Q_NULLPTR)
 {
     mArticleViewerNg = customViewer;
     initializeLayout(ac);
@@ -39,7 +40,8 @@ ArticleViewerWidgetNg::ArticleViewerWidgetNg(ArticleViewerNg *customViewer, KAct
 
 ArticleViewerWidgetNg::ArticleViewerWidgetNg(KActionCollection *ac, QWidget *parent)
     : QWidget(parent),
-      mArticleViewerNg(Q_NULLPTR)
+      mArticleViewerNg(Q_NULLPTR),
+      mFindInMessageAction(Q_NULLPTR)
 {
     initializeLayout(ac);
 }

@@ -13,7 +13,7 @@
   <div class="headerbox" dir="{{ applicationDir }}">
 
   {% if article.strippedTitle %}
-  <div class="headertitle" dir="{{ applicationDir }}"><a href="{{ article.articleLinkUrl }}">{{ article.strippedTitle }}</a></div>
+  <div class="headertitle" dir="{{ applicationDir }}"><a href="{{ article.articleLinkUrl }}">{{ article.strippedTitle|safe }}</a></div>
   {% endif %}
 
   {%if article.articlePubDate %}
