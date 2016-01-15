@@ -87,7 +87,6 @@ void WebViewFrame::loadConfig(const KConfigGroup &config, const QString &prefix)
     const QString url = config.readEntry(QStringLiteral("url").prepend(prefix), QString());
     const qreal zf = config.readEntry(QStringLiteral("zoom").prepend(prefix), 1.0);
     const bool onlyZoomFont = config.readEntry(QStringLiteral("onlyZoomFont").prepend(prefix), false);
-    //TODO save onlyText.
     OpenUrlRequest req(url);
     KParts::OpenUrlArguments args;
     req.setArgs(args);
