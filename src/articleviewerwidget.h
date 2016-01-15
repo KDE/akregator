@@ -156,7 +156,6 @@ private:
 
 private:
     QUrl m_url;
-    QString m_htmlFooter;
     QString m_currentText;
     QUrl m_imageDir;
     QPointer<TreeNode> m_node;

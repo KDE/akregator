@@ -99,8 +99,6 @@ ArticleViewerWidget::ArticleViewerWidget(KActionCollection *ac, QWidget *parent)
     action = ac->addAction(QStringLiteral("savelinkas"));
     action->setText(i18n("&Save Link As..."));
     connect(action, &QAction::triggered, this, &ArticleViewerWidget::slotSaveLinkAs);
-
-    m_htmlFooter = QStringLiteral("</body></html>");
 }
 
 ArticleViewerWidget::~ArticleViewerWidget()
@@ -205,7 +203,6 @@ void ArticleViewerWidget::beginWriting()
 
 void ArticleViewerWidget::endWriting()
 {
-    m_articleHtmlWriter->queue(m_htmlFooter);
     m_articleHtmlWriter->end();
 }
 
