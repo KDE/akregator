@@ -248,7 +248,6 @@ void ArticleViewerNg::disableIntroduction()
 
 void ArticleViewerNg::setArticleAction(ArticleViewerNg::ArticleAction type, const QString &articleId)
 {
-    //TODO
     Q_EMIT articleAction(type, articleId);
 }
 

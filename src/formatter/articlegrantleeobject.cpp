@@ -152,13 +152,13 @@ QString ArticleGrantleeObject::sendUrlAction() const
 QString ArticleGrantleeObject::openInExternalBrowser() const
 {
     //Fix image url;
-    const QString text = QStringLiteral("<a href=\"akregatoraction:openInExternalBrowser\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(QStringLiteral("image"));
+    const QString text = QStringLiteral("<a href=\"akregatoraction:openInExternalBrowser#%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(mArticle.guid(), QStringLiteral("image"));
     return text;
 }
 
 QString ArticleGrantleeObject::share() const
 {
     //Fix image url;
-    const QString text = QStringLiteral("<a href=\"akregatoraction:share\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(QStringLiteral("image"));
+    const QString text = QStringLiteral("<a href=\"akregatoraction:share#%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(mArticle.guid(), QStringLiteral("image"));
     return text;
 }
