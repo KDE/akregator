@@ -36,9 +36,7 @@
 
 #include <Libkdepim/ProgressManager>
 
-namespace Akregator
-{
-
+using namespace Akregator;
 Frame::Frame(QWidget *parent)
     : QWidget(parent)
 {
@@ -203,6 +201,4 @@ int Frame::progress() const
 {
     return m_progress;
 }
-
-} // namespace Akregator
 

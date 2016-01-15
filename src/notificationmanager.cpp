@@ -30,9 +30,7 @@
 #include <KAboutData>
 #include <QTimer>
 
-namespace Akregator
-{
-
+using namespace Akregator;
 NotificationManager::NotificationManager() : QObject()
 {
     m_intervalsLapsed = 0;
@@ -126,6 +124,3 @@ NotificationManager *NotificationManager::self()
     }
     return m_self;
 }
-
-} // namespace Akregator
-

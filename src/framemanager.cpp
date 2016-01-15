@@ -42,8 +42,7 @@
 #include <QApplication>
 #include <QDesktopServices>
 
-namespace Akregator
-{
+using namespace Akregator;
 
 static void setPartGuiActive(KParts::ReadOnlyPart *part, bool active)
 {
@@ -398,6 +397,4 @@ void FrameManager::saveProperties(KConfigGroup &config)
     config.writeEntry(QStringLiteral("activeChildIndex"),
                       m_frames.key(m_currentFrame));
 }
-
-} // namespace Akregator
 

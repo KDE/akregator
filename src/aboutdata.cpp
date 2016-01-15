@@ -28,8 +28,7 @@
 
 #include <KLocalizedString>
 
-namespace Akregator
-{
+using namespace Akregator;
 
 AboutData::AboutData()
     : KAboutData(QStringLiteral("akregator"),
@@ -63,6 +62,4 @@ AboutData::AboutData()
 
 AboutData::~AboutData()
 {
-}
-
 }

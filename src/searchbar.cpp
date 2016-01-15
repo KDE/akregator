@@ -43,9 +43,7 @@
 using namespace Akregator;
 using namespace Akregator::Filters;
 
-namespace Akregator
-{
-
+using namespace Akregator;
 class SearchBar::SearchBarPrivate
 {
 public:
@@ -224,6 +222,3 @@ void SearchBar::slotActivateSearch()
     d->matchers = matchers;
     Q_EMIT signalSearch(matchers);
 }
-
-}
-

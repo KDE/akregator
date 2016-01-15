@@ -72,8 +72,7 @@
 using namespace Akregator;
 using namespace Akregator::Filters;
 
-namespace Akregator
-{
+using namespace Akregator;
 
 ArticleViewerWidget::ArticleViewerWidget(KActionCollection *ac, QWidget *parent)
     : QWidget(parent),
@@ -442,6 +441,4 @@ void ArticleViewerWidget::setArticleActionsEnabled(bool enabled)
 {
     ActionManager::getInstance()->setArticleActionsEnabled(enabled);
 }
-
-} // namespace Akregator
 

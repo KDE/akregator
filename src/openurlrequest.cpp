@@ -25,8 +25,8 @@
 #include "openurlrequest.h"
 #include "akregatorconfig.h"
 
-namespace Akregator
-{
+using namespace Akregator;
+
 
 OpenUrlRequest::OpenUrlRequest(const QUrl &url) : m_frameId(-1), m_url(url),
     m_options(None), m_part(), m_inBackground(false), m_wasHandled(false)
@@ -130,5 +130,3 @@ void OpenUrlRequest::setWasHandled(bool handled)
 {
     m_wasHandled = handled;
 }
-
-} // namespace Akregator

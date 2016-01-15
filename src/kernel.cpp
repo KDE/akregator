@@ -28,8 +28,7 @@
 #include "fetchqueue.h"
 #include "framemanager.h"
 
-namespace Akregator
-{
+using namespace Akregator;
 
 Kernel *Kernel::m_self = 0;
 
@@ -96,5 +95,3 @@ FrameManager *Kernel::frameManager() const
 {
     return d->frameManager;
 }
-
-} // namespace Akregator

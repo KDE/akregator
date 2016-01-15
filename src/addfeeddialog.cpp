@@ -39,13 +39,10 @@
 #include <QPushButton>
 #include <QVBoxLayout>
 
-namespace Akregator
-{
-
-AddFeedWidget::AddFeedWidget(QWidget *parent, const char *name)
+using namespace Akregator;
+AddFeedWidget::AddFeedWidget(QWidget *parent)
     : QWidget(parent)
 {
-    setObjectName(QLatin1String(name));
     setupUi(this);
     pixmapLabel1->setPixmap(QIcon::fromTheme(QStringLiteral("applications-internet")).pixmap(IconSize(KIconLoader::Desktop), IconSize(KIconLoader::Desktop)));
     statusLabel->setText(QString());
@@ -151,6 +148,3 @@ void AddFeedDialog::textChanged(const QString &text)
 {
     mOkButton->setEnabled(!text.trimmed().isEmpty());
 }
-
-} // namespace Akregator
-

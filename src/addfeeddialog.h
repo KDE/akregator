@@ -40,7 +40,7 @@ class AddFeedWidget : public QWidget, public Ui::AddFeedWidgetBase
 {
     Q_OBJECT
 public:
-    explicit AddFeedWidget(QWidget *parent = Q_NULLPTR, const char *name = Q_NULLPTR);
+    explicit AddFeedWidget(QWidget *parent = Q_NULLPTR);
     ~AddFeedWidget();
 };
 
