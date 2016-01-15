@@ -149,6 +149,7 @@ void TabWidget::slotTabContextMenuRequest(const QPoint &pos)
     }
     QMenu menu(this);
     QAction *closeTab = menu.addAction(i18nc("@action:inmenu", "Close Tab"));
+    closeTab->setEnabled((indexBar != 0) && (count() > 1));
     closeTab->setIcon(QIcon::fromTheme(QStringLiteral("tab-close")));
 
     QAction *allOther = menu.addAction(i18nc("@action:inmenu", "Close All Other Tabs"));
