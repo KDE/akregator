@@ -116,6 +116,7 @@ set(kcm_akradblockconfig_SRCS
 add_library(akregator_config_adblock MODULE ${kcm_akradblockconfig_SRCS})
 
 target_link_libraries(akregator_config_adblock
+  akregatorinterfaces
   KF5::KCMUtils
   KF5::I18n
   KF5::MessageViewer
