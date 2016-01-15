@@ -41,7 +41,6 @@ using namespace Akregator;
 class DefaultNormalViewFormatter::SummaryVisitor : public TreeNodeVisitor
 {
 public:
-    //TODO replace with grantlee
     SummaryVisitor(DefaultNormalViewFormatter *p)
         : parent(p)
     {
@@ -51,51 +50,7 @@ public:
     }
 
     bool visitFeed(Feed *node) Q_DECL_OVERRIDE {
-#if 1
         text = parent->mGrantleeViewFormatter->formatFeed(node);
-#else
-        text = QStringLiteral("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::isRightToLeft() ? QStringLiteral("rtl") : QStringLiteral("ltr"));
-        const QString strippedTitle = Utils::stripTags(node->title());
-        text += QStringLiteral("<div class=\"headertitle\" dir=\"%1\">").arg(Utils::directionOf(strippedTitle));
-        text += strippedTitle;
-        if (node->unread() == 0)
-        {
-            text += i18n(" (no unread articles)");
-        } else {
-            text += i18np(" (1 unread article)", " (%1 unread articles)", node->unread());
-        }
-        text += QStringLiteral("</div>\n"); // headertitle
-        text += QStringLiteral("</div>\n"); // /headerbox
-
-        if (!node->image().isNull())   // image
-        {
-            text += QLatin1String("<div class=\"body\">");
-            QString file = Utils::fileNameForUrl(node->xmlUrl());
-            QUrl u(parent->m_imageDir);
-            u = u.adjusted(QUrl::RemoveFilename);
-            u.setPath(u.path() + file);
-            text += QStringLiteral("<a href=\"%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(node->htmlUrl(), u.url());
-        } else {
-            text += QStringLiteral("<div class=\"body\">");
-        }
-
-        if (!node->description().isEmpty())
-        {
-            text += QStringLiteral("<div dir=\"%1\">").arg(Utils::stripTags(Utils::directionOf(node->description())));
-            text += i18n("<b>Description:</b> %1<br /><br />", node->description());
-            text += QStringLiteral("</div>\n"); // /description
-        }
-
-        if (!node->htmlUrl().isEmpty())
-        {
-            text += QStringLiteral("<div dir=\"%1\">").arg(Utils::directionOf(node->htmlUrl()));
-            text += i18n("<b>Homepage:</b> <a href=\"%1\">%2</a>", node->htmlUrl(), node->htmlUrl());
-            text += QStringLiteral("</div>\n"); // / link
-        }
-
-        //text += i18n("<b>Unread articles:</b> %1").arg(node->unread());
-        text += QStringLiteral("</div>"); // /body
-#endif
         return true;
     }
 

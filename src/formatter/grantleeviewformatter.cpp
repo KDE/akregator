@@ -64,6 +64,39 @@ QString GrantleeViewFormatter::formatFeed(Akregator::Feed *feed)
 
     feedObject.insert(QStringLiteral("feedCount"), numberOfArticle);
 
+    QString feedImage;
+    if (!feed->image().isNull())   // image
+    {
+        feedImage = QLatin1String("<div class=\"body\">");
+        QString file = Utils::fileNameForUrl(feed->xmlUrl());
+        QUrl u(mImageDir);
+        u = u.adjusted(QUrl::RemoveFilename);
+        u.setPath(u.path() + file);
+        feedImage = QStringLiteral("<a href=\"%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(feed->htmlUrl(), u.url());
+    } else {
+        feedImage = QStringLiteral("<div class=\"body\">");
+    }
+    feedObject.insert(QStringLiteral("feedImage"), feedImage);
+
+    if (!feed->description().isEmpty())
+    {
+        QString feedDescription;
+        feedDescription = QStringLiteral("<div dir=\"%1\">").arg(mDirectionString);
+        feedDescription += i18n("<b>Description:</b> %1<br /><br />", feed->description());
+        feedDescription += QStringLiteral("</div>\n"); // /description
+        feedObject.insert(QStringLiteral("feedDescription"), feedDescription);
+    }
+
+    if (!feed->htmlUrl().isEmpty())
+    {
+        QString feedHomePage;
+        feedHomePage = QStringLiteral("<div dir=\"%1\">").arg(mDirectionString);
+        feedHomePage += i18n("<b>Homepage:</b> <a href=\"%1\">%2</a>", feed->htmlUrl(), feed->htmlUrl());
+        feedHomePage += QStringLiteral("</div>\n"); // / link
+        feedObject.insert(QStringLiteral("feedHomePage"), feedHomePage);
+    }
+
+
     return render(feedObject);
 }
 

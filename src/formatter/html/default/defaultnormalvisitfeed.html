@@ -8,5 +8,8 @@
 <body>
 <div class="headerbox" dir="{{ applicationDir }}">
 <div class="headertitle" dir="{{ applicationDir }}">{{ strippedTitle }}{{ feedCount }}</div>
+{{ feedImage|safe }}
+{{ feedDescription|safe }}
+{{ feedHomePage|safe }}
 </div>
 </body>
