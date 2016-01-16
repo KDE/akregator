@@ -37,7 +37,6 @@
 #include <QSharedPointer>
 
 class KConfig;
-class KFileItem;
 class KConfigGroup;
 
 class QDomDocument;

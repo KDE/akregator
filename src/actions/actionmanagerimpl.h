@@ -41,7 +41,6 @@ namespace Akregator
 {
 
 class ArticleListView;
-class ArticleViewerWidget;
 class FrameManager;
 class MainWidget;
 class Part;
