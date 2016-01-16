@@ -86,26 +86,26 @@ FeedIconManager::Private::~Private()
 
 FeedIconManager *FeedIconManager::Private::m_instance = 0;
 
-QString FeedIconManager::Private::iconLocation(const QUrl &url) const
-{
-    QDBusReply<QString> reply = m_favIconsModule->call(QStringLiteral("iconForUrl"), url.url());
-    return reply.isValid() ? reply.value() : QString();
-}
-
 void FeedIconManager::Private::loadIcon(const QString &url_)
 {
     const QUrl url(url_);
 
-    QString iconFile = iconLocation(url);
+    QDBusPendingCall reply = m_favIconsModule->asyncCall(QStringLiteral("iconForUrl"), url.url());
 
-    if (iconFile.isEmpty()) { // cache miss
-        const QDBusReply<void> reply = m_favIconsModule->call(QStringLiteral("downloadHostIcon"), url.url());
-        if (!reply.isValid()) {
-            qCWarning(AKREGATOR_LOG) << "Couldn't reach favicon service. Request favicon for " << url << " failed";
+    QDBusPendingCallWatcher *watcher = new QDBusPendingCallWatcher(reply, q);
+
+    QObject::connect(watcher, &QDBusPendingCallWatcher::finished, q,
+        [url, this](QDBusPendingCallWatcher *call){
+            QDBusPendingReply<QString> reply = *call;
+            if (reply.isError()) {
+                m_favIconsModule->asyncCall(QStringLiteral("downloadHostIcon"), url.url());
+                qCWarning(AKREGATOR_LOG) << "Couldn't reach favicon service. Request favicon for " << url << " failed:" << call->error().message();
+            } else {
+                q->slotIconChanged(false, url.host(), reply.argumentAt(0).toString());
+            }
+            call->deleteLater();
         }
-    } else {
-        q->slotIconChanged(false, url.host(), iconFile);
-    }
+    );
 }
 
 FeedIconManager *FeedIconManager::self()
