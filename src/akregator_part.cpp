@@ -111,22 +111,6 @@ static QDomDocument createDefaultFeedList()
     mainFolder.setAttribute(QStringLiteral("text"), QStringLiteral("KDE"));
     body.appendChild(mainFolder);
 
-    /*
-    // NOTE: If these feeds ever get updated again, reenable them.
-    //       For now I (Bertjan, July 2010) just disable them to
-    //       make the default feeds non-embarassing (these are
-    //       still updated regularly.
-    QDomElement ak = doc.createElement( "outline" );
-    ak.setAttribute("text",i18n("Akregator News"));
-    ak.setAttribute("xmlUrl","http://akregator.sf.net/rss2.php");
-    mainFolder.appendChild(ak);
-
-    QDomElement akb = doc.createElement( "outline" );
-    akb.setAttribute("text",i18n("Akregator Blog"));
-    akb.setAttribute("xmlUrl","http://akregator.pwsp.net/blog/?feed=rss2");
-    mainFolder.appendChild(akb);
-    */
-
     QDomElement dot = doc.createElement(QStringLiteral("outline"));
     dot.setAttribute(QStringLiteral("text"), i18n("KDE Dot News"));
     dot.setAttribute(QStringLiteral("xmlUrl"), QStringLiteral("http://www.kde.org/dotkdeorg.rdf"));
