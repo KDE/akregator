@@ -24,6 +24,7 @@
 #include <KActionCollection>
 #include <KMessageBox>
 #include <KAboutData>
+#include <KPIMTextEdit/TextToSpeech>
 #include <KLocalizedString>
 #include <MessageViewer/WebViewAccessKey>
 #include <MessageViewer/WebPage>
@@ -186,6 +187,10 @@ void ArticleViewerNg::displayContextMenu(const QPoint &pos)
     }
     popup.addSeparator();
     popup.addAction(mFindInMessageAction);
+    if (KPIMTextEdit::TextToSpeech::self()->isReady()) {
+        popup.addSeparator();
+        popup.addAction(mSpeakTextAction);
+    }
     popup.exec(mapToGlobal(pos));
 }
 

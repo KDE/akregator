@@ -20,6 +20,8 @@
 #include "actions.h"
 #include "urlhandlermanager.h"
 
+#include <KPIMTextEdit/TextToSpeech>
+
 #include <KActionCollection>
 
 #include <QContextMenuEvent>
@@ -87,5 +89,9 @@ void WebViewer::displayContextMenu(const QPoint &pos)
     }
     popup.addSeparator();
     popup.addAction(mFindInMessageAction);
+    if (KPIMTextEdit::TextToSpeech::self()->isReady()) {
+        popup.addSeparator();
+        popup.addAction(mSpeakTextAction);
+    }
     popup.exec(mapToGlobal(pos));
 }
