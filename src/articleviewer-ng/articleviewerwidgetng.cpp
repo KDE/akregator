@@ -106,5 +106,6 @@ void ArticleViewerWidgetNg::slotFind()
 
 void ArticleViewerWidgetNg::slotSpeakText()
 {
-
+    const QString text = mArticleViewerNg->selectedText();
+    mTextToSpeechWidget->say(text);
 }
