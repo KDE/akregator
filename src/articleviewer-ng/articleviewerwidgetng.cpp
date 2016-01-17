@@ -31,8 +31,7 @@
 using namespace Akregator;
 
 ArticleViewerWidgetNg::ArticleViewerWidgetNg(ArticleViewerNg *customViewer, KActionCollection *ac, QWidget *parent)
-    : QWidget(parent),
-      mFindInMessageAction(Q_NULLPTR)
+    : QWidget(parent)
 {
     mArticleViewerNg = customViewer;
     initializeLayout(ac);
@@ -40,8 +39,7 @@ ArticleViewerWidgetNg::ArticleViewerWidgetNg(ArticleViewerNg *customViewer, KAct
 
 ArticleViewerWidgetNg::ArticleViewerWidgetNg(KActionCollection *ac, QWidget *parent)
     : QWidget(parent),
-      mArticleViewerNg(Q_NULLPTR),
-      mFindInMessageAction(Q_NULLPTR)
+      mArticleViewerNg(Q_NULLPTR)
 {
     initializeLayout(ac);
 }
@@ -69,25 +67,13 @@ void ArticleViewerWidgetNg::initializeLayout(KActionCollection *ac)
     connect(mFindBarWebView, &MessageViewer::FindBarBase::hideFindBar, mSliderContainer, &KPIMTextEdit::SlideContainer::slideOut);
     mSliderContainer->setContent(mFindBarWebView);
     layout->addWidget(mSliderContainer);
-    initializeActions(ac);
+    connect(articleViewerNg(), &ArticleViewerNg::textToSpeech, this, &ArticleViewerWidgetNg::slotSpeakText);
+    connect(articleViewerNg(), &ArticleViewerNg::findTextInHtml, this, &ArticleViewerWidgetNg::slotFind);
 }
 
 ArticleViewerWidgetNg::~ArticleViewerWidgetNg()
 {
 
-}
-
-void ArticleViewerWidgetNg::initializeActions(KActionCollection *ac)
-{
-    mSpeakTextAction = new QAction(i18n("Speak Text"), this);
-    mSpeakTextAction->setIcon(QIcon::fromTheme(QStringLiteral("preferences-desktop-text-to-speech")));
-    ac->addAction(QStringLiteral("speak_text"), mSpeakTextAction);
-    connect(mSpeakTextAction, &QAction::triggered, this, &ArticleViewerWidgetNg::slotSpeakText);
-
-    mFindInMessageAction = new QAction(QIcon::fromTheme(QStringLiteral("edit-find")), i18n("&Find in Message..."), this);
-    ac->addAction(QStringLiteral("find_in_messages"), mFindInMessageAction);
-    connect(mFindInMessageAction, &QAction::triggered, this, &ArticleViewerWidgetNg::slotFind);
-    ac->setDefaultShortcut(mFindInMessageAction, KStandardShortcut::find().first());
 }
 
 ArticleViewerNg *ArticleViewerWidgetNg::articleViewerNg() const

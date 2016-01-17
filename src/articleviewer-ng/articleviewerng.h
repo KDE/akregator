@@ -24,6 +24,7 @@
 #include <QWebHitTestResult>
 #include <openurlrequest.h>
 class KActionCollection;
+class QAction;
 namespace MessageViewer
 {
 class WebViewAccessKey;
@@ -67,6 +68,8 @@ Q_SIGNALS:
     void showStatusBarMessage(const QString &link);
     void showContextMenu(const QPoint &pos);
     void articleAction(Akregator::ArticleViewerNg::ArticleAction type, const QString &articleId);
+    void findTextInHtml();
+    void textToSpeech();
 
 protected:
     void keyReleaseEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
@@ -90,6 +93,8 @@ protected:
     QUrl mCurrentUrl;
     QWebHitTestResult mContextMenuHitResult;
     KActionCollection *mActionCollection;
+    QAction *mSpeakTextAction;
+    QAction *mFindInMessageAction;
 
 private:
     enum MousePressedButtonType {
@@ -98,6 +103,7 @@ private:
         MiddleButton,
     };
 
+    void initializeActions(KActionCollection *ac);
     void paintAboutScreen(const QString &templateName, const QVariantHash &data);
     QUrl linkOrImageUrlAt(const QPoint &global) const;
     QVariantHash introductionData() const;

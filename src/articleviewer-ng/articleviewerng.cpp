@@ -47,6 +47,7 @@ ArticleViewerNg::ArticleViewerNg(KActionCollection *ac, QWidget *parent)
       mActionCollection(ac),
       mLastButtonClicked(LeftButton)
 {
+    initializeActions(ac);
     setContextMenuPolicy(Qt::CustomContextMenu);
     setPage(new MessageViewer::WebPage(this));
     mWebViewAccessKey = new MessageViewer::WebViewAccessKey(this, this);
@@ -183,8 +184,24 @@ void ArticleViewerNg::displayContextMenu(const QPoint &pos)
         popup.addAction(ActionManager::getInstance()->action(QStringLiteral("viewer_print")));
         popup.addAction(ActionManager::getInstance()->action(QStringLiteral("viewer_printpreview")));
     }
+    popup.addSeparator();
+    popup.addAction(mFindInMessageAction);
     popup.exec(mapToGlobal(pos));
 }
+
+void ArticleViewerNg::initializeActions(KActionCollection *ac)
+{
+    mSpeakTextAction = new QAction(i18n("Speak Text"), this);
+    mSpeakTextAction->setIcon(QIcon::fromTheme(QStringLiteral("preferences-desktop-text-to-speech")));
+    ac->addAction(QStringLiteral("speak_text"), mSpeakTextAction);
+    connect(mSpeakTextAction, &QAction::triggered, this, &ArticleViewerNg::textToSpeech);
+
+    mFindInMessageAction = new QAction(QIcon::fromTheme(QStringLiteral("edit-find")), i18n("&Find in Message..."), this);
+    ac->addAction(QStringLiteral("find_in_messages"), mFindInMessageAction);
+    connect(mFindInMessageAction, &QAction::triggered, this, &ArticleViewerNg::findTextInHtml);
+    ac->setDefaultShortcut(mFindInMessageAction, KStandardShortcut::find().first());
+}
+
 
 void ArticleViewerNg::slotLinkHovered(const QString &link, const QString &title, const QString &textContent)
 {

@@ -46,7 +46,7 @@ public:
 
     ArticleViewerNg *articleViewerNg() const;
 
-private Q_SLOTS:
+public Q_SLOTS:
     void slotSpeakText();
     void slotFind();
 
@@ -56,8 +56,6 @@ private:
     MessageViewer::FindBarWebView *mFindBarWebView;
     ArticleViewerNg *mArticleViewerNg;
     KPIMTextEdit::TextToSpeechWidget *mTextToSpeechWidget;
-    QAction *mSpeakTextAction;
-    QAction *mFindInMessageAction;
     KPIMTextEdit::SlideContainer *mSliderContainer;
 };
 }

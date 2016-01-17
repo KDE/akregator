@@ -85,5 +85,7 @@ void WebViewer::displayContextMenu(const QPoint &pos)
         popup.addAction(ActionManager::getInstance()->action(QStringLiteral("viewer_print")));
         popup.addAction(ActionManager::getInstance()->action(QStringLiteral("viewer_printpreview")));
     }
+    popup.addSeparator();
+    popup.addAction(mFindInMessageAction);
     popup.exec(mapToGlobal(pos));
 }
