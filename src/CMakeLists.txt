@@ -5,6 +5,7 @@ include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/feed/
     ${CMAKE_CURRENT_SOURCE_DIR}/urlhandler/
     ${CMAKE_CURRENT_SOURCE_DIR}/actions/
+    ${CMAKE_CURRENT_SOURCE_DIR}/frame/
     )
 
 
@@ -42,7 +43,7 @@ set(akregator_articleviewer_ng_SRCS
     articleviewer-ng/articleviewerng.cpp
     articleviewer-ng/articleviewerwidgetng.cpp
     articleviewer-ng/articlehtmlwriter.cpp
-    webviewer.cpp
+
     )
 
 set(akregatorprivate_formatter_SRCS
@@ -53,8 +54,17 @@ set(akregatorprivate_formatter_SRCS
     formatter/articlegrantleeobject.cpp
     )
 
+set(akregatorprivate_frame_SRCS
+    frame/webviewer.cpp
+    frame/frame.cpp
+    frame/mainframe.cpp
+    frame/framemanager.cpp
+    frame/webviewframe.cpp
+    )
+
 set(akregatorprivate_LIB_SRCS
     akregratormigrateapplication.cpp
+    ${akregatorprivate_frame_SRCS}
     ${akregator_articleviewer_ng_SRCS}
     ${akregator_common_SRCS}
     ${akregatorprivate_formatter_SRCS}
@@ -74,16 +84,11 @@ set(akregatorprivate_LIB_SRCS
     kernel.cpp
     subscription/subscriptionlistjobs.cpp
     fetchqueue.cpp
-    frame.cpp
-    mainframe.cpp
-    framemanager.cpp
     openurlrequest.cpp
     actions/actionmanager.cpp
     actions/actions.cpp
-    webviewframe.cpp
     urlhandler/urlhandlermanager.cpp
     urlhandler/urlhandler.cpp
-
     )
 
 add_library(akregatorprivate ${akregatorprivate_LIB_SRCS})
