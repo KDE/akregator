@@ -242,7 +242,7 @@ void ArticleViewerWidget::showArticle(const Akregator::Article &article)
     if (article.feed()->loadLinkedWebsite()) {
         openUrl(article.link());
     } else {
-        renderContent(m_normalViewFormatter->formatArticle(QVector<Akregator::Article>() << article, ArticleFormatter::ShowIcon));
+        renderContent(m_normalViewFormatter->formatArticles(QVector<Akregator::Article>() << article, ArticleFormatter::ShowIcon));
     }
 
     setArticleActionsEnabled(true);
@@ -300,7 +300,7 @@ void ArticleViewerWidget::slotUpdateCombinedView()
         articles << i;
         ++num;
     }
-    text = m_combinedViewFormatter->formatArticle(articles, ArticleFormatter::NoIcon);
+    text = m_combinedViewFormatter->formatArticles(articles, ArticleFormatter::NoIcon);
 
     qCDebug(AKREGATOR_LOG) << "Combined view rendering: (" << num << " articles):" << "generating HTML:" << spent.elapsed() << "ms";
     renderContent(text);

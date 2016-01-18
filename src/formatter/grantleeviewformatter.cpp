@@ -122,7 +122,7 @@ QString GrantleeViewFormatter::formatFolder(Akregator::Folder *node)
 }
 
 
-QString GrantleeViewFormatter::formatArticle(const QVector<Article> &article, ArticleFormatter::IconOption icon)
+QString GrantleeViewFormatter::formatArticles(const QVector<Article> &article, ArticleFormatter::IconOption icon)
 {
     setDefaultHtmlMainFile(mHtmlArticleFileName);
     if (!errorMessage().isEmpty()) {

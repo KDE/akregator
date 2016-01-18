@@ -30,7 +30,7 @@ public:
     explicit DefaultNormalViewFormatter(const QUrl &imageDir, QPaintDevice *device = Q_NULLPTR);
     ~DefaultNormalViewFormatter();
 
-    QString formatArticle(const QVector<Article> &article, IconOption option) const Q_DECL_OVERRIDE;
+    QString formatArticles(const QVector<Article> &article, IconOption option) const Q_DECL_OVERRIDE;
 
     QString formatSummary(TreeNode *node) const Q_DECL_OVERRIDE;
 

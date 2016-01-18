@@ -50,9 +50,9 @@ DefaultCombinedViewFormatter::~DefaultCombinedViewFormatter()
     delete mGrantleeViewFormatter;
 }
 
-QString DefaultCombinedViewFormatter::formatArticle(const QVector<Article> &articles, IconOption icon) const
+QString DefaultCombinedViewFormatter::formatArticles(const QVector<Article> &articles, IconOption icon) const
 {
-    return mGrantleeViewFormatter->formatArticle(articles, icon);
+    return mGrantleeViewFormatter->formatArticles(articles, icon);
 }
 
 QString DefaultCombinedViewFormatter::formatSummary(TreeNode *) const

@@ -52,7 +52,7 @@ public:
 
     void setPaintDevice(QPaintDevice *device);
 
-    virtual QString formatArticle(const QVector<Article> &article, IconOption icon) const = 0;
+    virtual QString formatArticles(const QVector<Article> &article, IconOption icon) const = 0;
 
     virtual QString formatSummary(TreeNode *node) const = 0;
 

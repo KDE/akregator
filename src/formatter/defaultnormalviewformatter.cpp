@@ -92,11 +92,11 @@ QString DefaultNormalViewFormatter::formatSummary(TreeNode *node) const
     return m_summaryVisitor->formatSummary(node);
 }
 
-QString DefaultNormalViewFormatter::formatArticle(const QVector<Article> &articles, IconOption icon) const
+QString DefaultNormalViewFormatter::formatArticles(const QVector<Article> &articles, IconOption icon) const
 {
     if (articles.count() != 1) {
         return {};
     }
-    return mGrantleeViewFormatter->formatArticle(articles, icon);
+    return mGrantleeViewFormatter->formatArticles(articles, icon);
 }
 

@@ -32,7 +32,7 @@ public:
     explicit GrantleeViewFormatter(const QString &htmlFileName, const QString &themePath, const QUrl &imageDir, QObject *parent = Q_NULLPTR);
     ~GrantleeViewFormatter();
 
-    QString formatArticle(const QVector<Article> &article, ArticleFormatter::IconOption icon);
+    QString formatArticles(const QVector<Article> &article, ArticleFormatter::IconOption icon);
     QString formatFolder(Akregator::Folder *node);
     QString formatFeed(Akregator::Feed *feed);
 private:
