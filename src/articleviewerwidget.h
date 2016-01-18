@@ -79,6 +79,8 @@ public:
     qreal zoomFactor() const;
     bool zoomTextOnlyInFrame() const;
 
+    Akregator::ArticleViewerWidgetNg *articleViewerWidgetNg() const;
+
 public Q_SLOTS:
     void slotZoomTextOnlyInFrame(bool textOnlyInFrame);
     void slotPrint();

@@ -249,6 +249,8 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
     connect(m_tabWidget, &TabWidget::signalZoomChangedInFrame, m_mainFrame, &MainFrame::slotZoomChangeInFrame);
     connect(m_tabWidget, &TabWidget::signalZoomTextOnlyInFrame, m_mainFrame, &MainFrame::slotZoomTextOnlyInFrame);
     connect(m_tabWidget, &TabWidget::signalPrintPreviewInFrame, m_mainFrame, &MainFrame::slotPrintPreviewInFrame);
+    connect(m_tabWidget, &TabWidget::signalFindTextInFrame, m_mainFrame, &MainFrame::slotFindTextInFrame);
+    connect(m_tabWidget, &TabWidget::signalTextToSpeechInFrame, m_mainFrame, &MainFrame::slotTextToSpeechInFrame);
 
 
     Kernel::self()->frameManager()->slotAddFrame(m_mainFrame);
@@ -353,6 +355,9 @@ void MainWidget::connectFrame(WebViewFrame *frame)
     connect(m_tabWidget, &TabWidget::signalZoomChangedInFrame, frame, &WebViewFrame::slotZoomChangeInFrame);
     connect(m_tabWidget, &TabWidget::signalZoomTextOnlyInFrame, frame, &WebViewFrame::slotZoomTextOnlyInFrame);
     connect(m_tabWidget, &TabWidget::signalPrintPreviewInFrame, frame, &WebViewFrame::slotPrintPreviewInFrame);
+    connect(m_tabWidget, &TabWidget::signalFindTextInFrame, frame, &WebViewFrame::slotFindTextInFrame);
+    connect(m_tabWidget, &TabWidget::signalTextToSpeechInFrame, frame, &WebViewFrame::slotTextToSpeechInFrame);
+
     connect(frame, &WebViewFrame::showStatusBarMessage, this, &MainWidget::slotShowStatusBarMessage);
 }
 

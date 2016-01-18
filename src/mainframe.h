@@ -53,6 +53,8 @@ public Q_SLOTS:
     void slotCopyInFrame(int frameId);
     void slotPrintInFrame(int frameId);
     void slotPrintPreviewInFrame(int frameId);
+    void slotTextToSpeechInFrame(int frameId);
+    void slotFindTextInFrame(int frameId);
 
 private:
     KParts::ReadOnlyPart *m_part;

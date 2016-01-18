@@ -428,6 +428,16 @@ void TabWidget::slotDetachTab()
     }
 }
 
+void TabWidget::slotTextToSpeech()
+{
+    Q_EMIT signalTextToSpeechInFrame(d->currentFrame()->id());
+}
+
+void TabWidget::slotFindTextInHtml()
+{
+    Q_EMIT signalFindTextInFrame(d->currentFrame()->id());
+}
+
 void TabWidget::slotPrintPreview()
 {
     Q_EMIT signalPrintPreviewInFrame(d->currentFrame()->id());

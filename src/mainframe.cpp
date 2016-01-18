@@ -16,6 +16,7 @@
 */
 
 #include "articleviewerwidget.h"
+#include "articleviewer-ng/articleviewerwidgetng.h"
 #include "mainframe.h"
 
 #include <QGridLayout>
@@ -88,6 +89,23 @@ void MainFrame::slotPrintPreviewInFrame(int frameId)
     }
     mArticleViewer->slotPrintPreview();
 }
+
+void MainFrame::slotFindTextInFrame(int frameId)
+{
+    if (frameId != 0) {
+        return;
+    }
+    mArticleViewer->articleViewerWidgetNg()->slotFind();
+}
+
+void MainFrame::slotTextToSpeechInFrame(int frameId)
+{
+    if (frameId != 0) {
+        return;
+    }
+    mArticleViewer->articleViewerWidgetNg()->slotSpeakText();
+}
+
 
 qreal MainFrame::zoomFactor() const
 {

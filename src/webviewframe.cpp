@@ -131,6 +131,22 @@ void WebViewFrame::slotPrintPreviewInFrame(int frameId)
     mArticleViewerWidgetNg->articleViewerNg()->slotPrintPreview();
 }
 
+void WebViewFrame::slotFindTextInFrame(int frameId)
+{
+    if (frameId != id()) {
+        return;
+    }
+    mArticleViewerWidgetNg->slotFind();
+}
+
+void WebViewFrame::slotTextToSpeechInFrame(int frameId)
+{
+    if (frameId != id()) {
+        return;
+    }
+    mArticleViewerWidgetNg->slotSpeakText();
+}
+
 void WebViewFrame::slotZoomChangeInFrame(int frameId, qreal value)
 {
     if (frameId != id()) {

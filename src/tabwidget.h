@@ -64,6 +64,8 @@ public Q_SLOTS:
     void slotZoomTextOnlyChanged(bool zoomTextOnly);
     void slotPrint();
     void slotPrintPreview();
+    void slotFindTextInHtml();
+    void slotTextToSpeech();
 Q_SIGNALS:
     void signalCurrentFrameChanged(int);
     void signalRemoveFrameRequest(int);
@@ -73,6 +75,8 @@ Q_SIGNALS:
     void signalPrintInFrame(int currentFrame);
     void signalCopyInFrame(int currentFrame);
     void signalPrintPreviewInFrame(int currentFrame);
+    void signalTextToSpeechInFrame(int currentFrame);
+    void signalFindTextInFrame(int currentFrame);
 
 private:
     void tabInserted(int) Q_DECL_OVERRIDE;

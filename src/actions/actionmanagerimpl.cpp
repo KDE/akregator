@@ -558,6 +558,16 @@ void ActionManagerImpl::initTabWidget(TabWidget *tabWidget)
     action = KStandardAction::printPreview(d->tabWidget, SLOT(slotPrintPreview()), coll);
     coll->addAction(QStringLiteral("viewer_printpreview"), action);
 
+    action = new QAction(i18n("Speak Text"), this);
+    action->setIcon(QIcon::fromTheme(QStringLiteral("preferences-desktop-text-to-speech")));
+    coll->addAction(QStringLiteral("speak_text"), action);
+    connect(action, &QAction::triggered, d->tabWidget, &TabWidget::slotTextToSpeech);
+
+    action = new QAction(QIcon::fromTheme(QStringLiteral("edit-find")), i18n("&Find in Message..."), this);
+    coll->addAction(QStringLiteral("find_in_messages"), action);
+    connect(action, &QAction::triggered, d->tabWidget, &TabWidget::slotFindTextInHtml);
+    coll->setDefaultShortcut(action, KStandardShortcut::find().first());
+
 
     action = coll->addAction(QStringLiteral("tab_copylinkaddress"));
     action->setText(i18n("Copy Link Address"));

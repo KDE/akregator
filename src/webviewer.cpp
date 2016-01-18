@@ -88,10 +88,10 @@ void WebViewer::displayContextMenu(const QPoint &pos)
         popup.addAction(ActionManager::getInstance()->action(QStringLiteral("viewer_printpreview")));
     }
     popup.addSeparator();
-    popup.addAction(mFindInMessageAction);
+    popup.addAction(ActionManager::getInstance()->action(QStringLiteral("find_in_messages")));
     if (KPIMTextEdit::TextToSpeech::self()->isReady()) {
         popup.addSeparator();
-        popup.addAction(mSpeakTextAction);
+        popup.addAction(ActionManager::getInstance()->action(QStringLiteral("speak_text")));
     }
     popup.exec(mapToGlobal(pos));
 }

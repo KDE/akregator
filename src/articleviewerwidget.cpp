@@ -442,3 +442,8 @@ void ArticleViewerWidget::setArticleActionsEnabled(bool enabled)
     ActionManager::getInstance()->setArticleActionsEnabled(enabled);
 }
 
+Akregator::ArticleViewerWidgetNg *ArticleViewerWidget::articleViewerWidgetNg() const
+{
+    return m_articleViewerWidgetNg;
+}
+

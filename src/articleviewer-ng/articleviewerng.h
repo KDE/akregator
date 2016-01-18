@@ -93,8 +93,6 @@ protected:
     QUrl mCurrentUrl;
     QWebHitTestResult mContextMenuHitResult;
     KActionCollection *mActionCollection;
-    QAction *mSpeakTextAction;
-    QAction *mFindInMessageAction;
 
 private:
     enum MousePressedButtonType {
