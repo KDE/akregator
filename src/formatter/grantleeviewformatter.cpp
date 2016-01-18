@@ -82,7 +82,7 @@ QString GrantleeViewFormatter::formatFeed(Akregator::Feed *feed)
     {
         QString feedDescription;
         feedDescription = QStringLiteral("<div dir=\"%1\">").arg(mDirectionString);
-        feedDescription += i18n("<b>Description:</b> %1<br /><br />", feed->description());
+        feedDescription += i18n("<b>Description:</b> %1<br />", feed->description());
         feedDescription += QStringLiteral("</div>"); // /description
         feedObject.insert(QStringLiteral("feedDescription"), feedDescription);
     }
