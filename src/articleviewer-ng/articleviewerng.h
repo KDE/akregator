@@ -101,7 +101,6 @@ private:
         MiddleButton,
     };
 
-    void initializeActions(KActionCollection *ac);
     void paintAboutScreen(const QString &templateName, const QVariantHash &data);
     QUrl linkOrImageUrlAt(const QPoint &global) const;
     QVariantHash introductionData() const;

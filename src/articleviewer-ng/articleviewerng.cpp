@@ -48,7 +48,6 @@ ArticleViewerNg::ArticleViewerNg(KActionCollection *ac, QWidget *parent)
       mActionCollection(ac),
       mLastButtonClicked(LeftButton)
 {
-    initializeActions(ac);
     setContextMenuPolicy(Qt::CustomContextMenu);
     setPage(new MessageViewer::WebPage(this));
     mWebViewAccessKey = new MessageViewer::WebViewAccessKey(this, this);
@@ -193,11 +192,6 @@ void ArticleViewerNg::displayContextMenu(const QPoint &pos)
     }
     popup.exec(mapToGlobal(pos));
 }
-
-void ArticleViewerNg::initializeActions(KActionCollection *ac)
-{
-}
-
 
 void ArticleViewerNg::slotLinkHovered(const QString &link, const QString &title, const QString &textContent)
 {
