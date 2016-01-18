@@ -162,6 +162,16 @@ static QDomDocument createDefaultFeedList()
     spanishKde.setAttribute(QStringLiteral("xmlUrl"), QStringLiteral("http://planet.kde-espana.org/atom.xml"));
     spanishFolder.appendChild(spanishKde);
 
+    // french feed(s)
+    QDomElement frenchFolder = doc.createElement(QStringLiteral("outline"));
+    frenchFolder.setAttribute(QStringLiteral("text"), i18n("French feeds"));
+    mainFolder.appendChild(frenchFolder);
+
+    QDomElement frenchKde = doc.createElement(QStringLiteral("outline"));
+    frenchKde.setAttribute(QStringLiteral("text"), i18n("Planet KDE France"));
+    frenchKde.setAttribute(QStringLiteral("xmlUrl"), QStringLiteral("https://fr.planetkde.org/rss20.xml"));
+    frenchFolder.appendChild(frenchKde);
+
     return doc;
 }
 }
