@@ -63,4 +63,9 @@ void KCMAkregatorAdBlockConfig::load()
     mWidget->doLoadFromGlobalSettings();
 }
 
+void KCMAkregatorAdBlockConfig::defaults()
+{
+    mWidget->doResetToDefaultsOther();
+}
+
 #include "akregator_config_adblock.moc"
