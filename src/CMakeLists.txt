@@ -62,9 +62,15 @@ set(akregatorprivate_frame_SRCS
     frame/webviewframe.cpp
     )
 
+set(akregatorprivate_urlhandler_SRCS
+    urlhandler/urlhandlermanager.cpp
+    urlhandler/urlhandler.cpp
+    )
+
 set(akregatorprivate_LIB_SRCS
     akregratormigrateapplication.cpp
     ${akregatorprivate_frame_SRCS}
+    ${akregatorprivate_urlhandler_SRCS}
     ${akregator_articleviewer_ng_SRCS}
     ${akregator_common_SRCS}
     ${akregatorprivate_formatter_SRCS}
@@ -87,8 +93,6 @@ set(akregatorprivate_LIB_SRCS
     openurlrequest.cpp
     actions/actionmanager.cpp
     actions/actions.cpp
-    urlhandler/urlhandlermanager.cpp
-    urlhandler/urlhandler.cpp
     )
 
 add_library(akregatorprivate ${akregatorprivate_LIB_SRCS})
