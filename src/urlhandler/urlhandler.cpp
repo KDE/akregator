@@ -21,7 +21,11 @@
 #include <articleviewer-ng/articleviewerng.h>
 #include <KLocalizedString>
 #include <QDesktopServices>
+#include <QClipboard>
+#include <QMenu>
+#include <QApplication>
 #include <KEmailAddress>
+#include <OpenEmailAddressJob>
 using namespace Akregator;
 
 bool AkregatorConfigHandler::handleClick(const QUrl &url, ArticleViewerNg *article) const
@@ -59,9 +63,36 @@ QString MailToURLHandler::statusBarMessage(const QUrl &url, ArticleViewerNg *) c
     return QString();
 }
 
-bool MailToURLHandler::handleContextMenuRequest(const QUrl &url, const QPoint &, ArticleViewerNg *) const
+void MailToURLHandler::runKAddressBook(const QUrl &url) const
 {
-    return (url.scheme() == QLatin1String("mailto"));
+    KPIM::OpenEmailAddressJob *job = new KPIM::OpenEmailAddressJob(url.path(), 0);
+    job->start();
+}
+
+bool MailToURLHandler::handleContextMenuRequest(const QUrl &url, const QPoint &p, ArticleViewerNg *) const
+{
+    if (url.scheme() == QLatin1String("mailto")) {
+        QMenu *menu = new QMenu();
+        QAction *open = menu->addAction(QIcon::fromTheme(QStringLiteral("view-pim-contacts")), i18n("&Open in Address Book"));
+        QAction *copy = menu->addAction(QIcon::fromTheme(QStringLiteral("edit-copy")), i18n("&Copy Email Address"));
+
+        QAction *a = menu->exec(p);
+        if (a == copy) {
+            const QString fullEmail = KEmailAddress::decodeMailtoUrl(url);
+            if (!fullEmail.isEmpty()) {
+                QClipboard *clip = QApplication::clipboard();
+                clip->setText(fullEmail, QClipboard::Clipboard);
+                clip->setText(fullEmail, QClipboard::Selection);
+                //KPIM::BroadcastStatus::instance()->setStatusMsg(i18n("Address copied to clipboard."));
+            }
+        } else if (a == open) {
+            runKAddressBook(url);
+        }
+        delete a;
+
+        return true;
+    }
+    return false;
 }
 
 bool MailToURLHandler::handleClick(const QUrl &url, ArticleViewerNg *) const

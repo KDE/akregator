@@ -161,7 +161,7 @@ void ArticleViewerNg::displayContextMenu(const QPoint &pos)
 {
     mContextMenuHitResult = page()->mainFrame()->hitTestContent(pos);
     mCurrentUrl = mContextMenuHitResult.linkUrl();
-    if (URLHandlerManager::instance()->handleContextMenuRequest(mCurrentUrl, pos, this)) {
+    if (URLHandlerManager::instance()->handleContextMenuRequest(mCurrentUrl, mapToGlobal(pos), this)) {
         return;
     }
 
