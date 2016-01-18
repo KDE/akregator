@@ -78,7 +78,7 @@ ArticleViewerNg::~ArticleViewerNg()
 
 void ArticleViewerNg::slotSaveLinkAs()
 {
-    QUrl tmp(url());
+    QUrl tmp(mCurrentUrl);
 
     if (tmp.fileName().isEmpty()) {
         tmp = tmp.adjusted(QUrl::RemoveFilename);
@@ -89,11 +89,11 @@ void ArticleViewerNg::slotSaveLinkAs()
 
 void ArticleViewerNg::slotCopyLinkAddress()
 {
-    if (url().isEmpty()) {
+    if (mCurrentUrl.isEmpty()) {
         return;
     }
     QClipboard *cb = QApplication::clipboard();
-    cb->setText(url().toString(), QClipboard::Clipboard);
+    cb->setText(mCurrentUrl.toString(), QClipboard::Clipboard);
     // don't set url to selection as it's a no-no according to a fd.o spec
     // which spec? Nobody seems to care (tested Firefox (3.5.10) Konqueror,and KMail (4.2.3)), so I re-enable the following line unless someone gives
     // a good reason to remove it again (bug 183022) --Frank
