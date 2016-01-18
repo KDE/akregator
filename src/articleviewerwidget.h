@@ -122,11 +122,6 @@ protected: // methods
     bool openUrl(const QUrl &url);
 
 protected Q_SLOTS:
-    /** Copies current link to clipboard. */
-    void slotCopyLinkAddress();
-
-    void slotSaveLinkAs();
-
     void slotSelectionChanged();
 
     void slotArticlesListed(KJob *job);
@@ -157,7 +152,6 @@ private:
     void setArticleActionsEnabled(bool enabled);
 
 private:
-    QUrl m_url;
     QString m_currentText;
     QUrl m_imageDir;
     QPointer<TreeNode> m_node;

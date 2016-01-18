@@ -203,3 +203,19 @@ bool WebViewFrame::zoomTextOnlyInFrame() const
     return mArticleViewerWidgetNg->articleViewerNg()->zoomTextOnlyInFrame();
 }
 
+
+void WebViewFrame::slotSaveLinkAsInFrame(int frameId)
+{
+    if (frameId != id()) {
+        return;
+    }
+    mArticleViewerWidgetNg->articleViewerNg()->slotSaveLinkAs();
+}
+
+void WebViewFrame::slotCopyLinkAsInFrame(int frameId)
+{
+    if (frameId != id()) {
+        return;
+    }
+    mArticleViewerWidgetNg->articleViewerNg()->slotCopyLinkAddress();
+}

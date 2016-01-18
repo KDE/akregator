@@ -90,14 +90,6 @@ ArticleViewerWidget::ArticleViewerWidget(KActionCollection *ac, QWidget *parent)
     m_articleHtmlWriter = new Akregator::ArticleHtmlWriter(m_articleViewerWidgetNg->articleViewerNg(), this);
     connect(m_articleViewerWidgetNg->articleViewerNg(), &ArticleViewerNg::signalOpenUrlRequest, this, &ArticleViewerWidget::signalOpenUrlRequest);
     connect(m_articleViewerWidgetNg->articleViewerNg(), &ArticleViewerNg::showStatusBarMessage, this, &ArticleViewerWidget::showStatusBarMessage);
-
-    QAction *action = ac->addAction(QStringLiteral("copylinkaddress"));
-    action->setText(i18n("Copy &Link Address"));
-    connect(action, &QAction::triggered, this, &ArticleViewerWidget::slotCopyLinkAddress);
-
-    action = ac->addAction(QStringLiteral("savelinkas"));
-    action->setText(i18n("&Save Link As..."));
-    connect(action, &QAction::triggered, this, &ArticleViewerWidget::slotSaveLinkAs);
 }
 
 ArticleViewerWidget::~ArticleViewerWidget()
@@ -124,34 +116,9 @@ void ArticleViewerWidget::slotCopy()
     m_articleViewerWidgetNg->articleViewerNg()->slotCopy();
 }
 
-void ArticleViewerWidget::slotCopyLinkAddress()
-{
-    if (m_url.isEmpty()) {
-        return;
-    }
-    QClipboard *cb = QApplication::clipboard();
-    cb->setText(m_url.toString(), QClipboard::Clipboard);
-    // don't set url to selection as it's a no-no according to a fd.o spec
-    // which spec? Nobody seems to care (tested Firefox (3.5.10) Konqueror,and KMail (4.2.3)), so I re-enable the following line unless someone gives
-    // a good reason to remove it again (bug 183022) --Frank
-    cb->setText(m_url.toString(), QClipboard::Selection);
-}
-
 void ArticleViewerWidget::slotSelectionChanged()
 {
     ActionManager::getInstance()->action(QStringLiteral("viewer_copy"))->setEnabled(!m_articleViewerWidgetNg->articleViewerNg()->selectedText().isEmpty());
-}
-
-void ArticleViewerWidget::slotSaveLinkAs()
-{
-    QUrl tmp(m_url);
-
-    if (tmp.fileName().isEmpty()) {
-        tmp = tmp.adjusted(QUrl::RemoveFilename);
-        tmp.setPath(tmp.path() + QLatin1String("index.html"));
-    }
-    //TODO
-    KParts::BrowserRun::simpleSave(tmp, tmp.fileName());
 }
 
 void ArticleViewerWidget::slotPrint()

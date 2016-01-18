@@ -223,11 +223,6 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
     connect(m_articleListView, &ArticleListView::signalMouseButtonPressed,
             this, &MainWidget::slotMouseButtonPressed);
 
-    /*
-        connect( m_part, SIGNAL(signalSettingsChanged()),
-                 m_articleListView, SLOT(slotPaletteOrFontChanged()));
-    */
-
     m_articleViewer = new ArticleViewerWidget(m_actionManager->actionCollection(), m_articleSplitter);
     m_articleListView->setFocusProxy(m_articleViewer);
     setFocusProxy(m_articleViewer);
@@ -251,6 +246,8 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
     connect(m_tabWidget, &TabWidget::signalPrintPreviewInFrame, m_mainFrame, &MainFrame::slotPrintPreviewInFrame);
     connect(m_tabWidget, &TabWidget::signalFindTextInFrame, m_mainFrame, &MainFrame::slotFindTextInFrame);
     connect(m_tabWidget, &TabWidget::signalTextToSpeechInFrame, m_mainFrame, &MainFrame::slotTextToSpeechInFrame);
+    connect(m_tabWidget, &TabWidget::signalSaveLinkAsInFrame, m_mainFrame, &MainFrame::slotSaveLinkAsInFrame);
+    connect(m_tabWidget, &TabWidget::signalCopyLinkAsInFrame, m_mainFrame, &MainFrame::slotCopyLinkAsInFrame);
 
 
     Kernel::self()->frameManager()->slotAddFrame(m_mainFrame);
@@ -357,6 +354,8 @@ void MainWidget::connectFrame(WebViewFrame *frame)
     connect(m_tabWidget, &TabWidget::signalPrintPreviewInFrame, frame, &WebViewFrame::slotPrintPreviewInFrame);
     connect(m_tabWidget, &TabWidget::signalFindTextInFrame, frame, &WebViewFrame::slotFindTextInFrame);
     connect(m_tabWidget, &TabWidget::signalTextToSpeechInFrame, frame, &WebViewFrame::slotTextToSpeechInFrame);
+    connect(m_tabWidget, &TabWidget::signalSaveLinkAsInFrame, frame, &WebViewFrame::slotSaveLinkAsInFrame);
+    connect(m_tabWidget, &TabWidget::signalCopyLinkAsInFrame, frame, &WebViewFrame::slotCopyLinkAsInFrame);
 
     connect(frame, &WebViewFrame::showStatusBarMessage, this, &MainWidget::slotShowStatusBarMessage);
 }

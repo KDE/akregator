@@ -22,6 +22,7 @@
 #include "urlhandlermanager.h"
 #include "akregatorconfig.h"
 #include <KActionCollection>
+#include <KParts/BrowserRun>
 #include <KMessageBox>
 #include <KAboutData>
 #include <KPIMTextEdit/TextToSpeech>
@@ -29,6 +30,8 @@
 #include <MessageViewer/WebViewAccessKey>
 #include <MessageViewer/WebPage>
 #include <QWebSettings>
+#include <QClipboard>
+#include <QApplication>
 
 #include <QMenu>
 #include <QWebFrame>
@@ -71,6 +74,30 @@ ArticleViewerNg::ArticleViewerNg(KActionCollection *ac, QWidget *parent)
 ArticleViewerNg::~ArticleViewerNg()
 {
     disconnect(this, &QWebView::loadFinished, this, &ArticleViewerNg::slotLoadFinished);
+}
+
+void ArticleViewerNg::slotSaveLinkAs()
+{
+    QUrl tmp(url());
+
+    if (tmp.fileName().isEmpty()) {
+        tmp = tmp.adjusted(QUrl::RemoveFilename);
+        tmp.setPath(tmp.path() + QLatin1String("index.html"));
+    }
+    KParts::BrowserRun::simpleSave(tmp, tmp.fileName());
+}
+
+void ArticleViewerNg::slotCopyLinkAddress()
+{
+    if (url().isEmpty()) {
+        return;
+    }
+    QClipboard *cb = QApplication::clipboard();
+    cb->setText(url().toString(), QClipboard::Clipboard);
+    // don't set url to selection as it's a no-no according to a fd.o spec
+    // which spec? Nobody seems to care (tested Firefox (3.5.10) Konqueror,and KMail (4.2.3)), so I re-enable the following line unless someone gives
+    // a good reason to remove it again (bug 183022) --Frank
+    cb->setText(url().toString(), QClipboard::Selection);
 }
 
 void ArticleViewerNg::slotShowContextMenu(const QPoint &pos)

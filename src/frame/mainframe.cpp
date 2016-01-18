@@ -116,3 +116,19 @@ bool MainFrame::zoomTextOnlyInFrame() const
 {
     return mArticleViewer->zoomTextOnlyInFrame();
 }
+
+void MainFrame::slotSaveLinkAsInFrame(int frameId)
+{
+    if (frameId != 0) {
+        return;
+    }
+    mArticleViewer->articleViewerWidgetNg()->articleViewerNg()->slotSaveLinkAs();
+}
+
+void MainFrame::slotCopyLinkAsInFrame(int frameId)
+{
+    if (frameId != 0) {
+        return;
+    }
+    mArticleViewer->articleViewerWidgetNg()->articleViewerNg()->slotCopyLinkAddress();
+}

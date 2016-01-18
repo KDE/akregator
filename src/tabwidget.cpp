@@ -438,6 +438,16 @@ void TabWidget::slotFindTextInHtml()
     Q_EMIT signalFindTextInFrame(d->currentFrame()->id());
 }
 
+void TabWidget::slotCopyLinkAddress()
+{
+    Q_EMIT signalCopyLinkAsInFrame(d->currentFrame()->id());
+}
+
+void TabWidget::slotSaveLinkAs()
+{
+    Q_EMIT signalSaveLinkAsInFrame(d->currentFrame()->id());
+}
+
 void TabWidget::slotPrintPreview()
 {
     Q_EMIT signalPrintPreviewInFrame(d->currentFrame()->id());
@@ -451,18 +461,6 @@ void TabWidget::slotPrint()
 void TabWidget::slotCopy()
 {
     Q_EMIT signalCopyInFrame(d->currentFrame()->id());
-}
-
-void TabWidget::slotCopyLinkAddress()
-{
-    Frame *frame = d->frames.value(d->selectedWidget());
-
-    if (frame && frame->url().isValid()) {
-        QUrl url = frame->url();
-        // don't set url to selection as it's a no-no according to a fd.o spec
-        //qApp->clipboard()->setText(url.toDisplayString(), QClipboard::Selection);
-        qApp->clipboard()->setText(url.toDisplayString(), QClipboard::Clipboard);
-    }
 }
 
 void TabWidget::slotCloseTab()

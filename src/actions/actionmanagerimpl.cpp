@@ -594,6 +594,14 @@ void ActionManagerImpl::initTabWidget(TabWidget *tabWidget)
         coll->setDefaultShortcut(action, QKeySequence(QStringLiteral("Alt+%1").arg(i)));
         connect(action, &QAction::triggered, d->tabWidget, &TabWidget::slotActivateTab);
     }
+    action = coll->addAction(QStringLiteral("savelinkas"));
+    action->setText(i18n("&Save Link As..."));
+    connect(action, &QAction::triggered, d->tabWidget, &TabWidget::slotSaveLinkAs);
+
+
+    action = coll->addAction(QStringLiteral("copylinkaddress"));
+    action->setText(i18n("Copy &Link Address"));
+    connect(action, &QAction::triggered, d->tabWidget, &TabWidget::slotCopyLinkAddress);
 
 }
 
