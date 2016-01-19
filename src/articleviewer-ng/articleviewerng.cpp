@@ -45,6 +45,8 @@
 #include <QPrinter>
 #include <QPrintDialog>
 #include <QPrintPreviewDialog>
+
+#include <KIO/KUriFilterSearchProviderActions>
 using namespace Akregator;
 
 ArticleViewerNg::ArticleViewerNg(KActionCollection *ac, QWidget *parent)
@@ -72,6 +74,7 @@ ArticleViewerNg::ArticleViewerNg(KActionCollection *ac, QWidget *parent)
     connect(this, &ArticleViewerNg::showContextMenu, this, &ArticleViewerNg::slotShowContextMenu);
     mShareServiceManager = new PimCommon::ShareServiceUrlManager(this);
     connect(mShareServiceManager, &PimCommon::ShareServiceUrlManager::serviceUrlSelected, this, &ArticleViewerNg::slotServiceUrlSelected);
+    mWebShortcutMenuManager = new KIO::KUriFilterSearchProviderActions(this);
 }
 
 ArticleViewerNg::~ArticleViewerNg()

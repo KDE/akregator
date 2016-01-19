@@ -31,6 +31,11 @@ namespace MessageViewer
 {
 class WebViewAccessKey;
 }
+namespace KIO
+{
+class KUriFilterSearchProviderActions;
+}
+
 namespace Akregator
 {
 class AKREGATOR_EXPORT ArticleViewerNg : public KWebView
@@ -99,6 +104,7 @@ protected:
     QWebHitTestResult mContextMenuHitResult;
     KActionCollection *mActionCollection;
     PimCommon::ShareServiceUrlManager *mShareServiceManager;
+    KIO::KUriFilterSearchProviderActions *mWebShortcutMenuManager;
 
 private:
     enum MousePressedButtonType {

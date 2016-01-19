@@ -23,8 +23,10 @@
 #include <KPIMTextEdit/TextToSpeech>
 #include <MessageViewer/AdBlockBlockableItemsDialog>
 
+#include <KIO/KUriFilterSearchProviderActions>
 #include <KActionCollection>
 #include <KActionMenu>
+#include <KLocalizedString>
 
 #include <QContextMenuEvent>
 #include <QMenu>
@@ -83,9 +85,13 @@ void WebViewer::displayContextMenu(const QPoint &pos)
         popup.addAction(mActionCollection->action(QStringLiteral("copylinkaddress")));
         popup.addSeparator();
         popup.addAction(mShareServiceManager->menu());
+        popup.addAction(i18n("Open Ad Block settings"), this, SLOT(slotOpenBlockableItemsDialog()));
     } else {
         if (contentSelected) {
             popup.addAction(ActionManager::getInstance()->action(QStringLiteral("viewer_copy")));
+            popup.addSeparator();
+            mWebShortcutMenuManager->setSelectedText(page()->selectedText());
+            mWebShortcutMenuManager->addWebShortcutsToMenu(&popup);
             popup.addSeparator();
         }
         popup.addAction(ActionManager::getInstance()->action(QStringLiteral("viewer_print")));
