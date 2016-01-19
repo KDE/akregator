@@ -26,6 +26,7 @@
 #include "akregatorconfig.h"
 #include "articlematcher.h"
 #include "article.h"
+#include "widgets/statussearchline.h"
 
 #include <kcombobox.h>
 #include <klineedit.h>
@@ -49,7 +50,7 @@ class SearchBar::SearchBarPrivate
 public:
     QString searchText;
     QTimer timer;
-    KLineEdit *searchLine;
+    StatusSearchLine *searchLine;
     KComboBox *searchCombo;
     int delay;
     std::vector<QSharedPointer<const AbstractMatcher> > matchers;
@@ -63,7 +64,9 @@ public:
     }
 };
 
-SearchBar::SearchBar(QWidget *parent) : QWidget(parent), d(new SearchBar::SearchBarPrivate)
+SearchBar::SearchBar(QWidget *parent)
+    : QWidget(parent),
+      d(new SearchBar::SearchBarPrivate)
 {
     d->delay = 400;
     QHBoxLayout *layout = new QHBoxLayout;
@@ -73,17 +76,12 @@ SearchBar::SearchBar(QWidget *parent) : QWidget(parent), d(new SearchBar::Search
     layout->setSpacing(5);
     setSizePolicy(QSizePolicy(QSizePolicy::Minimum, QSizePolicy::Fixed));
 
-    QLabel *searchLabel = new QLabel(this);
-    layout->addWidget(searchLabel);
-    searchLabel->setText(i18nc("Title of article searchbar", "S&earch:"));
-
-    d->searchLine = new KLineEdit(this);
+    d->searchLine = new StatusSearchLine(this);
     d->searchLine->setClearButtonShown(true);
+    d->searchLine->setPlaceholderText(i18n("Search articles..."));
     layout->addWidget(d->searchLine);
 
     connect(d->searchLine, &KLineEdit::textChanged, this, &SearchBar::slotSearchStringChanged);
-
-    searchLabel->setBuddy(d->searchLine);
 
     QLabel *statusLabel = new QLabel(this);
     statusLabel->setText(i18n("Status:"));

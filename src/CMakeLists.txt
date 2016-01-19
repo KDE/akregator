@@ -141,7 +141,12 @@ set(akregatorpart_command_SRCS
     command/importfeedlistcommand.cpp
     )
 
+set(akregatorpart_widgets_SRCS
+    widgets/statussearchline.cpp
+   )
+
 set(akregatorpart_PART_SRCS
+    ${akregatorpart_widgets_SRCS}
     ${akregatorpart_command_SRCS}
     ${akregator_utils_SRCS}
     ${akregator_common_SRCS}
