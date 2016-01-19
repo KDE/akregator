@@ -23,6 +23,7 @@
 #include <KPIMTextEdit/TextToSpeech>
 
 #include <KActionCollection>
+#include <KActionMenu>
 
 #include <QContextMenuEvent>
 #include <QMenu>
@@ -79,6 +80,8 @@ void WebViewer::displayContextMenu(const QPoint &pos)
         popup.addSeparator();
         popup.addAction(mActionCollection->action(QStringLiteral("savelinkas")));
         popup.addAction(mActionCollection->action(QStringLiteral("copylinkaddress")));
+        popup.addSeparator();
+        popup.addAction(mShareServiceManager->menu());
     } else {
         if (contentSelected) {
             popup.addAction(ActionManager::getInstance()->action(QStringLiteral("viewer_copy")));

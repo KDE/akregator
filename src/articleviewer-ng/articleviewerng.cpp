@@ -29,6 +29,7 @@
 #include <KLocalizedString>
 #include <MessageViewer/WebViewAccessKey>
 #include <MessageViewer/WebPage>
+#include <KActionMenu>
 #include <QWebSettings>
 #include <QClipboard>
 #include <QApplication>
@@ -69,6 +70,8 @@ ArticleViewerNg::ArticleViewerNg(KActionCollection *ac, QWidget *parent)
     connect(page(), &QWebPage::linkHovered, this, &ArticleViewerNg::slotLinkHovered);
     connect(this, &ArticleViewerNg::linkClicked, this, &ArticleViewerNg::slotLinkClicked);
     connect(this, &ArticleViewerNg::showContextMenu, this, &ArticleViewerNg::slotShowContextMenu);
+    mShareServiceManager = new PimCommon::ShareServiceUrlManager(this);
+    connect(mShareServiceManager, &PimCommon::ShareServiceUrlManager::serviceUrlSelected, this, &ArticleViewerNg::slotServiceUrlSelected);
 }
 
 ArticleViewerNg::~ArticleViewerNg()
@@ -203,6 +206,8 @@ void ArticleViewerNg::displayContextMenu(const QPoint &pos)
         if (mContextMenuHitResult.imageUrl().isEmpty()) {
             //TODO
         }
+        popup.addSeparator();
+        popup.addAction(mShareServiceManager->menu());
     } else {
         if (contentSelected) {
             popup.addAction(ActionManager::getInstance()->action(QStringLiteral("viewer_copy")));
@@ -218,6 +223,12 @@ void ArticleViewerNg::displayContextMenu(const QPoint &pos)
         popup.addAction(ActionManager::getInstance()->action(QStringLiteral("speak_text")));
     }
     popup.exec(mapToGlobal(pos));
+}
+
+void ArticleViewerNg::slotServiceUrlSelected(PimCommon::ShareServiceUrlManager::ServiceType type)
+{
+    const QUrl url = mShareServiceManager->generateServiceUrl(mCurrentUrl.url(), QString(), type);
+    mShareServiceManager->openUrl(url);
 }
 
 void ArticleViewerNg::slotLinkHovered(const QString &link, const QString &title, const QString &textContent)

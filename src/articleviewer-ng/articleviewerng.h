@@ -23,6 +23,8 @@
 #include <QVariantHash>
 #include <QWebHitTestResult>
 #include <openurlrequest.h>
+#include <PimCommon/ShareServiceUrlManager>
+
 class KActionCollection;
 class QAction;
 namespace MessageViewer
@@ -91,10 +93,12 @@ private Q_SLOTS:
     void slotOpenLinkInBackgroundTab();
     void slotOpenLinkInBrowser();    
     void slotShowContextMenu(const QPoint &pos);
+    void slotServiceUrlSelected(PimCommon::ShareServiceUrlManager::ServiceType type);
 protected:
     QUrl mCurrentUrl;
     QWebHitTestResult mContextMenuHitResult;
     KActionCollection *mActionCollection;
+    PimCommon::ShareServiceUrlManager *mShareServiceManager;
 
 private:
     enum MousePressedButtonType {
