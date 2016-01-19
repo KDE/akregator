@@ -848,7 +848,7 @@ void Akregator::Feed::setArticleChanged(Article &a, int oldStatus)
 int Akregator::Feed::totalCount() const
 {
     if (d->totalCount == -1) {
-        d->totalCount = std::count_if(d->articles.constBegin(), d->articles.constEnd(), [](const Article & art) -> bool { return art.isDeleted(); });
+        d->totalCount = std::count_if(d->articles.constBegin(), d->articles.constEnd(), [](const Article & art) -> bool { return !art.isDeleted(); });
     }
     return d->totalCount;
 }
