@@ -21,6 +21,7 @@
 #include "urlhandlermanager.h"
 
 #include <KPIMTextEdit/TextToSpeech>
+#include <MessageViewer/AdBlockBlockableItemsDialog>
 
 #include <KActionCollection>
 #include <KActionMenu>
@@ -97,4 +98,15 @@ void WebViewer::displayContextMenu(const QPoint &pos)
         popup.addAction(ActionManager::getInstance()->action(QStringLiteral("speak_text")));
     }
     popup.exec(mapToGlobal(pos));
+}
+
+
+void WebViewer::slotOpenBlockableItemsDialog()
+{
+    QPointer<MessageViewer::AdBlockBlockableItemsDialog> dlg = new MessageViewer::AdBlockBlockableItemsDialog(this);
+    dlg->setWebFrame(page()->mainFrame());
+    if (dlg->exec()) {
+        dlg->saveFilters();
+    }
+    delete dlg;
 }

@@ -31,6 +31,9 @@ public:
 
 protected:
     void displayContextMenu(const QPoint &pos) Q_DECL_OVERRIDE;
+
+private slots:
+    void slotOpenBlockableItemsDialog();
 };
 }
 #endif // WEBVIEWER_H
