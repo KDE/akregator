@@ -93,5 +93,11 @@ void StatusSearchLine::updateStatusIcon(StatusSearchLine::Status status)
     if (mDefaultStatus != status) {
         mDefaultStatus = status;
         mSearchLineStatusAction->setIcon(mHashStatus[status].mIcon);
+        Q_EMIT statusChanged(mDefaultStatus);
     }
+}
+
+StatusSearchLine::Status StatusSearchLine::status() const
+{
+    return mDefaultStatus;
 }

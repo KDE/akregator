@@ -29,8 +29,7 @@
 
 #include <QSharedPointer>
 #include <vector>
-
-class QString;
+#include "widgets/statussearchline.h"
 
 namespace Akregator
 {
@@ -67,11 +66,9 @@ public Q_SLOTS:
     void slotSetText(const QString &text);
 
 private Q_SLOTS:
-
     void slotSearchStringChanged(const QString &search);
-    void slotSearchComboChanged(int index);
-    void slotActivateSearch();
-
+    void slotActivateSearch();    
+    void slotStatusChanged(Akregator::StatusSearchLine::Status);
 private:
 
     class SearchBarPrivate;

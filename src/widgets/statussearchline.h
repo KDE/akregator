@@ -40,6 +40,11 @@ public:
 
     void setStatus(StatusSearchLine::Status status);
 
+    Status status() const;
+
+Q_SIGNALS:
+    void statusChanged(Akregator::StatusSearchLine::Status status);
+
 private Q_SLOTS:
     void showMenu();
 
