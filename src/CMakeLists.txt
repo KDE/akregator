@@ -6,6 +6,7 @@ include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/urlhandler/
     ${CMAKE_CURRENT_SOURCE_DIR}/actions/
     ${CMAKE_CURRENT_SOURCE_DIR}/frame/
+    ${CMAKE_CURRENT_SOURCE_DIR}/searchbar/
     )
 
 
@@ -143,9 +144,17 @@ set(akregatorpart_command_SRCS
 
 set(akregatorpart_widgets_SRCS
     widgets/statussearchline.cpp
+    widgets/searchbar.cpp
    )
 
+set(akregatorpart_subscription_SRCS
+    subscription/subscriptionlistview.cpp
+    subscription/subscriptionlistdelegate.cpp
+    subscription/subscriptionlistmodel.cpp
+    )
+
 set(akregatorpart_PART_SRCS
+    ${akregatorpart_subscription_SRCS}
     ${akregatorpart_widgets_SRCS}
     ${akregatorpart_command_SRCS}
     ${akregator_utils_SRCS}
@@ -155,8 +164,6 @@ set(akregatorpart_PART_SRCS
     articlemodel.cpp
     pluginmanager.cpp
     selectioncontroller.cpp
-    subscription/subscriptionlistmodel.cpp
-    searchbar.cpp
     articlelistview.cpp
     actions/actionmanagerimpl.cpp
     addfeeddialog.cpp
@@ -165,8 +172,6 @@ set(akregatorpart_PART_SRCS
     progressmanager.cpp
     akregator_part.cpp
     mainwidget.cpp
-    subscription/subscriptionlistview.cpp
-    subscription/subscriptionlistdelegate.cpp
     dummystorage/storagedummyimpl.cpp
     dummystorage/storagefactorydummyimpl.cpp
     dummystorage/feedstoragedummyimpl.cpp

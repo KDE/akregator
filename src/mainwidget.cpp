@@ -53,7 +53,7 @@
 #include "notificationmanager.h"
 #include "openurlrequest.h"
 #include "progressmanager.h"
-#include "searchbar.h"
+#include "widgets/searchbar.h"
 #include "selectioncontroller.h"
 #include "subscriptionlistjobs.h"
 #include "subscriptionlistmodel.h"
