@@ -20,6 +20,7 @@
 
 #include <KLineEdit>
 #include <QHash>
+#include <QIcon>
 class QAction;
 namespace Akregator
 {
@@ -43,10 +44,28 @@ private Q_SLOTS:
     void showMenu();
 
 private:
+    struct StatusInfo
+    {
+        StatusInfo()
+        {
+
+        }
+
+        StatusInfo(const QString &text, const QIcon &icon)
+            : mText(text),
+              mIcon(icon)
+        {
+
+        }
+        QString mText;
+        QIcon mIcon;
+    };
+
     void initializeHash();
     void initializeActions();
     void updateStatusIcon(StatusSearchLine::Status status);
-    QHash<StatusSearchLine::Status, QIcon> mHashStatus;
+    Status mDefaultStatus;
+    QHash<StatusSearchLine::Status, StatusInfo> mHashStatus;
     QAction *mSearchLineStatusAction;
 };
 }

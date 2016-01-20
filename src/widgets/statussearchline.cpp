@@ -23,13 +23,14 @@
 #include <QDebug>
 
 using namespace Akregator;
-
+Q_DECLARE_METATYPE(Akregator::StatusSearchLine::Status)
 StatusSearchLine::StatusSearchLine(QWidget *parent)
     : KLineEdit(parent),
+      mDefaultStatus(AllArticles),
       mSearchLineStatusAction(Q_NULLPTR)
 {
     initializeHash();
-    //initializeActions();
+    initializeActions();
 }
 
 StatusSearchLine::~StatusSearchLine()
@@ -43,10 +44,16 @@ void StatusSearchLine::initializeHash()
     const QIcon iconNew = QIcon::fromTheme(QStringLiteral("mail-mark-unread-new"));
     const QIcon iconUnread = QIcon::fromTheme(QStringLiteral("mail-mark-unread"));
     const QIcon iconKeep = QIcon::fromTheme(QStringLiteral("mail-mark-important"));
-    mHashStatus.insert(AllArticles, iconAll);
-    mHashStatus.insert(NewArticles, iconNew);
-    mHashStatus.insert(UnreadArticles, iconUnread);
-    mHashStatus.insert(ImportantArticles, iconKeep);
+
+    StatusInfo statusAll(i18n("All Articles"), iconAll);
+    StatusInfo statusUnread(i18nc("Unread articles filter", "Unread"), iconUnread);
+    StatusInfo statusNew(i18nc("New articles filter", "New"), iconNew);
+    StatusInfo statusImportant(i18nc("Important articles filter", "Important"), iconKeep);
+
+    mHashStatus.insert(AllArticles, statusAll);
+    mHashStatus.insert(NewArticles, statusNew);
+    mHashStatus.insert(UnreadArticles, statusUnread);
+    mHashStatus.insert(ImportantArticles, statusImportant);
 }
 
 void StatusSearchLine::setStatus(StatusSearchLine::Status status)
@@ -56,31 +63,35 @@ void StatusSearchLine::setStatus(StatusSearchLine::Status status)
 
 void StatusSearchLine::initializeActions()
 {
-    QIcon iconAll = QIcon::fromTheme(QStringLiteral("system-run"));
-    //const QIcon iconNew = QIcon::fromTheme(QStringLiteral("mail-mark-unread-new"));
-    //const QIcon iconUnread = QIcon::fromTheme(QStringLiteral("mail-mark-unread"));
-    //const QIcon iconKeep = QIcon::fromTheme(QStringLiteral("mail-mark-important"));
-    mSearchLineStatusAction = addAction(iconAll, QLineEdit::LeadingPosition);
+    mSearchLineStatusAction = addAction(mHashStatus.value(AllArticles).mIcon, QLineEdit::LeadingPosition);
     connect(mSearchLineStatusAction, &QAction::triggered, this, &StatusSearchLine::showMenu);
 }
 
 void StatusSearchLine::showMenu()
 {
     QMenu p(this);
-    p.addAction(i18n("Read"));
-    p.exec(mapToGlobal(QPoint(0, height())));
+    QActionGroup *grp = new QActionGroup(this);
+    grp->setExclusive(true);
+    for (int i = AllArticles; i <= ImportantArticles; ++i) {
+        StatusSearchLine::Status status = static_cast<StatusSearchLine::Status>(i);
+        QAction *act = new QAction(mHashStatus.value(status).mIcon, mHashStatus.value(status).mText, this);
+        act->setCheckable(true);
+        act->setChecked(mDefaultStatus == status);
+        act->setData(QVariant::fromValue(status));
+        grp->addAction(act);
+        p.addAction(act);
+    }
+    QAction *a = p.exec(mapToGlobal(QPoint(0, height())));
+    if (a) {
+        const StatusSearchLine::Status newStatus = a->data().value<StatusSearchLine::Status>();
+        updateStatusIcon(newStatus);
+    }
 }
 
 void StatusSearchLine::updateStatusIcon(StatusSearchLine::Status status)
 {
-    switch(status) {
-    case AllArticles:
-        break;
-    case NewArticles:
-        break;
-    case UnreadArticles:
-        break;
-    case ImportantArticles:
-        break;
+    if (mDefaultStatus != status) {
+        mDefaultStatus = status;
+        mSearchLineStatusAction->setIcon(mHashStatus[status].mIcon);
     }
 }
