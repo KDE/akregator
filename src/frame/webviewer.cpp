@@ -85,7 +85,6 @@ void WebViewer::displayContextMenu(const QPoint &pos)
         popup.addAction(mActionCollection->action(QStringLiteral("copylinkaddress")));
         popup.addSeparator();
         popup.addAction(mShareServiceManager->menu());
-        popup.addAction(i18n("Open Ad Block settings"), this, SLOT(slotOpenBlockableItemsDialog()));
     } else {
         if (contentSelected) {
             popup.addAction(ActionManager::getInstance()->action(QStringLiteral("viewer_copy")));
@@ -96,6 +95,8 @@ void WebViewer::displayContextMenu(const QPoint &pos)
         }
         popup.addAction(ActionManager::getInstance()->action(QStringLiteral("viewer_print")));
         popup.addAction(ActionManager::getInstance()->action(QStringLiteral("viewer_printpreview")));
+        popup.addSeparator();
+        popup.addAction(i18n("Open Ad Block settings"), this, SLOT(slotOpenBlockableItemsDialog()));
     }
     popup.addSeparator();
     popup.addAction(ActionManager::getInstance()->action(QStringLiteral("find_in_messages")));
