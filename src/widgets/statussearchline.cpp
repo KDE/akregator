@@ -25,8 +25,10 @@
 using namespace Akregator;
 
 StatusSearchLine::StatusSearchLine(QWidget *parent)
-    : KLineEdit(parent)
+    : KLineEdit(parent),
+      mSearchLineStatusAction(Q_NULLPTR)
 {
+    initializeHash();
     //initializeActions();
 }
 
@@ -35,14 +37,31 @@ StatusSearchLine::~StatusSearchLine()
 
 }
 
+void StatusSearchLine::initializeHash()
+{
+    const QIcon iconAll = QIcon::fromTheme(QStringLiteral("system-run"));
+    const QIcon iconNew = QIcon::fromTheme(QStringLiteral("mail-mark-unread-new"));
+    const QIcon iconUnread = QIcon::fromTheme(QStringLiteral("mail-mark-unread"));
+    const QIcon iconKeep = QIcon::fromTheme(QStringLiteral("mail-mark-important"));
+    mHashStatus.insert(AllArticles, iconAll);
+    mHashStatus.insert(NewArticles, iconNew);
+    mHashStatus.insert(UnreadArticles, iconUnread);
+    mHashStatus.insert(ImportantArticles, iconKeep);
+}
+
+void StatusSearchLine::setStatus(StatusSearchLine::Status status)
+{
+    updateStatusIcon(status);
+}
+
 void StatusSearchLine::initializeActions()
 {
     QIcon iconAll = QIcon::fromTheme(QStringLiteral("system-run"));
     //const QIcon iconNew = QIcon::fromTheme(QStringLiteral("mail-mark-unread-new"));
     //const QIcon iconUnread = QIcon::fromTheme(QStringLiteral("mail-mark-unread"));
     //const QIcon iconKeep = QIcon::fromTheme(QStringLiteral("mail-mark-important"));
-    QAction *act = addAction(iconAll, QLineEdit::LeadingPosition);
-    connect(act, &QAction::triggered, this, &StatusSearchLine::showMenu);
+    mSearchLineStatusAction = addAction(iconAll, QLineEdit::LeadingPosition);
+    connect(mSearchLineStatusAction, &QAction::triggered, this, &StatusSearchLine::showMenu);
 }
 
 void StatusSearchLine::showMenu()
@@ -52,7 +71,16 @@ void StatusSearchLine::showMenu()
     p.exec(mapToGlobal(QPoint(0, height())));
 }
 
-void StatusSearchLine::updateStatusIcon()
+void StatusSearchLine::updateStatusIcon(StatusSearchLine::Status status)
 {
-
+    switch(status) {
+    case AllArticles:
+        break;
+    case NewArticles:
+        break;
+    case UnreadArticles:
+        break;
+    case ImportantArticles:
+        break;
+    }
 }

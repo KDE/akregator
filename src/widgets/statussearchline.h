@@ -19,22 +19,35 @@
 #define STATUSSEARCHLINE_H
 
 #include <KLineEdit>
-
+#include <QHash>
+class QAction;
 namespace Akregator
 {
 class StatusSearchLine : public KLineEdit
 {
     Q_OBJECT
 public:
+    enum Status {
+        AllArticles = 0,
+        NewArticles,
+        UnreadArticles,
+        ImportantArticles
+    };
+
     explicit StatusSearchLine(QWidget *parent = Q_NULLPTR);
     ~StatusSearchLine();
+
+    void setStatus(StatusSearchLine::Status status);
 
 private Q_SLOTS:
     void showMenu();
 
 private:
+    void initializeHash();
     void initializeActions();
-    void updateStatusIcon();
+    void updateStatusIcon(StatusSearchLine::Status status);
+    QHash<StatusSearchLine::Status, QIcon> mHashStatus;
+    QAction *mSearchLineStatusAction;
 };
 }
 #endif // STATUSSEARCHLINE_H
