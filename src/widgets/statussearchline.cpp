@@ -64,6 +64,7 @@ void StatusSearchLine::setStatus(StatusSearchLine::Status status)
 void StatusSearchLine::initializeActions()
 {
     mSearchLineStatusAction = addAction(mHashStatus.value(AllArticles).mIcon, QLineEdit::LeadingPosition);
+    mSearchLineStatusAction->setToolTip(mHashStatus.value(AllArticles).mText);
     connect(mSearchLineStatusAction, &QAction::triggered, this, &StatusSearchLine::showMenu);
 }
 
@@ -93,6 +94,7 @@ void StatusSearchLine::updateStatusIcon(StatusSearchLine::Status status)
     if (mDefaultStatus != status) {
         mDefaultStatus = status;
         mSearchLineStatusAction->setIcon(mHashStatus[status].mIcon);
+        mSearchLineStatusAction->setToolTip(mHashStatus[status].mText);
         Q_EMIT statusChanged(mDefaultStatus);
     }
 }
