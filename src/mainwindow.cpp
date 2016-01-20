@@ -137,7 +137,9 @@ MainWindow::~MainWindow()
 void MainWindow::saveProperties(KConfigGroup &config)
 {
     if (!m_part) {
-        loadPart();
+        if (!loadPart()) {
+            return;
+        }
     }
 
     m_part->saveProperties(config);
@@ -147,7 +149,9 @@ void MainWindow::saveProperties(KConfigGroup &config)
 void MainWindow::readProperties(const KConfigGroup &config)
 {
     if (!m_part) {
-        loadPart();
+        if (!loadPart()) {
+            return;
+        }
     }
     m_part->readProperties(config);
     setVisible(!Settings::showTrayIcon() || !config.readEntry("docked", false));
