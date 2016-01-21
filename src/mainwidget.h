@@ -291,6 +291,7 @@ private:
     FeedListManagementImpl *const m_feedListManagementInterface;
 
     QNetworkConfigurationManager *m_networkConfigManager;
+    QWidget *m_articleWidget;
 };
 
 } // namespace Akregator

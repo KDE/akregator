@@ -182,17 +182,24 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
     QVBoxLayout *mainTabLayout = new QVBoxLayout(m_mainTab);
     mainTabLayout->setMargin(0);
 
+
     m_searchBar = new SearchBar(m_mainTab);
     if (!Settings::showQuickFilter()) {
         m_searchBar->hide();
     }
-
-    mainTabLayout->addWidget(m_searchBar);
-
     m_articleSplitter = new QSplitter(Qt::Vertical, m_mainTab);
     m_articleSplitter->setObjectName(QStringLiteral("panner2"));
 
-    m_articleListView = new ArticleListView(m_articleSplitter);
+    m_articleWidget = new QWidget(m_articleSplitter);
+    QVBoxLayout *articleWidgetLayout = new QVBoxLayout;
+    m_articleWidget->setLayout(articleWidgetLayout);
+    articleWidgetLayout->setMargin(0);
+    articleWidgetLayout->setSpacing(0);
+
+
+    m_articleListView = new ArticleListView;
+    articleWidgetLayout->addWidget(m_searchBar);
+    articleWidgetLayout->addWidget(m_articleListView);
     connect(m_articleListView, &ArticleListView::userActionTakingPlace,
             this, &MainWidget::ensureArticleTabVisible);
 
@@ -262,8 +269,7 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
     }
 
     if (!Settings::self()->disableIntroduction()) {
-        m_articleListView->hide();
-        m_searchBar->hide();
+        m_articleWidget->hide();
         m_articleViewer->displayAboutPage();
         m_mainFrame->slotSetTitle(i18n("About"));
         m_displayingAboutPage = true;
@@ -495,7 +501,7 @@ void MainWidget::slotNormalView()
     }
 
     if (m_viewMode == CombinedView) {
-        m_articleListView->show();
+        m_articleWidget->show();
 
         const Article article =  m_selectionController->currentArticle();
 
@@ -519,7 +525,7 @@ void MainWidget::slotWidescreenView()
     }
 
     if (m_viewMode == CombinedView) {
-        m_articleListView->show();
+        m_articleWidget->show();
 
         Article article =  m_selectionController->currentArticle();
 
@@ -543,7 +549,7 @@ void MainWidget::slotCombinedView()
     }
 
     m_articleListView->slotClear();
-    m_articleListView->hide();
+    m_articleWidget->hide();
     m_viewMode = CombinedView;
 
     Settings::setViewMode(m_viewMode);
@@ -623,7 +629,7 @@ void MainWidget::slotNodeSelected(TreeNode *node)
     if (m_displayingAboutPage) {
         m_mainFrame->slotSetTitle(i18n("Articles"));
         if (m_viewMode != CombinedView) {
-            m_articleListView->show();
+            m_articleWidget->show();
         }
         if (Settings::showQuickFilter()) {
             m_searchBar->show();
