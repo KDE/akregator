@@ -114,6 +114,11 @@ int SearchBar::delay() const
     return d->delay;
 }
 
+void SearchBar::setFocusSearchLine()
+{
+    d->searchLine->setFocus();
+}
+
 void SearchBar::slotClearSearch()
 {
     if (status() != 0 || !d->searchLine->text().trimmed().isEmpty()) {

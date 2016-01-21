@@ -216,17 +216,12 @@ public Q_SLOTS:
     void slotMoveCurrentNodeLeft();
     void slotMoveCurrentNodeRight();
 
-    void slotSendLink()
-    {
-        sendArticle();
-    }
-    void slotSendFile()
-    {
-        sendArticle(true);
-    }
+    void slotSendLink();
+    void slotSendFile();
 
     void slotNetworkStatusChanged(bool status);
 
+    void slotFocusQuickSearch();
 protected:
 
     void sendArticle(bool attach = false);

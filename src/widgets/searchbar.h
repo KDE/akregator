@@ -54,6 +54,7 @@ public:
     void setDelay(int ms);
     int delay() const;
 
+    void setFocusSearchLine();
     std::vector<QSharedPointer<const Filters::AbstractMatcher> > matchers() const;
 
 Q_SIGNALS:

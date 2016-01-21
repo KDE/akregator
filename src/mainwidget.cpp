@@ -622,6 +622,16 @@ void MainWidget::slotMoveCurrentNodeRight()
     }
 }
 
+void MainWidget::slotSendLink()
+{
+    sendArticle();
+}
+
+void MainWidget::slotSendFile()
+{
+    sendArticle(true);
+}
+
 void MainWidget::slotNodeSelected(TreeNode *node)
 {
     m_markReadTimer->stop();
@@ -1224,3 +1234,7 @@ void MainWidget::slotCurrentFrameChanged(int frameId)
     m_actionManager->zoomActionMenu()->setZoomTextOnly(Kernel::self()->frameManager()->currentFrame()->zoomTextOnlyInFrame());
 }
 
+void MainWidget::slotFocusQuickSearch()
+{
+    m_searchBar->setFocusSearchLine();
+}

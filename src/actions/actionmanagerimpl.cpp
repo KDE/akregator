@@ -113,6 +113,7 @@ class ActionManagerImpl::ActionManagerImplPrivate
 {
 public:
 
+    void updateQuickSearchLineText();
     NodeSelectVisitor *nodeSelectVisitor;
     ArticleListView *articleList;
     SubscriptionListView *subscriptionListView;
@@ -125,6 +126,7 @@ public:
     FrameManager *frameManager;
     PimCommon::ShareServiceUrlManager *shareServiceManager;
     MessageViewer::ZoomActionMenu *zoomActionMenu;
+    QAction *mQuickSearchAction;
 };
 
 void ActionManagerImpl::slotNodeSelected(TreeNode *node)
@@ -427,6 +429,14 @@ void ActionManagerImpl::initMainWidget(MainWidget *mainWidget)
     coll->addAction(QStringLiteral("share_serviceurl"), d->shareServiceManager->menu());
     connect(d->shareServiceManager, &PimCommon::ShareServiceUrlManager::serviceUrlSelected, this, &ActionManagerImpl::slotServiceUrlSelected);
 
+    d->mQuickSearchAction = new QAction(i18n("Set Focus to Quick Search"), this);
+    //If change shortcut change Panel::setQuickSearchClickMessage(...) message
+    actionCollection()->setDefaultShortcut(d->mQuickSearchAction, QKeySequence(Qt::ALT + Qt::Key_Q));
+    actionCollection()->addAction(QStringLiteral("focus_to_quickseach"), d->mQuickSearchAction);
+    connect(d->mQuickSearchAction, &QAction::triggered, mainWidget, &MainWidget::slotFocusQuickSearch);
+    d->updateQuickSearchLineText();
+
+
     setArticleActionsEnabled(false);
 }
 
@@ -678,6 +688,13 @@ void ActionManagerImpl::setArticleActionsEnabled(bool enabled)
 MessageViewer::ZoomActionMenu *ActionManagerImpl::zoomActionMenu() const
 {
     return d->zoomActionMenu;
+}
+
+
+
+void ActionManagerImpl::ActionManagerImplPrivate::updateQuickSearchLineText()
+{
+    //TODO
 }
 
 } // namespace Akregator
