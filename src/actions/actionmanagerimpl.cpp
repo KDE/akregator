@@ -112,8 +112,7 @@ private:
 class ActionManagerImpl::ActionManagerImplPrivate
 {
 public:
-
-    void updateQuickSearchLineText();
+    QString quickSearchLineText() const;
     NodeSelectVisitor *nodeSelectVisitor;
     ArticleListView *articleList;
     SubscriptionListView *subscriptionListView;
@@ -434,8 +433,6 @@ void ActionManagerImpl::initMainWidget(MainWidget *mainWidget)
     actionCollection()->setDefaultShortcut(d->mQuickSearchAction, QKeySequence(Qt::ALT + Qt::Key_Q));
     actionCollection()->addAction(QStringLiteral("focus_to_quickseach"), d->mQuickSearchAction);
     connect(d->mQuickSearchAction, &QAction::triggered, mainWidget, &MainWidget::slotFocusQuickSearch);
-    d->updateQuickSearchLineText();
-
 
     setArticleActionsEnabled(false);
 }
@@ -691,10 +688,15 @@ MessageViewer::ZoomActionMenu *ActionManagerImpl::zoomActionMenu() const
 }
 
 
-
-void ActionManagerImpl::ActionManagerImplPrivate::updateQuickSearchLineText()
+QString ActionManagerImpl::quickSearchLineText() const
 {
-    //TODO
+    return d->quickSearchLineText();
+}
+
+
+QString ActionManagerImpl::ActionManagerImplPrivate::quickSearchLineText() const
+{
+    return mQuickSearchAction->shortcut().toString();
 }
 
 } // namespace Akregator

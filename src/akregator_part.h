@@ -129,6 +129,7 @@ public:
     bool handleCommandLine(const QStringList &args);
 
     KSharedConfig::Ptr config();
+    void updateQuickSearchLineText();
 public Q_SLOTS:
     /** Used to save settings after changing them from configuration dialog. Calls AkregatorPart's saveSettings. */
     void saveSettings();

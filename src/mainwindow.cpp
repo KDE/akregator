@@ -160,6 +160,7 @@ void MainWindow::readProperties(const KConfigGroup &config)
 // TODO: move to part?
 void MainWindow::optionsConfigureKeys()
 {
+
     KShortcutsDialog dlg(KShortcutsEditor::AllActions,
                          KShortcutsEditor::LetterShortcutsAllowed, this);
 
@@ -168,7 +169,12 @@ void MainWindow::optionsConfigureKeys()
         dlg.addCollection(m_part->actionCollection());
     }
 
-    dlg.configure();
+    if (dlg.configure()) {
+        if (m_part) {
+            //FIXME
+            // m_part->updateQuickSearchLineText();
+        }
+    }
 }
 
 // TODO: move to part?

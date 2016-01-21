@@ -315,6 +315,13 @@ KSharedConfig::Ptr Part::config()
     return mySelf->mConfig;
 }
 
+void Part::updateQuickSearchLineText()
+{
+    if (m_mainWidget) {
+        m_mainWidget->updateQuickSearchLineText();
+    }
+}
+
 
 void Part::loadPlugins(const QString &type)
 {

@@ -74,6 +74,7 @@ public:
     void setTrayIcon(TrayIcon *trayIcon);
     KActionCollection *actionCollection() const;
     MessageViewer::ZoomActionMenu *zoomActionMenu() const;
+    QString quickSearchLineText() const;
 
 public Q_SLOTS:
 

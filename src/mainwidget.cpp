@@ -977,6 +977,11 @@ void MainWidget::currentArticleInfo(QString &link, QString &title)
     }
 }
 
+void MainWidget::updateQuickSearchLineText()
+{
+    m_searchBar->updateQuickSearchLineText(m_actionManager->quickSearchLineText());
+}
+
 void MainWidget::slotCopyLinkAddress()
 {
     const Article article =  m_selectionController->currentArticle();

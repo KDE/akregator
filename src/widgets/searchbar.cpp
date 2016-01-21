@@ -151,6 +151,11 @@ std::vector<QSharedPointer<const AbstractMatcher> > SearchBar::matchers() const
     return d->matchers;
 }
 
+void SearchBar::updateQuickSearchLineText(const QString &searchLineShortcut)
+{
+    d->searchLine->setPlaceholderText(i18n("Search articles...<%1>", searchLineShortcut));
+}
+
 void SearchBar::slotSearchStringChanged(const QString &search)
 {
     d->searchText = search;

@@ -56,6 +56,7 @@ public:
 
     void setFocusSearchLine();
     std::vector<QSharedPointer<const Filters::AbstractMatcher> > matchers() const;
+    void updateQuickSearchLineText(const QString &searchLine);
 
 Q_SIGNALS:
     /** emitted when the text and status filters were updated. Params are textfilter, statusfilter */
