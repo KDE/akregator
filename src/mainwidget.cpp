@@ -182,7 +182,6 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
     QVBoxLayout *mainTabLayout = new QVBoxLayout(m_mainTab);
     mainTabLayout->setMargin(0);
 
-
     m_searchBar = new SearchBar(m_mainTab);
     if (!Settings::showQuickFilter()) {
         m_searchBar->hide();
@@ -195,7 +194,6 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
     m_articleWidget->setLayout(articleWidgetLayout);
     articleWidgetLayout->setMargin(0);
     articleWidgetLayout->setSpacing(0);
-
 
     m_articleListView = new ArticleListView;
     articleWidgetLayout->addWidget(m_searchBar);
@@ -256,7 +254,6 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
     connect(m_tabWidget, &TabWidget::signalSaveLinkAsInFrame, m_mainFrame, &MainFrame::slotSaveLinkAsInFrame);
     connect(m_tabWidget, &TabWidget::signalCopyLinkAsInFrame, m_mainFrame, &MainFrame::slotCopyLinkAsInFrame);
 
-
     Kernel::self()->frameManager()->slotAddFrame(m_mainFrame);
 
     const QList<int> sp1sizes = Settings::splitter1Sizes();
@@ -312,7 +309,7 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
 void MainWidget::slotOnShutdown()
 {
     disconnect(m_tabWidget, &TabWidget::signalCurrentFrameChanged,
-            this, &MainWidget::slotCurrentFrameChanged);
+               this, &MainWidget::slotCurrentFrameChanged);
 
     m_shuttingDown = true;
 

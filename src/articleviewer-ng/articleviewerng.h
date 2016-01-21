@@ -96,7 +96,7 @@ private Q_SLOTS:
     void slotLinkClicked(const QUrl &url);
     void slotOpenLinkInForegroundTab();
     void slotOpenLinkInBackgroundTab();
-    void slotOpenLinkInBrowser();    
+    void slotOpenLinkInBrowser();
     void slotShowContextMenu(const QPoint &pos);
     void slotServiceUrlSelected(PimCommon::ShareServiceUrlManager::ServiceType type);
 protected:

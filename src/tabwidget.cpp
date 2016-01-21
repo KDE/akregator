@@ -326,11 +326,11 @@ uint TabWidget::Private::tabBarWidthForMaxChars(int maxLength)
 
         int lw = fm.width(newTitle);
         int iw = q->tabBar()->tabIcon(i).pixmap(q->tabBar()->style()->pixelMetric(
-                                                    QStyle::PM_SmallIconSize), QIcon::Normal
-                                                ).width() + 4;
+                QStyle::PM_SmallIconSize), QIcon::Normal
+                                               ).width() + 4;
 
         x += (q->tabBar()->style()->sizeFromContents(QStyle::CT_TabBarTab, &o,
-                                                     QSize(qMax(lw + hframe + iw, QApplication::globalStrut().width()), 0), q)).width();
+                QSize(qMax(lw + hframe + iw, QApplication::globalStrut().width()), 0), q)).width();
     }
     return x;
 }

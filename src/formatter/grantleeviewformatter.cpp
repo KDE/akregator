@@ -55,8 +55,7 @@ QString GrantleeViewFormatter::formatFeed(Akregator::Feed *feed)
     feedObject.insert(QStringLiteral("applicationDir"), mDirectionString);
     feedObject.insert(QStringLiteral("strippedTitle"), Utils::stripTags(feed->title()));
     QString numberOfArticle;
-    if (feed->unread() == 0)
-    {
+    if (feed->unread() == 0) {
         numberOfArticle = i18n(" (no unread articles)");
     } else {
         numberOfArticle = i18np(" (1 unread article)", " (%1 unread articles)", feed->unread());
@@ -65,8 +64,7 @@ QString GrantleeViewFormatter::formatFeed(Akregator::Feed *feed)
     feedObject.insert(QStringLiteral("feedCount"), numberOfArticle);
 
     QString feedImage;
-    if (!feed->image().isNull())   // image
-    {
+    if (!feed->image().isNull()) { // image
         feedImage = QLatin1String("<div class=\"body\">");
         QString file = Utils::fileNameForUrl(feed->xmlUrl());
         QUrl u(mImageDir);
@@ -78,8 +76,7 @@ QString GrantleeViewFormatter::formatFeed(Akregator::Feed *feed)
     }
     feedObject.insert(QStringLiteral("feedImage"), feedImage);
 
-    if (!feed->description().isEmpty())
-    {
+    if (!feed->description().isEmpty()) {
         QString feedDescription;
         feedDescription = QStringLiteral("<div dir=\"%1\">").arg(mDirectionString);
         feedDescription += i18n("<b>Description:</b> %1<br />", feed->description());
@@ -87,15 +84,13 @@ QString GrantleeViewFormatter::formatFeed(Akregator::Feed *feed)
         feedObject.insert(QStringLiteral("feedDescription"), feedDescription);
     }
 
-    if (!feed->htmlUrl().isEmpty())
-    {
+    if (!feed->htmlUrl().isEmpty()) {
         QString feedHomePage;
         feedHomePage = QStringLiteral("<div dir=\"%1\">").arg(mDirectionString);
         feedHomePage += i18n("<b>Homepage:</b> <a href=\"%1\">%2</a>", feed->htmlUrl(), feed->htmlUrl());
         feedHomePage += QStringLiteral("</div>"); // / link
         feedObject.insert(QStringLiteral("feedHomePage"), feedHomePage);
     }
-
 
     return render(feedObject);
 }
@@ -110,8 +105,7 @@ QString GrantleeViewFormatter::formatFolder(Akregator::Folder *node)
     folderObject.insert(QStringLiteral("applicationDir"), mDirectionString);
     folderObject.insert(QStringLiteral("nodeTitle"), node->title());
     QString numberOfArticle;
-    if (node->unread() == 0)
-    {
+    if (node->unread() == 0) {
         numberOfArticle = i18n(" (no unread articles)");
     } else {
         numberOfArticle = i18np(" (1 unread article)", " (%1 unread articles)", node->unread());
@@ -120,7 +114,6 @@ QString GrantleeViewFormatter::formatFolder(Akregator::Folder *node)
     folderObject.insert(QStringLiteral("nodeCount"), numberOfArticle);
     return render(folderObject);
 }
-
 
 QString GrantleeViewFormatter::formatArticles(const QVector<Article> &article, ArticleFormatter::IconOption icon)
 {

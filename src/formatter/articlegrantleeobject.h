@@ -22,7 +22,6 @@
 #include <article.h>
 #include "articleformatter.h"
 
-
 namespace Akregator
 {
 class ArticleGrantleeObject : public QObject

@@ -136,7 +136,6 @@ void ArticleViewerNg::slotCopy()
     triggerPageAction(QWebPage::Copy);
 }
 
-
 void ArticleViewerNg::slotLoadFinished()
 {
     unsetCursor();

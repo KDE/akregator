@@ -77,8 +77,8 @@ DefaultNormalViewFormatter::DefaultNormalViewFormatter(const QUrl &imageDir, QPa
       m_summaryVisitor(new SummaryVisitor(this))
 {
     m_DefaultThemePath = QStandardPaths::locate(QStandardPaths::GenericDataLocation,
-                                                QStringLiteral("akregator/grantleetheme/default/"),
-                                                QStandardPaths::LocateDirectory);
+                         QStringLiteral("akregator/grantleetheme/default/"),
+                         QStandardPaths::LocateDirectory);
     mGrantleeViewFormatter = new GrantleeViewFormatter(QStringLiteral("normalview.html"), m_DefaultThemePath, m_imageDir);
 }
 

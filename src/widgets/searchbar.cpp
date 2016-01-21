@@ -83,7 +83,6 @@ SearchBar::SearchBar(QWidget *parent)
     connect(d->searchLine, &KLineEdit::textChanged, this, &SearchBar::slotSearchStringChanged);
     connect(d->searchLine, &StatusSearchLine::statusChanged, this, &SearchBar::slotStatusChanged);
 
-
     connect(&(d->timer), &QTimer::timeout, this, &SearchBar::slotActivateSearch);
     d->timer.setSingleShot(true);
 }

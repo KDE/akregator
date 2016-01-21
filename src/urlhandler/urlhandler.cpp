@@ -44,7 +44,6 @@ bool AkregatorConfigHandler::handleContextMenuRequest(const QUrl &url, const QPo
     return (url.scheme() == QLatin1String("config"));
 }
 
-
 QString AkregatorConfigHandler::statusBarMessage(const QUrl &url, ArticleViewerNg *) const
 {
     if (url.scheme() == QLatin1String("config")) {

@@ -555,7 +555,6 @@ void ActionManagerImpl::initTabWidget(TabWidget *tabWidget)
     connect(action, &QAction::triggered, d->tabWidget, &TabWidget::slotDetachTab);
     coll->setDefaultShortcut(action, QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_B));
 
-
     action = KStandardAction::copy(d->tabWidget, SLOT(slotCopy()), coll);
     coll->addAction(QStringLiteral("viewer_copy"), action);
 
@@ -574,7 +573,6 @@ void ActionManagerImpl::initTabWidget(TabWidget *tabWidget)
     coll->addAction(QStringLiteral("find_in_messages"), action);
     connect(action, &QAction::triggered, d->tabWidget, &TabWidget::slotFindTextInHtml);
     coll->setDefaultShortcut(action, KStandardShortcut::find().first());
-
 
     action = coll->addAction(QStringLiteral("tab_copylinkaddress"));
     action->setText(i18n("Copy Link Address"));
@@ -604,7 +602,6 @@ void ActionManagerImpl::initTabWidget(TabWidget *tabWidget)
     action = coll->addAction(QStringLiteral("savelinkas"));
     action->setText(i18n("&Save Link As..."));
     connect(action, &QAction::triggered, d->tabWidget, &TabWidget::slotSaveLinkAs);
-
 
     action = coll->addAction(QStringLiteral("copylinkaddress"));
     action->setText(i18n("Copy &Link Address"));
@@ -687,12 +684,10 @@ MessageViewer::ZoomActionMenu *ActionManagerImpl::zoomActionMenu() const
     return d->zoomActionMenu;
 }
 
-
 QString ActionManagerImpl::quickSearchLineText() const
 {
     return d->quickSearchLineText();
 }
-
 
 QString ActionManagerImpl::ActionManagerImplPrivate::quickSearchLineText() const
 {

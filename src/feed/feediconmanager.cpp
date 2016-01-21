@@ -95,17 +95,17 @@ void FeedIconManager::Private::loadIcon(const QString &url_)
     QDBusPendingCallWatcher *watcher = new QDBusPendingCallWatcher(reply, q);
 
     QObject::connect(watcher, &QDBusPendingCallWatcher::finished, q,
-        [url, this](QDBusPendingCallWatcher *call){
-            QDBusPendingReply<QString> reply = *call;
-            if (reply.isError()) {
-                m_favIconsModule->asyncCall(QStringLiteral("downloadHostIcon"), url.url());
-                qCWarning(AKREGATOR_LOG) << "Couldn't reach favicon service. Request favicon for " << url << " failed:" << call->error().message();
-            } else {
-                q->slotIconChanged(false, url.host(), reply.argumentAt(0).toString());
-            }
-            call->deleteLater();
+    [url, this](QDBusPendingCallWatcher * call) {
+        QDBusPendingReply<QString> reply = *call;
+        if (reply.isError()) {
+            m_favIconsModule->asyncCall(QStringLiteral("downloadHostIcon"), url.url());
+            qCWarning(AKREGATOR_LOG) << "Couldn't reach favicon service. Request favicon for " << url << " failed:" << call->error().message();
+        } else {
+            q->slotIconChanged(false, url.host(), reply.argumentAt(0).toString());
         }
-    );
+        call->deleteLater();
+    }
+                    );
 }
 
 FeedIconManager *FeedIconManager::self()

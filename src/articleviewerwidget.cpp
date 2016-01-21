@@ -216,7 +216,7 @@ void ArticleViewerWidget::showArticle(const Akregator::Article &article)
 }
 
 bool ArticleViewerWidget::openUrl(const QUrl &url)
-{    
+{
     if (!m_article.isNull() && m_article.feed()->loadLinkedWebsite()) {
         m_articleViewerWidgetNg->articleViewerNg()->load(url);
     } else {

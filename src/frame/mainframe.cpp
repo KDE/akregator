@@ -106,7 +106,6 @@ void MainFrame::slotTextToSpeechInFrame(int frameId)
     mArticleViewer->articleViewerWidgetNg()->slotSpeakText();
 }
 
-
 qreal MainFrame::zoomFactor() const
 {
     return mArticleViewer->zoomFactor();

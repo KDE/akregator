@@ -107,7 +107,6 @@ void WebViewer::displayContextMenu(const QPoint &pos)
     popup.exec(mapToGlobal(pos));
 }
 
-
 void WebViewer::slotOpenBlockableItemsDialog()
 {
     QPointer<MessageViewer::AdBlockBlockableItemsDialog> dlg = new MessageViewer::AdBlockBlockableItemsDialog(this);

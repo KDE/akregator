@@ -48,7 +48,7 @@ public:
 
 public Q_SLOTS:
     void slotSpeakText();
-    void slotFind();    
+    void slotFind();
 private:
     void initializeActions(KActionCollection *ac);
     void initializeLayout(KActionCollection *ac);

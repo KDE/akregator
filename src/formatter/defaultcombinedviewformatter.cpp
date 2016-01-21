@@ -40,8 +40,8 @@ DefaultCombinedViewFormatter::DefaultCombinedViewFormatter(const QUrl &imageDir,
     : ArticleFormatter(device)
 {
     const QString combinedPath = QStandardPaths::locate(QStandardPaths::GenericDataLocation,
-                                                        QStringLiteral("akregator/grantleetheme/default/"),
-                                                        QStandardPaths::LocateDirectory);
+                                 QStringLiteral("akregator/grantleetheme/default/"),
+                                 QStandardPaths::LocateDirectory);
     mGrantleeViewFormatter = new GrantleeViewFormatter(QStringLiteral("combinedview.html"), combinedPath, imageDir);
 }
 

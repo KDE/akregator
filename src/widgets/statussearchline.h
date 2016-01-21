@@ -49,8 +49,7 @@ private Q_SLOTS:
     void showMenu();
 
 private:
-    struct StatusInfo
-    {
+    struct StatusInfo {
         StatusInfo()
         {
 

@@ -69,7 +69,7 @@ public Q_SLOTS:
 
 private Q_SLOTS:
     void slotSearchStringChanged(const QString &search);
-    void slotActivateSearch();    
+    void slotActivateSearch();
     void slotStatusChanged(Akregator::StatusSearchLine::Status);
 private:
 

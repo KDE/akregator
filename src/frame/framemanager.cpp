@@ -274,7 +274,7 @@ void FrameManager::openUrl(OpenUrlRequest &request)
         Q_EMIT signalRequestNewFrame(newFrameId);
         request.setFrameId(newFrameId);
     } else {
-       request.setFrameId(m_currentFrame->id());
+        request.setFrameId(m_currentFrame->id());
     }
     if (m_frames.contains(request.frameId())) {
         Frame *frame = m_frames.value(request.frameId());

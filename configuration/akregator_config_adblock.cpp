@@ -15,7 +15,6 @@
   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-
 #include "akregator_config_adblock.h"
 #include "akregatorconfig.h"
 #include "messageviewer/messageviewersettings.h"

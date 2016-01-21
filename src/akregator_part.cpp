@@ -322,7 +322,6 @@ void Part::updateQuickSearchLineText()
     }
 }
 
-
 void Part::loadPlugins(const QString &type)
 {
     const KService::List offers = PluginManager::query(QStringLiteral("[X-KDE-akregator-plugintype] == '%1'").arg(type));
