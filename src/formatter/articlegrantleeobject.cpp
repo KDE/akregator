@@ -17,10 +17,12 @@
 
 #include "articlegrantleeobject.h"
 #include "articleformatter.h"
+#include <MessageViewer/IconNameCache>
 #include "utils.h"
 #include "feed.h"
 #include <KLocale>
 #include <KGlobal>
+#include <KIconLoader>
 #include <QDateTime>
 using namespace Akregator;
 
@@ -116,49 +118,49 @@ QString ArticleGrantleeObject::commentNumber() const
 
 QString ArticleGrantleeObject::deleteAction() const
 {
-    //TODO fix image
-    const QString text = QStringLiteral("<a href=\"akregatoraction:delete#%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(mArticle.guid(), QStringLiteral("image"));
+    const QString iconPath = MessageViewer::IconNameCache::instance()->iconPath(QStringLiteral("edit-delete"), KIconLoader::Small);
+    const QString text = QStringLiteral("<a href=\"akregatoraction:delete#%1\"><img class=\"headimage\" src=\"file:///%2\"></a>\n").arg(mArticle.guid(), iconPath);
     return text;
 }
 
 QString ArticleGrantleeObject::markAsAction() const
 {
-    //TODO fix image
-    const QString text = QStringLiteral("<a href=\"akregatoraction:markAsRead#%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(mArticle.guid(), QStringLiteral("image"));
+    const QString iconPath = MessageViewer::IconNameCache::instance()->iconPath(QStringLiteral("mail-mark-read"), KIconLoader::Small);
+    const QString text = QStringLiteral("<a href=\"akregatoraction:markAsRead#%1\"><img class=\"headimage\" src=\"file:///%2\"></a>\n").arg(mArticle.guid(), iconPath);
     return text;
 }
 
 QString ArticleGrantleeObject::markAsUnreadAction() const
 {
-    //TODO fix image
-    const QString text = QStringLiteral("<a href=\"akregatoraction:markAsUnRead#%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(mArticle.guid(), QStringLiteral("image"));
+    const QString iconPath = MessageViewer::IconNameCache::instance()->iconPath(QStringLiteral("mail-mark-unread"), KIconLoader::Small);
+    const QString text = QStringLiteral("<a href=\"akregatoraction:markAsUnRead#%1\"><img class=\"headimage\" src=\"file:///%2\"></a>\n").arg(mArticle.guid(), iconPath);
     return text;
 }
 
 QString ArticleGrantleeObject::markAsImportantAction() const
 {
-    //TODO fix image
-    const QString text = QStringLiteral("<a href=\"akregatoraction:markAsImportant#%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(mArticle.guid(), QStringLiteral("image"));
+    const QString iconPath = MessageViewer::IconNameCache::instance()->iconPath(QStringLiteral("mail-mark-important"), KIconLoader::Small);
+    const QString text = QStringLiteral("<a href=\"akregatoraction:markAsImportant#%1\"><img class=\"headimage\" src=\"file:///%2\"></a>\n").arg(mArticle.guid(), iconPath);
     return text;
 }
 
 QString ArticleGrantleeObject::sendUrlAction() const
 {
-    //TODO fix image
-    const QString text = QStringLiteral("<a href=\"akregatoraction:sendUrlArticle#%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(mArticle.guid(), QStringLiteral("image"));
+    const QString iconPath = MessageViewer::IconNameCache::instance()->iconPath(QStringLiteral("mail-message-new"), KIconLoader::Small);
+    const QString text = QStringLiteral("<a href=\"akregatoraction:sendUrlArticle#%1\"><img class=\"headimage\" src=\"file:///%2\"></a>\n").arg(mArticle.guid(), iconPath);
     return text;
 }
 
 QString ArticleGrantleeObject::openInExternalBrowser() const
 {
-    //Fix image url;
-    const QString text = QStringLiteral("<a href=\"akregatoraction:openInExternalBrowser#%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(mArticle.guid(), QStringLiteral("image"));
+    const QString iconPath = MessageViewer::IconNameCache::instance()->iconPath(QStringLiteral("window-new"), KIconLoader::Small);
+    const QString text = QStringLiteral("<a href=\"akregatoraction:openInExternalBrowser#%1\"><img class=\"headimage\" src=\"file:///%2\"></a>\n").arg(mArticle.guid(), iconPath);
     return text;
 }
 
 QString ArticleGrantleeObject::share() const
 {
-    //Fix image url;
-    const QString text = QStringLiteral("<a href=\"akregatoraction:share#%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(mArticle.guid(), QStringLiteral("image"));
+    const QString iconPath = MessageViewer::IconNameCache::instance()->iconPath(QStringLiteral("document-share"), KIconLoader::Small);
+    const QString text = QStringLiteral("<a href=\"akregatoraction:share#%1\"><img class=\"headimage\" src=\"file:///%2\"></a>\n").arg(mArticle.guid(), iconPath);
     return text;
 }
