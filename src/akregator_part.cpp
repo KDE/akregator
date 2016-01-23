@@ -298,8 +298,8 @@ Part::Part(QWidget *parentWidget, QObject *parent, const QVariantList &)
     Syndication::FileRetriever::setUserAgent(useragent);
 
     loadPlugins(QStringLiteral("extension"));   // FIXME: also unload them!
-
-    if (!readCrashProperties()) {
+    //Laurent when we call kmessagebox it breaks akregator and recreate new kpart I don't know why => disable it
+    if (/*!readCrashProperties()*/1) {
         autoReadProperties();
     }
 }
