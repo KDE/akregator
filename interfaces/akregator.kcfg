@@ -49,6 +49,9 @@
     <entry key="ColorNewArticles" type="Color">
         <default>#FF0000</default>
     </entry>
+    <entry key="GrantleeDirectory" type="String" >
+        <default>default</default>
+    </entry>
  </group>
  <group name="HTML Settings" >
   <entry key="Fonts" type="StringList" />

@@ -228,7 +228,7 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
     connect(m_articleListView, &ArticleListView::signalMouseButtonPressed,
             this, &MainWidget::slotMouseButtonPressed);
 
-    m_articleViewer = new ArticleViewerWidget(QStringLiteral("default"), m_actionManager->actionCollection(), m_articleSplitter);
+    m_articleViewer = new ArticleViewerWidget(Settings::grantleeDirectory(), m_actionManager->actionCollection(), m_articleSplitter);
     m_articleListView->setFocusProxy(m_articleViewer);
     setFocusProxy(m_articleViewer);
 
