@@ -36,11 +36,11 @@
 #include <KFormat>
 using namespace Akregator;
 
-DefaultCombinedViewFormatter::DefaultCombinedViewFormatter(const QUrl &imageDir, QPaintDevice *device)
+DefaultCombinedViewFormatter::DefaultCombinedViewFormatter(const QString &grantleeDirectory, const QUrl &imageDir, QPaintDevice *device)
     : ArticleFormatter(device)
 {
     const QString combinedPath = QStandardPaths::locate(QStandardPaths::GenericDataLocation,
-                                 QStringLiteral("akregator/grantleetheme/default/"),
+                                 QStringLiteral("akregator/grantleetheme/%1/").arg(grantleeDirectory),
                                  QStandardPaths::LocateDirectory);
     mGrantleeViewFormatter = new GrantleeViewFormatter(QStringLiteral("combinedview.html"), combinedPath, imageDir);
 }

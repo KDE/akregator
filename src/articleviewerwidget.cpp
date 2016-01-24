@@ -74,14 +74,14 @@ using namespace Akregator::Filters;
 
 using namespace Akregator;
 
-ArticleViewerWidget::ArticleViewerWidget(KActionCollection *ac, QWidget *parent)
+ArticleViewerWidget::ArticleViewerWidget(const QString &grantleeDirectory, KActionCollection *ac, QWidget *parent)
     : QWidget(parent),
       m_imageDir(QUrl::fromLocalFile(QString(QStandardPaths::writableLocation(QStandardPaths::CacheLocation) + QLatin1String("/akregator/Media/")))),
       m_node(0),
       m_viewMode(NormalView),
       m_articleViewerWidgetNg(new Akregator::ArticleViewerWidgetNg(ac, this)),
-      m_normalViewFormatter(new DefaultNormalViewFormatter(m_imageDir, m_articleViewerWidgetNg->articleViewerNg())),
-      m_combinedViewFormatter(new DefaultCombinedViewFormatter(m_imageDir, m_articleViewerWidgetNg->articleViewerNg()))
+      m_normalViewFormatter(new DefaultNormalViewFormatter(grantleeDirectory, m_imageDir, m_articleViewerWidgetNg->articleViewerNg())),
+      m_combinedViewFormatter(new DefaultCombinedViewFormatter(grantleeDirectory, m_imageDir, m_articleViewerWidgetNg->articleViewerNg()))
 {
     QGridLayout *layout = new QGridLayout(this);
     layout->setMargin(0);

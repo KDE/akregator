@@ -58,7 +58,7 @@ class AKREGATOR_EXPORT ArticleViewerWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit ArticleViewerWidget(KActionCollection *ac, QWidget *parent);
+    explicit ArticleViewerWidget(const QString &grantleeDirectory, KActionCollection *ac, QWidget *parent);
     ~ArticleViewerWidget();
 
     /** Repaints the view. */
