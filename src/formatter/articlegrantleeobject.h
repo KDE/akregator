@@ -69,6 +69,7 @@ public:
     QString commentLink() const;
     QString commentNumber() const;
 private:
+    QString createActionUrl(const QString &actionName) const;
     Article mArticle;
     ArticleFormatter::IconOption mArticleFormatOption;
     QUrl mImageDir;
