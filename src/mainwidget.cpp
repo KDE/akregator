@@ -244,6 +244,7 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
     m_mainFrame = new MainFrame(this, m_part, m_mainTab);
     m_mainFrame->slotSetTitle(i18n("Articles"));
     m_mainFrame->setArticleViewer(m_articleViewer);
+    connect(m_articleViewer->articleViewerWidgetNg()->articleViewerNg(), &ArticleViewerNg::articleAction, this, &MainWidget::slotArticleAction);
     connect(m_tabWidget, &TabWidget::signalCopyInFrame, m_mainFrame, &MainFrame::slotCopyInFrame);
     connect(m_tabWidget, &TabWidget::signalPrintInFrame, m_mainFrame, &MainFrame::slotPrintInFrame);
     connect(m_tabWidget, &TabWidget::signalZoomChangedInFrame, m_mainFrame, &MainFrame::slotZoomChangeInFrame);
@@ -1248,4 +1249,9 @@ void MainWidget::slotCurrentFrameChanged(int frameId)
 void MainWidget::slotFocusQuickSearch()
 {
     m_searchBar->setFocusSearchLine();
+}
+
+void MainWidget::slotArticleAction(ArticleViewerNg::ArticleAction type, const QString &articleId)
+{
+    //TODO
 }

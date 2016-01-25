@@ -28,6 +28,7 @@
 #define AKREGATOR_MAINWIDGET_H
 
 #include "akregatorpart_export.h"
+#include "articleviewer-ng/articleviewerwidgetng.h"
 #include "feed.h"
 
 #include <QUrl>
@@ -247,8 +248,8 @@ protected Q_SLOTS:
 
 private Q_SLOTS:
     void slotShowStatusBarMessage(const QString &msg);
-    void slotCurrentFrameChanged(int frameId);
-
+    void slotCurrentFrameChanged(int frameId);    
+    void slotArticleAction(ArticleViewerNg::ArticleAction type, const QString &articleId);
 private:
     void deleteExpiredArticles(const QSharedPointer<FeedList> &feedList);
     void connectFrame(Akregator::WebViewFrame *frame);
