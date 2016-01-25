@@ -96,12 +96,12 @@ void ArticleViewerNg::slotSaveLinkAs()
 
 void ArticleViewerNg::slotSaveImageOnDiskInFrame()
 {
-    //TODO
+    slotSaveLinkAs();
 }
 
 void ArticleViewerNg::slotCopyImageLocationInFrame()
 {
-    //TODO
+    slotCopyLinkAddress();
 }
 
 void ArticleViewerNg::slotCopyLinkAddress()
