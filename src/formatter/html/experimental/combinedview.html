@@ -8,6 +8,7 @@
 <body>
 {% if articles %}
 {% for article in articles %}
+  <hr>
   <p><div class="article">
   {% if article.strippedTitle %}
   <div class="headertitle_" dir="{{ applicationDir }}"><a href="{{ article.articleLinkUrl }}">{{ article.strippedTitle|safe }}</a></div>
@@ -35,6 +36,7 @@
   {% if article.imageFeed %}
   {{ article.imageFeed }}
   {% endif %}
+  <hr>
 
   {% if article.content %}
   <div dir="{{ applicationDir }}"><span class="content">{{ article.content|safe }}</span>
