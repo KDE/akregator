@@ -26,6 +26,7 @@
 #include <QApplication>
 #include <KEmailAddress>
 #include <OpenEmailAddressJob>
+#include <QUrlQuery>
 using namespace Akregator;
 
 bool AkregatorConfigHandler::handleClick(const QUrl &url, ArticleViewerNg *article) const
@@ -136,29 +137,33 @@ bool ActionURLHandler::handleClick(const QUrl &url, ArticleViewerNg *articleView
 {
     if (url.scheme() == QLatin1String("akregatoraction")) {
         const QString urlPath(url.path());
-        const QString articleId = url.fragment();
-        if (!articleId.isEmpty()) {
-            if (urlPath == QLatin1String("delete")) {
-                articleViewer->setArticleAction(ArticleViewerNg::DeleteAction, articleId);
-                return true;
-            } else if (urlPath == QLatin1String("markAsRead")) {
-                articleViewer->setArticleAction(ArticleViewerNg::MarkAsRead, articleId);
-                return true;
-            } else if (urlPath == QLatin1String("markAsUnRead")) {
-                articleViewer->setArticleAction(ArticleViewerNg::MarkAsUnRead, articleId);
-                return true;
-            } else if (urlPath == QLatin1String("markAsImportant")) {
-                articleViewer->setArticleAction(ArticleViewerNg::MarkAsImportant, articleId);
-                return true;
-            } else if (urlPath == QLatin1String("sendUrlArticle")) {
-                articleViewer->setArticleAction(ArticleViewerNg::SendUrlArticle, articleId);
-                return true;
-            } else if (urlPath == QLatin1String("openInExternalBrowser")) {
-                articleViewer->setArticleAction(ArticleViewerNg::OpenInExternalBrowser, articleId);
-                return true;
-            } else if (urlPath == QLatin1String("share")) {
-                articleViewer->setArticleAction(ArticleViewerNg::Share, articleId);
-                return true;
+        if (url.hasQuery()) {
+            QUrlQuery urlQuery(url);
+            //TODO
+            const QString articleId = url.fragment();
+            if (!articleId.isEmpty()) {
+                if (urlPath == QLatin1String("delete")) {
+                    articleViewer->setArticleAction(ArticleViewerNg::DeleteAction, articleId);
+                    return true;
+                } else if (urlPath == QLatin1String("markAsRead")) {
+                    articleViewer->setArticleAction(ArticleViewerNg::MarkAsRead, articleId);
+                    return true;
+                } else if (urlPath == QLatin1String("markAsUnRead")) {
+                    articleViewer->setArticleAction(ArticleViewerNg::MarkAsUnRead, articleId);
+                    return true;
+                } else if (urlPath == QLatin1String("markAsImportant")) {
+                    articleViewer->setArticleAction(ArticleViewerNg::MarkAsImportant, articleId);
+                    return true;
+                } else if (urlPath == QLatin1String("sendUrlArticle")) {
+                    articleViewer->setArticleAction(ArticleViewerNg::SendUrlArticle, articleId);
+                    return true;
+                } else if (urlPath == QLatin1String("openInExternalBrowser")) {
+                    articleViewer->setArticleAction(ArticleViewerNg::OpenInExternalBrowser, articleId);
+                    return true;
+                } else if (urlPath == QLatin1String("share")) {
+                    articleViewer->setArticleAction(ArticleViewerNg::Share, articleId);
+                    return true;
+                }
             }
         } else {
             qCWarning(AKREGATOR_LOG) << "Undefined article id";
