@@ -131,3 +131,19 @@ void MainFrame::slotCopyLinkAsInFrame(int frameId)
     }
     mArticleViewer->articleViewerWidgetNg()->articleViewerNg()->slotCopyLinkAddress();
 }
+
+void MainFrame::slotSaveImageOnDiskInFrame(int frameId)
+{
+    if (frameId != 0) {
+        return;
+    }
+    mArticleViewer->articleViewerWidgetNg()->articleViewerNg()->slotSaveImageOnDiskInFrame();
+}
+
+void MainFrame::slotCopyImageLocationInFrame(int frameId)
+{
+    if (frameId != 0) {
+        return;
+    }
+    mArticleViewer->articleViewerWidgetNg()->articleViewerNg()->slotCopyImageLocationInFrame();
+}

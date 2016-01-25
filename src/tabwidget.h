@@ -67,6 +67,8 @@ public Q_SLOTS:
     void slotFindTextInHtml();
     void slotTextToSpeech();
     void slotSaveLinkAs();
+    void slotCopyImageLocation();
+    void slotSaveImageOnDisk();
 Q_SIGNALS:
     void signalCurrentFrameChanged(int);
     void signalRemoveFrameRequest(int);
@@ -80,6 +82,8 @@ Q_SIGNALS:
     void signalFindTextInFrame(int currentFrame);
     void signalSaveLinkAsInFrame(int currentFrame);
     void signalCopyLinkAsInFrame(int currentFrame);
+    void signalCopyImageLocation(int currentFrame);
+    void signalSaveImageOnDisk(int currentFrame);
 
 private:
     void tabInserted(int) Q_DECL_OVERRIDE;

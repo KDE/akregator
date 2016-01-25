@@ -218,3 +218,19 @@ void WebViewFrame::slotCopyLinkAsInFrame(int frameId)
     }
     mArticleViewerWidgetNg->articleViewerNg()->slotCopyLinkAddress();
 }
+
+void WebViewFrame::slotSaveImageOnDiskInFrame(int frameId)
+{
+    if (frameId != id()) {
+        return;
+    }
+    mArticleViewerWidgetNg->articleViewerNg()->slotSaveImageOnDiskInFrame();
+}
+
+void WebViewFrame::slotCopyImageLocationInFrame(int frameId)
+{
+    if (frameId != id()) {
+        return;
+    }
+    mArticleViewerWidgetNg->articleViewerNg()->slotCopyImageLocationInFrame();
+}

@@ -463,6 +463,16 @@ void TabWidget::slotCopy()
     Q_EMIT signalCopyInFrame(d->currentFrame()->id());
 }
 
+void TabWidget::slotSaveImageOnDisk()
+{
+    Q_EMIT signalSaveImageOnDisk(d->currentFrame()->id());
+}
+
+void TabWidget::slotCopyImageLocation()
+{
+    Q_EMIT signalCopyImageLocation(d->currentFrame()->id());
+}
+
 void TabWidget::slotCloseTab()
 {
     QWidget *widget =  d->selectedWidget();

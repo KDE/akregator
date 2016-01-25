@@ -253,6 +253,10 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
     connect(m_tabWidget, &TabWidget::signalTextToSpeechInFrame, m_mainFrame, &MainFrame::slotTextToSpeechInFrame);
     connect(m_tabWidget, &TabWidget::signalSaveLinkAsInFrame, m_mainFrame, &MainFrame::slotSaveLinkAsInFrame);
     connect(m_tabWidget, &TabWidget::signalCopyLinkAsInFrame, m_mainFrame, &MainFrame::slotCopyLinkAsInFrame);
+    connect(m_tabWidget, &TabWidget::signalCopyImageLocation, m_mainFrame, &MainFrame::slotCopyImageLocationInFrame);
+    connect(m_tabWidget, &TabWidget::signalSaveImageOnDisk, m_mainFrame, &MainFrame::slotSaveImageOnDiskInFrame);
+
+
 
     Kernel::self()->frameManager()->slotAddFrame(m_mainFrame);
 
@@ -359,6 +363,8 @@ void MainWidget::connectFrame(WebViewFrame *frame)
     connect(m_tabWidget, &TabWidget::signalTextToSpeechInFrame, frame, &WebViewFrame::slotTextToSpeechInFrame);
     connect(m_tabWidget, &TabWidget::signalSaveLinkAsInFrame, frame, &WebViewFrame::slotSaveLinkAsInFrame);
     connect(m_tabWidget, &TabWidget::signalCopyLinkAsInFrame, frame, &WebViewFrame::slotCopyLinkAsInFrame);
+    connect(m_tabWidget, &TabWidget::signalCopyImageLocation, frame, &WebViewFrame::slotCopyImageLocationInFrame);
+    connect(m_tabWidget, &TabWidget::signalSaveImageOnDisk, frame, &WebViewFrame::slotSaveImageOnDiskInFrame);
 
     connect(frame, &WebViewFrame::showStatusBarMessage, this, &MainWidget::slotShowStatusBarMessage);
 }

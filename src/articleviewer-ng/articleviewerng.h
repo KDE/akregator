@@ -72,6 +72,8 @@ public Q_SLOTS:
     void slotZoomTextOnlyInFrame(bool textOnlyInFrame);
     void slotSaveLinkAs();
     void slotCopyLinkAddress();
+    void slotSaveImageOnDiskInFrame();
+    void slotCopyImageLocationInFrame();
 Q_SIGNALS:
     void signalOpenUrlRequest(Akregator::OpenUrlRequest &);
     void showStatusBarMessage(const QString &link);

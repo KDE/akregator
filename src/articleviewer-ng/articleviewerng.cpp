@@ -93,6 +93,16 @@ void ArticleViewerNg::slotSaveLinkAs()
     KParts::BrowserRun::simpleSave(tmp, tmp.fileName());
 }
 
+void ArticleViewerNg::slotSaveImageOnDiskInFrame()
+{
+    //TODO
+}
+
+void ArticleViewerNg::slotCopyImageLocationInFrame()
+{
+    //TODO
+}
+
 void ArticleViewerNg::slotCopyLinkAddress()
 {
     if (mCurrentUrl.isEmpty()) {
@@ -103,7 +113,7 @@ void ArticleViewerNg::slotCopyLinkAddress()
     // don't set url to selection as it's a no-no according to a fd.o spec
     // which spec? Nobody seems to care (tested Firefox (3.5.10) Konqueror,and KMail (4.2.3)), so I re-enable the following line unless someone gives
     // a good reason to remove it again (bug 183022) --Frank
-    cb->setText(url().toString(), QClipboard::Selection);
+    cb->setText(mCurrentUrl.toString(), QClipboard::Selection);
 }
 
 void ArticleViewerNg::slotShowContextMenu(const QPoint &pos)
@@ -206,6 +216,15 @@ void ArticleViewerNg::displayContextMenu(const QPoint &pos)
         popup.addAction(mActionCollection->action(QStringLiteral("savelinkas")));
         popup.addAction(mActionCollection->action(QStringLiteral("copylinkaddress")));
         if (mContextMenuHitResult.imageUrl().isEmpty()) {
+#if 0
+            popup.addAction(mMsgView->copyImageLocation());
+            popup.addAction(mMsgView->downloadImageToDiskAction());
+            popup.addAction(mMsgView->shareImage());
+            if (mMsgView->adblockEnabled()) {
+                popup.addSeparator();
+                popup.addAction(mMsgView->blockImage());
+            }
+#endif
             //TODO
         }
         popup.addSeparator();

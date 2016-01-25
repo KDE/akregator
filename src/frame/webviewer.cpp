@@ -83,6 +83,18 @@ void WebViewer::displayContextMenu(const QPoint &pos)
         popup.addSeparator();
         popup.addAction(mActionCollection->action(QStringLiteral("savelinkas")));
         popup.addAction(mActionCollection->action(QStringLiteral("copylinkaddress")));
+        if (mContextMenuHitResult.imageUrl().isEmpty()) {
+#if 0
+            popup.addAction(mMsgView->copyImageLocation());
+            popup.addAction(mMsgView->downloadImageToDiskAction());
+            popup.addAction(mMsgView->shareImage());
+            if (mMsgView->adblockEnabled()) {
+                popup.addSeparator();
+                popup.addAction(mMsgView->blockImage());
+            }
+#endif
+            //TODO
+        }
         popup.addSeparator();
         popup.addAction(mShareServiceManager->menu());
     } else {
