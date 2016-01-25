@@ -1,3 +1,73 @@
-<style type=text/css>@media screen, print {body {  font-family: Serif ! important;  font-size: 16px ! important;  color: #31363b ! important;  background: #fcfcfc ! important;}a {  color: #2980b9 ! important;}.headerbox {  background: #eff0f1 ! important;  color: #31363b ! important;  border:1px solid #000;  margin-bottom: 10pt;}.headertitle a:link { color: #eff0f1 ! important; text-decoration: none ! important; }.headertitle a:visited { color: #eff0f1 ! important; text-decoration: none ! important; }.headertitle a:hover{ color: #eff0f1 ! important; text-decoration: none ! important; }.headertitle a:active { color: #eff0f1 ! important;  text-decoration: none ! important; }.headertitle {  background: #3daee9 ! important;  padding:2px;  color: #eff0f1 ! important;  font-weight: bold;  text-decoration: none ! important;}.header {  font-weight: bold;  padding:2px;  margin-right: 5px;  text-decoration: none ! important;}.headertext a {  text-decoration: none ! important;}.headimage {  float: right;  margin-left: 5px;}body { clear: none; }.content {  display: block;  margin-bottom: 6px;}.content > P:first-child { margin-top: 1px; }.content > DIV:first-child { margin-top: 1px; }}
-</style>
-
+@media screen, print {
+body {
+   font-family: Serif ! important;
+   font-size: 16px ! important;
+   color: #31363b ! important;
+   background: #fcfcfc ! important;
+   }
+a {
+   color: #2980b9 ! important;
+  }
+.headerbox {
+   background: #eff0f1 ! important;
+   color: #31363b ! important;
+   border:1px solid #000;
+   margin-bottom: 10pt;
+   font-size: 22px;
+   }
+.headertitle a:link {
+   color: rgb(100,100,100) ! important;
+   text-decoration: none ! important;
+   }
+.headertitle a:visited {
+   color: rgb(100,100,100) ! important;
+   text-decoration: none ! important;
+   }
+.headertitle a:hover{
+   color: rgb(100,100,100) ! important;
+   text-decoration: none ! important;
+   }
+.headertitle a:active {
+   color: rgb(100,100,100) ! important;
+   text-decoration: none ! important;
+   }
+.headertitle {
+   padding:2px;
+   color: rgb(100,100,100) ! important;
+   font-weight: bold;
+   text-decoration: none ! important;
+   }
+.header {
+   color: rgb(120, 125, 129) ! important;
+   font-weight: bold;
+   padding:2px;
+   margin-right: 5px;
+   text-decoration: none ! important;
+   font-size: 12px;
+   }
+.headertext {
+   text-decoration: none ! important;
+   color: rgb(120, 125, 129) ! important;
+   font-size: 12px;
+   }
+.headimage {
+   float: right;
+   margin-left: 5px;
+   }
+body {
+   clear: none;
+   }
+.content {
+   display: block;
+   margin-bottom: 6px;
+   }
+.content > P:first-child {
+   margin-top: 1px;
+   }
+.content > DIV:first-child {
+   margin-top: 1px;
+   }
+.content > BR:first-child {
+   display: none;
+   }
+}

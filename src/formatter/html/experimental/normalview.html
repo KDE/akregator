@@ -2,16 +2,13 @@
 <html>
 <head>
 <title>.</title>
-<style type=text/css>@media screen, print {body {  font-family: Serif ! important;  font-size: 16px ! important;  color: #31363b ! important;  background: #fcfcfc ! important;}a {  color: #2980b9 ! important;}.headerbox {  background: #eff0f1 ! important;  color: #31363b ! important;  border:1px solid #000;  margin-bottom: 10pt;}.headertitle a:link { color: #eff0f1 ! important; text-decoration: none ! important; }.headertitle a:visited { color: #eff0f1 ! important; text-decoration: none ! important; }.headertitle a:hover{ color: #eff0f1 ! important; text-decoration: none ! important; }.headertitle a:active { color: #eff0f1 ! important;  text-decoration: none ! important; }.headertitle {  background: #3daee9 ! important;  padding:2px;  color: #eff0f1 ! important;  font-weight: bold;  text-decoration: none ! important;}.header {  font-weight: bold;  padding:2px;  margin-right: 5px;  text-decoration: none ! important;}.headertext a {  text-decoration: none ! important;}.headimage {  float: right;  margin-left: 5px;}body { clear: none; }.content {  display: block;  margin-bottom: 6px;}.content > P:first-child { margin-top: 1px; }.content > DIV:first-child { margin-top: 1px; }}
-</style>
+<link href="{{ absoluteThemePath }}/normalview.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 {% if articles %}
 {% for article in articles %}
 
   <p><div class="article">
-  <div class="headerbox" dir="{{ applicationDir }}">
-
   {% if article.strippedTitle %}
   <div class="headertitle" dir="{{ applicationDir }}"><a href="{{ article.articleLinkUrl }}">{{ article.strippedTitle|safe }}</a></div>
   {% endif %}
@@ -32,6 +29,7 @@
   {% if article.imageFeed %}
   {{ article.imageFeed }}
   {% endif %}
+  <hr>
 
   {% if article.content %}
   <div dir="{{ applicationDir }}"><span class="content">{{ article.content|safe }}</span>
@@ -48,7 +46,6 @@
   {% if article.articleCompleteStoryLink %}
   <p><a class="contentlink" href="{{ article.articleCompleteStoryLink }}">{{ completeStoryI18n }}</a></p>
   {% endif %}
-  </div>
 {% endfor %}
 {% endif %}
 
