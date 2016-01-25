@@ -125,7 +125,6 @@ public:
         return m_viewMode;
     }
 
-    QVector<Article> speakSelectedArticles();
     void currentArticleInfo(QString &link, QString &title);
     void updateQuickSearchLineText();
 Q_SIGNALS:

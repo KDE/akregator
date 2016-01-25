@@ -1129,23 +1129,6 @@ void MainWidget::slotSetSelectedArticleRead()
     ::setSelectedArticleStatus(m_selectionController, Akregator::Read);
 }
 
-QVector<Akregator::Article> MainWidget::speakSelectedArticles()
-{
-    QVector<Akregator::Article> lst;
-    if (Kernel::self()->frameManager()->currentFrame() == m_mainFrame) {
-        if (m_viewMode != CombinedView) {
-            lst = m_selectionController->selectedArticles();
-        } else {
-            if (m_selectionController->selectedSubscription()) {
-                //TODO: read articles in current node, respecting quick filter!
-            }
-        }
-    } else {
-        // TODO: read selected page viewer
-    }
-    return lst;
-}
-
 void MainWidget::slotSetSelectedArticleUnread()
 {
     ::setSelectedArticleStatus(m_selectionController, Akregator::Unread);
