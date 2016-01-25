@@ -1254,4 +1254,20 @@ void MainWidget::slotFocusQuickSearch()
 void MainWidget::slotArticleAction(ArticleViewerNg::ArticleAction type, const QString &articleId)
 {
     //TODO
+    switch(type) {
+    case ArticleViewerNg::DeleteAction:
+        break;
+    case ArticleViewerNg::MarkAsRead:
+        break;
+    case ArticleViewerNg::MarkAsUnRead:
+        break;
+    case ArticleViewerNg::MarkAsImportant:
+        break;
+    case ArticleViewerNg::SendUrlArticle:
+        break;
+    case ArticleViewerNg::OpenInExternalBrowser:
+        break;
+    case ArticleViewerNg::Share:
+        break;
+    }
 }
