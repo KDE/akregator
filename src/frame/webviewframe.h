@@ -63,7 +63,7 @@ public Q_SLOTS:
     void slotCopyLinkAsInFrame(int frameId);
     void slotSaveImageOnDiskInFrame(int frameId);
     void slotCopyImageLocationInFrame(int frameId);
-    void slotBlockImagesInFrame(int frameId);
+    void slotBlockImageInFrame(int frameId);
 private Q_SLOTS:
     void slotTitleChanged(const QString &title);
     void slotProgressChanged(int progress);
