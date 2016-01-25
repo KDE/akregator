@@ -33,6 +33,7 @@
 #include <QWebSettings>
 #include <QClipboard>
 #include <QApplication>
+//#include <MessageViewer/
 
 #include <QMenu>
 #include <QWebFrame>
@@ -411,4 +412,12 @@ bool ArticleViewerNg::zoomTextOnlyInFrame() const
 void ArticleViewerNg::slotZoomTextOnlyInFrame(bool textOnlyInFrame)
 {
     settings()->setAttribute(QWebSettings::ZoomTextOnly, textOnlyInFrame);
+}
+
+void ArticleViewerNg::slotBlockImage()
+{
+    if (mCurrentUrl.isEmpty()) {
+        return;
+    }
+    //MessageViewer::AdBlockManager::self()->addCustomRule(mCurrentUrl.url(), true);
 }
