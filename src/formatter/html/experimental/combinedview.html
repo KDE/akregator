@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">
+<html>
+<head>
+<title>.</title>
+<style type=text/css>@media screen, print {body {  font-family: Serif ! important;  font-size: 16px ! important;  color: #31363b ! important;  background: #fcfcfc ! important;}a {  color: #2980b9 ! important;}.headerbox {  background: #eff0f1 ! important;  color: #31363b ! important;  border:1px solid #000;  margin-bottom: 10pt;}.headertitle a:link { color: #eff0f1  ! important; text-decoration: none ! important; }.headertitle a:visited { color: #eff0f1 ! important; text-decoration: none ! important; }.headertitle a:hover{ color: #eff0f1 ! important; text-decoration: none ! important; }.headertitle a:active { color: #eff0f1 ! important; text-decoration: none ! important; }.headertitle {  background: #3daee9 ! important;  padding:2px;  color: #eff0f1 ! important;  font-weight: bold;  text-decoration: none ! important;}.header {  font-weight: bold;  padding:2px;  margin-right: 5px;  text-decoration: none ! important;}.headertext {  text-decoration: none ! important;}.headimage {  float: right;  margin-left: 5px;}body { clear: none; }.content {  display: block;  margin-bottom: 6px;}.content > P:first-child { margin-top: 1px; }.content > DIV:first-child { margin-top: 1px; }.content > BR:first-child { display: none;  }}
+</style>
+</head>
+<body>
+{% if articles %}
+{% for article in articles %}
+  <p><div class="article">
+  {% if article.strippedTitle %}
+  <div class="headertitle_" dir="{{ applicationDir }}"><a href="{{ article.articleLinkUrl }}">{{ article.strippedTitle|safe }}</a></div>
+  {% endif %}
+
+  {%if article.articlePubDate %}
+  <span class="header_" dir="{{ applicationDir }}">{{ dateI18n }}:</span><span class="headertext">{{ article.articlePubDate }}</span>
+  {% endif %}
+
+  {% if article.author %}
+  <br/><span class="header_" dir="{{ applicationDir }}">{{ authorI18n }}:</span><span class="headertext">{{ article.author|safe }}</span>
+  {% endif %}
+
+  <table>
+    <tr>
+      <td><div>{{ article.markAsAction|safe }}</div></td>
+      <td><div>{{ article.markAsImportantAction|safe }}</div></td>
+      </td>
+  </table>
+  {% if article.enclosure %}
+  <br/><span class="header_" dir="{{ applicationDir }}">{{ enclosureI18n }}:</span><span class="headertext">{{ article.enclosure|safe }}</span>
+  {% endif %}
+  </div>
+
+  {% if article.imageFeed %}
+  {{ article.imageFeed }}
+  {% endif %}
+
+  {% if article.content %}
+  <div dir="{{ applicationDir }}"><span class="content">{{ article.content|safe }}</span>
+  {% endif %}
+
+  {% if article.commentNumber %}
+  <div class="body"><a class="contentlink" href="{{ article.commentLink }}">{{ commentI18n }} ({{ article.commentNumber }})</a>
+  {% endif %}
+
+  {% if article.enclosure %}
+  <p><em>{{ enclosureI18n }}</em> {{ article.enclosure }}</p>
+  {% endif %}
+
+  {% if article.articleCompleteStoryLink %}
+  <p><a class="contentlink" href="{{ article.articleCompleteStoryLink }}">{{ completeStoryI18n }}</a></p>
+  {% endif %}
+  </div>
+  </div><p>
+{% endfor %}
+{% endif %}
+
+</body>
