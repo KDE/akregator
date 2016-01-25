@@ -84,6 +84,7 @@ void WebViewer::displayContextMenu(const QPoint &pos)
         popup.addAction(mActionCollection->action(QStringLiteral("savelinkas")));
         popup.addAction(mActionCollection->action(QStringLiteral("copylinkaddress")));
         if (!mContextMenuHitResult.imageUrl().isEmpty()) {
+            popup.addSeparator();
             popup.addAction(mActionCollection->action(QStringLiteral("copy_image_location")));
             popup.addAction(mActionCollection->action(QStringLiteral("saveas_imageurl")));
 #if 0
