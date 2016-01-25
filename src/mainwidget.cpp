@@ -255,6 +255,7 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
     connect(m_tabWidget, &TabWidget::signalCopyLinkAsInFrame, m_mainFrame, &MainFrame::slotCopyLinkAsInFrame);
     connect(m_tabWidget, &TabWidget::signalCopyImageLocation, m_mainFrame, &MainFrame::slotCopyImageLocationInFrame);
     connect(m_tabWidget, &TabWidget::signalSaveImageOnDisk, m_mainFrame, &MainFrame::slotSaveImageOnDiskInFrame);
+    connect(m_tabWidget, &TabWidget::signalSaveImageOnDisk, m_mainFrame, &MainFrame::slotBlockImagesInFrame);
 
 
 
@@ -365,6 +366,8 @@ void MainWidget::connectFrame(WebViewFrame *frame)
     connect(m_tabWidget, &TabWidget::signalCopyLinkAsInFrame, frame, &WebViewFrame::slotCopyLinkAsInFrame);
     connect(m_tabWidget, &TabWidget::signalCopyImageLocation, frame, &WebViewFrame::slotCopyImageLocationInFrame);
     connect(m_tabWidget, &TabWidget::signalSaveImageOnDisk, frame, &WebViewFrame::slotSaveImageOnDiskInFrame);
+    connect(m_tabWidget, &TabWidget::signalSaveImageOnDisk, frame, &WebViewFrame::slotBlockImagesInFrame);
+
 
     connect(frame, &WebViewFrame::showStatusBarMessage, this, &MainWidget::slotShowStatusBarMessage);
 }

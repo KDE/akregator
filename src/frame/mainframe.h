@@ -59,6 +59,7 @@ public Q_SLOTS:
     void slotFindTextInFrame(int frameId);
     void slotCopyImageLocationInFrame(int frameId);
     void slotSaveImageOnDiskInFrame(int frameId);
+    void slotBlockImagesInFrame(int frameId);
 
 private:
     KParts::ReadOnlyPart *m_part;

@@ -620,6 +620,11 @@ void ActionManagerImpl::initTabWidget(TabWidget *tabWidget)
     coll->setShortcutsConfigurable(action, false);
     connect(action, &QAction::triggered, d->tabWidget, &TabWidget::slotSaveImageOnDisk);
 
+
+    action = new QAction(i18n("Block image"), this);
+    coll->addAction(QStringLiteral("adblock_image"), action);
+    coll->setShortcutsConfigurable(action, false);
+    connect(action, &QAction::triggered, d->tabWidget, &TabWidget::slotBlockImage);
 }
 
 void ActionManagerImpl::initFrameManager(FrameManager *frameManager)

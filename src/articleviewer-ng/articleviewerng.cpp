@@ -33,7 +33,7 @@
 #include <QWebSettings>
 #include <QClipboard>
 #include <QApplication>
-//#include <MessageViewer/
+//#include <MessageViewer/AdBlockManager>
 
 #include <QMenu>
 #include <QWebFrame>

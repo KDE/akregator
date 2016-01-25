@@ -234,3 +234,11 @@ void WebViewFrame::slotCopyImageLocationInFrame(int frameId)
     }
     mArticleViewerWidgetNg->articleViewerNg()->slotCopyImageLocationInFrame();
 }
+
+void WebViewFrame::slotBlockImagesInFrame(int frameId)
+{
+    if (frameId != id()) {
+        return;
+    }
+    mArticleViewerWidgetNg->articleViewerNg()->slotBlockImage();
+}

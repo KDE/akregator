@@ -473,6 +473,11 @@ void TabWidget::slotCopyImageLocation()
     Q_EMIT signalCopyImageLocation(d->currentFrame()->id());
 }
 
+void TabWidget::slotBlockImage()
+{
+    Q_EMIT signalBlockImage(d->currentFrame()->id());
+}
+
 void TabWidget::slotCloseTab()
 {
     QWidget *widget =  d->selectedWidget();
