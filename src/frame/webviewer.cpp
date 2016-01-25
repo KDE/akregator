@@ -87,6 +87,10 @@ void WebViewer::displayContextMenu(const QPoint &pos)
             popup.addSeparator();
             popup.addAction(mActionCollection->action(QStringLiteral("copy_image_location")));
             popup.addAction(mActionCollection->action(QStringLiteral("saveas_imageurl")));
+            if (adblockEnabled()) {
+                popup.addSeparator();
+                popup.addAction(mActionCollection->action(QStringLiteral("adblock_image")));
+            }
 #if 0
             popup.addAction(mMsgView->shareImage());
             if (mMsgView->adblockEnabled()) {

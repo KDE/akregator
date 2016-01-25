@@ -220,13 +220,12 @@ void ArticleViewerNg::displayContextMenu(const QPoint &pos)
             popup.addSeparator();
             popup.addAction(mActionCollection->action(QStringLiteral("copy_image_location")));
             popup.addAction(mActionCollection->action(QStringLiteral("saveas_imageurl")));
-
-#if 0
-            popup.addAction(mMsgView->shareImage());
-            if (mMsgView->adblockEnabled()) {
+            if (adblockEnabled()) {
                 popup.addSeparator();
-                popup.addAction(mMsgView->blockImage());
+                popup.addAction(mActionCollection->action(QStringLiteral("adblock_image")));
             }
+#if 0
+            //popup.addAction(mMsgView->shareImage());
 #endif
             //TODO
         }
@@ -420,4 +419,9 @@ void ArticleViewerNg::slotBlockImage()
         return;
     }
     MessageViewer::AdBlockManager::self()->addCustomRule(mCurrentUrl.url(), true);
+}
+
+bool ArticleViewerNg::adblockEnabled() const
+{
+    return MessageViewer::AdBlockManager::self()->isEnabled();
 }
