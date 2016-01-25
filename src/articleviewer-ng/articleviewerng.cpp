@@ -33,7 +33,7 @@
 #include <QWebSettings>
 #include <QClipboard>
 #include <QApplication>
-//#include <MessageViewer/AdBlockManager>
+#include <MessageViewer/AdBlockManager>
 
 #include <QMenu>
 #include <QWebFrame>
@@ -419,5 +419,5 @@ void ArticleViewerNg::slotBlockImage()
     if (mCurrentUrl.isEmpty()) {
         return;
     }
-    //MessageViewer::AdBlockManager::self()->addCustomRule(mCurrentUrl.url(), true);
+    MessageViewer::AdBlockManager::self()->addCustomRule(mCurrentUrl.url(), true);
 }
