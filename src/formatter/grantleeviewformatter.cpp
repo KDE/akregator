@@ -35,7 +35,8 @@ using namespace Akregator;
 GrantleeViewFormatter::GrantleeViewFormatter(const QString &htmlFileName, const QString &themePath, const QUrl &imageDir, QObject *parent)
     : PimCommon::GenericGrantleeFormatter(htmlFileName, themePath, parent),
       mImageDir(imageDir),
-      mHtmlArticleFileName(htmlFileName)
+      mHtmlArticleFileName(htmlFileName),
+      mGrantleeThemePath(QStringLiteral("file://") + themePath + QLatin1Char('/'))
 {
     mDirectionString = QApplication::isRightToLeft() ? QStringLiteral("rtl") : QStringLiteral("ltr");
 }
@@ -54,6 +55,7 @@ QString GrantleeViewFormatter::formatFeed(Akregator::Feed *feed)
     QVariantHash feedObject;
     feedObject.insert(QStringLiteral("applicationDir"), mDirectionString);
     feedObject.insert(QStringLiteral("strippedTitle"), Utils::stripTags(feed->title()));
+    feedObject.insert(QStringLiteral("absoluteThemePath"), mGrantleeThemePath);
     QString numberOfArticle;
     if (feed->unread() == 0) {
         numberOfArticle = i18n(" (no unread articles)");
@@ -104,6 +106,7 @@ QString GrantleeViewFormatter::formatFolder(Akregator::Folder *node)
     QVariantHash folderObject;
     folderObject.insert(QStringLiteral("applicationDir"), mDirectionString);
     folderObject.insert(QStringLiteral("nodeTitle"), node->title());
+    folderObject.insert(QStringLiteral("absoluteThemePath"), mGrantleeThemePath);
     QString numberOfArticle;
     if (node->unread() == 0) {
         numberOfArticle = i18n(" (no unread articles)");
@@ -140,6 +143,8 @@ QString GrantleeViewFormatter::formatArticles(const QVector<Article> &article, A
     articleObject.insert(QStringLiteral("completeStoryI18n"), i18n("Complete Story"));
     articleObject.insert(QStringLiteral("authorI18n"), i18n("Author"));
     articleObject.insert(QStringLiteral("enclosureI18n"), i18n("Enclosure"));
+    articleObject.insert(QStringLiteral("absoluteThemePath"), mGrantleeThemePath);
+
     return render(articleObject);
 }
 

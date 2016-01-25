@@ -39,6 +39,7 @@ private:
     QUrl mImageDir;
     QString mHtmlArticleFileName;
     QString mDirectionString;
+    QString mGrantleeThemePath;
 };
 }
 
