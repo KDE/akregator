@@ -125,6 +125,7 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
     m_horizontalSplitter = new QSplitter(Qt::Horizontal, this);
 
     m_horizontalSplitter->setOpaqueResize(true);
+    m_horizontalSplitter->setChildrenCollapsible(false);
     lt->addWidget(m_horizontalSplitter);
 
     connect(Kernel::self()->fetchQueue(), &FetchQueue::signalStarted,
@@ -188,6 +189,7 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
     }
     m_articleSplitter = new QSplitter(Qt::Vertical, m_mainTab);
     m_articleSplitter->setObjectName(QStringLiteral("panner2"));
+    m_articleSplitter->setChildrenCollapsible(false);
 
     m_articleWidget = new QWidget(m_articleSplitter);
     QVBoxLayout *articleWidgetLayout = new QVBoxLayout;
