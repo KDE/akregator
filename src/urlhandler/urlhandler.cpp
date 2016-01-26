@@ -127,6 +127,8 @@ QString ActionURLHandler::statusBarMessage(const QUrl &url, ArticleViewerNg *) c
             return i18n("Open In External Browser");
         } else if (urlPath == QLatin1String("share")) {
             return i18n("Share");
+        } else if (urlPath == QLatin1String("openInBackgroundTab")) {
+            return i18n("Open In Background Tab");
         }
         return {};
     }
@@ -162,6 +164,9 @@ bool ActionURLHandler::handleClick(const QUrl &url, ArticleViewerNg *articleView
                     return true;
                 } else if (urlPath == QLatin1String("share")) {
                     articleViewer->setArticleAction(ArticleViewerNg::Share, articleId, feed);
+                    return true;
+                } else if (urlPath == QLatin1String("openInBackgroundTab")) {
+                    articleViewer->setArticleAction(ArticleViewerNg::OpenInBackgroundTab, articleId, feed);
                     return true;
                 }
             }

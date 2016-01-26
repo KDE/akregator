@@ -49,7 +49,8 @@ public:
         MarkAsImportant,
         SendUrlArticle,
         OpenInExternalBrowser,
-        Share
+        Share,
+        OpenInBackgroundTab
     };
 
     explicit ArticleViewerNg(KActionCollection *ac, QWidget *parent = Q_NULLPTR);

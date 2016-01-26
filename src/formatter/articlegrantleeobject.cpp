@@ -185,3 +185,11 @@ QString ArticleGrantleeObject::share() const
             .arg(createActionUrl(QStringLiteral("share")), iconPath, i18n("Share"));
     return text;
 }
+
+QString ArticleGrantleeObject::openInBackgroundTab() const
+{
+    const QString iconPath = MessageViewer::IconNameCache::instance()->iconPath(QStringLiteral("tab-new"), KIconLoader::Small);
+    const QString text = QStringLiteral("<a href=\"%1\"><img class=\"headimage\" title=\"%3\" src=\"file:///%2\"></a>\n")
+            .arg(createActionUrl(QStringLiteral("openInBackgroundTab")), iconPath, i18n("Open In Background Tab"));
+    return text;
+}

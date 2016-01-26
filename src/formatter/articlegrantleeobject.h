@@ -41,6 +41,7 @@ class ArticleGrantleeObject : public QObject
     Q_PROPERTY(QString markAsImportantAction READ markAsImportantAction)
     Q_PROPERTY(QString sendUrlAction READ sendUrlAction)
     Q_PROPERTY(QString openInExternalBrowser READ openInExternalBrowser)
+    Q_PROPERTY(QString openInBackgroundTab READ openInBackgroundTab)
     Q_PROPERTY(QString share READ share)
     Q_PROPERTY(QString commentLink READ commentLink)
     Q_PROPERTY(QString commentNumber READ commentNumber)
@@ -68,6 +69,7 @@ public:
 
     QString commentLink() const;
     QString commentNumber() const;
+    QString openInBackgroundTab() const;
 private:
     QString createActionUrl(const QString &actionName) const;
     Article mArticle;
