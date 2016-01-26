@@ -1263,8 +1263,17 @@ void MainWidget::slotArticleAction(ArticleViewerNg::ArticleAction type, const QS
         break;
     case ArticleViewerNg::SendUrlArticle:
         break;
-    case ArticleViewerNg::OpenInBackgroundTab:
+    case ArticleViewerNg::OpenInBackgroundTab: {
+        const Akregator::Article article = m_feedList->findArticle(feed, articleId);
+        const QUrl url = article.link();
+        if (url.isValid()) {
+            OpenUrlRequest req(url);
+            req.setOptions(OpenUrlRequest::NewTab);
+            req.setOpenInBackground(true);
+            Kernel::self()->frameManager()->slotOpenUrlRequest(req, false /*don't use settings for open in background*/);
+        }
         break;
+    }
     case ArticleViewerNg::OpenInExternalBrowser: {
         const Akregator::Article article = m_feedList->findArticle(feed, articleId);
         slotOpenArticleInBrowser(article);
