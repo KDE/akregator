@@ -1263,6 +1263,8 @@ void MainWidget::slotArticleAction(ArticleViewerNg::ArticleAction type, const QS
         break;
     case ArticleViewerNg::SendUrlArticle:
         break;
+    case ArticleViewerNg::OpenInBackgroundTab:
+        break;
     case ArticleViewerNg::OpenInExternalBrowser: {
         const Akregator::Article article = m_feedList->findArticle(feed, articleId);
         slotOpenArticleInBrowser(article);
