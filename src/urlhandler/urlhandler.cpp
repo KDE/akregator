@@ -138,30 +138,32 @@ bool ActionURLHandler::handleClick(const QUrl &url, ArticleViewerNg *articleView
     if (url.scheme() == QLatin1String("akregatoraction")) {
         const QString urlPath(url.path());
         if (url.hasQuery()) {
-            QUrlQuery urlQuery(url);
-            //TODO
-            const QString articleId = url.fragment();
+            const QUrlQuery urlQuery(url);
+            const QString articleId = urlQuery.queryItemValue(QStringLiteral("id"));
+            const QString feed = urlQuery.queryItemValue(QStringLiteral("feed"));
+            qDebug() << "feed "<<feed;
+            qDebug()<<" articleId :"<<articleId;
             if (!articleId.isEmpty()) {
                 if (urlPath == QLatin1String("delete")) {
-                    articleViewer->setArticleAction(ArticleViewerNg::DeleteAction, articleId);
+                    articleViewer->setArticleAction(ArticleViewerNg::DeleteAction, articleId, feed);
                     return true;
                 } else if (urlPath == QLatin1String("markAsRead")) {
-                    articleViewer->setArticleAction(ArticleViewerNg::MarkAsRead, articleId);
+                    articleViewer->setArticleAction(ArticleViewerNg::MarkAsRead, articleId, feed);
                     return true;
                 } else if (urlPath == QLatin1String("markAsUnRead")) {
-                    articleViewer->setArticleAction(ArticleViewerNg::MarkAsUnRead, articleId);
+                    articleViewer->setArticleAction(ArticleViewerNg::MarkAsUnRead, articleId, feed);
                     return true;
                 } else if (urlPath == QLatin1String("markAsImportant")) {
-                    articleViewer->setArticleAction(ArticleViewerNg::MarkAsImportant, articleId);
+                    articleViewer->setArticleAction(ArticleViewerNg::MarkAsImportant, articleId, feed);
                     return true;
                 } else if (urlPath == QLatin1String("sendUrlArticle")) {
-                    articleViewer->setArticleAction(ArticleViewerNg::SendUrlArticle, articleId);
+                    articleViewer->setArticleAction(ArticleViewerNg::SendUrlArticle, articleId, feed);
                     return true;
                 } else if (urlPath == QLatin1String("openInExternalBrowser")) {
-                    articleViewer->setArticleAction(ArticleViewerNg::OpenInExternalBrowser, articleId);
+                    articleViewer->setArticleAction(ArticleViewerNg::OpenInExternalBrowser, articleId, feed);
                     return true;
                 } else if (urlPath == QLatin1String("share")) {
-                    articleViewer->setArticleAction(ArticleViewerNg::Share, articleId);
+                    articleViewer->setArticleAction(ArticleViewerNg::Share, articleId, feed);
                     return true;
                 }
             }

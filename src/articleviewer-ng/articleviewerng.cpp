@@ -314,9 +314,9 @@ void ArticleViewerNg::disableIntroduction()
     }
 }
 
-void ArticleViewerNg::setArticleAction(ArticleViewerNg::ArticleAction type, const QString &articleId)
+void ArticleViewerNg::setArticleAction(ArticleViewerNg::ArticleAction type, const QString &articleId, const QString &feed)
 {
-    Q_EMIT articleAction(type, articleId);
+    Q_EMIT articleAction(type, articleId, feed);
 }
 
 void ArticleViewerNg::mouseReleaseEvent(QMouseEvent *event)

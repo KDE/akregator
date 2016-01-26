@@ -1234,7 +1234,7 @@ void MainWidget::slotFocusQuickSearch()
     m_searchBar->setFocusSearchLine();
 }
 
-void MainWidget::slotArticleAction(ArticleViewerNg::ArticleAction type, const QString &articleId)
+void MainWidget::slotArticleAction(ArticleViewerNg::ArticleAction type, const QString &articleId, const QString &feed)
 {
     //TODO
     switch(type) {

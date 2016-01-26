@@ -62,7 +62,7 @@ public:
 
     void disableIntroduction();
 
-    void setArticleAction(ArticleViewerNg::ArticleAction type, const QString &articleId);
+    void setArticleAction(ArticleViewerNg::ArticleAction type, const QString &articleId, const QString &feed);
 
     bool zoomTextOnlyInFrame() const;
 public Q_SLOTS:
@@ -79,7 +79,7 @@ Q_SIGNALS:
     void signalOpenUrlRequest(Akregator::OpenUrlRequest &);
     void showStatusBarMessage(const QString &link);
     void showContextMenu(const QPoint &pos);
-    void articleAction(Akregator::ArticleViewerNg::ArticleAction type, const QString &articleId);
+    void articleAction(Akregator::ArticleViewerNg::ArticleAction type, const QString &articleId, const QString &feed);
     void findTextInHtml();
     void textToSpeech();
 
