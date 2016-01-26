@@ -141,8 +141,6 @@ bool ActionURLHandler::handleClick(const QUrl &url, ArticleViewerNg *articleView
             const QUrlQuery urlQuery(url);
             const QString articleId = urlQuery.queryItemValue(QStringLiteral("id"));
             const QString feed = urlQuery.queryItemValue(QStringLiteral("feed"));
-            qDebug() << "feed "<<feed;
-            qDebug()<<" articleId :"<<articleId;
             if (!articleId.isEmpty()) {
                 if (urlPath == QLatin1String("delete")) {
                     articleViewer->setArticleAction(ArticleViewerNg::DeleteAction, articleId, feed);

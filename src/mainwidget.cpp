@@ -1106,6 +1106,16 @@ void MainWidget::slotArticleToggleKeepFlag(bool)
 namespace
 {
 
+void setArticleStatus(const QString &feedUrl, const QString &articleId, int status)
+{
+    if (!feedUrl.isEmpty() && !articleId.isEmpty()) {
+        Akregator::ArticleModifyJob *job = new Akregator::ArticleModifyJob;
+        const Akregator::ArticleId aid = { feedUrl, articleId };
+        job->setStatus(aid, status);
+        job->start();
+    }
+}
+
 void setSelectedArticleStatus(const Akregator::AbstractSelectionController *controller, int status)
 {
     const QVector<Akregator::Article> articles = controller->selectedArticles();
@@ -1241,15 +1251,21 @@ void MainWidget::slotArticleAction(ArticleViewerNg::ArticleAction type, const QS
     case ArticleViewerNg::DeleteAction:
         break;
     case ArticleViewerNg::MarkAsRead:
+        ::setArticleStatus(feed, articleId, Akregator::Read);
         break;
     case ArticleViewerNg::MarkAsUnRead:
+        ::setArticleStatus(feed, articleId, Akregator::Unread);
         break;
     case ArticleViewerNg::MarkAsImportant:
+        //TODO slotArticleToggleKeepFlag need to update icons too.
         break;
     case ArticleViewerNg::SendUrlArticle:
         break;
-    case ArticleViewerNg::OpenInExternalBrowser:
+    case ArticleViewerNg::OpenInExternalBrowser: {
+        const Akregator::Article article = m_feedList->findArticle(feed, articleId);
+        slotOpenArticleInBrowser(article);
         break;
+    }
     case ArticleViewerNg::Share:
         break;
     }
