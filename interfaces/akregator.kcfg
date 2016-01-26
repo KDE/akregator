@@ -50,7 +50,7 @@
         <default>#FF0000</default>
     </entry>
     <entry key="GrantleeDirectory" type="String" >
-        <default>default</default>
+        <default>5.2</default>
     </entry>
  </group>
  <group name="HTML Settings" >
