@@ -8,6 +8,20 @@ body {
 a {
    color: #2980b9 ! important;
   }
+.actiontable {
+   width: 100%;
+}
+.actionrowtable {
+   display:table-row;
+}
+.theactioncell{
+    display: table-cell;
+    padding: 0px 2px; /* just some padding, if needed*/
+    white-space: pre; /* this will avoid line breaks*/
+}
+.theactionbigcell{
+    width: 100%; /* this will shrink other cells */
+}
 .headerbox {
    background: #eff0f1 ! important;
    color: #31363b ! important;

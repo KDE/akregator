@@ -21,14 +21,15 @@
   <br/><span class="header" dir="{{ applicationDir }}">{{ authorI18n }}:</span><span class="headertext">{{ article.author|safe }}</span>
   {% endif %}
 
-  <table>
-    <tr>
-      <td><div>{{ article.markAsAction|safe }}</div></td>
-      <td><div>{{ article.markAsImportantAction|safe }}</div></td>
-      <td><div>{{ article.openInExternalBrowser|safe }}</div></td>
-      <td><div>{{ article.deleteAction|safe }}</div></td>
-      </td>
-  </table>
+  <div class="actiontable">
+    <div class="actionrowtable">
+      <div class="theactioncell">{{ article.markAsAction|safe }}</div>
+      <div class="theactioncell">{{ article.markAsImportantAction|safe }}</div>
+      <div class="theactioncell">{{ article.openInExternalBrowser|safe }}</div>
+      <div class="theactioncell theactionbigcell">{{ article.deleteAction|safe }}</div>
+    <div>
+  </div>
+
   {% if article.enclosure %}
   <br/><span class="header" dir="{{ applicationDir }}">{{ enclosureI18n }}:</span><span class="headertext">{{ article.enclosure|safe }}</span>
   {% endif %}
