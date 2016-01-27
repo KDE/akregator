@@ -148,7 +148,7 @@ QString ArticleGrantleeObject::deleteAction() const
     return text;
 }
 
-QString ArticleGrantleeObject::markAsAction() const
+QString ArticleGrantleeObject::markAsReadAction() const
 {
     const QString iconPath = MessageViewer::IconNameCache::instance()->iconPath(QStringLiteral("mail-mark-read"), KIconLoader::Small);
     const QString text = QStringLiteral("<a href=\"%1\"><img class=\"headimage\" title=\"%3\" src=\"file:///%2\"></a>\n")

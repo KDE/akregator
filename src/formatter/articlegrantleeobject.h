@@ -36,7 +36,7 @@ class ArticleGrantleeObject : public QObject
     Q_PROPERTY(QString articleCompleteStoryLink READ articleCompleteStoryLink)
     Q_PROPERTY(QString imageFeed READ imageFeed)
     Q_PROPERTY(QString deleteAction READ deleteAction)
-    Q_PROPERTY(QString markAsAction READ markAsAction)
+    Q_PROPERTY(QString markAsReadAction READ markAsReadAction)
     Q_PROPERTY(QString markAsUnreadAction READ markAsUnreadAction)
     Q_PROPERTY(QString markAsImportantAction READ markAsImportantAction)
     Q_PROPERTY(QString sendUrlAction READ sendUrlAction)
@@ -71,7 +71,7 @@ public:
 
     //Action
     QString deleteAction() const;
-    QString markAsAction() const;
+    QString markAsReadAction() const;
     QString markAsUnreadAction() const;
     QString markAsImportantAction() const;
     QString sendUrlAction() const;
