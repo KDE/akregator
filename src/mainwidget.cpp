@@ -1248,7 +1248,6 @@ void MainWidget::slotFocusQuickSearch()
 
 void MainWidget::slotArticleAction(ArticleViewerNg::ArticleAction type, const QString &articleId, const QString &feed)
 {
-    //TODO
     switch(type) {
     case ArticleViewerNg::DeleteAction:
         break;
@@ -1258,9 +1257,14 @@ void MainWidget::slotArticleAction(ArticleViewerNg::ArticleAction type, const QS
     case ArticleViewerNg::MarkAsUnRead:
         ::setArticleStatus(feed, articleId, Akregator::Unread);
         break;
-    case ArticleViewerNg::MarkAsImportant:
-        //TODO slotArticleToggleKeepFlag need to update icons too.
+    case ArticleViewerNg::MarkAsImportant: {
+        Akregator::ArticleModifyJob *job = new Akregator::ArticleModifyJob;
+        const Akregator::Article article = m_feedList->findArticle(feed, articleId);
+        const Akregator::ArticleId aid = { feed, articleId };
+        job->setKeep(aid, !article.keep());
+        job->start();
         break;
+    }
     case ArticleViewerNg::SendUrlArticle:
         break;
     case ArticleViewerNg::OpenInBackgroundTab: {

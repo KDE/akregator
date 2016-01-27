@@ -167,10 +167,17 @@ QString ArticleGrantleeObject::markAsUnreadAction() const
 
 QString ArticleGrantleeObject::markAsImportantAction() const
 {
-    const QString iconPath = MessageViewer::IconNameCache::instance()->iconPath(QStringLiteral("mail-mark-important"), KIconLoader::Small);
-    const QString text = QStringLiteral("<a href=\"%1\"><img class=\"headimage\" title=\"%3\" src=\"file:///%2\"></a>\n")
-            .arg(createActionUrl(QStringLiteral("markAsImportant")), iconPath, i18n("Mark as Important"));
-    return text;
+    if (mArticle.keep()) {
+        const QString iconPath = MessageViewer::IconNameCache::instance()->iconPath(QStringLiteral("mail-message"), KIconLoader::Small);
+        const QString text = QStringLiteral("<a href=\"%1\"><img class=\"headimage\" title=\"%3\" src=\"file:///%2\"></a>\n")
+                .arg(createActionUrl(QStringLiteral("markAsImportant")), iconPath, i18n("Remove Important Status"));
+        return text;
+    } else {
+        const QString iconPath = MessageViewer::IconNameCache::instance()->iconPath(QStringLiteral("mail-mark-important"), KIconLoader::Small);
+        const QString text = QStringLiteral("<a href=\"%1\"><img class=\"headimage\" title=\"%3\" src=\"file:///%2\"></a>\n")
+                .arg(createActionUrl(QStringLiteral("markAsImportant")), iconPath, i18n("Mark as Important"));
+        return text;
+    }
 }
 
 QString ArticleGrantleeObject::sendUrlAction() const
