@@ -24,10 +24,10 @@
   <div class="actiontable">
     <div class="actionrowtable">
       {% with article.articleStatus as result %}
-          {% ifequal result article.Unread %}
+          {% ifequal article.Unread result %}
           <div class="theactioncell">{{ article.markAsReadAction|safe }}</div>
           {% endifequal %}
-          {% ifequal result article.Read %}
+          {% ifequal article.Read result %}
           <div class="theactioncell">{{ article.markAsUnreadAction|safe }}</div>
           {% endifequal %}
       {% endwith %}

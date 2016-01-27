@@ -45,12 +45,13 @@ ArticleGrantleeObject::~ArticleGrantleeObject()
 
 ArticleGrantleeObject::ArticleStatus ArticleGrantleeObject::articleStatus() const
 {
-    if (mArticle.status() == ArticleStatus::Read)
+    if (mArticle.status() == ArticleStatus::Read) {
         return ArticleGrantleeObject::Read;
-    else if (mArticle.status() == ArticleStatus::Unread)
+    } else if (mArticle.status() == ArticleStatus::Unread) {
         return ArticleGrantleeObject::Unread;
-    else
+    } else {
         return ArticleGrantleeObject::New;
+    }
 }
 
 QString ArticleGrantleeObject::strippedTitle() const

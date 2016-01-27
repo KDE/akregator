@@ -45,7 +45,7 @@ class ArticleGrantleeObject : public QObject
     Q_PROPERTY(QString share READ share)
     Q_PROPERTY(QString commentLink READ commentLink)
     Q_PROPERTY(QString commentNumber READ commentNumber)
-    Q_PROPERTY(QString articleStatus READ articleStatus)
+    Q_PROPERTY(Akregator::ArticleGrantleeObject::ArticleStatus articleStatus READ articleStatus)
 
 public:
     explicit ArticleGrantleeObject(const QUrl &imageDir, const Article &article, ArticleFormatter::IconOption icon, QObject *parent = Q_NULLPTR);
@@ -58,7 +58,7 @@ public:
     };
     Q_ENUMS(ArticleStatus)
 
-    ArticleStatus articleStatus() const;
+    Akregator::ArticleGrantleeObject::ArticleStatus articleStatus() const;
 
     QString strippedTitle() const;
     QString author() const;
