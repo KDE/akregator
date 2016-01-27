@@ -46,6 +46,7 @@ class ArticleGrantleeObject : public QObject
     Q_PROPERTY(QString commentLink READ commentLink)
     Q_PROPERTY(QString commentNumber READ commentNumber)
     Q_PROPERTY(Akregator::ArticleGrantleeObject::ArticleStatus articleStatus READ articleStatus)
+    Q_PROPERTY(bool important READ important)
 
 public:
     explicit ArticleGrantleeObject(const QUrl &imageDir, const Article &article, ArticleFormatter::IconOption icon, QObject *parent = Q_NULLPTR);
@@ -81,6 +82,9 @@ public:
     QString commentLink() const;
     QString commentNumber() const;
     QString openInBackgroundTab() const;
+
+    bool important() const;
+
 private:
     QString createActionUrl(const QString &actionName) const;
     Article mArticle;

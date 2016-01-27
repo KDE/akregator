@@ -204,3 +204,8 @@ QString ArticleGrantleeObject::openInBackgroundTab() const
             .arg(createActionUrl(QStringLiteral("openInBackgroundTab")), iconPath, i18n("Open In Background Tab"));
     return text;
 }
+
+bool ArticleGrantleeObject::important() const
+{
+    return mArticle.keep();
+}
