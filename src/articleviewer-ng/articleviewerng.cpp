@@ -235,6 +235,9 @@ void ArticleViewerNg::displayContextMenu(const QPoint &pos)
         if (contentSelected) {
             popup.addAction(ActionManager::getInstance()->action(QStringLiteral("viewer_copy")));
             popup.addSeparator();
+            mWebShortcutMenuManager->setSelectedText(page()->selectedText());
+            mWebShortcutMenuManager->addWebShortcutsToMenu(&popup);
+            popup.addSeparator();
         }
         popup.addAction(ActionManager::getInstance()->action(QStringLiteral("viewer_print")));
         popup.addAction(ActionManager::getInstance()->action(QStringLiteral("viewer_printpreview")));
