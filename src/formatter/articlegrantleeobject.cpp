@@ -43,6 +43,16 @@ ArticleGrantleeObject::~ArticleGrantleeObject()
 
 }
 
+ArticleGrantleeObject::ArticleStatus ArticleGrantleeObject::articleStatus() const
+{
+    if (mArticle.status() == ArticleStatus::Read)
+        return ArticleGrantleeObject::Read;
+    else if (mArticle.status() == ArticleStatus::Unread)
+        return ArticleGrantleeObject::Unread;
+    else
+        return ArticleGrantleeObject::New;
+}
+
 QString ArticleGrantleeObject::strippedTitle() const
 {
     return Akregator::Utils::stripTags(mArticle.title());

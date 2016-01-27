@@ -45,10 +45,21 @@ class ArticleGrantleeObject : public QObject
     Q_PROPERTY(QString share READ share)
     Q_PROPERTY(QString commentLink READ commentLink)
     Q_PROPERTY(QString commentNumber READ commentNumber)
+    Q_PROPERTY(QString articleStatus READ articleStatus)
 
 public:
     explicit ArticleGrantleeObject(const QUrl &imageDir, const Article &article, ArticleFormatter::IconOption icon, QObject *parent = Q_NULLPTR);
     ~ArticleGrantleeObject();
+
+    enum ArticleStatus {
+        Unread = 0,
+        Read,
+        New
+    };
+    Q_ENUMS(ArticleStatus)
+
+    ArticleStatus articleStatus() const;
+
     QString strippedTitle() const;
     QString author() const;
     QString content() const;
