@@ -91,14 +91,6 @@ void WebViewer::displayContextMenu(const QPoint &pos)
                 popup.addSeparator();
                 popup.addAction(mActionCollection->action(QStringLiteral("adblock_image")));
             }
-#if 0
-            popup.addAction(mMsgView->shareImage());
-            if (mMsgView->adblockEnabled()) {
-                popup.addSeparator();
-                popup.addAction(mMsgView->blockImage());
-            }
-#endif
-            //TODO
         }
         popup.addSeparator();
         popup.addAction(mShareServiceManager->menu());

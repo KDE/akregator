@@ -120,7 +120,7 @@ QString ActionURLHandler::statusBarMessage(const QUrl &url, ArticleViewerNg *) c
         } else if (urlPath == QLatin1String("markAsUnRead")) {
             return i18n("Mark Article as Unread");
         } else if (urlPath == QLatin1String("markAsImportant")) {
-            return i18n("Mark Article as Important");
+            return i18n("Change Important Flag");
         } else if (urlPath == QLatin1String("sendUrlArticle")) {
             return i18n("Send Url Article");
         } else if (urlPath == QLatin1String("openInExternalBrowser")) {
