@@ -23,8 +23,14 @@
 
   <div class="actiontable">
     <div class="actionrowtable">
-      <div class="theactioncell">{{ article.markAsReadAction|safe }}</div>
-      <div class="theactioncell">{{ article.markAsUnreadAction|safe }}</div>
+      {% with article.articleStatus as result %}
+          {% ifequal result article.Unread %}
+          <div class="theactioncell">{{ article.markAsReadAction|safe }}</div>
+          {% endifequal %}
+          {% ifequal result article.Read %}
+          <div class="theactioncell">{{ article.markAsUnreadAction|safe }}</div>
+          {% endifequal %}
+      {% endwith %}
       <div class="theactioncell">{{ article.markAsImportantAction|safe }}</div>
       <div class="theactioncell">{{ article.openInExternalBrowser|safe }}</div>
       <div class="theactioncell">{{ article.openInBackgroundTab|safe }}</div>
