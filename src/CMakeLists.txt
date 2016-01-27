@@ -6,7 +6,6 @@ include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/urlhandler/
     ${CMAKE_CURRENT_SOURCE_DIR}/actions/
     ${CMAKE_CURRENT_SOURCE_DIR}/frame/
-    ${CMAKE_CURRENT_SOURCE_DIR}/searchbar/
     )
 
 
