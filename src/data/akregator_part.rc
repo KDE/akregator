@@ -94,8 +94,6 @@
   <ToolBar name="browserToolBar"><text>Browser Toolbar</text>
     <Action name="browser_back"/>
     <Action name="browser_forward"/>
-    <Action name="browser_reload"/>
-    <Action name="browser_stop"/>
     <Merge/>
   </ToolBar>
 

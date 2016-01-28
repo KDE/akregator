@@ -114,8 +114,6 @@ private Q_SLOTS:
     void slotSetIconChanged(Akregator::Frame *frame, const QIcon &icon);
     void slotCanGoBackToggled(Akregator::Frame *, bool);
     void slotCanGoForwardToggled(Akregator::Frame *, bool);
-    void slotIsReloadableToggled(Akregator::Frame *, bool);
-    void slotIsLoadingToggled(Akregator::Frame *, bool);
 
 private:
 

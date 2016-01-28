@@ -160,14 +160,12 @@ void Frame::slotSetStarted()
     //connect(m_progressItem, SIGNAL(progressItemCanceled(KPIM::ProgressItem*)), SLOT(slotAbortFetch()));
     m_state = Started;
     Q_EMIT signalStarted(this);
-    Q_EMIT signalIsLoadingToggled(this, m_loading);
 }
 
 void Frame::slotStop()
 {
     if (m_loading) {
         m_loading = false;
-        Q_EMIT signalIsLoadingToggled(this, false);
     }
 }
 
@@ -181,7 +179,6 @@ void Frame::slotSetCanceled(const QString &s)
     }
     m_state = Canceled;
     Q_EMIT signalCanceled(this, s);
-    Q_EMIT signalIsLoadingToggled(this, m_loading);
 }
 
 void Frame::slotSetCompleted()
@@ -194,7 +191,6 @@ void Frame::slotSetCompleted()
     }
     m_state = Completed;
     Q_EMIT signalCompleted(this);
-    Q_EMIT signalIsLoadingToggled(this, m_loading);
 }
 
 int Frame::progress() const

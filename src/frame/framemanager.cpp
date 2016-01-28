@@ -89,10 +89,6 @@ void FrameManager::slotAddFrame(Frame *frame)
 
     connect(frame, &Frame::signalCanGoBackToggled, this, &FrameManager::slotCanGoBackToggled);
     connect(frame, &Frame::signalCanGoForwardToggled, this, &FrameManager::slotCanGoForwardToggled);
-    connect(frame, &Frame::signalIsReloadableToggled, this, &FrameManager::slotIsReloadableToggled
-           );
-
-    connect(frame, &Frame::signalIsLoadingToggled, this, &FrameManager::slotIsLoadingToggled);
 
     setPartGuiActive(frame->part(), false);
 
@@ -149,8 +145,6 @@ void FrameManager::slotChangeFrame(int frameId)
         setPartGuiActive(frame->part(), true);
         slotCanGoBackToggled(frame, frame->canGoBack());
         slotCanGoForwardToggled(frame, frame->canGoForward());
-        slotIsReloadableToggled(frame, frame->isReloadable());
-        slotIsLoadingToggled(frame, frame->isLoading());
 
         // TODO: handle removable flag
 
@@ -243,20 +237,6 @@ void FrameManager::slotCanGoForwardToggled(Frame *frame, bool enabled)
 {
     if (frame == m_currentFrame) {
         ActionManager::getInstance()->action(QStringLiteral("browser_forward"))->setEnabled(enabled);
-    }
-}
-
-void FrameManager::slotIsReloadableToggled(Frame *frame, bool enabled)
-{
-    if (frame == m_currentFrame) {
-        ActionManager::getInstance()->action(QStringLiteral("browser_reload"))->setEnabled(enabled);
-    }
-}
-
-void FrameManager::slotIsLoadingToggled(Frame *frame, bool enabled)
-{
-    if (frame == m_currentFrame) {
-        ActionManager::getInstance()->action(QStringLiteral("browser_stop"))->setEnabled(enabled);
     }
 }
 
@@ -397,4 +377,3 @@ void FrameManager::saveProperties(KConfigGroup &config)
     config.writeEntry(QStringLiteral("activeChildIndex"),
                       m_frames.key(m_currentFrame));
 }
-

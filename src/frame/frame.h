@@ -102,13 +102,6 @@ public:
     }
 
     /**
-     * returns whether the shown content can be reloaded */
-    virtual bool isReloadable() const
-    {
-        return false;
-    }
-
-    /**
      * returns whether the embedded part is loading a website. If so, it can be stopped using slotStop() */
     virtual bool isLoading() const;
 
@@ -163,8 +156,6 @@ Q_SIGNALS:
 
     void signalCanGoBackToggled(Akregator::Frame *, bool);
     void signalCanGoForwardToggled(Akregator::Frame *, bool);
-    void signalIsReloadableToggled(Akregator::Frame *, bool);
-    void signalIsLoadingToggled(Akregator::Frame *, bool);
 
 protected:
     void setRemovable(bool removable);
