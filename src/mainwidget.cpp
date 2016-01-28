@@ -1249,8 +1249,14 @@ void MainWidget::slotFocusQuickSearch()
 void MainWidget::slotArticleAction(ArticleViewerNg::ArticleAction type, const QString &articleId, const QString &feed)
 {
     switch(type) {
-    case ArticleViewerNg::DeleteAction:
+    case ArticleViewerNg::DeleteAction: {
+        Akregator::ArticleDeleteJob *job = new Akregator::ArticleDeleteJob;
+        const Akregator::ArticleId aid = { feed, articleId };
+        job->appendArticleId(aid);
+        job->start();
+
         break;
+    }
     case ArticleViewerNg::MarkAsRead:
         ::setArticleStatus(feed, articleId, Akregator::Read);
         break;
