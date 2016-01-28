@@ -1,5 +1,5 @@
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
-<kpartgui name="akregator_part" version="423" translationDomain="akregator">
+<kpartgui name="akregator_part" version="424" translationDomain="akregator">
   <MenuBar>
     <Menu name="file">
       <Action name="file_import"/>
@@ -88,12 +88,6 @@
     <Action name="feed_mark_all_as_read"/>
     <Action name="article_tagmenu"/>
     <DefineGroup name="pageviewer_operations" />
-    <Merge/>
-  </ToolBar>
-
-  <ToolBar name="browserToolBar"><text>Browser Toolbar</text>
-    <Action name="browser_back"/>
-    <Action name="browser_forward"/>
     <Merge/>
   </ToolBar>
 

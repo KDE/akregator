@@ -87,9 +87,6 @@ void FrameManager::slotAddFrame(Frame *frame)
 
     connect(frame, SIGNAL(signalOpenUrlRequest(Akregator::OpenUrlRequest&)), this, SLOT(slotOpenUrlRequest(Akregator::OpenUrlRequest&)));
 
-    connect(frame, &Frame::signalCanGoBackToggled, this, &FrameManager::slotCanGoBackToggled);
-    connect(frame, &Frame::signalCanGoForwardToggled, this, &FrameManager::slotCanGoForwardToggled);
-
     setPartGuiActive(frame->part(), false);
 
     Q_EMIT signalFrameAdded(frame);
@@ -143,8 +140,6 @@ void FrameManager::slotChangeFrame(int frameId)
 
     if (frame) {
         setPartGuiActive(frame->part(), true);
-        slotCanGoBackToggled(frame, frame->canGoBack());
-        slotCanGoForwardToggled(frame, frame->canGoForward());
 
         // TODO: handle removable flag
 
@@ -226,20 +221,6 @@ void FrameManager::slotSetTitle(Frame *frame, const QString &title)
     }
 }
 
-void FrameManager::slotCanGoBackToggled(Frame *frame, bool enabled)
-{
-    if (frame == m_currentFrame) {
-        ActionManager::getInstance()->action(QStringLiteral("browser_back"))->setEnabled(enabled);
-    }
-}
-
-void FrameManager::slotCanGoForwardToggled(Frame *frame, bool enabled)
-{
-    if (frame == m_currentFrame) {
-        ActionManager::getInstance()->action(QStringLiteral("browser_forward"))->setEnabled(enabled);
-    }
-}
-
 void FrameManager::slotSetStatusText(Frame *frame, const QString &statusText)
 {
     if (frame == m_currentFrame) {
@@ -312,48 +293,6 @@ void FrameManager::slotOpenUrlRequest(OpenUrlRequest &request, bool useOpenInBac
         }
     }
     openUrl(request);
-}
-
-void FrameManager::slotBrowserBackAboutToShow()
-{
-    if (m_currentFrame) {
-        m_currentFrame->slotHistoryBackAboutToShow();
-    }
-}
-
-void FrameManager::slotBrowserForwardAboutToShow()
-{
-    if (m_currentFrame) {
-        m_currentFrame->slotHistoryForwardAboutToShow();
-    }
-}
-
-void FrameManager::slotBrowserBack()
-{
-    if (m_currentFrame) {
-        m_currentFrame->slotHistoryBack();
-    }
-}
-
-void FrameManager::slotBrowserForward()
-{
-    if (m_currentFrame) {
-        m_currentFrame->slotHistoryForward();
-    }
-}
-
-void FrameManager::slotBrowserReload()
-{
-    if (m_currentFrame) {
-        m_currentFrame->slotReload();
-    }
-}
-
-void FrameManager::slotBrowserStop()
-{
-    if (m_currentFrame) {
-        m_currentFrame->slotStop();
-    }
 }
 
 void FrameManager::saveProperties(KConfigGroup &config)

@@ -41,7 +41,6 @@ namespace Akregator
 {
 
 class ArticleListView;
-class FrameManager;
 class MainWidget;
 class Part;
 class SubscriptionListView;
@@ -68,7 +67,6 @@ public:
     void initArticleListView(ArticleListView *articleList);
     void initSubscriptionListView(SubscriptionListView *subscriptionListView);
     void initTabWidget(TabWidget *tabWidget);
-    void initFrameManager(FrameManager *frameManager);
 
     void setArticleActionsEnabled(bool enabled) Q_DECL_OVERRIDE;
     void setTrayIcon(TrayIcon *trayIcon);

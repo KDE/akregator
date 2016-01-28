@@ -67,13 +67,6 @@ public Q_SLOTS:
     void slotChangeFrame(int frameId);
     void slotOpenUrlRequest(Akregator::OpenUrlRequest &request, bool useOpenInBackgroundSetting = true);
 
-    void slotBrowserBack();
-    void slotBrowserForward();
-    void slotBrowserReload();
-    void slotBrowserStop();
-    void slotBrowserBackAboutToShow();
-    void slotBrowserForwardAboutToShow();
-
 Q_SIGNALS:
 
     void signalFrameAdded(Akregator::Frame *);
@@ -112,9 +105,6 @@ private Q_SLOTS:
     void slotSetTitle(Akregator::Frame *frame, const QString &title);
     void slotSetStatusText(Akregator::Frame *frame, const QString &statusText);
     void slotSetIconChanged(Akregator::Frame *frame, const QIcon &icon);
-    void slotCanGoBackToggled(Akregator::Frame *, bool);
-    void slotCanGoForwardToggled(Akregator::Frame *, bool);
-
 private:
 
     QWidget *m_mainWin;

@@ -154,9 +154,6 @@ Q_SIGNALS:
     void signalOpenUrlRequest(Akregator::OpenUrlRequest &request);
     void showStatusBarMessage(const QString &msg);
 
-    void signalCanGoBackToggled(Akregator::Frame *, bool);
-    void signalCanGoForwardToggled(Akregator::Frame *, bool);
-
 protected:
     void setRemovable(bool removable);
 

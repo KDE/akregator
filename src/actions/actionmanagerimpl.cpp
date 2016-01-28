@@ -29,7 +29,6 @@
 #include "feed.h"
 #include "fetchqueue.h"
 #include "folder.h"
-#include "framemanager.h"
 #include "kernel.h"
 #include "mainwidget.h"
 #include "subscriptionlistview.h"
@@ -122,7 +121,6 @@ public:
     KActionMenu *tagMenu;
     KActionCollection *actionCollection;
     TabWidget *tabWidget;
-    FrameManager *frameManager;
     PimCommon::ShareServiceUrlManager *shareServiceManager;
     MessageViewer::ZoomActionMenu *zoomActionMenu;
     QAction *mQuickSearchAction;
@@ -146,7 +144,6 @@ ActionManagerImpl::ActionManagerImpl(Part *part, QObject *parent)
     d->mainWidget = 0;
     d->tabWidget = 0;
     d->tagMenu = 0;
-    d->frameManager = 0;
     d->actionCollection = part->actionCollection();
     d->shareServiceManager = new PimCommon::ShareServiceUrlManager(this);
     initPart();
@@ -623,41 +620,6 @@ void ActionManagerImpl::initTabWidget(TabWidget *tabWidget)
     coll->addAction(QStringLiteral("adblock_image"), action);
     coll->setShortcutsConfigurable(action, false);
     connect(action, &QAction::triggered, d->tabWidget, &TabWidget::slotBlockImage);
-}
-
-void ActionManagerImpl::initFrameManager(FrameManager *frameManager)
-{
-    if (d->frameManager) {
-        return;
-    }
-
-    d->frameManager = frameManager;
-
-    bool isRTL = QApplication::isRightToLeft();
-
-    KToolBarPopupAction *forward = new KToolBarPopupAction(QIcon::fromTheme(isRTL ? QStringLiteral("go-previous") : QStringLiteral("go-next")), i18nc("Go forward in browser history", "Forward"), this);
-    d->actionCollection->addAction(QStringLiteral("browser_forward"), forward);
-    d->actionCollection->setDefaultShortcut(forward, QKeySequence(isRTL ? QStringLiteral("Alt+Left") : QStringLiteral("Alt+Right")));
-    connect(forward, &KToolBarPopupAction::triggered, frameManager, &FrameManager::slotBrowserForward);
-
-    connect(forward->menu(), &QMenu::aboutToShow, frameManager, &FrameManager::slotBrowserForwardAboutToShow);
-
-    KToolBarPopupAction *back = new KToolBarPopupAction(QIcon::fromTheme(isRTL ? QStringLiteral("go-next") : QStringLiteral("go-previous")), i18nc("Go back in browser history", "Back"), this);
-    d->actionCollection->addAction(QStringLiteral("browser_back"), back);
-    d->actionCollection->setDefaultShortcut(back, QKeySequence(isRTL ?  QStringLiteral("Alt+Right") : QStringLiteral("Alt+Left")));
-    connect(back, &KToolBarPopupAction::triggered, frameManager, &FrameManager::slotBrowserBack);
-
-    connect(back->menu(), &QMenu::aboutToShow, frameManager, &FrameManager::slotBrowserBackAboutToShow);
-
-    QAction *action = d->actionCollection->addAction(QStringLiteral("browser_reload"));
-    action->setIcon(QIcon::fromTheme(QStringLiteral("view-refresh")));
-    action->setText(i18nc("Reload current page", "Reload"));
-    connect(action, &QAction::triggered, frameManager, &FrameManager::slotBrowserReload);
-
-    action = d->actionCollection->addAction(QStringLiteral("browser_stop"));
-    action->setIcon(QIcon::fromTheme(QStringLiteral("process-stop")));
-    action->setText(i18n("Stop"));
-    connect(action, &QAction::triggered, frameManager, &FrameManager::slotBrowserStop);
 }
 
 QWidget *ActionManagerImpl::container(const QString &name)

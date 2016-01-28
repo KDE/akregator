@@ -113,7 +113,6 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
     FeedListManagementInterface::setInstance(m_feedListManagementInterface);
 
     m_actionManager->initMainWidget(this);
-    m_actionManager->initFrameManager(Kernel::self()->frameManager());
     m_part = part;
     m_shuttingDown = false;
     m_displayingAboutPage = false;
