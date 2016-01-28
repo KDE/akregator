@@ -247,7 +247,7 @@ protected Q_SLOTS:
 
 private Q_SLOTS:
     void slotShowStatusBarMessage(const QString &msg);
-    void slotCurrentFrameChanged(int frameId);    
+    void slotCurrentFrameChanged(int frameId);
     void slotArticleAction(ArticleViewerNg::ArticleAction type, const QString &articleId, const QString &feed);
 private:
     void deleteExpiredArticles(const QSharedPointer<FeedList> &feedList);

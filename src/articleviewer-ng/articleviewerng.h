@@ -108,7 +108,7 @@ protected:
     QWebHitTestResult mContextMenuHitResult;
     KActionCollection *mActionCollection;
     PimCommon::ShareServiceUrlManager *mShareServiceManager;
-    KIO::KUriFilterSearchProviderActions *mWebShortcutMenuManager;    
+    KIO::KUriFilterSearchProviderActions *mWebShortcutMenuManager;
     bool adblockEnabled() const;
 
 private:

@@ -260,8 +260,6 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
     connect(m_tabWidget, &TabWidget::signalSaveImageOnDisk, m_mainFrame, &MainFrame::slotSaveImageOnDiskInFrame);
     connect(m_tabWidget, &TabWidget::signalBlockImage, m_mainFrame, &MainFrame::slotBlockImageInFrame);
 
-
-
     Kernel::self()->frameManager()->slotAddFrame(m_mainFrame);
 
     const QList<int> sp1sizes = Settings::splitter1Sizes();
@@ -370,7 +368,6 @@ void MainWidget::connectFrame(WebViewFrame *frame)
     connect(m_tabWidget, &TabWidget::signalCopyImageLocation, frame, &WebViewFrame::slotCopyImageLocationInFrame);
     connect(m_tabWidget, &TabWidget::signalSaveImageOnDisk, frame, &WebViewFrame::slotSaveImageOnDiskInFrame);
     connect(m_tabWidget, &TabWidget::signalBlockImage, frame, &WebViewFrame::slotBlockImageInFrame);
-
 
     connect(frame, &WebViewFrame::showStatusBarMessage, this, &MainWidget::slotShowStatusBarMessage);
 }
@@ -1248,7 +1245,7 @@ void MainWidget::slotFocusQuickSearch()
 
 void MainWidget::slotArticleAction(ArticleViewerNg::ArticleAction type, const QString &articleId, const QString &feed)
 {
-    switch(type) {
+    switch (type) {
     case ArticleViewerNg::DeleteAction: {
         Akregator::ArticleDeleteJob *job = new Akregator::ArticleDeleteJob;
         const Akregator::ArticleId aid = { feed, articleId };
