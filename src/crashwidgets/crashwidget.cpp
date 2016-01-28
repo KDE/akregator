@@ -18,6 +18,8 @@
 #include "crashwidget.h"
 #include <QVBoxLayout>
 #include <KLocalizedString>
+#include <QPushButton>
+#include <QLabel>
 
 using namespace Akregator;
 
