@@ -127,6 +127,10 @@ install(TARGETS akregatorprivate ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} LIBRARY NAM
 
 ########### next target ###############
 
+set(akregator_crashwidget_SRCS
+   crashwidgets/crashwidget.cpp
+   )
+
 set(akregator_utils_SRCS
     utils/filtercolumnsproxymodel.cpp
     )
@@ -153,6 +157,7 @@ set(akregatorpart_subscription_SRCS
     )
 
 set(akregatorpart_PART_SRCS
+    ${akregator_crashwidget_SRCS}
     ${akregatorpart_subscription_SRCS}
     ${akregatorpart_widgets_SRCS}
     ${akregatorpart_command_SRCS}
