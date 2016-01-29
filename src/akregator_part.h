@@ -207,11 +207,6 @@ private: // methods
     void saveCrashProperties();
 
     /**
-     * Tries to restore the session, if akregator crashed.
-     */
-    bool readCrashProperties();
-
-    /**
      * Clears the crash data.
      */
     void clearCrashProperties();

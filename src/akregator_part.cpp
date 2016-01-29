@@ -826,38 +826,6 @@ void Part::saveCrashProperties()
     saveProperties(configGroup);
 }
 
-bool Part::readCrashProperties()
-{
-    KConfig config(QStringLiteral("crashed"), KConfig::SimpleConfig,
-                   QStandardPaths::AppDataLocation);
-    KConfigGroup configGroup(&config, "Part");
-
-    if (!configGroup.readEntry("crashed", false)) {
-        return false;
-    }
-
-    const int choice = KMessageBox::questionYesNoCancel(m_mainWidget,
-                       i18n("Akregator did not close correctly. Would you like to restore the previous session?"),
-                       i18n("Restore Session?"),
-                       KGuiItem(i18n("Restore Session"), QStringLiteral("window-new")),
-                       KGuiItem(i18n("Do Not Restore"), QStringLiteral("dialog-close")),
-                       KGuiItem(i18n("Ask Me Later"), QStringLiteral("chronometer")),
-                       QStringLiteral("Restore session when akregator didn't close correctly"));
-    switch (choice) {
-    case KMessageBox::Yes:
-        readProperties(configGroup);
-        clearCrashProperties();
-        return true;
-    case KMessageBox::No:
-        clearCrashProperties();
-        return false;
-    default:
-        break;
-    }
-    m_doCrashSave = false;
-    return false;
-}
-
 void Part::slotAutoSave()
 {
     saveCrashProperties();
