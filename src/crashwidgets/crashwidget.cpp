@@ -35,17 +35,17 @@ CrashWidget::CrashWidget(QWidget *parent)
     QHBoxLayout *buttonLayout = new QHBoxLayout;
     vbox->addLayout(buttonLayout);
 
-    QPushButton *restoreSessionButton = new QPushButton(i18n("Restore Session"), this);
+    QPushButton *restoreSessionButton = new QPushButton(QIcon::fromTheme(QStringLiteral("window-new")), i18n("Restore Session"), this);
     restoreSessionButton->setObjectName(QStringLiteral("restoresessionbutton"));
     buttonLayout->addWidget(restoreSessionButton);
     connect(restoreSessionButton, &QPushButton::clicked, this, &CrashWidget::slotRestoreSession);
 
-    QPushButton *dontRestoreSessionButton = new QPushButton(i18n("Do Not Restore Session"), this);
+    QPushButton *dontRestoreSessionButton = new QPushButton(QIcon::fromTheme(QStringLiteral("dialog-close")),i18n("Do Not Restore Session"), this);
     dontRestoreSessionButton->setObjectName(QStringLiteral("dontrestoresessionbutton"));
     buttonLayout->addWidget(dontRestoreSessionButton);
     connect(dontRestoreSessionButton, &QPushButton::clicked, this, &CrashWidget::slotDontRestoreSession);
 
-    QPushButton *askMeLaterButton = new QPushButton(i18n("Ask me later"), this);
+    QPushButton *askMeLaterButton = new QPushButton(QIcon::fromTheme(QStringLiteral("chronometer")), i18n("Ask me later"), this);
     askMeLaterButton->setObjectName(QStringLiteral("askmelaterbutton"));
     buttonLayout->addWidget(askMeLaterButton);
     connect(askMeLaterButton, &QPushButton::clicked, this, &CrashWidget::slotAskMeLater);
