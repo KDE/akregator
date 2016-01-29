@@ -44,6 +44,7 @@
 #include "storagefactory.h"
 #include "storagefactoryregistry.h"
 #include "trayicon.h"
+#include "widgets/akregatorcentralwidget.h"
 #include "dummystorage/storagefactorydummyimpl.h"
 #include "utils.h"
 #include "akregator_options.h"
@@ -253,7 +254,10 @@ Part::Part(QWidget *parentWidget, QObject *parent, const QVariantList &)
     m_actionManager = new ActionManagerImpl(this);
     ActionManager::setInstance(m_actionManager);
 
+    mCentralWidget = new Akregator::AkregatorCentralWidget(parentWidget);
+    connect(mCentralWidget, &AkregatorCentralWidget::restoreSession, this, &Part::slotRestoreSession);
     m_mainWidget = new Akregator::MainWidget(this, parentWidget, m_actionManager, "akregator_view");
+    mCentralWidget->setMainWidget(m_mainWidget);
     m_extension = new BrowserExtension(this, "ak_extension");
 
     connect(Kernel::self()->frameManager(), &FrameManager::signalCaptionChanged, this, &Part::setWindowCaption);
@@ -264,7 +268,7 @@ Part::Part(QWidget *parentWidget, QObject *parent, const QVariantList &)
     connect(Kernel::self()->frameManager(), SIGNAL(signalCompleted()), this, SIGNAL(completed()));
 
     // notify the part that this is our internal widget
-    setWidget(m_mainWidget);
+    setWidget(mCentralWidget);
 
     if (Settings::showTrayIcon() && !TrayIcon::getInstance()) {
         TrayIcon *trayIcon = new TrayIcon(m_mainWidget->window());
@@ -299,7 +303,9 @@ Part::Part(QWidget *parentWidget, QObject *parent, const QVariantList &)
 
     loadPlugins(QStringLiteral("extension"));   // FIXME: also unload them!
     //Laurent when we call kmessagebox it breaks akregator and recreate new kpart I don't know why => disable it
-    if (/*!readCrashProperties()*/1) {
+    if (mCentralWidget->previousSessionCrashed()) {
+        mCentralWidget->needToRestoreCrashedSession();
+    } else {
         autoReadProperties();
     }
 }
@@ -878,6 +884,27 @@ void Part::autoReadProperties()
 
     readProperties(configGroup);
 }
+
+void Part::slotRestoreSession(Akregator::CrashWidget::CrashAction type)
+{
+    switch(type) {
+    case Akregator::CrashWidget::RestoreSession: {
+        KConfig config(QStringLiteral("crashed"), KConfig::SimpleConfig,
+                       QStandardPaths::AppDataLocation);
+        KConfigGroup configGroup(&config, "Part");
+        readProperties(configGroup);
+        clearCrashProperties();
+        break;
+    }
+    case Akregator::CrashWidget::NotRestoreSession:
+        clearCrashProperties();
+        break;
+    case Akregator::CrashWidget::AskMeLater:
+        break;
+    }
+    m_doCrashSave = false;
+}
+
 
 } // namespace Akregator
 #include "akregator_part.moc"

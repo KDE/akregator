@@ -19,9 +19,10 @@
 #define AKREGATORCENTRALWIDGET_H
 
 #include <QStackedWidget>
+#include "crashwidgets/crashwidget.h"
 namespace Akregator
 {
-class CrashWidget;
+class MainWidget;
 class AkregatorCentralWidget : public QStackedWidget
 {
     Q_OBJECT
@@ -29,10 +30,20 @@ public:
     explicit AkregatorCentralWidget(QWidget *parent = Q_NULLPTR);
     ~AkregatorCentralWidget();
 
-    void checkCrashedSession();
+    void needToRestoreCrashedSession();
+
+    void setMainWidget(Akregator::MainWidget *mainWidget);
+    bool previousSessionCrashed() const;
+
+Q_SIGNALS:
+    void restoreSession(Akregator::CrashWidget::CrashAction type);
+
+private Q_SLOTS:
+    void slotRestoreSession(Akregator::CrashWidget::CrashAction type);
 
 private:
     Akregator::CrashWidget *mCrashWidget;
+    Akregator::MainWidget *mMainWidget;
 };
 }
 #endif // AKREGATORCENTRALWIDGET_H

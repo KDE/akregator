@@ -30,7 +30,7 @@ CrashWidget::CrashWidget(QWidget *parent)
 
     QLabel *label = new QLabel(i18n("Akregator did not close correctly. Would you like to restore the previous session?"), this);
     label->setObjectName(QStringLiteral("restoresessionlabel"));
-    vbox->addWidget(label);
+    vbox->addWidget(label, Qt::AlignVCenter);
 
     QHBoxLayout *buttonLayout = new QHBoxLayout;
     vbox->addLayout(buttonLayout);

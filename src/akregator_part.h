@@ -35,6 +35,7 @@
 #include <kparts/part.h>
 
 #include <kparts/readonlypart.h>
+#include "crashwidgets/crashwidget.h"
 
 class KConfigGroup;
 class KCMultiDialog;
@@ -57,6 +58,7 @@ class LoadFeedListCommand;
 class MainWidget;
 class Part;
 class TrayIcon;
+class AkregatorCentralWidget;
 
 class BrowserExtension : public KParts::BrowserExtension
 {
@@ -179,6 +181,7 @@ private Q_SLOTS:
 
     void flushAddFeedRequests();
 
+    void slotRestoreSession(Akregator::CrashWidget::CrashAction type);
 private: // methods
 
     /** fills the font settings with system fonts, if fonts are not set */
@@ -227,6 +230,7 @@ private: // attributes
     QTimer *m_autosaveTimer;
     /** did we backup the feed list already? */
     bool m_backedUpList;
+    Akregator::AkregatorCentralWidget *mCentralWidget;
     QPointer<MainWidget>m_mainWidget;
     Backend::Storage *m_storage;
     ActionManagerImpl *m_actionManager;

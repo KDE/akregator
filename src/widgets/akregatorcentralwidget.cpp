@@ -16,16 +16,22 @@
 */
 
 #include "akregatorcentralwidget.h"
-#include "crashwidgets/crashwidget.h"
+#include "mainwidget.h"
+
+#include <KConfig>
+#include <KConfigGroup>
+
+#include <QStandardPaths>
 
 using namespace Akregator;
 
 AkregatorCentralWidget::AkregatorCentralWidget(QWidget *parent)
-    : QStackedWidget(parent)
+    : QStackedWidget(parent),
+      mMainWidget(Q_NULLPTR)
 {
     mCrashWidget = new CrashWidget(this);
+    connect(mCrashWidget, &CrashWidget::restoreSession, this, &AkregatorCentralWidget::slotRestoreSession);
     addWidget(mCrashWidget);
-    //TODO add central widget
 }
 
 Akregator::AkregatorCentralWidget::~AkregatorCentralWidget()
@@ -33,7 +39,34 @@ Akregator::AkregatorCentralWidget::~AkregatorCentralWidget()
 
 }
 
-void AkregatorCentralWidget::checkCrashedSession()
+bool AkregatorCentralWidget::previousSessionCrashed() const
 {
+    KConfig config(QStringLiteral("crashed"), KConfig::SimpleConfig,
+                   QStandardPaths::AppDataLocation);
+    KConfigGroup configGroup(&config, "Part");
 
+    if (!configGroup.readEntry("crashed", false)) {
+        return false;
+    }
+    return true;
+}
+
+void AkregatorCentralWidget::needToRestoreCrashedSession()
+{
+    setCurrentWidget(mCrashWidget);
+}
+
+void AkregatorCentralWidget::slotRestoreSession(Akregator::CrashWidget::CrashAction type)
+{
+    setCurrentWidget(mMainWidget);
+    Q_EMIT restoreSession(type);
+}
+
+void AkregatorCentralWidget::setMainWidget(Akregator::MainWidget *mainWidget)
+{
+    if (!mMainWidget) {
+        mMainWidget = mainWidget;
+        addWidget(mMainWidget);
+        setCurrentWidget(mMainWidget);
+    }
 }
