@@ -15,33 +15,17 @@
   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef CRASHWIDGET_H
-#define CRASHWIDGET_H
+#include "akregatorcentralwidget.h"
 
-#include <QWidget>
-namespace Akregator
+using namespace Akregator;
+
+AkregatorCentralWidget::AkregatorCentralWidget(QWidget *parent)
+    : QStackedWidget(parent)
 {
-class CrashWidget : public QWidget
-{
-    Q_OBJECT
-public:
-    enum CrashAction {
-        RestoreSession = 0,
-        NotRestoreSession,
-        AskMeLater
-    };
 
-    explicit CrashWidget(QWidget *parent = Q_NULLPTR);
-    ~CrashWidget();
-
-Q_SIGNALS:
-    void restoreSession(Akregator::CrashWidget::CrashAction type);
-
-private Q_SLOTS:
-    void slotDontRestoreSession();
-    void slotRestoreSession();
-    void slotAskMeLater();
-};
 }
 
-#endif
+Akregator::AkregatorCentralWidget::~AkregatorCentralWidget()
+{
+
+}

@@ -148,6 +148,7 @@ set(akregatorpart_command_SRCS
 set(akregatorpart_widgets_SRCS
     widgets/statussearchline.cpp
     widgets/searchbar.cpp
+    widgets/akregatorcentralwidget.cpp
    )
 
 set(akregatorpart_subscription_SRCS

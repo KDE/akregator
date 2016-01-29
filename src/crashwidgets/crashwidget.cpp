@@ -38,15 +38,17 @@ CrashWidget::CrashWidget(QWidget *parent)
     QPushButton *restoreSessionButton = new QPushButton(i18n("Restore Session"), this);
     restoreSessionButton->setObjectName(QStringLiteral("restoresessionbutton"));
     buttonLayout->addWidget(restoreSessionButton);
+    connect(restoreSessionButton, &QPushButton::clicked, this, &CrashWidget::slotRestoreSession);
 
     QPushButton *dontRestoreSessionButton = new QPushButton(i18n("Do Not Restore Session"), this);
     dontRestoreSessionButton->setObjectName(QStringLiteral("dontrestoresessionbutton"));
     buttonLayout->addWidget(dontRestoreSessionButton);
+    connect(dontRestoreSessionButton, &QPushButton::clicked, this, &CrashWidget::slotDontRestoreSession);
 
     QPushButton *askMeLaterButton = new QPushButton(i18n("Ask me later"), this);
     askMeLaterButton->setObjectName(QStringLiteral("askmelaterbutton"));
     buttonLayout->addWidget(askMeLaterButton);
-
+    connect(askMeLaterButton, &QPushButton::clicked, this, &CrashWidget::slotAskMeLater);
 
     setLayout(vbox);
 }
@@ -54,4 +56,19 @@ CrashWidget::CrashWidget(QWidget *parent)
 CrashWidget::~CrashWidget()
 {
 
+}
+
+void CrashWidget::slotRestoreSession()
+{
+    Q_EMIT restoreSession(RestoreSession);
+}
+
+void CrashWidget::slotDontRestoreSession()
+{
+    Q_EMIT restoreSession(RestoreSession);
+}
+
+void CrashWidget::slotAskMeLater()
+{
+    Q_EMIT restoreSession(AskMeLater);
 }
