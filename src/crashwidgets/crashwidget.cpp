@@ -35,6 +35,19 @@ CrashWidget::CrashWidget(QWidget *parent)
     QHBoxLayout *buttonLayout = new QHBoxLayout;
     vbox->addLayout(buttonLayout);
 
+    QPushButton *restoreSessionButton = new QPushButton(i18n("Restore Session"), this);
+    restoreSessionButton->setObjectName(QStringLiteral("restoresessionbutton"));
+    buttonLayout->addWidget(restoreSessionButton);
+
+    QPushButton *dontRestoreSessionButton = new QPushButton(i18n("Do Not Restore Session"), this);
+    dontRestoreSessionButton->setObjectName(QStringLiteral("dontrestoresessionbutton"));
+    buttonLayout->addWidget(dontRestoreSessionButton);
+
+    QPushButton *askMeLaterButton = new QPushButton(i18n("Ask me later"), this);
+    askMeLaterButton->setObjectName(QStringLiteral("askmelaterbutton"));
+    buttonLayout->addWidget(askMeLaterButton);
+
+
     setLayout(vbox);
 }
 
