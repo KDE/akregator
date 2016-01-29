@@ -16,16 +16,24 @@
 */
 
 #include "akregatorcentralwidget.h"
+#include "crashwidgets/crashwidget.h"
 
 using namespace Akregator;
 
 AkregatorCentralWidget::AkregatorCentralWidget(QWidget *parent)
     : QStackedWidget(parent)
 {
-
+    mCrashWidget = new CrashWidget(this);
+    addWidget(mCrashWidget);
+    //TODO add central widget
 }
 
 Akregator::AkregatorCentralWidget::~AkregatorCentralWidget()
+{
+
+}
+
+void AkregatorCentralWidget::checkCrashedSession()
 {
 
 }

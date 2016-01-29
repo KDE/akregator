@@ -21,12 +21,18 @@
 #include <QStackedWidget>
 namespace Akregator
 {
+class CrashWidget;
 class AkregatorCentralWidget : public QStackedWidget
 {
     Q_OBJECT
 public:
     explicit AkregatorCentralWidget(QWidget *parent = Q_NULLPTR);
     ~AkregatorCentralWidget();
+
+    void checkCrashedSession();
+
+private:
+    Akregator::CrashWidget *mCrashWidget;
 };
 }
 #endif // AKREGATORCENTRALWIDGET_H
