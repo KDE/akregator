@@ -28,19 +28,31 @@ CrashWidget::CrashWidget(QWidget *parent)
 {
     QVBoxLayout *vbox = new QVBoxLayout;
 
+    QHBoxLayout *labelLayout = new QHBoxLayout;
     QLabel *label = new QLabel(i18n("Akregator did not close correctly. Would you like to restore the previous session?"), this);
     label->setObjectName(QStringLiteral("restoresessionlabel"));
-    vbox->addWidget(label, Qt::AlignVCenter);
+    label->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+    QFont font = label->font();
+    font.setBold(true);
+    font.setPixelSize(20);
+    label->setFont(font);
+    vbox->addLayout(labelLayout);
+    labelLayout->addStretch(0);
+    labelLayout->addWidget(label);
+    labelLayout->addStretch(0);
 
     QHBoxLayout *buttonLayout = new QHBoxLayout;
     vbox->addLayout(buttonLayout);
+    buttonLayout->addStretch(0);
 
     QPushButton *restoreSessionButton = new QPushButton(QIcon::fromTheme(QStringLiteral("window-new")), i18n("Restore Session"), this);
     restoreSessionButton->setObjectName(QStringLiteral("restoresessionbutton"));
+    restoreSessionButton->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     buttonLayout->addWidget(restoreSessionButton);
     connect(restoreSessionButton, &QPushButton::clicked, this, &CrashWidget::slotRestoreSession);
 
     QPushButton *dontRestoreSessionButton = new QPushButton(QIcon::fromTheme(QStringLiteral("dialog-close")),i18n("Do Not Restore Session"), this);
+    dontRestoreSessionButton->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     dontRestoreSessionButton->setObjectName(QStringLiteral("dontrestoresessionbutton"));
     buttonLayout->addWidget(dontRestoreSessionButton);
     connect(dontRestoreSessionButton, &QPushButton::clicked, this, &CrashWidget::slotDontRestoreSession);
@@ -49,7 +61,8 @@ CrashWidget::CrashWidget(QWidget *parent)
     askMeLaterButton->setObjectName(QStringLiteral("askmelaterbutton"));
     buttonLayout->addWidget(askMeLaterButton);
     connect(askMeLaterButton, &QPushButton::clicked, this, &CrashWidget::slotAskMeLater);
-
+    askMeLaterButton->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+    buttonLayout->addStretch(0);
     setLayout(vbox);
 }
 
