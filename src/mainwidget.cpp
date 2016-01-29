@@ -402,7 +402,11 @@ void MainWidget::sendArticle(bool attach)
     if (text.isEmpty()) {
         return;
     }
+    sendArticle(text, title, attach);
+}
 
+void MainWidget::sendArticle(const QByteArray &text, const QString &title, bool attach)
+{
     QUrlQuery query;
     query.addQueryItem(QStringLiteral("subject"), title);
     query.addQueryItem(QStringLiteral("body"), QString::fromUtf8(text));
@@ -1250,7 +1254,6 @@ void MainWidget::slotArticleAction(ArticleViewerNg::ArticleAction type, const QS
         const Akregator::ArticleId aid = { feed, articleId };
         job->appendArticleId(aid);
         job->start();
-
         break;
     }
     case ArticleViewerNg::MarkAsRead:
@@ -1267,8 +1270,26 @@ void MainWidget::slotArticleAction(ArticleViewerNg::ArticleAction type, const QS
         job->start();
         break;
     }
-    case ArticleViewerNg::SendUrlArticle:
+    case ArticleViewerNg::SendFileArticle: {
+        const Article article =  m_feedList->findArticle(feed, articleId);
+        const QByteArray text = article.link().toDisplayString().toLatin1();
+        const QString title = Akregator::Utils::convertHtmlTags(article.title());
+        if (text.isEmpty()) {
+            return;
+        }
+        sendArticle(text, title, true);
         break;
+    }
+    case ArticleViewerNg::SendUrlArticle: {
+        const Article article =  m_feedList->findArticle(feed, articleId);
+        const QByteArray text = article.link().toDisplayString().toLatin1();
+        const QString title = Akregator::Utils::convertHtmlTags(article.title());
+        if (text.isEmpty()) {
+            return;
+        }
+        sendArticle(text, title, false);
+        break;
+    }
     case ArticleViewerNg::OpenInBackgroundTab: {
         const Akregator::Article article = m_feedList->findArticle(feed, articleId);
         const QUrl url = article.link();

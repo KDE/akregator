@@ -184,7 +184,15 @@ QString ArticleGrantleeObject::sendUrlAction() const
 {
     const QString iconPath = MessageViewer::IconNameCache::instance()->iconPath(QStringLiteral("mail-message-new"), KIconLoader::Small);
     const QString text = QStringLiteral("<a href=\"%1\"><img class=\"headimage\" title=\"%3\" src=\"file:///%2\"></a>\n")
-                         .arg(createActionUrl(QStringLiteral("sendUrlArticle")), iconPath, i18n("Mark as New"));
+                         .arg(createActionUrl(QStringLiteral("sendUrlArticle")), iconPath, i18n("Send Link Address"));
+    return text;
+}
+
+QString ArticleGrantleeObject::sendFileAction() const
+{
+    const QString iconPath = MessageViewer::IconNameCache::instance()->iconPath(QStringLiteral("mail-message-new"), KIconLoader::Small);
+    const QString text = QStringLiteral("<a href=\"%1\"><img class=\"headimage\" title=\"%3\" src=\"file:///%2\"></a>\n")
+                         .arg(createActionUrl(QStringLiteral("sendFileArticle")), iconPath, i18n("Send File Address"));
     return text;
 }
 

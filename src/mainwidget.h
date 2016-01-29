@@ -250,6 +250,7 @@ private Q_SLOTS:
     void slotCurrentFrameChanged(int frameId);
     void slotArticleAction(ArticleViewerNg::ArticleAction type, const QString &articleId, const QString &feed);
 private:
+    void sendArticle(const QByteArray &text, const QString &title, bool attach);
     void deleteExpiredArticles(const QSharedPointer<FeedList> &feedList);
     void connectFrame(Akregator::WebViewFrame *frame);
 

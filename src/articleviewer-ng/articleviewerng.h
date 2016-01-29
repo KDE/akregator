@@ -48,6 +48,7 @@ public:
         MarkAsUnRead,
         MarkAsImportant,
         SendUrlArticle,
+        SendFileArticle,
         OpenInExternalBrowser,
         Share,
         OpenInBackgroundTab

@@ -40,6 +40,7 @@ class ArticleGrantleeObject : public QObject
     Q_PROPERTY(QString markAsUnreadAction READ markAsUnreadAction)
     Q_PROPERTY(QString markAsImportantAction READ markAsImportantAction)
     Q_PROPERTY(QString sendUrlAction READ sendUrlAction)
+    Q_PROPERTY(QString sendFileAction READ sendFileAction)
     Q_PROPERTY(QString openInExternalBrowser READ openInExternalBrowser)
     Q_PROPERTY(QString openInBackgroundTab READ openInBackgroundTab)
     Q_PROPERTY(QString share READ share)
@@ -76,6 +77,7 @@ public:
     QString markAsUnreadAction() const;
     QString markAsImportantAction() const;
     QString sendUrlAction() const;
+    QString sendFileAction() const;
     QString openInExternalBrowser() const;
     QString share() const;
 
