@@ -81,6 +81,9 @@ void StatusSearchLine::showMenu()
         act->setData(QVariant::fromValue(status));
         grp->addAction(act);
         p.addAction(act);
+        if (i == AllArticles) {
+            p.addSeparator();
+        }
     }
     QAction *a = p.exec(mapToGlobal(QPoint(0, height())));
     if (a) {
