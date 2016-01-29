@@ -25,8 +25,17 @@ class CrashWidget : public QWidget
 {
     Q_OBJECT
 public:
+    enum CrashAction {
+        RestoreSession = 0,
+        NotRestoreSession,
+        AskMeLater
+    };
+
     explicit CrashWidget(QWidget *parent = Q_NULLPTR);
     ~CrashWidget();
+
+Q_SIGNALS:
+    void restoreSession(Akregator::CrashWidget::CrashAction type);
 };
 }
 

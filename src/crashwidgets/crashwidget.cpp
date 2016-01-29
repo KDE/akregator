@@ -26,7 +26,16 @@ using namespace Akregator;
 CrashWidget::CrashWidget(QWidget *parent)
     : QWidget(parent)
 {
+    QVBoxLayout *vbox = new QVBoxLayout;
 
+    QLabel *label = new QLabel(i18n("Akregator did not close correctly. Would you like to restore the previous session?"), this);
+    label->setObjectName(QStringLiteral("restoresessionlabel"));
+    vbox->addWidget(label);
+
+    QHBoxLayout *buttonLayout = new QHBoxLayout;
+    vbox->addLayout(buttonLayout);
+
+    setLayout(vbox);
 }
 
 CrashWidget::~CrashWidget()
