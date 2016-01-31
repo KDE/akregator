@@ -128,7 +128,7 @@ install(TARGETS akregatorprivate ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} LIBRARY NAM
 ########### next target ###############
 
 set(akregator_crashwidget_SRCS
-   crashwidgets/crashwidget.cpp
+   crashwidget/crashwidget.cpp
    )
 
 set(akregator_utils_SRCS
@@ -221,3 +221,4 @@ install(FILES org.kde.akregator.part.xml DESTINATION ${KDE_INSTALL_DBUSINTERFACE
 install(FILES data/akregator.notifyrc DESTINATION ${KDE_INSTALL_KNOTIFY5RCDIR} )
 
 add_subdirectory(formatter/html)
+#add_subdirectory(crashwidget/autotests)

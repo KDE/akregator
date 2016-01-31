@@ -35,7 +35,7 @@
 #include <kparts/part.h>
 
 #include <kparts/readonlypart.h>
-#include "crashwidgets/crashwidget.h"
+#include "crashwidget/crashwidget.h"
 
 class KConfigGroup;
 class KCMultiDialog;

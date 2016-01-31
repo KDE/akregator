@@ -19,7 +19,7 @@
 #define AKREGATORCENTRALWIDGET_H
 
 #include <QStackedWidget>
-#include "crashwidgets/crashwidget.h"
+#include "crashwidget/crashwidget.h"
 namespace Akregator
 {
 class MainWidget;
