@@ -51,7 +51,7 @@ CrashWidget::CrashWidget(QWidget *parent)
     buttonLayout->addWidget(restoreSessionButton);
     connect(restoreSessionButton, &QPushButton::clicked, this, &CrashWidget::slotRestoreSession);
 
-    QPushButton *dontRestoreSessionButton = new QPushButton(QIcon::fromTheme(QStringLiteral("dialog-close")),i18n("Do Not Restore Session"), this);
+    QPushButton *dontRestoreSessionButton = new QPushButton(QIcon::fromTheme(QStringLiteral("dialog-close")), i18n("Do Not Restore Session"), this);
     dontRestoreSessionButton->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     dontRestoreSessionButton->setObjectName(QStringLiteral("dontrestoresessionbutton"));
     buttonLayout->addWidget(dontRestoreSessionButton);

@@ -855,7 +855,7 @@ void Part::autoReadProperties()
 
 void Part::slotRestoreSession(Akregator::CrashWidget::CrashAction type)
 {
-    switch(type) {
+    switch (type) {
     case Akregator::CrashWidget::RestoreSession: {
         KConfig config(QStringLiteral("crashed"), KConfig::SimpleConfig,
                        QStandardPaths::AppDataLocation);
@@ -872,7 +872,6 @@ void Part::slotRestoreSession(Akregator::CrashWidget::CrashAction type)
     }
     m_doCrashSave = false;
 }
-
 
 } // namespace Akregator
 #include "akregator_part.moc"
