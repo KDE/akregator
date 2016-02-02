@@ -401,8 +401,7 @@ void ActionManagerImpl::initMainWidget(MainWidget *mainWidget)
     connect(action, &QAction::triggered, mainWidget, &MainWidget::slotMoveCurrentNodeDown);
     coll->setDefaultShortcut(action, QKeySequence(QStringLiteral("Shift+Alt+Down")));
 
-    //TODO very action name
-    action = coll->addAction(QStringLiteral("Move Node Left"));
+    action = coll->addAction(QStringLiteral("move_node_left"));
     action->setText(i18n("Move Node Left"));
     connect(action, &QAction::triggered, mainWidget, &MainWidget::slotMoveCurrentNodeLeft);
     coll->setDefaultShortcut(action, QKeySequence(QStringLiteral("Shift+Alt+Left")));
