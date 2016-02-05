@@ -7,7 +7,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>380</width>
+    <width>389</width>
     <height>477</height>
    </rect>
   </property>
@@ -18,31 +18,9 @@
       <string>Article List Colors</string>
      </property>
      <layout class="QGridLayout">
-      <item row="1" column="1">
-       <spacer>
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
       <item row="1" column="0">
        <layout class="QFormLayout" name="formLayout_3">
-        <property name="leftMargin">
-         <number>0</number>
-        </property>
-        <property name="topMargin">
-         <number>0</number>
-        </property>
-        <property name="rightMargin">
-         <number>0</number>
-        </property>
-        <property name="bottomMargin">
+        <property name="margin">
          <number>0</number>
         </property>
         <item row="0" column="0">
@@ -59,6 +37,12 @@
          <widget class="KColorButton" name="kcfg_ColorUnreadArticles">
           <property name="enabled">
            <bool>false</bool>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>24</width>
+            <height>24</height>
+           </size>
           </property>
          </widget>
         </item>
@@ -77,6 +61,12 @@
           <property name="enabled">
            <bool>false</bool>
           </property>
+          <property name="minimumSize">
+           <size>
+            <width>24</width>
+            <height>24</height>
+           </size>
+          </property>
          </widget>
         </item>
        </layout>
@@ -87,6 +77,19 @@
          <string>Use custom colors</string>
         </property>
        </widget>
+      </item>
+      <item row="1" column="1">
+       <spacer>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
       </item>
      </layout>
     </widget>
@@ -106,16 +109,7 @@
       </item>
       <item row="0" column="1">
        <layout class="QHBoxLayout">
-        <property name="leftMargin">
-         <number>0</number>
-        </property>
-        <property name="topMargin">
-         <number>0</number>
-        </property>
-        <property name="rightMargin">
-         <number>0</number>
-        </property>
-        <property name="bottomMargin">
+        <property name="margin">
          <number>0</number>
         </property>
         <item>
@@ -155,16 +149,7 @@
       </item>
       <item row="1" column="1">
        <layout class="QHBoxLayout">
-        <property name="leftMargin">
-         <number>0</number>
-        </property>
-        <property name="topMargin">
-         <number>0</number>
-        </property>
-        <property name="rightMargin">
-         <number>0</number>
-        </property>
-        <property name="bottomMargin">
+        <property name="margin">
          <number>0</number>
         </property>
         <item>
