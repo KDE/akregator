@@ -92,6 +92,7 @@ private:
     Article mArticle;
     ArticleFormatter::IconOption mArticleFormatOption;
     QUrl mImageDir;
+    int mIconSize;
 };
 }
 #endif // ARTICLEGRANTLEEOBJECT_H
