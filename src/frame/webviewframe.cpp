@@ -102,11 +102,6 @@ void WebViewFrame::saveConfig(KConfigGroup &config, const QString &prefix)
     config.writeEntry(QStringLiteral("onlyZoomFont").prepend(prefix), mArticleViewerWidgetNg->articleViewerNg()->settings()->testAttribute(QWebSettings::ZoomTextOnly));
 }
 
-void WebViewFrame::setFavicon(const QIcon &icon)
-{
-    Q_EMIT signalIconChanged(this, icon);
-}
-
 void WebViewFrame::slotCopyInFrame(int frameId)
 {
     if (frameId != id()) {

@@ -27,7 +27,6 @@
 #define AKREGATOR_FEED_H
 
 #include "akregator_export.h"
-#include "feediconmanager.h"
 #include "treenode.h"
 
 #include <Syndication/Syndication>
@@ -52,7 +51,7 @@ class Storage;
 }
 
 /** represents a feed */
-class AKREGATOR_EXPORT Feed : public TreeNode, public virtual FaviconListener
+class AKREGATOR_EXPORT Feed : public TreeNode
 {
     friend class ::Akregator::Article;
     friend class ::Akregator::Folder;
@@ -149,9 +148,6 @@ public:
 
     /** sets the feed image */
     void setImage(const QPixmap &p);
-
-    /** sets the favicon (used in the tree view) */
-    void setFavicon(const QIcon &icon) Q_DECL_OVERRIDE;
 
     /** returns the url of the actual feed source (rss/rdf/atom file) */
     QString xmlUrl() const;

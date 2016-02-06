@@ -27,7 +27,6 @@
 #include "akregatorconfig.h"
 #include "article.h"
 #include "articlejobs.h"
-#include "feediconmanager.h"
 #include "feedstorage.h"
 #include "fetchqueue.h"
 #include "folder.h"
@@ -332,7 +331,6 @@ Akregator::Feed::Feed(Backend::Storage *storage) : TreeNode(), d(new Private(sto
 
 Akregator::Feed::~Feed()
 {
-    FeedIconManager::self()->removeListener(this);
     slotAbortFetch();
     emitSignalDestroyed();
     delete d;
@@ -535,7 +533,7 @@ void Akregator::Feed::slotAddToFetchQueue(FetchQueue *queue, bool intervalFetchO
 
 void Akregator::Feed::slotAddFeedIconListener()
 {
-    FeedIconManager::self()->addListener(QUrl(d->xmlUrl), this);
+    //FeedIconManager::self()->addListener(QUrl(d->xmlUrl), this);
 }
 
 void Akregator::Feed::appendArticles(const Syndication::FeedPtr &feed)
@@ -708,7 +706,7 @@ void Akregator::Feed::fetchCompleted(Syndication::Loader *l, Syndication::FeedPt
 
     loadArticles(); // TODO: make me fly: make this delayed
 
-    FeedIconManager::self()->addListener(QUrl(xmlUrl()), this);
+    //FeedIconManager::self()->addListener(QUrl(xmlUrl()), this);
 
     d->fetchErrorCode = Syndication::Success;
 
@@ -777,13 +775,13 @@ void Akregator::Feed::deleteExpiredArticles(ArticleDeleteJob *deleteJob)
     deleteJob->appendArticleIds(toDelete);
     setNotificationMode(true);
 }
-
+#if 0
 void Akregator::Feed::setFavicon(const QIcon &icon)
 {
     d->favicon = icon;
     nodeModified();
 }
-
+#endif
 void Akregator::Feed::setImage(const QPixmap &p)
 {
     if (p.isNull()) {

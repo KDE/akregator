@@ -80,7 +80,6 @@ set(akregatorprivate_LIB_SRCS
     article.cpp
     feed/feed.cpp
     feed/feedlist.cpp
-    feed/feediconmanager.cpp
     treenode.cpp
     treenodevisitor.cpp
     utils.cpp

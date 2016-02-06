@@ -21,12 +21,11 @@
 #include "articleviewer-ng/articleviewerwidgetng.h"
 #include "frame.h"
 #include "akregatorpart_export.h"
-#include "feediconmanager.h"
 #include <QObject>
 
 namespace Akregator
 {
-class AKREGATORPART_EXPORT WebViewFrame : public Frame, public virtual FaviconListener
+class AKREGATORPART_EXPORT WebViewFrame : public Frame
 {
     Q_OBJECT
 public:
@@ -38,7 +37,6 @@ public:
     bool openUrl(const OpenUrlRequest &request) Q_DECL_OVERRIDE;
     void loadConfig(const KConfigGroup &, const QString &) Q_DECL_OVERRIDE;
     void saveConfig(KConfigGroup &, const QString &) Q_DECL_OVERRIDE;
-    void setFavicon(const QIcon &icon) Q_DECL_OVERRIDE;
 
     bool canGoForward() const Q_DECL_OVERRIDE;
     bool canGoBack() const Q_DECL_OVERRIDE;

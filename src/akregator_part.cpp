@@ -31,7 +31,6 @@
 #include "actionmanagerimpl.h"
 #include "article.h"
 #include "fetchqueue.h"
-#include "feediconmanager.h"
 #include "feedlist.h"
 #include "framemanager.h"
 #include "kernel.h"
@@ -221,9 +220,6 @@ Part::Part(QWidget *parentWidget, QObject *parent, const QVariantList &)
 
     new PartAdaptor(this);
     QDBusConnection::sessionBus().registerObject(QStringLiteral("/Akregator"), this);
-
-    FeedIconManager::self(); // FIXME: registering the icon manager dbus iface here,
-    // because otherwise we get a deadlock later
 
     m_standardFeedList = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QStringLiteral("/akregator/data/feeds.opml");
     QFileInfo fileInfo(m_standardFeedList);
