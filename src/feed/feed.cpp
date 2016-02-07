@@ -56,6 +56,7 @@
 
 #include <memory>
 #include <QStandardPaths>
+#include <KIO/FavIconRequestJob>
 
 using Syndication::ItemPtr;
 using namespace Akregator;
@@ -333,6 +334,16 @@ Akregator::Feed::~Feed()
     d = 0;
 }
 
+void Akregator::Feed::loadFavicon(const QUrl &url)
+{
+    KIO::FavIconRequestJob *job = new KIO::FavIconRequestJob(url);
+    connect(job, &KIO::FavIconRequestJob::result, this, [job, this](KJob *){
+        if (!job->error()) {
+            setFavicon(QIcon(job->iconFile()));
+        }
+    });
+}
+
 bool Akregator::Feed::useCustomFetchInterval() const
 {
     return d->autoFetch;
@@ -529,7 +540,7 @@ void Akregator::Feed::slotAddToFetchQueue(FetchQueue *queue, bool intervalFetchO
 
 void Akregator::Feed::slotAddFeedIconListener()
 {
-    //FeedIconManager::self()->addListener(QUrl(d->xmlUrl), this);
+    loadFavicon(QUrl(d->xmlUrl));
 }
 
 void Akregator::Feed::appendArticles(const Syndication::FeedPtr &feed)
@@ -702,7 +713,7 @@ void Akregator::Feed::fetchCompleted(Syndication::Loader *l, Syndication::FeedPt
 
     loadArticles(); // TODO: make me fly: make this delayed
 
-    //FeedIconManager::self()->addListener(QUrl(xmlUrl()), this);
+    loadFavicon(QUrl(xmlUrl()));
 
     d->fetchErrorCode = Syndication::Success;
 
@@ -771,13 +782,13 @@ void Akregator::Feed::deleteExpiredArticles(ArticleDeleteJob *deleteJob)
     deleteJob->appendArticleIds(toDelete);
     setNotificationMode(true);
 }
-#if 0
+
 void Akregator::Feed::setFavicon(const QIcon &icon)
 {
     d->favicon = icon;
     nodeModified();
 }
-#endif
+
 void Akregator::Feed::setImage(const QPixmap &p)
 {
     if (p.isNull()) {

@@ -248,6 +248,8 @@ private:
     Akregator::Backend::Storage *storage();
 
 private:
+    void setFavicon(const QIcon &icon);
+    void loadFavicon(const QUrl &url);
     QVector<Article> articles() Q_DECL_OVERRIDE;
 
     /** loads articles from archive **/
