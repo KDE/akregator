@@ -111,6 +111,7 @@ target_link_libraries(akregatorprivate
     KF5::PimTextEdit
     KF5::GrantleeTheme
     Grantlee5::Templates
+    KF5::KIOGui
     KF5::WebKit
     KF5::MessageViewer
     Qt5::PrintSupport

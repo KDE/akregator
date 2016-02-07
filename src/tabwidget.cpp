@@ -236,7 +236,6 @@ void TabWidget::slotAddFrame(Frame *frame)
     d->framesById.insert(frame->id(), frame);
     addTab(frame, frame->title());
     connect(frame, &Frame::signalTitleChanged, this, &TabWidget::slotSetTitle);
-    connect(frame, &Frame::signalIconChanged, this, &TabWidget::slotSetIcon);
 
     slotSetTitle(frame, frame->title());
 }

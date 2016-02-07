@@ -20,7 +20,7 @@
 #include "webviewer.h"
 #include <QVBoxLayout>
 #include <QAction>
-
+#include <KIO/FavIconRequestJob>
 using namespace Akregator;
 
 WebViewFrame::WebViewFrame(KActionCollection *ac, QWidget *parent)
@@ -77,7 +77,17 @@ QUrl WebViewFrame::url() const
 
 bool WebViewFrame::openUrl(const OpenUrlRequest &request)
 {
-    mArticleViewerWidgetNg->articleViewerNg()->load(request.url());
+    const QUrl url = request.url();
+    KIO::FavIconRequestJob *job = new KIO::FavIconRequestJob(url);
+    connect(job, &KIO::FavIconRequestJob::result, this, [job, this](KJob *){
+        if (!job->error()) {
+            Q_EMIT signalIconChanged(this, QIcon(job->iconFile()));
+        }
+    });
+
+
+
+    mArticleViewerWidgetNg->articleViewerNg()->load(url);
     return true;
 }
 

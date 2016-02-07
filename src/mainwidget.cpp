@@ -369,6 +369,7 @@ void MainWidget::connectFrame(WebViewFrame *frame)
     connect(m_tabWidget, &TabWidget::signalBlockImage, frame, &WebViewFrame::slotBlockImageInFrame);
 
     connect(frame, &WebViewFrame::showStatusBarMessage, this, &MainWidget::slotShowStatusBarMessage);
+    connect(frame, &WebViewFrame::signalIconChanged, m_tabWidget, &TabWidget::slotSetIcon);
 }
 
 void MainWidget::slotRequestNewFrame(int &frameId)
