@@ -284,17 +284,13 @@ Akregator::Feed::ArchiveMode Akregator::Feed::stringToArchiveMode(const QString 
 {
     if (str == QLatin1String("globalDefault")) {
         return globalDefault;
-    }
-    if (str == QLatin1String("keepAllArticles")) {
+    } else if (str == QLatin1String("keepAllArticles")) {
         return keepAllArticles;
-    }
-    if (str == QLatin1String("disableArchiving")) {
+    } else if (str == QLatin1String("disableArchiving")) {
         return disableArchiving;
-    }
-    if (str == QLatin1String("limitArticleNumber")) {
+    } else if (str == QLatin1String("limitArticleNumber")) {
         return limitArticleNumber;
-    }
-    if (str == QLatin1String("limitArticleAge")) {
+    } else if (str == QLatin1String("limitArticleAge")) {
         return limitArticleAge;
     }
 
