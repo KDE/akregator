@@ -77,7 +77,6 @@ QUrl WebViewFrame::url() const
 
 bool WebViewFrame::openUrl(const OpenUrlRequest &request)
 {
-    //TODO
     mArticleViewerWidgetNg->articleViewerNg()->load(request.url());
     return true;
 }
