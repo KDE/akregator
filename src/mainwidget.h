@@ -34,6 +34,7 @@
 #include <QUrl>
 
 #include <QWidget>
+#include <QPointer>
 
 #include <QSharedPointer>
 
@@ -60,6 +61,7 @@ class SearchBar;
 class SubscriptionListView;
 class TabWidget;
 class MainFrame;
+class DownloadArticleJob;
 /**
     * This is the main widget of the view, containing tree view, article list, viewer etc.
     */
@@ -253,6 +255,7 @@ private:
     void sendArticle(const QByteArray &text, const QString &title, bool attach);
     void deleteExpiredArticles(const QSharedPointer<FeedList> &feedList);
     void connectFrame(Akregator::WebViewFrame *frame);
+    void cleanUpDownloadFile();
 
     /** opens current article in new tab, background/foreground depends on settings TODO: use selected instead of current? */
     void openSelectedArticles(bool openInBackground);
@@ -289,6 +292,7 @@ private:
 
     QNetworkConfigurationManager *m_networkConfigManager;
     QWidget *m_articleWidget;
+    QList<QPointer<Akregator::DownloadArticleJob> > mListDownloadArticleJobs;
 };
 
 } // namespace Akregator

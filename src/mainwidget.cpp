@@ -65,6 +65,7 @@
 #include "mainframe.h"
 #include <solid/networking.h>
 #include <MessageViewer/ZoomActionMenu>
+#include "job/downloadarticlejob.h"
 
 #include <QAction>
 #include <kfileitem.h>
@@ -406,18 +407,33 @@ void MainWidget::sendArticle(bool attach)
     sendArticle(text, title, attach);
 }
 
+void MainWidget::cleanUpDownloadFile()
+{
+    Q_FOREACH(QPointer<Akregator::DownloadArticleJob> job, mListDownloadArticleJobs) {
+        if (job) {
+            job->forceCleanupTemporaryFile();
+        }
+    }
+}
+
 void MainWidget::sendArticle(const QByteArray &text, const QString &title, bool attach)
 {
-    QUrlQuery query;
-    query.addQueryItem(QStringLiteral("subject"), title);
-    query.addQueryItem(QStringLiteral("body"), QString::fromUtf8(text));
     if (attach) {
-        query.addQueryItem(QStringLiteral("attach"), QString::fromUtf8(text));
+        QPointer<Akregator::DownloadArticleJob> download = new Akregator::DownloadArticleJob(this);
+        download->setArticleUrl(QUrl(QString::fromUtf8(text)));
+        download->setText(QString::fromUtf8(text));
+        download->setTitle(title);
+        mListDownloadArticleJobs.append(download);
+        download->start();
+    } else {
+        QUrlQuery query;
+        query.addQueryItem(QStringLiteral("subject"), title);
+        query.addQueryItem(QStringLiteral("body"), QString::fromUtf8(text));
+        QUrl url;
+        url.setScheme(QStringLiteral("mailto"));
+        url.setQuery(query);
+        QDesktopServices::openUrl(url);
     }
-    QUrl url;
-    url.setScheme(QStringLiteral("mailto"));
-    url.setQuery(query);
-    QDesktopServices::openUrl(url);
 }
 
 void MainWidget::importFeedList(const QDomDocument &doc)

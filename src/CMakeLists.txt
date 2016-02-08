@@ -73,7 +73,6 @@ set(akregatorprivate_urlhandler_SRCS
 
 set(akregatorprivate_LIB_SRCS
     akregratormigrateapplication.cpp
-    ${akregator_job_SRCS}
     ${akregatorprivate_frame_SRCS}
     ${akregatorprivate_urlhandler_SRCS}
     ${akregator_articleviewer_ng_SRCS}
@@ -169,6 +168,7 @@ set(akregatorpart_PART_SRCS
     ${akregatorpart_command_SRCS}
     ${akregator_utils_SRCS}
     ${akregator_common_SRCS}
+    ${akregator_job_SRCS}
     abstractselectioncontroller.cpp
     articlematcher.cpp
     articlemodel.cpp

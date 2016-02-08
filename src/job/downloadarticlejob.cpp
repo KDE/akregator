@@ -33,6 +33,7 @@ DownloadArticleJob::DownloadArticleJob(QObject *parent)
 DownloadArticleJob::~DownloadArticleJob()
 {
     if (mAttachmentTemporaryFile) {
+        qDebug()<<" DownloadArticleJob::~DownloadArticleJob()"<<this;
         mAttachmentTemporaryFile->removeTempFiles();
         mAttachmentTemporaryFile = 0;
     }
@@ -58,6 +59,7 @@ void DownloadArticleJob::start()
         return;
     }
     mTemporaryFile = new QTemporaryFile(this);
+    mTemporaryFile->open();
     mTemporaryFile->setAutoRemove(false);
     mAttachmentTemporaryFile = new PimCommon::AttachmentTemporaryFilesDirs(this);
 
@@ -101,6 +103,7 @@ void DownloadArticleJob::sendAttachment()
     url.setScheme(QStringLiteral("mailto"));
     url.setQuery(query);
     QDesktopServices::openUrl(url);
+    deleteLater();
 }
 
 void DownloadArticleJob::setText(const QString &text)
