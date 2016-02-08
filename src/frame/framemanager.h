@@ -104,7 +104,6 @@ private Q_SLOTS:
     void slotSetCaption(Akregator::Frame *frame, const QString &caption);
     void slotSetTitle(Akregator::Frame *frame, const QString &title);
     void slotSetStatusText(Akregator::Frame *frame, const QString &statusText);
-    void slotSetIconChanged(Akregator::Frame *frame, const QIcon &icon);
 private:
 
     QWidget *m_mainWin;

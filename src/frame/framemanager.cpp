@@ -199,14 +199,6 @@ void FrameManager::slotSetProgress(Frame *frame, int progress)
     }
 }
 
-void FrameManager::slotSetIconChanged(Frame *frame, const QIcon &icon)
-{
-    if (frame != m_currentFrame) {
-        return;
-    }
-    Q_EMIT signalIconChanged(icon);
-}
-
 void FrameManager::slotSetCaption(Frame *frame, const QString &caption)
 {
     if (frame == m_currentFrame) {

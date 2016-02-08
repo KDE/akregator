@@ -149,7 +149,6 @@ Q_SIGNALS:
     void signalCompleted(Akregator::Frame *);
     void signalLoadingProgress(Akregator::Frame *, int);
     void signalStatusText(Akregator::Frame *, const QString &);
-    void signalIconChanged(Akregator::Frame *, const QIcon &icon);
 
     void signalOpenUrlRequest(Akregator::OpenUrlRequest &request);
     void showStatusBarMessage(const QString &msg);
