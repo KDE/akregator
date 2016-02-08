@@ -18,6 +18,10 @@
 #include <QUrl>
 class QTemporaryFile;
 class KJob;
+namespace PimCommon
+{
+class AttachmentTemporaryFilesDirs;
+}
 namespace Akregator
 {
 class DownloadArticleJob : public QObject
@@ -32,14 +36,20 @@ public:
     void setArticleUrl(const QUrl &articleUrl);
     void setTitle(const QString &title);
 
+    void forceCleanupTemporaryFile();
+
+    void setText(const QString &text);
+
 private Q_SLOTS:
     void slotUrlSaveResult(KJob *job);
 
 private:
+    void sendAttachment();
     QUrl mArticleUrl;
     QString mTitle;
+    QString mText;
     QTemporaryFile *mTemporaryFile;
-    //PimCommon::AttachmentTemporaryFilesDirs *mAttachment
+    PimCommon::AttachmentTemporaryFilesDirs *mAttachmentTemporaryFile;
 };
 }
 #endif // DOWNLOADARTICLEJOB_H

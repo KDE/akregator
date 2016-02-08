@@ -13,23 +13,38 @@
 
 #include "downloadarticlejob.h"
 #include <QTemporaryFile>
+#include <QDesktopServices>
 #include <kio/job.h>
 #include <kio/jobuidelegate.h>
 #include <QDebug>
+#include <QUrlQuery>
 #include <PimCommon/AttachmentTemporaryFilesDirs>
 
 using namespace Akregator;
 
 DownloadArticleJob::DownloadArticleJob(QObject *parent)
     : QObject(parent),
-      mTemporaryFile(Q_NULLPTR)
+      mTemporaryFile(Q_NULLPTR),
+      mAttachmentTemporaryFile(Q_NULLPTR)
 {
 
 }
 
 DownloadArticleJob::~DownloadArticleJob()
 {
+    if (mAttachmentTemporaryFile) {
+        mAttachmentTemporaryFile->removeTempFiles();
+        mAttachmentTemporaryFile = 0;
+    }
+}
 
+void DownloadArticleJob::forceCleanupTemporaryFile()
+{
+    if (mAttachmentTemporaryFile) {
+        mAttachmentTemporaryFile->forceCleanTempFiles();
+        delete mAttachmentTemporaryFile;
+        mAttachmentTemporaryFile = 0;
+    }
 }
 
 void DownloadArticleJob::start()
@@ -43,8 +58,11 @@ void DownloadArticleJob::start()
         return;
     }
     mTemporaryFile = new QTemporaryFile(this);
+    mTemporaryFile->setAutoRemove(false);
+    mAttachmentTemporaryFile = new PimCommon::AttachmentTemporaryFilesDirs(this);
 
     KIO::Job *job = KIO::file_copy(mArticleUrl, QUrl::fromLocalFile(mTemporaryFile->fileName()), -1, KIO::Overwrite);
+    mAttachmentTemporaryFile->addTempFile(mTemporaryFile->fileName());
     connect(job, &KIO::Job::result, this, &DownloadArticleJob::slotUrlSaveResult);
 }
 
@@ -63,7 +81,7 @@ void DownloadArticleJob::slotUrlSaveResult(KJob *job)
             qWarning() << "There is no GUI delegate set for a kjob, and it failed with error:" << job->errorString();
         }
     } else {
-        //TODO send path.
+        sendAttachment();
         deleteLater();
     }
 }
@@ -71,4 +89,21 @@ void DownloadArticleJob::slotUrlSaveResult(KJob *job)
 void DownloadArticleJob::setTitle(const QString &title)
 {
     mTitle = title;
+}
+
+void DownloadArticleJob::sendAttachment()
+{
+    QUrlQuery query;
+    query.addQueryItem(QStringLiteral("subject"), mTitle);
+    query.addQueryItem(QStringLiteral("body"), mText);
+    query.addQueryItem(QStringLiteral("attach"), mTemporaryFile->fileName());
+    QUrl url;
+    url.setScheme(QStringLiteral("mailto"));
+    url.setQuery(query);
+    QDesktopServices::openUrl(url);
+}
+
+void DownloadArticleJob::setText(const QString &text)
+{
+    mText = text;
 }
