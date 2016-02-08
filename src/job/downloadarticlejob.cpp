@@ -33,7 +33,6 @@ DownloadArticleJob::DownloadArticleJob(QObject *parent)
 DownloadArticleJob::~DownloadArticleJob()
 {
     if (mAttachmentTemporaryFile) {
-        qDebug()<<" DownloadArticleJob::~DownloadArticleJob()"<<this;
         mAttachmentTemporaryFile->removeTempFiles();
         mAttachmentTemporaryFile = 0;
     }
@@ -61,7 +60,7 @@ void DownloadArticleJob::start()
     mTemporaryFile = new QTemporaryFile(this);
     mTemporaryFile->open();
     mTemporaryFile->setAutoRemove(false);
-    mAttachmentTemporaryFile = new PimCommon::AttachmentTemporaryFilesDirs(this);
+    mAttachmentTemporaryFile = new PimCommon::AttachmentTemporaryFilesDirs;
 
     KIO::Job *job = KIO::file_copy(mArticleUrl, QUrl::fromLocalFile(mTemporaryFile->fileName()), -1, KIO::Overwrite);
     mAttachmentTemporaryFile->addTempFile(mTemporaryFile->fileName());
