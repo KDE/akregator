@@ -39,6 +39,7 @@ private:
     QUrl mArticleUrl;
     QString mTitle;
     QTemporaryFile *mTemporaryFile;
+    //PimCommon::AttachmentTemporaryFilesDirs *mAttachment
 };
 }
 #endif // DOWNLOADARTICLEJOB_H

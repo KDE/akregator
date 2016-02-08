@@ -16,6 +16,7 @@
 #include <kio/job.h>
 #include <kio/jobuidelegate.h>
 #include <QDebug>
+#include <PimCommon/AttachmentTemporaryFilesDirs>
 
 using namespace Akregator;
 
