@@ -16,7 +16,8 @@
 
 #include <QObject>
 #include <QUrl>
-
+class QTemporaryFile;
+class KJob;
 namespace Akregator
 {
 class DownloadArticleJob : public QObject
@@ -31,9 +32,13 @@ public:
     void setArticleUrl(const QUrl &articleUrl);
     void setTitle(const QString &title);
 
+private Q_SLOTS:
+    void slotUrlSaveResult(KJob *job);
+
 private:
     QUrl mArticleUrl;
     QString mTitle;
+    QTemporaryFile *mTemporaryFile;
 };
 }
 #endif // DOWNLOADARTICLEJOB_H
