@@ -43,8 +43,12 @@ set(akregator_articleviewer_ng_SRCS
     articleviewer-ng/articleviewerng.cpp
     articleviewer-ng/articleviewerwidgetng.cpp
     articleviewer-ng/articlehtmlwriter.cpp
-
     )
+
+set(akregator_job_SRCS
+    job/downloadarticlejob.cpp
+    )
+ 
 
 set(akregatorprivate_formatter_SRCS
     formatter/articleformatter.cpp
@@ -69,6 +73,7 @@ set(akregatorprivate_urlhandler_SRCS
 
 set(akregatorprivate_LIB_SRCS
     akregratormigrateapplication.cpp
+    ${akregator_job_SRCS}
     ${akregatorprivate_frame_SRCS}
     ${akregatorprivate_urlhandler_SRCS}
     ${akregator_articleviewer_ng_SRCS}
