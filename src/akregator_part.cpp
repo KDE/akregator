@@ -152,6 +152,16 @@ static QDomDocument createDefaultFeedList()
     hungarianKde.setAttribute(QStringLiteral("xmlUrl"), QStringLiteral("http://kde.hu/rss.xml"));
     hungarianFolder.appendChild(hungarianKde);
 #endif
+    // Brazilian Portuguese feeds
+    QDomElement portugueuseFolder = doc.createElement(QStringLiteral("outline"));
+    portugueuseFolder.setAttribute(QStringLiteral("text"), i18n("Brazilian Portuguese feeds"));
+    mainFolder.appendChild(portugueuseFolder);
+
+    QDomElement portugueuseKde = doc.createElement(QStringLiteral("outline"));
+    portugueuseKde.setAttribute(QStringLiteral("text"), i18n("Planet KDE Brazilian Portuguese"));
+    portugueuseKde.setAttribute(QStringLiteral("xmlUrl"), QStringLiteral("http://planetkde.org/pt-br/rss20.xml"));
+    portugueuseFolder.appendChild(portugueuseKde);
+
     // spanish feed(s)
     QDomElement spanishFolder = doc.createElement(QStringLiteral("outline"));
     spanishFolder.setAttribute(QStringLiteral("text"), i18n("Spanish feeds"));
