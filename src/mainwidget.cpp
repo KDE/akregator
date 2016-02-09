@@ -1287,24 +1287,15 @@ void MainWidget::slotArticleAction(ArticleViewerNg::ArticleAction type, const QS
         job->start();
         break;
     }
-    case ArticleViewerNg::SendFileArticle: {
-        const Article article =  m_feedList->findArticle(feed, articleId);
-        const QByteArray text = article.link().toDisplayString().toLatin1();
-        const QString title = Akregator::Utils::convertHtmlTags(article.title());
-        if (text.isEmpty()) {
-            return;
-        }
-        sendArticle(text, title, true);
-        break;
-    }
     case ArticleViewerNg::SendUrlArticle: {
+    case ArticleViewerNg::SendFileArticle:
         const Article article =  m_feedList->findArticle(feed, articleId);
         const QByteArray text = article.link().toDisplayString().toLatin1();
         const QString title = Akregator::Utils::convertHtmlTags(article.title());
         if (text.isEmpty()) {
             return;
         }
-        sendArticle(text, title, false);
+        sendArticle(text, title, (type == ArticleViewerNg::SendFileArticle));
         break;
     }
     case ArticleViewerNg::OpenInBackgroundTab: {
@@ -1324,6 +1315,11 @@ void MainWidget::slotArticleAction(ArticleViewerNg::ArticleAction type, const QS
         break;
     }
     case ArticleViewerNg::Share:
+        const Akregator::Article article = m_feedList->findArticle(feed, articleId);
+        const QUrl url = article.link();
+        if (url.isValid()) {
+            //TODO
+        }
         break;
     }
 }
