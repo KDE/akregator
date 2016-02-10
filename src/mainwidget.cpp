@@ -63,7 +63,6 @@
 #include "treenodevisitor.h"
 #include "types.h"
 #include "mainframe.h"
-#include <solid/networking.h>
 #include <MessageViewer/ZoomActionMenu>
 #include "job/downloadarticlejob.h"
 

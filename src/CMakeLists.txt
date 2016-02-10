@@ -103,7 +103,6 @@ generate_export_header(akregatorprivate BASE_NAME akregator)
 
 target_link_libraries(akregatorprivate
     PRIVATE
-    KF5::KDELibs4Support
     KF5::Parts
     KF5::Notifications
     KF5::Libkdepim
@@ -197,7 +196,6 @@ ki18n_wrap_ui(akregatorpart_PART_SRCS
 add_library(akregatorpart MODULE ${akregatorpart_PART_SRCS})
 generate_export_header(akregatorpart BASE_NAME akregatorpart)
 target_link_libraries(akregatorpart
-    KF5::KDELibs4Support
     akregatorinterfaces
     akregatorprivate
     KF5::KCMUtils
@@ -210,6 +208,10 @@ target_link_libraries(akregatorpart
     KF5::WebKit
     Qt5::WebKitWidgets
     KF5::MessageViewer
+    KF5::Completion
+    KF5::IconThemes
+    KF5::Parts
+    KF5::Notifications
     )
 
 install(TARGETS akregatorpart DESTINATION ${KDE_INSTALL_PLUGINDIR})

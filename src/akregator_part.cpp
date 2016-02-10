@@ -49,7 +49,7 @@
 #include "akregator_options.h"
 #include <Libkdepim/BroadcastStatus>
 #include "kdepim-version.h"
-
+#include <kio/filecopyjob.h>
 #include <knotifyconfigwidget.h>
 #include <kaboutdata.h>
 #include <kconfig.h>
