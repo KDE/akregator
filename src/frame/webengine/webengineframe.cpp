@@ -79,13 +79,11 @@ bool WebEngineFrame::openUrl(const OpenUrlRequest &request)
 {
     const QUrl url = request.url();
     KIO::FavIconRequestJob *job = new KIO::FavIconRequestJob(url);
-    connect(job, &KIO::FavIconRequestJob::result, this, [job, this](KJob *){
+    connect(job, &KIO::FavIconRequestJob::result, this, [job, this](KJob *) {
         if (!job->error()) {
             Q_EMIT signalIconChanged(this, QIcon(job->iconFile()));
         }
     });
-
-
 
     mArticleViewerWidgetNg->articleViewerNg()->load(url);
     return true;

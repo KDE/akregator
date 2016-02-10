@@ -337,7 +337,7 @@ Akregator::Feed::~Feed()
 void Akregator::Feed::loadFavicon(const QUrl &url)
 {
     KIO::FavIconRequestJob *job = new KIO::FavIconRequestJob(url);
-    connect(job, &KIO::FavIconRequestJob::result, this, [job, this](KJob *){
+    connect(job, &KIO::FavIconRequestJob::result, this, [job, this](KJob *) {
         if (!job->error()) {
             setFavicon(QIcon(job->iconFile()));
         }

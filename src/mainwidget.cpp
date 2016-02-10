@@ -408,7 +408,7 @@ void MainWidget::sendArticle(bool attach)
 
 void MainWidget::cleanUpDownloadFile()
 {
-    Q_FOREACH(QPointer<Akregator::DownloadArticleJob> job, mListDownloadArticleJobs) {
+    Q_FOREACH (QPointer<Akregator::DownloadArticleJob> job, mListDownloadArticleJobs) {
         if (job) {
             job->forceCleanupTemporaryFile();
         }
@@ -1287,16 +1287,16 @@ void MainWidget::slotArticleAction(ArticleViewerNg::ArticleAction type, const QS
         break;
     }
     case ArticleViewerNg::SendUrlArticle: {
-    case ArticleViewerNg::SendFileArticle:
-        const Article article =  m_feedList->findArticle(feed, articleId);
-        const QByteArray text = article.link().toDisplayString().toLatin1();
-        const QString title = Akregator::Utils::convertHtmlTags(article.title());
-        if (text.isEmpty()) {
-            return;
+        case ArticleViewerNg::SendFileArticle:
+            const Article article =  m_feedList->findArticle(feed, articleId);
+            const QByteArray text = article.link().toDisplayString().toLatin1();
+            const QString title = Akregator::Utils::convertHtmlTags(article.title());
+            if (text.isEmpty()) {
+                return;
+            }
+            sendArticle(text, title, (type == ArticleViewerNg::SendFileArticle));
+            break;
         }
-        sendArticle(text, title, (type == ArticleViewerNg::SendFileArticle));
-        break;
-    }
     case ArticleViewerNg::OpenInBackgroundTab: {
         const Akregator::Article article = m_feedList->findArticle(feed, articleId);
         const QUrl url = article.link();
