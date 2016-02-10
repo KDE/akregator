@@ -20,8 +20,8 @@
 #include <MessageViewer/IconNameCache>
 #include "utils.h"
 #include "feed.h"
-#include <KLocale>
-#include <KGlobal>
+#include <QLocale>
+#include <KLocalizedString>
 #include <KIconLoader>
 #include <QDateTime>
 #include <QUrl>
@@ -77,7 +77,7 @@ QString ArticleGrantleeObject::articleLinkUrl() const
 QString ArticleGrantleeObject::articlePubDate() const
 {
     if (mArticle.pubDate().isValid()) {
-        return KLocale::global()->formatDateTime(mArticle.pubDate(), KLocale::FancyLongDate);
+        return QLocale().toString(mArticle.pubDate(), QLocale::ShortFormat);
     }
     return {};
 }
