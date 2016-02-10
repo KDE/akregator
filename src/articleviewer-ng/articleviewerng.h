@@ -26,7 +26,6 @@
 #include <PimCommon/ShareServiceUrlManager>
 
 class KActionCollection;
-class QAction;
 namespace MessageViewer
 {
 class WebViewAccessKey;

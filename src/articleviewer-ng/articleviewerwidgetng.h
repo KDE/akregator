@@ -22,7 +22,6 @@
 #include "articleviewerng.h"
 #include "akregator_export.h"
 class KActionCollection;
-class QAction;
 namespace MessageViewer
 {
 class FindBarWebView;
