@@ -27,7 +27,7 @@
 #include "subscriptionlistmodel.h"
 
 #include "akregator_debug.h"
-#include <KGlobalSettings>
+//#include <KGlobalSettings>
 #include <KIconTheme>
 
 #include <QHeaderView>
@@ -38,7 +38,8 @@ using namespace Akregator;
 Akregator::SubscriptionListDelegate::SubscriptionListDelegate(QWidget *parent)
     : QStyledItemDelegate(parent)
 {
-    connect(KGlobalSettings::self(), &KGlobalSettings::appearanceChanged, this, &SubscriptionListDelegate::recalculateRowHeight);
+    //TODO reimplement
+    //connect(KGlobalSettings::self(), &KGlobalSettings::appearanceChanged, this, &SubscriptionListDelegate::recalculateRowHeight);
     recalculateRowHeight();
 }
 
