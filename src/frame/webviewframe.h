@@ -38,9 +38,6 @@ public:
     void loadConfig(const KConfigGroup &, const QString &) Q_DECL_OVERRIDE;
     void saveConfig(KConfigGroup &, const QString &) Q_DECL_OVERRIDE;
 
-    bool canGoForward() const Q_DECL_OVERRIDE;
-    bool canGoBack() const Q_DECL_OVERRIDE;
-
     qreal zoomFactor() const Q_DECL_OVERRIDE;
     bool zoomTextOnlyInFrame() const Q_DECL_OVERRIDE;
 

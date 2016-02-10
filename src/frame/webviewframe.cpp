@@ -187,16 +187,6 @@ void WebViewFrame::slotStop()
     mArticleViewerWidgetNg->articleViewerNg()->stop();
 }
 
-bool WebViewFrame::canGoForward() const
-{
-    return mArticleViewerWidgetNg->articleViewerNg()->canGoForward();
-}
-
-bool WebViewFrame::canGoBack() const
-{
-    return mArticleViewerWidgetNg->articleViewerNg()->canGoBack();
-}
-
 qreal WebViewFrame::zoomFactor() const
 {
     return mArticleViewerWidgetNg->articleViewerNg()->zoomFactor();

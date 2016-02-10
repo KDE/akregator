@@ -84,23 +84,6 @@ public:
     QString statusText() const;
 
     int id() const;
-
-    /**
-     * returns whether it is possible to go forward in the history
-     */
-    virtual bool canGoForward() const
-    {
-        return false;
-    }
-
-    /**
-     * returns whether it is possible to go back in the history
-     */
-    virtual bool canGoBack() const
-    {
-        return false;
-    }
-
     /**
      * returns whether the embedded part is loading a website. If so, it can be stopped using slotStop() */
     virtual bool isLoading() const;
