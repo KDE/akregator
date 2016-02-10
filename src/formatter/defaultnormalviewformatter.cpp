@@ -25,7 +25,6 @@
 #include "treenodevisitor.h"
 #include "utils.h"
 
-#include <kglobal.h>
 #include <KLocalizedString>
 
 #include <QApplication>
