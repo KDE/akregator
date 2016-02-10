@@ -58,13 +58,20 @@ set(akregatorprivate_formatter_SRCS
     formatter/articlegrantleeobject.cpp
     )
 
+set(akregatorprivate_frame_webkit_SRCS
+    frame/webkit/webviewer.cpp
+    frame/webkit/webviewframe.cpp
+    )
+
+
 set(akregatorprivate_frame_SRCS
-    frame/webviewer.cpp
+    ${akregatorprivate_frame_webkit_SRCS}
     frame/frame.cpp
     frame/mainframe.cpp
     frame/framemanager.cpp
-    frame/webviewframe.cpp
     )
+
+
 
 set(akregatorprivate_urlhandler_SRCS
     urlhandler/urlhandlermanager.cpp

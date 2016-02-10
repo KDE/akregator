@@ -36,7 +36,7 @@
 #include <kparts/event.h>
 #include <kparts/guiactivateevent.h>
 #include "akregator_debug.h"
-#include "webviewframe.h"
+#include "webkit/webviewframe.h"
 
 #include <QStringList>
 #include <QApplication>

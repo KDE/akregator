@@ -33,7 +33,7 @@
 #include "abstractselectioncontroller.h"
 #include "articlejobs.h"
 #include "articlematcher.h"
-#include "webviewframe.h"
+#include "webkit/webviewframe.h"
 #include "akregatorconfig.h"
 #include "akregator_part.h"
 #include "Libkdepim/BroadcastStatus"
