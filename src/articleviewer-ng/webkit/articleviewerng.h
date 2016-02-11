@@ -58,9 +58,6 @@ public:
 
     void showAboutPage();
 
-    bool canGoForward() const;
-    bool canGoBack() const;
-
     void disableIntroduction();
 
     void setArticleAction(ArticleViewerNg::ArticleAction type, const QString &articleId, const QString &feed);

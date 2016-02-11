@@ -173,18 +173,6 @@ void ArticleViewerNg::showAboutPage()
     paintAboutScreen(QStringLiteral("introduction_akregator.html"), introductionData());
 }
 
-bool ArticleViewerNg::canGoForward() const
-{
-    QWebHistory *history = page()->history();
-    return history->canGoForward();
-}
-
-bool ArticleViewerNg::canGoBack() const
-{
-    QWebHistory *history = page()->history();
-    return history->canGoBack();
-}
-
 void ArticleViewerNg::paintAboutScreen(const QString &templateName, const QVariantHash &data)
 {
     GrantleeTheme::ThemeManager manager(QStringLiteral("splashPage"),
