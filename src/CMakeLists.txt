@@ -39,7 +39,16 @@ install(TARGETS akregator ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 
 ########### next target ###############
 
+if (QTWEBENGINE_EXPERIMENTAL_OPTION)
+    set(akregator_articleviewer_ng_webengine_SRCS
+        articleviewer-ng/webengine/articleviewerwebengine.cpp
+        )
+    set(akregator_articleviewer_ng_webengine_libs Qt5::WebEngine Qt5::WebEngineWidgets)
+endif()
+
+
 set(akregator_articleviewer_ng_SRCS
+    ${akregator_articleviewer_ng_webengine_SRCS}
     articleviewer-ng/webkit/articleviewerng.cpp
     articleviewer-ng/articleviewerwidgetng.cpp
     articleviewer-ng/articlehtmlwriter.cpp
@@ -62,10 +71,13 @@ set(akregatorprivate_frame_webkit_SRCS
     frame/webkit/webviewer.cpp
     frame/webkit/webviewframe.cpp
     )
-
+set(akregatorprivate_frame_webengine_SRCS
+    #frame/webengine/webengineframe.cpp
+    )
 
 set(akregatorprivate_frame_SRCS
     ${akregatorprivate_frame_webkit_SRCS}
+    ${akregatorprivate_frame_webengine_SRCS}
     frame/frame.cpp
     frame/mainframe.cpp
     frame/framemanager.cpp
@@ -110,6 +122,7 @@ generate_export_header(akregatorprivate BASE_NAME akregator)
 
 target_link_libraries(akregatorprivate
     PRIVATE
+    ${akregator_articleviewer_ng_webengine_libs}
     KF5::Parts
     KF5::Notifications
     KF5::Libkdepim

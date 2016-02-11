@@ -70,7 +70,6 @@ private Q_SLOTS:
     void slotLoadFinished();
 private:
     Akregator::ArticleViewerWidgetNg *mArticleViewerWidgetNg;
-
 };
 }
 

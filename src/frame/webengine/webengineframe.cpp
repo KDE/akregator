@@ -17,7 +17,6 @@
 
 #include "openurlrequest.h"
 #include "webengineframe.h"
-#include "webviewer.h"
 #include <QVBoxLayout>
 #include <QAction>
 #include <KIO/FavIconRequestJob>
