@@ -122,9 +122,9 @@ QString ActionURLHandler::statusBarMessage(const QUrl &url, ArticleViewerNg *) c
         } else if (urlPath == QLatin1String("markAsImportant")) {
             return i18n("Change Important Flag");
         } else if (urlPath == QLatin1String("sendUrlArticle")) {
-            return i18n("Send Url Article");
+            return i18n("end the URL of the article");
         } else if (urlPath == QLatin1String("sendFileArticle")) {
-            return i18n("Send File Article");
+            return i18n("Send the Html Page of Article");
         } else if (urlPath == QLatin1String("openInExternalBrowser")) {
             return i18n("Open In External Browser");
         } else if (urlPath == QLatin1String("share")) {
