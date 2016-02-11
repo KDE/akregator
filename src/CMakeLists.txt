@@ -40,7 +40,7 @@ install(TARGETS akregator ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 ########### next target ###############
 
 set(akregator_articleviewer_ng_SRCS
-    articleviewer-ng/articleviewerng.cpp
+    articleviewer-ng/webkit/articleviewerng.cpp
     articleviewer-ng/articleviewerwidgetng.cpp
     articleviewer-ng/articlehtmlwriter.cpp
     )

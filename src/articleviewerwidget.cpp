@@ -58,7 +58,7 @@
 #include <QUrl>
 #include <grantleetheme/grantleethememanager.h>
 #include <articleviewer-ng/articleviewerwidgetng.h>
-#include <articleviewer-ng/articleviewerng.h>
+#include <articleviewer-ng/webkit/articleviewerng.h>
 
 #include <QClipboard>
 #include <QGridLayout>

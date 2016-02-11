@@ -18,7 +18,7 @@
 #ifndef WEBVIEWER_H
 #define WEBVIEWER_H
 
-#include <articleviewer-ng/articleviewerng.h>
+#include "articleviewer-ng/webkit/articleviewerng.h"
 
 namespace Akregator
 {

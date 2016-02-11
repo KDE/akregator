@@ -18,7 +18,7 @@
 #include "urlhandler.h"
 #include "akregator_debug.h"
 
-#include <articleviewer-ng/articleviewerng.h>
+#include <articleviewer-ng/webkit/articleviewerng.h>
 #include <KLocalizedString>
 #include <QDesktopServices>
 #include <QClipboard>

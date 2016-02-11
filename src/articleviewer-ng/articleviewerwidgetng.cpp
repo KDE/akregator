@@ -16,7 +16,7 @@
 */
 
 #include "articleviewerwidgetng.h"
-#include "articleviewerng.h"
+#include "webkit/articleviewerng.h"
 #include <MessageViewer/FindBarWebView>
 
 #include <KActionCollection>
