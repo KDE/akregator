@@ -148,6 +148,11 @@ void TabWidget::slotTabContextMenuRequest(const QPoint &pos)
         return;
     }
     QMenu menu(this);
+
+    QAction *detachTab = menu.addAction(i18nc("@action:inmenu", "Detach Tab"));
+    detachTab->setEnabled((indexBar != 0) && (count() > 1));
+    detachTab->setIcon(QIcon::fromTheme(QStringLiteral("tab-detach")));
+
     QAction *closeTab = menu.addAction(i18nc("@action:inmenu", "Close Tab"));
     closeTab->setEnabled((indexBar != 0) && (count() > 1));
     closeTab->setIcon(QIcon::fromTheme(QStringLiteral("tab-close")));
@@ -168,8 +173,9 @@ void TabWidget::slotTabContextMenuRequest(const QPoint &pos)
         slotCloseRequest(indexBar);
     } else if (action == allTab) {
         slotCloseAllTab();
+    } else if (action == detachTab) {
+        slotDetachTab(indexBar);
     }
-
 }
 
 void TabWidget::closeAllTabExcept(int index)
@@ -414,16 +420,16 @@ void TabWidget::Private::setTitle(const QString &title, QWidget *sender)
     }
 }
 
-void TabWidget::slotDetachTab()
+void TabWidget::slotDetachTab(int index)
 {
-    Frame *frame = d->frames.value(d->selectedWidget());
-
+    QWidget *w = widget(index);
+    Frame *frame =d->frames.value(w);
     if (frame && frame->url().isValid() && frame->isRemovable()) {
         OpenUrlRequest request;
         request.setUrl(frame->url());
         request.setOptions(OpenUrlRequest::ExternalBrowser);
         Q_EMIT signalOpenUrlRequest(request);
-        slotCloseTab();
+        slotCloseRequest(index);
     }
 }
 

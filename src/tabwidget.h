@@ -58,7 +58,7 @@ public Q_SLOTS:
     void slotSelectFrame(int frameId);
     void slotReloadAllTabs();
     void slotActivateTab();
-    void slotDetachTab();
+    void slotDetachTab(int index);
     void slotCopyLinkAddress();
     void slotCloseTab();
     void slotZoomTextOnlyChanged(bool zoomTextOnly);
