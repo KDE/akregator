@@ -210,7 +210,7 @@ Part::Part(QWidget *parentWidget, QObject *parent, const QVariantList &)
     : inherited(parent)
     , m_standardListLoaded(false)
     , m_shuttingDown(false)
-    , m_doCrashSave(true)
+    , m_doCrashSave(false)
     , m_backedUpList(false)
     , m_mainWidget(0)
     , m_storage(0)
@@ -308,10 +308,10 @@ Part::Part(QWidget *parentWidget, QObject *parent, const QVariantList &)
     Syndication::FileRetriever::setUserAgent(useragent);
 
     loadPlugins(QStringLiteral("extension"));   // FIXME: also unload them!
-    //Laurent when we call kmessagebox it breaks akregator and recreate new kpart I don't know why => disable it
     if (mCentralWidget->previousSessionCrashed()) {
         mCentralWidget->needToRestoreCrashedSession();
     } else {
+        m_doCrashSave = true;
         autoReadProperties();
     }
 }
@@ -876,7 +876,7 @@ void Part::slotRestoreSession(Akregator::CrashWidget::CrashAction type)
     case Akregator::CrashWidget::AskMeLater:
         break;
     }
-    m_doCrashSave = false;
+    m_doCrashSave = true;
 }
 
 } // namespace Akregator
