@@ -78,7 +78,7 @@ void CrashWidget::slotRestoreSession()
 
 void CrashWidget::slotDontRestoreSession()
 {
-    Q_EMIT restoreSession(RestoreSession);
+    Q_EMIT restoreSession(NotRestoreSession);
 }
 
 void CrashWidget::slotAskMeLater()
