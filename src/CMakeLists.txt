@@ -42,6 +42,8 @@ install(TARGETS akregator ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 if (QTWEBENGINE_EXPERIMENTAL_OPTION)
     set(akregator_articleviewer_ng_webengine_SRCS
         articleviewer-ng/webengine/articleviewerwebengine.cpp
+        articleviewer-ng/webengine/articleviewerwebenginepage.cpp
+        articleviewer-ng/webengine/articlhtmlwebenginewriter.cpp
         )
     set(akregator_articleviewer_ng_webengine_libs Qt5::WebEngine Qt5::WebEngineWidgets)
 endif()
@@ -50,8 +52,8 @@ endif()
 set(akregator_articleviewer_ng_SRCS
     ${akregator_articleviewer_ng_webengine_SRCS}
     articleviewer-ng/webkit/articleviewerng.cpp
-    articleviewer-ng/articleviewerwidgetng.cpp
-    articleviewer-ng/articlehtmlwriter.cpp
+    articleviewer-ng/webkit/articleviewerwidgetng.cpp
+    articleviewer-ng/webkit/articlehtmlwriter.cpp
     )
 
 set(akregator_job_SRCS

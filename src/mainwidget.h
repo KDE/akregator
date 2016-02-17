@@ -28,7 +28,7 @@
 #define AKREGATOR_MAINWIDGET_H
 
 #include "akregatorpart_export.h"
-#include "articleviewer-ng/articleviewerwidgetng.h"
+#include "articleviewer-ng/webkit/articleviewerwidgetng.h"
 #include "feed.h"
 
 #include <QUrl>

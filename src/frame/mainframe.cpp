@@ -16,7 +16,7 @@
 */
 
 #include "articleviewerwidget.h"
-#include "articleviewer-ng/articleviewerwidgetng.h"
+#include "articleviewer-ng/webkit/articleviewerwidgetng.h"
 #include "mainframe.h"
 
 #include <QGridLayout>

@@ -25,7 +25,7 @@
 
 #include "articleviewerwidget.h"
 
-#include "articleviewer-ng/articlehtmlwriter.h"
+#include "articleviewer-ng/webkit/articlehtmlwriter.h"
 
 #include "akregatorconfig.h"
 #include "aboutdata.h"
@@ -57,7 +57,7 @@
 #include <kio/job.h>
 #include <QUrl>
 #include <grantleetheme/grantleethememanager.h>
-#include <articleviewer-ng/articleviewerwidgetng.h>
+#include <articleviewer-ng/webkit/articleviewerwidgetng.h>
 #include <articleviewer-ng/webkit/articleviewerng.h>
 
 #include <QClipboard>

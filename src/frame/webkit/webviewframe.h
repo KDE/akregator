@@ -18,7 +18,7 @@
 #ifndef WEBVIEWFRAME_H
 #define WEBVIEWFRAME_H
 
-#include "articleviewer-ng/articleviewerwidgetng.h"
+#include "articleviewer-ng/webkit/articleviewerwidgetng.h"
 #include "frame.h"
 #include "akregatorpart_export.h"
 #include <QObject>
