@@ -19,7 +19,7 @@
 #define ARTICLEVIEWERWIDGETNG_H
 
 #include <QWidget>
-#include "webkit/articleviewerng.h"
+#include "articleviewerng.h"
 #include "akregator_export.h"
 class KActionCollection;
 namespace MessageViewer
