@@ -75,6 +75,7 @@ set(akregatorprivate_frame_webkit_SRCS
     )
 set(akregatorprivate_frame_webengine_SRCS
     #frame/webengine/webengineframe.cpp
+    frame/webengine/webengineviewer.cpp
     )
 
 set(akregatorprivate_frame_SRCS
