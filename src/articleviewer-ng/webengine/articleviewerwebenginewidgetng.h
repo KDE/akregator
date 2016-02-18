@@ -24,7 +24,7 @@
 class KActionCollection;
 namespace MessageViewer
 {
-class FindBarWebView;
+class FindBarWebEngineView;
 }
 
 namespace KPIMTextEdit
@@ -51,7 +51,7 @@ public Q_SLOTS:
 private:
     void initializeActions(KActionCollection *ac);
     void initializeLayout(KActionCollection *ac);
-    MessageViewer::FindBarWebView *mFindBarWebView;
+    MessageViewer::FindBarWebEngineView *mFindBarWebView;
     ArticleViewerWebEngine *mArticleViewerNg;
     KPIMTextEdit::TextToSpeechWidget *mTextToSpeechWidget;
     KPIMTextEdit::SlideContainer *mSliderContainer;

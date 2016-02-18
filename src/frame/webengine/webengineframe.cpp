@@ -32,12 +32,12 @@ WebEngineFrame::WebEngineFrame(KActionCollection *ac, QWidget *parent)
     Akregator::ArticleViewerWebEngine *viewer = new Akregator::ArticleViewerWebEngine(ac, this);
     mArticleViewerWidgetNg = new Akregator::ArticleViewerWebEngineWidgetNg(viewer, ac, this);
 
-    connect(mArticleViewerWidgetNg->articleViewerNg(), &ArticleViewerNg::titleChanged, this, &WebEngineFrame::slotTitleChanged);
-    connect(mArticleViewerWidgetNg->articleViewerNg(), &ArticleViewerNg::loadProgress, this, &WebEngineFrame::slotProgressChanged);
-    connect(mArticleViewerWidgetNg->articleViewerNg(), &ArticleViewerNg::signalOpenUrlRequest, this, &WebEngineFrame::signalOpenUrlRequest);
-    connect(mArticleViewerWidgetNg->articleViewerNg(), &ArticleViewerNg::loadStarted, this, &WebEngineFrame::slotLoadStarted);
-    connect(mArticleViewerWidgetNg->articleViewerNg(), &ArticleViewerNg::loadFinished, this, &WebEngineFrame::slotLoadFinished);
-    connect(mArticleViewerWidgetNg->articleViewerNg(), &ArticleViewerNg::showStatusBarMessage, this, &WebEngineFrame::showStatusBarMessage);
+    connect(mArticleViewerWidgetNg->articleViewerNg(), &ArticleViewerWebEngine::titleChanged, this, &WebEngineFrame::slotTitleChanged);
+    connect(mArticleViewerWidgetNg->articleViewerNg(), &ArticleViewerWebEngine::loadProgress, this, &WebEngineFrame::slotProgressChanged);
+    connect(mArticleViewerWidgetNg->articleViewerNg(), &ArticleViewerWebEngine::signalOpenUrlRequest, this, &WebEngineFrame::signalOpenUrlRequest);
+    connect(mArticleViewerWidgetNg->articleViewerNg(), &ArticleViewerWebEngine::loadStarted, this, &WebEngineFrame::slotLoadStarted);
+    connect(mArticleViewerWidgetNg->articleViewerNg(), &ArticleViewerWebEngine::loadFinished, this, &WebEngineFrame::slotLoadFinished);
+    connect(mArticleViewerWidgetNg->articleViewerNg(), &ArticleViewerWebEngine::showStatusBarMessage, this, &WebEngineFrame::showStatusBarMessage);
     layout->addWidget(mArticleViewerWidgetNg);
 }
 
@@ -99,14 +99,14 @@ void WebEngineFrame::loadConfig(const KConfigGroup &config, const QString &prefi
     req.setArgs(args);
     openUrl(req);
     mArticleViewerWidgetNg->articleViewerNg()->setZoomFactor(zf);
-    mArticleViewerWidgetNg->articleViewerNg()->settings()->setAttribute(QWebSettings::ZoomTextOnly, onlyZoomFont);
+    //FIXME mArticleViewerWidgetNg->articleViewerNg()->settings()->setAttribute(QWebEngineSettings::ZoomTextOnly, onlyZoomFont);
 }
 
 void WebEngineFrame::saveConfig(KConfigGroup &config, const QString &prefix)
 {
     config.writeEntry(QStringLiteral("url").prepend(prefix), url().url());
     config.writeEntry(QStringLiteral("zoom").prepend(prefix), mArticleViewerWidgetNg->articleViewerNg()->zoomFactor());
-    config.writeEntry(QStringLiteral("onlyZoomFont").prepend(prefix), mArticleViewerWidgetNg->articleViewerNg()->settings()->testAttribute(QWebSettings::ZoomTextOnly));
+    //FIXME config.writeEntry(QStringLiteral("onlyZoomFont").prepend(prefix), mArticleViewerWidgetNg->articleViewerNg()->settings()->testAttribute(QWebSettings::ZoomTextOnly));
 }
 
 void WebEngineFrame::slotCopyInFrame(int frameId)
@@ -167,12 +167,12 @@ void WebEngineFrame::slotZoomTextOnlyInFrame(int frameId, bool textOnlyInFrame)
 
 void WebEngineFrame::slotHistoryForward()
 {
-    mArticleViewerWidgetNg->articleViewerNg()->pageAction(QWebPage::Forward)->trigger();
+    mArticleViewerWidgetNg->articleViewerNg()->pageAction(QWebEnginePage::Forward)->trigger();
 }
 
 void WebEngineFrame::slotHistoryBack()
 {
-    mArticleViewerWidgetNg->articleViewerNg()->pageAction(QWebPage::Back)->trigger();
+    mArticleViewerWidgetNg->articleViewerNg()->pageAction(QWebEnginePage::Back)->trigger();
 }
 
 void WebEngineFrame::slotReload()

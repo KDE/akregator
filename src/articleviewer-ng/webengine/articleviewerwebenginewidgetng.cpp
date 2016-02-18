@@ -17,7 +17,6 @@
 
 #include "articleviewerwebenginewidgetng.h"
 
-#include "articleviewerng.h"
 #include <MessageViewer/FindBarWebView>
 
 #include <KActionCollection>
@@ -28,6 +27,8 @@
 #include <KPIMTextEdit/kpimtextedit/texttospeechwidget.h>
 
 #include <kpimtextedit/slidecontainer.h>
+
+#include <MessageViewer/FindBarWebEngineView>
 
 using namespace Akregator;
 
@@ -56,20 +57,20 @@ void ArticleViewerWebEngineWidgetNg::initializeLayout(KActionCollection *ac)
     layout->addWidget(mTextToSpeechWidget);
 
     if (!mArticleViewerNg) {
-        mArticleViewerNg = new ArticleViewerNg(ac, this);
+        mArticleViewerNg = new ArticleViewerWebEngine(ac, this);
     }
     mArticleViewerNg->setObjectName(QStringLiteral("articleviewerng"));
     layout->addWidget(mArticleViewerNg);
 
     mSliderContainer = new KPIMTextEdit::SlideContainer(this);
     mSliderContainer->setObjectName(QStringLiteral("slidercontainer"));
-    mFindBarWebView = new MessageViewer::FindBarWebView(mArticleViewerNg, this);
+    mFindBarWebView = new MessageViewer::FindBarWebEngineView(mArticleViewerNg, this);
     mFindBarWebView->setObjectName(QStringLiteral("findbarwebview"));
     connect(mFindBarWebView, &MessageViewer::FindBarBase::hideFindBar, mSliderContainer, &KPIMTextEdit::SlideContainer::slideOut);
     mSliderContainer->setContent(mFindBarWebView);
     layout->addWidget(mSliderContainer);
-    connect(articleViewerNg(), &ArticleViewerNg::textToSpeech, this, &ArticleViewerWebEngineWidgetNg::slotSpeakText);
-    connect(articleViewerNg(), &ArticleViewerNg::findTextInHtml, this, &ArticleViewerWebEngineWidgetNg::slotFind);
+    connect(articleViewerNg(), &ArticleViewerWebEngine::textToSpeech, this, &ArticleViewerWebEngineWidgetNg::slotSpeakText);
+    connect(articleViewerNg(), &ArticleViewerWebEngine::findTextInHtml, this, &ArticleViewerWebEngineWidgetNg::slotFind);
 }
 
 ArticleViewerWebEngineWidgetNg::~ArticleViewerWebEngineWidgetNg()
