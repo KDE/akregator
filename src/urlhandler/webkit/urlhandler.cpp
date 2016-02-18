@@ -29,7 +29,7 @@
 #include <QUrlQuery>
 using namespace Akregator;
 
-bool AkregatorConfigHandler::handleClick(const QUrl &url, ArticleViewerNg *article) const
+bool ConfigURLHandler::handleClick(const QUrl &url, ArticleViewerNg *article) const
 {
     if (url.scheme() == QLatin1String("config")) {
         if (url.path() == QLatin1String("/disable_introduction")) {
@@ -40,12 +40,12 @@ bool AkregatorConfigHandler::handleClick(const QUrl &url, ArticleViewerNg *artic
     return false;
 }
 
-bool AkregatorConfigHandler::handleContextMenuRequest(const QUrl &url, const QPoint &, ArticleViewerNg *) const
+bool ConfigURLHandler::handleContextMenuRequest(const QUrl &url, const QPoint &, ArticleViewerNg *) const
 {
     return (url.scheme() == QLatin1String("config"));
 }
 
-QString AkregatorConfigHandler::statusBarMessage(const QUrl &url, ArticleViewerNg *) const
+QString ConfigURLHandler::statusBarMessage(const QUrl &url, ArticleViewerNg *) const
 {
     if (url.scheme() == QLatin1String("config")) {
         if (url.path() == QLatin1String("/disable_introduction")) {
