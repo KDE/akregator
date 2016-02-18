@@ -19,11 +19,31 @@
 #include "articleviewerwebengine.h"
 #include "akregator_debug.h"
 #include "articleviewerwebenginepage.h"
+#include "urlhandlermanager.h"
+#include "actionmanager.h"
+#include "akregatorconfig.h"
+#include "actions/actions.h"
 
+#include <KPIMTextEdit/TextToSpeech>
+#include <KActionMenu>
+
+#include <KParts/BrowserRun>
 #include <grantleethememanager.h>
 #include <KActionCollection>
 #include <KLocalizedString>
 #include <KAboutData>
+#include <KGuiItem>
+#include <openurlrequest.h>
+#include <KPimPrintPreviewDialog>
+#include <KMessageBox>
+#include <QPrinter>
+#include <QWebEngineSettings>
+#include <QMouseEvent>
+#include <QPrintDialog>
+#include <QApplication>
+#include <QClipboard>
+#include <QMenu>
+#include <KIO/KUriFilterSearchProviderActions>
 
 using namespace Akregator;
 
@@ -38,7 +58,9 @@ ArticleViewerWebEngine::ArticleViewerWebEngine(KActionCollection *ac, QWidget *p
     connect(pageEngine, &ArticleViewerWebEnginePage::urlClicked, this, &ArticleViewerWebEngine::slotLinkClicked);
 
     setContextMenuPolicy(Qt::CustomContextMenu);
-
+    mWebShortcutMenuManager = new KIO::KUriFilterSearchProviderActions(this);
+    mShareServiceManager = new PimCommon::ShareServiceUrlManager(this);
+    connect(mShareServiceManager, &PimCommon::ShareServiceUrlManager::serviceUrlSelected, this, &ArticleViewerWebEngine::slotServiceUrlSelected);
 }
 
 ArticleViewerWebEngine::~ArticleViewerWebEngine()
@@ -76,46 +98,13 @@ void ArticleViewerWebEngine::paintAboutScreen(const QString &templateName, const
     }
 }
 
-void ArticleViewerWebEngine::slotLinkClicked(const QUrl &url)
+void ArticleViewerWebEngine::slotServiceUrlSelected(PimCommon::ShareServiceUrlManager::ServiceType type)
 {
-
+    const QUrl url = mShareServiceManager->generateServiceUrl(mCurrentUrl.url(), QString(), type);
+    mShareServiceManager->openUrl(url);
 }
 
-#if 0
-ArticleViewerNg::ArticleViewerNg(KActionCollection *ac, QWidget *parent)
-    : KWebView(parent, false),
-      mActionCollection(ac),
-      mLastButtonClicked(LeftButton)
-{
-    setContextMenuPolicy(Qt::CustomContextMenu);
-    setPage(new MessageViewer::WebPage(this));
-    mWebViewAccessKey = new MessageViewer::WebViewAccessKey(this, this);
-    mWebViewAccessKey->setActionCollection(mActionCollection);
-
-    settings()->setAttribute(QWebSettings::JavascriptEnabled, false);
-    settings()->setAttribute(QWebSettings::JavaEnabled, false);
-    settings()->setAttribute(QWebSettings::PluginsEnabled, false);
-    settings()->setAttribute(QWebSettings::DnsPrefetchEnabled, true);
-    settings()->setAttribute(QWebSettings::AutoLoadImages, true);
-
-    connect(this, &QWebView::loadStarted, this, &ArticleViewerNg::slotLoadStarted);
-    connect(this, &QWebView::loadFinished, this, &ArticleViewerNg::slotLoadFinished);
-    connect(page(), &QWebPage::scrollRequested, mWebViewAccessKey, &MessageViewer::WebViewAccessKey::hideAccessKeys);
-    page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
-    connect(page(), &QWebPage::linkHovered, this, &ArticleViewerNg::slotLinkHovered);
-    connect(this, &ArticleViewerNg::linkClicked, this, &ArticleViewerNg::slotLinkClicked);
-    connect(this, &ArticleViewerNg::showContextMenu, this, &ArticleViewerNg::slotShowContextMenu);
-    mShareServiceManager = new PimCommon::ShareServiceUrlManager(this);
-    connect(mShareServiceManager, &PimCommon::ShareServiceUrlManager::serviceUrlSelected, this, &ArticleViewerNg::slotServiceUrlSelected);
-    mWebShortcutMenuManager = new KIO::KUriFilterSearchProviderActions(this);
-}
-
-ArticleViewerNg::~ArticleViewerNg()
-{
-    disconnect(this, &QWebView::loadFinished, this, &ArticleViewerNg::slotLoadFinished);
-}
-
-void ArticleViewerNg::slotSaveLinkAs()
+void ArticleViewerWebEngine::slotSaveLinkAs()
 {
     QUrl tmp(mCurrentUrl);
 
@@ -126,17 +115,17 @@ void ArticleViewerNg::slotSaveLinkAs()
     KParts::BrowserRun::simpleSave(tmp, tmp.fileName());
 }
 
-void ArticleViewerNg::slotSaveImageOnDiskInFrame()
+void ArticleViewerWebEngine::slotSaveImageOnDiskInFrame()
 {
     slotSaveLinkAs();
 }
 
-void ArticleViewerNg::slotCopyImageLocationInFrame()
+void ArticleViewerWebEngine::slotCopyImageLocationInFrame()
 {
     slotCopyLinkAddress();
 }
 
-void ArticleViewerNg::slotCopyLinkAddress()
+void ArticleViewerWebEngine::slotCopyLinkAddress()
 {
     if (mCurrentUrl.isEmpty()) {
         return;
@@ -149,50 +138,51 @@ void ArticleViewerNg::slotCopyLinkAddress()
     cb->setText(mCurrentUrl.toString(), QClipboard::Selection);
 }
 
-void ArticleViewerNg::slotShowContextMenu(const QPoint &pos)
+void ArticleViewerWebEngine::slotShowContextMenu(const QPoint &pos)
 {
     displayContextMenu(pos);
 }
 
-void ArticleViewerNg::slotPrintPreview()
+void ArticleViewerWebEngine::slotPrintPreview()
 {
     PimCommon::KPimPrintPreviewDialog previewdlg(this);
     connect(&previewdlg, &QPrintPreviewDialog::paintRequested, this, [this](QPrinter * printer) {
-        print(printer);
+        //print(printer);
     });
     previewdlg.exec();
 }
 
-void ArticleViewerNg::slotPrint()
+void ArticleViewerWebEngine::slotPrint()
 {
     QPrinter printer;
 
     QScopedPointer<QPrintDialog> dlg(new QPrintDialog(&printer));
 
     if (dlg && dlg->exec() == QDialog::Accepted) {
-        print(&printer);
+        //print(&printer);
     }
 }
 
-void ArticleViewerNg::slotCopy()
+void ArticleViewerWebEngine::slotCopy()
 {
-    triggerPageAction(QWebPage::Copy);
+    triggerPageAction(QWebEnginePage::Copy);
 }
 
-void ArticleViewerNg::slotLoadFinished()
+void ArticleViewerWebEngine::slotLoadFinished()
 {
     unsetCursor();
 }
 
-void ArticleViewerNg::slotLoadStarted()
+void ArticleViewerWebEngine::slotLoadStarted()
 {
-    mWebViewAccessKey->hideAccessKeys();
+    //mWebViewAccessKey->hideAccessKeys();
     setCursor(Qt::WaitCursor);
 }
 
 
-void ArticleViewerNg::displayContextMenu(const QPoint &pos)
+void ArticleViewerWebEngine::displayContextMenu(const QPoint &pos)
 {
+#if 0
     mContextMenuHitResult = page()->mainFrame()->hitTestContent(pos);
     mCurrentUrl = mContextMenuHitResult.linkUrl();
     if (URLHandlerManager::instance()->handleContextMenuRequest(mCurrentUrl, mapToGlobal(pos), this)) {
@@ -240,62 +230,60 @@ void ArticleViewerNg::displayContextMenu(const QPoint &pos)
         popup.addAction(ActionManager::getInstance()->action(QStringLiteral("speak_text")));
     }
     popup.exec(mapToGlobal(pos));
+#endif
 }
 
-void ArticleViewerNg::slotServiceUrlSelected(PimCommon::ShareServiceUrlManager::ServiceType type)
-{
-    const QUrl url = mShareServiceManager->generateServiceUrl(mCurrentUrl.url(), QString(), type);
-    mShareServiceManager->openUrl(url);
-}
 
-void ArticleViewerNg::slotLinkHovered(const QString &link, const QString &title, const QString &textContent)
+void ArticleViewerWebEngine::slotLinkHovered(const QString &link, const QString &title, const QString &textContent)
 {
     Q_UNUSED(title);
     Q_UNUSED(textContent);
     QUrl url(linkOrImageUrlAt(QCursor::pos()));
+#if 0 //FIXME
     QString msg = URLHandlerManager::instance()->statusBarMessage(url, this);
     if (msg.isEmpty()) {
         msg = link;
     }
 
     Q_EMIT showStatusBarMessage(msg);
+#endif
 }
 
-void ArticleViewerNg::keyReleaseEvent(QKeyEvent *e)
+void ArticleViewerWebEngine::keyReleaseEvent(QKeyEvent *e)
 {
     if (Settings::self()->accessKeyEnabled()) {
-        mWebViewAccessKey->keyReleaseEvent(e);
+        //mWebViewAccessKey->keyReleaseEvent(e);
     }
-    KWebView::keyReleaseEvent(e);
+    QWebEngineView::keyReleaseEvent(e);
 }
 
-void ArticleViewerNg::keyPressEvent(QKeyEvent *e)
+void ArticleViewerWebEngine::keyPressEvent(QKeyEvent *e)
 {
     if (e && hasFocus()) {
         if (Settings::self()->accessKeyEnabled()) {
-            mWebViewAccessKey->keyPressEvent(e);
+            //mWebViewAccessKey->keyPressEvent(e);
         }
     }
-    KWebView::keyPressEvent(e);
+    QWebEngineView::keyPressEvent(e);
 }
 
-void ArticleViewerNg::wheelEvent(QWheelEvent *e)
+void ArticleViewerWebEngine::wheelEvent(QWheelEvent *e)
 {
     if (Settings::self()->accessKeyEnabled()) {
-        mWebViewAccessKey->wheelEvent(e);
+        //mWebViewAccessKey->wheelEvent(e);
     }
-    KWebView::wheelEvent(e);
+    QWebEngineView::wheelEvent(e);
 }
 
-void ArticleViewerNg::resizeEvent(QResizeEvent *e)
+void ArticleViewerWebEngine::resizeEvent(QResizeEvent *e)
 {
     if (Settings::self()->accessKeyEnabled()) {
-        mWebViewAccessKey->resizeEvent(e);
+        //mWebViewAccessKey->resizeEvent(e);
     }
-    KWebView::resizeEvent(e);
+    QWebEngineView::resizeEvent(e);
 }
 
-void ArticleViewerNg::disableIntroduction()
+void ArticleViewerWebEngine::disableIntroduction()
 {
     KGuiItem yesButton(KStandardGuiItem::yes());
     yesButton.setText(i18n("Disable"));
@@ -308,12 +296,12 @@ void ArticleViewerNg::disableIntroduction()
     }
 }
 
-void ArticleViewerNg::setArticleAction(ArticleViewerNg::ArticleAction type, const QString &articleId, const QString &feed)
+void ArticleViewerWebEngine::setArticleAction(ArticleViewerWebEngine::ArticleAction type, const QString &articleId, const QString &feed)
 {
     Q_EMIT articleAction(type, articleId, feed);
 }
 
-void ArticleViewerNg::mouseReleaseEvent(QMouseEvent *event)
+void ArticleViewerWebEngine::mouseReleaseEvent(QMouseEvent *event)
 {
     if (event->button() & Qt::RightButton) {
         Q_EMIT showContextMenu(event->pos());
@@ -323,15 +311,16 @@ void ArticleViewerNg::mouseReleaseEvent(QMouseEvent *event)
     } else if (event->button() & Qt::LeftButton) {
         mLastButtonClicked = LeftButton;
     }
-    QWebView::mouseReleaseEvent(event);
+    QWebEngineView::mouseReleaseEvent(event);
 }
 
-void ArticleViewerNg::slotLinkClicked(const QUrl &url)
+void ArticleViewerWebEngine::slotLinkClicked(const QUrl &url)
 {
+#if 0 //FIXME
     if (URLHandlerManager::instance()->handleClick(url, this)) {
         return;
     }
-
+#endif
     mCurrentUrl = url;
     OpenUrlRequest req(mCurrentUrl);
     if (mLastButtonClicked == LeftButton) {
@@ -362,14 +351,14 @@ void ArticleViewerNg::slotLinkClicked(const QUrl &url)
     Q_EMIT signalOpenUrlRequest(req);
 }
 
-void ArticleViewerNg::slotOpenLinkInForegroundTab()
+void ArticleViewerWebEngine::slotOpenLinkInForegroundTab()
 {
     OpenUrlRequest req(mCurrentUrl);
     req.setOptions(OpenUrlRequest::NewTab);
     Q_EMIT signalOpenUrlRequest(req);
 }
 
-void ArticleViewerNg::slotOpenLinkInBackgroundTab()
+void ArticleViewerWebEngine::slotOpenLinkInBackgroundTab()
 {
     OpenUrlRequest req(mCurrentUrl);
     req.setOptions(OpenUrlRequest::NewTab);
@@ -377,15 +366,16 @@ void ArticleViewerNg::slotOpenLinkInBackgroundTab()
     Q_EMIT signalOpenUrlRequest(req);
 }
 
-void ArticleViewerNg::slotOpenLinkInBrowser()
+void ArticleViewerWebEngine::slotOpenLinkInBrowser()
 {
     OpenUrlRequest req(mCurrentUrl);
     req.setOptions(OpenUrlRequest::ExternalBrowser);
     Q_EMIT signalOpenUrlRequest(req);
 }
 
-QUrl ArticleViewerNg::linkOrImageUrlAt(const QPoint &global) const
+QUrl ArticleViewerWebEngine::linkOrImageUrlAt(const QPoint &global) const
 {
+#if 0
     const QPoint local = page()->view()->mapFromGlobal(global);
     const QWebHitTestResult hit = page()->currentFrame()->hitTestContent(local);
     if (!hit.linkUrl().isEmpty()) {
@@ -395,29 +385,62 @@ QUrl ArticleViewerNg::linkOrImageUrlAt(const QPoint &global) const
     } else {
         return QUrl();
     }
+#else
+    return QUrl();
+#endif
 }
 
-bool ArticleViewerNg::zoomTextOnlyInFrame() const
+bool ArticleViewerWebEngine::zoomTextOnlyInFrame() const
 {
-    return settings()->testAttribute(QWebSettings::ZoomTextOnly);
+    return false;
+    //return settings()->testAttribute(QWebEngineSettings::ZoomTextOnly);
 }
 
-void ArticleViewerNg::slotZoomTextOnlyInFrame(bool textOnlyInFrame)
+void ArticleViewerWebEngine::slotZoomTextOnlyInFrame(bool textOnlyInFrame)
 {
-    settings()->setAttribute(QWebSettings::ZoomTextOnly, textOnlyInFrame);
+    //settings()->setAttribute(QWebEngineSettings::ZoomTextOnly, textOnlyInFrame);
 }
 
-void ArticleViewerNg::slotBlockImage()
+void ArticleViewerWebEngine::slotBlockImage()
 {
     if (mCurrentUrl.isEmpty()) {
         return;
     }
-    MessageViewer::AdBlockManager::self()->addCustomRule(mCurrentUrl.url(), true);
+    //MessageViewer::AdBlockManager::self()->addCustomRule(mCurrentUrl.url(), true);
 }
 
-bool ArticleViewerNg::adblockEnabled() const
+bool ArticleViewerWebEngine::adblockEnabled() const
 {
-    return MessageViewer::AdBlockManager::self()->isEnabled();
+    return false;
+    //return MessageViewer::AdBlockManager::self()->isEnabled();
 }
+
+
+#if 0
+ArticleViewerWebEngine::ArticleViewerWebEngine(KActionCollection *ac, QWidget *parent)
+    : KWebView(parent, false),
+      mActionCollection(ac),
+      mLastButtonClicked(LeftButton)
+{
+    setContextMenuPolicy(Qt::CustomContextMenu);
+    setPage(new MessageViewer::WebPage(this));
+    mWebViewAccessKey = new MessageViewer::WebViewAccessKey(this, this);
+    mWebViewAccessKey->setActionCollection(mActionCollection);
+
+    connect(this, &QWebView::loadStarted, this, &ArticleViewerWebEngine::slotLoadStarted);
+    connect(this, &QWebView::loadFinished, this, &ArticleViewerWebEngine::slotLoadFinished);
+    connect(page(), &QWebPage::scrollRequested, mWebViewAccessKey, &MessageViewer::WebViewAccessKey::hideAccessKeys);
+    page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
+    connect(page(), &QWebPage::linkHovered, this, &ArticleViewerWebEngine::slotLinkHovered);
+    connect(this, &ArticleViewerWebEngine::linkClicked, this, &ArticleViewerWebEngine::slotLinkClicked);
+    connect(this, &ArticleViewerWebEngine::showContextMenu, this, &ArticleViewerWebEngine::slotShowContextMenu);
+}
+
+ArticleViewerWebEngine::~ArticleViewerWebEngine()
+{
+    disconnect(this, &QWebView::loadFinished, this, &ArticleViewerWebEngine::slotLoadFinished);
+}
+
+
 
 #endif

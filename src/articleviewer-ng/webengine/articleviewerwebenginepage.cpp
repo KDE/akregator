@@ -16,12 +16,15 @@
 */
 
 #include "articleviewerwebenginepage.h"
-
+#include <QWebEngineSettings>
 using namespace Akregator;
 
 ArticleViewerWebEnginePage::ArticleViewerWebEnginePage(QObject *parent)
     : QWebEnginePage(parent)
 {
+    settings()->setAttribute(QWebEngineSettings::JavascriptEnabled, false);
+    settings()->setAttribute(QWebEngineSettings::PluginsEnabled, false);
+    settings()->setAttribute(QWebEngineSettings::AutoLoadImages, true);
 
 }
 

@@ -20,7 +20,17 @@
 #define ARTICLEVIEWERWEBENGINE_H
 
 #include <QWebEngineView>
+#include <openurlrequest.h>
+#include <shareserviceurlmanager.h>
 class KActionCollection;
+namespace PimCommon
+{
+class ShareServiceUrlManager;
+}
+namespace KIO
+{
+class KUriFilterSearchProviderActions;
+}
 namespace Akregator
 {
 class ArticleViewerWebEngine : public QWebEngineView
@@ -44,12 +54,15 @@ public:
     void showAboutPage();
 
     void disableIntroduction();
+    void setArticleAction(ArticleViewerWebEngine::ArticleAction type, const QString &articleId, const QString &feed);
 
-private Q_SLOTS:
-    void slotLinkClicked(const QUrl &url);
+    bool zoomTextOnlyInFrame() const;
 
 protected:
+    QUrl mCurrentUrl;
     KActionCollection *mActionCollection;
+    PimCommon::ShareServiceUrlManager *mShareServiceManager;
+    KIO::KUriFilterSearchProviderActions *mWebShortcutMenuManager;
 
 private:
     enum MousePressedButtonType {
@@ -61,13 +74,6 @@ private:
     void paintAboutScreen(const QString &templateName, const QVariantHash &data);
     QVariantHash introductionData() const;
 
-#if 0
-
-
-
-    void setArticleAction(ArticleViewerNg::ArticleAction type, const QString &articleId, const QString &feed);
-
-    bool zoomTextOnlyInFrame() const;
 public Q_SLOTS:
     void slotPrintPreview();
     void slotPrint();
@@ -82,7 +88,7 @@ Q_SIGNALS:
     void signalOpenUrlRequest(Akregator::OpenUrlRequest &);
     void showStatusBarMessage(const QString &link);
     void showContextMenu(const QPoint &pos);
-    void articleAction(Akregator::ArticleViewerNg::ArticleAction type, const QString &articleId, const QString &feed);
+    void articleAction(Akregator::ArticleViewerWebEngine::ArticleAction type, const QString &articleId, const QString &feed);
     void findTextInHtml();
     void textToSpeech();
 
@@ -96,6 +102,7 @@ protected:
     virtual void displayContextMenu(const QPoint &pos);
 
 private Q_SLOTS:
+    void slotServiceUrlSelected(PimCommon::ShareServiceUrlManager::ServiceType type);
     void slotLinkHovered(const QString &link, const QString &title, const QString &textContent);
     void slotLoadStarted();
     void slotLoadFinished();
@@ -104,23 +111,15 @@ private Q_SLOTS:
     void slotOpenLinkInBackgroundTab();
     void slotOpenLinkInBrowser();
     void slotShowContextMenu(const QPoint &pos);
-    void slotServiceUrlSelected(PimCommon::ShareServiceUrlManager::ServiceType type);
 protected:
-    QUrl mCurrentUrl;
-    QWebHitTestResult mContextMenuHitResult;
+    //QWebHitTestResult mContextMenuHitResult;
 
-    PimCommon::ShareServiceUrlManager *mShareServiceManager;
-    KIO::KUriFilterSearchProviderActions *mWebShortcutMenuManager;
     bool adblockEnabled() const;
 
 private:
     QUrl linkOrImageUrlAt(const QPoint &global) const;
     MousePressedButtonType mLastButtonClicked;
-    MessageViewer::WebViewAccessKey *mWebViewAccessKey;
-
-#endif
-
-
+    //MessageViewer::WebViewAccessKey *mWebViewAccessKey;
 };
 }
 
