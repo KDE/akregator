@@ -88,7 +88,7 @@ bool MailToURLHandler::handleContextMenuRequest(const QUrl &url, const QPoint &p
         } else if (a == open) {
             runKAddressBook(url);
         }
-        delete a;
+        delete menu;
 
         return true;
     }
