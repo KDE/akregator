@@ -17,6 +17,9 @@
 
 #include "urlhandlerwebenginemanager.h"
 #include "urlhandlerwebengine.h"
+
+#include <articleviewer-ng/webengine/articleviewerwebengine.h>
+
 using std::remove;
 
 using namespace Akregator;
@@ -59,7 +62,7 @@ void URLHandlerWebEngineManager::unregisterHandler(const URLHandlerWebEngine *ha
     mHandlers.erase(remove(mHandlers.begin(), mHandlers.end(), handler), mHandlers.end());
 }
 
-bool URLHandlerWebEngineManager::handleClick(const QUrl &url, ArticleViewerNg *w) const
+bool URLHandlerWebEngineManager::handleClick(const QUrl &url, ArticleViewerWebEngine *w) const
 {
     HandlerList::const_iterator end(mHandlers.constEnd());
     for (HandlerList::const_iterator it = mHandlers.constBegin(); it != end; ++it)
@@ -69,7 +72,7 @@ bool URLHandlerWebEngineManager::handleClick(const QUrl &url, ArticleViewerNg *w
     return false;
 }
 
-bool URLHandlerWebEngineManager::handleShiftClick(const QUrl &url, ArticleViewerNg *window) const
+bool URLHandlerWebEngineManager::handleShiftClick(const QUrl &url, ArticleViewerWebEngine *window) const
 {
     HandlerList::const_iterator end(mHandlers.constEnd());
     for (HandlerList::const_iterator it = mHandlers.constBegin(); it != end; ++it)
@@ -79,7 +82,7 @@ bool URLHandlerWebEngineManager::handleShiftClick(const QUrl &url, ArticleViewer
     return false;
 }
 
-bool URLHandlerWebEngineManager::handleContextMenuRequest(const QUrl &url, const QPoint &p, ArticleViewerNg *w) const
+bool URLHandlerWebEngineManager::handleContextMenuRequest(const QUrl &url, const QPoint &p, ArticleViewerWebEngine *w) const
 {
     HandlerList::const_iterator end(mHandlers.constEnd());
     for (HandlerList::const_iterator it = mHandlers.constBegin(); it != end; ++it)
@@ -89,7 +92,7 @@ bool URLHandlerWebEngineManager::handleContextMenuRequest(const QUrl &url, const
     return false;
 }
 
-bool URLHandlerWebEngineManager::willHandleDrag(const QUrl &url, ArticleViewerNg *window) const
+bool URLHandlerWebEngineManager::willHandleDrag(const QUrl &url, ArticleViewerWebEngine *window) const
 {
     HandlerList::const_iterator end(mHandlers.constEnd());
     for (HandlerList::const_iterator it = mHandlers.constBegin(); it != end; ++it)
@@ -99,7 +102,7 @@ bool URLHandlerWebEngineManager::willHandleDrag(const QUrl &url, ArticleViewerNg
     return false;
 }
 
-bool URLHandlerWebEngineManager::handleDrag(const QUrl &url, ArticleViewerNg *window) const
+bool URLHandlerWebEngineManager::handleDrag(const QUrl &url, ArticleViewerWebEngine *window) const
 {
     HandlerList::const_iterator end(mHandlers.constEnd());
     for (HandlerList::const_iterator it = mHandlers.constBegin(); it != end; ++it)
@@ -109,7 +112,7 @@ bool URLHandlerWebEngineManager::handleDrag(const QUrl &url, ArticleViewerNg *wi
     return false;
 }
 
-QString URLHandlerWebEngineManager::statusBarMessage(const QUrl &url, ArticleViewerNg *w) const
+QString URLHandlerWebEngineManager::statusBarMessage(const QUrl &url, ArticleViewerWebEngine *w) const
 {
     HandlerList::const_iterator end(mHandlers.constEnd());
     for (HandlerList::const_iterator it = mHandlers.constBegin(); it != end; ++it) {

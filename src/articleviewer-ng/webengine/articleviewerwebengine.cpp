@@ -18,7 +18,7 @@
 #include "articleviewerwebengine.h"
 #include "akregator_debug.h"
 #include "articleviewerwebenginepage.h"
-#include "webkit/urlhandlermanager.h"
+#include "webengine/urlhandlerwebenginemanager.h"
 #include "actionmanager.h"
 #include "akregatorconfig.h"
 #include "actions/actions.h"
@@ -146,7 +146,7 @@ void ArticleViewerWebEngine::slotPrintPreview()
 {
     PimCommon::KPimPrintPreviewDialog previewdlg(this);
     connect(&previewdlg, &QPrintPreviewDialog::paintRequested, this, [this](QPrinter * printer) {
-        //print(printer);
+        render(printer);
     });
     previewdlg.exec();
 }
@@ -158,7 +158,7 @@ void ArticleViewerWebEngine::slotPrint()
     QScopedPointer<QPrintDialog> dlg(new QPrintDialog(&printer));
 
     if (dlg && dlg->exec() == QDialog::Accepted) {
-        //print(&printer);
+        render(&printer);
     }
 }
 

@@ -25,7 +25,7 @@
 namespace Akregator
 {
 class URLHandlerWebEngine;
-class ArticleViewerNg;
+class ArticleViewerWebEngine;
 class AKREGATOR_EXPORT URLHandlerWebEngineManager : public QObject
 {
     Q_OBJECT
@@ -36,12 +36,12 @@ public:
     void registerHandler(const URLHandlerWebEngine *handler);
     void unregisterHandler(const URLHandlerWebEngine *handler);
 
-    bool handleClick(const QUrl &url, ArticleViewerNg *w = Q_NULLPTR) const;
-    bool handleShiftClick(const QUrl &url, ArticleViewerNg *window = Q_NULLPTR) const;
-    bool handleContextMenuRequest(const QUrl &url, const QPoint &p, ArticleViewerNg *w = Q_NULLPTR) const;
-    bool willHandleDrag(const QUrl &url, ArticleViewerNg *window = Q_NULLPTR) const;
-    bool handleDrag(const QUrl &url, ArticleViewerNg *window = Q_NULLPTR) const;
-    QString statusBarMessage(const QUrl &url, ArticleViewerNg *w = Q_NULLPTR) const;
+    bool handleClick(const QUrl &url, ArticleViewerWebEngine *w = Q_NULLPTR) const;
+    bool handleShiftClick(const QUrl &url, ArticleViewerWebEngine *window = Q_NULLPTR) const;
+    bool handleContextMenuRequest(const QUrl &url, const QPoint &p, ArticleViewerWebEngine *w = Q_NULLPTR) const;
+    bool willHandleDrag(const QUrl &url, ArticleViewerWebEngine *window = Q_NULLPTR) const;
+    bool handleDrag(const QUrl &url, ArticleViewerWebEngine *window = Q_NULLPTR) const;
+    QString statusBarMessage(const QUrl &url, ArticleViewerWebEngine *w = Q_NULLPTR) const;
 
 private:
     explicit URLHandlerWebEngineManager(QObject *parent = Q_NULLPTR);

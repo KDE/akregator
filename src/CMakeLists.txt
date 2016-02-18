@@ -89,7 +89,12 @@ set(akregatorprivate_frame_SRCS
     frame/framemanager.cpp
     )
 
-
+if (QTWEBENGINE_EXPERIMENTAL_OPTION)
+set(akregatorprivate_urlhandlerwebengine_SRCS
+    urlhandler/webengine/urlhandlerwebengine.cpp
+    urlhandler/webengine/urlhandlerwebenginemanager.cpp
+    )
+endif()
 
 set(akregatorprivate_urlhandler_SRCS
     urlhandler/webkit/urlhandlermanager.cpp
@@ -103,6 +108,7 @@ set(akregatorprivate_LIB_SRCS
     ${akregator_articleviewer_ng_SRCS}
     ${akregator_common_SRCS}
     ${akregatorprivate_formatter_SRCS}
+    ${akregatorprivate_urlhandlerwebengine_SRCS}
     articleviewerwidget.cpp
     aboutdata.cpp
     trayicon.cpp

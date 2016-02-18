@@ -18,7 +18,7 @@
 #include "urlhandlerwebengine.h"
 #include "akregator_debug.h"
 
-#include <articleviewer-ng/webkit/articleviewerng.h>
+#include "articleviewer-ng/webengine/articleviewerwebengine.h"
 #include <KLocalizedString>
 #include <QDesktopServices>
 #include <QClipboard>
@@ -29,7 +29,7 @@
 #include <QUrlQuery>
 using namespace Akregator;
 
-bool AkregatorConfigHandler::handleClick(const QUrl &url, ArticleViewerNg *article) const
+bool AkregatorConfigHandler::handleClick(const QUrl &url, ArticleViewerWebEngine *article) const
 {
     if (url.scheme() == QLatin1String("config")) {
         if (url.path() == QLatin1String("/disable_introduction")) {
@@ -40,12 +40,12 @@ bool AkregatorConfigHandler::handleClick(const QUrl &url, ArticleViewerNg *artic
     return false;
 }
 
-bool AkregatorConfigHandler::handleContextMenuRequest(const QUrl &url, const QPoint &, ArticleViewerNg *) const
+bool AkregatorConfigHandler::handleContextMenuRequest(const QUrl &url, const QPoint &, ArticleViewerWebEngine *) const
 {
     return (url.scheme() == QLatin1String("config"));
 }
 
-QString AkregatorConfigHandler::statusBarMessage(const QUrl &url, ArticleViewerNg *) const
+QString AkregatorConfigHandler::statusBarMessage(const QUrl &url, ArticleViewerWebEngine *) const
 {
     if (url.scheme() == QLatin1String("config")) {
         if (url.path() == QLatin1String("/disable_introduction")) {
@@ -55,7 +55,7 @@ QString AkregatorConfigHandler::statusBarMessage(const QUrl &url, ArticleViewerN
     return {};
 }
 
-QString MailToURLHandlerWebEngine::statusBarMessage(const QUrl &url, ArticleViewerNg *) const
+QString MailToURLHandlerWebEngine::statusBarMessage(const QUrl &url, ArticleViewerWebEngine *) const
 {
     if (url.scheme() == QLatin1String("mailto")) {
         return KEmailAddress::decodeMailtoUrl(url);
@@ -69,7 +69,7 @@ void MailToURLHandlerWebEngine::runKAddressBook(const QUrl &url) const
     job->start();
 }
 
-bool MailToURLHandlerWebEngine::handleContextMenuRequest(const QUrl &url, const QPoint &p, ArticleViewerNg *) const
+bool MailToURLHandlerWebEngine::handleContextMenuRequest(const QUrl &url, const QPoint &p, ArticleViewerWebEngine *) const
 {
     if (url.scheme() == QLatin1String("mailto")) {
         QMenu *menu = new QMenu();
@@ -95,7 +95,7 @@ bool MailToURLHandlerWebEngine::handleContextMenuRequest(const QUrl &url, const 
     return false;
 }
 
-bool MailToURLHandlerWebEngine::handleClick(const QUrl &url, ArticleViewerNg *) const
+bool MailToURLHandlerWebEngine::handleClick(const QUrl &url, ArticleViewerWebEngine *) const
 {
     if (url.scheme() == QLatin1String("mailto")) {
         QDesktopServices::openUrl(url);
@@ -104,12 +104,12 @@ bool MailToURLHandlerWebEngine::handleClick(const QUrl &url, ArticleViewerNg *) 
     return false;
 }
 
-bool ActionURLHandlerWebEngine::handleContextMenuRequest(const QUrl &url, const QPoint &, ArticleViewerNg *) const
+bool ActionURLHandlerWebEngine::handleContextMenuRequest(const QUrl &url, const QPoint &, ArticleViewerWebEngine *) const
 {
     return (url.scheme() == QLatin1String("akregatoraction"));
 }
 
-QString ActionURLHandlerWebEngine::statusBarMessage(const QUrl &url, ArticleViewerNg *) const
+QString ActionURLHandlerWebEngine::statusBarMessage(const QUrl &url, ArticleViewerWebEngine *) const
 {
     if (url.scheme() == QLatin1String("akregatoraction")) {
         const QString urlPath(url.path());
@@ -137,7 +137,7 @@ QString ActionURLHandlerWebEngine::statusBarMessage(const QUrl &url, ArticleView
     return {};
 }
 
-bool ActionURLHandlerWebEngine::handleClick(const QUrl &url, ArticleViewerNg *articleViewer) const
+bool ActionURLHandlerWebEngine::handleClick(const QUrl &url, ArticleViewerWebEngine *articleViewer) const
 {
     if (url.scheme() == QLatin1String("akregatoraction")) {
         const QString urlPath(url.path());
@@ -147,31 +147,31 @@ bool ActionURLHandlerWebEngine::handleClick(const QUrl &url, ArticleViewerNg *ar
             const QString feed = urlQuery.queryItemValue(QStringLiteral("feed"));
             if (!articleId.isEmpty()) {
                 if (urlPath == QLatin1String("delete")) {
-                    articleViewer->setArticleAction(ArticleViewerNg::DeleteAction, articleId, feed);
+                    articleViewer->setArticleAction(ArticleViewerWebEngine::DeleteAction, articleId, feed);
                     return true;
                 } else if (urlPath == QLatin1String("markAsRead")) {
-                    articleViewer->setArticleAction(ArticleViewerNg::MarkAsRead, articleId, feed);
+                    articleViewer->setArticleAction(ArticleViewerWebEngine::MarkAsRead, articleId, feed);
                     return true;
                 } else if (urlPath == QLatin1String("markAsUnRead")) {
-                    articleViewer->setArticleAction(ArticleViewerNg::MarkAsUnRead, articleId, feed);
+                    articleViewer->setArticleAction(ArticleViewerWebEngine::MarkAsUnRead, articleId, feed);
                     return true;
                 } else if (urlPath == QLatin1String("markAsImportant")) {
-                    articleViewer->setArticleAction(ArticleViewerNg::MarkAsImportant, articleId, feed);
+                    articleViewer->setArticleAction(ArticleViewerWebEngine::MarkAsImportant, articleId, feed);
                     return true;
                 } else if (urlPath == QLatin1String("sendUrlArticle")) {
-                    articleViewer->setArticleAction(ArticleViewerNg::SendUrlArticle, articleId, feed);
+                    articleViewer->setArticleAction(ArticleViewerWebEngine::SendUrlArticle, articleId, feed);
                     return true;
                 } else if (urlPath == QLatin1String("sendFileArticle")) {
-                    articleViewer->setArticleAction(ArticleViewerNg::SendFileArticle, articleId, feed);
+                    articleViewer->setArticleAction(ArticleViewerWebEngine::SendFileArticle, articleId, feed);
                     return true;
                 } else if (urlPath == QLatin1String("openInExternalBrowser")) {
-                    articleViewer->setArticleAction(ArticleViewerNg::OpenInExternalBrowser, articleId, feed);
+                    articleViewer->setArticleAction(ArticleViewerWebEngine::OpenInExternalBrowser, articleId, feed);
                     return true;
                 } else if (urlPath == QLatin1String("share")) {
-                    articleViewer->setArticleAction(ArticleViewerNg::Share, articleId, feed);
+                    articleViewer->setArticleAction(ArticleViewerWebEngine::Share, articleId, feed);
                     return true;
                 } else if (urlPath == QLatin1String("openInBackgroundTab")) {
-                    articleViewer->setArticleAction(ArticleViewerNg::OpenInBackgroundTab, articleId, feed);
+                    articleViewer->setArticleAction(ArticleViewerWebEngine::OpenInBackgroundTab, articleId, feed);
                     return true;
                 }
             }
