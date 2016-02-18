@@ -15,7 +15,6 @@
   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-
 #include "articleviewerwebengine.h"
 #include "akregator_debug.h"
 #include "articleviewerwebenginepage.h"
@@ -179,7 +178,6 @@ void ArticleViewerWebEngine::slotLoadStarted()
     setCursor(Qt::WaitCursor);
 }
 
-
 void ArticleViewerWebEngine::displayContextMenu(const QPoint &pos)
 {
 #if 0
@@ -232,7 +230,6 @@ void ArticleViewerWebEngine::displayContextMenu(const QPoint &pos)
     popup.exec(mapToGlobal(pos));
 #endif
 }
-
 
 void ArticleViewerWebEngine::slotLinkHovered(const QString &link, const QString &title, const QString &textContent)
 {
@@ -415,7 +412,6 @@ bool ArticleViewerWebEngine::adblockEnabled() const
     //return MessageViewer::AdBlockManager::self()->isEnabled();
 }
 
-
 #if 0
 ArticleViewerWebEngine::ArticleViewerWebEngine(KActionCollection *ac, QWidget *parent)
     : KWebView(parent, false),
@@ -440,7 +436,5 @@ ArticleViewerWebEngine::~ArticleViewerWebEngine()
 {
     disconnect(this, &QWebView::loadFinished, this, &ArticleViewerWebEngine::slotLoadFinished);
 }
-
-
 
 #endif

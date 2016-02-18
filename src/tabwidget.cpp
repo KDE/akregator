@@ -423,7 +423,7 @@ void TabWidget::Private::setTitle(const QString &title, QWidget *sender)
 void TabWidget::slotDetachTab(int index)
 {
     QWidget *w = widget(index);
-    Frame *frame =d->frames.value(w);
+    Frame *frame = d->frames.value(w);
     if (frame && frame->url().isValid() && frame->isRemovable()) {
         OpenUrlRequest request;
         request.setUrl(frame->url());

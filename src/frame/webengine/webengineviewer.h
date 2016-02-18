@@ -15,10 +15,8 @@
   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-
 #ifndef WEBENGINEVIEWER_H
 #define WEBENGINEVIEWER_H
-
 
 #include "articleviewer-ng/webengine/articleviewerwebengine.h"
 class KActionCollection;
