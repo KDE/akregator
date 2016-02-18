@@ -92,8 +92,8 @@ set(akregatorprivate_frame_SRCS
 
 
 set(akregatorprivate_urlhandler_SRCS
-    urlhandler/urlhandlermanager.cpp
-    urlhandler/urlhandler.cpp
+    urlhandler/webkit/urlhandlermanager.cpp
+    urlhandler/webkit/urlhandler.cpp
     )
 
 set(akregatorprivate_LIB_SRCS

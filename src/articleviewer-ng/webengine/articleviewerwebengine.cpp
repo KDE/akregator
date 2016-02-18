@@ -18,7 +18,7 @@
 #include "articleviewerwebengine.h"
 #include "akregator_debug.h"
 #include "articleviewerwebenginepage.h"
-#include "urlhandlermanager.h"
+#include "webkit/urlhandlermanager.h"
 #include "actionmanager.h"
 #include "akregatorconfig.h"
 #include "actions/actions.h"

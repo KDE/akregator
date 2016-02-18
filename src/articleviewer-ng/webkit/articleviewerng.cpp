@@ -19,7 +19,7 @@
 #include "akregator_debug.h"
 #include "actionmanager.h"
 #include "actions.h"
-#include "urlhandlermanager.h"
+#include "webkit/urlhandlermanager.h"
 #include "akregatorconfig.h"
 #include <KActionCollection>
 #include <KParts/BrowserRun>

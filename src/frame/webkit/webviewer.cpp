@@ -18,7 +18,7 @@
 #include "webviewer.h"
 #include "actionmanager.h"
 #include "actions.h"
-#include "urlhandlermanager.h"
+#include "webkit/urlhandlermanager.h"
 
 #include <KPIMTextEdit/TextToSpeech>
 #include <MessageViewer/AdBlockBlockableItemsDialog>
