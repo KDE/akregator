@@ -20,6 +20,7 @@
 #include <QVBoxLayout>
 #include <QAction>
 #include <KIO/FavIconRequestJob>
+#include <articleviewer-ng/webengine/articleviewerwebenginewidgetng.h>
 using namespace Akregator;
 
 WebEngineFrame::WebEngineFrame(KActionCollection *ac, QWidget *parent)
@@ -29,7 +30,7 @@ WebEngineFrame::WebEngineFrame(KActionCollection *ac, QWidget *parent)
     layout->setMargin(0);
     setRemovable(true);
     Akregator::ArticleViewerWebEngine *viewer = new Akregator::ArticleViewerWebEngine(ac, this);
-    mArticleViewerWidgetNg = new Akregator::WebEngineViewer(viewer, ac, this);
+    mArticleViewerWidgetNg = new Akregator::ArticleViewerWebEngineWidgetNg(viewer, ac, this);
 
     connect(mArticleViewerWidgetNg->articleViewerNg(), &ArticleViewerNg::titleChanged, this, &WebEngineFrame::slotTitleChanged);
     connect(mArticleViewerWidgetNg->articleViewerNg(), &ArticleViewerNg::loadProgress, this, &WebEngineFrame::slotProgressChanged);

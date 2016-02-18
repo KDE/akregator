@@ -20,11 +20,11 @@
 
 #include "frame.h"
 #include "akregatorpart_export.h"
-#include "webengineviewer.h"
 #include <QObject>
 
 namespace Akregator
 {
+class ArticleViewerWebEngineWidgetNg;
 class AKREGATORPART_EXPORT WebEngineFrame : public Frame
 {
     Q_OBJECT
@@ -69,7 +69,7 @@ private Q_SLOTS:
     void slotLoadStarted();
     void slotLoadFinished();
 private:
-    Akregator::WebEngineViewer *mArticleViewerWidgetNg;
+    Akregator::ArticleViewerWebEngineWidgetNg *mArticleViewerWidgetNg;
 };
 }
 

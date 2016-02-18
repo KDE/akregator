@@ -31,7 +31,7 @@
 
 using namespace Akregator;
 
-ArticleViewerWebEngineWidgetNg::ArticleViewerWebEngineWidgetNg(ArticleViewerNg *customViewer, KActionCollection *ac, QWidget *parent)
+ArticleViewerWebEngineWidgetNg::ArticleViewerWebEngineWidgetNg(ArticleViewerWebEngine *customViewer, KActionCollection *ac, QWidget *parent)
     : QWidget(parent)
 {
     mArticleViewerNg = customViewer;
@@ -77,7 +77,7 @@ ArticleViewerWebEngineWidgetNg::~ArticleViewerWebEngineWidgetNg()
 
 }
 
-ArticleViewerNg *ArticleViewerWebEngineWidgetNg::articleViewerNg() const
+ArticleViewerWebEngine *ArticleViewerWebEngineWidgetNg::articleViewerNg() const
 {
     return mArticleViewerNg;
 }

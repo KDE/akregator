@@ -19,8 +19,8 @@
 #define ARTICLEVIEWERWEBENGINEWIDGETNG_H
 
 #include <QWidget>
-#include "articleviewerng.h"
 #include "akregator_export.h"
+#include "articleviewerwebengine.h"
 class KActionCollection;
 namespace MessageViewer
 {
@@ -39,11 +39,11 @@ class AKREGATOR_EXPORT ArticleViewerWebEngineWidgetNg : public QWidget
 {
     Q_OBJECT
 public:
-    explicit ArticleViewerWebEngineWidgetNg(ArticleViewerNg *customViewer, KActionCollection *ac, QWidget *parent);
+    explicit ArticleViewerWebEngineWidgetNg(ArticleViewerWebEngine *customViewer, KActionCollection *ac, QWidget *parent);
     explicit ArticleViewerWebEngineWidgetNg(KActionCollection *ac, QWidget *parent = Q_NULLPTR);
     ~ArticleViewerWebEngineWidgetNg();
 
-    ArticleViewerNg *articleViewerNg() const;
+    ArticleViewerWebEngine *articleViewerNg() const;
 
 public Q_SLOTS:
     void slotSpeakText();
@@ -52,7 +52,7 @@ private:
     void initializeActions(KActionCollection *ac);
     void initializeLayout(KActionCollection *ac);
     MessageViewer::FindBarWebView *mFindBarWebView;
-    ArticleViewerNg *mArticleViewerNg;
+    ArticleViewerWebEngine *mArticleViewerNg;
     KPIMTextEdit::TextToSpeechWidget *mTextToSpeechWidget;
     KPIMTextEdit::SlideContainer *mSliderContainer;
 };
