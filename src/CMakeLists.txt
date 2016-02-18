@@ -43,7 +43,7 @@ if (QTWEBENGINE_EXPERIMENTAL_OPTION)
     set(akregator_articleviewer_ng_webengine_SRCS
         articleviewer-ng/webengine/articleviewerwebengine.cpp
         articleviewer-ng/webengine/articleviewerwebenginepage.cpp
-        articleviewer-ng/webengine/articlhtmlwebenginewriter.cpp
+        articleviewer-ng/webengine/articlehtmlwebenginewriter.cpp
         )
     set(akregator_articleviewer_ng_webengine_libs Qt5::WebEngine Qt5::WebEngineWidgets)
 endif()

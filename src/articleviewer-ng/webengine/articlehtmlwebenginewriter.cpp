@@ -16,13 +16,13 @@
 */
 
 #include "articleviewerwebengine.h"
-#include "articlhtmlwebenginewriter.h"
+#include "articlehtmlwebenginewriter.h"
 
 #include "akregator_debug.h"
 
 using namespace Akregator;
 
-ArticlHtmlWebEngineWriter::ArticlHtmlWebEngineWriter(ArticleViewerWebEngine *view, QObject *parent)
+ArticleHtmlWebEngineWriter::ArticleHtmlWebEngineWriter(ArticleViewerWebEngine *view, QObject *parent)
     : QObject(parent),
       mState(Ended),
       mWebView(view)
@@ -30,12 +30,12 @@ ArticlHtmlWebEngineWriter::ArticlHtmlWebEngineWriter(ArticleViewerWebEngine *vie
 
 }
 
-ArticlHtmlWebEngineWriter::~ArticlHtmlWebEngineWriter()
+ArticleHtmlWebEngineWriter::~ArticleHtmlWebEngineWriter()
 {
 
 }
 
-void ArticlHtmlWebEngineWriter::begin()
+void ArticleHtmlWebEngineWriter::begin()
 {
     if (mState != Ended) {
         qCWarning(AKREGATOR_LOG) << "begin() called on non-ended session!";
@@ -48,7 +48,7 @@ void ArticlHtmlWebEngineWriter::begin()
     mState = Begun;
 }
 
-void ArticlHtmlWebEngineWriter::end()
+void ArticleHtmlWebEngineWriter::end()
 {
     if (mState != Begun) {
         qCWarning(AKREGATOR_LOG) << "Called on non-begun or queued session!";
@@ -63,7 +63,7 @@ void ArticlHtmlWebEngineWriter::end()
     Q_EMIT finished();
 }
 
-void ArticlHtmlWebEngineWriter::reset()
+void ArticleHtmlWebEngineWriter::reset()
 {
     if (mState != Ended) {
         mHtml.clear();
@@ -73,7 +73,7 @@ void ArticlHtmlWebEngineWriter::reset()
     }
 }
 
-void ArticlHtmlWebEngineWriter::queue(const QString &str)
+void ArticleHtmlWebEngineWriter::queue(const QString &str)
 {
     if (mState != Begun) {
         qCWarning(AKREGATOR_LOG) << "Called in Ended or Queued state!";
@@ -81,7 +81,7 @@ void ArticlHtmlWebEngineWriter::queue(const QString &str)
     mHtml.append(str);
 }
 
-void ArticlHtmlWebEngineWriter::flush()
+void ArticleHtmlWebEngineWriter::flush()
 {
     mState = Begun; // don't run into end()'s warning
     end();

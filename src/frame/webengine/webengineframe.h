@@ -18,9 +18,9 @@
 #ifndef WEBENGINEFRAME_H
 #define WEBENGINEFRAME_H
 
-#include "articleviewer-ng/articleviewerwidgetng.h"
 #include "frame.h"
 #include "akregatorpart_export.h"
+#include "webengineviewer.h"
 #include <QObject>
 
 namespace Akregator
@@ -69,7 +69,7 @@ private Q_SLOTS:
     void slotLoadStarted();
     void slotLoadFinished();
 private:
-    Akregator::ArticleViewerWidgetNg *mArticleViewerWidgetNg;
+    Akregator::WebEngineViewer *mArticleViewerWidgetNg;
 };
 }
 

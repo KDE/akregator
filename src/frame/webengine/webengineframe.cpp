@@ -28,8 +28,8 @@ WebEngineFrame::WebEngineFrame(KActionCollection *ac, QWidget *parent)
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setMargin(0);
     setRemovable(true);
-    Akregator::WebViewer *viewer = new Akregator::WebViewer(ac, this);
-    mArticleViewerWidgetNg = new Akregator::ArticleViewerWidgetNg(viewer, ac, this);
+    Akregator::ArticleViewerWebEngine *viewer = new Akregator::ArticleViewerWebEngine(ac, this);
+    mArticleViewerWidgetNg = new Akregator::WebEngineViewer(viewer, ac, this);
 
     connect(mArticleViewerWidgetNg->articleViewerNg(), &ArticleViewerNg::titleChanged, this, &WebEngineFrame::slotTitleChanged);
     connect(mArticleViewerWidgetNg->articleViewerNg(), &ArticleViewerNg::loadProgress, this, &WebEngineFrame::slotProgressChanged);

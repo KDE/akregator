@@ -15,8 +15,8 @@
   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef ARTICLHTMLWEBENGINEWRITER_H
-#define ARTICLHTMLWEBENGINEWRITER_H
+#ifndef ARTICLEHTMLWEBENGINEWRITER_H
+#define ARTICLEHTMLWEBENGINEWRITER_H
 
 #include <QObject>
 #include "akregator_export.h"
@@ -24,12 +24,12 @@ class QWebView;
 namespace Akregator
 {
 class ArticleViewerWebEngine;
-class AKREGATOR_EXPORT ArticlHtmlWebEngineWriter : public QObject
+class AKREGATOR_EXPORT ArticleHtmlWebEngineWriter : public QObject
 {
     Q_OBJECT
 public:
-    explicit ArticlHtmlWebEngineWriter(ArticleViewerWebEngine *view, QObject *parent = Q_NULLPTR);
-    ~ArticlHtmlWebEngineWriter();
+    explicit ArticleHtmlWebEngineWriter(ArticleViewerWebEngine *view, QObject *parent = Q_NULLPTR);
+    ~ArticleHtmlWebEngineWriter();
 
     void begin();
     void end();
