@@ -74,10 +74,12 @@ set(akregatorprivate_frame_webkit_SRCS
     frame/webkit/webviewer.cpp
     frame/webkit/webviewframe.cpp
     )
+if (QTWEBENGINE_EXPERIMENTAL_OPTION)
 set(akregatorprivate_frame_webengine_SRCS
     #frame/webengine/webengineframe.cpp
     frame/webengine/webengineviewer.cpp
     )
+endif()
 
 set(akregatorprivate_frame_SRCS
     ${akregatorprivate_frame_webkit_SRCS}
