@@ -44,6 +44,7 @@ if (QTWEBENGINE_EXPERIMENTAL_OPTION)
         articleviewer-ng/webengine/articleviewerwebengine.cpp
         articleviewer-ng/webengine/articleviewerwebenginepage.cpp
         articleviewer-ng/webengine/articlehtmlwebenginewriter.cpp
+        #articleviewer-ng/webengine/articleviewerwebenginewidgetng.cpp
         )
     set(akregator_articleviewer_ng_webengine_libs Qt5::WebEngine Qt5::WebEngineWidgets)
 endif()
