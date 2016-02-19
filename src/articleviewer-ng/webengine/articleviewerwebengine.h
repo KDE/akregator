@@ -21,7 +21,12 @@
 #include <QWebEngineView>
 #include <openurlrequest.h>
 #include <shareserviceurlmanager.h>
+
 class KActionCollection;
+namespace MessageViewer
+{
+class MailWebHitTestResult;
+}
 namespace PimCommon
 {
 class ShareServiceUrlManager;
@@ -111,7 +116,7 @@ private Q_SLOTS:
     void slotOpenLinkInBrowser();
     void slotShowContextMenu(const QPoint &pos);
 protected:
-    //QWebHitTestResult mContextMenuHitResult;
+    MessageViewer::MailWebHitTestResult *mContextMenuHitResult;
 
     bool adblockEnabled() const;
 

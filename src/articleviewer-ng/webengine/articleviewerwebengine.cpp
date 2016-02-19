@@ -22,6 +22,7 @@
 #include "actionmanager.h"
 #include "akregatorconfig.h"
 #include "actions/actions.h"
+#include "urlhandler/webengine/urlhandlerwebengine.h"
 
 #include <KPIMTextEdit/TextToSpeech>
 #include <KActionMenu>
@@ -42,13 +43,16 @@
 #include <QApplication>
 #include <QClipboard>
 #include <QMenu>
+#include <MessageViewer/MailWebHitTestResult>
+
 #include <KIO/KUriFilterSearchProviderActions>
 
 using namespace Akregator;
 
 ArticleViewerWebEngine::ArticleViewerWebEngine(KActionCollection *ac, QWidget *parent)
     : QWebEngineView(parent),
-      mActionCollection(ac)
+      mActionCollection(ac),
+      mContextMenuHitResult(Q_NULLPTR)
 {
     ArticleViewerWebEnginePage *pageEngine = new ArticleViewerWebEnginePage(this);
     setPage(pageEngine);
@@ -180,22 +184,22 @@ void ArticleViewerWebEngine::slotLoadStarted()
 
 void ArticleViewerWebEngine::displayContextMenu(const QPoint &pos)
 {
-#if 0
-    mContextMenuHitResult = page()->mainFrame()->hitTestContent(pos);
-    mCurrentUrl = mContextMenuHitResult.linkUrl();
-    if (URLHandlerManager::instance()->handleContextMenuRequest(mCurrentUrl, mapToGlobal(pos), this)) {
+    delete mContextMenuHitResult;
+    mContextMenuHitResult = new MessageViewer::MailWebHitTestResult(page(), pos);
+    mCurrentUrl = mContextMenuHitResult->linkUrl();
+    if (URLHandlerWebEngineManager::instance()->handleContextMenuRequest(mCurrentUrl, mapToGlobal(pos), this)) {
         return;
     }
 
     QMenu popup(this);
-    const bool contentSelected = mContextMenuHitResult.isContentSelected();
+    const bool contentSelected = mContextMenuHitResult->isContentSelected();
     if (!mCurrentUrl.isEmpty() && !contentSelected) {
         popup.addAction(createOpenLinkInNewTabAction(mCurrentUrl, this, SLOT(slotOpenLinkInForegroundTab()), &popup));
         popup.addAction(createOpenLinkInExternalBrowserAction(mCurrentUrl, this, SLOT(slotOpenLinkInBrowser()), &popup));
         popup.addSeparator();
         popup.addAction(mActionCollection->action(QStringLiteral("savelinkas")));
         popup.addAction(mActionCollection->action(QStringLiteral("copylinkaddress")));
-        if (!mContextMenuHitResult.imageUrl().isEmpty()) {
+        if (!mContextMenuHitResult->imageUrl().isEmpty()) {
             popup.addSeparator();
             popup.addAction(mActionCollection->action(QStringLiteral("copy_image_location")));
             popup.addAction(mActionCollection->action(QStringLiteral("saveas_imageurl")));
@@ -228,7 +232,8 @@ void ArticleViewerWebEngine::displayContextMenu(const QPoint &pos)
         popup.addAction(ActionManager::getInstance()->action(QStringLiteral("speak_text")));
     }
     popup.exec(mapToGlobal(pos));
-#endif
+    delete mContextMenuHitResult;
+    mContextMenuHitResult = Q_NULLPTR;
 }
 
 void ArticleViewerWebEngine::slotLinkHovered(const QString &link, const QString &title, const QString &textContent)
@@ -236,14 +241,12 @@ void ArticleViewerWebEngine::slotLinkHovered(const QString &link, const QString 
     Q_UNUSED(title);
     Q_UNUSED(textContent);
     QUrl url(linkOrImageUrlAt(QCursor::pos()));
-#if 0 //FIXME
-    QString msg = URLHandlerManager::instance()->statusBarMessage(url, this);
+    QString msg = URLHandlerWebEngineManager::instance()->statusBarMessage(url, this);
     if (msg.isEmpty()) {
         msg = link;
     }
 
     Q_EMIT showStatusBarMessage(msg);
-#endif
 }
 
 void ArticleViewerWebEngine::keyReleaseEvent(QKeyEvent *e)
@@ -313,11 +316,9 @@ void ArticleViewerWebEngine::mouseReleaseEvent(QMouseEvent *event)
 
 void ArticleViewerWebEngine::slotLinkClicked(const QUrl &url)
 {
-#if 0 //FIXME
-    if (URLHandlerManager::instance()->handleClick(url, this)) {
+    if (URLHandlerWebEngineManager::instance()->handleClick(url, this)) {
         return;
     }
-#endif
     mCurrentUrl = url;
     OpenUrlRequest req(mCurrentUrl);
     if (mLastButtonClicked == LeftButton) {
