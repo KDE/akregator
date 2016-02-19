@@ -52,13 +52,25 @@ using namespace Akregator;
 ArticleViewerWebEngine::ArticleViewerWebEngine(KActionCollection *ac, QWidget *parent)
     : QWebEngineView(parent),
       mActionCollection(ac),
-      mContextMenuHitResult(Q_NULLPTR)
+      mContextMenuHitResult(Q_NULLPTR),
+      mLastButtonClicked(LeftButton)
 {
     ArticleViewerWebEnginePage *pageEngine = new ArticleViewerWebEnginePage(this);
     setPage(pageEngine);
 
+    connect(this, &ArticleViewerWebEngine::showContextMenu, this, &ArticleViewerWebEngine::slotShowContextMenu);
+
     setFocusPolicy(Qt::WheelFocus);
     connect(pageEngine, &ArticleViewerWebEnginePage::urlClicked, this, &ArticleViewerWebEngine::slotLinkClicked);
+
+    //mWebViewAccessKey = new MessageViewer::WebViewAccessKey(this, this);
+    //mWebViewAccessKey->setActionCollection(mActionCollection);
+
+    connect(this, &ArticleViewerWebEngine::loadStarted, this, &ArticleViewerWebEngine::slotLoadStarted);
+    connect(this, &ArticleViewerWebEngine::loadFinished, this, &ArticleViewerWebEngine::slotLoadFinished);
+    //connect(page(), &QWebEnginePage::scrollRequested, mWebViewAccessKey, &MessageViewer::WebViewAccessKey::hideAccessKeys);
+    connect(page(), &QWebEnginePage::linkHovered, this, &ArticleViewerWebEngine::slotLinkHovered);
+
 
     setContextMenuPolicy(Qt::CustomContextMenu);
     mWebShortcutMenuManager = new KIO::KUriFilterSearchProviderActions(this);
@@ -236,10 +248,8 @@ void ArticleViewerWebEngine::displayContextMenu(const QPoint &pos)
     mContextMenuHitResult = Q_NULLPTR;
 }
 
-void ArticleViewerWebEngine::slotLinkHovered(const QString &link, const QString &title, const QString &textContent)
+void ArticleViewerWebEngine::slotLinkHovered(const QString &link)
 {
-    Q_UNUSED(title);
-    Q_UNUSED(textContent);
     QUrl url(linkOrImageUrlAt(QCursor::pos()));
     QString msg = URLHandlerWebEngineManager::instance()->statusBarMessage(url, this);
     if (msg.isEmpty()) {
@@ -430,7 +440,6 @@ ArticleViewerWebEngine::ArticleViewerWebEngine(KActionCollection *ac, QWidget *p
     page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
     connect(page(), &QWebPage::linkHovered, this, &ArticleViewerWebEngine::slotLinkHovered);
     connect(this, &ArticleViewerWebEngine::linkClicked, this, &ArticleViewerWebEngine::slotLinkClicked);
-    connect(this, &ArticleViewerWebEngine::showContextMenu, this, &ArticleViewerWebEngine::slotShowContextMenu);
 }
 
 ArticleViewerWebEngine::~ArticleViewerWebEngine()

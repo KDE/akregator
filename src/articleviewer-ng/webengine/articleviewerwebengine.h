@@ -107,7 +107,7 @@ protected:
 
 private Q_SLOTS:
     void slotServiceUrlSelected(PimCommon::ShareServiceUrlManager::ServiceType type);
-    void slotLinkHovered(const QString &link, const QString &title, const QString &textContent);
+    void slotLinkHovered(const QString &link);
     void slotLoadStarted();
     void slotLoadFinished();
     void slotLinkClicked(const QUrl &url);
