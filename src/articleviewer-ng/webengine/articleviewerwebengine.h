@@ -37,7 +37,7 @@ class KUriFilterSearchProviderActions;
 }
 namespace Akregator
 {
-class ArticleViewerWebEngine : public QWebEngineView
+class AKREGATOR_EXPORT ArticleViewerWebEngine : public QWebEngineView
 {
     Q_OBJECT
 public:

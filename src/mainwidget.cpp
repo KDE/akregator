@@ -89,6 +89,7 @@
 
 #ifdef QTWEBENGINE_EXPERIMENTAL_OPTION
 #include <webengine/webengineframe.h>
+#include "articleviewer-ng/webengine/articleviewerwebenginewidgetng.h"
 #else
 #include "webkit/webviewframe.h"
 #endif
@@ -250,7 +251,11 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
     m_mainFrame = new MainFrame(this, m_part, m_mainTab);
     m_mainFrame->slotSetTitle(i18n("Articles"));
     m_mainFrame->setArticleViewer(m_articleViewer);
+#ifdef QTWEBENGINE_EXPERIMENTAL_OPTION
+    connect(m_articleViewer->articleViewerWidgetNg()->articleViewerNg(), &ArticleViewerWebEngine::articleAction, this, &MainWidget::slotArticleAction);
+#else
     connect(m_articleViewer->articleViewerWidgetNg()->articleViewerNg(), &ArticleViewerNg::articleAction, this, &MainWidget::slotArticleAction);
+#endif
     connect(m_tabWidget, &TabWidget::signalCopyInFrame, m_mainFrame, &MainFrame::slotCopyInFrame);
     connect(m_tabWidget, &TabWidget::signalPrintInFrame, m_mainFrame, &MainFrame::slotPrintInFrame);
     connect(m_tabWidget, &TabWidget::signalZoomChangedInFrame, m_mainFrame, &MainFrame::slotZoomChangeInFrame);
@@ -1295,24 +1300,44 @@ void MainWidget::slotFocusQuickSearch()
 {
     m_searchBar->setFocusSearchLine();
 }
-
+#ifdef QTWEBENGINE_EXPERIMENTAL_OPTION
+void MainWidget::slotArticleAction(Akregator::ArticleViewerWebEngine::ArticleAction type, const QString &articleId, const QString &feed)
+#else
 void MainWidget::slotArticleAction(ArticleViewerNg::ArticleAction type, const QString &articleId, const QString &feed)
+#endif
 {
     switch (type) {
+#ifdef QTWEBENGINE_EXPERIMENTAL_OPTION
+    case ArticleViewerWebEngine::DeleteAction: {
+#else
     case ArticleViewerNg::DeleteAction: {
+#endif
         Akregator::ArticleDeleteJob *job = new Akregator::ArticleDeleteJob;
         const Akregator::ArticleId aid = { feed, articleId };
         job->appendArticleId(aid);
         job->start();
         break;
     }
+#ifdef QTWEBENGINE_EXPERIMENTAL_OPTION
+    case ArticleViewerWebEngine::MarkAsRead:
+#else
     case ArticleViewerNg::MarkAsRead:
+#endif
         ::setArticleStatus(feed, articleId, Akregator::Read);
         break;
+#ifdef QTWEBENGINE_EXPERIMENTAL_OPTION
+    case ArticleViewerWebEngine::MarkAsUnRead:
+#else
     case ArticleViewerNg::MarkAsUnRead:
+#endif
         ::setArticleStatus(feed, articleId, Akregator::Unread);
         break;
+
+#ifdef QTWEBENGINE_EXPERIMENTAL_OPTION
+    case ArticleViewerWebEngine::MarkAsImportant: {
+#else
     case ArticleViewerNg::MarkAsImportant: {
+#endif
         Akregator::ArticleModifyJob *job = new Akregator::ArticleModifyJob;
         const Akregator::Article article = m_feedList->findArticle(feed, articleId);
         const Akregator::ArticleId aid = { feed, articleId };
@@ -1320,18 +1345,34 @@ void MainWidget::slotArticleAction(ArticleViewerNg::ArticleAction type, const QS
         job->start();
         break;
     }
+#ifdef QTWEBENGINE_EXPERIMENTAL_OPTION
+    case ArticleViewerWebEngine::SendUrlArticle: {
+#else
     case ArticleViewerNg::SendUrlArticle: {
-        case ArticleViewerNg::SendFileArticle:
+#endif
+#ifdef QTWEBENGINE_EXPERIMENTAL_OPTION
+    case ArticleViewerWebEngine::SendFileArticle:
+#else
+    case ArticleViewerNg::SendFileArticle:
+#endif
             const Article article =  m_feedList->findArticle(feed, articleId);
             const QByteArray text = article.link().toDisplayString().toLatin1();
             const QString title = Akregator::Utils::convertHtmlTags(article.title());
             if (text.isEmpty()) {
                 return;
             }
+#ifdef QTWEBENGINE_EXPERIMENTAL_OPTION
+            sendArticle(text, title, (type == ArticleViewerWebEngine::SendFileArticle));
+#else
             sendArticle(text, title, (type == ArticleViewerNg::SendFileArticle));
+#endif
             break;
         }
+#ifdef QTWEBENGINE_EXPERIMENTAL_OPTION
+    case ArticleViewerWebEngine::OpenInBackgroundTab: {
+#else
     case ArticleViewerNg::OpenInBackgroundTab: {
+#endif
         const Akregator::Article article = m_feedList->findArticle(feed, articleId);
         const QUrl url = article.link();
         if (url.isValid()) {
@@ -1342,12 +1383,20 @@ void MainWidget::slotArticleAction(ArticleViewerNg::ArticleAction type, const QS
         }
         break;
     }
+#ifdef QTWEBENGINE_EXPERIMENTAL_OPTION
+    case ArticleViewerWebEngine::OpenInExternalBrowser: {
+#else
     case ArticleViewerNg::OpenInExternalBrowser: {
+#endif
         const Akregator::Article article = m_feedList->findArticle(feed, articleId);
         slotOpenArticleInBrowser(article);
         break;
     }
+#ifdef QTWEBENGINE_EXPERIMENTAL_OPTION
+    case ArticleViewerWebEngine::Share:
+#else
     case ArticleViewerNg::Share:
+#endif
         const Akregator::Article article = m_feedList->findArticle(feed, articleId);
         const QUrl url = article.link();
         if (url.isValid()) {

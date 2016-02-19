@@ -27,6 +27,7 @@
 
 #include "article.h"
 #include "akregator_export.h"
+#include "config-kdepim.h"
 #include <QWidget>
 
 #include <QPointer>
@@ -50,9 +51,13 @@ class ArticleFormatter;
 class ArticleListJob;
 class OpenUrlRequest;
 class TreeNode;
-
-class ArticleViewerWidgetNg;
+#ifdef QTWEBENGINE_EXPERIMENTAL_OPTION
+class ArticleHtmlWebEngineWriter;
+class ArticleViewerWebEngineWidgetNg;
+#else
 class ArticleHtmlWriter;
+class ArticleViewerWidgetNg;
+#endif
 
 class AKREGATOR_EXPORT ArticleViewerWidget : public QWidget
 {
@@ -79,7 +84,11 @@ public:
     qreal zoomFactor() const;
     bool zoomTextOnlyInFrame() const;
 
+#ifdef QTWEBENGINE_EXPERIMENTAL_OPTION
+    Akregator::ArticleViewerWebEngineWidgetNg *articleViewerWidgetNg() const;
+#else
     Akregator::ArticleViewerWidgetNg *articleViewerWidgetNg() const;
+#endif
 
 public Q_SLOTS:
     void slotZoomTextOnlyInFrame(bool textOnlyInFrame);
@@ -162,8 +171,13 @@ private:
     std::vector<QSharedPointer<const Filters::AbstractMatcher> > m_filters;
     enum ViewMode { NormalView, CombinedView, SummaryView };
     ViewMode m_viewMode;
-    Akregator::ArticleViewerWidgetNg *m_articleViewerWidgetNg;
+#ifdef QTWEBENGINE_EXPERIMENTAL_OPTION
+    Akregator::ArticleHtmlWebEngineWriter *m_articleHtmlWriter;
+    Akregator::ArticleViewerWebEngineWidgetNg *m_articleViewerWidgetNg;
+#else
     Akregator::ArticleHtmlWriter *m_articleHtmlWriter;
+    Akregator::ArticleViewerWidgetNg *m_articleViewerWidgetNg;
+#endif
     QSharedPointer<ArticleFormatter> m_normalViewFormatter;
     QSharedPointer<ArticleFormatter> m_combinedViewFormatter;
 };

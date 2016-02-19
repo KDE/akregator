@@ -16,7 +16,11 @@
 */
 
 #include "articleviewerwidget.h"
+#ifdef QTWEBENGINE_EXPERIMENTAL_OPTION
+#include <articleviewer-ng/webengine/articleviewerwebenginewidgetng.h>
+#else
 #include "articleviewer-ng/webkit/articleviewerwidgetng.h"
+#endif
 #include "mainframe.h"
 
 #include <QGridLayout>

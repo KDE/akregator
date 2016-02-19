@@ -244,6 +244,7 @@ target_link_libraries(akregatorpart
     KF5::IconThemes
     KF5::Parts
     KF5::Notifications
+    ${akregator_articleviewer_ng_webengine_libs}
     )
 
 install(TARGETS akregatorpart DESTINATION ${KDE_INSTALL_PLUGINDIR})

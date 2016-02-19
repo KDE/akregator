@@ -29,7 +29,11 @@
 
 #include "akregatorpart_export.h"
 #include "config-kdepim.h"
+#ifdef QTWEBENGINE_EXPERIMENTAL_OPTION
+#include "articleviewer-ng/webengine/articleviewerwebenginewidgetng.h"
+#else
 #include "articleviewer-ng/webkit/articleviewerwidgetng.h"
+#endif
 #include "feed.h"
 
 #include <QUrl>
@@ -255,7 +259,11 @@ protected Q_SLOTS:
 private Q_SLOTS:
     void slotShowStatusBarMessage(const QString &msg);
     void slotCurrentFrameChanged(int frameId);
+#ifdef QTWEBENGINE_EXPERIMENTAL_OPTION
+    void slotArticleAction(Akregator::ArticleViewerWebEngine::ArticleAction type, const QString &articleId, const QString &feed);
+#else
     void slotArticleAction(ArticleViewerNg::ArticleAction type, const QString &articleId, const QString &feed);
+#endif
 private:
     void sendArticle(const QByteArray &text, const QString &title, bool attach);
     void deleteExpiredArticles(const QSharedPointer<FeedList> &feedList);
