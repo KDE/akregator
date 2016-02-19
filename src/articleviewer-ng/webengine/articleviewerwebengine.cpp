@@ -383,9 +383,8 @@ void ArticleViewerWebEngine::slotOpenLinkInBrowser()
 
 QUrl ArticleViewerWebEngine::linkOrImageUrlAt(const QPoint &global) const
 {
-#if 0
     const QPoint local = page()->view()->mapFromGlobal(global);
-    const QWebHitTestResult hit = page()->currentFrame()->hitTestContent(local);
+    const MessageViewer::MailWebHitTestResult hit(page(), local);
     if (!hit.linkUrl().isEmpty()) {
         return hit.linkUrl();
     } else if (!hit.imageUrl().isEmpty()) {
@@ -393,9 +392,6 @@ QUrl ArticleViewerWebEngine::linkOrImageUrlAt(const QPoint &global) const
     } else {
         return QUrl();
     }
-#else
-    return QUrl();
-#endif
 }
 
 bool ArticleViewerWebEngine::zoomTextOnlyInFrame() const
