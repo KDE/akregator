@@ -47,20 +47,18 @@ if (QTWEBENGINE_EXPERIMENTAL_OPTION)
         articleviewer-ng/webengine/articleviewerwebenginewidgetng.cpp
         )
     set(akregator_articleviewer_ng_webengine_libs Qt5::WebEngine Qt5::WebEngineWidgets)
+else()
+    set(akregator_articleviewer_ng_SRCS
+        articleviewer-ng/webkit/articleviewerng.cpp
+        articleviewer-ng/webkit/articleviewerwidgetng.cpp
+        articleviewer-ng/webkit/articlehtmlwriter.cpp
+        )
+    set(akregator_articleviewer_ng_webengine_libs  KF5::WebKit Qt5::WebKitWidgets)
 endif()
-
-
-set(akregator_articleviewer_ng_SRCS
-    ${akregator_articleviewer_ng_webengine_SRCS}
-    articleviewer-ng/webkit/articleviewerng.cpp
-    articleviewer-ng/webkit/articleviewerwidgetng.cpp
-    articleviewer-ng/webkit/articlehtmlwriter.cpp
-    )
 
 set(akregator_job_SRCS
     job/downloadarticlejob.cpp
     )
- 
 
 set(akregatorprivate_formatter_SRCS
     formatter/articleformatter.cpp
@@ -70,16 +68,19 @@ set(akregatorprivate_formatter_SRCS
     formatter/articlegrantleeobject.cpp
     )
 
-set(akregatorprivate_frame_webkit_SRCS
-    frame/webkit/webviewer.cpp
-    frame/webkit/webviewframe.cpp
-    )
+
 if (QTWEBENGINE_EXPERIMENTAL_OPTION)
-set(akregatorprivate_frame_webengine_SRCS
-    frame/webengine/webengineframe.cpp
-    frame/webengine/webengineviewer.cpp
-    )
+    set(akregatorprivate_frame_webengine_SRCS
+        frame/webengine/webengineframe.cpp
+        frame/webengine/webengineviewer.cpp
+        )
+else()
+    set(akregatorprivate_frame_webkit_SRCS
+        frame/webkit/webviewer.cpp
+        frame/webkit/webviewframe.cpp
+        )
 endif()
+
 
 set(akregatorprivate_frame_SRCS
     ${akregatorprivate_frame_webkit_SRCS}
@@ -90,22 +91,24 @@ set(akregatorprivate_frame_SRCS
     )
 
 if (QTWEBENGINE_EXPERIMENTAL_OPTION)
-set(akregatorprivate_urlhandlerwebengine_SRCS
-    urlhandler/webengine/urlhandlerwebengine.cpp
-    urlhandler/webengine/urlhandlerwebenginemanager.cpp
-    )
-endif()
+    set(akregatorprivate_urlhandlerwebengine_SRCS
+        urlhandler/webengine/urlhandlerwebengine.cpp
+        urlhandler/webengine/urlhandlerwebenginemanager.cpp
+        )
+else()
 
-set(akregatorprivate_urlhandler_SRCS
-    urlhandler/webkit/urlhandlermanager.cpp
-    urlhandler/webkit/urlhandler.cpp
-    )
+    set(akregatorprivate_urlhandler_SRCS
+        urlhandler/webkit/urlhandlermanager.cpp
+        urlhandler/webkit/urlhandler.cpp
+        )
+endif()
 
 set(akregatorprivate_LIB_SRCS
     akregratormigrateapplication.cpp
     ${akregatorprivate_frame_SRCS}
     ${akregatorprivate_urlhandler_SRCS}
     ${akregator_articleviewer_ng_SRCS}
+    ${akregator_articleviewer_ng_webengine_SRCS}
     ${akregator_common_SRCS}
     ${akregatorprivate_formatter_SRCS}
     ${akregatorprivate_urlhandlerwebengine_SRCS}
@@ -147,7 +150,6 @@ target_link_libraries(akregatorprivate
     KF5::GrantleeTheme
     Grantlee5::Templates
     KF5::KIOGui
-    KF5::WebKit
     KF5::MessageViewer
     Qt5::PrintSupport
     )
@@ -163,8 +165,8 @@ install(TARGETS akregatorprivate ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} LIBRARY NAM
 ########### next target ###############
 
 set(akregator_crashwidget_SRCS
-   crashwidget/crashwidget.cpp
-   )
+    crashwidget/crashwidget.cpp
+    )
 
 set(akregator_utils_SRCS
     utils/filtercolumnsproxymodel.cpp
@@ -184,7 +186,7 @@ set(akregatorpart_widgets_SRCS
     widgets/statussearchline.cpp
     widgets/searchbar.cpp
     widgets/akregatorcentralwidget.cpp
-   )
+    )
 
 set(akregatorpart_subscription_SRCS
     subscription/subscriptionlistview.cpp
@@ -237,8 +239,6 @@ target_link_libraries(akregatorpart
     KF5::PimCommon
     KF5::PimTextEdit
     KF5::GrantleeTheme
-    KF5::WebKit
-    Qt5::WebKitWidgets
     KF5::MessageViewer
     KF5::Completion
     KF5::IconThemes
