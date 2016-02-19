@@ -35,8 +35,10 @@ ArticleViewerWebEnginePage::~ArticleViewerWebEnginePage()
 
 bool ArticleViewerWebEnginePage::acceptNavigationRequest(const QUrl &url, NavigationType type, bool isMainFrame)
 {
-    Q_UNUSED(type);
     Q_UNUSED(isMainFrame);
-    Q_EMIT urlClicked(url);
-    return false;
+    if (type == NavigationTypeLinkClicked) {
+        Q_EMIT urlClicked(url);
+        return false;
+    }
+    return QWebEnginePage::acceptNavigationRequest(url, type, isMainFrame);;
 }
