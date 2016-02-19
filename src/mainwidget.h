@@ -28,6 +28,7 @@
 #define AKREGATOR_MAINWIDGET_H
 
 #include "akregatorpart_export.h"
+#include "config-kdepim.h"
 #include "articleviewer-ng/webkit/articleviewerwidgetng.h"
 #include "feed.h"
 
@@ -47,7 +48,11 @@ class QSplitter;
 
 namespace Akregator
 {
+#ifdef QTWEBENGINE_EXPERIMENTAL_OPTION
+class WebEngineFrame;
+#else
 class WebViewFrame;
+#endif
 class AbstractSelectionController;
 class ActionManagerImpl;
 class ArticleListView;
@@ -254,7 +259,11 @@ private Q_SLOTS:
 private:
     void sendArticle(const QByteArray &text, const QString &title, bool attach);
     void deleteExpiredArticles(const QSharedPointer<FeedList> &feedList);
+#ifdef QTWEBENGINE_EXPERIMENTAL_OPTION
+    void connectFrame(Akregator::WebEngineFrame *frame);
+#else
     void connectFrame(Akregator::WebViewFrame *frame);
+#endif
     void cleanUpDownloadFile();
 
     /** opens current article in new tab, background/foreground depends on settings TODO: use selected instead of current? */

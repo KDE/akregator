@@ -33,7 +33,6 @@
 #include "abstractselectioncontroller.h"
 #include "articlejobs.h"
 #include "articlematcher.h"
-#include "webkit/webviewframe.h"
 #include "akregatorconfig.h"
 #include "akregator_part.h"
 #include "Libkdepim/BroadcastStatus"
@@ -87,6 +86,12 @@
 #include <algorithm>
 #include <memory>
 #include <cassert>
+
+#ifdef QTWEBENGINE_EXPERIMENTAL_OPTION
+#include <webengine/webengineframe.h>
+#else
+#include "webkit/webviewframe.h"
+#endif
 
 using namespace Akregator;
 
@@ -352,7 +357,27 @@ void MainWidget::saveSettings()
     Settings::setViewMode(m_viewMode);
     Settings::self()->save();
 }
+#ifdef QTWEBENGINE_EXPERIMENTAL_OPTION
+void MainWidget::connectFrame(Akregator::WebEngineFrame *frame)
+{
+    connect(m_tabWidget, &TabWidget::signalCopyInFrame, frame, &WebEngineFrame::slotCopyInFrame);
+    connect(m_tabWidget, &TabWidget::signalPrintInFrame, frame, &WebEngineFrame::slotPrintInFrame);
+    connect(m_tabWidget, &TabWidget::signalZoomChangedInFrame, frame, &WebEngineFrame::slotZoomChangeInFrame);
+    connect(m_tabWidget, &TabWidget::signalZoomTextOnlyInFrame, frame, &WebEngineFrame::slotZoomTextOnlyInFrame);
+    connect(m_tabWidget, &TabWidget::signalPrintPreviewInFrame, frame, &WebEngineFrame::slotPrintPreviewInFrame);
+    connect(m_tabWidget, &TabWidget::signalFindTextInFrame, frame, &WebEngineFrame::slotFindTextInFrame);
+    connect(m_tabWidget, &TabWidget::signalTextToSpeechInFrame, frame, &WebEngineFrame::slotTextToSpeechInFrame);
+    connect(m_tabWidget, &TabWidget::signalSaveLinkAsInFrame, frame, &WebEngineFrame::slotSaveLinkAsInFrame);
+    connect(m_tabWidget, &TabWidget::signalCopyLinkAsInFrame, frame, &WebEngineFrame::slotCopyLinkAsInFrame);
+    connect(m_tabWidget, &TabWidget::signalCopyImageLocation, frame, &WebEngineFrame::slotCopyImageLocationInFrame);
+    connect(m_tabWidget, &TabWidget::signalSaveImageOnDisk, frame, &WebEngineFrame::slotSaveImageOnDiskInFrame);
+    connect(m_tabWidget, &TabWidget::signalBlockImage, frame, &WebEngineFrame::slotBlockImageInFrame);
 
+    connect(frame, &WebEngineFrame::showStatusBarMessage, this, &MainWidget::slotShowStatusBarMessage);
+    connect(frame, &WebEngineFrame::signalIconChanged, m_tabWidget, &TabWidget::slotSetIcon);
+
+}
+#else
 void MainWidget::connectFrame(WebViewFrame *frame)
 {
     connect(m_tabWidget, &TabWidget::signalCopyInFrame, frame, &WebViewFrame::slotCopyInFrame);
@@ -371,10 +396,15 @@ void MainWidget::connectFrame(WebViewFrame *frame)
     connect(frame, &WebViewFrame::showStatusBarMessage, this, &MainWidget::slotShowStatusBarMessage);
     connect(frame, &WebViewFrame::signalIconChanged, m_tabWidget, &TabWidget::slotSetIcon);
 }
+#endif
 
 void MainWidget::slotRequestNewFrame(int &frameId)
 {
+#ifdef QTWEBENGINE_EXPERIMENTAL_OPTION
+    WebEngineFrame *frame = new WebEngineFrame(m_actionManager->actionCollection(), m_tabWidget);
+#else
     WebViewFrame *frame = new WebViewFrame(m_actionManager->actionCollection(), m_tabWidget);
+#endif
     connectFrame(frame);
 
     Kernel::self()->frameManager()->slotAddFrame(frame);
@@ -1197,7 +1227,11 @@ void MainWidget::readProperties(const KConfigGroup &config)
     QStringList childList = config.readEntry(QStringLiteral("Children"),
                             QStringList());
     Q_FOREACH (const QString &framePrefix, childList) {
+#ifdef QTWEBENGINE_EXPERIMENTAL_OPTION
+        WebEngineFrame *const frame = new WebEngineFrame(m_actionManager->actionCollection(), m_tabWidget);
+#else
         WebViewFrame *const frame = new WebViewFrame(m_actionManager->actionCollection(), m_tabWidget);
+#endif
         frame->loadConfig(config, framePrefix + QLatin1Char('_'));
 
         connectFrame(frame);
