@@ -19,7 +19,7 @@
 
 #include "actionmanager.h"
 #include "actions.h"
-#include "webkit/urlhandlermanager.h"
+#include "webengine/urlhandlerwebenginemanager.h"
 
 #include <KPIMTextEdit/TextToSpeech>
 #include <MessageViewer/AdBlockBlockableItemsDialog>
@@ -32,6 +32,7 @@
 #include <QContextMenuEvent>
 #include <QMenu>
 #include <QWebEngineHistory>
+#include <mailwebhittestresult.h>
 
 using namespace Akregator;
 
@@ -50,40 +51,40 @@ WebEngineViewer::~WebEngineViewer()
 
 void WebEngineViewer::displayContextMenu(const QPoint &pos)
 {
-#if 0
-    mContextMenuHitResult = page()->mainFrame()->hitTestContent(pos);
-    mCurrentUrl = mContextMenuHitResult.linkUrl();
-    if (URLHandlerManager::instance()->handleContextMenuRequest(mCurrentUrl, mapToGlobal(pos), this)) {
+    delete mContextMenuHitResult;
+    mContextMenuHitResult = new MessageViewer::MailWebHitTestResult(page(), pos);
+    mCurrentUrl = mContextMenuHitResult->linkUrl();
+    if (URLHandlerWebEngineManager::instance()->handleContextMenuRequest(mCurrentUrl, mapToGlobal(pos), this)) {
         return;
     }
     QMenu popup(this);
     QWebEngineHistory *history = page()->history();
     bool needSeparator = false;
     if (history->canGoBack()) {
-        popup.addAction(pageAction(QWebPage::Back));
+        popup.addAction(pageAction(QWebEnginePage::Back));
         needSeparator = true;
     }
 
     if (history->canGoForward()) {
-        popup.addAction(pageAction(QWebPage::Forward));
+        popup.addAction(pageAction(QWebEnginePage::Forward));
         needSeparator = true;
     }
     if (needSeparator) {
         popup.addSeparator();
     }
-    popup.addAction(pageAction(QWebPage::Stop));
+    popup.addAction(pageAction(QWebEnginePage::Stop));
     popup.addSeparator();
-    popup.addAction(pageAction(QWebPage::Reload));
+    popup.addAction(pageAction(QWebEnginePage::Reload));
     popup.addSeparator();
 
-    const bool contentSelected = mContextMenuHitResult.isContentSelected();
+    const bool contentSelected = mContextMenuHitResult->isContentSelected();
     if (!mCurrentUrl.isEmpty() && !contentSelected) {
         popup.addAction(createOpenLinkInNewTabAction(mCurrentUrl, this, SLOT(slotOpenLinkInForegroundTab()), &popup));
         popup.addAction(createOpenLinkInExternalBrowserAction(mCurrentUrl, this, SLOT(slotOpenLinkInBrowser()), &popup));
         popup.addSeparator();
         popup.addAction(mActionCollection->action(QStringLiteral("savelinkas")));
         popup.addAction(mActionCollection->action(QStringLiteral("copylinkaddress")));
-        if (!mContextMenuHitResult.imageUrl().isEmpty()) {
+        if (!mContextMenuHitResult->imageUrl().isEmpty()) {
             popup.addSeparator();
             popup.addAction(mActionCollection->action(QStringLiteral("copy_image_location")));
             popup.addAction(mActionCollection->action(QStringLiteral("saveas_imageurl")));
@@ -114,7 +115,8 @@ void WebEngineViewer::displayContextMenu(const QPoint &pos)
         popup.addAction(ActionManager::getInstance()->action(QStringLiteral("speak_text")));
     }
     popup.exec(mapToGlobal(pos));
-#endif
+    delete mContextMenuHitResult;
+    mContextMenuHitResult = Q_NULLPTR;
 }
 
 void WebEngineViewer::slotOpenBlockableItemsDialog()
