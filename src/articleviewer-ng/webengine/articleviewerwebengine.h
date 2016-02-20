@@ -120,6 +120,7 @@ protected:
 
     bool adblockEnabled() const;
 
+    void contextMenuEvent(QContextMenuEvent *e) Q_DECL_OVERRIDE;
 private:
     QUrl linkOrImageUrlAt(const QPoint &global) const;
     MousePressedButtonType mLastButtonClicked;

@@ -153,6 +153,11 @@ void ArticleViewerWebEngine::slotCopyLinkAddress()
     cb->setText(mCurrentUrl.toString(), QClipboard::Selection);
 }
 
+void ArticleViewerWebEngine::contextMenuEvent(QContextMenuEvent *e)
+{
+    displayContextMenu(e->pos());
+}
+
 void ArticleViewerWebEngine::slotShowContextMenu(const QPoint &pos)
 {
     displayContextMenu(pos);
