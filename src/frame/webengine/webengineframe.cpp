@@ -17,6 +17,7 @@
 
 #include "openurlrequest.h"
 #include "webengineframe.h"
+#include "webengineviewer.h"
 #include <QVBoxLayout>
 #include <QAction>
 #include <KIO/FavIconRequestJob>
@@ -29,7 +30,7 @@ WebEngineFrame::WebEngineFrame(KActionCollection *ac, QWidget *parent)
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setMargin(0);
     setRemovable(true);
-    Akregator::ArticleViewerWebEngine *viewer = new Akregator::ArticleViewerWebEngine(ac, this);
+    Akregator::WebEngineViewer *viewer = new Akregator::WebEngineViewer(ac, this);
     mArticleViewerWidgetNg = new Akregator::ArticleViewerWebEngineWidgetNg(viewer, ac, this);
 
     connect(mArticleViewerWidgetNg->articleViewerNg(), &ArticleViewerWebEngine::titleChanged, this, &WebEngineFrame::slotTitleChanged);
