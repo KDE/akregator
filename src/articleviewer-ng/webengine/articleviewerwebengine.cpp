@@ -72,7 +72,7 @@ ArticleViewerWebEngine::ArticleViewerWebEngine(KActionCollection *ac, QWidget *p
     connect(page(), &QWebEnginePage::linkHovered, this, &ArticleViewerWebEngine::slotLinkHovered);
 
 
-    setContextMenuPolicy(Qt::CustomContextMenu);
+    setContextMenuPolicy( Qt::DefaultContextMenu);
     mWebShortcutMenuManager = new KIO::KUriFilterSearchProviderActions(this);
     mShareServiceManager = new PimCommon::ShareServiceUrlManager(this);
     connect(mShareServiceManager, &PimCommon::ShareServiceUrlManager::serviceUrlSelected, this, &ArticleViewerWebEngine::slotServiceUrlSelected);

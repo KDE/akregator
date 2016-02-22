@@ -49,6 +49,12 @@ WebEngineViewer::~WebEngineViewer()
 
 }
 
+void WebEngineViewer::contextMenuEvent(QContextMenuEvent *e)
+{
+    qDebug()<<" void ArticleViewerWebEngine::contextMenuEvent(QContextMenuEvent *e)";
+    displayContextMenu(e->pos());
+}
+
 void WebEngineViewer::displayContextMenu(const QPoint &pos)
 {
     delete mContextMenuHitResult;
