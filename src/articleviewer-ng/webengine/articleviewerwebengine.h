@@ -25,7 +25,7 @@
 class KActionCollection;
 namespace MessageViewer
 {
-class MailWebHitTestResult;
+class WebHitTestResult;
 }
 namespace PimCommon
 {
@@ -116,7 +116,7 @@ private Q_SLOTS:
     void slotOpenLinkInBrowser();
     void slotShowContextMenu(const QPoint &pos);
 protected:
-    MessageViewer::MailWebHitTestResult *mContextMenuHitResult;
+    MessageViewer::WebHitTestResult *mContextMenuHitResult;
 
     bool adblockEnabled() const;
 

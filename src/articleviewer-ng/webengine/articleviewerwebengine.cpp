@@ -44,7 +44,7 @@
 #include <QApplication>
 #include <QClipboard>
 #include <QMenu>
-#include <MessageViewer/MailWebHitTestResult>
+#include <MessageViewer/WebHitTestResult>
 
 #include <KIO/KUriFilterSearchProviderActions>
 
@@ -203,7 +203,7 @@ void ArticleViewerWebEngine::slotLoadStarted()
 void ArticleViewerWebEngine::displayContextMenu(const QPoint &pos)
 {
     delete mContextMenuHitResult;
-    mContextMenuHitResult = new MessageViewer::MailWebHitTestResult(page(), pos);
+    mContextMenuHitResult = new MessageViewer::WebHitTestResult(page(), pos);
     mCurrentUrl = mContextMenuHitResult->linkUrl();
     if (URLHandlerWebEngineManager::instance()->handleContextMenuRequest(mCurrentUrl, mapToGlobal(pos), this)) {
         return;
@@ -225,10 +225,6 @@ void ArticleViewerWebEngine::displayContextMenu(const QPoint &pos)
                 popup.addSeparator();
                 popup.addAction(mActionCollection->action(QStringLiteral("adblock_image")));
             }
-#if 0
-            //popup.addAction(mMsgView->shareImage());
-#endif
-            //TODO
         }
         popup.addSeparator();
         popup.addAction(mShareServiceManager->menu());
@@ -390,7 +386,7 @@ void ArticleViewerWebEngine::slotOpenLinkInBrowser()
 QUrl ArticleViewerWebEngine::linkOrImageUrlAt(const QPoint &global) const
 {
     const QPoint local = page()->view()->mapFromGlobal(global);
-    const MessageViewer::MailWebHitTestResult hit(page(), local);
+    const MessageViewer::WebHitTestResult hit(page(), local);
     if (!hit.linkUrl().isEmpty()) {
         return hit.linkUrl();
     } else if (!hit.imageUrl().isEmpty()) {

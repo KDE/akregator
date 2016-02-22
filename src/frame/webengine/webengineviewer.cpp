@@ -32,16 +32,17 @@
 #include <QContextMenuEvent>
 #include <QMenu>
 #include <QWebEngineHistory>
-#include <mailwebhittestresult.h>
+#include <MessageViewer/WebHitTestResult>
 
 using namespace Akregator;
 
 WebEngineViewer::WebEngineViewer(KActionCollection *ac, QWidget *parent)
     : ArticleViewerWebEngine(ac, parent)
 {
-    settings()->setAttribute(QWebEngineSettings::JavascriptEnabled, true);
-    settings()->setAttribute(QWebEngineSettings::PluginsEnabled, true);
+    settings()->setAttribute(QWebEngineSettings::JavascriptEnabled, false);
+    settings()->setAttribute(QWebEngineSettings::PluginsEnabled, false);
     settings()->setAttribute(QWebEngineSettings::AutoLoadImages, true);
+
 }
 
 WebEngineViewer::~WebEngineViewer()
@@ -51,14 +52,13 @@ WebEngineViewer::~WebEngineViewer()
 
 void WebEngineViewer::contextMenuEvent(QContextMenuEvent *e)
 {
-    qDebug() << " void ArticleViewerWebEngine::contextMenuEvent(QContextMenuEvent *e)";
     displayContextMenu(e->pos());
 }
 
 void WebEngineViewer::displayContextMenu(const QPoint &pos)
 {
     delete mContextMenuHitResult;
-    mContextMenuHitResult = new MessageViewer::MailWebHitTestResult(page(), pos);
+    mContextMenuHitResult = new MessageViewer::WebHitTestResult(page(), pos);
     mCurrentUrl = mContextMenuHitResult->linkUrl();
     if (URLHandlerWebEngineManager::instance()->handleContextMenuRequest(mCurrentUrl, mapToGlobal(pos), this)) {
         return;
