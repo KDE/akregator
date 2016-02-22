@@ -25,7 +25,6 @@
 
 #include "articleviewerwidget.h"
 
-
 #include "akregatorconfig.h"
 #include "aboutdata.h"
 #include "actionmanager.h"
@@ -85,11 +84,11 @@ ArticleViewerWidget::ArticleViewerWidget(const QString &grantleeDirectory, KActi
       m_imageDir(QUrl::fromLocalFile(QString(QStandardPaths::writableLocation(QStandardPaths::CacheLocation) + QLatin1String("/akregator/Media/")))),
       m_node(0),
       m_viewMode(NormalView),
-      #ifdef QTWEBENGINE_EXPERIMENTAL_OPTION
+#ifdef QTWEBENGINE_EXPERIMENTAL_OPTION
       m_articleViewerWidgetNg(new Akregator::ArticleViewerWebEngineWidgetNg(ac, this)),
-      #else
+#else
       m_articleViewerWidgetNg(new Akregator::ArticleViewerWidgetNg(ac, this)),
-      #endif
+#endif
       m_normalViewFormatter(new DefaultNormalViewFormatter(grantleeDirectory, m_imageDir, m_articleViewerWidgetNg->articleViewerNg())),
       m_combinedViewFormatter(new DefaultCombinedViewFormatter(grantleeDirectory, m_imageDir, m_articleViewerWidgetNg->articleViewerNg()))
 {

@@ -1351,9 +1351,9 @@ void MainWidget::slotArticleAction(ArticleViewerNg::ArticleAction type, const QS
     case ArticleViewerNg::SendUrlArticle: {
 #endif
 #ifdef QTWEBENGINE_EXPERIMENTAL_OPTION
-    case ArticleViewerWebEngine::SendFileArticle:
+        case ArticleViewerWebEngine::SendFileArticle:
 #else
-    case ArticleViewerNg::SendFileArticle:
+        case ArticleViewerNg::SendFileArticle:
 #endif
             const Article article =  m_feedList->findArticle(feed, articleId);
             const QByteArray text = article.link().toDisplayString().toLatin1();
