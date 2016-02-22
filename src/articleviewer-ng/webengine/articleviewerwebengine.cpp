@@ -24,6 +24,7 @@
 #include "actions/actions.h"
 #include "urlhandler/webengine/urlhandlerwebengine.h"
 
+#include <MessageViewer/MailNetworkAccessManager>
 #include <KPIMTextEdit/TextToSpeech>
 #include <KActionMenu>
 
@@ -55,6 +56,7 @@ ArticleViewerWebEngine::ArticleViewerWebEngine(KActionCollection *ac, QWidget *p
       mContextMenuHitResult(Q_NULLPTR),
       mLastButtonClicked(LeftButton)
 {
+    new MessageViewer::MailNetworkAccessManager(this);
     ArticleViewerWebEnginePage *pageEngine = new ArticleViewerWebEnginePage(this);
     setPage(pageEngine);
 
