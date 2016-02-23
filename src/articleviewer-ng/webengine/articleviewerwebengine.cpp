@@ -53,17 +53,16 @@ using namespace Akregator;
 ArticleViewerWebEngine::ArticleViewerWebEngine(KActionCollection *ac, QWidget *parent)
     : QWebEngineView(parent),
       mActionCollection(ac),
-      mContextMenuHitResult(Q_NULLPTR),
       mLastButtonClicked(LeftButton)
 {
     new MessageViewer::NetworkAccessManagerWebEngine(this);
-    ArticleViewerWebEnginePage *pageEngine = new ArticleViewerWebEnginePage(this);
-    setPage(pageEngine);
+    mPageEngine = new ArticleViewerWebEnginePage(this);
+    setPage(mPageEngine);
 
     connect(this, &ArticleViewerWebEngine::showContextMenu, this, &ArticleViewerWebEngine::slotShowContextMenu);
 
     setFocusPolicy(Qt::WheelFocus);
-    connect(pageEngine, &ArticleViewerWebEnginePage::urlClicked, this, &ArticleViewerWebEngine::slotLinkClicked);
+    connect(mPageEngine, &ArticleViewerWebEnginePage::urlClicked, this, &ArticleViewerWebEngine::slotLinkClicked);
 
     //mWebViewAccessKey = new MessageViewer::WebViewAccessKey(this, this);
     //mWebViewAccessKey->setActionCollection(mActionCollection);
@@ -202,9 +201,8 @@ void ArticleViewerWebEngine::slotLoadStarted()
 
 void ArticleViewerWebEngine::displayContextMenu(const QPoint &pos)
 {
-    delete mContextMenuHitResult;
-    mContextMenuHitResult = new MessageViewer::WebHitTestResult(page(), pos);
-    mCurrentUrl = mContextMenuHitResult->linkUrl();
+    const MessageViewer::WebHitTestResult webHit = mPageEngine->hitTestContent(pos);
+    mCurrentUrl = webHit.linkUrl();
     if (URLHandlerWebEngineManager::instance()->handleContextMenuRequest(mCurrentUrl, mapToGlobal(pos), this)) {
         return;
     }
@@ -217,7 +215,7 @@ void ArticleViewerWebEngine::displayContextMenu(const QPoint &pos)
         popup.addSeparator();
         popup.addAction(mActionCollection->action(QStringLiteral("savelinkas")));
         popup.addAction(mActionCollection->action(QStringLiteral("copylinkaddress")));
-        if (!mContextMenuHitResult->imageUrl().isEmpty()) {
+        if (!webHit.imageUrl().isEmpty()) {
             popup.addSeparator();
             popup.addAction(mActionCollection->action(QStringLiteral("copy_image_location")));
             popup.addAction(mActionCollection->action(QStringLiteral("saveas_imageurl")));
@@ -246,8 +244,6 @@ void ArticleViewerWebEngine::displayContextMenu(const QPoint &pos)
         popup.addAction(ActionManager::getInstance()->action(QStringLiteral("speak_text")));
     }
     popup.exec(mapToGlobal(pos));
-    delete mContextMenuHitResult;
-    mContextMenuHitResult = Q_NULLPTR;
 }
 
 void ArticleViewerWebEngine::slotLinkHovered(const QString &link)
@@ -386,7 +382,7 @@ void ArticleViewerWebEngine::slotOpenLinkInBrowser()
 QUrl ArticleViewerWebEngine::linkOrImageUrlAt(const QPoint &global) const
 {
     const QPoint local = page()->view()->mapFromGlobal(global);
-    const MessageViewer::WebHitTestResult hit(page(), local);
+    const MessageViewer::WebHitTestResult hit(mPageEngine, local);
     if (!hit.linkUrl().isEmpty()) {
         return hit.linkUrl();
     } else if (!hit.imageUrl().isEmpty()) {

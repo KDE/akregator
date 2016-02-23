@@ -20,7 +20,7 @@
 using namespace Akregator;
 
 ArticleViewerWebEnginePage::ArticleViewerWebEnginePage(QObject *parent)
-    : QWebEnginePage(parent)
+    : MessageViewer::WebEnginePage(parent)
 {
     settings()->setAttribute(QWebEngineSettings::JavascriptEnabled, false);
     settings()->setAttribute(QWebEngineSettings::PluginsEnabled, false);

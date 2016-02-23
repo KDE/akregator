@@ -37,6 +37,7 @@ class KUriFilterSearchProviderActions;
 }
 namespace Akregator
 {
+class ArticleViewerWebEnginePage;
 class AKREGATOR_EXPORT ArticleViewerWebEngine : public QWebEngineView
 {
     Q_OBJECT
@@ -116,7 +117,7 @@ private Q_SLOTS:
     void slotOpenLinkInBrowser();
     void slotShowContextMenu(const QPoint &pos);
 protected:
-    MessageViewer::WebHitTestResult *mContextMenuHitResult;
+    ArticleViewerWebEnginePage *mPageEngine;
 
     bool adblockEnabled() const;
 

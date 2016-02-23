@@ -16,6 +16,7 @@
 */
 
 #include "webengineviewer.h"
+#include "articleviewer-ng/webengine/articleviewerwebenginepage.h"
 
 #include "actionmanager.h"
 #include "actions.h"
@@ -39,7 +40,7 @@ using namespace Akregator;
 WebEngineViewer::WebEngineViewer(KActionCollection *ac, QWidget *parent)
     : ArticleViewerWebEngine(ac, parent)
 {
-    settings()->setAttribute(QWebEngineSettings::JavascriptEnabled, false);
+    settings()->setAttribute(QWebEngineSettings::JavascriptEnabled, true);
     settings()->setAttribute(QWebEngineSettings::PluginsEnabled, false);
     settings()->setAttribute(QWebEngineSettings::AutoLoadImages, true);
 
@@ -57,9 +58,8 @@ void WebEngineViewer::contextMenuEvent(QContextMenuEvent *e)
 
 void WebEngineViewer::displayContextMenu(const QPoint &pos)
 {
-    delete mContextMenuHitResult;
-    mContextMenuHitResult = new MessageViewer::WebHitTestResult(page(), pos);
-    mCurrentUrl = mContextMenuHitResult->linkUrl();
+    const MessageViewer::WebHitTestResult webHit = mPageEngine->hitTestContent(pos);
+    mCurrentUrl = webHit.linkUrl();
     if (URLHandlerWebEngineManager::instance()->handleContextMenuRequest(mCurrentUrl, mapToGlobal(pos), this)) {
         return;
     }
@@ -90,7 +90,7 @@ void WebEngineViewer::displayContextMenu(const QPoint &pos)
         popup.addSeparator();
         popup.addAction(mActionCollection->action(QStringLiteral("savelinkas")));
         popup.addAction(mActionCollection->action(QStringLiteral("copylinkaddress")));
-        if (!mContextMenuHitResult->imageUrl().isEmpty()) {
+        if (!webHit.imageUrl().isEmpty()) {
             popup.addSeparator();
             popup.addAction(mActionCollection->action(QStringLiteral("copy_image_location")));
             popup.addAction(mActionCollection->action(QStringLiteral("saveas_imageurl")));
@@ -121,8 +121,6 @@ void WebEngineViewer::displayContextMenu(const QPoint &pos)
         popup.addAction(ActionManager::getInstance()->action(QStringLiteral("speak_text")));
     }
     popup.exec(mapToGlobal(pos));
-    delete mContextMenuHitResult;
-    mContextMenuHitResult = Q_NULLPTR;
 }
 
 void WebEngineViewer::slotOpenBlockableItemsDialog()
