@@ -83,7 +83,7 @@ void WebEngineViewer::displayContextMenu(const QPoint &pos)
     popup.addAction(pageAction(QWebEnginePage::Reload));
     popup.addSeparator();
 
-    const bool contentSelected = mContextMenuHitResult->isContentSelected();
+    const bool contentSelected = !selectedText().isEmpty();
     if (!mCurrentUrl.isEmpty() && !contentSelected) {
         popup.addAction(createOpenLinkInNewTabAction(mCurrentUrl, this, SLOT(slotOpenLinkInForegroundTab()), &popup));
         popup.addAction(createOpenLinkInExternalBrowserAction(mCurrentUrl, this, SLOT(slotOpenLinkInBrowser()), &popup));
