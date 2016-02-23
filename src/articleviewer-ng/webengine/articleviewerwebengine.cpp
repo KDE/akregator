@@ -210,7 +210,7 @@ void ArticleViewerWebEngine::displayContextMenu(const QPoint &pos)
     }
 
     QMenu popup(this);
-    const bool contentSelected = mContextMenuHitResult->isContentSelected();
+    const bool contentSelected = !selectedText().isEmpty();
     if (!mCurrentUrl.isEmpty() && !contentSelected) {
         popup.addAction(createOpenLinkInNewTabAction(mCurrentUrl, this, SLOT(slotOpenLinkInForegroundTab()), &popup));
         popup.addAction(createOpenLinkInExternalBrowserAction(mCurrentUrl, this, SLOT(slotOpenLinkInBrowser()), &popup));
