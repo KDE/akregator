@@ -248,8 +248,7 @@ void ArticleViewerWebEngine::displayContextMenu(const QPoint &pos)
 
 void ArticleViewerWebEngine::slotLinkHovered(const QString &link)
 {
-    QUrl url(linkOrImageUrlAt(QCursor::pos()));
-    QString msg = URLHandlerWebEngineManager::instance()->statusBarMessage(url, this);
+    QString msg = URLHandlerWebEngineManager::instance()->statusBarMessage(QUrl(link), this);
     if (msg.isEmpty()) {
         msg = link;
     }
@@ -377,19 +376,6 @@ void ArticleViewerWebEngine::slotOpenLinkInBrowser()
     OpenUrlRequest req(mCurrentUrl);
     req.setOptions(OpenUrlRequest::ExternalBrowser);
     Q_EMIT signalOpenUrlRequest(req);
-}
-
-QUrl ArticleViewerWebEngine::linkOrImageUrlAt(const QPoint &global) const
-{
-    const QPoint local = page()->view()->mapFromGlobal(global);
-    const MessageViewer::WebHitTestResult hit(mPageEngine, local);
-    if (!hit.linkUrl().isEmpty()) {
-        return hit.linkUrl();
-    } else if (!hit.imageUrl().isEmpty()) {
-        return hit.imageUrl();
-    } else {
-        return QUrl();
-    }
 }
 
 bool ArticleViewerWebEngine::zoomTextOnlyInFrame() const

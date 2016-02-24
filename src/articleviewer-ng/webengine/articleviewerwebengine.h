@@ -123,7 +123,6 @@ protected:
 
     void contextMenuEvent(QContextMenuEvent *e) Q_DECL_OVERRIDE;
 private:
-    QUrl linkOrImageUrlAt(const QPoint &global) const;
     MousePressedButtonType mLastButtonClicked;
     //MessageViewer::WebViewAccessKey *mWebViewAccessKey;
 };
