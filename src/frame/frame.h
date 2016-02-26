@@ -107,9 +107,6 @@ public Q_SLOTS:
     /** goes a step backwards in the history, if possible. See also canGoBack(). */
     virtual void slotHistoryBack() {}
 
-    virtual void slotHistoryBackAboutToShow() {}
-    virtual void slotHistoryForwardAboutToShow() {}
-
     /** reloads the current content, if possible. See also isReloadable(). */
     virtual void slotReload() {}
 
