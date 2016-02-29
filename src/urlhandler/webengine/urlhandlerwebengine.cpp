@@ -17,7 +17,7 @@
 
 #include "urlhandlerwebengine.h"
 #include "akregator_debug.h"
-
+#include "Libkdepim/BroadcastStatus"
 #include "articleviewer-ng/webengine/articleviewerwebengine.h"
 #include <KLocalizedString>
 #include <QDesktopServices>
@@ -83,7 +83,7 @@ bool MailToURLHandlerWebEngine::handleContextMenuRequest(const QUrl &url, const 
                 QClipboard *clip = QApplication::clipboard();
                 clip->setText(fullEmail, QClipboard::Clipboard);
                 clip->setText(fullEmail, QClipboard::Selection);
-                //KPIM::BroadcastStatus::instance()->setStatusMsg(i18n("Address copied to clipboard."));
+                KPIM::BroadcastStatus::instance()->setStatusMsg(i18n("Address copied to clipboard."));
             }
         } else if (a == open) {
             runKAddressBook(url);
