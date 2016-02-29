@@ -55,7 +55,7 @@ ArticleViewerWebEngine::ArticleViewerWebEngine(KActionCollection *ac, QWidget *p
       mActionCollection(ac),
       mLastButtonClicked(LeftButton)
 {
-    new MessageViewer::NetworkAccessManagerWebEngine(this);
+    new MessageViewer::NetworkAccessManagerWebEngine(ac, this);
     mPageEngine = new ArticleViewerWebEnginePage(this);
     setPage(mPageEngine);
 
