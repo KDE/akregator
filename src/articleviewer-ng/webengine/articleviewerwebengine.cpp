@@ -45,6 +45,7 @@
 #include <QClipboard>
 #include <QMenu>
 #include <MessageViewer/WebHitTestResult>
+#include <MessageViewer/WebHitTest>
 
 #include <KIO/KUriFilterSearchProviderActions>
 

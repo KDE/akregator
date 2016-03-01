@@ -33,6 +33,7 @@
 #include <QContextMenuEvent>
 #include <QMenu>
 #include <QWebEngineHistory>
+#include <MessageViewer/WebHitTest>
 #include <MessageViewer/WebHitTestResult>
 
 using namespace Akregator;
