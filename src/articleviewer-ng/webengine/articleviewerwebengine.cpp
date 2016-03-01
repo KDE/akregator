@@ -208,14 +208,14 @@ void ArticleViewerWebEngine::slotWebHitFinished(const MessageViewer::WebHitTestR
 
     QMenu popup(this);
     const bool contentSelected = !selectedText().isEmpty();
-    qDebug()<<" contentSelected"<<contentSelected<<" mCurrentUrl"<<mCurrentUrl;
-    if (!mCurrentUrl.isEmpty() && !contentSelected) {
-        popup.addAction(createOpenLinkInNewTabAction(mCurrentUrl, this, SLOT(slotOpenLinkInForegroundTab()), &popup));
-        popup.addAction(createOpenLinkInExternalBrowserAction(mCurrentUrl, this, SLOT(slotOpenLinkInBrowser()), &popup));
-        popup.addSeparator();
-        popup.addAction(mActionCollection->action(QStringLiteral("savelinkas")));
-        popup.addAction(mActionCollection->action(QStringLiteral("copylinkaddress")));
-        qDebug()<<" result.imageUrl()"<<result.imageUrl();
+    if (!contentSelected) {
+        if (!mCurrentUrl.isEmpty()) {
+            popup.addAction(createOpenLinkInNewTabAction(mCurrentUrl, this, SLOT(slotOpenLinkInForegroundTab()), &popup));
+            popup.addAction(createOpenLinkInExternalBrowserAction(mCurrentUrl, this, SLOT(slotOpenLinkInBrowser()), &popup));
+            popup.addSeparator();
+            popup.addAction(mActionCollection->action(QStringLiteral("savelinkas")));
+            popup.addAction(mActionCollection->action(QStringLiteral("copylinkaddress")));
+        }
         if (!result.imageUrl().isEmpty()) {
             popup.addSeparator();
             popup.addAction(mActionCollection->action(QStringLiteral("copy_image_location")));
