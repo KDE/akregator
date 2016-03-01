@@ -22,7 +22,7 @@ using namespace Akregator;
 ArticleViewerWebEnginePage::ArticleViewerWebEnginePage(QObject *parent)
     : MessageViewer::WebEnginePage(parent)
 {
-    settings()->setAttribute(QWebEngineSettings::JavascriptEnabled, false);
+    settings()->setAttribute(QWebEngineSettings::JavascriptEnabled, true);
     settings()->setAttribute(QWebEngineSettings::PluginsEnabled, false);
     settings()->setAttribute(QWebEngineSettings::AutoLoadImages, true);
 

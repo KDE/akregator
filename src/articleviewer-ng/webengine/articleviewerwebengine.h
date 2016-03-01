@@ -116,6 +116,7 @@ private Q_SLOTS:
     void slotOpenLinkInBackgroundTab();
     void slotOpenLinkInBrowser();
     void slotShowContextMenu(const QPoint &pos);
+    void slotWebHitFinished(const MessageViewer::WebHitTestResult &result);
 protected:
     ArticleViewerWebEnginePage *mPageEngine;
 

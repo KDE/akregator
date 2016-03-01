@@ -43,7 +43,6 @@ WebEngineViewer::WebEngineViewer(KActionCollection *ac, QWidget *parent)
     settings()->setAttribute(QWebEngineSettings::JavascriptEnabled, true);
     settings()->setAttribute(QWebEngineSettings::PluginsEnabled, false);
     settings()->setAttribute(QWebEngineSettings::AutoLoadImages, true);
-
 }
 
 WebEngineViewer::~WebEngineViewer()
@@ -56,12 +55,10 @@ void WebEngineViewer::contextMenuEvent(QContextMenuEvent *e)
     displayContextMenu(e->pos());
 }
 
-void WebEngineViewer::displayContextMenu(const QPoint &pos)
+void WebEngineViewer::slotWebHitFinished(const MessageViewer::WebHitTestResult &result)
 {
-    MessageViewer::WebHitTestResult *webHit = mPageEngine->hitTestContent(pos);
-    mCurrentUrl = webHit->linkUrl();
-    if (URLHandlerWebEngineManager::instance()->handleContextMenuRequest(mCurrentUrl, mapToGlobal(pos), this)) {
-        delete webHit;
+    mCurrentUrl = result.linkUrl();
+    if (URLHandlerWebEngineManager::instance()->handleContextMenuRequest(mCurrentUrl, mapToGlobal(result.pos()), this)) {
         return;
     }
     QMenu popup(this);
@@ -85,13 +82,15 @@ void WebEngineViewer::displayContextMenu(const QPoint &pos)
     popup.addSeparator();
 
     const bool contentSelected = !selectedText().isEmpty();
+    qDebug()<<" contentSelected"<<contentSelected<<" mCurrentUrl"<<mCurrentUrl;
     if (!mCurrentUrl.isEmpty() && !contentSelected) {
         popup.addAction(createOpenLinkInNewTabAction(mCurrentUrl, this, SLOT(slotOpenLinkInForegroundTab()), &popup));
         popup.addAction(createOpenLinkInExternalBrowserAction(mCurrentUrl, this, SLOT(slotOpenLinkInBrowser()), &popup));
         popup.addSeparator();
         popup.addAction(mActionCollection->action(QStringLiteral("savelinkas")));
         popup.addAction(mActionCollection->action(QStringLiteral("copylinkaddress")));
-        if (!webHit->imageUrl().isEmpty()) {
+        qDebug()<<" result.imageUrl()"<<result.imageUrl();
+        if (!result.imageUrl().isEmpty()) {
             popup.addSeparator();
             popup.addAction(mActionCollection->action(QStringLiteral("copy_image_location")));
             popup.addAction(mActionCollection->action(QStringLiteral("saveas_imageurl")));
@@ -121,8 +120,13 @@ void WebEngineViewer::displayContextMenu(const QPoint &pos)
         popup.addSeparator();
         popup.addAction(ActionManager::getInstance()->action(QStringLiteral("speak_text")));
     }
-    popup.exec(mapToGlobal(pos));
-    delete webHit;
+    popup.exec(mapToGlobal(result.pos()));
+}
+
+void WebEngineViewer::displayContextMenu(const QPoint &pos)
+{
+    MessageViewer::WebHitTest *webHit = mPageEngine->hitTestContent(pos);
+    connect(webHit, &MessageViewer::WebHitTest::finished, this, &WebEngineViewer::slotWebHitFinished);
 }
 
 void WebEngineViewer::slotOpenBlockableItemsDialog()
