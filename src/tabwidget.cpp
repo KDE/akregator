@@ -152,6 +152,7 @@ void TabWidget::slotTabContextMenuRequest(const QPoint &pos)
     QAction *detachTab = menu.addAction(i18nc("@action:inmenu", "Detach Tab"));
     detachTab->setEnabled((indexBar != 0) && (count() > 1));
     detachTab->setIcon(QIcon::fromTheme(QStringLiteral("tab-detach")));
+    menu.addSeparator();
 
     QAction *closeTab = menu.addAction(i18nc("@action:inmenu", "Close Tab"));
     closeTab->setEnabled((indexBar != 0) && (count() > 1));
