@@ -412,29 +412,3 @@ bool ArticleViewerWebEngine::adblockEnabled() const
     return false;
     //return MessageViewer::AdBlockManager::self()->isEnabled();
 }
-
-#if 0
-ArticleViewerWebEngine::ArticleViewerWebEngine(KActionCollection *ac, QWidget *parent)
-    : KWebView(parent, false),
-      mActionCollection(ac),
-      mLastButtonClicked(LeftButton)
-{
-    setContextMenuPolicy(Qt::CustomContextMenu);
-    setPage(new MessageViewer::WebPage(this));
-    mWebViewAccessKey = new MessageViewer::WebViewAccessKey(this, this);
-    mWebViewAccessKey->setActionCollection(mActionCollection);
-
-    connect(this, &QWebView::loadStarted, this, &ArticleViewerWebEngine::slotLoadStarted);
-    connect(this, &QWebView::loadFinished, this, &ArticleViewerWebEngine::slotLoadFinished);
-    connect(page(), &QWebPage::scrollRequested, mWebViewAccessKey, &MessageViewer::WebViewAccessKey::hideAccessKeys);
-    page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
-    connect(page(), &QWebPage::linkHovered, this, &ArticleViewerWebEngine::slotLinkHovered);
-    connect(this, &ArticleViewerWebEngine::linkClicked, this, &ArticleViewerWebEngine::slotLinkClicked);
-}
-
-ArticleViewerWebEngine::~ArticleViewerWebEngine()
-{
-    disconnect(this, &QWebView::loadFinished, this, &ArticleViewerWebEngine::slotLoadFinished);
-}
-
-#endif
