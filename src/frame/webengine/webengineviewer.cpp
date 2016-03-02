@@ -110,8 +110,10 @@ void WebEngineViewer::slotWebHitFinished(const MessageViewer::WebHitTestResult &
             mWebShortcutMenuManager->addWebShortcutsToMenu(&popup);
             popup.addSeparator();
         }
+#if QT_VERSION >= QT_VERSION_CHECK(5, 7, 0)
         popup.addAction(ActionManager::getInstance()->action(QStringLiteral("viewer_print")));
         popup.addAction(ActionManager::getInstance()->action(QStringLiteral("viewer_printpreview")));
+#endif
         popup.addSeparator();
         popup.addAction(i18n("Open Ad Block settings"), this, SLOT(slotOpenBlockableItemsDialog()));
     }
