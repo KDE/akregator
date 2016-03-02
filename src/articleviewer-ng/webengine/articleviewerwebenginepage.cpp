@@ -25,7 +25,6 @@ ArticleViewerWebEnginePage::ArticleViewerWebEnginePage(QObject *parent)
     settings()->setAttribute(QWebEngineSettings::JavascriptEnabled, true);
     settings()->setAttribute(QWebEngineSettings::PluginsEnabled, false);
     settings()->setAttribute(QWebEngineSettings::AutoLoadImages, true);
-
 }
 
 ArticleViewerWebEnginePage::~ArticleViewerWebEnginePage()
@@ -35,10 +34,9 @@ ArticleViewerWebEnginePage::~ArticleViewerWebEnginePage()
 
 bool ArticleViewerWebEnginePage::acceptNavigationRequest(const QUrl &url, NavigationType type, bool isMainFrame)
 {
-    Q_UNUSED(isMainFrame);
-    if (type == NavigationTypeLinkClicked) {
+    Q_UNUSED(type);
+    if (isMainFrame && type == NavigationTypeLinkClicked) {
         Q_EMIT urlClicked(url);
-        return false;
     }
-    return QWebEnginePage::acceptNavigationRequest(url, type, isMainFrame);;
+    return true;
 }
