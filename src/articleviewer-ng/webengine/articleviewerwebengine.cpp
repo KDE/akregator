@@ -229,18 +229,16 @@ void ArticleViewerWebEngine::slotWebHitFinished(const MessageViewer::WebHitTestR
         popup.addSeparator();
         popup.addAction(mShareServiceManager->menu());
     } else {
-        if (contentSelected) {
-            popup.addAction(ActionManager::getInstance()->action(QStringLiteral("viewer_copy")));
-            popup.addSeparator();
-            mWebShortcutMenuManager->setSelectedText(page()->selectedText());
-            mWebShortcutMenuManager->addWebShortcutsToMenu(&popup);
-            popup.addSeparator();
-        }
-#if QT_VERSION >= QT_VERSION_CHECK(5, 7, 0)
-        popup.addAction(ActionManager::getInstance()->action(QStringLiteral("viewer_print")));
-        popup.addAction(ActionManager::getInstance()->action(QStringLiteral("viewer_printpreview")));
-#endif
+        popup.addAction(ActionManager::getInstance()->action(QStringLiteral("viewer_copy")));
+        popup.addSeparator();
+        mWebShortcutMenuManager->setSelectedText(page()->selectedText());
+        mWebShortcutMenuManager->addWebShortcutsToMenu(&popup);
     }
+#if QT_VERSION >= QT_VERSION_CHECK(5, 7, 0)
+    popup.addSeparator();
+    popup.addAction(ActionManager::getInstance()->action(QStringLiteral("viewer_print")));
+    popup.addAction(ActionManager::getInstance()->action(QStringLiteral("viewer_printpreview")));
+#endif
     popup.addSeparator();
     popup.addAction(ActionManager::getInstance()->action(QStringLiteral("find_in_messages")));
     if (KPIMTextEdit::TextToSpeech::self()->isReady()) {
