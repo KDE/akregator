@@ -23,6 +23,7 @@
 #include <KLocalizedString>
 #include <QVBoxLayout>
 #include <QAction>
+#include <viewerplugintoolmanager.h>
 
 #include <KPIMTextEdit/kpimtextedit/texttospeechwidget.h>
 
@@ -62,6 +63,18 @@ void ArticleViewerWebEngineWidgetNg::initializeLayout(KActionCollection *ac)
     mArticleViewerNg->setObjectName(QStringLiteral("articleviewerng"));
     layout->addWidget(mArticleViewerNg);
 
+
+    mViewerPluginToolManager = new MessageViewer::ViewerPluginToolManager(this, this);
+    mViewerPluginToolManager->setActionCollection(ac);
+    mViewerPluginToolManager->setPluginName(QStringLiteral("akregator"));
+    mViewerPluginToolManager->setServiceTypeName(QStringLiteral("Akregator/ViewerPlugin"));
+    if (!mViewerPluginToolManager->initializePluginList()) {
+        qDebug() << " Impossible to initialize plugins";
+    }
+    mViewerPluginToolManager->createView();
+    connect(mViewerPluginToolManager, &MessageViewer::ViewerPluginToolManager::activatePlugin, this, &ArticleViewerWebEngineWidgetNg::slotActivatePlugin);
+
+
     mSliderContainer = new KPIMTextEdit::SlideContainer(this);
     mSliderContainer->setObjectName(QStringLiteral("slidercontainer"));
     mFindBarWebView = new MessageViewer::FindBarWebEngineView(mArticleViewerNg, this);
@@ -76,6 +89,15 @@ void ArticleViewerWebEngineWidgetNg::initializeLayout(KActionCollection *ac)
 ArticleViewerWebEngineWidgetNg::~ArticleViewerWebEngineWidgetNg()
 {
 
+}
+
+void ArticleViewerWebEngineWidgetNg::slotActivatePlugin(MessageViewer::ViewerPluginInterface *interface)
+{
+    const QString text = mArticleViewerNg->selectedText();
+    if (!text.isEmpty()) {
+        interface->setText(text);
+    }
+    interface->showWidget();
 }
 
 ArticleViewerWebEngine *ArticleViewerWebEngineWidgetNg::articleViewerNg() const
@@ -97,3 +119,12 @@ void ArticleViewerWebEngineWidgetNg::slotSpeakText()
     const QString text = mArticleViewerNg->selectedText();
     mTextToSpeechWidget->say(text);
 }
+#if 0
+QList<QAction *> ViewerPrivate::viewerPluginActionList(ViewerPluginInterface::SpecificFeatureTypes features)
+{
+    if (mViewerPluginToolManager) {
+        return mViewerPluginToolManager->viewerPluginActionList(features);
+    }
+    return QList<QAction *>();
+}
+#endif

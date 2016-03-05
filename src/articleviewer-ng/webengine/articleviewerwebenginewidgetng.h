@@ -25,6 +25,8 @@ class KActionCollection;
 namespace MessageViewer
 {
 class FindBarWebEngineView;
+class ViewerPluginToolManager;
+class ViewerPluginInterface;
 }
 
 namespace KPIMTextEdit
@@ -48,6 +50,7 @@ public:
 public Q_SLOTS:
     void slotSpeakText();
     void slotFind();
+    void slotActivatePlugin(MessageViewer::ViewerPluginInterface *interface);
 private:
     void initializeActions(KActionCollection *ac);
     void initializeLayout(KActionCollection *ac);
@@ -55,6 +58,7 @@ private:
     ArticleViewerWebEngine *mArticleViewerNg;
     KPIMTextEdit::TextToSpeechWidget *mTextToSpeechWidget;
     KPIMTextEdit::SlideContainer *mSliderContainer;
+    MessageViewer::ViewerPluginToolManager *mViewerPluginToolManager;
 };
 }
 #endif // ARTICLEVIEWERWEBENGINEWIDGETNG_H
