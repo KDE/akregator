@@ -44,6 +44,7 @@
 #include <QApplication>
 #include <QClipboard>
 #include <QMenu>
+#include <viewerplugintoolmanager.h>
 #include <MessageViewer/WebHitTestResult>
 #include <MessageViewer/WebHitTest>
 
@@ -54,7 +55,8 @@ using namespace Akregator;
 ArticleViewerWebEngine::ArticleViewerWebEngine(KActionCollection *ac, QWidget *parent)
     : QWebEngineView(parent),
       mActionCollection(ac),
-      mLastButtonClicked(LeftButton)
+      mLastButtonClicked(LeftButton),
+      mViewerPluginToolManager(Q_NULLPTR)
 {
     new MessageViewer::NetworkAccessManagerWebEngine(ac, this);
     mPageEngine = new ArticleViewerWebEnginePage(this);
@@ -233,6 +235,8 @@ void ArticleViewerWebEngine::slotWebHitFinished(const MessageViewer::WebHitTestR
         popup.addSeparator();
         mWebShortcutMenuManager->setSelectedText(page()->selectedText());
         mWebShortcutMenuManager->addWebShortcutsToMenu(&popup);
+        popup.addSeparator();
+        popup.addActions(viewerPluginActionList(MessageViewer::ViewerPluginInterface::NeedSelection));
     }
 #if QT_VERSION >= QT_VERSION_CHECK(5, 7, 0)
     popup.addSeparator();
@@ -390,6 +394,37 @@ bool ArticleViewerWebEngine::zoomTextOnlyInFrame() const
 {
     return false;
     //return settings()->testAttribute(QWebEngineSettings::ZoomTextOnly);
+}
+
+void ArticleViewerWebEngine::createViewerPluginToolManager(KActionCollection *ac, QWidget *parent)
+{
+    mViewerPluginToolManager = new MessageViewer::ViewerPluginToolManager(parent, this);
+    mViewerPluginToolManager->setActionCollection(ac);
+    mViewerPluginToolManager->setPluginName(QStringLiteral("akregator"));
+    mViewerPluginToolManager->setServiceTypeName(QStringLiteral("Akregator/ViewerPlugin"));
+    if (!mViewerPluginToolManager->initializePluginList()) {
+        qDebug() << " Impossible to initialize plugins";
+    }
+    mViewerPluginToolManager->createView();
+    connect(mViewerPluginToolManager, &MessageViewer::ViewerPluginToolManager::activatePlugin, this, &ArticleViewerWebEngine::slotActivatePlugin);
+}
+
+QList<QAction *> ArticleViewerWebEngine::viewerPluginActionList(MessageViewer::ViewerPluginInterface::SpecificFeatureTypes features)
+{
+    if (mViewerPluginToolManager) {
+        return mViewerPluginToolManager->viewerPluginActionList(features);
+    }
+    return QList<QAction *>();
+}
+
+
+void ArticleViewerWebEngine::slotActivatePlugin(MessageViewer::ViewerPluginInterface *interface)
+{
+    const QString text = selectedText();
+    if (!text.isEmpty()) {
+        interface->setText(text);
+    }
+    interface->showWidget();
 }
 
 void ArticleViewerWebEngine::slotZoomTextOnlyInFrame(bool textOnlyInFrame)

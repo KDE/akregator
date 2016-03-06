@@ -21,11 +21,14 @@
 #include <QWebEngineView>
 #include <openurlrequest.h>
 #include <shareserviceurlmanager.h>
+#include <MessageViewer/ViewerPluginInterface>
 
 class KActionCollection;
 namespace MessageViewer
 {
 class WebHitTestResult;
+class ViewerPluginToolManager;
+class ViewerPluginInterface;
 }
 namespace PimCommon
 {
@@ -62,6 +65,8 @@ public:
     void setArticleAction(ArticleViewerWebEngine::ArticleAction type, const QString &articleId, const QString &feed);
 
     bool zoomTextOnlyInFrame() const;
+
+    void createViewerPluginToolManager(KActionCollection *ac, QWidget *parent);
 
 protected:
     QUrl mCurrentUrl;
@@ -117,14 +122,17 @@ private Q_SLOTS:
     void slotOpenLinkInBrowser();
     void slotShowContextMenu(const QPoint &pos);
     void slotWebHitFinished(const MessageViewer::WebHitTestResult &result);
+    void slotActivatePlugin(MessageViewer::ViewerPluginInterface *interface);
 protected:
     ArticleViewerWebEnginePage *mPageEngine;
 
     bool adblockEnabled() const;
 
     void contextMenuEvent(QContextMenuEvent *e) Q_DECL_OVERRIDE;
+    QList<QAction *> viewerPluginActionList(MessageViewer::ViewerPluginInterface::SpecificFeatureTypes features);
 private:
     MousePressedButtonType mLastButtonClicked;
+    MessageViewer::ViewerPluginToolManager *mViewerPluginToolManager;
     //MessageViewer::WebViewAccessKey *mWebViewAccessKey;
 };
 }
