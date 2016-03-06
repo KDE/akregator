@@ -101,6 +101,8 @@ void WebViewer::displayContextMenu(const QPoint &pos)
             mWebShortcutMenuManager->setSelectedText(page()->selectedText());
             mWebShortcutMenuManager->addWebShortcutsToMenu(&popup);
             popup.addSeparator();
+            popup.addActions(viewerPluginActionList(MessageViewer::ViewerPluginInterface::NeedSelection));
+            popup.addSeparator();
         }
         popup.addAction(ActionManager::getInstance()->action(QStringLiteral("viewer_print")));
         popup.addAction(ActionManager::getInstance()->action(QStringLiteral("viewer_printpreview")));

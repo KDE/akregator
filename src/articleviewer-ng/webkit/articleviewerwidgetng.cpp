@@ -60,6 +60,8 @@ void ArticleViewerWidgetNg::initializeLayout(KActionCollection *ac)
     mArticleViewerNg->setObjectName(QStringLiteral("articleviewerng"));
     layout->addWidget(mArticleViewerNg);
 
+    mArticleViewerNg->createViewerPluginToolManager(ac, this);
+
     mSliderContainer = new KPIMTextEdit::SlideContainer(this);
     mSliderContainer->setObjectName(QStringLiteral("slidercontainer"));
     mFindBarWebView = new MessageViewer::FindBarWebView(mArticleViewerNg, this);

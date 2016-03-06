@@ -24,11 +24,13 @@
 #include <QWebHitTestResult>
 #include <openurlrequest.h>
 #include <PimCommon/ShareServiceUrlManager>
+#include <messageviewer/viewerplugininterface.h>
 
 class KActionCollection;
 namespace MessageViewer
 {
 class WebViewAccessKey;
+class ViewerPluginToolManager;
 }
 namespace KIO
 {
@@ -63,6 +65,7 @@ public:
     void setArticleAction(ArticleViewerNg::ArticleAction type, const QString &articleId, const QString &feed);
 
     bool zoomTextOnlyInFrame() const;
+    void createViewerPluginToolManager(KActionCollection *ac, QWidget *parent);
 public Q_SLOTS:
     void slotPrintPreview();
     void slotPrint();
@@ -100,6 +103,7 @@ private Q_SLOTS:
     void slotOpenLinkInBrowser();
     void slotShowContextMenu(const QPoint &pos);
     void slotServiceUrlSelected(PimCommon::ShareServiceUrlManager::ServiceType type);
+    void slotActivatePlugin(MessageViewer::ViewerPluginInterface *interface);
 protected:
     QUrl mCurrentUrl;
     QWebHitTestResult mContextMenuHitResult;
@@ -108,6 +112,7 @@ protected:
     KIO::KUriFilterSearchProviderActions *mWebShortcutMenuManager;
     bool adblockEnabled() const;
 
+    QList<QAction *> viewerPluginActionList(MessageViewer::ViewerPluginInterface::SpecificFeatureTypes features);
 private:
     enum MousePressedButtonType {
         RightButton = 0,
@@ -120,6 +125,7 @@ private:
     QVariantHash introductionData() const;
     MousePressedButtonType mLastButtonClicked;
     MessageViewer::WebViewAccessKey *mWebViewAccessKey;
+    MessageViewer::ViewerPluginToolManager *mViewerPluginToolManager;
 };
 }
 

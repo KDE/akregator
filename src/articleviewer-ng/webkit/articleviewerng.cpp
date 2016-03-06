@@ -46,6 +46,7 @@
 #include <QPrinter>
 #include <QPrintDialog>
 #include <QPrintPreviewDialog>
+#include <viewerplugintoolmanager.h>
 
 #include <KIO/KUriFilterSearchProviderActions>
 using namespace Akregator;
@@ -82,6 +83,37 @@ ArticleViewerNg::~ArticleViewerNg()
 {
     disconnect(this, &QWebView::loadFinished, this, &ArticleViewerNg::slotLoadFinished);
 }
+
+void ArticleViewerNg::createViewerPluginToolManager(KActionCollection *ac, QWidget *parent)
+{
+    mViewerPluginToolManager = new MessageViewer::ViewerPluginToolManager(parent, this);
+    mViewerPluginToolManager->setActionCollection(ac);
+    mViewerPluginToolManager->setPluginName(QStringLiteral("akregator"));
+    mViewerPluginToolManager->setServiceTypeName(QStringLiteral("Akregator/ViewerPlugin"));
+    if (!mViewerPluginToolManager->initializePluginList()) {
+        qDebug() << " Impossible to initialize plugins";
+    }
+    mViewerPluginToolManager->createView();
+    connect(mViewerPluginToolManager, &MessageViewer::ViewerPluginToolManager::activatePlugin, this, &ArticleViewerNg::slotActivatePlugin);
+}
+
+QList<QAction *> ArticleViewerNg::viewerPluginActionList(MessageViewer::ViewerPluginInterface::SpecificFeatureTypes features)
+{
+    if (mViewerPluginToolManager) {
+        return mViewerPluginToolManager->viewerPluginActionList(features);
+    }
+    return QList<QAction *>();
+}
+
+void ArticleViewerNg::slotActivatePlugin(MessageViewer::ViewerPluginInterface *interface)
+{
+    const QString text = selectedText();
+    if (!text.isEmpty()) {
+        interface->setText(text);
+    }
+    interface->showWidget();
+}
+
 
 void ArticleViewerNg::slotSaveLinkAs()
 {
@@ -225,6 +257,8 @@ void ArticleViewerNg::displayContextMenu(const QPoint &pos)
             popup.addSeparator();
             mWebShortcutMenuManager->setSelectedText(page()->selectedText());
             mWebShortcutMenuManager->addWebShortcutsToMenu(&popup);
+            popup.addSeparator();
+            popup.addActions(viewerPluginActionList(MessageViewer::ViewerPluginInterface::NeedSelection));
             popup.addSeparator();
         }
         popup.addAction(ActionManager::getInstance()->action(QStringLiteral("viewer_print")));
