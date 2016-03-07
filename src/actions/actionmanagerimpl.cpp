@@ -194,12 +194,6 @@ void ActionManagerImpl::initPart()
     configure->setIcon(QIcon::fromTheme(QStringLiteral("configure")));
     connect(configure, &QAction::triggered, d->part, &Part::showOptions);
 
-#if 0
-    mExpandUrlAction = new QAction(i18n("Expand Short URL"), this);
-    ac->addAction(QStringLiteral("expand_short_url"), mExpandUrlAction);
-    ac->setShortcutsConfigurable(mExpandUrlAction, false);
-    connect(mExpandUrlAction, &QAction::triggered, this, &ViewerPrivate::slotExpandShortUrl);
-     #endif
     KStandardAction::configureNotifications(d->part, SLOT(showNotificationOptions()), d->actionCollection); // options_configure_notifications
 }
 
@@ -625,6 +619,11 @@ void ActionManagerImpl::initTabWidget(TabWidget *tabWidget)
     coll->addAction(QStringLiteral("adblock_image"), action);
     coll->setShortcutsConfigurable(action, false);
     connect(action, &QAction::triggered, d->tabWidget, &TabWidget::slotBlockImage);
+
+    action = new QAction(i18n("Expand Short URL"), this);
+    coll->addAction(QStringLiteral("expand_short_url"), action);
+    coll->setShortcutsConfigurable(action, false);
+    connect(action, &QAction::triggered, d->tabWidget, &TabWidget::slotExpandUrl);
 }
 
 QWidget *ActionManagerImpl::container(const QString &name)

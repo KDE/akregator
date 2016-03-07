@@ -60,7 +60,7 @@ public Q_SLOTS:
     void slotCopyImageLocationInFrame(int frameId);
     void slotSaveImageOnDiskInFrame(int frameId);
     void slotBlockImageInFrame(int frameId);
-
+    void slotExpandUrlInFrame(int frameId);
 private:
     KParts::ReadOnlyPart *m_part;
     Akregator::ArticleViewerWidget *mArticleViewer;

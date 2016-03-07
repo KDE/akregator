@@ -438,6 +438,11 @@ void ArticleViewerNg::slotZoomTextOnlyInFrame(bool textOnlyInFrame)
     settings()->setAttribute(QWebSettings::ZoomTextOnly, textOnlyInFrame);
 }
 
+void ArticleViewerNg::slotExpandUrl()
+{
+    //TODO
+}
+
 void ArticleViewerNg::slotBlockImage()
 {
     if (mCurrentUrl.isEmpty()) {

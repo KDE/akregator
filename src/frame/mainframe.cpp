@@ -159,3 +159,11 @@ void MainFrame::slotBlockImageInFrame(int frameId)
     }
     mArticleViewer->articleViewerWidgetNg()->articleViewerNg()->slotBlockImage();
 }
+
+void MainFrame::slotExpandUrlInFrame(int frameId)
+{
+    if (frameId != 0) {
+        return;
+    }
+    mArticleViewer->articleViewerWidgetNg()->articleViewerNg()->slotExpandUrl();
+}

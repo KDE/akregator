@@ -445,3 +445,8 @@ bool ArticleViewerWebEngine::adblockEnabled() const
     return false;
     //return MessageViewer::AdBlockManager::self()->isEnabled();
 }
+
+void Akregator::ArticleViewerWebEngine::slotExpandUrl()
+{
+    //TODO
+}

@@ -58,8 +58,8 @@ public Q_SLOTS:
     void slotCopyLinkAsInFrame(int frameId);
     void slotSaveImageOnDiskInFrame(int frameId);
     void slotCopyImageLocationInFrame(int frameId);
-    void slotBlockImageInFrame(int frameId);
-
+    void slotBlockImageInFrame(int frameId);    
+    void slotExpandUrlInFrame(int frameId);
 Q_SIGNALS:
     void signalIconChanged(Akregator::Frame *, const QIcon &icon);
 
