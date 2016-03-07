@@ -34,7 +34,7 @@
 #include <QClipboard>
 #include <QApplication>
 #include <MessageViewer/AdBlockManager>
-
+#include <MessageViewer/ScamExpandUrlJob>
 #include <QMenu>
 #include <QWebFrame>
 #include <QMouseEvent>
@@ -440,7 +440,11 @@ void ArticleViewerNg::slotZoomTextOnlyInFrame(bool textOnlyInFrame)
 
 void ArticleViewerNg::slotExpandUrl()
 {
-    //TODO
+    if (mCurrentUrl.isEmpty()) {
+        return;
+    }
+    MessageViewer::ScamExpandUrlJob *job = new MessageViewer::ScamExpandUrlJob(this);
+    job->expandedUrl(mCurrentUrl);
 }
 
 void ArticleViewerNg::slotBlockImage()
