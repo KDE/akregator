@@ -241,5 +241,5 @@ void WebEngineFrame::slotExpandUrlInFrame(int frameId)
     if (frameId != id()) {
         return;
     }
-    mArticleViewerWidgetNg->articleViewerNg()->slotE();
+    mArticleViewerWidgetNg->articleViewerNg()->slotExpandUrl();
 }

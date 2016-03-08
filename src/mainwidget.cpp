@@ -378,7 +378,7 @@ void MainWidget::connectFrame(Akregator::WebEngineFrame *frame)
     connect(m_tabWidget, &TabWidget::signalCopyImageLocation, frame, &WebEngineFrame::slotCopyImageLocationInFrame);
     connect(m_tabWidget, &TabWidget::signalSaveImageOnDisk, frame, &WebEngineFrame::slotSaveImageOnDiskInFrame);
     connect(m_tabWidget, &TabWidget::signalBlockImage, frame, &WebEngineFrame::slotBlockImageInFrame);
-    connect(m_tabWidget, &TabWidget::signalExpandUrl, m_mainFrame, &WebEngineFrame::slotExpandUrlInFrame);
+    connect(m_tabWidget, &TabWidget::signalExpandUrl, frame, &WebEngineFrame::slotExpandUrlInFrame);
 
     connect(frame, &WebEngineFrame::showStatusBarMessage, this, &MainWidget::slotShowStatusBarMessage);
     connect(frame, &WebEngineFrame::signalIconChanged, m_tabWidget, &TabWidget::slotSetIcon);
