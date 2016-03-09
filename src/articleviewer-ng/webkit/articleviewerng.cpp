@@ -244,10 +244,6 @@ void ArticleViewerNg::displayContextMenu(const QPoint &pos)
                 popup.addSeparator();
                 popup.addAction(mActionCollection->action(QStringLiteral("adblock_image")));
             }
-#if 0
-            //popup.addAction(mMsgView->shareImage());
-#endif
-            //TODO
         }
         popup.addSeparator();
         popup.addAction(mShareServiceManager->menu());
