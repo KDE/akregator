@@ -423,7 +423,6 @@ QList<QAction *> ArticleViewerWebEngine::viewerPluginActionList(MessageViewer::V
     return QList<QAction *>();
 }
 
-
 void ArticleViewerWebEngine::slotActivatePlugin(MessageViewer::ViewerPluginInterface *interface)
 {
     const QString text = selectedText();

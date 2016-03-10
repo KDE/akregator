@@ -115,7 +115,6 @@ void ArticleViewerNg::slotActivatePlugin(MessageViewer::ViewerPluginInterface *i
     interface->execute();
 }
 
-
 void ArticleViewerNg::slotSaveLinkAs()
 {
     QUrl tmp(mCurrentUrl);
