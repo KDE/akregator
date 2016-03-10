@@ -35,7 +35,8 @@
 #include <QWebEngineHistory>
 #include <MessageViewer/WebHitTest>
 #include <MessageViewer/WebHitTestResult>
-
+#include <MessageViewer/ScamCheckShortUrlManager>
+#include <MessageViewer/ScamCheckShortUrl>
 using namespace Akregator;
 
 WebEngineViewer::WebEngineViewer(KActionCollection *ac, QWidget *parent)
@@ -99,6 +100,10 @@ void WebEngineViewer::slotWebHitFinished(const MessageViewer::WebHitTestResult &
                 popup.addSeparator();
                 popup.addAction(mActionCollection->action(QStringLiteral("adblock_image")));
             }
+        }
+        if (MessageViewer::ScamCheckShortUrlManager::self()->scamCheckShortUrl()->isShortUrl(mCurrentUrl)) {
+            popup.addSeparator();
+            popup.addAction(mActionCollection->action(QStringLiteral("expand_short_url")));
         }
         popup.addSeparator();
         popup.addAction(mShareServiceManager->menu());
