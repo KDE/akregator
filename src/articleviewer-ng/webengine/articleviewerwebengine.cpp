@@ -430,7 +430,7 @@ void ArticleViewerWebEngine::slotActivatePlugin(MessageViewer::ViewerPluginInter
     if (!text.isEmpty()) {
         interface->setText(text);
     }
-    interface->showWidget();
+    interface->execute();
 }
 
 void ArticleViewerWebEngine::slotZoomTextOnlyInFrame(bool textOnlyInFrame)

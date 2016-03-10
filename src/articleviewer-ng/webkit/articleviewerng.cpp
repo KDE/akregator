@@ -112,7 +112,7 @@ void ArticleViewerNg::slotActivatePlugin(MessageViewer::ViewerPluginInterface *i
     if (!text.isEmpty()) {
         interface->setText(text);
     }
-    interface->showWidget();
+    interface->execute();
 }
 
 
