@@ -253,7 +253,7 @@ install(TARGETS akregatorpart DESTINATION ${KDE_INSTALL_PLUGINDIR})
 
 install(PROGRAMS data/org.kde.akregator.desktop DESTINATION ${KDE_INSTALL_APPDIR})
 install(FILES data/akregator_part.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
-install(FILES data/akregator.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
+install(FILES data/org.kde.akregator.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
 install(FILES data/akregator_plugin.desktop DESTINATION ${KDE_INSTALL_KSERVICETYPES5DIR})
 install(FILES data/akregator_shell.rc data/akregator_part.rc DESTINATION ${KDE_INSTALL_KXMLGUI5DIR}/akregator)
 install(FILES feed.protocol DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
