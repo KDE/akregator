@@ -47,8 +47,6 @@
 #include <viewerplugintoolmanager.h>
 #include <MessageViewer/WebHitTestResult>
 #include <MessageViewer/WebHitTest>
-#include <MessageViewer/ScamCheckShortUrlManager>
-#include <MessageViewer/ScamCheckShortUrl>
 
 #include <KIO/KUriFilterSearchProviderActions>
 
@@ -230,10 +228,8 @@ void ArticleViewerWebEngine::slotWebHitFinished(const MessageViewer::WebHitTestR
                 popup.addAction(mActionCollection->action(QStringLiteral("adblock_image")));
             }
         }
-        if (MessageViewer::ScamCheckShortUrlManager::self()->scamCheckShortUrl()->isShortUrl(mCurrentUrl)) {
-            popup.addSeparator();
-            popup.addAction(mActionCollection->action(QStringLiteral("expand_short_url")));
-        }
+        popup.addSeparator();
+        popup.addActions(viewerPluginActionList(MessageViewer::ViewerPluginInterface::NeedUrl));
         popup.addSeparator();
         popup.addAction(mShareServiceManager->menu());
     } else {
@@ -429,6 +425,7 @@ void ArticleViewerWebEngine::slotActivatePlugin(MessageViewer::ViewerPluginInter
     if (!text.isEmpty()) {
         interface->setText(text);
     }
+    interface->setUrl(mCurrentUrl);
     interface->execute();
 }
 

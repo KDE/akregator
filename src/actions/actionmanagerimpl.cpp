@@ -619,11 +619,6 @@ void ActionManagerImpl::initTabWidget(TabWidget *tabWidget)
     coll->addAction(QStringLiteral("adblock_image"), action);
     coll->setShortcutsConfigurable(action, false);
     connect(action, &QAction::triggered, d->tabWidget, &TabWidget::slotBlockImage);
-
-    action = new QAction(i18n("Expand Short URL"), this);
-    coll->addAction(QStringLiteral("expand_short_url"), action);
-    coll->setShortcutsConfigurable(action, false);
-    connect(action, &QAction::triggered, d->tabWidget, &TabWidget::slotExpandUrl);
 }
 
 QWidget *ActionManagerImpl::container(const QString &name)

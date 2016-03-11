@@ -47,8 +47,6 @@
 #include <QPrintDialog>
 #include <QPrintPreviewDialog>
 #include <viewerplugintoolmanager.h>
-#include <MessageViewer/ScamCheckShortUrlManager>
-#include <MessageViewer/ScamCheckShortUrl>
 #include <KIO/KUriFilterSearchProviderActions>
 using namespace Akregator;
 
@@ -112,6 +110,7 @@ void ArticleViewerNg::slotActivatePlugin(MessageViewer::ViewerPluginInterface *i
     if (!text.isEmpty()) {
         interface->setText(text);
     }
+    interface->setUrl(mCurrentUrl);
     interface->execute();
 }
 
@@ -245,10 +244,8 @@ void ArticleViewerNg::displayContextMenu(const QPoint &pos)
                 popup.addAction(mActionCollection->action(QStringLiteral("adblock_image")));
             }
         }
-        if (MessageViewer::ScamCheckShortUrlManager::self()->scamCheckShortUrl()->isShortUrl(mCurrentUrl)) {
-            popup.addSeparator();
-            popup.addAction(mActionCollection->action(QStringLiteral("expand_short_url")));
-        }
+        popup.addSeparator();
+        popup.addActions(viewerPluginActionList(MessageViewer::ViewerPluginInterface::NeedUrl));
         popup.addSeparator();
         popup.addAction(mShareServiceManager->menu());
     } else {

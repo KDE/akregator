@@ -22,8 +22,6 @@
 
 #include <KPIMTextEdit/TextToSpeech>
 #include <MessageViewer/AdBlockBlockableItemsDialog>
-#include <MessageViewer/ScamCheckShortUrlManager>
-#include <MessageViewer/ScamCheckShortUrl>
 
 #include <KIO/KUriFilterSearchProviderActions>
 #include <KActionCollection>
@@ -94,10 +92,8 @@ void WebViewer::displayContextMenu(const QPoint &pos)
                 popup.addAction(mActionCollection->action(QStringLiteral("adblock_image")));
             }
         }
-        if (MessageViewer::ScamCheckShortUrlManager::self()->scamCheckShortUrl()->isShortUrl(mCurrentUrl)) {
-            popup.addSeparator();
-            popup.addAction(mActionCollection->action(QStringLiteral("expand_short_url")));
-        }
+        popup.addSeparator();
+        popup.addActions(viewerPluginActionList(MessageViewer::ViewerPluginInterface::NeedUrl));
         popup.addSeparator();
         popup.addAction(mShareServiceManager->menu());
     } else {
