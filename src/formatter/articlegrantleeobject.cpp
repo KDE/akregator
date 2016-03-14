@@ -17,7 +17,7 @@
 
 #include "articlegrantleeobject.h"
 #include "articleformatter.h"
-#include <MessageViewer/IconNameCache>
+#include <MimeTreeParser/IconNameCache>
 #include "utils.h"
 #include "feed.h"
 #include <QLocale>
