@@ -101,12 +101,6 @@ public:
     virtual void saveConfig(KConfigGroup & /*config*/, const QString & /*prefix*/) {}
 public Q_SLOTS:
 
-    /** goes a step forward in the history, if possible. See also canGoForward(). */
-    virtual void slotHistoryForward() {}
-
-    /** goes a step backwards in the history, if possible. See also canGoBack(). */
-    virtual void slotHistoryBack() {}
-
     /** reloads the current content, if possible. See also isReloadable(). */
     virtual void slotReload() {}
 

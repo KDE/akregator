@@ -165,16 +165,6 @@ void WebViewFrame::slotZoomTextOnlyInFrame(int frameId, bool textOnlyInFrame)
     mArticleViewerWidgetNg->articleViewerNg()->slotZoomTextOnlyInFrame(textOnlyInFrame);
 }
 
-void WebViewFrame::slotHistoryForward()
-{
-    mArticleViewerWidgetNg->articleViewerNg()->pageAction(QWebPage::Forward)->trigger();
-}
-
-void WebViewFrame::slotHistoryBack()
-{
-    mArticleViewerWidgetNg->articleViewerNg()->pageAction(QWebPage::Back)->trigger();
-}
-
 void WebViewFrame::slotReload()
 {
     mArticleViewerWidgetNg->articleViewerNg()->reload();

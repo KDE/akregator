@@ -42,8 +42,6 @@ public:
     bool zoomTextOnlyInFrame() const Q_DECL_OVERRIDE;
 
 public Q_SLOTS:
-    void slotHistoryForward() Q_DECL_OVERRIDE;
-    void slotHistoryBack() Q_DECL_OVERRIDE;
     void slotReload() Q_DECL_OVERRIDE;
     void slotStop() Q_DECL_OVERRIDE;
 

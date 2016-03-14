@@ -166,16 +166,6 @@ void WebEngineFrame::slotZoomTextOnlyInFrame(int frameId, bool textOnlyInFrame)
     mArticleViewerWidgetNg->articleViewerNg()->slotZoomTextOnlyInFrame(textOnlyInFrame);
 }
 
-void WebEngineFrame::slotHistoryForward()
-{
-    mArticleViewerWidgetNg->articleViewerNg()->pageAction(QWebEnginePage::Forward)->trigger();
-}
-
-void WebEngineFrame::slotHistoryBack()
-{
-    mArticleViewerWidgetNg->articleViewerNg()->pageAction(QWebEnginePage::Back)->trigger();
-}
-
 void WebEngineFrame::slotReload()
 {
     mArticleViewerWidgetNg->articleViewerNg()->reload();
