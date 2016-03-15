@@ -63,7 +63,7 @@ void WebEngineFrame::slotProgressChanged(int progress)
 
 void WebEngineFrame::slotTitleChanged(const QString &title)
 {
-    Q_EMIT signalTitleChanged(this, title);
+    slotSetTitle(title);
 }
 
 KParts::ReadOnlyPart *WebEngineFrame::part() const

@@ -62,7 +62,7 @@ void WebViewFrame::slotProgressChanged(int progress)
 
 void WebViewFrame::slotTitleChanged(const QString &title)
 {
-    Q_EMIT signalTitleChanged(this, title);
+    slotSetTitle(title);
 }
 
 KParts::ReadOnlyPart *WebViewFrame::part() const
