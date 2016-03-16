@@ -45,6 +45,7 @@
 #include <QClipboard>
 #include <QMenu>
 #include <viewerplugintoolmanager.h>
+#include <MessageViewer/ScamExpandUrlJob>
 #include <MessageViewer/WebHitTestResult>
 #include <MessageViewer/WebHitTest>
 
@@ -450,5 +451,9 @@ bool ArticleViewerWebEngine::adblockEnabled() const
 
 void Akregator::ArticleViewerWebEngine::slotExpandUrl()
 {
-    //TODO
+    if (mCurrentUrl.isEmpty()) {
+        return;
+    }
+    MessageViewer::ScamExpandUrlJob *job = new MessageViewer::ScamExpandUrlJob(this);
+    job->expandedUrl(mCurrentUrl);
 }
