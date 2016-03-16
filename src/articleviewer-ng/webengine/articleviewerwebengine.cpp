@@ -25,6 +25,7 @@
 #include "urlhandler/webengine/urlhandlerwebengine.h"
 
 #include <MessageViewer/NetworkAccessManagerWebEngine>
+#include <MessageViewer/MailWebEngineAccessKey>
 #include <KPIMTextEdit/TextToSpeech>
 #include <KActionMenu>
 
@@ -68,8 +69,8 @@ ArticleViewerWebEngine::ArticleViewerWebEngine(KActionCollection *ac, QWidget *p
     setFocusPolicy(Qt::WheelFocus);
     connect(mPageEngine, &ArticleViewerWebEnginePage::urlClicked, this, &ArticleViewerWebEngine::slotLinkClicked);
 
-    //mWebViewAccessKey = new MessageViewer::WebViewAccessKey(this, this);
-    //mWebViewAccessKey->setActionCollection(mActionCollection);
+    mWebEngineViewAccessKey = new MessageViewer::MailWebEngineAccessKey(this, this);
+    mWebEngineViewAccessKey->setActionCollection(mActionCollection);
 
     connect(this, &ArticleViewerWebEngine::loadStarted, this, &ArticleViewerWebEngine::slotLoadStarted);
     connect(this, &ArticleViewerWebEngine::loadFinished, this, &ArticleViewerWebEngine::slotLoadFinished);
@@ -199,7 +200,7 @@ void ArticleViewerWebEngine::slotLoadFinished()
 
 void ArticleViewerWebEngine::slotLoadStarted()
 {
-    //mWebViewAccessKey->hideAccessKeys();
+    mWebEngineViewAccessKey->hideAccessKeys();
     setCursor(Qt::WaitCursor);
 }
 
@@ -274,7 +275,7 @@ void ArticleViewerWebEngine::slotLinkHovered(const QString &link)
 void ArticleViewerWebEngine::keyReleaseEvent(QKeyEvent *e)
 {
     if (Settings::self()->accessKeyEnabled()) {
-        //mWebViewAccessKey->keyReleaseEvent(e);
+        mWebEngineViewAccessKey->keyReleaseEvent(e);
     }
     QWebEngineView::keyReleaseEvent(e);
 }
@@ -283,7 +284,7 @@ void ArticleViewerWebEngine::keyPressEvent(QKeyEvent *e)
 {
     if (e && hasFocus()) {
         if (Settings::self()->accessKeyEnabled()) {
-            //mWebViewAccessKey->keyPressEvent(e);
+            mWebEngineViewAccessKey->keyPressEvent(e);
         }
     }
     QWebEngineView::keyPressEvent(e);
@@ -292,7 +293,7 @@ void ArticleViewerWebEngine::keyPressEvent(QKeyEvent *e)
 void ArticleViewerWebEngine::wheelEvent(QWheelEvent *e)
 {
     if (Settings::self()->accessKeyEnabled()) {
-        //mWebViewAccessKey->wheelEvent(e);
+        mWebEngineViewAccessKey->wheelEvent(e);
     }
     QWebEngineView::wheelEvent(e);
 }
@@ -300,7 +301,7 @@ void ArticleViewerWebEngine::wheelEvent(QWheelEvent *e)
 void ArticleViewerWebEngine::resizeEvent(QResizeEvent *e)
 {
     if (Settings::self()->accessKeyEnabled()) {
-        //mWebViewAccessKey->resizeEvent(e);
+        mWebEngineViewAccessKey->resizeEvent(e);
     }
     QWebEngineView::resizeEvent(e);
 }
