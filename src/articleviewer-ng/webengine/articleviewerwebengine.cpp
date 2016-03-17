@@ -55,7 +55,7 @@
 using namespace Akregator;
 
 ArticleViewerWebEngine::ArticleViewerWebEngine(KActionCollection *ac, QWidget *parent)
-    : QWebEngineView(parent),
+    : MessageViewer::WebEngineView(parent),
       mActionCollection(ac),
       mLastButtonClicked(LeftButton),
       mViewerPluginToolManager(Q_NULLPTR)
@@ -272,30 +272,27 @@ void ArticleViewerWebEngine::slotLinkHovered(const QString &link)
     Q_EMIT showStatusBarMessage(msg);
 }
 
-void ArticleViewerWebEngine::keyReleaseEvent(QKeyEvent *e)
+void ArticleViewerWebEngine::forwardKeyReleaseEvent(QKeyEvent *e)
 {
     if (Settings::self()->accessKeyEnabled()) {
         mWebEngineViewAccessKey->keyReleaseEvent(e);
     }
-    QWebEngineView::keyReleaseEvent(e);
 }
 
-void ArticleViewerWebEngine::keyPressEvent(QKeyEvent *e)
+void ArticleViewerWebEngine::forwardKeyPressEvent(QKeyEvent *e)
 {
     if (e && hasFocus()) {
         if (Settings::self()->accessKeyEnabled()) {
             mWebEngineViewAccessKey->keyPressEvent(e);
         }
     }
-    QWebEngineView::keyPressEvent(e);
 }
 
-void ArticleViewerWebEngine::wheelEvent(QWheelEvent *e)
+void ArticleViewerWebEngine::forwardWheelEvent(QWheelEvent *e)
 {
     if (Settings::self()->accessKeyEnabled()) {
         mWebEngineViewAccessKey->wheelEvent(e);
     }
-    QWebEngineView::wheelEvent(e);
 }
 
 void ArticleViewerWebEngine::resizeEvent(QResizeEvent *e)
@@ -324,7 +321,7 @@ void ArticleViewerWebEngine::setArticleAction(ArticleViewerWebEngine::ArticleAct
     Q_EMIT articleAction(type, articleId, feed);
 }
 
-void ArticleViewerWebEngine::mouseReleaseEvent(QMouseEvent *event)
+void ArticleViewerWebEngine::forwardMouseReleaseEvent(QMouseEvent *event)
 {
     if (event->button() & Qt::RightButton) {
         Q_EMIT showContextMenu(event->pos());
@@ -334,7 +331,6 @@ void ArticleViewerWebEngine::mouseReleaseEvent(QMouseEvent *event)
     } else if (event->button() & Qt::LeftButton) {
         mLastButtonClicked = LeftButton;
     }
-    QWebEngineView::mouseReleaseEvent(event);
 }
 
 void ArticleViewerWebEngine::slotLinkClicked(const QUrl &url)

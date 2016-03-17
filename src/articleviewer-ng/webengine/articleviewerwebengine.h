@@ -18,7 +18,7 @@
 #ifndef ARTICLEVIEWERWEBENGINE_H
 #define ARTICLEVIEWERWEBENGINE_H
 
-#include <QWebEngineView>
+#include <MessageViewer/WebEngineView>
 #include <openurlrequest.h>
 #include <shareserviceurlmanager.h>
 #include <MessageViewer/ViewerPluginInterface>
@@ -42,7 +42,7 @@ class KUriFilterSearchProviderActions;
 namespace Akregator
 {
 class ArticleViewerWebEnginePage;
-class AKREGATOR_EXPORT ArticleViewerWebEngine : public QWebEngineView
+class AKREGATOR_EXPORT ArticleViewerWebEngine : public MessageViewer::WebEngineView
 {
     Q_OBJECT
 public:
@@ -105,13 +105,13 @@ Q_SIGNALS:
     void textToSpeech();
 
 protected:
-    void keyReleaseEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
-    void keyPressEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
-    void wheelEvent(QWheelEvent *e) Q_DECL_OVERRIDE;
     void resizeEvent(QResizeEvent *e) Q_DECL_OVERRIDE;
-    void mouseReleaseEvent(QMouseEvent *event) Q_DECL_OVERRIDE;
 
     virtual void displayContextMenu(const QPoint &pos);
+    void forwardKeyReleaseEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
+    void forwardKeyPressEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
+    void forwardWheelEvent(QWheelEvent *e) Q_DECL_OVERRIDE;
+    void forwardMouseReleaseEvent(QMouseEvent *event) Q_DECL_OVERRIDE;
 
 private Q_SLOTS:
     void slotServiceUrlSelected(PimCommon::ShareServiceUrlManager::ServiceType type);
