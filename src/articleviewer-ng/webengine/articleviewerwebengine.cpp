@@ -60,7 +60,7 @@ ArticleViewerWebEngine::ArticleViewerWebEngine(KActionCollection *ac, QWidget *p
       mLastButtonClicked(LeftButton),
       mViewerPluginToolManager(Q_NULLPTR)
 {
-    new MessageViewer::NetworkAccessManagerWebEngine(ac, this);
+    new MessageViewer::NetworkAccessManagerWebEngine(this, ac, this);
     mPageEngine = new ArticleViewerWebEnginePage(this);
     setPage(mPageEngine);
 
