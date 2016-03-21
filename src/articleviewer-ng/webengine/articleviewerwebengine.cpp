@@ -74,7 +74,6 @@ ArticleViewerWebEngine::ArticleViewerWebEngine(KActionCollection *ac, QWidget *p
 
     connect(this, &ArticleViewerWebEngine::loadStarted, this, &ArticleViewerWebEngine::slotLoadStarted);
     connect(this, &ArticleViewerWebEngine::loadFinished, this, &ArticleViewerWebEngine::slotLoadFinished);
-    //connect(page(), &QWebEnginePage::scrollRequested, mWebViewAccessKey, &MessageViewer::WebViewAccessKey::hideAccessKeys);
     connect(page(), &QWebEnginePage::linkHovered, this, &ArticleViewerWebEngine::slotLinkHovered);
 
     setContextMenuPolicy(Qt::DefaultContextMenu);
@@ -225,10 +224,12 @@ void ArticleViewerWebEngine::slotWebHitFinished(const MessageViewer::WebHitTestR
             popup.addSeparator();
             popup.addAction(mActionCollection->action(QStringLiteral("copy_image_location")));
             popup.addAction(mActionCollection->action(QStringLiteral("saveas_imageurl")));
+#if 0
             if (adblockEnabled()) {
                 popup.addSeparator();
                 popup.addAction(mActionCollection->action(QStringLiteral("adblock_image")));
             }
+#endif
         }
         popup.addSeparator();
         popup.addActions(viewerPluginActionList(MessageViewer::ViewerPluginInterface::NeedUrl));
