@@ -71,6 +71,7 @@ ArticleViewerWebEngine::ArticleViewerWebEngine(KActionCollection *ac, QWidget *p
 
     mWebEngineViewAccessKey = new MessageViewer::MailWebEngineAccessKey(this, this);
     mWebEngineViewAccessKey->setActionCollection(mActionCollection);
+    connect(mWebEngineViewAccessKey, &MessageViewer::MailWebEngineAccessKey::openUrl, this, &ArticleViewerWebEngine::slotLinkClicked);
 
     connect(this, &ArticleViewerWebEngine::loadStarted, this, &ArticleViewerWebEngine::slotLoadStarted);
     connect(this, &ArticleViewerWebEngine::loadFinished, this, &ArticleViewerWebEngine::slotLoadFinished);
