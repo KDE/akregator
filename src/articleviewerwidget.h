@@ -51,7 +51,7 @@ class ArticleFormatter;
 class ArticleListJob;
 class OpenUrlRequest;
 class TreeNode;
-#ifdef QTWEBENGINE_EXPERIMENTAL_OPTION
+#ifdef QTWEBENGINE_SUPPORT_OPTION
 class ArticleHtmlWebEngineWriter;
 class ArticleViewerWebEngineWidgetNg;
 #else
@@ -84,7 +84,7 @@ public:
     qreal zoomFactor() const;
     bool zoomTextOnlyInFrame() const;
 
-#ifdef QTWEBENGINE_EXPERIMENTAL_OPTION
+#ifdef QTWEBENGINE_SUPPORT_OPTION
     Akregator::ArticleViewerWebEngineWidgetNg *articleViewerWidgetNg() const;
 #else
     Akregator::ArticleViewerWidgetNg *articleViewerWidgetNg() const;
@@ -171,7 +171,7 @@ private:
     std::vector<QSharedPointer<const Filters::AbstractMatcher> > m_filters;
     enum ViewMode { NormalView, CombinedView, SummaryView };
     ViewMode m_viewMode;
-#ifdef QTWEBENGINE_EXPERIMENTAL_OPTION
+#ifdef QTWEBENGINE_SUPPORT_OPTION
     Akregator::ArticleHtmlWebEngineWriter *m_articleHtmlWriter;
     Akregator::ArticleViewerWebEngineWidgetNg *m_articleViewerWidgetNg;
 #else

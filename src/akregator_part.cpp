@@ -59,7 +59,7 @@
 #include <kmessagebox.h>
 
 #include <QTemporaryFile>
-#ifdef QTWEBENGINE_EXPERIMENTAL_OPTION
+#ifdef QTWEBENGINE_SUPPORT_OPTION
 #include <QWebEngineSettings>
 #else
 #include <QWebSettings>
@@ -779,7 +779,7 @@ void Part::initFonts()
         }
         Settings::setMediumFontSize(medfs);
     }
-#ifdef QTWEBENGINE_EXPERIMENTAL_OPTION
+#ifdef QTWEBENGINE_SUPPORT_OPTION
     QWebEngineSettings::globalSettings()->setFontFamily(QWebEngineSettings::StandardFont, Settings::standardFont());
     QWebEngineSettings::globalSettings()->setFontFamily(QWebEngineSettings::FixedFont, Settings::fixedFont());
     QWebEngineSettings::globalSettings()->setFontFamily(QWebEngineSettings::SerifFont, Settings::serifFont());

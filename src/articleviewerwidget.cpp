@@ -56,7 +56,7 @@
 #include <QUrl>
 #include <grantleetheme/grantleethememanager.h>
 
-#ifdef QTWEBENGINE_EXPERIMENTAL_OPTION
+#ifdef QTWEBENGINE_SUPPORT_OPTION
 #include <articleviewer-ng/webengine/articleviewerwebenginewidgetng.h>
 #include <articleviewer-ng/webengine/articleviewerwebengine.h>
 #include <articleviewer-ng/webengine/articlehtmlwebenginewriter.h>
@@ -84,7 +84,7 @@ ArticleViewerWidget::ArticleViewerWidget(const QString &grantleeDirectory, KActi
       m_imageDir(QUrl::fromLocalFile(QString(QStandardPaths::writableLocation(QStandardPaths::CacheLocation) + QLatin1String("/akregator/Media/")))),
       m_node(0),
       m_viewMode(NormalView),
-#ifdef QTWEBENGINE_EXPERIMENTAL_OPTION
+#ifdef QTWEBENGINE_SUPPORT_OPTION
       m_articleViewerWidgetNg(new Akregator::ArticleViewerWebEngineWidgetNg(ac, this)),
 #else
       m_articleViewerWidgetNg(new Akregator::ArticleViewerWidgetNg(ac, this)),
@@ -95,7 +95,7 @@ ArticleViewerWidget::ArticleViewerWidget(const QString &grantleeDirectory, KActi
     QGridLayout *layout = new QGridLayout(this);
     layout->setMargin(0);
     layout->addWidget(m_articleViewerWidgetNg);
-#ifdef QTWEBENGINE_EXPERIMENTAL_OPTION
+#ifdef QTWEBENGINE_SUPPORT_OPTION
     m_articleHtmlWriter = new Akregator::ArticleHtmlWebEngineWriter(m_articleViewerWidgetNg->articleViewerNg(), this);
     connect(m_articleViewerWidgetNg->articleViewerNg(), &ArticleViewerWebEngine::signalOpenUrlRequest, this, &ArticleViewerWidget::signalOpenUrlRequest);
     connect(m_articleViewerWidgetNg->articleViewerNg(), &ArticleViewerWebEngine::showStatusBarMessage, this, &ArticleViewerWidget::showStatusBarMessage);
@@ -423,7 +423,7 @@ void ArticleViewerWidget::setArticleActionsEnabled(bool enabled)
     ActionManager::getInstance()->setArticleActionsEnabled(enabled);
 }
 
-#ifdef QTWEBENGINE_EXPERIMENTAL_OPTION
+#ifdef QTWEBENGINE_SUPPORT_OPTION
 Akregator::ArticleViewerWebEngineWidgetNg *ArticleViewerWidget::articleViewerWidgetNg() const
 {
     return m_articleViewerWidgetNg;

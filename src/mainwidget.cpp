@@ -87,7 +87,7 @@
 #include <memory>
 #include <cassert>
 
-#ifdef QTWEBENGINE_EXPERIMENTAL_OPTION
+#ifdef QTWEBENGINE_SUPPORT_OPTION
 #include <webengine/webengineframe.h>
 #include "articleviewer-ng/webengine/articleviewerwebenginewidgetng.h"
 #else
@@ -251,7 +251,7 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
     m_mainFrame = new MainFrame(this, m_part, m_mainTab);
     m_mainFrame->slotSetTitle(i18n("Articles"));
     m_mainFrame->setArticleViewer(m_articleViewer);
-#ifdef QTWEBENGINE_EXPERIMENTAL_OPTION
+#ifdef QTWEBENGINE_SUPPORT_OPTION
     connect(m_articleViewer->articleViewerWidgetNg()->articleViewerNg(), &ArticleViewerWebEngine::articleAction, this, &MainWidget::slotArticleAction);
 #else
     connect(m_articleViewer->articleViewerWidgetNg()->articleViewerNg(), &ArticleViewerNg::articleAction, this, &MainWidget::slotArticleAction);
@@ -362,7 +362,7 @@ void MainWidget::saveSettings()
     Settings::setViewMode(m_viewMode);
     Settings::self()->save();
 }
-#ifdef QTWEBENGINE_EXPERIMENTAL_OPTION
+#ifdef QTWEBENGINE_SUPPORT_OPTION
 void MainWidget::connectFrame(Akregator::WebEngineFrame *frame)
 {
     connect(m_tabWidget, &TabWidget::signalCopyInFrame, frame, &WebEngineFrame::slotCopyInFrame);
@@ -405,7 +405,7 @@ void MainWidget::connectFrame(WebViewFrame *frame)
 
 void MainWidget::slotRequestNewFrame(int &frameId)
 {
-#ifdef QTWEBENGINE_EXPERIMENTAL_OPTION
+#ifdef QTWEBENGINE_SUPPORT_OPTION
     WebEngineFrame *frame = new WebEngineFrame(m_actionManager->actionCollection(), m_tabWidget);
 #else
     WebViewFrame *frame = new WebViewFrame(m_actionManager->actionCollection(), m_tabWidget);
@@ -1232,7 +1232,7 @@ void MainWidget::readProperties(const KConfigGroup &config)
     QStringList childList = config.readEntry(QStringLiteral("Children"),
                             QStringList());
     Q_FOREACH (const QString &framePrefix, childList) {
-#ifdef QTWEBENGINE_EXPERIMENTAL_OPTION
+#ifdef QTWEBENGINE_SUPPORT_OPTION
         WebEngineFrame *const frame = new WebEngineFrame(m_actionManager->actionCollection(), m_tabWidget);
 #else
         WebViewFrame *const frame = new WebViewFrame(m_actionManager->actionCollection(), m_tabWidget);
@@ -1300,14 +1300,14 @@ void MainWidget::slotFocusQuickSearch()
 {
     m_searchBar->setFocusSearchLine();
 }
-#ifdef QTWEBENGINE_EXPERIMENTAL_OPTION
+#ifdef QTWEBENGINE_SUPPORT_OPTION
 void MainWidget::slotArticleAction(Akregator::ArticleViewerWebEngine::ArticleAction type, const QString &articleId, const QString &feed)
 #else
 void MainWidget::slotArticleAction(ArticleViewerNg::ArticleAction type, const QString &articleId, const QString &feed)
 #endif
 {
     switch (type) {
-#ifdef QTWEBENGINE_EXPERIMENTAL_OPTION
+#ifdef QTWEBENGINE_SUPPORT_OPTION
     case ArticleViewerWebEngine::DeleteAction: {
 #else
     case ArticleViewerNg::DeleteAction: {
@@ -1318,14 +1318,14 @@ void MainWidget::slotArticleAction(ArticleViewerNg::ArticleAction type, const QS
         job->start();
         break;
     }
-#ifdef QTWEBENGINE_EXPERIMENTAL_OPTION
+#ifdef QTWEBENGINE_SUPPORT_OPTION
     case ArticleViewerWebEngine::MarkAsRead:
 #else
     case ArticleViewerNg::MarkAsRead:
 #endif
         ::setArticleStatus(feed, articleId, Akregator::Read);
         break;
-#ifdef QTWEBENGINE_EXPERIMENTAL_OPTION
+#ifdef QTWEBENGINE_SUPPORT_OPTION
     case ArticleViewerWebEngine::MarkAsUnRead:
 #else
     case ArticleViewerNg::MarkAsUnRead:
@@ -1333,7 +1333,7 @@ void MainWidget::slotArticleAction(ArticleViewerNg::ArticleAction type, const QS
         ::setArticleStatus(feed, articleId, Akregator::Unread);
         break;
 
-#ifdef QTWEBENGINE_EXPERIMENTAL_OPTION
+#ifdef QTWEBENGINE_SUPPORT_OPTION
     case ArticleViewerWebEngine::MarkAsImportant: {
 #else
     case ArticleViewerNg::MarkAsImportant: {
@@ -1345,12 +1345,12 @@ void MainWidget::slotArticleAction(ArticleViewerNg::ArticleAction type, const QS
         job->start();
         break;
     }
-#ifdef QTWEBENGINE_EXPERIMENTAL_OPTION
+#ifdef QTWEBENGINE_SUPPORT_OPTION
     case ArticleViewerWebEngine::SendUrlArticle: {
 #else
     case ArticleViewerNg::SendUrlArticle: {
 #endif
-#ifdef QTWEBENGINE_EXPERIMENTAL_OPTION
+#ifdef QTWEBENGINE_SUPPORT_OPTION
         case ArticleViewerWebEngine::SendFileArticle:
 #else
         case ArticleViewerNg::SendFileArticle:
@@ -1361,14 +1361,14 @@ void MainWidget::slotArticleAction(ArticleViewerNg::ArticleAction type, const QS
             if (text.isEmpty()) {
                 return;
             }
-#ifdef QTWEBENGINE_EXPERIMENTAL_OPTION
+#ifdef QTWEBENGINE_SUPPORT_OPTION
             sendArticle(text, title, (type == ArticleViewerWebEngine::SendFileArticle));
 #else
             sendArticle(text, title, (type == ArticleViewerNg::SendFileArticle));
 #endif
             break;
         }
-#ifdef QTWEBENGINE_EXPERIMENTAL_OPTION
+#ifdef QTWEBENGINE_SUPPORT_OPTION
     case ArticleViewerWebEngine::OpenInBackgroundTab: {
 #else
     case ArticleViewerNg::OpenInBackgroundTab: {
@@ -1383,7 +1383,7 @@ void MainWidget::slotArticleAction(ArticleViewerNg::ArticleAction type, const QS
         }
         break;
     }
-#ifdef QTWEBENGINE_EXPERIMENTAL_OPTION
+#ifdef QTWEBENGINE_SUPPORT_OPTION
     case ArticleViewerWebEngine::OpenInExternalBrowser: {
 #else
     case ArticleViewerNg::OpenInExternalBrowser: {
@@ -1392,7 +1392,7 @@ void MainWidget::slotArticleAction(ArticleViewerNg::ArticleAction type, const QS
         slotOpenArticleInBrowser(article);
         break;
     }
-#ifdef QTWEBENGINE_EXPERIMENTAL_OPTION
+#ifdef QTWEBENGINE_SUPPORT_OPTION
     case ArticleViewerWebEngine::Share:
 #else
     case ArticleViewerNg::Share:

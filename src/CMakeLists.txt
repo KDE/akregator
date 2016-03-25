@@ -39,7 +39,7 @@ install(TARGETS akregator ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 
 ########### next target ###############
 
-if (QTWEBENGINE_EXPERIMENTAL_OPTION)
+if (QTWEBENGINE_SUPPORT_OPTION)
     set(akregator_articleviewer_ng_webengine_SRCS
         articleviewer-ng/webengine/articleviewerwebengine.cpp
         articleviewer-ng/webengine/articleviewerwebenginepage.cpp
@@ -69,7 +69,7 @@ set(akregatorprivate_formatter_SRCS
     )
 
 
-if (QTWEBENGINE_EXPERIMENTAL_OPTION)
+if (QTWEBENGINE_SUPPORT_OPTION)
     set(akregatorprivate_frame_webengine_SRCS
         frame/webengine/webengineframe.cpp
         frame/webengine/webengineviewer.cpp
@@ -90,7 +90,7 @@ set(akregatorprivate_frame_SRCS
     frame/framemanager.cpp
     )
 
-if (QTWEBENGINE_EXPERIMENTAL_OPTION)
+if (QTWEBENGINE_SUPPORT_OPTION)
     set(akregatorprivate_urlhandlerwebengine_SRCS
         urlhandler/webengine/urlhandlerwebengine.cpp
         urlhandler/webengine/urlhandlerwebenginemanager.cpp
