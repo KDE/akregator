@@ -62,10 +62,4 @@ QString Utils::fileNameForUrl(const QString &url_p)
     return url2;
 }
 
-// from kmail::headerstyle.cpp
-QString Utils::directionOf(const QString &str)
-{
-    return str.isRightToLeft() ? QStringLiteral("rtl") : QStringLiteral("ltr");
-}
-
 }
