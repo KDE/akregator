@@ -21,7 +21,7 @@ target_link_libraries(akregator_config_general
 )
 
 install(FILES akregator_config_general.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
-kcoreaddons_desktop_to_json(akregator_config_general akregator_config_general.desktop)
+kcoreaddons_desktop_to_json(akregator_config_general akregator_config_general.desktop DEFAULT_SERVICE_TYPE)
 install(TARGETS akregator_config_general DESTINATION ${KDE_INSTALL_PLUGINDIR})
 
 ########### next target ###############
@@ -40,7 +40,7 @@ target_link_libraries(akregator_config_appearance
   KF5::I18n
 )
 
-kcoreaddons_desktop_to_json(akregator_config_appearance akregator_config_appearance.desktop)
+kcoreaddons_desktop_to_json(akregator_config_appearance akregator_config_appearance.desktop DEFAULT_SERVICE_TYPE)
 install(FILES akregator_config_appearance.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
 install(TARGETS akregator_config_appearance DESTINATION ${KDE_INSTALL_PLUGINDIR})
 
@@ -59,7 +59,7 @@ target_link_libraries(akregator_config_archive
   KF5::Completion
   KF5::I18n   
 )
-#kcoreaddons_desktop_to_json(akregator_config_archive akregator_config_archive.desktop)
+#kcoreaddons_desktop_to_json(akregator_config_archive akregator_config_archive.desktop DEFAULT_SERVICE_TYPE)
 install(FILES akregator_config_archive.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
 install(TARGETS akregator_config_archive DESTINATION ${KDE_INSTALL_PLUGINDIR})
 
@@ -78,7 +78,7 @@ target_link_libraries(akregator_config_browser
   KF5::I18n
 
 )
-kcoreaddons_desktop_to_json(akregator_config_browser akregator_config_browser.desktop)
+kcoreaddons_desktop_to_json(akregator_config_browser akregator_config_browser.desktop DEFAULT_SERVICE_TYPE)
 
 install(FILES akregator_config_browser.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
 install(TARGETS akregator_config_browser DESTINATION ${KDE_INSTALL_PLUGINDIR})
@@ -102,7 +102,7 @@ target_link_libraries(akregator_config_advanced
   KF5::I18n
 )
 
-kcoreaddons_desktop_to_json(akregator_config_advanced akregator_config_advanced.desktop)
+kcoreaddons_desktop_to_json(akregator_config_advanced akregator_config_advanced.desktop DEFAULT_SERVICE_TYPE)
 install(FILES akregator_config_advanced.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
 install(TARGETS akregator_config_advanced DESTINATION ${KDE_INSTALL_PLUGINDIR})
 
@@ -124,6 +124,6 @@ target_link_libraries(akregator_config_adblock
   KF5::IconThemes
 )
 
-kcoreaddons_desktop_to_json(akregator_config_adblock akregator_config_adblock.desktop)
+kcoreaddons_desktop_to_json(akregator_config_adblock akregator_config_adblock.desktop DEFAULT_SERVICE_TYPE)
 install(FILES akregator_config_adblock.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
 install(TARGETS akregator_config_adblock DESTINATION ${KDE_INSTALL_PLUGINDIR})
