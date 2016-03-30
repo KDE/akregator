@@ -65,8 +65,6 @@ public:
     void disableIntroduction();
     void setArticleAction(ArticleViewerWebEngine::ArticleAction type, const QString &articleId, const QString &feed);
 
-    bool zoomTextOnlyInFrame() const;
-
     void createViewerPluginToolManager(KActionCollection *ac, QWidget *parent);
 
 protected:
@@ -89,7 +87,6 @@ public Q_SLOTS:
     void slotPrintPreview();
     void slotPrint();
     void slotCopy();
-    void slotZoomTextOnlyInFrame(bool textOnlyInFrame);
     void slotSaveLinkAs();
     void slotCopyLinkAddress();
     void slotSaveImageOnDiskInFrame();

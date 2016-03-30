@@ -392,12 +392,6 @@ void ArticleViewerWebEngine::slotOpenLinkInBrowser()
     Q_EMIT signalOpenUrlRequest(req);
 }
 
-bool ArticleViewerWebEngine::zoomTextOnlyInFrame() const
-{
-    return false;
-    //return settings()->testAttribute(QWebEngineSettings::ZoomTextOnly);
-}
-
 void ArticleViewerWebEngine::createViewerPluginToolManager(KActionCollection *ac, QWidget *parent)
 {
     mViewerPluginToolManager = new MessageViewer::ViewerPluginToolManager(parent, this);
@@ -427,11 +421,6 @@ void ArticleViewerWebEngine::slotActivatePlugin(MessageViewer::ViewerPluginInter
     }
     interface->setUrl(mCurrentUrl);
     interface->execute();
-}
-
-void ArticleViewerWebEngine::slotZoomTextOnlyInFrame(bool textOnlyInFrame)
-{
-    //settings()->setAttribute(QWebEngineSettings::ZoomTextOnly, textOnlyInFrame);
 }
 
 void ArticleViewerWebEngine::slotBlockImage()

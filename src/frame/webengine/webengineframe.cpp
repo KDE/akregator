@@ -94,20 +94,17 @@ void WebEngineFrame::loadConfig(const KConfigGroup &config, const QString &prefi
 {
     const QString url = config.readEntry(QStringLiteral("url").prepend(prefix), QString());
     const qreal zf = config.readEntry(QStringLiteral("zoom").prepend(prefix), 1.0);
-    const bool onlyZoomFont = config.readEntry(QStringLiteral("onlyZoomFont").prepend(prefix), false);
     OpenUrlRequest req(url);
     KParts::OpenUrlArguments args;
     req.setArgs(args);
     openUrl(req);
     mArticleViewerWidgetNg->articleViewerNg()->setZoomFactor(zf);
-    //FIXME mArticleViewerWidgetNg->articleViewerNg()->settings()->setAttribute(QWebEngineSettings::ZoomTextOnly, onlyZoomFont);
 }
 
 void WebEngineFrame::saveConfig(KConfigGroup &config, const QString &prefix)
 {
     config.writeEntry(QStringLiteral("url").prepend(prefix), url().url());
     config.writeEntry(QStringLiteral("zoom").prepend(prefix), mArticleViewerWidgetNg->articleViewerNg()->zoomFactor());
-    //FIXME config.writeEntry(QStringLiteral("onlyZoomFont").prepend(prefix), mArticleViewerWidgetNg->articleViewerNg()->settings()->testAttribute(QWebSettings::ZoomTextOnly));
 }
 
 void WebEngineFrame::slotCopyInFrame(int frameId)
@@ -160,10 +157,9 @@ void WebEngineFrame::slotZoomChangeInFrame(int frameId, qreal value)
 
 void WebEngineFrame::slotZoomTextOnlyInFrame(int frameId, bool textOnlyInFrame)
 {
-    if (frameId != id()) {
-        return;
-    }
-    mArticleViewerWidgetNg->articleViewerNg()->slotZoomTextOnlyInFrame(textOnlyInFrame);
+    //not implemented
+    Q_UNUSED(frameId);
+    Q_UNUSED(textOnlyInFrame);
 }
 
 void WebEngineFrame::slotReload()
@@ -183,7 +179,7 @@ qreal WebEngineFrame::zoomFactor() const
 
 bool WebEngineFrame::zoomTextOnlyInFrame() const
 {
-    return mArticleViewerWidgetNg->articleViewerNg()->zoomTextOnlyInFrame();
+    return false;
 }
 
 void WebEngineFrame::slotSaveLinkAsInFrame(int frameId)
