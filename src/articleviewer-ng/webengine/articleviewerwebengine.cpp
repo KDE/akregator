@@ -427,16 +427,6 @@ void ArticleViewerWebEngine::slotActivatePlugin(MessageViewer::ViewerPluginInter
 
 void ArticleViewerWebEngine::slotBlockImage()
 {
-    if (mCurrentUrl.isEmpty()) {
-        return;
-    }
-    //MessageViewer::AdBlockManager::self()->addCustomRule(mCurrentUrl.url(), true);
-}
-
-bool ArticleViewerWebEngine::adblockEnabled() const
-{
-    return false;
-    //return MessageViewer::AdBlockManager::self()->isEnabled();
 }
 
 void Akregator::ArticleViewerWebEngine::slotExpandUrl()

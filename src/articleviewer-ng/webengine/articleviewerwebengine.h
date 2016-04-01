@@ -126,8 +126,6 @@ private Q_SLOTS:
 protected:
     ArticleViewerWebEnginePage *mPageEngine;
 
-    bool adblockEnabled() const;
-
     void contextMenuEvent(QContextMenuEvent *e) Q_DECL_OVERRIDE;
     QList<QAction *> viewerPluginActionList(MessageViewer::ViewerPluginInterface::SpecificFeatureTypes features);
 private:
