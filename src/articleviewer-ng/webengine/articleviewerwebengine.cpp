@@ -60,7 +60,7 @@ ArticleViewerWebEngine::ArticleViewerWebEngine(KActionCollection *ac, QWidget *p
       mLastButtonClicked(LeftButton),
       mViewerPluginToolManager(Q_NULLPTR)
 {
-    new MessageViewer::NetworkAccessManagerWebEngine(this, ac, this);
+    mNetworkAccessManager = new MessageViewer::NetworkAccessManagerWebEngine(this, ac, this);
     mPageEngine = new ArticleViewerWebEnginePage(this);
     setPage(mPageEngine);
 
@@ -255,6 +255,8 @@ void ArticleViewerWebEngine::slotWebHitFinished(const MessageViewer::WebHitTestR
         popup.addSeparator();
         popup.addAction(ActionManager::getInstance()->action(QStringLiteral("speak_text")));
     }
+    //TODO
+    popup.addActions(mNetworkAccessManager->actions());
     popup.exec(mapToGlobal(result.pos()));
 }
 

@@ -30,6 +30,7 @@ class WebHitTestResult;
 class ViewerPluginToolManager;
 class ViewerPluginInterface;
 class MailWebEngineAccessKey;
+class NetworkAccessManagerWebEngine;
 }
 namespace PimCommon
 {
@@ -133,6 +134,7 @@ private:
     MousePressedButtonType mLastButtonClicked;
     MessageViewer::ViewerPluginToolManager *mViewerPluginToolManager;
     MessageViewer::MailWebEngineAccessKey *mWebEngineViewAccessKey;
+    MessageViewer::NetworkAccessManagerWebEngine *mNetworkAccessManager;
 };
 }
 
