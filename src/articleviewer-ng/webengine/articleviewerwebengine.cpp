@@ -25,7 +25,7 @@
 #include "urlhandler/webengine/urlhandlerwebengine.h"
 
 #include <MessageViewer/NetworkAccessManagerWebEngine>
-#include <MessageViewer/MailWebEngineAccessKey>
+#include <MessageViewer/WebEngineAccessKey>
 #include <KPIMTextEdit/TextToSpeech>
 #include <KActionMenu>
 
@@ -69,9 +69,9 @@ ArticleViewerWebEngine::ArticleViewerWebEngine(KActionCollection *ac, QWidget *p
     setFocusPolicy(Qt::WheelFocus);
     connect(mPageEngine, &ArticleViewerWebEnginePage::urlClicked, this, &ArticleViewerWebEngine::slotLinkClicked);
 
-    mWebEngineViewAccessKey = new MessageViewer::MailWebEngineAccessKey(this, this);
+    mWebEngineViewAccessKey = new MessageViewer::WebEngineAccessKey(this, this);
     mWebEngineViewAccessKey->setActionCollection(mActionCollection);
-    connect(mWebEngineViewAccessKey, &MessageViewer::MailWebEngineAccessKey::openUrl, this, &ArticleViewerWebEngine::slotLinkClicked);
+    connect(mWebEngineViewAccessKey, &MessageViewer::WebEngineAccessKey::openUrl, this, &ArticleViewerWebEngine::slotLinkClicked);
 
     connect(this, &ArticleViewerWebEngine::loadStarted, this, &ArticleViewerWebEngine::slotLoadStarted);
     connect(this, &ArticleViewerWebEngine::loadFinished, this, &ArticleViewerWebEngine::slotLoadFinished);
