@@ -695,7 +695,9 @@ void Part::showOptions()
         m_dialog->addModule(QStringLiteral("akregator_config_archive"));
         m_dialog->addModule(QStringLiteral("akregator_config_browser"));
         m_dialog->addModule(QStringLiteral("akregator_config_advanced"));
+#ifndef QTWEBENGINE_SUPPORT_OPTION
         m_dialog->addModule(QStringLiteral("akregator_config_adblock"));
+#endif
     }
 
     m_dialog->show();
