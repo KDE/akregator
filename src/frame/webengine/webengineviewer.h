@@ -34,7 +34,6 @@ protected:
 
     void contextMenuEvent(QContextMenuEvent *e) Q_DECL_OVERRIDE;
 private slots:
-    void slotOpenBlockableItemsDialog();
     void slotWebHitFinished(const MessageViewer::WebHitTestResult &result);
 };
 }

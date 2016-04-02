@@ -128,11 +128,11 @@ protected:
 
     void contextMenuEvent(QContextMenuEvent *e) Q_DECL_OVERRIDE;
     QList<QAction *> viewerPluginActionList(MessageViewer::ViewerPluginInterface::SpecificFeatureTypes features);
+    MessageViewer::NetworkAccessManagerWebEngine *mNetworkAccessManager;
 private:
     MousePressedButtonType mLastButtonClicked;
     MessageViewer::ViewerPluginToolManager *mViewerPluginToolManager;
     MessageViewer::WebEngineAccessKey *mWebEngineViewAccessKey;
-    MessageViewer::NetworkAccessManagerWebEngine *mNetworkAccessManager;
 };
 }
 

@@ -225,12 +225,6 @@ void ArticleViewerWebEngine::slotWebHitFinished(const MessageViewer::WebHitTestR
             popup.addSeparator();
             popup.addAction(mActionCollection->action(QStringLiteral("copy_image_location")));
             popup.addAction(mActionCollection->action(QStringLiteral("saveas_imageurl")));
-#if 0
-            if (adblockEnabled()) {
-                popup.addSeparator();
-                popup.addAction(mActionCollection->action(QStringLiteral("adblock_image")));
-            }
-#endif
         }
         popup.addSeparator();
         popup.addActions(viewerPluginActionList(MessageViewer::ViewerPluginInterface::NeedUrl));
@@ -255,7 +249,6 @@ void ArticleViewerWebEngine::slotWebHitFinished(const MessageViewer::WebHitTestR
         popup.addSeparator();
         popup.addAction(ActionManager::getInstance()->action(QStringLiteral("speak_text")));
     }
-    popup.addActions(mNetworkAccessManager->interceptorUrlActions(result));
     popup.exec(mapToGlobal(result.pos()));
 }
 

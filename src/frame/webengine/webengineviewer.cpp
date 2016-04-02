@@ -35,6 +35,8 @@
 #include <QWebEngineHistory>
 #include <MessageViewer/WebHitTest>
 #include <MessageViewer/WebHitTestResult>
+#include <MessageViewer/NetworkAccessManagerWebEngine>
+
 using namespace Akregator;
 
 WebEngineViewer::WebEngineViewer(KActionCollection *ac, QWidget *parent)
@@ -94,12 +96,6 @@ void WebEngineViewer::slotWebHitFinished(const MessageViewer::WebHitTestResult &
             popup.addSeparator();
             popup.addAction(mActionCollection->action(QStringLiteral("copy_image_location")));
             popup.addAction(mActionCollection->action(QStringLiteral("saveas_imageurl")));
-#if 0
-            if (adblockEnabled()) {
-                popup.addSeparator();
-                popup.addAction(mActionCollection->action(QStringLiteral("adblock_image")));
-            }
-#endif
         }
         popup.addSeparator();
         popup.addActions(viewerPluginActionList(MessageViewer::ViewerPluginInterface::NeedUrl));
@@ -112,14 +108,13 @@ void WebEngineViewer::slotWebHitFinished(const MessageViewer::WebHitTestResult &
         mWebShortcutMenuManager->addWebShortcutsToMenu(&popup);
         popup.addSeparator();
         popup.addActions(viewerPluginActionList(MessageViewer::ViewerPluginInterface::NeedSelection));
-        popup.addSeparator();
-        popup.addAction(i18n("Open Ad Block settings"), this, SLOT(slotOpenBlockableItemsDialog()));
     }
 #if QT_VERSION >= QT_VERSION_CHECK(5, 7, 0)
     popup.addSeparator();
     popup.addAction(ActionManager::getInstance()->action(QStringLiteral("viewer_print")));
     popup.addAction(ActionManager::getInstance()->action(QStringLiteral("viewer_printpreview")));
 #endif
+    popup.addActions(mNetworkAccessManager->interceptorUrlActions(result));
     popup.addSeparator();
     popup.addAction(ActionManager::getInstance()->action(QStringLiteral("find_in_messages")));
     if (KPIMTextEdit::TextToSpeech::self()->isReady()) {
@@ -134,16 +129,3 @@ void WebEngineViewer::displayContextMenu(const QPoint &pos)
     MessageViewer::WebHitTest *webHit = mPageEngine->hitTestContent(pos);
     connect(webHit, &MessageViewer::WebHitTest::finished, this, &WebEngineViewer::slotWebHitFinished);
 }
-
-void WebEngineViewer::slotOpenBlockableItemsDialog()
-{
-#if 0
-    QPointer<MessageViewer::AdBlockBlockableItemsDialog> dlg = new MessageViewer::AdBlockBlockableItemsDialog(this);
-    dlg->setWebFrame(page()->mainFrame());
-    if (dlg->exec()) {
-        dlg->saveFilters();
-    }
-    delete dlg;
-#endif
-}
-
