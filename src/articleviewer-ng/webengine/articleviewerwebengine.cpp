@@ -256,7 +256,7 @@ void ArticleViewerWebEngine::slotWebHitFinished(const MessageViewer::WebHitTestR
         popup.addAction(ActionManager::getInstance()->action(QStringLiteral("speak_text")));
     }
     //TODO
-    popup.addActions(mNetworkAccessManager->actions());
+    popup.addActions(mNetworkAccessManager->actions(result));
     popup.exec(mapToGlobal(result.pos()));
 }
 
