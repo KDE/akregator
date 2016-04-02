@@ -108,22 +108,24 @@ install(TARGETS akregator_config_advanced DESTINATION ${KDE_INSTALL_PLUGINDIR})
 
 
 ########### next target ###############
+if (NOT QTWEBENGINE_SUPPORT_OPTION)
 
-set(kcm_akradblockconfig_SRCS
-  akregator_config_adblock.cpp
-)
+    set(kcm_akradblockconfig_SRCS
+        akregator_config_adblock.cpp
+        )
 
-add_library(akregator_config_adblock MODULE ${kcm_akradblockconfig_SRCS})
+    add_library(akregator_config_adblock MODULE ${kcm_akradblockconfig_SRCS})
 
-target_link_libraries(akregator_config_adblock
-  akregatorinterfaces
-  KF5::KCMUtils
-  KF5::I18n
-  KF5::MessageViewer
-  KF5::ItemViews
-  KF5::IconThemes
-)
+    target_link_libraries(akregator_config_adblock
+        akregatorinterfaces
+        KF5::KCMUtils
+        KF5::I18n
+        KF5::MessageViewer
+        KF5::ItemViews
+        KF5::IconThemes
+        )
 
-kcoreaddons_desktop_to_json(akregator_config_adblock akregator_config_adblock.desktop DEFAULT_SERVICE_TYPE)
-install(FILES akregator_config_adblock.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
-install(TARGETS akregator_config_adblock DESTINATION ${KDE_INSTALL_PLUGINDIR})
+    kcoreaddons_desktop_to_json(akregator_config_adblock akregator_config_adblock.desktop DEFAULT_SERVICE_TYPE)
+    install(FILES akregator_config_adblock.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
+    install(TARGETS akregator_config_adblock DESTINATION ${KDE_INSTALL_PLUGINDIR})
+endif()
