@@ -114,7 +114,11 @@ void WebEngineViewer::slotWebHitFinished(const MessageViewer::WebHitTestResult &
     popup.addAction(ActionManager::getInstance()->action(QStringLiteral("viewer_print")));
     popup.addAction(ActionManager::getInstance()->action(QStringLiteral("viewer_printpreview")));
 #endif
-    popup.addActions(mNetworkAccessManager->interceptorUrlActions(result));
+    const QList<QAction *> interceptorUrlActions = mNetworkAccessManager->interceptorUrlActions(result);
+    if (!interceptorUrlActions.isEmpty()) {
+        popup.addSeparator();
+        popup.addActions(interceptorUrlActions);
+    }
     popup.addSeparator();
     popup.addAction(ActionManager::getInstance()->action(QStringLiteral("find_in_messages")));
     if (KPIMTextEdit::TextToSpeech::self()->isReady()) {
