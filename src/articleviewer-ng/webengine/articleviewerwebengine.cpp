@@ -170,15 +170,18 @@ void ArticleViewerWebEngine::slotShowContextMenu(const QPoint &pos)
 
 void ArticleViewerWebEngine::slotPrintPreview()
 {
+#if 0
     PimCommon::KPimPrintPreviewDialog previewdlg(this);
     connect(&previewdlg, &QPrintPreviewDialog::paintRequested, this, [this](QPrinter * printer) {
         render(printer);
     });
     previewdlg.exec();
+#endif
 }
 
 void ArticleViewerWebEngine::slotPrint()
 {
+#if 0
     QPrinter printer;
 
     QScopedPointer<QPrintDialog> dlg(new QPrintDialog(&printer));
@@ -186,6 +189,7 @@ void ArticleViewerWebEngine::slotPrint()
     if (dlg && dlg->exec() == QDialog::Accepted) {
         render(&printer);
     }
+#endif
 }
 
 void ArticleViewerWebEngine::slotCopy()
