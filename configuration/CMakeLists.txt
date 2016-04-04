@@ -129,5 +129,20 @@ if (NOT QTWEBENGINE_SUPPORT_OPTION)
     install(FILES akregator_config_adblock.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
     install(TARGETS akregator_config_adblock DESTINATION ${KDE_INSTALL_PLUGINDIR})
 else()
-     #TODO add support for webengineurl interceptor plugin
+     set(kcm_webengineurlinterceptor_SRCS
+         akregator_config_webengineurlinterceptor.cpp
+         )
+
+     add_library(akregator_config_webengineurlinterceptor MODULE ${kcm_webengineurlinterceptor_SRCS})
+
+     target_link_libraries(akregator_config_webengineurlinterceptor
+         akregatorinterfaces
+         KF5::KCMUtils
+         KF5::I18n
+         KF5::IconThemes
+         )
+
+     kcoreaddons_desktop_to_json(akregator_config_webengineurlinterceptor akregator_config_webengineurlinterceptor.desktop DEFAULT_SERVICE_TYPE)
+     install(FILES akregator_config_webengineurlinterceptor.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
+     install(TARGETS akregator_config_webengineurlinterceptor DESTINATION ${KDE_INSTALL_PLUGINDIR})
 endif()
