@@ -18,7 +18,7 @@
 #include <QUrl>
 class QTemporaryFile;
 class KJob;
-namespace PimCommon
+namespace MimeTreeParser
 {
 class AttachmentTemporaryFilesDirs;
 }
@@ -49,7 +49,7 @@ private:
     QString mTitle;
     QString mText;
     QTemporaryFile *mTemporaryFile;
-    PimCommon::AttachmentTemporaryFilesDirs *mAttachmentTemporaryFile;
+    MimeTreeParser::AttachmentTemporaryFilesDirs *mAttachmentTemporaryFile;
 };
 }
 #endif // DOWNLOADARTICLEJOB_H

@@ -18,7 +18,7 @@
 #include <kio/jobuidelegate.h>
 #include <QDebug>
 #include <QUrlQuery>
-#include <PimCommon/AttachmentTemporaryFilesDirs>
+#include <MimeTreeParser/AttachmentTemporaryFilesDirs>
 
 using namespace Akregator;
 
@@ -60,7 +60,7 @@ void DownloadArticleJob::start()
     mTemporaryFile = new QTemporaryFile(this);
     mTemporaryFile->open();
     mTemporaryFile->setAutoRemove(false);
-    mAttachmentTemporaryFile = new PimCommon::AttachmentTemporaryFilesDirs;
+    mAttachmentTemporaryFile = new MimeTreeParser::AttachmentTemporaryFilesDirs;
 
     KIO::Job *job = KIO::file_copy(mArticleUrl, QUrl::fromLocalFile(mTemporaryFile->fileName()), -1, KIO::Overwrite);
     mAttachmentTemporaryFile->addTempFile(mTemporaryFile->fileName());
