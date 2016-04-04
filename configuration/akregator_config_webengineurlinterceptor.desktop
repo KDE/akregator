@@ -1,0 +1,14 @@
+[Desktop Entry]
+Icon=akregator
+Type=Service
+X-KDE-ServiceTypes=KCModule
+
+X-KDE-Library=akregator_config_webengineurlinterceptor
+X-KDE-ParentApp=akregator
+X-KDE-ParentComponents=akregator,kontact_akregatorplugin
+X-KDE-CfgDlgHierarchy=Akregator
+X-KDE-Weight=100
+
+Name=Web Engine Url Interceptor Plugins
+Comment=Configure Web Engine Url Interceptor Plugins
+X-KDE-Keywords=akregator, configure, settings, webEngine, url interceptor

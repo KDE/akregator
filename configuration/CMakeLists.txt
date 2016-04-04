@@ -128,4 +128,6 @@ if (NOT QTWEBENGINE_SUPPORT_OPTION)
     kcoreaddons_desktop_to_json(akregator_config_adblock akregator_config_adblock.desktop DEFAULT_SERVICE_TYPE)
     install(FILES akregator_config_adblock.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
     install(TARGETS akregator_config_adblock DESTINATION ${KDE_INSTALL_PLUGINDIR})
+else()
+     #TODO add support for webengineurl interceptor plugin
 endif()
