@@ -25,6 +25,7 @@
 #include <QTabWidget>
 
 #include <MessageViewer/NetworkPluginUrlInterceptor>
+#include <MessageViewer/NetworkPluginUrlInterceptorConfigureWidget>
 #include <MessageViewer/NetworkUrlInterceptorPluginManager>
 
 using namespace Akregator;
@@ -47,20 +48,21 @@ KCMAkregatorWebEngineUrlInterceptorConfig::KCMAkregatorWebEngineUrlInterceptorCo
     setAboutData(about);
     QTabWidget *tab = new QTabWidget(this);
     lay->addWidget(tab);
-    //TODO add tab
     Q_FOREACH(MessageViewer::NetworkPluginUrlInterceptor *plugin, MessageViewer::NetworkUrlInterceptorPluginManager::self()->pluginsList()) {
         if (plugin->hasConfigureSupport()) {
             MessageViewer::NetworkPluginUrlInterceptorConfigureWidgetSetting settings = plugin->createConfigureWidget(this);
-            //TODO
+            MessageViewer::NetworkPluginUrlInterceptorConfigureWidget *configureWidget = settings.configureWidget;
+            tab->addTab(configureWidget, settings.name);
+            connect(configureWidget, &MessageViewer::NetworkPluginUrlInterceptorConfigureWidget::configureChanged, this, &KCMAkregatorWebEngineUrlInterceptorConfig::slotConfigChanged);
         }
     }
 
-#if 0
-    mWidget = new MessageViewer::AdBlockSettingWidget;
-    lay->addWidget(mWidget);
-    connect(mWidget, SIGNAL(changed(bool)), this, SIGNAL(changed(bool)));
     setLayout(lay);
-#endif
+}
+
+void KCMAkregatorWebEngineUrlInterceptorConfig::slotConfigChanged()
+{
+    Q_EMIT changed(true);
 }
 
 void KCMAkregatorWebEngineUrlInterceptorConfig::save()

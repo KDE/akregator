@@ -35,6 +35,8 @@ public:
     void load() Q_DECL_OVERRIDE;
     void save() Q_DECL_OVERRIDE;
     void defaults() Q_DECL_OVERRIDE;
+private Q_SLOTS:
+    void slotConfigChanged();
 private:
     QList<MessageViewer::NetworkPluginUrlInterceptorConfigureWidget *> mListPlugins;
 
