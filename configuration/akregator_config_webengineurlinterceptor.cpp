@@ -30,11 +30,10 @@ K_PLUGIN_FACTORY(KCMAkregatorWebEngineUrlInterceptorConfigFactory, registerPlugi
 KCMAkregatorWebEngineUrlInterceptorConfig::KCMAkregatorWebEngineUrlInterceptorConfig(QWidget *parent, const QVariantList &args)
     : KCModule(parent, args)
 {
-#if 0
     QHBoxLayout *lay = new QHBoxLayout;
     lay->setMargin(0);
 
-    KAboutData *about = new KAboutData(QStringLiteral("kcmakrablockconfig"),
+    KAboutData *about = new KAboutData(QStringLiteral("kcmakrwebengineurlinterceptorconfig"),
                                        i18n("Configure AdBlock"),
                                        QString(), QString(), KAboutLicense::GPL,
                                        i18n("(c), 2016 Laurent Montel"));
@@ -42,7 +41,8 @@ KCMAkregatorWebEngineUrlInterceptorConfig::KCMAkregatorWebEngineUrlInterceptorCo
     about->addAuthor(i18n("Laurent Montel"), QString(), QStringLiteral("montel@kde.org"));
 
     setAboutData(about);
-
+    //TODO add tab
+#if 0
     mWidget = new MessageViewer::AdBlockSettingWidget;
     lay->addWidget(mWidget);
     connect(mWidget, SIGNAL(changed(bool)), this, SIGNAL(changed(bool)));
