@@ -22,6 +22,10 @@
 #include <KLocalizedString>
 
 #include <QVBoxLayout>
+#include <QTabWidget>
+
+#include <MessageViewer/NetworkPluginUrlInterceptor>
+#include <MessageViewer/NetworkUrlInterceptorPluginManager>
 
 using namespace Akregator;
 
@@ -41,7 +45,16 @@ KCMAkregatorWebEngineUrlInterceptorConfig::KCMAkregatorWebEngineUrlInterceptorCo
     about->addAuthor(i18n("Laurent Montel"), QString(), QStringLiteral("montel@kde.org"));
 
     setAboutData(about);
+    QTabWidget *tab = new QTabWidget(this);
+    lay->addWidget(tab);
     //TODO add tab
+    Q_FOREACH(MessageViewer::NetworkPluginUrlInterceptor *plugin, MessageViewer::NetworkUrlInterceptorPluginManager::self()->pluginsList()) {
+        if (plugin->hasConfigureSupport()) {
+            MessageViewer::NetworkPluginUrlInterceptorConfigureWidgetSetting settings = plugin->createConfigureWidget(this);
+            //TODO
+        }
+    }
+
 #if 0
     mWidget = new MessageViewer::AdBlockSettingWidget;
     lay->addWidget(mWidget);

@@ -21,6 +21,10 @@
 #include <KCModule>
 
 #include <QVariant>
+namespace MessageViewer
+{
+class NetworkPluginUrlInterceptorConfigureWidget;
+}
 namespace Akregator
 {
 class KCMAkregatorWebEngineUrlInterceptorConfig : public KCModule
@@ -31,6 +35,8 @@ public:
     void load() Q_DECL_OVERRIDE;
     void save() Q_DECL_OVERRIDE;
     void defaults() Q_DECL_OVERRIDE;
+private:
+    QList<MessageViewer::NetworkPluginUrlInterceptorConfigureWidget *> mListPlugins;
 
 };
 }

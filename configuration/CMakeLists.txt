@@ -133,6 +133,7 @@ else()
          KF5::KCMUtils
          KF5::I18n
          KF5::IconThemes
+         KF5::MessageViewer
          )
 
      kcoreaddons_desktop_to_json(akregator_config_webengineurlinterceptor akregator_config_webengineurlinterceptor.desktop DEFAULT_SERVICE_TYPE)
