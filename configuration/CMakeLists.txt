@@ -34,7 +34,6 @@ target_link_libraries(akregator_config_appearance
   akregatorinterfaces
   KF5::TextWidgets
   KF5::KCMUtils
-  KF5::Completion
   KF5::I18n
 )
 
@@ -53,8 +52,7 @@ target_link_libraries(akregator_config_archive
   KF5::KCMUtils
   akregatorinterfaces
   KF5::TextWidgets
-  KF5::Completion
-  KF5::I18n   
+  KF5::I18n
 )
 #kcoreaddons_desktop_to_json(akregator_config_archive akregator_config_archive.desktop DEFAULT_SERVICE_TYPE)
 install(FILES akregator_config_archive.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
