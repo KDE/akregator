@@ -67,14 +67,23 @@ void KCMAkregatorWebEngineUrlInterceptorConfig::slotConfigChanged()
 
 void KCMAkregatorWebEngineUrlInterceptorConfig::save()
 {
+    Q_FOREACH(MessageViewer::NetworkPluginUrlInterceptorConfigureWidget *widget, mListPlugins) {
+        widget->saveSettings();
+    }
 }
 
 void KCMAkregatorWebEngineUrlInterceptorConfig::load()
 {
+    Q_FOREACH(MessageViewer::NetworkPluginUrlInterceptorConfigureWidget *widget, mListPlugins) {
+        widget->loadSettings();
+    }
 }
 
 void KCMAkregatorWebEngineUrlInterceptorConfig::defaults()
 {
+    Q_FOREACH(MessageViewer::NetworkPluginUrlInterceptorConfigureWidget *widget, mListPlugins) {
+        widget->resetSettings();
+    }
 }
 
 #include "akregator_config_webengineurlinterceptor.moc"
