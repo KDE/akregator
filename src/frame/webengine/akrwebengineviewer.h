@@ -15,20 +15,20 @@
   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef WEBENGINEVIEWER_H
-#define WEBENGINEVIEWER_H
+#ifndef AKRWEBENGINEVIEWER_H
+#define AKRWEBENGINEVIEWER_H
 
 #include "articleviewer-ng/webengine/articleviewerwebengine.h"
 
 class KActionCollection;
 namespace Akregator
 {
-class WebEngineViewer : public ArticleViewerWebEngine
+class AkrWebEngineViewer : public ArticleViewerWebEngine
 {
     Q_OBJECT
 public:
-    explicit WebEngineViewer(KActionCollection *ac, QWidget *parent = Q_NULLPTR);
-    ~WebEngineViewer();
+    explicit AkrWebEngineViewer(KActionCollection *ac, QWidget *parent = Q_NULLPTR);
+    ~AkrWebEngineViewer();
 
 protected:
     void displayContextMenu(const QPoint &pos) Q_DECL_OVERRIDE;

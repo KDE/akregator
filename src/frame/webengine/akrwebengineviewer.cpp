@@ -15,7 +15,7 @@
   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#include "webengineviewer.h"
+#include "akrwebengineviewer.h"
 #include "articleviewer-ng/webengine/articleviewerwebenginepage.h"
 
 #include "actionmanager.h"
@@ -39,7 +39,7 @@
 
 using namespace Akregator;
 
-WebEngineViewer::WebEngineViewer(KActionCollection *ac, QWidget *parent)
+AkrWebEngineViewer::AkrWebEngineViewer(KActionCollection *ac, QWidget *parent)
     : ArticleViewerWebEngine(ac, parent)
 {
     settings()->setAttribute(QWebEngineSettings::JavascriptEnabled, true);
@@ -47,17 +47,17 @@ WebEngineViewer::WebEngineViewer(KActionCollection *ac, QWidget *parent)
     settings()->setAttribute(QWebEngineSettings::AutoLoadImages, true);
 }
 
-WebEngineViewer::~WebEngineViewer()
+AkrWebEngineViewer::~AkrWebEngineViewer()
 {
 
 }
 
-void WebEngineViewer::contextMenuEvent(QContextMenuEvent *e)
+void AkrWebEngineViewer::contextMenuEvent(QContextMenuEvent *e)
 {
     displayContextMenu(e->pos());
 }
 
-void WebEngineViewer::slotWebHitFinished(const WebEngineViewer::WebHitTestResult &result)
+void AkrWebEngineViewer::slotWebHitFinished(const WebEngineViewer::WebHitTestResult &result)
 {
     mCurrentUrl = result.linkUrl();
     if (URLHandlerWebEngineManager::instance()->handleContextMenuRequest(mCurrentUrl, mapToGlobal(result.pos()), this)) {
@@ -128,8 +128,8 @@ void WebEngineViewer::slotWebHitFinished(const WebEngineViewer::WebHitTestResult
     popup.exec(mapToGlobal(result.pos()));
 }
 
-void WebEngineViewer::displayContextMenu(const QPoint &pos)
+void AkrWebEngineViewer::displayContextMenu(const QPoint &pos)
 {
     WebEngineViewer::WebHitTest *webHit = mPageEngine->hitTestContent(pos);
-    connect(webHit, &WebEngineViewer::WebHitTest::finished, this, &WebEngineViewer::slotWebHitFinished);
+    connect(webHit, &WebEngineViewer::WebHitTest::finished, this, &AkrWebEngineViewer::slotWebHitFinished);
 }

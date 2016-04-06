@@ -46,7 +46,7 @@ if (QTWEBENGINE_SUPPORT_OPTION)
         articleviewer-ng/webengine/articlehtmlwebenginewriter.cpp
         articleviewer-ng/webengine/articleviewerwebenginewidgetng.cpp
         )
-    set(akregator_articleviewer_ng_webengine_libs Qt5::WebEngine Qt5::WebEngineWidgets)
+    set(akregator_articleviewer_ng_webengine_libs Qt5::WebEngine Qt5::WebEngineWidgets KF5::WebEngineViewer)
 else()
     set(akregator_articleviewer_ng_SRCS
         articleviewer-ng/webkit/articleviewerng.cpp
@@ -72,7 +72,7 @@ set(akregatorprivate_formatter_SRCS
 if (QTWEBENGINE_SUPPORT_OPTION)
     set(akregatorprivate_frame_webengine_SRCS
         frame/webengine/webengineframe.cpp
-        frame/webengine/webengineviewer.cpp
+        frame/webengine/akrwebengineviewer.cpp
         )
 else()
     set(akregatorprivate_frame_webkit_SRCS

@@ -28,12 +28,12 @@ namespace WebEngineViewer
 {
 class WebHitTestResult;
 class WebEngineAccessKey;
+class NetworkAccessManagerWebEngine;
 }
 namespace MessageViewer
 {
 class ViewerPluginToolManager;
 class ViewerPluginInterface;
-class NetworkAccessManagerWebEngine;
 }
 namespace PimCommon
 {
@@ -131,7 +131,7 @@ protected:
 
     void contextMenuEvent(QContextMenuEvent *e) Q_DECL_OVERRIDE;
     QList<QAction *> viewerPluginActionList(MessageViewer::ViewerPluginInterface::SpecificFeatureTypes features);
-    MessageViewer::NetworkAccessManagerWebEngine *mNetworkAccessManager;
+    WebEngineViewer::NetworkAccessManagerWebEngine *mNetworkAccessManager;
 private:
     MousePressedButtonType mLastButtonClicked;
     MessageViewer::ViewerPluginToolManager *mViewerPluginToolManager;
