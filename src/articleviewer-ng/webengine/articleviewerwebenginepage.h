@@ -18,10 +18,10 @@
 #ifndef ARTICLEVIEWERWEBENGINEPAGE_H
 #define ARTICLEVIEWERWEBENGINEPAGE_H
 
-#include <MessageViewer/WebEnginePage>
+#include <WebEngineViewer/WebEnginePage>
 namespace Akregator
 {
-class ArticleViewerWebEnginePage : public MessageViewer::WebEnginePage
+class ArticleViewerWebEnginePage : public WebEngineViewer::WebEnginePage
 {
     Q_OBJECT
 public:

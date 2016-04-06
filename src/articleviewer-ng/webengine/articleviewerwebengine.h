@@ -18,18 +18,21 @@
 #ifndef ARTICLEVIEWERWEBENGINE_H
 #define ARTICLEVIEWERWEBENGINE_H
 
-#include <MessageViewer/WebEngineView>
+#include <WebEngineViewer/WebEngineView>
 #include <openurlrequest.h>
 #include <shareserviceurlmanager.h>
 #include <MessageViewer/ViewerPluginInterface>
 
 class KActionCollection;
-namespace MessageViewer
+namespace WebEngineViewer
 {
 class WebHitTestResult;
+class WebEngineAccessKey;
+}
+namespace MessageViewer
+{
 class ViewerPluginToolManager;
 class ViewerPluginInterface;
-class WebEngineAccessKey;
 class NetworkAccessManagerWebEngine;
 }
 namespace PimCommon
@@ -43,7 +46,7 @@ class KUriFilterSearchProviderActions;
 namespace Akregator
 {
 class ArticleViewerWebEnginePage;
-class AKREGATOR_EXPORT ArticleViewerWebEngine : public MessageViewer::WebEngineView
+class AKREGATOR_EXPORT ArticleViewerWebEngine : public WebEngineViewer::WebEngineView
 {
     Q_OBJECT
 public:
@@ -121,7 +124,7 @@ private Q_SLOTS:
     void slotOpenLinkInBackgroundTab();
     void slotOpenLinkInBrowser();
     void slotShowContextMenu(const QPoint &pos);
-    void slotWebHitFinished(const MessageViewer::WebHitTestResult &result);
+    void slotWebHitFinished(const WebEngineViewer::WebHitTestResult &result);
     void slotActivatePlugin(MessageViewer::ViewerPluginInterface *interface);
 protected:
     ArticleViewerWebEnginePage *mPageEngine;
@@ -132,7 +135,7 @@ protected:
 private:
     MousePressedButtonType mLastButtonClicked;
     MessageViewer::ViewerPluginToolManager *mViewerPluginToolManager;
-    MessageViewer::WebEngineAccessKey *mWebEngineViewAccessKey;
+    WebEngineViewer::WebEngineAccessKey *mWebEngineViewAccessKey;
 };
 }
 

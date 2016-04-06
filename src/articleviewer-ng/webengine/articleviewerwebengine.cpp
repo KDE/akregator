@@ -24,8 +24,8 @@
 #include "actions/actions.h"
 #include "urlhandler/webengine/urlhandlerwebengine.h"
 
-#include <MessageViewer/NetworkAccessManagerWebEngine>
-#include <MessageViewer/WebEngineAccessKey>
+#include <WebEngineViewer/NetworkAccessManagerWebEngine>
+#include <WebEngineViewer/WebEngineAccessKey>
 #include <KPIMTextEdit/TextToSpeech>
 #include <KActionMenu>
 
@@ -47,20 +47,20 @@
 #include <QMenu>
 #include <viewerplugintoolmanager.h>
 #include <MessageViewer/ScamExpandUrlJob>
-#include <MessageViewer/WebHitTestResult>
-#include <MessageViewer/WebHitTest>
+#include <WebEngineViewer/WebHitTestResult>
+#include <WebEngineViewer/WebHitTest>
 
 #include <KIO/KUriFilterSearchProviderActions>
 
 using namespace Akregator;
 
 ArticleViewerWebEngine::ArticleViewerWebEngine(KActionCollection *ac, QWidget *parent)
-    : MessageViewer::WebEngineView(parent),
+    : WebEngineViewer::WebEngineView(parent),
       mActionCollection(ac),
       mLastButtonClicked(LeftButton),
       mViewerPluginToolManager(Q_NULLPTR)
 {
-    mNetworkAccessManager = new MessageViewer::NetworkAccessManagerWebEngine(this, ac, this);
+    mNetworkAccessManager = new WebEngineViewer::NetworkAccessManagerWebEngine(this, ac, this);
     mPageEngine = new ArticleViewerWebEnginePage(this);
     setPage(mPageEngine);
 
@@ -69,9 +69,9 @@ ArticleViewerWebEngine::ArticleViewerWebEngine(KActionCollection *ac, QWidget *p
     setFocusPolicy(Qt::WheelFocus);
     connect(mPageEngine, &ArticleViewerWebEnginePage::urlClicked, this, &ArticleViewerWebEngine::slotLinkClicked);
 
-    mWebEngineViewAccessKey = new MessageViewer::WebEngineAccessKey(this, this);
+    mWebEngineViewAccessKey = new WebEngineViewer::WebEngineAccessKey(this, this);
     mWebEngineViewAccessKey->setActionCollection(mActionCollection);
-    connect(mWebEngineViewAccessKey, &MessageViewer::WebEngineAccessKey::openUrl, this, &ArticleViewerWebEngine::slotLinkClicked);
+    connect(mWebEngineViewAccessKey, &WebEngineViewer::WebEngineAccessKey::openUrl, this, &ArticleViewerWebEngine::slotLinkClicked);
 
     connect(this, &ArticleViewerWebEngine::loadStarted, this, &ArticleViewerWebEngine::slotLoadStarted);
     connect(this, &ArticleViewerWebEngine::loadFinished, this, &ArticleViewerWebEngine::slotLoadFinished);
@@ -208,7 +208,7 @@ void ArticleViewerWebEngine::slotLoadStarted()
     setCursor(Qt::WaitCursor);
 }
 
-void ArticleViewerWebEngine::slotWebHitFinished(const MessageViewer::WebHitTestResult &result)
+void ArticleViewerWebEngine::slotWebHitFinished(const WebEngineViewer::WebHitTestResult &result)
 {
     mCurrentUrl = result.linkUrl();
     if (URLHandlerWebEngineManager::instance()->handleContextMenuRequest(mCurrentUrl, mapToGlobal(result.pos()), this)) {
@@ -258,8 +258,8 @@ void ArticleViewerWebEngine::slotWebHitFinished(const MessageViewer::WebHitTestR
 
 void ArticleViewerWebEngine::displayContextMenu(const QPoint &pos)
 {
-    MessageViewer::WebHitTest *webHit = mPageEngine->hitTestContent(pos);
-    connect(webHit, &MessageViewer::WebHitTest::finished, this, &ArticleViewerWebEngine::slotWebHitFinished);
+    WebEngineViewer::WebHitTest *webHit = mPageEngine->hitTestContent(pos);
+    connect(webHit, &WebEngineViewer::WebHitTest::finished, this, &ArticleViewerWebEngine::slotWebHitFinished);
 }
 
 void ArticleViewerWebEngine::slotLinkHovered(const QString &link)

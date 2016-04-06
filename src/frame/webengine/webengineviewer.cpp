@@ -33,9 +33,9 @@
 #include <QContextMenuEvent>
 #include <QMenu>
 #include <QWebEngineHistory>
-#include <MessageViewer/WebHitTest>
-#include <MessageViewer/WebHitTestResult>
-#include <MessageViewer/NetworkAccessManagerWebEngine>
+#include <WebEngineViewer/WebHitTest>
+#include <WebEngineViewer/WebHitTestResult>
+#include <WebEngineViewer/NetworkAccessManagerWebEngine>
 
 using namespace Akregator;
 
@@ -57,7 +57,7 @@ void WebEngineViewer::contextMenuEvent(QContextMenuEvent *e)
     displayContextMenu(e->pos());
 }
 
-void WebEngineViewer::slotWebHitFinished(const MessageViewer::WebHitTestResult &result)
+void WebEngineViewer::slotWebHitFinished(const WebEngineViewer::WebHitTestResult &result)
 {
     mCurrentUrl = result.linkUrl();
     if (URLHandlerWebEngineManager::instance()->handleContextMenuRequest(mCurrentUrl, mapToGlobal(result.pos()), this)) {
@@ -130,6 +130,6 @@ void WebEngineViewer::slotWebHitFinished(const MessageViewer::WebHitTestResult &
 
 void WebEngineViewer::displayContextMenu(const QPoint &pos)
 {
-    MessageViewer::WebHitTest *webHit = mPageEngine->hitTestContent(pos);
-    connect(webHit, &MessageViewer::WebHitTest::finished, this, &WebEngineViewer::slotWebHitFinished);
+    WebEngineViewer::WebHitTest *webHit = mPageEngine->hitTestContent(pos);
+    connect(webHit, &WebEngineViewer::WebHitTest::finished, this, &WebEngineViewer::slotWebHitFinished);
 }

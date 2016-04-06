@@ -24,9 +24,9 @@
 #include <QVBoxLayout>
 #include <QTabWidget>
 
-#include <MessageViewer/NetworkPluginUrlInterceptor>
-#include <MessageViewer/NetworkPluginUrlInterceptorConfigureWidget>
-#include <MessageViewer/NetworkUrlInterceptorPluginManager>
+#include <WebEngineViewer/NetworkPluginUrlInterceptor>
+#include <WebEngineViewer/NetworkPluginUrlInterceptorConfigureWidget>
+#include <WebEngineViewer/NetworkUrlInterceptorPluginManager>
 
 using namespace Akregator;
 
@@ -48,12 +48,12 @@ KCMAkregatorWebEngineUrlInterceptorConfig::KCMAkregatorWebEngineUrlInterceptorCo
     setAboutData(about);
     QTabWidget *tab = new QTabWidget(this);
     lay->addWidget(tab);
-    Q_FOREACH (MessageViewer::NetworkPluginUrlInterceptor *plugin, MessageViewer::NetworkUrlInterceptorPluginManager::self()->pluginsList()) {
+    Q_FOREACH (WebEngineViewer::NetworkPluginUrlInterceptor *plugin, WebEngineViewer::NetworkUrlInterceptorPluginManager::self()->pluginsList()) {
         if (plugin->hasConfigureSupport()) {
-            MessageViewer::NetworkPluginUrlInterceptorConfigureWidgetSetting settings = plugin->createConfigureWidget(this);
-            MessageViewer::NetworkPluginUrlInterceptorConfigureWidget *configureWidget = settings.configureWidget;
+            WebEngineViewer::NetworkPluginUrlInterceptorConfigureWidgetSetting settings = plugin->createConfigureWidget(this);
+            WebEngineViewer::NetworkPluginUrlInterceptorConfigureWidget *configureWidget = settings.configureWidget;
             tab->addTab(configureWidget, settings.name);
-            connect(configureWidget, &MessageViewer::NetworkPluginUrlInterceptorConfigureWidget::configureChanged, this, &KCMAkregatorWebEngineUrlInterceptorConfig::slotConfigChanged);
+            connect(configureWidget, &WebEngineViewer::NetworkPluginUrlInterceptorConfigureWidget::configureChanged, this, &KCMAkregatorWebEngineUrlInterceptorConfig::slotConfigChanged);
         }
     }
 
@@ -67,21 +67,21 @@ void KCMAkregatorWebEngineUrlInterceptorConfig::slotConfigChanged()
 
 void KCMAkregatorWebEngineUrlInterceptorConfig::save()
 {
-    Q_FOREACH (MessageViewer::NetworkPluginUrlInterceptorConfigureWidget *widget, mListPlugins) {
+    Q_FOREACH (WebEngineViewer::NetworkPluginUrlInterceptorConfigureWidget *widget, mListPlugins) {
         widget->saveSettings();
     }
 }
 
 void KCMAkregatorWebEngineUrlInterceptorConfig::load()
 {
-    Q_FOREACH (MessageViewer::NetworkPluginUrlInterceptorConfigureWidget *widget, mListPlugins) {
+    Q_FOREACH (WebEngineViewer::NetworkPluginUrlInterceptorConfigureWidget *widget, mListPlugins) {
         widget->loadSettings();
     }
 }
 
 void KCMAkregatorWebEngineUrlInterceptorConfig::defaults()
 {
-    Q_FOREACH (MessageViewer::NetworkPluginUrlInterceptorConfigureWidget *widget, mListPlugins) {
+    Q_FOREACH (WebEngineViewer::NetworkPluginUrlInterceptorConfigureWidget *widget, mListPlugins) {
         widget->resetSettings();
     }
 }

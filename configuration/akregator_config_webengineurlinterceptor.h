@@ -21,7 +21,7 @@
 #include <KCModule>
 
 #include <QVariant>
-namespace MessageViewer
+namespace WebEngineViewer
 {
 class NetworkPluginUrlInterceptorConfigureWidget;
 }
@@ -38,7 +38,7 @@ public:
 private Q_SLOTS:
     void slotConfigChanged();
 private:
-    QList<MessageViewer::NetworkPluginUrlInterceptorConfigureWidget *> mListPlugins;
+    QList<WebEngineViewer::NetworkPluginUrlInterceptorConfigureWidget *> mListPlugins;
 
 };
 }

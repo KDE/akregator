@@ -19,6 +19,7 @@
 #define WEBENGINEVIEWER_H
 
 #include "articleviewer-ng/webengine/articleviewerwebengine.h"
+
 class KActionCollection;
 namespace Akregator
 {
@@ -34,7 +35,7 @@ protected:
 
     void contextMenuEvent(QContextMenuEvent *e) Q_DECL_OVERRIDE;
 private slots:
-    void slotWebHitFinished(const MessageViewer::WebHitTestResult &result);
+    void slotWebHitFinished(const WebEngineViewer::WebHitTestResult &result);
 };
 }
 
