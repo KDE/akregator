@@ -33,7 +33,7 @@ using namespace Akregator;
 AboutData::AboutData()
     : KAboutData(QStringLiteral("akregator"),
                  i18n("Akregator"),
-                 QStringLiteral(AKREGATOR_VERSION),
+                 QStringLiteral(KDEPIM_VERSION),
                  i18n("A KDE Feed Reader"),
                  KAboutLicense::GPL,
                  i18n("Copyright © 2004–2016 Akregator authors"),
