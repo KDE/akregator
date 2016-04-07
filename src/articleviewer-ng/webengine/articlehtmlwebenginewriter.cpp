@@ -43,7 +43,6 @@ void ArticleHtmlWebEngineWriter::begin()
     }
     // clear the widget:
     mWebView->setUpdatesEnabled(false);
-    //mWebView->scrollUp(10);
     mWebView->load(QUrl());
     mState = Begun;
 }

@@ -170,6 +170,7 @@ void ArticleViewerWebEngine::slotShowContextMenu(const QPoint &pos)
 
 void ArticleViewerWebEngine::slotPrintPreview()
 {
+    //Use printToPdf Qt5.7
 #if 0
     PimCommon::KPimPrintPreviewDialog previewdlg(this);
     connect(&previewdlg, &QPrintPreviewDialog::paintRequested, this, [this](QPrinter * printer) {
