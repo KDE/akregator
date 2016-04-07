@@ -40,7 +40,7 @@ public:
     QHash<QString, StorageFactory *> map;
 };
 
-StorageFactoryRegistry *StorageFactoryRegistry::m_instance = 0;
+StorageFactoryRegistry *StorageFactoryRegistry::m_instance = Q_NULLPTR;
 
 StorageFactoryRegistry *StorageFactoryRegistry::self()
 {
