@@ -1,7 +1,7 @@
 
 include_directories(
-  ${CMAKE_SOURCE_DIR}/akregator/src
-)
+    ${CMAKE_SOURCE_DIR}/akregator/src
+    )
 
 ########### next target ###############
 
