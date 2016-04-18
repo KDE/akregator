@@ -24,7 +24,7 @@
 
 #include "aboutdata.h"
 
-#include "kdepim-version.h"
+#include "akregator-version.h"
 
 #include <KLocalizedString>
 

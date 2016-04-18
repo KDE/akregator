@@ -28,7 +28,7 @@
 #define AKREGATOR_MAINWIDGET_H
 
 #include "akregatorpart_export.h"
-#include "config-kdepim.h"
+#include "config-akregator.h"
 #ifdef QTWEBENGINE_SUPPORT_OPTION
 #include "articleviewer-ng/webengine/articleviewerwebenginewidgetng.h"
 #else

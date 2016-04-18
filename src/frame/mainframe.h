@@ -19,7 +19,7 @@
 #define MAINFRAME_H
 
 #include "frame.h"
-#include "config-kdepim.h"
+#include "config-akregator.h"
 namespace Akregator
 {
 class ArticleViewerWidget;

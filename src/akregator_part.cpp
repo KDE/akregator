@@ -25,7 +25,7 @@
 
 #include "akregator_part.h"
 #include "akregator_debug.h"
-#include "config-kdepim.h"
+#include "config-akregator.h"
 #include "messageviewer/messageviewersettings.h"
 #include "akregatorconfig.h"
 #include "aboutdata.h"
@@ -49,7 +49,7 @@
 #include "utils.h"
 #include "akregator_options.h"
 #include <Libkdepim/BroadcastStatus>
-#include "kdepim-version.h"
+#include "akregator-version.h"
 #include <kio/filecopyjob.h>
 #include <knotifyconfigwidget.h>
 #include <kaboutdata.h>

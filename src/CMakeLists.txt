@@ -1,3 +1,5 @@
+configure_file(config-akregator.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-akregator.h )
+configure_file(akregator-version.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/akregator-version.h @ONLY)
 include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/command/
     ${CMAKE_CURRENT_SOURCE_DIR}/formatter/
@@ -7,7 +9,6 @@ include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/actions/
     ${CMAKE_CURRENT_SOURCE_DIR}/frame/
     )
-
 
 add_subdirectory(about)
 add_subdirectory(icons)

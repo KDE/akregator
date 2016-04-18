@@ -27,7 +27,7 @@
 
 #include "article.h"
 #include "akregator_export.h"
-#include "config-kdepim.h"
+#include "config-akregator.h"
 #include <QWidget>
 
 #include <QPointer>

@@ -1,13 +1,13 @@
 
 include_directories(
-    ${CMAKE_SOURCE_DIR}/akregator/src
+    ${akregator_SOURCE_DIR}/src
     )
 
 ########### next target ###############
 
 set(kontact_akregator_PART_SRCS akregator_plugin.cpp)
 
-qt5_add_dbus_interfaces(kontact_akregator_PART_SRCS ${CMAKE_SOURCE_DIR}/akregator/src/org.kde.akregator.part.xml)
+qt5_add_dbus_interfaces(kontact_akregator_PART_SRCS ${akregator_SOURCE_DIR}/src/org.kde.akregator.part.xml)
 
 add_library(kontact_akregatorplugin MODULE ${kontact_akregator_PART_SRCS})
 

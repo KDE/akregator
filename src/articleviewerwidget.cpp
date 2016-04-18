@@ -39,7 +39,7 @@
 #include "utils.h"
 #include "openurlrequest.h"
 #include "akregator_debug.h"
-#include "kdepim-version.h"
+#include "akregator-version.h"
 
 #include <QAction>
 #include <kactioncollection.h>

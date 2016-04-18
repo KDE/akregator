@@ -23,7 +23,7 @@
 */
 
 #include "framemanager.h"
-#include "config-kdepim.h"
+#include "config-akregator.h"
 #include "akregatorconfig.h"
 #include "frame.h"
 #include "actionmanager.h"
