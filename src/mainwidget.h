@@ -29,11 +29,7 @@
 
 #include "akregatorpart_export.h"
 #include "config-akregator.h"
-#ifdef QTWEBENGINE_SUPPORT_OPTION
 #include "articleviewer-ng/webengine/articleviewerwebenginewidgetng.h"
-#else
-#include "articleviewer-ng/webkit/articleviewerwidgetng.h"
-#endif
 #include "feed.h"
 
 #include <QUrl>
@@ -52,11 +48,7 @@ class QSplitter;
 
 namespace Akregator
 {
-#ifdef QTWEBENGINE_SUPPORT_OPTION
 class WebEngineFrame;
-#else
-class WebViewFrame;
-#endif
 class AbstractSelectionController;
 class ActionManagerImpl;
 class ArticleListView;
@@ -259,19 +251,11 @@ protected Q_SLOTS:
 private Q_SLOTS:
     void slotShowStatusBarMessage(const QString &msg);
     void slotCurrentFrameChanged(int frameId);
-#ifdef QTWEBENGINE_SUPPORT_OPTION
     void slotArticleAction(Akregator::ArticleViewerWebEngine::ArticleAction type, const QString &articleId, const QString &feed);
-#else
-    void slotArticleAction(ArticleViewerNg::ArticleAction type, const QString &articleId, const QString &feed);
-#endif
 private:
     void sendArticle(const QByteArray &text, const QString &title, bool attach);
     void deleteExpiredArticles(const QSharedPointer<FeedList> &feedList);
-#ifdef QTWEBENGINE_SUPPORT_OPTION
     void connectFrame(Akregator::WebEngineFrame *frame);
-#else
-    void connectFrame(Akregator::WebViewFrame *frame);
-#endif
     void cleanUpDownloadFile();
 
     /** opens current article in new tab, background/foreground depends on settings TODO: use selected instead of current? */

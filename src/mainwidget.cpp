@@ -87,12 +87,8 @@
 #include <memory>
 #include <cassert>
 
-#ifdef QTWEBENGINE_SUPPORT_OPTION
 #include <webengine/webengineframe.h>
 #include "articleviewer-ng/webengine/articleviewerwebenginewidgetng.h"
-#else
-#include "webkit/webviewframe.h"
-#endif
 
 using namespace Akregator;
 
@@ -251,11 +247,7 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
     m_mainFrame = new MainFrame(this, m_part, m_mainTab);
     m_mainFrame->slotSetTitle(i18n("Articles"));
     m_mainFrame->setArticleViewer(m_articleViewer);
-#ifdef QTWEBENGINE_SUPPORT_OPTION
     connect(m_articleViewer->articleViewerWidgetNg()->articleViewerNg(), &ArticleViewerWebEngine::articleAction, this, &MainWidget::slotArticleAction);
-#else
-    connect(m_articleViewer->articleViewerWidgetNg()->articleViewerNg(), &ArticleViewerNg::articleAction, this, &MainWidget::slotArticleAction);
-#endif
     connect(m_tabWidget, &TabWidget::signalCopyInFrame, m_mainFrame, &MainFrame::slotCopyInFrame);
     connect(m_tabWidget, &TabWidget::signalPrintInFrame, m_mainFrame, &MainFrame::slotPrintInFrame);
     connect(m_tabWidget, &TabWidget::signalZoomChangedInFrame, m_mainFrame, &MainFrame::slotZoomChangeInFrame);
@@ -362,7 +354,7 @@ void MainWidget::saveSettings()
     Settings::setViewMode(m_viewMode);
     Settings::self()->save();
 }
-#ifdef QTWEBENGINE_SUPPORT_OPTION
+
 void MainWidget::connectFrame(Akregator::WebEngineFrame *frame)
 {
     connect(m_tabWidget, &TabWidget::signalCopyInFrame, frame, &WebEngineFrame::slotCopyInFrame);
@@ -382,34 +374,10 @@ void MainWidget::connectFrame(Akregator::WebEngineFrame *frame)
     connect(frame, &WebEngineFrame::signalIconChanged, m_tabWidget, &TabWidget::slotSetIcon);
 
 }
-#else
-void MainWidget::connectFrame(WebViewFrame *frame)
-{
-    connect(m_tabWidget, &TabWidget::signalCopyInFrame, frame, &WebViewFrame::slotCopyInFrame);
-    connect(m_tabWidget, &TabWidget::signalPrintInFrame, frame, &WebViewFrame::slotPrintInFrame);
-    connect(m_tabWidget, &TabWidget::signalZoomChangedInFrame, frame, &WebViewFrame::slotZoomChangeInFrame);
-    connect(m_tabWidget, &TabWidget::signalZoomTextOnlyInFrame, frame, &WebViewFrame::slotZoomTextOnlyInFrame);
-    connect(m_tabWidget, &TabWidget::signalPrintPreviewInFrame, frame, &WebViewFrame::slotPrintPreviewInFrame);
-    connect(m_tabWidget, &TabWidget::signalFindTextInFrame, frame, &WebViewFrame::slotFindTextInFrame);
-    connect(m_tabWidget, &TabWidget::signalTextToSpeechInFrame, frame, &WebViewFrame::slotTextToSpeechInFrame);
-    connect(m_tabWidget, &TabWidget::signalSaveLinkAsInFrame, frame, &WebViewFrame::slotSaveLinkAsInFrame);
-    connect(m_tabWidget, &TabWidget::signalCopyLinkAsInFrame, frame, &WebViewFrame::slotCopyLinkAsInFrame);
-    connect(m_tabWidget, &TabWidget::signalCopyImageLocation, frame, &WebViewFrame::slotCopyImageLocationInFrame);
-    connect(m_tabWidget, &TabWidget::signalSaveImageOnDisk, frame, &WebViewFrame::slotSaveImageOnDiskInFrame);
-    connect(m_tabWidget, &TabWidget::signalBlockImage, frame, &WebViewFrame::slotBlockImageInFrame);
-
-    connect(frame, &WebViewFrame::showStatusBarMessage, this, &MainWidget::slotShowStatusBarMessage);
-    connect(frame, &WebViewFrame::signalIconChanged, m_tabWidget, &TabWidget::slotSetIcon);
-}
-#endif
 
 void MainWidget::slotRequestNewFrame(int &frameId)
 {
-#ifdef QTWEBENGINE_SUPPORT_OPTION
     WebEngineFrame *frame = new WebEngineFrame(m_actionManager->actionCollection(), m_tabWidget);
-#else
-    WebViewFrame *frame = new WebViewFrame(m_actionManager->actionCollection(), m_tabWidget);
-#endif
     connectFrame(frame);
 
     Kernel::self()->frameManager()->slotAddFrame(frame);
@@ -1232,11 +1200,7 @@ void MainWidget::readProperties(const KConfigGroup &config)
     QStringList childList = config.readEntry(QStringLiteral("Children"),
                             QStringList());
     Q_FOREACH (const QString &framePrefix, childList) {
-#ifdef QTWEBENGINE_SUPPORT_OPTION
         WebEngineFrame *const frame = new WebEngineFrame(m_actionManager->actionCollection(), m_tabWidget);
-#else
-        WebViewFrame *const frame = new WebViewFrame(m_actionManager->actionCollection(), m_tabWidget);
-#endif
         frame->loadConfig(config, framePrefix + QLatin1Char('_'));
 
         connectFrame(frame);
@@ -1300,44 +1264,25 @@ void MainWidget::slotFocusQuickSearch()
 {
     m_searchBar->setFocusSearchLine();
 }
-#ifdef QTWEBENGINE_SUPPORT_OPTION
+
 void MainWidget::slotArticleAction(Akregator::ArticleViewerWebEngine::ArticleAction type, const QString &articleId, const QString &feed)
-#else
-void MainWidget::slotArticleAction(ArticleViewerNg::ArticleAction type, const QString &articleId, const QString &feed)
-#endif
 {
     switch (type) {
-#ifdef QTWEBENGINE_SUPPORT_OPTION
     case ArticleViewerWebEngine::DeleteAction: {
-#else
-    case ArticleViewerNg::DeleteAction: {
-#endif
         Akregator::ArticleDeleteJob *job = new Akregator::ArticleDeleteJob;
         const Akregator::ArticleId aid = { feed, articleId };
         job->appendArticleId(aid);
         job->start();
         break;
     }
-#ifdef QTWEBENGINE_SUPPORT_OPTION
     case ArticleViewerWebEngine::MarkAsRead:
-#else
-    case ArticleViewerNg::MarkAsRead:
-#endif
         ::setArticleStatus(feed, articleId, Akregator::Read);
         break;
-#ifdef QTWEBENGINE_SUPPORT_OPTION
     case ArticleViewerWebEngine::MarkAsUnRead:
-#else
-    case ArticleViewerNg::MarkAsUnRead:
-#endif
         ::setArticleStatus(feed, articleId, Akregator::Unread);
         break;
 
-#ifdef QTWEBENGINE_SUPPORT_OPTION
     case ArticleViewerWebEngine::MarkAsImportant: {
-#else
-    case ArticleViewerNg::MarkAsImportant: {
-#endif
         Akregator::ArticleModifyJob *job = new Akregator::ArticleModifyJob;
         const Akregator::Article article = m_feedList->findArticle(feed, articleId);
         const Akregator::ArticleId aid = { feed, articleId };
@@ -1345,34 +1290,18 @@ void MainWidget::slotArticleAction(ArticleViewerNg::ArticleAction type, const QS
         job->start();
         break;
     }
-#ifdef QTWEBENGINE_SUPPORT_OPTION
     case ArticleViewerWebEngine::SendUrlArticle: {
-#else
-    case ArticleViewerNg::SendUrlArticle: {
-#endif
-#ifdef QTWEBENGINE_SUPPORT_OPTION
         case ArticleViewerWebEngine::SendFileArticle:
-#else
-        case ArticleViewerNg::SendFileArticle:
-#endif
             const Article article =  m_feedList->findArticle(feed, articleId);
             const QByteArray text = article.link().toDisplayString().toLatin1();
             const QString title = Akregator::Utils::convertHtmlTags(article.title());
             if (text.isEmpty()) {
                 return;
             }
-#ifdef QTWEBENGINE_SUPPORT_OPTION
             sendArticle(text, title, (type == ArticleViewerWebEngine::SendFileArticle));
-#else
-            sendArticle(text, title, (type == ArticleViewerNg::SendFileArticle));
-#endif
             break;
         }
-#ifdef QTWEBENGINE_SUPPORT_OPTION
     case ArticleViewerWebEngine::OpenInBackgroundTab: {
-#else
-    case ArticleViewerNg::OpenInBackgroundTab: {
-#endif
         const Akregator::Article article = m_feedList->findArticle(feed, articleId);
         const QUrl url = article.link();
         if (url.isValid()) {
@@ -1383,20 +1312,12 @@ void MainWidget::slotArticleAction(ArticleViewerNg::ArticleAction type, const QS
         }
         break;
     }
-#ifdef QTWEBENGINE_SUPPORT_OPTION
     case ArticleViewerWebEngine::OpenInExternalBrowser: {
-#else
-    case ArticleViewerNg::OpenInExternalBrowser: {
-#endif
         const Akregator::Article article = m_feedList->findArticle(feed, articleId);
         slotOpenArticleInBrowser(article);
         break;
     }
-#ifdef QTWEBENGINE_SUPPORT_OPTION
     case ArticleViewerWebEngine::Share:
-#else
-    case ArticleViewerNg::Share:
-#endif
         const Akregator::Article article = m_feedList->findArticle(feed, articleId);
         const QUrl url = article.link();
         if (url.isValid()) {

@@ -37,11 +37,7 @@
 #include <kparts/event.h>
 #include <kparts/guiactivateevent.h>
 #include "akregator_debug.h"
-#ifdef QTWEBENGINE_SUPPORT_OPTION
 #include <webengine/webengineframe.h>
-#else
-#include "webkit/webviewframe.h"
-#endif
 #include <QStringList>
 #include <QApplication>
 #include <QDesktopServices>
@@ -299,11 +295,7 @@ void FrameManager::saveProperties(KConfigGroup &config)
     QHash<int, Frame *>::const_iterator i;
     for (i = m_frames.constBegin(); i != m_frames.constEnd(); ++i) {
         // No need to save the main frame
-#ifdef QTWEBENGINE_SUPPORT_OPTION
         if (i.value() && qobject_cast<WebEngineFrame *>(i.value())) {
-#else
-        if (i.value() && qobject_cast<WebViewFrame *>(i.value())) {
-#endif
 
             newPrefix = QLatin1Char('T') + QString::number(i.key());
             strlst.append(newPrefix);

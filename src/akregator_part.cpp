@@ -59,11 +59,7 @@
 #include <kmessagebox.h>
 
 #include <QTemporaryFile>
-#ifdef QTWEBENGINE_SUPPORT_OPTION
 #include <QWebEngineSettings>
-#else
-#include <QWebSettings>
-#endif
 #include <QSaveFile>
 #include <kservice.h>
 #include <kxmlguifactory.h>
@@ -695,11 +691,7 @@ void Part::showOptions()
         m_dialog->addModule(QStringLiteral("akregator_config_archive"));
         m_dialog->addModule(QStringLiteral("akregator_config_browser"));
         m_dialog->addModule(QStringLiteral("akregator_config_advanced"));
-#ifndef QTWEBENGINE_SUPPORT_OPTION
-        m_dialog->addModule(QStringLiteral("akregator_config_adblock"));
-#else
         m_dialog->addModule(QStringLiteral("akregator_config_webengineurlinterceptor"));
-#endif
     }
 
     m_dialog->show();
@@ -783,21 +775,12 @@ void Part::initFonts()
         }
         Settings::setMediumFontSize(medfs);
     }
-#ifdef QTWEBENGINE_SUPPORT_OPTION
     QWebEngineSettings::globalSettings()->setFontFamily(QWebEngineSettings::StandardFont, Settings::standardFont());
     QWebEngineSettings::globalSettings()->setFontFamily(QWebEngineSettings::FixedFont, Settings::fixedFont());
     QWebEngineSettings::globalSettings()->setFontFamily(QWebEngineSettings::SerifFont, Settings::serifFont());
     QWebEngineSettings::globalSettings()->setFontFamily(QWebEngineSettings::SansSerifFont, Settings::sansSerifFont());
     QWebEngineSettings::globalSettings()->setFontSize(QWebEngineSettings::MinimumFontSize, Settings::minimumFontSize());
     QWebEngineSettings::globalSettings()->setFontSize(QWebEngineSettings::DefaultFontSize, Settings::mediumFontSize());
-#else
-    QWebSettings::globalSettings()->setFontFamily(QWebSettings::StandardFont, Settings::standardFont());
-    QWebSettings::globalSettings()->setFontFamily(QWebSettings::FixedFont, Settings::fixedFont());
-    QWebSettings::globalSettings()->setFontFamily(QWebSettings::SerifFont, Settings::serifFont());
-    QWebSettings::globalSettings()->setFontFamily(QWebSettings::SansSerifFont, Settings::sansSerifFont());
-    QWebSettings::globalSettings()->setFontSize(QWebSettings::MinimumFontSize, Settings::minimumFontSize());
-    QWebSettings::globalSettings()->setFontSize(QWebSettings::DefaultFontSize, Settings::mediumFontSize());
-#endif
 }
 
 bool Part::handleCommandLine(const QStringList &args)
