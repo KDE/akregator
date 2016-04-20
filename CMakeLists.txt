@@ -82,9 +82,8 @@ if(${CMAKE_SOURCE_DIR} STREQUAL ${akregator_SOURCE_DIR})
     endif()
 
 
-    include_directories(${akregator_SOURCE_DIR} ${akregator_BINARY_DIR})
 endif()
-
+include_directories(${akregator_SOURCE_DIR} ${akregator_BINARY_DIR})
 include(CheckTypeSize)
 check_type_size("long" SIZEOF_LONG)
 configure_file(config-akregator.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-akregator.h)
