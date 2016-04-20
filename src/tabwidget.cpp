@@ -262,14 +262,6 @@ void TabWidget::slotZoomChanged(qreal value)
     Q_EMIT signalZoomChangedInFrame(d->currentFrame()->id(), value);
 }
 
-void TabWidget::slotZoomTextOnlyChanged(bool zoomTextOnly)
-{
-    if (!d->currentFrame()) {
-        return;
-    }
-    Q_EMIT signalZoomTextOnlyInFrame(d->currentFrame()->id(), zoomTextOnly);
-}
-
 void TabWidget::slotTabChanged(int index)
 {
     Frame *frame = d->frames.value(widget(index));

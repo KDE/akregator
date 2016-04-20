@@ -45,7 +45,6 @@ set(akregator_articleviewer_ng_webengine_SRCS
     articleviewer-ng/webengine/articlehtmlwebenginewriter.cpp
     articleviewer-ng/webengine/articleviewerwebenginewidgetng.cpp
     )
-set(akregator_articleviewer_ng_webengine_libs Qt5::WebEngine Qt5::WebEngineWidgets KF5::WebEngineViewer)
 
 set(akregator_job_SRCS
     job/downloadarticlejob.cpp
@@ -60,10 +59,10 @@ set(akregatorprivate_formatter_SRCS
     )
 
 
-    set(akregatorprivate_frame_webengine_SRCS
-        frame/webengine/webengineframe.cpp
-        frame/webengine/akrwebengineviewer.cpp
-        )
+set(akregatorprivate_frame_webengine_SRCS
+    frame/webengine/webengineframe.cpp
+    frame/webengine/akrwebengineviewer.cpp
+    )
 
 
 set(akregatorprivate_frame_SRCS
@@ -113,7 +112,6 @@ generate_export_header(akregatorprivate BASE_NAME akregator)
 
 target_link_libraries(akregatorprivate
     PRIVATE
-    ${akregator_articleviewer_ng_webengine_libs}
     KF5::Parts
     KF5::Notifications
     KF5::Libkdepim
@@ -128,6 +126,9 @@ target_link_libraries(akregatorprivate
     KF5::KIOGui
     KF5::MessageViewer
     Qt5::PrintSupport
+    Qt5::WebEngine
+    Qt5::WebEngineWidgets
+    KF5::WebEngineViewer
     )
 
 target_include_directories(akregatorprivate PUBLIC "$<BUILD_INTERFACE:${akregator_SOURCE_DIR}/src;${akregator_BINARY_DIR}/src>")
@@ -220,7 +221,9 @@ target_link_libraries(akregatorpart
     KF5::IconThemes
     KF5::Parts
     KF5::Notifications
-    ${akregator_articleviewer_ng_webengine_libs}
+    Qt5::WebEngine
+    Qt5::WebEngineWidgets
+    KF5::WebEngineViewer
     )
 
 install(TARGETS akregatorpart DESTINATION ${KDE_INSTALL_PLUGINDIR})

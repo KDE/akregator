@@ -104,11 +104,6 @@ void ArticleViewerWidget::slotZoomChangeInFrame(qreal value)
     m_articleViewerWidgetNg->articleViewerNg()->setZoomFactor(value);
 }
 
-void ArticleViewerWidget::slotZoomTextOnlyInFrame(bool textOnlyInFrame)
-{
-    Q_UNUSED(textOnlyInFrame)
-}
-
 void ArticleViewerWidget::slotCopy()
 {
     m_articleViewerWidgetNg->articleViewerNg()->slotCopy();
@@ -336,11 +331,6 @@ void ArticleViewerWidget::showNode(TreeNode *node)
 qreal ArticleViewerWidget::zoomFactor() const
 {
     return m_articleViewerWidgetNg->articleViewerNg()->zoomFactor();
-}
-
-bool ArticleViewerWidget::zoomTextOnlyInFrame() const
-{
-    return false;
 }
 
 void ArticleViewerWidget::slotArticlesListed(KJob *job)

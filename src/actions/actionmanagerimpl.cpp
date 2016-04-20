@@ -582,7 +582,6 @@ void ActionManagerImpl::initTabWidget(TabWidget *tabWidget)
 
     d->zoomActionMenu = new MessageViewer::ZoomActionMenu(this);
     connect(d->zoomActionMenu, &MessageViewer::ZoomActionMenu::zoomChanged, d->tabWidget, &TabWidget::slotZoomChanged);
-    connect(d->zoomActionMenu, &MessageViewer::ZoomActionMenu::zoomTextOnlyChanged, d->tabWidget, &TabWidget::slotZoomTextOnlyChanged);
 
     d->zoomActionMenu->setActionCollection(coll);
     d->zoomActionMenu->createZoomActions();

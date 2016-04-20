@@ -155,13 +155,6 @@ void WebEngineFrame::slotZoomChangeInFrame(int frameId, qreal value)
     mArticleViewerWidgetNg->articleViewerNg()->setZoomFactor(value);
 }
 
-void WebEngineFrame::slotZoomTextOnlyInFrame(int frameId, bool textOnlyInFrame)
-{
-    //not implemented
-    Q_UNUSED(frameId);
-    Q_UNUSED(textOnlyInFrame);
-}
-
 void WebEngineFrame::slotReload()
 {
     mArticleViewerWidgetNg->articleViewerNg()->reload();
@@ -175,11 +168,6 @@ void WebEngineFrame::slotStop()
 qreal WebEngineFrame::zoomFactor() const
 {
     return mArticleViewerWidgetNg->articleViewerNg()->zoomFactor();
-}
-
-bool WebEngineFrame::zoomTextOnlyInFrame() const
-{
-    return false;
 }
 
 void WebEngineFrame::slotSaveLinkAsInFrame(int frameId)

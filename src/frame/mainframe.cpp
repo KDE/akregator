@@ -58,14 +58,6 @@ void MainFrame::slotZoomChangeInFrame(int frameId, qreal value)
     mArticleViewer->slotZoomChangeInFrame(value);
 }
 
-void MainFrame::slotZoomTextOnlyInFrame(int frameId, bool textOnlyInFrame)
-{
-    if (frameId != 0) {
-        return;
-    }
-    mArticleViewer->slotZoomTextOnlyInFrame(textOnlyInFrame);
-}
-
 void MainFrame::slotCopyInFrame(int frameId)
 {
     if (frameId != 0) {
@@ -109,11 +101,6 @@ void MainFrame::slotTextToSpeechInFrame(int frameId)
 qreal MainFrame::zoomFactor() const
 {
     return mArticleViewer->zoomFactor();
-}
-
-bool MainFrame::zoomTextOnlyInFrame() const
-{
-    return mArticleViewer->zoomTextOnlyInFrame();
 }
 
 void MainFrame::slotSaveLinkAsInFrame(int frameId)

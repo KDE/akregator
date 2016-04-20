@@ -61,7 +61,6 @@ public Q_SLOTS:
     void slotDetachTab(int index);
     void slotCopyLinkAddress();
     void slotCloseTab();
-    void slotZoomTextOnlyChanged(bool zoomTextOnly);
     void slotPrint();
     void slotPrintPreview();
     void slotFindTextInHtml();
@@ -75,7 +74,6 @@ Q_SIGNALS:
     void signalRemoveFrameRequest(int);
     void signalOpenUrlRequest(Akregator::OpenUrlRequest &);
     void signalZoomChangedInFrame(int currentFrame, qreal value);
-    void signalZoomTextOnlyInFrame(int currentFrame, bool zoomTextOnly);
     void signalPrintInFrame(int currentFrame);
     void signalCopyInFrame(int currentFrame);
     void signalPrintPreviewInFrame(int currentFrame);

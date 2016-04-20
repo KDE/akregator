@@ -45,13 +45,11 @@ public:
     void setArticleViewer(Akregator::ArticleViewerWidget *articleViewer);
 
     qreal zoomFactor() const Q_DECL_OVERRIDE;
-    bool zoomTextOnlyInFrame() const Q_DECL_OVERRIDE;
 
 public Q_SLOTS:
     void slotCopyLinkAsInFrame(int frameId);
     void slotSaveLinkAsInFrame(int frameId);
     void slotZoomChangeInFrame(int frameId, qreal value);
-    void slotZoomTextOnlyInFrame(int frameId, bool textOnlyInFrame);
     void slotCopyInFrame(int frameId);
     void slotPrintInFrame(int frameId);
     void slotPrintPreviewInFrame(int frameId);

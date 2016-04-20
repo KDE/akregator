@@ -39,14 +39,12 @@ public:
     void saveConfig(KConfigGroup &, const QString &) Q_DECL_OVERRIDE;
 
     qreal zoomFactor() const Q_DECL_OVERRIDE;
-    bool zoomTextOnlyInFrame() const Q_DECL_OVERRIDE;
 
 public Q_SLOTS:
     void slotReload() Q_DECL_OVERRIDE;
     void slotStop() Q_DECL_OVERRIDE;
 
     void slotZoomChangeInFrame(int frameId, qreal value);
-    void slotZoomTextOnlyInFrame(int frameId, bool textOnlyInFrame);
     void slotCopyInFrame(int frameId);
     void slotPrintInFrame(int frameId);
     void slotPrintPreviewInFrame(int frameId);

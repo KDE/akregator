@@ -77,12 +77,10 @@ public:
     QSize sizeHint() const Q_DECL_OVERRIDE;
 
     qreal zoomFactor() const;
-    bool zoomTextOnlyInFrame() const;
 
     Akregator::ArticleViewerWebEngineWidgetNg *articleViewerWidgetNg() const;
 
 public Q_SLOTS:
-    void slotZoomTextOnlyInFrame(bool textOnlyInFrame);
     void slotPrint();
 
     /** Set filters which will be used if the viewer is in combined view mode

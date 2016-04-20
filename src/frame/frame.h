@@ -63,7 +63,6 @@ public:
     virtual KParts::ReadOnlyPart *part() const = 0;
 
     virtual qreal zoomFactor() const = 0;
-    virtual bool zoomTextOnlyInFrame() const = 0;
     /**
     * Returns whether the frame can be removed from
     * Akregator (via detach or close tab etc.)  Usually
