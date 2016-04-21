@@ -27,8 +27,8 @@
   build against older kdelibs releases.
 */
 
-#ifndef KDEPIM_VERSION_H
-#define KDEPIM_VERSION_H
+#ifndef AKREGATOR_VERSION_H
+#define AKREGATOR_VERSION_H
 
 
 #define KDEPIM_VERSION "@KDEPIM_VERSION@ (@WEBENGINE_TYPE@)"
