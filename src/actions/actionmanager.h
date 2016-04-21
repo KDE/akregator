@@ -62,9 +62,6 @@ public:
 private:
 
     static ActionManager *m_self;
-
-    class ActionManagerPrivate;
-    ActionManagerPrivate *d;
 };
 
 } // namespace Akregator

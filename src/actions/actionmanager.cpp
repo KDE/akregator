@@ -27,9 +27,6 @@
 namespace Akregator
 {
 
-class Q_DECL_HIDDEN ActionManager::ActionManagerPrivate
-{};
-
 ActionManager *ActionManager::m_self = 0;
 
 ActionManager *ActionManager::getInstance()
@@ -42,14 +39,12 @@ void ActionManager::setInstance(ActionManager *manager)
     m_self = manager;
 }
 
-ActionManager::ActionManager(QObject *parent) : QObject(parent), d(new ActionManagerPrivate)
+ActionManager::ActionManager(QObject *parent) : QObject(parent)
 {
 }
 
 ActionManager::~ActionManager()
 {
-    delete d;
-    d = 0;
 }
 
 } // namespace Akregator
