@@ -72,6 +72,7 @@ if(${CMAKE_SOURCE_DIR} STREQUAL ${akregator_SOURCE_DIR})
     find_package(Qt5 ${QT_REQUIRED_VERSION} CONFIG REQUIRED WebEngine WebEngineWidgets)
     find_package(KF5WebEngineViewer ${MESSAGELIB_LIB_VERSION_LIB} CONFIG REQUIRED)
     set(WEBENGINE_TYPE "QtWebEngine")
+    add_definitions(-DQT_USE_QSTRINGBUILDER)
 
 
 endif()

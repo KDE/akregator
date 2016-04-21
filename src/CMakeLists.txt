@@ -58,16 +58,9 @@ set(akregatorprivate_formatter_SRCS
     formatter/articlegrantleeobject.cpp
     )
 
-
-set(akregatorprivate_frame_webengine_SRCS
+set(akregatorprivate_frame_SRCS
     frame/webengine/webengineframe.cpp
     frame/webengine/akrwebengineviewer.cpp
-    )
-
-
-set(akregatorprivate_frame_SRCS
-    ${akregatorprivate_frame_webkit_SRCS}
-    ${akregatorprivate_frame_webengine_SRCS}
     frame/frame.cpp
     frame/mainframe.cpp
     frame/framemanager.cpp
