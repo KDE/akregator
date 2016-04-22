@@ -17,8 +17,6 @@
 
 #include "articleviewerwebenginewidgetng.h"
 
-#include <MessageViewer/FindBarWebView>
-
 #include <KActionCollection>
 #include <KLocalizedString>
 #include <QVBoxLayout>

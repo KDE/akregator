@@ -23,7 +23,6 @@
 #include "webengine/urlhandlerwebenginemanager.h"
 
 #include <KPIMTextEdit/TextToSpeech>
-#include <MessageViewer/AdBlockBlockableItemsDialog>
 
 #include <KIO/KUriFilterSearchProviderActions>
 #include <KActionCollection>
