@@ -46,6 +46,12 @@ GrantleeViewFormatter::~GrantleeViewFormatter()
 
 }
 
+void GrantleeViewFormatter::addStandardObject(QVariantHash &feedObject)
+{
+    feedObject.insert(QStringLiteral("absoluteThemePath"), mGrantleeThemePath);
+    feedObject.insert(QStringLiteral("applicationDir"), mDirectionString);
+}
+
 QString GrantleeViewFormatter::formatFeed(Akregator::Feed *feed)
 {
     setDefaultHtmlMainFile(QStringLiteral("defaultnormalvisitfeed.html"));
@@ -53,9 +59,8 @@ QString GrantleeViewFormatter::formatFeed(Akregator::Feed *feed)
         return errorMessage();
     }
     QVariantHash feedObject;
-    feedObject.insert(QStringLiteral("applicationDir"), mDirectionString);
+    addStandardObject(feedObject);
     feedObject.insert(QStringLiteral("strippedTitle"), Utils::stripTags(feed->title()));
-    feedObject.insert(QStringLiteral("absoluteThemePath"), mGrantleeThemePath);
     QString numberOfArticle;
     if (feed->unread() == 0) {
         numberOfArticle = i18n(" (no unread articles)");
@@ -104,9 +109,9 @@ QString GrantleeViewFormatter::formatFolder(Akregator::Folder *node)
         return errorMessage();
     }
     QVariantHash folderObject;
-    folderObject.insert(QStringLiteral("applicationDir"), mDirectionString);
+    addStandardObject(folderObject);
+
     folderObject.insert(QStringLiteral("nodeTitle"), node->title());
-    folderObject.insert(QStringLiteral("absoluteThemePath"), mGrantleeThemePath);
     QString numberOfArticle;
     if (node->unread() == 0) {
         numberOfArticle = i18n(" (no unread articles)");
@@ -136,14 +141,13 @@ QString GrantleeViewFormatter::formatArticles(const QVector<Article> &article, A
     }
     articleObject.insert(QStringLiteral("articles"), articlesList);
 
-    articleObject.insert(QStringLiteral("applicationDir"), mDirectionString);
+    addStandardObject(articleObject);
 
     articleObject.insert(QStringLiteral("dateI18n"), i18n("Date"));
     articleObject.insert(QStringLiteral("commentI18n"), i18n("Comment"));
     articleObject.insert(QStringLiteral("completeStoryI18n"), i18n("Complete Story"));
     articleObject.insert(QStringLiteral("authorI18n"), i18n("Author"));
     articleObject.insert(QStringLiteral("enclosureI18n"), i18n("Enclosure"));
-    articleObject.insert(QStringLiteral("absoluteThemePath"), mGrantleeThemePath);
 
     return render(articleObject);
 }
