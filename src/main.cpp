@@ -82,9 +82,7 @@ int main(int argc, char **argv)
     KLocalizedString::setApplicationDomain("akregator");
 
     app.setAttribute(Qt::AA_UseHighDpiPixmaps, true);
-#if QT_VERSION >= 0x050600
     app.setAttribute(Qt::AA_EnableHighDpiScaling);
-#endif
     Akregator::AboutData about;
     app.setAboutData(about);
 
