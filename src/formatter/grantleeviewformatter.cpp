@@ -18,6 +18,7 @@
 #include "grantleeviewformatter.h"
 #include "articlegrantleeobject.h"
 #include "utils.h"
+#include "akregatorconfig.h"
 #include <KLocalizedString>
 
 #include <grantlee/engine.h>
@@ -46,10 +47,12 @@ GrantleeViewFormatter::~GrantleeViewFormatter()
 
 }
 
-void GrantleeViewFormatter::addStandardObject(QVariantHash &feedObject)
+void GrantleeViewFormatter::addStandardObject(QVariantHash &grantleeObject)
 {
-    feedObject.insert(QStringLiteral("absoluteThemePath"), mGrantleeThemePath);
-    feedObject.insert(QStringLiteral("applicationDir"), mDirectionString);
+    grantleeObject.insert(QStringLiteral("absoluteThemePath"), mGrantleeThemePath);
+    grantleeObject.insert(QStringLiteral("applicationDir"), mDirectionString);
+    grantleeObject.insert(QStringLiteral("standardFamilyFont"), Settings::standardFont());
+    //TODO grantleeObject.insert(QStringLiteral("mediumFontSize"), Settings::standardFont());
 }
 
 QString GrantleeViewFormatter::formatFeed(Akregator::Feed *feed)

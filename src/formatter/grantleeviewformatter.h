@@ -36,7 +36,7 @@ public:
     QString formatFolder(Akregator::Folder *node);
     QString formatFeed(Akregator::Feed *feed);
 private:
-    void addStandardObject(QVariantHash &feedObject);
+    void addStandardObject(QVariantHash &grantleeObject);
     QUrl mImageDir;
     QString mHtmlArticleFileName;
     QString mDirectionString;
