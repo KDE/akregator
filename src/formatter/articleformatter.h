@@ -29,8 +29,6 @@
 #include <enclosure.h>
 #include <QVector>
 
-class QPaintDevice;
-
 namespace Akregator
 {
 
@@ -46,20 +44,15 @@ public:
         ShowIcon
     };
 
-    explicit ArticleFormatter(QPaintDevice *device = Q_NULLPTR);
+    explicit ArticleFormatter();
 
     virtual ~ArticleFormatter();
-
-    void setPaintDevice(QPaintDevice *device);
 
     virtual QString formatArticles(const QVector<Article> &article, IconOption icon) const = 0;
 
     virtual QString formatSummary(TreeNode *node) const = 0;
 
     static QString formatEnclosure(const Syndication::Enclosure &enclosure);
-
-protected:
-    int pointsToPixel(int pointSize) const;
 
 private:
     class Private;
