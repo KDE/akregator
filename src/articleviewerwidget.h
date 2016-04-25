@@ -126,8 +126,6 @@ Q_SIGNALS:
     void selectionChanged();
 
 protected: // methods
-    int pointsToPixel(int points) const;
-
     bool openUrl(const QUrl &url);
 
 protected Q_SLOTS:

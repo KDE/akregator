@@ -110,11 +110,6 @@ ArticleViewerWidget::~ArticleViewerWidget()
 {
 }
 
-int ArticleViewerWidget::pointsToPixel(int pointSize) const
-{
-    return (pointSize * m_articleViewerWidgetNg->articleViewerNg()->logicalDpiY() + 36) / 72;
-}
-
 void ArticleViewerWidget::slotZoomChangeInFrame(qreal value)
 {
     m_articleViewerWidgetNg->articleViewerNg()->setZoomFactor(value);
