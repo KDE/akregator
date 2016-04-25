@@ -33,11 +33,12 @@
 
 using namespace Akregator;
 
-GrantleeViewFormatter::GrantleeViewFormatter(const QString &htmlFileName, const QString &themePath, const QUrl &imageDir, QObject *parent)
+GrantleeViewFormatter::GrantleeViewFormatter(const QString &htmlFileName, const QString &themePath, const QUrl &imageDir, int deviceDpiY, QObject *parent)
     : PimCommon::GenericGrantleeFormatter(htmlFileName, themePath, parent),
       mImageDir(imageDir),
       mHtmlArticleFileName(htmlFileName),
-      mGrantleeThemePath(QStringLiteral("file://") + themePath + QLatin1Char('/'))
+      mGrantleeThemePath(QStringLiteral("file://") + themePath + QLatin1Char('/')),
+      mDeviceDpiY(deviceDpiY)
 {
     mDirectionString = QApplication::isRightToLeft() ? QStringLiteral("rtl") : QStringLiteral("ltr");
 }
@@ -47,12 +48,18 @@ GrantleeViewFormatter::~GrantleeViewFormatter()
 
 }
 
+int GrantleeViewFormatter::pointsToPixel(int pointSize) const
+{
+    return (pointSize * mDeviceDpiY + 36) / 72;
+}
+
+
 void GrantleeViewFormatter::addStandardObject(QVariantHash &grantleeObject)
 {
     grantleeObject.insert(QStringLiteral("absoluteThemePath"), mGrantleeThemePath);
     grantleeObject.insert(QStringLiteral("applicationDir"), mDirectionString);
     grantleeObject.insert(QStringLiteral("standardFamilyFont"), Settings::standardFont());
-    //TODO grantleeObject.insert(QStringLiteral("mediumFontSize"), Settings::standardFont());
+    grantleeObject.insert(QStringLiteral("mediumFontSize"), pointsToPixel(Settings::mediumFontSize()));
 }
 
 QString GrantleeViewFormatter::formatFeed(Akregator::Feed *feed)

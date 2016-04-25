@@ -1,6 +1,6 @@
 @media screen, print {
 body {
-   font-family: Serif ! important;
+   font-family: {{ standardFamilyFont }} ! important;
    font-size: 16px ! important;
    color: #31363b ! important;
    background: #fcfcfc ! important;

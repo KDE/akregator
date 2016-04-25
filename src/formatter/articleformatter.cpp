@@ -34,9 +34,7 @@
 #include <KLocalizedString>
 
 #include <QApplication>
-#include <QPaintDevice>
 #include <QPalette>
-#include <QString>
 #include <KFormat>
 
 using namespace Syndication;
@@ -45,34 +43,22 @@ using namespace Akregator;
 class ArticleFormatter::Private
 {
 public:
-    explicit Private(QPaintDevice *device_);
-    QPaintDevice *device;
+    explicit Private();
     class SummaryVisitor;
 };
 
-ArticleFormatter::Private::Private(QPaintDevice *device_)
-    : device(device_)
+ArticleFormatter::Private::Private()
 {
 }
 
-ArticleFormatter::ArticleFormatter(QPaintDevice *device)
-    : d(new Private(device))
+ArticleFormatter::ArticleFormatter()
+    : d(new Private())
 {
 }
 
 ArticleFormatter::~ArticleFormatter()
 {
     delete d;
-}
-
-void ArticleFormatter::setPaintDevice(QPaintDevice *device)
-{
-    d->device = device;
-}
-
-int ArticleFormatter::pointsToPixel(int pointSize) const
-{
-    return (pointSize * d->device->logicalDpiY() + 36) / 72;
 }
 
 QString ArticleFormatter::formatEnclosure(const Enclosure &enclosure)

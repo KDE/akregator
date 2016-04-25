@@ -71,14 +71,14 @@ private:
 };
 
 DefaultNormalViewFormatter::DefaultNormalViewFormatter(const QString &grantleeDirectory, const QUrl &imageDir, QPaintDevice *device)
-    : ArticleFormatter(device),
+    : ArticleFormatter(),
       m_imageDir(imageDir),
       m_summaryVisitor(new SummaryVisitor(this))
 {
     m_DefaultThemePath = QStandardPaths::locate(QStandardPaths::GenericDataLocation,
                          QStringLiteral("akregator/grantleetheme/%1/").arg(grantleeDirectory),
                          QStandardPaths::LocateDirectory);
-    mGrantleeViewFormatter = new GrantleeViewFormatter(QStringLiteral("normalview.html"), m_DefaultThemePath, m_imageDir);
+    mGrantleeViewFormatter = new GrantleeViewFormatter(QStringLiteral("normalview.html"), m_DefaultThemePath, m_imageDir, device->logicalDpiY());
 }
 
 DefaultNormalViewFormatter::~DefaultNormalViewFormatter()
