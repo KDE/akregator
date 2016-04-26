@@ -46,7 +46,6 @@
 #include <QClipboard>
 #include <QMenu>
 #include <viewerplugintoolmanager.h>
-#include <MessageViewer/ScamExpandUrlJob>
 #include <WebEngineViewer/WebHitTestResult>
 #include <WebEngineViewer/WebHitTest>
 
@@ -441,13 +440,4 @@ void ArticleViewerWebEngine::slotActivatePlugin(MessageViewer::ViewerPluginInter
     }
     interface->setUrl(mCurrentUrl);
     interface->execute();
-}
-
-void Akregator::ArticleViewerWebEngine::slotExpandUrl()
-{
-    if (mCurrentUrl.isEmpty()) {
-        return;
-    }
-    MessageViewer::ScamExpandUrlJob *job = new MessageViewer::ScamExpandUrlJob(this);
-    job->expandedUrl(mCurrentUrl);
 }
