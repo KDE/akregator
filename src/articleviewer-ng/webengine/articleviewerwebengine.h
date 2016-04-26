@@ -130,6 +130,7 @@ protected:
     ArticleViewerWebEnginePage *mPageEngine;
 
     void contextMenuEvent(QContextMenuEvent *e) Q_DECL_OVERRIDE;
+    QWebEngineView *createWindow(QWebEnginePage::WebWindowType type) Q_DECL_OVERRIDE;
     QList<QAction *> viewerPluginActionList(MessageViewer::ViewerPluginInterface::SpecificFeatureTypes features);
     WebEngineViewer::NetworkAccessManagerWebEngine *mNetworkAccessManager;
 private:

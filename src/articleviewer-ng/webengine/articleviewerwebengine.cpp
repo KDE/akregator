@@ -88,6 +88,12 @@ ArticleViewerWebEngine::~ArticleViewerWebEngine()
 
 }
 
+QWebEngineView *ArticleViewerWebEngine::createWindow(QWebEnginePage::WebWindowType type)
+{
+    qDebug()<<" QWebEngineView *ArticleViewerWebEngine::createWindow(QWebEnginePage::WebWindowType type) not implemented yet" << type;
+    return Q_NULLPTR;
+}
+
 QVariantHash ArticleViewerWebEngine::introductionData() const
 {
     QVariantHash data;
