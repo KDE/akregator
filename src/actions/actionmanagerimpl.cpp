@@ -37,7 +37,7 @@
 #include "treenode.h"
 #include "treenodevisitor.h"
 
-#include <MessageViewer/ZoomActionMenu>
+#include <WebEngineViewer/ZoomActionMenu>
 
 #include <kactionmenu.h>
 #include <ktoolbarpopupaction.h>
@@ -122,7 +122,7 @@ public:
     KActionCollection *actionCollection;
     TabWidget *tabWidget;
     PimCommon::ShareServiceUrlManager *shareServiceManager;
-    MessageViewer::ZoomActionMenu *zoomActionMenu;
+    WebEngineViewer::ZoomActionMenu *zoomActionMenu;
     QAction *mQuickSearchAction;
 };
 
@@ -580,8 +580,8 @@ void ActionManagerImpl::initTabWidget(TabWidget *tabWidget)
     connect(action, &QAction::triggered, d->tabWidget, &TabWidget::slotCloseTab);
     coll->setDefaultShortcuts(action, KStandardShortcut::close());
 
-    d->zoomActionMenu = new MessageViewer::ZoomActionMenu(this);
-    connect(d->zoomActionMenu, &MessageViewer::ZoomActionMenu::zoomChanged, d->tabWidget, &TabWidget::slotZoomChanged);
+    d->zoomActionMenu = new WebEngineViewer::ZoomActionMenu(this);
+    connect(d->zoomActionMenu, &WebEngineViewer::ZoomActionMenu::zoomChanged, d->tabWidget, &TabWidget::slotZoomChanged);
 
     d->zoomActionMenu->setActionCollection(coll);
     d->zoomActionMenu->createZoomActions();
@@ -655,7 +655,7 @@ void ActionManagerImpl::setArticleActionsEnabled(bool enabled)
 #undef setActionEnabled
 }
 
-MessageViewer::ZoomActionMenu *ActionManagerImpl::zoomActionMenu() const
+WebEngineViewer::ZoomActionMenu *ActionManagerImpl::zoomActionMenu() const
 {
     return d->zoomActionMenu;
 }

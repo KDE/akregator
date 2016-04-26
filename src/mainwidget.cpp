@@ -62,7 +62,7 @@
 #include "treenodevisitor.h"
 #include "types.h"
 #include "mainframe.h"
-#include <MessageViewer/ZoomActionMenu>
+#include <WebEngineViewer/ZoomActionMenu>
 #include "job/downloadarticlejob.h"
 
 #include <QAction>

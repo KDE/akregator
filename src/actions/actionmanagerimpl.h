@@ -32,7 +32,7 @@ class KActionCollection;
 
 class QWidget;
 
-namespace MessageViewer
+namespace WebEngineViewer
 {
 class ZoomActionMenu;
 }
@@ -71,7 +71,7 @@ public:
     void setArticleActionsEnabled(bool enabled) Q_DECL_OVERRIDE;
     void setTrayIcon(TrayIcon *trayIcon);
     KActionCollection *actionCollection() const;
-    MessageViewer::ZoomActionMenu *zoomActionMenu() const;
+    WebEngineViewer::ZoomActionMenu *zoomActionMenu() const;
     QString quickSearchLineText() const;
 
 public Q_SLOTS:
