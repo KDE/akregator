@@ -91,6 +91,21 @@ ArticleViewerWebEngine::~ArticleViewerWebEngine()
 QWebEngineView *ArticleViewerWebEngine::createWindow(QWebEnginePage::WebWindowType type)
 {
     qDebug()<<" QWebEngineView *ArticleViewerWebEngine::createWindow(QWebEnginePage::WebWindowType type) not implemented yet" << type;
+    switch (type) {
+    case QWebEnginePage::WebBrowserWindow: {
+        if (!Settings::newWindowInTab()) {
+            WebEngineViewer::WebEngineView *view = new WebEngineViewer::WebEngineView();
+            view->setAttribute(Qt::WA_DeleteOnClose);
+            view->show();
+            return view;
+        }
+    }
+    case QWebEnginePage::WebDialog:
+        //TODO add in tab
+    case QWebEnginePage::WebBrowserTab:
+    default:
+        break;
+    }
     return Q_NULLPTR;
 }
 
