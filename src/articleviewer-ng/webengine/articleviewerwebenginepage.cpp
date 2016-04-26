@@ -37,6 +37,7 @@ bool ArticleViewerWebEnginePage::acceptNavigationRequest(const QUrl &url, Naviga
     Q_UNUSED(type);
     if (isMainFrame && type == NavigationTypeLinkClicked) {
         Q_EMIT urlClicked(url);
+        return false;
     }
     return true;
 }
