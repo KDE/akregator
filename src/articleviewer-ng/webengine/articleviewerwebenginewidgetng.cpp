@@ -27,7 +27,7 @@
 
 #include <kpimtextedit/slidecontainer.h>
 
-#include <MessageViewer/FindBarWebEngineView>
+#include <WebEngineViewer/FindBarWebEngineView>
 
 using namespace Akregator;
 
@@ -65,9 +65,9 @@ void ArticleViewerWebEngineWidgetNg::initializeLayout(KActionCollection *ac)
 
     mSliderContainer = new KPIMTextEdit::SlideContainer(this);
     mSliderContainer->setObjectName(QStringLiteral("slidercontainer"));
-    mFindBarWebView = new MessageViewer::FindBarWebEngineView(mArticleViewerNg, this);
+    mFindBarWebView = new WebEngineViewer::FindBarWebEngineView(mArticleViewerNg, this);
     mFindBarWebView->setObjectName(QStringLiteral("findbarwebview"));
-    connect(mFindBarWebView, &MessageViewer::FindBarBase::hideFindBar, mSliderContainer, &KPIMTextEdit::SlideContainer::slideOut);
+    connect(mFindBarWebView, &WebEngineViewer::FindBarWebEngineView::hideFindBar, mSliderContainer, &KPIMTextEdit::SlideContainer::slideOut);
     mSliderContainer->setContent(mFindBarWebView);
     layout->addWidget(mSliderContainer);
     connect(articleViewerNg(), &ArticleViewerWebEngine::textToSpeech, this, &ArticleViewerWebEngineWidgetNg::slotSpeakText);

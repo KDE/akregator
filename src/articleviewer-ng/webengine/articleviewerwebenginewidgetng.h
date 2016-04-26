@@ -24,7 +24,6 @@
 class KActionCollection;
 namespace MessageViewer
 {
-class FindBarWebEngineView;
 class ViewerPluginToolManager;
 class ViewerPluginInterface;
 }
@@ -33,6 +32,11 @@ namespace KPIMTextEdit
 {
 class SlideContainer;
 class TextToSpeechWidget;
+}
+
+namespace WebEngineViewer
+{
+class FindBarWebEngineView;
 }
 
 namespace Akregator
@@ -53,7 +57,7 @@ public Q_SLOTS:
 private:
     void initializeActions(KActionCollection *ac);
     void initializeLayout(KActionCollection *ac);
-    MessageViewer::FindBarWebEngineView *mFindBarWebView;
+    WebEngineViewer::FindBarWebEngineView *mFindBarWebView;
     ArticleViewerWebEngine *mArticleViewerNg;
     KPIMTextEdit::TextToSpeechWidget *mTextToSpeechWidget;
     KPIMTextEdit::SlideContainer *mSliderContainer;
