@@ -134,11 +134,3 @@ void MainFrame::slotCopyImageLocationInFrame(int frameId)
     }
     mArticleViewer->articleViewerWidgetNg()->articleViewerNg()->slotCopyImageLocationInFrame();
 }
-
-void MainFrame::slotExpandUrlInFrame(int frameId)
-{
-    if (frameId != 0) {
-        return;
-    }
-    mArticleViewer->articleViewerWidgetNg()->articleViewerNg()->slotExpandUrl();
-}
