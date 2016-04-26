@@ -443,10 +443,6 @@ void ArticleViewerWebEngine::slotActivatePlugin(MessageViewer::ViewerPluginInter
     interface->execute();
 }
 
-void ArticleViewerWebEngine::slotBlockImage()
-{
-}
-
 void Akregator::ArticleViewerWebEngine::slotExpandUrl()
 {
     if (mCurrentUrl.isEmpty()) {

@@ -258,7 +258,6 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
     connect(m_tabWidget, &TabWidget::signalCopyLinkAsInFrame, m_mainFrame, &MainFrame::slotCopyLinkAsInFrame);
     connect(m_tabWidget, &TabWidget::signalCopyImageLocation, m_mainFrame, &MainFrame::slotCopyImageLocationInFrame);
     connect(m_tabWidget, &TabWidget::signalSaveImageOnDisk, m_mainFrame, &MainFrame::slotSaveImageOnDiskInFrame);
-    connect(m_tabWidget, &TabWidget::signalBlockImage, m_mainFrame, &MainFrame::slotBlockImageInFrame);
 
     Kernel::self()->frameManager()->slotAddFrame(m_mainFrame);
 
@@ -366,7 +365,6 @@ void MainWidget::connectFrame(Akregator::WebEngineFrame *frame)
     connect(m_tabWidget, &TabWidget::signalCopyLinkAsInFrame, frame, &WebEngineFrame::slotCopyLinkAsInFrame);
     connect(m_tabWidget, &TabWidget::signalCopyImageLocation, frame, &WebEngineFrame::slotCopyImageLocationInFrame);
     connect(m_tabWidget, &TabWidget::signalSaveImageOnDisk, frame, &WebEngineFrame::slotSaveImageOnDiskInFrame);
-    connect(m_tabWidget, &TabWidget::signalBlockImage, frame, &WebEngineFrame::slotBlockImageInFrame);
 
     connect(frame, &WebEngineFrame::showStatusBarMessage, this, &MainWidget::slotShowStatusBarMessage);
     connect(frame, &WebEngineFrame::signalIconChanged, m_tabWidget, &TabWidget::slotSetIcon);

@@ -613,11 +613,6 @@ void ActionManagerImpl::initTabWidget(TabWidget *tabWidget)
     coll->addAction(QStringLiteral("saveas_imageurl"), action);
     coll->setShortcutsConfigurable(action, false);
     connect(action, &QAction::triggered, d->tabWidget, &TabWidget::slotSaveImageOnDisk);
-
-    action = new QAction(i18n("Block image"), this);
-    coll->addAction(QStringLiteral("adblock_image"), action);
-    coll->setShortcutsConfigurable(action, false);
-    connect(action, &QAction::triggered, d->tabWidget, &TabWidget::slotBlockImage);
 }
 
 QWidget *ActionManagerImpl::container(const QString &name)
