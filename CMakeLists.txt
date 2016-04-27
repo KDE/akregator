@@ -48,7 +48,7 @@ if(${CMAKE_SOURCE_DIR} STREQUAL ${akregator_SOURCE_DIR})
     set(SYNDICATION_LIB_VERSION "5.2.40")
     # Find KF5 package
     find_package(KF5DBusAddons ${KF5_VERSION} CONFIG REQUIRED)
-    find_package(KF5DocTools REQUIRED)
+    find_package(KF5DocTools ${KF5_VERSION} REQUIRED)
     find_package(KF5XmlGui ${KF5_VERSION} CONFIG REQUIRED)
     find_package(KF5KCMUtils ${KF5_VERSION} CONFIG REQUIRED)
     find_package(KF5NotifyConfig ${KF5_VERSION} CONFIG REQUIRED)
