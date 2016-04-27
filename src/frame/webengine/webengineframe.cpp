@@ -94,10 +94,7 @@ void WebEngineFrame::loadConfig(const KConfigGroup &config, const QString &prefi
 {
     const QString url = config.readEntry(QStringLiteral("url").prepend(prefix), QString());
     const qreal zf = config.readEntry(QStringLiteral("zoom").prepend(prefix), 1.0);
-    OpenUrlRequest req(url);
-    KParts::OpenUrlArguments args;
-    req.setArgs(args);
-    openUrl(req);
+    mArticleViewerWidgetNg->articleViewerNg()->load(QUrl(url));
     mArticleViewerWidgetNg->articleViewerNg()->setZoomFactor(zf);
 }
 
