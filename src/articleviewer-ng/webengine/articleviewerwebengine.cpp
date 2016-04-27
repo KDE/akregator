@@ -89,11 +89,11 @@ ArticleViewerWebEngine::~ArticleViewerWebEngine()
 
 QWebEngineView *ArticleViewerWebEngine::createWindow(QWebEnginePage::WebWindowType type)
 {
-    qDebug()<<" QWebEngineView *ArticleViewerWebEngine::createWindow(QWebEnginePage::WebWindowType type) not implemented yet" << type;
+    qDebug() << " QWebEngineView *ArticleViewerWebEngine::createWindow(QWebEnginePage::WebWindowType type) not implemented yet" << type;
     switch (type) {
     //For the moment create external windows.
     case QWebEnginePage::WebDialog:
-        //TODO add in tab
+    //TODO add in tab
     case QWebEnginePage::WebBrowserTab:
     case QWebEnginePage::WebBrowserWindow: {
         if (!Settings::newWindowInTab()) {

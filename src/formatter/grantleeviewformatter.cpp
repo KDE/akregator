@@ -53,7 +53,6 @@ int GrantleeViewFormatter::pointsToPixel(int pointSize) const
     return (pointSize * mDeviceDpiY + 36) / 72;
 }
 
-
 void GrantleeViewFormatter::addStandardObject(QVariantHash &grantleeObject)
 {
     grantleeObject.insert(QStringLiteral("absoluteThemePath"), mGrantleeThemePath);
