@@ -91,6 +91,10 @@ QWebEngineView *ArticleViewerWebEngine::createWindow(QWebEnginePage::WebWindowTy
 {
     qDebug()<<" QWebEngineView *ArticleViewerWebEngine::createWindow(QWebEnginePage::WebWindowType type) not implemented yet" << type;
     switch (type) {
+    //For the moment create external windows.
+    case QWebEnginePage::WebDialog:
+        //TODO add in tab
+    case QWebEnginePage::WebBrowserTab:
     case QWebEnginePage::WebBrowserWindow: {
         if (!Settings::newWindowInTab()) {
             WebEngineViewer::WebEngineView *view = new WebEngineViewer::WebEngineView();
@@ -99,13 +103,10 @@ QWebEngineView *ArticleViewerWebEngine::createWindow(QWebEnginePage::WebWindowTy
             return view;
         }
     }
-    case QWebEnginePage::WebDialog:
-        //TODO add in tab
-    case QWebEnginePage::WebBrowserTab:
     default:
         break;
     }
-    return Q_NULLPTR;
+    return QWebEngineView::createWindow(type);
 }
 
 QVariantHash ArticleViewerWebEngine::introductionData() const
