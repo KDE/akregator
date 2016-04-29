@@ -83,6 +83,7 @@ DefaultNormalViewFormatter::DefaultNormalViewFormatter(const QString &grantleeDi
 
 DefaultNormalViewFormatter::~DefaultNormalViewFormatter()
 {
+    delete mGrantleeViewFormatter;
     delete m_summaryVisitor;
 }
 

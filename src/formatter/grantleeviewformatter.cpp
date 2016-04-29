@@ -144,9 +144,11 @@ QString GrantleeViewFormatter::formatArticles(const QVector<Article> &article, A
     QVariantList articlesList;
     const int nbArticles(article.count());
     articlesList.reserve(nbArticles);
+    QList<ArticleGrantleeObject *> lstObj;
     for (int i = 0; i < nbArticles; ++i) {
         ArticleGrantleeObject *articleObj = new ArticleGrantleeObject(mImageDir, article.at(i), icon);
         articlesList << QVariant::fromValue(static_cast<QObject *>(articleObj));
+        lstObj.append(articleObj);
     }
     articleObject.insert(QStringLiteral("articles"), articlesList);
 
@@ -158,6 +160,8 @@ QString GrantleeViewFormatter::formatArticles(const QVector<Article> &article, A
     articleObject.insert(QStringLiteral("authorI18n"), i18n("Author"));
     articleObject.insert(QStringLiteral("enclosureI18n"), i18n("Enclosure"));
 
-    return render(articleObject);
+    const QString str = render(articleObject);
+    qDeleteAll(lstObj);
+    return str;
 }
 
