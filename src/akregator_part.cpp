@@ -796,7 +796,7 @@ bool Part::handleCommandLine(const QStringList &args)
     QStringList feedsToAdd = parser.values(QStringLiteral("addfeed"));
 
     if (feedsToAdd.isEmpty() && !parser.positionalArguments().isEmpty()) {
-        for (const QString &url : parser.positionalArguments()) {
+        Q_FOREACH (const QString &url, parser.positionalArguments()) {
             feedsToAdd.append(url);
         }
     }
