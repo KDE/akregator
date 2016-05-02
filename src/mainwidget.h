@@ -252,6 +252,8 @@ private Q_SLOTS:
     void slotShowStatusBarMessage(const QString &msg);
     void slotCurrentFrameChanged(int frameId);
     void slotArticleAction(Akregator::ArticleViewerWebEngine::ArticleAction type, const QString &articleId, const QString &feed);
+    void slotSettingsChanged();
+
 private:
     void sendArticle(const QByteArray &text, const QString &title, bool attach);
     void deleteExpiredArticles(const QSharedPointer<FeedList> &feedList);

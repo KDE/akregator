@@ -145,7 +145,7 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
     m_actionManager->initTabWidget(m_tabWidget);
 
     connect(m_part, &Part::signalSettingsChanged,
-            m_tabWidget, &TabWidget::slotSettingsChanged);
+            this, &MainWidget::slotSettingsChanged);
 
     connect(m_tabWidget, &TabWidget::signalCurrentFrameChanged,
             this, &MainWidget::slotCurrentFrameChanged);
@@ -238,8 +238,6 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
     connect(m_articleViewer, &ArticleViewerWidget::showStatusBarMessage, this, &MainWidget::slotShowStatusBarMessage);
     connect(m_articleViewer, SIGNAL(signalOpenUrlRequest(Akregator::OpenUrlRequest&)),
             Kernel::self()->frameManager(), SLOT(slotOpenUrlRequest(Akregator::OpenUrlRequest&)));
-    connect(m_part, &Part::signalSettingsChanged,
-            m_articleViewer, &ArticleViewerWidget::slotPaletteOrFontChanged);
     connect(m_searchBar, &SearchBar::signalSearch,
             m_articleViewer, &ArticleViewerWidget::setFilters);
     mainTabLayout->addWidget(m_articleSplitter);
@@ -309,6 +307,12 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
         m_searchBar->slotSetStatus(Settings::statusFilter());
         m_searchBar->slotSetText(Settings::textFilter());
     }
+}
+
+void MainWidget::slotSettingsChanged()
+{
+    m_tabWidget->slotSettingsChanged();
+    m_articleViewer->reload();
 }
 
 void MainWidget::slotOnShutdown()

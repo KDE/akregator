@@ -100,8 +100,6 @@ public Q_SLOTS:
 
     void slotShowSummary(Akregator::TreeNode *node);
 
-    void slotPaletteOrFontChanged();
-
     void slotPrintPreview();
     void slotCopy();
 

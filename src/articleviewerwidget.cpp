@@ -145,9 +145,7 @@ void ArticleViewerWidget::disconnectFromNode(TreeNode *node)
 void ArticleViewerWidget::renderContent(const QString &text)
 {
     m_currentText = text;
-    beginWriting();
-    m_articleHtmlWriter->queue(text);
-    endWriting();
+    reload();
 }
 
 void ArticleViewerWidget::beginWriting()
@@ -360,11 +358,6 @@ void ArticleViewerWidget::slotArticlesListed(KJob *job)
 void ArticleViewerWidget::keyPressEvent(QKeyEvent *e)
 {
     e->ignore();
-}
-
-void ArticleViewerWidget::slotPaletteOrFontChanged()
-{
-    reload();
 }
 
 void ArticleViewerWidget::reload()
