@@ -264,7 +264,8 @@ void ArticleMatcher::writeConfig(KConfigGroup *config) const
 
     QString criterionGroupPrefix = config->name() + QLatin1String("_Criterion");
 
-    for (int index = 0; index < m_criteria.size(); ++index) {
+    const int criteriaSize(m_criteria.size());
+    for (int index = 0; index < criteriaSize; ++index) {
         *config = KConfigGroup(config->config(), criterionGroupPrefix + QString::number(index));
         m_criteria.at(index).writeConfig(config);
     }
@@ -275,9 +276,9 @@ void ArticleMatcher::readConfig(KConfigGroup *config)
     m_criteria.clear();
     m_association = stringToAssociation(config->readEntry(QStringLiteral("matcherAssociation"), QString()));
 
-    int count =  config->readEntry(QStringLiteral("matcherCriteriaCount"), 0);
+    const int count =  config->readEntry(QStringLiteral("matcherCriteriaCount"), 0);
 
-    QString criterionGroupPrefix = config->name() + QLatin1String("_Criterion");
+    const QString criterionGroupPrefix = config->name() + QLatin1String("_Criterion");
 
     for (int i = 0; i < count; ++i) {
         Criterion c;
@@ -307,7 +308,8 @@ bool ArticleMatcher::anyCriterionMatches(const Article &a) const
     if (m_criteria.isEmpty()) {
         return true;
     }
-    for (int index = 0; index < m_criteria.size(); ++index) {
+    const int criteriaSize(m_criteria.size());
+    for (int index = 0; index < criteriaSize; ++index) {
         if (m_criteria.at(index).satisfiedBy(a)) {
             return true;
         }
@@ -320,7 +322,8 @@ bool ArticleMatcher::allCriteriaMatch(const Article &a) const
     if (m_criteria.isEmpty()) {
         return true;
     }
-    for (int index = 0; index < m_criteria.size(); ++index) {
+    const int criteriaSize(m_criteria.size());
+    for (int index = 0; index < criteriaSize; ++index) {
         if (!m_criteria.at(index).satisfiedBy(a)) {
             return false;
         }
