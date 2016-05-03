@@ -312,7 +312,7 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
 void MainWidget::slotSettingsChanged()
 {
     m_tabWidget->slotSettingsChanged();
-    m_articleViewer->reload();
+    m_articleViewer->updateAfterConfigChanged();
 }
 
 void MainWidget::slotOnShutdown()

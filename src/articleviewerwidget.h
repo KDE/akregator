@@ -80,6 +80,8 @@ public:
 
     Akregator::ArticleViewerWebEngineWidgetNg *articleViewerWidgetNg() const;
 
+    void updateAfterConfigChanged();
+
 public Q_SLOTS:
     void slotPrint();
 

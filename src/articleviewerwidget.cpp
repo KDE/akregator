@@ -360,6 +360,23 @@ void ArticleViewerWidget::keyPressEvent(QKeyEvent *e)
     e->ignore();
 }
 
+void ArticleViewerWidget::updateAfterConfigChanged()
+{
+    switch(m_viewMode) {
+    case NormalView:
+        if (!m_article.isNull()) {
+            renderContent(m_normalViewFormatter->formatArticles(QVector<Akregator::Article>() << m_article, ArticleFormatter::ShowIcon));
+        }
+        break;
+    case CombinedView:
+        slotUpdateCombinedView();
+        break;
+    case SummaryView:
+        slotShowSummary(m_node);
+        break;
+    }
+}
+
 void ArticleViewerWidget::reload()
 {
     beginWriting();
