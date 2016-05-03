@@ -57,8 +57,8 @@ BrowserInterface::BrowserInterface(MainWindow *shell, const char *name)
     m_shell = shell;
 }
 
-MainWindow::MainWindow(QWidget *parent, Qt::WindowFlags f)
-    : KParts::MainWindow(parent, f)
+MainWindow::MainWindow(QWidget *parent)
+    : KParts::MainWindow(parent)
     , m_browserIface(new BrowserInterface(this, "browser_interface"))
     , m_part()
     , m_statusLabel(new KSqueezedTextLabel(this))
