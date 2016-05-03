@@ -56,6 +56,7 @@ using namespace Akregator;
 ArticleViewerWebEngine::ArticleViewerWebEngine(KActionCollection *ac, QWidget *parent)
     : WebEngineViewer::WebEngineView(parent),
       mActionCollection(ac),
+      mCurrentPosition(0),
       mLastButtonClicked(LeftButton),
       mViewerPluginToolManager(Q_NULLPTR)
 {
@@ -341,6 +342,16 @@ void ArticleViewerWebEngine::disableIntroduction()
 void ArticleViewerWebEngine::setArticleAction(ArticleViewerWebEngine::ArticleAction type, const QString &articleId, const QString &feed)
 {
     Q_EMIT articleAction(type, articleId, feed);
+}
+
+void ArticleViewerWebEngine::saveCurrentPosition()
+{
+    //TODO
+}
+
+void ArticleViewerWebEngine::restoreCurrentPosition()
+{
+    //TODO
 }
 
 void ArticleViewerWebEngine::forwardMouseReleaseEvent(QMouseEvent *event)

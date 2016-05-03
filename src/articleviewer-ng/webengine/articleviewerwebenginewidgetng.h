@@ -51,6 +51,8 @@ public:
 
     ArticleViewerWebEngine *articleViewerNg() const;
 
+    void saveCurrentPosition();
+    void restoreCurrentPosition();
 public Q_SLOTS:
     void slotSpeakText();
     void slotFind();

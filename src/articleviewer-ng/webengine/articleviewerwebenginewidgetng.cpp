@@ -98,3 +98,13 @@ void ArticleViewerWebEngineWidgetNg::slotSpeakText()
     const QString text = mArticleViewerNg->selectedText();
     mTextToSpeechWidget->say(text);
 }
+
+void ArticleViewerWebEngineWidgetNg::saveCurrentPosition()
+{
+    mArticleViewerNg->saveCurrentPosition();
+}
+
+void ArticleViewerWebEngineWidgetNg::restoreCurrentPosition()
+{
+    mArticleViewerNg->restoreCurrentPosition();
+}

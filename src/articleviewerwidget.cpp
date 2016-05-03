@@ -232,6 +232,7 @@ void ArticleViewerWidget::slotUpdateCombinedView()
         return slotClear();
     }
 
+    m_articleViewerWidgetNg->saveCurrentPosition();
     QString text;
 
     int num = 0;
@@ -258,6 +259,7 @@ void ArticleViewerWidget::slotUpdateCombinedView()
     qCDebug(AKREGATOR_LOG) << "Combined view rendering: (" << num << " articles):" << "generating HTML:" << spent.elapsed() << "ms";
     renderContent(text);
     qCDebug(AKREGATOR_LOG) << "HTML rendering:" << spent.elapsed() << "ms";
+    m_articleViewerWidgetNg->restoreCurrentPosition();
 }
 
 void ArticleViewerWidget::slotArticlesUpdated(TreeNode * /*node*/, const QVector<Article> & /*list*/)
