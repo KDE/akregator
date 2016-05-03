@@ -78,7 +78,7 @@ QString ArticleFormatter::formatEnclosure(const Enclosure &enclosure)
     } else if (length > 0) {
         inf = KFormat().formatByteSize(length);
     }
-    const QString str = i18n("<a href=\"%1\">%2</a> %3", enclosure.url(), title, inf);
+    const QString str = QStringLiteral("<a href=\"%1\">%2</a> %3").arg(enclosure.url(), title, inf);
     return str;
 }
 
