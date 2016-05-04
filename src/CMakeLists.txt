@@ -214,7 +214,6 @@ target_link_libraries(akregatorpart
     KF5::IconThemes
     KF5::Parts
     KF5::Notifications
-    Qt5::WebEngine
     Qt5::WebEngineWidgets
     KF5::WebEngineViewer
     )
