@@ -91,6 +91,8 @@ add_subdirectory(src)
 add_subdirectory(kontactplugin)
 add_subdirectory(kconf_update)
 
+install( FILES akregator.categories DESTINATION ${KDE_INSTALL_CONFDIR} )
+
 if ("${CMAKE_BINARY_DIR}" STREQUAL "${CMAKE_CURRENT_BINARY_DIR}")
     feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)
 endif()
