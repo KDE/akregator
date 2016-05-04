@@ -22,11 +22,6 @@
 #include "akregator_export.h"
 #include "articleviewerwebengine.h"
 class KActionCollection;
-namespace MessageViewer
-{
-class ViewerPluginToolManager;
-class ViewerPluginInterface;
-}
 
 namespace KPIMTextEdit
 {

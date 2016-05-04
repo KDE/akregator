@@ -20,7 +20,6 @@
 
 #include <QObject>
 #include "akregator_export.h"
-class QWebView;
 namespace Akregator
 {
 class ArticleViewerWebEngine;
