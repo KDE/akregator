@@ -228,6 +228,7 @@ void ArticleViewerWebEngine::slotLoadFinished()
 void ArticleViewerWebEngine::slotLoadStarted()
 {
     mWebEngineViewAccessKey->hideAccessKeys();
+    mCurrentPosition = 0;
     setCursor(Qt::WaitCursor);
 }
 
@@ -346,7 +347,10 @@ void ArticleViewerWebEngine::setArticleAction(ArticleViewerWebEngine::ArticleAct
 
 void ArticleViewerWebEngine::saveCurrentPosition()
 {
-    //TODO
+#if QT_VERSION >= QT_VERSION_CHECK(5, 7, 0)
+    mCurrentPosition = page()->scrollPosition().y();
+    qDebug() << "void ArticleViewerWebEngine::saveCurrentPosition()"<<mCurrentPosition;
+#endif
 }
 
 void ArticleViewerWebEngine::restoreCurrentPosition()
