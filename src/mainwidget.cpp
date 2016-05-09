@@ -707,7 +707,7 @@ void MainWidget::slotFeedAdd()
 
     }
 
-    TreeNode *const lastChild = !group->children().isEmpty() ? group->children().last() : 0;
+    TreeNode *const lastChild = !group->children().isEmpty() ? group->children().last() : Q_NULLPTR;
 
     addFeed(QString(), lastChild, group, false);
 }

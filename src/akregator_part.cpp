@@ -286,7 +286,7 @@ Part::Part(QWidget *parentWidget, QObject *parent, const QVariantList &)
             trayIcon->setStatus(KStatusNotifierItem::Active);
         }
 
-        QWidget *const notificationParent = isTrayIconEnabled() ? m_mainWidget->window() : 0;
+        QWidget *const notificationParent = isTrayIconEnabled() ? m_mainWidget->window() : Q_NULLPTR;
         NotificationManager::self()->setWidget(notificationParent, componentData().componentName());
 
         connect(m_mainWidget.data(), &MainWidget::signalUnreadCountChanged, trayIcon, &TrayIcon::slotSetUnread);
