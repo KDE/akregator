@@ -48,6 +48,7 @@
 #include <viewerplugintoolmanager.h>
 #include <WebEngineViewer/WebHitTestResult>
 #include <WebEngineViewer/WebHitTest>
+#include <WebEngineViewer/WebEngineScript>
 
 #include <KIO/KUriFilterSearchProviderActions>
 
@@ -355,6 +356,10 @@ void ArticleViewerWebEngine::saveCurrentPosition()
 
 void ArticleViewerWebEngine::restoreCurrentPosition()
 {
+#if QT_VERSION >= QT_VERSION_CHECK(5, 7, 0)
+    qDebug()<<" void ArticleViewerWebEngine::restoreCurrentPosition()" << mCurrentPosition;
+    mPageEngine->runJavaScript(WebEngineViewer::WebEngineScript::scrollToRelativePosition(mCurrentPosition));
+#endif
     //TODO
 }
 
