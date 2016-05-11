@@ -68,7 +68,6 @@ public:
 
     void disableIntroduction();
     void setArticleAction(ArticleViewerWebEngine::ArticleAction type, const QString &articleId, const QString &feed);
-    void saveCurrentPosition();
     void restoreCurrentPosition();
 
     void createViewerPluginToolManager(KActionCollection *ac, QWidget *parent);
@@ -134,7 +133,6 @@ protected:
     QList<QAction *> viewerPluginActionList(MessageViewer::ViewerPluginInterface::SpecificFeatureTypes features);
     WebEngineViewer::NetworkAccessManagerWebEngine *mNetworkAccessManager;
 private:
-    qreal mCurrentPosition;
     MousePressedButtonType mLastButtonClicked;
     MessageViewer::ViewerPluginToolManager *mViewerPluginToolManager;
     WebEngineViewer::WebEngineAccessKey *mWebEngineViewAccessKey;

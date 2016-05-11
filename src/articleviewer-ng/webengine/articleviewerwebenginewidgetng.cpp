@@ -101,7 +101,7 @@ void ArticleViewerWebEngineWidgetNg::slotSpeakText()
 
 void ArticleViewerWebEngineWidgetNg::saveCurrentPosition()
 {
-    mArticleViewerNg->saveCurrentPosition();
+    mArticleViewerNg->saveRelativePosition();
 }
 
 void ArticleViewerWebEngineWidgetNg::restoreCurrentPosition()

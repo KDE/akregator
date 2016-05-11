@@ -57,7 +57,6 @@ using namespace Akregator;
 ArticleViewerWebEngine::ArticleViewerWebEngine(KActionCollection *ac, QWidget *parent)
     : WebEngineViewer::WebEngineView(parent),
       mActionCollection(ac),
-      mCurrentPosition(0),
       mLastButtonClicked(LeftButton),
       mViewerPluginToolManager(Q_NULLPTR)
 {
@@ -229,7 +228,7 @@ void ArticleViewerWebEngine::slotLoadFinished()
 void ArticleViewerWebEngine::slotLoadStarted()
 {
     mWebEngineViewAccessKey->hideAccessKeys();
-    mCurrentPosition = 0;
+    clearRelativePosition();
     setCursor(Qt::WaitCursor);
 }
 
@@ -346,19 +345,10 @@ void ArticleViewerWebEngine::setArticleAction(ArticleViewerWebEngine::ArticleAct
     Q_EMIT articleAction(type, articleId, feed);
 }
 
-void ArticleViewerWebEngine::saveCurrentPosition()
-{
-#if QT_VERSION >= QT_VERSION_CHECK(5, 7, 0)
-    mCurrentPosition = page()->scrollPosition().y();
-    qDebug() << "void ArticleViewerWebEngine::saveCurrentPosition()"<<mCurrentPosition;
-#endif
-}
-
 void ArticleViewerWebEngine::restoreCurrentPosition()
 {
 #if QT_VERSION >= QT_VERSION_CHECK(5, 7, 0)
-    qDebug()<<" void ArticleViewerWebEngine::restoreCurrentPosition()" << mCurrentPosition;
-    mPageEngine->runJavaScript(WebEngineViewer::WebEngineScript::scrollToRelativePosition(mCurrentPosition));
+    mPageEngine->runJavaScript(WebEngineViewer::WebEngineScript::scrollToRelativePosition(relativePosition()));
 #endif
     //TODO
 }
