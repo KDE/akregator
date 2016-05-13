@@ -19,23 +19,23 @@ public:
     c4_ReadOnlyViewer(c4_Sequence &seq_): _base(&seq_) {}
     virtual ~c4_ReadOnlyViewer() {}
 
-    virtual c4_View GetTemplate()
+    c4_View GetTemplate() Q_DECL_OVERRIDE
     {
         return _base.Clone();
     }
-    virtual int GetSize()
+    int GetSize() Q_DECL_OVERRIDE
     {
         return _base.GetSize();
     }
 
-    virtual int Lookup(c4_Cursor key_, int &count_)
+    int Lookup(c4_Cursor key_, int &count_) Q_DECL_OVERRIDE
     {
         int pos = 0;
         count_ = _base.GetSize();
         return _base.RestrictSearch(*key_, pos, count_);
     }
 
-    virtual bool GetItem(int row_, int col_, c4_Bytes &buf_)
+    bool GetItem(int row_, int col_, c4_Bytes &buf_) Q_DECL_OVERRIDE
     {
         return _base.GetItem(row_, col_, buf_);
     }
@@ -93,13 +93,13 @@ public:
     c4_HashViewer(c4_Sequence &seq_, int numKeys_, c4_Sequence *map_ = 0);
     virtual ~c4_HashViewer();
 
-    virtual c4_View GetTemplate();
-    virtual int GetSize();
-    virtual int Lookup(c4_Cursor key_, int &count_);
-    virtual bool GetItem(int row_, int col_, c4_Bytes &buf_);
-    virtual bool SetItem(int row_, int col_, const c4_Bytes &buf_);
-    virtual bool InsertRows(int pos_, c4_Cursor value_, int count_ = 1);
-    virtual bool RemoveRows(int pos_, int count_ = 1);
+    c4_View GetTemplate() Q_DECL_OVERRIDE;
+    int GetSize() Q_DECL_OVERRIDE;
+    int Lookup(c4_Cursor key_, int &count_) Q_DECL_OVERRIDE;
+    bool GetItem(int row_, int col_, c4_Bytes &buf_) Q_DECL_OVERRIDE;
+    bool SetItem(int row_, int col_, const c4_Bytes &buf_) Q_DECL_OVERRIDE;
+    bool InsertRows(int pos_, c4_Cursor value_, int count_ = 1) Q_DECL_OVERRIDE;
+    bool RemoveRows(int pos_, int count_ = 1) Q_DECL_OVERRIDE;
 };
 
 /////////////////////////////////////////////////////////////////////////////
@@ -535,12 +535,12 @@ public:
     c4_BlockedViewer(c4_Sequence &seq_);
     virtual ~c4_BlockedViewer();
 
-    virtual c4_View GetTemplate();
-    virtual int GetSize();
-    virtual bool GetItem(int row_, int col_, c4_Bytes &buf_);
-    virtual bool SetItem(int row_, int col_, const c4_Bytes &buf_);
-    virtual bool InsertRows(int pos_, c4_Cursor value_, int count_ = 1);
-    virtual bool RemoveRows(int pos_, int count_ = 1);
+    c4_View GetTemplate() Q_DECL_OVERRIDE;
+    int GetSize() Q_DECL_OVERRIDE;
+    bool GetItem(int row_, int col_, c4_Bytes &buf_) Q_DECL_OVERRIDE;
+    bool SetItem(int row_, int col_, const c4_Bytes &buf_) Q_DECL_OVERRIDE;
+    bool InsertRows(int pos_, c4_Cursor value_, int count_ = 1) Q_DECL_OVERRIDE;
+    bool RemoveRows(int pos_, int count_ = 1) Q_DECL_OVERRIDE;
 };
 
 /////////////////////////////////////////////////////////////////////////////
@@ -891,13 +891,13 @@ public:
     c4_OrderedViewer(c4_Sequence &seq_, int numKeys_);
     virtual ~c4_OrderedViewer();
 
-    virtual c4_View GetTemplate();
-    virtual int GetSize();
-    virtual int Lookup(c4_Cursor key_, int &count_);
-    virtual bool GetItem(int row_, int col_, c4_Bytes &buf_);
-    virtual bool SetItem(int row_, int col_, const c4_Bytes &buf_);
-    virtual bool InsertRows(int pos_, c4_Cursor value_, int count_ = 1);
-    virtual bool RemoveRows(int pos_, int count_ = 1);
+    c4_View GetTemplate() Q_DECL_OVERRIDE;
+    int GetSize() Q_DECL_OVERRIDE;
+    int Lookup(c4_Cursor key_, int &count_) Q_DECL_OVERRIDE;
+    bool GetItem(int row_, int col_, c4_Bytes &buf_) Q_DECL_OVERRIDE;
+    bool SetItem(int row_, int col_, const c4_Bytes &buf_) Q_DECL_OVERRIDE;
+    bool InsertRows(int pos_, c4_Cursor value_, int count_ = 1) Q_DECL_OVERRIDE;
+    bool RemoveRows(int pos_, int count_ = 1) Q_DECL_OVERRIDE;
 };
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1029,13 +1029,13 @@ public:
                      &props_, bool unique_);
     virtual ~c4_IndexedViewer();
 
-    virtual c4_View GetTemplate();
-    virtual int GetSize();
-    virtual int Lookup(c4_Cursor key_, int &count_);
-    virtual bool GetItem(int row_, int col_, c4_Bytes &buf_);
-    virtual bool SetItem(int row_, int col_, const c4_Bytes &buf_);
-    virtual bool InsertRows(int pos_, c4_Cursor value_, int count_ = 1);
-    virtual bool RemoveRows(int pos_, int count_ = 1);
+    c4_View GetTemplate() Q_DECL_OVERRIDE;
+    int GetSize() Q_DECL_OVERRIDE;
+    int Lookup(c4_Cursor key_, int &count_) Q_DECL_OVERRIDE;
+    bool GetItem(int row_, int col_, c4_Bytes &buf_) Q_DECL_OVERRIDE;
+    bool SetItem(int row_, int col_, const c4_Bytes &buf_) Q_DECL_OVERRIDE;
+    bool InsertRows(int pos_, c4_Cursor value_, int count_ = 1) Q_DECL_OVERRIDE;
+    bool RemoveRows(int pos_, int count_ = 1) Q_DECL_OVERRIDE;
 };
 
 /////////////////////////////////////////////////////////////////////////////

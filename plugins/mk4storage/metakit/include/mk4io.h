@@ -19,8 +19,8 @@ public:
     c4_FileStream(FILE *stream_, bool owned_ = false);
     virtual ~c4_FileStream();
 
-    virtual int Read(void *buffer_, int length_);
-    virtual bool Write(const void *buffer_, int length_);
+    int Read(void *buffer_, int length_) override;
+    bool Write(const void *buffer_, int length_) override;
 
     FILE *_stream;
     bool _owned;
@@ -37,21 +37,21 @@ public:
     virtual ~c4_FileStrategy();
 
     /// True if we can do I/O with this object
-    virtual bool IsValid() const;
+    bool IsValid() const override;
     /// Open a data file by name
     virtual bool DataOpen(const char *fileName_, int mode_);
     /// Read a number of bytes
-    virtual int  DataRead(t4_i32 pos_, void *buffer_, int length_);
+    int  DataRead(t4_i32 pos_, void *buffer_, int length_) override;
     /// Write a number of bytes, return true if successful
-    virtual void DataWrite(t4_i32 pos_, const void *buffer_, int length_);
+    void DataWrite(t4_i32 pos_, const void *buffer_, int length_) override;
     /// Flush and truncate file
-    virtual void DataCommit(t4_i32 newSize_);
+    void DataCommit(t4_i32 newSize_) override;
     /// Support for memory-mapped files
-    virtual void ResetFileMapping();
+    void ResetFileMapping() override;
     /// Report total size of the datafile
-    virtual t4_i32 FileSize();
+    t4_i32 FileSize() override;
     /// Return a good value to use as fresh generation counter
-    virtual t4_i32 FreshGeneration();
+    t4_i32 FreshGeneration() override;
 
 protected:
     /// Pointer to file object

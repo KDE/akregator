@@ -21,7 +21,7 @@ public:
     c4_FormatHandler(const c4_Property &prop_, c4_HandlerSeq &owner_);
     virtual ~c4_FormatHandler();
 
-    virtual bool IsPersistent()const;
+    bool IsPersistent()const Q_DECL_OVERRIDE;
 
 protected:
     c4_HandlerSeq &Owner()const;
@@ -53,20 +53,20 @@ public:
     c4_FormatX(const c4_Property &prop_, c4_HandlerSeq &seq_, int width_ =
                    sizeof(t4_i32));
 
-    virtual void Define(int, const t4_byte **);
-    virtual void OldDefine(char type_, c4_Persist &);
-    virtual void FlipBytes();
+    void Define(int, const t4_byte **) Q_DECL_OVERRIDE;
+    void OldDefine(char type_, c4_Persist &) Q_DECL_OVERRIDE;
+    void FlipBytes() Q_DECL_OVERRIDE;
 
-    virtual int ItemSize(int index_);
-    virtual const void *Get(int index_, int &length_);
-    virtual void Set(int index_, const c4_Bytes &buf_);
+    int ItemSize(int index_) Q_DECL_OVERRIDE;
+    const void *Get(int index_, int &length_) Q_DECL_OVERRIDE;
+    void Set(int index_, const c4_Bytes &buf_) Q_DECL_OVERRIDE;
 
-    virtual void Insert(int index_, const c4_Bytes &buf_, int count_);
-    virtual void Remove(int index_, int count_);
+    void Insert(int index_, const c4_Bytes &buf_, int count_) Q_DECL_OVERRIDE;
+    void Remove(int index_, int count_) Q_DECL_OVERRIDE;
 
-    virtual void Commit(c4_SaveContext &ar_);
+    void Commit(c4_SaveContext &ar_) Q_DECL_OVERRIDE;
 
-    virtual void Unmapped();
+    void Unmapped() Q_DECL_OVERRIDE;
 
     static int DoCompare(const c4_Bytes &b1_, const c4_Bytes &b2_);
 
@@ -150,7 +150,7 @@ class c4_FormatL: public c4_FormatX
 public:
     c4_FormatL(const c4_Property &prop_, c4_HandlerSeq &seq_);
 
-    virtual void Define(int, const t4_byte **);
+    void Define(int, const t4_byte **) Q_DECL_OVERRIDE;
 
     static int DoCompare(const c4_Bytes &b1_, const c4_Bytes &b2_);
 };
@@ -218,7 +218,7 @@ class c4_FormatD: public c4_FormatX
 public:
     c4_FormatD(const c4_Property &prop_, c4_HandlerSeq &seq_);
 
-    virtual void Define(int, const t4_byte **);
+    void Define(int, const t4_byte **) Q_DECL_OVERRIDE;
 
     static int DoCompare(const c4_Bytes &b1_, const c4_Bytes &b2_);
 };
@@ -276,20 +276,20 @@ public:
     c4_FormatB(const c4_Property &prop_, c4_HandlerSeq &seq_);
     virtual ~c4_FormatB();
 
-    virtual void Define(int, const t4_byte **);
-    virtual void OldDefine(char type_, c4_Persist &);
-    virtual void Commit(c4_SaveContext &ar_);
+    void Define(int, const t4_byte **) Q_DECL_OVERRIDE;
+    void OldDefine(char type_, c4_Persist &) Q_DECL_OVERRIDE;
+    void Commit(c4_SaveContext &ar_) Q_DECL_OVERRIDE;
 
-    virtual int ItemSize(int index_);
-    virtual const void *Get(int index_, int &length_);
-    virtual void Set(int index_, const c4_Bytes &buf_);
+    int ItemSize(int index_) Q_DECL_OVERRIDE;
+    const void *Get(int index_, int &length_) Q_DECL_OVERRIDE;
+    void Set(int index_, const c4_Bytes &buf_) Q_DECL_OVERRIDE;
 
-    virtual void Insert(int index_, const c4_Bytes &buf_, int count_);
-    virtual void Remove(int index_, int count_);
+    void Insert(int index_, const c4_Bytes &buf_, int count_) Q_DECL_OVERRIDE;
+    void Remove(int index_, int count_) Q_DECL_OVERRIDE;
 
-    virtual c4_Column *GetNthMemoCol(int index_, bool alloc_);
+    c4_Column *GetNthMemoCol(int index_, bool alloc_) Q_DECL_OVERRIDE;
 
-    virtual void Unmapped();
+    void Unmapped() Q_DECL_OVERRIDE;
 
     static int DoCompare(const c4_Bytes &b1_, const c4_Bytes &b2_);
 
@@ -882,11 +882,11 @@ class c4_FormatS: public c4_FormatB
 public:
     c4_FormatS(const c4_Property &prop_, c4_HandlerSeq &seq_);
 
-    virtual int ItemSize(int index_);
-    virtual const void *Get(int index_, int &length_);
-    virtual void Set(int index_, const c4_Bytes &buf_);
+    int ItemSize(int index_) Q_DECL_OVERRIDE;
+    const void *Get(int index_, int &length_) Q_DECL_OVERRIDE;
+    void Set(int index_, const c4_Bytes &buf_) Q_DECL_OVERRIDE;
 
-    virtual void Insert(int index_, const c4_Bytes &buf_, int count_);
+    void Insert(int index_, const c4_Bytes &buf_, int count_) Q_DECL_OVERRIDE;
 
     static int DoCompare(const c4_Bytes &b1_, const c4_Bytes &b2_);
 };
@@ -961,21 +961,21 @@ public:
     c4_FormatV(const c4_Property &prop_, c4_HandlerSeq &seq_);
     virtual ~c4_FormatV();
 
-    virtual void Define(int rows_, const t4_byte **ptr_);
-    virtual void OldDefine(char type_, c4_Persist &);
-    virtual void Commit(c4_SaveContext &ar_);
+    void Define(int rows_, const t4_byte **ptr_) Q_DECL_OVERRIDE;
+    void OldDefine(char type_, c4_Persist &) Q_DECL_OVERRIDE;
+    void Commit(c4_SaveContext &ar_) Q_DECL_OVERRIDE;
 
-    virtual void FlipBytes();
+    void FlipBytes() Q_DECL_OVERRIDE;
 
-    virtual int ItemSize(int index_);
-    virtual const void *Get(int index_, int &length_);
-    virtual void Set(int index_, const c4_Bytes &buf_);
+    int ItemSize(int index_) Q_DECL_OVERRIDE;
+    const void *Get(int index_, int &length_) Q_DECL_OVERRIDE;
+    void Set(int index_, const c4_Bytes &buf_) Q_DECL_OVERRIDE;
 
-    virtual void Insert(int index_, const c4_Bytes &buf_, int count_);
-    virtual void Remove(int index_, int count_);
+    void Insert(int index_, const c4_Bytes &buf_, int count_) Q_DECL_OVERRIDE;
+    void Remove(int index_, int count_) Q_DECL_OVERRIDE;
 
-    virtual void Unmapped();
-    virtual bool HasSubview(int index_);
+    void Unmapped() Q_DECL_OVERRIDE;
+    bool HasSubview(int index_) Q_DECL_OVERRIDE;
 
     static int DoCompare(const c4_Bytes &b1_, const c4_Bytes &b2_);
 

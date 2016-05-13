@@ -20,12 +20,12 @@ public:
     c4_CustomHandler(const c4_Property &prop_, c4_CustomSeq *seq_);
     virtual ~c4_CustomHandler();
 
-    virtual int ItemSize(int index_);
-    virtual const void *Get(int index_, int &length_);
-    virtual void Set(int index_, const c4_Bytes &buf_);
+    int ItemSize(int index_) Q_DECL_OVERRIDE;
+    const void *Get(int index_, int &length_) Q_DECL_OVERRIDE;
+    void Set(int index_, const c4_Bytes &buf_) Q_DECL_OVERRIDE;
 
-    virtual void Insert(int index_, const c4_Bytes &buf_, int count_);
-    virtual void Remove(int index_, int count_);
+    void Insert(int index_, const c4_Bytes &buf_, int count_) Q_DECL_OVERRIDE;
+    void Remove(int index_, int count_) Q_DECL_OVERRIDE;
 };
 
 /////////////////////////////////////////////////////////////////////////////
@@ -236,12 +236,12 @@ public:
     c4_SliceViewer(c4_Sequence &seq_, int first_, int limit_, int step_);
     virtual ~c4_SliceViewer();
 
-    virtual c4_View GetTemplate();
-    virtual int GetSize();
-    virtual bool GetItem(int row_, int col_, c4_Bytes &buf_);
-    bool SetItem(int row_, int col_, const c4_Bytes &buf_);
-    virtual bool InsertRows(int pos_, c4_Cursor value_, int count_ = 1);
-    virtual bool RemoveRows(int pos_, int count_ = 1);
+    c4_View GetTemplate() Q_DECL_OVERRIDE;
+    int GetSize() Q_DECL_OVERRIDE;
+    bool GetItem(int row_, int col_, c4_Bytes &buf_) Q_DECL_OVERRIDE;
+    bool SetItem(int row_, int col_, const c4_Bytes &buf_) Q_DECL_OVERRIDE;
+    bool InsertRows(int pos_, c4_Cursor value_, int count_ = 1) Q_DECL_OVERRIDE;
+    bool RemoveRows(int pos_, int count_ = 1) Q_DECL_OVERRIDE;
 };
 
 c4_SliceViewer::c4_SliceViewer(c4_Sequence &seq_, int first_, int limit_, int
@@ -329,9 +329,9 @@ public:
     c4_ProductViewer(c4_Sequence &seq_, const c4_View &view_);
     virtual ~c4_ProductViewer();
 
-    virtual c4_View GetTemplate();
-    virtual int GetSize();
-    virtual bool GetItem(int row_, int col_, c4_Bytes &buf_);
+    c4_View GetTemplate() Q_DECL_OVERRIDE;
+    int GetSize() Q_DECL_OVERRIDE;
+    bool GetItem(int row_, int col_, c4_Bytes &buf_) Q_DECL_OVERRIDE;
 };
 
 c4_ProductViewer::c4_ProductViewer(c4_Sequence &seq_, const c4_View &view_):
@@ -386,10 +386,10 @@ public:
     c4_RemapWithViewer(c4_Sequence &seq_, const c4_View &view_);
     virtual ~c4_RemapWithViewer();
 
-    virtual c4_View GetTemplate();
-    virtual int GetSize();
-    virtual bool GetItem(int row_, int col_, c4_Bytes &buf_);
-    bool SetItem(int row_, int col_, const c4_Bytes &buf_);
+    c4_View GetTemplate() Q_DECL_OVERRIDE;
+    int GetSize() Q_DECL_OVERRIDE;
+    bool GetItem(int row_, int col_, c4_Bytes &buf_) Q_DECL_OVERRIDE;
+    bool SetItem(int row_, int col_, const c4_Bytes &buf_) Q_DECL_OVERRIDE;
 };
 
 c4_RemapWithViewer::c4_RemapWithViewer(c4_Sequence &seq_, const c4_View &view_)
@@ -443,12 +443,12 @@ public:
     c4_PairViewer(c4_Sequence &seq_, const c4_View &view_);
     virtual ~c4_PairViewer();
 
-    virtual c4_View GetTemplate();
-    virtual int GetSize();
-    virtual bool GetItem(int row_, int col_, c4_Bytes &buf_);
-    bool SetItem(int row_, int col_, const c4_Bytes &buf_);
-    virtual bool InsertRows(int pos_, c4_Cursor value_, int count_ = 1);
-    virtual bool RemoveRows(int pos_, int count_ = 1);
+    c4_View GetTemplate() Q_DECL_OVERRIDE;
+    int GetSize() Q_DECL_OVERRIDE;
+    bool GetItem(int row_, int col_, c4_Bytes &buf_) Q_DECL_OVERRIDE;
+    bool SetItem(int row_, int col_, const c4_Bytes &buf_) Q_DECL_OVERRIDE;
+    bool InsertRows(int pos_, c4_Cursor value_, int count_ = 1) Q_DECL_OVERRIDE;
+    bool RemoveRows(int pos_, int count_ = 1) Q_DECL_OVERRIDE;
 };
 
 c4_PairViewer::c4_PairViewer(c4_Sequence &seq_, const c4_View &view_): _parent
@@ -527,10 +527,10 @@ public:
     c4_ConcatViewer(c4_Sequence &seq_, const c4_View &view_);
     virtual ~c4_ConcatViewer();
 
-    virtual c4_View GetTemplate();
-    virtual int GetSize();
-    virtual bool GetItem(int row_, int col_, c4_Bytes &buf_);
-    bool SetItem(int row_, int col_, const c4_Bytes &buf_);
+    c4_View GetTemplate() Q_DECL_OVERRIDE;
+    int GetSize() Q_DECL_OVERRIDE;
+    bool GetItem(int row_, int col_, c4_Bytes &buf_) Q_DECL_OVERRIDE;
+    bool SetItem(int row_, int col_, const c4_Bytes &buf_) Q_DECL_OVERRIDE;
 };
 
 c4_ConcatViewer::c4_ConcatViewer(c4_Sequence &seq_, const c4_View &view_):
@@ -596,10 +596,10 @@ public:
                     c4_Property &new_);
     virtual ~c4_RenameViewer();
 
-    virtual c4_View GetTemplate();
-    virtual int GetSize();
-    virtual bool GetItem(int row_, int col_, c4_Bytes &buf_);
-    virtual bool SetItem(int row_, int col_, const c4_Bytes &buf_);
+    c4_View GetTemplate() Q_DECL_OVERRIDE;
+    int GetSize() Q_DECL_OVERRIDE;
+    bool GetItem(int row_, int col_, c4_Bytes &buf_) Q_DECL_OVERRIDE;
+    bool SetItem(int row_, int col_, const c4_Bytes &buf_) Q_DECL_OVERRIDE;
     //virtual bool InsertRows(int pos_, c4_Cursor value_, int count_=1);
     //virtual bool RemoveRows(int pos_, int count_=1);
 };
@@ -658,9 +658,9 @@ public:
                      &result_);
     virtual ~c4_GroupByViewer();
 
-    virtual c4_View GetTemplate();
-    virtual int GetSize();
-    virtual bool GetItem(int row_, int col_, c4_Bytes &buf_);
+    c4_View GetTemplate() Q_DECL_OVERRIDE;
+    int GetSize() Q_DECL_OVERRIDE;
+    bool GetItem(int row_, int col_, c4_Bytes &buf_) Q_DECL_OVERRIDE;
 };
 
 c4_GroupByViewer::c4_GroupByViewer(c4_Sequence &seq_, const c4_View &keys_,
@@ -792,9 +792,9 @@ public:
     c4_JoinPropViewer(c4_Sequence &seq_, const c4_ViewProp &sub_, bool outer_);
     virtual ~c4_JoinPropViewer();
 
-    virtual c4_View GetTemplate();
-    virtual int GetSize();
-    virtual bool GetItem(int row_, int col_, c4_Bytes &buf_);
+    c4_View GetTemplate() Q_DECL_OVERRIDE;
+    int GetSize() Q_DECL_OVERRIDE;
+    bool GetItem(int row_, int col_, c4_Bytes &buf_) Q_DECL_OVERRIDE;
 };
 
 c4_JoinPropViewer::c4_JoinPropViewer(c4_Sequence &seq_, const c4_ViewProp &sub_,
@@ -893,9 +893,9 @@ public:
                   bool outer_);
     virtual ~c4_JoinViewer();
 
-    virtual c4_View GetTemplate();
-    virtual int GetSize();
-    virtual bool GetItem(int row_, int col_, c4_Bytes &buf_);
+    c4_View GetTemplate() Q_DECL_OVERRIDE;
+    int GetSize() Q_DECL_OVERRIDE;
+    bool GetItem(int row_, int col_, c4_Bytes &buf_) Q_DECL_OVERRIDE;
 };
 
 c4_JoinViewer::c4_JoinViewer(c4_Sequence &seq_, const c4_View &keys_, const

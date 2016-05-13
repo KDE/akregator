@@ -71,18 +71,18 @@ protected:
     virtual ~c4_DerivedSeq();
 
 public:
-    virtual int RemapIndex(int, const c4_Sequence *)const;
+    int RemapIndex(int, const c4_Sequence *)const Q_DECL_OVERRIDE;
 
-    virtual int NumRows()const;
-    virtual void SetNumRows(int size_);
+    int NumRows()const Q_DECL_OVERRIDE;
+    void SetNumRows(int size_) Q_DECL_OVERRIDE;
 
-    virtual int NumHandlers()const;
-    virtual c4_Handler &NthHandler(int)const;
-    virtual const c4_Sequence *HandlerContext(int)const;
-    virtual int AddHandler(c4_Handler *);
-    virtual c4_Handler *CreateHandler(const c4_Property &);
+    int NumHandlers()const Q_DECL_OVERRIDE;
+    c4_Handler &NthHandler(int)const Q_DECL_OVERRIDE;
+    const c4_Sequence *HandlerContext(int)const Q_DECL_OVERRIDE;
+    int AddHandler(c4_Handler *) Q_DECL_OVERRIDE;
+    c4_Handler *CreateHandler(const c4_Property &) Q_DECL_OVERRIDE;
 
-    virtual c4_Notifier *PreChange(c4_Notifier &nf_);
+    c4_Notifier *PreChange(c4_Notifier &nf_) Q_DECL_OVERRIDE;
 };
 
 /////////////////////////////////////////////////////////////////////////////
@@ -98,10 +98,10 @@ public:
     c4_StreamStrategy(c4_Stream *stream_);
     virtual ~c4_StreamStrategy();
 
-    virtual bool IsValid()const;
-    virtual int DataRead(t4_i32 pos_, void *buffer_, int length_);
-    virtual void DataWrite(t4_i32 pos_, const void *buffer_, int length_);
-    virtual t4_i32 FileSize();
+    bool IsValid()const Q_DECL_OVERRIDE;
+    int DataRead(t4_i32 pos_, void *buffer_, int length_) Q_DECL_OVERRIDE;
+    void DataWrite(t4_i32 pos_, const void *buffer_, int length_) Q_DECL_OVERRIDE;
+    t4_i32 FileSize() Q_DECL_OVERRIDE;
 };
 
 /////////////////////////////////////////////////////////////////////////////

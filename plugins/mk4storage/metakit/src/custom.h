@@ -26,20 +26,20 @@ public:
     c4_CustomSeq(c4_CustomViewer *viewer_);
     virtual ~c4_CustomSeq();
 
-    virtual int NumRows()const;
+    int NumRows()const Q_DECL_OVERRIDE;
 
-    virtual bool RestrictSearch(c4_Cursor, int &, int &);
+    bool RestrictSearch(c4_Cursor, int &, int &) Q_DECL_OVERRIDE;
 
-    virtual void InsertAt(int, c4_Cursor, int = 1);
-    virtual void RemoveAt(int, int = 1);
-    virtual void Move(int from_, int);
+    void InsertAt(int, c4_Cursor, int = 1) Q_DECL_OVERRIDE;
+    void RemoveAt(int, int = 1) Q_DECL_OVERRIDE;
+    void Move(int from_, int) Q_DECL_OVERRIDE;
 
     bool DoGet(int row_, int col_, c4_Bytes &buf_)const;
     void DoSet(int row_, int col_, const c4_Bytes &buf_);
 
 private:
-    // this *is* used, as override
-    virtual c4_Handler *CreateHandler(const c4_Property &);
+    // this *is* used, as Q_DECL_OVERRIDE
+    c4_Handler *CreateHandler(const c4_Property &) Q_DECL_OVERRIDE;
 };
 
 /////////////////////////////////////////////////////////////////////////////
