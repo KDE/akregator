@@ -473,12 +473,12 @@ void ActionManagerImpl::initSubscriptionListView(SubscriptionListView *subscript
     QAction *action = coll->addAction(QStringLiteral("go_prev_feed"));
     action->setText(i18n("&Previous Feed"));
     connect(action, &QAction::triggered, subscriptionListView, &SubscriptionListView::slotPrevFeed);
-    coll->setDefaultShortcut(action, QKeySequence(QStringLiteral("P")));
+    coll->setDefaultShortcut(action, QKeySequence(Qt::Key_P));
 
     action = coll->addAction(QStringLiteral("go_next_feed"));
     action->setText(i18n("&Next Feed"));
     connect(action, &QAction::triggered, subscriptionListView, &SubscriptionListView::slotNextFeed);
-    coll->setDefaultShortcut(action, QKeySequence(QStringLiteral("N")));
+    coll->setDefaultShortcut(action, QKeySequence(Qt::Key_N));
 
     action = coll->addAction(QStringLiteral("go_next_unread_feed"));
     action->setIcon(QIcon::fromTheme(QStringLiteral("go-down")));
@@ -495,22 +495,22 @@ void ActionManagerImpl::initSubscriptionListView(SubscriptionListView *subscript
     action = coll->addAction(QStringLiteral("feedstree_home"));
     action->setText(i18n("Go to Top of Tree"));
     connect(action, &QAction::triggered, subscriptionListView, &SubscriptionListView::slotItemBegin);
-    coll->setDefaultShortcut(action, QKeySequence(QStringLiteral("Ctrl+Home")));
+    coll->setDefaultShortcut(action, QKeySequence(Qt::CTRL + Qt::Key_Home));
 
     action = coll->addAction(QStringLiteral("feedstree_end"));
     action->setText(i18n("Go to Bottom of Tree"));
     connect(action, &QAction::triggered, subscriptionListView, &SubscriptionListView::slotItemEnd);
-    coll->setDefaultShortcut(action, QKeySequence(QStringLiteral("Ctrl+End")));
+    coll->setDefaultShortcut(action, QKeySequence(Qt::CTRL + Qt::Key_End));
 
     action = coll->addAction(QStringLiteral("feedstree_left"));
     action->setText(i18n("Go Left in Tree"));
     connect(action, &QAction::triggered, subscriptionListView, &SubscriptionListView::slotItemLeft);
-    coll->setDefaultShortcut(action, QKeySequence(QStringLiteral("Ctrl+Left")));
+    coll->setDefaultShortcut(action, QKeySequence(Qt::CTRL + Qt::Key_Left));
 
     action = coll->addAction(QStringLiteral("feedstree_right"));
     action->setText(i18n("Go Right in Tree"));
     connect(action, &QAction::triggered, subscriptionListView, &SubscriptionListView::slotItemRight);
-    coll->setDefaultShortcut(action, QKeySequence(QStringLiteral("Ctrl+Right")));
+    coll->setDefaultShortcut(action, QKeySequence(Qt::CTRL + Qt::Key_Right));
 
     action = coll->addAction(QStringLiteral("feedstree_up"));
     action->setText(i18n("Go Up in Tree"));
@@ -536,12 +536,12 @@ void ActionManagerImpl::initTabWidget(TabWidget *tabWidget)
     QAction *action = coll->addAction(QStringLiteral("select_next_tab"));
     action->setText(i18n("Select Next Tab"));
     connect(action, &QAction::triggered, d->tabWidget, &TabWidget::slotNextTab);
-    coll->setDefaultShortcut(action, QKeySequence(QStringLiteral("Ctrl+Period")));
+    coll->setDefaultShortcut(action, QKeySequence(Qt::CTRL + Qt::Key_Period));
 
     action = coll->addAction(QStringLiteral("select_previous_tab"));
     action->setText(i18n("Select Previous Tab"));
     connect(action, &QAction::triggered, d->tabWidget, &TabWidget::slotPreviousTab);
-    coll->setDefaultShortcut(action, QKeySequence(QStringLiteral("Ctrl+Comma")));
+    coll->setDefaultShortcut(action, QKeySequence(Qt::Key_Comma + Qt::CTRL));
 
     action = coll->addAction(QStringLiteral("tab_detach"));
     action->setIcon(QIcon::fromTheme(QStringLiteral("tab-detach")));
