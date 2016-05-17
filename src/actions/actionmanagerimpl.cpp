@@ -392,22 +392,22 @@ void ActionManagerImpl::initMainWidget(MainWidget *mainWidget)
     action = coll->addAction(QStringLiteral("feedstree_move_up"));
     action->setText(i18n("Move Node Up"));
     connect(action, &QAction::triggered, mainWidget, &MainWidget::slotMoveCurrentNodeUp);
-    coll->setDefaultShortcut(action, QKeySequence(QStringLiteral("Shift+Alt+Up")));
+    coll->setDefaultShortcut(action, QKeySequence(Qt::SHIFT + Qt::ALT + Qt::Key_Up));
 
     action = coll->addAction(QStringLiteral("feedstree_move_down"));
     action->setText(i18n("Move Node Down"));
     connect(action, &QAction::triggered, mainWidget, &MainWidget::slotMoveCurrentNodeDown);
-    coll->setDefaultShortcut(action, QKeySequence(QStringLiteral("Shift+Alt+Down")));
+    coll->setDefaultShortcut(action, QKeySequence(Qt::SHIFT + Qt::ALT + Qt::Key_Down));
 
     action = coll->addAction(QStringLiteral("move_node_left"));
     action->setText(i18n("Move Node Left"));
     connect(action, &QAction::triggered, mainWidget, &MainWidget::slotMoveCurrentNodeLeft);
-    coll->setDefaultShortcut(action, QKeySequence(QStringLiteral("Shift+Alt+Left")));
+    coll->setDefaultShortcut(action, QKeySequence(Qt::SHIFT + Qt::ALT + Qt::Key_Left));
 
     action = coll->addAction(QStringLiteral("feedstree_move_right"));
     action->setText(i18n("Move Node Right"));
     connect(action, &QAction::triggered, mainWidget, &MainWidget::slotMoveCurrentNodeRight);
-    coll->setDefaultShortcut(action, QKeySequence(QStringLiteral("Shift+Alt+Right")));
+    coll->setDefaultShortcut(action, QKeySequence(Qt::SHIFT + Qt::ALT + Qt::Key_Right));
 
     action = coll->addAction(QStringLiteral("file_sendlink"));
     action->setIcon(QIcon::fromTheme(QStringLiteral("mail-message-new")));
@@ -453,11 +453,11 @@ void ActionManagerImpl::initArticleListView(ArticleListView *articleList)
     QAction *action = actionCollection()->addAction(QStringLiteral("go_previous_article"));
     action->setText(i18n("&Previous Article"));
     connect(action, &QAction::triggered, articleList, &ArticleListView::slotPreviousArticle);
-    actionCollection()->setDefaultShortcut(action, QKeySequence(QStringLiteral("Left")));
+    actionCollection()->setDefaultShortcut(action, QKeySequence(Qt::Key_Left));
     action = actionCollection()->addAction(QStringLiteral("go_next_article"));
     action->setText(i18n("&Next Article"));
     connect(action, &QAction::triggered, articleList, &ArticleListView::slotNextArticle);
-    actionCollection()->setDefaultShortcut(action, QKeySequence(QStringLiteral("Right")));
+    actionCollection()->setDefaultShortcut(action, QKeySequence(Qt::Key_Right));
 }
 
 void ActionManagerImpl::initSubscriptionListView(SubscriptionListView *subscriptionListView)
@@ -515,12 +515,12 @@ void ActionManagerImpl::initSubscriptionListView(SubscriptionListView *subscript
     action = coll->addAction(QStringLiteral("feedstree_up"));
     action->setText(i18n("Go Up in Tree"));
     connect(action, &QAction::triggered, subscriptionListView, &SubscriptionListView::slotItemUp);
-    coll->setDefaultShortcut(action, QKeySequence(QStringLiteral("Ctrl+Up")));
+    coll->setDefaultShortcut(action, QKeySequence(Qt::CTRL + Qt::Key_Up));
 
     action = coll->addAction(QStringLiteral("feedstree_down"));
     action->setText(i18n("Go Down in Tree"));
     connect(action, &QAction::triggered, subscriptionListView, &SubscriptionListView::slotItemDown);
-    coll->setDefaultShortcut(action, QKeySequence(QStringLiteral("Ctrl+Down")));
+    coll->setDefaultShortcut(action, QKeySequence(Qt::CTRL + Qt::Key_Down));
 }
 
 void ActionManagerImpl::initTabWidget(TabWidget *tabWidget)
