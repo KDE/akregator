@@ -46,6 +46,7 @@
 #include <QClipboard>
 #include <QMenu>
 #include <viewerplugintoolmanager.h>
+#include <QWebEngineProfile>
 #include <WebEngineViewer/WebHitTestResult>
 #include <WebEngineViewer/WebHitTest>
 #include <WebEngineViewer/WebEngineScript>
