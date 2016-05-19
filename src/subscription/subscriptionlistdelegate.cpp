@@ -108,7 +108,7 @@ void Akregator::SubscriptionListDelegate::initStyleOption(QStyleOptionViewItem *
         view->header()->resizeSection(SubscriptionListModel::TotalCountColumn, QHeaderView::ResizeToContents);
     }
 
-    QStyleOptionViewItemV4 *optionV4 = qstyleoption_cast< QStyleOptionViewItemV4 * >(option);
+    QStyleOptionViewItem *optionV4 = qstyleoption_cast< QStyleOptionViewItem * >(option);
     if (!optionV4) {
         // Should never happen, but play it safe
         return;
