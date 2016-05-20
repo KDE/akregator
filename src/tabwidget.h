@@ -44,6 +44,7 @@ public:
     ~TabWidget();
 
 public Q_SLOTS:
+    void slotWebPageMutedOrAudibleChanged(Akregator::Frame *frame, bool isAudioMuted, bool wasRecentlyAudible);
     void slotCopy();
     void slotZoomChanged(qreal value);
 

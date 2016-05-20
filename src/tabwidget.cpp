@@ -338,6 +338,16 @@ void TabWidget::slotSetTitle(Frame *frame, const QString &title)
     d->setTitle(title, frame);
 }
 
+void TabWidget::slotWebPageMutedOrAudibleChanged(Akregator::Frame *frame, bool isAudioMuted, bool wasRecentlyAudible)
+{
+    const int idx = indexOf(frame);
+    if (idx < 0) {
+        return;
+    }
+    //TODO
+    //setTabIcon(idx, icon);
+}
+
 void TabWidget::slotSetIcon(Akregator::Frame *frame, const QIcon &icon)
 {
     const int idx = indexOf(frame);

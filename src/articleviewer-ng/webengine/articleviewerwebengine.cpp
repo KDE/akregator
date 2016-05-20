@@ -87,12 +87,24 @@ ArticleViewerWebEngine::ArticleViewerWebEngine(KActionCollection *ac, QWidget *p
     mWebShortcutMenuManager = new KIO::KUriFilterSearchProviderActions(this);
     mShareServiceManager = new PimCommon::ShareServiceUrlManager(this);
     connect(mShareServiceManager, &PimCommon::ShareServiceUrlManager::serviceUrlSelected, this, &ArticleViewerWebEngine::slotServiceUrlSelected);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 7, 0)
+    connect(page(), &QWebEnginePage::audioMutedChanged,
+            this, &ArticleViewerWebEngine::slotWebPageMutedOrAudibleChanged);
+    connect(page(), &QWebEnginePage::recentlyAudibleChanged,
+            this, &ArticleViewerWebEngine::slotWebPageMutedOrAudibleChanged);
+#endif
 }
 
 ArticleViewerWebEngine::~ArticleViewerWebEngine()
 {
 
 }
+
+void ArticleViewerWebEngine::slotWebPageMutedOrAudibleChanged()
+{
+    Q_EMIT webPageMutedOrAudibleChanged(page()->isAudioMuted(), page()->recentlyAudible());
+}
+
 
 QWebEngineView *ArticleViewerWebEngine::createWindow(QWebEnginePage::WebWindowType type)
 {

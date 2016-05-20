@@ -372,7 +372,7 @@ void MainWidget::connectFrame(Akregator::WebEngineFrame *frame)
 
     connect(frame, &WebEngineFrame::showStatusBarMessage, this, &MainWidget::slotShowStatusBarMessage);
     connect(frame, &WebEngineFrame::signalIconChanged, m_tabWidget, &TabWidget::slotSetIcon);
-
+    connect(frame, &WebEngineFrame::webPageMutedOrAudibleChanged, m_tabWidget, &TabWidget::slotWebPageMutedOrAudibleChanged);
 }
 
 void MainWidget::slotRequestNewFrame(int &frameId)

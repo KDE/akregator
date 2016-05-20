@@ -39,11 +39,17 @@ WebEngineFrame::WebEngineFrame(KActionCollection *ac, QWidget *parent)
     connect(mArticleViewerWidgetNg->articleViewerNg(), &ArticleViewerWebEngine::loadStarted, this, &WebEngineFrame::slotLoadStarted);
     connect(mArticleViewerWidgetNg->articleViewerNg(), &ArticleViewerWebEngine::loadFinished, this, &WebEngineFrame::slotLoadFinished);
     connect(mArticleViewerWidgetNg->articleViewerNg(), &ArticleViewerWebEngine::showStatusBarMessage, this, &WebEngineFrame::showStatusBarMessage);
+    connect(mArticleViewerWidgetNg->articleViewerNg(), &ArticleViewerWebEngine::webPageMutedOrAudibleChanged, this, &WebEngineFrame::slotWebPageMutedOrAudibleChanged);
     layout->addWidget(mArticleViewerWidgetNg);
 }
 
 WebEngineFrame::~WebEngineFrame()
 {
+}
+
+void WebEngineFrame::slotWebPageMutedOrAudibleChanged(bool isAudioMuted, bool wasRecentlyAudible)
+{
+    Q_EMIT webPageMutedOrAudibleChanged(this, isAudioMuted, wasRecentlyAudible);
 }
 
 void WebEngineFrame::slotLoadFinished()

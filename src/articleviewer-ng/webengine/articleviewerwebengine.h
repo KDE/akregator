@@ -103,6 +103,7 @@ Q_SIGNALS:
     void articleAction(Akregator::ArticleViewerWebEngine::ArticleAction type, const QString &articleId, const QString &feed);
     void findTextInHtml();
     void textToSpeech();
+    void webPageMutedOrAudibleChanged(bool isAudioMuted, bool wasRecentlyAudible);
 
 protected:
     void resizeEvent(QResizeEvent *e) Q_DECL_OVERRIDE;
@@ -125,6 +126,7 @@ private Q_SLOTS:
     void slotShowContextMenu(const QPoint &pos);
     void slotWebHitFinished(const WebEngineViewer::WebHitTestResult &result);
     void slotActivatePlugin(MessageViewer::ViewerPluginInterface *interface);
+    void slotWebPageMutedOrAudibleChanged();
 protected:
     ArticleViewerWebEnginePage *mPageEngine;
 
