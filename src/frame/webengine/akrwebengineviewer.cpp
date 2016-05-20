@@ -114,6 +114,8 @@ void AkrWebEngineViewer::slotWebHitFinished(const WebEngineViewer::WebHitTestRes
     popup.addAction(ActionManager::getInstance()->action(QStringLiteral("viewer_printpreview")));
     popup.addSeparator();
     popup.addAction(pageAction(QWebEnginePage::SavePage));
+    popup.addSeparator();
+    popup.addAction(pageAction(QWebEnginePage::ToggleMediaMute));
 #endif
     const QList<QAction *> interceptorUrlActions = mNetworkAccessManager->interceptorUrlActions(result);
     if (!interceptorUrlActions.isEmpty()) {
