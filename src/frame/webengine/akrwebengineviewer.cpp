@@ -112,6 +112,8 @@ void AkrWebEngineViewer::slotWebHitFinished(const WebEngineViewer::WebHitTestRes
     popup.addSeparator();
     popup.addAction(ActionManager::getInstance()->action(QStringLiteral("viewer_print")));
     popup.addAction(ActionManager::getInstance()->action(QStringLiteral("viewer_printpreview")));
+    popup.addSeparator();
+    popup.addAction(pageAction(QWebEnginePage::SavePage));
 #endif
     const QList<QAction *> interceptorUrlActions = mNetworkAccessManager->interceptorUrlActions(result);
     if (!interceptorUrlActions.isEmpty()) {

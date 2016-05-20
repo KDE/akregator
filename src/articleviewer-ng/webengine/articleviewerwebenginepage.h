@@ -25,7 +25,7 @@ class ArticleViewerWebEnginePage : public WebEngineViewer::WebEnginePage
 {
     Q_OBJECT
 public:
-    explicit ArticleViewerWebEnginePage(QObject *parent = Q_NULLPTR);
+    explicit ArticleViewerWebEnginePage(QWebEngineProfile *profile, QObject *parent = Q_NULLPTR);
     ~ArticleViewerWebEnginePage();
 
 Q_SIGNALS:

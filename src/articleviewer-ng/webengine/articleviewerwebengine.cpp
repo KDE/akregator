@@ -47,6 +47,7 @@
 #include <QMenu>
 #include <viewerplugintoolmanager.h>
 #include <QWebEngineProfile>
+#include <QWebEngineDownloadItem>
 #include <WebEngineViewer/WebHitTestResult>
 #include <WebEngineViewer/WebHitTest>
 #include <WebEngineViewer/WebEngineScript>
@@ -62,7 +63,11 @@ ArticleViewerWebEngine::ArticleViewerWebEngine(KActionCollection *ac, QWidget *p
       mViewerPluginToolManager(Q_NULLPTR)
 {
     mNetworkAccessManager = new WebEngineViewer::NetworkAccessManagerWebEngine(this, ac, this);
-    mPageEngine = new ArticleViewerWebEnginePage(this);
+    QWebEngineProfile *profile = new QWebEngineProfile(this);
+    mPageEngine = new ArticleViewerWebEnginePage(profile, this);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 7, 0)
+    connect(profile, &QWebEngineProfile::downloadRequested, this, &ArticleViewerWebEngine::saveHtml);
+#endif
     setPage(mPageEngine);
 
     connect(this, &ArticleViewerWebEngine::showContextMenu, this, &ArticleViewerWebEngine::slotShowContextMenu);
@@ -271,6 +276,8 @@ void ArticleViewerWebEngine::slotWebHitFinished(const WebEngineViewer::WebHitTes
     popup.addSeparator();
     popup.addAction(ActionManager::getInstance()->action(QStringLiteral("viewer_print")));
     popup.addAction(ActionManager::getInstance()->action(QStringLiteral("viewer_printpreview")));
+    popup.addSeparator();
+    popup.addAction(pageAction(QWebEnginePage::SavePage));
 #endif
     popup.addSeparator();
     popup.addAction(ActionManager::getInstance()->action(QStringLiteral("find_in_messages")));

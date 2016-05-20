@@ -17,10 +17,11 @@
 
 #include "articleviewerwebenginepage.h"
 #include <QWebEngineSettings>
+#include <QWebEngineProfile>
 using namespace Akregator;
 
-ArticleViewerWebEnginePage::ArticleViewerWebEnginePage(QObject *parent)
-    : WebEngineViewer::WebEnginePage(parent)
+ArticleViewerWebEnginePage::ArticleViewerWebEnginePage(QWebEngineProfile *profile, QObject *parent)
+    : WebEngineViewer::WebEnginePage(profile, parent)
 {
     settings()->setAttribute(QWebEngineSettings::JavascriptEnabled, true);
     settings()->setAttribute(QWebEngineSettings::PluginsEnabled, false);
