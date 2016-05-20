@@ -344,6 +344,7 @@ void TabWidget::slotWebPageMutedOrAudibleChanged(Akregator::Frame *frame, bool i
     if (idx < 0) {
         return;
     }
+    qDebug() << "void TabWidget::slotWebPageMutedOrAudibleChanged(Akregator::Frame *frame, bool isAudioMuted, bool wasRecentlyAudible)"<<isAudioMuted<< " wasRecentlyAudible" << wasRecentlyAudible;
     //TODO
     //setTabIcon(idx, icon);
 }
