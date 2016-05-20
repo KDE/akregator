@@ -102,7 +102,9 @@ ArticleViewerWebEngine::~ArticleViewerWebEngine()
 
 void ArticleViewerWebEngine::slotWebPageMutedOrAudibleChanged()
 {
+#if QT_VERSION >= QT_VERSION_CHECK(5, 7, 0)
     Q_EMIT webPageMutedOrAudibleChanged(page()->isAudioMuted(), page()->recentlyAudible());
+#endif
 }
 
 
