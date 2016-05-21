@@ -149,21 +149,22 @@ void TabWidget::slotTabContextMenuRequest(const QPoint &pos)
     }
     QMenu menu(this);
 
+    const int countTab = (count() > 1);
     QAction *detachTab = menu.addAction(i18nc("@action:inmenu", "Detach Tab"));
-    detachTab->setEnabled((indexBar != 0) && (count() > 1));
+    detachTab->setEnabled((indexBar != 0) && countTab);
     detachTab->setIcon(QIcon::fromTheme(QStringLiteral("tab-detach")));
     menu.addSeparator();
 
     QAction *closeTab = menu.addAction(i18nc("@action:inmenu", "Close Tab"));
-    closeTab->setEnabled((indexBar != 0) && (count() > 1));
+    closeTab->setEnabled((indexBar != 0) && countTab);
     closeTab->setIcon(QIcon::fromTheme(QStringLiteral("tab-close")));
 
     QAction *allOther = menu.addAction(i18nc("@action:inmenu", "Close All Other Tabs"));
-    allOther->setEnabled(count() > 1);
+    allOther->setEnabled(countTab);
     allOther->setIcon(QIcon::fromTheme(QStringLiteral("tab-close-other")));
 
     QAction *allTab = menu.addAction(i18nc("@action:inmenu", "Close All Tabs"));
-    allTab->setEnabled(count() > 1);
+    allTab->setEnabled(countTab);
     allTab->setIcon(QIcon::fromTheme(QStringLiteral("tab-close")));
 
     QAction *action = menu.exec(mapToGlobal(pos));

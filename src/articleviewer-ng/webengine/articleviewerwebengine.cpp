@@ -107,7 +107,6 @@ void ArticleViewerWebEngine::slotWebPageMutedOrAudibleChanged()
 #endif
 }
 
-
 QWebEngineView *ArticleViewerWebEngine::createWindow(QWebEnginePage::WebWindowType type)
 {
     qDebug() << " QWebEngineView *ArticleViewerWebEngine::createWindow(QWebEnginePage::WebWindowType type) not implemented yet" << type;
