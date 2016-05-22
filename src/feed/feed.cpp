@@ -932,7 +932,7 @@ void Akregator::Feed::enforceLimitArticleNumber()
     }
 
     QVector<Article> articles = valuesToVector(d->articles);
-    qSort(articles);
+    std::sort(articles.begin(), articles.end());
 
     int c = 0;
     const bool useKeep = Settings::doNotExpireImportantArticles();
