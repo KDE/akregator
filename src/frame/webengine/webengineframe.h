@@ -58,7 +58,7 @@ public Q_SLOTS:
 
 Q_SIGNALS:
     void signalIconChanged(Akregator::Frame *, const QIcon &icon);
-    void webPageMutedOrAudibleChanged(Akregator::Frame *,bool isAudioMuted, bool wasRecentlyAudible);
+    void webPageMutedOrAudibleChanged(Akregator::Frame *, bool isAudioMuted, bool wasRecentlyAudible);
 
 private Q_SLOTS:
     void slotTitleChanged(const QString &title);
