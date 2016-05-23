@@ -69,6 +69,8 @@ public Q_SLOTS:
     void slotSaveLinkAs();
     void slotCopyImageLocation();
     void slotSaveImageOnDisk();
+    void slotUnMute();
+    void slotMute();
 Q_SIGNALS:
     void signalCurrentFrameChanged(int);
     void signalRemoveFrameRequest(int);
@@ -83,6 +85,7 @@ Q_SIGNALS:
     void signalCopyLinkAsInFrame(int currentFrame);
     void signalCopyImageLocation(int currentFrame);
     void signalSaveImageOnDisk(int currentFrame);
+    void signalMute(int currentFrame, bool);
 private:
     void tabInserted(int) Q_DECL_OVERRIDE;
     void tabRemoved(int) Q_DECL_OVERRIDE;

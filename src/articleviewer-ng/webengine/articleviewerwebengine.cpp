@@ -186,6 +186,15 @@ void ArticleViewerWebEngine::slotCopyImageLocationInFrame()
     slotCopyLinkAddress();
 }
 
+void ArticleViewerWebEngine::slotMute(bool mute)
+{
+#if QT_VERSION >= QT_VERSION_CHECK(5, 7, 0)
+    page()->setAudioMuted(mute);
+#else
+    Q_UNUSED(mute);
+#endif
+}
+
 void ArticleViewerWebEngine::slotCopyLinkAddress()
 {
     if (mCurrentUrl.isEmpty()) {

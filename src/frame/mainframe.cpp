@@ -127,6 +127,14 @@ void MainFrame::slotSaveImageOnDiskInFrame(int frameId)
     mArticleViewer->articleViewerWidgetNg()->articleViewerNg()->slotSaveImageOnDiskInFrame();
 }
 
+void MainFrame::slotMute(int frameId, bool mute)
+{
+    if (frameId != 0) {
+        return;
+    }
+    mArticleViewer->articleViewerWidgetNg()->articleViewerNg()->slotMute(mute);
+}
+
 void MainFrame::slotCopyImageLocationInFrame(int frameId)
 {
     if (frameId != 0) {

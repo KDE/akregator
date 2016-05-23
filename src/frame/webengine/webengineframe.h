@@ -54,6 +54,7 @@ public Q_SLOTS:
     void slotCopyLinkAsInFrame(int frameId);
     void slotSaveImageOnDiskInFrame(int frameId);
     void slotCopyImageLocationInFrame(int frameId);
+    void slotMute(int frameId, bool mute);
 
 Q_SIGNALS:
     void signalIconChanged(Akregator::Frame *, const QIcon &icon);

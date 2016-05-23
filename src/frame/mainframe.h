@@ -57,6 +57,7 @@ public Q_SLOTS:
     void slotFindTextInFrame(int frameId);
     void slotCopyImageLocationInFrame(int frameId);
     void slotSaveImageOnDiskInFrame(int frameId);
+    void slotMute(int frameId, bool mute);
 private:
     KParts::ReadOnlyPart *m_part;
     Akregator::ArticleViewerWidget *mArticleViewer;

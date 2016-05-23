@@ -205,3 +205,11 @@ void WebEngineFrame::slotCopyImageLocationInFrame(int frameId)
     mArticleViewerWidgetNg->articleViewerNg()->slotCopyImageLocationInFrame();
 }
 
+void WebEngineFrame::slotMute(int frameId, bool mute)
+{
+    if (frameId != id()) {
+        return;
+    }
+    mArticleViewerWidgetNg->articleViewerNg()->slotMute(mute);
+}
+

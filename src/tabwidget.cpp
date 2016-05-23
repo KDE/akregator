@@ -478,6 +478,16 @@ void TabWidget::slotSaveImageOnDisk()
     Q_EMIT signalSaveImageOnDisk(d->currentFrame()->id());
 }
 
+void TabWidget::slotUnMute()
+{
+    Q_EMIT signalMute(d->currentFrame()->id(), false);
+}
+
+void TabWidget::slotMute()
+{
+    Q_EMIT signalMute(d->currentFrame()->id(), true);
+}
+
 void TabWidget::slotCopyImageLocation()
 {
     Q_EMIT signalCopyImageLocation(d->currentFrame()->id());
