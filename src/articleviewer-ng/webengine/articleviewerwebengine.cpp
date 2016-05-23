@@ -19,6 +19,7 @@
 #include "akregator_debug.h"
 #include "articleviewerwebenginepage.h"
 #include "webengine/urlhandlerwebenginemanager.h"
+#include <WebEngineViewer/ZoomActionMenu>
 #include "actionmanager.h"
 #include "akregatorconfig.h"
 #include "actions/actions.h"
@@ -347,6 +348,16 @@ void ArticleViewerWebEngine::forwardWheelEvent(QWheelEvent *e)
 {
     if (Settings::self()->accessKeyEnabled()) {
         mWebEngineViewAccessKey->wheelEvent(e);
+    }
+    if (QApplication::keyboardModifiers() & Qt::ControlModifier) {
+        const int numDegrees = e->delta() / 8;
+        const int numSteps = numDegrees / 15;
+        const qreal factor = ActionManager::getInstance()->zoomActionMenu()->zoomFactor() + numSteps * 10;
+        if (factor >= 10 && factor <= 300) {
+            ActionManager::getInstance()->zoomActionMenu()->setZoomFactor(factor);
+            ActionManager::getInstance()->zoomActionMenu()->setWebViewerZoomFactor(factor / 100.0);
+        }
+        e->accept();  
     }
 }
 

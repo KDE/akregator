@@ -33,6 +33,11 @@ class QAction;
 
 class QWidget;
 
+namespace WebEngineViewer
+{
+class ZoomActionMenu;
+}
+
 namespace Akregator
 {
 
@@ -56,6 +61,8 @@ public:
 
     virtual QAction *action(const QString &name) = 0;
     virtual QWidget *container(const QString &name) = 0;
+
+    virtual WebEngineViewer::ZoomActionMenu *zoomActionMenu() const = 0;
 
     virtual void setArticleActionsEnabled(bool enabled) = 0;
 

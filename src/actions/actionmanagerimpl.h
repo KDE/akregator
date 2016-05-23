@@ -71,7 +71,7 @@ public:
     void setArticleActionsEnabled(bool enabled) Q_DECL_OVERRIDE;
     void setTrayIcon(TrayIcon *trayIcon);
     KActionCollection *actionCollection() const;
-    WebEngineViewer::ZoomActionMenu *zoomActionMenu() const;
+    WebEngineViewer::ZoomActionMenu *zoomActionMenu() const Q_DECL_OVERRIDE;
     QString quickSearchLineText() const;
 
 public Q_SLOTS:
