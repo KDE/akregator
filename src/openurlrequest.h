@@ -26,7 +26,6 @@
 #define AKREGATOR_OPENURLREQUEST_H
 
 #include <kparts/browserextension.h>
-#include <kparts/part.h>
 
 #include <QUrl>
 
@@ -73,18 +72,6 @@ public:
     bool openInBackground() const;
     void setOpenInBackground(bool background);
 
-    /**
-     * The part that was created for a "NewTab" request.
-     *
-     * It must be set after creating the tab, so that the initiating
-     * part can load the URL into the new part. This works only synchronously
-     * and requires args().serviceType to be set.
-     *
-     * @see KParts::BrowserExtension::createNewWindow()
-     */
-    KParts::ReadOnlyPart *part() const;
-    void setPart(KParts::ReadOnlyPart *part);
-
     QString debugInfo() const;
 
     bool wasHandled() const;
@@ -97,7 +84,6 @@ private:
     KParts::OpenUrlArguments m_args;
     KParts::BrowserArguments m_browserArgs;
     Options m_options;
-    QPointer<KParts::ReadOnlyPart> m_part;
     bool m_inBackground;
     bool m_wasHandled;
 };

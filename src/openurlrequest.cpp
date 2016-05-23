@@ -27,8 +27,12 @@
 
 using namespace Akregator;
 
-OpenUrlRequest::OpenUrlRequest(const QUrl &url) : m_frameId(-1), m_url(url),
-    m_options(None), m_part(), m_inBackground(false), m_wasHandled(false)
+OpenUrlRequest::OpenUrlRequest(const QUrl &url)
+    : m_frameId(-1),
+      m_url(url),
+      m_options(None),
+      m_inBackground(false),
+      m_wasHandled(false)
 {
 }
 
@@ -98,16 +102,6 @@ OpenUrlRequest::Options OpenUrlRequest::options() const
 void OpenUrlRequest::setOptions(OpenUrlRequest::Options options)
 {
     m_options = options;
-}
-
-void OpenUrlRequest::setPart(KParts::ReadOnlyPart *part)
-{
-    m_part = part;
-}
-
-KParts::ReadOnlyPart *OpenUrlRequest::part() const
-{
-    return m_part;
 }
 
 QString OpenUrlRequest::debugInfo() const

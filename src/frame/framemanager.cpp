@@ -234,7 +234,6 @@ void FrameManager::openUrl(OpenUrlRequest &request)
         if (frame->openUrl(request)) {
             request.setWasHandled(true);
         }
-        request.setPart(frame->part());
     }
 
     if (!request.openInBackground()) {
