@@ -72,11 +72,6 @@ void WebEngineFrame::slotTitleChanged(const QString &title)
     slotSetTitle(title);
 }
 
-KParts::ReadOnlyPart *WebEngineFrame::part() const
-{
-    return Q_NULLPTR;
-}
-
 QUrl WebEngineFrame::url() const
 {
     return mArticleViewerWidgetNg->articleViewerNg()->url();

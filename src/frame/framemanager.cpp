@@ -44,17 +44,6 @@
 
 using namespace Akregator;
 
-static void setPartGuiActive(KParts::ReadOnlyPart *part, bool active)
-{
-    if (!part) {
-        return;
-    }
-    // When this event is sent to a KPart, the KPart StatusBarExtension shows or
-    // hides its items
-    KParts::GUIActivateEvent ev(active);
-    QApplication::sendEvent(part, &ev);
-}
-
 FrameManager::FrameManager(QWidget *mainWin, QObject *parent) : QObject(parent), m_mainWin(mainWin), m_currentFrame(0)
 {
 }
@@ -87,7 +76,7 @@ void FrameManager::slotAddFrame(Frame *frame)
 
     connect(frame, SIGNAL(signalOpenUrlRequest(Akregator::OpenUrlRequest&)), this, SLOT(slotOpenUrlRequest(Akregator::OpenUrlRequest&)));
 
-    setPartGuiActive(frame->part(), false);
+    //setPartGuiActive(frame->part(), false);
 
     Q_EMIT signalFrameAdded(frame);
 
@@ -134,12 +123,12 @@ void FrameManager::slotChangeFrame(int frameId)
     Frame *oldFrame = m_currentFrame;
     m_currentFrame = frame;
 
-    if (oldFrame) {
-        setPartGuiActive(oldFrame->part(), false);
-    }
+    //if (oldFrame) {
+    //    setPartGuiActive(oldFrame->part(), false);
+    //}
 
     if (frame) {
-        setPartGuiActive(frame->part(), true);
+        //setPartGuiActive(frame->part(), true);
 
         // TODO: handle removable flag
 

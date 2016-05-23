@@ -60,8 +60,6 @@ public:
 
     enum State {Idle, Started, Completed, Canceled};
 
-    virtual KParts::ReadOnlyPart *part() const = 0;
-
     virtual qreal zoomFactor() const = 0;
     /**
     * Returns whether the frame can be removed from

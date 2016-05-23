@@ -242,7 +242,7 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
             m_articleViewer, &ArticleViewerWidget::setFilters);
     mainTabLayout->addWidget(m_articleSplitter);
 
-    m_mainFrame = new MainFrame(this, m_part, m_mainTab);
+    m_mainFrame = new MainFrame(this, m_mainTab);
     m_mainFrame->slotSetTitle(i18n("Articles"));
     m_mainFrame->setArticleViewer(m_articleViewer);
     connect(m_articleViewer->articleViewerWidgetNg()->articleViewerNg(), &ArticleViewerWebEngine::articleAction, this, &MainWidget::slotArticleAction);

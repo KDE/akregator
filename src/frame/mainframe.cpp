@@ -24,9 +24,8 @@
 
 using namespace Akregator;
 
-MainFrame::MainFrame(QWidget *parent, KParts::ReadOnlyPart *part, QWidget *visibleWidget)
+MainFrame::MainFrame(QWidget *parent, QWidget *visibleWidget)
     : Frame(parent),
-      m_part(part),
       mArticleViewer(Q_NULLPTR)
 {
     setRemovable(false);

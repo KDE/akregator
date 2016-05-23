@@ -29,7 +29,7 @@ class AKREGATOR_EXPORT MainFrame : public Frame
 
 public:
 
-    MainFrame(QWidget *parent, KParts::ReadOnlyPart *part, QWidget *widget);
+    MainFrame(QWidget *parent, QWidget *widget);
     virtual ~MainFrame();
 
     QUrl url() const Q_DECL_OVERRIDE;
@@ -38,10 +38,6 @@ public:
         return false;
     }
 
-    KParts::ReadOnlyPart *part() const Q_DECL_OVERRIDE
-    {
-        return m_part;
-    }
     void setArticleViewer(Akregator::ArticleViewerWidget *articleViewer);
 
     qreal zoomFactor() const Q_DECL_OVERRIDE;
@@ -59,7 +55,6 @@ public Q_SLOTS:
     void slotSaveImageOnDiskInFrame(int frameId);
     void slotMute(int frameId, bool mute);
 private:
-    KParts::ReadOnlyPart *m_part;
     Akregator::ArticleViewerWidget *mArticleViewer;
 };
 

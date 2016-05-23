@@ -32,7 +32,6 @@ public:
     explicit WebEngineFrame(KActionCollection *ac, QWidget *parent = Q_NULLPTR);
     ~WebEngineFrame();
 
-    KParts::ReadOnlyPart *part() const Q_DECL_OVERRIDE;
     QUrl url() const Q_DECL_OVERRIDE;
     bool openUrl(const OpenUrlRequest &request) Q_DECL_OVERRIDE;
     void loadConfig(const KConfigGroup &, const QString &) Q_DECL_OVERRIDE;
