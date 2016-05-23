@@ -66,9 +66,7 @@ ArticleViewerWebEngine::ArticleViewerWebEngine(KActionCollection *ac, QWidget *p
     mNetworkAccessManager = new WebEngineViewer::NetworkAccessManagerWebEngine(this, ac, this);
     QWebEngineProfile *profile = new QWebEngineProfile(this);
     mPageEngine = new ArticleViewerWebEnginePage(profile, this);
-#if QT_VERSION >= QT_VERSION_CHECK(5, 7, 0)
-    connect(profile, &QWebEngineProfile::downloadRequested, this, &ArticleViewerWebEngine::saveHtml);
-#endif
+
     setPage(mPageEngine);
 
     connect(this, &ArticleViewerWebEngine::showContextMenu, this, &ArticleViewerWebEngine::slotShowContextMenu);
@@ -93,6 +91,7 @@ ArticleViewerWebEngine::ArticleViewerWebEngine(KActionCollection *ac, QWidget *p
             this, &ArticleViewerWebEngine::slotWebPageMutedOrAudibleChanged);
     connect(page(), &QWebEnginePage::recentlyAudibleChanged,
             this, &ArticleViewerWebEngine::slotWebPageMutedOrAudibleChanged);
+    connect(profile, &QWebEngineProfile::downloadRequested, this, &ArticleViewerWebEngine::saveHtml);
 #endif
 }
 
