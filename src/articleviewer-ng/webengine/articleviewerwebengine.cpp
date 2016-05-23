@@ -299,7 +299,8 @@ void ArticleViewerWebEngine::slotWebHitFinished(const WebEngineViewer::WebHitTes
     popup.addAction(ActionManager::getInstance()->action(QStringLiteral("viewer_print")));
     popup.addAction(ActionManager::getInstance()->action(QStringLiteral("viewer_printpreview")));
     popup.addSeparator();
-    popup.addAction(pageAction(QWebEnginePage::SavePage));
+    popup.addAction(ActionManager::getInstance()->action(QStringLiteral("tab_mute")));
+    popup.addAction(ActionManager::getInstance()->action(QStringLiteral("tab_unmute")));
 #endif
     popup.addSeparator();
     popup.addAction(ActionManager::getInstance()->action(QStringLiteral("find_in_messages")));

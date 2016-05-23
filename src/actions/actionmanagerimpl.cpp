@@ -558,12 +558,14 @@ void ActionManagerImpl::initTabWidget(TabWidget *tabWidget)
     action = KStandardAction::printPreview(d->tabWidget, SLOT(slotPrintPreview()), coll);
     coll->addAction(QStringLiteral("viewer_printpreview"), action);
 
-    action = KStandardAction::printPreview(d->tabWidget, SLOT(slotMute()), coll);
-    coll->addAction(QStringLiteral("tab_mute"), action);
 
-    action = KStandardAction::printPreview(d->tabWidget, SLOT(slotUnMute()), coll);
-    coll->addAction(QStringLiteral("tab_unmute"), action);
+    action = coll->addAction(QStringLiteral("tab_mute"));
+    action->setText(i18n("Mute"));
+    connect(action, &QAction::triggered, d->tabWidget, &TabWidget::slotMute);
 
+    action = coll->addAction(QStringLiteral("tab_unmute"));
+    action->setText(i18n("Unmute"));
+    connect(action, &QAction::triggered, d->tabWidget, &TabWidget::slotUnMute);
 
     action = new QAction(i18n("Speak Text"), this);
     action->setIcon(QIcon::fromTheme(QStringLiteral("preferences-desktop-text-to-speech")));

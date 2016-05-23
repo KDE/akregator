@@ -115,7 +115,8 @@ void AkrWebEngineViewer::slotWebHitFinished(const WebEngineViewer::WebHitTestRes
     popup.addSeparator();
     popup.addAction(pageAction(QWebEnginePage::SavePage));
     popup.addSeparator();
-    popup.addAction(pageAction(QWebEnginePage::ToggleMediaMute));
+    popup.addAction(ActionManager::getInstance()->action(QStringLiteral("tab_mute")));
+    popup.addAction(ActionManager::getInstance()->action(QStringLiteral("tab_unmute")));
 #endif
     const QList<QAction *> interceptorUrlActions = mNetworkAccessManager->interceptorUrlActions(result);
     if (!interceptorUrlActions.isEmpty()) {
