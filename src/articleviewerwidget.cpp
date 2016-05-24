@@ -364,7 +364,7 @@ void ArticleViewerWidget::keyPressEvent(QKeyEvent *e)
 
 void ArticleViewerWidget::updateAfterConfigChanged()
 {
-    switch(m_viewMode) {
+    switch (m_viewMode) {
     case NormalView:
         if (!m_article.isNull()) {
             renderContent(m_normalViewFormatter->formatArticles(QVector<Akregator::Article>() << m_article, ArticleFormatter::ShowIcon));

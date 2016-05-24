@@ -558,7 +558,6 @@ void ActionManagerImpl::initTabWidget(TabWidget *tabWidget)
     action = KStandardAction::printPreview(d->tabWidget, SLOT(slotPrintPreview()), coll);
     coll->addAction(QStringLiteral("viewer_printpreview"), action);
 
-
     action = coll->addAction(QStringLiteral("tab_mute"));
     action->setText(i18n("Mute"));
     connect(action, &QAction::triggered, d->tabWidget, &TabWidget::slotMute);

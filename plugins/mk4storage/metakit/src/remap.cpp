@@ -19,24 +19,20 @@ public:
     c4_ReadOnlyViewer(c4_Sequence &seq_): _base(&seq_) {}
     virtual ~c4_ReadOnlyViewer() {}
 
-    c4_View GetTemplate() Q_DECL_OVERRIDE
-    {
+    c4_View GetTemplate() Q_DECL_OVERRIDE {
         return _base.Clone();
     }
-    int GetSize() Q_DECL_OVERRIDE
-    {
+    int GetSize() Q_DECL_OVERRIDE {
         return _base.GetSize();
     }
 
-    int Lookup(c4_Cursor key_, int &count_) Q_DECL_OVERRIDE
-    {
+    int Lookup(c4_Cursor key_, int &count_) Q_DECL_OVERRIDE {
         int pos = 0;
         count_ = _base.GetSize();
         return _base.RestrictSearch(*key_, pos, count_);
     }
 
-    bool GetItem(int row_, int col_, c4_Bytes &buf_) Q_DECL_OVERRIDE
-    {
+    bool GetItem(int row_, int col_, c4_Bytes &buf_) Q_DECL_OVERRIDE {
         return _base.GetItem(row_, col_, buf_);
     }
 };

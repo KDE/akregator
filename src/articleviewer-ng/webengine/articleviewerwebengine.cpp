@@ -356,7 +356,7 @@ void ArticleViewerWebEngine::forwardWheelEvent(QWheelEvent *e)
             ActionManager::getInstance()->zoomActionMenu()->setZoomFactor(factor);
             ActionManager::getInstance()->zoomActionMenu()->setWebViewerZoomFactor(factor / 100.0);
         }
-        e->accept();  
+        e->accept();
     }
 }
 
