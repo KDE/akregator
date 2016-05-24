@@ -80,26 +80,26 @@ ArticleModel::Private::Private(const QVector<Article> &articles_, ArticleModel *
     }
 }
 
-Akregator::ArticleModel::ArticleModel(const QVector<Article> &articles, QObject *parent) : QAbstractTableModel(parent), d(new Private(articles, this))
+ArticleModel::ArticleModel(const QVector<Article> &articles, QObject *parent) : QAbstractTableModel(parent), d(new Private(articles, this))
 {
 }
 
-Akregator::ArticleModel::~ArticleModel()
+ArticleModel::~ArticleModel()
 {
     delete d;
 }
 
-int Akregator::ArticleModel::columnCount(const QModelIndex &parent) const
+int ArticleModel::columnCount(const QModelIndex &parent) const
 {
     return parent.isValid() ? 0 : ColumnCount;
 }
 
-int Akregator::ArticleModel::rowCount(const QModelIndex &parent) const
+int ArticleModel::rowCount(const QModelIndex &parent) const
 {
     return parent.isValid() ? 0 : d->articles.count();
 }
 
-QVariant Akregator::ArticleModel::headerData(int section, Qt::Orientation, int role) const
+QVariant ArticleModel::headerData(int section, Qt::Orientation, int role) const
 {
     if (role != Qt::DisplayRole) {
         return QVariant();
@@ -123,13 +123,13 @@ QVariant Akregator::ArticleModel::headerData(int section, Qt::Orientation, int r
     return QVariant();
 }
 
-QVariant Akregator::ArticleModel::data(const QModelIndex &index, int role) const
+QVariant ArticleModel::data(const QModelIndex &index, int role) const
 {
     if (!index.isValid() || index.row() < 0 || index.row() >= d->articles.count()) {
         return QVariant();
     }
     const int row = index.row();
-    const Akregator::Article &article(d->articles[row]);
+    const Article &article(d->articles[row]);
 
     if (article.isNull()) {
         return QVariant();
@@ -250,7 +250,7 @@ void ArticleModel::Private::articlesUpdated(const QVector<Article> &list)
     Q_EMIT q->dataChanged(q->index(rmin, 0), q->index(rmax, ColumnCount - 1));
 }
 
-bool ArticleModel::rowMatches(int row, const QSharedPointer<const Akregator::Filters::AbstractMatcher> &matcher) const
+bool ArticleModel::rowMatches(int row, const QSharedPointer<const Filters::AbstractMatcher> &matcher) const
 {
     Q_ASSERT(matcher);
     return matcher->matches(article(row));

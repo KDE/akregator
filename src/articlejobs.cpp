@@ -39,37 +39,39 @@
 
 using namespace Akregator;
 
-Akregator::ArticleDeleteJob::ArticleDeleteJob(QObject *parent) : KJob(parent), m_feedList(Kernel::self()->feedList())
+ArticleDeleteJob::ArticleDeleteJob(QObject *parent)
+    : KJob(parent),
+      m_feedList(Kernel::self()->feedList())
 {
     Q_ASSERT(m_feedList);
 }
 
-void Akregator::ArticleDeleteJob::appendArticleIds(const QList<Akregator::ArticleId> &ids)
+void ArticleDeleteJob::appendArticleIds(const QList<ArticleId> &ids)
 {
     m_ids += ids;
 }
 
-void Akregator::ArticleDeleteJob::appendArticleId(const Akregator::ArticleId &id)
+void ArticleDeleteJob::appendArticleId(const ArticleId &id)
 {
     m_ids += id;
 }
 
-void Akregator::ArticleDeleteJob::start()
+void ArticleDeleteJob::start()
 {
     QTimer::singleShot(20, this, &ArticleDeleteJob::doStart);
 }
 
-void Akregator::ArticleDeleteJob::doStart()
+void ArticleDeleteJob::doStart()
 {
     if (!m_feedList) {
         qCWarning(AKREGATOR_LOG) << "Feedlist object was deleted, items not deleted";
         emitResult();
         return;
     }
-    std::vector<Akregator::Feed *> feeds;
+    std::vector<Feed *> feeds;
 
-    Q_FOREACH (const Akregator::ArticleId &id, m_ids) {
-        Akregator::Article article = m_feedList->findArticle(id.feedUrl, id.guid);
+    Q_FOREACH (const ArticleId &id, m_ids) {
+        Article article = m_feedList->findArticle(id.feedUrl, id.guid);
         if (article.isNull()) {
             continue;
         }
@@ -81,34 +83,34 @@ void Akregator::ArticleDeleteJob::doStart()
         article.setDeleted();
     }
 
-    Q_FOREACH (Akregator::Feed *const i, feeds) {
+    Q_FOREACH (Feed *const i, feeds) {
         i->setNotificationMode(true);
     }
 
     emitResult();
 }
 
-Akregator::ArticleModifyJob::ArticleModifyJob(QObject *parent) : KJob(parent), m_feedList(Kernel::self()->feedList())
+ArticleModifyJob::ArticleModifyJob(QObject *parent) : KJob(parent), m_feedList(Kernel::self()->feedList())
 {
     Q_ASSERT(m_feedList);
 }
 
-void Akregator::ArticleModifyJob::setStatus(const ArticleId &id, int status)
+void ArticleModifyJob::setStatus(const ArticleId &id, int status)
 {
     m_status[id] = status;
 }
 
-void Akregator::ArticleModifyJob::setKeep(const ArticleId &id, bool keep)
+void ArticleModifyJob::setKeep(const ArticleId &id, bool keep)
 {
     m_keepFlags[id] = keep;
 }
 
-void Akregator::ArticleModifyJob::start()
+void ArticleModifyJob::start()
 {
     QTimer::singleShot(20, this, &ArticleModifyJob::doStart);
 }
 
-void Akregator::ArticleModifyJob::doStart()
+void ArticleModifyJob::doStart()
 {
 
     if (!m_feedList) {
@@ -116,37 +118,37 @@ void Akregator::ArticleModifyJob::doStart()
         emitResult();
         return;
     }
-    std::vector<Akregator::Feed *> feeds;
+    std::vector<Feed *> feeds;
 
     for (auto it = m_keepFlags.cbegin(), end = m_keepFlags.cend(); it != end; ++it) {
-        const Akregator::ArticleId &id = it.key();
-        Akregator::Feed *feed = m_feedList->findByURL(id.feedUrl);
+        const ArticleId &id = it.key();
+        Feed *feed = m_feedList->findByURL(id.feedUrl);
         if (!feed) {
             continue;
         }
         feed->setNotificationMode(false);
         feeds.push_back(feed);
-        Akregator::Article article = feed->findArticle(id.guid);
+        Article article = feed->findArticle(id.guid);
         if (!article.isNull()) {
             article.setKeep(it.value());
         }
     }
 
     for (auto it = m_status.cbegin(), end = m_status.cend(); it != end; ++it) {
-        const Akregator::ArticleId &id = it.key();
-        Akregator::Feed *feed = m_feedList->findByURL(id.feedUrl);
+        const ArticleId &id = it.key();
+        Feed *feed = m_feedList->findByURL(id.feedUrl);
         if (!feed) {
             continue;
         }
         feed->setNotificationMode(false);
         feeds.push_back(feed);
-        Akregator::Article article = feed->findArticle(id.guid);
+        Article article = feed->findArticle(id.guid);
         if (!article.isNull()) {
             article.setStatus(it.value());
         }
     }
 
-    Q_FOREACH (Akregator::Feed *const i, feeds) {
+    Q_FOREACH (Feed *const i, feeds) {
         i->setNotificationMode(true);
     }
     emitResult();
