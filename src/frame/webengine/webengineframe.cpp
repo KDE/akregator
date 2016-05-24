@@ -102,7 +102,7 @@ void WebEngineFrame::loadConfig(const KConfigGroup &config, const QString &prefi
 void WebEngineFrame::saveConfig(KConfigGroup &config, const QString &prefix)
 {
     config.writeEntry(QStringLiteral("url").prepend(prefix), url().url());
-    config.writeEntry(QStringLiteral("zoom").prepend(prefix), mArticleViewerWidgetNg->articleViewerNg()->zoomFactor());
+    config.writeEntry(QStringLiteral("zoom").prepend(prefix), zoomFactor());
 }
 
 void WebEngineFrame::slotCopyInFrame(int frameId)
