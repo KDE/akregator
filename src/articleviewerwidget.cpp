@@ -71,8 +71,6 @@
 using namespace Akregator;
 using namespace Akregator::Filters;
 
-using namespace Akregator;
-
 ArticleViewerWidget::ArticleViewerWidget(const QString &grantleeDirectory, KActionCollection *ac, QWidget *parent)
     : QWidget(parent),
       m_imageDir(QUrl::fromLocalFile(QString(QStandardPaths::writableLocation(QStandardPaths::CacheLocation) + QLatin1String("/akregator/Media/")))),
@@ -173,7 +171,7 @@ void ArticleViewerWidget::slotShowSummary(TreeNode *node)
         m_node = node;
     }
 
-    QString summary = m_normalViewFormatter->formatSummary(node);
+    const QString summary = m_normalViewFormatter->formatSummary(node);
     m_link.clear();
     renderContent(summary);
 

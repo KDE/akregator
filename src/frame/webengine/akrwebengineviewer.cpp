@@ -108,10 +108,10 @@ void AkrWebEngineViewer::slotWebHitFinished(const WebEngineViewer::WebHitTestRes
         popup.addSeparator();
         popup.addActions(viewerPluginActionList(MessageViewer::ViewerPluginInterface::NeedSelection));
     }
-#if QT_VERSION >= QT_VERSION_CHECK(5, 7, 0)
     popup.addSeparator();
     popup.addAction(ActionManager::getInstance()->action(QStringLiteral("viewer_print")));
     popup.addAction(ActionManager::getInstance()->action(QStringLiteral("viewer_printpreview")));
+#if QT_VERSION >= QT_VERSION_CHECK(5, 7, 0)
     popup.addSeparator();
     popup.addAction(pageAction(QWebEnginePage::SavePage));
     popup.addSeparator();

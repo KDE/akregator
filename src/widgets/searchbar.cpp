@@ -43,8 +43,6 @@
 
 using namespace Akregator;
 using namespace Akregator::Filters;
-
-using namespace Akregator;
 class SearchBar::SearchBarPrivate
 {
 public:
