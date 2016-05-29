@@ -33,6 +33,7 @@
 #include <WebEngineViewer/WebEnginePrintMessageBox>
 #include <WebEngineViewer/FindBarWebEngineView>
 #include <webengineviewer/config-webengineviewer.h>
+#include <WebEngineViewer/WebEngineExportHtmlPageJob>
 #ifdef WEBENGINEVIEWER_PRINTPREVIEW_SUPPORT
 #include <WebEngineViewer/PrintPreviewDialog>
 #include <WebEngineViewer/PrintWebEngineViewJob>
@@ -131,12 +132,25 @@ void ArticleViewerWebEngineWidgetNg::slotPrintPreview()
     QPointer<WebEngineViewer::WebEnginePrintMessageBox> dialog = new WebEngineViewer::WebEnginePrintMessageBox(this);
     connect(dialog.data(), &WebEngineViewer::WebEnginePrintMessageBox::openInBrowser, this, &ArticleViewerWebEngineWidgetNg::slotOpenInBrowser);
     connect(dialog.data(), &WebEngineViewer::WebEnginePrintMessageBox::openPrintPreview, this, &ArticleViewerWebEngineWidgetNg::slotOpenPrintPreviewDialog);
-    dialog->setWebEngineView(mArticleViewerNg);
     dialog->exec();
     delete dialog;
 }
 
-void ArticleViewerWebEngineWidgetNg::slotOpenInBrowser(const QString &filename)
+void ArticleViewerWebEngineWidgetNg::slotOpenInBrowser()
+{
+    WebEngineViewer::WebEngineExportHtmlPageJob *job = new WebEngineViewer::WebEngineExportHtmlPageJob;
+    job->setEngineView(mArticleViewerNg);
+    connect(job, &WebEngineViewer::WebEngineExportHtmlPageJob::failed, this, &ArticleViewerWebEngineWidgetNg::slotExportHtmlPageFailed);
+    connect(job, &WebEngineViewer::WebEngineExportHtmlPageJob::success, this, &ArticleViewerWebEngineWidgetNg::slotExportHtmlPageSuccess);
+    job->start();
+}
+
+void ArticleViewerWebEngineWidgetNg::slotExportHtmlPageFailed()
+{
+    qCDebug(AKREGATOR_LOG) << " Failed to export as HTML";
+}
+
+void ArticleViewerWebEngineWidgetNg::slotExportHtmlPageSuccess(const QString &filename)
 {
     MimeTreeParser::AttachmentTemporaryFilesDirs *browserTemporaryFile = new MimeTreeParser::AttachmentTemporaryFilesDirs;
     browserTemporaryFile->addTempFile(filename);

@@ -58,8 +58,9 @@ private Q_SLOTS:
     void slotPdfFailed();
     void slotPdfCreated(const QString &filename);
     void slotOpenPrintPreviewDialog();
-    void slotOpenInBrowser(const QString &filename);
-
+    void slotOpenInBrowser();
+    void slotExportHtmlPageSuccess(const QString &filename);
+    void slotExportHtmlPageFailed();
 private:
     void initializeActions(KActionCollection *ac);
     void initializeLayout(KActionCollection *ac);
