@@ -33,7 +33,6 @@
 #include <QString>
 #include <QStringList>
 
-//typedef unsigned int uint;
 namespace Akregator
 {
 namespace Backend

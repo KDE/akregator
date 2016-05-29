@@ -44,9 +44,7 @@
 
 #include <cassert>
 
-namespace Akregator
-{
-
+using namespace Akregator;
 class Q_DECL_HIDDEN FeedList::Private
 {
     FeedList *const q;
@@ -631,6 +629,3 @@ QString FeedListManagementImpl::getCategoryName(const QString &catId) const
 
     return catname;
 }
-
-} // namespace Akregator
-

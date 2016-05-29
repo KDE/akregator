@@ -57,8 +57,7 @@
 #include <QHash>
 #include <QWidget>
 
-namespace Akregator
-{
+using namespace Akregator;
 
 class ActionManagerImpl::NodeSelectVisitor : public TreeNodeVisitor
 {
@@ -670,6 +669,4 @@ QString ActionManagerImpl::ActionManagerImplPrivate::quickSearchLineText() const
 {
     return mQuickSearchAction->shortcut().toString();
 }
-
-} // namespace Akregator
 

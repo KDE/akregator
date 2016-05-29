@@ -35,9 +35,7 @@
 #include <QPushButton>
 #include <QVBoxLayout>
 
-namespace Akregator
-{
-
+using namespace Akregator;
 FeedPropertiesWidget::FeedPropertiesWidget(QWidget *parent, const char *name)
     : QWidget(parent)
 {
@@ -346,6 +344,3 @@ void FeedPropertiesDialog::selectFeedName()
 {
     widget->feedNameEdit->selectAll();
 }
-
-} // namespace Akregator
-

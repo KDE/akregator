@@ -24,9 +24,7 @@
 
 #include "actionmanager.h"
 
-namespace Akregator
-{
-
+using namespace Akregator;
 ActionManager *ActionManager::m_self = 0;
 
 ActionManager *ActionManager::getInstance()
@@ -46,5 +44,3 @@ ActionManager::ActionManager(QObject *parent) : QObject(parent)
 ActionManager::~ActionManager()
 {
 }
-
-} // namespace Akregator
