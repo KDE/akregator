@@ -39,7 +39,7 @@ KCMAkregatorWebEngineUrlInterceptorConfig::KCMAkregatorWebEngineUrlInterceptorCo
     lay->setMargin(0);
 
     KAboutData *about = new KAboutData(QStringLiteral("kcmakrwebengineurlinterceptorconfig"),
-                                       i18n("Configure WebEngine Url Interceptor Plugins"),
+                                       i18n("Configure WebEngine URL Interceptor Plugins"),
                                        QString(), QString(), KAboutLicense::GPL,
                                        i18n("(c), 2016 Laurent Montel"));
 

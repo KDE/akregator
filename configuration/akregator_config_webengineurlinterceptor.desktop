@@ -9,7 +9,7 @@ X-KDE-ParentComponents=akregator,kontact_akregatorplugin
 X-KDE-CfgDlgHierarchy=Akregator
 X-KDE-Weight=100
 
-Name=Web Engine Url Interceptor Plugins
+Name=Web Engine URL Interceptor Plugins
 Name[ca]=Connectors motor web i interceptor de l'URL
 Name[ca@valencia]=Connectors motor web i interceptor de l'URL
 Name[de]=WebEngine-Module zum Abfangen von Adressen
@@ -29,7 +29,7 @@ Name[sr@latin]=Priključci veb motora za presretanje URL‑ova
 Name[sv]=Insticksprogram för webbgränssnittets webbadressinfångning
 Name[uk]=Додатки перехоплення адрес вебрушія
 Name[x-test]=xxWeb Engine Url Interceptor Pluginsxx
-Comment=Configure Web Engine Url Interceptor Plugins
+Comment=Configure Web Engine URL Interceptor Plugins
 Comment[ca]=Configura els connectors motor web i interceptor de l'URL
 Comment[ca@valencia]=Configura els connectors motor web i interceptor de l'URL
 Comment[de]=WebEngine-Module zum Abfangen von Adressen einrichten
