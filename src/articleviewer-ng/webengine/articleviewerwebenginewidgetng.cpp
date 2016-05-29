@@ -120,6 +120,12 @@ void ArticleViewerWebEngineWidgetNg::restoreCurrentPosition()
     mArticleViewerNg->restoreCurrentPosition();
 }
 
+void ArticleViewerWebEngineWidgetNg::slotPrint()
+{
+    //Use the same code for the moment.
+    slotPrintPreview();
+}
+
 void ArticleViewerWebEngineWidgetNg::slotPrintPreview()
 {
     QPointer<WebEngineViewer::WebEnginePrintMessageBox> dialog = new WebEngineViewer::WebEnginePrintMessageBox(this);
@@ -144,8 +150,12 @@ void ArticleViewerWebEngineWidgetNg::slotOpenPrintPreviewDialog()
 {
 #ifdef WEBENGINEVIEWER_PRINTPREVIEW_SUPPORT
     QPointer<WebEngineViewer::PrintConfigureDialog> dlg = new WebEngineViewer::PrintConfigureDialog(this);
+    QPageLayout pageLayout;
     if (dlg->exec()) {
-        const QPageLayout pageLayout = dlg->currentPageLayout();
+        pageLayout = dlg->currentPageLayout();
+    }
+    delete dlg;
+    if (pageLayout.isValid()) {
         WebEngineViewer::PrintWebEngineViewJob *job = new WebEngineViewer::PrintWebEngineViewJob(this);
         job->setEngineView(mArticleViewerNg);
         job->setPageLayout(pageLayout);
@@ -153,7 +163,6 @@ void ArticleViewerWebEngineWidgetNg::slotOpenPrintPreviewDialog()
         connect(job, &WebEngineViewer::PrintWebEngineViewJob::success, this, &ArticleViewerWebEngineWidgetNg::slotPdfCreated);
         job->start();
     }
-    delete dlg;
 #endif
 }
 
@@ -171,13 +180,4 @@ void ArticleViewerWebEngineWidgetNg::slotPdfFailed()
     qCDebug(AKREGATOR_LOG) << "Print to pdf Failed";
 }
 
-void ArticleViewerWebEngineWidgetNg::slotPrint()
-{
-    QPointer<WebEngineViewer::WebEnginePrintMessageBox> dialog = new WebEngineViewer::WebEnginePrintMessageBox(Q_NULLPTR);
-    connect(dialog.data(), &WebEngineViewer::WebEnginePrintMessageBox::openInBrowser, this, &ArticleViewerWebEngineWidgetNg::slotOpenInBrowser);
-    connect(dialog.data(), &WebEngineViewer::WebEnginePrintMessageBox::openPrintPreview, this, &ArticleViewerWebEngineWidgetNg::slotOpenPrintPreviewDialog);
-    dialog->setWebEngineView(mArticleViewerNg);
-    dialog->exec();
-    delete dialog;
-}
 
