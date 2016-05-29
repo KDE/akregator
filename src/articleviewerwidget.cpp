@@ -109,12 +109,12 @@ void ArticleViewerWidget::slotSelectionChanged()
 
 void ArticleViewerWidget::slotPrint()
 {
-    m_articleViewerWidgetNg->articleViewerNg()->slotPrint();
+    m_articleViewerWidgetNg->slotPrint();
 }
 
 void ArticleViewerWidget::slotPrintPreview()
 {
-    m_articleViewerWidgetNg->articleViewerNg()->slotPrintPreview();
+    m_articleViewerWidgetNg->slotPrintPreview();
 }
 
 void ArticleViewerWidget::connectToNode(TreeNode *node)

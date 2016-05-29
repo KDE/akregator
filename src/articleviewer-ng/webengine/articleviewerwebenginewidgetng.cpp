@@ -16,18 +16,29 @@
 */
 
 #include "articleviewerwebenginewidgetng.h"
-
+#include "akregator_debug.h"
 #include <KActionCollection>
 #include <KLocalizedString>
 #include <QVBoxLayout>
 #include <QAction>
 #include <viewerplugintoolmanager.h>
+#include <KRun>
 
 #include <KPIMTextEdit/kpimtextedit/texttospeechwidget.h>
 
 #include <kpimtextedit/slidecontainer.h>
 
+#include <MimeTreeParser/AttachmentTemporaryFilesDirs>
+
+#include <WebEngineViewer/WebEnginePrintMessageBox>
 #include <WebEngineViewer/FindBarWebEngineView>
+#include <webengineviewer/config-webengineviewer.h>
+#ifdef WEBENGINEVIEWER_PRINTPREVIEW_SUPPORT
+#include <WebEngineViewer/PrintPreviewDialog>
+#include <WebEngineViewer/PrintWebEngineViewJob>
+#include <WebEngineViewer/PrintConfigureDialog>
+#endif
+
 
 using namespace Akregator;
 
@@ -108,3 +119,65 @@ void ArticleViewerWebEngineWidgetNg::restoreCurrentPosition()
 {
     mArticleViewerNg->restoreCurrentPosition();
 }
+
+void ArticleViewerWebEngineWidgetNg::slotPrintPreview()
+{
+    QPointer<WebEngineViewer::WebEnginePrintMessageBox> dialog = new WebEngineViewer::WebEnginePrintMessageBox(this);
+    connect(dialog.data(), &WebEngineViewer::WebEnginePrintMessageBox::openInBrowser, this, &ArticleViewerWebEngineWidgetNg::slotOpenInBrowser);
+    connect(dialog.data(), &WebEngineViewer::WebEnginePrintMessageBox::openPrintPreview, this, &ArticleViewerWebEngineWidgetNg::slotOpenPrintPreviewDialog);
+    dialog->setWebEngineView(mArticleViewerNg);
+    dialog->exec();
+    delete dialog;
+}
+
+void ArticleViewerWebEngineWidgetNg::slotOpenInBrowser(const QString &filename)
+{
+    MimeTreeParser::AttachmentTemporaryFilesDirs *browserTemporaryFile = new MimeTreeParser::AttachmentTemporaryFilesDirs;
+    browserTemporaryFile->addTempFile(filename);
+    const QUrl url(QUrl::fromLocalFile(filename));
+    KRun::runUrl(url, QStringLiteral("text/html"), this);
+    browserTemporaryFile->removeTempFiles();
+    browserTemporaryFile = Q_NULLPTR;
+}
+
+void ArticleViewerWebEngineWidgetNg::slotOpenPrintPreviewDialog()
+{
+#ifdef WEBENGINEVIEWER_PRINTPREVIEW_SUPPORT
+    QPointer<WebEngineViewer::PrintConfigureDialog> dlg = new WebEngineViewer::PrintConfigureDialog(this);
+    if (dlg->exec()) {
+        const QPageLayout pageLayout = dlg->currentPageLayout();
+        WebEngineViewer::PrintWebEngineViewJob *job = new WebEngineViewer::PrintWebEngineViewJob(this);
+        job->setEngineView(mArticleViewerNg);
+        job->setPageLayout(pageLayout);
+        connect(job, &WebEngineViewer::PrintWebEngineViewJob::failed, this, &ArticleViewerWebEngineWidgetNg::slotPdfFailed);
+        connect(job, &WebEngineViewer::PrintWebEngineViewJob::success, this, &ArticleViewerWebEngineWidgetNg::slotPdfCreated);
+        job->start();
+    }
+    delete dlg;
+#endif
+}
+
+void ArticleViewerWebEngineWidgetNg::slotPdfCreated(const QString &filename)
+{
+#ifdef WEBENGINEVIEWER_PRINTPREVIEW_SUPPORT
+    WebEngineViewer::PrintPreviewDialog dlg(this);
+    dlg.loadFile(filename, true);
+    dlg.exec();
+#endif
+}
+
+void ArticleViewerWebEngineWidgetNg::slotPdfFailed()
+{
+    qCDebug(AKREGATOR_LOG) << "Print to pdf Failed";
+}
+
+void ArticleViewerWebEngineWidgetNg::slotPrint()
+{
+    QPointer<WebEngineViewer::WebEnginePrintMessageBox> dialog = new WebEngineViewer::WebEnginePrintMessageBox(Q_NULLPTR);
+    connect(dialog.data(), &WebEngineViewer::WebEnginePrintMessageBox::openInBrowser, this, &ArticleViewerWebEngineWidgetNg::slotOpenInBrowser);
+    connect(dialog.data(), &WebEngineViewer::WebEnginePrintMessageBox::openPrintPreview, this, &ArticleViewerWebEngineWidgetNg::slotOpenPrintPreviewDialog);
+    dialog->setWebEngineView(mArticleViewerNg);
+    dialog->exec();
+    delete dialog;
+}
+

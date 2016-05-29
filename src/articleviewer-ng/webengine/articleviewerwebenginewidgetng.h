@@ -51,6 +51,15 @@ public:
 public Q_SLOTS:
     void slotSpeakText();
     void slotFind();
+    void slotPrint();
+    void slotPrintPreview();
+
+private Q_SLOTS:
+    void slotPdfFailed();
+    void slotPdfCreated(const QString &filename);
+    void slotOpenPrintPreviewDialog();
+    void slotOpenInBrowser(const QString &filename);
+
 private:
     void initializeActions(KActionCollection *ac);
     void initializeLayout(KActionCollection *ac);

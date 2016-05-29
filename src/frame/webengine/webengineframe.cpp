@@ -118,7 +118,7 @@ void WebEngineFrame::slotPrintInFrame(int frameId)
     if (frameId != id()) {
         return;
     }
-    mArticleViewerWidgetNg->articleViewerNg()->slotPrint();
+    mArticleViewerWidgetNg->slotPrint();
 }
 
 void WebEngineFrame::slotPrintPreviewInFrame(int frameId)
@@ -126,7 +126,7 @@ void WebEngineFrame::slotPrintPreviewInFrame(int frameId)
     if (frameId != id()) {
         return;
     }
-    mArticleViewerWidgetNg->articleViewerNg()->slotPrintPreview();
+    mArticleViewerWidgetNg->slotPrintPreview();
 }
 
 void WebEngineFrame::slotFindTextInFrame(int frameId)

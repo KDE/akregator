@@ -89,8 +89,6 @@ private:
     QVariantHash introductionData() const;
 
 public Q_SLOTS:
-    void slotPrintPreview();
-    void slotPrint();
     void slotCopy();
     void slotSaveLinkAs();
     void slotCopyLinkAddress();
@@ -128,10 +126,6 @@ private Q_SLOTS:
     void slotWebHitFinished(const WebEngineViewer::WebHitTestResult &result);
     void slotActivatePlugin(MessageViewer::ViewerPluginInterface *interface);
     void slotWebPageMutedOrAudibleChanged();
-    void slotOpenInBrowser(const QString &filename);
-    void slotOpenPrintPreviewDialog();
-    void slotPdfCreated(const QString &filename);
-    void slotPdfFailed();
 protected:
     ArticleViewerWebEnginePage *mPageEngine;
 

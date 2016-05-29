@@ -50,15 +50,6 @@
 #include <QWebEngineProfile>
 #include <QWebEngineDownloadItem>
 #include <QPointer>
-#include <WebEnginePrintMessageBox>
-#include <MimeTreeParser/AttachmentTemporaryFilesDirs>
-
-#include <webengineviewer/config-webengineviewer.h>
-#ifdef WEBENGINEVIEWER_PRINTPREVIEW_SUPPORT
-#include <WebEngineViewer/PrintPreviewDialog>
-#include <WebEngineViewer/PrintWebEngineViewJob>
-#include <WebEngineViewer/PrintConfigureDialog>
-#endif
 
 #include <WebEngineViewer/WebHitTestResult>
 #include <WebEngineViewer/WebHitTest>
@@ -228,70 +219,6 @@ void ArticleViewerWebEngine::slotShowContextMenu(const QPoint &pos)
 {
     displayContextMenu(pos);
 }
-
-void ArticleViewerWebEngine::slotPrintPreview()
-{
-#if 0 //FIXME
-    QPointer<WebEngineViewer::WebEnginePrintMessageBox> dialog = new WebEngineViewer::WebEnginePrintMessageBox(Q_NULLPTR);
-    connect(dialog.data(), &WebEngineViewer::WebEnginePrintMessageBox::openInBrowser, this, &ArticleViewerWebEngine::slotOpenInBrowser);
-    connect(dialog.data(), &WebEngineViewer::WebEnginePrintMessageBox::openPrintPreview, this, &ArticleViewerWebEngine::slotOpenPrintPreviewDialog);
-    dialog->setWebEngineView(this);
-    dialog->exec();
-    delete dialog;
-#endif
-}
-
-void ArticleViewerWebEngine::slotOpenInBrowser(const QString &filename)
-{
-    MimeTreeParser::AttachmentTemporaryFilesDirs *browserTemporaryFile = new MimeTreeParser::AttachmentTemporaryFilesDirs;
-    browserTemporaryFile->addTempFile(filename);
-    const QUrl url(QUrl::fromLocalFile(filename));
-    KRun::runUrl(url, QStringLiteral("text/html"), this);
-    browserTemporaryFile->removeTempFiles();
-    browserTemporaryFile = Q_NULLPTR;
-}
-
-void ArticleViewerWebEngine::slotOpenPrintPreviewDialog()
-{
-#ifdef WEBENGINEVIEWER_PRINTPREVIEW_SUPPORT
-    QPointer<WebEngineViewer::PrintConfigureDialog> dlg = new WebEngineViewer::PrintConfigureDialog(Q_NULLPTR);
-    if (dlg->exec()) {
-        const QPageLayout pageLayout = dlg->currentPageLayout();
-        WebEngineViewer::PrintWebEngineViewJob *job = new WebEngineViewer::PrintWebEngineViewJob(this);
-        job->setEngineView(this);
-        job->setPageLayout(pageLayout);
-        connect(job, &WebEngineViewer::PrintWebEngineViewJob::failed, this, &ArticleViewerWebEngine::slotPdfFailed);
-        connect(job, &WebEngineViewer::PrintWebEngineViewJob::success, this, &ArticleViewerWebEngine::slotPdfCreated);
-        job->start();
-    }
-    delete dlg;
-#endif
-}
-
-void ArticleViewerWebEngine::slotPdfCreated(const QString &filename)
-{
-#ifdef WEBENGINEVIEWER_PRINTPREVIEW_SUPPORT
-    WebEngineViewer::PrintPreviewDialog dlg(this);
-    dlg.loadFile(filename, true);
-    dlg.exec();
-#endif
-}
-
-void ArticleViewerWebEngine::slotPdfFailed()
-{
-    qCDebug(AKREGATOR_LOG) << "Print to pdf Failed";
-}
-
-void ArticleViewerWebEngine::slotPrint()
-{
-    QPointer<WebEngineViewer::WebEnginePrintMessageBox> dialog = new WebEngineViewer::WebEnginePrintMessageBox(Q_NULLPTR);
-    connect(dialog.data(), &WebEngineViewer::WebEnginePrintMessageBox::openInBrowser, this, &ArticleViewerWebEngine::slotOpenInBrowser);
-    connect(dialog.data(), &WebEngineViewer::WebEnginePrintMessageBox::openPrintPreview, this, &ArticleViewerWebEngine::slotOpenPrintPreviewDialog);
-    dialog->setWebEngineView(this);
-    dialog->exec();
-    delete dialog;
-}
-
 
 void ArticleViewerWebEngine::slotCopy()
 {
