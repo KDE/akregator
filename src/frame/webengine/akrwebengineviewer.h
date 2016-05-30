@@ -34,7 +34,7 @@ protected:
     void displayContextMenu(const QPoint &pos) Q_DECL_OVERRIDE;
 
     void contextMenuEvent(QContextMenuEvent *e) Q_DECL_OVERRIDE;
-private slots:
+private Q_SLOTS:
     void slotWebHitFinished(const WebEngineViewer::WebHitTestResult &result);
 };
 }
