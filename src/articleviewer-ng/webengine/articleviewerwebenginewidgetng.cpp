@@ -138,15 +138,15 @@ void ArticleViewerWebEngineWidgetNg::slotPrintPreview()
 
 void ArticleViewerWebEngineWidgetNg::slotOpenInBrowser()
 {
-    if (mArticleViewerNg->url().isLocalFile()) {
+    const QUrl currentUrl(mArticleViewerNg->url());
+    if (currentUrl.isLocalFile()) {
         WebEngineViewer::WebEngineExportHtmlPageJob *job = new WebEngineViewer::WebEngineExportHtmlPageJob;
         job->setEngineView(mArticleViewerNg);
         connect(job, &WebEngineViewer::WebEngineExportHtmlPageJob::failed, this, &ArticleViewerWebEngineWidgetNg::slotExportHtmlPageFailed);
         connect(job, &WebEngineViewer::WebEngineExportHtmlPageJob::success, this, &ArticleViewerWebEngineWidgetNg::slotExportHtmlPageSuccess);
         job->start();
     } else {
-        const QUrl url(mArticleViewerNg->url());
-        KRun::runUrl(url, QStringLiteral("text/html"), this);
+        KRun::runUrl(currentUrl, QStringLiteral("text/html"), this);
     }
 }
 
