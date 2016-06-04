@@ -17,7 +17,7 @@
 
 #include "articlegrantleeobject.h"
 #include "articleformatter.h"
-#include <MimeTreeParser/IconNameCache>
+#include <MessageViewer/IconNameCache>
 #include "utils.h"
 #include "feed.h"
 #include <QLocale>
@@ -143,7 +143,7 @@ QString ArticleGrantleeObject::createActionUrl(const QString &actionName) const
 
 QString ArticleGrantleeObject::deleteAction() const
 {
-    const QString iconPath = QUrl::fromLocalFile(MimeTreeParser::IconNameCache::instance()->iconPath(QStringLiteral("edit-delete"), KIconLoader::Small)).url();
+    const QString iconPath = QUrl::fromLocalFile(MessageViewer::IconNameCache::instance()->iconPath(QStringLiteral("edit-delete"), KIconLoader::Small)).url();
     const QString text = QStringLiteral("<a href=\"%1\"><img class=\"headimage\" height=\"%4\" width=\"%4\" title=\"%3\" src=\"%2\"></a>\n")
                          .arg(createActionUrl(QStringLiteral("delete")), iconPath, i18n("Delete Article"), QString::number(mIconSize));
     return text;
@@ -151,7 +151,7 @@ QString ArticleGrantleeObject::deleteAction() const
 
 QString ArticleGrantleeObject::markAsReadAction() const
 {
-    const QString iconPath = QUrl::fromLocalFile(MimeTreeParser::IconNameCache::instance()->iconPath(QStringLiteral("mail-mark-read"), KIconLoader::Small)).url();
+    const QString iconPath = QUrl::fromLocalFile(MessageViewer::IconNameCache::instance()->iconPath(QStringLiteral("mail-mark-read"), KIconLoader::Small)).url();
     const QString text = QStringLiteral("<a href=\"%1\"><img class=\"headimage\" height=\"%4\" width=\"%4\" title=\"%3\" src=\"%2\"></a>\n")
                          .arg(createActionUrl(QStringLiteral("markAsRead")), iconPath, i18n("Mark as Read"), QString::number(mIconSize));
     return text;
@@ -159,7 +159,7 @@ QString ArticleGrantleeObject::markAsReadAction() const
 
 QString ArticleGrantleeObject::markAsUnreadAction() const
 {
-    const QString iconPath = QUrl::fromLocalFile(MimeTreeParser::IconNameCache::instance()->iconPath(QStringLiteral("mail-mark-unread"), KIconLoader::Small)).url();
+    const QString iconPath = QUrl::fromLocalFile(MessageViewer::IconNameCache::instance()->iconPath(QStringLiteral("mail-mark-unread"), KIconLoader::Small)).url();
     const QString text = QStringLiteral("<a href=\"%1\"><img class=\"headimage\" title=\"%3\" height=\"%4\" width=\"%4\" src=\"%2\"></a>\n")
                          .arg(createActionUrl(QStringLiteral("markAsUnRead")), iconPath, i18n("Mark as Unread"), QString::number(mIconSize));
     return text;
@@ -168,12 +168,12 @@ QString ArticleGrantleeObject::markAsUnreadAction() const
 QString ArticleGrantleeObject::markAsImportantAction() const
 {
     if (mArticle.keep()) {
-        const QString iconPath = QUrl::fromLocalFile(MimeTreeParser::IconNameCache::instance()->iconPath(QStringLiteral("mail-message"), KIconLoader::Small)).url();
+        const QString iconPath = QUrl::fromLocalFile(MessageViewer::IconNameCache::instance()->iconPath(QStringLiteral("mail-message"), KIconLoader::Small)).url();
         const QString text = QStringLiteral("<a href=\"%1\"><img class=\"headimage\" title=\"%3\" height=\"%4\" width=\"%4\" src=\"%2\"></a>\n")
                              .arg(createActionUrl(QStringLiteral("markAsImportant")), iconPath, i18n("Remove Important Status"), QString::number(mIconSize));
         return text;
     } else {
-        const QString iconPath = QUrl::fromLocalFile(MimeTreeParser::IconNameCache::instance()->iconPath(QStringLiteral("mail-mark-important"), KIconLoader::Small)).url();
+        const QString iconPath = QUrl::fromLocalFile(MessageViewer::IconNameCache::instance()->iconPath(QStringLiteral("mail-mark-important"), KIconLoader::Small)).url();
         const QString text = QStringLiteral("<a href=\"%1\"><img class=\"headimage\" title=\"%3\" height=\"%4\" width=\"%4\" src=\"%2\"></a>\n")
                              .arg(createActionUrl(QStringLiteral("markAsImportant")), iconPath, i18n("Mark as Important"), QString::number(mIconSize));
         return text;
@@ -182,7 +182,7 @@ QString ArticleGrantleeObject::markAsImportantAction() const
 
 QString ArticleGrantleeObject::sendUrlAction() const
 {
-    const QString iconPath = QUrl::fromLocalFile(MimeTreeParser::IconNameCache::instance()->iconPath(QStringLiteral("mail-message-new"), KIconLoader::Small)).url();
+    const QString iconPath = QUrl::fromLocalFile(MessageViewer::IconNameCache::instance()->iconPath(QStringLiteral("mail-message-new"), KIconLoader::Small)).url();
     const QString text = QStringLiteral("<a href=\"%1\"><img class=\"headimage\" title=\"%3\" height=\"%4\" width=\"%4\" src=\"%2\"></a>\n")
                          .arg(createActionUrl(QStringLiteral("sendUrlArticle")), iconPath, i18n("Send Link Address"), QString::number(mIconSize));
     return text;
@@ -190,7 +190,7 @@ QString ArticleGrantleeObject::sendUrlAction() const
 
 QString ArticleGrantleeObject::sendFileAction() const
 {
-    const QString iconPath = QUrl::fromLocalFile(MimeTreeParser::IconNameCache::instance()->iconPath(QStringLiteral("mail-message-new"), KIconLoader::Small)).url();
+    const QString iconPath = QUrl::fromLocalFile(MessageViewer::IconNameCache::instance()->iconPath(QStringLiteral("mail-message-new"), KIconLoader::Small)).url();
     const QString text = QStringLiteral("<a href=\"%1\"><img class=\"headimage\" title=\"%3\" height=\"%4\" width=\"%4\" src=\"%2\"></a>\n")
                          .arg(createActionUrl(QStringLiteral("sendFileArticle")), iconPath, i18n("Send File Address"), QString::number(mIconSize));
     return text;
@@ -198,7 +198,7 @@ QString ArticleGrantleeObject::sendFileAction() const
 
 QString ArticleGrantleeObject::openInExternalBrowser() const
 {
-    const QString iconPath = QUrl::fromLocalFile(MimeTreeParser::IconNameCache::instance()->iconPath(QStringLiteral("window-new"), KIconLoader::Small)).url();
+    const QString iconPath = QUrl::fromLocalFile(MessageViewer::IconNameCache::instance()->iconPath(QStringLiteral("window-new"), KIconLoader::Small)).url();
     const QString text = QStringLiteral("<a href=\"%1\"><img class=\"headimage\" title=\"%3\" height=\"%4\" width=\"%4\" src=\"%2\"></a>\n")
                          .arg(createActionUrl(QStringLiteral("openInExternalBrowser")), iconPath, i18n("Open Link in External Browser"), QString::number(mIconSize));
     return text;
@@ -206,7 +206,7 @@ QString ArticleGrantleeObject::openInExternalBrowser() const
 
 QString ArticleGrantleeObject::share() const
 {
-    const QString iconPath = QUrl::fromLocalFile(MimeTreeParser::IconNameCache::instance()->iconPath(QStringLiteral("document-share"), KIconLoader::Small)).url();
+    const QString iconPath = QUrl::fromLocalFile(MessageViewer::IconNameCache::instance()->iconPath(QStringLiteral("document-share"), KIconLoader::Small)).url();
     const QString text = QStringLiteral("<a href=\"%1\"><img class=\"headimage\" title=\"%3\" height=\"%4\" width=\"%4\" src=\"%2\"></a>\n")
                          .arg(createActionUrl(QStringLiteral("share")), iconPath, i18n("Share"), QString::number(mIconSize));
     return text;
@@ -214,7 +214,7 @@ QString ArticleGrantleeObject::share() const
 
 QString ArticleGrantleeObject::openInBackgroundTab() const
 {
-    const QString iconPath = QUrl::fromLocalFile(MimeTreeParser::IconNameCache::instance()->iconPath(QStringLiteral("tab-new"), KIconLoader::Small)).url();
+    const QString iconPath = QUrl::fromLocalFile(MessageViewer::IconNameCache::instance()->iconPath(QStringLiteral("tab-new"), KIconLoader::Small)).url();
     const QString text = QStringLiteral("<a href=\"%1\"><img class=\"headimage\" title=\"%3\" height=\"%4\" width=\"%4\" src=\"%2\"></a>\n")
                          .arg(createActionUrl(QStringLiteral("openInBackgroundTab")), iconPath, i18n("Open In Background Tab"), QString::number(mIconSize));
     return text;
