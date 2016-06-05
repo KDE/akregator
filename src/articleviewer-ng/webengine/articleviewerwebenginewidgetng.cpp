@@ -40,7 +40,6 @@
 #include <WebEngineViewer/PrintConfigureDialog>
 #endif
 
-
 using namespace Akregator;
 
 ArticleViewerWebEngineWidgetNg::ArticleViewerWebEngineWidgetNg(ArticleViewerWebEngine *customViewer, KActionCollection *ac, QWidget *parent)
@@ -198,5 +197,4 @@ void ArticleViewerWebEngineWidgetNg::slotPdfFailed()
 {
     qCDebug(AKREGATOR_LOG) << "Print to pdf Failed";
 }
-
 
