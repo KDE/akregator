@@ -28,8 +28,8 @@
 #include "trayicon.h"
 
 #include "Libkdepim/BroadcastStatus"
-#include "Libkdepim/ProgressStatusBarWidget"
-#include "Libkdepim/StatusbarProgressWidget"
+#include <Libkdepim/ProgressStatusBarWidget>
+#include <Libkdepim/StatusbarProgressWidget>
 
 #include <KActionCollection>
 #include <KConfig>
