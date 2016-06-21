@@ -126,6 +126,7 @@ public:
         Calls Akregator MainWidget's saveProperties. */
     virtual void saveProperties(KConfigGroup &config);
 
+    void exportFile(const QString &str) /* for the DBus adaptor */ { exportFile(QUrl(str)); }
     void exportFile(const QUrl &url);
 
     bool handleCommandLine(const QStringList &args);
