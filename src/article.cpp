@@ -471,7 +471,7 @@ QString Article::authorAsHtml() const
 
 QUrl Article::link() const
 {
-    return d->archive->link(d->guid);
+    return QUrl(d->archive->link(d->guid));
 }
 
 QString Article::description() const
@@ -492,7 +492,7 @@ QString Article::guid() const
 
 QUrl Article::commentsLink() const
 {
-    return d->archive->commentsLink(d->guid);
+    return QUrl(d->archive->commentsLink(d->guid));
 }
 
 int Article::comments() const

@@ -680,7 +680,7 @@ void Akregator::Feed::tryFetch()
                                             Syndication::FeedPtr,
                                             Syndication::ErrorCode)));
     //connect(d->loader, SIGNAL(progress(ulong)), this, SLOT(slotSetProgress(ulong)));
-    d->loader->loadFrom(d->xmlUrl);
+    d->loader->loadFrom(QUrl(d->xmlUrl));
 }
 
 void Akregator::Feed::slotImageFetched(const QPixmap &image)

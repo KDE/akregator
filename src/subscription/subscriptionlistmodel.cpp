@@ -389,7 +389,7 @@ QMimeData *SubscriptionListModel::mimeData(const QModelIndexList &indexes) const
 
     QList<QUrl> urls;
     Q_FOREACH (const QModelIndex &i, indexes) {
-        const QUrl url = i.data(LinkRole).toString();
+        const QUrl url(i.data(LinkRole).toString());
         if (!url.isEmpty()) {
             urls << url;
         }

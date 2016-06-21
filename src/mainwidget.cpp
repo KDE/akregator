@@ -948,7 +948,7 @@ void MainWidget::slotOpenHomepage()
     QUrl url(feed->htmlUrl());
 
     if (url.isValid()) {
-        OpenUrlRequest req(feed->htmlUrl());
+        OpenUrlRequest req(url);
         req.setOptions(OpenUrlRequest::ExternalBrowser);
         Kernel::self()->frameManager()->slotOpenUrlRequest(req);
     }
