@@ -68,7 +68,7 @@ if(${CMAKE_SOURCE_DIR} STREQUAL ${akregator_SOURCE_DIR})
     find_package(KF5Libkleo ${LIBKLEO_LIB_VERSION_LIB} CONFIG REQUIRED)
     find_package(KF5WebEngineViewer ${MESSAGELIB_LIB_VERSION_LIB} CONFIG REQUIRED)
     set(WEBENGINE_TYPE "QtWebEngine")
-
+    add_definitions(-DQT_NO_URL_CAST_FROM_STRING)
 
 endif()
 add_definitions(-DQT_USE_QSTRINGBUILDER)
