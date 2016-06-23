@@ -91,7 +91,7 @@ QString LoadFeedListCommand::Private::createBackup(const QString &path, bool *ok
 {
     const QString backup = path
                            + QLatin1String("-backup.")
-                           + QString::number(QDateTime::currentDateTime().toTime_t());
+                           + QString::number(QDateTime::currentDateTimeUtc().toTime_t());
 
     const bool copied = QFile::copy(path, backup);
     if (ok) {
