@@ -679,7 +679,6 @@ void Akregator::Feed::tryFetch()
     d->loader = Syndication::Loader::create(this, SLOT(fetchCompleted(Syndication::Loader *,
                                             Syndication::FeedPtr,
                                             Syndication::ErrorCode)));
-    //connect(d->loader, SIGNAL(progress(ulong)), this, SLOT(slotSetProgress(ulong)));
     d->loader->loadFrom(QUrl(d->xmlUrl));
 }
 
@@ -718,17 +717,9 @@ void Akregator::Feed::fetchCompleted(Syndication::Loader *l, Syndication::FeedPt
     d->fetchErrorCode = Syndication::Success;
 
     if (d->imagePixmap.isNull()) {
-        //QString u = d->xmlUrl;
-        QString imageFileName = QStandardPaths::writableLocation(QStandardPaths::CacheLocation) + QLatin1Char('/') + QLatin1String("akregator/Media/") + Utils::fileNameForUrl(d->xmlUrl) + QLatin1String(".png");
+        const QString imageFileName = QStandardPaths::writableLocation(QStandardPaths::CacheLocation) + QLatin1Char('/') + QLatin1String("akregator/Media/") + Utils::fileNameForUrl(d->xmlUrl) + QLatin1String(".png");
         d->imagePixmap = QPixmap(imageFileName, "PNG");
 
-        // if we ain't got the image and the feed provides one, get it....
-        // TODO: reenable image fetching!
-        if (false) { // d->imagePixmap.isNull() && doc.image())
-            //d->image = *doc.image();
-            //connect(&d->image, SIGNAL(gotPixmap(QPixmap)), this, SLOT(slotImageFetched(QPixmap)));
-            //d->image.getPixmap();
-        }
     }
 
     if (title().isEmpty()) {

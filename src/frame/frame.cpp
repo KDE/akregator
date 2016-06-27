@@ -157,7 +157,6 @@ void Frame::slotSetStarted()
     }
     m_progressItem = KPIM::ProgressManager::createProgressItem(m_progressId, title(), QString(), false);
     m_progressItem->setStatus(i18n("Loading..."));
-    //connect(m_progressItem, SIGNAL(progressItemCanceled(KPIM::ProgressItem*)), SLOT(slotAbortFetch()));
     m_state = Started;
     Q_EMIT signalStarted(this);
 }
