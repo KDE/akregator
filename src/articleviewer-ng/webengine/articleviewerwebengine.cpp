@@ -33,7 +33,7 @@
 #include <KActionMenu>
 
 #include <KParts/BrowserRun>
-#include <grantleethememanager.h>
+#include <GrantleeTheme/GrantleeThemeManager>
 #include <KActionCollection>
 #include <KLocalizedString>
 #include <KAboutData>
