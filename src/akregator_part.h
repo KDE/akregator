@@ -80,8 +80,6 @@ class Part : public KParts::ReadOnlyPart
 {
     Q_OBJECT
 public:
-    typedef KParts::ReadOnlyPart inherited;
-
     /** Default constructor.*/
     Part(QWidget *parentWidget, QObject *parent, const QVariantList &);
 
@@ -168,8 +166,6 @@ private:
     bool openFile() Q_DECL_OVERRIDE;
 
     void importFile(const QUrl &url);
-
-    KParts::Part *hitTest(QWidget *widget, const QPoint &globalPos) Q_DECL_OVERRIDE;
 
 private Q_SLOTS:
     void slotStarted();

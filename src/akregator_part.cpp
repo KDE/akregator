@@ -208,7 +208,7 @@ void BrowserExtension::saveSettings()
 }
 
 Part::Part(QWidget *parentWidget, QObject *parent, const QVariantList &)
-    : inherited(parent)
+    : KParts::ReadOnlyPart(parent)
     , m_standardListLoaded(false)
     , m_shuttingDown(false)
     , m_doCrashSave(false)
@@ -696,33 +696,6 @@ void Part::showOptions()
 
     m_dialog->show();
     m_dialog->raise();
-}
-
-KParts::Part *Part::hitTest(QWidget *widget, const QPoint &globalPos)
-{
-    /*    bool child = false;
-        QWidget *me = this->widget();
-        while (widget)
-        {
-            if (widget == me)
-            {
-                child = true;
-                break;
-            }
-            if (!widget)
-            {
-                break;
-            }
-            widget = widget->parentWidget();
-        }
-        if (m_mainWidget && m_mainWidget->currentFrame() && child)
-        {
-            return m_mainWidget->currentFrame()->part();
-        }
-        else
-        {*/
-    return inherited::hitTest(widget, globalPos);
-    /*    }*/
 }
 
 void Part::initFonts()
