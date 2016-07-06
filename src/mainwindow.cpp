@@ -68,8 +68,8 @@ MainWindow::MainWindow(QWidget *parent)
     // set the shell's ui resource file
     setXMLFile(QStringLiteral("akregator_shell.rc"));
 
-    KStandardAction::keyBindings(this, SLOT(optionsConfigureKeys()), actionCollection()); // options_configure_keybinding
-    KStandardAction::configureToolbars(this, SLOT(optionsConfigureToolbars()), actionCollection()); // options_configure_toolbars
+    KStandardAction::keyBindings(this, &MainWindow::optionsConfigureKeys, actionCollection()); // options_configure_keybinding
+    KStandardAction::configureToolbars(this, &MainWindow::optionsConfigureToolbars, actionCollection()); // options_configure_toolbars
 
     toolBar()->show();
     statusBar()->show();
