@@ -53,6 +53,7 @@ if(${CMAKE_SOURCE_DIR} STREQUAL ${akregator_SOURCE_DIR})
     find_package(Grantlee5 "5.1" CONFIG REQUIRED)
 
     # Find KF5 package
+    find_package(KF5Crash ${KF5_VERSION} REQUIRED)
     find_package(KF5DocTools ${KF5_VERSION} REQUIRED)
     find_package(KF5KCMUtils ${KF5_VERSION} CONFIG REQUIRED)
     find_package(KF5NotifyConfig ${KF5_VERSION} CONFIG REQUIRED)

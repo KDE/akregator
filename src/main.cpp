@@ -28,6 +28,7 @@
 #include "utils.h"
 #include "akregator_debug.h"
 #include "akregratormigrateapplication.h"
+#include <KCrash>
 #include <KLocalizedString>
 #include <kontactinterface/pimuniqueapplication.h>
 #include <QtDBus/QtDBus>
@@ -80,6 +81,8 @@ int main(int argc, char **argv)
 {
     Akregator::Application app(argc, &argv);
     KLocalizedString::setApplicationDomain("akregator");
+
+    KCrash::initialize();
 
     app.setAttribute(Qt::AA_UseHighDpiPixmaps, true);
     app.setAttribute(Qt::AA_EnableHighDpiScaling);
