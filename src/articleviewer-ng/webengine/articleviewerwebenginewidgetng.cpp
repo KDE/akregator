@@ -30,8 +30,6 @@
 
 #include <kpimtextedit/slidecontainer.h>
 
-#include <MimeTreeParser/AttachmentTemporaryFilesDirs>
-
 #include <WebEngineViewer/WebEnginePrintMessageBox>
 #include <WebEngineViewer/FindBarWebEngineView>
 #include <webengineviewer/config-webengineviewer.h>
@@ -158,12 +156,8 @@ void ArticleViewerWebEngineWidgetNg::slotExportHtmlPageFailed()
 
 void ArticleViewerWebEngineWidgetNg::slotExportHtmlPageSuccess(const QString &filename)
 {
-    MimeTreeParser::AttachmentTemporaryFilesDirs *browserTemporaryFile = new MimeTreeParser::AttachmentTemporaryFilesDirs;
-    browserTemporaryFile->addTempFile(filename);
     const QUrl url(QUrl::fromLocalFile(filename));
-    KRun::runUrl(url, QStringLiteral("text/html"), this);
-    browserTemporaryFile->removeTempFiles();
-    browserTemporaryFile = Q_NULLPTR;
+    KRun::runUrl(url, QStringLiteral("text/html"), this, true);
 }
 
 void ArticleViewerWebEngineWidgetNg::slotOpenPrintPreviewDialog()
