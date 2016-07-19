@@ -186,9 +186,13 @@ void Akregator::SelectionController::setFeedList(const QSharedPointer<FeedList> 
     }
 
     if (m_feedSelector) {
-        m_feedSelector->setModel(m_subscriptionModel);
-        disconnect(m_feedSelector->selectionModel(), &QItemSelectionModel::currentChanged, this, &SelectionController::selectedSubscriptionChanged);
-        connect(m_feedSelector->selectionModel(), &QItemSelectionModel::currentChanged, this, &SelectionController::selectedSubscriptionChanged);
+        if (m_feedList) {
+            m_feedSelector->setModel(m_subscriptionModel);
+            disconnect(m_feedSelector->selectionModel(), &QItemSelectionModel::currentChanged, this, &SelectionController::selectedSubscriptionChanged);
+            connect(m_feedSelector->selectionModel(), &QItemSelectionModel::currentChanged, this, &SelectionController::selectedSubscriptionChanged);
+        } else {
+            disconnect(m_feedSelector->selectionModel(), &QItemSelectionModel::currentChanged, this, &SelectionController::selectedSubscriptionChanged);
+        }
     }
 }
 
