@@ -159,8 +159,8 @@ PluginManager::showAbout(const QString &constraint)
 
     str += body.arg(i18nc("Name of the plugin", "Name"),                             s->name());
     str += body.arg(i18nc("Library name", "Library"),                                s->library());
-    str += body.arg(i18nc("Plugin authors", "Authors"),                              s->property(QStringLiteral("X-KDE-akregator-authors")).toStringList().join(QStringLiteral("\n")));
-    str += body.arg(i18nc("Plugin authors' emaila addresses", "Email"),              s->property(QStringLiteral("X-KDE-akregator-email")).toStringList().join(QStringLiteral("\n")));
+    str += body.arg(i18nc("Plugin authors", "Authors"),                              s->property(QStringLiteral("X-KDE-akregator-authors")).toStringList().join(QLatin1Char('\n')));
+    str += body.arg(i18nc("Plugin authors' emaila addresses", "Email"),              s->property(QStringLiteral("X-KDE-akregator-email")).toStringList().join(QLatin1Char('\n')));
     str += body.arg(i18nc("Plugin version", "Version"),                              s->property(QStringLiteral("X-KDE-akregator-version")).toString());
     str += body.arg(i18nc("Framework version plugin requires", "Framework Version"), s->property(QStringLiteral("X-KDE-akregator-framework-version")).toString());
 
