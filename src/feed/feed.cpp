@@ -717,7 +717,7 @@ void Akregator::Feed::fetchCompleted(Syndication::Loader *l, Syndication::FeedPt
     d->fetchErrorCode = Syndication::Success;
 
     if (d->imagePixmap.isNull()) {
-        const QString imageFileName = QStandardPaths::writableLocation(QStandardPaths::CacheLocation) + QLatin1Char('/') + QLatin1String("akregator/Media/") + Utils::fileNameForUrl(d->xmlUrl) + QLatin1String(".png");
+        const QString imageFileName = QStandardPaths::writableLocation(QStandardPaths::CacheLocation) + QLatin1String("/akregator/Media/") + Utils::fileNameForUrl(d->xmlUrl) + QLatin1String(".png");
         d->imagePixmap = QPixmap(imageFileName, "PNG");
 
     }
@@ -786,7 +786,7 @@ void Akregator::Feed::setImage(const QPixmap &p)
         return;
     }
     d->imagePixmap = p;
-    const QString filename = QStandardPaths::writableLocation(QStandardPaths::CacheLocation) + QLatin1Char('/') + QString(QLatin1String("akregator/Media/") + Utils::fileNameForUrl(d->xmlUrl) + QLatin1String(".png"));
+    const QString filename = QStandardPaths::writableLocation(QStandardPaths::CacheLocation) + QLatin1String("/akregator/Media/") + Utils::fileNameForUrl(d->xmlUrl) + QLatin1String(".png");
     QFileInfo fileInfo(filename);
     QDir().mkpath(fileInfo.absolutePath());
     d->imagePixmap.save(filename, "PNG");
