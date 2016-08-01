@@ -102,7 +102,7 @@ MainWidget::~MainWidget()
     }
 }
 
-MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionManager, const char *name)
+MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionManager, const QString &name)
     : QWidget(parent),
       m_feedList(),
       m_viewMode(NormalView),
@@ -110,7 +110,7 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
       m_feedListManagementInterface(new FeedListManagementImpl),
       m_networkConfigManager(new QNetworkConfigurationManager(this))
 {
-    setObjectName(QLatin1String(name));
+    setObjectName(name);
 
     FeedListManagementInterface::setInstance(m_feedListManagementInterface);
 

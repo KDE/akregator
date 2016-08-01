@@ -263,7 +263,7 @@ Part::Part(QWidget *parentWidget, QObject *parent, const QVariantList &)
 
     mCentralWidget = new Akregator::AkregatorCentralWidget(parentWidget);
     connect(mCentralWidget, &AkregatorCentralWidget::restoreSession, this, &Part::slotRestoreSession);
-    m_mainWidget = new Akregator::MainWidget(this, parentWidget, m_actionManager, "akregator_view");
+    m_mainWidget = new Akregator::MainWidget(this, parentWidget, m_actionManager, QStringLiteral("akregator_view"));
     mCentralWidget->setMainWidget(m_mainWidget);
     m_extension = new BrowserExtension(this, "ak_extension");
 

@@ -50,16 +50,16 @@
 
 using namespace Akregator;
 
-BrowserInterface::BrowserInterface(MainWindow *shell, const char *name)
+BrowserInterface::BrowserInterface(MainWindow *shell, const QString &name)
     : KParts::BrowserInterface(shell)
 {
-    setObjectName(QLatin1String(name));
+    setObjectName(name);
     m_shell = shell;
 }
 
 MainWindow::MainWindow(QWidget *parent)
     : KParts::MainWindow(parent)
-    , m_browserIface(new BrowserInterface(this, "browser_interface"))
+    , m_browserIface(new BrowserInterface(this, QStringLiteral("browser_interface")))
     , m_part()
     , m_statusLabel(new KSqueezedTextLabel(this))
 {

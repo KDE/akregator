@@ -45,7 +45,7 @@ class BrowserInterface : public KParts::BrowserInterface
     Q_OBJECT
 
 public:
-    BrowserInterface(Akregator::MainWindow *shell, const char *name);
+    explicit BrowserInterface(Akregator::MainWindow *shell, const QString &name);
 
 private:
     Akregator::MainWindow *m_shell;

@@ -36,10 +36,10 @@
 #include <QVBoxLayout>
 
 using namespace Akregator;
-FeedPropertiesWidget::FeedPropertiesWidget(QWidget *parent, const char *name)
+FeedPropertiesWidget::FeedPropertiesWidget(QWidget *parent, const QString &name)
     : QWidget(parent)
 {
-    setObjectName(QLatin1String(name));
+    setObjectName(name);
     setupUi(this);
     connect(cb_updateInterval, &QCheckBox::toggled, updateSpinBox, &QSpinBox::setEnabled);
     connect(cb_updateInterval, &QCheckBox::toggled, updateComboBox, &KComboBox::setEnabled);
