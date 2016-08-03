@@ -128,7 +128,8 @@ protected Q_SLOTS:
 
     // from ArticleViewer
 private:
-
+    QSharedPointer<ArticleFormatter> combinedViewFormatter();
+    QSharedPointer<ArticleFormatter> normalViewFormatter();
     void keyPressEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
 
     /** renders @c body. Use this method whereever possible.
@@ -162,6 +163,7 @@ private:
     Akregator::ArticleViewerWebEngineWidgetNg *m_articleViewerWidgetNg;
     QSharedPointer<ArticleFormatter> m_normalViewFormatter;
     QSharedPointer<ArticleFormatter> m_combinedViewFormatter;
+    QString m_grantleeDirectory;
 };
 
 } // namespace Akregator

@@ -77,8 +77,7 @@ ArticleViewerWidget::ArticleViewerWidget(const QString &grantleeDirectory, KActi
       m_node(0),
       m_viewMode(NormalView),
       m_articleViewerWidgetNg(new Akregator::ArticleViewerWebEngineWidgetNg(ac, this)),
-      m_normalViewFormatter(new DefaultNormalViewFormatter(grantleeDirectory, m_imageDir, m_articleViewerWidgetNg->articleViewerNg())),
-      m_combinedViewFormatter(new DefaultCombinedViewFormatter(grantleeDirectory, m_imageDir, m_articleViewerWidgetNg->articleViewerNg()))
+      m_grantleeDirectory(grantleeDirectory)
 {
     QGridLayout *layout = new QGridLayout(this);
     layout->setMargin(0);
@@ -90,6 +89,22 @@ ArticleViewerWidget::ArticleViewerWidget(const QString &grantleeDirectory, KActi
 
 ArticleViewerWidget::~ArticleViewerWidget()
 {
+}
+
+QSharedPointer<ArticleFormatter> ArticleViewerWidget::normalViewFormatter()
+{
+    if (!m_normalViewFormatter.data()) {
+        m_normalViewFormatter = QSharedPointer<ArticleFormatter>(new DefaultNormalViewFormatter(m_grantleeDirectory, m_imageDir, m_articleViewerWidgetNg->articleViewerNg()));
+    }
+    return m_normalViewFormatter;
+}
+
+QSharedPointer<ArticleFormatter> ArticleViewerWidget::combinedViewFormatter()
+{
+    if (!m_combinedViewFormatter.data()) {
+        m_combinedViewFormatter = QSharedPointer<ArticleFormatter>(new DefaultCombinedViewFormatter(m_grantleeDirectory, m_imageDir, m_articleViewerWidgetNg->articleViewerNg()));
+    }
+    return m_combinedViewFormatter;
 }
 
 void ArticleViewerWidget::slotZoomChangeInFrame(qreal value)
@@ -171,7 +186,7 @@ void ArticleViewerWidget::slotShowSummary(TreeNode *node)
         m_node = node;
     }
 
-    const QString summary = m_normalViewFormatter->formatSummary(node);
+    const QString summary = normalViewFormatter()->formatSummary(node);
     m_link.clear();
     renderContent(summary);
 
@@ -193,7 +208,7 @@ void ArticleViewerWidget::showArticle(const Akregator::Article &article)
     if (article.feed()->loadLinkedWebsite()) {
         openUrl(article.link());
     } else {
-        renderContent(m_normalViewFormatter->formatArticles(QVector<Akregator::Article>() << article, ArticleFormatter::ShowIcon));
+        renderContent(normalViewFormatter()->formatArticles(QVector<Akregator::Article>() << article, ArticleFormatter::ShowIcon));
     }
 
     setArticleActionsEnabled(true);
@@ -252,7 +267,7 @@ void ArticleViewerWidget::slotUpdateCombinedView()
         articles << i;
         ++num;
     }
-    text = m_combinedViewFormatter->formatArticles(articles, ArticleFormatter::NoIcon);
+    text = combinedViewFormatter()->formatArticles(articles, ArticleFormatter::NoIcon);
 
     qCDebug(AKREGATOR_LOG) << "Combined view rendering: (" << num << " articles):" << "generating HTML:" << spent.elapsed() << "ms";
     renderContent(text);
@@ -365,7 +380,7 @@ void ArticleViewerWidget::updateAfterConfigChanged()
     switch (m_viewMode) {
     case NormalView:
         if (!m_article.isNull()) {
-            renderContent(m_normalViewFormatter->formatArticles(QVector<Akregator::Article>() << m_article, ArticleFormatter::ShowIcon));
+            renderContent(normalViewFormatter()->formatArticles(QVector<Akregator::Article>() << m_article, ArticleFormatter::ShowIcon));
         }
         break;
     case CombinedView:
