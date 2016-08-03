@@ -47,7 +47,7 @@ class AKREGATOR_EXPORT FrameManager : public QObject
 
 public:
 
-    explicit FrameManager(QWidget *widget = Q_NULLPTR, QObject *parent = Q_NULLPTR);
+    explicit FrameManager(QObject *parent = Q_NULLPTR);
     ~FrameManager();
 
     Frame *currentFrame() const;
@@ -105,8 +105,6 @@ private Q_SLOTS:
     void slotSetTitle(Akregator::Frame *frame, const QString &title);
     void slotSetStatusText(Akregator::Frame *frame, const QString &statusText);
 private:
-
-    QWidget *m_mainWin;
     QPointer<Frame> m_currentFrame;
     QHash<int, Frame *> m_frames;
 };

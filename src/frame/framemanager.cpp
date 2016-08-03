@@ -44,17 +44,14 @@
 
 using namespace Akregator;
 
-FrameManager::FrameManager(QWidget *mainWin, QObject *parent) : QObject(parent), m_mainWin(mainWin), m_currentFrame(0)
+FrameManager::FrameManager(QObject *parent)
+    : QObject(parent),
+      m_currentFrame(0)
 {
 }
 
 FrameManager::~FrameManager()
 {
-}
-
-void FrameManager::setMainWindow(QWidget *mainWin)
-{
-    m_mainWin = mainWin;
 }
 
 Frame *FrameManager::currentFrame() const
