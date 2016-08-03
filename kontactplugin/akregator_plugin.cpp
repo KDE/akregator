@@ -117,13 +117,6 @@ void AkregatorPlugin::addFeed()
     akregator.addFeed();
 }
 
-QStringList AkregatorPlugin::configModules() const
-{
-    QStringList modules;
-    modules << QStringLiteral("PIM/akregator.desktop");
-    return modules;
-}
-
 void AkregatorPlugin::readProperties(const KConfigGroup &config)
 {
     if (part()) {

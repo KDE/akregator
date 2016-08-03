@@ -3,7 +3,27 @@
  <author>Frank Osterfeld</author>
  <class>Akregator::SettingsArchive</class>
  <widget class="QWidget" name="Akregator::SettingsArchive">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>355</width>
+    <height>219</height>
+   </rect>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,1">
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
    <item>
     <widget class="QGroupBox" name="groupBox">
      <property name="title">
@@ -13,26 +33,35 @@
       <item row="3" column="0">
        <widget class="QRadioButton" name="rb_DisableArchiving">
         <property name="text">
-         <string>Disable archiving</string>
+         <string>Disa&amp;ble archiving</string>
         </property>
        </widget>
       </item>
       <item row="0" column="0">
        <widget class="QRadioButton" name="rb_KeepAllArticles">
         <property name="text">
-         <string>Keep all articles</string>
+         <string>&amp;Keep all articles</string>
         </property>
        </widget>
       </item>
       <item row="1" column="0">
        <layout class="QHBoxLayout">
-        <property name="margin">
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
          <number>0</number>
         </property>
         <item>
          <widget class="QRadioButton" name="rb_LimitArticleNumber">
           <property name="text">
-           <string>Limit feed archive size to:</string>
+           <string>Limit feed archi&amp;ve size to:</string>
           </property>
          </widget>
         </item>
@@ -53,7 +82,16 @@
       </item>
       <item row="2" column="0">
        <layout class="QHBoxLayout">
-        <property name="margin">
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
          <number>0</number>
         </property>
         <item>
@@ -103,6 +141,9 @@
    </item>
    <item>
     <spacer>
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
      <property name="sizeHint" stdset="0">
       <size>
        <width>20</width>
@@ -117,7 +158,7 @@
   <customwidget>
    <class>KPluralHandlingSpinBox</class>
    <extends>QSpinBox</extends>
-   <header>KPluralHandlingSpinBox</header>
+   <header>kpluralhandlingspinbox.h</header>
   </customwidget>
  </customwidgets>
  <resources/>
