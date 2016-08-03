@@ -87,10 +87,7 @@ void FrameManager::slotRemoveFrame(int id)
 {
     Frame *frame = m_frames.value(id);
 
-    if (!frame) {
-        return;
-    }
-    if (!frame->isRemovable()) {
+    if (!frame || !frame->isRemovable()) {
         return;
     }
     frame->disconnect(this);
@@ -278,7 +275,8 @@ void FrameManager::saveProperties(KConfigGroup &config)
     QStringList strlst;
     QString newPrefix;
     QHash<int, Frame *>::const_iterator i;
-    for (i = m_frames.constBegin(); i != m_frames.constEnd(); ++i) {
+    QHash<int, Frame *>::const_iterator end(m_frames.constEnd());
+    for (i = m_frames.constBegin(); i != end; ++i) {
         // No need to save the main frame
         if (i.value() && qobject_cast<WebEngineFrame *>(i.value())) {
 
