@@ -59,7 +59,6 @@ public:
 
     OrgKdeAkregatorPartInterface *interface();
 
-    QStringList invisibleToolbarActions() const Q_DECL_OVERRIDE;
     bool isRunningStandalone() const Q_DECL_OVERRIDE;
     void readProperties(const KConfigGroup &config) Q_DECL_OVERRIDE;
     void saveProperties(KConfigGroup &config) Q_DECL_OVERRIDE;
