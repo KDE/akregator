@@ -151,11 +151,6 @@
    <whatsthis>Specifies if the tray icon is shown or not.</whatsthis>
    <default>true</default>
   </entry>
-  <entry key="Enable Tray Icon Unread Article Count" type="Bool" >
-   <label>Display an unread article count in the tray icon</label>
-   <whatsthis>Whether or not to show the number of unread articles in the tray icon. Disable this if you find the unread article count distracting.</whatsthis>
-   <default>true</default>
-  </entry>
   <entry key="Disable Introduction" type="Bool" >
      <default>false</default>
   </entry>

@@ -49,8 +49,6 @@ public Q_SLOTS:
 
 private:
     static TrayIcon *m_instance;
-
-    QIcon m_defaultIcon;
     int m_unread;
 };
 

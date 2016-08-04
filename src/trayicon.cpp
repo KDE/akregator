@@ -35,8 +35,7 @@
 #include <QPainter>
 #include <QFontDatabase>
 
-namespace Akregator
-{
+using namespace Akregator;
 
 TrayIcon *TrayIcon::m_instance = 0;
 
@@ -52,7 +51,6 @@ void TrayIcon::setInstance(TrayIcon *trayIcon)
 
 TrayIcon::TrayIcon(QObject *parent)
     : KStatusNotifierItem(parent),
-      m_defaultIcon(QIcon::fromTheme(QStringLiteral("akregator"))),
       m_unread(0)
 {
     setToolTipTitle(i18n("Akregator"));
@@ -61,72 +59,20 @@ TrayIcon::TrayIcon(QObject *parent)
 }
 
 TrayIcon::~TrayIcon()
-{}
+{
+}
 
 void TrayIcon::slotSetUnread(int unread)
 {
     m_unread = unread;
 
-    this->setToolTip(m_defaultIcon.name(), i18n("Akregator"), unread == 0 ? i18n("There are no unread articles")  : i18np("1 unread article", "%1 unread articles", unread));
+    this->setToolTip(QStringLiteral("akregator"), i18n("Akregator"), unread == 0 ? i18n("There are no unread articles")  : i18np("1 unread article", "%1 unread articles", unread));
     setStatus(unread > 0 ? KStatusNotifierItem::Active : KStatusNotifierItem::Passive);
 
-    if (unread <= 0 || !Settings::enableTrayIconUnreadArticleCount()) {
-        setIconByName(m_defaultIcon.name());
-    } else {
-        // adapted from KMSystemTray::updateCount()
-        int oldWidth = KIconLoader::SizeSmallMedium;
-
-        QString countStr = QString::number(unread);
-        QFont f = QFontDatabase::systemFont(QFontDatabase::GeneralFont);
-        f.setBold(true);
-
-        float pointSize = f.pointSizeF();
-        QFontMetrics fm(f);
-        int w = fm.width(countStr);
-        if (w > (oldWidth - 2)) {
-            pointSize *= float(oldWidth - 2) / float(w);
-            f.setPointSizeF(pointSize);
-        }
-
-        // overlay
-        QPixmap overlayImg(oldWidth, oldWidth);
-        overlayImg.fill(Qt::transparent);
-
-        QPainter p(&overlayImg);
-        p.setFont(f);
-        KColorScheme scheme(QPalette::Active, KColorScheme::View);
-
-        fm = QFontMetrics(f);
-        QRect boundingRect = fm.tightBoundingRect(countStr);
-        boundingRect.adjust(0, 0, 0, 2);
-        boundingRect.setHeight(qMin(boundingRect.height(), oldWidth));
-        boundingRect.moveTo((oldWidth - boundingRect.width()) / 2,
-                            ((oldWidth - boundingRect.height()) / 2) - 1);
-        p.setOpacity(0.7);
-        p.setBrush(scheme.background(KColorScheme::LinkBackground));
-        p.setPen(scheme.background(KColorScheme::LinkBackground).color());
-        p.drawRoundedRect(boundingRect, 2.0, 2.0);
-
-        p.setBrush(Qt::NoBrush);
-        p.setPen(scheme.foreground(KColorScheme::LinkText).color());
-        p.setOpacity(1.0);
-        p.drawText(overlayImg.rect(), Qt::AlignCenter, countStr);
-        p.end();
-
-        QPixmap iconPixmap = m_defaultIcon.pixmap(oldWidth, oldWidth);
-
-        QPainter pp(&iconPixmap);
-        pp.drawPixmap(0, 0, overlayImg);
-        pp.end();
-
-        setIconByPixmap(iconPixmap);
-    }
 }
 
 void TrayIcon::settingsChanged()
 {
     slotSetUnread(m_unread);
 }
-
-} // namespace Akregator
 
