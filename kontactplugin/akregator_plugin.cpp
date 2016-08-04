@@ -78,11 +78,6 @@ bool AkregatorPlugin::isRunningStandalone() const
     return mUniqueAppWatcher->isRunningStandalone();
 }
 
-QStringList AkregatorPlugin::invisibleToolbarActions() const
-{
-    return QStringList() << QStringLiteral("file_new_contact");
-}
-
 OrgKdeAkregatorPartInterface *AkregatorPlugin::interface()
 {
     if (!m_interface) {
