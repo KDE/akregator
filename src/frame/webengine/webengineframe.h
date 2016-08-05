@@ -37,7 +37,7 @@ public:
     QUrl url() const Q_DECL_OVERRIDE;
     bool openUrl(const OpenUrlRequest &request) Q_DECL_OVERRIDE;
     void loadConfig(const KConfigGroup &, const QString &) Q_DECL_OVERRIDE;
-    void saveConfig(KConfigGroup &, const QString &) Q_DECL_OVERRIDE;
+    bool saveConfig(KConfigGroup &, const QString &) Q_DECL_OVERRIDE;
 
     qreal zoomFactor() const Q_DECL_OVERRIDE;
 

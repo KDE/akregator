@@ -273,21 +273,16 @@ void FrameManager::saveProperties(KConfigGroup &config)
 {
     //write children
     QStringList strlst;
-    QString newPrefix;
     QHash<int, Frame *>::const_iterator i;
     QHash<int, Frame *>::const_iterator end(m_frames.constEnd());
     for (i = m_frames.constBegin(); i != end; ++i) {
         // No need to save the main frame
         if (i.value() && qobject_cast<WebEngineFrame *>(i.value())) {
-
-            newPrefix = QLatin1Char('T') + QString::number(i.key());
-            strlst.append(newPrefix);
-            newPrefix.append(QLatin1Char('_'));
-            i.value()->saveConfig(config, newPrefix);
+            QString newPrefix = QLatin1Char('T') + QString::number(i.key());
+            if (i.value()->saveConfig(config, newPrefix + QLatin1Char('_'))) {
+                strlst.append(newPrefix);
+            }
         }
     }
-
     config.writeEntry(QStringLiteral("Children"), strlst);
-    config.writeEntry(QStringLiteral("activeChildIndex"),
-                      m_frames.key(m_currentFrame));
 }
