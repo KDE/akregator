@@ -97,14 +97,20 @@ void WebEngineFrame::loadConfig(const KConfigGroup &config, const QString &prefi
 {
     const QString url = config.readEntry(QStringLiteral("url").prepend(prefix), QString());
     const qreal zf = config.readEntry(QStringLiteral("zoom").prepend(prefix), 1.0);
-    mArticleViewerWidgetNg->articleViewerNg()->load(QUrl(url));
     mArticleViewerWidgetNg->articleViewerNg()->setZoomFactor(zf);
+    mArticleViewerWidgetNg->articleViewerNg()->load(QUrl(url));
 }
 
-void WebEngineFrame::saveConfig(KConfigGroup &config, const QString &prefix)
+bool WebEngineFrame::saveConfig(KConfigGroup &config, const QString &prefix)
 {
-    config.writeEntry(QStringLiteral("url").prepend(prefix), url().url());
-    config.writeEntry(QStringLiteral("zoom").prepend(prefix), zoomFactor());
+    const QString urlPath(url().url());
+    if (urlPath != QLatin1String("about:blank")) {
+        config.writeEntry(QStringLiteral("url").prepend(prefix), urlPath);
+        config.writeEntry(QStringLiteral("zoom").prepend(prefix), zoomFactor());
+        return true;
+    } else {
+        return false;
+    }
 }
 
 void WebEngineFrame::slotCopyInFrame(int frameId)

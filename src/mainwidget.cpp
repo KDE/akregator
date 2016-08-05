@@ -172,6 +172,9 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
             this, &MainWidget::slotFramesChanged);
     connect(Kernel::self()->frameManager(), &FrameManager::signalFrameRemoved,
             this, &MainWidget::slotFramesChanged);
+    connect(Kernel::self()->frameManager(), &FrameManager::signalCompleted,
+            this, &MainWidget::slotFramesChanged);
+
     connect(m_networkConfigManager, &QNetworkConfigurationManager::onlineStateChanged,
             this, &MainWidget::slotNetworkStatusChanged);
 
