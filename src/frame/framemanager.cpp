@@ -277,10 +277,14 @@ void FrameManager::saveProperties(KConfigGroup &config)
     QHash<int, Frame *>::const_iterator end(m_frames.constEnd());
     for (i = m_frames.constBegin(); i != end; ++i) {
         // No need to save the main frame
-        if (i.value() && qobject_cast<WebEngineFrame *>(i.value())) {
+        Frame *currentFrame = i.value();
+        if (currentFrame && qobject_cast<WebEngineFrame *>(currentFrame)) {
             QString newPrefix = QLatin1Char('T') + QString::number(i.key());
-            if (i.value()->saveConfig(config, newPrefix + QLatin1Char('_'))) {
+            if (currentFrame->saveConfig(config, newPrefix + QLatin1Char('_'))) {
                 strlst.append(newPrefix);
+                if (currentFrame == m_currentFrame) {
+                    config.writeEntry(QStringLiteral("CurrentTab"), newPrefix);
+                }
             }
         }
     }

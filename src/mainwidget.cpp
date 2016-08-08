@@ -1199,23 +1199,34 @@ void MainWidget::readProperties(const KConfigGroup &config)
         m_searchBar->slotSetText(config.readEntry("searchLine"));
         m_searchBar->slotSetStatus(config.readEntry("searchCombo").toInt());
     }
+    const QString currentTabName = config.readEntry("CurrentTab");
     // Reopen tabs
-    QStringList childList = config.readEntry(QStringLiteral("Children"),
-                            QStringList());
+    const QStringList childList = config.readEntry(QStringLiteral("Children"), QStringList());
+    int currentFrameId = -1;
     Q_FOREACH (const QString &framePrefix, childList) {
         WebEngineFrame *const frame = new WebEngineFrame(m_actionManager->actionCollection(), m_tabWidget);
         frame->loadConfig(config, framePrefix + QLatin1Char('_'));
 
         connectFrame(frame);
         Kernel::self()->frameManager()->slotAddFrame(frame);
-
+        if (currentTabName == framePrefix) {
+            currentFrameId = frame->id();
+        }
+    }
+    if (currentFrameId != -1) {
+        m_tabWidget->slotSelectFrame(currentFrameId);
     }
 }
 
 void MainWidget::saveProperties(KConfigGroup &config)
 {
     // save filter settings
-    config.writeEntry("searchLine", m_searchBar->text());
+    const QString searchStr(m_searchBar->text());
+    if (searchStr.isEmpty()) {
+        config.deleteEntry("searchLine");
+    } else {
+        config.writeEntry("searchLine", m_searchBar->text());
+    }
     config.writeEntry("searchCombo", m_searchBar->status());
 
     Kernel::self()->frameManager()->saveProperties(config);

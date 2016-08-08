@@ -68,6 +68,7 @@ private Q_SLOTS:
     void slotLoadFinished();
     void slotWebPageMutedOrAudibleChanged(bool isAudioMuted, bool wasRecentlyAudible);
 private:
+    void loadUrl(const QUrl &url);
     Akregator::ArticleViewerWebEngineWidgetNg *mArticleViewerWidgetNg;
 };
 }

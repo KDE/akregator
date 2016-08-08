@@ -79,9 +79,8 @@ QUrl WebEngineFrame::url() const
     return mArticleViewerWidgetNg->articleViewerNg()->url();
 }
 
-bool WebEngineFrame::openUrl(const OpenUrlRequest &request)
+void WebEngineFrame::loadUrl(const QUrl &url)
 {
-    const QUrl url = request.url();
     KIO::FavIconRequestJob *job = new KIO::FavIconRequestJob(url);
     connect(job, &KIO::FavIconRequestJob::result, this, [job, this](KJob *) {
         if (!job->error()) {
@@ -90,6 +89,12 @@ bool WebEngineFrame::openUrl(const OpenUrlRequest &request)
     });
 
     mArticleViewerWidgetNg->articleViewerNg()->load(url);
+}
+
+bool WebEngineFrame::openUrl(const OpenUrlRequest &request)
+{
+    const QUrl url = request.url();
+    loadUrl(url);
     return true;
 }
 
@@ -98,7 +103,7 @@ void WebEngineFrame::loadConfig(const KConfigGroup &config, const QString &prefi
     const QString url = config.readEntry(QStringLiteral("url").prepend(prefix), QString());
     const qreal zf = config.readEntry(QStringLiteral("zoom").prepend(prefix), 1.0);
     mArticleViewerWidgetNg->articleViewerNg()->setZoomFactor(zf);
-    mArticleViewerWidgetNg->articleViewerNg()->load(QUrl(url));
+    loadUrl(QUrl(url));
 }
 
 bool WebEngineFrame::saveConfig(KConfigGroup &config, const QString &prefix)
