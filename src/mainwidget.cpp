@@ -168,8 +168,6 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
     connect(Kernel::self()->frameManager(), &FrameManager::signalRequestNewFrame,
             this, &MainWidget::slotRequestNewFrame);
 
-    connect(Kernel::self()->frameManager(), &FrameManager::signalFrameAdded,
-            this, &MainWidget::slotFramesChanged);
     connect(Kernel::self()->frameManager(), &FrameManager::signalFrameRemoved,
             this, &MainWidget::slotFramesChanged);
     connect(Kernel::self()->frameManager(), &FrameManager::signalCompleted,
