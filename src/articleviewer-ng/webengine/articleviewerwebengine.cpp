@@ -95,7 +95,6 @@ ArticleViewerWebEngine::ArticleViewerWebEngine(KActionCollection *ac, QWidget *p
             this, &ArticleViewerWebEngine::slotWebPageMutedOrAudibleChanged);
     connect(page(), &QWebEnginePage::recentlyAudibleChanged,
             this, &ArticleViewerWebEngine::slotWebPageMutedOrAudibleChanged);
-    connect(profile, &QWebEngineProfile::downloadRequested, this, &ArticleViewerWebEngine::saveHtml);
 #endif
 }
 
