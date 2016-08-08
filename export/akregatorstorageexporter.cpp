@@ -337,8 +337,9 @@ static void printUsage()
 }
 }
 
-int main(int argc, char **argv)
+int main(int argc, char *argv[])
 {
+    QCoreApplication app(argc, argv);
     const QString backend = QStringLiteral("metakit");
 
     if (argc < 2) {
@@ -381,5 +382,5 @@ int main(int argc, char **argv)
 
     serialize(storage, url, &out);
 
-    return 0;
+    return app.exec();
 }
