@@ -374,7 +374,7 @@ void Part::slotOnShutdown()
 
 void Part::slotSettingsChanged()
 {
-    //QT5 NotificationManager::self()->setWidget(isTrayIconEnabled() ? m_mainWidget->window() : 0, componentData());
+    NotificationManager::self()->setWidget(isTrayIconEnabled() ? m_mainWidget->window() : 0, componentData().componentName());
 
     if (Settings::showTrayIcon() && !TrayIcon::getInstance()) {
         TrayIcon *trayIcon = new TrayIcon(m_mainWidget->window());
