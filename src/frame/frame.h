@@ -95,7 +95,10 @@ public:
     /**
      * Save a frame to a config file for session management.
      */
-    virtual bool saveConfig(KConfigGroup & /*config*/, const QString & /*prefix*/) { return false; }
+    virtual bool saveConfig(KConfigGroup & /*config*/, const QString & /*prefix*/)
+    {
+        return false;
+    }
 public Q_SLOTS:
 
     /** reloads the current content, if possible. See also isReloadable(). */
