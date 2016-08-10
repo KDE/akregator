@@ -74,8 +74,9 @@ static QString stripHtml(const QString &html)
 ArticleModel::Private::Private(const QVector<Article> &articles_, ArticleModel *qq)
     : q(qq), articles(articles_)
 {
-    titleCache.resize(articles.count());
-    for (int i = 0; i < articles.count(); ++i) {
+    const int articlesCount(articles.count());
+    titleCache.resize(articlesCount);
+    for (int i = 0; i < articlesCount; ++i) {
         titleCache[i] = stripHtml(articles[i].title());
     }
 }
@@ -206,13 +207,15 @@ void ArticleModel::Private::articlesAdded(const QVector<Article> &list)
     if (list.isEmpty()) { //assert?
         return;
     }
-    const int first = static_cast<int>(articles.count());
+    const int first = articles.count();
     q->beginInsertRows(QModelIndex(), first, first + list.size() - 1);
 
     const int oldSize = articles.size();
     articles << list;
-    titleCache.resize(articles.count());
-    for (int i = oldSize; i < articles.count(); ++i) {
+
+    const int newArticlesCount(articles.count());
+    titleCache.resize(newArticlesCount);
+    for (int i = oldSize; i < newArticlesCount; ++i) {
         titleCache[i] = stripHtml(articles[i].title());
     }
     q->endInsertRows();
@@ -233,8 +236,9 @@ void ArticleModel::Private::articlesUpdated(const QVector<Article> &list)
     int rmin = 0;
     int rmax = 0;
 
-    if (articles.count() > 0) {
-        rmin = articles.count() - 1;
+    const int numberOfArticles(articles.count());
+    if (numberOfArticles > 0) {
+        rmin = numberOfArticles - 1;
         //might want to avoid indexOf() in case of performance problems
         Q_FOREACH (const Article &i, list) {
             const int row = articles.indexOf(i);
