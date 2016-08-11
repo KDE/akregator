@@ -29,7 +29,6 @@
 #include <QApplication>
 #include <QDateTime>
 #include <QVariantList>
-#include <QDebug>
 #include <folder.h>
 #include <feed.h>
 
