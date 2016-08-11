@@ -34,12 +34,12 @@
 #include <QStringList>
 #include <QXmlStreamWriter>
 #include <QVariant>
-#include <QDebug>
 
 #include <KPluginLoader>
 #include <KService>
 #include <KServiceTypeTrader>
 #include <QUrl>
+#include <QDebug>
 
 #include <iostream>
 

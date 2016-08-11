@@ -12,6 +12,7 @@
 */
 
 #include "downloadarticlejob.h"
+#include "akregator_debug.h"
 #include <QTemporaryFile>
 #include <QDesktopServices>
 #include <kio/job.h>
@@ -54,7 +55,7 @@ void DownloadArticleJob::start()
         return;
     }
     if (mTemporaryFile) {
-        qDebug() << " There is a problem as we call start twice";
+        qCDebug(AKREGATOR_LOG) << " There is a problem as we call start twice";
         return;
     }
     mTemporaryFile = new QTemporaryFile(this);
@@ -79,7 +80,7 @@ void DownloadArticleJob::slotUrlSaveResult(KJob *job)
         if (kiojob && kiojob->ui()) {
             kiojob->ui()->showErrorMessage();
         } else {
-            qWarning() << "There is no GUI delegate set for a kjob, and it failed with error:" << job->errorString();
+            qCWarning(AKREGATOR_LOG) << "There is no GUI delegate set for a kjob, and it failed with error:" << job->errorString();
         }
     } else {
         sendAttachment();
