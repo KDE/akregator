@@ -300,7 +300,7 @@ Part::Part(QWidget *parentWidget, QObject *parent, const QVariantList &)
     connect(m_autosaveTimer, &QTimer::timeout, this, &Part::slotSaveFeedList);
     m_autosaveTimer->start(5 * 60 * 1000); // 5 minutes
 
-    QString useragent = QStringLiteral("Akregator/%1; syndication").arg(QStringLiteral(KDEPIM_VERSION));
+    QString useragent = QStringLiteral("Akregator/%1; syndication").arg(QStringLiteral(AKREGATOR_VERSION));
 
     if (!Settings::customUserAgent().isEmpty()) {
         useragent = Settings::customUserAgent();
