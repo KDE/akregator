@@ -548,13 +548,13 @@ void ActionManagerImpl::initTabWidget(TabWidget *tabWidget)
     connect(action, &QAction::triggered, d->tabWidget, &TabWidget::slotDetachTab);
     coll->setDefaultShortcut(action, QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_B));
 
-    action = KStandardAction::copy(d->tabWidget, SLOT(slotCopy()), coll);
+    action = KStandardAction::copy(d->tabWidget, &TabWidget::slotCopy, coll);
     coll->addAction(QStringLiteral("viewer_copy"), action);
 
-    action = KStandardAction::print(d->tabWidget, SLOT(slotPrint()), coll);
+    action = KStandardAction::print(d->tabWidget, &TabWidget::slotPrint, coll);
     coll->addAction(QStringLiteral("viewer_print"), action);
 
-    action = KStandardAction::printPreview(d->tabWidget, SLOT(slotPrintPreview()), coll);
+    action = KStandardAction::printPreview(d->tabWidget, &TabWidget::slotPrintPreview, coll);
     coll->addAction(QStringLiteral("viewer_printpreview"), action);
 
     action = coll->addAction(QStringLiteral("tab_mute"));
