@@ -67,15 +67,17 @@ void NotificationManager::slotNotifyArticle(const Article &article)
 
 void NotificationManager::slotNotifyFeeds(const QStringList &feeds)
 {
-    if (feeds.count() == 1) {
+    const int feedsCount(feeds.count());
+    if (feedsCount == 1) {
         KNotification::event(QStringLiteral("FeedAdded"), i18n("Feed added:\n %1", feeds[0]), QPixmap(), m_widget, KNotification::CloseOnTimeout, m_componantName);
-    } else if (feeds.count() > 1) {
+    } else if (feedsCount > 1) {
         QString message;
-        for (QStringList::ConstIterator it = feeds.constBegin(); it != feeds.constEnd(); ++it) {
+        QStringList::ConstIterator end = feeds.constEnd();
+        for (QStringList::ConstIterator it = feeds.constBegin(); it != end; ++it) {
             message += *it + QLatin1Char('\n');
         }
         KNotification::event(QStringLiteral("FeedAdded"), i18n("Feeds added:\n %1", message), QPixmap(), m_widget, KNotification::CloseOnTimeout, m_componantName);
-    }
+    }    
 }
 
 void NotificationManager::doNotify()
@@ -84,8 +86,9 @@ void NotificationManager::doNotify()
     QString feedTitle;
 
     Q_FOREACH (const Article &i, m_articles) {
-        if (feedTitle != i.feed()->title()) {
-            feedTitle = i.feed()->title();
+        const QString currentFeedTitle(i.feed()->title());
+        if (feedTitle != currentFeedTitle) {
+            feedTitle = currentFeedTitle;
             message += QStringLiteral("<p><b>%1:</b></p>").arg(feedTitle);
         }
         message += i.title() + QLatin1String("<br>");
