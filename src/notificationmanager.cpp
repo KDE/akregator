@@ -84,6 +84,8 @@ void NotificationManager::doNotify()
 {
     QString message = QStringLiteral("<html><body>");
     QString feedTitle;
+    int entriesCount = 1;
+    const int maxNewArticlesShown = 2;
 
     Q_FOREACH (const Article &i, m_articles) {
         const QString currentFeedTitle(i.feed()->title());
@@ -91,7 +93,13 @@ void NotificationManager::doNotify()
             feedTitle = currentFeedTitle;
             message += QStringLiteral("<p><b>%1:</b></p>").arg(feedTitle);
         }
+        // Show only the firsts maxNewArticlesShown articles of each feed in notification pop-up
+        if(entriesCount > maxNewArticlesShown) {
+            message += i18np("<i>and 1 other</i>", "<i>and %1 others</i>", m_articles.count() - maxNewArticlesShown) + QLatin1String("<br>");
+            break;
+        }
         message += i.title() + QLatin1String("<br>");
+        entriesCount++;
     }
     message += QLatin1String("</body></html>");
     KNotification::event(QStringLiteral("NewArticles"), message, QPixmap(), m_widget, KNotification::CloseOnTimeout, m_componantName);
