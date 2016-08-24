@@ -34,11 +34,6 @@
 #include <WebEngineViewer/FindBarWebEngineView>
 #include <webengineviewer/config-webengineviewer.h>
 #include <WebEngineViewer/WebEngineExportHtmlPageJob>
-#ifdef WEBENGINEVIEWER_PRINTPREVIEW_SUPPORT
-#include <WebEngineViewer/PrintPreviewDialog>
-#include <WebEngineViewer/PrintWebEngineViewJob>
-#include <WebEngineViewer/PrintConfigureDialog>
-#endif
 
 using namespace Akregator;
 
@@ -130,7 +125,6 @@ void ArticleViewerWebEngineWidgetNg::slotPrintPreview()
 {
     QPointer<WebEngineViewer::WebEnginePrintMessageBox> dialog = new WebEngineViewer::WebEnginePrintMessageBox(this);
     connect(dialog.data(), &WebEngineViewer::WebEnginePrintMessageBox::openInBrowser, this, &ArticleViewerWebEngineWidgetNg::slotOpenInBrowser);
-    connect(dialog.data(), &WebEngineViewer::WebEnginePrintMessageBox::openPrintPreview, this, &ArticleViewerWebEngineWidgetNg::slotOpenPrintPreviewDialog);
     dialog->exec();
     delete dialog;
 }
@@ -158,39 +152,5 @@ void ArticleViewerWebEngineWidgetNg::slotExportHtmlPageSuccess(const QString &fi
 {
     const QUrl url(QUrl::fromLocalFile(filename));
     KRun::runUrl(url, QStringLiteral("text/html"), this, true);
-}
-
-void ArticleViewerWebEngineWidgetNg::slotOpenPrintPreviewDialog()
-{
-#ifdef WEBENGINEVIEWER_PRINTPREVIEW_SUPPORT
-    QPointer<WebEngineViewer::PrintConfigureDialog> dlg = new WebEngineViewer::PrintConfigureDialog(this);
-    QPageLayout pageLayout;
-    if (dlg->exec()) {
-        pageLayout = dlg->currentPageLayout();
-    }
-    delete dlg;
-    if (pageLayout.isValid()) {
-        WebEngineViewer::PrintWebEngineViewJob *job = new WebEngineViewer::PrintWebEngineViewJob(this);
-        job->setEngineView(mArticleViewerNg);
-        job->setPageLayout(pageLayout);
-        connect(job, &WebEngineViewer::PrintWebEngineViewJob::failed, this, &ArticleViewerWebEngineWidgetNg::slotPdfFailed);
-        connect(job, &WebEngineViewer::PrintWebEngineViewJob::success, this, &ArticleViewerWebEngineWidgetNg::slotPdfCreated);
-        job->start();
-    }
-#endif
-}
-
-void ArticleViewerWebEngineWidgetNg::slotPdfCreated(const QString &filename)
-{
-#ifdef WEBENGINEVIEWER_PRINTPREVIEW_SUPPORT
-    WebEngineViewer::PrintPreviewDialog dlg(this);
-    dlg.loadFile(filename, true);
-    dlg.exec();
-#endif
-}
-
-void ArticleViewerWebEngineWidgetNg::slotPdfFailed()
-{
-    qCDebug(AKREGATOR_LOG) << "Print to pdf Failed";
 }
 
