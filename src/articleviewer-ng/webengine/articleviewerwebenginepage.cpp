@@ -28,6 +28,9 @@ ArticleViewerWebEnginePage::ArticleViewerWebEnginePage(QWebEngineProfile *profil
     settings()->setAttribute(QWebEngineSettings::JavascriptEnabled, true);
     settings()->setAttribute(QWebEngineSettings::PluginsEnabled, false);
     settings()->setAttribute(QWebEngineSettings::AutoLoadImages, true);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 7, 0)
+    settings()->setAttribute(QWebEngineSettings::AutoLoadIconsForPage, false);
+#endif
 }
 
 ArticleViewerWebEnginePage::~ArticleViewerWebEnginePage()
