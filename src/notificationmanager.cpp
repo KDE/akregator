@@ -87,20 +87,30 @@ void NotificationManager::doNotify()
     int entriesCount = 1;
     const int maxNewArticlesShown = 2;
 
+    // adding information about how many new articles
+    auto feedClosure = [&entriesCount, &message] () {
+        if((entriesCount - maxNewArticlesShown) > 1)
+            message += i18np("<i>and 1 other</i>", "<i>and %1 others</i>", entriesCount - maxNewArticlesShown - 1) + QLatin1String("<br>");
+    };
+
     Q_FOREACH (const Article &i, m_articles) {
         const QString currentFeedTitle(i.feed()->title());
         if (feedTitle != currentFeedTitle) {
-            feedTitle = currentFeedTitle;
+            // closing previous feed, if any, and resetting the counter
+            feedClosure();
+            entriesCount = 1;
+
+            // starting a new feed
+            feedTitle = i.feed()->title();
             message += QStringLiteral("<p><b>%1:</b></p>").arg(feedTitle);
         }
-        // Show only the firsts maxNewArticlesShown articles of each feed in notification pop-up
-        if(entriesCount > maxNewArticlesShown) {
-            message += i18np("<i>and 1 other</i>", "<i>and %1 others</i>", m_articles.count() - maxNewArticlesShown) + QLatin1String("<br>");
-            break;
+        // check not exceeding maxNewArticlesShown per feed
+        if(entriesCount <= maxNewArticlesShown) {
+            message += i.title() + QLatin1String("<br>");
         }
-        message += i.title() + QLatin1String("<br>");
         entriesCount++;
     }
+    feedClosure();
     message += QLatin1String("</body></html>");
     KNotification::event(QStringLiteral("NewArticles"), message, QPixmap(), m_widget, KNotification::CloseOnTimeout, m_componantName);
 
