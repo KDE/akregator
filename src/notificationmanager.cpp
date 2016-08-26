@@ -101,7 +101,7 @@ void NotificationManager::doNotify()
             entriesCount = 1;
 
             // starting a new feed
-            feedTitle = i.feed()->title();
+            feedTitle = currentFeedTitle;
             message += QStringLiteral("<p><b>%1:</b></p>").arg(feedTitle);
         }
         // check not exceeding maxNewArticlesShown per feed
