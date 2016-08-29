@@ -57,9 +57,7 @@ void NotificationManager::slotNotifyArticle(const Article &article)
 {
     m_articles.append(article);
     m_addedInLastInterval = true;
-    if (m_articles.count() >= m_maxArticles) {
-        doNotify();
-    } else if (!m_running) {
+    if (!m_running) {
         m_running = true;
         QTimer::singleShot(m_checkInterval, this, &NotificationManager::slotIntervalCheck);
     }
