@@ -183,9 +183,10 @@ QVariant ArticleModel::data(const QModelIndex &index, int role) const
 
 void ArticleModel::clear()
 {
+    beginResetModel();
     d->articles.clear();
     d->titleCache.clear();
-    reset();
+    endResetModel();
 }
 
 void ArticleModel::articlesAdded(TreeNode *, const QVector<Article> &l)

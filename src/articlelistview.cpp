@@ -167,7 +167,7 @@ void ArticleListView::setArticleModel(ArticleModel *model)
 
     setModel(columnsProxy);
     header()->setContextMenuPolicy(Qt::CustomContextMenu);
-    header()->setResizeMode(QHeaderView::Interactive);
+    header()->setSectionResizeMode(QHeaderView::Interactive);
 }
 
 void ArticleListView::showHeaderMenu(const QPoint &pos)
@@ -326,7 +326,7 @@ void ArticleListView::startResizingTitleColumn()
     // content. finishResizingTitleColumn() will turn the resize mode back to
     // Interactive so that the user can still resize the column himself if he
     // wants to
-    header()->setResizeMode(ArticleModel::ItemTitleColumn, QHeaderView::Stretch);
+    header()->setSectionResizeMode(ArticleModel::ItemTitleColumn, QHeaderView::Stretch);
     QMetaObject::invokeMethod(this, "finishResizingTitleColumn", Qt::QueuedConnection);
 }
 
@@ -337,7 +337,7 @@ void ArticleListView::finishResizingTitleColumn()
         QMetaObject::invokeMethod(this, "finishResizingTitleColumn", Qt::QueuedConnection);
         return;
     }
-    header()->setResizeMode(QHeaderView::Interactive);
+    header()->setSectionResizeMode(QHeaderView::Interactive);
 }
 
 ArticleListView::~ArticleListView()

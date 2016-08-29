@@ -60,6 +60,10 @@ if(${CMAKE_SOURCE_DIR} STREQUAL ${akregator_SOURCE_DIR})
     find_package(KF5Parts ${KF5_VERSION} CONFIG REQUIRED)
     find_package(KF5TextEditor ${KF5_VERSION} CONFIG REQUIRED)
     find_package(KF5XmlGui ${KF5_VERSION} CONFIG REQUIRED)
+    find_package(KF5IconThemes ${KF5_VERSION} CONFIG REQUIRED)
+    find_package(KF5Notifications ${KF5_VERSION} CONFIG REQUIRED)
+    find_package(KF5WindowSystem ${KF5_VERSION} CONFIG REQUIRED)
+
 
     # Find KdepimLibs Package
     find_package(KF5AkonadiMime ${AKONADI_MIMELIB_VERSION} CONFIG REQUIRED)

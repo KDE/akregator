@@ -82,6 +82,7 @@
 #include <QDomDocument>
 #include <QTimer>
 #include <QDesktopServices>
+#include <QUrlQuery>
 
 #include <algorithm>
 #include <memory>
