@@ -80,6 +80,10 @@ add_definitions(-DQT_USE_QSTRINGBUILDER)
 include_directories(${akregator_SOURCE_DIR} ${akregator_BINARY_DIR})
 include(CheckTypeSize)
 check_type_size("long" SIZEOF_LONG)
+if (Qt5WebEngineWidgets_VERSION VERSION_GREATER "5.7.99")
+    set(WEBENGINEVIEWER_PRINT_SUPPORT true)
+endif()
+
 configure_file(config-akregator.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-akregator.h)
 add_definitions(-DTRANSLATION_DOMAIN=\"akregator\")
 
