@@ -48,7 +48,7 @@ set(MESSAGELIB_LIB_VERSION_LIB "5.3.47")
 set(PIMCOMMON_LIB_VERSION_LIB "5.3.41")
 set(SYNDICATION_LIB_VERSION "5.3.40")
 
-find_package(Qt5 ${QT_REQUIRED_VERSION} CONFIG REQUIRED Widgets Test WebEngine WebEngineWidgets)
+find_package(Qt5 ${QT_REQUIRED_VERSION} CONFIG REQUIRED Widgets Test WebEngine WebEngineWidgets PrintSupport)
 find_package(Grantlee5 "5.1" CONFIG REQUIRED)
 
 # Find KF5 package
