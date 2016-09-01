@@ -28,7 +28,7 @@ using namespace Akregator;
 CrashWidget::CrashWidget(QWidget *parent)
     : QWidget(parent)
 {
-    QVBoxLayout *vbox = new QVBoxLayout;
+    QVBoxLayout *vbox = new QVBoxLayout(this);
 
     QHBoxLayout *labelLayout = new QHBoxLayout;
     QLabel *label = new QLabel(i18n("Akregator did not close correctly. Would you like to restore the previous session?"), this);
@@ -65,7 +65,6 @@ CrashWidget::CrashWidget(QWidget *parent)
     connect(askMeLaterButton, &QPushButton::clicked, this, &CrashWidget::slotAskMeLater);
     askMeLaterButton->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     buttonLayout->addStretch(0);
-    setLayout(vbox);
 }
 
 CrashWidget::~CrashWidget()
