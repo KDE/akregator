@@ -154,12 +154,14 @@ void ArticleViewerWebEngineWidgetNg::printRequested(QWebEnginePage *page)
     if (mCurrentPrinter)
         return;
     mCurrentPrinter = new QPrinter();
-    QPrintDialog *dialog = new QPrintDialog(mCurrentPrinter, this);
+    QPointer<QPrintDialog> dialog = new QPrintDialog(mCurrentPrinter, this);
     dialog->setWindowTitle(i18n("Print Document"));
     if (dialog->exec() != QDialog::Accepted) {
         slotHandlePagePrinted(false);
+        delete dialog;
         return;
     }
+    delete dialog;
     page->print(mCurrentPrinter, invoke(this, &ArticleViewerWebEngineWidgetNg::slotHandlePagePrinted));
 #endif
 }
