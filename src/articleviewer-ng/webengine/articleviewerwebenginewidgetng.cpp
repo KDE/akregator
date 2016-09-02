@@ -140,7 +140,6 @@ void ArticleViewerWebEngineWidgetNg::restoreCurrentPosition()
 
 void ArticleViewerWebEngineWidgetNg::slotPrint()
 {
-    //TODO
 #ifdef WEBENGINEVIEWER_PRINT_SUPPORT
     printRequested(mArticleViewerNg->page());
 #else
