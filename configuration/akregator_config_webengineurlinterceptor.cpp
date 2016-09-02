@@ -37,7 +37,7 @@ K_PLUGIN_FACTORY(KCMAkregatorWebEngineUrlInterceptorConfigFactory, registerPlugi
 KCMAkregatorWebEngineUrlInterceptorConfig::KCMAkregatorWebEngineUrlInterceptorConfig(QWidget *parent, const QVariantList &args)
     : KCModule(parent, args)
 {
-    QHBoxLayout *lay = new QHBoxLayout;
+    QHBoxLayout *lay = new QHBoxLayout(this);
     lay->setMargin(0);
 
     KAboutData *about = new KAboutData(QStringLiteral("kcmakrwebengineurlinterceptorconfig"),
@@ -58,8 +58,6 @@ KCMAkregatorWebEngineUrlInterceptorConfig::KCMAkregatorWebEngineUrlInterceptorCo
             connect(configureWidget, &WebEngineViewer::NetworkPluginUrlInterceptorConfigureWidget::configureChanged, this, &KCMAkregatorWebEngineUrlInterceptorConfig::slotConfigChanged);
         }
     }
-
-    setLayout(lay);
 }
 
 void KCMAkregatorWebEngineUrlInterceptorConfig::slotConfigChanged()

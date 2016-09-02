@@ -75,11 +75,12 @@ FeedPropertiesDialog::FeedPropertiesDialog(QWidget *parent, const QString &name)
       m_feed(Q_NULLPTR)
 {
     setObjectName(name);
-    widget = new FeedPropertiesWidget(this);
     setWindowTitle(i18n("Feed Properties"));
+
+
+    widget = new FeedPropertiesWidget(this);
+    QVBoxLayout *mainLayout = new QVBoxLayout(this);
     QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
-    QVBoxLayout *mainLayout = new QVBoxLayout;
-    setLayout(mainLayout);
     QPushButton *okButton = buttonBox->button(QDialogButtonBox::Ok);
     okButton->setDefault(true);
     okButton->setShortcut(Qt::CTRL | Qt::Key_Return);

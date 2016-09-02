@@ -69,18 +69,20 @@ AddFeedDialog::AddFeedDialog(QWidget *parent, const QString &name)
     : QDialog(parent), m_feed(0)
 {
     setObjectName(name);
-    widget = new AddFeedWidget(this);
     setWindowTitle(i18n("Add Feed"));
-    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
-    QVBoxLayout *mainLayout = new QVBoxLayout;
-    setLayout(mainLayout);
-    mainLayout->addWidget(widget);
+    QVBoxLayout *mainLayout = new QVBoxLayout(this);
+
+    widget = new AddFeedWidget(this);
+    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, this);
     mOkButton = buttonBox->button(QDialogButtonBox::Ok);
     mOkButton->setDefault(true);
     mOkButton->setShortcut(Qt::CTRL | Qt::Key_Return);
     connect(buttonBox, &QDialogButtonBox::accepted, this, &AddFeedDialog::accept);
     connect(buttonBox, &QDialogButtonBox::rejected, this, &AddFeedDialog::reject);
+
+    mainLayout->addWidget(widget);
     mainLayout->addWidget(buttonBox);
+
     widget->urlEdit->setFocus();
     connect(widget->urlEdit, &QLineEdit::textChanged, this, &AddFeedDialog::textChanged);
     mOkButton->setEnabled(false);

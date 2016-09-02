@@ -33,7 +33,6 @@ MainFrame::MainFrame(QWidget *parent, QWidget *visibleWidget)
     QGridLayout *layout = new QGridLayout(this);
     layout->setMargin(0);
     layout->addWidget(visibleWidget, 0, 0);
-    setLayout(layout);
 }
 
 MainFrame::~MainFrame()
