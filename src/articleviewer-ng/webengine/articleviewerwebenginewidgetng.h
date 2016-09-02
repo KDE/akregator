@@ -60,13 +60,16 @@ private Q_SLOTS:
     void slotOpenInBrowser();
     void slotExportHtmlPageSuccess(const QString &filename);
     void slotExportHtmlPageFailed();
+    void slotHandlePagePrinted(bool result);
 private:
     void initializeActions(KActionCollection *ac);
     void initializeLayout(KActionCollection *ac);
+    void printRequested(QWebEnginePage *page);
     WebEngineViewer::FindBarWebEngineView *mFindBarWebView;
     ArticleViewerWebEngine *mArticleViewerNg;
     KPIMTextEdit::TextToSpeechWidget *mTextToSpeechWidget;
     KPIMTextEdit::SlideContainer *mSliderContainer;
+    QPrinter *mCurrentPrinter;
 };
 }
 #endif // ARTICLEVIEWERWEBENGINEWIDGETNG_H

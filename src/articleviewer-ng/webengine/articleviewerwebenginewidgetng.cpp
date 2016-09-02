@@ -35,10 +35,33 @@
 #include <webengineviewer/config-webengineviewer.h>
 #include <WebEngineViewer/WebEngineExportHtmlPageJob>
 
+#include <QPrinter>
+#ifdef WEBENGINEVIEWER_PRINT_SUPPORT
+#include <QPrintDialog>
+#endif
+
 using namespace Akregator;
+template<typename Arg, typename R, typename C>
+struct InvokeWrapper {
+    R *receiver;
+    void (C::*memberFun)(Arg);
+    void operator()(Arg result) {
+        (receiver->*memberFun)(result);
+    }
+};
+
+template<typename Arg, typename R, typename C>
+InvokeWrapper<Arg, R, C> invoke(R *receiver, void (C::*memberFun)(Arg))
+{
+    InvokeWrapper<Arg, R, C> wrapper = {receiver, memberFun};
+    return wrapper;
+}
+
+
 
 ArticleViewerWebEngineWidgetNg::ArticleViewerWebEngineWidgetNg(ArticleViewerWebEngine *customViewer, KActionCollection *ac, QWidget *parent)
-    : QWidget(parent)
+    : QWidget(parent),
+      mCurrentPrinter(Q_NULLPTR)
 {
     mArticleViewerNg = customViewer;
     initializeLayout(ac);
@@ -46,7 +69,8 @@ ArticleViewerWebEngineWidgetNg::ArticleViewerWebEngineWidgetNg(ArticleViewerWebE
 
 ArticleViewerWebEngineWidgetNg::ArticleViewerWebEngineWidgetNg(KActionCollection *ac, QWidget *parent)
     : QWidget(parent),
-      mArticleViewerNg(Q_NULLPTR)
+      mArticleViewerNg(Q_NULLPTR),
+      mCurrentPrinter(Q_NULLPTR)
 {
     initializeLayout(ac);
 }
@@ -116,9 +140,38 @@ void ArticleViewerWebEngineWidgetNg::restoreCurrentPosition()
 
 void ArticleViewerWebEngineWidgetNg::slotPrint()
 {
+    //TODO
+#ifdef WEBENGINEVIEWER_PRINT_SUPPORT
+    printRequested(mArticleViewerNg->page());
+#else
     //Use the same code for the moment.
     slotPrintPreview();
+#endif
 }
+
+void ArticleViewerWebEngineWidgetNg::printRequested(QWebEnginePage *page)
+{
+#ifdef WEBENGINEVIEWER_PRINT_SUPPORT
+    if (mCurrentPrinter)
+        return;
+    mCurrentPrinter = new QPrinter();
+    QPrintDialog *dialog = new QPrintDialog(mCurrentPrinter, this);
+    dialog->setWindowTitle(i18n("Print Document"));
+    if (dialog->exec() != QDialog::Accepted) {
+        slotHandlePagePrinted(false);
+        return;
+    }
+    page->print(mCurrentPrinter, invoke(this, &ArticleViewerWebEngineWidgetNg::slotHandlePagePrinted));
+#endif
+}
+
+void ArticleViewerWebEngineWidgetNg::slotHandlePagePrinted(bool result)
+{
+    Q_UNUSED(result);
+    delete mCurrentPrinter;
+    mCurrentPrinter = Q_NULLPTR;
+}
+
 
 void ArticleViewerWebEngineWidgetNg::slotPrintPreview()
 {
