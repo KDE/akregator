@@ -245,6 +245,11 @@ QModelIndex Akregator::SubscriptionListModel::index(int row, int column, const Q
     }
 
     const Akregator::TreeNode *const parentNode = nodeForIndex(parent, m_feedList.data());
+
+    if (!parentNode) {
+        return QModelIndex();
+    }
+
     const Akregator::TreeNode *const childNode = parentNode->childAt(row);
     return  childNode ? createIndex(row, column, childNode->id()) : QModelIndex();
 }
