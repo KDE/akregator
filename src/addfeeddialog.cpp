@@ -31,10 +31,7 @@
 #include <kicontheme.h>
 #include <KLocalizedString>
 #include <kmessagebox.h>
-#include <ksqueezedtextlabel.h>
 #include <QUrl>
-#include <QCheckBox>
-#include <KConfigGroup>
 #include <QDialogButtonBox>
 #include <QPushButton>
 #include <QVBoxLayout>
