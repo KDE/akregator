@@ -23,6 +23,7 @@
 #include <QWidget>
 #include "akregator_export.h"
 #include "articleviewerwebengine.h"
+class QPrinter;
 class KActionCollection;
 
 namespace KPIMTextEdit
