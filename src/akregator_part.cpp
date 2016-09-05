@@ -137,11 +137,6 @@ static QDomDocument createDefaultFeedList()
     apps.setAttribute(QStringLiteral("xmlUrl"), QStringLiteral("http://www.kde.org/dot/kde-apps-content.rdf"));
     mainFolder.appendChild(apps);
 
-    QDomElement look = doc.createElement(QStringLiteral("outline"));
-    look.setAttribute(QStringLiteral("text"), i18n("KDE Look"));
-    look.setAttribute(QStringLiteral("xmlUrl"), QStringLiteral("http://www.kde.org/kde-look-content.rdf"));
-    mainFolder.appendChild(look);
-
 #if 0
     // hungarian feed(s)
     QDomElement hungarianFolder = doc.createElement(QStringLiteral("outline"));
