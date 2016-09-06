@@ -36,7 +36,7 @@ class AKREGATOR_EXPORT Utils
 {
 public:
     /** removes HTML/XML tags (everything between &lt; and &gt;) from a string.  "<p><strong>foo</strong> bar</p>" becomes "foo bar" */
-    static QString stripTags(const QString &str);
+    static QString stripTags(QString str);
 
     /** taken from some website... -fo
     * djb2

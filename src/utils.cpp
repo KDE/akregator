@@ -38,9 +38,9 @@ QString Utils::convertHtmlTags(const QString &title)
     return newText.toPlainText();
 }
 
-QString Utils::stripTags(const QString &str)
+QString Utils::stripTags(QString str)
 {
-    return QString(str).remove(QRegExp(QLatin1String("<[^>]*>")));
+    return str.remove(QRegExp(QLatin1String("<[^>]*>")));
 }
 
 uint Utils::calcHash(const QString &str)
