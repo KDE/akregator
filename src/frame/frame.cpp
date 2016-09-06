@@ -23,6 +23,7 @@
 */
 
 #include "frame.h"
+#include "utils.h"
 
 #include <QGridLayout>
 #include <QRegExp>
@@ -74,7 +75,7 @@ void Frame::slotSetCaption(const QString &s)
 void Frame::slotSetStatusText(const QString &s)
 {
     m_statusText = s;
-    m_statusText.remove(QRegExp(QLatin1String("<[^>]*>")));
+    m_statusText = Akregator::Utils::stripTags(m_statusText);
     Q_EMIT signalStatusText(this, m_statusText);
 }
 

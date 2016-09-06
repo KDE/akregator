@@ -27,6 +27,7 @@
 #include "articlematcher.h"
 #include "akregatorconfig.h"
 #include "feed.h"
+#include "utils.h"
 
 #include <Syndication/Tools>
 
@@ -66,7 +67,7 @@ static QString stripHtml(const QString &html)
 {
     QString str(html);
     //TODO: preserve some formatting, such as line breaks
-    str.remove(QRegExp(QLatin1String("<[^>]*>"))); // remove tags
+    str = Akregator::Utils::stripTags(str); // remove tags
     str = Syndication::resolveEntities(str);
     return str.simplified();
 }
