@@ -134,7 +134,7 @@ static QDomDocument createDefaultFeedList()
 
     QDomElement apps = doc.createElement(QStringLiteral("outline"));
     apps.setAttribute(QStringLiteral("text"), i18n("KDE Apps"));
-    apps.setAttribute(QStringLiteral("xmlUrl"), QStringLiteral("http://www.kde.org/dot/kde-apps-content.rdf"));
+    apps.setAttribute(QStringLiteral("xmlUrl"), QStringLiteral("https://store.kde.org/content.rdf"));
     mainFolder.appendChild(apps);
 
 #if 0
