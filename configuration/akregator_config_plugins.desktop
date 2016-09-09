@@ -1,0 +1,14 @@
+[Desktop Entry]
+Icon=preferences-plugin
+Type=Service
+X-KDE-ServiceTypes=KCModule
+
+X-KDE-Library=akregator_config_plugins
+X-KDE-ParentApp=akregator
+X-KDE-ParentComponents=akregator,kontact_akregatorplugin
+X-KDE-CfgDlgHierarchy=Akregator
+X-KDE-Weight=100
+
+Name=Plugins
+Comment=Configure Plugins
+X-KDE-Keywords=akregator, configure, settings, webEngine, plugins
