@@ -7,7 +7,7 @@ X-KDE-Library=akregator_config_plugins
 X-KDE-ParentApp=akregator
 X-KDE-ParentComponents=akregator,kontact_akregatorplugin
 X-KDE-CfgDlgHierarchy=Akregator
-X-KDE-Weight=100
+X-KDE-Weight=600
 
 Name=Plugins
 Name[af]=Inprop modules
