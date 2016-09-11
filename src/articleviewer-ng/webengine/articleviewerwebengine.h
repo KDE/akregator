@@ -30,7 +30,7 @@ namespace WebEngineViewer
 {
 class WebHitTestResult;
 class WebEngineAccessKey;
-class NetworkAccessManagerWebEngine;
+class InterceptorManager;
 }
 namespace MessageViewer
 {
@@ -134,7 +134,7 @@ protected:
     void contextMenuEvent(QContextMenuEvent *e) Q_DECL_OVERRIDE;
     QWebEngineView *createWindow(QWebEnginePage::WebWindowType type) Q_DECL_OVERRIDE;
     QList<QAction *> viewerPluginActionList(MessageViewer::ViewerPluginInterface::SpecificFeatureTypes features);
-    WebEngineViewer::NetworkAccessManagerWebEngine *mNetworkAccessManager;
+    WebEngineViewer::InterceptorManager *mNetworkAccessManager;
 private:
     MousePressedButtonType mLastButtonClicked;
     MessageViewer::ViewerPluginToolManager *mViewerPluginToolManager;

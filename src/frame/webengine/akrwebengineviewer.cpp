@@ -36,7 +36,7 @@
 #include <QWebEngineHistory>
 #include <WebEngineViewer/WebHitTest>
 #include <WebEngineViewer/WebHitTestResult>
-#include <WebEngineViewer/NetworkAccessManagerWebEngine>
+#include <WebEngineViewer/InterceptorManager>
 
 using namespace Akregator;
 

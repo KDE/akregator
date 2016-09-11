@@ -27,7 +27,7 @@
 #include "actions/actions.h"
 #include "urlhandler/webengine/urlhandlerwebengine.h"
 
-#include <WebEngineViewer/NetworkAccessManagerWebEngine>
+#include <WebEngineViewer/InterceptorManager>
 #include <WebEngineViewer/WebEngineAccessKey>
 #include <KPIMTextEdit/TextToSpeech>
 #include <KActionMenu>
@@ -67,7 +67,7 @@ ArticleViewerWebEngine::ArticleViewerWebEngine(KActionCollection *ac, QWidget *p
       mLastButtonClicked(LeftButton),
       mViewerPluginToolManager(Q_NULLPTR)
 {
-    mNetworkAccessManager = new WebEngineViewer::NetworkAccessManagerWebEngine(this, ac, this);
+    mNetworkAccessManager = new WebEngineViewer::InterceptorManager(this, ac, this);
     QWebEngineProfile *profile = new QWebEngineProfile(this);
     mPageEngine = new ArticleViewerWebEnginePage(profile, this);
 
