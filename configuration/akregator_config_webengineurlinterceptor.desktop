@@ -7,7 +7,7 @@ X-KDE-Library=akregator_config_webengineurlinterceptor
 X-KDE-ParentApp=akregator
 X-KDE-ParentComponents=akregator,kontact_akregatorplugin
 X-KDE-CfgDlgHierarchy=Akregator
-X-KDE-Weight=100
+X-KDE-Weight=700
 
 Name=Web Engine URL Interceptor Plugins
 Name[ca]=Connectors motor web i interceptor de l'URL
