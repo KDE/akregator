@@ -23,6 +23,7 @@
 #include <KPluginFactory>
 #include <KLocalizedString>
 
+#include <PimCommon/ConfigurePluginsListWidget>
 #include <QVBoxLayout>
 
 using namespace Akregator;
@@ -43,7 +44,9 @@ KCMAkregatorPluginsConfig::KCMAkregatorPluginsConfig(QWidget *parent, const QVar
     about->addAuthor(i18n("Laurent Montel"), QString(), QStringLiteral("montel@kde.org"));
 
     setAboutData(about);
-    //TODO
+    mConfigurePluginWidget = new PimCommon::ConfigurePluginsListWidget(this);
+    mConfigurePluginWidget->setObjectName(QStringLiteral("configurePluginWidget"));
+    connect(mConfigurePluginWidget, &PimCommon::ConfigurePluginsListWidget::changed, this, &KCMAkregatorPluginsConfig::slotConfigChanged);
 }
 
 void KCMAkregatorPluginsConfig::slotConfigChanged()

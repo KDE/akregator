@@ -21,12 +21,9 @@
 #define KCMAkregatorPluginsConfig_H
 
 #include <KCModule>
-
+#include <PimCommon/ConfigurePluginsWidget>
 #include <QVariant>
-namespace WebEngineViewer
-{
-class NetworkPluginUrlInterceptorConfigureWidget;
-}
+
 namespace Akregator
 {
 class KCMAkregatorPluginsConfig : public KCModule
@@ -39,6 +36,8 @@ public:
     void defaults() Q_DECL_OVERRIDE;
 private Q_SLOTS:
     void slotConfigChanged();
+private:
+    PimCommon::ConfigurePluginsListWidget *mConfigurePluginWidget;
 };
 }
 #endif // KCMAkregatorPluginsConfig_H
