@@ -21,8 +21,11 @@
 #define KCMAkregatorPluginsConfig_H
 
 #include <KCModule>
-#include <PimCommon/ConfigurePluginsWidget>
 #include <QVariant>
+namespace PimCommon
+{
+class ConfigurePluginsWidget;
+}
 
 namespace Akregator
 {

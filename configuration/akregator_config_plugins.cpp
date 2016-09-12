@@ -23,7 +23,7 @@
 #include <KAboutData>
 #include <KPluginFactory>
 #include <KLocalizedString>
-
+#include <PimCommon/ConfigurePluginsWidget>
 #include <PimCommon/ConfigurePluginsListWidget>
 #include <QVBoxLayout>
 
