@@ -32,20 +32,20 @@ AkregatorConfigurePluginListWidget::~AkregatorConfigurePluginListWidget()
 
 void AkregatorConfigurePluginListWidget::save()
 {
-
+    //TODO
 }
 
 void AkregatorConfigurePluginListWidget::doLoadFromGlobalSettings()
 {
-
+    initialize();
 }
 
 void AkregatorConfigurePluginListWidget::doResetToDefaultsOther()
 {
-
+    //TODO
 }
 
 void AkregatorConfigurePluginListWidget::initialize()
 {
-
+    mListWidget->clear();
 }

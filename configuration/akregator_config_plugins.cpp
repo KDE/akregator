@@ -57,14 +57,17 @@ void KCMAkregatorPluginsConfig::slotConfigChanged()
 
 void KCMAkregatorPluginsConfig::save()
 {
+    mConfigurePluginWidget->save();
 }
 
 void KCMAkregatorPluginsConfig::load()
 {
+    mConfigurePluginWidget->doLoadFromGlobalSettings();
 }
 
 void KCMAkregatorPluginsConfig::defaults()
 {
+    mConfigurePluginWidget->doResetToDefaultsOther();
 }
 
 #include "akregator_config_plugins.moc"
