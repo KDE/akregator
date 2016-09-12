@@ -45,9 +45,9 @@ KCMAkregatorPluginsConfig::KCMAkregatorPluginsConfig(QWidget *parent, const QVar
     about->addAuthor(i18n("Laurent Montel"), QString(), QStringLiteral("montel@kde.org"));
 
     setAboutData(about);
-    mConfigurePluginWidget = new PimCommon::ConfigurePluginsListWidget(this);
+    mConfigurePluginWidget = new PimCommon::ConfigurePluginsWidget(new AkregatorConfigurePluginListWidget(this), this);
     mConfigurePluginWidget->setObjectName(QStringLiteral("configurePluginWidget"));
-    connect(mConfigurePluginWidget, &PimCommon::ConfigurePluginsListWidget::changed, this, &KCMAkregatorPluginsConfig::slotConfigChanged);
+    connect(mConfigurePluginWidget, &PimCommon::ConfigurePluginsWidget::changed, this, &KCMAkregatorPluginsConfig::slotConfigChanged);
 }
 
 void KCMAkregatorPluginsConfig::slotConfigChanged()
