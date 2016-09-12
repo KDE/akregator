@@ -19,6 +19,7 @@
 
 #include "akregator_config_plugins.h"
 #include "akregatorconfig.h"
+#include "akregatorconfigurepluginlistwidget.h"
 #include <KAboutData>
 #include <KPluginFactory>
 #include <KLocalizedString>

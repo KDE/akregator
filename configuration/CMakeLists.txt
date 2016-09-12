@@ -125,6 +125,7 @@ install(TARGETS akregator_config_webengineurlinterceptor DESTINATION ${KDE_INSTA
 
 set(kcm_config_plugins_SRCS
     akregator_config_plugins.cpp
+    akregatorconfigurepluginlistwidget.cpp
     )
 
 add_library(akregator_config_plugins MODULE ${kcm_config_plugins_SRCS})
