@@ -48,4 +48,7 @@ void AkregatorConfigurePluginListWidget::doResetToDefaultsOther()
 void AkregatorConfigurePluginListWidget::initialize()
 {
     mListWidget->clear();
+    //TODO
+    mListWidget->expandAll();
+
 }
