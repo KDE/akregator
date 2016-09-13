@@ -48,6 +48,7 @@ KCMAkregatorPluginsConfig::KCMAkregatorPluginsConfig(QWidget *parent, const QVar
     mConfigurePluginWidget = new PimCommon::ConfigurePluginsWidget(new AkregatorConfigurePluginListWidget(this), this);
     mConfigurePluginWidget->setObjectName(QStringLiteral("configurePluginWidget"));
     connect(mConfigurePluginWidget, &PimCommon::ConfigurePluginsWidget::changed, this, &KCMAkregatorPluginsConfig::slotConfigChanged);
+    lay->addWidget(mConfigurePluginWidget);
 }
 
 void KCMAkregatorPluginsConfig::slotConfigChanged()
