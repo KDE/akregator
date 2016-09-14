@@ -163,6 +163,8 @@ void ArticleViewerWebEngineWidgetNg::printRequested(QWebEnginePage *page)
     }
     delete dialog;
     page->print(mCurrentPrinter, invoke(this, &ArticleViewerWebEngineWidgetNg::slotHandlePagePrinted));
+#else
+    Q_UNUSED(page);
 #endif
 }
 
