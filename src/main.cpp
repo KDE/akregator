@@ -79,13 +79,13 @@ int Application::activate(const QStringList &args, const QString &workingDir)
 
 int main(int argc, char **argv)
 {
+    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     Akregator::Application app(argc, &argv);
     KLocalizedString::setApplicationDomain("akregator");
 
     KCrash::initialize();
 
     app.setAttribute(Qt::AA_UseHighDpiPixmaps, true);
-    app.setAttribute(Qt::AA_EnableHighDpiScaling);
     Akregator::AboutData about;
     app.setAboutData(about);
 
