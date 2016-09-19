@@ -16,7 +16,7 @@ add_subdirectory(icons)
 ########### next target ###############
 
 set(akregator_common_SRCS)
-ecm_qt_declare_logging_category(akregator_common_SRCS HEADER akregator_debug.h IDENTIFIER AKREGATOR_LOG CATEGORY_NAME log_akregator)
+ecm_qt_declare_logging_category(akregator_common_SRCS HEADER akregator_debug.h IDENTIFIER AKREGATOR_LOG CATEGORY_NAME org.kde.pim.akregator)
 
 set(akregator_SRCS main.cpp mainwindow.cpp ${akregator_common_SRCS})
 

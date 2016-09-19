@@ -102,7 +102,7 @@ add_subdirectory(src)
 add_subdirectory(kontactplugin)
 add_subdirectory(kconf_update)
 
-install( FILES akregator.categories DESTINATION ${KDE_INSTALL_CONFDIR} )
+install( FILES akregator.renamecategories akregator.categories DESTINATION ${KDE_INSTALL_CONFDIR} )
 
 add_subdirectory(doc)
 feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)
