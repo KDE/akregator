@@ -51,7 +51,7 @@ KCMAkregatorWebEngineUrlInterceptorConfig::KCMAkregatorWebEngineUrlInterceptorCo
     QTabWidget *tab = new QTabWidget(this);
     lay->addWidget(tab);
     Q_FOREACH (WebEngineViewer::NetworkPluginUrlInterceptor *plugin, WebEngineViewer::NetworkUrlInterceptorPluginManager::self()->pluginsList()) {
-        if (plugin->hasConfigureSupport()) {
+        if (plugin->hasConfigureDialog()) {
             WebEngineViewer::NetworkPluginUrlInterceptorConfigureWidgetSetting settings = plugin->createConfigureWidget(this);
             WebEngineViewer::NetworkPluginUrlInterceptorConfigureWidget *configureWidget = settings.configureWidget;
             tab->addTab(configureWidget, settings.name);
