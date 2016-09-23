@@ -686,7 +686,6 @@ void Part::showOptions()
         m_dialog->addModule(QStringLiteral("akregator_config_archive"));
         m_dialog->addModule(QStringLiteral("akregator_config_browser"));
         m_dialog->addModule(QStringLiteral("akregator_config_advanced"));
-        m_dialog->addModule(QStringLiteral("akregator_config_webengineurlinterceptor"));
         m_dialog->addModule(QStringLiteral("akregator_config_plugins"));
     }
 
