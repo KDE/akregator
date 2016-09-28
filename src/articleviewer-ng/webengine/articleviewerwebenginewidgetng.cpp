@@ -45,7 +45,8 @@ template<typename Arg, typename R, typename C>
 struct InvokeWrapper {
     R *receiver;
     void (C::*memberFun)(Arg);
-    void operator()(Arg result) {
+    void operator()(Arg result)
+    {
         (receiver->*memberFun)(result);
     }
 };
@@ -56,8 +57,6 @@ InvokeWrapper<Arg, R, C> invoke(R *receiver, void (C::*memberFun)(Arg))
     InvokeWrapper<Arg, R, C> wrapper = {receiver, memberFun};
     return wrapper;
 }
-
-
 
 ArticleViewerWebEngineWidgetNg::ArticleViewerWebEngineWidgetNg(ArticleViewerWebEngine *customViewer, KActionCollection *ac, QWidget *parent)
     : QWidget(parent),
@@ -151,8 +150,9 @@ void ArticleViewerWebEngineWidgetNg::slotPrint()
 void ArticleViewerWebEngineWidgetNg::printRequested(QWebEnginePage *page)
 {
 #ifdef WEBENGINEVIEWER_PRINT_SUPPORT
-    if (mCurrentPrinter)
+    if (mCurrentPrinter) {
         return;
+    }
     mCurrentPrinter = new QPrinter();
     QPointer<QPrintDialog> dialog = new QPrintDialog(mCurrentPrinter, this);
     dialog->setWindowTitle(i18n("Print Document"));
@@ -174,7 +174,6 @@ void ArticleViewerWebEngineWidgetNg::slotHandlePagePrinted(bool result)
     delete mCurrentPrinter;
     mCurrentPrinter = Q_NULLPTR;
 }
-
 
 void ArticleViewerWebEngineWidgetNg::slotPrintPreview()
 {

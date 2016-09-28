@@ -77,7 +77,6 @@ FeedPropertiesDialog::FeedPropertiesDialog(QWidget *parent, const QString &name)
     setObjectName(name);
     setWindowTitle(i18n("Feed Properties"));
 
-
     widget = new FeedPropertiesWidget(this);
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
     QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
