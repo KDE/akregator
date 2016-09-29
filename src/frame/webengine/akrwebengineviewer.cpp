@@ -46,6 +46,14 @@ AkrWebEngineViewer::AkrWebEngineViewer(KActionCollection *ac, QWidget *parent)
     settings()->setAttribute(QWebEngineSettings::JavascriptEnabled, true);
     settings()->setAttribute(QWebEngineSettings::PluginsEnabled, false);
     settings()->setAttribute(QWebEngineSettings::AutoLoadImages, true);
+    settings()->setAttribute(QWebEngineSettings::JavascriptCanOpenWindows, false);
+    settings()->setAttribute(QWebEngineSettings::JavascriptCanAccessClipboard, false);
+    settings()->setAttribute(QWebEngineSettings::LocalStorageEnabled, false);
+    settings()->setAttribute(QWebEngineSettings::XSSAuditingEnabled, false);
+    settings()->setAttribute(QWebEngineSettings::ErrorPageEnabled, false);
+    settings()->setAttribute(QWebEngineSettings::LocalContentCanAccessRemoteUrls, false);
+    settings()->setAttribute(QWebEngineSettings::LocalContentCanAccessFileUrls, false);
+
 #if QT_VERSION >= QT_VERSION_CHECK(5, 7, 0)
     settings()->setAttribute(QWebEngineSettings::AutoLoadIconsForPage, false);
 #endif
