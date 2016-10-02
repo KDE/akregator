@@ -18,8 +18,10 @@
 */
 
 #include "akregatorconfigurepluginlistwidget.h"
-
-namespace name {
+#include <WebEngineViewer/NetworkUrlInterceptorPluginManager>
+#include <WebEngineViewer/NetworkPluginUrlInterceptor>
+#include <KLocalizedString>
+namespace {
 QString networkUrlInterceptorGroupName()
 {
     return QStringLiteral("networkurlinterceptorgroupname");
@@ -29,7 +31,7 @@ QString networkUrlInterceptorGroupName()
 AkregatorConfigurePluginListWidget::AkregatorConfigurePluginListWidget(QWidget *parent)
     : PimCommon::ConfigurePluginsListWidget(parent)
 {
-
+    connect(this, &ConfigurePluginsListWidget::configureClicked, this, &AkregatorConfigurePluginListWidget::slotConfigureClicked);
 }
 
 AkregatorConfigurePluginListWidget::~AkregatorConfigurePluginListWidget()
@@ -39,7 +41,9 @@ AkregatorConfigurePluginListWidget::~AkregatorConfigurePluginListWidget()
 
 void AkregatorConfigurePluginListWidget::save()
 {
-    //TODO
+    PimCommon::ConfigurePluginsListWidget::savePlugins(WebEngineViewer::NetworkUrlInterceptorPluginManager::self()->configGroupName(),
+            WebEngineViewer::NetworkUrlInterceptorPluginManager::self()->configPrefixSettingKey(),
+            mPluginWebEngineItems);
 }
 
 void AkregatorConfigurePluginListWidget::doLoadFromGlobalSettings()
@@ -49,13 +53,30 @@ void AkregatorConfigurePluginListWidget::doLoadFromGlobalSettings()
 
 void AkregatorConfigurePluginListWidget::doResetToDefaultsOther()
 {
-    //TODO
+    changeState(mPluginWebEngineItems);
 }
 
 void AkregatorConfigurePluginListWidget::initialize()
 {
     mListWidget->clear();
-    //TODO
+    //Load webengineplugin
+    PimCommon::ConfigurePluginsListWidget::fillTopItems(WebEngineViewer::NetworkUrlInterceptorPluginManager::self()->pluginsDataList(),
+            i18n("Webengine Plugins"),
+            WebEngineViewer::NetworkUrlInterceptorPluginManager::self()->configGroupName(),
+            WebEngineViewer::NetworkUrlInterceptorPluginManager::self()->configPrefixSettingKey(),
+            mPluginWebEngineItems,
+            networkUrlInterceptorGroupName());
     mListWidget->expandAll();
+}
 
+void AkregatorConfigurePluginListWidget::slotConfigureClicked(const QString &configureGroupName, const QString &identifier)
+{
+    if (!configureGroupName.isEmpty() && !identifier.isEmpty()) {
+        if (configureGroupName == networkUrlInterceptorGroupName()) {
+            WebEngineViewer::NetworkPluginUrlInterceptor *plugin = WebEngineViewer::NetworkUrlInterceptorPluginManager::self()->pluginFromIdentifier(identifier);
+            plugin->showConfigureDialog(this);
+        } else {
+            //qCWarning(KMAIL_LOG) << "Unknown configureGroupName" << configureGroupName;
+        }
+    }
 }
