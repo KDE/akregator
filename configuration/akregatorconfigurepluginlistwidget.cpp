@@ -19,6 +19,13 @@
 
 #include "akregatorconfigurepluginlistwidget.h"
 
+namespace name {
+QString networkUrlInterceptorGroupName()
+{
+    return QStringLiteral("networkurlinterceptorgroupname");
+}
+}
+
 AkregatorConfigurePluginListWidget::AkregatorConfigurePluginListWidget(QWidget *parent)
     : PimCommon::ConfigurePluginsListWidget(parent)
 {
