@@ -106,6 +106,7 @@ set(kcm_config_plugins_SRCS
     akregator_config_plugins.cpp
     akregatorconfigurepluginlistwidget.cpp
     )
+ecm_qt_declare_logging_category(kcm_config_plugins_SRCS HEADER kcm_config_plugins_debug.h IDENTIFIER AKREGATOR_CONFIG_PLUGIN_LOG CATEGORY_NAME org.kde.pim.akregator_config_plugin)
 
 add_library(akregator_config_plugins MODULE ${kcm_config_plugins_SRCS})
 

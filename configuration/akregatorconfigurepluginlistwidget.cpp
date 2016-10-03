@@ -20,6 +20,7 @@
 #include "akregatorconfigurepluginlistwidget.h"
 #include <WebEngineViewer/NetworkUrlInterceptorPluginManager>
 #include <WebEngineViewer/NetworkPluginUrlInterceptor>
+#include "kcm_config_plugins_debug.h"
 #include <KLocalizedString>
 namespace {
 QString networkUrlInterceptorGroupName()
@@ -76,7 +77,7 @@ void AkregatorConfigurePluginListWidget::slotConfigureClicked(const QString &con
             WebEngineViewer::NetworkPluginUrlInterceptor *plugin = WebEngineViewer::NetworkUrlInterceptorPluginManager::self()->pluginFromIdentifier(identifier);
             plugin->showConfigureDialog(this);
         } else {
-            //qCWarning(KMAIL_LOG) << "Unknown configureGroupName" << configureGroupName;
+            qCWarning(AKREGATOR_CONFIG_PLUGIN_LOG) << "Unknown configureGroupName" << configureGroupName;
         }
     }
 }
