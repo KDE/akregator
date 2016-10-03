@@ -50,7 +50,6 @@ public:
     ArticleViewerWebEngine *articleViewerNg() const;
 
     void saveCurrentPosition();
-    void restoreCurrentPosition();
 public Q_SLOTS:
     void slotSpeakText();
     void slotFind();
@@ -66,6 +65,7 @@ private:
     void initializeActions(KActionCollection *ac);
     void initializeLayout(KActionCollection *ac);
     void printRequested(QWebEnginePage *page);
+    void slotRestorePosition();
     WebEngineViewer::FindBarWebEngineView *mFindBarWebView;
     ArticleViewerWebEngine *mArticleViewerNg;
     KPIMTextEdit::TextToSpeechWidget *mTextToSpeechWidget;

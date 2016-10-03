@@ -228,13 +228,14 @@ void ArticleViewerWebEngine::slotCopy()
 
 void ArticleViewerWebEngine::slotLoadFinished()
 {
+    restoreCurrentPosition();
     unsetCursor();
+    clearRelativePosition();
 }
 
 void ArticleViewerWebEngine::slotLoadStarted()
 {
     mWebEngineViewAccessKey->hideAccessKeys();
-    clearRelativePosition();
     setCursor(Qt::WaitCursor);
 }
 
@@ -369,7 +370,6 @@ void ArticleViewerWebEngine::restoreCurrentPosition()
 #if QT_VERSION >= QT_VERSION_CHECK(5, 7, 0)
     mPageEngine->runJavaScript(WebEngineViewer::WebEngineScript::scrollToRelativePosition(relativePosition()));
 #endif
-    //TODO
 }
 
 void ArticleViewerWebEngine::forwardMouseReleaseEvent(QMouseEvent *event)

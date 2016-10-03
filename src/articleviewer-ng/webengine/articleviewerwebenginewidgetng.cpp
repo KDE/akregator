@@ -132,11 +132,6 @@ void ArticleViewerWebEngineWidgetNg::saveCurrentPosition()
     mArticleViewerNg->saveRelativePosition();
 }
 
-void ArticleViewerWebEngineWidgetNg::restoreCurrentPosition()
-{
-    mArticleViewerNg->restoreCurrentPosition();
-}
-
 void ArticleViewerWebEngineWidgetNg::slotPrint()
 {
 #ifdef WEBENGINEVIEWER_PRINT_SUPPORT
