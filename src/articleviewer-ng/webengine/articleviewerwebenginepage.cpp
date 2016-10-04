@@ -25,7 +25,11 @@ using namespace Akregator;
 ArticleViewerWebEnginePage::ArticleViewerWebEnginePage(QWebEngineProfile *profile, QObject *parent)
     : WebEngineViewer::WebEnginePage(profile, parent)
 {
+#if QT_VERSION >= QT_VERSION_CHECK(5, 7, 0)
+    settings()->setAttribute(QWebEngineSettings::JavascriptEnabled, false);
+#else
     settings()->setAttribute(QWebEngineSettings::JavascriptEnabled, true);
+#endif
     settings()->setAttribute(QWebEngineSettings::PluginsEnabled, false);
     settings()->setAttribute(QWebEngineSettings::AutoLoadImages, true);
     settings()->setAttribute(QWebEngineSettings::JavascriptCanOpenWindows, false);
