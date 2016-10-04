@@ -37,7 +37,8 @@ void ActionManager::setInstance(ActionManager *manager)
     m_self = manager;
 }
 
-ActionManager::ActionManager(QObject *parent) : QObject(parent)
+ActionManager::ActionManager(QObject *parent)
+    : QObject(parent)
 {
 }
 

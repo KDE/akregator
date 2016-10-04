@@ -81,7 +81,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_statusLabel->setFixedHeight(statH);
     statusBar()->addWidget(m_statusLabel, 1);
 
-    KStandardAction::quit(qApp, SLOT(quit()), actionCollection());
+    KStandardAction::quit(qApp, &QApplication::quit, actionCollection());
     KStandardAction::showMenubar(menuBar(), SLOT(setVisible(bool)), actionCollection());
     setStandardToolBarMenuEnabled(true);
     createStandardStatusBarAction();
