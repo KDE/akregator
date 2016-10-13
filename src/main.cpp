@@ -79,6 +79,10 @@ int Application::activate(const QStringList &args, const QString &workingDir)
 
 int main(int argc, char **argv)
 {
+    //Fix QtWebEngine + wayland
+#ifdef Q_OS_UNIX
+    qputenv("QT_QPA_PLATFORM", "xcb");
+#endif
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     Akregator::Application app(argc, &argv);
     KLocalizedString::setApplicationDomain("akregator");
