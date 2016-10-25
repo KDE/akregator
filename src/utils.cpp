@@ -28,9 +28,7 @@
 #include <QTextDocument>
 #include <kdelibs4configmigrator.h>
 
-namespace Akregator
-{
-
+using namespace Akregator;
 QString Utils::convertHtmlTags(const QString &title)
 {
     QTextDocument newText;
@@ -60,6 +58,4 @@ QString Utils::fileNameForUrl(const QString &url_p)
     }
 
     return url2;
-}
-
 }

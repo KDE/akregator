@@ -25,12 +25,8 @@
 #include "treenodevisitor.h"
 #include "treenode.h"
 
-namespace Akregator
-{
-
+using namespace Akregator;
 bool TreeNodeVisitor::visit(TreeNode *node)
 {
     return node->accept(this);
 }
-
-} // namespace Akregator

@@ -35,9 +35,7 @@
 
 #include <cassert>
 
-namespace Akregator
-{
-
+using namespace Akregator;
 SettingsAdvanced::SettingsAdvanced(QWidget *parent, const char *name) : QWidget(parent)
 {
     setObjectName(QLatin1String(name));
@@ -95,5 +93,3 @@ void SettingsAdvanced::slotFactorySelected(int pos)
     Q_ASSERT(factory);
     pbBackendConfigure->setEnabled(factory->isConfigurable());
 }
-
-} //namespace Akregator
