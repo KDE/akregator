@@ -32,8 +32,7 @@
 
 #include <Libkdepim/ProgressManager>
 
-namespace Akregator
-{
+using namespace Akregator;
 
 class ProgressManager::ProgressManagerPrivate
 {
@@ -192,6 +191,3 @@ void ProgressItemHandler::slotFetchAborted()
         d->progressItem = 0;
     }
 }
-
-} // namespace Akregator
-

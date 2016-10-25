@@ -59,8 +59,7 @@
 
 #include <cassert>
 
-namespace Akregator
-{
+using namespace Akregator;
 
 class Q_DECL_HIDDEN TabWidget::Private
 {
@@ -520,6 +519,4 @@ void TabWidget::slotActivateTab()
 {
     setCurrentIndex(sender()->objectName().rightRef(2).toInt() - 1);
 }
-
-} // namespace Akregator
 

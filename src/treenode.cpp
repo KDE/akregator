@@ -35,8 +35,7 @@
 
 #include <cassert>
 
-namespace Akregator
-{
+using namespace Akregator;
 
 class TreeNode::TreeNodePrivate
 {
@@ -244,6 +243,4 @@ ArticleListJob *TreeNode::createListJob()
 {
     return new ArticleListJob(this);
 }
-
-} // namespace Akregator
 
