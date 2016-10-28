@@ -154,8 +154,9 @@ void AkrWebEngineViewer::displayContextMenu(const QPoint &pos)
 
 QWebEngineView *AkrWebEngineViewer::createWindow(QWebEnginePage::WebWindowType type)
 {
+#if QT_VERSION >= QT_VERSION_CHECK(5, 7, 1)
     return this;
-    qDebug() << " QWebEngineView *AkrWebEngineViewer::createWindow(QWebEnginePage::WebWindowType type) not implemented yet" << type;
+#else
     switch (type) {
     //For the moment create external windows.
     case QWebEnginePage::WebDialog:
@@ -173,4 +174,5 @@ QWebEngineView *AkrWebEngineViewer::createWindow(QWebEnginePage::WebWindowType t
         break;
     }
     return QWebEngineView::createWindow(type);
+#endif
 }
