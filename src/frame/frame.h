@@ -35,11 +35,6 @@
 
 class QUrl;
 
-namespace KParts
-{
-class ReadOnlyPart;
-}
-
 namespace KPIM
 {
 class ProgressItem;
