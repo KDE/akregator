@@ -453,6 +453,11 @@ void Part::saveProperties(KConfigGroup &config)
     }
 }
 
+void Part::exportFile(const QString &str)
+{
+    exportFile(QUrl(str));
+}
+
 bool Part::openUrl(const QUrl &url)
 {
     setLocalFilePath(url.toLocalFile());
