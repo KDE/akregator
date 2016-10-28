@@ -20,6 +20,7 @@
 #include "akrwebengineviewer.h"
 #include "articleviewer-ng/webengine/articleviewerwebenginepage.h"
 
+#include "akregatorconfig.h"
 #include "actionmanager.h"
 #include "actions.h"
 #include "webengine/urlhandlerwebenginemanager.h"
@@ -149,4 +150,26 @@ void AkrWebEngineViewer::displayContextMenu(const QPoint &pos)
 {
     WebEngineViewer::WebHitTest *webHit = mPageEngine->hitTestContent(pos);
     connect(webHit, &WebEngineViewer::WebHitTest::finished, this, &AkrWebEngineViewer::slotWebHitFinished);
+}
+
+QWebEngineView *AkrWebEngineViewer::createWindow(QWebEnginePage::WebWindowType type)
+{
+    qDebug() << " QWebEngineView *AkrWebEngineViewer::createWindow(QWebEnginePage::WebWindowType type) not implemented yet" << type;
+    switch (type) {
+    //For the moment create external windows.
+    case QWebEnginePage::WebDialog:
+    //TODO add in tab
+    case QWebEnginePage::WebBrowserTab:
+    case QWebEnginePage::WebBrowserWindow: {
+        if (!Settings::newWindowInTab()) {
+            WebEngineViewer::WebEngineView *view = new WebEngineViewer::WebEngineView();
+            view->setAttribute(Qt::WA_DeleteOnClose);
+            view->show();
+            return view;
+        }
+    }
+    default:
+        break;
+    }
+    return QWebEngineView::createWindow(type);
 }

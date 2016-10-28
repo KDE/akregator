@@ -112,6 +112,7 @@ void ArticleViewerWebEngine::slotWebPageMutedOrAudibleChanged()
 
 QWebEngineView *ArticleViewerWebEngine::createWindow(QWebEnginePage::WebWindowType type)
 {
+    /*
     qDebug() << " QWebEngineView *ArticleViewerWebEngine::createWindow(QWebEnginePage::WebWindowType type) not implemented yet" << type;
     switch (type) {
     //For the moment create external windows.
@@ -130,6 +131,8 @@ QWebEngineView *ArticleViewerWebEngine::createWindow(QWebEnginePage::WebWindowTy
         break;
     }
     return QWebEngineView::createWindow(type);
+    */
+    return Q_NULLPTR;
 }
 
 QVariantHash ArticleViewerWebEngine::introductionData() const
