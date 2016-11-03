@@ -88,6 +88,7 @@
 #include <memory>
 #include <cassert>
 
+#include <PimCommon/NetworkManager>
 #include <webengine/webengineframe.h>
 #include "articleviewer-ng/webengine/articleviewerwebenginewidgetng.h"
 
@@ -108,8 +109,7 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
       m_feedList(),
       m_viewMode(NormalView),
       m_actionManager(actionManager),
-      m_feedListManagementInterface(new FeedListManagementImpl),
-      m_networkConfigManager(new QNetworkConfigurationManager(this))
+      m_feedListManagementInterface(new FeedListManagementImpl)
 {
     setObjectName(name);
 
@@ -174,7 +174,7 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
     connect(Kernel::self()->frameManager(), &FrameManager::signalCompleted,
             this, &MainWidget::slotFramesChanged);
 
-    connect(m_networkConfigManager, &QNetworkConfigurationManager::onlineStateChanged,
+    connect(PimCommon::NetworkManager::self()->networkConfigureManager(), &QNetworkConfigurationManager::onlineStateChanged,
             this, &MainWidget::slotNetworkStatusChanged);
 
     m_tabWidget->setWhatsThis(i18n("You can view multiple articles in several open tabs."));
@@ -1245,7 +1245,7 @@ void MainWidget::slotReloadAllTabs()
 
 bool MainWidget::isNetworkAvailable() const
 {
-    return m_networkConfigManager->isOnline();
+    return PimCommon::NetworkManager::self()->networkConfigureManager()->isOnline();
 }
 
 void MainWidget::slotNetworkStatusChanged(bool status)

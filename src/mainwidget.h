@@ -293,7 +293,6 @@ private:
     ActionManagerImpl *m_actionManager;
     FeedListManagementImpl *const m_feedListManagementInterface;
 
-    QNetworkConfigurationManager *m_networkConfigManager;
     QWidget *m_articleWidget;
     QList<QPointer<Akregator::DownloadArticleJob> > mListDownloadArticleJobs;
 };
