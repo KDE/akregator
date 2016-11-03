@@ -25,8 +25,8 @@
 #ifndef AKREGATOR_FRAME_H
 #define AKREGATOR_FRAME_H
 
-#include <QString>
 #include <QWidget>
+#include <QIcon>
 
 #include <kparts/browserextension.h>
 #include <kconfiggroup.h>
@@ -74,6 +74,8 @@ public:
     State state() const;
     int progress() const;
     QString statusText() const;
+    QIcon icon() const;
+    void setIcon(const QIcon &icon);
 
     int id() const;
     /**
@@ -126,6 +128,7 @@ protected:
     void setRemovable(bool removable);
 
 protected:
+    QIcon m_icon;
     QString m_title;
     QString m_caption;
     State m_state;

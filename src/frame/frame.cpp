@@ -150,6 +150,16 @@ QString Frame::statusText() const
     return m_statusText;
 }
 
+QIcon Frame::icon() const
+{
+    return m_icon;
+}
+
+void Frame::setIcon(const QIcon &icon)
+{
+    m_icon = icon;
+}
+
 void Frame::slotSetStarted()
 {
     m_loading = true;

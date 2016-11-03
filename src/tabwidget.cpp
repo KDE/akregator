@@ -340,9 +340,11 @@ void TabWidget::slotWebPageMutedOrAudibleChanged(Akregator::Frame *frame, bool i
     if (idx < 0) {
         return;
     }
-    qDebug() << "void TabWidget::slotWebPageMutedOrAudibleChanged(Akregator::Frame *frame, bool isAudioMuted, bool wasRecentlyAudible)" << isAudioMuted << " wasRecentlyAudible" << wasRecentlyAudible;
-    //TODO
-    //setTabIcon(idx, icon);
+    if (isAudioMuted) {
+        setTabIcon(idx, QIcon::fromTheme(QStringLiteral("audio-volume-muted")));
+    } else {
+        setTabIcon(idx, frame->icon());
+    }
 }
 
 void TabWidget::slotSetIcon(Akregator::Frame *frame, const QIcon &icon)
@@ -351,6 +353,7 @@ void TabWidget::slotSetIcon(Akregator::Frame *frame, const QIcon &icon)
     if (idx < 0) {
         return;
     }
+    frame->setIcon(icon);
     setTabIcon(idx, icon);
 }
 
