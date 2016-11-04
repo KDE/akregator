@@ -390,6 +390,12 @@ void ArticleViewerWebEngine::forwardMouseReleaseEvent(QMouseEvent *event)
 void ArticleViewerWebEngine::slotCheckPhishingUrlResult(WebEngineViewer::CheckPhishingUrlJob::UrlStatus status, const QUrl &url)
 {
     switch (status) {
+    case WebEngineViewer::CheckPhishingUrlJob::BrokenNetwork:
+        KMessageBox::error(this, i18n("The network is broken."), i18n("Check Phishing Url"));
+        break;
+    case WebEngineViewer::CheckPhishingUrlJob::InvalidUrl:
+        KMessageBox::error(this, i18n("The url %1 is not valid.", url.toString()), i18n("Check Phishing Url"));
+        break;
     case WebEngineViewer::CheckPhishingUrlJob::Ok:
         break;
     case WebEngineViewer::CheckPhishingUrlJob::MalWare:
@@ -398,7 +404,7 @@ void ArticleViewerWebEngine::slotCheckPhishingUrlResult(WebEngineViewer::CheckPh
         }
         break;
     case WebEngineViewer::CheckPhishingUrlJob::Unknown:
-        //TODO what to do ??
+        qCWarning(AKREGATOR_LOG) << "WebEngineViewer::CheckPhishingUrlJob unknown error ";
         break;
     }
     openSafeUrl(url);
