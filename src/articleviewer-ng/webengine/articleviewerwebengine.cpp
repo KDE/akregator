@@ -387,7 +387,7 @@ void ArticleViewerWebEngine::forwardMouseReleaseEvent(QMouseEvent *event)
     }
 }
 
-void ArticleViewerWebEngine::slotCheckPhishingUrlResult(WebEngineViewer::CheckPhishingUrlJob::UrlStatus status)
+void ArticleViewerWebEngine::slotCheckPhishingUrlResult(WebEngineViewer::CheckPhishingUrlJob::UrlStatus status, const QUrl &url)
 {
     switch (status) {
     case WebEngineViewer::CheckPhishingUrlJob::Ok:
