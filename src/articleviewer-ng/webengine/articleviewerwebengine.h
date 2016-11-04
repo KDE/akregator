@@ -24,6 +24,7 @@
 #include <openurlrequest.h>
 #include <shareserviceurlmanager.h>
 #include <MessageViewer/ViewerPluginInterface>
+#include <WebEngineViewer/CheckPhishingUrlJob>
 
 class KActionCollection;
 namespace WebEngineViewer
@@ -128,6 +129,7 @@ private Q_SLOTS:
     void slotWebHitFinished(const WebEngineViewer::WebHitTestResult &result);
     void slotActivatePlugin(MessageViewer::ViewerPluginInterface *interface);
     void slotWebPageMutedOrAudibleChanged();
+    void slotCheckPhishingUrlResult(WebEngineViewer::CheckPhishingUrlJob::UrlStatus status);
 protected:
     ArticleViewerWebEnginePage *mPageEngine;
 

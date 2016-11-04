@@ -387,11 +387,32 @@ void ArticleViewerWebEngine::forwardMouseReleaseEvent(QMouseEvent *event)
     }
 }
 
+void ArticleViewerWebEngine::slotCheckPhishingUrlResult(WebEngineViewer::CheckPhishingUrlJob::UrlStatus status)
+{
+    switch (status) {
+    case WebEngineViewer::CheckPhishingUrlJob::Ok:
+        break;
+    case WebEngineViewer::CheckPhishingUrlJob::MalWare:
+        if (KMessageBox::No == KMessageBox::warningYesNo(this, i18n("This web site is a malware, do you want to continue to show it?"), i18n("Malware"))) {
+            return;
+        }
+        break;
+    case WebEngineViewer::CheckPhishingUrlJob::Unknown:
+        break;
+    }
+}
+
 void ArticleViewerWebEngine::slotLinkClicked(const QUrl &url)
 {
     if (URLHandlerWebEngineManager::instance()->handleClick(url, this)) {
         return;
     }
+#if 0
+    WebEngineViewer::CheckPhishingUrlJob *job = new WebEngineViewer::CheckPhishingUrlJob(this);
+    connect(job, &WebEngineViewer::CheckPhishingUrlJob::result, this, &ArticleViewerWebEngine::slotCheckPhishingUrlResult);
+    job->setUrl(mCurrentUrl);
+    job->start();
+#endif
     mCurrentUrl = url;
     OpenUrlRequest req(mCurrentUrl);
     if (mLastButtonClicked == LeftButton) {
