@@ -138,6 +138,7 @@ protected:
     QList<QAction *> viewerPluginActionList(MessageViewer::ViewerPluginInterface::SpecificFeatureTypes features);
     WebEngineViewer::InterceptorManager *mNetworkAccessManager;
 private:
+    void openSafeUrl(const QUrl &url);
     MousePressedButtonType mLastButtonClicked;
     MessageViewer::ViewerPluginToolManager *mViewerPluginToolManager;
     WebEngineViewer::WebEngineAccessKey *mWebEngineViewAccessKey;

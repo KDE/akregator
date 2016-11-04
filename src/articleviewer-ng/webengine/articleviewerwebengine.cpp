@@ -398,8 +398,10 @@ void ArticleViewerWebEngine::slotCheckPhishingUrlResult(WebEngineViewer::CheckPh
         }
         break;
     case WebEngineViewer::CheckPhishingUrlJob::Unknown:
+        //TODO what to do ??
         break;
     }
+    openSafeUrl(url);
 }
 
 void ArticleViewerWebEngine::slotLinkClicked(const QUrl &url)
@@ -410,9 +412,15 @@ void ArticleViewerWebEngine::slotLinkClicked(const QUrl &url)
 #if 0
     WebEngineViewer::CheckPhishingUrlJob *job = new WebEngineViewer::CheckPhishingUrlJob(this);
     connect(job, &WebEngineViewer::CheckPhishingUrlJob::result, this, &ArticleViewerWebEngine::slotCheckPhishingUrlResult);
-    job->setUrl(mCurrentUrl);
+    job->setUrl(url);
     job->start();
+#else
+    openSafeUrl(url);
 #endif
+}
+
+void ArticleViewerWebEngine::openSafeUrl(const QUrl &url)
+{
     mCurrentUrl = url;
     OpenUrlRequest req(mCurrentUrl);
     if (mLastButtonClicked == LeftButton) {
@@ -442,6 +450,7 @@ void ArticleViewerWebEngine::slotLinkClicked(const QUrl &url)
     }
     Q_EMIT signalOpenUrlRequest(req);
 }
+
 
 void ArticleViewerWebEngine::slotOpenLinkInForegroundTab()
 {
