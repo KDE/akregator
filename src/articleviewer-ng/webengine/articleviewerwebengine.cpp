@@ -416,10 +416,14 @@ void ArticleViewerWebEngine::slotLinkClicked(const QUrl &url)
         return;
     }
 #if 0
-    WebEngineViewer::CheckPhishingUrlJob *job = new WebEngineViewer::CheckPhishingUrlJob(this);
-    connect(job, &WebEngineViewer::CheckPhishingUrlJob::result, this, &ArticleViewerWebEngine::slotCheckPhishingUrlResult);
-    job->setUrl(url);
-    job->start();
+    if (Settings::checkPhishingUrl()) {
+        WebEngineViewer::CheckPhishingUrlJob *job = new WebEngineViewer::CheckPhishingUrlJob(this);
+        connect(job, &WebEngineViewer::CheckPhishingUrlJob::result, this, &ArticleViewerWebEngine::slotCheckPhishingUrlResult);
+        job->setUrl(url);
+        job->start();
+    } else {
+        openSafeUrl(url);
+    }
 #else
     openSafeUrl(url);
 #endif

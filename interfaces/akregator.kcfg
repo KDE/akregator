@@ -34,7 +34,12 @@
    <whatsthis>Second (usually horizontal) splitter widget sizes.</whatsthis>
    <default>50,350</default>
   </entry>
- </group> 
+ </group>
+ <group name="Security">
+   <entry name="CheckPhishingUrl" type="Bool">
+      <default>true</default>
+   </entry>
+ </group>
  <group name="Appearance">
    <entry key="Standard Font" type="String" />
    <entry key="Fixed Font" type="String" />
