@@ -39,10 +39,7 @@ public:
     void unregisterHandler(const URLHandlerWebEngine *handler);
 
     bool handleClick(const QUrl &url, ArticleViewerWebEngine *w = Q_NULLPTR) const;
-    bool handleShiftClick(const QUrl &url, ArticleViewerWebEngine *window = Q_NULLPTR) const;
     bool handleContextMenuRequest(const QUrl &url, const QPoint &p, ArticleViewerWebEngine *w = Q_NULLPTR) const;
-    bool willHandleDrag(const QUrl &url, ArticleViewerWebEngine *window = Q_NULLPTR) const;
-    bool handleDrag(const QUrl &url, ArticleViewerWebEngine *window = Q_NULLPTR) const;
     QString statusBarMessage(const QUrl &url, ArticleViewerWebEngine *w = Q_NULLPTR) const;
 
 private:

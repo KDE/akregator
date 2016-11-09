@@ -56,39 +56,6 @@ public:
       * over this link.
       */
     virtual QString statusBarMessage(const QUrl &url, ArticleViewerWebEngine *w) const = 0;
-
-    /**
-     * Called when shift-clicking the link in the reader.
-     * @return true if the click was handled by this URLHandlerWebEngine, false otherwise
-     */
-    virtual bool handleShiftClick(const QUrl &url, ArticleViewerWebEngine *window) const
-    {
-        Q_UNUSED(url);
-        Q_UNUSED(window);
-        return false;
-    }
-
-    /**
-     * @return should return true if this URLHandlerWebEngine will handle the drag
-     */
-    virtual bool willHandleDrag(const QUrl &url, ArticleViewerWebEngine *window) const
-    {
-        Q_UNUSED(url);
-        Q_UNUSED(window);
-        return false;
-    }
-
-    /**
-     * Called when starting a drag with the given URL.
-     * If the drag is handled, you should create a drag object.
-     * @return true if the click was handled by this URLHandlerWebEngine, false otherwise
-     */
-    virtual bool handleDrag(const QUrl &url, ArticleViewerWebEngine *window) const
-    {
-        Q_UNUSED(url);
-        Q_UNUSED(window);
-        return false;
-    }
 };
 
 class AkregatorConfigHandler : public URLHandlerWebEngine

@@ -74,41 +74,11 @@ bool URLHandlerWebEngineManager::handleClick(const QUrl &url, ArticleViewerWebEn
     return false;
 }
 
-bool URLHandlerWebEngineManager::handleShiftClick(const QUrl &url, ArticleViewerWebEngine *window) const
-{
-    HandlerList::const_iterator end(mHandlers.constEnd());
-    for (HandlerList::const_iterator it = mHandlers.constBegin(); it != end; ++it)
-        if ((*it)->handleShiftClick(url, window)) {
-            return true;
-        }
-    return false;
-}
-
 bool URLHandlerWebEngineManager::handleContextMenuRequest(const QUrl &url, const QPoint &p, ArticleViewerWebEngine *w) const
 {
     HandlerList::const_iterator end(mHandlers.constEnd());
     for (HandlerList::const_iterator it = mHandlers.constBegin(); it != end; ++it)
         if ((*it)->handleContextMenuRequest(url, p, w)) {
-            return true;
-        }
-    return false;
-}
-
-bool URLHandlerWebEngineManager::willHandleDrag(const QUrl &url, ArticleViewerWebEngine *window) const
-{
-    HandlerList::const_iterator end(mHandlers.constEnd());
-    for (HandlerList::const_iterator it = mHandlers.constBegin(); it != end; ++it)
-        if ((*it)->willHandleDrag(url, window)) {
-            return true;
-        }
-    return false;
-}
-
-bool URLHandlerWebEngineManager::handleDrag(const QUrl &url, ArticleViewerWebEngine *window) const
-{
-    HandlerList::const_iterator end(mHandlers.constEnd());
-    for (HandlerList::const_iterator it = mHandlers.constBegin(); it != end; ++it)
-        if ((*it)->handleDrag(url, window)) {
             return true;
         }
     return false;
