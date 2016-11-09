@@ -37,7 +37,7 @@
  </group>
  <group name="Security">
    <entry name="CheckPhishingUrl" type="Bool">
-      <default>true</default>
+      <default>false</default>
    </entry>
  </group>
  <group name="Appearance">
