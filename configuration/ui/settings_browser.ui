@@ -141,7 +141,7 @@
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_3">
       <item>
-       <widget class="QCheckBox" name="mCheckUrl">
+       <widget class="QCheckBox" name="kcfg_CheckPhishingUrl">
         <property name="text">
          <string>Check Url With Phishing Google System</string>
         </property>
