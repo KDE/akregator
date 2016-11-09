@@ -110,31 +110,6 @@ void ArticleViewerWebEngine::slotWebPageMutedOrAudibleChanged()
 #endif
 }
 
-QWebEngineView *ArticleViewerWebEngine::createWindow(QWebEnginePage::WebWindowType type)
-{
-    /*
-    qDebug() << " QWebEngineView *ArticleViewerWebEngine::createWindow(QWebEnginePage::WebWindowType type) not implemented yet" << type;
-    switch (type) {
-    //For the moment create external windows.
-    case QWebEnginePage::WebDialog:
-    //TODO add in tab
-    case QWebEnginePage::WebBrowserTab:
-    case QWebEnginePage::WebBrowserWindow: {
-        if (!Settings::newWindowInTab()) {
-            WebEngineViewer::WebEngineView *view = new WebEngineViewer::WebEngineView();
-            view->setAttribute(Qt::WA_DeleteOnClose);
-            view->show();
-            return view;
-        }
-    }
-    default:
-        break;
-    }
-    return QWebEngineView::createWindow(type);
-    */
-    return Q_NULLPTR;
-}
-
 QVariantHash ArticleViewerWebEngine::introductionData() const
 {
     QVariantHash data;
