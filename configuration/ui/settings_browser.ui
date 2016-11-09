@@ -7,23 +7,11 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>359</width>
-    <height>365</height>
+    <width>469</width>
+    <height>442</height>
    </rect>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,0,0,1">
-   <property name="leftMargin">
-    <number>0</number>
-   </property>
-   <property name="topMargin">
-    <number>0</number>
-   </property>
-   <property name="rightMargin">
-    <number>0</number>
-   </property>
-   <property name="bottomMargin">
-    <number>0</number>
-   </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <layout class="QFormLayout" name="formLayout">
      <item row="0" column="0">
@@ -140,6 +128,22 @@
        <widget class="QCheckBox" name="kcfg_NewWindowInTab">
         <property name="text">
          <string>Open links in new tab instead of in new window</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="groupBox_5">
+     <property name="title">
+      <string>Safe Browsing</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_3">
+      <item>
+       <widget class="QCheckBox" name="mCheckUrl">
+        <property name="text">
+         <string>Check Url With Phishing Google System</string>
         </property>
        </widget>
       </item>
