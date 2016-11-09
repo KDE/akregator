@@ -415,7 +415,6 @@ void ArticleViewerWebEngine::slotLinkClicked(const QUrl &url)
     if (URLHandlerWebEngineManager::instance()->handleClick(url, this)) {
         return;
     }
-#if 0
     if (Settings::checkPhishingUrl()) {
         WebEngineViewer::CheckPhishingUrlJob *job = new WebEngineViewer::CheckPhishingUrlJob(this);
         connect(job, &WebEngineViewer::CheckPhishingUrlJob::result, this, &ArticleViewerWebEngine::slotCheckPhishingUrlResult);
@@ -424,9 +423,6 @@ void ArticleViewerWebEngine::slotLinkClicked(const QUrl &url)
     } else {
         openSafeUrl(url);
     }
-#else
-    openSafeUrl(url);
-#endif
 }
 
 void ArticleViewerWebEngine::openSafeUrl(const QUrl &url)
