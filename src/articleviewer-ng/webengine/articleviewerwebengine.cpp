@@ -29,6 +29,7 @@
 
 #include <WebEngineViewer/InterceptorManager>
 #include <WebEngineViewer/WebEngineAccessKey>
+#include <WebEngineViewer/CheckPhishingUrlCache>
 #include <KPIMTextEdit/TextToSpeech>
 #include <KActionMenu>
 
@@ -372,8 +373,10 @@ void ArticleViewerWebEngine::slotCheckPhishingUrlResult(WebEngineViewer::CheckPh
         KMessageBox::error(this, i18n("The url %1 is not valid.", url.toString()), i18n("Check Phishing Url"));
         break;
     case WebEngineViewer::CheckPhishingUrlJob::Ok:
+        WebEngineViewer::CheckPhishingUrlCache::self()->setCheckingUrlResult(url, WebEngineViewer::CheckPhishingUrlCache::UrlOk);
         break;
     case WebEngineViewer::CheckPhishingUrlJob::MalWare:
+        WebEngineViewer::CheckPhishingUrlCache::self()->setCheckingUrlResult(url, WebEngineViewer::CheckPhishingUrlCache::MalWare);
         if (KMessageBox::No == KMessageBox::warningYesNo(this, i18n("This web site is a malware, do you want to continue to show it?"), i18n("Malware"))) {
             return;
         }
@@ -391,10 +394,14 @@ void ArticleViewerWebEngine::slotLinkClicked(const QUrl &url)
         return;
     }
     if (Settings::checkPhishingUrl()) {
-        WebEngineViewer::CheckPhishingUrlJob *job = new WebEngineViewer::CheckPhishingUrlJob(this);
-        connect(job, &WebEngineViewer::CheckPhishingUrlJob::result, this, &ArticleViewerWebEngine::slotCheckPhishingUrlResult);
-        job->setUrl(url);
-        job->start();
+        if (WebEngineViewer::CheckPhishingUrlCache::self()->urlStatus(url) == WebEngineViewer::CheckPhishingUrlCache::UrlOk) {
+            openSafeUrl(url);
+        } else {
+            WebEngineViewer::CheckPhishingUrlJob *job = new WebEngineViewer::CheckPhishingUrlJob(this);
+            connect(job, &WebEngineViewer::CheckPhishingUrlJob::result, this, &ArticleViewerWebEngine::slotCheckPhishingUrlResult);
+            job->setUrl(url);
+            job->start();
+        }
     } else {
         openSafeUrl(url);
     }
