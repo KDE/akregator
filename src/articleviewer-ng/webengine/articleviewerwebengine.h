@@ -115,6 +115,7 @@ protected:
     void forwardKeyPressEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
     void forwardWheelEvent(QWheelEvent *e) Q_DECL_OVERRIDE;
     void forwardMouseReleaseEvent(QMouseEvent *event) Q_DECL_OVERRIDE;
+    void contextMenuEvent(QContextMenuEvent *e) Q_DECL_OVERRIDE;
 
 private Q_SLOTS:
     void slotServiceUrlSelected(PimCommon::ShareServiceUrlManager::ServiceType type);
@@ -131,17 +132,16 @@ private Q_SLOTS:
     void slotWebPageMutedOrAudibleChanged();
     void slotCheckPhishingUrlResult(WebEngineViewer::CheckPhishingUrlJob::UrlStatus status, const QUrl &url);
 protected:
-    ArticleViewerWebEnginePage *mPageEngine;
 
-    void contextMenuEvent(QContextMenuEvent *e) Q_DECL_OVERRIDE;
+    ArticleViewerWebEnginePage *mPageEngine;
     QList<QAction *> viewerPluginActionList(MessageViewer::ViewerPluginInterface::SpecificFeatureTypes features);
     WebEngineViewer::InterceptorManager *mNetworkAccessManager;
 private:
     void openSafeUrl(const QUrl &url);
+    bool urlIsAMalwareButContinue();
     MousePressedButtonType mLastButtonClicked;
     MessageViewer::ViewerPluginToolManager *mViewerPluginToolManager;
     WebEngineViewer::WebEngineAccessKey *mWebEngineViewAccessKey;
-    bool urlIsAMalwareButContinue();
 };
 }
 
