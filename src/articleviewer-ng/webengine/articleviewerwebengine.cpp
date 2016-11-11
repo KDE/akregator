@@ -363,6 +363,14 @@ void ArticleViewerWebEngine::forwardMouseReleaseEvent(QMouseEvent *event)
     }
 }
 
+bool ArticleViewerWebEngine::urlIsAMalwareButContinue()
+{
+    if (KMessageBox::No == KMessageBox::warningYesNo(this, i18n("This web site is a malware, do you want to continue to show it?"), i18n("Malware"))) {
+        return false;
+    }
+    return true;
+}
+
 void ArticleViewerWebEngine::slotCheckPhishingUrlResult(WebEngineViewer::CheckPhishingUrlJob::UrlStatus status, const QUrl &url)
 {
     switch (status) {
@@ -377,7 +385,7 @@ void ArticleViewerWebEngine::slotCheckPhishingUrlResult(WebEngineViewer::CheckPh
         break;
     case WebEngineViewer::CheckPhishingUrlJob::MalWare:
         WebEngineViewer::CheckPhishingUrlCache::self()->setCheckingUrlResult(url, WebEngineViewer::CheckPhishingUrlCache::MalWare);
-        if (KMessageBox::No == KMessageBox::warningYesNo(this, i18n("This web site is a malware, do you want to continue to show it?"), i18n("Malware"))) {
+        if (!urlIsAMalwareButContinue()) {
             return;
         }
         break;
@@ -394,8 +402,13 @@ void ArticleViewerWebEngine::slotLinkClicked(const QUrl &url)
         return;
     }
     if (Settings::checkPhishingUrl()) {
-        if (WebEngineViewer::CheckPhishingUrlCache::self()->urlStatus(url) == WebEngineViewer::CheckPhishingUrlCache::UrlOk) {
+        const WebEngineViewer::CheckPhishingUrlCache::UrlStatus status = WebEngineViewer::CheckPhishingUrlCache::self()->urlStatus(url);
+        if (status == WebEngineViewer::CheckPhishingUrlCache::UrlOk) {
             openSafeUrl(url);
+        } else if (status == WebEngineViewer::CheckPhishingUrlCache::MalWare) {
+            if (!urlIsAMalwareButContinue()) {
+                return;
+            }
         } else {
             WebEngineViewer::CheckPhishingUrlJob *job = new WebEngineViewer::CheckPhishingUrlJob(this);
             connect(job, &WebEngineViewer::CheckPhishingUrlJob::result, this, &ArticleViewerWebEngine::slotCheckPhishingUrlResult);

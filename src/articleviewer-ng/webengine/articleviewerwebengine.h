@@ -141,6 +141,7 @@ private:
     MousePressedButtonType mLastButtonClicked;
     MessageViewer::ViewerPluginToolManager *mViewerPluginToolManager;
     WebEngineViewer::WebEngineAccessKey *mWebEngineViewAccessKey;
+    bool urlIsAMalwareButContinue();
 };
 }
 
