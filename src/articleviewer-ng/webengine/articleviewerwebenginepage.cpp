@@ -47,6 +47,9 @@ ArticleViewerWebEnginePage::ArticleViewerWebEnginePage(QWebEngineProfile *profil
     settings()->setAttribute(QWebEngineSettings::Accelerated2dCanvasEnabled, false);
     settings()->setAttribute(QWebEngineSettings::WebGLEnabled, false);
 #endif
+    connect(this, &QWebEnginePage::featurePermissionRequested,
+            this, &ArticleViewerWebEnginePage::slotFeaturePermissionRequested);
+
 }
 
 ArticleViewerWebEnginePage::~ArticleViewerWebEnginePage()
@@ -62,4 +65,10 @@ bool ArticleViewerWebEnginePage::acceptNavigationRequest(const QUrl &url, Naviga
         return false;
     }
     return true;
+}
+
+void ArticleViewerWebEnginePage::slotFeaturePermissionRequested(const QUrl& url, QWebEnginePage::Feature feature)
+{
+    //Denied all permissions.
+    setFeaturePermission(url, feature, QWebEnginePage::PermissionDeniedByUser);
 }

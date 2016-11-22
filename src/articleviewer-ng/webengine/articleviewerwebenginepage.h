@@ -35,6 +35,9 @@ Q_SIGNALS:
 
 protected:
     bool acceptNavigationRequest(const QUrl &url, NavigationType type, bool isMainFrame) Q_DECL_OVERRIDE;
+
+private:
+    void slotFeaturePermissionRequested(const QUrl &url, QWebEnginePage::Feature feature);
 };
 }
 #endif // ARTICLEVIEWERWEBENGINEPAGE_H
