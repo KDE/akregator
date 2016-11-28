@@ -452,7 +452,6 @@ void ArticleViewerWebEngine::openSafeUrl(const QUrl &url)
     Q_EMIT signalOpenUrlRequest(req);
 }
 
-
 void ArticleViewerWebEngine::slotOpenLinkInForegroundTab()
 {
     OpenUrlRequest req(mCurrentUrl);

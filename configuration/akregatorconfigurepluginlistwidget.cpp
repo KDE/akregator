@@ -22,7 +22,8 @@
 #include <WebEngineViewer/NetworkPluginUrlInterceptor>
 #include "kcm_config_plugins_debug.h"
 #include <KLocalizedString>
-namespace {
+namespace
+{
 QString networkUrlInterceptorGroupName()
 {
     return QStringLiteral("networkurlinterceptorgroupname");
