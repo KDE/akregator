@@ -32,7 +32,7 @@
 
 #include "kernel.h"
 #include "subscriptionlistjobs.h"
-
+#include <memory>
 #include "akregator_debug.h"
 #include <KLocalizedString>
 #include <krandom.h>

@@ -36,7 +36,7 @@
 
 #include <QAbstractItemView>
 #include <QMenu>
-
+#include <memory>
 using namespace Akregator;
 
 namespace
@@ -177,7 +177,7 @@ void Akregator::SelectionController::setFeedList(const QSharedPointer<FeedList> 
     }
 
     m_feedList = list;
-    QScopedPointer<SubscriptionListModel> oldModel(m_subscriptionModel);
+    std::unique_ptr<SubscriptionListModel> oldModel(m_subscriptionModel);
     m_subscriptionModel = new SubscriptionListModel(m_feedList, this);
 
     if (m_folderExpansionHandler) {
