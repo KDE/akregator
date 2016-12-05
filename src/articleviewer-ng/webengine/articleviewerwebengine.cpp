@@ -381,10 +381,10 @@ void ArticleViewerWebEngine::slotCheckPhishingUrlResult(WebEngineViewer::CheckPh
         KMessageBox::error(this, i18n("The url %1 is not valid.", url.toString()), i18n("Check Phishing Url"));
         break;
     case WebEngineViewer::CheckPhishingUrlJob::Ok:
-        WebEngineViewer::CheckPhishingUrlCache::self()->setCheckingUrlResult(url, true);
+        WebEngineViewer::CheckPhishingUrlCache::self()->addCheckingUrlResult(url, true);
         break;
     case WebEngineViewer::CheckPhishingUrlJob::MalWare:
-        WebEngineViewer::CheckPhishingUrlCache::self()->setCheckingUrlResult(url, false);
+        WebEngineViewer::CheckPhishingUrlCache::self()->addCheckingUrlResult(url, false);
         if (!urlIsAMalwareButContinue()) {
             return;
         }
