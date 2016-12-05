@@ -371,7 +371,7 @@ bool ArticleViewerWebEngine::urlIsAMalwareButContinue()
     return true;
 }
 
-void ArticleViewerWebEngine::slotCheckPhishingUrlResult(WebEngineViewer::CheckPhishingUrlJob::UrlStatus status, const QUrl &url)
+void ArticleViewerWebEngine::slotCheckPhishingUrlResult(WebEngineViewer::CheckPhishingUrlJob::UrlStatus status, const QUrl &url, uint verifyCacheAfterThisTime)
 {
     switch (status) {
     case WebEngineViewer::CheckPhishingUrlJob::BrokenNetwork:
@@ -381,10 +381,10 @@ void ArticleViewerWebEngine::slotCheckPhishingUrlResult(WebEngineViewer::CheckPh
         KMessageBox::error(this, i18n("The url %1 is not valid.", url.toString()), i18n("Check Phishing Url"));
         break;
     case WebEngineViewer::CheckPhishingUrlJob::Ok:
-        WebEngineViewer::CheckPhishingUrlCache::self()->addCheckingUrlResult(url, true);
+        WebEngineViewer::CheckPhishingUrlCache::self()->addCheckingUrlResult(url, true, verifyCacheAfterThisTime);
         break;
     case WebEngineViewer::CheckPhishingUrlJob::MalWare:
-        WebEngineViewer::CheckPhishingUrlCache::self()->addCheckingUrlResult(url, false);
+        WebEngineViewer::CheckPhishingUrlCache::self()->addCheckingUrlResult(url, false, verifyCacheAfterThisTime);
         if (!urlIsAMalwareButContinue()) {
             return;
         }
