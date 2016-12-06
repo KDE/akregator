@@ -22,7 +22,7 @@ include(KDECMakeSettings)
 include(KDECompilerSettings NO_POLICY_SCOPE)
 include(ECMAddAppIcon)
 include(ECMQtDeclareLoggingCategory)
-
+include(ECMCoverageOption)
 # Do NOT add quote
 set(KDEPIM_DEV_VERSION )
 
