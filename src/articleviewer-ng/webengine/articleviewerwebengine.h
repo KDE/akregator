@@ -130,7 +130,7 @@ private Q_SLOTS:
     void slotWebHitFinished(const WebEngineViewer::WebHitTestResult &result);
     void slotActivatePlugin(MessageViewer::ViewerPluginInterface *interface);
     void slotWebPageMutedOrAudibleChanged();
-    void slotCheckPhishingUrlResult(WebEngineViewer::CheckPhishingUrlJob::UrlStatus status, const QUrl &url, uint verifyCacheAfterThisTime);
+    void slotCheckPhishingUrlResult(WebEngineViewer::CheckPhishingUrlUtil::UrlStatus status, const QUrl &url, uint verifyCacheAfterThisTime);
 protected:
 
     ArticleViewerWebEnginePage *mPageEngine;
