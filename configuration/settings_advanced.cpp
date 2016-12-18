@@ -42,7 +42,7 @@ SettingsAdvanced::SettingsAdvanced(QWidget *parent, const char *name) : QWidget(
     setupUi(this);
 
     const QStringList backends = Backend::StorageFactoryRegistry::self()->list();
-    Q_FOREACH (const QString &i, backends) {
+    for (const QString &i : backends) {
         Backend::StorageFactory *const factory = Backend::StorageFactoryRegistry::self()->getFactory(i);
         if (!factory) {
             continue;

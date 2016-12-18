@@ -334,7 +334,7 @@ void Part::loadPlugins(const QString &type)
 {
     const KService::List offers = PluginManager::query(QStringLiteral("[X-KDE-akregator-plugintype] == '%1'").arg(type));
 
-    Q_FOREACH (const KService::Ptr &i, offers) {
+    for (const KService::Ptr &i : offers) {
         Akregator::Plugin *plugin = PluginManager::createFromService(i, this);
         if (!plugin) {
             continue;

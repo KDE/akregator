@@ -226,7 +226,7 @@ void ArticleModel::Private::articlesAdded(const QVector<Article> &list)
 void ArticleModel::Private::articlesRemoved(const QVector<Article> &list)
 {
     //might want to avoid indexOf() in case of performance problems
-    Q_FOREACH (const Article &i, list) {
+    for (const Article &i : list) {
         const int row = articles.indexOf(i);
         Q_ASSERT(row != -1);
         q->removeRow(row, QModelIndex());
@@ -242,7 +242,7 @@ void ArticleModel::Private::articlesUpdated(const QVector<Article> &list)
     if (numberOfArticles > 0) {
         rmin = numberOfArticles - 1;
         //might want to avoid indexOf() in case of performance problems
-        Q_FOREACH (const Article &i, list) {
+        for (const Article &i : list) {
             const int row = articles.indexOf(i);
             //TODO: figure out how why the Article might not be found in
             //TODO: the articles list because we should need this conditional.
@@ -279,7 +279,7 @@ QMimeData *ArticleModel::mimeData(const QModelIndexList &indexes) const
 {
     QScopedPointer<QMimeData> md(new QMimeData);
     QList<QUrl> urls;
-    Q_FOREACH (const QModelIndex &i, indexes) {
+    for (const QModelIndex &i : indexes) {
         const QUrl url = i.data(ArticleModel::LinkRole).toUrl();
         if (url.isValid()) {
             urls.push_back(url);

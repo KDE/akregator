@@ -960,7 +960,7 @@ void MainWidget::slotOpenSelectedArticlesInBrowser()
 {
     const QVector<Article> articles = m_selectionController->selectedArticles();
 
-    Q_FOREACH (const Akregator::Article &article, articles) {
+    for (const Akregator::Article &article : articles) {
         slotOpenArticleInBrowser(article);
     }
 }
@@ -978,7 +978,7 @@ void MainWidget::openSelectedArticles(bool openInBackground)
 {
     const QVector<Article> articles = m_selectionController->selectedArticles();
 
-    Q_FOREACH (const Akregator::Article &article, articles) {
+    for (const Akregator::Article &article : articles) {
         const QUrl url = article.link();
         if (!url.isValid()) {
             continue;
@@ -1082,7 +1082,7 @@ void MainWidget::slotArticleDelete()
     }
 
     Akregator::ArticleDeleteJob *job = new Akregator::ArticleDeleteJob;
-    Q_FOREACH (const Akregator::Article &i, articles) {
+    for (const Akregator::Article &i : articles) {
         Feed *const feed = i.feed();
         if (!feed) {
             continue;
@@ -1113,7 +1113,7 @@ void MainWidget::slotArticleToggleKeepFlag(bool)
     }
 
     bool allFlagsSet = true;
-    Q_FOREACH (const Akregator::Article &i, articles) {
+    for (const Akregator::Article &i : articles) {
         allFlagsSet = allFlagsSet && i.keep();
         if (!allFlagsSet) {
             break;
@@ -1121,7 +1121,7 @@ void MainWidget::slotArticleToggleKeepFlag(bool)
     }
 
     Akregator::ArticleModifyJob *job = new Akregator::ArticleModifyJob;
-    Q_FOREACH (const Akregator::Article &i, articles) {
+    for (const Akregator::Article &i : articles) {
         const Akregator::ArticleId aid = { i.feed()->xmlUrl(), i.guid() };
         job->setKeep(aid, !allFlagsSet);
     }
@@ -1204,7 +1204,7 @@ void MainWidget::readProperties(const KConfigGroup &config)
     // Reopen tabs
     const QStringList childList = config.readEntry(QStringLiteral("Children"), QStringList());
     int currentFrameId = -1;
-    Q_FOREACH (const QString &framePrefix, childList) {
+    for (const QString &framePrefix : childList) {
         WebEngineFrame *const frame = new WebEngineFrame(m_actionManager->actionCollection(), m_tabWidget);
         frame->loadConfig(config, framePrefix + QLatin1Char('_'));
 

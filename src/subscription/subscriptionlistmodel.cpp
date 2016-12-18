@@ -393,7 +393,7 @@ QMimeData *SubscriptionListModel::mimeData(const QModelIndexList &indexes) const
     QMimeData *mimeData = new QMimeData;
 
     QList<QUrl> urls;
-    Q_FOREACH (const QModelIndex &i, indexes) {
+    for (const QModelIndex &i : indexes) {
         const QUrl url(i.data(LinkRole).toString());
         if (!url.isEmpty()) {
             urls << url;
@@ -404,7 +404,7 @@ QMimeData *SubscriptionListModel::mimeData(const QModelIndexList &indexes) const
 
     QByteArray idList;
     QDataStream idStream(&idList, QIODevice::WriteOnly);
-    Q_FOREACH (const QModelIndex &i, indexes)
+    for (const QModelIndex &i : indexes)
         if (i.isValid()) {
             idStream << i.data(SubscriptionIdRole).toInt();
         }

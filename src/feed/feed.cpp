@@ -66,7 +66,7 @@ QVector<Value> valuesToVector(const Container<Key, Value> &container)
 {
     QVector<Value> values;
     values.reserve(container.size());
-    foreach (const Value &value, container) {
+    for (const Value &value : container) {
         values << value;
     }
     return values;

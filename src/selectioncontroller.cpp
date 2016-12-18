@@ -55,7 +55,7 @@ static Akregator::Article articleForIndex(const QModelIndex &index, FeedList *fe
 static QVector<Akregator::Article> articlesForIndexes(const QModelIndexList &indexes, FeedList *feedList)
 {
     QVector<Akregator::Article> articles;
-    Q_FOREACH (const QModelIndex &i, indexes) {
+    for (const QModelIndex &i : indexes) {
         const Article a = articleForIndex(i, feedList);
         if (a.isNull()) {
             continue;
