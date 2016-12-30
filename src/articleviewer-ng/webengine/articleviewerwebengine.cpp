@@ -99,7 +99,6 @@ ArticleViewerWebEngine::ArticleViewerWebEngine(KActionCollection *ac, QWidget *p
             this, &ArticleViewerWebEngine::slotWebPageMutedOrAudibleChanged);
 #endif
 
-    WebEngineViewer::LocalDataBaseManager::self()->initialize();
     connect(WebEngineViewer::LocalDataBaseManager::self(), &WebEngineViewer::LocalDataBaseManager::checkUrlFinished, this, &ArticleViewerWebEngine::slotCheckedUrlFinished);
 
 }

@@ -64,6 +64,7 @@
 #include "mainframe.h"
 #include <WebEngineViewer/ZoomActionMenu>
 #include "job/downloadarticlejob.h"
+#include <WebEngineViewer/LocalDataBaseManager>
 
 #include <QAction>
 #include <kfileitem.h>
@@ -112,6 +113,8 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
       m_feedListManagementInterface(new FeedListManagementImpl)
 {
     setObjectName(name);
+
+    WebEngineViewer::LocalDataBaseManager::self()->initialize();
 
     FeedListManagementInterface::setInstance(m_feedListManagementInterface);
 
