@@ -29,7 +29,6 @@
 
 #include <WebEngineViewer/InterceptorManager>
 #include <WebEngineViewer/WebEngineAccessKey>
-#include <WebEngineViewer/CheckPhishingUrlCache>
 #include <KPIMTextEdit/TextToSpeech>
 #include <KActionMenu>
 
@@ -57,6 +56,8 @@
 #include <WebEngineViewer/WebHitTestResult>
 #include <WebEngineViewer/WebHitTest>
 #include <WebEngineViewer/WebEngineScript>
+
+#include <WebEngineViewer/LocalDataBaseManager>
 
 #include <KIO/KUriFilterSearchProviderActions>
 
@@ -97,6 +98,10 @@ ArticleViewerWebEngine::ArticleViewerWebEngine(KActionCollection *ac, QWidget *p
     connect(page(), &QWebEnginePage::recentlyAudibleChanged,
             this, &ArticleViewerWebEngine::slotWebPageMutedOrAudibleChanged);
 #endif
+
+    WebEngineViewer::LocalDataBaseManager::self()->initialize();
+    connect(WebEngineViewer::LocalDataBaseManager::self(), &WebEngineViewer::LocalDataBaseManager::checkUrlFinished, this, &ArticleViewerWebEngine::slotCheckedUrlFinished);
+
 }
 
 ArticleViewerWebEngine::~ArticleViewerWebEngine()
@@ -371,7 +376,7 @@ bool ArticleViewerWebEngine::urlIsAMalwareButContinue()
     return true;
 }
 
-void ArticleViewerWebEngine::slotCheckPhishingUrlResult(WebEngineViewer::CheckPhishingUrlUtil::UrlStatus status, const QUrl &url, uint verifyCacheAfterThisTime)
+void ArticleViewerWebEngine::slotCheckedUrlFinished(const QUrl &url, WebEngineViewer::CheckPhishingUrlUtil::UrlStatus status)
 {
     switch (status) {
     case WebEngineViewer::CheckPhishingUrlUtil::BrokenNetwork:
@@ -381,19 +386,18 @@ void ArticleViewerWebEngine::slotCheckPhishingUrlResult(WebEngineViewer::CheckPh
         KMessageBox::error(this, i18n("The url %1 is not valid.", url.toString()), i18n("Check Phishing Url"));
         break;
     case WebEngineViewer::CheckPhishingUrlUtil::Ok:
-        WebEngineViewer::CheckPhishingUrlCache::self()->addCheckingUrlResult(url, true, verifyCacheAfterThisTime);
         break;
     case WebEngineViewer::CheckPhishingUrlUtil::MalWare:
-        WebEngineViewer::CheckPhishingUrlCache::self()->addCheckingUrlResult(url, false, verifyCacheAfterThisTime);
         if (!urlIsAMalwareButContinue()) {
             return;
         }
         break;
     case WebEngineViewer::CheckPhishingUrlUtil::Unknown:
-        qCWarning(AKREGATOR_LOG) << "WebEngineViewer::CheckPhishingUrlJob unknown error ";
+        qCWarning(AKREGATOR_LOG) << "ArticleViewerWebEngine::slotCheckedUrlFinished unknown error ";
         break;
     }
     openSafeUrl(url);
+
 }
 
 void ArticleViewerWebEngine::slotLinkClicked(const QUrl &url)
@@ -402,19 +406,7 @@ void ArticleViewerWebEngine::slotLinkClicked(const QUrl &url)
         return;
     }
     if (Settings::checkPhishingUrl()) {
-        const WebEngineViewer::CheckPhishingUrlCache::UrlStatus status = WebEngineViewer::CheckPhishingUrlCache::self()->urlStatus(url);
-        if (status == WebEngineViewer::CheckPhishingUrlCache::UrlOk) {
-            openSafeUrl(url);
-        } else if (status == WebEngineViewer::CheckPhishingUrlCache::MalWare) {
-            if (!urlIsAMalwareButContinue()) {
-                return;
-            }
-        } else {
-            WebEngineViewer::CheckPhishingUrlJob *job = new WebEngineViewer::CheckPhishingUrlJob(this);
-            connect(job, &WebEngineViewer::CheckPhishingUrlJob::result, this, &ArticleViewerWebEngine::slotCheckPhishingUrlResult);
-            job->setUrl(url);
-            job->start();
-        }
+        WebEngineViewer::LocalDataBaseManager::self()->checkUrl(url);
     } else {
         openSafeUrl(url);
     }
