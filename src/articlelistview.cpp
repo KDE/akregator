@@ -428,7 +428,7 @@ void ArticleListView::setModel(QAbstractItemModel *m)
 
 void ArticleListView::slotClear()
 {
-    setModel(Q_NULLPTR);
+    setModel(nullptr);
 }
 
 void ArticleListView::slotPreviousArticle()

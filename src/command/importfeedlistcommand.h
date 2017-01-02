@@ -40,7 +40,7 @@ class ImportFeedListCommand : public Command
 {
     Q_OBJECT
 public:
-    explicit ImportFeedListCommand(QObject *parent = Q_NULLPTR);
+    explicit ImportFeedListCommand(QObject *parent = nullptr);
     ~ImportFeedListCommand();
 
     void setTargetList(const QWeakPointer<FeedList> &feedList);

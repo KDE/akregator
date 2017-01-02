@@ -73,7 +73,7 @@ void FeedPropertiesWidget::slotUpdateCheckBoxToggled(bool enabled)
 
 FeedPropertiesDialog::FeedPropertiesDialog(QWidget *parent, const QString &name)
     : QDialog(parent),
-      m_feed(Q_NULLPTR)
+      m_feed(nullptr)
 {
     setObjectName(name);
     setWindowTitle(i18n("Feed Properties"));

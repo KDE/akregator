@@ -45,7 +45,7 @@ class LoadFeedListCommand : public Command
 {
     Q_OBJECT
 public:
-    explicit LoadFeedListCommand(QObject *parent = Q_NULLPTR);
+    explicit LoadFeedListCommand(QObject *parent = nullptr);
     ~LoadFeedListCommand();
 
     void setFileName(const QString &fileName);

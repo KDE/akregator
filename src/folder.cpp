@@ -366,7 +366,7 @@ bool Folder::subtreeContains(const TreeNode *node) const
     if (node == this) {
         return false;
     }
-    const Folder *parent = node ? node->parent() : Q_NULLPTR;
+    const Folder *parent = node ? node->parent() : nullptr;
     while (parent) {
         if (parent == this) {
             return true;

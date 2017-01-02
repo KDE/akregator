@@ -95,7 +95,7 @@ class AbstractSelectionController : public QObject
     Q_OBJECT
 
 public:
-    explicit AbstractSelectionController(QObject *parent = Q_NULLPTR);
+    explicit AbstractSelectionController(QObject *parent = nullptr);
     virtual ~AbstractSelectionController();
 
     virtual void setFeedList(const QSharedPointer<FeedList> &list) = 0;

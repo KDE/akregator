@@ -52,7 +52,7 @@ class ArticleGrantleeObject : public QObject
     Q_PROPERTY(bool important READ important)
 
 public:
-    explicit ArticleGrantleeObject(const QUrl &imageDir, const Article &article, ArticleFormatter::IconOption icon, QObject *parent = Q_NULLPTR);
+    explicit ArticleGrantleeObject(const QUrl &imageDir, const Article &article, ArticleFormatter::IconOption icon, QObject *parent = nullptr);
     ~ArticleGrantleeObject();
 
     enum ArticleStatus {

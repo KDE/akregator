@@ -31,7 +31,7 @@ class GrantleeViewFormatter : public PimCommon::GenericGrantleeFormatter
 {
     Q_OBJECT
 public:
-    explicit GrantleeViewFormatter(const QString &htmlFileName, const QString &themePath, const QUrl &imageDir, int deviceDpiY, QObject *parent = Q_NULLPTR);
+    explicit GrantleeViewFormatter(const QString &htmlFileName, const QString &themePath, const QUrl &imageDir, int deviceDpiY, QObject *parent = nullptr);
     ~GrantleeViewFormatter();
 
     QString formatArticles(const QVector<Article> &article, ArticleFormatter::IconOption icon);

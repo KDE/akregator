@@ -29,7 +29,7 @@ Q_DECLARE_METATYPE(Akregator::StatusSearchLine::Status)
 StatusSearchLine::StatusSearchLine(QWidget *parent)
     : KLineEdit(parent),
       mDefaultStatus(AllArticles),
-      mSearchLineStatusAction(Q_NULLPTR)
+      mSearchLineStatusAction(nullptr)
 {
     initializeHash();
     initializeActions();

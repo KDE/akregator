@@ -187,7 +187,7 @@ namespace Akregator
 
 K_PLUGIN_FACTORY(AkregatorFactory, registerPlugin<Part>();)
 
-static Part *mySelf = Q_NULLPTR;
+static Part *mySelf = nullptr;
 BrowserExtension::BrowserExtension(Part *p, const char *name)
     : KParts::BrowserExtension(p)
 {
@@ -281,7 +281,7 @@ Part::Part(QWidget *parentWidget, QObject *parent, const QVariantList &)
             trayIcon->setStatus(KStatusNotifierItem::Active);
         }
 
-        QWidget *const notificationParent = isTrayIconEnabled() ? m_mainWidget->window() : Q_NULLPTR;
+        QWidget *const notificationParent = isTrayIconEnabled() ? m_mainWidget->window() : nullptr;
         NotificationManager::self()->setWidget(notificationParent, componentData().componentName());
 
         connect(m_mainWidget.data(), &MainWidget::signalUnreadCountChanged, trayIcon, &TrayIcon::slotSetUnread);
@@ -346,7 +346,7 @@ void Part::loadPlugins(const QString &type)
 
 void Part::slotStarted()
 {
-    Q_EMIT started(Q_NULLPTR);
+    Q_EMIT started(nullptr);
 }
 
 void Part::slotOnShutdown()
@@ -361,7 +361,7 @@ void Part::slotOnShutdown()
     }
     //delete m_mainWidget;
     delete TrayIcon::getInstance();
-    TrayIcon::setInstance(Q_NULLPTR);
+    TrayIcon::setInstance(nullptr);
     delete m_storage;
     m_storage = 0;
     //delete m_actionManager;

@@ -40,7 +40,7 @@ public:
     static TrayIcon *getInstance();
     static void setInstance(TrayIcon *trayIcon);
 
-    explicit TrayIcon(QObject *parent = Q_NULLPTR);
+    explicit TrayIcon(QObject *parent = nullptr);
     ~TrayIcon();
 
 public Q_SLOTS:

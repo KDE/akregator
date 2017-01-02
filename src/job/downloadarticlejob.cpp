@@ -25,8 +25,8 @@ using namespace Akregator;
 
 DownloadArticleJob::DownloadArticleJob(QObject *parent)
     : QObject(parent),
-      mTemporaryFile(Q_NULLPTR),
-      mAttachmentTemporaryFile(Q_NULLPTR)
+      mTemporaryFile(nullptr),
+      mAttachmentTemporaryFile(nullptr)
 {
 
 }

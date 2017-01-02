@@ -70,7 +70,7 @@ public:
         IsDeletedRole
     };
 
-    explicit ArticleModel(const QVector<Article> &articles, QObject *parent = Q_NULLPTR);
+    explicit ArticleModel(const QVector<Article> &articles, QObject *parent = nullptr);
     ~ArticleModel();
 
     int columnCount(const QModelIndex &parent = QModelIndex()) const Q_DECL_OVERRIDE;

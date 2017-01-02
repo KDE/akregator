@@ -57,7 +57,7 @@ class AKREGATOR_EXPORT CompositeJob : public KCompositeJob
 {
     Q_OBJECT
 public:
-    explicit CompositeJob(QObject *parent = Q_NULLPTR);
+    explicit CompositeJob(QObject *parent = nullptr);
     bool addSubjob(KJob *job) Q_DECL_OVERRIDE;
     void start() Q_DECL_OVERRIDE;
 };
@@ -66,7 +66,7 @@ class AKREGATOR_EXPORT ArticleDeleteJob : public KJob
 {
     Q_OBJECT
 public:
-    explicit ArticleDeleteJob(QObject *parent = Q_NULLPTR);
+    explicit ArticleDeleteJob(QObject *parent = nullptr);
 
     void appendArticleIds(const Akregator::ArticleIdList &ids);
     void appendArticleId(const Akregator::ArticleId &id);
@@ -85,7 +85,7 @@ class AKREGATOR_EXPORT ArticleModifyJob : public KJob
 {
     Q_OBJECT
 public:
-    explicit ArticleModifyJob(QObject *parent = Q_NULLPTR);
+    explicit ArticleModifyJob(QObject *parent = nullptr);
 
     // TODO replace this by passing modified item later
     void setStatus(const ArticleId &id, int status);
@@ -106,7 +106,7 @@ class AKREGATOR_EXPORT ArticleListJob : public KJob
 {
     Q_OBJECT
 public:
-    explicit ArticleListJob(TreeNode *parent = Q_NULLPTR);
+    explicit ArticleListJob(TreeNode *parent = nullptr);
 
     QVector<Article> articles() const;
     TreeNode *node() const;

@@ -106,7 +106,7 @@ TreeNode *TreeNode::nextSibling()
     const QList<TreeNode *> children = parent()->children();
     const int idx = children.indexOf(this);
 
-    return (idx + 1 < children.size()) ? children.at(idx + 1) : Q_NULLPTR;
+    return (idx + 1 < children.size()) ? children.at(idx + 1) : nullptr;
 }
 
 const TreeNode *TreeNode::nextSibling() const
@@ -117,7 +117,7 @@ const TreeNode *TreeNode::nextSibling() const
     const QList<const TreeNode *> children = parent()->children();
     const int idx = children.indexOf(this);
 
-    return (idx + 1 < children.size()) ? children.at(idx + 1) : Q_NULLPTR;
+    return (idx + 1 < children.size()) ? children.at(idx + 1) : nullptr;
 }
 
 TreeNode *TreeNode::prevSibling()
@@ -128,7 +128,7 @@ TreeNode *TreeNode::prevSibling()
     const QList<TreeNode *> children = parent()->children();
 
     const int idx = children.indexOf(this);
-    return (idx > 0) ? children.at(idx - 1) : Q_NULLPTR;
+    return (idx > 0) ? children.at(idx - 1) : nullptr;
 }
 
 const TreeNode *TreeNode::prevSibling() const
@@ -138,7 +138,7 @@ const TreeNode *TreeNode::prevSibling() const
     }
     const QList<const TreeNode *> children = parent()->children();
     const int idx = children.indexOf(this);
-    return (idx > 0) ? children.at(idx - 1) : Q_NULLPTR;
+    return (idx > 0) ? children.at(idx - 1) : nullptr;
 }
 
 const Folder *TreeNode::parent() const

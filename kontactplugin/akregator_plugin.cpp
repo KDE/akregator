@@ -38,7 +38,7 @@
 EXPORT_KONTACT_PLUGIN(AkregatorPlugin, akregator)
 
 AkregatorPlugin::AkregatorPlugin(KontactInterface::Core *core, const QVariantList &)
-    : KontactInterface::Plugin(core, core, "akregator"), m_interface(Q_NULLPTR)
+    : KontactInterface::Plugin(core, core, "akregator"), m_interface(nullptr)
 {
     setComponentName(QStringLiteral("akregator"), QStringLiteral("akregator"));
 
@@ -61,7 +61,7 @@ AkregatorPlugin::AkregatorPlugin(KontactInterface::Core *core, const QVariantLis
 AkregatorPlugin::~AkregatorPlugin()
 {
     delete m_interface;
-    m_interface = Q_NULLPTR;
+    m_interface = nullptr;
 }
 
 void AkregatorPlugin::setHelpText(QAction *action, const QString &text)
@@ -92,7 +92,7 @@ KParts::ReadOnlyPart *AkregatorPlugin::createPart()
 {
     KParts::ReadOnlyPart *part = loadPart();
     if (!part) {
-        return Q_NULLPTR;
+        return nullptr;
     }
 
     m_interface = new OrgKdeAkregatorPartInterface(

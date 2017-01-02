@@ -39,7 +39,7 @@ class EditSubscriptionCommand : public Command
 {
     Q_OBJECT
 public:
-    explicit EditSubscriptionCommand(QObject *parent = Q_NULLPTR);
+    explicit EditSubscriptionCommand(QObject *parent = nullptr);
     ~EditSubscriptionCommand();
 
     void setSubscription(const QSharedPointer<FeedList> &feedList, int subId);

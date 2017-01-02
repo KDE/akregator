@@ -30,7 +30,7 @@ class AKREGATOR_EXPORT DefaultNormalViewFormatter : public ArticleFormatter
 {
 public:
 
-    explicit DefaultNormalViewFormatter(const QString &grantleeDirectory, const QUrl &imageDir, QPaintDevice *device = Q_NULLPTR);
+    explicit DefaultNormalViewFormatter(const QString &grantleeDirectory, const QUrl &imageDir, QPaintDevice *device = nullptr);
     ~DefaultNormalViewFormatter();
 
     QString formatArticles(const QVector<Article> &article, IconOption option) const Q_DECL_OVERRIDE;

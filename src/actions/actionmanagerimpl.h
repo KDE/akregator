@@ -57,7 +57,7 @@ class ActionManagerImpl : public ActionManager
 
 public:
 
-    explicit ActionManagerImpl(Part *part, QObject *parent = Q_NULLPTR);
+    explicit ActionManagerImpl(Part *part, QObject *parent = nullptr);
     virtual ~ActionManagerImpl();
 
     QAction *action(const QString &name) Q_DECL_OVERRIDE;

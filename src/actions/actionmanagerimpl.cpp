@@ -636,7 +636,7 @@ KActionCollection *ActionManagerImpl::actionCollection() const
 
 QAction *ActionManagerImpl::action(const QString &name)
 {
-    return d->actionCollection != Q_NULLPTR ? d->actionCollection->action(name) : Q_NULLPTR;
+    return d->actionCollection != nullptr ? d->actionCollection->action(name) : nullptr;
 }
 
 void ActionManagerImpl::setArticleActionsEnabled(bool enabled)

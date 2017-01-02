@@ -27,7 +27,7 @@ using namespace Akregator;
 
 MainFrame::MainFrame(QWidget *parent, QWidget *visibleWidget)
     : Frame(parent),
-      mArticleViewer(Q_NULLPTR)
+      mArticleViewer(nullptr)
 {
     setRemovable(false);
     QGridLayout *layout = new QGridLayout(this);

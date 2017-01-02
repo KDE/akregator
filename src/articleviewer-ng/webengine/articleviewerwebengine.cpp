@@ -67,7 +67,7 @@ ArticleViewerWebEngine::ArticleViewerWebEngine(KActionCollection *ac, QWidget *p
     : WebEngineViewer::WebEngineView(parent),
       mActionCollection(ac),
       mLastButtonClicked(LeftButton),
-      mViewerPluginToolManager(Q_NULLPTR)
+      mViewerPluginToolManager(nullptr)
 {
     mNetworkAccessManager = new WebEngineViewer::InterceptorManager(this, ac, this);
     QWebEngineProfile *profile = new QWebEngineProfile(this);
@@ -135,7 +135,7 @@ void ArticleViewerWebEngine::paintAboutScreen(const QString &templateName, const
 {
     GrantleeTheme::ThemeManager manager(QStringLiteral("splashPage"),
                                         QStringLiteral("splash.theme"),
-                                        Q_NULLPTR,
+                                        nullptr,
                                         QStringLiteral("messageviewer/about/"));
     GrantleeTheme::Theme theme = manager.theme(QStringLiteral("default"));
     if (theme.isValid()) {

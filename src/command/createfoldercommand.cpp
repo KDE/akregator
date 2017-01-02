@@ -74,13 +74,13 @@ void CreateFolderCommand::Private::doCreate()
 
     Folder *parentFolder = qobject_cast<Folder *>(m_selectedSubscription);
     if (!parentFolder) {
-        parentFolder = m_selectedSubscription ? m_selectedSubscription->parent() : Q_NULLPTR;
+        parentFolder = m_selectedSubscription ? m_selectedSubscription->parent() : nullptr;
     }
     if (!parentFolder) {
         parentFolder = m_rootFolder;
     }
 
-    TreeNode *const after = (m_selectedSubscription && m_selectedSubscription->isGroup()) ? m_selectedSubscription : Q_NULLPTR;
+    TreeNode *const after = (m_selectedSubscription && m_selectedSubscription->isGroup()) ? m_selectedSubscription : nullptr;
 
     Folder *const newFolder = new Folder(name);
     parentFolder->insertChild(newFolder, after);

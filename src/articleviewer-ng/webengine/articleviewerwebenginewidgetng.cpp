@@ -60,7 +60,7 @@ InvokeWrapper<Arg, R, C> invoke(R *receiver, void (C::*memberFun)(Arg))
 
 ArticleViewerWebEngineWidgetNg::ArticleViewerWebEngineWidgetNg(ArticleViewerWebEngine *customViewer, KActionCollection *ac, QWidget *parent)
     : QWidget(parent),
-      mCurrentPrinter(Q_NULLPTR)
+      mCurrentPrinter(nullptr)
 {
     mArticleViewerNg = customViewer;
     initializeLayout(ac);
@@ -68,8 +68,8 @@ ArticleViewerWebEngineWidgetNg::ArticleViewerWebEngineWidgetNg(ArticleViewerWebE
 
 ArticleViewerWebEngineWidgetNg::ArticleViewerWebEngineWidgetNg(KActionCollection *ac, QWidget *parent)
     : QWidget(parent),
-      mArticleViewerNg(Q_NULLPTR),
-      mCurrentPrinter(Q_NULLPTR)
+      mArticleViewerNg(nullptr),
+      mCurrentPrinter(nullptr)
 {
     initializeLayout(ac);
 }
@@ -167,7 +167,7 @@ void ArticleViewerWebEngineWidgetNg::slotHandlePagePrinted(bool result)
 {
     Q_UNUSED(result);
     delete mCurrentPrinter;
-    mCurrentPrinter = Q_NULLPTR;
+    mCurrentPrinter = nullptr;
 }
 
 void ArticleViewerWebEngineWidgetNg::slotPrintPreview()

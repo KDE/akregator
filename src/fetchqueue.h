@@ -41,7 +41,7 @@ class AKREGATOR_EXPORT FetchQueue : public QObject
 
 public:
 
-    explicit FetchQueue(QObject *parent = Q_NULLPTR);
+    explicit FetchQueue(QObject *parent = nullptr);
     ~FetchQueue();
 
     /** returns true when no feeds are neither fetching nor queued */

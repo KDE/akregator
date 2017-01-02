@@ -26,7 +26,7 @@ class AkregatorConfigurePluginListWidget : public PimCommon::ConfigurePluginsLis
 {
     Q_OBJECT
 public:
-    explicit AkregatorConfigurePluginListWidget(QWidget *parent = Q_NULLPTR);
+    explicit AkregatorConfigurePluginListWidget(QWidget *parent = nullptr);
     ~AkregatorConfigurePluginListWidget();
 
     void save() Q_DECL_OVERRIDE;
