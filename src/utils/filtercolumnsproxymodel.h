@@ -39,7 +39,7 @@ public:
         Whitelist
     };
 
-    explicit FilterColumnsProxyModel(QObject *parent = Q_NULLPTR);
+    explicit FilterColumnsProxyModel(QObject *parent = nullptr);
 
     void setColumnEnabled(int col, bool enabled = true);
     bool isColumnEnabled(int col) const;

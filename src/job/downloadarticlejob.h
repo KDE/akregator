@@ -28,7 +28,7 @@ class DownloadArticleJob : public QObject
 {
     Q_OBJECT
 public:
-    explicit DownloadArticleJob(QObject *parent = Q_NULLPTR);
+    explicit DownloadArticleJob(QObject *parent = nullptr);
     ~DownloadArticleJob();
 
     void start();

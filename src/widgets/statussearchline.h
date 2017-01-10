@@ -37,7 +37,7 @@ public:
         ImportantArticles
     };
 
-    explicit StatusSearchLine(QWidget *parent = Q_NULLPTR);
+    explicit StatusSearchLine(QWidget *parent = nullptr);
     ~StatusSearchLine();
 
     void setStatus(StatusSearchLine::Status status);

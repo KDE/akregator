@@ -29,7 +29,7 @@ class AkregatorCentralWidget : public QStackedWidget
 {
     Q_OBJECT
 public:
-    explicit AkregatorCentralWidget(QWidget *parent = Q_NULLPTR);
+    explicit AkregatorCentralWidget(QWidget *parent = nullptr);
     ~AkregatorCentralWidget();
 
     void needToRestoreCrashedSession();

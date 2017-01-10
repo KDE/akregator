@@ -33,7 +33,7 @@ public:
         AskMeLater
     };
 
-    explicit CrashWidget(QWidget *parent = Q_NULLPTR);
+    explicit CrashWidget(QWidget *parent = nullptr);
     ~CrashWidget();
 
 Q_SIGNALS:

@@ -38,12 +38,12 @@ public:
     void registerHandler(const URLHandlerWebEngine *handler);
     void unregisterHandler(const URLHandlerWebEngine *handler);
 
-    bool handleClick(const QUrl &url, ArticleViewerWebEngine *w = Q_NULLPTR) const;
-    bool handleContextMenuRequest(const QUrl &url, const QPoint &p, ArticleViewerWebEngine *w = Q_NULLPTR) const;
-    QString statusBarMessage(const QUrl &url, ArticleViewerWebEngine *w = Q_NULLPTR) const;
+    bool handleClick(const QUrl &url, ArticleViewerWebEngine *w = nullptr) const;
+    bool handleContextMenuRequest(const QUrl &url, const QPoint &p, ArticleViewerWebEngine *w = nullptr) const;
+    QString statusBarMessage(const QUrl &url, ArticleViewerWebEngine *w = nullptr) const;
 
 private:
-    explicit URLHandlerWebEngineManager(QObject *parent = Q_NULLPTR);
+    explicit URLHandlerWebEngineManager(QObject *parent = nullptr);
     static URLHandlerWebEngineManager *self;
     typedef QVector<const URLHandlerWebEngine *> HandlerList;
     HandlerList mHandlers;

@@ -26,7 +26,7 @@ class CrashWidgetTest : public QObject
 {
     Q_OBJECT
 public:
-    explicit CrashWidgetTest(QObject *parent = Q_NULLPTR);
+    explicit CrashWidgetTest(QObject *parent = nullptr);
     ~CrashWidgetTest();
 };
 

@@ -31,7 +31,7 @@ class AKREGATORPART_EXPORT WebEngineFrame : public Frame
 {
     Q_OBJECT
 public:
-    explicit WebEngineFrame(KActionCollection *ac, QWidget *parent = Q_NULLPTR);
+    explicit WebEngineFrame(KActionCollection *ac, QWidget *parent = nullptr);
     ~WebEngineFrame();
 
     QUrl url() const Q_DECL_OVERRIDE;
