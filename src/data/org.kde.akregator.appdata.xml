@@ -82,7 +82,10 @@
   </description>
   <summary>A news feed reader.</summary>
   <summary xml:lang="ca">Un lector de fonts d'informació nou.</summary>
+  <summary xml:lang="ca-valencia">Un lector de fonts d'informació nou.</summary>
+  <summary xml:lang="en-GB">A news feed reader.</summary>
   <summary xml:lang="es">Un lector de fuentes de noticias.</summary>
+  <summary xml:lang="it">Un lettore di fonti di notizie.</summary>
   <summary xml:lang="nl">Een newsfeedlezer.</summary>
   <summary xml:lang="pt">Um leitor de fontes de notícias.</summary>
   <summary xml:lang="sv">Läsning av nyhetskanaler.</summary>
