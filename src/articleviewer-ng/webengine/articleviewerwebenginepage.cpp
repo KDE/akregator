@@ -36,7 +36,6 @@ ArticleViewerWebEnginePage::ArticleViewerWebEnginePage(QWebEngineProfile *profil
     settings()->setAttribute(QWebEngineSettings::JavascriptCanAccessClipboard, false);
     settings()->setAttribute(QWebEngineSettings::LocalStorageEnabled, false);
     settings()->setAttribute(QWebEngineSettings::XSSAuditingEnabled, false);
-    settings()->setAttribute(QWebEngineSettings::ErrorPageEnabled, false);
     settings()->setAttribute(QWebEngineSettings::LocalContentCanAccessRemoteUrls, false);
     settings()->setAttribute(QWebEngineSettings::LocalContentCanAccessFileUrls, false);
     settings()->setAttribute(QWebEngineSettings::ErrorPageEnabled, false);
