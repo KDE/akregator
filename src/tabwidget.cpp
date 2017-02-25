@@ -38,7 +38,6 @@
 #include <QMimeData>
 
 #include "akregator_debug.h"
-#include <QApplication>
 #include <QTabWidget>
 #include <qtabbar.h>
 #include <krun.h>
@@ -336,6 +335,7 @@ void TabWidget::slotSetTitle(Frame *frame, const QString &title)
 
 void TabWidget::slotWebPageMutedOrAudibleChanged(Akregator::Frame *frame, bool isAudioMuted, bool wasRecentlyAudible)
 {
+    Q_UNUSED(wasRecentlyAudible);
     const int idx = indexOf(frame);
     if (idx < 0) {
         return;
@@ -522,4 +522,3 @@ void TabWidget::slotActivateTab()
 {
     setCurrentIndex(sender()->objectName().rightRef(2).toInt() - 1);
 }
-
