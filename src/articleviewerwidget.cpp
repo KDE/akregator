@@ -25,6 +25,7 @@
 
 #include "articleviewerwidget.h"
 
+#include "helper_p.h"
 #include "akregatorconfig.h"
 #include "aboutdata.h"
 #include "actionmanager.h"
@@ -255,7 +256,7 @@ void ArticleViewerWidget::slotUpdateCombinedView()
     const std::vector< QSharedPointer<const AbstractMatcher> >::const_iterator filterEnd = m_filters.cend();
 
     QVector<Article> articles;
-    Q_FOREACH (const Article &i, m_articles) {
+    for (const Article &i : qAsConst(m_articles)) {
         if (i.isDeleted()) {
             continue;
         }

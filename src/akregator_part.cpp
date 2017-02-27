@@ -25,6 +25,7 @@
 
 #include "akregator_part.h"
 #include "akregator_debug.h"
+#include "helper_p.h"
 #include "config-akregator.h"
 #include "messageviewer/messageviewersettings.h"
 #include "akregatorconfig.h"
@@ -521,7 +522,7 @@ void Part::feedListLoaded(const QSharedPointer<FeedList> &list)
 
 void Part::flushAddFeedRequests()
 {
-    Q_FOREACH (const AddFeedRequest &i, m_requests) {
+    for (const AddFeedRequest &i : qAsConst(m_requests)) {
         Q_FOREACH (const QString &j, i.urls) {
             m_mainWidget->addFeedToGroup(j, i.group);
         }

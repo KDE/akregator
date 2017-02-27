@@ -27,6 +27,7 @@
 #include "articlejobs.h"
 #include "feed.h"
 #include "feedlist.h"
+#include "helper_p.h"
 
 #include "akregator_debug.h"
 
@@ -92,7 +93,7 @@ void ExpireItemsCommand::Private::createDeleteJobs()
         return;
     }
 
-    Q_FOREACH (const int i, m_feeds) {
+    for (const int i : qAsConst(m_feeds)) {
         Feed *const feed = qobject_cast<Feed *>(feedList->findByID(i));
         if (feed) {
             addDeleteJobForFeed(feed);

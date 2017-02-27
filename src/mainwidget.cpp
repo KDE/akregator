@@ -43,6 +43,7 @@
 #include "expireitemscommand.h"
 #include "importfeedlistcommand.h"
 #include "feed.h"
+#include "helper_p.h"
 #include "feedlist.h"
 #include "feedpropertiesdialog.h"
 #include "fetchqueue.h"
@@ -418,7 +419,7 @@ void MainWidget::sendArticle(bool attach)
 
 void MainWidget::cleanUpDownloadFile()
 {
-    Q_FOREACH (QPointer<Akregator::DownloadArticleJob> job, mListDownloadArticleJobs) {
+    for (QPointer<Akregator::DownloadArticleJob> job : qAsConst(mListDownloadArticleJobs)) {
         if (job) {
             job->forceCleanupTemporaryFile();
         }
@@ -510,9 +511,9 @@ QDomDocument MainWidget::feedListToOPML()
 void MainWidget::addFeedToGroup(const QString &url, const QString &groupName)
 {
     // Locate the group.
-    QList<TreeNode *> namedGroups = m_feedList->findByTitle(groupName);
+    const QList<TreeNode *> namedGroups = m_feedList->findByTitle(groupName);
     Folder *group = 0;
-    foreach (TreeNode *const candidate, namedGroups) {
+    for (TreeNode *const candidate : namedGroups) {
         if (candidate->isGroup()) {
             group =  static_cast<Folder *>(candidate);
             break;
@@ -1153,7 +1154,7 @@ void setSelectedArticleStatus(const Akregator::AbstractSelectionController *cont
     }
 
     Akregator::ArticleModifyJob *job = new Akregator::ArticleModifyJob;
-    Q_FOREACH (const Akregator::Article &i, articles) {
+    for (const Akregator::Article &i : articles) {
         const Akregator::ArticleId aid = { i.feed()->xmlUrl(), i.guid() };
         job->setStatus(aid, status);
     }

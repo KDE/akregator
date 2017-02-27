@@ -24,6 +24,7 @@
 
 #include "notificationmanager.h"
 #include "feed.h"
+#include "helper_p.h"
 
 #include <KLocalizedString>
 #include <knotification.h>
@@ -92,7 +93,7 @@ void NotificationManager::doNotify()
         }
     };
 
-    Q_FOREACH (const Article &i, m_articles) {
+    for (const Article &i : qAsConst(m_articles)) {
         const QString currentFeedTitle(i.feed()->title());
         if (feedTitle != currentFeedTitle) {
             // closing previous feed, if any, and resetting the counter

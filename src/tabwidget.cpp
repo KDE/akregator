@@ -23,6 +23,7 @@
 */
 
 #include "tabwidget.h"
+#include "helper_p.h"
 
 #include <QStyle>
 #include <QApplication>
@@ -505,7 +506,7 @@ void TabWidget::slotCloseTab()
 
 void TabWidget::slotReloadAllTabs()
 {
-    Q_FOREACH (Frame *frame, d->frames) {
+    for (Frame *frame : qAsConst(d->frames)) {
         frame->slotReload();
     }
 }

@@ -28,6 +28,7 @@
 #include "folder.h"
 #include "subscriptionlistjobs.h"
 #include "treenode.h"
+#include "helper_p.h"
 
 #include "akregator_debug.h"
 #include <KIconLoader>
@@ -470,7 +471,7 @@ bool SubscriptionListModel::dropMimeData(const QMimeData *data,
     }
 
     //don't drop nodes into their own subtree
-    Q_FOREACH (const int id, ids) {
+    for (const int id : qAsConst(ids)) {
         const Folder *const asFolder = qobject_cast<const Folder *>(m_feedList->findByID(id));
         if (asFolder && (asFolder == destFolder || asFolder->subtreeContains(destFolder))) {
             return false;
@@ -479,7 +480,7 @@ bool SubscriptionListModel::dropMimeData(const QMimeData *data,
 
     const TreeNode *const after = droppedOnNode->isGroup() ? destFolder->childAt(row) : droppedOnNode;
 
-    Q_FOREACH (const int id, ids) {
+    for (const int id : qAsConst(ids)) {
         const TreeNode *const node = m_feedList->findByID(id);
         if (!node) {
             continue;

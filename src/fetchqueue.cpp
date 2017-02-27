@@ -27,6 +27,7 @@
 #include "akregatorconfig.h"
 #include "feed.h"
 #include "treenode.h"
+#include "helper_p.h"
 
 #include <QList>
 
@@ -55,13 +56,13 @@ FetchQueue::~FetchQueue()
 
 void FetchQueue::slotAbort()
 {
-    foreach (Feed *const i, d->fetchingFeeds) {
+    for (Feed *const i : qAsConst(d->fetchingFeeds)) {
         disconnectFromFeed(i);
         i->slotAbortFetch();
     }
     d->fetchingFeeds.clear();
 
-    foreach (Feed *const i, d->queuedFeeds) {
+    for (Feed *const i : qAsConst(d->queuedFeeds)) {
         disconnectFromFeed(i);
     }
     d->queuedFeeds.clear();
