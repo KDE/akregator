@@ -25,6 +25,7 @@
 #include "folder.h"
 #include "article.h"
 #include "articlejobs.h"
+#include "helper_p.h"
 #include "feed.h"
 #include "fetchqueue.h"
 #include "treenodevisitor.h"
@@ -140,7 +141,7 @@ QList<const TreeNode *> Folder::children() const
 {
     QList<const TreeNode *> children;
     children.reserve(d->children.size());
-    Q_FOREACH (const TreeNode *i, d->children) {
+    for (const TreeNode *i : qAsConst(d->children)) {
         children.append(i);
     }
     return children;
@@ -154,7 +155,7 @@ QList<TreeNode *> Folder::children()
 QVector<const Akregator::Feed *> Folder::feeds() const
 {
     QHash<int, const Akregator::Feed *> feedsById;
-    Q_FOREACH (const TreeNode *i, d->children)
+    for (const TreeNode *i : qAsConst(d->children))
         Q_FOREACH (const Akregator::Feed *j, i->feeds()) {
             feedsById.insert(j->id(), j);
         }
@@ -165,7 +166,7 @@ QVector<const Akregator::Feed *> Folder::feeds() const
 QVector<Akregator::Feed *> Folder::feeds()
 {
     QHash<int, Akregator::Feed *> feedsById;
-    Q_FOREACH (TreeNode *i, d->children)
+    for (TreeNode *i : qAsConst(d->children))
         Q_FOREACH (Akregator::Feed *j, i->feeds()) {
             feedsById.insert(j->id(), j);
         }
@@ -177,7 +178,7 @@ QVector<const Folder *> Folder::folders() const
 {
     QHash<int, const Folder *> foldersById;
     foldersById.insert(id(), this);
-    Q_FOREACH (const TreeNode *i, d->children)
+    for (const TreeNode *i : qAsConst(d->children))
         Q_FOREACH (const Folder *j, i->folders()) {
             foldersById.insert(j->id(), j);
         }
@@ -189,7 +190,7 @@ QVector<Folder *> Folder::folders()
 {
     QHash<int, Folder *> foldersById;
     foldersById.insert(id(), this);
-    Q_FOREACH (TreeNode *i, d->children)
+    for (TreeNode *i : qAsConst(d->children))
         Q_FOREACH (Folder *j, i->folders()) {
             foldersById.insert(j->id(), j);
         }
