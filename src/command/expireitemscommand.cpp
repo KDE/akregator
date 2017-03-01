@@ -23,7 +23,7 @@
 */
 
 #include "expireitemscommand.h"
-
+#include "helper_p.h"
 #include "articlejobs.h"
 #include "feed.h"
 #include "feedlist.h"
@@ -132,7 +132,7 @@ QVector<int> ExpireItemsCommand::feeds() const
 
 void ExpireItemsCommand::doAbort()
 {
-    Q_FOREACH (KJob *const i, d->m_jobs) {
+    for (KJob *const i : qAsConst(d->m_jobs)) {
         i->kill();
     }
 }

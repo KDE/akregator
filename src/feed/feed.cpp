@@ -24,6 +24,7 @@
 */
 
 #include "feed.h"
+#include "helper_p.h"
 #include "akregatorconfig.h"
 #include "article.h"
 #include "articlejobs.h"
@@ -763,7 +764,7 @@ void Akregator::Feed::deleteExpiredArticles(ArticleDeleteJob *deleteJob)
     const QString feedUrl = xmlUrl();
     const bool useKeep = Settings::doNotExpireImportantArticles();
 
-    Q_FOREACH (const Article &i, d->articles) {
+    for (const Article &i : qAsConst(d->articles)) {
         if ((!useKeep || !i.keep()) && isExpired(i)) {
             const ArticleId aid = { feedUrl, i.guid() };
             toDelete.append(aid);
@@ -928,7 +929,7 @@ void Akregator::Feed::enforceLimitArticleNumber()
     int c = 0;
     const bool useKeep = Settings::doNotExpireImportantArticles();
 
-    Q_FOREACH (Article i, articles) { //krazy:exclude=foreach
+    for (Article i : qAsConst(articles)) {
         if (c < limit) {
             if (!i.isDeleted() && (!useKeep || !i.keep())) {
                 ++c;
