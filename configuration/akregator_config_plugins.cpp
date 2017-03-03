@@ -23,8 +23,8 @@
 #include <KAboutData>
 #include <KPluginFactory>
 #include <KLocalizedString>
-#include <PimCommon/ConfigurePluginsWidget>
-#include <PimCommon/ConfigurePluginsListWidget>
+#include <PimCommonAkonadi/ConfigurePluginsWidget>
+#include <PimCommonAkonadi/ConfigurePluginsListWidget>
 #include <QVBoxLayout>
 
 using namespace Akregator;
