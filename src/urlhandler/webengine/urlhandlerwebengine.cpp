@@ -27,7 +27,7 @@
 #include <QMenu>
 #include <QApplication>
 #include <KEmailAddress>
-#include <OpenEmailAddressJob>
+#include <LibkdepimAkonadi/OpenEmailAddressJob> //TODO remove it!
 #include <QUrlQuery>
 using namespace Akregator;
 

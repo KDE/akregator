@@ -29,7 +29,7 @@ target_link_libraries(akregator
     KF5::Crash
     KF5::Notifications
     KF5::KontactInterface
-    KF5::Libkdepim
+    KF5::LibkdepimAkonadi #remove akonadi dependancy
     akregatorprivate
     akregatorinterfaces
     KF5::PimCommon
@@ -108,7 +108,7 @@ target_link_libraries(akregatorprivate
     PRIVATE
     KF5::Parts
     KF5::Notifications
-    KF5::Libkdepim
+    KF5::LibkdepimAkonadi #remove akonadi dependancy
     KF5::Syndication
     akregatorinterfaces
     KF5::PimCommon
@@ -205,7 +205,7 @@ target_link_libraries(akregatorpart
     akregatorprivate
     KF5::KCMUtils
     KF5::NotifyConfig
-    KF5::Libkdepim
+    KF5::LibkdepimAkonadi #remove akonadi dependancy
     KF5::Syndication
     KF5::PimCommon
     KF5::PimTextEdit
