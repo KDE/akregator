@@ -78,8 +78,6 @@ public:
     bool handleClick(const QUrl &, ArticleViewerWebEngine *) const Q_DECL_OVERRIDE;
     bool handleContextMenuRequest(const QUrl &, const QPoint &, ArticleViewerWebEngine *) const Q_DECL_OVERRIDE;
     QString statusBarMessage(const QUrl &, ArticleViewerWebEngine *) const Q_DECL_OVERRIDE;
-private:
-    void runKAddressBook(const QUrl &url) const;
 };
 
 class ActionURLHandlerWebEngine : public URLHandlerWebEngine

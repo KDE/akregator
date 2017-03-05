@@ -27,7 +27,6 @@
 #include <QMenu>
 #include <QApplication>
 #include <KEmailAddress>
-#include <LibkdepimAkonadi/OpenEmailAddressJob> //TODO remove it!
 #include <QUrlQuery>
 using namespace Akregator;
 
@@ -65,17 +64,10 @@ QString MailToURLHandlerWebEngine::statusBarMessage(const QUrl &url, ArticleView
     return QString();
 }
 
-void MailToURLHandlerWebEngine::runKAddressBook(const QUrl &url) const
-{
-    KPIM::OpenEmailAddressJob *job = new KPIM::OpenEmailAddressJob(url.path(), 0);
-    job->start();
-}
-
 bool MailToURLHandlerWebEngine::handleContextMenuRequest(const QUrl &url, const QPoint &p, ArticleViewerWebEngine *) const
 {
     if (url.scheme() == QLatin1String("mailto")) {
         QMenu *menu = new QMenu();
-        QAction *open = menu->addAction(QIcon::fromTheme(QStringLiteral("view-pim-contacts")), i18n("&Open in Address Book"));
         QAction *copy = menu->addAction(QIcon::fromTheme(QStringLiteral("edit-copy")), i18n("&Copy Email Address"));
 
         QAction *a = menu->exec(p);
@@ -87,8 +79,6 @@ bool MailToURLHandlerWebEngine::handleContextMenuRequest(const QUrl &url, const 
                 clip->setText(fullEmail, QClipboard::Selection);
                 KPIM::BroadcastStatus::instance()->setStatusMsg(i18n("Address copied to clipboard."));
             }
-        } else if (a == open) {
-            runKAddressBook(url);
         }
         delete menu;
 
