@@ -20,7 +20,7 @@
 #ifndef AKREGATORCONFIGUREPLUGINLISTWIDGET_H
 #define AKREGATORCONFIGUREPLUGINLISTWIDGET_H
 
-#include <PimCommonAkonadi/ConfigurePluginsListWidget>
+#include <PimCommon/ConfigurePluginsListWidget>
 
 class AkregatorConfigurePluginListWidget : public PimCommon::ConfigurePluginsListWidget
 {
