@@ -25,7 +25,6 @@
 #include "trayicon.h"
 #include "akregatorconfig.h"
 
-#include <kwindowsystem.h>
 #include "akregator_debug.h"
 #include <KLocalizedString>
 #include <QMenu>
