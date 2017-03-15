@@ -144,7 +144,7 @@ Akregator::Feed *Akregator::Feed::fromOPML(QDomElement e, Backend::Storage *stor
 {
 
     if (!e.hasAttribute(QStringLiteral("xmlUrl")) && !e.hasAttribute(QStringLiteral("xmlurl")) && !e.hasAttribute(QStringLiteral("xmlURL"))) {
-        return 0;
+        return nullptr;
     }
 
     QString title = e.hasAttribute(QStringLiteral("text")) ? e.attribute(QStringLiteral("text")) : e.attribute(QStringLiteral("title"));
@@ -864,7 +864,7 @@ TreeNode *Akregator::Feed::next()
             p = p->parent();
         }
     }
-    return 0;
+    return nullptr;
 }
 
 const TreeNode *Akregator::Feed::next() const
@@ -881,7 +881,7 @@ const TreeNode *Akregator::Feed::next() const
             p = p->parent();
         }
     }
-    return 0;
+    return nullptr;
 }
 
 void Akregator::Feed::doArticleNotification()

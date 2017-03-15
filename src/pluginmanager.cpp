@@ -61,7 +61,7 @@ PluginManager::createFromQuery(const QString &constraint)
 
     if (offers.isEmpty()) {
         qCWarning(AKREGATOR_LOG) << "No matching plugin found.";
-        return 0;
+        return nullptr;
     }
 
     // Select plugin with highest rank
@@ -86,7 +86,7 @@ PluginManager::createFromService(const KService::Ptr &service, QObject *parent)
     if (!factory) {
         qCWarning(AKREGATOR_LOG) << QStringLiteral(" Could not create plugin factory for: %1\n"
                                  " Error message: %2").arg(service->library(), loader.errorString());
-        return 0;
+        return nullptr;
     }
     Plugin *const plugin = factory->create<Plugin>(parent);
 

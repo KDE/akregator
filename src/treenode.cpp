@@ -101,7 +101,7 @@ void TreeNode::setTitle(const QString &title)
 TreeNode *TreeNode::nextSibling()
 {
     if (!d->parent) {
-        return 0;
+        return nullptr;
     }
     const QList<TreeNode *> children = parent()->children();
     const int idx = children.indexOf(this);
@@ -112,7 +112,7 @@ TreeNode *TreeNode::nextSibling()
 const TreeNode *TreeNode::nextSibling() const
 {
     if (!d->parent) {
-        return 0;
+        return nullptr;
     }
     const QList<const TreeNode *> children = parent()->children();
     const int idx = children.indexOf(this);
@@ -123,7 +123,7 @@ const TreeNode *TreeNode::nextSibling() const
 TreeNode *TreeNode::prevSibling()
 {
     if (!d->parent) {
-        return 0;
+        return nullptr;
     }
     const QList<TreeNode *> children = parent()->children();
 
@@ -134,7 +134,7 @@ TreeNode *TreeNode::prevSibling()
 const TreeNode *TreeNode::prevSibling() const
 {
     if (!d->parent) {
-        return 0;
+        return nullptr;
     }
     const QList<const TreeNode *> children = parent()->children();
     const int idx = children.indexOf(this);
@@ -164,13 +164,13 @@ QList<TreeNode *> TreeNode::children()
 const TreeNode *TreeNode::childAt(int pos) const
 {
     Q_UNUSED(pos)
-    return 0;
+    return nullptr;
 }
 
 TreeNode *TreeNode::childAt(int pos)
 {
     Q_UNUSED(pos)
-    return 0;
+    return nullptr;
 }
 
 void TreeNode::setParent(Folder *parent)

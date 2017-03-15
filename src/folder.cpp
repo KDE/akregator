@@ -415,7 +415,7 @@ void Folder::disconnectFromNode(TreeNode *child)
 TreeNode *Folder::childAt(int pos)
 {
     if (pos < 0 || pos >= d->children.count()) {
-        return 0;
+        return nullptr;
     }
     return d->children.at(pos);
 }
@@ -423,7 +423,7 @@ TreeNode *Folder::childAt(int pos)
 const TreeNode *Folder::childAt(int pos) const
 {
     if (pos < 0 || pos >= d->children.count()) {
-        return 0;
+        return nullptr;
     }
     return d->children.at(pos);
 }
@@ -446,7 +446,7 @@ TreeNode *Folder::next()
             p = p->parent();
         }
     }
-    return 0;
+    return nullptr;
 }
 
 const TreeNode *Folder::next() const
@@ -467,7 +467,7 @@ const TreeNode *Folder::next() const
             p = p->parent();
         }
     }
-    return 0;
+    return nullptr;
 }
 
 QList<const TreeNode *> Folder::namedChildren(const QString &title) const

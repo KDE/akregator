@@ -309,7 +309,7 @@ FeedList::~FeedList()
 const Feed *FeedList::findByURL(const QString &feedURL) const
 {
     if (!d->urlMap.contains(feedURL)) {
-        return 0;
+        return nullptr;
     }
     const QList<Feed *> &v = d->urlMap[feedURL];
     return !v.isEmpty() ? v.front() : 0;
@@ -318,7 +318,7 @@ const Feed *FeedList::findByURL(const QString &feedURL) const
 Feed *FeedList::findByURL(const QString &feedURL)
 {
     if (!d->urlMap.contains(feedURL)) {
-        return 0;
+        return nullptr;
     }
     const QList<Feed *> &v = d->urlMap[feedURL];
     return !v.isEmpty() ? v.front() : 0;
