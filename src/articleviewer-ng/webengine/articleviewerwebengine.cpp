@@ -473,7 +473,7 @@ void ArticleViewerWebEngine::createViewerPluginToolManager(KActionCollection *ac
     mViewerPluginToolManager->setPluginName(QStringLiteral("akregator"));
     mViewerPluginToolManager->setServiceTypeName(QStringLiteral("Akregator/ViewerPlugin"));
     if (!mViewerPluginToolManager->initializePluginList()) {
-        qDebug() << " Impossible to initialize plugins";
+        qCWarning(AKREGATOR_LOG) << " Impossible to initialize plugins";
     }
     mViewerPluginToolManager->createView();
     connect(mViewerPluginToolManager, &MessageViewer::ViewerPluginToolManager::activatePlugin, this, &ArticleViewerWebEngine::slotActivatePlugin);
