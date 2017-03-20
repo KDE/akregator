@@ -182,7 +182,7 @@ void ArticleListView::showHeaderMenu(const QPoint &pos)
 
     const int colCount = model()->columnCount();
     int visibleColumns = 0; // number of column currently shown
-    QAction *visibleColumnsAction = 0;
+    QAction *visibleColumnsAction = nullptr;
     for (int i = 0; i < colCount; ++i) {
         QAction *act = menu->addAction(model()->headerData(i, Qt::Horizontal).toString());
         act->setCheckable(true);

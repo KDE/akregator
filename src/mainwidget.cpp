@@ -512,7 +512,7 @@ void MainWidget::addFeedToGroup(const QString &url, const QString &groupName)
 {
     // Locate the group.
     const QList<TreeNode *> namedGroups = m_feedList->findByTitle(groupName);
-    Folder *group = 0;
+    Folder *group = nullptr;
     for (TreeNode *const candidate : namedGroups) {
         if (candidate->isGroup()) {
             group =  static_cast<Folder *>(candidate);
@@ -703,7 +703,7 @@ void MainWidget::slotNodeSelected(TreeNode *node)
 
 void MainWidget::slotFeedAdd()
 {
-    Folder *group = 0;
+    Folder *group = nullptr;
     if (!m_selectionController->selectedSubscription()) {
         group = m_feedList->allFeedsFolder();
     } else {
