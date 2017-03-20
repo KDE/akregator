@@ -558,7 +558,7 @@ void FeedListManagementImpl::addFeed(const QString &url, const QString &catId)
     uint folder_id = catId.split(QLatin1Char('/'), QString::SkipEmptyParts).last().toUInt();
 
     // Get the folder
-    Folder *m_folder = 0;
+    Folder *m_folder = nullptr;
     QVector<Folder *> vector = m_feedList->folders();
     for (int i = 0; i < vector.size(); ++i) {
         if (vector.at(i)->id() == folder_id) {
