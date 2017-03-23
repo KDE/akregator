@@ -222,7 +222,7 @@ Part::Part(QWidget *parentWidget, QObject *parent, const QVariantList &)
     setPluginLoadingMode(LoadPluginsIfEnabled);
     setPluginInterfaceVersion(AKREGATOR_PLUGIN_INTERFACE_VERSION);
 
-    setComponentName(QStringLiteral("akregator"), QStringLiteral("akregator"));
+    setComponentName(QStringLiteral("akregator"), i18n("Akregator"));
     setXMLFile(QStringLiteral("akregator_part.rc"), true);
 
     new PartAdaptor(this);

@@ -40,7 +40,7 @@ EXPORT_KONTACT_PLUGIN(AkregatorPlugin, akregator)
 AkregatorPlugin::AkregatorPlugin(KontactInterface::Core *core, const QVariantList &)
     : KontactInterface::Plugin(core, core, "akregator"), m_interface(nullptr)
 {
-    setComponentName(QStringLiteral("akregator"), QStringLiteral("akregator"));
+    setComponentName(QStringLiteral("akregator"), i18n("Akregator"));
 
     QAction *action =
         new QAction(QIcon::fromTheme(QStringLiteral("bookmark-new")),
