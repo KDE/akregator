@@ -37,6 +37,7 @@
 #include <QPointer>
 #include <QString>
 #include <QTimer>
+#include <QFileInfo>
 
 #include <cassert>
 
@@ -145,7 +146,7 @@ void LoadFeedListCommand::Private::doLoad()
 
     QDomDocument doc;
 
-    if (!QFile::exists(fileName)) {
+    if (!QFileInfo::exists(fileName)) {
         handleDocument(defaultFeedList);
         return;
     }
