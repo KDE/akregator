@@ -370,7 +370,7 @@ void Part::slotOnShutdown()
 
 void Part::slotSettingsChanged()
 {
-    NotificationManager::self()->setWidget(isTrayIconEnabled() ? m_mainWidget->window() : 0, componentData().componentName());
+    NotificationManager::self()->setWidget(isTrayIconEnabled() ? m_mainWidget->window() : nullptr, componentData().componentName());
 
     if (Settings::showTrayIcon() && !TrayIcon::getInstance()) {
         TrayIcon *trayIcon = new TrayIcon(m_mainWidget->window());
@@ -390,8 +390,8 @@ void Part::slotSettingsChanged()
     if (!Settings::showTrayIcon()) {
         TrayIcon::getInstance()->disconnect();
         delete TrayIcon::getInstance();
-        TrayIcon::setInstance(0);
-        m_actionManager->setTrayIcon(0);
+        TrayIcon::setInstance(nullptr);
+        m_actionManager->setTrayIcon(nullptr);
     }
 
     Syndication::FileRetriever::setUseCache(Settings::useHTMLCache());
@@ -505,7 +505,7 @@ void Part::feedListLoaded(const QSharedPointer<FeedList> &list)
 {
     Q_ASSERT(!m_standardListLoaded);
     m_mainWidget->setFeedList(list);
-    m_standardListLoaded = list != 0;
+    m_standardListLoaded = list != nullptr;
 
     if (Settings::markAllFeedsReadOnStartup()) {
         m_mainWidget->slotMarkAllFeedsRead();
