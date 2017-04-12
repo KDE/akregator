@@ -48,7 +48,7 @@ class Q_DECL_HIDDEN LoadFeedListCommand::Private
 {
     LoadFeedListCommand *const q;
 public:
-    explicit Private(LoadFeedListCommand *qq) : q(qq), storage(0) {}
+    explicit Private(LoadFeedListCommand *qq) : q(qq), storage(nullptr) {}
     void handleDocument(const QDomDocument &doc);
     QString createBackup(const QString &path, bool *ok);
     void emitResult(const QSharedPointer<FeedList> &list);

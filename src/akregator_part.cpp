@@ -209,9 +209,9 @@ Part::Part(QWidget *parentWidget, QObject *parent, const QVariantList &)
     , m_shuttingDown(false)
     , m_doCrashSave(false)
     , m_backedUpList(false)
-    , m_mainWidget(0)
-    , m_storage(0)
-    , m_dialog(0)
+    , m_mainWidget(nullptr)
+    , m_storage(nullptr)
+    , m_dialog(nullptr)
 
 {
     mySelf = this;
@@ -239,9 +239,9 @@ Part::Part(QWidget *parentWidget, QObject *parent, const QVariantList &)
     }
     loadPlugins(QStringLiteral("storage"));   // FIXME: also unload them!
 
-    m_storage = 0;
+    m_storage = nullptr;
     Backend::StorageFactory *storageFactory = Backend::StorageFactoryRegistry::self()->getFactory(Settings::archiveBackend());
-    if (storageFactory != 0) {
+    if (storageFactory != nullptr) {
         m_storage = storageFactory->createStorage(QStringList());
     }
 
