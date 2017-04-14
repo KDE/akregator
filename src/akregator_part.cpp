@@ -228,9 +228,9 @@ Part::Part(QWidget *parentWidget, QObject *parent, const QVariantList &)
     new PartAdaptor(this);
     QDBusConnection::sessionBus().registerObject(QStringLiteral("/Akregator"), this);
 
-    m_standardFeedList = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QStringLiteral("/akregator/data/feeds.opml");
-    QFileInfo fileInfo(m_standardFeedList);
-    QDir().mkpath(fileInfo.absolutePath());
+    const QString path = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QStringLiteral("/akregator/data/");
+    QDir().mkpath(path);
+    m_standardFeedList = path + QStringLiteral("/feeds.opml");
 
     Backend::StorageFactoryDummyImpl *dummyFactory = new Backend::StorageFactoryDummyImpl();
     if (!Backend::StorageFactoryRegistry::self()->registerFactory(dummyFactory, dummyFactory->key())) {
