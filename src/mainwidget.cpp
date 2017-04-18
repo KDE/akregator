@@ -43,7 +43,7 @@
 #include "expireitemscommand.h"
 #include "importfeedlistcommand.h"
 #include "feed.h"
-#include "helper_p.h"
+
 #include "feedlist.h"
 #include "feedpropertiesdialog.h"
 #include "fetchqueue.h"

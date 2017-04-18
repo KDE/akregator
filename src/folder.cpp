@@ -25,7 +25,7 @@
 #include "folder.h"
 #include "article.h"
 #include "articlejobs.h"
-#include "helper_p.h"
+
 #include "feed.h"
 #include "fetchqueue.h"
 #include "treenodevisitor.h"

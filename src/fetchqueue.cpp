@@ -27,7 +27,7 @@
 #include "akregatorconfig.h"
 #include "feed.h"
 #include "treenode.h"
-#include "helper_p.h"
+
 
 #include <QList>
 

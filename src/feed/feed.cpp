@@ -24,7 +24,7 @@
 */
 
 #include "feed.h"
-#include "helper_p.h"
+
 #include "akregatorconfig.h"
 #include "article.h"
 #include "articlejobs.h"

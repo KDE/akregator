@@ -23,11 +23,11 @@
 */
 
 #include "expireitemscommand.h"
-#include "helper_p.h"
+
 #include "articlejobs.h"
 #include "feed.h"
 #include "feedlist.h"
-#include "helper_p.h"
+
 
 #include "akregator_debug.h"
 

@@ -24,7 +24,7 @@
 
 #include "notificationmanager.h"
 #include "feed.h"
-#include "helper_p.h"
+
 
 #include <KLocalizedString>
 #include <knotification.h>

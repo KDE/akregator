@@ -25,7 +25,7 @@
 
 #include "articleviewerwidget.h"
 
-#include "helper_p.h"
+
 #include "akregatorconfig.h"
 #include "aboutdata.h"
 #include "actionmanager.h"

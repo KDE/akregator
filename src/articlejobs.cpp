@@ -27,7 +27,7 @@
 #include "feed.h"
 #include "feedlist.h"
 #include "kernel.h"
-#include "helper_p.h"
+
 
 #include "akregator_debug.h"
 #include <KLocalizedString>

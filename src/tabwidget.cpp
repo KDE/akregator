@@ -23,7 +23,7 @@
 */
 
 #include "tabwidget.h"
-#include "helper_p.h"
+
 
 #include <QStyle>
 #include <QApplication>

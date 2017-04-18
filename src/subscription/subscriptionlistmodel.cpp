@@ -28,7 +28,7 @@
 #include "folder.h"
 #include "subscriptionlistjobs.h"
 #include "treenode.h"
-#include "helper_p.h"
+
 
 #include "akregator_debug.h"
 #include <KIconLoader>
