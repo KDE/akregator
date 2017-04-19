@@ -93,12 +93,10 @@ ArticleViewerWebEngine::ArticleViewerWebEngine(KActionCollection *ac, QWidget *p
     mWebShortcutMenuManager = new KIO::KUriFilterSearchProviderActions(this);
     mShareServiceManager = new PimCommon::ShareServiceUrlManager(this);
     connect(mShareServiceManager, &PimCommon::ShareServiceUrlManager::serviceUrlSelected, this, &ArticleViewerWebEngine::slotServiceUrlSelected);
-#if QT_VERSION >= QT_VERSION_CHECK(5, 7, 0)
     connect(page(), &QWebEnginePage::audioMutedChanged,
             this, &ArticleViewerWebEngine::slotWebPageMutedOrAudibleChanged);
     connect(page(), &QWebEnginePage::recentlyAudibleChanged,
             this, &ArticleViewerWebEngine::slotWebPageMutedOrAudibleChanged);
-#endif
 
     connect(WebEngineViewer::LocalDataBaseManager::self(), &WebEngineViewer::LocalDataBaseManager::checkUrlFinished, this, &ArticleViewerWebEngine::slotCheckedUrlFinished);
 
@@ -111,9 +109,7 @@ ArticleViewerWebEngine::~ArticleViewerWebEngine()
 
 void ArticleViewerWebEngine::slotWebPageMutedOrAudibleChanged()
 {
-#if QT_VERSION >= QT_VERSION_CHECK(5, 7, 0)
     Q_EMIT webPageMutedOrAudibleChanged(page()->isAudioMuted(), page()->recentlyAudible());
-#endif
 }
 
 QVariantHash ArticleViewerWebEngine::introductionData() const
@@ -175,11 +171,7 @@ void ArticleViewerWebEngine::slotCopyImageLocationInFrame()
 
 void ArticleViewerWebEngine::slotMute(bool mute)
 {
-#if QT_VERSION >= QT_VERSION_CHECK(5, 7, 0)
     page()->setAudioMuted(mute);
-#else
-    Q_UNUSED(mute);
-#endif
 }
 
 void ArticleViewerWebEngine::slotCopyLinkAddress()
@@ -257,14 +249,12 @@ void ArticleViewerWebEngine::slotWebHitFinished(const WebEngineViewer::WebHitTes
         popup.addSeparator();
         popup.addActions(viewerPluginActionList(MessageViewer::ViewerPluginInterface::NeedSelection));
     }
-#if QT_VERSION >= QT_VERSION_CHECK(5, 7, 0)
     popup.addSeparator();
     popup.addAction(ActionManager::getInstance()->action(QStringLiteral("viewer_print")));
     popup.addAction(ActionManager::getInstance()->action(QStringLiteral("viewer_printpreview")));
     popup.addSeparator();
     popup.addAction(ActionManager::getInstance()->action(QStringLiteral("tab_mute")));
     popup.addAction(ActionManager::getInstance()->action(QStringLiteral("tab_unmute")));
-#endif
     popup.addSeparator();
     popup.addAction(ActionManager::getInstance()->action(QStringLiteral("find_in_messages")));
     if (KPIMTextEdit::TextToSpeech::self()->isReady()) {
@@ -351,9 +341,7 @@ void ArticleViewerWebEngine::setArticleAction(ArticleViewerWebEngine::ArticleAct
 
 void ArticleViewerWebEngine::restoreCurrentPosition()
 {
-#if QT_VERSION >= QT_VERSION_CHECK(5, 7, 0)
     mPageEngine->runJavaScript(WebEngineViewer::WebEngineScript::scrollToRelativePosition(relativePosition()));
-#endif
 }
 
 void ArticleViewerWebEngine::forwardMouseReleaseEvent(QMouseEvent *event)

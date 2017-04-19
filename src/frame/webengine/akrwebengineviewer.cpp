@@ -55,9 +55,7 @@ AkrWebEngineViewer::AkrWebEngineViewer(KActionCollection *ac, QWidget *parent)
     settings()->setAttribute(QWebEngineSettings::LocalContentCanAccessRemoteUrls, false);
     settings()->setAttribute(QWebEngineSettings::LocalContentCanAccessFileUrls, false);
 
-#if QT_VERSION >= QT_VERSION_CHECK(5, 7, 0)
     settings()->setAttribute(QWebEngineSettings::AutoLoadIconsForPage, false);
-#endif
 }
 
 AkrWebEngineViewer::~AkrWebEngineViewer()
@@ -125,13 +123,11 @@ void AkrWebEngineViewer::slotWebHitFinished(const WebEngineViewer::WebHitTestRes
     popup.addSeparator();
     popup.addAction(ActionManager::getInstance()->action(QStringLiteral("viewer_print")));
     popup.addAction(ActionManager::getInstance()->action(QStringLiteral("viewer_printpreview")));
-#if QT_VERSION >= QT_VERSION_CHECK(5, 7, 0)
     popup.addSeparator();
     popup.addAction(pageAction(QWebEnginePage::SavePage));
     popup.addSeparator();
     popup.addAction(ActionManager::getInstance()->action(QStringLiteral("tab_mute")));
     popup.addAction(ActionManager::getInstance()->action(QStringLiteral("tab_unmute")));
-#endif
     const QList<QAction *> interceptorUrlActions = mNetworkAccessManager->interceptorUrlActions(result);
     if (!interceptorUrlActions.isEmpty()) {
         popup.addSeparator();
@@ -154,25 +150,6 @@ void AkrWebEngineViewer::displayContextMenu(const QPoint &pos)
 
 QWebEngineView *AkrWebEngineViewer::createWindow(QWebEnginePage::WebWindowType type)
 {
-#if QT_VERSION >= QT_VERSION_CHECK(5, 7, 1)
+    Q_UNUSED(type);
     return this;
-#else
-    switch (type) {
-    //For the moment create external windows.
-    case QWebEnginePage::WebDialog:
-    //TODO add in tab
-    case QWebEnginePage::WebBrowserTab:
-    case QWebEnginePage::WebBrowserWindow: {
-        if (!Settings::newWindowInTab()) {
-            WebEngineViewer::WebEngineView *view = new WebEngineViewer::WebEngineView();
-            view->setAttribute(Qt::WA_DeleteOnClose);
-            view->show();
-            return view;
-        }
-    }
-    default:
-        break;
-    }
-    return QWebEngineView::createWindow(type);
-#endif
 }
