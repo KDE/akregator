@@ -72,7 +72,7 @@ ArticleViewerWebEngine::ArticleViewerWebEngine(KActionCollection *ac, QWidget *p
     mNetworkAccessManager = new WebEngineViewer::InterceptorManager(this, ac, this);
     QWebEngineProfile *profile = new QWebEngineProfile(this);
     mPageEngine = new ArticleViewerWebEnginePage(profile, this);
-    profile->setPersistentCookiesPolicy(QWebEngineProfile::NoPersistentCookies);
+    profile->setPersistentCookiesPolicy(QWebEngineProfile::ForcePersistentCookies);
 
     setPage(mPageEngine);
 
