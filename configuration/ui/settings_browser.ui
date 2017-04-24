@@ -135,19 +135,10 @@
     </widget>
    </item>
    <item>
-    <widget class="QGroupBox" name="groupBox_5">
-     <property name="title">
-      <string>Safe Browsing</string>
+    <widget class="QCheckBox" name="kcfg_CheckPhishingUrl">
+     <property name="text">
+      <string>Verify URLs using Google's Safe Browsing API</string>
      </property>
-     <layout class="QVBoxLayout" name="verticalLayout_3">
-      <item>
-       <widget class="QCheckBox" name="kcfg_CheckPhishingUrl">
-        <property name="text">
-         <string>Check Url With Phishing Google System</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
     </widget>
    </item>
    <item>
