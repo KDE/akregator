@@ -44,7 +44,7 @@ using namespace Akregator;
 
 FrameManager::FrameManager(QObject *parent)
     : QObject(parent),
-      m_currentFrame(0)
+      m_currentFrame(nullptr)
 {
 }
 
