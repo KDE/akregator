@@ -32,8 +32,6 @@
 #include "akregator_debug.h"
 #include <KLocalizedString>
 #include <QUrl>
-#include <kparts/browserextension.h>
-#include <kparts/part.h>
 
 #include <Libkdepim/ProgressManager>
 

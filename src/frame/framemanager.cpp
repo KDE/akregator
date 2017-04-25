@@ -34,8 +34,6 @@
 #include <kprocess.h>
 #include <kshell.h>
 #include <kconfiggroup.h>
-#include <kparts/event.h>
-#include <kparts/guiactivateevent.h>
 #include "akregator_debug.h"
 #include <webengine/webengineframe.h>
 #include <QStringList>

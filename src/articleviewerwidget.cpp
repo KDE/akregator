@@ -52,7 +52,6 @@
 
 #include <kstandardaction.h>
 #include <ktoolinvocation.h>
-#include <KParts/BrowserRun>
 #include <kio/job.h>
 #include <QUrl>
 #include <grantleetheme/grantleethememanager.h>
