@@ -98,7 +98,8 @@ ArticleViewerWebEngine::ArticleViewerWebEngine(KActionCollection *ac, QWidget *p
     connect(page(), &QWebEnginePage::recentlyAudibleChanged,
             this, &ArticleViewerWebEngine::slotWebPageMutedOrAudibleChanged);
 
-    connect(WebEngineViewer::LocalDataBaseManager::self(), &WebEngineViewer::LocalDataBaseManager::checkUrlFinished, this, &ArticleViewerWebEngine::slotCheckedUrlFinished);
+    connect(phishingDatabase(), &WebEngineViewer::LocalDataBaseManager::checkUrlFinished,
+            this, &ArticleViewerWebEngine::slotCheckedUrlFinished);
 
 }
 
@@ -394,7 +395,7 @@ void ArticleViewerWebEngine::slotLinkClicked(const QUrl &url)
         return;
     }
     if (Settings::checkPhishingUrl()) {
-        WebEngineViewer::LocalDataBaseManager::self()->checkUrl(url);
+        phishingDatabase()->checkUrl(url);
     } else {
         openSafeUrl(url);
     }
