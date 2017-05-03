@@ -749,12 +749,12 @@ void Part::initFonts()
         }
         Settings::setMediumFontSize(medfs);
     }
-    QWebEngineSettings::globalSettings()->setFontFamily(QWebEngineSettings::StandardFont, Settings::standardFont());
-    QWebEngineSettings::globalSettings()->setFontFamily(QWebEngineSettings::FixedFont, Settings::fixedFont());
-    QWebEngineSettings::globalSettings()->setFontFamily(QWebEngineSettings::SerifFont, Settings::serifFont());
-    QWebEngineSettings::globalSettings()->setFontFamily(QWebEngineSettings::SansSerifFont, Settings::sansSerifFont());
-    QWebEngineSettings::globalSettings()->setFontSize(QWebEngineSettings::MinimumFontSize, Settings::minimumFontSize());
-    QWebEngineSettings::globalSettings()->setFontSize(QWebEngineSettings::DefaultFontSize, Settings::mediumFontSize());
+    QWebEngineSettings::defaultSettings()->setFontFamily(QWebEngineSettings::StandardFont, Settings::standardFont());
+    QWebEngineSettings::defaultSettings()->setFontFamily(QWebEngineSettings::FixedFont, Settings::fixedFont());
+    QWebEngineSettings::defaultSettings()->setFontFamily(QWebEngineSettings::SerifFont, Settings::serifFont());
+    QWebEngineSettings::defaultSettings()->setFontFamily(QWebEngineSettings::SansSerifFont, Settings::sansSerifFont());
+    QWebEngineSettings::defaultSettings()->setFontSize(QWebEngineSettings::MinimumFontSize, Settings::minimumFontSize());
+    QWebEngineSettings::defaultSettings()->setFontSize(QWebEngineSettings::DefaultFontSize, Settings::mediumFontSize());
 }
 
 bool Part::handleCommandLine(const QStringList &args)
