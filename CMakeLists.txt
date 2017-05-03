@@ -78,6 +78,7 @@ find_package(KF5PimCommonAkonadi ${PIMCOMMON_LIB_VERSION_LIB} CONFIG REQUIRED)
 
 add_definitions(-DQT_NO_URL_CAST_FROM_STRING)
 add_definitions(-DQT_USE_QSTRINGBUILDER)
+#add_definitions( -DQT_DISABLE_DEPRECATED_BEFORE=0x060000 )
 include_directories(${akregator_SOURCE_DIR} ${akregator_BINARY_DIR})
 include(CheckTypeSize)
 check_type_size("long" SIZEOF_LONG)

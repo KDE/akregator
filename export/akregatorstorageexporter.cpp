@@ -228,7 +228,7 @@ static void writeItem(FeedStorage *storage, const QString &guid, QXmlStreamWrite
 
     const uint published = storage->pubDate(guid);
     if (published > 0) {
-        const QString pdStr = QDateTime::fromTime_t(published).toString(Qt::ISODate);
+        const QString pdStr = QDateTime::fromSecsSinceEpoch(published).toString(Qt::ISODate);
         Elements::instance.published.write(pdStr, writer);
     }
 

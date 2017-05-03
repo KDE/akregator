@@ -155,7 +155,7 @@ Article::Private::Private()
       archive(0),
       status(0),
       hash(0),
-      pubDate(QDateTime::fromTime_t(1))
+      pubDate(QDateTime::fromSecsSinceEpoch(1))
 {
 }
 
@@ -165,7 +165,7 @@ Article::Private::Private(const QString &guid_, Feed *feed_, Backend::FeedStorag
       archive(archive_),
       status(archive->status(guid)),
       hash(archive->hash(guid)),
-      pubDate(QDateTime::fromTime_t(archive->pubDate(guid)))
+      pubDate(QDateTime::fromSecsSinceEpoch(archive->pubDate(guid)))
 {
 }
 
