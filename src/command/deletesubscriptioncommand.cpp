@@ -46,7 +46,7 @@ class DeleteNodeVisitor : public TreeNodeVisitor
 public:
     explicit DeleteNodeVisitor(QWidget *parent) : m_widget(parent), m_job(0) {}
 
-    bool visitFolder(Folder *node) Q_DECL_OVERRIDE {
+    bool visitFolder(Folder *node) override {
         const QString msg = node->title().isEmpty()
         ? i18n("<qt>Are you sure you want to delete this folder and its feeds and subfolders?</qt>")
         : i18n("<qt>Are you sure you want to delete folder <b>%1</b> and its feeds and subfolders?</qt>", node->title());
@@ -66,7 +66,7 @@ public:
         return true;
     }
 
-    bool visitFeed(Feed *node) Q_DECL_OVERRIDE {
+    bool visitFeed(Feed *node) override {
         QString msg;
         if (node->title().isEmpty())
         {

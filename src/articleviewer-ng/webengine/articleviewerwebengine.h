@@ -108,14 +108,14 @@ Q_SIGNALS:
     void webPageMutedOrAudibleChanged(bool isAudioMuted, bool wasRecentlyAudible);
 
 protected:
-    void resizeEvent(QResizeEvent *e) Q_DECL_OVERRIDE;
+    void resizeEvent(QResizeEvent *e) override;
 
     virtual void displayContextMenu(const QPoint &pos);
-    void forwardKeyReleaseEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
-    void forwardKeyPressEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
-    void forwardWheelEvent(QWheelEvent *e) Q_DECL_OVERRIDE;
-    void forwardMouseReleaseEvent(QMouseEvent *event) Q_DECL_OVERRIDE;
-    void contextMenuEvent(QContextMenuEvent *e) Q_DECL_OVERRIDE;
+    void forwardKeyReleaseEvent(QKeyEvent *e) override;
+    void forwardKeyPressEvent(QKeyEvent *e) override;
+    void forwardWheelEvent(QWheelEvent *e) override;
+    void forwardMouseReleaseEvent(QMouseEvent *event) override;
+    void contextMenuEvent(QContextMenuEvent *e) override;
 
 private Q_SLOTS:
     void slotServiceUrlSelected(PimCommon::ShareServiceUrlManager::ServiceType type);

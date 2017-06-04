@@ -46,7 +46,7 @@ public:
 
     ~Application() {}
 
-    int activate(const QStringList &args, const QString &workingDir) Q_DECL_OVERRIDE;
+    int activate(const QStringList &args, const QString &workingDir) override;
 
 private:
     Akregator::MainWindow *mMainWindow;

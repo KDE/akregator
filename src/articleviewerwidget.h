@@ -74,7 +74,7 @@ public:
      *  @param node The node to observe */
     void showNode(Akregator::TreeNode *node);
 
-    QSize sizeHint() const Q_DECL_OVERRIDE;
+    QSize sizeHint() const override;
 
     qreal zoomFactor() const;
 
@@ -130,7 +130,7 @@ protected Q_SLOTS:
 private:
     QSharedPointer<ArticleFormatter> combinedViewFormatter();
     QSharedPointer<ArticleFormatter> normalViewFormatter();
-    void keyPressEvent(QKeyEvent *e) Q_DECL_OVERRIDE;
+    void keyPressEvent(QKeyEvent *e) override;
 
     /** renders @c body. Use this method whereever possible.
      *  @param body html to render, without header and footer */

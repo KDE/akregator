@@ -64,9 +64,9 @@ public:
     AkregatorConfigHandler()
         : URLHandlerWebEngine() {}
     virtual ~AkregatorConfigHandler() {}
-    bool handleClick(const QUrl &, ArticleViewerWebEngine *) const Q_DECL_OVERRIDE;
-    bool handleContextMenuRequest(const QUrl &, const QPoint &, ArticleViewerWebEngine *) const Q_DECL_OVERRIDE;
-    QString statusBarMessage(const QUrl &, ArticleViewerWebEngine *) const Q_DECL_OVERRIDE;
+    bool handleClick(const QUrl &, ArticleViewerWebEngine *) const override;
+    bool handleContextMenuRequest(const QUrl &, const QPoint &, ArticleViewerWebEngine *) const override;
+    QString statusBarMessage(const QUrl &, ArticleViewerWebEngine *) const override;
 };
 
 class MailToURLHandlerWebEngine : public URLHandlerWebEngine
@@ -75,9 +75,9 @@ public:
     MailToURLHandlerWebEngine() : URLHandlerWebEngine() {}
     virtual ~MailToURLHandlerWebEngine() {}
 
-    bool handleClick(const QUrl &, ArticleViewerWebEngine *) const Q_DECL_OVERRIDE;
-    bool handleContextMenuRequest(const QUrl &, const QPoint &, ArticleViewerWebEngine *) const Q_DECL_OVERRIDE;
-    QString statusBarMessage(const QUrl &, ArticleViewerWebEngine *) const Q_DECL_OVERRIDE;
+    bool handleClick(const QUrl &, ArticleViewerWebEngine *) const override;
+    bool handleContextMenuRequest(const QUrl &, const QPoint &, ArticleViewerWebEngine *) const override;
+    QString statusBarMessage(const QUrl &, ArticleViewerWebEngine *) const override;
 };
 
 class ActionURLHandlerWebEngine : public URLHandlerWebEngine
@@ -86,9 +86,9 @@ public:
     ActionURLHandlerWebEngine() : URLHandlerWebEngine() {}
     virtual ~ActionURLHandlerWebEngine() {}
 
-    bool handleClick(const QUrl &, ArticleViewerWebEngine *) const Q_DECL_OVERRIDE;
-    bool handleContextMenuRequest(const QUrl &, const QPoint &, ArticleViewerWebEngine *) const Q_DECL_OVERRIDE;
-    QString statusBarMessage(const QUrl &, ArticleViewerWebEngine *) const Q_DECL_OVERRIDE;
+    bool handleClick(const QUrl &, ArticleViewerWebEngine *) const override;
+    bool handleContextMenuRequest(const QUrl &, const QPoint &, ArticleViewerWebEngine *) const override;
+    QString statusBarMessage(const QUrl &, ArticleViewerWebEngine *) const override;
 };
 
 }

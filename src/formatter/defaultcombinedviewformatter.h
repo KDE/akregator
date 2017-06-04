@@ -32,9 +32,9 @@ public:
     explicit DefaultCombinedViewFormatter(const QString &grantleeDirectory, const QUrl &imageDir, QPaintDevice *device = nullptr);
     ~DefaultCombinedViewFormatter();
 
-    QString formatArticles(const QVector<Article> &articles, IconOption option) const Q_DECL_OVERRIDE;
+    QString formatArticles(const QVector<Article> &articles, IconOption option) const override;
 
-    QString formatSummary(TreeNode *node) const Q_DECL_OVERRIDE;
+    QString formatSummary(TreeNode *node) const override;
 
 private:
     DefaultCombinedViewFormatter();

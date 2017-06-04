@@ -90,7 +90,7 @@ public:
         Opens feedlist
         @param url URL to feedlist
         */
-    bool openUrl(const QUrl &url) Q_DECL_OVERRIDE;
+    bool openUrl(const QUrl &url) override;
 
     /** Opens standard feedlist */
     void openStandardFeedList();
@@ -163,7 +163,7 @@ private:
     void loadPlugins(const QString &type);
 
     /** This must be implemented by each part */
-    bool openFile() Q_DECL_OVERRIDE;
+    bool openFile() override;
 
     void importFile(const QUrl &url);
 

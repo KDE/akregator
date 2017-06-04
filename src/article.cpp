@@ -118,27 +118,27 @@ class EnclosureImpl : public Enclosure
 {
 public:
     EnclosureImpl(const QString &url, const QString &type, uint length) : m_url(url), m_type(type), m_length(length) {}
-    QString url() const Q_DECL_OVERRIDE
+    QString url() const override
     {
         return m_url;
     }
-    QString type() const Q_DECL_OVERRIDE
+    QString type() const override
     {
         return m_type;
     }
-    QString title() const Q_DECL_OVERRIDE
+    QString title() const override
     {
         return m_title;
     }
-    uint length() const Q_DECL_OVERRIDE
+    uint length() const override
     {
         return m_length;
     }
-    uint duration() const Q_DECL_OVERRIDE
+    uint duration() const override
     {
         return 0;
     }
-    bool isNull() const Q_DECL_OVERRIDE
+    bool isNull() const override
     {
         return m_url.isNull();
     }

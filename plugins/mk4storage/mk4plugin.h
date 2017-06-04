@@ -44,7 +44,7 @@ public:
     ~MK4Plugin();
 
 private:
-    void doInitialize() Q_DECL_OVERRIDE;
+    void doInitialize() override;
 
 private:
     StorageFactory *m_factory;

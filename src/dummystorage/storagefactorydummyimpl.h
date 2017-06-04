@@ -41,14 +41,14 @@ class Storage;
 class AKREGATORPART_EXPORT StorageFactoryDummyImpl : public StorageFactory
 {
 public:
-    QString key() const Q_DECL_OVERRIDE;
-    QString name() const Q_DECL_OVERRIDE;
-    void configure() Q_DECL_OVERRIDE;
-    bool isConfigurable() const Q_DECL_OVERRIDE
+    QString key() const override;
+    QString name() const override;
+    void configure() override;
+    bool isConfigurable() const override
     {
         return false;
     }
-    Storage *createStorage(const QStringList &params) const Q_DECL_OVERRIDE;
+    Storage *createStorage(const QStringList &params) const override;
 };
 
 } // namespace Backend

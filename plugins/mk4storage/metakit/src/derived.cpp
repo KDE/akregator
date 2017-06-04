@@ -45,20 +45,20 @@ protected:
 public:
     c4_FilterSeq(c4_Sequence &seq_, c4_Cursor low_, c4_Cursor high_);
 
-    int RemapIndex(int, const c4_Sequence *)const Q_DECL_OVERRIDE;
+    int RemapIndex(int, const c4_Sequence *)const override;
 
-    int NumRows()const Q_DECL_OVERRIDE;
+    int NumRows()const override;
 
-    int Compare(int, c4_Cursor)const Q_DECL_OVERRIDE;
-    bool Get(int, int, c4_Bytes &) Q_DECL_OVERRIDE;
+    int Compare(int, c4_Cursor)const override;
+    bool Get(int, int, c4_Bytes &) override;
 
-    void InsertAt(int, c4_Cursor, int = 1) Q_DECL_OVERRIDE;
-    void RemoveAt(int, int = 1) Q_DECL_OVERRIDE;
-    void Set(int, const c4_Property &, const c4_Bytes &) Q_DECL_OVERRIDE;
+    void InsertAt(int, c4_Cursor, int = 1) override;
+    void RemoveAt(int, int = 1) override;
+    void Set(int, const c4_Property &, const c4_Bytes &) override;
     virtual void SetSize(int);
 
-    c4_Notifier *PreChange(c4_Notifier &nf_) Q_DECL_OVERRIDE;
-    void PostChange(c4_Notifier &nf_) Q_DECL_OVERRIDE;
+    c4_Notifier *PreChange(c4_Notifier &nf_) override;
+    void PostChange(c4_Notifier &nf_) override;
 };
 
 /////////////////////////////////////////////////////////////////////////////
@@ -488,8 +488,8 @@ public:
     c4_SortSeq(c4_Sequence &seq_, c4_Sequence *down_);
     virtual ~c4_SortSeq();
 
-    c4_Notifier *PreChange(c4_Notifier &nf_) Q_DECL_OVERRIDE;
-    void PostChange(c4_Notifier &nf_) Q_DECL_OVERRIDE;
+    c4_Notifier *PreChange(c4_Notifier &nf_) override;
+    void PostChange(c4_Notifier &nf_) override;
 
 private:
     struct c4_SortInfo {
@@ -511,7 +511,7 @@ private:
     void MergeSortThis(T *ar, int size, T scratch[]);
     void MergeSort(T ar[], int size);
 
-    int Compare(int, c4_Cursor)const Q_DECL_OVERRIDE;
+    int Compare(int, c4_Cursor)const override;
     int PosInMap(c4_Cursor cursor_)const;
 
     c4_SortInfo *_info;
@@ -872,13 +872,13 @@ public:
     c4_ProjectSeq(c4_Sequence &seq_, c4_Sequence &in_, bool, c4_Sequence *out_);
     virtual ~c4_ProjectSeq();
 
-    int NumHandlers()const Q_DECL_OVERRIDE;
-    c4_Handler &NthHandler(int)const Q_DECL_OVERRIDE;
-    const c4_Sequence *HandlerContext(int)const Q_DECL_OVERRIDE;
-    int AddHandler(c4_Handler *) Q_DECL_OVERRIDE;
+    int NumHandlers()const override;
+    c4_Handler &NthHandler(int)const override;
+    const c4_Sequence *HandlerContext(int)const override;
+    int AddHandler(c4_Handler *) override;
 
-    bool Get(int, int, c4_Bytes &) Q_DECL_OVERRIDE;
-    void Set(int, const c4_Property &, const c4_Bytes &) Q_DECL_OVERRIDE;
+    bool Get(int, int, c4_Bytes &) override;
+    void Set(int, const c4_Property &, const c4_Bytes &) override;
 };
 
 /////////////////////////////////////////////////////////////////////////////

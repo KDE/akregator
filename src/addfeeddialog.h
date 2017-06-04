@@ -51,13 +51,13 @@ public:
     explicit AddFeedDialog(QWidget *parent = nullptr, const QString &name = QString());
     ~AddFeedDialog();
 
-    QSize sizeHint() const Q_DECL_OVERRIDE;
+    QSize sizeHint() const override;
 
     void setUrl(const QString &t);
     Feed *feed() const;
 
 public Q_SLOTS:
-    void accept() Q_DECL_OVERRIDE;
+    void accept() override;
 
     void fetchCompleted(Akregator::Feed *);
     void fetchDiscovery(Akregator::Feed *);

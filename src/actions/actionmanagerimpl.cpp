@@ -64,7 +64,7 @@ class ActionManagerImpl::NodeSelectVisitor : public TreeNodeVisitor
 public:
     NodeSelectVisitor(ActionManagerImpl *manager) : m_manager(manager) {}
 
-    bool visitFeed(Feed *node) Q_DECL_OVERRIDE {
+    bool visitFeed(Feed *node) override {
         QAction *remove = m_manager->action(QStringLiteral("feed_remove"));
         if (remove)
         {
@@ -83,7 +83,7 @@ public:
         return true;
     }
 
-    bool visitFolder(Folder *node) Q_DECL_OVERRIDE {
+    bool visitFolder(Folder *node) override {
         QAction *remove = m_manager->action(QStringLiteral("feed_remove"));
         if (remove)
         {

@@ -34,16 +34,16 @@ public:
     explicit WebEngineFrame(KActionCollection *ac, QWidget *parent = nullptr);
     ~WebEngineFrame();
 
-    QUrl url() const Q_DECL_OVERRIDE;
-    bool openUrl(const OpenUrlRequest &request) Q_DECL_OVERRIDE;
-    void loadConfig(const KConfigGroup &, const QString &) Q_DECL_OVERRIDE;
-    bool saveConfig(KConfigGroup &, const QString &) Q_DECL_OVERRIDE;
+    QUrl url() const override;
+    bool openUrl(const OpenUrlRequest &request) override;
+    void loadConfig(const KConfigGroup &, const QString &) override;
+    bool saveConfig(KConfigGroup &, const QString &) override;
 
-    qreal zoomFactor() const Q_DECL_OVERRIDE;
+    qreal zoomFactor() const override;
 
 public Q_SLOTS:
-    void slotReload() Q_DECL_OVERRIDE;
-    void slotStop() Q_DECL_OVERRIDE;
+    void slotReload() override;
+    void slotStop() override;
 
     void slotZoomChangeInFrame(int frameId, qreal value);
     void slotCopyInFrame(int frameId);

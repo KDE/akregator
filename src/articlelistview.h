@@ -55,7 +55,7 @@ public:
     explicit FilterDeletedProxyModel(QObject *parent = nullptr);
 
 private:
-    bool filterAcceptsRow(int source_row, const QModelIndex &source_parent) const Q_DECL_OVERRIDE;
+    bool filterAcceptsRow(int source_row, const QModelIndex &source_parent) const override;
 };
 
 class AKREGATORPART_EXPORT SortColorizeProxyModel : public QSortFilterProxyModel
@@ -65,12 +65,12 @@ public:
 
     explicit SortColorizeProxyModel(QObject *parent = nullptr);
 
-    QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const Q_DECL_OVERRIDE;
+    QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
 
     void setFilters(const std::vector<QSharedPointer<const Akregator::Filters::AbstractMatcher> > &);
 
 private:
-    bool filterAcceptsRow(int source_row, const QModelIndex &source_parent) const Q_DECL_OVERRIDE;
+    bool filterAcceptsRow(int source_row, const QModelIndex &source_parent) const override;
 
     QIcon m_keepFlagIcon;
     std::vector<QSharedPointer<const Akregator::Filters::AbstractMatcher> > m_matchers;
@@ -89,35 +89,35 @@ public:
     ~ArticleListView();
 
     //impl ArticleLister
-    void setArticleModel(Akregator::ArticleModel *model) Q_DECL_OVERRIDE;
+    void setArticleModel(Akregator::ArticleModel *model) override;
 
     //impl ArticleLister
-    QItemSelectionModel *articleSelectionModel() const Q_DECL_OVERRIDE;
+    QItemSelectionModel *articleSelectionModel() const override;
 
     //impl ArticleLister
-    const QAbstractItemView *itemView() const Q_DECL_OVERRIDE;
+    const QAbstractItemView *itemView() const override;
 
     //impl ArticleLister
-    QAbstractItemView *itemView() Q_DECL_OVERRIDE;
+    QAbstractItemView *itemView() override;
 
     //impl ArticleLister
-    QPoint scrollBarPositions() const Q_DECL_OVERRIDE;
+    QPoint scrollBarPositions() const override;
 
     //impl ArticleLister
-    void setScrollBarPositions(const QPoint &p) Q_DECL_OVERRIDE;
+    void setScrollBarPositions(const QPoint &p) override;
 
     //impl ArticleLister
-    void setFilters(const std::vector<QSharedPointer<const Akregator::Filters::AbstractMatcher> > &) Q_DECL_OVERRIDE;
+    void setFilters(const std::vector<QSharedPointer<const Akregator::Filters::AbstractMatcher> > &) override;
 
     //impl ArticleLister
-    void forceFilterUpdate() Q_DECL_OVERRIDE;
+    void forceFilterUpdate() override;
 
-    void setIsAggregation(bool isAggregation) Q_DECL_OVERRIDE;
+    void setIsAggregation(bool isAggregation) override;
 
-    void setModel(QAbstractItemModel *model) Q_DECL_OVERRIDE;
+    void setModel(QAbstractItemModel *model) override;
 
 protected:
-    void mousePressEvent(QMouseEvent *ev) Q_DECL_OVERRIDE;
+    void mousePressEvent(QMouseEvent *ev) override;
 
 Q_SIGNALS:
     void signalMouseButtonPressed(int, const QUrl &);
@@ -143,7 +143,7 @@ private:
     void saveHeaderSettings();
     void loadHeaderSettings();
 
-    void contextMenuEvent(QContextMenuEvent *event) Q_DECL_OVERRIDE;
+    void contextMenuEvent(QContextMenuEvent *event) override;
 
     void selectIndex(const QModelIndex &index);
 

@@ -86,12 +86,12 @@ public:
 
     ~ArticleMatcher();
 
-    bool matches(const Article &article) const Q_DECL_OVERRIDE;
-    bool operator==(const AbstractMatcher &other) const Q_DECL_OVERRIDE;
-    bool operator!=(const AbstractMatcher &other) const Q_DECL_OVERRIDE;
+    bool matches(const Article &article) const override;
+    bool operator==(const AbstractMatcher &other) const override;
+    bool operator!=(const AbstractMatcher &other) const override;
 
-    void writeConfig(KConfigGroup *config) const Q_DECL_OVERRIDE;
-    void readConfig(KConfigGroup *config) Q_DECL_OVERRIDE;
+    void writeConfig(KConfigGroup *config) const override;
+    void readConfig(KConfigGroup *config) override;
 
 private:
 

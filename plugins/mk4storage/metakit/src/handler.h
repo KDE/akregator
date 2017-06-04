@@ -94,13 +94,13 @@ public:
     c4_HandlerSeq(c4_Persist *);
     c4_HandlerSeq(c4_HandlerSeq &owner_, c4_Handler *handler_);
 
-    int NumRows()const Q_DECL_OVERRIDE;
-    void SetNumRows(int) Q_DECL_OVERRIDE;
+    int NumRows()const override;
+    void SetNumRows(int) override;
 
-    int NumHandlers()const Q_DECL_OVERRIDE;
-    c4_Handler &NthHandler(int)const Q_DECL_OVERRIDE;
-    const c4_Sequence *HandlerContext(int)const Q_DECL_OVERRIDE;
-    int AddHandler(c4_Handler *) Q_DECL_OVERRIDE;
+    int NumHandlers()const override;
+    c4_Handler &NthHandler(int)const override;
+    const c4_Sequence *HandlerContext(int)const override;
+    int AddHandler(c4_Handler *) override;
 
     void DefineRoot();
     void Restructure(c4_Field &, bool remove_);
@@ -109,9 +109,9 @@ public:
     void DetermineSpaceUsage();
 
     c4_Field &Definition()const;
-    const char *Description() Q_DECL_OVERRIDE;
+    const char *Description() override;
     c4_HandlerSeq &Parent()const;
-    c4_Persist *Persist()const Q_DECL_OVERRIDE;
+    c4_Persist *Persist()const override;
 
     c4_Field &Field(int)const;
     int NumFields()const;
@@ -133,7 +133,7 @@ public:
     static void BuildMeta(int, int, c4_View &, const c4_Field &);
 
 protected:
-    c4_Handler *CreateHandler(const c4_Property &) Q_DECL_OVERRIDE;
+    c4_Handler *CreateHandler(const c4_Property &) override;
 
     virtual ~c4_HandlerSeq();
 };

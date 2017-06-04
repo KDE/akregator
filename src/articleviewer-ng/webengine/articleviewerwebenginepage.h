@@ -34,7 +34,7 @@ Q_SIGNALS:
     void urlClicked(const QUrl &url);
 
 protected:
-    bool acceptNavigationRequest(const QUrl &url, NavigationType type, bool isMainFrame) Q_DECL_OVERRIDE;
+    bool acceptNavigationRequest(const QUrl &url, NavigationType type, bool isMainFrame) override;
 
 private:
     void slotFeaturePermissionRequested(const QUrl &url, QWebEnginePage::Feature feature);

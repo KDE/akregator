@@ -67,7 +67,7 @@ class FeedList::AddNodeVisitor : public TreeNodeVisitor
 public:
     AddNodeVisitor(FeedList *list) : m_list(list) {}
 
-    bool visitFeed(Feed *node) Q_DECL_OVERRIDE {
+    bool visitFeed(Feed *node) override {
         m_list->d->idMap.insert(node->id(), node);
         m_list->d->flatList.append(node);
         m_list->d->urlMap[node->xmlUrl()].append(node);
@@ -92,7 +92,7 @@ public:
         TreeNodeVisitor::visit(node);
     }
 
-    bool visitTreeNode(TreeNode *node) Q_DECL_OVERRIDE {
+    bool visitTreeNode(TreeNode *node) override {
         if (!m_preserveID)
         {
             node->setId(m_list->generateID());
@@ -107,7 +107,7 @@ public:
         return true;
     }
 
-    bool visitFolder(Folder *node) Q_DECL_OVERRIDE {
+    bool visitFolder(Folder *node) override {
         connect(node, &Folder::signalChildAdded, m_list, &FeedList::slotNodeAdded);
         connect(node, &Folder::signalAboutToRemoveChild, m_list, &FeedList::signalAboutToRemoveNode);
         connect(node, &Folder::signalChildRemoved, m_list, &FeedList::slotNodeRemoved);
@@ -132,20 +132,20 @@ class FeedList::RemoveNodeVisitor : public TreeNodeVisitor
 public:
     RemoveNodeVisitor(FeedList *list) : m_list(list) {}
 
-    bool visitFeed(Feed *node) Q_DECL_OVERRIDE {
+    bool visitFeed(Feed *node) override {
         visitTreeNode(node);
         m_list->d->urlMap[node->xmlUrl()].removeAll(node);
         return true;
     }
 
-    bool visitTreeNode(TreeNode *node) Q_DECL_OVERRIDE {
+    bool visitTreeNode(TreeNode *node) override {
         m_list->d->idMap.remove(node->id());
         m_list->d->flatList.removeAll(node);
         m_list->disconnect(node);
         return true;
     }
 
-    bool visitFolder(Folder *node) Q_DECL_OVERRIDE {
+    bool visitFolder(Folder *node) override {
         visitTreeNode(node);
 
         return true;

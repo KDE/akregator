@@ -50,12 +50,12 @@ public:
     {
     }
 
-    bool visitFeed(Feed *node) Q_DECL_OVERRIDE {
+    bool visitFeed(Feed *node) override {
         text = parent->mGrantleeViewFormatter->formatFeed(node);
         return true;
     }
 
-    bool visitFolder(Folder *node) Q_DECL_OVERRIDE {
+    bool visitFolder(Folder *node) override {
         text = parent->mGrantleeViewFormatter->formatFolder(node);
         return true;
     }

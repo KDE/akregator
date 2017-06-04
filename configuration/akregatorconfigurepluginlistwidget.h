@@ -29,10 +29,10 @@ public:
     explicit AkregatorConfigurePluginListWidget(QWidget *parent = nullptr);
     ~AkregatorConfigurePluginListWidget();
 
-    void save() Q_DECL_OVERRIDE;
-    void doLoadFromGlobalSettings() Q_DECL_OVERRIDE;
-    void doResetToDefaultsOther() Q_DECL_OVERRIDE;
-    void initialize() Q_DECL_OVERRIDE;
+    void save() override;
+    void doLoadFromGlobalSettings() override;
+    void doResetToDefaultsOther() override;
+    void initialize() override;
 private:
     void slotConfigureClicked(const QString &configureGroupName, const QString &identifier);
     QList<PluginItem *> mPluginWebEngineItems;

@@ -78,26 +78,26 @@ public:
 
 public Q_SLOTS:
     void slotClearStatusText();
-    void slotSetStatusBarText(const QString &c) Q_DECL_OVERRIDE;
+    void slotSetStatusBarText(const QString &c) override;
 
 protected:
     /**
      * This method is called when it is time for the app to save its
      * properties for session management purposes.
      */
-    void saveProperties(KConfigGroup &) Q_DECL_OVERRIDE;
+    void saveProperties(KConfigGroup &) override;
 
     /**
      * This method is called when this app is restored.  The KConfig
      * object points to the session management config file that was saved
      * with @ref saveProperties
      */
-    void readProperties(const KConfigGroup &) Q_DECL_OVERRIDE;
+    void readProperties(const KConfigGroup &) override;
 
     /**
      * Reimplemented to say if app will be running in system tray if necessary
      */
-    bool queryClose() Q_DECL_OVERRIDE;
+    bool queryClose() override;
 
 protected Q_SLOTS:
     void slotQuit();

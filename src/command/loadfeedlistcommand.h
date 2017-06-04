@@ -56,8 +56,8 @@ Q_SIGNALS:
     void result(const QSharedPointer<Akregator::FeedList> &feedList);
 
 private:
-    void doStart() Q_DECL_OVERRIDE;
-    void doAbort() Q_DECL_OVERRIDE;
+    void doStart() override;
+    void doAbort() override;
 
 private:
     class Private;

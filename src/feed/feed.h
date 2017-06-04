@@ -83,10 +83,10 @@ public:
     explicit Feed(Akregator::Backend::Storage *storage);
     ~Feed();
 
-    bool accept(TreeNodeVisitor *visitor) Q_DECL_OVERRIDE;
+    bool accept(TreeNodeVisitor *visitor) override;
 
     /** exports the feed settings to OPML */
-    QDomElement toOPML(QDomElement parent, QDomDocument document) const Q_DECL_OVERRIDE;
+    QDomElement toOPML(QDomElement parent, QDomDocument document) const override;
 
     /**
         returns whether this feed uses its own fetch interval or the global setting
@@ -178,24 +178,24 @@ public:
     Syndication::ErrorCode fetchErrorCode() const;
 
     /** returns the unread count for this feed */
-    int unread() const Q_DECL_OVERRIDE;
+    int unread() const override;
 
     /** returns the number of total articles in this feed
     @return number of articles */
 
-    int totalCount() const Q_DECL_OVERRIDE;
+    int totalCount() const override;
 
     /** returns if the article archive of this feed is loaded */
     bool isArticlesLoaded() const;
 
     /** returns if this node is a feed group (@c false here) */
-    bool isGroup() const Q_DECL_OVERRIDE
+    bool isGroup() const override
     {
         return false;
     }
 
     //impl
-    bool isAggregation() const Q_DECL_OVERRIDE
+    bool isAggregation() const override
     {
         return false;
     }
@@ -203,23 +203,23 @@ public:
     /** returns the next node in the tree.
     Calling next() unless it returns 0 iterates through the tree in pre-order
     */
-    const TreeNode *next() const Q_DECL_OVERRIDE;
-    TreeNode *next() Q_DECL_OVERRIDE;
+    const TreeNode *next() const override;
+    TreeNode *next() override;
 
     //impl
-    QIcon icon() const Q_DECL_OVERRIDE;
+    QIcon icon() const override;
 
     /** deletes expired articles */
     void deleteExpiredArticles(Akregator::ArticleDeleteJob *job);
 
     bool isFetching() const;
 
-    QVector<const Feed *> feeds() const Q_DECL_OVERRIDE;
-    QVector<Feed *> feeds() Q_DECL_OVERRIDE;
-    QVector<const Folder *> folders() const Q_DECL_OVERRIDE;
-    QVector<Folder *> folders() Q_DECL_OVERRIDE;
+    QVector<const Feed *> feeds() const override;
+    QVector<Feed *> feeds() override;
+    QVector<const Folder *> folders() const override;
+    QVector<Folder *> folders() override;
 
-    KJob *createMarkAsReadJob() Q_DECL_OVERRIDE;
+    KJob *createMarkAsReadJob() override;
 
 public Q_SLOTS:
     /** starts fetching */
@@ -228,7 +228,7 @@ public Q_SLOTS:
     void slotAbortFetch();
 
     /** add this feed to the fetch queue @c queue */
-    void slotAddToFetchQueue(Akregator::FetchQueue *queue, bool intervalFetchOnly = false) Q_DECL_OVERRIDE;
+    void slotAddToFetchQueue(Akregator::FetchQueue *queue, bool intervalFetchOnly = false) override;
 
     void slotAddFeedIconListener();
 
@@ -250,7 +250,7 @@ private:
 private:
     void setFavicon(const QIcon &icon);
     void loadFavicon(const QUrl &url);
-    QVector<Article> articles() Q_DECL_OVERRIDE;
+    QVector<Article> articles() override;
 
     /** loads articles from archive **/
     void loadArticles();
@@ -258,7 +258,7 @@ private:
 
     void recalcUnreadCount();
 
-    void doArticleNotification() Q_DECL_OVERRIDE;
+    void doArticleNotification() override;
 
     /** sets the unread count for this feed */
     void setUnread(int unread);

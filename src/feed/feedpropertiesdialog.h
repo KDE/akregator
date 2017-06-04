@@ -69,7 +69,7 @@ public:
 
 public Q_SLOTS:
 
-    void accept() Q_DECL_OVERRIDE;
+    void accept() override;
 
 protected:
     QString feedName() const;

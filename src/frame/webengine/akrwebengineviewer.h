@@ -33,10 +33,10 @@ public:
     ~AkrWebEngineViewer();
 
 protected:
-    void displayContextMenu(const QPoint &pos) Q_DECL_OVERRIDE;
+    void displayContextMenu(const QPoint &pos) override;
 
-    void contextMenuEvent(QContextMenuEvent *e) Q_DECL_OVERRIDE;
-    QWebEngineView *createWindow(QWebEnginePage::WebWindowType type) Q_DECL_OVERRIDE;
+    void contextMenuEvent(QContextMenuEvent *e) override;
+    QWebEngineView *createWindow(QWebEnginePage::WebWindowType type) override;
 private Q_SLOTS:
     void slotWebHitFinished(const WebEngineViewer::WebHitTestResult &result);
 

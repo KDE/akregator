@@ -40,8 +40,8 @@ class AkregatorUniqueAppHandler : public KontactInterface::UniqueAppHandler
 public:
     explicit AkregatorUniqueAppHandler(KontactInterface::Plugin *plugin)
         : KontactInterface::UniqueAppHandler(plugin) {}
-    void loadCommandLineOptions(QCommandLineParser *parser) Q_DECL_OVERRIDE;
-    int activate(const QStringList &args, const QString &workingDir) Q_DECL_OVERRIDE;
+    void loadCommandLineOptions(QCommandLineParser *parser) override;
+    int activate(const QStringList &args, const QString &workingDir) override;
 };
 
 class AkregatorPlugin : public KontactInterface::Plugin
@@ -52,22 +52,22 @@ public:
     AkregatorPlugin(KontactInterface::Core *core, const QVariantList &);
     ~AkregatorPlugin();
 
-    int weight() const Q_DECL_OVERRIDE
+    int weight() const override
     {
         return 475;
     }
 
     OrgKdeAkregatorPartInterface *interface();
 
-    bool isRunningStandalone() const Q_DECL_OVERRIDE;
-    void readProperties(const KConfigGroup &config) Q_DECL_OVERRIDE;
-    void saveProperties(KConfigGroup &config) Q_DECL_OVERRIDE;
+    bool isRunningStandalone() const override;
+    void readProperties(const KConfigGroup &config) override;
+    void saveProperties(KConfigGroup &config) override;
 
 private Q_SLOTS:
     void addFeed();
 
 protected:
-    KParts::ReadOnlyPart *createPart() Q_DECL_OVERRIDE;
+    KParts::ReadOnlyPart *createPart() override;
     KontactInterface::UniqueAppWatcher *mUniqueAppWatcher;
     OrgKdeAkregatorPartInterface *m_interface;
 

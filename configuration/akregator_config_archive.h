@@ -42,8 +42,8 @@ public:
     void setArchiveMode(int mode);
     int archiveMode() const;
 
-    void load() Q_DECL_OVERRIDE;
-    void save() Q_DECL_OVERRIDE;
+    void load() override;
+    void save() override;
 
 private:
     QWidget *m_widget;

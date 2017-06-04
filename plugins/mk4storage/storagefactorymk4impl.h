@@ -39,11 +39,11 @@ class Storage;
 class StorageFactoryMK4Impl : public StorageFactory
 {
 public:
-    QString key() const Q_DECL_OVERRIDE;
-    QString name() const Q_DECL_OVERRIDE;
-    void configure() Q_DECL_OVERRIDE;
-    Storage *createStorage(const QStringList &params) const Q_DECL_OVERRIDE;
-    bool isConfigurable() const Q_DECL_OVERRIDE
+    QString key() const override;
+    QString name() const override;
+    void configure() override;
+    Storage *createStorage(const QStringList &params) const override;
+    bool isConfigurable() const override
     {
         return false;
     }

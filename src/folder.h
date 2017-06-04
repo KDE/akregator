@@ -59,24 +59,24 @@ public:
 
     ~Folder();
 
-    bool accept(TreeNodeVisitor *visitor) Q_DECL_OVERRIDE;
+    bool accept(TreeNodeVisitor *visitor) override;
 
     /** returns the number of unread articles in all children
     @return number of unread articles */
-    int unread() const Q_DECL_OVERRIDE;
+    int unread() const override;
 
     /** returns the number of articles in all children
     @return number of articles */
-    int totalCount() const Q_DECL_OVERRIDE;
+    int totalCount() const override;
 
     /** Helps the rest of the app to decide if node should be handled as group or not. */
-    bool isGroup() const Q_DECL_OVERRIDE
+    bool isGroup() const override
     {
         return true;
     }
 
     //impl
-    bool isAggregation() const Q_DECL_OVERRIDE
+    bool isAggregation() const override
     {
         return true;
     }
@@ -86,29 +86,29 @@ public:
     @param parent The parent element
     @param document The DOM document
     @return The newly created element representing this feed group */
-    QDomElement toOPML(QDomElement parent, QDomDocument document) const Q_DECL_OVERRIDE;
+    QDomElement toOPML(QDomElement parent, QDomDocument document) const override;
 
     /** returns the (direct) children of this node.
     @return a list of pointers to the child nodes
         */
 
-    QList<const TreeNode *> children() const Q_DECL_OVERRIDE;
+    QList<const TreeNode *> children() const override;
 
     QList<const TreeNode *> namedChildren(const QString &title) const;
     QList<TreeNode *> namedChildren(const QString &title);
 
-    QList<TreeNode *> children() Q_DECL_OVERRIDE;
+    QList<TreeNode *> children() override;
 
-    QVector<const Feed *> feeds() const Q_DECL_OVERRIDE;
-    QVector<Feed *> feeds() Q_DECL_OVERRIDE;
-    QVector<const Folder *> folders() const Q_DECL_OVERRIDE;
-    QVector<Folder *> folders() Q_DECL_OVERRIDE;
+    QVector<const Feed *> feeds() const override;
+    QVector<Feed *> feeds() override;
+    QVector<const Folder *> folders() const override;
+    QVector<Folder *> folders() override;
 
     int indexOf(const TreeNode *node) const;
 
-    TreeNode *childAt(int pos) Q_DECL_OVERRIDE;
+    TreeNode *childAt(int pos) override;
 
-    const TreeNode *childAt(int pos) const Q_DECL_OVERRIDE;
+    const TreeNode *childAt(int pos) const override;
 
     /** inserts @c node as child after child node @c after.
     if @c after is not a child of this group, @c node will be inserted as first child
@@ -146,17 +146,17 @@ public:
     /** returns the next node in the tree.
     Calling next() unless it returns 0 iterates through the tree in pre-order
         */
-    TreeNode *next() Q_DECL_OVERRIDE;
-    const TreeNode *next() const Q_DECL_OVERRIDE;
+    TreeNode *next() override;
+    const TreeNode *next() const override;
 
-    QIcon icon() const Q_DECL_OVERRIDE;
+    QIcon icon() const override;
 
     /* returns whether @p node is among the direct or indirect children of this
      * folder
      */
     bool subtreeContains(const Akregator::TreeNode *node) const;
 
-    KJob *createMarkAsReadJob() Q_DECL_OVERRIDE;
+    KJob *createMarkAsReadJob() override;
 
 Q_SIGNALS:
     /** emitted when a child was added */
@@ -181,7 +181,7 @@ public Q_SLOTS:
 
     /** enqueues children recursively for fetching
     @param queue a fetch queue */
-    void slotAddToFetchQueue(Akregator::FetchQueue *queue, bool intervalFetchesOnly = false) Q_DECL_OVERRIDE;
+    void slotAddToFetchQueue(Akregator::FetchQueue *queue, bool intervalFetchesOnly = false) override;
 
 protected:
 
@@ -190,10 +190,10 @@ protected:
     @param node the tree node to insert */
     void insertChild(int index, TreeNode *node);
 
-    void doArticleNotification() Q_DECL_OVERRIDE;
+    void doArticleNotification() override;
 
 private:
-    QVector<Article> articles() Q_DECL_OVERRIDE;
+    QVector<Article> articles() override;
 
     void connectToNode(TreeNode *child);
     void disconnectFromNode(TreeNode *child);

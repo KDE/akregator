@@ -87,8 +87,8 @@ Q_SIGNALS:
     void signalSaveImageOnDisk(int currentFrame);
     void signalMute(int currentFrame, bool);
 private:
-    void tabInserted(int) Q_DECL_OVERRIDE;
-    void tabRemoved(int) Q_DECL_OVERRIDE;
+    void tabInserted(int) override;
+    void tabRemoved(int) override;
 
 private Q_SLOTS:
     void slotCloseRequest(int index);

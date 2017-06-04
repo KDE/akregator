@@ -60,18 +60,18 @@ public:
     explicit ActionManagerImpl(Part *part, QObject *parent = nullptr);
     virtual ~ActionManagerImpl();
 
-    QAction *action(const QString &name) Q_DECL_OVERRIDE;
-    QWidget *container(const QString &name) Q_DECL_OVERRIDE;
+    QAction *action(const QString &name) override;
+    QWidget *container(const QString &name) override;
 
     void initMainWidget(MainWidget *mainWidget);
     void initArticleListView(ArticleListView *articleList);
     void initSubscriptionListView(SubscriptionListView *subscriptionListView);
     void initTabWidget(TabWidget *tabWidget);
 
-    void setArticleActionsEnabled(bool enabled) Q_DECL_OVERRIDE;
+    void setArticleActionsEnabled(bool enabled) override;
     void setTrayIcon(TrayIcon *trayIcon);
     KActionCollection *actionCollection() const;
-    WebEngineViewer::ZoomActionMenu *zoomActionMenu() const Q_DECL_OVERRIDE;
+    WebEngineViewer::ZoomActionMenu *zoomActionMenu() const override;
     QString quickSearchLineText() const;
 
 public Q_SLOTS:

@@ -47,8 +47,8 @@ public:
     QWeakPointer<FeedList> feedList() const;
 
 private:
-    void doStart() Q_DECL_OVERRIDE;
-    void doAbort() Q_DECL_OVERRIDE;
+    void doStart() override;
+    void doAbort() override;
 
 private:
     class Private;
