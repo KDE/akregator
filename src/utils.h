@@ -29,9 +29,7 @@
 #include <QString>
 typedef unsigned int uint;
 
-namespace Akregator
-{
-
+namespace Akregator {
 class AKREGATOR_EXPORT Utils
 {
 public:
@@ -56,7 +54,6 @@ public:
 
     static QString convertHtmlTags(const QString &title);
 };
-
 } // namespace Akregator
 
 #endif // AKREGATOR_UTILS_H

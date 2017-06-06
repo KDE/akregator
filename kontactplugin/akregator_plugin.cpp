@@ -38,13 +38,14 @@
 EXPORT_KONTACT_PLUGIN(AkregatorPlugin, akregator)
 
 AkregatorPlugin::AkregatorPlugin(KontactInterface::Core *core, const QVariantList &)
-    : KontactInterface::Plugin(core, core, "akregator"), m_interface(nullptr)
+    : KontactInterface::Plugin(core, core, "akregator")
+    , m_interface(nullptr)
 {
     setComponentName(QStringLiteral("akregator"), i18n("Akregator"));
 
-    QAction *action =
-        new QAction(QIcon::fromTheme(QStringLiteral("bookmark-new")),
-                    i18nc("@action:inmenu", "New Feed..."), this);
+    QAction *action
+        = new QAction(QIcon::fromTheme(QStringLiteral("bookmark-new")),
+                      i18nc("@action:inmenu", "New Feed..."), this);
     actionCollection()->addAction(QStringLiteral("feed_new"), action);
     actionCollection()->setDefaultShortcut(action, QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_F));
     setHelpText(action, i18nc("@info:status", "Create a new feed"));
@@ -85,7 +86,6 @@ OrgKdeAkregatorPartInterface *AkregatorPlugin::interface()
     }
     Q_ASSERT(m_interface);
     return m_interface;
-
 }
 
 KParts::ReadOnlyPart *AkregatorPlugin::createPart()
@@ -145,4 +145,5 @@ int AkregatorUniqueAppHandler::activate(const QStringList &args, const QString &
 
     return KontactInterface::UniqueAppHandler::activate(args, workingDir);
 }
+
 #include "akregator_plugin.moc"

@@ -43,7 +43,7 @@ bool AkregatorConfigHandler::handleClick(const QUrl &url, ArticleViewerWebEngine
 
 bool AkregatorConfigHandler::handleContextMenuRequest(const QUrl &url, const QPoint &, ArticleViewerWebEngine *) const
 {
-    return (url.scheme() == QLatin1String("config"));
+    return url.scheme() == QLatin1String("config");
 }
 
 QString AkregatorConfigHandler::statusBarMessage(const QUrl &url, ArticleViewerWebEngine *) const
@@ -98,7 +98,7 @@ bool MailToURLHandlerWebEngine::handleClick(const QUrl &url, ArticleViewerWebEng
 
 bool ActionURLHandlerWebEngine::handleContextMenuRequest(const QUrl &url, const QPoint &, ArticleViewerWebEngine *) const
 {
-    return (url.scheme() == QLatin1String("akregatoraction"));
+    return url.scheme() == QLatin1String("akregatoraction");
 }
 
 QString ActionURLHandlerWebEngine::statusBarMessage(const QUrl &url, ArticleViewerWebEngine *) const

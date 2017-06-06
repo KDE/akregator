@@ -34,9 +34,7 @@
 
 class KSqueezedTextLabel;
 
-namespace Akregator
-{
-
+namespace Akregator {
 class Part;
 class MainWindow;
 
@@ -119,7 +117,6 @@ private:
     QPointer<Akregator::Part> m_part;
     KSqueezedTextLabel *m_statusLabel;
 };
-
 } // namespace Akregator
 
 #endif // AKREGATOR_MAINWINDOW_H

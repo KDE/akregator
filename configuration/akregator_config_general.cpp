@@ -34,10 +34,12 @@
 
 using namespace Akregator;
 
-K_PLUGIN_FACTORY(KCMAkregatorGeneralConfigFactory, registerPlugin<KCMAkregatorGeneralConfig>();)
+K_PLUGIN_FACTORY(KCMAkregatorGeneralConfigFactory, registerPlugin<KCMAkregatorGeneralConfig>();
+                 )
 
 KCMAkregatorGeneralConfig::KCMAkregatorGeneralConfig(QWidget *parent, const QVariantList &args)
-    : KCModule(parent, args), m_widget(new QWidget)
+    : KCModule(parent, args)
+    , m_widget(new QWidget)
 {
     Ui::SettingsGeneral ui;
     ui.setupUi(m_widget);
@@ -59,4 +61,5 @@ KCMAkregatorGeneralConfig::KCMAkregatorGeneralConfig(QWidget *parent, const QVar
     setAboutData(about);
     addConfig(Settings::self(), m_widget);
 }
+
 #include "akregator_config_general.moc"

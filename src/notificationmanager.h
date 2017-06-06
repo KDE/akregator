@@ -31,9 +31,7 @@
 #include "article.h"
 #include "akregator_export.h"
 
-namespace Akregator
-{
-
+namespace Akregator {
 /** this class collects notification requests (new articles etc.) and processes them using KNotify.  */
 class AKREGATOR_EXPORT NotificationManager : public QObject
 {
@@ -66,7 +64,9 @@ protected Q_SLOTS:
 
 private:
     NotificationManager();
-    NotificationManager(const NotificationManager &) : QObject() {}
+    NotificationManager(const NotificationManager &) : QObject()
+    {
+    }
 
     int m_checkInterval;
     int m_intervalsLapsed;
@@ -81,7 +81,6 @@ private:
 
     static NotificationManager *m_self;
 };
-
 } // namespace Akregator
 
 #endif // AKREGATOR_NOTIFICATIONMANAGER_H

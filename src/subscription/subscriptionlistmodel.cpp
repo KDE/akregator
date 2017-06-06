@@ -29,7 +29,6 @@
 #include "subscriptionlistjobs.h"
 #include "treenode.h"
 
-
 #include "akregator_debug.h"
 #include <KIconLoader>
 #include <KLocalizedString>
@@ -49,9 +48,7 @@ using namespace Syndication;
 
 #define AKREGATOR_TREENODE_MIMETYPE QStringLiteral("akregator/treenode-id")
 
-namespace
-{
-
+namespace {
 static QString errorCodeToString(Syndication::ErrorCode err)
 {
     switch (err) {
@@ -80,7 +77,9 @@ static const Akregator::TreeNode *nodeForIndex(const QModelIndex &index, const F
 }
 }
 
-Akregator::SubscriptionListModel::SubscriptionListModel(const QSharedPointer<const FeedList> &feedList, QObject *parent) : QAbstractItemModel(parent), m_feedList(feedList), m_beganRemoval(false)
+Akregator::SubscriptionListModel::SubscriptionListModel(const QSharedPointer<const FeedList> &feedList, QObject *parent) : QAbstractItemModel(parent)
+    , m_feedList(feedList)
+    , m_beganRemoval(false)
 {
     if (!m_feedList) {
         return;
@@ -135,7 +134,7 @@ QVariant Akregator::SubscriptionListModel::data(const QModelIndex &index, int ro
 
     switch (role) {
     case Qt::EditRole:
-    case Qt::DisplayRole: {
+    case Qt::DisplayRole:
         switch (index.column()) {
         case TitleColumn:
             return node->title();
@@ -145,8 +144,8 @@ QVariant Akregator::SubscriptionListModel::data(const QModelIndex &index, int ro
             return node->totalCount();
         }
         break;
-    }
-    case Qt::ToolTipRole: {
+    case Qt::ToolTipRole:
+    {
         if (node->isGroup() || node->isAggregation()) {
             return node->title();
         }
@@ -159,30 +158,29 @@ QVariant Akregator::SubscriptionListModel::data(const QModelIndex &index, int ro
         }
         return feed->title();
     }
-    case Qt::DecorationRole: {
+    case Qt::DecorationRole:
+    {
         if (index.column() != TitleColumn) {
             return QVariant();
         }
         const Feed *const feed = qobject_cast<const Feed *const>(node);
         return feed && feed->isFetching() ? node->icon().pixmap(KIconLoader::SizeSmall, QIcon::Active) : node->icon();
     }
-    case SubscriptionIdRole: {
+    case SubscriptionIdRole:
         return node->id();
-    }
-    case IsGroupRole: {
+    case IsGroupRole:
         return node->isGroup();
-    }
-    case IsFetchableRole: {
+    case IsFetchableRole:
         return !node->isGroup() && !node->isAggregation();
-    }
-    case IsAggregationRole: {
+    case IsAggregationRole:
         return node->isAggregation();
-    }
-    case LinkRole: {
+    case LinkRole:
+    {
         const Feed *const feed = qobject_cast<const Feed *const>(node);
         return feed ? feed->xmlUrl() : QVariant();
     }
-    case IsOpenRole: {
+    case IsOpenRole:
+    {
         if (!node->isGroup()) {
             return false;
         }
@@ -190,9 +188,8 @@ QVariant Akregator::SubscriptionListModel::data(const QModelIndex &index, int ro
         Q_ASSERT(folder);
         return folder->isOpen();
     }
-    case HasUnreadRole: {
+    case HasUnreadRole:
         return node->unread() > 0;
-    }
     }
 
     return QVariant();
@@ -252,7 +249,7 @@ QModelIndex Akregator::SubscriptionListModel::index(int row, int column, const Q
     }
 
     const Akregator::TreeNode *const childNode = parentNode->childAt(row);
-    return  childNode ? createIndex(row, column, childNode->id()) : QModelIndex();
+    return childNode ? createIndex(row, column, childNode->id()) : QModelIndex();
 }
 
 QModelIndex SubscriptionListModel::indexForNode(const TreeNode *node) const
@@ -356,7 +353,9 @@ void Akregator::FolderExpansionHandler::setExpanded(const QModelIndex &idx, bool
     folder->setOpen(expanded);
 }
 
-FolderExpansionHandler::FolderExpansionHandler(QObject *parent) : QObject(parent), m_feedList(), m_model(0)
+FolderExpansionHandler::FolderExpansionHandler(QObject *parent) : QObject(parent)
+    , m_feedList()
+    , m_model(0)
 {
 }
 
@@ -405,10 +404,11 @@ QMimeData *SubscriptionListModel::mimeData(const QModelIndexList &indexes) const
 
     QByteArray idList;
     QDataStream idStream(&idList, QIODevice::WriteOnly);
-    for (const QModelIndex &i : indexes)
+    for (const QModelIndex &i : indexes) {
         if (i.isValid()) {
             idStream << i.data(SubscriptionIdRole).toInt();
         }
+    }
 
     mimeData->setData(AKREGATOR_TREENODE_MIMETYPE, idList);
 
@@ -431,11 +431,7 @@ bool SubscriptionListModel::setData(const QModelIndex &idx, const QVariant &valu
     return true;
 }
 
-bool SubscriptionListModel::dropMimeData(const QMimeData *data,
-        Qt::DropAction action,
-        int row,
-        int column,
-        const QModelIndex &parent)
+bool SubscriptionListModel::dropMimeData(const QMimeData *data, Qt::DropAction action, int row, int column, const QModelIndex &parent)
 {
     Q_UNUSED(column)
 
@@ -493,4 +489,3 @@ bool SubscriptionListModel::dropMimeData(const QMimeData *data,
 
     return true;
 }
-

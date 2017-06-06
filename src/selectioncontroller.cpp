@@ -39,8 +39,7 @@
 #include <memory>
 using namespace Akregator;
 
-namespace
-{
+namespace {
 static Akregator::Article articleForIndex(const QModelIndex &index, FeedList *feedList)
 {
     if (!index.isValid()) {
@@ -77,15 +76,15 @@ static Akregator::TreeNode *subscriptionForIndex(const QModelIndex &index, Akreg
 } // anon namespace
 
 Akregator::SelectionController::SelectionController(QObject *parent)
-    : AbstractSelectionController(parent),
-      m_feedList(),
-      m_feedSelector(),
-      m_articleLister(0),
-      m_singleDisplay(0),
-      m_subscriptionModel(new SubscriptionListModel(QSharedPointer<FeedList>(), this)),
-      m_folderExpansionHandler(0),
-      m_articleModel(0),
-      m_selectedSubscription()
+    : AbstractSelectionController(parent)
+    , m_feedList()
+    , m_feedSelector()
+    , m_articleLister(0)
+    , m_singleDisplay(0)
+    , m_subscriptionModel(new SubscriptionListModel(QSharedPointer<FeedList>(), this))
+    , m_folderExpansionHandler(0)
+    , m_articleModel(0)
+    , m_selectedSubscription()
 {
 }
 
@@ -114,9 +113,8 @@ void Akregator::SelectionController::setFeedSelector(QAbstractItemView *feedSele
     m_feedSelector->setModel(m_subscriptionModel);
 
     connect(m_feedSelector.data(), &QAbstractItemView::customContextMenuRequested, this, &SelectionController::subscriptionContextMenuRequested);
-    connect(m_feedSelector->selectionModel(), &QItemSelectionModel::currentChanged,  this, &SelectionController::selectedSubscriptionChanged);
+    connect(m_feedSelector->selectionModel(), &QItemSelectionModel::currentChanged, this, &SelectionController::selectedSubscriptionChanged);
     connect(m_feedSelector.data(), &QAbstractItemView::activated, this, &SelectionController::selectedSubscriptionChanged);
-
 }
 
 void Akregator::SelectionController::setArticleLister(Akregator::ArticleLister *lister)
@@ -273,7 +271,6 @@ void Akregator::SelectionController::selectedSubscriptionChanged(const QModelInd
             this, &SelectionController::articleHeadersAvailable);
     m_listJob = job;
     m_listJob->start();
-
 }
 
 void Akregator::SelectionController::subscriptionContextMenuRequested(const QPoint &point)
@@ -318,4 +315,3 @@ void SelectionController::forceFilterUpdate()
     Q_ASSERT(m_articleLister);
     m_articleLister->forceFilterUpdate();
 }
-

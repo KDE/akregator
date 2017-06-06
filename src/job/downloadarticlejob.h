@@ -18,12 +18,10 @@
 #include <QUrl>
 class QTemporaryFile;
 class KJob;
-namespace MimeTreeParser
-{
+namespace MimeTreeParser {
 class AttachmentTemporaryFilesDirs;
 }
-namespace Akregator
-{
+namespace Akregator {
 class DownloadArticleJob : public QObject
 {
     Q_OBJECT

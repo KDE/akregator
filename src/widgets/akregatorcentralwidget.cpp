@@ -28,8 +28,8 @@
 using namespace Akregator;
 
 AkregatorCentralWidget::AkregatorCentralWidget(QWidget *parent)
-    : QStackedWidget(parent),
-      mMainWidget(nullptr)
+    : QStackedWidget(parent)
+    , mMainWidget(nullptr)
 {
     mCrashWidget = new CrashWidget(this);
     connect(mCrashWidget, &CrashWidget::restoreSession, this, &AkregatorCentralWidget::slotRestoreSession);
@@ -38,7 +38,6 @@ AkregatorCentralWidget::AkregatorCentralWidget(QWidget *parent)
 
 Akregator::AkregatorCentralWidget::~AkregatorCentralWidget()
 {
-
 }
 
 bool AkregatorCentralWidget::previousSessionCrashed() const

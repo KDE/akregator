@@ -32,14 +32,11 @@
 #include <QSharedPointer>
 #include <vector>
 
-namespace Akregator
-{
-
+namespace Akregator {
 class Article;
 class TreeNode;
 
-namespace Filters
-{
+namespace Filters {
 class AbstractMatcher;
 }
 
@@ -105,7 +102,6 @@ private:
     class Private;
     Private *const d;
 };
-
 } //namespace Akregator
 
 #endif // AKREGATOR_ARTICLEMODEL_H

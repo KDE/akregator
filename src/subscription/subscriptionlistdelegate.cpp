@@ -47,18 +47,15 @@ Akregator::SubscriptionListDelegate::~SubscriptionListDelegate()
 {
 }
 
-QSize Akregator::SubscriptionListDelegate::sizeHint(const QStyleOptionViewItem &option,
-        const QModelIndex &index) const
+QSize Akregator::SubscriptionListDelegate::sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
     QSize size = QStyledItemDelegate::sizeHint(option, index);
     size.setHeight(qMax(size.height(), (m_viewIconHeight + 2)));
     // +2 for row top/bottom margin
-    return (size);
+    return size;
 }
 
-void Akregator::SubscriptionListDelegate::paint(QPainter *painter,
-        const QStyleOptionViewItem &option,
-        const QModelIndex &index) const
+void Akregator::SubscriptionListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
     QStyleOptionViewItem newOption = option;
     if (index.data(SubscriptionListModel::HasUnreadRole).toBool()) {
@@ -67,8 +64,8 @@ void Akregator::SubscriptionListDelegate::paint(QPainter *painter,
     }
 
     //fix [Bug 190052] numeric columns aligned to the left
-    if (index.column() == SubscriptionListModel::UnreadCountColumn ||
-            index.column() == SubscriptionListModel::TotalCountColumn) {
+    if (index.column() == SubscriptionListModel::UnreadCountColumn
+        || index.column() == SubscriptionListModel::TotalCountColumn) {
         newOption.displayAlignment = Qt::AlignRight;
     }
 
@@ -84,8 +81,7 @@ void Akregator::SubscriptionListDelegate::recalculateRowHeight()
     qCDebug(AKREGATOR_LOG) << "icon height" << m_viewIconHeight;
 }
 
-void Akregator::SubscriptionListDelegate::initStyleOption(QStyleOptionViewItem *option,
-        const QModelIndex &index) const
+void Akregator::SubscriptionListDelegate::initStyleOption(QStyleOptionViewItem *option, const QModelIndex &index) const
 {
     QStyledItemDelegate::initStyleOption(option, index);
 
@@ -120,4 +116,3 @@ void Akregator::SubscriptionListDelegate::initStyleOption(QStyleOptionViewItem *
         optionV4->text += QStringLiteral(" (%1)").arg(unread);
     }
 }
-

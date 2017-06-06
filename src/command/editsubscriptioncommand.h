@@ -29,9 +29,7 @@
 
 #include <QSharedPointer>
 
-namespace Akregator
-{
-
+namespace Akregator {
 class FeedList;
 class SubscriptionListView;
 
@@ -58,7 +56,6 @@ private:
     Private *const d;
     Q_PRIVATE_SLOT(d, void startEdit())
 };
-
 }
 
 #endif // AKREGATOR_EDITSUBSCRIPTIONCOMMAND_H

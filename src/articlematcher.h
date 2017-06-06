@@ -35,14 +35,10 @@
 
 class KConfigGroup;
 
-namespace Akregator
-{
-
+namespace Akregator {
 class Article;
 
-namespace Filters
-{
-
+namespace Filters {
 class AbstractMatcher;
 class Criterion;
 
@@ -67,7 +63,6 @@ protected:
 
 private:
     Q_DISABLE_COPY(AbstractMatcher)
-
 };
 
 /** a powerful matcher supporting multiple criterions, which can be combined      via logical OR or AND
@@ -131,7 +126,10 @@ public:
 
     Criterion();
     Criterion(Subject subject, Predicate predicate, const QVariant &object);
-    virtual ~Criterion() {}
+    virtual ~Criterion()
+    {
+    }
+
     bool satisfiedBy(const Article &article) const;
 
     virtual void writeConfig(KConfigGroup *config) const;
@@ -150,7 +148,6 @@ private:
     Predicate m_predicate;
     QVariant m_object;
 };
-
 } // namespace Filters
 } // namespace Akregator
 

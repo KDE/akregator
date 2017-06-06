@@ -32,9 +32,7 @@
 
 #include <QWidget>
 
-namespace Akregator
-{
-
+namespace Akregator {
 class FeedPropertiesWidget : public QWidget, public Ui::FeedPropertiesWidgetBase
 {
     Q_OBJECT
@@ -101,8 +99,6 @@ private:
 private Q_SLOTS:
     void slotSetWindowTitle(const QString &);
 };
-
 } // namespace Akregator
 
 #endif // AKREGATOR_FEEDPROPERTIESDIALOG_H
-

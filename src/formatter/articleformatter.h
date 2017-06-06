@@ -29,9 +29,7 @@
 #include <enclosure.h>
 #include <QVector>
 
-namespace Akregator
-{
-
+namespace Akregator {
 class Article;
 class TreeNode;
 

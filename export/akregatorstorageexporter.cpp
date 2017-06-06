@@ -48,8 +48,7 @@
 using namespace Akregator;
 using namespace Akregator::Backend;
 
-namespace
-{
+namespace {
 static QString akregatorNamespace()
 {
     return QStringLiteral("http://akregator.kde.org/StorageExporter#");
@@ -72,7 +71,9 @@ class Element
 {
 public:
     Element(const QString &ns_, const QString &name_)
-        : ns(ns_), name(name_), qualifiedName(ns + QLatin1Char(':') + name)
+        : ns(ns_)
+        , name(name_)
+        , qualifiedName(ns + QLatin1Char(':') + name)
     {
     }
 
@@ -112,36 +113,37 @@ public:
 };
 
 struct Elements {
-    Elements() : atomNS(Syndication::Atom::atom1Namespace()),
-        akregatorNS(akregatorNamespace()),
-        commentNS(Syndication::commentApiNamespace()),
-        title(atomNS, QStringLiteral("title")),
-        summary(atomNS, QStringLiteral("summary")),
-        content(atomNS, QStringLiteral("content")),
-        link(atomNS, QStringLiteral("link")),
-        language(atomNS, QStringLiteral("language")),
-        feed(atomNS, QStringLiteral("feed")),
-        guid(atomNS, QStringLiteral("id")),
-        published(atomNS, QStringLiteral("published")),
-        updated(atomNS, QStringLiteral("updated")),
-        commentsCount(Syndication::slashNamespace(), QStringLiteral("comments")),
-        commentsFeed(commentNS, QStringLiteral("commentRss")),
-        commentPostUri(commentNS, QStringLiteral("comment")),
-        commentsLink(akregatorNS, QStringLiteral("commentsLink")),
-        hash(akregatorNS, QStringLiteral("hash")),
-        guidIsHash(akregatorNS, QStringLiteral("idIsHash")),
-        name(atomNS, QStringLiteral("name")),
-        uri(atomNS, QStringLiteral("uri")),
-        email(atomNS, QStringLiteral("email")),
-        author(atomNS, QStringLiteral("author")),
-        category(atomNS, QStringLiteral("category")),
-        entry(atomNS, QStringLiteral("entry")),
-        itemProperties(akregatorNS, QStringLiteral("itemProperties")),
-        readStatus(akregatorNS, QStringLiteral("readStatus")),
-        deleted(akregatorNS, QStringLiteral("deleted")),
-        important(akregatorNS, QStringLiteral("important"))
+    Elements() : atomNS(Syndication::Atom::atom1Namespace())
+        , akregatorNS(akregatorNamespace())
+        , commentNS(Syndication::commentApiNamespace())
+        , title(atomNS, QStringLiteral("title"))
+        , summary(atomNS, QStringLiteral("summary"))
+        , content(atomNS, QStringLiteral("content"))
+        , link(atomNS, QStringLiteral("link"))
+        , language(atomNS, QStringLiteral("language"))
+        , feed(atomNS, QStringLiteral("feed"))
+        , guid(atomNS, QStringLiteral("id"))
+        , published(atomNS, QStringLiteral("published"))
+        , updated(atomNS, QStringLiteral("updated"))
+        , commentsCount(Syndication::slashNamespace(), QStringLiteral("comments"))
+        , commentsFeed(commentNS, QStringLiteral("commentRss"))
+        , commentPostUri(commentNS, QStringLiteral("comment"))
+        , commentsLink(akregatorNS, QStringLiteral("commentsLink"))
+        , hash(akregatorNS, QStringLiteral("hash"))
+        , guidIsHash(akregatorNS, QStringLiteral("idIsHash"))
+        , name(atomNS, QStringLiteral("name"))
+        , uri(atomNS, QStringLiteral("uri"))
+        , email(atomNS, QStringLiteral("email"))
+        , author(atomNS, QStringLiteral("author"))
+        , category(atomNS, QStringLiteral("category"))
+        , entry(atomNS, QStringLiteral("entry"))
+        , itemProperties(akregatorNS, QStringLiteral("itemProperties"))
+        , readStatus(akregatorNS, QStringLiteral("readStatus"))
+        , deleted(akregatorNS, QStringLiteral("deleted"))
+        , important(akregatorNS, QStringLiteral("important"))
+    {
+    }
 
-    {}
     const QString atomNS;
     const QString akregatorNS;
     const QString commentNS;
@@ -258,7 +260,7 @@ static void writeItem(FeedStorage *storage, const QString &guid, QXmlStreamWrite
     writer.writeEndElement(); // </itemProperties>
 
     Elements::instance.title.write(storage->title(guid), writer, Html);
-    writeLink(storage->guidIsPermaLink(guid) ? guid :  storage->link(guid), writer);
+    writeLink(storage->guidIsPermaLink(guid) ? guid : storage->link(guid), writer);
 
     Elements::instance.summary.write(storage->description(guid), writer, Html);
     Elements::instance.content.write(storage->content(guid), writer, Html);
@@ -316,7 +318,9 @@ static void serialize(Storage *storage, const QString &url, QIODevice *device)
 static KService::List queryStoragePlugins()
 {
     return KServiceTypeTrader::self()->query(QStringLiteral("Akregator/Plugin"),
-            QStringLiteral("[X-KDE-akregator-framework-version] == %1 and [X-KDE-akregator-plugintype] == 'storage' and [X-KDE-akregator-rank] > 0").arg(QString::number(AKREGATOR_PLUGIN_INTERFACE_VERSION)));
+                                             QStringLiteral("[X-KDE-akregator-framework-version] == %1 and [X-KDE-akregator-plugintype] == 'storage' and [X-KDE-akregator-rank] > 0").arg(QString::
+                                                                                                                                                                                          number(
+                                                                                                                                                                                              AKREGATOR_PLUGIN_INTERFACE_VERSION)));
 }
 
 static Plugin *createFromService(const KService::Ptr &service)
@@ -357,10 +361,11 @@ int main(int argc, char *argv[])
     const int pos = base64 ? 2 : 1;
     const QString url = QUrl::fromEncoded(base64 ? QByteArray::fromBase64(argv[pos]) : QByteArray(argv[pos])).toString();
 
-    Q_FOREACH (const KService::Ptr &i, queryStoragePlugins())
+    Q_FOREACH (const KService::Ptr &i, queryStoragePlugins()) {
         if (Plugin *const plugin = createFromService(i)) {
             plugin->initialize();
         }
+    }
 
     const StorageFactory *const storageFactory = StorageFactoryRegistry::self()->getFactory(backend);
     if (!storageFactory) {

@@ -28,7 +28,6 @@
 #include "feedlist.h"
 #include "kernel.h"
 
-
 #include "akregator_debug.h"
 #include <KLocalizedString>
 
@@ -41,8 +40,8 @@
 using namespace Akregator;
 
 ArticleDeleteJob::ArticleDeleteJob(QObject *parent)
-    : KJob(parent),
-      m_feedList(Kernel::self()->feedList())
+    : KJob(parent)
+    , m_feedList(Kernel::self()->feedList())
 {
     Q_ASSERT(m_feedList);
 }
@@ -91,7 +90,8 @@ void ArticleDeleteJob::doStart()
     emitResult();
 }
 
-ArticleModifyJob::ArticleModifyJob(QObject *parent) : KJob(parent), m_feedList(Kernel::self()->feedList())
+ArticleModifyJob::ArticleModifyJob(QObject *parent) : KJob(parent)
+    , m_feedList(Kernel::self()->feedList())
 {
     Q_ASSERT(m_feedList);
 }
@@ -113,7 +113,6 @@ void ArticleModifyJob::start()
 
 void ArticleModifyJob::doStart()
 {
-
     if (!m_feedList) {
         qCWarning(AKREGATOR_LOG) << "Feedlist object was deleted, items not modified";
         emitResult();
@@ -157,7 +156,6 @@ void ArticleModifyJob::doStart()
 
 CompositeJob::CompositeJob(QObject *parent) : KCompositeJob(parent)
 {
-
 }
 
 bool CompositeJob::addSubjob(KJob *job)
@@ -176,7 +174,10 @@ void CompositeJob::start()
     }
 }
 
-ArticleListJob::ArticleListJob(TreeNode *p) : KJob(p), m_node(p) {}
+ArticleListJob::ArticleListJob(TreeNode *p) : KJob(p)
+    , m_node(p)
+{
+}
 
 void ArticleListJob::start()
 {
@@ -203,4 +204,3 @@ QVector<Article> ArticleListJob::articles() const
 {
     return m_articles;
 }
-

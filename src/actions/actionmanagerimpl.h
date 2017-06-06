@@ -32,14 +32,11 @@ class KActionCollection;
 
 class QWidget;
 
-namespace WebEngineViewer
-{
+namespace WebEngineViewer {
 class ZoomActionMenu;
 }
 
-namespace Akregator
-{
-
+namespace Akregator {
 class ArticleListView;
 class MainWidget;
 class Part;
@@ -91,7 +88,6 @@ private:
     class ActionManagerImplPrivate;
     ActionManagerImplPrivate *d;
 };
-
 } // namespace Akregator
 
 #endif // AKREGATOR_ACTIONMANAGERIMPL_H

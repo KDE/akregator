@@ -32,17 +32,16 @@
 using namespace Akregator;
 
 ArticleGrantleeObject::ArticleGrantleeObject(const QUrl &imageDir, const Article &article, ArticleFormatter::IconOption iconOption, QObject *parent)
-    : QObject(parent),
-      mArticle(article),
-      mArticleFormatOption(iconOption),
-      mImageDir(imageDir)
+    : QObject(parent)
+    , mArticle(article)
+    , mArticleFormatOption(iconOption)
+    , mImageDir(imageDir)
 {
     mIconSize = KIconLoader::global()->currentSize(KIconLoader::Small);
 }
 
 ArticleGrantleeObject::~ArticleGrantleeObject()
 {
-
 }
 
 ArticleGrantleeObject::ArticleStatus ArticleGrantleeObject::articleStatus() const
@@ -131,6 +130,7 @@ QString ArticleGrantleeObject::commentNumber() const
         return {};
     }
 }
+
 QString ArticleGrantleeObject::createActionUrl(const QString &actionName) const
 {
     QUrl url;

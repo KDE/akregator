@@ -31,9 +31,7 @@
 
 #include <QWidget>
 class QPushButton;
-namespace Akregator
-{
-
+namespace Akregator {
 class Feed;
 
 class AddFeedWidget : public QWidget, public Ui::AddFeedWidgetBase
@@ -72,7 +70,6 @@ private:
     Feed *m_feed;
     QPushButton *mOkButton;
 };
-
 } // namespace Akregator
 
 #endif // AKREGATOR_ADDFEEDDIALOG_H

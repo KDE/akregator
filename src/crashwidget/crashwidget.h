@@ -21,8 +21,7 @@
 #define CRASHWIDGET_H
 
 #include <QWidget>
-namespace Akregator
-{
+namespace Akregator {
 class CrashWidget : public QWidget
 {
     Q_OBJECT

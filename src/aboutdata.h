@@ -28,8 +28,7 @@
 #include "akregator_export.h"
 #include <KAboutData>
 
-namespace Akregator
-{
+namespace Akregator {
 /**
 @author Teemu Rytilahti
 */
@@ -39,7 +38,6 @@ public:
     AboutData();
     ~AboutData();
 };
-
 } // namespace Akregator
 
 #endif // AKREGATOR_ABOUTDATA_H

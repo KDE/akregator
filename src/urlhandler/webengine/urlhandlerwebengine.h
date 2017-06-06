@@ -23,13 +23,15 @@
 #include <QUrl>
 #include <QString>
 #include <QPoint>
-namespace Akregator
-{
+namespace Akregator {
 class ArticleViewerWebEngine;
 class URLHandlerWebEngine
 {
 public:
-    virtual ~URLHandlerWebEngine() {}
+    virtual ~URLHandlerWebEngine()
+    {
+    }
+
     /**
       * Called when LMB-clicking on a link in the reader. Should start
       * processing equivalent to "opening" the link.
@@ -62,8 +64,14 @@ class AkregatorConfigHandler : public URLHandlerWebEngine
 {
 public:
     AkregatorConfigHandler()
-        : URLHandlerWebEngine() {}
-    virtual ~AkregatorConfigHandler() {}
+        : URLHandlerWebEngine()
+    {
+    }
+
+    virtual ~AkregatorConfigHandler()
+    {
+    }
+
     bool handleClick(const QUrl &, ArticleViewerWebEngine *) const override;
     bool handleContextMenuRequest(const QUrl &, const QPoint &, ArticleViewerWebEngine *) const override;
     QString statusBarMessage(const QUrl &, ArticleViewerWebEngine *) const override;
@@ -72,8 +80,13 @@ public:
 class MailToURLHandlerWebEngine : public URLHandlerWebEngine
 {
 public:
-    MailToURLHandlerWebEngine() : URLHandlerWebEngine() {}
-    virtual ~MailToURLHandlerWebEngine() {}
+    MailToURLHandlerWebEngine() : URLHandlerWebEngine()
+    {
+    }
+
+    virtual ~MailToURLHandlerWebEngine()
+    {
+    }
 
     bool handleClick(const QUrl &, ArticleViewerWebEngine *) const override;
     bool handleContextMenuRequest(const QUrl &, const QPoint &, ArticleViewerWebEngine *) const override;
@@ -83,14 +96,18 @@ public:
 class ActionURLHandlerWebEngine : public URLHandlerWebEngine
 {
 public:
-    ActionURLHandlerWebEngine() : URLHandlerWebEngine() {}
-    virtual ~ActionURLHandlerWebEngine() {}
+    ActionURLHandlerWebEngine() : URLHandlerWebEngine()
+    {
+    }
+
+    virtual ~ActionURLHandlerWebEngine()
+    {
+    }
 
     bool handleClick(const QUrl &, ArticleViewerWebEngine *) const override;
     bool handleContextMenuRequest(const QUrl &, const QPoint &, ArticleViewerWebEngine *) const override;
     QString statusBarMessage(const QUrl &, ArticleViewerWebEngine *) const override;
 };
-
 }
 
 #endif // URLHANDLERWebEngine_H

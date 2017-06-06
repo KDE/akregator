@@ -142,7 +142,6 @@ QString Akregator::Feed::archiveModeToString(ArchiveMode mode)
 
 Akregator::Feed *Akregator::Feed::fromOPML(QDomElement e, Backend::Storage *storage)
 {
-
     if (!e.hasAttribute(QStringLiteral("xmlUrl")) && !e.hasAttribute(QStringLiteral("xmlurl")) && !e.hasAttribute(QStringLiteral("xmlURL"))) {
         return nullptr;
     }
@@ -271,10 +270,11 @@ void Akregator::Feed::recalcUnreadCount()
 
     int unread = 0;
 
-    for (it = tarticles.constBegin(); it != en; ++it)
+    for (it = tarticles.constBegin(); it != en; ++it) {
         if (!(*it).isDeleted() && (*it).status() != Read) {
             ++unread;
         }
+    }
 
     if (unread != oldUnread) {
         d->archive->setUnread(unread);
@@ -300,30 +300,31 @@ Akregator::Feed::ArchiveMode Akregator::Feed::stringToArchiveMode(const QString 
 }
 
 Akregator::Feed::Private::Private(Backend::Storage *storage_, Akregator::Feed *qq)
-    : q(qq),
-      storage(storage_),
-      autoFetch(false),
-      fetchInterval(30),
-      archiveMode(globalDefault),
-      maxArticleAge(60),
-      maxArticleNumber(1000),
-      markImmediatelyAsRead(false),
-      useNotification(false),
-      loadLinkedWebsite(false),
-      lastFetched(0),
-      fetchErrorCode(Syndication::Success),
-      fetchTries(0),
-      followDiscovery(false),
-      loader(0),
-      articlesLoaded(false),
-      archive(0),
-      totalCount(-1)
+    : q(qq)
+    , storage(storage_)
+    , autoFetch(false)
+    , fetchInterval(30)
+    , archiveMode(globalDefault)
+    , maxArticleAge(60)
+    , maxArticleNumber(1000)
+    , markImmediatelyAsRead(false)
+    , useNotification(false)
+    , loadLinkedWebsite(false)
+    , lastFetched(0)
+    , fetchErrorCode(Syndication::Success)
+    , fetchTries(0)
+    , followDiscovery(false)
+    , loader(0)
+    , articlesLoaded(false)
+    , archive(0)
+    , totalCount(-1)
 {
     Q_ASSERT(q);
     Q_ASSERT(storage);
 }
 
-Akregator::Feed::Feed(Backend::Storage *storage) : TreeNode(), d(new Private(storage, this))
+Akregator::Feed::Feed(Backend::Storage *storage) : TreeNode()
+    , d(new Private(storage, this))
 {
 }
 
@@ -436,7 +437,7 @@ QString Akregator::Feed::xmlUrl() const
 void Akregator::Feed::setXmlUrl(const QString &s)
 {
     d->xmlUrl = s;
-    if (! Settings::fetchOnStartup()) {
+    if (!Settings::fetchOnStartup()) {
         QTimer::singleShot(KRandom::random() % 4000, this, &Feed::slotAddFeedIconListener);    // TODO: let's give a gui some time to show up before starting the fetch when no fetch on startup is used. replace this with something proper later...
     }
 }
@@ -630,11 +631,11 @@ bool Akregator::Feed::isExpired(const Article &a) const
     if (d->archiveMode == globalDefault && Settings::archiveMode() == Settings::EnumArchiveMode::limitArticleAge) {
         expiryAge = Settings::maxArticleAge() * 24 * 3600;
     } else // otherwise check if this feed has limitArticleAge set
-        if (d->archiveMode == limitArticleAge) {
-            expiryAge = d->maxArticleAge * 24 * 3600;
-        }
+    if (d->archiveMode == limitArticleAge) {
+        expiryAge = d->maxArticleAge * 24 * 3600;
+    }
 
-    return (expiryAge != -1 && a.pubDate().secsTo(now) > expiryAge);
+    return expiryAge != -1 && a.pubDate().secsTo(now) > expiryAge;
 }
 
 void Akregator::Feed::appendArticle(const Article &a)
@@ -678,8 +679,8 @@ void Akregator::Feed::tryFetch()
     d->fetchErrorCode = Syndication::Success;
 
     d->loader = Syndication::Loader::create(this, SLOT(fetchCompleted(Syndication::Loader *,
-                                            Syndication::FeedPtr,
-                                            Syndication::ErrorCode)));
+                                                                      Syndication::FeedPtr,
+                                                                      Syndication::ErrorCode)));
     d->loader->loadFrom(QUrl(d->xmlUrl));
 }
 
@@ -720,7 +721,6 @@ void Akregator::Feed::fetchCompleted(Syndication::Loader *l, Syndication::FeedPt
     if (d->imagePixmap.isNull()) {
         const QString imageFileName = QStandardPaths::writableLocation(QStandardPaths::CacheLocation) + QLatin1String("/akregator/Media/") + Utils::fileNameForUrl(d->xmlUrl) + QLatin1String(".png");
         d->imagePixmap = QPixmap(imageFileName, "PNG");
-
     }
 
     if (title().isEmpty()) {
@@ -845,7 +845,9 @@ void Akregator::Feed::setArticleChanged(Article &a, int oldStatus)
 int Akregator::Feed::totalCount() const
 {
     if (d->totalCount == -1) {
-        d->totalCount = std::count_if(d->articles.constBegin(), d->articles.constEnd(), [](const Article & art) -> bool { return !art.isDeleted(); });
+        d->totalCount = std::count_if(d->articles.constBegin(), d->articles.constEnd(), [](const Article &art) -> bool {
+            return !art.isDeleted();
+        });
     }
     return d->totalCount;
 }
@@ -939,4 +941,3 @@ void Akregator::Feed::enforceLimitArticleNumber()
         }
     }
 }
-

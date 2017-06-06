@@ -42,9 +42,7 @@
 
 using namespace Syndication;
 
-namespace
-{
-
+namespace {
 QString buildTitle(const QString &description)
 {
     QString s = description;
@@ -75,12 +73,9 @@ QString buildTitle(const QString &description)
     }
     return s.simplified();
 }
-
 }
 
-namespace Akregator
-{
-
+namespace Akregator {
 struct Article::Private : public Shared {
     Private();
     Private(const QString &guid, Feed *feed, Backend::FeedStorage *archive);
@@ -112,36 +107,46 @@ struct Article::Private : public Shared {
     mutable QSharedPointer<const Enclosure> enclosure;
 };
 
-namespace
-{
+namespace {
 class EnclosureImpl : public Enclosure
 {
 public:
-    EnclosureImpl(const QString &url, const QString &type, uint length) : m_url(url), m_type(type), m_length(length) {}
+    EnclosureImpl(const QString &url, const QString &type, uint length) : m_url(url)
+        , m_type(type)
+        , m_length(length)
+    {
+    }
+
     QString url() const override
     {
         return m_url;
     }
+
     QString type() const override
     {
         return m_type;
     }
+
     QString title() const override
     {
         return m_title;
     }
+
     uint length() const override
     {
         return m_length;
     }
+
     uint duration() const override
     {
         return 0;
     }
+
     bool isNull() const override
     {
         return m_url.isNull();
     }
+
 private:
     QString m_url;
     QString m_type;
@@ -151,29 +156,29 @@ private:
 }
 
 Article::Private::Private()
-    : feed(0),
-      archive(0),
-      status(0),
-      hash(0),
-      pubDate(QDateTime::fromTime_t(1))
+    : feed(0)
+    , archive(0)
+    , status(0)
+    , hash(0)
+    , pubDate(QDateTime::fromTime_t(1))
 {
 }
 
 Article::Private::Private(const QString &guid_, Feed *feed_, Backend::FeedStorage *archive_)
-    : feed(feed_),
-      guid(guid_),
-      archive(archive_),
-      status(archive->status(guid)),
-      hash(archive->hash(guid)),
-      pubDate(QDateTime::fromTime_t(archive->pubDate(guid)))
+    : feed(feed_)
+    , guid(guid_)
+    , archive(archive_)
+    , status(archive->status(guid))
+    , hash(archive->hash(guid))
+    , pubDate(QDateTime::fromTime_t(archive->pubDate(guid)))
 {
 }
 
 Article::Private::Private(const ItemPtr &article, Feed *feed_, Backend::FeedStorage *archive_)
-    : feed(feed_),
-      archive(archive_),
-      status(New),
-      hash(0)
+    : feed(feed_)
+    , archive(archive_)
+    , status(New)
+    , hash(0)
 {
     Q_ASSERT(archive);
     const QList<PersonPtr> authorList = article->authors();
@@ -246,7 +251,6 @@ Article::Private::Private(const ItemPtr &article, Feed *feed_, Backend::FeedStor
     if (!encs.isEmpty()) {
         archive->setEnclosure(guid, encs[0]->url(), encs[0]->type(), encs[0]->length());
     }
-
 }
 
 Article::Article() : d(new Private)
@@ -274,7 +278,6 @@ void Article::offsetPubDate(int secs)
 {
     d->pubDate = d->pubDate.addSecs(secs);
     d->archive->setPubDate(d->guid, d->pubDate.toTime_t());
-
 }
 
 void Article::setDeleted()
@@ -320,24 +323,24 @@ Article &Article::operator=(const Article &other)
 
 bool Article::operator<(const Article &other) const
 {
-    return pubDate() > other.pubDate() ||
-           (pubDate() == other.pubDate() && guid() < other.guid());
+    return pubDate() > other.pubDate()
+           || (pubDate() == other.pubDate() && guid() < other.guid());
 }
 
 bool Article::operator<=(const Article &other) const
 {
-    return (pubDate() > other.pubDate() || *this == other);
+    return pubDate() > other.pubDate() || *this == other;
 }
 
 bool Article::operator>(const Article &other) const
 {
-    return pubDate() < other.pubDate() ||
-           (pubDate() == other.pubDate() && guid() > other.guid());
+    return pubDate() < other.pubDate()
+           || (pubDate() == other.pubDate() && guid() > other.guid());
 }
 
 bool Article::operator>=(const Article &other) const
 {
-    return (pubDate() > other.pubDate() || *this == other);
+    return pubDate() > other.pubDate() || *this == other;
 }
 
 bool Article::operator==(const Article &other) const
@@ -555,5 +558,4 @@ QSharedPointer<const Enclosure> Article::enclosure() const
     }
     return d->enclosure;
 }
-
 } // namespace Akregator

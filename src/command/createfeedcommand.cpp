@@ -60,14 +60,13 @@ public:
 };
 
 CreateFeedCommand::Private::Private(CreateFeedCommand *qq)
-    : q(qq),
-      m_rootFolder(0),
-      m_subscriptionListView(0),
-      m_parentFolder(0),
-      m_after(0),
-      m_autoexec(false)
+    : q(qq)
+    , m_rootFolder(0)
+    , m_subscriptionListView(0)
+    , m_parentFolder(0)
+    , m_after(0)
+    , m_autoexec(false)
 {
-
 }
 
 void CreateFeedCommand::Private::doCreate()
@@ -138,7 +137,8 @@ void CreateFeedCommand::Private::doCreate()
     q->done();
 }
 
-CreateFeedCommand::CreateFeedCommand(MainWidget *parent) : Command(parent), d(new Private(this))
+CreateFeedCommand::CreateFeedCommand(MainWidget *parent) : Command(parent)
+    , d(new Private(this))
 {
     d->m_parent = parent;
 }
@@ -181,7 +181,6 @@ void CreateFeedCommand::doStart()
 
 void CreateFeedCommand::doAbort()
 {
-
 }
 
 #include "moc_createfeedcommand.cpp"

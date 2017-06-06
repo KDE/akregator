@@ -24,8 +24,7 @@
 #include "akregatorpart_export.h"
 #include <QObject>
 
-namespace Akregator
-{
+namespace Akregator {
 class ArticleViewerWebEngineWidgetNg;
 class AKREGATORPART_EXPORT WebEngineFrame : public Frame
 {

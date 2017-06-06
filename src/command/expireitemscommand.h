@@ -31,9 +31,7 @@
 
 #include <QWeakPointer>
 
-namespace Akregator
-{
-
+namespace Akregator {
 class FeedList;
 
 class ExpireItemsCommand : public Command
@@ -59,7 +57,6 @@ private:
     Q_PRIVATE_SLOT(d, void createDeleteJobs())
     Q_PRIVATE_SLOT(d, void jobFinished(KJob *))
 };
-
 }
 
 #endif // AKREGATOR_EXPIREITEMSCOMMAND_H

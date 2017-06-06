@@ -36,14 +36,15 @@
 #include <QList>
 #include <QRegExp>
 
-namespace Akregator
+namespace Akregator {
+namespace Filters {
+AbstractMatcher::AbstractMatcher()
 {
-namespace Filters
+}
+
+AbstractMatcher::~AbstractMatcher()
 {
-
-AbstractMatcher::AbstractMatcher() {}
-
-AbstractMatcher::~AbstractMatcher() {}
+}
 
 QString Criterion::subjectToString(Subject subj)
 {
@@ -126,7 +127,6 @@ Criterion::Criterion(Subject subject, Predicate predicate, const QVariant &objec
     , m_predicate(predicate)
     , m_object(object)
 {
-
 }
 
 void Criterion::writeConfig(KConfigGroup *config) const
@@ -276,7 +276,7 @@ void ArticleMatcher::readConfig(KConfigGroup *config)
     m_criteria.clear();
     m_association = stringToAssociation(config->readEntry(QStringLiteral("matcherAssociation"), QString()));
 
-    const int count =  config->readEntry(QStringLiteral("matcherCriteriaCount"), 0);
+    const int count = config->readEntry(QStringLiteral("matcherCriteriaCount"), 0);
 
     const QString criterionGroupPrefix = config->name() + QLatin1String("_Criterion");
 
@@ -298,6 +298,7 @@ bool ArticleMatcher::operator==(const AbstractMatcher &other) const
         return m_association == o->m_association && m_criteria == o->m_criteria;
     }
 }
+
 bool ArticleMatcher::operator!=(const AbstractMatcher &other) const
 {
     return !(*this == other);
@@ -353,6 +354,5 @@ QString ArticleMatcher::associationToString(Association association)
         return QStringLiteral("None");
     }
 }
-
 } //namespace Filters
 } //namespace Akregator

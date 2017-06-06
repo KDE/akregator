@@ -64,10 +64,10 @@
 using namespace Akregator;
 
 ArticleViewerWebEngine::ArticleViewerWebEngine(KActionCollection *ac, QWidget *parent)
-    : WebEngineViewer::WebEngineView(parent),
-      mActionCollection(ac),
-      mLastButtonClicked(LeftButton),
-      mViewerPluginToolManager(nullptr)
+    : WebEngineViewer::WebEngineView(parent)
+    , mActionCollection(ac)
+    , mLastButtonClicked(LeftButton)
+    , mViewerPluginToolManager(nullptr)
 {
     mNetworkAccessManager = new WebEngineViewer::InterceptorManager(this, ac, this);
     QWebEngineProfile *profile = new QWebEngineProfile(this);
@@ -100,12 +100,10 @@ ArticleViewerWebEngine::ArticleViewerWebEngine(KActionCollection *ac, QWidget *p
 
     connect(phishingDatabase(), &WebEngineViewer::LocalDataBaseManager::checkUrlFinished,
             this, &ArticleViewerWebEngine::slotCheckedUrlFinished);
-
 }
 
 ArticleViewerWebEngine::~ArticleViewerWebEngine()
 {
-
 }
 
 void ArticleViewerWebEngine::slotWebPageMutedOrAudibleChanged()
@@ -386,7 +384,6 @@ void ArticleViewerWebEngine::slotCheckedUrlFinished(const QUrl &url, WebEngineVi
         break;
     }
     openSafeUrl(url);
-
 }
 
 void ArticleViewerWebEngine::slotLinkClicked(const QUrl &url)

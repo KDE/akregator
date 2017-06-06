@@ -23,9 +23,7 @@ email                : markey@web.de
 
 #include <vector>
 
-namespace Akregator
-{
-
+namespace Akregator {
 class Plugin;
 class AKREGATORPART_EXPORT PluginManager
 {
@@ -108,8 +106,6 @@ private:
     //attributes:
     static std::vector<StoreItem> m_store;
 };
-
 } // namespace Akregator
 
 #endif // AKREGATOR_PLUGINMANAGER_H
-

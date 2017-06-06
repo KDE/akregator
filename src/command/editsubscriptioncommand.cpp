@@ -37,37 +37,37 @@
 
 using namespace Akregator;
 
-namespace
-{
-
+namespace {
 class EditNodePropertiesVisitor : public TreeNodeVisitor
 {
 public:
     EditNodePropertiesVisitor(SubscriptionListView *subcriptionListView, QWidget *parent);
 
-    bool visitFolder(Folder *node) override {
+    bool visitFolder(Folder *node) override
+    {
         m_subscriptionListView->startNodeRenaming(node);
         return true;
     }
 
-    bool visitFeed(Akregator::Feed *node) override {
+    bool visitFeed(Akregator::Feed *node) override
+    {
         QPointer<FeedPropertiesDialog> dlg = new FeedPropertiesDialog(m_widget);
         dlg->setFeed(node);
         dlg->exec();
         delete dlg;
         return true;
     }
+
 private:
 
     SubscriptionListView *m_subscriptionListView;
     QWidget *m_widget;
 };
-
 }
 
 EditNodePropertiesVisitor::EditNodePropertiesVisitor(SubscriptionListView *subscriptionListView, QWidget *parent)
-    : m_subscriptionListView(subscriptionListView),
-      m_widget(parent)
+    : m_subscriptionListView(subscriptionListView)
+    , m_widget(parent)
 {
     Q_ASSERT(m_subscriptionListView);
     Q_ASSERT(m_widget);
@@ -88,19 +88,19 @@ public:
     SubscriptionListView *m_subscriptionListView;
 };
 
-EditSubscriptionCommand::Private::Private(EditSubscriptionCommand *qq) : q(qq),
-    m_list(),
-    m_subscriptionId(-1),
-    m_subscriptionListView(0)
+EditSubscriptionCommand::Private::Private(EditSubscriptionCommand *qq) : q(qq)
+    , m_list()
+    , m_subscriptionId(-1)
+    , m_subscriptionListView(0)
 {
-
 }
 
 EditSubscriptionCommand::Private::~Private()
 {
 }
 
-EditSubscriptionCommand::EditSubscriptionCommand(QObject *parent) : Command(parent), d(new Private(this))
+EditSubscriptionCommand::EditSubscriptionCommand(QObject *parent) : Command(parent)
+    , d(new Private(this))
 {
 }
 
@@ -155,7 +155,6 @@ void EditSubscriptionCommand::Private::startEdit()
 
 void EditSubscriptionCommand::doAbort()
 {
-
 }
 
 #include "moc_editsubscriptioncommand.cpp"

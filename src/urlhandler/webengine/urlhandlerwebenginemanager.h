@@ -24,8 +24,7 @@
 #include <QVector>
 #include "akregator_export.h"
 
-namespace Akregator
-{
+namespace Akregator {
 class URLHandlerWebEngine;
 class ArticleViewerWebEngine;
 class AKREGATOR_EXPORT URLHandlerWebEngineManager : public QObject

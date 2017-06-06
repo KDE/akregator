@@ -27,9 +27,7 @@
 
 #include "command.h"
 
-namespace Akregator
-{
-
+namespace Akregator {
 class Folder;
 class MainWidget;
 class SubscriptionListView;
@@ -57,7 +55,6 @@ private:
     Private *const d;
     Q_PRIVATE_SLOT(d, void doCreate())
 };
-
 }
 
 #endif // AKREGATOR_CREATEFEEDCOMMAND_H

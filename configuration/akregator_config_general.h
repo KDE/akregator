@@ -41,4 +41,4 @@ private:
     QWidget *m_widget;
 };
 
-#endif // AKREGATOR_CONFIG_GENERAL_H 
+#endif // AKREGATOR_CONFIG_GENERAL_H

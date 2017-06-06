@@ -31,11 +31,8 @@
 #include <vector>
 #include "widgets/statussearchline.h"
 
-namespace Akregator
-{
-
-namespace Filters
-{
+namespace Akregator {
+namespace Filters {
 class AbstractMatcher;
 }
 
@@ -76,7 +73,6 @@ private:
     class SearchBarPrivate;
     SearchBarPrivate *d;
 };
-
 } // namespace Akregator
 
 #endif //AKREGATOR_SEARCHBAR_H

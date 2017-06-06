@@ -62,7 +62,6 @@ ImportFeedListCommand::Private::Private(ImportFeedListCommand *qq)
     , rootFolderOption(Ask)
     , importedRootFolderName(i18n("Imported Feeds"))
 {
-
 }
 
 void ImportFeedListCommand::Private::doImport()
@@ -90,11 +89,12 @@ void ImportFeedListCommand::Private::doImport()
 
     bool ok = false;
 
-    if (rootFolderOption == ImportFeedListCommand::Ask)
+    if (rootFolderOption == ImportFeedListCommand::Ask) {
         importedRootFolderName = QInputDialog::getText(q->parentWidget(), i18n("Add Imported Folder"),
-                                 i18n("Imported folder name:"), QLineEdit::Normal,
-                                 importedRootFolderName,
-                                 &ok);
+                                                       i18n("Imported folder name:"), QLineEdit::Normal,
+                                                       importedRootFolderName,
+                                                       &ok);
+    }
 
     if (!ok || !that) {
         if (that) {
@@ -115,7 +115,8 @@ void ImportFeedListCommand::Private::doImport()
     q->done();
 }
 
-ImportFeedListCommand::ImportFeedListCommand(QObject *parent) : Command(parent), d(new Private(this))
+ImportFeedListCommand::ImportFeedListCommand(QObject *parent) : Command(parent)
+    , d(new Private(this))
 {
 }
 

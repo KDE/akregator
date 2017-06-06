@@ -32,11 +32,8 @@
 class QString;
 class QWidget;
 
-namespace Akregator
-{
-
-namespace Backend
-{
+namespace Akregator {
+namespace Backend {
 class StorageFactory;
 }
 
@@ -60,7 +57,6 @@ public Q_SLOTS:
 private:
     QHash<QString, Backend::StorageFactory *> m_factories;
 };
-
 } // namespace Akregator
 
 #endif //AKREGATOR_SETTINGS_ADVANCED_H

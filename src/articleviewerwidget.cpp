@@ -25,7 +25,6 @@
 
 #include "articleviewerwidget.h"
 
-
 #include "akregatorconfig.h"
 #include "aboutdata.h"
 #include "actionmanager.h"
@@ -72,12 +71,12 @@ using namespace Akregator;
 using namespace Akregator::Filters;
 
 ArticleViewerWidget::ArticleViewerWidget(const QString &grantleeDirectory, KActionCollection *ac, QWidget *parent)
-    : QWidget(parent),
-      m_imageDir(QUrl::fromLocalFile(QString(QStandardPaths::writableLocation(QStandardPaths::CacheLocation) + QLatin1String("/akregator/Media/")))),
-      m_node(0),
-      m_viewMode(NormalView),
-      m_articleViewerWidgetNg(new Akregator::ArticleViewerWebEngineWidgetNg(ac, this)),
-      m_grantleeDirectory(grantleeDirectory)
+    : QWidget(parent)
+    , m_imageDir(QUrl::fromLocalFile(QString(QStandardPaths::writableLocation(QStandardPaths::CacheLocation) + QLatin1String("/akregator/Media/"))))
+    , m_node(0)
+    , m_viewMode(NormalView)
+    , m_articleViewerWidgetNg(new Akregator::ArticleViewerWebEngineWidgetNg(ac, this))
+    , m_grantleeDirectory(grantleeDirectory)
 {
     QGridLayout *layout = new QGridLayout(this);
     layout->setMargin(0);
@@ -260,7 +259,9 @@ void ArticleViewerWidget::slotUpdateCombinedView()
             continue;
         }
 
-        auto func = [i](const QSharedPointer<const Filters::AbstractMatcher> &matcher) -> bool { return !matcher->matches(i); };
+        auto func = [i](const QSharedPointer<const Filters::AbstractMatcher> &matcher) -> bool {
+                        return !matcher->matches(i);
+                    };
         if (std::find_if(m_filters.cbegin(), filterEnd, func) != filterEnd) {
             continue;
         }

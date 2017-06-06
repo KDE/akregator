@@ -30,11 +30,8 @@
 class QString;
 class QStringList;
 
-namespace Akregator
-{
-namespace Backend
-{
-
+namespace Akregator {
+namespace Backend {
 /** a convenience class to handle categories in the backend */
 class Category
 {
@@ -55,6 +52,7 @@ public:
     {
         return !operator==(other);
     }
+
     /** we need this for QMaps */
     bool operator<(const Category &other) const
     {
@@ -71,7 +69,7 @@ public:
     virtual int unread() const = 0;
     virtual void setUnread(int unread) = 0;
     virtual int totalCount() const = 0;
-    virtual int lastFetch() const  = 0;
+    virtual int lastFetch() const = 0;
     virtual void setLastFetch(int lastFetch) = 0;
 
     /** returns the guids of all articles in this storage. If a tagID is given, only articles with this tag are returned */
@@ -122,10 +120,10 @@ public:
     virtual void removeTag(const QString &guid, const QString &tag) = 0;
 
     /** returns the tags of a given article. If @c guid is null, it returns all tags used in this feed */
-    virtual QStringList tags(const QString &guid = QString()) const  = 0;
+    virtual QStringList tags(const QString &guid = QString()) const = 0;
 
     virtual void addCategory(const QString &guid, const Category &category) = 0;
-    virtual QList<Category> categories(const QString &guid = QString()) const  = 0;
+    virtual QList<Category> categories(const QString &guid = QString()) const = 0;
 
     virtual void setEnclosure(const QString &guid, const QString &url, const QString &type, int length) = 0;
     virtual void removeEnclosure(const QString &guid) = 0;
@@ -138,14 +136,13 @@ public:
     virtual QString authorUri(const QString &guid) const = 0;
     virtual QString authorEMail(const QString &guid) const = 0;
 
-    virtual void enclosure(const QString &guid, bool &hasEnclosure, QString &url, QString &type, int &length) const  = 0;
+    virtual void enclosure(const QString &guid, bool &hasEnclosure, QString &url, QString &type, int &length) const = 0;
     virtual void close() = 0;
     virtual void commit() = 0;
     virtual void rollback() = 0;
 
     virtual void convertOldArchive() = 0;
 };
-
 } // namespace Backend
 } // namespace Akregator
 

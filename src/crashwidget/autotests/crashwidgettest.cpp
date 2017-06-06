@@ -23,12 +23,10 @@
 CrashWidgetTest::CrashWidgetTest(QObject *parent)
     : QObject(parent)
 {
-
 }
 
 CrashWidgetTest::~CrashWidgetTest()
 {
-
 }
 
 QTEST_MAIN(CrashWidgetTest)

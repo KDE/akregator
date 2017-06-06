@@ -106,11 +106,11 @@ MainWidget::~MainWidget()
 }
 
 MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionManager, const QString &name)
-    : QWidget(parent),
-      m_feedList(),
-      m_viewMode(NormalView),
-      m_actionManager(actionManager),
-      m_feedListManagementInterface(new FeedListManagementImpl)
+    : QWidget(parent)
+    , m_feedList()
+    , m_viewMode(NormalView)
+    , m_actionManager(actionManager)
+    , m_feedListManagementInterface(new FeedListManagementImpl)
 {
     setObjectName(name);
 
@@ -401,7 +401,7 @@ void MainWidget::sendArticle(bool attach)
         text = frame->url().toString().toLatin1();
         title = frame->title();
     } else { // nah, we're in articlelist..
-        const Article article =  m_selectionController->currentArticle();
+        const Article article = m_selectionController->currentArticle();
         if (!article.isNull()) {
             text = article.link().toDisplayString().toLatin1();
             title = Akregator::Utils::convertHtmlTags(article.title());
@@ -512,7 +512,7 @@ void MainWidget::addFeedToGroup(const QString &url, const QString &groupName)
     Folder *group = nullptr;
     for (TreeNode *const candidate : namedGroups) {
         if (candidate->isGroup()) {
-            group =  static_cast<Folder *>(candidate);
+            group = static_cast<Folder *>(candidate);
             break;
         }
     }
@@ -536,7 +536,7 @@ void MainWidget::slotNormalView()
     if (m_viewMode == CombinedView) {
         m_articleWidget->show();
 
-        const Article article =  m_selectionController->currentArticle();
+        const Article article = m_selectionController->currentArticle();
 
         if (!article.isNull()) {
             m_articleViewer->showArticle(article);
@@ -560,7 +560,7 @@ void MainWidget::slotWidescreenView()
     if (m_viewMode == CombinedView) {
         m_articleWidget->show();
 
-        Article article =  m_selectionController->currentArticle();
+        Article article = m_selectionController->currentArticle();
 
         if (!article.isNull()) {
             m_articleViewer->showArticle(article);
@@ -709,7 +709,6 @@ void MainWidget::slotFeedAdd()
         } else {
             group = m_selectionController->selectedSubscription()->parent();
         }
-
     }
 
     TreeNode *const lastChild = !group->children().isEmpty() ? group->children().last() : nullptr;
@@ -994,12 +993,11 @@ void MainWidget::openSelectedArticles(bool openInBackground)
             Kernel::self()->frameManager()->slotOpenUrlRequest(req);
         }
     }
-
 }
 
 void MainWidget::currentArticleInfo(QString &link, QString &title)
 {
-    const Article article =  m_selectionController->currentArticle();
+    const Article article = m_selectionController->currentArticle();
 
     if (article.isNull()) {
         return;
@@ -1017,7 +1015,7 @@ void MainWidget::updateQuickSearchLineText()
 
 void MainWidget::slotCopyLinkAddress()
 {
-    const Article article =  m_selectionController->currentArticle();
+    const Article article = m_selectionController->currentArticle();
 
     if (article.isNull()) {
         return;
@@ -1045,12 +1043,10 @@ void MainWidget::slotToggleShowQuickFilter()
             m_searchBar->show();
         }
     }
-
 }
 
 void MainWidget::slotArticleDelete()
 {
-
     if (m_viewMode == CombinedView) {
         return;
     }
@@ -1129,9 +1125,7 @@ void MainWidget::slotArticleToggleKeepFlag(bool)
     job->start();
 }
 
-namespace
-{
-
+namespace {
 void setArticleStatus(const QString &feedUrl, const QString &articleId, int status)
 {
     if (!feedUrl.isEmpty() && !articleId.isEmpty()) {
@@ -1157,7 +1151,6 @@ void setSelectedArticleStatus(const Akregator::AbstractSelectionController *cont
     }
     job->start();
 }
-
 }
 
 void MainWidget::slotSetSelectedArticleRead()
@@ -1177,7 +1170,7 @@ void MainWidget::slotSetSelectedArticleNew()
 
 void MainWidget::slotSetCurrentArticleReadDelayed()
 {
-    const Article article =  m_selectionController->currentArticle();
+    const Article article = m_selectionController->currentArticle();
 
     if (article.isNull()) {
         return;
@@ -1283,7 +1276,8 @@ void MainWidget::slotFocusQuickSearch()
 void MainWidget::slotArticleAction(Akregator::ArticleViewerWebEngine::ArticleAction type, const QString &articleId, const QString &feed)
 {
     switch (type) {
-    case ArticleViewerWebEngine::DeleteAction: {
+    case ArticleViewerWebEngine::DeleteAction:
+    {
         Akregator::ArticleDeleteJob *job = new Akregator::ArticleDeleteJob;
         const Akregator::ArticleId aid = { feed, articleId };
         job->appendArticleId(aid);
@@ -1297,7 +1291,8 @@ void MainWidget::slotArticleAction(Akregator::ArticleViewerWebEngine::ArticleAct
         ::setArticleStatus(feed, articleId, Akregator::Unread);
         break;
 
-    case ArticleViewerWebEngine::MarkAsImportant: {
+    case ArticleViewerWebEngine::MarkAsImportant:
+    {
         Akregator::ArticleModifyJob *job = new Akregator::ArticleModifyJob;
         const Akregator::Article article = m_feedList->findArticle(feed, articleId);
         const Akregator::ArticleId aid = { feed, articleId };
@@ -1305,18 +1300,20 @@ void MainWidget::slotArticleAction(Akregator::ArticleViewerWebEngine::ArticleAct
         job->start();
         break;
     }
-    case ArticleViewerWebEngine::SendUrlArticle: {
-        case ArticleViewerWebEngine::SendFileArticle:
-            const Article article =  m_feedList->findArticle(feed, articleId);
-            const QByteArray text = article.link().toDisplayString().toLatin1();
-            const QString title = Akregator::Utils::convertHtmlTags(article.title());
-            if (text.isEmpty()) {
-                return;
-            }
-            sendArticle(text, title, (type == ArticleViewerWebEngine::SendFileArticle));
-            break;
+    case ArticleViewerWebEngine::SendUrlArticle:
+    {
+    case ArticleViewerWebEngine::SendFileArticle:
+        const Article article = m_feedList->findArticle(feed, articleId);
+        const QByteArray text = article.link().toDisplayString().toLatin1();
+        const QString title = Akregator::Utils::convertHtmlTags(article.title());
+        if (text.isEmpty()) {
+            return;
         }
-    case ArticleViewerWebEngine::OpenInBackgroundTab: {
+        sendArticle(text, title, (type == ArticleViewerWebEngine::SendFileArticle));
+        break;
+    }
+    case ArticleViewerWebEngine::OpenInBackgroundTab:
+    {
         const Akregator::Article article = m_feedList->findArticle(feed, articleId);
         const QUrl url = article.link();
         if (url.isValid()) {
@@ -1327,7 +1324,8 @@ void MainWidget::slotArticleAction(Akregator::ArticleViewerWebEngine::ArticleAct
         }
         break;
     }
-    case ArticleViewerWebEngine::OpenInExternalBrowser: {
+    case ArticleViewerWebEngine::OpenInExternalBrowser:
+    {
         const Akregator::Article article = m_feedList->findArticle(feed, articleId);
         slotOpenArticleInBrowser(article);
         break;

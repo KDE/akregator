@@ -35,24 +35,20 @@
 class QDateTime;
 class QString;
 
-template <class T> class QList;
+template<class T> class QList;
 
 typedef unsigned int uint;
 
 class QUrl;
 
-namespace Syndication
-{
+namespace Syndication {
 class Enclosure;
 class Item;
 typedef QSharedPointer<Item> ItemPtr;
 }
 
-namespace Akregator
-{
-
-namespace Backend
-{
+namespace Akregator {
+namespace Backend {
 class FeedStorage;
 }
 
@@ -151,7 +147,6 @@ private:
     struct Private;
     Private *d;
 };
-
 } // namespace Akregator
 Q_DECLARE_TYPEINFO(Akregator::Article, Q_MOVABLE_TYPE);
 #endif // AKREGATOR_ARTICLE_H

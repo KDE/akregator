@@ -22,8 +22,7 @@
 #include <WebEngineViewer/NetworkPluginUrlInterceptor>
 #include "kcm_config_plugins_debug.h"
 #include <KLocalizedString>
-namespace
-{
+namespace {
 QString networkUrlInterceptorGroupName()
 {
     return QStringLiteral("networkurlinterceptorgroupname");
@@ -38,14 +37,13 @@ AkregatorConfigurePluginListWidget::AkregatorConfigurePluginListWidget(QWidget *
 
 AkregatorConfigurePluginListWidget::~AkregatorConfigurePluginListWidget()
 {
-
 }
 
 void AkregatorConfigurePluginListWidget::save()
 {
     PimCommon::ConfigurePluginsListWidget::savePlugins(WebEngineViewer::NetworkUrlInterceptorPluginManager::self()->configGroupName(),
-            WebEngineViewer::NetworkUrlInterceptorPluginManager::self()->configPrefixSettingKey(),
-            mPluginWebEngineItems);
+                                                       WebEngineViewer::NetworkUrlInterceptorPluginManager::self()->configPrefixSettingKey(),
+                                                       mPluginWebEngineItems);
 }
 
 void AkregatorConfigurePluginListWidget::doLoadFromGlobalSettings()
@@ -63,11 +61,11 @@ void AkregatorConfigurePluginListWidget::initialize()
     mListWidget->clear();
     //Load webengineplugin
     PimCommon::ConfigurePluginsListWidget::fillTopItems(WebEngineViewer::NetworkUrlInterceptorPluginManager::self()->pluginsDataList(),
-            i18n("Webengine Plugins"),
-            WebEngineViewer::NetworkUrlInterceptorPluginManager::self()->configGroupName(),
-            WebEngineViewer::NetworkUrlInterceptorPluginManager::self()->configPrefixSettingKey(),
-            mPluginWebEngineItems,
-            networkUrlInterceptorGroupName());
+                                                        i18n("Webengine Plugins"),
+                                                        WebEngineViewer::NetworkUrlInterceptorPluginManager::self()->configGroupName(),
+                                                        WebEngineViewer::NetworkUrlInterceptorPluginManager::self()->configPrefixSettingKey(),
+                                                        mPluginWebEngineItems,
+                                                        networkUrlInterceptorGroupName());
     mListWidget->expandAll();
 }
 

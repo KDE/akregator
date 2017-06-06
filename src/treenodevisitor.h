@@ -26,8 +26,7 @@
 
 #include "akregator_export.h"
 
-namespace Akregator
-{
+namespace Akregator {
 class TreeNode;
 class Folder;
 class Feed;
@@ -35,22 +34,26 @@ class Feed;
 class AKREGATOR_EXPORT TreeNodeVisitor
 {
 public:
-    virtual ~TreeNodeVisitor() {}
+    virtual ~TreeNodeVisitor()
+    {
+    }
+
     virtual bool visit(TreeNode *node);
     virtual bool visitTreeNode(TreeNode * /*node*/)
     {
         return false;
     }
+
     virtual bool visitFolder(Folder * /*node*/)
     {
         return false;
     }
+
     virtual bool visitFeed(Feed * /*node*/)
     {
         return false;
     }
 };
-
 } // namespace Akregator
 
 #endif // AKREGATOR_TREENODEVISITOR_H

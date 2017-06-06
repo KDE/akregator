@@ -59,17 +59,17 @@ InvokeWrapper<Arg, R, C> invoke(R *receiver, void (C::*memberFun)(Arg))
 }
 
 ArticleViewerWebEngineWidgetNg::ArticleViewerWebEngineWidgetNg(ArticleViewerWebEngine *customViewer, KActionCollection *ac, QWidget *parent)
-    : QWidget(parent),
-      mCurrentPrinter(nullptr)
+    : QWidget(parent)
+    , mCurrentPrinter(nullptr)
 {
     mArticleViewerNg = customViewer;
     initializeLayout(ac);
 }
 
 ArticleViewerWebEngineWidgetNg::ArticleViewerWebEngineWidgetNg(KActionCollection *ac, QWidget *parent)
-    : QWidget(parent),
-      mArticleViewerNg(nullptr),
-      mCurrentPrinter(nullptr)
+    : QWidget(parent)
+    , mArticleViewerNg(nullptr)
+    , mCurrentPrinter(nullptr)
 {
     initializeLayout(ac);
 }
@@ -104,7 +104,6 @@ void ArticleViewerWebEngineWidgetNg::initializeLayout(KActionCollection *ac)
 
 ArticleViewerWebEngineWidgetNg::~ArticleViewerWebEngineWidgetNg()
 {
-
 }
 
 ArticleViewerWebEngine *ArticleViewerWebEngineWidgetNg::articleViewerNg() const
@@ -202,4 +201,3 @@ void ArticleViewerWebEngineWidgetNg::slotExportHtmlPageSuccess(const QString &fi
     const QUrl url(QUrl::fromLocalFile(filename));
     KRun::runUrl(url, QStringLiteral("text/html"), this, true);
 }
-

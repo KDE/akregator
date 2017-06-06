@@ -58,7 +58,6 @@ public:
     void articlesAdded(const QVector<Article> &);
     void articlesRemoved(const QVector<Article> &);
     void articlesUpdated(const QVector<Article> &);
-
 };
 
 //like Syndication::htmlToPlainText, but without linebreaks
@@ -73,7 +72,8 @@ static QString stripHtml(const QString &html)
 }
 
 ArticleModel::Private::Private(const QVector<Article> &articles_, ArticleModel *qq)
-    : q(qq), articles(articles_)
+    : q(qq)
+    , articles(articles_)
 {
     const int articlesCount(articles.count());
     titleCache.resize(articlesCount);
@@ -82,7 +82,8 @@ ArticleModel::Private::Private(const QVector<Article> &articles_, ArticleModel *
     }
 }
 
-ArticleModel::ArticleModel(const QVector<Article> &articles, QObject *parent) : QAbstractTableModel(parent), d(new Private(articles, this))
+ArticleModel::ArticleModel(const QVector<Article> &articles, QObject *parent) : QAbstractTableModel(parent)
+    , d(new Private(articles, this))
 {
 }
 
@@ -143,7 +144,7 @@ QVariant ArticleModel::data(const QModelIndex &index, int role) const
             return article.pubDate();
         }
     // no break
-    case Qt::DisplayRole: {
+    case Qt::DisplayRole:
         switch (index.column()) {
         case FeedTitleColumn:
             return article.feed() ? article.feed()->title() : QVariant();
@@ -157,26 +158,19 @@ QVariant ArticleModel::data(const QModelIndex &index, int role) const
         case ContentColumn:
             return article.description();
         }
-    }
-    case LinkRole: {
+    case LinkRole:
         return article.link();
-    }
     case ItemIdRole:
-    case GuidRole: {
+    case GuidRole:
         return article.guid();
-    }
-    case FeedIdRole: {
+    case FeedIdRole:
         return article.feed() ? article.feed()->xmlUrl() : QVariant();
-    }
-    case StatusRole: {
+    case StatusRole:
         return article.status();
-    }
-    case IsImportantRole: {
+    case IsImportantRole:
         return article.keep();
-    }
-    case IsDeletedRole: {
+    case IsDeletedRole:
         return article.isDeleted();
-    }
     }
 
     return QVariant();
@@ -199,6 +193,7 @@ void ArticleModel::articlesRemoved(TreeNode *, const QVector<Article> &l)
 {
     d->articlesRemoved(l);
 }
+
 void ArticleModel::articlesUpdated(TreeNode *, const QVector<Article> &l)
 {
     d->articlesUpdated(l);
@@ -302,4 +297,3 @@ Qt::ItemFlags ArticleModel::flags(const QModelIndex &idx) const
     }
     return f | Qt::ItemIsDragEnabled;
 }
-

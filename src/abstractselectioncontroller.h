@@ -33,9 +33,7 @@ class QItemSelectionModel;
 class QPoint;
 class QModelIndex;
 
-namespace Akregator
-{
-
+namespace Akregator {
 class Article;
 class ArticleModel;
 class FeedList;
@@ -43,8 +41,7 @@ class FolderExpansionHandler;
 class SubscriptionListModel;
 class TreeNode;
 
-namespace Filters
-{
+namespace Filters {
 class AbstractMatcher;
 }
 
@@ -52,7 +49,9 @@ class ArticleLister
 {
 public:
 
-    virtual ~ArticleLister() {}
+    virtual ~ArticleLister()
+    {
+    }
 
     virtual void setArticleModel(Akregator::ArticleModel *model) = 0;
 
@@ -76,7 +75,9 @@ public:
 class SingleArticleDisplay
 {
 public:
-    virtual ~SingleArticleDisplay() {}
+    virtual ~SingleArticleDisplay()
+    {
+    }
 
     virtual void showArticle(const Akregator::Article &article) = 0;
 };
@@ -84,7 +85,9 @@ public:
 class SubscriptionLister
 {
 public:
-    virtual ~SubscriptionLister() {}
+    virtual ~SubscriptionLister()
+    {
+    }
 
     virtual void setSubscriptionListModel(Akregator::SubscriptionListModel *model) = 0;
     virtual QItemSelectionModel *subscriptionSelectionModel() const = 0;
@@ -129,7 +132,6 @@ Q_SIGNALS:
 
     void articleDoubleClicked(const Akregator::Article &);
 };
-
 } // namespace Akregator
 
 #endif // AKREGATOR_ABSTRACTSELECTIONCONTROLLER_H

@@ -46,8 +46,7 @@ class QDomDocument;
 class QNetworkConfigurationManager;
 class QSplitter;
 
-namespace Akregator
-{
+namespace Akregator {
 class WebEngineFrame;
 class AbstractSelectionController;
 class ActionManagerImpl;
@@ -296,7 +295,6 @@ private:
     QWidget *m_articleWidget;
     QList<QPointer<Akregator::DownloadArticleJob> > mListDownloadArticleJobs;
 };
-
 } // namespace Akregator
 
 #endif // AKREGATOR_MAINWIDGET_H

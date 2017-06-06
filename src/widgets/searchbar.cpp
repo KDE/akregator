@@ -62,8 +62,8 @@ public:
 };
 
 SearchBar::SearchBar(QWidget *parent)
-    : QWidget(parent),
-      d(new SearchBar::SearchBarPrivate)
+    : QWidget(parent)
+    , d(new SearchBar::SearchBarPrivate)
 {
     d->delay = 400;
     QHBoxLayout *layout = new QHBoxLayout(this);
@@ -175,19 +175,22 @@ void SearchBar::slotActivateSearch()
     switch (d->searchLine->status()) {
     case StatusSearchLine::AllArticles:
         break;
-    case StatusSearchLine::NewArticles: {
+    case StatusSearchLine::NewArticles:
+    {
         Criterion crit(Criterion::Status, Criterion::Equals, New);
         statusCriteria << crit;
         break;
     }
-    case StatusSearchLine::UnreadArticles: {
+    case StatusSearchLine::UnreadArticles:
+    {
         Criterion crit1(Criterion::Status, Criterion::Equals, New);
         Criterion crit2(Criterion::Status, Criterion::Equals, Unread);
         statusCriteria << crit1;
         statusCriteria << crit2;
         break;
     }
-    case StatusSearchLine::ImportantArticles: {
+    case StatusSearchLine::ImportantArticles:
+    {
         Criterion crit(Criterion::KeepFlag, Criterion::Equals, true);
         statusCriteria << crit;
         break;

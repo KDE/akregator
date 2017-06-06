@@ -42,12 +42,10 @@ ArticleViewerWebEnginePage::ArticleViewerWebEnginePage(QWebEngineProfile *profil
     settings()->setAttribute(QWebEngineSettings::WebGLEnabled, false);
     connect(this, &QWebEnginePage::featurePermissionRequested,
             this, &ArticleViewerWebEnginePage::slotFeaturePermissionRequested);
-
 }
 
 ArticleViewerWebEnginePage::~ArticleViewerWebEnginePage()
 {
-
 }
 
 bool ArticleViewerWebEnginePage::acceptNavigationRequest(const QUrl &url, NavigationType type, bool isMainFrame)

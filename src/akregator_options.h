@@ -28,23 +28,21 @@
 #include <QCommandLineParser>
 #include <KLocalizedString>
 
-namespace Akregator
-{
-
+namespace Akregator {
 static void akregator_options(QCommandLineParser *parser)
 {
     QList<QCommandLineOption> options;
     options << QCommandLineOption(
-                QStringList() << QStringLiteral("a") << QStringLiteral("addfeed"),
-                i18n("Add a feed with the given URL"),
-                QStringLiteral("url"))
+        QStringList() << QStringLiteral("a") << QStringLiteral("addfeed"),
+        i18n("Add a feed with the given URL"),
+        QStringLiteral("url"))
             << QCommandLineOption(
-                QStringList() << QStringLiteral("g") << QStringLiteral("group"),
-                i18n("When adding feeds, place them in this group"),
-                QStringLiteral("groupname")) //     "Imported"
+        QStringList() << QStringLiteral("g") << QStringLiteral("group"),
+        i18n("When adding feeds, place them in this group"),
+        QStringLiteral("groupname"))         //     "Imported"
             << QCommandLineOption(
-                QStringLiteral("hide-mainwindow"),
-                i18n("Hide main window on startup"));
+        QStringLiteral("hide-mainwindow"),
+        i18n("Hide main window on startup"));
 
     parser->addOptions(options);
     parser->addPositionalArgument(
@@ -52,7 +50,6 @@ static void akregator_options(QCommandLineParser *parser)
         i18n("Add a feed with the given URL"),
         QStringLiteral("[url...]"));
 }
-
 }
 
 #endif

@@ -86,9 +86,7 @@
 #include <QFontDatabase>
 #include <QStandardPaths>
 
-namespace
-{
-
+namespace {
 static QDomDocument createDefaultFeedList()
 {
     QDomDocument doc;
@@ -183,10 +181,9 @@ static QDomDocument createDefaultFeedList()
 }
 }
 
-namespace Akregator
-{
-
-K_PLUGIN_FACTORY(AkregatorFactory, registerPlugin<Part>();)
+namespace Akregator {
+K_PLUGIN_FACTORY(AkregatorFactory, registerPlugin<Part>();
+                 )
 
 static Part *mySelf = nullptr;
 BrowserExtension::BrowserExtension(Part *p, const char *name)
@@ -212,7 +209,6 @@ Part::Part(QWidget *parentWidget, QObject *parent, const QVariantList &)
     , m_mainWidget(nullptr)
     , m_storage(nullptr)
     , m_dialog(nullptr)
-
 {
     mySelf = this;
     //Make sure to initialize settings
@@ -602,12 +598,12 @@ void Part::exportFile(const QUrl &url)
     if (url.isLocalFile()) {
         const QString fname = url.toLocalFile();
 
-        if (QFileInfo::exists(fname) &&
-                KMessageBox::questionYesNo(m_mainWidget,
-                                           i18n("The file %1 already exists; do you want to overwrite it?", fname),
-                                           i18n("Export"),
-                                           KStandardGuiItem::overwrite(),
-                                           KStandardGuiItem::cancel()) == KMessageBox::No) {
+        if (QFileInfo::exists(fname)
+            && KMessageBox::questionYesNo(m_mainWidget,
+                                          i18n("The file %1 already exists; do you want to overwrite it?", fname),
+                                          i18n("Export"),
+                                          KStandardGuiItem::overwrite(),
+                                          KStandardGuiItem::cancel()) == KMessageBox::No) {
             return;
         }
 
@@ -837,7 +833,8 @@ void Part::autoReadProperties()
 void Part::slotRestoreSession(Akregator::CrashWidget::CrashAction type)
 {
     switch (type) {
-    case Akregator::CrashWidget::RestoreSession: {
+    case Akregator::CrashWidget::RestoreSession:
+    {
         KConfig config(QStringLiteral("crashed"), KConfig::SimpleConfig,
                        QStandardPaths::AppDataLocation);
         KConfigGroup configGroup(&config, "Part");
@@ -853,6 +850,5 @@ void Part::slotRestoreSession(Akregator::CrashWidget::CrashAction type)
     }
     m_doCrashSave = true;
 }
-
 } // namespace Akregator
 #include "akregator_part.moc"

@@ -35,9 +35,7 @@ class QIcon;
 class QString;
 class KConfigGroup;
 
-namespace Akregator
-{
-
+namespace Akregator {
 class Frame;
 class OpenUrlRequest;
 
@@ -108,7 +106,6 @@ private:
     QPointer<Frame> m_currentFrame;
     QHash<int, Frame *> m_frames;
 };
-
 } // namespace Akregator
 
 #endif // AKREGATOR_FRAMEMANAGER_H

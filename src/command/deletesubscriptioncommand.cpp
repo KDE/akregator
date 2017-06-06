@@ -38,26 +38,27 @@
 
 using namespace Akregator;
 
-namespace
-{
-
+namespace {
 class DeleteNodeVisitor : public TreeNodeVisitor
 {
 public:
-    explicit DeleteNodeVisitor(QWidget *parent) : m_widget(parent), m_job(0) {}
+    explicit DeleteNodeVisitor(QWidget *parent) : m_widget(parent)
+        , m_job(0)
+    {
+    }
 
-    bool visitFolder(Folder *node) override {
+    bool visitFolder(Folder *node) override
+    {
         const QString msg = node->title().isEmpty()
-        ? i18n("<qt>Are you sure you want to delete this folder and its feeds and subfolders?</qt>")
-        : i18n("<qt>Are you sure you want to delete folder <b>%1</b> and its feeds and subfolders?</qt>", node->title());
+                            ? i18n("<qt>Are you sure you want to delete this folder and its feeds and subfolders?</qt>")
+                            : i18n("<qt>Are you sure you want to delete folder <b>%1</b> and its feeds and subfolders?</qt>", node->title());
 
         if (KMessageBox::warningContinueCancel(m_widget,
-        msg,
-        i18n("Delete Folder"),
-        KStandardGuiItem::del(),
-        KStandardGuiItem::cancel(),
-        QStringLiteral("Disable delete folder confirmation")) != KMessageBox::Continue)
-        {
+                                               msg,
+                                               i18n("Delete Folder"),
+                                               KStandardGuiItem::del(),
+                                               KStandardGuiItem::cancel(),
+                                               QStringLiteral("Disable delete folder confirmation")) != KMessageBox::Continue) {
             return true;
         }
         m_job = reallyCreateJob(node);
@@ -66,22 +67,21 @@ public:
         return true;
     }
 
-    bool visitFeed(Feed *node) override {
+    bool visitFeed(Feed *node) override
+    {
         QString msg;
-        if (node->title().isEmpty())
-        {
+        if (node->title().isEmpty()) {
             msg = i18n("<qt>Are you sure you want to delete this feed?</qt>");
         } else {
             msg = i18n("<qt>Are you sure you want to delete feed <b>%1</b>?</qt>", node->title());
         }
 
         if (KMessageBox::warningContinueCancel(m_widget,
-        msg,
-        i18n("Delete Feed"),
-        KStandardGuiItem::del(),
-        KStandardGuiItem::cancel(),
-        QStringLiteral("Disable delete feed confirmation")) != KMessageBox::Continue)
-        {
+                                               msg,
+                                               i18n("Delete Feed"),
+                                               KStandardGuiItem::del(),
+                                               KStandardGuiItem::cancel(),
+                                               QStringLiteral("Disable delete feed confirmation")) != KMessageBox::Continue) {
             return true;
         }
         m_job = reallyCreateJob(node);
@@ -111,7 +111,6 @@ private:
     QPointer<QWidget> m_widget;
     QPointer<DeleteSubscriptionJob> m_job;
 };
-
 }
 
 class DeleteSubscriptionCommand::Private
@@ -128,18 +127,18 @@ public:
     int m_subscriptionId;
 };
 
-DeleteSubscriptionCommand::Private::Private(DeleteSubscriptionCommand *qq) : q(qq),
-    m_list(),
-    m_subscriptionId(-1)
+DeleteSubscriptionCommand::Private::Private(DeleteSubscriptionCommand *qq) : q(qq)
+    , m_list()
+    , m_subscriptionId(-1)
 {
-
 }
 
 DeleteSubscriptionCommand::Private::~Private()
 {
 }
 
-DeleteSubscriptionCommand::DeleteSubscriptionCommand(QObject *parent) : Command(parent), d(new Private(this))
+DeleteSubscriptionCommand::DeleteSubscriptionCommand(QObject *parent) : Command(parent)
+    , d(new Private(this))
 {
 }
 
@@ -189,13 +188,12 @@ void DeleteSubscriptionCommand::Private::startDelete()
         return;
     }
 
-    QObject::connect(job, SIGNAL(finished(KJob*)), q, SLOT(jobFinished()));
+    QObject::connect(job, SIGNAL(finished(KJob *)), q, SLOT(jobFinished()));
     job->start();
 }
 
 void DeleteSubscriptionCommand::doAbort()
 {
-
 }
 
 #include "moc_deletesubscriptioncommand.cpp"

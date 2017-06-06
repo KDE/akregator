@@ -30,9 +30,7 @@
 class QString;
 class QStringList;
 
-namespace Akregator
-{
-
+namespace Akregator {
 class AKREGATORINTERFACES_EXPORT FeedListManagementInterface
 {
 public:
@@ -51,7 +49,6 @@ public:
 private:
     static FeedListManagementInterface *m_instance;
 };
-
 }
 
 #endif // AKREGATOR_FEEDLISTMANAGEMENTINTERFACE_H

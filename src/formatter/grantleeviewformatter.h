@@ -24,8 +24,7 @@
 #include "article.h"
 #include "articleformatter.h"
 
-namespace Akregator
-{
+namespace Akregator {
 class Folder;
 class GrantleeViewFormatter : public PimCommon::GenericGrantleeFormatter
 {

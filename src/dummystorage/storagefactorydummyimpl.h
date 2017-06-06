@@ -31,11 +31,8 @@
 
 class QStringList;
 
-namespace Akregator
-{
-namespace Backend
-{
-
+namespace Akregator {
+namespace Backend {
 class Storage;
 
 class AKREGATORPART_EXPORT StorageFactoryDummyImpl : public StorageFactory
@@ -48,9 +45,9 @@ public:
     {
         return false;
     }
+
     Storage *createStorage(const QStringList &params) const override;
 };
-
 } // namespace Backend
 } // namespace Akregator
 

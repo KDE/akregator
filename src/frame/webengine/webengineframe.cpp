@@ -220,4 +220,3 @@ void WebEngineFrame::slotMute(int frameId, bool mute)
     }
     mArticleViewerWidgetNg->articleViewerNg()->slotMute(mute);
 }
-

@@ -26,9 +26,7 @@ email                : markey@web.de
 using std::vector;
 using Akregator::Plugin;
 
-namespace Akregator
-{
-
+namespace Akregator {
 vector<PluginManager::StoreItem>
 PluginManager::m_store;
 
@@ -41,7 +39,7 @@ PluginManager::query(const QString &constraint)
 {
     // Add versioning constraint
     QString
-    str  = QStringLiteral("[X-KDE-akregator-framework-version] == ");
+        str = QStringLiteral("[X-KDE-akregator-framework-version] == ");
     str += QString::number(AKREGATOR_PLUGIN_INTERFACE_VERSION);
     str += QStringLiteral(" and ");
     if (!constraint.trimmed().isEmpty()) {
@@ -85,7 +83,7 @@ PluginManager::createFromService(const KService::Ptr &service, QObject *parent)
     KPluginFactory *factory = loader.factory();
     if (!factory) {
         qCWarning(AKREGATOR_LOG) << QStringLiteral(" Could not create plugin factory for: %1\n"
-                                 " Error message: %2").arg(service->library(), loader.errorString());
+                                                   " Error message: %2").arg(service->library(), loader.errorString());
         return nullptr;
     }
     Plugin *const plugin = factory->create<Plugin>(parent);
@@ -120,7 +118,6 @@ PluginManager::unload(Plugin *plugin)
     Q_UNUSED(plugin)
     qCWarning(AKREGATOR_LOG) << "PluginManager::unload temporarily disabled";
 #endif //TEMPORARILY_REMOVED
-
 }
 
 KService::Ptr
@@ -155,13 +152,13 @@ PluginManager::showAbout(const QString &constraint)
 
     const QString body = QStringLiteral("<tr><td>%1</td><td>%2</td></tr>");
 
-    QString str  = QStringLiteral("<html><body><table width=\"100%\" border=\"1\">");
+    QString str = QStringLiteral("<html><body><table width=\"100%\" border=\"1\">");
 
-    str += body.arg(i18nc("Name of the plugin", "Name"),                             s->name());
-    str += body.arg(i18nc("Library name", "Library"),                                s->library());
-    str += body.arg(i18nc("Plugin authors", "Authors"),                              s->property(QStringLiteral("X-KDE-akregator-authors")).toStringList().join(QLatin1Char('\n')));
-    str += body.arg(i18nc("Plugin authors' emaila addresses", "Email"),              s->property(QStringLiteral("X-KDE-akregator-email")).toStringList().join(QLatin1Char('\n')));
-    str += body.arg(i18nc("Plugin version", "Version"),                              s->property(QStringLiteral("X-KDE-akregator-version")).toString());
+    str += body.arg(i18nc("Name of the plugin", "Name"), s->name());
+    str += body.arg(i18nc("Library name", "Library"), s->library());
+    str += body.arg(i18nc("Plugin authors", "Authors"), s->property(QStringLiteral("X-KDE-akregator-authors")).toStringList().join(QLatin1Char('\n')));
+    str += body.arg(i18nc("Plugin authors' emaila addresses", "Email"), s->property(QStringLiteral("X-KDE-akregator-email")).toStringList().join(QLatin1Char('\n')));
+    str += body.arg(i18nc("Plugin version", "Version"), s->property(QStringLiteral("X-KDE-akregator-version")).toString());
     str += body.arg(i18nc("Framework version plugin requires", "Framework Version"), s->property(QStringLiteral("X-KDE-akregator-framework-version")).toString());
 
     str += QStringLiteral("</table></body></html>");
@@ -173,18 +170,17 @@ void
 PluginManager::dump(const KService::Ptr &service)
 {
     qCDebug(AKREGATOR_LOG)
-            << "PluginManager Service Info:"
-            << "---------------------------"
-            << "name                          : " << service->name()
-            << "library                       : " << service->library()
-            << "desktopEntryPath              : " << service->entryPath()
-            << "X-KDE-akregator-plugintype       : " << service->property(QStringLiteral("X-KDE-akregator-plugintype")).toString()
-            << "X-KDE-akregator-name             : " << service->property(QStringLiteral("X-KDE-akregator-name")).toString()
-            << "X-KDE-akregator-authors          : " << service->property(QStringLiteral("X-KDE-akregator-authors")).toStringList()
-            << "X-KDE-akregator-rank             : " << service->property(QStringLiteral("X-KDE-akregator-rank")).toString()
-            << "X-KDE-akregator-version          : " << service->property(QStringLiteral("X-KDE-akregator-version")).toString()
-            << "X-KDE-akregator-framework-version: " << service->property(QStringLiteral("X-KDE-akregator-framework-version")).toString();
-
+        << "PluginManager Service Info:"
+        << "---------------------------"
+        << "name                          : " << service->name()
+        << "library                       : " << service->library()
+        << "desktopEntryPath              : " << service->entryPath()
+        << "X-KDE-akregator-plugintype       : " << service->property(QStringLiteral("X-KDE-akregator-plugintype")).toString()
+        << "X-KDE-akregator-name             : " << service->property(QStringLiteral("X-KDE-akregator-name")).toString()
+        << "X-KDE-akregator-authors          : " << service->property(QStringLiteral("X-KDE-akregator-authors")).toStringList()
+        << "X-KDE-akregator-rank             : " << service->property(QStringLiteral("X-KDE-akregator-rank")).toString()
+        << "X-KDE-akregator-version          : " << service->property(QStringLiteral("X-KDE-akregator-version")).toString()
+        << "X-KDE-akregator-framework-version: " << service->property(QStringLiteral("X-KDE-akregator-framework-version")).toString();
 }
 
 /////////////////////////////////////////////////////////////////////////////////////
@@ -206,5 +202,4 @@ PluginManager::lookupPlugin(const Plugin *plugin)
 
     return iter;
 }
-
 } // namespace Akregator

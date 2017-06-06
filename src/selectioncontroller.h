@@ -33,9 +33,7 @@ class QPoint;
 
 class KJob;
 
-namespace Akregator
-{
-
+namespace Akregator {
 class ArticleListJob;
 
 class SelectionController : public AbstractSelectionController
@@ -102,7 +100,6 @@ private:
     QPointer<TreeNode> m_selectedSubscription;
     QPointer<ArticleListJob> m_listJob;
 };
-
 } // namespace Akregator
 
 #endif // AKREGATOR_SELECTIONCONTROLLER_H

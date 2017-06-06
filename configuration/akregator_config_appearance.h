@@ -41,7 +41,6 @@ public:
 private:
     QWidget *m_widget;
     Akregator::Ui::SettingsAppearance m_ui;
-
 };
 
 #endif // AKREGATOR_CONFIG_APPEARANCE_H

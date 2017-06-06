@@ -52,7 +52,8 @@ FeedPropertiesWidget::FeedPropertiesWidget(QWidget *parent, const QString &name)
 }
 
 FeedPropertiesWidget::~FeedPropertiesWidget()
-{}
+{
+}
 
 void FeedPropertiesWidget::slotUpdateComboBoxActivated(int index)
 {
@@ -72,8 +73,8 @@ void FeedPropertiesWidget::slotUpdateCheckBoxToggled(bool enabled)
 }
 
 FeedPropertiesDialog::FeedPropertiesDialog(QWidget *parent, const QString &name)
-    : QDialog(parent),
-      m_feed(nullptr)
+    : QDialog(parent)
+    , m_feed(nullptr)
 {
     setObjectName(name);
     setWindowTitle(i18n("Feed Properties"));
@@ -105,7 +106,8 @@ FeedPropertiesDialog::FeedPropertiesDialog(QWidget *parent, const QString &name)
 }
 
 FeedPropertiesDialog::~FeedPropertiesDialog()
-{}
+{
+}
 
 void FeedPropertiesDialog::accept()
 {
@@ -244,6 +246,7 @@ void FeedPropertiesDialog::setArchiveMode(Feed::ArchiveMode mode)
         widget->rb_limitArticleNumber->setChecked(true);
     }
 }
+
 void FeedPropertiesDialog::setFeedName(const QString &title)
 {
     widget->feedNameEdit->setText(title);

@@ -27,9 +27,9 @@
 using namespace Akregator;
 Q_DECLARE_METATYPE(Akregator::StatusSearchLine::Status)
 StatusSearchLine::StatusSearchLine(QWidget *parent)
-    : KLineEdit(parent),
-      mDefaultStatus(AllArticles),
-      mSearchLineStatusAction(nullptr)
+    : KLineEdit(parent)
+    , mDefaultStatus(AllArticles)
+    , mSearchLineStatusAction(nullptr)
 {
     initializeHash();
     initializeActions();
@@ -37,7 +37,6 @@ StatusSearchLine::StatusSearchLine(QWidget *parent)
 
 StatusSearchLine::~StatusSearchLine()
 {
-
 }
 
 void StatusSearchLine::initializeHash()

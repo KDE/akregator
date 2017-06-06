@@ -29,9 +29,7 @@
 
 #include <QWeakPointer>
 
-namespace Akregator
-{
-
+namespace Akregator {
 class FeedList;
 
 class DeleteSubscriptionCommand : public Command
@@ -56,7 +54,6 @@ private:
     Q_PRIVATE_SLOT(d, void startDelete())
     Q_PRIVATE_SLOT(d, void jobFinished())
 };
-
 }
 
 #endif // AKREGATOR_DELETESUBSCRIPTIONCOMMAND_H

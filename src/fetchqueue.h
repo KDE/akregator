@@ -29,9 +29,7 @@
 #include "akregator_export.h"
 #include <QObject>
 
-namespace Akregator
-{
-
+namespace Akregator {
 class Feed;
 class TreeNode;
 
@@ -83,8 +81,6 @@ private:
     class FetchQueuePrivate;
     FetchQueuePrivate *d;
 };
-
 } // namespace Akregator
 
 #endif // AKREGATOR_FETCHQUEUE_H
-

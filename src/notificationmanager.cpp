@@ -25,7 +25,6 @@
 #include "notificationmanager.h"
 #include "feed.h"
 
-
 #include <KLocalizedString>
 #include <knotification.h>
 #include <KAboutData>
@@ -88,10 +87,10 @@ void NotificationManager::doNotify()
 
     // adding information about how many new articles
     auto feedClosure = [&entriesCount, &message]() {
-        if ((entriesCount - maxNewArticlesShown) > 1) {
-            message += i18np("<i>and 1 other</i>", "<i>and %1 others</i>", entriesCount - maxNewArticlesShown - 1) + QLatin1String("<br>");
-        }
-    };
+                           if ((entriesCount - maxNewArticlesShown) > 1) {
+                               message += i18np("<i>and 1 other</i>", "<i>and %1 others</i>", entriesCount - maxNewArticlesShown - 1) + QLatin1String("<br>");
+                           }
+                       };
 
     for (const Article &i : qAsConst(m_articles)) {
         const QString currentFeedTitle(i.feed()->title());
@@ -132,7 +131,6 @@ void NotificationManager::slotIntervalCheck()
         m_addedInLastInterval = false;
         QTimer::singleShot(m_checkInterval, this, &NotificationManager::slotIntervalCheck);
     }
-
 }
 
 NotificationManager *NotificationManager::m_self = 0;

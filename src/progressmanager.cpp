@@ -37,10 +37,12 @@ using namespace Akregator;
 class ProgressManager::ProgressManagerPrivate
 {
 public:
-    ProgressManagerPrivate() : feedList() {}
+    ProgressManagerPrivate() : feedList()
+    {
+    }
+
     QSharedPointer<FeedList> feedList;
     QHash<Feed *, ProgressItemHandler *> handlers;
-
 };
 
 ProgressManager *ProgressManager::m_self = 0;

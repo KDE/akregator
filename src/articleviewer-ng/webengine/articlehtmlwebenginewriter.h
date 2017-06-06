@@ -22,8 +22,7 @@
 
 #include <QObject>
 #include "akregator_export.h"
-namespace Akregator
-{
+namespace Akregator {
 class ArticleViewerWebEngine;
 class AKREGATOR_EXPORT ArticleHtmlWebEngineWriter : public QObject
 {

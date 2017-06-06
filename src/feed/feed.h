@@ -37,16 +37,13 @@
 class QDomElement;
 class QString;
 
-namespace Akregator
-{
-
+namespace Akregator {
 class Article;
 class FetchQueue;
 class TreeNodeVisitor;
 class ArticleDeleteJob;
 
-namespace Backend
-{
+namespace Backend {
 class Storage;
 }
 
@@ -300,7 +297,6 @@ private:
     class Private;
     Private *d;
 };
-
 } // namespace Akregator
 
 #endif // AKREGATOR_FEED_H

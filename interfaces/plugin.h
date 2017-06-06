@@ -36,9 +36,7 @@ class KXMLGUIClient;
 
 #define AKREGATOR_PLUGIN_INTERFACE_VERSION 4
 
-namespace Akregator
-{
-
+namespace Akregator {
 class AKREGATORINTERFACES_EXPORT Plugin : public QObject
 {
     Q_OBJECT
@@ -62,8 +60,6 @@ protected:
 private:
     QHash<QString, QString> m_properties;
 };
-
 } //namespace Akregator
 
 #endif // AKREGATOR_PLUGIN_H
-

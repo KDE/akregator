@@ -27,27 +27,22 @@
 #include <WebEngineViewer/CheckPhishingUrlJob>
 
 class KActionCollection;
-namespace WebEngineViewer
-{
+namespace WebEngineViewer {
 class WebHitTestResult;
 class WebEngineAccessKey;
 class InterceptorManager;
 }
-namespace MessageViewer
-{
+namespace MessageViewer {
 class ViewerPluginToolManager;
 class ViewerPluginInterface;
 }
-namespace PimCommon
-{
+namespace PimCommon {
 class ShareServiceUrlManager;
 }
-namespace KIO
-{
+namespace KIO {
 class KUriFilterSearchProviderActions;
 }
-namespace Akregator
-{
+namespace Akregator {
 class ArticleViewerWebEnginePage;
 class AKREGATOR_EXPORT ArticleViewerWebEngine : public WebEngineViewer::WebEngineView
 {

@@ -29,9 +29,10 @@
 using namespace Akregator;
 
 FilterColumnsProxyModel::FilterColumnsProxyModel(QObject *parent)
-    : QSortFilterProxyModel(parent), m_vecSize(0), m_mode(Whitelist)
+    : QSortFilterProxyModel(parent)
+    , m_vecSize(0)
+    , m_mode(Whitelist)
 {
-
 }
 
 bool FilterColumnsProxyModel::filterAcceptsColumn(int source_column, const QModelIndex &) const
@@ -63,4 +64,3 @@ void FilterColumnsProxyModel::setMode(Mode mode)
 {
     m_mode = mode;
 }
-

@@ -160,7 +160,6 @@ void MainWindow::readProperties(const KConfigGroup &config)
 // TODO: move to part?
 void MainWindow::optionsConfigureKeys()
 {
-
     KShortcutsDialog dlg(KShortcutsEditor::AllActions,
                          KShortcutsEditor::LetterShortcutsAllowed, this);
 
@@ -231,4 +230,3 @@ void MainWindow::slotSetStatusBarText(const QString &text)
 {
     m_statusLabel->setText(text);
 }
-

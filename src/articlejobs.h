@@ -35,9 +35,7 @@
 #include "akregator_export.h"
 
 //transitional job classes
-namespace Akregator
-{
-
+namespace Akregator {
 class Article;
 class FeedList;
 class TreeNode;
@@ -47,7 +45,7 @@ struct ArticleId {
     QString guid;
     bool operator<(const ArticleId &other) const
     {
-        return feedUrl < other.feedUrl || (feedUrl == other.feedUrl  && guid < other.guid);
+        return feedUrl < other.feedUrl || (feedUrl == other.feedUrl && guid < other.guid);
     }
 };
 
@@ -124,7 +122,6 @@ private:
     const QPointer<TreeNode> m_node;
     QVector<Article> m_articles;
 };
-
 } // namespace akregator
 
 #endif // AKREGATOR_ARTICLE_JOBS_H

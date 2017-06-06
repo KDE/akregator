@@ -28,9 +28,7 @@
 
 #include <QStyledItemDelegate>
 
-namespace Akregator
-{
-
+namespace Akregator {
 class SubscriptionListDelegate : public QStyledItemDelegate
 {
     Q_OBJECT
@@ -40,15 +38,11 @@ public:
     ~SubscriptionListDelegate();
 
 protected:
-    QSize sizeHint(const QStyleOptionViewItem &option,
-                   const QModelIndex &index) const override;
+    QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const override;
 
-    void paint(QPainter *painter,
-               const QStyleOptionViewItem &option,
-               const QModelIndex &index) const override;
+    void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
 
-    void initStyleOption(QStyleOptionViewItem *option,
-                         const QModelIndex &index) const override;
+    void initStyleOption(QStyleOptionViewItem *option, const QModelIndex &index) const override;
 
 private Q_SLOTS:
     void recalculateRowHeight();
@@ -56,7 +50,6 @@ private Q_SLOTS:
 private:
     int m_viewIconHeight;
 };
-
 }
 
 #endif // AKREGATOR_SUBSCRIPTIONLISTDELEGATE_H

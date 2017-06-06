@@ -33,18 +33,22 @@
 #include <QString>
 #include <QStringList>
 
-namespace Akregator
-{
-namespace Backend
-{
-
+namespace Akregator {
+namespace Backend {
 class FeedStorageDummyImpl::FeedStorageDummyImplPrivate
 {
 public:
     class Entry
     {
     public:
-        Entry() : guidIsHash(false), guidIsPermaLink(false), status(0), pubDate(0), hash(0) {}
+        Entry() : guidIsHash(false)
+            , guidIsPermaLink(false)
+            , status(0)
+            , pubDate(0)
+            , hash(0)
+        {
+        }
+
         StorageDummyImpl *mainStorage;
         QList<Category> categories;
         QString title;
@@ -95,7 +99,8 @@ FeedStorageDummyImpl::FeedStorageDummyImpl(const QString &url, StorageDummyImpl 
 
 FeedStorageDummyImpl::~FeedStorageDummyImpl()
 {
-    delete d; d = 0;
+    delete d;
+    d = 0;
 }
 
 void FeedStorageDummyImpl::commit()
@@ -176,7 +181,6 @@ void FeedStorageDummyImpl::deleteArticle(const QString &guid)
 
 int FeedStorageDummyImpl::comments(const QString &guid) const
 {
-
     return contains(guid) ? d->entries[guid].comments : 0;
 }
 
@@ -391,7 +395,6 @@ void FeedStorageDummyImpl::addTag(const QString &guid, const QString &tag)
             d->tags.append(tag);
         }
     }
-
 }
 
 void FeedStorageDummyImpl::addCategory(const QString &guid, const Category &cat)
@@ -516,6 +519,5 @@ void FeedStorageDummyImpl::enclosure(const QString &guid, bool &hasEnclosure, QS
         length = -1;
     }
 }
-
 } // namespace Backend
 } // namespace Akregator

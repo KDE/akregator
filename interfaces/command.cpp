@@ -41,9 +41,9 @@ Command::Private::Private() : parentWidget()
 {
 }
 
-Command::Command(QObject *parent) : QObject(parent), d(new Private)
+Command::Command(QObject *parent) : QObject(parent)
+    , d(new Private)
 {
-
 }
 
 Command::~Command()
@@ -84,4 +84,3 @@ void Command::waitForFinished()
     connect(this, &Command::finished, &loop, &QEventLoop::quit);
     loop.exec();
 }
-

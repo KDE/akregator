@@ -24,8 +24,7 @@
 #include <QHash>
 #include <QIcon>
 class QAction;
-namespace Akregator
-{
+namespace Akregator {
 class StatusSearchLine : public KLineEdit
 {
     Q_OBJECT
@@ -54,15 +53,14 @@ private:
     struct StatusInfo {
         StatusInfo()
         {
-
         }
 
         StatusInfo(const QString &text, const QIcon &icon)
-            : mText(text),
-              mIcon(icon)
+            : mText(text)
+            , mIcon(icon)
         {
-
         }
+
         QString mText;
         QIcon mIcon;
     };

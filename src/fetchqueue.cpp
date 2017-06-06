@@ -28,7 +28,6 @@
 #include "feed.h"
 #include "treenode.h"
 
-
 #include <QList>
 
 #include <cassert>
@@ -43,7 +42,8 @@ public:
     QList<Feed *> fetchingFeeds;
 };
 
-FetchQueue::FetchQueue(QObject *parent): QObject(parent), d(new FetchQueuePrivate)
+FetchQueue::FetchQueue(QObject *parent) : QObject(parent)
+    , d(new FetchQueuePrivate)
 {
 }
 
@@ -89,7 +89,6 @@ void FetchQueue::fetchNextFeed()
         d->queuedFeeds.pop_front();
         d->fetchingFeeds.append(f);
         f->fetch(false);
-
     }
 }
 
@@ -148,4 +147,3 @@ void FetchQueue::slotNodeDestroyed(TreeNode *node)
     d->fetchingFeeds.removeAll(feed);
     d->queuedFeeds.removeAll(feed);
 }
-

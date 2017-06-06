@@ -31,11 +31,8 @@
 
 class QDomDocument;
 
-namespace Akregator
-{
-
-namespace Backend
-{
+namespace Akregator {
+namespace Backend {
 class Storage;
 }
 
@@ -64,7 +61,6 @@ private:
     Private *const d;
     Q_PRIVATE_SLOT(d, void doLoad())
 };
-
 }
 
 #endif // AKREGATOR_LOADFEEDLISTCOMMAND_H

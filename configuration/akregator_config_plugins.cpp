@@ -29,7 +29,8 @@
 
 using namespace Akregator;
 
-K_PLUGIN_FACTORY(KCMAkregatorPluginsConfigFactory, registerPlugin<KCMAkregatorPluginsConfig>();)
+K_PLUGIN_FACTORY(KCMAkregatorPluginsConfigFactory, registerPlugin<KCMAkregatorPluginsConfig>();
+                 )
 
 KCMAkregatorPluginsConfig::KCMAkregatorPluginsConfig(QWidget *parent, const QVariantList &args)
     : KCModule(parent, args)

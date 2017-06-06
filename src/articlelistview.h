@@ -36,15 +36,12 @@
 #include <QUrl>
 
 class QContextMenuEvent;
-template <class T> class QList;
+template<class T> class QList;
 
-namespace Akregator
-{
-
+namespace Akregator {
 class Article;
 
-namespace Filters
-{
+namespace Filters {
 }
 
 class AKREGATORPART_EXPORT FilterDeletedProxyModel : public QSortFilterProxyModel
@@ -157,14 +154,15 @@ private Q_SLOTS:
 
 private:
 
-    enum ColumnMode { GroupMode, FeedMode };
+    enum ColumnMode {
+        GroupMode, FeedMode
+    };
     ColumnMode m_columnMode;
     QPointer<SortColorizeProxyModel> m_proxy;
     std::vector<QSharedPointer<const Filters::AbstractMatcher> > m_matchers;
     QByteArray m_feedHeaderState;
     QByteArray m_groupHeaderState;
 };
-
 } // namespace Akregator
 
 #endif // AKREGATOR_ARTICLELISTVIEW_H

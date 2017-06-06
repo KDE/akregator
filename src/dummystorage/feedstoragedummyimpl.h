@@ -26,11 +26,8 @@
 
 #include "feedstorage.h"
 #include <QList>
-namespace Akregator
-{
-namespace Backend
-{
-
+namespace Akregator {
+namespace Backend {
 class StorageDummyImpl;
 class FeedStorageDummyImpl : public FeedStorage
 {
@@ -109,7 +106,6 @@ private:
     class FeedStorageDummyImplPrivate;
     FeedStorageDummyImplPrivate *d;
 };
-
 } // namespace Backend
 } // namespace Akregator
 

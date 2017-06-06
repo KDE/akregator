@@ -24,7 +24,6 @@
 
 #include "tabwidget.h"
 
-
 #include <QStyle>
 #include <QApplication>
 #include <QIcon>
@@ -67,7 +66,12 @@ private:
     TabWidget *const q;
 
 public:
-    explicit Private(TabWidget *qq) : q(qq), currentMaxLength(30), currentItem(0), tabsClose(0) {}
+    explicit Private(TabWidget *qq) : q(qq)
+        , currentMaxLength(30)
+        , currentItem(0)
+        , tabsClose(0)
+    {
+    }
 
     QHash<QWidget *, Frame *> frames;
     QHash<int, Frame *> framesById;
@@ -100,7 +104,8 @@ void TabWidget::Private::updateTabBarVisibility()
 }
 
 TabWidget::TabWidget(QWidget *parent)
-    : QTabWidget(parent), d(new Private(this))
+    : QTabWidget(parent)
+    , d(new Private(this))
 {
     setMinimumSize(250, 150);
     setMovable(false);
@@ -136,7 +141,6 @@ TabWidget::~TabWidget()
 
 void TabWidget::slotTabContextMenuRequest(const QPoint &pos)
 {
-
     QTabBar *bar = tabBar();
     if (count() <= 1) {
         return;
@@ -221,6 +225,7 @@ void TabWidget::slotPreviousTab()
         setCurrentIndex(currentIndex() - 1);
     }
 }
+
 void TabWidget::slotSelectFrame(int frameId)
 {
     Frame *frame = d->framesById.value(frameId);
@@ -320,11 +325,11 @@ uint TabWidget::Private::tabBarWidthForMaxChars(int maxLength)
 
         int lw = fm.width(newTitle);
         int iw = q->tabBar()->tabIcon(i).pixmap(q->tabBar()->style()->pixelMetric(
-                QStyle::PM_SmallIconSize), QIcon::Normal
-                                               ).width() + 4;
+                                                    QStyle::PM_SmallIconSize), QIcon::Normal
+                                                ).width() + 4;
 
         x += (q->tabBar()->style()->sizeFromContents(QStyle::CT_TabBarTab, &o,
-                QSize(qMax(lw + hframe + iw, QApplication::globalStrut().width()), 0), q)).width();
+                                                     QSize(qMax(lw + hframe + iw, QApplication::globalStrut().width()), 0), q)).width();
     }
     return x;
 }
@@ -369,7 +374,7 @@ void TabWidget::Private::setTitle(const QString &title, QWidget *sender)
 
     QWidget *leftCorner = q->cornerWidget(Qt::TopLeftCorner);
 
-    if (leftCorner  && leftCorner->isVisible()) {
+    if (leftCorner && leftCorner->isVisible()) {
         lcw = qMax(leftCorner->width(), tabBarHeight);
     }
 
@@ -494,7 +499,7 @@ void TabWidget::slotCopyImageLocation()
 
 void TabWidget::slotCloseTab()
 {
-    QWidget *widget =  d->selectedWidget();
+    QWidget *widget = d->selectedWidget();
     Frame *frame = d->frames.value(widget);
 
     if (frame == 0 || !frame->isRemovable()) {

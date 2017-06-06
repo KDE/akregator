@@ -29,17 +29,17 @@
 
 class QString;
 class QStringList;
-namespace Akregator
-{
-namespace Backend
-{
-
+namespace Akregator {
+namespace Backend {
 class Storage;
 
 class AKREGATORINTERFACES_EXPORT StorageFactory
 {
 public:
-    virtual ~StorageFactory() {}
+    virtual ~StorageFactory()
+    {
+    }
+
     /** identifier of the storage type, like "metakit", "postgres" etc. For use in
         configuration files. Must not contain spaces or special characters.
      */
@@ -59,7 +59,6 @@ public:
      */
     virtual Storage *createStorage(const QStringList &params) const = 0;
 };
-
 } // namespace Backend
 } // namespace Akregator
 

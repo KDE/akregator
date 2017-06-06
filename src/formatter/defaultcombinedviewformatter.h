@@ -23,8 +23,7 @@
 #include "articleformatter.h"
 #include "akregator_export.h"
 class QPaintDevice;
-namespace Akregator
-{
+namespace Akregator {
 class GrantleeViewFormatter;
 class AKREGATOR_EXPORT DefaultCombinedViewFormatter : public ArticleFormatter
 {

@@ -51,18 +51,19 @@ public:
     QPoint scrollBarPositions;
 };
 
-TreeNode::TreeNodePrivate::TreeNodePrivate() : doNotify(true),
-    nodeChangeOccurred(false),
-    articleChangeOccurred(false),
-    title(),
-    parent(0),
-    id(0),
-    signalDestroyedEmitted(false)
+TreeNode::TreeNodePrivate::TreeNodePrivate() : doNotify(true)
+    , nodeChangeOccurred(false)
+    , articleChangeOccurred(false)
+    , title()
+    , parent(0)
+    , id(0)
+    , signalDestroyedEmitted(false)
 {
 }
 
 TreeNode::TreeNode()
-    : QObject(0), d(new TreeNodePrivate)
+    : QObject(0)
+    , d(new TreeNodePrivate)
 {
 }
 
@@ -91,7 +92,6 @@ QString TreeNode::title() const
 
 void TreeNode::setTitle(const QString &title)
 {
-
     if (d->title != title) {
         d->title = title;
         nodeModified();
@@ -243,4 +243,3 @@ ArticleListJob *TreeNode::createListJob()
 {
     return new ArticleListJob(this);
 }
-

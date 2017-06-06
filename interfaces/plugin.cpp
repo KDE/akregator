@@ -24,14 +24,14 @@
 
 #include "plugin.h"
 
-namespace Akregator
-{
-
+namespace Akregator {
 Plugin::Plugin(QObject *parent, const QVariantList &) : QObject(parent)
-{}
+{
+}
 
 Plugin::~Plugin()
-{}
+{
+}
 
 void
 Plugin::addPluginProperty(const QString &key, const QString &value)
@@ -60,7 +60,11 @@ Plugin::hasPluginProperty(const QString &key) const
     return m_properties.find(key.toLower()) != m_properties.end();
 }
 
-void Plugin::insertGuiClients(KXMLGUIClient *) {}
-void Plugin::removeGuiClients(KXMLGUIClient *) {}
+void Plugin::insertGuiClients(KXMLGUIClient *)
+{
+}
 
+void Plugin::removeGuiClients(KXMLGUIClient *)
+{
+}
 }

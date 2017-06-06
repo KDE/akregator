@@ -60,7 +60,6 @@ AkrWebEngineViewer::AkrWebEngineViewer(KActionCollection *ac, QWidget *parent)
 
 AkrWebEngineViewer::~AkrWebEngineViewer()
 {
-
 }
 
 void AkrWebEngineViewer::contextMenuEvent(QContextMenuEvent *e)

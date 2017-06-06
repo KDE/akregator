@@ -50,12 +50,11 @@ public:
 };
 
 CreateFolderCommand::Private::Private(CreateFolderCommand *qq)
-    : q(qq),
-      m_selectedSubscription(0),
-      m_rootFolder(0),
-      m_subscriptionListView(0)
+    : q(qq)
+    , m_selectedSubscription(0)
+    , m_rootFolder(0)
+    , m_subscriptionListView(0)
 {
-
 }
 
 void CreateFolderCommand::Private::doCreate()
@@ -64,9 +63,9 @@ void CreateFolderCommand::Private::doCreate()
     Q_ASSERT(m_subscriptionListView);
     bool ok;
     const QString name = QInputDialog::getText(q->parentWidget(), i18n("Add Folder"),
-                         i18n("Folder name:"), QLineEdit::Normal,
-                         QString(),
-                         &ok);
+                                               i18n("Folder name:"), QLineEdit::Normal,
+                                               QString(),
+                                               &ok);
     if (!ok || name.trimmed().isEmpty()) {
         q->done();
         return;
@@ -88,9 +87,9 @@ void CreateFolderCommand::Private::doCreate()
     q->done();
 }
 
-CreateFolderCommand::CreateFolderCommand(QObject *parent) : Command(parent), d(new Private(this))
+CreateFolderCommand::CreateFolderCommand(QObject *parent) : Command(parent)
+    , d(new Private(this))
 {
-
 }
 
 CreateFolderCommand::~CreateFolderCommand()
@@ -120,6 +119,6 @@ void CreateFolderCommand::doStart()
 
 void CreateFolderCommand::doAbort()
 {
-
 }
+
 #include "moc_createfoldercommand.cpp"

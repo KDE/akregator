@@ -41,7 +41,7 @@
 using namespace Akregator;
 
 // efficient alternative so we don't convert first to a temporary QList then to QVector
-template <typename T>
+template<typename T>
 static QVector<T> hashValuesToVector(const QHash<int, T> &hash)
 {
     QVector<T> result;
@@ -73,7 +73,9 @@ public:
     QVector<Article> removedArticlesNotify;
 };
 
-Folder::FolderPrivate::FolderPrivate(Folder *qq) : q(qq), unread(0), open(false)
+Folder::FolderPrivate::FolderPrivate(Folder *qq) : q(qq)
+    , unread(0)
+    , open(false)
 {
 }
 
@@ -103,7 +105,8 @@ Folder *Folder::fromOPML(const QDomElement &e)
     return fg;
 }
 
-Folder::Folder(const QString &title) : TreeNode(), d(new FolderPrivate(this))
+Folder::Folder(const QString &title) : TreeNode()
+    , d(new FolderPrivate(this))
 {
     setTitle(title);
 }
@@ -155,10 +158,11 @@ QList<TreeNode *> Folder::children()
 QVector<const Akregator::Feed *> Folder::feeds() const
 {
     QHash<int, const Akregator::Feed *> feedsById;
-    for (const TreeNode *i : qAsConst(d->children))
+    for (const TreeNode *i : qAsConst(d->children)) {
         Q_FOREACH (const Akregator::Feed *j, i->feeds()) {
             feedsById.insert(j->id(), j);
         }
+    }
 
     return hashValuesToVector<const Akregator::Feed *>(feedsById);
 }
@@ -166,10 +170,11 @@ QVector<const Akregator::Feed *> Folder::feeds() const
 QVector<Akregator::Feed *> Folder::feeds()
 {
     QHash<int, Akregator::Feed *> feedsById;
-    for (TreeNode *i : qAsConst(d->children))
+    for (TreeNode *i : qAsConst(d->children)) {
         Q_FOREACH (Akregator::Feed *j, i->feeds()) {
             feedsById.insert(j->id(), j);
         }
+    }
 
     return hashValuesToVector<Akregator::Feed *>(feedsById);
 }
@@ -178,10 +183,11 @@ QVector<const Folder *> Folder::folders() const
 {
     QHash<int, const Folder *> foldersById;
     foldersById.insert(id(), this);
-    for (const TreeNode *i : qAsConst(d->children))
+    for (const TreeNode *i : qAsConst(d->children)) {
         Q_FOREACH (const Folder *j, i->folders()) {
             foldersById.insert(j->id(), j);
         }
+    }
 
     return hashValuesToVector<const Folder *>(foldersById);
 }
@@ -190,10 +196,11 @@ QVector<Folder *> Folder::folders()
 {
     QHash<int, Folder *> foldersById;
     foldersById.insert(id(), this);
-    for (TreeNode *i : qAsConst(d->children))
+    for (TreeNode *i : qAsConst(d->children)) {
         Q_FOREACH (Folder *j, i->folders()) {
             foldersById.insert(j->id(), j);
         }
+    }
     return hashValuesToVector<Folder *>(foldersById);
 }
 
@@ -499,4 +506,3 @@ QList<TreeNode *> Folder::namedChildren(const QString &title)
     }
     return nodeList;
 }
-

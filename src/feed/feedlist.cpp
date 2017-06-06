@@ -65,22 +65,25 @@ public:
 class FeedList::AddNodeVisitor : public TreeNodeVisitor
 {
 public:
-    AddNodeVisitor(FeedList *list) : m_list(list) {}
+    AddNodeVisitor(FeedList *list) : m_list(list)
+    {
+    }
 
-    bool visitFeed(Feed *node) override {
+    bool visitFeed(Feed *node) override
+    {
         m_list->d->idMap.insert(node->id(), node);
         m_list->d->flatList.append(node);
         m_list->d->urlMap[node->xmlUrl()].append(node);
         connect(node, &Feed::fetchStarted,
-        m_list, &FeedList::fetchStarted);
+                m_list, &FeedList::fetchStarted);
         connect(node, &Feed::fetched,
-        m_list, &FeedList::fetched);
+                m_list, &FeedList::fetched);
         connect(node, &Feed::fetchAborted,
-        m_list, &FeedList::fetchAborted);
+                m_list, &FeedList::fetchAborted);
         connect(node, &Feed::fetchError,
-        m_list, &FeedList::fetchError);
+                m_list, &FeedList::fetchError);
         connect(node, &Feed::fetchDiscovery,
-        m_list, &FeedList::fetchDiscovery);
+                m_list, &FeedList::fetchDiscovery);
 
         visitTreeNode(node);
         return true;
@@ -92,9 +95,9 @@ public:
         TreeNodeVisitor::visit(node);
     }
 
-    bool visitTreeNode(TreeNode *node) override {
-        if (!m_preserveID)
-        {
+    bool visitTreeNode(TreeNode *node) override
+    {
+        if (!m_preserveID) {
             node->setId(m_list->generateID());
         }
         m_list->d->idMap[node->id()] = node;
@@ -107,15 +110,15 @@ public:
         return true;
     }
 
-    bool visitFolder(Folder *node) override {
+    bool visitFolder(Folder *node) override
+    {
         connect(node, &Folder::signalChildAdded, m_list, &FeedList::slotNodeAdded);
         connect(node, &Folder::signalAboutToRemoveChild, m_list, &FeedList::signalAboutToRemoveNode);
         connect(node, &Folder::signalChildRemoved, m_list, &FeedList::slotNodeRemoved);
 
         visitTreeNode(node);
 
-        for (TreeNode *i = node->firstChild(); i && i != node; i = i->next())
-        {
+        for (TreeNode *i = node->firstChild(); i && i != node; i = i->next()) {
             m_list->slotNodeAdded(i);
         }
 
@@ -130,22 +133,27 @@ private:
 class FeedList::RemoveNodeVisitor : public TreeNodeVisitor
 {
 public:
-    RemoveNodeVisitor(FeedList *list) : m_list(list) {}
+    RemoveNodeVisitor(FeedList *list) : m_list(list)
+    {
+    }
 
-    bool visitFeed(Feed *node) override {
+    bool visitFeed(Feed *node) override
+    {
         visitTreeNode(node);
         m_list->d->urlMap[node->xmlUrl()].removeAll(node);
         return true;
     }
 
-    bool visitTreeNode(TreeNode *node) override {
+    bool visitTreeNode(TreeNode *node) override
+    {
         m_list->d->idMap.remove(node->id());
         m_list->d->flatList.removeAll(node);
         m_list->disconnect(node);
         return true;
     }
 
-    bool visitFolder(Folder *node) override {
+    bool visitFolder(Folder *node) override
+    {
         visitTreeNode(node);
 
         return true;
@@ -167,7 +175,8 @@ FeedList::Private::Private(Backend::Storage *st, FeedList *qq)
 }
 
 FeedList::FeedList(Backend::Storage *storage)
-    : QObject(0), d(new Private(storage, this))
+    : QObject(0)
+    , d(new Private(storage, this))
 {
     Folder *rootNode = new Folder(i18n("All Feeds"));
     rootNode->setId(1);
@@ -285,12 +294,13 @@ bool FeedList::readFromOpml(const QDomDocument &doc)
         i = i.nextSibling();
     }
 
-    for (TreeNode *i = allFeedsFolder()->firstChild(); i && i != allFeedsFolder(); i = i->next())
+    for (TreeNode *i = allFeedsFolder()->firstChild(); i && i != allFeedsFolder(); i = i->next()) {
         if (i->id() == 0) {
             uint id = generateID();
             i->setId(id);
             d->idMap.insert(id, i);
         }
+    }
 
     qCDebug(AKREGATOR_LOG) << "measuring startup time: STOP," << spent.elapsed() << "ms";
     qCDebug(AKREGATOR_LOG) << "Number of articles loaded:" << allFeedsFolder()->totalCount();
@@ -499,7 +509,6 @@ KJob *FeedList::createMarkAsReadJob()
 
 FeedListManagementImpl::FeedListManagementImpl(const QSharedPointer<FeedList> &list) : m_feedList(list)
 {
-
 }
 
 void FeedListManagementImpl::setFeedList(const QSharedPointer<FeedList> &list)

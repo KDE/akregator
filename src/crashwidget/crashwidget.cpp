@@ -69,7 +69,6 @@ CrashWidget::CrashWidget(QWidget *parent)
 
 CrashWidget::~CrashWidget()
 {
-
 }
 
 void CrashWidget::slotRestoreSession()

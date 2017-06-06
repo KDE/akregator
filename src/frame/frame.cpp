@@ -205,4 +205,3 @@ int Frame::progress() const
 {
     return m_progress;
 }
-

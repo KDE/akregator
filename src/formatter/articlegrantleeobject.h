@@ -24,8 +24,7 @@
 #include <article.h>
 #include "articleformatter.h"
 
-namespace Akregator
-{
+namespace Akregator {
 class ArticleGrantleeObject : public QObject
 {
     Q_OBJECT

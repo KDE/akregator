@@ -26,19 +26,16 @@
 class QPrinter;
 class KActionCollection;
 
-namespace KPIMTextEdit
-{
+namespace KPIMTextEdit {
 class SlideContainer;
 class TextToSpeechWidget;
 }
 
-namespace WebEngineViewer
-{
+namespace WebEngineViewer {
 class FindBarWebEngineView;
 }
 
-namespace Akregator
-{
+namespace Akregator {
 class AKREGATOR_EXPORT ArticleViewerWebEngineWidgetNg : public QWidget
 {
     Q_OBJECT

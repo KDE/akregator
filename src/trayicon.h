@@ -30,9 +30,7 @@
 #include <QIcon>
 #include <KStatusNotifierItem>
 
-namespace Akregator
-{
-
+namespace Akregator {
 class AKREGATOR_EXPORT TrayIcon : public KStatusNotifierItem
 {
     Q_OBJECT
@@ -51,7 +49,6 @@ private:
     static TrayIcon *m_instance;
     int m_unread;
 };
-
 } // namespace Akregator
 
 #endif // AKREGATOR_TRAYICON_H

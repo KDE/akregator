@@ -28,11 +28,11 @@
 using namespace Akregator;
 
 OpenUrlRequest::OpenUrlRequest(const QUrl &url)
-    : m_frameId(-1),
-      m_url(url),
-      m_options(None),
-      m_inBackground(false),
-      m_wasHandled(false)
+    : m_frameId(-1)
+    , m_url(url)
+    , m_options(None)
+    , m_inBackground(false)
+    , m_wasHandled(false)
 {
 }
 
@@ -55,6 +55,7 @@ void OpenUrlRequest::setUrl(const QUrl &url)
 {
     m_url = url;
 }
+
 bool OpenUrlRequest::openInBackground() const
 {
     return m_inBackground;
@@ -90,9 +91,9 @@ OpenUrlRequest::Options OpenUrlRequest::options() const
 {
     if (m_options == None && m_browserArgs.frameName == QLatin1String("_blank")) {
         if (Settings::newWindowInTab()) {
-            return (NewTab);
+            return NewTab;
         } else {
-            return (ExternalBrowser);
+            return ExternalBrowser;
         }
     }
 

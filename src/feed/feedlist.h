@@ -35,15 +35,13 @@
 
 class QDomDocument;
 class QDomNode;
-template <class T> class QList;
-template <class K, class T> class QHash;
+template<class T> class QList;
+template<class K, class T> class QHash;
 class QString;
 
 class KJob;
 
-namespace Akregator
-{
-
+namespace Akregator {
 class Article;
 class Feed;
 class FeedList;
@@ -51,8 +49,7 @@ class FetchQueue;
 class Folder;
 class TreeNode;
 
-namespace Backend
-{
+namespace Backend {
 class Storage;
 }
 
@@ -197,7 +194,6 @@ private:
     class Private;
     Private *const d;
 };
-
 } // namespace Akregator
 
 #endif // AKREGATOR_FEEDLIST_H

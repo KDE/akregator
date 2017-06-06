@@ -30,9 +30,7 @@
 
 #include <QSharedPointer>
 
-namespace Akregator
-{
-
+namespace Akregator {
 class Feed;
 class FeedList;
 class Folder;
@@ -113,12 +111,9 @@ private:
     QSharedPointer<const FeedList> m_feedList;
     bool m_beganRemoval;
 };
-
 }
 
-namespace Akregator
-{
-
+namespace Akregator {
 class AKREGATORPART_EXPORT FolderExpansionHandler : public QObject
 {
     Q_OBJECT
@@ -140,7 +135,6 @@ private:
     QSharedPointer<FeedList> m_feedList;
     SubscriptionListModel *m_model;
 };
-
 } // namespace Akregator
 
 #endif // AKREGATOR_SUBSCRIPTIONLISTMODEL_H

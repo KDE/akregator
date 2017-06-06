@@ -31,14 +31,12 @@
 
 #include "akregator_export.h"
 
-namespace Akregator
-{
-
+namespace Akregator {
 class FeedList;
 
 //transitional job classes
 
-class AKREGATOR_EXPORT  MoveSubscriptionJob : public KJob
+class AKREGATOR_EXPORT MoveSubscriptionJob : public KJob
 {
     Q_OBJECT
 public:
@@ -96,6 +94,5 @@ private:
     int m_id;
     QWeakPointer<FeedList> m_feedList;
 };
-
 }
 #endif // AKREGATOR_SUBSCRIPTIONLISTJOBS_H

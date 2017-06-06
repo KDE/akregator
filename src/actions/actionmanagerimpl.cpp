@@ -62,17 +62,18 @@ using namespace Akregator;
 class ActionManagerImpl::NodeSelectVisitor : public TreeNodeVisitor
 {
 public:
-    NodeSelectVisitor(ActionManagerImpl *manager) : m_manager(manager) {}
+    NodeSelectVisitor(ActionManagerImpl *manager) : m_manager(manager)
+    {
+    }
 
-    bool visitFeed(Feed *node) override {
+    bool visitFeed(Feed *node) override
+    {
         QAction *remove = m_manager->action(QStringLiteral("feed_remove"));
-        if (remove)
-        {
+        if (remove) {
             remove->setEnabled(true);
         }
         QAction *hp = m_manager->action(QStringLiteral("feed_homepage"));
-        if (hp)
-        {
+        if (hp) {
             hp->setEnabled(!node->htmlUrl().isEmpty());
         }
         m_manager->action(QStringLiteral("feed_fetch"))->setText(i18n("&Fetch Feed"));
@@ -83,15 +84,14 @@ public:
         return true;
     }
 
-    bool visitFolder(Folder *node) override {
+    bool visitFolder(Folder *node) override
+    {
         QAction *remove = m_manager->action(QStringLiteral("feed_remove"));
-        if (remove)
-        {
+        if (remove) {
             remove->setEnabled(node->parent());    // root nodes must not be deleted
         }
         QAction *hp = m_manager->action(QStringLiteral("feed_homepage"));
-        if (hp)
-        {
+        if (hp) {
             hp->setEnabled(false);
         }
 
@@ -133,7 +133,8 @@ void ActionManagerImpl::slotNodeSelected(TreeNode *node)
 }
 
 ActionManagerImpl::ActionManagerImpl(Part *part, QObject *parent)
-    : ActionManager(parent), d(new ActionManagerImplPrivate)
+    : ActionManager(parent)
+    , d(new ActionManagerImplPrivate)
 {
     d->nodeSelectVisitor = new NodeSelectVisitor(this);
     d->part = part;
@@ -344,7 +345,7 @@ void ActionManagerImpl::initMainWidget(MainWidget *mainWidget)
     action->setText(i18n("Ne&xt Unread Article"));
     connect(action, &QAction::triggered, d->mainWidget, &MainWidget::slotNextUnreadArticle);
     coll->setDefaultShortcuts(action, QList<QKeySequence>() << QKeySequence(Qt::Key_Plus) << QKeySequence(Qt::Key_Plus + Qt::KeypadModifier)
-                              << QKeySequence(Qt::Key_Equal) << QKeySequence(Qt::Key_Equal + Qt::KeypadModifier));
+                                                            << QKeySequence(Qt::Key_Equal) << QKeySequence(Qt::Key_Equal + Qt::KeypadModifier));
 
     action = coll->addAction(QStringLiteral("article_delete"));
     action->setIcon(QIcon::fromTheme(QStringLiteral("edit-delete")));
@@ -369,7 +370,7 @@ void ActionManagerImpl::initMainWidget(MainWidget *mainWidget)
     action->setIcon(QIcon::fromTheme(QStringLiteral("mail-mark-unread-new")));
     coll->setDefaultShortcut(action, QKeySequence(Qt::CTRL + Qt::Key_N));
     action->setToolTip(i18n("Mark selected article as new"));
-    connect(action, &QAction::triggered,  d->mainWidget, &MainWidget::slotSetSelectedArticleNew);
+    connect(action, &QAction::triggered, d->mainWidget, &MainWidget::slotSetSelectedArticleNew);
     statusMenu->addAction(action);
 
     action = coll->addAction(QStringLiteral("article_set_status_unread"));
@@ -642,7 +643,7 @@ QAction *ActionManagerImpl::action(const QString &name)
 void ActionManagerImpl::setArticleActionsEnabled(bool enabled)
 {
 #undef setActionEnabled
-#define setActionEnabled(name) { QAction* const a = action( name ); if ( a ) a->setEnabled( enabled ); }
+#define setActionEnabled(name) { QAction *const a = action(name); if (a) {a->setEnabled(enabled);}}
     setActionEnabled(QStringLiteral("article_open"))
     setActionEnabled(QStringLiteral("article_open_external"))
     setActionEnabled(QStringLiteral("article_set_status_important"))
@@ -669,4 +670,3 @@ QString ActionManagerImpl::ActionManagerImplPrivate::quickSearchLineText() const
 {
     return mQuickSearchAction->shortcut().toString();
 }
-

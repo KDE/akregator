@@ -29,9 +29,7 @@
 #include <QObject>
 #include <QSharedPointer>
 
-namespace Akregator
-{
-
+namespace Akregator {
 class Feed;
 class ProgressItemHandler;
 class TreeNode;
@@ -86,7 +84,6 @@ private:
     class ProgressItemHandlerPrivate;
     ProgressItemHandlerPrivate *d;
 };
-
 } // namespace Akregator
 
 #endif // AKREGATOR_PROGRESSMANAGER_H

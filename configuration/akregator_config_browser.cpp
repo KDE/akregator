@@ -34,10 +34,12 @@
 
 using namespace Akregator;
 
-K_PLUGIN_FACTORY_WITH_JSON(KCMAkregatorBrowserConfigFactory, "akregator_config_browser.json", registerPlugin<KCMAkregatorBrowserConfig>();)
+K_PLUGIN_FACTORY_WITH_JSON(KCMAkregatorBrowserConfigFactory, "akregator_config_browser.json", registerPlugin<KCMAkregatorBrowserConfig>();
+                           )
 
 KCMAkregatorBrowserConfig::KCMAkregatorBrowserConfig(QWidget *parent, const QVariantList &args)
-    : KCModule(parent, args), m_widget(new QWidget)
+    : KCModule(parent, args)
+    , m_widget(new QWidget)
 {
     Ui::SettingsBrowser ui;
     ui.setupUi(m_widget);
@@ -57,5 +59,5 @@ KCMAkregatorBrowserConfig::KCMAkregatorBrowserConfig(QWidget *parent, const QVar
     setAboutData(about);
     addConfig(Settings::self(), m_widget);
 }
-#include "akregator_config_browser.moc"
 
+#include "akregator_config_browser.moc"

@@ -25,16 +25,14 @@
 using namespace Akregator;
 
 ArticleHtmlWebEngineWriter::ArticleHtmlWebEngineWriter(ArticleViewerWebEngine *view, QObject *parent)
-    : QObject(parent),
-      mState(Ended),
-      mWebView(view)
+    : QObject(parent)
+    , mState(Ended)
+    , mWebView(view)
 {
-
 }
 
 ArticleHtmlWebEngineWriter::~ArticleHtmlWebEngineWriter()
 {
-
 }
 
 void ArticleHtmlWebEngineWriter::begin()

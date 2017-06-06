@@ -81,4 +81,3 @@ QString ArticleFormatter::formatEnclosure(const Enclosure &enclosure)
     const QString str = QStringLiteral("<a href=\"%1\">%2</a> %3").arg(enclosure.url(), title, inf);
     return str;
 }
-

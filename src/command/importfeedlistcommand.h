@@ -31,9 +31,7 @@
 
 class QDomDocument;
 
-namespace Akregator
-{
-
+namespace Akregator {
 class FeedList;
 
 class ImportFeedListCommand : public Command
@@ -65,7 +63,6 @@ private:
     Private *const d;
     Q_PRIVATE_SLOT(d, void doImport())
 };
-
 }
 
 #endif // AKREGATOR_IMPORTFEEDLISTCOMMAND_H

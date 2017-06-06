@@ -25,20 +25,22 @@
 #ifndef AKREGATOR_TEMPORARYVALUE_H
 #define AKREGATOR_TEMPORARYVALUE_H
 
-namespace Akregator
-{
-template <typename T>
+namespace Akregator {
+template<typename T>
 class TemporaryValue
 {
 public:
-    TemporaryValue(T &var_, const T &tempVal) : var(var_), prev(var)
+    TemporaryValue(T &var_, const T &tempVal) : var(var_)
+        , prev(var)
     {
         var = tempVal;
     }
+
     ~TemporaryValue()
     {
         var = prev;
     }
+
 private:
     T &var;
     const T prev;

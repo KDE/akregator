@@ -30,11 +30,8 @@
 class QString;
 class QStringList;
 
-namespace Akregator
-{
-namespace Backend
-{
-
+namespace Akregator {
+namespace Backend {
 class StorageFactory;
 
 class AKREGATORINTERFACES_EXPORT StorageFactoryRegistry
@@ -60,7 +57,6 @@ private:
     class StorageFactoryRegistryPrivate;
     StorageFactoryRegistryPrivate *d;
 };
-
 } // namespace Backend
 } // namespace Akregator
 

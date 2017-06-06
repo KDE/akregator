@@ -39,11 +39,8 @@
 class KJob;
 class KActionCollection;
 
-namespace Akregator
-{
-
-namespace Filters
-{
+namespace Akregator {
+namespace Filters {
 class AbstractMatcher;
 }
 
@@ -157,7 +154,9 @@ private:
     QVector<Article> m_articles;
     QUrl m_link;
     std::vector<QSharedPointer<const Filters::AbstractMatcher> > m_filters;
-    enum ViewMode { NormalView, CombinedView, SummaryView };
+    enum ViewMode {
+        NormalView, CombinedView, SummaryView
+    };
     ViewMode m_viewMode;
     Akregator::ArticleHtmlWebEngineWriter *m_articleHtmlWriter;
     Akregator::ArticleViewerWebEngineWidgetNg *m_articleViewerWidgetNg;
@@ -165,8 +164,6 @@ private:
     QSharedPointer<ArticleFormatter> m_combinedViewFormatter;
     QString m_grantleeDirectory;
 };
-
 } // namespace Akregator
 
 #endif // AKREGATOR_ARTICLEVIEWER_H
-

@@ -28,9 +28,7 @@
 #include <QSortFilterProxyModel>
 #include <QVector>
 
-namespace Akregator
-{
-
+namespace Akregator {
 class FilterColumnsProxyModel : public QSortFilterProxyModel
 {
 public:
@@ -55,7 +53,6 @@ private:
     int m_vecSize;
     Mode m_mode;
 };
-
 } // namespace Akregator
 
 #endif // AKREGATOR_FILTERCOLUMNSPROXYMODEL_H

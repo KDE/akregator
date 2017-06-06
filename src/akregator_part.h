@@ -42,11 +42,8 @@ class KCMultiDialog;
 
 class QTimer;
 
-namespace Akregator
-{
-
-namespace Backend
-{
+namespace Akregator {
+namespace Backend {
 class Storage;
 }
 
@@ -223,7 +220,7 @@ private: // attributes
     /** did we backup the feed list already? */
     bool m_backedUpList;
     Akregator::AkregatorCentralWidget *mCentralWidget;
-    QPointer<MainWidget>m_mainWidget;
+    QPointer<MainWidget> m_mainWidget;
     Backend::Storage *m_storage;
     ActionManagerImpl *m_actionManager;
     KCMultiDialog *m_dialog;
@@ -235,7 +232,6 @@ private: // attributes
     QVector<AddFeedRequest> m_requests;
     KSharedConfig::Ptr mConfig;
 };
-
 } // namespace Akregator
 
 #endif // AKREGATOR_PART_H

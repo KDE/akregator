@@ -31,9 +31,7 @@
 
 class QWidget;
 
-namespace Akregator
-{
-
+namespace Akregator {
 class AKREGATORINTERFACES_EXPORT Command : public QObject
 {
     Q_OBJECT
@@ -64,7 +62,6 @@ private:
     class Private;
     Private *const d;
 };
-
 }
 
 #endif // AKREGATOR_COMMAND_H

@@ -183,7 +183,7 @@ void Akregator::SubscriptionListView::setModel(QAbstractItemModel *m)
 
 void Akregator::SubscriptionListView::showHeaderMenu(const QPoint &pos)
 {
-    if (! model()) {
+    if (!model()) {
         return;
     }
 
@@ -258,7 +258,6 @@ void Akregator::SubscriptionListView::slotPrevFeed()
     if (prev.isValid()) {
         setCurrentIndex(prev);
     }
-
 }
 
 void Akregator::SubscriptionListView::slotNextFeed()
@@ -401,4 +400,3 @@ void Akregator::SubscriptionListView::startNodeRenaming(Akregator::TreeNode *nod
     }
     edit(current);
 }
-

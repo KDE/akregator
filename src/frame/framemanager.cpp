@@ -43,8 +43,8 @@
 using namespace Akregator;
 
 FrameManager::FrameManager(QObject *parent)
-    : QObject(parent),
-      m_currentFrame(nullptr)
+    : QObject(parent)
+    , m_currentFrame(nullptr)
 {
 }
 
@@ -78,7 +78,6 @@ void FrameManager::slotAddFrame(Frame *frame)
     if (m_frames.count() == 1) {
         slotChangeFrame(frame->id());
     }
-
 }
 
 void FrameManager::slotRemoveFrame(int id)
@@ -258,10 +257,10 @@ void FrameManager::slotOpenUrlRequest(OpenUrlRequest &request, bool useOpenInBac
 
     if (useOpenInBackgroundSetting) {
         // Honour user's preference for foreground/background tabs
-        if (request.options() == OpenUrlRequest::NewTab ||
-                request.browserArgs().newTab()) {
-            request.setOpenInBackground(Settings::lMBBehaviour() ==
-                                        Settings::EnumLMBBehaviour::OpenInBackground);
+        if (request.options() == OpenUrlRequest::NewTab
+            || request.browserArgs().newTab()) {
+            request.setOpenInBackground(Settings::lMBBehaviour()
+                                        == Settings::EnumLMBBehaviour::OpenInBackground);
         }
     }
     openUrl(request);

@@ -35,18 +35,17 @@
 using namespace Akregator;
 
 GrantleeViewFormatter::GrantleeViewFormatter(const QString &htmlFileName, const QString &themePath, const QUrl &imageDir, int deviceDpiY, QObject *parent)
-    : PimCommon::GenericGrantleeFormatter(htmlFileName, themePath, parent),
-      mImageDir(imageDir),
-      mHtmlArticleFileName(htmlFileName),
-      mGrantleeThemePath(QStringLiteral("file://") + themePath + QLatin1Char('/')),
-      mDeviceDpiY(deviceDpiY)
+    : PimCommon::GenericGrantleeFormatter(htmlFileName, themePath, parent)
+    , mImageDir(imageDir)
+    , mHtmlArticleFileName(htmlFileName)
+    , mGrantleeThemePath(QStringLiteral("file://") + themePath + QLatin1Char('/'))
+    , mDeviceDpiY(deviceDpiY)
 {
     mDirectionString = QApplication::isRightToLeft() ? QStringLiteral("rtl") : QStringLiteral("ltr");
 }
 
 GrantleeViewFormatter::~GrantleeViewFormatter()
 {
-
 }
 
 int GrantleeViewFormatter::pointsToPixel(int pointSize) const
@@ -166,4 +165,3 @@ QString GrantleeViewFormatter::formatArticles(const QVector<Article> &article, A
     qDeleteAll(lstObj);
     return str;
 }
-

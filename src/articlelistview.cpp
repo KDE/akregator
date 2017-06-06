@@ -61,7 +61,8 @@ bool FilterDeletedProxyModel::filterAcceptsRow(int source_row, const QModelIndex
     return !sourceModel()->index(source_row, 0, source_parent).data(ArticleModel::IsDeletedRole).toBool();
 }
 
-SortColorizeProxyModel::SortColorizeProxyModel(QObject *parent) : QSortFilterProxyModel(parent), m_keepFlagIcon(QIcon::fromTheme(QStringLiteral("mail-mark-important")))
+SortColorizeProxyModel::SortColorizeProxyModel(QObject *parent) : QSortFilterProxyModel(parent)
+    , m_keepFlagIcon(QIcon::fromTheme(QStringLiteral("mail-mark-important")))
 {
     m_unreadColor = KColorScheme(QPalette::Normal, KColorScheme::View).foreground(KColorScheme::PositiveText).color();
     m_newColor = KColorScheme(QPalette::Normal, KColorScheme::View).foreground(KColorScheme::NegativeText).color();
@@ -82,7 +83,7 @@ bool SortColorizeProxyModel::filterAcceptsRow(int source_row, const QModelIndex 
     return true;
 }
 
-void SortColorizeProxyModel::setFilters(const std::vector<QSharedPointer<const Filters::AbstractMatcher> >  &matchers)
+void SortColorizeProxyModel::setFilters(const std::vector<QSharedPointer<const Filters::AbstractMatcher> > &matchers)
 {
     if (m_matchers == matchers) {
         return;
@@ -100,35 +101,28 @@ QVariant SortColorizeProxyModel::data(const QModelIndex &idx, int role) const
     const QModelIndex sourceIdx = mapToSource(idx);
 
     switch (role) {
-    case Qt::ForegroundRole: {
+    case Qt::ForegroundRole:
         switch (static_cast<ArticleStatus>(sourceIdx.data(ArticleModel::StatusRole).toInt())) {
-        case Unread: {
-            return Settings::useCustomColors() ?
-                   Settings::colorUnreadArticles() : m_unreadColor;
-        }
-        case New: {
-            return Settings::useCustomColors() ?
-                   Settings::colorNewArticles() : m_newColor;
-        }
-        case Read: {
+        case Unread:
+            return Settings::useCustomColors()
+                   ? Settings::colorUnreadArticles() : m_unreadColor;
+        case New:
+            return Settings::useCustomColors()
+                   ? Settings::colorNewArticles() : m_newColor;
+        case Read:
             return QApplication::palette().color(QPalette::Text);
         }
-        }
-    }
-    break;
-    case Qt::DecorationRole: {
+        break;
+    case Qt::DecorationRole:
         if (sourceIdx.column() == ArticleModel::ItemTitleColumn) {
             return sourceIdx.data(ArticleModel::IsImportantRole).toBool() ? m_keepFlagIcon : QVariant();
         }
-    }
-    break;
+        break;
     }
     return sourceIdx.data(role);
 }
 
-namespace
-{
-
+namespace {
 static bool isRead(const QModelIndex &idx)
 {
     if (!idx.isValid()) {
@@ -355,8 +349,8 @@ void ArticleListView::setIsAggregation(bool aggregation)
 }
 
 ArticleListView::ArticleListView(QWidget *parent)
-    : QTreeView(parent),
-      m_columnMode(FeedMode)
+    : QTreeView(parent)
+    , m_columnMode(FeedMode)
 {
     setSortingEnabled(true);
     setAlternatingRowColors(true);
@@ -535,4 +529,3 @@ void ArticleListView::setFilters(const std::vector<QSharedPointer<const Filters:
         m_proxy->setFilters(matchers);
     }
 }
-

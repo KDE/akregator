@@ -29,11 +29,8 @@
 #include <QString>
 #include <QStringList>
 
-namespace Akregator
-{
-namespace Backend
-{
-
+namespace Akregator {
+namespace Backend {
 class Q_DECL_HIDDEN StorageFactoryRegistry::StorageFactoryRegistryPrivate
 {
 public:
@@ -90,6 +87,5 @@ StorageFactoryRegistry::~StorageFactoryRegistry()
     delete d;
     d = 0;
 }
-
 } // namespace Backend
 } // namespace Akregator

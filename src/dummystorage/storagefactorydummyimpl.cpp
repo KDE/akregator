@@ -28,11 +28,8 @@
 #include <QString>
 #include <QStringList>
 
-namespace Akregator
-{
-namespace Backend
-{
-
+namespace Akregator {
+namespace Backend {
 Storage *StorageFactoryDummyImpl::createStorage(const QStringList &params) const
 {
     Storage *storage = new StorageDummyImpl;
@@ -53,6 +50,5 @@ QString StorageFactoryDummyImpl::name() const
 void StorageFactoryDummyImpl::configure()
 {
 }
-
 }
 }

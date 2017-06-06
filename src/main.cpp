@@ -33,18 +33,19 @@
 #include <kontactinterface/pimuniqueapplication.h>
 #include <QtDBus/QtDBus>
 
-namespace Akregator
-{
-
+namespace Akregator {
 class Application : public KontactInterface::PimUniqueApplication
 {
 public:
     Application(int &argc, char **argv[])
         : KontactInterface::PimUniqueApplication(argc, argv)
         , mMainWindow(0)
-    {}
+    {
+    }
 
-    ~Application() {}
+    ~Application()
+    {
+    }
 
     int activate(const QStringList &args, const QString &workingDir) override;
 
@@ -74,7 +75,6 @@ int Application::activate(const QStringList &args, const QString &workingDir)
     }
     return PimUniqueApplication::activate(args, workingDir);
 }
-
 } // namespace Akregator
 
 int main(int argc, char **argv)
@@ -113,14 +113,14 @@ int main(int argc, char **argv)
     // see if we are starting with session management
     if (app.isSessionRestored()) {
 #undef RESTORE
-#define RESTORE(type) { int n = 1;\
-        while (KMainWindow::canBeRestored(n)){\
-            (new type)->restore(n, false);\
-            n++;}}
+#define RESTORE(type) { int n = 1; \
+                        while (KMainWindow::canBeRestored(n)) { \
+                            (new type)->restore(n, false); \
+                            n++;} \
+}
 
         RESTORE(Akregator::MainWindow);
     }
 
     return app.exec();
 }
-

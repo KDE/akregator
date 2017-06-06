@@ -29,9 +29,7 @@
 
 class QString;
 
-namespace Akregator
-{
-
+namespace Akregator {
 class Frame;
 class OpenUrlRequest;
 
@@ -101,7 +99,6 @@ private:
     class Private;
     Private *const d;
 };
-
 } // namespace Akregator
 
 #endif // AKREGATOR_TABWIDGET_H

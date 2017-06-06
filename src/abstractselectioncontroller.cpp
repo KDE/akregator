@@ -32,4 +32,3 @@ AbstractSelectionController::AbstractSelectionController(QObject *parent) : QObj
 AbstractSelectionController::~AbstractSelectionController()
 {
 }
-

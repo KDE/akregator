@@ -37,11 +37,9 @@ class QIcon;
 class QPoint;
 class QString;
 class QStringList;
-template <class T> class QList;
+template<class T> class QList;
 
-namespace Akregator
-{
-
+namespace Akregator {
 class ArticleListJob;
 class TreeNodeVisitor;
 class Article;
@@ -231,7 +229,6 @@ private:
     class TreeNodePrivate;
     TreeNodePrivate *d;
 };
-
 } // namespace Akregator
 
 #endif // AKREGATOR_TREENODE_H

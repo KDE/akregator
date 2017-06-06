@@ -24,11 +24,10 @@
 using namespace Akregator;
 
 DownloadArticleJob::DownloadArticleJob(QObject *parent)
-    : QObject(parent),
-      mTemporaryFile(nullptr),
-      mAttachmentTemporaryFile(nullptr)
+    : QObject(parent)
+    , mTemporaryFile(nullptr)
+    , mAttachmentTemporaryFile(nullptr)
 {
-
 }
 
 DownloadArticleJob::~DownloadArticleJob()

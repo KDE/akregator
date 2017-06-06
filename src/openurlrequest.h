@@ -33,9 +33,7 @@
 
 #include "akregator_export.h"
 
-namespace Akregator
-{
-
+namespace Akregator {
 class AKREGATOR_EXPORT OpenUrlRequest
 {
 public:
@@ -87,7 +85,6 @@ private:
     bool m_inBackground;
     bool m_wasHandled;
 };
-
 } // namespace Akregator
 
 #endif // AKREGATOR_OPENURLREQUEST_H

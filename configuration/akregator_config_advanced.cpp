@@ -34,10 +34,12 @@
 
 using namespace Akregator;
 
-K_PLUGIN_FACTORY_WITH_JSON(KCMAkregatorAdvancedConfigFactory, "akregator_config_advanced.json", registerPlugin<KCMAkregatorAdvancedConfig>();)
+K_PLUGIN_FACTORY_WITH_JSON(KCMAkregatorAdvancedConfigFactory, "akregator_config_advanced.json", registerPlugin<KCMAkregatorAdvancedConfig>();
+                           )
 
 KCMAkregatorAdvancedConfig::KCMAkregatorAdvancedConfig(QWidget *parent, const QVariantList &args)
-    : KCModule(parent, args), m_widget(new SettingsAdvanced)
+    : KCModule(parent, args)
+    , m_widget(new SettingsAdvanced)
 {
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->addWidget(m_widget);

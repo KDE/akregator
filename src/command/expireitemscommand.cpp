@@ -28,7 +28,6 @@
 #include "feed.h"
 #include "feedlist.h"
 
-
 #include "akregator_debug.h"
 
 #include <QSet>
@@ -55,16 +54,16 @@ public:
     QSet<KJob *> m_jobs;
 };
 
-ExpireItemsCommand::Private::Private(ExpireItemsCommand *qq) : q(qq), m_feedList()
+ExpireItemsCommand::Private::Private(ExpireItemsCommand *qq) : q(qq)
+    , m_feedList()
 {
-
 }
 
 void ExpireItemsCommand::Private::addDeleteJobForFeed(Feed *feed)
 {
     Q_ASSERT(feed);
     ArticleDeleteJob *job = new ArticleDeleteJob(q);
-    connect(job, SIGNAL(finished(KJob*)), q, SLOT(jobFinished(KJob*)));
+    connect(job, SIGNAL(finished(KJob *)), q, SLOT(jobFinished(KJob *)));
     m_jobs.insert(job);
     feed->deleteExpiredArticles(job);
     job->start();
@@ -101,7 +100,8 @@ void ExpireItemsCommand::Private::createDeleteJobs()
     }
 }
 
-ExpireItemsCommand::ExpireItemsCommand(QObject *parent) : Command(parent), d(new Private(this))
+ExpireItemsCommand::ExpireItemsCommand(QObject *parent) : Command(parent)
+    , d(new Private(this))
 {
 }
 

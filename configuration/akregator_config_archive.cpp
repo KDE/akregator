@@ -33,10 +33,12 @@
 
 using namespace Akregator;
 
-K_PLUGIN_FACTORY(KCMAkregatorArchiveConfigFactory, registerPlugin<KCMAkregatorArchiveConfig>();)
+K_PLUGIN_FACTORY(KCMAkregatorArchiveConfigFactory, registerPlugin<KCMAkregatorArchiveConfig>();
+                 )
 
 KCMAkregatorArchiveConfig::KCMAkregatorArchiveConfig(QWidget *parent, const QVariantList &args)
-    : KCModule(parent, args), m_widget(new QWidget)
+    : KCModule(parent, args)
+    , m_widget(new QWidget)
 {
     Ui::SettingsArchive m_ui;
     m_ui.setupUi(m_widget);
@@ -98,4 +100,5 @@ int KCMAkregatorArchiveConfig::archiveMode() const
     }
     return id;
 }
+
 #include "akregator_config_archive.moc"

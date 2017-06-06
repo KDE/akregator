@@ -28,8 +28,7 @@
 
 #include <QVariant>
 
-namespace Akregator
-{
+namespace Akregator {
 class SettingsAdvanced;
 }
 

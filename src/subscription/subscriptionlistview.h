@@ -29,9 +29,7 @@
 #include <QAction>
 #include <QByteArray>
 
-namespace Akregator
-{
-
+namespace Akregator {
 class TreeNode;
 
 class SubscriptionListView : public QTreeView
@@ -49,7 +47,9 @@ public:
     //override
     void setModel(QAbstractItemModel *model) override;
 
-    void triggerUpdate() {}
+    void triggerUpdate()
+    {
+    }
 
     enum Column {
         TitleColumn = 0,
@@ -87,7 +87,6 @@ private Q_SLOTS:
 private:
     QByteArray m_headerState;
 };
-
 }
 
 #endif // AKREGATOR_SUBSCRIPTIONLISTVIEW_H

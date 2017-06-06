@@ -35,14 +35,11 @@
 
 class QUrl;
 
-namespace KPIM
-{
+namespace KPIM {
 class ProgressItem;
 }
 
-namespace Akregator
-{
-
+namespace Akregator {
 class OpenUrlRequest;
 
 class AKREGATOR_EXPORT Frame : public QWidget
@@ -53,7 +50,9 @@ public:
     explicit Frame(QWidget *parent = nullptr);
     virtual ~Frame();
 
-    enum State {Idle, Started, Completed, Canceled};
+    enum State {
+        Idle, Started, Completed, Canceled
+    };
 
     virtual qreal zoomFactor() const = 0;
     /**
@@ -87,7 +86,9 @@ public:
     /**
      * Load a frame from a config file for session management.
      */
-    virtual void loadConfig(const KConfigGroup & /*config*/, const QString & /*prefix*/) {}
+    virtual void loadConfig(const KConfigGroup & /*config*/, const QString & /*prefix*/)
+    {
+    }
 
     /**
      * Save a frame to a config file for session management.
@@ -96,10 +97,13 @@ public:
     {
         return false;
     }
+
 public Q_SLOTS:
 
     /** reloads the current content, if possible. See also isReloadable(). */
-    virtual void slotReload() {}
+    virtual void slotReload()
+    {
+    }
 
     virtual void slotStop();
 
@@ -141,7 +145,6 @@ protected:
     int m_id;
     static int m_idCounter;
 };
-
 } // namespace Akregator
 
 #endif // AKREGATOR_FRAME_H

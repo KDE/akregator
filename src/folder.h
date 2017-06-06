@@ -31,11 +31,9 @@
 
 class QDomDocument;
 class QDomElement;
-template <class T> class QList;
+template<class T> class QList;
 
-namespace Akregator
-{
-
+namespace Akregator {
 class Article;
 class FetchQueue;
 class TreeNodeVisitor;
@@ -203,7 +201,6 @@ private:
     class FolderPrivate;
     FolderPrivate *d;
 };
-
 } // namespace Akregator
 
 #endif // AKREGATOR_FOLDER_H

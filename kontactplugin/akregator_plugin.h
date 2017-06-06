@@ -27,8 +27,7 @@
 
 #include <KontactInterface/UniqueAppHandler>
 
-namespace KontactInterface
-{
+namespace KontactInterface {
 class Plugin;
 }
 
@@ -39,7 +38,10 @@ class AkregatorUniqueAppHandler : public KontactInterface::UniqueAppHandler
     Q_OBJECT
 public:
     explicit AkregatorUniqueAppHandler(KontactInterface::Plugin *plugin)
-        : KontactInterface::UniqueAppHandler(plugin) {}
+        : KontactInterface::UniqueAppHandler(plugin)
+    {
+    }
+
     void loadCommandLineOptions(QCommandLineParser *parser) override;
     int activate(const QStringList &args, const QString &workingDir) override;
 };

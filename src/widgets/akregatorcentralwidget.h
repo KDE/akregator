@@ -22,8 +22,7 @@
 
 #include <QStackedWidget>
 #include "crashwidget/crashwidget.h"
-namespace Akregator
-{
+namespace Akregator {
 class MainWidget;
 class AkregatorCentralWidget : public QStackedWidget
 {

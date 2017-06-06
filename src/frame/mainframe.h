@@ -22,8 +22,7 @@
 
 #include "frame.h"
 #include "config-akregator.h"
-namespace Akregator
-{
+namespace Akregator {
 class ArticleViewerWidget;
 class AKREGATOR_EXPORT MainFrame : public Frame
 {
@@ -36,7 +35,8 @@ public:
 
     QUrl url() const override;
 
-    bool openUrl(const OpenUrlRequest &) override {
+    bool openUrl(const OpenUrlRequest &) override
+    {
         return false;
     }
 
@@ -59,7 +59,6 @@ public Q_SLOTS:
 private:
     Akregator::ArticleViewerWidget *mArticleViewer;
 };
-
 } // namespace Akregator
 
 #endif // MAINFRAME_H

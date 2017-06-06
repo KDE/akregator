@@ -29,11 +29,8 @@
 
 #include "akregator_export.h"
 
-namespace Akregator
-{
-
-namespace Backend
-{
+namespace Akregator {
+namespace Backend {
 class Storage;
 }
 
@@ -67,7 +64,6 @@ private:
     class KernelPrivate;
     KernelPrivate *d;
 };
-
 } // namespace Akregator
 
 #endif // AKREGATOR_KERNEL_H

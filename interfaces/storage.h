@@ -31,11 +31,8 @@
 class QString;
 class QStringList;
 
-namespace Akregator
-{
-namespace Backend
-{
-
+namespace Akregator {
+namespace Backend {
 class FeedStorage;
 
 /** \brief Storage is the main interface to the article archive. It creates and manages FeedStorage objects handling the article list for a feed.
@@ -46,7 +43,9 @@ class Storage : public QObject //krazy:exclude=qobject
 {
 public:
 
-    virtual ~Storage() {}
+    virtual ~Storage()
+    {
+    }
 
     /** initializes the storage object with given parameters */
 
@@ -81,7 +80,7 @@ public:
      */
     virtual FeedStorage *archiveFor(const QString &url) = 0;
     virtual const FeedStorage *archiveFor(const QString &url) const = 0;
-    virtual bool autoCommit() const  = 0;
+    virtual bool autoCommit() const = 0;
     virtual int unreadFor(const QString &url) const = 0;
     virtual void setUnreadFor(const QString &url, int unread) = 0;
     virtual int totalCountFor(const QString &url) const = 0;
@@ -111,7 +110,6 @@ public:
     /** deletes all feed storages in this archive */
     virtual void clear() = 0;
 };
-
 } // namespace Backend
 } // namespace Akregator
 

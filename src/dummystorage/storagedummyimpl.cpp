@@ -28,11 +28,8 @@
 #include <QString>
 #include <QStringList>
 
-namespace Akregator
-{
-namespace Backend
-{
-
+namespace Akregator {
+namespace Backend {
 class StorageDummyImpl::StorageDummyImplPrivate
 {
 public:
@@ -66,9 +63,13 @@ StorageDummyImpl::StorageDummyImpl() : d(new StorageDummyImplPrivate)
 
 StorageDummyImpl::~StorageDummyImpl()
 {
-    delete d; d = 0;
+    delete d;
+    d = 0;
 }
-void StorageDummyImpl::initialize(const QStringList &) {}
+
+void StorageDummyImpl::initialize(const QStringList &)
+{
+}
 
 bool StorageDummyImpl::open(bool /*autoCommit*/)
 {
@@ -183,7 +184,6 @@ void StorageDummyImpl::clear()
         delete(*it).feedStorage;
     }
     d->feeds.clear();
-
 }
 
 void StorageDummyImpl::storeFeedList(const QString &opmlStr)
@@ -205,7 +205,5 @@ QString StorageDummyImpl::restoreTagSet() const
 {
     return d->tagSet;
 }
-
 } // namespace Backend
 } // namespace Akregator
-

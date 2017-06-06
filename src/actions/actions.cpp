@@ -49,4 +49,3 @@ QAction *Akregator::createOpenLinkInExternalBrowserAction(const QUrl &url, QObje
     }
     return action;
 }
-
