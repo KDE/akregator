@@ -31,7 +31,7 @@
 #include <KCrash>
 #include <KLocalizedString>
 #include <kontactinterface/pimuniqueapplication.h>
-#include <QtDBus/QtDBus>
+#include <QtDBus>
 
 namespace Akregator {
 class Application : public KontactInterface::PimUniqueApplication
