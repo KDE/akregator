@@ -26,7 +26,6 @@
 #include "utils.h"
 
 #include <QGridLayout>
-#include <QRegExp>
 
 #include <kactioncollection.h>
 #include "akregator_debug.h"
