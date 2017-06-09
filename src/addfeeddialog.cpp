@@ -108,7 +108,7 @@ void AddFeedDialog::accept()
         feedUrl = feedUrl.right(feedUrl.length() - 5);
     }
 
-    if (feedUrl.indexOf(QStringLiteral(":/")) == -1) {
+    if (!feedUrl.contains(QStringLiteral(":/"))) {
         feedUrl.prepend(QStringLiteral("http://"));
     }
 
