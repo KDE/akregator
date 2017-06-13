@@ -90,6 +90,7 @@ int main(int argc, char **argv)
     KCrash::initialize();
 
     app.setAttribute(Qt::AA_UseHighDpiPixmaps, true);
+    app.setDesktopFileName(QStringLiteral("org.kde.akregator"));
     Akregator::AboutData about;
     app.setAboutData(about);
 
