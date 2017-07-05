@@ -420,7 +420,9 @@ void Part::slotSetStatusText(const QString &statusText)
 
 void Part::saveSettings()
 {
-    m_mainWidget->saveSettings();
+    if (m_mainWidget) {
+        m_mainWidget->saveSettings();
+    }
 }
 
 Part::~Part()
@@ -504,6 +506,10 @@ bool Part::writeToTextFile(const QString &data, const QString &filename) const
 void Part::feedListLoaded(const QSharedPointer<FeedList> &list)
 {
     Q_ASSERT(!m_standardListLoaded);
+    if (!m_mainWidget) {
+        return;
+    }
+
     m_mainWidget->setFeedList(list);
     m_standardListLoaded = list != nullptr;
 
@@ -522,6 +528,10 @@ void Part::feedListLoaded(const QSharedPointer<FeedList> &list)
 
 void Part::flushAddFeedRequests()
 {
+    if (!m_mainWidget) {
+        return;
+    }
+
     for (const AddFeedRequest &i : qAsConst(m_requests)) {
         Q_FOREACH (const QString &j, i.urls) {
             m_mainWidget->addFeedToGroup(j, i.group);
