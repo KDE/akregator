@@ -202,6 +202,10 @@ void FrameManager::slotSetStatusText(Frame *frame, const QString &statusText)
 
 void FrameManager::openUrl(OpenUrlRequest &request)
 {
+    if (!m_currentFrame) {
+        return;
+    }
+
     if (request.browserArgs().newTab() || request.browserArgs().forcesNewWindow() || request.options() == OpenUrlRequest::NewTab || (m_currentFrame->id() == 0)) {
         int newFrameId = -1;
         Q_EMIT signalRequestNewFrame(newFrameId);
