@@ -225,6 +225,7 @@ Part::Part(QWidget *parentWidget, QObject *parent, const QVariantList &)
     QDBusConnection::sessionBus().registerObject(QStringLiteral("/Akregator"), this);
 
     const QString path = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QStringLiteral("/akregator/data/");
+    qDebug() <<"path *****************************************************"<<path;
     QDir().mkpath(path);
     m_standardFeedList = path + QStringLiteral("/feeds.opml");
 
