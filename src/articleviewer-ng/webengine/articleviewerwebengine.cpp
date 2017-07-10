@@ -143,6 +143,9 @@ void ArticleViewerWebEngine::paintAboutScreen(const QString &templateName, const
 
 void ArticleViewerWebEngine::slotServiceUrlSelected(PimCommon::ShareServiceUrlManager::ServiceType type)
 {
+    if (mCurrentUrl.isEmpty()) {
+        return;
+    }
     const QUrl url = mShareServiceManager->generateServiceUrl(mCurrentUrl.url(), QString(), type);
     mShareServiceManager->openUrl(url);
 }
