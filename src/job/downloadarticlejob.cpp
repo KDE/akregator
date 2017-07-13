@@ -76,8 +76,8 @@ void DownloadArticleJob::slotUrlSaveResult(KJob *job)
 {
     if (job->error()) {
         KIO::Job *kiojob = dynamic_cast<KIO::Job *>(job);
-        if (kiojob && kiojob->ui()) {
-            kiojob->ui()->showErrorMessage();
+        if (kiojob && kiojob->uiDelegate()) {
+            kiojob->uiDelegate()->showErrorMessage();
         } else {
             qCWarning(AKREGATOR_LOG) << "There is no GUI delegate set for a kjob, and it failed with error:" << job->errorString();
         }
