@@ -35,9 +35,11 @@
 #include <webengineviewer/config-webengineviewer.h>
 #include <WebEngineViewer/WebEngineExportHtmlPageJob>
 
+#include <QApplication>
 #include <QPrinter>
 #ifdef WEBENGINEVIEWER_PRINT_SUPPORT
 #include <QPrintDialog>
+#include <QPrintPreviewDialog>
 #endif
 
 using namespace Akregator;
@@ -171,10 +173,26 @@ void ArticleViewerWebEngineWidgetNg::slotHandlePagePrinted(bool result)
 
 void ArticleViewerWebEngineWidgetNg::slotPrintPreview()
 {
+#ifndef WEBENGINEVIEWER_PRINT_SUPPORT
     QPointer<WebEngineViewer::WebEnginePrintMessageBox> dialog = new WebEngineViewer::WebEnginePrintMessageBox(this);
     connect(dialog.data(), &WebEngineViewer::WebEnginePrintMessageBox::openInBrowser, this, &ArticleViewerWebEngineWidgetNg::slotOpenInBrowser);
     dialog->exec();
     delete dialog;
+#else
+    QPrintPreviewDialog* dialog = new QPrintPreviewDialog(this);
+    dialog->setAttribute(Qt::WA_DeleteOnClose);
+    dialog->resize(800, 750);
+
+    connect(dialog, &QPrintPreviewDialog::paintRequested, this, [=](QPrinter *printing) {
+        QApplication::setOverrideCursor(Qt::WaitCursor);
+
+        mArticleViewerNg->execPrintPreviewPage(printing, 10*1000);
+        QApplication::restoreOverrideCursor();
+    });
+
+    dialog->open();
+
+#endif
 }
 
 void ArticleViewerWebEngineWidgetNg::slotOpenInBrowser()

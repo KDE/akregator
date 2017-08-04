@@ -70,6 +70,7 @@ public:
 
     void createViewerPluginToolManager(KActionCollection *ac, QWidget *parent);
 
+    void execPrintPreviewPage(QPrinter *printer, int timeout);
 protected:
     QUrl mCurrentUrl;
     KActionCollection *mActionCollection;

@@ -106,6 +106,11 @@ ArticleViewerWebEngine::~ArticleViewerWebEngine()
 {
 }
 
+void ArticleViewerWebEngine::execPrintPreviewPage(QPrinter *printer, int timeout)
+{
+    mPageEngine->execPrintPreviewPage(printer, timeout);
+}
+
 void ArticleViewerWebEngine::slotWebPageMutedOrAudibleChanged()
 {
     Q_EMIT webPageMutedOrAudibleChanged(page()->isAudioMuted(), page()->recentlyAudible());
