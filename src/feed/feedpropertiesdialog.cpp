@@ -45,8 +45,8 @@ FeedPropertiesWidget::FeedPropertiesWidget(QWidget *parent, const QString &name)
     connect(cb_updateInterval, &QCheckBox::toggled, updateComboBox, &KComboBox::setEnabled);
     connect(cb_updateInterval, &QCheckBox::toggled, updateLabel, &QLabel::setEnabled);
     connect(cb_updateInterval, &QCheckBox::toggled, this, &FeedPropertiesWidget::slotUpdateCheckBoxToggled);
-    connect(updateComboBox, static_cast<void (KComboBox::*)(int)>(&KComboBox::activated), this, &FeedPropertiesWidget::slotUpdateComboBoxActivated);
-    connect(updateSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this, &FeedPropertiesWidget::slotUpdateComboBoxLabels);
+    connect(updateComboBox, QOverload<int>::of(&KComboBox::activated), this, &FeedPropertiesWidget::slotUpdateComboBoxActivated);
+    connect(updateSpinBox, QOverload<int>::of(&QSpinBox::valueChanged), this, &FeedPropertiesWidget::slotUpdateComboBoxLabels);
     connect(rb_limitArticleAge, &QRadioButton::toggled, sb_maxArticleAge, &KPluralHandlingSpinBox::setEnabled);
     connect(rb_limitArticleNumber, &QRadioButton::toggled, sb_maxArticleNumber, &KPluralHandlingSpinBox::setEnabled);
 }
