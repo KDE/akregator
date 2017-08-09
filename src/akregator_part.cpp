@@ -113,12 +113,12 @@ static QDomDocument createDefaultFeedList()
 
     QDomElement dot = doc.createElement(QStringLiteral("outline"));
     dot.setAttribute(QStringLiteral("text"), i18n("KDE Dot News"));
-    dot.setAttribute(QStringLiteral("xmlUrl"), QStringLiteral("http://www.kde.org/dotkdeorg.rdf"));
+    dot.setAttribute(QStringLiteral("xmlUrl"), QStringLiteral("https://dot.kde.org/rss.xml"));
     mainFolder.appendChild(dot);
 
     QDomElement linuxFeeds = doc.createElement(QStringLiteral("outline"));
     linuxFeeds.setAttribute(QStringLiteral("text"), i18n("Linux.com"));
-    linuxFeeds.setAttribute(QStringLiteral("xmlUrl"), QStringLiteral("https://www.linux.com/rss/feeds.php"));
+    linuxFeeds.setAttribute(QStringLiteral("xmlUrl"), QStringLiteral("https://www.linux.com/feeds/rss"));
     mainFolder.appendChild(linuxFeeds);
 
     QDomElement planetkde = doc.createElement(QStringLiteral("outline"));
@@ -126,27 +126,11 @@ static QDomDocument createDefaultFeedList()
     planetkde.setAttribute(QStringLiteral("xmlUrl"), QStringLiteral("http://planetkde.org/rss20.xml"));
     mainFolder.appendChild(planetkde);
 
-    QDomElement planetkdepim = doc.createElement(QStringLiteral("outline"));
-    planetkdepim.setAttribute(QStringLiteral("text"), i18n("Planet KDE PIM"));
-    planetkdepim.setAttribute(QStringLiteral("xmlUrl"), QStringLiteral("http://pim.planetkde.org/rss20.xml"));
-    mainFolder.appendChild(planetkdepim);
-
     QDomElement apps = doc.createElement(QStringLiteral("outline"));
     apps.setAttribute(QStringLiteral("text"), i18n("KDE Apps"));
     apps.setAttribute(QStringLiteral("xmlUrl"), QStringLiteral("https://store.kde.org/content.rdf"));
     mainFolder.appendChild(apps);
 
-#if 0
-    // hungarian feed(s)
-    QDomElement hungarianFolder = doc.createElement(QStringLiteral("outline"));
-    hungarianFolder.setAttribute(QStringLiteral("text"), i18n("Hungarian feeds"));
-    mainFolder.appendChild(hungarianFolder);
-
-    QDomElement hungarianKde = doc.createElement(QStringLiteral("outline"));
-    hungarianKde.setAttribute(QStringLiteral("text"), i18n("KDE.HU"));
-    hungarianKde.setAttribute(QStringLiteral("xmlUrl"), QStringLiteral("http://kde.hu/rss.xml"));
-    hungarianFolder.appendChild(hungarianKde);
-#endif
     // Brazilian Portuguese feeds
     QDomElement portugueuseFolder = doc.createElement(QStringLiteral("outline"));
     portugueuseFolder.setAttribute(QStringLiteral("text"), i18n("Brazilian Portuguese feeds"));
@@ -166,16 +150,6 @@ static QDomDocument createDefaultFeedList()
     spanishKde.setAttribute(QStringLiteral("text"), i18n("Planet KDE España"));
     spanishKde.setAttribute(QStringLiteral("xmlUrl"), QStringLiteral("http://planet.kde-espana.org/atom.xml"));
     spanishFolder.appendChild(spanishKde);
-
-    // french feed(s)
-    QDomElement frenchFolder = doc.createElement(QStringLiteral("outline"));
-    frenchFolder.setAttribute(QStringLiteral("text"), i18n("French feeds"));
-    mainFolder.appendChild(frenchFolder);
-
-    QDomElement frenchKde = doc.createElement(QStringLiteral("outline"));
-    frenchKde.setAttribute(QStringLiteral("text"), i18n("Planet KDE France"));
-    frenchKde.setAttribute(QStringLiteral("xmlUrl"), QStringLiteral("https://fr.planetkde.org/rss20.xml"));
-    frenchFolder.appendChild(frenchKde);
 
     return doc;
 }
