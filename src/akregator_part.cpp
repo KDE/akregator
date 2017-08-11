@@ -583,15 +583,6 @@ void Part::exportFile(const QUrl &url)
     if (url.isLocalFile()) {
         const QString fname = url.toLocalFile();
 
-        if (QFileInfo::exists(fname)
-            && KMessageBox::questionYesNo(m_mainWidget,
-                                          i18n("The file %1 already exists; do you want to overwrite it?", fname),
-                                          i18n("Export"),
-                                          KStandardGuiItem::overwrite(),
-                                          KStandardGuiItem::cancel()) == KMessageBox::No) {
-            return;
-        }
-
         if (!writeToTextFile(m_mainWidget->feedListToOPML().toString(), fname)) {
             KMessageBox::error(m_mainWidget, i18n("Access denied: cannot write to file %1. Please check your permissions.", fname), i18n("Write Error"));
         }
