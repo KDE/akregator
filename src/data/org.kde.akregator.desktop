@@ -169,6 +169,6 @@ Comment[x-test]=xxA KDE News Feed Readerxx
 Comment[zh_CN]=一个 KDE 种子阅读器
 Comment[zh_TW]=KDE 新聞 Feed 閱讀器
 Terminal=false
-Categories=Qt;KDE;Network;News;
+Categories=Qt;KDE;Network;News;Feed;
 X-DBUS-StartupType=Unique
 X-DBUS-ServiceName=org.kde.akregator
