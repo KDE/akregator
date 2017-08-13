@@ -205,7 +205,9 @@ void ArticleViewerWebEngineWidgetNg::slotOpenInBrowser()
         connect(job, &WebEngineViewer::WebEngineExportHtmlPageJob::success, this, &ArticleViewerWebEngineWidgetNg::slotExportHtmlPageSuccess);
         job->start();
     } else {
-        KRun::runUrl(currentUrl, QStringLiteral("text/html"), this);
+        KRun::RunFlags flags;
+        flags |= KRun::RunExecutables;
+        KRun::runUrl(currentUrl, QStringLiteral("text/html"), this, flags);
     }
 }
 
@@ -217,5 +219,7 @@ void ArticleViewerWebEngineWidgetNg::slotExportHtmlPageFailed()
 void ArticleViewerWebEngineWidgetNg::slotExportHtmlPageSuccess(const QString &filename)
 {
     const QUrl url(QUrl::fromLocalFile(filename));
-    KRun::runUrl(url, QStringLiteral("text/html"), this, true);
+    KRun::RunFlags flags;
+    flags |= KRun::DeleteTemporaryFiles;
+    KRun::runUrl(url, QStringLiteral("text/html"), this, flags);
 }
