@@ -37,10 +37,8 @@
 
 #include <QApplication>
 #include <QPrinter>
-#ifdef WEBENGINEVIEWER_PRINT_SUPPORT
 #include <QPrintDialog>
 #include <QPrintPreviewDialog>
-#endif
 
 using namespace Akregator;
 template<typename Arg, typename R, typename C>
@@ -135,17 +133,11 @@ void ArticleViewerWebEngineWidgetNg::saveCurrentPosition()
 
 void ArticleViewerWebEngineWidgetNg::slotPrint()
 {
-#ifdef WEBENGINEVIEWER_PRINT_SUPPORT
     printRequested(mArticleViewerNg->page());
-#else
-    //Use the same code for the moment.
-    slotPrintPreview();
-#endif
 }
 
 void ArticleViewerWebEngineWidgetNg::printRequested(QWebEnginePage *page)
 {
-#ifdef WEBENGINEVIEWER_PRINT_SUPPORT
     if (mCurrentPrinter) {
         return;
     }
@@ -159,9 +151,6 @@ void ArticleViewerWebEngineWidgetNg::printRequested(QWebEnginePage *page)
     }
     delete dialog;
     page->print(mCurrentPrinter, invoke(this, &ArticleViewerWebEngineWidgetNg::slotHandlePagePrinted));
-#else
-    Q_UNUSED(page);
-#endif
 }
 
 void ArticleViewerWebEngineWidgetNg::slotHandlePagePrinted(bool result)
@@ -173,12 +162,6 @@ void ArticleViewerWebEngineWidgetNg::slotHandlePagePrinted(bool result)
 
 void ArticleViewerWebEngineWidgetNg::slotPrintPreview()
 {
-#ifndef WEBENGINEVIEWER_PRINT_SUPPORT
-    QPointer<WebEngineViewer::WebEnginePrintMessageBox> dialog = new WebEngineViewer::WebEnginePrintMessageBox(this);
-    connect(dialog.data(), &WebEngineViewer::WebEnginePrintMessageBox::openInBrowser, this, &ArticleViewerWebEngineWidgetNg::slotOpenInBrowser);
-    dialog->exec();
-    delete dialog;
-#else
     QPrintPreviewDialog* dialog = new QPrintPreviewDialog(this);
     dialog->setAttribute(Qt::WA_DeleteOnClose);
     dialog->resize(800, 750);
@@ -191,8 +174,6 @@ void ArticleViewerWebEngineWidgetNg::slotPrintPreview()
     });
 
     dialog->open();
-
-#endif
 }
 
 void ArticleViewerWebEngineWidgetNg::slotOpenInBrowser()
