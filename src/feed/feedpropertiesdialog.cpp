@@ -27,7 +27,6 @@
 
 #include <kcombobox.h>
 #include <KLocalizedString>
-#include <kpassworddialog.h>
 
 #include <QCheckBox>
 #include <KConfigGroup>
