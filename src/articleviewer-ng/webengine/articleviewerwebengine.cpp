@@ -128,7 +128,7 @@ QVariantHash ArticleViewerWebEngine::introductionData() const
 
 void ArticleViewerWebEngine::showAboutPage()
 {
-    paintAboutScreen(QStringLiteral("introduction_akregator.html"), introductionData());
+    paintAboutScreen(QStringLiteral(":/about/introduction_akregator.html"), introductionData());
 }
 
 void ArticleViewerWebEngine::paintAboutScreen(const QString &templateName, const QVariantHash &data)

@@ -9,7 +9,6 @@ include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/frame/
     )
 
-add_subdirectory(about)
 add_subdirectory(icons)
 
 
@@ -99,6 +98,8 @@ set(akregatorprivate_LIB_SRCS
     actions/actionmanager.cpp
     actions/actions.cpp
     )
+
+qt5_add_resources(akregatorprivate_LIB_SRCS akregator.qrc)
 
 add_library(akregatorprivate ${akregatorprivate_LIB_SRCS})
 generate_export_header(akregatorprivate BASE_NAME akregator)
