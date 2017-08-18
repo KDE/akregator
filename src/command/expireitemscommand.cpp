@@ -39,7 +39,7 @@
 
 using namespace Akregator;
 
-class ExpireItemsCommand::Private
+class Q_DECL_HIDDEN ExpireItemsCommand::Private
 {
     ExpireItemsCommand *const q;
 public:

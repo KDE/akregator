@@ -40,7 +40,7 @@
 using namespace Syndication;
 using namespace Akregator;
 
-class ArticleFormatter::Private
+class Q_DECL_HIDDEN ArticleFormatter::Private
 {
 public:
     explicit Private();

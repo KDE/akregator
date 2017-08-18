@@ -36,7 +36,7 @@
 
 using namespace Akregator;
 
-class CreateFolderCommand::Private
+class Q_DECL_HIDDEN CreateFolderCommand::Private
 {
     CreateFolderCommand *const q;
 public:

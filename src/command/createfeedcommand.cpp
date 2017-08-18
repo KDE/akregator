@@ -42,7 +42,7 @@
 
 using namespace Akregator;
 
-class CreateFeedCommand::Private
+class Q_DECL_HIDDEN CreateFeedCommand::Private
 {
     CreateFeedCommand *const q;
 public:
