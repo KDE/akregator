@@ -109,12 +109,12 @@ void AddFeedDialog::accept()
     }
 
     if (!feedUrl.contains(QStringLiteral(":/"))) {
-        feedUrl.prepend(QStringLiteral("http://"));
+        feedUrl.prepend(QStringLiteral("https://"));
     }
 
     QUrl asUrl(feedUrl);
     if (asUrl.scheme() == QLatin1String("feed")) {
-        asUrl.setScheme(QStringLiteral("http"));
+        asUrl.setScheme(QStringLiteral("https"));
         feedUrl = asUrl.url();
     }
     m_feed->setXmlUrl(feedUrl);
