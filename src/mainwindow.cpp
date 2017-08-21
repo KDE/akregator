@@ -182,7 +182,7 @@ void MainWindow::optionsConfigureToolbars()
     KConfigGroup grp(KSharedConfig::openConfig().data()->group(autoSaveGroup()));
     saveMainWindowSettings(grp);
     QPointer<KEditToolBar> dlg = new KEditToolBar(factory());
-    connect(dlg, &KEditToolBar::newToolBarConfig, this, &MainWindow::applyNewToolbarConfig);
+    connect(dlg.data(), &KEditToolBar::newToolBarConfig, this, &MainWindow::applyNewToolbarConfig);
     dlg->exec();
     delete dlg;
 }
