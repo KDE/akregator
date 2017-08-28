@@ -43,7 +43,7 @@ public:
     void save() override;
 
 private:
-    Akregator::SettingsAdvanced *m_widget;
+    Akregator::SettingsAdvanced *m_widget = nullptr;
 };
 
 #endif

@@ -133,7 +133,7 @@ private:
 
 private:
     QSharedPointer<FeedList> m_feedList;
-    SubscriptionListModel *m_model;
+    SubscriptionListModel *m_model = nullptr;
 };
 } // namespace Akregator
 

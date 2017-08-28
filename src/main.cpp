@@ -50,7 +50,7 @@ public:
     int activate(const QStringList &args, const QString &workingDir) override;
 
 private:
-    Akregator::MainWindow *mMainWindow;
+    Akregator::MainWindow *mMainWindow = nullptr;
 };
 
 int Application::activate(const QStringList &args, const QString &workingDir)

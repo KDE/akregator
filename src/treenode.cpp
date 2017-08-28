@@ -41,13 +41,13 @@ class TreeNode::TreeNodePrivate
 {
 public:
     TreeNodePrivate();
-    bool doNotify;
-    bool nodeChangeOccurred;
-    bool articleChangeOccurred;
+    bool doNotify = false;
+    bool nodeChangeOccurred = false;
+    bool articleChangeOccurred = false;
     QString title;
-    Folder *parent;
+    Folder *parent = nullptr;
     uint id;
-    bool signalDestroyedEmitted;
+    bool signalDestroyedEmitted = false;
     QPoint scrollBarPositions;
 };
 

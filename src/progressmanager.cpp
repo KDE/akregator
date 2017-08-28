@@ -129,8 +129,8 @@ class ProgressItemHandler::ProgressItemHandlerPrivate
 {
 public:
 
-    Feed *feed;
-    KPIM::ProgressItem *progressItem;
+    Feed *feed = nullptr;
+    KPIM::ProgressItem *progressItem = nullptr;
 };
 
 ProgressItemHandler::ProgressItemHandler(Feed *feed) : d(new ProgressItemHandlerPrivate)

@@ -46,8 +46,8 @@ private:
     QUrl mArticleUrl;
     QString mTitle;
     QString mText;
-    QTemporaryFile *mTemporaryFile;
-    MimeTreeParser::AttachmentTemporaryFilesDirs *mAttachmentTemporaryFile;
+    QTemporaryFile *mTemporaryFile = nullptr;
+    MimeTreeParser::AttachmentTemporaryFilesDirs *mAttachmentTemporaryFile = nullptr;
 };
 }
 #endif // DOWNLOADARTICLEJOB_H

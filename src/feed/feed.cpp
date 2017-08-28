@@ -79,23 +79,23 @@ class Q_DECL_HIDDEN Akregator::Feed::Private
 public:
     explicit Private(Backend::Storage *storage, Akregator::Feed *qq);
 
-    Backend::Storage *storage;
-    bool autoFetch;
+    Backend::Storage *storage = nullptr;
+    bool autoFetch = false;
     int fetchInterval;
     ArchiveMode archiveMode;
     int maxArticleAge;
     int maxArticleNumber;
-    bool markImmediatelyAsRead;
-    bool useNotification;
-    bool loadLinkedWebsite;
+    bool markImmediatelyAsRead = false;
+    bool useNotification = false;
+    bool loadLinkedWebsite = false;
     int lastFetched;
 
     Syndication::ErrorCode fetchErrorCode;
     int fetchTries;
-    bool followDiscovery;
-    Syndication::Loader *loader;
-    bool articlesLoaded;
-    Backend::FeedStorage *archive;
+    bool followDiscovery = false;
+    Syndication::Loader *loader = nullptr;
+    bool articlesLoaded = false;
+    Backend::FeedStorage *archive = nullptr;
 
     QString xmlUrl;
     QString htmlUrl;

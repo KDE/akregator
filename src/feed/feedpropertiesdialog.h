@@ -93,8 +93,8 @@ protected:
     void setLoadLinkedWebsite(bool enabled);
 
 private:
-    FeedPropertiesWidget *widget;
-    Feed *m_feed;
+    FeedPropertiesWidget *widget = nullptr;
+    Feed *m_feed = nullptr;
 
 private Q_SLOTS:
     void slotSetWindowTitle(const QString &);

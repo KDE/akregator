@@ -70,7 +70,7 @@ private:
     void updateStatusIcon(StatusSearchLine::Status status);
     Status mDefaultStatus;
     QHash<StatusSearchLine::Status, StatusInfo> mHashStatus;
-    QAction *mSearchLineStatusAction;
+    QAction *mSearchLineStatusAction = nullptr;
 };
 }
 #endif // STATUSSEARCHLINE_H

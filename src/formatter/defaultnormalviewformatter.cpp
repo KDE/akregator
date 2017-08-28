@@ -72,7 +72,7 @@ public:
 
     QString text;
 private:
-    DefaultNormalViewFormatter *parent;
+    DefaultNormalViewFormatter *parent = nullptr;
 };
 
 DefaultNormalViewFormatter::DefaultNormalViewFormatter(const QString &grantleeDirectory, const QUrl &imageDir, QPaintDevice *device)

@@ -44,9 +44,9 @@ public:
 
     void doCreate();
 
-    TreeNode *m_selectedSubscription;
-    Folder *m_rootFolder;
-    SubscriptionListView *m_subscriptionListView;
+    TreeNode *m_selectedSubscription = nullptr;
+    Folder *m_rootFolder = nullptr;
+    SubscriptionListView *m_subscriptionListView = nullptr;
 };
 
 CreateFolderCommand::Private::Private(CreateFolderCommand *qq)

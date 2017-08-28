@@ -265,34 +265,34 @@ private:
     AbstractSelectionController *m_selectionController;
     QSharedPointer<FeedList> m_feedList;
 
-    SubscriptionListView *m_feedListView;
-    ArticleListView *m_articleListView;
+    SubscriptionListView *m_feedListView = nullptr;
+    ArticleListView *m_articleListView = nullptr;
 
-    ArticleViewerWidget *m_articleViewer;
-    TabWidget *m_tabWidget;
+    ArticleViewerWidget *m_articleViewer = nullptr;
+    TabWidget *m_tabWidget = nullptr;
 
-    QWidget *m_mainTab;
-    MainFrame *m_mainFrame;
+    QWidget *m_mainTab = nullptr;
+    MainFrame *m_mainFrame = nullptr;
 
-    SearchBar *m_searchBar;
+    SearchBar *m_searchBar = nullptr;
 
-    QSplitter *m_articleSplitter;
-    QSplitter *m_horizontalSplitter;
+    QSplitter *m_articleSplitter = nullptr;
+    QSplitter *m_horizontalSplitter = nullptr;
 
-    Akregator::Part *m_part;
+    Akregator::Part *m_part = nullptr;
     ViewMode m_viewMode;
 
-    QTimer *m_fetchTimer;
-    QTimer *m_expiryTimer;
-    QTimer *m_markReadTimer;
+    QTimer *m_fetchTimer = nullptr;
+    QTimer *m_expiryTimer = nullptr;
+    QTimer *m_markReadTimer = nullptr;
 
-    bool m_shuttingDown;
-    bool m_displayingAboutPage;
+    bool m_shuttingDown = false;
+    bool m_displayingAboutPage = false;
 
-    ActionManagerImpl *m_actionManager;
-    FeedListManagementImpl *const m_feedListManagementInterface;
+    ActionManagerImpl *m_actionManager = nullptr;
+    FeedListManagementImpl *const m_feedListManagementInterface = nullptr;
 
-    QWidget *m_articleWidget;
+    QWidget *m_articleWidget = nullptr;
     QList<QPointer<Akregator::DownloadArticleJob> > mListDownloadArticleJobs;
 };
 } // namespace Akregator

@@ -57,7 +57,7 @@ public Q_SLOTS:
     void slotSaveImageOnDiskInFrame(int frameId);
     void slotMute(int frameId, bool mute);
 private:
-    Akregator::ArticleViewerWidget *mArticleViewer;
+    Akregator::ArticleViewerWidget *mArticleViewer = nullptr;
 };
 } // namespace Akregator
 

@@ -63,11 +63,11 @@ private:
     void initializeLayout(KActionCollection *ac);
     void printRequested(QWebEnginePage *page);
     void slotRestorePosition();
-    WebEngineViewer::FindBarWebEngineView *mFindBarWebView;
-    ArticleViewerWebEngine *mArticleViewerNg;
-    KPIMTextEdit::TextToSpeechWidget *mTextToSpeechWidget;
-    KPIMTextEdit::SlideContainer *mSliderContainer;
-    QPrinter *mCurrentPrinter;
+    WebEngineViewer::FindBarWebEngineView *mFindBarWebView = nullptr;
+    ArticleViewerWebEngine *mArticleViewerNg = nullptr;
+    KPIMTextEdit::TextToSpeechWidget *mTextToSpeechWidget = nullptr;
+    KPIMTextEdit::SlideContainer *mSliderContainer = nullptr;
+    QPrinter *mCurrentPrinter = nullptr;
 };
 }
 #endif // ARTICLEVIEWERWEBENGINEWIDGETNG_H

@@ -45,10 +45,10 @@ class Kernel::KernelPrivate
 {
 public:
 
-    Backend::Storage *storage;
+    Backend::Storage *storage = nullptr;
     QSharedPointer<FeedList> feedList;
-    FetchQueue *fetchQueue;
-    FrameManager *frameManager;
+    FetchQueue *fetchQueue = nullptr;
+    FrameManager *frameManager = nullptr;
 };
 
 Kernel::Kernel() : d(new KernelPrivate)

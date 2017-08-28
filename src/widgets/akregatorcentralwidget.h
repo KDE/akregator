@@ -43,8 +43,8 @@ private Q_SLOTS:
     void slotRestoreSession(Akregator::CrashWidget::CrashAction type);
 
 private:
-    Akregator::CrashWidget *mCrashWidget;
-    Akregator::MainWidget *mMainWidget;
+    Akregator::CrashWidget *mCrashWidget = nullptr;
+    Akregator::MainWidget *mMainWidget = nullptr;
 };
 }
 #endif // AKREGATORCENTRALWIDGET_H

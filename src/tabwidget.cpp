@@ -76,8 +76,8 @@ public:
     QHash<QWidget *, Frame *> frames;
     QHash<int, Frame *> framesById;
     int currentMaxLength;
-    QWidget *currentItem;
-    QToolButton *tabsClose;
+    QWidget *currentItem = nullptr;
+    QToolButton *tabsClose = nullptr;
 
     QWidget *selectedWidget() const
     {

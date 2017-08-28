@@ -139,9 +139,9 @@ protected:
     int m_progress;
     QString m_statusText;
     QString m_progressId;
-    KPIM::ProgressItem *m_progressItem;
-    bool m_isRemovable;
-    bool m_loading;
+    KPIM::ProgressItem *m_progressItem = nullptr;
+    bool m_isRemovable = false;
+    bool m_loading = false;
     int m_id;
     static int m_idCounter;
 };

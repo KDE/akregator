@@ -48,7 +48,7 @@ private:
     } mState;
 
     QString mHtml;
-    ArticleViewerWebEngine *mWebView;
+    ArticleViewerWebEngine *mWebView = nullptr;
 };
 }
 

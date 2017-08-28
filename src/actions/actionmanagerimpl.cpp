@@ -104,25 +104,25 @@ public:
     }
 
 private:
-    ActionManagerImpl *m_manager;
+    ActionManagerImpl *m_manager = nullptr;
 };
 
 class ActionManagerImpl::ActionManagerImplPrivate
 {
 public:
     QString quickSearchLineText() const;
-    NodeSelectVisitor *nodeSelectVisitor;
-    ArticleListView *articleList;
-    SubscriptionListView *subscriptionListView;
-    MainWidget *mainWidget;
-    Part *part;
-    TrayIcon *trayIcon;
-    KActionMenu *tagMenu;
-    KActionCollection *actionCollection;
-    TabWidget *tabWidget;
-    PimCommon::ShareServiceUrlManager *shareServiceManager;
-    WebEngineViewer::ZoomActionMenu *zoomActionMenu;
-    QAction *mQuickSearchAction;
+    NodeSelectVisitor *nodeSelectVisitor = nullptr;
+    ArticleListView *articleList = nullptr;
+    SubscriptionListView *subscriptionListView = nullptr;
+    MainWidget *mainWidget = nullptr;
+    Part *part = nullptr;
+    TrayIcon *trayIcon = nullptr;
+    KActionMenu *tagMenu = nullptr;
+    KActionCollection *actionCollection = nullptr;
+    TabWidget *tabWidget = nullptr;
+    PimCommon::ShareServiceUrlManager *shareServiceManager = nullptr;
+    WebEngineViewer::ZoomActionMenu *zoomActionMenu = nullptr;
+    QAction *mQuickSearchAction = nullptr;
 };
 
 void ActionManagerImpl::slotNodeSelected(TreeNode *node)

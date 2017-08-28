@@ -208,22 +208,22 @@ private: // methods
 private: // attributes
 
     class ApplyFiltersInterceptor;
-    ApplyFiltersInterceptor *m_applyFiltersInterceptor;
+    ApplyFiltersInterceptor *m_applyFiltersInterceptor = nullptr;
     QString m_standardFeedList;
     bool m_standardListLoaded;
     bool m_shuttingDown;
     bool m_doCrashSave;
 
-    KParts::BrowserExtension *m_extension;
+    KParts::BrowserExtension *m_extension = nullptr;
 
-    QTimer *m_autosaveTimer;
+    QTimer *m_autosaveTimer = nullptr;
     /** did we backup the feed list already? */
     bool m_backedUpList;
-    Akregator::AkregatorCentralWidget *mCentralWidget;
+    Akregator::AkregatorCentralWidget *mCentralWidget = nullptr;
     QPointer<MainWidget> m_mainWidget;
-    Backend::Storage *m_storage;
-    ActionManagerImpl *m_actionManager;
-    KCMultiDialog *m_dialog;
+    Backend::Storage *m_storage = nullptr;
+    ActionManagerImpl *m_actionManager = nullptr;
+    KCMultiDialog *m_dialog = nullptr;
     struct AddFeedRequest {
         QStringList urls;
         QString group;

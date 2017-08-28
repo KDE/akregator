@@ -92,11 +92,11 @@ private:
 
     QSharedPointer<FeedList> m_feedList;
     QPointer<QAbstractItemView> m_feedSelector;
-    Akregator::ArticleLister *m_articleLister;
-    Akregator::SingleArticleDisplay *m_singleDisplay;
-    Akregator::SubscriptionListModel *m_subscriptionModel;
-    Akregator::FolderExpansionHandler *m_folderExpansionHandler;
-    Akregator::ArticleModel *m_articleModel;
+    Akregator::ArticleLister *m_articleLister = nullptr;
+    Akregator::SingleArticleDisplay *m_singleDisplay = nullptr;
+    Akregator::SubscriptionListModel *m_subscriptionModel = nullptr;
+    Akregator::FolderExpansionHandler *m_folderExpansionHandler = nullptr;
+    Akregator::ArticleModel *m_articleModel = nullptr;
     QPointer<TreeNode> m_selectedSubscription;
     QPointer<ArticleListJob> m_listJob;
 };

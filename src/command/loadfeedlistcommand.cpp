@@ -60,7 +60,7 @@ public:
 
     QString fileName;
     QDomDocument defaultFeedList;
-    Storage *storage;
+    Storage *storage = nullptr;
 };
 
 void LoadFeedListCommand::Private::emitResult(const QSharedPointer<FeedList> &list)

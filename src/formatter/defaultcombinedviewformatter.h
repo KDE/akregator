@@ -37,7 +37,7 @@ public:
 
 private:
     DefaultCombinedViewFormatter();
-    GrantleeViewFormatter *mGrantleeViewFormatter;
+    GrantleeViewFormatter *mGrantleeViewFormatter = nullptr;
 };
 }
 #endif // DEFAULTCOMBINEDVIEWFORMATTER_H

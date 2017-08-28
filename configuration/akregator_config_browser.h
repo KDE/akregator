@@ -38,7 +38,7 @@ public:
     KCMAkregatorBrowserConfig(QWidget *parent, const QVariantList &args);
 
 private:
-    QWidget *m_widget;
+    QWidget *m_widget = nullptr;
 };
 
 #endif // AKREGATOR_CONFIG_BROWSER_H

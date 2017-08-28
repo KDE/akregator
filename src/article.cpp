@@ -98,9 +98,9 @@ struct Article::Private : public Shared {
         Keep = 0x10
     };
 
-    Feed *feed;
+    Feed *feed = nullptr;
     QString guid;
-    Backend::FeedStorage *archive;
+    Backend::FeedStorage *archive = nullptr;
     int status;
     uint hash;
     QDateTime pubDate;

@@ -49,7 +49,7 @@ public:
         {
         }
 
-        StorageDummyImpl *mainStorage;
+        StorageDummyImpl *mainStorage = nullptr;
         QList<Category> categories;
         QString title;
         QString description;
@@ -59,14 +59,14 @@ public:
         QString authorUri;
         QString authorEMail;
         QString commentsLink;
-        bool guidIsHash;
-        bool guidIsPermaLink;
+        bool guidIsHash = false;
+        bool guidIsPermaLink = false;
         int comments;
         int status;
         uint pubDate;
         uint hash;
         QStringList tags;
-        bool hasEnclosure;
+        bool hasEnclosure = false;
         QString enclosureUrl;
         QString enclosureType;
         int enclosureLength;

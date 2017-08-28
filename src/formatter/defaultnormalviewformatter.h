@@ -42,8 +42,8 @@ private:
     QUrl m_imageDir;
     QString m_DefaultThemePath;
     class SummaryVisitor;
-    SummaryVisitor *m_summaryVisitor;
-    GrantleeViewFormatter *mGrantleeViewFormatter;
+    SummaryVisitor *m_summaryVisitor = nullptr;
+    GrantleeViewFormatter *mGrantleeViewFormatter = nullptr;
 };
 }
 #endif // DEFAULTNORMALVIEWFORMATTER_H

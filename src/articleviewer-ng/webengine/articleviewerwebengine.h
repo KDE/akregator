@@ -73,9 +73,9 @@ public:
     void execPrintPreviewPage(QPrinter *printer, int timeout);
 protected:
     QUrl mCurrentUrl;
-    KActionCollection *mActionCollection;
-    PimCommon::ShareServiceUrlManager *mShareServiceManager;
-    KIO::KUriFilterSearchProviderActions *mWebShortcutMenuManager;
+    KActionCollection *mActionCollection = nullptr;
+    PimCommon::ShareServiceUrlManager *mShareServiceManager = nullptr;
+    KIO::KUriFilterSearchProviderActions *mWebShortcutMenuManager = nullptr;
 
 private:
     enum MousePressedButtonType {
@@ -129,15 +129,15 @@ private Q_SLOTS:
     void slotCheckedUrlFinished(const QUrl &url, WebEngineViewer::CheckPhishingUrlUtil::UrlStatus status);
 protected:
 
-    ArticleViewerWebEnginePage *mPageEngine;
+    ArticleViewerWebEnginePage *mPageEngine = nullptr;
     QList<QAction *> viewerPluginActionList(MessageViewer::ViewerPluginInterface::SpecificFeatureTypes features);
-    WebEngineViewer::InterceptorManager *mNetworkAccessManager;
+    WebEngineViewer::InterceptorManager *mNetworkAccessManager = nullptr;
 private:
     void openSafeUrl(const QUrl &url);
     bool urlIsAMalwareButContinue();
     MousePressedButtonType mLastButtonClicked;
-    MessageViewer::ViewerPluginToolManager *mViewerPluginToolManager;
-    WebEngineViewer::WebEngineAccessKey *mWebEngineViewAccessKey;
+    MessageViewer::ViewerPluginToolManager *mViewerPluginToolManager = nullptr;
+    WebEngineViewer::WebEngineAccessKey *mWebEngineViewAccessKey = nullptr;
 };
 }
 

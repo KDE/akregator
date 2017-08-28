@@ -97,7 +97,7 @@ public:
 
 private:
     struct StoreItem {
-        Akregator::Plugin *plugin;
+        Akregator::Plugin *plugin = nullptr;
         KService::Ptr service;
     };
 

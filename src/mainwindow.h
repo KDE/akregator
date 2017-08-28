@@ -112,10 +112,10 @@ private Q_SLOTS:
     void slotOnShutdown();
 
 private:
-    BrowserInterface *m_browserIface;
+    BrowserInterface *m_browserIface = nullptr;
 
     QPointer<Akregator::Part> m_part;
-    KSqueezedTextLabel *m_statusLabel;
+    KSqueezedTextLabel *m_statusLabel = nullptr;
 };
 } // namespace Akregator
 

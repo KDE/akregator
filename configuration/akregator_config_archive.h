@@ -46,8 +46,8 @@ public:
     void save() override;
 
 private:
-    QWidget *m_widget;
-    QButtonGroup *m_archiveModeGroup;
+    QWidget *m_widget = nullptr;
+    QButtonGroup *m_archiveModeGroup = nullptr;
 };
 
 #endif // AKREGATOR_CONFIG_ARCHIVE_H

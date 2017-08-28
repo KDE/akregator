@@ -60,8 +60,8 @@ public:
 
 private:
 
-    SubscriptionListView *m_subscriptionListView;
-    QWidget *m_widget;
+    SubscriptionListView *m_subscriptionListView = nullptr;
+    QWidget *m_widget = nullptr;
 };
 }
 
@@ -85,7 +85,7 @@ public:
 
     QSharedPointer<FeedList> m_list;
     int m_subscriptionId;
-    SubscriptionListView *m_subscriptionListView;
+    SubscriptionListView *m_subscriptionListView = nullptr;
 };
 
 EditSubscriptionCommand::Private::Private(EditSubscriptionCommand *qq) : q(qq)

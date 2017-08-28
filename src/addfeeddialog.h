@@ -66,9 +66,9 @@ private Q_SLOTS:
 
 private:
     QString feedUrl;
-    AddFeedWidget *widget;
-    Feed *m_feed;
-    QPushButton *mOkButton;
+    AddFeedWidget *widget = nullptr;
+    Feed *m_feed = nullptr;
+    QPushButton *mOkButton = nullptr;
 };
 } // namespace Akregator
 

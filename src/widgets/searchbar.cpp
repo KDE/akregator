@@ -48,7 +48,7 @@ class SearchBar::SearchBarPrivate
 public:
     QString searchText;
     QTimer timer;
-    StatusSearchLine *searchLine;
+    StatusSearchLine *searchLine = nullptr;
     int delay;
     std::vector<QSharedPointer<const AbstractMatcher> > matchers;
     void triggerTimer()

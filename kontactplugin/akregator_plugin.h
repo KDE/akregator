@@ -70,8 +70,8 @@ private Q_SLOTS:
 
 protected:
     KParts::ReadOnlyPart *createPart() override;
-    KontactInterface::UniqueAppWatcher *mUniqueAppWatcher;
-    OrgKdeAkregatorPartInterface *m_interface;
+    KontactInterface::UniqueAppWatcher *mUniqueAppWatcher = nullptr;
+    OrgKdeAkregatorPartInterface *m_interface = nullptr;
 
 private:
     void setHelpText(QAction *action, const QString &text);

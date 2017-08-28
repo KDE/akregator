@@ -38,7 +38,7 @@ public:
 private Q_SLOTS:
     void slotConfigChanged();
 private:
-    PimCommon::ConfigurePluginsWidget *mConfigurePluginWidget;
+    PimCommon::ConfigurePluginsWidget *mConfigurePluginWidget = nullptr;
 };
 }
 #endif // KCMAkregatorPluginsConfig_H

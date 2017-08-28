@@ -158,8 +158,8 @@ private:
         NormalView, CombinedView, SummaryView
     };
     ViewMode m_viewMode;
-    Akregator::ArticleHtmlWebEngineWriter *m_articleHtmlWriter;
-    Akregator::ArticleViewerWebEngineWidgetNg *m_articleViewerWidgetNg;
+    Akregator::ArticleHtmlWebEngineWriter *m_articleHtmlWriter = nullptr;
+    Akregator::ArticleViewerWebEngineWidgetNg *m_articleViewerWidgetNg = nullptr;
     QSharedPointer<ArticleFormatter> m_normalViewFormatter;
     QSharedPointer<ArticleFormatter> m_combinedViewFormatter;
     QString m_grantleeDirectory;
