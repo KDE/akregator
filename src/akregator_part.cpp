@@ -289,8 +289,6 @@ KSharedConfig::Ptr Part::config()
     assert(mySelf);
     if (!mySelf->mConfig) {
         mySelf->mConfig = KSharedConfig::openConfig(QStringLiteral("akregatorrc"));
-        MessageViewer::MessageViewerSettings::self()->setSharedConfig(mySelf->mConfig);
-        MessageViewer::MessageViewerSettings::self()->load();
     }
     return mySelf->mConfig;
 }
