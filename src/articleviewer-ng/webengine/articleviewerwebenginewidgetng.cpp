@@ -161,7 +161,7 @@ void ArticleViewerWebEngineWidgetNg::slotHandlePagePrinted(bool result)
 
 void ArticleViewerWebEngineWidgetNg::slotPrintPreview()
 {
-    QPrintPreviewDialog* dialog = new QPrintPreviewDialog(this);
+    QPrintPreviewDialog *dialog = new QPrintPreviewDialog(this);
     dialog->setAttribute(Qt::WA_DeleteOnClose);
     dialog->resize(800, 750);
 
