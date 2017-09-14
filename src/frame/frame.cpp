@@ -25,12 +25,10 @@
 #include "frame.h"
 #include "utils.h"
 
-#include <QGridLayout>
 
 #include <kactioncollection.h>
 #include "akregator_debug.h"
 #include <KLocalizedString>
-#include <QUrl>
 
 #include <Libkdepim/ProgressManager>
 

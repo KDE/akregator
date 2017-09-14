@@ -41,10 +41,7 @@
 #include "akregator_debug.h"
 #include "akregator-version.h"
 
-#include <QAction>
 #include <kactioncollection.h>
-#include <KLocalizedString>
-#include <QMenu>
 #include <kmessagebox.h>
 #include <krun.h>
 #include <kshell.h>
@@ -58,10 +55,8 @@
 #include <articleviewer-ng/webengine/articleviewerwebenginewidgetng.h>
 #include <articleviewer-ng/webengine/articleviewerwebengine.h>
 #include <articleviewer-ng/webengine/articlehtmlwebenginewriter.h>
-#include <QClipboard>
 #include <QGridLayout>
 #include <QKeyEvent>
-#include <QApplication>
 #include <defaultnormalviewformatter.h>
 
 #include <QStandardPaths>

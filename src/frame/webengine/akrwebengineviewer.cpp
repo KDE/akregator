@@ -26,11 +26,9 @@
 #include "webengine/urlhandlerwebenginemanager.h"
 
 #include <KPIMTextEdit/TextToSpeech>
-
+#include <KActionMenu>
 #include <KIO/KUriFilterSearchProviderActions>
 #include <KActionCollection>
-#include <KActionMenu>
-#include <KLocalizedString>
 #include <QWebEngineSettings>
 #include <QContextMenuEvent>
 #include <QMenu>

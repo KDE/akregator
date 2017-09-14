@@ -17,7 +17,6 @@
 #include <QDesktopServices>
 #include <kio/job.h>
 #include <kio/jobuidelegate.h>
-#include <QDebug>
 #include <QUrlQuery>
 #include <MimeTreeParser/AttachmentTemporaryFilesDirs>
 

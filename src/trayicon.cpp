@@ -27,12 +27,9 @@
 
 #include "akregator_debug.h"
 #include <KLocalizedString>
-#include <QMenu>
 #include <kiconloader.h>
 #include <KColorScheme>
 
-#include <QPainter>
-#include <QFontDatabase>
 
 using namespace Akregator;
 

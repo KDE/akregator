@@ -53,7 +53,6 @@
 #include <kxmlguifactory.h>
 #include <KGuiItem>
 
-#include <QApplication>
 #include <QHash>
 #include <QWidget>
 

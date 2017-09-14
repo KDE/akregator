@@ -29,7 +29,6 @@
 
 #include <QUrl>
 
-#include <QPointer>
 
 #include "akregator_export.h"
 

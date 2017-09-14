@@ -22,7 +22,6 @@
 #include <QAction>
 #include <QIcon>
 #include <QMenu>
-#include <QDebug>
 
 using namespace Akregator;
 Q_DECLARE_METATYPE(Akregator::StatusSearchLine::Status)

@@ -25,8 +25,7 @@
 #include <KLocalizedString>
 #include <PimCommon/ConfigurePluginsWidget>
 #include <PimCommon/ConfigurePluginsListWidget>
-#include <QVBoxLayout>
-
+#include <QHBoxLayout>
 using namespace Akregator;
 
 K_PLUGIN_FACTORY(KCMAkregatorPluginsConfigFactory, registerPlugin<KCMAkregatorPluginsConfig>();

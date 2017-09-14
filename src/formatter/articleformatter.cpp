@@ -33,8 +33,6 @@
 
 #include <KLocalizedString>
 
-#include <QApplication>
-#include <QPalette>
 #include <KFormat>
 
 using namespace Syndication;

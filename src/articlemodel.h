@@ -25,7 +25,6 @@
 #define AKREGATOR_ARTICLEMODEL_H
 
 #include <QAbstractTableModel>
-#include <QList>
 
 #include "akregatorpart_export.h"
 

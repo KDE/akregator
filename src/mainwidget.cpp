@@ -66,7 +66,6 @@
 #include <WebEngineViewer/ZoomActionMenu>
 #include "job/downloadarticlejob.h"
 
-#include <QAction>
 #include <kfileitem.h>
 #include <KLocalizedString>
 #include <kmessagebox.h>
@@ -79,7 +78,6 @@
 #include <QClipboard>
 #include <QNetworkConfigurationManager>
 #include <QSplitter>
-#include <QTextDocument>
 #include <QDomDocument>
 #include <QTimer>
 #include <QDesktopServices>

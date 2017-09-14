@@ -21,7 +21,6 @@
 #include "webengineframe.h"
 #include "akrwebengineviewer.h"
 #include <QVBoxLayout>
-#include <QAction>
 #include <KIO/FavIconRequestJob>
 #include <articleviewer-ng/webengine/articleviewerwebenginewidgetng.h>
 using namespace Akregator;

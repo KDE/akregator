@@ -9,7 +9,6 @@
 
 #include "custom.h"
 #include "format.h"
-#include <QObject>
 /////////////////////////////////////////////////////////////////////////////
 
 class c4_CustomHandler: public c4_Handler

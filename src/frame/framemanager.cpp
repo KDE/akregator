@@ -29,7 +29,6 @@
 #include "actionmanager.h"
 #include "openurlrequest.h"
 #include <KRun>
-#include <QAction>
 #include <KMacroExpander>
 #include <kprocess.h>
 #include <kshell.h>
@@ -37,7 +36,6 @@
 #include "akregator_debug.h"
 #include <webengine/webengineframe.h>
 #include <QStringList>
-#include <QApplication>
 #include <QDesktopServices>
 
 using namespace Akregator;

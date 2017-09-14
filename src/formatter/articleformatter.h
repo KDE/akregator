@@ -25,7 +25,6 @@
 #ifndef AKREGATOR_ARTICLEFORMATTER_H
 #define AKREGATOR_ARTICLEFORMATTER_H
 
-#include <QUrl>
 #include <enclosure.h>
 #include <QVector>
 

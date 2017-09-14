@@ -27,15 +27,12 @@
 #include <QStyle>
 #include <QApplication>
 #include <QIcon>
-#include <QClipboard>
 #include <QHash>
 #include <QString>
 #include <QToolButton>
 
 #include <QMenu>
 #include <QStyleOption>
-#include <QDrag>
-#include <QMimeData>
 
 #include "akregator_debug.h"
 #include <QTabWidget>
@@ -44,7 +41,6 @@
 #include <KLocalizedString>
 #include <kiconloader.h>
 #include <ktoolinvocation.h>
-#include <QUrl>
 #include <kio/global.h>
 #include <kio/pixmaploader.h>
 

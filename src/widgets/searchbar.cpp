@@ -32,10 +32,7 @@
 #include <klineedit.h>
 #include <KLocalizedString>
 
-#include <QIcon>
 
-#include <QLabel>
-#include <QList>
 #include <QString>
 #include <QTimer>
 #include <QStandardPaths>

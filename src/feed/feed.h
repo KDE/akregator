@@ -32,7 +32,6 @@
 #include <Syndication/Syndication>
 
 #include <QIcon>
-#include <QList>
 
 class QDomElement;
 class QString;

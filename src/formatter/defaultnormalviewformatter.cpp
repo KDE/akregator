@@ -27,13 +27,9 @@
 #include "treenodevisitor.h"
 #include "utils.h"
 
-#include <KLocalizedString>
 
-#include <QApplication>
 #include <QPaintDevice>
-#include <QPalette>
 #include <QString>
-#include <KFormat>
 
 using namespace Syndication;
 

@@ -22,6 +22,7 @@
 
 #include "articleformatter.h"
 #include "akregator_export.h"
+#include <QUrl>
 class QPaintDevice;
 namespace Akregator {
 class GrantleeViewFormatter;

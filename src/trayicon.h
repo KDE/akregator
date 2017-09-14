@@ -27,7 +27,6 @@
 
 #include "akregator_export.h"
 
-#include <QIcon>
 #include <KStatusNotifierItem>
 
 namespace Akregator {

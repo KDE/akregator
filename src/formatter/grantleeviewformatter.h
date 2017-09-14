@@ -23,7 +23,7 @@
 #include "PimCommon/GenericGrantleeFormatter"
 #include "article.h"
 #include "articleformatter.h"
-
+#include <QUrl>
 namespace Akregator {
 class Folder;
 class GrantleeViewFormatter : public PimCommon::GenericGrantleeFormatter

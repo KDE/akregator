@@ -33,7 +33,6 @@
 #include <krandom.h>
 #include <qurl.h>
 
-#include <QList>
 #include <QRegExp>
 
 namespace Akregator {

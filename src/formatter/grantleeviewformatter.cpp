@@ -27,7 +27,6 @@
 
 #include <QVariantHash>
 #include <QApplication>
-#include <QDateTime>
 #include <QVariantList>
 #include <folder.h>
 #include <feed.h>

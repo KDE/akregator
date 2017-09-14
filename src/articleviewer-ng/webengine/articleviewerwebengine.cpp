@@ -30,7 +30,6 @@
 #include <WebEngineViewer/InterceptorManager>
 #include <WebEngineViewer/WebEngineAccessKey>
 #include <KPIMTextEdit/TextToSpeech>
-#include <KActionMenu>
 
 #include <KParts/BrowserRun>
 #include <GrantleeTheme/GrantleeThemeManager>
@@ -39,19 +38,14 @@
 #include <KAboutData>
 #include <KGuiItem>
 #include <openurlrequest.h>
-#include <KPimPrintPreviewDialog>
 #include <KMessageBox>
 #include <QPrinter>
-#include <QWebEngineSettings>
 #include <QMouseEvent>
-#include <QPrintDialog>
 #include <QApplication>
 #include <QClipboard>
 #include <QMenu>
 #include <viewerplugintoolmanager.h>
 #include <QWebEngineProfile>
-#include <QWebEngineDownloadItem>
-#include <QPointer>
 
 #include <WebEngineViewer/WebHitTestResult>
 #include <WebEngineViewer/WebHitTest>

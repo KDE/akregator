@@ -22,7 +22,6 @@
 #include <KActionCollection>
 #include <KLocalizedString>
 #include <QVBoxLayout>
-#include <QAction>
 #include <viewerplugintoolmanager.h>
 #include <KRun>
 

@@ -18,7 +18,6 @@
 */
 
 #include "crashwidgettest.h"
-#include <QTest>
 
 CrashWidgetTest::CrashWidgetTest(QObject *parent)
     : QObject(parent)

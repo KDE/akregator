@@ -33,7 +33,6 @@
 #include <QTimer>
 
 #include <qdebug.h>
-#include <QFileInfo>
 #include <QDir>
 #include <QStandardPaths>
 

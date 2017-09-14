@@ -23,7 +23,7 @@
 #include <QObject>
 #include <article.h>
 #include "articleformatter.h"
-
+#include <QUrl>
 namespace Akregator {
 class ArticleGrantleeObject : public QObject
 {
