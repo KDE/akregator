@@ -37,8 +37,7 @@
 #include <qdebug.h>
 #include <QStandardPaths>
 
-namespace
-{
+namespace {
 static uint calcHash(const QString &str)
 {
     if (str.isNull()) { // handle null string as "", prevents crash
@@ -54,44 +53,42 @@ static uint calcHash(const QString &str)
 }
 }
 
-namespace Akregator
-{
-namespace Backend
-{
-
+namespace Akregator {
+namespace Backend {
 class FeedStorageMK4Impl::FeedStorageMK4ImplPrivate
 {
 public:
-    FeedStorageMK4ImplPrivate() :
-        modified(false),
-        pguid("guid"),
-        ptitle("title"),
-        pdescription("description"),
-        pcontent("content"),
-        plink("link"),
-        pcommentsLink("commentsLink"),
-        ptag("tag"),
-        pEnclosureType("enclosureType"),
-        pEnclosureUrl("enclosureUrl"),
-        pcatTerm("catTerm"),
-        pcatScheme("catScheme"),
-        pcatName("catName"),
-        pauthorName("authorName"),
-        pauthorUri("authorUri"),
-        pauthorEMail("authorEMail"),
-        phash("hash"),
-        pguidIsHash("guidIsHash"),
-        pguidIsPermaLink("guidIsPermaLink"),
-        pcomments("comments"),
-        pstatus("status"),
-        ppubDate("pubDate"),
-        pHasEnclosure("hasEnclosure"),
-        pEnclosureLength("enclosureLength"),
-        ptags("tags"),
-        ptaggedArticles("taggedArticles"),
-        pcategorizedArticles("categorizedArticles"),
-        pcategories("categories")
-    {}
+    FeedStorageMK4ImplPrivate()
+        : modified(false)
+        , pguid("guid")
+        , ptitle("title")
+        , pdescription("description")
+        , pcontent("content")
+        , plink("link")
+        , pcommentsLink("commentsLink")
+        , ptag("tag")
+        , pEnclosureType("enclosureType")
+        , pEnclosureUrl("enclosureUrl")
+        , pcatTerm("catTerm")
+        , pcatScheme("catScheme")
+        , pcatName("catName")
+        , pauthorName("authorName")
+        , pauthorUri("authorUri")
+        , pauthorEMail("authorEMail")
+        , phash("hash")
+        , pguidIsHash("guidIsHash")
+        , pguidIsPermaLink("guidIsPermaLink")
+        , pcomments("comments")
+        , pstatus("status")
+        , ppubDate("pubDate")
+        , pHasEnclosure("hasEnclosure")
+        , pEnclosureLength("enclosureLength")
+        , ptags("tags")
+        , ptaggedArticles("taggedArticles")
+        , pcategorizedArticles("categorizedArticles")
+        , pcategories("categories")
+    {
+    }
 
     QString url;
     c4_Storage *storage;
@@ -150,11 +147,16 @@ FeedStorageMK4Impl::FeedStorageMK4Impl(const QString &url, StorageMK4Impl *main)
     QString t = url2;
     QString t2 = url2;
     QString filePath = main->archivePath() + QLatin1Char('/') + t.replace(QLatin1Char('/'), QLatin1Char('_')).replace(QLatin1Char(':'), QLatin1Char('_'));
-    d->oldArchivePath = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QStringLiteral("/akregator/Archive/") + t2.replace(QLatin1Char('/'), QLatin1Char('_')).replace(QLatin1Char(':'), QLatin1Char('_')) + QLatin1String(".xml");
+    d->oldArchivePath = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QStringLiteral("/akregator/Archive/") + t2.replace(QLatin1Char('/'), QLatin1Char('_')).replace(QLatin1Char(
+                                                                                                                                                                                                   ':'),
+                                                                                                                                                                                               QLatin1Char(
+                                                                                                                                                                                                   '_'))
+            + QLatin1String(".xml");
     d->convert = !QFile::exists(filePath + QLatin1String(".mk4")) && QFile::exists(d->oldArchivePath);
     d->storage = new c4_Storage(QString(filePath + QLatin1String(".mk4")).toLocal8Bit(), true);
 
-    d->archiveView = d->storage->GetAs("articles[guid:S,title:S,hash:I,guidIsHash:I,guidIsPermaLink:I,description:S,link:S,comments:I,commentsLink:S,status:I,pubDate:I,tags[tag:S],hasEnclosure:I,enclosureUrl:S,enclosureType:S,enclosureLength:I,categories[catTerm:S,catScheme:S,catName:S],authorName:S,content:S,authorUri:S,authorEMail:S]");
+    d->archiveView = d->storage->GetAs(
+        "articles[guid:S,title:S,hash:I,guidIsHash:I,guidIsPermaLink:I,description:S,link:S,comments:I,commentsLink:S,status:I,pubDate:I,tags[tag:S],hasEnclosure:I,enclosureUrl:S,enclosureType:S,enclosureLength:I,categories[catTerm:S,catScheme:S,catName:S],authorName:S,content:S,authorUri:S,authorEMail:S]");
 
     c4_View hash = d->storage->GetAs("archiveHash[_H:I,_R:I]");
     d->archiveView = d->archiveView.Hash(hash, 1); // hash on guid
@@ -163,7 +165,8 @@ FeedStorageMK4Impl::FeedStorageMK4Impl(const QString &url, StorageMK4Impl *main)
 FeedStorageMK4Impl::~FeedStorageMK4Impl()
 {
     delete d->storage;
-    delete d; d = 0;
+    delete d;
+    d = 0;
 }
 
 void FeedStorageMK4Impl::markDirty()
@@ -194,10 +197,12 @@ void FeedStorageMK4Impl::close()
         commit();
     }
 }
+
 int FeedStorageMK4Impl::unread() const
 {
     return d->mainStorage->unreadFor(d->url);
 }
+
 void FeedStorageMK4Impl::setUnread(int unread)
 {
     d->mainStorage->setUnreadFor(d->url, unread);
@@ -229,25 +234,24 @@ QStringList FeedStorageMK4Impl::articles(const QString &tag) const
 #if 0 //category and tag support disabled
     if (tag.isNull()) { // return all articles
 #endif
-        int size = d->archiveView.GetSize();
-        for (int i = 0; i < size; ++i) { // fill with guids
-            list += QString::fromLatin1(d->pguid(d->archiveView.GetAt(i)));
-        }
-#if 0 //category and tag support disabled
-    } else {
-        c4_Row tagrow;
-        d->ptag(tagrow) = tag.toUtf8().data();
-        int tagidx = d->tagView.Find(tagrow);
-        if (tagidx != -1) {
-            tagrow = d->tagView.GetAt(tagidx);
-            c4_View tagView = d->ptaggedArticles(tagrow);
-            int size = tagView.GetSize();
-            for (int i = 0; i < size; ++i) {
-                list += QString(d->pguid(tagView.GetAt(i)));
-            }
-        }
-
+    int size = d->archiveView.GetSize();
+    for (int i = 0; i < size; ++i) {     // fill with guids
+        list += QString::fromLatin1(d->pguid(d->archiveView.GetAt(i)));
     }
+#if 0 //category and tag support disabled
+} else {
+    c4_Row tagrow;
+    d->ptag(tagrow) = tag.toUtf8().data();
+    int tagidx = d->tagView.Find(tagrow);
+    if (tagidx != -1) {
+        tagrow = d->tagView.GetAt(tagidx);
+        c4_View tagView = d->ptaggedArticles(tagrow);
+        int size = tagView.GetSize();
+        for (int i = 0; i < size; ++i) {
+            list += QString(d->pguid(tagView.GetAt(i)));
+        }
+    }
+}
 #endif
     return list;
 }
@@ -298,7 +302,6 @@ int FeedStorageMK4Impl::findArticle(const QString &guid) const
 
 void FeedStorageMK4Impl::deleteArticle(const QString &guid)
 {
-
     int findidx = findArticle(guid);
     if (findidx != -1) {
         QStringList list = tags(guid);
@@ -655,7 +658,6 @@ void FeedStorageMK4Impl::addCategory(const QString &guid, const Category &cat)
 
 QList<Category> FeedStorageMK4Impl::categories(const QString &guid) const
 {
-
     QList<Category> list;
 
     if (!guid.isNull()) { // return categories for an article
@@ -692,7 +694,6 @@ QList<Category> FeedStorageMK4Impl::categories(const QString &guid) const
             list += cat;
         }
 #endif
-
     }
 
     return list;
@@ -907,7 +908,5 @@ void FeedStorageMK4Impl::clear()
     setUnread(0);
     markDirty();
 }
-
 } // namespace Backend
 } // namespace Akregator
-

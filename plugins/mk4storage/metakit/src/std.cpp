@@ -44,8 +44,8 @@ static int stricmp(const char *p1, const char *p2)
     } while (c1 != 0 && c1 == c2);
 #else
     do {
-        c1 =  *p1++;
-        c2 =  *p2++;
+        c1 = *p1++;
+        c2 = *p2++;
     } while (c1 != 0 && (c1 == c2 || tolower(c1) == tolower(c2)));
 
     c1 = tolower(c1);
@@ -60,7 +60,7 @@ static int stricmp(const char *p1, const char *p2)
 /////////////////////////////////////////////////////////////////////////////
 // c4_String
 
-c4_String c4_String::Mid(int nFirst_, int nCount_)const
+c4_String c4_String::Mid(int nFirst_, int nCount_) const
 {
     int n = length();
     if (nFirst_ > n) {
@@ -73,7 +73,7 @@ c4_String c4_String::Mid(int nFirst_, int nCount_)const
     return substr(nFirst_, nCount_);
 }
 
-int c4_String::CompareNoCase(const char *str_)const
+int c4_String::CompareNoCase(const char *str_) const
 {
     // this is not very "standard library-ish" ...
     return *(const string *)this == str_ ? 0 : stricmp(c_str(), str_);

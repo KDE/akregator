@@ -29,11 +29,8 @@
 
 #include <KPluginFactory>
 
-namespace Akregator
-{
-namespace Backend
-{
-
+namespace Akregator {
+namespace Backend {
 class StorageFactory;
 
 class MK4Plugin : public Akregator::Plugin
@@ -49,7 +46,6 @@ private:
 private:
     StorageFactory *m_factory;
 };
-
 } // namespace Backend
 } // namespace Akregator
 

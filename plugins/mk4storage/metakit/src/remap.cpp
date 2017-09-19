@@ -11,35 +11,45 @@
 
 /////////////////////////////////////////////////////////////////////////////
 
-class c4_ReadOnlyViewer: public c4_CustomViewer
+class c4_ReadOnlyViewer : public c4_CustomViewer
 {
     c4_View _base;
 
 public:
-    c4_ReadOnlyViewer(c4_Sequence &seq_): _base(&seq_) {}
-    virtual ~c4_ReadOnlyViewer() {}
+    c4_ReadOnlyViewer(c4_Sequence &seq_) : _base(&seq_)
+    {
+    }
 
-    c4_View GetTemplate() override {
+    virtual ~c4_ReadOnlyViewer()
+    {
+    }
+
+    c4_View GetTemplate() override
+    {
         return _base.Clone();
     }
-    int GetSize() override {
+
+    int GetSize() override
+    {
         return _base.GetSize();
     }
 
-    int Lookup(c4_Cursor key_, int &count_) override {
+    int Lookup(c4_Cursor key_, int &count_) override
+    {
         int pos = 0;
         count_ = _base.GetSize();
         return _base.RestrictSearch(*key_, pos, count_);
     }
 
-    bool GetItem(int row_, int col_, c4_Bytes &buf_) override {
+    bool GetItem(int row_, int col_, c4_Bytes &buf_) override
+    {
         return _base.GetItem(row_, col_, buf_);
     }
 };
 
 /////////////////////////////////////////////////////////////////////////////
 
-class c4_HashViewer: public c4_CustomViewer
+class c4_HashViewer : public c4_CustomViewer
 {
     c4_View _base;
     c4_View _map;
@@ -48,18 +58,19 @@ class c4_HashViewer: public c4_CustomViewer
     c4_IntProp _pHash;
     c4_IntProp _pRow;
 
-    bool KeySame(int row_, c4_Cursor cursor_)const;
-    t4_i32 CalcHash(c4_Cursor cursor_)const;
-    int LookDict(t4_i32 hash_, c4_Cursor cursor_)const;
+    bool KeySame(int row_, c4_Cursor cursor_) const;
+    t4_i32 CalcHash(c4_Cursor cursor_) const;
+    int LookDict(t4_i32 hash_, c4_Cursor cursor_) const;
     void InsertDict(int row_);
     void RemoveDict(int pos_);
     bool DictResize(int minused);
 
-    int Row(int i_)const
+    int Row(int i_) const
     {
         return _pRow(_map[i_]);
     }
-    int Hash(int i_)const
+
+    int Hash(int i_) const
     {
         return _pHash(_map[i_]);
     }
@@ -68,21 +79,22 @@ class c4_HashViewer: public c4_CustomViewer
     {
         _pRow(_map[i_]) = v_;
     }
+
     void SetHash(int i_, int v_)
     {
         _pHash(_map[i_]) = v_;
     }
 
-    bool IsUnused(int)const;
-    bool IsDummy(int)const;
-    bool IsActive(int i_)const
+    bool IsUnused(int) const;
+    bool IsDummy(int) const;
+    bool IsActive(int i_) const
     {
         return Row(i_) >= 0;
     }
 
-    int GetPoly()const;
+    int GetPoly() const;
     void SetPoly(int v_);
-    int GetSpare()const;
+    int GetSpare() const;
     void SetSpare(int v_);
 
 public:
@@ -110,7 +122,7 @@ public:
 //  Table of irreducible polynomials to efficiently cycle through
 //  GF(2^n)-{0}, 2<=n<=30.
 
-static long s_polys[] =  {
+static long s_polys[] = {
     4 + 3, 8 + 3, 16 + 3, 32 + 5, 64 + 3, 128 + 3, 256 + 29, 512 + 17, 1024 + 9, 2048 + 5, 4096 + 83,
     8192 + 27, 16384 + 43, 32768 + 3, 65536 + 45, 131072 + 9, 262144 + 39, 524288 + 39,
     1048576 + 9, 2097152 + 5, 4194304 + 3, 8388608 + 33, 16777216 + 27, 33554432 + 9,
@@ -120,7 +132,11 @@ static long s_polys[] =  {
 /////////////////////////////////////////////////////////////////////////////
 
 c4_HashViewer::c4_HashViewer(c4_Sequence &seq_, int numKeys_, c4_Sequence *map_)
-    : _base(&seq_), _map(map_), _numKeys(numKeys_), _pHash("_H"), _pRow("_R")
+    : _base(&seq_)
+    , _map(map_)
+    , _numKeys(numKeys_)
+    , _pHash("_H")
+    , _pRow("_R")
 {
     if (_map.GetSize() == 0) {
         _map.SetSize(1);
@@ -132,21 +148,23 @@ c4_HashViewer::c4_HashViewer(c4_Sequence &seq_, int numKeys_, c4_Sequence *map_)
     }
 }
 
-c4_HashViewer::~c4_HashViewer() {}
+c4_HashViewer::~c4_HashViewer()
+{
+}
 
-bool c4_HashViewer::IsUnused(int row_)const
+bool c4_HashViewer::IsUnused(int row_) const
 {
     c4_RowRef r = _map[row_];
     return _pRow(r) < 0 && _pHash(r) == 0;
 }
 
-bool c4_HashViewer::IsDummy(int row_)const
+bool c4_HashViewer::IsDummy(int row_) const
 {
     c4_RowRef r = _map[row_];
     return _pRow(r) < 0 && _pHash(r) < 0;
 }
 
-int c4_HashViewer::GetPoly()const
+int c4_HashViewer::GetPoly() const
 {
     return Hash(_map.GetSize() - 1);
 }
@@ -156,7 +174,7 @@ void c4_HashViewer::SetPoly(int v_)
     SetHash(_map.GetSize() - 1, v_);
 }
 
-int c4_HashViewer::GetSpare()const
+int c4_HashViewer::GetSpare() const
 {
     return Row(_map.GetSize() - 1);
 }
@@ -166,7 +184,7 @@ void c4_HashViewer::SetSpare(int v_)
     SetRow(_map.GetSize() - 1, v_);
 }
 
-bool c4_HashViewer::KeySame(int row_, c4_Cursor cursor_)const
+bool c4_HashViewer::KeySame(int row_, c4_Cursor cursor_) const
 {
     for (int i = 0; i < _numKeys; ++i) {
         c4_Bytes buffer;
@@ -182,7 +200,7 @@ bool c4_HashViewer::KeySame(int row_, c4_Cursor cursor_)const
 }
 
 /// Create mapped view which is uses a second view for hashing
-t4_i32 c4_HashViewer::CalcHash(c4_Cursor cursor_)const
+t4_i32 c4_HashViewer::CalcHash(c4_Cursor cursor_) const
 {
     c4_Bytes buffer, buf2;
     const t4_i32 endian = 0x03020100;
@@ -198,13 +216,14 @@ t4_i32 c4_HashViewer::CalcHash(c4_Cursor cursor_)const
             const t4_byte *p = buffer.Contents();
 
             // 20030218: careful to avoid endian-ness sensitivity
-            if (*(const t4_byte *) &endian)
+            if (*(const t4_byte *)&endian) {
                 // true on big-endian systems
                 switch (h.Property().Type()) {
                 case 'I':
                 case 'L':
                 case 'F':
-                case 'D': {
+                case 'D':
+                {
                     t4_byte *q = buf2.SetBuffer(len);
                     for (int j = 0; j < len; ++j) {
                         q[len - j - 1] = p[j];
@@ -212,8 +231,9 @@ t4_i32 c4_HashViewer::CalcHash(c4_Cursor cursor_)const
                     p = q;
                 }
                 }
+            }
 
-            long x =  *p << 7;
+            long x = *p << 7;
 
             // modifications are risky, this code avoid scanning huge blobs
             if (len > 200) {
@@ -238,7 +258,7 @@ t4_i32 c4_HashViewer::CalcHash(c4_Cursor cursor_)const
     }
 
     if (hash == 0) {
-        hash =  - 1;
+        hash = -1;
     }
 
     return hash;
@@ -252,7 +272,7 @@ t4_i32 c4_HashViewer::CalcHash(c4_Cursor cursor_)const
  * There must be at least one Unused slot at all times.
  */
 
-int c4_HashViewer::LookDict(t4_i32 hash_, c4_Cursor cursor_)const
+int c4_HashViewer::LookDict(t4_i32 hash_, c4_Cursor cursor_) const
 {
     const unsigned int mask = _map.GetSize() - 2;
     /* We must come up with (i, incr) such that 0 <= i < _size
@@ -265,7 +285,7 @@ int c4_HashViewer::LookDict(t4_i32 hash_, c4_Cursor cursor_)const
         return i;
     }
 
-    int freeslot = IsDummy(i) ? i :  - 1;
+    int freeslot = IsDummy(i) ? i : -1;
 
     /* Derive incr from hash_, just to make it more arbitrary. Note that
     incr must not be 0, or we will get into an infinite loop.*/
@@ -283,7 +303,7 @@ int c4_HashViewer::LookDict(t4_i32 hash_, c4_Cursor cursor_)const
         if (Hash(i) == hash_ && KeySame(Row(i), cursor_)) {
             return i;
         }
-        if (freeslot ==  - 1 && IsDummy(i)) {
+        if (freeslot == -1 && IsDummy(i)) {
             freeslot = i;
         }
         /* Cycle through GF(2^n)-{0} */
@@ -294,7 +314,7 @@ int c4_HashViewer::LookDict(t4_i32 hash_, c4_Cursor cursor_)const
         /* This will implicitely clear the highest bit */
     }
 
-    return freeslot !=  - 1 ? freeslot : i;
+    return freeslot != -1 ? freeslot : i;
 }
 
 void c4_HashViewer::InsertDict(int row_)
@@ -323,8 +343,8 @@ void c4_HashViewer::RemoveDict(int pos_)
 
     d4_assert(Row(i) == pos_);
 
-    SetHash(i,  - 1);
-    SetRow(i,  - 1);
+    SetHash(i, -1);
+    SetRow(i, -1);
 
     SetSpare(GetSpare() + 1);
 }
@@ -344,7 +364,7 @@ bool c4_HashViewer::DictResize(int minused)
     _map.SetSize(0);
 
     c4_Row empty;
-    _pRow(empty) =  - 1;
+    _pRow(empty) = -1;
     _map.InsertAt(0, empty, newsize + 1);
 
     SetPoly(newpoly);
@@ -372,10 +392,11 @@ int c4_HashViewer::Lookup(c4_Cursor key_, int &count_)
     // can only use hashing if the properties match the query
     // XXX it appears that this loop takes some 300 uS!
     c4_View kv = (*key_).Container();
-    for (int k = 0; k < _numKeys; ++k)
+    for (int k = 0; k < _numKeys; ++k) {
         if (kv.FindProperty(_base.NthProperty(k).GetId()) < 0) {
-            return  - 1;
+            return -1;
         }
+    }
 
     t4_i32 hash = CalcHash(key_); // TODO should combine with above loop
     int i = LookDict(hash, key_);
@@ -436,7 +457,7 @@ bool c4_HashViewer::InsertRows(int pos_, c4_Cursor value_, int count_)
     int n;
     int i = Lookup(value_, n);
     if (i >= 0 && n > 0) {
-        _base.SetAt(i,  *value_); // replace existing
+        _base.SetAt(i, *value_);  // replace existing
         return true;
     }
 
@@ -454,7 +475,7 @@ bool c4_HashViewer::InsertRows(int pos_, c4_Cursor value_, int count_)
         }
     }
 
-    _base.InsertAt(pos_,  *value_);
+    _base.InsertAt(pos_, *value_);
     InsertDict(pos_);
 
     int used = _base.GetSize();
@@ -498,7 +519,7 @@ bool c4_HashViewer::RemoveRows(int pos_, int count_)
 
 /////////////////////////////////////////////////////////////////////////////
 
-class c4_BlockedViewer: public c4_CustomViewer
+class c4_BlockedViewer : public c4_CustomViewer
 {
     enum {
         kLimit = 1000
@@ -515,14 +536,14 @@ class c4_BlockedViewer: public c4_CustomViewer
     int Slot(int &pos_);
     void Split(int block_, int row_);
     void Merge(int block_);
-    void Validate()const;
+    void Validate() const;
 
     // 2004-04-27 new cache logic, thx MB
     void SetLast(int row_);
     void ClearLast(int slot_)
     {
         if (_last_slot >= slot_) {
-            _last_limit = _last_slot =  - 1;
+            _last_limit = _last_slot = -1;
             _last_view = c4_View();
         }
     }
@@ -544,7 +565,7 @@ public:
 #if defined(q4_CHECK) && q4_CHECK
 
 // debugging version to verify that the internal data is consistent
-void c4_BlockedViewer::Validate()const
+void c4_BlockedViewer::Validate() const
 {
     d4_assert(_base.GetSize() >= 2);
 
@@ -566,12 +587,18 @@ void c4_BlockedViewer::Validate()const
 #else
 
 // nothing, so inline this thing to avoid even the calling overhead
-d4_inline void c4_BlockedViewer::Validate()const {}
+d4_inline void c4_BlockedViewer::Validate() const
+{
+}
 
 #endif
 
-c4_BlockedViewer::c4_BlockedViewer(c4_Sequence &seq_): _base(&seq_), _pBlock(
-        "_B"), _last_base(- 1), _last_limit(- 1), _last_slot(- 1)
+c4_BlockedViewer::c4_BlockedViewer(c4_Sequence &seq_) : _base(&seq_)
+    , _pBlock(
+        "_B")
+    , _last_base(-1)
+    , _last_limit(-1)
+    , _last_slot(-1)
 {
     if (_base.GetSize() < 2) {
         _base.SetSize(2);
@@ -589,7 +616,9 @@ c4_BlockedViewer::c4_BlockedViewer(c4_Sequence &seq_): _base(&seq_), _pBlock(
     Validate();
 }
 
-c4_BlockedViewer::~c4_BlockedViewer() {}
+c4_BlockedViewer::~c4_BlockedViewer()
+{
+}
 
 int c4_BlockedViewer::Slot(int &pos_)
 {
@@ -609,10 +638,11 @@ int c4_BlockedViewer::Slot(int &pos_)
 
 #if 0
     int h;
-    for (h = 0; h < n; ++h)
+    for (h = 0; h < n; ++h) {
         if (pos_ <= (t4_i32)_offsets.GetAt(h)) {
             break;
         }
+    }
 #else
     // switch to binary search, adapted from code by Zhang Dehua, 28-3-2002
     // slows down some 5%, but said to be much better with 5 million rows
@@ -649,7 +679,7 @@ void c4_BlockedViewer::Split(int bno_, int row_)
     _base.InsertAt(bno_ + 1, c4_Row());
     c4_View bn = _pBlock(_base[bno_ + 1]);
 
-    bv.RelocateRows(row_ + 1,  - 1, bn, 0);
+    bv.RelocateRows(row_ + 1, -1, bn, 0);
     bv.RelocateRows(row_, 1, bz, bno_);
 
     Validate();
@@ -666,8 +696,8 @@ void c4_BlockedViewer::Merge(int bno_)
 
     _offsets.RemoveAt(bno_);
 
-    bz.RelocateRows(bno_, 1, bv1,  - 1);
-    bv2.RelocateRows(0,  - 1, bv1,  - 1);
+    bz.RelocateRows(bno_, 1, bv1, -1);
+    bv2.RelocateRows(0, -1, bv1, -1);
 
     _base.RemoveAt(bno_ + 1);
 
@@ -742,7 +772,7 @@ bool c4_BlockedViewer::InsertRows(int pos_, c4_Cursor value_, int count_)
     c4_View bv = _pBlock(_base[i]);
     d4_assert(0 <= pos_ && pos_ <= bv.GetSize());
 
-    bv.InsertAt(pos_,  *value_, count_);
+    bv.InsertAt(pos_, *value_, count_);
     for (int j = i; j < z; ++j) {
         _offsets.SetAt(j, _offsets.GetAt(j) + count_);
     }
@@ -781,7 +811,6 @@ bool c4_BlockedViewer::RemoveRows(int pos_, int count_)
     // optimize if the deletion goes past the end of this block...
     int overshoot = pos_ + count_ - bv.GetSize();
     if (overshoot > 0) {
-
         // first, delete blocks which are going away completely
         while (i + 1 < _offsets.GetSize()) {
             int nextsize = _offsets.GetAt(i + 1) - _offsets.GetAt(i);
@@ -851,14 +880,12 @@ bool c4_BlockedViewer::RemoveRows(int pos_, int count_)
 
     // if the block underflows, merge it
     if (bv.GetSize() < kLimit / 2) {
-        if (i > 0)
+        if (i > 0) {
             // merge with predecessor, preferably
-        {
             bv = _pBlock(_base[--i]);
         }
-        if (i >= z - 1)
+        if (i >= z - 1) {
             // unless there is no successor to merge with
-        {
             return true;
         }
         Merge(i);
@@ -876,12 +903,12 @@ bool c4_BlockedViewer::RemoveRows(int pos_, int count_)
 
 /////////////////////////////////////////////////////////////////////////////
 
-class c4_OrderedViewer: public c4_CustomViewer
+class c4_OrderedViewer : public c4_CustomViewer
 {
     c4_View _base;
     int _numKeys;
 
-    int KeyCompare(int row_, c4_Cursor cursor_)const;
+    int KeyCompare(int row_, c4_Cursor cursor_) const;
 
 public:
     c4_OrderedViewer(c4_Sequence &seq_, int numKeys_);
@@ -898,12 +925,17 @@ public:
 
 /////////////////////////////////////////////////////////////////////////////
 
-c4_OrderedViewer::c4_OrderedViewer(c4_Sequence &seq_, int numKeys_): _base
-    (&seq_), _numKeys(numKeys_) {}
+c4_OrderedViewer::c4_OrderedViewer(c4_Sequence &seq_, int numKeys_) : _base
+        (&seq_)
+    , _numKeys(numKeys_)
+{
+}
 
-c4_OrderedViewer::~c4_OrderedViewer() {}
+c4_OrderedViewer::~c4_OrderedViewer()
+{
+}
 
-int c4_OrderedViewer::KeyCompare(int row_, c4_Cursor cursor_)const
+int c4_OrderedViewer::KeyCompare(int row_, c4_Cursor cursor_) const
 {
     for (int i = 0; i < _numKeys; ++i) {
         c4_Bytes buffer;
@@ -934,10 +966,11 @@ int c4_OrderedViewer::Lookup(c4_Cursor key_, int &count_)
     // can only use bsearch if the properties match the query
     // XXX with ord1.tcl (dict words), this loop takes 300 uS!
     c4_View kv = (*key_).Container();
-    for (int k = 0; k < _numKeys; ++k)
+    for (int k = 0; k < _numKeys; ++k) {
         if (kv.FindProperty(_base.NthProperty(k).GetId()) < 0) {
-            return  - 1;
+            return -1;
         }
+    }
 
 #if 0 // Locate gets the count wrong, it seems 2000-06-15
     int pos;
@@ -993,10 +1026,10 @@ bool c4_OrderedViewer::InsertRows(int, c4_Cursor value_, int count_)
     }
 
     if (n == 0) {
-        _base.InsertAt(i,  *value_);
+        _base.InsertAt(i, *value_);
     } else {
         d4_assert(i < _base.GetSize());
-        _base.SetAt(i,  *value_); // replace existing
+        _base.SetAt(i, *value_);  // replace existing
     }
 
     return true;
@@ -1010,7 +1043,7 @@ bool c4_OrderedViewer::RemoveRows(int pos_, int count_)
 
 /////////////////////////////////////////////////////////////////////////////
 
-class c4_IndexedViewer: public c4_CustomViewer
+class c4_IndexedViewer : public c4_CustomViewer
 {
     c4_View _base;
     c4_View _map;
@@ -1018,7 +1051,7 @@ class c4_IndexedViewer: public c4_CustomViewer
     bool _unique;
     c4_IntProp _mapProp;
 
-    int KeyCompare(int row_, c4_Cursor cursor_)const;
+    int KeyCompare(int row_, c4_Cursor cursor_) const;
 
 public:
     c4_IndexedViewer(c4_Sequence &seq_, c4_Sequence &map_, const c4_View
@@ -1037,8 +1070,11 @@ public:
 /////////////////////////////////////////////////////////////////////////////
 
 c4_IndexedViewer::c4_IndexedViewer(c4_Sequence &seq_, c4_Sequence &map_, const
-                                   c4_View &props_, bool unique_): _base(&seq_), _map(&map_), _props(props_),
-    _unique(unique_), _mapProp((const c4_IntProp &)_map.NthProperty(0))
+                                   c4_View &props_, bool unique_) : _base(&seq_)
+    , _map(&map_)
+    , _props(props_)
+    , _unique(unique_)
+    , _mapProp((const c4_IntProp &)_map.NthProperty(0))
 {
     int n = _base.GetSize();
     if (_map.GetSize() != n) {
@@ -1051,9 +1087,11 @@ c4_IndexedViewer::c4_IndexedViewer(c4_Sequence &seq_, c4_Sequence &map_, const
     }
 }
 
-c4_IndexedViewer::~c4_IndexedViewer() {}
+c4_IndexedViewer::~c4_IndexedViewer()
+{
+}
 
-int c4_IndexedViewer::KeyCompare(int row_, c4_Cursor cursor_)const
+int c4_IndexedViewer::KeyCompare(int row_, c4_Cursor cursor_) const
 {
     int n = _props.NumProperties();
     for (int i = 0; i < n; ++i) {
@@ -1086,10 +1124,11 @@ int c4_IndexedViewer::Lookup(c4_Cursor key_, int &count_)
     // XXX with ord1.tcl (dict words), this loop takes 300 uS!
     c4_View kv = (*key_).Container();
     int n = _props.NumProperties();
-    for (int k = 0; k < n; ++k)
+    for (int k = 0; k < n; ++k) {
         if (kv.FindProperty(_props.NthProperty(k).GetId()) < 0) {
-            return  - 1;
+            return -1;
         }
+    }
 
 #if 0 // Locate gets the count wrong, it seems 2000-06-15
     int pos;
@@ -1147,10 +1186,10 @@ bool c4_IndexedViewer::InsertRows(int, c4_Cursor value_, int count_)
     }
 
     if (n == 0) {
-        _base.InsertAt(i,  *value_);
+        _base.InsertAt(i, *value_);
     } else {
         d4_assert(i < _base.GetSize());
-        _base.SetAt(i,  *value_); // replace existing
+        _base.SetAt(i, *value_);  // replace existing
     }
 
     return true;

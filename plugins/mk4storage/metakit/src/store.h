@@ -40,7 +40,7 @@ public:
     c4_Notifier(c4_Sequence *origin_);
     ~c4_Notifier();
 
-    bool HasDependents()const;
+    bool HasDependents() const;
 
     void StartSetAt(int index_, c4_Cursor &cursor_);
     void StartInsertAt(int index_, c4_Cursor &cursor_, int count_);
@@ -61,7 +61,7 @@ private:
 
 /////////////////////////////////////////////////////////////////////////////
 
-class c4_DerivedSeq: public c4_Sequence
+class c4_DerivedSeq : public c4_Sequence
 {
 protected:
     c4_Sequence &_seq;
@@ -71,14 +71,14 @@ protected:
     virtual ~c4_DerivedSeq();
 
 public:
-    int RemapIndex(int, const c4_Sequence *)const override;
+    int RemapIndex(int, const c4_Sequence *) const override;
 
-    int NumRows()const override;
+    int NumRows() const override;
     void SetNumRows(int size_) override;
 
-    int NumHandlers()const override;
-    c4_Handler &NthHandler(int)const override;
-    const c4_Sequence *HandlerContext(int)const override;
+    int NumHandlers() const override;
+    c4_Handler &NthHandler(int) const override;
+    const c4_Sequence *HandlerContext(int) const override;
     int AddHandler(c4_Handler *) override;
     c4_Handler *CreateHandler(const c4_Property &) override;
 
@@ -87,7 +87,7 @@ public:
 
 /////////////////////////////////////////////////////////////////////////////
 
-class c4_StreamStrategy: public c4_Strategy
+class c4_StreamStrategy : public c4_Strategy
 {
     c4_Stream *_stream;
     t4_byte *_buffer;
@@ -98,7 +98,7 @@ public:
     c4_StreamStrategy(c4_Stream *stream_);
     virtual ~c4_StreamStrategy();
 
-    bool IsValid()const override;
+    bool IsValid() const override;
     int DataRead(t4_i32 pos_, void *buffer_, int length_) override;
     void DataWrite(t4_i32 pos_, const void *buffer_, int length_) override;
     t4_i32 FileSize() override;

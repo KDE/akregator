@@ -23,4 +23,3 @@ The is the reference documentation for the public C++ API of Metakit.
 
 - See the Metakit homepage at http://www.equi4.com/metakit.html
  */
-

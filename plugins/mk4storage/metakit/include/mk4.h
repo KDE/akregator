@@ -99,9 +99,9 @@ class c4_Persist;                   // not defined here
 
 // and here's the other end of the scale...
 #if !defined (_WIN32) && !defined (q4_LONG64)
-#if (defined (_PA_RISC2_0) && defined(__hpux)) || defined (__powerpc64__) || defined(__sparcv9) || \
-    defined (__x86_64__) || defined (__s390x__) || defined (__alpha) || defined (__mips64) || \
-    (defined (__ia64) && (!defined (__HP_aCC) || defined(__LP64__)))
+#if (defined (_PA_RISC2_0) && defined(__hpux)) || defined (__powerpc64__) || defined(__sparcv9)    \
+    || defined (__x86_64__) || defined (__s390x__) || defined (__alpha) || defined (__mips64)    \
+    || (defined (__ia64) && (!defined (__HP_aCC) || defined(__LP64__)))
 #define q4_LONG64 1
 #endif
 #endif
@@ -224,8 +224,8 @@ struct t4_i64 {
     long l1;
     long l2;
 };
-bool operator== (const t4_i64 a_, const t4_i64 b_);
-bool operator< (const t4_i64 a_, const t4_i64 b_);
+bool operator==(const t4_i64 a_, const t4_i64 b_);
+bool operator<(const t4_i64 a_, const t4_i64 b_);
 #endif
 
 //---------------------------------------------------------------------------
@@ -244,7 +244,7 @@ public:
     c4_View(const c4_View &);
     ~c4_View();
 
-    c4_View &operator= (const c4_View &);
+    c4_View &operator=(const c4_View &);
     c4_Persist *Persist() const; // added 16-11-2000 to simplify c4_Storage
 
     /* Getting / setting the number of rows */
@@ -283,7 +283,7 @@ public:
     c4_View Duplicate() const;
     c4_View Clone() const;
     int AddProperty(const c4_Property &);
-    c4_View operator, (const c4_Property &) const;
+    c4_View operator,(const c4_Property &) const;
 
     const char *Description() const;
 
@@ -335,12 +335,12 @@ public:
     /* Comparing view contents */
     int Compare(const c4_View &) const;
 
-    friend bool operator== (const c4_View &, const c4_View &);
-    friend bool operator!= (const c4_View &, const c4_View &);
-    friend bool operator< (const c4_View &, const c4_View &);
-    friend bool operator> (const c4_View &, const c4_View &);
-    friend bool operator<= (const c4_View &, const c4_View &);
-    friend bool operator>= (const c4_View &, const c4_View &);
+    friend bool operator==(const c4_View &, const c4_View &);
+    friend bool operator!=(const c4_View &, const c4_View &);
+    friend bool operator<(const c4_View &, const c4_View &);
+    friend bool operator>(const c4_View &, const c4_View &);
+    friend bool operator<=(const c4_View &, const c4_View &);
+    friend bool operator>=(const c4_View &, const c4_View &);
 
 protected:
     void _IncSeqRef();
@@ -356,12 +356,12 @@ protected:
 //---------------------------------------------------------------------------
 
 #if defined(os_aix) && defined(compiler_ibmcxx) && (compiler_ibmcxx > 500)
-bool operator== (const c4_RowRef &a_, const c4_RowRef &b_);
-bool operator!= (const c4_RowRef &a_, const c4_RowRef &b_);
-bool operator<= (const c4_RowRef &a_, const c4_RowRef &b_);
-bool operator>= (const c4_RowRef &a_, const c4_RowRef &b_);
-bool operator> (const c4_RowRef &a_, const c4_RowRef &b_);
-bool operator< (const c4_RowRef &a_, const c4_RowRef &b_);
+bool operator==(const c4_RowRef &a_, const c4_RowRef &b_);
+bool operator!=(const c4_RowRef &a_, const c4_RowRef &b_);
+bool operator<=(const c4_RowRef &a_, const c4_RowRef &b_);
+bool operator>=(const c4_RowRef &a_, const c4_RowRef &b_);
+bool operator>(const c4_RowRef &a_, const c4_RowRef &b_);
+bool operator<(const c4_RowRef &a_, const c4_RowRef &b_);
 #endif
 
 class c4_Cursor
@@ -377,63 +377,63 @@ public:
     c4_Cursor(c4_Sequence &, int);
 
     /// Dereference this cursor to "almost" a row
-    c4_RowRef operator* () const;
+    c4_RowRef operator*() const;
 
     /// This is the same as *(cursor + offset)
     c4_RowRef operator[](int) const;
 
     /* Stepping the iterator forwards / backwards */
     /// Pre-increment the cursor
-    c4_Cursor &operator++ ();
+    c4_Cursor &operator++();
     /// Post-increment the cursor
-    c4_Cursor operator++ (int);
+    c4_Cursor operator++(int);
     /// Pre-decrement the cursor
-    c4_Cursor &operator-- ();
+    c4_Cursor &operator--();
     /// Post-decrement the cursor
-    c4_Cursor operator-- (int);
+    c4_Cursor operator--(int);
 
     /// Advance by a given offset
-    c4_Cursor &operator+= (int);
+    c4_Cursor &operator+=(int);
     /// Back up by a given offset
-    c4_Cursor &operator-= (int);
+    c4_Cursor &operator-=(int);
 
     /// Subtract a specified offset
-    c4_Cursor operator- (int) const;
+    c4_Cursor operator-(int) const;
     /// Return the distance between two cursors
-    int operator- (c4_Cursor) const;
+    int operator-(c4_Cursor) const;
 
     /// Add specified offset
-    friend c4_Cursor operator+ (c4_Cursor, int);
+    friend c4_Cursor operator+(c4_Cursor, int);
     /// Add specified offset to cursor
-    friend c4_Cursor operator+ (int, c4_Cursor);
+    friend c4_Cursor operator+(int, c4_Cursor);
 
     /* Comparing row positions */
     /// Return true if both cursors are equal
-    friend bool operator== (c4_Cursor, c4_Cursor);
+    friend bool operator==(c4_Cursor, c4_Cursor);
     /// Return true if both cursors are not equal
-    friend bool operator!= (c4_Cursor, c4_Cursor);
+    friend bool operator!=(c4_Cursor, c4_Cursor);
     /// True if first cursor is less than second cursor
-    friend bool operator< (c4_Cursor, c4_Cursor);
+    friend bool operator<(c4_Cursor, c4_Cursor);
     /// True if first cursor is greater than second cursor
-    friend bool operator> (c4_Cursor, c4_Cursor);
+    friend bool operator>(c4_Cursor, c4_Cursor);
     /// True if first cursor is less or equal to second cursor
-    friend bool operator<= (c4_Cursor, c4_Cursor);
+    friend bool operator<=(c4_Cursor, c4_Cursor);
     /// True if first cursor is greater or equal to second cursor
-    friend bool operator>= (c4_Cursor, c4_Cursor);
+    friend bool operator>=(c4_Cursor, c4_Cursor);
 
     /* Comparing row contents */
     /// Return true if the contents of both rows are equal
-    friend bool operator== (const c4_RowRef &, const c4_RowRef &);
+    friend bool operator==(const c4_RowRef &, const c4_RowRef &);
     /// Return true if the contents of both rows are not equal
-    friend bool operator!= (const c4_RowRef &, const c4_RowRef &);
+    friend bool operator!=(const c4_RowRef &, const c4_RowRef &);
     /// True if first row is less than second row
-    friend bool operator< (const c4_RowRef &, const c4_RowRef &);
+    friend bool operator<(const c4_RowRef &, const c4_RowRef &);
     /// True if first row is greater than second row
-    friend bool operator> (const c4_RowRef &, const c4_RowRef &);
+    friend bool operator>(const c4_RowRef &, const c4_RowRef &);
     /// True if first row is less or equal to second row
-    friend bool operator<= (const c4_RowRef &, const c4_RowRef &);
+    friend bool operator<=(const c4_RowRef &, const c4_RowRef &);
     /// True if first row is greater or equal to second row
-    friend bool operator>= (const c4_RowRef &, const c4_RowRef &);
+    friend bool operator>=(const c4_RowRef &, const c4_RowRef &);
 };
 
 //---------------------------------------------------------------------------
@@ -446,9 +446,9 @@ class c4_RowRef
 public:
     /* General operations */
     /// Assign the value of another row to this one
-    c4_RowRef operator= (const c4_RowRef &);
+    c4_RowRef operator=(const c4_RowRef &);
     /// Return the cursor associated to this row
-    c4_Cursor operator& () const;
+    c4_Cursor operator&() const;
     /// Return the underlying container view
     c4_View Container() const;
 
@@ -481,14 +481,14 @@ public:
     ~c4_Row();
 
     /// Assign a copy of another row to this one
-    c4_Row &operator= (const c4_Row &);
+    c4_Row &operator=(const c4_Row &);
     /// Copy another row to this one
-    c4_Row &operator= (const c4_RowRef &);
+    c4_Row &operator=(const c4_RowRef &);
 
     /// Add all properties and values into this row
     void ConcatRow(const c4_RowRef &);
     /// Return a new row which is the concatenation of two others
-    friend c4_Row operator+ (const c4_RowRef &, const c4_RowRef &);
+    friend c4_Row operator+(const c4_RowRef &, const c4_RowRef &);
 
 private:
     static c4_Cursor Allocate();
@@ -515,7 +515,7 @@ public:
     c4_Bytes(const c4_Bytes &);
     ~c4_Bytes();
 
-    c4_Bytes &operator= (const c4_Bytes &);
+    c4_Bytes &operator=(const c4_Bytes &);
     void Swap(c4_Bytes &);
 
     int Size() const;
@@ -524,8 +524,8 @@ public:
     t4_byte *SetBuffer(int);
     t4_byte *SetBufferClear(int);
 
-    friend bool operator== (const c4_Bytes &, const c4_Bytes &);
-    friend bool operator!= (const c4_Bytes &, const c4_Bytes &);
+    friend bool operator==(const c4_Bytes &, const c4_Bytes &);
+    friend bool operator!=(const c4_Bytes &, const c4_Bytes &);
 
 private:
     void _MakeCopy();
@@ -591,7 +591,7 @@ public:
     ~c4_Property();
 
     c4_Property(const c4_Property &);
-    void operator= (const c4_Property &);
+    void operator=(const c4_Property &);
 
     const char *Name() const;
     char Type() const;
@@ -602,7 +602,7 @@ public:
 
     void Refs(int) const;
 
-    c4_View operator, (const c4_Property &) const;
+    c4_View operator,(const c4_Property &) const;
 
     static void CleanupInternalData();
 };
@@ -813,7 +813,7 @@ public:
     virtual ~c4_Strategy();
 
     virtual bool IsValid() const;
-    virtual int  DataRead(t4_i32, void *, int);
+    virtual int DataRead(t4_i32, void *, int);
     virtual void DataWrite(t4_i32, const void *, int);
     virtual void DataCommit(t4_i32);
     virtual void ResetFileMapping();
@@ -935,7 +935,7 @@ public: //! for c4_Table::Sequence setup
 
 private:
     c4_Sequence(const c4_Sequence &);   // not implemented
-    void operator= (const c4_Sequence &); // not implemented
+    void operator=(const c4_Sequence &);  // not implemented
 };
 
 //---------------------------------------------------------------------------
@@ -958,7 +958,7 @@ public:
     c4_Reference(const c4_RowRef &, const c4_Property &);
 
     /// Assignment of one data item
-    c4_Reference &operator= (const c4_Reference &);
+    c4_Reference &operator=(const c4_Reference &);
 
     /// Return width of the referenced data item
     int GetSize() const;
@@ -968,12 +968,12 @@ public:
     void SetData(const c4_Bytes &) const;
 
     /// Return true if the contents of both references is equal
-    friend bool operator== (const c4_Reference &, const c4_Reference &);
+    friend bool operator==(const c4_Reference &, const c4_Reference &);
     /// Return true if the contents of both references is not equal
-    friend bool operator!= (const c4_Reference &, const c4_Reference &);
+    friend bool operator!=(const c4_Reference &, const c4_Reference &);
 
 private:
-    void operator& () const;            // not implemented
+    void operator&() const;             // not implemented
 };
 
 //---------------------------------------------------------------------------
@@ -987,7 +987,7 @@ public:
     /// Get the value as integer
     operator t4_i32() const;
     /// Set the value to the specified integer
-    c4_IntRef &operator= (t4_i32);
+    c4_IntRef &operator=(t4_i32);
 };
 
 #if !defined(q4_TINY)
@@ -1001,7 +1001,7 @@ public:
     /// Get the value as long int
     operator t4_i64() const;
     /// Set the value to the specified long int
-    c4_LongRef &operator= (t4_i64);
+    c4_LongRef &operator=(t4_i64);
 };
 
 /// Used to get or set floating point values.
@@ -1013,7 +1013,7 @@ public:
     /// Get the value as floating point
     operator double() const;
     /// Set the value to the specified floating point
-    c4_FloatRef &operator= (double);
+    c4_FloatRef &operator=(double);
 };
 
 /// Used to get or set double precision values.
@@ -1025,7 +1025,7 @@ public:
     /// Get the value as floating point
     operator double() const;
     /// Set the value to the specified floating point
-    c4_DoubleRef &operator= (double);
+    c4_DoubleRef &operator=(double);
 };
 
 #endif // !q4_TINY
@@ -1039,7 +1039,7 @@ public:
     /// Get the value as binary object
     operator c4_Bytes() const;
     /// Set the value to the specified binary object
-    c4_BytesRef &operator= (const c4_Bytes &);
+    c4_BytesRef &operator=(const c4_Bytes &);
 
     /// Fetch data from the memo field, up to end if length is zero
     c4_Bytes Access(t4_i32, int = 0, bool = false) const;
@@ -1056,7 +1056,7 @@ public:
     /// Get the value as string
     operator const char *() const;
     /// Set the value to the specified string
-    c4_StringRef &operator= (const char *);
+    c4_StringRef &operator=(const char *);
 };
 
 /// Used to get or set view values.
@@ -1068,7 +1068,7 @@ public:
     /// Get the value as view
     operator c4_View() const;
     /// Set the value to the specified view
-    c4_ViewRef &operator= (const c4_View &);
+    c4_ViewRef &operator=(const c4_View &);
 };
 
 //---------------------------------------------------------------------------
@@ -1077,7 +1077,7 @@ public:
 #if defined(q4_LOGPROPMODS)
 FILE *f4_LogPropMods(FILE *fp_, int propId_);
 #else
-#define f4_LogPropMods(a,b) 0
+#define f4_LogPropMods(a, b) 0
 #endif
 
 //---------------------------------------------------------------------------

@@ -29,7 +29,6 @@
 
 #include <QUrl>
 
-
 #include "akregator_export.h"
 
 namespace Akregator {

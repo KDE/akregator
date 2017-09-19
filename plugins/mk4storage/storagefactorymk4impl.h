@@ -29,11 +29,8 @@
 #include <QString>
 class QStringList;
 
-namespace Akregator
-{
-namespace Backend
-{
-
+namespace Akregator {
+namespace Backend {
 class Storage;
 
 class StorageFactoryMK4Impl : public StorageFactory
@@ -48,7 +45,6 @@ public:
         return false;
     }
 };
-
 } // namespace Backend
 } // namespace Akregator
 

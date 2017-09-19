@@ -58,8 +58,8 @@
 #define d4_OS_H "win.h"
 #elif defined (MSDOS) && defined (__GNUC__)
 #define q4_DOS 1
-#elif defined(unix) || defined(__unix__) || defined(__GNUC__) || \
-defined(_AIX) || defined(__hpux)
+#elif defined(unix) || defined(__unix__) || defined(__GNUC__)    \
+    || defined(_AIX) || defined(__hpux)
 #define q4_UNIX 1
 #elif defined (__VMS)
 #define q4_VMS 1
@@ -130,9 +130,9 @@ defined(_AIX) || defined(__hpux)
 #endif
 
 #if defined(HAVE_MEMMOVE) && HAVE_MEMMOVE
-#define d4_memmove(d,s,n)   memmove(d,s,n)
+#define d4_memmove(d, s, n)   memmove(d, s, n)
 #elif defined(HAVE_BCOPY) && HAVE_BCOPY
-#define d4_memmove(d,s,n)   bcopy(s,d,n)
+#define d4_memmove(d, s, n)   bcopy(s, d, n)
 #else
 #define d4_memmove f4_memmove
 extern void f4_memmove(void *d, const void *s, int n);
@@ -177,7 +177,7 @@ typedef unsigned char t4_byte; // create typedefs for t4_byte, etc.
 #if defined(q4_LOGPROPMODS) && q4_LOGPROPMODS
 void f4_DoLogProp(const c4_Handler *, int, const char *, int);
 #else
-#define f4_LogPropMods(a,b) 0
+#define f4_LogPropMods(a, b) 0
 #endif
 
 /////////////////////////////////////////////////////////////////////////////

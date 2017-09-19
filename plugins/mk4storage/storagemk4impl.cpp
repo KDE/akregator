@@ -39,13 +39,15 @@
 class Akregator::Backend::StorageMK4Impl::StorageMK4ImplPrivate
 {
 public:
-    StorageMK4ImplPrivate() : modified(false),
-        purl("url"),
-        pFeedList("feedList"),
-        pTagSet("tagSet"),
-        punread("unread"),
-        ptotalCount("totalCount"),
-        plastFetch("lastFetch") {}
+    StorageMK4ImplPrivate() : modified(false)
+        , purl("url")
+        , pFeedList("feedList")
+        , pTagSet("tagSet")
+        , punread("unread")
+        , ptotalCount("totalCount")
+        , plastFetch("lastFetch")
+    {
+    }
 
     c4_Storage *storage;
     Akregator::Backend::StorageMK4Impl *q;
@@ -127,7 +129,10 @@ Akregator::Backend::StorageMK4Impl::~StorageMK4Impl()
     delete d;
     d = 0;
 }
-void Akregator::Backend::StorageMK4Impl::initialize(const QStringList &) {}
+
+void Akregator::Backend::StorageMK4Impl::initialize(const QStringList &)
+{
+}
 
 bool Akregator::Backend::StorageMK4Impl::open(bool autoCommit)
 {
@@ -254,7 +259,7 @@ int Akregator::Backend::StorageMK4Impl::lastFetchFor(const QString &url) const
     d->purl(findrow) = url.toLatin1();
     int findidx = d->archiveView.Find(findrow);
 
-    return (findidx != -1 ? d->plastFetch(d->archiveView.GetAt(findidx)) : 0);
+    return findidx != -1 ? d->plastFetch(d->archiveView.GetAt(findidx)) : 0;
 }
 
 void Akregator::Backend::StorageMK4Impl::setLastFetchFor(const QString &url, int lastFetch)
@@ -298,7 +303,6 @@ QStringList Akregator::Backend::StorageMK4Impl::feeds() const
     }
     // fill with urls
     return list;
-
 }
 
 void Akregator::Backend::StorageMK4Impl::add(Storage *source)
@@ -328,12 +332,10 @@ void Akregator::Backend::StorageMK4Impl::clear()
         // FIXME: delete file (should be 0 in size now)
     }
     d->storage->RemoveAll();
-
 }
 
 void Akregator::Backend::StorageMK4Impl::storeFeedList(const QString &opmlStr)
 {
-
     if (d->feedListView.GetSize() == 0) {
         c4_Row row;
         d->pFeedList(row) = !opmlStr.isEmpty() ? opmlStr.toUtf8().data() : "";
@@ -359,7 +361,6 @@ QString Akregator::Backend::StorageMK4Impl::restoreFeedList() const
 
 void Akregator::Backend::StorageMK4Impl::storeTagSet(const QString &xmlStr)
 {
-
     if (d->feedListView.GetSize() == 0) {
         c4_Row row;
         d->pTagSet(row) = !xmlStr.isEmpty() ? xmlStr.toUtf8().data() : "";
@@ -382,4 +383,3 @@ QString Akregator::Backend::StorageMK4Impl::restoreTagSet() const
     c4_Row row = d->feedListView.GetAt(0);
     return QString::fromUtf8(d->pTagSet(row));
 }
-

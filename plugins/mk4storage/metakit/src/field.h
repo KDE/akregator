@@ -23,33 +23,33 @@ class c4_Field
 
 public:
     /* Construction / destruction */
-    c4_Field(const char *&, c4_Field * = 0);
+    c4_Field(const char * &, c4_Field * = 0);
     //: Constructs a new field.
     ~c4_Field();
 
     /* Repeating and compound fields */
-    int NumSubFields()const;
+    int NumSubFields() const;
     //: Returns the number of subfields.
-    c4_Field &SubField(int)const;
+    c4_Field &SubField(int) const;
     //: Returns the description of each subfield.
-    bool IsRepeating()const;
+    bool IsRepeating() const;
     //: Returns true if this field contains subtables.
 
     /* Field name and description */
-    const c4_String &Name()const;
+    const c4_String &Name() const;
     //: Returns name of this field.
-    char Type()const;
+    char Type() const;
     //: Returns the type description of this field, if any.
-    char OrigType()const;
+    char OrigType() const;
     //: Similar, but report types which were originall 'M' as well.
-    c4_String Description(bool anonymous_ = false)const;
+    c4_String Description(bool anonymous_ = false) const;
     //: Describes the structure, omit names if anonymous.
-    c4_String DescribeSubFields(bool anonymous_ = false)const;
+    c4_String DescribeSubFields(bool anonymous_ = false) const;
     //: Describes just the subfields, omit names if anonymous.
 
 private:
     c4_Field(const c4_Field &); // not implemented
-    void operator = (const c4_Field &); // not implemented
+    void operator =(const c4_Field &);  // not implemented
 };
 
 /////////////////////////////////////////////////////////////////////////////

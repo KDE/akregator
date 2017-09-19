@@ -49,8 +49,8 @@ static int strcasecmp(const char *p1, const char *p2)
     } while (c1 != 0 && c1 == c2);
 #else
     do {
-        c1 =  *p1++;
-        c2 =  *p2++;
+        c1 = *p1++;
+        c2 = *p2++;
     } while (c1 != 0 && (c1 == c2 || tolower(c1) == tolower(c2)));
 
     c1 = tolower(c1);
@@ -63,10 +63,11 @@ static int strcasecmp(const char *p1, const char *p2)
 const char *strrchr(const char *p, char ch)
 {
     const char *q = 0;
-    while (*p)
+    while (*p) {
         if (*p++ == ch) {
             q = p;
         }
+    }
     return q;
 }
 
@@ -102,19 +103,19 @@ d4_reentrant static unsigned char *nullVec = 0;
 
 static int fInc(unsigned char *p)
 {
-    ++ *p;
+    ++*p;
     if (*p) {
         return 1;
     }
 
-    -- *p;
+    --*p;
     return 0;
 }
 
 inline static void fDec(unsigned char *p)
 {
-    -- *p;
-    if (! *p && p != nullVec) {
+    --*p;
+    if (!*p && p != nullVec) {
         delete [] p;
     }
 }
@@ -154,7 +155,7 @@ c4_String::~c4_String()
     fDec(_value);
 }
 
-const c4_String &c4_String::operator = (const c4_String &s)
+const c4_String &c4_String::operator =(const c4_String &s)
 {
     unsigned char *oldVal = _value;
     if (fInc(s._value)) {
@@ -164,10 +165,10 @@ const c4_String &c4_String::operator = (const c4_String &s)
     }
     fDec(oldVal);
 
-    return  *this;
+    return *this;
 }
 
-c4_String operator + (const c4_String &a, const c4_String &b)
+c4_String operator +(const c4_String &a, const c4_String &b)
 {
     const int aCnt = a.GetLength();
     int sum = aCnt + b.GetLength();
@@ -216,13 +217,13 @@ void c4_String::Init(const void *p, int n)
     _value[n + 2] = 0;
 }
 
-int c4_String::FullLength()const
+int c4_String::FullLength() const
 {
     int n = _value[1];
     return n < 255 ? n : n + strlen((const char *)_value + 2 + 255);
 }
 
-c4_String c4_String::Mid(int nFirst, int nCount)const
+c4_String c4_String::Mid(int nFirst, int nCount) const
 {
     if (nFirst >= GetLength()) {
         return c4_String();
@@ -233,76 +234,76 @@ c4_String c4_String::Mid(int nFirst, int nCount)const
     }
 
     if (nFirst == 0 && nCount == GetLength()) {
-        return  *this;
+        return *this;
     }
 
     return c4_String(Data() + nFirst, nCount);
 }
 
-c4_String c4_String::Left(int nCount)const
+c4_String c4_String::Left(int nCount) const
 {
     if (nCount >= GetLength()) {
-        return  *this;
+        return *this;
     }
 
     return c4_String(Data(), nCount);
 }
 
-c4_String c4_String::Right(int nCount)const
+c4_String c4_String::Right(int nCount) const
 {
     if (nCount >= GetLength()) {
-        return  *this;
+        return *this;
     }
 
     return c4_String(Data() + GetLength() - nCount, nCount);
 }
 
-bool operator == (const c4_String &a, const c4_String &b)
+bool operator ==(const c4_String &a, const c4_String &b)
 {
     return a._value == b._value || (a.GetLength() == b.GetLength() && memcmp
-                                    (a.Data(), b.Data(), a.GetLength()) == 0);
+                                        (a.Data(), b.Data(), a.GetLength()) == 0);
 }
 
-int c4_String::Compare(const char *str)const
+int c4_String::Compare(const char *str) const
 {
     return Data() == str ? 0 : strcmp(Data(), str);
 }
 
-int c4_String::CompareNoCase(const char *str)const
+int c4_String::CompareNoCase(const char *str) const
 {
     return Data() == str ? 0 : strcasecmp(Data(), str);
 }
 
-int c4_String::Find(char ch)const
+int c4_String::Find(char ch) const
 {
     const char *p = strchr(Data(), ch);
-    return p != 0 ? p - Data() :  - 1;
+    return p != 0 ? p - Data() : -1;
 }
 
-int c4_String::ReverseFind(char ch)const
+int c4_String::ReverseFind(char ch) const
 {
     const char *p = strrchr(Data(), ch);
-    return p != 0 ? p - Data() :  - 1;
+    return p != 0 ? p - Data() : -1;
 }
 
-int c4_String::FindOneOf(const char *set)const
+int c4_String::FindOneOf(const char *set) const
 {
     const char *p = strpbrk(Data(), set);
-    return p != 0 ? p - Data() :  - 1;
+    return p != 0 ? p - Data() : -1;
 }
 
-int c4_String::Find(const char *sub)const
+int c4_String::Find(const char *sub) const
 {
     const char *p = strstr(Data(), sub);
-    return p != 0 ? p - Data() :  - 1;
+    return p != 0 ? p - Data() : -1;
 }
 
-c4_String c4_String::SpanIncluding(const char *set)const
+c4_String c4_String::SpanIncluding(const char *set) const
 {
     return Left(strspn(Data(), set));
 }
 
-c4_String c4_String::SpanExcluding(const char *set)const
+c4_String c4_String::SpanExcluding(const char *set) const
 {
     return Left(strcspn(Data(), set));
 }

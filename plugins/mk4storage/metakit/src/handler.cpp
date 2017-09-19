@@ -19,7 +19,7 @@
 /////////////////////////////////////////////////////////////////////////////
 // c4_Handler
 
-void c4_Handler::ClearBytes(c4_Bytes &buf_)const
+void c4_Handler::ClearBytes(c4_Bytes &buf_) const
 {
     static char zeros[8];
 
@@ -77,18 +77,26 @@ void c4_Handler::Move(int from_, int to_)
 /////////////////////////////////////////////////////////////////////////////
 // c4_HandlerSeq
 
-c4_HandlerSeq::c4_HandlerSeq(c4_Persist *persist_): _persist(persist_), _field
-    (0), _parent(0), _numRows(0) {}
+c4_HandlerSeq::c4_HandlerSeq(c4_Persist *persist_) : _persist(persist_)
+    , _field
+        (0)
+    , _parent(0)
+    , _numRows(0)
+{
+}
 
-c4_HandlerSeq::c4_HandlerSeq(c4_HandlerSeq &owner_, c4_Handler *handler_):
-    _persist(owner_.Persist()), _field(owner_.FindField(handler_)), _parent
-    (&owner_), _numRows(0)
+c4_HandlerSeq::c4_HandlerSeq(c4_HandlerSeq &owner_, c4_Handler *handler_)
+    : _persist(owner_.Persist())
+    , _field(owner_.FindField(handler_))
+    , _parent
+        (&owner_)
+    , _numRows(0)
 {
     for (int i = 0; i < NumFields(); ++i) {
         c4_Field &field = Field(i);
         c4_Property prop(field.Type(), field.Name());
 
-        d4_dbgdef(int n =)AddHandler(f4_CreateFormat(prop,  *this));
+        d4_dbgdef(int n = ) AddHandler(f4_CreateFormat(prop, *this));
         d4_assert(n == i);
     }
 }
@@ -120,7 +128,7 @@ c4_HandlerSeq::~c4_HandlerSeq()
     }
 }
 
-c4_Persist *c4_HandlerSeq::Persist()const
+c4_Persist *c4_HandlerSeq::Persist() const
 {
     return _persist;
 }
@@ -134,21 +142,21 @@ void c4_HandlerSeq::DefineRoot()
 
     const char *desc = "[]";
     _field = d4_new c4_Field(desc);
-    d4_assert(! *desc);
+    d4_assert(!*desc);
 
     _parent = this;
 }
 
 c4_Handler *c4_HandlerSeq::CreateHandler(const c4_Property &prop_)
 {
-    return f4_CreateFormat(prop_,  *this);
+    return f4_CreateFormat(prop_, *this);
 }
 
-c4_Field &c4_HandlerSeq::Definition()const
+c4_Field &c4_HandlerSeq::Definition() const
 {
     d4_assert(_field != 0);
 
-    return  *_field;
+    return *_field;
 }
 
 void c4_HandlerSeq::DetachFromParent()
@@ -156,7 +164,7 @@ void c4_HandlerSeq::DetachFromParent()
     if (_field != 0) {
         const char *desc = "[]";
         c4_Field f(desc);
-        d4_assert(! *desc);
+        d4_assert(!*desc);
         Restructure(f, false);
         _field = 0;
     }
@@ -174,11 +182,13 @@ void c4_HandlerSeq::DetachFromStorage(bool full_)
             c4_Handler &h = NthHandler(c);
 
             // all nested fields are detached recursively
-            if (IsNested(c))
-                for (int r = 0; r < NumRows(); ++r)
+            if (IsNested(c)) {
+                for (int r = 0; r < NumRows(); ++r) {
                     if (h.HasSubview(r)) {
                         SubEntry(c, r).DetachFromStorage(full_);
                     }
+                }
+            }
 
             if (c >= limit) {
                 if (h.IsPersistent()) {
@@ -198,14 +208,16 @@ void c4_HandlerSeq::DetachFromStorage(bool full_)
 
 void c4_HandlerSeq::DetermineSpaceUsage()
 {
-    for (int c = 0; c < NumFields(); ++c)
+    for (int c = 0; c < NumFields(); ++c) {
         if (IsNested(c)) {
             c4_Handler &h = NthHandler(c);
-            for (int r = 0; r < NumRows(); ++r)
+            for (int r = 0; r < NumRows(); ++r) {
                 if (h.HasSubview(r)) {
                     SubEntry(c, r).DetermineSpaceUsage();
                 }
+            }
         }
+    }
 }
 
 void c4_HandlerSeq::SetNumRows(int numRows_)
@@ -238,14 +250,16 @@ void c4_HandlerSeq::Restructure(c4_Field &field_, bool remove_)
     //d4_assert(_field != 0);
 
     // all nested fields must be set up, before we shuffle them around
-    for (int k = 0; k < NumHandlers(); ++k)
+    for (int k = 0; k < NumHandlers(); ++k) {
         if (IsNested(k)) {
             c4_Handler &h = NthHandler(k);
-            for (int n = 0; n < NumRows(); ++n)
+            for (int n = 0; n < NumRows(); ++n) {
                 if (h.HasSubview(n)) {
                     SubEntry(k, n);
                 }
+            }
         }
+    }
 
     for (int i = 0; i < field_.NumSubFields(); ++i) {
         c4_Field &nf = field_.SubField(i);
@@ -257,7 +271,7 @@ void c4_HandlerSeq::Restructure(c4_Field &field_, bool remove_)
         }
 
         if (n < 0) {
-            _handlers.InsertAt(i, f4_CreateFormat(prop,  *this));
+            _handlers.InsertAt(i, f4_CreateFormat(prop, *this));
             NthHandler(i).Define(NumRows(), 0);
         } else {
             // move the handler to the front
@@ -284,10 +298,10 @@ void c4_HandlerSeq::Restructure(c4_Field &field_, bool remove_)
     c4_Field temp(desc);
 
     // all nested fields are restructured recursively
-    for (int j = 0; j < NumHandlers(); ++j)
+    for (int j = 0; j < NumHandlers(); ++j) {
         if (IsNested(j)) {
             c4_Handler &h = NthHandler(j);
-            for (int n = 0; n < NumRows(); ++n)
+            for (int n = 0; n < NumRows(); ++n) {
                 if (h.HasSubview(n)) {
                     c4_HandlerSeq &seq = SubEntry(j, n);
                     if (j < NumFields()) {
@@ -296,7 +310,9 @@ void c4_HandlerSeq::Restructure(c4_Field &field_, bool remove_)
                         seq.Restructure(temp, true);
                     }
                 }
+            }
         }
+    }
 
     if (_parent == this) {
         delete ofld;
@@ -304,22 +320,22 @@ void c4_HandlerSeq::Restructure(c4_Field &field_, bool remove_)
     // the root table owns its field structure tree
 }
 
-int c4_HandlerSeq::NumFields()const
+int c4_HandlerSeq::NumFields() const
 {
     return _field != 0 ? _field->NumSubFields() : 0;
 }
 
-char c4_HandlerSeq::ColumnType(int index_)const
+char c4_HandlerSeq::ColumnType(int index_) const
 {
     return NthHandler(index_).Property().Type();
 }
 
-bool c4_HandlerSeq::IsNested(int index_)const
+bool c4_HandlerSeq::IsNested(int index_) const
 {
     return ColumnType(index_) == 'V';
 }
 
-c4_Field &c4_HandlerSeq::Field(int index_)const
+c4_Field &c4_HandlerSeq::Field(int index_) const
 {
     d4_assert(_field != 0);
 
@@ -329,17 +345,17 @@ c4_Field &c4_HandlerSeq::Field(int index_)const
 void c4_HandlerSeq::Prepare(const t4_byte **ptr_, bool selfDesc_)
 {
     if (ptr_ != 0) {
-        d4_dbgdef(t4_i32 sias =)c4_Column::PullValue(*ptr_);
+        d4_dbgdef(t4_i32 sias = ) c4_Column::PullValue(*ptr_);
         d4_assert(sias == 0); // not yet
 
         if (selfDesc_) {
             t4_i32 n = c4_Column::PullValue(*ptr_);
             if (n > 0) {
-                c4_String s = "[" + c4_String((const char *) * ptr_, n) + "]";
+                c4_String s = "[" + c4_String((const char *)*ptr_, n) + "]";
                 const char *desc = s;
 
                 c4_Field *f = d4_new c4_Field(desc);
-                d4_assert(! *desc);
+                d4_assert(!*desc);
 
                 Restructure(*f, false);
                 *ptr_ += n;
@@ -363,7 +379,7 @@ void c4_HandlerSeq::OldPrepare()
 
     for (int i = 0; i < NumFields(); ++i) {
         char origType = _field->SubField(i).OrigType();
-        NthHandler(i).OldDefine(origType,  *_persist);
+        NthHandler(i).OldDefine(origType, *_persist);
     }
 }
 
@@ -392,12 +408,12 @@ void c4_HandlerSeq::ExchangeEntries(int srcPos_, c4_HandlerSeq &dst_, int
             int n;
             c4_HandlerSeq **e1 = (c4_HandlerSeq **)NthHandler(col).Get(srcPos_, n);
             c4_HandlerSeq **e2 = (c4_HandlerSeq **)dst_.NthHandler(col).Get(dstPos_,
-                                 n);
-            d4_assert(*e1 != 0 &&  *e2 != 0);
+                                                                            n);
+            d4_assert(*e1 != 0 && *e2 != 0);
 
             // swap the two entries
-            c4_HandlerSeq *e =  *e1;
-            *e1 =  *e2;
+            c4_HandlerSeq *e = *e1;
+            *e1 = *e2;
             *e2 = e;
 
             // shorthand, *after* the swap
@@ -451,7 +467,7 @@ void c4_HandlerSeq::ExchangeEntries(int srcPos_, c4_HandlerSeq &dst_, int
     }
 }
 
-c4_HandlerSeq &c4_HandlerSeq::SubEntry(int col_, int row_)const
+c4_HandlerSeq &c4_HandlerSeq::SubEntry(int col_, int row_) const
 {
     d4_assert(IsNested(col_));
 
@@ -461,17 +477,18 @@ c4_HandlerSeq &c4_HandlerSeq::SubEntry(int col_, int row_)const
     d4_assert(temp.Size() == sizeof(c4_HandlerSeq **));
     c4_HandlerSeq **p = (c4_HandlerSeq **)temp.Contents(); // loses const
 
-    d4_assert(p != 0 &&  *p != 0);
+    d4_assert(p != 0 && *p != 0);
 
-    return  **p;
+    return **p;
 }
 
 c4_Field *c4_HandlerSeq::FindField(const c4_Handler *handler_)
 {
-    for (int i = 0; i < NumFields(); ++i)
-        if (handler_ ==  &NthHandler(i)) {
-            return  &Field(i);
+    for (int i = 0; i < NumFields(); ++i) {
+        if (handler_ == &NthHandler(i)) {
+            return &Field(i);
         }
+    }
     return 0;
 }
 

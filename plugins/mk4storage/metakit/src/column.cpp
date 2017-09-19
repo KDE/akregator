@@ -25,14 +25,15 @@ void f4_memmove(void *to_, const void *from_, int n_)
 
     if (to + n_ <= from || from + n_ <= to) {
         memcpy(to, from, n_);
-    } else if (to < from)
+    } else if (to < from) {
         while (--n_ >= 0) {
-            *to++ =  *from++;
+            *to++ = *from++;
         }
-    else if (to > from)
+    } else if (to > from) {
         while (--n_ >= 0) {
             to[n_] = from[n_];
         }
+    }
 }
 
 #endif
@@ -40,13 +41,20 @@ void f4_memmove(void *to_, const void *from_, int n_)
 /////////////////////////////////////////////////////////////////////////////
 // c4_Column
 
-c4_Column::c4_Column(c4_Persist *persist_): _position(0), _size(0), _persist
-    (persist_), _gap(0), _slack(0), _dirty(false) {}
+c4_Column::c4_Column(c4_Persist *persist_) : _position(0)
+    , _size(0)
+    , _persist
+        (persist_)
+    , _gap(0)
+    , _slack(0)
+    , _dirty(false)
+{
+}
 
 #if defined(q4_CHECK) && q4_CHECK
 
 // debugging version to verify that the internal data is consistent
-void c4_Column::Validate()const
+void c4_Column::Validate() const
 {
     d4_assert(0 <= _slack && _slack < kSegMax);
 
@@ -77,7 +85,9 @@ void c4_Column::Validate()const
 #else
 
 // nothing, so inline this thing to avoid even the calling overhead
-d4_inline void c4_Column::Validate()const {}
+d4_inline void c4_Column::Validate() const
+{
+}
 
 #endif
 
@@ -90,37 +100,39 @@ c4_Column::~c4_Column()
     d4_assert(_slack == 0);
     FinishSlack();
 
-    _slack =  - 1; // bad value in case we try to set up again (!)
+    _slack = -1;   // bad value in case we try to set up again (!)
 }
 
-c4_Strategy &c4_Column::Strategy()const
+c4_Strategy &c4_Column::Strategy() const
 {
     d4_assert(_persist != 0);
 
     return _persist->Strategy();
 }
 
-bool c4_Column::IsMapped()const
+bool c4_Column::IsMapped() const
 {
     return _position > 1 && _persist != 0 && Strategy()._mapStart != 0;
 }
 
-bool c4_Column::UsesMap(const t4_byte *ptr_)const
+bool c4_Column::UsesMap(const t4_byte *ptr_) const
 {
     // the most common falsifying case is checked first
-    return _persist != 0 &&
-           ptr_ >= Strategy()._mapStart &&
-           Strategy()._dataSize != 0 &&
-           ptr_ < Strategy()._mapStart + Strategy()._dataSize;
+    return _persist != 0
+           && ptr_ >= Strategy()._mapStart
+           && Strategy()._dataSize != 0
+           && ptr_ < Strategy()._mapStart + Strategy()._dataSize;
 }
 
-bool c4_Column::RequiresMap()const
+bool c4_Column::RequiresMap() const
 {
-    if (_persist != 0 && Strategy()._mapStart != 0)
-        for (int i = _segments.GetSize(); --i >= 0;)
+    if (_persist != 0 && Strategy()._mapStart != 0) {
+        for (int i = _segments.GetSize(); --i >= 0;) {
             if (UsesMap((t4_byte *)_segments.GetAt(i))) {
                 return true;
             }
+        }
+    }
     return false;
 }
 
@@ -170,7 +182,7 @@ void c4_Column::SetLocation(t4_i32 pos_, t4_i32 size_)
     _dirty = pos_ == 0;
 }
 
-void c4_Column::PullLocation(const t4_byte *&ptr_)
+void c4_Column::PullLocation(const t4_byte * &ptr_)
 {
     d4_assert(_segments.GetSize() == 0);
 
@@ -188,7 +200,7 @@ void c4_Column::PullLocation(const t4_byte *&ptr_)
 }
 
 //@func How many contiguous bytes are there at a specified position.
-int c4_Column::AvailAt(t4_i32 offset_)const
+int c4_Column::AvailAt(t4_i32 offset_) const
 {
     d4_assert(offset_ <= _size);
     d4_assert(_gap <= _size);
@@ -206,8 +218,8 @@ int c4_Column::AvailAt(t4_i32 offset_)const
     }
 
     // either some real data or it must be at the very end of all data
-    d4_assert(0 < count && count <= kSegMax || count == 0 && offset_ == _size +
-              _slack);
+    d4_assert(0 < count && count <= kSegMax || count == 0 && offset_ == _size
+              +_slack);
     return count;
 }
 
@@ -234,7 +246,7 @@ void c4_Column::SetupSegments()
     }
     // the last block is left as a null pointer
 
-    int id =  - 1;
+    int id = -1;
     if (_position < 0) {
         // special aside id, figure out the real position
         d4_assert(_persist != 0);
@@ -267,7 +279,7 @@ void c4_Column::SetupSegments()
             _segments.SetAt(i, p);
 
             if (_position > 0) {
-                d4_dbgdef(int n =)Strategy().DataRead(pos, p, chunk);
+                d4_dbgdef(int n = ) Strategy().DataRead(pos, p, chunk);
                 d4_assert(n == chunk);
                 pos += chunk;
             }
@@ -276,7 +288,7 @@ void c4_Column::SetupSegments()
 
     if (id >= 0) {
         d4_assert(_persist != 0);
-        _persist->ApplyAside(id,  *this);
+        _persist->ApplyAside(id, *this);
     }
 
     Validate();
@@ -447,22 +459,19 @@ void c4_Column::MoveGapTo(t4_i32 pos_)
 {
     d4_assert(pos_ <= _size);
 
-    if (_slack == 0)
+    if (_slack == 0) {
         // if there is no real gap, then just move it
-    {
         _gap = pos_;
-    } else if (_gap < pos_)
+    } else if (_gap < pos_) {
         // move the gap up, ie. some bytes down
-    {
         MoveGapUp(pos_);
     } else if (_gap > pos_) {
         // move the gap down, ie. some bytes up
         if (_gap - pos_ > _size - _gap + fSegRest(pos_)) {
             RemoveGap(); // it's faster to get rid of the gap instead
             _gap = pos_;
-        } else
+        } else {
             // normal case, move some bytes up
-        {
             MoveGapDown(pos_);
         }
     }
@@ -534,9 +543,8 @@ void c4_Column::RemoveGap()
             ReleaseSegment(i);
             _segments.SetAt(i, 0);
         } else {
-            if (n + _slack > kSegMax)
+            if (n + _slack > kSegMax) {
                 // case 4
-            {
                 ReleaseSegment(i + 1);
             }
 
@@ -583,13 +591,11 @@ void c4_Column::Grow(t4_i32 off_, t4_i32 diff_)
 
         bool moveBack = false;
 
-        if (i2 > i1)
+        if (i2 > i1) {
             // cases 3 and 4
-        {
             ++i1;
-        } else if (fSegRest(_gap))
+        } else if (fSegRest(_gap)) {
             // case 2
-        {
             moveBack = true;
         }
 
@@ -634,13 +640,11 @@ void c4_Column::Shrink(t4_i32 off_, t4_i32 diff_)
     // gaps and we must merge them together and end up with just one
 
     if (_slack > 0) {
-        if (_gap < off_)
+        if (_gap < off_) {
             // if too low, move the gap up
-        {
             MoveGapTo(off_);
-        } else if (off_ + diff_ < _gap)
+        } else if (off_ + diff_ < _gap) {
             // if too high, move down to end
-        {
             MoveGapTo(off_ + diff_);
         }
 
@@ -770,8 +774,7 @@ void c4_Column::SaveNow(c4_Strategy &strategy_, t4_i32 pos_)
     }
 }
 
-const t4_byte *c4_Column::FetchBytes(t4_i32 pos_, int len_, c4_Bytes &buffer_,
-                                     bool forceCopy_)
+const t4_byte *c4_Column::FetchBytes(t4_i32 pos_, int len_, c4_Bytes &buffer_, bool forceCopy_)
 {
     d4_assert(len_ > 0);
     d4_assert(pos_ + len_ <= ColSize());
@@ -823,9 +826,9 @@ This saves storage, but it is also byte order independent.
 Negative values are stored as a zero byte plus positive value.
  */
 
-t4_i32 c4_Column::PullValue(const t4_byte *&ptr_)
+t4_i32 c4_Column::PullValue(const t4_byte * &ptr_)
 {
-    t4_i32 mask =  *ptr_ ? 0 : ~0;
+    t4_i32 mask = *ptr_ ? 0 : ~0;
 
     t4_i32 v = 0;
     for (;;) {
@@ -838,7 +841,7 @@ t4_i32 c4_Column::PullValue(const t4_byte *&ptr_)
     return mask ^ (v - 0x80); // oops, last byte had bit 7 set
 }
 
-void c4_Column::PushValue(t4_byte *&ptr_, t4_i32 v_)
+void c4_Column::PushValue(t4_byte * &ptr_, t4_i32 v_)
 {
     if (v_ < 0) {
         v_ = ~v_;
@@ -1011,15 +1014,14 @@ void c4_ColOfInts::Get_64r(int index_)
 static int fBitsNeeded(t4_i32 v)
 {
     if ((v >> 4) == 0) {
-        static int bits[] =  {
+        static int bits[] = {
             0, 1, 2, 2, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4
         };
         return bits[(int)v];
     }
 
-    if (v < 0)
+    if (v < 0) {
         // first flip all bits if bit 31 is set
-    {
         v = ~v;
     }
     // ... bit 31 is now always zero
@@ -1187,16 +1189,23 @@ bool c4_ColOfInts::Set_64r(int index_, const t4_byte *item_)
 
 /////////////////////////////////////////////////////////////////////////////
 
-c4_ColOfInts::c4_ColOfInts(c4_Persist *persist_, int width_): c4_Column
-    (persist_), _getter(&c4_ColOfInts::Get_0b), _setter(&c4_ColOfInts::Set_0b),
-    _currWidth(0), _dataWidth(width_), _numRows(0), _mustFlip(false) {}
+c4_ColOfInts::c4_ColOfInts(c4_Persist *persist_, int width_) : c4_Column
+        (persist_)
+    , _getter(&c4_ColOfInts::Get_0b)
+    , _setter(&c4_ColOfInts::Set_0b)
+    , _currWidth(0)
+    , _dataWidth(width_)
+    , _numRows(0)
+    , _mustFlip(false)
+{
+}
 
 void c4_ColOfInts::ForceFlip()
 {
     _mustFlip = true;
 }
 
-int c4_ColOfInts::RowCount()const
+int c4_ColOfInts::RowCount() const
 {
     d4_assert(_numRows >= 0);
 
@@ -1211,27 +1220,27 @@ int c4_ColOfInts::CalcAccessWidth(int numRows_, t4_i32 colSize_)
 
     // deduce sub-byte sizes for small vectors, see c4_ColOfInts::Set
     if (numRows_ <= 7 && 0 < colSize_ && colSize_ <= 6) {
-        static t4_byte realWidth[][6] =  {
+        static t4_byte realWidth[][6] = {
             // sz =  1:  2:  3:  4:  5:  6:
             {
                 8, 16, 1, 32, 2, 4
-            }
-            ,  { //  n = 1
+            },
+            {    //  n = 1
                 4, 8, 1, 16, 2, 0
-            }
-            ,  { //  n = 2
+            },
+            {    //  n = 2
                 2, 4, 8, 1, 0, 16
-            }
-            ,  { //  n = 3
+            },
+            {    //  n = 3
                 2, 4, 0, 8, 1, 0
-            }
-            ,  { //  n = 4
+            },
+            {    //  n = 4
                 1, 2, 4, 0, 8, 0
-            }
-            ,  { //  n = 5
+            },
+            {    //  n = 5
                 1, 2, 4, 0, 0, 8
-            }
-            ,  { //  n = 6
+            },
+            {    //  n = 6
                 1, 2, 0, 4, 0, 0
             }
             ,  //  n = 7
@@ -1241,7 +1250,7 @@ int c4_ColOfInts::CalcAccessWidth(int numRows_, t4_i32 colSize_)
         d4_assert(w > 0);
     }
 
-    return (w & (w - 1)) == 0 ? w :  - 1;
+    return (w & (w - 1)) == 0 ? w : -1;
 }
 
 void c4_ColOfInts::SetRowCount(int numRows_)
@@ -1293,7 +1302,7 @@ void c4_ColOfInts::SetAccessWidth(int bits_)
 
     // Metrowerks Codewarrior 11 is dumb, it requires the "&c4_ColOfInts::"
 
-    static tGetter gTab[] =  {
+    static tGetter gTab[] = {
         &c4_ColOfInts::Get_0b,  //  0:  0 bits/entry
         &c4_ColOfInts::Get_1b,  //  1:  1 bits/entry
         &c4_ColOfInts::Get_2b,  //  2:  2 bits/entry
@@ -1309,7 +1318,7 @@ void c4_ColOfInts::SetAccessWidth(int bits_)
         &c4_ColOfInts::Get_64r,  // 10: 64 bits/entry, reversed
     };
 
-    static tSetter sTab[] =  {
+    static tSetter sTab[] = {
         &c4_ColOfInts::Set_0b,  //  0:  0 bits/entry
         &c4_ColOfInts::Set_1b,  //  1:  1 bits/entry
         &c4_ColOfInts::Set_2b,  //  2:  2 bits/entry
@@ -1325,7 +1334,7 @@ void c4_ColOfInts::SetAccessWidth(int bits_)
         &c4_ColOfInts::Set_64r,  // 10: 64 bits/entry, reversed
     };
 
-    d4_assert(l2bp1 < sizeof gTab / sizeof * gTab);
+    d4_assert(l2bp1 < sizeof gTab / sizeof *gTab);
 
     _getter = gTab[l2bp1];
     _setter = sTab[l2bp1];
@@ -1335,7 +1344,7 @@ void c4_ColOfInts::SetAccessWidth(int bits_)
 
 int c4_ColOfInts::ItemSize(int)
 {
-    return _currWidth >= 8 ? _currWidth >> 3 :  - _currWidth;
+    return _currWidth >= 8 ? _currWidth >> 3 : -_currWidth;
 }
 
 const void *c4_ColOfInts::Get(int index_, int &length_)
@@ -1409,7 +1418,7 @@ void c4_ColOfInts::Set(int index_, const c4_Bytes &buf_)
         }
 
         // now repeat the failed call to _setter
-        /* bool f = */(this->*_setter)(index_, buf_.Contents());
+        /* bool f = */ (this->*_setter)(index_, buf_.Contents());
         //? d4_assert(f);
     }
 }
@@ -1435,7 +1444,7 @@ int c4_ColOfInts::DoCompare(const c4_Bytes &b1_, const c4_Bytes &b2_)
     t4_i32 v1 = *(const t4_i32 *)b1_.Contents();
     t4_i32 v2 = *(const t4_i32 *)b2_.Contents();
 
-    return v1 == v2 ? 0 : v1 < v2 ?  - 1 :  + 1;
+    return v1 == v2 ? 0 : v1 < v2 ? -1 : +1;
 }
 
 void c4_ColOfInts::Insert(int index_, const c4_Bytes &buf_, int count_)
@@ -1446,25 +1455,27 @@ void c4_ColOfInts::Insert(int index_, const c4_Bytes &buf_, int count_)
     bool clear = true;
     const t4_byte *ptr = buf_.Contents();
 
-    for (int i = 0; i < _dataWidth; ++i)
+    for (int i = 0; i < _dataWidth; ++i) {
         if (*ptr++) {
             clear = false;
             break;
         }
+    }
 
     ResizeData(index_, count_, clear);
 
-    if (!clear)
+    if (!clear) {
         while (--count_ >= 0) {
             Set(index_++, buf_);
         }
+    }
 }
 
 void c4_ColOfInts::Remove(int index_, int count_)
 {
     d4_assert(count_ > 0);
 
-    ResizeData(index_,  - count_);
+    ResizeData(index_, -count_);
 }
 
 void c4_ColOfInts::ResizeData(int index_, int count_, bool clear_)
@@ -1477,7 +1488,7 @@ void c4_ColOfInts::ResizeData(int index_, int count_, bool clear_)
         if (count_ > 0) {
             InsertData(index_ * w, count_ * w, clear_);
         } else {
-            RemoveData(index_ * w,  - count_ * w);
+            RemoveData(index_ * w, -count_ * w);
         }
         return;
     }
@@ -1508,7 +1519,7 @@ void c4_ColOfInts::ResizeData(int index_, int count_, bool clear_)
 
             // move the first few bits to start of inserted range
             t4_byte *p = CopyNow(off + gapBytes);
-            t4_byte one =  *p & maskLow;
+            t4_byte one = *p & maskLow;
             *p &= ~maskLow;
 
             *CopyNow(off) = one;
@@ -1544,15 +1555,15 @@ void c4_ColOfInts::FixSize(bool fudge_)
     if (fudge_ && 1 <= n && n <= 4 && (_currWidth & 7)) {
         const int shiftPos = _currWidth == 4 ? 1 : 4 - _currWidth;
 
-        static t4_byte fakeSizes[3][4] =  {
+        static t4_byte fakeSizes[3][4] = {
             {
                 //  n:  1:  2:  3:  4:
                 6, 1, 2, 2
-            }
-            ,  { //  4-bit entries:   4b  8b 12b 16b
+            },
+            {    //  4-bit entries:   4b  8b 12b 16b
                 5, 5, 1, 1
-            }
-            ,  { //  2-bit entries:   2b  4b  6b  8b
+            },
+            {    //  2-bit entries:   2b  4b  6b  8b
                 3, 3, 4, 5
             }
             ,  //  1-bit entries:   1b  2b  3b  4b

@@ -38,23 +38,23 @@ public:
     void SetBuffer(t4_i32);
     //: Allocate a new buffer of the specified size.
 
-    c4_Persist *Persist()const;
+    c4_Persist *Persist() const;
     //: Returns persistence manager for this column, or zero.
-    c4_Strategy &Strategy()const;
+    c4_Strategy &Strategy() const;
     //: Returns the associated strategy pointer.
-    t4_i32 Position()const;
+    t4_i32 Position() const;
     //: Special access for the DUMP program.
-    t4_i32 ColSize()const;
+    t4_i32 ColSize() const;
     //: Returns the number of bytes as stored on disk.
-    bool IsDirty()const;
+    bool IsDirty() const;
     //: Returns true if contents needs to be saved.
 
     void SetLocation(t4_i32, t4_i32);
     //: Sets the position and size of this column on file.
-    void PullLocation(const t4_byte *&ptr_);
+    void PullLocation(const t4_byte * &ptr_);
     //: Extract position and size of this column.
 
-    int AvailAt(t4_i32 offset_)const;
+    int AvailAt(t4_i32 offset_) const;
     //: Returns number of bytes we can access at once.
     const t4_byte *LoadNow(t4_i32);
     //: Makes sure the data is loaded into memory.
@@ -73,11 +73,11 @@ public:
     void StoreBytes(t4_i32 pos_, const c4_Bytes &buffer_);
     //: Stores a copy of the buffer in the column.
 
-    bool RequiresMap()const;
+    bool RequiresMap() const;
     void ReleaseAllSegments();
 
-    static t4_i32 PullValue(const t4_byte *&ptr_);
-    static void PushValue(t4_byte *&ptr_, t4_i32 v_);
+    static t4_i32 PullValue(const t4_byte * &ptr_);
+    static void PushValue(t4_byte * &ptr_, t4_i32 v_);
 
     void InsertData(t4_i32 index_, t4_i32 count_, bool clear_);
     void RemoveData(t4_i32 index_, t4_i32 count_);
@@ -92,12 +92,12 @@ private:
     static t4_i32 fSegOffset(int index_);
     static int fSegRest(t4_i32 offset_);
 
-    bool UsesMap(const t4_byte *)const;
-    bool IsMapped()const;
+    bool UsesMap(const t4_byte *) const;
+    bool IsMapped() const;
 
     void ReleaseSegment(int);
     void SetupSegments();
-    void Validate()const;
+    void Validate() const;
     void FinishSlack();
 
     void MoveGapUp(t4_i32 pos_);
@@ -109,12 +109,12 @@ private:
 
 /////////////////////////////////////////////////////////////////////////////
 
-class c4_ColOfInts: public c4_Column
+class c4_ColOfInts : public c4_Column
 {
 public:
     c4_ColOfInts(c4_Persist *persist_, int width_ = sizeof(t4_i32));
 
-    int RowCount()const;
+    int RowCount() const;
     void SetRowCount(int numRows_);
 
     void FlipBytes();
@@ -138,8 +138,8 @@ public:
     static int DoCompare(const c4_Bytes &b1_, const c4_Bytes &b2_);
 
 private:
-    typedef void(c4_ColOfInts:: *tGetter)(int);
-    typedef bool(c4_ColOfInts:: *tSetter)(int, const t4_byte *);
+    typedef void (c4_ColOfInts:: *tGetter)(int);
+    typedef bool (c4_ColOfInts:: *tSetter)(int, const t4_byte *);
 
     void Get_0b(int index_);
     void Get_1b(int index_);
@@ -198,9 +198,9 @@ public:
     bool Next();
     bool Next(int max_);
 
-    const t4_byte *BufLoad()const;
+    const t4_byte *BufLoad() const;
     t4_byte *BufSave();
-    int BufLen()const;
+    int BufLen() const;
 };
 
 /////////////////////////////////////////////////////////////////////////////

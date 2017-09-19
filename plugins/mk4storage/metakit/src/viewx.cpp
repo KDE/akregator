@@ -12,8 +12,13 @@
 
 /////////////////////////////////////////////////////////////////////////////
 
-c4_Sequence::c4_Sequence(): _refCount(0), _dependencies(0), _propertyLimit(0), _propertyMap(0),
-    _tempBuf(0) {}
+c4_Sequence::c4_Sequence() : _refCount(0)
+    , _dependencies(0)
+    , _propertyLimit(0)
+    , _propertyMap(0)
+    , _tempBuf(0)
+{
+}
 
 c4_Sequence::~c4_Sequence()
 {
@@ -26,7 +31,7 @@ c4_Sequence::~c4_Sequence()
     delete _tempBuf;
 }
 
-c4_Persist *c4_Sequence::Persist()const
+c4_Persist *c4_Sequence::Persist() const
 {
     return 0;
 }
@@ -50,13 +55,13 @@ void c4_Sequence::DecRef()
 }
 
 /// Return the current reference count
-int c4_Sequence::NumRefs()const
+int c4_Sequence::NumRefs() const
 {
     return _refCount;
 }
 
 /// Compare the specified row with another one
-int c4_Sequence::Compare(int index_, c4_Cursor cursor_)const
+int c4_Sequence::Compare(int index_, c4_Cursor cursor_) const
 {
     d4_assert(cursor_._seq != 0);
 
@@ -131,9 +136,9 @@ void c4_Sequence::SetAt(int index_, c4_Cursor newElem_)
 }
 
 /// Remap the index to an underlying view
-int c4_Sequence::RemapIndex(int index_, const c4_Sequence *seq_)const
+int c4_Sequence::RemapIndex(int index_, const c4_Sequence *seq_) const
 {
-    return seq_ == this ? index_ :  - 1;
+    return seq_ == this ? index_ : -1;
 }
 
 /// Gives access to a general purpose temporary buffer
@@ -142,7 +147,7 @@ c4_Bytes &c4_Sequence::Buffer()
     if (_tempBuf == 0) {
         _tempBuf = d4_new c4_Bytes;
     }
-    return  *_tempBuf;
+    return *_tempBuf;
 }
 
 // 1.8.5: extra buffer to hold returned description strings
@@ -161,11 +166,10 @@ void c4_Sequence::Resize(int newSize_, int)
             c4_Row empty; // make sure this doesn't recurse, see below
             InsertAt(NumRows(), &empty, diff);
         } else if (diff < 0) {
-            RemoveAt(newSize_,  - diff);
+            RemoveAt(newSize_, -diff);
         }
-    } else
+    } else {
         // need special case to avoid recursion for c4_Row allocations
-    {
         SetNumRows(newSize_);
     }
 }
@@ -262,7 +266,7 @@ void c4_Sequence::Move(int from_, int to_)
 }
 
 /// Return the id of the N-th property
-int c4_Sequence::NthPropId(int index_)const
+int c4_Sequence::NthPropId(int index_) const
 {
     return NthHandler(index_).PropId();
 }
@@ -291,7 +295,7 @@ int c4_Sequence::PropIndex(int propId_)
     int n = NumHandlers();
     do {
         if (--n < 0) {
-            return  - 1;
+            return -1;
         }
     } while (NthPropId(n) != propId_);
 
@@ -301,7 +305,7 @@ int c4_Sequence::PropIndex(int propId_)
         short *vec = d4_new short[round];
 
         for (int i = 0; i < round; ++i) {
-            vec[i] = i < _propertyLimit ? _propertyMap[i] :  - 1;
+            vec[i] = i < _propertyLimit ? _propertyMap[i] : -1;
         }
 
         if (_propertyLimit > 0) {
@@ -346,7 +350,7 @@ const char *c4_Sequence::Description()
 int c4_Sequence::ItemSize(int index_, int propId_)
 {
     int colNum = PropIndex(propId_);
-    return colNum >= 0 ? NthHandler(colNum).ItemSize(index_) :  - 1;
+    return colNum >= 0 ? NthHandler(colNum).ItemSize(index_) : -1;
 }
 
 bool c4_Sequence::Get(int index_, int propId_, c4_Bytes &buf_)
@@ -415,20 +419,22 @@ c4_Notifier *c4_Sequence::PreChange(c4_Notifier &)
 }
 
 /// Called after changes have been made to the sequence
-void c4_Sequence::PostChange(c4_Notifier &) {}
+void c4_Sequence::PostChange(c4_Notifier &)
+{
+}
 
 /////////////////////////////////////////////////////////////////////////////
 
-c4_Reference &c4_Reference::operator = (const c4_Reference &value_)
+c4_Reference &c4_Reference::operator =(const c4_Reference &value_)
 {
     c4_Bytes result;
     value_.GetData(result);
     SetData(result);
 
-    return  *this;
+    return *this;
 }
 
-bool operator == (const c4_Reference &a_, const c4_Reference &b_)
+bool operator ==(const c4_Reference &a_, const c4_Reference &b_)
 {
     c4_Bytes buf1;
     bool f1 = a_.GetData(buf1);
@@ -449,7 +455,7 @@ bool operator == (const c4_Reference &a_, const c4_Reference &b_)
 
 /////////////////////////////////////////////////////////////////////////////
 
-c4_IntRef::operator t4_i32()const
+c4_IntRef::operator t4_i32() const
 {
     c4_Bytes result;
     if (!GetData(result)) {
@@ -460,17 +466,17 @@ c4_IntRef::operator t4_i32()const
     return *(const t4_i32 *)result.Contents();
 }
 
-c4_IntRef &c4_IntRef::operator = (t4_i32 value_)
+c4_IntRef &c4_IntRef::operator =(t4_i32 value_)
 {
     SetData(c4_Bytes(&value_, sizeof value_));
-    return  *this;
+    return *this;
 }
 
 /////////////////////////////////////////////////////////////////////////////
 #if !defined(q4_TINY) || !q4_TINY
 /////////////////////////////////////////////////////////////////////////////
 
-c4_LongRef::operator t4_i64()const
+c4_LongRef::operator t4_i64() const
 {
     c4_Bytes result;
     if (!GetData(result)) {
@@ -482,15 +488,15 @@ c4_LongRef::operator t4_i64()const
     return *(const t4_i64 *)result.Contents();
 }
 
-c4_LongRef &c4_LongRef::operator = (t4_i64 value_)
+c4_LongRef &c4_LongRef::operator =(t4_i64 value_)
 {
     SetData(c4_Bytes(&value_, sizeof value_));
-    return  *this;
+    return *this;
 }
 
 /////////////////////////////////////////////////////////////////////////////
 
-c4_FloatRef::operator double()const
+c4_FloatRef::operator double() const
 {
     c4_Bytes result;
     if (!GetData(result)) {
@@ -501,16 +507,16 @@ c4_FloatRef::operator double()const
     return *(const float *)result.Contents();
 }
 
-c4_FloatRef &c4_FloatRef::operator = (double value_)
+c4_FloatRef &c4_FloatRef::operator =(double value_)
 {
     float v = (float)value_; // loses precision
     SetData(c4_Bytes(&v, sizeof v));
-    return  *this;
+    return *this;
 }
 
 /////////////////////////////////////////////////////////////////////////////
 
-c4_DoubleRef::operator double()const
+c4_DoubleRef::operator double() const
 {
     c4_Bytes result;
     if (!GetData(result)) {
@@ -521,17 +527,17 @@ c4_DoubleRef::operator double()const
     return *(const double *)result.Contents();
 }
 
-c4_DoubleRef &c4_DoubleRef::operator = (double value_)
+c4_DoubleRef &c4_DoubleRef::operator =(double value_)
 {
     SetData(c4_Bytes(&value_, sizeof value_));
-    return  *this;
+    return *this;
 }
 
 /////////////////////////////////////////////////////////////////////////////
 #endif // !q4_TINY
 /////////////////////////////////////////////////////////////////////////////
 
-c4_BytesRef::operator c4_Bytes()const
+c4_BytesRef::operator c4_Bytes() const
 {
     c4_Bytes result;
     GetData(result);
@@ -540,13 +546,13 @@ c4_BytesRef::operator c4_Bytes()const
     return result;
 }
 
-c4_BytesRef &c4_BytesRef::operator = (const c4_Bytes &value_)
+c4_BytesRef &c4_BytesRef::operator =(const c4_Bytes &value_)
 {
     SetData(value_);
-    return  *this;
+    return *this;
 }
 
-c4_Bytes c4_BytesRef::Access(t4_i32 off_, int len_, bool noCopy_)const
+c4_Bytes c4_BytesRef::Access(t4_i32 off_, int len_, bool noCopy_) const
 {
     c4_Bytes &buffer = _cursor._seq->Buffer();
 
@@ -568,8 +574,8 @@ c4_Bytes c4_BytesRef::Access(t4_i32 off_, int len_, bool noCopy_)const
                     // remember to check length of the returned bytes.
                     c4_ColIter iter(*col, off_, off_ + len_);
                     iter.Next();
-                    return c4_Bytes(iter.BufLoad(), iter.BufLen() < len_ ? iter.BufLen() :
-                                    len_);
+                    return c4_Bytes(iter.BufLoad(), iter.BufLen() < len_ ? iter.BufLen()
+                                    : len_);
                 } else {
                     const t4_byte *bytes = col->FetchBytes(off_, len_, buffer, false);
                     if (bytes == buffer.Contents()) {
@@ -590,7 +596,7 @@ c4_Bytes c4_BytesRef::Access(t4_i32 off_, int len_, bool noCopy_)const
     return c4_Bytes();
 }
 
-bool c4_BytesRef::Modify(const c4_Bytes &buf_, t4_i32 off_, int diff_)const
+bool c4_BytesRef::Modify(const c4_Bytes &buf_, t4_i32 off_, int diff_) const
 {
     int colNum = _cursor._seq->PropIndex(_property.GetId());
     if (colNum >= 0) {
@@ -606,12 +612,13 @@ bool c4_BytesRef::Modify(const c4_Bytes &buf_, t4_i32 off_, int diff_)const
         c4_Column *col = h.GetNthMemoCol(_cursor._index, true);
         if (col != 0) {
             if (diff_ < 0) {
-                col->Shrink(limit,  - diff_);
-            } else if (diff_ > 0)
+                col->Shrink(limit, -diff_);
+            } else if (diff_ > 0) {
                 // insert bytes in the highest possible spot
                 // if a gap is created, it will contain garbage
-                col->Grow(overshoot > 0 ? col->ColSize() : diff_ > n ? off_ : limit -
-                          diff_, diff_);
+                col->Grow(overshoot > 0 ? col->ColSize() : diff_ > n ? off_ : limit
+                          -diff_, diff_);
+            }
 
             col->StoreBytes(off_, buf_);
         } else {
@@ -636,7 +643,7 @@ bool c4_BytesRef::Modify(const c4_Bytes &buf_, t4_i32 off_, int diff_)const
 
 /////////////////////////////////////////////////////////////////////////////
 
-c4_StringRef::operator const char *()const
+c4_StringRef::operator const char *() const
 {
     c4_Bytes result;
     GetData(result);
@@ -644,15 +651,15 @@ c4_StringRef::operator const char *()const
     return result.Size() > 0 ? (const char *)result.Contents() : "";
 }
 
-c4_StringRef &c4_StringRef::operator = (const char *value_)
+c4_StringRef &c4_StringRef::operator =(const char *value_)
 {
     SetData(c4_Bytes(value_, strlen(value_) + 1));
-    return  *this;
+    return *this;
 }
 
 /////////////////////////////////////////////////////////////////////////////
 
-c4_ViewRef::operator c4_View()const
+c4_ViewRef::operator c4_View() const
 {
     c4_Bytes result;
     if (!GetData(result)) {
@@ -661,23 +668,32 @@ c4_ViewRef::operator c4_View()const
     // resolve ambiguity
 
     d4_assert(result.Size() == sizeof(c4_Sequence *));
-    return *(c4_Sequence * const *)result.Contents();
+    return *(c4_Sequence *const *)result.Contents();
 }
 
-c4_ViewRef &c4_ViewRef::operator = (const c4_View &value_)
+c4_ViewRef &c4_ViewRef::operator =(const c4_View &value_)
 {
     SetData(c4_Bytes(&value_._seq, sizeof value_._seq));
-    return  *this;
+    return *this;
 }
 
 /////////////////////////////////////////////////////////////////////////////
 
-c4_Stream::~c4_Stream() {}
+c4_Stream::~c4_Stream()
+{
+}
 
 /////////////////////////////////////////////////////////////////////////////
 
-c4_Strategy::c4_Strategy(): _bytesFlipped(false), _failure(0), _mapStart(0),
-    _dataSize(0), _baseOffset(0), _rootPos(- 1), _rootLen(- 1) {}
+c4_Strategy::c4_Strategy() : _bytesFlipped(false)
+    , _failure(0)
+    , _mapStart(0)
+    , _dataSize(0)
+    , _baseOffset(0)
+    , _rootPos(-1)
+    , _rootLen(-1)
+{
+}
 
 c4_Strategy::~c4_Strategy()
 {
@@ -695,7 +711,7 @@ int c4_Strategy::DataRead(t4_i32, void *, int)
     }
      */
     ++_failure;
-    return  - 1;
+    return -1;
 }
 
 /// Write a number of bytes, return true if successful
@@ -705,10 +721,14 @@ void c4_Strategy::DataWrite(t4_i32, const void *, int)
 }
 
 /// Flush and truncate file
-void c4_Strategy::DataCommit(t4_i32) {}
+void c4_Strategy::DataCommit(t4_i32)
+{
+}
 
 /// Override to support memory-mapped files
-void c4_Strategy::ResetFileMapping() {}
+void c4_Strategy::ResetFileMapping()
+{
+}
 
 /// Report total size of the datafile
 t4_i32 c4_Strategy::FileSize()
@@ -752,19 +772,19 @@ t4_i32 c4_Strategy::EndOfData(t4_i32 end_)
     t4_i32 pos = (end_ >= 0 ? end_ : FileSize()) - _baseOffset;
     t4_i32 last = pos;
     t4_i32 rootPos = 0;
-    t4_i32 rootLen =  - 1; // impossible value, flags old-style header
+    t4_i32 rootLen = -1;   // impossible value, flags old-style header
     t4_byte mark[8];
 
     for (int state = kStateAtEnd; state != kStateDone;) {
         pos -= 8;
         if (pos + _baseOffset < 0 && state != kStateOld) {
             // bad offset, try old-style header from start of file
-            pos =  - _baseOffset;
+            pos = -_baseOffset;
             state = kStateOld;
         }
 
         if (DataRead(pos, &mark, sizeof mark) != sizeof mark) {
-            return  - 1;
+            return -1;
         }
 
         t4_i32 count = 0;
@@ -777,11 +797,11 @@ t4_i32 c4_Strategy::EndOfData(t4_i32 end_)
             offset = (offset << 8) + mark[j];
         }
 
-        const bool isSkipTail = ((mark[0] & 0xF0) == 0x90 /* 2006-11-11 */ ||
-                                 (mark[0] == 0x80 && count == 0)) && offset > 0;
+        const bool isSkipTail = ((mark[0] & 0xF0) == 0x90 /* 2006-11-11 */
+                                 || (mark[0] == 0x80 && count == 0)) && offset > 0;
         const bool isCommitTail = mark[0] == 0x80 && count > 0 && offset > 0;
-        const bool isHeader = (mark[0] == 'J' || mark[0] == 'L') && (mark[0] ^
-                              mark[1]) == ('J' ^ 'L') && mark[2] == 0x1A && (mark[3] & 0x40) == 0;
+        const bool isHeader = (mark[0] == 'J' || mark[0] == 'L') && (mark[0]
+                                                                     ^mark[1]) == ('J' ^ 'L') && mark[2] == 0x1A && (mark[3] & 0x40) == 0;
 
         switch (state) {
         case kStateAtEnd:
@@ -804,7 +824,7 @@ t4_i32 c4_Strategy::EndOfData(t4_i32 end_)
             // commit tail must be preceded by skip tail
 
             if (!isSkipTail) {
-                return  - 1;
+                return -1;
             }
             pos -= offset - 8;
             state = kStateHead;
@@ -826,16 +846,15 @@ t4_i32 c4_Strategy::EndOfData(t4_i32 end_)
 
             if (isHeader && mark[3] == 0x80) {
                 d4_assert(rootPos == 0);
-                for (int k = 8; --k >= 4;)
+                for (int k = 8; --k >= 4;) {
                     // old header is little-endian
-                {
                     rootPos = (rootPos << 8) + mark[k];
                 }
                 state = kStateDone;
             } else {
                 pos += 16;
                 if (pos > 4096) {
-                    return  - 1;
+                    return -1;
                 }
             }
             break;
@@ -858,7 +877,7 @@ t4_i32 c4_Strategy::EndOfData(t4_i32 end_)
     }
 
     d4_assert(mark[0] == 'J' || mark[1] == 'J');
-    _bytesFlipped = (char) * (const short *)mark != 'J';
+    _bytesFlipped = (char)*(const short *)mark != 'J';
 
     return last;
 }

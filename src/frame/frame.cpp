@@ -25,7 +25,6 @@
 #include "frame.h"
 #include "utils.h"
 
-
 #include <kactioncollection.h>
 #include "akregator_debug.h"
 #include <KLocalizedString>

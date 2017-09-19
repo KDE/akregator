@@ -23,7 +23,7 @@ class c4_ProjectSeq;
 
 /////////////////////////////////////////////////////////////////////////////
 
-class c4_FilterSeq: public c4_DerivedSeq
+class c4_FilterSeq : public c4_DerivedSeq
 {
 protected:
     c4_DWordArray _rowMap;
@@ -37,19 +37,19 @@ protected:
     virtual ~c4_FilterSeq();
 
     void FixupReverseMap();
-    int PosInMap(int index_)const;
+    int PosInMap(int index_) const;
     bool Match(int index_, c4_Sequence &seq_, const int * = 0, const int * = 0)
     const;
-    bool MatchOne(int prop_, const c4_Bytes &data_)const;
+    bool MatchOne(int prop_, const c4_Bytes &data_) const;
 
 public:
     c4_FilterSeq(c4_Sequence &seq_, c4_Cursor low_, c4_Cursor high_);
 
-    int RemapIndex(int, const c4_Sequence *)const override;
+    int RemapIndex(int, const c4_Sequence *) const override;
 
-    int NumRows()const override;
+    int NumRows() const override;
 
-    int Compare(int, c4_Cursor)const override;
+    int Compare(int, c4_Cursor) const override;
     bool Get(int, int, c4_Bytes &) override;
 
     void InsertAt(int, c4_Cursor, int = 1) override;
@@ -63,7 +63,7 @@ public:
 
 /////////////////////////////////////////////////////////////////////////////
 
-c4_FilterSeq::c4_FilterSeq(c4_Sequence &seq_): c4_DerivedSeq(seq_)
+c4_FilterSeq::c4_FilterSeq(c4_Sequence &seq_) : c4_DerivedSeq(seq_)
 {
     _rowMap.SetSize(_seq.NumRows());
     _revMap.SetSize(_seq.NumRows());
@@ -75,8 +75,10 @@ c4_FilterSeq::c4_FilterSeq(c4_Sequence &seq_): c4_DerivedSeq(seq_)
     }
 }
 
-c4_FilterSeq::c4_FilterSeq(c4_Sequence &seq_, c4_Cursor low_, c4_Cursor high_):
-    c4_DerivedSeq(seq_), _lowRow(*low_), _highRow(*high_)
+c4_FilterSeq::c4_FilterSeq(c4_Sequence &seq_, c4_Cursor low_, c4_Cursor high_)
+    : c4_DerivedSeq(seq_)
+    , _lowRow(*low_)
+    , _highRow(*high_)
 {
     d4_assert((&_lowRow)._index == 0);
     d4_assert((&_highRow)._index == 0);
@@ -103,7 +105,7 @@ c4_FilterSeq::c4_FilterSeq(c4_Sequence &seq_, c4_Cursor low_, c4_Cursor high_):
 
     // set _rowIds flag buffer for fast matching
     {
-        int max =  - 1;
+        int max = -1;
 
         {
             for (int i1 = 0; i1 < nl; ++i1) {
@@ -138,17 +140,20 @@ c4_FilterSeq::c4_FilterSeq(c4_Sequence &seq_, c4_Cursor low_, c4_Cursor high_):
 
     int n = 0;
 
-    for (int i = 0; i < _seq.NumRows(); ++i)
+    for (int i = 0; i < _seq.NumRows(); ++i) {
         if (Match(i, _seq, lowCols, highCols)) {
             _rowMap.SetAt(n++, i);
         }
+    }
 
     _rowMap.SetSize(n);
 
     FixupReverseMap();
 }
 
-c4_FilterSeq::~c4_FilterSeq() {}
+c4_FilterSeq::~c4_FilterSeq()
+{
+}
 
 void c4_FilterSeq::FixupReverseMap()
 {
@@ -165,7 +170,7 @@ void c4_FilterSeq::FixupReverseMap()
     }
 }
 
-bool c4_FilterSeq::MatchOne(int prop_, const c4_Bytes &data_)const
+bool c4_FilterSeq::MatchOne(int prop_, const c4_Bytes &data_) const
 {
     d4_assert(prop_ < _rowIds.Size());
 
@@ -193,8 +198,7 @@ bool c4_FilterSeq::MatchOne(int prop_, const c4_Bytes &data_)const
     return true;
 }
 
-bool c4_FilterSeq::Match(int index_, c4_Sequence &seq_, const int *lowCols_,
-                         const int *highCols_)const
+bool c4_FilterSeq::Match(int index_, c4_Sequence &seq_, const int *lowCols_, const int *highCols_) const
 {
     // use a sneaky way to obtain the sequence pointers and indices
     c4_Sequence *lowSeq = (&_lowRow)._seq;
@@ -248,18 +252,18 @@ bool c4_FilterSeq::Match(int index_, c4_Sequence &seq_, const int *lowCols_,
     return true;
 }
 
-int c4_FilterSeq::RemapIndex(int index_, const c4_Sequence *seq_)const
+int c4_FilterSeq::RemapIndex(int index_, const c4_Sequence *seq_) const
 {
     return seq_ == this ? index_ : _seq.RemapIndex((int)_rowMap.GetAt(index_),
-            seq_);
+                                                   seq_);
 }
 
-int c4_FilterSeq::NumRows()const
+int c4_FilterSeq::NumRows() const
 {
     return _rowMap.GetSize();
 }
 
-int c4_FilterSeq::Compare(int index_, c4_Cursor cursor_)const
+int c4_FilterSeq::Compare(int index_, c4_Cursor cursor_) const
 {
     return _seq.Compare((int)_rowMap.GetAt(index_), cursor_);
 }
@@ -289,16 +293,17 @@ void c4_FilterSeq::SetSize(int)
     d4_assert(0);
 }
 
-int c4_FilterSeq::PosInMap(int index_)const
+int c4_FilterSeq::PosInMap(int index_) const
 {
     int i = 0;
 
-    while (i < NumRows())
+    while (i < NumRows()) {
         if ((int)_rowMap.GetAt(i) >= index_) {
             break;
         } else {
             ++i;
         }
+    }
 
     return i;
 }
@@ -314,11 +319,13 @@ c4_Notifier *c4_FilterSeq::PreChange(c4_Notifier &nf_)
     bool pass = false;
 
     switch (nf_._type) {
-    case c4_Notifier::kSet: pass = nf_._propId >= _rowIds.Size() ||
-                                       _rowIds.Contents()[nf_._propId] == 0;
+    case c4_Notifier::kSet:
+        pass = nf_._propId >= _rowIds.Size()
+               || _rowIds.Contents()[nf_._propId] == 0;
     // fall through...
 
-    case c4_Notifier::kSetAt:  {
+    case c4_Notifier::kSetAt:
+    {
         int r = (int)_revMap.GetAt(nf_._index);
 
         bool includeRow = r >= 0;
@@ -326,40 +333,41 @@ c4_Notifier *c4_FilterSeq::PreChange(c4_Notifier &nf_)
             if (nf_._type == c4_Notifier::kSetAt) {
                 d4_assert(nf_._cursor != 0);
                 includeRow = Match(nf_._cursor->_index, *nf_._cursor->_seq);
-            } else
+            } else {
                 // set just one property, and it's not in a row yet
-            {
-                includeRow = MatchOne(nf_._propId,  *nf_._bytes);
+                includeRow = MatchOne(nf_._propId, *nf_._bytes);
             }
         }
 
         if (r >= 0 && !includeRow) {
             chg->StartRemoveAt(r, 1);
         } else if (r < 0 && includeRow) {
-            chg->StartInsertAt(PosInMap(nf_._index),  *nf_._cursor, 1);
+            chg->StartInsertAt(PosInMap(nf_._index), *nf_._cursor, 1);
         } else if (includeRow) {
             d4_assert(r >= 0);
 
             if (nf_._type == c4_Notifier::kSetAt) {
-                chg->StartSetAt(r,  *nf_._cursor);
+                chg->StartSetAt(r, *nf_._cursor);
             } else {
-                chg->StartSet(r, nf_._propId,  *nf_._bytes);
+                chg->StartSet(r, nf_._propId, *nf_._bytes);
             }
         }
+        break;
     }
-    break;
 
-    case c4_Notifier::kInsertAt:  {
+    case c4_Notifier::kInsertAt:
+    {
         int i = PosInMap(nf_._index);
 
         d4_assert(nf_._cursor != 0);
-        if (Match(nf_._cursor->_index,  *nf_._cursor->_seq)) {
-            chg->StartInsertAt(i,  *nf_._cursor, nf_._count);
+        if (Match(nf_._cursor->_index, *nf_._cursor->_seq)) {
+            chg->StartInsertAt(i, *nf_._cursor, nf_._count);
         }
+        break;
     }
-    break;
 
-    case c4_Notifier::kRemoveAt:  {
+    case c4_Notifier::kRemoveAt:
+    {
         int i = PosInMap(nf_._index);
         int j = PosInMap(nf_._index + nf_._count);
         d4_assert(j >= i);
@@ -367,18 +375,19 @@ c4_Notifier *c4_FilterSeq::PreChange(c4_Notifier &nf_)
         if (j > i) {
             chg->StartRemoveAt(i, j - i);
         }
+        break;
     }
-    break;
 
-    case c4_Notifier::kMove:  {
+    case c4_Notifier::kMove:
+    {
         int i = PosInMap(nf_._index);
         bool inMap = i < NumRows() && (int)_rowMap.GetAt(i) == nf_._index;
 
         if (inMap && nf_._index != nf_._count) {
             chg->StartMove(i, PosInMap(nf_._count));
         }
+        break;
     }
-    break;
     }
 
     return chg;
@@ -389,11 +398,13 @@ void c4_FilterSeq::PostChange(c4_Notifier &nf_)
     bool pass = false;
 
     switch (nf_._type) {
-    case c4_Notifier::kSet: pass = nf_._propId >= _rowIds.Size() ||
-                                       _rowIds.Contents()[nf_._propId] == 0;
+    case c4_Notifier::kSet:
+        pass = nf_._propId >= _rowIds.Size()
+               || _rowIds.Contents()[nf_._propId] == 0;
     // fall through...
 
-    case c4_Notifier::kSetAt:  {
+    case c4_Notifier::kSetAt:
+    {
         int r = (int)_revMap.GetAt(nf_._index);
 
         bool includeRow = r >= 0;
@@ -401,10 +412,9 @@ void c4_FilterSeq::PostChange(c4_Notifier &nf_)
             if (nf_._type == c4_Notifier::kSetAt) {
                 d4_assert(nf_._cursor != 0);
                 includeRow = Match(nf_._cursor->_index, *nf_._cursor->_seq);
-            } else
+            } else {
                 // set just one property, and it's not in a row yet
-            {
-                includeRow = MatchOne(nf_._propId,  *nf_._bytes);
+                includeRow = MatchOne(nf_._propId, *nf_._bytes);
             }
         }
 
@@ -417,10 +427,11 @@ void c4_FilterSeq::PostChange(c4_Notifier &nf_)
         }
 
         FixupReverseMap();
+        break;
     }
-    break;
 
-    case c4_Notifier::kInsertAt:  {
+    case c4_Notifier::kInsertAt:
+    {
         int i = PosInMap(nf_._index);
 
         if (Match(nf_._index, _seq)) {
@@ -436,10 +447,11 @@ void c4_FilterSeq::PostChange(c4_Notifier &nf_)
         }
 
         FixupReverseMap();
+        break;
     }
-    break;
 
-    case c4_Notifier::kRemoveAt:  {
+    case c4_Notifier::kRemoveAt:
+    {
         int i = PosInMap(nf_._index);
         int j = PosInMap(nf_._index + nf_._count);
         d4_assert(j >= i);
@@ -453,10 +465,11 @@ void c4_FilterSeq::PostChange(c4_Notifier &nf_)
         }
 
         FixupReverseMap();
+        break;
     }
-    break;
 
-    case c4_Notifier::kMove:  {
+    case c4_Notifier::kMove:
+    {
         int i = PosInMap(nf_._index);
         bool inMap = i < NumRows() && (int)_rowMap.GetAt(i) == nf_._index;
 
@@ -473,14 +486,14 @@ void c4_FilterSeq::PostChange(c4_Notifier &nf_)
 
             FixupReverseMap();
         }
+        break;
     }
-    break;
     }
 }
 
 /////////////////////////////////////////////////////////////////////////////
 
-class c4_SortSeq: public c4_FilterSeq
+class c4_SortSeq : public c4_FilterSeq
 {
 public:
     typedef t4_i32 T;
@@ -502,7 +515,7 @@ private:
             _handler->GetBytes(seq_.RemapIndex((int)b, _context), _buffer, true)
             ;
             return _handler->Compare(seq_.RemapIndex((int)a, _context), _buffer)
-                   ;
+            ;
         }
     };
 
@@ -511,8 +524,8 @@ private:
     void MergeSortThis(T *ar, int size, T scratch[]);
     void MergeSort(T ar[], int size);
 
-    int Compare(int, c4_Cursor)const override;
-    int PosInMap(c4_Cursor cursor_)const;
+    int Compare(int, c4_Cursor) const override;
+    int PosInMap(c4_Cursor cursor_) const;
 
     c4_SortInfo *_info;
     c4_Bytes _down;
@@ -540,7 +553,7 @@ bool c4_SortSeq::LessThan(T a, T b)
                 _width = n;
             }
 
-            return (_down.Contents()[n] ?  - f : f) < 0;
+            return (_down.Contents()[n] ? -f : f) < 0;
         }
     }
 
@@ -600,21 +613,21 @@ void c4_SortSeq::MergeSortThis(T *ar, int size, T scratch[])
         T *to2_ = from2_ + s2;
 
         for (;;) {
-            if (LessThan(*from1_,  *from2_)) {
-                *ar++ =  *from1_++;
+            if (LessThan(*from1_, *from2_)) {
+                *ar++ = *from1_++;
 
                 if (from1_ >= to1_) {
                     while (from2_ < to2_) {
-                        *ar++ =  *from2_++;
+                        *ar++ = *from2_++;
                     }
                     break;
                 }
             } else {
-                *ar++ =  *from2_++;
+                *ar++ = *from2_++;
 
                 if (from2_ >= to2_) {
                     while (from1_ < to1_) {
-                        *ar++ =  *from1_++;
+                        *ar++ = *from1_++;
                     }
                     break;
                 }
@@ -634,8 +647,10 @@ void c4_SortSeq::MergeSort(T ar[], int size)
     }
 }
 
-c4_SortSeq::c4_SortSeq(c4_Sequence &seq_, c4_Sequence *down_): c4_FilterSeq
-    (seq_), _info(0), _width(- 1)
+c4_SortSeq::c4_SortSeq(c4_Sequence &seq_, c4_Sequence *down_) : c4_FilterSeq
+        (seq_)
+    , _info(0)
+    , _width(-1)
 {
     d4_assert(NumRows() == seq_.NumRows());
 
@@ -644,13 +659,15 @@ c4_SortSeq::c4_SortSeq(c4_Sequence &seq_, c4_Sequence *down_): c4_FilterSeq
         char *down = (char *)_down.SetBufferClear(NumHandlers());
 
         // set the down flag for all properties to be sorted in reverse
-        if (down_)
-            for (int i = 0; i < NumHandlers(); ++i)
+        if (down_) {
+            for (int i = 0; i < NumHandlers(); ++i) {
                 if (down_->PropIndex(NthPropId(i)) >= 0) {
                     down[i] = 1;
                 }
+            }
+        }
 
-        _width =  - 1;
+        _width = -1;
         int n = NumHandlers() + 1;
         _info = d4_new c4_SortInfo[n];
 
@@ -664,7 +681,7 @@ c4_SortSeq::c4_SortSeq(c4_Sequence &seq_, c4_Sequence *down_): c4_FilterSeq
         _info[j]._handler = 0;
 
         // everything is ready, go sort the row index vector
-        MergeSort((T *) &_rowMap.ElementAt(0), NumRows());
+        MergeSort((T *)&_rowMap.ElementAt(0), NumRows());
 
         delete [] _info;
         _info = 0;
@@ -678,7 +695,7 @@ c4_SortSeq::~c4_SortSeq()
     d4_assert(!_info);
 }
 
-int c4_SortSeq::Compare(int index_, c4_Cursor cursor_)const
+int c4_SortSeq::Compare(int index_, c4_Cursor cursor_) const
 {
     d4_assert(cursor_._seq != 0);
 
@@ -697,23 +714,24 @@ int c4_SortSeq::Compare(int index_, c4_Cursor cursor_)const
 
         int f = h.Compare(RemapIndex(index_, hc), data);
         if (f != 0) {
-            return colNum < _down.Size() && down[colNum] ?  - f :  + f;
+            return colNum < _down.Size() && down[colNum] ? -f : +f;
         }
     }
 
     return 0;
 }
 
-int c4_SortSeq::PosInMap(c4_Cursor cursor_)const
+int c4_SortSeq::PosInMap(c4_Cursor cursor_) const
 {
     int i = 0;
 
-    while (i < NumRows())
+    while (i < NumRows()) {
         if (Compare(i, cursor_) >= 0) {
             break;
         } else {
             ++i;
         }
+    }
 
     d4_assert(i == NumRows() || Compare(i, cursor_) >= 0);
     return i;
@@ -729,21 +747,20 @@ c4_Notifier *c4_SortSeq::PreChange(c4_Notifier & /*nf_*/)
     c4_Notifier *chg = d4_new c4_Notifier(this);
 
     switch (nf_._type) {
-    case c4_Notifier::kSetAt: case c4_Notifier::kSet:  {
+    case c4_Notifier::kSetAt:
+    case c4_Notifier::kSet:
         d4_assert(0); // also needs nested propagation
 
         /*
         change can require a move *and* a change of contents
          */
-    }
-    break;
+        break;
 
-    case c4_Notifier::kInsertAt:  {
+    case c4_Notifier::kInsertAt:
         d4_assert(0); // this case isn't really difficult
-    }
-    break;
+        break;
 
-    case c4_Notifier::kRemoveAt:  {
+    case c4_Notifier::kRemoveAt:
         d4_assert(0); // nested propagation is too difficult for now
         // i.e. can only use sort as last derived view
         /*
@@ -759,13 +776,11 @@ c4_Notifier *c4_SortSeq::PreChange(c4_Notifier & /*nf_*/)
 
         or perhaps more consistent with n separate removes
          */
-    }
-    break;
+        break;
 
-    case c4_Notifier::kMove:  {
+    case c4_Notifier::kMove:
         // incorrect: may need to move if recnum matters (recs same)
-    }
-    break;
+        break;
     }
 
     return chg;
@@ -778,20 +793,22 @@ c4_Notifier *c4_SortSeq::PreChange(c4_Notifier & /*nf_*/)
 void c4_SortSeq::PostChange(c4_Notifier &nf_)
 {
     switch (nf_._type) {
-    case c4_Notifier::kSet: if (_seq.PropIndex(nf_._propId) > _width) {
+    case c4_Notifier::kSet:
+        if (_seq.PropIndex(nf_._propId) > _width) {
             break;
         }
     // cannot affect sort order, valuable optimization
 
-    case c4_Notifier::kSetAt:  {
+    case c4_Notifier::kSetAt:
+    {
         int oi = (int)_revMap.GetAt(nf_._index);
         d4_assert(oi >= 0);
 
         c4_Cursor cursor(_seq, nf_._index);
 
         // move the entry if the sort order has been disrupted
-        if ((oi > 0 && Compare(oi - 1, cursor) > 0) || (oi + 1 < NumRows() &&
-                Compare(oi + 1, cursor) < 0)) {
+        if ((oi > 0 && Compare(oi - 1, cursor) > 0) || (oi + 1 < NumRows()
+                                                        && Compare(oi + 1, cursor) < 0)) {
             _rowMap.RemoveAt(oi);
             _rowMap.InsertAt(PosInMap(cursor), nf_._index);
 
@@ -799,20 +816,22 @@ void c4_SortSeq::PostChange(c4_Notifier &nf_)
         }
 
         _width = NumHandlers(); // sorry, no more optimization
+        break;
     }
-    break;
 
-    case c4_Notifier::kInsertAt:  {
+    case c4_Notifier::kInsertAt:
+    {
         // if cursor was not set, it started out as a single Set
         c4_Cursor cursor(_seq, nf_._index);
         if (nf_._cursor) {
-            cursor =  *nf_._cursor;
+            cursor = *nf_._cursor;
         }
 
-        for (int n = 0; n < NumRows(); ++n)
+        for (int n = 0; n < NumRows(); ++n) {
             if ((int)_rowMap.GetAt(n) >= nf_._index) {
                 _rowMap.ElementAt(n) += nf_._count;
             }
+        }
 
         int i = PosInMap(cursor);
         _rowMap.InsertAt(i, 0, nf_._count);
@@ -824,10 +843,11 @@ void c4_SortSeq::PostChange(c4_Notifier &nf_)
         FixupReverseMap();
 
         _width = NumHandlers(); // sorry, no more optimization
+        break;
     }
-    break;
 
-    case c4_Notifier::kRemoveAt:  {
+    case c4_Notifier::kRemoveAt:
+    {
         int lo = nf_._index;
         int hi = nf_._index + nf_._count;
 
@@ -850,19 +870,18 @@ void c4_SortSeq::PostChange(c4_Notifier &nf_)
         FixupReverseMap();
 
         _width = NumHandlers(); // sorry, no more optimization
+        break;
     }
-    break;
 
-    case c4_Notifier::kMove:  {
+    case c4_Notifier::kMove:
         // incorrect: may need to move if recnum matters (recs same)
-    }
-    break;
+        break;
     }
 }
 
 /////////////////////////////////////////////////////////////////////////////
 
-class c4_ProjectSeq: public c4_DerivedSeq
+class c4_ProjectSeq : public c4_DerivedSeq
 {
     c4_DWordArray _colMap; // a bit large, but bytes would be too small
     bool _frozen;
@@ -872,9 +891,9 @@ public:
     c4_ProjectSeq(c4_Sequence &seq_, c4_Sequence &in_, bool, c4_Sequence *out_);
     virtual ~c4_ProjectSeq();
 
-    int NumHandlers()const override;
-    c4_Handler &NthHandler(int)const override;
-    const c4_Sequence *HandlerContext(int)const override;
+    int NumHandlers() const override;
+    c4_Handler &NthHandler(int) const override;
+    const c4_Sequence *HandlerContext(int) const override;
     int AddHandler(c4_Handler *) override;
 
     bool Get(int, int, c4_Bytes &) override;
@@ -883,9 +902,9 @@ public:
 
 /////////////////////////////////////////////////////////////////////////////
 
-c4_ProjectSeq::c4_ProjectSeq(c4_Sequence &seq_, c4_Sequence &in_, bool reorder_,
-                             c4_Sequence *out_): c4_DerivedSeq(seq_), _frozen(!reorder_ && !out_),
-    _omitCount(0)
+c4_ProjectSeq::c4_ProjectSeq(c4_Sequence &seq_, c4_Sequence &in_, bool reorder_, c4_Sequence *out_) : c4_DerivedSeq(seq_)
+    , _frozen(!reorder_ && !out_)
+    , _omitCount(0)
 {
     // build the array with column indexes
     for (int j = 0; j < in_.NumHandlers(); ++j) {
@@ -918,20 +937,22 @@ c4_ProjectSeq::c4_ProjectSeq(c4_Sequence &seq_, c4_Sequence &in_, bool reorder_,
     }
 }
 
-c4_ProjectSeq::~c4_ProjectSeq() {}
+c4_ProjectSeq::~c4_ProjectSeq()
+{
+}
 
-int c4_ProjectSeq::NumHandlers()const
+int c4_ProjectSeq::NumHandlers() const
 {
     return _frozen ? _colMap.GetSize() : _seq.NumHandlers() - _omitCount;
 }
 
-c4_Handler &c4_ProjectSeq::NthHandler(int colNum_)const
+c4_Handler &c4_ProjectSeq::NthHandler(int colNum_) const
 {
     int n = colNum_ < _colMap.GetSize() ? _colMap.GetAt(colNum_) : colNum_;
     return _seq.NthHandler(n);
 }
 
-const c4_Sequence *c4_ProjectSeq::HandlerContext(int colNum_)const
+const c4_Sequence *c4_ProjectSeq::HandlerContext(int colNum_) const
 {
     int n = colNum_ < _colMap.GetSize() ? _colMap.GetAt(colNum_) : colNum_;
     return _seq.HandlerContext(n);

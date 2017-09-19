@@ -32,7 +32,6 @@
 #include <klineedit.h>
 #include <KLocalizedString>
 
-
 #include <QString>
 #include <QTimer>
 #include <QStandardPaths>

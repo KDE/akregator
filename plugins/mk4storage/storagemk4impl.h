@@ -28,11 +28,8 @@
 
 #include "storage.h"
 
-namespace Akregator
-{
-namespace Backend
-{
-
+namespace Akregator {
+namespace Backend {
 /**
  * Metakit implementation of Storage interface
  */
@@ -122,7 +119,6 @@ private:
     class StorageMK4ImplPrivate;
     StorageMK4ImplPrivate *d;
 };
-
 } // namespace Backend
 } // namespace Akregator
 

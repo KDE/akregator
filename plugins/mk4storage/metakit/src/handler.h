@@ -39,12 +39,12 @@ public:
     //: Commit the associated column(s) to file.
     virtual void OldDefine(char, c4_Persist &);
 
-    const c4_Property &Property()const;
+    const c4_Property &Property() const;
     //: Returns the property associated with this handler.
-    int PropId()const;
+    int PropId() const;
     //: Returns the id of the property associated with this handler.
 
-    void ClearBytes(c4_Bytes &buf_)const;
+    void ClearBytes(c4_Bytes &buf_) const;
     //: Returns the default value for items of this type.
 
     virtual int ItemSize(int index_) = 0;
@@ -69,7 +69,7 @@ public:
     virtual c4_Column *GetNthMemoCol(int index_, bool alloc_ = false);
     //: Special access to underlying data of memo entries
 
-    virtual bool IsPersistent()const;
+    virtual bool IsPersistent() const;
     //: True if this handler might do I/O to satisfy fetches
 
     virtual void Unmapped();
@@ -81,7 +81,7 @@ public:
 
 /////////////////////////////////////////////////////////////////////////////
 
-class c4_HandlerSeq: public c4_Sequence
+class c4_HandlerSeq : public c4_Sequence
 {
     c4_PtrArray _handlers;
     c4_Persist *_persist;
@@ -93,12 +93,12 @@ public:
     c4_HandlerSeq(c4_Persist *);
     c4_HandlerSeq(c4_HandlerSeq &owner_, c4_Handler *handler_);
 
-    int NumRows()const override;
+    int NumRows() const override;
     void SetNumRows(int) override;
 
-    int NumHandlers()const override;
-    c4_Handler &NthHandler(int)const override;
-    const c4_Sequence *HandlerContext(int)const override;
+    int NumHandlers() const override;
+    c4_Handler &NthHandler(int) const override;
+    const c4_Sequence *HandlerContext(int) const override;
     int AddHandler(c4_Handler *) override;
 
     void DefineRoot();
@@ -107,15 +107,15 @@ public:
     void DetachFromStorage(bool full_);
     void DetermineSpaceUsage();
 
-    c4_Field &Definition()const;
+    c4_Field &Definition() const;
     const char *Description() override;
-    c4_HandlerSeq &Parent()const;
-    c4_Persist *Persist()const override;
+    c4_HandlerSeq &Parent() const;
+    c4_Persist *Persist() const override;
 
-    c4_Field &Field(int)const;
-    int NumFields()const;
-    char ColumnType(int index_)const;
-    bool IsNested(int)const;
+    c4_Field &Field(int) const;
+    int NumFields() const;
+    char ColumnType(int index_) const;
+    bool IsNested(int) const;
 
     void Prepare(const t4_byte **ptr_, bool selfDesc_);
     void OldPrepare();
@@ -123,7 +123,7 @@ public:
     void FlipAllBytes();
     void ExchangeEntries(int srcPos_, c4_HandlerSeq &dst_, int dstPos_);
 
-    c4_HandlerSeq &SubEntry(int, int)const;
+    c4_HandlerSeq &SubEntry(int, int) const;
 
     c4_Field *FindField(const c4_Handler *handler_);
 

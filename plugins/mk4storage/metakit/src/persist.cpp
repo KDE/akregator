@@ -28,24 +28,24 @@ public:
     c4_FileMark(t4_i32 pos_, bool flipped_, bool extend_);
     c4_FileMark(t4_i32 pos_, int len_);
 
-    t4_i32 Offset()const;
-    t4_i32 OldOffset()const;
+    t4_i32 Offset() const;
+    t4_i32 OldOffset() const;
 
-    bool IsHeader()const;
-    bool IsOldHeader()const;
-    bool IsFlipped()const;
+    bool IsHeader() const;
+    bool IsOldHeader() const;
+    bool IsFlipped() const;
 };
 
 /////////////////////////////////////////////////////////////////////////////
 
 c4_FileMark::c4_FileMark()
 {
-    d4_assert(sizeof * this == 8);
+    d4_assert(sizeof *this == 8);
 }
 
 c4_FileMark::c4_FileMark(t4_i32 pos_, bool flipped_, bool extend_)
 {
-    d4_assert(sizeof * this == 8);
+    d4_assert(sizeof *this == 8);
     *(short *)_data = flipped_ ? kReverseFormat : kStorageFormat;
     _data[2] = extend_ ? 0x0A : 0x1A;
     _data[3] = 0;
@@ -58,7 +58,7 @@ c4_FileMark::c4_FileMark(t4_i32 pos_, bool flipped_, bool extend_)
 
 c4_FileMark::c4_FileMark(t4_i32 pos_, int len_)
 {
-    d4_assert(sizeof * this == 8);
+    d4_assert(sizeof *this == 8);
     t4_byte *p = _data;
     *p++ = 0x80;
     for (int j = 16; j >= 0; j -= 8) {
@@ -70,7 +70,7 @@ c4_FileMark::c4_FileMark(t4_i32 pos_, int len_)
     d4_assert(p == _data + sizeof _data);
 }
 
-t4_i32 c4_FileMark::Offset()const
+t4_i32 c4_FileMark::Offset() const
 {
     t4_i32 v = 0;
     for (int i = 4; i < 8; ++i) {
@@ -79,7 +79,7 @@ t4_i32 c4_FileMark::Offset()const
     return v;
 }
 
-t4_i32 c4_FileMark::OldOffset()const
+t4_i32 c4_FileMark::OldOffset() const
 {
     t4_i32 v = 0;
     for (int i = 8; --i >= 4;) {
@@ -88,33 +88,32 @@ t4_i32 c4_FileMark::OldOffset()const
     return v;
 }
 
-bool c4_FileMark::IsHeader()const
+bool c4_FileMark::IsHeader() const
 {
     return (_data[0] == 'J' || _data[0] == 'L') && (_data[0] ^ _data[1]) == ('J'
-            ^ 'L') && _data[2] == 0x1A;
+                                                                             ^ 'L') && _data[2] == 0x1A;
 }
 
-bool c4_FileMark::IsOldHeader()const
+bool c4_FileMark::IsOldHeader() const
 {
     return IsHeader() && _data[3] == 0x80;
 }
 
-bool c4_FileMark::IsFlipped()const
+bool c4_FileMark::IsFlipped() const
 {
     return *(short *)_data == kReverseFormat;
-
 }
 
 /////////////////////////////////////////////////////////////////////////////
 
-class c4_Allocator: public c4_DWordArray
+class c4_Allocator : public c4_DWordArray
 {
 public:
     c4_Allocator();
 
     void Initialize(t4_i32 first_ = 1);
 
-    t4_i32 AllocationLimit()const;
+    t4_i32 AllocationLimit() const;
 
     t4_i32 Allocate(t4_i32 len_);
     void Occupy(t4_i32 pos_, t4_i32 len_);
@@ -123,7 +122,7 @@ public:
     t4_i32 FreeCounts(t4_i32 *bytes_ = 0);
 
 private:
-    int Locate(t4_i32 pos_)const;
+    int Locate(t4_i32 pos_) const;
     void InsertPair(int i_, t4_i32 from_, t4_i32 to_);
     t4_i32 ReduceFrags(int goal_, int sHi_, int sLo_);
 };
@@ -177,7 +176,7 @@ void c4_Allocator::Initialize(t4_i32 first_)
 t4_i32 c4_Allocator::Allocate(t4_i32 len_)
 {
     // zero arg is ok, it simply returns first allocatable position
-    for (int i = 2; i < GetSize(); i += 2)
+    for (int i = 2; i < GetSize(); i += 2) {
         if (GetAt(i + 1) >= GetAt(i) + len_) {
             t4_i32 pos = GetAt(i);
             if ((t4_i32)GetAt(i + 1) > pos + len_) {
@@ -187,6 +186,7 @@ t4_i32 c4_Allocator::Allocate(t4_i32 len_)
             }
             return pos;
         }
+    }
 
     d4_assert(0);
     return 0; // not reached
@@ -204,16 +204,14 @@ void c4_Allocator::Occupy(t4_i32 pos_, t4_i32 len_)
         // allocation is not at start of free block
         d4_assert((t4_i32)GetAt(i - 1) < pos_);
 
-        if ((t4_i32)GetAt(i) == pos_ + len_)
+        if ((t4_i32)GetAt(i) == pos_ + len_) {
             // allocate from end of free block
-        {
             SetAt(i, pos_);
-        } else
+        } else {
             // split free block in two
-        {
             InsertPair(i, pos_, pos_ + len_);
         }
-    } else if ((t4_i32)GetAt(i) == pos_)
+    } else if ((t4_i32)GetAt(i) == pos_) {
         /*
         This side of the if used to be unconditional, but that was
         incorrect if ReduceFrags gets called (which only happens with
@@ -223,7 +221,6 @@ void c4_Allocator::Occupy(t4_i32 pos_, t4_i32 len_)
         is to silently "allow" such allocations - fixed 29-02-2000
         Thanks to Andrew Kuchling for his help in chasing this bug.
          */
-    {
         // else extend tail of allocated area
         if ((t4_i32)GetAt(i + 1) > pos_ + len_) {
             ElementAt(i) += len_;
@@ -242,35 +239,31 @@ void c4_Allocator::Release(t4_i32 pos, t4_i32 len)
     d4_assert(0 < i && i < GetSize());
     d4_assert(i % 2 == 0); // don't release inside a free block
 
-    if ((t4_i32)GetAt(i) == pos)
+    if ((t4_i32)GetAt(i) == pos) {
         // move start of next free down
-    {
         ElementAt(i) -= len;
-    } else if ((t4_i32)GetAt(i - 1) == pos)
+    } else if ((t4_i32)GetAt(i - 1) == pos) {
         // move end of previous free up
-    {
         ElementAt(i - 1) += len;
-    } else
+    } else {
         // insert a new entry
-    {
         InsertPair(i, pos, pos + len);
     }
 
-    if (GetAt(i - 1) == GetAt(i))
+    if (GetAt(i - 1) == GetAt(i)) {
         // merge if adjacent free
-    {
         RemoveAt(i - 1, 2);
     }
 }
 
-t4_i32 c4_Allocator::AllocationLimit()const
+t4_i32 c4_Allocator::AllocationLimit() const
 {
     d4_assert(GetSize() >= 2);
 
     return GetAt(GetSize() - 2);
 }
 
-int c4_Allocator::Locate(t4_i32 pos)const
+int c4_Allocator::Locate(t4_i32 pos) const
 {
     int lo = 0, hi = GetSize() - 1;
 
@@ -329,13 +322,14 @@ t4_i32 c4_Allocator::ReduceFrags(int goal_, int sHi_, int sLo_)
         }
 
         int n = 2;
-        for (int i = n; i < limit; i += 2)
+        for (int i = n; i < limit; i += 2) {
             if ((t4_i32)GetAt(i + 1) - (t4_i32)GetAt(i) > threshold) {
                 SetAt(n++, GetAt(i));
                 SetAt(n++, GetAt(i + 1));
             } else {
                 loss += GetAt(i + 1) - GetAt(i);
             }
+        }
 
         limit = n;
 
@@ -368,7 +362,9 @@ void c4_Allocator::Dump(const char *str_)
 
 #else
 
-void c4_Allocator::Dump(const char *str_) {}
+void c4_Allocator::Dump(const char *str_)
+{
+}
 
 #endif
 
@@ -395,7 +391,7 @@ public:
     int NewDiffID();
     void CreateDiff(int id_, c4_Column &col_);
     t4_i32 BaseOfDiff(int id_);
-    void ApplyDiff(int id_, c4_Column &col_)const;
+    void ApplyDiff(int id_, c4_Column &col_) const;
 
     void GetRoot(c4_Bytes &buffer_);
 
@@ -414,8 +410,13 @@ private:
     c4_BytesProp pBytes; //      data
 };
 
-c4_Differ::c4_Differ(c4_Storage &storage_): _storage(storage_), pCols("_C"),
-    pOrig("_O"), pDiff("_D"), pKeep("_K"), pResize("_R"), pBytes("_B")
+c4_Differ::c4_Differ(c4_Storage &storage_) : _storage(storage_)
+    , pCols("_C")
+    , pOrig("_O")
+    , pDiff("_D")
+    , pKeep("_K")
+    , pResize("_R")
+    , pBytes("_B")
 {
     // weird names, to avoid clashing with existing ones (capitalization!)
     _diffs = _storage.GetAs("_C[_O:I,_D[_K:I,_R:I,_B:B]]");
@@ -457,8 +458,8 @@ void c4_Differ::CreateDiff(int id_, c4_Column &col_)
     c4_ColIter iter(col_, 0, col_.ColSize());
     while (iter.Next()) {
         const t4_byte *p = iter.BufLoad();
-        if (strat != 0 && strat->_mapStart != 0 && p >= strat->_mapStart && p -
-                strat->_mapStart < strat->_dataSize) {
+        if (strat != 0 && strat->_mapStart != 0 && p >= strat->_mapStart && p
+            -strat->_mapStart < strat->_dataSize) {
             t4_i32 nextOff = p - strat->_mapStart;
             if (savedLen == 0) {
                 savedOff = nextOff;
@@ -489,7 +490,9 @@ void c4_Differ::CreateDiff(int id_, c4_Column &col_)
     const t4_byte *p = col_.FetchBytes(0, col_.ColSize(), t1, false);
     AddEntry(0, 0, c4_Bytes(p, col_.ColSize()));
 #endif
+    {
         pDiff(_diffs[id_]) = _temp;
+    }
 
     pOrig(_diffs[id_]) = col_.Position();
 }
@@ -501,7 +504,7 @@ t4_i32 c4_Differ::BaseOfDiff(int id_)
     return pOrig(_diffs[id_]);
 }
 
-void c4_Differ::ApplyDiff(int id_, c4_Column &col_)const
+void c4_Differ::ApplyDiff(int id_, c4_Column &col_) const
 {
     d4_assert(0 <= id_ && id_ < _diffs.GetSize());
 
@@ -518,7 +521,7 @@ void c4_Differ::ApplyDiff(int id_, c4_Column &col_)const
         // the following code is a lot like c4_MemoRef::Modify
         const t4_i32 change = pResize(row);
         if (change < 0) {
-            col_.Shrink(offset,  - change);
+            col_.Shrink(offset, -change);
         } else if (change > 0) {
             col_.Grow(offset, change);
         }
@@ -547,10 +550,21 @@ void c4_Differ::GetRoot(c4_Bytes &buffer_)
 /////////////////////////////////////////////////////////////////////////////
 
 c4_SaveContext::c4_SaveContext(c4_Strategy &strategy_, bool fullScan_, int
-                               mode_, c4_Differ *differ_, c4_Allocator *space_): _strategy(strategy_), _walk
-    (0), _differ(differ_), _space(space_), _cleanup(0), _nextSpace(0), _preflight
-    (true), _fullScan(fullScan_), _mode(mode_), _nextPosIndex(0), _bufPtr(_buffer)
-    , _curr(_buffer), _limit(_buffer)
+                               mode_, c4_Differ *differ_, c4_Allocator *space_) : _strategy(strategy_)
+    , _walk
+        (0)
+    , _differ(differ_)
+    , _space(space_)
+    , _cleanup(0)
+    , _nextSpace(0)
+    , _preflight
+        (true)
+    , _fullScan(fullScan_)
+    , _mode(mode_)
+    , _nextPosIndex(0)
+    , _bufPtr(_buffer)
+    , _curr(_buffer)
+    , _limit(_buffer)
 {
     if (_space == 0) {
         _space = _cleanup = d4_new c4_Allocator;
@@ -567,12 +581,12 @@ c4_SaveContext::~c4_SaveContext()
     }
 }
 
-bool c4_SaveContext::IsFlipped()const
+bool c4_SaveContext::IsFlipped() const
 {
     return _strategy._bytesFlipped;
 }
 
-bool c4_SaveContext::Serializing()const
+bool c4_SaveContext::Serializing() const
 {
     return _fullScan;
 }
@@ -635,8 +649,7 @@ void c4_SaveContext::StoreValue(t4_i32 v_)
     c4_Column::PushValue(_curr, v_);
 }
 
-void c4_SaveContext::SaveIt(c4_HandlerSeq &root_, c4_Allocator **spacePtr_,
-                            c4_Bytes &rootWalk_)
+void c4_SaveContext::SaveIt(c4_HandlerSeq &root_, c4_Allocator **spacePtr_, c4_Bytes &rootWalk_)
 {
     d4_assert(_space != 0);
 
@@ -689,7 +702,7 @@ void c4_SaveContext::SaveIt(c4_HandlerSeq &root_, c4_Allocator **spacePtr_,
 
     if (limit < 0) {
         // 2006-01-12 #2: catch file size exceeding 2 Gb
-        _strategy._failure =  - 1; // unusual non-zero value flags this case
+        _strategy._failure = -1;   // unusual non-zero value flags this case
         return;
     }
 
@@ -795,11 +808,11 @@ void c4_SaveContext::SaveIt(c4_HandlerSeq &root_, c4_Allocator **spacePtr_,
 
     if (_fullScan) {
         c4_FileMark mark1(limit, 0);
-        _strategy.DataWrite(_strategy.FileSize() - _strategy._baseOffset,  &mark1,
+        _strategy.DataWrite(_strategy.FileSize() - _strategy._baseOffset, &mark1,
                             sizeof mark1);
 
         c4_FileMark mark2(limit - walk.ColSize(), walk.ColSize());
-        _strategy.DataWrite(_strategy.FileSize() - _strategy._baseOffset,  &mark2,
+        _strategy.DataWrite(_strategy.FileSize() - _strategy._baseOffset, &mark2,
                             sizeof mark2);
 
         return;
@@ -924,10 +937,11 @@ void c4_SaveContext::CommitSequence(c4_HandlerSeq &seq_, bool selfDesc_)
     }
 
     StoreValue(seq_.NumRows());
-    if (seq_.NumRows() > 0)
+    if (seq_.NumRows() > 0) {
         for (int i = 0; i < seq_.NumFields(); ++i) {
             seq_.NthHandler(i).Commit(*this);
         }
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -938,9 +952,18 @@ const t4_byte *_oldCurr;
 const t4_byte *_oldLimit;
 t4_i32 _oldSeek;
 
-c4_Persist::c4_Persist(c4_Strategy &strategy_, bool owned_, int mode_): _space
-    (0), _strategy(strategy_), _root(0), _differ(0), _fCommit(0), _mode(mode_),
-    _owned(owned_), _oldBuf(0), _oldCurr(0), _oldLimit(0), _oldSeek(- 1)
+c4_Persist::c4_Persist(c4_Strategy &strategy_, bool owned_, int mode_) : _space
+        (0)
+    , _strategy(strategy_)
+    , _root(0)
+    , _differ(0)
+    , _fCommit(0)
+    , _mode(mode_)
+    , _owned(owned_)
+    , _oldBuf(0)
+    , _oldCurr(0)
+    , _oldLimit(0)
+    , _oldSeek(-1)
 {
     if (_mode == 1) {
         _space = d4_new c4_Allocator;
@@ -965,10 +988,10 @@ c4_Persist::~c4_Persist()
     }
 }
 
-c4_HandlerSeq &c4_Persist::Root()const
+c4_HandlerSeq &c4_Persist::Root() const
 {
     d4_assert(_root != 0);
-    return  *_root;
+    return *_root;
 }
 
 void c4_Persist::SetRoot(c4_HandlerSeq *root_)
@@ -977,7 +1000,7 @@ void c4_Persist::SetRoot(c4_HandlerSeq *root_)
     _root = root_;
 }
 
-c4_Strategy &c4_Persist::Strategy()const
+c4_Strategy &c4_Persist::Strategy() const
 {
     return _strategy;
 }
@@ -1008,7 +1031,7 @@ bool c4_Persist::SetAside(c4_Storage &aside_)
     return true; //! true if the generation matches
 }
 
-c4_Storage *c4_Persist::GetAside()const
+c4_Storage *c4_Persist::GetAside() const
 {
     return _differ != 0 ? &_differ->_storage : 0;
 }
@@ -1022,9 +1045,8 @@ bool c4_Persist::Commit(bool full_)
         return false;
     }
 
-    if (_mode == 0 && (_differ == 0 || full_))
+    if (_mode == 0 && (_differ == 0 || full_)) {
         // can't commit to r/o file
-    {
         return false;
     }
     // note that _strategy._failure is *zero* in this case
@@ -1084,7 +1106,7 @@ bool c4_Persist::LoadIt(c4_Column &walk_)
 
     // if the file size has increased, we must remap
     if (_strategy._mapStart != 0 && _strategy.FileSize() > _strategy._baseOffset
-            + _strategy._dataSize) {
+        + _strategy._dataSize) {
         _strategy.ResetFileMapping();
     }
 
@@ -1110,14 +1132,14 @@ void c4_Persist::LoadAll()
 
         c4_Bytes temp;
         t4_byte *buf = temp.SetBuffer(n);
-        d4_dbgdef(int n2 =)OldRead(buf, n);
+        d4_dbgdef(int n2 = ) OldRead(buf, n);
         d4_assert(n2 == n);
 
         c4_String s = "[" + c4_String((const char *)buf, n) + "]";
         const char *desc = s;
 
         c4_Field *f = d4_new c4_Field(desc);
-        d4_assert(! *desc);
+        d4_assert(!*desc);
 
         //?_root->DefineRoot();
         _root->Restructure(*f, false);
@@ -1188,7 +1210,7 @@ void c4_Persist::FetchOldLocation(c4_Column &col_)
 
 t4_i32 c4_Persist::FreeBytes(t4_i32 *bytes_)
 {
-    return _space == 0 ?  - 1 : _space->FreeCounts(bytes_);
+    return _space == 0 ? -1 : _space->FreeCounts(bytes_);
 }
 
 int c4_Persist::OldRead(t4_byte *buf_, int len_)

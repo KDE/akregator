@@ -25,11 +25,8 @@
 #define AKREGATOR_BACKEND_FEEDSTORAGEMK4IMPL_H
 
 #include "feedstorage.h"
-namespace Akregator
-{
-namespace Backend
-{
-
+namespace Akregator {
+namespace Backend {
 class StorageMK4Impl;
 class FeedStorageMK4Impl : public FeedStorage
 {
@@ -110,7 +107,6 @@ private:
     class FeedStorageMK4ImplPrivate;
     FeedStorageMK4ImplPrivate *d;
 };
-
 } // namespace Backend
 } // namespace Akregator
 

@@ -11,7 +11,7 @@
 #include "format.h"
 /////////////////////////////////////////////////////////////////////////////
 
-class c4_CustomHandler: public c4_Handler
+class c4_CustomHandler : public c4_Handler
 {
     c4_CustomSeq *_seq;
 
@@ -30,12 +30,15 @@ public:
 /////////////////////////////////////////////////////////////////////////////
 
 c4_CustomHandler::c4_CustomHandler(const c4_Property &prop_, c4_CustomSeq *seq_)
-    : c4_Handler(prop_), _seq(seq_)
+    : c4_Handler(prop_)
+    , _seq(seq_)
 {
     d4_assert(_seq != 0);
 }
 
-c4_CustomHandler::~c4_CustomHandler() {}
+c4_CustomHandler::~c4_CustomHandler()
+{
+}
 
 int c4_CustomHandler::ItemSize(int index_)
 {
@@ -91,8 +94,10 @@ c4_Handler *c4_CustomSeq::CreateHandler(const c4_Property &prop_)
 
 /////////////////////////////////////////////////////////////////////////////
 
-c4_CustomSeq::c4_CustomSeq(c4_CustomViewer *viewer_): c4_HandlerSeq(0), _viewer
-    (viewer_), _inited(false)
+c4_CustomSeq::c4_CustomSeq(c4_CustomViewer *viewer_) : c4_HandlerSeq(0)
+    , _viewer
+        (viewer_)
+    , _inited(false)
 {
     d4_assert(_viewer != 0);
 
@@ -111,7 +116,7 @@ c4_CustomSeq::~c4_CustomSeq()
     delete _viewer;
 }
 
-int c4_CustomSeq::NumRows()const
+int c4_CustomSeq::NumRows() const
 {
     return _inited ? _viewer->GetSize() : 0;
 }
@@ -161,7 +166,7 @@ void c4_CustomSeq::Move(int, int)
     d4_assert(false); //! not yet
 }
 
-bool c4_CustomSeq::DoGet(int row_, int col_, c4_Bytes &buf_)const
+bool c4_CustomSeq::DoGet(int row_, int col_, c4_Bytes &buf_) const
 {
     d4_assert(_inited);
 
@@ -172,7 +177,7 @@ void c4_CustomSeq::DoSet(int row_, int col_, const c4_Bytes &buf_)
 {
     d4_assert(_inited);
 
-    d4_dbgdef(const bool f =)_viewer->SetItem(row_, col_, buf_);
+    d4_dbgdef(const bool f = ) _viewer->SetItem(row_, col_, buf_);
     d4_assert(f);
 }
 
@@ -197,7 +202,9 @@ void c4_CustomSeq::DoSet(int row_, int col_, const c4_Bytes &buf_)
  *  view goes away.  See the DBF2MK sample code for an example of a viewer.
  */
 
-c4_CustomViewer::~c4_CustomViewer() {}
+c4_CustomViewer::~c4_CustomViewer()
+{
+}
 
 /// Locate a row in this view, try to use native searches
 int c4_CustomViewer::Lookup(c4_Cursor, int &count_)
@@ -226,7 +233,7 @@ bool c4_CustomViewer::RemoveRows(int, int)
 
 /////////////////////////////////////////////////////////////////////////////
 
-class c4_SliceViewer: public c4_CustomViewer
+class c4_SliceViewer : public c4_CustomViewer
 {
     c4_View _parent;
     int _first, _limit, _step;
@@ -244,12 +251,17 @@ public:
 };
 
 c4_SliceViewer::c4_SliceViewer(c4_Sequence &seq_, int first_, int limit_, int
-                               step_): _parent(&seq_), _first(first_), _limit(limit_), _step(step_)
+                               step_) : _parent(&seq_)
+    , _first(first_)
+    , _limit(limit_)
+    , _step(step_)
 {
     d4_assert(_step != 0);
 }
 
-c4_SliceViewer::~c4_SliceViewer() {}
+c4_SliceViewer::~c4_SliceViewer()
+{
+}
 
 c4_View c4_SliceViewer::GetTemplate()
 {
@@ -263,7 +275,7 @@ int c4_SliceViewer::GetSize()
         n = _first;
     }
 
-    int k = _step < 0 ?  - _step : _step;
+    int k = _step < 0 ? -_step : _step;
     return (n - _first + k - 1) / k;
 }
 
@@ -293,7 +305,7 @@ bool c4_SliceViewer::InsertRows(int pos_, c4_Cursor value_, int count_)
         _limit += count_;
     }
 
-    _parent.InsertAt(pos_,  *value_, count_);
+    _parent.InsertAt(pos_, *value_, count_);
     return true;
 }
 
@@ -320,7 +332,7 @@ c4_CustomViewer *f4_CustSlice(c4_Sequence &seq_, int first_, int limit_, int
 
 /////////////////////////////////////////////////////////////////////////////
 
-class c4_ProductViewer: public c4_CustomViewer
+class c4_ProductViewer : public c4_CustomViewer
 {
     c4_View _parent, _argView, _template;
 
@@ -333,15 +345,19 @@ public:
     bool GetItem(int row_, int col_, c4_Bytes &buf_) override;
 };
 
-c4_ProductViewer::c4_ProductViewer(c4_Sequence &seq_, const c4_View &view_):
-    _parent(&seq_), _argView(view_), _template(_parent.Clone())
+c4_ProductViewer::c4_ProductViewer(c4_Sequence &seq_, const c4_View &view_)
+    : _parent(&seq_)
+    , _argView(view_)
+    , _template(_parent.Clone())
 {
     for (int i = 0; i < _argView.NumProperties(); ++i) {
         _template.AddProperty(_argView.NthProperty(i));
     }
 }
 
-c4_ProductViewer::~c4_ProductViewer() {}
+c4_ProductViewer::~c4_ProductViewer()
+{
+}
 
 c4_View c4_ProductViewer::GetTemplate()
 {
@@ -377,7 +393,7 @@ c4_CustomViewer *f4_CustProduct(c4_Sequence &seq_, const c4_View &view_)
 
 /////////////////////////////////////////////////////////////////////////////
 
-class c4_RemapWithViewer: public c4_CustomViewer
+class c4_RemapWithViewer : public c4_CustomViewer
 {
     c4_View _parent, _argView;
 
@@ -392,9 +408,14 @@ public:
 };
 
 c4_RemapWithViewer::c4_RemapWithViewer(c4_Sequence &seq_, const c4_View &view_)
-    : _parent(&seq_), _argView(view_) {}
+    : _parent(&seq_)
+    , _argView(view_)
+{
+}
 
-c4_RemapWithViewer::~c4_RemapWithViewer() {}
+c4_RemapWithViewer::~c4_RemapWithViewer()
+{
+}
 
 c4_View c4_RemapWithViewer::GetTemplate()
 {
@@ -434,7 +455,7 @@ c4_CustomViewer *f4_CustRemapWith(c4_Sequence &seq_, const c4_View &view_)
 
 /////////////////////////////////////////////////////////////////////////////
 
-class c4_PairViewer: public c4_CustomViewer
+class c4_PairViewer : public c4_CustomViewer
 {
     c4_View _parent, _argView, _template;
 
@@ -450,15 +471,19 @@ public:
     bool RemoveRows(int pos_, int count_ = 1) override;
 };
 
-c4_PairViewer::c4_PairViewer(c4_Sequence &seq_, const c4_View &view_): _parent
-    (&seq_), _argView(view_), _template(_parent.Clone())
+c4_PairViewer::c4_PairViewer(c4_Sequence &seq_, const c4_View &view_) : _parent
+        (&seq_)
+    , _argView(view_)
+    , _template(_parent.Clone())
 {
     for (int i = 0; i < _argView.NumProperties(); ++i) {
         _template.AddProperty(_argView.NthProperty(i));
     }
 }
 
-c4_PairViewer::~c4_PairViewer() {}
+c4_PairViewer::~c4_PairViewer()
+{
+}
 
 c4_View c4_PairViewer::GetTemplate()
 {
@@ -499,8 +524,8 @@ bool c4_PairViewer::SetItem(int row_, int col_, const c4_Bytes &buf_)
 
 bool c4_PairViewer::InsertRows(int pos_, c4_Cursor value_, int count_)
 {
-    _parent.InsertAt(pos_,  *value_, count_);
-    _argView.InsertAt(pos_,  *value_, count_);
+    _parent.InsertAt(pos_, *value_, count_);
+    _argView.InsertAt(pos_, *value_, count_);
     return true;
 }
 
@@ -518,7 +543,7 @@ c4_CustomViewer *f4_CustPair(c4_Sequence &seq_, const c4_View &view_)
 
 /////////////////////////////////////////////////////////////////////////////
 
-class c4_ConcatViewer: public c4_CustomViewer
+class c4_ConcatViewer : public c4_CustomViewer
 {
     c4_View _parent, _argView;
 
@@ -532,10 +557,15 @@ public:
     bool SetItem(int row_, int col_, const c4_Bytes &buf_) override;
 };
 
-c4_ConcatViewer::c4_ConcatViewer(c4_Sequence &seq_, const c4_View &view_):
-    _parent(&seq_), _argView(view_) {}
+c4_ConcatViewer::c4_ConcatViewer(c4_Sequence &seq_, const c4_View &view_)
+    : _parent(&seq_)
+    , _argView(view_)
+{
+}
 
-c4_ConcatViewer::~c4_ConcatViewer() {}
+c4_ConcatViewer::~c4_ConcatViewer()
+{
+}
 
 c4_View c4_ConcatViewer::GetTemplate()
 {
@@ -586,7 +616,7 @@ c4_CustomViewer *f4_CustConcat(c4_Sequence &seq_, const c4_View &view_)
 
 /////////////////////////////////////////////////////////////////////////////
 
-class c4_RenameViewer: public c4_CustomViewer
+class c4_RenameViewer : public c4_CustomViewer
 {
     c4_View _parent, _template;
 
@@ -603,8 +633,7 @@ public:
     //virtual bool RemoveRows(int pos_, int count_=1);
 };
 
-c4_RenameViewer::c4_RenameViewer(c4_Sequence &seq_, const c4_Property &old_,
-                                 const c4_Property &new_): _parent(&seq_)
+c4_RenameViewer::c4_RenameViewer(c4_Sequence &seq_, const c4_Property &old_, const c4_Property &new_) : _parent(&seq_)
 {
     for (int i = 0; i < _parent.NumProperties(); ++i) {
         const c4_Property &prop = _parent.NthProperty(i);
@@ -612,7 +641,9 @@ c4_RenameViewer::c4_RenameViewer(c4_Sequence &seq_, const c4_Property &old_,
     }
 }
 
-c4_RenameViewer::~c4_RenameViewer() {}
+c4_RenameViewer::~c4_RenameViewer()
+{
+}
 
 c4_View c4_RenameViewer::GetTemplate()
 {
@@ -635,22 +666,21 @@ bool c4_RenameViewer::SetItem(int row_, int col_, const c4_Bytes &buf_)
     return true;
 }
 
-c4_CustomViewer *f4_CustRename(c4_Sequence &seq_, const c4_Property &old_,
-                               const c4_Property &new_)
+c4_CustomViewer *f4_CustRename(c4_Sequence &seq_, const c4_Property &old_, const c4_Property &new_)
 {
     return d4_new c4_RenameViewer(seq_, old_, new_);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 
-class c4_GroupByViewer: public c4_CustomViewer
+class c4_GroupByViewer : public c4_CustomViewer
 {
     c4_View _parent, _keys, _sorted, _temp;
     c4_Property _result;
     c4_DWordArray _map;
 
     int ScanTransitions(int lo_, int hi_, t4_byte *flags_, const c4_View
-                        &match_)const;
+                        &match_) const;
 
 public:
     c4_GroupByViewer(c4_Sequence &seq_, const c4_View &keys_, const c4_Property
@@ -662,8 +692,9 @@ public:
     bool GetItem(int row_, int col_, c4_Bytes &buf_) override;
 };
 
-c4_GroupByViewer::c4_GroupByViewer(c4_Sequence &seq_, const c4_View &keys_,
-                                   const c4_Property &result_): _parent(&seq_), _keys(keys_), _result(result_)
+c4_GroupByViewer::c4_GroupByViewer(c4_Sequence &seq_, const c4_View &keys_, const c4_Property &result_) : _parent(&seq_)
+    , _keys(keys_)
+    , _result(result_)
 {
     _sorted = _parent.SortOn(_keys);
     int n = _sorted.GetSize();
@@ -681,10 +712,11 @@ c4_GroupByViewer::c4_GroupByViewer(c4_Sequence &seq_, const c4_View &keys_,
     _map.SetSize(groups + 1);
     int j = 0;
 
-    for (int i = 0; i < n; ++i)
+    for (int i = 0; i < n; ++i) {
         if (buf[i]) {
             _map.SetAt(j++, i);
         }
+    }
 
     // also append an entry to point just past the end
     _map.SetAt(j, n);
@@ -693,10 +725,12 @@ c4_GroupByViewer::c4_GroupByViewer(c4_Sequence &seq_, const c4_View &keys_,
     d4_assert(j == groups);
 }
 
-c4_GroupByViewer::~c4_GroupByViewer() {}
+c4_GroupByViewer::~c4_GroupByViewer()
+{
+}
 
 int c4_GroupByViewer::ScanTransitions(int lo_, int hi_, t4_byte *flags_, const
-                                      c4_View &match_)const
+                                      c4_View &match_) const
 {
     d4_assert(lo_ > 0);
 
@@ -715,18 +749,20 @@ int c4_GroupByViewer::ScanTransitions(int lo_, int hi_, t4_byte *flags_, const
     }
 
     // use binary splitting if the range has enough entries
-    if (m >= 5)
+    if (m >= 5) {
         return ScanTransitions(lo_, lo_ + m / 2, flags_, match_) + ScanTransitions
-               (lo_ + m / 2, hi_, flags_, match_);
+                   (lo_ + m / 2, hi_, flags_, match_);
+    }
 
     // else use a normal linear scan
     int n = 0;
 
-    for (int i = lo_; i < hi_; ++i)
+    for (int i = lo_; i < hi_; ++i) {
         if (match_[i] != match_[i - 1]) {
             ++(flags_[i]);
             ++n;
         }
+    }
 
     return n;
 }
@@ -772,15 +808,14 @@ bool c4_GroupByViewer::GetItem(int row_, int col_, c4_Bytes &buf_)
     return true;
 }
 
-c4_CustomViewer *f4_CustGroupBy(c4_Sequence &seq_, const c4_View &template_,
-                                const c4_Property &result_)
+c4_CustomViewer *f4_CustGroupBy(c4_Sequence &seq_, const c4_View &template_, const c4_Property &result_)
 {
     return d4_new c4_GroupByViewer(seq_, template_, result_);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 
-class c4_JoinPropViewer: public c4_CustomViewer
+class c4_JoinPropViewer : public c4_CustomViewer
 {
     c4_View _parent, _template;
     c4_ViewProp _sub;
@@ -796,9 +831,11 @@ public:
     bool GetItem(int row_, int col_, c4_Bytes &buf_) override;
 };
 
-c4_JoinPropViewer::c4_JoinPropViewer(c4_Sequence &seq_, const c4_ViewProp &sub_,
-                                     bool outer_): _parent(&seq_), _sub(sub_), _subPos(_parent.FindProperty
-                                                 (sub_.GetId())), _subWidth(0)
+c4_JoinPropViewer::c4_JoinPropViewer(c4_Sequence &seq_, const c4_ViewProp &sub_, bool outer_) : _parent(&seq_)
+    , _sub(sub_)
+    , _subPos(_parent.FindProperty
+                  (sub_.GetId()))
+    , _subWidth(0)
 {
     d4_assert(_subPos >= 0);
 
@@ -806,15 +843,15 @@ c4_JoinPropViewer::c4_JoinPropViewer(c4_Sequence &seq_, const c4_ViewProp &sub_,
         if (k != _subPos) {
             _template.AddProperty(_parent.NthProperty(k));
         } else
-            // if there are no rows, then this join does very little anyway
-            //! OOPS: if this is an unattached view, then the subviews can differ
-            if (_parent.GetSize() > 0) {
-                c4_View view = sub_(_parent[0]);
-                for (int l = 0; l < view.NumProperties(); ++l) {
-                    _template.AddProperty(view.NthProperty(l));
-                    ++_subWidth;
-                }
+        // if there are no rows, then this join does very little anyway
+        //! OOPS: if this is an unattached view, then the subviews can differ
+        if (_parent.GetSize() > 0) {
+            c4_View view = sub_(_parent[0]);
+            for (int l = 0; l < view.NumProperties(); ++l) {
+                _template.AddProperty(view.NthProperty(l));
+                ++_subWidth;
             }
+        }
     }
 
     _base.SetSize(0, 5);
@@ -827,15 +864,18 @@ c4_JoinPropViewer::c4_JoinPropViewer(c4_Sequence &seq_, const c4_ViewProp &sub_,
         if (n == 0 && outer_) {
             _base.Add(i);
             _offset.Add(~(t4_i32)0); // special null entry for outer joins
-        } else
+        } else {
             for (int j = 0; j < n; ++j) {
                 _base.Add(i);
                 _offset.Add(j);
             }
+        }
     }
 }
 
-c4_JoinPropViewer::~c4_JoinPropViewer() {}
+c4_JoinPropViewer::~c4_JoinPropViewer()
+{
+}
 
 c4_View c4_JoinPropViewer::GetTemplate()
 {
@@ -874,22 +914,20 @@ bool c4_JoinPropViewer::GetItem(int row_, int col_, c4_Bytes &buf_)
     return v.GetItem(r, col_, buf_);
 }
 
-c4_CustomViewer *f4_CustJoinProp(c4_Sequence &seq_, const c4_ViewProp &sub_,
-                                 bool outer_)
+c4_CustomViewer *f4_CustJoinProp(c4_Sequence &seq_, const c4_ViewProp &sub_, bool outer_)
 {
     return d4_new c4_JoinPropViewer(seq_, sub_, outer_);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 
-class c4_JoinViewer: public c4_CustomViewer
+class c4_JoinViewer : public c4_CustomViewer
 {
     c4_View _parent, _argView, _template;
     c4_DWordArray _base, _offset;
 
 public:
-    c4_JoinViewer(c4_Sequence &seq_, const c4_View &keys_, const c4_View &view_,
-                  bool outer_);
+    c4_JoinViewer(c4_Sequence &seq_, const c4_View &keys_, const c4_View &view_, bool outer_);
     virtual ~c4_JoinViewer();
 
     c4_View GetTemplate() override;
@@ -898,7 +936,8 @@ public:
 };
 
 c4_JoinViewer::c4_JoinViewer(c4_Sequence &seq_, const c4_View &keys_, const
-                             c4_View &view_, bool outer_): _parent(&seq_), _argView(view_.SortOn(keys_))
+                             c4_View &view_, bool outer_) : _parent(&seq_)
+    , _argView(view_.SortOn(keys_))
 {
     // why not in GetTemplate, since we don't need to know this...
     _template = _parent.Clone();
@@ -930,13 +969,14 @@ c4_JoinViewer::c4_JoinViewer(c4_Sequence &seq_, const c4_View &keys_, const
             bool match = false;
 
             // advance until the temp view entry is >= this sorted entry
-            while (j < temp.GetSize())
+            while (j < temp.GetSize()) {
                 if (sorted[i] <= temp[j]) {
                     match = sorted[i] == temp[j];
                     break;
                 } else {
                     ++j;
                 }
+            }
 
             n = 0;
 
@@ -956,7 +996,9 @@ c4_JoinViewer::c4_JoinViewer(c4_Sequence &seq_, const c4_View &keys_, const
     }
 }
 
-c4_JoinViewer::~c4_JoinViewer() {}
+c4_JoinViewer::~c4_JoinViewer()
+{
+}
 
 c4_View c4_JoinViewer::GetTemplate()
 {

@@ -28,11 +28,8 @@
 #include <QString>
 #include <QStringList>
 
-namespace Akregator
-{
-namespace Backend
-{
-
+namespace Akregator {
+namespace Backend {
 Storage *StorageFactoryMK4Impl::createStorage(const QStringList &params) const
 {
     Storage *storage = new StorageMK4Impl;
@@ -53,6 +50,5 @@ QString StorageFactoryMK4Impl::name() const
 void StorageFactoryMK4Impl::configure()
 {
 }
-
 } // namespace Backend
 } // namespace Akregator

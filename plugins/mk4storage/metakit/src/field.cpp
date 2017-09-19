@@ -22,7 +22,7 @@ class c4_Field;
 /////////////////////////////////////////////////////////////////////////////
 // c4_Field
 
-c4_Field::c4_Field(const char *&description_, c4_Field *parent_): _type(0)
+c4_Field::c4_Field(const char * &description_, c4_Field *parent_) : _type(0)
 {
     _indirect = this;
 
@@ -51,21 +51,23 @@ c4_Field::c4_Field(const char *&description_, c4_Field *parent_): _type(0)
 
         if (*description_ == ']') {
             ++description_;
-        } else
+        } else {
             do {
                 // 2004-01-20 ignore duplicate property names
                 // (since there is no good way to report errors at this point)
                 c4_Field *sf = d4_new c4_Field(description_, this);
-                for (int i = 0; i < NumSubFields(); ++i)
+                for (int i = 0; i < NumSubFields(); ++i) {
                     if (SubField(i).Name().CompareNoCase(sf->Name()) == 0) {
                         delete sf;
                         sf = 0;
                         break;
                     }
+                }
                 if (sf != 0) {
                     _subFields.Add(sf);
                 }
             } while (*description_++ == ',');
+        }
     }
 }
 
@@ -75,16 +77,15 @@ c4_Field::~c4_Field()
         //better? for (int i = NumSubFields(); --i >= 0 ;)
         for (int i = 0; i < NumSubFields(); ++i) {
             c4_Field *sf = &SubField(i);
-            if (sf != this)
+            if (sf != this) {
                 // careful with recursive subfields
-            {
                 delete sf;
             }
         }
     }
 }
 
-c4_String c4_Field::Description(bool anonymous_)const
+c4_String c4_Field::Description(bool anonymous_) const
 {
     c4_String s = anonymous_ ? "?" : (const char *)Name();
 
@@ -98,7 +99,7 @@ c4_String c4_Field::Description(bool anonymous_)const
     return s;
 }
 
-c4_String c4_Field::DescribeSubFields(bool)const
+c4_String c4_Field::DescribeSubFields(bool) const
 {
     d4_assert(Type() == 'V');
 

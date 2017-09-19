@@ -17,10 +17,10 @@ public:
     c4_BaseArray();
     ~c4_BaseArray();
 
-    int GetLength()const;
+    int GetLength() const;
     void SetLength(int nNewSize);
 
-    const void *GetData(int nIndex)const;
+    const void *GetData(int nIndex) const;
     void *GetData(int nIndex);
 
     void Grow(int nIndex);
@@ -40,12 +40,12 @@ public:
     c4_PtrArray();
     ~c4_PtrArray();
 
-    int GetSize()const;
-    void SetSize(int nNewSize, int nGrowBy =  - 1);
+    int GetSize() const;
+    void SetSize(int nNewSize, int nGrowBy = -1);
 
-    void *GetAt(int nIndex)const;
+    void *GetAt(int nIndex) const;
     void SetAt(int nIndex, const void *newElement);
-    void *&ElementAt(int nIndex);
+    void * &ElementAt(int nIndex);
 
     int Add(void *newElement);
 
@@ -64,10 +64,10 @@ public:
     c4_DWordArray();
     ~c4_DWordArray();
 
-    int GetSize()const;
-    void SetSize(int nNewSize, int nGrowBy =  - 1);
+    int GetSize() const;
+    void SetSize(int nNewSize, int nGrowBy = -1);
 
-    t4_i32 GetAt(int nIndex)const;
+    t4_i32 GetAt(int nIndex) const;
     void SetAt(int nIndex, t4_i32 newElement);
     t4_i32 &ElementAt(int nIndex);
 
@@ -88,10 +88,10 @@ public:
     c4_StringArray();
     ~c4_StringArray();
 
-    int GetSize()const;
-    void SetSize(int nNewSize, int nGrowBy =  - 1);
+    int GetSize() const;
+    void SetSize(int nNewSize, int nGrowBy = -1);
 
-    const char *GetAt(int nIndex)const;
+    const char *GetAt(int nIndex) const;
     void SetAt(int nIndex, const char *newElement);
     //  c4_String& ElementAt(int nIndex);
 

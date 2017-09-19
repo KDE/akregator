@@ -46,8 +46,9 @@ class c4_HandlerSeq;
  */
 
 /// Construct an object with contents, optionally as a copy
-c4_Bytes::c4_Bytes(const void *buf_, int len_, bool copy_): _size(len_), _copy
-    (copy_)
+c4_Bytes::c4_Bytes(const void *buf_, int len_, bool copy_) : _size(len_)
+    , _copy
+        (copy_)
 {
     _contents = (t4_byte *)buf_; // moved out of intializers for DEC CXX 5.7
     if (_copy) {
@@ -56,7 +57,8 @@ c4_Bytes::c4_Bytes(const void *buf_, int len_, bool copy_): _size(len_), _copy
 }
 
 /// Copy constructor
-c4_Bytes::c4_Bytes(const c4_Bytes &src_): _size(src_._size), _copy(src_._copy)
+c4_Bytes::c4_Bytes(const c4_Bytes &src_) : _size(src_._size)
+    , _copy(src_._copy)
 {
     _contents = src_._contents; // moved out of intializers for DEC CXX 5.7
     if (_copy || _contents == src_._buffer) {
@@ -65,7 +67,7 @@ c4_Bytes::c4_Bytes(const c4_Bytes &src_): _size(src_._size), _copy(src_._copy)
 }
 
 /// Assignment, this may make a private copy of contents
-c4_Bytes &c4_Bytes::operator = (const c4_Bytes &src_)
+c4_Bytes &c4_Bytes::operator =(const c4_Bytes &src_)
 {
     if (&src_ != this) {
         _LoseCopy();
@@ -79,7 +81,7 @@ c4_Bytes &c4_Bytes::operator = (const c4_Bytes &src_)
         }
     }
 
-    return  *this;
+    return *this;
 }
 
 /// Swap the contents and ownership of two byte objects
@@ -145,16 +147,17 @@ void c4_Bytes::_MakeCopy()
 
     _copy = _size > (int)sizeof _buffer;
 
-    if (_size > 0)
+    if (_size > 0) {
         _contents = (t4_byte *)memcpy(_copy ? d4_new t4_byte[_size] : _buffer,
                                       _contents, _size);
+    }
 }
 
 /// Return true if the contents of both objects are equal
-bool operator == (const c4_Bytes &a_, const c4_Bytes &b_)
+bool operator ==(const c4_Bytes &a_, const c4_Bytes &b_)
 {
     return a_._contents == b_._contents || (a_._size == b_._size && memcmp
-                                            (a_._contents, b_._contents, a_._size) == 0);
+                                                (a_._contents, b_._contents, a_._size) == 0);
 }
 
 /////////////////////////////////////////////////////////////////////////////

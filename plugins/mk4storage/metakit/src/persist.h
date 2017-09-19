@@ -58,9 +58,9 @@ public:
     void CommitSequence(c4_HandlerSeq &seq_, bool selfDesc_);
 
     c4_Column *SetWalkBuffer(c4_Column *walk_);
-    bool IsFlipped()const;
+    bool IsFlipped() const;
 
-    bool Serializing()const;
+    bool Serializing() const;
     void AllocDump(const char *, bool = false);
 
 private:
@@ -77,7 +77,7 @@ class c4_Persist
     c4_HandlerSeq *_root;
     c4_Differ *_differ;
     c4_Bytes _rootWalk;
-    bool(c4_Persist:: *_fCommit)(bool);
+    bool (c4_Persist:: *_fCommit)(bool);
     int _mode;
     bool _owned;
 
@@ -93,15 +93,15 @@ public:
     c4_Persist(c4_Strategy &, bool owned_, int mode_);
     ~c4_Persist();
 
-    c4_HandlerSeq &Root()const;
+    c4_HandlerSeq &Root() const;
     void SetRoot(c4_HandlerSeq *root_);
-    c4_Strategy &Strategy()const;
+    c4_Strategy &Strategy() const;
 
     bool AutoCommit(bool = true);
     void DoAutoCommit();
 
     bool SetAside(c4_Storage &aside_);
-    c4_Storage *GetAside()const;
+    c4_Storage *GetAside() const;
 
     bool Commit(bool full_);
     bool Rollback(bool full_);

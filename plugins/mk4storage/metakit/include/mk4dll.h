@@ -64,48 +64,47 @@ class d4_DLL c4_String;
 
 /////////////////////////////////////////////////////////////////////////////
 
-d4_DLLSPEC(bool) operator== (const c4_View &a_, const c4_View &b_);
-d4_DLLSPEC(bool) operator!= (const c4_View &a_, const c4_View &b_);
-d4_DLLSPEC(bool) operator< (const c4_View &a_, const c4_View &b_);
-d4_DLLSPEC(bool) operator> (const c4_View &a_, const c4_View &b_);
-d4_DLLSPEC(bool) operator<= (const c4_View &a_, const c4_View &b_);
-d4_DLLSPEC(bool) operator>= (const c4_View &a_, const c4_View &b_);
+d4_DLLSPEC(bool) operator==(const c4_View &a_, const c4_View &b_);
+d4_DLLSPEC(bool) operator!=(const c4_View &a_, const c4_View &b_);
+d4_DLLSPEC(bool) operator<(const c4_View &a_, const c4_View &b_);
+d4_DLLSPEC(bool) operator>(const c4_View &a_, const c4_View &b_);
+d4_DLLSPEC(bool) operator<=(const c4_View &a_, const c4_View &b_);
+d4_DLLSPEC(bool) operator>=(const c4_View &a_, const c4_View &b_);
 
-d4_DLLSPEC(bool) operator== (c4_Cursor a_, c4_Cursor b_);
-d4_DLLSPEC(bool) operator!= (c4_Cursor a_, c4_Cursor b_);
-d4_DLLSPEC(bool) operator< (c4_Cursor a_, c4_Cursor b_);
-d4_DLLSPEC(bool) operator> (c4_Cursor a_, c4_Cursor b_);
-d4_DLLSPEC(bool) operator<= (c4_Cursor a_, c4_Cursor b_);
-d4_DLLSPEC(bool) operator>= (c4_Cursor a_, c4_Cursor b_);
-d4_DLLSPEC(c4_Cursor) operator+ (c4_Cursor cursor_, int offset_);
-d4_DLLSPEC(c4_Cursor) operator+ (int offset_, c4_Cursor cursor_);
+d4_DLLSPEC(bool) operator==(c4_Cursor a_, c4_Cursor b_);
+d4_DLLSPEC(bool) operator!=(c4_Cursor a_, c4_Cursor b_);
+d4_DLLSPEC(bool) operator<(c4_Cursor a_, c4_Cursor b_);
+d4_DLLSPEC(bool) operator>(c4_Cursor a_, c4_Cursor b_);
+d4_DLLSPEC(bool) operator<=(c4_Cursor a_, c4_Cursor b_);
+d4_DLLSPEC(bool) operator>=(c4_Cursor a_, c4_Cursor b_);
+d4_DLLSPEC(c4_Cursor) operator+(c4_Cursor cursor_, int offset_);
+d4_DLLSPEC(c4_Cursor) operator+(int offset_, c4_Cursor cursor_);
 
-d4_DLLSPEC(bool) operator== (const c4_RowRef &a_, const c4_RowRef &b_);
-d4_DLLSPEC(bool) operator!= (const c4_RowRef &a_, const c4_RowRef &b_);
-d4_DLLSPEC(bool) operator< (const c4_RowRef &a_, const c4_RowRef &b_);
-d4_DLLSPEC(bool) operator> (const c4_RowRef &a_, const c4_RowRef &b_);
-d4_DLLSPEC(bool) operator<= (const c4_RowRef &a_, const c4_RowRef &b_);
-d4_DLLSPEC(bool) operator>= (const c4_RowRef &a_, const c4_RowRef &b_);
-d4_DLLSPEC(c4_Row) operator+ (const c4_RowRef &a_, const c4_RowRef &b_);
+d4_DLLSPEC(bool) operator==(const c4_RowRef &a_, const c4_RowRef &b_);
+d4_DLLSPEC(bool) operator!=(const c4_RowRef &a_, const c4_RowRef &b_);
+d4_DLLSPEC(bool) operator<(const c4_RowRef &a_, const c4_RowRef &b_);
+d4_DLLSPEC(bool) operator>(const c4_RowRef &a_, const c4_RowRef &b_);
+d4_DLLSPEC(bool) operator<=(const c4_RowRef &a_, const c4_RowRef &b_);
+d4_DLLSPEC(bool) operator>=(const c4_RowRef &a_, const c4_RowRef &b_);
+d4_DLLSPEC(c4_Row) operator+(const c4_RowRef &a_, const c4_RowRef &b_);
 
-d4_DLLSPEC(bool) operator== (const c4_Bytes &a_, const c4_Bytes &b_);
-d4_DLLSPEC(bool) operator!= (const c4_Bytes &a_, const c4_Bytes &b_);
+d4_DLLSPEC(bool) operator==(const c4_Bytes &a_, const c4_Bytes &b_);
+d4_DLLSPEC(bool) operator!=(const c4_Bytes &a_, const c4_Bytes &b_);
 
-d4_DLLSPEC(bool) operator== (const c4_Reference &, const c4_Reference &);
-d4_DLLSPEC(bool) operator!= (const c4_Reference &, const c4_Reference &);
+d4_DLLSPEC(bool) operator==(const c4_Reference &, const c4_Reference &);
+d4_DLLSPEC(bool) operator!=(const c4_Reference &, const c4_Reference &);
 
 #if !q4_MFC
-d4_DLLSPEC(c4_String) operator+ (const c4_String &, const c4_String &);
-d4_DLLSPEC(c4_String) operator+ (const c4_String &, const char *);
-d4_DLLSPEC(c4_String) operator+ (const char *, const c4_String &);
+d4_DLLSPEC(c4_String) operator+(const c4_String &, const c4_String &);
+d4_DLLSPEC(c4_String) operator+(const c4_String &, const char *);
+d4_DLLSPEC(c4_String) operator+(const char *, const c4_String &);
 
-d4_DLLSPEC(bool) operator== (const c4_String &, const c4_String &);
-d4_DLLSPEC(bool) operator!= (const c4_String &, const c4_String &);
-d4_DLLSPEC(bool) operator== (const c4_String &s1, const char *s2);
-d4_DLLSPEC(bool) operator== (const char *s1, const c4_String &s2);
-d4_DLLSPEC(bool) operator!= (const c4_String &s1, const char *s2);
-d4_DLLSPEC(bool) operator!= (const char *s1, const c4_String &s2);
+d4_DLLSPEC(bool) operator==(const c4_String &, const c4_String &);
+d4_DLLSPEC(bool) operator!=(const c4_String &, const c4_String &);
+d4_DLLSPEC(bool) operator==(const c4_String &s1, const char *s2);
+d4_DLLSPEC(bool) operator==(const char *s1, const c4_String &s2);
+d4_DLLSPEC(bool) operator!=(const c4_String &s1, const char *s2);
+d4_DLLSPEC(bool) operator!=(const char *s1, const c4_String &s2);
 #endif
 
 /////////////////////////////////////////////////////////////////////////////
-

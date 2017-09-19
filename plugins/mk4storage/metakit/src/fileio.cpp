@@ -74,7 +74,7 @@ static CFBundleRef systemFramework = NULL;
 
 static char *fake_mmap(char *, t4_u32, int, int, int, long long)
 {
-    return (char *) - 1L;
+    return (char *)-1L;
 }
 
 static int fake_munmap(char *, t4_u32)
@@ -83,16 +83,16 @@ static int fake_munmap(char *, t4_u32)
 }
 
 static FILE *(*my_fopen)(const char *, const char *) = fopen;
-static int(*my_fclose)(FILE *) = fclose;
-static long(*my_ftell)(FILE *) = ftell;
-static int(*my_fseek)(FILE *, long, int) = fseek;
-static t4_u32(*my_fread)(void *ptr, t4_u32, t4_u32, FILE *) = fread;
-static t4_u32(*my_fwrite)(const void *ptr, t4_u32, t4_u32, FILE *) = fwrite;
-static int(*my_ferror)(FILE *) = ferror;
-static int(*my_fflush)(FILE *) = fflush;
-static int(*my_fileno)(FILE *) = fileno;
+static int (*my_fclose)(FILE *) = fclose;
+static long (*my_ftell)(FILE *) = ftell;
+static int (*my_fseek)(FILE *, long, int) = fseek;
+static t4_u32 (*my_fread)(void *ptr, t4_u32, t4_u32, FILE *) = fread;
+static t4_u32 (*my_fwrite)(const void *ptr, t4_u32, t4_u32, FILE *) = fwrite;
+static int (*my_ferror)(FILE *) = ferror;
+static int (*my_fflush)(FILE *) = fflush;
+static int (*my_fileno)(FILE *) = fileno;
 static char *(*my_mmap)(char *, t4_u32, int, int, int, long long) = fake_mmap;
-static int(*my_munmap)(char *, t4_u32) = fake_munmap;
+static int (*my_munmap)(char *, t4_u32) = fake_munmap;
 
 static void InitializeIO()
 {
@@ -103,11 +103,11 @@ static void InitializeIO()
 
     FSRef theRef;
     if (FSFindFolder(kOnAppropriateDisk, kFrameworksFolderType, false, &theRef)
-            == noErr) {
+        == noErr) {
         CFURLRef fw = CFURLCreateFromFSRef(kCFAllocatorSystemDefault, &theRef);
         if (fw) {
             CFURLRef bd = CFURLCreateCopyAppendingPathComponent
-                          (kCFAllocatorSystemDefault, fw, CFSTR("System.framework"), false);
+                              (kCFAllocatorSystemDefault, fw, CFSTR("System.framework"), false);
             CFRelease(fw);
             if (bd) {
                 systemFramework = CFBundleCreate(kCFAllocatorSystemDefault, bd);
@@ -119,19 +119,19 @@ static void InitializeIO()
         }
 #define F(x) CFBundleGetFunctionPointerForName(systemFramework, CFSTR(#x))
         my_fopen = (FILE * (*)(const char *, const char *))F(fopen);
-        my_fclose = (int(*)(FILE *))F(fclose);
-        my_ftell = (long(*)(FILE *))F(ftell);
-        my_fseek = (int(*)(FILE *, long, int))F(fseek);
-        my_fread = (t4_u32(*)(void *ptr, t4_u32, t4_u32, FILE *))F(fread);
-        my_fwrite = (t4_u32(*)(const void *ptr, t4_u32, t4_u32, FILE *))F(fwrite);
-        my_ferror = (int(*)(FILE *))F(ferror);
-        my_fflush = (int(*)(FILE *))F(fflush);
-        my_fileno = (int(*)(FILE *))F(fileno);
+        my_fclose = (int (*)(FILE *))F(fclose);
+        my_ftell = (long (*)(FILE *))F(ftell);
+        my_fseek = (int (*)(FILE *, long, int))F(fseek);
+        my_fread = (t4_u32 (*)(void *ptr, t4_u32, t4_u32, FILE *))F(fread);
+        my_fwrite = (t4_u32 (*)(const void *ptr, t4_u32, t4_u32, FILE *))F(fwrite);
+        my_ferror = (int (*)(FILE *))F(ferror);
+        my_fflush = (int (*)(FILE *))F(fflush);
+        my_fileno = (int (*)(FILE *))F(fileno);
         my_mmap = (char *(*)(char *, t4_u32, int, int, int, long long))F(mmap);
-        my_munmap = (int(*)(char *, t4_u32))F(munmap);
+        my_munmap = (int (*)(char *, t4_u32))F(munmap);
 #undef F
-        d4_assert(my_fopen && my_fclose && my_ftell && my_fseek && my_fread &&
-                  my_fwrite && my_ferror && my_fflush && my_fileno && my_mmap && my_munmap);
+        d4_assert(my_fopen && my_fclose && my_ftell && my_fseek && my_fread
+                  && my_fwrite && my_ferror && my_fflush && my_fileno && my_mmap && my_munmap);
     }
 }
 
@@ -185,8 +185,10 @@ void f4_AssertionFailed(const char *cond_, const char *file_, int line_)
 /////////////////////////////////////////////////////////////////////////////
 // c4_FileStream
 
-c4_FileStream::c4_FileStream(FILE *stream_, bool owned_): _stream(stream_),
-    _owned(owned_) {}
+c4_FileStream::c4_FileStream(FILE *stream_, bool owned_) : _stream(stream_)
+    , _owned(owned_)
+{
+}
 
 c4_FileStream::~c4_FileStream()
 {
@@ -212,7 +214,8 @@ bool c4_FileStream::Write(const void *buffer_, int length_)
 /////////////////////////////////////////////////////////////////////////////
 // c4_FileStrategy
 
-c4_FileStrategy::c4_FileStrategy(FILE *file_): _file(file_), _cleanup(0)
+c4_FileStrategy::c4_FileStrategy(FILE *file_) : _file(file_)
+    , _cleanup(0)
 {
     InitializeIO();
     ResetFileMapping();
@@ -231,7 +234,7 @@ c4_FileStrategy::~c4_FileStrategy()
     FinalizeIO();
 }
 
-bool c4_FileStrategy::IsValid()const
+bool c4_FileStrategy::IsValid() const
 {
     return _file != 0;
 }
@@ -240,7 +243,7 @@ t4_i32 c4_FileStrategy::FileSize()
 {
     d4_assert(_file != 0);
 
-    long size =  - 1;
+    long size = -1;
 
     long old = ftell(_file);
     if (old >= 0 && fseek(_file, 0, 2) == 0) {
@@ -268,7 +271,7 @@ void c4_FileStrategy::ResetFileMapping()
 #if defined(q4_WIN32) && q4_WIN32
     if (_mapStart != 0) {
         _mapStart -= _baseOffset;
-        d4_dbgdef(BOOL g =)::UnmapViewOfFile((char *)_mapStart);
+        d4_dbgdef(BOOL g = ) ::UnmapViewOfFile((char *)_mapStart);
         d4_assert(g);
         _mapStart = 0;
         _dataSize = 0;
@@ -290,7 +293,7 @@ void c4_FileStrategy::ResetFileMapping()
                     _dataSize = len - _baseOffset;
                 }
 
-                d4_dbgdef(BOOL f =)::CloseHandle(h);
+                d4_dbgdef(BOOL f = ) ::CloseHandle(h);
                 d4_assert(f);
             }
         }
@@ -308,8 +311,8 @@ void c4_FileStrategy::ResetFileMapping()
 
         if (len > 0) {
             _mapStart = (const t4_byte *)mmap(0, len, PROT_READ, MAP_SHARED, fileno
-                                              (_file), 0);
-            if (_mapStart != (void *) - 1L) {
+                                                  (_file), 0);
+            if (_mapStart != (void *)-1L) {
                 _mapStart += _baseOffset;
                 _dataSize = len - _baseOffset;
             } else {
@@ -339,17 +342,17 @@ bool c4_FileStrategy::DataOpen(const char *fname_, int mode_)
 
 #if defined(q4_WIN32) && q4_WIN32 && !q4_BORC && !q4_WINCE
     int flags = _O_BINARY | _O_NOINHERIT | (mode_ > 0 ? _O_RDWR : _O_RDONLY);
-    int fd =  - 1;
+    int fd = -1;
 
     if (GetPlatformId() != VER_PLATFORM_WIN32_NT) {
         fd = _open(fname_, flags);
     }
-    if (fd ==  - 1) {
+    if (fd == -1) {
         WCHAR wName[MAX_PATH];
-        MultiByteToWideChar(CP_UTF8, 0, fname_,  - 1, wName, MAX_PATH);
+        MultiByteToWideChar(CP_UTF8, 0, fname_, -1, wName, MAX_PATH);
         fd = _wopen(wName, flags);
     }
-    if (fd !=  - 1) {
+    if (fd != -1) {
         _cleanup = _file = _fdopen(fd, mode_ > 0 ? "r+b" : "rb");
     }
 #else
@@ -369,9 +372,9 @@ bool c4_FileStrategy::DataOpen(const char *fname_, int mode_)
     if (mode_ > 0) {
 #if defined(q4_WIN32) && q4_WIN32 && !q4_BORC && !q4_WINCE
         WCHAR wName[MAX_PATH];
-        MultiByteToWideChar(CP_UTF8, 0, fname_,  - 1, wName, MAX_PATH);
+        MultiByteToWideChar(CP_UTF8, 0, fname_, -1, wName, MAX_PATH);
         fd = _wopen(wName, flags | _O_CREAT, _S_IREAD | _S_IWRITE);
-        if (fd !=  - 1) {
+        if (fd != -1) {
             _cleanup = _file = _fdopen(fd, "w+b");
         }
 #else
@@ -394,8 +397,8 @@ int c4_FileStrategy::DataRead(t4_i32 pos_, void *buf_, int len_)
     d4_assert(_file != 0);
 
     //printf("DataRead at %d len %d\n", pos_, len_);
-    return fseek(_file, _baseOffset + pos_, 0) != 0 ?  - 1 : (int)fread(buf_, 1,
-            len_, _file);
+    return fseek(_file, _baseOffset + pos_, 0) != 0 ? -1 : (int)fread(buf_, 1,
+                                                                      len_, _file);
 }
 
 void c4_FileStrategy::DataWrite(t4_i32 pos_, const void *buf_, int len_)
@@ -405,7 +408,7 @@ void c4_FileStrategy::DataWrite(t4_i32 pos_, const void *buf_, int len_)
 #if 0
     if (_mapStart <= buf_ && buf_ < _mapStart + _dataSize) {
         printf("DataWrite %08x at %d len %d (map %d)\n", buf_, pos_, len_, (const
-                t4_byte *)buf_ - _mapStart + _baseOffset);
+                                                                            t4_byte *)buf_ - _mapStart + _baseOffset);
     } else {
         printf("DataWrite %08x at %d len %d\n", buf_, pos_, len_);
     }
@@ -432,7 +435,7 @@ void c4_FileStrategy::DataWrite(t4_i32 pos_, const void *buf_, int len_)
 #endif
 
     if (fseek(_file, _baseOffset + pos_, 0) != 0 || (int)fwrite(buf_, 1, len_,
-            _file) != len_) {
+                                                                _file) != len_) {
         _failure = ferror(_file);
         d4_assert(_failure != 0);
         d4_assert(true); // always force an assertion failure in debug mode
@@ -452,7 +455,7 @@ void c4_FileStrategy::DataCommit(t4_i32 limit_)
 
     if (limit_ > 0) {
 #if 0 // can't truncate file in a portable way!
-        // unmap the file first, WinNT is more picky about this than Win95
+      // unmap the file first, WinNT is more picky about this than Win95
         FILE *save = _file;
 
         _file = 0;

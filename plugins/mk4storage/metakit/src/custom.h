@@ -17,7 +17,7 @@
 
 /////////////////////////////////////////////////////////////////////////////
 
-class c4_CustomSeq: public c4_HandlerSeq
+class c4_CustomSeq : public c4_HandlerSeq
 {
     c4_CustomViewer *_viewer;
     bool _inited;
@@ -26,7 +26,7 @@ public:
     c4_CustomSeq(c4_CustomViewer *viewer_);
     virtual ~c4_CustomSeq();
 
-    int NumRows()const override;
+    int NumRows() const override;
 
     bool RestrictSearch(c4_Cursor, int &, int &) override;
 
@@ -34,7 +34,7 @@ public:
     void RemoveAt(int, int = 1) override;
     void Move(int from_, int) override;
 
-    bool DoGet(int row_, int col_, c4_Bytes &buf_)const;
+    bool DoGet(int row_, int col_, c4_Bytes &buf_) const;
     void DoSet(int row_, int col_, const c4_Bytes &buf_);
 
 private:
@@ -53,8 +53,7 @@ extern c4_CustomViewer *f4_CustRename(c4_Sequence &, const c4_Property &, const
                                       c4_Property &);
 extern c4_CustomViewer *f4_CustGroupBy(c4_Sequence &, const c4_View &, const
                                        c4_Property &);
-extern c4_CustomViewer *f4_CustJoinProp(c4_Sequence &, const c4_ViewProp &,
-                                        bool);
+extern c4_CustomViewer *f4_CustJoinProp(c4_Sequence &, const c4_ViewProp &, bool);
 extern c4_CustomViewer *f4_CustJoin(c4_Sequence &, const c4_View &, const
                                     c4_View &, bool);
 

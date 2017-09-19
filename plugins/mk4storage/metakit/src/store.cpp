@@ -25,7 +25,9 @@ c4_Dependencies::c4_Dependencies()
     _refs.SetSize(0, 3); // a little optimization
 }
 
-c4_Dependencies::~c4_Dependencies() {}
+c4_Dependencies::~c4_Dependencies()
+{
+}
 
 void c4_Dependencies::Add(c4_Sequence *seq_)
 {
@@ -41,12 +43,13 @@ bool c4_Dependencies::Remove(c4_Sequence *seq_)
     int n = _refs.GetSize() - 1;
     d4_assert(n >= 0);
 
-    for (int i = 0; i <= n; ++i)
+    for (int i = 0; i <= n; ++i) {
         if (_refs.GetAt(i) == seq_) {
             _refs.SetAt(i, _refs.GetAt(n));
             _refs.SetSize(n);
             return n > 0;
         }
+    }
 
     d4_assert(0); // dependency not found
     return true;
@@ -145,7 +148,7 @@ void c4_Notifier::Notify()
         if (ptr) {
             d4_assert(ptr->_origin == seq);
 
-            d4_assert(! *rover);
+            d4_assert(!*rover);
             *rover = ptr;
             rover = &ptr->_next;
         }
@@ -218,13 +221,11 @@ c4_Storage::c4_Storage(const char *fname_, int mode_)
 
 c4_Storage::c4_Storage(const c4_View &root_)
 {
-    if (root_.Persist() != 0)
+    if (root_.Persist() != 0) {
         // only restore if view was indeed persistent
-    {
         *(c4_View *)this = root_;
-    } else
+    } else {
         // if this was not possible, start with a fresh empty storage
-    {
         Initialize(*d4_new c4_Strategy, true, 0);
     }
 }
@@ -292,7 +293,7 @@ c4_View c4_Storage::GetAs(const char *description_)
     c4_Field *field = d4_new c4_Field(description_);
     d4_assert(field != 0);
 
-    d4_assert(! *description_);
+    d4_assert(!*description_);
 
     c4_String name = field->Name();
     d4_assert(!name.IsEmpty());
@@ -320,9 +321,8 @@ c4_View c4_Storage::GetAs(const char *description_)
         newDef += "," + of.Description(); // keep original field
     }
 
-    if (keep)
+    if (keep) {
         // added 19990824 ignore if deletion
-    {
         newDef += newField;
     }
     // appends new definition if not found earlier
@@ -332,9 +332,8 @@ c4_View c4_Storage::GetAs(const char *description_)
     const char *p = newDef;
     SetStructure(*p ? ++p : p); // skip the leading comma
 
-    if (!keep)
+    if (!keep) {
         // 19990916: avoid adding an empty view again
-    {
         return c4_View();
     }
 
@@ -351,7 +350,7 @@ void c4_Storage::SetStructure(const char *description_)
         description_ = s;
 
         c4_Field *field = d4_new c4_Field(description_);
-        d4_assert(! *description_);
+        d4_assert(!*description_);
 
         d4_assert(field != 0);
         Persist()->Root().Restructure(*field, false);
@@ -359,7 +358,7 @@ void c4_Storage::SetStructure(const char *description_)
 }
 
 /// Return the strategy object associated with this storage
-c4_Strategy &c4_Storage::Strategy()const
+c4_Strategy &c4_Storage::Strategy() const
 {
     return Persist()->Strategy();
 }
@@ -367,7 +366,7 @@ c4_Strategy &c4_Storage::Strategy()const
 /// Return a description of the view structure (default is all)
 const char *c4_Storage::Description(const char *name_)
 {
-    if (name_ == 0 ||  *name_ == 0) {
+    if (name_ == 0 || *name_ == 0) {
         return c4_View::Description();
     }
 
@@ -386,7 +385,7 @@ bool c4_Storage::SetAside(c4_Storage &aside_)
 }
 
 /// Return storage used for differential commits, or null
-c4_Storage *c4_Storage::GetAside()const
+c4_Storage *c4_Storage::GetAside() const
 {
     return Persist()->GetAside();
 }
@@ -448,7 +447,7 @@ t4_i32 c4_Storage::FreeSpace(t4_i32 *bytes_)
 
 /////////////////////////////////////////////////////////////////////////////
 
-c4_DerivedSeq::c4_DerivedSeq(c4_Sequence &seq_): _seq(seq_)
+c4_DerivedSeq::c4_DerivedSeq(c4_Sequence &seq_) : _seq(seq_)
 {
     _seq.Attach(this);
 }
@@ -458,27 +457,27 @@ c4_DerivedSeq::~c4_DerivedSeq()
     _seq.Detach(this);
 }
 
-int c4_DerivedSeq::RemapIndex(int index_, const c4_Sequence *seq_)const
+int c4_DerivedSeq::RemapIndex(int index_, const c4_Sequence *seq_) const
 {
     return seq_ == this ? index_ : _seq.RemapIndex(index_, seq_);
 }
 
-int c4_DerivedSeq::NumRows()const
+int c4_DerivedSeq::NumRows() const
 {
     return _seq.NumRows();
 }
 
-int c4_DerivedSeq::NumHandlers()const
+int c4_DerivedSeq::NumHandlers() const
 {
     return _seq.NumHandlers();
 }
 
-c4_Handler &c4_DerivedSeq::NthHandler(int colNum_)const
+c4_Handler &c4_DerivedSeq::NthHandler(int colNum_) const
 {
     return _seq.NthHandler(colNum_);
 }
 
-const c4_Sequence *c4_DerivedSeq::HandlerContext(int colNum_)const
+const c4_Sequence *c4_DerivedSeq::HandlerContext(int colNum_) const
 {
     return _seq.HandlerContext(colNum_);
 }
@@ -507,21 +506,26 @@ c4_Notifier *c4_DerivedSeq::PreChange(c4_Notifier &nf_)
     c4_Notifier *chg = d4_new c4_Notifier(this);
 
     switch (nf_._type) {
-    case c4_Notifier::kSetAt: chg->StartSetAt(nf_._index,  *nf_._cursor);
+    case c4_Notifier::kSetAt:
+        chg->StartSetAt(nf_._index, *nf_._cursor);
         break;
 
-    case c4_Notifier::kSet: chg->StartSet(nf_._index, nf_._propId,  *nf_._bytes)
+    case c4_Notifier::kSet:
+        chg->StartSet(nf_._index, nf_._propId, *nf_._bytes)
         ;
         break;
 
-    case c4_Notifier::kInsertAt: chg->StartInsertAt(nf_._index,  *nf_._cursor,
-                nf_._count);
+    case c4_Notifier::kInsertAt:
+        chg->StartInsertAt(nf_._index, *nf_._cursor,
+                           nf_._count);
         break;
 
-    case c4_Notifier::kRemoveAt: chg->StartRemoveAt(nf_._index, nf_._count);
+    case c4_Notifier::kRemoveAt:
+        chg->StartRemoveAt(nf_._index, nf_._count);
         break;
 
-    case c4_Notifier::kMove: chg->StartMove(nf_._index, nf_._count);
+    case c4_Notifier::kMove:
+        chg->StartMove(nf_._index, nf_._count);
         break;
     }
 
@@ -530,15 +534,22 @@ c4_Notifier *c4_DerivedSeq::PreChange(c4_Notifier &nf_)
 
 /////////////////////////////////////////////////////////////////////////////
 
-c4_StreamStrategy::c4_StreamStrategy(t4_i32 buflen_): _stream(0), _buffer
-    (d4_new t4_byte[buflen_]), _buflen(buflen_), _position(0)
+c4_StreamStrategy::c4_StreamStrategy(t4_i32 buflen_) : _stream(0)
+    , _buffer
+        (d4_new t4_byte[buflen_])
+    , _buflen(buflen_)
+    , _position(0)
 {
     _mapStart = _buffer;
     _dataSize = buflen_;
 }
 
-c4_StreamStrategy::c4_StreamStrategy(c4_Stream *stream_): _stream(stream_),
-    _buffer(0), _buflen(0), _position(0) {}
+c4_StreamStrategy::c4_StreamStrategy(c4_Stream *stream_) : _stream(stream_)
+    , _buffer(0)
+    , _buflen(0)
+    , _position(0)
+{
+}
 
 c4_StreamStrategy::~c4_StreamStrategy()
 {
@@ -550,7 +561,7 @@ c4_StreamStrategy::~c4_StreamStrategy()
     }
 }
 
-bool c4_StreamStrategy::IsValid()const
+bool c4_StreamStrategy::IsValid() const
 {
     return true;
 }

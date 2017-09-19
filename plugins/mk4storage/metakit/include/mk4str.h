@@ -50,18 +50,18 @@ public:
     c4_String(const c4_String &s);
     ~c4_String();
 
-    const c4_String &operator= (const c4_String &);
+    const c4_String &operator=(const c4_String &);
 
     operator const char *() const;
 
     char operator[](int i) const;
 
-    friend c4_String operator+ (const c4_String &, const c4_String &);
-    friend c4_String operator+ (const c4_String &, const char *);
-    friend c4_String operator+ (const char *, const c4_String &);
+    friend c4_String operator+(const c4_String &, const c4_String &);
+    friend c4_String operator+(const c4_String &, const char *);
+    friend c4_String operator+(const char *, const c4_String &);
 
-    const c4_String &operator+= (const c4_String &s);
-    const c4_String &operator+= (const char *s);
+    const c4_String &operator+=(const c4_String &s);
+    const c4_String &operator+=(const char *s);
 
     int GetLength() const;
     bool IsEmpty() const;
@@ -74,7 +74,7 @@ public:
     int Compare(const char *str) const;
     int CompareNoCase(const char *str) const;
 
-    bool operator< (const c4_String &str) const;
+    bool operator<(const c4_String &str) const;
 
     int Find(char ch) const;
     int ReverseFind(char ch) const;
@@ -86,14 +86,14 @@ public:
     c4_String SpanExcluding(const char *set) const;
 };
 
-bool operator== (const c4_String &, const c4_String &);
-bool operator!= (const c4_String &, const c4_String &);
+bool operator==(const c4_String &, const c4_String &);
+bool operator!=(const c4_String &, const c4_String &);
 
-d4_inline bool operator== (const c4_String &s1, const char *s2);
-d4_inline bool operator== (const char *s1, const c4_String &s2);
+d4_inline bool operator==(const c4_String &s1, const char *s2);
+d4_inline bool operator==(const char *s1, const c4_String &s2);
 
-d4_inline bool operator!= (const c4_String &s1, const char *s2);
-d4_inline bool operator!= (const char *s1, const c4_String &s2);
+d4_inline bool operator!=(const c4_String &s1, const char *s2);
+d4_inline bool operator!=(const char *s1, const c4_String &s2);
 
 #else                           // Universal replacement classes
 
@@ -109,21 +109,21 @@ public:
     c4_String(const c4_String &s);
     ~c4_String();
 
-    const c4_String &operator= (const c4_String &);
+    const c4_String &operator=(const c4_String &);
 
     operator const char *() const;
     operator const unsigned char *() const;
 
     char operator[](int i) const;
 
-    friend c4_String operator+ (const c4_String &, const c4_String &);
-    friend c4_String operator+ (const c4_String &, const char *);
-    friend c4_String operator+ (const char *, const c4_String &);
+    friend c4_String operator+(const c4_String &, const c4_String &);
+    friend c4_String operator+(const c4_String &, const char *);
+    friend c4_String operator+(const char *, const c4_String &);
 //  friend c4_String operator+ (const c4_String&, char);
 //  friend c4_String operator+ (char, const c4_String&);
 
-    const c4_String &operator+= (const c4_String &s);
-    const c4_String &operator+= (const char *s);
+    const c4_String &operator+=(const c4_String &s);
+    const c4_String &operator+=(const char *s);
 //  const c4_String& operator+= (char c);
 
     int GetLength() const;
@@ -134,15 +134,15 @@ public:
     c4_String Left(int nCount) const; // first nCount chars
     c4_String Right(int nCount) const; // last nCount chars
 
-    friend bool operator== (const c4_String &, const c4_String &); // memcmp
-    friend bool operator!= (const c4_String &, const c4_String &); // opposite
+    friend bool operator==(const c4_String &, const c4_String &);  // memcmp
+    friend bool operator!=(const c4_String &, const c4_String &);  // opposite
 
     // only defined for strings having no zero bytes inside them:
 
     int Compare(const char *str) const; // strcmp
     int CompareNoCase(const char *str) const; // stricmp
 
-    bool operator< (const c4_String &str) const;
+    bool operator<(const c4_String &str) const;
 
     int Find(char ch) const; // strchr
     int ReverseFind(char ch) const; // strrchr
@@ -161,11 +161,11 @@ private:
     unsigned char *_value;
 };
 
-bool operator== (const c4_String &s1, const char *s2);
-bool operator== (const char *s1, const c4_String &s2);
+bool operator==(const c4_String &s1, const char *s2);
+bool operator==(const char *s1, const c4_String &s2);
 
-bool operator!= (const c4_String &s1, const char *s2);
-bool operator!= (const char *s1, const c4_String &s2);
+bool operator!=(const c4_String &s1, const char *s2);
+bool operator!=(const char *s1, const c4_String &s2);
 
 #endif // q4_MFC elif q4_STD else q4_UNIV
 

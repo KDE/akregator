@@ -20,8 +20,8 @@
 
 #if q4_UNIX || __MINGW32__
 #define _strdup strdup
-#elif !q4_BORC && !q4_MSVC && !q4_WATC && !(q4_MWCW && defined(_WIN32)) && \
-!(q4_MWCW && __MWERKS__ >= 0x3000)
+#elif !q4_BORC && !q4_MSVC && !q4_WATC && !(q4_MWCW && defined(_WIN32))    \
+    && !(q4_MWCW && __MWERKS__ >= 0x3000)
 
 static char *_strdup(const char *p)
 {
@@ -42,7 +42,7 @@ static char *_strdup(const char *p)
 #include <stdio.h>
 
 #if q4_WIN32
-__declspec(dllexport)FILE *
+__declspec(dllexport) FILE *
 #else
 FILE *__export
 #endif
@@ -66,7 +66,10 @@ f4_FileCloseInDLL(FILE *file_)
 /////////////////////////////////////////////////////////////////////////////
 // c4_BaseArray
 
-c4_BaseArray::c4_BaseArray(): _data(0), _size(0) {}
+c4_BaseArray::c4_BaseArray() : _data(0)
+    , _size(0)
+{
+}
 
 c4_BaseArray::~c4_BaseArray()
 {
@@ -81,7 +84,7 @@ void c4_BaseArray::SetLength(int nNewSize)
     if (((_size - 1) ^ (nNewSize - 1)) >> bits) {
         const int n = (nNewSize + (1 << bits) - 1) & - (1 << bits);
         _data = _data == 0 ? n == 0 ? (char *)0 : (char *)malloc(n) : n == 0 ? (free
-                (_data), (char *)0) : (char *)realloc(_data, n);
+                                                                                    (_data), (char *)0) : (char *)realloc(_data, n);
     }
 
     d4_assert(_data != 0 || nNewSize == 0);
@@ -197,11 +200,11 @@ void c4_StringArray::SetSize(int nNewSize, int)
 void c4_StringArray::SetAt(int nIndex, const char *newElement)
 {
     char *s = (char *)_ptrs.GetAt(nIndex);
-    if (s &&  *s) {
+    if (s && *s) {
         free(s);
     }
 
-    _ptrs.SetAt(nIndex, newElement &&  *newElement ? _strdup(newElement) : "");
+    _ptrs.SetAt(nIndex, newElement && *newElement ? _strdup(newElement) : "");
 }
 
 int c4_StringArray::Add(const char *newElement)

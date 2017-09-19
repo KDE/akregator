@@ -28,7 +28,6 @@
 #include "treenodevisitor.h"
 #include "utils.h"
 
-
 #include <QPaintDevice>
 #include <QString>
 using namespace Akregator;

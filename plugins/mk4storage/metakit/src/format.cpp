@@ -13,7 +13,7 @@
 
 /////////////////////////////////////////////////////////////////////////////
 
-class c4_FormatHandler: public c4_Handler
+class c4_FormatHandler : public c4_Handler
 {
     c4_HandlerSeq &_owner;
 
@@ -21,37 +21,42 @@ public:
     c4_FormatHandler(const c4_Property &prop_, c4_HandlerSeq &owner_);
     virtual ~c4_FormatHandler();
 
-    bool IsPersistent()const override;
+    bool IsPersistent() const override;
 
 protected:
-    c4_HandlerSeq &Owner()const;
+    c4_HandlerSeq &Owner() const;
 };
 
 /////////////////////////////////////////////////////////////////////////////
 // c4_FormatHandler
 
 c4_FormatHandler::c4_FormatHandler(const c4_Property &prop_, c4_HandlerSeq
-                                   &owner_): c4_Handler(prop_), _owner(owner_) {}
+                                   &owner_) : c4_Handler(prop_)
+    , _owner(owner_)
+{
+}
 
-c4_FormatHandler::~c4_FormatHandler() {}
+c4_FormatHandler::~c4_FormatHandler()
+{
+}
 
-d4_inline c4_HandlerSeq &c4_FormatHandler::Owner()const
+d4_inline c4_HandlerSeq &c4_FormatHandler::Owner() const
 {
     return _owner;
 }
 
-bool c4_FormatHandler::IsPersistent()const
+bool c4_FormatHandler::IsPersistent() const
 {
     return _owner.Persist() != 0;
 }
 
 /////////////////////////////////////////////////////////////////////////////
 
-class c4_FormatX: public c4_FormatHandler
+class c4_FormatX : public c4_FormatHandler
 {
 public:
-    c4_FormatX(const c4_Property &prop_, c4_HandlerSeq &seq_, int width_ =
-                   sizeof(t4_i32));
+    c4_FormatX(const c4_Property &prop_, c4_HandlerSeq &seq_, int width_
+                   = sizeof(t4_i32));
 
     void Define(int, const t4_byte **) override;
     void OldDefine(char type_, c4_Persist &) override;
@@ -76,8 +81,11 @@ protected:
 
 /////////////////////////////////////////////////////////////////////////////
 
-c4_FormatX::c4_FormatX(const c4_Property &p_, c4_HandlerSeq &s_, int w_):
-    c4_FormatHandler(p_, s_), _data(s_.Persist(), w_) {}
+c4_FormatX::c4_FormatX(const c4_Property &p_, c4_HandlerSeq &s_, int w_)
+    : c4_FormatHandler(p_, s_)
+    , _data(s_.Persist(), w_)
+{
+}
 
 int c4_FormatX::DoCompare(const c4_Bytes &b1_, const c4_Bytes &b2_)
 {
@@ -145,7 +153,7 @@ void c4_FormatX::Unmapped()
 #if !defined(q4_TINY) || !q4_TINY
 /////////////////////////////////////////////////////////////////////////////
 
-class c4_FormatL: public c4_FormatX
+class c4_FormatL : public c4_FormatX
 {
 public:
     c4_FormatL(const c4_Property &prop_, c4_HandlerSeq &seq_);
@@ -157,8 +165,8 @@ public:
 
 /////////////////////////////////////////////////////////////////////////////
 
-c4_FormatL::c4_FormatL(const c4_Property &prop_, c4_HandlerSeq &seq_):
-    c4_FormatX(prop_, seq_, sizeof(t4_i64))
+c4_FormatL::c4_FormatL(const c4_Property &prop_, c4_HandlerSeq &seq_)
+    : c4_FormatX(prop_, seq_, sizeof(t4_i64))
 {
     // force maximum size, autosizing more than 32 bits won't work
     _data.SetAccessWidth(8 * sizeof(t4_i64));
@@ -172,7 +180,7 @@ int c4_FormatL::DoCompare(const c4_Bytes &b1_, const c4_Bytes &b2_)
     t4_i64 v1 = *(const t4_i64 *)b1_.Contents();
     t4_i64 v2 = *(const t4_i64 *)b2_.Contents();
 
-    return v1 == v2 ? 0 : v1 < v2 ?  - 1 :  + 1;
+    return v1 == v2 ? 0 : v1 < v2 ? -1 : +1;
 }
 
 void c4_FormatL::Define(int rows_, const t4_byte **ptr_)
@@ -187,7 +195,7 @@ void c4_FormatL::Define(int rows_, const t4_byte **ptr_)
 
 /////////////////////////////////////////////////////////////////////////////
 
-class c4_FormatF: public c4_FormatX
+class c4_FormatF : public c4_FormatX
 {
 public:
     c4_FormatF(const c4_Property &prop_, c4_HandlerSeq &seq_);
@@ -197,8 +205,10 @@ public:
 
 /////////////////////////////////////////////////////////////////////////////
 
-c4_FormatF::c4_FormatF(const c4_Property &prop_, c4_HandlerSeq &seq_):
-    c4_FormatX(prop_, seq_, sizeof(float)) {}
+c4_FormatF::c4_FormatF(const c4_Property &prop_, c4_HandlerSeq &seq_)
+    : c4_FormatX(prop_, seq_, sizeof(float))
+{
+}
 
 int c4_FormatF::DoCompare(const c4_Bytes &b1_, const c4_Bytes &b2_)
 {
@@ -208,12 +218,12 @@ int c4_FormatF::DoCompare(const c4_Bytes &b1_, const c4_Bytes &b2_)
     float v1 = *(const float *)b1_.Contents();
     float v2 = *(const float *)b2_.Contents();
 
-    return v1 == v2 ? 0 : v1 < v2 ?  - 1 :  + 1;
+    return v1 == v2 ? 0 : v1 < v2 ? -1 : +1;
 }
 
 /////////////////////////////////////////////////////////////////////////////
 
-class c4_FormatD: public c4_FormatX
+class c4_FormatD : public c4_FormatX
 {
 public:
     c4_FormatD(const c4_Property &prop_, c4_HandlerSeq &seq_);
@@ -225,8 +235,8 @@ public:
 
 /////////////////////////////////////////////////////////////////////////////
 
-c4_FormatD::c4_FormatD(const c4_Property &prop_, c4_HandlerSeq &seq_):
-    c4_FormatX(prop_, seq_, sizeof(double))
+c4_FormatD::c4_FormatD(const c4_Property &prop_, c4_HandlerSeq &seq_)
+    : c4_FormatX(prop_, seq_, sizeof(double))
 {
     // force maximum size, autosizing more than 32 bits won't work
     _data.SetAccessWidth(8 * sizeof(double));
@@ -240,7 +250,7 @@ int c4_FormatD::DoCompare(const c4_Bytes &b1_, const c4_Bytes &b2_)
     double v1 = *(const double *)b1_.Contents();
     double v2 = *(const double *)b2_.Contents();
 
-    return v1 == v2 ? 0 : v1 < v2 ?  - 1 :  + 1;
+    return v1 == v2 ? 0 : v1 < v2 ? -1 : +1;
 }
 
 void c4_FormatD::Define(int rows_, const t4_byte **ptr_)
@@ -270,7 +280,7 @@ is either a real column (size < 0), or simply a duplicate of the data
 stored inline as bytes.
  */
 
-class c4_FormatB: public c4_FormatHandler
+class c4_FormatB : public c4_FormatHandler
 {
 public:
     c4_FormatB(const c4_Property &prop_, c4_HandlerSeq &seq_);
@@ -298,9 +308,9 @@ protected:
     void SetOne(int index_, const c4_Bytes &buf_, bool ignoreMemos_ = false);
 
 private:
-    t4_i32 Offset(int index_)const;
-    bool ShouldBeMemo(int length_)const;
-    int ItemLenOffCol(int index_, t4_i32 &off_, c4_Column *&col_);
+    t4_i32 Offset(int index_) const;
+    bool ShouldBeMemo(int length_) const;
+    int ItemLenOffCol(int index_, t4_i32 &off_, c4_Column * &col_);
     bool CommitItem(c4_SaveContext &ar_, int index_);
     void InitOffsets(c4_ColOfInts &sizes_);
 
@@ -314,9 +324,12 @@ private:
 
 /////////////////////////////////////////////////////////////////////////////
 
-c4_FormatB::c4_FormatB(const c4_Property &prop_, c4_HandlerSeq &seq_):
-    c4_FormatHandler(prop_, seq_), _data(seq_.Persist()), _sizeCol(seq_.Persist())
-    , _memoCol(seq_.Persist()), _recalc(false)
+c4_FormatB::c4_FormatB(const c4_Property &prop_, c4_HandlerSeq &seq_)
+    : c4_FormatHandler(prop_, seq_)
+    , _data(seq_.Persist())
+    , _sizeCol(seq_.Persist())
+    , _memoCol(seq_.Persist())
+    , _recalc(false)
 {
     _offsets.SetSize(1, 100);
     _offsets.SetAt(0, 0);
@@ -331,7 +344,7 @@ c4_FormatB::~c4_FormatB()
     }
 }
 
-d4_inline t4_i32 c4_FormatB::Offset(int index_)const
+d4_inline t4_i32 c4_FormatB::Offset(int index_) const
 {
     d4_assert((t4_i32)_offsets.GetAt(_offsets.GetSize() - 1) == _data.ColSize());
     d4_assert(_offsets.GetSize() == _memos.GetSize() + 1);
@@ -348,7 +361,7 @@ d4_inline t4_i32 c4_FormatB::Offset(int index_)const
     return _offsets.GetAt(index_);
 }
 
-d4_inline bool c4_FormatB::ShouldBeMemo(int length_)const
+d4_inline bool c4_FormatB::ShouldBeMemo(int length_) const
 {
     // items over 10000 bytes are always memos
     // items up to 100 bytes are never memos
@@ -366,7 +379,7 @@ d4_inline bool c4_FormatB::ShouldBeMemo(int length_)const
     return length_ > 10000 || (length_ > 100 && length_ > 1000000 / rows);
 }
 
-int c4_FormatB::ItemLenOffCol(int index_, t4_i32 &off_, c4_Column *&col_)
+int c4_FormatB::ItemLenOffCol(int index_, t4_i32 &off_, c4_Column * &col_)
 {
     col_ = (c4_Column *)_memos.GetAt(index_);
     if (col_ != 0) {
@@ -385,7 +398,7 @@ c4_Column *c4_FormatB::GetNthMemoCol(int index_, bool alloc_)
     c4_Column *col;
     int n = ItemLenOffCol(index_, start, col);
 
-    if (col ==  &_data && alloc_) {
+    if (col == &_data && alloc_) {
         col = d4_new c4_Column(_data.Persist());
         _memos.SetAt(index_, col);
 
@@ -521,7 +534,7 @@ void c4_FormatB::OldDefine(char type_, c4_Persist &pers_)
                     for (int i = 0; i < rows; ++i) {
                         t4_i32 w = sizes.GetInt(i);
                         if (w < 0 || total > s2) {
-                            total =  - 1;
+                            total = -1;
                             break;
                         }
                         total += w;
@@ -554,11 +567,12 @@ void c4_FormatB::OldDefine(char type_, c4_Persist &pers_)
             c4_ColIter iter(_data, 0, _data.ColSize());
             while (iter.Next()) {
                 const t4_byte *p = iter.BufLoad();
-                for (int j = 0; j < iter.BufLen(); ++j)
+                for (int j = 0; j < iter.BufLen(); ++j) {
                     if (!p[j]) {
                         sizes.SetInt(k++, pos + j + 1 - lastEnd);
                         lastEnd = pos + j + 1;
                     }
+                }
 
                 pos += iter.BufLen();
             }
@@ -574,10 +588,11 @@ void c4_FormatB::OldDefine(char type_, c4_Persist &pers_)
             InitOffsets(sizes);
 
             // get rid of entries with just a null byte
-            for (int r = 0; r < rows; ++r)
+            for (int r = 0; r < rows; ++r) {
                 if (c4_FormatB::ItemSize(r) == 1) {
                     SetOne(r, c4_Bytes());
                 }
+            }
         }
     }
 }
@@ -605,7 +620,6 @@ void c4_FormatB::InitOffsets(c4_ColOfInts &sizes_)
 
         d4_assert(total == _data.ColSize());
     }
-
 }
 
 int c4_FormatB::ItemSize(int index_)
@@ -656,7 +670,7 @@ void c4_FormatB::SetOne(int index_, const c4_Bytes &xbuf_, bool ignoreMemos_)
     if (n > 0) {
         cp->Grow(start, n);
     } else if (n < 0) {
-        cp->Shrink(start,  - n);
+        cp->Shrink(start, -n);
     } else if (m == 0) {
         return;
     }
@@ -666,7 +680,7 @@ void c4_FormatB::SetOne(int index_, const c4_Bytes &xbuf_, bool ignoreMemos_)
 
     cp->StoreBytes(start, buf_);
 
-    if (n && cp ==  &_data) {
+    if (n && cp == &_data) {
         // if size has changed
         int k = _offsets.GetSize() - 1;
 
@@ -793,7 +807,7 @@ void c4_FormatB::Commit(c4_SaveContext &ar_)
 
     bool full = _recalc || ar_.Serializing();
 
-    if (!full)
+    if (!full) {
         for (int i = 0; i < rows; ++i) {
             c4_Column *col = (c4_Column *)_memos.GetAt(i);
             if (col != 0) {
@@ -801,6 +815,7 @@ void c4_FormatB::Commit(c4_SaveContext &ar_)
                 break;
             }
         }
+    }
     d4_assert(_recalc || _sizeCol.RowCount() == rows);
 
     if (full) {
@@ -820,12 +835,12 @@ void c4_FormatB::Commit(c4_SaveContext &ar_)
             c4_Column *col;
             int len = ItemLenOffCol(r, start, col);
 
-            bool oldMemo = col !=  &_data;
+            bool oldMemo = col != &_data;
             bool newMemo = ShouldBeMemo(len);
 
             if (!oldMemo && newMemo) {
                 col = GetNthMemoCol(r, true);
-                d4_assert(col !=  &_data);
+                d4_assert(col != &_data);
                 //? start = 0;
             }
 
@@ -870,14 +885,15 @@ void c4_FormatB::Commit(c4_SaveContext &ar_)
     // need a way to find out when the data has been committed (on 2nd pass)
     // both _sizeCol and _memoCol will be clean again when it has
     // but be careful because dirty flag is only useful if size is nonzero
-    if (_recalc && !ar_.Serializing())
+    if (_recalc && !ar_.Serializing()) {
         _recalc = (_sizeCol.ColSize() > 0 && _sizeCol.IsDirty()) || (_memoCol.ColSize()
-                  > 0 && _memoCol.IsDirty());
+                                                                     > 0 && _memoCol.IsDirty());
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////
 
-class c4_FormatS: public c4_FormatB
+class c4_FormatS : public c4_FormatB
 {
 public:
     c4_FormatS(const c4_Property &prop_, c4_HandlerSeq &seq_);
@@ -893,8 +909,10 @@ public:
 
 /////////////////////////////////////////////////////////////////////////////
 
-c4_FormatS::c4_FormatS(const c4_Property &prop_, c4_HandlerSeq &seq_):
-    c4_FormatB(prop_, seq_) {}
+c4_FormatS::c4_FormatS(const c4_Property &prop_, c4_HandlerSeq &seq_)
+    : c4_FormatB(prop_, seq_)
+{
+}
 
 int c4_FormatS::ItemSize(int index_)
 {
@@ -955,7 +973,7 @@ void c4_FormatS::Insert(int index_, const c4_Bytes &buf_, int count_)
 
 /////////////////////////////////////////////////////////////////////////////
 
-class c4_FormatV: public c4_FormatHandler
+class c4_FormatV : public c4_FormatHandler
 {
 public:
     c4_FormatV(const c4_Property &prop_, c4_HandlerSeq &seq_);
@@ -992,8 +1010,12 @@ private:
 
 /////////////////////////////////////////////////////////////////////////////
 
-c4_FormatV::c4_FormatV(const c4_Property &prop_, c4_HandlerSeq &seq_):
-    c4_FormatHandler(prop_, seq_), _data(seq_.Persist()), _inited(false) {}
+c4_FormatV::c4_FormatV(const c4_Property &prop_, c4_HandlerSeq &seq_)
+    : c4_FormatHandler(prop_, seq_)
+    , _data(seq_.Persist())
+    , _inited(false)
+{
+}
 
 c4_FormatV::~c4_FormatV()
 {
@@ -1006,13 +1028,13 @@ c4_HandlerSeq &c4_FormatV::At(int index_)
 {
     d4_assert(_inited);
 
-    c4_HandlerSeq *&hs = (c4_HandlerSeq *&)_subSeqs.ElementAt(index_);
+    c4_HandlerSeq * &hs = (c4_HandlerSeq * &)_subSeqs.ElementAt(index_);
     if (hs == 0) {
         hs = d4_new c4_HandlerSeq(Owner(), this);
         hs->IncRef();
     }
 
-    return  *hs;
+    return *hs;
 }
 
 void c4_FormatV::SetupAllSubviews()
@@ -1029,7 +1051,7 @@ void c4_FormatV::SetupAllSubviews()
             // don't materialize subview if it is empty
             // duplicates code which is in c4_HandlerSeq::Prepare
             const t4_byte *p2 = ptr;
-            d4_dbgdef(t4_i32 sias =)c4_Column::PullValue(p2);
+            d4_dbgdef(t4_i32 sias = ) c4_Column::PullValue(p2);
             d4_assert(sias == 0); // not yet
 
             if (c4_Column::PullValue(p2) > 0) {
@@ -1101,7 +1123,7 @@ int c4_FormatV::ItemSize(int index_)
     }
 
     // 06-02-2002: avoid creating empty subview
-    c4_HandlerSeq *hs = (c4_HandlerSeq *&)_subSeqs.ElementAt(index_);
+    c4_HandlerSeq *hs = (c4_HandlerSeq * &)_subSeqs.ElementAt(index_);
     return hs == 0 ? 0 : hs->NumRows();
 }
 
@@ -1112,10 +1134,10 @@ const void *c4_FormatV::Get(int index_, int &length_)
     }
 
     At(index_); // forces existence of a real entry
-    c4_HandlerSeq *&e = (c4_HandlerSeq *&)_subSeqs.ElementAt(index_);
+    c4_HandlerSeq * &e = (c4_HandlerSeq * &)_subSeqs.ElementAt(index_);
 
     length_ = sizeof(c4_HandlerSeq **);
-    return  &e;
+    return &e;
 }
 
 void c4_FormatV::Set(int index_, const c4_Bytes &buf_)
@@ -1126,9 +1148,9 @@ void c4_FormatV::Set(int index_, const c4_Bytes &buf_)
         SetupAllSubviews();
     }
 
-    c4_HandlerSeq *value = *(c4_HandlerSeq * const *)buf_.Contents();
+    c4_HandlerSeq *value = *(c4_HandlerSeq *const *)buf_.Contents();
 
-    if (value !=  &At(index_)) {
+    if (value != &At(index_)) {
         Replace(index_, value);
     }
 }
@@ -1139,13 +1161,13 @@ void c4_FormatV::Replace(int index_, c4_HandlerSeq *seq_)
         SetupAllSubviews();
     }
 
-    c4_HandlerSeq *&curr = (c4_HandlerSeq *&)_subSeqs.ElementAt(index_);
+    c4_HandlerSeq * &curr = (c4_HandlerSeq * &)_subSeqs.ElementAt(index_);
     if (seq_ == curr) {
         return;
     }
 
     if (curr != 0) {
-        d4_assert(&curr->Parent() ==  &Owner());
+        d4_assert(&curr->Parent() == &Owner());
         curr->DetachFromParent();
         curr->DetachFromStorage(true);
 
@@ -1174,10 +1196,11 @@ void c4_FormatV::Replace(int index_, c4_HandlerSeq *seq_)
 
             c4_Handler &h2 = t.NthHandler(j);
 
-            for (int k = 0; k < n; ++k)
+            for (int k = 0; k < n; ++k) {
                 if (seq_->Get(k, h1.PropId(), data)) {
                     h2.Set(k, data);
                 }
+            }
         }
     }
 }
@@ -1187,8 +1210,8 @@ int c4_FormatV::DoCompare(const c4_Bytes &b1_, const c4_Bytes &b2_)
     d4_assert(b1_.Size() == sizeof(c4_Sequence *));
     d4_assert(b2_.Size() == sizeof(c4_Sequence *));
 
-    c4_View v1 = *(c4_Sequence * const *)b1_.Contents();
-    c4_View v2 = *(c4_Sequence * const *)b2_.Contents();
+    c4_View v1 = *(c4_Sequence *const *)b1_.Contents();
+    c4_View v2 = *(c4_Sequence *const *)b2_.Contents();
 
     return v1.Compare(v2);
 }
@@ -1199,7 +1222,7 @@ void c4_FormatV::Insert(int index_, const c4_Bytes &buf_, int count_)
     d4_assert(count_ > 0);
 
     // can only insert an empty entry!
-    d4_assert(*(c4_Sequence * const *)buf_.Contents() == 0);
+    d4_assert(*(c4_Sequence *const *)buf_.Contents() == 0);
 
     if (!_inited) {
         SetupAllSubviews();
@@ -1227,8 +1250,8 @@ void c4_FormatV::Remove(int index_, int count_)
 
 void c4_FormatV::Unmapped()
 {
-    if (_inited)
-        for (int i = 0; i < _subSeqs.GetSize(); ++i)
+    if (_inited) {
+        for (int i = 0; i < _subSeqs.GetSize(); ++i) {
             if (HasSubview(i)) {
                 c4_HandlerSeq &hs = At(i);
                 hs.UnmappedAll();
@@ -1236,6 +1259,8 @@ void c4_FormatV::Unmapped()
                     ForgetSubview(i);
                 }
             }
+        }
+    }
 
     _data.ReleaseAllSegments();
 }
@@ -1251,9 +1276,9 @@ bool c4_FormatV::HasSubview(int index_)
 
 void c4_FormatV::ForgetSubview(int index_)
 {
-    c4_HandlerSeq *&seq = (c4_HandlerSeq *&)_subSeqs.ElementAt(index_);
+    c4_HandlerSeq * &seq = (c4_HandlerSeq * &)_subSeqs.ElementAt(index_);
     if (seq != 0) {
-        d4_assert(&seq->Parent() ==  &Owner());
+        d4_assert(&seq->Parent() == &Owner());
         seq->DetachFromParent();
         seq->DetachFromStorage(true);
         seq->UnmappedAll();
@@ -1274,7 +1299,7 @@ void c4_FormatV::Commit(c4_SaveContext &ar_)
     c4_Column temp(0);
     c4_Column *saved = ar_.SetWalkBuffer(&temp);
 
-    for (int r = 0; r < rows; ++r)
+    for (int r = 0; r < rows; ++r) {
         if (HasSubview(r)) {
             c4_HandlerSeq &hs = At(r);
             ar_.CommitSequence(hs, false);
@@ -1285,6 +1310,7 @@ void c4_FormatV::Commit(c4_SaveContext &ar_)
             ar_.StoreValue(0); // sias
             ar_.StoreValue(0); // row count
         }
+    }
 
     ar_.SetWalkBuffer(saved);
 

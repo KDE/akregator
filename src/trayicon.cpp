@@ -30,7 +30,6 @@
 #include <kiconloader.h>
 #include <KColorScheme>
 
-
 using namespace Akregator;
 
 TrayIcon *TrayIcon::m_instance = 0;
