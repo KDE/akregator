@@ -86,8 +86,8 @@ MainWindow::MainWindow(QWidget *parent)
     setStandardToolBarMenuEnabled(true);
     createStandardStatusBarAction();
 
-    connect(KPIM::BroadcastStatus::instance(), SIGNAL(statusMsg(QString)),
-            this, SLOT(slotSetStatusBarText(QString)));
+    connect(KPIM::BroadcastStatus::instance(), &KPIM::BroadcastStatus::statusMsg,
+            this, &MainWindow::slotSetStatusBarText);
 
     connect(qApp, &QCoreApplication::aboutToQuit, this, &MainWindow::slotOnShutdown);
 }
