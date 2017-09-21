@@ -83,7 +83,7 @@ SearchBar::SearchBar(QWidget *parent)
 SearchBar::~SearchBar()
 {
     delete d;
-    d = 0;
+    d = nullptr;
 }
 
 QString SearchBar::text() const

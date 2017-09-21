@@ -39,10 +39,9 @@ public:
 Q_SIGNALS:
     void restoreSession(Akregator::CrashWidget::CrashAction type);
 
-private Q_SLOTS:
+private:
     void slotRestoreSession(Akregator::CrashWidget::CrashAction type);
 
-private:
     Akregator::CrashWidget *mCrashWidget = nullptr;
     Akregator::MainWidget *mMainWidget = nullptr;
 };

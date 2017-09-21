@@ -56,7 +56,7 @@ public:
     QString m_url;
     QPointer<Folder> m_parentFolder;
     QPointer<TreeNode> m_after;
-    bool m_autoexec;
+    bool m_autoexec = false;
 };
 
 CreateFeedCommand::Private::Private(CreateFeedCommand *qq)
@@ -176,7 +176,7 @@ void CreateFeedCommand::setAutoExecute(bool autoexec)
 
 void CreateFeedCommand::doStart()
 {
-    QTimer::singleShot(0, this, SLOT(doCreate()));
+    QTimer::singleShot(0, this, [this]() { d->doCreate(); });
 }
 
 void CreateFeedCommand::doAbort()

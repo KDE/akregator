@@ -61,10 +61,8 @@ public Q_SLOTS:
     void fetchDiscovery(Akregator::Feed *);
     void fetchError(Akregator::Feed *);
 
-private Q_SLOTS:
-    void textChanged(const QString &);
-
 private:
+    void textChanged(const QString &);
     QString feedUrl;
     AddFeedWidget *widget = nullptr;
     Feed *m_feed = nullptr;

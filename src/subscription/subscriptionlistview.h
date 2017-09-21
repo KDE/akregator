@@ -80,11 +80,10 @@ private:
     void loadHeaderSettings();
     void restoreHeaderState();
 
-private Q_SLOTS:
+private:
     void showHeaderMenu(const QPoint &pos);
     void headerMenuItemTriggered(QAction *action);
 
-private:
     QByteArray m_headerState;
 };
 }

@@ -65,15 +65,13 @@ public:
     void readProperties(const KConfigGroup &config) override;
     void saveProperties(KConfigGroup &config) override;
 
-private Q_SLOTS:
-    void addFeed();
-
 protected:
     KParts::ReadOnlyPart *createPart() override;
     KontactInterface::UniqueAppWatcher *mUniqueAppWatcher = nullptr;
     OrgKdeAkregatorPartInterface *m_interface = nullptr;
 
 private:
+    void addFeed();
     void setHelpText(QAction *action, const QString &text);
 };
 
