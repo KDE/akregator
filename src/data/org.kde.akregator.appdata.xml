@@ -97,6 +97,7 @@
   <summary xml:lang="sv">Läsning av nyhetskanaler</summary>
   <summary xml:lang="uk">Програма для читання подач</summary>
   <summary xml:lang="x-test">xxA news feed readerxx</summary>
+  <summary xml:lang="zh-CN">新闻源阅读器</summary>
   <url type="homepage">http://akregator.kde.org/</url>
   <url type="bugtracker">https://bugs.kde.org/enter_bug.cgi?format=guided&amp;product=akregator</url>
   <url type="help">http://docs.kde.org/stable/en/kdepim/akregator/</url>
