@@ -17,9 +17,9 @@
    Boston, MA 02110-1301, USA.
 */
 
-#include "articleviewerwidget.h"
-#include <articleviewer-ng/webengine/articleviewerwebenginewidgetng.h>
 #include "mainframe.h"
+#include "articleviewerwidget.h"
+#include "articleviewer-ng/webengine/articleviewerwebenginewidgetng.h"
 
 #include <QGridLayout>
 

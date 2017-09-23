@@ -17,12 +17,14 @@
    Boston, MA 02110-1301, USA.
 */
 
-#include "openurlrequest.h"
 #include "webengineframe.h"
 #include "akrwebengineviewer.h"
-#include <QVBoxLayout>
+#include "articleviewer-ng/webengine/articleviewerwebenginewidgetng.h"
+
 #include <KIO/FavIconRequestJob>
-#include <articleviewer-ng/webengine/articleviewerwebenginewidgetng.h>
+
+#include <QVBoxLayout>
+
 using namespace Akregator;
 
 WebEngineFrame::WebEngineFrame(KActionCollection *ac, QWidget *parent)
@@ -34,13 +36,27 @@ WebEngineFrame::WebEngineFrame(KActionCollection *ac, QWidget *parent)
     Akregator::AkrWebEngineViewer *viewer = new Akregator::AkrWebEngineViewer(ac, this);
     mArticleViewerWidgetNg = new Akregator::ArticleViewerWebEngineWidgetNg(viewer, ac, this);
 
-    connect(mArticleViewerWidgetNg->articleViewerNg(), &ArticleViewerWebEngine::titleChanged, this, &WebEngineFrame::slotTitleChanged);
-    connect(mArticleViewerWidgetNg->articleViewerNg(), &ArticleViewerWebEngine::loadProgress, this, &WebEngineFrame::slotProgressChanged);
-    connect(mArticleViewerWidgetNg->articleViewerNg(), &ArticleViewerWebEngine::signalOpenUrlRequest, this, &WebEngineFrame::signalOpenUrlRequest);
-    connect(mArticleViewerWidgetNg->articleViewerNg(), &ArticleViewerWebEngine::loadStarted, this, &WebEngineFrame::slotLoadStarted);
-    connect(mArticleViewerWidgetNg->articleViewerNg(), &ArticleViewerWebEngine::loadFinished, this, &WebEngineFrame::slotLoadFinished);
-    connect(mArticleViewerWidgetNg->articleViewerNg(), &ArticleViewerWebEngine::showStatusBarMessage, this, &WebEngineFrame::showStatusBarMessage);
-    connect(mArticleViewerWidgetNg->articleViewerNg(), &ArticleViewerWebEngine::webPageMutedOrAudibleChanged, this, &WebEngineFrame::slotWebPageMutedOrAudibleChanged);
+    connect(mArticleViewerWidgetNg->articleViewerNg(), &ArticleViewerWebEngine::titleChanged,
+            this, &WebEngineFrame::slotTitleChanged);
+
+    connect(mArticleViewerWidgetNg->articleViewerNg(), &ArticleViewerWebEngine::loadProgress,
+            this, &WebEngineFrame::slotProgressChanged);
+
+    connect(mArticleViewerWidgetNg->articleViewerNg(), &ArticleViewerWebEngine::signalOpenUrlRequest,
+            this, &WebEngineFrame::signalOpenUrlRequest);
+
+    connect(mArticleViewerWidgetNg->articleViewerNg(), &ArticleViewerWebEngine::loadStarted,
+            this, &WebEngineFrame::slotLoadStarted);
+
+    connect(mArticleViewerWidgetNg->articleViewerNg(), &ArticleViewerWebEngine::loadFinished,
+            this, &WebEngineFrame::slotLoadFinished);
+
+    connect(mArticleViewerWidgetNg->articleViewerNg(), &ArticleViewerWebEngine::showStatusBarMessage,
+            this, &WebEngineFrame::showStatusBarMessage);
+
+    connect(mArticleViewerWidgetNg->articleViewerNg(), &ArticleViewerWebEngine::webPageMutedOrAudibleChanged,
+            this, &WebEngineFrame::slotWebPageMutedOrAudibleChanged);
+
     layout->addWidget(mArticleViewerWidgetNg);
 }
 

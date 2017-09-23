@@ -25,13 +25,14 @@
 #include "aboutdata.h"
 #include "mainwindow.h"
 #include "akregator_options.h"
-#include "utils.h"
 #include "akregator_debug.h"
 #include "akregratormigrateapplication.h"
+
+#include <KontactInterface/PimUniqueApplication>
+
 #include <KCrash>
-#include <KLocalizedString>
-#include <kontactinterface/pimuniqueapplication.h>
-#include <QtDBus>
+
+#include <QDBusInterface>
 
 namespace Akregator {
 class Application : public KontactInterface::PimUniqueApplication
@@ -56,7 +57,8 @@ private:
 int Application::activate(const QStringList &args, const QString &workingDir)
 {
     if (!isSessionRestored()) {
-        QDBusInterface akr(QStringLiteral("org.kde.akregator"), QStringLiteral("/Akregator"), QStringLiteral("org.kde.akregator.part"));
+        QDBusInterface akr(QStringLiteral("org.kde.akregator"), QStringLiteral("/Akregator"),
+                           QStringLiteral("org.kde.akregator.part"));
 
         QCommandLineParser *parser = cmdArgs();
         parser->process(args);
@@ -108,7 +110,8 @@ int main(int argc, char **argv)
     AkregratorMigrateApplication migrate;
     migrate.migrate();
 
-    // start knotifyclient if not already started. makes it work for people who doesn't use full kde, according to kmail devels
+    // start knotifyclient if not already started.
+    // makes it work for people who doesn't use full kde, according to kmail devels
     //KNotifyClient::startDaemon();
 
     // see if we are starting with session management

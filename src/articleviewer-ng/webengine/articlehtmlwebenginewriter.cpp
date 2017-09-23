@@ -17,9 +17,8 @@
    Boston, MA 02110-1301, USA.
 */
 
-#include "articleviewerwebengine.h"
 #include "articlehtmlwebenginewriter.h"
-
+#include "articleviewerwebengine.h"
 #include "akregator_debug.h"
 
 using namespace Akregator;
