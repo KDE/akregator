@@ -188,7 +188,7 @@ void DeleteSubscriptionCommand::Private::startDelete()
         return;
     }
 
-    QObject::connect(job, SIGNAL(finished(KJob *)), q, SLOT(jobFinished()));
+    QObject::connect(job, SIGNAL(finished(KJob*)), q, SLOT(jobFinished()));
     job->start();
 }
 
