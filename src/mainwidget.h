@@ -28,7 +28,6 @@
 #define AKREGATOR_MAINWIDGET_H
 
 #include "akregatorpart_export.h"
-#include "config-akregator.h"
 #include "articleviewer-ng/webengine/articleviewerwebenginewidgetng.h"
 #include "feed.h"
 

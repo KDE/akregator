@@ -21,7 +21,7 @@
 #define MAINFRAME_H
 
 #include "frame.h"
-#include "config-akregator.h"
+
 namespace Akregator {
 class ArticleViewerWidget;
 class AKREGATOR_EXPORT MainFrame : public Frame

@@ -26,7 +26,6 @@
 #include "akregator_part.h"
 #include "akregator_debug.h"
 
-#include "config-akregator.h"
 #include "messageviewer/messageviewersettings.h"
 #include "akregatorconfig.h"
 #include "aboutdata.h"
@@ -156,8 +155,8 @@ static QDomDocument createDefaultFeedList()
 }
 
 namespace Akregator {
-K_PLUGIN_FACTORY(AkregatorFactory, registerPlugin<Part>();
-                 )
+
+K_PLUGIN_FACTORY(AkregatorFactory, registerPlugin<Part>();)
 
 static Part *mySelf = nullptr;
 BrowserExtension::BrowserExtension(Part *p, const char *name)

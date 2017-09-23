@@ -30,9 +30,8 @@ set(KDEPIM_DEV_VERSION alpha1)
 
 # add an extra space
 if(DEFINED KDEPIM_DEV_VERSION)
-    set(KDEPIM_DEV_VERSION " ${KDEPIM_DEV_VERSION}")
+  set(KDEPIM_DEV_VERSION " ${KDEPIM_DEV_VERSION}")
 endif()
-
 
 set(KDEPIM_VERSION "${KDEPIM_VERSION_NUMBER}${KDEPIM_DEV_VERSION}")
 set(KDEPIM_LIB_VERSION "${KDEPIM_VERSION_NUMBER}")
@@ -77,20 +76,14 @@ find_package(KF5WebEngineViewer ${MESSAGELIB_LIB_VERSION_LIB} CONFIG REQUIRED)
 find_package(KF5AkonadiMime ${AKONADI_MIMELIB_VERSION} CONFIG REQUIRED)
 find_package(KF5PimCommonAkonadi ${PIMCOMMON_LIB_VERSION_LIB} CONFIG REQUIRED)
 
-add_definitions(-DQT_NO_URL_CAST_FROM_STRING)
-add_definitions(-DQT_USE_QSTRINGBUILDER)
 include_directories(${akregator_SOURCE_DIR} ${akregator_BINARY_DIR})
-include(CheckTypeSize)
-check_type_size("long" SIZEOF_LONG)
-
-configure_file(config-akregator.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-akregator.h)
 add_definitions(-DTRANSLATION_DOMAIN=\"akregator\")
 
-
+add_definitions(-DQT_NO_URL_CAST_FROM_STRING)
+add_definitions(-DQT_USE_QSTRINGBUILDER)
 add_definitions(-DQT_NO_CAST_FROM_ASCII)
 add_definitions(-DQT_NO_CAST_TO_ASCII)
 add_definitions(-DQT_NO_NARROWING_CONVERSIONS_IN_CONNECT)
-
 
 add_subdirectory(export)
 add_subdirectory(interfaces)
@@ -100,8 +93,7 @@ add_subdirectory(src)
 add_subdirectory(kontactplugin)
 add_subdirectory(kconf_update)
 
-install( FILES akregator.renamecategories akregator.categories DESTINATION ${KDE_INSTALL_CONFDIR} )
+install(FILES akregator.renamecategories akregator.categories DESTINATION ${KDE_INSTALL_CONFDIR})
 
 add_subdirectory(doc)
 feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)
-
