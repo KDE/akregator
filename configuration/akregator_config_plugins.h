@@ -17,8 +17,8 @@
    Boston, MA 02110-1301, USA.
 */
 
-#ifndef KCMAkregatorPluginsConfig_H
-#define KCMAkregatorPluginsConfig_H
+#ifndef AKREGATOR_CONFIG_PLUGINS_H
+#define AKREGATOR_CONFIG_PLUGINS_H
 
 #include <KCModule>
 #include <QVariant>
@@ -41,4 +41,4 @@ private:
     PimCommon::ConfigurePluginsWidget *mConfigurePluginWidget = nullptr;
 };
 }
-#endif // KCMAkregatorPluginsConfig_H
+#endif //  AKREGATOR_CONFIG_PLUGINS_H
