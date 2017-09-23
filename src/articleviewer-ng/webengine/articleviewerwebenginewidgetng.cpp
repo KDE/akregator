@@ -30,7 +30,6 @@
 #include <kpimtextedit/slidecontainer.h>
 
 #include <WebEngineViewer/FindBarWebEngineView>
-#include <webengineviewer/config-webengineviewer.h>
 #include <WebEngineViewer/WebEngineExportHtmlPageJob>
 
 #include <QApplication>
