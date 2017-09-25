@@ -114,7 +114,7 @@ void CreateFolderCommand::setRootFolder(Folder *rootFolder)
 
 void CreateFolderCommand::doStart()
 {
-    QTimer::singleShot(0, this, SLOT(doCreate()));
+    QTimer::singleShot(0, this, [this]() { d->doCreate(); });
 }
 
 void CreateFolderCommand::doAbort()

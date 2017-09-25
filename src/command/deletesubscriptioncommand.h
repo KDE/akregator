@@ -51,8 +51,6 @@ private:
 private:
     class Private;
     Private *const d;
-    Q_PRIVATE_SLOT(d, void startDelete())
-    Q_PRIVATE_SLOT(d, void jobFinished())
 };
 }
 

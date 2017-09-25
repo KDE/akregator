@@ -139,7 +139,7 @@ void ExpireItemsCommand::doAbort()
 
 void ExpireItemsCommand::doStart()
 {
-    QTimer::singleShot(0, this, SLOT(createDeleteJobs()));
+    QTimer::singleShot(0, this, [this]() { d->createDeleteJobs(); });
 }
 
 #include "moc_expireitemscommand.cpp"

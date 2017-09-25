@@ -165,7 +165,7 @@ QWeakPointer<FeedList> DeleteSubscriptionCommand::feedList() const
 
 void DeleteSubscriptionCommand::doStart()
 {
-    QTimer::singleShot(0, this, SLOT(startDelete()));
+    QTimer::singleShot(0, this, [this]() { d->startDelete(); });
 }
 
 void DeleteSubscriptionCommand::Private::jobFinished()
@@ -188,7 +188,7 @@ void DeleteSubscriptionCommand::Private::startDelete()
         return;
     }
 
-    QObject::connect(job, SIGNAL(finished(KJob*)), q, SLOT(jobFinished()));
+    QObject::connect(job, &DeleteSubscriptionJob::finished, q, [this]() { jobFinished(); });
     job->start();
 }
 

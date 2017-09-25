@@ -87,10 +87,8 @@ public:
 
     void start() override;
 
-private Q_SLOTS:
-    void doDelete();
-
 private:
+    void doDelete();
     int m_id;
     QWeakPointer<FeedList> m_feedList;
 };

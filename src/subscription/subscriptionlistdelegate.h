@@ -44,11 +44,9 @@ protected:
 
     void initStyleOption(QStyleOptionViewItem *option, const QModelIndex &index) const override;
 
-private Q_SLOTS:
-    void recalculateRowHeight();
-
 private:
-    int m_viewIconHeight;
+    void recalculateRowHeight();
+    int m_viewIconHeight = 0;
 };
 }
 
