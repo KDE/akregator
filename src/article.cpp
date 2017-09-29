@@ -386,7 +386,7 @@ void Article::setStatus(int stat)
             d->archive->setStatus(d->guid, d->status);
         }
         if (d->feed) {
-            d->feed->setArticleChanged(*this, oldStatus, stat != Read);
+            d->feed->setArticleChanged(*this, oldStatus);
         }
     }
 }
