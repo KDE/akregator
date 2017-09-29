@@ -264,11 +264,14 @@ private:
         */
     void setArticleDeleted(Article &a);
 
-    /** notifies that article @c mya was changed
-        @param oldStatus if the status was changed, it contains the old status, -1 otherwise
+    /** Notifies that article @p a was changed.
+        @param oldStatus The old status if the status was changed,
+        or -1 if the status was not changed
+        @param process Set to @c false to disable processing the change
+        (updating article list and updating on-screen unread count)
         To be called by @ref Article
         */
-    void setArticleChanged(Article &a, int oldStatus = -1);
+    void setArticleChanged(Article &a, int oldStatus = -1, bool process = true);
 
     void appendArticles(const Syndication::FeedPtr &feed);
 

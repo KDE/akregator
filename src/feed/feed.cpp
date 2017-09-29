@@ -828,10 +828,10 @@ void Akregator::Feed::setArticleDeleted(Article &a)
     articlesModified();
 }
 
-void Akregator::Feed::setArticleChanged(Article &a, int oldStatus)
+void Akregator::Feed::setArticleChanged(Article &a, int oldStatus, bool process)
 {
+    int newStatus = a.status();
     if (oldStatus != -1) {
-        int newStatus = a.status();
         if (oldStatus == Read && newStatus != Read) {
             setUnread(unread() + 1);
         } else if (oldStatus != Read && newStatus == Read) {
@@ -839,7 +839,9 @@ void Akregator::Feed::setArticleChanged(Article &a, int oldStatus)
         }
     }
     d->updatedArticlesNotify.append(a);
-    articlesModified();
+    if (process) {
+        articlesModified();
+    }
 }
 
 int Akregator::Feed::totalCount() const
