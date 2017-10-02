@@ -95,6 +95,7 @@ protected:
 private:
     FeedPropertiesWidget *widget = nullptr;
     Feed *m_feed = nullptr;
+    QPushButton *mOkButton = nullptr;
 
 private Q_SLOTS:
     void slotSetWindowTitle(const QString &);

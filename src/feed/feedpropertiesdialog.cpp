@@ -80,9 +80,9 @@ FeedPropertiesDialog::FeedPropertiesDialog(QWidget *parent, const QString &name)
 
     widget = new FeedPropertiesWidget(this);
     QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, this);
-    QPushButton *okButton = buttonBox->button(QDialogButtonBox::Ok);
-    okButton->setDefault(true);
-    okButton->setShortcut(Qt::CTRL | Qt::Key_Return);
+    mOkButton = buttonBox->button(QDialogButtonBox::Ok);
+    mOkButton->setDefault(true);
+    mOkButton->setShortcut(Qt::CTRL | Qt::Key_Return);
     connect(buttonBox, &QDialogButtonBox::accepted, this, &FeedPropertiesDialog::accept);
     connect(buttonBox, &QDialogButtonBox::rejected, this, &FeedPropertiesDialog::reject);
     buttonBox->button(QDialogButtonBox::Ok)->setDefault(true);
@@ -131,6 +131,7 @@ void FeedPropertiesDialog::slotSetWindowTitle(const QString &title)
 {
     setWindowTitle(title.isEmpty() ? i18n("Feed Properties")
                    : i18n("Properties of %1", title));
+    mOkButton->setEnabled(!title.trimmed().isEmpty());
 }
 
 void FeedPropertiesDialog::setFeed(Feed *feed)
