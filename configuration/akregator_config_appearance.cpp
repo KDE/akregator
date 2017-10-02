@@ -27,6 +27,7 @@
 #include <KAboutData>
 #include <KPluginFactory>
 #include <KLocalizedString>
+#include <qabstractslider.h>
 
 #include <QVBoxLayout>
 
@@ -55,8 +56,8 @@ KCMAkregatorAppearanceConfig::KCMAkregatorAppearanceConfig(QWidget *parent, cons
     connect(m_ui.slider_minimumFontSize, &QAbstractSlider::sliderMoved, m_ui.kcfg_MinimumFontSize, &QSpinBox::setValue);
     connect(m_ui.slider_mediumFontSize, &QAbstractSlider::sliderMoved, m_ui.kcfg_MediumFontSize, &QSpinBox::setValue);
 
-    connect(m_ui.kcfg_MinimumFontSize, SIGNAL(valueChanged(int)), m_ui.slider_minimumFontSize, SLOT(setValue(int)));
-    connect(m_ui.kcfg_MediumFontSize, SIGNAL(valueChanged(int)), m_ui.slider_mediumFontSize, SLOT(setValue(int)));
+    connect(m_ui.kcfg_MinimumFontSize, QOverload<int>::of(&KPluralHandlingSpinBox::valueChanged), m_ui.slider_minimumFontSize, &QSlider::setValue);
+    connect(m_ui.kcfg_MediumFontSize, QOverload<int>::of(&KPluralHandlingSpinBox::valueChanged), m_ui.slider_mediumFontSize, &QSlider::setValue);
     KAboutData *about = new KAboutData(QStringLiteral("kcmakrappearanceconfig"),
                                        i18n("Configure Feed Reader Appearance"),
                                        QString(), QString(), KAboutLicense::GPL,

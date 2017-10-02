@@ -132,7 +132,7 @@ void LoadFeedListCommand::setStorage(Backend::Storage *s)
 
 void LoadFeedListCommand::doStart()
 {
-    QTimer::singleShot(KRandom::random() % 400, this, SLOT(doLoad()));
+    QTimer::singleShot(KRandom::random() % 400, this, [this]() { d->doLoad(); });
 }
 
 void LoadFeedListCommand::doAbort()
