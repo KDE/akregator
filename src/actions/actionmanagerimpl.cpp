@@ -124,6 +124,16 @@ public:
     QAction *mQuickSearchAction = nullptr;
 };
 
+void ActionManagerImpl::slotSettingsChanged()
+{
+    QAction *a = action(QStringLiteral("feed_hide_read"));
+    if (!a) {
+        qCCritical(AKREGATOR_LOG) << "Action not found";
+        return;
+    }
+    a->setChecked(Settings::hideReadFeeds());
+}
+
 void ActionManagerImpl::slotNodeSelected(TreeNode *node)
 {
     if (node != 0) {
@@ -520,6 +530,12 @@ void ActionManagerImpl::initSubscriptionListView(SubscriptionListView *subscript
     action->setText(i18n("Go Down in Tree"));
     connect(action, &QAction::triggered, subscriptionListView, &SubscriptionListView::slotItemDown);
     coll->setDefaultShortcut(action, QKeySequence(Qt::CTRL + Qt::Key_Down));
+
+    action = coll->addAction(QStringLiteral("feed_hide_read"));
+    action->setCheckable(true);
+    action->setText(i18n("Hide Read Feeds"));
+    action->setChecked(Settings::hideReadFeeds());
+    connect(action, &QAction::triggered, subscriptionListView, &SubscriptionListView::slotSetHideReadFeeds);
 }
 
 void ActionManagerImpl::initTabWidget(TabWidget *tabWidget)

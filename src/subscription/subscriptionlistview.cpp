@@ -26,6 +26,7 @@
 #include "subscriptionlistmodel.h"
 #include "subscriptionlistdelegate.h"
 #include "akregatorconfig.h"
+#include "akregator_debug.h"
 
 #include <QHeaderView>
 #include <QStack>
@@ -385,6 +386,23 @@ void SubscriptionListView::slotItemDown()
         return;
     }
     setCurrentIndex(current.sibling(current.row() + 1, current.column()));
+}
+
+void SubscriptionListView::slotSetHideReadFeeds(bool setting)
+{
+    QAbstractItemModel *m = model();
+    if (!m) {
+        return;
+    }
+
+    FilterUnreadProxyModel *filter = qobject_cast<FilterUnreadProxyModel*>(m);
+    if (!filter) {
+        qCCritical(AKREGATOR_LOG) << "Unable to cast model to FilterUnreadProxyModel*";
+        return;
+    }
+
+    Settings::setHideReadFeeds(setting);
+    filter->setDoFilter(setting);
 }
 
 void Akregator::SubscriptionListView::ensureNodeVisible(Akregator::TreeNode *)

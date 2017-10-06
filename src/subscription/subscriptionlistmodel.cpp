@@ -40,6 +40,7 @@
 #include <QMimeData>
 #include <QUrl>
 #include <QVariant>
+#include <QItemSelection>
 
 #include <cassert>
 
@@ -49,6 +50,11 @@ using namespace Syndication;
 #define AKREGATOR_TREENODE_MIMETYPE QStringLiteral("akregator/treenode-id")
 
 namespace {
+static uint nodeIdForIndex(const QModelIndex &idx)
+{
+    return idx.isValid() ? idx.internalId() : 0;
+}
+
 static QString errorCodeToString(Syndication::ErrorCode err)
 {
     switch (err) {
@@ -75,6 +81,90 @@ static const Akregator::TreeNode *nodeForIndex(const QModelIndex &index, const F
 {
     return (!index.isValid() || !feedList) ? 0 : feedList->findByID(index.internalId());
 }
+}
+
+Akregator::FilterUnreadProxyModel::FilterUnreadProxyModel(QObject *parent)
+    : QSortFilterProxyModel(parent)
+    , m_doFilter(false)
+    , m_selectedHierarchy()
+{
+    setDynamicSortFilter(true);
+}
+
+bool Akregator::FilterUnreadProxyModel::doFilter() const
+{
+    return m_doFilter;
+}
+
+void Akregator::FilterUnreadProxyModel::setDoFilter(bool v)
+{
+    m_doFilter = v;
+    invalidateFilter();
+}
+
+void Akregator::FilterUnreadProxyModel::setSourceModel(QAbstractItemModel *src)
+{
+    clearCache();
+    QSortFilterProxyModel::setSourceModel(src);
+}
+
+bool Akregator::FilterUnreadProxyModel::filterAcceptsRow(int source_row, const QModelIndex &source_parent) const
+{
+    if (!m_doFilter) {
+        return true;
+    }
+
+    QModelIndex idx = sourceModel()->index(source_row, 0, source_parent);
+
+    if (m_selectedHierarchy.contains(idx))
+        return true;
+
+    QVariant v = idx.data(SubscriptionListModel::HasUnreadRole);
+    if (v.isNull())
+        return true;
+
+    return v.toBool();
+}
+
+/**
+ * This caches the hierarchy of the selected node. Its purpose is to allow
+ * feeds/folders with no unread content not to be filtered out immediately,
+ * which would occur otherwise (we'd select the last article to read, it would
+ * become unread, and disappear from the list without letting us view it).
+ **/
+void Akregator::FilterUnreadProxyModel::selectionChanged(const QItemSelection &selected, const QItemSelection &deselected)
+{
+    QModelIndexList desel = mapSelectionToSource(deselected).indexes();
+    //calling invalidateFilter causes refiltering at the call point, so we should
+    //call it ONLY after we recreate our node cache
+    bool doInvalidate = false;
+
+    //if we're deselecting an empty feed/folder, we need to hide it
+    if (!desel.isEmpty()) {
+        if (m_selectedHierarchy.contains(desel.at(0))) {
+            doInvalidate = true;
+        }
+    }
+
+    clearCache();
+
+    QModelIndexList sel = mapSelectionToSource(selected).indexes();
+    if (!sel.isEmpty()) {
+        //XXX add support for multiple selections? this doesn't generally make sense in this case honestly
+        QModelIndex current = sel.at(0);
+        while (current.isValid()) {
+            m_selectedHierarchy.insert(current);
+            current = current.parent();
+        }
+    }
+
+    if (doInvalidate && doFilter())
+        invalidateFilter();
+}
+
+void Akregator::FilterUnreadProxyModel::clearCache()
+{
+    m_selectedHierarchy.clear();
 }
 
 Akregator::SubscriptionListModel::SubscriptionListModel(const QSharedPointer<const FeedList> &feedList, QObject *parent) : QAbstractItemModel(parent)
@@ -113,11 +203,6 @@ int Akregator::SubscriptionListModel::rowCount(const QModelIndex &parent) const
 
     const Akregator::TreeNode *const node = nodeForIndex(parent, m_feedList.data());
     return node ? node->children().count() : 0;
-}
-
-uint Akregator::SubscriptionListModel::nodeIdForIndex(const QModelIndex &idx) const
-{
-    return idx.isValid() ? idx.internalId() : 0;
 }
 
 QVariant Akregator::SubscriptionListModel::data(const QModelIndex &index, int role) const
@@ -343,7 +428,7 @@ void Akregator::FolderExpansionHandler::setExpanded(const QModelIndex &idx, bool
     if (!m_feedList || !m_model) {
         return;
     }
-    Akregator::TreeNode *const node = m_feedList->findByID(m_model->nodeIdForIndex(idx));
+    Akregator::TreeNode *const node = m_feedList->findByID(nodeIdForIndex(idx));
     if (!node || !node->isGroup()) {
         return;
     }
@@ -359,7 +444,7 @@ FolderExpansionHandler::FolderExpansionHandler(QObject *parent) : QObject(parent
 {
 }
 
-void FolderExpansionHandler::setModel(Akregator::SubscriptionListModel *model)
+void FolderExpansionHandler::setModel(QAbstractItemModel *model)
 {
     m_model = model;
 }

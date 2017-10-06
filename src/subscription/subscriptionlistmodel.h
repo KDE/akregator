@@ -27,6 +27,8 @@
 #include "akregatorpart_export.h"
 
 #include <QAbstractItemModel>
+#include <QSet>
+#include <QSortFilterProxyModel>
 
 #include <QSharedPointer>
 
@@ -35,6 +37,34 @@ class Feed;
 class FeedList;
 class Folder;
 class TreeNode;
+
+/**
+ * Filters feeds with unread counts.
+ */
+class FilterUnreadProxyModel : public QSortFilterProxyModel
+{
+    Q_OBJECT
+public:
+    explicit FilterUnreadProxyModel(QObject* parent = nullptr);
+
+    bool doFilter() const;
+
+    void setDoFilter(bool v);
+
+    void setSourceModel(QAbstractItemModel *src) override;
+
+public slots:
+    void selectionChanged(const QItemSelection &selected, const QItemSelection &deselected);
+    void clearCache();
+
+private:
+    bool filterAcceptsRow(int source_row, const QModelIndex &source_parent) const override;
+
+    typedef QSet<QModelIndex> SelectionHierarchy;
+
+    bool m_doFilter;
+    SelectionHierarchy m_selectedHierarchy;
+};
 
 class AKREGATORPART_EXPORT SubscriptionListModel : public QAbstractItemModel
 {
@@ -83,8 +113,6 @@ public:
 
     bool setData(const QModelIndex &idx, const QVariant &value, int role = Qt::EditRole) override;
 
-    uint nodeIdForIndex(const QModelIndex &index) const;
-
 private:
     QModelIndex indexForNode(const TreeNode *node) const;
 
@@ -122,7 +150,7 @@ public:
     explicit FolderExpansionHandler(QObject *parent = nullptr);
 
     void setFeedList(const QSharedPointer<FeedList> &feedList);
-    void setModel(Akregator::SubscriptionListModel *model);
+    void setModel(QAbstractItemModel *model);
 
 public Q_SLOTS:
     void itemExpanded(const QModelIndex &index);
@@ -133,7 +161,7 @@ private:
 
 private:
     QSharedPointer<FeedList> m_feedList;
-    SubscriptionListModel *m_model = nullptr;
+    QAbstractItemModel *m_model = nullptr;
 };
 } // namespace Akregator
 

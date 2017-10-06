@@ -120,6 +120,9 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
     m_displayingAboutPage = false;
     setFocusPolicy(Qt::StrongFocus);
 
+    connect(m_part, &Part::signalSettingsChanged,
+            m_actionManager, &ActionManagerImpl::slotSettingsChanged);
+
     QVBoxLayout *lt = new QVBoxLayout(this);
     lt->setMargin(0);
 
@@ -211,6 +214,9 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
 
     connect(m_searchBar, &SearchBar::signalSearch,
             m_selectionController, &AbstractSelectionController::setFilters);
+
+    connect(m_part, &Part::signalSettingsChanged,
+            m_selectionController, &AbstractSelectionController::settingsChanged);
 
     FolderExpansionHandler *expansionHandler = new FolderExpansionHandler(this);
     connect(m_feedListView, &QTreeView::expanded, expansionHandler, &FolderExpansionHandler::itemExpanded);

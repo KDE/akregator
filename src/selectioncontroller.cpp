@@ -24,6 +24,7 @@
 
 #include "selectioncontroller.h"
 
+#include "akregatorconfig.h"
 #include "actionmanager.h"
 #include "article.h"
 #include "articlejobs.h"
@@ -81,11 +82,13 @@ Akregator::SelectionController::SelectionController(QObject *parent)
     , m_feedSelector()
     , m_articleLister(0)
     , m_singleDisplay(0)
-    , m_subscriptionModel(new SubscriptionListModel(QSharedPointer<FeedList>(), this))
+    , m_subscriptionModel(new FilterUnreadProxyModel(this))
     , m_folderExpansionHandler(0)
     , m_articleModel(0)
     , m_selectedSubscription()
 {
+    m_subscriptionModel->setDoFilter(Settings::hideReadFeeds());
+    m_subscriptionModel->setSourceModel(new SubscriptionListModel(QSharedPointer<FeedList>(), this));
 }
 
 Akregator::SelectionController::~SelectionController()
@@ -102,6 +105,7 @@ void Akregator::SelectionController::setFeedSelector(QAbstractItemView *feedSele
     if (m_feedSelector) {
         m_feedSelector->disconnect(this);
         m_feedSelector->selectionModel()->disconnect(this);
+        m_feedSelector->selectionModel()->disconnect(m_subscriptionModel);
     }
 
     m_feedSelector = feedSelector;
@@ -111,10 +115,12 @@ void Akregator::SelectionController::setFeedSelector(QAbstractItemView *feedSele
     }
 
     m_feedSelector->setModel(m_subscriptionModel);
+    m_subscriptionModel->clearCache();
 
     connect(m_feedSelector.data(), &QAbstractItemView::customContextMenuRequested, this, &SelectionController::subscriptionContextMenuRequested);
     connect(m_feedSelector->selectionModel(), &QItemSelectionModel::currentChanged, this, &SelectionController::selectedSubscriptionChanged);
     connect(m_feedSelector.data(), &QAbstractItemView::activated, this, &SelectionController::selectedSubscriptionChanged);
+    connect(m_feedSelector->selectionModel(), &QItemSelectionModel::selectionChanged, m_subscriptionModel, &FilterUnreadProxyModel::selectionChanged);
 }
 
 void Akregator::SelectionController::setArticleLister(Akregator::ArticleLister *lister)
@@ -175,8 +181,9 @@ void Akregator::SelectionController::setFeedList(const QSharedPointer<FeedList> 
     }
 
     m_feedList = list;
-    std::unique_ptr<SubscriptionListModel> oldModel(m_subscriptionModel);
-    m_subscriptionModel = new SubscriptionListModel(m_feedList, this);
+    SubscriptionListModel *m = qobject_cast<SubscriptionListModel*>(m_subscriptionModel->sourceModel());
+    std::unique_ptr<SubscriptionListModel> oldModel(m);
+    m_subscriptionModel->setSourceModel(new SubscriptionListModel(m_feedList, this));
 
     if (m_folderExpansionHandler) {
         m_folderExpansionHandler->setFeedList(m_feedList);
@@ -302,6 +309,14 @@ void Akregator::SelectionController::articleIndexDoubleClicked(const QModelIndex
 {
     const Akregator::Article article = ::articleForIndex(index, m_feedList.data());
     Q_EMIT articleDoubleClicked(article);
+}
+
+/**
+ * Called when the applications settings are changed; sets whether we apply a the filter or not.
+ */
+void Akregator::SelectionController::settingsChanged()
+{
+    m_subscriptionModel->setDoFilter(Settings::hideReadFeeds());
 }
 
 void SelectionController::setFilters(const std::vector<QSharedPointer<const Filters::AbstractMatcher> > &matchers)
