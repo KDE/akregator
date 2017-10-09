@@ -126,8 +126,8 @@ public:
     }
 
 private:
-    FeedList *m_list;
-    bool m_preserveID;
+    FeedList *m_list = nullptr;
+    bool m_preserveID = false;
 };
 
 class FeedList::RemoveNodeVisitor : public TreeNodeVisitor
