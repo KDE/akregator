@@ -45,6 +45,13 @@
        </widget>
       </item>
       <item>
+       <widget class="QCheckBox" name="kcfg_AutoExpandFolders">
+        <property name="text">
+         <string>Auto-expand folders containing unread articles</string>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QCheckBox" name="kcfg_UseNotifications">
         <property name="toolTip">
          <string/>

@@ -31,6 +31,7 @@
 #include <QHeaderView>
 #include <QStack>
 #include <QPointer>
+#include <QQueue>
 
 #include <QMenu>
 #include <KLocalizedString>
@@ -403,6 +404,43 @@ void SubscriptionListView::slotSetHideReadFeeds(bool setting)
 
     Settings::setHideReadFeeds(setting);
     filter->setDoFilter(setting);
+}
+
+void Akregator::SubscriptionListView::slotSetAutoExpandFolders(bool setting)
+{
+    Settings::setAutoExpandFolders(setting);
+    if (!setting) {
+        return;
+    }
+
+    //expand any current subscriptions with unread items
+    QQueue<QModelIndex> indexes;
+    //start at the root node
+    indexes.enqueue(QModelIndex());
+
+    QAbstractItemModel *m = model();
+    if (!m) {
+        return;
+    }
+
+    while (!indexes.isEmpty()) {
+        QModelIndex parent = indexes.dequeue();
+        int rows = m->rowCount(parent);
+
+        for (int row = 0; row < rows; ++row) {
+            QModelIndex current = m->index(row, 0, parent);
+
+            if (m->hasChildren(current)) {
+                indexes.enqueue(current);
+            }
+
+            if (!m->data(current, SubscriptionListModel::HasUnreadRole).toBool()) {
+                continue;
+            }
+
+            setExpanded(current, true);
+        }
+    }
 }
 
 void Akregator::SubscriptionListView::ensureNodeVisible(Akregator::TreeNode *)

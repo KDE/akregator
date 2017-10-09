@@ -10,6 +10,11 @@
       <whatsthis>Hides feeds with no unread articles</whatsthis>
       <default>false</default>
   </entry>
+  <entry key="Auto Expand Folders" type="Bool">
+      <label>Auto-Expand folders with unread articles</label>
+      <whatsthis>Auto-expand folders containing unread articles</whatsthis>
+      <default>false</default>
+  </entry>
   <entry key="Show Quick Filter" type="Bool" >
     <label>Show Quick Filter</label>
     <whatsthis>Show Quick Filter Bar</whatsthis>

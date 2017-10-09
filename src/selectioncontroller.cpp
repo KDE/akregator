@@ -37,6 +37,7 @@
 
 #include <QAbstractItemView>
 #include <QMenu>
+#include <QTreeView>
 #include <memory>
 using namespace Akregator;
 
@@ -89,6 +90,9 @@ Akregator::SelectionController::SelectionController(QObject *parent)
 {
     m_subscriptionModel->setDoFilter(Settings::hideReadFeeds());
     m_subscriptionModel->setSourceModel(new SubscriptionListModel(QSharedPointer<FeedList>(), this));
+
+    connect(m_subscriptionModel, &FilterUnreadProxyModel::dataChanged,
+            this, &SelectionController::subscriptionDataChanged);
 }
 
 Akregator::SelectionController::~SelectionController()
@@ -245,6 +249,38 @@ void Akregator::SelectionController::articleHeadersAvailable(KJob *job)
 
     if (node) {
         m_articleLister->setScrollBarPositions(node->listViewScrollBarPositions());
+    }
+}
+
+void Akregator::SelectionController::subscriptionDataChanged(const QModelIndex &topLeft, const QModelIndex &bottomRight)
+{
+    if (!Settings::autoExpandFolders()) {
+        return;
+    }
+
+    if (!m_subscriptionModel) {
+        qCCritical(AKREGATOR_LOG) << "m_subscriptionModel is NULL";
+        return;
+    }
+
+    //need access to setExpanded
+    QTreeView *tv = qobject_cast<QTreeView*>(m_feedSelector);
+    if (!tv) {
+        qCCritical(AKREGATOR_LOG) << "Unable to cast m_feedSelector to QTreeView";
+        return;
+    }
+
+    int startRow = topLeft.row();
+    int endRow = bottomRight.row();
+    QModelIndex parent = topLeft.parent();
+
+    for (int row = startRow; row <= endRow; ++row) {
+        QModelIndex idx = m_subscriptionModel->index(row, 0, parent);
+        QVariant v = m_subscriptionModel->data(idx, SubscriptionListModel::HasUnreadRole);
+        if (!v.toBool()) {
+            return;
+        }
+        tv->setExpanded(idx, true);
     }
 }
 

@@ -87,6 +87,7 @@ public Q_SLOTS:
 
 private Q_SLOTS:
 
+    void subscriptionDataChanged(const QModelIndex &topLeft, const QModelIndex &bottomRight);
     void selectedSubscriptionChanged(const QModelIndex &index);
     void articleSelectionChanged();
     void articleIndexDoubleClicked(const QModelIndex &index);

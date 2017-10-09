@@ -1,5 +1,5 @@
 <!DOCTYPE gui SYSTEM "kpartgui.dtd">
-<gui name="akregator_part" version="426" translationDomain="akregator">
+<gui name="akregator_part" version="427" translationDomain="akregator">
   <MenuBar>
     <Menu name="file">
       <Action name="file_import"/>
@@ -26,6 +26,7 @@
       <Action name="zoom_menu"/>
       <Separator/>
       <Action name="feed_hide_read"/>
+      <Action name="auto_expand_folders"/>
     </Menu>
 
     <Menu name="go">

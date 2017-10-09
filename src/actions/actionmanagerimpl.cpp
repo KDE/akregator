@@ -132,6 +132,13 @@ void ActionManagerImpl::slotSettingsChanged()
         return;
     }
     a->setChecked(Settings::hideReadFeeds());
+
+    a = action(QStringLiteral("auto_expand_folders"));
+    if (!a) {
+        qCCritical(AKREGATOR_LOG) << "Action not found";
+        return;
+    }
+    a->setChecked(Settings::autoExpandFolders());
 }
 
 void ActionManagerImpl::slotNodeSelected(TreeNode *node)
@@ -536,6 +543,12 @@ void ActionManagerImpl::initSubscriptionListView(SubscriptionListView *subscript
     action->setText(i18n("Hide Read Feeds"));
     action->setChecked(Settings::hideReadFeeds());
     connect(action, &QAction::triggered, subscriptionListView, &SubscriptionListView::slotSetHideReadFeeds);
+
+    action = coll->addAction(QStringLiteral("auto_expand_folders"));
+    action->setCheckable(true);
+    action->setText(i18n("Auto-expand folders with unread articles"));
+    action->setChecked(Settings::autoExpandFolders());
+    connect(action, &QAction::triggered, subscriptionListView, &SubscriptionListView::slotSetAutoExpandFolders);
 }
 
 void ActionManagerImpl::initTabWidget(TabWidget *tabWidget)
