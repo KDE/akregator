@@ -80,7 +80,6 @@ QString GrantleeViewFormatter::formatFeed(Akregator::Feed *feed)
 
     QString feedImage;
     if (!feed->image().isNull()) { // image
-        feedImage = QLatin1String("<div class=\"body\">");
         QString file = Utils::fileNameForUrl(feed->xmlUrl());
         QUrl u(mImageDir);
         u = u.adjusted(QUrl::RemoveFilename);
