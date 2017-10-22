@@ -653,10 +653,10 @@ void Part::showOptions()
 
     if (!m_dialog) {
         m_dialog = new KCMultiDialog(m_mainWidget);
-        connect(m_dialog, SIGNAL(configCommitted()),
-                this, SLOT(slotSettingsChanged()));
-        connect(m_dialog, SIGNAL(configCommitted()),
-                TrayIcon::getInstance(), SLOT(settingsChanged()));
+        connect(m_dialog, QOverload<>::of(&KCMultiDialog::configCommitted),
+                this, &Part::slotSettingsChanged);
+        connect(m_dialog, QOverload<>::of(&KCMultiDialog::configCommitted),
+                TrayIcon::getInstance(), &TrayIcon::settingsChanged);
 
         m_dialog->addModule(QStringLiteral("akregator_config_general"));
         m_dialog->addModule(QStringLiteral("akregator_config_appearance"));
