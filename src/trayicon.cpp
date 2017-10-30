@@ -32,7 +32,7 @@
 
 using namespace Akregator;
 
-TrayIcon *TrayIcon::m_instance = 0;
+TrayIcon *TrayIcon::m_instance = nullptr;
 
 TrayIcon *TrayIcon::getInstance()
 {
