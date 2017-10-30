@@ -2,4 +2,8 @@
     <qresource prefix="/">
         <file>about/introduction_akregator.html</file>
     </qresource>
+    <qresource prefix="/kxmlgui5/akregator">
+        <file alias="akregator_shell.rc">data/akregator_shell.rc</file>
+        <file alias="akregator_part.rc">data/akregator_part.rc</file>
+    </qresource>
 </RCC>
