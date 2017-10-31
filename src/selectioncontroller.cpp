@@ -185,7 +185,7 @@ void Akregator::SelectionController::setFeedList(const QSharedPointer<FeedList> 
     }
 
     m_feedList = list;
-    SubscriptionListModel *m = qobject_cast<SubscriptionListModel*>(m_subscriptionModel->sourceModel());
+    SubscriptionListModel *m = qobject_cast<SubscriptionListModel *>(m_subscriptionModel->sourceModel());
     std::unique_ptr<SubscriptionListModel> oldModel(m);
     m_subscriptionModel->setSourceModel(new SubscriptionListModel(m_feedList, this));
 
@@ -264,7 +264,7 @@ void Akregator::SelectionController::subscriptionDataChanged(const QModelIndex &
     }
 
     //need access to setExpanded
-    QTreeView *tv = qobject_cast<QTreeView*>(m_feedSelector);
+    QTreeView *tv = qobject_cast<QTreeView *>(m_feedSelector);
     if (!tv) {
         qCCritical(AKREGATOR_LOG) << "Unable to cast m_feedSelector to QTreeView";
         return;

@@ -116,12 +116,14 @@ bool Akregator::FilterUnreadProxyModel::filterAcceptsRow(int source_row, const Q
 
     QModelIndex idx = sourceModel()->index(source_row, 0, source_parent);
 
-    if (m_selectedHierarchy.contains(idx))
+    if (m_selectedHierarchy.contains(idx)) {
         return true;
+    }
 
     QVariant v = idx.data(SubscriptionListModel::HasUnreadRole);
-    if (v.isNull())
+    if (v.isNull()) {
         return true;
+    }
 
     return v.toBool();
 }
@@ -158,8 +160,9 @@ void Akregator::FilterUnreadProxyModel::selectionChanged(const QItemSelection &s
         }
     }
 
-    if (doInvalidate && doFilter())
+    if (doInvalidate && doFilter()) {
         invalidateFilter();
+    }
 }
 
 void Akregator::FilterUnreadProxyModel::clearCache()

@@ -155,8 +155,8 @@ static QDomDocument createDefaultFeedList()
 }
 
 namespace Akregator {
-
-K_PLUGIN_FACTORY(AkregatorFactory, registerPlugin<Part>();)
+K_PLUGIN_FACTORY(AkregatorFactory, registerPlugin<Part>();
+                 )
 
 static Part *mySelf = nullptr;
 BrowserExtension::BrowserExtension(Part *p, const char *name)

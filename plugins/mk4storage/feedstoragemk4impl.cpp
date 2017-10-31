@@ -151,7 +151,7 @@ FeedStorageMK4Impl::FeedStorageMK4Impl(const QString &url, StorageMK4Impl *main)
                                                                                                                                                                                                    ':'),
                                                                                                                                                                                                QLatin1Char(
                                                                                                                                                                                                    '_'))
-            + QLatin1String(".xml");
+                        + QLatin1String(".xml");
     d->convert = !QFile::exists(filePath + QLatin1String(".mk4")) && QFile::exists(d->oldArchivePath);
     d->storage = new c4_Storage(QString(filePath + QLatin1String(".mk4")).toLocal8Bit(), true);
 

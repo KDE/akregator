@@ -152,7 +152,9 @@ void ImportFeedListCommand::doAbort()
 
 void ImportFeedListCommand::doStart()
 {
-    QTimer::singleShot(0, this, [this]() { d->doImport(); });
+    QTimer::singleShot(0, this, [this]() {
+        d->doImport();
+    });
 }
 
 #include "moc_importfeedlistcommand.cpp"

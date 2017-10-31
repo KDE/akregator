@@ -45,7 +45,7 @@ class FilterUnreadProxyModel : public QSortFilterProxyModel
 {
     Q_OBJECT
 public:
-    explicit FilterUnreadProxyModel(QObject* parent = nullptr);
+    explicit FilterUnreadProxyModel(QObject *parent = nullptr);
 
     bool doFilter() const;
 

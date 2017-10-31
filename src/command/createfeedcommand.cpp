@@ -176,7 +176,9 @@ void CreateFeedCommand::setAutoExecute(bool autoexec)
 
 void CreateFeedCommand::doStart()
 {
-    QTimer::singleShot(0, this, [this]() { d->doCreate(); });
+    QTimer::singleShot(0, this, [this]() {
+        d->doCreate();
+    });
 }
 
 void CreateFeedCommand::doAbort()

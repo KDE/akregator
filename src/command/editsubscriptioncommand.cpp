@@ -137,7 +137,9 @@ void EditSubscriptionCommand::setSubscriptionListView(SubscriptionListView *view
 
 void EditSubscriptionCommand::doStart()
 {
-    QTimer::singleShot(0, this, [this]() { d->startEdit(); });
+    QTimer::singleShot(0, this, [this]() {
+        d->startEdit();
+    });
 }
 
 void EditSubscriptionCommand::Private::startEdit()
