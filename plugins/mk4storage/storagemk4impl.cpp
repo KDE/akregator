@@ -118,7 +118,7 @@ QString Akregator::Backend::StorageMK4Impl::archivePath() const
 
 QString Akregator::Backend::StorageMK4Impl::defaultArchivePath()
 {
-    const QString ret = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QLatin1Char('/') + QStringLiteral("akregator/Archive");
+    const QString ret = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QStringLiteral("/akregator/Archive");
     QDir().mkpath(ret);
     return ret;
 }
