@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.1)
-set(KDEPIM_VERSION_NUMBER "5.7.0")
+set(KDEPIM_VERSION_NUMBER "5.7.1")
 project(akregator VERSION ${KDEPIM_VERSION_NUMBER})
 
 set(KF5_VERSION "5.39.0")
