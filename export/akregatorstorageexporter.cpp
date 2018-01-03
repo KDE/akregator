@@ -24,6 +24,7 @@
 #include "storagefactory.h"
 #include "storagefactoryregistry.h"
 #include "plugin.h"
+#include <KLocalizedString>
 
 #include <Syndication/Constants>
 #include <Syndication/Atom/Atom>
@@ -301,7 +302,7 @@ static void serialize(FeedStorage *storage, const QString &url, QIODevice *devic
     writer.writeNamespace(akregatorNamespace(), QStringLiteral("akregator"));
     writer.writeNamespace(Syndication::itunesNamespace(), QStringLiteral("itunes"));
 
-    Elements::instance.title.write(QStringLiteral("Akregator Export for %1").arg(url), writer, Html);
+    Elements::instance.title.write(i18n("Akregator Export for %1", url), writer, Html);
 
     Q_FOREACH (const QString &i, storage->articles()) {
         writeItem(storage, i, writer);
