@@ -98,28 +98,28 @@ void AddFeedDialog::setUrl(const QString &t)
 void AddFeedDialog::accept()
 {
     mOkButton->setEnabled(false);
-    feedUrl = widget->urlEdit->text().trimmed();
+    mFeedUrl = widget->urlEdit->text().trimmed();
 
     delete m_feed;
     m_feed = new Feed(Kernel::self()->storage());
 
     // HACK: make weird wordpress links ("feed:http://foobar/rss") work
-    if (feedUrl.startsWith(QStringLiteral("feed:http"))) {
-        feedUrl = feedUrl.right(feedUrl.length() - 5);
+    if (mFeedUrl.startsWith(QStringLiteral("feed:http"))) {
+        mFeedUrl = mFeedUrl.right(mFeedUrl.length() - 5);
     }
 
-    if (!feedUrl.contains(QStringLiteral(":/"))) {
-        feedUrl.prepend(QStringLiteral("https://"));
+    if (!mFeedUrl.contains(QStringLiteral(":/"))) {
+        mFeedUrl.prepend(QStringLiteral("https://"));
     }
 
-    QUrl asUrl(feedUrl);
+    QUrl asUrl(mFeedUrl);
     if (asUrl.scheme() == QLatin1String("feed")) {
         asUrl.setScheme(QStringLiteral("https"));
-        feedUrl = asUrl.url();
+        mFeedUrl = asUrl.url();
     }
-    m_feed->setXmlUrl(feedUrl);
+    m_feed->setXmlUrl(mFeedUrl);
 
-    widget->statusLabel->setText(i18n("Downloading %1", feedUrl));
+    widget->statusLabel->setText(i18n("Downloading %1", mFeedUrl));
 
     connect(m_feed, &Feed::fetched, this, &AddFeedDialog::fetchCompleted);
     connect(m_feed, &Feed::fetchError, this, &AddFeedDialog::fetchError);
@@ -135,14 +135,14 @@ void AddFeedDialog::fetchCompleted(Feed * /*f*/)
 
 void AddFeedDialog::fetchError(Feed *)
 {
-    KMessageBox::error(this, i18n("Feed not found from %1.", feedUrl));
+    KMessageBox::error(this, i18n("Feed not found from %1.", mFeedUrl));
     QDialog::reject();
 }
 
 void AddFeedDialog::fetchDiscovery(Feed *f)
 {
     widget->statusLabel->setText(i18n("Feed found, downloading..."));
-    feedUrl = f->xmlUrl();
+    mFeedUrl = f->xmlUrl();
 }
 
 void AddFeedDialog::textChanged(const QString &text)
