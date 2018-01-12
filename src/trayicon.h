@@ -28,7 +28,7 @@
 #include "akregator_export.h"
 
 #include <KStatusNotifierItem>
-
+class QDBusServiceWatcher;
 namespace Akregator {
 class AKREGATOR_EXPORT TrayIcon : public KStatusNotifierItem
 {
@@ -45,8 +45,12 @@ public Q_SLOTS:
     void slotSetUnread(int unread);
 
 private:
+    void updateCount();
+    void initUnity();
+    QDBusServiceWatcher *mUnityServiceWatcher = nullptr;
     static TrayIcon *m_instance;
     int m_unread;
+    bool mUnityServiceAvailable = false;
 };
 } // namespace Akregator
 
