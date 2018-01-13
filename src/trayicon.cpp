@@ -132,5 +132,4 @@ void TrayIcon::initUnity()
             //updateCount();
         }
     });
-
 }
