@@ -42,7 +42,8 @@ using namespace Akregator;
 AkrWebEngineViewer::AkrWebEngineViewer(KActionCollection *ac, QWidget *parent)
     : ArticleViewerWebEngine(ac, parent)
 {
-    settings()->setAttribute(QWebEngineSettings::JavascriptEnabled, true);
+    //TODO update settings when we change config
+    settings()->setAttribute(QWebEngineSettings::JavascriptEnabled, Settings::checkPhishingUrl());
     settings()->setAttribute(QWebEngineSettings::PluginsEnabled, false);
     settings()->setAttribute(QWebEngineSettings::AutoLoadImages, true);
     settings()->setAttribute(QWebEngineSettings::JavascriptCanOpenWindows, false);

@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>469</width>
-    <height>442</height>
+    <width>474</width>
+    <height>510</height>
    </rect>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
@@ -87,7 +87,7 @@
       <item row="1" column="0">
        <widget class="QRadioButton" name="kcfg_ExternalBrowserUseCustomCommand">
         <property name="text">
-         <string>&amp;Use this command:</string>
+         <string>Use &amp;this command:</string>
         </property>
        </widget>
       </item>
@@ -135,31 +135,43 @@
     </widget>
    </item>
    <item>
-    <widget class="QCheckBox" name="kcfg_CheckPhishingUrl">
-     <property name="text">
-      <string>Verify URLs using Google's Safe Browsing API</string>
+    <widget class="QGroupBox" name="groupBox">
+     <property name="title">
+      <string>Security</string>
      </property>
+     <layout class="QVBoxLayout" name="verticalLayout_3">
+      <item>
+       <widget class="QCheckBox" name="kcfg_CheckPhishingUrl">
+        <property name="text">
+         <string>Verify URLs using Google's Safe Browsing API</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="kcfg_EnableJavascript">
+        <property name="text">
+         <string>Enable Javascript</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </item>
    <item>
-    <widget class="QCheckBox" name="kcfg_AccessKeyEnabled">
-     <property name="text">
-      <string>Access Key Enabled</string>
+    <widget class="QGroupBox" name="groupBox_2">
+     <property name="title">
+      <string>Misc</string>
      </property>
+     <layout class="QVBoxLayout" name="verticalLayout_4">
+      <item>
+       <widget class="QCheckBox" name="kcfg_AccessKeyEnabled">
+        <property name="text">
+         <string>Access Key Enabled</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
-   </item>
-   <item>
-    <spacer>
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>20</width>
-       <height>1</height>
-      </size>
-     </property>
-    </spacer>
    </item>
   </layout>
  </widget>
