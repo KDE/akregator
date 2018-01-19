@@ -43,7 +43,7 @@ AkrWebEngineViewer::AkrWebEngineViewer(KActionCollection *ac, QWidget *parent)
     : ArticleViewerWebEngine(ac, parent)
 {
     //TODO update settings when we change config
-    settings()->setAttribute(QWebEngineSettings::JavascriptEnabled, Settings::checkPhishingUrl());
+    settings()->setAttribute(QWebEngineSettings::JavascriptEnabled, Settings::enableJavascript());
     settings()->setAttribute(QWebEngineSettings::PluginsEnabled, false);
     settings()->setAttribute(QWebEngineSettings::AutoLoadImages, true);
     settings()->setAttribute(QWebEngineSettings::JavascriptCanOpenWindows, false);
