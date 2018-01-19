@@ -42,7 +42,7 @@ private:
     void initUnity();
     QDBusServiceWatcher *mUnityServiceWatcher = nullptr;
     static UnityServiceManager *mInstance;
-    int m_unread;
+    int m_unread = 0;
     bool mUnityServiceAvailable = false;
 };
 

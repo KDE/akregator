@@ -40,7 +40,6 @@ UnityServiceManager *UnityServiceManager::instance()
 UnityServiceManager::UnityServiceManager(QObject *parent)
     : QObject(parent)
     , mUnityServiceWatcher(new QDBusServiceWatcher(this))
-    , m_unread(0)
 {
     initUnity();
 }
@@ -52,8 +51,10 @@ UnityServiceManager::~UnityServiceManager()
 
 void UnityServiceManager::slotSetUnread(int unread)
 {
-    m_unread = unread;
-    updateCount();
+    if (m_unread != unread) {
+        m_unread = unread;
+        updateCount();
+    }
 }
 
 void UnityServiceManager::updateCount()
