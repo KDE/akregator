@@ -106,7 +106,7 @@ void TrayIcon::initUnity()
     connect(mUnityServiceWatcher, &QDBusServiceWatcher::serviceRegistered, this, [this](const QString &service) {
         Q_UNUSED(service);
         mUnityServiceAvailable = true;
-        //updateCount();
+        updateCount();
     });
 
     connect(mUnityServiceWatcher, &QDBusServiceWatcher::serviceUnregistered, this, [this](const QString &service) {
@@ -129,7 +129,7 @@ void TrayIcon::initUnity()
 
         mUnityServiceAvailable = services.contains(QLatin1String("com.canonical.Unity"));
         if (mUnityServiceAvailable) {
-            //updateCount();
+            updateCount();
         }
     });
 }
