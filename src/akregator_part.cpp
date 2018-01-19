@@ -50,6 +50,7 @@
 #include "akregator_options.h"
 #include <Libkdepim/BroadcastStatus>
 #include "akregator-version.h"
+#include "unityservicemanager.h"
 #include <kio/filecopyjob.h>
 #include <knotifyconfigwidget.h>
 #include <kaboutdata.h>
@@ -241,6 +242,10 @@ Part::Part(QWidget *parentWidget, QObject *parent, const QVariantList &)
 
     // notify the part that this is our internal widget
     setWidget(mCentralWidget);
+
+    //Initialize instance.
+    (void)UnityServiceManager::instance();
+    connect(m_mainWidget.data(), &MainWidget::signalUnreadCountChanged, UnityServiceManager::instance(), &UnityServiceManager::slotSetUnread);
 
     if (Settings::showTrayIcon() && !TrayIcon::getInstance()) {
         TrayIcon *trayIcon = new TrayIcon(m_mainWidget->window());

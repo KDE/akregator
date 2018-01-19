@@ -82,6 +82,7 @@ set(akregatorprivate_LIB_SRCS
     articleviewerwidget.cpp
     aboutdata.cpp
     trayicon.cpp
+    unityservicemanager.cpp
     article.cpp
     feed/feed.cpp
     feed/feedlist.cpp
