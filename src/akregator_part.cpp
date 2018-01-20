@@ -248,20 +248,9 @@ Part::Part(QWidget *parentWidget, QObject *parent, const QVariantList &)
     connect(m_mainWidget.data(), &MainWidget::signalUnreadCountChanged, UnityServiceManager::instance(), &UnityServiceManager::slotSetUnread);
 
     if (Settings::showTrayIcon() && !TrayIcon::getInstance()) {
-        TrayIcon *trayIcon = new TrayIcon(m_mainWidget->window());
-        TrayIcon::setInstance(trayIcon);
-        m_actionManager->setTrayIcon(trayIcon);
-
-        if (isTrayIconEnabled()) {
-            trayIcon->setStatus(KStatusNotifierItem::Active);
-        }
-
+        initializeTrayIcon();
         QWidget *const notificationParent = isTrayIconEnabled() ? m_mainWidget->window() : nullptr;
         NotificationManager::self()->setWidget(notificationParent, componentData().componentName());
-
-        connect(m_mainWidget.data(), &MainWidget::signalUnreadCountChanged, trayIcon, &TrayIcon::slotSetUnread);
-        connect(m_mainWidget.data(), &MainWidget::signalArticlesSelected,
-                this, &Part::signalArticlesSelected);
     }
 
     connect(qApp, &QCoreApplication::aboutToQuit, this, &Part::slotOnShutdown);
@@ -340,26 +329,33 @@ void Part::slotOnShutdown()
     //delete m_actionManager;
 }
 
+void Part::initializeTrayIcon()
+{
+    TrayIcon *trayIcon = new TrayIcon(m_mainWidget->window());
+    TrayIcon::setInstance(trayIcon);
+    m_actionManager->setTrayIcon(trayIcon);
+
+    if (isTrayIconEnabled()) {
+        trayIcon->setStatus(KStatusNotifierItem::Active);
+    }
+
+    connect(m_mainWidget.data(), &MainWidget::signalUnreadCountChanged, trayIcon, &TrayIcon::slotSetUnread);
+    connect(m_mainWidget.data(), &MainWidget::signalArticlesSelected,
+            this, &Part::signalArticlesSelected);
+
+    m_mainWidget->slotSetTotalUnread();
+}
+
 void Part::slotSettingsChanged()
 {
     NotificationManager::self()->setWidget(isTrayIconEnabled() ? m_mainWidget->window() : nullptr, componentData().componentName());
 
-    if (Settings::showTrayIcon() && !TrayIcon::getInstance()) {
-        TrayIcon *trayIcon = new TrayIcon(m_mainWidget->window());
-        TrayIcon::setInstance(trayIcon);
-        m_actionManager->setTrayIcon(trayIcon);
-
-        if (isTrayIconEnabled()) {
-            trayIcon->setStatus(KStatusNotifierItem::Active);
+    if (Settings::showTrayIcon()) {
+        if (!TrayIcon::getInstance()) {
+            initializeTrayIcon();
+            m_mainWidget->slotSetTotalUnread();
         }
-
-        connect(m_mainWidget.data(), &MainWidget::signalUnreadCountChanged, trayIcon, &TrayIcon::slotSetUnread);
-        connect(m_mainWidget.data(), &MainWidget::signalArticlesSelected,
-                this, &Part::signalArticlesSelected);
-
-        m_mainWidget->slotSetTotalUnread();
-    }
-    if (!Settings::showTrayIcon()) {
+    } else {
         TrayIcon::getInstance()->disconnect();
         delete TrayIcon::getInstance();
         TrayIcon::setInstance(nullptr);

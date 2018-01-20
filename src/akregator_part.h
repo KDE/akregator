@@ -206,6 +206,7 @@ private: // methods
     void clearCrashProperties();
 
 private: // attributes
+    void initializeTrayIcon();
 
     class ApplyFiltersInterceptor;
     ApplyFiltersInterceptor *m_applyFiltersInterceptor = nullptr;
