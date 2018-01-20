@@ -364,14 +364,15 @@ void Part::slotSettingsChanged()
 
     Syndication::FileRetriever::setUseCache(Settings::useHTMLCache());
 
-    QStringList fonts;
-    fonts.append(Settings::standardFont());
-    fonts.append(Settings::fixedFont());
-    fonts.append(Settings::sansSerifFont());
-    fonts.append(Settings::serifFont());
-    fonts.append(Settings::standardFont());
-    fonts.append(Settings::standardFont());
-    fonts.append(QStringLiteral("0"));
+    const QStringList fonts {
+        Settings::standardFont(),
+                Settings::fixedFont(),
+                Settings::sansSerifFont(),
+                Settings::serifFont(),
+                Settings::standardFont(),
+                Settings::standardFont(),
+                QStringLiteral("0")
+    };
     Settings::setFonts(fonts);
 
     if (Settings::minimumFontSize() > Settings::mediumFontSize()) {
