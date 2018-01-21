@@ -64,7 +64,6 @@ void TrayIcon::slotSetUnread(int unread)
     setStatus(unread > 0 ? KStatusNotifierItem::Active : KStatusNotifierItem::Passive);
 }
 
-
 void TrayIcon::settingsChanged()
 {
     slotSetUnread(m_unread);

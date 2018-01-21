@@ -366,12 +366,12 @@ void Part::slotSettingsChanged()
 
     const QStringList fonts {
         Settings::standardFont(),
-                Settings::fixedFont(),
-                Settings::sansSerifFont(),
-                Settings::serifFont(),
-                Settings::standardFont(),
-                Settings::standardFont(),
-                QStringLiteral("0")
+        Settings::fixedFont(),
+        Settings::sansSerifFont(),
+        Settings::serifFont(),
+        Settings::standardFont(),
+        Settings::standardFont(),
+        QStringLiteral("0")
     };
     Settings::setFonts(fonts);
 

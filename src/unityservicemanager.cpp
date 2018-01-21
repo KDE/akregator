@@ -46,7 +46,6 @@ UnityServiceManager::UnityServiceManager(QObject *parent)
 
 UnityServiceManager::~UnityServiceManager()
 {
-
 }
 
 void UnityServiceManager::slotSetUnread(int unread)
