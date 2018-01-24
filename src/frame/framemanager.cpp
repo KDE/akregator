@@ -66,7 +66,7 @@ void FrameManager::slotAddFrame(Frame *frame)
     connect(frame, &Frame::signalTitleChanged, this, &FrameManager::slotSetTitle);
     connect(frame, &Frame::signalStatusText, this, &FrameManager::slotSetStatusText);
 
-    connect(frame, SIGNAL(signalOpenUrlRequest(Akregator::OpenUrlRequest&)), this, SLOT(slotOpenUrlRequest(Akregator::OpenUrlRequest&)));
+    connect(frame, &Frame::signalOpenUrlRequest, this, [this](OpenUrlRequest &request) { slotOpenUrlRequest(request);});
 
     //setPartGuiActive(frame->part(), false);
 
