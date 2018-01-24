@@ -224,8 +224,8 @@ void ArticleViewerWebEngine::slotWebHitFinished(const WebEngineViewer::WebHitTes
     }
 
     QMenu popup(this);
-    const bool contentSelected = !selectedText().isEmpty();
-    if (!contentSelected) {
+    const bool noContentSelected = selectedText().isEmpty();
+    if (noContentSelected) {
         if (!mCurrentUrl.isEmpty()) {
             popup.addAction(createOpenLinkInNewTabAction(mCurrentUrl, this, SLOT(slotOpenLinkInForegroundTab()), &popup));
             popup.addAction(createOpenLinkInExternalBrowserAction(mCurrentUrl, this, SLOT(slotOpenLinkInBrowser()), &popup));
