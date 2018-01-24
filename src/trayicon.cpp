@@ -58,10 +58,12 @@ TrayIcon::~TrayIcon()
 
 void TrayIcon::slotSetUnread(int unread)
 {
-    m_unread = unread;
+    if (m_unread != unread) {
+        m_unread = unread;
 
-    this->setToolTip(QStringLiteral("akregator"), i18n("Akregator"), unread == 0 ? i18n("There are no unread articles") : i18np("1 unread article", "%1 unread articles", unread));
-    setStatus(unread > 0 ? KStatusNotifierItem::Active : KStatusNotifierItem::Passive);
+        this->setToolTip(QStringLiteral("akregator"), i18n("Akregator"), unread == 0 ? i18n("There are no unread articles") : i18np("1 unread article", "%1 unread articles", unread));
+        setStatus(unread > 0 ? KStatusNotifierItem::Active : KStatusNotifierItem::Passive);
+    }
 }
 
 void TrayIcon::settingsChanged()
