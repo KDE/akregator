@@ -119,9 +119,6 @@ private Q_SLOTS:
     void slotLoadStarted();
     void slotLoadFinished();
     void slotLinkClicked(const QUrl &url);
-    void slotOpenLinkInForegroundTab();
-    void slotOpenLinkInBackgroundTab();
-    void slotOpenLinkInBrowser();
     void slotShowContextMenu(const QPoint &pos);
     void slotWebHitFinished(const WebEngineViewer::WebHitTestResult &result);
     void slotActivatePlugin(MessageViewer::ViewerPluginInterface *interface);
@@ -129,6 +126,9 @@ private Q_SLOTS:
     void slotCheckedUrlFinished(const QUrl &url, WebEngineViewer::CheckPhishingUrlUtil::UrlStatus status);
 protected:
 
+    void slotOpenLinkInBrowser();
+    void slotOpenLinkInForegroundTab();
+    void slotOpenLinkInBackgroundTab();
     ArticleViewerWebEnginePage *mPageEngine = nullptr;
     QList<QAction *> viewerPluginActionList(MessageViewer::ViewerPluginInterface::SpecificFeatureTypes features);
     WebEngineViewer::InterceptorManager *mNetworkAccessManager = nullptr;

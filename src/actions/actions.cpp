@@ -30,22 +30,16 @@
 
 #include <QAction>
 
-QAction *Akregator::createOpenLinkInNewTabAction(const QUrl &url, QObject *receiver, const char *slot, QObject *parent)
+QAction *Akregator::createOpenLinkInNewTabAction(const QUrl &url, QObject *parent)
 {
     QAction *action = new QAction(QIcon::fromTheme(QStringLiteral("tab-new")), i18n("Open Link in New &Tab"), parent);
     action->setData(url);
-    if (receiver && slot) {
-        QObject::connect(action, SIGNAL(triggered(bool)), receiver, slot);
-    }
     return action;
 }
 
-QAction *Akregator::createOpenLinkInExternalBrowserAction(const QUrl &url, QObject *receiver, const char *slot, QObject *parent)
+QAction *Akregator::createOpenLinkInExternalBrowserAction(const QUrl &url, QObject *parent)
 {
     QAction *action = new QAction(QIcon::fromTheme(QStringLiteral("window-new")), i18n("Open Link in External &Browser"), parent);
     action->setData(url);
-    if (receiver && slot) {
-        QObject::connect(action, SIGNAL(triggered(bool)), receiver, slot);
-    }
     return action;
 }

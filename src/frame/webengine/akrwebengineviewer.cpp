@@ -95,8 +95,16 @@ void AkrWebEngineViewer::slotWebHitFinished(const WebEngineViewer::WebHitTestRes
     const bool noContentSelected = selectedText().isEmpty();
     if (noContentSelected) {
         if (!mCurrentUrl.isEmpty()) {
-            popup.addAction(createOpenLinkInNewTabAction(mCurrentUrl, this, SLOT(slotOpenLinkInForegroundTab()), &popup));
-            popup.addAction(createOpenLinkInExternalBrowserAction(mCurrentUrl, this, SLOT(slotOpenLinkInBrowser()), &popup));
+            {
+                QAction *act = createOpenLinkInNewTabAction(mCurrentUrl, &popup);
+                connect(act, &QAction::triggered, this, &AkrWebEngineViewer::slotOpenLinkInForegroundTab);
+                popup.addAction(act);
+            }
+            {
+                QAction *act = createOpenLinkInExternalBrowserAction(mCurrentUrl, &popup);
+                connect(act, &QAction::triggered, this, &AkrWebEngineViewer::slotOpenLinkInBrowser);
+                popup.addAction(act);
+            }
             popup.addSeparator();
             popup.addAction(mActionCollection->action(QStringLiteral("savelinkas")));
             popup.addAction(mActionCollection->action(QStringLiteral("copylinkaddress")));
