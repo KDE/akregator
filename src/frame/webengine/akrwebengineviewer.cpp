@@ -97,7 +97,7 @@ void AkrWebEngineViewer::slotWebHitFinished(const WebEngineViewer::WebHitTestRes
         if (!mCurrentUrl.isEmpty()) {
             {
                 QAction *act = createOpenLinkInNewTabAction(mCurrentUrl, &popup);
-                connect(act, &QAction::triggered, this, &AkrWebEngineViewer::slotOpenLinkInForegroundTab);
+                connect(act, &QAction::triggered, this, &AkrWebEngineViewer::slotOpenLinkInBackgroundTab);
                 popup.addAction(act);
             }
             {

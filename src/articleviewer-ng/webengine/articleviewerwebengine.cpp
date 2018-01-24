@@ -229,7 +229,7 @@ void ArticleViewerWebEngine::slotWebHitFinished(const WebEngineViewer::WebHitTes
         if (!mCurrentUrl.isEmpty()) {
             {
                 QAction *act = createOpenLinkInNewTabAction(mCurrentUrl, &popup);
-                connect(act, &QAction::triggered, this, &ArticleViewerWebEngine::slotOpenLinkInForegroundTab);
+                connect(act, &QAction::triggered, this, &ArticleViewerWebEngine::slotOpenLinkInBackgroundTab);
                 popup.addAction(act);
             }
             {
