@@ -1,7 +1,7 @@
 [Akregator]
 Name=Feeds
 Name[af]=Strome
-Name[ar]=التلقيمات
+Name[ar]=التّغذيات
 Name[be]=Стужкі
 Name[bg]=Новини
 Name[bs]=Dovodi
@@ -67,7 +67,7 @@ Name[x-test]=xxFeedsxx
 Name[zh_CN]=种子
 Name[zh_TW]=Feeds
 Comment=Feed Reader
-Comment[ar]=قارئ التلقيمات
+Comment[ar]=قارئ التّغذيات
 Comment[bs]=Čitač dovoda
 Comment[ca]=Lector de fonts
 Comment[ca@valencia]=Lector de fonts
