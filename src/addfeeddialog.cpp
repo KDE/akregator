@@ -109,7 +109,7 @@ void AddFeedDialog::accept()
     }
 
     if (!mFeedUrl.contains(QStringLiteral(":/"))) {
-        mFeedUrl.prepend(QStringLiteral("https://"));
+        mFeedUrl.prepend(QLatin1String("https://"));
     }
 
     QUrl asUrl(mFeedUrl);
