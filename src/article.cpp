@@ -60,7 +60,7 @@ QString buildTitle(const QString &description)
         tagName = rx.cap(2);
         if (tagName == QLatin1String("SCRIPT") || tagName == QLatin1String("script")) {
             toReplace = rx.cap(0);    // strip tag AND tag contents
-        } else if (tagName.startsWith(QStringLiteral("br")) || tagName.startsWith(QStringLiteral("BR"))) {
+        } else if (tagName.startsWith(QLatin1String("br")) || tagName.startsWith(QLatin1String("BR"))) {
             toReplace = rx.cap(1);
             replaceWith = QLatin1Char(' ');
         } else {
@@ -206,7 +206,7 @@ Article::Private::Private(const ItemPtr &article, Feed *feed_, Backend::FeedStor
         //archive->setComments(guid, article.comments());
         //archive->setCommentsLink(guid, article.commentsLink().url());
         archive->setGuidIsPermaLink(guid, false);
-        archive->setGuidIsHash(guid, guid.startsWith(QStringLiteral("hash:")));
+        archive->setGuidIsHash(guid, guid.startsWith(QLatin1String("hash:")));
         const time_t datePublished = article->datePublished();
         if (datePublished > 0) {
             pubDate.setTime_t(datePublished);
