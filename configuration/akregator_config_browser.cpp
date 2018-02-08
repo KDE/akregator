@@ -33,9 +33,12 @@
 #include <QVBoxLayout>
 
 using namespace Akregator;
+#include <kcoreaddons_version.h>
+#if KCOREADDONS_VERSION < QT_VERSION_CHECK(5, 44, 0)
+#define K_PLUGIN_CLASS_WITH_JSON(classname, json) K_PLUGIN_FACTORY_WITH_JSON(classname ## Factory, json, registerPlugin<classname >();)
+#endif
 
-K_PLUGIN_FACTORY_WITH_JSON(KCMAkregatorBrowserConfigFactory, "akregator_config_browser.json", registerPlugin<KCMAkregatorBrowserConfig>();
-                           )
+K_PLUGIN_CLASS_WITH_JSON(KCMAkregatorBrowserConfig, "akregator_config_browser.json")
 
 KCMAkregatorBrowserConfig::KCMAkregatorBrowserConfig(QWidget *parent, const QVariantList &args)
     : KCModule(parent, args)
