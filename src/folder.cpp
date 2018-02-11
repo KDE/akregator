@@ -114,7 +114,7 @@ Folder::Folder(const QString &title) : TreeNode()
 Folder::~Folder()
 {
     delete d;
-    d = 0;
+    d = nullptr;
 }
 
 QVector<Article> Folder::articles()
@@ -284,7 +284,7 @@ void Folder::removeChild(TreeNode *node)
     }
 
     Q_EMIT signalAboutToRemoveChild(node);
-    node->setParent(0);
+    node->setParent(nullptr);
     d->children.removeOne(node);
     disconnectFromNode(node);
     updateUnreadCount();
@@ -296,22 +296,22 @@ void Folder::removeChild(TreeNode *node)
 
 TreeNode *Folder::firstChild()
 {
-    return d->children.isEmpty() ? 0 : children().first();
+    return d->children.isEmpty() ? nullptr : children().first();
 }
 
 const TreeNode *Folder::firstChild() const
 {
-    return d->children.isEmpty() ? 0 : children().first();
+    return d->children.isEmpty() ? nullptr : children().first();
 }
 
 TreeNode *Folder::lastChild()
 {
-    return d->children.isEmpty() ? 0 : children().last();
+    return d->children.isEmpty() ? nullptr : children().last();
 }
 
 const TreeNode *Folder::lastChild() const
 {
-    return d->children.isEmpty() ? 0 : children().last();
+    return d->children.isEmpty() ? nullptr : children().last();
 }
 
 bool Folder::isOpen() const

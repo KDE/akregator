@@ -125,7 +125,7 @@ PluginManager::getService(const Plugin *plugin)
 {
     if (!plugin) {
         qCWarning(AKREGATOR_LOG) << "pointer == NULL";
-        return KService::Ptr(0);
+        return KService::Ptr(nullptr);
     }
 
     //search plugin in store
@@ -133,7 +133,7 @@ PluginManager::getService(const Plugin *plugin)
 
     if (iter == m_store.end()) {
         qCWarning(AKREGATOR_LOG) << "Plugin not found in store.";
-        return KService::Ptr(0);
+        return KService::Ptr(nullptr);
     }
 
     return (*iter).service;
@@ -163,7 +163,7 @@ PluginManager::showAbout(const QString &constraint)
 
     str += QStringLiteral("</table></body></html>");
 
-    KMessageBox::information(0, str, i18n("Plugin Information"));
+    KMessageBox::information(nullptr, str, i18n("Plugin Information"));
 }
 
 void

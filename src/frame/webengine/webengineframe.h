@@ -30,7 +30,7 @@ class AKREGATORPART_EXPORT WebEngineFrame : public Frame
     Q_OBJECT
 public:
     explicit WebEngineFrame(KActionCollection *ac, QWidget *parent = nullptr);
-    ~WebEngineFrame();
+    ~WebEngineFrame() override;
 
     QUrl url() const override;
     bool openUrl(const OpenUrlRequest &request) override;

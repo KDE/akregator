@@ -51,7 +51,7 @@ FetchQueue::~FetchQueue()
 {
     slotAbort();
     delete d;
-    d = 0;
+    d = nullptr;
 }
 
 void FetchQueue::slotAbort()

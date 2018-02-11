@@ -51,9 +51,6 @@ public:
 
 CreateFolderCommand::Private::Private(CreateFolderCommand *qq)
     : q(qq)
-    , m_selectedSubscription(0)
-    , m_rootFolder(0)
-    , m_subscriptionListView(0)
 {
 }
 

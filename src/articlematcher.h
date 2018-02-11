@@ -79,7 +79,7 @@ public:
     ArticleMatcher();
     ArticleMatcher(const QVector<Criterion> &criteria, Association assoc);
 
-    ~ArticleMatcher();
+    ~ArticleMatcher() override;
 
     bool matches(const Article &article) const override;
     bool operator==(const AbstractMatcher &other) const override;

@@ -35,7 +35,7 @@ class SubscriptionListDelegate : public QStyledItemDelegate
 
 public:
     explicit SubscriptionListDelegate(QWidget *parent = nullptr);
-    ~SubscriptionListDelegate();
+    ~SubscriptionListDelegate() override;
 
 protected:
     QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const override;

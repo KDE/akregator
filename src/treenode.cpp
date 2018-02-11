@@ -55,14 +55,14 @@ TreeNode::TreeNodePrivate::TreeNodePrivate() : doNotify(true)
     , nodeChangeOccurred(false)
     , articleChangeOccurred(false)
     , title()
-    , parent(0)
+    , parent(nullptr)
     , id(0)
     , signalDestroyedEmitted(false)
 {
 }
 
 TreeNode::TreeNode()
-    : QObject(0)
+    : QObject(nullptr)
     , d(new TreeNodePrivate)
 {
 }
@@ -82,7 +82,7 @@ TreeNode::~TreeNode()
 {
     Q_ASSERT(d->signalDestroyedEmitted || !"TreeNode subclasses must call emitSignalDestroyed in their destructor");
     delete d;
-    d = 0;
+    d = nullptr;
 }
 
 QString TreeNode::title() const

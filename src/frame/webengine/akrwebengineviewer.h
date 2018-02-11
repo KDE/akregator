@@ -29,7 +29,7 @@ class AkrWebEngineViewer : public ArticleViewerWebEngine
     Q_OBJECT
 public:
     explicit AkrWebEngineViewer(KActionCollection *ac, QWidget *parent = nullptr);
-    ~AkrWebEngineViewer();
+    ~AkrWebEngineViewer() override;
 
 protected:
     void displayContextMenu(const QPoint &pos) override;

@@ -156,8 +156,8 @@ private:
 }
 
 Article::Private::Private()
-    : feed(0)
-    , archive(0)
+    : feed(nullptr)
+    , archive(nullptr)
     , status(0)
     , hash(0)
     , pubDate(QDateTime::fromTime_t(1))
@@ -265,13 +265,13 @@ Article::Article(const ItemPtr &article, Feed *feed) : d(new Private(article, fe
 {
 }
 
-Article::Article(const ItemPtr &article, Backend::FeedStorage *archive) : d(new Private(article, 0, archive))
+Article::Article(const ItemPtr &article, Backend::FeedStorage *archive) : d(new Private(article, nullptr, archive))
 {
 }
 
 bool Article::isNull() const
 {
-    return d->archive == 0; // TODO: use proper null state
+    return d->archive == nullptr; // TODO: use proper null state
 }
 
 void Article::offsetPubDate(int secs)
@@ -310,7 +310,7 @@ Article::~Article()
 {
     if (d->deref()) {
         delete d;
-        d = 0;
+        d = nullptr;
     }
 }
 

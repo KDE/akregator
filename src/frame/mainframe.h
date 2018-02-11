@@ -31,7 +31,7 @@ class AKREGATOR_EXPORT MainFrame : public Frame
 public:
 
     explicit MainFrame(QWidget *parent, QWidget *widget);
-    virtual ~MainFrame();
+    ~MainFrame() override;
 
     QUrl url() const override;
 

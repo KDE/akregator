@@ -37,7 +37,7 @@ class SubscriptionListView : public QTreeView
     Q_OBJECT
 public:
     explicit SubscriptionListView(QWidget *parent = nullptr);
-    ~SubscriptionListView();
+    ~SubscriptionListView() override;
 // the following is all transitional, for easier porting from the item-based views
 
     void startNodeRenaming(TreeNode *node);

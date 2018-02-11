@@ -43,7 +43,7 @@ class DeleteNodeVisitor : public TreeNodeVisitor
 {
 public:
     explicit DeleteNodeVisitor(QWidget *parent) : m_widget(parent)
-        , m_job(0)
+        , m_job(nullptr)
     {
     }
 
@@ -92,7 +92,7 @@ public:
 
     DeleteSubscriptionJob *createJob(TreeNode *node)
     {
-        m_job = 0;
+        m_job = nullptr;
         if (node) {
             visit(node);
         }

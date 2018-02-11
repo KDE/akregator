@@ -81,7 +81,7 @@ public:
     Part(QWidget *parentWidget, QObject *parent, const QVariantList &);
 
     /** Destructor. */
-    ~Part();
+    ~Part() override;
 
     /**
         Opens feedlist

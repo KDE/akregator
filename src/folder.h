@@ -55,7 +55,7 @@ public:
         */
     explicit Folder(const QString &title = QString());
 
-    ~Folder();
+    ~Folder() override;
 
     bool accept(TreeNodeVisitor *visitor) override;
 

@@ -498,7 +498,7 @@ void TabWidget::slotCloseTab()
     QWidget *widget = d->selectedWidget();
     Frame *frame = d->frames.value(widget);
 
-    if (frame == 0 || !frame->isRemovable()) {
+    if (frame == nullptr || !frame->isRemovable()) {
         return;
     }
 

@@ -91,7 +91,7 @@ public:
 EditSubscriptionCommand::Private::Private(EditSubscriptionCommand *qq) : q(qq)
     , m_list()
     , m_subscriptionId(-1)
-    , m_subscriptionListView(0)
+    , m_subscriptionListView(nullptr)
 {
 }
 

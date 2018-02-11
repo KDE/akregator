@@ -33,7 +33,7 @@ DownloadArticleJob::~DownloadArticleJob()
 {
     if (mAttachmentTemporaryFile) {
         mAttachmentTemporaryFile->removeTempFiles();
-        mAttachmentTemporaryFile = 0;
+        mAttachmentTemporaryFile = nullptr;
     }
 }
 
@@ -42,7 +42,7 @@ void DownloadArticleJob::forceCleanupTemporaryFile()
     if (mAttachmentTemporaryFile) {
         mAttachmentTemporaryFile->forceCleanTempFiles();
         delete mAttachmentTemporaryFile;
-        mAttachmentTemporaryFile = 0;
+        mAttachmentTemporaryFile = nullptr;
     }
 }
 

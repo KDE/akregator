@@ -166,7 +166,7 @@ private:
 FeedList::Private::Private(Backend::Storage *st, FeedList *qq)
     : q(qq)
     , storage(st)
-    , rootNode(0)
+    , rootNode(nullptr)
     , addNodeVisitor(new AddNodeVisitor(q))
     , removeNodeVisitor(new RemoveNodeVisitor(q))
     , unreadCache(-1)
@@ -175,7 +175,7 @@ FeedList::Private::Private(Backend::Storage *st, FeedList *qq)
 }
 
 FeedList::FeedList(Backend::Storage *storage)
-    : QObject(0)
+    : QObject(nullptr)
     , d(new Private(storage, this))
 {
     Folder *rootNode = new Folder(i18n("All Feeds"));
@@ -310,7 +310,7 @@ bool FeedList::readFromOpml(const QDomDocument &doc)
 FeedList::~FeedList()
 {
     Q_EMIT signalDestroyed(this);
-    setRootNode(0);
+    setRootNode(nullptr);
     delete d->addNodeVisitor;
     delete d->removeNodeVisitor;
     delete d;
@@ -322,7 +322,7 @@ const Feed *FeedList::findByURL(const QString &feedURL) const
         return nullptr;
     }
     const QList<Feed *> &v = d->urlMap[feedURL];
-    return !v.isEmpty() ? v.front() : 0;
+    return !v.isEmpty() ? v.front() : nullptr;
 }
 
 Feed *FeedList::findByURL(const QString &feedURL)
@@ -331,7 +331,7 @@ Feed *FeedList::findByURL(const QString &feedURL)
         return nullptr;
     }
     const QList<Feed *> &v = d->urlMap[feedURL];
-    return !v.isEmpty() ? v.front() : 0;
+    return !v.isEmpty() ? v.front() : nullptr;
 }
 
 const Article FeedList::findArticle(const QString &feedURL, const QString &guid) const
@@ -417,7 +417,7 @@ Folder *FeedList::allFeedsFolder()
 
 bool FeedList::isEmpty() const
 {
-    return d->rootNode->firstChild() == 0;
+    return d->rootNode->firstChild() == nullptr;
 }
 
 void FeedList::rootNodeChanged()
@@ -504,7 +504,7 @@ void FeedList::addToFetchQueue(FetchQueue *qu, bool intervalOnly)
 
 KJob *FeedList::createMarkAsReadJob()
 {
-    return d->rootNode ? d->rootNode->createMarkAsReadJob() : 0;
+    return d->rootNode ? d->rootNode->createMarkAsReadJob() : nullptr;
 }
 
 FeedListManagementImpl::FeedListManagementImpl(const QSharedPointer<FeedList> &list) : m_feedList(list)

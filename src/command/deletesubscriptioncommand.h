@@ -37,7 +37,7 @@ class DeleteSubscriptionCommand : public Command
     Q_OBJECT
 public:
     explicit DeleteSubscriptionCommand(QObject *parent = nullptr);
-    ~DeleteSubscriptionCommand();
+    ~DeleteSubscriptionCommand() override;
 
     void setSubscription(const QWeakPointer<FeedList> &feedList, int subId);
 

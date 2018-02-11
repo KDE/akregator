@@ -314,9 +314,9 @@ Akregator::Feed::Private::Private(Backend::Storage *storage_, Akregator::Feed *q
     , fetchErrorCode(Syndication::Success)
     , fetchTries(0)
     , followDiscovery(false)
-    , loader(0)
+    , loader(nullptr)
     , articlesLoaded(false)
-    , archive(0)
+    , archive(nullptr)
     , totalCount(-1)
 {
     Q_ASSERT(q);
@@ -333,7 +333,7 @@ Akregator::Feed::~Feed()
     slotAbortFetch();
     emitSignalDestroyed();
     delete d;
-    d = 0;
+    d = nullptr;
 }
 
 void Akregator::Feed::loadFavicon(const QUrl &url)
@@ -393,7 +393,7 @@ bool Akregator::Feed::markImmediatelyAsRead() const
 
 bool Akregator::Feed::isFetching() const
 {
-    return d->loader != 0;
+    return d->loader != nullptr;
 }
 
 void Akregator::Feed::setMarkImmediatelyAsRead(bool enabled)
@@ -692,7 +692,7 @@ void Akregator::Feed::slotImageFetched(const QPixmap &image)
 void Akregator::Feed::fetchCompleted(Syndication::Loader *l, Syndication::FeedPtr doc, Syndication::ErrorCode status)
 {
     // Note that loader instances delete themselves
-    d->loader = 0;
+    d->loader = nullptr;
 
     // fetching wasn't successful:
     if (status != Syndication::Success) {

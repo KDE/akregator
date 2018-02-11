@@ -48,7 +48,7 @@ public:
         entry.unread = unread;
         entry.totalCount = totalCount;
         entry.lastFetch = lastFetch;
-        entry.feedStorage = 0;
+        entry.feedStorage = nullptr;
         feeds[url] = entry;
     }
 
@@ -64,7 +64,7 @@ StorageDummyImpl::StorageDummyImpl() : d(new StorageDummyImplPrivate)
 StorageDummyImpl::~StorageDummyImpl()
 {
     delete d;
-    d = 0;
+    d = nullptr;
 }
 
 void StorageDummyImpl::initialize(const QStringList &)

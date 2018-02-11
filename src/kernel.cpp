@@ -30,7 +30,7 @@
 
 using namespace Akregator;
 
-Kernel *Kernel::m_self = 0;
+Kernel *Kernel::m_self = nullptr;
 
 Kernel *Kernel::self()
 {
@@ -55,7 +55,7 @@ Kernel::Kernel() : d(new KernelPrivate)
 {
     d->fetchQueue = new FetchQueue();
     d->frameManager = new FrameManager();
-    d->storage = 0;
+    d->storage = nullptr;
 }
 
 Kernel::~Kernel()
@@ -63,7 +63,7 @@ Kernel::~Kernel()
     delete d->fetchQueue;
     delete d->frameManager;
     delete d;
-    d = 0;
+    d = nullptr;
 }
 
 Backend::Storage *Kernel::storage()

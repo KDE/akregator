@@ -38,7 +38,7 @@ Frame::Frame(QWidget *parent)
     m_title = i18n("Untitled");
     m_state = Idle;
     m_progress = -1;
-    m_progressItem = 0;
+    m_progressItem = nullptr;
     m_isRemovable = true;
     m_loading = false;
     m_id = m_idCounter++;
@@ -76,7 +76,7 @@ void Frame::slotSetStatusText(const QString &s)
 void Frame::slotSetProgress(int a)
 {
     if (m_progressItem) {
-        m_progressItem->setProgress((int)a);
+        m_progressItem->setProgress(static_cast<int>(a));
     }
     m_progress = a;
     Q_EMIT signalLoadingProgress(this, a);
@@ -179,7 +179,7 @@ void Frame::slotSetCanceled(const QString &s)
     if (m_progressItem) {
         m_progressItem->setStatus(i18n("Loading canceled"));
         m_progressItem->setComplete();
-        m_progressItem = 0;
+        m_progressItem = nullptr;
     }
     m_state = Canceled;
     Q_EMIT signalCanceled(this, s);
@@ -191,7 +191,7 @@ void Frame::slotSetCompleted()
     if (m_progressItem) {
         m_progressItem->setStatus(i18n("Loading completed"));
         m_progressItem->setComplete();
-        m_progressItem = 0;
+        m_progressItem = nullptr;
     }
     m_state = Completed;
     Q_EMIT signalCompleted(this);

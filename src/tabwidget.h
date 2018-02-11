@@ -39,7 +39,7 @@ class TabWidget : public QTabWidget
 
 public:
     explicit TabWidget(QWidget *parent = nullptr);
-    ~TabWidget();
+    ~TabWidget() override;
 
 public Q_SLOTS:
     void slotWebPageMutedOrAudibleChanged(Akregator::Frame *frame, bool isAudioMuted, bool wasRecentlyAudible);

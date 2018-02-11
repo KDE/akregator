@@ -197,7 +197,7 @@ void ArticleViewerWidget::showArticle(const Akregator::Article &article)
     m_viewMode = NormalView;
     disconnectFromNode(m_node);
     m_article = article;
-    m_node = 0;
+    m_node = nullptr;
     m_link = article.link();
     if (article.feed()->loadLinkedWebsite()) {
         openUrl(article.link());
@@ -301,7 +301,7 @@ void ArticleViewerWidget::slotArticlesRemoved(TreeNode * /*node*/, const QVector
 void ArticleViewerWidget::slotClear()
 {
     disconnectFromNode(m_node);
-    m_node = 0;
+    m_node = nullptr;
     m_article = Article();
     m_articles.clear();
 

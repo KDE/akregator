@@ -67,7 +67,7 @@ public:
     };
 
     explicit ArticleModel(const QVector<Article> &articles, QObject *parent = nullptr);
-    ~ArticleModel();
+    ~ArticleModel() override;
 
     int columnCount(const QModelIndex &parent = QModelIndex()) const override;
 

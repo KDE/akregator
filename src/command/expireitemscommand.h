@@ -39,7 +39,7 @@ class ExpireItemsCommand : public Command
     Q_OBJECT
 public:
     explicit ExpireItemsCommand(QObject *parent = nullptr);
-    ~ExpireItemsCommand();
+    ~ExpireItemsCommand() override;
 
     void setFeedList(const QWeakPointer<FeedList> &feedList);
     QWeakPointer<FeedList> feedList() const;

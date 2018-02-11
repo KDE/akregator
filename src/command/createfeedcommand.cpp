@@ -61,10 +61,10 @@ public:
 
 CreateFeedCommand::Private::Private(CreateFeedCommand *qq)
     : q(qq)
-    , m_rootFolder(0)
-    , m_subscriptionListView(0)
-    , m_parentFolder(0)
-    , m_after(0)
+    , m_rootFolder(nullptr)
+    , m_subscriptionListView(nullptr)
+    , m_parentFolder(nullptr)
+    , m_after(nullptr)
     , m_autoexec(false)
 {
 }

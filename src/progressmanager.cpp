@@ -63,7 +63,7 @@ ProgressManager::ProgressManager() : d(new ProgressManagerPrivate)
 ProgressManager::~ProgressManager()
 {
     delete d;
-    d = 0;
+    d = nullptr;
 }
 
 void ProgressManager::setFeedList(const QSharedPointer<FeedList> &feedList)
@@ -136,7 +136,7 @@ public:
 ProgressItemHandler::ProgressItemHandler(Feed *feed) : d(new ProgressItemHandlerPrivate)
 {
     d->feed = feed;
-    d->progressItem = 0;
+    d->progressItem = nullptr;
 
     connect(feed, &Feed::fetchStarted, this, &ProgressItemHandler::slotFetchStarted);
     connect(feed, &Feed::fetched, this, &ProgressItemHandler::slotFetchCompleted);
@@ -148,18 +148,18 @@ ProgressItemHandler::~ProgressItemHandler()
 {
     if (d->progressItem) {
         d->progressItem->setComplete();
-        d->progressItem = 0;
+        d->progressItem = nullptr;
     }
 
     delete d;
-    d = 0;
+    d = nullptr;
 }
 
 void ProgressItemHandler::slotFetchStarted()
 {
     if (d->progressItem) {
         d->progressItem->setComplete();
-        d->progressItem = 0;
+        d->progressItem = nullptr;
     }
 
     d->progressItem = KPIM::ProgressManager::createProgressItem(KPIM::ProgressManager::getUniqueID(), d->feed->title(), QString(), true);
@@ -172,7 +172,7 @@ void ProgressItemHandler::slotFetchCompleted()
     if (d->progressItem) {
         d->progressItem->setStatus(i18n("Fetch completed"));
         d->progressItem->setComplete();
-        d->progressItem = 0;
+        d->progressItem = nullptr;
     }
 }
 
@@ -181,7 +181,7 @@ void ProgressItemHandler::slotFetchError()
     if (d->progressItem) {
         d->progressItem->setStatus(i18n("Fetch error"));
         d->progressItem->setComplete();
-        d->progressItem = 0;
+        d->progressItem = nullptr;
     }
 }
 
@@ -190,6 +190,6 @@ void ProgressItemHandler::slotFetchAborted()
     if (d->progressItem) {
         d->progressItem->setStatus(i18n("Fetch aborted"));
         d->progressItem->setComplete();
-        d->progressItem = 0;
+        d->progressItem = nullptr;
     }
 }

@@ -25,7 +25,7 @@
 #include "actionmanager.h"
 
 using namespace Akregator;
-ActionManager *ActionManager::m_self = 0;
+ActionManager *ActionManager::m_self = nullptr;
 
 ActionManager *ActionManager::getInstance()
 {

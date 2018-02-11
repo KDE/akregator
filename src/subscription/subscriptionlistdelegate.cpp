@@ -77,7 +77,7 @@ void Akregator::SubscriptionListDelegate::paint(QPainter *painter, const QStyleO
 void Akregator::SubscriptionListDelegate::recalculateRowHeight()
 {
     KIconTheme *iconTheme = KIconLoader::global()->theme();
-    m_viewIconHeight = (iconTheme != NULL) ? iconTheme->defaultSize(KIconLoader::Small) : 0;
+    m_viewIconHeight = iconTheme ? iconTheme->defaultSize(KIconLoader::Small) : 0;
     qCDebug(AKREGATOR_LOG) << "icon height" << m_viewIconHeight;
 }
 

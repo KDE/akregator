@@ -38,7 +38,7 @@ class CreateFeedCommand : public Command
     Q_OBJECT
 public:
     explicit CreateFeedCommand(MainWidget *parent = nullptr);
-    ~CreateFeedCommand();
+    ~CreateFeedCommand() override;
 
     void setSubscriptionListView(SubscriptionListView *view);
     void setRootFolder(Folder *rootFolder);

@@ -37,7 +37,7 @@ class CreateFolderCommand : public Command
     Q_OBJECT
 public:
     explicit CreateFolderCommand(QObject *parent = nullptr);
-    ~CreateFolderCommand();
+    ~CreateFolderCommand() override;
 
     void setSubscriptionListView(SubscriptionListView *view);
     void setSelectedSubscription(TreeNode *selected);

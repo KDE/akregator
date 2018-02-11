@@ -39,7 +39,7 @@ class ImportFeedListCommand : public Command
     Q_OBJECT
 public:
     explicit ImportFeedListCommand(QObject *parent = nullptr);
-    ~ImportFeedListCommand();
+    ~ImportFeedListCommand() override;
 
     void setTargetList(const QWeakPointer<FeedList> &feedList);
 

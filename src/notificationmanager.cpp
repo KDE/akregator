@@ -39,12 +39,12 @@ NotificationManager::NotificationManager() : QObject()
     m_running = false;
     m_addedInLastInterval = false;
     m_maxArticles = 20;
-    m_widget = NULL;
+    m_widget = nullptr;
 }
 
 NotificationManager::~NotificationManager()
 {
-    m_self = 0;
+    m_self = nullptr;
 }
 
 void NotificationManager::setWidget(QWidget *widget, const QString &componentName)
@@ -133,7 +133,7 @@ void NotificationManager::slotIntervalCheck()
     }
 }
 
-NotificationManager *NotificationManager::m_self = 0;
+NotificationManager *NotificationManager::m_self = nullptr;
 
 NotificationManager *NotificationManager::self()
 {

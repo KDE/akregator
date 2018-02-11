@@ -47,7 +47,7 @@ class AddFeedDialog : public QDialog
     Q_OBJECT
 public:
     explicit AddFeedDialog(QWidget *parent = nullptr, const QString &name = QString());
-    ~AddFeedDialog();
+    ~AddFeedDialog() override;
 
     QSize sizeHint() const override;
 

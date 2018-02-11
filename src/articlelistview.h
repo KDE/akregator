@@ -83,7 +83,7 @@ class AKREGATORPART_EXPORT ArticleListView : public QTreeView, public ArticleLis
 public:
 
     explicit ArticleListView(QWidget *parent = nullptr);
-    ~ArticleListView();
+    ~ArticleListView() override;
 
     //impl ArticleLister
     void setArticleModel(Akregator::ArticleModel *model) override;

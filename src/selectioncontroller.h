@@ -45,7 +45,7 @@ class SelectionController : public AbstractSelectionController
 public:
 
     explicit SelectionController(QObject *parent = nullptr);
-    ~SelectionController();
+    ~SelectionController() override;
 
     //impl
     void setFeedSelector(QAbstractItemView *feedSelector)  override;

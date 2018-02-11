@@ -68,7 +68,7 @@ public:
     {
     }
 
-    virtual ~AkregatorConfigHandler()
+    ~AkregatorConfigHandler() override
     {
     }
 
@@ -84,7 +84,7 @@ public:
     {
     }
 
-    virtual ~MailToURLHandlerWebEngine()
+    ~MailToURLHandlerWebEngine() override
     {
     }
 
@@ -100,7 +100,7 @@ public:
     {
     }
 
-    virtual ~ActionURLHandlerWebEngine()
+    ~ActionURLHandlerWebEngine() override
     {
     }
 

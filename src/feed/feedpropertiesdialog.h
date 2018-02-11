@@ -58,7 +58,7 @@ class FeedPropertiesDialog : public QDialog
     Q_OBJECT
 public:
     explicit FeedPropertiesDialog(QWidget *parent = nullptr, const QString &name = QString());
-    ~FeedPropertiesDialog();
+    ~FeedPropertiesDialog() override;
 
     void setFeed(Feed *feed);
 

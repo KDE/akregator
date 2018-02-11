@@ -79,7 +79,7 @@ static QString errorCodeToString(Syndication::ErrorCode err)
 
 static const Akregator::TreeNode *nodeForIndex(const QModelIndex &index, const FeedList *feedList)
 {
-    return (!index.isValid() || !feedList) ? 0 : feedList->findByID(index.internalId());
+    return (!index.isValid() || !feedList) ? nullptr : feedList->findByID(index.internalId());
 }
 }
 
@@ -443,7 +443,7 @@ void Akregator::FolderExpansionHandler::setExpanded(const QModelIndex &idx, bool
 
 FolderExpansionHandler::FolderExpansionHandler(QObject *parent) : QObject(parent)
     , m_feedList()
-    , m_model(0)
+    , m_model(nullptr)
 {
 }
 

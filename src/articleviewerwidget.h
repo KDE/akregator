@@ -55,7 +55,7 @@ class AKREGATOR_EXPORT ArticleViewerWidget : public QWidget
     Q_OBJECT
 public:
     explicit ArticleViewerWidget(const QString &grantleeDirectory, KActionCollection *ac, QWidget *parent);
-    ~ArticleViewerWidget();
+    ~ArticleViewerWidget() override;
 
     /** Repaints the view. */
     void reload();

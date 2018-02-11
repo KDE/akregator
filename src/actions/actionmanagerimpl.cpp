@@ -143,7 +143,7 @@ void ActionManagerImpl::slotSettingsChanged()
 
 void ActionManagerImpl::slotNodeSelected(TreeNode *node)
 {
-    if (node != 0) {
+    if (node) {
         d->nodeSelectVisitor->visit(node);
     }
 }
@@ -154,12 +154,12 @@ ActionManagerImpl::ActionManagerImpl(Part *part, QObject *parent)
 {
     d->nodeSelectVisitor = new NodeSelectVisitor(this);
     d->part = part;
-    d->subscriptionListView = 0;
-    d->articleList = 0;
-    d->trayIcon = 0;
-    d->mainWidget = 0;
-    d->tabWidget = 0;
-    d->tagMenu = 0;
+    d->subscriptionListView = nullptr;
+    d->articleList = nullptr;
+    d->trayIcon = nullptr;
+    d->mainWidget = nullptr;
+    d->tabWidget = nullptr;
+    d->tagMenu = nullptr;
     d->actionCollection = part->actionCollection();
     d->shareServiceManager = new PimCommon::ShareServiceUrlManager(this);
     initPart();
@@ -169,13 +169,13 @@ ActionManagerImpl::~ActionManagerImpl()
 {
     delete d->nodeSelectVisitor;
     delete d;
-    d = 0;
+    d = nullptr;
 }
 
 void ActionManagerImpl::setTrayIcon(TrayIcon *trayIcon)
 {
-    if (trayIcon == 0) {
-        d->trayIcon = 0;
+    if (trayIcon == nullptr) {
+        d->trayIcon = nullptr;
         return;
     }
     if (d->trayIcon) {
