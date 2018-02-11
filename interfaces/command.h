@@ -37,7 +37,7 @@ class AKREGATORINTERFACES_EXPORT Command : public QObject
     Q_OBJECT
 public:
     explicit Command(QObject *parent = nullptr);
-    virtual ~Command();
+    ~Command() override;
 
     QWidget *parentWidget() const;
     void setParentWidget(QWidget *parentWidget);

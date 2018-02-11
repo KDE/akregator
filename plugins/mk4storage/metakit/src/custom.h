@@ -24,7 +24,7 @@ class c4_CustomSeq : public c4_HandlerSeq
 
 public:
     c4_CustomSeq(c4_CustomViewer *viewer_);
-    virtual ~c4_CustomSeq();
+    ~c4_CustomSeq() override;
 
     int NumRows() const override;
 

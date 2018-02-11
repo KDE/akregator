@@ -54,7 +54,7 @@ public:
     static void setInstance(ActionManager *manager);
 
     explicit ActionManager(QObject *parent = nullptr);
-    virtual ~ActionManager();
+    ~ActionManager() override;
 
     virtual QAction *action(const QString &name) = 0;
     virtual QWidget *container(const QString &name) = 0;

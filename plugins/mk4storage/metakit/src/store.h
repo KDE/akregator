@@ -68,7 +68,7 @@ protected:
 
 protected:
     c4_DerivedSeq(c4_Sequence &seq_);
-    virtual ~c4_DerivedSeq();
+    ~c4_DerivedSeq() override;
 
 public:
     int RemapIndex(int, const c4_Sequence *) const override;
@@ -96,7 +96,7 @@ class c4_StreamStrategy : public c4_Strategy
 public:
     c4_StreamStrategy(t4_i32 buflen_);
     c4_StreamStrategy(c4_Stream *stream_);
-    virtual ~c4_StreamStrategy();
+    ~c4_StreamStrategy() override;
 
     bool IsValid() const override;
     int DataRead(t4_i32 pos_, void *buffer_, int length_) override;

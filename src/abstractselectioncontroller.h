@@ -99,7 +99,7 @@ class AbstractSelectionController : public QObject
 
 public:
     explicit AbstractSelectionController(QObject *parent = nullptr);
-    virtual ~AbstractSelectionController();
+    ~AbstractSelectionController() override;
 
     virtual void setFeedList(const QSharedPointer<FeedList> &list) = 0;
 

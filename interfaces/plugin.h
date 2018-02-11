@@ -43,7 +43,7 @@ class AKREGATORINTERFACES_EXPORT Plugin : public QObject
 public:
     explicit Plugin(QObject *parent = nullptr, const QVariantList &opts = QVariantList());
 
-    virtual ~Plugin();
+    ~Plugin() override;
 
     void initialize();
 

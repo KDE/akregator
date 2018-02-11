@@ -33,7 +33,7 @@ class FeedStorageDummyImpl : public FeedStorage
 {
 public:
     FeedStorageDummyImpl(const QString &url, StorageDummyImpl *main);
-    virtual ~FeedStorageDummyImpl();
+    ~FeedStorageDummyImpl() override;
 
     void add(FeedStorage *source) override;
     void copyArticle(const QString &guid, FeedStorage *source) override;

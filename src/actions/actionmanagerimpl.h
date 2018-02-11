@@ -55,7 +55,7 @@ class ActionManagerImpl : public ActionManager
 public:
 
     explicit ActionManagerImpl(Part *part, QObject *parent = nullptr);
-    virtual ~ActionManagerImpl();
+    ~ActionManagerImpl() override;
 
     QAction *action(const QString &name) override;
     QWidget *container(const QString &name) override;

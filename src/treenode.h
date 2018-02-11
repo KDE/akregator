@@ -65,7 +65,7 @@ public:
     TreeNode();
 
     /** Standard destructor */
-    virtual ~TreeNode();
+    ~TreeNode() override;
 
     virtual bool accept(TreeNodeVisitor *visitor) = 0;
 
