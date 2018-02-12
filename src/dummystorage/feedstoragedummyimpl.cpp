@@ -41,16 +41,20 @@ public:
     class Entry
     {
     public:
-        Entry() : guidIsHash(false)
-            , guidIsPermaLink(false)
-            , status(0)
-            , pubDate(0)
-            , hash(0)
+        Entry() :
+            status(0)
+          , pubDate(0)
+          , hash(0)
+          , guidIsHash(false)
+          , guidIsPermaLink(false)
         {
         }
 
         StorageDummyImpl *mainStorage = nullptr;
         QList<Category> categories;
+        QStringList tags;
+        QString enclosureUrl;
+        QString enclosureType;
         QString title;
         QString description;
         QString content;
@@ -59,17 +63,14 @@ public:
         QString authorUri;
         QString authorEMail;
         QString commentsLink;
-        bool guidIsHash = false;
-        bool guidIsPermaLink = false;
         int comments;
         int status;
+        int enclosureLength;
         uint pubDate;
         uint hash;
-        QStringList tags;
+        bool guidIsHash = false;
+        bool guidIsPermaLink = false;
         bool hasEnclosure = false;
-        QString enclosureUrl;
-        QString enclosureType;
-        int enclosureLength;
     };
 
     QHash<QString, Entry> entries;

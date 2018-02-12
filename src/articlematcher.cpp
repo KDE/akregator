@@ -60,9 +60,8 @@ QString Criterion::subjectToString(Subject subj)
         return QStringLiteral("KeepFlag");
     case Author:
         return QStringLiteral("Author");
-    default: // should never happen (TM)
-        return QStringLiteral("Description");
     }
+    return {};
 }
 
 Criterion::Subject Criterion::stringToSubject(const QString &subjStr)
@@ -96,9 +95,8 @@ QString Criterion::predicateToString(Predicate pred)
         return QStringLiteral("Matches");
     case Negation:
         return QStringLiteral("Negation");
-    default:// hopefully never reached
-        return QStringLiteral("Contains");
     }
+    return {};
 }
 
 Criterion::Predicate Criterion::stringToPredicate(const QString &predStr)
@@ -177,8 +175,6 @@ bool Criterion::satisfiedBy(const Article &article) const
         break;
     case Author:
         concreteSubject = QVariant(article.authorName());
-    default:
-        break;
     }
 
     bool satisfied = false;

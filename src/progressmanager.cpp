@@ -45,7 +45,7 @@ public:
     QHash<Feed *, ProgressItemHandler *> handlers;
 };
 
-ProgressManager *ProgressManager::m_self = 0;
+ProgressManager *ProgressManager::m_self = nullptr;
 
 ProgressManager *ProgressManager::self()
 {

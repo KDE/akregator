@@ -534,7 +534,7 @@ void Akregator::Feed::slotAddToFetchQueue(FetchQueue *queue, bool intervalFetchO
 
         uint now = QDateTime::currentDateTimeUtc().toTime_t();
 
-        if (interval > 0 && now - lastFetch >= (uint)interval) {
+        if (interval > 0 && (now - lastFetch) >= static_cast<uint>(interval)) {
             queue->addFeed(this);
         }
     }

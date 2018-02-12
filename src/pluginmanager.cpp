@@ -64,7 +64,7 @@ PluginManager::createFromQuery(const QString &constraint)
 
     // Select plugin with highest rank
     int rank = 0;
-    uint current = 0;
+    int current = 0;
     for (int i = 0; i < offers.count(); ++i) {
         if (offers[i]->property(QStringLiteral("X-KDE-akregator-rank")).toInt() > rank) {
             current = i;

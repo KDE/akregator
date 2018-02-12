@@ -76,7 +76,7 @@ void Frame::slotSetStatusText(const QString &s)
 void Frame::slotSetProgress(int a)
 {
     if (m_progressItem) {
-        m_progressItem->setProgress(static_cast<int>(a));
+        m_progressItem->setProgress(static_cast<uint>(a));
     }
     m_progress = a;
     Q_EMIT signalLoadingProgress(this, a);
