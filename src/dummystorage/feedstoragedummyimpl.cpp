@@ -101,7 +101,7 @@ FeedStorageDummyImpl::FeedStorageDummyImpl(const QString &url, StorageDummyImpl 
 FeedStorageDummyImpl::~FeedStorageDummyImpl()
 {
     delete d;
-    d = 0;
+    d = nullptr;
 }
 
 void FeedStorageDummyImpl::commit()

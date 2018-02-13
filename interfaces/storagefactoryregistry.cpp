@@ -85,7 +85,7 @@ StorageFactoryRegistry::~StorageFactoryRegistry()
 {
     qDeleteAll(d->map);
     delete d;
-    d = 0;
+    d = nullptr;
 }
 } // namespace Backend
 } // namespace Akregator

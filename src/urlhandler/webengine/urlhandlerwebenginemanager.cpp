@@ -26,7 +26,7 @@ using std::remove;
 
 using namespace Akregator;
 
-URLHandlerWebEngineManager *URLHandlerWebEngineManager::self = 0;
+URLHandlerWebEngineManager *URLHandlerWebEngineManager::self = nullptr;
 
 URLHandlerWebEngineManager::URLHandlerWebEngineManager(QObject *parent)
     : QObject(parent)

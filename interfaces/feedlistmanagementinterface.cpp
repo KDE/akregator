@@ -26,7 +26,7 @@
 
 using namespace Akregator;
 
-FeedListManagementInterface *FeedListManagementInterface::m_instance = 0;
+FeedListManagementInterface *FeedListManagementInterface::m_instance = nullptr;
 
 FeedListManagementInterface *FeedListManagementInterface::instance()
 {
