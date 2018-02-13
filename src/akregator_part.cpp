@@ -324,7 +324,6 @@ void Part::slotOnShutdown()
     m_autosaveTimer->stop();
     if (m_mainWidget) {
         saveSettings();
-        slotSaveFeedList();
         m_mainWidget->slotOnShutdown();
     }
     //delete m_mainWidget;
