@@ -325,7 +325,7 @@ void Part::slotOnShutdown()
     delete TrayIcon::getInstance();
     TrayIcon::setInstance(nullptr);
     delete m_storage;
-    m_storage = 0;
+    m_storage = nullptr;
     //delete m_actionManager;
 }
 

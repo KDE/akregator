@@ -346,7 +346,7 @@ void MainWidget::slotOnShutdown()
 
     delete m_mainTab;
     delete m_mainFrame;
-    m_mainFrame = 0;
+    m_mainFrame = nullptr;
 
     Settings::self()->save();
 }
