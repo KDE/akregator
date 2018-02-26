@@ -528,6 +528,10 @@ void Part::slotSaveFeedList()
     }
 
     const QString xml = m_mainWidget->feedListToOPML().toString();
+    if (xml.isEmpty()) {
+        return;
+    }
+    
     m_storage->storeFeedList(xml);
     if (writeToTextFile(xml, localFilePath())) {
         return;
