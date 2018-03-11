@@ -33,11 +33,6 @@
 
 using namespace Akregator;
 
-#include <kcoreaddons_version.h>
-#if KCOREADDONS_VERSION < QT_VERSION_CHECK(5, 44, 0)
-#define K_PLUGIN_CLASS_WITH_JSON(classname, json) K_PLUGIN_FACTORY_WITH_JSON(classname ## Factory, json, registerPlugin<classname >();)
-#endif
-
 K_PLUGIN_CLASS_WITH_JSON(KCMAkregatorAppearanceConfig, "akregator_config_appearance.json")
 
 KCMAkregatorAppearanceConfig::KCMAkregatorAppearanceConfig(QWidget *parent, const QVariantList &args)
