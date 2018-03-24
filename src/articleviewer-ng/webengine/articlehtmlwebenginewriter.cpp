@@ -42,7 +42,7 @@ void ArticleHtmlWebEngineWriter::begin()
     }
     // clear the widget:
     mWebView->setUpdatesEnabled(false);
-    mWebView->load(QUrl());
+    mWebView->load(QUrl(QStringLiteral("about:blank")));
     mState = Begun;
 }
 
