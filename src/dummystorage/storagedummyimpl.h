@@ -41,7 +41,7 @@ public:
     StorageDummyImpl();
     StorageDummyImpl(const StorageDummyImpl &);
     StorageDummyImpl &operator =(const StorageDummyImpl &);
-    ~StorageDummyImpl();
+    ~StorageDummyImpl() override;
     void initialize(const QStringList &params) override;
     /**
      * Open storage and prepare it for work.

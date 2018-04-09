@@ -60,7 +60,7 @@ public:
         OpenInBackgroundTab
     };
     explicit ArticleViewerWebEngine(KActionCollection *ac, QWidget *parent);
-    ~ArticleViewerWebEngine();
+    ~ArticleViewerWebEngine() override;
 
     void showAboutPage();
 
