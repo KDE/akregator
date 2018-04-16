@@ -1,0 +1,15 @@
+[Desktop Entry]
+Type=Service
+Name=SQL storage backend
+X-KDE-Library=akregator_sqlstorage_plugin
+Comment=Plugin for Akregator
+X-KDE-ServiceTypes=Akregator/Plugin
+
+X-KDE-akregator-plugintype=storage
+X-KDE-akregator-name=sql
+X-KDE-akregator-authors=Pierre Ducroquet
+X-KDE-akregator-email=pinaraf@pinaraf.info
+X-KDE-akregator-rank=255
+X-KDE-akregator-version=1
+X-KDE-akregator-framework-version=4
+
