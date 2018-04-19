@@ -153,7 +153,7 @@ bool Akregator::Backend::StorageMK4Impl::autoCommit() const
     return d->autoCommit;
 }
 
-bool Akregator::Backend::StorageMK4Impl::close()
+void Akregator::Backend::StorageMK4Impl::close()
 {
     QMap<QString, FeedStorageMK4Impl *>::Iterator it;
     QMap<QString, FeedStorageMK4Impl *>::Iterator end(d->feeds.end());
@@ -171,8 +171,6 @@ bool Akregator::Backend::StorageMK4Impl::close()
     d->feedListStorage->Commit();
     delete d->feedListStorage;
     d->feedListStorage = 0;
-
-    return true;
 }
 
 bool Akregator::Backend::StorageMK4Impl::commit()
@@ -302,17 +300,6 @@ QStringList Akregator::Backend::StorageMK4Impl::feeds() const
     }
     // fill with urls
     return list;
-}
-
-void Akregator::Backend::StorageMK4Impl::add(Storage *source)
-{
-    QStringList feeds = source->feeds();
-    QStringList::ConstIterator end(feeds.constEnd());
-
-    for (QStringList::ConstIterator it = feeds.constBegin(); it != end; ++it) {
-        FeedStorage *fa = archiveFor(*it);
-        fa->add(source->archiveFor(*it));
-    }
 }
 
 void Akregator::Backend::StorageMK4Impl::clear()

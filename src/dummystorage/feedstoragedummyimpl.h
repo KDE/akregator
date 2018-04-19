@@ -35,9 +35,6 @@ public:
     FeedStorageDummyImpl(const QString &url, StorageDummyImpl *main);
     ~FeedStorageDummyImpl() override;
 
-    void add(FeedStorage *source) override;
-    void copyArticle(const QString &guid, FeedStorage *source) override;
-
     void clear() override;
     int unread() const override;
     void setUnread(int unread) override;

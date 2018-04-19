@@ -34,8 +34,6 @@ public:
     FeedStorageMK4Impl(const QString &url, StorageMK4Impl *main);
     ~FeedStorageMK4Impl();
 
-    void add(FeedStorage *source) override;
-    void copyArticle(const QString &guid, FeedStorage *source) override;
     void clear() override;
 
     int unread() const override;

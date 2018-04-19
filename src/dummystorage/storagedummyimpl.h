@@ -65,7 +65,7 @@ public:
      * Closes storage, freeing all allocated resources. Called from destructor, so you don't need to call it directly.
      * @return true on success.
      */
-    bool close() override;
+    void close() override;
 
     /**
      * @return Article archive for feed at given url.
@@ -83,11 +83,6 @@ public:
 
     void storeFeedList(const QString &opmlStr) override;
     QString restoreFeedList() const override;
-
-    /** adds all feed storages from a source to this storage
-        existing articles are replaced
-    */
-    void add(Storage *source) override;
 
     /** deletes all feed storages in this archive */
     void clear() override;

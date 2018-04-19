@@ -317,34 +317,6 @@ void FeedStorageDummyImpl::setGuidIsPermaLink(const QString &guid, bool isPermaL
     }
 }
 
-void FeedStorageDummyImpl::add(FeedStorage *source)
-{
-    QStringList articles = source->articles();
-    for (QStringList::ConstIterator it = articles.constBegin(); it != articles.constEnd(); ++it) {
-        copyArticle(*it, source);
-    }
-    setUnread(source->unread());
-    setLastFetch(source->lastFetch());
-    setTotalCount(source->totalCount());
-}
-
-void FeedStorageDummyImpl::copyArticle(const QString &guid, FeedStorage *source)
-{
-    if (!contains(guid)) {
-        addEntry(guid);
-    }
-
-    setDescription(guid, source->description(guid));
-    setContent(guid, source->content(guid));
-    setGuidIsHash(guid, source->guidIsHash(guid));
-    setGuidIsPermaLink(guid, source->guidIsPermaLink(guid));
-    setHash(guid, source->hash(guid));
-    setLink(guid, source->link(guid));
-    setPubDate(guid, source->pubDate(guid));
-    setStatus(guid, source->status(guid));
-    setTitle(guid, source->title(guid));
-}
-
 void FeedStorageDummyImpl::clear()
 {
     d->entries.clear();

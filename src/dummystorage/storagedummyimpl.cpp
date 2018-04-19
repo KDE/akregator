@@ -63,6 +63,7 @@ StorageDummyImpl::StorageDummyImpl() : d(new StorageDummyImplPrivate)
 
 StorageDummyImpl::~StorageDummyImpl()
 {
+    close();
     delete d;
     d = nullptr;
 }
@@ -81,13 +82,12 @@ bool StorageDummyImpl::autoCommit() const
     return false;
 }
 
-bool StorageDummyImpl::close()
+void StorageDummyImpl::close()
 {
     for (QHash<QString, StorageDummyImplPrivate::Entry>::ConstIterator it = d->feeds.constBegin(); it != d->feeds.constEnd(); ++it) {
         (*it).feedStorage->close();
         delete(*it).feedStorage;
     }
-    return true;
 }
 
 bool StorageDummyImpl::commit()
@@ -167,15 +167,6 @@ const FeedStorage *StorageDummyImpl::archiveFor(const QString &url) const
 QStringList StorageDummyImpl::feeds() const
 {
     return d->feeds.keys();
-}
-
-void StorageDummyImpl::add(Storage *source)
-{
-    QStringList feeds = source->feeds();
-    for (QStringList::ConstIterator it = feeds.constBegin(); it != feeds.constEnd(); ++it) {
-        FeedStorage *fa = archiveFor(*it);
-        fa->add(source->archiveFor(*it));
-    }
 }
 
 void StorageDummyImpl::clear()

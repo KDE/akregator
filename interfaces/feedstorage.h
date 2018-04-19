@@ -49,14 +49,6 @@ public:
     /** returns the guids of all articles in this storage. */
     virtual QStringList articles() const = 0;
 
-    /** Appends all articles from another storage. If there is already an article in this feed with the same guid, it is replaced by the article from the source
-    @param source the archive which articles should be appended
-    */
-    virtual void add(FeedStorage *source) = 0;
-
-    /** reads an article from another storage and adds it to this storage */
-    virtual void copyArticle(const QString &guid, FeedStorage *source) = 0;
-
     /** deletes all articles from the archive */
     virtual void clear() = 0;
 

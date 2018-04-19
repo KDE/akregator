@@ -73,7 +73,7 @@ public:
      * Closes storage, freeing all allocated resources. Called from destructor, so you don't need to call it directly.
      * @return true on success.
      */
-    virtual bool close() = 0;
+    virtual void close() = 0;
 
     /**
      * @return Article archive for feed at given url.
@@ -98,11 +98,6 @@ public:
     /** returns a list of all feeds (URLs) stored in this archive */
 
     virtual QStringList feeds() const = 0;
-
-    /** adds all feed storages from a source to this storage
-        existing articles are replaced
-    */
-    virtual void add(Storage *source) = 0;
 
     /** deletes all feed storages in this archive */
     virtual void clear() = 0;
