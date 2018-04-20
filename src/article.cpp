@@ -203,8 +203,6 @@ Article::Private::Private(const ItemPtr &article, Feed *feed_, Backend::FeedStor
         archive->setContent(guid, article->content());
         archive->setDescription(guid, article->description());
         archive->setLink(guid, article->link());
-        //archive->setComments(guid, article.comments());
-        //archive->setCommentsLink(guid, article.commentsLink().url());
         archive->setGuidIsPermaLink(guid, false);
         archive->setGuidIsHash(guid, guid.startsWith(QLatin1String("hash:")));
         const time_t datePublished = article->datePublished();
@@ -225,7 +223,6 @@ Article::Private::Private(const ItemPtr &article, Feed *feed_, Backend::FeedStor
         }
     } else {
         // always update comments count, as it's not used for hash calculation
-        //archive->setComments(guid, article.comments());
         if (hash != archive->hash(guid)) { //article is in archive, was it modified?
             // if yes, update
             pubDate = archive->pubDate(guid);
@@ -243,7 +240,6 @@ Article::Private::Private(const ItemPtr &article, Feed *feed_, Backend::FeedStor
                 archive->setAuthorUri(guid, firstAuthor->uri());
                 archive->setAuthorEMail(guid, firstAuthor->email());
             }
-            //archive->setCommentsLink(guid, article.commentsLink());
         }
     }
 
@@ -491,16 +487,6 @@ QString Article::content(ContentOption opt) const
 QString Article::guid() const
 {
     return d->guid;
-}
-
-QUrl Article::commentsLink() const
-{
-    return QUrl(d->archive->commentsLink(d->guid));
-}
-
-int Article::comments() const
-{
-    return d->archive->comments(d->guid);
 }
 
 bool Article::guidIsPermaLink() const

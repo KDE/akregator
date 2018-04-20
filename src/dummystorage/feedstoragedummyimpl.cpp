@@ -61,8 +61,6 @@ public:
         QString authorName;
         QString authorUri;
         QString authorEMail;
-        QString commentsLink;
-        int comments;
         int status;
         int enclosureLength;
         QDateTime pubDate;
@@ -161,16 +159,6 @@ void FeedStorageDummyImpl::deleteArticle(const QString &guid)
     d->entries.remove(guid);
 }
 
-int FeedStorageDummyImpl::comments(const QString &guid) const
-{
-    return contains(guid) ? d->entries[guid].comments : 0;
-}
-
-QString FeedStorageDummyImpl::commentsLink(const QString &guid) const
-{
-    return contains(guid) ? d->entries[guid].commentsLink : QString();
-}
-
 bool FeedStorageDummyImpl::guidIsHash(const QString &guid) const
 {
     return contains(guid) ? d->entries[guid].guidIsHash : false;
@@ -198,7 +186,6 @@ void FeedStorageDummyImpl::setDeleted(const QString &guid)
     entry.content.clear();
     entry.title.clear();
     entry.link.clear();
-    entry.commentsLink.clear();
 }
 
 QString FeedStorageDummyImpl::link(const QString &guid) const
@@ -295,13 +282,6 @@ void FeedStorageDummyImpl::setDescription(const QString &guid, const QString &de
     }
 }
 
-void FeedStorageDummyImpl::setCommentsLink(const QString &guid, const QString &commentsLink)
-{
-    if (contains(guid)) {
-        d->entries[guid].commentsLink = commentsLink;
-    }
-}
-
 void FeedStorageDummyImpl::setContent(const QString &guid, const QString &content)
 {
     if (contains(guid)) {
@@ -327,13 +307,6 @@ void FeedStorageDummyImpl::setAuthorEMail(const QString &guid, const QString &au
 {
     if (contains(guid)) {
         d->entries[guid].authorEMail = author;
-    }
-}
-
-void FeedStorageDummyImpl::setComments(const QString &guid, int comments)
-{
-    if (contains(guid)) {
-        d->entries[guid].comments = comments;
     }
 }
 

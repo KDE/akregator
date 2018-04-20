@@ -45,8 +45,6 @@ class ArticleGrantleeObject : public QObject
     Q_PROPERTY(QString openInExternalBrowser READ openInExternalBrowser)
     Q_PROPERTY(QString openInBackgroundTab READ openInBackgroundTab)
     Q_PROPERTY(QString share READ share)
-    Q_PROPERTY(QString commentLink READ commentLink)
-    Q_PROPERTY(QString commentNumber READ commentNumber)
     Q_PROPERTY(Akregator::ArticleGrantleeObject::ArticleStatus articleStatus READ articleStatus)
     Q_PROPERTY(bool important READ important)
 
@@ -82,8 +80,6 @@ public:
     QString openInExternalBrowser() const;
     QString share() const;
 
-    QString commentLink() const;
-    QString commentNumber() const;
     QString openInBackgroundTab() const;
 
     bool important() const;

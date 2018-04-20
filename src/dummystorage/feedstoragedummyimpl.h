@@ -50,10 +50,6 @@ public:
     bool contains(const QString &guid) const override;
     void addEntry(const QString &guid) override;
     void deleteArticle(const QString &guid) override;
-    int comments(const QString &guid) const override;
-    QString commentsLink(const QString &guid) const override;
-    void setCommentsLink(const QString &guid, const QString &commentsLink) override;
-    void setComments(const QString &guid, int comments) override;
     bool guidIsHash(const QString &guid) const override;
     void setGuidIsHash(const QString &guid, bool isHash) override;
     bool guidIsPermaLink(const QString &guid) const override;

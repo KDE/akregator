@@ -270,12 +270,6 @@ static void writeItem(FeedStorage *storage, const QString &guid, QXmlStreamWrite
                 storage->authorEMail(guid),
                 writer);
 
-    if (const int commentsCount = storage->comments(guid)) {
-        Elements::instance.commentsCount.write(QString::number(commentsCount), writer);
-    }
-
-    Elements::instance.commentsLink.write(storage->commentsLink(guid), writer);
-
     bool hasEnc = false;
     QString encUrl, encType;
     int encLength = 0;

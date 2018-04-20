@@ -63,10 +63,6 @@ public:
     virtual bool contains(const QString &guid) const = 0;
     virtual void addEntry(const QString &guid) = 0;
     virtual void deleteArticle(const QString &guid) = 0;
-    virtual int comments(const QString &guid) const = 0;
-    virtual QString commentsLink(const QString &guid) const = 0;
-    virtual void setCommentsLink(const QString &guid, const QString &commentsLink) = 0;
-    virtual void setComments(const QString &guid, int comments) = 0;
     virtual bool guidIsHash(const QString &guid) const = 0;
     virtual void setGuidIsHash(const QString &guid, bool isHash) = 0;
     virtual bool guidIsPermaLink(const QString &guid) const = 0;

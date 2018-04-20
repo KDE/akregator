@@ -111,10 +111,6 @@
   <div dir="{{ applicationDir }}"><span class="content">{{ article.content|safe }}</span>
   {% endif %}
 
-  {% if article.commentNumber %}
-  <div class="body"><a class="contentlink" href="{{ article.commentLink }}">{{ commentI18n }} ({{ article.commentNumber }})</a>
-  {% endif %}
-
   {% if article.articleCompleteStoryLink %}
   <p><a class="contentlink" href="{{ article.articleCompleteStoryLink }}">{{ completeStoryI18n }}</a></p>
   {% endif %}

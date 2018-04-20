@@ -234,18 +234,6 @@ void FeedStorageMK4Impl::deleteArticle(const QString &guid)
     }
 }
 
-int FeedStorageMK4Impl::comments(const QString &guid) const
-{
-    int findidx = findArticle(guid);
-    return findidx != -1 ? d->pcomments(d->archiveView.GetAt(findidx)) : 0;
-}
-
-QString FeedStorageMK4Impl::commentsLink(const QString &guid) const
-{
-    int findidx = findArticle(guid);
-    return findidx != -1 ? QString::fromLatin1(d->pcommentsLink(d->archiveView.GetAt(findidx))) : QLatin1String("");
-}
-
 bool FeedStorageMK4Impl::guidIsHash(const QString &guid) const
 {
     int findidx = findArticle(guid);
@@ -480,32 +468,6 @@ QString FeedStorageMK4Impl::authorEMail(const QString &guid) const
 {
     int findidx = findArticle(guid);
     return findidx != -1 ? QString::fromUtf8(d->pauthorEMail(d->archiveView.GetAt(findidx))) : QString();
-}
-
-void FeedStorageMK4Impl::setCommentsLink(const QString &guid, const QString &commentsLink)
-{
-    int findidx = findArticle(guid);
-    if (findidx == -1) {
-        return;
-    }
-    c4_Row row;
-    row = d->archiveView.GetAt(findidx);
-    d->pcommentsLink(row) = !commentsLink.isEmpty() ? commentsLink.toUtf8().data() : "";
-    d->archiveView.SetAt(findidx, row);
-    markDirty();
-}
-
-void FeedStorageMK4Impl::setComments(const QString &guid, int comments)
-{
-    int findidx = findArticle(guid);
-    if (findidx == -1) {
-        return;
-    }
-    c4_Row row;
-    row = d->archiveView.GetAt(findidx);
-    d->pcomments(row) = comments;
-    d->archiveView.SetAt(findidx, row);
-    markDirty();
 }
 
 void FeedStorageMK4Impl::setGuidIsPermaLink(const QString &guid, bool isPermaLink)
