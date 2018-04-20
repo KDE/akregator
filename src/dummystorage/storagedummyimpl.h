@@ -73,13 +73,15 @@ public:
     FeedStorage *archiveFor(const QString &url) override;
     const FeedStorage *archiveFor(const QString &url) const override;
     bool autoCommit() const override;
-    int unreadFor(const QString &url) const override;
-    void setUnreadFor(const QString &url, int unread) override;
-    int totalCountFor(const QString &url) const override;
-    void setTotalCountFor(const QString &url, int total) override;
-    QDateTime lastFetchFor(const QString &url) const override;
-    void setLastFetchFor(const QString &url, const QDateTime &lastFetch) override;
     QStringList feeds() const override;
+
+    // Mimic the MK4 api for feedstorage to alter the 'main' storage
+    int unreadFor(const QString &url) const;
+    void setUnreadFor(const QString &url, int unread);
+    int totalCountFor(const QString &url) const;
+    void setTotalCountFor(const QString &url, int total);
+    QDateTime lastFetchFor(const QString &url) const;
+    void setLastFetchFor(const QString &url, const QDateTime &lastFetch);
 
     void storeFeedList(const QString &opmlStr) override;
     QString restoreFeedList() const override;

@@ -72,7 +72,7 @@ public:
 
     QHash<QString, Entry> entries;
 
-    Storage *mainStorage;
+    StorageDummyImpl *mainStorage;
     QString url;
 };
 

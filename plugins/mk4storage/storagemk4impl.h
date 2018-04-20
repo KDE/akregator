@@ -87,12 +87,14 @@ public:
     const FeedStorage *archiveFor(const QString &url) const override;
 
     bool autoCommit() const override;
-    int unreadFor(const QString &url) const override;
-    void setUnreadFor(const QString &url, int unread) override;
-    int totalCountFor(const QString &url) const override;
-    void setTotalCountFor(const QString &url, int total) override;
-    QDateTime lastFetchFor(const QString &url) const override;
-    void setLastFetchFor(const QString &url, const QDateTime &lastFetch) override;
+
+    // API for FeedStorage to alter the feed index 'view'
+    int unreadFor(const QString &url) const;
+    void setUnreadFor(const QString &url, int unread);
+    int totalCountFor(const QString &url) const;
+    void setTotalCountFor(const QString &url, int total);
+    QDateTime lastFetchFor(const QString &url) const;
+    void setLastFetchFor(const QString &url, const QDateTime &lastFetch);
 
     QStringList feeds() const override;
 
