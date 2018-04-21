@@ -66,8 +66,10 @@ void Akregator::SubscriptionListDelegate::paint(QPainter *painter, const QStyleO
     //fix [Bug 190052] numeric columns aligned to the left
     if (index.column() == SubscriptionListModel::UnreadCountColumn
         || index.column() == SubscriptionListModel::TotalCountColumn) {
-        newOption.displayAlignment = Qt::AlignRight;
+        newOption.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
     }
+    else
+        newOption.displayAlignment = Qt::AlignLeft | Qt::AlignVCenter;
 
     // No need to translate the painter here - the item is vertically centered
     // within its sizeHint rectangle.
