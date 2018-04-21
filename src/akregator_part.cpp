@@ -379,6 +379,8 @@ void Part::slotSettingsChanged()
     }
     saveSettings();
     Q_EMIT signalSettingsChanged();
+
+    initFonts();
 }
 
 void Part::slotSetStatusText(const QString &statusText)
