@@ -20,6 +20,9 @@
 #include "articleviewerwebenginepage.h"
 #include <QWebEngineSettings>
 #include <QWebEngineProfile>
+
+#include "akregatorconfig.h"
+
 using namespace Akregator;
 
 ArticleViewerWebEnginePage::ArticleViewerWebEnginePage(QWebEngineProfile *profile, QObject *parent)
@@ -42,6 +45,8 @@ ArticleViewerWebEnginePage::ArticleViewerWebEnginePage(QWebEngineProfile *profil
     settings()->setAttribute(QWebEngineSettings::WebGLEnabled, false);
     connect(this, &QWebEnginePage::featurePermissionRequested,
             this, &ArticleViewerWebEnginePage::slotFeaturePermissionRequested);
+    connect(this, &QWebEnginePage::urlChanged,
+            this, &ArticleViewerWebEnginePage::onUrlChanged);
 }
 
 ArticleViewerWebEnginePage::~ArticleViewerWebEnginePage()
@@ -62,4 +67,9 @@ void ArticleViewerWebEnginePage::slotFeaturePermissionRequested(const QUrl &url,
 {
     //Denied all permissions.
     setFeaturePermission(url, feature, QWebEnginePage::PermissionDeniedByUser);
+}
+
+void ArticleViewerWebEnginePage::onUrlChanged()
+{
+    setZoomFactor((double)Settings::zoom() / 100.0);
 }

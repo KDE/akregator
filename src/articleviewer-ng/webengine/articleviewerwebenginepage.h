@@ -37,6 +37,7 @@ protected:
 
 private:
     void slotFeaturePermissionRequested(const QUrl &url, QWebEnginePage::Feature feature);
+    void onUrlChanged();
 };
 }
 #endif // ARTICLEVIEWERWEBENGINEPAGE_H
