@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=Service
-Icon=akregator
+Icon=view-pim-news
 X-KDE-ServiceTypes=Kontact/Plugin,KPluginInfo
 
 X-KDE-Library=kontact_akregatorplugin
