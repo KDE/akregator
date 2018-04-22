@@ -229,9 +229,9 @@ static void writeItem(FeedStorage *storage, const QString &guid, QXmlStreamWrite
     Elements::instance.entry.writeStartElement(writer);
     Elements::instance.guid.write(guid, writer);
 
-    const uint published = storage->pubDate(guid);
-    if (published > 0) {
-        const QString pdStr = QDateTime::fromTime_t(published).toString(Qt::ISODate);
+    const QDateTime published = storage->pubDate(guid);
+    if (published.isValid()) {
+        const QString pdStr = published.toString(Qt::ISODate);
         Elements::instance.published.write(pdStr, writer);
     }
 

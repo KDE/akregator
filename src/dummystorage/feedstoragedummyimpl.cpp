@@ -27,6 +27,7 @@
 
 #include <feed.h>
 
+#include <QDateTime>
 #include <QHash>
 #include <QList>
 #include <QMap>
@@ -43,7 +44,7 @@ public:
     public:
         Entry() :
             status(0)
-          , pubDate(0)
+          , pubDate()
           , hash(0)
           , guidIsHash(false)
           , guidIsPermaLink(false)
@@ -64,7 +65,7 @@ public:
         int comments;
         int status;
         int enclosureLength;
-        uint pubDate;
+        QDateTime pubDate;
         uint hash;
         bool guidIsHash = false;
         bool guidIsPermaLink = false;
@@ -205,9 +206,9 @@ QString FeedStorageDummyImpl::link(const QString &guid) const
     return contains(guid) ? d->entries[guid].link : QString();
 }
 
-uint FeedStorageDummyImpl::pubDate(const QString &guid) const
+QDateTime FeedStorageDummyImpl::pubDate(const QString &guid) const
 {
-    return contains(guid) ? d->entries[guid].pubDate : 0;
+    return contains(guid) ? d->entries[guid].pubDate : QDateTime();
 }
 
 int FeedStorageDummyImpl::status(const QString &guid) const
@@ -252,7 +253,7 @@ QString FeedStorageDummyImpl::authorEMail(const QString &guid) const
     return contains(guid) ? d->entries[guid].authorEMail : QString();
 }
 
-void FeedStorageDummyImpl::setPubDate(const QString &guid, uint pubdate)
+void FeedStorageDummyImpl::setPubDate(const QString &guid, const QDateTime &pubdate)
 {
     if (contains(guid)) {
         d->entries[guid].pubDate = pubdate;

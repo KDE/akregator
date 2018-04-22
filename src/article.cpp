@@ -170,7 +170,7 @@ Article::Private::Private(const QString &guid_, Feed *feed_, Backend::FeedStorag
     , archive(archive_)
     , status(archive->status(guid))
     , hash(archive->hash(guid))
-    , pubDate(QDateTime::fromTime_t(archive->pubDate(guid)))
+    , pubDate(archive->pubDate(guid))
 {
 }
 
@@ -213,7 +213,7 @@ Article::Private::Private(const ItemPtr &article, Feed *feed_, Backend::FeedStor
         } else {
             pubDate = QDateTime::currentDateTime();
         }
-        archive->setPubDate(guid, pubDate.toTime_t());
+        archive->setPubDate(guid, pubDate);
         if (firstAuthor) {
             archive->setAuthorName(guid, firstAuthor->name());
             archive->setAuthorUri(guid, firstAuthor->uri());
@@ -228,7 +228,7 @@ Article::Private::Private(const ItemPtr &article, Feed *feed_, Backend::FeedStor
         //archive->setComments(guid, article.comments());
         if (hash != archive->hash(guid)) { //article is in archive, was it modified?
             // if yes, update
-            pubDate.setTime_t(archive->pubDate(guid));
+            pubDate = archive->pubDate(guid);
             archive->setHash(guid, hash);
             QString title = article->title();
             if (title.isEmpty()) {
@@ -277,7 +277,7 @@ bool Article::isNull() const
 void Article::offsetPubDate(int secs)
 {
     d->pubDate = d->pubDate.addSecs(secs);
-    d->archive->setPubDate(d->guid, d->pubDate.toTime_t());
+    d->archive->setPubDate(d->guid, d->pubDate);
 }
 
 void Article::setDeleted()

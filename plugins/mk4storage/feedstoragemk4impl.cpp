@@ -32,6 +32,7 @@
 
 #include <mk4.h>
 
+#include <QDateTime>
 #include <qdom.h>
 #include <QFile>
 #include <qdebug.h>
@@ -290,10 +291,10 @@ QString FeedStorageMK4Impl::link(const QString &guid) const
     return findidx != -1 ? QString::fromLatin1(d->plink(d->archiveView.GetAt(findidx))) : QLatin1String("");
 }
 
-uint FeedStorageMK4Impl::pubDate(const QString &guid) const
+QDateTime FeedStorageMK4Impl::pubDate(const QString &guid) const
 {
     int findidx = findArticle(guid);
-    return findidx != -1 ? d->ppubDate(d->archiveView.GetAt(findidx)) : 0;
+    return findidx != -1 ? QDateTime::fromTime_t(d->ppubDate(d->archiveView.GetAt(findidx))) : QDateTime();
 }
 
 int FeedStorageMK4Impl::status(const QString &guid) const
@@ -333,7 +334,7 @@ QString FeedStorageMK4Impl::content(const QString &guid) const
     return findidx != -1 ? QString::fromUtf8(d->pcontent(d->archiveView.GetAt(findidx))) : QLatin1String("");
 }
 
-void FeedStorageMK4Impl::setPubDate(const QString &guid, uint pubdate)
+void FeedStorageMK4Impl::setPubDate(const QString &guid, const QDateTime &pubdate)
 {
     int findidx = findArticle(guid);
     if (findidx == -1) {
@@ -341,7 +342,7 @@ void FeedStorageMK4Impl::setPubDate(const QString &guid, uint pubdate)
     }
     c4_Row row;
     row = d->archiveView.GetAt(findidx);
-    d->ppubDate(row) = pubdate;
+    d->ppubDate(row) = pubdate.toTime_t();
     d->archiveView.SetAt(findidx, row);
     markDirty();
 }
