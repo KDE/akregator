@@ -546,12 +546,5 @@ void FeedStorageMK4Impl::enclosure(const QString &guid, bool &hasEnclosure, QStr
     length = d->pEnclosureLength(row);
 }
 
-void FeedStorageMK4Impl::clear()
-{
-    d->storage->RemoveAll();
-
-    setUnread(0);
-    markDirty();
-}
 } // namespace Backend
 } // namespace Akregator

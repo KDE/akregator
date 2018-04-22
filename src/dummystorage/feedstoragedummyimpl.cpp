@@ -96,10 +96,6 @@ void FeedStorageDummyImpl::rollback()
 {
 }
 
-void FeedStorageDummyImpl::close()
-{
-}
-
 int FeedStorageDummyImpl::unread() const
 {
     return d->mainStorage->unreadFor(d->url);
@@ -326,13 +322,6 @@ void FeedStorageDummyImpl::setGuidIsPermaLink(const QString &guid, bool isPermaL
     if (contains(guid)) {
         d->entries[guid].guidIsPermaLink = isPermaLink;
     }
-}
-
-void FeedStorageDummyImpl::clear()
-{
-    d->entries.clear();
-    setUnread(0);
-    setTotalCount(0);
 }
 
 void FeedStorageDummyImpl::setEnclosure(const QString &guid, const QString &url, const QString &type, int length)

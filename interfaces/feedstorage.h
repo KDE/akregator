@@ -49,9 +49,6 @@ public:
     /** returns the guids of all articles in this storage. */
     virtual QStringList articles() const = 0;
 
-    /** deletes all articles from the archive */
-    virtual void clear() = 0;
-
     virtual void article(const QString &guid, uint &hash, QString &title, int &status, QDateTime &pubDate) const = 0;
     virtual bool contains(const QString &guid) const = 0;
     virtual void addEntry(const QString &guid) = 0;
@@ -88,7 +85,6 @@ public:
     virtual QString authorEMail(const QString &guid) const = 0;
 
     virtual void enclosure(const QString &guid, bool &hasEnclosure, QString &url, QString &type, int &length) const = 0;
-    virtual void close() = 0;
     virtual void commit() = 0;
     virtual void rollback() = 0;
 };

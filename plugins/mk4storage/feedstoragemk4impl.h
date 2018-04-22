@@ -34,8 +34,6 @@ public:
     FeedStorageMK4Impl(const QString &url, StorageMK4Impl *main);
     ~FeedStorageMK4Impl();
 
-    void clear() override;
-
     int unread() const override;
     void setUnread(int unread) override;
     int totalCount() const override;
@@ -80,7 +78,7 @@ public:
     QString authorUri(const QString &guid) const override;
     QString authorEMail(const QString &guid) const override;
 
-    void close() override;
+    void close();
     void commit() override;
     void rollback() override;
 private:

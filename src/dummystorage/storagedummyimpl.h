@@ -86,9 +86,6 @@ public:
     void storeFeedList(const QString &opmlStr) override;
     QString restoreFeedList() const override;
 
-    /** deletes all feed storages in this archive */
-    void clear() override;
-
 protected Q_SLOTS:
     void slotCommit();
 

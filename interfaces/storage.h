@@ -92,9 +92,6 @@ public:
     /** returns a list of all feeds (URLs) stored in this archive */
 
     virtual QStringList feeds() const = 0;
-
-    /** deletes all feed storages in this archive */
-    virtual void clear() = 0;
 };
 } // namespace Backend
 } // namespace Akregator

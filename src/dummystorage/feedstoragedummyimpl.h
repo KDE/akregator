@@ -35,7 +35,6 @@ public:
     FeedStorageDummyImpl(const QString &url, StorageDummyImpl *main);
     ~FeedStorageDummyImpl() override;
 
-    void clear() override;
     int unread() const override;
     void setUnread(int unread) override;
     int totalCount() const override;
@@ -80,7 +79,6 @@ public:
     QString authorUri(const QString &guid) const override;
     QString authorEMail(const QString &guid) const override;
 
-    void close() override;
     void commit() override;
     void rollback() override;
 private:

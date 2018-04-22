@@ -302,24 +302,6 @@ QStringList Akregator::Backend::StorageMK4Impl::feeds() const
     return list;
 }
 
-void Akregator::Backend::StorageMK4Impl::clear()
-{
-    QStringList feeds;
-    int size = d->archiveView.GetSize();
-    for (int i = 0; i < size; ++i) {
-        feeds += QString::fromLatin1(d->purl(d->archiveView.GetAt(i)));
-    }
-    QStringList::ConstIterator end(feeds.constEnd());
-
-    for (QStringList::ConstIterator it = feeds.constBegin(); it != end; ++it) {
-        FeedStorage *fa = archiveFor(*it);
-        fa->clear();
-        fa->commit();
-        // FIXME: delete file (should be 0 in size now)
-    }
-    d->storage->RemoveAll();
-}
-
 void Akregator::Backend::StorageMK4Impl::storeFeedList(const QString &opmlStr)
 {
     if (d->feedListView.GetSize() == 0) {
