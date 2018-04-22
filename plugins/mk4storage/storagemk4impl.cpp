@@ -87,7 +87,6 @@ Akregator::Backend::FeedStorageMK4Impl *Akregator::Backend::StorageMK4Impl::Stor
             archiveView.Add(findrow);
             modified = true;
         }
-        fs->convertOldArchive();
     }
     return feeds[url];
 }

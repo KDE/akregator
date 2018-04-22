@@ -93,37 +93,9 @@ public:
 
     bool autoCommit;
     bool modified;
-    bool convert;
-    QString oldArchivePath;
     c4_StringProp pguid, ptitle, pdescription, pcontent, plink, pcommentsLink, ptag, pEnclosureType, pEnclosureUrl, pcatTerm, pcatScheme, pcatName, pauthorName, pauthorUri, pauthorEMail;
     c4_IntProp phash, pguidIsHash, pguidIsPermaLink, pcomments, pstatus, ppubDate, pHasEnclosure, pEnclosureLength;
 };
-
-void FeedStorageMK4Impl::convertOldArchive()
-{
-    if (!d->convert) {
-        return;
-    }
-
-    d->convert = false;
-    QFile file(d->oldArchivePath);
-
-    if (!file.open(QIODevice::ReadOnly)) {
-        return;
-    }
-
-    Syndication::DocumentSource src(file.readAll(), QStringLiteral("http://foo"));
-    file.close();
-    Syndication::FeedPtr feed = Syndication::parse(src);
-
-    if (feed) {
-        //QList<Syndication::ItemPtr> items = feed->items();
-        //QList<Syndication::ItemPtr>::ConstIterator it = items.constBegin();
-        //QList<Syndication::ItemPtr>::ConstIterator en = items.constEnd();
-        markDirty();
-        commit();
-    }
-}
 
 FeedStorageMK4Impl::FeedStorageMK4Impl(const QString &url, StorageMK4Impl *main)
 {
@@ -142,12 +114,6 @@ FeedStorageMK4Impl::FeedStorageMK4Impl(const QString &url, StorageMK4Impl *main)
     QString t = url2;
     QString t2 = url2;
     QString filePath = main->archivePath() + QLatin1Char('/') + t.replace(QLatin1Char('/'), QLatin1Char('_')).replace(QLatin1Char(':'), QLatin1Char('_'));
-    d->oldArchivePath = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QStringLiteral("/akregator/Archive/") + t2.replace(QLatin1Char('/'), QLatin1Char('_')).replace(QLatin1Char(
-                                                                                                                                                                                                   ':'),
-                                                                                                                                                                                               QLatin1Char(
-                                                                                                                                                                                                   '_'))
-                        + QLatin1String(".xml");
-    d->convert = !QFile::exists(filePath + QLatin1String(".mk4")) && QFile::exists(d->oldArchivePath);
     d->storage = new c4_Storage(QString(filePath + QLatin1String(".mk4")).toLocal8Bit(), true);
 
     d->archiveView = d->storage->GetAs(

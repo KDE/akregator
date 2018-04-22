@@ -88,8 +88,6 @@ public:
     void close() override;
     void commit() override;
     void rollback() override;
-
-    void convertOldArchive() override;
 private:
     void markDirty();
     /** finds article by guid, returns -1 if not in archive **/

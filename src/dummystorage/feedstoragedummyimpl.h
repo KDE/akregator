@@ -89,8 +89,6 @@ public:
     void close() override;
     void commit() override;
     void rollback() override;
-
-    void convertOldArchive() override;
 private:
     /** finds article by guid, returns -1 if not in archive **/
     int findArticle(const QString &guid) const;
