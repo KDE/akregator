@@ -43,7 +43,6 @@ public:
     StorageMK4ImplPrivate() : modified(false)
         , purl("url")
         , pFeedList("feedList")
-        , pTagSet("tagSet")
         , punread("unread")
         , ptotalCount("totalCount")
         , plastFetch("lastFetch")
@@ -57,7 +56,7 @@ public:
     bool modified;
     mutable QMap<QString, Akregator::Backend::FeedStorageMK4Impl *> feeds;
     QStringList feedURLs;
-    c4_StringProp purl, pFeedList, pTagSet;
+    c4_StringProp purl, pFeedList;
     c4_IntProp punread, ptotalCount, plastFetch;
     QString archivePath;
 
@@ -339,7 +338,6 @@ void Akregator::Backend::StorageMK4Impl::storeFeedList(const QString &opmlStr)
     if (d->feedListView.GetSize() == 0) {
         c4_Row row;
         d->pFeedList(row) = !opmlStr.isEmpty() ? opmlStr.toUtf8().data() : "";
-        d->pTagSet(row) = "";
         d->feedListView.Add(row);
     } else {
         c4_Row row = d->feedListView.GetAt(0);
@@ -357,29 +355,4 @@ QString Akregator::Backend::StorageMK4Impl::restoreFeedList() const
 
     c4_Row row = d->feedListView.GetAt(0);
     return QString::fromUtf8(d->pFeedList(row));
-}
-
-void Akregator::Backend::StorageMK4Impl::storeTagSet(const QString &xmlStr)
-{
-    if (d->feedListView.GetSize() == 0) {
-        c4_Row row;
-        d->pTagSet(row) = !xmlStr.isEmpty() ? xmlStr.toUtf8().data() : "";
-        d->pFeedList(row) = "";
-        d->feedListView.Add(row);
-    } else {
-        c4_Row row = d->feedListView.GetAt(0);
-        d->pTagSet(row) = !xmlStr.isEmpty() ? xmlStr.toUtf8().data() : "";
-        d->feedListView.SetAt(0, row);
-    }
-    markDirty();
-}
-
-QString Akregator::Backend::StorageMK4Impl::restoreTagSet() const
-{
-    if (d->feedListView.GetSize() == 0) {
-        return QString();
-    }
-
-    c4_Row row = d->feedListView.GetAt(0);
-    return QString::fromUtf8(d->pTagSet(row));
 }

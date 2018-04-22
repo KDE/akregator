@@ -95,9 +95,6 @@ public:
     virtual void storeFeedList(const QString &opmlStr) = 0;
     virtual QString restoreFeedList() const = 0;
 
-    virtual void storeTagSet(const QString &xmlStr) = 0;
-    virtual QString restoreTagSet() const = 0;
-
     /** returns a list of all feeds (URLs) stored in this archive */
 
     virtual QStringList feeds() const = 0;

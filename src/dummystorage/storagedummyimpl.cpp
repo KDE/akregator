@@ -53,7 +53,6 @@ public:
         feeds[url] = entry;
     }
 
-    QString tagSet;
     QString feedList;
     QHash<QString, Entry> feeds;
 };
@@ -195,16 +194,6 @@ void StorageDummyImpl::storeFeedList(const QString &opmlStr)
 QString StorageDummyImpl::restoreFeedList() const
 {
     return d->feedList;
-}
-
-void StorageDummyImpl::storeTagSet(const QString &xmlStr)
-{
-    d->tagSet = xmlStr;
-}
-
-QString StorageDummyImpl::restoreTagSet() const
-{
-    return d->tagSet;
 }
 } // namespace Backend
 } // namespace Akregator

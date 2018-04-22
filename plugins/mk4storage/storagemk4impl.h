@@ -99,9 +99,6 @@ public:
     void storeFeedList(const QString &opmlStr) override;
     QString restoreFeedList() const override;
 
-    void storeTagSet(const QString &xmlStr) override;
-    QString restoreTagSet() const override;
-
     /** adds all feed storages from a source to this storage
         existing articles are replaced
     */
