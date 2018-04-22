@@ -63,7 +63,7 @@ protected Q_SLOTS:
     void slotIntervalCheck();
 
 private:
-    NotificationManager();
+    explicit NotificationManager(QObject *parent = nullptr);
     NotificationManager(const NotificationManager &) : QObject()
     {
     }

@@ -95,7 +95,6 @@ void Frame::slotSetState(State state)
         break;
     case Frame::Idle:
     case Frame::Completed:
-    default:
         Q_EMIT signalCompleted(this);
     }
 }

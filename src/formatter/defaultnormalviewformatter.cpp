@@ -42,7 +42,7 @@ public:
     {
     }
 
-    ~SummaryVisitor()
+    ~SummaryVisitor() override
     {
     }
 

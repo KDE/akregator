@@ -31,7 +31,8 @@
 #include <QTimer>
 
 using namespace Akregator;
-NotificationManager::NotificationManager() : QObject()
+NotificationManager::NotificationManager(QObject *parent)
+    : QObject(parent)
 {
     m_intervalsLapsed = 0;
     m_checkInterval = 2000;

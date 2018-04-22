@@ -129,7 +129,6 @@ void FrameManager::slotChangeFrame(int frameId)
             break;
         case Frame::Idle:
         case Frame::Completed:
-        default:
             Q_EMIT signalCompleted();
         }
 
