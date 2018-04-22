@@ -528,7 +528,7 @@ void MainWidget::addFeedToGroup(const QString &url, const QString &groupName)
     }
 
     // Invoke the Add Feed dialog with url filled in.
-    addFeed(url, 0, group, true);
+    addFeed(url, nullptr, group, true);
 }
 
 void MainWidget::slotNormalView()

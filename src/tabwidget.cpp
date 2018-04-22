@@ -64,8 +64,8 @@ private:
 public:
     explicit Private(TabWidget *qq) : q(qq)
         , currentMaxLength(30)
-        , currentItem(0)
-        , tabsClose(0)
+        , currentItem(nullptr)
+        , tabsClose(nullptr)
     {
     }
 
@@ -248,7 +248,7 @@ Frame *TabWidget::Private::currentFrame()
 {
     QWidget *w = q->currentWidget();
     Q_ASSERT(frames.value(w));
-    return w ? frames.value(w) : 0;
+    return w ? frames.value(w) : nullptr;
 }
 
 void TabWidget::slotZoomChanged(qreal value)
