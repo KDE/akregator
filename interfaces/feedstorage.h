@@ -32,33 +32,6 @@ class QStringList;
 
 namespace Akregator {
 namespace Backend {
-/** a convenience class to handle categories in the backend */
-class Category
-{
-public:
-
-    QString term;
-    QString scheme;
-    QString name;
-
-    /** two categories are equal when scheme and term are equal, name is ignored */
-
-    bool operator==(const Category &other) const
-    {
-        return term == other.term && scheme == other.scheme;
-    }
-
-    bool operator!=(const Category &other) const
-    {
-        return !operator==(other);
-    }
-
-    /** we need this for QMaps */
-    bool operator<(const Category &other) const
-    {
-        return other.scheme < other.scheme || (other.scheme == other.scheme && term < other.term);
-    }
-};
 
 class Storage;
 
@@ -72,11 +45,8 @@ public:
     virtual int lastFetch() const = 0;
     virtual void setLastFetch(int lastFetch) = 0;
 
-    /** returns the guids of all articles in this storage. If a tagID is given, only articles with this tag are returned */
-    virtual QStringList articles(const QString &tagID = QString()) const = 0;
-
-    /** returns the guid of the articles in a given category */
-    virtual QStringList articles(const Category &cat) const = 0;
+    /** returns the guids of all articles in this storage. */
+    virtual QStringList articles() const = 0;
 
     /** Appends all articles from another storage. If there is already an article in this feed with the same guid, it is replaced by the article from the source
     @param source the archive which articles should be appended
@@ -115,15 +85,6 @@ public:
     virtual void setDescription(const QString &guid, const QString &description) = 0;
     virtual QString content(const QString &guid) const = 0;
     virtual void setContent(const QString &guid, const QString &content) = 0;
-
-    virtual void addTag(const QString &guid, const QString &tag) = 0;
-    virtual void removeTag(const QString &guid, const QString &tag) = 0;
-
-    /** returns the tags of a given article. If @c guid is null, it returns all tags used in this feed */
-    virtual QStringList tags(const QString &guid = QString()) const = 0;
-
-    virtual void addCategory(const QString &guid, const Category &category) = 0;
-    virtual QList<Category> categories(const QString &guid = QString()) const = 0;
 
     virtual void setEnclosure(const QString &guid, const QString &url, const QString &type, int length) = 0;
     virtual void removeEnclosure(const QString &guid) = 0;

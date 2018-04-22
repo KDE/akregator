@@ -51,8 +51,6 @@ public:
         }
 
         StorageDummyImpl *mainStorage = nullptr;
-        QList<Category> categories;
-        QStringList tags;
         QString enclosureUrl;
         QString enclosureType;
         QString title;
@@ -74,15 +72,6 @@ public:
     };
 
     QHash<QString, Entry> entries;
-
-    // all tags occurring in the feed
-    QStringList tags;
-
-    // tag -> articles index
-    QHash<QString, QStringList> taggedArticles;
-
-    QList<Category> categories;
-    QMap<Akregator::Backend::Category, QStringList> categorizedArticles;
 
     Storage *mainStorage;
     QString url;
@@ -146,14 +135,9 @@ void FeedStorageDummyImpl::setLastFetch(int lastFetch)
     d->mainStorage->setLastFetchFor(d->url, lastFetch);
 }
 
-QStringList FeedStorageDummyImpl::articles(const QString &tag) const
+QStringList FeedStorageDummyImpl::articles() const
 {
-    return tag.isNull() ? QStringList(d->entries.keys()) : d->taggedArticles.value(tag);
-}
-
-QStringList FeedStorageDummyImpl::articles(const Category &cat) const
-{
-    return d->categorizedArticles.value(cat);
+    return QStringList(d->entries.keys());
 }
 
 void FeedStorageDummyImpl::addEntry(const QString &guid)
@@ -212,28 +196,6 @@ void FeedStorageDummyImpl::setDeleted(const QString &guid)
     }
 
     FeedStorageDummyImplPrivate::Entry entry = d->entries[guid];
-
-    // remove article from tag->article index
-    QStringList::ConstIterator it = entry.tags.constBegin();
-    QStringList::ConstIterator end = entry.tags.constEnd();
-
-    for (; it != end; ++it) {
-        d->taggedArticles[*it].removeAll(guid);
-        if (d->taggedArticles[*it].isEmpty()) {
-            d->tags.removeAll(*it);
-        }
-    }
-
-    // remove article from tag->category index
-    QList<Category>::ConstIterator it2 = entry.categories.constBegin();
-    QList<Category>::ConstIterator end2 = entry.categories.constEnd();
-
-    for (; it2 != end2; ++it2) {
-        d->categorizedArticles[*it2].removeAll(guid);
-        if (d->categorizedArticles[*it2].isEmpty()) {
-            d->categories.removeAll(*it2);
-        }
-    }
 
     entry.description.clear();
     entry.content.clear();
@@ -385,62 +347,6 @@ void FeedStorageDummyImpl::setGuidIsPermaLink(const QString &guid, bool isPermaL
     }
 }
 
-void FeedStorageDummyImpl::addTag(const QString &guid, const QString &tag)
-{
-    if (contains(guid)) {
-        d->entries[guid].tags.append(tag);
-        if (!d->taggedArticles[tag].contains(guid)) {
-            d->taggedArticles[tag].append(guid);
-        }
-        if (!d->tags.contains(tag)) {
-            d->tags.append(tag);
-        }
-    }
-}
-
-void FeedStorageDummyImpl::addCategory(const QString &guid, const Category &cat)
-{
-    if (!contains(guid)) {
-        return;
-    }
-
-    d->entries[guid].categories.append(cat);
-
-    if (d->categorizedArticles[cat].isEmpty()) {
-        d->categories.append(cat);
-    }
-    d->categorizedArticles[cat].append(guid);
-}
-
-QList<Category> FeedStorageDummyImpl::categories(const QString &guid) const
-{
-    if (!guid.isNull()) {
-        return contains(guid) ? d->entries[guid].categories : QList<Category>();
-    } else {
-        return d->categories;
-    }
-}
-
-void FeedStorageDummyImpl::removeTag(const QString &guid, const QString &tag)
-{
-    if (contains(guid)) {
-        d->entries[guid].tags.removeAll(tag);
-        d->taggedArticles[tag].removeAll(guid);
-        if (d->taggedArticles[tag].isEmpty()) {
-            d->tags.removeAll(tag);
-        }
-    }
-}
-
-QStringList FeedStorageDummyImpl::tags(const QString &guid) const
-{
-    if (!guid.isNull()) {
-        return contains(guid) ? d->entries[guid].tags : QStringList();
-    } else {
-        return d->tags;
-    }
-}
-
 void FeedStorageDummyImpl::add(FeedStorage *source)
 {
     QStringList articles = source->articles();
@@ -469,11 +375,6 @@ void FeedStorageDummyImpl::copyArticle(const QString &guid, FeedStorage *source)
     setPubDate(guid, source->pubDate(guid));
     setStatus(guid, source->status(guid));
     setTitle(guid, source->title(guid));
-    QStringList tags = source->tags(guid);
-
-    for (QStringList::ConstIterator it = tags.constBegin(); it != tags.constEnd(); ++it) {
-        addTag(guid, *it);
-    }
 }
 
 void FeedStorageDummyImpl::clear()

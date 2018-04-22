@@ -44,9 +44,7 @@ public:
     int lastFetch() const override;
     void setLastFetch(int lastFetch) override;
 
-    QStringList articles(const QString &tag = QString()) const override;
-
-    QStringList articles(const Category &cat) const override;
+    QStringList articles() const override;
 
     bool contains(const QString &guid) const override;
     void addEntry(const QString &guid) override;
@@ -78,13 +76,6 @@ public:
     void setEnclosure(const QString &guid, const QString &url, const QString &type, int length) override;
     void removeEnclosure(const QString &guid) override;
     void enclosure(const QString &guid, bool &hasEnclosure, QString &url, QString &type, int &length) const override;
-
-    void addTag(const QString &guid, const QString &tag) override;
-    void removeTag(const QString &guid, const QString &tag) override;
-    QStringList tags(const QString &guid = QString()) const override;
-
-    void addCategory(const QString &guid, const Category &category) override;
-    QList<Category> categories(const QString &guid = QString()) const override;
 
     void setAuthorName(const QString &guid, const QString &name) override;
     void setAuthorUri(const QString &guid, const QString &uri) override;
