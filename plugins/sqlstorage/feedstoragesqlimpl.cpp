@@ -43,7 +43,9 @@ T simpleQuery(const QSqlDatabase &db, const char *query, const T &default_value,
     if (!q.exec()) {
         return default_value;
     }
-    q.next();
+    if (!q.next()) {
+        return default_value;
+    }
     return q.value(0).value<T>();
 }
 
@@ -86,7 +88,7 @@ void Akregator::Backend::FeedStorageSqlImpl::addEntry(const QString& guid)
     if (contains(guid))
         return;
     simpleQuery(d->mainStorage->database(),
-                "INSERT INTO article (feed_id, guid) VALUES (?, ?)",
+                "INSERT INTO article (feed_id, guid, status) VALUES (?, ?, 0)",
                 { d->feed_id, guid });
     d->mainStorage->markDirty();
 }
@@ -114,6 +116,7 @@ QStringList Akregator::Backend::FeedStorageSqlImpl::articles() const
     q.prepare(QLatin1String("SELECT guid FROM article WHERE feed_id = ?"));
     q.addBindValue(d->feed_id);
     if (q.exec()) {
+        // Not all SQL backend handle returning size, sadly
         if (q.size() > 0)
             result.reserve(q.size());
         
@@ -191,7 +194,7 @@ void Akregator::Backend::FeedStorageSqlImpl::enclosure(const QString& guid, bool
         hasEnclosure    = true;
         url             = q.value(0).toString();
         type            = q.value(1).toString();
-        url             = q.value(2).toInt();
+        length          = q.value(2).toInt();
     }
 }
 
@@ -402,7 +405,7 @@ int Akregator::Backend::FeedStorageSqlImpl::totalCount() const
 int Akregator::Backend::FeedStorageSqlImpl::unread() const
 {
     return simpleQuery(d->mainStorage->database(),
-                       "SELECT unread FROM feed WHERE id = ?",
+                       "SELECT COUNT(*) FROM article WHERE feed_id = ? AND NOT(status & 8)",
                        0,
                        { d->feed_id });
 }
@@ -417,8 +420,13 @@ void Akregator::Backend::FeedStorageSqlImpl::setLastFetch(const QDateTime &lastF
 
 void Akregator::Backend::FeedStorageSqlImpl::setUnread(int unread)
 {
+    Q_UNUSED(unread);
+    // So far the SQL backend uses an index to maintain unread by itself.
+    
+    /* IGNORE
     simpleQuery(d->mainStorage->database(),
                 "UPDATE feed SET last_fetch = ? WHERE id = ?",
                 { unread, d->feed_id });
     d->mainStorage->markDirty();
+    */
 }

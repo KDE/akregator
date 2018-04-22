@@ -78,7 +78,10 @@ Akregator::Backend::StorageSqlImpl::StorageSqlImpl() : d(new StorageSqlImplPriva
     d->autoCommitTimer = new QTimer(this);
     d->autoCommitTimer->setInterval(3000);      // Commit each 3s. at most
     d->autoCommitTimer->setSingleShot(true);    // markDirty will start this timer
-    QObject::connect(d->autoCommitTimer, &QTimer::timeout, this, [this] () { this->commit(); });
+    QObject::connect(d->autoCommitTimer, &QTimer::timeout, this, [this] () {
+        this->commit();
+        this->d->db.transaction();
+    });
 }
 
 Akregator::Backend::StorageSqlImpl::~StorageSqlImpl()
@@ -121,7 +124,7 @@ void Akregator::Backend::StorageSqlImpl::initialize(const QStringList& params)
 {
     qDebug() << "Initializing StorageSqlImpl with params = {" << params << "}";
     d->db = QSqlDatabase::addDatabase(QLatin1String("QSQLITE"));
-    d->db.setDatabaseName(QLatin1String("/tmp/akregator.sqlite"));
+    d->db.setDatabaseName(QLatin1String("/home/snoopy/akregator.sqlite"));
 }
 
 bool Akregator::Backend::StorageSqlImpl::open(bool autoCommit)
@@ -141,6 +144,7 @@ bool Akregator::Backend::StorageSqlImpl::open(bool autoCommit)
         markDirty();
     }
     
+    d->db.transaction();
     return true;
 }
 
