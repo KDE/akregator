@@ -25,6 +25,7 @@
 #include "storagesqlimpl.h"
 #include "feedstoragesqlimpl.h"
 
+#include <QDebug>
 #include <QDateTime>
 #include <QSqlDatabase>
 #include <QSqlQuery>
@@ -40,6 +41,15 @@ T simpleQuery(const QSqlDatabase &db, const char *query, const T &default_value,
     for (auto &value: parameters) {
         q.addBindValue(value);
     }
+    
+    if (strcmp(query, "SELECT COUNT(*) FROM article WHERE feed_id = ? AND NOT(status & 8)") != 0) {
+        qDebug() << "Executing query '" << query << "' with ... {";
+        for (auto &value: parameters) {
+            qDebug() << "    - " << value;
+        }
+        qDebug() << "}";
+    }
+    
     if (!q.exec()) {
         return default_value;
     }
