@@ -42,8 +42,8 @@ public:
     int unread() const override;
     void setUnread(int unread) override;
     int totalCount() const override;
-    int lastFetch() const override;
-    void setLastFetch(int lastFetch) override;
+    QDateTime lastFetch() const override;
+    void setLastFetch(const QDateTime &lastFetch) override;
 
     QStringList articles() const override;
 

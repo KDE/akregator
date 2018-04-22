@@ -43,8 +43,8 @@ public:
     virtual int unread() const = 0;
     virtual void setUnread(int unread) = 0;
     virtual int totalCount() const = 0;
-    virtual int lastFetch() const = 0;
-    virtual void setLastFetch(int lastFetch) = 0;
+    virtual QDateTime lastFetch() const = 0;
+    virtual void setLastFetch(const QDateTime &lastFetch) = 0;
 
     /** returns the guids of all articles in this storage. */
     virtual QStringList articles() const = 0;

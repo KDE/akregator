@@ -32,6 +32,7 @@
 #include <QStringList>
 #include <QTimer>
 
+#include <QDateTime>
 #include <qdebug.h>
 #include <QDir>
 #include <QStandardPaths>
@@ -252,16 +253,16 @@ void Akregator::Backend::StorageMK4Impl::setTotalCountFor(const QString &url, in
     markDirty();
 }
 
-int Akregator::Backend::StorageMK4Impl::lastFetchFor(const QString &url) const
+QDateTime Akregator::Backend::StorageMK4Impl::lastFetchFor(const QString &url) const
 {
     c4_Row findrow;
     d->purl(findrow) = url.toLatin1();
     int findidx = d->archiveView.Find(findrow);
 
-    return findidx != -1 ? d->plastFetch(d->archiveView.GetAt(findidx)) : 0;
+    return findidx != -1 ? QDateTime::fromTime_t(d->plastFetch(d->archiveView.GetAt(findidx))) : QDateTime();
 }
 
-void Akregator::Backend::StorageMK4Impl::setLastFetchFor(const QString &url, int lastFetch)
+void Akregator::Backend::StorageMK4Impl::setLastFetchFor(const QString &url, const QDateTime &lastFetch)
 {
     c4_Row findrow;
     d->purl(findrow) = url.toLatin1();
@@ -270,7 +271,7 @@ void Akregator::Backend::StorageMK4Impl::setLastFetchFor(const QString &url, int
         return;
     }
     findrow = d->archiveView.GetAt(findidx);
-    d->plastFetch(findrow) = lastFetch;
+    d->plastFetch(findrow) = lastFetch.toTime_t();
     d->archiveView.SetAt(findidx, findrow);
     markDirty();
 }

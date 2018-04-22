@@ -85,8 +85,8 @@ public:
     virtual void setUnreadFor(const QString &url, int unread) = 0;
     virtual int totalCountFor(const QString &url) const = 0;
     virtual void setTotalCountFor(const QString &url, int total) = 0;
-    virtual int lastFetchFor(const QString &url) const = 0;
-    virtual void setLastFetchFor(const QString &url, int lastFetch) = 0;
+    virtual QDateTime lastFetchFor(const QString &url) const = 0;
+    virtual void setLastFetchFor(const QString &url, const QDateTime &lastFetch) = 0;
 
     /** stores the feed list in the storage backend. This is a fallback for the case that the
         feeds.opml file gets corrupted

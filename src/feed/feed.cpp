@@ -531,7 +531,7 @@ void Akregator::Feed::slotAddToFetchQueue(FetchQueue *queue, bool intervalFetchO
             interval = Settings::autoFetchInterval() * 60;
         }
 
-        uint lastFetch = d->archive->lastFetch();
+        uint lastFetch = d->archive->lastFetch().toTime_t();
 
         uint now = QDateTime::currentDateTimeUtc().toTime_t();
 
@@ -740,7 +740,7 @@ void Akregator::Feed::fetchCompleted(Syndication::Loader *l, Syndication::FeedPt
 void Akregator::Feed::markAsFetchedNow()
 {
     if (d->archive) {
-        d->archive->setLastFetch(QDateTime::currentDateTimeUtc().toTime_t());
+        d->archive->setLastFetch(QDateTime::currentDateTimeUtc());
     }
 }
 

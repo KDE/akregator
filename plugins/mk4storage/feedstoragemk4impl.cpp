@@ -180,12 +180,12 @@ void FeedStorageMK4Impl::setTotalCount(int total)
     d->mainStorage->setTotalCountFor(d->url, total);
 }
 
-int FeedStorageMK4Impl::lastFetch() const
+QDateTime FeedStorageMK4Impl::lastFetch() const
 {
     return d->mainStorage->lastFetchFor(d->url);
 }
 
-void FeedStorageMK4Impl::setLastFetch(int lastFetch)
+void FeedStorageMK4Impl::setLastFetch(const QDateTime &lastFetch)
 {
     d->mainStorage->setLastFetchFor(d->url, lastFetch);
 }

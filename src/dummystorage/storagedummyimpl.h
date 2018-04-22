@@ -77,8 +77,8 @@ public:
     void setUnreadFor(const QString &url, int unread) override;
     int totalCountFor(const QString &url) const override;
     void setTotalCountFor(const QString &url, int total) override;
-    int lastFetchFor(const QString &url) const override;
-    void setLastFetchFor(const QString &url, int lastFetch) override;
+    QDateTime lastFetchFor(const QString &url) const override;
+    void setLastFetchFor(const QString &url, const QDateTime &lastFetch) override;
     QStringList feeds() const override;
 
     void storeFeedList(const QString &opmlStr) override;

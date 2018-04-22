@@ -122,12 +122,12 @@ void FeedStorageDummyImpl::setTotalCount(int total)
     d->mainStorage->setTotalCountFor(d->url, total);
 }
 
-int FeedStorageDummyImpl::lastFetch() const
+QDateTime FeedStorageDummyImpl::lastFetch() const
 {
     return d->mainStorage->lastFetchFor(d->url);
 }
 
-void FeedStorageDummyImpl::setLastFetch(int lastFetch)
+void FeedStorageDummyImpl::setLastFetch(const QDateTime &lastFetch)
 {
     d->mainStorage->setLastFetchFor(d->url, lastFetch);
 }

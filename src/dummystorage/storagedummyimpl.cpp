@@ -24,6 +24,7 @@
 #include "storagedummyimpl.h"
 #include "feedstoragedummyimpl.h"
 
+#include <QDateTime>
 #include <QHash>
 #include <QString>
 #include <QStringList>
@@ -38,11 +39,11 @@ public:
     public:
         int unread;
         int totalCount;
-        int lastFetch;
+        QDateTime lastFetch;
         FeedStorage *feedStorage;
     };
 
-    void addEntry(const QString &url, int unread, int totalCount, int lastFetch)
+    void addEntry(const QString &url, int unread, int totalCount, const QDateTime &lastFetch)
     {
         Entry entry;
         entry.unread = unread;
@@ -108,7 +109,7 @@ int StorageDummyImpl::unreadFor(const QString &url) const
 void StorageDummyImpl::setUnreadFor(const QString &url, int unread)
 {
     if (!d->feeds.contains(url)) {
-        d->addEntry(url, unread, unread, 0);
+        d->addEntry(url, unread, unread, QDateTime());
     } else {
         d->feeds[url].unread = unread;
     }
@@ -122,18 +123,18 @@ int StorageDummyImpl::totalCountFor(const QString &url) const
 void StorageDummyImpl::setTotalCountFor(const QString &url, int total)
 {
     if (!d->feeds.contains(url)) {
-        d->addEntry(url, 0, total, 0);
+        d->addEntry(url, 0, total, QDateTime());
     } else {
         d->feeds[url].totalCount = total;
     }
 }
 
-int StorageDummyImpl::lastFetchFor(const QString &url) const
+QDateTime StorageDummyImpl::lastFetchFor(const QString &url) const
 {
-    return d->feeds.contains(url) ? d->feeds[url].lastFetch : 0;
+    return d->feeds.contains(url) ? d->feeds[url].lastFetch : QDateTime();
 }
 
-void StorageDummyImpl::setLastFetchFor(const QString &url, int lastFetch)
+void StorageDummyImpl::setLastFetchFor(const QString &url, const QDateTime &lastFetch)
 {
     if (!d->feeds.contains(url)) {
         d->addEntry(url, 0, 0, lastFetch);
