@@ -50,7 +50,6 @@
 #include <ktoolinvocation.h>
 #include <kio/job.h>
 #include <QUrl>
-#include <grantleetheme/grantleethememanager.h>
 
 #include <articleviewer-ng/webengine/articleviewerwebenginewidgetng.h>
 #include <articleviewer-ng/webengine/articleviewerwebengine.h>
