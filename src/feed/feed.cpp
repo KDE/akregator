@@ -36,6 +36,7 @@
 #include "treenodevisitor.h"
 #include "types.h"
 #include "utils.h"
+#include "feedretriever.h"
 
 #include <Syndication/Syndication>
 
@@ -681,7 +682,7 @@ void Akregator::Feed::tryFetch()
     d->loader = Syndication::Loader::create(this, SLOT(fetchCompleted(Syndication::Loader *,
                                                                       Syndication::FeedPtr,
                                                                       Syndication::ErrorCode)));
-    d->loader->loadFrom(QUrl(d->xmlUrl));
+    d->loader->loadFrom(QUrl(d->xmlUrl), new FeedRetriever());
 }
 
 void Akregator::Feed::slotImageFetched(const QPixmap &image)

@@ -259,14 +259,6 @@ Part::Part(QWidget *parentWidget, QObject *parent, const QVariantList &)
     connect(m_autosaveTimer, &QTimer::timeout, this, &Part::slotSaveFeedList);
     m_autosaveTimer->start(5 * 60 * 1000); // 5 minutes
 
-    QString useragent = QStringLiteral("Akregator/%1; syndication").arg(QStringLiteral(AKREGATOR_VERSION));
-
-    if (!Settings::customUserAgent().isEmpty()) {
-        useragent = Settings::customUserAgent();
-    }
-
-    Syndication::FileRetriever::setUserAgent(useragent);
-
     loadPlugins(QStringLiteral("extension"));   // FIXME: also unload them!
     if (mCentralWidget->previousSessionCrashed()) {
         mCentralWidget->needToRestoreCrashedSession();
@@ -360,8 +352,6 @@ void Part::slotSettingsChanged()
         TrayIcon::setInstance(nullptr);
         m_actionManager->setTrayIcon(nullptr);
     }
-
-    Syndication::FileRetriever::setUseCache(Settings::useHTMLCache());
 
     const QStringList fonts {
         Settings::standardFont(),
