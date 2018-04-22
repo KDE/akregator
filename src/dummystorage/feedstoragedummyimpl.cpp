@@ -334,8 +334,6 @@ void FeedStorageDummyImpl::copyArticle(const QString &guid, FeedStorage *source)
         addEntry(guid);
     }
 
-    setComments(guid, source->comments(guid));
-    setCommentsLink(guid, source->commentsLink(guid));
     setDescription(guid, source->description(guid));
     setContent(guid, source->content(guid));
     setGuidIsHash(guid, source->guidIsHash(guid));

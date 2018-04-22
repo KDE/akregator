@@ -499,8 +499,6 @@ void FeedStorageMK4Impl::copyArticle(const QString &guid, FeedStorage *source)
     if (!contains(guid)) {
         addEntry(guid);
     }
-    setComments(guid, source->comments(guid));
-    setCommentsLink(guid, source->commentsLink(guid));
     setDescription(guid, source->description(guid));
     setGuidIsHash(guid, source->guidIsHash(guid));
     setGuidIsPermaLink(guid, source->guidIsPermaLink(guid));
