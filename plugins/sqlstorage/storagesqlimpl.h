@@ -80,14 +80,6 @@ public:
     const FeedStorage *archiveFor(const QString &url) const override;
 
     bool autoCommit() const override;
-#if 0
-    int unreadFor(const QString &url) const override;
-    void setUnreadFor(const QString &url, int unread) override;
-    int totalCountFor(const QString &url) const override;
-    void setTotalCountFor(const QString &url, int total) override;
-    QDateTime lastFetchFor(const QString &url) const override;
-    void setLastFetchFor(const QString &url, const QDateTime &lastFetch) override;
-#endif
     
     QStringList feeds() const override;
 
@@ -96,6 +88,7 @@ public:
     
     QSqlDatabase database();
 
+    void markDirty();
 private:
     class StorageSqlImplPrivate;
     StorageSqlImplPrivate *d;

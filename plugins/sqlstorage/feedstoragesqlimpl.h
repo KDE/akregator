@@ -79,9 +79,6 @@ public:
     QString authorUri(const QString &guid) const override;
     QString authorEMail(const QString &guid) const override;
 
-    void commit() override;
-    void rollback() override;
-
 private:
     class FeedStorageSqlImplPrivate;
     FeedStorageSqlImplPrivate *d;

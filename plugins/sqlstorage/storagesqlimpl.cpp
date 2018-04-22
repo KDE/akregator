@@ -29,6 +29,7 @@
 #include <QDebug>
 #include <QSqlDatabase>
 #include <QSqlQuery>
+#include <QTimer>
 #include <QVariant>
 
 class Akregator::Backend::StorageSqlImpl::StorageSqlImplPrivate
@@ -41,6 +42,7 @@ public:
     StorageSqlImpl *parent;
     QSqlDatabase db;
     bool autoCommit;
+    QTimer *autoCommitTimer;
     Akregator::Backend::FeedStorageSqlImpl *createFeedStorage(const QString &url);
 };
 
@@ -73,6 +75,10 @@ Akregator::Backend::FeedStorageSqlImpl * Akregator::Backend::StorageSqlImpl::Sto
 Akregator::Backend::StorageSqlImpl::StorageSqlImpl() : d(new StorageSqlImplPrivate)
 {
     d->parent = this;
+    d->autoCommitTimer = new QTimer(this);
+    d->autoCommitTimer->setInterval(3000);      // Commit each 3s. at most
+    d->autoCommitTimer->setSingleShot(true);    // markDirty will start this timer
+    QObject::connect(d->autoCommitTimer, &QTimer::timeout, this, [this] () { this->commit(); });
 }
 
 Akregator::Backend::StorageSqlImpl::~StorageSqlImpl()
@@ -128,9 +134,11 @@ bool Akregator::Backend::StorageSqlImpl::open(bool autoCommit)
     QStringList tables = d->db.tables(QSql::TableType::Tables);
     if (!tables.contains(QLatin1String("feed"))) {
         d->db.exec(QLatin1String("CREATE TABLE feed(id integer primary key, url text unique not null, unread integer not null default 0, last_fetch timestamp not null);"));
+        markDirty();
     }
     if (!tables.contains(QLatin1String("article"))) {
         d->db.exec(QLatin1String("CREATE TABLE article(id integer primary key, feed_id integer not null, guid text unique not null, title text, hash integer, guid_is_hash boolean, guid_is_permalink boolean, description text, link text, comments text, comments_link text, status integer, publication_date timestamp, enclosure_url text, enclosure_type text, enclosure_length integer, author_name text, author_url text, author_email text, content text);"));
+        markDirty();
     }
     
     return true;
@@ -147,38 +155,6 @@ bool Akregator::Backend::StorageSqlImpl::rollback()
     return d->db.rollback();
 }
 
-#if 0
-QDateTime Akregator::Backend::StorageSqlImpl::lastFetchFor(const QString& url) const
-{
-    return simpleQuery<QDateTime>(d->db, "SELECT last_fetch FROM feed WHERE url = ?", QDateTime(), { url });
-}
-
-void Akregator::Backend::StorageSqlImpl::setLastFetchFor(const QString& url, const QDateTime &lastFetch)
-{
-    simpleQuery(d->db, "UPDATE feed SET last_fetch = ? WHERE url = ?", {lastFetch, url});
-}
-
-void Akregator::Backend::StorageSqlImpl::setTotalCountFor(const QString& url, int total)
-{
-    simpleQuery(d->db, "UPDATE feed SET total = ? WHERE url = ?", {total, url});
-}
-
-int Akregator::Backend::StorageSqlImpl::totalCountFor(const QString& url) const
-{
-    return simpleQuery<int>(d->db, "SELECT total FROM feed WHERE url = ?", 0, { url });
-}
-
-void Akregator::Backend::StorageSqlImpl::setUnreadFor(const QString& url, int unread)
-{
-    simpleQuery(d->db, "UPDATE feed SET unread = ? WHERE url = ?", {unread, url});
-}
-
-int Akregator::Backend::StorageSqlImpl::unreadFor(const QString& url) const
-{
-    return simpleQuery<int>(d->db, "SELECT unread FROM feed WHERE url = ?", 0, { url });
-}
-#endif
-
 void Akregator::Backend::StorageSqlImpl::storeFeedList(const QString& opmlStr)
 {
 }
@@ -186,5 +162,13 @@ void Akregator::Backend::StorageSqlImpl::storeFeedList(const QString& opmlStr)
 QSqlDatabase Akregator::Backend::StorageSqlImpl::database()
 {
     return d->db;
+}
+
+void Akregator::Backend::StorageSqlImpl::markDirty()
+{
+    if (d->autoCommit) {
+        d->autoCommitTimer->stop();
+        d->autoCommitTimer->start();
+    }
 }
 
