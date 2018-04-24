@@ -628,19 +628,42 @@ void Akregator::Feed::slotAddFeedIconListener()
 
 void Akregator::Feed::appendArticles(const Syndication::FeedPtr &feed)
 {
-    d->setTotalCountDirty();
-    bool changed = false;
-    const bool notify = useNotification() || Settings::useNotifications();
-
     QList<ItemPtr> items = feed->items();
     QList<ItemPtr>::ConstIterator it = items.constBegin();
     QList<ItemPtr>::ConstIterator en = items.constEnd();
+    
+    bool changed = false;
+
+    if (!d->articlesLoaded) {
+        // If we did not load the articles, just ask the storage if articles exist.
+        // This way, we may skip loading the feed uselessly.
+        for (; it != en; ++it) {
+            if (!d->archive->contains((*it)->id())) {
+                loadArticles();
+                changed = true;
+                break;
+            } else {
+                Article old((*it)->id(), this, d->archive);
+                Article mya(*it, this);
+                if (!mya.guidIsHash() && mya.hash() != old.hash() && !old.isDeleted()) {
+                    loadArticles();
+                    changed = true;
+                    break;
+                }
+            }
+        }
+        if (!changed)
+            return;
+    }
+    
+    d->setTotalCountDirty();
+    const bool notify = useNotification() || Settings::useNotifications();
 
     int nudge = 0;
 
     QVector<Article> deletedArticles = d->m_deletedArticles;
 
-    for (; it != en; ++it) {
+    for (it = items.constBegin(); it != en; ++it) {
         if (!d->articles.contains((*it)->id())) { // article not in list
             Article mya(*it, this);
             mya.offsetPubDate(nudge);
@@ -786,7 +809,7 @@ void Akregator::Feed::fetchCompleted(Syndication::Loader *l, Syndication::FeedPt
         return;
     }
 
-    loadArticles(); // TODO: make me fly: make this delayed
+    ///loadArticles(); // TODO: make me fly: make this delayed
 
     if (!doc->icon().isNull() && !doc->icon()->url().isEmpty()) {
         loadFavicon(doc->icon()->url(), false);
