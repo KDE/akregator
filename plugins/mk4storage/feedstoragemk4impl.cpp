@@ -304,6 +304,18 @@ void FeedStorageMK4Impl::setStatus(const QString &guid, int status)
     markDirty();
 }
 
+void FeedStorageMK4Impl::article(const QString &guid, uint &hash, QString &title, int &status, QDateTime &pubDate) const
+{
+    int idx = findArticle(guid);
+    if (idx != -1) {
+        auto view = d->archiveView.GetAt(idx);
+        hash = d->phash(view);
+        title = QString::fromUtf8(d->ptitle(view));
+        status = d->pstatus(view);
+        pubDate = QDateTime::fromTime_t(d->ppubDate(view));
+    }
+}
+
 QString FeedStorageMK4Impl::title(const QString &guid) const
 {
     int findidx = findArticle(guid);

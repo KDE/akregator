@@ -181,8 +181,12 @@ Akregator::Feed *Akregator::Feed::fromOPML(QDomElement e, Backend::Storage *stor
     feed->setMaxArticleNumber(maxArticleNumber);
     feed->setMarkImmediatelyAsRead(markImmediatelyAsRead);
     feed->setLoadLinkedWebsite(loadLinkedWebsite);
-    feed->loadArticles(); // TODO: make me fly: make this delayed
 
+    if (!feed->d->archive && storage) {
+        // Instead of loading the articles, we use the cache from storage
+        feed->d->archive = storage->archiveFor(xmlUrl);
+        feed->d->totalCount = feed->d->archive->totalCount();
+    }
     return feed;
 }
 
@@ -249,7 +253,7 @@ void Akregator::Feed::loadArticles()
 
     QStringList list = d->archive->articles();
     for (QStringList::ConstIterator it = list.constBegin(); it != list.constEnd(); ++it) {
-        Article mya(*it, this);
+        Article mya(*it, this, d->archive);
         d->articles[mya.guid()] = mya;
         if (mya.isDeleted()) {
             d->deletedArticles.append(mya);
@@ -400,9 +404,6 @@ bool Akregator::Feed::isFetching() const
 void Akregator::Feed::setMarkImmediatelyAsRead(bool enabled)
 {
     d->markImmediatelyAsRead = enabled;
-    if (enabled) {
-        createMarkAsReadJob()->start();
-    }
 }
 
 void Akregator::Feed::setUseNotification(bool enabled)

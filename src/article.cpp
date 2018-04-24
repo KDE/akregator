@@ -104,6 +104,7 @@ struct Article::Private : public Shared {
     int status;
     uint hash;
     QDateTime pubDate;
+    QString title;  // Cache the title, for performance
     mutable QSharedPointer<const Enclosure> enclosure;
 };
 
@@ -168,10 +169,8 @@ Article::Private::Private(const QString &guid_, Feed *feed_, Backend::FeedStorag
     : feed(feed_)
     , guid(guid_)
     , archive(archive_)
-    , status(archive->status(guid))
-    , hash(archive->hash(guid))
-    , pubDate(archive->pubDate(guid))
 {
+    archive->article(guid, hash, title, status, pubDate);
 }
 
 Article::Private::Private(const ItemPtr &article, Feed *feed_, Backend::FeedStorage *archive_)
@@ -195,7 +194,7 @@ Article::Private::Private(const ItemPtr &article, Feed *feed_, Backend::FeedStor
         archive->addEntry(guid);
 
         archive->setHash(guid, hash);
-        QString title = article->title();
+        title = article->title();
         if (title.isEmpty()) {
             title = buildTitle(article->description());
         }
@@ -227,7 +226,7 @@ Article::Private::Private(const ItemPtr &article, Feed *feed_, Backend::FeedStor
             // if yes, update
             pubDate = archive->pubDate(guid);
             archive->setHash(guid, hash);
-            QString title = article->title();
+            title = article->title();
             if (title.isEmpty()) {
                 title = buildTitle(article->description());
             }
@@ -253,8 +252,11 @@ Article::Article() : d(new Private)
 {
 }
 
-Article::Article(const QString &guid, Feed *feed) : d(new Private(guid, feed, feed->storage()->archiveFor(feed->xmlUrl())))
+Article::Article(const QString &guid, Feed *feed, Backend::FeedStorage *archive) : d()
 {
+    if (!archive)
+        archive = feed->storage()->archiveFor(feed->xmlUrl());
+    d = new Private(guid, feed, archive);
 }
 
 Article::Article(const ItemPtr &article, Feed *feed) : d(new Private(article, feed, feed->storage()->archiveFor(feed->xmlUrl())))
@@ -389,11 +391,7 @@ void Article::setStatus(int stat)
 
 QString Article::title() const
 {
-    QString str;
-    if (d->archive) {
-        str = d->archive->title(d->guid);
-    }
-    return str;
+    return d->title;
 }
 
 QString Article::authorName() const

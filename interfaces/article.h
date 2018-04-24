@@ -70,7 +70,8 @@ public:
     /** creates am article object for an existing article.
         The constructor accesses the archive to load it's data
         */
-    Article(const QString &guid, Feed *feed);
+    Article(const QString &guid, Feed *feed, Backend::FeedStorage *archive = nullptr);
+
     /** creates an article object from a parsed librss Article
         the article is added to the archive if not yet stored, or updated if stored but modified
     */

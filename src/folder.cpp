@@ -66,11 +66,6 @@ public:
     mutable int unread;
     /** whether or not the folder is expanded */
     bool open;
-
-    /** caches guids for notifying added articles */
-    QVector<Article> addedArticlesNotify;
-    /** caches guids for notifying removed articles */
-    QVector<Article> removedArticlesNotify;
 };
 
 Folder::FolderPrivate::FolderPrivate(Folder *qq) : q(qq)
@@ -238,7 +233,6 @@ void Folder::insertChild(int index, TreeNode *node)
         connectToNode(node);
         updateUnreadCount();
         Q_EMIT signalChildAdded(node);
-        d->addedArticlesNotify += node->articles();
         articlesModified();
         nodeModified();
     }
@@ -254,7 +248,6 @@ void Folder::appendChild(TreeNode *node)
         connectToNode(node);
         updateUnreadCount();
         Q_EMIT signalChildAdded(node);
-        d->addedArticlesNotify += node->articles();
         articlesModified();
         nodeModified();
     }
@@ -270,7 +263,6 @@ void Folder::prependChild(TreeNode *node)
         connectToNode(node);
         updateUnreadCount();
         Q_EMIT signalChildAdded(node);
-        d->addedArticlesNotify += node->articles();
         articlesModified();
         nodeModified();
     }
@@ -289,7 +281,6 @@ void Folder::removeChild(TreeNode *node)
     disconnectFromNode(node);
     updateUnreadCount();
     Q_EMIT signalChildRemoved(this, node);
-    d->removedArticlesNotify += node->articles();
     articlesModified(); // articles were removed, TODO: add guids to a list
     nodeModified();
 }

@@ -52,6 +52,7 @@ public:
     /** deletes all articles from the archive */
     virtual void clear() = 0;
 
+    virtual void article(const QString &guid, uint &hash, QString &title, int &status, QDateTime &pubDate) const = 0;
     virtual bool contains(const QString &guid) const = 0;
     virtual void addEntry(const QString &guid) = 0;
     virtual void deleteArticle(const QString &guid) = 0;

@@ -134,10 +134,6 @@ QVariant ArticleModel::data(const QModelIndex &index, int role) const
     const int row = index.row();
     const Article &article(d->articles[row]);
 
-    if (article.isNull()) {
-        return QVariant();
-    }
-
     switch (role) {
     case SortRole:
         if (index.column() == DateColumn) {

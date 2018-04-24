@@ -44,6 +44,7 @@ public:
 
     QStringList articles() const override;
 
+    void article(const QString &guid, uint &hash, QString &title, int &status, QDateTime &pubDate) const override;
     bool contains(const QString &guid) const override;
     void addEntry(const QString &guid) override;
     void deleteArticle(const QString &guid) override;

@@ -210,6 +210,17 @@ void FeedStorageDummyImpl::setStatus(const QString &guid, int status)
     }
 }
 
+void FeedStorageDummyImpl::article(const QString &guid, uint &hash, QString &title, int &status, QDateTime &pubDate) const
+{
+    if (contains(guid)) {
+        auto &entry = d->entries[guid];
+        hash = entry.hash;
+        title = entry.title;
+        status = entry.status;
+        pubDate = entry.pubDate;
+    }
+}
+
 QString FeedStorageDummyImpl::title(const QString &guid) const
 {
     return contains(guid) ? d->entries[guid].title : QString();
