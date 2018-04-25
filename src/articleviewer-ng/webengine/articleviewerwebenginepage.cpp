@@ -45,8 +45,8 @@ ArticleViewerWebEnginePage::ArticleViewerWebEnginePage(QWebEngineProfile *profil
     settings()->setAttribute(QWebEngineSettings::WebGLEnabled, false);
     connect(this, &QWebEnginePage::featurePermissionRequested,
             this, &ArticleViewerWebEnginePage::slotFeaturePermissionRequested);
-    connect(this, &QWebEnginePage::urlChanged,
-            this, &ArticleViewerWebEnginePage::onUrlChanged);
+    connect(this, &QWebEnginePage::loadProgress,
+            this, &ArticleViewerWebEnginePage::onLoadProgress);
 }
 
 ArticleViewerWebEnginePage::~ArticleViewerWebEnginePage()
@@ -69,7 +69,9 @@ void ArticleViewerWebEnginePage::slotFeaturePermissionRequested(const QUrl &url,
     setFeaturePermission(url, feature, QWebEnginePage::PermissionDeniedByUser);
 }
 
-void ArticleViewerWebEnginePage::onUrlChanged()
+void ArticleViewerWebEnginePage::onLoadProgress()
 {
-    setZoomFactor((double)Settings::zoom() / 100.0);
+    double newZoom = static_cast<double>(Settings::zoom() / 100.0);
+    if(zoomFactor() != newZoom)
+        setZoomFactor(newZoom);
 }

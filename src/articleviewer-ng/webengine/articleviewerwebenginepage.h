@@ -37,7 +37,7 @@ protected:
 
 private:
     void slotFeaturePermissionRequested(const QUrl &url, QWebEnginePage::Feature feature);
-    void onUrlChanged();
+    void onLoadProgress();
 };
 }
 #endif // ARTICLEVIEWERWEBENGINEPAGE_H
