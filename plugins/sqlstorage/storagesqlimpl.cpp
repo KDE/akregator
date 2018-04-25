@@ -86,6 +86,9 @@ Akregator::Backend::StorageSqlImpl::StorageSqlImpl() : d(new StorageSqlImplPriva
 
 Akregator::Backend::StorageSqlImpl::~StorageSqlImpl()
 {
+    if (d->autoCommit)
+        this->commit();
+    d->autoCommitTimer->deleteLater();
     delete(d);
     d = nullptr;
 }
