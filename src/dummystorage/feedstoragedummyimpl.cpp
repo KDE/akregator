@@ -88,14 +88,6 @@ FeedStorageDummyImpl::~FeedStorageDummyImpl()
     d = nullptr;
 }
 
-void FeedStorageDummyImpl::commit()
-{
-}
-
-void FeedStorageDummyImpl::rollback()
-{
-}
-
 int FeedStorageDummyImpl::unread() const
 {
     return d->mainStorage->unreadFor(d->url);

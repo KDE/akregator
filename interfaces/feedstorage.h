@@ -85,8 +85,6 @@ public:
     virtual QString authorEMail(const QString &guid) const = 0;
 
     virtual void enclosure(const QString &guid, bool &hasEnclosure, QString &url, QString &type, int &length) const = 0;
-    virtual void commit() = 0;
-    virtual void rollback() = 0;
 };
 } // namespace Backend
 } // namespace Akregator

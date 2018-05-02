@@ -79,8 +79,6 @@ public:
     QString authorUri(const QString &guid) const override;
     QString authorEMail(const QString &guid) const override;
 
-    void commit() override;
-    void rollback() override;
 private:
     /** finds article by guid, returns -1 if not in archive **/
     int findArticle(const QString &guid) const;

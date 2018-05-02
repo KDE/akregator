@@ -79,8 +79,8 @@ public:
     QString authorEMail(const QString &guid) const override;
 
     void close();
-    void commit() override;
-    void rollback() override;
+    void commit();
+    void rollback();
 private:
     void markDirty();
     /** finds article by guid, returns -1 if not in archive **/
