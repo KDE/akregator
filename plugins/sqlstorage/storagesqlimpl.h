@@ -45,7 +45,6 @@ public:
     ~StorageSqlImpl();
 
     /// Archive path is used for SQLite mainly
-    /** KGlobal::dirs()->saveLocation("data", "akregator")+"/Archive" */
     static QString defaultArchivePath();
 
     void initialize(const QStringList &params) override;

@@ -26,8 +26,10 @@
 #define AKREGATOR_BACKEND_FEEDSTORAGESQLIMPL_H
 
 #include "feedstorage.h"
+
 namespace Akregator {
 namespace Backend {
+
 class StorageSqlImpl;
 class FeedStorageSqlImpl : public FeedStorage
 {

@@ -27,8 +27,10 @@
 
 #include <QDateTime>
 #include <QDebug>
+#include <QDir>
 #include <QSqlDatabase>
 #include <QSqlQuery>
+#include <QStandardPaths>
 #include <QTimer>
 #include <QVariant>
 
@@ -123,11 +125,18 @@ QStringList Akregator::Backend::StorageSqlImpl::feeds() const
     return QStringList();
 }
 
+QString Akregator::Backend::StorageSqlImpl::defaultArchivePath()
+{
+    const QString ret = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QStringLiteral("/akregator");
+    QDir().mkpath(ret);
+    return ret;
+}
+
 void Akregator::Backend::StorageSqlImpl::initialize(const QStringList& params)
 {
     qDebug() << "Initializing StorageSqlImpl with params = {" << params << "}";
     d->db = QSqlDatabase::addDatabase(QLatin1String("QSQLITE"));
-    d->db.setDatabaseName(QLatin1String("/home/snoopy/akregator.sqlite"));
+    d->db.setDatabaseName(defaultArchivePath() + QStringLiteral("/archive.sqlite"));
 }
 
 bool Akregator::Backend::StorageSqlImpl::open(bool autoCommit)
@@ -138,12 +147,16 @@ bool Akregator::Backend::StorageSqlImpl::open(bool autoCommit)
     }
     // TODO Versioning ?
     QStringList tables = d->db.tables(QSql::TableType::Tables);
-    if (!tables.contains(QLatin1String("feed"))) {
-        d->db.exec(QLatin1String("CREATE TABLE feed(id integer primary key, url text unique not null, unread integer not null default 0, last_fetch timestamp not null);"));
+    if (!tables.contains(QStringLiteral("opml"))) {
+        d->db.exec(QStringLiteral("CREATE TABLE opml(data text);"));
         markDirty();
     }
-    if (!tables.contains(QLatin1String("article"))) {
-        d->db.exec(QLatin1String("CREATE TABLE article(id integer primary key, feed_id integer not null, guid text unique not null, title text, hash integer, guid_is_hash boolean, guid_is_permalink boolean, description text, link text, comments text, comments_link text, status integer, publication_date timestamp, enclosure_url text, enclosure_type text, enclosure_length integer, author_name text, author_url text, author_email text, content text);"));
+    if (!tables.contains(QStringLiteral("feed"))) {
+        d->db.exec(QStringLiteral("CREATE TABLE feed(id integer primary key, url text unique not null, unread integer not null default 0, last_fetch timestamp not null);"));
+        markDirty();
+    }
+    if (!tables.contains(QStringLiteral("article"))) {
+        d->db.exec(QStringLiteral("CREATE TABLE article(id integer primary key, feed_id integer not null, guid text unique not null, title text, hash integer, guid_is_hash boolean, guid_is_permalink boolean, description text, link text, comments text, comments_link text, status integer, publication_date timestamp, enclosure_url text, enclosure_type text, enclosure_length integer, author_name text, author_url text, author_email text, content text);"));
         markDirty();
     }
     
@@ -151,19 +164,28 @@ bool Akregator::Backend::StorageSqlImpl::open(bool autoCommit)
     return true;
 }
 
-QString Akregator::Backend::StorageSqlImpl::restoreFeedList() const
-{
-    return QString::null;
-}
-
-
 bool Akregator::Backend::StorageSqlImpl::rollback()
 {
     return d->db.rollback();
 }
 
-void Akregator::Backend::StorageSqlImpl::storeFeedList(const QString& opmlStr)
+QString Akregator::Backend::StorageSqlImpl::restoreFeedList() const
 {
+    QSqlQuery q = d->db.exec(QStringLiteral("SELECT data FROM opml;"));
+    if (q.next())
+        return q.value(0).toString();
+    else
+        return QString::null;
+}
+
+void Akregator::Backend::StorageSqlImpl::storeFeedList(const QString &opmlStr)
+{
+    d->db.exec(QStringLiteral("DELETE FROM opml;"));
+    QSqlQuery q(d->db);
+    q.prepare(QLatin1String("INSERT INTO opml(data) VALUES (?);"));
+    q.addBindValue(opmlStr);
+    q.exec();
+    // This asserts it worked.
 }
 
 QSqlDatabase Akregator::Backend::StorageSqlImpl::database()
