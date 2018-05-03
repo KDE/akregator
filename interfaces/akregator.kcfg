@@ -247,6 +247,10 @@
    <label>Archive Backend</label>
    <default>metakit</default>
   </entry>
+  <entry key="Old Backend" name="OldBackendToMigrate" type="String" >
+   <label>Old backend to migrate on restart</label>
+   <default></default>
+  </entry>
   <entry key="Delay Mark Read" name="UseMarkReadDelay" type="Bool" >
    <whatsthis>Whether to delay before marking an article as read upon selecting it.</whatsthis>
    <default>true</default>

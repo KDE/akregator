@@ -14,6 +14,7 @@
 #include <KLocalizedString>
 #include <KPluginFactory>
 
+#include <QMessageBox>
 #include <QVBoxLayout>
 
 using namespace Akregator;
@@ -47,8 +48,18 @@ void KCMAkregatorAdvancedConfig::load()
 
 void KCMAkregatorAdvancedConfig::save()
 {
-    Settings::setArchiveBackend(m_widget->selectedFactory());
-    KCModule::save();
+    QString oldBackend = Settings::archiveBackend();
+    if (m_widget->selectedFactory() != Settings::archiveBackend()) {
+        Settings::setArchiveBackend(m_widget->selectedFactory());
+        auto answer = QMessageBox::question(this, i18n("Archive migration"), i18n("Do you want to migrate your archives to the new backend ? This will restart Akregator."));
+        if (answer == QMessageBox::Yes) {
+            Settings::setOldBackendToMigrate(oldBackend);
+            KCModule::save();
+            qApp->exit();
+            // Todo : really restart.
+        }
+        KCModule::save();
+    }
 }
 
 #include "akregator_config_advanced.moc"

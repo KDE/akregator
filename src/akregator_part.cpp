@@ -181,6 +181,11 @@ Part::Part(QWidget *parentWidget, QObject *parent, const QVariantList &)
     }
 
     m_storage->open(true);
+    
+    if (!Settings::oldBackendToMigrate().isEmpty()) {
+        Settings::setOldBackendToMigrate(QString::null);
+    }
+
     Kernel::self()->setStorage(m_storage);
 
     m_actionManager = new ActionManagerImpl(this);
