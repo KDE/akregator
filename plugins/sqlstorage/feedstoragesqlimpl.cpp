@@ -42,7 +42,7 @@ T simpleQuery(const QSqlDatabase &db, const char *query, const T &default_value,
         q.addBindValue(value);
     }
     
-    if (strcmp(query, "SELECT COUNT(*) FROM article WHERE feed_id = ? AND NOT(status & 8)") != 0) {
+    if (strcmp(query, "SELECT COUNT(*) FROM article WHERE feed_id = ? AND NOT(status  &8)") != 0) {
         qDebug() << "Executing query '" << query << "' with ... {";
         for (auto &value: parameters) {
             qDebug() << "    - " << value;
@@ -82,7 +82,7 @@ public:
 };
 
 
-Akregator::Backend::FeedStorageSqlImpl::FeedStorageSqlImpl(int feed_id, Akregator::Backend::StorageSqlImpl* main)
+Akregator::Backend::FeedStorageSqlImpl::FeedStorageSqlImpl(int feed_id, Akregator::Backend::StorageSqlImpl *main)
     : d(new FeedStorageSqlImplPrivate)
 {
     d->feed_id = feed_id;
@@ -93,7 +93,7 @@ Akregator::Backend::FeedStorageSqlImpl::~FeedStorageSqlImpl()
 {
 }
 
-void Akregator::Backend::FeedStorageSqlImpl::addEntry(const QString& guid)
+void Akregator::Backend::FeedStorageSqlImpl::addEntry(const QString &guid)
 {
     if (contains(guid))
         return;
@@ -103,7 +103,7 @@ void Akregator::Backend::FeedStorageSqlImpl::addEntry(const QString& guid)
     d->mainStorage->markDirty();
 }
 
-bool Akregator::Backend::FeedStorageSqlImpl::contains(const QString& guid) const
+bool Akregator::Backend::FeedStorageSqlImpl::contains(const QString &guid) const
 {
     return simpleQuery(d->mainStorage->database(),
                        "SELECT true FROM article WHERE feed_id = ? AND guid = ?",
@@ -111,7 +111,7 @@ bool Akregator::Backend::FeedStorageSqlImpl::contains(const QString& guid) const
                        { d->feed_id, guid });
 }
 
-QString Akregator::Backend::FeedStorageSqlImpl::content(const QString& guid) const
+QString Akregator::Backend::FeedStorageSqlImpl::content(const QString &guid) const
 {
     return simpleQuery(d->mainStorage->database(),
                        "SELECT content FROM article WHERE feed_id = ? AND guid = ?",
@@ -137,7 +137,7 @@ QStringList Akregator::Backend::FeedStorageSqlImpl::articles() const
     return result;
 }
 
-void Akregator::Backend::FeedStorageSqlImpl::article(const QString& guid, uint& hash, QString& title, int& status, QDateTime& pubDate) const
+void Akregator::Backend::FeedStorageSqlImpl::article(const QString &guid, uint &hash, QString &title, int &status, QDateTime &pubDate) const
 {
     QStringList result;
     QSqlQuery q(d->mainStorage->database());
@@ -156,7 +156,7 @@ void Akregator::Backend::FeedStorageSqlImpl::article(const QString& guid, uint& 
     pubDate = q.value(3).toDateTime();
 }
 
-QString Akregator::Backend::FeedStorageSqlImpl::description(const QString& guid) const
+QString Akregator::Backend::FeedStorageSqlImpl::description(const QString &guid) const
 {
     return simpleQuery(d->mainStorage->database(),
                        "SELECT description FROM article WHERE feed_id = ? AND guid = ?",
@@ -165,7 +165,7 @@ QString Akregator::Backend::FeedStorageSqlImpl::description(const QString& guid)
 }
 
 
-QString Akregator::Backend::FeedStorageSqlImpl::authorEMail(const QString& guid) const
+QString Akregator::Backend::FeedStorageSqlImpl::authorEMail(const QString &guid) const
 {
     return simpleQuery(d->mainStorage->database(),
                        "SELECT author_email FROM article WHERE feed_id = ? AND guid = ?",
@@ -173,7 +173,7 @@ QString Akregator::Backend::FeedStorageSqlImpl::authorEMail(const QString& guid)
                        { d->feed_id, guid });
 }
 
-QString Akregator::Backend::FeedStorageSqlImpl::authorName(const QString& guid) const
+QString Akregator::Backend::FeedStorageSqlImpl::authorName(const QString &guid) const
 {
     return simpleQuery(d->mainStorage->database(),
                        "SELECT author_name FROM article WHERE feed_id = ? AND guid = ?",
@@ -181,7 +181,7 @@ QString Akregator::Backend::FeedStorageSqlImpl::authorName(const QString& guid) 
                        { d->feed_id, guid });
 }
 
-QString Akregator::Backend::FeedStorageSqlImpl::authorUri(const QString& guid) const
+QString Akregator::Backend::FeedStorageSqlImpl::authorUri(const QString &guid) const
 {
     return simpleQuery(d->mainStorage->database(),
                        "SELECT author_url FROM article WHERE feed_id = ? AND guid = ?",
@@ -190,7 +190,7 @@ QString Akregator::Backend::FeedStorageSqlImpl::authorUri(const QString& guid) c
 }
 
 
-void Akregator::Backend::FeedStorageSqlImpl::enclosure(const QString& guid, bool& hasEnclosure, QString& url, QString& type, int& length) const
+void Akregator::Backend::FeedStorageSqlImpl::enclosure(const QString &guid, bool &hasEnclosure, QString &url, QString &type, int &length) const
 {
     QSqlQuery q(d->mainStorage->database());
     q.prepare(QLatin1String("SELECT enclosure_url, enclosure_type, enclosure_length FROM article WHERE guid = ? AND feed_id = ? AND enclosure_url IS NOT NULL"));
@@ -208,7 +208,7 @@ void Akregator::Backend::FeedStorageSqlImpl::enclosure(const QString& guid, bool
     }
 }
 
-bool Akregator::Backend::FeedStorageSqlImpl::guidIsHash(const QString& guid) const
+bool Akregator::Backend::FeedStorageSqlImpl::guidIsHash(const QString &guid) const
 {
     return simpleQuery(d->mainStorage->database(),
                        "SELECT guid_is_hash FROM article WHERE feed_id = ? AND guid = ?",
@@ -216,7 +216,7 @@ bool Akregator::Backend::FeedStorageSqlImpl::guidIsHash(const QString& guid) con
                        { d->feed_id, guid });
 }
 
-bool Akregator::Backend::FeedStorageSqlImpl::guidIsPermaLink(const QString& guid) const
+bool Akregator::Backend::FeedStorageSqlImpl::guidIsPermaLink(const QString &guid) const
 {
     return simpleQuery(d->mainStorage->database(),
                        "SELECT guid_is_permalink FROM article WHERE feed_id = ? AND guid = ?",
@@ -224,7 +224,7 @@ bool Akregator::Backend::FeedStorageSqlImpl::guidIsPermaLink(const QString& guid
                        { d->feed_id, guid });
 }
 
-uint Akregator::Backend::FeedStorageSqlImpl::hash(const QString& guid) const
+uint Akregator::Backend::FeedStorageSqlImpl::hash(const QString &guid) const
 {
     return simpleQuery(d->mainStorage->database(),
                        "SELECT hash FROM article WHERE feed_id = ? AND guid = ?",
@@ -232,7 +232,7 @@ uint Akregator::Backend::FeedStorageSqlImpl::hash(const QString& guid) const
                        { d->feed_id, guid });
 }
 
-QString Akregator::Backend::FeedStorageSqlImpl::link(const QString& guid) const
+QString Akregator::Backend::FeedStorageSqlImpl::link(const QString &guid) const
 {
     return simpleQuery(d->mainStorage->database(),
                        "SELECT link FROM article WHERE feed_id = ? AND guid = ?",
@@ -240,7 +240,7 @@ QString Akregator::Backend::FeedStorageSqlImpl::link(const QString& guid) const
                        { d->feed_id, guid });
 }
 
-QDateTime Akregator::Backend::FeedStorageSqlImpl::pubDate(const QString& guid) const
+QDateTime Akregator::Backend::FeedStorageSqlImpl::pubDate(const QString &guid) const
 {
     return simpleQuery(d->mainStorage->database(),
                        "SELECT publication_date FROM article WHERE feed_id = ? AND guid = ?",
@@ -248,7 +248,7 @@ QDateTime Akregator::Backend::FeedStorageSqlImpl::pubDate(const QString& guid) c
                        { d->feed_id, guid });
 }
 
-int Akregator::Backend::FeedStorageSqlImpl::status(const QString& guid) const
+int Akregator::Backend::FeedStorageSqlImpl::status(const QString &guid) const
 {
     return simpleQuery(d->mainStorage->database(),
                        "SELECT status FROM article WHERE feed_id = ? AND guid = ?",
@@ -256,7 +256,7 @@ int Akregator::Backend::FeedStorageSqlImpl::status(const QString& guid) const
                        { d->feed_id, guid });
 }
 
-QString Akregator::Backend::FeedStorageSqlImpl::title(const QString& guid) const
+QString Akregator::Backend::FeedStorageSqlImpl::title(const QString &guid) const
 {
     return simpleQuery(d->mainStorage->database(),
                        "SELECT title FROM article WHERE feed_id = ? AND guid = ?",
@@ -264,7 +264,7 @@ QString Akregator::Backend::FeedStorageSqlImpl::title(const QString& guid) const
                        { d->feed_id, guid });
 }
 
-void Akregator::Backend::FeedStorageSqlImpl::removeEnclosure(const QString& guid)
+void Akregator::Backend::FeedStorageSqlImpl::removeEnclosure(const QString &guid)
 {
     simpleQuery(d->mainStorage->database(),
             "UPDATE article SET enclosure_url = NULL, enclosure_type = NULL, enclosure_length = NULL WHERE guid = ? AND feed_id = ?",
@@ -272,7 +272,7 @@ void Akregator::Backend::FeedStorageSqlImpl::removeEnclosure(const QString& guid
     d->mainStorage->markDirty();
 }
 
-void Akregator::Backend::FeedStorageSqlImpl::deleteArticle(const QString& guid)
+void Akregator::Backend::FeedStorageSqlImpl::deleteArticle(const QString &guid)
 {
     simpleQuery(d->mainStorage->database(),
                 "DELETE FROM article WHERE guid = ? AND feed_id = ?",
@@ -280,7 +280,7 @@ void Akregator::Backend::FeedStorageSqlImpl::deleteArticle(const QString& guid)
     d->mainStorage->markDirty();
 }
 
-void Akregator::Backend::FeedStorageSqlImpl::setAuthorEMail(const QString& guid, const QString& email)
+void Akregator::Backend::FeedStorageSqlImpl::setAuthorEMail(const QString &guid, const QString &email)
 {
     simpleQuery(d->mainStorage->database(),
                 "UPDATE article SET author_email = ? WHERE guid = ? AND feed_id = ?",
@@ -288,7 +288,7 @@ void Akregator::Backend::FeedStorageSqlImpl::setAuthorEMail(const QString& guid,
     d->mainStorage->markDirty();
 }
 
-void Akregator::Backend::FeedStorageSqlImpl::setAuthorName(const QString& guid, const QString& name)
+void Akregator::Backend::FeedStorageSqlImpl::setAuthorName(const QString &guid, const QString &name)
 {
     simpleQuery(d->mainStorage->database(),
                 "UPDATE article SET author_name = ? WHERE guid = ? AND feed_id = ?",
@@ -296,7 +296,7 @@ void Akregator::Backend::FeedStorageSqlImpl::setAuthorName(const QString& guid, 
     d->mainStorage->markDirty();
 }
 
-void Akregator::Backend::FeedStorageSqlImpl::setAuthorUri(const QString& guid, const QString& uri)
+void Akregator::Backend::FeedStorageSqlImpl::setAuthorUri(const QString &guid, const QString &uri)
 {
     simpleQuery(d->mainStorage->database(),
                 "UPDATE article SET author_url = ? WHERE guid = ? AND feed_id = ?",
@@ -304,7 +304,7 @@ void Akregator::Backend::FeedStorageSqlImpl::setAuthorUri(const QString& guid, c
     d->mainStorage->markDirty();
 }
 
-void Akregator::Backend::FeedStorageSqlImpl::setContent(const QString& guid, const QString& content)
+void Akregator::Backend::FeedStorageSqlImpl::setContent(const QString &guid, const QString &content)
 {
     simpleQuery(d->mainStorage->database(),
                 "UPDATE article SET content = ? WHERE guid = ? AND feed_id = ?",
@@ -312,7 +312,7 @@ void Akregator::Backend::FeedStorageSqlImpl::setContent(const QString& guid, con
     d->mainStorage->markDirty();
 }
 
-void Akregator::Backend::FeedStorageSqlImpl::setDeleted(const QString& guid)
+void Akregator::Backend::FeedStorageSqlImpl::setDeleted(const QString &guid)
 {
     simpleQuery(d->mainStorage->database(),
                 "UPDATE article SET content = '', description = '', title = '', link = '', author_name = '', author_url = '', author_email = '' WHERE guid = ? AND feed_id = ?",
@@ -320,7 +320,7 @@ void Akregator::Backend::FeedStorageSqlImpl::setDeleted(const QString& guid)
     d->mainStorage->markDirty();
 }
 
-void Akregator::Backend::FeedStorageSqlImpl::setDescription(const QString& guid, const QString& description)
+void Akregator::Backend::FeedStorageSqlImpl::setDescription(const QString &guid, const QString &description)
 {
     simpleQuery(d->mainStorage->database(),
                 "UPDATE article SET description = ? WHERE guid = ? AND feed_id = ?",
@@ -328,7 +328,7 @@ void Akregator::Backend::FeedStorageSqlImpl::setDescription(const QString& guid,
     d->mainStorage->markDirty();
 }
 
-void Akregator::Backend::FeedStorageSqlImpl::setEnclosure(const QString& guid, const QString& url, const QString& type, int length)
+void Akregator::Backend::FeedStorageSqlImpl::setEnclosure(const QString &guid, const QString &url, const QString &type, int length)
 {
     simpleQuery(d->mainStorage->database(),
                 "UPDATE article SET enclosure_url = ?, enclosure_type = ?, enclosure_length = ? WHERE guid = ? AND feed_id = ?",
@@ -336,7 +336,7 @@ void Akregator::Backend::FeedStorageSqlImpl::setEnclosure(const QString& guid, c
     d->mainStorage->markDirty();
 }
 
-void Akregator::Backend::FeedStorageSqlImpl::setGuidIsHash(const QString& guid, bool isHash)
+void Akregator::Backend::FeedStorageSqlImpl::setGuidIsHash(const QString &guid, bool isHash)
 {
     simpleQuery(d->mainStorage->database(),
                 "UPDATE article SET guid_is_hash = ? WHERE guid = ? AND feed_id = ?",
@@ -344,7 +344,7 @@ void Akregator::Backend::FeedStorageSqlImpl::setGuidIsHash(const QString& guid, 
     d->mainStorage->markDirty();
 }
 
-void Akregator::Backend::FeedStorageSqlImpl::setGuidIsPermaLink(const QString& guid, bool isPermaLink)
+void Akregator::Backend::FeedStorageSqlImpl::setGuidIsPermaLink(const QString &guid, bool isPermaLink)
 {
     simpleQuery(d->mainStorage->database(),
                 "UPDATE article SET guid_is_permalink = ? WHERE guid = ? AND feed_id = ?",
@@ -352,7 +352,7 @@ void Akregator::Backend::FeedStorageSqlImpl::setGuidIsPermaLink(const QString& g
     d->mainStorage->markDirty();
 }
 
-void Akregator::Backend::FeedStorageSqlImpl::setHash(const QString& guid, uint hash)
+void Akregator::Backend::FeedStorageSqlImpl::setHash(const QString &guid, uint hash)
 {
     simpleQuery(d->mainStorage->database(),
                 "UPDATE article SET hash = ? WHERE guid = ? AND feed_id = ?",
@@ -360,7 +360,7 @@ void Akregator::Backend::FeedStorageSqlImpl::setHash(const QString& guid, uint h
     d->mainStorage->markDirty();
 }
 
-void Akregator::Backend::FeedStorageSqlImpl::setLink(const QString& guid, const QString& link)
+void Akregator::Backend::FeedStorageSqlImpl::setLink(const QString &guid, const QString &link)
 {
     simpleQuery(d->mainStorage->database(),
                 "UPDATE article SET link = ? WHERE guid = ? AND feed_id = ?",
@@ -368,7 +368,7 @@ void Akregator::Backend::FeedStorageSqlImpl::setLink(const QString& guid, const 
     d->mainStorage->markDirty();
 }
 
-void Akregator::Backend::FeedStorageSqlImpl::setPubDate(const QString& guid, const QDateTime &pubdate)
+void Akregator::Backend::FeedStorageSqlImpl::setPubDate(const QString &guid, const QDateTime &pubdate)
 {
     simpleQuery(d->mainStorage->database(),
                 "UPDATE article SET publication_date = ? WHERE guid = ? AND feed_id = ?",
@@ -376,7 +376,7 @@ void Akregator::Backend::FeedStorageSqlImpl::setPubDate(const QString& guid, con
     d->mainStorage->markDirty();
 }
 
-void Akregator::Backend::FeedStorageSqlImpl::setStatus(const QString& guid, int status)
+void Akregator::Backend::FeedStorageSqlImpl::setStatus(const QString &guid, int status)
 {
     simpleQuery(d->mainStorage->database(),
                 "UPDATE article SET status = ? WHERE guid = ? AND feed_id = ?",
@@ -384,7 +384,7 @@ void Akregator::Backend::FeedStorageSqlImpl::setStatus(const QString& guid, int 
     d->mainStorage->markDirty();
 }
 
-void Akregator::Backend::FeedStorageSqlImpl::setTitle(const QString& guid, const QString& title)
+void Akregator::Backend::FeedStorageSqlImpl::setTitle(const QString &guid, const QString &title)
 {
     simpleQuery(d->mainStorage->database(),
                 "UPDATE article SET title= ? WHERE guid = ? AND feed_id = ?",
@@ -415,7 +415,7 @@ int Akregator::Backend::FeedStorageSqlImpl::totalCount() const
 int Akregator::Backend::FeedStorageSqlImpl::unread() const
 {
     return simpleQuery(d->mainStorage->database(),
-                       "SELECT COUNT(*) FROM article WHERE feed_id = ? AND NOT(status & 8)",
+                       "SELECT COUNT(*) FROM article WHERE feed_id = ? AND NOT(status  &8)",
                        0,
                        { d->feed_id });
 }

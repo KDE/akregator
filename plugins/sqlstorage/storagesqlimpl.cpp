@@ -48,7 +48,7 @@ public:
     Akregator::Backend::FeedStorageSqlImpl *createFeedStorage(const QString &url);
 };
 
-Akregator::Backend::FeedStorageSqlImpl * Akregator::Backend::StorageSqlImpl::StorageSqlImplPrivate::createFeedStorage(const QString& url)
+Akregator::Backend::FeedStorageSqlImpl * Akregator::Backend::StorageSqlImpl::StorageSqlImplPrivate::createFeedStorage(const QString &url)
 {
     int feed_id;
     
@@ -95,12 +95,12 @@ Akregator::Backend::StorageSqlImpl::~StorageSqlImpl()
     d = nullptr;
 }
 
-Akregator::Backend::FeedStorage * Akregator::Backend::StorageSqlImpl::archiveFor(const QString& url)
+Akregator::Backend::FeedStorage *Akregator::Backend::StorageSqlImpl::archiveFor(const QString &url)
 {
     return d->createFeedStorage(url);
 }
 
-const Akregator::Backend::FeedStorage * Akregator::Backend::StorageSqlImpl::archiveFor(const QString& url) const
+const Akregator::Backend::FeedStorage *Akregator::Backend::StorageSqlImpl::archiveFor(const QString &url) const
 {
     return d->createFeedStorage(url);
 }
@@ -132,7 +132,7 @@ QString Akregator::Backend::StorageSqlImpl::defaultArchivePath()
     return ret;
 }
 
-void Akregator::Backend::StorageSqlImpl::initialize(const QStringList& params)
+void Akregator::Backend::StorageSqlImpl::initialize(const QStringList &params)
 {
     qDebug() << "Initializing StorageSqlImpl with params = {" << params << "}";
     d->db = QSqlDatabase::addDatabase(QLatin1String("QSQLITE"));
