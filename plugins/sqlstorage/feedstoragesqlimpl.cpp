@@ -28,10 +28,13 @@
 #include <QDebug>
 #include <QDateTime>
 #include <QSqlDatabase>
+#include <QSqlError>
 #include <QSqlQuery>
 #include <QVariant>
 
 /// Simple helpers to use the Qt SQL database API
+
+#define DUMP_SQL 0
 
 template<typename T>
 T simpleQuery(const QSqlDatabase &db, const char *query, const T &default_value, const std::initializer_list<QVariant> &parameters)
@@ -42,7 +45,7 @@ T simpleQuery(const QSqlDatabase &db, const char *query, const T &default_value,
         q.addBindValue(value);
     }
     
-    if (strcmp(query, "SELECT COUNT(*) FROM article WHERE feed_id = ? AND NOT(status  &8)") != 0) {
+    if (DUMP_SQL && (strcmp(query, "SELECT COUNT(*) FROM article WHERE feed_id = ? AND NOT(status  &8)") != 0)) {
         qDebug() << "Executing query '" << query << "' with ... {";
         for (auto &value: parameters) {
             qDebug() << "    - " << value;
@@ -51,6 +54,9 @@ T simpleQuery(const QSqlDatabase &db, const char *query, const T &default_value,
     }
     
     if (!q.exec()) {
+        qCritical() << "SQL error occured !";
+        qCritical() << q.lastError().databaseText();
+        qCritical() << q.lastError().driverText();
         return default_value;
     }
     if (!q.next()) {
@@ -61,12 +67,25 @@ T simpleQuery(const QSqlDatabase &db, const char *query, const T &default_value,
 
 bool simpleQuery(const QSqlDatabase &db, const char *query, const std::initializer_list<QVariant> &parameters)
 {
+    if (DUMP_SQL) {
+        qDebug() << "Executing query '" << query << "' with ... {";
+        for (auto &value: parameters) {
+            qDebug() << "    - " << value;
+        }
+        qDebug() << "}";
+    }
     QSqlQuery q(db);
     q.prepare(QLatin1String(query));
     for (auto &value: parameters) {
         q.addBindValue(value);
     }
-    return q.exec();
+    if (!q.exec()) {
+        qCritical() << "SQL error occured !";
+        qCritical() << q.lastError().databaseText();
+        qCritical() << q.lastError().driverText();
+        return false;
+    }
+    return true;
 }
 
 

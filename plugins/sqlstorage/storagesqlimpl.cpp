@@ -8,7 +8,7 @@
     the Free Software Foundation; either version 2 of the License, or
     (at your option) any later version.
 
-    This program is distributed in the hope that it will be useful,
+    This program is distributed in the hope that it will b useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
     GNU General Public License for more details.
@@ -117,7 +117,9 @@ void Akregator::Backend::StorageSqlImpl::close()
 
 bool Akregator::Backend::StorageSqlImpl::commit()
 {
-    return d->db.commit();
+    bool result = d->db.commit();
+    this->d->db.transaction();
+    return result;
 }
 
 QStringList Akregator::Backend::StorageSqlImpl::feeds() const
@@ -156,7 +158,9 @@ bool Akregator::Backend::StorageSqlImpl::open(bool autoCommit)
         markDirty();
     }
     if (!tables.contains(QStringLiteral("article"))) {
-        d->db.exec(QStringLiteral("CREATE TABLE article(id integer primary key, feed_id integer not null, guid text unique not null, title text, hash integer, guid_is_hash boolean, guid_is_permalink boolean, description text, link text, comments text, comments_link text, status integer, publication_date timestamp, enclosure_url text, enclosure_type text, enclosure_length integer, author_name text, author_url text, author_email text, content text);"));
+        d->db.exec(QStringLiteral("CREATE TABLE article(feed_id integer not null, guid text not null, title text, hash integer, guid_is_hash boolean, guid_is_permalink boolean, description text, link text, status integer, publication_date timestamp, enclosure_url text, enclosure_type text, enclosure_length integer, author_name text, author_url text, author_email text, content text);"));
+        d->db.exec(QStringLiteral("CREATE UNIQUE INDEX article_feed_guid ON article(feed_id, guid);"));
+        d->db.exec(QStringLiteral("CREATE INDEX article_feed_unread ON article(feed_id, guid) WHERE (NOT(status & 8));"));
         markDirty();
     }
     
