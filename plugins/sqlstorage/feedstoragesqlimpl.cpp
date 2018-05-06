@@ -34,7 +34,7 @@
 
 /// Simple helpers to use the Qt SQL database API
 
-#define DUMP_SQL 0
+#define DUMP_SQL 1
 
 template<typename T>
 T simpleQuery(const QSqlDatabase &db, const char *query, const T &default_value, const std::initializer_list<QVariant> &parameters)
@@ -45,12 +45,14 @@ T simpleQuery(const QSqlDatabase &db, const char *query, const T &default_value,
         q.addBindValue(value);
     }
     
-    if (DUMP_SQL && (strcmp(query, "SELECT COUNT(*) FROM article WHERE feed_id = ? AND NOT(status  &8)") != 0)) {
+    if (DUMP_SQL) {
+    if (strcmp(query, "SELECT COUNT(*) FROM article WHERE feed_id = ? AND NOT(status  &8)") != 0) {
         qDebug() << "Executing query '" << query << "' with ... {";
         for (auto &value: parameters) {
             qDebug() << "    - " << value;
         }
-        qDebug() << "}";
+        qDebug() << "} default " << default_value;
+    }
     }
     
     if (!q.exec()) {
@@ -142,7 +144,7 @@ QStringList Akregator::Backend::FeedStorageSqlImpl::articles() const
 {
     QStringList result;
     QSqlQuery q(d->mainStorage->database());
-    q.prepare(QLatin1String("SELECT guid FROM article WHERE feed_id = ?"));
+    q.prepare(QLatin1String("SELECT guid FROM article WHERE feed_id = ? ORDER BY publication_date DESC"));
     q.addBindValue(d->feed_id);
     if (q.exec()) {
         // Not all SQL backend handle returning size, sadly
@@ -158,6 +160,7 @@ QStringList Akregator::Backend::FeedStorageSqlImpl::articles() const
 
 void Akregator::Backend::FeedStorageSqlImpl::article(const QString &guid, uint &hash, QString &title, int &status, QDateTime &pubDate) const
 {
+    qDebug() << "Fetching article with guid " << guid;
     QStringList result;
     QSqlQuery q(d->mainStorage->database());
     q.prepare(QLatin1String("SELECT hash, title, status, publication_date FROM article WHERE feed_id = ? AND guid = ?"));
