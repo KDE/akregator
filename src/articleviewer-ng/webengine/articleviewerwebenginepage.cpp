@@ -28,21 +28,22 @@ using namespace Akregator;
 ArticleViewerWebEnginePage::ArticleViewerWebEnginePage(QWebEngineProfile *profile, QObject *parent)
     : WebEngineViewer::WebEnginePage(profile, parent)
 {
-    settings()->setAttribute(QWebEngineSettings::JavascriptEnabled, false);
-    settings()->setAttribute(QWebEngineSettings::PluginsEnabled, false);
     settings()->setAttribute(QWebEngineSettings::AutoLoadImages, true);
-    settings()->setAttribute(QWebEngineSettings::JavascriptCanOpenWindows, false);
-    settings()->setAttribute(QWebEngineSettings::JavascriptCanAccessClipboard, false);
-    settings()->setAttribute(QWebEngineSettings::LocalStorageEnabled, false);
-    settings()->setAttribute(QWebEngineSettings::XSSAuditingEnabled, false);
-    settings()->setAttribute(QWebEngineSettings::LocalContentCanAccessRemoteUrls, false);
-    settings()->setAttribute(QWebEngineSettings::LocalContentCanAccessFileUrls, false);
+
+    settings()->setAttribute(QWebEngineSettings::Accelerated2dCanvasEnabled, false);
+    settings()->setAttribute(QWebEngineSettings::AutoLoadIconsForPage, false);
     settings()->setAttribute(QWebEngineSettings::ErrorPageEnabled, false);
     settings()->setAttribute(QWebEngineSettings::HyperlinkAuditingEnabled, false);
+    settings()->setAttribute(QWebEngineSettings::JavascriptCanAccessClipboard, false);
+    settings()->setAttribute(QWebEngineSettings::JavascriptCanOpenWindows, false);
+    settings()->setAttribute(QWebEngineSettings::JavascriptEnabled, false);
+    settings()->setAttribute(QWebEngineSettings::LocalContentCanAccessFileUrls, false);
+    settings()->setAttribute(QWebEngineSettings::LocalContentCanAccessRemoteUrls, false);
+    settings()->setAttribute(QWebEngineSettings::LocalStorageEnabled, false);
+    settings()->setAttribute(QWebEngineSettings::PluginsEnabled, false);
     settings()->setAttribute(QWebEngineSettings::WebGLEnabled, false);
-    settings()->setAttribute(QWebEngineSettings::AutoLoadIconsForPage, false);
-    settings()->setAttribute(QWebEngineSettings::Accelerated2dCanvasEnabled, false);
-    settings()->setAttribute(QWebEngineSettings::WebGLEnabled, false);
+    settings()->setAttribute(QWebEngineSettings::XSSAuditingEnabled, false);
+
     connect(this, &QWebEnginePage::featurePermissionRequested,
             this, &ArticleViewerWebEnginePage::slotFeaturePermissionRequested);
     connect(this, &QWebEnginePage::loadProgress,
