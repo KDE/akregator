@@ -140,11 +140,34 @@ QString Akregator::Backend::FeedStorageSqlImpl::content(const QString &guid) con
                        { d->feed_id, guid });
 }
 
+QVector<Akregator::Backend::SmallArticle> Akregator::Backend::FeedStorageSqlImpl::articlesForCache() const
+{
+    QVector<Akregator::Backend::SmallArticle> result;
+
+    QSqlQuery q(d->mainStorage->database());
+    q.prepare(QLatin1String("SELECT guid, hash, status, title, publication_date FROM article WHERE feed_id = ?"));
+    q.addBindValue(d->feed_id);
+    if (q.exec()) {
+        // Not all SQL backend handle returning size, sadly
+        if (q.size() > 0)
+            result.reserve(q.size());
+        
+        while (q.next()) {
+            result.push_back(SmallArticle(q.value(0).toString(),
+                                          q.value(1).toInt(),
+                                          q.value(2).toInt(),
+                                          q.value(3).toString(),
+                                          q.value(4).toDateTime()));
+        }
+    }
+    return result;
+}
+
 QStringList Akregator::Backend::FeedStorageSqlImpl::articles() const
 {
     QStringList result;
     QSqlQuery q(d->mainStorage->database());
-    q.prepare(QLatin1String("SELECT guid FROM article WHERE feed_id = ? ORDER BY publication_date DESC"));
+    q.prepare(QLatin1String("SELECT guid FROM article WHERE feed_id = ?"));
     q.addBindValue(d->feed_id);
     if (q.exec()) {
         // Not all SQL backend handle returning size, sadly

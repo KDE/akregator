@@ -80,7 +80,7 @@ struct Article::Private : public Shared {
     Private();
     Private(const QString &guid, Feed *feed, Backend::FeedStorage *archive);
     Private(const ItemPtr &article, Feed *feed, Backend::FeedStorage *archive);
-
+    Private(const Backend::SmallArticle &cachedArticle, Feed *feed, Backend::FeedStorage *archive);
     /** The status of the article is stored in an int, the bits having the
         following meaning:
 
@@ -169,6 +169,17 @@ Article::Private::Private(const QString &guid_, Feed *feed_, Backend::FeedStorag
     archive->article(guid, hash, title, status, pubDate);
 }
 
+Article::Private::Private(const Backend::SmallArticle &cachedArticle, Feed *feed_, Backend::FeedStorage *archive_)
+    : feed(feed_)
+    , guid(cachedArticle.guid)
+    , archive(archive_)
+    , status(cachedArticle.status)
+    , hash(cachedArticle.hash)
+    , pubDate(cachedArticle.pubDate)
+    , title(cachedArticle.title)
+{
+}
+
 Article::Private::Private(const ItemPtr &article, Feed *feed_, Backend::FeedStorage *archive_)
     : feed(feed_)
     , archive(archive_)
@@ -255,6 +266,12 @@ Article::Private::Private(const ItemPtr &article, Feed *feed_, Backend::FeedStor
 Article::Article()
     : d(new Private)
 {
+}
+
+Article::Article(const Backend::SmallArticle &cachedArticle, Feed *feed, Backend::FeedStorage *archive)
+    : d()
+{
+    d = new Private(cachedArticle, feed, archive);
 }
 
 Article::Article(const QString &guid, Feed *feed, Backend::FeedStorage *archive)

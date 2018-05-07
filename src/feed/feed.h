@@ -219,6 +219,9 @@ public:
     void setFaviconLocalPath(const QString &file);
     void setCopyright(const QString &copyright);
     Q_REQUIRED_RESULT QString copyright() const;
+
+    void clearCache() override;
+
 public Q_SLOTS:
     /** starts fetching */
     void fetch(bool followDiscovery = false);

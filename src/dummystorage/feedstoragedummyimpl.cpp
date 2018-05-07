@@ -100,6 +100,21 @@ void FeedStorageDummyImpl::setLastFetch(const QDateTime &lastFetch)
     d->mainStorage->setLastFetchFor(d->url, lastFetch);
 }
 
+QVector<SmallArticle> FeedStorageDummyImpl::articlesForCache() const
+{
+    QVector<SmallArticle> result;
+    result.reserve(d->entries.size());
+    for (QString &guid: d->entries.keys()) {
+        auto &entry = d->entries[guid];
+        result.push_back(SmallArticle(guid,
+                                      entry.hash,
+                                      entry.status,
+                                      entry.title,
+                                      entry.pubDate));
+    }
+    return result;
+}
+
 QStringList FeedStorageDummyImpl::articles() const
 {
     return QStringList(d->entries.keys());

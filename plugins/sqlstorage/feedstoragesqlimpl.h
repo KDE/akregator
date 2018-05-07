@@ -43,6 +43,7 @@ public:
     QDateTime lastFetch() const override;
     void setLastFetch(const QDateTime &lastFetch) override;
 
+    QVector<SmallArticle> articlesForCache() const override;
     QStringList articles() const override;
 
     void article(const QString &guid, uint &hash, QString &title, int &status, QDateTime &pubDate) const override;

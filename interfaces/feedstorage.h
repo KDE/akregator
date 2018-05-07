@@ -9,6 +9,9 @@
 #define AKREGATOR_BACKEND_FEEDSTORAGE_H
 
 #include <QObject>
+#include <QList>
+#include <QDateTime>
+
 class QString;
 #include <QStringList>
 class QDateTime;
@@ -19,7 +22,22 @@ namespace Backend
 {
 class Storage;
 
-class FeedStorage : public QObject // krazy:exclude=qobject
+struct SmallArticle {
+    QString guid;
+    int hash;
+    int status;
+    QString title;
+    QDateTime pubDate;
+    
+    SmallArticle(const QString &guid, int hash, int status, const QString &title, QDateTime pubDate)
+        : guid(guid), hash(hash), status(status), title(title), pubDate(pubDate) {
+    }
+    
+    SmallArticle() {
+    }
+};
+
+class FeedStorage : public QObject //krazy:exclude=qobject
 {
 public:
     virtual int unread() const = 0;
@@ -30,6 +48,7 @@ public:
 
     /** returns the guids of all articles in this storage. */
     virtual QStringList articles() const = 0;
+    virtual QVector<SmallArticle> articlesForCache() const = 0;
 
     virtual void article(const QString &guid, uint &hash, QString &title, int &status, QDateTime &pubDate) const = 0;
     virtual bool contains(const QString &guid) const = 0;

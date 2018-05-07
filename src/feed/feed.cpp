@@ -245,6 +245,15 @@ Backend::Storage *Akregator::Feed::storage()
     return d->m_storage;
 }
 
+void Akregator::Feed::clearCache()
+{
+    if (d->articlesLoaded) {
+        d->articles.clear();
+        d->articlesLoaded = false;
+        d->deletedArticles.clear();
+    }
+}
+
 void Akregator::Feed::loadArticles()
 {
     if (d->m_articlesLoaded) {
@@ -255,9 +264,9 @@ void Akregator::Feed::loadArticles()
         d->m_archive = d->m_storage->archiveFor(xmlUrl());
     }
 
-    const QStringList list = d->m_archive->articles();
-    for (QStringList::ConstIterator it = list.constBegin(); it != list.constEnd(); ++it) {
-        Article mya(*it, this, d->m_archive);
+    QVector<Backend::SmallArticle> list = d->archive->articlesForCache();
+    for (Backend::SmallArticle & article: list) {
+        Article mya(article, this, d->archive);
         d->articles[mya.guid()] = mya;
         if (mya.isDeleted()) {
             d->m_deletedArticles.append(mya);
@@ -633,31 +642,55 @@ void Akregator::Feed::appendArticles(const Syndication::FeedPtr &feed)
     QList<ItemPtr>::ConstIterator en = items.constEnd();
     
     bool changed = false;
+    const bool notify = useNotification() || Settings::useNotifications();
 
     if (!d->articlesLoaded) {
         // If we did not load the articles, just ask the storage if articles exist.
         // This way, we may skip loading the feed uselessly.
         for (; it != en; ++it) {
             if (!d->archive->contains((*it)->id())) {
-                loadArticles();
+                Article mya(*it, this);
+                appendArticle(mya);
+                d->addedArticlesNotify.append(mya);
+
+                if (!mya.isDeleted() && !markImmediatelyAsRead()) {
+                    mya.setStatus(New);
+                } else {
+                    mya.setStatus(Read);
+                }
+                if (notify) {
+                    NotificationManager::self()->slotNotifyArticle(mya);
+                }
                 changed = true;
-                break;
             } else {
+                // if the article's guid is no hash but an ID, we have to check if the article was updated. That's done by comparing the hash values.
                 Article old((*it)->id(), this, d->archive);
                 Article mya(*it, this);
                 if (!mya.guidIsHash() && mya.hash() != old.hash() && !old.isDeleted()) {
-                    loadArticles();
+                    mya.setKeep(old.keep());
+                    int oldstatus = old.status();
+                    old.setStatus(Read);
+
+                    d->articles.remove(old.guid());
+                    appendArticle(mya);
+
+                    mya.setStatus(oldstatus);
+
+                    d->updatedArticlesNotify.append(mya);
                     changed = true;
-                    break;
                 }
             }
         }
-        if (!changed)
+        if (!changed) {
             return;
+        } else {
+            d->setTotalCountDirty();
+            articlesModified();
+            return;
+        }
     }
     
     d->setTotalCountDirty();
-    const bool notify = useNotification() || Settings::useNotifications();
 
     int nudge = 0;
 
@@ -955,10 +988,13 @@ void Akregator::Feed::setArticleChanged(Article &a, int oldStatus, bool process)
 
 int Akregator::Feed::totalCount() const
 {
-    if (d->m_totalCount == -1) {
-        d->m_totalCount = std::count_if(d->articles.constBegin(), d->articles.constEnd(), [](const Article &art) -> bool {
-            return !art.isDeleted();
-        });
+    if (d->totalCount == -1) {
+        if (d->articlesLoaded)
+            d->totalCount = std::count_if(d->articles.constBegin(), d->articles.constEnd(), [](const Article &art) -> bool {
+                return !art.isDeleted();
+            });
+        else
+            d->totalCount = d->archive->totalCount();
     }
     return d->m_totalCount;
 }

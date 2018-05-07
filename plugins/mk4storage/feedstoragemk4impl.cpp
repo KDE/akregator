@@ -183,6 +183,22 @@ QStringList FeedStorageMK4Impl::articles() const
     return list;
 }
 
+QVector<SmallArticle> FeedStorageMK4Impl::articlesForCache() const
+{
+    QVector<SmallArticle> result;
+    int size = d->archiveView.GetSize();
+    result.reserve(size);
+    for (int i = 0; i < size; ++i) {     // fill with guids
+        auto getAt = d->archiveView.GetAt(i);
+        result.push_back(SmallArticle(QString::fromLatin1(d->pguid(getAt)),
+                                      d->phash(getAt),
+                                      d->pstatus(getAt),
+                                      QString::fromUtf8(d->ptitle(getAt)),
+                                      QDateTime::fromTime_t(d->ppubDate(getAt))));
+    }
+    return result;
+}
+
 void FeedStorageMK4Impl::addEntry(const QString &guid)
 {
     c4_Row row;

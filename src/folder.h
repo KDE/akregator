@@ -141,6 +141,8 @@ public:
 
     KJob *createMarkAsReadJob() override;
 
+    void clearCache() override;
+
 Q_SIGNALS:
     /** emitted when a child was added */
     void signalChildAdded(Akregator::TreeNode *);

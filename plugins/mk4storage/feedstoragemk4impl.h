@@ -25,6 +25,7 @@ public:
     void setLastFetch(const QDateTime &lastFetch) override;
 
     Q_REQUIRED_RESULT QStringList articles() const override;
+    QVector<SmallArticle> articlesForCache() const override;
 
     void article(const QString &guid, uint &hash, QString &title, int &status, QDateTime &pubDate) const override;
     bool contains(const QString &guid) const override;

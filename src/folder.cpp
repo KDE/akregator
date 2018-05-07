@@ -463,3 +463,11 @@ QList<TreeNode *> Folder::namedChildren(const QString &title)
     }
     return nodeList;
 }
+
+void Folder::clearCache()
+{
+    // A folder should clear the cache of its children
+    foreach (TreeNode *const child, children()) {
+        child->clearCache();
+    }
+}

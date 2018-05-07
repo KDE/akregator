@@ -157,6 +157,8 @@ public:
 
     virtual KJob *createMarkAsReadJob() = 0;
 
+    virtual void clearCache() = 0;
+
 public Q_SLOTS:
 
     /** adds node to a fetch queue

@@ -271,6 +271,9 @@ void SelectionController::selectedSubscriptionChanged(const QModelIndex &index)
     if (m_selectedSubscription && m_articleLister) {
         m_selectedSubscription->setListViewScrollBarPositions(m_articleLister->scrollBarPositions());
     }
+    if (m_selectedSubscription) {
+        m_selectedSubscription->clearCache();
+    }
 
     m_selectedSubscription = selectedSubscription();
     Q_EMIT currentSubscriptionChanged(m_selectedSubscription);
