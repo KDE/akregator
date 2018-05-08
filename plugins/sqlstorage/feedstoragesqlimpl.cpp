@@ -34,7 +34,7 @@
 
 /// Simple helpers to use the Qt SQL database API
 
-#define DUMP_SQL 1
+#define DUMP_SQL 0
 
 template<typename T>
 T simpleQuery(const QSqlDatabase &db, const char *query, const T &default_value, const std::initializer_list<QVariant> &parameters)
@@ -183,7 +183,8 @@ QStringList Akregator::Backend::FeedStorageSqlImpl::articles() const
 
 void Akregator::Backend::FeedStorageSqlImpl::article(const QString &guid, uint &hash, QString &title, int &status, QDateTime &pubDate) const
 {
-    qDebug() << "Fetching article with guid " << guid;
+    if (DUMP_SQL)
+        qDebug() << "Fetching article with guid " << guid;
     QStringList result;
     QSqlQuery q(d->mainStorage->database());
     q.prepare(QLatin1String("SELECT hash, title, status, publication_date FROM article WHERE feed_id = ? AND guid = ?"));
