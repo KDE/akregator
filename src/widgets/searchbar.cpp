@@ -69,7 +69,7 @@ SearchBar::SearchBar(QWidget *parent)
     setSizePolicy(QSizePolicy(QSizePolicy::Minimum, QSizePolicy::Fixed));
 
     d->searchLine = new StatusSearchLine(this);
-    d->searchLine->setClearButtonShown(true);
+    d->searchLine->setClearButtonEnabled(true);
     d->searchLine->setPlaceholderText(i18n("Search articles..."));
     layout->addWidget(d->searchLine);
 
