@@ -308,8 +308,8 @@ void MainWidget::slotOnShutdown()
     delete m_feedListView; // call delete here, so that the header settings will get saved
     delete m_articleListView; // same for this one
 
-    delete m_mainTab;
-    delete m_mainFrame;
+    //delete m_mainTab;
+    //delete m_mainFrame;
     m_mainFrame = nullptr;
 
     Settings::self()->save();
