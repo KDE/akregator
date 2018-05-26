@@ -46,10 +46,14 @@ public:
     bool autoCommit;
     QTimer *autoCommitTimer;
     Akregator::Backend::FeedStorageSqlImpl *createFeedStorage(const QString &url);
+    QHash<QString, Akregator::Backend::FeedStorageSqlImpl *> feeds;
 };
 
 Akregator::Backend::FeedStorageSqlImpl * Akregator::Backend::StorageSqlImpl::StorageSqlImplPrivate::createFeedStorage(const QString &url)
 {
+    if (feeds.contains(url)) {
+        return feeds[url];
+    }
     int feed_id;
     
     // Try to find the current feed_id. If it does not exists, insert a new row in feed.
@@ -71,7 +75,9 @@ Akregator::Backend::FeedStorageSqlImpl * Akregator::Backend::StorageSqlImpl::Sto
         }
         feed_id = q.lastInsertId().toInt();
     }
-    return new FeedStorageSqlImpl(feed_id, parent);
+    auto new_feed = new FeedStorageSqlImpl(feed_id, parent);
+    feeds.insert(url, new_feed);
+    return new_feed;
 }
 
 Akregator::Backend::StorageSqlImpl::StorageSqlImpl() : d(new StorageSqlImplPrivate)
@@ -91,6 +97,8 @@ Akregator::Backend::StorageSqlImpl::~StorageSqlImpl()
     if (d->autoCommit)
         this->commit();
     d->autoCommitTimer->deleteLater();
+    for (auto *feed: d->feeds.values())
+        delete(feed);
     delete(d);
     d = nullptr;
 }
