@@ -33,7 +33,6 @@ class QDateTime;
 
 namespace Akregator {
 namespace Backend {
-
 class Storage;
 
 class FeedStorage : public QObject //krazy:exclude=qobject

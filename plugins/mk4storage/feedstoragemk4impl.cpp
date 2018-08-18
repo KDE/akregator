@@ -545,6 +545,5 @@ void FeedStorageMK4Impl::enclosure(const QString &guid, bool &hasEnclosure, QStr
     type = QLatin1String(d->pEnclosureType(row));
     length = d->pEnclosureLength(row);
 }
-
 } // namespace Backend
 } // namespace Akregator

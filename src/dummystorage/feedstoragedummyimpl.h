@@ -57,7 +57,7 @@ public:
     QString link(const QString &guid) const override;
     void setLink(const QString &guid, const QString &link) override;
     QDateTime pubDate(const QString &guid) const override;
-    void setPubDate(const QString &guid, const QDateTime & pubdate) override;
+    void setPubDate(const QString &guid, const QDateTime &pubdate) override;
     int status(const QString &guid) const override;
     void setStatus(const QString &guid, int status) override;
     QString title(const QString &guid) const override;

@@ -67,9 +67,9 @@ void Akregator::SubscriptionListDelegate::paint(QPainter *painter, const QStyleO
     if (index.column() == SubscriptionListModel::UnreadCountColumn
         || index.column() == SubscriptionListModel::TotalCountColumn) {
         newOption.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
-    }
-    else
+    } else {
         newOption.displayAlignment = Qt::AlignLeft | Qt::AlignVCenter;
+    }
 
     // No need to translate the painter here - the item is vertically centered
     // within its sizeHint rectangle.

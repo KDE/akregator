@@ -66,7 +66,9 @@ void FrameManager::slotAddFrame(Frame *frame)
     connect(frame, &Frame::signalTitleChanged, this, &FrameManager::slotSetTitle);
     connect(frame, &Frame::signalStatusText, this, &FrameManager::slotSetStatusText);
 
-    connect(frame, &Frame::signalOpenUrlRequest, this, [this](OpenUrlRequest &request) { slotOpenUrlRequest(request);});
+    connect(frame, &Frame::signalOpenUrlRequest, this, [this](OpenUrlRequest &request) {
+        slotOpenUrlRequest(request);
+    });
 
     //setPartGuiActive(frame->part(), false);
 

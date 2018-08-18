@@ -42,12 +42,12 @@ public:
     class Entry
     {
     public:
-        Entry() :
-            status(0)
-          , pubDate()
-          , hash(0)
-          , guidIsHash(false)
-          , guidIsPermaLink(false)
+        Entry()
+            : status(0)
+            , pubDate()
+            , hash(0)
+            , guidIsHash(false)
+            , guidIsPermaLink(false)
         {
         }
 

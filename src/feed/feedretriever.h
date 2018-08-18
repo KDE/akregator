@@ -30,7 +30,6 @@
 class KJob;
 
 namespace Akregator {
-
 class FeedRetriever : public Syndication::DataRetriever
 {
     Q_OBJECT
@@ -48,7 +47,6 @@ private:
     KJob *mJob = nullptr;
     int mError = 0;
 };
-
 }
 
 #endif

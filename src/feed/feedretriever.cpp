@@ -74,5 +74,5 @@ void FeedRetriever::getFinished(KJob *job)
         return;
     }
 
-    Q_EMIT dataRetrieved(static_cast<KIO::StoredTransferJob*>(job)->data(), true);
+    Q_EMIT dataRetrieved(static_cast<KIO::StoredTransferJob *>(job)->data(), true);
 }

@@ -76,6 +76,7 @@ void ArticleViewerWebEnginePage::slotFeaturePermissionRequested(const QUrl &url,
 void ArticleViewerWebEnginePage::onLoadProgress()
 {
     double newZoom = static_cast<double>(Settings::zoom() / 100.0);
-    if(zoomFactor() != newZoom)
+    if (zoomFactor() != newZoom) {
         setZoomFactor(newZoom);
+    }
 }
