@@ -20,6 +20,8 @@
 #include "articleviewerwebenginepage.h"
 #include <QWebEngineSettings>
 #include <QWebEngineProfile>
+#include <actionmanager.h>
+#include <WebEngineViewer/ZoomActionMenu>
 
 #include "akregatorconfig.h"
 
@@ -75,8 +77,8 @@ void ArticleViewerWebEnginePage::slotFeaturePermissionRequested(const QUrl &url,
 
 void ArticleViewerWebEnginePage::onLoadProgress()
 {
-    double newZoom = static_cast<double>(Settings::zoom() / 100.0);
-    if (zoomFactor() != newZoom) {
+    double newZoom = ActionManager::getInstance()->zoomActionMenu()->zoomFactor() / 100;
+    if(zoomFactor() != newZoom) {
         setZoomFactor(newZoom);
     }
 }
