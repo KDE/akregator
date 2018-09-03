@@ -76,9 +76,6 @@
   <entry key="MinimumFontSize" type="Int">
     <default>8</default>
   </entry>
-  <entry key="Zoom" type="Int">
-    <default>100</default>
-  </entry>
   <entry key="AccessKeyEnabled" type="Bool">
        <default>true</default>
   </entry>
