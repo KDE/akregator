@@ -53,7 +53,7 @@ public:
 
     void setSourceModel(QAbstractItemModel *src) override;
 
-public slots:
+public Q_SLOTS:
     void selectionChanged(const QItemSelection &selected, const QItemSelection &deselected);
     void clearCache();
 

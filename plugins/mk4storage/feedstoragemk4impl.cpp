@@ -44,7 +44,7 @@ static uint calcHash(const QString &str)
     if (str.isNull()) { // handle null string as "", prevents crash
         return calcHash(QLatin1String(""));
     }
-    const char *s = str.toLatin1();
+    const char *s = str.toLatin1().constData();
     uint hash = 5381;
     int c;
     while ((c = *s++)) {
@@ -115,7 +115,7 @@ FeedStorageMK4Impl::FeedStorageMK4Impl(const QString &url, StorageMK4Impl *main)
     QString t = url2;
     QString t2 = url2;
     QString filePath = main->archivePath() + QLatin1Char('/') + t.replace(QLatin1Char('/'), QLatin1Char('_')).replace(QLatin1Char(':'), QLatin1Char('_'));
-    d->storage = new c4_Storage(QString(filePath + QLatin1String(".mk4")).toLocal8Bit(), true);
+    d->storage = new c4_Storage(QString(filePath + QLatin1String(".mk4")).toLocal8Bit().constData(), true);
 
     d->archiveView = d->storage->GetAs(
         "articles[guid:S,title:S,hash:I,guidIsHash:I,guidIsPermaLink:I,description:S,link:S,comments:I,commentsLink:S,status:I,pubDate:I,tags[tag:S],hasEnclosure:I,enclosureUrl:S,enclosureType:S,enclosureLength:I,categories[catTerm:S,catScheme:S,catName:S],authorName:S,content:S,authorUri:S,authorEMail:S]");
@@ -204,7 +204,7 @@ QStringList FeedStorageMK4Impl::articles() const
 void FeedStorageMK4Impl::addEntry(const QString &guid)
 {
     c4_Row row;
-    d->pguid(row) = guid.toLatin1();
+    d->pguid(row) = guid.toLatin1().constData();
     if (!contains(guid)) {
         d->archiveView.Add(row);
         markDirty();
@@ -220,7 +220,7 @@ bool FeedStorageMK4Impl::contains(const QString &guid) const
 int FeedStorageMK4Impl::findArticle(const QString &guid) const
 {
     c4_Row findrow;
-    d->pguid(findrow) = guid.toLatin1();
+    d->pguid(findrow) = guid.toLatin1().constData();
     return d->archiveView.Find(findrow);
 }
 
@@ -368,7 +368,7 @@ void FeedStorageMK4Impl::setLink(const QString &guid, const QString &link)
     }
     c4_Row row;
     row = d->archiveView.GetAt(findidx);
-    d->plink(row) = !link.isEmpty() ? link.toLatin1() : "";
+    d->plink(row) = !link.isEmpty() ? link.toLatin1().constData() : "";
     d->archiveView.SetAt(findidx, row);
     markDirty();
 }

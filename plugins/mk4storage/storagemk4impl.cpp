@@ -78,7 +78,7 @@ Akregator::Backend::FeedStorageMK4Impl *Akregator::Backend::StorageMK4Impl::Stor
         Akregator::Backend::FeedStorageMK4Impl *fs = new Akregator::Backend::FeedStorageMK4Impl(url, q);
         feeds[url] = fs;
         c4_Row findrow;
-        purl(findrow) = url.toLatin1();
+        purl(findrow) = url.toLatin1().constData();
         int findidx = archiveView.Find(findrow);
         if (findidx == -1) {
             punread(findrow) = 0;
@@ -136,14 +136,14 @@ void Akregator::Backend::StorageMK4Impl::initialize(const QStringList &)
 bool Akregator::Backend::StorageMK4Impl::open(bool autoCommit)
 {
     QString filePath = d->archivePath + QLatin1String("/archiveindex.mk4");
-    d->storage = new c4_Storage(filePath.toLocal8Bit(), true);
+    d->storage = new c4_Storage(filePath.toLocal8Bit().constData(), true);
     d->archiveView = d->storage->GetAs("archive[url:S,unread:I,totalCount:I,lastFetch:I]");
     c4_View hash = d->storage->GetAs("archiveHash[_H:I,_R:I]");
     d->archiveView = d->archiveView.Hash(hash, 1); // hash on url
     d->autoCommit = autoCommit;
 
     filePath = d->archivePath + QLatin1String("/feedlistbackup.mk4");
-    d->feedListStorage = new c4_Storage(filePath.toLocal8Bit(), true);
+    d->feedListStorage = new c4_Storage(filePath.toLocal8Bit().constData(), true);
     d->feedListView = d->feedListStorage->GetAs("archive[feedList:S,tagSet:S]");
     return true;
 }
@@ -166,11 +166,11 @@ void Akregator::Backend::StorageMK4Impl::close()
     }
 
     delete d->storage;
-    d->storage = 0;
+    d->storage = nullptr;
 
     d->feedListStorage->Commit();
     delete d->feedListStorage;
-    d->feedListStorage = 0;
+    d->feedListStorage = nullptr;
 }
 
 bool Akregator::Backend::StorageMK4Impl::commit()
@@ -207,7 +207,7 @@ bool Akregator::Backend::StorageMK4Impl::rollback()
 int Akregator::Backend::StorageMK4Impl::unreadFor(const QString &url) const
 {
     c4_Row findrow;
-    d->purl(findrow) = url.toLatin1();
+    d->purl(findrow) = url.toLatin1().constData();
     int findidx = d->archiveView.Find(findrow);
 
     return findidx != -1 ? d->punread(d->archiveView.GetAt(findidx)) : 0;
@@ -216,7 +216,7 @@ int Akregator::Backend::StorageMK4Impl::unreadFor(const QString &url) const
 void Akregator::Backend::StorageMK4Impl::setUnreadFor(const QString &url, int unread)
 {
     c4_Row findrow;
-    d->purl(findrow) = url.toLatin1();
+    d->purl(findrow) = url.toLatin1().constData();
     int findidx = d->archiveView.Find(findrow);
     if (findidx == -1) {
         return;
@@ -230,7 +230,7 @@ void Akregator::Backend::StorageMK4Impl::setUnreadFor(const QString &url, int un
 int Akregator::Backend::StorageMK4Impl::totalCountFor(const QString &url) const
 {
     c4_Row findrow;
-    d->purl(findrow) = url.toLatin1();
+    d->purl(findrow) = url.toLatin1().constData();
     int findidx = d->archiveView.Find(findrow);
 
     return findidx != -1 ? d->ptotalCount(d->archiveView.GetAt(findidx)) : 0;
@@ -239,7 +239,7 @@ int Akregator::Backend::StorageMK4Impl::totalCountFor(const QString &url) const
 void Akregator::Backend::StorageMK4Impl::setTotalCountFor(const QString &url, int total)
 {
     c4_Row findrow;
-    d->purl(findrow) = url.toLatin1();
+    d->purl(findrow) = url.toLatin1().constData();
     int findidx = d->archiveView.Find(findrow);
     if (findidx == -1) {
         return;
@@ -253,7 +253,7 @@ void Akregator::Backend::StorageMK4Impl::setTotalCountFor(const QString &url, in
 QDateTime Akregator::Backend::StorageMK4Impl::lastFetchFor(const QString &url) const
 {
     c4_Row findrow;
-    d->purl(findrow) = url.toLatin1();
+    d->purl(findrow) = url.toLatin1().constData();
     int findidx = d->archiveView.Find(findrow);
 
     return findidx != -1 ? QDateTime::fromTime_t(d->plastFetch(d->archiveView.GetAt(findidx))) : QDateTime();
@@ -262,7 +262,7 @@ QDateTime Akregator::Backend::StorageMK4Impl::lastFetchFor(const QString &url) c
 void Akregator::Backend::StorageMK4Impl::setLastFetchFor(const QString &url, const QDateTime &lastFetch)
 {
     c4_Row findrow;
-    d->purl(findrow) = url.toLatin1();
+    d->purl(findrow) = url.toLatin1().constData();
     int findidx = d->archiveView.Find(findrow);
     if (findidx == -1) {
         return;

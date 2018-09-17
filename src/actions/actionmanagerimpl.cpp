@@ -654,7 +654,7 @@ QWidget *ActionManagerImpl::container(const QString &name)
     if (d->part->factory()) {
         return d->part->factory()->container(name, d->part);
     } else {
-        return 0;
+        return nullptr;
     }
 }
 
