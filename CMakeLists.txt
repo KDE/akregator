@@ -47,7 +47,6 @@ set(LIBKDEPIM_LIB_VERSION_LIB "5.9.40")
 set(LIBKLEO_LIB_VERSION_LIB "5.9.40")
 set(MESSAGELIB_LIB_VERSION_LIB "5.9.40")
 set(PIMCOMMON_LIB_VERSION_LIB "5.9.40")
-set(SYNDICATION_LIB_VERSION "5.9.40")
 
 find_package(Qt5 ${QT_REQUIRED_VERSION} CONFIG REQUIRED Widgets Test WebEngine WebEngineWidgets PrintSupport)
 find_package(Grantlee5 "5.1" CONFIG REQUIRED)
@@ -62,6 +61,7 @@ find_package(KF5TextEditor ${KF5_VERSION} CONFIG REQUIRED)
 find_package(KF5XmlGui ${KF5_VERSION} CONFIG REQUIRED)
 find_package(KF5IconThemes ${KF5_VERSION} CONFIG REQUIRED)
 find_package(KF5Notifications ${KF5_VERSION} CONFIG REQUIRED)
+find_package(KF5Syndication ${KF5_VERSION} CONFIG REQUIRED)
 
 # Find KdepimLibs Package
 find_package(KF5GrantleeTheme ${LIBGRANTLEETHEME_LIB_VERSION_LIB} CONFIG REQUIRED)
@@ -70,7 +70,6 @@ find_package(KF5Libkdepim ${LIBKDEPIM_LIB_VERSION_LIB} CONFIG REQUIRED)
 find_package(KF5Libkleo ${LIBKLEO_LIB_VERSION_LIB} CONFIG REQUIRED)
 find_package(KF5MessageViewer ${MESSAGELIB_LIB_VERSION_LIB} CONFIG REQUIRED)
 find_package(KF5PimTextEdit ${KPIMTEXTEDIT_LIB_VERSION} CONFIG REQUIRED)
-find_package(KF5Syndication ${SYNDICATION_LIB_VERSION} CONFIG REQUIRED)
 find_package(KF5WebEngineViewer ${MESSAGELIB_LIB_VERSION_LIB} CONFIG REQUIRED)
 
 # Fix plugin support for removing theses dependancies
