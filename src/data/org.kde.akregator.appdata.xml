@@ -3,6 +3,7 @@
   <id>org.kde.akregator.desktop</id>
   <metadata_license>CC0-1.0</metadata_license>
   <name>Akregator</name>
+  <developer_name>The KDE Community</developer_name>
   <name xml:lang="ar">أكريغاتور</name>
   <name xml:lang="ast">Akregator</name>
   <name xml:lang="bs">Akregator</name>
@@ -45,9 +46,9 @@
   <name xml:lang="zh-TW">Akregator</name>
   <description>
     <p>
-      Akregator is a news feed reader for the KDE desktop. It enables you to follow news sites, blogs and other RSS/Atom-enabled websites without the need to manually
+      Akregator is a news feed reader. It enables you to follow news sites, blogs and other RSS/Atom-enabled websites without the need to manually
       check for updates using a web browser. Akregator is designed to be both easy to use and to be powerful enough to read hundreds of news sources conveniently.
-      It comes with Konqueror integration for adding news feeds and with an internal browser for easy news reading.
+      It comes with a fast search, advanced archiving functionality and an internal browser for easy news reading.
     </p>
     <p xml:lang="ar">«أكريغاتور» هو قارئ تغذيات الأخبار لسطح مكتب «كدي». يتيح لك «أكريغاتور» متابعة أخبار المواقع، والمدوّنات وأيّ مواقع أخرى تدعم RSS/Atom، ذلك لإلغاء حاجة التماس التّحديثات يدويًّا عبر متصفّح الوبّ. صُمِّم «أكريغاتور» ليكون سهل الاستخدام وقويًّا كفاية لقراءة مئات مصادر الأخبار براحة. كما يأتي مع تكامل «كنكر» لإضافة تغذيات الأخبار وأيضًا يحتوي متصفّحًا داخليًّا لتسهيل قراءة الأخبار.</p>
     <p xml:lang="ca">L'Akregator és un lector de fonts de notícies per a l'escriptori KDE. Permet que seguiu els llocs de notícies, blogs i altres llocs web amb el RSS/Atom habilitat, sense necessitat de comprovar manualment si hi ha actualitzacions mitjançant un navegador web. L'Akregator està dissenyat per a ser fàcil d'usar i prou potent per a llegir centenars de fonts de notícies convenientment. Ve amb integració amb el Konqueror per afegir els canals de notícies i amb un navegador intern per a facilitar la lectura de les notícies.</p>
@@ -112,12 +113,12 @@
   <summary xml:lang="uk">Програма для читання подач</summary>
   <summary xml:lang="x-test">xxA news feed readerxx</summary>
   <summary xml:lang="zh-CN">新闻源阅读器</summary>
-  <url type="homepage">http://akregator.kde.org/</url>
+  <url type="homepage">https://akregator.kde.org</url>
   <url type="bugtracker">https://bugs.kde.org/enter_bug.cgi?format=guided&amp;product=akregator</url>
-  <url type="help">http://docs.kde.org/stable/en/kdepim/akregator/</url>
+  <url type="help">https://docs.kde.org/stable/en/kdepim/akregator</url>
   <screenshots>
     <screenshot type="default">
-      <image>http://kde.org/images/screenshots/akregator.png</image>
+      <image type="source" width="1280" height="720">https://kontact.org/assets/img/appstream/kontact-akregator.png</image>
     </screenshot>
   </screenshots>
   <project_group>KDE</project_group>
