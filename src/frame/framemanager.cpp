@@ -240,7 +240,7 @@ void FrameManager::openInExternalBrowser(const OpenUrlRequest &request)
     if (request.args().mimeType().isEmpty()) {
         QDesktopServices::openUrl(url);
     } else {
-        KRun::RunFlags flag = 0;
+        KRun::RunFlags flag = {};
         KRun::runUrl(url, request.args().mimeType(), nullptr /*window*/, flag);
     }
 }

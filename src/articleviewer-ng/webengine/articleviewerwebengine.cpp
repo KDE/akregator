@@ -102,7 +102,9 @@ ArticleViewerWebEngine::~ArticleViewerWebEngine()
 
 void ArticleViewerWebEngine::execPrintPreviewPage(QPrinter *printer, int timeout)
 {
-    mPageEngine->execPrintPreviewPage(printer, timeout);
+    if (!mPageEngine->execPrintPreviewPage(printer, timeout)) {
+        qCWarning(AKREGATOR_LOG) << "Impossible to print page";
+    }
 }
 
 void ArticleViewerWebEngine::slotWebPageMutedOrAudibleChanged()
