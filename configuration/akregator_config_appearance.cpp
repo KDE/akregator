@@ -51,15 +51,12 @@ KCMAkregatorAppearanceConfig::KCMAkregatorAppearanceConfig(QWidget *parent, cons
 
     connect(m_ui.slider_minimumFontSize, &QAbstractSlider::valueChanged, m_ui.kcfg_MinimumFontSize, &QSpinBox::setValue);
     connect(m_ui.slider_mediumFontSize, &QAbstractSlider::valueChanged, m_ui.kcfg_MediumFontSize, &QSpinBox::setValue);
-    connect(m_ui.slider_zoom, &QAbstractSlider::valueChanged, m_ui.kcfg_Zoom, &QSpinBox::setValue);
 
     connect(m_ui.slider_minimumFontSize, &QAbstractSlider::sliderMoved, m_ui.kcfg_MinimumFontSize, &QSpinBox::setValue);
     connect(m_ui.slider_mediumFontSize, &QAbstractSlider::sliderMoved, m_ui.kcfg_MediumFontSize, &QSpinBox::setValue);
-    connect(m_ui.slider_zoom, &QAbstractSlider::sliderMoved, m_ui.kcfg_Zoom, &QSpinBox::setValue);
 
     connect(m_ui.kcfg_MinimumFontSize, QOverload<int>::of(&KPluralHandlingSpinBox::valueChanged), m_ui.slider_minimumFontSize, &QSlider::setValue);
     connect(m_ui.kcfg_MediumFontSize, QOverload<int>::of(&KPluralHandlingSpinBox::valueChanged), m_ui.slider_mediumFontSize, &QSlider::setValue);
-    connect(m_ui.kcfg_Zoom, QOverload<int>::of(&QSpinBox::valueChanged), m_ui.slider_zoom, &QSlider::setValue);
     KAboutData *about = new KAboutData(QStringLiteral("kcmakrappearanceconfig"),
                                        i18n("Configure Feed Reader Appearance"),
                                        QString(), QString(), KAboutLicense::GPL,
@@ -71,10 +68,8 @@ KCMAkregatorAppearanceConfig::KCMAkregatorAppearanceConfig(QWidget *parent, cons
 
     m_ui.slider_minimumFontSize->setDisabled(Settings::self()->isImmutable(QStringLiteral("MinimumFontSize")));
     m_ui.slider_mediumFontSize->setDisabled(Settings::self()->isImmutable(QStringLiteral("MediumFontSize")));
-    m_ui.slider_zoom->setDisabled(Settings::self()->isImmutable(QStringLiteral("Zoom")));
     m_ui.lbl_MinimumFontSize->setDisabled(Settings::self()->isImmutable(QStringLiteral("MinimumFontSize")));
     m_ui.lbl_MediumFontSize->setDisabled(Settings::self()->isImmutable(QStringLiteral("MediumFontSize")));
-    m_ui.lbl_Zoom->setDisabled(Settings::self()->isImmutable(QStringLiteral("Zoom")));
 
     addConfig(Settings::self(), m_widget);
 }
