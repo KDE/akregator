@@ -114,6 +114,7 @@
   <url type="help">https://docs.kde.org/stable/en/kdepim/akregator</url>
   <screenshots>
     <screenshot type="default">
+      <caption>Reading feeds in Kontact with Akregator</caption>
       <image type="source" width="1280" height="720">https://kontact.org/assets/img/appstream/kontact-akregator.png</image>
     </screenshot>
   </screenshots>
