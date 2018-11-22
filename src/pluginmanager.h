@@ -66,6 +66,7 @@ public:
     /**
      * Load and instantiate plugin from service
      * @param service     Pointer to KService
+     * @param parent      Parent object
      * @return            Pointer to Plugin, or NULL if error
      */
     static Akregator::Plugin *createFromService(const KService::Ptr &service, QObject *parent = nullptr);
@@ -78,7 +79,7 @@ public:
 
     /**
      * Look up service for loaded plugin from store
-     * @param pointer     Pointer to plugin
+     * @param plugin      Pointer to plugin
      * @return            KService, or 0 if not found
      */
     static KService::Ptr getService(const Akregator::Plugin *plugin);

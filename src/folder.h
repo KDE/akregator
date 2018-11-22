@@ -79,7 +79,7 @@ public:
         return true;
     }
 
-    /** converts the feed group into OPML format for save and export and appends it to node @c parent in document @document.
+    /** converts the feed group into OPML format for save and export and appends it to node @p parent in document @document.
     Children are processed and appended recursively.
     @param parent The parent element
     @param document The DOM document
@@ -134,11 +134,11 @@ public:
     TreeNode *lastChild();
     const TreeNode *lastChild() const;
 
-    /** returns whether the feed group is opened or not..
-    Use only in \ref FolderItem. */
+    /** returns whether the feed group is opened or not.
+    Use only in \ref Folder . */
     bool isOpen() const;
 
-    /** open/close the feed group (display it as expanded/collapsed in the tree view). Use only in \ref FolderItem. */
+    /** open/close the feed group (display it as expanded/collapsed in the tree view). Use only in \ref Folder . */
     void setOpen(bool open);
 
     /** returns the next node in the tree.
@@ -178,7 +178,9 @@ public Q_SLOTS:
     void slotChildDestroyed(Akregator::TreeNode *node);
 
     /** enqueues children recursively for fetching
-    @param queue a fetch queue */
+    @param queue a fetch queue
+    @param intervalFetchesOnly determines whether to allow only interval fetches
+    */
     void slotAddToFetchQueue(Akregator::FetchQueue *queue, bool intervalFetchesOnly = false) override;
 
 protected:

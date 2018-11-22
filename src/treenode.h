@@ -151,7 +151,7 @@ public:
 
     /**
     @param doNotify notification on changes on/off flag
-    @param notifyOccurredChanges notify changes occurred while turn off when set to true again */
+    */
 
     virtual void setNotificationMode(bool doNotify);
 
@@ -177,8 +177,9 @@ public:
 public Q_SLOTS:
 
     /** adds node to a fetch queue
-        @param intervalFetchesOnly */
-
+        @param queue pointer to the queue
+        @param intervalFetchesOnly determines whether to allow only interval fetches
+    */
     virtual void slotAddToFetchQueue(Akregator::FetchQueue *queue, bool intervalFetchesOnly = false) = 0;
 
 Q_SIGNALS:
@@ -191,7 +192,7 @@ Q_SIGNALS:
 
     /** emitted when new articles were added to this node or any node in the subtree (for folders). Note that this has nothing to do with fetching, the article might have been moved from somewhere else in the tree into this subtree, e.g. by moving the feed the article is in.
         @param TreeNode* the node articles were added to
-        @param QStringList the guids of the articles added
+        @param guids the guids of the articles added
     */
     void signalArticlesAdded(Akregator::TreeNode *, const QVector<Akregator::Article> &guids);
 

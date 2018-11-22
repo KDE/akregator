@@ -99,7 +99,7 @@ public:
 
     /**
         Add a feed to a group.
-        @param url The URL of the feed to add.
+        @param urls The URLs of the feeds to add.
         @param group The name of the folder into which the feed is added.
         If the group does not exist, it is created.  The feed is added as the last member
         of the group.

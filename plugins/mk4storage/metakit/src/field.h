@@ -41,7 +41,7 @@ public:
     char Type() const;
     //: Returns the type description of this field, if any.
     char OrigType() const;
-    //: Similar, but report types which were originall 'M' as well.
+    //: Similar, but report types which were original 'M' as well.
     c4_String Description(bool anonymous_ = false) const;
     //: Describes the structure, omit names if anonymous.
     c4_String DescribeSubFields(bool anonymous_ = false) const;

@@ -968,7 +968,7 @@ int c4_View::Locate(const c4_RowRef &crit_, int *pos_) const
     //
     // There is an *extremely* tricky issue in here, in that the
     // comparison operator for rows is not symmetric.  So in the
-    // general case, "a == b" is not euivalent to "b == a".  This
+    // general case, "a == b" is not equivalent to "b == a".  This
     // is without doubt a design mistake (and should have at least
     // been named differently).
     //

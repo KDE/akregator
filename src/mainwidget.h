@@ -196,7 +196,7 @@ public Q_SLOTS:
     void slotSetSelectedArticleUnread();
     /** marks the currently selected article as new */
     void slotSetSelectedArticleNew();
-    /** marks the currenctly selected article as read after a user-set delay */
+    /** marks the currently selected article as read after a user-set delay */
     void slotSetCurrentArticleReadDelayed();
 
     /** switches view mode to normal view */
