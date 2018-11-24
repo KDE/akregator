@@ -115,6 +115,13 @@
   <screenshots>
     <screenshot type="default">
       <caption>Reading feeds in Kontact with Akregator</caption>
+      <caption xml:lang="ca">Llegint fonts al Kontact amb l'Akregator</caption>
+      <caption xml:lang="gl">Lendo fontes en Kontact con Akregator</caption>
+      <caption xml:lang="nl">Feeds lezen in Kontact met Akregator</caption>
+      <caption xml:lang="pt">Leitura de fontes no Kontact com o Akregator</caption>
+      <caption xml:lang="sv">Läsa kanaler i Kontact med Akregator</caption>
+      <caption xml:lang="uk">Читання подач у Kontact за допомогою Akregator</caption>
+      <caption xml:lang="x-test">xxReading feeds in Kontact with Akregatorxx</caption>
       <image type="source" width="1280" height="720">https://kontact.org/assets/img/appstream/kontact-akregator.png</image>
     </screenshot>
   </screenshots>
