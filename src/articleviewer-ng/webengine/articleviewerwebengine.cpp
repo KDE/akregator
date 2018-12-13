@@ -46,6 +46,7 @@
 #include <QMenu>
 #include <viewerplugintoolmanager.h>
 #include <QWebEngineProfile>
+#include <QWebEngineUrlRequestInterceptor>
 
 #include <WebEngineViewer/WebHitTestResult>
 #include <WebEngineViewer/WebHitTest>
@@ -57,6 +58,19 @@
 
 using namespace Akregator;
 
+class AkregatorRequestInterceptor : public QWebEngineUrlRequestInterceptor
+{
+    Q_OBJECT
+
+public:
+    explicit AkregatorRequestInterceptor(QObject *parent = nullptr) : QWebEngineUrlRequestInterceptor(parent) {
+    }
+
+    void interceptRequest(QWebEngineUrlRequestInfo &info) override {
+        Q_UNUSED(info);
+    }
+};
+
 ArticleViewerWebEngine::ArticleViewerWebEngine(KActionCollection *ac, QWidget *parent)
     : WebEngineViewer::WebEngineView(parent)
     , mActionCollection(ac)
@@ -64,9 +78,15 @@ ArticleViewerWebEngine::ArticleViewerWebEngine(KActionCollection *ac, QWidget *p
     , mViewerPluginToolManager(nullptr)
 {
     mNetworkAccessManager = new WebEngineViewer::InterceptorManager(this, ac, this);
+
     QWebEngineProfile *profile = QWebEngineProfile::defaultProfile();
     mPageEngine = new ArticleViewerWebEnginePage(profile, this);
     profile->setPersistentCookiesPolicy(QWebEngineProfile::ForcePersistentCookies);
+
+    // Needed to workaround crash in webengine, see https://bugreports.qt.io/browse/QTBUG-72260
+    auto webEngineUrlInterceptor = new AkregatorRequestInterceptor();
+    profile->setRequestInterceptor(webEngineUrlInterceptor);
+    connect(profile, &QObject::destroyed, webEngineUrlInterceptor, &AkregatorRequestInterceptor::deleteLater);
 
     setPage(mPageEngine);
 
@@ -494,3 +514,5 @@ void ArticleViewerWebEngine::slotActivatePlugin(MessageViewer::ViewerPluginInter
     interface->setUrl(mCurrentUrl);
     interface->execute();
 }
+
+#include "articleviewerwebengine.moc"
