@@ -48,7 +48,7 @@ AkrWebEngineViewer::AkrWebEngineViewer(KActionCollection *ac, QWidget *parent)
     settings()->setAttribute(QWebEngineSettings::AutoLoadImages, true);
     settings()->setAttribute(QWebEngineSettings::JavascriptCanOpenWindows, false);
     settings()->setAttribute(QWebEngineSettings::JavascriptCanAccessClipboard, false);
-    settings()->setAttribute(QWebEngineSettings::LocalStorageEnabled, false);
+    settings()->setAttribute(QWebEngineSettings::LocalStorageEnabled, true);
     settings()->setAttribute(QWebEngineSettings::XSSAuditingEnabled, false);
     settings()->setAttribute(QWebEngineSettings::ErrorPageEnabled, false);
     settings()->setAttribute(QWebEngineSettings::LocalContentCanAccessRemoteUrls, false);
