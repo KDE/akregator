@@ -320,22 +320,14 @@ void ArticleListView::startResizingTitleColumn()
     // Interactive so that the user can still resize the column himself if he
     // wants to
     header()->setSectionResizeMode(ArticleModel::ItemTitleColumn, QHeaderView::Stretch);
-#if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
     QMetaObject::invokeMethod(this, &ArticleListView::finishResizingTitleColumn, Qt::QueuedConnection);
-#else
-    QMetaObject::invokeMethod(this, "finishResizingTitleColumn", Qt::QueuedConnection);
-#endif
 }
 
 void ArticleListView::finishResizingTitleColumn()
 {
     if (QApplication::mouseButtons() != Qt::NoButton) {
         // Come back later: user is still resizing the widget
-#if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
         QMetaObject::invokeMethod(this, &ArticleListView::finishResizingTitleColumn, Qt::QueuedConnection);
-#else
-        QMetaObject::invokeMethod(this, "finishResizingTitleColumn", Qt::QueuedConnection);
-#endif
         return;
     }
     header()->setSectionResizeMode(QHeaderView::Interactive);

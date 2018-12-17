@@ -1102,11 +1102,7 @@ void MainWidget::slotArticleDelete()
 void MainWidget::slotFramesChanged()
 {
     // We need to wait till the frame is fully loaded
-#if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
     QMetaObject::invokeMethod(m_part, &Akregator::Part::slotAutoSave, Qt::QueuedConnection);
-#else
-    QMetaObject::invokeMethod(m_part, "slotAutoSave", Qt::QueuedConnection);
-#endif
 }
 
 void MainWidget::slotArticleToggleKeepFlag(bool)
