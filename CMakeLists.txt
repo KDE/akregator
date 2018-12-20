@@ -2,9 +2,9 @@ cmake_minimum_required(VERSION 3.5)
 set(KDEPIM_VERSION_NUMBER "5.10.40")
 project(akregator VERSION ${KDEPIM_VERSION_NUMBER})
 
-set(KF5_VERSION "5.53.0")
+set(KF5_MIN_VERSION "5.53.0")
 
-find_package(ECM ${KF5_VERSION} CONFIG REQUIRED)
+find_package(ECM ${KF5_MIN_VERSION} CONFIG REQUIRED)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
 include(ECMInstallIcons)
 
@@ -52,16 +52,16 @@ find_package(Qt5 ${QT_REQUIRED_VERSION} CONFIG REQUIRED Widgets Test WebEngine W
 find_package(Grantlee5 "5.1" CONFIG REQUIRED)
 
 # Find KF5 package
-find_package(KF5Crash ${KF5_VERSION} REQUIRED)
-find_package(KF5DocTools ${KF5_VERSION} REQUIRED)
-find_package(KF5KCMUtils ${KF5_VERSION} CONFIG REQUIRED)
-find_package(KF5NotifyConfig ${KF5_VERSION} CONFIG REQUIRED)
-find_package(KF5Parts ${KF5_VERSION} CONFIG REQUIRED)
-find_package(KF5TextEditor ${KF5_VERSION} CONFIG REQUIRED)
-find_package(KF5XmlGui ${KF5_VERSION} CONFIG REQUIRED)
-find_package(KF5IconThemes ${KF5_VERSION} CONFIG REQUIRED)
-find_package(KF5Notifications ${KF5_VERSION} CONFIG REQUIRED)
-find_package(KF5Syndication ${KF5_VERSION} CONFIG REQUIRED)
+find_package(KF5Crash ${KF5_MIN_VERSION} REQUIRED)
+find_package(KF5DocTools ${KF5_MIN_VERSION} REQUIRED)
+find_package(KF5KCMUtils ${KF5_MIN_VERSION} CONFIG REQUIRED)
+find_package(KF5NotifyConfig ${KF5_MIN_VERSION} CONFIG REQUIRED)
+find_package(KF5Parts ${KF5_MIN_VERSION} CONFIG REQUIRED)
+find_package(KF5TextEditor ${KF5_MIN_VERSION} CONFIG REQUIRED)
+find_package(KF5XmlGui ${KF5_MIN_VERSION} CONFIG REQUIRED)
+find_package(KF5IconThemes ${KF5_MIN_VERSION} CONFIG REQUIRED)
+find_package(KF5Notifications ${KF5_MIN_VERSION} CONFIG REQUIRED)
+find_package(KF5Syndication ${KF5_MIN_VERSION} CONFIG REQUIRED)
 
 # Find KdepimLibs Package
 find_package(KF5GrantleeTheme ${LIBGRANTLEETHEME_LIB_VERSION_LIB} CONFIG REQUIRED)
