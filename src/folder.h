@@ -79,7 +79,7 @@ public:
         return true;
     }
 
-    /** converts the feed group into OPML format for save and export and appends it to node @p parent in document @document.
+    /** converts the feed group into OPML format for save and export and appends it to node @p parent in document @p document.
     Children are processed and appended recursively.
     @param parent The parent element
     @param document The DOM document

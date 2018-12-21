@@ -70,7 +70,8 @@ private:
     QSharedPointer<FeedList> m_feedList;
 };
 
-/** The model of a feed tree, represents an OPML document. Contains an additional root node "All Feeds" which isn't stored. Note that a node instance must not be in more than one FeedList at a time! When deleting the feed list, all contained nodes are deleted! */
+/** @class FeedList
+    The model of a feed tree, represents an OPML document. Contains an additional root node "All Feeds" which isn't stored. Note that a node instance must not be in more than one FeedList at a time! When deleting the feed list, all contained nodes are deleted! */
 
 class AKREGATOR_EXPORT FeedList : public QObject
 {

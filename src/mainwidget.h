@@ -72,6 +72,7 @@ public:
     /** constructor
     @param part the Akregator::Part which contains this widget
     @param parent parent widget
+    @param actionManager Akregator specific implementation of ActionManager
     @param name the name of the widget (@ref QWidget )
     */
     MainWidget(Akregator::Part *part, QWidget *parent, ActionManagerImpl *actionManager, const QString &name);
