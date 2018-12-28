@@ -88,7 +88,7 @@ void CreateFeedCommand::Private::doCreate()
         }
     }
 
-    afd->setUrl(QUrl::fromPercentEncoding(url.toLatin1()));
+    afd->setUrl(QUrl::fromPercentEncoding(QUrl::fromUserInput(url).toEncoded()));
 
     QPointer<QObject> thisPointer(q);
 
