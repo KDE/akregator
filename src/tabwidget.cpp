@@ -80,7 +80,7 @@ public:
         return (currentItem && q->indexOf(currentItem) != -1) ? currentItem : q->currentWidget();
     }
 
-    uint tabBarWidthForMaxChars(int maxLength);
+    int tabBarWidthForMaxChars(int maxLength);
     void setTitle(const QString &title, QWidget *sender);
     void updateTabBarVisibility();
     Frame *currentFrame();
@@ -301,7 +301,7 @@ void TabWidget::slotRemoveFrame(int frameId)
 }
 
 // copied wholesale from KonqFrameTabs
-uint TabWidget::Private::tabBarWidthForMaxChars(int maxLength)
+int TabWidget::Private::tabBarWidthForMaxChars(int maxLength)
 {
     int hframe;
     QStyleOption o;
@@ -365,7 +365,7 @@ void TabWidget::Private::setTitle(const QString &title, QWidget *sender)
 
     q->setTabToolTip(senderIndex, QString());
 
-    uint lcw = 0, rcw = 0;
+    int lcw = 0, rcw = 0;
     int tabBarHeight = q->tabBar()->sizeHint().height();
 
     QWidget *leftCorner = q->cornerWidget(Qt::TopLeftCorner);
@@ -379,7 +379,7 @@ void TabWidget::Private::setTitle(const QString &title, QWidget *sender)
     if (rightCorner && rightCorner->isVisible()) {
         rcw = qMax(rightCorner->width(), tabBarHeight);
     }
-    uint maxTabBarWidth = q->width() - lcw - rcw;
+    int maxTabBarWidth = q->width() - lcw - rcw;
 
     int newMaxLength = 30;
 
