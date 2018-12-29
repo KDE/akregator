@@ -92,7 +92,7 @@ void FrameManager::slotRemoveFrame(int id)
         slotChangeFrame(-1);
     }
 
-    m_frames.insert(id, 0);
+    m_frames.insert(id, nullptr);
     m_frames.remove(id);
     Q_EMIT signalFrameRemoved(id);
     delete frame;
