@@ -50,8 +50,8 @@ private:
 
 private:
     QVector<bool> m_columnStates;
-    int m_vecSize;
-    Mode m_mode;
+    int m_vecSize = 0;
+    Mode m_mode = Whitelist;
 };
 } // namespace Akregator
 

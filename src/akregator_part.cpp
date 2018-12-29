@@ -493,7 +493,7 @@ void Part::flushAddFeedRequests()
     }
 
     for (const AddFeedRequest &i : qAsConst(m_requests)) {
-        Q_FOREACH (const QString &j, i.urls) {
+        for (const QString &j : qAsConst(i.urls)) {
             m_mainWidget->addFeedToGroup(j, i.group);
         }
         NotificationManager::self()->slotNotifyFeeds(i.urls);

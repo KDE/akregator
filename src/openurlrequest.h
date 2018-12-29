@@ -75,13 +75,13 @@ public:
 
 private:
 
-    int m_frameId;
+    int m_frameId = -1;
     QUrl m_url;
     KParts::OpenUrlArguments m_args;
     KParts::BrowserArguments m_browserArgs;
     Options m_options;
-    bool m_inBackground;
-    bool m_wasHandled;
+    bool m_inBackground = false;
+    bool m_wasHandled = false;
 };
 } // namespace Akregator
 

@@ -27,7 +27,6 @@
 #include "subscriptionlistmodel.h"
 
 #include "akregator_debug.h"
-//#include <KGlobalSettings>
 #include <KIconTheme>
 
 #include <QHeaderView>

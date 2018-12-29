@@ -45,7 +45,7 @@ public Q_SLOTS:
 
 private:
     static TrayIcon *m_instance;
-    int m_unread;
+    int m_unread = 0;
 };
 } // namespace Akregator
 
