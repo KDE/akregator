@@ -740,7 +740,23 @@ bool Part::handleCommandLine(const QStringList &args)
     QStringList feedsToAdd = parser.values(QStringLiteral("addfeed"));
 
     if (feedsToAdd.isEmpty() && !parser.positionalArguments().isEmpty()) {
-        Q_FOREACH (const QString &url, parser.positionalArguments()) {
+        Q_FOREACH (QString url, parser.positionalArguments()) {
+            const QUrl tempUrl = QUrl::fromUserInput(url);
+            if (tempUrl.isLocalFile()) {
+                const QString tempLocalFile = tempUrl.toLocalFile();
+                if (tempLocalFile.startsWith(QDir::tempPath())) {
+                    const QString path = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QStringLiteral("/akregator/data/");
+                    QDir().mkpath(path);
+                    QFile f(tempLocalFile);
+                    const QString newRssFileName = path + QFileInfo(f).fileName();
+                    if (!f.copy(newRssFileName)) {
+                        qCWarning(AKREGATOR_LOG) << "Impossible to copy in local folder" << newRssFileName;
+                    } else {
+                        url = newRssFileName;
+                    }
+                }
+            }
+
             feedsToAdd.append(url);
         }
     }
