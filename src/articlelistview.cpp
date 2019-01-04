@@ -43,6 +43,7 @@
 #include <QApplication>
 #include <QContextMenuEvent>
 #include <QHeaderView>
+#include <QPainter>
 #include <QPalette>
 #include <QScrollBar>
 
@@ -204,6 +205,34 @@ void ArticleListView::showHeaderMenu(const QPoint &pos)
         }
     }
     delete menu;
+}
+
+void ArticleListView::generalPaletteChanged()
+{
+    const QPalette palette = viewport()->palette();
+    QColor color = palette.text().color();
+    color.setAlpha(128);
+    mTextColor = color;
+}
+
+void ArticleListView::paintEvent(QPaintEvent *event)
+{
+    if ((m_matchers.size() != 0) && (model() && model()->rowCount() == 0)) {
+        QPainter p(viewport());
+
+        QFont font = p.font();
+        font.setItalic(true);
+        p.setFont(font);
+
+        if (!mTextColor.isValid()) {
+            generalPaletteChanged();
+        }
+        p.setPen(mTextColor);
+
+        p.drawText(QRect(0, 0, width(), height()), Qt::AlignCenter, i18n("No result found"));
+    } else {
+        QTreeView::paintEvent(event);
+    }
 }
 
 void ArticleListView::saveHeaderSettings()

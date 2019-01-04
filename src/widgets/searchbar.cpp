@@ -117,7 +117,7 @@ void SearchBar::slotClearSearch()
         d->searchLine->clear();
         d->searchLine->setStatus(Akregator::StatusSearchLine::AllArticles);
         d->timer.stop();
-        slotActivateSearch();
+        slotStopActiveSearch();
     }
 }
 
@@ -152,6 +152,16 @@ void SearchBar::slotSearchStringChanged(const QString &search)
 {
     d->searchText = search;
     d->triggerTimer();
+}
+
+void SearchBar::slotStopActiveSearch()
+{
+    std::vector<QSharedPointer<const AbstractMatcher> > matchers;
+    Settings::setStatusFilter(d->searchLine->status());
+    Settings::setTextFilter(d->searchText);
+    d->matchers = matchers;
+    Q_EMIT signalSearch(matchers);
+
 }
 
 void SearchBar::slotActivateSearch()
@@ -194,9 +204,10 @@ void SearchBar::slotActivateSearch()
     }
 
     std::vector<QSharedPointer<const AbstractMatcher> > matchers;
-
-    matchers.push_back(QSharedPointer<const AbstractMatcher>(new ArticleMatcher(textCriteria, ArticleMatcher::LogicalOr)));
-    matchers.push_back(QSharedPointer<const AbstractMatcher>(new ArticleMatcher(statusCriteria, ArticleMatcher::LogicalOr)));
+    if (!textCriteria.isEmpty())
+        matchers.push_back(QSharedPointer<const AbstractMatcher>(new ArticleMatcher(textCriteria, ArticleMatcher::LogicalOr)));
+    if (!statusCriteria.isEmpty())
+        matchers.push_back(QSharedPointer<const AbstractMatcher>(new ArticleMatcher(statusCriteria, ArticleMatcher::LogicalOr)));
     Settings::setStatusFilter(d->searchLine->status());
     Settings::setTextFilter(d->searchText);
     d->matchers = matchers;

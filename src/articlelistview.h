@@ -116,6 +116,8 @@ public:
 protected:
     void mousePressEvent(QMouseEvent *ev) override;
 
+    void paintEvent(QPaintEvent *event) override;
+
 Q_SIGNALS:
     void signalMouseButtonPressed(int, const QUrl &);
 
@@ -153,11 +155,12 @@ private Q_SLOTS:
     void finishResizingTitleColumn();
 
 private:
-
+    void generalPaletteChanged();
     enum ColumnMode {
         GroupMode, FeedMode
     };
     ColumnMode m_columnMode;
+    QColor mTextColor;
     QPointer<SortColorizeProxyModel> m_proxy;
     std::vector<QSharedPointer<const Filters::AbstractMatcher> > m_matchers;
     QByteArray m_feedHeaderState;
