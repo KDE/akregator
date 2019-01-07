@@ -181,17 +181,17 @@ void ArticleModel::clear()
     endResetModel();
 }
 
-void ArticleModel::articlesAdded(TreeNode *, const QVector<Article> &l)
+void ArticleModel::articlesAdded(Akregator::TreeNode *, const QVector<Article> &l)
 {
     d->articlesAdded(l);
 }
 
-void ArticleModel::articlesRemoved(TreeNode *, const QVector<Article> &l)
+void ArticleModel::articlesRemoved(Akregator::TreeNode *, const QVector<Article> &l)
 {
     d->articlesRemoved(l);
 }
 
-void ArticleModel::articlesUpdated(TreeNode *, const QVector<Article> &l)
+void ArticleModel::articlesUpdated(Akregator::TreeNode *, const QVector<Article> &l)
 {
     d->articlesUpdated(l);
 }

@@ -259,11 +259,11 @@ Article::Article(const QString &guid, Feed *feed, Backend::FeedStorage *archive)
     d = new Private(guid, feed, archive);
 }
 
-Article::Article(const ItemPtr &article, Feed *feed) : d(new Private(article, feed, feed->storage()->archiveFor(feed->xmlUrl())))
+Article::Article(const Syndication::ItemPtr &article, Feed *feed) : d(new Private(article, feed, feed->storage()->archiveFor(feed->xmlUrl())))
 {
 }
 
-Article::Article(const ItemPtr &article, Backend::FeedStorage *archive) : d(new Private(article, nullptr, archive))
+Article::Article(const Syndication::ItemPtr &article, Backend::FeedStorage *archive) : d(new Private(article, nullptr, archive))
 {
 }
 

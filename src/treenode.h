@@ -161,7 +161,7 @@ public:
     virtual const TreeNode *next() const = 0;
     virtual TreeNode *next() = 0;
 
-    /** returns the ID of this node. IDs are managed by @ref FeedList objects and must be unique within the list. Some IDs have a special meaning:
+    /** returns the ID of this node. IDs are managed by FeedList objects and must be unique within the list. Some IDs have a special meaning:
     @c 0 is the default value and indicates that no ID was set
     @c 1 is reserved for the "All Feeds" root node */
     virtual uint id() const;
