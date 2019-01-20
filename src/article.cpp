@@ -254,8 +254,9 @@ Article::Article() : d(new Private)
 
 Article::Article(const QString &guid, Feed *feed, Backend::FeedStorage *archive) : d()
 {
-    if (!archive)
+    if (!archive) {
         archive = feed->storage()->archiveFor(feed->xmlUrl());
+    }
     d = new Private(guid, feed, archive);
 }
 

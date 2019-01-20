@@ -63,10 +63,12 @@ class AkregatorRequestInterceptor : public QWebEngineUrlRequestInterceptor
     Q_OBJECT
 
 public:
-    explicit AkregatorRequestInterceptor(QObject *parent = nullptr) : QWebEngineUrlRequestInterceptor(parent) {
+    explicit AkregatorRequestInterceptor(QObject *parent = nullptr) : QWebEngineUrlRequestInterceptor(parent)
+    {
     }
 
-    void interceptRequest(QWebEngineUrlRequestInfo &info) override {
+    void interceptRequest(QWebEngineUrlRequestInfo &info) override
+    {
         Q_UNUSED(info);
     }
 };

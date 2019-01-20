@@ -680,7 +680,7 @@ void Akregator::Feed::tryFetch()
 {
     d->fetchErrorCode = Syndication::Success;
 
-    d->loader = Syndication::Loader::create(this, SLOT(fetchCompleted(Syndication::Loader *,
+    d->loader = Syndication::Loader::create(this, SLOT(fetchCompleted(Syndication::Loader*,
                                                                       Syndication::FeedPtr,
                                                                       Syndication::ErrorCode)));
     d->loader->loadFrom(QUrl(d->xmlUrl), new FeedRetriever());

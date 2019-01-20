@@ -523,7 +523,7 @@ void Part::slotSaveFeedList()
     if (xml.isEmpty()) {
         return;
     }
-    
+
     m_storage->storeFeedList(xml);
     if (writeToTextFile(xml, localFilePath())) {
         return;

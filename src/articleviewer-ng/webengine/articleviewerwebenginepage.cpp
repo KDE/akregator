@@ -78,7 +78,7 @@ void ArticleViewerWebEnginePage::slotFeaturePermissionRequested(const QUrl &url,
 void ArticleViewerWebEnginePage::onLoadProgress()
 {
     double newZoom = ActionManager::getInstance()->zoomActionMenu()->zoomFactor() / 100;
-    if(zoomFactor() != newZoom) {
+    if (zoomFactor() != newZoom) {
         setZoomFactor(newZoom);
     }
 }
