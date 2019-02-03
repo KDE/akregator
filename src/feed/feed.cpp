@@ -644,6 +644,10 @@ void Akregator::Feed::appendArticles(const Syndication::FeedPtr &feed)
     bool changed = false;
     const bool notify = useNotification() || Settings::useNotifications();
 
+    if (!d->archive && d->storage) {
+        d->archive = d->storage->archiveFor(xmlUrl());
+    }
+    
     if (!d->articlesLoaded) {
         // If we did not load the articles, just ask the storage if articles exist.
         // This way, we may skip loading the feed uselessly.
