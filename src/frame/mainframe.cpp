@@ -31,7 +31,7 @@ MainFrame::MainFrame(QWidget *parent, QWidget *visibleWidget)
 {
     setRemovable(false);
     QGridLayout *layout = new QGridLayout(this);
-    layout->setMargin(0);
+    layout->setContentsMargins(0, 0, 0, 0);
     layout->addWidget(visibleWidget, 0, 0);
 }
 

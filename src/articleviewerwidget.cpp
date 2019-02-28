@@ -73,7 +73,7 @@ ArticleViewerWidget::ArticleViewerWidget(const QString &grantleeDirectory, KActi
     , m_grantleeDirectory(grantleeDirectory)
 {
     QGridLayout *layout = new QGridLayout(this);
-    layout->setMargin(0);
+    layout->setContentsMargins(0, 0, 0, 0);
     layout->addWidget(m_articleViewerWidgetNg);
     m_articleHtmlWriter = new Akregator::ArticleHtmlWebEngineWriter(m_articleViewerWidgetNg->articleViewerNg(), this);
     connect(m_articleViewerWidgetNg->articleViewerNg(), &ArticleViewerWebEngine::signalOpenUrlRequest, this, &ArticleViewerWidget::signalOpenUrlRequest);

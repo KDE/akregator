@@ -74,7 +74,7 @@ ArticleViewerWebEngineWidgetNg::ArticleViewerWebEngineWidgetNg(KActionCollection
 void ArticleViewerWebEngineWidgetNg::initializeLayout(KActionCollection *ac)
 {
     QVBoxLayout *layout = new QVBoxLayout(this);
-    layout->setMargin(0);
+    layout->setContentsMargins(0, 0, 0, 0);
 
     mTextToSpeechWidget = new KPIMTextEdit::TextToSpeechWidget(this);
     mTextToSpeechWidget->setObjectName(QStringLiteral("texttospeechwidget"));
