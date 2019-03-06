@@ -87,7 +87,11 @@ ArticleViewerWebEngine::ArticleViewerWebEngine(KActionCollection *ac, QWidget *p
 
     // Needed to workaround crash in webengine, see https://bugreports.qt.io/browse/QTBUG-72260
     auto webEngineUrlInterceptor = new AkregatorRequestInterceptor();
+#if QT_VERSION < QT_VERSION_CHECK(5, 13, 0)
     profile->setRequestInterceptor(webEngineUrlInterceptor);
+#else
+   page()->setUrlRequestInterceptor(webEngineUrlInterceptor);
+#endif
     connect(profile, &QObject::destroyed, webEngineUrlInterceptor, &AkregatorRequestInterceptor::deleteLater);
 
     setPage(mPageEngine);
