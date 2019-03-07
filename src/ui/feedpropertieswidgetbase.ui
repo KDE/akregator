@@ -130,7 +130,7 @@
           </widget>
          </item>
          <item>
-          <widget class="KComboBox" name="updateComboBox">
+          <widget class="QComboBox" name="updateComboBox">
            <property name="enabled">
             <bool>false</bool>
            </property>
@@ -480,7 +480,7 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>KComboBox</class>
+   <class>QComboBox</class>
    <extends>QComboBox</extends>
    <header>kcombobox.h</header>
   </customwidget>

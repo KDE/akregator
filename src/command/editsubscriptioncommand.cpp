@@ -32,6 +32,7 @@
 #include "treenodevisitor.h"
 
 #include <QTimer>
+#include <QPointer>
 
 #include <cassert>
 

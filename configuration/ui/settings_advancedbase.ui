@@ -40,7 +40,7 @@
          </widget>
         </item>
         <item>
-         <widget class="KComboBox" name="cbBackend"/>
+         <widget class="QComboBox" name="cbBackend"/>
         </item>
         <item>
          <widget class="QPushButton" name="pbBackendConfigure">
@@ -140,7 +140,7 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>KComboBox</class>
+   <class>QComboBox</class>
    <extends>QComboBox</extends>
    <header>kcombobox.h</header>
   </customwidget>
