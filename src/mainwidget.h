@@ -42,7 +42,6 @@ class KConfig;
 class KConfigGroup;
 
 class QDomDocument;
-class QNetworkConfigurationManager;
 class QSplitter;
 
 namespace Akregator {

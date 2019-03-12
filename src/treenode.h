@@ -36,7 +36,6 @@ class QDomElement;
 class QIcon;
 class QPoint;
 class QString;
-class QStringList;
 template<class T> class QList;
 
 namespace Akregator {
