@@ -26,6 +26,7 @@ using namespace Akregator;
 ArticleHtmlWebEngineWriter::ArticleHtmlWebEngineWriter(ArticleViewerWebEngine *view, QObject *parent)
     : QObject(parent)
     , mState(Ended)
+    , mBaseUrl(QStringLiteral("file:///"))
     , mWebView(view)
 {
 }
@@ -46,12 +47,17 @@ void ArticleHtmlWebEngineWriter::begin()
     mState = Begun;
 }
 
+void ArticleHtmlWebEngineWriter::setBaseUrl(const QUrl &url)
+{
+    mBaseUrl = url;
+}
+
 void ArticleHtmlWebEngineWriter::end()
 {
     if (mState != Begun) {
         qCWarning(AKREGATOR_LOG) << "Called on non-begun or queued session!";
     }
-    mWebView->setHtml(mHtml, QUrl(QStringLiteral("file:///")));
+    mWebView->setHtml(mHtml, mBaseUrl);
     mWebView->show();
     mHtml.clear();
 

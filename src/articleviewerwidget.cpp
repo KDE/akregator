@@ -193,6 +193,7 @@ void ArticleViewerWidget::showArticle(const Akregator::Article &article)
         return;
     }
 
+    m_articleHtmlWriter->setBaseUrl(QUrl(article.feed()->xmlUrl()));
     m_viewMode = NormalView;
     disconnectFromNode(m_node);
     m_article = article;

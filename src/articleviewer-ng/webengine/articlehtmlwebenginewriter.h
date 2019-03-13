@@ -21,6 +21,7 @@
 #define ARTICLEHTMLWEBENGINEWRITER_H
 
 #include <QObject>
+#include <QUrl>
 #include "akregator_export.h"
 namespace Akregator {
 class ArticleViewerWebEngine;
@@ -36,6 +37,7 @@ public:
     void reset();
     void queue(const QString &str);
     void flush();
+    void setBaseUrl(const QUrl &url);
 
 Q_SIGNALS:
     void finished();
@@ -48,6 +50,7 @@ private:
     } mState;
 
     QString mHtml;
+    QUrl mBaseUrl;
     ArticleViewerWebEngine *mWebView = nullptr;
 };
 }
