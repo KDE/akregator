@@ -63,6 +63,7 @@
   <developer_name xml:lang="uk">Спільнота KDE</developer_name>
   <developer_name xml:lang="x-test">xxThe KDE Communityxx</developer_name>
   <developer_name xml:lang="zh-CN">KDE 社区</developer_name>
+  <developer_name xml:lang="zh-TW">KDE 社群</developer_name>
   <description>
     <p>
       Akregator is a news feed reader. It enables you to follow news sites, blogs and other RSS/Atom-enabled websites without the need to manually
@@ -117,6 +118,7 @@
   <summary xml:lang="uk">Програма для читання подач</summary>
   <summary xml:lang="x-test">xxA news feed readerxx</summary>
   <summary xml:lang="zh-CN">新闻订阅阅读器</summary>
+  <summary xml:lang="zh-TW">新聞 Feed 閱讀程式</summary>
   <url type="homepage">https://akregator.kde.org</url>
   <url type="bugtracker">https://bugs.kde.org/enter_bug.cgi?format=guided&amp;product=akregator</url>
   <url type="help">https://docs.kde.org/stable/en/kdepim/akregator</url>
@@ -139,6 +141,7 @@
       <caption xml:lang="sv">Läsa kanaler i Kontact med Akregator</caption>
       <caption xml:lang="uk">Читання подач у Kontact за допомогою Akregator</caption>
       <caption xml:lang="x-test">xxReading feeds in Kontact with Akregatorxx</caption>
+      <caption xml:lang="zh-TW">使用 Akregator 在 Kontact 閱讀 Feed</caption>
       <image type="source" width="1280" height="720">https://kontact.org/assets/img/appstream/kontact-akregator.png</image>
     </screenshot>
   </screenshots>
