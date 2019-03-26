@@ -80,8 +80,8 @@ ArticleViewerWebEngine::ArticleViewerWebEngine(KActionCollection *ac, QWidget *p
     , mViewerPluginToolManager(nullptr)
 {
 
-    QWebEngineProfile *profile = QWebEngineProfile::defaultProfile();
-    mPageEngine = new ArticleViewerWebEnginePage(profile, this);
+    mPageEngine = new ArticleViewerWebEnginePage(this);
+    QWebEngineProfile *profile = mPageEngine->profile();
     profile->setPersistentCookiesPolicy(QWebEngineProfile::ForcePersistentCookies);
 
 #if QTWEBENGINEWIDGETS_VERSION < QT_VERSION_CHECK(5, 13, 0)

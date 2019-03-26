@@ -27,8 +27,8 @@
 
 using namespace Akregator;
 
-ArticleViewerWebEnginePage::ArticleViewerWebEnginePage(QWebEngineProfile *profile, QObject *parent)
-    : WebEngineViewer::WebEnginePage(profile, parent)
+ArticleViewerWebEnginePage::ArticleViewerWebEnginePage(QObject *parent)
+    : WebEngineViewer::WebEnginePage(parent)
 {
     settings()->setAttribute(QWebEngineSettings::AutoLoadImages, true);
 
