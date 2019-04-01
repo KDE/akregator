@@ -35,7 +35,7 @@
 #include <QDateTime>
 #include <qdom.h>
 #include <QFile>
-#include <qdebug.h>
+#include <QDebug>
 #include <QStandardPaths>
 
 namespace {

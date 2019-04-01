@@ -30,7 +30,7 @@
 #include <QVector>
 #include <KSharedConfig>
 
-#include <qurl.h>
+#include <QUrl>
 #include <kparts/browserextension.h>
 #include <kparts/part.h>
 

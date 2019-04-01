@@ -27,7 +27,7 @@
 #include <KAboutData>
 #include <KPluginFactory>
 #include <KLocalizedString>
-#include <qabstractslider.h>
+#include <QAbstractSlider>
 
 #include <QVBoxLayout>
 

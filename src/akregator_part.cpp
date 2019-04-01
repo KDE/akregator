@@ -56,7 +56,7 @@
 #include <kaboutdata.h>
 #include <kconfig.h>
 #include <kconfigdialog.h>
-#include <qfiledialog.h>
+#include <QFileDialog>
 #include <kmessagebox.h>
 
 #include <QTemporaryFile>

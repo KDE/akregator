@@ -27,7 +27,7 @@
 
 #include "ui_addfeedwidgetbase.h"
 
-#include <qdialog.h>
+#include <QDialog>
 
 #include <QWidget>
 class QPushButton;

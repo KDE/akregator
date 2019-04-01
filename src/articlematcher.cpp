@@ -31,7 +31,7 @@
 #include <kconfiggroup.h>
 #include "akregator_debug.h"
 #include <krandom.h>
-#include <qurl.h>
+#include <QUrl>
 
 #include <QRegExp>
 
