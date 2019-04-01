@@ -26,7 +26,7 @@
 #include "akregatorconfig.h"
 #include "actions/actions.h"
 #include "urlhandler/webengine/urlhandlerwebengine.h"
-#include <qtwebenginewidgetsversion.h>
+#include <QtWebEngineWidgetsVersion>
 #include <WebEngineViewer/InterceptorManager>
 #include <WebEngineViewer/WebEngineAccessKey>
 #include <KPIMTextEdit/TextToSpeech>

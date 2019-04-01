@@ -25,7 +25,7 @@
 #ifndef AKREGATOR_NOTIFICATIONMANAGER_H
 #define AKREGATOR_NOTIFICATIONMANAGER_H
 
-#include <qobject.h>
+#include <QObject>
 #include <QVector>
 
 #include "article.h"

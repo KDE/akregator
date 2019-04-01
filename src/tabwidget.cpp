@@ -36,7 +36,7 @@
 
 #include "akregator_debug.h"
 #include <QTabWidget>
-#include <qtabbar.h>
+#include <QTabBar>
 #include <krun.h>
 #include <KLocalizedString>
 #include <kiconloader.h>

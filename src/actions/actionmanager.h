@@ -25,7 +25,7 @@
 #ifndef AKREGATOR_ACTIONMANAGER_H
 #define AKREGATOR_ACTIONMANAGER_H
 
-#include <qobject.h>
+#include <QObject>
 
 #include "akregator_export.h"
 
