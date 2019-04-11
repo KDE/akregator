@@ -41,23 +41,17 @@ class TreeNode::TreeNodePrivate
 {
 public:
     TreeNodePrivate();
-    bool doNotify = false;
+    bool doNotify = true;
     bool nodeChangeOccurred = false;
     bool articleChangeOccurred = false;
     QString title;
     Folder *parent = nullptr;
-    uint id;
-    bool signalDestroyedEmitted = false;
     QPoint scrollBarPositions;
+    uint id = 0;
+    bool signalDestroyedEmitted = false;
 };
 
-TreeNode::TreeNodePrivate::TreeNodePrivate() : doNotify(true)
-    , nodeChangeOccurred(false)
-    , articleChangeOccurred(false)
-    , title()
-    , parent(nullptr)
-    , id(0)
-    , signalDestroyedEmitted(false)
+TreeNode::TreeNodePrivate::TreeNodePrivate()
 {
 }
 

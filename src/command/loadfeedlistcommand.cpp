@@ -49,7 +49,6 @@ class Q_DECL_HIDDEN LoadFeedListCommand::Private
     LoadFeedListCommand *const q;
 public:
     explicit Private(LoadFeedListCommand *qq) : q(qq)
-        , storage(nullptr)
     {
     }
 
