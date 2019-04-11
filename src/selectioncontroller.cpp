@@ -77,7 +77,7 @@ static Akregator::TreeNode *subscriptionForIndex(const QModelIndex &index, Akreg
 }
 } // anon namespace
 
-Akregator::SelectionController::SelectionController(QObject *parent)
+SelectionController::SelectionController(QObject *parent)
     : AbstractSelectionController(parent)
     , m_feedList()
     , m_feedSelector()
@@ -95,12 +95,12 @@ Akregator::SelectionController::SelectionController(QObject *parent)
             this, &SelectionController::subscriptionDataChanged);
 }
 
-Akregator::SelectionController::~SelectionController()
+SelectionController::~SelectionController()
 {
     delete m_articleModel;
 }
 
-void Akregator::SelectionController::setFeedSelector(QAbstractItemView *feedSelector)
+void SelectionController::setFeedSelector(QAbstractItemView *feedSelector)
 {
     if (m_feedSelector == feedSelector) {
         return;
@@ -127,7 +127,7 @@ void Akregator::SelectionController::setFeedSelector(QAbstractItemView *feedSele
     connect(m_feedSelector->selectionModel(), &QItemSelectionModel::selectionChanged, m_subscriptionModel, &FilterUnreadProxyModel::selectionChanged);
 }
 
-void Akregator::SelectionController::setArticleLister(Akregator::ArticleLister *lister)
+void SelectionController::setArticleLister(Akregator::ArticleLister *lister)
 {
     if (m_articleLister == lister) {
         return;
@@ -147,12 +147,12 @@ void Akregator::SelectionController::setArticleLister(Akregator::ArticleLister *
     }
 }
 
-void Akregator::SelectionController::setSingleArticleDisplay(Akregator::SingleArticleDisplay *display)
+void SelectionController::setSingleArticleDisplay(Akregator::SingleArticleDisplay *display)
 {
     m_singleDisplay = display;
 }
 
-Akregator::Article Akregator::SelectionController::currentArticle() const
+Akregator::Article SelectionController::currentArticle() const
 {
     if (!m_articleLister || !m_articleLister->articleSelectionModel()) {
         return Article();
@@ -165,7 +165,7 @@ QModelIndex SelectionController::currentArticleIndex() const
     return m_articleLister->articleSelectionModel()->currentIndex();
 }
 
-QVector<Akregator::Article> Akregator::SelectionController::selectedArticles() const
+QVector<Akregator::Article> SelectionController::selectedArticles() const
 {
     if (!m_articleLister || !m_articleLister->articleSelectionModel()) {
         return QVector<Akregator::Article>();
@@ -173,12 +173,12 @@ QVector<Akregator::Article> Akregator::SelectionController::selectedArticles() c
     return ::articlesForIndexes(m_articleLister->articleSelectionModel()->selectedRows(), m_feedList.data());
 }
 
-Akregator::TreeNode *Akregator::SelectionController::selectedSubscription() const
+Akregator::TreeNode *SelectionController::selectedSubscription() const
 {
     return ::subscriptionForIndex(m_feedSelector->selectionModel()->currentIndex(), m_feedList.data());
 }
 
-void Akregator::SelectionController::setFeedList(const QSharedPointer<FeedList> &list)
+void SelectionController::setFeedList(const QSharedPointer<FeedList> &list)
 {
     if (m_feedList == list) {
         return;
@@ -205,7 +205,7 @@ void Akregator::SelectionController::setFeedList(const QSharedPointer<FeedList> 
     }
 }
 
-void Akregator::SelectionController::setFolderExpansionHandler(Akregator::FolderExpansionHandler *handler)
+void SelectionController::setFolderExpansionHandler(Akregator::FolderExpansionHandler *handler)
 {
     if (handler == m_folderExpansionHandler) {
         return;
@@ -218,7 +218,7 @@ void Akregator::SelectionController::setFolderExpansionHandler(Akregator::Folder
     handler->setModel(m_subscriptionModel);
 }
 
-void Akregator::SelectionController::articleHeadersAvailable(KJob *job)
+void SelectionController::articleHeadersAvailable(KJob *job)
 {
     Q_ASSERT(job);
     Q_ASSERT(job == m_listJob);
@@ -252,7 +252,7 @@ void Akregator::SelectionController::articleHeadersAvailable(KJob *job)
     }
 }
 
-void Akregator::SelectionController::subscriptionDataChanged(const QModelIndex &topLeft, const QModelIndex &bottomRight)
+void SelectionController::subscriptionDataChanged(const QModelIndex &topLeft, const QModelIndex &bottomRight)
 {
     if (!Settings::autoExpandFolders()) {
         return;
@@ -284,7 +284,7 @@ void Akregator::SelectionController::subscriptionDataChanged(const QModelIndex &
     }
 }
 
-void Akregator::SelectionController::selectedSubscriptionChanged(const QModelIndex &index)
+void SelectionController::selectedSubscriptionChanged(const QModelIndex &index)
 {
     if (!index.isValid()) {
         return;
@@ -316,7 +316,7 @@ void Akregator::SelectionController::selectedSubscriptionChanged(const QModelInd
     m_listJob->start();
 }
 
-void Akregator::SelectionController::subscriptionContextMenuRequested(const QPoint &point)
+void SelectionController::subscriptionContextMenuRequested(const QPoint &point)
 {
     Q_ASSERT(m_feedSelector);
     const TreeNode *const node = ::subscriptionForIndex(m_feedSelector->indexAt(point), m_feedList.data());
@@ -332,7 +332,7 @@ void Akregator::SelectionController::subscriptionContextMenuRequested(const QPoi
     }
 }
 
-void Akregator::SelectionController::articleSelectionChanged()
+void SelectionController::articleSelectionChanged()
 {
     const Akregator::Article article = currentArticle();
     if (m_singleDisplay) {
@@ -341,7 +341,7 @@ void Akregator::SelectionController::articleSelectionChanged()
     Q_EMIT currentArticleChanged(article);
 }
 
-void Akregator::SelectionController::articleIndexDoubleClicked(const QModelIndex &index)
+void SelectionController::articleIndexDoubleClicked(const QModelIndex &index)
 {
     const Akregator::Article article = ::articleForIndex(index, m_feedList.data());
     Q_EMIT articleDoubleClicked(article);
@@ -350,7 +350,7 @@ void Akregator::SelectionController::articleIndexDoubleClicked(const QModelIndex
 /**
  * Called when the applications settings are changed; sets whether we apply a the filter or not.
  */
-void Akregator::SelectionController::settingsChanged()
+void SelectionController::settingsChanged()
 {
     m_subscriptionModel->setDoFilter(Settings::hideReadFeeds());
 }
