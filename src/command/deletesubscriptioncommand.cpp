@@ -124,12 +124,11 @@ public:
     void jobFinished();
 
     QWeakPointer<FeedList> m_list;
-    int m_subscriptionId;
+    int m_subscriptionId = -1;
 };
 
 DeleteSubscriptionCommand::Private::Private(DeleteSubscriptionCommand *qq) : q(qq)
     , m_list()
-    , m_subscriptionId(-1)
 {
 }
 

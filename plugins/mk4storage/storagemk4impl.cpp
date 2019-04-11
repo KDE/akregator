@@ -293,7 +293,8 @@ QStringList Akregator::Backend::StorageMK4Impl::feeds() const
 {
     // TODO: cache list
     QStringList list;
-    int size = d->archiveView.GetSize();
+    const int size = d->archiveView.GetSize();
+    list.reserve(size);
     for (int i = 0; i < size; ++i) {
         list += QString::fromLatin1(d->purl(d->archiveView.GetAt(i)));
     }
