@@ -40,8 +40,7 @@
 class Akregator::Backend::StorageMK4Impl::StorageMK4ImplPrivate
 {
 public:
-    StorageMK4ImplPrivate() : modified(false)
-        , purl("url")
+    StorageMK4ImplPrivate() : purl("url")
         , pFeedList("feedList")
         , punread("unread")
         , ptotalCount("totalCount")
@@ -52,8 +51,8 @@ public:
     c4_Storage *storage;
     Akregator::Backend::StorageMK4Impl *q;
     c4_View archiveView;
-    bool autoCommit;
-    bool modified;
+    bool autoCommit = false;
+    bool modified = false;
     mutable QMap<QString, Akregator::Backend::FeedStorageMK4Impl *> feeds;
     QStringList feedURLs;
     c4_StringProp purl, pFeedList;
@@ -126,7 +125,7 @@ Akregator::Backend::StorageMK4Impl::~StorageMK4Impl()
 {
     close();
     delete d;
-    d = 0;
+    d = nullptr;
 }
 
 void Akregator::Backend::StorageMK4Impl::initialize(const QStringList &)
