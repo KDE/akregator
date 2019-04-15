@@ -116,7 +116,7 @@ bool MainWindow::loadPart()
     m_part->setObjectName(QStringLiteral("akregator_part"));
     setCentralWidget(m_part->widget());
 
-    connect(m_part.data(), &Part::setWindowCaption, this, QOverload<const QString &>::of(&KMainWindow::setCaption));
+    connect(m_part.data(), &Part::setWindowCaption, this, qOverload<const QString &>(&KMainWindow::setCaption));
 
     createGUI(m_part);
     browserExtension(m_part)->setBrowserInterface(m_browserIface);

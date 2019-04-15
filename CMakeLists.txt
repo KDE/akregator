@@ -78,7 +78,7 @@ find_package(KF5PimCommonAkonadi ${PIMCOMMON_LIB_VERSION_LIB} CONFIG REQUIRED)
 
 include_directories(${akregator_SOURCE_DIR} ${akregator_BINARY_DIR})
 add_definitions(-DTRANSLATION_DOMAIN=\"akregator\")
-
+set(CMAKE_CXX_STANDARD 14)
 
 #add_definitions(-DQT_DISABLE_DEPRECATED_BEFORE=0x060000)
 

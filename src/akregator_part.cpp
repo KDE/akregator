@@ -650,10 +650,10 @@ void Part::showOptions()
 
     if (!m_dialog) {
         m_dialog = new KCMultiDialog(m_mainWidget);
-        connect(m_dialog, QOverload<>::of(&KCMultiDialog::configCommitted),
+        connect(m_dialog, qOverload<>(&KCMultiDialog::configCommitted),
                 this, &Part::slotSettingsChanged);
         if (TrayIcon::getInstance()) {
-            connect(m_dialog, QOverload<>::of(&KCMultiDialog::configCommitted),
+            connect(m_dialog, qOverload<>(&KCMultiDialog::configCommitted),
                     TrayIcon::getInstance(), &TrayIcon::settingsChanged);
         }
 
