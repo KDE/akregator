@@ -58,6 +58,7 @@ public:
 Q_SIGNALS:
     /** emitted when the text and status filters were updated. Params are textfilter, statusfilter */
     void signalSearch(const std::vector<QSharedPointer<const Akregator::Filters::AbstractMatcher> > &);
+    void forceLostFocus();
 
 public Q_SLOTS:
     void slotClearSearch();

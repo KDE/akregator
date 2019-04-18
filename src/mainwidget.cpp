@@ -192,6 +192,7 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
     if (!Settings::showQuickFilter()) {
         m_searchBar->hide();
     }
+    connect(m_searchBar, &SearchBar::forceLostFocus, this, &MainWidget::slotSetFocusToViewer);
     m_articleSplitter = new QSplitter(Qt::Vertical, m_mainTab);
     m_articleSplitter->setObjectName(QStringLiteral("panner2"));
     m_articleSplitter->setChildrenCollapsible(false);
@@ -321,6 +322,11 @@ void MainWidget::slotSettingsChanged()
 {
     m_tabWidget->slotSettingsChanged();
     m_articleViewer->updateAfterConfigChanged();
+}
+
+void MainWidget::slotSetFocusToViewer()
+{
+    m_articleViewer->setFocus();
 }
 
 void MainWidget::slotOnShutdown()
