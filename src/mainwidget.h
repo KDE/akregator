@@ -253,6 +253,7 @@ private Q_SLOTS:
     void slotSettingsChanged();
 
 private:
+    void slotSetFocusToViewer();
     void sendArticle(const QByteArray &text, const QString &title, bool attach);
     void deleteExpiredArticles(const QSharedPointer<FeedList> &feedList);
     void connectFrame(Akregator::WebEngineFrame *frame);

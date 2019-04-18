@@ -74,6 +74,7 @@ SearchBar::SearchBar(QWidget *parent)
     layout->addWidget(d->searchLine);
 
     connect(d->searchLine, &KLineEdit::textChanged, this, &SearchBar::slotSearchStringChanged);
+    connect(d->searchLine, &StatusSearchLine::forceLostFocus, this, &SearchBar::forceLostFocus);
     connect(d->searchLine, &StatusSearchLine::statusChanged, this, &SearchBar::slotStatusChanged);
 
     connect(&(d->timer), &QTimer::timeout, this, &SearchBar::slotActivateSearch);

@@ -21,6 +21,7 @@
 #include <KLocalizedString>
 #include <QAction>
 #include <QIcon>
+#include <QKeyEvent>
 #include <QMenu>
 
 using namespace Akregator;
@@ -35,6 +36,15 @@ StatusSearchLine::StatusSearchLine(QWidget *parent)
 
 StatusSearchLine::~StatusSearchLine()
 {
+}
+
+void StatusSearchLine::keyPressEvent(QKeyEvent *e)
+{
+    if (e->key() == Qt::Key_Escape) {
+        Q_EMIT forceLostFocus();
+    } else {
+        KLineEdit::keyPressEvent(e);
+    }
 }
 
 void StatusSearchLine::initializeHash()

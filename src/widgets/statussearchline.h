@@ -45,6 +45,10 @@ public:
 
 Q_SIGNALS:
     void statusChanged(Akregator::StatusSearchLine::Status status);
+    void forceLostFocus();
+
+protected:
+    void keyPressEvent(QKeyEvent *e) override;
 
 private Q_SLOTS:
     void showMenu();
