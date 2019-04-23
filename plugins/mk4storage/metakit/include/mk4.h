@@ -237,7 +237,7 @@ protected:
 
 public:
     /* Construction / destruction / assignment */
-    c4_View(c4_Sequence * = 0);
+    c4_View(c4_Sequence * = nullptr);
     c4_View(c4_CustomViewer *);
     c4_View(c4_Stream *);
     c4_View(const c4_Property &property_);
@@ -330,7 +330,7 @@ public:
     /* Searching */
     int Find(const c4_RowRef &, int = 0) const;
     int Search(const c4_RowRef &) const;
-    int Locate(const c4_RowRef &, int * = 0) const;
+    int Locate(const c4_RowRef &, int * = nullptr) const;
 
     /* Comparing view contents */
     int Compare(const c4_View &) const;
@@ -551,7 +551,7 @@ public:
     void SetStructure(const char *);
     bool AutoCommit(bool = true);
     c4_Strategy &Strategy() const;
-    const char *Description(const char * = 0);
+    const char *Description(const char * = nullptr);
 
     bool SetAside(c4_Storage &);
     c4_Storage *GetAside() const;
@@ -565,7 +565,7 @@ public:
     bool LoadFrom(c4_Stream &);
     void SaveTo(c4_Stream &);
 
-    t4_i32 FreeSpace(t4_i32 *bytes_ = 0);
+    t4_i32 FreeSpace(t4_i32 *bytes_ = nullptr);
 
     //DROPPED: c4_Storage (const char* filename_, const char* description_);
     //DROPPED: c4_View Store(const char* name_, const c4_View& view_);

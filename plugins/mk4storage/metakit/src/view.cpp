@@ -190,14 +190,14 @@ void f4_DoLogProp(const c4_Handler *hp_, int id_, const char *fmt_, int arg_)
 c4_View::c4_View(c4_Sequence *seq_) : _seq(seq_)
 {
     if (!_seq) {
-        _seq = d4_new c4_HandlerSeq(0);
+        _seq = d4_new c4_HandlerSeq(nullptr);
     }
 
     _IncSeqRef();
 }
 
 /// Construct a view based on a custom viewer
-c4_View::c4_View(c4_CustomViewer *viewer_) : _seq(0)
+c4_View::c4_View(c4_CustomViewer *viewer_) : _seq(nullptr)
 {
     d4_assert(viewer_);
 
@@ -209,15 +209,15 @@ c4_View::c4_View(c4_CustomViewer *viewer_) : _seq(0)
 /// Construct a view based on an input stream
 c4_View::c4_View(c4_Stream *stream_) : _seq(c4_Persist::Load(stream_))
 {
-    if (_seq == 0) {
-        _seq = d4_new c4_HandlerSeq(0);
+    if (_seq == nullptr) {
+        _seq = d4_new c4_HandlerSeq(nullptr);
     }
 
     _IncSeqRef();
 }
 
 /// Construct an empty view with one property
-c4_View::c4_View(const c4_Property &prop_) : _seq(d4_new c4_HandlerSeq(0))
+c4_View::c4_View(const c4_Property &prop_) : _seq(d4_new c4_HandlerSeq(nullptr))
 {
     _IncSeqRef();
 
@@ -401,7 +401,7 @@ bool c4_View::IsCompatibleWith(const c4_View &dest_) const
     }
 
     // both must be in the same storage
-    if (h1->Persist() == 0 || h1->Persist() != h2->Persist()) {
+    if (h1->Persist() == nullptr || h1->Persist() != h2->Persist()) {
         return false;
     }
 
@@ -992,7 +992,7 @@ int c4_View::Locate(const c4_RowRef &crit_, int *pos_) const
         }
     }
 
-    if (pos_ != 0) {
+    if (pos_ != nullptr) {
         *pos_ = u;
     }
 
@@ -1143,7 +1143,7 @@ c4_Row operator +(const c4_RowRef &a_, const c4_RowRef &b_)
 
 c4_Cursor c4_Row::Allocate()
 {
-    c4_Sequence *seq = d4_new c4_HandlerSeq(0);
+    c4_Sequence *seq = d4_new c4_HandlerSeq(nullptr);
     seq->IncRef();
 
     seq->Resize(1);
@@ -1176,36 +1176,36 @@ void c4_Row::Release(c4_Cursor row_)
 //
 // These are the only static variables in the entire Metakit core lib.
 
-static c4_ThreadLock *sThreadLock = 0;
-static c4_StringArray *sPropNames = 0;
-static c4_DWordArray *sPropCounts = 0;
+static c4_ThreadLock *sThreadLock = nullptr;
+static c4_StringArray *sPropNames = nullptr;
+static c4_DWordArray *sPropCounts = nullptr;
 
 /// Call this to get rid of some internal datastructues (on exit)
 void c4_Property::CleanupInternalData()
 {
     delete sPropNames;
-    sPropNames = 0; // race
+    sPropNames = nullptr; // race
 
     delete sPropCounts;
-    sPropCounts = 0; // race
+    sPropCounts = nullptr; // race
 
     delete sThreadLock;
-    sThreadLock = 0; // race
+    sThreadLock = nullptr; // race
 }
 
 c4_Property::c4_Property(char type_, const char *name_) : _type(type_)
 {
-    if (sThreadLock == 0) {
+    if (sThreadLock == nullptr) {
         sThreadLock = d4_new c4_ThreadLock;
     }
 
     c4_ThreadLock::Hold lock; // grabs the lock until end of scope
 
-    if (sPropNames == 0) {
+    if (sPropNames == nullptr) {
         sPropNames = d4_new c4_StringArray;
     }
 
-    if (sPropCounts == 0) {
+    if (sPropCounts == nullptr) {
         sPropCounts = d4_new c4_DWordArray;
     }
 

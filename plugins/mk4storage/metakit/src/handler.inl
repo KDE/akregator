@@ -37,7 +37,7 @@ d4_inline int c4_Handler::PropId() const
 
 d4_inline c4_Column* c4_Handler::GetNthMemoCol(int, bool alloc_)
 {
-  return 0;
+  return nullptr;
 }
 
 d4_inline bool c4_Handler::IsPersistent() const

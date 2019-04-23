@@ -128,7 +128,7 @@ FeedStorageMK4Impl::~FeedStorageMK4Impl()
 {
     delete d->storage;
     delete d;
-    d = 0;
+    d = nullptr;
 }
 
 void FeedStorageMK4Impl::markDirty()

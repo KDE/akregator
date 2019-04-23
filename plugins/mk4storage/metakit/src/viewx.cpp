@@ -13,10 +13,10 @@
 /////////////////////////////////////////////////////////////////////////////
 
 c4_Sequence::c4_Sequence() : _refCount(0)
-    , _dependencies(0)
+    , _dependencies(nullptr)
     , _propertyLimit(0)
-    , _propertyMap(0)
-    , _tempBuf(0)
+    , _propertyMap(nullptr)
+    , _tempBuf(nullptr)
 {
 }
 
@@ -33,7 +33,7 @@ c4_Sequence::~c4_Sequence()
 
 c4_Persist *c4_Sequence::Persist() const
 {
-    return 0;
+    return nullptr;
 }
 
 /// Increment the reference count of this sequence
@@ -144,7 +144,7 @@ int c4_Sequence::RemapIndex(int index_, const c4_Sequence *seq_) const
 /// Gives access to a general purpose temporary buffer
 c4_Bytes &c4_Sequence::Buffer()
 {
-    if (_tempBuf == 0) {
+    if (_tempBuf == nullptr) {
         _tempBuf = d4_new c4_Bytes;
     }
     return *_tempBuf;
@@ -344,7 +344,7 @@ int c4_Sequence::PropIndex(const c4_Property &prop_)
 
 const char *c4_Sequence::Description()
 {
-    return 0;
+    return nullptr;
 }
 
 int c4_Sequence::ItemSize(int index_, int propId_)
@@ -405,7 +405,7 @@ void c4_Sequence::Detach(c4_Sequence *child_)
 
     if (!_dependencies->Remove(child_)) {
         delete _dependencies;
-        _dependencies = 0;
+        _dependencies = nullptr;
     }
 
     DecRef();
@@ -415,7 +415,7 @@ void c4_Sequence::Detach(c4_Sequence *child_)
 c4_Notifier *c4_Sequence::PreChange(c4_Notifier &)
 {
     d4_assert(0); // should not be called, because it should not attach
-    return 0;
+    return nullptr;
 }
 
 /// Called after changes have been made to the sequence
@@ -566,7 +566,7 @@ c4_Bytes c4_BytesRef::Access(t4_i32 off_, int len_, bool noCopy_) const
 
         if (len_ > 0) {
             c4_Column *col = h.GetNthMemoCol(_cursor._index, true);
-            if (col != 0) {
+            if (col != nullptr) {
                 if (noCopy_) {
                     // 21-11-2005 optimization by A. Stigsen
                     // return just the first segment (even if it is smaller than
@@ -610,7 +610,7 @@ bool c4_BytesRef::Modify(const c4_Bytes &buf_, t4_i32 off_, int diff_) const
         }
 
         c4_Column *col = h.GetNthMemoCol(_cursor._index, true);
-        if (col != 0) {
+        if (col != nullptr) {
             if (diff_ < 0) {
                 col->Shrink(limit, -diff_);
             } else if (diff_ > 0) {
@@ -663,7 +663,7 @@ c4_ViewRef::operator c4_View() const
 {
     c4_Bytes result;
     if (!GetData(result)) {
-        return (c4_Sequence *)0;
+        return (c4_Sequence *)nullptr;
     }
     // resolve ambiguity
 
@@ -687,7 +687,7 @@ c4_Stream::~c4_Stream()
 
 c4_Strategy::c4_Strategy() : _bytesFlipped(false)
     , _failure(0)
-    , _mapStart(0)
+    , _mapStart(nullptr)
     , _dataSize(0)
     , _baseOffset(0)
     , _rootPos(-1)
@@ -748,7 +748,7 @@ void c4_Strategy::SetBase(t4_i32 base_)
     t4_i32 off = base_ - _baseOffset;
     _baseOffset = base_;
     _dataSize -= off;
-    if (_mapStart != 0) {
+    if (_mapStart != nullptr) {
         _mapStart += off;
     }
 }
@@ -867,7 +867,7 @@ t4_i32 c4_Strategy::EndOfData(t4_i32 end_)
         // if end was specified, then adjust this strategy object
         _baseOffset += pos;
         d4_assert(_baseOffset >= 0);
-        if (_mapStart != 0) {
+        if (_mapStart != nullptr) {
             _mapStart += pos;
             _dataSize -= pos;
         }

@@ -215,7 +215,7 @@ bool c4_FileStream::Write(const void *buffer_, int length_)
 // c4_FileStrategy
 
 c4_FileStrategy::c4_FileStrategy(FILE *file_) : _file(file_)
-    , _cleanup(0)
+    , _cleanup(nullptr)
 {
     InitializeIO();
     ResetFileMapping();
@@ -223,7 +223,7 @@ c4_FileStrategy::c4_FileStrategy(FILE *file_) : _file(file_)
 
 c4_FileStrategy::~c4_FileStrategy()
 {
-    _file = 0;
+    _file = nullptr;
     ResetFileMapping();
 
     if (_cleanup) {
@@ -236,7 +236,7 @@ c4_FileStrategy::~c4_FileStrategy()
 
 bool c4_FileStrategy::IsValid() const
 {
-    return _file != 0;
+    return _file != nullptr;
 }
 
 t4_i32 c4_FileStrategy::FileSize()
@@ -358,13 +358,13 @@ bool c4_FileStrategy::DataOpen(const char *fname_, int mode_)
 #else
     _cleanup = _file = fopen(fname_, mode_ > 0 ? "r+b" : "rb");
 #if q4_UNIX
-    if (_file != 0) {
+    if (_file != nullptr) {
         fcntl(fileno(_file), F_SETFD, FD_CLOEXEC);
     }
 #endif //q4_UNIX
 #endif //q4_WIN32 && !q4_BORC && !q4_WINCE
 
-    if (_file != 0) {
+    if (_file != nullptr) {
         ResetFileMapping();
         return true;
     }
@@ -380,7 +380,7 @@ bool c4_FileStrategy::DataOpen(const char *fname_, int mode_)
 #else
         _cleanup = _file = fopen(fname_, "w+b");
 #if q4_UNIX
-        if (_file != 0) {
+        if (_file != nullptr) {
             fcntl(fileno(_file), F_SETFD, FD_CLOEXEC);
         }
 #endif //q4_UNIX

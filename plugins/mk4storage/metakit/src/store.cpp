@@ -70,7 +70,7 @@ c4_Notifier::~c4_Notifier()
 
             if (_chain && _chain->_origin == seq) {
                 c4_Notifier *next = _chain->_next;
-                _chain->_next = 0;
+                _chain->_next = nullptr;
 
                 delete _chain;
 
@@ -221,7 +221,7 @@ c4_Storage::c4_Storage(const char *fname_, int mode_)
 
 c4_Storage::c4_Storage(const c4_View &root_)
 {
-    if (root_.Persist() != 0) {
+    if (root_.Persist() != nullptr) {
         // only restore if view was indeed persistent
         *(c4_View *)this = root_;
     } else {
@@ -279,10 +279,10 @@ c4_View c4_Storage::GetAs(const char *description_)
     // Dec 2001: now that GetAs is being used so much more frequently,
     // add a quick check to see whether restructuring is needed at all
     const char *q = strchr(description_, '[');
-    if (q != 0) {
+    if (q != nullptr) {
         c4_String vname(description_, q - description_);
         const char *d = Description(vname);
-        if (d != 0) {
+        if (d != nullptr) {
             c4_String desc(d);
             if (("[" + desc + "]").CompareNoCase(q) == 0) {
                 return View(vname);
@@ -366,7 +366,7 @@ c4_Strategy &c4_Storage::Strategy() const
 /// Return a description of the view structure (default is all)
 const char *c4_Storage::Description(const char *name_)
 {
-    if (name_ == 0 || *name_ == 0) {
+    if (name_ == nullptr || *name_ == 0) {
         return c4_View::Description();
     }
 
@@ -419,7 +419,7 @@ bool c4_Storage::AutoCommit(bool flag_)
 bool c4_Storage::LoadFrom(c4_Stream &stream_)
 {
     c4_HandlerSeq *newRoot = c4_Persist::Load(&stream_);
-    if (newRoot == 0) {
+    if (newRoot == nullptr) {
         return false;
     }
 
@@ -500,7 +500,7 @@ void c4_DerivedSeq::SetNumRows(int size_)
 c4_Notifier *c4_DerivedSeq::PreChange(c4_Notifier &nf_)
 {
     if (!GetDependencies()) {
-        return 0;
+        return nullptr;
     }
 
     c4_Notifier *chg = d4_new c4_Notifier(this);
@@ -534,7 +534,7 @@ c4_Notifier *c4_DerivedSeq::PreChange(c4_Notifier &nf_)
 
 /////////////////////////////////////////////////////////////////////////////
 
-c4_StreamStrategy::c4_StreamStrategy(t4_i32 buflen_) : _stream(0)
+c4_StreamStrategy::c4_StreamStrategy(t4_i32 buflen_) : _stream(nullptr)
     , _buffer
         (d4_new t4_byte[buflen_])
     , _buflen(buflen_)
@@ -545,7 +545,7 @@ c4_StreamStrategy::c4_StreamStrategy(t4_i32 buflen_) : _stream(0)
 }
 
 c4_StreamStrategy::c4_StreamStrategy(c4_Stream *stream_) : _stream(stream_)
-    , _buffer(0)
+    , _buffer(nullptr)
     , _buflen(0)
     , _position(0)
 {
@@ -553,10 +553,10 @@ c4_StreamStrategy::c4_StreamStrategy(c4_Stream *stream_) : _stream(stream_)
 
 c4_StreamStrategy::~c4_StreamStrategy()
 {
-    _mapStart = 0;
+    _mapStart = nullptr;
     _dataSize = 0;
 
-    if (_buffer != 0) {
+    if (_buffer != nullptr) {
         delete [] _buffer;
     }
 }
@@ -568,7 +568,7 @@ bool c4_StreamStrategy::IsValid() const
 
 int c4_StreamStrategy::DataRead(t4_i32 pos_, void *buffer_, int length_)
 {
-    if (_buffer != 0) {
+    if (_buffer != nullptr) {
         d4_assert(pos_ <= _buflen);
         _position = pos_ + _baseOffset;
 
@@ -580,7 +580,7 @@ int c4_StreamStrategy::DataRead(t4_i32 pos_, void *buffer_, int length_)
         }
     } else {
         d4_assert(_position == pos_ + _baseOffset);
-        length_ = _stream != 0 ? _stream->Read(buffer_, length_) : 0;
+        length_ = _stream != nullptr ? _stream->Read(buffer_, length_) : 0;
     }
 
     _position += length_;
@@ -589,7 +589,7 @@ int c4_StreamStrategy::DataRead(t4_i32 pos_, void *buffer_, int length_)
 
 void c4_StreamStrategy::DataWrite(t4_i32 pos_, const void *buffer_, int length_)
 {
-    if (_buffer != 0) {
+    if (_buffer != nullptr) {
         d4_assert(pos_ <= _buflen);
         _position = pos_ + _baseOffset;
 
@@ -602,7 +602,7 @@ void c4_StreamStrategy::DataWrite(t4_i32 pos_, const void *buffer_, int length_)
         }
     } else {
         d4_assert(_position == pos_ + _baseOffset);
-        if (_stream != 0 && !_stream->Write(buffer_, length_)) {
+        if (_stream != nullptr && !_stream->Write(buffer_, length_)) {
             ++_failure;
         }
     }

@@ -119,7 +119,7 @@ public:
     void Occupy(t4_i32 pos_, t4_i32 len_);
     void Release(t4_i32 pos_, t4_i32 len_);
     void Dump(const char *str_);
-    t4_i32 FreeCounts(t4_i32 *bytes_ = 0);
+    t4_i32 FreeCounts(t4_i32 *bytes_ = nullptr);
 
 private:
     int Locate(t4_i32 pos_) const;
@@ -370,7 +370,7 @@ void c4_Allocator::Dump(const char *str_)
 
 t4_i32 c4_Allocator::FreeCounts(t4_i32 *bytes_)
 {
-    if (bytes_ != 0) {
+    if (bytes_ != nullptr) {
         t4_i32 total = 0;
         for (int i = 2; i < GetSize() - 2; i += 2) {
             total += GetAt(i + 1) - GetAt(i);
@@ -552,11 +552,11 @@ void c4_Differ::GetRoot(c4_Bytes &buffer_)
 c4_SaveContext::c4_SaveContext(c4_Strategy &strategy_, bool fullScan_, int
                                mode_, c4_Differ *differ_, c4_Allocator *space_) : _strategy(strategy_)
     , _walk
-        (0)
+        (nullptr)
     , _differ(differ_)
     , _space(space_)
-    , _cleanup(0)
-    , _nextSpace(0)
+    , _cleanup(nullptr)
+    , _nextSpace(nullptr)
     , _preflight
         (true)
     , _fullScan(fullScan_)
@@ -566,7 +566,7 @@ c4_SaveContext::c4_SaveContext(c4_Strategy &strategy_, bool fullScan_, int
     , _curr(_buffer)
     , _limit(_buffer)
 {
-    if (_space == 0) {
+    if (_space == nullptr) {
         _space = _cleanup = d4_new c4_Allocator;
     }
 
@@ -594,7 +594,7 @@ bool c4_SaveContext::Serializing() const
 void c4_SaveContext::AllocDump(const char *str_, bool next_)
 {
     c4_Allocator *ap = next_ ? _nextSpace : _space;
-    if (ap != 0) {
+    if (ap != nullptr) {
         ap->Dump(str_);
     }
 }
@@ -602,7 +602,7 @@ void c4_SaveContext::AllocDump(const char *str_, bool next_)
 void c4_SaveContext::FlushBuffer()
 {
     int n = _curr - _bufPtr;
-    if (_walk != 0 && n > 0) {
+    if (_walk != nullptr && n > 0) {
         t4_i32 end = _walk->ColSize();
         _walk->Grow(end, n);
         _walk->StoreBytes(end, c4_Bytes(_bufPtr, n));
@@ -637,7 +637,7 @@ void c4_SaveContext::Write(const void *buf_, int len_)
 
 void c4_SaveContext::StoreValue(t4_i32 v_)
 {
-    if (_walk == 0) {
+    if (_walk == nullptr) {
         return;
     }
 
@@ -660,7 +660,7 @@ void c4_SaveContext::SaveIt(c4_HandlerSeq &root_, c4_Allocator **spacePtr_, c4_B
 
     const t4_i32 end = _fullScan ? 0 : size - _strategy._baseOffset;
 
-    if (_differ == 0) {
+    if (_differ == nullptr) {
         if (_mode != 1) {
             _space->Initialize();
         }
@@ -691,7 +691,7 @@ void c4_SaveContext::SaveIt(c4_HandlerSeq &root_, c4_Allocator **spacePtr_, c4_B
     c4_Column walk(root_.Persist());
     SetWalkBuffer(&walk);
     CommitSequence(root_, true);
-    SetWalkBuffer(0);
+    SetWalkBuffer(nullptr);
     CommitColumn(walk);
 
     c4_Bytes tempWalk;
@@ -714,7 +714,7 @@ void c4_SaveContext::SaveIt(c4_HandlerSeq &root_, c4_Allocator **spacePtr_, c4_B
 
     // special-case to avoid saving data if file is logically empty
     // in that case, the data is 0x80 0x81 0x80 (plus the header)
-    if (!_fullScan && limit <= 11 && _differ == 0) {
+    if (!_fullScan && limit <= 11 && _differ == nullptr) {
         _space->Initialize();
         _nextSpace->Initialize();
         changed = false;
@@ -727,7 +727,7 @@ void c4_SaveContext::SaveIt(c4_HandlerSeq &root_, c4_Allocator **spacePtr_, c4_B
     //AllocDump("b1", false);
     //AllocDump("b2", true);
 
-    if (_differ != 0) {
+    if (_differ != nullptr) {
         int n = _differ->NewDiffID();
         _differ->CreateDiff(n, walk);
         return;
@@ -865,7 +865,7 @@ void c4_SaveContext::SaveIt(c4_HandlerSeq &root_, c4_Allocator **spacePtr_, c4_B
     }
 
     // if using memory mapped files, make sure the map is no longer in use
-    if (_strategy._mapStart != 0) {
+    if (_strategy._mapStart != nullptr) {
         root_.UnmappedAll();
     }
 
@@ -875,11 +875,11 @@ void c4_SaveContext::SaveIt(c4_HandlerSeq &root_, c4_Allocator **spacePtr_, c4_B
 
     d4_assert(_strategy.FileSize() - _strategy._baseOffset == end2);
 
-    if (spacePtr_ != 0 && _space != _nextSpace) {
+    if (spacePtr_ != nullptr && _space != _nextSpace) {
         d4_assert(*spacePtr_ == _space);
         delete  *spacePtr_;
         *spacePtr_ = _nextSpace;
-        _nextSpace = 0;
+        _nextSpace = nullptr;
     }
 }
 
@@ -953,16 +953,16 @@ const t4_byte *_oldLimit;
 t4_i32 _oldSeek;
 
 c4_Persist::c4_Persist(c4_Strategy &strategy_, bool owned_, int mode_) : _space
-        (0)
+        (nullptr)
     , _strategy(strategy_)
-    , _root(0)
-    , _differ(0)
-    , _fCommit(0)
+    , _root(nullptr)
+    , _differ(nullptr)
+    , _fCommit(nullptr)
     , _mode(mode_)
     , _owned(owned_)
-    , _oldBuf(0)
-    , _oldCurr(0)
-    , _oldLimit(0)
+    , _oldBuf(nullptr)
+    , _oldCurr(nullptr)
+    , _oldLimit(nullptr)
     , _oldSeek(-1)
 {
     if (_mode == 1) {
@@ -975,7 +975,7 @@ c4_Persist::~c4_Persist()
     delete _differ;
 
     if (_owned) {
-        if (_root != 0) {
+        if (_root != nullptr) {
             _root->UnmappedAll();
         }
         delete  &_strategy;
@@ -983,7 +983,7 @@ c4_Persist::~c4_Persist()
 
     delete _space;
 
-    if (_oldBuf != 0) {
+    if (_oldBuf != nullptr) {
         delete [] _oldBuf;
     }
 }
@@ -1007,18 +1007,18 @@ c4_Strategy &c4_Persist::Strategy() const
 
 bool c4_Persist::AutoCommit(bool flag_)
 {
-    bool prev = _fCommit != 0;
+    bool prev = _fCommit != nullptr;
     if (flag_) {
         _fCommit = &c4_Persist::Commit;
     } else {
-        _fCommit = 0;
+        _fCommit = nullptr;
     }
     return prev;
 }
 
 void c4_Persist::DoAutoCommit()
 {
-    if (_fCommit != 0) {
+    if (_fCommit != nullptr) {
         (this->*_fCommit)(false);
     }
 }
@@ -1033,7 +1033,7 @@ bool c4_Persist::SetAside(c4_Storage &aside_)
 
 c4_Storage *c4_Persist::GetAside() const
 {
-    return _differ != 0 ? &_differ->_storage : 0;
+    return _differ != nullptr ? &_differ->_storage : nullptr;
 }
 
 bool c4_Persist::Commit(bool full_)
@@ -1045,13 +1045,13 @@ bool c4_Persist::Commit(bool full_)
         return false;
     }
 
-    if (_mode == 0 && (_differ == 0 || full_)) {
+    if (_mode == 0 && (_differ == nullptr || full_)) {
         // can't commit to r/o file
         return false;
     }
     // note that _strategy._failure is *zero* in this case
 
-    c4_SaveContext ar(_strategy, false, _mode, full_ ? 0 : _differ, _space);
+    c4_SaveContext ar(_strategy, false, _mode, full_ ? nullptr : _differ, _space);
 
     // get rid of temp properties which still use the datafile
     if (_mode == 1) {
@@ -1067,9 +1067,9 @@ bool c4_Persist::Rollback(bool full_)
 {
     _root->DetachFromParent();
     _root->DetachFromStorage(true);
-    _root = 0;
+    _root = nullptr;
 
-    if (_space != 0) {
+    if (_space != nullptr) {
         _space->Initialize();
     }
 
@@ -1079,7 +1079,7 @@ bool c4_Persist::Rollback(bool full_)
 
     if (full_) {
         delete _differ;
-        _differ = 0;
+        _differ = nullptr;
     }
 
     LoadAll();
@@ -1105,7 +1105,7 @@ bool c4_Persist::LoadIt(c4_Column &walk_)
     }
 
     // if the file size has increased, we must remap
-    if (_strategy._mapStart != 0 && _strategy.FileSize() > _strategy._baseOffset
+    if (_strategy._mapStart != nullptr && _strategy.FileSize() > _strategy._baseOffset
         + _strategy._dataSize) {
         _strategy.ResetFileMapping();
     }
@@ -1210,7 +1210,7 @@ void c4_Persist::FetchOldLocation(c4_Column &col_)
 
 t4_i32 c4_Persist::FreeBytes(t4_i32 *bytes_)
 {
-    return _space == 0 ? -1 : _space->FreeCounts(bytes_);
+    return _space == nullptr ? -1 : _space->FreeCounts(bytes_);
 }
 
 int c4_Persist::OldRead(t4_byte *buf_, int len_)
@@ -1231,7 +1231,7 @@ c4_HandlerSeq *c4_Persist::Load(c4_Stream *stream_)
 
     c4_FileMark head;
     if (stream_->Read(&head, sizeof head) != sizeof head || !head.IsHeader()) {
-        return 0;
+        return nullptr;
     }
     // no data in file
 
@@ -1260,7 +1260,7 @@ c4_HandlerSeq *c4_Persist::Load(c4_Stream *stream_)
     if (!pers->LoadIt(walk)) {
         seq->IncRef();
         seq->DecRef(); // a funny way to delete
-        return 0;
+        return nullptr;
     }
 
     c4_Bytes tempWalk;
@@ -1281,13 +1281,13 @@ void c4_Persist::Save(c4_Stream *stream_, c4_HandlerSeq &root_)
 
     // 31-01-2002: streaming must adopt byte order of origin datafile
     c4_Persist *p = root_.Persist();
-    if (p != 0) {
+    if (p != nullptr) {
         strat._bytesFlipped = p->Strategy()._bytesFlipped;
     }
 
-    c4_SaveContext ar(strat, true, 0, 0, 0);
+    c4_SaveContext ar(strat, true, 0, nullptr, nullptr);
     c4_Bytes tempWalk;
-    ar.SaveIt(root_, 0, tempWalk);
+    ar.SaveIt(root_, nullptr, tempWalk);
 }
 
 t4_i32 c4_Persist::LookupAside(int id_)
@@ -1308,7 +1308,7 @@ void c4_Persist::OccupySpace(t4_i32 pos_, t4_i32 len_)
 {
     d4_assert(_mode != 1 || _space != 0);
 
-    if (_space != 0) {
+    if (_space != nullptr) {
         _space->Occupy(pos_, len_);
     }
 }

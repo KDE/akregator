@@ -47,7 +47,7 @@ d4_inline c4_HandlerSeq &c4_FormatHandler::Owner() const
 
 bool c4_FormatHandler::IsPersistent() const
 {
-    return _owner.Persist() != 0;
+    return _owner.Persist() != nullptr;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -101,7 +101,7 @@ void c4_FormatX::Commit(c4_SaveContext &ar_)
 
 void c4_FormatX::Define(int rows_, const t4_byte **ptr_)
 {
-    if (ptr_ != 0) {
+    if (ptr_ != nullptr) {
         _data.PullLocation(*ptr_);
     }
 
@@ -185,7 +185,7 @@ int c4_FormatL::DoCompare(const c4_Bytes &b1_, const c4_Bytes &b2_)
 
 void c4_FormatL::Define(int rows_, const t4_byte **ptr_)
 {
-    if (ptr_ == 0 && rows_ > 0) {
+    if (ptr_ == nullptr && rows_ > 0) {
         d4_assert(_data.ColSize() == 0);
         _data.InsertData(0, rows_ * sizeof(t4_i64), true);
     }
@@ -255,7 +255,7 @@ int c4_FormatD::DoCompare(const c4_Bytes &b1_, const c4_Bytes &b2_)
 
 void c4_FormatD::Define(int rows_, const t4_byte **ptr_)
 {
-    if (ptr_ == 0 && rows_ > 0) {
+    if (ptr_ == nullptr && rows_ > 0) {
         d4_assert(_data.ColSize() == 0);
         _data.InsertData(0, rows_ * sizeof(double), true);
     }
@@ -382,7 +382,7 @@ d4_inline bool c4_FormatB::ShouldBeMemo(int length_) const
 int c4_FormatB::ItemLenOffCol(int index_, t4_i32 &off_, c4_Column * &col_)
 {
     col_ = (c4_Column *)_memos.GetAt(index_);
-    if (col_ != 0) {
+    if (col_ != nullptr) {
         off_ = 0;
         return col_->ColSize();
     }
@@ -425,7 +425,7 @@ void c4_FormatB::Unmapped()
 
     for (int i = 0; i < _memos.GetSize(); ++i) {
         c4_Column *cp = (c4_Column *)_memos.GetAt(i);
-        if (cp != 0) {
+        if (cp != nullptr) {
             cp->ReleaseAllSegments();
         }
     }
@@ -435,7 +435,7 @@ void c4_FormatB::Define(int, const t4_byte **ptr_)
 {
     d4_assert(_memos.GetSize() == 0);
 
-    if (ptr_ != 0) {
+    if (ptr_ != nullptr) {
         _data.PullLocation(*ptr_);
         if (_data.ColSize() > 0) {
             _sizeCol.PullLocation(*ptr_);
@@ -660,7 +660,7 @@ void c4_FormatB::SetOne(int index_, const c4_Bytes &xbuf_, bool ignoreMemos_)
     t4_i32 start = Offset(index_);
     int len = Offset(index_ + 1) - start;
 
-    if (!ignoreMemos_ && _memos.GetAt(index_) != 0) {
+    if (!ignoreMemos_ && _memos.GetAt(index_) != nullptr) {
         len = ItemLenOffCol(index_, start, cp);
     }
 
@@ -726,7 +726,7 @@ void c4_FormatB::Insert(int index_, const c4_Bytes &buf_, int count_)
     int m = buf_.Size();
     t4_i32 off = Offset(index_);
 
-    _memos.InsertAt(index_, 0, count_);
+    _memos.InsertAt(index_, nullptr, count_);
 
     // insert the appropriate number of bytes
     t4_i32 n = count_ * (t4_i32)m;
@@ -810,7 +810,7 @@ void c4_FormatB::Commit(c4_SaveContext &ar_)
     if (!full) {
         for (int i = 0; i < rows; ++i) {
             c4_Column *col = (c4_Column *)_memos.GetAt(i);
-            if (col != 0) {
+            if (col != nullptr) {
                 full = true;
                 break;
             }
@@ -862,7 +862,7 @@ void c4_FormatB::Commit(c4_SaveContext &ar_)
                     _sizeCol.SetInt(r, len);
                     col->FetchBytes(start, len, temp, true);
                     delete(c4_Column *)_memos.GetAt(r); // 28-11-2001: fix mem leak
-                    _memos.SetAt(r, 0); // 02-11-2001: fix for use after commit
+                    _memos.SetAt(r, nullptr); // 02-11-2001: fix for use after commit
                 }
             }
 
@@ -1029,7 +1029,7 @@ c4_HandlerSeq &c4_FormatV::At(int index_)
     d4_assert(_inited);
 
     c4_HandlerSeq * &hs = (c4_HandlerSeq * &)_subSeqs.ElementAt(index_);
-    if (hs == 0) {
+    if (hs == nullptr) {
         hs = d4_new c4_HandlerSeq(Owner(), this);
         hs->IncRef();
     }
@@ -1078,7 +1078,7 @@ void c4_FormatV::Define(int rows_, const t4_byte **ptr_)
     }
 
     _subSeqs.SetSize(rows_);
-    if (ptr_ != 0) {
+    if (ptr_ != nullptr) {
         _data.PullLocation(*ptr_);
     }
 }
@@ -1094,7 +1094,7 @@ void c4_FormatV::OldDefine(char, c4_Persist &pers_)
             // 14-11-2000: do not create again (this causes a mem leak)
             // 04-12-2000: but do create if absent (fixes occasional crash)
             c4_HandlerSeq *hs = (c4_HandlerSeq *)_subSeqs.GetAt(i);
-            if (hs == 0) {
+            if (hs == nullptr) {
                 hs = d4_new c4_HandlerSeq(Owner(), this);
                 _subSeqs.SetAt(i, hs);
                 hs->IncRef();
@@ -1124,7 +1124,7 @@ int c4_FormatV::ItemSize(int index_)
 
     // 06-02-2002: avoid creating empty subview
     c4_HandlerSeq *hs = (c4_HandlerSeq * &)_subSeqs.ElementAt(index_);
-    return hs == 0 ? 0 : hs->NumRows();
+    return hs == nullptr ? 0 : hs->NumRows();
 }
 
 const void *c4_FormatV::Get(int index_, int &length_)
@@ -1166,13 +1166,13 @@ void c4_FormatV::Replace(int index_, c4_HandlerSeq *seq_)
         return;
     }
 
-    if (curr != 0) {
+    if (curr != nullptr) {
         d4_assert(&curr->Parent() == &Owner());
         curr->DetachFromParent();
         curr->DetachFromStorage(true);
 
         curr->DecRef();
-        curr = 0;
+        curr = nullptr;
     }
 
     if (seq_) {
@@ -1228,7 +1228,7 @@ void c4_FormatV::Insert(int index_, const c4_Bytes &buf_, int count_)
         SetupAllSubviews();
     }
 
-    _subSeqs.InsertAt(index_, 0, count_);
+    _subSeqs.InsertAt(index_, nullptr, count_);
     _data.SetBuffer(0); // 2004-01-18 force dirty
 }
 
@@ -1271,19 +1271,19 @@ bool c4_FormatV::HasSubview(int index_)
         SetupAllSubviews();
     }
 
-    return _subSeqs.ElementAt(index_) != 0;
+    return _subSeqs.ElementAt(index_) != nullptr;
 }
 
 void c4_FormatV::ForgetSubview(int index_)
 {
     c4_HandlerSeq * &seq = (c4_HandlerSeq * &)_subSeqs.ElementAt(index_);
-    if (seq != 0) {
+    if (seq != nullptr) {
         d4_assert(&seq->Parent() == &Owner());
         seq->DetachFromParent();
         seq->DetachFromStorage(true);
         seq->UnmappedAll();
         seq->DecRef();
-        seq = 0;
+        seq = nullptr;
     }
 }
 
@@ -1296,7 +1296,7 @@ void c4_FormatV::Commit(c4_SaveContext &ar_)
     int rows = _subSeqs.GetSize();
     d4_assert(rows > 0);
 
-    c4_Column temp(0);
+    c4_Column temp(nullptr);
     c4_Column *saved = ar_.SetWalkBuffer(&temp);
 
     for (int r = 0; r < rows; ++r) {

@@ -112,13 +112,13 @@ c4_Strategy &c4_Column::Strategy() const
 
 bool c4_Column::IsMapped() const
 {
-    return _position > 1 && _persist != 0 && Strategy()._mapStart != 0;
+    return _position > 1 && _persist != nullptr && Strategy()._mapStart != nullptr;
 }
 
 bool c4_Column::UsesMap(const t4_byte *ptr_) const
 {
     // the most common falsifying case is checked first
-    return _persist != 0
+    return _persist != nullptr
            && ptr_ >= Strategy()._mapStart
            && Strategy()._dataSize != 0
            && ptr_ < Strategy()._mapStart + Strategy()._dataSize;
@@ -126,7 +126,7 @@ bool c4_Column::UsesMap(const t4_byte *ptr_) const
 
 bool c4_Column::RequiresMap() const
 {
-    if (_persist != 0 && Strategy()._mapStart != 0) {
+    if (_persist != nullptr && Strategy()._mapStart != nullptr) {
         for (int i = _segments.GetSize(); --i >= 0;) {
             if (UsesMap((t4_byte *)_segments.GetAt(i))) {
                 return true;
@@ -541,7 +541,7 @@ void c4_Column::RemoveGap()
         if (n == 0) {
             // case 1
             ReleaseSegment(i);
-            _segments.SetAt(i, 0);
+            _segments.SetAt(i, nullptr);
         } else {
             if (n + _slack > kSegMax) {
                 // case 4
@@ -599,7 +599,7 @@ void c4_Column::Grow(t4_i32 off_, t4_i32 diff_)
             moveBack = true;
         }
 
-        _segments.InsertAt(i1, 0, n);
+        _segments.InsertAt(i1, nullptr, n);
         for (int i = 0; i < n; ++i) {
             _segments.SetAt(i1 + i, d4_new t4_byte[(int)kSegMax]);
         }
@@ -690,7 +690,7 @@ void c4_Column::Shrink(t4_i32 off_, t4_i32 diff_)
             d4_assert(i == _segments.GetSize() - 1);
 
             ReleaseSegment(i);
-            _segments.SetAt(i, 0);
+            _segments.SetAt(i, nullptr);
 
             _slack -= fSegRest(_size + _slack);
 
@@ -714,7 +714,7 @@ void c4_Column::Shrink(t4_i32 off_, t4_i32 diff_)
         ReleaseSegment(i);
 
         if (r + x < kSegMax) {
-            _segments.SetAt(i, 0);
+            _segments.SetAt(i, nullptr);
         } else {
             _segments.RemoveAt(i);
         }
@@ -747,7 +747,7 @@ void c4_Column::FinishSlack()
         CopyData(gapEnd - n, gapEnd, n);
 
         ReleaseSegment(i);
-        _segments.SetAt(i, 0);
+        _segments.SetAt(i, nullptr);
 
         _slack -= n;
         d4_assert(_slack >= 500);
@@ -1295,7 +1295,7 @@ void c4_ColOfInts::SetAccessWidth(int bits_)
 
     _currWidth = (1 << l2bp1) >> 1;
 
-    if (l2bp1 > 4 && (_mustFlip || (Persist() != 0 && Strategy()._bytesFlipped))) {
+    if (l2bp1 > 4 && (_mustFlip || (Persist() != nullptr && Strategy()._bytesFlipped))) {
         l2bp1 += 3;
     }
     // switch to the trailing entries for byte flipping

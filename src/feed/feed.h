@@ -73,7 +73,7 @@ public:
     static QString archiveModeToString(ArchiveMode mode);
 
     /** creates a Feed object from a description in OPML format */
-    static Feed *fromOPML(QDomElement e, Akregator::Backend::Storage *storage);
+    static Feed *fromOPML(const QDomElement &e, Akregator::Backend::Storage *storage);
 
     /** default constructor */
     explicit Feed(Akregator::Backend::Storage *storage);

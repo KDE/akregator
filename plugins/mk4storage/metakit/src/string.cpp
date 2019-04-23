@@ -99,7 +99,7 @@ const char *strrchr(const char *p, char ch)
 //      this code (but a bit bulkier, it also has Unicode support).
 
 // 2001-11-27, stop releasing nullvec, to allow MT use
-d4_reentrant static unsigned char *nullVec = 0;
+d4_reentrant static unsigned char *nullVec = nullptr;
 
 static int fInc(unsigned char *p)
 {
@@ -138,7 +138,7 @@ c4_String::c4_String(char ch, int n /* =1 */)
 
 c4_String::c4_String(const char *p)
 {
-    Init(p, p != 0 ? strlen(p) : 0);
+    Init(p, p != nullptr ? strlen(p) : 0);
 }
 
 c4_String::c4_String(const c4_String &s)
@@ -182,7 +182,7 @@ c4_String operator +(const c4_String &a, const c4_String &b)
 
 void c4_String::Init(const void *p, int n)
 {
-    if (p == NULL || n <= 0) {
+    if (p == nullptr || n <= 0) {
         //  Optimization to significantly speed-up init of empty strings:
         //  share a common entry, which avoids *LOTS* of tiny mem allocs.
         //
@@ -277,25 +277,25 @@ int c4_String::CompareNoCase(const char *str) const
 int c4_String::Find(char ch) const
 {
     const char *p = strchr(Data(), ch);
-    return p != 0 ? p - Data() : -1;
+    return p != nullptr ? p - Data() : -1;
 }
 
 int c4_String::ReverseFind(char ch) const
 {
     const char *p = strrchr(Data(), ch);
-    return p != 0 ? p - Data() : -1;
+    return p != nullptr ? p - Data() : -1;
 }
 
 int c4_String::FindOneOf(const char *set) const
 {
     const char *p = strpbrk(Data(), set);
-    return p != 0 ? p - Data() : -1;
+    return p != nullptr ? p - Data() : -1;
 }
 
 int c4_String::Find(const char *sub) const
 {
     const char *p = strstr(Data(), sub);
-    return p != 0 ? p - Data() : -1;
+    return p != nullptr ? p - Data() : -1;
 }
 
 c4_String c4_String::SpanIncluding(const char *set) const

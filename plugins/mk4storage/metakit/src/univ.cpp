@@ -66,7 +66,7 @@ f4_FileCloseInDLL(FILE *file_)
 /////////////////////////////////////////////////////////////////////////////
 // c4_BaseArray
 
-c4_BaseArray::c4_BaseArray() : _data(0)
+c4_BaseArray::c4_BaseArray() : _data(nullptr)
     , _size(0)
 {
 }
@@ -83,8 +83,8 @@ void c4_BaseArray::SetLength(int nNewSize)
 
     if (((_size - 1) ^ (nNewSize - 1)) >> bits) {
         const int n = (nNewSize + (1 << bits) - 1) & - (1 << bits);
-        _data = _data == 0 ? n == 0 ? (char *)0 : (char *)malloc(n) : n == 0 ? (free
-                                                                                    (_data), (char *)0) : (char *)realloc(_data, n);
+        _data = _data == nullptr ? n == 0 ? (char *)nullptr : (char *)malloc(n) : n == 0 ? (free
+                                                                                    (_data), (char *)nullptr) : (char *)realloc(_data, n);
     }
 
     d4_assert(_data != 0 || nNewSize == 0);
@@ -187,7 +187,7 @@ void c4_StringArray::SetSize(int nNewSize, int)
     int i = nNewSize;
 
     while (i < GetSize()) {
-        SetAt(i++, 0);
+        SetAt(i++, nullptr);
     }
 
     _ptrs.SetSize(nNewSize);
@@ -209,14 +209,14 @@ void c4_StringArray::SetAt(int nIndex, const char *newElement)
 
 int c4_StringArray::Add(const char *newElement)
 {
-    int n = _ptrs.Add(0);
+    int n = _ptrs.Add(nullptr);
     SetAt(n, newElement);
     return n;
 }
 
 void c4_StringArray::InsertAt(int nIndex, const char *newElement, int nCount)
 {
-    _ptrs.InsertAt(nIndex, 0, nCount);
+    _ptrs.InsertAt(nIndex, nullptr, nCount);
 
     while (--nCount >= 0) {
         SetAt(nIndex++, newElement);
@@ -226,7 +226,7 @@ void c4_StringArray::InsertAt(int nIndex, const char *newElement, int nCount)
 void c4_StringArray::RemoveAt(int nIndex, int nCount)
 {
     for (int i = 0; i < nCount; ++i) {
-        SetAt(nIndex + i, 0);
+        SetAt(nIndex + i, nullptr);
     }
 
     _ptrs.RemoveAt(nIndex, nCount);

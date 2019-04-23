@@ -67,7 +67,7 @@ using namespace Akregator::Filters;
 ArticleViewerWidget::ArticleViewerWidget(const QString &grantleeDirectory, KActionCollection *ac, QWidget *parent)
     : QWidget(parent)
     , m_imageDir(QUrl::fromLocalFile(QString(QStandardPaths::writableLocation(QStandardPaths::CacheLocation) + QLatin1String("/akregator/Media/"))))
-    , m_node(0)
+    , m_node(nullptr)
     , m_viewMode(NormalView)
     , m_articleViewerWidgetNg(new Akregator::ArticleViewerWebEngineWidgetNg(ac, this))
     , m_grantleeDirectory(grantleeDirectory)

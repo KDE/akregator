@@ -29,7 +29,7 @@ c4_Field::c4_Field(const char * &description_, c4_Field *parent_) : _type(0)
     size_t n = strcspn(description_, ",[]");
     const char *p = strchr(description_, ':');
 
-    if (p != 0 && p < description_ + n) {
+    if (p != nullptr && p < description_ + n) {
         _name = c4_String(description_, p - description_);
         _type = p[1] & ~0x20; // force to upper case
     } else {
@@ -59,11 +59,11 @@ c4_Field::c4_Field(const char * &description_, c4_Field *parent_) : _type(0)
                 for (int i = 0; i < NumSubFields(); ++i) {
                     if (SubField(i).Name().CompareNoCase(sf->Name()) == 0) {
                         delete sf;
-                        sf = 0;
+                        sf = nullptr;
                         break;
                     }
                 }
-                if (sf != 0) {
+                if (sf != nullptr) {
                     _subFields.Add(sf);
                 }
             } while (*description_++ == ',');

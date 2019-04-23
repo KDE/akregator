@@ -193,7 +193,7 @@ d4_inline bool operator!= (const char* a_, const c4_String& b_)
 /// Construct empty string
 d4_inline c4_String::c4_String ()
 {
-    Init(0, 0);
+    Init(nullptr, 0);
 }
 
 /// Construct string from Pascal-style <count,chars...> data

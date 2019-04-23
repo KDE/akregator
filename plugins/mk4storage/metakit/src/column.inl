@@ -66,7 +66,7 @@ d4_inline const t4_byte* c4_Column::LoadNow(t4_i32 offset_)
 // c4_ColIter
 
 d4_inline c4_ColIter::c4_ColIter (c4_Column& col_, t4_i32 offset_, t4_i32 limit_)
-  : _column (col_), _limit (limit_), _pos (offset_), _len (0), _ptr (0)
+  : _column (col_), _limit (limit_), _pos (offset_), _len (0), _ptr (nullptr)
 {
 }
 

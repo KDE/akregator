@@ -117,7 +117,7 @@ public:
     t4_i32 FetchOldValue();
     void FetchOldLocation(c4_Column &col_);
 
-    t4_i32 FreeBytes(t4_i32 *bytes_ = 0);
+    t4_i32 FreeBytes(t4_i32 *bytes_ = nullptr);
 
     static c4_HandlerSeq *Load(c4_Stream *);
     static void Save(c4_Stream *, c4_HandlerSeq &root_);

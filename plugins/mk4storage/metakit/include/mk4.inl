@@ -361,7 +361,7 @@ d4_inline bool operator>= (const c4_RowRef& a_, const c4_RowRef& b_)
 d4_inline c4_Bytes::c4_Bytes ()
     : _size (0), _copy (false)
 { 
-  _contents = 0; // moved out of intializers for DEC CXX 5.7
+  _contents = nullptr; // moved out of intializers for DEC CXX 5.7
 }
 
     /// Construct an object with contents, no copy

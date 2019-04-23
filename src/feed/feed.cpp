@@ -141,7 +141,7 @@ QString Akregator::Feed::archiveModeToString(ArchiveMode mode)
     return QStringLiteral("globalDefault");
 }
 
-Akregator::Feed *Akregator::Feed::fromOPML(QDomElement e, Backend::Storage *storage)
+Akregator::Feed *Akregator::Feed::fromOPML(const QDomElement &e, Backend::Storage *storage)
 {
     if (!e.hasAttribute(QStringLiteral("xmlUrl")) && !e.hasAttribute(QStringLiteral("xmlurl")) && !e.hasAttribute(QStringLiteral("xmlURL"))) {
         return nullptr;

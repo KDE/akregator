@@ -79,8 +79,8 @@ void c4_Handler::Move(int from_, int to_)
 
 c4_HandlerSeq::c4_HandlerSeq(c4_Persist *persist_) : _persist(persist_)
     , _field
-        (0)
-    , _parent(0)
+        (nullptr)
+    , _parent(nullptr)
     , _numRows(0)
 {
 }
@@ -106,7 +106,7 @@ c4_HandlerSeq::~c4_HandlerSeq()
     const bool rootLevel = _parent == this;
     c4_Persist *pers = _persist;
 
-    if (rootLevel && pers != 0) {
+    if (rootLevel && pers != nullptr) {
         pers->DoAutoCommit();
     }
 
@@ -161,20 +161,20 @@ c4_Field &c4_HandlerSeq::Definition() const
 
 void c4_HandlerSeq::DetachFromParent()
 {
-    if (_field != 0) {
+    if (_field != nullptr) {
         const char *desc = "[]";
         c4_Field f(desc);
         d4_assert(!*desc);
         Restructure(f, false);
-        _field = 0;
+        _field = nullptr;
     }
 
-    _parent = 0;
+    _parent = nullptr;
 }
 
 void c4_HandlerSeq::DetachFromStorage(bool full_)
 {
-    if (_persist != 0) {
+    if (_persist != nullptr) {
         int limit = full_ ? 0 : NumFields();
 
         // get rid of all handlers which might do I/O
@@ -201,7 +201,7 @@ void c4_HandlerSeq::DetachFromStorage(bool full_)
 
         if (full_) {
             //UnmappedAll();
-            _persist = 0;
+            _persist = nullptr;
         }
     }
 }
@@ -238,8 +238,8 @@ const char *c4_HandlerSeq::Description()
 {
     // 19-01-2003: avoid too dense code, since Sun CC seems to choke on it
     //return _field != 0 ? UseTempBuffer(Definition().DescribeSubFields()) : 0;
-    if (_field == 0) {
-        return 0;
+    if (_field == nullptr) {
+        return nullptr;
     }
     c4_String s = _field->DescribeSubFields();
     return UseTempBuffer(s);
@@ -272,7 +272,7 @@ void c4_HandlerSeq::Restructure(c4_Field &field_, bool remove_)
 
         if (n < 0) {
             _handlers.InsertAt(i, f4_CreateFormat(prop, *this));
-            NthHandler(i).Define(NumRows(), 0);
+            NthHandler(i).Define(NumRows(), nullptr);
         } else {
             // move the handler to the front
             d4_assert(n > i);
@@ -288,7 +288,7 @@ void c4_HandlerSeq::Restructure(c4_Field &field_, bool remove_)
     c4_Field *ofld = _field;
     // special case if we're "restructuring a view out of persistence", see below
 
-    _field = remove_ ? 0 : &field_;
+    _field = remove_ ? nullptr : &field_;
 
     // let handler do additional init once all have been prepared
     //for (int n = 0; n < NumHandlers(); ++n)
@@ -306,7 +306,7 @@ void c4_HandlerSeq::Restructure(c4_Field &field_, bool remove_)
                     c4_HandlerSeq &seq = SubEntry(j, n);
                     if (j < NumFields()) {
                         seq.Restructure(field_.SubField(j), false);
-                    } else if (seq._field != 0) {
+                    } else if (seq._field != nullptr) {
                         seq.Restructure(temp, true);
                     }
                 }
@@ -322,7 +322,7 @@ void c4_HandlerSeq::Restructure(c4_Field &field_, bool remove_)
 
 int c4_HandlerSeq::NumFields() const
 {
-    return _field != 0 ? _field->NumSubFields() : 0;
+    return _field != nullptr ? _field->NumSubFields() : 0;
 }
 
 char c4_HandlerSeq::ColumnType(int index_) const
@@ -344,7 +344,7 @@ c4_Field &c4_HandlerSeq::Field(int index_) const
 
 void c4_HandlerSeq::Prepare(const t4_byte **ptr_, bool selfDesc_)
 {
-    if (ptr_ != 0) {
+    if (ptr_ != nullptr) {
         d4_dbgdef(t4_i32 sias = ) c4_Column::PullValue(*ptr_);
         d4_assert(sias == 0); // not yet
 
@@ -489,7 +489,7 @@ c4_Field *c4_HandlerSeq::FindField(const c4_Handler *handler_)
             return &Field(i);
         }
     }
-    return 0;
+    return nullptr;
 }
 
 void c4_HandlerSeq::UnmappedAll()

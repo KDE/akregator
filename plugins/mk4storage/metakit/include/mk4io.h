@@ -33,7 +33,7 @@ class c4_FileStrategy : public c4_Strategy
 {
 public:
     /// Construct a new strategy object
-    c4_FileStrategy(FILE *file_ = 0);
+    c4_FileStrategy(FILE *file_ = nullptr);
     virtual ~c4_FileStrategy();
 
     /// True if we can do I/O with this object

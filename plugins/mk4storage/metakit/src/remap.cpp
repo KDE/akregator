@@ -98,7 +98,7 @@ class c4_HashViewer : public c4_CustomViewer
     void SetSpare(int v_);
 
 public:
-    c4_HashViewer(c4_Sequence &seq_, int numKeys_, c4_Sequence *map_ = 0);
+    c4_HashViewer(c4_Sequence &seq_, int numKeys_, c4_Sequence *map_ = nullptr);
     virtual ~c4_HashViewer();
 
     c4_View GetTemplate() override;

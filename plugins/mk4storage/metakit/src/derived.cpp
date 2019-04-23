@@ -38,7 +38,7 @@ protected:
 
     void FixupReverseMap();
     int PosInMap(int index_) const;
-    bool Match(int index_, c4_Sequence &seq_, const int * = 0, const int * = 0)
+    bool Match(int index_, c4_Sequence &seq_, const int * = nullptr, const int * = nullptr)
     const;
     bool MatchOne(int prop_, const c4_Bytes &data_) const;
 
@@ -311,7 +311,7 @@ int c4_FilterSeq::PosInMap(int index_) const
 c4_Notifier *c4_FilterSeq::PreChange(c4_Notifier &nf_)
 {
     if (!GetDependencies()) {
-        return 0;
+        return nullptr;
     }
 
     c4_Notifier *chg = d4_new c4_Notifier(this);
@@ -649,7 +649,7 @@ void c4_SortSeq::MergeSort(T ar[], int size)
 
 c4_SortSeq::c4_SortSeq(c4_Sequence &seq_, c4_Sequence *down_) : c4_FilterSeq
         (seq_)
-    , _info(0)
+    , _info(nullptr)
     , _width(-1)
 {
     d4_assert(NumRows() == seq_.NumRows());
@@ -678,13 +678,13 @@ c4_SortSeq::c4_SortSeq(c4_Sequence &seq_, c4_Sequence *down_) : c4_FilterSeq
             _info[j]._context = _seq.HandlerContext(j);
         }
 
-        _info[j]._handler = 0;
+        _info[j]._handler = nullptr;
 
         // everything is ready, go sort the row index vector
         MergeSort((T *)&_rowMap.ElementAt(0), NumRows());
 
         delete [] _info;
-        _info = 0;
+        _info = nullptr;
 
         FixupReverseMap();
     }
@@ -740,7 +740,7 @@ int c4_SortSeq::PosInMap(c4_Cursor cursor_) const
 c4_Notifier *c4_SortSeq::PreChange(c4_Notifier & /*nf_*/)
 {
     if (!GetDependencies()) {
-        return 0;
+        return nullptr;
     }
 
 #if 0
@@ -787,7 +787,7 @@ c4_Notifier *c4_SortSeq::PreChange(c4_Notifier & /*nf_*/)
 #endif
 
     //  d4_assert(0); // fail, cannot handle a view dependent on this one yet
-    return 0;
+    return nullptr;
 }
 
 void c4_SortSeq::PostChange(c4_Notifier &nf_)

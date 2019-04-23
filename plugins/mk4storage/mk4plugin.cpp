@@ -40,7 +40,7 @@ void MK4Plugin::doInitialize()
 }
 
 MK4Plugin::MK4Plugin(QObject *parent, const QVariantList &params) : Plugin(parent, params)
-    , m_factory(0)
+    , m_factory(nullptr)
 {
 }
 

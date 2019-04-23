@@ -94,7 +94,7 @@ c4_Handler *c4_CustomSeq::CreateHandler(const c4_Property &prop_)
 
 /////////////////////////////////////////////////////////////////////////////
 
-c4_CustomSeq::c4_CustomSeq(c4_CustomViewer *viewer_) : c4_HandlerSeq(0)
+c4_CustomSeq::c4_CustomSeq(c4_CustomViewer *viewer_) : c4_HandlerSeq(nullptr)
     , _viewer
         (viewer_)
     , _inited(false)
