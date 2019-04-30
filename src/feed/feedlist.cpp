@@ -608,20 +608,6 @@ void FeedListManagementImpl::removeFeed(const QString &url, const QString &catId
     }
 }
 
-QString FeedListManagementImpl::addCategory(const QString &name, const QString &parentId) const
-{
-    Q_UNUSED(parentId)
-
-    if (!m_feedList) {
-        return QStringLiteral("");
-    }
-
-    Folder *m_folder = new Folder(name);
-    m_feedList->allFeedsFolder()->appendChild(m_folder);
-
-    return QString::number(m_folder->id());
-}
-
 QString FeedListManagementImpl::getCategoryName(const QString &catId) const
 {
     QString catname;

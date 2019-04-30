@@ -63,7 +63,6 @@ public:
     QStringList feeds(const QString &catId) const override;
     void addFeed(const QString &url, const QString &catId) override;
     void removeFeed(const QString &url, const QString &catId) override;
-    QString addCategory(const QString &name, const QString &parentId) const override;
     QString getCategoryName(const QString &catId) const override;
 
 private:

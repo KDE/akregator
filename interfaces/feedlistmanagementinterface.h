@@ -43,7 +43,6 @@ public:
     virtual QStringList feeds(const QString &catId) const = 0;
     virtual void addFeed(const QString &url, const QString &catId) = 0;
     virtual void removeFeed(const QString &url, const QString &catId) = 0;
-    virtual QString addCategory(const QString &name, const QString &parentId) const = 0;
     virtual QString getCategoryName(const QString &catId) const = 0;
 
 private:
