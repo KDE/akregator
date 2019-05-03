@@ -20,17 +20,16 @@
 #ifndef GRANTLEEVIEWFORMATTER_H
 #define GRANTLEEVIEWFORMATTER_H
 
-#include "PimCommon/GenericGrantleeFormatter"
+#include <GrantleeTheme/GenericFormatter>
 #include "article.h"
 #include "articleformatter.h"
 #include <QUrl>
 namespace Akregator {
 class Folder;
-class GrantleeViewFormatter : public PimCommon::GenericGrantleeFormatter
+class GrantleeViewFormatter : public GrantleeTheme::GenericFormatter
 {
-    Q_OBJECT
 public:
-    explicit GrantleeViewFormatter(const QString &htmlFileName, const QString &themePath, const QUrl &imageDir, int deviceDpiY, QObject *parent = nullptr);
+    explicit GrantleeViewFormatter(const QString &htmlFileName, const QString &themePath, const QUrl &imageDir, int deviceDpiY);
     ~GrantleeViewFormatter();
 
     QString formatArticles(const QVector<Article> &article, ArticleFormatter::IconOption icon);

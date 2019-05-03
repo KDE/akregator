@@ -33,8 +33,8 @@
 
 using namespace Akregator;
 
-GrantleeViewFormatter::GrantleeViewFormatter(const QString &htmlFileName, const QString &themePath, const QUrl &imageDir, int deviceDpiY, QObject *parent)
-    : PimCommon::GenericGrantleeFormatter(htmlFileName, themePath, parent)
+GrantleeViewFormatter::GrantleeViewFormatter(const QString &htmlFileName, const QString &themePath, const QUrl &imageDir, int deviceDpiY)
+    : GrantleeTheme::GenericFormatter(htmlFileName, themePath)
     , mImageDir(imageDir)
     , mHtmlArticleFileName(htmlFileName)
     , mGrantleeThemePath(QStringLiteral("file://") + themePath + QLatin1Char('/'))
