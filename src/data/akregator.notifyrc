@@ -1,5 +1,6 @@
 [Global]
 IconName=akregator
+DesktopEntry=org.kde.akregator
 Comment=Akregator
 Comment[af]=Akregator
 Comment[ar]=أكريغاتور
