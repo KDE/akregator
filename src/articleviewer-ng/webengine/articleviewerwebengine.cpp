@@ -79,6 +79,7 @@ ArticleViewerWebEngine::ArticleViewerWebEngine(KActionCollection *ac, QWidget *p
     , mLastButtonClicked(LeftButton)
     , mViewerPluginToolManager(nullptr)
 {
+    mNetworkAccessManager = new WebEngineViewer::InterceptorManager(this, ac, this);
 
     QWebEngineProfile *profile = QWebEngineProfile::defaultProfile();
     mPageEngine = new ArticleViewerWebEnginePage(profile, this);
@@ -90,7 +91,6 @@ ArticleViewerWebEngine::ArticleViewerWebEngine(KActionCollection *ac, QWidget *p
     connect(profile, &QObject::destroyed, webEngineUrlInterceptor, &AkregatorRequestInterceptor::deleteLater);
     profile->setRequestInterceptor(webEngineUrlInterceptor);
 #endif
-    mNetworkAccessManager = new WebEngineViewer::InterceptorManager(this, ac, this);
 
     setPage(mPageEngine);
 
