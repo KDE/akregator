@@ -35,7 +35,7 @@ public:
     void initialize() override;
 private:
     void slotConfigureClicked(const QString &configureGroupName, const QString &identifier);
-    QList<PluginItem *> mPluginWebEngineItems;
+    QVector<PluginItem *> mPluginWebEngineItems;
 };
 
 #endif // AKREGATORCONFIGUREPLUGINLISTWIDGET_H
