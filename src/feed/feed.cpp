@@ -101,6 +101,7 @@ public:
     QString xmlUrl;
     QString htmlUrl;
     QString description;
+    QString comment;
 
     /** list of feed articles */
     QHash<QString, Article> articles;
@@ -165,6 +166,7 @@ Akregator::Feed *Feed::fromOPML(const QDomElement &e, Backend::Storage *storage)
     const bool markImmediatelyAsRead = e.attribute(QStringLiteral("markImmediatelyAsRead")) == QLatin1String("true");
     const bool useNotification = e.attribute(QStringLiteral("useNotification")) == QLatin1String("true");
     const bool loadLinkedWebsite = e.attribute(QStringLiteral("loadLinkedWebsite")) == QLatin1String("true");
+    const QString comment = e.attribute(QStringLiteral("comment"));
     const uint id = e.attribute(QStringLiteral("id")).toUInt();
 
     Feed *const feed = new Feed(storage);
@@ -181,7 +183,7 @@ Akregator::Feed *Feed::fromOPML(const QDomElement &e, Backend::Storage *storage)
     feed->setMaxArticleNumber(maxArticleNumber);
     feed->setMarkImmediatelyAsRead(markImmediatelyAsRead);
     feed->setLoadLinkedWebsite(loadLinkedWebsite);
-
+    feed->setComment(comment);
     if (!feed->d->archive && storage) {
         // Instead of loading the articles, we use the cache from storage
         feed->d->archive = storage->archiveFor(xmlUrl);
@@ -406,6 +408,16 @@ void Feed::setMarkImmediatelyAsRead(bool enabled)
     d->markImmediatelyAsRead = enabled;
 }
 
+void Feed::setComment(const QString &comment)
+{
+    d->comment = comment;
+}
+
+QString Feed::comment() const
+{
+    return d->comment;
+}
+
 void Feed::setUseNotification(bool enabled)
 {
     d->useNotification = enabled;
@@ -492,6 +504,7 @@ QDomElement Feed::toOPML(QDomElement parent, QDomDocument document) const
     el.setAttribute(QStringLiteral("fetchInterval"), QString::number(fetchInterval()));
     el.setAttribute(QStringLiteral("archiveMode"), archiveModeToString(d->archiveMode));
     el.setAttribute(QStringLiteral("maxArticleAge"), d->maxArticleAge);
+    el.setAttribute(QStringLiteral("comment"), d->comment);
     el.setAttribute(QStringLiteral("maxArticleNumber"), d->maxArticleNumber);
     if (d->markImmediatelyAsRead) {
         el.setAttribute(QStringLiteral("markImmediatelyAsRead"), QStringLiteral("true"));

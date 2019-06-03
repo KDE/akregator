@@ -217,6 +217,8 @@ public:
 
     KJob *createMarkAsReadJob() override;
 
+    QString comment() const;
+    void setComment(const QString &comment);
 public Q_SLOTS:
     /** starts fetching */
     void fetch(bool followDiscovery = false);

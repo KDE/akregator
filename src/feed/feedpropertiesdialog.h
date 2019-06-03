@@ -70,6 +70,7 @@ public Q_SLOTS:
     void accept() override;
 
 protected:
+    QString comment() const;
     QString feedName() const;
     QString url() const;
     bool autoFetch() const;
@@ -92,6 +93,7 @@ protected:
     void setUseNotification(bool enabled);
     void setLoadLinkedWebsite(bool enabled);
 
+    void setComment(const QString &comment);
 private:
     FeedPropertiesWidget *widget = nullptr;
     Feed *m_feed = nullptr;

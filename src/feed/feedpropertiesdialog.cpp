@@ -123,6 +123,7 @@ void FeedPropertiesDialog::accept()
     m_feed->setUseNotification(useNotification());
     m_feed->setLoadLinkedWebsite(loadLinkedWebsite());
     m_feed->setNotificationMode(true);
+    m_feed->setComment(comment());
 
     QDialog::accept();
 }
@@ -155,7 +156,18 @@ void FeedPropertiesDialog::setFeed(Feed *feed)
     setMarkImmediatelyAsRead(feed->markImmediatelyAsRead());
     setUseNotification(feed->useNotification());
     setLoadLinkedWebsite(feed->loadLinkedWebsite());
+    setComment(feed->comment());
     slotSetWindowTitle(feedName());
+}
+
+QString FeedPropertiesDialog::comment() const
+{
+    return widget->commentEdit->text();
+}
+
+void FeedPropertiesDialog::setComment(const QString &comment)
+{
+    widget->commentEdit->setText(comment);
 }
 
 QString FeedPropertiesDialog::feedName() const
