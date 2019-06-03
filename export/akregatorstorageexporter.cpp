@@ -298,7 +298,8 @@ static void serialize(FeedStorage *storage, const QString &url, QIODevice *devic
 
     Elements::instance.title.write(i18n("Akregator Export for %1", url), writer, Html);
 
-    Q_FOREACH (const QString &i, storage->articles()) {
+    const auto articles = storage->articles();
+    for (const QString &i : articles) {
         writeItem(storage, i, writer);
     }
     writer.writeEndElement(); // </feed>
@@ -356,7 +357,8 @@ int main(int argc, char *argv[])
     const int pos = base64 ? 2 : 1;
     const QString url = QUrl::fromEncoded(base64 ? QByteArray::fromBase64(argv[pos]) : QByteArray(argv[pos])).toString();
 
-    Q_FOREACH (const KService::Ptr &i, queryStoragePlugins()) {
+    const auto plugins = queryStoragePlugins();
+    for (const KService::Ptr &i : plugins) {
         if (Plugin *const plugin = createFromService(i)) {
             plugin->initialize();
         }

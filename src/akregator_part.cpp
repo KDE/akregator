@@ -740,7 +740,8 @@ bool Part::handleCommandLine(const QStringList &args)
     QStringList feedsToAdd = parser.values(QStringLiteral("addfeed"));
 
     if (feedsToAdd.isEmpty() && !parser.positionalArguments().isEmpty()) {
-        Q_FOREACH (QString url, parser.positionalArguments()) {
+        const auto positionalArguments = parser.positionalArguments();
+        for (QString url : positionalArguments) {
             const QUrl tempUrl = QUrl::fromUserInput(url);
             if (tempUrl.isLocalFile()) {
                 const QString tempLocalFile = tempUrl.toLocalFile();

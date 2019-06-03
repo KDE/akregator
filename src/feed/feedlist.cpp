@@ -196,7 +196,8 @@ QVector<int> FeedList::feedIds() const
 QVector<const Feed *> FeedList::feeds() const
 {
     QVector<const Feed *> constList;
-    Q_FOREACH (const Feed *const i, d->rootNode->feeds()) {
+    const auto rootNodeFeeds = d->rootNode->feeds();
+    for (const Feed *const i : rootNodeFeeds) {
         constList.append(i);
     }
     return constList;
@@ -379,7 +380,8 @@ QDomDocument FeedList::toOpml() const
     QDomElement body = doc.createElement(QStringLiteral("body"));
     root.appendChild(body);
 
-    foreach (const TreeNode *const i, allFeedsFolder()->children()) {
+    const auto children = allFeedsFolder()->children();
+    for (const TreeNode *const i : children) {
         body.appendChild(i->toOPML(body, doc));
     }
 
@@ -535,7 +537,8 @@ QStringList FeedListManagementImpl::categories() const
         return QStringList();
     }
     QStringList cats;
-    Q_FOREACH (const Folder *const i, m_feedList->folders()) {
+    const auto folders = m_feedList->folders();
+    for (const Folder *const i : folders) {
         cats.append(path_of_folder(i));
     }
     return cats;
