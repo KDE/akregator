@@ -210,7 +210,8 @@ QVector<Feed *> FeedList::feeds()
 QVector<const Folder *> FeedList::folders() const
 {
     QVector<const Folder *> constList;
-    Q_FOREACH (const Folder *const i, d->rootNode->folders()) {
+    const auto nodeFolders = d->rootNode->folders();
+    for (const Folder *const i : nodeFolders) {
         constList.append(i);
     }
     return constList;
@@ -546,7 +547,7 @@ QStringList FeedListManagementImpl::feeds(const QString &catId) const
         return QStringList();
     }
 
-    uint lastcatid = catId.split(QLatin1Char('/'), QString::SkipEmptyParts).last().toUInt();
+    const uint lastcatid = catId.split(QLatin1Char('/'), QString::SkipEmptyParts).last().toUInt();
 
     QSet<QString> urls;
     Q_FOREACH (const Feed *const i, m_feedList->feeds()) {
@@ -564,15 +565,15 @@ void FeedListManagementImpl::addFeed(const QString &url, const QString &catId)
     }
 
     qCDebug(AKREGATOR_LOG) << "Name:" << url.left(20) << "Cat:" << catId;
-    uint folder_id = catId.split(QLatin1Char('/'), QString::SkipEmptyParts).last().toUInt();
+    const uint folder_id = catId.split(QLatin1Char('/'), QString::SkipEmptyParts).last().toUInt();
 
     // Get the folder
     Folder *m_folder = nullptr;
-    QVector<Folder *> vector = m_feedList->folders();
+    const QVector<Folder *> vector = m_feedList->folders();
     for (int i = 0; i < vector.size(); ++i) {
         if (vector.at(i)->id() == folder_id) {
             m_folder = vector.at(i);
-            i = vector.size();
+            break;
         }
     }
 
@@ -616,7 +617,7 @@ QString FeedListManagementImpl::getCategoryName(const QString &catId) const
         return catname;
     }
 
-    QStringList list = catId.split(QLatin1Char('/'), QString::SkipEmptyParts);
+    const QStringList list = catId.split(QLatin1Char('/'), QString::SkipEmptyParts);
     for (int i = 0; i < list.size(); ++i) {
         int index = list.at(i).toInt();
         catname += m_feedList->findByID(index)->title() + QLatin1Char('/');

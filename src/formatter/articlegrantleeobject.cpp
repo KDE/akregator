@@ -108,7 +108,7 @@ QString ArticleGrantleeObject::imageFeed() const
     QString text;
     if (mArticleFormatOption == ArticleFormatter::ShowIcon && mArticle.feed() && !mArticle.feed()->image().isNull()) {
         const Feed *feed = mArticle.feed();
-        QString file = Utils::fileNameForUrl(feed->xmlUrl());
+        const QString file = Utils::fileNameForUrl(feed->xmlUrl());
         QUrl u(mImageDir);
         u = u.adjusted(QUrl::RemoveFilename);
         u.setPath(u.path() + file);
