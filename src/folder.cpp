@@ -115,7 +115,8 @@ Folder::~Folder()
 QVector<Article> Folder::articles()
 {
     QVector<Article> seq;
-    Q_FOREACH (Feed *const i, feeds()) {
+    const auto f = feeds();
+    for (Feed *const i : f) {
         seq += i->articles();
     }
     return seq;
@@ -129,7 +130,8 @@ QDomElement Folder::toOPML(QDomElement parent, QDomDocument document) const
     el.setAttribute(QStringLiteral("isOpen"), d->open ? QStringLiteral("true") : QStringLiteral("false"));
     el.setAttribute(QStringLiteral("id"), QString::number(id()));
 
-    Q_FOREACH (const Akregator::TreeNode *i, d->children) {
+    const auto children = d->children;
+    for (const Akregator::TreeNode *i : children) {
         el.appendChild(i->toOPML(el, document));
     }
     return el;
@@ -154,7 +156,8 @@ QVector<const Akregator::Feed *> Folder::feeds() const
 {
     QHash<int, const Akregator::Feed *> feedsById;
     for (const TreeNode *i : qAsConst(d->children)) {
-        Q_FOREACH (const Akregator::Feed *j, i->feeds()) {
+        const auto f = i->feeds();
+        for (const Akregator::Feed *j : f) {
             feedsById.insert(j->id(), j);
         }
     }
@@ -166,7 +169,8 @@ QVector<Akregator::Feed *> Folder::feeds()
 {
     QHash<int, Akregator::Feed *> feedsById;
     for (TreeNode *i : qAsConst(d->children)) {
-        Q_FOREACH (Akregator::Feed *j, i->feeds()) {
+        const auto f = i->feeds();
+        for (Akregator::Feed *j : f) {
             feedsById.insert(j->id(), j);
         }
     }
@@ -179,7 +183,8 @@ QVector<const Folder *> Folder::folders() const
     QHash<int, const Folder *> foldersById;
     foldersById.insert(id(), this);
     for (const TreeNode *i : qAsConst(d->children)) {
-        Q_FOREACH (const Folder *j, i->folders()) {
+        const auto f = i->folders();
+        for (const Folder *j : f) {
             foldersById.insert(j->id(), j);
         }
     }
@@ -192,7 +197,8 @@ QVector<Folder *> Folder::folders()
     QHash<int, Folder *> foldersById;
     foldersById.insert(id(), this);
     for (TreeNode *i : qAsConst(d->children)) {
-        Q_FOREACH (Folder *j, i->folders()) {
+        const auto f = i->folders();
+        for (Folder *j : f) {
             foldersById.insert(j->id(), j);
         }
     }
@@ -323,7 +329,8 @@ int Folder::unread() const
 int Folder::totalCount() const
 {
     int total = 0;
-    Q_FOREACH (const Feed *const i, feeds()) {
+    const auto f = feeds();
+    for (const Feed *const i : f) {
         total += i->totalCount();
     }
     return total;
@@ -332,7 +339,8 @@ int Folder::totalCount() const
 void Folder::updateUnreadCount() const
 {
     int unread = 0;
-    Q_FOREACH (const Feed *const i, feeds()) {
+    const auto f = feeds();
+    for (const Feed *const i : f) {
         unread += i->unread();
     }
     d->unread = unread;
@@ -341,7 +349,8 @@ void Folder::updateUnreadCount() const
 KJob *Folder::createMarkAsReadJob()
 {
     CompositeJob *job = new CompositeJob;
-    Q_FOREACH (Feed *const i, feeds()) {
+    const auto f = feeds();
+    for (Feed *const i : f) {
         job->addSubjob(i->createMarkAsReadJob());
     }
     return job;
@@ -378,7 +387,8 @@ bool Folder::subtreeContains(const TreeNode *node) const
 
 void Folder::slotAddToFetchQueue(FetchQueue *queue, bool intervalFetchOnly)
 {
-    Q_FOREACH (Feed *const i, feeds()) {
+    const auto f = feeds();
+    for (Feed *const i : f) {
         if (i->useCustomFetchInterval()) {
             if (i->fetchInterval() != -1) {
                 i->slotAddToFetchQueue(queue, intervalFetchOnly);
@@ -471,7 +481,8 @@ const TreeNode *Folder::next() const
 QList<const TreeNode *> Folder::namedChildren(const QString &title) const
 {
     QList<const TreeNode *> nodeList;
-    foreach (const TreeNode *child, children()) {
+    const auto childs = children();
+    for (const TreeNode *child : childs) {
         if (child->title() == title) {
             nodeList.append(child);
         }
@@ -486,7 +497,8 @@ QList<const TreeNode *> Folder::namedChildren(const QString &title) const
 QList<TreeNode *> Folder::namedChildren(const QString &title)
 {
     QList<TreeNode *> nodeList;
-    foreach (TreeNode *const child, children()) {
+    const auto childs = children();
+    for (TreeNode *const child : childs) {
         if (child->title() == title) {
             nodeList.append(child);
         }

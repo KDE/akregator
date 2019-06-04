@@ -169,7 +169,8 @@ void CompositeJob::start()
         emitResult();
         return;
     }
-    Q_FOREACH (KJob *const i, subjobs()) {
+    const auto jobs = subjobs();
+    for (KJob *const i : jobs) {
         i->start();
     }
 }

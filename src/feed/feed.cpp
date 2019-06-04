@@ -525,7 +525,8 @@ QDomElement Feed::toOPML(QDomElement parent, QDomDocument document) const
 KJob *Feed::createMarkAsReadJob()
 {
     ArticleModifyJob *job = new ArticleModifyJob;
-    Q_FOREACH (const Article &i, articles()) {
+    const auto arts = articles();
+    for (const Article &i : arts) {
         const ArticleId aid = { xmlUrl(), i.guid() };
         job->setStatus(aid, Read);
     }

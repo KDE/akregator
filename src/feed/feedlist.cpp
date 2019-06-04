@@ -187,7 +187,8 @@ FeedList::FeedList(Backend::Storage *storage)
 QVector<int> FeedList::feedIds() const
 {
     QVector<int> ids;
-    Q_FOREACH (const Feed *const i, feeds()) {
+    const auto f = feeds();
+    for (const Feed *const i : f) {
         ids += i->id();
     }
     return ids;
@@ -553,7 +554,8 @@ QStringList FeedListManagementImpl::feeds(const QString &catId) const
     const uint lastcatid = catId.split(QLatin1Char('/'), QString::SkipEmptyParts).last().toUInt();
 
     QSet<QString> urls;
-    Q_FOREACH (const Feed *const i, m_feedList->feeds()) {
+    const auto feeds = m_feedList->feeds();
+    for (const Feed *const i : feeds) {
         if (lastcatid == i->parent()->id()) {
             urls.insert(i->xmlUrl());
         }
@@ -600,7 +602,8 @@ void FeedListManagementImpl::removeFeed(const QString &url, const QString &catId
 
     uint lastcatid = catId.split(QLatin1Char('/'), QString::SkipEmptyParts).last().toUInt();
 
-    Q_FOREACH (const Feed *const i, m_feedList->feeds()) {
+    const auto feeds = m_feedList->feeds();
+    for (const Feed *const i : feeds) {
         if (lastcatid == i->parent()->id()) {
             if (i->xmlUrl().compare(url) == 0) {
                 qCDebug(AKREGATOR_LOG) << "id:" << i->id();
