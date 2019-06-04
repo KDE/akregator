@@ -41,57 +41,45 @@ Kernel *Kernel::self()
     return m_self;
 }
 
-class Kernel::KernelPrivate
+Kernel::Kernel()
 {
-public:
-
-    Backend::Storage *storage = nullptr;
-    QSharedPointer<FeedList> feedList;
-    FetchQueue *fetchQueue = nullptr;
-    FrameManager *frameManager = nullptr;
-};
-
-Kernel::Kernel() : d(new KernelPrivate)
-{
-    d->fetchQueue = new FetchQueue();
-    d->frameManager = new FrameManager();
-    d->storage = nullptr;
+    m_fetchQueue = new FetchQueue();
+    m_frameManager = new FrameManager();
+    m_storage = nullptr;
 }
 
 Kernel::~Kernel()
 {
-    delete d->fetchQueue;
-    delete d->frameManager;
-    delete d;
-    d = nullptr;
+    delete m_fetchQueue;
+    delete m_frameManager;
 }
 
 Backend::Storage *Kernel::storage()
 {
-    return d->storage;
+    return m_storage;
 }
 
 void Kernel::setStorage(Backend::Storage *storage)
 {
-    d->storage = storage;
+    m_storage = storage;
 }
 
 QSharedPointer<FeedList> Kernel::feedList() const
 {
-    return d->feedList;
+    return m_feedList;
 }
 
 void Kernel::setFeedList(const QSharedPointer<FeedList> &feedList)
 {
-    d->feedList = feedList;
+    m_feedList = feedList;
 }
 
 FetchQueue *Kernel::fetchQueue() const
 {
-    return d->fetchQueue;
+    return m_fetchQueue;
 }
 
 FrameManager *Kernel::frameManager() const
 {
-    return d->frameManager;
+    return m_frameManager;
 }

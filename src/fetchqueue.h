@@ -77,9 +77,8 @@ protected Q_SLOTS:
     void slotFetchAborted(Akregator::Feed *);
 
 private:
-
-    class FetchQueuePrivate;
-    FetchQueuePrivate *d;
+    QList<Feed *> m_queuedFeeds;
+    QList<Feed *> m_fetchingFeeds;
 };
 } // namespace Akregator
 

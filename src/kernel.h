@@ -61,8 +61,10 @@ private:
 
     static Kernel *m_self;
 
-    class KernelPrivate;
-    KernelPrivate *d;
+    Backend::Storage *m_storage = nullptr;
+    QSharedPointer<FeedList> m_feedList;
+    FetchQueue *m_fetchQueue = nullptr;
+    FrameManager *m_frameManager = nullptr;
 };
 } // namespace Akregator
 
