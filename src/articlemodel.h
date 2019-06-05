@@ -95,11 +95,12 @@ public Q_SLOTS:
     void clear();
 
 private:
+
     ArticleModel(const ArticleModel &);
     ArticleModel &operator=(const ArticleModel &);
 
-    class Private;
-    Private *const d;
+    QVector<Article> m_articles;
+    QVector<QString> m_titleCache;
 };
 } //namespace Akregator
 

@@ -46,19 +46,6 @@
 
 using namespace Akregator;
 
-class Q_DECL_HIDDEN ArticleModel::Private
-{
-private:
-    ArticleModel *const q;
-public:
-    Private(const QVector<Article> &articles, ArticleModel *qq);
-    QVector<Article> articles;
-    QVector<QString> titleCache;
-
-    void articlesAdded(const QVector<Article> &);
-    void articlesRemoved(const QVector<Article> &);
-    void articlesUpdated(const QVector<Article> &);
-};
 
 //like Syndication::htmlToPlainText, but without linebreaks
 
@@ -71,25 +58,18 @@ static QString stripHtml(const QString &html)
     return str.simplified();
 }
 
-ArticleModel::Private::Private(const QVector<Article> &articles_, ArticleModel *qq)
-    : q(qq)
-    , articles(articles_)
-{
-    const int articlesCount(articles.count());
-    titleCache.resize(articlesCount);
-    for (int i = 0; i < articlesCount; ++i) {
-        titleCache[i] = stripHtml(articles[i].title());
-    }
-}
-
 ArticleModel::ArticleModel(const QVector<Article> &articles, QObject *parent) : QAbstractTableModel(parent)
-    , d(new Private(articles, this))
 {
+    m_articles = articles;
+    const int articlesCount(articles.count());
+    m_titleCache.resize(articlesCount);
+    for (int i = 0; i < articlesCount; ++i) {
+        m_titleCache[i] = stripHtml(articles[i].title());
+    }
 }
 
 ArticleModel::~ArticleModel()
 {
-    delete d;
 }
 
 int ArticleModel::columnCount(const QModelIndex &parent) const
@@ -99,7 +79,7 @@ int ArticleModel::columnCount(const QModelIndex &parent) const
 
 int ArticleModel::rowCount(const QModelIndex &parent) const
 {
-    return parent.isValid() ? 0 : d->articles.count();
+    return parent.isValid() ? 0 : m_articles.count();
 }
 
 QVariant ArticleModel::headerData(int section, Qt::Orientation, int role) const
@@ -128,11 +108,11 @@ QVariant ArticleModel::headerData(int section, Qt::Orientation, int role) const
 
 QVariant ArticleModel::data(const QModelIndex &index, int role) const
 {
-    if (!index.isValid() || index.row() < 0 || index.row() >= d->articles.count()) {
+    if (!index.isValid() || index.row() < 0 || index.row() >= m_articles.count()) {
         return QVariant();
     }
     const int row = index.row();
-    const Article &article(d->articles[row]);
+    const Article &article(m_articles[row]);
 
     switch (role) {
     case SortRole:
@@ -148,7 +128,7 @@ QVariant ArticleModel::data(const QModelIndex &index, int role) const
         case DateColumn:
             return QLocale().toString(article.pubDate(), QLocale::ShortFormat);
         case ItemTitleColumn:
-            return d->titleCache[row];
+            return m_titleCache[row];
         case AuthorColumn:
             return article.authorShort();
         case DescriptionColumn:
@@ -176,76 +156,61 @@ QVariant ArticleModel::data(const QModelIndex &index, int role) const
 void ArticleModel::clear()
 {
     beginResetModel();
-    d->articles.clear();
-    d->titleCache.clear();
+    m_articles.clear();
+    m_titleCache.clear();
     endResetModel();
 }
 
 void ArticleModel::articlesAdded(Akregator::TreeNode *, const QVector<Article> &l)
 {
-    d->articlesAdded(l);
+    if (l.isEmpty()) { //assert?
+        return;
+    }
+    const int first = m_articles.count();
+    beginInsertRows(QModelIndex(), first, first + l.size() - 1);
+
+    const int oldSize = m_articles.size();
+    m_articles << l;
+
+    const int newArticlesCount(m_articles.count());
+    m_titleCache.resize(newArticlesCount);
+    for (int i = oldSize; i < newArticlesCount; ++i) {
+        m_titleCache[i] = stripHtml(m_articles[i].title());
+    }
+    endInsertRows();
 }
 
 void ArticleModel::articlesRemoved(Akregator::TreeNode *, const QVector<Article> &l)
 {
-    d->articlesRemoved(l);
+    //might want to avoid indexOf() in case of performance problems
+    for (const Article &i : l) {
+        const int row = m_articles.indexOf(i);
+        Q_ASSERT(row != -1);
+        removeRow(row, QModelIndex());
+    }
 }
 
 void ArticleModel::articlesUpdated(Akregator::TreeNode *, const QVector<Article> &l)
 {
-    d->articlesUpdated(l);
-}
-
-void ArticleModel::Private::articlesAdded(const QVector<Article> &list)
-{
-    if (list.isEmpty()) { //assert?
-        return;
-    }
-    const int first = articles.count();
-    q->beginInsertRows(QModelIndex(), first, first + list.size() - 1);
-
-    const int oldSize = articles.size();
-    articles << list;
-
-    const int newArticlesCount(articles.count());
-    titleCache.resize(newArticlesCount);
-    for (int i = oldSize; i < newArticlesCount; ++i) {
-        titleCache[i] = stripHtml(articles[i].title());
-    }
-    q->endInsertRows();
-}
-
-void ArticleModel::Private::articlesRemoved(const QVector<Article> &list)
-{
-    //might want to avoid indexOf() in case of performance problems
-    for (const Article &i : list) {
-        const int row = articles.indexOf(i);
-        Q_ASSERT(row != -1);
-        q->removeRow(row, QModelIndex());
-    }
-}
-
-void ArticleModel::Private::articlesUpdated(const QVector<Article> &list)
-{
     int rmin = 0;
     int rmax = 0;
 
-    const int numberOfArticles(articles.count());
+    const int numberOfArticles(m_articles.count());
     if (numberOfArticles > 0) {
         rmin = numberOfArticles - 1;
         //might want to avoid indexOf() in case of performance problems
-        for (const Article &i : list) {
-            const int row = articles.indexOf(i);
+        for (const Article &i : l) {
+            const int row = m_articles.indexOf(i);
             //TODO: figure out how why the Article might not be found in
             //TODO: the articles list because we should need this conditional.
             if (row >= 0) {
-                titleCache[row] = stripHtml(articles[row].title());
+                m_titleCache[row] = stripHtml(m_articles[row].title());
                 rmin = std::min(row, rmin);
                 rmax = std::max(row, rmax);
             }
         }
     }
-    Q_EMIT q->dataChanged(q->index(rmin, 0), q->index(rmax, ColumnCount - 1));
+    Q_EMIT dataChanged(index(rmin, 0), index(rmax, ColumnCount - 1));
 }
 
 bool ArticleModel::rowMatches(int row, const QSharedPointer<const Filters::AbstractMatcher> &matcher) const
@@ -256,10 +221,10 @@ bool ArticleModel::rowMatches(int row, const QSharedPointer<const Filters::Abstr
 
 Article ArticleModel::article(int row) const
 {
-    if (row < 0 || row >= d->articles.count()) {
+    if (row < 0 || row >= m_articles.count()) {
         return Article();
     }
-    return d->articles[row];
+    return m_articles[row];
 }
 
 QStringList ArticleModel::mimeTypes() const
