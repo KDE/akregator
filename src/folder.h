@@ -199,9 +199,12 @@ private:
     void disconnectFromNode(TreeNode *child);
 
     void updateUnreadCount() const;
-
-    class FolderPrivate;
-    FolderPrivate *d;
+    /** List of children */
+    QList<TreeNode *> m_children;
+    /** caching unread count of children */
+    mutable int m_unread = 0;
+    /** whether or not the folder is expanded */
+    bool m_open = false;
 };
 } // namespace Akregator
 

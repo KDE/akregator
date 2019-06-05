@@ -53,36 +53,6 @@ static QVector<T> hashValuesToVector(const QHash<int, T> &hash)
     return result;
 }
 
-class Folder::FolderPrivate
-{
-    Folder *const q;
-public:
-    explicit FolderPrivate(Folder *qq);
-    ~FolderPrivate();
-
-    /** List of children */
-    QList<TreeNode *> children;
-    /** caching unread count of children */
-    mutable int unread;
-    /** whether or not the folder is expanded */
-    bool open;
-};
-
-Folder::FolderPrivate::FolderPrivate(Folder *qq) : q(qq)
-    , unread(0)
-    , open(false)
-{
-}
-
-Folder::FolderPrivate::~FolderPrivate()
-{
-    while (!children.isEmpty()) {
-        // child removes itself from list in its destructor
-        delete children.first();
-    }
-    Q_EMIT q->emitSignalDestroyed();
-}
-
 bool Folder::accept(TreeNodeVisitor *visitor)
 {
     if (visitor->visitFolder(this)) {
@@ -101,15 +71,17 @@ Folder *Folder::fromOPML(const QDomElement &e)
 }
 
 Folder::Folder(const QString &title) : TreeNode()
-    , d(new FolderPrivate(this))
 {
     setTitle(title);
 }
 
 Folder::~Folder()
 {
-    delete d;
-    d = nullptr;
+    while (!m_children.isEmpty()) {
+        // child removes itself from list in its destructor
+        delete m_children.first();
+    }
+    Q_EMIT emitSignalDestroyed();
 }
 
 QVector<Article> Folder::articles()
@@ -127,10 +99,10 @@ QDomElement Folder::toOPML(QDomElement parent, QDomDocument document) const
     QDomElement el = document.createElement(QStringLiteral("outline"));
     el.setAttribute(QStringLiteral("text"), title());
     parent.appendChild(el);
-    el.setAttribute(QStringLiteral("isOpen"), d->open ? QStringLiteral("true") : QStringLiteral("false"));
+    el.setAttribute(QStringLiteral("isOpen"), m_open ? QStringLiteral("true") : QStringLiteral("false"));
     el.setAttribute(QStringLiteral("id"), QString::number(id()));
 
-    const auto children = d->children;
+    const auto children = m_children;
     for (const Akregator::TreeNode *i : children) {
         el.appendChild(i->toOPML(el, document));
     }
@@ -140,8 +112,8 @@ QDomElement Folder::toOPML(QDomElement parent, QDomDocument document) const
 QList<const TreeNode *> Folder::children() const
 {
     QList<const TreeNode *> children;
-    children.reserve(d->children.size());
-    for (const TreeNode *i : qAsConst(d->children)) {
+    children.reserve(m_children.size());
+    for (const TreeNode *i : qAsConst(m_children)) {
         children.append(i);
     }
     return children;
@@ -149,13 +121,13 @@ QList<const TreeNode *> Folder::children() const
 
 QList<TreeNode *> Folder::children()
 {
-    return d->children;
+    return m_children;
 }
 
 QVector<const Akregator::Feed *> Folder::feeds() const
 {
     QHash<int, const Akregator::Feed *> feedsById;
-    for (const TreeNode *i : qAsConst(d->children)) {
+    for (const TreeNode *i : qAsConst(m_children)) {
         const auto f = i->feeds();
         for (const Akregator::Feed *j : f) {
             feedsById.insert(j->id(), j);
@@ -168,7 +140,7 @@ QVector<const Akregator::Feed *> Folder::feeds() const
 QVector<Akregator::Feed *> Folder::feeds()
 {
     QHash<int, Akregator::Feed *> feedsById;
-    for (TreeNode *i : qAsConst(d->children)) {
+    for (TreeNode *i : qAsConst(m_children)) {
         const auto f = i->feeds();
         for (Akregator::Feed *j : f) {
             feedsById.insert(j->id(), j);
@@ -182,7 +154,7 @@ QVector<const Folder *> Folder::folders() const
 {
     QHash<int, const Folder *> foldersById;
     foldersById.insert(id(), this);
-    for (const TreeNode *i : qAsConst(d->children)) {
+    for (const TreeNode *i : qAsConst(m_children)) {
         const auto f = i->folders();
         for (const Folder *j : f) {
             foldersById.insert(j->id(), j);
@@ -196,7 +168,7 @@ QVector<Folder *> Folder::folders()
 {
     QHash<int, Folder *> foldersById;
     foldersById.insert(id(), this);
-    for (TreeNode *i : qAsConst(d->children)) {
+    for (TreeNode *i : qAsConst(m_children)) {
         const auto f = i->folders();
         for (Folder *j : f) {
             foldersById.insert(j->id(), j);
@@ -212,7 +184,7 @@ int Folder::indexOf(const TreeNode *node) const
 
 void Folder::insertChild(TreeNode *node, TreeNode *after)
 {
-    int pos = d->children.indexOf(after);
+    int pos = m_children.indexOf(after);
 
     if (pos < 0) {
         prependChild(node);
@@ -230,10 +202,10 @@ void Folder::insertChild(int index, TreeNode *node)
 {
 //    qCDebug(AKREGATOR_LOG) <<"enter Folder::insertChild(int, node)" << node->title();
     if (node) {
-        if (index >= d->children.size()) {
-            d->children.append(node);
+        if (index >= m_children.size()) {
+            m_children.append(node);
         } else {
-            d->children.insert(index, node);
+            m_children.insert(index, node);
         }
         node->setParent(this);
         connectToNode(node);
@@ -249,7 +221,7 @@ void Folder::appendChild(TreeNode *node)
 {
 //    qCDebug(AKREGATOR_LOG) <<"enter Folder::appendChild()" << node->title();
     if (node) {
-        d->children.append(node);
+        m_children.append(node);
         node->setParent(this);
         connectToNode(node);
         updateUnreadCount();
@@ -264,7 +236,7 @@ void Folder::prependChild(TreeNode *node)
 {
 //    qCDebug(AKREGATOR_LOG) <<"enter Folder::prependChild()" << node->title();
     if (node) {
-        d->children.prepend(node);
+        m_children.prepend(node);
         node->setParent(this);
         connectToNode(node);
         updateUnreadCount();
@@ -277,13 +249,13 @@ void Folder::prependChild(TreeNode *node)
 
 void Folder::removeChild(TreeNode *node)
 {
-    if (!node || !d->children.contains(node)) {
+    if (!node || !m_children.contains(node)) {
         return;
     }
 
     Q_EMIT signalAboutToRemoveChild(node);
     node->setParent(nullptr);
-    d->children.removeOne(node);
+    m_children.removeOne(node);
     disconnectFromNode(node);
     updateUnreadCount();
     Q_EMIT signalChildRemoved(this, node);
@@ -293,37 +265,37 @@ void Folder::removeChild(TreeNode *node)
 
 TreeNode *Folder::firstChild()
 {
-    return d->children.isEmpty() ? nullptr : children().first();
+    return m_children.isEmpty() ? nullptr : children().first();
 }
 
 const TreeNode *Folder::firstChild() const
 {
-    return d->children.isEmpty() ? nullptr : children().first();
+    return m_children.isEmpty() ? nullptr : children().first();
 }
 
 TreeNode *Folder::lastChild()
 {
-    return d->children.isEmpty() ? nullptr : children().last();
+    return m_children.isEmpty() ? nullptr : children().last();
 }
 
 const TreeNode *Folder::lastChild() const
 {
-    return d->children.isEmpty() ? nullptr : children().last();
+    return m_children.isEmpty() ? nullptr : children().last();
 }
 
 bool Folder::isOpen() const
 {
-    return d->open;
+    return m_open;
 }
 
 void Folder::setOpen(bool open)
 {
-    d->open = open;
+    m_open = open;
 }
 
 int Folder::unread() const
 {
-    return d->unread;
+    return m_unread;
 }
 
 int Folder::totalCount() const
@@ -343,7 +315,7 @@ void Folder::updateUnreadCount() const
     for (const Feed *const i : f) {
         unread += i->unread();
     }
-    d->unread = unread;
+    m_unread = unread;
 }
 
 KJob *Folder::createMarkAsReadJob()
@@ -364,7 +336,7 @@ void Folder::slotChildChanged(TreeNode * /*node*/)
 
 void Folder::slotChildDestroyed(TreeNode *node)
 {
-    d->children.removeAll(node);
+    m_children.removeAll(node);
     updateUnreadCount();
     nodeModified();
 }
@@ -422,18 +394,18 @@ void Folder::disconnectFromNode(TreeNode *child)
 
 TreeNode *Folder::childAt(int pos)
 {
-    if (pos < 0 || pos >= d->children.count()) {
+    if (pos < 0 || pos >= m_children.count()) {
         return nullptr;
     }
-    return d->children.at(pos);
+    return m_children.at(pos);
 }
 
 const TreeNode *Folder::childAt(int pos) const
 {
-    if (pos < 0 || pos >= d->children.count()) {
+    if (pos < 0 || pos >= m_children.count()) {
         return nullptr;
     }
-    return d->children.at(pos);
+    return m_children.at(pos);
 }
 
 TreeNode *Folder::next()

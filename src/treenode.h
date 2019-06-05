@@ -28,13 +28,13 @@
 #include "akregator_export.h"
 #include <QObject>
 #include <QVector>
+#include <QPoint>
 
 class KJob;
 
 class QDomDocument;
 class QDomElement;
 class QIcon;
-class QPoint;
 class QString;
 template<class T> class QList;
 
@@ -226,8 +226,14 @@ private:
     virtual QVector<Article> articles() = 0;
 
 private:
-    class TreeNodePrivate;
-    TreeNodePrivate *d;
+    bool m_doNotify = true;
+    bool m_nodeChangeOccurred = false;
+    bool m_articleChangeOccurred = false;
+    QString m_title;
+    Folder *m_parent = nullptr;
+    QPoint m_scrollBarPositions;
+    uint m_id = 0;
+    bool m_signalDestroyedEmitted = false;
 };
 } // namespace Akregator
 
