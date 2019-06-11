@@ -90,7 +90,11 @@ add_subdirectory(src)
 add_subdirectory(kontactplugin)
 add_subdirectory(kconf_update)
 
-install(FILES akregator.renamecategories akregator.categories DESTINATION ${KDE_INSTALL_CONFDIR})
+if (${ECM_VERSION} STRGREATER "5.58.0")
+    install(FILES akregator.renamecategories akregator.categories  DESTINATION  ${KDE_INSTALL_LOGGINGCATEGORIESDIR})
+else()
+    install(FILES akregator.renamecategories akregator.categories  DESTINATION ${KDE_INSTALL_CONFDIR})
+endif()
 
 add_subdirectory(doc)
 feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)
