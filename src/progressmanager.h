@@ -29,6 +29,10 @@
 #include <QObject>
 #include <QSharedPointer>
 
+namespace KPIM {
+class ProgressItem;
+}
+
 namespace Akregator {
 class Feed;
 class ProgressItemHandler;
@@ -58,9 +62,8 @@ protected Q_SLOTS:
 private:
 
     static ProgressManager *m_self;
-
-    class ProgressManagerPrivate;
-    ProgressManagerPrivate *d;
+    QSharedPointer<FeedList> m_feedList;
+    QHash<Feed *, ProgressItemHandler *> m_handlers;
 };
 
 /** this class handles the creation and deletion of progress items for one feed.
@@ -81,8 +84,8 @@ public Q_SLOTS:
     void slotFetchError();
 
 private:
-    class ProgressItemHandlerPrivate;
-    ProgressItemHandlerPrivate *d;
+    Feed *m_feed = nullptr;
+    KPIM::ProgressItem *m_progressItem = nullptr;
 };
 } // namespace Akregator
 

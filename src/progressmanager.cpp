@@ -34,17 +34,6 @@
 
 using namespace Akregator;
 
-class ProgressManager::ProgressManagerPrivate
-{
-public:
-    ProgressManagerPrivate() : feedList()
-    {
-    }
-
-    QSharedPointer<FeedList> feedList;
-    QHash<Feed *, ProgressItemHandler *> handlers;
-};
-
 ProgressManager *ProgressManager::m_self = nullptr;
 
 ProgressManager *ProgressManager::self()
@@ -56,31 +45,29 @@ ProgressManager *ProgressManager::self()
     return m_self;
 }
 
-ProgressManager::ProgressManager() : d(new ProgressManagerPrivate)
+ProgressManager::ProgressManager()
 {
 }
 
 ProgressManager::~ProgressManager()
 {
-    delete d;
-    d = nullptr;
 }
 
 void ProgressManager::setFeedList(const QSharedPointer<FeedList> &feedList)
 {
-    if (feedList == d->feedList) {
+    if (feedList == m_feedList) {
         return;
     }
 
-    if (d->feedList) {
-        qDeleteAll(d->handlers);
-        d->handlers.clear();
-        d->feedList->disconnect(this);
+    if (m_feedList) {
+        qDeleteAll(m_handlers);
+        m_handlers.clear();
+        m_feedList->disconnect(this);
     }
 
-    d->feedList = feedList;
+    m_feedList = feedList;
 
-    if (d->feedList) {
+    if (m_feedList) {
         const QVector<Feed *> list = feedList->feeds();
 
         for (TreeNode *i : list) {
@@ -98,11 +85,11 @@ void ProgressManager::slotNodeAdded(TreeNode *node)
         return;
     }
 
-    if (d->handlers.contains(feed)) {
+    if (m_handlers.contains(feed)) {
         return;
     }
 
-    d->handlers[feed] = new ProgressItemHandler(feed);
+    m_handlers[feed] = new ProgressItemHandler(feed);
     connect(feed, &TreeNode::signalDestroyed, this, &ProgressManager::slotNodeDestroyed);
 }
 
@@ -111,8 +98,8 @@ void ProgressManager::slotNodeRemoved(TreeNode *node)
     Feed *feed = qobject_cast<Feed *>(node);
     if (feed) {
         feed->disconnect(this);
-        delete d->handlers[feed];
-        d->handlers.remove(feed);
+        delete m_handlers[feed];
+        m_handlers.remove(feed);
     }
 }
 
@@ -120,23 +107,15 @@ void ProgressManager::slotNodeDestroyed(TreeNode *node)
 {
     Feed *feed = qobject_cast<Feed *>(node);
     if (feed) {
-        delete d->handlers[feed];
-        d->handlers.remove(feed);
+        delete m_handlers[feed];
+        m_handlers.remove(feed);
     }
 }
 
-class ProgressItemHandler::ProgressItemHandlerPrivate
+ProgressItemHandler::ProgressItemHandler(Feed *feed)
 {
-public:
-
-    Feed *feed = nullptr;
-    KPIM::ProgressItem *progressItem = nullptr;
-};
-
-ProgressItemHandler::ProgressItemHandler(Feed *feed) : d(new ProgressItemHandlerPrivate)
-{
-    d->feed = feed;
-    d->progressItem = nullptr;
+    m_feed = feed;
+    m_progressItem = nullptr;
 
     connect(feed, &Feed::fetchStarted, this, &ProgressItemHandler::slotFetchStarted);
     connect(feed, &Feed::fetched, this, &ProgressItemHandler::slotFetchCompleted);
@@ -146,50 +125,47 @@ ProgressItemHandler::ProgressItemHandler(Feed *feed) : d(new ProgressItemHandler
 
 ProgressItemHandler::~ProgressItemHandler()
 {
-    if (d->progressItem) {
-        d->progressItem->setComplete();
-        d->progressItem = nullptr;
+    if (m_progressItem) {
+        m_progressItem->setComplete();
+        m_progressItem = nullptr;
     }
-
-    delete d;
-    d = nullptr;
 }
 
 void ProgressItemHandler::slotFetchStarted()
 {
-    if (d->progressItem) {
-        d->progressItem->setComplete();
-        d->progressItem = nullptr;
+    if (m_progressItem) {
+        m_progressItem->setComplete();
+        m_progressItem = nullptr;
     }
 
-    d->progressItem = KPIM::ProgressManager::createProgressItem(KPIM::ProgressManager::getUniqueID(), d->feed->title(), QString(), true);
+    m_progressItem = KPIM::ProgressManager::createProgressItem(KPIM::ProgressManager::getUniqueID(), m_feed->title(), QString(), true);
 
-    connect(d->progressItem, &KPIM::ProgressItem::progressItemCanceled, d->feed, &Feed::slotAbortFetch);
+    connect(m_progressItem, &KPIM::ProgressItem::progressItemCanceled, m_feed, &Feed::slotAbortFetch);
 }
 
 void ProgressItemHandler::slotFetchCompleted()
 {
-    if (d->progressItem) {
-        d->progressItem->setStatus(i18n("Fetch completed"));
-        d->progressItem->setComplete();
-        d->progressItem = nullptr;
+    if (m_progressItem) {
+        m_progressItem->setStatus(i18n("Fetch completed"));
+        m_progressItem->setComplete();
+        m_progressItem = nullptr;
     }
 }
 
 void ProgressItemHandler::slotFetchError()
 {
-    if (d->progressItem) {
-        d->progressItem->setStatus(i18n("Fetch error"));
-        d->progressItem->setComplete();
-        d->progressItem = nullptr;
+    if (m_progressItem) {
+        m_progressItem->setStatus(i18n("Fetch error"));
+        m_progressItem->setComplete();
+        m_progressItem = nullptr;
     }
 }
 
 void ProgressItemHandler::slotFetchAborted()
 {
-    if (d->progressItem) {
-        d->progressItem->setStatus(i18n("Fetch aborted"));
-        d->progressItem->setComplete();
-        d->progressItem = nullptr;
+    if (m_progressItem) {
+        m_progressItem->setStatus(i18n("Fetch aborted"));
+        m_progressItem->setComplete();
+        m_progressItem = nullptr;
     }
 }
