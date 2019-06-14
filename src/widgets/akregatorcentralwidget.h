@@ -34,7 +34,7 @@ public:
     void needToRestoreCrashedSession();
 
     void setMainWidget(Akregator::MainWidget *mainWidget);
-    bool previousSessionCrashed() const;
+    Q_REQUIRED_RESULT bool previousSessionCrashed() const;
 
 Q_SIGNALS:
     void restoreSession(Akregator::CrashWidget::CrashAction type);

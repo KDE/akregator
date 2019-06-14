@@ -1232,7 +1232,7 @@ void MainWidget::saveProperties(KConfigGroup &config)
     } else {
         config.writeEntry("searchLine", m_searchBar->text());
     }
-    config.writeEntry("searchCombo", m_searchBar->status());
+    config.writeEntry("searchCombo", static_cast<int>(m_searchBar->status()));
 
     Kernel::self()->frameManager()->saveProperties(config);
 }

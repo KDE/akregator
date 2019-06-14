@@ -41,7 +41,7 @@ public:
 
     void setStatus(StatusSearchLine::Status status);
 
-    Status status() const;
+    Q_REQUIRED_RESULT Status status() const;
 
 Q_SIGNALS:
     void statusChanged(Akregator::StatusSearchLine::Status status);
@@ -72,7 +72,7 @@ private:
     void initializeHash();
     void initializeActions();
     void updateStatusIcon(StatusSearchLine::Status status);
-    Status mDefaultStatus;
+    Status mDefaultStatus = AllArticles;
     QHash<StatusSearchLine::Status, StatusInfo> mHashStatus;
     QAction *mSearchLineStatusAction = nullptr;
 };

@@ -26,10 +26,11 @@
 #define AKREGATOR_SEARCHBAR_H
 
 #include <QWidget>
-
+#include <QTimer>
 #include <QSharedPointer>
 #include <vector>
 #include "widgets/statussearchline.h"
+#include "articlematcher.h"
 
 namespace Akregator {
 namespace Filters {
@@ -45,11 +46,11 @@ public:
     explicit SearchBar(QWidget *parent = nullptr);
     ~SearchBar();
 
-    QString text() const;
-    int status() const;
+    Q_REQUIRED_RESULT QString text() const;
+    Q_REQUIRED_RESULT StatusSearchLine::Status status() const;
 
     void setDelay(int ms);
-    int delay() const;
+    Q_REQUIRED_RESULT int delay() const;
 
     void setFocusSearchLine();
     std::vector<QSharedPointer<const Filters::AbstractMatcher> > matchers() const;
@@ -71,9 +72,13 @@ private Q_SLOTS:
     void slotActivateSearch();
     void slotStatusChanged(Akregator::StatusSearchLine::Status);
 private:
+    void triggerTimer();
 
-    class SearchBarPrivate;
-    SearchBarPrivate *d;
+    QString m_searchText;
+    QTimer m_timer;
+    StatusSearchLine *m_searchLine = nullptr;
+    int m_delay;
+    std::vector<QSharedPointer<const Filters::AbstractMatcher> > m_matchers;
 };
 } // namespace Akregator
 

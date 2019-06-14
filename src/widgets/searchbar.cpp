@@ -24,7 +24,7 @@
 
 #include "searchbar.h"
 #include "akregatorconfig.h"
-#include "articlematcher.h"
+
 #include "article.h"
 #include "widgets/statussearchline.h"
 
@@ -39,128 +39,108 @@
 
 using namespace Akregator;
 using namespace Akregator::Filters;
-class SearchBar::SearchBarPrivate
-{
-public:
-    QString searchText;
-    QTimer timer;
-    StatusSearchLine *searchLine = nullptr;
-    int delay;
-    std::vector<QSharedPointer<const AbstractMatcher> > matchers;
-    void triggerTimer()
-    {
-        if (timer.isActive()) {
-            timer.stop();
-        }
-
-        timer.start(200);
-    }
-};
 
 SearchBar::SearchBar(QWidget *parent)
     : QWidget(parent)
-    , d(new SearchBar::SearchBarPrivate)
 {
-    d->delay = 400;
+    m_delay = 400;
     QHBoxLayout *layout = new QHBoxLayout(this);
 
     layout->setMargin(2);
     layout->setSpacing(5);
     setSizePolicy(QSizePolicy(QSizePolicy::Minimum, QSizePolicy::Fixed));
 
-    d->searchLine = new StatusSearchLine(this);
-    d->searchLine->setClearButtonEnabled(true);
-    d->searchLine->setPlaceholderText(i18n("Search articles..."));
-    layout->addWidget(d->searchLine);
+    m_searchLine = new StatusSearchLine(this);
+    m_searchLine->setClearButtonEnabled(true);
+    m_searchLine->setPlaceholderText(i18n("Search articles..."));
+    layout->addWidget(m_searchLine);
 
-    connect(d->searchLine, &KLineEdit::textChanged, this, &SearchBar::slotSearchStringChanged);
-    connect(d->searchLine, &StatusSearchLine::forceLostFocus, this, &SearchBar::forceLostFocus);
-    connect(d->searchLine, &StatusSearchLine::statusChanged, this, &SearchBar::slotStatusChanged);
+    connect(m_searchLine, &KLineEdit::textChanged, this, &SearchBar::slotSearchStringChanged);
+    connect(m_searchLine, &StatusSearchLine::forceLostFocus, this, &SearchBar::forceLostFocus);
+    connect(m_searchLine, &StatusSearchLine::statusChanged, this, &SearchBar::slotStatusChanged);
 
-    connect(&(d->timer), &QTimer::timeout, this, &SearchBar::slotActivateSearch);
-    d->timer.setSingleShot(true);
+    connect(&(m_timer), &QTimer::timeout, this, &SearchBar::slotActivateSearch);
+    m_timer.setSingleShot(true);
 }
 
 SearchBar::~SearchBar()
 {
-    delete d;
-    d = nullptr;
 }
 
 QString SearchBar::text() const
 {
-    return d->searchText;
+    return m_searchText;
 }
 
-int SearchBar::status() const
+StatusSearchLine::Status SearchBar::status() const
 {
-    return static_cast<int>(d->searchLine->status());
+    return m_searchLine->status();
 }
 
 void SearchBar::setDelay(int ms)
 {
-    d->delay = ms;
+    m_delay = ms;
 }
 
 int SearchBar::delay() const
 {
-    return d->delay;
+    return m_delay;
 }
 
 void SearchBar::setFocusSearchLine()
 {
-    d->searchLine->setFocus();
+    m_searchLine->setFocus();
 }
 
 void SearchBar::slotClearSearch()
 {
-    if (status() != 0 || !d->searchLine->text().trimmed().isEmpty()) {
-        d->searchLine->clear();
-        d->searchLine->setStatus(Akregator::StatusSearchLine::AllArticles);
-        d->timer.stop();
+    if (status() != Akregator::StatusSearchLine::AllArticles || !m_searchLine->text().trimmed().isEmpty()) {
+        m_searchLine->clear();
+        m_searchLine->setStatus(Akregator::StatusSearchLine::AllArticles);
+        m_timer.stop();
         slotStopActiveSearch();
     }
 }
 
 void SearchBar::slotSetStatus(int status)
 {
-    d->searchLine->setStatus(static_cast<Akregator::StatusSearchLine::Status>(status));
-    d->triggerTimer();
+    m_searchLine->setStatus(static_cast<Akregator::StatusSearchLine::Status>(status));
+    triggerTimer();
 }
 
 void SearchBar::slotSetText(const QString &text)
 {
-    d->searchLine->setText(text);
-    d->triggerTimer();
+    m_searchLine->setText(text);
+    triggerTimer();
 }
 
 void SearchBar::slotStatusChanged(Akregator::StatusSearchLine::Status /*status*/)
 {
-    d->triggerTimer();
+    triggerTimer();
 }
 
 std::vector<QSharedPointer<const AbstractMatcher> > SearchBar::matchers() const
 {
-    return d->matchers;
+    return m_matchers;
 }
 
 void SearchBar::updateQuickSearchLineText(const QString &searchLineShortcut)
 {
-    d->searchLine->setPlaceholderText(i18n("Search articles...<%1>", searchLineShortcut));
+    m_searchLine->setPlaceholderText(i18n("Search articles...<%1>", searchLineShortcut));
 }
 
 void SearchBar::slotSearchStringChanged(const QString &search)
 {
-    d->searchText = search;
-    d->triggerTimer();
+    m_searchText = search;
+    triggerTimer();
 }
 
 void SearchBar::slotStopActiveSearch()
 {
     std::vector<QSharedPointer<const AbstractMatcher> > matchers;
-    Settings::setStatusFilter(d->searchLine->status());
-    Settings::setTextFilter(d->searchText);
-    d->matchers = matchers;
+    Settings::setStatusFilter(m_searchLine->status());
+    Settings::setTextFilter(m_searchText);
+    m_matchers = matchers;
     Q_EMIT signalSearch(matchers);
 }
 
@@ -169,16 +149,16 @@ void SearchBar::slotActivateSearch()
     QVector<Criterion> textCriteria;
     QVector<Criterion> statusCriteria;
 
-    if (!d->searchText.isEmpty()) {
-        Criterion subjCrit(Criterion::Title, Criterion::Contains, d->searchText);
+    if (!m_searchText.isEmpty()) {
+        Criterion subjCrit(Criterion::Title, Criterion::Contains, m_searchText);
         textCriteria << subjCrit;
-        Criterion crit1(Criterion::Description, Criterion::Contains, d->searchText);
+        Criterion crit1(Criterion::Description, Criterion::Contains, m_searchText);
         textCriteria << crit1;
-        Criterion authCrit(Criterion::Author, Criterion::Contains, d->searchText);
+        Criterion authCrit(Criterion::Author, Criterion::Contains, m_searchText);
         textCriteria << authCrit;
     }
 
-    switch (d->searchLine->status()) {
+    switch (m_searchLine->status()) {
     case StatusSearchLine::AllArticles:
         break;
     case StatusSearchLine::NewArticles:
@@ -210,8 +190,17 @@ void SearchBar::slotActivateSearch()
     if (!statusCriteria.isEmpty()) {
         matchers.push_back(QSharedPointer<const AbstractMatcher>(new ArticleMatcher(statusCriteria, ArticleMatcher::LogicalOr)));
     }
-    Settings::setStatusFilter(d->searchLine->status());
-    Settings::setTextFilter(d->searchText);
-    d->matchers = matchers;
+    Settings::setStatusFilter(m_searchLine->status());
+    Settings::setTextFilter(m_searchText);
+    m_matchers = matchers;
     Q_EMIT signalSearch(matchers);
+}
+
+void Akregator::SearchBar::triggerTimer()
+{
+    if (m_timer.isActive()) {
+        m_timer.stop();
+    }
+
+    m_timer.start(200);
 }
