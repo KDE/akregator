@@ -26,7 +26,7 @@
 #define AKREGATOR_BACKEND_STORAGEFACTORYREGISTRY_H
 
 #include "akregatorinterfaces_export.h"
-
+#include <QHash>
 class QString;
 class QStringList;
 
@@ -54,8 +54,7 @@ private:
     StorageFactoryRegistry(const StorageFactoryRegistry &);
     StorageFactoryRegistry &operator=(const StorageFactoryRegistry &);
 
-    class StorageFactoryRegistryPrivate;
-    StorageFactoryRegistryPrivate *d;
+    QHash<QString, StorageFactory *> m_map;
 };
 } // namespace Backend
 } // namespace Akregator

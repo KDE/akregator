@@ -31,12 +31,6 @@
 
 namespace Akregator {
 namespace Backend {
-class Q_DECL_HIDDEN StorageFactoryRegistry::StorageFactoryRegistryPrivate
-{
-public:
-    QHash<QString, StorageFactory *> map;
-};
-
 StorageFactoryRegistry *StorageFactoryRegistry::m_instance = nullptr;
 
 StorageFactoryRegistry *StorageFactoryRegistry::self()
@@ -53,39 +47,37 @@ bool StorageFactoryRegistry::registerFactory(StorageFactory *factory, const QStr
     if (containsFactory(typestr)) {
         return false;
     }
-    d->map[typestr] = factory;
+    m_map[typestr] = factory;
     return true;
 }
 
 void StorageFactoryRegistry::unregisterFactory(const QString &typestr)
 {
-    d->map.remove(typestr);
+    m_map.remove(typestr);
 }
 
 StorageFactory *StorageFactoryRegistry::getFactory(const QString &typestr)
 {
-    return d->map[typestr];
+    return m_map[typestr];
 }
 
 bool StorageFactoryRegistry::containsFactory(const QString &typestr) const
 {
-    return d->map.contains(typestr);
+    return m_map.contains(typestr);
 }
 
 QStringList StorageFactoryRegistry::list() const
 {
-    return d->map.keys();
+    return m_map.keys();
 }
 
-StorageFactoryRegistry::StorageFactoryRegistry() : d(new StorageFactoryRegistryPrivate)
+StorageFactoryRegistry::StorageFactoryRegistry()
 {
 }
 
 StorageFactoryRegistry::~StorageFactoryRegistry()
 {
-    qDeleteAll(d->map);
-    delete d;
-    d = nullptr;
+    qDeleteAll(m_map);
 }
 } // namespace Backend
 } // namespace Akregator
