@@ -19,7 +19,6 @@
 
 #include "articleviewerwebenginepage.h"
 #include <QWebEngineSettings>
-#include <QWebEngineProfile>
 #include <actionmanager.h>
 #include <WebEngineViewer/ZoomActionMenu>
 

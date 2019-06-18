@@ -28,7 +28,6 @@
 #include "feed.h"
 #include "treenode.h"
 
-#include <QList>
 
 #include <cassert>
 

@@ -25,7 +25,6 @@
 #define AKREGATOR_BACKEND_FEEDSTORAGEDUMMYIMPL_H
 
 #include "feedstorage.h"
-#include <QList>
 namespace Akregator {
 namespace Backend {
 class StorageDummyImpl;
