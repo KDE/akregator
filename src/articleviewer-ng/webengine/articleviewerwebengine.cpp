@@ -46,6 +46,7 @@
 #include <viewerplugintoolmanager.h>
 #include <QWebEngineProfile>
 #include <QWebEngineUrlRequestInterceptor>
+#include <QtWebEngineWidgetsVersion>
 
 #include <WebEngineViewer/WebHitTestResult>
 #include <WebEngineViewer/WebHitTest>
