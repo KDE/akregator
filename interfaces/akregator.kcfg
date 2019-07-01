@@ -166,6 +166,11 @@
    <whatsthis>Specifies if the tray icon is shown or not.</whatsthis>
    <default>true</default>
   </entry>
+  <entry key="Show Unread In Taskbar" type="Bool" >
+   <label>Show Unread In Taskbar</label>
+   <whatsthis>Specifies if we show unread article in taskbar.</whatsthis>
+   <default>true</default>
+  </entry>
   <entry key="Disable Introduction" type="Bool" >
      <default>false</default>
   </entry>

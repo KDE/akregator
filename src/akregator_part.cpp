@@ -245,7 +245,9 @@ Part::Part(QWidget *parentWidget, QObject *parent, const QVariantList &)
 
     //Initialize instance.
     (void)UnityServiceManager::instance();
-    connect(m_mainWidget.data(), &MainWidget::signalUnreadCountChanged, UnityServiceManager::instance(), &UnityServiceManager::slotSetUnread);
+    if (Settings::showUnreadInTaskbar()) {
+        connect(m_mainWidget.data(), &MainWidget::signalUnreadCountChanged, UnityServiceManager::instance(), &UnityServiceManager::slotSetUnread);
+    }
 
     if (Settings::showTrayIcon() && !TrayIcon::getInstance()) {
         initializeTrayIcon();
@@ -339,6 +341,14 @@ void Part::initializeTrayIcon()
 
 void Part::slotSettingsChanged()
 {
+    if (Settings::showUnreadInTaskbar()) {
+        connect(m_mainWidget.data(), &MainWidget::signalUnreadCountChanged, UnityServiceManager::instance(), &UnityServiceManager::slotSetUnread);
+        m_mainWidget->slotSetTotalUnread();
+    } else {
+        disconnect(m_mainWidget.data(), &MainWidget::signalUnreadCountChanged, UnityServiceManager::instance(), &UnityServiceManager::slotSetUnread);
+        UnityServiceManager::instance()->slotSetUnread(0);
+    }
+
     NotificationManager::self()->setWidget(isTrayIconEnabled() ? m_mainWidget->window() : nullptr, componentData().componentName());
 
     if (Settings::showTrayIcon()) {
@@ -352,6 +362,8 @@ void Part::slotSettingsChanged()
         TrayIcon::setInstance(nullptr);
         m_actionManager->setTrayIcon(nullptr);
     }
+
+
 
     const QStringList fonts {
         Settings::standardFont(),

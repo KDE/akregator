@@ -8,7 +8,7 @@
     <x>0</x>
     <y>0</y>
     <width>362</width>
-    <height>377</height>
+    <height>378</height>
    </rect>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_4" stretch="0,0,0,1">
@@ -34,6 +34,13 @@
        <widget class="QCheckBox" name="kcfg_ShowTrayIcon">
         <property name="text">
          <string>Show tra&amp;y icon</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="kcfg_ShowUnreadInTaskbar">
+        <property name="text">
+         <string>Show unread articles in Taskbar</string>
         </property>
        </widget>
       </item>
