@@ -236,7 +236,13 @@ QMimeData *ArticleModel::mimeData(const QModelIndexList &indexes) const
 {
     QScopedPointer<QMimeData> md(new QMimeData);
     QList<QUrl> urls;
+    QList<int> seenArticles;
     for (const QModelIndex &i : indexes) {
+        const int rowIndex = i.row();
+        if (seenArticles.contains(rowIndex)) {
+            continue;
+        }
+        seenArticles.append(rowIndex);
         const QUrl url = i.data(ArticleModel::LinkRole).toUrl();
         if (url.isValid()) {
             urls.push_back(url);
