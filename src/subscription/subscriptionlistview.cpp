@@ -52,7 +52,7 @@ static QModelIndex prevIndex(const QModelIndex &idx)
     if (idx.row() > 0) {
         QModelIndex i = idx.sibling(idx.row() - 1, idx.column());
         while (model->hasChildren(i)) {
-            i = i.child(model->rowCount(i) - 1, i.column());
+            i = model->index(model->rowCount(i) - 1, i.column(), i);
         }
         return i;
     } else {
@@ -86,7 +86,7 @@ static QModelIndex lastLeaveChild(const QAbstractItemModel *const model)
     }
     QModelIndex idx = model->index(model->rowCount() - 1, 0);
     while (model->hasChildren(idx)) {
-        idx = idx.child(model->rowCount(idx) - 1, idx.column());
+        idx = model->index(model->rowCount(idx) - 1, idx.column(), idx);
     }
     return idx;
 }
@@ -99,7 +99,7 @@ static QModelIndex nextIndex(const QModelIndex &idx)
     const QAbstractItemModel *const model = idx.model();
     Q_ASSERT(model);
     if (model->hasChildren(idx)) {
-        return idx.child(0, idx.column());
+        return model->index(0, idx.column(), idx);
     }
     QModelIndex i = idx;
     while (true) {
@@ -356,7 +356,7 @@ void SubscriptionListView::slotItemRight()
         return;
     }
     if (model()->rowCount(current) > 0) {
-        setCurrentIndex(current.child(0, 0));
+        setCurrentIndex(model()->index(0, 0, current));
     }
 }
 
