@@ -622,7 +622,7 @@ void ActionManagerImpl::initTabWidget(TabWidget *tabWidget)
 
     QString actionname;
     for (int i = 1; i < 10; ++i) {
-        actionname.sprintf("activate_tab_%02d", i);
+        actionname = QString::asprintf("activate_tab_%02d", i);
         action = new QAction(i18n("Activate Tab %1", i), this);
         coll->addAction(actionname, action);
         coll->setDefaultShortcut(action, QKeySequence(QStringLiteral("Alt+%1").arg(i)));

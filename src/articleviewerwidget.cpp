@@ -50,6 +50,7 @@
 #include <ktoolinvocation.h>
 #include <kio/job.h>
 #include <QUrl>
+#include <QElapsedTimer>
 
 #include <articleviewer-ng/webengine/articleviewerwebenginewidgetng.h>
 #include <articleviewer-ng/webengine/articleviewerwebengine.h>
@@ -245,7 +246,7 @@ void ArticleViewerWidget::slotUpdateCombinedView()
     QString text;
 
     int num = 0;
-    QTime spent;
+    QElapsedTimer spent;
     spent.start();
 
     const std::vector< QSharedPointer<const AbstractMatcher> >::const_iterator filterEnd = m_filters.cend();

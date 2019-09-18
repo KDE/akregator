@@ -543,9 +543,9 @@ void Feed::slotAddToFetchQueue(FetchQueue *queue, bool intervalFetchOnly)
             interval = Settings::autoFetchInterval() * 60;
         }
 
-        uint lastFetch = d->m_archive->lastFetch().toTime_t();
+        uint lastFetch = d->m_archive->lastFetch().toSecsSinceEpoch();
 
-        uint now = QDateTime::currentDateTimeUtc().toTime_t();
+        uint now = QDateTime::currentDateTimeUtc().toSecsSinceEpoch();
 
         if (interval > 0 && (now - lastFetch) >= static_cast<uint>(interval)) {
             queue->addFeed(this);

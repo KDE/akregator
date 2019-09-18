@@ -254,7 +254,7 @@ QDateTime Akregator::Backend::StorageMK4Impl::lastFetchFor(const QString &url) c
     d->purl(findrow) = url.toLatin1().constData();
     int findidx = d->archiveView.Find(findrow);
 
-    return findidx != -1 ? QDateTime::fromTime_t(d->plastFetch(d->archiveView.GetAt(findidx))) : QDateTime();
+    return findidx != -1 ? QDateTime::fromSecsSinceEpoch(d->plastFetch(d->archiveView.GetAt(findidx))) : QDateTime();
 }
 
 void Akregator::Backend::StorageMK4Impl::setLastFetchFor(const QString &url, const QDateTime &lastFetch)
@@ -266,7 +266,7 @@ void Akregator::Backend::StorageMK4Impl::setLastFetchFor(const QString &url, con
         return;
     }
     findrow = d->archiveView.GetAt(findidx);
-    d->plastFetch(findrow) = lastFetch.toTime_t();
+    d->plastFetch(findrow) = lastFetch.toSecsSinceEpoch();
     d->archiveView.SetAt(findidx, findrow);
     markDirty();
 }

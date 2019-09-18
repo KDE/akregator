@@ -339,7 +339,7 @@ void ArticleViewerWebEngine::forwardWheelEvent(QWheelEvent *e)
         mWebEngineViewAccessKey->wheelEvent(e);
     }
     if (QApplication::keyboardModifiers() & Qt::ControlModifier) {
-        const int numDegrees = e->delta() / 8;
+        const int numDegrees = e->angleDelta().y() / 8;
         const int numSteps = numDegrees / 15;
         const qreal factor = ActionManager::getInstance()->zoomActionMenu()->zoomFactor() + numSteps * 10;
         if (factor >= 10 && factor <= 300) {

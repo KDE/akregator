@@ -28,6 +28,7 @@
 #include "feedlist.h"
 #include <QObject>
 #include <QSharedPointer>
+#include <QHash>
 
 namespace KPIM {
 class ProgressItem;

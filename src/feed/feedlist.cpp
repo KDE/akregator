@@ -40,7 +40,7 @@
 #include <qdom.h>
 #include <QHash>
 #include <QSet>
-#include <QTime>
+#include <QElapsedTimer>
 
 #include <cassert>
 
@@ -271,7 +271,7 @@ bool FeedList::readFromOpml(const QDomDocument &doc)
     qCDebug(AKREGATOR_LOG) << "loading OPML feed" << root.tagName().toLower();
 
     qCDebug(AKREGATOR_LOG) << "measuring startup time: START";
-    QTime spent;
+    QElapsedTimer spent;
     spent.start();
 
     if (root.tagName().toLower() != QLatin1String("opml")) {

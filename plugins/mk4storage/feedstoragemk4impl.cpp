@@ -281,7 +281,7 @@ QString FeedStorageMK4Impl::link(const QString &guid) const
 QDateTime FeedStorageMK4Impl::pubDate(const QString &guid) const
 {
     int findidx = findArticle(guid);
-    return findidx != -1 ? QDateTime::fromTime_t(d->ppubDate(d->archiveView.GetAt(findidx))) : QDateTime();
+    return findidx != -1 ? QDateTime::fromSecsSinceEpoch(d->ppubDate(d->archiveView.GetAt(findidx))) : QDateTime();
 }
 
 int FeedStorageMK4Impl::status(const QString &guid) const
@@ -311,7 +311,7 @@ void FeedStorageMK4Impl::article(const QString &guid, uint &hash, QString &title
         hash = d->phash(view);
         title = QString::fromUtf8(d->ptitle(view));
         status = d->pstatus(view);
-        pubDate = QDateTime::fromTime_t(d->ppubDate(view));
+        pubDate = QDateTime::fromSecsSinceEpoch(d->ppubDate(view));
     }
 }
 
@@ -341,7 +341,7 @@ void FeedStorageMK4Impl::setPubDate(const QString &guid, const QDateTime &pubdat
     }
     c4_Row row;
     row = d->archiveView.GetAt(findidx);
-    d->ppubDate(row) = pubdate.toTime_t();
+    d->ppubDate(row) = pubdate.toSecsSinceEpoch();
     d->archiveView.SetAt(findidx, row);
     markDirty();
 }

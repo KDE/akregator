@@ -46,7 +46,7 @@ SearchBar::SearchBar(QWidget *parent)
     m_delay = 400;
     QHBoxLayout *layout = new QHBoxLayout(this);
 
-    layout->setMargin(2);
+    layout->setContentsMargins(2, 2, 2, 2);
     layout->setSpacing(5);
     setSizePolicy(QSizePolicy(QSizePolicy::Minimum, QSizePolicy::Fixed));
 

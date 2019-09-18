@@ -161,7 +161,7 @@ Article::Private::Private()
     , archive(nullptr)
     , status(0)
     , hash(0)
-    , pubDate(QDateTime::fromTime_t(1))
+    , pubDate(QDateTime::fromSecsSinceEpoch(1))
 {
 }
 
@@ -206,7 +206,7 @@ Article::Private::Private(const ItemPtr &article, Feed *feed_, Backend::FeedStor
         archive->setGuidIsHash(guid, guid.startsWith(QLatin1String("hash:")));
         const time_t datePublished = article->datePublished();
         if (datePublished > 0) {
-            pubDate.setTime_t(datePublished);
+            pubDate.QDateTime::fromSecsSinceEpoch(datePublished);
         } else {
             pubDate = QDateTime::currentDateTime();
         }
