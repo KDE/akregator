@@ -83,12 +83,12 @@ int main(int argc, char **argv)
 {
     QCoreApplication::setAttribute(Qt::AA_ShareOpenGLContexts);
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps, true);
     Akregator::Application app(argc, &argv);
     KLocalizedString::setApplicationDomain("akregator");
 
     KCrash::initialize();
 
-    app.setAttribute(Qt::AA_UseHighDpiPixmaps, true);
     app.setDesktopFileName(QStringLiteral("org.kde.akregator"));
     Akregator::AboutData about;
     app.setAboutData(about);
