@@ -44,7 +44,6 @@ class ArticleGrantleeObject : public QObject
     Q_PROPERTY(QString sendFileAction READ sendFileAction)
     Q_PROPERTY(QString openInExternalBrowser READ openInExternalBrowser)
     Q_PROPERTY(QString openInBackgroundTab READ openInBackgroundTab)
-    Q_PROPERTY(QString share READ share)
     Q_PROPERTY(Akregator::ArticleGrantleeObject::ArticleStatus articleStatus READ articleStatus)
     Q_PROPERTY(bool important READ important)
 
@@ -78,7 +77,6 @@ public:
     QString sendUrlAction() const;
     QString sendFileAction() const;
     QString openInExternalBrowser() const;
-    QString share() const;
 
     QString openInBackgroundTab() const;
 

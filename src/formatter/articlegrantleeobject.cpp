@@ -192,14 +192,6 @@ QString ArticleGrantleeObject::openInExternalBrowser() const
     return text;
 }
 
-QString ArticleGrantleeObject::share() const
-{
-    const QString iconPath = QUrl::fromLocalFile(MessageViewer::IconNameCache::instance()->iconPath(QStringLiteral("document-share"), KIconLoader::Small)).url();
-    const QString text = QStringLiteral("<a href=\"%1\"><img class=\"headimage\" title=\"%3\" height=\"%4\" width=\"%4\" src=\"%2\"></a>\n")
-                         .arg(createActionUrl(QStringLiteral("share")), iconPath, i18n("Share"), QString::number(mIconSize));
-    return text;
-}
-
 QString ArticleGrantleeObject::openInBackgroundTab() const
 {
     const QString iconPath = QUrl::fromLocalFile(MessageViewer::IconNameCache::instance()->iconPath(QStringLiteral("tab-new"), KIconLoader::Small)).url();

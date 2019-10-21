@@ -56,7 +56,6 @@ public:
         SendUrlArticle,
         SendFileArticle,
         OpenInExternalBrowser,
-        Share,
         OpenInBackgroundTab
     };
     explicit ArticleViewerWebEngine(KActionCollection *ac, QWidget *parent);

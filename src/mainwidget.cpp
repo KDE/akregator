@@ -1340,12 +1340,5 @@ void MainWidget::slotArticleAction(Akregator::ArticleViewerWebEngine::ArticleAct
         slotOpenArticleInBrowser(article);
         break;
     }
-    case ArticleViewerWebEngine::Share:
-        const Akregator::Article article = m_feedList->findArticle(feed, articleId);
-        const QUrl url = article.link();
-        if (url.isValid()) {
-            //TODO
-        }
-        break;
     }
 }

@@ -119,8 +119,6 @@ QString ActionURLHandlerWebEngine::statusBarMessage(const QUrl &url, ArticleView
             return i18n("Send the Html Page of Article");
         } else if (urlPath == QLatin1String("openInExternalBrowser")) {
             return i18n("Open In External Browser");
-        } else if (urlPath == QLatin1String("share")) {
-            return i18n("Share");
         } else if (urlPath == QLatin1String("openInBackgroundTab")) {
             return i18n("Open In Background Tab");
         }
@@ -158,9 +156,6 @@ bool ActionURLHandlerWebEngine::handleClick(const QUrl &url, ArticleViewerWebEng
                     return true;
                 } else if (urlPath == QLatin1String("openInExternalBrowser")) {
                     articleViewer->setArticleAction(ArticleViewerWebEngine::OpenInExternalBrowser, articleId, feed);
-                    return true;
-                } else if (urlPath == QLatin1String("share")) {
-                    articleViewer->setArticleAction(ArticleViewerWebEngine::Share, articleId, feed);
                     return true;
                 } else if (urlPath == QLatin1String("openInBackgroundTab")) {
                     articleViewer->setArticleAction(ArticleViewerWebEngine::OpenInBackgroundTab, articleId, feed);
