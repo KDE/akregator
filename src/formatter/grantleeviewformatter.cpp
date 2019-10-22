@@ -41,6 +41,7 @@ GrantleeViewFormatter::GrantleeViewFormatter(const QString &htmlFileName, const 
     , mDeviceDpiY(deviceDpiY)
 {
     mDirectionString = QApplication::isRightToLeft() ? QStringLiteral("rtl") : QStringLiteral("ltr");
+    setApplicationDomain("akregator");
 }
 
 GrantleeViewFormatter::~GrantleeViewFormatter()
