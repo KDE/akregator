@@ -69,7 +69,7 @@
     color: rgb(120, 125, 129) ! important;
     font-size: {{ mediumFontSize}}px;
     }
-    .headimage {
+    .headimage, div.theactioncell a img {
     float: right;
     margin-left: 5px;
     }
@@ -100,18 +100,22 @@
     <div class="actionrowtable">
       {% with article.articleStatus as result %}
           {% ifequal article.Unread result %}
-          <div class="theactioncell">{{ article.markAsReadAction|safe }}</div>
+          <div class="theactioncell"><a href="akregatoraction:markAsRead{{ article.actionToken }}">{% icon "mail-mark-read" small _("Mark as Read") %}</a></div>
           {% endifequal %}
           {% ifequal article.Read result %}
-          <div class="theactioncell">{{ article.markAsUnreadAction|safe }}</div>
+          <div class="theactioncell"><a href="akregatoraction:markAsUnRead{{ article.actionToken }}">{% icon "mail-mark-unread" small _("Mark as Unread") %}</a></div>
           {% endifequal %}
       {% endwith %}
-      <div class="theactioncell">{{ article.markAsImportantAction|safe }}</div>
-      <div class="theactioncell">{{ article.openInExternalBrowser|safe }}</div>
-      <div class="theactioncell">{{ article.openInBackgroundTab|safe }}</div>
-      <div class="theactioncell">{{ article.sendFileAction|safe }}</div>
-      <div class="theactioncell">{{ article.sendUrlAction|safe }}</div>
-      <div class="theactioncell theactionbigcell">{{ article.deleteAction|safe }}</div>
+      {% if article.important %}
+        <div class="theactioncell"><a href="akregatoraction:markAsImportant{{ article.actionToken }}">{% icon "mail-message" small _("Remove Important Status") %}</a></div>
+      {% else %}
+        <div class="theactioncell"><a href="akregatoraction:markAsImportant{{ article.actionToken }}">{% icon "mail-mark-important" small _("Mark as Important") %}</a></div>
+      {% endif %}
+      <div class="theactioncell"><a href="akregatoraction:openInExternalBrowser{{ article.actionToken }}">{% icon "window-new" small _("Open Link in External Browser") %}</a></div>
+      <div class="theactioncell"><a href="akregatoraction:openInBackgroundTab{{ article.actionToken }}">{% icon "tab-new" small _("Open In Background Tab") %}</a></div>
+      <div class="theactioncell"><a href="akregatoraction:sendFileArticle{{ article.actionToken }}">{% icon "mail-message-new" small _("Send File Address") %}</a></div>
+      <div class="theactioncell"><a href="akregatoraction:sendUrlArticle{{ article.actionToken }}">{% icon "mail-message-new" small _("Send Link Address") %}</a></div>
+      <div class="theactioncell theactionbigcell"><a href="akregatoraction:delete{{ article.actionToken }}">{% icon "edit-delete" small _("Delete Article") %}</a></div>
     <div>
   </div>
   </div>

@@ -36,16 +36,9 @@ class ArticleGrantleeObject : public QObject
     Q_PROPERTY(QString enclosure READ enclosure)
     Q_PROPERTY(QString articleCompleteStoryLink READ articleCompleteStoryLink)
     Q_PROPERTY(QString imageFeed READ imageFeed)
-    Q_PROPERTY(QString deleteAction READ deleteAction)
-    Q_PROPERTY(QString markAsReadAction READ markAsReadAction)
-    Q_PROPERTY(QString markAsUnreadAction READ markAsUnreadAction)
-    Q_PROPERTY(QString markAsImportantAction READ markAsImportantAction)
-    Q_PROPERTY(QString sendUrlAction READ sendUrlAction)
-    Q_PROPERTY(QString sendFileAction READ sendFileAction)
-    Q_PROPERTY(QString openInExternalBrowser READ openInExternalBrowser)
-    Q_PROPERTY(QString openInBackgroundTab READ openInBackgroundTab)
     Q_PROPERTY(Akregator::ArticleGrantleeObject::ArticleStatus articleStatus READ articleStatus)
     Q_PROPERTY(bool important READ important)
+    Q_PROPERTY(QString actionToken READ actionToken)
 
 public:
     explicit ArticleGrantleeObject(const QUrl &imageDir, const Article &article, ArticleFormatter::IconOption icon, QObject *parent = nullptr);
@@ -76,18 +69,14 @@ public:
     QString markAsImportantAction() const;
     QString sendUrlAction() const;
     QString sendFileAction() const;
-    QString openInExternalBrowser() const;
-
-    QString openInBackgroundTab() const;
 
     bool important() const;
+    QString actionToken() const;
 
 private:
-    QString createActionUrl(const QString &actionName) const;
     Article mArticle;
     ArticleFormatter::IconOption mArticleFormatOption;
     QUrl mImageDir;
-    int mIconSize;
 };
 }
 #endif // ARTICLEGRANTLEEOBJECT_H
