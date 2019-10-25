@@ -27,7 +27,6 @@
 
 #include "akregator_debug.h"
 #include <KLocalizedString>
-#include <kiconloader.h>
 
 using namespace Akregator;
 

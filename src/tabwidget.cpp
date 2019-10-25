@@ -39,7 +39,6 @@
 #include <QTabBar>
 #include <krun.h>
 #include <KLocalizedString>
-#include <kiconloader.h>
 #include <ktoolinvocation.h>
 #include <kio/global.h>
 #include <kio/pixmaploader.h>
