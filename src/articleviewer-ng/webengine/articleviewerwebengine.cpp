@@ -185,7 +185,7 @@ void ArticleViewerWebEngine::slotSaveLinkAs()
         tmp = tmp.adjusted(QUrl::RemoveFilename);
         tmp.setPath(tmp.path() + QLatin1String("index.html"));
     }
-    KParts::BrowserRun::simpleSave(tmp, tmp.fileName());
+    KParts::BrowserRun::saveUrl(tmp, tmp.fileName(), this, {});
 }
 
 void ArticleViewerWebEngine::slotSaveImageOnDiskInFrame()
