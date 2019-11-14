@@ -99,7 +99,7 @@ QString GrantleeViewFormatter::formatFeed(Akregator::Feed *feed)
     if (!feed->htmlUrl().isEmpty()) {
         QString feedHomePage;
         feedHomePage = QStringLiteral("<div dir=\"%1\">").arg(mDirectionString);
-        feedHomePage += i18n("<b>Homepage:</b> <a href=\"%1\">%2</a>", feed->htmlUrl(), feed->htmlUrl());
+        feedHomePage += i18n("<b>Homepage:</b> <a href=\"%1\">%1</a>", feed->htmlUrl());
         feedHomePage += QStringLiteral("</div>"); // / link
         feedObject.insert(QStringLiteral("feedHomePage"), feedHomePage);
     }
