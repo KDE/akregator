@@ -37,7 +37,8 @@
 #include "types.h"
 #include "utils.h"
 #include "feedretriever.h"
-
+#include "job/downloadfeediconjob.h"
+#include <syndication_version.h>
 #include <Syndication/Syndication>
 
 #include "akregator_debug.h"
@@ -340,14 +341,17 @@ Feed::~Feed()
     d = nullptr;
 }
 
-void Feed::loadFavicon(const QUrl &url)
+void Feed::loadFavicon(const QString &url, bool downloadFavicon)
 {
-    KIO::FavIconRequestJob *job = new KIO::FavIconRequestJob(url);
-    connect(job, &KIO::FavIconRequestJob::result, this, [job, this](KJob *) {
-        if (!job->error()) {
-            setFavicon(QIcon(job->iconFile()));
-        }
+    Akregator::DownloadFeedIconJob *job = new Akregator::DownloadFeedIconJob(this);
+    job->setFeedIconUrl(url);
+    job->setDownloadFavicon(downloadFavicon);
+    connect(job, &DownloadFeedIconJob::result, this, [job, this](const QString &result) {
+        setFavicon(QIcon(result));
     });
+    if (!job->start()) {
+        qCWarning(AKREGATOR_LOG) << "Impossible to start DownloadFeedIconJob for url: " << url;
+    }
 }
 
 bool Feed::useCustomFetchInterval() const
@@ -555,7 +559,7 @@ void Feed::slotAddToFetchQueue(FetchQueue *queue, bool intervalFetchOnly)
 
 void Feed::slotAddFeedIconListener()
 {
-    loadFavicon(QUrl(d->m_xmlUrl));
+    loadFavicon(d->m_xmlUrl, true);
 }
 
 void Feed::appendArticles(const Syndication::FeedPtr &feed)
@@ -727,8 +731,15 @@ void Feed::fetchCompleted(Syndication::Loader *l, Syndication::FeedPtr doc, Synd
 
     loadArticles(); // TODO: make me fly: make this delayed
 
-    loadFavicon(QUrl(xmlUrl()));
-
+#if SYNDICATION_VERSION >= QT_VERSION_CHECK(5,65,0)
+    if (!doc->icon().isNull() && !doc->icon()->url().isEmpty()) {
+        loadFavicon(doc->icon()->url(), false);
+    } else {
+        loadFavicon(xmlUrl(), true);
+    }
+#else
+    loadFavicon(xmlUrl(), true);
+#endif
     d->m_fetchErrorCode = Syndication::Success;
 
     if (d->m_imagePixmap.isNull()) {

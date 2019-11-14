@@ -1,5 +1,5 @@
 /*
-   Copyright (C) 2016 Montel Laurent <montel@kde.org>
+   Copyright (C) 2019 Montel Laurent <montel@kde.org>
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public
@@ -17,15 +17,16 @@
    Boston, MA 02110-1301, USA.
 */
 
-#include "crashwidgettest.h"
-
-CrashWidgetTest::CrashWidgetTest(QObject *parent)
-    : QObject(parent)
+#ifndef GRANTLEEUTIL_H
+#define GRANTLEEUTIL_H
+#include <QString>
+#include <QUrl>
+namespace Akregator {
+class Feed;
+namespace GrantleeUtil
 {
+QString imageFeed(const Feed *feed, const QUrl &imageDir);
+}
 }
 
-CrashWidgetTest::~CrashWidgetTest()
-{
-}
-
-QTEST_MAIN(CrashWidgetTest)
+#endif // GRANTLEEUTIL_H

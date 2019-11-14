@@ -19,6 +19,7 @@
 
 #include "articlegrantleeobject.h"
 #include "articleformatter.h"
+#include "grantleeutil.h"
 #include "utils.h"
 #include "feed.h"
 #include <QLocale>
@@ -105,11 +106,7 @@ QString ArticleGrantleeObject::imageFeed() const
     QString text;
     if (mArticleFormatOption == ArticleFormatter::ShowIcon && mArticle.feed() && !mArticle.feed()->image().isNull()) {
         const Feed *feed = mArticle.feed();
-        const QString file = Utils::fileNameForUrl(feed->xmlUrl());
-        QUrl u(mImageDir);
-        u = u.adjusted(QUrl::RemoveFilename);
-        u.setPath(u.path() + file);
-        text += QStringLiteral("<a href=\"%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(feed->htmlUrl(), u.url());
+        text += GrantleeUtil::imageFeed(feed, mImageDir);
     }
     return text;
 }

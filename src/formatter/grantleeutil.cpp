@@ -1,5 +1,5 @@
 /*
-   Copyright (C) 2016-2019 Montel Laurent <montel@kde.org>
+   Copyright (C) 2019 Montel Laurent <montel@kde.org>
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public
@@ -17,17 +17,15 @@
    Boston, MA 02110-1301, USA.
 */
 
-#ifndef CRASHWIDGETTEST_H
-#define CRASHWIDGETTEST_H
+#include "grantleeutil.h"
+#include "feed.h"
+#include "utils.h"
 
-#include <QObject>
-
-class CrashWidgetTest : public QObject
+QString Akregator::GrantleeUtil::imageFeed(const Feed *feed, const QUrl &imageDir)
 {
-    Q_OBJECT
-public:
-    explicit CrashWidgetTest(QObject *parent = nullptr);
-    ~CrashWidgetTest();
-};
-
-#endif // CRASHWIDGETTEST_H
+    QString file = Akregator::Utils::fileNameForUrl(feed->xmlUrl());
+    QUrl u(imageDir);
+    u = u.adjusted(QUrl::RemoveFilename);
+    u.setPath(u.path() + file);
+    return QStringLiteral("<a href=\"%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(feed->htmlUrl(), u.url());
+}
