@@ -102,6 +102,7 @@ public:
     QString m_htmlUrl;
     QString m_description;
     QString m_comment;
+    QString m_faviconUrl;
 
     /** list of feed articles */
     QHash<QString, Article> articles;
@@ -166,10 +167,12 @@ Akregator::Feed *Feed::fromOPML(const QDomElement &e, Backend::Storage *storage)
     const bool useNotification = e.attribute(QStringLiteral("useNotification")) == QLatin1String("true");
     const bool loadLinkedWebsite = e.attribute(QStringLiteral("loadLinkedWebsite")) == QLatin1String("true");
     const QString comment = e.attribute(QStringLiteral("comment"));
+    const QString faviconUrl = e.attribute(QStringLiteral("faviconUrl"));
     const uint id = e.attribute(QStringLiteral("id")).toUInt();
 
     Feed *const feed = new Feed(storage);
     feed->setTitle(title);
+    feed->setFaviconUrl(faviconUrl);
     feed->setXmlUrl(xmlUrl);
     feed->setCustomFetchIntervalEnabled(useCustomFetchInterval);
     feed->setHtmlUrl(htmlUrl);
@@ -347,7 +350,7 @@ void Feed::loadFavicon(const QString &url, bool downloadFavicon)
     job->setFeedIconUrl(url);
     job->setDownloadFavicon(downloadFavicon);
     connect(job, &DownloadFeedIconJob::result, this, [job, this](const QString &result) {
-        setFavicon(QIcon(result));
+        setFaviconUrl(result);
     });
     if (!job->start()) {
         qCWarning(AKREGATOR_LOG) << "Impossible to start DownloadFeedIconJob for url: " << url;
@@ -467,6 +470,17 @@ void Feed::setHtmlUrl(const QString &s)
     d->m_htmlUrl = s;
 }
 
+QString Feed::faviconUrl() const
+{
+    return d->m_faviconUrl;
+}
+
+void Feed::setFaviconUrl(const QString &url)
+{
+    d->m_faviconUrl = url;
+    setFavicon(QIcon(url));
+}
+
 QString Feed::description() const
 {
     return d->m_description;
@@ -516,6 +530,7 @@ QDomElement Feed::toOPML(QDomElement parent, QDomDocument document) const
     if (d->m_loadLinkedWebsite) {
         el.setAttribute(QStringLiteral("loadLinkedWebsite"), QStringLiteral("true"));
     }
+    el.setAttribute(QStringLiteral("faviconUrl"), d->m_faviconUrl);
     el.setAttribute(QStringLiteral("maxArticleNumber"), d->m_maxArticleNumber);
     el.setAttribute(QStringLiteral("type"), QStringLiteral("rss"));   // despite some additional fields, it is still "rss" OPML
     el.setAttribute(QStringLiteral("version"), QStringLiteral("RSS"));
@@ -559,7 +574,11 @@ void Feed::slotAddToFetchQueue(FetchQueue *queue, bool intervalFetchOnly)
 
 void Feed::slotAddFeedIconListener()
 {
-    loadFavicon(d->m_xmlUrl, true);
+    if (d->m_faviconUrl.isEmpty()) {
+        loadFavicon(d->m_xmlUrl, true);
+    } else {
+        loadFavicon(d->m_faviconUrl, false);
+    }
 }
 
 void Feed::appendArticles(const Syndication::FeedPtr &feed)
