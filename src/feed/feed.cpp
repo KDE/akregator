@@ -574,7 +574,6 @@ void Feed::slotAddToFetchQueue(FetchQueue *queue, bool intervalFetchOnly)
 
 void Feed::slotAddFeedIconListener()
 {
-    qDebug()<< " void Feed::slotAddFeedIconListener()"<<d->m_xmlUrl;
     if (d->m_faviconUrl.isEmpty()) {
         loadFavicon(d->m_xmlUrl, true);
     } else {
