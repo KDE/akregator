@@ -47,6 +47,7 @@ set(akregator_articleviewer_ng_webengine_SRCS
 
 set(akregator_job_SRCS
     job/downloadarticlejob.cpp
+    job/downloadfeediconjob.cpp
     )
 
 set(akregatorprivate_formatter_SRCS
@@ -55,6 +56,7 @@ set(akregatorprivate_formatter_SRCS
     formatter/defaultcombinedviewformatter.cpp
     formatter/grantleeviewformatter.cpp
     formatter/articlegrantleeobject.cpp
+    formatter/grantleeutil.cpp
     )
 
 set(akregatorprivate_frame_SRCS
@@ -79,6 +81,7 @@ set(akregatorprivate_LIB_SRCS
     ${akregator_common_SRCS}
     ${akregatorprivate_formatter_SRCS}
     ${akregatorprivate_urlhandlerwebengine_SRCS}
+    ${akregator_job_SRCS}
     articleviewerwidget.cpp
     aboutdata.cpp
     trayicon.cpp
@@ -171,7 +174,6 @@ set(akregatorpart_PART_SRCS
     ${akregatorpart_command_SRCS}
     ${akregator_utils_SRCS}
     ${akregator_common_SRCS}
-    ${akregator_job_SRCS}
     abstractselectioncontroller.cpp
     articlematcher.cpp
     articlemodel.cpp
@@ -216,6 +218,7 @@ target_link_libraries(akregatorpart
     KF5::Notifications
     Qt5::WebEngineWidgets
     KF5::WebEngineViewer
+    KF5::KIOGui
     )
 
 install(TARGETS akregatorpart DESTINATION ${KDE_INSTALL_PLUGINDIR})
@@ -231,4 +234,5 @@ install(FILES org.kde.akregator.part.xml DESTINATION ${KDE_INSTALL_DBUSINTERFACE
 install(FILES data/akregator.notifyrc DESTINATION ${KDE_INSTALL_KNOTIFY5RCDIR} )
 
 add_subdirectory(formatter/html)
-#add_subdirectory(crashwidget/autotests)
+add_subdirectory(job/autotests)
+

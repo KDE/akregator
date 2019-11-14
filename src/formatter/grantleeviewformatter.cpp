@@ -21,6 +21,7 @@
 #include "articlegrantleeobject.h"
 #include "utils.h"
 #include "akregatorconfig.h"
+#include "grantleeutil.h"
 #include <KLocalizedString>
 
 #include <grantlee/engine.h>
@@ -81,11 +82,7 @@ QString GrantleeViewFormatter::formatFeed(Akregator::Feed *feed)
 
     QString feedImage;
     if (!feed->image().isNull()) { // image
-        QString file = Utils::fileNameForUrl(feed->xmlUrl());
-        QUrl u(mImageDir);
-        u = u.adjusted(QUrl::RemoveFilename);
-        u.setPath(u.path() + file);
-        feedImage = QStringLiteral("<a href=\"%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(feed->htmlUrl(), u.url());
+        feedImage = GrantleeUtil::imageFeed(feed, mImageDir);
     } else {
         feedImage = QStringLiteral("<div class=\"body\">");
     }
