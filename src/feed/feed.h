@@ -155,6 +155,9 @@ public:
     /** sets the URL of the HTML page of this feed */
     void setHtmlUrl(const QString &s);
 
+    Q_REQUIRED_RESULT QString faviconUrl() const;
+    void setFaviconUrl(const QString &url);
+
     /** returns the description of this feed */
     QString description() const;
 
