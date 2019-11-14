@@ -247,7 +247,7 @@ private:
 
 private:
     void setFavicon(const QIcon &icon);
-    void loadFavicon(const QUrl &url);
+    void loadFavicon(const QString &url);
     QVector<Article> articles() override;
 
     /** loads articles from archive **/
