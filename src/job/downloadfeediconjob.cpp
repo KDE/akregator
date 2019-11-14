@@ -40,17 +40,16 @@ bool DownloadFeedIconJob::start()
         return false;
     }
 
-    if (mDownloadFavicon) {
-        KIO::FavIconRequestJob *job = new KIO::FavIconRequestJob(QUrl(mFeedIconUrl));
-        connect(job, &KIO::FavIconRequestJob::result, this, [job, this](KJob *) {
-            if (!job->error()) {
-                Q_EMIT result(job->iconFile());
-            }
-            deleteLater();
-        });
-    } else {
-        //Direct download icon from feed.
+    KIO::FavIconRequestJob *job = new KIO::FavIconRequestJob(QUrl(mFeedIconUrl));
+    if (!mDownloadFavicon) {
+        job->setIconUrl(QUrl(mFeedIconUrl));
     }
+    connect(job, &KIO::FavIconRequestJob::result, this, [job, this](KJob *) {
+        if (!job->error()) {
+            Q_EMIT result(job->iconFile());
+        }
+        deleteLater();
+    });
     return true;
 }
 
