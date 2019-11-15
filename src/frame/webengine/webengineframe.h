@@ -37,7 +37,7 @@ public:
     void loadConfig(const KConfigGroup &, const QString &) override;
     bool saveConfig(KConfigGroup &, const QString &) override;
 
-    qreal zoomFactor() const override;
+    Q_REQUIRED_RESULT qreal zoomFactor() const override;
 
 public Q_SLOTS:
     void slotReload() override;

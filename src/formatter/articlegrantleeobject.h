@@ -53,25 +53,25 @@ public:
 
     Akregator::ArticleGrantleeObject::ArticleStatus articleStatus() const;
 
-    QString strippedTitle() const;
-    QString author() const;
-    QString content() const;
-    QString articleLinkUrl() const;
-    QString articlePubDate() const;
-    QString enclosure() const;
-    QString articleCompleteStoryLink() const;
-    QString imageFeed() const;
+    Q_REQUIRED_RESULT QString strippedTitle() const;
+    Q_REQUIRED_RESULT QString author() const;
+    Q_REQUIRED_RESULT QString content() const;
+    Q_REQUIRED_RESULT QString articleLinkUrl() const;
+    Q_REQUIRED_RESULT QString articlePubDate() const;
+    Q_REQUIRED_RESULT QString enclosure() const;
+    Q_REQUIRED_RESULT QString articleCompleteStoryLink() const;
+    Q_REQUIRED_RESULT QString imageFeed() const;
 
     //Action
-    QString deleteAction() const;
-    QString markAsReadAction() const;
-    QString markAsUnreadAction() const;
-    QString markAsImportantAction() const;
-    QString sendUrlAction() const;
-    QString sendFileAction() const;
+    Q_REQUIRED_RESULT QString deleteAction() const;
+    Q_REQUIRED_RESULT QString markAsReadAction() const;
+    Q_REQUIRED_RESULT QString markAsUnreadAction() const;
+    Q_REQUIRED_RESULT QString markAsImportantAction() const;
+    Q_REQUIRED_RESULT QString sendUrlAction() const;
+    Q_REQUIRED_RESULT QString sendFileAction() const;
 
-    bool important() const;
-    QString actionToken() const;
+    Q_REQUIRED_RESULT bool important() const;
+    Q_REQUIRED_RESULT QString actionToken() const;
 
 private:
     Article mArticle;

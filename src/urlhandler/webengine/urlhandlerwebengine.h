@@ -72,9 +72,9 @@ public:
     {
     }
 
-    bool handleClick(const QUrl &, ArticleViewerWebEngine *) const override;
-    bool handleContextMenuRequest(const QUrl &, const QPoint &, ArticleViewerWebEngine *) const override;
-    QString statusBarMessage(const QUrl &, ArticleViewerWebEngine *) const override;
+    Q_REQUIRED_RESULT bool handleClick(const QUrl &, ArticleViewerWebEngine *) const override;
+    Q_REQUIRED_RESULT bool handleContextMenuRequest(const QUrl &, const QPoint &, ArticleViewerWebEngine *) const override;
+    Q_REQUIRED_RESULT QString statusBarMessage(const QUrl &, ArticleViewerWebEngine *) const override;
 };
 
 class MailToURLHandlerWebEngine : public URLHandlerWebEngine
@@ -88,9 +88,9 @@ public:
     {
     }
 
-    bool handleClick(const QUrl &, ArticleViewerWebEngine *) const override;
-    bool handleContextMenuRequest(const QUrl &, const QPoint &, ArticleViewerWebEngine *) const override;
-    QString statusBarMessage(const QUrl &, ArticleViewerWebEngine *) const override;
+    Q_REQUIRED_RESULT bool handleClick(const QUrl &, ArticleViewerWebEngine *) const override;
+    Q_REQUIRED_RESULT bool handleContextMenuRequest(const QUrl &, const QPoint &, ArticleViewerWebEngine *) const override;
+    Q_REQUIRED_RESULT QString statusBarMessage(const QUrl &, ArticleViewerWebEngine *) const override;
 };
 
 class ActionURLHandlerWebEngine : public URLHandlerWebEngine
@@ -104,9 +104,9 @@ public:
     {
     }
 
-    bool handleClick(const QUrl &, ArticleViewerWebEngine *) const override;
-    bool handleContextMenuRequest(const QUrl &, const QPoint &, ArticleViewerWebEngine *) const override;
-    QString statusBarMessage(const QUrl &, ArticleViewerWebEngine *) const override;
+    Q_REQUIRED_RESULT bool handleClick(const QUrl &, ArticleViewerWebEngine *) const override;
+    Q_REQUIRED_RESULT bool handleContextMenuRequest(const QUrl &, const QPoint &, ArticleViewerWebEngine *) const override;
+    Q_REQUIRED_RESULT QString statusBarMessage(const QUrl &, ArticleViewerWebEngine *) const override;
 };
 }
 

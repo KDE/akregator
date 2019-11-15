@@ -90,7 +90,7 @@ public:
     /**
      * @return the displayed Feed List in OPML format
      */
-    QDomDocument feedListToOPML();
+    Q_REQUIRED_RESULT QDomDocument feedListToOPML();
 
     void setFeedList(const QSharedPointer<FeedList> &feedList);
 

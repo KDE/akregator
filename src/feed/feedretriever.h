@@ -34,11 +34,11 @@ class FeedRetriever : public Syndication::DataRetriever
 {
     Q_OBJECT
 public:
-    explicit FeedRetriever();
+    FeedRetriever();
 
     void retrieveData(const QUrl &url) override;
     void abort() override;
-    int errorCode() const override;
+    Q_REQUIRED_RESULT int errorCode() const override;
 
 private Q_SLOTS:
     void getFinished(KJob *job);

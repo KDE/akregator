@@ -38,7 +38,7 @@ public:
     ~SubscriptionListDelegate() override;
 
 protected:
-    QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const override;
+    Q_REQUIRED_RESULT QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const override;
 
     void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
 
