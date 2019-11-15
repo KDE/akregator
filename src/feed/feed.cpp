@@ -165,11 +165,13 @@ Akregator::Feed *Feed::fromOPML(const QDomElement &e, Backend::Storage *storage)
     const bool loadLinkedWebsite = e.attribute(QStringLiteral("loadLinkedWebsite")) == QLatin1String("true");
     const QString comment = e.attribute(QStringLiteral("comment"));
     const QString faviconUrl = e.attribute(QStringLiteral("faviconUrl"));
+    const QString logoUrl = e.attribute(QStringLiteral("logoUrl"));
     const uint id = e.attribute(QStringLiteral("id")).toUInt();
 
     Feed *const feed = new Feed(storage);
     feed->setTitle(title);
     feed->setFaviconUrl(faviconUrl);
+    feed->setLogoUrl(logoUrl);
     feed->setXmlUrl(xmlUrl);
     feed->setCustomFetchIntervalEnabled(useCustomFetchInterval);
     feed->setHtmlUrl(htmlUrl);
@@ -532,7 +534,12 @@ QDomElement Feed::toOPML(QDomElement parent, QDomDocument document) const
     if (d->m_loadLinkedWebsite) {
         el.setAttribute(QStringLiteral("loadLinkedWebsite"), QStringLiteral("true"));
     }
-    el.setAttribute(QStringLiteral("faviconUrl"), d->m_faviconUrl);
+    if (!d->m_faviconUrl.isEmpty()) {
+        el.setAttribute(QStringLiteral("faviconUrl"), d->m_faviconUrl);
+    }
+    if (!d->m_logoUrl.isEmpty()) {
+        el.setAttribute(QStringLiteral("logoUrl"), d->m_logoUrl);
+    }
     el.setAttribute(QStringLiteral("maxArticleNumber"), d->m_maxArticleNumber);
     el.setAttribute(QStringLiteral("type"), QStringLiteral("rss"));   // despite some additional fields, it is still "rss" OPML
     el.setAttribute(QStringLiteral("version"), QStringLiteral("RSS"));
