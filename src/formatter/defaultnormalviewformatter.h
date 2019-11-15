@@ -33,9 +33,9 @@ public:
     explicit DefaultNormalViewFormatter(const QString &grantleeDirectory, QPaintDevice *device = nullptr);
     ~DefaultNormalViewFormatter() override;
 
-    QString formatArticles(const QVector<Article> &article, IconOption option) const override;
+    Q_REQUIRED_RESULT QString formatArticles(const QVector<Article> &article, IconOption option) const override;
 
-    QString formatSummary(TreeNode *node) const override;
+    Q_REQUIRED_RESULT QString formatSummary(TreeNode *node) const override;
 
 private:
     DefaultNormalViewFormatter();

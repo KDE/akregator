@@ -59,11 +59,11 @@ public:
     explicit FeedListManagementImpl(const QSharedPointer<FeedList> &list = QSharedPointer<FeedList>());
     void setFeedList(const QSharedPointer<FeedList> &list);
 
-    QStringList categories() const override;
-    QStringList feeds(const QString &catId) const override;
+    Q_REQUIRED_RESULT QStringList categories() const override;
+    Q_REQUIRED_RESULT QStringList feeds(const QString &catId) const override;
     void addFeed(const QString &url, const QString &catId) override;
     void removeFeed(const QString &url, const QString &catId) override;
-    QString getCategoryName(const QString &catId) const override;
+    Q_REQUIRED_RESULT QString getCategoryName(const QString &catId) const override;
 
 private:
     QSharedPointer<FeedList> m_feedList;
@@ -85,16 +85,16 @@ public:
     const Folder *allFeedsFolder() const;
     Folder *allFeedsFolder();
 
-    bool isEmpty() const;
+    Q_REQUIRED_RESULT bool isEmpty() const;
 
     const TreeNode *findByID(int id) const;
     TreeNode *findByID(int id);
 
-    QList<const TreeNode *> findByTitle(const QString &title) const;
-    QList<TreeNode *> findByTitle(const QString &title);
+    Q_REQUIRED_RESULT QList<const TreeNode *> findByTitle(const QString &title) const;
+    Q_REQUIRED_RESULT QList<TreeNode *> findByTitle(const QString &title);
 
     /** returns the title of the feed list (as used in the OPML document) */
-    QString title() const;
+    Q_REQUIRED_RESULT QString title() const;
 
     /** sets the title of the feed list */
     void setTitle(const QString &name);
@@ -121,10 +121,10 @@ public:
         @param doc the OPML document to parse
         @return whether parsing was successful or not (TODO: make errors more detailed)
     */
-    bool readFromOpml(const QDomDocument &doc);
+    Q_REQUIRED_RESULT bool readFromOpml(const QDomDocument &doc);
 
     /** exports the feed list as OPML. The root node ("All Feeds") is ignored! */
-    QDomDocument toOpml() const;
+    Q_REQUIRED_RESULT QDomDocument toOpml() const;
 
     /** returns a feed object for a given feed URL. If the feed list does not contain a feed with @c url, NULL is returned. If it contains the same feed multiple times, any of the Feed objects is returned. */
     const Feed *findByURL(const QString &feedURL) const;
@@ -132,7 +132,7 @@ public:
 
     const Article findArticle(const QString &feedURL, const QString &guid) const;
 
-    int unread() const;
+    Q_REQUIRED_RESULT int unread() const;
 
     void addToFetchQueue(FetchQueue *queue, bool intervalOnly = false);
     KJob *createMarkAsReadJob();

@@ -43,7 +43,7 @@ public:
     ~FetchQueue();
 
     /** returns true when no feeds are neither fetching nor queued */
-    bool isEmpty() const;
+    Q_REQUIRED_RESULT bool isEmpty() const;
 
     /** adds a feed to the queue */
     void addFeed(Feed *f);

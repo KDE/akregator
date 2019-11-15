@@ -25,7 +25,7 @@ namespace Akregator {
 class Feed;
 namespace GrantleeUtil
 {
-QString imageFeed(const Feed *feed);
+Q_REQUIRED_RESULT QString imageFeed(const Feed *feed);
 }
 }
 

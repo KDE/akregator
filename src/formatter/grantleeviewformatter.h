@@ -32,9 +32,9 @@ public:
     explicit GrantleeViewFormatter(const QString &htmlFileName, const QString &themePath, int deviceDpiY);
     ~GrantleeViewFormatter();
 
-    QString formatArticles(const QVector<Article> &article, ArticleFormatter::IconOption icon);
-    QString formatFolder(Akregator::Folder *node);
-    QString formatFeed(Akregator::Feed *feed);
+    Q_REQUIRED_RESULT QString formatArticles(const QVector<Article> &article, ArticleFormatter::IconOption icon);
+    Q_REQUIRED_RESULT QString formatFolder(Akregator::Folder *node);
+    Q_REQUIRED_RESULT QString formatFeed(Akregator::Feed *feed);
 private:
     void addStandardObject(QVariantHash &grantleeObject);
     int pointsToPixel(int pointSize) const;

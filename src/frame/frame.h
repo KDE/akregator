@@ -68,15 +68,15 @@ public:
      */
     virtual QUrl url() const = 0;
 
-    QString title() const;
-    QString caption() const;
-    State state() const;
-    int progress() const;
-    QString statusText() const;
-    QIcon icon() const;
+    Q_REQUIRED_RESULT QString title() const;
+    Q_REQUIRED_RESULT QString caption() const;
+    Q_REQUIRED_RESULT State state() const;
+    Q_REQUIRED_RESULT int progress() const;
+    Q_REQUIRED_RESULT QString statusText() const;
+    Q_REQUIRED_RESULT QIcon icon() const;
     void setIcon(const QIcon &icon);
 
-    int id() const;
+    Q_REQUIRED_RESULT int id() const;
     /**
      * returns whether the embedded part is loading a website. If so, it can be stopped using slotStop() */
     virtual bool isLoading() const;

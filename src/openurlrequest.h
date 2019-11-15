@@ -53,24 +53,24 @@ public:
     int frameId() const;
     void setFrameId(int frameId);
 
-    QUrl url() const;
+    Q_REQUIRED_RESULT QUrl url() const;
     void setUrl(const QUrl &url);
 
-    KParts::OpenUrlArguments args() const;
+    Q_REQUIRED_RESULT KParts::OpenUrlArguments args() const;
     void setArgs(const KParts::OpenUrlArguments &args);
 
-    KParts::BrowserArguments browserArgs() const;
+    Q_REQUIRED_RESULT KParts::BrowserArguments browserArgs() const;
     void setBrowserArgs(const KParts::BrowserArguments &args);
 
-    Options options() const;
+    Q_REQUIRED_RESULT Options options() const;
     void setOptions(Options options);
 
-    bool openInBackground() const;
+    Q_REQUIRED_RESULT bool openInBackground() const;
     void setOpenInBackground(bool background);
 
-    QString debugInfo() const;
+    Q_REQUIRED_RESULT QString debugInfo() const;
 
-    bool wasHandled() const;
+    Q_REQUIRED_RESULT bool wasHandled() const;
     void setWasHandled(bool handled);
 
 private:

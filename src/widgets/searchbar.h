@@ -53,7 +53,7 @@ public:
     Q_REQUIRED_RESULT int delay() const;
 
     void setFocusSearchLine();
-    std::vector<QSharedPointer<const Filters::AbstractMatcher> > matchers() const;
+    Q_REQUIRED_RESULT std::vector<QSharedPointer<const Filters::AbstractMatcher> > matchers() const;
     void updateQuickSearchLineText(const QString &searchLine);
 
 Q_SIGNALS:

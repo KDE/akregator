@@ -33,7 +33,7 @@ public:
     explicit MainFrame(QWidget *parent, QWidget *widget);
     ~MainFrame() override;
 
-    QUrl url() const override;
+    Q_REQUIRED_RESULT QUrl url() const override;
 
     bool openUrl(const OpenUrlRequest &) override
     {
@@ -42,7 +42,7 @@ public:
 
     void setArticleViewer(Akregator::ArticleViewerWidget *articleViewer);
 
-    qreal zoomFactor() const override;
+    Q_REQUIRED_RESULT qreal zoomFactor() const override;
 
 public Q_SLOTS:
     void slotCopyLinkAsInFrame(int frameId);
