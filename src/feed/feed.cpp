@@ -119,10 +119,7 @@ public:
     QPixmap m_imagePixmap;
     QIcon m_favicon;
     mutable int m_totalCount;
-    void setTotalCountDirty() const
-    {
-        m_totalCount = -1;
-    }
+    void setTotalCountDirty() const;
 };
 
 QString Feed::archiveModeToString(ArchiveMode mode)
@@ -331,8 +328,13 @@ Feed::Private::Private(Backend::Storage *storage_, Akregator::Feed *qq)
     Q_ASSERT(m_storage);
 }
 
+void Feed::Private::setTotalCountDirty() const
+{
+    m_totalCount = -1;
+}
+
 Feed::Feed(Backend::Storage *storage) : TreeNode()
-    , d(new Private(storage, this))
+  , d(new Private(storage, this))
 {
 }
 
@@ -718,11 +720,6 @@ void Feed::tryFetch()
                                                                       Syndication::FeedPtr,
                                                                       Syndication::ErrorCode)));
     d->m_loader->loadFrom(QUrl(d->m_xmlUrl), new FeedRetriever());
-}
-
-void Feed::slotImageFetched(const QPixmap &image)
-{
-    setImage(image);
 }
 
 void Feed::fetchCompleted(Syndication::Loader *l, Syndication::FeedPtr doc, Syndication::ErrorCode status)

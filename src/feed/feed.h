@@ -297,7 +297,6 @@ private:
 private Q_SLOTS:
 
     void fetchCompleted(Syndication::Loader *loader, Syndication::FeedPtr doc, Syndication::ErrorCode errorCode);
-    void slotImageFetched(const QPixmap &image);
 
 private:
 
