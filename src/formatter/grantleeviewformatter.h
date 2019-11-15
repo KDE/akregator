@@ -29,7 +29,7 @@ class Folder;
 class GrantleeViewFormatter : public GrantleeTheme::GenericFormatter
 {
 public:
-    explicit GrantleeViewFormatter(const QString &htmlFileName, const QString &themePath, const QUrl &imageDir, int deviceDpiY);
+    explicit GrantleeViewFormatter(const QString &htmlFileName, const QString &themePath, int deviceDpiY);
     ~GrantleeViewFormatter();
 
     QString formatArticles(const QVector<Article> &article, ArticleFormatter::IconOption icon);
@@ -38,7 +38,6 @@ public:
 private:
     void addStandardObject(QVariantHash &grantleeObject);
     int pointsToPixel(int pointSize) const;
-    QUrl mImageDir;
     QString mHtmlArticleFileName;
     QString mDirectionString;
     QString mGrantleeThemePath;

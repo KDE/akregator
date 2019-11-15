@@ -67,7 +67,6 @@ using namespace Akregator::Filters;
 
 ArticleViewerWidget::ArticleViewerWidget(const QString &grantleeDirectory, KActionCollection *ac, QWidget *parent)
     : QWidget(parent)
-    , m_imageDir(QUrl::fromLocalFile(QString(QStandardPaths::writableLocation(QStandardPaths::CacheLocation) + QLatin1String("/akregator/Media/"))))
     , m_node(nullptr)
     , m_viewMode(NormalView)
     , m_articleViewerWidgetNg(new Akregator::ArticleViewerWebEngineWidgetNg(ac, this))
@@ -88,7 +87,7 @@ ArticleViewerWidget::~ArticleViewerWidget()
 QSharedPointer<ArticleFormatter> ArticleViewerWidget::normalViewFormatter()
 {
     if (!m_normalViewFormatter.data()) {
-        m_normalViewFormatter = QSharedPointer<ArticleFormatter>(new DefaultNormalViewFormatter(m_grantleeDirectory, m_imageDir, m_articleViewerWidgetNg->articleViewerNg()));
+        m_normalViewFormatter = QSharedPointer<ArticleFormatter>(new DefaultNormalViewFormatter(m_grantleeDirectory, m_articleViewerWidgetNg->articleViewerNg()));
     }
     return m_normalViewFormatter;
 }
@@ -96,7 +95,7 @@ QSharedPointer<ArticleFormatter> ArticleViewerWidget::normalViewFormatter()
 QSharedPointer<ArticleFormatter> ArticleViewerWidget::combinedViewFormatter()
 {
     if (!m_combinedViewFormatter.data()) {
-        m_combinedViewFormatter = QSharedPointer<ArticleFormatter>(new DefaultCombinedViewFormatter(m_grantleeDirectory, m_imageDir, m_articleViewerWidgetNg->articleViewerNg()));
+        m_combinedViewFormatter = QSharedPointer<ArticleFormatter>(new DefaultCombinedViewFormatter(m_grantleeDirectory, m_articleViewerWidgetNg->articleViewerNg()));
     }
     return m_combinedViewFormatter;
 }

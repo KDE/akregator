@@ -116,13 +116,10 @@ public:
     QVector<Article> m_removedArticlesNotify;
     QVector<Article> m_updatedArticlesNotify;
 
-    QPixmap m_imagePixmap;
+    QString m_logoUrl;
     QIcon m_favicon;
     mutable int m_totalCount;
-    void setTotalCountDirty() const
-    {
-        m_totalCount = -1;
-    }
+    void setTotalCountDirty() const;
 };
 
 QString Feed::archiveModeToString(ArchiveMode mode)
@@ -168,11 +165,13 @@ Akregator::Feed *Feed::fromOPML(const QDomElement &e, Backend::Storage *storage)
     const bool loadLinkedWebsite = e.attribute(QStringLiteral("loadLinkedWebsite")) == QLatin1String("true");
     const QString comment = e.attribute(QStringLiteral("comment"));
     const QString faviconUrl = e.attribute(QStringLiteral("faviconUrl"));
+    const QString logoUrl = e.attribute(QStringLiteral("logoUrl"));
     const uint id = e.attribute(QStringLiteral("id")).toUInt();
 
     Feed *const feed = new Feed(storage);
     feed->setTitle(title);
     feed->setFaviconUrl(faviconUrl);
+    feed->setLogoUrl(logoUrl);
     feed->setXmlUrl(xmlUrl);
     feed->setCustomFetchIntervalEnabled(useCustomFetchInterval);
     feed->setHtmlUrl(htmlUrl);
@@ -331,8 +330,13 @@ Feed::Private::Private(Backend::Storage *storage_, Akregator::Feed *qq)
     Q_ASSERT(m_storage);
 }
 
+void Feed::Private::setTotalCountDirty() const
+{
+    m_totalCount = -1;
+}
+
 Feed::Feed(Backend::Storage *storage) : TreeNode()
-    , d(new Private(storage, this))
+  , d(new Private(storage, this))
 {
 }
 
@@ -442,9 +446,9 @@ bool Feed::loadLinkedWebsite() const
     return d->m_loadLinkedWebsite;
 }
 
-QPixmap Feed::image() const
+QString Feed::logoUrl() const
 {
-    return d->m_imagePixmap;
+    return d->m_logoUrl;
 }
 
 QString Feed::xmlUrl() const
@@ -530,7 +534,12 @@ QDomElement Feed::toOPML(QDomElement parent, QDomDocument document) const
     if (d->m_loadLinkedWebsite) {
         el.setAttribute(QStringLiteral("loadLinkedWebsite"), QStringLiteral("true"));
     }
-    el.setAttribute(QStringLiteral("faviconUrl"), d->m_faviconUrl);
+    if (!d->m_faviconUrl.isEmpty()) {
+        el.setAttribute(QStringLiteral("faviconUrl"), d->m_faviconUrl);
+    }
+    if (!d->m_logoUrl.isEmpty()) {
+        el.setAttribute(QStringLiteral("logoUrl"), d->m_logoUrl);
+    }
     el.setAttribute(QStringLiteral("maxArticleNumber"), d->m_maxArticleNumber);
     el.setAttribute(QStringLiteral("type"), QStringLiteral("rss"));   // despite some additional fields, it is still "rss" OPML
     el.setAttribute(QStringLiteral("version"), QStringLiteral("RSS"));
@@ -720,11 +729,6 @@ void Feed::tryFetch()
     d->m_loader->loadFrom(QUrl(d->m_xmlUrl), new FeedRetriever());
 }
 
-void Feed::slotImageFetched(const QPixmap &image)
-{
-    setImage(image);
-}
-
 void Feed::fetchCompleted(Syndication::Loader *l, Syndication::FeedPtr doc, Syndication::ErrorCode status)
 {
     // Note that loader instances delete themselves
@@ -761,9 +765,8 @@ void Feed::fetchCompleted(Syndication::Loader *l, Syndication::FeedPtr doc, Synd
 #endif
     d->m_fetchErrorCode = Syndication::Success;
 
-    if (d->m_imagePixmap.isNull()) {
-        const QString imageFileName = QStandardPaths::writableLocation(QStandardPaths::CacheLocation) + QLatin1String("/akregator/Media/") + Utils::fileNameForUrl(d->m_xmlUrl) + QLatin1String(".png");
-        d->m_imagePixmap = QPixmap(imageFileName, "PNG");
+    if (!doc->image().isNull()) {
+        d->m_logoUrl = doc->image()->url();
     }
 
     if (title().isEmpty()) {
@@ -824,16 +827,9 @@ void Feed::setFavicon(const QIcon &icon)
     nodeModified();
 }
 
-void Feed::setImage(const QPixmap &p)
+void Feed::setLogoUrl(const QString &url)
 {
-    if (p.isNull()) {
-        return;
-    }
-    d->m_imagePixmap = p;
-    const QString filename = QStandardPaths::writableLocation(QStandardPaths::CacheLocation) + QLatin1String("/akregator/Media/") + Utils::fileNameForUrl(d->m_xmlUrl) + QLatin1String(".png");
-    QFileInfo fileInfo(filename);
-    QDir().mkpath(fileInfo.absolutePath());
-    d->m_imagePixmap.save(filename, "PNG");
+    d->m_logoUrl = url;
     nodeModified();
 }
 

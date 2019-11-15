@@ -139,11 +139,11 @@ public:
 
     bool loadLinkedWebsite() const;
 
-    /** returns the feed image */
-    QPixmap image() const;
+    /** returns the feed logo */
+    QString logoUrl() const;
 
     /** sets the feed image */
-    void setImage(const QPixmap &p);
+    void setLogoUrl(const QString &url);
 
     /** returns the url of the actual feed source (rss/rdf/atom file) */
     QString xmlUrl() const;
@@ -297,7 +297,6 @@ private:
 private Q_SLOTS:
 
     void fetchCompleted(Syndication::Loader *loader, Syndication::FeedPtr doc, Syndication::ErrorCode errorCode);
-    void slotImageFetched(const QPixmap &image);
 
 private:
 

@@ -30,7 +30,7 @@ class AKREGATOR_EXPORT DefaultNormalViewFormatter : public ArticleFormatter
 {
 public:
 
-    explicit DefaultNormalViewFormatter(const QString &grantleeDirectory, const QUrl &imageDir, QPaintDevice *device = nullptr);
+    explicit DefaultNormalViewFormatter(const QString &grantleeDirectory, QPaintDevice *device = nullptr);
     ~DefaultNormalViewFormatter() override;
 
     QString formatArticles(const QVector<Article> &article, IconOption option) const override;
@@ -39,8 +39,6 @@ public:
 
 private:
     DefaultNormalViewFormatter();
-
-    QUrl m_imageDir;
     QString m_DefaultThemePath;
     class SummaryVisitor;
     SummaryVisitor *m_summaryVisitor = nullptr;
