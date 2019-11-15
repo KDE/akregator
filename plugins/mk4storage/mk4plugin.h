@@ -37,14 +37,12 @@ class MK4Plugin : public Akregator::Plugin
 {
     Q_OBJECT
 public:
-    MK4Plugin(QObject *parent, const QVariantList &params);
+    explicit MK4Plugin(QObject *parent, const QVariantList &params);
     ~MK4Plugin();
 
 private:
     void doInitialize() override;
-
-private:
-    StorageFactory *m_factory;
+    StorageFactory *m_factory = nullptr;
 };
 } // namespace Backend
 } // namespace Akregator

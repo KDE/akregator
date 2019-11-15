@@ -42,7 +42,7 @@ class SettingsAdvanced : public QWidget, public Ui::SettingsAdvancedBase
     Q_OBJECT
 
 public:
-    explicit SettingsAdvanced(QWidget *parent = nullptr, const char *name = nullptr);
+    explicit SettingsAdvanced(QWidget *parent = nullptr);
 
     /** returns the key of the currently selected factory */
     QString selectedFactory() const;

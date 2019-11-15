@@ -31,7 +31,7 @@ class KCMAkregatorPluginsConfig : public KCModule
 {
     Q_OBJECT
 public:
-    KCMAkregatorPluginsConfig(QWidget *parent, const QVariantList &args);
+    explicit KCMAkregatorPluginsConfig(QWidget *parent, const QVariantList &args);
     void load() override;
     void save() override;
     void defaults() override;

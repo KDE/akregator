@@ -36,9 +36,8 @@
 #include <cassert>
 
 using namespace Akregator;
-SettingsAdvanced::SettingsAdvanced(QWidget *parent, const char *name) : QWidget(parent)
+SettingsAdvanced::SettingsAdvanced(QWidget *parent) : QWidget(parent)
 {
-    setObjectName(QLatin1String(name));
     setupUi(this);
 
     const QStringList backends = Backend::StorageFactoryRegistry::self()->list();

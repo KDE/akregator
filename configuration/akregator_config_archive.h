@@ -37,7 +37,7 @@ class KCMAkregatorArchiveConfig : public KCModule
     Q_OBJECT
 
 public:
-    KCMAkregatorArchiveConfig(QWidget *parent, const QVariantList &args);
+    explicit KCMAkregatorArchiveConfig(QWidget *parent, const QVariantList &args);
 
     void setArchiveMode(int mode);
     int archiveMode() const;

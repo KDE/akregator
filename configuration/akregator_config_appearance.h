@@ -36,7 +36,7 @@ class KCMAkregatorAppearanceConfig : public KCModule
 {
     Q_OBJECT
 public:
-    KCMAkregatorAppearanceConfig(QWidget *parent, const QVariantList &args);
+    explicit KCMAkregatorAppearanceConfig(QWidget *parent, const QVariantList &args);
 
 private:
     QWidget *m_widget = nullptr;

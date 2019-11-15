@@ -829,8 +829,10 @@ void Feed::setFavicon(const QIcon &icon)
 
 void Feed::setLogoUrl(const QString &url)
 {
-    d->m_logoUrl = url;
-    nodeModified();
+    if (d->m_logoUrl != url) {
+        d->m_logoUrl = url;
+        nodeModified();
+    }
 }
 
 Feed::ArchiveMode Feed::archiveMode() const
@@ -932,21 +934,21 @@ void Feed::doArticleNotification()
     if (!d->m_addedArticlesNotify.isEmpty()) {
         // copy list, otherwise the refcounting in Article::Private breaks for
         // some reason (causing segfaults)
-        QVector<Article> l = d->m_addedArticlesNotify;
+        const QVector<Article> l = d->m_addedArticlesNotify;
         Q_EMIT signalArticlesAdded(this, l);
         d->m_addedArticlesNotify.clear();
     }
     if (!d->m_updatedArticlesNotify.isEmpty()) {
         // copy list, otherwise the refcounting in Article::Private breaks for
         // some reason (causing segfaults)
-        QVector<Article> l = d->m_updatedArticlesNotify;
+        const QVector<Article> l = d->m_updatedArticlesNotify;
         Q_EMIT signalArticlesUpdated(this, l);
         d->m_updatedArticlesNotify.clear();
     }
     if (!d->m_removedArticlesNotify.isEmpty()) {
         // copy list, otherwise the refcounting in Article::Private breaks for
         // some reason (causing segfaults)
-        QVector<Article> l = d->m_removedArticlesNotify;
+        const QVector<Article> l = d->m_removedArticlesNotify;
         Q_EMIT signalArticlesRemoved(this, l);
         d->m_removedArticlesNotify.clear();
     }

@@ -35,7 +35,7 @@ class KCMAkregatorBrowserConfig : public KCModule
     Q_OBJECT
 
 public:
-    KCMAkregatorBrowserConfig(QWidget *parent, const QVariantList &args);
+    explicit KCMAkregatorBrowserConfig(QWidget *parent, const QVariantList &args);
 
 private:
     QWidget *m_widget = nullptr;
