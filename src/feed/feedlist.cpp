@@ -560,7 +560,7 @@ QStringList FeedListManagementImpl::feeds(const QString &catId) const
             urls.insert(i->xmlUrl());
         }
     }
-    return urls.toList();
+    return urls.values();
 }
 
 void FeedListManagementImpl::addFeed(const QString &url, const QString &catId)
