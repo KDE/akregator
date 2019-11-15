@@ -254,7 +254,7 @@ void Feed::loadArticles()
         d->m_archive = d->m_storage->archiveFor(xmlUrl());
     }
 
-    QStringList list = d->m_archive->articles();
+    const QStringList list = d->m_archive->articles();
     for (QStringList::ConstIterator it = list.constBegin(); it != list.constEnd(); ++it) {
         Article mya(*it, this, d->m_archive);
         d->articles[mya.guid()] = mya;
