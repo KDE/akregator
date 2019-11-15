@@ -35,7 +35,7 @@ class KCMAkregatorGeneralConfig : public KCModule
     Q_OBJECT
 
 public:
-    KCMAkregatorGeneralConfig(QWidget *parent, const QVariantList &args);
+    explicit KCMAkregatorGeneralConfig(QWidget *parent, const QVariantList &args);
 
 private:
     QWidget *m_widget = nullptr;

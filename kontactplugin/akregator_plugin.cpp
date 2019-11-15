@@ -39,7 +39,6 @@ EXPORT_KONTACT_PLUGIN(AkregatorPlugin, akregator)
 
 AkregatorPlugin::AkregatorPlugin(KontactInterface::Core *core, const QVariantList &)
     : KontactInterface::Plugin(core, core, "akregator")
-    , m_interface(nullptr)
 {
     setComponentName(QStringLiteral("akregator"), i18n("Akregator"));
 

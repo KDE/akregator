@@ -48,7 +48,7 @@ public:
     void initialize();
 
     void addPluginProperty(const QString &key, const QString &value);
-    QString pluginProperty(const QString &key) const;
+    Q_REQUIRED_RESULT QString pluginProperty(const QString &key) const;
     bool hasPluginProperty(const QString &key) const;
 
     virtual void insertGuiClients(KXMLGUIClient *parent);

@@ -102,16 +102,16 @@ public:
     /**
      * returns all feeds in this list
      */
-    QVector<const Feed *> feeds() const;
-    QVector<Feed *> feeds();
+    Q_REQUIRED_RESULT QVector<const Feed *> feeds() const;
+    Q_REQUIRED_RESULT QVector<Feed *> feeds();
 
-    QVector<int> feedIds() const;
+    Q_REQUIRED_RESULT QVector<int> feedIds() const;
 
     /**
      * returns all folders in this list
      */
-    QVector<const Folder *> folders() const;
-    QVector<Folder *> folders();
+    Q_REQUIRED_RESULT QVector<const Folder *> folders() const;
+    Q_REQUIRED_RESULT QVector<Folder *> folders();
 
     /** appends another feed list as sub tree. The root node of @c list is ignored. NOTE: nodes are _moved_ from @c list to this feed list, not copied */
 
