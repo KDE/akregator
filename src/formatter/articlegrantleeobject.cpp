@@ -30,11 +30,10 @@
 
 using namespace Akregator;
 
-ArticleGrantleeObject::ArticleGrantleeObject(const QUrl &imageDir, const Article &article, ArticleFormatter::IconOption iconOption, QObject *parent)
+ArticleGrantleeObject::ArticleGrantleeObject(const Article &article, ArticleFormatter::IconOption iconOption, QObject *parent)
     : QObject(parent)
     , mArticle(article)
     , mArticleFormatOption(iconOption)
-    , mImageDir(imageDir)
 {
 }
 
@@ -104,9 +103,9 @@ QString ArticleGrantleeObject::articleCompleteStoryLink() const
 QString ArticleGrantleeObject::imageFeed() const
 {
     QString text;
-    if (mArticleFormatOption == ArticleFormatter::ShowIcon && mArticle.feed() && !mArticle.feed()->image().isNull()) {
+    if (mArticleFormatOption == ArticleFormatter::ShowIcon && mArticle.feed() && !mArticle.feed()->logoUrl().isEmpty()) {
         const Feed *feed = mArticle.feed();
-        text += GrantleeUtil::imageFeed(feed, mImageDir);
+        text += GrantleeUtil::imageFeed(feed);
     }
     return text;
 }

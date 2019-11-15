@@ -146,7 +146,6 @@ private:
 
 private:
     QString m_currentText;
-    QUrl m_imageDir;
     QPointer<TreeNode> m_node;
     QPointer<ArticleListJob> m_listJob;
     Article m_article;

@@ -34,9 +34,8 @@
 
 using namespace Akregator;
 
-GrantleeViewFormatter::GrantleeViewFormatter(const QString &htmlFileName, const QString &themePath, const QUrl &imageDir, int deviceDpiY)
+GrantleeViewFormatter::GrantleeViewFormatter(const QString &htmlFileName, const QString &themePath, int deviceDpiY)
     : GrantleeTheme::GenericFormatter(htmlFileName, themePath)
-    , mImageDir(imageDir)
     , mHtmlArticleFileName(htmlFileName)
     , mGrantleeThemePath(QStringLiteral("file://") + themePath + QLatin1Char('/'))
     , mDeviceDpiY(deviceDpiY)
@@ -81,8 +80,8 @@ QString GrantleeViewFormatter::formatFeed(Akregator::Feed *feed)
     feedObject.insert(QStringLiteral("feedCount"), numberOfArticle);
 
     QString feedImage;
-    if (!feed->image().isNull()) { // image
-        feedImage = GrantleeUtil::imageFeed(feed, mImageDir);
+    if (!feed->logoUrl().isEmpty()) { // image
+        feedImage = GrantleeUtil::imageFeed(feed);
     } else {
         feedImage = QStringLiteral("<div class=\"body\">");
     }
@@ -143,7 +142,7 @@ QString GrantleeViewFormatter::formatArticles(const QVector<Article> &article, A
     QList<ArticleGrantleeObject *> lstObj;
     lstObj.reserve(nbArticles);
     for (int i = 0; i < nbArticles; ++i) {
-        ArticleGrantleeObject *articleObj = new ArticleGrantleeObject(mImageDir, article.at(i), icon);
+        ArticleGrantleeObject *articleObj = new ArticleGrantleeObject(article.at(i), icon);
         articlesList << QVariant::fromValue(static_cast<QObject *>(articleObj));
         lstObj.append(articleObj);
     }

@@ -19,13 +19,8 @@
 
 #include "grantleeutil.h"
 #include "feed.h"
-#include "utils.h"
-
-QString Akregator::GrantleeUtil::imageFeed(const Feed *feed, const QUrl &imageDir)
+#include <QDebug>
+QString Akregator::GrantleeUtil::imageFeed(const Feed *feed)
 {
-    QString file = Akregator::Utils::fileNameForUrl(feed->xmlUrl());
-    QUrl u(imageDir);
-    u = u.adjusted(QUrl::RemoveFilename);
-    u.setPath(u.path() + file);
-    return QStringLiteral("<a href=\"%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(feed->htmlUrl(), u.url());
+    return QStringLiteral("<a href=\"%1\"><img class=\"headimage\" src=\"%2\"></a>\n").arg(feed->htmlUrl(), feed->logoUrl());
 }

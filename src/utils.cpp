@@ -47,15 +47,3 @@ uint Utils::calcHash(const QString &str)
     return qChecksum(array.constData(), array.size());
 }
 
-QString Utils::fileNameForUrl(const QString &url_p)
-{
-    QString url2(url_p);
-
-    url2 = url2.replace(QLatin1Char('/'), QLatin1Char('_')).replace(QLatin1Char(':'), QLatin1Char('_'));
-
-    if (url2.length() > 255) {
-        url2 = url2.left(200) + QString::number(Akregator::Utils::calcHash(url2), 16);
-    }
-
-    return url2;
-}

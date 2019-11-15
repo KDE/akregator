@@ -116,7 +116,7 @@ public:
     QVector<Article> m_removedArticlesNotify;
     QVector<Article> m_updatedArticlesNotify;
 
-    QPixmap m_imagePixmap;
+    QString m_logoUrl;
     QIcon m_favicon;
     mutable int m_totalCount;
     void setTotalCountDirty() const;
@@ -444,9 +444,9 @@ bool Feed::loadLinkedWebsite() const
     return d->m_loadLinkedWebsite;
 }
 
-QPixmap Feed::image() const
+QString Feed::logoUrl() const
 {
-    return d->m_imagePixmap;
+    return d->m_logoUrl;
 }
 
 QString Feed::xmlUrl() const
@@ -758,9 +758,8 @@ void Feed::fetchCompleted(Syndication::Loader *l, Syndication::FeedPtr doc, Synd
 #endif
     d->m_fetchErrorCode = Syndication::Success;
 
-    if (d->m_imagePixmap.isNull()) {
-        const QString imageFileName = QStandardPaths::writableLocation(QStandardPaths::CacheLocation) + QLatin1String("/akregator/Media/") + Utils::fileNameForUrl(d->m_xmlUrl) + QLatin1String(".png");
-        d->m_imagePixmap = QPixmap(imageFileName, "PNG");
+    if (!doc->image().isNull()) {
+        d->m_logoUrl = doc->image()->url();
     }
 
     if (title().isEmpty()) {
@@ -821,16 +820,9 @@ void Feed::setFavicon(const QIcon &icon)
     nodeModified();
 }
 
-void Feed::setImage(const QPixmap &p)
+void Feed::setLogoUrl(const QString &url)
 {
-    if (p.isNull()) {
-        return;
-    }
-    d->m_imagePixmap = p;
-    const QString filename = QStandardPaths::writableLocation(QStandardPaths::CacheLocation) + QLatin1String("/akregator/Media/") + Utils::fileNameForUrl(d->m_xmlUrl) + QLatin1String(".png");
-    QFileInfo fileInfo(filename);
-    QDir().mkpath(fileInfo.absolutePath());
-    d->m_imagePixmap.save(filename, "PNG");
+    d->m_logoUrl = url;
     nodeModified();
 }
 

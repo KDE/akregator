@@ -41,7 +41,7 @@ class ArticleGrantleeObject : public QObject
     Q_PROPERTY(QString actionToken READ actionToken)
 
 public:
-    explicit ArticleGrantleeObject(const QUrl &imageDir, const Article &article, ArticleFormatter::IconOption icon, QObject *parent = nullptr);
+    explicit ArticleGrantleeObject(const Article &article, ArticleFormatter::IconOption icon, QObject *parent = nullptr);
     ~ArticleGrantleeObject();
 
     enum ArticleStatus {
@@ -76,7 +76,6 @@ public:
 private:
     Article mArticle;
     ArticleFormatter::IconOption mArticleFormatOption;
-    QUrl mImageDir;
 };
 }
 #endif // ARTICLEGRANTLEEOBJECT_H
