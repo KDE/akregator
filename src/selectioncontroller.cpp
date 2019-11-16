@@ -81,11 +81,7 @@ SelectionController::SelectionController(QObject *parent)
     : AbstractSelectionController(parent)
     , m_feedList()
     , m_feedSelector()
-    , m_articleLister(nullptr)
-    , m_singleDisplay(nullptr)
     , m_subscriptionModel(new FilterUnreadProxyModel(this))
-    , m_folderExpansionHandler(nullptr)
-    , m_articleModel(nullptr)
     , m_selectedSubscription()
 {
     m_subscriptionModel->setDoFilter(Settings::hideReadFeeds());
