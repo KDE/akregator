@@ -42,8 +42,6 @@
 #include <QSet>
 #include <QElapsedTimer>
 
-#include <cassert>
-
 using namespace Akregator;
 class Q_DECL_HIDDEN FeedList::Private
 {

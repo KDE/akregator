@@ -33,8 +33,6 @@
 
 #include "akregator_debug.h"
 
-#include <cassert>
-
 using namespace Akregator;
 
 TreeNode::TreeNode()

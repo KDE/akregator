@@ -34,8 +34,6 @@
 #include <QTimer>
 #include <QPointer>
 
-#include <cassert>
-
 using namespace Akregator;
 
 namespace {

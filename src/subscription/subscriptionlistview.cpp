@@ -37,8 +37,6 @@
 #include <KLocalizedString>
 #include <KConfigGroup>
 
-#include <cassert>
-
 using namespace Akregator;
 
 static QModelIndex prevIndex(const QModelIndex &idx)
