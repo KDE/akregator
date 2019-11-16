@@ -85,8 +85,6 @@
 
 #include <algorithm>
 #include <memory>
-#include <cassert>
-
 #include <PimCommon/NetworkManager>
 #include <webengine/webengineframe.h>
 #include "articleviewer-ng/webengine/articleviewerwebenginewidgetng.h"

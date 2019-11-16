@@ -24,8 +24,6 @@
 
 #include "filtercolumnsproxymodel.h"
 
-#include <cassert>
-
 using namespace Akregator;
 
 FilterColumnsProxyModel::FilterColumnsProxyModel(QObject *parent)

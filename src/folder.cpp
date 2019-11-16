@@ -36,8 +36,6 @@
 #include <QIcon>
 #include "akregator_debug.h"
 
-#include <cassert>
-
 using namespace Akregator;
 
 // efficient alternative so we don't convert first to a temporary QList then to QVector

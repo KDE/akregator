@@ -42,8 +42,6 @@
 #include <QVariant>
 #include <QItemSelection>
 
-#include <cassert>
-
 using namespace Akregator;
 using namespace Syndication;
 

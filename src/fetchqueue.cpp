@@ -28,8 +28,6 @@
 #include "feed.h"
 #include "treenode.h"
 
-#include <cassert>
-
 using namespace Akregator;
 
 FetchQueue::FetchQueue(QObject *parent) : QObject(parent)

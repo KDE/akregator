@@ -51,8 +51,6 @@
 #include "openurlrequest.h"
 #include "utils/temporaryvalue.h"
 
-#include <cassert>
-
 using namespace Akregator;
 
 class Q_DECL_HIDDEN TabWidget::Private
