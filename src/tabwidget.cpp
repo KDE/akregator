@@ -62,15 +62,12 @@ private:
 
 public:
     explicit Private(TabWidget *qq) : q(qq)
-        , currentMaxLength(30)
-        , currentItem(nullptr)
-        , tabsClose(nullptr)
     {
     }
 
     QHash<QWidget *, Frame *> frames;
     QHash<int, Frame *> framesById;
-    int currentMaxLength;
+    int currentMaxLength = 30;
     QWidget *currentItem = nullptr;
     QToolButton *tabsClose = nullptr;
 

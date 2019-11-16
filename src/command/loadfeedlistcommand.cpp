@@ -53,7 +53,7 @@ public:
     }
 
     void handleDocument(const QDomDocument &doc);
-    QString createBackup(const QString &path, bool *ok);
+    Q_REQUIRED_RESULT QString createBackup(const QString &path, bool *ok);
     void emitResult(const QSharedPointer<FeedList> &list);
     void doLoad();
 
