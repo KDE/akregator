@@ -46,7 +46,6 @@
 
 using namespace Akregator;
 
-
 //like Syndication::htmlToPlainText, but without linebreaks
 
 static QString stripHtml(const QString &html)

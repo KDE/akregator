@@ -336,7 +336,7 @@ void Feed::Private::setTotalCountDirty() const
 }
 
 Feed::Feed(Backend::Storage *storage) : TreeNode()
-  , d(new Private(storage, this))
+    , d(new Private(storage, this))
 {
 }
 
@@ -724,8 +724,8 @@ void Feed::tryFetch()
     d->m_fetchErrorCode = Syndication::Success;
 
     d->m_loader = Syndication::Loader::create(this, SLOT(fetchCompleted(Syndication::Loader*,
-                                                                      Syndication::FeedPtr,
-                                                                      Syndication::ErrorCode)));
+                                                                        Syndication::FeedPtr,
+                                                                        Syndication::ErrorCode)));
     d->m_loader->loadFrom(QUrl(d->m_xmlUrl), new FeedRetriever());
 }
 
@@ -754,7 +754,7 @@ void Feed::fetchCompleted(Syndication::Loader *l, Syndication::FeedPtr doc, Synd
 
     loadArticles(); // TODO: make me fly: make this delayed
 
-#if SYNDICATION_VERSION >= QT_VERSION_CHECK(5,65,0)
+#if SYNDICATION_VERSION >= QT_VERSION_CHECK(5, 65, 0)
     if (!doc->icon().isNull() && !doc->icon()->url().isEmpty()) {
         loadFavicon(doc->icon()->url(), false);
     } else {

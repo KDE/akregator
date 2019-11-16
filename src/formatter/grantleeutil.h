@@ -23,8 +23,7 @@
 #include <QUrl>
 namespace Akregator {
 class Feed;
-namespace GrantleeUtil
-{
+namespace GrantleeUtil {
 Q_REQUIRED_RESULT QString imageFeed(const Feed *feed);
 }
 }

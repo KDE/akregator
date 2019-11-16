@@ -30,7 +30,6 @@ DownloadFeedIconJob::DownloadFeedIconJob(QObject *parent)
 
 DownloadFeedIconJob::~DownloadFeedIconJob()
 {
-
 }
 
 bool DownloadFeedIconJob::start()
