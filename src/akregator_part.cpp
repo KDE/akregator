@@ -353,8 +353,6 @@ void Part::slotSettingsChanged()
         m_actionManager->setTrayIcon(nullptr);
     }
 
-
-
     const QStringList fonts {
         Settings::standardFont(),
         Settings::fixedFont(),

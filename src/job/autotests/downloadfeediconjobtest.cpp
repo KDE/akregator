@@ -24,7 +24,6 @@ QTEST_MAIN(DownloadFeedIconJobTest)
 DownloadFeedIconJobTest::DownloadFeedIconJobTest(QObject *parent)
     : QObject(parent)
 {
-
 }
 
 void DownloadFeedIconJobTest::shouldHaveDefaultValues()

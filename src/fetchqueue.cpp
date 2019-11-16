@@ -28,7 +28,6 @@
 #include "feed.h"
 #include "treenode.h"
 
-
 #include <cassert>
 
 using namespace Akregator;

@@ -37,7 +37,6 @@
 
 using namespace Akregator;
 
-
 TreeNode::TreeNode()
     : QObject(nullptr)
 {

@@ -46,4 +46,3 @@ uint Utils::calcHash(const QString &str)
     const QByteArray array = str.toLatin1();
     return qChecksum(array.constData(), array.size());
 }
-
