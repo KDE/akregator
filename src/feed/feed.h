@@ -63,6 +63,14 @@ public:
         limitArticleAge /**< Save articles not older than maxArticleAge() (or keep flag set) */
     };
 
+    struct ImageInfo {
+        QString imageUrl;
+        int width = -1;
+        int height = -1;
+        bool operator==(const ImageInfo &other) const;
+        bool operator!=(const ImageInfo &other) const;
+    };
+
     // class methods
     /** converts strings to ArchiveMode value
         if parsing fails, it returns ArchiveMode::globalDefault
@@ -140,10 +148,10 @@ public:
     Q_REQUIRED_RESULT bool loadLinkedWebsite() const;
 
     /** returns the feed logo */
-    Q_REQUIRED_RESULT QString logoUrl() const;
+    Q_REQUIRED_RESULT Feed::ImageInfo logoInfo() const;
 
     /** sets the feed image */
-    void setLogoUrl(const QString &url);
+    void setLogoInfo(const ImageInfo &image);
 
     /** returns the url of the actual feed source (rss/rdf/atom file) */
     Q_REQUIRED_RESULT QString xmlUrl() const;
@@ -155,8 +163,8 @@ public:
     /** sets the URL of the HTML page of this feed */
     void setHtmlUrl(const QString &s);
 
-    Q_REQUIRED_RESULT QString faviconUrl() const;
-    void setFaviconUrl(const QString &url);
+    Q_REQUIRED_RESULT Feed::ImageInfo faviconInfo() const;
+    void setFaviconInfo(const Feed::ImageInfo &url);
 
     /** returns the description of this feed */
     Q_REQUIRED_RESULT QString description() const;
@@ -222,6 +230,7 @@ public:
 
     Q_REQUIRED_RESULT QString comment() const;
     void setComment(const QString &comment);
+    void setFaviconUrl(const QString &url);
 public Q_SLOTS:
     /** starts fetching */
     void fetch(bool followDiscovery = false);

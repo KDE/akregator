@@ -103,7 +103,7 @@ QString ArticleGrantleeObject::articleCompleteStoryLink() const
 QString ArticleGrantleeObject::imageFeed() const
 {
     QString text;
-    if (mArticleFormatOption == ArticleFormatter::ShowIcon && mArticle.feed() && !mArticle.feed()->logoUrl().isEmpty()) {
+    if (mArticleFormatOption == ArticleFormatter::ShowIcon && mArticle.feed() && !mArticle.feed()->logoInfo().imageUrl.isEmpty()) {
         const Feed *feed = mArticle.feed();
         text += GrantleeUtil::imageFeed(feed);
     }

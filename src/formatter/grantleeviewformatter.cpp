@@ -80,7 +80,7 @@ QString GrantleeViewFormatter::formatFeed(Akregator::Feed *feed)
     feedObject.insert(QStringLiteral("feedCount"), numberOfArticle);
 
     QString feedImage;
-    if (!feed->logoUrl().isEmpty()) { // image
+    if (!feed->logoInfo().imageUrl.isEmpty()) { // image
         feedImage = GrantleeUtil::imageFeed(feed);
     } else {
         feedImage = QStringLiteral("<div class=\"body\">");
