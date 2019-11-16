@@ -81,6 +81,7 @@ class Q_DECL_HIDDEN Akregator::Feed::Private
 public:
     explicit Private(Backend::Storage *storage, Akregator::Feed *qq);
 
+
     Backend::Storage *m_storage = nullptr;
     bool m_autoFetch = false;
     int m_fetchInterval;
@@ -102,7 +103,6 @@ public:
     QString m_htmlUrl;
     QString m_description;
     QString m_comment;
-    QString m_faviconUrl;
 
     /** list of feed articles */
     QHash<QString, Article> articles;
@@ -116,7 +116,9 @@ public:
     QVector<Article> m_removedArticlesNotify;
     QVector<Article> m_updatedArticlesNotify;
 
-    QString m_logoUrl;
+    Feed::ImageInfo m_logoInfo;
+    Feed::ImageInfo m_faviconInfo;
+
     QIcon m_favicon;
     mutable int m_totalCount;
     void setTotalCountDirty() const;
@@ -165,13 +167,32 @@ Akregator::Feed *Feed::fromOPML(const QDomElement &e, Backend::Storage *storage)
     const bool loadLinkedWebsite = e.attribute(QStringLiteral("loadLinkedWebsite")) == QLatin1String("true");
     const QString comment = e.attribute(QStringLiteral("comment"));
     const QString faviconUrl = e.attribute(QStringLiteral("faviconUrl"));
+    Feed::ImageInfo faviconInfo;
+    faviconInfo.imageUrl = faviconUrl;
+    if (e.hasAttribute(QStringLiteral("faviconWidth"))) {
+        faviconInfo.width = e.attribute(QStringLiteral("faviconWidth")).toInt();
+    }
+    if (e.hasAttribute(QStringLiteral("faviconHeight"))) {
+        faviconInfo.height = e.attribute(QStringLiteral("faviconHeight")).toInt();
+    }
+
+    Feed::ImageInfo logoInfo;
     const QString logoUrl = e.attribute(QStringLiteral("logoUrl"));
+    logoInfo.imageUrl = logoUrl;
+    if (e.hasAttribute(QStringLiteral("logoWidth"))) {
+        logoInfo.width = e.attribute(QStringLiteral("logoWidth")).toInt();
+    }
+    if (e.hasAttribute(QStringLiteral("logoHeight"))) {
+        logoInfo.height = e.attribute(QStringLiteral("logoHeight")).toInt();
+    }
+
     const uint id = e.attribute(QStringLiteral("id")).toUInt();
 
     Feed *const feed = new Feed(storage);
     feed->setTitle(title);
-    feed->setFaviconUrl(faviconUrl);
-    feed->setLogoUrl(logoUrl);
+    feed->setFaviconInfo(faviconInfo);
+    feed->setLogoInfo(logoInfo);
+
     feed->setXmlUrl(xmlUrl);
     feed->setCustomFetchIntervalEnabled(useCustomFetchInterval);
     feed->setHtmlUrl(htmlUrl);
@@ -446,9 +467,9 @@ bool Feed::loadLinkedWebsite() const
     return d->m_loadLinkedWebsite;
 }
 
-QString Feed::logoUrl() const
+Feed::ImageInfo Feed::logoInfo() const
 {
-    return d->m_logoUrl;
+    return d->m_logoInfo;
 }
 
 QString Feed::xmlUrl() const
@@ -474,15 +495,22 @@ void Feed::setHtmlUrl(const QString &s)
     d->m_htmlUrl = s;
 }
 
-QString Feed::faviconUrl() const
+Feed::ImageInfo Feed::faviconInfo() const
 {
-    return d->m_faviconUrl;
+    return d->m_faviconInfo;
 }
 
 void Feed::setFaviconUrl(const QString &url)
 {
-    d->m_faviconUrl = url;
-    setFavicon(QIcon(url));
+    d->m_faviconInfo.imageUrl = url;
+    setFavicon(QIcon(d->m_faviconInfo.imageUrl));
+}
+
+
+void Feed::setFaviconInfo(const Feed::ImageInfo &info)
+{
+    d->m_faviconInfo = info;
+    setFavicon(QIcon(info.imageUrl));
 }
 
 QString Feed::description() const
@@ -534,11 +562,23 @@ QDomElement Feed::toOPML(QDomElement parent, QDomDocument document) const
     if (d->m_loadLinkedWebsite) {
         el.setAttribute(QStringLiteral("loadLinkedWebsite"), QStringLiteral("true"));
     }
-    if (!d->m_faviconUrl.isEmpty()) {
-        el.setAttribute(QStringLiteral("faviconUrl"), d->m_faviconUrl);
+    if (!d->m_faviconInfo.imageUrl.isEmpty()) {
+        el.setAttribute(QStringLiteral("faviconUrl"), d->m_faviconInfo.imageUrl);
+        if (d->m_faviconInfo.width != -1) {
+            el.setAttribute(QStringLiteral("faviconWidth"), d->m_faviconInfo.width);
+        }
+        if (d->m_faviconInfo.height != -1) {
+            el.setAttribute(QStringLiteral("faviconHeight"), d->m_faviconInfo.height);
+        }
     }
-    if (!d->m_logoUrl.isEmpty()) {
-        el.setAttribute(QStringLiteral("logoUrl"), d->m_logoUrl);
+    if (!d->m_logoInfo.imageUrl.isEmpty()) {
+        el.setAttribute(QStringLiteral("logoUrl"), d->m_logoInfo.imageUrl);
+        if (d->m_logoInfo.width != -1) {
+            el.setAttribute(QStringLiteral("logoWidth"), d->m_logoInfo.width);
+        }
+        if (d->m_logoInfo.height != -1) {
+            el.setAttribute(QStringLiteral("logoHeight"), d->m_logoInfo.height);
+        }
     }
     el.setAttribute(QStringLiteral("maxArticleNumber"), d->m_maxArticleNumber);
     el.setAttribute(QStringLiteral("type"), QStringLiteral("rss"));   // despite some additional fields, it is still "rss" OPML
@@ -583,10 +623,10 @@ void Feed::slotAddToFetchQueue(FetchQueue *queue, bool intervalFetchOnly)
 
 void Feed::slotAddFeedIconListener()
 {
-    if (d->m_faviconUrl.isEmpty()) {
+    if (d->m_faviconInfo.imageUrl.isEmpty()) {
         loadFavicon(d->m_xmlUrl, true);
     } else {
-        loadFavicon(d->m_faviconUrl, false);
+        loadFavicon(d->m_faviconInfo.imageUrl, false);
     }
 }
 
@@ -757,6 +797,9 @@ void Feed::fetchCompleted(Syndication::Loader *l, Syndication::FeedPtr doc, Synd
 #if SYNDICATION_VERSION >= QT_VERSION_CHECK(5, 65, 0)
     if (!doc->icon().isNull() && !doc->icon()->url().isEmpty()) {
         loadFavicon(doc->icon()->url(), false);
+        d->m_faviconInfo.width = doc->icon()->width();
+        d->m_faviconInfo.height = doc->icon()->height();
+
     } else {
         loadFavicon(xmlUrl(), true);
     }
@@ -766,7 +809,9 @@ void Feed::fetchCompleted(Syndication::Loader *l, Syndication::FeedPtr doc, Synd
     d->m_fetchErrorCode = Syndication::Success;
 
     if (!doc->image().isNull()) {
-        d->m_logoUrl = doc->image()->url();
+        d->m_logoInfo.imageUrl = doc->image()->url();
+        d->m_logoInfo.width = doc->image()->width();
+        d->m_logoInfo.height = doc->image()->height();
     }
 
     if (title().isEmpty()) {
@@ -827,10 +872,10 @@ void Feed::setFavicon(const QIcon &icon)
     nodeModified();
 }
 
-void Feed::setLogoUrl(const QString &url)
+void Feed::setLogoInfo(const ImageInfo &image)
 {
-    if (d->m_logoUrl != url) {
-        d->m_logoUrl = url;
+    if (d->m_logoInfo != image) {
+        d->m_logoInfo = image;
         nodeModified();
     }
 }
@@ -983,4 +1028,16 @@ void Feed::enforceLimitArticleNumber()
             i.setDeleted();
         }
     }
+}
+
+bool Feed::ImageInfo::operator==(const Feed::ImageInfo &other) const
+{
+    return other.width == width &&
+            other.height == height &&
+            other.imageUrl == imageUrl;
+}
+
+bool Feed::ImageInfo::operator!=(const Feed::ImageInfo &other) const
+{
+    return ! ImageInfo::operator==(other);
 }
