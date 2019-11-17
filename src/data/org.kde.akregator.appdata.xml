@@ -50,6 +50,7 @@
   <developer_name xml:lang="de">Die KDE-Gemeinschaft</developer_name>
   <developer_name xml:lang="en-GB">The KDE Community</developer_name>
   <developer_name xml:lang="es">La comunidad de KDE</developer_name>
+  <developer_name xml:lang="et">KDE kogukond</developer_name>
   <developer_name xml:lang="fi">KDE-yhteisö</developer_name>
   <developer_name xml:lang="fr">La communauté KDE</developer_name>
   <developer_name xml:lang="gl">A comunidade de KDE</developer_name>
@@ -77,6 +78,7 @@
     <p xml:lang="de">Akregator ist ein Nachrichtensammler. Sie können damit Nachrichtenseiten, Blogs und andere Webseiten mit RSS/Atom-Quellen abonnieren, ohne die Seite manuell mit dem Webbrowser zu besuchen. Akregator ist einfach zu bedienen und zugleich leistungsfähig genug, um bequem hunderte Nachrichtenquellen zu lesen. Akregator enthält eine schnelle Suche, erweiterte Archivierungsfunktionen und zum einfachen Lesen ist ein Webbrowser integriert.</p>
     <p xml:lang="en-GB">Akregator is a news feed reader. It enables you to follow news sites, blogs and other RSS/Atom-enabled websites without the need to manually check for updates using a web browser. Akregator is designed to be both easy to use and to be powerful enough to read hundreds of news sources conveniently. It comes with a fast search, advanced archiving functionality and an internal browser for easy news reading.</p>
     <p xml:lang="es">Akregator es un lector de fuentes noticias. Le permite seguir sitios de noticias, blogs y otros sitios web con RSS/Atom activado, sin la necesidad de comprobar actualizaciones manualmente con un navegador web. Akregator está diseñado, tanto para ser fácil de usar, como ser lo bastante potente para leer cientos de fuentes de noticias adecuadamente. Viene con búsqueda rápida, funcionalidad avanzada de archivado y un navegador interno para la lectura fácil de las noticias.</p>
+    <p xml:lang="et">Akregator on uudistevoogude lugeja. See võimaldab jälgida uudistesaite, ajaveebe ja muid RSS/Atomi võimekusega veebilehti, ilma et peaksid pidevalt nende uuendusi veebibrauseris kontrollima. Akregator on mõeldud korraga nii hõlpsasti kasutatavaks kui ka piisavalt võimsaks, et lugeda korraga mugavalt sadu uudisteallikaid. Akregator pakub kiire otsingu võimalust, põhjalikke arhiveerimise valikuid ning isemist brauserit uudiste lihtsamaks lugemiseks.</p>
     <p xml:lang="fi">Akregator on uutissyötelukija, jonka avulla voit seurata uutissivustoja, blogeja ja muita RSS/Atom-sivustoja käymättä sivuilla selaimella. Akregator on suunniteltu sekä helppokäyttöiseksi että riittävän tehokkaaksi satojen uutislähteiden seuraamiseksi samanaikaisesti. Siinä on nopea haku, kehittynyt arkistointitoiminto ja sisäinen selain uutisten lukemiseksi juohevasti.</p>
     <p xml:lang="fr">Akregator est un lecteur de flux. Il vous permet de suivre des sites d'information, des blogs ou tout autre site web prenant en charge les flux RSS ou Atom, sans avoir besoin de vérifier manuellement les pages dans votre navigateur. Akregator est conçu pour être à la fois facile à utiliser et suffisamment puissant pour accéder simplement à des centaines de sources. Il intègre une recherche rapide, des fonctionnalités d'archivage avancées, et un navigateur interne pour lire facilement les articles.</p>
     <p xml:lang="gl">Akregator é un lector de fontes de novas. Permítelle facer un seguimento de sitios de novas, blogs e outros sitios web que fornezan fontes de novas RSS ou Atom, sen a necesitade de comprobar manualmente se hai actualizacións usando un navegador web. Akregator está deseñado para ser tanto fácil de usar como potente dabondo para ler centos de fontes de novas de maneira cómoda. Inclúe unha busca rápida, funcionalidade avanzada de arquivo e un navegador web integrado para ler novas facilmente.</p>
@@ -100,6 +102,7 @@
   <summary xml:lang="de">Ein Nachrichtensammler</summary>
   <summary xml:lang="en-GB">A news feed reader</summary>
   <summary xml:lang="es">Un lector de fuentes de noticias</summary>
+  <summary xml:lang="et">Uudistevoogude lugeja</summary>
   <summary xml:lang="fi">Syötteenlukija</summary>
   <summary xml:lang="fr">Un agrégateur de flux</summary>
   <summary xml:lang="gl">Un lector de fontes de novas</summary>
@@ -134,6 +137,7 @@
       <caption xml:lang="de">Nachrichtenquellen in Kontact mit Akregator lesen</caption>
       <caption xml:lang="en-GB">Reading feeds in Kontact with Akregator</caption>
       <caption xml:lang="es">Leyendo fuentes en Kontact con Akregator</caption>
+      <caption xml:lang="et">Uudistevoogude lugemine Kontactis Akregatori vahendusel</caption>
       <caption xml:lang="fi">Syötteiden lukeminen Kontactissa Akregatorilla</caption>
       <caption xml:lang="fr">Lire des flux dans Kontact avec Akregator</caption>
       <caption xml:lang="gl">Lendo fontes en Kontact con Akregator</caption>
