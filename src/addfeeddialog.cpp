@@ -64,7 +64,6 @@ Feed *AddFeedDialog::feed() const
 
 AddFeedDialog::AddFeedDialog(QWidget *parent, const QString &name)
     : QDialog(parent)
-    , m_feed(nullptr)
 {
     setObjectName(name);
     setWindowTitle(i18n("Add Feed"));

@@ -103,7 +103,7 @@ public:
      */
     void addFeedToGroup(const QString &url, const QString &group);
 
-    QSharedPointer<FeedList> allFeedsList()
+    Q_REQUIRED_RESULT QSharedPointer<FeedList> allFeedsList()
     {
         return m_feedList;
     }
@@ -113,7 +113,7 @@ public:
     void saveProperties(KConfigGroup &config);
 
     //Returns true if networking is available
-    bool isNetworkAvailable() const;
+    Q_REQUIRED_RESULT bool isNetworkAvailable() const;
 
     enum ViewMode {
         NormalView = 0,

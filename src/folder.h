@@ -61,20 +61,20 @@ public:
 
     /** returns the number of unread articles in all children
     @return number of unread articles */
-    int unread() const override;
+    Q_REQUIRED_RESULT int unread() const override;
 
     /** returns the number of articles in all children
     @return number of articles */
-    int totalCount() const override;
+    Q_REQUIRED_RESULT int totalCount() const override;
 
     /** Helps the rest of the app to decide if node should be handled as group or not. */
-    bool isGroup() const override
+    Q_REQUIRED_RESULT bool isGroup() const override
     {
         return true;
     }
 
     //impl
-    bool isAggregation() const override
+    Q_REQUIRED_RESULT bool isAggregation() const override
     {
         return true;
     }
@@ -90,19 +90,19 @@ public:
     @return a list of pointers to the child nodes
         */
 
-    QList<const TreeNode *> children() const override;
+    Q_REQUIRED_RESULT QList<const TreeNode *> children() const override;
 
-    QList<const TreeNode *> namedChildren(const QString &title) const;
-    QList<TreeNode *> namedChildren(const QString &title);
+    Q_REQUIRED_RESULT QList<const TreeNode *> namedChildren(const QString &title) const;
+    Q_REQUIRED_RESULT QList<TreeNode *> namedChildren(const QString &title);
 
-    QList<TreeNode *> children() override;
+    Q_REQUIRED_RESULT QList<TreeNode *> children() override;
 
-    QVector<const Feed *> feeds() const override;
-    QVector<Feed *> feeds() override;
-    QVector<const Folder *> folders() const override;
-    QVector<Folder *> folders() override;
+    Q_REQUIRED_RESULT QVector<const Feed *> feeds() const override;
+    Q_REQUIRED_RESULT QVector<Feed *> feeds() override;
+    Q_REQUIRED_RESULT QVector<const Folder *> folders() const override;
+    Q_REQUIRED_RESULT QVector<Folder *> folders() override;
 
-    int indexOf(const TreeNode *node) const;
+    Q_REQUIRED_RESULT int indexOf(const TreeNode *node) const;
 
     TreeNode *childAt(int pos) override;
 
@@ -136,7 +136,7 @@ public:
 
     /** returns whether the feed group is opened or not.
     Use only in \ref Folder . */
-    bool isOpen() const;
+    Q_REQUIRED_RESULT bool isOpen() const;
 
     /** open/close the feed group (display it as expanded/collapsed in the tree view). Use only in \ref Folder . */
     void setOpen(bool open);
@@ -147,12 +147,12 @@ public:
     TreeNode *next() override;
     const TreeNode *next() const override;
 
-    QIcon icon() const override;
+    Q_REQUIRED_RESULT QIcon icon() const override;
 
     /* returns whether @p node is among the direct or indirect children of this
      * folder
      */
-    bool subtreeContains(const Akregator::TreeNode *node) const;
+    Q_REQUIRED_RESULT bool subtreeContains(const Akregator::TreeNode *node) const;
 
     KJob *createMarkAsReadJob() override;
 

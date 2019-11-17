@@ -62,7 +62,7 @@ public:
 
     explicit SortColorizeProxyModel(QObject *parent = nullptr);
 
-    QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
+    Q_REQUIRED_RESULT QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
 
     void setFilters(const std::vector<QSharedPointer<const Akregator::Filters::AbstractMatcher> > &);
 
@@ -98,7 +98,7 @@ public:
     QAbstractItemView *itemView() override;
 
     //impl ArticleLister
-    QPoint scrollBarPositions() const override;
+    Q_REQUIRED_RESULT QPoint scrollBarPositions() const override;
 
     //impl ArticleLister
     void setScrollBarPositions(const QPoint &p) override;
