@@ -69,23 +69,23 @@ public:
     explicit ArticleModel(const QVector<Article> &articles, QObject *parent = nullptr);
     ~ArticleModel() override;
 
-    int columnCount(const QModelIndex &parent = QModelIndex()) const override;
+    Q_REQUIRED_RESULT int columnCount(const QModelIndex &parent = QModelIndex()) const override;
 
-    int rowCount(const QModelIndex &parent = QModelIndex()) const override;
+    Q_REQUIRED_RESULT int rowCount(const QModelIndex &parent = QModelIndex()) const override;
 
-    QVariant headerData(int section, Qt::Orientation, int role) const override;
+    Q_REQUIRED_RESULT QVariant headerData(int section, Qt::Orientation, int role) const override;
 
-    QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
+    Q_REQUIRED_RESULT QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
 
-    bool rowMatches(int row, const QSharedPointer<const Akregator::Filters::AbstractMatcher> &matcher) const;
+    Q_REQUIRED_RESULT bool rowMatches(int row, const QSharedPointer<const Akregator::Filters::AbstractMatcher> &matcher) const;
 
-    Article article(int row) const;
+    Q_REQUIRED_RESULT Article article(int row) const;
 
-    QStringList mimeTypes() const override;
+    Q_REQUIRED_RESULT QStringList mimeTypes() const override;
 
     QMimeData *mimeData(const QModelIndexList &indexes) const override;
 
-    Qt::ItemFlags flags(const QModelIndex &idx) const override;
+    Q_REQUIRED_RESULT Qt::ItemFlags flags(const QModelIndex &idx) const override;
 
 public Q_SLOTS:
 

@@ -611,9 +611,9 @@ void Feed::slotAddToFetchQueue(FetchQueue *queue, bool intervalFetchOnly)
             interval = Settings::autoFetchInterval() * 60;
         }
 
-        uint lastFetch = d->m_archive->lastFetch().toSecsSinceEpoch();
+        const uint lastFetch = d->m_archive->lastFetch().toSecsSinceEpoch();
 
-        uint now = QDateTime::currentDateTimeUtc().toSecsSinceEpoch();
+        const uint now = QDateTime::currentDateTimeUtc().toSecsSinceEpoch();
 
         if (interval > 0 && (now - lastFetch) >= static_cast<uint>(interval)) {
             queue->addFeed(this);
@@ -710,7 +710,7 @@ bool Feed::usesExpiryByAge() const
 
 bool Feed::isExpired(const Article &a) const
 {
-    QDateTime now = QDateTime::currentDateTime();
+    const QDateTime now = QDateTime::currentDateTime();
     int expiryAge = -1;
 // check whether the feed uses the global default and the default is limitArticleAge
     if (d->m_archiveMode == globalDefault && Settings::archiveMode() == Settings::EnumArchiveMode::limitArticleAge) {
