@@ -103,6 +103,15 @@ QString GrantleeViewFormatter::formatFeed(Akregator::Feed *feed)
         feedObject.insert(QStringLiteral("feedHomePage"), feedHomePage);
     }
 
+    if (!feed->copyright().isEmpty()) {
+        QString feedCopyright;
+        qDebug() << " feed->copyright()"<<feed->copyright();
+        feedCopyright = QStringLiteral("<div dir=\"%1\">").arg(mDirectionString);
+        feedCopyright += i18n("<b>Copyright:</b> %1</a>", feed->copyright());
+        feedCopyright += QStringLiteral("</div>");
+        feedObject.insert(QStringLiteral("feedCopyright"), feedCopyright);
+    }
+
     return render(feedObject);
 }
 

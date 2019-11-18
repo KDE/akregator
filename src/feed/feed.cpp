@@ -102,6 +102,7 @@ public:
     QString m_htmlUrl;
     QString m_description;
     QString m_comment;
+    QString m_copyright;
 
     /** list of feed articles */
     QHash<QString, Article> articles;
@@ -157,6 +158,7 @@ Akregator::Feed *Feed::fromOPML(const QDomElement &e, Backend::Storage *storage)
 
     const QString htmlUrl = e.attribute(QStringLiteral("htmlUrl"));
     const QString description = e.attribute(QStringLiteral("description"));
+    const QString copyright = e.attribute(QStringLiteral("copyright"));
     const int fetchInterval = e.attribute(QStringLiteral("fetchInterval")).toInt();
     const ArchiveMode archiveMode = stringToArchiveMode(e.attribute(QStringLiteral("archiveMode")));
     const int maxArticleAge = e.attribute(QStringLiteral("maxArticleAge")).toUInt();
@@ -191,6 +193,7 @@ Akregator::Feed *Feed::fromOPML(const QDomElement &e, Backend::Storage *storage)
     feed->setTitle(title);
     feed->setFaviconInfo(faviconInfo);
     feed->setLogoInfo(logoInfo);
+    feed->setCopyright(copyright);
 
     feed->setXmlUrl(xmlUrl);
     feed->setCustomFetchIntervalEnabled(useCustomFetchInterval);
@@ -551,6 +554,8 @@ QDomElement Feed::toOPML(QDomElement parent, QDomDocument document) const
     el.setAttribute(QStringLiteral("maxArticleAge"), d->m_maxArticleAge);
     el.setAttribute(QStringLiteral("comment"), d->m_comment);
     el.setAttribute(QStringLiteral("maxArticleNumber"), d->m_maxArticleNumber);
+    el.setAttribute(QStringLiteral("copyright"), d->m_copyright);
+
     if (d->m_markImmediatelyAsRead) {
         el.setAttribute(QStringLiteral("markImmediatelyAsRead"), QStringLiteral("true"));
     }
@@ -816,6 +821,7 @@ void Feed::fetchCompleted(Syndication::Loader *l, Syndication::FeedPtr doc, Synd
     }
 
     d->m_description = doc->description();
+    d->m_copyright = doc->copyright();
     d->m_htmlUrl = doc->link();
 
     appendArticles(doc);
@@ -861,6 +867,16 @@ void Feed::deleteExpiredArticles(ArticleDeleteJob *deleteJob)
 
     deleteJob->appendArticleIds(toDelete);
     setNotificationMode(true);
+}
+
+QString Feed::copyright() const
+{
+    return d->m_copyright;
+}
+
+void Feed::setCopyright(const QString &copyright)
+{
+    d->m_copyright = copyright;
 }
 
 void Feed::setFavicon(const QIcon &icon)
