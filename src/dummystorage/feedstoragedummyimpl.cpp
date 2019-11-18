@@ -41,11 +41,7 @@ public:
     {
     public:
         Entry()
-            : status(0)
-            , pubDate()
-            , hash(0)
-            , guidIsHash(false)
-            , guidIsPermaLink(false)
+            : pubDate()
         {
         }
 
@@ -59,10 +55,11 @@ public:
         QString authorName;
         QString authorUri;
         QString authorEMail;
-        int status;
-        int enclosureLength;
+        QStringList categories;
+        int status = 0;
+        int enclosureLength = 0;
         QDateTime pubDate;
-        uint hash;
+        uint hash = 0;
         bool guidIsHash = false;
         bool guidIsPermaLink = false;
         bool hasEnclosure = false;
@@ -352,17 +349,17 @@ void FeedStorageDummyImpl::enclosure(const QString &guid, bool &hasEnclosure, QS
     }
 }
 
-void FeedStorageDummyImpl::setCategories(const QString &, const QStringList &categories)
+void FeedStorageDummyImpl::setCategories(const QString &guid, const QStringList &categories)
 {
-    //TODO
+    if (contains(guid)) {
+        d->entries[guid].categories = categories;
+    }
 }
 
 QStringList FeedStorageDummyImpl::categories(const QString &guid) const
 {
-    return {};
+    return contains(guid) ? d->entries[guid].categories : QStringList();
 }
-
-
 } // namespace Backend
 } // namespace Akregator
 
