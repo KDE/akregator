@@ -81,7 +81,6 @@ class Q_DECL_HIDDEN Akregator::Feed::Private
 public:
     explicit Private(Backend::Storage *storage, Akregator::Feed *qq);
 
-
     Backend::Storage *m_storage = nullptr;
     bool m_autoFetch = false;
     int m_fetchInterval;
@@ -506,7 +505,6 @@ void Feed::setFaviconUrl(const QString &url)
     setFavicon(QIcon(d->m_faviconInfo.imageUrl));
 }
 
-
 void Feed::setFaviconInfo(const Feed::ImageInfo &info)
 {
     d->m_faviconInfo = info;
@@ -799,7 +797,6 @@ void Feed::fetchCompleted(Syndication::Loader *l, Syndication::FeedPtr doc, Synd
         loadFavicon(doc->icon()->url(), false);
         d->m_faviconInfo.width = doc->icon()->width();
         d->m_faviconInfo.height = doc->icon()->height();
-
     } else {
         loadFavicon(xmlUrl(), true);
     }
@@ -1032,12 +1029,12 @@ void Feed::enforceLimitArticleNumber()
 
 bool Feed::ImageInfo::operator==(const Feed::ImageInfo &other) const
 {
-    return other.width == width &&
-            other.height == height &&
-            other.imageUrl == imageUrl;
+    return other.width == width
+           && other.height == height
+           && other.imageUrl == imageUrl;
 }
 
 bool Feed::ImageInfo::operator!=(const Feed::ImageInfo &other) const
 {
-    return ! ImageInfo::operator==(other);
+    return !ImageInfo::operator==(other);
 }
