@@ -351,5 +351,19 @@ void FeedStorageDummyImpl::enclosure(const QString &guid, bool &hasEnclosure, QS
         length = -1;
     }
 }
+
+void FeedStorageDummyImpl::setCategories(const QString &, const QStringList &categories)
+{
+    //TODO
+}
+
+QStringList FeedStorageDummyImpl::categories(const QString &guid) const
+{
+    return {};
+}
+
+
 } // namespace Backend
 } // namespace Akregator
+
+

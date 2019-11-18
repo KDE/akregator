@@ -25,7 +25,6 @@
 #define AKREGATOR_BACKEND_FEEDSTORAGE_H
 
 #include <QObject>
-
 class QString;
 class QStringList;
 class QDateTime;
@@ -83,6 +82,12 @@ public:
     virtual QString authorEMail(const QString &guid) const = 0;
 
     virtual void enclosure(const QString &guid, bool &hasEnclosure, QString &url, QString &type, int &length) const = 0;
+
+    virtual void setCategories(const QString & /*guid*/, const QStringList &categories) = 0;
+
+    virtual QStringList categories(const QString &guid) const = 0;
+
+
 };
 } // namespace Backend
 } // namespace Akregator

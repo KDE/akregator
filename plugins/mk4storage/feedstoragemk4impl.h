@@ -34,36 +34,36 @@ public:
     FeedStorageMK4Impl(const QString &url, StorageMK4Impl *main);
     ~FeedStorageMK4Impl();
 
-    int unread() const override;
+    Q_REQUIRED_RESULT int unread() const override;
     void setUnread(int unread) override;
-    int totalCount() const override;
-    QDateTime lastFetch() const override;
+    Q_REQUIRED_RESULT int totalCount() const override;
+    Q_REQUIRED_RESULT QDateTime lastFetch() const override;
     void setLastFetch(const QDateTime &lastFetch) override;
 
-    QStringList articles() const override;
+    Q_REQUIRED_RESULT QStringList articles() const override;
 
     void article(const QString &guid, uint &hash, QString &title, int &status, QDateTime &pubDate) const override;
     bool contains(const QString &guid) const override;
     void addEntry(const QString &guid) override;
     void deleteArticle(const QString &guid) override;
-    bool guidIsHash(const QString &guid) const override;
+    Q_REQUIRED_RESULT bool guidIsHash(const QString &guid) const override;
     void setGuidIsHash(const QString &guid, bool isHash) override;
     bool guidIsPermaLink(const QString &guid) const override;
     void setGuidIsPermaLink(const QString &guid, bool isPermaLink) override;
-    uint hash(const QString &guid) const override;
+    Q_REQUIRED_RESULT uint hash(const QString &guid) const override;
     void setHash(const QString &guid, uint hash) override;
     void setDeleted(const QString &guid) override;
-    QString link(const QString &guid) const override;
+    Q_REQUIRED_RESULT QString link(const QString &guid) const override;
     void setLink(const QString &guid, const QString &link) override;
-    QDateTime pubDate(const QString &guid) const override;
+    Q_REQUIRED_RESULT QDateTime pubDate(const QString &guid) const override;
     void setPubDate(const QString &guid, const QDateTime &pubdate) override;
-    int status(const QString &guid) const override;
+    Q_REQUIRED_RESULT int status(const QString &guid) const override;
     void setStatus(const QString &guid, int status) override;
-    QString title(const QString &guid) const override;
+    Q_REQUIRED_RESULT QString title(const QString &guid) const override;
     void setTitle(const QString &guid, const QString &title) override;
-    QString description(const QString &guid) const override;
+    Q_REQUIRED_RESULT QString description(const QString &guid) const override;
     void setDescription(const QString &guid, const QString &description) override;
-    QString content(const QString &guid) const override;
+    Q_REQUIRED_RESULT QString content(const QString &guid) const override;
     void setContent(const QString &guid, const QString &content) override;
 
     void setEnclosure(const QString &guid, const QString &url, const QString &type, int length) override;
@@ -74,9 +74,12 @@ public:
     void setAuthorUri(const QString &guid, const QString &uri) override;
     void setAuthorEMail(const QString &guid, const QString &email) override;
 
-    QString authorName(const QString &guid) const override;
-    QString authorUri(const QString &guid) const override;
-    QString authorEMail(const QString &guid) const override;
+    Q_REQUIRED_RESULT QString authorName(const QString &guid) const override;
+    Q_REQUIRED_RESULT QString authorUri(const QString &guid) const override;
+    Q_REQUIRED_RESULT QString authorEMail(const QString &guid) const override;
+
+    void setCategories(const QString &, const QStringList &categories) override;
+    Q_REQUIRED_RESULT QStringList categories(const QString &guid) const override;
 
     void close();
     void commit();
@@ -88,6 +91,7 @@ private:
     void setTotalCount(int total);
     class FeedStorageMK4ImplPrivate;
     FeedStorageMK4ImplPrivate *d;
+
 };
 } // namespace Backend
 } // namespace Akregator
