@@ -88,25 +88,21 @@ QString GrantleeViewFormatter::formatFeed(Akregator::Feed *feed)
     feedObject.insert(QStringLiteral("feedImage"), feedImage);
 
     if (!feed->description().isEmpty()) {
-        QString feedDescription;
-        feedDescription = QStringLiteral("<div dir=\"%1\">").arg(mDirectionString);
+        QString feedDescription = QStringLiteral("<div dir=\"%1\">").arg(mDirectionString);
         feedDescription += i18n("<b>Description:</b> %1<br />", feed->description());
         feedDescription += QStringLiteral("</div>"); // /description
         feedObject.insert(QStringLiteral("feedDescription"), feedDescription);
     }
 
     if (!feed->htmlUrl().isEmpty()) {
-        QString feedHomePage;
-        feedHomePage = QStringLiteral("<div dir=\"%1\">").arg(mDirectionString);
+        QString feedHomePage = QStringLiteral("<div dir=\"%1\">").arg(mDirectionString);
         feedHomePage += i18n("<b>Homepage:</b> <a href=\"%1\">%1</a>", feed->htmlUrl());
         feedHomePage += QStringLiteral("</div>"); // / link
         feedObject.insert(QStringLiteral("feedHomePage"), feedHomePage);
     }
 
     if (!feed->copyright().isEmpty()) {
-        QString feedCopyright;
-        qDebug() << " feed->copyright()"<<feed->copyright();
-        feedCopyright = QStringLiteral("<div dir=\"%1\">").arg(mDirectionString);
+        QString feedCopyright = QStringLiteral("<div dir=\"%1\">").arg(mDirectionString);
         feedCopyright += i18n("<b>Copyright:</b> %1</a>", feed->copyright());
         feedCopyright += QStringLiteral("</div>");
         feedObject.insert(QStringLiteral("feedCopyright"), feedCopyright);
