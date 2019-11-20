@@ -242,6 +242,18 @@ Article::Private::Private(const ItemPtr &article, Feed *feed_, Backend::FeedStor
     if (!encs.isEmpty()) {
         archive->setEnclosure(guid, encs[0]->url(), encs[0]->type(), encs[0]->length());
     }
+#if 0 //We need additionalProperties for Bug 366487
+    qDebug() << "article " << article->additionalProperties().count();
+    QMapIterator<QString, QDomElement> i(article->additionalProperties());
+    while (i.hasNext()) {
+        i.next();
+        QString str;
+        QTextStream s(&str, QIODevice::WriteOnly);
+        i.value().save(s, 2);
+
+        qDebug() << i.key() << ": " << str;
+    }
+#endif
 }
 
 Article::Article() : d(new Private)
