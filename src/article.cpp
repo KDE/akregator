@@ -216,10 +216,6 @@ Article::Private::Private(const ItemPtr &article, Feed *feed_, Backend::FeedStor
             archive->setAuthorUri(guid, firstAuthor->uri());
             archive->setAuthorEMail(guid, firstAuthor->email());
         }
-        const QList<EnclosurePtr> encs = article->enclosures();
-        if (!encs.isEmpty()) {
-            archive->setEnclosure(guid, encs[0]->url(), encs[0]->type(), encs[0]->length());
-        }
     } else {
         // always update comments count, as it's not used for hash calculation
         if (hash != archive->hash(guid)) { //article is in archive, was it modified?
