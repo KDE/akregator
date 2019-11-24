@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-set(KDEPIM_VERSION_NUMBER "5.12.80")
+set(KDEPIM_VERSION_NUMBER "5.12.90")
 project(akregator VERSION ${KDEPIM_VERSION_NUMBER})
 
 set(KF5_MIN_VERSION "5.63.0")
@@ -28,7 +28,7 @@ include(ECMQtDeclareLoggingCategory)
 
 
 # Do NOT add quote
-set(KDEPIM_DEV_VERSION beta1)
+set(KDEPIM_DEV_VERSION rc)
 
 # add an extra space
 if(DEFINED KDEPIM_DEV_VERSION)
