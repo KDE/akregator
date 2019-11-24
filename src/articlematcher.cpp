@@ -30,7 +30,6 @@
 #include <KConfig>
 #include <kconfiggroup.h>
 #include "akregator_debug.h"
-#include <krandom.h>
 
 #include <QRegExp>
 

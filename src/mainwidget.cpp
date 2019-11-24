@@ -69,7 +69,6 @@
 #include <kfileitem.h>
 #include <KLocalizedString>
 #include <kmessagebox.h>
-#include <krandom.h>
 #include <kshell.h>
 
 #include <ktoggleaction.h>
