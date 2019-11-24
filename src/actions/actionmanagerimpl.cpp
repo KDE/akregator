@@ -210,7 +210,7 @@ void ActionManagerImpl::initPart()
     configure->setIcon(QIcon::fromTheme(QStringLiteral("configure")));
     connect(configure, &QAction::triggered, d->part, &Part::showOptions);
 
-    KStandardAction::configureNotifications(d->part, SLOT(showNotificationOptions()), d->actionCollection); // options_configure_notifications
+    KStandardAction::configureNotifications(d->part, &Part::showNotificationOptions, d->actionCollection); // options_configure_notifications
 }
 
 void ActionManagerImpl::initMainWidget(MainWidget *mainWidget)
