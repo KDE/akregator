@@ -33,7 +33,6 @@
 #include <mk4.h>
 
 #include <QDateTime>
-#include <qdom.h>
 #include <QDebug>
 #include <QStandardPaths>
 
