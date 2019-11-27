@@ -49,7 +49,7 @@ struct ArticleId {
     }
 };
 
-typedef QList<Akregator::ArticleId> ArticleIdList;
+typedef QVector<Akregator::ArticleId> ArticleIdList;
 
 class AKREGATOR_EXPORT CompositeJob : public KCompositeJob
 {

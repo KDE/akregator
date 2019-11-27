@@ -46,7 +46,7 @@ ArticleDeleteJob::ArticleDeleteJob(QObject *parent)
     Q_ASSERT(m_feedList);
 }
 
-void ArticleDeleteJob::appendArticleIds(const QList<ArticleId> &ids)
+void ArticleDeleteJob::appendArticleIds(const Akregator::ArticleIdList &ids)
 {
     m_ids += ids;
 }

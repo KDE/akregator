@@ -854,7 +854,7 @@ void Feed::deleteExpiredArticles(ArticleDeleteJob *deleteJob)
 
     setNotificationMode(false);
 
-    QList<ArticleId> toDelete;
+    Akregator::ArticleIdList toDelete;
     const QString feedUrl = xmlUrl();
     const bool useKeep = Settings::doNotExpireImportantArticles();
 
