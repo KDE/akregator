@@ -24,7 +24,6 @@
 #include "akregator_config_archive.h"
 #include "akregatorconfig.h"
 #include "ui_settings_archive.h"
-#include <kconfigwidgets_version.h>
 #include <KAboutData>
 #include <KPluginFactory>
 #include <KLocalizedString>
@@ -58,11 +57,7 @@ KCMAkregatorArchiveConfig::KCMAkregatorArchiveConfig(QWidget *parent, const QVar
     m_archiveModeGroup->addButton(m_ui.rb_LimitArticleNumber, Settings::EnumArchiveMode::limitArticleNumber);
     m_archiveModeGroup->addButton(m_ui.rb_LimitArticleAge, Settings::EnumArchiveMode::limitArticleAge);
     m_archiveModeGroup->addButton(m_ui.rb_DisableArchiving, Settings::EnumArchiveMode::disableArchiving);
-#if KCONFIGWIDGETS_VERSION < QT_VERSION_CHECK(5, 64, 0)
-    connect(m_archiveModeGroup, QOverload<int>::of(&QButtonGroup::buttonClicked), this, qOverload<>(&KCMAkregatorArchiveConfig::changed));
-#else
     connect(m_archiveModeGroup, QOverload<int>::of(&QButtonGroup::buttonClicked), this, &KCMAkregatorArchiveConfig::markAsChanged);
-#endif
 
     KAboutData *about = new KAboutData(QStringLiteral("kcmakrarchiveconfig"),
                                        i18n("Configure Feed Reader Archive"),
