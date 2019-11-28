@@ -28,6 +28,7 @@
 #include "urlhandler/webengine/urlhandlerwebengine.h"
 #include <WebEngineViewer/InterceptorManager>
 #include <WebEngineViewer/WebEngineAccessKey>
+#include <WebEngineViewer/WebEngineManageScript>
 #include <KPIMTextEdit/TextToSpeech>
 
 #include <KParts/BrowserRun>
@@ -235,7 +236,6 @@ void ArticleViewerWebEngine::slotLoadFinished()
 {
     restoreCurrentPosition();
     unsetCursor();
-    clearRelativePosition();
 }
 
 void ArticleViewerWebEngine::slotLoadStarted()
@@ -378,7 +378,7 @@ void ArticleViewerWebEngine::setArticleAction(ArticleViewerWebEngine::ArticleAct
 
 void ArticleViewerWebEngine::restoreCurrentPosition()
 {
-    mPageEngine->runJavaScript(WebEngineViewer::WebEngineScript::scrollToRelativePosition(relativePosition()));
+    mPageEngine->runJavaScript(WebEngineViewer::WebEngineScript::scrollToRelativePosition(0), WebEngineViewer::WebEngineManageScript::scriptWordId());
 }
 
 void ArticleViewerWebEngine::forwardMouseReleaseEvent(QMouseEvent *event)
