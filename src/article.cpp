@@ -66,7 +66,7 @@ QString buildTitle(const QString &description)
         } else {
             toReplace = rx.cap(1);    // strip just tag
         }
-        s = s.replace(s.indexOf(toReplace), toReplace.length(), replaceWith); // do the deed
+        s.replace(s.indexOf(toReplace), toReplace.length(), replaceWith); // do the deed
     }
     if (s.length() > 90) {
         s = s.left(90) + QLatin1String("...");
