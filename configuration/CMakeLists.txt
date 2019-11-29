@@ -15,7 +15,6 @@ target_link_libraries(akregator_config_general
     akregatorinterfaces
     KF5::TextWidgets
     KF5::KCMUtils
-    KF5::Completion
     KF5::I18n
     )
 
@@ -68,7 +67,6 @@ add_library(akregator_config_browser MODULE ${kcm_akrbrowserconfig_SRCS})
 target_link_libraries(akregator_config_browser
     akregatorinterfaces
     KF5::KCMUtils
-    KF5::Completion
     KF5::I18n
 
     )
@@ -91,7 +89,6 @@ target_link_libraries(akregator_config_advanced
     akregatorinterfaces
     KF5::TextWidgets
     KF5::KCMUtils
-    KF5::Completion
     KF5::I18n
     )
 

@@ -25,7 +25,7 @@
 #include "feedpropertiesdialog.h"
 #include "akregatorconfig.h"
 
-#include <kcombobox.h>
+#include <QComboBox>
 #include <KLocalizedString>
 
 #include <QCheckBox>

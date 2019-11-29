@@ -28,7 +28,6 @@
 #include "article.h"
 #include "widgets/statussearchline.h"
 
-#include <kcombobox.h>
 #include <klineedit.h>
 #include <KLocalizedString>
 

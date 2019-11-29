@@ -212,7 +212,6 @@ target_link_libraries(akregatorpart
     KF5::PimTextEdit
     KF5::GrantleeTheme
     KF5::MessageViewer
-    KF5::Completion
     KF5::IconThemes
     KF5::Parts
     KF5::Notifications
