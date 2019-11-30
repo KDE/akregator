@@ -1,9 +1,9 @@
 cmake_minimum_required(VERSION 3.5)
-set(KDEPIM_VERSION_NUMBER "5.12.90")
+set(KDEPIM_VERSION_NUMBER "5.13.0")
 project(akregator VERSION ${KDEPIM_VERSION_NUMBER})
 
 set(KF5_MIN_VERSION "5.63.0")
-set(KDE_APPLICATIONS_VERSION "19.11.80")
+set(KDE_APPLICATIONS_VERSION "19.12.0")
 
 find_package(ECM ${KF5_MIN_VERSION} CONFIG REQUIRED)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
@@ -28,7 +28,7 @@ include(ECMQtDeclareLoggingCategory)
 
 
 # Do NOT add quote
-set(KDEPIM_DEV_VERSION rc)
+set(KDEPIM_DEV_VERSION)
 
 # add an extra space
 if(DEFINED KDEPIM_DEV_VERSION)
