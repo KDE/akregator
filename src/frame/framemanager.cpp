@@ -29,9 +29,9 @@
 #include "openurlrequest.h"
 #include <KRun>
 #include <KMacroExpander>
-#include <kprocess.h>
-#include <kshell.h>
-#include <kconfiggroup.h>
+#include <KProcess>
+#include <KShell>
+#include <KConfigGroup>
 #include "akregator_debug.h"
 #include <webengine/webengineframe.h>
 #include <QStringList>

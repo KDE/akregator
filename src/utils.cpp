@@ -26,7 +26,7 @@
 #include <QRegExp>
 #include <QString>
 #include <QTextDocument>
-#include <kdelibs4configmigrator.h>
+#include <Kdelibs4ConfigMigrator>
 
 using namespace Akregator;
 QString Utils::convertHtmlTags(const QString &title)

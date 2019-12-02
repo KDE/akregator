@@ -26,7 +26,7 @@
 #include "feed.h"
 
 #include <KLocalizedString>
-#include <knotification.h>
+#include <KNotification>
 #include <KAboutData>
 #include <QTimer>
 

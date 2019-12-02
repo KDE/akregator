@@ -27,10 +27,10 @@
 #include "kernel.h"
 
 #include "akregator_debug.h"
-#include <kiconloader.h>
-#include <kicontheme.h>
+#include <KIconLoader>
+#include <KIconTheme>
 #include <KLocalizedString>
-#include <kmessagebox.h>
+#include <KMessageBox>
 #include <QUrl>
 #include <QDialogButtonBox>
 #include <QPushButton>

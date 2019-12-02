@@ -66,12 +66,12 @@
 #include <WebEngineViewer/ZoomActionMenu>
 #include "job/downloadarticlejob.h"
 
-#include <kfileitem.h>
+#include <KFileItem>
 #include <KLocalizedString>
-#include <kmessagebox.h>
-#include <kshell.h>
+#include <KMessageBox>
+#include <KShell>
 
-#include <ktoggleaction.h>
+#include <KToggleAction>
 #include <QUrl>
 
 #include <QClipboard>

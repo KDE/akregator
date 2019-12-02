@@ -28,7 +28,7 @@
 #include "article.h"
 #include "widgets/statussearchline.h"
 
-#include <klineedit.h>
+#include <KLineEdit>
 #include <KLocalizedString>
 
 #include <QString>

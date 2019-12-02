@@ -29,7 +29,7 @@
 #include "types.h"
 #include <QUrl>
 #include <KConfig>
-#include <kconfiggroup.h>
+#include <KConfigGroup>
 #include "akregator_debug.h"
 
 #include <QRegExp>

@@ -29,7 +29,7 @@
 #include <QIcon>
 
 #include <kparts/browserextension.h>
-#include <kconfiggroup.h>
+#include <KConfigGroup>
 
 #include "akregator_export.h"
 

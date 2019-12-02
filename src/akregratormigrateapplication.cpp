@@ -19,7 +19,7 @@
 
 #include "akregratormigrateapplication.h"
 
-#include <kdelibs4configmigrator.h>
+#include <Kdelibs4ConfigMigrator>
 
 AkregratorMigrateApplication::AkregratorMigrateApplication()
 {

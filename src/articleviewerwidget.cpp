@@ -41,13 +41,13 @@
 #include "akregator_debug.h"
 #include "akregator-version.h"
 
-#include <kactioncollection.h>
-#include <kmessagebox.h>
-#include <krun.h>
-#include <kshell.h>
+#include <KActionCollection>
+#include <KMessageBox>
+#include <KRun>
+#include <KShell>
 
-#include <kstandardaction.h>
-#include <ktoolinvocation.h>
+#include <KStandardAction>
+#include <KToolInvocation>
 #include <kio/job.h>
 #include <QUrl>
 #include <QElapsedTimer>

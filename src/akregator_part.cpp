@@ -52,12 +52,12 @@
 #include "akregator-version.h"
 #include "unityservicemanager.h"
 #include <kio/filecopyjob.h>
-#include <knotifyconfigwidget.h>
-#include <kaboutdata.h>
-#include <kconfig.h>
-#include <kconfigdialog.h>
+#include <KNotifyConfigWidget>
+#include <KAboutData>
+#include <KConfig>
+#include <KConfigDialog>
 #include <QFileDialog>
-#include <kmessagebox.h>
+#include <KMessageBox>
 
 #include <QTemporaryFile>
 #include <QWebEngineSettings>
@@ -69,7 +69,7 @@
 #include <KPluginFactory>
 #include <KParts/Plugin>
 #include <KCMultiDialog>
-#include <kstandardaction.h>
+#include <KStandardAction>
 
 #include <QApplication>
 #include <QFile>

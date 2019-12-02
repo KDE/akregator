@@ -37,9 +37,9 @@
 #include "akregator_debug.h"
 #include <QTabWidget>
 #include <QTabBar>
-#include <krun.h>
+#include <KRun>
 #include <KLocalizedString>
-#include <ktoolinvocation.h>
+#include <KToolInvocation>
 #include <kio/global.h>
 #include <kio/pixmaploader.h>
 

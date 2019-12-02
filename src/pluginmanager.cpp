@@ -21,7 +21,7 @@ email                : markey@web.de
 
 #include "akregator_debug.h"
 #include <KLocalizedString>
-#include <kmessagebox.h>
+#include <KMessageBox>
 
 using std::vector;
 using Akregator::Plugin;

@@ -39,17 +39,17 @@
 
 #include <WebEngineViewer/ZoomActionMenu>
 
-#include <kactionmenu.h>
-#include <ktoolbarpopupaction.h>
+#include <KActionMenu>
+#include <KToolBarPopupAction>
 #include <QAction>
 #include <KToggleAction>
-#include <kactioncollection.h>
+#include <KActionCollection>
 #include "akregator_debug.h"
 #include <KLocalizedString>
 #include <QMenu>
 #include <QKeySequence>
-#include <kstandardshortcut.h>
-#include <kstandardaction.h>
+#include <KStandardShortcut>
+#include <KStandardAction>
 #include <kxmlguifactory.h>
 #include <KGuiItem>
 
