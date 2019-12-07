@@ -62,7 +62,7 @@
 #include <QTemporaryFile>
 #include <QWebEngineSettings>
 #include <QSaveFile>
-#include <kservice.h>
+#include <KService>
 #include <kxmlguifactory.h>
 #include <KIO/StoredTransferJob>
 #include <KJobWidgets>
