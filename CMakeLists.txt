@@ -60,7 +60,6 @@ find_package(KF5NotifyConfig ${KF5_MIN_VERSION} CONFIG REQUIRED)
 find_package(KF5Parts ${KF5_MIN_VERSION} CONFIG REQUIRED)
 find_package(KF5TextEditor ${KF5_MIN_VERSION} CONFIG REQUIRED)
 find_package(KF5XmlGui ${KF5_MIN_VERSION} CONFIG REQUIRED)
-find_package(KF5IconThemes ${KF5_MIN_VERSION} CONFIG REQUIRED)
 find_package(KF5Notifications ${KF5_MIN_VERSION} CONFIG REQUIRED)
 find_package(KF5Syndication ${KF5_MIN_VERSION} CONFIG REQUIRED)
 

@@ -27,21 +27,20 @@
 #include "kernel.h"
 
 #include "akregator_debug.h"
-#include <KIconLoader>
-#include <KIconTheme>
 #include <KLocalizedString>
 #include <KMessageBox>
 #include <QUrl>
 #include <QDialogButtonBox>
 #include <QPushButton>
 #include <QVBoxLayout>
+#include <QStyle>
 
 using namespace Akregator;
 AddFeedWidget::AddFeedWidget(QWidget *parent)
     : QWidget(parent)
 {
     setupUi(this);
-    pixmapLabel1->setPixmap(QIcon::fromTheme(QStringLiteral("applications-internet")).pixmap(IconSize(KIconLoader::Desktop), IconSize(KIconLoader::Desktop)));
+    pixmapLabel1->setPixmap(QIcon::fromTheme(QStringLiteral("applications-internet")).pixmap(style()->pixelMetric(QStyle::PM_MessageBoxIconSize)));
     statusLabel->setText(QString());
 }
 

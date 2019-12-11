@@ -30,9 +30,9 @@
 #include "treenode.h"
 
 #include "akregator_debug.h"
-#include <KIconLoader>
 #include <KLocalizedString>
 
+#include <QApplication>
 #include <QByteArray>
 #include <QDataStream>
 #include <QIcon>
@@ -41,6 +41,7 @@
 #include <QUrl>
 #include <QVariant>
 #include <QItemSelection>
+#include <QStyle>
 
 using namespace Akregator;
 using namespace Syndication;
@@ -250,7 +251,8 @@ QVariant Akregator::SubscriptionListModel::data(const QModelIndex &index, int ro
             return QVariant();
         }
         const Feed *const feed = qobject_cast<const Feed *const>(node);
-        return feed && feed->isFetching() ? node->icon().pixmap(KIconLoader::SizeSmall, QIcon::Active) : node->icon();
+        const auto iconSize = QApplication::style()->pixelMetric(QStyle::PM_SmallIconSize);
+        return feed && feed->isFetching() ? node->icon().pixmap(iconSize, QIcon::Active) : node->icon();
     }
     case SubscriptionIdRole:
         return node->id();

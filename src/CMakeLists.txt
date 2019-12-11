@@ -117,7 +117,6 @@ target_link_libraries(akregatorprivate
     KF5::Syndication
     akregatorinterfaces
     KF5::PimCommon
-    KF5::IconThemes
     KF5::PimTextEdit
     KF5::GrantleeTheme
     Grantlee5::Templates
@@ -212,7 +211,6 @@ target_link_libraries(akregatorpart
     KF5::PimTextEdit
     KF5::GrantleeTheme
     KF5::MessageViewer
-    KF5::IconThemes
     KF5::Parts
     KF5::Notifications
     Qt5::WebEngineWidgets

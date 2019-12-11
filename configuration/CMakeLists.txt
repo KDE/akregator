@@ -111,7 +111,6 @@ target_link_libraries(akregator_config_plugins
     akregatorinterfaces
     KF5::KCMUtils
     KF5::I18n
-    KF5::IconThemes
     KF5::WebEngineViewer
     )
 

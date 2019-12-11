@@ -27,10 +27,11 @@
 #include "subscriptionlistmodel.h"
 
 #include "akregator_debug.h"
-#include <KIconTheme>
 
+#include <QApplication>
 #include <QHeaderView>
 #include <QTreeView>
+#include <QStyle>
 
 using namespace Akregator;
 
@@ -77,8 +78,7 @@ void Akregator::SubscriptionListDelegate::paint(QPainter *painter, const QStyleO
 
 void Akregator::SubscriptionListDelegate::recalculateRowHeight()
 {
-    KIconTheme *iconTheme = KIconLoader::global()->theme();
-    m_viewIconHeight = iconTheme ? iconTheme->defaultSize(KIconLoader::Small) : 0;
+    m_viewIconHeight = QApplication::style()->pixelMetric(QStyle::PM_SmallIconSize);
     qCDebug(AKREGATOR_LOG) << "icon height" << m_viewIconHeight;
 }
 

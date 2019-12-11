@@ -41,7 +41,6 @@
 #include <KLocalizedString>
 #include <KToolInvocation>
 #include <kio/global.h>
-#include <kio/pixmaploader.h>
 
 #include "actionmanager.h"
 #include "akregatorconfig.h"
