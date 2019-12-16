@@ -65,7 +65,7 @@ AddFeedDialog::AddFeedDialog(QWidget *parent, const QString &name)
     : QDialog(parent)
 {
     setObjectName(name);
-    setWindowTitle(i18n("Add Feed"));
+    setWindowTitle(i18nc("@title:window", "Add Feed"));
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
 
     widget = new AddFeedWidget(this);

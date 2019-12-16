@@ -75,7 +75,7 @@ FeedPropertiesDialog::FeedPropertiesDialog(QWidget *parent, const QString &name)
     , m_feed(nullptr)
 {
     setObjectName(name);
-    setWindowTitle(i18n("Feed Properties"));
+    setWindowTitle(i18nc("@title:window", "Feed Properties"));
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
 
     widget = new FeedPropertiesWidget(this);
