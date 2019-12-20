@@ -38,7 +38,6 @@
 #include "utils.h"
 #include "feedretriever.h"
 #include "job/downloadfeediconjob.h"
-#include <syndication_version.h>
 #include <Syndication/Syndication>
 
 #include "akregator_debug.h"
@@ -797,7 +796,6 @@ void Feed::fetchCompleted(Syndication::Loader *l, Syndication::FeedPtr doc, Synd
 
     loadArticles(); // TODO: make me fly: make this delayed
 
-#if SYNDICATION_VERSION >= QT_VERSION_CHECK(5, 65, 0)
     if (!doc->icon().isNull() && !doc->icon()->url().isEmpty()) {
         loadFavicon(doc->icon()->url(), false);
         d->m_faviconInfo.width = doc->icon()->width();
@@ -805,9 +803,6 @@ void Feed::fetchCompleted(Syndication::Loader *l, Syndication::FeedPtr doc, Synd
     } else {
         loadFavicon(xmlUrl(), true);
     }
-#else
-    loadFavicon(xmlUrl(), true);
-#endif
     d->m_fetchErrorCode = Syndication::Success;
 
     if (!doc->image().isNull()) {
