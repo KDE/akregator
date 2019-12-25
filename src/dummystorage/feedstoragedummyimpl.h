@@ -86,7 +86,7 @@ private:
     int findArticle(const QString &guid) const;
     void setTotalCount(int total);
     class FeedStorageDummyImplPrivate;
-    FeedStorageDummyImplPrivate *d;    
+    FeedStorageDummyImplPrivate *d;
 };
 } // namespace Backend
 } // namespace Akregator

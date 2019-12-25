@@ -91,7 +91,6 @@ private:
     void setTotalCount(int total);
     class FeedStorageMK4ImplPrivate;
     FeedStorageMK4ImplPrivate *d;
-
 };
 } // namespace Backend
 } // namespace Akregator

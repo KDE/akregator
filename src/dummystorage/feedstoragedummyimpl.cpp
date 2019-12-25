@@ -362,5 +362,3 @@ QStringList FeedStorageDummyImpl::categories(const QString &guid) const
 }
 } // namespace Backend
 } // namespace Akregator
-
-

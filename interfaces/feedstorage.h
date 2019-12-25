@@ -86,8 +86,6 @@ public:
     virtual void setCategories(const QString & /*guid*/, const QStringList &categories) = 0;
 
     virtual QStringList categories(const QString &guid) const = 0;
-
-
 };
 } // namespace Backend
 } // namespace Akregator

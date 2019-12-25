@@ -554,8 +554,5 @@ QStringList FeedStorageMK4Impl::categories(const QString &guid) const
     //TODO
     return {};
 }
-
 } // namespace Backend
 } // namespace Akregator
-
-
