@@ -366,19 +366,19 @@ int main(int argc, char *argv[])
 
     const StorageFactory *const storageFactory = StorageFactoryRegistry::self()->getFactory(backend);
     if (!storageFactory) {
-        qCritical("Could not create storage factory for %s.", qPrintable(backend));
+        qCritical() << "Could not create storage factory for " << qPrintable(backend);
         return 1;
     }
 
     Storage *const storage = storageFactory->createStorage(QStringList());
     if (!storage) {
-        qCritical("Could not create storage object for %s.", qPrintable(backend));
+        qCritical() << "Could not create storage object for " << qPrintable(backend);
         return 1;
     }
 
     QFile out;
     if (!out.open(stdout, QIODevice::WriteOnly)) {
-        qCritical("Could not open stdout for writing: %s", qPrintable(out.errorString()));
+        qCritical() << "Could not open stdout for writing: " << qPrintable(out.errorString());
         return 1;
     }
 
