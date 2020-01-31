@@ -318,7 +318,7 @@ int TabWidget::Private::tabBarWidthForMaxChars(int maxLength)
                                                 ).width() + 4;
 
         x += (q->tabBar()->style()->sizeFromContents(QStyle::CT_TabBarTab, &o,
-                                                     QSize(qMax(lw + hframe + iw, QApplication::globalStrut().width()), 0), q)).width();
+                                                     QSize(lw + hframe + iw, 0), q)).width();
     }
     return x;
 }
