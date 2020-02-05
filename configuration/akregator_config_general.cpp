@@ -39,7 +39,7 @@ K_PLUGIN_FACTORY(KCMAkregatorGeneralConfigFactory, registerPlugin<KCMAkregatorGe
 
 KCMAkregatorGeneralConfig::KCMAkregatorGeneralConfig(QWidget *parent, const QVariantList &args)
     : KCModule(parent, args)
-    , m_widget(new QWidget)
+    , m_widget(new QWidget(this))
 {
     Ui::SettingsGeneral ui;
     ui.setupUi(m_widget);

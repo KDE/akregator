@@ -38,7 +38,7 @@ K_PLUGIN_CLASS_WITH_JSON(KCMAkregatorAdvancedConfig, "akregator_config_advanced.
 
 KCMAkregatorAdvancedConfig::KCMAkregatorAdvancedConfig(QWidget *parent, const QVariantList &args)
     : KCModule(parent, args)
-    , m_widget(new SettingsAdvanced)
+    , m_widget(new SettingsAdvanced(this))
 {
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->addWidget(m_widget);

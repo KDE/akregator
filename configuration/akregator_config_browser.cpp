@@ -38,7 +38,7 @@ K_PLUGIN_CLASS_WITH_JSON(KCMAkregatorBrowserConfig, "akregator_config_browser.js
 
 KCMAkregatorBrowserConfig::KCMAkregatorBrowserConfig(QWidget *parent, const QVariantList &args)
     : KCModule(parent, args)
-    , m_widget(new QWidget)
+    , m_widget(new QWidget(this))
 {
     Ui::SettingsBrowser ui;
     ui.setupUi(m_widget);
