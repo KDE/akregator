@@ -49,6 +49,9 @@ set(LIBKLEO_LIB_VERSION_LIB "5.13.40")
 set(MESSAGELIB_LIB_VERSION_LIB "5.13.55")
 set(PIMCOMMON_LIB_VERSION_LIB "5.13.40")
 
+option(KDEPIM_KUSERFEEDBACK "Enable user feedback support (experimental)" FALSE)
+
+
 find_package(Qt5 ${QT_REQUIRED_VERSION} CONFIG REQUIRED Widgets Test WebEngine WebEngineWidgets PrintSupport)
 find_package(Grantlee5 "5.2" CONFIG REQUIRED)
 
@@ -75,6 +78,12 @@ find_package(KF5WebEngineViewer ${MESSAGELIB_LIB_VERSION_LIB} CONFIG REQUIRED)
 # Fix plugin support for removing theses dependancies
 find_package(KF5AkonadiMime ${AKONADI_MIMELIB_VERSION} CONFIG REQUIRED)
 find_package(KF5PimCommonAkonadi ${PIMCOMMON_LIB_VERSION_LIB} CONFIG REQUIRED)
+
+if (KDEPIM_KUSERFEEDBACK)
+    #Optional
+    find_package(KUserFeedback)
+endif()
+
 
 include_directories(${akregator_SOURCE_DIR} ${akregator_BINARY_DIR})
 add_definitions(-DTRANSLATION_DOMAIN=\"akregator\")

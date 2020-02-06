@@ -11,6 +11,9 @@ include_directories(
 
 add_subdirectory(icons)
 
+if (TARGET KUserFeedbackWidgets)
+    add_definitions(-DWITH_KUSERFEEDBACK)
+endif()
 
 ########### next target ###############
 
@@ -72,7 +75,17 @@ set(akregatorprivate_urlhandlerwebengine_SRCS
     urlhandler/webengine/urlhandlerwebenginemanager.cpp
     )
 
+set(akregatorprivate_userfeedback_LIB_SRCS)
+if (TARGET KUserFeedbackWidgets)
+    set(akregatorprivate_userfeedback_LIB_SRCS ${akregatorprivate_userfeedback_LIB_SRCS}
+        userfeedback/userfeedbackmanager.cpp
+        )
+endif()
+
+
+
 set(akregatorprivate_LIB_SRCS
+    ${akregatorprivate_userfeedback_LIB_SRCS}
     akregratormigrateapplication.cpp
     ${akregatorprivate_frame_SRCS}
     ${akregatorprivate_urlhandler_SRCS}
@@ -109,6 +122,12 @@ qt5_add_resources(akregatorprivate_LIB_SRCS akregator.qrc)
 add_library(akregatorprivate ${akregatorprivate_LIB_SRCS})
 generate_export_header(akregatorprivate BASE_NAME akregator)
 
+set(akregator_userfeedback_LIB)
+if (TARGET KUserFeedbackWidgets)
+    set(akregator_userfeedback_LIB KUserFeedbackWidgets)
+endif()
+
+
 target_link_libraries(akregatorprivate
     PRIVATE
     KF5::Parts
@@ -124,6 +143,7 @@ target_link_libraries(akregatorprivate
     KF5::MessageViewer
     Qt5::PrintSupport
     KF5::WebEngineViewer
+    ${akregator_userfeedback_LIB}
     )
 
 target_include_directories(akregatorprivate PUBLIC "$<BUILD_INTERFACE:${akregator_SOURCE_DIR}/src;${akregator_BINARY_DIR}/src>")
