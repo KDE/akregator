@@ -31,7 +31,7 @@ UserFeedBackManager::UserFeedBackManager(QObject *parent)
     : QObject(parent)
 {
     mUserFeedbackProvider = new KUserFeedback::Provider(this);
-    mUserFeedbackProvider->setProductIdentifier(QStringLiteral("org.kde.korganizer"));
+    mUserFeedbackProvider->setProductIdentifier(QStringLiteral("org.kde.akregator"));
     mUserFeedbackProvider->setFeedbackServer(QUrl(QStringLiteral("https://telemetry.kde.org/")));
     mUserFeedbackProvider->setSubmissionInterval(7);
     mUserFeedbackProvider->setApplicationStartsUntilEncouragement(5);
