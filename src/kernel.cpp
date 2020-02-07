@@ -27,6 +27,9 @@
 #include "feedlist.h"
 #include "fetchqueue.h"
 #include "framemanager.h"
+#ifdef WITH_KUSERFEEDBACK
+#include "userfeedback/userfeedbackmanager.h"
+#endif
 
 using namespace Akregator;
 
@@ -46,6 +49,11 @@ Kernel::Kernel()
     m_fetchQueue = new FetchQueue();
     m_frameManager = new FrameManager();
     m_storage = nullptr;
+#ifdef WITH_KUSERFEEDBACK
+    //Initialize
+    (void)UserFeedBackManager::self();
+#endif
+
 }
 
 Kernel::~Kernel()
