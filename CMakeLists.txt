@@ -82,6 +82,7 @@ find_package(KF5PimCommonAkonadi ${PIMCOMMON_LIB_VERSION_LIB} CONFIG REQUIRED)
 if (KDEPIM_KUSERFEEDBACK)
     #Optional
     find_package(KUserFeedback)
+    set_package_properties(KUserFeedback PROPERTIES DESCRIPTION "User Feedback lib" TYPE OPTIONAL PURPOSE "Allow to send Telemetry Information (optional). It can be disable in apps.")
 endif()
 
 
