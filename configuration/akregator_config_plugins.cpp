@@ -40,7 +40,7 @@ KCMAkregatorPluginsConfig::KCMAkregatorPluginsConfig(QWidget *parent, const QVar
     KAboutData *about = new KAboutData(QStringLiteral("kcmakrpluginsconfig"),
                                        i18n("Configure Plugins"),
                                        QString(), QString(), KAboutLicense::GPL,
-                                       i18n("(c), 2016-2019 Laurent Montel"));
+                                       i18n("(c), 2016-2020 Laurent Montel"));
 
     about->addAuthor(i18n("Laurent Montel"), QString(), QStringLiteral("montel@kde.org"));
 
