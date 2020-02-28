@@ -1,0 +1,13 @@
+[Desktop Entry]
+Icon=preferences-other
+Type=Service
+X-KDE-ServiceTypes=KCModule
+
+X-KDE-Library=akregator_config_userfeedback
+X-KDE-ParentApp=akregator
+X-KDE-ParentComponents=akregator,akregator_config_userfeedback
+X-KDE-CfgDlgHierarchy=Akregator
+X-KDE-Weight=250
+
+Name=User FeedBack
+X-KDE-Keywords=akregator, configure, settings, userfeedback
