@@ -22,10 +22,11 @@
 #define USERFEEDBACKMANAGER_H
 
 #include <QObject>
+#include "akregatorinterfaces_export.h"
 namespace KUserFeedback {
 class Provider;
 }
-class UserFeedBackManager : public QObject
+class AKREGATORINTERFACES_EXPORT UserFeedBackManager : public QObject
 {
     Q_OBJECT
 public:

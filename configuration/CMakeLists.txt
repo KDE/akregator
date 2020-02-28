@@ -118,3 +118,22 @@ kcoreaddons_desktop_to_json(akregator_config_plugins akregator_config_plugins.de
 install(FILES akregator_config_plugins.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
 install(TARGETS akregator_config_plugins DESTINATION ${KDE_INSTALL_PLUGINDIR})
 
+
+########### next target ###############
+if (TARGET KUserFeedbackWidgets)
+    set(kcm_akregator_config_userfeedback_SRCS akregator_config_userfeedback.cpp)
+
+    add_library(akregator_config_userfeedback MODULE ${kcm_akregator_config_userfeedback_SRCS})
+
+    target_link_libraries(akregator_config_userfeedback
+        akregatorinterfaces
+        KF5::TextWidgets
+        KF5::KCMUtils
+        KF5::I18n
+        KUserFeedbackWidgets
+        )
+
+    install(FILES akregator_config_userfeedback.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
+    kcoreaddons_desktop_to_json(akregator_config_userfeedback akregator_config_userfeedback.desktop SERVICE_TYPES kcmodule.desktop)
+    install(TARGETS akregator_config_userfeedback DESTINATION ${KDE_INSTALL_PLUGINDIR})
+endif()

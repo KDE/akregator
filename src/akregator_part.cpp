@@ -669,6 +669,10 @@ void Part::showOptions()
         m_dialog->addModule(QStringLiteral("akregator_config_browser"));
         m_dialog->addModule(QStringLiteral("akregator_config_advanced"));
         m_dialog->addModule(QStringLiteral("akregator_config_plugins"));
+#ifdef WITH_KUSERFEEDBACK
+        m_dialog->addModule(QStringLiteral("akregator_config_userfeedback"));
+#endif
+
     }
 
     m_dialog->show();

@@ -67,4 +67,4 @@ void KCMAkregatorUserFeedBackConfig::defaults()
 {
 }
 
-#include "kaddressbook_config_userfeedback.moc"
+#include "akregator_config_userfeedback.moc"

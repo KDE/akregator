@@ -11,9 +11,6 @@ include_directories(
 
 add_subdirectory(icons)
 
-if (TARGET KUserFeedbackWidgets)
-    add_definitions(-DWITH_KUSERFEEDBACK)
-endif()
 
 ########### next target ###############
 
@@ -74,15 +71,6 @@ set(akregatorprivate_urlhandlerwebengine_SRCS
     urlhandler/webengine/urlhandlerwebengine.cpp
     urlhandler/webengine/urlhandlerwebenginemanager.cpp
     )
-
-set(akregatorprivate_userfeedback_LIB_SRCS)
-if (TARGET KUserFeedbackWidgets)
-    set(akregatorprivate_userfeedback_LIB_SRCS ${akregatorprivate_userfeedback_LIB_SRCS}
-        userfeedback/userfeedbackmanager.cpp
-        )
-endif()
-
-
 
 set(akregatorprivate_LIB_SRCS
     ${akregatorprivate_userfeedback_LIB_SRCS}
