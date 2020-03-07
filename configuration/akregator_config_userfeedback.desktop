@@ -9,7 +9,7 @@ X-KDE-ParentComponents=akregator,akregator_config_userfeedback
 X-KDE-CfgDlgHierarchy=Akregator
 X-KDE-Weight=250
 
-Name=User FeedBack
+Name=User Feedback
 Name[ca]=Comentaris de l'usuari
 Name[ca@valencia]=Comentaris de l'usuari
 Name[es]=Comentarios del usuario
