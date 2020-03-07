@@ -39,7 +39,7 @@ KCMAkregatorUserFeedBackConfig::KCMAkregatorUserFeedBackConfig(QWidget *parent, 
     lay->setContentsMargins(0, 0, 0, 0);
 
     KAboutData *about = new KAboutData(QStringLiteral("kcmaddressbookuserfeedbackconfig"),
-                                       i18n("Configure User FeedBack"),
+                                       i18n("Configure User Feedback"),
                                        QString(), QString(), KAboutLicense::GPL,
                                        i18n("(c), 2020 Laurent Montel"));
 
