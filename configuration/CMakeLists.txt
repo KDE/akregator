@@ -104,14 +104,10 @@ set(kcm_config_plugins_SRCS
     akregatorconfigurepluginlistwidget.cpp
     )
 
-if (ECM_VERSION VERSION_LESS "5.68.0")
-    ecm_qt_declare_logging_category(kcm_config_plugins_SRCS HEADER kcm_config_plugins_debug.h IDENTIFIER AKREGATOR_CONFIG_PLUGIN_LOG CATEGORY_NAME org.kde.pim.akregator_config_plugin)
-else()
-    ecm_qt_declare_logging_category(kcm_config_plugins_SRCS HEADER kcm_config_plugins_debug.h IDENTIFIER AKREGATOR_CONFIG_PLUGIN_LOG CATEGORY_NAME org.kde.pim.akregator_config_plugin
+ecm_qt_declare_logging_category(kcm_config_plugins_SRCS HEADER kcm_config_plugins_debug.h IDENTIFIER AKREGATOR_CONFIG_PLUGIN_LOG CATEGORY_NAME org.kde.pim.akregator_config_plugin
         DESCRIPTION "akregator config plugin (akregator)"
         EXPORT AKREGATOR
     )
-endif()
 
 
 add_library(akregator_config_plugins MODULE ${kcm_config_plugins_SRCS})

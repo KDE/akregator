@@ -15,15 +15,11 @@ add_subdirectory(icons)
 ########### next target ###############
 
 set(akregator_common_SRCS)
-if (ECM_VERSION VERSION_LESS "5.68.0")
-    ecm_qt_declare_logging_category(akregator_common_SRCS HEADER akregator_debug.h IDENTIFIER AKREGATOR_LOG CATEGORY_NAME org.kde.pim.akregator)
-else()
-    ecm_qt_declare_logging_category(akregator_common_SRCS HEADER akregator_debug.h IDENTIFIER AKREGATOR_LOG CATEGORY_NAME org.kde.pim.akregator
+ecm_qt_declare_logging_category(akregator_common_SRCS HEADER akregator_debug.h IDENTIFIER AKREGATOR_LOG CATEGORY_NAME org.kde.pim.akregator
         DESCRIPTION "akregator (akregator)"
         OLD_CATEGORY_NAMES log_akregator
         EXPORT AKREGATOR
     )
-endif()
 
 set(akregator_SRCS main.cpp mainwindow.cpp ${akregator_common_SRCS})
 
