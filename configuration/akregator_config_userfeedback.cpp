@@ -61,10 +61,13 @@ void KCMAkregatorUserFeedBackConfig::save()
 
 void KCMAkregatorUserFeedBackConfig::load()
 {
+    mUserFeedbackWidget->setFeedbackProvider(UserFeedBackManager::self()->userFeedbackProvider());
 }
 
 void KCMAkregatorUserFeedBackConfig::defaults()
 {
+    //TODO fixme default values
+    mUserFeedbackWidget->setFeedbackProvider(UserFeedBackManager::self()->userFeedbackProvider());
 }
 
 #include "akregator_config_userfeedback.moc"
