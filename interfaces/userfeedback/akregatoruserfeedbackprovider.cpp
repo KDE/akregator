@@ -17,8 +17,8 @@
    Boston, MA 02110-1301, USA.
 */
 
+
 #include "akregatoruserfeedbackprovider.h"
-#include "userfeedbackmanager.h"
 #include <KUserFeedback/ApplicationVersionSource>
 #include <KUserFeedback/PlatformInfoSource>
 #include <KUserFeedback/ScreenInfoSource>
@@ -28,19 +28,27 @@
 #include <KUserFeedback/UsageTimeSource>
 #include <KUserFeedback/LocaleInfoSource>
 
-UserFeedBackManager::UserFeedBackManager(QObject *parent)
-    : QObject(parent)
+AkregatorUserFeedbackProvider::AkregatorUserFeedbackProvider(QObject *parent)
+    : KUserFeedback::Provider(parent)
 {
-    mUserFeedbackProvider = new AkregatorUserFeedbackProvider(this);
+    setProductIdentifier(QStringLiteral("org.kde.akregator"));
+    setFeedbackServer(QUrl(QStringLiteral("https://telemetry.kde.org/")));
+    setSubmissionInterval(7);
+    setApplicationStartsUntilEncouragement(5);
+    setEncouragementDelay(30);
+
+    addDataSource(new KUserFeedback::ApplicationVersionSource);
+    addDataSource(new KUserFeedback::PlatformInfoSource);
+    addDataSource(new KUserFeedback::ScreenInfoSource);
+    addDataSource(new KUserFeedback::QtVersionSource);
+
+    addDataSource(new KUserFeedback::StartCountSource);
+    addDataSource(new KUserFeedback::UsageTimeSource);
+
+    addDataSource(new KUserFeedback::LocaleInfoSource);
 }
 
-UserFeedBackManager *UserFeedBackManager::self()
+AkregatorUserFeedbackProvider::~AkregatorUserFeedbackProvider()
 {
-    static UserFeedBackManager s_self;
-    return &s_self;
-}
 
-KUserFeedback::Provider *UserFeedBackManager::userFeedbackProvider() const
-{
-    return mUserFeedbackProvider;
 }

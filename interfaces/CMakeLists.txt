@@ -11,6 +11,7 @@ set(akregatorinterfaces_userfeedback_LIB_SRCS)
 if (TARGET KUserFeedbackWidgets)
     set(akregatorinterfaces_userfeedback_LIB_SRCS ${akregatorinterfaces_userfeedback_LIB_SRCS}
         userfeedback/userfeedbackmanager.cpp
+        userfeedback/akregatoruserfeedbackprovider.cpp
         )
 endif()
 

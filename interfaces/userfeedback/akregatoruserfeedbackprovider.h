@@ -17,30 +17,19 @@
    Boston, MA 02110-1301, USA.
 */
 
-#include "akregatoruserfeedbackprovider.h"
-#include "userfeedbackmanager.h"
-#include <KUserFeedback/ApplicationVersionSource>
-#include <KUserFeedback/PlatformInfoSource>
-#include <KUserFeedback/ScreenInfoSource>
-#include <KUserFeedback/QtVersionSource>
+
+#ifndef AKREGATORUSERFEEDBACKPROVIDER_H
+#define AKREGATORUSERFEEDBACKPROVIDER_H
+
 #include <KUserFeedback/Provider>
-#include <KUserFeedback/StartCountSource>
-#include <KUserFeedback/UsageTimeSource>
-#include <KUserFeedback/LocaleInfoSource>
+#include "akregatorinterfaces_export.h"
 
-UserFeedBackManager::UserFeedBackManager(QObject *parent)
-    : QObject(parent)
+class AKREGATORINTERFACES_EXPORT AkregatorUserFeedbackProvider : public KUserFeedback::Provider
 {
-    mUserFeedbackProvider = new AkregatorUserFeedbackProvider(this);
-}
+    Q_OBJECT
+public:
+    explicit AkregatorUserFeedbackProvider(QObject *parent = nullptr);
+    ~AkregatorUserFeedbackProvider();
+};
 
-UserFeedBackManager *UserFeedBackManager::self()
-{
-    static UserFeedBackManager s_self;
-    return &s_self;
-}
-
-KUserFeedback::Provider *UserFeedBackManager::userFeedbackProvider() const
-{
-    return mUserFeedbackProvider;
-}
+#endif // AKREGATORUSERFEEDBACKPROVIDER_H
