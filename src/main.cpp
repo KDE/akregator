@@ -27,7 +27,9 @@
 #include "akregator_options.h"
 #include "akregator_debug.h"
 #include "akregratormigrateapplication.h"
-
+#ifdef WITH_KUSERFEEDBACK
+#include "userfeedback/akregatoruserfeedbackprovider.h"
+#endif
 #include <KontactInterface/PimUniqueApplication>
 
 #include <KCrash>
@@ -102,7 +104,9 @@ int main(int argc, char **argv)
 
 #ifdef WITH_KUSERFEEDBACK
     if(cmdArgs->isSet(QStringLiteral("feedback"))) {
-        //QTextStream(stdout) << UserFeedBackManager::self()->userFeedbackProvider()->describeDataSources() << '\n';
+        AkregatorUserFeedbackProvider *userFeedBack = new AkregatorUserFeedbackProvider(nullptr);
+        QTextStream(stdout) << userFeedBack->describeDataSources() << '\n';
+        delete userFeedBack;
         return 0;
     }
 #endif
