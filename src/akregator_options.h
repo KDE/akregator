@@ -49,6 +49,9 @@ static void akregator_options(QCommandLineParser *parser)
         QStringLiteral("url"),
         i18n("Add a feed with the given URL"),
         QStringLiteral("[url...]"));
+#ifdef WITH_KUSERFEEDBACK
+    parser->addOption(QCommandLineOption(QStringLiteral("feedback"), i18n("Lists the available options for user feedback")));
+#endif
 }
 }
 

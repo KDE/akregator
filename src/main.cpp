@@ -100,6 +100,12 @@ int main(int argc, char **argv)
     cmdArgs->process(args);
     about.processCommandLine(cmdArgs);
 
+#ifdef WITH_KUSERFEEDBACK
+    if(cmdArgs->isSet(QStringLiteral("feedback"))) {
+        //QTextStream(stdout) << UserFeedBackManager::self()->userFeedbackProvider()->describeDataSources() << '\n';
+        return 0;
+    }
+#endif
     if (!Akregator::Application::start(args)) {
         qCWarning(AKREGATOR_LOG) << "akregator is already running, exiting.";
         exit(0);
