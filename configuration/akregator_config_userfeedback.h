@@ -27,7 +27,7 @@ namespace KUserFeedback {
 class FeedbackConfigWidget;
 }
 
-namespace KAddressBook {
+namespace Akregator {
 class KCMAkregatorUserFeedBackConfig : public KCModule
 {
     Q_OBJECT

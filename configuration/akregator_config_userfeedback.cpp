@@ -27,7 +27,7 @@
 #include "userfeedback/userfeedbackmanager.h"
 #endif
 
-using namespace KAddressBook;
+using namespace Akregator;
 
 K_PLUGIN_FACTORY(KCMAkregatorUserFeedBackConfigFactory, registerPlugin<KCMAkregatorUserFeedBackConfig>();
                  )
