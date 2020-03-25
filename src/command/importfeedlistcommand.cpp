@@ -69,9 +69,7 @@ void ImportFeedListCommand::Private::doImport()
     const QSharedPointer<FeedList> target = targetList.lock();
 
     if (!target) {
-        if (!target) {
-            qCWarning(AKREGATOR_LOG) << "Target list was deleted, could not import feed list";
-        }
+        qCWarning(AKREGATOR_LOG) << "Target list was deleted, could not import feed list";
         q->done();
         return;
     }

@@ -37,10 +37,10 @@ using namespace Akregator;
 GrantleeViewFormatter::GrantleeViewFormatter(const QString &htmlFileName, const QString &themePath, int deviceDpiY)
     : GrantleeTheme::GenericFormatter(htmlFileName, themePath)
     , mHtmlArticleFileName(htmlFileName)
+    , mDirectionString(QApplication::isRightToLeft() ? QStringLiteral("rtl") : QStringLiteral("ltr"))
     , mGrantleeThemePath(QStringLiteral("file://") + themePath + QLatin1Char('/'))
     , mDeviceDpiY(deviceDpiY)
 {
-    mDirectionString = QApplication::isRightToLeft() ? QStringLiteral("rtl") : QStringLiteral("ltr");
     setApplicationDomain("akregator");
 }
 

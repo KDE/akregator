@@ -105,11 +105,7 @@ void OpenUrlRequest::setOptions(OpenUrlRequest::Options options)
 QString OpenUrlRequest::debugInfo() const
 {
     return QStringLiteral("url=%1 mimeType=%2 newTab=%3 forcesNewWindow=%4 options=%5")
-           .arg(m_url.url())
-           .arg(m_args.mimeType())
-           .arg(m_browserArgs.newTab())
-           .arg(m_browserArgs.forcesNewWindow())
-           .arg(m_options);
+           .arg(m_url.url(), m_args.mimeType()).arg(m_browserArgs.newTab()).arg(m_browserArgs.forcesNewWindow()).arg(m_options);
 }
 
 bool OpenUrlRequest::wasHandled() const

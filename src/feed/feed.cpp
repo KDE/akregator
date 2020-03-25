@@ -375,7 +375,7 @@ void Feed::loadFavicon(const QString &url, bool downloadFavicon)
     Akregator::DownloadFeedIconJob *job = new Akregator::DownloadFeedIconJob(this);
     job->setFeedIconUrl(url);
     job->setDownloadFavicon(downloadFavicon);
-    connect(job, &DownloadFeedIconJob::result, this, [job, this](const QString &result) {
+    connect(job, &DownloadFeedIconJob::result, this, [this](const QString &result) {
         setFaviconUrl(result);
     });
     if (!job->start()) {

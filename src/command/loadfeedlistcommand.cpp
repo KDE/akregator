@@ -146,10 +146,6 @@ void LoadFeedListCommand::Private::doLoad()
     Q_ASSERT(!fileName.isNull());
     Q_EMIT q->progress(0, i18n("Opening Feed List..."));
 
-    QString str;
-
-    const QString listBackup = storage->restoreFeedList();
-
     QDomDocument doc;
 
     if (!QFileInfo::exists(fileName)) {
