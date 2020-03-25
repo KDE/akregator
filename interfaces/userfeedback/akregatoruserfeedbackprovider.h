@@ -23,7 +23,7 @@
 
 #include <KUserFeedback/Provider>
 #include "akregatorinterfaces_export.h"
-
+namespace Akregator {
 class AKREGATORINTERFACES_EXPORT AkregatorUserFeedbackProvider : public KUserFeedback::Provider
 {
     Q_OBJECT
@@ -31,5 +31,5 @@ public:
     explicit AkregatorUserFeedbackProvider(QObject *parent = nullptr);
     ~AkregatorUserFeedbackProvider();
 };
-
+}
 #endif // AKREGATORUSERFEEDBACKPROVIDER_H

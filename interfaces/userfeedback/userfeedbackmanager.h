@@ -26,6 +26,7 @@
 namespace KUserFeedback {
 class Provider;
 }
+namespace Akregator {
 class AKREGATORINTERFACES_EXPORT UserFeedBackManager : public QObject
 {
     Q_OBJECT
@@ -38,5 +39,5 @@ public:
 private:
     KUserFeedback::Provider *mUserFeedbackProvider = nullptr;
 };
-
+}
 #endif // USERFEEDBACKMANAGER_H

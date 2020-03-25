@@ -27,7 +27,7 @@
 #include <KUserFeedback/StartCountSource>
 #include <KUserFeedback/UsageTimeSource>
 #include <KUserFeedback/LocaleInfoSource>
-
+using namespace Akregator;
 AkregatorUserFeedbackProvider::AkregatorUserFeedbackProvider(QObject *parent)
     : KUserFeedback::Provider(parent)
 {
