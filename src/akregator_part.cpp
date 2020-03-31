@@ -26,7 +26,7 @@
 #include "akregator_part.h"
 #include "akregator_debug.h"
 
-#include "messageviewer/messageviewersettings.h"
+#include <MessageViewer/MessageViewerSettings>
 #include "akregatorconfig.h"
 #include "aboutdata.h"
 #include "actionmanagerimpl.h"

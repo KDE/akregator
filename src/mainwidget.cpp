@@ -35,7 +35,7 @@
 #include "articlematcher.h"
 #include "akregatorconfig.h"
 #include "akregator_part.h"
-#include "Libkdepim/BroadcastStatus"
+#include <Libkdepim/BroadcastStatus>
 #include "createfeedcommand.h"
 #include "createfoldercommand.h"
 #include "deletesubscriptioncommand.h"

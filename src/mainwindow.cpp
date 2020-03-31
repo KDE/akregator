@@ -27,7 +27,7 @@
 #include "akregatorconfig.h"
 #include "trayicon.h"
 
-#include "Libkdepim/BroadcastStatus"
+#include <Libkdepim/BroadcastStatus>
 #include <Libkdepim/ProgressStatusBarWidget>
 #include <Libkdepim/StatusbarProgressWidget>
 

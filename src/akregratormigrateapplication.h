@@ -20,7 +20,7 @@
 #ifndef AKREGRATORMIGRATEAPPLICATION_H
 #define AKREGRATORMIGRATEAPPLICATION_H
 
-#include "PimCommon/MigrateApplicationFiles"
+#include <PimCommon/MigrateApplicationFiles>
 #include "akregator_export.h"
 
 class AKREGATOR_EXPORT AkregratorMigrateApplication

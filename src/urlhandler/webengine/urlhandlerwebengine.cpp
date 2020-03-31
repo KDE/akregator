@@ -19,7 +19,7 @@
 
 #include "urlhandlerwebengine.h"
 #include "akregator_debug.h"
-#include "Libkdepim/BroadcastStatus"
+#include <Libkdepim/BroadcastStatus>
 #include "articleviewer-ng/webengine/articleviewerwebengine.h"
 #include <KLocalizedString>
 #include <QDesktopServices>
