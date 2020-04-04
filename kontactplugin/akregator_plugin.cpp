@@ -87,9 +87,9 @@ OrgKdeAkregatorPartInterface *AkregatorPlugin::interface()
     return m_interface;
 }
 
-KParts::ReadOnlyPart *AkregatorPlugin::createPart()
+KParts::Part *AkregatorPlugin::createPart()
 {
-    KParts::ReadOnlyPart *part = loadPart();
+    KParts::Part *part = loadPart();
     if (!part) {
         return nullptr;
     }

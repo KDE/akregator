@@ -66,7 +66,7 @@ public:
     void saveProperties(KConfigGroup &config) override;
 
 protected:
-    KParts::ReadOnlyPart *createPart() override;
+    KParts::Part *createPart() override;
     KontactInterface::UniqueAppWatcher *mUniqueAppWatcher = nullptr;
     OrgKdeAkregatorPartInterface *m_interface = nullptr;
 
