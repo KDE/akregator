@@ -27,7 +27,7 @@
 
 #include <KPIMTextEdit/kpimtextedit/texttospeechwidget.h>
 
-#include <kpimtextedit/slidecontainer.h>
+#include <KPIMTextEdit/SlideContainer>
 
 #include <WebEngineViewer/FindBarWebEngineView>
 #include <WebEngineViewer/WebEngineExportHtmlPageJob>

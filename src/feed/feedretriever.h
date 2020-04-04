@@ -25,7 +25,7 @@
 #ifndef FEEDRETRIEVER_H_
 #define FEEDRETRIEVER_H_
 
-#include <syndication/dataretriever.h>
+#include <Syndication/DataRetriever>
 
 class KJob;
 
