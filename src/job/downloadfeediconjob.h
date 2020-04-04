@@ -21,6 +21,7 @@
 #define DOWNLOADFEEDICONJOB_H
 
 #include <QObject>
+#include <QUrl>
 
 #include "akregator_export.h"
 namespace Akregator {
@@ -33,8 +34,8 @@ public:
     Q_REQUIRED_RESULT bool start();
     Q_REQUIRED_RESULT bool canStart() const;
 
-    Q_REQUIRED_RESULT QString feedIconUrl() const;
-    void setFeedIconUrl(const QString &feedIconUrl);
+    Q_REQUIRED_RESULT QUrl feedIconUrl() const;
+    void setFeedIconUrl(const QUrl &feedIconUrl);
 
     Q_REQUIRED_RESULT bool downloadFavicon() const;
     void setDownloadFavicon(bool downloadFavicon);
@@ -42,7 +43,7 @@ public:
 Q_SIGNALS:
     void result(const QString &fileName);
 private:
-    QString mFeedIconUrl;
+    QUrl mFeedIconUrl;
     bool mDownloadFavicon = true;
 };
 }

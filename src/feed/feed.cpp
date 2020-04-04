@@ -372,8 +372,12 @@ Feed::~Feed()
 
 void Feed::loadFavicon(const QString &url, bool downloadFavicon)
 {
+    QUrl u(url);
+    if (u.scheme().isEmpty()) {
+        qCWarning(AKREGATOR_LOG) << "Invalid url" << url;
+    }
     Akregator::DownloadFeedIconJob *job = new Akregator::DownloadFeedIconJob(this);
-    job->setFeedIconUrl(url);
+    job->setFeedIconUrl(u);
     job->setDownloadFavicon(downloadFavicon);
     connect(job, &DownloadFeedIconJob::result, this, [this](const QString &result) {
         setFaviconUrl(result);

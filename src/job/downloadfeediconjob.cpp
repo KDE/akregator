@@ -21,7 +21,6 @@
 
 #include <KIO/FavIconRequestJob>
 
-#include <QUrl>
 using namespace Akregator;
 DownloadFeedIconJob::DownloadFeedIconJob(QObject *parent)
     : QObject(parent)
@@ -39,9 +38,9 @@ bool DownloadFeedIconJob::start()
         return false;
     }
 
-    KIO::FavIconRequestJob *job = new KIO::FavIconRequestJob(QUrl(mFeedIconUrl));
+    KIO::FavIconRequestJob *job = new KIO::FavIconRequestJob(mFeedIconUrl);
     if (!mDownloadFavicon) {
-        job->setIconUrl(QUrl(mFeedIconUrl));
+        job->setIconUrl(mFeedIconUrl);
     }
     connect(job, &KIO::FavIconRequestJob::result, this, [job, this](KJob *) {
         if (!job->error()) {
@@ -57,12 +56,12 @@ bool DownloadFeedIconJob::canStart() const
     return !mFeedIconUrl.isEmpty();
 }
 
-QString DownloadFeedIconJob::feedIconUrl() const
+QUrl DownloadFeedIconJob::feedIconUrl() const
 {
     return mFeedIconUrl;
 }
 
-void DownloadFeedIconJob::setFeedIconUrl(const QString &feedIconUrl)
+void DownloadFeedIconJob::setFeedIconUrl(const QUrl &feedIconUrl)
 {
     mFeedIconUrl = feedIconUrl;
 }
