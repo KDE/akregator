@@ -99,7 +99,7 @@ bool MainWindow::loadPart()
         return false;
     }
 
-    m_part = static_cast<Akregator::Part *>(factory->create<KParts::ReadOnlyPart>(this));
+    m_part = static_cast<Akregator::Part *>(factory->create<KParts::Part>(this));
 
     if (!m_part) {
         return false;

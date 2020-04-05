@@ -23,6 +23,8 @@
 #include "frame.h"
 #include "akregatorpart_export.h"
 
+class KActionCollection;
+
 namespace Akregator {
 class ArticleViewerWebEngineWidgetNg;
 class AKREGATORPART_EXPORT WebEngineFrame : public Frame

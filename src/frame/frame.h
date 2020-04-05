@@ -28,7 +28,6 @@
 #include <QWidget>
 #include <QIcon>
 
-#include <kparts/browserextension.h>
 #include <KConfigGroup>
 
 #include "akregator_export.h"

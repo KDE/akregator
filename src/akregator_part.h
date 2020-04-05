@@ -31,10 +31,8 @@
 #include <KSharedConfig>
 
 #include <QUrl>
-#include <kparts/browserextension.h>
 #include <kparts/part.h>
 
-#include <kparts/readonlypart.h>
 #include "crashwidget/crashwidget.h"
 
 class KConfigGroup;
@@ -57,23 +55,11 @@ class Part;
 class TrayIcon;
 class AkregatorCentralWidget;
 
-class BrowserExtension : public KParts::BrowserExtension
-{
-    Q_OBJECT
-
-public:
-    explicit BrowserExtension(Part *p, const char *name = nullptr);
-public Q_SLOTS:
-    void saveSettings();
-private:
-    Part *m_part;
-};
-
 /**
     This is a RSS Aggregator "Part". It does all the real work.
     It is also embeddable into other applications (e.g. for use in Kontact).
     */
-class Part : public KParts::ReadOnlyPart
+class Part : public KParts::Part
 {
     Q_OBJECT
 public:
@@ -82,12 +68,6 @@ public:
 
     /** Destructor. */
     ~Part() override;
-
-    /**
-        Opens feedlist
-        @param url URL to feedlist
-        */
-    bool openUrl(const QUrl &url) override;
 
     /** Opens standard feedlist */
     void openStandardFeedList();
@@ -159,14 +139,11 @@ private:
      */
     void loadPlugins(const QString &type);
 
-    /** This must be implemented by each part */
-    bool openFile() override;
-
     void importFile(const QUrl &url);
 
-private Q_SLOTS:
-    void slotStarted();
+    void openFile(const QString &filePath);
 
+private Q_SLOTS:
     void slotOnShutdown();
     void slotSettingsChanged();
     void slotSetStatusText(const QString &statusText);
@@ -214,8 +191,6 @@ private: // attributes
     bool m_standardListLoaded;
     bool m_shuttingDown;
     bool m_doCrashSave;
-
-    KParts::BrowserExtension *m_extension = nullptr;
 
     QTimer *m_autosaveTimer = nullptr;
     /** did we backup the feed list already? */

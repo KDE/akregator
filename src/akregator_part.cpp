@@ -150,22 +150,9 @@ K_PLUGIN_FACTORY(AkregatorFactory, registerPlugin<Part>();
                  )
 
 static Part *mySelf = nullptr;
-BrowserExtension::BrowserExtension(Part *p, const char *name)
-    : KParts::BrowserExtension(p)
-{
-    AkregratorMigrateApplication migrate;
-    migrate.migrate();
-    setObjectName(QLatin1String(name));
-    m_part = p;
-}
-
-void BrowserExtension::saveSettings()
-{
-    m_part->saveSettings();
-}
 
 Part::Part(QWidget *parentWidget, QObject *parent, const QVariantList &)
-    : KParts::ReadOnlyPart(parent)
+    : KParts::Part(parent)
     , m_standardListLoaded(false)
     , m_shuttingDown(false)
     , m_doCrashSave(false)
@@ -175,6 +162,10 @@ Part::Part(QWidget *parentWidget, QObject *parent, const QVariantList &)
     , m_dialog(nullptr)
 {
     mySelf = this;
+
+    AkregratorMigrateApplication migrate;
+    migrate.migrate();
+
     //Make sure to initialize settings
     Part::config();
     initFonts();
@@ -221,14 +212,9 @@ Part::Part(QWidget *parentWidget, QObject *parent, const QVariantList &)
     connect(mCentralWidget, &AkregatorCentralWidget::restoreSession, this, &Part::slotRestoreSession);
     m_mainWidget = new Akregator::MainWidget(this, parentWidget, m_actionManager, QStringLiteral("akregator_view"));
     mCentralWidget->setMainWidget(m_mainWidget);
-    m_extension = new BrowserExtension(this, "ak_extension");
 
     connect(Kernel::self()->frameManager(), &FrameManager::signalCaptionChanged, this, &Part::setWindowCaption);
     connect(Kernel::self()->frameManager(), &FrameManager::signalStatusText, this, &Part::slotSetStatusText);
-    connect(Kernel::self()->frameManager(), &FrameManager::signalLoadingProgress, m_extension, &BrowserExtension::loadingProgress);
-    connect(Kernel::self()->frameManager(), &FrameManager::signalCanceled, this, &ReadOnlyPart::canceled);
-    connect(Kernel::self()->frameManager(), &FrameManager::signalStarted, this, &Part::slotStarted);
-    connect(Kernel::self()->frameManager(), SIGNAL(signalCompleted()), this, SIGNAL(completed()));
 
     // notify the part that this is our internal widget
     setWidget(mCentralWidget);
@@ -288,11 +274,6 @@ void Part::loadPlugins(const QString &type)
         plugin->initialize();
         plugin->insertGuiClients(this);
     }
-}
-
-void Part::slotStarted()
-{
-    Q_EMIT started(nullptr);
 }
 
 void Part::slotOnShutdown()
@@ -421,34 +402,27 @@ void Part::exportFile(const QString &str)
     exportFile(QUrl(str));
 }
 
-bool Part::openUrl(const QUrl &url)
-{
-    setLocalFilePath(url.toLocalFile());
-    return openFile();
-}
-
 void Part::openStandardFeedList()
 {
     if (!m_standardFeedList.isEmpty()) {
-        openUrl(QUrl::fromLocalFile(m_standardFeedList));
+        openFile(m_standardFeedList);
     }
 }
 
-bool Part::openFile()
+void Part::openFile(const QString &filePath)
 {
     if (m_loadFeedListCommand || m_standardListLoaded) {
-        return true;
+        return;
     }
     QScopedPointer<LoadFeedListCommand> cmd(new LoadFeedListCommand(m_mainWidget));
     cmd->setParentWidget(m_mainWidget);
     cmd->setStorage(Kernel::self()->storage());
-    cmd->setFileName(localFilePath());
+    cmd->setFileName(filePath);
     cmd->setDefaultFeedList(createDefaultFeedList());
     connect(cmd.data(), &LoadFeedListCommand::result,
             this, &Part::feedListLoaded);
     m_loadFeedListCommand = cmd.take();
     m_loadFeedListCommand->start();
-    return true;
 }
 
 bool Part::writeToTextFile(const QString &data, const QString &filename) const
@@ -516,11 +490,11 @@ void Part::slotSaveFeedList()
 
     // the first time we overwrite the feed list, we create a backup
     if (!m_backedUpList) {
-        const QString backup = localFilePath() + QLatin1Char('~');
+        const QString backup = m_standardFeedList + QLatin1Char('~');
         if (QFile::exists(backup)) {
             QFile::remove(backup);
         }
-        if (QFile::copy(localFilePath(), backup)) {
+        if (QFile::copy(m_standardFeedList, backup)) {
             m_backedUpList = true;
         }
     }
@@ -531,12 +505,12 @@ void Part::slotSaveFeedList()
     }
 
     m_storage->storeFeedList(xml);
-    if (writeToTextFile(xml, localFilePath())) {
+    if (writeToTextFile(xml, m_standardFeedList)) {
         return;
     }
 
     KMessageBox::error(m_mainWidget,
-                       i18n("Access denied: Cannot save feed list to <b>%1</b>. Please check your permissions.", localFilePath()),
+                       i18n("Access denied: Cannot save feed list to <b>%1</b>. Please check your permissions.", m_standardFeedList),
                        i18n("Write Error"));
 }
 
