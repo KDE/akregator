@@ -230,7 +230,7 @@ public:
 
     Q_REQUIRED_RESULT QString comment() const;
     void setComment(const QString &comment);
-    void setFaviconUrl(const QString &url);
+    void setFaviconLocalPath(const QString &file);
     void setCopyright(const QString &copyright);
     Q_REQUIRED_RESULT QString copyright() const;
 public Q_SLOTS:

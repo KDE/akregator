@@ -376,14 +376,18 @@ void Feed::loadFavicon(const QString &url, bool downloadFavicon)
     if (u.scheme().isEmpty()) {
         qCWarning(AKREGATOR_LOG) << "Invalid url" << url;
     }
-    Akregator::DownloadFeedIconJob *job = new Akregator::DownloadFeedIconJob(this);
-    job->setFeedIconUrl(u);
-    job->setDownloadFavicon(downloadFavicon);
-    connect(job, &DownloadFeedIconJob::result, this, [this](const QString &result) {
-        setFaviconUrl(result);
-    });
-    if (!job->start()) {
-        qCWarning(AKREGATOR_LOG) << "Impossible to start DownloadFeedIconJob for url: " << url;
+    if (u.isLocalFile()) {
+        setFaviconLocalPath(u.toLocalFile());
+    } else {
+        Akregator::DownloadFeedIconJob *job = new Akregator::DownloadFeedIconJob(this);
+        job->setFeedIconUrl(u);
+        job->setDownloadFavicon(downloadFavicon);
+        connect(job, &DownloadFeedIconJob::result, this, [this](const QString &fileName) {
+                setFaviconLocalPath(fileName);
+                });
+        if (!job->start()) {
+            qCWarning(AKREGATOR_LOG) << "Impossible to start DownloadFeedIconJob for url: " << url;
+        }
     }
 }
 
@@ -505,16 +509,19 @@ Feed::ImageInfo Feed::faviconInfo() const
     return d->m_faviconInfo;
 }
 
-void Feed::setFaviconUrl(const QString &url)
+void Feed::setFaviconLocalPath(const QString &localPath)
 {
-    d->m_faviconInfo.imageUrl = url;
-    setFavicon(QIcon(d->m_faviconInfo.imageUrl));
+    d->m_faviconInfo.imageUrl = QUrl::fromLocalFile(localPath).toString();
+    setFavicon(QIcon(localPath));
 }
 
 void Feed::setFaviconInfo(const Feed::ImageInfo &info)
 {
     d->m_faviconInfo = info;
-    setFavicon(QIcon(info.imageUrl));
+    QUrl u(info.imageUrl);
+    if (u.isLocalFile()) {
+        setFavicon(QIcon(u.toLocalFile()));
+    }
 }
 
 QString Feed::description() const
