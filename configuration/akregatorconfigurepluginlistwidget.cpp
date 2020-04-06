@@ -49,6 +49,7 @@ void AkregatorConfigurePluginListWidget::save()
 void AkregatorConfigurePluginListWidget::doLoadFromGlobalSettings()
 {
     initialize();
+    initializeDone();
 }
 
 void AkregatorConfigurePluginListWidget::doResetToDefaultsOther()
