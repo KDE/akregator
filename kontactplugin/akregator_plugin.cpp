@@ -35,7 +35,7 @@
 #include <QIcon>
 #include <QStandardPaths>
 
-EXPORT_KONTACT_PLUGIN(AkregatorPlugin, akregator)
+EXPORT_KONTACT_PLUGIN_WITH_JSON(AkregatorPlugin, "akregatorplugin.json")
 
 AkregatorPlugin::AkregatorPlugin(KontactInterface::Core *core, const QVariantList &)
     : KontactInterface::Plugin(core, core, "akregator")

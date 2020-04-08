@@ -13,9 +13,11 @@ add_library(kontact_akregatorplugin MODULE ${kontact_akregator_PART_SRCS})
 
 target_link_libraries(kontact_akregatorplugin  KF5::KontactInterface)
 
+kcoreaddons_desktop_to_json(kontact_akregatorplugin akregatorplugin.desktop)
+
 ########### install files ###############
 
-install(TARGETS kontact_akregatorplugin DESTINATION ${KDE_INSTALL_PLUGINDIR})
+install(TARGETS kontact_akregatorplugin DESTINATION ${KDE_INSTALL_PLUGINDIR}/kontact5)
 
 install(FILES akregatorplugin.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR}/kontact)
 
