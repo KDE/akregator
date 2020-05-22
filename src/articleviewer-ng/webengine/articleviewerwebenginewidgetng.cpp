@@ -24,6 +24,11 @@
 #include <QVBoxLayout>
 #include <viewerplugintoolmanager.h>
 #include <KRun>
+#include <kio_version.h>
+#if KIO_VERSION >= QT_VERSION_CHECK(5, 71, 0)
+#include <KIO/JobUiDelegate>
+#include <KIO/OpenUrlJob>
+#endif
 
 #include <KPIMTextEdit/kpimtextedit/texttospeechwidget.h>
 
@@ -183,9 +188,17 @@ void ArticleViewerWebEngineWidgetNg::slotOpenInBrowser()
         connect(job, &WebEngineViewer::WebEngineExportHtmlPageJob::success, this, &ArticleViewerWebEngineWidgetNg::slotExportHtmlPageSuccess);
         job->start();
     } else {
+#if KIO_VERSION < QT_VERSION_CHECK(5, 71, 0)
         KRun::RunFlags flags;
         flags |= KRun::RunExecutables;
         KRun::runUrl(currentUrl, QStringLiteral("text/html"), this, flags);
+#else
+        KIO::OpenUrlJob *job = new KIO::OpenUrlJob(currentUrl, QStringLiteral("text/html"));
+        job->setUiDelegate(new KIO::JobUiDelegate(KJobUiDelegate::AutoHandlingEnabled, this));
+        job->setDeleteTemporaryFile(true);
+        job->setRunExecutables(true);
+        job->start();
+#endif
     }
 }
 
