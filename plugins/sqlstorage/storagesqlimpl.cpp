@@ -187,7 +187,7 @@ QString Akregator::Backend::StorageSqlImpl::restoreFeedList() const
     if (q.next())
         return q.value(0).toString();
     else
-        return QString::null;
+        return QString();
 }
 
 void Akregator::Backend::StorageSqlImpl::storeFeedList(const QString &opmlStr)

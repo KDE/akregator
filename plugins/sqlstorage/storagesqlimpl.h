@@ -84,7 +84,7 @@ public:
 
     void storeFeedList(const QString &opmlStr) override;
     QString restoreFeedList() const override;
-    
+
     QSqlDatabase database();
 
     void markDirty();

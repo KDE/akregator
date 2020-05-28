@@ -77,7 +77,9 @@ public:
     void setAuthorName(const QString &guid, const QString &name) override;
     void setAuthorUri(const QString &guid, const QString &uri) override;
     void setAuthorEMail(const QString &guid, const QString &email) override;
+    void setCategories(const QString & /*guid*/, const QStringList &categories) override {}
 
+    QStringList categories(const QString &guid) const override { return QStringList(); }
     QString authorName(const QString &guid) const override;
     QString authorUri(const QString &guid) const override;
     QString authorEMail(const QString &guid) const override;

@@ -194,7 +194,7 @@ QVector<SmallArticle> FeedStorageMK4Impl::articlesForCache() const
                                       d->phash(getAt),
                                       d->pstatus(getAt),
                                       QString::fromUtf8(d->ptitle(getAt)),
-                                      QDateTime::fromTime_t(d->ppubDate(getAt))));
+                                      QDateTime::fromSecsSinceEpoch(d->ppubDate(getAt))));
     }
     return result;
 }
