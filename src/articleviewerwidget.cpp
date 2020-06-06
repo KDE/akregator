@@ -42,13 +42,7 @@
 #include "akregator-version.h"
 
 #include <KActionCollection>
-#include <KMessageBox>
-#include <KRun>
-#include <KShell>
 
-#include <KStandardAction>
-#include <KToolInvocation>
-#include <kio/job.h>
 #include <QUrl>
 #include <QElapsedTimer>
 
@@ -59,7 +53,6 @@
 #include <QKeyEvent>
 #include <defaultnormalviewformatter.h>
 
-#include <QStandardPaths>
 #include <defaultcombinedviewformatter.h>
 
 using namespace Akregator;

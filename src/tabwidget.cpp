@@ -37,7 +37,6 @@
 #include "akregator_debug.h"
 #include <QTabWidget>
 #include <QTabBar>
-#include <KRun>
 #include <KLocalizedString>
 #include <KToolInvocation>
 #include <kio/global.h>
