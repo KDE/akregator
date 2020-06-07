@@ -20,7 +20,6 @@
 #ifndef GRANTLEEUTIL_H
 #define GRANTLEEUTIL_H
 #include <QString>
-#include <QUrl>
 namespace Akregator {
 class Feed;
 namespace GrantleeUtil {

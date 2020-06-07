@@ -53,9 +53,7 @@
 #include "unityservicemanager.h"
 #include <kio/filecopyjob.h>
 #include <KNotifyConfigWidget>
-#include <KAboutData>
 #include <KConfig>
-#include <KConfigDialog>
 #include <QFileDialog>
 #include <KMessageBox>
 
@@ -69,7 +67,6 @@
 #include <KPluginFactory>
 #include <KParts/Plugin>
 #include <KCMultiDialog>
-#include <KStandardAction>
 
 #include <QApplication>
 #include <QFile>

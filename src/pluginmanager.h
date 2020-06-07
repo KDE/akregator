@@ -19,7 +19,6 @@ email                : markey@web.de
 #include "akregatorpart_export.h"
 
 #include <KService>
-#include <KServiceTypeTrader>
 
 #include <vector>
 

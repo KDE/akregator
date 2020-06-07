@@ -23,7 +23,6 @@
 #include <GrantleeTheme/GenericFormatter>
 #include "article.h"
 #include "articleformatter.h"
-#include <QUrl>
 namespace Akregator {
 class Folder;
 class GrantleeViewFormatter : public GrantleeTheme::GenericFormatter

@@ -23,10 +23,9 @@
 #include "utils.h"
 #include "feed.h"
 #include <QLocale>
-#include <KLocalizedString>
-#include <QDateTime>
 #include <QUrl>
 #include <QUrlQuery>
+#include <QDateTime>
 
 using namespace Akregator;
 

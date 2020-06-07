@@ -19,7 +19,6 @@
 
 #include "grantleeutil.h"
 #include "feed.h"
-#include <QDebug>
 QString Akregator::GrantleeUtil::imageFeed(const Feed *feed)
 {
     if (feed->logoInfo().height != -1 && feed->logoInfo().width != -1) {

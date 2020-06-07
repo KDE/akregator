@@ -40,7 +40,6 @@
 #include <WebEngineViewer/ZoomActionMenu>
 
 #include <KActionMenu>
-#include <KToolBarPopupAction>
 #include <QAction>
 #include <KToggleAction>
 #include <KActionCollection>

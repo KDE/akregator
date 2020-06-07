@@ -42,8 +42,6 @@
 
 #include "akregator_debug.h"
 #include <QIcon>
-#include <QFileInfo>
-#include <QDir>
 
 #include <QUrl>
 #include <KRandom>
@@ -53,7 +51,6 @@
 #include <QDomElement>
 #include <QHash>
 #include <QList>
-#include <QPixmap>
 #include <QTimer>
 
 #include <memory>

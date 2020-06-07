@@ -25,7 +25,6 @@
 #include "tabwidget.h"
 
 #include <QStyle>
-#include <QApplication>
 #include <QIcon>
 #include <QHash>
 #include <QString>
@@ -38,7 +37,6 @@
 #include <QTabWidget>
 #include <QTabBar>
 #include <KLocalizedString>
-#include <KToolInvocation>
 #include <kio/global.h>
 
 #include "actionmanager.h"

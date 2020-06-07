@@ -66,7 +66,6 @@
 #include <WebEngineViewer/ZoomActionMenu>
 #include "job/downloadarticlejob.h"
 
-#include <KFileItem>
 #include <KLocalizedString>
 #include <KMessageBox>
 #include <KShell>
