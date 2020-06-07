@@ -31,7 +31,9 @@
 #include <WebEngineViewer/WebEngineManageScript>
 #include <KPIMTextEdit/TextToSpeech>
 
-#include <KParts/BrowserRun>
+#include <KIO/FileCopyJob>
+#include <KJobWidgets>
+#include <KJobUiDelegate>
 #include <GrantleeTheme/GrantleeThemeManager>
 #include <KActionCollection>
 #include <KLocalizedString>
@@ -42,6 +44,7 @@
 #include <QPrinter>
 #include <QMouseEvent>
 #include <QApplication>
+#include <QFileDialog>
 #include <QClipboard>
 #include <QMenu>
 #include <viewerplugintoolmanager.h>
@@ -175,13 +178,28 @@ void ArticleViewerWebEngine::slotServiceUrlSelected(PimCommon::ShareServiceUrlMa
 
 void ArticleViewerWebEngine::slotSaveLinkAs()
 {
-    QUrl tmp(mCurrentUrl);
-
-    if (tmp.fileName().isEmpty()) {
-        tmp = tmp.adjusted(QUrl::RemoveFilename);
-        tmp.setPath(tmp.path() + QLatin1String("index.html"));
+    QUrl url(mCurrentUrl);
+    if (url.fileName().isEmpty()) {
+        url = url.adjusted(QUrl::StripTrailingSlash);
+        url.setPath(url.path() + QLatin1String("/index.html"));
     }
-    KParts::BrowserRun::saveUrl(tmp, tmp.fileName(), this, {});
+
+    QFileDialog *dlg = new QFileDialog(this);
+    dlg->setAttribute(Qt::WA_DeleteOnClose);
+    dlg->setAcceptMode(QFileDialog::AcceptSave);
+    dlg->setWindowTitle(i18n("Save As"));
+    dlg->setOption(QFileDialog::DontConfirmOverwrite, false);
+    dlg->selectFile(url.fileName());
+    dlg->show();
+    connect(dlg, &QFileDialog::urlSelected, this, [this, url](const QUrl &destURL) {
+        if (destURL.isValid()) {
+            KIO::FileCopyJob *job = KIO::file_copy(url, destURL, -1, KIO::Overwrite);
+            job->addMetaData(QStringLiteral("MaxCacheSize"), QStringLiteral("0")); // Don't store in http cache.
+            job->addMetaData(QStringLiteral("cache"), QStringLiteral("cache")); // Use entry from cache if available.
+            KJobWidgets::setWindow(job, this);
+            job->uiDelegate()->setAutoErrorHandlingEnabled(true);
+        }
+    });
 }
 
 void ArticleViewerWebEngine::slotSaveImageOnDiskInFrame()
