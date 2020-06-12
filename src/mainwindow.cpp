@@ -27,7 +27,7 @@
 #include "akregatorconfig.h"
 #include "trayicon.h"
 
-#include <Libkdepim/BroadcastStatus>
+#include <PimCommon/BroadcastStatus>
 #include <Libkdepim/ProgressStatusBarWidget>
 #include <Libkdepim/StatusbarProgressWidget>
 
@@ -78,7 +78,7 @@ MainWindow::MainWindow(QWidget *parent)
     setStandardToolBarMenuEnabled(true);
     createStandardStatusBarAction();
 
-    connect(KPIM::BroadcastStatus::instance(), &KPIM::BroadcastStatus::statusMsg,
+    connect(PimCommon::BroadcastStatus::instance(), &PimCommon::BroadcastStatus::statusMsg,
             this, &MainWindow::slotSetStatusBarText);
 
     connect(qApp, &QCoreApplication::aboutToQuit, this, &MainWindow::slotOnShutdown);

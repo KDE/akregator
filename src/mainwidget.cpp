@@ -35,7 +35,7 @@
 #include "articlematcher.h"
 #include "akregatorconfig.h"
 #include "akregator_part.h"
-#include <Libkdepim/BroadcastStatus>
+#include <PimCommon/BroadcastStatus>
 #include "createfeedcommand.h"
 #include "createfoldercommand.h"
 #include "deletesubscriptioncommand.h"
@@ -1190,7 +1190,7 @@ void MainWidget::slotSetCurrentArticleReadDelayed()
 
 void MainWidget::slotShowStatusBarMessage(const QString &msg)
 {
-    KPIM::BroadcastStatus::instance()->setStatusMsg(msg);
+    PimCommon::BroadcastStatus::instance()->setStatusMsg(msg);
 }
 
 void MainWidget::readProperties(const KConfigGroup &config)

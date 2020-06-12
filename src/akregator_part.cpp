@@ -48,7 +48,7 @@
 #include "dummystorage/storagefactorydummyimpl.h"
 #include "utils.h"
 #include "akregator_options.h"
-#include <Libkdepim/BroadcastStatus>
+#include <PimCommon/BroadcastStatus>
 #include "akregator-version.h"
 #include "unityservicemanager.h"
 #include <kio/filecopyjob.h>
@@ -353,7 +353,7 @@ void Part::slotSettingsChanged()
 
 void Part::slotSetStatusText(const QString &statusText)
 {
-    KPIM::BroadcastStatus::instance()->setStatusMsg(statusText);
+    PimCommon::BroadcastStatus::instance()->setStatusMsg(statusText);
 }
 
 void Part::saveSettings()
