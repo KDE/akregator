@@ -27,7 +27,6 @@
 #include "frame.h"
 #include "actionmanager.h"
 #include "openurlrequest.h"
-#include <KRun>
 #include <KMacroExpander>
 #include <KProcess>
 #include <KShell>
@@ -36,11 +35,8 @@
 #include <webengine/webengineframe.h>
 #include <QStringList>
 #include <QDesktopServices>
-#include <kio_version.h>
-#if KIO_VERSION >= QT_VERSION_CHECK(5, 71, 0)
 #include <KIO/JobUiDelegate>
 #include <KIO/OpenUrlJob>
-#endif
 
 using namespace Akregator;
 
@@ -245,13 +241,8 @@ void FrameManager::openInExternalBrowser(const OpenUrlRequest &request)
     if (request.args().mimeType().isEmpty()) {
         QDesktopServices::openUrl(url);
     } else {
-#if KIO_VERSION < QT_VERSION_CHECK(5, 71, 0)
-        KRun::RunFlags flag = {};
-        KRun::runUrl(url, request.args().mimeType(), nullptr /*window*/, flag);
-#else
         KIO::OpenUrlJob *job = new KIO::OpenUrlJob(url, request.args().mimeType());
         job->start();
-#endif
     }
 }
 
