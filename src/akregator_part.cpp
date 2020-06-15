@@ -123,7 +123,7 @@ static QDomDocument createDefaultFeedList()
 
     QDomElement planetkde = doc.createElement(QStringLiteral("outline"));
     planetkde.setAttribute(QStringLiteral("text"), i18n("Planet KDE"));
-    planetkde.setAttribute(QStringLiteral("xmlUrl"), QStringLiteral("https://planetkde.org/rss20.xml"));
+    planetkde.setAttribute(QStringLiteral("xmlUrl"), QStringLiteral("https://planet.kde.org/global/atom.xml"));
     mainFolder.appendChild(planetkde);
 
     QDomElement apps = doc.createElement(QStringLiteral("outline"));
