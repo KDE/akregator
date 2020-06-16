@@ -46,7 +46,11 @@ X-KDE-Keywords[nn]=akregator, kjelder, oppsett, tilbakemeldingar
 X-KDE-Keywords[pt]=akregator, configurar, configuração, reacções dos utilizadores
 X-KDE-Keywords[pt_BR]=akregator, configurar, configurações, geral, comentários do usuário
 X-KDE-Keywords[ru]=akregator, configure, settings, userfeedback, чтение лент новостей, настроить, настройки, обратная связь
+<<<<<<< HEAD
 X-KDE-Keywords[sl]=akregator, nastavi, nastavitve, odziv uporabnikov
+=======
+X-KDE-Keywords[sk]=akregator, nastaviť, nastavenia, všeobecné
+>>>>>>> origin/release/20.04
 X-KDE-Keywords[sv]=akregator, anpassa, inställningar, användaråterkoppling
 X-KDE-Keywords[uk]=akregator,акреґатор,налаштувати,параметри,додатки,configure,settings,відгук,користувач
 X-KDE-Keywords[x-test]=xxakregatorxx,xx configurexx,xx settingsxx,xx userfeedbackxx
