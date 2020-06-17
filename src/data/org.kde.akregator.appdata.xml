@@ -40,7 +40,6 @@
   <name xml:lang="sv">Akregator</name>
   <name xml:lang="tr">Akregator</name>
   <name xml:lang="uk">Akregator</name>
-  <name xml:lang="x-test">xxAkregatorxx</name>
   <name xml:lang="zh-CN">Akregator</name>
   <name xml:lang="zh-TW">Akregator</name>
   <developer_name>The KDE Community</developer_name>
@@ -67,7 +66,6 @@
   <developer_name xml:lang="sl">Skupnost KDE</developer_name>
   <developer_name xml:lang="sv">KDE-gemenskapen</developer_name>
   <developer_name xml:lang="uk">Спільнота KDE</developer_name>
-  <developer_name xml:lang="x-test">xxThe KDE Communityxx</developer_name>
   <developer_name xml:lang="zh-CN">KDE 社区</developer_name>
   <developer_name xml:lang="zh-TW">KDE 社群</developer_name>
   <description>
@@ -98,7 +96,6 @@
     <p xml:lang="sl">Akregator je bralnik novic. Omogoča vam spremljanje novic, spletnih mest, blogovin drugih spletnih mest, ki podpirajo RSS/Atom, ne da bi bilo treba ročno preverjatiposodobitve s pomočjo spletnega brskalnika. Akregator je zasnovan tako, da je enostaven za uporaboin da bo dovolj močan, da lahko priročno bere na stotine virov novic. Omogoča s hitro iskanje, napredne funkcije arhiviranja in internibrskalnik za enostavno branje novic.</p>
     <p xml:lang="sv">Akregator är en nyhetskanalläsare. Den gör det möjligt att följa nyhetsplatser, bloggar och andra webbplatser som hanterar RSS/Atom utan att manuellt behöva leta efter uppdateringar med en webbläsare. Akregator är konstruerad för att både vara lätt att använda och kraftfull nog för att bekvämt läsa hundratals nyhetskällor. Den levereras med snabb sökning, avancerad arkiveringsfunktionalitet och en intern webbläsare för att enkelt kunna läsa nyheter.</p>
     <p xml:lang="uk">Akregator — програма для отримання подач новин. За її допомогою ви можете стежити за сайтами новин, блогами та іншими сайтами з даними RSS/Atom без потреби у перевірці вручну оновлень за допомогою програми для перегляду інтернету. Akregator розроблено простим у користуванні та достатньо потужним для зручного читання сотень джерел новин. У програмі передбачено швидкий пошук, розширені можливості із архівування та вбудований переглядач для полегшення читання новин.</p>
-    <p xml:lang="x-test">xxAkregator is a news feed reader. It enables you to follow news sites, blogs and other RSS/Atom-enabled websites without the need to manually check for updates using a web browser. Akregator is designed to be both easy to use and to be powerful enough to read hundreds of news sources conveniently. It comes with a fast search, advanced archiving functionality and an internal browser for easy news reading.xx</p>
   </description>
   <summary>A news feed reader</summary>
   <summary xml:lang="ar">قارئ تغذيات الأخبار</summary>
@@ -130,7 +127,6 @@
   <summary xml:lang="sv">Läsning av nyhetskanaler</summary>
   <summary xml:lang="tr">Haber kaynağı okuyucusu</summary>
   <summary xml:lang="uk">Програма для читання подач</summary>
-  <summary xml:lang="x-test">xxA news feed readerxx</summary>
   <summary xml:lang="zh-CN">新闻订阅阅读器</summary>
   <summary xml:lang="zh-TW">新聞 Feed 閱讀程式</summary>
   <url type="homepage">https://kontact.kde.org/components/akregator.html</url>
@@ -162,7 +158,6 @@
       <caption xml:lang="sl">Branje virov v Kontaktu z Akregatorjem</caption>
       <caption xml:lang="sv">Läsa kanaler i Kontact med Akregator</caption>
       <caption xml:lang="uk">Читання подач у Kontact за допомогою Akregator</caption>
-      <caption xml:lang="x-test">xxReading feeds in Kontact with Akregatorxx</caption>
       <caption xml:lang="zh-TW">使用 Akregator 在 Kontact 閱讀 Feed</caption>
       <image type="source" width="1280" height="720">https://kontact.org/assets/img/appstream/kontact-akregator.png</image>
     </screenshot>
