@@ -77,6 +77,7 @@ Comment[uk]=Додаток до Akregator
 Comment[uz]=Akregator plagini
 Comment[uz@cyrillic]=Akregator плагини
 Comment[wa]=Module Akregator
+Comment[x-test]=xxAkregator Pluginxx
 Comment[zh_CN]=Akregator 插件
 Comment[zh_TW]=Akregator 外掛程式
 Name=Feeds
@@ -143,6 +144,7 @@ Name[uk]=Подачі
 Name[uz]=Yangiliklar tasmalari
 Name[uz@cyrillic]=Янгиликлар тасмалари
 Name[wa]=Floûs
+Name[x-test]=xxFeedsxx
 Name[zh_CN]=订阅
 Name[zh_TW]=Feeds
 
