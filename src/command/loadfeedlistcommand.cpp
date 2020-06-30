@@ -29,7 +29,6 @@
 
 #include <KLocalizedString>
 #include <KMessageBox>
-#include <KRandom>
 
 #include <QDateTime>
 #include <QDomDocument>
@@ -38,6 +37,7 @@
 #include <QString>
 #include <QTimer>
 #include <QFileInfo>
+#include <QRandomGenerator>
 
 #include <cassert>
 
@@ -131,7 +131,7 @@ void LoadFeedListCommand::setStorage(Backend::Storage *s)
 
 void LoadFeedListCommand::doStart()
 {
-    QTimer::singleShot(KRandom::random() % 400, this, [this]() {
+    QTimer::singleShot(QRandomGenerator::global()->bounded(400), this, [this]() {
         d->doLoad();
     });
 }

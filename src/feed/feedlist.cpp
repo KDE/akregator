@@ -35,12 +35,12 @@
 #include <memory>
 #include "akregator_debug.h"
 #include <KLocalizedString>
-#include <KRandom>
 
 #include <qdom.h>
 #include <QHash>
 #include <QSet>
 #include <QElapsedTimer>
+#include <QRandomGenerator>
 
 using namespace Akregator;
 class Q_DECL_HIDDEN FeedList::Private
@@ -455,7 +455,7 @@ void FeedList::setRootNode(Folder *folder)
 
 int FeedList::generateID() const
 {
-    return KRandom::random();
+    return QRandomGenerator::global()->generate();
 }
 
 void FeedList::slotNodeAdded(TreeNode *node)
