@@ -44,13 +44,13 @@
 #include <QIcon>
 
 #include <QUrl>
-#include <KRandom>
 
 #include <QDateTime>
 #include <QDomDocument>
 #include <QDomElement>
 #include <QHash>
 #include <QList>
+#include <QRandomGenerator>
 #include <QTimer>
 
 #include <memory>
@@ -487,7 +487,7 @@ void Feed::setXmlUrl(const QString &s)
 {
     d->m_xmlUrl = s;
     if (!Settings::fetchOnStartup()) {
-        QTimer::singleShot(KRandom::random() % 4000, this, &Feed::slotAddFeedIconListener);    // TODO: let's give a gui some time to show up before starting the fetch when no fetch on startup is used. replace this with something proper later...
+        QTimer::singleShot(QRandomGenerator::global()->generate() % 4000, this, &Feed::slotAddFeedIconListener);    // TODO: let's give a gui some time to show up before starting the fetch when no fetch on startup is used. replace this with something proper later...
     }
 }
 
