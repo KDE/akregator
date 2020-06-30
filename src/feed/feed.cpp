@@ -487,7 +487,7 @@ void Feed::setXmlUrl(const QString &s)
 {
     d->m_xmlUrl = s;
     if (!Settings::fetchOnStartup()) {
-        QTimer::singleShot(QRandomGenerator::global()->generate() % 4000, this, &Feed::slotAddFeedIconListener);    // TODO: let's give a gui some time to show up before starting the fetch when no fetch on startup is used. replace this with something proper later...
+        QTimer::singleShot(QRandomGenerator::global()->bounded(4000), this, &Feed::slotAddFeedIconListener);    // TODO: let's give a gui some time to show up before starting the fetch when no fetch on startup is used. replace this with something proper later...
     }
 }
 
