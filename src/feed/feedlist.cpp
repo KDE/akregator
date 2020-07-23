@@ -453,7 +453,7 @@ void FeedList::setRootNode(Folder *folder)
     }
 }
 
-int FeedList::generateID() const
+uint FeedList::generateID() const
 {
     return QRandomGenerator::global()->generate();
 }
