@@ -172,7 +172,7 @@ private:
     void addNode(TreeNode *node, bool preserveID);
     void removeNode(TreeNode *node);
 
-    int generateID() const;
+    uint generateID() const;
     void setRootNode(Folder *folder);
 
     void parseChildNodes(QDomNode &node, Folder *parent);
