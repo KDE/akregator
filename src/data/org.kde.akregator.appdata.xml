@@ -141,7 +141,7 @@
   <summary xml:lang="zh-TW">新聞 Feed 閱讀程式</summary>
   <url type="homepage">https://kontact.kde.org/components/akregator.html</url>
   <url type="bugtracker">https://bugs.kde.org/enter_bug.cgi?format=guided&amp;product=akregator</url>
-  <url type="help">https://docs.kde.org/stable/en/kdepim/akregator</url>
+  <url type="help">https://docs.kde.org/?application=akregator</url>
   <screenshots>
     <screenshot type="default">
       <caption>Reading feeds in Kontact with Akregator</caption>
