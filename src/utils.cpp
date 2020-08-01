@@ -7,7 +7,7 @@
 */
 
 #include "utils.h"
-#include <QRegExp>
+#include <QRegularExpression>
 #include <QString>
 #include <QTextDocument>
 
@@ -21,7 +21,7 @@ QString Utils::convertHtmlTags(const QString &title)
 
 QString Utils::stripTags(QString str)
 {
-    return str.remove(QRegExp(QLatin1String("<[^>]*>")));
+    return str.remove(QRegularExpression(QStringLiteral("<[^>]*>")));
 }
 
 uint Utils::calcHash(const QString &str)

@@ -13,7 +13,7 @@
 #include <KConfigGroup>
 #include "akregator_debug.h"
 
-#include <QRegExp>
+#include <QRegularExpression>
 
 namespace Akregator {
 namespace Filters {
@@ -174,7 +174,7 @@ bool Criterion::satisfiedBy(const Article &article) const
         }
         break;
     case Matches:
-        satisfied = QRegExp(m_object.toString()).indexIn(concreteSubject.toString()) != -1;
+        satisfied = concreteSubject.toString().contains(QRegularExpression(m_object.toString()));
         break;
     default:
         qCDebug(AKREGATOR_LOG) << "Internal inconsistency; predicateType should never be Negation";

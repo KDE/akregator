@@ -18,7 +18,7 @@
 
 #include <QDateTime>
 #include <qdom.h>
-#include <QRegExp>
+#include <QRegularExpression>
 #include <QList>
 
 #include "akregator_debug.h"
@@ -39,19 +39,32 @@ QString buildTitle(const QString &description)
     if (i != -1) {
         s = s.left(i + 1);
     }
-    QRegExp rx(QStringLiteral("(<([^\\s>]*)(?:[^>]*)>)[^<]*"), Qt::CaseInsensitive);
-    QString tagName, toReplace, replaceWith;
-    while (rx.indexIn(s) != -1) {
-        tagName = rx.cap(2);
-        if (tagName == QLatin1String("SCRIPT") || tagName == QLatin1String("script")) {
-            toReplace = rx.cap(0);    // strip tag AND tag contents
-        } else if (tagName.startsWith(QLatin1String("br")) || tagName.startsWith(QLatin1String("BR"))) {
-            toReplace = rx.cap(1);
+    const QRegularExpression rx(QStringLiteral("(<([^\\s>]*)(?:[^>]*)>)[^<]*"));
+    int offset = 0;
+    QRegularExpressionMatch rmatch;
+    // We get the opening tag (e.g. <i>) in one iteration and then the closing
+    // tag (e.g. </i>), in the next one. Note that <br> doesn't have a closing tag
+    while (s.indexOf(rx, offset, &rmatch) != -1) {
+        const QString tagName = rmatch.captured(2);
+        QString toReplace;
+        QString replaceWith;
+        int repStart = 0;
+        if (tagName.compare(QLatin1String("script"), Qt::CaseInsensitive) == 0) {
+            // E.g.: <script foo="bar">some js here</script>
+            // strip tag AND tag contents
+            toReplace = rmatch.captured(0);
+            repStart = rmatch.capturedStart(0);
+        } else if (tagName.startsWith(QLatin1String("br"), Qt::CaseInsensitive)) {
+            toReplace = rmatch.captured(1);
+            repStart = rmatch.capturedStart(1);
             replaceWith = QLatin1Char(' ');
         } else {
-            toReplace = rx.cap(1);    // strip just tag
+            // Any other tag, <i>text</i> ... etc
+            toReplace = rmatch.captured(1);    // strip just tag
+            repStart = rmatch.capturedStart(1);
         }
-        s.replace(s.indexOf(toReplace), toReplace.length(), replaceWith); // do the deed
+        s.replace(repStart, toReplace.length(), replaceWith); // do the deed
+        offset = repStart + replaceWith.length();
     }
     if (s.length() > 90) {
         s = s.left(90) + QLatin1String("...");
