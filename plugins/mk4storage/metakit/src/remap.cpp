@@ -112,10 +112,10 @@ public:
 
 /////////////////////////////////////////////////////////////////////////////
 // The following contains code derived froms Python's dictionaries, hence:
-//  Copyright 1991-1995 by Stichting Mathematisch Centrum, Amsterdam,
+//  SPDX-FileCopyrightText: 1991-1995 Stichting Mathematisch Centrum Amsterdam,
 //  The Netherlands.
 // Reduced and turned into a fast C++ class by Christian Tismer, hence:
-//  Copyright 1999 by Christian Tismer.
+//  SPDX-FileCopyrightText: 1999 Christian Tismer. 
 // Vectorized and reorganized further by Jean-Claude Wippler.
 /////////////////////////////////////////////////////////////////////////////
 

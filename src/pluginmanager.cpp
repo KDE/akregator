@@ -1,15 +1,10 @@
 /***************************************************************************
-begin                : 2004/03/12
-copyright            : (C) Mark Kretschmann
-email                : markey@web.de
+    SPDX-FileCopyrightText: 2004 Mark Kretschmann <markey@web.de>
 ***************************************************************************/
 
 /***************************************************************************
  *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
+ *   SPDX-License-Identifier: GPL-2.0-or-later                             *
  *                                                                         *
  ***************************************************************************/
 

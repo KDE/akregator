@@ -1,13 +1,11 @@
 /*
- * tools_p.h
+ * shared.h
  *
- * Copyright (c) 2001, 2002, 2003 Frerich Raabe <raabe@kde.org>
+ * SPDX-FileCopyrightText: 2001, 2002, 2003 Frerich Raabe <raabe@kde.org>
  *
- * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE. For licensing and distribution details, check the
- * accompanying file 'COPYING'.
+ * SPDX-License-Identifier: GPL-2.0-or-later
  */
+
 #ifndef AKREGATOR_SHARED_H
 #define AKREGATOR_SHARED_H
 
