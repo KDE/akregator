@@ -103,6 +103,7 @@
     <p xml:lang="sv">Akregator är en nyhetskanalläsare. Den gör det möjligt att följa nyhetsplatser, bloggar och andra webbplatser som hanterar RSS/Atom utan att manuellt behöva leta efter uppdateringar med en webbläsare. Akregator är konstruerad för att både vara lätt att använda och kraftfull nog för att bekvämt läsa hundratals nyhetskällor. Den levereras med snabb sökning, avancerad arkiveringsfunktionalitet och en intern webbläsare för att enkelt kunna läsa nyheter.</p>
     <p xml:lang="uk">Akregator — програма для отримання подач новин. За її допомогою ви можете стежити за сайтами новин, блогами та іншими сайтами з даними RSS/Atom без потреби у перевірці вручну оновлень за допомогою програми для перегляду інтернету. Akregator розроблено простим у користуванні та достатньо потужним для зручного читання сотень джерел новин. У програмі передбачено швидкий пошук, розширені можливості із архівування та вбудований переглядач для полегшення читання новин.</p>
     <p xml:lang="x-test">xxAkregator is a news feed reader. It enables you to follow news sites, blogs and other RSS/Atom-enabled websites without the need to manually check for updates using a web browser. Akregator is designed to be both easy to use and to be powerful enough to read hundreds of news sources conveniently. It comes with a fast search, advanced archiving functionality and an internal browser for easy news reading.xx</p>
+    <p xml:lang="zh-CN">Akregator 是新闻源阅读器。 它使您能够关注新闻网站、博客和其他启用 RSS/Atom 的网站，而无需使用网络浏览器手动检查更新。 Akregator 的设计既易于使用，又足够强大以方便地阅读数以百计的新闻源。 它带有快速搜索、强大的存档功能和内部浏览器以方便阅读新闻。</p>
   </description>
   <summary>A news feed reader</summary>
   <summary xml:lang="ar">قارئ تغذيات الأخبار</summary>
@@ -171,6 +172,7 @@
       <caption xml:lang="sv">Läsa kanaler i Kontact med Akregator</caption>
       <caption xml:lang="uk">Читання подач у Kontact за допомогою Akregator</caption>
       <caption xml:lang="x-test">xxReading feeds in Kontact with Akregatorxx</caption>
+      <caption xml:lang="zh-CN">用 Akregator 在 Kontact 读取订阅源</caption>
       <caption xml:lang="zh-TW">使用 Akregator 在 Kontact 閱讀 Feed</caption>
       <image type="source" width="1280" height="720">https://kontact.org/assets/img/appstream/kontact-akregator.png</image>
     </screenshot>
