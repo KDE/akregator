@@ -919,7 +919,7 @@ void MainWidget::slotArticleSelected(const Akregator::Article &article)
 
 void MainWidget::slotMouseButtonPressed(int button, const QUrl &url)
 {
-    if (button != Qt::MidButton) {
+    if (button != Qt::MiddleButton) {
         return;
     }
 
