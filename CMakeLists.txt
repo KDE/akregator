@@ -43,11 +43,11 @@ set(QT_REQUIRED_VERSION "5.13.0")
 
 set(KONTACTINTERFACE_LIB_VERSION "5.15.40")
 set(KPIMTEXTEDIT_LIB_VERSION "5.15.40")
-set(LIBGRANTLEETHEME_LIB_VERSION_LIB "5.15.40")
-set(LIBKDEPIM_LIB_VERSION_LIB "5.15.40")
-set(LIBKLEO_LIB_VERSION_LIB "5.15.40")
-set(MESSAGELIB_LIB_VERSION_LIB "5.15.40")
-set(PIMCOMMON_LIB_VERSION_LIB "5.15.40")
+set(LIBGRANTLEETHEME_LIB_VERSION "5.15.40")
+set(LIBKDEPIM_LIB_VERSION "5.15.40")
+set(LIBKLEO_LIB_VERSION "5.15.40")
+set(MESSAGELIB_LIB_VERSION "5.15.40")
+set(PIMCOMMON_LIB_VERSION "5.15.40")
 
 option(KDEPIM_KUSERFEEDBACK "Enable user feedback support (experimental)" FALSE)
 
@@ -67,17 +67,17 @@ find_package(KF5Notifications ${KF5_MIN_VERSION} CONFIG REQUIRED)
 find_package(KF5Syndication ${KF5_MIN_VERSION} CONFIG REQUIRED)
 
 # Find KdepimLibs Package
-find_package(KF5GrantleeTheme ${LIBGRANTLEETHEME_LIB_VERSION_LIB} CONFIG REQUIRED)
+find_package(KF5GrantleeTheme ${LIBGRANTLEETHEME_LIB_VERSION} CONFIG REQUIRED)
 find_package(KF5KontactInterface ${KONTACTINTERFACE_LIB_VERSION} CONFIG REQUIRED)
-find_package(KF5Libkdepim ${LIBKDEPIM_LIB_VERSION_LIB} CONFIG REQUIRED)
-find_package(KF5Libkleo ${LIBKLEO_LIB_VERSION_LIB} CONFIG REQUIRED)
-find_package(KF5MessageViewer ${MESSAGELIB_LIB_VERSION_LIB} CONFIG REQUIRED)
+find_package(KF5Libkdepim ${LIBKDEPIM_LIB_VERSION} CONFIG REQUIRED)
+find_package(KF5Libkleo ${LIBKLEO_LIB_VERSION} CONFIG REQUIRED)
+find_package(KF5MessageViewer ${MESSAGELIB_LIB_VERSION} CONFIG REQUIRED)
 find_package(KF5PimTextEdit ${KPIMTEXTEDIT_LIB_VERSION} CONFIG REQUIRED)
-find_package(KF5WebEngineViewer ${MESSAGELIB_LIB_VERSION_LIB} CONFIG REQUIRED)
+find_package(KF5WebEngineViewer ${MESSAGELIB_LIB_VERSION} CONFIG REQUIRED)
 
 # Fix plugin support for removing theses dependancies
 find_package(KF5AkonadiMime ${AKONADI_MIMELIB_VERSION} CONFIG REQUIRED)
-find_package(KF5PimCommonAkonadi ${PIMCOMMON_LIB_VERSION_LIB} CONFIG REQUIRED)
+find_package(KF5PimCommonAkonadi ${PIMCOMMON_LIB_VERSION} CONFIG REQUIRED)
 
 find_package(KUserFeedback 1.0.0 CONFIG) # Needs Provider::describeDataSources()
 set_package_properties(KUserFeedback PROPERTIES DESCRIPTION "User Feedback lib" TYPE OPTIONAL PURPOSE "Allow to send Telemetry Information (optional). It can be disable in apps.")
