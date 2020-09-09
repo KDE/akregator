@@ -86,7 +86,7 @@ private:
     QPointer<QAbstractItemView> m_feedSelector;
     Akregator::ArticleLister *m_articleLister = nullptr;
     Akregator::SingleArticleDisplay *m_singleDisplay = nullptr;
-    Akregator::FilterUnreadProxyModel *m_subscriptionModel = nullptr;
+    Akregator::FilterUnreadProxyModel *const m_subscriptionModel;
     QAbstractItemModel *m_currentModel = nullptr;
     Akregator::FolderExpansionHandler *m_folderExpansionHandler = nullptr;
     Akregator::ArticleModel *m_articleModel = nullptr;

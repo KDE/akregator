@@ -22,7 +22,7 @@ public:
     explicit KCMAkregatorGeneralConfig(QWidget *parent, const QVariantList &args);
 
 private:
-    QWidget *m_widget = nullptr;
+    QWidget *const m_widget;
 };
 
 #endif // AKREGATOR_CONFIG_GENERAL_H

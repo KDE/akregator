@@ -80,7 +80,7 @@ private Q_SLOTS:
 
 private:
     QPointer<Akregator::Part> m_part;
-    KSqueezedTextLabel *m_statusLabel = nullptr;
+    KSqueezedTextLabel *const m_statusLabel;
 };
 } // namespace Akregator
 

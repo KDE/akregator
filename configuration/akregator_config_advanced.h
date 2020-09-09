@@ -27,7 +27,7 @@ public:
     void save() override;
 
 private:
-    Akregator::SettingsAdvanced *m_widget = nullptr;
+    Akregator::SettingsAdvanced *const m_widget;
 };
 
 #endif

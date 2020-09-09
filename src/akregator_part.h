@@ -172,13 +172,13 @@ private: // attributes
     class ApplyFiltersInterceptor;
     ApplyFiltersInterceptor *m_applyFiltersInterceptor = nullptr;
     QString m_standardFeedList;
-    bool m_standardListLoaded;
-    bool m_shuttingDown;
-    bool m_doCrashSave;
+    bool m_standardListLoaded = false;
+    bool m_shuttingDown = false;
+    bool m_doCrashSave = false;
 
     QTimer *m_autosaveTimer = nullptr;
     /** did we backup the feed list already? */
-    bool m_backedUpList;
+    bool m_backedUpList = false;
     Akregator::AkregatorCentralWidget *mCentralWidget = nullptr;
     QPointer<MainWidget> m_mainWidget;
     Backend::Storage *m_storage = nullptr;

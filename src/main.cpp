@@ -26,7 +26,6 @@ class Application : public KontactInterface::PimUniqueApplication
 public:
     Application(int &argc, char **argv[])
         : KontactInterface::PimUniqueApplication(argc, argv)
-        , mMainWindow(nullptr)
     {
     }
 

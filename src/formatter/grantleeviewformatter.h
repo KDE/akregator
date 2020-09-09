@@ -23,11 +23,11 @@ public:
     Q_REQUIRED_RESULT QString formatFeed(Akregator::Feed *feed);
 private:
     void addStandardObject(QVariantHash &grantleeObject);
-    int pointsToPixel(int pointSize) const;
-    QString mHtmlArticleFileName;
-    QString mDirectionString;
-    QString mGrantleeThemePath;
-    int mDeviceDpiY;
+    Q_REQUIRED_RESULT int pointsToPixel(int pointSize) const;
+    const QString mHtmlArticleFileName;
+    const QString mDirectionString;
+    const QString mGrantleeThemePath;
+    const int mDeviceDpiY;
 };
 }
 

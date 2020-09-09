@@ -59,7 +59,7 @@ public:
     void execPrintPreviewPage(QPrinter *printer, int timeout);
 protected:
     QUrl mCurrentUrl;
-    KActionCollection *mActionCollection = nullptr;
+    KActionCollection *const mActionCollection;
     PimCommon::ShareServiceUrlManager *mShareServiceManager = nullptr;
     KIO::KUriFilterSearchProviderActions *mWebShortcutMenuManager = nullptr;
 
@@ -121,7 +121,7 @@ protected:
 private:
     void openSafeUrl(const QUrl &url);
     bool urlIsAMalwareButContinue();
-    MousePressedButtonType mLastButtonClicked;
+    MousePressedButtonType mLastButtonClicked = LeftButton;
     MessageViewer::ViewerPluginToolManager *mViewerPluginToolManager = nullptr;
     WebEngineViewer::WebEngineAccessKey *mWebEngineViewAccessKey = nullptr;
 };

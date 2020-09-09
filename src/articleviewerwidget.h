@@ -139,12 +139,12 @@ private:
     enum ViewMode {
         NormalView, CombinedView, SummaryView
     };
-    ViewMode m_viewMode;
+    ViewMode m_viewMode = NormalView;
     Akregator::ArticleHtmlWebEngineWriter *m_articleHtmlWriter = nullptr;
-    Akregator::ArticleViewerWebEngineWidgetNg *m_articleViewerWidgetNg = nullptr;
+    Akregator::ArticleViewerWebEngineWidgetNg *const m_articleViewerWidgetNg;
     QSharedPointer<ArticleFormatter> m_normalViewFormatter;
     QSharedPointer<ArticleFormatter> m_combinedViewFormatter;
-    QString m_grantleeDirectory;
+    const QString m_grantleeDirectory;
 };
 } // namespace Akregator
 

@@ -30,7 +30,7 @@ public:
     void save() override;
 
 private:
-    QWidget *m_widget = nullptr;
+    QWidget *const m_widget;
     QButtonGroup *m_archiveModeGroup = nullptr;
 };
 

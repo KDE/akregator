@@ -46,7 +46,7 @@ private:
 
     typedef QSet<QModelIndex> SelectionHierarchy;
 
-    bool m_doFilter;
+    bool m_doFilter = false;
     SelectionHierarchy m_selectedHierarchy;
 };
 

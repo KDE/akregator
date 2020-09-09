@@ -45,16 +45,14 @@ InvokeWrapper<Arg, R, C> invoke(R *receiver, void (C::*memberFun)(Arg))
 
 ArticleViewerWebEngineWidgetNg::ArticleViewerWebEngineWidgetNg(ArticleViewerWebEngine *customViewer, KActionCollection *ac, QWidget *parent)
     : QWidget(parent)
-    , mCurrentPrinter(nullptr)
+    , mArticleViewerNg(customViewer)
 {
-    mArticleViewerNg = customViewer;
     initializeLayout(ac);
 }
 
 ArticleViewerWebEngineWidgetNg::ArticleViewerWebEngineWidgetNg(KActionCollection *ac, QWidget *parent)
     : QWidget(parent)
     , mArticleViewerNg(nullptr)
-    , mCurrentPrinter(nullptr)
 {
     initializeLayout(ac);
 }

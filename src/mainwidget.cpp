@@ -86,7 +86,6 @@ MainWidget::~MainWidget()
 MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionManager, const QString &name)
     : QWidget(parent)
     , m_feedList()
-    , m_viewMode(NormalView)
     , m_actionManager(actionManager)
     , m_feedListManagementInterface(new FeedListManagementImpl)
 {

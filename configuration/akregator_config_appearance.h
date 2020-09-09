@@ -23,7 +23,7 @@ public:
     explicit KCMAkregatorAppearanceConfig(QWidget *parent, const QVariantList &args);
 
 private:
-    QWidget *m_widget = nullptr;
+    QWidget *const m_widget;
     Akregator::Ui::SettingsAppearance m_ui;
 };
 

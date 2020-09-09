@@ -35,9 +35,9 @@ private Q_SLOTS:
     void doMove();
 
 private:
-    int m_id;
-    int m_destFolderId;
-    int m_afterId;
+    int m_id = 0;
+    int m_destFolderId = 0;
+    int m_afterId = -1;
     QWeakPointer<FeedList> m_feedList;
 };
 

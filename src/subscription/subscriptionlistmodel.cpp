@@ -68,7 +68,6 @@ static const Akregator::TreeNode *nodeForIndex(const QModelIndex &index, const F
 
 Akregator::FilterUnreadProxyModel::FilterUnreadProxyModel(QObject *parent)
     : QSortFilterProxyModel(parent)
-    , m_doFilter(false)
     , m_selectedHierarchy()
 {
     setDynamicSortFilter(true);

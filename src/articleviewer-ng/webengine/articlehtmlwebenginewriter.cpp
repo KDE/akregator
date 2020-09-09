@@ -12,7 +12,6 @@ using namespace Akregator;
 
 ArticleHtmlWebEngineWriter::ArticleHtmlWebEngineWriter(ArticleViewerWebEngine *view, QObject *parent)
     : QObject(parent)
-    , mState(Ended)
     , mBaseUrl(QStringLiteral("file:///"))
     , mWebView(view)
 {

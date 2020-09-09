@@ -34,11 +34,11 @@ private:
         Begun,
         Queued,
         Ended
-    } mState;
+    } mState = Ended;
 
     QString mHtml;
     QUrl mBaseUrl;
-    ArticleViewerWebEngine *mWebView = nullptr;
+    ArticleViewerWebEngine *const mWebView;
 };
 }
 

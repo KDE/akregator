@@ -134,13 +134,6 @@ static Part *mySelf = nullptr;
 
 Part::Part(QWidget *parentWidget, QObject *parent, const QVariantList &)
     : KParts::Part(parent)
-    , m_standardListLoaded(false)
-    , m_shuttingDown(false)
-    , m_doCrashSave(false)
-    , m_backedUpList(false)
-    , m_mainWidget(nullptr)
-    , m_storage(nullptr)
-    , m_dialog(nullptr)
 {
     mySelf = this;
 

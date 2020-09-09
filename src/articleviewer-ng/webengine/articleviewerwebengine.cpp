@@ -66,8 +66,6 @@ public:
 ArticleViewerWebEngine::ArticleViewerWebEngine(KActionCollection *ac, QWidget *parent)
     : WebEngineViewer::WebEngineView(parent)
     , mActionCollection(ac)
-    , mLastButtonClicked(LeftButton)
-    , mViewerPluginToolManager(nullptr)
 {
     mNetworkAccessManager = new WebEngineViewer::InterceptorManager(this, ac, this);
 

@@ -264,7 +264,7 @@ private:
     QSplitter *m_horizontalSplitter = nullptr;
 
     Akregator::Part *m_part = nullptr;
-    ViewMode m_viewMode;
+    ViewMode m_viewMode = NormalView;
 
     QTimer *m_fetchTimer = nullptr;
     QTimer *m_expiryTimer = nullptr;

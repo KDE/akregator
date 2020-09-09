@@ -54,7 +54,7 @@ public:
 
     QString text;
 private:
-    DefaultNormalViewFormatter *parent = nullptr;
+    DefaultNormalViewFormatter *const parent;
 };
 
 DefaultNormalViewFormatter::DefaultNormalViewFormatter(const QString &grantleeDirectory, QPaintDevice *device)

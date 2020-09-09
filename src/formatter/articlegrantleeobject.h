@@ -60,8 +60,8 @@ public:
     Q_REQUIRED_RESULT QString actionToken() const;
 
 private:
-    Article mArticle;
-    ArticleFormatter::IconOption mArticleFormatOption;
+    const Article mArticle;
+    const ArticleFormatter::IconOption mArticleFormatOption;
 };
 }
 #endif // ARTICLEGRANTLEEOBJECT_H
