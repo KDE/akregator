@@ -31,6 +31,7 @@ void FeedRetriever::retrieveData(const QUrl &url)
 
     auto job = KIO::storedGet(url, KIO::NoReload, KIO::HideProgressInfo);
     job->addMetaData(QStringLiteral("UserAgent"), userAgent);
+    job->addMetaData(QStringLiteral("accept"), QStringLiteral("application/rss+xml;q=0.9, application/atom+xml;q=0.9, text/*;q=0.8, */*;q=0.7"));
     job->addMetaData(QStringLiteral("cache"), useCache ? QStringLiteral("refresh") : QStringLiteral("reload"));
     connect(job, &KJob::result, this, &FeedRetriever::getFinished);
     mJob = job;
