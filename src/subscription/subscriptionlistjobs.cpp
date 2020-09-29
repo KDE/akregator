@@ -15,6 +15,7 @@
 #include <KLocalizedString>
 
 #include <QTimer>
+#include <QDebug>
 
 using namespace Akregator;
 
@@ -129,7 +130,7 @@ void DeleteSubscriptionJob::start()
 void DeleteSubscriptionJob::doDelete()
 {
     const QSharedPointer<FeedList> feedList = m_feedList.lock();
-    if (m_id > 0 && feedList) {
+    if (feedList) {
         delete feedList->findByID(m_id);
     }
     emitResult();
