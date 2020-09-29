@@ -147,10 +147,10 @@ public:
     }
 
 private:
-    QString m_url;
-    QString m_type;
-    QString m_title;
-    uint m_length;
+    const QString m_url;
+    const QString m_type;
+    const QString m_title; //TODO underfined.
+    const uint m_length;
 };
 }
 
