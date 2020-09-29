@@ -45,7 +45,7 @@ public:
     * all tabs but the main tab can be removed.
     * Default is @c true
     */
-    bool isRemovable() const;
+    Q_REQUIRED_RESULT bool isRemovable() const;
 
     /**
      * returns the URL of the embedded part

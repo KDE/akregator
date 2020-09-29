@@ -22,7 +22,7 @@ public:
 
     Q_REQUIRED_RESULT QUrl url() const override;
 
-    bool openUrl(const OpenUrlRequest &) override
+    Q_REQUIRED_RESULT bool openUrl(const OpenUrlRequest &) override
     {
         return false;
     }

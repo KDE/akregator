@@ -21,10 +21,10 @@ public:
     explicit WebEngineFrame(KActionCollection *ac, QWidget *parent = nullptr);
     ~WebEngineFrame() override;
 
-    QUrl url() const override;
-    bool openUrl(const OpenUrlRequest &request) override;
+    Q_REQUIRED_RESULT QUrl url() const override;
+    Q_REQUIRED_RESULT bool openUrl(const OpenUrlRequest &request) override;
     void loadConfig(const KConfigGroup &, const QString &) override;
-    bool saveConfig(KConfigGroup &, const QString &) override;
+    Q_REQUIRED_RESULT bool saveConfig(KConfigGroup &, const QString &) override;
 
     Q_REQUIRED_RESULT qreal zoomFactor() const override;
 

@@ -260,7 +260,7 @@ void FrameManager::saveProperties(KConfigGroup &config)
         // No need to save the main frame
         Frame *currentFrame = i.value();
         if (currentFrame && qobject_cast<WebEngineFrame *>(currentFrame)) {
-            QString newPrefix = QLatin1Char('T') + QString::number(i.key());
+            const QString newPrefix = QLatin1Char('T') + QString::number(i.key());
             if (currentFrame->saveConfig(config, newPrefix + QLatin1Char('_'))) {
                 strlst.append(newPrefix);
                 if (currentFrame == m_currentFrame) {
