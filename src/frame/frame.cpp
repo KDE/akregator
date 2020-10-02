@@ -19,11 +19,6 @@ Frame::Frame(QWidget *parent)
     : QWidget(parent)
 {
     m_title = i18n("Untitled");
-    m_state = Idle;
-    m_progress = -1;
-    m_progressItem = nullptr;
-    m_isRemovable = true;
-    m_loading = false;
     m_id = m_idCounter++;
 }
 

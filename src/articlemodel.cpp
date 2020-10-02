@@ -42,8 +42,8 @@ static QString stripHtml(const QString &html)
 }
 
 ArticleModel::ArticleModel(const QVector<Article> &articles, QObject *parent) : QAbstractTableModel(parent)
+  , m_articles(articles)
 {
-    m_articles = articles;
     const int articlesCount(articles.count());
     m_titleCache.resize(articlesCount);
     for (int i = 0; i < articlesCount; ++i) {

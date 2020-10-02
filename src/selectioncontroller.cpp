@@ -227,9 +227,7 @@ void SelectionController::articleHeadersAvailable(KJob *job)
     disconnect(m_articleLister->articleSelectionModel(), &QItemSelectionModel::selectionChanged, this, &SelectionController::articleSelectionChanged);
     connect(m_articleLister->articleSelectionModel(), &QItemSelectionModel::selectionChanged, this, &SelectionController::articleSelectionChanged);
 
-    if (node) {
-        m_articleLister->setScrollBarPositions(node->listViewScrollBarPositions());
-    }
+    m_articleLister->setScrollBarPositions(node->listViewScrollBarPositions());
 }
 
 void SelectionController::subscriptionDataChanged(const QModelIndex &topLeft, const QModelIndex &bottomRight)

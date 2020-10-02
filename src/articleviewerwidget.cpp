@@ -334,7 +334,7 @@ void ArticleViewerWidget::slotArticlesListed(KJob *job)
     m_articles = m_listJob->articles();
     std::sort(m_articles.begin(), m_articles.end());
 
-    if (node && !m_articles.isEmpty()) {
+    if (!m_articles.isEmpty()) {
         m_link = m_articles.first().link();
     } else {
         m_link = QUrl();

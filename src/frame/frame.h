@@ -119,12 +119,12 @@ protected:
     QIcon m_icon;
     QString m_title;
     QString m_caption;
-    State m_state;
-    int m_progress;
+    State m_state = Idle;
+    int m_progress = -1;
     QString m_statusText;
     QString m_progressId;
     KPIM::ProgressItem *m_progressItem = nullptr;
-    bool m_isRemovable = false;
+    bool m_isRemovable = true;
     bool m_loading = false;
     int m_id;
     static int m_idCounter;
