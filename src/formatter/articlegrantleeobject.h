@@ -48,14 +48,6 @@ public:
     Q_REQUIRED_RESULT QString articleCompleteStoryLink() const;
     Q_REQUIRED_RESULT QString imageFeed() const;
 
-    //Action
-    Q_REQUIRED_RESULT QString deleteAction() const;
-    Q_REQUIRED_RESULT QString markAsReadAction() const;
-    Q_REQUIRED_RESULT QString markAsUnreadAction() const;
-    Q_REQUIRED_RESULT QString markAsImportantAction() const;
-    Q_REQUIRED_RESULT QString sendUrlAction() const;
-    Q_REQUIRED_RESULT QString sendFileAction() const;
-
     Q_REQUIRED_RESULT bool important() const;
     Q_REQUIRED_RESULT QString actionToken() const;
 
