@@ -26,7 +26,6 @@
 #include "editsubscriptioncommand.h"
 #include "expireitemscommand.h"
 #include "importfeedlistcommand.h"
-#include "feed.h"
 
 #include "feedlist.h"
 #include "feedpropertiesdialog.h"
@@ -55,7 +54,6 @@
 #include <KShell>
 
 #include <KToggleAction>
-#include <QUrl>
 
 #include <QClipboard>
 #include <QNetworkConfigurationManager>
@@ -69,7 +67,6 @@
 #include <memory>
 #include <PimCommon/NetworkManager>
 #include <webengine/webengineframe.h>
-#include "articleviewer-ng/webengine/articleviewerwebenginewidgetng.h"
 
 using namespace Akregator;
 

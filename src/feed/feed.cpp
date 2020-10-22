@@ -22,10 +22,8 @@
 #include "utils.h"
 #include "feedretriever.h"
 #include "job/downloadfeediconjob.h"
-#include <Syndication/Syndication>
 
 #include "akregator_debug.h"
-#include <QIcon>
 
 #include <QUrl>
 

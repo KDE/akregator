@@ -20,7 +20,6 @@
 #include <QDateTime>
 #include <QIcon>
 #include <KLocalizedString>
-#include <QUrl>
 #include <QMenu>
 #include <KColorScheme>
 #include <QLocale>

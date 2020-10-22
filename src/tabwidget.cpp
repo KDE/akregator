@@ -18,7 +18,6 @@
 #include <QStyleOption>
 
 #include "akregator_debug.h"
-#include <QTabWidget>
 #include <QTabBar>
 #include <KLocalizedString>
 #include <kio/global.h>

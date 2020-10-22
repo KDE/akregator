@@ -5,7 +5,6 @@
 */
 
 #include "articlegrantleeobject.h"
-#include "articleformatter.h"
 #include "grantleeutil.h"
 #include "utils.h"
 #include "feed.h"

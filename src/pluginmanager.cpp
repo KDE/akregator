@@ -11,7 +11,6 @@
 #include "pluginmanager.h"
 #include "plugin.h"
 
-#include <vector>
 #include <QString>
 
 #include "akregator_debug.h"

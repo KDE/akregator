@@ -13,7 +13,6 @@
 #include "aboutdata.h"
 #include "actionmanager.h"
 #include "actions.h"
-#include "article.h"
 #include "articleformatter.h"
 #include "articlejobs.h"
 #include "articlematcher.h"
@@ -27,7 +26,6 @@
 
 #include <KActionCollection>
 
-#include <QUrl>
 #include <QElapsedTimer>
 
 #include <articleviewer-ng/webengine/articleviewerwebenginewidgetng.h>

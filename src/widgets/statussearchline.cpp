@@ -7,7 +7,6 @@
 #include "statussearchline.h"
 #include <KLocalizedString>
 #include <QAction>
-#include <QIcon>
 #include <QKeyEvent>
 #include <QMenu>
 

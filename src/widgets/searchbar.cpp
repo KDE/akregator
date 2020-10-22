@@ -10,13 +10,11 @@
 #include "akregatorconfig.h"
 
 #include "article.h"
-#include "widgets/statussearchline.h"
 
 #include <KLineEdit>
 #include <KLocalizedString>
 
 #include <QString>
-#include <QTimer>
 #include <QStandardPaths>
 #include <QHBoxLayout>
 

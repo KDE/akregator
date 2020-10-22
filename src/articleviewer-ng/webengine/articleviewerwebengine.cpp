@@ -26,7 +26,6 @@
 #include <KLocalizedString>
 #include <KAboutData>
 #include <KGuiItem>
-#include <openurlrequest.h>
 #include <KMessageBox>
 #include <QPrinter>
 #include <QMouseEvent>

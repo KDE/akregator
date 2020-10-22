@@ -6,7 +6,6 @@
 */
 
 #include "akregator_config_archive.h"
-#include "akregatorconfig.h"
 #include "ui_settings_archive.h"
 #include <KAboutData>
 #include <KPluginFactory>

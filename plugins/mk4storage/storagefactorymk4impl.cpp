@@ -9,7 +9,6 @@
 #include "storagemk4impl.h"
 
 #include <KLocalizedString>
-#include <QString>
 #include <QStringList>
 
 namespace Akregator {

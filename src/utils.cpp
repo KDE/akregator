@@ -8,7 +8,6 @@
 
 #include "utils.h"
 #include <QRegularExpression>
-#include <QString>
 #include <QTextDocument>
 
 using namespace Akregator;

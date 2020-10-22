@@ -9,7 +9,6 @@
 #include "storagefactoryregistry.h"
 #include "storagefactory.h"
 
-#include <QHash>
 #include <QString>
 #include <QStringList>
 

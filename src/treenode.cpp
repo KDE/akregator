@@ -11,7 +11,6 @@
 #include "articlejobs.h"
 #include "article.h"
 
-#include <QPoint>
 #include <QString>
 #include <QList>
 
