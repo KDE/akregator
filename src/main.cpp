@@ -86,7 +86,7 @@ int main(int argc, char **argv)
     about.processCommandLine(cmdArgs);
 
 #ifdef WITH_KUSERFEEDBACK
-    if(cmdArgs->isSet(QStringLiteral("feedback"))) {
+    if (cmdArgs->isSet(QStringLiteral("feedback"))) {
         Akregator::AkregatorUserFeedbackProvider *userFeedBack = new Akregator::AkregatorUserFeedbackProvider(nullptr);
         QTextStream(stdout) << userFeedBack->describeDataSources() << '\n';
         delete userFeedBack;

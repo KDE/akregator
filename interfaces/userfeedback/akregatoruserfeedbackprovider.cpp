@@ -4,7 +4,6 @@
    SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-
 #include "akregatoruserfeedbackprovider.h"
 #include <KUserFeedback/ApplicationVersionSource>
 #include <KUserFeedback/PlatformInfoSource>
@@ -36,5 +35,4 @@ AkregatorUserFeedbackProvider::AkregatorUserFeedbackProvider(QObject *parent)
 
 AkregatorUserFeedbackProvider::~AkregatorUserFeedbackProvider()
 {
-
 }

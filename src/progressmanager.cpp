@@ -10,7 +10,6 @@
 #include "feed.h"
 #include "treenode.h"
 
-
 #include <KLocalizedString>
 
 #include <Libkdepim/ProgressManager>

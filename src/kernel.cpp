@@ -37,7 +37,6 @@ Kernel::Kernel()
     //Initialize
     (void)UserFeedBackManager::self();
 #endif
-
 }
 
 Kernel::~Kernel()

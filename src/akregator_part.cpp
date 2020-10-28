@@ -409,11 +409,11 @@ bool Part::writeToTextFile(const QString &data, const QString &filename) const
     stream.setCodec("UTF-8");
     stream << data
           #if (QT_VERSION < QT_VERSION_CHECK(5, 15, 0))
-           << endl
+        << endl
           #else
-           << Qt::endl
+        << Qt::endl
           #endif
-              ;
+    ;
     return file.commit();
 }
 
@@ -620,7 +620,6 @@ void Part::showOptions()
 #ifdef WITH_KUSERFEEDBACK
         m_dialog->addModule(QStringLiteral("akregator_config_userfeedback"));
 #endif
-
     }
 
     m_dialog->show();

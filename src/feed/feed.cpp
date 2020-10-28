@@ -362,8 +362,8 @@ void Feed::loadFavicon(const QString &url, bool downloadFavicon)
         job->setFeedIconUrl(u);
         job->setDownloadFavicon(downloadFavicon);
         connect(job, &DownloadFeedIconJob::result, this, [this](const QString &fileName) {
-                setFaviconLocalPath(fileName);
-                });
+            setFaviconLocalPath(fileName);
+        });
         if (!job->start()) {
             qCWarning(AKREGATOR_LOG) << "Impossible to start DownloadFeedIconJob for url: " << url;
         }
