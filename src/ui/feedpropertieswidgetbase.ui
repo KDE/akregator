@@ -20,16 +20,7 @@
    <string>Feed Properties</string>
   </property>
   <layout class="QGridLayout">
-   <property name="leftMargin">
-    <number>0</number>
-   </property>
-   <property name="topMargin">
-    <number>0</number>
-   </property>
-   <property name="rightMargin">
-    <number>0</number>
-   </property>
-   <property name="bottomMargin">
+   <property name="margin">
     <number>0</number>
    </property>
    <property name="spacing">
@@ -51,16 +42,7 @@
        <string>&amp;General</string>
       </attribute>
       <layout class="QGridLayout">
-       <property name="leftMargin">
-        <number>8</number>
-       </property>
-       <property name="topMargin">
-        <number>8</number>
-       </property>
-       <property name="rightMargin">
-        <number>8</number>
-       </property>
-       <property name="bottomMargin">
+       <property name="margin">
         <number>8</number>
        </property>
        <property name="spacing">
@@ -78,16 +60,7 @@
          <property name="spacing">
           <number>6</number>
          </property>
-         <property name="leftMargin">
-          <number>0</number>
-         </property>
-         <property name="topMargin">
-          <number>0</number>
-         </property>
-         <property name="rightMargin">
-          <number>0</number>
-         </property>
-         <property name="bottomMargin">
+         <property name="margin">
           <number>0</number>
          </property>
          <item>
@@ -147,16 +120,7 @@
        </item>
        <item row="0" column="0">
         <layout class="QGridLayout">
-         <property name="leftMargin">
-          <number>0</number>
-         </property>
-         <property name="topMargin">
-          <number>0</number>
-         </property>
-         <property name="rightMargin">
-          <number>0</number>
-         </property>
-         <property name="bottomMargin">
+         <property name="margin">
           <number>0</number>
          </property>
          <property name="spacing">
@@ -230,16 +194,7 @@
        <string>Ar&amp;chive</string>
       </attribute>
       <layout class="QGridLayout">
-       <property name="leftMargin">
-        <number>8</number>
-       </property>
-       <property name="topMargin">
-        <number>8</number>
-       </property>
-       <property name="rightMargin">
-        <number>8</number>
-       </property>
-       <property name="bottomMargin">
+       <property name="margin">
         <number>8</number>
        </property>
        <property name="spacing">
@@ -267,16 +222,7 @@
          <property name="spacing">
           <number>6</number>
          </property>
-         <property name="leftMargin">
-          <number>0</number>
-         </property>
-         <property name="topMargin">
-          <number>0</number>
-         </property>
-         <property name="rightMargin">
-          <number>0</number>
-         </property>
-         <property name="bottomMargin">
+         <property name="margin">
           <number>0</number>
          </property>
          <item>
@@ -284,16 +230,7 @@
            <property name="spacing">
             <number>6</number>
            </property>
-           <property name="leftMargin">
-            <number>0</number>
-           </property>
-           <property name="topMargin">
-            <number>0</number>
-           </property>
-           <property name="rightMargin">
-            <number>0</number>
-           </property>
-           <property name="bottomMargin">
+           <property name="margin">
             <number>0</number>
            </property>
            <item>
@@ -301,16 +238,7 @@
              <property name="spacing">
               <number>6</number>
              </property>
-             <property name="leftMargin">
-              <number>0</number>
-             </property>
-             <property name="topMargin">
-              <number>0</number>
-             </property>
-             <property name="rightMargin">
-              <number>0</number>
-             </property>
-             <property name="bottomMargin">
+             <property name="margin">
               <number>0</number>
              </property>
              <item>
@@ -340,16 +268,7 @@
              <property name="spacing">
               <number>6</number>
              </property>
-             <property name="leftMargin">
-              <number>0</number>
-             </property>
-             <property name="topMargin">
-              <number>0</number>
-             </property>
-             <property name="rightMargin">
-              <number>0</number>
-             </property>
-             <property name="bottomMargin">
+             <property name="margin">
               <number>0</number>
              </property>
              <item>
@@ -421,16 +340,7 @@
        <string>Adva&amp;nced</string>
       </attribute>
       <layout class="QGridLayout">
-       <property name="leftMargin">
-        <number>8</number>
-       </property>
-       <property name="topMargin">
-        <number>8</number>
-       </property>
-       <property name="rightMargin">
-        <number>8</number>
-       </property>
-       <property name="bottomMargin">
+       <property name="margin">
         <number>8</number>
        </property>
        <property name="spacing">
@@ -454,16 +364,7 @@
          <property name="spacing">
           <number>6</number>
          </property>
-         <property name="leftMargin">
-          <number>0</number>
-         </property>
-         <property name="topMargin">
-          <number>0</number>
-         </property>
-         <property name="rightMargin">
-          <number>0</number>
-         </property>
-         <property name="bottomMargin">
+         <property name="margin">
           <number>0</number>
          </property>
          <item>
@@ -495,6 +396,25 @@
    <header>kpluralhandlingspinbox.h</header>
   </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>feedNameEdit</tabstop>
+  <tabstop>urlEdit</tabstop>
+  <tabstop>commentEdit</tabstop>
+  <tabstop>cb_updateInterval</tabstop>
+  <tabstop>updateSpinBox</tabstop>
+  <tabstop>updateComboBox</tabstop>
+  <tabstop>checkBox_useNotification</tabstop>
+  <tabstop>rb_globalDefault</tabstop>
+  <tabstop>rb_keepAllArticles</tabstop>
+  <tabstop>rb_limitArticleNumber</tabstop>
+  <tabstop>sb_maxArticleNumber</tabstop>
+  <tabstop>rb_limitArticleAge</tabstop>
+  <tabstop>sb_maxArticleAge</tabstop>
+  <tabstop>rb_disableArchiving</tabstop>
+  <tabstop>checkBox_loadWebsite</tabstop>
+  <tabstop>checkBox_markRead</tabstop>
+  <tabstop>tabWidget2</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
