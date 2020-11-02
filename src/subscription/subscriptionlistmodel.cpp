@@ -255,7 +255,7 @@ QVariant Akregator::SubscriptionListModel::data(const QModelIndex &index, int ro
         if (!node->isGroup()) {
             return false;
         }
-        const Akregator::Folder *const folder = qobject_cast<const Akregator::Folder *const>(node);
+        const auto *const folder = qobject_cast<const Akregator::Folder *const>(node);
         Q_ASSERT(folder);
         return folder->isOpen();
     }
@@ -419,7 +419,7 @@ void Akregator::FolderExpansionHandler::setExpanded(const QModelIndex &idx, bool
         return;
     }
 
-    Akregator::Folder *const folder = qobject_cast<Akregator::Folder *>(node);
+    auto *const folder = qobject_cast<Akregator::Folder *>(node);
     Q_ASSERT(folder);
     folder->setOpen(expanded);
 }
@@ -461,7 +461,7 @@ QStringList SubscriptionListModel::mimeTypes() const
 
 QMimeData *SubscriptionListModel::mimeData(const QModelIndexList &indexes) const
 {
-    QMimeData *mimeData = new QMimeData;
+    auto *mimeData = new QMimeData;
 
     QList<QUrl> urls;
     for (const QModelIndex &i : indexes) {
@@ -495,7 +495,7 @@ bool SubscriptionListModel::setData(const QModelIndex &idx, const QVariant &valu
     if (!node) {
         return false;
     }
-    RenameSubscriptionJob *job = new RenameSubscriptionJob(this);
+    auto *job = new RenameSubscriptionJob(this);
     job->setSubscriptionId(node->id());
     job->setName(value.toString());
     job->start();
@@ -517,7 +517,7 @@ bool SubscriptionListModel::dropMimeData(const QMimeData *data, Qt::DropAction a
         return false;
     }
 
-    const TreeNode *const droppedOnNode = qobject_cast<const TreeNode *>(nodeForIndex(parent, m_feedList.data()));
+    const auto *const droppedOnNode = qobject_cast<const TreeNode *>(nodeForIndex(parent, m_feedList.data()));
 
     if (!droppedOnNode) {
         return false;
@@ -539,7 +539,7 @@ bool SubscriptionListModel::dropMimeData(const QMimeData *data, Qt::DropAction a
 
     //don't drop nodes into their own subtree
     for (const int id : qAsConst(ids)) {
-        const Folder *const asFolder = qobject_cast<const Folder *>(m_feedList->findByID(id));
+        const auto *const asFolder = qobject_cast<const Folder *>(m_feedList->findByID(id));
         if (asFolder && (asFolder == destFolder || asFolder->subtreeContains(destFolder))) {
             return false;
         }
@@ -552,7 +552,7 @@ bool SubscriptionListModel::dropMimeData(const QMimeData *data, Qt::DropAction a
         if (!node) {
             continue;
         }
-        MoveSubscriptionJob *job = new MoveSubscriptionJob(this);
+        auto *job = new MoveSubscriptionJob(this);
         job->setSubscriptionId(node->id());
         job->setDestination(destFolder->id(), after ? after->id() : -1);
         job->start();

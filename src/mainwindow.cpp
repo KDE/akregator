@@ -101,7 +101,7 @@ bool MainWindow::loadPart()
 
 void MainWindow::setupProgressWidgets()
 {
-    KPIM::ProgressStatusBarWidget *progressStatusBarWidget = new KPIM::ProgressStatusBarWidget(statusBar(), this);
+    auto *progressStatusBarWidget = new KPIM::ProgressStatusBarWidget(statusBar(), this);
     statusBar()->addPermanentWidget(progressStatusBarWidget->littleProgress(), 0);
 }
 

@@ -601,7 +601,7 @@ void FeedListManagementImpl::removeFeed(const QString &url, const QString &catId
         if (lastcatid == i->parent()->id()) {
             if (i->xmlUrl().compare(url) == 0) {
                 qCDebug(AKREGATOR_LOG) << "id:" << i->id();
-                DeleteSubscriptionJob *job = new DeleteSubscriptionJob;
+                auto *job = new DeleteSubscriptionJob;
                 job->setSubscriptionId(i->id());
                 job->start();
             }

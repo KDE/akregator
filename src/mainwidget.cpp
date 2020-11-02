@@ -99,7 +99,7 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
     connect(m_part, &Part::signalSettingsChanged,
             m_actionManager, &ActionManagerImpl::slotSettingsChanged);
 
-    QVBoxLayout *lt = new QVBoxLayout(this);
+    auto *lt = new QVBoxLayout(this);
     lt->setContentsMargins(0, 0, 0, 0);
 
     m_horizontalSplitter = new QSplitter(Qt::Horizontal, this);
@@ -161,7 +161,7 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
     m_mainTab->setObjectName(QStringLiteral("Article Tab"));
     m_mainTab->setWhatsThis(i18n("Articles list."));
 
-    QVBoxLayout *mainTabLayout = new QVBoxLayout(m_mainTab);
+    auto *mainTabLayout = new QVBoxLayout(m_mainTab);
     mainTabLayout->setContentsMargins(0, 0, 0, 0);
 
     m_searchBar = new SearchBar(m_mainTab);
@@ -174,7 +174,7 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
     m_articleSplitter->setChildrenCollapsible(false);
 
     m_articleWidget = new QWidget(m_articleSplitter);
-    QVBoxLayout *articleWidgetLayout = new QVBoxLayout;
+    auto *articleWidgetLayout = new QVBoxLayout;
     m_articleWidget->setLayout(articleWidgetLayout);
     articleWidgetLayout->setContentsMargins(0, 0, 0, 0);
     articleWidgetLayout->setSpacing(0);
@@ -195,7 +195,7 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
     connect(m_part, &Part::signalSettingsChanged,
             m_selectionController, &AbstractSelectionController::settingsChanged);
 
-    FolderExpansionHandler *expansionHandler = new FolderExpansionHandler(this);
+    auto *expansionHandler = new FolderExpansionHandler(this);
     connect(m_feedListView, &QTreeView::expanded, expansionHandler, &FolderExpansionHandler::itemExpanded);
     connect(m_feedListView, &QTreeView::collapsed, expansionHandler, &FolderExpansionHandler::itemCollapsed);
 
@@ -368,7 +368,7 @@ void MainWidget::connectFrame(Akregator::WebEngineFrame *frame)
 
 void MainWidget::slotRequestNewFrame(int &frameId)
 {
-    WebEngineFrame *frame = new WebEngineFrame(m_actionManager->actionCollection(), m_tabWidget);
+    auto *frame = new WebEngineFrame(m_actionManager->actionCollection(), m_tabWidget);
     connectFrame(frame);
 
     Kernel::self()->frameManager()->slotAddFrame(frame);
@@ -431,7 +431,7 @@ void MainWidget::sendArticle(const QByteArray &text, const QString &title, bool 
 
 void MainWidget::importFeedList(const QDomDocument &doc)
 {
-    ImportFeedListCommand *cmd = new ImportFeedListCommand;
+    auto *cmd = new ImportFeedListCommand;
     cmd->setParentWidget(this);
     cmd->setFeedListDocument(doc);
     cmd->setTargetList(m_feedList);
@@ -470,7 +470,7 @@ void MainWidget::deleteExpiredArticles(const QSharedPointer<FeedList> &list)
     if (!list) {
         return;
     }
-    ExpireItemsCommand *cmd = new ExpireItemsCommand(this);
+    auto *cmd = new ExpireItemsCommand(this);
     cmd->setParentWidget(this);
     cmd->setFeedList(list);
     cmd->setFeeds(list->feedIds());
@@ -504,7 +504,7 @@ void MainWidget::addFeedToGroup(const QString &url, const QString &groupName)
     }
 
     if (!group) {
-        Folder *g = new Folder(groupName);
+        auto *g = new Folder(groupName);
         m_feedList->allFeedsFolder()->appendChild(g);
         group = g;
     }
@@ -634,7 +634,7 @@ void MainWidget::slotMoveCurrentNodeRight()
     TreeNode *prev = current->prevSibling();
 
     if (prev && prev->isGroup()) {
-        Folder *fg = static_cast<Folder *>(prev);
+        auto *fg = static_cast<Folder *>(prev);
         current->parent()->removeChild(current);
         fg->appendChild(current);
         m_feedListView->ensureNodeVisible(current);
@@ -704,7 +704,7 @@ void MainWidget::slotFeedAdd()
 
 void MainWidget::addFeed(const QString &url, TreeNode *after, Folder *parent, bool autoExec)
 {
-    CreateFeedCommand *cmd(new CreateFeedCommand(this));
+    auto *cmd(new CreateFeedCommand(this));
     cmd->setParentWidget(this);
     cmd->setPosition(parent, after);
     cmd->setRootFolder(m_feedList->allFeedsFolder());
@@ -716,7 +716,7 @@ void MainWidget::addFeed(const QString &url, TreeNode *after, Folder *parent, bo
 
 void MainWidget::slotFeedAddGroup()
 {
-    CreateFolderCommand *cmd = new CreateFolderCommand(this);
+    auto *cmd = new CreateFolderCommand(this);
     cmd->setParentWidget(this);
     cmd->setSelectedSubscription(m_selectionController->selectedSubscription());
     cmd->setRootFolder(m_feedList->allFeedsFolder());
@@ -733,7 +733,7 @@ void MainWidget::slotFeedRemove()
         return;
     }
 
-    DeleteSubscriptionCommand *cmd = new DeleteSubscriptionCommand(this);
+    auto *cmd = new DeleteSubscriptionCommand(this);
     cmd->setParentWidget(this);
     cmd->setSubscription(m_feedList, selectedNode->id());
     cmd->start();
@@ -745,7 +745,7 @@ void MainWidget::slotFeedModify()
     if (!node) {
         return;
     }
-    EditSubscriptionCommand *cmd = new EditSubscriptionCommand(this);
+    auto *cmd = new EditSubscriptionCommand(this);
     cmd->setParentWidget(this);
     cmd->setSubscription(m_feedList, node->id());
     cmd->setSubscriptionListView(m_feedListView);
@@ -868,7 +868,7 @@ void MainWidget::slotArticleSelected(const Akregator::Article &article)
     QVector<Article> articles = m_selectionController->selectedArticles();
     Q_EMIT signalArticlesSelected(articles);
 
-    KToggleAction *const maai = qobject_cast<KToggleAction *>(m_actionManager->action(QStringLiteral("article_set_status_important")));
+    auto *const maai = qobject_cast<KToggleAction *>(m_actionManager->action(QStringLiteral("article_set_status_important")));
     Q_ASSERT(maai);
     maai->setChecked(article.keep());
 
@@ -890,7 +890,7 @@ void MainWidget::slotArticleSelected(const Akregator::Article &article)
     if (delay > 0) {
         m_markReadTimer->start(delay * 1000);
     } else {
-        Akregator::ArticleModifyJob *job = new Akregator::ArticleModifyJob;
+        auto *job = new Akregator::ArticleModifyJob;
         const Akregator::ArticleId aid = { article.feed()->xmlUrl(), article.guid() };
         job->setStatus(aid, Akregator::Read);
         job->start();
@@ -1064,7 +1064,7 @@ void MainWidget::slotArticleDelete()
         selected->setNotificationMode(false);
     }
 
-    Akregator::ArticleDeleteJob *job = new Akregator::ArticleDeleteJob;
+    auto *job = new Akregator::ArticleDeleteJob;
     for (const Akregator::Article &i : articles) {
         Feed *const feed = i.feed();
         if (!feed) {
@@ -1103,7 +1103,7 @@ void MainWidget::slotArticleToggleKeepFlag(bool)
         }
     }
 
-    Akregator::ArticleModifyJob *job = new Akregator::ArticleModifyJob;
+    auto *job = new Akregator::ArticleModifyJob;
     for (const Akregator::Article &i : articles) {
         const Akregator::ArticleId aid = { i.feed()->xmlUrl(), i.guid() };
         job->setKeep(aid, !allFlagsSet);
@@ -1115,7 +1115,7 @@ namespace {
 void setArticleStatus(const QString &feedUrl, const QString &articleId, int status)
 {
     if (!feedUrl.isEmpty() && !articleId.isEmpty()) {
-        Akregator::ArticleModifyJob *job = new Akregator::ArticleModifyJob;
+        auto *job = new Akregator::ArticleModifyJob;
         const Akregator::ArticleId aid = { feedUrl, articleId };
         job->setStatus(aid, status);
         job->start();
@@ -1130,7 +1130,7 @@ void setSelectedArticleStatus(const Akregator::AbstractSelectionController *cont
         return;
     }
 
-    Akregator::ArticleModifyJob *job = new Akregator::ArticleModifyJob;
+    auto *job = new Akregator::ArticleModifyJob;
     for (const Akregator::Article &i : articles) {
         const Akregator::ArticleId aid = { i.feed()->xmlUrl(), i.guid() };
         job->setStatus(aid, status);
@@ -1162,7 +1162,7 @@ void MainWidget::slotSetCurrentArticleReadDelayed()
         return;
     }
 
-    Akregator::ArticleModifyJob *const job = new Akregator::ArticleModifyJob;
+    auto *const job = new Akregator::ArticleModifyJob;
     const Akregator::ArticleId aid = { article.feed()->xmlUrl(), article.guid() };
     job->setStatus(aid, Akregator::Read);
     job->start();
@@ -1185,7 +1185,7 @@ void MainWidget::readProperties(const KConfigGroup &config)
     const QStringList childList = config.readEntry(QStringLiteral("Children"), QStringList());
     int currentFrameId = -1;
     for (const QString &framePrefix : childList) {
-        WebEngineFrame *const frame = new WebEngineFrame(m_actionManager->actionCollection(), m_tabWidget);
+        auto *const frame = new WebEngineFrame(m_actionManager->actionCollection(), m_tabWidget);
         frame->loadConfig(config, framePrefix + QLatin1Char('_'));
 
         connectFrame(frame);
@@ -1264,7 +1264,7 @@ void MainWidget::slotArticleAction(Akregator::ArticleViewerWebEngine::ArticleAct
     switch (type) {
     case ArticleViewerWebEngine::DeleteAction:
     {
-        Akregator::ArticleDeleteJob *job = new Akregator::ArticleDeleteJob;
+        auto *job = new Akregator::ArticleDeleteJob;
         const Akregator::ArticleId aid = { feed, articleId };
         job->appendArticleId(aid);
         job->start();
@@ -1279,7 +1279,7 @@ void MainWidget::slotArticleAction(Akregator::ArticleViewerWebEngine::ArticleAct
 
     case ArticleViewerWebEngine::MarkAsImportant:
     {
-        Akregator::ArticleModifyJob *job = new Akregator::ArticleModifyJob;
+        auto *job = new Akregator::ArticleModifyJob;
         const Akregator::Article article = m_feedList->findArticle(feed, articleId);
         const Akregator::ArticleId aid = { feed, articleId };
         job->setKeep(aid, !article.keep());

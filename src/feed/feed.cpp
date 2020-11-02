@@ -358,7 +358,7 @@ void Feed::loadFavicon(const QString &url, bool downloadFavicon)
     if (u.isLocalFile()) {
         setFaviconLocalPath(u.toLocalFile());
     } else {
-        Akregator::DownloadFeedIconJob *job = new Akregator::DownloadFeedIconJob(this);
+        auto *job = new Akregator::DownloadFeedIconJob(this);
         job->setFeedIconUrl(u);
         job->setDownloadFavicon(downloadFavicon);
         connect(job, &DownloadFeedIconJob::result, this, [this](const QString &fileName) {
@@ -581,7 +581,7 @@ QDomElement Feed::toOPML(QDomElement parent, QDomDocument document) const
 
 KJob *Feed::createMarkAsReadJob()
 {
-    ArticleModifyJob *job = new ArticleModifyJob;
+    auto *job = new ArticleModifyJob;
     const auto arts = articles();
     for (const Article &i : arts) {
         const ArticleId aid = { xmlUrl(), i.guid() };

@@ -159,7 +159,7 @@ bool Criterion::satisfiedBy(const Article &article) const
 
     bool satisfied = false;
 
-    const Predicate predicateType = static_cast<Predicate>(m_predicate & ~Negation);
+    const auto predicateType = static_cast<Predicate>(m_predicate & ~Negation);
     QString subjectType = QLatin1String(concreteSubject.typeName());
 
     switch (predicateType) {
@@ -265,8 +265,8 @@ void ArticleMatcher::readConfig(KConfigGroup *config)
 
 bool ArticleMatcher::operator==(const AbstractMatcher &other) const
 {
-    AbstractMatcher *ptr = const_cast<AbstractMatcher *>(&other);
-    ArticleMatcher *o = dynamic_cast<ArticleMatcher *>(ptr);
+    auto *ptr = const_cast<AbstractMatcher *>(&other);
+    auto *o = dynamic_cast<ArticleMatcher *>(ptr);
     if (!o) {
         return false;
     } else {

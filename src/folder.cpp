@@ -302,7 +302,7 @@ void Folder::updateUnreadCount() const
 
 KJob *Folder::createMarkAsReadJob()
 {
-    CompositeJob *job = new CompositeJob;
+    auto *job = new CompositeJob;
     const auto f = feeds();
     for (Feed *const i : f) {
         job->addSubjob(i->createMarkAsReadJob());
@@ -440,7 +440,7 @@ QList<const TreeNode *> Folder::namedChildren(const QString &title) const
         if (child->title() == title) {
             nodeList.append(child);
         }
-        const Folder *fld = dynamic_cast<const Folder *>(child);
+        const auto *fld = dynamic_cast<const Folder *>(child);
         if (fld) {
             nodeList += fld->namedChildren(title);
         }
@@ -456,7 +456,7 @@ QList<TreeNode *> Folder::namedChildren(const QString &title)
         if (child->title() == title) {
             nodeList.append(child);
         }
-        Folder *const fld = qobject_cast<Folder *>(child);
+        auto *const fld = qobject_cast<Folder *>(child);
         if (fld) {
             nodeList += fld->namedChildren(title);
         }

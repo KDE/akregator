@@ -65,10 +65,10 @@ void StatusSearchLine::initializeActions()
 void StatusSearchLine::showMenu()
 {
     QMenu p(this);
-    QActionGroup *grp = new QActionGroup(this);
+    auto *grp = new QActionGroup(this);
     grp->setExclusive(true);
     for (int i = AllArticles; i <= ImportantArticles; ++i) {
-        StatusSearchLine::Status status = static_cast<StatusSearchLine::Status>(i);
+        auto status = static_cast<StatusSearchLine::Status>(i);
         QAction *act = new QAction(mHashStatus.value(status).mIcon, mHashStatus.value(status).mText, this);
         act->setCheckable(true);
         act->setChecked(mDefaultStatus == status);
@@ -81,7 +81,7 @@ void StatusSearchLine::showMenu()
     }
     QAction *a = p.exec(mapToGlobal(QPoint(0, height())));
     if (a) {
-        const StatusSearchLine::Status newStatus = a->data().value<StatusSearchLine::Status>();
+        const auto newStatus = a->data().value<StatusSearchLine::Status>();
         updateStatusIcon(newStatus);
     }
 }

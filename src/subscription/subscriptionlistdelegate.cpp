@@ -76,7 +76,7 @@ void Akregator::SubscriptionListDelegate::initStyleOption(QStyleOptionViewItem *
         return;
     }
 
-    QTreeView *view = static_cast< QTreeView * >(parent());
+    auto *view = static_cast< QTreeView * >(parent());
     if (!view->header()->isSectionHidden(SubscriptionListModel::UnreadCountColumn)) {
         // Do not append unread count to the title if the unread count column
         // is visible
@@ -89,7 +89,7 @@ void Akregator::SubscriptionListDelegate::initStyleOption(QStyleOptionViewItem *
         view->header()->resizeSection(SubscriptionListModel::TotalCountColumn, QHeaderView::ResizeToContents);
     }
 
-    QStyleOptionViewItem *optionV4 = qstyleoption_cast< QStyleOptionViewItem * >(option);
+    auto *optionV4 = qstyleoption_cast< QStyleOptionViewItem * >(option);
     if (!optionV4) {
         // Should never happen, but play it safe
         return;

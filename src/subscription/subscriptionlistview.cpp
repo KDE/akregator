@@ -378,7 +378,7 @@ void SubscriptionListView::slotSetHideReadFeeds(bool setting)
         return;
     }
 
-    FilterUnreadProxyModel *filter = qobject_cast<FilterUnreadProxyModel *>(m);
+    auto *filter = qobject_cast<FilterUnreadProxyModel *>(m);
     if (!filter) {
         qCCritical(AKREGATOR_LOG) << "Unable to cast model to FilterUnreadProxyModel*";
         return;

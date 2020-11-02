@@ -244,8 +244,8 @@ void ActionManagerImpl::initMainWidget(MainWidget *mainWidget)
 
     // toolbar / View
 
-    const MainWidget::ViewMode viewMode = static_cast<MainWidget::ViewMode>(Settings::viewMode());
-    QActionGroup *group = new QActionGroup(this);
+    const auto viewMode = static_cast<MainWidget::ViewMode>(Settings::viewMode());
+    auto *group = new QActionGroup(this);
     action = coll->addAction(QStringLiteral("normal_view"));
     action->setCheckable(true);
     action->setChecked(viewMode == MainWidget::NormalView);
@@ -306,7 +306,7 @@ void ActionManagerImpl::initMainWidget(MainWidget *mainWidget)
     coll->setDefaultShortcut(action, QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_R));
 
     // Settings menu
-    KToggleAction *sqf = coll->add<KToggleAction>(QStringLiteral("show_quick_filter"));
+    auto *sqf = coll->add<KToggleAction>(QStringLiteral("show_quick_filter"));
     sqf->setText(i18n("Show Quick Filter"));
     connect(sqf, &QAction::triggered, d->mainWidget, &MainWidget::slotToggleShowQuickFilter);
     sqf->setChecked(Settings::showQuickFilter());
@@ -352,7 +352,7 @@ void ActionManagerImpl::initMainWidget(MainWidget *mainWidget)
     connect(action, &QAction::triggered, d->mainWidget, &MainWidget::slotArticleDelete);
     coll->setDefaultShortcut(action, QKeySequence(Qt::Key_Delete));
 
-    KActionMenu *statusMenu = coll->add<KActionMenu>(QStringLiteral("article_set_status"));
+    auto *statusMenu = coll->add<KActionMenu>(QStringLiteral("article_set_status"));
     statusMenu->setText(i18n("&Mark As"));
     statusMenu->setEnabled(false);
 
@@ -380,7 +380,7 @@ void ActionManagerImpl::initMainWidget(MainWidget *mainWidget)
     connect(action, &QAction::triggered, d->mainWidget, &MainWidget::slotSetSelectedArticleUnread);
     statusMenu->addAction(action);
 
-    KToggleAction *importantAction = coll->add<KToggleAction>(QStringLiteral("article_set_status_important"));
+    auto *importantAction = coll->add<KToggleAction>(QStringLiteral("article_set_status_important"));
     importantAction->setText(i18n("&Mark as Important"));
     importantAction->setIcon(QIcon::fromTheme(QStringLiteral("mail-mark-important")));
     const QList<QKeySequence> importantSC = {QKeySequence(Qt::CTRL + Qt::Key_I), QKeySequence(Qt::Key_I)};

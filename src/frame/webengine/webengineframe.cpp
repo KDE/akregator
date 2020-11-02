@@ -17,10 +17,10 @@ using namespace Akregator;
 WebEngineFrame::WebEngineFrame(KActionCollection *ac, QWidget *parent)
     : Frame(parent)
 {
-    QVBoxLayout *layout = new QVBoxLayout(this);
+    auto *layout = new QVBoxLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);
     setRemovable(true);
-    Akregator::AkrWebEngineViewer *viewer = new Akregator::AkrWebEngineViewer(ac, this);
+    auto *viewer = new Akregator::AkrWebEngineViewer(ac, this);
     mArticleViewerWidgetNg = new Akregator::ArticleViewerWebEngineWidgetNg(viewer, ac, this);
 
     connect(mArticleViewerWidgetNg->articleViewerNg(), &ArticleViewerWebEngine::titleChanged,
@@ -83,7 +83,7 @@ QUrl WebEngineFrame::url() const
 
 void WebEngineFrame::loadUrl(const QUrl &url)
 {
-    KIO::FavIconRequestJob *job = new KIO::FavIconRequestJob(url);
+    auto *job = new KIO::FavIconRequestJob(url);
     connect(job, &KIO::FavIconRequestJob::result, this, [job, this](KJob *) {
         if (!job->error()) {
             Q_EMIT signalIconChanged(this, QIcon(job->iconFile()));

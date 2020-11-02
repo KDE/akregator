@@ -81,7 +81,7 @@ PluginManager::createFromService(const KService::Ptr &service, QObject *parent)
                                                    " Error message: %2").arg(service->library(), loader.errorString());
         return nullptr;
     }
-    Plugin *const plugin = factory->create<Plugin>(parent);
+    auto *const plugin = factory->create<Plugin>(parent);
 
     //put plugin into store
     StoreItem item;

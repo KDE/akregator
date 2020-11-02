@@ -46,7 +46,7 @@ ExpireItemsCommand::Private::Private(ExpireItemsCommand *qq) : q(qq)
 void ExpireItemsCommand::Private::addDeleteJobForFeed(Feed *feed)
 {
     Q_ASSERT(feed);
-    ArticleDeleteJob *job = new ArticleDeleteJob(q);
+    auto *job = new ArticleDeleteJob(q);
     connect(job, &ArticleDeleteJob::finished, q, [this](KJob *job) {
         jobFinished(job);
     });

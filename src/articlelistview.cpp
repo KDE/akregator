@@ -128,14 +128,14 @@ void ArticleListView::setArticleModel(ArticleModel *model)
     m_proxy->setSourceModel(model);
     m_proxy->setSortRole(ArticleModel::SortRole);
     m_proxy->setFilters(m_matchers);
-    FilterDeletedProxyModel *const proxy2 = new FilterDeletedProxyModel(model);
+    auto *const proxy2 = new FilterDeletedProxyModel(model);
     proxy2->setSortRole(ArticleModel::SortRole);
     proxy2->setSourceModel(m_proxy);
 
     connect(model, &QAbstractItemModel::rowsInserted,
             m_proxy.data(), &QSortFilterProxyModel::invalidate);
 
-    FilterColumnsProxyModel *const columnsProxy = new FilterColumnsProxyModel(model);
+    auto *const columnsProxy = new FilterColumnsProxyModel(model);
     columnsProxy->setSortRole(ArticleModel::SortRole);
     columnsProxy->setSourceModel(proxy2);
     columnsProxy->setColumnEnabled(ArticleModel::ItemTitleColumn);
@@ -399,7 +399,7 @@ void ArticleListView::mousePressEvent(QMouseEvent *ev)
 void ArticleListView::contextMenuEvent(QContextMenuEvent *event)
 {
     QWidget *w = ActionManager::getInstance()->container(QStringLiteral("article_popup"));
-    QMenu *popup = qobject_cast<QMenu *>(w);
+    auto *popup = qobject_cast<QMenu *>(w);
     if (popup) {
         popup->exec(event->globalPos());
     }
