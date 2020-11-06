@@ -10,7 +10,7 @@
 #ifndef AKREGATOR_ARTICLE_H
 #define AKREGATOR_ARTICLE_H
 
-#include "akregatorinterfaces_export.h"
+#include "akregator_export.h"
 #include "types.h"
 
 #include <Syndication/Person>
@@ -38,7 +38,7 @@ class FeedStorage;
 
 class Feed;
 /** A proxy class for Syndication::ItemPtr with some additional methods to assist sorting. */
-class AKREGATORINTERFACES_EXPORT Article
+class AKREGATOR_EXPORT Article
 {
     friend class ArticleDeleteJob;
     friend class ArticleModifyJob;
