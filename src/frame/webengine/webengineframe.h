@@ -14,7 +14,7 @@ class KActionCollection;
 
 namespace Akregator {
 class ArticleViewerWebEngineWidgetNg;
-class AKREGATORPART_EXPORT WebEngineFrame : public Frame
+class AKREGATOR_EXPORT WebEngineFrame : public Frame
 {
     Q_OBJECT
 public:
