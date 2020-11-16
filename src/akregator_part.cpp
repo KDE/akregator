@@ -11,6 +11,7 @@
 #include "akregator_debug.h"
 
 #include <MessageViewer/MessageViewerSettings>
+
 #include "akregatorconfig.h"
 #include "aboutdata.h"
 #include "actionmanagerimpl.h"
@@ -202,7 +203,7 @@ Part::Part(QWidget *parentWidget, QObject *parent, const QVariantList &)
     if (Settings::showTrayIcon() && !TrayIcon::getInstance()) {
         initializeTrayIcon();
         QWidget *const notificationParent = isTrayIconEnabled() ? m_mainWidget->window() : nullptr;
-        NotificationManager::self()->setWidget(notificationParent, componentData().componentName());
+        NotificationManager::self()->setWidget(notificationParent, componentName());
     }
 
     connect(qApp, &QCoreApplication::aboutToQuit, this, &Part::slotOnShutdown);
@@ -294,8 +295,7 @@ void Part::slotSettingsChanged()
         UnityServiceManager::instance()->slotSetUnread(0);
     }
 
-    NotificationManager::self()->setWidget(isTrayIconEnabled() ? m_mainWidget->window() : nullptr, componentData().componentName());
-
+    NotificationManager::self()->setWidget(isTrayIconEnabled() ? m_mainWidget->window() : nullptr, componentName());
     if (Settings::showTrayIcon()) {
         if (!TrayIcon::getInstance()) {
             initializeTrayIcon();
