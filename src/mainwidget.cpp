@@ -100,7 +100,7 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
             m_actionManager, &ActionManagerImpl::slotSettingsChanged);
 
     auto *lt = new QVBoxLayout(this);
-    lt->setContentsMargins(0, 0, 0, 0);
+    lt->setContentsMargins({});
 
     m_horizontalSplitter = new QSplitter(Qt::Horizontal, this);
 
@@ -162,7 +162,7 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
     m_mainTab->setWhatsThis(i18n("Articles list."));
 
     auto *mainTabLayout = new QVBoxLayout(m_mainTab);
-    mainTabLayout->setContentsMargins(0, 0, 0, 0);
+    mainTabLayout->setContentsMargins({});
 
     m_searchBar = new SearchBar(m_mainTab);
     if (!Settings::showQuickFilter()) {
@@ -176,7 +176,7 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
     m_articleWidget = new QWidget(m_articleSplitter);
     auto *articleWidgetLayout = new QVBoxLayout;
     m_articleWidget->setLayout(articleWidgetLayout);
-    articleWidgetLayout->setContentsMargins(0, 0, 0, 0);
+    articleWidgetLayout->setContentsMargins({});
     articleWidgetLayout->setSpacing(0);
 
     m_articleListView = new ArticleListView;

@@ -47,7 +47,7 @@ ArticleViewerWidget::ArticleViewerWidget(const QString &grantleeDirectory, KActi
     , m_grantleeDirectory(grantleeDirectory)
 {
     auto *layout = new QGridLayout(this);
-    layout->setContentsMargins(0, 0, 0, 0);
+    layout->setContentsMargins({});
     layout->addWidget(m_articleViewerWidgetNg);
     m_articleHtmlWriter = new Akregator::ArticleHtmlWebEngineWriter(m_articleViewerWidgetNg->articleViewerNg(), this);
     connect(m_articleViewerWidgetNg->articleViewerNg(), &ArticleViewerWebEngine::signalOpenUrlRequest, this, &ArticleViewerWidget::signalOpenUrlRequest);
@@ -249,7 +249,6 @@ void ArticleViewerWidget::slotUpdateCombinedView()
 void ArticleViewerWidget::slotArticlesUpdated(TreeNode * /*node*/, const QVector<Article> & /*list*/)
 {
     if (m_viewMode == CombinedView) {
-        //TODO
         slotUpdateCombinedView();
     }
 }
@@ -269,7 +268,6 @@ void ArticleViewerWidget::slotArticlesRemoved(TreeNode * /*node*/, const QVector
     Q_UNUSED(list)
 
     if (m_viewMode == CombinedView) {
-        //TODO
         slotUpdateCombinedView();
     }
 }

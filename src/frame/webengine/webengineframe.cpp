@@ -18,7 +18,7 @@ WebEngineFrame::WebEngineFrame(KActionCollection *ac, QWidget *parent)
     : Frame(parent)
 {
     auto *layout = new QVBoxLayout(this);
-    layout->setContentsMargins(0, 0, 0, 0);
+    layout->setContentsMargins({});
     setRemovable(true);
     auto *viewer = new Akregator::AkrWebEngineViewer(ac, this);
     mArticleViewerWidgetNg = new Akregator::ArticleViewerWebEngineWidgetNg(viewer, ac, this);

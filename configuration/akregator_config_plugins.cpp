@@ -22,7 +22,7 @@ KCMAkregatorPluginsConfig::KCMAkregatorPluginsConfig(QWidget *parent, const QVar
     : KCModule(parent, args)
 {
     auto *lay = new QHBoxLayout(this);
-    lay->setContentsMargins(0, 0, 0, 0);
+    lay->setContentsMargins({});
 
     KAboutData *about = new KAboutData(QStringLiteral("kcmakrpluginsconfig"),
                                        i18n("Configure Plugins"),
