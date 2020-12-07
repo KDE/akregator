@@ -25,7 +25,7 @@ public:
     StorageMK4Impl();
     StorageMK4Impl(const StorageMK4Impl &);
     StorageMK4Impl &operator =(const StorageMK4Impl &);
-    ~StorageMK4Impl();
+    ~StorageMK4Impl() override;
 
     /** KGlobal::dirs()->saveLocation("data", "akregator")+"/Archive" */
     static QString defaultArchivePath();

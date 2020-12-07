@@ -69,7 +69,7 @@ public:
 
     /** default constructor */
     explicit Feed(Akregator::Backend::Storage *storage);
-    ~Feed();
+    ~Feed() override;
 
     Q_REQUIRED_RESULT bool accept(TreeNodeVisitor *visitor) override;
 

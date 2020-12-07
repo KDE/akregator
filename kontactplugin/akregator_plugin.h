@@ -49,7 +49,7 @@ class AkregatorPlugin : public KontactInterface::Plugin
 
 public:
     AkregatorPlugin(KontactInterface::Core *core, const QVariantList &);
-    ~AkregatorPlugin();
+    ~AkregatorPlugin() override;
 
     int weight() const override
     {

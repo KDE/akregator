@@ -24,7 +24,7 @@ public:
     };
 
     explicit StatusSearchLine(QWidget *parent = nullptr);
-    ~StatusSearchLine();
+    ~StatusSearchLine() override;
 
     void setStatus(StatusSearchLine::Status status);
 

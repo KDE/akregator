@@ -34,7 +34,7 @@ protected:
 
 protected:
     c4_FilterSeq(c4_Sequence &seq_);
-    virtual ~c4_FilterSeq();
+    ~c4_FilterSeq() override;
 
     void FixupReverseMap();
     int PosInMap(int index_) const;
@@ -499,7 +499,7 @@ public:
     typedef t4_i32 T;
 
     c4_SortSeq(c4_Sequence &seq_, c4_Sequence *down_);
-    virtual ~c4_SortSeq();
+    ~c4_SortSeq() override;
 
     c4_Notifier *PreChange(c4_Notifier &nf_) override;
     void PostChange(c4_Notifier &nf_) override;
@@ -889,7 +889,7 @@ class c4_ProjectSeq : public c4_DerivedSeq
 
 public:
     c4_ProjectSeq(c4_Sequence &seq_, c4_Sequence &in_, bool, c4_Sequence *out_);
-    virtual ~c4_ProjectSeq();
+    ~c4_ProjectSeq() override;
 
     int NumHandlers() const override;
     c4_Handler &NthHandler(int) const override;

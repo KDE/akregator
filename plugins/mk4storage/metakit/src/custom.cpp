@@ -17,7 +17,7 @@ class c4_CustomHandler : public c4_Handler
 
 public:
     c4_CustomHandler(const c4_Property &prop_, c4_CustomSeq *seq_);
-    virtual ~c4_CustomHandler();
+    ~c4_CustomHandler() override;
 
     int ItemSize(int index_) override;
     const void *Get(int index_, int &length_) override;
@@ -240,7 +240,7 @@ class c4_SliceViewer : public c4_CustomViewer
 
 public:
     c4_SliceViewer(c4_Sequence &seq_, int first_, int limit_, int step_);
-    virtual ~c4_SliceViewer();
+    ~c4_SliceViewer() override;
 
     c4_View GetTemplate() override;
     int GetSize() override;
@@ -338,7 +338,7 @@ class c4_ProductViewer : public c4_CustomViewer
 
 public:
     c4_ProductViewer(c4_Sequence &seq_, const c4_View &view_);
-    virtual ~c4_ProductViewer();
+    ~c4_ProductViewer() override;
 
     c4_View GetTemplate() override;
     int GetSize() override;
@@ -399,7 +399,7 @@ class c4_RemapWithViewer : public c4_CustomViewer
 
 public:
     c4_RemapWithViewer(c4_Sequence &seq_, const c4_View &view_);
-    virtual ~c4_RemapWithViewer();
+    ~c4_RemapWithViewer() override;
 
     c4_View GetTemplate() override;
     int GetSize() override;
@@ -461,7 +461,7 @@ class c4_PairViewer : public c4_CustomViewer
 
 public:
     c4_PairViewer(c4_Sequence &seq_, const c4_View &view_);
-    virtual ~c4_PairViewer();
+    ~c4_PairViewer() override;
 
     c4_View GetTemplate() override;
     int GetSize() override;
@@ -549,7 +549,7 @@ class c4_ConcatViewer : public c4_CustomViewer
 
 public:
     c4_ConcatViewer(c4_Sequence &seq_, const c4_View &view_);
-    virtual ~c4_ConcatViewer();
+    ~c4_ConcatViewer() override;
 
     c4_View GetTemplate() override;
     int GetSize() override;
@@ -623,7 +623,7 @@ class c4_RenameViewer : public c4_CustomViewer
 public:
     c4_RenameViewer(c4_Sequence &seq_, const c4_Property &old_, const
                     c4_Property &new_);
-    virtual ~c4_RenameViewer();
+    ~c4_RenameViewer() override;
 
     c4_View GetTemplate() override;
     int GetSize() override;
@@ -685,7 +685,7 @@ class c4_GroupByViewer : public c4_CustomViewer
 public:
     c4_GroupByViewer(c4_Sequence &seq_, const c4_View &keys_, const c4_Property
                      &result_);
-    virtual ~c4_GroupByViewer();
+    ~c4_GroupByViewer() override;
 
     c4_View GetTemplate() override;
     int GetSize() override;
@@ -824,7 +824,7 @@ class c4_JoinPropViewer : public c4_CustomViewer
 
 public:
     c4_JoinPropViewer(c4_Sequence &seq_, const c4_ViewProp &sub_, bool outer_);
-    virtual ~c4_JoinPropViewer();
+    ~c4_JoinPropViewer() override;
 
     c4_View GetTemplate() override;
     int GetSize() override;
@@ -928,7 +928,7 @@ class c4_JoinViewer : public c4_CustomViewer
 
 public:
     c4_JoinViewer(c4_Sequence &seq_, const c4_View &keys_, const c4_View &view_, bool outer_);
-    virtual ~c4_JoinViewer();
+    ~c4_JoinViewer() override;
 
     c4_View GetTemplate() override;
     int GetSize() override;

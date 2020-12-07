@@ -134,7 +134,7 @@ public:
 protected:
     c4_Handler *CreateHandler(const c4_Property &) override;
 
-    virtual ~c4_HandlerSeq();
+    ~c4_HandlerSeq() override;
 };
 
 /////////////////////////////////////////////////////////////////////////////

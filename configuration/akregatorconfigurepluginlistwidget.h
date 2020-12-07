@@ -14,7 +14,7 @@ class AkregatorConfigurePluginListWidget : public PimCommon::ConfigurePluginsLis
     Q_OBJECT
 public:
     explicit AkregatorConfigurePluginListWidget(QWidget *parent = nullptr);
-    ~AkregatorConfigurePluginListWidget();
+    ~AkregatorConfigurePluginListWidget() override;
 
     void save() override;
     void doLoadFromGlobalSettings() override;

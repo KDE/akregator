@@ -22,7 +22,7 @@ class MK4Plugin : public Akregator::Plugin
     Q_OBJECT
 public:
     explicit MK4Plugin(QObject *parent, const QVariantList &params);
-    ~MK4Plugin();
+    ~MK4Plugin() override;
 
 private:
     void doInitialize() override;

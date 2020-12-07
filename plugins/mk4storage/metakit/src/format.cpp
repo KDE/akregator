@@ -19,7 +19,7 @@ class c4_FormatHandler : public c4_Handler
 
 public:
     c4_FormatHandler(const c4_Property &prop_, c4_HandlerSeq &owner_);
-    virtual ~c4_FormatHandler();
+    ~c4_FormatHandler() override;
 
     bool IsPersistent() const override;
 
@@ -284,7 +284,7 @@ class c4_FormatB : public c4_FormatHandler
 {
 public:
     c4_FormatB(const c4_Property &prop_, c4_HandlerSeq &seq_);
-    virtual ~c4_FormatB();
+    ~c4_FormatB() override;
 
     void Define(int, const t4_byte **) override;
     void OldDefine(char type_, c4_Persist &) override;
@@ -977,7 +977,7 @@ class c4_FormatV : public c4_FormatHandler
 {
 public:
     c4_FormatV(const c4_Property &prop_, c4_HandlerSeq &seq_);
-    virtual ~c4_FormatV();
+    ~c4_FormatV() override;
 
     void Define(int rows_, const t4_byte **ptr_) override;
     void OldDefine(char type_, c4_Persist &) override;

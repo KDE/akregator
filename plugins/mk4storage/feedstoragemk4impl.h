@@ -16,7 +16,7 @@ class FeedStorageMK4Impl : public FeedStorage
 {
 public:
     FeedStorageMK4Impl(const QString &url, StorageMK4Impl *main);
-    ~FeedStorageMK4Impl();
+    ~FeedStorageMK4Impl() override;
 
     Q_REQUIRED_RESULT int unread() const override;
     void setUnread(int unread) override;

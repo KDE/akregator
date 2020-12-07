@@ -20,7 +20,7 @@ public:
     {
     }
 
-    virtual ~c4_ReadOnlyViewer()
+    ~c4_ReadOnlyViewer() override
     {
     }
 
@@ -99,7 +99,7 @@ class c4_HashViewer : public c4_CustomViewer
 
 public:
     c4_HashViewer(c4_Sequence &seq_, int numKeys_, c4_Sequence *map_ = nullptr);
-    virtual ~c4_HashViewer();
+    ~c4_HashViewer() override;
 
     c4_View GetTemplate() override;
     int GetSize() override;
@@ -550,7 +550,7 @@ class c4_BlockedViewer : public c4_CustomViewer
 
 public:
     c4_BlockedViewer(c4_Sequence &seq_);
-    virtual ~c4_BlockedViewer();
+    ~c4_BlockedViewer() override;
 
     c4_View GetTemplate() override;
     int GetSize() override;
@@ -912,7 +912,7 @@ class c4_OrderedViewer : public c4_CustomViewer
 
 public:
     c4_OrderedViewer(c4_Sequence &seq_, int numKeys_);
-    virtual ~c4_OrderedViewer();
+    ~c4_OrderedViewer() override;
 
     c4_View GetTemplate() override;
     int GetSize() override;
@@ -1056,7 +1056,7 @@ class c4_IndexedViewer : public c4_CustomViewer
 public:
     c4_IndexedViewer(c4_Sequence &seq_, c4_Sequence &map_, const c4_View
                      &props_, bool unique_);
-    virtual ~c4_IndexedViewer();
+    ~c4_IndexedViewer() override;
 
     c4_View GetTemplate() override;
     int GetSize() override;

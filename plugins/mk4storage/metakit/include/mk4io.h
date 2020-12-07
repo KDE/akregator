@@ -17,7 +17,7 @@ class c4_FileStream : public c4_Stream
 {
 public:
     c4_FileStream(FILE *stream_, bool owned_ = false);
-    virtual ~c4_FileStream();
+    ~c4_FileStream() override;
 
     int Read(void *buffer_, int length_) override;
     bool Write(const void *buffer_, int length_) override;
@@ -34,7 +34,7 @@ class c4_FileStrategy : public c4_Strategy
 public:
     /// Construct a new strategy object
     c4_FileStrategy(FILE *file_ = nullptr);
-    virtual ~c4_FileStrategy();
+    ~c4_FileStrategy() override;
 
     /// True if we can do I/O with this object
     bool IsValid() const override;
