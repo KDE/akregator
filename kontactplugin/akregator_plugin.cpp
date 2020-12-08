@@ -30,7 +30,7 @@ AkregatorPlugin::AkregatorPlugin(KontactInterface::Core *core, const QVariantLis
         = new QAction(QIcon::fromTheme(QStringLiteral("bookmark-new")),
                       i18nc("@action:inmenu", "New Feed..."), this);
     actionCollection()->addAction(QStringLiteral("feed_new"), action);
-    actionCollection()->setDefaultShortcut(action, QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_F));
+    actionCollection()->setDefaultShortcut(action, QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_F));
     setHelpText(action, i18nc("@info:status", "Create a new feed"));
     action->setWhatsThis(
         i18nc("@info:whatsthis",

@@ -210,13 +210,13 @@ void ActionManagerImpl::initMainWidget(MainWidget *mainWidget)
     QAction *action = coll->addAction(QStringLiteral("feed_homepage"));
     action->setText(i18n("&Open Homepage"));
     connect(action, &QAction::triggered, d->mainWidget, &MainWidget::slotOpenHomepage);
-    coll->setDefaultShortcut(action, QKeySequence(Qt::CTRL + Qt::Key_H));
+    coll->setDefaultShortcut(action, QKeySequence(Qt::CTRL | Qt::Key_H));
 
     action = coll->addAction(QStringLiteral("reload_all_tabs"));
     action->setIcon(QIcon::fromTheme(QStringLiteral("view-refresh")));
     action->setText(i18n("Reload All Tabs"));
     connect(action, &QAction::triggered, d->mainWidget, &MainWidget::slotReloadAllTabs);
-    coll->setDefaultShortcut(action, QKeySequence(Qt::SHIFT + Qt::Key_F5));
+    coll->setDefaultShortcut(action, QKeySequence(Qt::SHIFT | Qt::Key_F5));
 
     action = coll->addAction(QStringLiteral("feed_add"));
     action->setIcon(QIcon::fromTheme(QStringLiteral("feed-subscribe")));
@@ -228,13 +228,13 @@ void ActionManagerImpl::initMainWidget(MainWidget *mainWidget)
     action->setIcon(QIcon::fromTheme(QStringLiteral("folder-new")));
     action->setText(i18n("Ne&w Folder..."));
     connect(action, &QAction::triggered, d->mainWidget, &MainWidget::slotFeedAddGroup);
-    coll->setDefaultShortcut(action, QKeySequence(Qt::SHIFT + Qt::Key_Insert));
+    coll->setDefaultShortcut(action, QKeySequence(Qt::SHIFT | Qt::Key_Insert));
 
     action = coll->addAction(QStringLiteral("feed_remove"));
     action->setIcon(QIcon::fromTheme(QStringLiteral("edit-delete")));
     action->setText(i18n("&Delete Feed"));
     connect(action, &QAction::triggered, d->mainWidget, &MainWidget::slotFeedRemove);
-    coll->setDefaultShortcut(action, QKeySequence(Qt::ALT + Qt::Key_Delete));
+    coll->setDefaultShortcut(action, QKeySequence(Qt::ALT | Qt::Key_Delete));
 
     action = coll->addAction(QStringLiteral("feed_modify"));
     action->setIcon(QIcon::fromTheme(QStringLiteral("document-properties")));
@@ -253,7 +253,7 @@ void ActionManagerImpl::initMainWidget(MainWidget *mainWidget)
     action->setIcon(QIcon::fromTheme(QStringLiteral("view-split-top-bottom")));
     action->setText(i18n("&Normal View"));
     connect(action, &QAction::triggered, d->mainWidget, &MainWidget::slotNormalView);
-    coll->setDefaultShortcut(action, QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_1));
+    coll->setDefaultShortcut(action, QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_1));
 
     action = coll->addAction(QStringLiteral("widescreen_view"));
     action->setCheckable(true);
@@ -262,7 +262,7 @@ void ActionManagerImpl::initMainWidget(MainWidget *mainWidget)
     action->setIcon(QIcon::fromTheme(QStringLiteral("view-split-left-right")));
     action->setText(i18n("&Widescreen View"));
     connect(action, &QAction::triggered, d->mainWidget, &MainWidget::slotWidescreenView);
-    coll->setDefaultShortcut(action, QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_2));
+    coll->setDefaultShortcut(action, QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_2));
 
     action = coll->addAction(QStringLiteral("combined_view"));
     action->setCheckable(true);
@@ -271,7 +271,7 @@ void ActionManagerImpl::initMainWidget(MainWidget *mainWidget)
     action->setIcon(QIcon::fromTheme(QStringLiteral("view-list-text")));
     action->setText(i18n("C&ombined View"));
     connect(action, &QAction::triggered, d->mainWidget, &MainWidget::slotCombinedView);
-    coll->setDefaultShortcut(action, QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_3));
+    coll->setDefaultShortcut(action, QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_3));
 
     // toolbar / feed menu
     action = coll->addAction(QStringLiteral("feed_fetch"));
@@ -284,7 +284,7 @@ void ActionManagerImpl::initMainWidget(MainWidget *mainWidget)
     action->setIcon(QIcon::fromTheme(QStringLiteral("go-bottom")));
     action->setText(i18n("Fe&tch All Feeds"));
     connect(action, &QAction::triggered, d->mainWidget, &MainWidget::slotFetchAllFeeds);
-    coll->setDefaultShortcut(action, QKeySequence(Qt::CTRL + Qt::Key_L));
+    coll->setDefaultShortcut(action, QKeySequence(Qt::CTRL | Qt::Key_L));
 
     QAction *stopAction = coll->addAction(QStringLiteral("feed_stop"));
     stopAction->setIcon(QIcon::fromTheme(QStringLiteral("process-stop")));
@@ -297,13 +297,13 @@ void ActionManagerImpl::initMainWidget(MainWidget *mainWidget)
     action->setIcon(QIcon::fromTheme(QStringLiteral("mail-mark-read")));
     action->setText(i18n("&Mark Feed as Read"));
     connect(action, &QAction::triggered, d->mainWidget, &MainWidget::slotMarkAllRead);
-    coll->setDefaultShortcut(action, QKeySequence(Qt::CTRL + Qt::Key_R));
+    coll->setDefaultShortcut(action, QKeySequence(Qt::CTRL | Qt::Key_R));
 
     action = coll->addAction(QStringLiteral("feed_mark_all_feeds_as_read"));
     action->setIcon(QIcon::fromTheme(QStringLiteral("mail-mark-read")));
     action->setText(i18n("Ma&rk All Feeds as Read"));
     connect(action, &QAction::triggered, d->mainWidget, &MainWidget::slotMarkAllFeedsRead);
-    coll->setDefaultShortcut(action, QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_R));
+    coll->setDefaultShortcut(action, QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_R));
 
     // Settings menu
     auto *sqf = coll->add<KToggleAction>(QStringLiteral("show_quick_filter"));
@@ -315,7 +315,7 @@ void ActionManagerImpl::initMainWidget(MainWidget *mainWidget)
     action->setIcon(QIcon::fromTheme(QStringLiteral("tab-new")));
     action->setText(i18n("Open in Tab"));
     connect(action, &QAction::triggered, d->mainWidget, &MainWidget::slotOpenSelectedArticles);
-    coll->setDefaultShortcut(action, QKeySequence(Qt::SHIFT + Qt::Key_Return));
+    coll->setDefaultShortcut(action, QKeySequence(Qt::SHIFT | Qt::Key_Return));
 
     action = coll->addAction(QStringLiteral("article_open_in_background"));
     action->setIcon(QIcon::fromTheme(QStringLiteral("tab-new")));
@@ -327,7 +327,7 @@ void ActionManagerImpl::initMainWidget(MainWidget *mainWidget)
     action->setIcon(QIcon::fromTheme(QStringLiteral("window-new")));
     action->setText(i18n("Open in External Browser"));
     connect(action, &QAction::triggered, d->mainWidget, &MainWidget::slotOpenSelectedArticlesInBrowser);
-    coll->setDefaultShortcut(action, QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_Return));
+    coll->setDefaultShortcut(action, QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_Return));
 
     action = coll->addAction(QStringLiteral("article_copy_link_address"));
     action->setText(i18n("Copy Link Address"));
@@ -337,14 +337,14 @@ void ActionManagerImpl::initMainWidget(MainWidget *mainWidget)
     action->setIcon(QIcon::fromTheme(QStringLiteral("go-previous")));
     action->setText(i18n("Pre&vious Unread Article"));
     connect(action, &QAction::triggered, d->mainWidget, &MainWidget::slotPrevUnreadArticle);
-    coll->setDefaultShortcuts(action, QList<QKeySequence>() << QKeySequence(Qt::Key_Minus) << QKeySequence(Qt::Key_Minus + Qt::KeypadModifier));
+    coll->setDefaultShortcuts(action, QList<QKeySequence>() << QKeySequence(Qt::Key_Minus) << QKeySequence(Qt::Key_Minus | Qt::KeypadModifier));
 
     action = coll->addAction(QStringLiteral("go_next_unread_article"));
     action->setIcon(QIcon::fromTheme(QStringLiteral("go-next")));
     action->setText(i18n("Ne&xt Unread Article"));
     connect(action, &QAction::triggered, d->mainWidget, &MainWidget::slotNextUnreadArticle);
-    coll->setDefaultShortcuts(action, QList<QKeySequence>() << QKeySequence(Qt::Key_Plus) << QKeySequence(Qt::Key_Plus + Qt::KeypadModifier)
-                                                            << QKeySequence(Qt::Key_Equal) << QKeySequence(Qt::Key_Equal + Qt::KeypadModifier));
+    coll->setDefaultShortcuts(action, QList<QKeySequence>() << QKeySequence(Qt::Key_Plus) << QKeySequence(Qt::Key_Plus | Qt::KeypadModifier)
+                                                            << QKeySequence(Qt::Key_Equal) << QKeySequence(Qt::Key_Equal | Qt::KeypadModifier));
 
     action = coll->addAction(QStringLiteral("article_delete"));
     action->setIcon(QIcon::fromTheme(QStringLiteral("edit-delete")));
@@ -360,14 +360,14 @@ void ActionManagerImpl::initMainWidget(MainWidget *mainWidget)
     action->setText(i18nc("as in: mark as read", "&Read"));
     action->setIcon(QIcon::fromTheme(QStringLiteral("mail-mark-read")));
     action->setToolTip(i18n("Mark selected article as read"));
-    coll->setDefaultShortcut(action, QKeySequence(Qt::CTRL + Qt::Key_E));
+    coll->setDefaultShortcut(action, QKeySequence(Qt::CTRL | Qt::Key_E));
     connect(action, &QAction::triggered, d->mainWidget, &MainWidget::slotSetSelectedArticleRead);
     statusMenu->addAction(action);
 
     action = coll->addAction(QStringLiteral("article_set_status_new"));
     action->setText(i18nc("as in: mark as new", "&New"));
     action->setIcon(QIcon::fromTheme(QStringLiteral("mail-mark-unread-new")));
-    coll->setDefaultShortcut(action, QKeySequence(Qt::CTRL + Qt::Key_N));
+    coll->setDefaultShortcut(action, QKeySequence(Qt::CTRL | Qt::Key_N));
     action->setToolTip(i18n("Mark selected article as new"));
     connect(action, &QAction::triggered, d->mainWidget, &MainWidget::slotSetSelectedArticleNew);
     statusMenu->addAction(action);
@@ -376,14 +376,14 @@ void ActionManagerImpl::initMainWidget(MainWidget *mainWidget)
     action->setText(i18nc("as in: mark as unread", "&Unread"));
     action->setIcon(QIcon::fromTheme(QStringLiteral("mail-mark-unread")));
     action->setToolTip(i18n("Mark selected article as unread"));
-    coll->setDefaultShortcut(action, QKeySequence(Qt::CTRL + Qt::Key_U));
+    coll->setDefaultShortcut(action, QKeySequence(Qt::CTRL | Qt::Key_U));
     connect(action, &QAction::triggered, d->mainWidget, &MainWidget::slotSetSelectedArticleUnread);
     statusMenu->addAction(action);
 
     auto *importantAction = coll->add<KToggleAction>(QStringLiteral("article_set_status_important"));
     importantAction->setText(i18n("&Mark as Important"));
     importantAction->setIcon(QIcon::fromTheme(QStringLiteral("mail-mark-important")));
-    const QList<QKeySequence> importantSC = {QKeySequence(Qt::CTRL + Qt::Key_I), QKeySequence(Qt::Key_I)};
+    const QList<QKeySequence> importantSC = {QKeySequence(Qt::CTRL | Qt::Key_I), QKeySequence(Qt::Key_I)};
     coll->setDefaultShortcuts(importantAction, importantSC);
     importantAction->setCheckedState(KGuiItem(i18n("Remove &Important Mark")));
     connect(importantAction, &QAction::triggered, d->mainWidget, &MainWidget::slotArticleToggleKeepFlag);
@@ -391,22 +391,22 @@ void ActionManagerImpl::initMainWidget(MainWidget *mainWidget)
     action = coll->addAction(QStringLiteral("feedstree_move_up"));
     action->setText(i18n("Move Node Up"));
     connect(action, &QAction::triggered, mainWidget, &MainWidget::slotMoveCurrentNodeUp);
-    coll->setDefaultShortcut(action, QKeySequence(Qt::SHIFT + Qt::ALT + Qt::Key_Up));
+    coll->setDefaultShortcut(action, QKeySequence(Qt::SHIFT | Qt::ALT | Qt::Key_Up));
 
     action = coll->addAction(QStringLiteral("feedstree_move_down"));
     action->setText(i18n("Move Node Down"));
     connect(action, &QAction::triggered, mainWidget, &MainWidget::slotMoveCurrentNodeDown);
-    coll->setDefaultShortcut(action, QKeySequence(Qt::SHIFT + Qt::ALT + Qt::Key_Down));
+    coll->setDefaultShortcut(action, QKeySequence(Qt::SHIFT | Qt::ALT | Qt::Key_Down));
 
     action = coll->addAction(QStringLiteral("move_node_left"));
     action->setText(i18n("Move Node Left"));
     connect(action, &QAction::triggered, mainWidget, &MainWidget::slotMoveCurrentNodeLeft);
-    coll->setDefaultShortcut(action, QKeySequence(Qt::SHIFT + Qt::ALT + Qt::Key_Left));
+    coll->setDefaultShortcut(action, QKeySequence(Qt::SHIFT | Qt::ALT | Qt::Key_Left));
 
     action = coll->addAction(QStringLiteral("feedstree_move_right"));
     action->setText(i18n("Move Node Right"));
     connect(action, &QAction::triggered, mainWidget, &MainWidget::slotMoveCurrentNodeRight);
-    coll->setDefaultShortcut(action, QKeySequence(Qt::SHIFT + Qt::ALT + Qt::Key_Right));
+    coll->setDefaultShortcut(action, QKeySequence(Qt::SHIFT | Qt::ALT | Qt::Key_Right));
 
     action = coll->addAction(QStringLiteral("file_sendlink"));
     action->setIcon(QIcon::fromTheme(QStringLiteral("mail-message-new")));
@@ -423,7 +423,7 @@ void ActionManagerImpl::initMainWidget(MainWidget *mainWidget)
 
     d->mQuickSearchAction = new QAction(i18n("Set Focus to Quick Search"), this);
     //If change shortcut change Panel::setQuickSearchClickMessage(...) message
-    actionCollection()->setDefaultShortcut(d->mQuickSearchAction, QKeySequence(Qt::ALT + Qt::Key_Q));
+    actionCollection()->setDefaultShortcut(d->mQuickSearchAction, QKeySequence(Qt::ALT | Qt::Key_Q));
     actionCollection()->addAction(QStringLiteral("focus_to_quickseach"), d->mQuickSearchAction);
     connect(d->mQuickSearchAction, &QAction::triggered, mainWidget, &MainWidget::slotFocusQuickSearch);
 
@@ -483,43 +483,43 @@ void ActionManagerImpl::initSubscriptionListView(SubscriptionListView *subscript
     action->setIcon(QIcon::fromTheme(QStringLiteral("go-down")));
     action->setText(i18n("N&ext Unread Feed"));
     connect(action, &QAction::triggered, subscriptionListView, &SubscriptionListView::slotNextUnreadFeed);
-    coll->setDefaultShortcut(action, QKeySequence(Qt::ALT + Qt::Key_Plus));
+    coll->setDefaultShortcut(action, QKeySequence(Qt::ALT | Qt::Key_Plus));
 
     action = coll->addAction(QStringLiteral("go_prev_unread_feed"));
     action->setIcon(QIcon::fromTheme(QStringLiteral("go-up")));
     action->setText(i18n("Prev&ious Unread Feed"));
     connect(action, &QAction::triggered, subscriptionListView, &SubscriptionListView::slotPrevUnreadFeed);
-    coll->setDefaultShortcut(action, QKeySequence(Qt::ALT + Qt::Key_Minus));
+    coll->setDefaultShortcut(action, QKeySequence(Qt::ALT | Qt::Key_Minus));
 
     action = coll->addAction(QStringLiteral("feedstree_home"));
     action->setText(i18n("Go to Top of Tree"));
     connect(action, &QAction::triggered, subscriptionListView, &SubscriptionListView::slotItemBegin);
-    coll->setDefaultShortcut(action, QKeySequence(Qt::CTRL + Qt::Key_Home));
+    coll->setDefaultShortcut(action, QKeySequence(Qt::CTRL | Qt::Key_Home));
 
     action = coll->addAction(QStringLiteral("feedstree_end"));
     action->setText(i18n("Go to Bottom of Tree"));
     connect(action, &QAction::triggered, subscriptionListView, &SubscriptionListView::slotItemEnd);
-    coll->setDefaultShortcut(action, QKeySequence(Qt::CTRL + Qt::Key_End));
+    coll->setDefaultShortcut(action, QKeySequence(Qt::CTRL | Qt::Key_End));
 
     action = coll->addAction(QStringLiteral("feedstree_left"));
     action->setText(i18n("Go Left in Tree"));
     connect(action, &QAction::triggered, subscriptionListView, &SubscriptionListView::slotItemLeft);
-    coll->setDefaultShortcut(action, QKeySequence(Qt::CTRL + Qt::Key_Left));
+    coll->setDefaultShortcut(action, QKeySequence(Qt::CTRL | Qt::Key_Left));
 
     action = coll->addAction(QStringLiteral("feedstree_right"));
     action->setText(i18n("Go Right in Tree"));
     connect(action, &QAction::triggered, subscriptionListView, &SubscriptionListView::slotItemRight);
-    coll->setDefaultShortcut(action, QKeySequence(Qt::CTRL + Qt::Key_Right));
+    coll->setDefaultShortcut(action, QKeySequence(Qt::CTRL | Qt::Key_Right));
 
     action = coll->addAction(QStringLiteral("feedstree_up"));
     action->setText(i18n("Go Up in Tree"));
     connect(action, &QAction::triggered, subscriptionListView, &SubscriptionListView::slotItemUp);
-    coll->setDefaultShortcut(action, QKeySequence(Qt::CTRL + Qt::Key_Up));
+    coll->setDefaultShortcut(action, QKeySequence(Qt::CTRL | Qt::Key_Up));
 
     action = coll->addAction(QStringLiteral("feedstree_down"));
     action->setText(i18n("Go Down in Tree"));
     connect(action, &QAction::triggered, subscriptionListView, &SubscriptionListView::slotItemDown);
-    coll->setDefaultShortcut(action, QKeySequence(Qt::CTRL + Qt::Key_Down));
+    coll->setDefaultShortcut(action, QKeySequence(Qt::CTRL | Qt::Key_Down));
 
     action = coll->addAction(QStringLiteral("feed_hide_read"));
     action->setCheckable(true);
@@ -547,18 +547,18 @@ void ActionManagerImpl::initTabWidget(TabWidget *tabWidget)
     QAction *action = coll->addAction(QStringLiteral("select_next_tab"));
     action->setText(i18n("Select Next Tab"));
     connect(action, &QAction::triggered, d->tabWidget, &TabWidget::slotNextTab);
-    coll->setDefaultShortcut(action, QKeySequence(Qt::CTRL + Qt::Key_Period));
+    coll->setDefaultShortcut(action, QKeySequence(Qt::CTRL | Qt::Key_Period));
 
     action = coll->addAction(QStringLiteral("select_previous_tab"));
     action->setText(i18n("Select Previous Tab"));
     connect(action, &QAction::triggered, d->tabWidget, &TabWidget::slotPreviousTab);
-    coll->setDefaultShortcut(action, QKeySequence(Qt::Key_Comma + Qt::CTRL));
+    coll->setDefaultShortcut(action, QKeySequence(Qt::Key_Comma | Qt::CTRL));
 
     action = coll->addAction(QStringLiteral("tab_detach"));
     action->setIcon(QIcon::fromTheme(QStringLiteral("tab-detach")));
     action->setText(i18n("Detach Tab"));
     connect(action, &QAction::triggered, d->tabWidget, &TabWidget::slotDetachTab);
-    coll->setDefaultShortcut(action, QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_B));
+    coll->setDefaultShortcut(action, QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_B));
 
     action = KStandardAction::copy(d->tabWidget, &TabWidget::slotCopy, coll);
     coll->addAction(QStringLiteral("viewer_copy"), action);
