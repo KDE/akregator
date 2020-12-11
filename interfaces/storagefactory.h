@@ -12,7 +12,7 @@
 #include "akregatorinterfaces_export.h"
 
 class QString;
-class QStringList;
+#include <QStringList>
 namespace Akregator {
 namespace Backend {
 class Storage;

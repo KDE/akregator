@@ -10,7 +10,7 @@
 
 #include <QObject>
 class QString;
-class QStringList;
+#include <QStringList>
 class QDateTime;
 
 namespace Akregator {

@@ -13,7 +13,7 @@
 #include "storagefactory.h"
 #include <QString>
 
-class QStringList;
+#include <QStringList>
 
 namespace Akregator {
 namespace Backend {
