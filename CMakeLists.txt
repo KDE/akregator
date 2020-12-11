@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-set(PIM_VERSION "5.16.0")
+set(PIM_VERSION "5.16.1")
 project(akregator VERSION ${PIM_VERSION})
 
 set(KF5_MIN_VERSION "5.75.0")
