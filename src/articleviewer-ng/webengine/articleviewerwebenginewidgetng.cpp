@@ -172,7 +172,6 @@ void ArticleViewerWebEngineWidgetNg::slotOpenInBrowser()
         KIO::OpenUrlJob *job = new KIO::OpenUrlJob(currentUrl, QStringLiteral("text/html"));
         job->setUiDelegate(new KIO::JobUiDelegate(KJobUiDelegate::AutoHandlingEnabled, this));
         job->setDeleteTemporaryFile(true);
-        job->setRunExecutables(true);
         job->start();
     }
 }
