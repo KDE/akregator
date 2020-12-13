@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.5)
 set(PIM_VERSION "5.16.40")
 project(akregator VERSION ${PIM_VERSION})
 
-set(KF5_MIN_VERSION "5.76.0")
+set(KF5_MIN_VERSION "5.77.0")
 set(RELEASE_SERVICE_VERSION "21.03.80")
 
 find_package(ECM ${KF5_MIN_VERSION} CONFIG REQUIRED)
