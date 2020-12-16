@@ -94,6 +94,20 @@ add_definitions(-DKF_DISABLE_DEPRECATED_BEFORE_AND_AT=0x054E00)
 if (TARGET KUserFeedbackWidgets)
     add_definitions(-DWITH_KUSERFEEDBACK)
 endif()
+
+
+#Laurent: reactivate it
+#option(USE_UNITY_CMAKE_SUPPORT "Use UNITY cmake support (speedup compile time)" FALSE)
+
+#set(COMPILE_WITH_UNITY_CMAKE_SUPPORT false)
+#if (USE_UNITY_CMAKE_SUPPORT)
+#    if(${CMAKE_VERSION} VERSION_LESS "3.16.0")
+#        message(STATUS "CMAKE version is less than 3.16.0 . We can't use cmake unify build support")
+#    else()
+#        set(COMPILE_WITH_UNITY_CMAKE_SUPPORT true)
+#    endif()
+#endif()
+
 add_subdirectory(export)
 add_subdirectory(interfaces)
 add_subdirectory(plugins)

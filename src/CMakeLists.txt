@@ -112,6 +112,9 @@ set(akregatorprivate_LIB_SRCS
 qt5_add_resources(akregatorprivate_LIB_SRCS akregator.qrc)
 
 add_library(akregatorprivate ${akregatorprivate_LIB_SRCS})
+if (COMPILE_WITH_UNITY_CMAKE_SUPPORT)
+    set_target_properties(akregatorprivate PROPERTIES UNITY_BUILD ON)
+endif()
 generate_export_header(akregatorprivate BASE_NAME akregator)
 
 set(akregator_userfeedback_LIB)
@@ -229,6 +232,9 @@ target_link_libraries(akregatorpart
     KF5::WebEngineViewer
     KF5::KIOGui
     )
+if (COMPILE_WITH_UNITY_CMAKE_SUPPORT)
+    set_target_properties(akregatorpart PROPERTIES UNITY_BUILD ON)
+endif()
 
 install(TARGETS akregatorpart DESTINATION ${KDE_INSTALL_PLUGINDIR})
 
