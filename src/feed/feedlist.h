@@ -86,8 +86,8 @@ public:
     /**
      * returns all feeds in this list
      */
-    Q_REQUIRED_RESULT QVector<const Feed *> feeds() const;
-    Q_REQUIRED_RESULT QVector<Feed *> feeds();
+    Q_REQUIRED_RESULT QVector<const Akregator::Feed *> feeds() const;
+    Q_REQUIRED_RESULT QVector<Akregator::Feed *> feeds();
 
     Q_REQUIRED_RESULT QVector<int> feedIds() const;
 

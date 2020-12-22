@@ -51,7 +51,7 @@ public:
         return true;
     }
 
-    bool visitFeed(Feed *node) override
+    bool visitFeed(Akregator::Feed *node) override
     {
         QString msg;
         if (node->title().isEmpty()) {

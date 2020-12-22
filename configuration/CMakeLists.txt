@@ -91,7 +91,9 @@ target_link_libraries(akregator_config_advanced
     KF5::KCMUtils
     KF5::I18n
     )
-
+if (COMPILE_WITH_UNITY_CMAKE_SUPPORT)
+    set_target_properties(akregator_config_advanced PROPERTIES UNITY_BUILD ON)
+endif()
 kcoreaddons_desktop_to_json(akregator_config_advanced akregator_config_advanced.desktop SERVICE_TYPES kcmodule.desktop)
 install(FILES akregator_config_advanced.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
 install(TARGETS akregator_config_advanced DESTINATION ${KDE_INSTALL_PLUGINDIR})
@@ -118,6 +120,9 @@ target_link_libraries(akregator_config_plugins
     KF5::I18n
     KF5::WebEngineViewer
     )
+if (COMPILE_WITH_UNITY_CMAKE_SUPPORT)
+    set_target_properties(akregator_config_plugins PROPERTIES UNITY_BUILD ON)
+endif()
 
 kcoreaddons_desktop_to_json(akregator_config_plugins akregator_config_plugins.desktop SERVICE_TYPES kcmodule.desktop)
 install(FILES akregator_config_plugins.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR})

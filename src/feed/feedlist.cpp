@@ -176,17 +176,17 @@ QVector<int> FeedList::feedIds() const
     return ids;
 }
 
-QVector<const Feed *> FeedList::feeds() const
+QVector<const Akregator::Feed *> FeedList::feeds() const
 {
-    QVector<const Feed *> constList;
+    QVector<const Akregator::Feed *> constList;
     const auto rootNodeFeeds = d->rootNode->feeds();
-    for (const Feed *const i : rootNodeFeeds) {
+    for (const Akregator::Feed *const i : rootNodeFeeds) {
         constList.append(i);
     }
     return constList;
 }
 
-QVector<Feed *> FeedList::feeds()
+QVector<Akregator::Feed *> FeedList::feeds()
 {
     return d->rootNode->feeds();
 }
@@ -301,7 +301,7 @@ FeedList::~FeedList()
     delete d;
 }
 
-const Feed *FeedList::findByURL(const QString &feedURL) const
+const Akregator::Feed *FeedList::findByURL(const QString &feedURL) const
 {
     if (!d->urlMap.contains(feedURL)) {
         return nullptr;
@@ -310,18 +310,18 @@ const Feed *FeedList::findByURL(const QString &feedURL) const
     return !v.isEmpty() ? v.front() : nullptr;
 }
 
-Feed *FeedList::findByURL(const QString &feedURL)
+Akregator::Feed *FeedList::findByURL(const QString &feedURL)
 {
     if (!d->urlMap.contains(feedURL)) {
         return nullptr;
     }
-    const QList<Feed *> &v = d->urlMap[feedURL];
+    const QList<Akregator::Feed *> &v = d->urlMap[feedURL];
     return !v.isEmpty() ? v.front() : nullptr;
 }
 
 const Article FeedList::findArticle(const QString &feedURL, const QString &guid) const
 {
-    const Feed *feed = findByURL(feedURL);
+    const Akregator::Feed *feed = findByURL(feedURL);
     return feed ? feed->findArticle(guid) : Article();
 }
 

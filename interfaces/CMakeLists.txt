@@ -31,7 +31,9 @@ target_link_libraries(akregatorinterfaces
     Qt5::Widgets
     ${akregator_userfeedback_LIB}
     )
-
+if (COMPILE_WITH_UNITY_CMAKE_SUPPORT)
+    set_target_properties(akregatorinterfaces PROPERTIES UNITY_BUILD ON)
+endif()
 target_include_directories(akregatorinterfaces PUBLIC "$<BUILD_INTERFACE:${akregator_SOURCE_DIR}/interfaces;${akregator_BINARY_DIR}/interfaces>")
 
 set_target_properties(akregatorinterfaces PROPERTIES VERSION ${KDEPIM_LIB_VERSION} SOVERSION ${KDEPIM_LIB_SOVERSION}
