@@ -36,8 +36,6 @@ public:
 
     Frame *findFrameById(int id) const;
 
-    void setMainWindow(QWidget *mainWin);
-
     /** session management **/
     void saveProperties(KConfigGroup &config);
 

@@ -49,7 +49,6 @@ private:
     void initializeActions(KActionCollection *ac);
     void initializeLayout(KActionCollection *ac);
     void printRequested(QWebEnginePage *page);
-    void slotRestorePosition();
     WebEngineViewer::FindBarWebEngineView *mFindBarWebView = nullptr;
     ArticleViewerWebEngine *mArticleViewerNg = nullptr;
     KPIMTextEdit::TextToSpeechWidget *mTextToSpeechWidget = nullptr;

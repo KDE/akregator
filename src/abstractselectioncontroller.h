@@ -66,17 +66,6 @@ public:
     virtual void showArticle(const Akregator::Article &article) = 0;
 };
 
-class SubscriptionLister
-{
-public:
-    virtual ~SubscriptionLister()
-    {
-    }
-
-    virtual void setSubscriptionListModel(Akregator::SubscriptionListModel *model) = 0;
-    virtual QItemSelectionModel *subscriptionSelectionModel() const = 0;
-};
-
 class AbstractSelectionController : public QObject
 {
     Q_OBJECT

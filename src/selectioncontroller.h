@@ -80,8 +80,6 @@ private Q_SLOTS:
 
 private:
 
-    void setCurrentSubscriptionModel();
-
     QSharedPointer<FeedList> m_feedList;
     QPointer<QAbstractItemView> m_feedSelector;
     Akregator::ArticleLister *m_articleLister = nullptr;
