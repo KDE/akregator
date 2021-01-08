@@ -26,6 +26,16 @@ void TrayIcon::setInstance(TrayIcon *trayIcon)
     m_instance = trayIcon;
 }
 
+bool TrayIcon::isEnabled() const
+{
+    return mEnabled;
+}
+
+void TrayIcon::setEnabled(bool enabled)
+{
+    mEnabled = enabled;
+}
+
 TrayIcon::TrayIcon(QObject *parent)
     : KStatusNotifierItem(parent)
 {
@@ -40,7 +50,7 @@ TrayIcon::~TrayIcon()
 
 void TrayIcon::slotSetUnread(int unread)
 {
-    if (m_unread != unread) {
+    if (mEnabled && m_unread != unread) {
         m_unread = unread;
 
         setToolTip(QStringLiteral("akregator"), i18n("Akregator"), unread == 0 ? i18n("There are no unread articles") : i18np("1 unread article", "%1 unread articles", unread));

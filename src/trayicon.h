@@ -20,6 +20,9 @@ public:
     static TrayIcon *getInstance();
     static void setInstance(TrayIcon *trayIcon);
 
+    bool isEnabled() const;
+    void setEnabled(bool enabled);
+
     explicit TrayIcon(QObject *parent = nullptr);
     ~TrayIcon();
 
@@ -30,6 +33,7 @@ public Q_SLOTS:
 private:
     static TrayIcon *m_instance;
     int m_unread = 0;
+    bool mEnabled = false;
 };
 } // namespace Akregator
 

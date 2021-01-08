@@ -274,9 +274,7 @@ void Part::initializeTrayIcon()
     TrayIcon::setInstance(trayIcon);
     m_actionManager->setTrayIcon(trayIcon);
 
-    if (isTrayIconEnabled()) {
-        trayIcon->setStatus(KStatusNotifierItem::Active);
-    }
+    trayIcon->setEnabled(isTrayIconEnabled());
 
     connect(m_mainWidget.data(), &MainWidget::signalUnreadCountChanged, trayIcon, &TrayIcon::slotSetUnread);
     connect(m_mainWidget.data(), &MainWidget::signalArticlesSelected,
