@@ -58,7 +58,7 @@ public:
 
     void interceptRequest(QWebEngineUrlRequestInfo &info) override
     {
-        Q_UNUSED(info);
+        Q_UNUSED(info)
     }
 };
 

@@ -138,7 +138,7 @@ void ArticleViewerWebEngineWidgetNg::printRequested(QWebEnginePage *page)
 
 void ArticleViewerWebEngineWidgetNg::slotHandlePagePrinted(bool result)
 {
-    Q_UNUSED(result);
+    Q_UNUSED(result)
     delete mCurrentPrinter;
     mCurrentPrinter = nullptr;
 }

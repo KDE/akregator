@@ -431,7 +431,7 @@ void Akregator::SubscriptionListView::ensureNodeVisible(Akregator::TreeNode *)
 
 void Akregator::SubscriptionListView::startNodeRenaming(Akregator::TreeNode *node)
 {
-    Q_UNUSED(node);
+    Q_UNUSED(node)
     const QModelIndex current = currentIndex();
     if (!current.isValid()) {
         return;

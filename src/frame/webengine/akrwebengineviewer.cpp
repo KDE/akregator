@@ -143,6 +143,6 @@ void AkrWebEngineViewer::displayContextMenu(const QPoint &pos)
 
 QWebEngineView *AkrWebEngineViewer::createWindow(QWebEnginePage::WebWindowType type)
 {
-    Q_UNUSED(type);
+    Q_UNUSED(type)
     return this;
 }

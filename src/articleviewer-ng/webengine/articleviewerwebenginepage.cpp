@@ -44,7 +44,7 @@ ArticleViewerWebEnginePage::~ArticleViewerWebEnginePage()
 
 bool ArticleViewerWebEnginePage::acceptNavigationRequest(const QUrl &url, NavigationType type, bool isMainFrame)
 {
-    Q_UNUSED(type);
+    Q_UNUSED(type)
     if (url.scheme() == QLatin1String("data")) {
         return true;
     }

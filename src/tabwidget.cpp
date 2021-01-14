@@ -310,7 +310,7 @@ void TabWidget::slotSetTitle(Frame *frame, const QString &title)
 
 void TabWidget::slotWebPageMutedOrAudibleChanged(Akregator::Frame *frame, bool isAudioMuted, bool wasRecentlyAudible)
 {
-    Q_UNUSED(wasRecentlyAudible);
+    Q_UNUSED(wasRecentlyAudible)
     const int idx = indexOf(frame);
     if (idx < 0) {
         return;
