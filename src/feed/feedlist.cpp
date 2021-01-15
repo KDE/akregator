@@ -533,11 +533,7 @@ QStringList FeedListManagementImpl::feeds(const QString &catId) const
         return QStringList();
     }
 
-#if QT_VERSION < QT_VERSION_CHECK(5, 15, 0)
-    const uint lastcatid = catId.split(QLatin1Char('/'), QString::SkipEmptyParts).last().toUInt();
-#else
     const uint lastcatid = catId.split(QLatin1Char('/'), Qt::SkipEmptyParts).last().toUInt();
-#endif
 
     QSet<QString> urls;
     const auto feeds = m_feedList->feeds();
@@ -556,11 +552,7 @@ void FeedListManagementImpl::addFeed(const QString &url, const QString &catId)
     }
 
     qCDebug(AKREGATOR_LOG) << "Name:" << url.left(20) << "Cat:" << catId;
-#if QT_VERSION < QT_VERSION_CHECK(5, 15, 0)
-    const uint folder_id = catId.split(QLatin1Char('/'), QString::SkipEmptyParts).last().toUInt();
-#else
     const uint folder_id = catId.split(QLatin1Char('/'), Qt::SkipEmptyParts).last().toUInt();
-#endif
 
     // Get the folder
     Folder *m_folder = nullptr;
@@ -590,11 +582,7 @@ void FeedListManagementImpl::removeFeed(const QString &url, const QString &catId
 {
     qCDebug(AKREGATOR_LOG) << "Name:" << url.left(20) << "Cat:" << catId;
 
-#if QT_VERSION < QT_VERSION_CHECK(5, 15, 0)
-    uint lastcatid = catId.split(QLatin1Char('/'), QString::SkipEmptyParts).last().toUInt();
-#else
     uint lastcatid = catId.split(QLatin1Char('/'), Qt::SkipEmptyParts).last().toUInt();
-#endif
 
     const auto feeds = m_feedList->feeds();
     for (const Feed *const i : feeds) {
@@ -617,11 +605,7 @@ QString FeedListManagementImpl::getCategoryName(const QString &catId) const
         return catname;
     }
 
-#if QT_VERSION < QT_VERSION_CHECK(5, 15, 0)
-    const QStringList list = catId.split(QLatin1Char('/'), QString::SkipEmptyParts);
-#else
     const QStringList list = catId.split(QLatin1Char('/'), Qt::SkipEmptyParts);
-#endif
     for (int i = 0; i < list.size(); ++i) {
         int index = list.at(i).toInt();
         catname += m_feedList->findByID(index)->title() + QLatin1Char('/');
