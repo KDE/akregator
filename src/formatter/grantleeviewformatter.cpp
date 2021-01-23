@@ -45,7 +45,7 @@ void GrantleeViewFormatter::addStandardObject(QVariantHash &grantleeObject)
     grantleeObject.insert(QStringLiteral("absoluteThemePath"), mGrantleeThemePath);
     grantleeObject.insert(QStringLiteral("applicationDir"), mDirectionString);
     grantleeObject.insert(QStringLiteral("standardFamilyFont"), Settings::standardFont());
-    grantleeObject.insert(QStringLiteral("mediumFontSize"), pointsToPixel(Settings::mediumFontSize()));
+    grantleeObject.insert(QStringLiteral("mediumFontSize"), Settings::mediumFontSize());
 }
 
 QString GrantleeViewFormatter::formatFeed(Akregator::Feed *feed)
