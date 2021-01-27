@@ -2,6 +2,7 @@
 Name=Feeds
 Name[af]=Strome
 Name[ar]=التّغذيات
+Name[az]=Xəbər lentləri
 Name[be]=Стужкі
 Name[bg]=Новини
 Name[bs]=Dovodi
@@ -68,6 +69,7 @@ Name[zh_CN]=订阅
 Name[zh_TW]=Feeds
 Comment=Feed Reader
 Comment[ar]=قارئ التّغذيات
+Comment[az]=Xəbər lentləri oxuyucusu
 Comment[bs]=Čitač dovoda
 Comment[ca]=Lector de fonts
 Comment[ca@valencia]=Lector de fonts

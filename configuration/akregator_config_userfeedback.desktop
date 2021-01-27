@@ -10,6 +10,7 @@ X-KDE-CfgDlgHierarchy=Akregator
 X-KDE-Weight=250
 
 Name=User Feedback
+Name[az]=İstifadəçi Rəyi
 Name[ca]=Comentaris de l'usuari
 Name[ca@valencia]=Comentaris de l'usuari
 Name[cs]=Zpětná vazba uživatele
@@ -38,6 +39,7 @@ Name[uk]=Відгуки користувача
 Name[x-test]=xxUser Feedbackxx
 Name[zh_TW]=使用者回饋
 X-KDE-Keywords=akregator, configure, settings, userfeedback
+X-KDE-Keywords[az]=akregator, configure, settings, userfeedback,istifadəçi rəyi
 X-KDE-Keywords[ca]=akregator, configura, arranjament, comentaris de l'usuari
 X-KDE-Keywords[ca@valencia]=akregator, configura, arranjament, comentaris de l'usuari
 X-KDE-Keywords[da]=akregator, konfigurer, indstillinger, brugerfeedback
