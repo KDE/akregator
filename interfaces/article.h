@@ -13,8 +13,8 @@
 #include "akregator_export.h"
 #include "types.h"
 
-#include <Syndication/Person>
 #include <QSharedPointer>
+#include <Syndication/Person>
 
 class QDateTime;
 class QString;
@@ -25,14 +25,17 @@ typedef unsigned int uint;
 
 class QUrl;
 
-namespace Syndication {
+namespace Syndication
+{
 class Enclosure;
 class Item;
 typedef QSharedPointer<Item> ItemPtr;
 }
 
-namespace Akregator {
-namespace Backend {
+namespace Akregator
+{
+namespace Backend
+{
 class FeedStorage;
 }
 
@@ -123,7 +126,7 @@ public:
     bool operator>(const Article &other) const;
     bool operator>=(const Article &other) const;
 
-private: //only for our friends
+private: // only for our friends
     void setStatus(int s);
     void setDeleted();
     void setKeep(bool keep);

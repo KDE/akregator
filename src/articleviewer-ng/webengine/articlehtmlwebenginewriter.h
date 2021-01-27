@@ -7,10 +7,11 @@
 #ifndef ARTICLEHTMLWEBENGINEWRITER_H
 #define ARTICLEHTMLWEBENGINEWRITER_H
 
+#include "akregator_export.h"
 #include <QObject>
 #include <QUrl>
-#include "akregator_export.h"
-namespace Akregator {
+namespace Akregator
+{
 class ArticleViewerWebEngine;
 class AKREGATOR_EXPORT ArticleHtmlWebEngineWriter : public QObject
 {
@@ -30,11 +31,7 @@ Q_SIGNALS:
     void finished();
 
 private:
-    enum State {
-        Begun,
-        Queued,
-        Ended
-    } mState = Ended;
+    enum State { Begun, Queued, Ended } mState = Ended;
 
     QString mHtml;
     QUrl mBaseUrl;

@@ -12,12 +12,15 @@
 
 #include <MessageViewer/MessageViewerSettings>
 
-#include "akregatorconfig.h"
 #include "aboutdata.h"
 #include "actionmanagerimpl.h"
+#include "akregator-version.h"
+#include "akregator_options.h"
+#include "akregatorconfig.h"
 #include "article.h"
-#include "fetchqueue.h"
+#include "dummystorage/storagefactorydummyimpl.h"
 #include "feedlist.h"
+#include "fetchqueue.h"
 #include "framemanager.h"
 #include "kernel.h"
 #include "loadfeedlistcommand.h"
@@ -29,46 +32,44 @@
 #include "storagefactory.h"
 #include "storagefactoryregistry.h"
 #include "trayicon.h"
-#include "widgets/akregatorcentralwidget.h"
-#include "dummystorage/storagefactorydummyimpl.h"
-#include "utils.h"
-#include "akregator_options.h"
-#include <PimCommon/BroadcastStatus>
-#include "akregator-version.h"
 #include "unityservicemanager.h"
-#include <kio/filecopyjob.h>
-#include <KNotifyConfigWidget>
+#include "utils.h"
+#include "widgets/akregatorcentralwidget.h"
 #include <KConfig>
-#include <QFileDialog>
 #include <KMessageBox>
+#include <KNotifyConfigWidget>
+#include <PimCommon/BroadcastStatus>
+#include <QFileDialog>
+#include <kio/filecopyjob.h>
 
-#include <QTemporaryFile>
-#include <QWebEngineSettings>
-#include <QSaveFile>
-#include <KService>
-#include <kxmlguifactory.h>
+#include <KCMultiDialog>
 #include <KIO/StoredTransferJob>
 #include <KJobWidgets>
-#include <KPluginFactory>
 #include <KParts/Plugin>
-#include <KCMultiDialog>
+#include <KPluginFactory>
+#include <KService>
+#include <QSaveFile>
+#include <QTemporaryFile>
+#include <QWebEngineSettings>
+#include <kxmlguifactory.h>
 
+#include "akregratormigrateapplication.h"
+#include "partadaptor.h"
 #include <QApplication>
+#include <QDomDocument>
 #include <QFile>
 #include <QObject>
 #include <QStringList>
 #include <QTextStream>
 #include <QTimer>
 #include <QWidget>
-#include <QDomDocument>
-#include "akregratormigrateapplication.h"
-#include "partadaptor.h"
 
-#include <memory>
 #include <QFontDatabase>
 #include <QStandardPaths>
+#include <memory>
 
-namespace {
+namespace
+{
 static QDomDocument createDefaultFeedList()
 {
     QDomDocument doc;
@@ -127,9 +128,9 @@ static QDomDocument createDefaultFeedList()
 }
 }
 
-namespace Akregator {
-K_PLUGIN_FACTORY(AkregatorFactory, registerPlugin<Part>();
-                 )
+namespace Akregator
+{
+K_PLUGIN_FACTORY(AkregatorFactory, registerPlugin<Part>();)
 
 static Part *mySelf = nullptr;
 
@@ -141,7 +142,7 @@ Part::Part(QWidget *parentWidget, QObject *parent, const QVariantList &)
     AkregratorMigrateApplication migrate;
     migrate.migrate();
 
-    //Make sure to initialize settings
+    // Make sure to initialize settings
     Part::config();
     initFonts();
 
@@ -163,7 +164,7 @@ Part::Part(QWidget *parentWidget, QObject *parent, const QVariantList &)
         // There was already a dummy factory registered.
         delete dummyFactory;
     }
-    loadPlugins(QStringLiteral("storage"));   // FIXME: also unload them!
+    loadPlugins(QStringLiteral("storage")); // FIXME: also unload them!
 
     m_storage = nullptr;
     Backend::StorageFactory *storageFactory = Backend::StorageFactoryRegistry::self()->getFactory(Settings::archiveBackend());
@@ -174,7 +175,9 @@ Part::Part(QWidget *parentWidget, QObject *parent, const QVariantList &)
     if (!m_storage) { // Houston, we have a problem
         m_storage = Backend::StorageFactoryRegistry::self()->getFactory(QStringLiteral("dummy"))->createStorage(QStringList());
 
-        KMessageBox::error(parentWidget, i18n("Unable to load storage backend plugin \"%1\". No feeds are archived.", Settings::archiveBackend()), i18n("Plugin error"));
+        KMessageBox::error(parentWidget,
+                           i18n("Unable to load storage backend plugin \"%1\". No feeds are archived.", Settings::archiveBackend()),
+                           i18n("Plugin error"));
     }
 
     m_storage->open(true);
@@ -194,7 +197,7 @@ Part::Part(QWidget *parentWidget, QObject *parent, const QVariantList &)
     // notify the part that this is our internal widget
     setWidget(mCentralWidget);
 
-    //Initialize instance.
+    // Initialize instance.
     (void)UnityServiceManager::instance();
     if (Settings::showUnreadInTaskbar()) {
         connect(m_mainWidget.data(), &MainWidget::signalUnreadCountChanged, UnityServiceManager::instance(), &UnityServiceManager::slotSetUnread);
@@ -212,7 +215,7 @@ Part::Part(QWidget *parentWidget, QObject *parent, const QVariantList &)
     connect(m_autosaveTimer, &QTimer::timeout, this, &Part::slotSaveFeedList);
     m_autosaveTimer->start(5 * 60 * 1000); // 5 minutes
 
-    loadPlugins(QStringLiteral("extension"));   // FIXME: also unload them!
+    loadPlugins(QStringLiteral("extension")); // FIXME: also unload them!
     if (mCentralWidget->previousSessionCrashed()) {
         mCentralWidget->needToRestoreCrashedSession();
     } else {
@@ -260,12 +263,12 @@ void Part::slotOnShutdown()
         saveSettings();
         m_mainWidget->slotOnShutdown();
     }
-    //delete m_mainWidget;
+    // delete m_mainWidget;
     delete TrayIcon::getInstance();
     TrayIcon::setInstance(nullptr);
     delete m_storage;
     m_storage = nullptr;
-    //delete m_actionManager;
+    // delete m_actionManager;
 }
 
 void Part::initializeTrayIcon()
@@ -277,8 +280,7 @@ void Part::initializeTrayIcon()
     trayIcon->setEnabled(isTrayIconEnabled());
 
     connect(m_mainWidget.data(), &MainWidget::signalUnreadCountChanged, trayIcon, &TrayIcon::slotSetUnread);
-    connect(m_mainWidget.data(), &MainWidget::signalArticlesSelected,
-            this, &Part::signalArticlesSelected);
+    connect(m_mainWidget.data(), &MainWidget::signalArticlesSelected, this, &Part::signalArticlesSelected);
 
     m_mainWidget->slotSetTotalUnread();
 }
@@ -306,15 +308,13 @@ void Part::slotSettingsChanged()
         m_actionManager->setTrayIcon(nullptr);
     }
 
-    const QStringList fonts {
-        Settings::standardFont(),
-        Settings::fixedFont(),
-        Settings::sansSerifFont(),
-        Settings::serifFont(),
-        Settings::standardFont(),
-        Settings::standardFont(),
-        QStringLiteral("0")
-    };
+    const QStringList fonts{Settings::standardFont(),
+                            Settings::fixedFont(),
+                            Settings::sansSerifFont(),
+                            Settings::serifFont(),
+                            Settings::standardFont(),
+                            Settings::standardFont(),
+                            QStringLiteral("0")};
     Settings::setFonts(fonts);
 
     if (Settings::minimumFontSize() > Settings::mediumFontSize()) {
@@ -391,8 +391,7 @@ void Part::openFile(const QString &filePath)
     cmd->setStorage(Kernel::self()->storage());
     cmd->setFileName(filePath);
     cmd->setDefaultFeedList(createDefaultFeedList());
-    connect(cmd.data(), &LoadFeedListCommand::result,
-            this, &Part::feedListLoaded);
+    connect(cmd.data(), &LoadFeedListCommand::result, this, &Part::feedListLoaded);
     m_loadFeedListCommand = cmd.take();
     m_loadFeedListCommand->start();
 }
@@ -405,9 +404,7 @@ bool Part::writeToTextFile(const QString &data, const QString &filename) const
     }
     QTextStream stream(&file);
     stream.setCodec("UTF-8");
-    stream << data
-        << Qt::endl
-    ;
+    stream << data << Qt::endl;
     return file.commit();
 }
 
@@ -518,7 +515,9 @@ void Part::importFile(const QUrl &url)
             KMessageBox::error(m_mainWidget, i18n("Could not import the file %1 (no valid OPML)", filename), i18n("OPML Parsing Error"));
         }
     } else {
-        KMessageBox::error(m_mainWidget, i18n("The file %1 could not be read, check if it exists or if it is readable for the current user.", filename), i18n("Read Error"));
+        KMessageBox::error(m_mainWidget,
+                           i18n("The file %1 could not be read, check if it exists or if it is readable for the current user.", filename),
+                           i18n("Read Error"));
     }
 }
 
@@ -598,11 +597,9 @@ void Part::showOptions()
 
     if (!m_dialog) {
         m_dialog = new KCMultiDialog(m_mainWidget);
-        connect(m_dialog, qOverload<>(&KCMultiDialog::configCommitted),
-                this, &Part::slotSettingsChanged);
+        connect(m_dialog, qOverload<>(&KCMultiDialog::configCommitted), this, &Part::slotSettingsChanged);
         if (TrayIcon::getInstance()) {
-            connect(m_dialog, qOverload<>(&KCMultiDialog::configCommitted),
-                    TrayIcon::getInstance(), &TrayIcon::settingsChanged);
+            connect(m_dialog, qOverload<>(&KCMultiDialog::configCommitted), TrayIcon::getInstance(), &TrayIcon::settingsChanged);
         }
 
         m_dialog->addModule(QStringLiteral("akregator_config_general"));
@@ -644,7 +641,7 @@ void Part::initFonts()
         Settings::setSerifFont(fonts[3]);
     }
 
-    //TODO add CursiveFont, FantasyFont
+    // TODO add CursiveFont, FantasyFont
 
     KConfigGroup conf(Settings::self()->config(), "HTML Settings");
 
@@ -684,9 +681,7 @@ bool Part::handleCommandLine(const QStringList &args)
     akregator_options(&parser);
     parser.process(args);
 
-    const QString addFeedGroup = parser.isSet(QStringLiteral("group"))
-                                 ? parser.value(QStringLiteral("group"))
-                                 : i18n("Imported Folder");
+    const QString addFeedGroup = parser.isSet(QStringLiteral("group")) ? parser.value(QStringLiteral("group")) : i18n("Imported Folder");
 
     QStringList feedsToAdd = parser.values(QStringLiteral("addfeed"));
 
@@ -724,8 +719,7 @@ void Part::clearCrashProperties()
     if (!m_doCrashSave) {
         return;
     }
-    KConfig config(QStringLiteral("crashed"), KConfig::SimpleConfig,
-                   QStandardPaths::AppDataLocation);
+    KConfig config(QStringLiteral("crashed"), KConfig::SimpleConfig, QStandardPaths::AppDataLocation);
     KConfigGroup configGroup(&config, "Part");
     configGroup.writeEntry("crashed", false);
 }
@@ -735,8 +729,7 @@ void Part::saveCrashProperties()
     if (!m_doCrashSave) {
         return;
     }
-    KConfig config(QStringLiteral("crashed"), KConfig::SimpleConfig,
-                   QStandardPaths::AppDataLocation);
+    KConfig config(QStringLiteral("crashed"), KConfig::SimpleConfig, QStandardPaths::AppDataLocation);
     KConfigGroup configGroup(&config, "Part");
     configGroup.deleteGroup();
 
@@ -775,10 +768,8 @@ void Part::autoReadProperties()
 void Part::slotRestoreSession(Akregator::CrashWidget::CrashAction type)
 {
     switch (type) {
-    case Akregator::CrashWidget::RestoreSession:
-    {
-        KConfig config(QStringLiteral("crashed"), KConfig::SimpleConfig,
-                       QStandardPaths::AppDataLocation);
+    case Akregator::CrashWidget::RestoreSession: {
+        KConfig config(QStringLiteral("crashed"), KConfig::SimpleConfig, QStandardPaths::AppDataLocation);
         KConfigGroup configGroup(&config, "Part");
         readProperties(configGroup);
         clearCrashProperties();

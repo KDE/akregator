@@ -12,8 +12,10 @@
 #include <QString>
 #include <QStringList>
 
-namespace Akregator {
-namespace Backend {
+namespace Akregator
+{
+namespace Backend
+{
 StorageFactoryRegistry *StorageFactoryRegistry::m_instance = nullptr;
 
 StorageFactoryRegistry *StorageFactoryRegistry::self()

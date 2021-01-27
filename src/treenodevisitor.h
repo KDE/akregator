@@ -10,7 +10,8 @@
 
 #include "akregator_export.h"
 
-namespace Akregator {
+namespace Akregator
+{
 class TreeNode;
 class Folder;
 class Feed;

@@ -9,21 +9,18 @@
 #ifndef AKREGATOR_ARTICLEFORMATTER_H
 #define AKREGATOR_ARTICLEFORMATTER_H
 
-#include <enclosure.h>
 #include <QVector>
+#include <enclosure.h>
 
-namespace Akregator {
+namespace Akregator
+{
 class Article;
 class TreeNode;
 
 class ArticleFormatter
 {
 public:
-
-    enum IconOption {
-        NoIcon,
-        ShowIcon
-    };
+    enum IconOption { NoIcon, ShowIcon };
 
     explicit ArticleFormatter();
 

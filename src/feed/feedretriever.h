@@ -13,7 +13,8 @@
 
 class KJob;
 
-namespace Akregator {
+namespace Akregator
+{
 class FeedRetriever : public Syndication::DataRetriever
 {
     Q_OBJECT

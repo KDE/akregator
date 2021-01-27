@@ -15,8 +15,10 @@
 
 class QDomDocument;
 
-namespace Akregator {
-namespace Backend {
+namespace Akregator
+{
+namespace Backend
+{
 class Storage;
 }
 

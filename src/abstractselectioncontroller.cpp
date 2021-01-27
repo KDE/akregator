@@ -9,7 +9,8 @@
 #include "abstractselectioncontroller.h"
 using namespace Akregator;
 
-AbstractSelectionController::AbstractSelectionController(QObject *parent) : QObject(parent)
+AbstractSelectionController::AbstractSelectionController(QObject *parent)
+    : QObject(parent)
 {
 }
 

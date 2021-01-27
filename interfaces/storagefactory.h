@@ -13,8 +13,10 @@
 
 class QString;
 #include <QStringList>
-namespace Akregator {
-namespace Backend {
+namespace Akregator
+{
+namespace Backend
+{
 class Storage;
 
 class AKREGATORINTERFACES_EXPORT StorageFactory

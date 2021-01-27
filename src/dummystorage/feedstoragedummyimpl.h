@@ -9,8 +9,10 @@
 #define AKREGATOR_BACKEND_FEEDSTORAGEDUMMYIMPL_H
 
 #include "feedstorage.h"
-namespace Akregator {
-namespace Backend {
+namespace Akregator
+{
+namespace Backend
+{
 class StorageDummyImpl;
 class FeedStorageDummyImpl : public FeedStorage
 {

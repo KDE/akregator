@@ -12,10 +12,11 @@
 #include <QObject>
 #include <QVector>
 
-#include "article.h"
 #include "akregator_export.h"
+#include "article.h"
 
-namespace Akregator {
+namespace Akregator
+{
 /** this class collects notification requests (new articles etc.) and processes them using KNotify.  */
 class AKREGATOR_EXPORT NotificationManager : public QObject
 {
@@ -39,7 +40,6 @@ public Q_SLOTS:
     void slotNotifyFeeds(const QStringList &feeds);
 
 protected:
-
     void doNotify();
 
 protected Q_SLOTS:
@@ -48,7 +48,8 @@ protected Q_SLOTS:
 
 private:
     explicit NotificationManager(QObject *parent = nullptr);
-    NotificationManager(const NotificationManager &) : QObject()
+    NotificationManager(const NotificationManager &)
+        : QObject()
     {
     }
 

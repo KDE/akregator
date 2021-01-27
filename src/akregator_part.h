@@ -10,9 +10,9 @@
 #ifndef AKREGATOR_PART_H
 #define AKREGATOR_PART_H
 
+#include <KSharedConfig>
 #include <QPointer>
 #include <QVector>
-#include <KSharedConfig>
 
 #include <QUrl>
 #include <kparts/part.h>
@@ -24,8 +24,10 @@ class KCMultiDialog;
 
 class QTimer;
 
-namespace Akregator {
-namespace Backend {
+namespace Akregator
+{
+namespace Backend
+{
 class Storage;
 }
 
@@ -114,7 +116,6 @@ Q_SIGNALS:
     void signalArticlesSelected(const QVector<Akregator::Article> &);
 
 private:
-
     /** @return Whether the tray icon is enabled or not */
     bool isTrayIconEnabled() const;
 
@@ -137,8 +138,8 @@ private Q_SLOTS:
     void flushAddFeedRequests();
 
     void slotRestoreSession(Akregator::CrashWidget::CrashAction type);
-private: // methods
 
+private: // methods
     /** fills the font settings with system fonts, if fonts are not set */
     void initFonts();
 

@@ -10,15 +10,17 @@
 #define AKREGATOR_PROGRESSMANAGER_H
 
 #include "feedlist.h"
+#include <QHash>
 #include <QObject>
 #include <QSharedPointer>
-#include <QHash>
 
-namespace KPIM {
+namespace KPIM
+{
 class ProgressItem;
 }
 
-namespace Akregator {
+namespace Akregator
+{
 class Feed;
 class ProgressItemHandler;
 class TreeNode;
@@ -29,7 +31,6 @@ class ProgressManager : public QObject
 {
     Q_OBJECT
 public:
-
     static ProgressManager *self();
 
     ProgressManager();
@@ -45,7 +46,6 @@ protected Q_SLOTS:
     void slotNodeDestroyed(Akregator::TreeNode *node);
 
 private:
-
     static ProgressManager *m_self;
     QSharedPointer<FeedList> m_feedList;
     QHash<Feed *, ProgressItemHandler *> m_handlers;

@@ -17,13 +17,14 @@ class QDomDocument;
 class QDomElement;
 template<class T> class QList;
 
-namespace Akregator {
+namespace Akregator
+{
 class Article;
 class FetchQueue;
 class TreeNodeVisitor;
 
 /** Represents a folder (containing feeds and/or other folders)
-    */
+ */
 class AKREGATOR_EXPORT Folder : public TreeNode
 {
     Q_OBJECT
@@ -57,7 +58,7 @@ public:
         return true;
     }
 
-    //impl
+    // impl
     Q_REQUIRED_RESULT bool isAggregation() const override
     {
         return true;
@@ -168,7 +169,6 @@ public Q_SLOTS:
     void slotAddToFetchQueue(Akregator::FetchQueue *queue, bool intervalFetchesOnly = false) override;
 
 protected:
-
     /** inserts @c node as child on position @c index
     @param index the position where to insert
     @param node the tree node to insert */

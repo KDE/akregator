@@ -15,10 +15,11 @@
 
 #include "akregator_export.h"
 
-namespace Akregator {
+namespace Akregator
+{
 class FeedList;
 
-//transitional job classes
+// transitional job classes
 
 class AKREGATOR_EXPORT MoveSubscriptionJob : public KJob
 {

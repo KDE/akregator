@@ -23,26 +23,22 @@ WebEngineFrame::WebEngineFrame(KActionCollection *ac, QWidget *parent)
     auto *viewer = new Akregator::AkrWebEngineViewer(ac, this);
     mArticleViewerWidgetNg = new Akregator::ArticleViewerWebEngineWidgetNg(viewer, ac, this);
 
-    connect(mArticleViewerWidgetNg->articleViewerNg(), &ArticleViewerWebEngine::titleChanged,
-            this, &WebEngineFrame::slotTitleChanged);
+    connect(mArticleViewerWidgetNg->articleViewerNg(), &ArticleViewerWebEngine::titleChanged, this, &WebEngineFrame::slotTitleChanged);
 
-    connect(mArticleViewerWidgetNg->articleViewerNg(), &ArticleViewerWebEngine::loadProgress,
-            this, &WebEngineFrame::slotProgressChanged);
+    connect(mArticleViewerWidgetNg->articleViewerNg(), &ArticleViewerWebEngine::loadProgress, this, &WebEngineFrame::slotProgressChanged);
 
-    connect(mArticleViewerWidgetNg->articleViewerNg(), &ArticleViewerWebEngine::signalOpenUrlRequest,
-            this, &WebEngineFrame::signalOpenUrlRequest);
+    connect(mArticleViewerWidgetNg->articleViewerNg(), &ArticleViewerWebEngine::signalOpenUrlRequest, this, &WebEngineFrame::signalOpenUrlRequest);
 
-    connect(mArticleViewerWidgetNg->articleViewerNg(), &ArticleViewerWebEngine::loadStarted,
-            this, &WebEngineFrame::slotLoadStarted);
+    connect(mArticleViewerWidgetNg->articleViewerNg(), &ArticleViewerWebEngine::loadStarted, this, &WebEngineFrame::slotLoadStarted);
 
-    connect(mArticleViewerWidgetNg->articleViewerNg(), &ArticleViewerWebEngine::loadFinished,
-            this, &WebEngineFrame::slotLoadFinished);
+    connect(mArticleViewerWidgetNg->articleViewerNg(), &ArticleViewerWebEngine::loadFinished, this, &WebEngineFrame::slotLoadFinished);
 
-    connect(mArticleViewerWidgetNg->articleViewerNg(), &ArticleViewerWebEngine::showStatusBarMessage,
-            this, &WebEngineFrame::showStatusBarMessage);
+    connect(mArticleViewerWidgetNg->articleViewerNg(), &ArticleViewerWebEngine::showStatusBarMessage, this, &WebEngineFrame::showStatusBarMessage);
 
-    connect(mArticleViewerWidgetNg->articleViewerNg(), &ArticleViewerWebEngine::webPageMutedOrAudibleChanged,
-            this, &WebEngineFrame::slotWebPageMutedOrAudibleChanged);
+    connect(mArticleViewerWidgetNg->articleViewerNg(),
+            &ArticleViewerWebEngine::webPageMutedOrAudibleChanged,
+            this,
+            &WebEngineFrame::slotWebPageMutedOrAudibleChanged);
 
     layout->addWidget(mArticleViewerWidgetNg);
 }

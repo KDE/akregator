@@ -9,9 +9,9 @@
 #include "notificationmanager.h"
 #include "feed.h"
 
+#include <KAboutData>
 #include <KLocalizedString>
 #include <KNotification>
-#include <KAboutData>
 #include <QTimer>
 
 using namespace Akregator;
@@ -52,14 +52,24 @@ void NotificationManager::slotNotifyFeeds(const QStringList &feeds)
 {
     const int feedsCount(feeds.count());
     if (feedsCount == 1) {
-        KNotification::event(QStringLiteral("FeedAdded"), i18n("Feed added:\n %1", feeds[0]), QPixmap(), m_widget, KNotification::CloseOnTimeout, m_componantName);
+        KNotification::event(QStringLiteral("FeedAdded"),
+                             i18n("Feed added:\n %1", feeds[0]),
+                             QPixmap(),
+                             m_widget,
+                             KNotification::CloseOnTimeout,
+                             m_componantName);
     } else if (feedsCount > 1) {
         QString message;
         QStringList::ConstIterator end = feeds.constEnd();
         for (QStringList::ConstIterator it = feeds.constBegin(); it != end; ++it) {
             message += *it + QLatin1Char('\n');
         }
-        KNotification::event(QStringLiteral("FeedAdded"), i18n("Feeds added:\n %1", message), QPixmap(), m_widget, KNotification::CloseOnTimeout, m_componantName);
+        KNotification::event(QStringLiteral("FeedAdded"),
+                             i18n("Feeds added:\n %1", message),
+                             QPixmap(),
+                             m_widget,
+                             KNotification::CloseOnTimeout,
+                             m_componantName);
     }
 }
 
@@ -72,10 +82,10 @@ void NotificationManager::doNotify()
 
     // adding information about how many new articles
     auto feedClosure = [&entriesCount, &message, maxNewArticlesShown]() {
-                           if ((entriesCount - maxNewArticlesShown) > 1) {
-                               message += i18np("<i>and 1 other</i>", "<i>and %1 others</i>", entriesCount - maxNewArticlesShown - 1) + QLatin1String("<br>");
-                           }
-                       };
+        if ((entriesCount - maxNewArticlesShown) > 1) {
+            message += i18np("<i>and 1 other</i>", "<i>and %1 others</i>", entriesCount - maxNewArticlesShown - 1) + QLatin1String("<br>");
+        }
+    };
 
     for (const Article &i : qAsConst(m_articles)) {
         const QString currentFeedTitle(i.feed()->title());

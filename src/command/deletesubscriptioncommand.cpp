@@ -22,11 +22,13 @@
 
 using namespace Akregator;
 
-namespace {
+namespace
+{
 class DeleteNodeVisitor : public TreeNodeVisitor
 {
 public:
-    explicit DeleteNodeVisitor(QWidget *parent) : m_widget(parent)
+    explicit DeleteNodeVisitor(QWidget *parent)
+        : m_widget(parent)
         , m_job(nullptr)
     {
     }
@@ -34,20 +36,21 @@ public:
     bool visitFolder(Folder *node) override
     {
         const QString msg = node->title().isEmpty()
-                            ? i18n("<qt>Are you sure you want to delete this folder and its feeds and subfolders?</qt>")
-                            : i18n("<qt>Are you sure you want to delete folder <b>%1</b> and its feeds and subfolders?</qt>", node->title());
+            ? i18n("<qt>Are you sure you want to delete this folder and its feeds and subfolders?</qt>")
+            : i18n("<qt>Are you sure you want to delete folder <b>%1</b> and its feeds and subfolders?</qt>", node->title());
 
         if (KMessageBox::warningContinueCancel(m_widget,
                                                msg,
                                                i18n("Delete Folder"),
                                                KStandardGuiItem::del(),
                                                KStandardGuiItem::cancel(),
-                                               QStringLiteral("Disable delete folder confirmation")) != KMessageBox::Continue) {
+                                               QStringLiteral("Disable delete folder confirmation"))
+            != KMessageBox::Continue) {
             return true;
         }
         m_job = reallyCreateJob(node);
-        //TODO: port focus
-        //m_widget->m_feedListView->setFocus();
+        // TODO: port focus
+        // m_widget->m_feedListView->setFocus();
         return true;
     }
 
@@ -65,11 +68,12 @@ public:
                                                i18n("Delete Feed"),
                                                KStandardGuiItem::del(),
                                                KStandardGuiItem::cancel(),
-                                               QStringLiteral("Disable delete feed confirmation")) != KMessageBox::Continue) {
+                                               QStringLiteral("Disable delete feed confirmation"))
+            != KMessageBox::Continue) {
             return true;
         }
         m_job = reallyCreateJob(node);
-        //TODO: port focus
+        // TODO: port focus
         // m_widget->m_feedListView->setFocus();
         return true;
     }
@@ -100,6 +104,7 @@ private:
 class DeleteSubscriptionCommand::Private
 {
     DeleteSubscriptionCommand *const q;
+
 public:
     explicit Private(DeleteSubscriptionCommand *qq);
     ~Private();
@@ -111,7 +116,8 @@ public:
     int m_subscriptionId = -1;
 };
 
-DeleteSubscriptionCommand::Private::Private(DeleteSubscriptionCommand *qq) : q(qq)
+DeleteSubscriptionCommand::Private::Private(DeleteSubscriptionCommand *qq)
+    : q(qq)
     , m_list()
 {
 }
@@ -120,7 +126,8 @@ DeleteSubscriptionCommand::Private::~Private()
 {
 }
 
-DeleteSubscriptionCommand::DeleteSubscriptionCommand(QObject *parent) : Command(parent)
+DeleteSubscriptionCommand::DeleteSubscriptionCommand(QObject *parent)
+    : Command(parent)
     , d(new Private(this))
 {
 }

@@ -11,7 +11,8 @@
 
 #include "command.h"
 
-namespace Akregator {
+namespace Akregator
+{
 class Folder;
 class MainWidget;
 class SubscriptionListView;

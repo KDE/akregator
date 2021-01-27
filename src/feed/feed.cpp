@@ -12,16 +12,16 @@
 #include "akregatorconfig.h"
 #include "article.h"
 #include "articlejobs.h"
+#include "feedretriever.h"
 #include "feedstorage.h"
 #include "fetchqueue.h"
 #include "folder.h"
+#include "job/downloadfeediconjob.h"
 #include "notificationmanager.h"
 #include "storage.h"
 #include "treenodevisitor.h"
 #include "types.h"
 #include "utils.h"
-#include "feedretriever.h"
-#include "job/downloadfeediconjob.h"
 
 #include "akregator_debug.h"
 
@@ -35,15 +35,14 @@
 #include <QRandomGenerator>
 #include <QTimer>
 
-#include <memory>
-#include <QStandardPaths>
 #include <KIO/FavIconRequestJob>
+#include <QStandardPaths>
+#include <memory>
 
 using Syndication::ItemPtr;
 using namespace Akregator;
 
-template<typename Key, typename Value, template<typename, typename> class Container>
-QVector<Value> valuesToVector(const Container<Key, Value> &container)
+template<typename Key, typename Value, template<typename, typename> class Container> QVector<Value> valuesToVector(const Container<Key, Value> &container)
 {
     QVector<Value> values;
     values.reserve(container.size());
@@ -56,6 +55,7 @@ QVector<Value> valuesToVector(const Container<Key, Value> &container)
 class Q_DECL_HIDDEN Akregator::Feed::Private
 {
     Akregator::Feed *const q;
+
 public:
     explicit Private(Backend::Storage *storage, Akregator::Feed *qq);
 
@@ -336,7 +336,8 @@ void Akregator::Feed::Private::setTotalCountDirty() const
     m_totalCount = -1;
 }
 
-Akregator::Feed::Feed(Backend::Storage *storage) : TreeNode()
+Akregator::Feed::Feed(Backend::Storage *storage)
+    : TreeNode()
     , d(new Private(storage, this))
 {
 }
@@ -469,7 +470,10 @@ void Akregator::Feed::setXmlUrl(const QString &s)
 {
     d->m_xmlUrl = s;
     if (!Settings::fetchOnStartup()) {
-        QTimer::singleShot(QRandomGenerator::global()->bounded(4000), this, &Feed::slotAddFeedIconListener);    // TODO: let's give a gui some time to show up before starting the fetch when no fetch on startup is used. replace this with something proper later...
+        QTimer::singleShot(QRandomGenerator::global()->bounded(4000),
+                           this,
+                           &Feed::slotAddFeedIconListener); // TODO: let's give a gui some time to show up before starting the fetch when no fetch on startup is
+                                                            // used. replace this with something proper later...
     }
 }
 
@@ -573,7 +577,7 @@ QDomElement Akregator::Feed::toOPML(QDomElement parent, QDomDocument document) c
         }
     }
     el.setAttribute(QStringLiteral("maxArticleNumber"), d->m_maxArticleNumber);
-    el.setAttribute(QStringLiteral("type"), QStringLiteral("rss"));   // despite some additional fields, it is still "rss" OPML
+    el.setAttribute(QStringLiteral("type"), QStringLiteral("rss")); // despite some additional fields, it is still "rss" OPML
     el.setAttribute(QStringLiteral("version"), QStringLiteral("RSS"));
     parent.appendChild(el);
     return el;
@@ -584,7 +588,7 @@ KJob *Akregator::Feed::createMarkAsReadJob()
     auto *job = new ArticleModifyJob;
     const auto arts = articles();
     for (const Article &i : arts) {
-        const ArticleId aid = { xmlUrl(), i.guid() };
+        const ArticleId aid = {xmlUrl(), i.guid()};
         job->setStatus(aid, Read);
     }
     return job;
@@ -704,11 +708,11 @@ bool Akregator::Feed::isExpired(const Article &a) const
 {
     const QDateTime now = QDateTime::currentDateTime();
     int expiryAge = -1;
-// check whether the feed uses the global default and the default is limitArticleAge
+    // check whether the feed uses the global default and the default is limitArticleAge
     if (d->m_archiveMode == globalDefault && Settings::archiveMode() == Settings::EnumArchiveMode::limitArticleAge) {
         expiryAge = Settings::maxArticleAge() * 24 * 3600;
     } else // otherwise check if this feed has limitArticleAge set
-    if (d->m_archiveMode == limitArticleAge) {
+        if (d->m_archiveMode == limitArticleAge) {
         expiryAge = d->m_maxArticleAge * 24 * 3600;
     }
 
@@ -717,7 +721,7 @@ bool Akregator::Feed::isExpired(const Article &a) const
 
 void Akregator::Feed::appendArticle(const Article &a)
 {
-    if ((a.keep() && Settings::doNotExpireImportantArticles()) || (!usesExpiryByAge() || !isExpired(a))) {   // if not expired
+    if ((a.keep() && Settings::doNotExpireImportantArticles()) || (!usesExpiryByAge() || !isExpired(a))) { // if not expired
         if (!d->articles.contains(a.guid())) {
             d->articles[a.guid()] = a;
             if (!a.isDeleted() && a.status() != Read) {
@@ -755,9 +759,7 @@ void Akregator::Feed::tryFetch()
 {
     d->m_fetchErrorCode = Syndication::Success;
 
-    d->m_loader = Syndication::Loader::create(this, SLOT(fetchCompleted(Syndication::Loader*,
-                                                                        Syndication::FeedPtr,
-                                                                        Syndication::ErrorCode)));
+    d->m_loader = Syndication::Loader::create(this, SLOT(fetchCompleted(Syndication::Loader *, Syndication::FeedPtr, Syndication::ErrorCode)));
     d->m_loader->loadFrom(QUrl(d->m_xmlUrl), new FeedRetriever());
 }
 
@@ -845,7 +847,7 @@ void Akregator::Feed::deleteExpiredArticles(ArticleDeleteJob *deleteJob)
 
     for (const Article &i : qAsConst(d->articles)) {
         if ((!useKeep || !i.keep()) && isExpired(i)) {
-            const ArticleId aid = { feedUrl, i.guid() };
+            const ArticleId aid = {feedUrl, i.guid()};
             toDelete.append(aid);
         }
     }
@@ -1030,9 +1032,7 @@ void Akregator::Feed::enforceLimitArticleNumber()
 
 bool Akregator::Feed::ImageInfo::operator==(const Akregator::Feed::ImageInfo &other) const
 {
-    return other.width == width
-           && other.height == height
-           && other.imageUrl == imageUrl;
+    return other.width == width && other.height == height && other.imageUrl == imageUrl;
 }
 
 bool Akregator::Feed::ImageInfo::operator!=(const Akregator::Feed::ImageInfo &other) const

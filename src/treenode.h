@@ -11,8 +11,8 @@
 
 #include "akregator_export.h"
 #include <QObject>
-#include <QVector>
 #include <QPoint>
+#include <QVector>
 
 class KJob;
 
@@ -22,7 +22,8 @@ class QIcon;
 class QString;
 template<class T> class QList;
 
-namespace Akregator {
+namespace Akregator
+{
 class ArticleListJob;
 class TreeNodeVisitor;
 class Article;
@@ -43,7 +44,6 @@ class AKREGATOR_EXPORT TreeNode : public QObject
     Q_OBJECT
 
 public:
-
     /** Standard constructor */
     TreeNode();
 
@@ -170,10 +170,12 @@ Q_SIGNALS:
     /** Emitted when this object is deleted. */
     void signalDestroyed(Akregator::TreeNode *);
 
-    /** Notification mechanism: emitted, when the node was modified and notification is enabled. A node change is renamed title, icon, unread count. Added, updated or removed articles are not notified via this signal */
+    /** Notification mechanism: emitted, when the node was modified and notification is enabled. A node change is renamed title, icon, unread count. Added,
+     * updated or removed articles are not notified via this signal */
     void signalChanged(Akregator::TreeNode *);
 
-    /** emitted when new articles were added to this node or any node in the subtree (for folders). Note that this has nothing to do with fetching, the article might have been moved from somewhere else in the tree into this subtree, e.g. by moving the feed the article is in.
+    /** emitted when new articles were added to this node or any node in the subtree (for folders). Note that this has nothing to do with fetching, the article
+       might have been moved from somewhere else in the tree into this subtree, e.g. by moving the feed the article is in.
         @param TreeNode* the node articles were added to
         @param guids the guids of the articles added
     */
@@ -182,11 +184,11 @@ Q_SIGNALS:
     /** emitted when articles were updated */
     void signalArticlesUpdated(Akregator::TreeNode *, const QVector<Akregator::Article> &guids);
 
-    /** emitted when articles were removed from this subtree. Note that this has nothing to do with actual article deletion! The article might have moved somewhere else in the tree, e.g. if the user moved the feed */
+    /** emitted when articles were removed from this subtree. Note that this has nothing to do with actual article deletion! The article might have moved
+     * somewhere else in the tree, e.g. if the user moved the feed */
     void signalArticlesRemoved(Akregator::TreeNode *, const QVector<Akregator::Article> &guids);
 
 protected:
-
     /** call this if you modified the actual node (title, unread count).
      Call this only when the _actual_ _node_ has changed, i.e. title, unread count. Don't use for article changes!
      Will do notification immediately or cache it, depending on @c m_doNotify. */

@@ -7,22 +7,25 @@
 #ifndef ARTICLEVIEWERWEBENGINEWIDGETNG_H
 #define ARTICLEVIEWERWEBENGINEWIDGETNG_H
 
-#include <QWidget>
 #include "akregator_export.h"
 #include "articleviewerwebengine.h"
+#include <QWidget>
 class QPrinter;
 class KActionCollection;
 
-namespace KPIMTextEdit {
+namespace KPIMTextEdit
+{
 class SlideContainer;
 class TextToSpeechWidget;
 }
 
-namespace WebEngineViewer {
+namespace WebEngineViewer
+{
 class FindBarWebEngineView;
 }
 
-namespace Akregator {
+namespace Akregator
+{
 class AKREGATOR_EXPORT ArticleViewerWebEngineWidgetNg : public QWidget
 {
     Q_OBJECT
@@ -45,6 +48,7 @@ private Q_SLOTS:
     void slotExportHtmlPageSuccess(const QString &filename);
     void slotExportHtmlPageFailed();
     void slotHandlePagePrinted(bool result);
+
 private:
     void initializeActions(KActionCollection *ac);
     void initializeLayout(KActionCollection *ac);

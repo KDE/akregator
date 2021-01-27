@@ -13,7 +13,8 @@
 
 class QString;
 
-namespace Akregator {
+namespace Akregator
+{
 class Frame;
 class OpenUrlRequest;
 
@@ -68,6 +69,7 @@ Q_SIGNALS:
     void signalCopyImageLocation(int currentFrame);
     void signalSaveImageOnDisk(int currentFrame);
     void signalMute(int currentFrame, bool);
+
 private:
     void tabInserted(int) override;
     void tabRemoved(int) override;
@@ -78,6 +80,7 @@ private Q_SLOTS:
     void slotCloseAllTab();
     void slotTabContextMenuRequest(const QPoint &pos);
     void slotCloseAllTabExcept(int index);
+
 private:
     void closeAllTabExcept(int index = -1);
     class Private;

@@ -7,11 +7,12 @@
 #ifndef URLHANDLERWebEngineMANAGER_H
 #define URLHANDLERWebEngineMANAGER_H
 
+#include "akregator_export.h"
 #include <QObject>
 #include <QVector>
-#include "akregator_export.h"
 
-namespace Akregator {
+namespace Akregator
+{
 class URLHandlerWebEngine;
 class ArticleViewerWebEngine;
 class AKREGATOR_EXPORT URLHandlerWebEngineManager : public QObject

@@ -7,24 +7,24 @@
 */
 
 #include "feedlist.h"
-#include "storage.h"
 #include "article.h"
 #include "feed.h"
 #include "folder.h"
+#include "storage.h"
 #include "treenode.h"
 #include "treenodevisitor.h"
 
+#include "akregator_debug.h"
 #include "kernel.h"
 #include "subscriptionlistjobs.h"
-#include <memory>
-#include "akregator_debug.h"
 #include <KLocalizedString>
+#include <memory>
 
-#include <qdom.h>
-#include <QHash>
-#include <QSet>
 #include <QElapsedTimer>
+#include <QHash>
 #include <QRandomGenerator>
+#include <QSet>
+#include <qdom.h>
 
 using namespace Akregator;
 class Q_DECL_HIDDEN FeedList::Private
@@ -40,14 +40,15 @@ public:
     QHash<int, TreeNode *> idMap;
     AddNodeVisitor *addNodeVisitor;
     RemoveNodeVisitor *removeNodeVisitor;
-    QHash<QString, QList<Feed *> > urlMap;
+    QHash<QString, QList<Feed *>> urlMap;
     mutable int unreadCache;
 };
 
 class FeedList::AddNodeVisitor : public TreeNodeVisitor
 {
 public:
-    AddNodeVisitor(FeedList *list) : m_list(list)
+    AddNodeVisitor(FeedList *list)
+        : m_list(list)
     {
     }
 
@@ -56,16 +57,11 @@ public:
         m_list->d->idMap.insert(node->id(), node);
         m_list->d->flatList.append(node);
         m_list->d->urlMap[node->xmlUrl()].append(node);
-        connect(node, &Feed::fetchStarted,
-                m_list, &FeedList::fetchStarted);
-        connect(node, &Feed::fetched,
-                m_list, &FeedList::fetched);
-        connect(node, &Feed::fetchAborted,
-                m_list, &FeedList::fetchAborted);
-        connect(node, &Feed::fetchError,
-                m_list, &FeedList::fetchError);
-        connect(node, &Feed::fetchDiscovery,
-                m_list, &FeedList::fetchDiscovery);
+        connect(node, &Feed::fetchStarted, m_list, &FeedList::fetchStarted);
+        connect(node, &Feed::fetched, m_list, &FeedList::fetched);
+        connect(node, &Feed::fetchAborted, m_list, &FeedList::fetchAborted);
+        connect(node, &Feed::fetchError, m_list, &FeedList::fetchError);
+        connect(node, &Feed::fetchDiscovery, m_list, &FeedList::fetchDiscovery);
 
         visitTreeNode(node);
         return true;
@@ -115,7 +111,8 @@ private:
 class FeedList::RemoveNodeVisitor : public TreeNodeVisitor
 {
 public:
-    RemoveNodeVisitor(FeedList *list) : m_list(list)
+    RemoveNodeVisitor(FeedList *list)
+        : m_list(list)
     {
     }
 
@@ -221,7 +218,7 @@ void FeedList::parseChildNodes(QDomNode &node, Folder *parent)
     QDomElement e = node.toElement(); // try to convert the node to an element.
 
     if (!e.isNull()) {
-        //QString title = e.hasAttribute("text") ? e.attribute("text") : e.attribute("title");
+        // QString title = e.hasAttribute("text") ? e.attribute("text") : e.attribute("title");
 
         if (e.hasAttribute(QStringLiteral("xmlUrl")) || e.hasAttribute(QStringLiteral("xmlurl")) || e.hasAttribute(QStringLiteral("xmlURL"))) {
             Feed *feed = Feed::fromOPML(e, d->storage);
@@ -493,7 +490,8 @@ KJob *FeedList::createMarkAsReadJob()
     return d->rootNode ? d->rootNode->createMarkAsReadJob() : nullptr;
 }
 
-FeedListManagementImpl::FeedListManagementImpl(const QSharedPointer<FeedList> &list) : m_feedList(list)
+FeedListManagementImpl::FeedListManagementImpl(const QSharedPointer<FeedList> &list)
+    : m_feedList(list)
 {
 }
 

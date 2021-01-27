@@ -15,7 +15,8 @@
 
 class QDomDocument;
 
-namespace Akregator {
+namespace Akregator
+{
 class FeedList;
 
 class ImportFeedListCommand : public Command
@@ -27,11 +28,7 @@ public:
 
     void setTargetList(const QWeakPointer<FeedList> &feedList);
 
-    enum RootFolderOption {
-        None,
-        Auto,
-        Ask
-    };
+    enum RootFolderOption { None, Auto, Ask };
 
     void setImportedRootFolderOption(RootFolderOption opt);
     void setImportedRootFolderName(const QString &defaultName);

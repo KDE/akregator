@@ -7,11 +7,11 @@
 #include "articleviewerwebenginewidgetng.h"
 #include "akregator_debug.h"
 #include <KActionCollection>
+#include <KIO/JobUiDelegate>
+#include <KIO/OpenUrlJob>
 #include <KLocalizedString>
 #include <QVBoxLayout>
 #include <viewerplugintoolmanager.h>
-#include <KIO/JobUiDelegate>
-#include <KIO/OpenUrlJob>
 
 #include <KPIMTextEdit/kpimtextedit/texttospeechwidget.h>
 
@@ -21,13 +21,12 @@
 #include <WebEngineViewer/WebEngineExportHtmlPageJob>
 
 #include <QApplication>
-#include <QPrinter>
 #include <QPrintDialog>
 #include <QPrintPreviewDialog>
+#include <QPrinter>
 
 using namespace Akregator;
-template<typename Arg, typename R, typename C>
-struct InvokeWrapper {
+template<typename Arg, typename R, typename C> struct InvokeWrapper {
     R *receiver;
     void (C::*memberFun)(Arg);
     void operator()(Arg result)
@@ -36,8 +35,7 @@ struct InvokeWrapper {
     }
 };
 
-template<typename Arg, typename R, typename C>
-InvokeWrapper<Arg, R, C> invoke(R *receiver, void (C::*memberFun)(Arg))
+template<typename Arg, typename R, typename C> InvokeWrapper<Arg, R, C> invoke(R *receiver, void (C::*memberFun)(Arg))
 {
     InvokeWrapper<Arg, R, C> wrapper = {receiver, memberFun};
     return wrapper;
@@ -152,7 +150,7 @@ void ArticleViewerWebEngineWidgetNg::slotPrintPreview()
     connect(dialog, &QPrintPreviewDialog::paintRequested, this, [=](QPrinter *printing) {
         QApplication::setOverrideCursor(Qt::WaitCursor);
 
-        mArticleViewerNg->execPrintPreviewPage(printing, 10*1000);
+        mArticleViewerNg->execPrintPreviewPage(printing, 10 * 1000);
         QApplication::restoreOverrideCursor();
     });
 

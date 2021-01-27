@@ -7,9 +7,11 @@
 #ifndef GRANTLEEUTIL_H
 #define GRANTLEEUTIL_H
 #include <QString>
-namespace Akregator {
+namespace Akregator
+{
 class Feed;
-namespace GrantleeUtil {
+namespace GrantleeUtil
+{
 Q_REQUIRED_RESULT QString imageFeed(const Feed *feed);
 }
 }

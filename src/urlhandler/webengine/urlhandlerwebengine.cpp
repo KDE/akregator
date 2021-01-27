@@ -6,14 +6,14 @@
 
 #include "urlhandlerwebengine.h"
 #include "akregator_debug.h"
-#include <PimCommon/BroadcastStatus>
 #include "articleviewer-ng/webengine/articleviewerwebengine.h"
-#include <KLocalizedString>
-#include <QDesktopServices>
-#include <QClipboard>
-#include <QMenu>
-#include <QApplication>
 #include <KEmailAddress>
+#include <KLocalizedString>
+#include <PimCommon/BroadcastStatus>
+#include <QApplication>
+#include <QClipboard>
+#include <QDesktopServices>
+#include <QMenu>
 #include <QUrlQuery>
 using namespace Akregator;
 

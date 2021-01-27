@@ -7,27 +7,27 @@
  *
  */
 #include "feedstorage.h"
+#include "plugin.h"
 #include "storage.h"
 #include "storagefactory.h"
 #include "storagefactoryregistry.h"
-#include "plugin.h"
 #include <KLocalizedString>
 
-#include <Syndication/Constants>
 #include <Syndication/Atom/Atom>
+#include <Syndication/Constants>
 
 #include <QDateTime>
 #include <QFile>
 #include <QIODevice>
 #include <QStringList>
-#include <QXmlStreamWriter>
 #include <QVariant>
+#include <QXmlStreamWriter>
 
 #include <KPluginLoader>
 #include <KService>
 #include <KServiceTypeTrader>
-#include <QUrl>
 #include <QDebug>
+#include <QUrl>
 
 #include <iostream>
 
@@ -36,24 +36,16 @@
 using namespace Akregator;
 using namespace Akregator::Backend;
 
-namespace {
+namespace
+{
 static QString akregatorNamespace()
 {
     return QStringLiteral("http://akregator.kde.org/StorageExporter#");
 }
 
-enum TextMode {
-    PlainText,
-    Html
-};
+enum TextMode { PlainText, Html };
 
-enum Status {
-    Deleted = 0x01,
-    Trash = 0x02,
-    New = 0x04,
-    Read = 0x08,
-    Keep = 0x10
-};
+enum Status { Deleted = 0x01, Trash = 0x02, New = 0x04, Read = 0x08, Keep = 0x10 };
 
 class Element
 {
@@ -101,7 +93,8 @@ public:
 };
 
 struct Elements {
-    Elements() : atomNS(Syndication::Atom::atom1Namespace())
+    Elements()
+        : atomNS(Syndication::Atom::atom1Namespace())
         , akregatorNS(akregatorNamespace())
         , commentNS(Syndication::commentApiNamespace())
         , title(atomNS, QStringLiteral("title"))
@@ -252,10 +245,7 @@ static void writeItem(FeedStorage *storage, const QString &guid, QXmlStreamWrite
 
     Elements::instance.summary.write(storage->description(guid), writer, Html);
     Elements::instance.content.write(storage->content(guid), writer, Html);
-    writeAuthor(storage->authorName(guid),
-                storage->authorUri(guid),
-                storage->authorEMail(guid),
-                writer);
+    writeAuthor(storage->authorName(guid), storage->authorUri(guid), storage->authorEMail(guid), writer);
 
     bool hasEnc = false;
     QString encUrl, encType;
@@ -300,10 +290,10 @@ static void serialize(Storage *storage, const QString &url, QIODevice *device)
 
 static KService::List queryStoragePlugins()
 {
-    return KServiceTypeTrader::self()->query(QStringLiteral("Akregator/Plugin"),
-                                             QStringLiteral("[X-KDE-akregator-framework-version] == %1 and [X-KDE-akregator-plugintype] == 'storage' and [X-KDE-akregator-rank] > 0").arg(QString::
-                                                                                                                                                                                          number(
-                                                                                                                                                                                              AKREGATOR_PLUGIN_INTERFACE_VERSION)));
+    return KServiceTypeTrader::self()->query(
+        QStringLiteral("Akregator/Plugin"),
+        QStringLiteral("[X-KDE-akregator-framework-version] == %1 and [X-KDE-akregator-plugintype] == 'storage' and [X-KDE-akregator-rank] > 0")
+            .arg(QString::number(AKREGATOR_PLUGIN_INTERFACE_VERSION)));
 }
 
 static Plugin *createFromService(const KService::Ptr &service)
@@ -311,8 +301,10 @@ static Plugin *createFromService(const KService::Ptr &service)
     KPluginLoader loader(*service);
     KPluginFactory *factory = loader.factory();
     if (!factory) {
-        qCritical() << QStringLiteral(" Could not create plugin factory for: %1\n"
-                                      " Error message: %2").arg(service->library(), loader.errorString());
+        qCritical() << QStringLiteral(
+                           " Could not create plugin factory for: %1\n"
+                           " Error message: %2")
+                           .arg(service->library(), loader.errorString());
         return nullptr;
     }
     return factory->create<Akregator::Plugin>();

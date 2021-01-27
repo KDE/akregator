@@ -14,7 +14,8 @@
 
 using namespace Akregator;
 
-FetchQueue::FetchQueue(QObject *parent) : QObject(parent)
+FetchQueue::FetchQueue(QObject *parent)
+    : QObject(parent)
 {
 }
 

@@ -6,13 +6,13 @@
 
 #include "unityservicemanager.h"
 
+#include <QApplication>
 #include <QDBusConnection>
+#include <QDBusConnectionInterface>
 #include <QDBusMessage>
-#include <QDBusServiceWatcher>
 #include <QDBusPendingCallWatcher>
 #include <QDBusPendingReply>
-#include <QDBusConnectionInterface>
-#include <QApplication>
+#include <QDBusServiceWatcher>
 
 UnityServiceManager *UnityServiceManager::mInstance = nullptr;
 
@@ -48,10 +48,7 @@ void UnityServiceManager::updateCount()
     if (mUnityServiceAvailable) {
         const QString launcherId = qApp->desktopFileName() + QLatin1String(".desktop");
 
-        const QVariantMap properties{
-            {QStringLiteral("count-visible"), m_unread > 0},
-            {QStringLiteral("count"), m_unread}
-        };
+        const QVariantMap properties{{QStringLiteral("count-visible"), m_unread > 0}, {QStringLiteral("count"), m_unread}};
 
         QDBusMessage message = QDBusMessage::createSignal(QStringLiteral("/org/akregator/UnityLauncher"),
                                                           QStringLiteral("com.canonical.Unity.LauncherEntry"),

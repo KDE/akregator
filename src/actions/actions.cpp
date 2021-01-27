@@ -8,8 +8,8 @@
 
 #include "actions.h"
 
-#include <QIcon>
 #include <KLocalizedString>
+#include <QIcon>
 #include <QUrl>
 
 #include <QAction>

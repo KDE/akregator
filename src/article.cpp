@@ -17,9 +17,9 @@
 #include <Syndication/Syndication>
 
 #include <QDateTime>
-#include <qdom.h>
-#include <QRegularExpression>
 #include <QList>
+#include <QRegularExpression>
+#include <qdom.h>
 
 #include "akregator_debug.h"
 #include <QUrl>
@@ -27,7 +27,8 @@
 
 using namespace Syndication;
 
-namespace {
+namespace
+{
 QString buildTitle(const QString &description)
 {
     QString s = description;
@@ -60,7 +61,7 @@ QString buildTitle(const QString &description)
             replaceWith = QLatin1Char(' ');
         } else {
             // Any other tag, <i>text</i> ... etc
-            toReplace = rmatch.captured(1);    // strip just tag
+            toReplace = rmatch.captured(1); // strip just tag
             repStart = rmatch.capturedStart(1);
         }
         s.replace(repStart, toReplace.length(), replaceWith); // do the deed
@@ -73,7 +74,8 @@ QString buildTitle(const QString &description)
 }
 }
 
-namespace Akregator {
+namespace Akregator
+{
 struct Article::Private : public Shared {
     Private();
     Private(const QString &guid, Feed *feed, Backend::FeedStorage *archive);
@@ -88,13 +90,7 @@ struct Article::Private : public Shared {
         0000 1000 Read
         0001 0000 Keep
      */
-    enum Status {
-        Deleted = 0x01,
-        Trash = 0x02,
-        New = 0x04,
-        Read = 0x08,
-        Keep = 0x10
-    };
+    enum Status { Deleted = 0x01, Trash = 0x02, New = 0x04, Read = 0x08, Keep = 0x10 };
 
     Feed *feed = nullptr;
     QString guid;
@@ -102,15 +98,17 @@ struct Article::Private : public Shared {
     int status;
     uint hash;
     QDateTime pubDate;
-    QString title;  // Cache the title, for performance
+    QString title; // Cache the title, for performance
     mutable QSharedPointer<const Enclosure> enclosure;
 };
 
-namespace {
+namespace
+{
 class EnclosureImpl : public Enclosure
 {
 public:
-    EnclosureImpl(const QString &url, const QString &type, uint length) : m_url(url)
+    EnclosureImpl(const QString &url, const QString &type, uint length)
+        : m_url(url)
         , m_type(type)
         , m_length(length)
     {
@@ -149,7 +147,7 @@ public:
 private:
     const QString m_url;
     const QString m_type;
-    const QString m_title; //TODO underfined.
+    const QString m_title; // TODO underfined.
     const uint m_length;
 };
 }
@@ -216,7 +214,7 @@ Article::Private::Private(const ItemPtr &article, Feed *feed_, Backend::FeedStor
         }
     } else {
         // always update comments count, as it's not used for hash calculation
-        if (hash != archive->hash(guid)) { //article is in archive, was it modified?
+        if (hash != archive->hash(guid)) { // article is in archive, was it modified?
             // if yes, update
             pubDate = archive->pubDate(guid);
             archive->setHash(guid, hash);
@@ -240,7 +238,7 @@ Article::Private::Private(const ItemPtr &article, Feed *feed_, Backend::FeedStor
     if (!encs.isEmpty()) {
         archive->setEnclosure(guid, encs[0]->url(), encs[0]->type(), encs[0]->length());
     }
-#if 0 //We need additionalProperties for Bug 366487
+#if 0 // We need additionalProperties for Bug 366487
     qDebug() << "article " << article->additionalProperties().count();
     QMapIterator<QString, QDomElement> i(article->additionalProperties());
     while (i.hasNext()) {
@@ -254,11 +252,13 @@ Article::Private::Private(const ItemPtr &article, Feed *feed_, Backend::FeedStor
 #endif
 }
 
-Article::Article() : d(new Private)
+Article::Article()
+    : d(new Private)
 {
 }
 
-Article::Article(const QString &guid, Feed *feed, Backend::FeedStorage *archive) : d()
+Article::Article(const QString &guid, Feed *feed, Backend::FeedStorage *archive)
+    : d()
 {
     if (!archive) {
         archive = feed->storage()->archiveFor(feed->xmlUrl());
@@ -266,11 +266,13 @@ Article::Article(const QString &guid, Feed *feed, Backend::FeedStorage *archive)
     d = new Private(guid, feed, archive);
 }
 
-Article::Article(const Syndication::ItemPtr &article, Feed *feed) : d(new Private(article, feed, feed->storage()->archiveFor(feed->xmlUrl())))
+Article::Article(const Syndication::ItemPtr &article, Feed *feed)
+    : d(new Private(article, feed, feed->storage()->archiveFor(feed->xmlUrl())))
 {
 }
 
-Article::Article(const Syndication::ItemPtr &article, Backend::FeedStorage *archive) : d(new Private(article, nullptr, archive))
+Article::Article(const Syndication::ItemPtr &article, Backend::FeedStorage *archive)
+    : d(new Private(article, nullptr, archive))
 {
 }
 
@@ -306,7 +308,8 @@ bool Article::isDeleted() const
     return (d->status & Private::Deleted) != 0;
 }
 
-Article::Article(const Article &other) : d(other.d)
+Article::Article(const Article &other)
+    : d(other.d)
 {
     d->ref();
 }
@@ -328,8 +331,7 @@ Article &Article::operator=(const Article &other)
 
 bool Article::operator<(const Article &other) const
 {
-    return pubDate() > other.pubDate()
-           || (pubDate() == other.pubDate() && guid() < other.guid());
+    return pubDate() > other.pubDate() || (pubDate() == other.pubDate() && guid() < other.guid());
 }
 
 bool Article::operator<=(const Article &other) const
@@ -339,8 +341,7 @@ bool Article::operator<=(const Article &other) const
 
 bool Article::operator>(const Article &other) const
 {
-    return pubDate() < other.pubDate()
-           || (pubDate() == other.pubDate() && guid() > other.guid());
+    return pubDate() < other.pubDate() || (pubDate() == other.pubDate() && guid() > other.guid());
 }
 
 bool Article::operator>=(const Article &other) const

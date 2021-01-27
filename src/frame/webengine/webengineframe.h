@@ -7,12 +7,13 @@
 #ifndef WEBENGINEFRAME_H
 #define WEBENGINEFRAME_H
 
-#include "frame.h"
 #include "akregatorpart_export.h"
+#include "frame.h"
 
 class KActionCollection;
 
-namespace Akregator {
+namespace Akregator
+{
 class ArticleViewerWebEngineWidgetNg;
 class AKREGATOR_EXPORT WebEngineFrame : public Frame
 {
@@ -54,6 +55,7 @@ private Q_SLOTS:
     void slotLoadStarted();
     void slotLoadFinished();
     void slotWebPageMutedOrAudibleChanged(bool isAudioMuted, bool wasRecentlyAudible);
+
 private:
     void loadUrl(const QUrl &url);
     Akregator::ArticleViewerWebEngineWidgetNg *mArticleViewerWidgetNg = nullptr;

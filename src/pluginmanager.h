@@ -17,12 +17,12 @@
 
 #include <vector>
 
-namespace Akregator {
+namespace Akregator
+{
 class Plugin;
 class AKREGATORPART_EXPORT PluginManager
 {
 public:
-
     /**
      * It will return a list of services that match your
      * specifications.  The only required parameter is the service
@@ -85,9 +85,9 @@ public:
     static void dump(const KService::Ptr &service);
 
     /**
-      * Show modal info dialog about plugin
-      * @param constraint  A constraint to limit the choices returned
-      */
+     * Show modal info dialog about plugin
+     * @param constraint  A constraint to limit the choices returned
+     */
     static void showAbout(const QString &constraint);
 
 private:
@@ -98,7 +98,7 @@ private:
 
     static std::vector<StoreItem>::iterator lookupPlugin(const Akregator::Plugin *plugin);
 
-    //attributes:
+    // attributes:
     static std::vector<StoreItem> m_store;
 };
 } // namespace Akregator

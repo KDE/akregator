@@ -7,9 +7,10 @@
 #ifndef AKREGATORUSERFEEDBACKPROVIDER_H
 #define AKREGATORUSERFEEDBACKPROVIDER_H
 
-#include <KUserFeedback/Provider>
 #include "akregatorinterfaces_export.h"
-namespace Akregator {
+#include <KUserFeedback/Provider>
+namespace Akregator
+{
 class AKREGATORINTERFACES_EXPORT AkregatorUserFeedbackProvider : public KUserFeedback::Provider
 {
     Q_OBJECT

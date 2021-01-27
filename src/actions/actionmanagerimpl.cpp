@@ -7,8 +7,8 @@
 */
 
 #include "actionmanagerimpl.h"
-#include "akregatorconfig.h"
 #include "akregator_part.h"
+#include "akregatorconfig.h"
 #include "articlelistview.h"
 #include "feed.h"
 #include "fetchqueue.h"
@@ -23,18 +23,18 @@
 
 #include <WebEngineViewer/ZoomActionMenu>
 
-#include <KActionMenu>
-#include <QAction>
-#include <KToggleAction>
-#include <KActionCollection>
 #include "akregator_debug.h"
-#include <KLocalizedString>
-#include <QMenu>
-#include <QKeySequence>
-#include <KStandardShortcut>
-#include <KStandardAction>
-#include <kxmlguifactory.h>
+#include <KActionCollection>
+#include <KActionMenu>
 #include <KGuiItem>
+#include <KLocalizedString>
+#include <KStandardAction>
+#include <KStandardShortcut>
+#include <KToggleAction>
+#include <QAction>
+#include <QKeySequence>
+#include <QMenu>
+#include <kxmlguifactory.h>
 
 #include <QHash>
 #include <QWidget>
@@ -44,7 +44,8 @@ using namespace Akregator;
 class ActionManagerImpl::NodeSelectVisitor : public TreeNodeVisitor
 {
 public:
-    NodeSelectVisitor(ActionManagerImpl *manager) : m_manager(manager)
+    NodeSelectVisitor(ActionManagerImpl *manager)
+        : m_manager(manager)
     {
     }
 
@@ -70,7 +71,7 @@ public:
     {
         QAction *remove = m_manager->action(QStringLiteral("feed_remove"));
         if (remove) {
-            remove->setEnabled(node->parent());    // root nodes must not be deleted
+            remove->setEnabled(node->parent()); // root nodes must not be deleted
         }
         QAction *hp = m_manager->action(QStringLiteral("feed_homepage"));
         if (hp) {
@@ -343,8 +344,9 @@ void ActionManagerImpl::initMainWidget(MainWidget *mainWidget)
     action->setIcon(QIcon::fromTheme(QStringLiteral("go-next")));
     action->setText(i18n("Ne&xt Unread Article"));
     connect(action, &QAction::triggered, d->mainWidget, &MainWidget::slotNextUnreadArticle);
-    coll->setDefaultShortcuts(action, QList<QKeySequence>() << QKeySequence(Qt::Key_Plus) << QKeySequence(Qt::Key_Plus | Qt::KeypadModifier)
-                                                            << QKeySequence(Qt::Key_Equal) << QKeySequence(Qt::Key_Equal | Qt::KeypadModifier));
+    coll->setDefaultShortcuts(action,
+                              QList<QKeySequence>() << QKeySequence(Qt::Key_Plus) << QKeySequence(Qt::Key_Plus | Qt::KeypadModifier)
+                                                    << QKeySequence(Qt::Key_Equal) << QKeySequence(Qt::Key_Equal | Qt::KeypadModifier));
 
     action = coll->addAction(QStringLiteral("article_delete"));
     action->setIcon(QIcon::fromTheme(QStringLiteral("edit-delete")));
@@ -422,7 +424,7 @@ void ActionManagerImpl::initMainWidget(MainWidget *mainWidget)
     connect(d->shareServiceManager, &PimCommon::ShareServiceUrlManager::serviceUrlSelected, this, &ActionManagerImpl::slotServiceUrlSelected);
 
     d->mQuickSearchAction = new QAction(i18n("Set Focus to Quick Search"), this);
-    //If change shortcut change Panel::setQuickSearchClickMessage(...) message
+    // If change shortcut change Panel::setQuickSearchClickMessage(...) message
     actionCollection()->setDefaultShortcut(d->mQuickSearchAction, QKeySequence(Qt::ALT | Qt::Key_Q));
     actionCollection()->addAction(QStringLiteral("focus_to_quickseach"), d->mQuickSearchAction);
     connect(d->mQuickSearchAction, &QAction::triggered, mainWidget, &MainWidget::slotFocusQuickSearch);
@@ -651,19 +653,20 @@ QAction *ActionManagerImpl::action(const QString &name)
     return d->actionCollection != nullptr ? d->actionCollection->action(name) : nullptr;
 }
 
-void ActionManagerImpl::setArticleActionsEnabled(bool enabled)
-{
+void ActionManagerImpl::setArticleActionsEnabled(bool enabled){
 #undef setActionEnabled
-#define setActionEnabled(name) { QAction *const a = action(name); if (a) {a->setEnabled(enabled);}}
-    setActionEnabled(QStringLiteral("article_open"))
-    setActionEnabled(QStringLiteral("article_open_external"))
-    setActionEnabled(QStringLiteral("article_set_status_important"))
-    setActionEnabled(QStringLiteral("article_set_status"))
-    setActionEnabled(QStringLiteral("article_delete"))
-    setActionEnabled(QStringLiteral("file_sendlink"))
-    setActionEnabled(QStringLiteral("file_sendfile"))
-    setActionEnabled(QStringLiteral("article_open_in_background"))
-    setActionEnabled(QStringLiteral("share_serviceurl"))
+#define setActionEnabled(name)                                                                                                                                 \
+    {                                                                                                                                                          \
+        QAction *const a = action(name);                                                                                                                       \
+        if (a) {                                                                                                                                               \
+            a->setEnabled(enabled);                                                                                                                            \
+        }                                                                                                                                                      \
+    }
+    setActionEnabled(QStringLiteral("article_open")) setActionEnabled(QStringLiteral("article_open_external"))
+        setActionEnabled(QStringLiteral("article_set_status_important")) setActionEnabled(QStringLiteral("article_set_status"))
+            setActionEnabled(QStringLiteral("article_delete")) setActionEnabled(QStringLiteral("file_sendlink"))
+                setActionEnabled(QStringLiteral("file_sendfile")) setActionEnabled(QStringLiteral("article_open_in_background"))
+                    setActionEnabled(QStringLiteral("share_serviceurl"))
 #undef setActionEnabled
 }
 

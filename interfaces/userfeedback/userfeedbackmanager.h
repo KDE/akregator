@@ -7,12 +7,14 @@
 #ifndef USERFEEDBACKMANAGER_H
 #define USERFEEDBACKMANAGER_H
 
-#include <QObject>
 #include "akregatorinterfaces_export.h"
-namespace KUserFeedback {
+#include <QObject>
+namespace KUserFeedback
+{
 class Provider;
 }
-namespace Akregator {
+namespace Akregator
+{
 class AKREGATORINTERFACES_EXPORT UserFeedBackManager : public QObject
 {
     Q_OBJECT

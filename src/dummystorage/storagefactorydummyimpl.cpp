@@ -11,8 +11,10 @@
 #include <KLocalizedString>
 #include <QStringList>
 
-namespace Akregator {
-namespace Backend {
+namespace Akregator
+{
+namespace Backend
+{
 Storage *StorageFactoryDummyImpl::createStorage(const QStringList &params) const
 {
     Storage *storage = new StorageDummyImpl;

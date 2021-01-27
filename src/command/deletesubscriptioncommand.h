@@ -13,7 +13,8 @@
 
 #include <QWeakPointer>
 
-namespace Akregator {
+namespace Akregator
+{
 class FeedList;
 
 class DeleteSubscriptionCommand : public Command

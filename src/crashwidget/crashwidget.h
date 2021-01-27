@@ -8,16 +8,13 @@
 #define CRASHWIDGET_H
 
 #include <QWidget>
-namespace Akregator {
+namespace Akregator
+{
 class CrashWidget : public QWidget
 {
     Q_OBJECT
 public:
-    enum CrashAction {
-        RestoreSession = 0,
-        NotRestoreSession,
-        AskMeLater
-    };
+    enum CrashAction { RestoreSession = 0, NotRestoreSession, AskMeLater };
 
     explicit CrashWidget(QWidget *parent = nullptr);
     ~CrashWidget();

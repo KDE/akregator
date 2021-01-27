@@ -7,29 +7,34 @@
 #ifndef ARTICLEVIEWERWEBENGINE_H
 #define ARTICLEVIEWERWEBENGINE_H
 
+#include <MessageViewer/ViewerPluginInterface>
+#include <WebEngineViewer/CheckPhishingUrlJob>
 #include <WebEngineViewer/WebEngineView>
 #include <openurlrequest.h>
 #include <shareserviceurlmanager.h>
-#include <MessageViewer/ViewerPluginInterface>
-#include <WebEngineViewer/CheckPhishingUrlJob>
 
 class KActionCollection;
-namespace WebEngineViewer {
+namespace WebEngineViewer
+{
 class WebHitTestResult;
 class WebEngineAccessKey;
 class InterceptorManager;
 }
-namespace MessageViewer {
+namespace MessageViewer
+{
 class ViewerPluginToolManager;
 class ViewerPluginInterface;
 }
-namespace PimCommon {
+namespace PimCommon
+{
 class ShareServiceUrlManager;
 }
-namespace KIO {
+namespace KIO
+{
 class KUriFilterSearchProviderActions;
 }
-namespace Akregator {
+namespace Akregator
+{
 class ArticleViewerWebEnginePage;
 class AKREGATOR_EXPORT ArticleViewerWebEngine : public WebEngineViewer::WebEngineView
 {
@@ -57,6 +62,7 @@ public:
     void createViewerPluginToolManager(KActionCollection *ac, QWidget *parent);
 
     void execPrintPreviewPage(QPrinter *printer, int timeout);
+
 protected:
     QUrl mCurrentUrl;
     KActionCollection *const mActionCollection;
@@ -110,14 +116,15 @@ private Q_SLOTS:
     void slotActivatePlugin(MessageViewer::ViewerPluginInterface *interface);
     void slotWebPageMutedOrAudibleChanged();
     void slotCheckedUrlFinished(const QUrl &url, WebEngineViewer::CheckPhishingUrlUtil::UrlStatus status);
-protected:
 
+protected:
     void slotOpenLinkInBrowser();
     void slotOpenLinkInForegroundTab();
     void slotOpenLinkInBackgroundTab();
     ArticleViewerWebEnginePage *mPageEngine = nullptr;
     QList<QAction *> viewerPluginActionList(MessageViewer::ViewerPluginInterface::SpecificFeatureTypes features);
     WebEngineViewer::InterceptorManager *mNetworkAccessManager = nullptr;
+
 private:
     void openSafeUrl(const QUrl &url);
     bool urlIsAMalwareButContinue();

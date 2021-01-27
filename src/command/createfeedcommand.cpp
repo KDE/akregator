@@ -18,9 +18,9 @@
 
 #include <QUrl>
 
+#include <QClipboard>
 #include <QPointer>
 #include <QTimer>
-#include <QClipboard>
 
 #include <cassert>
 
@@ -29,6 +29,7 @@ using namespace Akregator;
 class Q_DECL_HIDDEN CreateFeedCommand::Private
 {
     CreateFeedCommand *const q;
+
 public:
     explicit Private(CreateFeedCommand *qq);
 
@@ -82,7 +83,7 @@ void CreateFeedCommand::Private::doCreate()
         afd->exec();
     }
 
-    if (!thisPointer) {   // "this" might have been deleted while exec()!
+    if (!thisPointer) { // "this" might have been deleted while exec()!
         delete afd;
         return;
     }
@@ -121,7 +122,8 @@ void CreateFeedCommand::Private::doCreate()
     q->done();
 }
 
-CreateFeedCommand::CreateFeedCommand(MainWidget *parent) : Command(parent)
+CreateFeedCommand::CreateFeedCommand(MainWidget *parent)
+    : Command(parent)
     , d(new Private(this))
 {
     d->m_parent = parent;

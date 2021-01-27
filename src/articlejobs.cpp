@@ -74,7 +74,8 @@ void ArticleDeleteJob::doStart()
     emitResult();
 }
 
-ArticleModifyJob::ArticleModifyJob(QObject *parent) : KJob(parent)
+ArticleModifyJob::ArticleModifyJob(QObject *parent)
+    : KJob(parent)
     , m_feedList(Kernel::self()->feedList())
 {
     Q_ASSERT(m_feedList);
@@ -138,7 +139,8 @@ void ArticleModifyJob::doStart()
     emitResult();
 }
 
-CompositeJob::CompositeJob(QObject *parent) : KCompositeJob(parent)
+CompositeJob::CompositeJob(QObject *parent)
+    : KCompositeJob(parent)
 {
 }
 
@@ -159,7 +161,8 @@ void CompositeJob::start()
     }
 }
 
-ArticleListJob::ArticleListJob(TreeNode *p) : KJob(p)
+ArticleListJob::ArticleListJob(TreeNode *p)
+    : KJob(p)
     , m_node(p)
 {
 }

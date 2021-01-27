@@ -25,7 +25,8 @@ class QString;
 
 class KJob;
 
-namespace Akregator {
+namespace Akregator
+{
 class Article;
 class Feed;
 class FeedList;
@@ -33,7 +34,8 @@ class FetchQueue;
 class Folder;
 class TreeNode;
 
-namespace Backend {
+namespace Backend
+{
 class Storage;
 }
 
@@ -54,13 +56,13 @@ private:
 };
 
 /** @class FeedList
-    The model of a feed tree, represents an OPML document. Contains an additional root node "All Feeds" which isn't stored. Note that a node instance must not be in more than one FeedList at a time! When deleting the feed list, all contained nodes are deleted! */
+    The model of a feed tree, represents an OPML document. Contains an additional root node "All Feeds" which isn't stored. Note that a node instance must not
+   be in more than one FeedList at a time! When deleting the feed list, all contained nodes are deleted! */
 
 class AKREGATOR_EXPORT FeedList : public QObject
 {
     Q_OBJECT
 public:
-
     explicit FeedList(Akregator::Backend::Storage *storage);
 
     /** Destructor. Contained nodes are deleted! */
@@ -110,7 +112,8 @@ public:
     /** exports the feed list as OPML. The root node ("All Feeds") is ignored! */
     Q_REQUIRED_RESULT QDomDocument toOpml() const;
 
-    /** returns a feed object for a given feed URL. If the feed list does not contain a feed with @c url, NULL is returned. If it contains the same feed multiple times, any of the Feed objects is returned. */
+    /** returns a feed object for a given feed URL. If the feed list does not contain a feed with @c url, NULL is returned. If it contains the same feed
+     * multiple times, any of the Feed objects is returned. */
     const Feed *findByURL(const QString &feedURL) const;
     Feed *findByURL(const QString &feedURL);
 
@@ -152,7 +155,6 @@ Q_SIGNALS:
     void unreadCountChanged(int unread);
 
 private:
-
     void addNode(TreeNode *node, bool preserveID);
     void removeNode(TreeNode *node);
 

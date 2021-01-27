@@ -9,14 +9,14 @@
 
 #include "frame.h"
 
-namespace Akregator {
+namespace Akregator
+{
 class ArticleViewerWidget;
 class AKREGATOR_EXPORT MainFrame : public Frame
 {
     Q_OBJECT
 
 public:
-
     explicit MainFrame(QWidget *parent, QWidget *widget);
     ~MainFrame() override;
 
@@ -43,6 +43,7 @@ public Q_SLOTS:
     void slotCopyImageLocationInFrame(int frameId);
     void slotSaveImageOnDiskInFrame(int frameId);
     void slotMute(int frameId, bool mute);
+
 private:
     Akregator::ArticleViewerWidget *mArticleViewer = nullptr;
 };

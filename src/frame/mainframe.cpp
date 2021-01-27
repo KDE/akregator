@@ -5,8 +5,8 @@
 */
 
 #include "mainframe.h"
-#include "articleviewerwidget.h"
 #include "articleviewer-ng/webengine/articleviewerwebenginewidgetng.h"
+#include "articleviewerwidget.h"
 
 #include <QGridLayout>
 

@@ -8,18 +8,18 @@
 
 #include "tabwidget.h"
 
-#include <QStyle>
-#include <QIcon>
 #include <QHash>
+#include <QIcon>
 #include <QString>
+#include <QStyle>
 #include <QToolButton>
 
 #include <QMenu>
 #include <QStyleOption>
 
 #include "akregator_debug.h"
-#include <QTabBar>
 #include <KLocalizedString>
+#include <QTabBar>
 #include <kio/global.h>
 
 #include "actionmanager.h"
@@ -38,7 +38,8 @@ private:
     TabWidget *const q;
 
 public:
-    explicit Private(TabWidget *qq) : q(qq)
+    explicit Private(TabWidget *qq)
+        : q(qq)
     {
     }
 
@@ -141,7 +142,7 @@ void TabWidget::slotTabContextMenuRequest(const QPoint &pos)
 
     QAction *action = menu.exec(mapToGlobal(pos));
 
-    if (action == allOther) {   // Close all other tabs
+    if (action == allOther) { // Close all other tabs
         slotCloseAllTabExcept(indexBar);
     } else if (action == closeTab) {
         slotCloseRequest(indexBar);
@@ -154,7 +155,7 @@ void TabWidget::slotTabContextMenuRequest(const QPoint &pos)
 
 void TabWidget::closeAllTabExcept(int index)
 {
-    //Don't close first tab
+    // Don't close first tab
     for (int i = count() - 1; i > 0; --i) {
         if (i == index) {
             continue;
@@ -293,12 +294,9 @@ int TabWidget::Private::tabBarWidthForMaxChars(int maxLength)
         }
 
         int lw = fm.boundingRect(newTitle).width();
-        int iw = q->tabBar()->tabIcon(i).pixmap(q->tabBar()->style()->pixelMetric(
-                                                    QStyle::PM_SmallIconSize), QIcon::Normal
-                                                ).width() + 4;
+        int iw = q->tabBar()->tabIcon(i).pixmap(q->tabBar()->style()->pixelMetric(QStyle::PM_SmallIconSize), QIcon::Normal).width() + 4;
 
-        x += (q->tabBar()->style()->sizeFromContents(QStyle::CT_TabBarTab, &o,
-                                                     QSize(lw + hframe + iw, 0), q)).width();
+        x += (q->tabBar()->style()->sizeFromContents(QStyle::CT_TabBarTab, &o, QSize(lw + hframe + iw, 0), q)).width();
     }
     return x;
 }

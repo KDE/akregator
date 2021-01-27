@@ -53,5 +53,5 @@ void AkregratorMigrateApplication::initializeMigrator()
     migrateInfoData.setPath(QStringLiteral("akregator/data/"));
     migrateInfoData.setVersion(initialVersion);
     mMigrator.insertMigrateInfo(migrateInfoData);
-    //TODO
+    // TODO
 }

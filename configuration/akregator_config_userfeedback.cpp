@@ -6,18 +6,17 @@
 
 #include "akregator_config_userfeedback.h"
 #include <KAboutData>
-#include <KPluginFactory>
 #include <KLocalizedString>
+#include <KPluginFactory>
 #include <QHBoxLayout>
 #ifdef WITH_KUSERFEEDBACK
-#include <KUserFeedback/FeedbackConfigWidget>
 #include "userfeedback/userfeedbackmanager.h"
+#include <KUserFeedback/FeedbackConfigWidget>
 #endif
 
 using namespace Akregator;
 
-K_PLUGIN_FACTORY(KCMAkregatorUserFeedBackConfigFactory, registerPlugin<KCMAkregatorUserFeedBackConfig>();
-                 )
+K_PLUGIN_FACTORY(KCMAkregatorUserFeedBackConfigFactory, registerPlugin<KCMAkregatorUserFeedBackConfig>();)
 
 KCMAkregatorUserFeedBackConfig::KCMAkregatorUserFeedBackConfig(QWidget *parent, const QVariantList &args)
     : KCModule(parent, args)
@@ -27,7 +26,9 @@ KCMAkregatorUserFeedBackConfig::KCMAkregatorUserFeedBackConfig(QWidget *parent, 
 
     KAboutData *about = new KAboutData(QStringLiteral("kcmaddressbookuserfeedbackconfig"),
                                        i18n("Configure User Feedback"),
-                                       QString(), QString(), KAboutLicense::GPL,
+                                       QString(),
+                                       QString(),
+                                       KAboutLicense::GPL,
                                        i18n("(c), 2020 Laurent Montel"));
 
     about->addAuthor(i18n("Laurent Montel"), QString(), QStringLiteral("montel@kde.org"));
@@ -53,7 +54,7 @@ void KCMAkregatorUserFeedBackConfig::load()
 
 void KCMAkregatorUserFeedBackConfig::defaults()
 {
-    //TODO fixme default values
+    // TODO fixme default values
     mUserFeedbackWidget->setFeedbackProvider(Akregator::UserFeedBackManager::self()->userFeedbackProvider());
 }
 

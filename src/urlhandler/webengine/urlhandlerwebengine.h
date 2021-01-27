@@ -7,10 +7,11 @@
 #ifndef URLHANDLERWebEngine_H
 #define URLHANDLERWebEngine_H
 
-#include <QUrl>
-#include <QString>
 #include <QPoint>
-namespace Akregator {
+#include <QString>
+#include <QUrl>
+namespace Akregator
+{
 class ArticleViewerWebEngine;
 class URLHandlerWebEngine
 {
@@ -20,30 +21,30 @@ public:
     }
 
     /**
-      * Called when LMB-clicking on a link in the reader. Should start
-      * processing equivalent to "opening" the link.
-      *
-      * @return true if the click was handled by this URLHandlerWebEngine,
-      *         false otherwise.
-      */
+     * Called when LMB-clicking on a link in the reader. Should start
+     * processing equivalent to "opening" the link.
+     *
+     * @return true if the click was handled by this URLHandlerWebEngine,
+     *         false otherwise.
+     */
     virtual bool handleClick(const QUrl &url, ArticleViewerWebEngine *w) const = 0;
 
     /**
-      * Called when RMB-clicking on a link in the reader. Should show
-      * a context menu at the specified point with the specified
-      * widget as parent.
-      *
-      * @return true if the right-click was handled by this
-      * URLHandlerWebEngine, false otherwise.
-      */
+     * Called when RMB-clicking on a link in the reader. Should show
+     * a context menu at the specified point with the specified
+     * widget as parent.
+     *
+     * @return true if the right-click was handled by this
+     * URLHandlerWebEngine, false otherwise.
+     */
     virtual bool handleContextMenuRequest(const QUrl &url, const QPoint &p, ArticleViewerWebEngine *w) const = 0;
 
     /**
-      * Called when hovering over a link.
-      *
-      * @return a string to be shown in the status bar while hoverin
-      * over this link.
-      */
+     * Called when hovering over a link.
+     *
+     * @return a string to be shown in the status bar while hoverin
+     * over this link.
+     */
     virtual QString statusBarMessage(const QUrl &url, ArticleViewerWebEngine *w) const = 0;
 };
 
@@ -67,7 +68,8 @@ public:
 class MailToURLHandlerWebEngine : public URLHandlerWebEngine
 {
 public:
-    MailToURLHandlerWebEngine() : URLHandlerWebEngine()
+    MailToURLHandlerWebEngine()
+        : URLHandlerWebEngine()
     {
     }
 
@@ -83,7 +85,8 @@ public:
 class ActionURLHandlerWebEngine : public URLHandlerWebEngine
 {
 public:
-    ActionURLHandlerWebEngine() : URLHandlerWebEngine()
+    ActionURLHandlerWebEngine()
+        : URLHandlerWebEngine()
     {
     }
 

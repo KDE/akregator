@@ -12,7 +12,8 @@
 
 #include <QStyledItemDelegate>
 
-namespace Akregator {
+namespace Akregator
+{
 class SubscriptionListDelegate : public QStyledItemDelegate
 {
     Q_OBJECT

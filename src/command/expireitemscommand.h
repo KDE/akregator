@@ -15,7 +15,8 @@
 
 #include <QWeakPointer>
 
-namespace Akregator {
+namespace Akregator
+{
 class FeedList;
 
 class ExpireItemsCommand : public Command

@@ -13,10 +13,12 @@
 #include "akregator_export.h"
 class QTemporaryFile;
 class KJob;
-namespace MimeTreeParser {
+namespace MimeTreeParser
+{
 class AttachmentTemporaryFilesDirs;
 }
-namespace Akregator {
+namespace Akregator
+{
 class AKREGATOR_EXPORT DownloadArticleJob : public QObject
 {
     Q_OBJECT

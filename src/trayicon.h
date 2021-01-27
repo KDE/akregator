@@ -12,7 +12,8 @@
 #include "akregator_export.h"
 
 #include <KStatusNotifierItem>
-namespace Akregator {
+namespace Akregator
+{
 class AKREGATOR_EXPORT TrayIcon : public KStatusNotifierItem
 {
     Q_OBJECT

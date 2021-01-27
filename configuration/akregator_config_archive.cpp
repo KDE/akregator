@@ -8,16 +8,15 @@
 #include "akregator_config_archive.h"
 #include "ui_settings_archive.h"
 #include <KAboutData>
-#include <KPluginFactory>
 #include <KLocalizedString>
+#include <KPluginFactory>
 
 #include <QButtonGroup>
 #include <QVBoxLayout>
 
 using namespace Akregator;
 
-K_PLUGIN_FACTORY(KCMAkregatorArchiveConfigFactory, registerPlugin<KCMAkregatorArchiveConfig>();
-                 )
+K_PLUGIN_FACTORY(KCMAkregatorArchiveConfigFactory, registerPlugin<KCMAkregatorArchiveConfig>();)
 
 KCMAkregatorArchiveConfig::KCMAkregatorArchiveConfig(QWidget *parent, const QVariantList &args)
     : KCModule(parent, args)
@@ -28,10 +27,8 @@ KCMAkregatorArchiveConfig::KCMAkregatorArchiveConfig(QWidget *parent, const QVar
     auto *layout = new QVBoxLayout(this);
     layout->addWidget(m_widget);
 
-    connect(m_ui.rb_LimitArticleNumber, &QAbstractButton::toggled,
-            m_ui.kcfg_MaxArticleNumber, &QWidget::setEnabled);
-    connect(m_ui.rb_LimitArticleAge, &QAbstractButton::toggled,
-            m_ui.kcfg_MaxArticleAge, &QWidget::setEnabled);
+    connect(m_ui.rb_LimitArticleNumber, &QAbstractButton::toggled, m_ui.kcfg_MaxArticleNumber, &QWidget::setEnabled);
+    connect(m_ui.rb_LimitArticleAge, &QAbstractButton::toggled, m_ui.kcfg_MaxArticleAge, &QWidget::setEnabled);
 
     m_ui.kcfg_MaxArticleNumber->setSuffix(ki18ncp("Limit feed archive size to:", " article", " articles"));
     m_ui.kcfg_MaxArticleAge->setSuffix(ki18ncp("Delete articles older than:", " day", " days"));
@@ -44,7 +41,9 @@ KCMAkregatorArchiveConfig::KCMAkregatorArchiveConfig(QWidget *parent, const QVar
 
     KAboutData *about = new KAboutData(QStringLiteral("kcmakrarchiveconfig"),
                                        i18n("Configure Feed Reader Archive"),
-                                       QString(), QString(), KAboutLicense::GPL,
+                                       QString(),
+                                       QString(),
+                                       KAboutLicense::GPL,
                                        i18n("(c), 2004 - 2008 Frank Osterfeld"));
 
     about->addAuthor(i18n("Frank Osterfeld"), QString(), QStringLiteral("osterfeld@kde.org"));

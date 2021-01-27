@@ -15,11 +15,13 @@
 #include <QSharedPointer>
 #include <vector>
 
-namespace Akregator {
+namespace Akregator
+{
 class Article;
 class TreeNode;
 
-namespace Filters {
+namespace Filters
+{
 class AbstractMatcher;
 }
 
@@ -28,27 +30,9 @@ class AKREGATORPART_EXPORT ArticleModel : public QAbstractTableModel
     Q_OBJECT
 
 public:
+    enum Column { ItemTitleColumn = 0, FeedTitleColumn, AuthorColumn, DateColumn, DescriptionColumn, ContentColumn, ColumnCount };
 
-    enum Column {
-        ItemTitleColumn = 0,
-        FeedTitleColumn,
-        AuthorColumn,
-        DateColumn,
-        DescriptionColumn,
-        ContentColumn,
-        ColumnCount
-    };
-
-    enum Role {
-        SortRole = Qt::UserRole,
-        LinkRole,
-        GuidRole,
-        ItemIdRole,
-        FeedIdRole,
-        StatusRole,
-        IsImportantRole,
-        IsDeletedRole
-    };
+    enum Role { SortRole = Qt::UserRole, LinkRole, GuidRole, ItemIdRole, FeedIdRole, StatusRole, IsImportantRole, IsDeletedRole };
 
     explicit ArticleModel(const QVector<Article> &articles, QObject *parent = nullptr);
     ~ArticleModel() override;
@@ -79,13 +63,12 @@ public Q_SLOTS:
     void clear();
 
 private:
-
     ArticleModel(const ArticleModel &);
     ArticleModel &operator=(const ArticleModel &);
 
     QVector<Article> m_articles;
     QVector<QString> m_titleCache;
 };
-} //namespace Akregator
+} // namespace Akregator
 
 #endif // AKREGATOR_ARTICLEMODEL_H

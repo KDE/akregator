@@ -6,8 +6,8 @@
 
 #include "articleviewerwebenginepage.h"
 #include <QWebEngineSettings>
-#include <actionmanager.h>
 #include <WebEngineViewer/ZoomActionMenu>
+#include <actionmanager.h>
 
 #include "akregatorconfig.h"
 
@@ -25,17 +25,15 @@ ArticleViewerWebEnginePage::ArticleViewerWebEnginePage(QObject *parent)
     settings()->setAttribute(QWebEngineSettings::JavascriptCanAccessClipboard, false);
     settings()->setAttribute(QWebEngineSettings::JavascriptCanOpenWindows, false);
     settings()->setAttribute(QWebEngineSettings::JavascriptEnabled, false);
-    //settings()->setAttribute(QWebEngineSettings::LocalContentCanAccessFileUrls, false);
+    // settings()->setAttribute(QWebEngineSettings::LocalContentCanAccessFileUrls, false);
     settings()->setAttribute(QWebEngineSettings::LocalContentCanAccessRemoteUrls, false);
     settings()->setAttribute(QWebEngineSettings::LocalStorageEnabled, false);
     settings()->setAttribute(QWebEngineSettings::PluginsEnabled, false);
     settings()->setAttribute(QWebEngineSettings::WebGLEnabled, false);
     settings()->setAttribute(QWebEngineSettings::XSSAuditingEnabled, false);
 
-    connect(this, &QWebEnginePage::featurePermissionRequested,
-            this, &ArticleViewerWebEnginePage::slotFeaturePermissionRequested);
-    connect(this, &QWebEnginePage::loadProgress,
-            this, &ArticleViewerWebEnginePage::onLoadProgress);
+    connect(this, &QWebEnginePage::featurePermissionRequested, this, &ArticleViewerWebEnginePage::slotFeaturePermissionRequested);
+    connect(this, &QWebEnginePage::loadProgress, this, &ArticleViewerWebEnginePage::onLoadProgress);
 }
 
 ArticleViewerWebEnginePage::~ArticleViewerWebEnginePage()
@@ -57,7 +55,7 @@ bool ArticleViewerWebEnginePage::acceptNavigationRequest(const QUrl &url, Naviga
 
 void ArticleViewerWebEnginePage::slotFeaturePermissionRequested(const QUrl &url, QWebEnginePage::Feature feature)
 {
-    //Denied all permissions.
+    // Denied all permissions.
     setFeaturePermission(url, feature, QWebEnginePage::PermissionDeniedByUser);
 }
 

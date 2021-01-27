@@ -13,8 +13,8 @@
 #include "kernel.h"
 
 #include "akregator_debug.h"
-#include <QInputDialog>
 #include <KLocalizedString>
+#include <QInputDialog>
 
 #include <QDomDocument>
 #include <QPointer>
@@ -29,6 +29,7 @@ using namespace Akregator;
 class ImportFeedListCommand::Private
 {
     ImportFeedListCommand *const q;
+
 public:
     explicit Private(ImportFeedListCommand *qq);
 
@@ -72,8 +73,10 @@ void ImportFeedListCommand::Private::doImport()
     bool ok = false;
 
     if (rootFolderOption == ImportFeedListCommand::Ask) {
-        importedRootFolderName = QInputDialog::getText(q->parentWidget(), i18n("Add Imported Folder"),
-                                                       i18n("Imported folder name:"), QLineEdit::Normal,
+        importedRootFolderName = QInputDialog::getText(q->parentWidget(),
+                                                       i18n("Add Imported Folder"),
+                                                       i18n("Imported folder name:"),
+                                                       QLineEdit::Normal,
                                                        importedRootFolderName,
                                                        &ok);
     }
@@ -97,7 +100,8 @@ void ImportFeedListCommand::Private::doImport()
     q->done();
 }
 
-ImportFeedListCommand::ImportFeedListCommand(QObject *parent) : Command(parent)
+ImportFeedListCommand::ImportFeedListCommand(QObject *parent)
+    : Command(parent)
     , d(new Private(this))
 {
 }
@@ -129,7 +133,7 @@ void ImportFeedListCommand::setFeedListDocument(const QDomDocument &doc)
 
 void ImportFeedListCommand::doAbort()
 {
-    //TODO
+    // TODO
 }
 
 void ImportFeedListCommand::doStart()

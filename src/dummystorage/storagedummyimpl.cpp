@@ -13,8 +13,10 @@
 #include <QString>
 #include <QStringList>
 
-namespace Akregator {
-namespace Backend {
+namespace Akregator
+{
+namespace Backend
+{
 class StorageDummyImpl::StorageDummyImplPrivate
 {
 public:
@@ -41,7 +43,8 @@ public:
     QHash<QString, Entry> feeds;
 };
 
-StorageDummyImpl::StorageDummyImpl() : d(new StorageDummyImplPrivate)
+StorageDummyImpl::StorageDummyImpl()
+    : d(new StorageDummyImplPrivate)
 {
 }
 
@@ -69,7 +72,7 @@ bool StorageDummyImpl::autoCommit() const
 void StorageDummyImpl::close()
 {
     for (QHash<QString, StorageDummyImplPrivate::Entry>::ConstIterator it = d->feeds.constBegin(); it != d->feeds.constEnd(); ++it) {
-        delete(*it).feedStorage;
+        delete (*it).feedStorage;
     }
 }
 

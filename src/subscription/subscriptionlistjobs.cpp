@@ -14,12 +14,13 @@
 
 #include <KLocalizedString>
 
-#include <QTimer>
 #include <QDebug>
+#include <QTimer>
 
 using namespace Akregator;
 
-MoveSubscriptionJob::MoveSubscriptionJob(QObject *parent) : KJob(parent)
+MoveSubscriptionJob::MoveSubscriptionJob(QObject *parent)
+    : KJob(parent)
     , m_id(0)
     , m_destFolderId(0)
     , m_afterId(-1)
@@ -79,7 +80,8 @@ void MoveSubscriptionJob::doMove()
     emitResult();
 }
 
-RenameSubscriptionJob::RenameSubscriptionJob(QObject *parent) : KJob(parent)
+RenameSubscriptionJob::RenameSubscriptionJob(QObject *parent)
+    : KJob(parent)
     , m_id(0)
     , m_feedList(Kernel::self()->feedList())
 {
@@ -111,7 +113,8 @@ void RenameSubscriptionJob::doRename()
     emitResult();
 }
 
-DeleteSubscriptionJob::DeleteSubscriptionJob(QObject *parent) : KJob(parent)
+DeleteSubscriptionJob::DeleteSubscriptionJob(QObject *parent)
+    : KJob(parent)
     , m_id(0)
     , m_feedList(Kernel::self()->feedList())
 {

@@ -10,11 +10,13 @@
 #include <KCModule>
 
 #include <QVariant>
-namespace KUserFeedback {
+namespace KUserFeedback
+{
 class FeedbackConfigWidget;
 }
 
-namespace Akregator {
+namespace Akregator
+{
 class KCMAkregatorUserFeedBackConfig : public KCModule
 {
     Q_OBJECT
@@ -23,6 +25,7 @@ public:
     void load() override;
     void save() override;
     void defaults() override;
+
 private:
     KUserFeedback::FeedbackConfigWidget *mUserFeedbackWidget = nullptr;
 };

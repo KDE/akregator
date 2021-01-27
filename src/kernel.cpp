@@ -34,7 +34,7 @@ Kernel::Kernel()
     m_frameManager = new FrameManager();
     m_storage = nullptr;
 #ifdef WITH_KUSERFEEDBACK
-    //Initialize
+    // Initialize
     (void)UserFeedBackManager::self();
 #endif
 }

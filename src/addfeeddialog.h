@@ -15,7 +15,8 @@
 
 #include <QWidget>
 class QPushButton;
-namespace Akregator {
+namespace Akregator
+{
 class Feed;
 
 class AddFeedWidget : public QWidget, public Ui::AddFeedWidgetBase

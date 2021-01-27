@@ -15,18 +15,19 @@
 class QString;
 #include <QStringList>
 
-namespace Akregator {
-namespace Backend {
+namespace Akregator
+{
+namespace Backend
+{
 class FeedStorage;
 
 /** \brief Storage is the main interface to the article archive. It creates and manages FeedStorage objects handling the article list for a feed.
 
     An archive implementation must implement Storage, FeedStorage and StorageFactory. See mk4storage for an example.
 */
-class Storage : public QObject //krazy:exclude=qobject
+class Storage : public QObject // krazy:exclude=qobject
 {
 public:
-
     virtual ~Storage()
     {
     }

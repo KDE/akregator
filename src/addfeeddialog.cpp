@@ -13,11 +13,11 @@
 #include "akregator_debug.h"
 #include <KLocalizedString>
 #include <KMessageBox>
-#include <QUrl>
 #include <QDialogButtonBox>
 #include <QPushButton>
-#include <QVBoxLayout>
 #include <QStyle>
+#include <QUrl>
+#include <QVBoxLayout>
 
 using namespace Akregator;
 AddFeedWidget::AddFeedWidget(QWidget *parent)

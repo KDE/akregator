@@ -14,7 +14,8 @@
 class QString;
 #include <QStringList>
 
-namespace Akregator {
+namespace Akregator
+{
 class AKREGATORINTERFACES_EXPORT FeedListManagementInterface
 {
 public:

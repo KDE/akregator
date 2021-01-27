@@ -40,7 +40,7 @@ void URLHandlerWebEngineManager::registerHandler(const URLHandlerWebEngine *hand
     if (!handler) {
         return;
     }
-    unregisterHandler(handler);   // don't produce duplicates
+    unregisterHandler(handler); // don't produce duplicates
     mHandlers.push_back(handler);
 }
 

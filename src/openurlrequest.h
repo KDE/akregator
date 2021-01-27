@@ -15,11 +15,11 @@
 
 #include "akregator_export.h"
 
-namespace Akregator {
+namespace Akregator
+{
 class AKREGATOR_EXPORT OpenUrlRequest
 {
 public:
-
     /**
      * Akregator-specific options specifying how a link should be handled.
      * TODO: check what can be done by overriding KURLArgs flags.
@@ -58,7 +58,6 @@ public:
     void setWasHandled(bool handled);
 
 private:
-
     int m_frameId = -1;
     QUrl m_url;
     KParts::OpenUrlArguments m_args;

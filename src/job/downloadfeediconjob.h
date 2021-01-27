@@ -11,7 +11,8 @@
 #include <QUrl>
 
 #include "akregator_export.h"
-namespace Akregator {
+namespace Akregator
+{
 class AKREGATOR_EXPORT DownloadFeedIconJob : public QObject
 {
     Q_OBJECT
@@ -29,6 +30,7 @@ public:
 
 Q_SIGNALS:
     void result(const QString &fileName);
+
 private:
     QUrl mFeedIconUrl;
     bool mDownloadFavicon = true;

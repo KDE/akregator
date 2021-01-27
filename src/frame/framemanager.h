@@ -19,7 +19,8 @@ class QIcon;
 class QString;
 class KConfigGroup;
 
-namespace Akregator {
+namespace Akregator
+{
 class Frame;
 class OpenUrlRequest;
 
@@ -28,7 +29,6 @@ class AKREGATOR_EXPORT FrameManager : public QObject
     Q_OBJECT
 
 public:
-
     explicit FrameManager(QObject *parent = nullptr);
     ~FrameManager();
 
@@ -72,7 +72,6 @@ Q_SIGNALS:
     void signalStatusText(const QString &);
 
 private:
-
     void openInExternalBrowser(const OpenUrlRequest &request);
 
 private Q_SLOTS:
@@ -84,6 +83,7 @@ private Q_SLOTS:
     void slotSetCaption(Akregator::Frame *frame, const QString &caption);
     void slotSetTitle(Akregator::Frame *frame, const QString &title);
     void slotSetStatusText(Akregator::Frame *frame, const QString &statusText);
+
 private:
     QPointer<Frame> m_currentFrame;
     QHash<int, Frame *> m_frames;

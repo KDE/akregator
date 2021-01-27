@@ -9,8 +9,8 @@
 #include "feedpropertiesdialog.h"
 #include "akregatorconfig.h"
 
-#include <QComboBox>
 #include <KLocalizedString>
+#include <QComboBox>
 
 #include <QCheckBox>
 #include <QDialogButtonBox>
@@ -79,8 +79,7 @@ FeedPropertiesDialog::FeedPropertiesDialog(QWidget *parent, const QString &name)
     widget->updateComboBox->insertItem(FeedPropertiesWidget::Minutes, i18np("Minute", "Minutes", 0));
     widget->updateComboBox->insertItem(FeedPropertiesWidget::Hours, i18np("Hour", "Hours", 0));
     widget->updateComboBox->insertItem(FeedPropertiesWidget::Days, i18np("Day", "Days", 0));
-    widget->updateComboBox->insertItem(FeedPropertiesWidget::Never,
-                                       i18nc("never fetch new articles", "Never"));
+    widget->updateComboBox->insertItem(FeedPropertiesWidget::Never, i18nc("never fetch new articles", "Never"));
     widget->sb_maxArticleAge->setSuffix(ki18np(" day", " days"));
     widget->sb_maxArticleNumber->setSuffix(ki18np(" article", " articles"));
 
@@ -114,8 +113,7 @@ void FeedPropertiesDialog::accept()
 
 void FeedPropertiesDialog::slotSetWindowTitle(const QString &title)
 {
-    setWindowTitle(title.isEmpty() ? i18n("Feed Properties")
-                   : i18n("Properties of %1", title));
+    setWindowTitle(title.isEmpty() ? i18n("Feed Properties") : i18n("Properties of %1", title));
     mOkButton->setEnabled(!title.trimmed().isEmpty());
 }
 

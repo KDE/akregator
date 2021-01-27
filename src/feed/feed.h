@@ -20,13 +20,15 @@
 class QDomElement;
 class QString;
 
-namespace Akregator {
+namespace Akregator
+{
 class Article;
 class FetchQueue;
 class TreeNodeVisitor;
 class ArticleDeleteJob;
 
-namespace Backend {
+namespace Backend
+{
 class Storage;
 }
 
@@ -157,10 +159,10 @@ public:
     void setDescription(const QString &s);
 
     /** returns article by guid
-        * @param guid the guid of the article to be returned
-        * @return the article object with the given guid, or a
-        * null article if non-existent
-        */
+     * @param guid the guid of the article to be returned
+     * @return the article object with the given guid, or a
+     * null article if non-existent
+     */
     Q_REQUIRED_RESULT Article findArticle(const QString &guid) const;
 
     /** returns whether a fetch error has occurred */
@@ -185,7 +187,7 @@ public:
         return false;
     }
 
-    //impl
+    // impl
     Q_REQUIRED_RESULT bool isAggregation() const override
     {
         return false;
@@ -197,7 +199,7 @@ public:
     const TreeNode *next() const override;
     TreeNode *next() override;
 
-    //impl
+    // impl
     Q_REQUIRED_RESULT QIcon icon() const override;
 
     /** deletes expired articles */
@@ -294,7 +296,6 @@ private Q_SLOTS:
     void fetchCompleted(Syndication::Loader *loader, Syndication::FeedPtr doc, Syndication::ErrorCode errorCode);
 
 private:
-
     class Private;
     Private *d;
 };

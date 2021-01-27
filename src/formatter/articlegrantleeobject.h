@@ -7,10 +7,11 @@
 #ifndef ARTICLEGRANTLEEOBJECT_H
 #define ARTICLEGRANTLEEOBJECT_H
 
+#include "articleformatter.h"
 #include <QObject>
 #include <article.h>
-#include "articleformatter.h"
-namespace Akregator {
+namespace Akregator
+{
 class ArticleGrantleeObject : public QObject
 {
     Q_OBJECT
@@ -30,11 +31,7 @@ public:
     explicit ArticleGrantleeObject(const Article &article, ArticleFormatter::IconOption icon, QObject *parent = nullptr);
     ~ArticleGrantleeObject();
 
-    enum ArticleStatus {
-        Unread = 0,
-        Read,
-        New
-    };
+    enum ArticleStatus { Unread = 0, Read, New };
     Q_ENUMS(ArticleStatus)
 
     Akregator::ArticleGrantleeObject::ArticleStatus articleStatus() const;

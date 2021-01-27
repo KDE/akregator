@@ -13,7 +13,8 @@
 #include <QString>
 typedef unsigned int uint;
 
-namespace Akregator {
+namespace Akregator
+{
 class AKREGATOR_EXPORT Utils
 {
 public:
@@ -21,10 +22,10 @@ public:
     static QString stripTags(QString str);
 
     /** taken from some website... -fo
-    * djb2
-    * This algorithm was first reported by Dan Bernstein
-    * many years ago in comp.lang.c
-    */
+     * djb2
+     * This algorithm was first reported by Dan Bernstein
+     * many years ago in comp.lang.c
+     */
 
     static uint calcHash(const QString &str);
 

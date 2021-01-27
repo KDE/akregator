@@ -10,8 +10,8 @@
 #ifndef AKREGATOR_FRAME_H
 #define AKREGATOR_FRAME_H
 
-#include <QWidget>
 #include <QIcon>
+#include <QWidget>
 
 #include <KConfigGroup>
 
@@ -19,11 +19,13 @@
 
 class QUrl;
 
-namespace KPIM {
+namespace KPIM
+{
 class ProgressItem;
 }
 
-namespace Akregator {
+namespace Akregator
+{
 class OpenUrlRequest;
 
 class AKREGATOR_EXPORT Frame : public QWidget
@@ -34,17 +36,15 @@ public:
     explicit Frame(QWidget *parent = nullptr);
     ~Frame() override;
 
-    enum State {
-        Idle, Started, Completed, Canceled
-    };
+    enum State { Idle, Started, Completed, Canceled };
 
     virtual qreal zoomFactor() const = 0;
     /**
-    * Returns whether the frame can be removed from
-    * Akregator (via detach or close tab etc.)  Usually
-    * all tabs but the main tab can be removed.
-    * Default is @c true
-    */
+     * Returns whether the frame can be removed from
+     * Akregator (via detach or close tab etc.)  Usually
+     * all tabs but the main tab can be removed.
+     * Default is @c true
+     */
     Q_REQUIRED_RESULT bool isRemovable() const;
 
     /**

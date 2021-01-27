@@ -12,8 +12,10 @@
 
 #include "storage.h"
 
-namespace Akregator {
-namespace Backend {
+namespace Akregator
+{
+namespace Backend
+{
 /**
  * Metakit implementation of Storage interface
  */
@@ -21,10 +23,9 @@ class StorageDummyImpl : public Storage
 {
     Q_OBJECT
 public:
-
     StorageDummyImpl();
     StorageDummyImpl(const StorageDummyImpl &);
-    StorageDummyImpl &operator =(const StorageDummyImpl &);
+    StorageDummyImpl &operator=(const StorageDummyImpl &);
     ~StorageDummyImpl() override;
     void initialize(const QStringList &params) override;
     /**

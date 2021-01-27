@@ -13,14 +13,15 @@ class QString;
 #include <QStringList>
 class QDateTime;
 
-namespace Akregator {
-namespace Backend {
+namespace Akregator
+{
+namespace Backend
+{
 class Storage;
 
-class FeedStorage : public QObject //krazy:exclude=qobject
+class FeedStorage : public QObject // krazy:exclude=qobject
 {
 public:
-
     virtual int unread() const = 0;
     virtual void setUnread(int unread) = 0;
     virtual int totalCount() const = 0;

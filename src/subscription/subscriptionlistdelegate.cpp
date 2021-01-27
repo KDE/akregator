@@ -14,16 +14,16 @@
 
 #include <QApplication>
 #include <QHeaderView>
-#include <QTreeView>
 #include <QStyle>
+#include <QTreeView>
 
 using namespace Akregator;
 
 Akregator::SubscriptionListDelegate::SubscriptionListDelegate(QWidget *parent)
     : QStyledItemDelegate(parent)
 {
-    //TODO reimplement
-    //connect(KGlobalSettings::self(), &KGlobalSettings::appearanceChanged, this, &SubscriptionListDelegate::recalculateRowHeight);
+    // TODO reimplement
+    // connect(KGlobalSettings::self(), &KGlobalSettings::appearanceChanged, this, &SubscriptionListDelegate::recalculateRowHeight);
     recalculateRowHeight();
 }
 
@@ -47,9 +47,8 @@ void Akregator::SubscriptionListDelegate::paint(QPainter *painter, const QStyleO
         newOption.font.setBold(true);
     }
 
-    //fix [Bug 190052] numeric columns aligned to the left
-    if (index.column() == SubscriptionListModel::UnreadCountColumn
-        || index.column() == SubscriptionListModel::TotalCountColumn) {
+    // fix [Bug 190052] numeric columns aligned to the left
+    if (index.column() == SubscriptionListModel::UnreadCountColumn || index.column() == SubscriptionListModel::TotalCountColumn) {
         newOption.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
     } else {
         newOption.displayAlignment = Qt::AlignLeft | Qt::AlignVCenter;
@@ -76,7 +75,7 @@ void Akregator::SubscriptionListDelegate::initStyleOption(QStyleOptionViewItem *
         return;
     }
 
-    auto *view = static_cast< QTreeView * >(parent());
+    auto *view = static_cast<QTreeView *>(parent());
     if (!view->header()->isSectionHidden(SubscriptionListModel::UnreadCountColumn)) {
         // Do not append unread count to the title if the unread count column
         // is visible
@@ -89,7 +88,7 @@ void Akregator::SubscriptionListDelegate::initStyleOption(QStyleOptionViewItem *
         view->header()->resizeSection(SubscriptionListModel::TotalCountColumn, QHeaderView::ResizeToContents);
     }
 
-    auto *optionV4 = qstyleoption_cast< QStyleOptionViewItem * >(option);
+    auto *optionV4 = qstyleoption_cast<QStyleOptionViewItem *>(option);
     if (!optionV4) {
         // Should never happen, but play it safe
         return;

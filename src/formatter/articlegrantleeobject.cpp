@@ -5,13 +5,13 @@
 */
 
 #include "articlegrantleeobject.h"
+#include "feed.h"
 #include "grantleeutil.h"
 #include "utils.h"
-#include "feed.h"
+#include <QDateTime>
 #include <QLocale>
 #include <QUrl>
 #include <QUrlQuery>
-#include <QDateTime>
 
 using namespace Akregator;
 

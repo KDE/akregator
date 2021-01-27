@@ -7,12 +7,12 @@
 */
 
 #include "treenode.h"
-#include "folder.h"
-#include "articlejobs.h"
 #include "article.h"
+#include "articlejobs.h"
+#include "folder.h"
 
-#include <QString>
 #include <QList>
+#include <QString>
 
 #include "akregator_debug.h"
 
@@ -144,7 +144,7 @@ void TreeNode::setNotificationMode(bool doNotify)
         }
         m_nodeChangeOccurred = false;
         m_articleChangeOccurred = false;
-    } else if (!doNotify && m_doNotify) { //turned off
+    } else if (!doNotify && m_doNotify) { // turned off
         m_nodeChangeOccurred = false;
         m_articleChangeOccurred = false;
         m_doNotify = false;

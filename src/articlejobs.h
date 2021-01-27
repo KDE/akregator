@@ -11,15 +11,16 @@
 
 #include <KCompositeJob>
 
-#include <QVector>
 #include <QMap>
 #include <QPointer>
 #include <QString>
+#include <QVector>
 
 #include "akregator_export.h"
 
-//transitional job classes
-namespace Akregator {
+// transitional job classes
+namespace Akregator
+{
 class Article;
 class FeedList;
 class TreeNode;
@@ -95,9 +96,7 @@ public:
 
     void start() override;
 
-    enum Error {
-        ListingFailed = KJob::UserDefinedError
-    };
+    enum Error { ListingFailed = KJob::UserDefinedError };
 
 private Q_SLOTS:
     void doList();

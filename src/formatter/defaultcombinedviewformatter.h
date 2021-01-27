@@ -7,10 +7,11 @@
 #ifndef DEFAULTCOMBINEDVIEWFORMATTER_H
 #define DEFAULTCOMBINEDVIEWFORMATTER_H
 
-#include "articleformatter.h"
 #include "akregator_export.h"
+#include "articleformatter.h"
 class QPaintDevice;
-namespace Akregator {
+namespace Akregator
+{
 class GrantleeViewFormatter;
 class AKREGATOR_EXPORT DefaultCombinedViewFormatter : public ArticleFormatter
 {

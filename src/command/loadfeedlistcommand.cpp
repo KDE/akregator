@@ -17,11 +17,11 @@
 #include <QDateTime>
 #include <QDomDocument>
 #include <QFile>
+#include <QFileInfo>
 #include <QPointer>
+#include <QRandomGenerator>
 #include <QString>
 #include <QTimer>
-#include <QFileInfo>
-#include <QRandomGenerator>
 
 #include <cassert>
 
@@ -31,8 +31,10 @@ using namespace Akregator::Backend;
 class Q_DECL_HIDDEN LoadFeedListCommand::Private
 {
     LoadFeedListCommand *const q;
+
 public:
-    explicit Private(LoadFeedListCommand *qq) : q(qq)
+    explicit Private(LoadFeedListCommand *qq)
+        : q(qq)
     {
     }
 
@@ -58,12 +60,13 @@ void LoadFeedListCommand::Private::handleDocument(const QDomDocument &doc)
     if (!feedList->readFromOpml(doc)) {
         bool backupCreated;
         const QString backupFile = createBackup(fileName, &backupCreated);
-        const QString msg
-            = backupCreated
-              ? i18n("<qt>The standard feed list is corrupted (invalid OPML). "
-                     "A backup was created:<p><b>%1</b></p></qt>", backupFile)
-              : i18n("<qt>The standard feed list is corrupted (invalid OPML). "
-                     "Could not create a backup.</qt>");
+        const QString msg = backupCreated ? i18n(
+                                "<qt>The standard feed list is corrupted (invalid OPML). "
+                                "A backup was created:<p><b>%1</b></p></qt>",
+                                backupFile)
+                                          : i18n(
+                                              "<qt>The standard feed list is corrupted (invalid OPML). "
+                                              "Could not create a backup.</qt>");
 
         QPointer<QObject> that(q);
         KMessageBox::error(q->parentWidget(), msg, i18n("OPML Parsing Error"));
@@ -77,9 +80,7 @@ void LoadFeedListCommand::Private::handleDocument(const QDomDocument &doc)
 
 QString LoadFeedListCommand::Private::createBackup(const QString &path, bool *ok)
 {
-    const QString backup = path
-                           + QLatin1String("-backup.")
-                           + QString::number(QDateTime::currentDateTimeUtc().toSecsSinceEpoch());
+    const QString backup = path + QLatin1String("-backup.") + QString::number(QDateTime::currentDateTimeUtc().toSecsSinceEpoch());
 
     const bool copied = QFile::copy(path, backup);
     if (ok) {
@@ -88,7 +89,8 @@ QString LoadFeedListCommand::Private::createBackup(const QString &path, bool *ok
     return backup;
 }
 
-LoadFeedListCommand::LoadFeedListCommand(QObject *parent) : Command(parent)
+LoadFeedListCommand::LoadFeedListCommand(QObject *parent)
+    : Command(parent)
     , d(new Private(this))
 {
 }
@@ -141,10 +143,7 @@ void LoadFeedListCommand::Private::doLoad()
 
     if (!file.open(QIODevice::ReadOnly)) {
         QPointer<QObject> that(q);
-        KMessageBox::error(
-            q->parentWidget(),
-            i18n("<qt>Could not open feed list (%1) for reading.</qt>", file.fileName()),
-            i18n("Read Error"));
+        KMessageBox::error(q->parentWidget(), i18n("<qt>Could not open feed list (%1) for reading.</qt>", file.fileName()), i18n("Read Error"));
         if (that) {
             handleDocument(defaultFeedList);
         }
@@ -158,19 +157,20 @@ void LoadFeedListCommand::Private::doLoad()
         bool backupCreated = false;
         const QString backupFile = createBackup(fileName, &backupCreated);
         const QString title = i18nc("error message window caption", "XML Parsing Error");
-        const QString details
-            = xi18n("<qt><p>XML parsing error in line %1, "
-                    "column %2 of %3:</p><p>%4</p></qt>",
-                    QString::number(errLine),
-                    QString::number(errCol),
-                    fileName,
-                    errMsg);
-        const QString msg
-            = backupCreated
-              ? i18n("<qt>The standard feed list is corrupted (invalid XML). "
-                     "A backup was created:<p><b>%1</b></p></qt>", backupFile)
-              : i18n("<qt>The standard feed list is corrupted (invalid XML). "
-                     "Could not create a backup.</qt>");
+        const QString details = xi18n(
+            "<qt><p>XML parsing error in line %1, "
+            "column %2 of %3:</p><p>%4</p></qt>",
+            QString::number(errLine),
+            QString::number(errCol),
+            fileName,
+            errMsg);
+        const QString msg = backupCreated ? i18n(
+                                "<qt>The standard feed list is corrupted (invalid XML). "
+                                "A backup was created:<p><b>%1</b></p></qt>",
+                                backupFile)
+                                          : i18n(
+                                              "<qt>The standard feed list is corrupted (invalid XML). "
+                                              "Could not create a backup.</qt>");
 
         QPointer<QObject> that(q);
 

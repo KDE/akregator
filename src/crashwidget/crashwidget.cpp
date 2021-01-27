@@ -5,10 +5,10 @@
 */
 
 #include "crashwidget.h"
-#include <QVBoxLayout>
 #include <KLocalizedString>
-#include <QPushButton>
 #include <QLabel>
+#include <QPushButton>
+#include <QVBoxLayout>
 
 using namespace Akregator;
 

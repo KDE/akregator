@@ -9,34 +9,35 @@
 */
 
 #include "mainwidget.h"
-#include "utils.h"
+#include "abstractselectioncontroller.h"
 #include "actionmanagerimpl.h"
 #include "addfeeddialog.h"
-#include "articlelistview.h"
-#include "articleviewerwidget.h"
-#include "abstractselectioncontroller.h"
-#include "articlejobs.h"
-#include "articlematcher.h"
-#include "akregatorconfig.h"
 #include "akregator_part.h"
-#include <PimCommon/BroadcastStatus>
+#include "akregatorconfig.h"
+#include "articlejobs.h"
+#include "articlelistview.h"
+#include "articlematcher.h"
+#include "articleviewerwidget.h"
 #include "createfeedcommand.h"
 #include "createfoldercommand.h"
 #include "deletesubscriptioncommand.h"
 #include "editsubscriptioncommand.h"
 #include "expireitemscommand.h"
 #include "importfeedlistcommand.h"
+#include "utils.h"
+#include <PimCommon/BroadcastStatus>
 
 #include "feedlist.h"
 #include "feedpropertiesdialog.h"
 #include "fetchqueue.h"
 #include "folder.h"
 #include "framemanager.h"
+#include "job/downloadarticlejob.h"
 #include "kernel.h"
+#include "mainframe.h"
 #include "notificationmanager.h"
 #include "openurlrequest.h"
 #include "progressmanager.h"
-#include "widgets/searchbar.h"
 #include "selectioncontroller.h"
 #include "subscriptionlistjobs.h"
 #include "subscriptionlistmodel.h"
@@ -45,9 +46,8 @@
 #include "treenode.h"
 #include "treenodevisitor.h"
 #include "types.h"
-#include "mainframe.h"
+#include "widgets/searchbar.h"
 #include <WebEngineViewer/ZoomActionMenu>
-#include "job/downloadarticlejob.h"
 
 #include <KLocalizedString>
 #include <KMessageBox>
@@ -56,16 +56,16 @@
 #include <KToggleAction>
 
 #include <QClipboard>
+#include <QDesktopServices>
+#include <QDomDocument>
 #include <QNetworkConfigurationManager>
 #include <QSplitter>
-#include <QDomDocument>
 #include <QTimer>
-#include <QDesktopServices>
 #include <QUrlQuery>
 
+#include <PimCommon/NetworkManager>
 #include <algorithm>
 #include <memory>
-#include <PimCommon/NetworkManager>
 #include <webengine/webengineframe.h>
 
 using namespace Akregator;
@@ -96,8 +96,7 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
     m_displayingAboutPage = false;
     setFocusPolicy(Qt::StrongFocus);
 
-    connect(m_part, &Part::signalSettingsChanged,
-            m_actionManager, &ActionManagerImpl::slotSettingsChanged);
+    connect(m_part, &Part::signalSettingsChanged, m_actionManager, &ActionManagerImpl::slotSettingsChanged);
 
     auto *lt = new QVBoxLayout(this);
     lt->setContentsMargins({});
@@ -108,52 +107,44 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
     m_horizontalSplitter->setChildrenCollapsible(false);
     lt->addWidget(m_horizontalSplitter);
 
-    connect(Kernel::self()->fetchQueue(), &FetchQueue::signalStarted,
-            this, &MainWidget::slotFetchingStarted);
-    connect(Kernel::self()->fetchQueue(), &FetchQueue::signalStopped,
-            this, &MainWidget::slotFetchingStopped);
+    connect(Kernel::self()->fetchQueue(), &FetchQueue::signalStarted, this, &MainWidget::slotFetchingStarted);
+    connect(Kernel::self()->fetchQueue(), &FetchQueue::signalStopped, this, &MainWidget::slotFetchingStopped);
 
     m_feedListView = new SubscriptionListView(m_horizontalSplitter);
     m_feedListView->setObjectName(QStringLiteral("feedtree"));
     m_actionManager->initSubscriptionListView(m_feedListView);
 
-    connect(m_feedListView, &SubscriptionListView::userActionTakingPlace,
-            this, &MainWidget::ensureArticleTabVisible);
+    connect(m_feedListView, &SubscriptionListView::userActionTakingPlace, this, &MainWidget::ensureArticleTabVisible);
 
     m_tabWidget = new TabWidget(m_horizontalSplitter);
     m_actionManager->initTabWidget(m_tabWidget);
 
-    connect(m_part, &Part::signalSettingsChanged,
-            this, &MainWidget::slotSettingsChanged);
+    connect(m_part, &Part::signalSettingsChanged, this, &MainWidget::slotSettingsChanged);
 
-    connect(m_tabWidget, &TabWidget::signalCurrentFrameChanged,
-            this, &MainWidget::slotCurrentFrameChanged);
+    connect(m_tabWidget, &TabWidget::signalCurrentFrameChanged, this, &MainWidget::slotCurrentFrameChanged);
 
-    connect(m_tabWidget, &TabWidget::signalRemoveFrameRequest,
-            Kernel::self()->frameManager(), &FrameManager::slotRemoveFrame);
+    connect(m_tabWidget, &TabWidget::signalRemoveFrameRequest, Kernel::self()->frameManager(), &FrameManager::slotRemoveFrame);
 
-    connect(m_tabWidget, SIGNAL(signalOpenUrlRequest(Akregator::OpenUrlRequest&)),
-            Kernel::self()->frameManager(), SLOT(slotOpenUrlRequest(Akregator::OpenUrlRequest&)));
+    connect(m_tabWidget,
+            SIGNAL(signalOpenUrlRequest(Akregator::OpenUrlRequest &)),
+            Kernel::self()->frameManager(),
+            SLOT(slotOpenUrlRequest(Akregator::OpenUrlRequest &)));
 
-    connect(Kernel::self()->frameManager(), &FrameManager::signalFrameAdded,
-            m_tabWidget, &TabWidget::slotAddFrame);
+    connect(Kernel::self()->frameManager(), &FrameManager::signalFrameAdded, m_tabWidget, &TabWidget::slotAddFrame);
 
-    connect(Kernel::self()->frameManager(), &FrameManager::signalSelectFrame,
-            m_tabWidget, &TabWidget::slotSelectFrame);
+    connect(Kernel::self()->frameManager(), &FrameManager::signalSelectFrame, m_tabWidget, &TabWidget::slotSelectFrame);
 
-    connect(Kernel::self()->frameManager(), &FrameManager::signalFrameRemoved,
-            m_tabWidget, &TabWidget::slotRemoveFrame);
+    connect(Kernel::self()->frameManager(), &FrameManager::signalFrameRemoved, m_tabWidget, &TabWidget::slotRemoveFrame);
 
-    connect(Kernel::self()->frameManager(), &FrameManager::signalRequestNewFrame,
-            this, &MainWidget::slotRequestNewFrame);
+    connect(Kernel::self()->frameManager(), &FrameManager::signalRequestNewFrame, this, &MainWidget::slotRequestNewFrame);
 
-    connect(Kernel::self()->frameManager(), &FrameManager::signalFrameRemoved,
-            this, &MainWidget::slotFramesChanged);
-    connect(Kernel::self()->frameManager(), &FrameManager::signalCompleted,
-            this, &MainWidget::slotFramesChanged);
+    connect(Kernel::self()->frameManager(), &FrameManager::signalFrameRemoved, this, &MainWidget::slotFramesChanged);
+    connect(Kernel::self()->frameManager(), &FrameManager::signalCompleted, this, &MainWidget::slotFramesChanged);
 
-    connect(PimCommon::NetworkManager::self()->networkConfigureManager(), &QNetworkConfigurationManager::onlineStateChanged,
-            this, &MainWidget::slotNetworkStatusChanged);
+    connect(PimCommon::NetworkManager::self()->networkConfigureManager(),
+            &QNetworkConfigurationManager::onlineStateChanged,
+            this,
+            &MainWidget::slotNetworkStatusChanged);
 
     m_tabWidget->setWhatsThis(i18n("You can view multiple articles in several open tabs."));
 
@@ -182,18 +173,15 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
     m_articleListView = new ArticleListView;
     articleWidgetLayout->addWidget(m_searchBar);
     articleWidgetLayout->addWidget(m_articleListView);
-    connect(m_articleListView, &ArticleListView::userActionTakingPlace,
-            this, &MainWidget::ensureArticleTabVisible);
+    connect(m_articleListView, &ArticleListView::userActionTakingPlace, this, &MainWidget::ensureArticleTabVisible);
 
     m_selectionController = new SelectionController(this);
     m_selectionController->setArticleLister(m_articleListView);
     m_selectionController->setFeedSelector(m_feedListView);
 
-    connect(m_searchBar, &SearchBar::signalSearch,
-            m_selectionController, &AbstractSelectionController::setFilters);
+    connect(m_searchBar, &SearchBar::signalSearch, m_selectionController, &AbstractSelectionController::setFilters);
 
-    connect(m_part, &Part::signalSettingsChanged,
-            m_selectionController, &AbstractSelectionController::settingsChanged);
+    connect(m_part, &Part::signalSettingsChanged, m_selectionController, &AbstractSelectionController::settingsChanged);
 
     auto *expansionHandler = new FolderExpansionHandler(this);
     connect(m_feedListView, &QTreeView::expanded, expansionHandler, &FolderExpansionHandler::itemExpanded);
@@ -201,29 +189,26 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
 
     m_selectionController->setFolderExpansionHandler(expansionHandler);
 
-    connect(m_selectionController, &AbstractSelectionController::currentSubscriptionChanged,
-            this, &MainWidget::slotNodeSelected);
+    connect(m_selectionController, &AbstractSelectionController::currentSubscriptionChanged, this, &MainWidget::slotNodeSelected);
 
-    connect(m_selectionController, &AbstractSelectionController::currentArticleChanged,
-            this, &MainWidget::slotArticleSelected);
+    connect(m_selectionController, &AbstractSelectionController::currentArticleChanged, this, &MainWidget::slotArticleSelected);
 
-    connect(m_selectionController, &AbstractSelectionController::articleDoubleClicked,
-            this, &MainWidget::slotOpenArticleInBrowser);
+    connect(m_selectionController, &AbstractSelectionController::articleDoubleClicked, this, &MainWidget::slotOpenArticleInBrowser);
 
     m_actionManager->initArticleListView(m_articleListView);
 
-    connect(m_articleListView, &ArticleListView::signalMouseButtonPressed,
-            this, &MainWidget::slotMouseButtonPressed);
+    connect(m_articleListView, &ArticleListView::signalMouseButtonPressed, this, &MainWidget::slotMouseButtonPressed);
 
     m_articleViewer = new ArticleViewerWidget(Settings::grantleeDirectory(), m_actionManager->actionCollection(), m_articleSplitter);
     m_articleListView->setFocusProxy(m_articleViewer);
     setFocusProxy(m_articleViewer);
 
     connect(m_articleViewer, &ArticleViewerWidget::showStatusBarMessage, this, &MainWidget::slotShowStatusBarMessage);
-    connect(m_articleViewer, SIGNAL(signalOpenUrlRequest(Akregator::OpenUrlRequest&)),
-            Kernel::self()->frameManager(), SLOT(slotOpenUrlRequest(Akregator::OpenUrlRequest&)));
-    connect(m_searchBar, &SearchBar::signalSearch,
-            m_articleViewer, &ArticleViewerWidget::setFilters);
+    connect(m_articleViewer,
+            SIGNAL(signalOpenUrlRequest(Akregator::OpenUrlRequest &)),
+            Kernel::self()->frameManager(),
+            SLOT(slotOpenUrlRequest(Akregator::OpenUrlRequest &)));
+    connect(m_searchBar, &SearchBar::signalSearch, m_articleViewer, &ArticleViewerWidget::setFilters);
     mainTabLayout->addWidget(m_articleSplitter);
 
     m_mainFrame = new MainFrame(this, m_mainTab);
@@ -261,14 +246,12 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
     }
 
     m_fetchTimer = new QTimer(this);
-    connect(m_fetchTimer, &QTimer::timeout,
-            this, &MainWidget::slotDoIntervalFetches);
+    connect(m_fetchTimer, &QTimer::timeout, this, &MainWidget::slotDoIntervalFetches);
     m_fetchTimer->start(1000 * 60);
 
     // delete expired articles once per hour
     m_expiryTimer = new QTimer(this);
-    connect(m_expiryTimer, &QTimer::timeout,
-            this, &MainWidget::slotDeleteExpiredArticles);
+    connect(m_expiryTimer, &QTimer::timeout, this, &MainWidget::slotDeleteExpiredArticles);
     m_expiryTimer->start(3600 * 1000);
 
     m_markReadTimer = new QTimer(this);
@@ -307,15 +290,14 @@ void MainWidget::slotSetFocusToViewer()
 
 void MainWidget::slotOnShutdown()
 {
-    disconnect(m_tabWidget, &TabWidget::signalCurrentFrameChanged,
-               this, &MainWidget::slotCurrentFrameChanged);
+    disconnect(m_tabWidget, &TabWidget::signalCurrentFrameChanged, this, &MainWidget::slotCurrentFrameChanged);
 
     m_shuttingDown = true;
 
     // close all pageviewers in a controlled way
     // fixes bug 91660, at least when no part loading data
-    while (m_tabWidget->count() > 1) {   // remove frames until only the main frame remains
-        m_tabWidget->setCurrentIndex(m_tabWidget->count() - 1);   // select last page
+    while (m_tabWidget->count() > 1) { // remove frames until only the main frame remains
+        m_tabWidget->setCurrentIndex(m_tabWidget->count() - 1); // select last page
         m_tabWidget->slotRemoveCurrentFrame();
     }
 
@@ -447,8 +429,7 @@ void MainWidget::setFeedList(const QSharedPointer<FeedList> &list)
 
     m_feedList = list;
     if (m_feedList) {
-        connect(m_feedList.data(), &FeedList::unreadCountChanged,
-                this, &MainWidget::slotSetTotalUnread);
+        connect(m_feedList.data(), &FeedList::unreadCountChanged, this, &MainWidget::slotSetTotalUnread);
     }
 
     slotSetTotalUnread();
@@ -891,7 +872,7 @@ void MainWidget::slotArticleSelected(const Akregator::Article &article)
         m_markReadTimer->start(delay * 1000);
     } else {
         auto *job = new Akregator::ArticleModifyJob;
-        const Akregator::ArticleId aid = { article.feed()->xmlUrl(), article.guid() };
+        const Akregator::ArticleId aid = {article.feed()->xmlUrl(), article.guid()};
         job->setStatus(aid, Akregator::Read);
         job->start();
     }
@@ -1013,7 +994,7 @@ void MainWidget::slotCopyLinkAddress()
         QClipboard *cb = QApplication::clipboard();
         cb->setText(link, QClipboard::Clipboard);
         // don't set url to selection as it's a no-no according to a fd.o spec
-        //cb->setText(link, QClipboard::Selection);
+        // cb->setText(link, QClipboard::Selection);
     }
 }
 
@@ -1047,14 +1028,18 @@ void MainWidget::slotArticleDelete()
         msg = i18n("<qt>Are you sure you want to delete article <b>%1</b>?</qt>", articles.first().title());
         break;
     default:
-        msg = i18np("<qt>Are you sure you want to delete the selected article?</qt>", "<qt>Are you sure you want to delete the %1 selected articles?</qt>", articles.count());
+        msg = i18np("<qt>Are you sure you want to delete the selected article?</qt>",
+                    "<qt>Are you sure you want to delete the %1 selected articles?</qt>",
+                    articles.count());
     }
 
     if (KMessageBox::warningContinueCancel(this,
-                                           msg, i18n("Delete Article"),
+                                           msg,
+                                           i18n("Delete Article"),
                                            KStandardGuiItem::del(),
                                            KStandardGuiItem::cancel(),
-                                           QStringLiteral("Disable delete article confirmation")) != KMessageBox::Continue) {
+                                           QStringLiteral("Disable delete article confirmation"))
+        != KMessageBox::Continue) {
         return;
     }
 
@@ -1070,7 +1055,7 @@ void MainWidget::slotArticleDelete()
         if (!feed) {
             continue;
         }
-        const Akregator::ArticleId aid = { feed->xmlUrl(), i.guid() };
+        const Akregator::ArticleId aid = {feed->xmlUrl(), i.guid()};
         job->appendArticleId(aid);
     }
 
@@ -1105,18 +1090,19 @@ void MainWidget::slotArticleToggleKeepFlag(bool)
 
     auto *job = new Akregator::ArticleModifyJob;
     for (const Akregator::Article &i : articles) {
-        const Akregator::ArticleId aid = { i.feed()->xmlUrl(), i.guid() };
+        const Akregator::ArticleId aid = {i.feed()->xmlUrl(), i.guid()};
         job->setKeep(aid, !allFlagsSet);
     }
     job->start();
 }
 
-namespace {
+namespace
+{
 void setArticleStatus(const QString &feedUrl, const QString &articleId, int status)
 {
     if (!feedUrl.isEmpty() && !articleId.isEmpty()) {
         auto *job = new Akregator::ArticleModifyJob;
-        const Akregator::ArticleId aid = { feedUrl, articleId };
+        const Akregator::ArticleId aid = {feedUrl, articleId};
         job->setStatus(aid, status);
         job->start();
     }
@@ -1132,7 +1118,7 @@ void setSelectedArticleStatus(const Akregator::AbstractSelectionController *cont
 
     auto *job = new Akregator::ArticleModifyJob;
     for (const Akregator::Article &i : articles) {
-        const Akregator::ArticleId aid = { i.feed()->xmlUrl(), i.guid() };
+        const Akregator::ArticleId aid = {i.feed()->xmlUrl(), i.guid()};
         job->setStatus(aid, status);
     }
     job->start();
@@ -1163,7 +1149,7 @@ void MainWidget::slotSetCurrentArticleReadDelayed()
     }
 
     auto *const job = new Akregator::ArticleModifyJob;
-    const Akregator::ArticleId aid = { article.feed()->xmlUrl(), article.guid() };
+    const Akregator::ArticleId aid = {article.feed()->xmlUrl(), article.guid()};
     job->setStatus(aid, Akregator::Read);
     job->start();
 }
@@ -1262,10 +1248,9 @@ void MainWidget::slotFocusQuickSearch()
 void MainWidget::slotArticleAction(Akregator::ArticleViewerWebEngine::ArticleAction type, const QString &articleId, const QString &feed)
 {
     switch (type) {
-    case ArticleViewerWebEngine::DeleteAction:
-    {
+    case ArticleViewerWebEngine::DeleteAction: {
         auto *job = new Akregator::ArticleDeleteJob;
-        const Akregator::ArticleId aid = { feed, articleId };
+        const Akregator::ArticleId aid = {feed, articleId};
         job->appendArticleId(aid);
         job->start();
         break;
@@ -1277,17 +1262,15 @@ void MainWidget::slotArticleAction(Akregator::ArticleViewerWebEngine::ArticleAct
         ::setArticleStatus(feed, articleId, Akregator::Unread);
         break;
 
-    case ArticleViewerWebEngine::MarkAsImportant:
-    {
+    case ArticleViewerWebEngine::MarkAsImportant: {
         auto *job = new Akregator::ArticleModifyJob;
         const Akregator::Article article = m_feedList->findArticle(feed, articleId);
-        const Akregator::ArticleId aid = { feed, articleId };
+        const Akregator::ArticleId aid = {feed, articleId};
         job->setKeep(aid, !article.keep());
         job->start();
         break;
     }
-    case ArticleViewerWebEngine::SendUrlArticle:
-    {
+    case ArticleViewerWebEngine::SendUrlArticle: {
     case ArticleViewerWebEngine::SendFileArticle:
         const Article article = m_feedList->findArticle(feed, articleId);
         const QByteArray text = article.link().toDisplayString().toLatin1();
@@ -1298,8 +1281,7 @@ void MainWidget::slotArticleAction(Akregator::ArticleViewerWebEngine::ArticleAct
         sendArticle(text, title, (type == ArticleViewerWebEngine::SendFileArticle));
         break;
     }
-    case ArticleViewerWebEngine::OpenInBackgroundTab:
-    {
+    case ArticleViewerWebEngine::OpenInBackgroundTab: {
         const Akregator::Article article = m_feedList->findArticle(feed, articleId);
         const QUrl url = article.link();
         if (url.isValid()) {
@@ -1310,8 +1292,7 @@ void MainWidget::slotArticleAction(Akregator::ArticleViewerWebEngine::ArticleAct
         }
         break;
     }
-    case ArticleViewerWebEngine::OpenInExternalBrowser:
-    {
+    case ArticleViewerWebEngine::OpenInExternalBrowser: {
         const Akregator::Article article = m_feedList->findArticle(feed, articleId);
         slotOpenArticleInBrowser(article);
         break;

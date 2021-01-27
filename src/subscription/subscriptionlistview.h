@@ -9,11 +9,12 @@
 #ifndef AKREGATOR_SUBSCRIPTIONLISTVIEW_H
 #define AKREGATOR_SUBSCRIPTIONLISTVIEW_H
 
-#include <QTreeView>
 #include <QAction>
 #include <QByteArray>
+#include <QTreeView>
 
-namespace Akregator {
+namespace Akregator
+{
 class TreeNode;
 
 class SubscriptionListView : public QTreeView
@@ -22,24 +23,20 @@ class SubscriptionListView : public QTreeView
 public:
     explicit SubscriptionListView(QWidget *parent = nullptr);
     ~SubscriptionListView() override;
-// the following is all transitional, for easier porting from the item-based views
+    // the following is all transitional, for easier porting from the item-based views
 
     void startNodeRenaming(TreeNode *node);
 
     void ensureNodeVisible(TreeNode *node);
 
-    //override
+    // override
     void setModel(QAbstractItemModel *model) override;
 
     void triggerUpdate()
     {
     }
 
-    enum Column {
-        TitleColumn = 0,
-        UnreadColumn = 1,
-        TotalColumn = 2
-    };
+    enum Column { TitleColumn = 0, UnreadColumn = 1, TotalColumn = 2 };
 
 public Q_SLOTS:
 

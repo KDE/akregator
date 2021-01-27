@@ -17,12 +17,12 @@
 
 #include <utils/filtercolumnsproxymodel.h>
 
+#include <KColorScheme>
+#include <KLocalizedString>
 #include <QDateTime>
 #include <QIcon>
-#include <KLocalizedString>
-#include <QMenu>
-#include <KColorScheme>
 #include <QLocale>
+#include <QMenu>
 
 #include <QApplication>
 #include <QContextMenuEvent>
@@ -35,7 +35,8 @@
 
 using namespace Akregator;
 
-FilterDeletedProxyModel::FilterDeletedProxyModel(QObject *parent) : QSortFilterProxyModel(parent)
+FilterDeletedProxyModel::FilterDeletedProxyModel(QObject *parent)
+    : QSortFilterProxyModel(parent)
 {
     setDynamicSortFilter(true);
 }
@@ -45,7 +46,8 @@ bool FilterDeletedProxyModel::filterAcceptsRow(int source_row, const QModelIndex
     return !sourceModel()->index(source_row, 0, source_parent).data(ArticleModel::IsDeletedRole).toBool();
 }
 
-SortColorizeProxyModel::SortColorizeProxyModel(QObject *parent) : QSortFilterProxyModel(parent)
+SortColorizeProxyModel::SortColorizeProxyModel(QObject *parent)
+    : QSortFilterProxyModel(parent)
     , m_keepFlagIcon(QIcon::fromTheme(QStringLiteral("mail-mark-important")))
 {
     m_unreadColor = KColorScheme(QPalette::Normal, KColorScheme::View).foreground(KColorScheme::PositiveText).color();
@@ -67,7 +69,7 @@ bool SortColorizeProxyModel::filterAcceptsRow(int source_row, const QModelIndex 
     return true;
 }
 
-void SortColorizeProxyModel::setFilters(const std::vector<QSharedPointer<const Filters::AbstractMatcher> > &matchers)
+void SortColorizeProxyModel::setFilters(const std::vector<QSharedPointer<const Filters::AbstractMatcher>> &matchers)
 {
     if (m_matchers == matchers) {
         return;
@@ -88,11 +90,9 @@ QVariant SortColorizeProxyModel::data(const QModelIndex &idx, int role) const
     case Qt::ForegroundRole:
         switch (static_cast<ArticleStatus>(sourceIdx.data(ArticleModel::StatusRole).toInt())) {
         case Unread:
-            return Settings::useCustomColors()
-                   ? Settings::colorUnreadArticles() : m_unreadColor;
+            return Settings::useCustomColors() ? Settings::colorUnreadArticles() : m_unreadColor;
         case New:
-            return Settings::useCustomColors()
-                   ? Settings::colorNewArticles() : m_newColor;
+            return Settings::useCustomColors() ? Settings::colorNewArticles() : m_newColor;
         case Read:
             return QApplication::palette().color(QPalette::Text);
         }
@@ -106,7 +106,8 @@ QVariant SortColorizeProxyModel::data(const QModelIndex &idx, int role) const
     return sourceIdx.data(role);
 }
 
-namespace {
+namespace
+{
 static bool isRead(const QModelIndex &idx)
 {
     if (!idx.isValid()) {
@@ -132,8 +133,7 @@ void ArticleListView::setArticleModel(ArticleModel *model)
     proxy2->setSortRole(ArticleModel::SortRole);
     proxy2->setSourceModel(m_proxy);
 
-    connect(model, &QAbstractItemModel::rowsInserted,
-            m_proxy.data(), &QSortFilterProxyModel::invalidate);
+    connect(model, &QAbstractItemModel::rowsInserted, m_proxy.data(), &QSortFilterProxyModel::invalidate);
 
     auto *const columnsProxy = new FilterColumnsProxyModel(model);
     columnsProxy->setSortRole(ArticleModel::SortRole);
@@ -373,12 +373,13 @@ ArticleListView::ArticleListView(QWidget *parent)
     setDragDropMode(QAbstractItemView::DragOnly);
 
     setMinimumSize(250, 150);
-    setWhatsThis(i18n("<h2>Article list</h2>"
-                      "Here you can browse articles from the currently selected feed. "
-                      "You can also manage articles, as marking them as persistent (\"Mark as Important\") or delete them, using the right mouse button menu. "
-                      "To view the web page of the article, you can open the article internally in a tab or in an external browser window."));
+    setWhatsThis(
+        i18n("<h2>Article list</h2>"
+             "Here you can browse articles from the currently selected feed. "
+             "You can also manage articles, as marking them as persistent (\"Mark as Important\") or delete them, using the right mouse button menu. "
+             "To view the web page of the article, you can open the article internally in a tab or in an external browser window."));
 
-    //connect exactly once
+    // connect exactly once
     disconnect(header(), &QWidget::customContextMenuRequested, this, &ArticleListView::showHeaderMenu);
     connect(header(), &QWidget::customContextMenuRequested, this, &ArticleListView::showHeaderMenu);
     loadHeaderSettings();
@@ -528,7 +529,7 @@ void ArticleListView::forceFilterUpdate()
     }
 }
 
-void ArticleListView::setFilters(const std::vector<QSharedPointer<const Filters::AbstractMatcher> > &matchers)
+void ArticleListView::setFilters(const std::vector<QSharedPointer<const Filters::AbstractMatcher>> &matchers)
 {
     if (m_matchers == matchers) {
         return;

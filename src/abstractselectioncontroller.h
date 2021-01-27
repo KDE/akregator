@@ -17,7 +17,8 @@ class QItemSelectionModel;
 class QPoint;
 class QModelIndex;
 
-namespace Akregator {
+namespace Akregator
+{
 class Article;
 class ArticleModel;
 class FeedList;
@@ -25,14 +26,14 @@ class FolderExpansionHandler;
 class SubscriptionListModel;
 class TreeNode;
 
-namespace Filters {
+namespace Filters
+{
 class AbstractMatcher;
 }
 
 class ArticleLister
 {
 public:
-
     virtual ~ArticleLister()
     {
     }
@@ -43,7 +44,7 @@ public:
 
     virtual void setIsAggregation(bool isAggregation) = 0;
 
-    virtual void setFilters(const std::vector<QSharedPointer<const Filters::AbstractMatcher> > &) = 0;
+    virtual void setFilters(const std::vector<QSharedPointer<const Filters::AbstractMatcher>> &) = 0;
 
     virtual void forceFilterUpdate() = 0;
 
@@ -96,7 +97,7 @@ public Q_SLOTS:
 
     virtual void settingsChanged() = 0;
 
-    virtual void setFilters(const std::vector<QSharedPointer<const Akregator::Filters::AbstractMatcher> > &) = 0;
+    virtual void setFilters(const std::vector<QSharedPointer<const Akregator::Filters::AbstractMatcher>> &) = 0;
 
     virtual void forceFilterUpdate() = 0;
 

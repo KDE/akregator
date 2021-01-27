@@ -7,10 +7,11 @@
 #ifndef GRANTLEEVIEWFORMATTER_H
 #define GRANTLEEVIEWFORMATTER_H
 
-#include <GrantleeTheme/GenericFormatter>
 #include "article.h"
 #include "articleformatter.h"
-namespace Akregator {
+#include <GrantleeTheme/GenericFormatter>
+namespace Akregator
+{
 class Folder;
 class GrantleeViewFormatter : public GrantleeTheme::GenericFormatter
 {
@@ -21,6 +22,7 @@ public:
     Q_REQUIRED_RESULT QString formatArticles(const QVector<Article> &article, ArticleFormatter::IconOption icon);
     Q_REQUIRED_RESULT QString formatFolder(Akregator::Folder *node);
     Q_REQUIRED_RESULT QString formatFeed(Akregator::Feed *feed);
+
 private:
     void addStandardObject(QVariantHash &grantleeObject);
     Q_REQUIRED_RESULT int pointsToPixel(int pointSize) const;

@@ -20,7 +20,8 @@
 #include <cassert>
 
 using namespace Akregator;
-SettingsAdvanced::SettingsAdvanced(QWidget *parent) : QWidget(parent)
+SettingsAdvanced::SettingsAdvanced(QWidget *parent)
+    : QWidget(parent)
 {
     setupUi(this);
 

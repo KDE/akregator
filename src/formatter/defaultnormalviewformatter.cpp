@@ -6,10 +6,10 @@
 
 #include "defaultnormalviewformatter.h"
 #include "akregatorconfig.h"
-#include "grantleeviewformatter.h"
 #include "article.h"
 #include "feed.h"
 #include "folder.h"
+#include "grantleeviewformatter.h"
 #include "treenode.h"
 #include "treenodevisitor.h"
 #include "utils.h"
@@ -53,6 +53,7 @@ public:
     }
 
     QString text;
+
 private:
     DefaultNormalViewFormatter *const parent;
 };

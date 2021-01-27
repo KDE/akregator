@@ -15,26 +15,24 @@
 
 #include "akregator_debug.h"
 #include <KLocalizedString>
-#include <KServiceTypeTrader>
 #include <KMessageBox>
+#include <KServiceTypeTrader>
 
-using std::vector;
 using Akregator::Plugin;
+using std::vector;
 
-namespace Akregator {
-vector<PluginManager::StoreItem>
-PluginManager::m_store;
+namespace Akregator
+{
+vector<PluginManager::StoreItem> PluginManager::m_store;
 
 /////////////////////////////////////////////////////////////////////////////////////
 // PUBLIC INTERFACE
 /////////////////////////////////////////////////////////////////////////////////////
 
-KService::List
-PluginManager::query(const QString &constraint)
+KService::List PluginManager::query(const QString &constraint)
 {
     // Add versioning constraint
-    QString
-        str = QStringLiteral("[X-KDE-akregator-framework-version] == ");
+    QString str = QStringLiteral("[X-KDE-akregator-framework-version] == ");
     str += QString::number(AKREGATOR_PLUGIN_INTERFACE_VERSION);
     str += QStringLiteral(" and ");
     if (!constraint.trimmed().isEmpty()) {
@@ -47,8 +45,7 @@ PluginManager::query(const QString &constraint)
     return KServiceTypeTrader::self()->query(QStringLiteral("Akregator/Plugin"), str);
 }
 
-Plugin *
-PluginManager::createFromQuery(const QString &constraint)
+Plugin *PluginManager::createFromQuery(const QString &constraint)
 {
     KService::List offers = query(constraint);
 
@@ -69,21 +66,22 @@ PluginManager::createFromQuery(const QString &constraint)
     return createFromService(offers[current]);
 }
 
-Plugin *
-PluginManager::createFromService(const KService::Ptr &service, QObject *parent)
+Plugin *PluginManager::createFromService(const KService::Ptr &service, QObject *parent)
 {
     qCDebug(AKREGATOR_LOG) << "Trying to load:" << service->library();
 
     KPluginLoader loader(*service);
     KPluginFactory *factory = loader.factory();
     if (!factory) {
-        qCWarning(AKREGATOR_LOG) << QStringLiteral(" Could not create plugin factory for: %1\n"
-                                                   " Error message: %2").arg(service->library(), loader.errorString());
+        qCWarning(AKREGATOR_LOG) << QStringLiteral(
+                                        " Could not create plugin factory for: %1\n"
+                                        " Error message: %2")
+                                        .arg(service->library(), loader.errorString());
         return nullptr;
     }
     auto *const plugin = factory->create<Plugin>(parent);
 
-    //put plugin into store
+    // put plugin into store
     StoreItem item;
     item.plugin = plugin;
     item.service = service;
@@ -93,37 +91,35 @@ PluginManager::createFromService(const KService::Ptr &service, QObject *parent)
     return plugin;
 }
 
-void
-PluginManager::unload(Plugin *plugin)
+void PluginManager::unload(Plugin *plugin)
 {
 #ifdef TEMPORARILY_REMOVED
     vector<StoreItem>::iterator iter = lookupPlugin(plugin);
 
     if (iter != m_store.end()) {
-        delete(*iter).plugin;
+        delete (*iter).plugin;
         qCDebug(AKREGATOR_LOG) << "Unloading library:" << (*iter).service->library();
-        //PENDING(kdab,frank) Review
+        // PENDING(kdab,frank) Review
         (*iter).library->unload();
 
         m_store.erase(iter);
     } else {
         qCWarning(AKREGATOR_LOG) << "Could not unload plugin (not found in store).";
     }
-#else //TEMPORARILY_REMOVED
+#else // TEMPORARILY_REMOVED
     Q_UNUSED(plugin)
     qCWarning(AKREGATOR_LOG) << "PluginManager::unload temporarily disabled";
-#endif //TEMPORARILY_REMOVED
+#endif // TEMPORARILY_REMOVED
 }
 
-KService::Ptr
-PluginManager::getService(const Plugin *plugin)
+KService::Ptr PluginManager::getService(const Plugin *plugin)
 {
     if (!plugin) {
         qCWarning(AKREGATOR_LOG) << "pointer == NULL";
         return KService::Ptr(nullptr);
     }
 
-    //search plugin in store
+    // search plugin in store
     vector<StoreItem>::const_iterator iter = lookupPlugin(plugin);
 
     if (iter == m_store.end()) {
@@ -134,8 +130,7 @@ PluginManager::getService(const Plugin *plugin)
     return (*iter).service;
 }
 
-void
-PluginManager::showAbout(const QString &constraint)
+void PluginManager::showAbout(const QString &constraint)
 {
     KService::List offers = query(constraint);
 
@@ -152,42 +147,40 @@ PluginManager::showAbout(const QString &constraint)
     str += body.arg(i18nc("Name of the plugin", "Name"), s->name());
     str += body.arg(i18nc("Library name", "Library"), s->library());
     str += body.arg(i18nc("Plugin authors", "Authors"), s->property(QStringLiteral("X-KDE-akregator-authors")).toStringList().join(QLatin1Char('\n')));
-    str += body.arg(i18nc("Plugin authors' emaila addresses", "Email"), s->property(QStringLiteral("X-KDE-akregator-email")).toStringList().join(QLatin1Char('\n')));
+    str += body.arg(i18nc("Plugin authors' emaila addresses", "Email"),
+                    s->property(QStringLiteral("X-KDE-akregator-email")).toStringList().join(QLatin1Char('\n')));
     str += body.arg(i18nc("Plugin version", "Version"), s->property(QStringLiteral("X-KDE-akregator-version")).toString());
-    str += body.arg(i18nc("Framework version plugin requires", "Framework Version"), s->property(QStringLiteral("X-KDE-akregator-framework-version")).toString());
+    str +=
+        body.arg(i18nc("Framework version plugin requires", "Framework Version"), s->property(QStringLiteral("X-KDE-akregator-framework-version")).toString());
 
     str += QStringLiteral("</table></body></html>");
 
     KMessageBox::information(nullptr, str, i18n("Plugin Information"));
 }
 
-void
-PluginManager::dump(const KService::Ptr &service)
+void PluginManager::dump(const KService::Ptr &service)
 {
-    qCDebug(AKREGATOR_LOG)
-        << "PluginManager Service Info:"
-        << "---------------------------"
-        << "name                          : " << service->name()
-        << "library                       : " << service->library()
-        << "desktopEntryPath              : " << service->entryPath()
-        << "X-KDE-akregator-plugintype       : " << service->property(QStringLiteral("X-KDE-akregator-plugintype")).toString()
-        << "X-KDE-akregator-name             : " << service->property(QStringLiteral("X-KDE-akregator-name")).toString()
-        << "X-KDE-akregator-authors          : " << service->property(QStringLiteral("X-KDE-akregator-authors")).toStringList()
-        << "X-KDE-akregator-rank             : " << service->property(QStringLiteral("X-KDE-akregator-rank")).toString()
-        << "X-KDE-akregator-version          : " << service->property(QStringLiteral("X-KDE-akregator-version")).toString()
-        << "X-KDE-akregator-framework-version: " << service->property(QStringLiteral("X-KDE-akregator-framework-version")).toString();
+    qCDebug(AKREGATOR_LOG) << "PluginManager Service Info:"
+                           << "---------------------------"
+                           << "name                          : " << service->name() << "library                       : " << service->library()
+                           << "desktopEntryPath              : " << service->entryPath()
+                           << "X-KDE-akregator-plugintype       : " << service->property(QStringLiteral("X-KDE-akregator-plugintype")).toString()
+                           << "X-KDE-akregator-name             : " << service->property(QStringLiteral("X-KDE-akregator-name")).toString()
+                           << "X-KDE-akregator-authors          : " << service->property(QStringLiteral("X-KDE-akregator-authors")).toStringList()
+                           << "X-KDE-akregator-rank             : " << service->property(QStringLiteral("X-KDE-akregator-rank")).toString()
+                           << "X-KDE-akregator-version          : " << service->property(QStringLiteral("X-KDE-akregator-version")).toString()
+                           << "X-KDE-akregator-framework-version: " << service->property(QStringLiteral("X-KDE-akregator-framework-version")).toString();
 }
 
 /////////////////////////////////////////////////////////////////////////////////////
 // PRIVATE INTERFACE
 /////////////////////////////////////////////////////////////////////////////////////
 
-vector<PluginManager::StoreItem>::iterator
-PluginManager::lookupPlugin(const Plugin *plugin)
+vector<PluginManager::StoreItem>::iterator PluginManager::lookupPlugin(const Plugin *plugin)
 {
     vector<StoreItem>::iterator iter;
 
-    //search plugin pointer in store
+    // search plugin pointer in store
     vector<StoreItem>::const_iterator end;
     for (iter = m_store.begin(); iter != end; ++iter) {
         if ((*iter).plugin == plugin) {

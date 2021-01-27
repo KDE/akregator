@@ -15,8 +15,10 @@
 
 #include <QStringList>
 
-namespace Akregator {
-namespace Backend {
+namespace Akregator
+{
+namespace Backend
+{
 class Storage;
 
 class AKREGATORPART_EXPORT StorageFactoryDummyImpl : public StorageFactory

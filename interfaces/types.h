@@ -8,7 +8,8 @@
 #ifndef AKREGATOR_TYPES_H
 #define AKREGATOR_TYPES_H
 
-namespace Akregator {
+namespace Akregator
+{
 /** (un)read status of the article */
 enum ArticleStatus {
     Unread = 0, /**< article wasn't read yet by the user */

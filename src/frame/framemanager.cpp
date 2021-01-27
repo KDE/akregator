@@ -7,20 +7,20 @@
 */
 
 #include "framemanager.h"
+#include "actionmanager.h"
+#include "akregator_debug.h"
 #include "akregatorconfig.h"
 #include "frame.h"
-#include "actionmanager.h"
 #include "openurlrequest.h"
+#include <KConfigGroup>
+#include <KIO/JobUiDelegate>
+#include <KIO/OpenUrlJob>
 #include <KMacroExpander>
 #include <KProcess>
 #include <KShell>
-#include <KConfigGroup>
-#include "akregator_debug.h"
-#include <webengine/webengineframe.h>
-#include <QStringList>
 #include <QDesktopServices>
-#include <KIO/JobUiDelegate>
-#include <KIO/OpenUrlJob>
+#include <QStringList>
+#include <webengine/webengineframe.h>
 
 using namespace Akregator;
 
@@ -55,7 +55,7 @@ void FrameManager::slotAddFrame(Frame *frame)
         slotOpenUrlRequest(request);
     });
 
-    //setPartGuiActive(frame->part(), false);
+    // setPartGuiActive(frame->part(), false);
 
     Q_EMIT signalFrameAdded(frame);
 
@@ -98,12 +98,12 @@ void FrameManager::slotChangeFrame(int frameId)
     Frame *oldFrame = m_currentFrame;
     m_currentFrame = frame;
 
-    //if (oldFrame) {
+    // if (oldFrame) {
     //    setPartGuiActive(oldFrame->part(), false);
     //}
 
     if (frame) {
-        //setPartGuiActive(frame->part(), true);
+        // setPartGuiActive(frame->part(), true);
 
         // TODO: handle removable flag
 
@@ -185,7 +185,8 @@ void FrameManager::slotSetStatusText(Frame *frame, const QString &statusText)
 
 void FrameManager::openUrl(OpenUrlRequest &request)
 {
-    if (request.browserArgs().newTab() || request.browserArgs().forcesNewWindow() || request.options() == OpenUrlRequest::NewTab || (m_currentFrame->id() == 0)) {
+    if (request.browserArgs().newTab() || request.browserArgs().forcesNewWindow() || request.options() == OpenUrlRequest::NewTab
+        || (m_currentFrame->id() == 0)) {
         int newFrameId = -1;
         Q_EMIT signalRequestNewFrame(newFrameId);
         request.setFrameId(newFrameId);
@@ -241,10 +242,8 @@ void FrameManager::slotOpenUrlRequest(OpenUrlRequest &request, bool useOpenInBac
 
     if (useOpenInBackgroundSetting) {
         // Honour user's preference for foreground/background tabs
-        if (request.options() == OpenUrlRequest::NewTab
-            || request.browserArgs().newTab()) {
-            request.setOpenInBackground(Settings::lMBBehaviour()
-                                        == Settings::EnumLMBBehaviour::OpenInBackground);
+        if (request.options() == OpenUrlRequest::NewTab || request.browserArgs().newTab()) {
+            request.setOpenInBackground(Settings::lMBBehaviour() == Settings::EnumLMBBehaviour::OpenInBackground);
         }
     }
     openUrl(request);
@@ -252,7 +251,7 @@ void FrameManager::slotOpenUrlRequest(OpenUrlRequest &request, bool useOpenInBac
 
 void FrameManager::saveProperties(KConfigGroup &config)
 {
-    //write children
+    // write children
     QStringList strlst;
     QHash<int, Frame *>::const_iterator i;
     QHash<int, Frame *>::const_iterator end(m_frames.constEnd());

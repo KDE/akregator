@@ -14,17 +14,16 @@
 #include "fetchqueue.h"
 #include "treenodevisitor.h"
 
-#include <qdom.h>
 #include <QList>
+#include <qdom.h>
 
-#include <QIcon>
 #include "akregator_debug.h"
+#include <QIcon>
 
 using namespace Akregator;
 
 // efficient alternative so we don't convert first to a temporary QList then to QVector
-template<typename T>
-static QVector<T> hashValuesToVector(const QHash<int, T> &hash)
+template<typename T> static QVector<T> hashValuesToVector(const QHash<int, T> &hash)
 {
     QVector<T> result;
     result.reserve(hash.count());
@@ -52,7 +51,8 @@ Folder *Folder::fromOPML(const QDomElement &e)
     return fg;
 }
 
-Folder::Folder(const QString &title) : TreeNode()
+Folder::Folder(const QString &title)
+    : TreeNode()
 {
     setTitle(title);
 }
@@ -182,7 +182,7 @@ QIcon Folder::icon() const
 
 void Folder::insertChild(int index, TreeNode *node)
 {
-//    qCDebug(AKREGATOR_LOG) <<"enter Folder::insertChild(int, node)" << node->title();
+    //    qCDebug(AKREGATOR_LOG) <<"enter Folder::insertChild(int, node)" << node->title();
     if (node) {
         if (index >= m_children.size()) {
             m_children.append(node);
@@ -196,12 +196,12 @@ void Folder::insertChild(int index, TreeNode *node)
         articlesModified();
         nodeModified();
     }
-//    qCDebug(AKREGATOR_LOG) <<"leave Folder::insertChild(int, node)" << node->title();
+    //    qCDebug(AKREGATOR_LOG) <<"leave Folder::insertChild(int, node)" << node->title();
 }
 
 void Folder::appendChild(TreeNode *node)
 {
-//    qCDebug(AKREGATOR_LOG) <<"enter Folder::appendChild()" << node->title();
+    //    qCDebug(AKREGATOR_LOG) <<"enter Folder::appendChild()" << node->title();
     if (node) {
         m_children.append(node);
         node->setParent(this);
@@ -211,12 +211,12 @@ void Folder::appendChild(TreeNode *node)
         articlesModified();
         nodeModified();
     }
-//    qCDebug(AKREGATOR_LOG) <<"leave Folder::appendChild()" << node->title();
+    //    qCDebug(AKREGATOR_LOG) <<"leave Folder::appendChild()" << node->title();
 }
 
 void Folder::prependChild(TreeNode *node)
 {
-//    qCDebug(AKREGATOR_LOG) <<"enter Folder::prependChild()" << node->title();
+    //    qCDebug(AKREGATOR_LOG) <<"enter Folder::prependChild()" << node->title();
     if (node) {
         m_children.prepend(node);
         node->setParent(this);
@@ -226,7 +226,7 @@ void Folder::prependChild(TreeNode *node)
         articlesModified();
         nodeModified();
     }
-//    qCDebug(AKREGATOR_LOG) <<"leave Folder::prependChild()" << node->title();
+    //    qCDebug(AKREGATOR_LOG) <<"leave Folder::prependChild()" << node->title();
 }
 
 void Folder::removeChild(TreeNode *node)

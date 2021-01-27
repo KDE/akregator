@@ -9,11 +9,13 @@
 
 #include <KCModule>
 #include <QVariant>
-namespace PimCommon {
+namespace PimCommon
+{
 class ConfigurePluginsWidget;
 }
 
-namespace Akregator {
+namespace Akregator
+{
 class KCMAkregatorPluginsConfig : public KCModule
 {
     Q_OBJECT
@@ -24,6 +26,7 @@ public:
     void defaults() override;
 private Q_SLOTS:
     void slotConfigChanged();
+
 private:
     PimCommon::ConfigurePluginsWidget *mConfigurePluginWidget = nullptr;
 };

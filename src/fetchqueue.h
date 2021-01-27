@@ -13,7 +13,8 @@
 #include "akregator_export.h"
 #include <QObject>
 
-namespace Akregator {
+namespace Akregator
+{
 class Feed;
 class TreeNode;
 
@@ -22,7 +23,6 @@ class AKREGATOR_EXPORT FetchQueue : public QObject
     Q_OBJECT
 
 public:
-
     explicit FetchQueue(QObject *parent = nullptr);
     ~FetchQueue();
 
@@ -45,7 +45,6 @@ Q_SIGNALS:
     void fetchError(Akregator::Feed *);
 
 protected:
-
     /** fetches the next feed in the queue, unless the maximum of concurrent fetches is reached */
     void fetchNextFeed();
 

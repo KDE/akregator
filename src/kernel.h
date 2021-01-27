@@ -13,8 +13,10 @@
 
 #include "akregator_export.h"
 
-namespace Akregator {
-namespace Backend {
+namespace Akregator
+{
+namespace Backend
+{
 class Storage;
 }
 
@@ -25,7 +27,6 @@ class FrameManager;
 class AKREGATOR_EXPORT Kernel
 {
 public:
-
     static Kernel *self();
 
     ~Kernel();

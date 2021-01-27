@@ -12,7 +12,8 @@
 #include "akregator_export.h"
 #include <KAboutData>
 
-namespace Akregator {
+namespace Akregator
+{
 /**
 @author Teemu Rytilahti
 */

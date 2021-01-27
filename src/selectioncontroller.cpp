@@ -8,8 +8,8 @@
 
 #include "selectioncontroller.h"
 
-#include "akregatorconfig.h"
 #include "actionmanager.h"
+#include "akregatorconfig.h"
 #include "article.h"
 #include "articlejobs.h"
 #include "articlemodel.h"
@@ -25,7 +25,8 @@
 #include <memory>
 using namespace Akregator;
 
-namespace {
+namespace
+{
 static Akregator::Article articleForIndex(const QModelIndex &index, FeedList *feedList)
 {
     if (!index.isValid()) {
@@ -71,8 +72,7 @@ SelectionController::SelectionController(QObject *parent)
     m_subscriptionModel->setDoFilter(Settings::hideReadFeeds());
     m_subscriptionModel->setSourceModel(new SubscriptionListModel(QSharedPointer<FeedList>(), this));
 
-    connect(m_subscriptionModel, &FilterUnreadProxyModel::dataChanged,
-            this, &SelectionController::subscriptionDataChanged);
+    connect(m_subscriptionModel, &FilterUnreadProxyModel::dataChanged, this, &SelectionController::subscriptionDataChanged);
 }
 
 SelectionController::~SelectionController()
@@ -209,8 +209,8 @@ void SelectionController::articleHeadersAvailable(KJob *job)
     }
     TreeNode *const node = m_listJob->node();
 
-    Q_ASSERT(node);   // if there was no error, the node must still exist
-    Q_ASSERT(node == m_selectedSubscription);   //...and equal the previously selected node
+    Q_ASSERT(node); // if there was no error, the node must still exist
+    Q_ASSERT(node == m_selectedSubscription); //...and equal the previously selected node
 
     ArticleModel *const newModel = new ArticleModel(m_listJob->articles());
 
@@ -221,7 +221,7 @@ void SelectionController::articleHeadersAvailable(KJob *job)
 
     m_articleLister->setIsAggregation(node->isAggregation());
     m_articleLister->setArticleModel(newModel);
-    delete m_articleModel; //order is important: do not delete the old model before the new model is set in the view
+    delete m_articleModel; // order is important: do not delete the old model before the new model is set in the view
     m_articleModel = newModel;
 
     disconnect(m_articleLister->articleSelectionModel(), &QItemSelectionModel::selectionChanged, this, &SelectionController::articleSelectionChanged);
@@ -241,7 +241,7 @@ void SelectionController::subscriptionDataChanged(const QModelIndex &topLeft, co
         return;
     }
 
-    //need access to setExpanded
+    // need access to setExpanded
     auto *tv = qobject_cast<QTreeView *>(m_feedSelector);
     if (!tv) {
         qCCritical(AKREGATOR_LOG) << "Unable to cast m_feedSelector to QTreeView";
@@ -279,7 +279,7 @@ void SelectionController::selectedSubscriptionChanged(const QModelIndex &index)
     // to ensure the UI copes with async behavior later on
 
     if (m_listJob) {
-        m_listJob->disconnect(this);   //Ignore if ~KJob() emits finished()
+        m_listJob->disconnect(this); // Ignore if ~KJob() emits finished()
         delete m_listJob;
     }
 
@@ -288,8 +288,7 @@ void SelectionController::selectedSubscriptionChanged(const QModelIndex &index)
     }
 
     auto *const job(new ArticleListJob(m_selectedSubscription));
-    connect(job, &KJob::finished,
-            this, &SelectionController::articleHeadersAvailable);
+    connect(job, &KJob::finished, this, &SelectionController::articleHeadersAvailable);
     m_listJob = job;
     m_listJob->start();
 }
@@ -333,7 +332,7 @@ void SelectionController::settingsChanged()
     m_subscriptionModel->setDoFilter(Settings::hideReadFeeds());
 }
 
-void SelectionController::setFilters(const std::vector<QSharedPointer<const Filters::AbstractMatcher> > &matchers)
+void SelectionController::setFilters(const std::vector<QSharedPointer<const Filters::AbstractMatcher>> &matchers)
 {
     Q_ASSERT(m_articleLister);
     m_articleLister->setFilters(matchers);

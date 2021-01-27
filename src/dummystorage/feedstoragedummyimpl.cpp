@@ -16,8 +16,10 @@
 #include <QString>
 #include <QStringList>
 
-namespace Akregator {
-namespace Backend {
+namespace Akregator
+{
+namespace Backend
+{
 class FeedStorageDummyImpl::FeedStorageDummyImplPrivate
 {
 public:
@@ -55,7 +57,8 @@ public:
     QString url;
 };
 
-FeedStorageDummyImpl::FeedStorageDummyImpl(const QString &url, StorageDummyImpl *main) : d(new FeedStorageDummyImplPrivate)
+FeedStorageDummyImpl::FeedStorageDummyImpl(const QString &url, StorageDummyImpl *main)
+    : d(new FeedStorageDummyImplPrivate)
 {
     d->url = url;
     d->mainStorage = main;
@@ -317,7 +320,7 @@ void FeedStorageDummyImpl::removeEnclosure(const QString &guid)
     }
 }
 
-void FeedStorageDummyImpl::enclosure(const QString &guid, bool &hasEnclosure, QString &url, QString &type, int &length)  const
+void FeedStorageDummyImpl::enclosure(const QString &guid, bool &hasEnclosure, QString &url, QString &type, int &length) const
 {
     if (contains(guid)) {
         FeedStorageDummyImplPrivate::Entry entry = d->entries[guid];

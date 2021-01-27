@@ -7,10 +7,10 @@
 */
 
 #include "aboutdata.h"
-#include "mainwindow.h"
-#include "akregator_options.h"
 #include "akregator_debug.h"
+#include "akregator_options.h"
 #include "akregratormigrateapplication.h"
+#include "mainwindow.h"
 #ifdef WITH_KUSERFEEDBACK
 #include "userfeedback/akregatoruserfeedbackprovider.h"
 #endif
@@ -20,7 +20,8 @@
 
 #include <QDBusInterface>
 
-namespace Akregator {
+namespace Akregator
+{
 class Application : public KontactInterface::PimUniqueApplication
 {
 public:
@@ -42,8 +43,7 @@ private:
 int Application::activate(const QStringList &args, const QString &workingDir)
 {
     if (!isSessionRestored()) {
-        QDBusInterface akr(QStringLiteral("org.kde.akregator"), QStringLiteral("/Akregator"),
-                           QStringLiteral("org.kde.akregator.part"));
+        QDBusInterface akr(QStringLiteral("org.kde.akregator"), QStringLiteral("/Akregator"), QStringLiteral("org.kde.akregator.part"));
 
         QCommandLineParser *parser = cmdArgs();
         parser->process(args);

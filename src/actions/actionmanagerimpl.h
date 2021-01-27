@@ -16,11 +16,13 @@ class KActionCollection;
 
 class QWidget;
 
-namespace WebEngineViewer {
+namespace WebEngineViewer
+{
 class ZoomActionMenu;
 }
 
-namespace Akregator {
+namespace Akregator
+{
 class ArticleListView;
 class MainWidget;
 class Part;
@@ -37,7 +39,6 @@ class ActionManagerImpl : public ActionManager
     Q_OBJECT
 
 public:
-
     explicit ActionManagerImpl(Part *part, QObject *parent = nullptr);
     ~ActionManagerImpl() override;
 
@@ -64,7 +65,6 @@ private Q_SLOTS:
     void slotServiceUrlSelected(PimCommon::ShareServiceUrlManager::ServiceType type);
 
 private:
-
     void initPart();
 
     friend class NodeSelectVisitor;

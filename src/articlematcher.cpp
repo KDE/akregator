@@ -6,17 +6,19 @@
  * SPDX-License-Identifier: BSD-2-Clause
  */
 #include "articlematcher.h"
+#include "akregator_debug.h"
 #include "article.h"
 #include "types.h"
-#include <QUrl>
 #include <KConfig>
 #include <KConfigGroup>
-#include "akregator_debug.h"
+#include <QUrl>
 
 #include <QRegularExpression>
 
-namespace Akregator {
-namespace Filters {
+namespace Akregator
+{
+namespace Filters
+{
 AbstractMatcher::AbstractMatcher()
 {
 }
@@ -329,5 +331,5 @@ QString ArticleMatcher::associationToString(Association association)
         return QStringLiteral("None");
     }
 }
-} //namespace Filters
-} //namespace Akregator
+} // namespace Filters
+} // namespace Akregator

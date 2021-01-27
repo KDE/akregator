@@ -5,8 +5,8 @@
 */
 
 #include "articlehtmlwebenginewriter.h"
-#include "articleviewerwebengine.h"
 #include "akregator_debug.h"
+#include "articleviewerwebengine.h"
 
 using namespace Akregator;
 

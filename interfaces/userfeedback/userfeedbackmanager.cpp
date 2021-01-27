@@ -4,8 +4,8 @@
    SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#include "akregatoruserfeedbackprovider.h"
 #include "userfeedbackmanager.h"
+#include "akregatoruserfeedbackprovider.h"
 using namespace Akregator;
 UserFeedBackManager::UserFeedBackManager(QObject *parent)
     : QObject(parent)

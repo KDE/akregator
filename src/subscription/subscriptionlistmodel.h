@@ -16,7 +16,8 @@
 
 #include <QSharedPointer>
 
-namespace Akregator {
+namespace Akregator
+{
 class Feed;
 class FeedList;
 class Folder;
@@ -54,24 +55,9 @@ class AKREGATORPART_EXPORT SubscriptionListModel : public QAbstractItemModel
 {
     Q_OBJECT
 public:
+    enum Role { SubscriptionIdRole = Qt::UserRole, IsFetchableRole, IsGroupRole, IsAggregationRole, LinkRole, IdRole, IsOpenRole, HasUnreadRole };
 
-    enum Role {
-        SubscriptionIdRole = Qt::UserRole,
-        IsFetchableRole,
-        IsGroupRole,
-        IsAggregationRole,
-        LinkRole,
-        IdRole,
-        IsOpenRole,
-        HasUnreadRole
-    };
-
-    enum Column {
-        TitleColumn = 0,
-        UnreadCountColumn = 1,
-        TotalCountColumn = 2,
-        ColumnCount = 3
-    };
+    enum Column { TitleColumn = 0, UnreadCountColumn = 1, TotalCountColumn = 2, ColumnCount = 3 };
 
     explicit SubscriptionListModel(const QSharedPointer<const FeedList> &feedList, QObject *parent = nullptr);
 
@@ -119,13 +105,13 @@ private Q_SLOTS:
     void fetchAborted(Akregator::Feed *);
 
 private:
-
     QSharedPointer<const FeedList> m_feedList;
     bool m_beganRemoval;
 };
 }
 
-namespace Akregator {
+namespace Akregator
+{
 class AKREGATORPART_EXPORT FolderExpansionHandler : public QObject
 {
     Q_OBJECT

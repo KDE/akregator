@@ -7,15 +7,15 @@
 #ifndef DEFAULTNORMALVIEWFORMATTER_H
 #define DEFAULTNORMALVIEWFORMATTER_H
 
-#include "articleformatter.h"
 #include "akregator_export.h"
+#include "articleformatter.h"
 class QPaintDevice;
-namespace Akregator {
+namespace Akregator
+{
 class GrantleeViewFormatter;
 class AKREGATOR_EXPORT DefaultNormalViewFormatter : public ArticleFormatter
 {
 public:
-
     explicit DefaultNormalViewFormatter(const QString &grantleeDirectory, QPaintDevice *device = nullptr);
     ~DefaultNormalViewFormatter() override;
 

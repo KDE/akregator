@@ -14,9 +14,9 @@
 #include <KLineEdit>
 #include <KLocalizedString>
 
-#include <QString>
-#include <QStandardPaths>
 #include <QHBoxLayout>
+#include <QStandardPaths>
+#include <QString>
 
 using namespace Akregator;
 using namespace Akregator::Filters;
@@ -100,7 +100,7 @@ void SearchBar::slotStatusChanged(Akregator::StatusSearchLine::Status /*status*/
     triggerTimer();
 }
 
-std::vector<QSharedPointer<const AbstractMatcher> > SearchBar::matchers() const
+std::vector<QSharedPointer<const AbstractMatcher>> SearchBar::matchers() const
 {
     return m_matchers;
 }
@@ -118,7 +118,7 @@ void SearchBar::slotSearchStringChanged(const QString &search)
 
 void SearchBar::slotStopActiveSearch()
 {
-    std::vector<QSharedPointer<const AbstractMatcher> > matchers;
+    std::vector<QSharedPointer<const AbstractMatcher>> matchers;
     Settings::setStatusFilter(m_searchLine->status());
     Settings::setTextFilter(m_searchText);
     m_matchers = matchers;
@@ -142,29 +142,26 @@ void SearchBar::slotActivateSearch()
     switch (m_searchLine->status()) {
     case StatusSearchLine::AllArticles:
         break;
-    case StatusSearchLine::NewArticles:
-    {
+    case StatusSearchLine::NewArticles: {
         Criterion crit(Criterion::Status, Criterion::Equals, New);
         statusCriteria << crit;
         break;
     }
-    case StatusSearchLine::UnreadArticles:
-    {
+    case StatusSearchLine::UnreadArticles: {
         Criterion crit1(Criterion::Status, Criterion::Equals, New);
         Criterion crit2(Criterion::Status, Criterion::Equals, Unread);
         statusCriteria << crit1;
         statusCriteria << crit2;
         break;
     }
-    case StatusSearchLine::ImportantArticles:
-    {
+    case StatusSearchLine::ImportantArticles: {
         Criterion crit(Criterion::KeepFlag, Criterion::Equals, true);
         statusCriteria << crit;
         break;
     }
     }
 
-    std::vector<QSharedPointer<const AbstractMatcher> > matchers;
+    std::vector<QSharedPointer<const AbstractMatcher>> matchers;
     if (!textCriteria.isEmpty()) {
         matchers.push_back(QSharedPointer<const AbstractMatcher>(new ArticleMatcher(textCriteria, ArticleMatcher::LogicalOr)));
     }

@@ -17,11 +17,13 @@ class QAction;
 
 class QWidget;
 
-namespace WebEngineViewer {
+namespace WebEngineViewer
+{
 class ZoomActionMenu;
 }
 
-namespace Akregator {
+namespace Akregator
+{
 /**
  * interface for accessing actions, popup menus etc. from
  * widgets.
@@ -33,7 +35,6 @@ class AKREGATOR_EXPORT ActionManager : public QObject
     Q_OBJECT
 
 public:
-
     static ActionManager *getInstance();
     static void setInstance(ActionManager *manager);
 
@@ -48,7 +49,6 @@ public:
     virtual void setArticleActionsEnabled(bool enabled) = 0;
 
 private:
-
     static ActionManager *m_self;
 };
 } // namespace Akregator

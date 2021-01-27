@@ -20,19 +20,20 @@
 #include <QByteArray>
 #include <QDataStream>
 #include <QIcon>
+#include <QItemSelection>
 #include <QList>
 #include <QMimeData>
+#include <QStyle>
 #include <QUrl>
 #include <QVariant>
-#include <QItemSelection>
-#include <QStyle>
 
 using namespace Akregator;
 using namespace Syndication;
 
 #define AKREGATOR_TREENODE_MIMETYPE QStringLiteral("akregator/treenode-id")
 
-namespace {
+namespace
+{
 static uint nodeIdForIndex(const QModelIndex &idx)
 {
     return idx.isValid() ? idx.internalId() : 0;
@@ -119,11 +120,11 @@ bool Akregator::FilterUnreadProxyModel::filterAcceptsRow(int source_row, const Q
 void Akregator::FilterUnreadProxyModel::selectionChanged(const QItemSelection &selected, const QItemSelection &deselected)
 {
     QModelIndexList desel = mapSelectionToSource(deselected).indexes();
-    //calling invalidateFilter causes refiltering at the call point, so we should
-    //call it ONLY after we recreate our node cache
+    // calling invalidateFilter causes refiltering at the call point, so we should
+    // call it ONLY after we recreate our node cache
     bool doInvalidate = false;
 
-    //if we're deselecting an empty feed/folder, we need to hide it
+    // if we're deselecting an empty feed/folder, we need to hide it
     if (!desel.isEmpty()) {
         if (m_selectedHierarchy.contains(desel.at(0))) {
             doInvalidate = true;
@@ -134,7 +135,7 @@ void Akregator::FilterUnreadProxyModel::selectionChanged(const QItemSelection &s
 
     QModelIndexList sel = mapSelectionToSource(selected).indexes();
     if (!sel.isEmpty()) {
-        //XXX add support for multiple selections? this doesn't generally make sense in this case honestly
+        // XXX add support for multiple selections? this doesn't generally make sense in this case honestly
         QModelIndex current = sel.at(0);
         while (current.isValid()) {
             m_selectedHierarchy.insert(current);
@@ -152,27 +153,21 @@ void Akregator::FilterUnreadProxyModel::clearCache()
     m_selectedHierarchy.clear();
 }
 
-Akregator::SubscriptionListModel::SubscriptionListModel(const QSharedPointer<const FeedList> &feedList, QObject *parent) : QAbstractItemModel(parent)
+Akregator::SubscriptionListModel::SubscriptionListModel(const QSharedPointer<const FeedList> &feedList, QObject *parent)
+    : QAbstractItemModel(parent)
     , m_feedList(feedList)
     , m_beganRemoval(false)
 {
     if (!m_feedList) {
         return;
     }
-    connect(m_feedList.data(), &FeedList::signalNodeAdded,
-            this, &SubscriptionListModel::subscriptionAdded);
-    connect(m_feedList.data(), &FeedList::signalAboutToRemoveNode,
-            this, &SubscriptionListModel::aboutToRemoveSubscription);
-    connect(m_feedList.data(), &FeedList::signalNodeRemoved,
-            this, &SubscriptionListModel::subscriptionRemoved);
-    connect(m_feedList.data(), &FeedList::signalNodeChanged,
-            this, &SubscriptionListModel::subscriptionChanged);
-    connect(m_feedList.data(), &FeedList::fetchStarted,
-            this, &SubscriptionListModel::fetchStarted);
-    connect(m_feedList.data(), &FeedList::fetched,
-            this, &SubscriptionListModel::fetched);
-    connect(m_feedList.data(), &FeedList::fetchAborted,
-            this, &SubscriptionListModel::fetchAborted);
+    connect(m_feedList.data(), &FeedList::signalNodeAdded, this, &SubscriptionListModel::subscriptionAdded);
+    connect(m_feedList.data(), &FeedList::signalAboutToRemoveNode, this, &SubscriptionListModel::aboutToRemoveSubscription);
+    connect(m_feedList.data(), &FeedList::signalNodeRemoved, this, &SubscriptionListModel::subscriptionRemoved);
+    connect(m_feedList.data(), &FeedList::signalNodeChanged, this, &SubscriptionListModel::subscriptionChanged);
+    connect(m_feedList.data(), &FeedList::fetchStarted, this, &SubscriptionListModel::fetchStarted);
+    connect(m_feedList.data(), &FeedList::fetched, this, &SubscriptionListModel::fetched);
+    connect(m_feedList.data(), &FeedList::fetchAborted, this, &SubscriptionListModel::fetchAborted);
 }
 
 int Akregator::SubscriptionListModel::columnCount(const QModelIndex &) const
@@ -214,8 +209,7 @@ QVariant Akregator::SubscriptionListModel::data(const QModelIndex &index, int ro
             return node->totalCount();
         }
         break;
-    case Qt::ToolTipRole:
-    {
+    case Qt::ToolTipRole: {
         if (node->isGroup() || node->isAggregation()) {
             return node->title();
         }
@@ -228,8 +222,7 @@ QVariant Akregator::SubscriptionListModel::data(const QModelIndex &index, int ro
         }
         return feed->title();
     }
-    case Qt::DecorationRole:
-    {
+    case Qt::DecorationRole: {
         if (index.column() != TitleColumn) {
             return QVariant();
         }
@@ -245,13 +238,11 @@ QVariant Akregator::SubscriptionListModel::data(const QModelIndex &index, int ro
         return !node->isGroup() && !node->isAggregation();
     case IsAggregationRole:
         return node->isAggregation();
-    case LinkRole:
-    {
+    case LinkRole: {
         const Feed *const feed = qobject_cast<const Feed *const>(node);
         return feed ? feed->xmlUrl() : QVariant();
     }
-    case IsOpenRole:
-    {
+    case IsOpenRole: {
         if (!node->isGroup()) {
             return false;
         }
@@ -375,8 +366,7 @@ void Akregator::SubscriptionListModel::subscriptionChanged(TreeNode *node)
     if (!idx.isValid()) {
         return;
     }
-    Q_EMIT dataChanged(index(idx.row(), 0, idx.parent()),
-                       index(idx.row(), ColumnCount - 1, idx.parent()));
+    Q_EMIT dataChanged(index(idx.row(), 0, idx.parent()), index(idx.row(), ColumnCount - 1, idx.parent()));
 }
 
 void SubscriptionListModel::fetchStarted(Akregator::Feed *node)
@@ -424,7 +414,8 @@ void Akregator::FolderExpansionHandler::setExpanded(const QModelIndex &idx, bool
     folder->setOpen(expanded);
 }
 
-FolderExpansionHandler::FolderExpansionHandler(QObject *parent) : QObject(parent)
+FolderExpansionHandler::FolderExpansionHandler(QObject *parent)
+    : QObject(parent)
     , m_feedList()
     , m_model(nullptr)
 {
@@ -510,7 +501,7 @@ bool SubscriptionListModel::dropMimeData(const QMimeData *data, Qt::DropAction a
         return true;
     }
 
-    //if ( column != TitleColumn )
+    // if ( column != TitleColumn )
     //    return false;
 
     if (!data->hasFormat(AKREGATOR_TREENODE_MIMETYPE)) {
@@ -537,7 +528,7 @@ bool SubscriptionListModel::dropMimeData(const QMimeData *data, Qt::DropAction a
         ids << id;
     }
 
-    //don't drop nodes into their own subtree
+    // don't drop nodes into their own subtree
     for (const int id : qAsConst(ids)) {
         const auto *const asFolder = qobject_cast<const Folder *>(m_feedList->findByID(id));
         if (asFolder && (asFolder == destFolder || asFolder->subtreeContains(destFolder))) {

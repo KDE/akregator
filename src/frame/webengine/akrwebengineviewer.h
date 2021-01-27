@@ -10,7 +10,8 @@
 #include "articleviewer-ng/webengine/articleviewerwebengine.h"
 
 class KActionCollection;
-namespace Akregator {
+namespace Akregator
+{
 class AkrWebEngineViewer : public ArticleViewerWebEngine
 {
     Q_OBJECT

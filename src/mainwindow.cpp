@@ -11,26 +11,26 @@
 #include "akregatorconfig.h"
 #include "trayicon.h"
 
-#include <PimCommon/BroadcastStatus>
 #include <Libkdepim/ProgressStatusBarWidget>
 #include <Libkdepim/StatusbarProgressWidget>
+#include <PimCommon/BroadcastStatus>
 
 #include <KActionCollection>
 #include <KConfig>
 #include <KEditToolBar>
 #include <KLocalizedString>
 #include <KMessageBox>
-#include <KSqueezedTextLabel>
-#include <KShortcutsDialog>
-#include <KStandardAction>
-#include <QStatusBar>
-#include <KPluginLoader>
-#include <KXMLGUIFactory>
 #include <KPluginFactory>
+#include <KPluginLoader>
 #include <KSharedConfig>
+#include <KShortcutsDialog>
+#include <KSqueezedTextLabel>
+#include <KStandardAction>
 #include <KToolBar>
-#include <QMenuBar>
+#include <KXMLGUIFactory>
 #include <QApplication>
+#include <QMenuBar>
+#include <QStatusBar>
 
 using namespace Akregator;
 
@@ -62,8 +62,7 @@ MainWindow::MainWindow(QWidget *parent)
     setStandardToolBarMenuEnabled(true);
     createStandardStatusBarAction();
 
-    connect(PimCommon::BroadcastStatus::instance(), &PimCommon::BroadcastStatus::statusMsg,
-            this, &MainWindow::slotSetStatusBarText);
+    connect(PimCommon::BroadcastStatus::instance(), &PimCommon::BroadcastStatus::statusMsg, this, &MainWindow::slotSetStatusBarText);
 
     connect(qApp, &QCoreApplication::aboutToQuit, this, &MainWindow::slotOnShutdown);
 }
@@ -135,8 +134,7 @@ void MainWindow::readProperties(const KConfigGroup &config)
 // TODO: move to part?
 void MainWindow::optionsConfigureKeys()
 {
-    KShortcutsDialog dlg(KShortcutsEditor::AllActions,
-                         KShortcutsEditor::LetterShortcutsAllowed, this);
+    KShortcutsDialog dlg(KShortcutsEditor::AllActions, KShortcutsEditor::LetterShortcutsAllowed, this);
 
     dlg.addCollection(actionCollection());
     if (m_part) {
@@ -145,7 +143,7 @@ void MainWindow::optionsConfigureKeys()
 
     if (dlg.configure()) {
         if (m_part) {
-            //FIXME
+            // FIXME
             // m_part->updateQuickSearchLineText();
         }
     }

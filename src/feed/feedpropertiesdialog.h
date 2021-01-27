@@ -16,7 +16,8 @@
 
 #include <QWidget>
 
-namespace Akregator {
+namespace Akregator
+{
 class FeedPropertiesWidget : public QWidget, public Ui::FeedPropertiesWidgetBase
 {
     Q_OBJECT
@@ -24,12 +25,7 @@ public:
     explicit FeedPropertiesWidget(QWidget *parent = nullptr, const QString &name = QString());
     ~FeedPropertiesWidget();
 
-    enum IntervalStep {
-        Minutes = 0,
-        Hours,
-        Days,
-        Never
-    };
+    enum IntervalStep { Minutes = 0, Hours, Days, Never };
 
 public Q_SLOTS:
     void slotUpdateComboBoxActivated(int index);
@@ -78,6 +74,7 @@ protected:
     void setLoadLinkedWebsite(bool enabled);
 
     void setComment(const QString &comment);
+
 private:
     FeedPropertiesWidget *widget = nullptr;
     Feed *m_feed = nullptr;

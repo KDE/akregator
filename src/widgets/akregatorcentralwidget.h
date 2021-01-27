@@ -7,9 +7,10 @@
 #ifndef AKREGATORCENTRALWIDGET_H
 #define AKREGATORCENTRALWIDGET_H
 
-#include <QStackedWidget>
 #include "crashwidget/crashwidget.h"
-namespace Akregator {
+#include <QStackedWidget>
+namespace Akregator
+{
 class MainWidget;
 class AkregatorCentralWidget : public QStackedWidget
 {

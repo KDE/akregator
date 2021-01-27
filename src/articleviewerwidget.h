@@ -9,21 +9,23 @@
 #ifndef AKREGATOR_ARTICLEVIEWERWIDGET_H
 #define AKREGATOR_ARTICLEVIEWERWIDGET_H
 
-#include "article.h"
 #include "akregator_export.h"
+#include "article.h"
 #include <QWidget>
 
 #include <QPointer>
 
 #include <QSharedPointer>
-#include <vector>
 #include <QUrl>
+#include <vector>
 
 class KJob;
 class KActionCollection;
 
-namespace Akregator {
-namespace Filters {
+namespace Akregator
+{
+namespace Filters
+{
 class AbstractMatcher;
 }
 
@@ -67,7 +69,7 @@ public Q_SLOTS:
 
     /** Set filters which will be used if the viewer is in combined view mode
      */
-    void setFilters(const std::vector< QSharedPointer<const Akregator::Filters::AbstractMatcher> > &filters);
+    void setFilters(const std::vector<QSharedPointer<const Akregator::Filters::AbstractMatcher>> &filters);
 
     /** Update view if combined view mode is set. Has to be called when
      * the displayed node gets modified.
@@ -117,7 +119,7 @@ private:
     void renderContent(const QString &body);
 
     /** Resets the canvas and adds writes the HTML header to it.
-        */
+     */
     void beginWriting();
 
     /** Finishes writing to the canvas and completes the HTML (by adding closing tags) */
@@ -135,10 +137,8 @@ private:
     Article m_article;
     QVector<Article> m_articles;
     QUrl m_link;
-    std::vector<QSharedPointer<const Filters::AbstractMatcher> > m_filters;
-    enum ViewMode {
-        NormalView, CombinedView, SummaryView
-    };
+    std::vector<QSharedPointer<const Filters::AbstractMatcher>> m_filters;
+    enum ViewMode { NormalView, CombinedView, SummaryView };
     ViewMode m_viewMode = NormalView;
     Akregator::ArticleHtmlWebEngineWriter *m_articleHtmlWriter = nullptr;
     Akregator::ArticleViewerWebEngineWidgetNg *const m_articleViewerWidgetNg;

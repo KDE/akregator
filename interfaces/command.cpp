@@ -21,11 +21,13 @@ public:
     QPointer<QWidget> parentWidget;
 };
 
-Command::Private::Private() : parentWidget()
+Command::Private::Private()
+    : parentWidget()
 {
 }
 
-Command::Command(QObject *parent) : QObject(parent)
+Command::Command(QObject *parent)
+    : QObject(parent)
     , d(new Private)
 {
 }

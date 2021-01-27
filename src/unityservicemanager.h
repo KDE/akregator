@@ -7,8 +7,8 @@
 #ifndef UNITYSERVICEMANAGER_H
 #define UNITYSERVICEMANAGER_H
 
-#include <QObject>
 #include "akregator_export.h"
+#include <QObject>
 class QDBusServiceWatcher;
 
 class AKREGATOR_EXPORT UnityServiceManager : public QObject

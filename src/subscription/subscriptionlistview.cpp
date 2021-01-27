@@ -7,19 +7,19 @@
 */
 
 #include "subscriptionlistview.h"
-#include "subscriptionlistmodel.h"
-#include "subscriptionlistdelegate.h"
-#include "akregatorconfig.h"
 #include "akregator_debug.h"
+#include "akregatorconfig.h"
+#include "subscriptionlistdelegate.h"
+#include "subscriptionlistmodel.h"
 
 #include <QHeaderView>
-#include <QStack>
 #include <QPointer>
 #include <QQueue>
+#include <QStack>
 
-#include <QMenu>
-#include <KLocalizedString>
 #include <KConfigGroup>
+#include <KLocalizedString>
+#include <QMenu>
 
 using namespace Akregator;
 
@@ -54,7 +54,9 @@ static QModelIndex prevFeedIndex(const QModelIndex &idx, bool allowPassed = fals
 static QModelIndex prevUnreadFeedIndex(const QModelIndex &idx, bool allowPassed = false)
 {
     QModelIndex prev = allowPassed ? idx : prevIndex(idx);
-    while (prev.isValid() && (prev.data(SubscriptionListModel::IsAggregationRole).toBool() || prev.sibling(prev.row(), SubscriptionListModel::UnreadCountColumn).data().toInt() == 0)) {
+    while (prev.isValid()
+           && (prev.data(SubscriptionListModel::IsAggregationRole).toBool()
+               || prev.sibling(prev.row(), SubscriptionListModel::UnreadCountColumn).data().toInt() == 0)) {
         prev = prevIndex(prev);
     }
     return prev;
@@ -108,13 +110,16 @@ static QModelIndex nextFeedIndex(const QModelIndex &idx)
 static QModelIndex nextUnreadFeedIndex(const QModelIndex &idx)
 {
     QModelIndex next = nextIndex(idx);
-    while (next.isValid() && (next.data(SubscriptionListModel::IsAggregationRole).toBool() || next.sibling(next.row(), SubscriptionListModel::UnreadCountColumn).data().toInt() == 0)) {
+    while (next.isValid()
+           && (next.data(SubscriptionListModel::IsAggregationRole).toBool()
+               || next.sibling(next.row(), SubscriptionListModel::UnreadCountColumn).data().toInt() == 0)) {
         next = nextIndex(next);
     }
     return next;
 }
 
-Akregator::SubscriptionListView::SubscriptionListView(QWidget *parent) : QTreeView(parent)
+Akregator::SubscriptionListView::SubscriptionListView(QWidget *parent)
+    : QTreeView(parent)
 {
     setFocusPolicy(Qt::NoFocus);
     setSelectionMode(QAbstractItemView::SingleSelection);
@@ -219,7 +224,7 @@ void Akregator::SubscriptionListView::loadHeaderSettings()
 
 void Akregator::SubscriptionListView::restoreHeaderState()
 {
-    header()->restoreState(m_headerState);                  // needed, even with Qt 4.5
+    header()->restoreState(m_headerState); // needed, even with Qt 4.5
     // Always shows the title column
     header()->showSection(SubscriptionListModel::TitleColumn);
     if (m_headerState.isEmpty()) {
@@ -395,9 +400,9 @@ void Akregator::SubscriptionListView::slotSetAutoExpandFolders(bool setting)
         return;
     }
 
-    //expand any current subscriptions with unread items
+    // expand any current subscriptions with unread items
     QQueue<QModelIndex> indexes;
-    //start at the root node
+    // start at the root node
     indexes.enqueue(QModelIndex());
 
     QAbstractItemModel *m = model();

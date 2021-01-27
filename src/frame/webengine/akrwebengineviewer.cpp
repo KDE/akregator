@@ -7,29 +7,29 @@
 #include "akrwebengineviewer.h"
 #include "articleviewer-ng/webengine/articleviewerwebenginepage.h"
 
-#include "akregatorconfig.h"
 #include "actionmanager.h"
 #include "actions.h"
+#include "akregatorconfig.h"
 #include "webengine/urlhandlerwebenginemanager.h"
 
-#include <KPIMTextEdit/TextToSpeech>
+#include <KActionCollection>
 #include <KActionMenu>
 #include <KIO/KUriFilterSearchProviderActions>
-#include <KActionCollection>
-#include <QWebEngineSettings>
+#include <KPIMTextEdit/TextToSpeech>
 #include <QContextMenuEvent>
 #include <QMenu>
 #include <QWebEngineHistory>
+#include <QWebEngineSettings>
+#include <WebEngineViewer/InterceptorManager>
 #include <WebEngineViewer/WebHitTest>
 #include <WebEngineViewer/WebHitTestResult>
-#include <WebEngineViewer/InterceptorManager>
 
 using namespace Akregator;
 
 AkrWebEngineViewer::AkrWebEngineViewer(KActionCollection *ac, QWidget *parent)
     : ArticleViewerWebEngine(ac, parent)
 {
-    //TODO update settings when we change config
+    // TODO update settings when we change config
     settings()->setAttribute(QWebEngineSettings::JavascriptEnabled, Settings::enableJavascript());
     settings()->setAttribute(QWebEngineSettings::PluginsEnabled, false);
     settings()->setAttribute(QWebEngineSettings::AutoLoadImages, true);
@@ -39,7 +39,7 @@ AkrWebEngineViewer::AkrWebEngineViewer(KActionCollection *ac, QWidget *parent)
     settings()->setAttribute(QWebEngineSettings::XSSAuditingEnabled, false);
     settings()->setAttribute(QWebEngineSettings::ErrorPageEnabled, false);
     settings()->setAttribute(QWebEngineSettings::LocalContentCanAccessRemoteUrls, false);
-    //settings()->setAttribute(QWebEngineSettings::LocalContentCanAccessFileUrls, false);
+    // settings()->setAttribute(QWebEngineSettings::LocalContentCanAccessFileUrls, false);
 
     settings()->setAttribute(QWebEngineSettings::AutoLoadIconsForPage, false);
 }

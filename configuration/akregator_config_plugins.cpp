@@ -8,15 +8,14 @@
 #include "akregatorconfig.h"
 #include "akregatorconfigurepluginlistwidget.h"
 #include <KAboutData>
-#include <KPluginFactory>
 #include <KLocalizedString>
-#include <PimCommon/ConfigurePluginsWidget>
+#include <KPluginFactory>
 #include <PimCommon/ConfigurePluginsListWidget>
+#include <PimCommon/ConfigurePluginsWidget>
 #include <QHBoxLayout>
 using namespace Akregator;
 
-K_PLUGIN_FACTORY(KCMAkregatorPluginsConfigFactory, registerPlugin<KCMAkregatorPluginsConfig>();
-                 )
+K_PLUGIN_FACTORY(KCMAkregatorPluginsConfigFactory, registerPlugin<KCMAkregatorPluginsConfig>();)
 
 KCMAkregatorPluginsConfig::KCMAkregatorPluginsConfig(QWidget *parent, const QVariantList &args)
     : KCModule(parent, args)
@@ -26,7 +25,9 @@ KCMAkregatorPluginsConfig::KCMAkregatorPluginsConfig(QWidget *parent, const QVar
 
     KAboutData *about = new KAboutData(QStringLiteral("kcmakrpluginsconfig"),
                                        i18n("Configure Plugins"),
-                                       QString(), QString(), KAboutLicense::GPL,
+                                       QString(),
+                                       QString(),
+                                       KAboutLicense::GPL,
                                        i18n("(c), 2016-2020 Laurent Montel"));
 
     about->addAuthor(i18n("Laurent Montel"), QString(), QStringLiteral("montel@kde.org"));

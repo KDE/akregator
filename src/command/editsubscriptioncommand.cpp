@@ -10,17 +10,18 @@
 
 #include "feed.h"
 #include "feedlist.h"
-#include "folder.h"
 #include "feedpropertiesdialog.h"
+#include "folder.h"
 #include "subscriptionlistview.h"
 #include "treenodevisitor.h"
 
-#include <QTimer>
 #include <QPointer>
+#include <QTimer>
 
 using namespace Akregator;
 
-namespace {
+namespace
+{
 class EditNodePropertiesVisitor : public TreeNodeVisitor
 {
 public:
@@ -42,7 +43,6 @@ public:
     }
 
 private:
-
     SubscriptionListView *m_subscriptionListView = nullptr;
     QWidget *m_widget = nullptr;
 };
@@ -59,6 +59,7 @@ EditNodePropertiesVisitor::EditNodePropertiesVisitor(SubscriptionListView *subsc
 class EditSubscriptionCommand::Private
 {
     EditSubscriptionCommand *const q;
+
 public:
     explicit Private(EditSubscriptionCommand *qq);
     ~Private();
@@ -71,7 +72,8 @@ public:
     SubscriptionListView *m_subscriptionListView = nullptr;
 };
 
-EditSubscriptionCommand::Private::Private(EditSubscriptionCommand *qq) : q(qq)
+EditSubscriptionCommand::Private::Private(EditSubscriptionCommand *qq)
+    : q(qq)
     , m_list()
     , m_subscriptionId(-1)
     , m_subscriptionListView(nullptr)
@@ -82,7 +84,8 @@ EditSubscriptionCommand::Private::~Private()
 {
 }
 
-EditSubscriptionCommand::EditSubscriptionCommand(QObject *parent) : Command(parent)
+EditSubscriptionCommand::EditSubscriptionCommand(QObject *parent)
+    : Command(parent)
     , d(new Private(this))
 {
 }

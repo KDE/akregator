@@ -16,8 +16,10 @@
 class QString;
 class QWidget;
 
-namespace Akregator {
-namespace Backend {
+namespace Akregator
+{
+namespace Backend
+{
 class StorageFactory;
 }
 
@@ -43,4 +45,4 @@ private:
 };
 } // namespace Akregator
 
-#endif //AKREGATOR_SETTINGS_ADVANCED_H
+#endif // AKREGATOR_SETTINGS_ADVANCED_H

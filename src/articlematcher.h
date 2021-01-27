@@ -10,16 +10,18 @@
 #define AKREGATOR_ARTICLEMATCHER_H
 
 #include "akregatorpart_export.h"
-#include <QVector>
 #include <QString>
 #include <QVariant>
+#include <QVector>
 
 class KConfigGroup;
 
-namespace Akregator {
+namespace Akregator
+{
 class Article;
 
-namespace Filters {
+namespace Filters
+{
 class AbstractMatcher;
 class Criterion;
 
@@ -52,10 +54,7 @@ private:
 class AKREGATORPART_EXPORT ArticleMatcher : public AbstractMatcher
 {
 public:
-
-    enum Association {
-        None, LogicalAnd, LogicalOr
-    };
+    enum Association { None, LogicalAnd, LogicalOr };
 
     ArticleMatcher();
     ArticleMatcher(const QVector<Criterion> &criteria, Association assoc);
@@ -70,7 +69,6 @@ public:
     void readConfig(KConfigGroup *config) override;
 
 private:
-
     static Association stringToAssociation(const QString &assocStr);
     static QString associationToString(Association association);
 
@@ -87,20 +85,12 @@ private:
 class AKREGATORPART_EXPORT Criterion
 {
 public:
-
-    enum Subject {
-        Title, Description, Link, Status, KeepFlag, Author
-    };
+    enum Subject { Title, Description, Link, Status, KeepFlag, Author };
 
     static QString subjectToString(Subject subj);
     static Subject stringToSubject(const QString &subjStr);
 
-    enum Predicate {
-        Contains = 0x01,
-        Equals = 0x02,
-        Matches = 0x03,
-        Negation = 0x80
-    };
+    enum Predicate { Contains = 0x01, Equals = 0x02, Matches = 0x03, Negation = 0x80 };
 
     static QString predicateToString(Predicate pred);
     static Predicate stringToPredicate(const QString &predStr);

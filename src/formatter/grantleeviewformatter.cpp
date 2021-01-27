@@ -5,19 +5,19 @@
 */
 
 #include "grantleeviewformatter.h"
-#include "articlegrantleeobject.h"
-#include "utils.h"
 #include "akregatorconfig.h"
+#include "articlegrantleeobject.h"
 #include "grantleeutil.h"
+#include "utils.h"
 #include <KLocalizedString>
 
 #include <grantlee/engine.h>
 
-#include <QVariantHash>
 #include <QApplication>
+#include <QVariantHash>
 #include <QVariantList>
-#include <folder.h>
 #include <feed.h>
+#include <folder.h>
 
 using namespace Akregator;
 

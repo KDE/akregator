@@ -9,14 +9,15 @@
 #ifndef AKREGATOR_MAINWINDOW_H
 #define AKREGATOR_MAINWINDOW_H
 
-#include <kparts/mainwindow.h>
 #include <kio/job.h>
+#include <kparts/mainwindow.h>
 
 #include <QPointer>
 
 class KSqueezedTextLabel;
 
-namespace Akregator {
+namespace Akregator
+{
 class Part;
 class MainWindow;
 

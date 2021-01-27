@@ -11,15 +11,14 @@
 #include "ui_settings_general.h"
 
 #include <KAboutData>
-#include <KPluginFactory>
 #include <KLocalizedString>
+#include <KPluginFactory>
 
 #include <QVBoxLayout>
 
 using namespace Akregator;
 
-K_PLUGIN_FACTORY(KCMAkregatorGeneralConfigFactory, registerPlugin<KCMAkregatorGeneralConfig>();
-                 )
+K_PLUGIN_FACTORY(KCMAkregatorGeneralConfigFactory, registerPlugin<KCMAkregatorGeneralConfig>();)
 
 KCMAkregatorGeneralConfig::KCMAkregatorGeneralConfig(QWidget *parent, const QVariantList &args)
     : KCModule(parent, args)
@@ -37,7 +36,9 @@ KCMAkregatorGeneralConfig::KCMAkregatorGeneralConfig(QWidget *parent, const QVar
     connect(ui.kcfg_UseIntervalFetch, &QAbstractButton::toggled, ui.autoFetchIntervalLabel, &QWidget::setEnabled);
     KAboutData *about = new KAboutData(QStringLiteral("kcmakrgeneralconfig"),
                                        i18n("Configure Feeds"),
-                                       QString(), QString(), KAboutLicense::GPL,
+                                       QString(),
+                                       QString(),
+                                       KAboutLicense::GPL,
                                        i18n("(c), 2004 - 2008 Frank Osterfeld"));
 
     about->addAuthor(i18n("Frank Osterfeld"), QString(), QStringLiteral("osterfeld@kde.org"));

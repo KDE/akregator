@@ -7,9 +7,9 @@
 */
 #include "articlemodel.h"
 
+#include "akregatorconfig.h"
 #include "article.h"
 #include "articlematcher.h"
-#include "akregatorconfig.h"
 #include "feed.h"
 #include "utils.h"
 
@@ -30,18 +30,19 @@
 
 using namespace Akregator;
 
-//like Syndication::htmlToPlainText, but without linebreaks
+// like Syndication::htmlToPlainText, but without linebreaks
 
 static QString stripHtml(const QString &html)
 {
     QString str(html);
-    //TODO: preserve some formatting, such as line breaks
+    // TODO: preserve some formatting, such as line breaks
     str = Akregator::Utils::stripTags(str); // remove tags
     str = Syndication::resolveEntities(str);
     return str.simplified();
 }
 
-ArticleModel::ArticleModel(const QVector<Article> &articles, QObject *parent) : QAbstractTableModel(parent)
+ArticleModel::ArticleModel(const QVector<Article> &articles, QObject *parent)
+    : QAbstractTableModel(parent)
     , m_articles(articles)
 {
     const int articlesCount(articles.count());
@@ -146,7 +147,7 @@ void ArticleModel::clear()
 
 void ArticleModel::articlesAdded(Akregator::TreeNode *, const QVector<Article> &l)
 {
-    if (l.isEmpty()) { //assert?
+    if (l.isEmpty()) { // assert?
         return;
     }
     const int first = m_articles.count();
@@ -165,7 +166,7 @@ void ArticleModel::articlesAdded(Akregator::TreeNode *, const QVector<Article> &
 
 void ArticleModel::articlesRemoved(Akregator::TreeNode *, const QVector<Article> &l)
 {
-    //might want to avoid indexOf() in case of performance problems
+    // might want to avoid indexOf() in case of performance problems
     for (const Article &i : l) {
         const int row = m_articles.indexOf(i);
         Q_ASSERT(row != -1);
@@ -181,11 +182,11 @@ void ArticleModel::articlesUpdated(Akregator::TreeNode *, const QVector<Article>
     const int numberOfArticles(m_articles.count());
     if (numberOfArticles > 0) {
         rmin = numberOfArticles - 1;
-        //might want to avoid indexOf() in case of performance problems
+        // might want to avoid indexOf() in case of performance problems
         for (const Article &i : l) {
             const int row = m_articles.indexOf(i);
-            //TODO: figure out how why the Article might not be found in
-            //TODO: the articles list because we should need this conditional.
+            // TODO: figure out how why the Article might not be found in
+            // TODO: the articles list because we should need this conditional.
             if (row >= 0) {
                 m_titleCache[row] = stripHtml(m_articles[row].title());
                 rmin = std::min(row, rmin);

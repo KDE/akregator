@@ -8,7 +8,8 @@
 #define ARTICLEVIEWERWEBENGINEPAGE_H
 
 #include <WebEngineViewer/WebEnginePage>
-namespace Akregator {
+namespace Akregator
+{
 class ArticleViewerWebEnginePage : public WebEngineViewer::WebEnginePage
 {
     Q_OBJECT

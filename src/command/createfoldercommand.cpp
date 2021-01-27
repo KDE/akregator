@@ -11,8 +11,8 @@
 #include "folder.h"
 #include "subscriptionlistview.h"
 
-#include <QInputDialog>
 #include <KLocalizedString>
+#include <QInputDialog>
 
 #include <QTimer>
 
@@ -23,6 +23,7 @@ using namespace Akregator;
 class Q_DECL_HIDDEN CreateFolderCommand::Private
 {
     CreateFolderCommand *const q;
+
 public:
     explicit Private(CreateFolderCommand *qq);
 
@@ -43,10 +44,7 @@ void CreateFolderCommand::Private::doCreate()
     Q_ASSERT(m_rootFolder);
     Q_ASSERT(m_subscriptionListView);
     bool ok;
-    const QString name = QInputDialog::getText(q->parentWidget(), i18n("Add Folder"),
-                                               i18n("Folder name:"), QLineEdit::Normal,
-                                               QString(),
-                                               &ok);
+    const QString name = QInputDialog::getText(q->parentWidget(), i18n("Add Folder"), i18n("Folder name:"), QLineEdit::Normal, QString(), &ok);
     if (!ok || name.trimmed().isEmpty()) {
         q->done();
         return;
@@ -68,7 +66,8 @@ void CreateFolderCommand::Private::doCreate()
     q->done();
 }
 
-CreateFolderCommand::CreateFolderCommand(QObject *parent) : Command(parent)
+CreateFolderCommand::CreateFolderCommand(QObject *parent)
+    : Command(parent)
     , d(new Private(this))
 {
 }

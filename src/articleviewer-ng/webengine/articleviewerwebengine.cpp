@@ -5,41 +5,41 @@
 */
 
 #include "articleviewerwebengine.h"
-#include "akregator_debug.h"
-#include "articleviewerwebenginepage.h"
-#include "webengine/urlhandlerwebenginemanager.h"
-#include <WebEngineViewer/ZoomActionMenu>
 #include "actionmanager.h"
-#include "akregatorconfig.h"
 #include "actions/actions.h"
+#include "akregator_debug.h"
+#include "akregatorconfig.h"
+#include "articleviewerwebenginepage.h"
 #include "urlhandler/webengine/urlhandlerwebengine.h"
+#include "webengine/urlhandlerwebenginemanager.h"
+#include <KPIMTextEdit/TextToSpeech>
 #include <WebEngineViewer/InterceptorManager>
 #include <WebEngineViewer/WebEngineAccessKey>
 #include <WebEngineViewer/WebEngineManageScript>
-#include <KPIMTextEdit/TextToSpeech>
+#include <WebEngineViewer/ZoomActionMenu>
 
-#include <KIO/FileCopyJob>
-#include <KJobWidgets>
-#include <KJobUiDelegate>
 #include <GrantleeTheme/GrantleeThemeManager>
-#include <KActionCollection>
-#include <KLocalizedString>
 #include <KAboutData>
+#include <KActionCollection>
 #include <KGuiItem>
+#include <KIO/FileCopyJob>
+#include <KJobUiDelegate>
+#include <KJobWidgets>
+#include <KLocalizedString>
 #include <KMessageBox>
-#include <QPrinter>
-#include <QMouseEvent>
 #include <QApplication>
-#include <QFileDialog>
 #include <QClipboard>
+#include <QFileDialog>
 #include <QMenu>
-#include <viewerplugintoolmanager.h>
+#include <QMouseEvent>
+#include <QPrinter>
 #include <QWebEngineProfile>
 #include <QWebEngineUrlRequestInterceptor>
+#include <viewerplugintoolmanager.h>
 
-#include <WebEngineViewer/WebHitTestResult>
-#include <WebEngineViewer/WebHitTest>
 #include <WebEngineViewer/WebEngineScript>
+#include <WebEngineViewer/WebHitTest>
+#include <WebEngineViewer/WebHitTestResult>
 
 #include <WebEngineViewer/LocalDataBaseManager>
 
@@ -52,7 +52,8 @@ class AkregatorRequestInterceptor : public QWebEngineUrlRequestInterceptor
     Q_OBJECT
 
 public:
-    explicit AkregatorRequestInterceptor(QObject *parent = nullptr) : QWebEngineUrlRequestInterceptor(parent)
+    explicit AkregatorRequestInterceptor(QObject *parent = nullptr)
+        : QWebEngineUrlRequestInterceptor(parent)
     {
     }
 
@@ -96,13 +97,10 @@ ArticleViewerWebEngine::ArticleViewerWebEngine(KActionCollection *ac, QWidget *p
     mWebShortcutMenuManager = new KIO::KUriFilterSearchProviderActions(this);
     mShareServiceManager = new PimCommon::ShareServiceUrlManager(this);
     connect(mShareServiceManager, &PimCommon::ShareServiceUrlManager::serviceUrlSelected, this, &ArticleViewerWebEngine::slotServiceUrlSelected);
-    connect(page(), &QWebEnginePage::audioMutedChanged,
-            this, &ArticleViewerWebEngine::slotWebPageMutedOrAudibleChanged);
-    connect(page(), &QWebEnginePage::recentlyAudibleChanged,
-            this, &ArticleViewerWebEngine::slotWebPageMutedOrAudibleChanged);
+    connect(page(), &QWebEnginePage::audioMutedChanged, this, &ArticleViewerWebEngine::slotWebPageMutedOrAudibleChanged);
+    connect(page(), &QWebEnginePage::recentlyAudibleChanged, this, &ArticleViewerWebEngine::slotWebPageMutedOrAudibleChanged);
 
-    connect(phishingDatabase(), &WebEngineViewer::LocalDataBaseManager::checkUrlFinished,
-            this, &ArticleViewerWebEngine::slotCheckedUrlFinished);
+    connect(phishingDatabase(), &WebEngineViewer::LocalDataBaseManager::checkUrlFinished, this, &ArticleViewerWebEngine::slotCheckedUrlFinished);
 }
 
 ArticleViewerWebEngine::~ArticleViewerWebEngine()
@@ -138,14 +136,10 @@ void ArticleViewerWebEngine::showAboutPage()
 
 void ArticleViewerWebEngine::paintAboutScreen(const QString &templateName, const QVariantHash &data)
 {
-    GrantleeTheme::ThemeManager manager(QStringLiteral("splashPage"),
-                                        QStringLiteral("splash.theme"),
-                                        nullptr,
-                                        QStringLiteral("messageviewer/about/"));
+    GrantleeTheme::ThemeManager manager(QStringLiteral("splashPage"), QStringLiteral("splash.theme"), nullptr, QStringLiteral("messageviewer/about/"));
     GrantleeTheme::Theme theme = manager.theme(QStringLiteral("default"));
     if (theme.isValid()) {
-        setHtml(theme.render(templateName, data, QByteArrayLiteral("akregator")),
-                QUrl::fromLocalFile(theme.absolutePath() + QLatin1Char('/')));
+        setHtml(theme.render(templateName, data, QByteArrayLiteral("akregator")), QUrl::fromLocalFile(theme.absolutePath() + QLatin1Char('/')));
     } else {
         qCDebug(AKREGATOR_LOG) << "Theme error: failed to find splash theme";
     }
@@ -361,8 +355,12 @@ void ArticleViewerWebEngine::disableIntroduction()
     yesButton.setText(i18n("Disable"));
     KGuiItem noButton(KStandardGuiItem::no());
     noButton.setText(i18n("Keep Enabled"));
-    if (KMessageBox::questionYesNo(this, i18n("Are you sure you want to disable this introduction page?"),
-                                   i18n("Disable Introduction Page"), yesButton, noButton) == KMessageBox::Yes) {
+    if (KMessageBox::questionYesNo(this,
+                                   i18n("Are you sure you want to disable this introduction page?"),
+                                   i18n("Disable Introduction Page"),
+                                   yesButton,
+                                   noButton)
+        == KMessageBox::Yes) {
         Settings::self()->setDisableIntroduction(true);
         Settings::self()->save();
     }

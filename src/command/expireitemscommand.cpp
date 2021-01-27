@@ -26,6 +26,7 @@ using namespace Akregator;
 class Q_DECL_HIDDEN ExpireItemsCommand::Private
 {
     ExpireItemsCommand *const q;
+
 public:
     explicit Private(ExpireItemsCommand *qq);
 
@@ -38,7 +39,8 @@ public:
     QSet<KJob *> m_jobs;
 };
 
-ExpireItemsCommand::Private::Private(ExpireItemsCommand *qq) : q(qq)
+ExpireItemsCommand::Private::Private(ExpireItemsCommand *qq)
+    : q(qq)
     , m_feedList()
 {
 }
@@ -86,7 +88,8 @@ void ExpireItemsCommand::Private::createDeleteJobs()
     }
 }
 
-ExpireItemsCommand::ExpireItemsCommand(QObject *parent) : Command(parent)
+ExpireItemsCommand::ExpireItemsCommand(QObject *parent)
+    : Command(parent)
     , d(new Private(this))
 {
 }

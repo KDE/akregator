@@ -9,15 +9,17 @@
 #ifndef AKREGATOR_SEARCHBAR_H
 #define AKREGATOR_SEARCHBAR_H
 
-#include <QWidget>
-#include <QTimer>
-#include <QSharedPointer>
-#include <vector>
-#include "widgets/statussearchline.h"
 #include "articlematcher.h"
+#include "widgets/statussearchline.h"
+#include <QSharedPointer>
+#include <QTimer>
+#include <QWidget>
+#include <vector>
 
-namespace Akregator {
-namespace Filters {
+namespace Akregator
+{
+namespace Filters
+{
 class AbstractMatcher;
 }
 
@@ -26,7 +28,6 @@ class SearchBar : public QWidget
     Q_OBJECT
 
 public:
-
     explicit SearchBar(QWidget *parent = nullptr);
     ~SearchBar();
 
@@ -37,12 +38,12 @@ public:
     Q_REQUIRED_RESULT int delay() const;
 
     void setFocusSearchLine();
-    Q_REQUIRED_RESULT std::vector<QSharedPointer<const Filters::AbstractMatcher> > matchers() const;
+    Q_REQUIRED_RESULT std::vector<QSharedPointer<const Filters::AbstractMatcher>> matchers() const;
     void updateQuickSearchLineText(const QString &searchLine);
 
 Q_SIGNALS:
     /** emitted when the text and status filters were updated. Params are textfilter, statusfilter */
-    void signalSearch(const std::vector<QSharedPointer<const Akregator::Filters::AbstractMatcher> > &);
+    void signalSearch(const std::vector<QSharedPointer<const Akregator::Filters::AbstractMatcher>> &);
     void forceLostFocus();
 
 public Q_SLOTS:
@@ -55,6 +56,7 @@ private Q_SLOTS:
     void slotStopActiveSearch();
     void slotActivateSearch();
     void slotStatusChanged(Akregator::StatusSearchLine::Status);
+
 private:
     void triggerTimer();
 
@@ -62,8 +64,8 @@ private:
     QTimer m_timer;
     StatusSearchLine *m_searchLine = nullptr;
     int m_delay;
-    std::vector<QSharedPointer<const Filters::AbstractMatcher> > m_matchers;
+    std::vector<QSharedPointer<const Filters::AbstractMatcher>> m_matchers;
 };
 } // namespace Akregator
 
-#endif //AKREGATOR_SEARCHBAR_H
+#endif // AKREGATOR_SEARCHBAR_H

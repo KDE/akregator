@@ -11,17 +11,13 @@
 #include <QHash>
 #include <QIcon>
 class QAction;
-namespace Akregator {
+namespace Akregator
+{
 class StatusSearchLine : public KLineEdit
 {
     Q_OBJECT
 public:
-    enum Status {
-        AllArticles = 0,
-        NewArticles,
-        UnreadArticles,
-        ImportantArticles
-    };
+    enum Status { AllArticles = 0, NewArticles, UnreadArticles, ImportantArticles };
 
     explicit StatusSearchLine(QWidget *parent = nullptr);
     ~StatusSearchLine() override;

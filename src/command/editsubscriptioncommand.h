@@ -13,7 +13,8 @@
 
 #include <QSharedPointer>
 
-namespace Akregator {
+namespace Akregator
+{
 class FeedList;
 class SubscriptionListView;
 

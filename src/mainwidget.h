@@ -17,8 +17,8 @@
 
 #include <QUrl>
 
-#include <QWidget>
 #include <QPointer>
+#include <QWidget>
 
 #include <QSharedPointer>
 
@@ -28,7 +28,8 @@ class KConfigGroup;
 class QDomDocument;
 class QSplitter;
 
-namespace Akregator {
+namespace Akregator
+{
 class WebEngineFrame;
 class AbstractSelectionController;
 class ActionManagerImpl;
@@ -45,13 +46,12 @@ class TabWidget;
 class MainFrame;
 class DownloadArticleJob;
 /**
-    * This is the main widget of the view, containing tree view, article list, viewer etc.
-    */
+ * This is the main widget of the view, containing tree view, article list, viewer etc.
+ */
 class AKREGATORPART_EXPORT MainWidget : public QWidget
 {
     Q_OBJECT
 public:
-
     /** constructor
     @param part the Akregator::Part which contains this widget
     @param parent parent widget
@@ -96,14 +96,10 @@ public:
     void readProperties(const KConfigGroup &config);
     void saveProperties(KConfigGroup &config);
 
-    //Returns true if networking is available
+    // Returns true if networking is available
     Q_REQUIRED_RESULT bool isNetworkAvailable() const;
 
-    enum ViewMode {
-        NormalView = 0,
-        WidescreenView,
-        CombinedView
-    };
+    enum ViewMode { NormalView = 0, WidescreenView, CombinedView };
 
     ViewMode viewMode() const
     {
@@ -143,7 +139,7 @@ public Q_SLOTS:
     void slotSetTotalUnread();
 
     /** copies the link of current article to clipboard
-    */
+     */
     void slotCopyLinkAddress();
 
     void slotRequestNewFrame(int &frameId);
@@ -208,8 +204,8 @@ public Q_SLOTS:
     void slotNetworkStatusChanged(bool status);
 
     void slotFocusQuickSearch();
-protected:
 
+protected:
     void sendArticle(bool attach = false);
 
     void addFeed(const QString &url, TreeNode *after, Folder *parent, bool autoExec = true);
@@ -277,7 +273,7 @@ private:
     FeedListManagementImpl *const m_feedListManagementInterface = nullptr;
 
     QWidget *m_articleWidget = nullptr;
-    QList<QPointer<Akregator::DownloadArticleJob> > mListDownloadArticleJobs;
+    QList<QPointer<Akregator::DownloadArticleJob>> mListDownloadArticleJobs;
 };
 } // namespace Akregator
 

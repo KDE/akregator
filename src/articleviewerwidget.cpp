@@ -9,30 +9,30 @@
 
 #include "articleviewerwidget.h"
 
-#include "akregatorconfig.h"
 #include "aboutdata.h"
 #include "actionmanager.h"
 #include "actions.h"
+#include "akregator-version.h"
+#include "akregator_debug.h"
+#include "akregatorconfig.h"
 #include "articleformatter.h"
 #include "articlejobs.h"
 #include "articlematcher.h"
 #include "feed.h"
 #include "folder.h"
+#include "openurlrequest.h"
 #include "treenode.h"
 #include "utils.h"
-#include "openurlrequest.h"
-#include "akregator_debug.h"
-#include "akregator-version.h"
 
 #include <KActionCollection>
 
 #include <QElapsedTimer>
 
-#include <articleviewer-ng/webengine/articleviewerwebenginewidgetng.h>
-#include <articleviewer-ng/webengine/articleviewerwebengine.h>
-#include <articleviewer-ng/webengine/articlehtmlwebenginewriter.h>
 #include <QGridLayout>
 #include <QKeyEvent>
+#include <articleviewer-ng/webengine/articlehtmlwebenginewriter.h>
+#include <articleviewer-ng/webengine/articleviewerwebengine.h>
+#include <articleviewer-ng/webengine/articleviewerwebenginewidgetng.h>
 #include <defaultnormalviewformatter.h>
 
 #include <defaultcombinedviewformatter.h>
@@ -61,7 +61,8 @@ ArticleViewerWidget::~ArticleViewerWidget()
 QSharedPointer<ArticleFormatter> ArticleViewerWidget::normalViewFormatter()
 {
     if (!m_normalViewFormatter.data()) {
-        m_normalViewFormatter = QSharedPointer<ArticleFormatter>(new DefaultNormalViewFormatter(m_grantleeDirectory, m_articleViewerWidgetNg->articleViewerNg()));
+        m_normalViewFormatter =
+            QSharedPointer<ArticleFormatter>(new DefaultNormalViewFormatter(m_grantleeDirectory, m_articleViewerWidgetNg->articleViewerNg()));
     }
     return m_normalViewFormatter;
 }
@@ -69,7 +70,8 @@ QSharedPointer<ArticleFormatter> ArticleViewerWidget::normalViewFormatter()
 QSharedPointer<ArticleFormatter> ArticleViewerWidget::combinedViewFormatter()
 {
     if (!m_combinedViewFormatter.data()) {
-        m_combinedViewFormatter = QSharedPointer<ArticleFormatter>(new DefaultCombinedViewFormatter(m_grantleeDirectory, m_articleViewerWidgetNg->articleViewerNg()));
+        m_combinedViewFormatter =
+            QSharedPointer<ArticleFormatter>(new DefaultCombinedViewFormatter(m_grantleeDirectory, m_articleViewerWidgetNg->articleViewerNg()));
     }
     return m_combinedViewFormatter;
 }
@@ -194,7 +196,7 @@ bool ArticleViewerWidget::openUrl(const QUrl &url)
     return true;
 }
 
-void ArticleViewerWidget::setFilters(const std::vector< QSharedPointer<const AbstractMatcher> > &filters)
+void ArticleViewerWidget::setFilters(const std::vector<QSharedPointer<const AbstractMatcher>> &filters)
 {
     if (filters == m_filters) {
         return;
@@ -222,7 +224,7 @@ void ArticleViewerWidget::slotUpdateCombinedView()
     QElapsedTimer spent;
     spent.start();
 
-    const std::vector< QSharedPointer<const AbstractMatcher> >::const_iterator filterEnd = m_filters.cend();
+    const std::vector<QSharedPointer<const AbstractMatcher>>::const_iterator filterEnd = m_filters.cend();
 
     QVector<Article> articles;
     for (const Article &i : qAsConst(m_articles)) {
@@ -231,8 +233,8 @@ void ArticleViewerWidget::slotUpdateCombinedView()
         }
 
         auto func = [i](const QSharedPointer<const Filters::AbstractMatcher> &matcher) -> bool {
-                        return !matcher->matches(i);
-                    };
+            return !matcher->matches(i);
+        };
         if (std::find_if(m_filters.cbegin(), filterEnd, func) != filterEnd) {
             continue;
         }
@@ -241,7 +243,8 @@ void ArticleViewerWidget::slotUpdateCombinedView()
     }
     text = combinedViewFormatter()->formatArticles(articles, ArticleFormatter::NoIcon);
 
-    qCDebug(AKREGATOR_LOG) << "Combined view rendering: (" << num << " articles):" << "generating HTML:" << spent.elapsed() << "ms";
+    qCDebug(AKREGATOR_LOG) << "Combined view rendering: (" << num << " articles):"
+                           << "generating HTML:" << spent.elapsed() << "ms";
     renderContent(text);
     qCDebug(AKREGATOR_LOG) << "HTML rendering:" << spent.elapsed() << "ms";
 }
@@ -256,7 +259,7 @@ void ArticleViewerWidget::slotArticlesUpdated(TreeNode * /*node*/, const QVector
 void ArticleViewerWidget::slotArticlesAdded(TreeNode * /*node*/, const QVector<Article> &list)
 {
     if (m_viewMode == CombinedView) {
-        //TODO sort list, then merge
+        // TODO sort list, then merge
         m_articles << list;
         std::sort(m_articles.begin(), m_articles.end());
         slotUpdateCombinedView();

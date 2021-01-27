@@ -10,15 +10,16 @@
 
 #include "abstractselectioncontroller.h"
 
-#include <QPointer>
 #include <QAbstractItemModel>
+#include <QPointer>
 
 class QModelIndex;
 class QPoint;
 
 class KJob;
 
-namespace Akregator {
+namespace Akregator
+{
 class ArticleListJob;
 class FilterUnreadProxyModel;
 
@@ -27,46 +28,45 @@ class SelectionController : public AbstractSelectionController
     Q_OBJECT
 
 public:
-
     explicit SelectionController(QObject *parent = nullptr);
     ~SelectionController() override;
 
-    //impl
-    void setFeedSelector(QAbstractItemView *feedSelector)  override;
+    // impl
+    void setFeedSelector(QAbstractItemView *feedSelector) override;
 
-    //impl
+    // impl
     void setArticleLister(Akregator::ArticleLister *lister) override;
 
-    //impl
+    // impl
     Q_REQUIRED_RESULT Akregator::Article currentArticle() const override;
 
-    //impl
+    // impl
     Q_REQUIRED_RESULT QModelIndex currentArticleIndex() const override;
 
-    //impl
+    // impl
     Q_REQUIRED_RESULT QVector<Akregator::Article> selectedArticles() const override;
 
-    //impl
+    // impl
     void setSingleArticleDisplay(Akregator::SingleArticleDisplay *display) override;
 
-    //impl
+    // impl
     Akregator::TreeNode *selectedSubscription() const override;
 
-    //impl
+    // impl
     void setFeedList(const QSharedPointer<FeedList> &list) override;
 
-    //impl
+    // impl
     void setFolderExpansionHandler(Akregator::FolderExpansionHandler *handler) override;
 
 public Q_SLOTS:
 
-    //impl
+    // impl
     void settingsChanged() override;
 
-    //impl
-    void setFilters(const std::vector<QSharedPointer<const Akregator::Filters::AbstractMatcher> > &) override;
+    // impl
+    void setFilters(const std::vector<QSharedPointer<const Akregator::Filters::AbstractMatcher>> &) override;
 
-    //impl
+    // impl
     void forceFilterUpdate() override;
 
 private Q_SLOTS:
@@ -79,7 +79,6 @@ private Q_SLOTS:
     void articleHeadersAvailable(KJob *);
 
 private:
-
     QSharedPointer<FeedList> m_feedList;
     QPointer<QAbstractItemView> m_feedSelector;
     Akregator::ArticleLister *m_articleLister = nullptr;

@@ -11,8 +11,8 @@
 #include "ui_settings_browser.h"
 
 #include <KAboutData>
-#include <KPluginFactory>
 #include <KLocalizedString>
+#include <KPluginFactory>
 
 #include <QVBoxLayout>
 
@@ -30,11 +30,12 @@ KCMAkregatorBrowserConfig::KCMAkregatorBrowserConfig(QWidget *parent, const QVar
     auto *layout = new QVBoxLayout(this);
     layout->addWidget(m_widget);
 
-    connect(ui.kcfg_ExternalBrowserUseCustomCommand, &QAbstractButton::toggled,
-            ui.kcfg_ExternalBrowserCustomCommand, &QWidget::setEnabled);
+    connect(ui.kcfg_ExternalBrowserUseCustomCommand, &QAbstractButton::toggled, ui.kcfg_ExternalBrowserCustomCommand, &QWidget::setEnabled);
     KAboutData *about = new KAboutData(QStringLiteral("kcmakrbrowserconfig"),
                                        i18n("Configure Feed Reader Browser"),
-                                       QString(), QString(), KAboutLicense::GPL,
+                                       QString(),
+                                       QString(),
+                                       KAboutLicense::GPL,
                                        i18n("(c), 2004 - 2008 Frank Osterfeld"));
 
     about->addAuthor(i18n("Frank Osterfeld"), QString(), QStringLiteral("osterfeld@kde.org"));
