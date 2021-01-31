@@ -136,7 +136,7 @@ target_link_libraries(akregatorprivate
     Grantlee5::Templates
     KF5::KIOGui
     KF5::MessageViewer
-    Qt5::PrintSupport
+    Qt::PrintSupport
     KF5::WebEngineViewer
     ${akregator_userfeedback_LIB}
     )
@@ -228,7 +228,7 @@ target_link_libraries(akregatorpart
     KF5::MessageViewer
     KF5::Parts
     KF5::Notifications
-    Qt5::WebEngineWidgets
+    Qt::WebEngineWidgets
     KF5::WebEngineViewer
     KF5::KIOGui
     )

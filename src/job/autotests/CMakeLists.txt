@@ -3,7 +3,7 @@ macro(akregator_job_unittest _source)
     ecm_add_test(${_source}
         TEST_NAME ${_name}
         NAME_PREFIX "akregator-job"
-        LINK_LIBRARIES Qt5::Test akregatorprivate
+        LINK_LIBRARIES Qt::Test akregatorprivate
     )
 endmacro ()
 
