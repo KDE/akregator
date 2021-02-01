@@ -28,7 +28,7 @@ endif()
 
 target_link_libraries(akregatorinterfaces
     KF5::ConfigGui
-    Qt::Widgets
+    Qt5::Widgets
     ${akregator_userfeedback_LIB}
     )
 if (COMPILE_WITH_UNITY_CMAKE_SUPPORT)
