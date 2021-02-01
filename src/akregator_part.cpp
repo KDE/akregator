@@ -403,7 +403,9 @@ bool Part::writeToTextFile(const QString &data, const QString &filename) const
         return false;
     }
     QTextStream stream(&file);
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     stream.setCodec("UTF-8");
+#endif
     stream << data << Qt::endl;
     return file.commit();
 }
