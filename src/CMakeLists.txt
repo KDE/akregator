@@ -107,9 +107,8 @@ set(akregatorprivate_LIB_SRCS
     openurlrequest.cpp
     actions/actionmanager.cpp
     actions/actions.cpp
+    akregator.qrc
     )
-
-qt5_add_resources(akregatorprivate_LIB_SRCS akregator.qrc)
 
 add_library(akregatorprivate ${akregatorprivate_LIB_SRCS})
 if (COMPILE_WITH_UNITY_CMAKE_SUPPORT)
