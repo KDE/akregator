@@ -25,7 +25,7 @@ bool DownloadFeedIconJob::start()
         return false;
     }
 
-    auto *job = new KIO::FavIconRequestJob(mFeedIconUrl);
+    auto job = new KIO::FavIconRequestJob(mFeedIconUrl);
     if (!mDownloadFavicon) {
         job->setIconUrl(mFeedIconUrl);
     }

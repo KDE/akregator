@@ -165,7 +165,7 @@ void SelectionController::setFeedList(const QSharedPointer<FeedList> &list)
     }
 
     m_feedList = list;
-    auto *m = qobject_cast<SubscriptionListModel *>(m_subscriptionModel->sourceModel());
+    auto m = qobject_cast<SubscriptionListModel *>(m_subscriptionModel->sourceModel());
     std::unique_ptr<SubscriptionListModel> oldModel(m);
     m_subscriptionModel->setSourceModel(new SubscriptionListModel(m_feedList, this));
 
@@ -242,7 +242,7 @@ void SelectionController::subscriptionDataChanged(const QModelIndex &topLeft, co
     }
 
     // need access to setExpanded
-    auto *tv = qobject_cast<QTreeView *>(m_feedSelector);
+    auto tv = qobject_cast<QTreeView *>(m_feedSelector);
     if (!tv) {
         qCCritical(AKREGATOR_LOG) << "Unable to cast m_feedSelector to QTreeView";
         return;
@@ -302,7 +302,7 @@ void SelectionController::subscriptionContextMenuRequested(const QPoint &point)
     }
 
     QWidget *w = ActionManager::getInstance()->container(node->isGroup() ? QStringLiteral("feedgroup_popup") : QStringLiteral("feeds_popup"));
-    auto *popup = qobject_cast<QMenu *>(w);
+    auto popup = qobject_cast<QMenu *>(w);
     if (popup) {
         const QPoint globalPos = m_feedSelector->viewport()->mapToGlobal(point);
         popup->exec(globalPos);

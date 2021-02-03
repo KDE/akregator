@@ -57,7 +57,7 @@ ArticleViewerWebEngineWidgetNg::ArticleViewerWebEngineWidgetNg(KActionCollection
 
 void ArticleViewerWebEngineWidgetNg::initializeLayout(KActionCollection *ac)
 {
-    auto *layout = new QVBoxLayout(this);
+    auto layout = new QVBoxLayout(this);
     layout->setContentsMargins({});
 
     mTextToSpeechWidget = new KPIMTextEdit::TextToSpeechWidget(this);
@@ -161,7 +161,7 @@ void ArticleViewerWebEngineWidgetNg::slotOpenInBrowser()
 {
     const QUrl currentUrl(mArticleViewerNg->url());
     if (currentUrl.isLocalFile()) {
-        auto *job = new WebEngineViewer::WebEngineExportHtmlPageJob;
+        auto job = new WebEngineViewer::WebEngineExportHtmlPageJob;
         job->setEngineView(mArticleViewerNg);
         connect(job, &WebEngineViewer::WebEngineExportHtmlPageJob::failed, this, &ArticleViewerWebEngineWidgetNg::slotExportHtmlPageFailed);
         connect(job, &WebEngineViewer::WebEngineExportHtmlPageJob::success, this, &ArticleViewerWebEngineWidgetNg::slotExportHtmlPageSuccess);

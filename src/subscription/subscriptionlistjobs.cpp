@@ -55,7 +55,7 @@ void MoveSubscriptionJob::doMove()
     }
 
     TreeNode *const node = feedList->findByID(m_id);
-    auto *const destFolder = qobject_cast<Folder *>(feedList->findByID(m_destFolderId));
+    auto const destFolder = qobject_cast<Folder *>(feedList->findByID(m_destFolderId));
     TreeNode *const after = feedList->findByID(m_afterId);
 
     if (!node || !destFolder) {

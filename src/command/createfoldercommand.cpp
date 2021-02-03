@@ -50,7 +50,7 @@ void CreateFolderCommand::Private::doCreate()
         return;
     }
 
-    auto *parentFolder = qobject_cast<Folder *>(m_selectedSubscription);
+    auto parentFolder = qobject_cast<Folder *>(m_selectedSubscription);
     if (!parentFolder) {
         parentFolder = m_selectedSubscription ? m_selectedSubscription->parent() : nullptr;
     }
@@ -60,7 +60,7 @@ void CreateFolderCommand::Private::doCreate()
 
     TreeNode *const after = (m_selectedSubscription && m_selectedSubscription->isGroup()) ? m_selectedSubscription : nullptr;
 
-    auto *const newFolder = new Folder(name);
+    auto const newFolder = new Folder(name);
     parentFolder->insertChild(newFolder, after);
     m_subscriptionListView->ensureNodeVisible(newFolder);
     q->done();

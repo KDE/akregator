@@ -159,7 +159,7 @@ Part::Part(QWidget *parentWidget, QObject *parent, const QVariantList &)
     QDir().mkpath(path);
     m_standardFeedList = path + QStringLiteral("/feeds.opml");
 
-    auto *dummyFactory = new Backend::StorageFactoryDummyImpl();
+    auto dummyFactory = new Backend::StorageFactoryDummyImpl();
     if (!Backend::StorageFactoryRegistry::self()->registerFactory(dummyFactory, dummyFactory->key())) {
         // There was already a dummy factory registered.
         delete dummyFactory;
@@ -273,7 +273,7 @@ void Part::slotOnShutdown()
 
 void Part::initializeTrayIcon()
 {
-    auto *trayIcon = new TrayIcon(m_mainWidget->window());
+    auto trayIcon = new TrayIcon(m_mainWidget->window());
     TrayIcon::setInstance(trayIcon);
     m_actionManager->setTrayIcon(trayIcon);
 

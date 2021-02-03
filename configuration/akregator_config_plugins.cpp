@@ -20,7 +20,7 @@ K_PLUGIN_FACTORY(KCMAkregatorPluginsConfigFactory, registerPlugin<KCMAkregatorPl
 KCMAkregatorPluginsConfig::KCMAkregatorPluginsConfig(QWidget *parent, const QVariantList &args)
     : KCModule(parent, args)
 {
-    auto *lay = new QHBoxLayout(this);
+    auto lay = new QHBoxLayout(this);
     lay->setContentsMargins({});
 
     KAboutData *about = new KAboutData(QStringLiteral("kcmakrpluginsconfig"),

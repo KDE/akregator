@@ -27,7 +27,7 @@ KCMAkregatorBrowserConfig::KCMAkregatorBrowserConfig(QWidget *parent, const QVar
     Ui::SettingsBrowser ui;
     ui.setupUi(m_widget);
 
-    auto *layout = new QVBoxLayout(this);
+    auto layout = new QVBoxLayout(this);
     layout->addWidget(m_widget);
 
     connect(ui.kcfg_ExternalBrowserUseCustomCommand, &QAbstractButton::toggled, ui.kcfg_ExternalBrowserCustomCommand, &QWidget::setEnabled);

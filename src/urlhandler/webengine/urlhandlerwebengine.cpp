@@ -54,7 +54,7 @@ QString MailToURLHandlerWebEngine::statusBarMessage(const QUrl &url, ArticleView
 bool MailToURLHandlerWebEngine::handleContextMenuRequest(const QUrl &url, const QPoint &p, ArticleViewerWebEngine *) const
 {
     if (url.scheme() == QLatin1String("mailto")) {
-        auto *menu = new QMenu();
+        auto menu = new QMenu();
         QAction *copy = menu->addAction(QIcon::fromTheme(QStringLiteral("edit-copy")), i18n("&Copy Email Address"));
 
         QAction *a = menu->exec(p);

@@ -24,7 +24,7 @@ KCMAkregatorArchiveConfig::KCMAkregatorArchiveConfig(QWidget *parent, const QVar
 {
     Ui::SettingsArchive m_ui;
     m_ui.setupUi(m_widget);
-    auto *layout = new QVBoxLayout(this);
+    auto layout = new QVBoxLayout(this);
     layout->addWidget(m_widget);
 
     connect(m_ui.rb_LimitArticleNumber, &QAbstractButton::toggled, m_ui.kcfg_MaxArticleNumber, &QWidget::setEnabled);

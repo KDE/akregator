@@ -24,7 +24,7 @@ KCMAkregatorAdvancedConfig::KCMAkregatorAdvancedConfig(QWidget *parent, const QV
     : KCModule(parent, args)
     , m_widget(new SettingsAdvanced(this))
 {
-    auto *layout = new QVBoxLayout(this);
+    auto layout = new QVBoxLayout(this);
     layout->addWidget(m_widget);
     KAboutData *about = new KAboutData(QStringLiteral("kcmakradvancedconfig"),
                                        i18n("Advanced Feed Reader Settings"),

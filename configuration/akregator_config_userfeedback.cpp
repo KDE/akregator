@@ -21,7 +21,7 @@ K_PLUGIN_FACTORY(KCMAkregatorUserFeedBackConfigFactory, registerPlugin<KCMAkrega
 KCMAkregatorUserFeedBackConfig::KCMAkregatorUserFeedBackConfig(QWidget *parent, const QVariantList &args)
     : KCModule(parent, args)
 {
-    auto *lay = new QHBoxLayout(this);
+    auto lay = new QHBoxLayout(this);
     lay->setContentsMargins({});
 
     KAboutData *about = new KAboutData(QStringLiteral("kcmaddressbookuserfeedbackconfig"),

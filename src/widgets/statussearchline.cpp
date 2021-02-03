@@ -65,7 +65,7 @@ void StatusSearchLine::initializeActions()
 void StatusSearchLine::showMenu()
 {
     QMenu p(this);
-    auto *grp = new QActionGroup(this);
+    auto grp = new QActionGroup(this);
     grp->setExclusive(true);
     for (int i = AllArticles; i <= ImportantArticles; ++i) {
         auto status = static_cast<StatusSearchLine::Status>(i);

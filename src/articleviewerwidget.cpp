@@ -46,7 +46,7 @@ ArticleViewerWidget::ArticleViewerWidget(const QString &grantleeDirectory, KActi
     , m_articleViewerWidgetNg(new Akregator::ArticleViewerWebEngineWidgetNg(ac, this))
     , m_grantleeDirectory(grantleeDirectory)
 {
-    auto *layout = new QGridLayout(this);
+    auto layout = new QGridLayout(this);
     layout->setContentsMargins({});
     layout->addWidget(m_articleViewerWidgetNg);
     m_articleHtmlWriter = new Akregator::ArticleHtmlWebEngineWriter(m_articleViewerWidgetNg->articleViewerNg(), this);

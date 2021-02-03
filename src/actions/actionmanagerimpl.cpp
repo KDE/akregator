@@ -246,7 +246,7 @@ void ActionManagerImpl::initMainWidget(MainWidget *mainWidget)
     // toolbar / View
 
     const auto viewMode = static_cast<MainWidget::ViewMode>(Settings::viewMode());
-    auto *group = new QActionGroup(this);
+    auto group = new QActionGroup(this);
     action = coll->addAction(QStringLiteral("normal_view"));
     action->setCheckable(true);
     action->setChecked(viewMode == MainWidget::NormalView);

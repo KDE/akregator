@@ -91,7 +91,7 @@ void AkregatorPlugin::addFeed()
 void AkregatorPlugin::readProperties(const KConfigGroup &config)
 {
     if (part()) {
-        auto *myPart = static_cast<Akregator::Part *>(part());
+        auto myPart = static_cast<Akregator::Part *>(part());
         myPart->readProperties(config);
     }
 }
@@ -99,7 +99,7 @@ void AkregatorPlugin::readProperties(const KConfigGroup &config)
 void AkregatorPlugin::saveProperties(KConfigGroup &config)
 {
     if (part()) {
-        auto *myPart = static_cast<Akregator::Part *>(part());
+        auto myPart = static_cast<Akregator::Part *>(part());
         myPart->saveProperties(config);
     }
 }

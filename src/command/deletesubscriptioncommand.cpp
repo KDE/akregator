@@ -90,7 +90,7 @@ public:
 private:
     static DeleteSubscriptionJob *reallyCreateJob(TreeNode *node)
     {
-        auto *job = new DeleteSubscriptionJob;
+        auto job = new DeleteSubscriptionJob;
         job->setSubscriptionId(node->id());
         return job;
     }

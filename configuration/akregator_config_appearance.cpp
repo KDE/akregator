@@ -25,7 +25,7 @@ KCMAkregatorAppearanceConfig::KCMAkregatorAppearanceConfig(QWidget *parent, cons
 {
     m_ui.setupUi(m_widget);
 
-    auto *layout = new QVBoxLayout(this);
+    auto layout = new QVBoxLayout(this);
     layout->addWidget(m_widget);
 
     connect(m_ui.kcfg_UseCustomColors, &QAbstractButton::toggled, m_ui.kcfg_ColorUnreadArticles, &QWidget::setEnabled);
