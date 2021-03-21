@@ -10,6 +10,11 @@
       <whatsthis>Hides feeds with no unread articles</whatsthis>
       <default>false</default>
   </entry>
+  <entry key="Lock Feeds In Place" type="Bool">
+      <label>Prevent feeds from being moved in the list</label>
+      <whatsthis>Locks feeds where they are</whatsthis>
+      <default>false</default>
+  </entry>
   <entry key="Auto Expand Folders" type="Bool">
       <label>Auto-Expand folders with unread articles</label>
       <whatsthis>Auto-expand folders containing unread articles</whatsthis>

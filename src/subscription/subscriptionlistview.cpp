@@ -393,6 +393,17 @@ void SubscriptionListView::slotSetHideReadFeeds(bool setting)
     filter->setDoFilter(setting);
 }
 
+void SubscriptionListView::slotSetLockFeedsInPlace(bool setting)
+{
+    if (!model()) {
+        return;
+    }
+
+    setDragDropMode(setting? QAbstractItemView::NoDragDrop : QAbstractItemView::InternalMove);
+
+    Settings::setLockFeedsInPlace(setting);
+}
+
 void Akregator::SubscriptionListView::slotSetAutoExpandFolders(bool setting)
 {
     Settings::setAutoExpandFolders(setting);

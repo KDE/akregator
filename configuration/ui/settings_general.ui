@@ -52,6 +52,13 @@
        </widget>
       </item>
       <item>
+       <widget class="QCheckBox" name="kcfg_LockFeedsInPlace">
+        <property name="text">
+         <string>Lock feeds in place</string>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QCheckBox" name="kcfg_AutoExpandFolders">
         <property name="text">
          <string>Auto-expand folders containing unread articles</string>

@@ -53,6 +53,7 @@ public Q_SLOTS:
     void slotItemDown();
 
     void slotSetHideReadFeeds(bool setting);
+    void slotSetLockFeedsInPlace(bool setting);
     void slotSetAutoExpandFolders(bool setting);
 
 Q_SIGNALS:

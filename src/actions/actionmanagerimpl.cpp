@@ -117,6 +117,13 @@ void ActionManagerImpl::slotSettingsChanged()
     }
     a->setChecked(Settings::hideReadFeeds());
 
+    a = action(QStringLiteral("feed_lock_in_place"));
+    if (!a) {
+        qCCritical(AKREGATOR_LOG) << "Action not found";
+        return;
+    }
+    a->setChecked(Settings::lockFeedsInPlace());
+
     a = action(QStringLiteral("auto_expand_folders"));
     if (!a) {
         qCCritical(AKREGATOR_LOG) << "Action not found";
@@ -528,6 +535,12 @@ void ActionManagerImpl::initSubscriptionListView(SubscriptionListView *subscript
     action->setText(i18n("Hide Read Feeds"));
     action->setChecked(Settings::hideReadFeeds());
     connect(action, &QAction::triggered, subscriptionListView, &SubscriptionListView::slotSetHideReadFeeds);
+
+    action = coll->addAction(QStringLiteral("feed_lock_in_place"));
+    action->setCheckable(true);
+    action->setText(i18n("Lock Feeds In Place"));
+    action->setChecked(Settings::lockFeedsInPlace());
+    connect(action, &QAction::triggered, subscriptionListView, &SubscriptionListView::slotSetLockFeedsInPlace);
 
     action = coll->addAction(QStringLiteral("auto_expand_folders"));
     action->setCheckable(true);
