@@ -6,8 +6,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later WITH Qt-Commercial-exception-1.0
 */
 
-#ifndef AKREGATOR_FILTERCOLUMNSPROXYMODEL_H
-#define AKREGATOR_FILTERCOLUMNSPROXYMODEL_H
+#pragma once
 
 #include <QSortFilterProxyModel>
 #include <QVector>
@@ -37,4 +36,3 @@ private:
 };
 } // namespace Akregator
 
-#endif // AKREGATOR_FILTERCOLUMNSPROXYMODEL_H

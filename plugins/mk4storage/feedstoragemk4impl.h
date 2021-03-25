@@ -5,8 +5,7 @@
 
     SPDX-License-Identifier: GPL-2.0-or-later WITH Qt-Commercial-exception-1.0
 */
-#ifndef AKREGATOR_BACKEND_FEEDSTORAGEMK4IMPL_H
-#define AKREGATOR_BACKEND_FEEDSTORAGEMK4IMPL_H
+#pragma once
 
 #include "feedstorage.h"
 namespace Akregator {
@@ -79,4 +78,3 @@ private:
 } // namespace Backend
 } // namespace Akregator
 
-#endif // AKREGATOR_BACKEND_FEEDSTORAGEMK4IMPL_H

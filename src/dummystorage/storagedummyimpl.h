@@ -7,8 +7,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later WITH Qt-Commercial-exception-1.0
 */
 
-#ifndef AKREGATOR_STORAGEDUMMYIMPL_H
-#define AKREGATOR_STORAGEDUMMYIMPL_H
+#pragma once
 
 #include "storage.h"
 
@@ -81,4 +80,3 @@ private:
 } // namespace Backend
 } // namespace Akregator
 
-#endif // AKREGATOR_STORAGEDUMMYIMPL_H

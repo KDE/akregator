@@ -7,8 +7,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later WITH Qt-Commercial-exception-1.0
 */
 
-#ifndef AKREGATOR_SUBSCRIPTIONLISTDELEGATE_H
-#define AKREGATOR_SUBSCRIPTIONLISTDELEGATE_H
+#pragma once
 
 #include <QStyledItemDelegate>
 
@@ -35,4 +34,3 @@ private:
 };
 }
 
-#endif // AKREGATOR_SUBSCRIPTIONLISTDELEGATE_H

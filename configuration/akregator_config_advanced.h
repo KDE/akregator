@@ -5,8 +5,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later WITH Qt-Commercial-exception-1.0
 */
 
-#ifndef AKREGATOR_CONFIG_ADVANCED_H
-#define AKREGATOR_CONFIG_ADVANCED_H
+#pragma once
 
 #include <KCModule>
 
@@ -31,4 +30,3 @@ private:
     Akregator::SettingsAdvanced *const m_widget;
 };
 
-#endif

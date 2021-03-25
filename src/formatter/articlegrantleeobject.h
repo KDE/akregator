@@ -4,8 +4,7 @@
    SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef ARTICLEGRANTLEEOBJECT_H
-#define ARTICLEGRANTLEEOBJECT_H
+#pragma once
 
 #include "articleformatter.h"
 #include <QObject>
@@ -53,4 +52,3 @@ private:
     const ArticleFormatter::IconOption mArticleFormatOption;
 };
 }
-#endif // ARTICLEGRANTLEEOBJECT_H

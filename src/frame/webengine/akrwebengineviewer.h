@@ -4,8 +4,7 @@
    SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef AKRWEBENGINEVIEWER_H
-#define AKRWEBENGINEVIEWER_H
+#pragma once
 
 #include "articleviewer-ng/webengine/articleviewerwebengine.h"
 
@@ -29,4 +28,3 @@ private Q_SLOTS:
 };
 }
 
-#endif // WEBENGINEVIEWER_H

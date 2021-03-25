@@ -5,8 +5,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later WITH Qt-Commercial-exception-1.0
 */
 
-#ifndef AKREGATOR_CONFIG_ARCHIVE_H
-#define AKREGATOR_CONFIG_ARCHIVE_H
+#pragma once
 
 #include <KCModule>
 
@@ -34,4 +33,3 @@ private:
     QButtonGroup *m_archiveModeGroup = nullptr;
 };
 
-#endif // AKREGATOR_CONFIG_ARCHIVE_H

@@ -6,8 +6,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later WITH Qt-Commercial-exception-1.0
 */
 
-#ifndef AKREGATOR_SUBSCRIPTIONLISTVIEW_H
-#define AKREGATOR_SUBSCRIPTIONLISTVIEW_H
+#pragma once
 
 #include <QAction>
 #include <QByteArray>
@@ -72,4 +71,3 @@ private:
 };
 }
 
-#endif // AKREGATOR_SUBSCRIPTIONLISTVIEW_H

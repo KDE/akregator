@@ -5,8 +5,7 @@
  * Declaration of the file stream and strategy classes.
  */
 
-#ifndef __MK4IO_H__
-#define __MK4IO_H__
+#pragma once
 
 #include <stdio.h>
 
@@ -62,4 +61,3 @@ protected:
 
 /////////////////////////////////////////////////////////////////////////////
 
-#endif // __MK4IO_H__

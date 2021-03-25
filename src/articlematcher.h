@@ -6,8 +6,7 @@
  *
  * SPDX-License-Identifier: BSD-2-Clause
  */
-#ifndef AKREGATOR_ARTICLEMATCHER_H
-#define AKREGATOR_ARTICLEMATCHER_H
+#pragma once
 
 #include "akregatorpart_export.h"
 #include <QString>
@@ -122,4 +121,3 @@ private:
 } // namespace Filters
 } // namespace Akregator
 
-#endif // AKREGATOR_ARTICLEMATCHER_H

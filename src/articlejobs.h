@@ -6,8 +6,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later WITH Qt-Commercial-exception-1.0
 */
 
-#ifndef AKREGATOR_ARTICLE_JOBS_H
-#define AKREGATOR_ARTICLE_JOBS_H
+#pragma once
 
 #include <KCompositeJob>
 
@@ -107,4 +106,3 @@ private:
 };
 } // namespace akregator
 
-#endif // AKREGATOR_ARTICLE_JOBS_H

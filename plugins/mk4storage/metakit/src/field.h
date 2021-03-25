@@ -5,8 +5,7 @@
  * Core class to represent fields
  */
 
-#ifndef __FIELD_H__
-#define __FIELD_H__
+#pragma once
 
 #ifndef __K4CONF_H__
 #error Please include "k4conf.h" before this header file
@@ -60,4 +59,3 @@ private:
 
 /////////////////////////////////////////////////////////////////////////////
 
-#endif

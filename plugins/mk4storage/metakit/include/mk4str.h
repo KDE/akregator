@@ -5,8 +5,7 @@
  * Declarations of the string package.
  */
 
-#ifndef __MK4STR_H__
-#define __MK4STR_H__
+#pragma once
 
 /////////////////////////////////////////////////////////////////////////////
 
@@ -177,4 +176,3 @@ bool operator!=(const char *s1, const c4_String &s2);
 
 /////////////////////////////////////////////////////////////////////////////
 
-#endif // __MK4STR_H__

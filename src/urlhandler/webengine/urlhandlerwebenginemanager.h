@@ -4,8 +4,7 @@
    SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef URLHANDLERWebEngineMANAGER_H
-#define URLHANDLERWebEngineMANAGER_H
+#pragma once
 
 #include "akregator_export.h"
 #include <QObject>
@@ -37,4 +36,3 @@ private:
 };
 }
 
-#endif // URLHANDLERWebEngineMANAGER_H

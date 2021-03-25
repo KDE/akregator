@@ -7,8 +7,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later WITH Qt-Commercial-exception-1.0
 */
 
-#ifndef AKREGATOR_PART_H
-#define AKREGATOR_PART_H
+#pragma once
 
 #include <KSharedConfig>
 #include <QPointer>
@@ -195,4 +194,3 @@ private: // attributes
 };
 } // namespace Akregator
 
-#endif // AKREGATOR_PART_H

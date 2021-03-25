@@ -6,8 +6,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later WITH Qt-Commercial-exception-1.0
 */
 
-#ifndef AKREGATOR_FEEDPROPERTIESDIALOG_H
-#define AKREGATOR_FEEDPROPERTIESDIALOG_H
+#pragma once
 
 #include "feed.h"
 #include "ui_feedpropertieswidgetbase.h"
@@ -85,4 +84,3 @@ private Q_SLOTS:
 };
 } // namespace Akregator
 
-#endif // AKREGATOR_FEEDPROPERTIESDIALOG_H

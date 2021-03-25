@@ -4,8 +4,7 @@
    SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef AKREGATORUSERFEEDBACKPROVIDER_H
-#define AKREGATORUSERFEEDBACKPROVIDER_H
+#pragma once
 
 #include "akregatorinterfaces_export.h"
 #include <KUserFeedback/Provider>
@@ -19,4 +18,3 @@ public:
     ~AkregatorUserFeedbackProvider();
 };
 }
-#endif // AKREGATORUSERFEEDBACKPROVIDER_H

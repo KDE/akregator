@@ -4,8 +4,7 @@
    SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef ARTICLEVIEWERWEBENGINE_H
-#define ARTICLEVIEWERWEBENGINE_H
+#pragma once
 
 #include <MessageViewer/ViewerPluginInterface>
 #include <WebEngineViewer/CheckPhishingUrlJob>
@@ -134,4 +133,3 @@ private:
 };
 }
 
-#endif // ARTICLEVIEWERWEBENGINE_H

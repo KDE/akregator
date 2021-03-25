@@ -6,8 +6,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later WITH Qt-Commercial-exception-1.0
 */
 
-#ifndef AKREGATOR_ADDFEEDDIALOG_H
-#define AKREGATOR_ADDFEEDDIALOG_H
+#pragma once
 
 #include "ui_addfeedwidgetbase.h"
 
@@ -55,4 +54,3 @@ private:
 };
 } // namespace Akregator
 
-#endif // AKREGATOR_ADDFEEDDIALOG_H

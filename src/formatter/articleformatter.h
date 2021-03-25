@@ -6,8 +6,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later WITH Qt-Commercial-exception-1.0
 */
 
-#ifndef AKREGATOR_ARTICLEFORMATTER_H
-#define AKREGATOR_ARTICLEFORMATTER_H
+#pragma once
 
 #include <QVector>
 #include <enclosure.h>
@@ -39,4 +38,3 @@ private:
 };
 } // namespace Akregator
 
-#endif // AKREGATOR_ARTICLEFORMATTER_H

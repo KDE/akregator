@@ -6,8 +6,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later WITH Qt-Commercial-exception-1.0
 */
 
-#ifndef AKREGATOR_PLUGIN_H
-#define AKREGATOR_PLUGIN_H
+#pragma once
 
 #include "akregatorinterfaces_export.h"
 
@@ -47,4 +46,3 @@ private:
 };
 } // namespace Akregator
 
-#endif // AKREGATOR_PLUGIN_H

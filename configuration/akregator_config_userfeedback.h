@@ -4,8 +4,7 @@
    SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef KCM_Akregator_Config_Plugins_H
-#define KCM_Akregator_Config_Plugins_H
+#pragma once
 
 #include <KCModule>
 
@@ -30,4 +29,3 @@ private:
     KUserFeedback::FeedbackConfigWidget *mUserFeedbackWidget = nullptr;
 };
 }
-#endif // KCM_Akregator_Config_Plugins_H

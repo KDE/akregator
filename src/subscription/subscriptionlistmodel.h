@@ -5,8 +5,7 @@
 
     SPDX-License-Identifier: GPL-2.0-or-later WITH Qt-Commercial-exception-1.0
 */
-#ifndef AKREGATOR_SUBSCRIPTIONLISTMODEL_H
-#define AKREGATOR_SUBSCRIPTIONLISTMODEL_H
+#pragma once
 
 #include "akregatorpart_export.h"
 
@@ -135,4 +134,3 @@ private:
 };
 } // namespace Akregator
 
-#endif // AKREGATOR_SUBSCRIPTIONLISTMODEL_H

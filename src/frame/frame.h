@@ -7,8 +7,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later WITH Qt-Commercial-exception-1.0
 */
 
-#ifndef AKREGATOR_FRAME_H
-#define AKREGATOR_FRAME_H
+#pragma once
 
 #include <QIcon>
 #include <QWidget>
@@ -131,4 +130,3 @@ protected:
 };
 } // namespace Akregator
 
-#endif // AKREGATOR_FRAME_H

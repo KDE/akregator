@@ -4,8 +4,7 @@
    SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef URLHANDLERWebEngine_H
-#define URLHANDLERWebEngine_H
+#pragma once
 
 #include <QPoint>
 #include <QString>
@@ -100,4 +99,3 @@ public:
 };
 }
 
-#endif // URLHANDLERWebEngine_H

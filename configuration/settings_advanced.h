@@ -6,8 +6,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later WITH Qt-Commercial-exception-1.0
 */
 
-#ifndef AKREGATOR_SETTINGS_ADVANCED_H
-#define AKREGATOR_SETTINGS_ADVANCED_H
+#pragma once
 
 #include "ui_settings_advancedbase.h"
 
@@ -45,4 +44,3 @@ private:
 };
 } // namespace Akregator
 
-#endif // AKREGATOR_SETTINGS_ADVANCED_H

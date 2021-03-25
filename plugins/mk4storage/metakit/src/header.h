@@ -5,8 +5,7 @@
  * The internal header included in all source files
  */
 
-#ifndef __HEADER_H__
-#define __HEADER_H__
+#pragma once
 
 /////////////////////////////////////////////////////////////////////////////
 
@@ -210,4 +209,3 @@ void f4_DoLogProp(const c4_Handler *, int, const char *, int);
 
 /////////////////////////////////////////////////////////////////////////////
 
-#endif

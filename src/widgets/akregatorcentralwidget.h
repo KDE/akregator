@@ -4,8 +4,7 @@
    SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef AKREGATORCENTRALWIDGET_H
-#define AKREGATORCENTRALWIDGET_H
+#pragma once
 
 #include "crashwidget/crashwidget.h"
 #include <QStackedWidget>
@@ -34,4 +33,3 @@ private:
     Akregator::MainWidget *mMainWidget = nullptr;
 };
 }
-#endif // AKREGATORCENTRALWIDGET_H

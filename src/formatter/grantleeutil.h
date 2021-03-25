@@ -4,8 +4,7 @@
    SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef GRANTLEEUTIL_H
-#define GRANTLEEUTIL_H
+#pragma once
 #include <QString>
 namespace Akregator
 {
@@ -16,4 +15,3 @@ Q_REQUIRED_RESULT QString imageFeed(const Feed *feed);
 }
 }
 
-#endif // GRANTLEEUTIL_H

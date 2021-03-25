@@ -4,8 +4,7 @@
    SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef CRASHWIDGET_H
-#define CRASHWIDGET_H
+#pragma once
 
 #include <QWidget>
 namespace Akregator
@@ -29,4 +28,3 @@ private Q_SLOTS:
 };
 }
 
-#endif

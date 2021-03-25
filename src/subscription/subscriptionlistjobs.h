@@ -6,8 +6,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later WITH Qt-Commercial-exception-1.0
 */
 
-#ifndef AKREGATOR_SUBSCRIPTIONLISTJOBS_H
-#define AKREGATOR_SUBSCRIPTIONLISTJOBS_H
+#pragma once
 
 #include <KJob>
 
@@ -78,4 +77,3 @@ private:
     QWeakPointer<FeedList> m_feedList;
 };
 }
-#endif // AKREGATOR_SUBSCRIPTIONLISTJOBS_H

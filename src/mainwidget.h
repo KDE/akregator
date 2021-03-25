@@ -8,8 +8,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later WITH Qt-Commercial-exception-1.0
 */
 
-#ifndef AKREGATOR_MAINWIDGET_H
-#define AKREGATOR_MAINWIDGET_H
+#pragma once
 
 #include "akregatorpart_export.h"
 #include "articleviewer-ng/webengine/articleviewerwebenginewidgetng.h"
@@ -277,4 +276,3 @@ private:
 };
 } // namespace Akregator
 
-#endif // AKREGATOR_MAINWIDGET_H

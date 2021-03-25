@@ -5,8 +5,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later WITH Qt-Commercial-exception-1.0
 */
 
-#ifndef AKREGATOR_CONFIG_APPEARANCE_H
-#define AKREGATOR_CONFIG_APPEARANCE_H
+#pragma once
 
 #include "ui_settings_appearance.h"
 
@@ -27,4 +26,3 @@ private:
     Akregator::Ui::SettingsAppearance m_ui;
 };
 
-#endif // AKREGATOR_CONFIG_APPEARANCE_H

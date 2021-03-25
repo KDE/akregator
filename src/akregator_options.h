@@ -6,8 +6,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later WITH Qt-Commercial-exception-1.0
 */
 
-#ifndef AKREGATOR_OPTIONS_H
-#define AKREGATOR_OPTIONS_H
+#pragma once
 
 #include <KLocalizedString>
 #include <QCommandLineParser>
@@ -33,4 +32,3 @@ static void akregator_options(QCommandLineParser *parser)
 }
 }
 
-#endif

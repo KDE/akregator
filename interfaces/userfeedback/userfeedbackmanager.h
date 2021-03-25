@@ -4,8 +4,7 @@
    SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef USERFEEDBACKMANAGER_H
-#define USERFEEDBACKMANAGER_H
+#pragma once
 
 #include "akregatorinterfaces_export.h"
 #include <QObject>
@@ -28,4 +27,3 @@ private:
     KUserFeedback::Provider *mUserFeedbackProvider = nullptr;
 };
 }
-#endif // USERFEEDBACKMANAGER_H

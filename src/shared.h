@@ -6,8 +6,7 @@
  * SPDX-License-Identifier: GPL-2.0-or-later
  */
 
-#ifndef AKREGATOR_SHARED_H
-#define AKREGATOR_SHARED_H
+#pragma once
 
 namespace Akregator
 {
@@ -31,4 +30,3 @@ struct Shared {
 };
 }
 
-#endif // AKREGATOR_SHARED_H

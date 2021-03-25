@@ -4,8 +4,7 @@
    SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef GRANTLEEVIEWFORMATTER_H
-#define GRANTLEEVIEWFORMATTER_H
+#pragma once
 
 #include "article.h"
 #include "articleformatter.h"
@@ -33,4 +32,3 @@ private:
 };
 }
 
-#endif // GRANTLEEVIEWFORMATTER_H

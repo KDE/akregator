@@ -6,8 +6,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later WITH Qt-Commercial-exception-1.0
 */
 
-#ifndef AKREGATOR_TEMPORARYVALUE_H
-#define AKREGATOR_TEMPORARYVALUE_H
+#pragma once
 
 namespace Akregator
 {
@@ -32,4 +31,3 @@ private:
 };
 }
 
-#endif // AKREGATOR_TEMPORARYVALUE_H

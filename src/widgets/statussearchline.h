@@ -4,8 +4,7 @@
    SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef STATUSSEARCHLINE_H
-#define STATUSSEARCHLINE_H
+#pragma once
 
 #include <KLineEdit>
 #include <QHash>
@@ -60,4 +59,3 @@ private:
     QAction *mSearchLineStatusAction = nullptr;
 };
 }
-#endif // STATUSSEARCHLINE_H

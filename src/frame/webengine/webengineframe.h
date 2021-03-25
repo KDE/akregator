@@ -4,8 +4,7 @@
    SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef WEBENGINEFRAME_H
-#define WEBENGINEFRAME_H
+#pragma once
 
 #include "akregatorpart_export.h"
 #include "frame.h"
@@ -62,4 +61,3 @@ private:
 };
 }
 
-#endif

@@ -6,8 +6,7 @@
 
     SPDX-License-Identifier: GPL-2.0-or-later WITH Qt-Commercial-exception-1.0
 */
-#ifndef AKREGATOR_ARTICLELISTVIEW_H
-#define AKREGATOR_ARTICLELISTVIEW_H
+#pragma once
 
 #include "abstractselectioncontroller.h"
 #include "akregatorpart_export.h"
@@ -149,4 +148,3 @@ private:
 };
 } // namespace Akregator
 
-#endif // AKREGATOR_ARTICLELISTVIEW_H

@@ -19,8 +19,7 @@
   without including the source code for Qt in the source distribution.
 */
 
-#ifndef AKREGATOR_PLUGIN_H
-#define AKREGATOR_PLUGIN_H
+#pragma once
 
 #include <KontactInterface/UniqueAppHandler>
 
@@ -73,4 +72,3 @@ private:
     void setHelpText(QAction *action, const QString &text);
 };
 
-#endif

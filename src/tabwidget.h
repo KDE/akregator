@@ -6,8 +6,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later WITH Qt-Commercial-exception-1.0
 */
 
-#ifndef AKREGATOR_TABWIDGET_H
-#define AKREGATOR_TABWIDGET_H
+#pragma once
 
 #include <QTabWidget>
 
@@ -88,4 +87,3 @@ private:
 };
 } // namespace Akregator
 
-#endif // AKREGATOR_TABWIDGET_H

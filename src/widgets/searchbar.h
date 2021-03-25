@@ -6,8 +6,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later WITH Qt-Commercial-exception-1.0
 */
 
-#ifndef AKREGATOR_SEARCHBAR_H
-#define AKREGATOR_SEARCHBAR_H
+#pragma once
 
 #include "articlematcher.h"
 #include "widgets/statussearchline.h"
@@ -68,4 +67,3 @@ private:
 };
 } // namespace Akregator
 
-#endif // AKREGATOR_SEARCHBAR_H

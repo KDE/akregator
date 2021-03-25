@@ -4,8 +4,7 @@
    SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef AKREGRATORMIGRATEAPPLICATION_H
-#define AKREGRATORMIGRATEAPPLICATION_H
+#pragma once
 
 #include "akregator_export.h"
 #include <PimCommon/MigrateApplicationFiles>
@@ -21,4 +20,3 @@ private:
     PimCommon::MigrateApplicationFiles mMigrator;
 };
 
-#endif // AKREGRATORMIGRATEAPPLICATION_H

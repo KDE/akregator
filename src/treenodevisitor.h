@@ -5,8 +5,7 @@
 
     SPDX-License-Identifier: GPL-2.0-or-later WITH Qt-Commercial-exception-1.0
 */
-#ifndef AKREGATOR_TREENODEVISITOR_H
-#define AKREGATOR_TREENODEVISITOR_H
+#pragma once
 
 #include "akregator_export.h"
 
@@ -41,4 +40,3 @@ public:
 };
 } // namespace Akregator
 
-#endif // AKREGATOR_TREENODEVISITOR_H

@@ -6,8 +6,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later WITH Qt-Commercial-exception-1.0
 */
 
-#ifndef AKREGATOR_FRAMEMANAGER_H
-#define AKREGATOR_FRAMEMANAGER_H
+#pragma once
 
 #include <QHash>
 #include <QObject>
@@ -90,4 +89,3 @@ private:
 };
 } // namespace Akregator
 
-#endif // AKREGATOR_FRAMEMANAGER_H

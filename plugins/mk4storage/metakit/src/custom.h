@@ -5,8 +5,7 @@
  * Encapsulation of many custom viewer classes
  */
 
-#ifndef __CUSTOM_H__
-#define __CUSTOM_H__
+#pragma once
 
 #ifndef __FIELD_H__
 #include "field.h"
@@ -59,4 +58,3 @@ extern c4_CustomViewer *f4_CustJoin(c4_Sequence &, const c4_View &, const
 
 /////////////////////////////////////////////////////////////////////////////
 
-#endif

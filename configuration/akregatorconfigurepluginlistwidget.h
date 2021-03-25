@@ -4,8 +4,7 @@
    SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef AKREGATORCONFIGUREPLUGINLISTWIDGET_H
-#define AKREGATORCONFIGUREPLUGINLISTWIDGET_H
+#pragma once
 
 #include <PimCommon/ConfigurePluginsListWidget>
 
@@ -26,4 +25,3 @@ private:
     QVector<PluginItem *> mPluginWebEngineItems;
 };
 
-#endif // AKREGATORCONFIGUREPLUGINLISTWIDGET_H

@@ -6,8 +6,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later WITH Qt-Commercial-exception-1.0
 */
 
-#ifndef AKREGATOR_TREENODE_H
-#define AKREGATOR_TREENODE_H
+#pragma once
 
 #include "akregator_export.h"
 #include <QObject>
@@ -223,4 +222,3 @@ private:
 };
 } // namespace Akregator
 
-#endif // AKREGATOR_TREENODE_H

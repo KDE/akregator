@@ -5,8 +5,7 @@
  * Encapsulation of all format handlers
  */
 
-#ifndef __FORMAT_H__
-#define __FORMAT_H__
+#pragma once
 
 /////////////////////////////////////////////////////////////////////////////
 // Declarations in this file
@@ -19,4 +18,3 @@ extern int f4_CompareFormat(char, const c4_Bytes &, const c4_Bytes &);
 
 /////////////////////////////////////////////////////////////////////////////
 
-#endif

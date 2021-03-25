@@ -8,8 +8,7 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef AKREGATOR_PLUGINMANAGER_H
-#define AKREGATOR_PLUGINMANAGER_H
+#pragma once
 
 #include "akregatorpart_export.h"
 
@@ -103,4 +102,3 @@ private:
 };
 } // namespace Akregator
 
-#endif // AKREGATOR_PLUGINMANAGER_H

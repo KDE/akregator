@@ -4,8 +4,7 @@
    SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef DOWNLOADFEEDICONJOB_H
-#define DOWNLOADFEEDICONJOB_H
+#pragma once
 
 #include <QObject>
 #include <QUrl>
@@ -37,4 +36,3 @@ private:
 };
 }
 
-#endif // DOWNLOADFEEDICONJOB_H

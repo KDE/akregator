@@ -5,8 +5,7 @@
 
     SPDX-License-Identifier: GPL-2.0-or-later WITH Qt-Commercial-exception-1.0
 */
-#ifndef AKREGATOR_TYPES_H
-#define AKREGATOR_TYPES_H
+#pragma once
 
 namespace Akregator
 {
@@ -18,4 +17,3 @@ enum ArticleStatus {
 };
 }
 
-#endif // AKREGATOR_TYPES_H

@@ -4,8 +4,7 @@
    SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef ARTICLEVIEWERWEBENGINEWIDGETNG_H
-#define ARTICLEVIEWERWEBENGINEWIDGETNG_H
+#pragma once
 
 #include "akregator_export.h"
 #include "articleviewerwebengine.h"
@@ -60,4 +59,3 @@ private:
     QPrinter *mCurrentPrinter = nullptr;
 };
 }
-#endif // ARTICLEVIEWERWEBENGINEWIDGETNG_H

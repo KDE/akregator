@@ -4,8 +4,7 @@
    SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef ARTICLEHTMLWEBENGINEWRITER_H
-#define ARTICLEHTMLWEBENGINEWRITER_H
+#pragma once
 
 #include "akregator_export.h"
 #include <QObject>
@@ -39,4 +38,3 @@ private:
 };
 }
 
-#endif // ARTICLHTMLWEBENGINEWRITER_H

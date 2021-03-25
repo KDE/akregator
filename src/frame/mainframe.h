@@ -4,8 +4,7 @@
    SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef MAINFRAME_H
-#define MAINFRAME_H
+#pragma once
 
 #include "frame.h"
 
@@ -49,4 +48,3 @@ private:
 };
 } // namespace Akregator
 
-#endif // MAINFRAME_H

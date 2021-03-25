@@ -5,8 +5,7 @@
 
     SPDX-License-Identifier: GPL-2.0-or-later WITH Qt-Commercial-exception-1.0
 */
-#ifndef AKREGATOR_BACKEND_FEEDSTORAGE_H
-#define AKREGATOR_BACKEND_FEEDSTORAGE_H
+#pragma once
 
 #include <QObject>
 class QString;
@@ -75,4 +74,3 @@ public:
 } // namespace Backend
 } // namespace Akregator
 
-#endif // AKREGATOR_BACKEND_FEEDSTORAGE_H

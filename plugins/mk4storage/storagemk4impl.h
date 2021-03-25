@@ -7,8 +7,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later WITH Qt-Commercial-exception-1.0
 */
 
-#ifndef STORAGEMK4IMPL_H
-#define STORAGEMK4IMPL_H
+#pragma once
 
 #include "storage.h"
 
@@ -97,4 +96,3 @@ private:
 } // namespace Backend
 } // namespace Akregator
 
-#endif // STORAGEMK4IMPL_H

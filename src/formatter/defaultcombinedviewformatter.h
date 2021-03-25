@@ -4,8 +4,7 @@
    SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef DEFAULTCOMBINEDVIEWFORMATTER_H
-#define DEFAULTCOMBINEDVIEWFORMATTER_H
+#pragma once
 
 #include "akregator_export.h"
 #include "articleformatter.h"
@@ -28,4 +27,3 @@ private:
     GrantleeViewFormatter *mGrantleeViewFormatter = nullptr;
 };
 }
-#endif // DEFAULTCOMBINEDVIEWFORMATTER_H

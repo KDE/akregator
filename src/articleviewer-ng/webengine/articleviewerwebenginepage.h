@@ -4,8 +4,7 @@
    SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef ARTICLEVIEWERWEBENGINEPAGE_H
-#define ARTICLEVIEWERWEBENGINEPAGE_H
+#pragma once
 
 #include <WebEngineViewer/WebEnginePage>
 namespace Akregator
@@ -28,4 +27,3 @@ private:
     void onLoadProgress();
 };
 }
-#endif // ARTICLEVIEWERWEBENGINEPAGE_H

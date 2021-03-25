@@ -6,8 +6,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later WITH Qt-Commercial-exception-1.0
 */
 
-#ifndef AKREGATOR_ACTIONMANAGERIMPL_H
-#define AKREGATOR_ACTIONMANAGERIMPL_H
+#pragma once
 
 #include "actionmanager.h"
 #include <PimCommon/ShareServiceUrlManager>
@@ -75,4 +74,3 @@ private:
 };
 } // namespace Akregator
 
-#endif // AKREGATOR_ACTIONMANAGERIMPL_H

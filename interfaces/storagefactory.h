@@ -6,8 +6,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later WITH Qt-Commercial-exception-1.0
 */
 
-#ifndef AKREGATOR_BACKEND_STORAGEFACTORY_H
-#define AKREGATOR_BACKEND_STORAGEFACTORY_H
+#pragma once
 
 #include "akregatorinterfaces_export.h"
 
@@ -48,4 +47,3 @@ public:
 } // namespace Backend
 } // namespace Akregator
 
-#endif // AKREGATOR_BACKEND_STORAGEFACTORY_H

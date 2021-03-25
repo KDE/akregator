@@ -6,8 +6,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later WITH Qt-Commercial-exception-1.0
 */
 
-#ifndef FEEDRETRIEVER_H_
-#define FEEDRETRIEVER_H_
+#pragma once
 
 #include <Syndication/DataRetriever>
 
@@ -34,4 +33,3 @@ private:
 };
 }
 
-#endif

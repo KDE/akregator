@@ -4,8 +4,7 @@
    SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef UNITYSERVICEMANAGER_H
-#define UNITYSERVICEMANAGER_H
+#pragma once
 
 #include "akregator_export.h"
 #include <QObject>
@@ -32,4 +31,3 @@ private:
     bool mUnityServiceAvailable = false;
 };
 
-#endif // UNITYSERVICEMANAGER_H

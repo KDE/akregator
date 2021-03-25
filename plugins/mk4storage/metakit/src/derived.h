@@ -5,8 +5,7 @@
  * Encapsulation of derived view classes
  */
 
-#ifndef __DERIVED_H__
-#define __DERIVED_H__
+#pragma once
 
 /////////////////////////////////////////////////////////////////////////////
 // Declarations in this file
@@ -20,4 +19,3 @@ extern c4_Sequence *f4_CreateProject(c4_Sequence &, c4_Sequence &, bool, c4_Sequ
 
 /////////////////////////////////////////////////////////////////////////////
 
-#endif

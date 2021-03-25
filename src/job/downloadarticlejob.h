@@ -4,8 +4,7 @@
   SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef DOWNLOADARTICLEJOB_H
-#define DOWNLOADARTICLEJOB_H
+#pragma once
 
 #include <QObject>
 #include <QUrl>
@@ -47,4 +46,3 @@ private:
     MimeTreeParser::AttachmentTemporaryFilesDirs *mAttachmentTemporaryFile = nullptr;
 };
 }
-#endif // DOWNLOADARTICLEJOB_H

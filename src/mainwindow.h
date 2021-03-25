@@ -6,8 +6,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later WITH Qt-Commercial-exception-1.0
 */
 
-#ifndef AKREGATOR_MAINWINDOW_H
-#define AKREGATOR_MAINWINDOW_H
+#pragma once
 
 #include <kio/job.h>
 #include <kparts/mainwindow.h>
@@ -85,4 +84,3 @@ private:
 };
 } // namespace Akregator
 
-#endif // AKREGATOR_MAINWINDOW_H

@@ -6,8 +6,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later WITH Qt-Commercial-exception-1.0
 */
 
-#ifndef AKREGATOR_OPENURLREQUEST_H
-#define AKREGATOR_OPENURLREQUEST_H
+#pragma once
 
 #include <kparts/browserextension.h>
 
@@ -68,4 +67,3 @@ private:
 };
 } // namespace Akregator
 
-#endif // AKREGATOR_OPENURLREQUEST_H

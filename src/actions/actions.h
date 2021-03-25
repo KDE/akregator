@@ -6,8 +6,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later WITH Qt-Commercial-exception-1.0
 */
 
-#ifndef AKREGATOR_ACTIONS_H
-#define AKREGATOR_ACTIONS_H
+#pragma once
 
 #include "akregator_export.h"
 #include <QObject>
@@ -22,4 +21,3 @@ AKREGATOR_EXPORT QAction *createOpenLinkInNewTabAction(const QUrl &url, QObject 
 AKREGATOR_EXPORT QAction *createOpenLinkInExternalBrowserAction(const QUrl &url, QObject *parent = nullptr);
 }
 
-#endif // AKREGATOR_ACTIONS_H

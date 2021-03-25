@@ -5,8 +5,7 @@
  * Encapsulation of the (re)mapping viewers
  */
 
-#ifndef __REMAP_H__
-#define __REMAP_H__
+#pragma once
 
 /////////////////////////////////////////////////////////////////////////////
 // Declarations in this file
@@ -22,4 +21,3 @@ extern c4_CustomViewer *f4_CreateIndexed(c4_Sequence &, c4_Sequence &, const
 
 /////////////////////////////////////////////////////////////////////////////
 
-#endif
