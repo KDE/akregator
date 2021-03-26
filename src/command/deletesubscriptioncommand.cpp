@@ -113,7 +113,7 @@ public:
     void jobFinished();
 
     QWeakPointer<FeedList> m_list;
-    int m_subscriptionId = -1;
+    uint m_subscriptionId = 0;
 };
 
 DeleteSubscriptionCommand::Private::Private(DeleteSubscriptionCommand *qq)
@@ -137,13 +137,13 @@ DeleteSubscriptionCommand::~DeleteSubscriptionCommand()
     delete d;
 }
 
-void DeleteSubscriptionCommand::setSubscription(const QWeakPointer<FeedList> &feedList, int subId)
+void DeleteSubscriptionCommand::setSubscription(const QWeakPointer<FeedList> &feedList, uint subId)
 {
     d->m_list = feedList;
     d->m_subscriptionId = subId;
 }
 
-int DeleteSubscriptionCommand::subscriptionId() const
+uint DeleteSubscriptionCommand::subscriptionId() const
 {
     return d->m_subscriptionId;
 }

@@ -26,8 +26,8 @@ class AKREGATOR_EXPORT MoveSubscriptionJob : public KJob
 public:
     explicit MoveSubscriptionJob(QObject *parent = nullptr);
 
-    void setSubscriptionId(int id);
-    void setDestination(int folder, int afterChild);
+    void setSubscriptionId(uint id);
+    void setDestination(uint folder, uint afterChild);
 
     void start() override;
 
@@ -35,9 +35,9 @@ private Q_SLOTS:
     void doMove();
 
 private:
-    int m_id = 0;
-    int m_destFolderId = 0;
-    int m_afterId = -1;
+    uint m_id = 0;
+    uint m_destFolderId = 0;
+    uint m_afterId = 0;
     QWeakPointer<FeedList> m_feedList;
 };
 
@@ -47,7 +47,7 @@ class AKREGATOR_EXPORT RenameSubscriptionJob : public KJob
 public:
     explicit RenameSubscriptionJob(QObject *parent = nullptr);
 
-    void setSubscriptionId(int id);
+    void setSubscriptionId(uint id);
     void setName(const QString &name);
 
     void start() override;
@@ -56,7 +56,7 @@ private Q_SLOTS:
     void doRename();
 
 private:
-    int m_id;
+    uint m_id;
     QString m_name;
     QSharedPointer<FeedList> m_feedList;
 };
@@ -67,13 +67,13 @@ class AKREGATOR_EXPORT DeleteSubscriptionJob : public KJob
 public:
     explicit DeleteSubscriptionJob(QObject *parent = nullptr);
 
-    void setSubscriptionId(int id);
+    void setSubscriptionId(uint id);
 
     void start() override;
 
 private:
     void doDelete();
-    int m_id;
+    uint m_id;
     QWeakPointer<FeedList> m_feedList;
 };
 }

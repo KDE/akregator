@@ -72,8 +72,8 @@ public:
 
     Q_REQUIRED_RESULT bool isEmpty() const;
 
-    const TreeNode *findByID(int id) const;
-    TreeNode *findByID(int id);
+    const TreeNode *findByID(uint id) const;
+    TreeNode *findByID(uint id);
 
     Q_REQUIRED_RESULT QList<const TreeNode *> findByTitle(const QString &title) const;
     Q_REQUIRED_RESULT QList<TreeNode *> findByTitle(const QString &title);
@@ -90,7 +90,7 @@ public:
     Q_REQUIRED_RESULT QVector<const Akregator::Feed *> feeds() const;
     Q_REQUIRED_RESULT QVector<Akregator::Feed *> feeds();
 
-    Q_REQUIRED_RESULT QVector<int> feedIds() const;
+    Q_REQUIRED_RESULT QVector<uint> feedIds() const;
 
     /**
      * returns all folders in this list

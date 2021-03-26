@@ -68,14 +68,14 @@ public:
     void jobFinished();
 
     QSharedPointer<FeedList> m_list;
-    int m_subscriptionId;
+    uint m_subscriptionId;
     SubscriptionListView *m_subscriptionListView = nullptr;
 };
 
 EditSubscriptionCommand::Private::Private(EditSubscriptionCommand *qq)
     : q(qq)
     , m_list()
-    , m_subscriptionId(-1)
+    , m_subscriptionId(0)
     , m_subscriptionListView(nullptr)
 {
 }
@@ -95,13 +95,13 @@ EditSubscriptionCommand::~EditSubscriptionCommand()
     delete d;
 }
 
-void EditSubscriptionCommand::setSubscription(const QSharedPointer<FeedList> &feedList, int subId)
+void EditSubscriptionCommand::setSubscription(const QSharedPointer<FeedList> &feedList, uint subId)
 {
     d->m_list = feedList;
     d->m_subscriptionId = subId;
 }
 
-int EditSubscriptionCommand::subscriptionId() const
+uint EditSubscriptionCommand::subscriptionId() const
 {
     return d->m_subscriptionId;
 }

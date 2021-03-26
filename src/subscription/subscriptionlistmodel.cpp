@@ -545,7 +545,7 @@ bool SubscriptionListModel::dropMimeData(const QMimeData *data, Qt::DropAction a
         }
         auto *job = new MoveSubscriptionJob(this);
         job->setSubscriptionId(node->id());
-        job->setDestination(destFolder->id(), after ? after->id() : -1);
+        job->setDestination(destFolder->id(), after ? after->id() : 0);
         job->start();
     }
 

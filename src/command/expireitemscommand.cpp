@@ -35,7 +35,7 @@ public:
     void jobFinished(KJob *);
 
     QWeakPointer<FeedList> m_feedList;
-    QVector<int> m_feeds;
+    QVector<uint> m_feeds;
     QSet<KJob *> m_jobs;
 };
 
@@ -80,7 +80,7 @@ void ExpireItemsCommand::Private::createDeleteJobs()
         return;
     }
 
-    for (const int i : qAsConst(m_feeds)) {
+    for (const uint i : qAsConst(m_feeds)) {
         Feed *const feed = qobject_cast<Feed *>(feedList->findByID(i));
         if (feed) {
             addDeleteJobForFeed(feed);
@@ -109,12 +109,12 @@ QWeakPointer<FeedList> ExpireItemsCommand::feedList() const
     return d->m_feedList;
 }
 
-void ExpireItemsCommand::setFeeds(const QVector<int> &feeds)
+void ExpireItemsCommand::setFeeds(const QVector<uint> &feeds)
 {
     d->m_feeds = feeds;
 }
 
-QVector<int> ExpireItemsCommand::feeds() const
+QVector<uint> ExpireItemsCommand::feeds() const
 {
     return d->m_feeds;
 }

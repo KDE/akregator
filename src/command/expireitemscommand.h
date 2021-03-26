@@ -28,8 +28,8 @@ public:
     void setFeedList(const QWeakPointer<FeedList> &feedList);
     QWeakPointer<FeedList> feedList() const;
 
-    void setFeeds(const QVector<int> &feeds);
-    QVector<int> feeds() const;
+    void setFeeds(const QVector<uint> &feeds);
+    QVector<uint> feeds() const;
 
 private:
     void doStart() override;
