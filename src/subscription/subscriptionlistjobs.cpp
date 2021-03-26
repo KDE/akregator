@@ -23,17 +23,17 @@ MoveSubscriptionJob::MoveSubscriptionJob(QObject *parent)
     : KJob(parent)
     , m_id(0)
     , m_destFolderId(0)
-    , m_afterId(-1)
+    , m_afterId(0)
     , m_feedList(Kernel::self()->feedList())
 {
 }
 
-void MoveSubscriptionJob::setSubscriptionId(int id)
+void MoveSubscriptionJob::setSubscriptionId(uint id)
 {
     m_id = id;
 }
 
-void MoveSubscriptionJob::setDestination(int folder, int afterChild)
+void MoveSubscriptionJob::setDestination(uint folder, uint afterChild)
 {
     m_destFolderId = folder;
     m_afterId = afterChild;
@@ -87,7 +87,7 @@ RenameSubscriptionJob::RenameSubscriptionJob(QObject *parent)
 {
 }
 
-void RenameSubscriptionJob::setSubscriptionId(int id)
+void RenameSubscriptionJob::setSubscriptionId(uint id)
 {
     m_id = id;
 }
@@ -104,7 +104,7 @@ void RenameSubscriptionJob::start()
 
 void RenameSubscriptionJob::doRename()
 {
-    if (m_id > 0) {
+    if (m_id != 0) {
         TreeNode *const node = m_feedList->findByID(m_id);
         if (node) {
             node->setTitle(m_name);
@@ -120,7 +120,7 @@ DeleteSubscriptionJob::DeleteSubscriptionJob(QObject *parent)
 {
 }
 
-void DeleteSubscriptionJob::setSubscriptionId(int id)
+void DeleteSubscriptionJob::setSubscriptionId(uint id)
 {
     m_id = id;
 }

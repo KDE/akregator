@@ -37,7 +37,7 @@ public:
     Akregator::Backend::Storage *storage;
     QList<TreeNode *> flatList;
     Folder *rootNode;
-    QHash<int, TreeNode *> idMap;
+    QHash<uint, TreeNode *> idMap;
     AddNodeVisitor *addNodeVisitor;
     RemoveNodeVisitor *removeNodeVisitor;
     QHash<QString, QList<Feed *>> urlMap;
@@ -163,9 +163,9 @@ FeedList::FeedList(Backend::Storage *storage)
     addNode(rootNode, true);
 }
 
-QVector<int> FeedList::feedIds() const
+QVector<uint> FeedList::feedIds() const
 {
-    QVector<int> ids;
+    QVector<uint> ids;
     const auto f = feeds();
     for (const Feed *const i : f) {
         ids += i->id();
@@ -368,12 +368,12 @@ QDomDocument FeedList::toOpml() const
     return doc;
 }
 
-const TreeNode *FeedList::findByID(int id) const
+const TreeNode *FeedList::findByID(uint id) const
 {
     return d->idMap[id];
 }
 
-TreeNode *FeedList::findByID(int id)
+TreeNode *FeedList::findByID(uint id)
 {
     return d->idMap[id];
 }

@@ -25,8 +25,8 @@ public:
     explicit EditSubscriptionCommand(QObject *parent = nullptr);
     ~EditSubscriptionCommand() override;
 
-    void setSubscription(const QSharedPointer<FeedList> &feedList, int subId);
-    int subscriptionId() const;
+    void setSubscription(const QSharedPointer<FeedList> &feedList, uint subId);
+    uint subscriptionId() const;
     QSharedPointer<FeedList> feedList() const;
 
     SubscriptionListView *subscriptionListView() const;
