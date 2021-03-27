@@ -18,6 +18,7 @@
 #include "kernel.h"
 #include "subscriptionlistjobs.h"
 #include <KLocalizedString>
+#include <limits>
 #include <memory>
 
 #include <QElapsedTimer>
@@ -436,7 +437,8 @@ void FeedList::setRootNode(Folder *folder)
 
 uint FeedList::generateID() const
 {
-    return QRandomGenerator::global()->generate();
+    // The values 0 and 1 are reserved, see TreeNode::id()
+    return QRandomGenerator::global()->bounded(2u, std::numeric_limits<quint32>::max());
 }
 
 void FeedList::slotNodeAdded(TreeNode *node)
