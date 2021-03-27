@@ -37,6 +37,7 @@
 #include <QWebEngineUrlRequestInterceptor>
 #include <viewerplugintoolmanager.h>
 
+#include <WebEngineViewer/LoadExternalReferencesUrlInterceptor>
 #include <WebEngineViewer/WebEngineScript>
 #include <WebEngineViewer/WebHitTest>
 #include <WebEngineViewer/WebHitTestResult>
@@ -68,18 +69,21 @@ ArticleViewerWebEngine::ArticleViewerWebEngine(KActionCollection *ac, QWidget *p
     , mActionCollection(ac)
 {
     mNetworkAccessManager = new WebEngineViewer::InterceptorManager(this, ac, this);
-
     mPageEngine = new ArticleViewerWebEnginePage(this);
     QWebEngineProfile *profile = mPageEngine->profile();
     profile->setPersistentCookiesPolicy(QWebEngineProfile::ForcePersistentCookies);
-
+#ifndef HAVE_BLOCK_SUPPORT
     // Needed to workaround crash in webengine, see https://bugreports.qt.io/browse/QTBUG-72260
     auto webEngineUrlInterceptor = new AkregatorRequestInterceptor();
     connect(profile, &QObject::destroyed, webEngineUrlInterceptor, &AkregatorRequestInterceptor::deleteLater);
     profile->setUrlRequestInterceptor(webEngineUrlInterceptor);
-
+#endif
     setPage(mPageEngine);
-
+#ifdef HAVE_BLOCK_SUPPORT
+    auto *externalReference = new WebEngineViewer::LoadExternalReferencesUrlInterceptor(this);
+    // connect(externalReference, &MessageViewer::LoadExternalReferencesUrlInterceptor::urlBlocked, this, &MailWebEngineView::urlBlocked);
+    mNetworkAccessManager->addInterceptor(externalReference);
+#endif
     connect(this, &ArticleViewerWebEngine::showContextMenu, this, &ArticleViewerWebEngine::slotShowContextMenu);
 
     setFocusPolicy(Qt::WheelFocus);
