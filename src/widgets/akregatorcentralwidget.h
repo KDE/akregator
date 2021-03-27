@@ -16,7 +16,7 @@ class AkregatorCentralWidget : public QStackedWidget
     Q_OBJECT
 public:
     explicit AkregatorCentralWidget(QWidget *parent = nullptr);
-    ~AkregatorCentralWidget();
+    ~AkregatorCentralWidget() override;
 
     void needToRestoreCrashedSession();
 

@@ -27,7 +27,7 @@ class FeedStorage;
 class Storage : public QObject // krazy:exclude=qobject
 {
 public:
-    virtual ~Storage()
+    ~Storage() override
     {
     }
 

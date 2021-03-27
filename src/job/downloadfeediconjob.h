@@ -17,7 +17,7 @@ class AKREGATOR_EXPORT DownloadFeedIconJob : public QObject
     Q_OBJECT
 public:
     explicit DownloadFeedIconJob(QObject *parent = nullptr);
-    ~DownloadFeedIconJob();
+    ~DownloadFeedIconJob() override;
     Q_REQUIRED_RESULT bool start();
     Q_REQUIRED_RESULT bool canStart() const;
 

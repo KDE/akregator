@@ -17,7 +17,7 @@ class AKREGATOR_EXPORT ArticleHtmlWebEngineWriter : public QObject
     Q_OBJECT
 public:
     explicit ArticleHtmlWebEngineWriter(ArticleViewerWebEngine *view, QObject *parent = nullptr);
-    ~ArticleHtmlWebEngineWriter();
+    ~ArticleHtmlWebEngineWriter() override;
 
     void begin();
     void end();

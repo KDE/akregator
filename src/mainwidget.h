@@ -61,7 +61,7 @@ public:
 
     /** destructor.  Note that cleanups should be done in
     slotOnShutdown(), so we don't risk accessing self-deleting objects after deletion. */
-    ~MainWidget();
+    ~MainWidget() override;
 
     /** saves settings. Make sure that the Settings singleton is not destroyed yet when saveSettings is called */
     void saveSettings();

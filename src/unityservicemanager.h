@@ -15,7 +15,7 @@ class AKREGATOR_EXPORT UnityServiceManager : public QObject
     Q_OBJECT
 public:
     explicit UnityServiceManager(QObject *parent = nullptr);
-    ~UnityServiceManager();
+    ~UnityServiceManager() override;
 
     static UnityServiceManager *instance();
 

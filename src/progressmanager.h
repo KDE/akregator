@@ -33,7 +33,7 @@ public:
     static ProgressManager *self();
 
     ProgressManager();
-    ~ProgressManager();
+    ~ProgressManager() override;
 
     /** sets the feed list to be managed */
     void setFeedList(const QSharedPointer<FeedList> &feedList);

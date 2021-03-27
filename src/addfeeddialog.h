@@ -23,7 +23,7 @@ class AddFeedWidget : public QWidget, public Ui::AddFeedWidgetBase
     Q_OBJECT
 public:
     explicit AddFeedWidget(QWidget *parent = nullptr);
-    ~AddFeedWidget();
+    ~AddFeedWidget() override;
 };
 
 class AddFeedDialog : public QDialog

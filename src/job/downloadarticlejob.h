@@ -23,7 +23,7 @@ class AKREGATOR_EXPORT DownloadArticleJob : public QObject
     Q_OBJECT
 public:
     explicit DownloadArticleJob(QObject *parent = nullptr);
-    ~DownloadArticleJob();
+    ~DownloadArticleJob() override;
 
     void start();
 

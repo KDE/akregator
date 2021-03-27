@@ -28,7 +28,7 @@ class ArticleGrantleeObject : public QObject
 
 public:
     explicit ArticleGrantleeObject(const Article &article, ArticleFormatter::IconOption icon, QObject *parent = nullptr);
-    ~ArticleGrantleeObject();
+    ~ArticleGrantleeObject() override;
 
     enum ArticleStatus { Unread = 0, Read, New };
     Q_ENUMS(ArticleStatus)

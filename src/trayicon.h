@@ -24,7 +24,7 @@ public:
     void setEnabled(bool enabled);
 
     explicit TrayIcon(QObject *parent = nullptr);
-    ~TrayIcon();
+    ~TrayIcon() override;
 
 public Q_SLOTS:
     void settingsChanged();

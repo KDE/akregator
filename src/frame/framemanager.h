@@ -29,7 +29,7 @@ class AKREGATOR_EXPORT FrameManager : public QObject
 
 public:
     explicit FrameManager(QObject *parent = nullptr);
-    ~FrameManager();
+    ~FrameManager() override;
 
     Frame *currentFrame() const;
 

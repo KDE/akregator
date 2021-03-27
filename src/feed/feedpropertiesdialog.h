@@ -22,7 +22,7 @@ class FeedPropertiesWidget : public QWidget, public Ui::FeedPropertiesWidgetBase
     Q_OBJECT
 public:
     explicit FeedPropertiesWidget(QWidget *parent = nullptr, const QString &name = QString());
-    ~FeedPropertiesWidget();
+    ~FeedPropertiesWidget() override;
 
     enum IntervalStep { Minutes = 0, Hours, Days, Never };
 

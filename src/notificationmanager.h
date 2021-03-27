@@ -24,7 +24,7 @@ public:
     /** singleton instance of notification manager */
     static NotificationManager *self();
 
-    ~NotificationManager();
+    ~NotificationManager() override;
 
     /** the widget used for notification, normally either the mainwindow or the tray icon */
     void setWidget(QWidget *widget, const QString &componentName = QString());

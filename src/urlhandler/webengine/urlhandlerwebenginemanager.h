@@ -18,7 +18,7 @@ class AKREGATOR_EXPORT URLHandlerWebEngineManager : public QObject
 {
     Q_OBJECT
 public:
-    ~URLHandlerWebEngineManager();
+    ~URLHandlerWebEngineManager() override;
 
     static URLHandlerWebEngineManager *instance();
     void registerHandler(const URLHandlerWebEngine *handler);

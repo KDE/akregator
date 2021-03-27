@@ -65,7 +65,7 @@ public:
     explicit FeedList(Akregator::Backend::Storage *storage);
 
     /** Destructor. Contained nodes are deleted! */
-    ~FeedList();
+    ~FeedList() override;
 
     const Folder *allFeedsFolder() const;
     Folder *allFeedsFolder();

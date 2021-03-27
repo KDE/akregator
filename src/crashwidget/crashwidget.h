@@ -16,7 +16,7 @@ public:
     enum CrashAction { RestoreSession = 0, NotRestoreSession, AskMeLater };
 
     explicit CrashWidget(QWidget *parent = nullptr);
-    ~CrashWidget();
+    ~CrashWidget() override;
 
 Q_SIGNALS:
     void restoreSession(Akregator::CrashWidget::CrashAction type);

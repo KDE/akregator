@@ -28,7 +28,7 @@ class SearchBar : public QWidget
 
 public:
     explicit SearchBar(QWidget *parent = nullptr);
-    ~SearchBar();
+    ~SearchBar() override;
 
     Q_REQUIRED_RESULT QString text() const;
     Q_REQUIRED_RESULT StatusSearchLine::Status status() const;

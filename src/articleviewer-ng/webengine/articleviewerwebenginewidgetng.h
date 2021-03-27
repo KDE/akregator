@@ -31,7 +31,7 @@ class AKREGATOR_EXPORT ArticleViewerWebEngineWidgetNg : public QWidget
 public:
     explicit ArticleViewerWebEngineWidgetNg(ArticleViewerWebEngine *customViewer, KActionCollection *ac, QWidget *parent);
     explicit ArticleViewerWebEngineWidgetNg(KActionCollection *ac, QWidget *parent = nullptr);
-    ~ArticleViewerWebEngineWidgetNg();
+    ~ArticleViewerWebEngineWidgetNg() override;
 
     ArticleViewerWebEngine *articleViewerNg() const;
 
