@@ -43,7 +43,7 @@ public:
      Loads the part
      @return Whether the part has been successfully created or not.
      */
-    Q_REQUIRED_RESULT bool loadPart();
+    bool loadPart();
 
 public Q_SLOTS:
     void slotClearStatusText();
