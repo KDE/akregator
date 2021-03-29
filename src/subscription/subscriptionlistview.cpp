@@ -126,7 +126,7 @@ Akregator::SubscriptionListView::SubscriptionListView(QWidget *parent)
     setRootIsDecorated(false);
     setAlternatingRowColors(true);
     setContextMenuPolicy(Qt::CustomContextMenu);
-    setDragDropMode(QAbstractItemView::DragDrop);
+    setDragDropMode(Settings::lockFeedsInPlace() ? QAbstractItemView::NoDragDrop : QAbstractItemView::DragDrop);
     setDropIndicatorShown(true);
     setAcceptDrops(true);
     setUniformRowHeights(true);
@@ -399,7 +399,7 @@ void SubscriptionListView::slotSetLockFeedsInPlace(bool setting)
         return;
     }
 
-    setDragDropMode(setting? QAbstractItemView::NoDragDrop : QAbstractItemView::InternalMove);
+    setDragDropMode(setting? QAbstractItemView::NoDragDrop : QAbstractItemView::DragDrop);
 
     Settings::setLockFeedsInPlace(setting);
 }
