@@ -37,6 +37,7 @@
 #include <QWebEngineUrlRequestInterceptor>
 #include <viewerplugintoolmanager.h>
 
+#include <WebEngineViewer/BlockMailTrackingUrlInterceptor>
 #include <WebEngineViewer/LoadExternalReferencesUrlInterceptor>
 #include <WebEngineViewer/WebEngineScript>
 #include <WebEngineViewer/WebHitTest>
@@ -83,6 +84,9 @@ ArticleViewerWebEngine::ArticleViewerWebEngine(KActionCollection *ac, QWidget *p
     auto *externalReference = new WebEngineViewer::LoadExternalReferencesUrlInterceptor(this);
     // connect(externalReference, &MessageViewer::LoadExternalReferencesUrlInterceptor::urlBlocked, this, &MailWebEngineView::urlBlocked);
     mNetworkAccessManager->addInterceptor(externalReference);
+    auto *blockTracking = new WebEngineViewer::BlockMailTrackingUrlInterceptor(this);
+    connect(blockTracking, &WebEngineViewer::BlockMailTrackingUrlInterceptor::trackingFound, this, &MailWebEngineView::trackingFound);
+    mNetworkAccessManager->addInterceptor(blockTracking);
 #endif
     connect(this, &ArticleViewerWebEngine::showContextMenu, this, &ArticleViewerWebEngine::slotShowContextMenu);
 

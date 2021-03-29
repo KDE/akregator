@@ -21,6 +21,7 @@ class TextToSpeechWidget;
 namespace WebEngineViewer
 {
 class FindBarWebEngineView;
+class TrackingWarningWidget;
 }
 
 namespace Akregator
@@ -56,6 +57,7 @@ private:
     ArticleViewerWebEngine *mArticleViewerNg = nullptr;
     KPIMTextEdit::TextToSpeechWidget *mTextToSpeechWidget = nullptr;
     KPIMTextEdit::SlideContainer *mSliderContainer = nullptr;
+    WebEngineViewer::TrackingWarningWidget *mTrackingWarningWidget = nullptr;
     QPrinter *mCurrentPrinter = nullptr;
 };
 }

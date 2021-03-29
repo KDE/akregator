@@ -18,6 +18,7 @@
 #include <KPIMTextEdit/SlideContainer>
 
 #include <WebEngineViewer/FindBarWebEngineView>
+#include <WebEngineViewer/TrackingWarningWidget>
 #include <WebEngineViewer/WebEngineExportHtmlPageJob>
 
 #include <QApplication>
@@ -64,11 +65,16 @@ void ArticleViewerWebEngineWidgetNg::initializeLayout(KActionCollection *ac)
     mTextToSpeechWidget->setObjectName(QStringLiteral("texttospeechwidget"));
     layout->addWidget(mTextToSpeechWidget);
 
+    mTrackingWarningWidget = new WebEngineViewer::TrackingWarningWidget(this);
+    mTrackingWarningWidget->setObjectName(QStringLiteral("mTrackingWarningWidget"));
+    layout->addWidget(mTrackingWarningWidget);
+
     if (!mArticleViewerNg) {
         mArticleViewerNg = new ArticleViewerWebEngine(ac, this);
     }
     mArticleViewerNg->setObjectName(QStringLiteral("articleviewerng"));
     layout->addWidget(mArticleViewerNg);
+    connect(mArticleViewerNg, &ArticleViewerWebEngine::mailTrackingFound, mTrackingWarningWidget, &WebEngineViewer::TrackingWarningWidget::addTracker);
 
     mArticleViewerNg->createViewerPluginToolManager(ac, this);
 
