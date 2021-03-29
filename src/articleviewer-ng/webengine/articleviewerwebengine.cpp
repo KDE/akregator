@@ -64,7 +64,7 @@ public:
         Q_UNUSED(info)
     }
 };
-
+// #define HAVE_BLOCK_SUPPORT 1
 ArticleViewerWebEngine::ArticleViewerWebEngine(KActionCollection *ac, QWidget *parent)
     : WebEngineViewer::WebEngineView(parent)
     , mActionCollection(ac)
