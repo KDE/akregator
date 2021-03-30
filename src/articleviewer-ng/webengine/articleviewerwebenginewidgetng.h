@@ -55,9 +55,9 @@ private:
     void printRequested(QWebEnginePage *page);
     WebEngineViewer::FindBarWebEngineView *mFindBarWebView = nullptr;
     ArticleViewerWebEngine *mArticleViewerNg = nullptr;
-    KPIMTextEdit::TextToSpeechWidget *mTextToSpeechWidget = nullptr;
-    KPIMTextEdit::SlideContainer *mSliderContainer = nullptr;
-    WebEngineViewer::TrackingWarningWidget *mTrackingWarningWidget = nullptr;
+    KPIMTextEdit::TextToSpeechWidget *const mTextToSpeechWidget;
+    KPIMTextEdit::SlideContainer *const mSliderContainer;
+    WebEngineViewer::TrackingWarningWidget *const mTrackingWarningWidget;
     QPrinter *mCurrentPrinter = nullptr;
 };
 }

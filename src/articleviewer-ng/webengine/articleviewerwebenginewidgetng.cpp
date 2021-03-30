@@ -45,15 +45,17 @@ template<typename Arg, typename R, typename C> InvokeWrapper<Arg, R, C> invoke(R
 ArticleViewerWebEngineWidgetNg::ArticleViewerWebEngineWidgetNg(ArticleViewerWebEngine *customViewer, KActionCollection *ac, QWidget *parent)
     : QWidget(parent)
     , mArticleViewerNg(customViewer)
+    , mTextToSpeechWidget(new KPIMTextEdit::TextToSpeechWidget(this))
+    , mSliderContainer(new KPIMTextEdit::SlideContainer(this))
+    , mTrackingWarningWidget(new WebEngineViewer::TrackingWarningWidget(this))
+
 {
     initializeLayout(ac);
 }
 
 ArticleViewerWebEngineWidgetNg::ArticleViewerWebEngineWidgetNg(KActionCollection *ac, QWidget *parent)
-    : QWidget(parent)
-    , mArticleViewerNg(nullptr)
+    : ArticleViewerWebEngineWidgetNg::ArticleViewerWebEngineWidgetNg(nullptr, ac, parent)
 {
-    initializeLayout(ac);
 }
 
 void ArticleViewerWebEngineWidgetNg::initializeLayout(KActionCollection *ac)
@@ -61,11 +63,9 @@ void ArticleViewerWebEngineWidgetNg::initializeLayout(KActionCollection *ac)
     auto layout = new QVBoxLayout(this);
     layout->setContentsMargins({});
 
-    mTextToSpeechWidget = new KPIMTextEdit::TextToSpeechWidget(this);
     mTextToSpeechWidget->setObjectName(QStringLiteral("texttospeechwidget"));
     layout->addWidget(mTextToSpeechWidget);
 
-    mTrackingWarningWidget = new WebEngineViewer::TrackingWarningWidget(this);
     mTrackingWarningWidget->setObjectName(QStringLiteral("mTrackingWarningWidget"));
     layout->addWidget(mTrackingWarningWidget);
 
@@ -78,7 +78,6 @@ void ArticleViewerWebEngineWidgetNg::initializeLayout(KActionCollection *ac)
 
     mArticleViewerNg->createViewerPluginToolManager(ac, this);
 
-    mSliderContainer = new KPIMTextEdit::SlideContainer(this);
     mSliderContainer->setObjectName(QStringLiteral("slidercontainer"));
     mFindBarWebView = new WebEngineViewer::FindBarWebEngineView(mArticleViewerNg, this);
     mFindBarWebView->setObjectName(QStringLiteral("findbarwebview"));
