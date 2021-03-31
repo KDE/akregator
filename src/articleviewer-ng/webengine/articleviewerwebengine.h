@@ -93,6 +93,7 @@ Q_SIGNALS:
     void findTextInHtml();
     void textToSpeech();
     void webPageMutedOrAudibleChanged(bool isAudioMuted, bool wasRecentlyAudible);
+    void trackingFound(const WebEngineViewer::BlockTrackingUrlInterceptor::TrackerBlackList &);
 
 protected:
     void resizeEvent(QResizeEvent *e) override;

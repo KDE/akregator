@@ -85,7 +85,7 @@ ArticleViewerWebEngine::ArticleViewerWebEngine(KActionCollection *ac, QWidget *p
     // connect(externalReference, &MessageViewer::LoadExternalReferencesUrlInterceptor::urlBlocked, this, &MailWebEngineView::urlBlocked);
     mNetworkAccessManager->addInterceptor(externalReference);
     auto *blockTracking = new WebEngineViewer::BlockTrackingUrlInterceptor(this);
-    connect(blockTracking, &WebEngineViewer::BlockTrackingUrlInterceptor::trackingFound, this, &MailWebEngineView::trackingFound);
+    connect(blockTracking, &WebEngineViewer::BlockTrackingUrlInterceptor::trackingFound, this, &ArticleViewerWebEngine::trackingFound);
     mNetworkAccessManager->addInterceptor(blockTracking);
 #endif
     connect(this, &ArticleViewerWebEngine::showContextMenu, this, &ArticleViewerWebEngine::slotShowContextMenu);
