@@ -21,6 +21,7 @@
 #include <QWebEngineHistory>
 #include <QWebEngineSettings>
 #include <WebEngineViewer/InterceptorManager>
+#include <WebEngineViewer/LoadExternalReferencesUrlInterceptor>
 #include <WebEngineViewer/WebHitTest>
 #include <WebEngineViewer/WebHitTestResult>
 
@@ -29,6 +30,9 @@ using namespace Akregator;
 AkrWebEngineViewer::AkrWebEngineViewer(KActionCollection *ac, QWidget *parent)
     : ArticleViewerWebEngine(ac, parent)
 {
+    if (mExternalReference) {
+        mExternalReference->setAllowExternalContent(true);
+    }
     // TODO update settings when we change config
     settings()->setAttribute(QWebEngineSettings::JavascriptEnabled, Settings::enableJavascript());
     settings()->setAttribute(QWebEngineSettings::PluginsEnabled, false);
