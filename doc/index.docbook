@@ -616,7 +616,7 @@ browser, provided it is in your $<envar>PATH</envar>.</para>
 <variablelist>
 <varlistentry>
 <term><guilabel>Always show the tab bar</guilabel></term>
-<listitem><para>If this option is checked, the tab will be always shown, even when only one tab is open. This allows you to create tabs directly from the tab bar. Otherwise, the tab bar will be shown when several tabs are open only.</para>
+<listitem><para>If this option is checked, the tab will be always shown, even when only one tab is open. This allows you to create tabs directly from the tab bar. Otherwise, the tab bar will be shown only when several tabs are open.</para>
 </listitem>
 </varlistentry>
 <varlistentry>
@@ -658,7 +658,7 @@ a new tab instead.</para>
 <variablelist>
 <varlistentry>
 <term><guilabel>Access Key Enabled</guilabel></term>
-<listitem><para>This is an accessibility option. When checked, &akregator; will process web page accessKey property that sets the keystroke which a user can press to jump to a given element.</para>
+<listitem><para>This is an accessibility option. When checked, &akregator; will process the web page accessKey property, which defines the keyboard shortcut used to jump to a given element.</para>
 </listitem>
 </varlistentry>
 </variablelist>
