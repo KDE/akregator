@@ -37,8 +37,8 @@
 
 <legalnotice>&FDLNotice;</legalnotice>
 
-<date>2016-07-28</date>
-<releaseinfo>5.3.40 (Applications 16.08)</releaseinfo>
+<date>2021-03-31</date>
+<releaseinfo>Applications 21.08</releaseinfo>
 
 <!-- Abstract about this handbook -->
 
@@ -315,6 +315,26 @@ dialog. The configuration dialog can be found in the menu under <menuchoice>
 </listitem>
 </varlistentry>
 <varlistentry>
+<term><guilabel>Show unread articles in Taskbar</guilabel></term>
+<listitem><para>Defines if the number of unread articles should be shown on the system taskbar item.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Hide feeds with no unread articles</guilabel></term>
+<listitem><para>If checked, hides feeds with no unread articles.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Lock feeds in place</guilabel></term>
+<listitem><para>If checked, prevents feeds from being moved in the list, all feeds will be locked where they are.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Auto-expand folders containing unread articles</guilabel></term>
+<listitem><para>If checked, auto-expands folders with unread articles.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
 <term><guilabel>Use notifications for all feeds</guilabel></term>
 <listitem><para>Set global notifications for all feeds. This setting will
 override the individual notification value of each feed. When enabled, &akregator; will notify you of all new articles fetched in any feed. If you only want to enable notifications for some (but not all) feeds, leave this option disabled and enable notifications for each specific feed using the individual feed properties dialog.</para>
@@ -567,7 +587,7 @@ middle mouse click.</para>
 </listitem>
 </varlistentry>
 <varlistentry>
-<term><guilabel>For External Browsing</guilabel></term>
+<term><guilabel>External Browsing</guilabel></term>
 <listitem>
 
 <variablelist>
@@ -590,10 +610,63 @@ browser, provided it is in your $<envar>PATH</envar>.</para>
 </listitem>
 </varlistentry>
 <varlistentry>
-<term><guilabel>Show tab close button on hover</guilabel></term>
+<term><guilabel>Tabs</guilabel></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term><guilabel>Always show the tab bar</guilabel></term>
+<listitem><para>If this option is checked, the tab will be always shown, even when only one tab is open. This allows you to create tabs directly from the tab bar. Otherwise, the tab bar will be shown when several tabs are open only.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Show close button on each tab</guilabel></term>
 <listitem><para>If this option is checked, the close button will appear when
 you move your mouse on the left side of the tab title so you can more easily
 close tabs.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Open links in new tab instead of in new window</guilabel></term>
+<listitem><para>If checked, &akregator; will open a link which would normally open in a new window (external browser) in 
+a new tab instead.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Security</guilabel></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term><guilabel>Verify URLs using Google's Safe Browsing API</guilabel></term>
+<listitem><para>If this option is checked, <ulink url="https://safebrowsing.google.com/">Google Safe Browsing</ulink> API will be used to check &URL;s against Google's constantly updated lists of unsafe web resources. Examples of unsafe web resources are social engineering sites (phishing and deceptive sites) and sites that host malware or unwanted software.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Enable Javascript</guilabel></term>
+<listitem><para>If checked, &akregator; will use &javascript; when processing web resources. &javascript; usage has several <ulink url="https://en.wikipedia.org/wiki/JavaScript#Security">security implications</ulink>.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Misc</guilabel></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term><guilabel>Access Key Enabled</guilabel></term>
+<listitem><para>This is an accessibility option. When checked, &akregator; will process web page accessKey property that sets the keystroke which a user can press to jump to a given element.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+</variablelist>
+
 </listitem>
 </varlistentry>
 </variablelist>
