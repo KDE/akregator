@@ -69,7 +69,9 @@ ArticleViewerWebEngine::ArticleViewerWebEngine(KActionCollection *ac, QWidget *p
     : WebEngineViewer::WebEngineView(parent)
     , mActionCollection(ac)
 {
+#ifndef HAVE_BLOCK_SUPPORT
     mNetworkAccessManager = new WebEngineViewer::InterceptorManager(this, ac, this);
+#endif
     mPageEngine = new ArticleViewerWebEnginePage(this);
     QWebEngineProfile *profile = mPageEngine->profile();
     profile->setPersistentCookiesPolicy(QWebEngineProfile::ForcePersistentCookies);
@@ -80,7 +82,9 @@ ArticleViewerWebEngine::ArticleViewerWebEngine(KActionCollection *ac, QWidget *p
     profile->setUrlRequestInterceptor(webEngineUrlInterceptor);
 #endif
     setPage(mPageEngine);
+
 #ifdef HAVE_BLOCK_SUPPORT
+    mNetworkAccessManager = new WebEngineViewer::InterceptorManager(this, ac, this);
     auto *externalReference = new WebEngineViewer::LoadExternalReferencesUrlInterceptor(this);
     // connect(externalReference, &MessageViewer::LoadExternalReferencesUrlInterceptor::urlBlocked, this, &MailWebEngineView::urlBlocked);
     mNetworkAccessManager->addInterceptor(externalReference);
