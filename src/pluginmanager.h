@@ -48,15 +48,6 @@ public:
     static KService::List query(const QString &constraint = QString());
 
     /**
-     * Load and instantiate plugin from query
-     * @param constraint  A constraint to limit the choices returned, QString() to
-     *                    get all services of the given @p servicetype
-     * @return            Pointer to Plugin, or NULL if error
-     * @see               http://developer.kde.org/documentation/library/kdeqt/tradersyntax.html
-     */
-    static Akregator::Plugin *createFromQuery(const QString &constraint = QString());
-
-    /**
      * Load and instantiate plugin from service
      * @param service     Pointer to KService
      * @param parent      Parent object
@@ -65,29 +56,10 @@ public:
     static Akregator::Plugin *createFromService(const KService::Ptr &service, QObject *parent = nullptr);
 
     /**
-     * Remove library and delete plugin
-     * @param plugin      Pointer to plugin
-     */
-    static void unload(Akregator::Plugin *plugin);
-
-    /**
-     * Look up service for loaded plugin from store
-     * @param plugin      Pointer to plugin
-     * @return            KService, or 0 if not found
-     */
-    static KService::Ptr getService(const Akregator::Plugin *plugin);
-
-    /**
      * Dump properties from a service to stdout for debugging
      * @param service     Pointer to KService
      */
     static void dump(const KService::Ptr &service);
-
-    /**
-     * Show modal info dialog about plugin
-     * @param constraint  A constraint to limit the choices returned
-     */
-    static void showAbout(const QString &constraint);
 
 private:
     struct StoreItem {

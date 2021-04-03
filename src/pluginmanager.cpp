@@ -45,27 +45,6 @@ KService::List PluginManager::query(const QString &constraint)
     return KServiceTypeTrader::self()->query(QStringLiteral("Akregator/Plugin"), str);
 }
 
-Plugin *PluginManager::createFromQuery(const QString &constraint)
-{
-    KService::List offers = query(constraint);
-
-    if (offers.isEmpty()) {
-        qCWarning(AKREGATOR_LOG) << "No matching plugin found.";
-        return nullptr;
-    }
-
-    // Select plugin with highest rank
-    int rank = 0;
-    int current = 0;
-    for (int i = 0; i < offers.count(); ++i) {
-        if (offers[i]->property(QStringLiteral("X-KDE-akregator-rank")).toInt() > rank) {
-            current = i;
-        }
-    }
-
-    return createFromService(offers[current]);
-}
-
 Plugin *PluginManager::createFromService(const KService::Ptr &service, QObject *parent)
 {
     qCDebug(AKREGATOR_LOG) << "Trying to load:" << service->library();
@@ -89,73 +68,6 @@ Plugin *PluginManager::createFromService(const KService::Ptr &service, QObject *
 
     dump(service);
     return plugin;
-}
-
-void PluginManager::unload(Plugin *plugin)
-{
-#ifdef TEMPORARILY_REMOVED
-    vector<StoreItem>::iterator iter = lookupPlugin(plugin);
-
-    if (iter != m_store.end()) {
-        delete (*iter).plugin;
-        qCDebug(AKREGATOR_LOG) << "Unloading library:" << (*iter).service->library();
-        // PENDING(kdab,frank) Review
-        (*iter).library->unload();
-
-        m_store.erase(iter);
-    } else {
-        qCWarning(AKREGATOR_LOG) << "Could not unload plugin (not found in store).";
-    }
-#else // TEMPORARILY_REMOVED
-    Q_UNUSED(plugin)
-    qCWarning(AKREGATOR_LOG) << "PluginManager::unload temporarily disabled";
-#endif // TEMPORARILY_REMOVED
-}
-
-KService::Ptr PluginManager::getService(const Plugin *plugin)
-{
-    if (!plugin) {
-        qCWarning(AKREGATOR_LOG) << "pointer == NULL";
-        return KService::Ptr(nullptr);
-    }
-
-    // search plugin in store
-    vector<StoreItem>::const_iterator iter = lookupPlugin(plugin);
-
-    if (iter == m_store.end()) {
-        qCWarning(AKREGATOR_LOG) << "Plugin not found in store.";
-        return KService::Ptr(nullptr);
-    }
-
-    return (*iter).service;
-}
-
-void PluginManager::showAbout(const QString &constraint)
-{
-    KService::List offers = query(constraint);
-
-    if (offers.isEmpty()) {
-        return;
-    }
-
-    KService::Ptr s = offers.front();
-
-    const QString body = QStringLiteral("<tr><td>%1</td><td>%2</td></tr>");
-
-    QString str = QStringLiteral("<html><body><table width=\"100%\" border=\"1\">");
-
-    str += body.arg(i18nc("Name of the plugin", "Name"), s->name());
-    str += body.arg(i18nc("Library name", "Library"), s->library());
-    str += body.arg(i18nc("Plugin authors", "Authors"), s->property(QStringLiteral("X-KDE-akregator-authors")).toStringList().join(QLatin1Char('\n')));
-    str += body.arg(i18nc("Plugin authors' emaila addresses", "Email"),
-                    s->property(QStringLiteral("X-KDE-akregator-email")).toStringList().join(QLatin1Char('\n')));
-    str += body.arg(i18nc("Plugin version", "Version"), s->property(QStringLiteral("X-KDE-akregator-version")).toString());
-    str +=
-        body.arg(i18nc("Framework version plugin requires", "Framework Version"), s->property(QStringLiteral("X-KDE-akregator-framework-version")).toString());
-
-    str += QStringLiteral("</table></body></html>");
-
-    KMessageBox::information(nullptr, str, i18n("Plugin Information"));
 }
 
 void PluginManager::dump(const KService::Ptr &service)
