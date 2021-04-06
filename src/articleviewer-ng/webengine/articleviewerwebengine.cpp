@@ -37,6 +37,7 @@
 #include <QWebEngineUrlRequestInterceptor>
 #include <viewerplugintoolmanager.h>
 
+#include <WebEngineViewer/BlockExternalResourcesUrlInterceptor>
 #include <WebEngineViewer/BlockTrackingUrlInterceptor>
 #include <WebEngineViewer/LoadExternalReferencesUrlInterceptor>
 #include <WebEngineViewer/WebEngineScript>
@@ -91,6 +92,9 @@ ArticleViewerWebEngine::ArticleViewerWebEngine(KActionCollection *ac, QWidget *p
     auto *blockTracking = new WebEngineViewer::BlockTrackingUrlInterceptor(this);
     connect(blockTracking, &WebEngineViewer::BlockTrackingUrlInterceptor::trackingFound, this, &ArticleViewerWebEngine::trackingFound);
     mNetworkAccessManager->addInterceptor(blockTracking);
+    mBlockExternalReference = new WebEngineViewer::BlockExternalResourcesUrlInterceptor(this);
+    // TODO connect(mBlockExternalReference, &WebEngineViewer::BlockExternalResourcesUrlInterceptor::formSubmittedForbidden, this,
+    // &MailWebEngineView::urlBlocked);
 #endif
     connect(this, &ArticleViewerWebEngine::showContextMenu, this, &ArticleViewerWebEngine::slotShowContextMenu);
 

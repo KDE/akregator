@@ -19,6 +19,7 @@ class WebHitTestResult;
 class WebEngineAccessKey;
 class InterceptorManager;
 class LoadExternalReferencesUrlInterceptor;
+class BlockExternalResourcesUrlInterceptor;
 }
 namespace MessageViewer
 {
@@ -126,6 +127,7 @@ protected:
     QList<QAction *> viewerPluginActionList(MessageViewer::ViewerPluginInterface::SpecificFeatureTypes features);
     WebEngineViewer::InterceptorManager *mNetworkAccessManager = nullptr;
     WebEngineViewer::LoadExternalReferencesUrlInterceptor *mExternalReference = nullptr;
+    WebEngineViewer::BlockExternalResourcesUrlInterceptor *mBlockExternalReference = nullptr;
 
 private:
     void openSafeUrl(const QUrl &url);
