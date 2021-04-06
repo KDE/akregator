@@ -20,6 +20,7 @@
 #include <QMenu>
 #include <QWebEngineHistory>
 #include <QWebEngineSettings>
+#include <WebEngineViewer/BlockExternalResourcesUrlInterceptor>
 #include <WebEngineViewer/InterceptorManager>
 #include <WebEngineViewer/LoadExternalReferencesUrlInterceptor>
 #include <WebEngineViewer/WebHitTest>
@@ -32,6 +33,9 @@ AkrWebEngineViewer::AkrWebEngineViewer(KActionCollection *ac, QWidget *parent)
 {
     if (mExternalReference) {
         mExternalReference->setAllowExternalContent(true);
+    }
+    if (mBlockExternalReference) { // Don't block element
+        mBlockExternalReference->setEnabled(false);
     }
     // TODO update settings when we change config
     settings()->setAttribute(QWebEngineSettings::JavascriptEnabled, Settings::enableJavascript());
