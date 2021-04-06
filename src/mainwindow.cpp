@@ -50,7 +50,7 @@ MainWindow::MainWindow(QWidget *parent)
     toolBar()->show();
     statusBar()->show();
 
-    int statH = fontMetrics().height() + 2;
+    const int statH = fontMetrics().height() + 2;
     m_statusLabel->setTextFormat(Qt::RichText);
     m_statusLabel->setSizePolicy(QSizePolicy(QSizePolicy::Ignored, QSizePolicy::Fixed));
     m_statusLabel->setMinimumWidth(0);

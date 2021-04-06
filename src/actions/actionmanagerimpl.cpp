@@ -87,7 +87,7 @@ public:
     }
 
 private:
-    ActionManagerImpl *m_manager = nullptr;
+    ActionManagerImpl *const m_manager;
 };
 
 class ActionManagerImpl::ActionManagerImplPrivate
