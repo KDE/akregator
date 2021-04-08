@@ -11,7 +11,6 @@
 #include "akregator_export.h"
 #include <QObject>
 class QAction;
-class QObject;
 
 class QUrl;
 
