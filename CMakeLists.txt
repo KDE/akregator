@@ -86,7 +86,7 @@ set_package_properties(KUserFeedback PROPERTIES DESCRIPTION "User Feedback lib" 
 
 include_directories(${akregator_SOURCE_DIR} ${akregator_BINARY_DIR})
 add_definitions(-DTRANSLATION_DOMAIN=\"akregator\")
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 add_definitions(-DQT_DISABLE_DEPRECATED_BEFORE=0x050e00)
 add_definitions(-DKF_DISABLE_DEPRECATED_BEFORE_AND_AT=0x055200)
