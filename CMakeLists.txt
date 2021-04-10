@@ -1,9 +1,9 @@
 cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
-set(PIM_VERSION "5.16.90")
+set(PIM_VERSION "5.17.0")
 project(akregator VERSION ${PIM_VERSION})
 
 set(KF5_MIN_VERSION "5.79.0")
-set(RELEASE_SERVICE_VERSION "21.03.80")
+set(RELEASE_SERVICE_VERSION "21.04.0")
 
 find_package(ECM ${KF5_MIN_VERSION} CONFIG REQUIRED)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
@@ -29,7 +29,7 @@ include(ECMQtDeclareLoggingCategory)
 
 
 # Do NOT add quote
-set(KDEPIM_DEV_VERSION beta)
+set(KDEPIM_DEV_VERSION)
 
 # add an extra space
 if(DEFINED KDEPIM_DEV_VERSION)
