@@ -66,6 +66,7 @@ int Application::activate(const QStringList &args, const QString &workingDir)
 
 int main(int argc, char **argv)
 {
+    qputenv("QTWEBENGINE_DISABLE_SANDBOX", "1");
     QCoreApplication::setAttribute(Qt::AA_ShareOpenGLContexts);
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps, true);
