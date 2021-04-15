@@ -29,7 +29,7 @@ KCMAkregatorUserFeedBackConfig::KCMAkregatorUserFeedBackConfig(QWidget *parent, 
                                        QString(),
                                        QString(),
                                        KAboutLicense::GPL,
-                                       i18n("(c), 2020 Laurent Montel"));
+                                       i18n("(c), 2020-2021 Laurent Montel"));
 
     about->addAuthor(i18n("Laurent Montel"), QString(), QStringLiteral("montel@kde.org"));
 
