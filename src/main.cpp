@@ -9,7 +9,10 @@
 #include "aboutdata.h"
 #include "akregator_debug.h"
 #include "akregator_options.h"
+#include <kcoreaddons_version.h>
+#if KCOREADDONS_VERSION < QT_VERSION_CHECK(6, 0, 0)
 #include "akregratormigrateapplication.h"
+#endif
 #include "mainwindow.h"
 #ifdef WITH_KUSERFEEDBACK
 #include "userfeedback/akregatoruserfeedbackprovider.h"
@@ -97,9 +100,10 @@ int main(int argc, char **argv)
         qCWarning(AKREGATOR_LOG) << "akregator is already running, exiting.";
         exit(0);
     }
+#if KCOREADDONS_VERSION < QT_VERSION_CHECK(6, 0, 0)
     AkregratorMigrateApplication migrate;
     migrate.migrate();
-
+#endif
     // see if we are starting with session management
     if (app.isSessionRestored()) {
         auto mainWindow = new Akregator::MainWindow();

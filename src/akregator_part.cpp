@@ -53,7 +53,10 @@
 #include <QWebEngineSettings>
 #include <kxmlguifactory.h>
 
+#include <kcoreaddons_version.h>
+#if KCOREADDONS_VERSION < QT_VERSION_CHECK(6, 0, 0)
 #include "akregratormigrateapplication.h"
+#endif
 #include "partadaptor.h"
 #include <QApplication>
 #include <QDomDocument>
@@ -138,10 +141,10 @@ Part::Part(QWidget *parentWidget, QObject *parent, const QVariantList &)
     : KParts::Part(parent)
 {
     mySelf = this;
-
+#if KCOREADDONS_VERSION < QT_VERSION_CHECK(6, 0, 0)
     AkregratorMigrateApplication migrate;
     migrate.migrate();
-
+#endif
     // Make sure to initialize settings
     Part::config();
     initFonts();
