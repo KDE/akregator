@@ -11,7 +11,7 @@ qt5_add_dbus_interfaces(kontact_akregator_PART_SRCS ${akregator_SOURCE_DIR}/src/
 
 add_library(kontact_akregatorplugin MODULE ${kontact_akregator_PART_SRCS})
 
-target_link_libraries(kontact_akregatorplugin  KF5::KontactInterface)
+target_link_libraries(kontact_akregatorplugin KF5::I18n KF5::KontactInterface)
 
 kcoreaddons_desktop_to_json(kontact_akregatorplugin akregatorplugin.desktop)
 

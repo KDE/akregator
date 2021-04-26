@@ -29,6 +29,7 @@ ecm_add_app_icon(akregator_SRCS ICONS ${ICONS_AKREGATOR_SRCS})
 add_executable(akregator ${akregator_SRCS})
 
 target_link_libraries(akregator
+    KF5::I18n
     KF5::Crash
     KF5::Notifications
     KF5::KontactInterface
@@ -124,6 +125,7 @@ endif()
 
 target_link_libraries(akregatorprivate
     PRIVATE
+    KF5::I18n
     KF5::Parts
     KF5::Notifications
     KF5::Libkdepim
@@ -217,6 +219,7 @@ generate_export_header(akregatorpart BASE_NAME akregatorpart)
 target_link_libraries(akregatorpart
     akregatorinterfaces
     akregatorprivate
+    KF5::I18n
     KF5::KCMUtils
     KF5::NotifyConfig
     KF5::Libkdepim
@@ -227,6 +230,7 @@ target_link_libraries(akregatorpart
     KF5::MessageViewer
     KF5::Parts
     KF5::Notifications
+    KF5::TextWidgets
     Qt::WebEngineWidgets
     KF5::WebEngineViewer
     KF5::KIOGui

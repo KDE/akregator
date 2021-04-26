@@ -57,6 +57,7 @@ find_package(Qt5 ${QT_REQUIRED_VERSION} CONFIG REQUIRED Widgets Test WebEngine W
 find_package(Grantlee5 "5.2" CONFIG REQUIRED)
 
 # Find KF5 package
+find_package(KF5I18n ${KF5_MIN_VERSION} REQUIRED)
 find_package(KF5Crash ${KF5_MIN_VERSION} REQUIRED)
 find_package(KF5KCMUtils ${KF5_MIN_VERSION} CONFIG REQUIRED)
 find_package(KF5NotifyConfig ${KF5_MIN_VERSION} CONFIG REQUIRED)
