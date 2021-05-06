@@ -69,7 +69,7 @@ void StatusSearchLine::showMenu()
     grp->setExclusive(true);
     for (int i = AllArticles; i <= ImportantArticles; ++i) {
         auto status = static_cast<StatusSearchLine::Status>(i);
-        QAction *act = new QAction(mHashStatus.value(status).mIcon, mHashStatus.value(status).mText, this);
+        auto act = new QAction(mHashStatus.value(status).mIcon, mHashStatus.value(status).mText, this);
         act->setCheckable(true);
         act->setChecked(mDefaultStatus == status);
         act->setData(QVariant::fromValue(status));

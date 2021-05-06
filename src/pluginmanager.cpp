@@ -58,7 +58,7 @@ Plugin *PluginManager::createFromService(const KService::Ptr &service, QObject *
                                         .arg(service->library(), loader.errorString());
         return nullptr;
     }
-    auto *const plugin = factory->create<Plugin>(parent);
+    auto const plugin = factory->create<Plugin>(parent);
 
     // put plugin into store
     StoreItem item;

@@ -226,7 +226,7 @@ void FrameManager::openInExternalBrowser(const OpenUrlRequest &request)
     if (request.args().mimeType().isEmpty()) {
         QDesktopServices::openUrl(url);
     } else {
-        KIO::OpenUrlJob *job = new KIO::OpenUrlJob(url, request.args().mimeType());
+        auto job = new KIO::OpenUrlJob(url, request.args().mimeType());
         job->start();
     }
 }

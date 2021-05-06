@@ -44,7 +44,7 @@ public Q_SLOTS:
 private:
     Q_REQUIRED_RESULT bool filterAcceptsRow(int source_row, const QModelIndex &source_parent) const override;
 
-    typedef QSet<QModelIndex> SelectionHierarchy;
+    using SelectionHierarchy = QSet<QModelIndex>;
 
     bool m_doFilter = false;
     SelectionHierarchy m_selectedHierarchy;

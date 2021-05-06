@@ -24,12 +24,12 @@ KCMAkregatorUserFeedBackConfig::KCMAkregatorUserFeedBackConfig(QWidget *parent, 
     auto lay = new QHBoxLayout(this);
     lay->setContentsMargins({});
 
-    KAboutData *about = new KAboutData(QStringLiteral("kcmaddressbookuserfeedbackconfig"),
-                                       i18n("Configure User Feedback"),
-                                       QString(),
-                                       QString(),
-                                       KAboutLicense::GPL,
-                                       i18n("(c), 2020-2021 Laurent Montel"));
+    auto about = new KAboutData(QStringLiteral("kcmaddressbookuserfeedbackconfig"),
+                                i18n("Configure User Feedback"),
+                                QString(),
+                                QString(),
+                                KAboutLicense::GPL,
+                                i18n("(c), 2020-2021 Laurent Montel"));
 
     about->addAuthor(i18n("Laurent Montel"), QString(), QStringLiteral("montel@kde.org"));
 

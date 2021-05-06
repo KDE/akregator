@@ -212,7 +212,7 @@ void SelectionController::articleHeadersAvailable(KJob *job)
     Q_ASSERT(node); // if there was no error, the node must still exist
     Q_ASSERT(node == m_selectedSubscription); //...and equal the previously selected node
 
-    ArticleModel *const newModel = new ArticleModel(m_listJob->articles());
+    auto const newModel = new ArticleModel(m_listJob->articles());
 
     connect(node, &QObject::destroyed, newModel, &ArticleModel::clear);
     connect(node, &TreeNode::signalArticlesAdded, newModel, &ArticleModel::articlesAdded);
@@ -287,7 +287,7 @@ void SelectionController::selectedSubscriptionChanged(const QModelIndex &index)
         return;
     }
 
-    auto *const job(new ArticleListJob(m_selectedSubscription));
+    auto const job(new ArticleListJob(m_selectedSubscription));
     connect(job, &KJob::finished, this, &SelectionController::articleHeadersAvailable);
     m_listJob = job;
     m_listJob->start();

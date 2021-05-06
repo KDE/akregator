@@ -31,7 +31,7 @@ public:
 private:
     explicit URLHandlerWebEngineManager(QObject *parent = nullptr);
     static URLHandlerWebEngineManager *self;
-    typedef QVector<const URLHandlerWebEngine *> HandlerList;
+    using HandlerList = QVector<const URLHandlerWebEngine *>;
     HandlerList mHandlers;
 };
 }

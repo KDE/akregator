@@ -685,7 +685,7 @@ void MainWidget::slotFeedAdd()
 
 void MainWidget::addFeed(const QString &url, TreeNode *after, Folder *parent, bool autoExec)
 {
-    auto *cmd(new CreateFeedCommand(this));
+    auto cmd(new CreateFeedCommand(this));
     cmd->setParentWidget(this);
     cmd->setPosition(parent, after);
     cmd->setRootFolder(m_feedList->allFeedsFolder());

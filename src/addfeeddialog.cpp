@@ -53,7 +53,7 @@ AddFeedDialog::AddFeedDialog(QWidget *parent, const QString &name)
     auto mainLayout = new QVBoxLayout(this);
 
     widget = new AddFeedWidget(this);
-    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, this);
+    auto buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, this);
     mOkButton = buttonBox->button(QDialogButtonBox::Ok);
     mOkButton->setDefault(true);
     mOkButton->setShortcut(Qt::CTRL | Qt::Key_Return);

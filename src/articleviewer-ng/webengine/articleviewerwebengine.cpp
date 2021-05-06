@@ -89,7 +89,7 @@ ArticleViewerWebEngine::ArticleViewerWebEngine(KActionCollection *ac, QWidget *p
     mExternalReference = new WebEngineViewer::LoadExternalReferencesUrlInterceptor(this);
     // connect(externalReference, &MessageViewer::LoadExternalReferencesUrlInterceptor::urlBlocked, this, &MailWebEngineView::urlBlocked);
     mNetworkAccessManager->addInterceptor(mExternalReference);
-    auto *blockTracking = new WebEngineViewer::BlockTrackingUrlInterceptor(this);
+    auto blockTracking = new WebEngineViewer::BlockTrackingUrlInterceptor(this);
     connect(blockTracking, &WebEngineViewer::BlockTrackingUrlInterceptor::trackingFound, this, &ArticleViewerWebEngine::trackingFound);
     mNetworkAccessManager->addInterceptor(blockTracking);
     mBlockExternalReference = new WebEngineViewer::BlockExternalResourcesUrlInterceptor(this);
@@ -178,7 +178,7 @@ void ArticleViewerWebEngine::slotSaveLinkAs()
         url.setPath(url.path() + QLatin1String("/index.html"));
     }
 
-    QFileDialog *dlg = new QFileDialog(this);
+    auto dlg = new QFileDialog(this);
     dlg->setAttribute(Qt::WA_DeleteOnClose);
     dlg->setAcceptMode(QFileDialog::AcceptSave);
     dlg->setWindowTitle(i18n("Save As"));

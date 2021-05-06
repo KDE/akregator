@@ -31,12 +31,12 @@ KCMAkregatorBrowserConfig::KCMAkregatorBrowserConfig(QWidget *parent, const QVar
     layout->addWidget(m_widget);
 
     connect(ui.kcfg_ExternalBrowserUseCustomCommand, &QAbstractButton::toggled, ui.kcfg_ExternalBrowserCustomCommand, &QWidget::setEnabled);
-    KAboutData *about = new KAboutData(QStringLiteral("kcmakrbrowserconfig"),
-                                       i18n("Configure Feed Reader Browser"),
-                                       QString(),
-                                       QString(),
-                                       KAboutLicense::GPL,
-                                       i18n("(c), 2004 - 2008 Frank Osterfeld"));
+    auto about = new KAboutData(QStringLiteral("kcmakrbrowserconfig"),
+                                i18n("Configure Feed Reader Browser"),
+                                QString(),
+                                QString(),
+                                KAboutLicense::GPL,
+                                i18n("(c), 2004 - 2008 Frank Osterfeld"));
 
     about->addAuthor(i18n("Frank Osterfeld"), QString(), QStringLiteral("osterfeld@kde.org"));
 

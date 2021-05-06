@@ -23,12 +23,12 @@ KCMAkregatorPluginsConfig::KCMAkregatorPluginsConfig(QWidget *parent, const QVar
     auto lay = new QHBoxLayout(this);
     lay->setContentsMargins({});
 
-    KAboutData *about = new KAboutData(QStringLiteral("kcmakrpluginsconfig"),
-                                       i18n("Configure Plugins"),
-                                       QString(),
-                                       QString(),
-                                       KAboutLicense::GPL,
-                                       i18n("(c), 2016-2021 Laurent Montel"));
+    auto about = new KAboutData(QStringLiteral("kcmakrpluginsconfig"),
+                                i18n("Configure Plugins"),
+                                QString(),
+                                QString(),
+                                KAboutLicense::GPL,
+                                i18n("(c), 2016-2021 Laurent Montel"));
 
     about->addAuthor(i18n("Laurent Montel"), QString(), QStringLiteral("montel@kde.org"));
 

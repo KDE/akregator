@@ -39,12 +39,12 @@ KCMAkregatorArchiveConfig::KCMAkregatorArchiveConfig(QWidget *parent, const QVar
     m_archiveModeGroup->addButton(m_ui.rb_DisableArchiving, Settings::EnumArchiveMode::disableArchiving);
     connect(m_archiveModeGroup, QOverload<QAbstractButton *>::of(&QButtonGroup::buttonClicked), this, &KCMAkregatorArchiveConfig::markAsChanged);
 
-    KAboutData *about = new KAboutData(QStringLiteral("kcmakrarchiveconfig"),
-                                       i18n("Configure Feed Reader Archive"),
-                                       QString(),
-                                       QString(),
-                                       KAboutLicense::GPL,
-                                       i18n("(c), 2004 - 2008 Frank Osterfeld"));
+    auto about = new KAboutData(QStringLiteral("kcmakrarchiveconfig"),
+                                i18n("Configure Feed Reader Archive"),
+                                QString(),
+                                QString(),
+                                KAboutLicense::GPL,
+                                i18n("(c), 2004 - 2008 Frank Osterfeld"));
 
     about->addAuthor(i18n("Frank Osterfeld"), QString(), QStringLiteral("osterfeld@kde.org"));
     setAboutData(about);

@@ -45,7 +45,7 @@ bool Folder::accept(TreeNodeVisitor *visitor)
 
 Folder *Folder::fromOPML(const QDomElement &e)
 {
-    Folder *fg = new Folder(e.hasAttribute(QStringLiteral("text")) ? e.attribute(QStringLiteral("text")) : e.attribute(QStringLiteral("title")));
+    auto fg = new Folder(e.hasAttribute(QStringLiteral("text")) ? e.attribute(QStringLiteral("text")) : e.attribute(QStringLiteral("title")));
     fg->setOpen(e.attribute(QStringLiteral("isOpen")) == QLatin1String("true"));
     fg->setId(e.attribute(QStringLiteral("id")).toUInt());
     return fg;
@@ -440,7 +440,7 @@ QList<const TreeNode *> Folder::namedChildren(const QString &title) const
         if (child->title() == title) {
             nodeList.append(child);
         }
-        const auto *fld = dynamic_cast<const Folder *>(child);
+        const auto fld = dynamic_cast<const Folder *>(child);
         if (fld) {
             nodeList += fld->namedChildren(title);
         }

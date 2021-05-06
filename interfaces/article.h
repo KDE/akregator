@@ -20,7 +20,7 @@ class QString;
 
 template<class T> class QList;
 
-typedef unsigned int uint;
+using uint = unsigned int;
 
 class QUrl;
 
@@ -28,7 +28,7 @@ namespace Syndication
 {
 class Enclosure;
 class Item;
-typedef QSharedPointer<Item> ItemPtr;
+using ItemPtr = QSharedPointer<Item>;
 }
 
 namespace Akregator

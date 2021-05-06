@@ -10,7 +10,7 @@
 
 #include "akregator_export.h"
 #include <QString>
-typedef unsigned int uint;
+using uint = unsigned int;
 
 namespace Akregator
 {

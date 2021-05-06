@@ -65,7 +65,7 @@ void DownloadArticleJob::setArticleUrl(const QUrl &articleUrl)
 void DownloadArticleJob::slotUrlSaveResult(KJob *job)
 {
     if (job->error()) {
-        auto *kiojob = dynamic_cast<KIO::Job *>(job);
+        auto kiojob = dynamic_cast<KIO::Job *>(job);
         if (kiojob && kiojob->uiDelegate()) {
             kiojob->uiDelegate()->showErrorMessage();
         } else {

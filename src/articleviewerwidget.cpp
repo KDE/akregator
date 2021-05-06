@@ -224,7 +224,7 @@ void ArticleViewerWidget::slotUpdateCombinedView()
     QElapsedTimer spent;
     spent.start();
 
-    const std::vector<QSharedPointer<const AbstractMatcher>>::const_iterator filterEnd = m_filters.cend();
+    const auto filterEnd = m_filters.cend();
 
     QVector<Article> articles;
     for (const Article &i : qAsConst(m_articles)) {

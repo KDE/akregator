@@ -148,7 +148,7 @@ void ArticleViewerWebEngineWidgetNg::slotHandlePagePrinted(bool result)
 
 void ArticleViewerWebEngineWidgetNg::slotPrintPreview()
 {
-    QPrintPreviewDialog *dialog = new QPrintPreviewDialog(this);
+    auto dialog = new QPrintPreviewDialog(this);
     dialog->setAttribute(Qt::WA_DeleteOnClose);
     dialog->resize(800, 750);
 
@@ -172,7 +172,7 @@ void ArticleViewerWebEngineWidgetNg::slotOpenInBrowser()
         connect(job, &WebEngineViewer::WebEngineExportHtmlPageJob::success, this, &ArticleViewerWebEngineWidgetNg::slotExportHtmlPageSuccess);
         job->start();
     } else {
-        KIO::OpenUrlJob *job = new KIO::OpenUrlJob(currentUrl, QStringLiteral("text/html"));
+        auto job = new KIO::OpenUrlJob(currentUrl, QStringLiteral("text/html"));
         job->setUiDelegate(new KIO::JobUiDelegate(KJobUiDelegate::AutoHandlingEnabled, this));
         job->setDeleteTemporaryFile(true);
         job->start();
@@ -186,7 +186,7 @@ void ArticleViewerWebEngineWidgetNg::slotExportHtmlPageFailed()
 
 void ArticleViewerWebEngineWidgetNg::slotExportHtmlPageSuccess(const QString &filename)
 {
-    KIO::OpenUrlJob *job = new KIO::OpenUrlJob(QUrl::fromLocalFile(filename), QStringLiteral("text/html"));
+    auto job = new KIO::OpenUrlJob(QUrl::fromLocalFile(filename), QStringLiteral("text/html"));
     job->setUiDelegate(new KIO::JobUiDelegate(KJobUiDelegate::AutoHandlingEnabled, this));
     job->setDeleteTemporaryFile(true);
     job->start();

@@ -158,7 +158,7 @@ FeedList::FeedList(Backend::Storage *storage)
     : QObject(nullptr)
     , d(new Private(storage, this))
 {
-    Folder *rootNode = new Folder(i18n("All Feeds"));
+    auto rootNode = new Folder(i18n("All Feeds"));
     rootNode->setId(1);
     setRootNode(rootNode);
     addNode(rootNode, true);

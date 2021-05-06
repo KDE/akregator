@@ -34,12 +34,12 @@ KCMAkregatorGeneralConfig::KCMAkregatorGeneralConfig(QWidget *parent, const QVar
 
     connect(ui.kcfg_UseIntervalFetch, &QAbstractButton::toggled, ui.kcfg_AutoFetchInterval, &QWidget::setEnabled);
     connect(ui.kcfg_UseIntervalFetch, &QAbstractButton::toggled, ui.autoFetchIntervalLabel, &QWidget::setEnabled);
-    KAboutData *about = new KAboutData(QStringLiteral("kcmakrgeneralconfig"),
-                                       i18n("Configure Feeds"),
-                                       QString(),
-                                       QString(),
-                                       KAboutLicense::GPL,
-                                       i18n("(c), 2004 - 2008 Frank Osterfeld"));
+    auto about = new KAboutData(QStringLiteral("kcmakrgeneralconfig"),
+                                i18n("Configure Feeds"),
+                                QString(),
+                                QString(),
+                                KAboutLicense::GPL,
+                                i18n("(c), 2004 - 2008 Frank Osterfeld"));
 
     about->addAuthor(i18n("Frank Osterfeld"), QString(), QStringLiteral("osterfeld@kde.org"));
 

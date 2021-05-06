@@ -41,12 +41,12 @@ KCMAkregatorAppearanceConfig::KCMAkregatorAppearanceConfig(QWidget *parent, cons
 
     connect(m_ui.kcfg_MinimumFontSize, qOverload<int>(&KPluralHandlingSpinBox::valueChanged), m_ui.slider_minimumFontSize, &QSlider::setValue);
     connect(m_ui.kcfg_MediumFontSize, qOverload<int>(&KPluralHandlingSpinBox::valueChanged), m_ui.slider_mediumFontSize, &QSlider::setValue);
-    KAboutData *about = new KAboutData(QStringLiteral("kcmakrappearanceconfig"),
-                                       i18n("Configure Feed Reader Appearance"),
-                                       QString(),
-                                       QString(),
-                                       KAboutLicense::GPL,
-                                       i18n("(c), 2004 - 2008 Frank Osterfeld"));
+    auto about = new KAboutData(QStringLiteral("kcmakrappearanceconfig"),
+                                i18n("Configure Feed Reader Appearance"),
+                                QString(),
+                                QString(),
+                                KAboutLicense::GPL,
+                                i18n("(c), 2004 - 2008 Frank Osterfeld"));
 
     about->addAuthor(i18n("Frank Osterfeld"), QString(), QStringLiteral("osterfeld@kde.org"));
 

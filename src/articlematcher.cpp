@@ -267,8 +267,8 @@ void ArticleMatcher::readConfig(KConfigGroup *config)
 
 bool ArticleMatcher::operator==(const AbstractMatcher &other) const
 {
-    auto *ptr = const_cast<AbstractMatcher *>(&other);
-    auto *o = dynamic_cast<ArticleMatcher *>(ptr);
+    auto ptr = const_cast<AbstractMatcher *>(&other);
+    auto o = dynamic_cast<ArticleMatcher *>(ptr);
     if (!o) {
         return false;
     } else {

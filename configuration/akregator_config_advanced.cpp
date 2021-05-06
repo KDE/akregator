@@ -26,12 +26,12 @@ KCMAkregatorAdvancedConfig::KCMAkregatorAdvancedConfig(QWidget *parent, const QV
 {
     auto layout = new QVBoxLayout(this);
     layout->addWidget(m_widget);
-    KAboutData *about = new KAboutData(QStringLiteral("kcmakradvancedconfig"),
-                                       i18n("Advanced Feed Reader Settings"),
-                                       QString(),
-                                       QString(),
-                                       KAboutLicense::GPL,
-                                       i18n("(c), 2004 - 2008 Frank Osterfeld"));
+    auto about = new KAboutData(QStringLiteral("kcmakradvancedconfig"),
+                                i18n("Advanced Feed Reader Settings"),
+                                QString(),
+                                QString(),
+                                KAboutLicense::GPL,
+                                i18n("(c), 2004 - 2008 Frank Osterfeld"));
 
     about->addAuthor(i18n("Frank Osterfeld"), QString(), QStringLiteral("osterfeld@kde.org"));
 

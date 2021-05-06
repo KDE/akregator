@@ -409,7 +409,7 @@ void Akregator::FolderExpansionHandler::setExpanded(const QModelIndex &idx, bool
         return;
     }
 
-    auto *const folder = qobject_cast<Akregator::Folder *>(node);
+    auto const folder = qobject_cast<Akregator::Folder *>(node);
     Q_ASSERT(folder);
     folder->setOpen(expanded);
 }
@@ -452,7 +452,7 @@ QStringList SubscriptionListModel::mimeTypes() const
 
 QMimeData *SubscriptionListModel::mimeData(const QModelIndexList &indexes) const
 {
-    auto *mimeData = new QMimeData;
+    auto mimeData = new QMimeData;
 
     QList<QUrl> urls;
     for (const QModelIndex &i : indexes) {
@@ -486,7 +486,7 @@ bool SubscriptionListModel::setData(const QModelIndex &idx, const QVariant &valu
     if (!node) {
         return false;
     }
-    auto *job = new RenameSubscriptionJob(this);
+    auto job = new RenameSubscriptionJob(this);
     job->setSubscriptionId(node->id());
     job->setName(value.toString());
     job->start();
@@ -543,7 +543,7 @@ bool SubscriptionListModel::dropMimeData(const QMimeData *data, Qt::DropAction a
         if (!node) {
             continue;
         }
-        auto *job = new MoveSubscriptionJob(this);
+        auto job = new MoveSubscriptionJob(this);
         job->setSubscriptionId(node->id());
         job->setDestination(destFolder->id(), after ? after->id() : 0);
         job->start();
