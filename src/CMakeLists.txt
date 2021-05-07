@@ -207,7 +207,7 @@ set(akregatorpart_PART_SRCS
     dummystorage/feedstoragedummyimpl.cpp
     )
 
-qt5_add_dbus_adaptor(akregatorpart_PART_SRCS org.kde.akregator.part.xml akregator_part.h Akregator::Part)
+qt_add_dbus_adaptor(akregatorpart_PART_SRCS org.kde.akregator.part.xml akregator_part.h Akregator::Part)
 
 ki18n_wrap_ui(akregatorpart_PART_SRCS
     ui/addfeedwidgetbase.ui
