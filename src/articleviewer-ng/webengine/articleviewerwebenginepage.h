@@ -16,9 +16,6 @@ public:
     explicit ArticleViewerWebEnginePage(QObject *parent = nullptr);
     ~ArticleViewerWebEnginePage() override;
 
-Q_SIGNALS:
-    void urlClicked(const QUrl &url);
-
 protected:
     bool acceptNavigationRequest(const QUrl &url, NavigationType type, bool isMainFrame) override;
 

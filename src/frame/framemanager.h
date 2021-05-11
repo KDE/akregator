@@ -40,7 +40,7 @@ public:
 
 public Q_SLOTS:
 
-    void slotAddFrame(Frame *frame);
+    void slotAddFrame(Akregator::Frame *frame);
     void slotRemoveFrame(int frameId);
 
     void slotChangeFrame(int frameId);

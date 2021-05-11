@@ -63,7 +63,7 @@ Folder::~Folder()
         // child removes itself from list in its destructor
         delete m_children.first();
     }
-    Q_EMIT emitSignalDestroyed();
+    emitSignalDestroyed();
 }
 
 QVector<Article> Folder::articles()
