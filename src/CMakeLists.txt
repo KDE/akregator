@@ -43,51 +43,34 @@ install(TARGETS akregator ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 
 ########### next target ###############
 
-set(akregator_articleviewer_ng_webengine_SRCS
+add_library(akregatorprivate)
+
+target_sources(akregatorprivate PRIVATE
+    ${akregator_common_SRCS}
     articleviewer-ng/webengine/articleviewerwebengine.cpp
     articleviewer-ng/webengine/articleviewerwebenginepage.cpp
     articleviewer-ng/webengine/articlehtmlwebenginewriter.cpp
     articleviewer-ng/webengine/articleviewerwebenginewidgetng.cpp
-    )
 
-set(akregator_job_SRCS
     job/downloadarticlejob.cpp
     job/downloadfeediconjob.cpp
-    )
 
-set(akregatorprivate_formatter_SRCS
     formatter/articleformatter.cpp
     formatter/defaultnormalviewformatter.cpp
     formatter/defaultcombinedviewformatter.cpp
     formatter/grantleeviewformatter.cpp
     formatter/articlegrantleeobject.cpp
     formatter/grantleeutil.cpp
-    )
 
-set(akregatorprivate_frame_SRCS
     frame/webengine/webengineframe.cpp
     frame/webengine/akrwebengineviewer.cpp
     frame/frame.cpp
     frame/mainframe.cpp
     frame/framemanager.cpp
-    )
 
-set(akregatorprivate_urlhandlerwebengine_SRCS
     urlhandler/webengine/urlhandlerwebengine.cpp
     urlhandler/webengine/urlhandlerwebenginemanager.cpp
-    )
-
-set(akregatorprivate_LIB_SRCS
-    ${akregatorprivate_userfeedback_LIB_SRCS}
     akregratormigrateapplication.cpp
-    ${akregatorprivate_frame_SRCS}
-    ${akregatorprivate_urlhandler_SRCS}
-    ${akregator_articleviewer_ng_SRCS}
-    ${akregator_articleviewer_ng_webengine_SRCS}
-    ${akregator_common_SRCS}
-    ${akregatorprivate_formatter_SRCS}
-    ${akregatorprivate_urlhandlerwebengine_SRCS}
-    ${akregator_job_SRCS}
     articleviewerwidget.cpp
     aboutdata.cpp
     trayicon.cpp
@@ -111,15 +94,14 @@ set(akregatorprivate_LIB_SRCS
     akregator.qrc
     )
 
-add_library(akregatorprivate ${akregatorprivate_LIB_SRCS})
+
 if (COMPILE_WITH_UNITY_CMAKE_SUPPORT)
     set_target_properties(akregatorprivate PROPERTIES UNITY_BUILD ON)
 endif()
 generate_export_header(akregatorprivate BASE_NAME akregator)
 
-set(akregator_userfeedback_LIB)
 if (TARGET KUserFeedbackWidgets)
-    set(akregator_userfeedback_LIB KUserFeedbackWidgets)
+    target_link_libraries(akregatorprivate PRIVATE KUserFeedbackWidgets)
 endif()
 
 
@@ -151,16 +133,18 @@ set_target_properties(akregatorprivate
 install(TARGETS akregatorprivate ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} LIBRARY NAMELINK_SKIP)
 
 ########### next target ###############
+add_library(akregatorpart MODULE)
+set(akregator_adaptator_SRCS)
+qt_add_dbus_adaptor(akregator_adaptator_SRCS org.kde.akregator.part.xml akregator_part.h Akregator::Part)
 
-set(akregator_crashwidget_SRCS
+target_sources(akregatorpart PRIVATE
+    ${akregator_common_SRCS}
+    ${akregator_adaptator_SRCS}
+
     crashwidget/crashwidget.cpp
-    )
 
-set(akregator_utils_SRCS
     utils/filtercolumnsproxymodel.cpp
-    )
 
-set(akregatorpart_command_SRCS
     command/deletesubscriptioncommand.cpp
     command/createfeedcommand.cpp
     command/createfoldercommand.cpp
@@ -168,27 +152,15 @@ set(akregatorpart_command_SRCS
     command/loadfeedlistcommand.cpp
     command/editsubscriptioncommand.cpp
     command/importfeedlistcommand.cpp
-    )
 
-set(akregatorpart_widgets_SRCS
     widgets/statussearchline.cpp
     widgets/searchbar.cpp
     widgets/akregatorcentralwidget.cpp
-    )
 
-set(akregatorpart_subscription_SRCS
     subscription/subscriptionlistview.cpp
     subscription/subscriptionlistdelegate.cpp
     subscription/subscriptionlistmodel.cpp
-    )
 
-set(akregatorpart_PART_SRCS
-    ${akregator_crashwidget_SRCS}
-    ${akregatorpart_subscription_SRCS}
-    ${akregatorpart_widgets_SRCS}
-    ${akregatorpart_command_SRCS}
-    ${akregator_utils_SRCS}
-    ${akregator_common_SRCS}
     abstractselectioncontroller.cpp
     articlematcher.cpp
     articlemodel.cpp
@@ -207,14 +179,11 @@ set(akregatorpart_PART_SRCS
     dummystorage/feedstoragedummyimpl.cpp
     )
 
-qt_add_dbus_adaptor(akregatorpart_PART_SRCS org.kde.akregator.part.xml akregator_part.h Akregator::Part)
-
-ki18n_wrap_ui(akregatorpart_PART_SRCS
+ki18n_wrap_ui(akregatorpart
     ui/addfeedwidgetbase.ui
     ui/feedpropertieswidgetbase.ui
     )
 
-add_library(akregatorpart MODULE ${akregatorpart_PART_SRCS})
 generate_export_header(akregatorpart BASE_NAME akregatorpart)
 target_link_libraries(akregatorpart
     akregatorinterfaces

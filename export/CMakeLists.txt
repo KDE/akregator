@@ -3,9 +3,7 @@ include_directories(
     ${CMAKE_CURRENT_BINARY_DIR}
     )
 
-set(akregatorstorageexporter_SRCS akregatorstorageexporter.cpp)
-
-add_executable(akregatorstorageexporter ${akregatorstorageexporter_SRCS})
+add_executable(akregatorstorageexporter akregatorstorageexporter.cpp)
 
 target_link_libraries(akregatorstorageexporter
     KF5::Syndication
