@@ -6,10 +6,10 @@ include_directories(
 
 ########### next target ###############
 
-set(kcm_akrgeneralconfig_SRCS akregator_config_general.cpp)
+add_library(akregator_config_general MODULE)
+target_sources(akregator_config_general PRIVATE akregator_config_general.cpp)
 
-ki18n_wrap_ui(kcm_akrgeneralconfig_SRCS ui/settings_general.ui)
-add_library(akregator_config_general MODULE ${kcm_akrgeneralconfig_SRCS})
+ki18n_wrap_ui(akregator_config_general ui/settings_general.ui)
 
 target_link_libraries(akregator_config_general
     akregatorinterfaces
@@ -24,10 +24,10 @@ install(TARGETS akregator_config_general DESTINATION ${KDE_INSTALL_PLUGINDIR})
 
 ########### next target ###############
 
-set(kcm_akrappearanceconfig_SRCS akregator_config_appearance.cpp)
+add_library(akregator_config_appearance MODULE  )
+target_sources(akregator_config_appearance PRIVATE akregator_config_appearance.cpp)
 
-ki18n_wrap_ui(kcm_akrappearanceconfig_SRCS ui/settings_appearance.ui)
-add_library(akregator_config_appearance MODULE ${kcm_akrappearanceconfig_SRCS})
+ki18n_wrap_ui(akregator_config_appearance ui/settings_appearance.ui)
 
 target_link_libraries(akregator_config_appearance
     akregatorinterfaces
@@ -42,10 +42,10 @@ install(TARGETS akregator_config_appearance DESTINATION ${KDE_INSTALL_PLUGINDIR}
 
 ########### next target ###############
 
-set(kcm_akrarchiveconfig_SRCS akregator_config_archive.cpp)
+add_library(akregator_config_archive MODULE)
+target_sources(akregator_config_archive PRIVATE akregator_config_archive.cpp)
 
-ki18n_wrap_ui(kcm_akrarchiveconfig_SRCS ui/settings_archive.ui)
-add_library(akregator_config_archive MODULE ${kcm_akrarchiveconfig_SRCS})
+ki18n_wrap_ui(akregator_config_archive ui/settings_archive.ui)
 
 target_link_libraries(akregator_config_archive
     KF5::KCMUtils
@@ -59,10 +59,10 @@ install(TARGETS akregator_config_archive DESTINATION ${KDE_INSTALL_PLUGINDIR})
 
 ########### next target ###############
 
-set(kcm_akrbrowserconfig_SRCS akregator_config_browser.cpp)
+add_library(akregator_config_browser MODULE )
+target_sources(akregator_config_browser PRIVATE akregator_config_browser.cpp)
 
-ki18n_wrap_ui(kcm_akrbrowserconfig_SRCS ui/settings_browser.ui)
-add_library(akregator_config_browser MODULE ${kcm_akrbrowserconfig_SRCS})
+ki18n_wrap_ui(akregator_config_browser ui/settings_browser.ui)
 
 target_link_libraries(akregator_config_browser
     akregatorinterfaces
@@ -77,13 +77,13 @@ install(TARGETS akregator_config_browser DESTINATION ${KDE_INSTALL_PLUGINDIR})
 
 ########### next target ###############
 
-set(kcm_akradvancedconfig_SRCS
+add_library(akregator_config_advanced MODULE)
+target_sources(akregator_config_advanced PRIVATE
     akregator_config_advanced.cpp
     settings_advanced.cpp
     )
 
-ki18n_wrap_ui(kcm_akradvancedconfig_SRCS ui/settings_advancedbase.ui)
-add_library(akregator_config_advanced MODULE ${kcm_akradvancedconfig_SRCS})
+ki18n_wrap_ui(akregator_config_advanced ui/settings_advancedbase.ui)
 
 target_link_libraries(akregator_config_advanced
     akregatorinterfaces
@@ -100,19 +100,19 @@ install(TARGETS akregator_config_advanced DESTINATION ${KDE_INSTALL_PLUGINDIR})
 
 
 ########### next target ###############
+add_library(akregator_config_plugins MODULE)
 
-set(kcm_config_plugins_SRCS
+target_sources(akregator_config_plugins PRIVATE
     akregator_config_plugins.cpp
     akregatorconfigurepluginlistwidget.cpp
     )
 
-ecm_qt_declare_logging_category(kcm_config_plugins_SRCS HEADER kcm_config_plugins_debug.h IDENTIFIER AKREGATOR_CONFIG_PLUGIN_LOG CATEGORY_NAME org.kde.pim.akregator_config_plugin
+ecm_qt_declare_logging_category(akregator_config_plugins HEADER kcm_config_plugins_debug.h IDENTIFIER AKREGATOR_CONFIG_PLUGIN_LOG CATEGORY_NAME org.kde.pim.akregator_config_plugin
         DESCRIPTION "akregator config plugin (akregator)"
         EXPORT AKREGATOR
     )
 
 
-add_library(akregator_config_plugins MODULE ${kcm_config_plugins_SRCS})
 
 target_link_libraries(akregator_config_plugins
     akregatorinterfaces
@@ -131,9 +131,9 @@ install(TARGETS akregator_config_plugins DESTINATION ${KDE_INSTALL_PLUGINDIR})
 
 ########### next target ###############
 if (TARGET KUserFeedbackWidgets)
-    set(kcm_akregator_config_userfeedback_SRCS akregator_config_userfeedback.cpp)
+    add_library(akregator_config_userfeedback MODULE)
+    target_sources(akregator_config_userfeedback PRIVATE akregator_config_userfeedback.cpp)
 
-    add_library(akregator_config_userfeedback MODULE ${kcm_akregator_config_userfeedback_SRCS})
 
     target_link_libraries(akregator_config_userfeedback
         akregatorinterfaces
