@@ -58,13 +58,34 @@ MainWindow::MainWindow(QWidget *parent)
     statusBar()->addWidget(m_statusLabel, 1);
 
     KStandardAction::quit(qApp, &QApplication::quit, actionCollection());
-    KStandardAction::showMenubar(menuBar(), &QMenuBar::setVisible, actionCollection());
+    mShowMenuBarAction = KStandardAction::showMenubar(menuBar(), &QMenuBar::setVisible, actionCollection());
+
+    mHamburgerMenu = KStandardAction::hamburgerMenu(nullptr, nullptr, actionCollection());
+    mHamburgerMenu->setShowMenuBarAction(mShowMenuBarAction);
+    mHamburgerMenu->setMenuBar(menuBar());
+    connect(mHamburgerMenu, &KHamburgerMenu::aboutToShowMenu, this, [this]() {
+        updateHamburgerMenu();
+        // Immediately disconnect. We only need to run this once, but on demand.
+        // NOTE: The nullptr at the end disconnects all connections between
+        // q and mHamburgerMenu's aboutToShowMenu signal.
+        disconnect(mHamburgerMenu, &KHamburgerMenu::aboutToShowMenu, this, nullptr);
+    });
+
     setStandardToolBarMenuEnabled(true);
     createStandardStatusBarAction();
 
     connect(PimCommon::BroadcastStatus::instance(), &PimCommon::BroadcastStatus::statusMsg, this, &MainWindow::slotSetStatusBarText);
 
     connect(qApp, &QCoreApplication::aboutToQuit, this, &MainWindow::slotOnShutdown);
+}
+
+void MainWindow::updateHamburgerMenu()
+{
+    QMenu *menu = new QMenu;
+    menu->addAction(actionCollection()->action(QLatin1String(KStandardAction::name(KStandardAction::Print))));
+    menu->addSeparator();
+    menu->addAction(actionCollection()->action(QLatin1String(KStandardAction::name(KStandardAction::Quit))));
+    mHamburgerMenu->setMenu(menu);
 }
 
 bool MainWindow::loadPart()

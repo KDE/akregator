@@ -14,7 +14,8 @@
 #include <QPointer>
 
 class KSqueezedTextLabel;
-
+class KHamburgerMenu;
+class KToggleAction;
 namespace Akregator
 {
 class Part;
@@ -79,8 +80,11 @@ private Q_SLOTS:
     void slotOnShutdown();
 
 private:
+    void updateHamburgerMenu();
     QPointer<Akregator::Part> m_part;
     KSqueezedTextLabel *const m_statusLabel;
+    KHamburgerMenu *mHamburgerMenu = nullptr;
+    KToggleAction *mShowMenuBarAction = nullptr;
 };
 } // namespace Akregator
 

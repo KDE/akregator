@@ -1,5 +1,5 @@
 <!DOCTYPE gui SYSTEM "kpartgui.dtd">
-<gui name="akregator_part" version="430" translationDomain="akregator">
+<gui name="akregator_part" version="431" translationDomain="akregator">
   <MenuBar>
     <Menu name="file">
       <Action name="file_import"/>
@@ -92,6 +92,9 @@
     <Action name="feed_fetch_all"/>
     <Action name="feed_stop"/>
     <Action name="feed_mark_all_as_read"/>
+    <Spacer/>
+    <Action name="hamburger_menu"/>
+
     <DefineGroup name="pageviewer_operations" />
     <Merge/>
   </ToolBar>
