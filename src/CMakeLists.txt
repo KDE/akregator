@@ -215,7 +215,6 @@ install(TARGETS akregatorpart DESTINATION ${KDE_INSTALL_PLUGINDIR})
 install(PROGRAMS data/org.kde.akregator.desktop DESTINATION ${KDE_INSTALL_APPDIR})
 install(FILES data/org.kde.akregator.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
 install(FILES data/akregator_plugin.desktop DESTINATION ${KDE_INSTALL_KSERVICETYPES5DIR})
-install(FILES feed.protocol DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
 install(FILES org.kde.akregator.part.xml DESTINATION ${KDE_INSTALL_DBUSINTERFACEDIR})
 install(FILES data/akregator.notifyrc DESTINATION ${KDE_INSTALL_KNOTIFY5RCDIR} )
 
