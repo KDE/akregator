@@ -1,6 +1,7 @@
 ########### next target ###############
+add_library(akregatorinterfaces)
 
-set(akregatorinterfaces_LIB_SRCS
+target_sources(akregatorinterfaces PRIVATE
     command.cpp
     feedlistmanagementinterface.cpp
     plugin.cpp
@@ -9,27 +10,24 @@ set(akregatorinterfaces_LIB_SRCS
 
 set(akregatorinterfaces_userfeedback_LIB_SRCS)
 if (TARGET KUserFeedbackWidgets)
-    set(akregatorinterfaces_userfeedback_LIB_SRCS ${akregatorinterfaces_userfeedback_LIB_SRCS}
+    target_sources(akregatorinterfaces PRIVATE
         userfeedback/userfeedbackmanager.cpp
         userfeedback/akregatoruserfeedbackprovider.cpp
         )
 endif()
 
 
-kconfig_add_kcfg_files(akregatorinterfaces_LIB_SRCS akregatorconfig.kcfgc)
+kconfig_add_kcfg_files(akregatorinterfaces akregatorconfig.kcfgc)
 
-add_library(akregatorinterfaces ${akregatorinterfaces_LIB_SRCS} ${akregatorinterfaces_userfeedback_LIB_SRCS})
 generate_export_header(akregatorinterfaces BASE_NAME akregatorinterfaces)
 
-set(akregator_userfeedback_LIB)
 if (TARGET KUserFeedbackWidgets)
-    set(akregator_userfeedback_LIB KUserFeedbackWidgets)
+    target_link_libraries(akregatorinterfaces KUserFeedbackWidgets)
 endif()
 
 target_link_libraries(akregatorinterfaces
     KF5::ConfigGui
     Qt::Widgets
-    ${akregator_userfeedback_LIB}
     )
 if (COMPILE_WITH_UNITY_CMAKE_SUPPORT)
     set_target_properties(akregatorinterfaces PROPERTIES UNITY_BUILD ON)
