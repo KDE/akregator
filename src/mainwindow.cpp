@@ -60,16 +60,18 @@ MainWindow::MainWindow(QWidget *parent)
     KStandardAction::quit(qApp, &QApplication::quit, actionCollection());
     mShowMenuBarAction = KStandardAction::showMenubar(menuBar(), &QMenuBar::setVisible, actionCollection());
 
-    mHamburgerMenu = KStandardAction::hamburgerMenu(nullptr, nullptr, actionCollection());
-    mHamburgerMenu->setShowMenuBarAction(mShowMenuBarAction);
-    mHamburgerMenu->setMenuBar(menuBar());
-    connect(mHamburgerMenu, &KHamburgerMenu::aboutToShowMenu, this, [this]() {
-        updateHamburgerMenu();
-        // Immediately disconnect. We only need to run this once, but on demand.
-        // NOTE: The nullptr at the end disconnects all connections between
-        // q and mHamburgerMenu's aboutToShowMenu signal.
-        disconnect(mHamburgerMenu, &KHamburgerMenu::aboutToShowMenu, this, nullptr);
-    });
+    if (menuBar()) {
+        mHamburgerMenu = KStandardAction::hamburgerMenu(nullptr, nullptr, actionCollection());
+        mHamburgerMenu->setShowMenuBarAction(mShowMenuBarAction);
+        mHamburgerMenu->setMenuBar(menuBar());
+        connect(mHamburgerMenu, &KHamburgerMenu::aboutToShowMenu, this, [this]() {
+            updateHamburgerMenu();
+            // Immediately disconnect. We only need to run this once, but on demand.
+            // NOTE: The nullptr at the end disconnects all connections between
+            // q and mHamburgerMenu's aboutToShowMenu signal.
+            disconnect(mHamburgerMenu, &KHamburgerMenu::aboutToShowMenu, this, nullptr);
+        });
+    }
 
     setStandardToolBarMenuEnabled(true);
     createStandardStatusBarAction();
