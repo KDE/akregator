@@ -14,7 +14,7 @@
    <item>
     <widget class="QCheckBox" name="loadExternalReferences">
      <property name="text">
-      <string>Allow feed to load external references from internet</string>
+      <string>Allow feed to load external references from internet.</string>
      </property>
     </widget>
    </item>
