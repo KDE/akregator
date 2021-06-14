@@ -65,7 +65,7 @@ public:
         Q_UNUSED(info)
     }
 };
-// #define HAVE_BLOCK_SUPPORT 1
+#define HAVE_BLOCK_SUPPORT 1
 ArticleViewerWebEngine::ArticleViewerWebEngine(KActionCollection *ac, QWidget *parent)
     : WebEngineViewer::WebEngineView(parent)
     , mActionCollection(ac)
@@ -87,6 +87,7 @@ ArticleViewerWebEngine::ArticleViewerWebEngine(KActionCollection *ac, QWidget *p
 #ifdef HAVE_BLOCK_SUPPORT
     mNetworkAccessManager = new WebEngineViewer::InterceptorManager(this, ac, this);
     mExternalReference = new WebEngineViewer::LoadExternalReferencesUrlInterceptor(this);
+    mExternalReference->setAllowExternalContent(Settings::self()->loadExternalReferences());
     // connect(externalReference, &MessageViewer::LoadExternalReferencesUrlInterceptor::urlBlocked, this, &MailWebEngineView::urlBlocked);
     mNetworkAccessManager->addInterceptor(mExternalReference);
     auto blockTracking = new WebEngineViewer::BlockTrackingUrlInterceptor(this);
