@@ -56,6 +56,11 @@ AkrWebEngineViewer::~AkrWebEngineViewer()
 {
 }
 
+void AkrWebEngineViewer::updateSecurity()
+{
+    // Nothing
+}
+
 void AkrWebEngineViewer::contextMenuEvent(QContextMenuEvent *e)
 {
     displayContextMenu(e->pos());

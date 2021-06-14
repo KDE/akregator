@@ -362,6 +362,7 @@ void ArticleViewerWidget::updateAfterConfigChanged()
         slotShowSummary(m_node);
         break;
     }
+    m_articleViewerWidgetNg->articleViewerNg()->updateSecurity();
 }
 
 void ArticleViewerWidget::reload()

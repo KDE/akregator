@@ -64,6 +64,8 @@ public:
 
     void execPrintPreviewPage(QPrinter *printer, int timeout);
 
+    virtual void updateSecurity();
+
 protected:
     QUrl mCurrentUrl;
     KActionCollection *const mActionCollection;

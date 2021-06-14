@@ -131,6 +131,11 @@ void ArticleViewerWebEngine::execPrintPreviewPage(QPrinter *printer, int timeout
     }
 }
 
+void ArticleViewerWebEngine::updateSecurity()
+{
+    mExternalReference->setAllowExternalContent(Settings::self()->loadExternalReferences());
+}
+
 void ArticleViewerWebEngine::slotWebPageMutedOrAudibleChanged()
 {
     Q_EMIT webPageMutedOrAudibleChanged(page()->isAudioMuted(), page()->recentlyAudible());

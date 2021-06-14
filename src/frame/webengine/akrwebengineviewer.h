@@ -17,6 +17,7 @@ class AkrWebEngineViewer : public ArticleViewerWebEngine
 public:
     explicit AkrWebEngineViewer(KActionCollection *ac, QWidget *parent = nullptr);
     ~AkrWebEngineViewer() override;
+    void updateSecurity() override;
 
 protected:
     void displayContextMenu(const QPoint &pos) override;
