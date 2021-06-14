@@ -2,7 +2,7 @@
 Icon=akregator
 Type=Service
 X-KDE-ServiceTypes=KCModule
-X-DocPath=akregator/index.html#general-tab
+X-DocPath=akregator/general-tab.html
 
 X-KDE-Library=akregator_config_general
 X-KDE-ParentApp=akregator
