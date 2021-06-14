@@ -156,6 +156,8 @@ target_sources(akregator_config_security PRIVATE
     akregator_config_security.cpp
     )
 
+ki18n_wrap_ui(akregator_config_security ui/settings_security.ui)
+
 target_link_libraries(akregator_config_security
     akregatorinterfaces
     KF5::KCMUtils

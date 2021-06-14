@@ -6,6 +6,7 @@
 
 #include "akregator_config_security.h"
 #include "akregatorconfig.h"
+#include "ui_settings_security.h"
 #include <KAboutData>
 #include <KLocalizedString>
 #include <KPluginFactory>
@@ -16,9 +17,13 @@ K_PLUGIN_FACTORY(KCMAkregatorSecurityConfigFactory, registerPlugin<KCMAkregatorS
 
 KCMAkregatorSecurityConfig::KCMAkregatorSecurityConfig(QWidget *parent, const QVariantList &args)
     : KCModule(parent, args)
+    , m_widget(new QWidget(this))
 {
     auto lay = new QHBoxLayout(this);
     lay->setContentsMargins({});
+    Ui::SettingsSecurity ui;
+    ui.setupUi(m_widget);
+    lay->addWidget(m_widget);
 
     auto about = new KAboutData(QStringLiteral("kcmakrsecutiryconfig"),
                                 i18n("Configure Plugins"),
@@ -30,10 +35,6 @@ KCMAkregatorSecurityConfig::KCMAkregatorSecurityConfig(QWidget *parent, const QV
     about->addAuthor(i18n("Laurent Montel"), QString(), QStringLiteral("montel@kde.org"));
 
     setAboutData(about);
-    //    mConfigurePluginWidget = new PimCommon::ConfigurePluginsWidget(new AkregatorConfigurePluginListWidget(this), this);
-    //    mConfigurePluginWidget->setObjectName(QStringLiteral("configurePluginWidget"));
-    //    connect(mConfigurePluginWidget, &PimCommon::ConfigurePluginsWidget::changed, this, &KCMAkregatorSecurityConfig::slotConfigChanged);
-    //    lay->addWidget(mConfigurePluginWidget);
 }
 
 void KCMAkregatorSecurityConfig::slotConfigChanged()
@@ -43,17 +44,17 @@ void KCMAkregatorSecurityConfig::slotConfigChanged()
 
 void KCMAkregatorSecurityConfig::save()
 {
-    //    mConfigurePluginWidget->save();
+    // TODO
 }
 
 void KCMAkregatorSecurityConfig::load()
 {
-    //    mConfigurePluginWidget->doLoadFromGlobalSettings();
+    // TODO
 }
 
 void KCMAkregatorSecurityConfig::defaults()
 {
-    //    mConfigurePluginWidget->doResetToDefaultsOther();
+    // TODO
 }
 
 #include "akregator_config_security.moc"

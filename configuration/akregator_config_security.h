@@ -23,6 +23,6 @@ private Q_SLOTS:
     void slotConfigChanged();
 
 private:
-    // PimCommon::ConfigurePluginsWidget *mConfigurePluginWidget = nullptr;
+    QWidget *const m_widget;
 };
 }
