@@ -16,11 +16,6 @@ class KCMAkregatorSecurityConfig : public KCModule
     Q_OBJECT
 public:
     explicit KCMAkregatorSecurityConfig(QWidget *parent, const QVariantList &args);
-    void load() override;
-    void save() override;
-    void defaults() override;
-private Q_SLOTS:
-    void slotConfigChanged();
 
 private:
     QWidget *const m_widget;

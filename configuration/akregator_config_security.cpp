@@ -35,26 +35,7 @@ KCMAkregatorSecurityConfig::KCMAkregatorSecurityConfig(QWidget *parent, const QV
     about->addAuthor(i18n("Laurent Montel"), QString(), QStringLiteral("montel@kde.org"));
 
     setAboutData(about);
-}
-
-void KCMAkregatorSecurityConfig::slotConfigChanged()
-{
-    Q_EMIT changed(true);
-}
-
-void KCMAkregatorSecurityConfig::save()
-{
-    // TODO
-}
-
-void KCMAkregatorSecurityConfig::load()
-{
-    // TODO
-}
-
-void KCMAkregatorSecurityConfig::defaults()
-{
-    // TODO
+    addConfig(Settings::self(), m_widget);
 }
 
 #include "akregator_config_security.moc"
