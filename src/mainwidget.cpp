@@ -65,8 +65,11 @@
 
 #include <PimCommon/NetworkManager>
 #include <algorithm>
+#include <chrono>
 #include <memory>
 #include <webengine/webengineframe.h>
+
+using namespace std::chrono_literals;
 
 using namespace Akregator;
 
@@ -247,12 +250,12 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
 
     m_fetchTimer = new QTimer(this);
     connect(m_fetchTimer, &QTimer::timeout, this, &MainWidget::slotDoIntervalFetches);
-    m_fetchTimer->start(1000 * 60);
+    m_fetchTimer->start(1min);
 
     // delete expired articles once per hour
     m_expiryTimer = new QTimer(this);
     connect(m_expiryTimer, &QTimer::timeout, this, &MainWidget::slotDeleteExpiredArticles);
-    m_expiryTimer->start(3600 * 1000);
+    m_expiryTimer->start(1h);
 
     m_markReadTimer = new QTimer(this);
     m_markReadTimer->setSingleShot(true);
