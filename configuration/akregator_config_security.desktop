@@ -1,0 +1,15 @@
+[Desktop Entry]
+Icon=security-high
+Type=Service
+X-KDE-ServiceTypes=KCModule
+X-DocPath=akregator/index.html#general-tab
+
+X-KDE-Library=akregator_config_security
+X-KDE-ParentApp=akregator
+X-KDE-ParentComponents=akregator,kontact_akregatorplugin
+X-KDE-CfgDlgHierarchy=Akregator
+X-KDE-Weight=260
+
+Name=Security
+Comment=Configure Security
+X-KDE-Keywords=akregator, configure, settings, security

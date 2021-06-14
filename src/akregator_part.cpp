@@ -616,6 +616,7 @@ void Part::showOptions()
 #ifdef WITH_KUSERFEEDBACK
         m_dialog->addModule(QStringLiteral("akregator_config_userfeedback"));
 #endif
+        m_dialog->addModule(QStringLiteral("akregator_config_security"));
     }
 
     m_dialog->show();

@@ -147,3 +147,25 @@ if (TARGET KUserFeedbackWidgets)
     kcoreaddons_desktop_to_json(akregator_config_userfeedback akregator_config_userfeedback.desktop SERVICE_TYPES kcmodule.desktop)
     install(TARGETS akregator_config_userfeedback DESTINATION ${KDE_INSTALL_PLUGINDIR})
 endif()
+
+
+###########
+add_library(akregator_config_security MODULE)
+
+target_sources(akregator_config_security PRIVATE
+    akregator_config_security.cpp
+    )
+
+target_link_libraries(akregator_config_security
+    akregatorinterfaces
+    KF5::KCMUtils
+    KF5::I18n
+    KF5::WebEngineViewer
+    )
+if (COMPILE_WITH_UNITY_CMAKE_SUPPORT)
+    set_target_properties(akregator_config_security PROPERTIES UNITY_BUILD ON)
+endif()
+
+kcoreaddons_desktop_to_json(akregator_config_security akregator_config_security.desktop SERVICE_TYPES kcmodule.desktop)
+install(FILES akregator_config_security.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
+install(TARGETS akregator_config_security DESTINATION ${KDE_INSTALL_PLUGINDIR})
