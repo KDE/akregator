@@ -84,8 +84,6 @@ MainWindow::MainWindow(QWidget *parent)
 void MainWindow::updateHamburgerMenu()
 {
     QMenu *menu = new QMenu;
-    menu->addAction(actionCollection()->action(QLatin1String(KStandardAction::name(KStandardAction::Print))));
-    menu->addSeparator();
     menu->addAction(actionCollection()->action(QLatin1String(KStandardAction::name(KStandardAction::Quit))));
     mHamburgerMenu->setMenu(menu);
 }
