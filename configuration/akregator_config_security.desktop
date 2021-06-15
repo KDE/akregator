@@ -2,7 +2,6 @@
 Icon=security-high
 Type=Service
 X-KDE-ServiceTypes=KCModule
-X-DocPath=akregator/index.html#general-tab
 
 X-KDE-Library=akregator_config_security
 X-KDE-ParentApp=akregator
