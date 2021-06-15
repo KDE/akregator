@@ -17,6 +17,9 @@
 #include <QHBoxLayout>
 #include <QStandardPaths>
 #include <QString>
+#include <chrono>
+
+using namespace std::chrono_literals;
 
 using namespace Akregator;
 using namespace Akregator::Filters;
@@ -40,7 +43,7 @@ SearchBar::SearchBar(QWidget *parent)
     connect(m_searchLine, &StatusSearchLine::forceLostFocus, this, &SearchBar::forceLostFocus);
     connect(m_searchLine, &StatusSearchLine::statusChanged, this, &SearchBar::slotStatusChanged);
 
-    connect(&(m_timer), &QTimer::timeout, this, &SearchBar::slotActivateSearch);
+    connect(&m_timer, &QTimer::timeout, this, &SearchBar::slotActivateSearch);
     m_timer.setSingleShot(true);
 }
 
@@ -131,6 +134,7 @@ void SearchBar::slotActivateSearch()
     QVector<Criterion> statusCriteria;
 
     if (!m_searchText.isEmpty()) {
+        textCriteria.reserve(3);
         Criterion subjCrit(Criterion::Title, Criterion::Contains, m_searchText);
         textCriteria << subjCrit;
         Criterion crit1(Criterion::Description, Criterion::Contains, m_searchText);
@@ -180,5 +184,5 @@ void Akregator::SearchBar::triggerTimer()
         m_timer.stop();
     }
 
-    m_timer.start(200);
+    m_timer.start(200ms);
 }
