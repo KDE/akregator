@@ -20,7 +20,7 @@ target_link_libraries(akregator_config_general
 
 install(FILES akregator_config_general.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
 kcoreaddons_desktop_to_json(akregator_config_general akregator_config_general.desktop SERVICE_TYPES kcmodule.desktop)
-install(TARGETS akregator_config_general DESTINATION ${KDE_INSTALL_PLUGINDIR})
+install(TARGETS akregator_config_general DESTINATION ${KDE_INSTALL_PLUGINDIR}/pim/kcms/akregator)
 
 ########### next target ###############
 
@@ -38,7 +38,7 @@ target_link_libraries(akregator_config_appearance
 
 kcoreaddons_desktop_to_json(akregator_config_appearance akregator_config_appearance.desktop SERVICE_TYPES kcmodule.desktop)
 install(FILES akregator_config_appearance.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
-install(TARGETS akregator_config_appearance DESTINATION ${KDE_INSTALL_PLUGINDIR})
+install(TARGETS akregator_config_appearance DESTINATION ${KDE_INSTALL_PLUGINDIR}/pim/kcms/akregator)
 
 ########### next target ###############
 
@@ -55,7 +55,7 @@ target_link_libraries(akregator_config_archive
     )
 #kcoreaddons_desktop_to_json(akregator_config_archive akregator_config_archive.desktop DEFAULT_SERVICE_TYPE)
 install(FILES akregator_config_archive.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
-install(TARGETS akregator_config_archive DESTINATION ${KDE_INSTALL_PLUGINDIR})
+install(TARGETS akregator_config_archive DESTINATION ${KDE_INSTALL_PLUGINDIR}/pim/kcms/akregator)
 
 ########### next target ###############
 
@@ -73,7 +73,7 @@ target_link_libraries(akregator_config_browser
 kcoreaddons_desktop_to_json(akregator_config_browser akregator_config_browser.desktop SERVICE_TYPES kcmodule.desktop)
 
 install(FILES akregator_config_browser.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
-install(TARGETS akregator_config_browser DESTINATION ${KDE_INSTALL_PLUGINDIR})
+install(TARGETS akregator_config_browser DESTINATION ${KDE_INSTALL_PLUGINDIR}/pim/kcms/akregator)
 
 ########### next target ###############
 
@@ -96,7 +96,7 @@ if (COMPILE_WITH_UNITY_CMAKE_SUPPORT)
 endif()
 kcoreaddons_desktop_to_json(akregator_config_advanced akregator_config_advanced.desktop SERVICE_TYPES kcmodule.desktop)
 install(FILES akregator_config_advanced.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
-install(TARGETS akregator_config_advanced DESTINATION ${KDE_INSTALL_PLUGINDIR})
+install(TARGETS akregator_config_advanced DESTINATION ${KDE_INSTALL_PLUGINDIR}/pim/kcms/akregator)
 
 
 ########### next target ###############
@@ -126,7 +126,7 @@ endif()
 
 kcoreaddons_desktop_to_json(akregator_config_plugins akregator_config_plugins.desktop SERVICE_TYPES kcmodule.desktop)
 install(FILES akregator_config_plugins.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
-install(TARGETS akregator_config_plugins DESTINATION ${KDE_INSTALL_PLUGINDIR})
+install(TARGETS akregator_config_plugins DESTINATION ${KDE_INSTALL_PLUGINDIR}/pim/kcms/akregator)
 
 
 ########### next target ###############
@@ -145,7 +145,7 @@ if (TARGET KUserFeedbackWidgets)
 
     install(FILES akregator_config_userfeedback.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
     kcoreaddons_desktop_to_json(akregator_config_userfeedback akregator_config_userfeedback.desktop SERVICE_TYPES kcmodule.desktop)
-    install(TARGETS akregator_config_userfeedback DESTINATION ${KDE_INSTALL_PLUGINDIR})
+    install(TARGETS akregator_config_userfeedback DESTINATION ${KDE_INSTALL_PLUGINDIR}/pim/kcms/akregator)
 endif()
 
 
@@ -170,4 +170,4 @@ endif()
 
 kcoreaddons_desktop_to_json(akregator_config_security akregator_config_security.desktop SERVICE_TYPES kcmodule.desktop)
 install(FILES akregator_config_security.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
-install(TARGETS akregator_config_security DESTINATION ${KDE_INSTALL_PLUGINDIR})
+install(TARGETS akregator_config_security DESTINATION ${KDE_INSTALL_PLUGINDIR}/pim/kcms/akregator)

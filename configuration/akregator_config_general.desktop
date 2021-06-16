@@ -4,7 +4,7 @@ Type=Service
 X-KDE-ServiceTypes=KCModule
 X-DocPath=akregator/general-tab.html
 
-X-KDE-Library=akregator_config_general
+X-KDE-Library=pim/kcms/akregator/akregator_config_general
 X-KDE-ParentApp=akregator
 X-KDE-ParentComponents=akregator,kontact_akregatorplugin
 X-KDE-CfgDlgHierarchy=Akregator

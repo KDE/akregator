@@ -3,7 +3,7 @@ Icon=preferences-other
 Type=Service
 X-KDE-ServiceTypes=KCModule
 
-X-KDE-Library=akregator_config_userfeedback
+X-KDE-Library=pim/kcms/akregator/akregator_config_userfeedback
 X-KDE-ParentApp=akregator
 X-KDE-ParentComponents=akregator,kontact_akregatorplugin
 X-KDE-CfgDlgHierarchy=Akregator
