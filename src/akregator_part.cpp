@@ -9,6 +9,7 @@
 
 #include "akregator_part.h"
 #include "akregator_debug.h"
+#include "kcmutils_version.h"
 
 #include <MessageViewer/MessageViewerSettings>
 
@@ -38,6 +39,8 @@
 #include <KConfig>
 #include <KMessageBox>
 #include <KNotifyConfigWidget>
+#include <KPluginLoader>
+#include <KPluginMetaData>
 #include <PimCommon/BroadcastStatus>
 #include <QFileDialog>
 #include <kio/filecopyjob.h>
@@ -607,16 +610,14 @@ void Part::showOptions()
             connect(m_dialog, qOverload<>(&KCMultiDialog::configCommitted), TrayIcon::getInstance(), &TrayIcon::settingsChanged);
         }
 
-        m_dialog->addModule(QStringLiteral("akregator_config_general"));
-        m_dialog->addModule(QStringLiteral("akregator_config_appearance"));
-        m_dialog->addModule(QStringLiteral("akregator_config_archive"));
-        m_dialog->addModule(QStringLiteral("akregator_config_browser"));
-        m_dialog->addModule(QStringLiteral("akregator_config_advanced"));
-        m_dialog->addModule(QStringLiteral("akregator_config_plugins"));
-#ifdef WITH_KUSERFEEDBACK
-        m_dialog->addModule(QStringLiteral("akregator_config_userfeedback"));
+        const QVector<KPluginMetaData> availablePlugins = KPluginLoader::findPlugins(QStringLiteral("pim/kcms/akregator"));
+        for (const KPluginMetaData &metaData : availablePlugins) {
+#if KCMUTILS_VERSION >= QT_VERSION_CHECK(5, 84, 0)
+            m_dialog->addModule(metaData);
+#else
+            m_dialog->addModule(metaData.pluginId());
 #endif
-        m_dialog->addModule(QStringLiteral("akregator_config_security"));
+        }
     }
 
     m_dialog->show();
