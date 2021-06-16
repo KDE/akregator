@@ -13,7 +13,7 @@
 #include <QHBoxLayout>
 using namespace Akregator;
 
-K_PLUGIN_FACTORY(KCMAkregatorSecurityConfigFactory, registerPlugin<KCMAkregatorSecurityConfig>();)
+K_PLUGIN_CLASS_WITH_JSON(KCMAkregatorSecurityConfig, "akregator_config_security.json")
 
 KCMAkregatorSecurityConfig::KCMAkregatorSecurityConfig(QWidget *parent, const QVariantList &args)
     : KCModule(parent, args)

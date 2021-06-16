@@ -16,7 +16,7 @@
 
 using namespace Akregator;
 
-K_PLUGIN_FACTORY(KCMAkregatorUserFeedBackConfigFactory, registerPlugin<KCMAkregatorUserFeedBackConfig>();)
+K_PLUGIN_CLASS_WITH_JSON(KCMAkregatorUserFeedBackConfig, "akregator_config_userfeedback.json")
 
 KCMAkregatorUserFeedBackConfig::KCMAkregatorUserFeedBackConfig(QWidget *parent, const QVariantList &args)
     : KCModule(parent, args)

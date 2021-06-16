@@ -18,7 +18,7 @@
 
 using namespace Akregator;
 
-K_PLUGIN_FACTORY(KCMAkregatorGeneralConfigFactory, registerPlugin<KCMAkregatorGeneralConfig>();)
+K_PLUGIN_CLASS_WITH_JSON(KCMAkregatorGeneralConfig, "akregator_config_general.json")
 
 KCMAkregatorGeneralConfig::KCMAkregatorGeneralConfig(QWidget *parent, const QVariantList &args)
     : KCModule(parent, args)

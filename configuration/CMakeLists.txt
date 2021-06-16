@@ -43,6 +43,7 @@ install(TARGETS akregator_config_appearance DESTINATION ${KDE_INSTALL_PLUGINDIR}
 ########### next target ###############
 
 add_library(akregator_config_archive MODULE)
+kcoreaddons_desktop_to_json(akregator_config_archive akregator_config_archive.desktop SERVICE_TYPES kcmodule.desktop)
 target_sources(akregator_config_archive PRIVATE akregator_config_archive.cpp)
 
 ki18n_wrap_ui(akregator_config_archive ui/settings_archive.ui)
