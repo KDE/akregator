@@ -141,7 +141,7 @@ QString GrantleeViewFormatter::formatArticles(const QVector<Article> &article, A
     articleObject.insert(QStringLiteral("articles"), articlesList);
 
     addStandardObject(articleObject);
-
+    articleObject.insert(QStringLiteral("loadExternalReference"), Settings::loadExternalReferences());
     articleObject.insert(QStringLiteral("dateI18n"), i18n("Date"));
     articleObject.insert(QStringLiteral("commentI18n"), i18n("Comment"));
     articleObject.insert(QStringLiteral("completeStoryI18n"), i18n("Complete Story"));

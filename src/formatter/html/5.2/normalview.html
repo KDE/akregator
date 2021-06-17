@@ -80,6 +80,14 @@
 <title>.</title>
 </head>
 <body>
+{% if not loadExternalReference %}
+    <div>{% i18n_var "<b>Note:</b> For security reasons, external reference is blocked (See configure dialog)." as msg %}
+            {{ msg|safe }}
+    </div>
+    <br />
+    <br />
+{% endif %}
+
 {% if articles %}
 {% for article in articles %}
 
