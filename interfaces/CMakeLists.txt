@@ -37,6 +37,6 @@ target_include_directories(akregatorinterfaces PUBLIC "$<BUILD_INTERFACE:${akreg
 set_target_properties(akregatorinterfaces PROPERTIES VERSION ${KDEPIM_LIB_VERSION} SOVERSION ${KDEPIM_LIB_SOVERSION}
     )
 
-install(TARGETS akregatorinterfaces ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
+install(TARGETS akregatorinterfaces ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} LIBRARY NAMELINK_SKIP)
 install(FILES akregator.kcfg DESTINATION ${KDE_INSTALL_KCFGDIR})
 
