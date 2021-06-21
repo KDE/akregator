@@ -20,6 +20,9 @@
 #include <vector>
 
 #include <cassert>
+#include <chrono>
+
+using namespace std::chrono_literals;
 
 using namespace Akregator;
 
@@ -42,7 +45,7 @@ void ArticleDeleteJob::appendArticleId(const ArticleId &id)
 
 void ArticleDeleteJob::start()
 {
-    QTimer::singleShot(20, this, &ArticleDeleteJob::doStart);
+    QTimer::singleShot(20ms, this, &ArticleDeleteJob::doStart);
 }
 
 void ArticleDeleteJob::doStart()
@@ -93,7 +96,7 @@ void ArticleModifyJob::setKeep(const ArticleId &id, bool keep)
 
 void ArticleModifyJob::start()
 {
-    QTimer::singleShot(20, this, &ArticleModifyJob::doStart);
+    QTimer::singleShot(20ms, this, &ArticleModifyJob::doStart);
 }
 
 void ArticleModifyJob::doStart()
@@ -169,7 +172,7 @@ ArticleListJob::ArticleListJob(TreeNode *p)
 
 void ArticleListJob::start()
 {
-    QTimer::singleShot(20, this, &ArticleListJob::doList);
+    QTimer::singleShot(20ms, this, &ArticleListJob::doList);
 }
 
 void ArticleListJob::doList()

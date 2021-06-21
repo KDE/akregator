@@ -16,6 +16,9 @@
 
 #include <QDebug>
 #include <QTimer>
+#include <chrono>
+
+using namespace std::chrono_literals;
 
 using namespace Akregator;
 
@@ -41,7 +44,7 @@ void MoveSubscriptionJob::setDestination(uint folder, uint afterChild)
 
 void MoveSubscriptionJob::start()
 {
-    QTimer::singleShot(20, this, &MoveSubscriptionJob::doMove);
+    QTimer::singleShot(20ms, this, &MoveSubscriptionJob::doMove);
 }
 
 void MoveSubscriptionJob::doMove()
@@ -99,7 +102,7 @@ void RenameSubscriptionJob::setName(const QString &name)
 
 void RenameSubscriptionJob::start()
 {
-    QTimer::singleShot(20, this, &RenameSubscriptionJob::doRename);
+    QTimer::singleShot(20ms, this, &RenameSubscriptionJob::doRename);
 }
 
 void RenameSubscriptionJob::doRename()
@@ -127,7 +130,7 @@ void DeleteSubscriptionJob::setSubscriptionId(uint id)
 
 void DeleteSubscriptionJob::start()
 {
-    QTimer::singleShot(20, this, &DeleteSubscriptionJob::doDelete);
+    QTimer::singleShot(20ms, this, &DeleteSubscriptionJob::doDelete);
 }
 
 void DeleteSubscriptionJob::doDelete()

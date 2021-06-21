@@ -19,6 +19,9 @@
 #include <QDateTime>
 #include <QDir>
 #include <QStandardPaths>
+#include <chrono>
+
+using namespace std::chrono_literals;
 
 class Akregator::Backend::StorageMK4Impl::StorageMK4ImplPrivate
 {
@@ -260,7 +263,7 @@ void Akregator::Backend::StorageMK4Impl::markDirty()
     if (!d->modified) {
         d->modified = true;
         // commit changes after 3 seconds
-        QTimer::singleShot(3000, this, &StorageMK4Impl::slotCommit);
+        QTimer::singleShot(3s, this, &StorageMK4Impl::slotCommit);
     }
 }
 
