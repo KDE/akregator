@@ -7,7 +7,10 @@ include_directories(
     ${akregator_BINARY_DIR}
     )
 
-set(libmetakitlocal_SRCS
+########### next target ###############
+
+add_library(akregator_mk4storage_plugin MODULE)
+target_sources(akregator_mk4storage_plugin PRIVATE
     metakit/src/column.cpp
     metakit/src/custom.cpp
     metakit/src/derived.cpp
@@ -24,19 +27,12 @@ set(libmetakitlocal_SRCS
     metakit/src/univ.cpp
     metakit/src/view.cpp
     metakit/src/viewx.cpp
-    )
-
-########### next target ###############
-
-set(akregator_mk4storage_plugin_PART_SRCS
-    ${libmetakitlocal_SRCS}
     feedstoragemk4impl.cpp
     storagemk4impl.cpp
     storagefactorymk4impl.cpp
     mk4plugin.cpp
     )
 
-add_library(akregator_mk4storage_plugin MODULE ${akregator_mk4storage_plugin_PART_SRCS})
 
 target_link_libraries(akregator_mk4storage_plugin
     KF5::Syndication
