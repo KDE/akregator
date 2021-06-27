@@ -13,6 +13,8 @@ X-KDE-PluginInfo-Name=kontact_akregatorplugin
 X-KDE-PluginInfo-Version=1.0b2
 X-KDE-PluginInfo-License=GPL
 X-KDE-PluginInfo-EnabledByDefault=true
+X-KDE-ConfigModuleNamespace=pim/kcms/akregator/
+X-KDE-Weight=475
 
 Comment=Akregator Plugin
 Comment[af]=Akregator inprop module

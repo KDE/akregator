@@ -12,7 +12,7 @@ target_sources(kontact_akregatorplugin PRIVATE akregator_plugin.cpp ${kontact_ak
 
 target_link_libraries(kontact_akregatorplugin KF5::I18n KF5::KontactInterface)
 
-kcoreaddons_desktop_to_json(kontact_akregatorplugin akregatorplugin.desktop)
+kcoreaddons_desktop_to_json(kontact_akregatorplugin akregatorplugin.desktop  SERVICE_TYPES kcmodule.desktop)
 
 ########### install files ###############
 
