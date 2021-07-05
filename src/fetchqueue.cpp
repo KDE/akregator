@@ -26,13 +26,13 @@ FetchQueue::~FetchQueue()
 
 void FetchQueue::slotAbort()
 {
-    for (Feed *const i : qAsConst(m_fetchingFeeds)) {
+    for (Feed *const i : std::as_const(m_fetchingFeeds)) {
         disconnectFromFeed(i);
         i->slotAbortFetch();
     }
     m_fetchingFeeds.clear();
 
-    for (Feed *const i : qAsConst(m_queuedFeeds)) {
+    for (Feed *const i : std::as_const(m_queuedFeeds)) {
         disconnectFromFeed(i);
     }
     m_queuedFeeds.clear();

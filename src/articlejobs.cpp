@@ -57,7 +57,7 @@ void ArticleDeleteJob::doStart()
     }
     std::vector<Feed *> feeds;
 
-    for (const ArticleId &id : qAsConst(m_ids)) {
+    for (const ArticleId &id : std::as_const(m_ids)) {
         Article article = m_feedList->findArticle(id.feedUrl, id.guid);
         if (article.isNull()) {
             continue;
@@ -70,7 +70,7 @@ void ArticleDeleteJob::doStart()
         article.setDeleted();
     }
 
-    for (Feed *const i : qAsConst(feeds)) {
+    for (Feed *const i : std::as_const(feeds)) {
         i->setNotificationMode(true);
     }
 
@@ -136,7 +136,7 @@ void ArticleModifyJob::doStart()
         }
     }
 
-    for (Feed *const i : qAsConst(feeds)) {
+    for (Feed *const i : std::as_const(feeds)) {
         i->setNotificationMode(true);
     }
     emitResult();

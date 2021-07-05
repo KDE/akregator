@@ -87,7 +87,7 @@ void NotificationManager::doNotify()
         }
     };
 
-    for (const Article &i : qAsConst(m_articles)) {
+    for (const Article &i : std::as_const(m_articles)) {
         const QString currentFeedTitle(i.feed()->title());
         if (feedTitle != currentFeedTitle) {
             // closing previous feed, if any, and resetting the counter

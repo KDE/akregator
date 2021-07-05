@@ -845,7 +845,7 @@ void Akregator::Feed::deleteExpiredArticles(ArticleDeleteJob *deleteJob)
     const QString feedUrl = xmlUrl();
     const bool useKeep = Settings::doNotExpireImportantArticles();
 
-    for (const Article &i : qAsConst(d->articles)) {
+    for (const Article &i : std::as_const(d->articles)) {
         if ((!useKeep || !i.keep()) && isExpired(i)) {
             const ArticleId aid = {feedUrl, i.guid()};
             toDelete.append(aid);
@@ -1019,7 +1019,7 @@ void Akregator::Feed::enforceLimitArticleNumber()
     int c = 0;
     const bool useKeep = Settings::doNotExpireImportantArticles();
 
-    for (Article i : qAsConst(articles)) {
+    for (Article i : std::as_const(articles)) {
         if (c < limit) {
             if (!i.isDeleted() && (!useKeep || !i.keep())) {
                 ++c;

@@ -95,7 +95,7 @@ QList<const TreeNode *> Folder::children() const
 {
     QList<const TreeNode *> children;
     children.reserve(m_children.size());
-    for (const TreeNode *i : qAsConst(m_children)) {
+    for (const TreeNode *i : std::as_const(m_children)) {
         children.append(i);
     }
     return children;
@@ -109,7 +109,7 @@ QList<TreeNode *> Folder::children()
 QVector<const Akregator::Feed *> Folder::feeds() const
 {
     QHash<int, const Akregator::Feed *> feedsById;
-    for (const TreeNode *i : qAsConst(m_children)) {
+    for (const TreeNode *i : std::as_const(m_children)) {
         const auto f = i->feeds();
         for (const Akregator::Feed *j : f) {
             feedsById.insert(j->id(), j);
@@ -122,7 +122,7 @@ QVector<const Akregator::Feed *> Folder::feeds() const
 QVector<Akregator::Feed *> Folder::feeds()
 {
     QHash<int, Akregator::Feed *> feedsById;
-    for (TreeNode *i : qAsConst(m_children)) {
+    for (TreeNode *i : std::as_const(m_children)) {
         const auto f = i->feeds();
         for (Akregator::Feed *j : f) {
             feedsById.insert(j->id(), j);
@@ -136,7 +136,7 @@ QVector<const Folder *> Folder::folders() const
 {
     QHash<int, const Folder *> foldersById;
     foldersById.insert(id(), this);
-    for (const TreeNode *i : qAsConst(m_children)) {
+    for (const TreeNode *i : std::as_const(m_children)) {
         const auto f = i->folders();
         for (const Folder *j : f) {
             foldersById.insert(j->id(), j);
@@ -150,7 +150,7 @@ QVector<Folder *> Folder::folders()
 {
     QHash<int, Folder *> foldersById;
     foldersById.insert(id(), this);
-    for (TreeNode *i : qAsConst(m_children)) {
+    for (TreeNode *i : std::as_const(m_children)) {
         const auto f = i->folders();
         for (Folder *j : f) {
             foldersById.insert(j->id(), j);

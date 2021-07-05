@@ -80,7 +80,7 @@ void ExpireItemsCommand::Private::createDeleteJobs()
         return;
     }
 
-    for (const uint i : qAsConst(m_feeds)) {
+    for (const uint i : std::as_const(m_feeds)) {
         Feed *const feed = qobject_cast<Feed *>(feedList->findByID(i));
         if (feed) {
             addDeleteJobForFeed(feed);
@@ -121,7 +121,7 @@ QVector<uint> ExpireItemsCommand::feeds() const
 
 void ExpireItemsCommand::doAbort()
 {
-    for (KJob *const i : qAsConst(d->m_jobs)) {
+    for (KJob *const i : std::as_const(d->m_jobs)) {
         i->kill();
     }
 }

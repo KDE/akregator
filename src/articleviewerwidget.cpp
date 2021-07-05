@@ -227,7 +227,7 @@ void ArticleViewerWidget::slotUpdateCombinedView()
     const auto filterEnd = m_filters.cend();
 
     QVector<Article> articles;
-    for (const Article &i : qAsConst(m_articles)) {
+    for (const Article &i : std::as_const(m_articles)) {
         if (i.isDeleted()) {
             continue;
         }

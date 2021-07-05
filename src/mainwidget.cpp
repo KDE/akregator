@@ -387,7 +387,7 @@ void MainWidget::sendArticle(bool attach)
 
 void MainWidget::cleanUpDownloadFile()
 {
-    for (QPointer<Akregator::DownloadArticleJob> job : qAsConst(mListDownloadArticleJobs)) {
+    for (QPointer<Akregator::DownloadArticleJob> job : std::as_const(mListDownloadArticleJobs)) {
         if (job) {
             job->forceCleanupTemporaryFile();
         }

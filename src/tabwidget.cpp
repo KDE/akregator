@@ -478,7 +478,7 @@ void TabWidget::slotCloseTab()
 
 void TabWidget::slotReloadAllTabs()
 {
-    for (Frame *frame : qAsConst(d->frames)) {
+    for (Frame *frame : std::as_const(d->frames)) {
         frame->slotReload();
     }
 }

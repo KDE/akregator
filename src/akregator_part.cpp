@@ -445,8 +445,8 @@ void Part::flushAddFeedRequests()
         return;
     }
 
-    for (const AddFeedRequest &i : qAsConst(m_requests)) {
-        for (const QString &j : qAsConst(i.urls)) {
+    for (const AddFeedRequest &i : std::as_const(m_requests)) {
+        for (const QString &j : std::as_const(i.urls)) {
             m_mainWidget->addFeedToGroup(j, i.group);
         }
         NotificationManager::self()->slotNotifyFeeds(i.urls);

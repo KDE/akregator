@@ -529,7 +529,7 @@ bool SubscriptionListModel::dropMimeData(const QMimeData *data, Qt::DropAction a
     }
 
     // don't drop nodes into their own subtree
-    for (const int id : qAsConst(ids)) {
+    for (const int id : std::as_const(ids)) {
         const auto *const asFolder = qobject_cast<const Folder *>(m_feedList->findByID(id));
         if (asFolder && (asFolder == destFolder || asFolder->subtreeContains(destFolder))) {
             return false;
@@ -538,7 +538,7 @@ bool SubscriptionListModel::dropMimeData(const QMimeData *data, Qt::DropAction a
 
     const TreeNode *const after = droppedOnNode->isGroup() ? destFolder->childAt(row) : droppedOnNode;
 
-    for (const int id : qAsConst(ids)) {
+    for (const int id : std::as_const(ids)) {
         const TreeNode *const node = m_feedList->findByID(id);
         if (!node) {
             continue;
