@@ -47,6 +47,7 @@
   <name xml:lang="zh-CN">Akregator</name>
   <name xml:lang="zh-TW">Akregator</name>
   <developer_name>The KDE Community</developer_name>
+  <developer_name xml:lang="ar">مجتمع كدي</developer_name>
   <developer_name xml:lang="az">KDE Cəmiyyəti</developer_name>
   <developer_name xml:lang="ca">La comunitat KDE</developer_name>
   <developer_name xml:lang="ca-valencia">La comunitat KDE</developer_name>
@@ -85,6 +86,7 @@
       check for updates using a web browser. Akregator is designed to be both easy to use and to be powerful enough to read hundreds of news sources conveniently.
       It comes with a fast search, advanced archiving functionality and an internal browser for easy news reading.
     </p>
+    <p xml:lang="ar">«أكريغاتور» هو قارئ تغذيات الأخبار. يتيح لك «أكريغاتور» متابعة أخبار المواقع، والمدوّنات وأيّ مواقع أخرى تدعم RSS/Atom، ذلك لإلغاء حاجة التماس التّحديثات يدويًّا عبر متصفّح الوبّ. صُمِّم «أكريغاتور» ليكون سهل الاستخدام وقويًّا كفاية لقراءة مئات مصادر الأخبار براحة. كما يأتي مع تكامل «كنكر» لإضافة تغذيات الأخبار وأيضًا يحتوي متصفّحًا داخليًّا لتسهيل قراءة الأخبار.</p>
     <p xml:lang="az">Akregator xəbər lenti oxuma tətbiqidir. Yeni xəbərləri izləmək üçün veb bələdçiyə ehtiyac olmadan xəbər saytlarını, blogları və digər RSS/Atom funksiyası olan veb saytlarını izləməyə imkan verir. Akregator həm istifadəsi asan, həm də yüzlərlə xəbər mənbələrini rahatlıqla oxuyacaq qədər güclü hazırlanmışdır. Sürətli axtarış, təkmilləşdirilmış arxivləşdirmə funksiyası və asan xəbər oxumaq üçün daxili veb bələdçi ilə təchiz olunmuşdur.</p>
     <p xml:lang="ca">L'Akregator és un lector de fonts de notícies. Permet que seguiu els llocs de notícies, blogs i altres llocs web amb el RSS/Atom habilitat, sense necessitat de comprovar manualment si hi ha actualitzacions mitjançant un navegador web. L'Akregator està dissenyat per a ser fàcil d'usar i prou potent per a llegir centenars de fonts de notícies convenientment. Ve amb característiques de cerca ràpida, arxivat avançat i amb un navegador intern per a facilitar la lectura de les notícies.</p>
     <p xml:lang="ca-valencia">L'Akregator és un lector de fonts de notícies. Permet que seguiu els llocs de notícies, blogs i altres llocs web amb el RSS/Atom habilitat, sense necessitat de comprovar manualment si hi ha actualitzacions mitjançant un navegador web. L'Akregator està dissenyat per a ser fàcil d'usar i prou potent per a llegir centenars de fonts de notícies convenientment. Ve amb característiques de cerca ràpida, arxivat avançat i amb un navegador intern per a facilitar la lectura de les notícies.</p>
@@ -163,6 +165,7 @@
   <screenshots>
     <screenshot type="default">
       <caption>Reading feeds in Kontact with Akregator</caption>
+      <caption xml:lang="ar">يقرأ التغذيات في كونتك بواسطة أكريغاتور</caption>
       <caption xml:lang="az">Xəbərlərin Kontact-da Akregator ilə oxunması</caption>
       <caption xml:lang="ca">Llegint fonts al Kontact amb l'Akregator</caption>
       <caption xml:lang="ca-valencia">Llegint fonts al Kontact amb l'Akregator</caption>
