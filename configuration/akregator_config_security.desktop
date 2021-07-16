@@ -72,6 +72,7 @@ Name[uz@cyrillic]=Хавфсизлик
 Name[wa]=Såvrité
 Name[x-test]=xxSecurityxx
 Comment=Configure Security
+Comment[ar]=اضبط الأمن
 Comment[az]=Təhlükəsizlik ayarları
 Comment[ca]=Configura la seguretat
 Comment[ca@valencia]=Configura la seguretat
