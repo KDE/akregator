@@ -83,7 +83,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 void MainWindow::updateHamburgerMenu()
 {
-    QMenu *menu = new QMenu;
+    QMenu *menu = new QMenu(this);
     menu->addAction(actionCollection()->action(QLatin1String(KStandardAction::name(KStandardAction::Quit))));
     mHamburgerMenu->setMenu(menu);
 }
