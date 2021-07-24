@@ -20,5 +20,3 @@ install(TARGETS kontact_akregatorplugin DESTINATION ${KDE_INSTALL_PLUGINDIR}/kon
 
 install(FILES akregatorplugin.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR}/kontact)
 
-install(FILES akregator.setdlg DESTINATION ${KDE_INSTALL_DATADIR}/kontact/ksettingsdialog)
-
