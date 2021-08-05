@@ -5,7 +5,7 @@ X-KDE-ServiceTypes=KCModule
 
 X-KDE-Library=pim/kcms/akregator/akregator_config_plugins
 
-X-KDE-ParentComponents=akregator,kontact_akregatorplugin
+
 X-KDE-Weight=600
 
 Name=Plugins

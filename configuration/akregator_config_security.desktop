@@ -5,7 +5,7 @@ X-KDE-ServiceTypes=KCModule
 
 X-KDE-Library=pim/kcms/akregator/akregator_config_security
 
-X-KDE-ParentComponents=akregator,kontact_akregatorplugin
+
 X-KDE-Weight=260
 
 Name=Security

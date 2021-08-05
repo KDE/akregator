@@ -6,7 +6,7 @@ X-DocPath=akregator/archive-tab.html
 
 X-KDE-Library=pim/kcms/akregator/akregator_config_archive
 
-X-KDE-ParentComponents=akregator,kontact_akregatorplugin
+
 X-KDE-Weight=200
 
 Name=Archive

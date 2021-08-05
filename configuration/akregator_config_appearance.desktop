@@ -6,7 +6,7 @@ X-DocPath=akregator/appearance-tab.html
 
 X-KDE-Library=pim/kcms/akregator/akregator_config_appearance
 
-X-KDE-ParentComponents=akregator,kontact_akregatorplugin
+
 X-KDE-Weight=300
 
 Name=Appearance

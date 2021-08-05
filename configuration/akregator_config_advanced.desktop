@@ -6,7 +6,7 @@ X-DocPath=akregator/advanced-tab.html
 
 X-KDE-Library=pim/kcms/akregator/akregator_config_advanced
 
-X-KDE-ParentComponents=akregator,kontact_akregatorplugin
+
 X-KDE-Weight=500
 
 Name=Advanced
