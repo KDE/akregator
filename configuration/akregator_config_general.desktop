@@ -7,7 +7,6 @@ X-DocPath=akregator/general-tab.html
 X-KDE-Library=pim/kcms/akregator/akregator_config_general
 
 X-KDE-ParentComponents=akregator,kontact_akregatorplugin
-X-KDE-CfgDlgHierarchy=Akregator
 X-KDE-Weight=100
 
 Name=General
