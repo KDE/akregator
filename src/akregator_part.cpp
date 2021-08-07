@@ -612,11 +612,7 @@ void Part::showOptions()
 
         const QVector<KPluginMetaData> availablePlugins = KPluginLoader::findPlugins(QStringLiteral("pim/kcms/akregator"));
         for (const KPluginMetaData &metaData : availablePlugins) {
-#if KCMUTILS_VERSION >= QT_VERSION_CHECK(5, 84, 0)
             m_dialog->addModule(metaData);
-#else
-            m_dialog->addModule(metaData.pluginId());
-#endif
         }
     }
 

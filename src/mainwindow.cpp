@@ -156,7 +156,7 @@ void MainWindow::readProperties(const KConfigGroup &config)
 // TODO: move to part?
 void MainWindow::optionsConfigureKeys()
 {
-#if KXMLGUI_VERSION <= QT_VERSION_CHECK(5, 84, 0)
+#if KXMLGUI_VERSION < QT_VERSION_CHECK(5, 85, 0)
     KShortcutsDialog dlg(KShortcutsEditor::AllActions, KShortcutsEditor::LetterShortcutsAllowed, this);
 #else
     KShortcutsDialog dlg(this);
