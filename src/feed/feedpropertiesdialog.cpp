@@ -113,7 +113,7 @@ void FeedPropertiesDialog::accept()
 
 void FeedPropertiesDialog::slotSetWindowTitle(const QString &title)
 {
-    setWindowTitle(title.isEmpty() ? i18n("Feed Properties") : i18n("Properties of %1", title));
+    setWindowTitle(title.isEmpty() ? i18nc("@title:window", "Feed Properties") : i18nc("@title:window", "Properties of %1", title));
     mOkButton->setEnabled(!title.trimmed().isEmpty());
 }
 

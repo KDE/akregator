@@ -187,7 +187,7 @@ void ArticleViewerWebEngine::slotSaveLinkAs()
     auto dlg = new QFileDialog(this);
     dlg->setAttribute(Qt::WA_DeleteOnClose);
     dlg->setAcceptMode(QFileDialog::AcceptSave);
-    dlg->setWindowTitle(i18n("Save As"));
+    dlg->setWindowTitle(i18nc("@title:window", "Save As"));
     dlg->setOption(QFileDialog::DontConfirmOverwrite, false);
     dlg->selectFile(url.fileName());
     dlg->show();
