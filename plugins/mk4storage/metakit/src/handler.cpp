@@ -399,7 +399,8 @@ void c4_HandlerSeq::ExchangeEntries(int srcPos_, c4_HandlerSeq &dst_, int
 {
     d4_assert(NumHandlers() == dst_.NumHandlers());
 
-    c4_Bytes t1, t2;
+    c4_Bytes t1;
+    c4_Bytes t2;
 
     for (int col = 0; col < NumHandlers(); ++col) {
         if (IsNested(col)) {
@@ -454,7 +455,8 @@ void c4_HandlerSeq::ExchangeEntries(int srcPos_, c4_HandlerSeq &dst_, int
             // The special cases are sufficiently tricky that it's NOT being
             // optimized for now (temp bufs, mmap ptrs, c4_Bytes buffering).
 
-            int n1, n2;
+            int n1;
+            int n2;
             const void *p1 = h1.Get(srcPos_, n1);
             const void *p2 = h2.Get(dstPos_, n2);
 
@@ -504,9 +506,11 @@ void c4_HandlerSeq::UnmappedAll()
 void c4_HandlerSeq::BuildMeta(int parent_, int colnum_, c4_View &meta_, const
                               c4_Field &field_)
 {
-    c4_IntProp pP("P"), pC("C");
+    c4_IntProp pP("P");
+    c4_IntProp pC("C");
     c4_ViewProp pF("F");
-    c4_StringProp pN("N"), pT("T");
+    c4_StringProp pN("N");
+    c4_StringProp pT("T");
 
     int n = meta_.Add(pP[parent_] + pC[colnum_]);
     c4_View fields = pF(meta_[n]);

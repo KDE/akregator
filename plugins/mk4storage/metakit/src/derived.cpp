@@ -91,8 +91,10 @@ c4_FilterSeq::c4_FilterSeq(c4_Sequence &seq_, c4_Cursor low_, c4_Cursor high_)
     // prepare column numbers to avoid looking them up on every row
     // lowCols is a vector of column numbers to use for the low limits
     // highCols is a vector of column numbers to use for the high limits
-    int nl = lowSeq->NumHandlers(), nh = highSeq->NumHandlers();
-    c4_Bytes lowVec, highVec;
+    int nl = lowSeq->NumHandlers();
+    int nh = highSeq->NumHandlers();
+    c4_Bytes lowVec;
+    c4_Bytes highVec;
     int *lowCols = (int *)lowVec.SetBufferClear(nl * sizeof(int));
     int *highCols = (int *)highVec.SetBufferClear(nh * sizeof(int));
 
@@ -205,7 +207,8 @@ bool c4_FilterSeq::Match(int index_, c4_Sequence &seq_, const int *lowCols_, con
     c4_Sequence *highSeq = (&_highRow)._seq;
     d4_assert(lowSeq && highSeq);
 
-    int nl = lowSeq->NumHandlers(), nh = highSeq->NumHandlers();
+    int nl = lowSeq->NumHandlers();
+    int nh = highSeq->NumHandlers();
 
     c4_Bytes data;
 

@@ -336,7 +336,8 @@ void TabWidget::Private::setTitle(const QString &title, QWidget *sender)
 
     q->setTabToolTip(senderIndex, QString());
 
-    int lcw = 0, rcw = 0;
+    int lcw = 0;
+    int rcw = 0;
     int tabBarHeight = q->tabBar()->sizeHint().height();
 
     QWidget *leftCorner = q->cornerWidget(Qt::TopLeftCorner);

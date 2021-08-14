@@ -947,7 +947,8 @@ int c4_View::Find(const c4_RowRef &crit_,  ///< the value to look for
  */
 int c4_View::Search(const c4_RowRef &crit_) const
 {
-    int l = -1, u = GetSize();
+    int l = -1;
+    int u = GetSize();
     while (l + 1 != u) {
         const int m = (l + u) >> 1;
         if (_seq->Compare(m, &crit_) < 0) {
@@ -982,7 +983,8 @@ int c4_View::Locate(const c4_RowRef &crit_, int *pos_) const
 
     c4_Cursor curr(*(c4_Sequence *)_seq, 0); // loses const
 
-    int l = -1, u = GetSize();
+    int l = -1;
+    int u = GetSize();
     while (l + 1 != u) {
         curr._index = (l + u) >> 1;
         if (crit_ > *curr) {
@@ -1003,7 +1005,8 @@ int c4_View::Locate(const c4_RowRef &crit_, int *pos_) const
     }
 
     // as Jon Bentley wrote in DDJ Apr 2000, setting l2 to -1 is better than u
-    int l2 = -1, u2 = GetSize();
+    int l2 = -1;
+    int u2 = GetSize();
     while (l2 + 1 != u2) {
         curr._index = (l2 + u2) >> 1;
         if (crit_ >= *curr) {

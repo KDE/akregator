@@ -265,7 +265,8 @@ t4_i32 c4_Allocator::AllocationLimit() const
 
 int c4_Allocator::Locate(t4_i32 pos) const
 {
-    int lo = 0, hi = GetSize() - 1;
+    int lo = 0;
+    int hi = GetSize() - 1;
 
     while (lo < hi) {
         int i = (lo + hi) / 2;

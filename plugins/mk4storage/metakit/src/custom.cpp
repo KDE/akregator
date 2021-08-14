@@ -951,7 +951,8 @@ c4_JoinViewer::c4_JoinViewer(c4_Sequence &seq_, const c4_View &keys_, const
     _base.SetSize(0, 5);
     _offset.SetSize(0, 5);
 
-    int j = 0, n = 0;
+    int j = 0;
+    int n = 0;
 
     for (int i = 0; i < sorted.GetSize(); ++i) {
         int orig = _parent.GetIndexOf(sorted[i]);

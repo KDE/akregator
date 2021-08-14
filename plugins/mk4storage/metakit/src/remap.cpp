@@ -202,7 +202,8 @@ bool c4_HashViewer::KeySame(int row_, c4_Cursor cursor_) const
 /// Create mapped view which is uses a second view for hashing
 t4_i32 c4_HashViewer::CalcHash(c4_Cursor cursor_) const
 {
-    c4_Bytes buffer, buf2;
+    c4_Bytes buffer;
+    c4_Bytes buf2;
     const t4_i32 endian = 0x03020100;
     t4_i32 hash = 0;
 
@@ -351,7 +352,9 @@ void c4_HashViewer::RemoveDict(int pos_)
 
 bool c4_HashViewer::DictResize(int minused)
 {
-    int i, newsize, newpoly;
+    int i;
+    int newsize;
+    int newpoly;
     for (i = 0, newsize = 4;; i++, newsize <<= 1) {
         if (s_polys[i] == 0) {
             return false;
@@ -646,7 +649,8 @@ int c4_BlockedViewer::Slot(int &pos_)
 #else
     // switch to binary search, adapted from code by Zhang Dehua, 28-3-2002
     // slows down some 5%, but said to be much better with 5 million rows
-    int l = 0, h = n - 1;
+    int l = 0;
+    int h = n - 1;
     while (l < h) {
         int m = l + (h - l) / 2;
         if ((t4_i32)_offsets.GetAt(m) < pos_) {

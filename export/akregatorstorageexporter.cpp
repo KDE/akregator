@@ -248,7 +248,8 @@ static void writeItem(FeedStorage *storage, const QString &guid, QXmlStreamWrite
     writeAuthor(storage->authorName(guid), storage->authorUri(guid), storage->authorEMail(guid), writer);
 
     bool hasEnc = false;
-    QString encUrl, encType;
+    QString encUrl;
+    QString encType;
     int encLength = 0;
     storage->enclosure(guid, hasEnc, encUrl, encType, encLength);
     if (hasEnc) {
