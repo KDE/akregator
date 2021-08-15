@@ -10,7 +10,6 @@
 #include "akregator_part.h"
 #include "akregatorconfig.h"
 #include "trayicon.h"
-#include <kxmlgui_version.h>
 
 #include <Libkdepim/ProgressStatusBarWidget>
 #include <Libkdepim/StatusbarProgressWidget>
@@ -156,11 +155,7 @@ void MainWindow::readProperties(const KConfigGroup &config)
 // TODO: move to part?
 void MainWindow::optionsConfigureKeys()
 {
-#if KXMLGUI_VERSION < QT_VERSION_CHECK(5, 85, 0)
-    KShortcutsDialog dlg(KShortcutsEditor::AllActions, KShortcutsEditor::LetterShortcutsAllowed, this);
-#else
     KShortcutsDialog dlg(this);
-#endif
 
     dlg.addCollection(actionCollection());
     if (m_part) {
