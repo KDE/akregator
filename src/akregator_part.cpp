@@ -23,6 +23,7 @@
 #include "feedlist.h"
 #include "fetchqueue.h"
 #include "framemanager.h"
+#include "kcoreaddons_version.h"
 #include "kernel.h"
 #include "loadfeedlistcommand.h"
 #include "mainwidget.h"
@@ -609,8 +610,11 @@ void Part::showOptions()
         if (TrayIcon::getInstance()) {
             connect(m_dialog, qOverload<>(&KCMultiDialog::configCommitted), TrayIcon::getInstance(), &TrayIcon::settingsChanged);
         }
-
+#if KCOREADDONS_VERSION < QT_VERSION_CHECK(5, 86, 0)
         const QVector<KPluginMetaData> availablePlugins = KPluginLoader::findPlugins(QStringLiteral("pim/kcms/akregator"));
+#else
+        const QVector<KPluginMetaData> availablePlugins = KPluginMetaData::findPlugins(QStringLiteral("pim/kcms/akregator"));
+#endif
         for (const KPluginMetaData &metaData : availablePlugins) {
             m_dialog->addModule(metaData);
         }

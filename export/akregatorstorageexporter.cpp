@@ -7,12 +7,12 @@
  *
  */
 #include "feedstorage.h"
+#include "kcoreaddons_version.h"
 #include "plugin.h"
 #include "storage.h"
 #include "storagefactory.h"
 #include "storagefactoryregistry.h"
 #include <KLocalizedString>
-
 #include <Syndication/Atom/Atom>
 #include <Syndication/Constants>
 

@@ -9,8 +9,8 @@
 #include "mainwindow.h"
 #include "akregator_part.h"
 #include "akregatorconfig.h"
+#include "kcoreaddons_version.h"
 #include "trayicon.h"
-
 #include <Libkdepim/ProgressStatusBarWidget>
 #include <Libkdepim/StatusbarProgressWidget>
 #include <PimCommon/BroadcastStatus>
@@ -22,6 +22,7 @@
 #include <KMessageBox>
 #include <KPluginFactory>
 #include <KPluginLoader>
+#include <KPluginMetaData>
 #include <KSharedConfig>
 #include <KShortcutsDialog>
 #include <KSqueezedTextLabel>
@@ -96,6 +97,7 @@ bool MainWindow::loadPart()
     // this routine will find and load our Part.  it finds the Part by
     // name which is a bad idea usually.. but it's alright in this
     // case since our Part is made for this Shell
+#if KCOREADDONS_VERSION < QT_VERSION_CHECK(5, 86, 0)
     KPluginLoader loader(QStringLiteral("akregatorpart"));
     KPluginFactory *const factory = loader.factory();
     if (!factory) {
@@ -108,6 +110,16 @@ bool MainWindow::loadPart()
     if (!m_part) {
         return false;
     }
+#else
+    const KPluginMetaData md(QStringLiteral("akregatorpart"));
+    const auto result = KPluginFactory::instantiatePlugin<KParts::Part>(md, this);
+    if (result) {
+        m_part = static_cast<Akregator::Part *>(result.plugin);
+    } else {
+        KMessageBox::error(this, i18n("Could not find the Akregator part; please check your installation.\n%1", result.errorString));
+        return false;
+    }
+#endif
 
     m_part->setObjectName(QStringLiteral("akregator_part"));
     setCentralWidget(m_part->widget());
