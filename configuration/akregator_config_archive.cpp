@@ -37,7 +37,7 @@ KCMAkregatorArchiveConfig::KCMAkregatorArchiveConfig(QWidget *parent, const QVar
     m_archiveModeGroup->addButton(m_ui.rb_LimitArticleNumber, Settings::EnumArchiveMode::limitArticleNumber);
     m_archiveModeGroup->addButton(m_ui.rb_LimitArticleAge, Settings::EnumArchiveMode::limitArticleAge);
     m_archiveModeGroup->addButton(m_ui.rb_DisableArchiving, Settings::EnumArchiveMode::disableArchiving);
-    connect(m_archiveModeGroup, QOverload<QAbstractButton *>::of(&QButtonGroup::buttonClicked), this, &KCMAkregatorArchiveConfig::markAsChanged);
+    connect(m_archiveModeGroup, qOverload<QAbstractButton *>(&QButtonGroup::buttonClicked), this, &KCMAkregatorArchiveConfig::markAsChanged);
 
     auto about = new KAboutData(QStringLiteral("kcmakrarchiveconfig"),
                                 i18n("Configure Feed Reader Archive"),
