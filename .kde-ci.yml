@@ -4,6 +4,7 @@
 Dependencies:
 - 'on': ['@all']
   'require':
+    'frameworks/extra-cmake-modules': '@latest'
     'kde/pim/akonadi-mime' : '@same'
     'kde/pim/grantleetheme' : '@same'
     'kde/pim/kontactinterface' : '@same'
