@@ -4,12 +4,12 @@
 Dependencies:
 - 'on': ['@all']
   'require':
-    'kde/pim/akonadi-mime' : '@latest'
-    'kde/pim/grantleetheme' : '@latest'
-    'kde/pim/kontactinterface' : '@latest'
-    'kde/pim/kpimtextedit' : '@latest'
-    'kde/pim/libkdepim' : '@latest'
-    'kde/pim/libkleo' : '@latest'
-    'kde/pim/messagelib' : '@latest'
-    'kde/pim/pimcommon' : '@latest'
+    'kde/pim/akonadi-mime' : '@same'
+    'kde/pim/grantleetheme' : '@same'
+    'kde/pim/kontactinterface' : '@same'
+    'kde/pim/kpimtextedit' : '@same'
+    'kde/pim/libkdepim' : '@same'
+    'kde/pim/libkleo' : '@same'
+    'kde/pim/messagelib' : '@same'
+    'kde/pim/pimcommon' : '@same'
     'third-party/grantlee' : '@stable'
