@@ -9,6 +9,7 @@ X-KDE-Library=pim/kcms/akregator/akregator_config_userfeedback
 X-KDE-Weight=250
 
 Name=User Feedback
+Name[ar]=ملاحظات المستخدمين
 Name[az]=İstifadəçi Rəyi
 Name[ca]=Comentaris de l'usuari
 Name[ca@valencia]=Comentaris de l'usuari
