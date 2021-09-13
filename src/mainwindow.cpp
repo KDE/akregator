@@ -21,7 +21,6 @@
 #include <KLocalizedString>
 #include <KMessageBox>
 #include <KPluginFactory>
-#include <KPluginLoader>
 #include <KPluginMetaData>
 #include <KSharedConfig>
 #include <KShortcutsDialog>
@@ -97,20 +96,6 @@ bool MainWindow::loadPart()
     // this routine will find and load our Part.  it finds the Part by
     // name which is a bad idea usually.. but it's alright in this
     // case since our Part is made for this Shell
-#if KCOREADDONS_VERSION < QT_VERSION_CHECK(5, 86, 0)
-    KPluginLoader loader(QStringLiteral("akregatorpart"));
-    KPluginFactory *const factory = loader.factory();
-    if (!factory) {
-        KMessageBox::error(this, i18n("Could not find the Akregator part; please check your installation.\n%1", loader.errorString()));
-        return false;
-    }
-
-    m_part = static_cast<Akregator::Part *>(factory->create<KParts::Part>(this));
-
-    if (!m_part) {
-        return false;
-    }
-#else
     const KPluginMetaData md(QStringLiteral("akregatorpart"));
     const auto result = KPluginFactory::instantiatePlugin<KParts::Part>(md, this);
     if (result) {
@@ -119,7 +104,6 @@ bool MainWindow::loadPart()
         KMessageBox::error(this, i18n("Could not find the Akregator part; please check your installation.\n%1", result.errorString));
         return false;
     }
-#endif
 
     m_part->setObjectName(QStringLiteral("akregator_part"));
     setCentralWidget(m_part->widget());
