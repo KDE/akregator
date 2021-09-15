@@ -18,9 +18,9 @@
 #include <QStyleOption>
 
 #include "akregator_debug.h"
+#include <KIO/Global>
 #include <KLocalizedString>
 #include <QTabBar>
-#include <kio/global.h>
 
 #include "actionmanager.h"
 #include "akregatorconfig.h"

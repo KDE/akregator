@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include <kio/job.h>
+#include <KIO/Job>
 #include <kparts/mainwindow.h>
 
 #include <QPointer>

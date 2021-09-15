@@ -37,12 +37,12 @@
 #include "utils.h"
 #include "widgets/akregatorcentralwidget.h"
 #include <KConfig>
+#include <KIO/FileCopyJob>
 #include <KMessageBox>
 #include <KNotifyConfigWidget>
 #include <KPluginMetaData>
 #include <PimCommon/BroadcastStatus>
 #include <QFileDialog>
-#include <kio/filecopyjob.h>
 
 #include <KCMultiDialog>
 #include <KIO/StoredTransferJob>

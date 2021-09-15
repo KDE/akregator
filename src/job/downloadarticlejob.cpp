@@ -6,12 +6,12 @@
 
 #include "downloadarticlejob.h"
 #include "akregator_debug.h"
+#include <KIO/Job>
+#include <KIO/JobUiDelegate>
 #include <MimeTreeParser/AttachmentTemporaryFilesDirs>
 #include <QDesktopServices>
 #include <QTemporaryFile>
 #include <QUrlQuery>
-#include <kio/job.h>
-#include <kio/jobuidelegate.h>
 
 using namespace Akregator;
 
