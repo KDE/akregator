@@ -26,7 +26,7 @@ public:
         int unread;
         int totalCount;
         QDateTime lastFetch;
-        FeedStorage *feedStorage;
+        FeedStorage *feedStorage = nullptr;
     };
 
     void addEntry(const QString &url, int unread, int totalCount, const QDateTime &lastFetch)

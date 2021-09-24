@@ -50,7 +50,6 @@ CreateFeedCommand::Private::Private(CreateFeedCommand *qq)
     , m_subscriptionListView(nullptr)
     , m_parentFolder(nullptr)
     , m_after(nullptr)
-    , m_autoexec(false)
 {
 }
 

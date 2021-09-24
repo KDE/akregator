@@ -93,7 +93,7 @@ private:
 class ActionManagerImpl::ActionManagerImplPrivate
 {
 public:
-    QString quickSearchLineText() const;
+    Q_REQUIRED_RESULT QString quickSearchLineText() const;
     NodeSelectVisitor *nodeSelectVisitor = nullptr;
     ArticleListView *articleList = nullptr;
     SubscriptionListView *subscriptionListView = nullptr;
@@ -663,7 +663,7 @@ KActionCollection *ActionManagerImpl::actionCollection() const
 
 QAction *ActionManagerImpl::action(const QString &name)
 {
-    return d->actionCollection != nullptr ? d->actionCollection->action(name) : nullptr;
+    return d->actionCollection ? d->actionCollection->action(name) : nullptr;
 }
 
 void ActionManagerImpl::setArticleActionsEnabled(bool enabled){
