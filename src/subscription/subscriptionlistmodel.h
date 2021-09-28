@@ -13,6 +13,7 @@
 #include <QSet>
 #include <QSortFilterProxyModel>
 
+#include <QColor>
 #include <QSharedPointer>
 
 namespace Akregator
@@ -106,6 +107,8 @@ private Q_SLOTS:
 private:
     QSharedPointer<const FeedList> m_feedList;
     bool m_beganRemoval;
+
+    QColor m_errorColor;
 };
 }
 

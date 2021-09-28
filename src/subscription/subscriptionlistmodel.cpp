@@ -16,6 +16,7 @@
 #include "akregator_debug.h"
 #include <KLocalizedString>
 
+#include <KColorScheme>
 #include <QApplication>
 #include <QByteArray>
 #include <QDataStream>
@@ -23,6 +24,7 @@
 #include <QItemSelection>
 #include <QList>
 #include <QMimeData>
+#include <QPalette>
 #include <QStyle>
 #include <QUrl>
 #include <QVariant>
@@ -168,6 +170,8 @@ Akregator::SubscriptionListModel::SubscriptionListModel(const QSharedPointer<con
     connect(m_feedList.data(), &FeedList::fetchStarted, this, &SubscriptionListModel::fetchStarted);
     connect(m_feedList.data(), &FeedList::fetched, this, &SubscriptionListModel::fetched);
     connect(m_feedList.data(), &FeedList::fetchAborted, this, &SubscriptionListModel::fetchAborted);
+    
+    m_errorColor = KColorScheme(QPalette::Normal, KColorScheme::View).foreground(KColorScheme::NegativeText).color();
 }
 
 int Akregator::SubscriptionListModel::columnCount(const QModelIndex &) const
@@ -197,6 +201,8 @@ QVariant Akregator::SubscriptionListModel::data(const QModelIndex &index, int ro
         return QVariant();
     }
 
+    const Feed *const feed = qobject_cast<const Feed *const>(node);
+
     switch (role) {
     case Qt::EditRole:
     case Qt::DisplayRole:
@@ -209,11 +215,12 @@ QVariant Akregator::SubscriptionListModel::data(const QModelIndex &index, int ro
             return node->totalCount();
         }
         break;
+    case Qt::ForegroundRole:
+        return feed && feed->fetchErrorCode() ? m_errorColor : QApplication::palette().color(QPalette::Text);
     case Qt::ToolTipRole: {
         if (node->isGroup() || node->isAggregation()) {
             return node->title();
         }
-        const Feed *const feed = qobject_cast<const Feed *const>(node);
         if (!feed) {
             return QString();
         }
@@ -226,7 +233,6 @@ QVariant Akregator::SubscriptionListModel::data(const QModelIndex &index, int ro
         if (index.column() != TitleColumn) {
             return QVariant();
         }
-        const Feed *const feed = qobject_cast<const Feed *const>(node);
         const auto iconSize = QApplication::style()->pixelMetric(QStyle::PM_SmallIconSize);
         return feed && feed->isFetching() ? node->icon().pixmap(iconSize, QIcon::Active) : node->icon();
     }
@@ -239,7 +245,6 @@ QVariant Akregator::SubscriptionListModel::data(const QModelIndex &index, int ro
     case IsAggregationRole:
         return node->isAggregation();
     case LinkRole: {
-        const Feed *const feed = qobject_cast<const Feed *const>(node);
         return feed ? feed->xmlUrl() : QVariant();
     }
     case IsOpenRole: {
