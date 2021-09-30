@@ -18,13 +18,6 @@ using namespace Akregator;
 NotificationManager::NotificationManager(QObject *parent)
     : QObject(parent)
 {
-    m_intervalsLapsed = 0;
-    m_checkInterval = 2000;
-    m_maxIntervals = 10;
-    m_running = false;
-    m_addedInLastInterval = false;
-    m_maxArticles = 20;
-    m_widget = nullptr;
 }
 
 NotificationManager::~NotificationManager()

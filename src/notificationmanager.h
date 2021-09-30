@@ -52,10 +52,10 @@ private:
     {
     }
 
-    int m_checkInterval;
-    int m_intervalsLapsed;
-    int m_maxIntervals;
-    int m_maxArticles;
+    int m_checkInterval = 0;
+    int m_intervalsLapsed = 2000;
+    int m_maxIntervals = 10;
+    int m_maxArticles = 20;
     bool m_running = false;
     bool m_addedInLastInterval = false;
     QWidget *m_widget = nullptr;
