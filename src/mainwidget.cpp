@@ -766,8 +766,37 @@ void MainWidget::slotPrevUnreadArticle()
     }
 }
 
+bool MainWidget::confirmMarkFeedAsRead(bool isSingleFeed, bool isGroup)
+{
+    QString msg, caption;
+    if (isSingleFeed && !isGroup) {
+        msg = i18n("<qt>Are you sure you want to mark <b>all articles in the feed</b> as read?</qt>");
+        caption = i18n("Mark Feed as Read");
+    } else {
+        if (!isGroup) {
+            msg = i18n("<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>");
+        } else {
+            msg = i18n("<qt>Are you sure you want to mark <b>all feeds in the folder</b> as read?</qt>");
+        }
+        caption = i18n("Mark Feeds as Read");
+    }
+    if (KMessageBox::warningContinueCancel(this,
+                                           msg,
+                                           caption,
+                                           KStandardGuiItem::cont(),
+                                           KStandardGuiItem::cancel(),
+                                           QStringLiteral("Disable Mark Feed As Read Confirmation"))
+        != KMessageBox::Continue) {
+        return false;
+    }
+    return true;
+}
+
 void MainWidget::slotMarkAllFeedsRead()
 {
+    if (!confirmMarkFeedAsRead(false, false)) {
+        return;
+    }
     KJob *job = m_feedList->createMarkAsReadJob();
     connect(job, &KJob::finished, m_selectionController, &AbstractSelectionController::forceFilterUpdate);
     job->start();
@@ -775,10 +804,11 @@ void MainWidget::slotMarkAllFeedsRead()
 
 void MainWidget::slotMarkAllRead()
 {
-    if (!m_selectionController->selectedSubscription()) {
+    TreeNode *current = m_selectionController->selectedSubscription();
+    if (!current || !confirmMarkFeedAsRead(true, current->isGroup())) {
         return;
     }
-    KJob *job = m_selectionController->selectedSubscription()->createMarkAsReadJob();
+    KJob *job = current->createMarkAsReadJob();
     connect(job, &KJob::finished, m_selectionController, &AbstractSelectionController::forceFilterUpdate);
     job->start();
 }

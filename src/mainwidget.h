@@ -237,6 +237,8 @@ private:
     void deleteExpiredArticles(const QSharedPointer<FeedList> &feedList);
     void connectFrame(Akregator::WebEngineFrame *frame);
     void cleanUpDownloadFile();
+    /** ask for confirmation when marking feed(s) as read */
+    Q_REQUIRED_RESULT bool confirmMarkFeedAsRead(bool isSingleFeed, bool isGroup);
 
     /** opens current article in new tab, background/foreground depends on settings TODO: use selected instead of current? */
     void openSelectedArticles(bool openInBackground);
