@@ -132,10 +132,7 @@ DeleteSubscriptionCommand::DeleteSubscriptionCommand(QObject *parent)
 {
 }
 
-DeleteSubscriptionCommand::~DeleteSubscriptionCommand()
-{
-    delete d;
-}
+DeleteSubscriptionCommand::~DeleteSubscriptionCommand() = default;
 
 void DeleteSubscriptionCommand::setSubscription(const QWeakPointer<FeedList> &feedList, uint subId)
 {

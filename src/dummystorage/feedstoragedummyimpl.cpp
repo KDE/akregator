@@ -64,11 +64,7 @@ FeedStorageDummyImpl::FeedStorageDummyImpl(const QString &url, StorageDummyImpl 
     d->mainStorage = main;
 }
 
-FeedStorageDummyImpl::~FeedStorageDummyImpl()
-{
-    delete d;
-    d = nullptr;
-}
+FeedStorageDummyImpl::~FeedStorageDummyImpl() = default;
 
 int FeedStorageDummyImpl::unread() const
 {

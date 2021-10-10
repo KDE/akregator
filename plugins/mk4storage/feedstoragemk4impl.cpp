@@ -81,8 +81,8 @@ public:
 };
 
 FeedStorageMK4Impl::FeedStorageMK4Impl(const QString &url, StorageMK4Impl *main)
+    : d(new FeedStorageMK4ImplPrivate)
 {
-    d = new FeedStorageMK4ImplPrivate;
     d->autoCommit = main->autoCommit();
     d->url = url;
     d->mainStorage = main;
@@ -109,8 +109,6 @@ FeedStorageMK4Impl::FeedStorageMK4Impl(const QString &url, StorageMK4Impl *main)
 FeedStorageMK4Impl::~FeedStorageMK4Impl()
 {
     delete d->storage;
-    delete d;
-    d = nullptr;
 }
 
 void FeedStorageMK4Impl::markDirty()

@@ -95,10 +95,7 @@ LoadFeedListCommand::LoadFeedListCommand(QObject *parent)
 {
 }
 
-LoadFeedListCommand::~LoadFeedListCommand()
-{
-    delete d;
-}
+LoadFeedListCommand::~LoadFeedListCommand() = default;
 
 void LoadFeedListCommand::setFileName(const QString &fileName)
 {

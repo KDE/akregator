@@ -90,10 +90,7 @@ EditSubscriptionCommand::EditSubscriptionCommand(QObject *parent)
 {
 }
 
-EditSubscriptionCommand::~EditSubscriptionCommand()
-{
-    delete d;
-}
+EditSubscriptionCommand::~EditSubscriptionCommand() = default;
 
 void EditSubscriptionCommand::setSubscription(const QSharedPointer<FeedList> &feedList, uint subId)
 {

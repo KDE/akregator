@@ -346,8 +346,6 @@ Akregator::Feed::~Feed()
 {
     slotAbortFetch();
     emitSignalDestroyed();
-    delete d;
-    d = nullptr;
 }
 
 void Akregator::Feed::loadFavicon(const QString &url, bool downloadFavicon)

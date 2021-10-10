@@ -10,6 +10,9 @@
 
 #include "actionmanager.h"
 #include <PimCommon/ShareServiceUrlManager>
+
+#include <memory>
+
 class QAction;
 class KActionCollection;
 
@@ -70,7 +73,7 @@ private:
     class NodeSelectVisitor;
 
     class ActionManagerImplPrivate;
-    ActionManagerImplPrivate *d;
+    std::unique_ptr<ActionManagerImplPrivate> const d;
 };
 } // namespace Akregator
 

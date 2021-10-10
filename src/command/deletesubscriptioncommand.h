@@ -12,6 +12,8 @@
 
 #include <QWeakPointer>
 
+#include <memory>
+
 namespace Akregator
 {
 class FeedList;
@@ -34,7 +36,7 @@ private:
 
 private:
     class Private;
-    Private *const d;
+    std::unique_ptr<Private> const d;
 };
 }
 

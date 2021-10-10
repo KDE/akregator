@@ -8,6 +8,9 @@
 #pragma once
 
 #include "feedstorage.h"
+
+#include <memory>
+
 namespace Akregator
 {
 namespace Backend
@@ -70,8 +73,10 @@ private:
     /** finds article by guid, returns -1 if not in archive **/
     int findArticle(const QString &guid) const;
     void setTotalCount(int total);
+
+private:
     class FeedStorageDummyImplPrivate;
-    FeedStorageDummyImplPrivate *d;
+    std::unique_ptr<FeedStorageDummyImplPrivate> const d;
 };
 } // namespace Backend
 } // namespace Akregator

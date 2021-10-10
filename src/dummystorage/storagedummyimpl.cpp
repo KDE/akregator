@@ -51,8 +51,6 @@ StorageDummyImpl::StorageDummyImpl()
 StorageDummyImpl::~StorageDummyImpl()
 {
     close();
-    delete d;
-    d = nullptr;
 }
 
 void StorageDummyImpl::initialize(const QStringList &)

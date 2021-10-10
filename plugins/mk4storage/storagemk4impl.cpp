@@ -110,8 +110,6 @@ QString Akregator::Backend::StorageMK4Impl::defaultArchivePath()
 Akregator::Backend::StorageMK4Impl::~StorageMK4Impl()
 {
     close();
-    delete d;
-    d = nullptr;
 }
 
 void Akregator::Backend::StorageMK4Impl::initialize(const QStringList &)

@@ -10,6 +10,8 @@
 
 #include "command.h"
 
+#include <memory>
+
 namespace Akregator
 {
 class Folder;
@@ -36,7 +38,7 @@ private:
 
 private:
     class Private;
-    Private *const d;
+    std::unique_ptr<Private> const d;
 };
 }
 

@@ -16,6 +16,8 @@
 
 #include <QSharedPointer>
 
+#include <memory>
+
 class QDomDocument;
 class QDomNode;
 template<class T> class QList;
@@ -177,7 +179,7 @@ private:
     class RemoveNodeVisitor;
 
     class Private;
-    Private *const d;
+    std::unique_ptr<Private> const d;
 };
 } // namespace Akregator
 

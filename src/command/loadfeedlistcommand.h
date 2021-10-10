@@ -12,6 +12,8 @@
 
 #include <QSharedPointer>
 
+#include <memory>
+
 class QDomDocument;
 
 namespace Akregator
@@ -43,7 +45,7 @@ private:
 
 private:
     class Private;
-    Private *const d;
+    std::unique_ptr<Private> const d;
 };
 }
 

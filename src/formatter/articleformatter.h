@@ -11,6 +11,8 @@
 #include <QVector>
 #include <enclosure.h>
 
+#include <memory>
+
 namespace Akregator
 {
 class Article;
@@ -33,7 +35,7 @@ public:
 
 private:
     class Private;
-    Private *const d;
+    std::unique_ptr<Private> const d;
     Q_DISABLE_COPY(ArticleFormatter)
 };
 } // namespace Akregator

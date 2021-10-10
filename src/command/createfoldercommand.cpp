@@ -72,10 +72,7 @@ CreateFolderCommand::CreateFolderCommand(QObject *parent)
 {
 }
 
-CreateFolderCommand::~CreateFolderCommand()
-{
-    delete d;
-}
+CreateFolderCommand::~CreateFolderCommand() = default;
 
 void CreateFolderCommand::setSubscriptionListView(SubscriptionListView *view)
 {

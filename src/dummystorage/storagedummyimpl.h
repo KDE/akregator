@@ -11,6 +11,8 @@
 
 #include "storage.h"
 
+#include <memory>
+
 namespace Akregator
 {
 namespace Backend
@@ -75,7 +77,7 @@ protected Q_SLOTS:
 
 private:
     class StorageDummyImplPrivate;
-    StorageDummyImplPrivate *d;
+    std::unique_ptr<StorageDummyImplPrivate> const d;
 };
 } // namespace Backend
 } // namespace Akregator

@@ -10,6 +10,8 @@
 
 #include <QTabWidget>
 
+#include <memory>
+
 class QString;
 
 namespace Akregator
@@ -83,7 +85,7 @@ private Q_SLOTS:
 private:
     void closeAllTabExcept(int index = -1);
     class Private;
-    Private *const d;
+    std::unique_ptr<Private> const d;
 };
 } // namespace Akregator
 

@@ -159,8 +159,6 @@ ActionManagerImpl::ActionManagerImpl(Part *part, QObject *parent)
 ActionManagerImpl::~ActionManagerImpl()
 {
     delete d->nodeSelectVisitor;
-    delete d;
-    d = nullptr;
 }
 
 void ActionManagerImpl::setTrayIcon(TrayIcon *trayIcon)

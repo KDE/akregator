@@ -296,7 +296,6 @@ FeedList::~FeedList()
     setRootNode(nullptr);
     delete d->addNodeVisitor;
     delete d->removeNodeVisitor;
-    delete d;
 }
 
 const Akregator::Feed *FeedList::findByURL(const QString &feedURL) const

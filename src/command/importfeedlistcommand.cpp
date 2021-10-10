@@ -106,10 +106,7 @@ ImportFeedListCommand::ImportFeedListCommand(QObject *parent)
 {
 }
 
-ImportFeedListCommand::~ImportFeedListCommand()
-{
-    delete d;
-}
+ImportFeedListCommand::~ImportFeedListCommand() = default;
 
 void ImportFeedListCommand::setTargetList(const QWeakPointer<FeedList> &feedList)
 {

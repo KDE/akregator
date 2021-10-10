@@ -94,10 +94,7 @@ ExpireItemsCommand::ExpireItemsCommand(QObject *parent)
 {
 }
 
-ExpireItemsCommand::~ExpireItemsCommand()
-{
-    delete d;
-}
+ExpireItemsCommand::~ExpireItemsCommand() = default;
 
 void ExpireItemsCommand::setFeedList(const QWeakPointer<FeedList> &feedList)
 {

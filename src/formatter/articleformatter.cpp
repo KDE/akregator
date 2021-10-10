@@ -38,10 +38,7 @@ ArticleFormatter::ArticleFormatter()
 {
 }
 
-ArticleFormatter::~ArticleFormatter()
-{
-    delete d;
-}
+ArticleFormatter::~ArticleFormatter() = default;
 
 QString ArticleFormatter::formatEnclosure(const Enclosure &enclosure)
 {

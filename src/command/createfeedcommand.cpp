@@ -128,10 +128,7 @@ CreateFeedCommand::CreateFeedCommand(MainWidget *parent)
     d->m_parent = parent;
 }
 
-CreateFeedCommand::~CreateFeedCommand()
-{
-    delete d;
-}
+CreateFeedCommand::~CreateFeedCommand() = default;
 
 void CreateFeedCommand::setSubscriptionListView(SubscriptionListView *view)
 {

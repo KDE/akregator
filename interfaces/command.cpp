@@ -32,10 +32,7 @@ Command::Command(QObject *parent)
 {
 }
 
-Command::~Command()
-{
-    delete d;
-}
+Command::~Command() = default;
 
 QWidget *Command::parentWidget() const
 {

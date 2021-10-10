@@ -16,6 +16,8 @@
 
 #include <QIcon>
 
+#include <memory>
+
 class QDomElement;
 class QString;
 
@@ -296,7 +298,7 @@ private Q_SLOTS:
 
 private:
     class Private;
-    Private *d;
+    std::unique_ptr<Private> const d;
 };
 } // namespace Akregator
 

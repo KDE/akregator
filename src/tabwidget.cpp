@@ -104,10 +104,7 @@ TabWidget::TabWidget(QWidget *parent)
     d->updateTabBarVisibility();
 }
 
-TabWidget::~TabWidget()
-{
-    delete d;
-}
+TabWidget::~TabWidget() = default;
 
 void TabWidget::slotTabContextMenuRequest(const QPoint &pos)
 {
