@@ -56,13 +56,13 @@ EditNodePropertiesVisitor::EditNodePropertiesVisitor(SubscriptionListView *subsc
     Q_ASSERT(m_widget);
 }
 
-class EditSubscriptionCommand::Private
+class Akregator::EditSubscriptionCommandPrivate
 {
     EditSubscriptionCommand *const q;
 
 public:
-    explicit Private(EditSubscriptionCommand *qq);
-    ~Private();
+    explicit EditSubscriptionCommandPrivate(EditSubscriptionCommand *qq);
+    ~EditSubscriptionCommandPrivate();
 
     void startEdit();
     void jobFinished();
@@ -72,7 +72,7 @@ public:
     SubscriptionListView *m_subscriptionListView = nullptr;
 };
 
-EditSubscriptionCommand::Private::Private(EditSubscriptionCommand *qq)
+EditSubscriptionCommandPrivate::EditSubscriptionCommandPrivate(EditSubscriptionCommand *qq)
     : q(qq)
     , m_list()
     , m_subscriptionId(0)
@@ -80,13 +80,13 @@ EditSubscriptionCommand::Private::Private(EditSubscriptionCommand *qq)
 {
 }
 
-EditSubscriptionCommand::Private::~Private()
+EditSubscriptionCommandPrivate::~EditSubscriptionCommandPrivate()
 {
 }
 
 EditSubscriptionCommand::EditSubscriptionCommand(QObject *parent)
     : Command(parent)
-    , d(new Private(this))
+    , d(new EditSubscriptionCommandPrivate(this))
 {
 }
 
@@ -125,7 +125,7 @@ void EditSubscriptionCommand::doStart()
     });
 }
 
-void EditSubscriptionCommand::Private::startEdit()
+void EditSubscriptionCommandPrivate::startEdit()
 {
     TreeNode *const node = m_list->findByID(m_subscriptionId);
     if (!node) {

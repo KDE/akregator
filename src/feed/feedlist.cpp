@@ -28,19 +28,19 @@
 #include <qdom.h>
 
 using namespace Akregator;
-class Q_DECL_HIDDEN FeedList::Private
+class Akregator::FeedListPrivate
 {
     FeedList *const q;
 
 public:
-    Private(Backend::Storage *st, FeedList *qq);
+    FeedListPrivate(Backend::Storage *st, FeedList *qq);
 
     Akregator::Backend::Storage *storage;
     QList<TreeNode *> flatList;
     Folder *rootNode;
     QHash<uint, TreeNode *> idMap;
-    AddNodeVisitor *addNodeVisitor;
-    RemoveNodeVisitor *removeNodeVisitor;
+    FeedList::AddNodeVisitor *addNodeVisitor;
+    FeedList::RemoveNodeVisitor *removeNodeVisitor;
     QHash<QString, QList<Feed *>> urlMap;
     mutable int unreadCache;
 };
@@ -143,12 +143,12 @@ private:
     FeedList *m_list;
 };
 
-FeedList::Private::Private(Backend::Storage *st, FeedList *qq)
+FeedListPrivate::FeedListPrivate(Backend::Storage *st, FeedList *qq)
     : q(qq)
     , storage(st)
     , rootNode(nullptr)
-    , addNodeVisitor(new AddNodeVisitor(q))
-    , removeNodeVisitor(new RemoveNodeVisitor(q))
+    , addNodeVisitor(new FeedList::AddNodeVisitor(q))
+    , removeNodeVisitor(new FeedList::RemoveNodeVisitor(q))
     , unreadCache(-1)
 {
     Q_ASSERT(storage);
@@ -156,7 +156,7 @@ FeedList::Private::Private(Backend::Storage *st, FeedList *qq)
 
 FeedList::FeedList(Backend::Storage *storage)
     : QObject(nullptr)
-    , d(new Private(storage, this))
+    , d(new FeedListPrivate(storage, this))
 {
     auto rootNode = new Folder(i18n("All Feeds"));
     rootNode->setId(1);

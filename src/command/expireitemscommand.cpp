@@ -23,12 +23,12 @@
 
 using namespace Akregator;
 
-class Q_DECL_HIDDEN ExpireItemsCommand::Private
+class Akregator::ExpireItemsCommandPrivate
 {
     ExpireItemsCommand *const q;
 
 public:
-    explicit Private(ExpireItemsCommand *qq);
+    explicit ExpireItemsCommandPrivate(ExpireItemsCommand *qq);
 
     void createDeleteJobs();
     void addDeleteJobForFeed(Feed *feed);
@@ -39,17 +39,17 @@ public:
     QSet<KJob *> m_jobs;
 };
 
-ExpireItemsCommand::Private::Private(ExpireItemsCommand *qq)
+ExpireItemsCommandPrivate::ExpireItemsCommandPrivate(ExpireItemsCommand *qq)
     : q(qq)
     , m_feedList()
 {
 }
 
-void ExpireItemsCommand::Private::addDeleteJobForFeed(Feed *feed)
+void ExpireItemsCommandPrivate::addDeleteJobForFeed(Feed *feed)
 {
     Q_ASSERT(feed);
     auto job = new ArticleDeleteJob(q);
-    connect(job, &ArticleDeleteJob::finished, q, [this](KJob *job) {
+    QObject::connect(job, &ArticleDeleteJob::finished, q, [this](KJob *job) {
         jobFinished(job);
     });
     m_jobs.insert(job);
@@ -57,7 +57,7 @@ void ExpireItemsCommand::Private::addDeleteJobForFeed(Feed *feed)
     job->start();
 }
 
-void ExpireItemsCommand::Private::jobFinished(KJob *job)
+void ExpireItemsCommandPrivate::jobFinished(KJob *job)
 {
     Q_ASSERT(!m_jobs.isEmpty());
     m_jobs.remove(job);
@@ -67,7 +67,7 @@ void ExpireItemsCommand::Private::jobFinished(KJob *job)
     }
 }
 
-void ExpireItemsCommand::Private::createDeleteJobs()
+void ExpireItemsCommandPrivate::createDeleteJobs()
 {
     Q_ASSERT(m_jobs.isEmpty());
     const QSharedPointer<FeedList> feedList = m_feedList.lock();
@@ -90,7 +90,7 @@ void ExpireItemsCommand::Private::createDeleteJobs()
 
 ExpireItemsCommand::ExpireItemsCommand(QObject *parent)
     : Command(parent)
-    , d(new Private(this))
+    , d(new ExpireItemsCommandPrivate(this))
 {
 }
 

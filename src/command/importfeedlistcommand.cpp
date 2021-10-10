@@ -26,12 +26,12 @@
 
 using namespace Akregator;
 
-class ImportFeedListCommand::Private
+class Akregator::ImportFeedListCommandPrivate
 {
     ImportFeedListCommand *const q;
 
 public:
-    explicit Private(ImportFeedListCommand *qq);
+    explicit ImportFeedListCommandPrivate(ImportFeedListCommand *qq);
 
     void doImport();
 
@@ -41,15 +41,15 @@ public:
     QString importedRootFolderName;
 };
 
-ImportFeedListCommand::Private::Private(ImportFeedListCommand *qq)
+ImportFeedListCommandPrivate::ImportFeedListCommandPrivate(ImportFeedListCommand *qq)
     : q(qq)
     , targetList()
-    , rootFolderOption(Ask)
+    , rootFolderOption(ImportFeedListCommand::Ask)
     , importedRootFolderName(i18n("Imported Feeds"))
 {
 }
 
-void ImportFeedListCommand::Private::doImport()
+void ImportFeedListCommandPrivate::doImport()
 {
     const QSharedPointer<FeedList> target = targetList.lock();
 
@@ -90,7 +90,7 @@ void ImportFeedListCommand::Private::doImport()
 
     Folder *folder = target->allFeedsFolder();
 
-    if (rootFolderOption != None) {
+    if (rootFolderOption != ImportFeedListCommand::None) {
         folder = new Folder(importedRootFolderName);
         target->allFeedsFolder()->appendChild(folder);
     }
@@ -102,7 +102,7 @@ void ImportFeedListCommand::Private::doImport()
 
 ImportFeedListCommand::ImportFeedListCommand(QObject *parent)
     : Command(parent)
-    , d(new Private(this))
+    , d(new ImportFeedListCommandPrivate(this))
 {
 }
 

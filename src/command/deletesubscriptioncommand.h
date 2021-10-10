@@ -17,6 +17,7 @@
 namespace Akregator
 {
 class FeedList;
+class DeleteSubscriptionCommandPrivate;
 
 class DeleteSubscriptionCommand : public Command
 {
@@ -35,8 +36,8 @@ private:
     void doAbort() override;
 
 private:
-    class Private;
-    std::unique_ptr<Private> const d;
+    friend class DeleteSubscriptionCommandPrivate;
+    std::unique_ptr<DeleteSubscriptionCommandPrivate> const d;
 };
 }
 

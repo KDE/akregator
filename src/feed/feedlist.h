@@ -56,6 +56,8 @@ private:
     QSharedPointer<FeedList> m_feedList;
 };
 
+class FeedListPrivate;
+
 /** @class FeedList
     The model of a feed tree, represents an OPML document. Contains an additional root node "All Feeds" which isn't stored. Note that a node instance must not
    be in more than one FeedList at a time! When deleting the feed list, all contained nodes are deleted! */
@@ -178,8 +180,8 @@ private:
     friend class RemoveNodeVisitor;
     class RemoveNodeVisitor;
 
-    class Private;
-    std::unique_ptr<Private> const d;
+    friend class FeedListPrivate;
+    std::unique_ptr<FeedListPrivate> const d;
 };
 } // namespace Akregator
 

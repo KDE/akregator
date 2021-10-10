@@ -14,21 +14,21 @@
 
 using namespace Akregator;
 
-class Q_DECL_HIDDEN Command::Private
+class Akregator::CommandPrivate
 {
 public:
-    Private();
+    CommandPrivate();
     QPointer<QWidget> parentWidget;
 };
 
-Command::Private::Private()
+CommandPrivate::CommandPrivate()
     : parentWidget()
 {
 }
 
 Command::Command(QObject *parent)
     : QObject(parent)
-    , d(new Private)
+    , d(new CommandPrivate)
 {
 }
 

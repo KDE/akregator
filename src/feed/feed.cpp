@@ -52,17 +52,17 @@ template<typename Key, typename Value, template<typename, typename> class Contai
     return values;
 }
 
-class Q_DECL_HIDDEN Akregator::Feed::Private
+class Akregator::FeedPrivate
 {
     Akregator::Feed *const q;
 
 public:
-    explicit Private(Backend::Storage *storage, Akregator::Feed *qq);
+    explicit FeedPrivate(Backend::Storage *storage, Akregator::Feed *qq);
 
     Backend::Storage *m_storage = nullptr;
     bool m_autoFetch = false;
     int m_fetchInterval;
-    ArchiveMode m_archiveMode;
+    Feed::ArchiveMode m_archiveMode;
     int m_maxArticleAge;
     int m_maxArticleNumber;
     bool m_markImmediatelyAsRead = false;
@@ -308,12 +308,12 @@ Akregator::Feed::ArchiveMode Akregator::Feed::stringToArchiveMode(const QString 
     return globalDefault;
 }
 
-Akregator::Feed::Private::Private(Backend::Storage *storage_, Akregator::Feed *qq)
+Akregator::FeedPrivate::FeedPrivate(Backend::Storage *storage_, Akregator::Feed *qq)
     : q(qq)
     , m_storage(storage_)
     , m_autoFetch(false)
     , m_fetchInterval(30)
-    , m_archiveMode(globalDefault)
+    , m_archiveMode(Feed::globalDefault)
     , m_maxArticleAge(60)
     , m_maxArticleNumber(1000)
     , m_markImmediatelyAsRead(false)
@@ -331,14 +331,14 @@ Akregator::Feed::Private::Private(Backend::Storage *storage_, Akregator::Feed *q
     Q_ASSERT(m_storage);
 }
 
-void Akregator::Feed::Private::setTotalCountDirty() const
+void Akregator::FeedPrivate::setTotalCountDirty() const
 {
     m_totalCount = -1;
 }
 
 Akregator::Feed::Feed(Backend::Storage *storage)
     : TreeNode()
-    , d(new Private(storage, this))
+    , d(new FeedPrivate(storage, this))
 {
 }
 

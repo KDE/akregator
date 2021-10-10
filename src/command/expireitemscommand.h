@@ -19,6 +19,7 @@
 namespace Akregator
 {
 class FeedList;
+class ExpireItemsCommandPrivate;
 
 class ExpireItemsCommand : public Command
 {
@@ -38,8 +39,8 @@ private:
     void doAbort() override;
 
 private:
-    class Private;
-    std::unique_ptr<Private> const d;
+    friend class ExpireItemsCommandPrivate;
+    std::unique_ptr<ExpireItemsCommandPrivate> const d;
 };
 }
 

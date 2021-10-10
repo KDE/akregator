@@ -17,6 +17,7 @@ namespace Akregator
 {
 class Article;
 class TreeNode;
+class ArticleFormatterPrivate;
 
 class ArticleFormatter
 {
@@ -34,8 +35,7 @@ public:
     static QString formatEnclosure(const Syndication::Enclosure &enclosure);
 
 private:
-    class Private;
-    std::unique_ptr<Private> const d;
+    std::unique_ptr<ArticleFormatterPrivate> const d;
     Q_DISABLE_COPY(ArticleFormatter)
 };
 } // namespace Akregator

@@ -101,13 +101,13 @@ private:
 };
 }
 
-class DeleteSubscriptionCommand::Private
+class Akregator::DeleteSubscriptionCommandPrivate
 {
     DeleteSubscriptionCommand *const q;
 
 public:
-    explicit Private(DeleteSubscriptionCommand *qq);
-    ~Private();
+    explicit DeleteSubscriptionCommandPrivate(DeleteSubscriptionCommand *qq);
+    ~DeleteSubscriptionCommandPrivate();
 
     void startDelete();
     void jobFinished();
@@ -116,19 +116,19 @@ public:
     uint m_subscriptionId = 0;
 };
 
-DeleteSubscriptionCommand::Private::Private(DeleteSubscriptionCommand *qq)
+DeleteSubscriptionCommandPrivate::DeleteSubscriptionCommandPrivate(DeleteSubscriptionCommand *qq)
     : q(qq)
     , m_list()
 {
 }
 
-DeleteSubscriptionCommand::Private::~Private()
+DeleteSubscriptionCommandPrivate::~DeleteSubscriptionCommandPrivate()
 {
 }
 
 DeleteSubscriptionCommand::DeleteSubscriptionCommand(QObject *parent)
     : Command(parent)
-    , d(new Private(this))
+    , d(new DeleteSubscriptionCommandPrivate(this))
 {
 }
 
@@ -157,12 +157,12 @@ void DeleteSubscriptionCommand::doStart()
     });
 }
 
-void DeleteSubscriptionCommand::Private::jobFinished()
+void DeleteSubscriptionCommandPrivate::jobFinished()
 {
     q->done();
 }
 
-void DeleteSubscriptionCommand::Private::startDelete()
+void DeleteSubscriptionCommandPrivate::startDelete()
 {
     const QSharedPointer<FeedList> list = m_list.lock();
     if (!list) {

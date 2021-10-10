@@ -22,19 +22,19 @@
 using namespace Syndication;
 using namespace Akregator;
 
-class Q_DECL_HIDDEN ArticleFormatter::Private
+class Akregator::ArticleFormatterPrivate
 {
 public:
-    explicit Private();
+    explicit ArticleFormatterPrivate();
     class SummaryVisitor;
 };
 
-ArticleFormatter::Private::Private()
+ArticleFormatterPrivate::ArticleFormatterPrivate()
 {
 }
 
 ArticleFormatter::ArticleFormatter()
-    : d(new Private())
+    : d(new ArticleFormatterPrivate())
 {
 }
 

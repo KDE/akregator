@@ -18,6 +18,7 @@ class Folder;
 class MainWidget;
 class SubscriptionListView;
 class TreeNode;
+class CreateFeedCommandPrivate;
 
 class CreateFeedCommand : public Command
 {
@@ -37,8 +38,8 @@ private:
     void doAbort() override;
 
 private:
-    class Private;
-    std::unique_ptr<Private> const d;
+    friend class CreateFeedCommandPrivate;
+    std::unique_ptr<CreateFeedCommandPrivate> const d;
 };
 }
 

@@ -18,6 +18,8 @@ class QWidget;
 
 namespace Akregator
 {
+class CommandPrivate;
+
 class AKREGATORINTERFACES_EXPORT Command : public QObject
 {
     Q_OBJECT
@@ -45,8 +47,7 @@ protected:
     void done();
 
 private:
-    class Private;
-    std::unique_ptr<Private> const d;
+    std::unique_ptr<CommandPrivate> const d;
 };
 }
 

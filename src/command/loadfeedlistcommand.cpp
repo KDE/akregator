@@ -28,12 +28,12 @@
 using namespace Akregator;
 using namespace Akregator::Backend;
 
-class Q_DECL_HIDDEN LoadFeedListCommand::Private
+class Akregator::LoadFeedListCommandPrivate
 {
     LoadFeedListCommand *const q;
 
 public:
-    explicit Private(LoadFeedListCommand *qq)
+    explicit LoadFeedListCommandPrivate(LoadFeedListCommand *qq)
         : q(qq)
     {
     }
@@ -48,13 +48,13 @@ public:
     Storage *storage = nullptr;
 };
 
-void LoadFeedListCommand::Private::emitResult(const QSharedPointer<FeedList> &list)
+void LoadFeedListCommandPrivate::emitResult(const QSharedPointer<FeedList> &list)
 {
     Q_EMIT q->result(list);
     q->done();
 }
 
-void LoadFeedListCommand::Private::handleDocument(const QDomDocument &doc)
+void LoadFeedListCommandPrivate::handleDocument(const QDomDocument &doc)
 {
     QSharedPointer<FeedList> feedList(new FeedList(storage));
     if (!feedList->readFromOpml(doc)) {
@@ -78,7 +78,7 @@ void LoadFeedListCommand::Private::handleDocument(const QDomDocument &doc)
     emitResult(feedList);
 }
 
-QString LoadFeedListCommand::Private::createBackup(const QString &path, bool *ok)
+QString LoadFeedListCommandPrivate::createBackup(const QString &path, bool *ok)
 {
     const QString backup = path + QLatin1String("-backup.") + QString::number(QDateTime::currentDateTimeUtc().toSecsSinceEpoch());
 
@@ -91,7 +91,7 @@ QString LoadFeedListCommand::Private::createBackup(const QString &path, bool *ok
 
 LoadFeedListCommand::LoadFeedListCommand(QObject *parent)
     : Command(parent)
-    , d(new Private(this))
+    , d(new LoadFeedListCommandPrivate(this))
 {
 }
 
@@ -123,7 +123,7 @@ void LoadFeedListCommand::doAbort()
 {
 }
 
-void LoadFeedListCommand::Private::doLoad()
+void LoadFeedListCommandPrivate::doLoad()
 {
     Q_ASSERT(storage);
     Q_ASSERT(!fileName.isNull());

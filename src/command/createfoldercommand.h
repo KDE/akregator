@@ -17,6 +17,7 @@ namespace Akregator
 class Folder;
 class SubscriptionListView;
 class TreeNode;
+class CreateFolderCommandPrivate;
 
 class CreateFolderCommand : public Command
 {
@@ -34,8 +35,8 @@ private:
     void doAbort() override;
 
 private:
-    class Private;
-    std::unique_ptr<Private> const d;
+    friend class CreateFolderCommandPrivate;
+    std::unique_ptr<CreateFolderCommandPrivate> const d;
 };
 }
 

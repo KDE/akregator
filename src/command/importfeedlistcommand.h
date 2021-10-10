@@ -19,6 +19,7 @@ class QDomDocument;
 namespace Akregator
 {
 class FeedList;
+class ImportFeedListCommandPrivate;
 
 class ImportFeedListCommand : public Command
 {
@@ -41,8 +42,8 @@ private:
     void doAbort() override;
 
 private:
-    class Private;
-    std::unique_ptr<Private> const d;
+    friend class ImportFeedListCommandPrivate;
+    std::unique_ptr<ImportFeedListCommandPrivate> const d;
 };
 }
 

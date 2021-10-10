@@ -26,12 +26,12 @@
 
 using namespace Akregator;
 
-class Q_DECL_HIDDEN CreateFeedCommand::Private
+class Akregator::CreateFeedCommandPrivate
 {
     CreateFeedCommand *const q;
 
 public:
-    explicit Private(CreateFeedCommand *qq);
+    explicit CreateFeedCommandPrivate(CreateFeedCommand *qq);
 
     void doCreate();
 
@@ -44,7 +44,7 @@ public:
     bool m_autoexec = false;
 };
 
-CreateFeedCommand::Private::Private(CreateFeedCommand *qq)
+CreateFeedCommandPrivate::CreateFeedCommandPrivate(CreateFeedCommand *qq)
     : q(qq)
     , m_rootFolder(nullptr)
     , m_subscriptionListView(nullptr)
@@ -53,7 +53,7 @@ CreateFeedCommand::Private::Private(CreateFeedCommand *qq)
 {
 }
 
-void CreateFeedCommand::Private::doCreate()
+void CreateFeedCommandPrivate::doCreate()
 {
     Q_ASSERT(m_rootFolder);
     Q_ASSERT(m_subscriptionListView);
@@ -123,7 +123,7 @@ void CreateFeedCommand::Private::doCreate()
 
 CreateFeedCommand::CreateFeedCommand(MainWidget *parent)
     : Command(parent)
-    , d(new Private(this))
+    , d(new CreateFeedCommandPrivate(this))
 {
     d->m_parent = parent;
 }

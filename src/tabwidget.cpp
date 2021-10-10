@@ -32,13 +32,13 @@
 
 using namespace Akregator;
 
-class Q_DECL_HIDDEN TabWidget::Private
+class Akregator::TabWidgetPrivate
 {
 private:
     TabWidget *const q;
 
 public:
-    explicit Private(TabWidget *qq)
+    explicit TabWidgetPrivate(TabWidget *qq)
         : q(qq)
     {
     }
@@ -60,7 +60,7 @@ public:
     Frame *currentFrame();
 };
 
-void TabWidget::Private::updateTabBarVisibility()
+void TabWidgetPrivate::updateTabBarVisibility()
 {
     const bool tabBarIsHidden = ((q->count() <= 1) && !Settings::alwaysShowTabBar());
     if (tabBarIsHidden) {
@@ -75,7 +75,7 @@ void TabWidget::Private::updateTabBarVisibility()
 
 TabWidget::TabWidget(QWidget *parent)
     : QTabWidget(parent)
-    , d(new Private(this))
+    , d(new TabWidgetPrivate(this))
 {
     setMinimumSize(250, 150);
     setMovable(false);
@@ -215,7 +215,7 @@ void TabWidget::slotAddFrame(Frame *frame)
     slotSetTitle(frame, frame->title());
 }
 
-Frame *TabWidget::Private::currentFrame()
+Frame *TabWidgetPrivate::currentFrame()
 {
     QWidget *w = q->currentWidget();
     Q_ASSERT(frames.value(w));
@@ -272,7 +272,7 @@ void TabWidget::slotRemoveFrame(int frameId)
 }
 
 // copied wholesale from KonqFrameTabs
-int TabWidget::Private::tabBarWidthForMaxChars(int maxLength)
+int TabWidgetPrivate::tabBarWidthForMaxChars(int maxLength)
 {
     int hframe;
     QStyleOption o;
@@ -327,7 +327,7 @@ void TabWidget::slotSetIcon(Akregator::Frame *frame, const QIcon &icon)
     setTabIcon(idx, icon);
 }
 
-void TabWidget::Private::setTitle(const QString &title, QWidget *sender)
+void TabWidgetPrivate::setTitle(const QString &title, QWidget *sender)
 {
     int senderIndex = q->indexOf(sender);
 

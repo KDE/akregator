@@ -33,6 +33,8 @@ namespace Backend
 class Storage;
 }
 
+class FeedPrivate;
+
 /** represents a feed */
 class AKREGATOR_EXPORT Feed : public TreeNode
 {
@@ -297,8 +299,7 @@ private Q_SLOTS:
     void fetchCompleted(Syndication::Loader *loader, Syndication::FeedPtr doc, Syndication::ErrorCode errorCode);
 
 private:
-    class Private;
-    std::unique_ptr<Private> const d;
+    std::unique_ptr<FeedPrivate> const d;
 };
 } // namespace Akregator
 

@@ -24,6 +24,7 @@ class Storage;
 }
 
 class FeedList;
+class LoadFeedListCommandPrivate;
 
 class LoadFeedListCommand : public Command
 {
@@ -44,8 +45,8 @@ private:
     void doAbort() override;
 
 private:
-    class Private;
-    std::unique_ptr<Private> const d;
+    friend class LoadFeedListCommandPrivate;
+    std::unique_ptr<LoadFeedListCommandPrivate> const d;
 };
 }
 

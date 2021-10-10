@@ -20,12 +20,12 @@
 
 using namespace Akregator;
 
-class Q_DECL_HIDDEN CreateFolderCommand::Private
+class Akregator::CreateFolderCommandPrivate
 {
     CreateFolderCommand *const q;
 
 public:
-    explicit Private(CreateFolderCommand *qq);
+    explicit CreateFolderCommandPrivate(CreateFolderCommand *qq);
 
     void doCreate();
 
@@ -34,12 +34,12 @@ public:
     SubscriptionListView *m_subscriptionListView = nullptr;
 };
 
-CreateFolderCommand::Private::Private(CreateFolderCommand *qq)
+CreateFolderCommandPrivate::CreateFolderCommandPrivate(CreateFolderCommand *qq)
     : q(qq)
 {
 }
 
-void CreateFolderCommand::Private::doCreate()
+void CreateFolderCommandPrivate::doCreate()
 {
     Q_ASSERT(m_rootFolder);
     Q_ASSERT(m_subscriptionListView);
@@ -68,7 +68,7 @@ void CreateFolderCommand::Private::doCreate()
 
 CreateFolderCommand::CreateFolderCommand(QObject *parent)
     : Command(parent)
-    , d(new Private(this))
+    , d(new CreateFolderCommandPrivate(this))
 {
 }
 

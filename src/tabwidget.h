@@ -18,6 +18,7 @@ namespace Akregator
 {
 class Frame;
 class OpenUrlRequest;
+class TabWidgetPrivate;
 
 class TabWidget : public QTabWidget
 {
@@ -84,8 +85,9 @@ private Q_SLOTS:
 
 private:
     void closeAllTabExcept(int index = -1);
-    class Private;
-    std::unique_ptr<Private> const d;
+
+private:
+    std::unique_ptr<TabWidgetPrivate> const d;
 };
 } // namespace Akregator
 
