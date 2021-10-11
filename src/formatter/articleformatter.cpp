@@ -22,19 +22,7 @@
 using namespace Syndication;
 using namespace Akregator;
 
-class Akregator::ArticleFormatterPrivate
-{
-public:
-    explicit ArticleFormatterPrivate();
-    class SummaryVisitor;
-};
-
-ArticleFormatterPrivate::ArticleFormatterPrivate()
-{
-}
-
 ArticleFormatter::ArticleFormatter()
-    : d(new ArticleFormatterPrivate())
 {
 }
 

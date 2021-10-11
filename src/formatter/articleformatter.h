@@ -11,8 +11,6 @@
 #include <QVector>
 #include <enclosure.h>
 
-#include <memory>
-
 namespace Akregator
 {
 class Article;
@@ -35,7 +33,6 @@ public:
     static QString formatEnclosure(const Syndication::Enclosure &enclosure);
 
 private:
-    std::unique_ptr<ArticleFormatterPrivate> const d;
     Q_DISABLE_COPY(ArticleFormatter)
 };
 } // namespace Akregator
