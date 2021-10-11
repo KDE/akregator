@@ -81,6 +81,7 @@ private Q_SLOTS:
 
 private:
     void updateHamburgerMenu();
+    void slotToggleMenubar(bool dontShowWarning);
     QPointer<Akregator::Part> m_part;
     KSqueezedTextLabel *const m_statusLabel;
     KHamburgerMenu *mHamburgerMenu = nullptr;
