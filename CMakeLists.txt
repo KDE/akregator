@@ -112,7 +112,6 @@ add_subdirectory(plugins)
 add_subdirectory(configuration)
 add_subdirectory(src)
 add_subdirectory(kontactplugin)
-add_subdirectory(kconf_update)
 
 ecm_qt_install_logging_categories(
         EXPORT AKREGATOR
