@@ -37,16 +37,19 @@ void StatusSearchLine::initializeHash()
     const QIcon iconAll = QIcon::fromTheme(QStringLiteral("system-run"));
     const QIcon iconNew = QIcon::fromTheme(QStringLiteral("mail-mark-unread-new"));
     const QIcon iconUnread = QIcon::fromTheme(QStringLiteral("mail-mark-unread"));
+    const QIcon iconRead = QIcon::fromTheme(QStringLiteral("mail-mark-read"));
     const QIcon iconKeep = QIcon::fromTheme(QStringLiteral("mail-mark-important"));
 
     StatusInfo statusAll(i18n("All Articles"), iconAll);
     StatusInfo statusUnread(i18nc("Unread articles filter", "Unread"), iconUnread);
     StatusInfo statusNew(i18nc("New articles filter", "New"), iconNew);
+    StatusInfo statusRead(i18nc("Read articles filter", "Read"), iconRead);
     StatusInfo statusImportant(i18nc("Important articles filter", "Important"), iconKeep);
 
     mHashStatus.insert(AllArticles, statusAll);
     mHashStatus.insert(NewArticles, statusNew);
     mHashStatus.insert(UnreadArticles, statusUnread);
+    mHashStatus.insert(ReadArticles, statusRead);
     mHashStatus.insert(ImportantArticles, statusImportant);
 }
 

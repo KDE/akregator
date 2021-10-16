@@ -16,7 +16,7 @@ class StatusSearchLine : public KLineEdit
 {
     Q_OBJECT
 public:
-    enum Status { AllArticles = 0, NewArticles, UnreadArticles, ImportantArticles };
+    enum Status { AllArticles = 0, NewArticles, UnreadArticles, ReadArticles, ImportantArticles };
 
     explicit StatusSearchLine(QWidget *parent = nullptr);
     ~StatusSearchLine() override;

@@ -158,6 +158,11 @@ void SearchBar::slotActivateSearch()
         statusCriteria << crit2;
         break;
     }
+    case StatusSearchLine::ReadArticles: {
+        Criterion crit(Criterion::Status, Criterion::Equals, Read);
+        statusCriteria << crit;
+        break;
+    }
     case StatusSearchLine::ImportantArticles: {
         Criterion crit(Criterion::KeepFlag, Criterion::Equals, true);
         statusCriteria << crit;
