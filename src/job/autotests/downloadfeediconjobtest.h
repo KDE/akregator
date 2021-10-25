@@ -13,7 +13,7 @@ class DownloadFeedIconJobTest : public QObject
     Q_OBJECT
 public:
     explicit DownloadFeedIconJobTest(QObject *parent = nullptr);
-    ~DownloadFeedIconJobTest() = default;
+    ~DownloadFeedIconJobTest() override = default;
 private Q_SLOTS:
     void shouldHaveDefaultValues();
 };

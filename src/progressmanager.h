@@ -58,7 +58,7 @@ class ProgressItemHandler : public QObject
     Q_OBJECT
 public:
     explicit ProgressItemHandler(Feed *feed);
-    ~ProgressItemHandler();
+    ~ProgressItemHandler() override;
 
 public Q_SLOTS:
 

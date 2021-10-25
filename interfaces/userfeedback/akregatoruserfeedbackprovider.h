@@ -15,6 +15,6 @@ class AKREGATORINTERFACES_EXPORT AkregatorUserFeedbackProvider : public KUserFee
     Q_OBJECT
 public:
     explicit AkregatorUserFeedbackProvider(QObject *parent = nullptr);
-    ~AkregatorUserFeedbackProvider();
+    ~AkregatorUserFeedbackProvider() override;
 };
 }
