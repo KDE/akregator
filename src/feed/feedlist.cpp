@@ -19,7 +19,6 @@
 #include "subscriptionlistjobs.h"
 #include <KLocalizedString>
 #include <limits>
-#include <memory>
 
 #include <QElapsedTimer>
 #include <QHash>

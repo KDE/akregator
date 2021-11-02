@@ -10,7 +10,6 @@
 #include "storagefactory.h"
 
 #include <QString>
-#include <QStringList>
 
 namespace Akregator
 {

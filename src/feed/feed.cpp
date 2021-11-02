@@ -37,7 +37,6 @@
 
 #include <KIO/FavIconRequestJob>
 #include <QStandardPaths>
-#include <memory>
 
 using Syndication::ItemPtr;
 using namespace Akregator;

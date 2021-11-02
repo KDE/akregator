@@ -9,7 +9,6 @@
 #include "storagedummyimpl.h"
 
 #include <KLocalizedString>
-#include <QStringList>
 
 using namespace Akregator::Backend;
 Storage *StorageFactoryDummyImpl::createStorage(const QStringList &params) const
