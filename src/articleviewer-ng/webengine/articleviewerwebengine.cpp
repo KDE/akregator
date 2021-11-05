@@ -412,7 +412,12 @@ void ArticleViewerWebEngine::forwardMouseReleaseEvent(QMouseEvent *event)
 
 bool ArticleViewerWebEngine::urlIsAMalwareButContinue()
 {
-    if (KMessageBox::No == KMessageBox::warningYesNo(this, i18n("This web site is a malware, do you want to continue to show it?"), i18n("Malware"))) {
+    if (KMessageBox::No
+        == KMessageBox::warningYesNo(this,
+                                     i18n("This web site is a malware, do you want to continue to show it?"),
+                                     i18n("Malware"),
+                                     KStandardGuiItem::cont(),
+                                     KStandardGuiItem::cancel())) {
         return false;
     }
     return true;
