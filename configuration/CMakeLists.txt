@@ -7,7 +7,7 @@ include_directories(
 ########### next target ###############
 
 add_library(akregator_config_general MODULE)
-target_sources(akregator_config_general PRIVATE akregator_config_general.cpp)
+target_sources(akregator_config_general PRIVATE akregator_config_general.cpp akregator_config_general.h)
 
 ki18n_wrap_ui(akregator_config_general ui/settings_general.ui)
 
@@ -25,7 +25,7 @@ install(TARGETS akregator_config_general DESTINATION ${KDE_INSTALL_PLUGINDIR}/pi
 ########### next target ###############
 
 add_library(akregator_config_appearance MODULE  )
-target_sources(akregator_config_appearance PRIVATE akregator_config_appearance.cpp)
+target_sources(akregator_config_appearance PRIVATE akregator_config_appearance.cpp akregator_config_appearance.h)
 
 ki18n_wrap_ui(akregator_config_appearance ui/settings_appearance.ui)
 
@@ -44,7 +44,7 @@ install(TARGETS akregator_config_appearance DESTINATION ${KDE_INSTALL_PLUGINDIR}
 
 add_library(akregator_config_archive MODULE)
 kcoreaddons_desktop_to_json(akregator_config_archive akregator_config_archive.desktop SERVICE_TYPES kcmodule.desktop)
-target_sources(akregator_config_archive PRIVATE akregator_config_archive.cpp)
+target_sources(akregator_config_archive PRIVATE akregator_config_archive.cpp akregator_config_archive.h)
 
 ki18n_wrap_ui(akregator_config_archive ui/settings_archive.ui)
 
@@ -133,7 +133,7 @@ install(TARGETS akregator_config_plugins DESTINATION ${KDE_INSTALL_PLUGINDIR}/pi
 ########### next target ###############
 if (TARGET KUserFeedbackWidgets)
     add_library(akregator_config_userfeedback MODULE)
-    target_sources(akregator_config_userfeedback PRIVATE akregator_config_userfeedback.cpp)
+    target_sources(akregator_config_userfeedback PRIVATE akregator_config_userfeedback.cpp akregator_config_userfeedback.h)
 
 
     target_link_libraries(akregator_config_userfeedback

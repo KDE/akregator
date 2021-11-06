@@ -92,6 +92,51 @@ target_sources(akregatorprivate PRIVATE
     actions/actionmanager.cpp
     actions/actions.cpp
     akregator.qrc
+
+    articleviewer-ng/webengine/articleviewerwebengine.h
+    articleviewer-ng/webengine/articleviewerwebenginepage.h
+    articleviewer-ng/webengine/articlehtmlwebenginewriter.h
+    articleviewer-ng/webengine/articleviewerwebenginewidgetng.h
+
+    job/downloadarticlejob.h
+    job/downloadfeediconjob.h
+
+    formatter/articleformatter.h
+    formatter/defaultnormalviewformatter.h
+    formatter/defaultcombinedviewformatter.h
+    formatter/grantleeviewformatter.h
+    formatter/articlegrantleeobject.h
+    formatter/grantleeutil.h
+
+    frame/webengine/webengineframe.h
+    frame/webengine/akrwebengineviewer.h
+    frame/frame.h
+    frame/mainframe.h
+    frame/framemanager.h
+
+    urlhandler/webengine/urlhandlerwebengine.h
+    urlhandler/webengine/urlhandlerwebenginemanager.h
+    akregratormigrateapplication.h
+    articleviewerwidget.h
+    aboutdata.h
+    trayicon.h
+    unityservicemanager.h
+    feed/feed.h
+    feed/feedlist.h
+    feed/feedretriever.h
+    treenode.h
+    treenodevisitor.h
+    utils.h
+    notificationmanager.h
+    articlejobs.h
+    folder.h
+    kernel.h
+    subscription/subscriptionlistjobs.h
+    fetchqueue.h
+    openurlrequest.h
+    actions/actionmanager.h
+    actions/actions.h
+
     )
 
 
@@ -177,6 +222,44 @@ target_sources(akregatorpart PRIVATE
     dummystorage/storagedummyimpl.cpp
     dummystorage/storagefactorydummyimpl.cpp
     dummystorage/feedstoragedummyimpl.cpp
+
+    crashwidget/crashwidget.h
+
+    utils/filtercolumnsproxymodel.h
+
+    command/deletesubscriptioncommand.h
+    command/createfeedcommand.h
+    command/createfoldercommand.h
+    command/expireitemscommand.h
+    command/loadfeedlistcommand.h
+    command/editsubscriptioncommand.h
+    command/importfeedlistcommand.h
+
+    widgets/statussearchline.h
+    widgets/searchbar.h
+    widgets/akregatorcentralwidget.h
+
+    subscription/subscriptionlistview.h
+    subscription/subscriptionlistdelegate.h
+    subscription/subscriptionlistmodel.h
+
+    abstractselectioncontroller.h
+    articlematcher.h
+    articlemodel.h
+    pluginmanager.h
+    selectioncontroller.h
+    articlelistview.h
+    actions/actionmanagerimpl.h
+    addfeeddialog.h
+    feed/feedpropertiesdialog.h
+    tabwidget.h
+    progressmanager.h
+    akregator_part.h
+    mainwidget.h
+    dummystorage/storagedummyimpl.h
+    dummystorage/storagefactorydummyimpl.h
+    dummystorage/feedstoragedummyimpl.h
+
     )
 
 ki18n_wrap_ui(akregatorpart
