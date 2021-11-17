@@ -7,7 +7,6 @@
  *
  */
 #include "feedstorage.h"
-#include "kcoreaddons_version.h"
 #include "plugin.h"
 #include "storage.h"
 #include "storagefactory.h"
@@ -15,6 +14,7 @@
 #include <KLocalizedString>
 #include <Syndication/Atom/Atom>
 #include <Syndication/Constants>
+#include <kcoreaddons_version.h>
 
 #include <QDateTime>
 #include <QFile>

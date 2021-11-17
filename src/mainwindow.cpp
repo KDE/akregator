@@ -9,11 +9,11 @@
 #include "mainwindow.h"
 #include "akregator_part.h"
 #include "akregatorconfig.h"
-#include "kcoreaddons_version.h"
 #include "trayicon.h"
 #include <Libkdepim/ProgressStatusBarWidget>
 #include <Libkdepim/StatusbarProgressWidget>
 #include <PimCommon/BroadcastStatus>
+#include <kcoreaddons_version.h>
 
 #include <KActionCollection>
 #include <KConfig>

@@ -22,7 +22,6 @@
 #include "feedlist.h"
 #include "fetchqueue.h"
 #include "framemanager.h"
-#include "kcoreaddons_version.h"
 #include "kernel.h"
 #include "loadfeedlistcommand.h"
 #include "mainwidget.h"
@@ -43,6 +42,7 @@
 #include <KPluginMetaData>
 #include <PimCommon/BroadcastStatus>
 #include <QFileDialog>
+#include <kcoreaddons_version.h>
 
 #include <KCMultiDialog>
 #include <KIO/StoredTransferJob>
