@@ -74,7 +74,7 @@ void NotificationManager::doNotify()
     const int maxNewArticlesShown = 2;
 
     // adding information about how many new articles
-    auto feedClosure = [&entriesCount, &message, maxNewArticlesShown]() {
+    auto feedClosure = [&entriesCount, &message]() {
         if ((entriesCount - maxNewArticlesShown) > 1) {
             message += i18np("<i>and 1 other</i>", "<i>and %1 others</i>", entriesCount - maxNewArticlesShown - 1) + QLatin1String("<br>");
         }

@@ -49,7 +49,7 @@ public:
     QWidget *currentItem = nullptr;
     QToolButton *tabsClose = nullptr;
 
-    QWidget *selectedWidget() const
+    Q_REQUIRED_RESULT QWidget *selectedWidget() const
     {
         return (currentItem && q->indexOf(currentItem) != -1) ? currentItem : q->currentWidget();
     }

@@ -114,32 +114,32 @@ public:
     {
     }
 
-    QString url() const override
+    Q_REQUIRED_RESULT QString url() const override
     {
         return m_url;
     }
 
-    QString type() const override
+    Q_REQUIRED_RESULT QString type() const override
     {
         return m_type;
     }
 
-    QString title() const override
+    Q_REQUIRED_RESULT QString title() const override
     {
         return m_title;
     }
 
-    uint length() const override
+    Q_REQUIRED_RESULT uint length() const override
     {
         return m_length;
     }
 
-    uint duration() const override
+    Q_REQUIRED_RESULT uint duration() const override
     {
         return 0;
     }
 
-    bool isNull() const override
+    Q_REQUIRED_RESULT bool isNull() const override
     {
         return m_url.isNull();
     }
