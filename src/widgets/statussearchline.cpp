@@ -19,9 +19,7 @@ StatusSearchLine::StatusSearchLine(QWidget *parent)
     initializeActions();
 }
 
-StatusSearchLine::~StatusSearchLine()
-{
-}
+StatusSearchLine::~StatusSearchLine() = default;
 
 void StatusSearchLine::keyPressEvent(QKeyEvent *e)
 {

@@ -28,9 +28,7 @@ AddFeedWidget::AddFeedWidget(QWidget *parent)
     statusLabel->setText(QString());
 }
 
-AddFeedWidget::~AddFeedWidget()
-{
-}
+AddFeedWidget::~AddFeedWidget() = default;
 
 QSize AddFeedDialog::sizeHint() const
 {
@@ -68,9 +66,7 @@ AddFeedDialog::AddFeedDialog(QWidget *parent, const QString &name)
     mOkButton->setEnabled(false);
 }
 
-AddFeedDialog::~AddFeedDialog()
-{
-}
+AddFeedDialog::~AddFeedDialog() = default;
 
 void AddFeedDialog::setUrl(const QString &t)
 {

@@ -134,7 +134,7 @@
 extern void f4_memmove(void *d, const void *s, int n);
 #endif
 
-typedef unsigned char t4_byte; // create typedefs for t4_byte, etc.
+using t4_byte = unsigned char; // create typedefs for t4_byte, etc.
 
 /////////////////////////////////////////////////////////////////////////////
 // Include header files which contain additional os/cpu/ide/fw specifics
@@ -193,7 +193,7 @@ void f4_DoLogProp(const c4_Handler *, int, const char *, int);
 #pragma warning(disable: 4100 4127 4135 4244 4511 4512 4514)
 #endif
 
-#include <string.h>
+#include <cstring>
 
 /////////////////////////////////////////////////////////////////////////////
 // Report unexpected combinations of settings

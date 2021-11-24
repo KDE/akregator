@@ -8,7 +8,7 @@
 #include "header.h"
 #include "field.h"
 
-#include <stdlib.h>   // strtol
+#include <cstdlib> // strtol
 
 #if !q4_INLINE
 #endif
@@ -54,7 +54,7 @@ c4_Field::c4_Field(const char * &description_, c4_Field *parent_) : _type(0)
             do {
                 // 2004-01-20 ignore duplicate property names
                 // (since there is no good way to report errors at this point)
-                c4_Field *sf = d4_new c4_Field(description_, this);
+                auto *sf = d4_new c4_Field(description_, this);
                 for (int i = 0; i < NumSubFields(); ++i) {
                     if (SubField(i).Name().CompareNoCase(sf->Name()) == 0) {
                         delete sf;

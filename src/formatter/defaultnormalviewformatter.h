@@ -23,7 +23,7 @@ public:
     Q_REQUIRED_RESULT QString formatSummary(TreeNode *node) const override;
 
 private:
-    DefaultNormalViewFormatter();
+    DefaultNormalViewFormatter() = delete;
     QString m_DefaultThemePath;
     class SummaryVisitor;
     SummaryVisitor *m_summaryVisitor = nullptr;

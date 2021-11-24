@@ -31,9 +31,7 @@ GrantleeViewFormatter::GrantleeViewFormatter(const QString &htmlFileName, const 
     setApplicationDomain("akregator");
 }
 
-GrantleeViewFormatter::~GrantleeViewFormatter()
-{
-}
+GrantleeViewFormatter::~GrantleeViewFormatter() = default;
 
 int GrantleeViewFormatter::pointsToPixel(int pointSize) const
 {

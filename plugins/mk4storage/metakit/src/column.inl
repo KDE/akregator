@@ -58,7 +58,7 @@ d4_inline const t4_byte* c4_Column::LoadNow(t4_i32 offset_)
   if (offset_ >= _gap)
     offset_ += _slack;
 
-  t4_byte* ptr = (t4_byte*) _segments.GetAt(fSegIndex(offset_));
+  auto* ptr = (t4_byte*) _segments.GetAt(fSegIndex(offset_));
   return ptr + fSegRest(offset_); 
 }
 

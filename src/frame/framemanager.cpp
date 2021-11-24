@@ -30,9 +30,7 @@ FrameManager::FrameManager(QObject *parent)
 {
 }
 
-FrameManager::~FrameManager()
-{
-}
+FrameManager::~FrameManager() = default;
 
 Frame *FrameManager::currentFrame() const
 {

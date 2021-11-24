@@ -14,6 +14,4 @@ AbstractSelectionController::AbstractSelectionController(QObject *parent)
 {
 }
 
-AbstractSelectionController::~AbstractSelectionController()
-{
-}
+AbstractSelectionController::~AbstractSelectionController() = default;

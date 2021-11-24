@@ -22,16 +22,14 @@
 using namespace Syndication;
 using namespace Akregator;
 
-ArticleFormatter::ArticleFormatter()
-{
-}
+ArticleFormatter::ArticleFormatter() = default;
 
 ArticleFormatter::~ArticleFormatter() = default;
 
 QString ArticleFormatter::formatEnclosure(const Enclosure &enclosure)
 {
     if (enclosure.isNull()) {
-        return QString();
+        return {};
     }
 
     const QString title = !enclosure.title().isEmpty() ? enclosure.title() : enclosure.url();

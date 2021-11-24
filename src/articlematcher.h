@@ -96,9 +96,7 @@ public:
 
     Criterion();
     Criterion(Subject subject, Predicate predicate, const QVariant &object);
-    virtual ~Criterion()
-    {
-    }
+    virtual ~Criterion() = default;
 
     bool satisfiedBy(const Article &article) const;
 

@@ -47,8 +47,8 @@ public:
     //: Describes just the subfields, omit names if anonymous.
 
 private:
-    c4_Field(const c4_Field &); // not implemented
-    void operator =(const c4_Field &);  // not implemented
+    c4_Field(const c4_Field &) = delete; // not implemented
+    void operator=(const c4_Field &) = delete; // not implemented
 };
 
 /////////////////////////////////////////////////////////////////////////////

@@ -44,6 +44,4 @@ AboutData::AboutData()
     addCredit(i18n("Philipp Droessler"), i18n("Gentoo Ebuild"), QStringLiteral("kingmob@albert-unser.net"));
 }
 
-AboutData::~AboutData()
-{
-}
+AboutData::~AboutData() = default;

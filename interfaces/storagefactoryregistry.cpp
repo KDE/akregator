@@ -55,9 +55,7 @@ QStringList StorageFactoryRegistry::list() const
     return m_map.keys();
 }
 
-StorageFactoryRegistry::StorageFactoryRegistry()
-{
-}
+StorageFactoryRegistry::StorageFactoryRegistry() = default;
 
 StorageFactoryRegistry::~StorageFactoryRegistry()
 {

@@ -81,7 +81,7 @@ void SortColorizeProxyModel::setFilters(const std::vector<QSharedPointer<const F
 QVariant SortColorizeProxyModel::data(const QModelIndex &idx, int role) const
 {
     if (!idx.isValid() || !sourceModel()) {
-        return QVariant();
+        return {};
     }
 
     const QModelIndex sourceIdx = mapToSource(idx);
@@ -259,7 +259,7 @@ QAbstractItemView *ArticleListView::itemView()
 
 QPoint ArticleListView::scrollBarPositions() const
 {
-    return QPoint(horizontalScrollBar()->value(), verticalScrollBar()->value());
+    return {horizontalScrollBar()->value(), verticalScrollBar()->value()};
 }
 
 void ArticleListView::setScrollBarPositions(const QPoint &p)

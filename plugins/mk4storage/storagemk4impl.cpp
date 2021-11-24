@@ -60,7 +60,7 @@ Akregator::Backend::StorageMK4Impl::StorageMK4Impl() : d(new StorageMK4ImplPriva
 Akregator::Backend::FeedStorageMK4Impl *Akregator::Backend::StorageMK4Impl::StorageMK4ImplPrivate::createFeedStorage(const QString &url)
 {
     if (!feeds.contains(url)) {
-        Akregator::Backend::FeedStorageMK4Impl *fs = new Akregator::Backend::FeedStorageMK4Impl(url, q);
+        auto *fs = new Akregator::Backend::FeedStorageMK4Impl(url, q);
         feeds[url] = fs;
         c4_Row findrow;
         purl(findrow) = url.toLatin1().constData();
@@ -303,7 +303,7 @@ void Akregator::Backend::StorageMK4Impl::storeFeedList(const QString &opmlStr)
 QString Akregator::Backend::StorageMK4Impl::restoreFeedList() const
 {
     if (d->feedListView.GetSize() == 0) {
-        return QString();
+        return {};
     }
 
     c4_Row row = d->feedListView.GetAt(0);

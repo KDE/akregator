@@ -36,9 +36,7 @@ ArticleViewerWebEnginePage::ArticleViewerWebEnginePage(QObject *parent)
     connect(this, &QWebEnginePage::loadProgress, this, &ArticleViewerWebEnginePage::onLoadProgress);
 }
 
-ArticleViewerWebEnginePage::~ArticleViewerWebEnginePage()
-{
-}
+ArticleViewerWebEnginePage::~ArticleViewerWebEnginePage() = default;
 
 bool ArticleViewerWebEnginePage::acceptNavigationRequest(const QUrl &url, NavigationType type, bool isMainFrame)
 {

@@ -204,16 +204,16 @@ class c4_Persist;                   // not defined here
 #define d4_inline
 #endif
 
-typedef unsigned char t4_byte;  // create typedefs for t4_byte, etc.
+using t4_byte = unsigned char; // create typedefs for t4_byte, etc.
 
 #if defined(q4_LONG64)
-typedef int t4_i32;             // if longs are 64b, then int must be 32b
+using t4_i32 = int; // if longs are 64b, then int must be 32b
 #else
 typedef long t4_i32;            // if longs aren't 64b, then they are 32b
 #endif
 
 #if defined(q4_LONG64)           // choose a way to represent 64b integers
-typedef long t4_i64;
+using t4_i64 = long;
 #elif defined (LONG_LONG)
 typedef LONG_LONG t4_i64;
 #elif defined(HAVE_LONG_LONG)
@@ -933,8 +933,8 @@ public: //! for c4_Table::Sequence setup
     c4_Bytes &Buffer();
 
 private:
-    c4_Sequence(const c4_Sequence &);   // not implemented
-    void operator=(const c4_Sequence &);  // not implemented
+    c4_Sequence(const c4_Sequence &) = delete; // not implemented
+    void operator=(const c4_Sequence &) = delete; // not implemented
 };
 
 //---------------------------------------------------------------------------

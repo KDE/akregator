@@ -22,6 +22,4 @@ void FeedListManagementInterface::setInstance(FeedListManagementInterface *iface
     m_instance = iface;
 }
 
-FeedListManagementInterface::~FeedListManagementInterface()
-{
-}
+FeedListManagementInterface::~FeedListManagementInterface() = default;

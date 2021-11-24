@@ -137,7 +137,7 @@ bool c4_Column::RequiresMap() const
 
 void c4_Column::ReleaseSegment(int index_)
 {
-    t4_byte *p = (t4_byte *)_segments.GetAt(index_);
+    auto *p = (t4_byte *)_segments.GetAt(index_);
     if (!UsesMap(p)) {
         delete [] p;
     }
@@ -274,7 +274,7 @@ void c4_Column::SetupSegments()
                 chunk = fSegRest(_size);
             }
 
-            t4_byte *p = d4_new t4_byte[chunk];
+            auto *p = d4_new t4_byte[chunk];
             _segments.SetAt(i, p);
 
             if (_position > 0) {
@@ -318,7 +318,7 @@ t4_byte *c4_Column::CopyNow(t4_i32 offset_)
 t4_byte *c4_Column::CopyData(t4_i32 to_, t4_i32 from_, int count_)
 {
     int i = fSegIndex(to_);
-    t4_byte *p = (t4_byte *)_segments.GetAt(i);
+    auto *p = (t4_byte *)_segments.GetAt(i);
 
     if (UsesMap(p)) {
         int n = kSegMax;
@@ -328,7 +328,7 @@ t4_byte *c4_Column::CopyData(t4_i32 to_, t4_i32 from_, int count_)
 
         d4_assert(n > 0);
 
-        t4_byte *q = d4_new t4_byte[n];
+        auto *q = d4_new t4_byte[n];
         memcpy(q, p, n); // some copying can be avoided, overwritten below...
         _segments.SetAt(i, q);
 
@@ -340,7 +340,7 @@ t4_byte *c4_Column::CopyData(t4_i32 to_, t4_i32 from_, int count_)
     if (count_ > 0) {
         d4_assert(fSegIndex(to_ + count_ - 1) == i);
 
-        const t4_byte *src = (const t4_byte *)_segments.GetAt(fSegIndex(from_));
+        const auto *src = (const t4_byte *)_segments.GetAt(fSegIndex(from_));
         d4_memmove(p, src + fSegRest(from_), count_);
     }
 
@@ -548,7 +548,7 @@ void c4_Column::RemoveGap()
             }
 
             // truncate rest of segment
-            t4_byte *p = d4_new t4_byte[n];
+            auto *p = d4_new t4_byte[n];
             memcpy(p, _segments.GetAt(i), n);
 
             ReleaseSegment(i);
@@ -854,7 +854,7 @@ void c4_Column::PushValue(t4_byte * &ptr_, t4_i32 v_)
 
     while (n) {
         n -= 7;
-        t4_byte b = (t4_byte)((v_ >> n) & 0x7F);
+        auto b = (t4_byte)((v_ >> n) & 0x7F);
         if (!n) {
             b |= 0x80;
         }
@@ -1483,7 +1483,7 @@ void c4_ColOfInts::ResizeData(int index_, int count_, bool clear_)
 
     if (!(_currWidth & 7)) {
         // not 1, 2, or 4
-        const t4_i32 w = (t4_i32)(_currWidth >> 3);
+        const auto w = (t4_i32)(_currWidth >> 3);
         if (count_ > 0) {
             InsertData(index_ * w, count_ * w, clear_);
         } else {

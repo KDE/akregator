@@ -33,7 +33,7 @@ QString buildTitle(const QString &description)
 {
     QString s = description;
     if (description.trimmed().isEmpty()) {
-        return QString();
+        return {};
     }
 
     int i = s.indexOf(QLatin1Char('>'), 500); /*avoid processing too much */
@@ -443,7 +443,7 @@ QString Article::authorShort() const
     if (!uri.isEmpty()) {
         return uri;
     }
-    return QString();
+    return {};
 }
 
 QString Article::authorAsHtml() const
@@ -471,7 +471,7 @@ QString Article::authorAsHtml() const
     if (!uri.isEmpty()) {
         return QStringLiteral("<a href=\"%1\">%1</a>").arg(uri);
     }
-    return QString();
+    return {};
 }
 
 QUrl Article::link() const

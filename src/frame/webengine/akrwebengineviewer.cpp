@@ -52,9 +52,7 @@ AkrWebEngineViewer::AkrWebEngineViewer(KActionCollection *ac, QWidget *parent)
     settings()->setAttribute(QWebEngineSettings::AutoLoadIconsForPage, false);
 }
 
-AkrWebEngineViewer::~AkrWebEngineViewer()
-{
-}
+AkrWebEngineViewer::~AkrWebEngineViewer() = default;
 
 void AkrWebEngineViewer::updateSecurity()
 {

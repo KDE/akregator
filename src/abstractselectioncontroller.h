@@ -33,9 +33,7 @@ class AbstractMatcher;
 class ArticleLister
 {
 public:
-    virtual ~ArticleLister()
-    {
-    }
+    virtual ~ArticleLister() = default;
 
     virtual void setArticleModel(Akregator::ArticleModel *model) = 0;
 
@@ -59,9 +57,7 @@ public:
 class SingleArticleDisplay
 {
 public:
-    virtual ~SingleArticleDisplay()
-    {
-    }
+    virtual ~SingleArticleDisplay() = default;
 
     virtual void showArticle(const Akregator::Article &article) = 0;
 };

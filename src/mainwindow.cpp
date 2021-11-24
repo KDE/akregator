@@ -106,7 +106,7 @@ void MainWindow::slotToggleMenubar(bool dontShowWarning)
 
 void MainWindow::updateHamburgerMenu()
 {
-    QMenu *menu = new QMenu(this);
+    auto *menu = new QMenu(this);
     menu->addAction(actionCollection()->action(QLatin1String(KStandardAction::name(KStandardAction::Quit))));
     mHamburgerMenu->setMenu(menu);
 }
@@ -144,9 +144,7 @@ void MainWindow::setupProgressWidgets()
     statusBar()->addPermanentWidget(progressStatusBarWidget->littleProgress(), 0);
 }
 
-MainWindow::~MainWindow()
-{
-}
+MainWindow::~MainWindow() = default;
 
 void MainWindow::saveProperties(KConfigGroup &config)
 {

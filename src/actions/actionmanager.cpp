@@ -26,6 +26,4 @@ ActionManager::ActionManager(QObject *parent)
 {
 }
 
-ActionManager::~ActionManager()
-{
-}
+ActionManager::~ActionManager() = default;

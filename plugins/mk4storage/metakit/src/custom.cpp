@@ -36,9 +36,7 @@ c4_CustomHandler::c4_CustomHandler(const c4_Property &prop_, c4_CustomSeq *seq_)
     d4_assert(_seq != 0);
 }
 
-c4_CustomHandler::~c4_CustomHandler()
-{
-}
+c4_CustomHandler::~c4_CustomHandler() = default;
 
 int c4_CustomHandler::ItemSize(int index_)
 {
@@ -202,9 +200,7 @@ void c4_CustomSeq::DoSet(int row_, int col_, const c4_Bytes &buf_)
  *  view goes away.  See the DBF2MK sample code for an example of a viewer.
  */
 
-c4_CustomViewer::~c4_CustomViewer()
-{
-}
+c4_CustomViewer::~c4_CustomViewer() = default;
 
 /// Locate a row in this view, try to use native searches
 int c4_CustomViewer::Lookup(c4_Cursor, int &count_)
@@ -259,9 +255,7 @@ c4_SliceViewer::c4_SliceViewer(c4_Sequence &seq_, int first_, int limit_, int
     d4_assert(_step != 0);
 }
 
-c4_SliceViewer::~c4_SliceViewer()
-{
-}
+c4_SliceViewer::~c4_SliceViewer() = default;
 
 c4_View c4_SliceViewer::GetTemplate()
 {
@@ -355,9 +349,7 @@ c4_ProductViewer::c4_ProductViewer(c4_Sequence &seq_, const c4_View &view_)
     }
 }
 
-c4_ProductViewer::~c4_ProductViewer()
-{
-}
+c4_ProductViewer::~c4_ProductViewer() = default;
 
 c4_View c4_ProductViewer::GetTemplate()
 {
@@ -413,9 +405,7 @@ c4_RemapWithViewer::c4_RemapWithViewer(c4_Sequence &seq_, const c4_View &view_)
 {
 }
 
-c4_RemapWithViewer::~c4_RemapWithViewer()
-{
-}
+c4_RemapWithViewer::~c4_RemapWithViewer() = default;
 
 c4_View c4_RemapWithViewer::GetTemplate()
 {
@@ -481,9 +471,7 @@ c4_PairViewer::c4_PairViewer(c4_Sequence &seq_, const c4_View &view_) : _parent
     }
 }
 
-c4_PairViewer::~c4_PairViewer()
-{
-}
+c4_PairViewer::~c4_PairViewer() = default;
 
 c4_View c4_PairViewer::GetTemplate()
 {
@@ -563,9 +551,7 @@ c4_ConcatViewer::c4_ConcatViewer(c4_Sequence &seq_, const c4_View &view_)
 {
 }
 
-c4_ConcatViewer::~c4_ConcatViewer()
-{
-}
+c4_ConcatViewer::~c4_ConcatViewer() = default;
 
 c4_View c4_ConcatViewer::GetTemplate()
 {
@@ -641,9 +627,7 @@ c4_RenameViewer::c4_RenameViewer(c4_Sequence &seq_, const c4_Property &old_, con
     }
 }
 
-c4_RenameViewer::~c4_RenameViewer()
-{
-}
+c4_RenameViewer::~c4_RenameViewer() = default;
 
 c4_View c4_RenameViewer::GetTemplate()
 {
@@ -725,9 +709,7 @@ c4_GroupByViewer::c4_GroupByViewer(c4_Sequence &seq_, const c4_View &keys_, cons
     d4_assert(j == groups);
 }
 
-c4_GroupByViewer::~c4_GroupByViewer()
-{
-}
+c4_GroupByViewer::~c4_GroupByViewer() = default;
 
 int c4_GroupByViewer::ScanTransitions(int lo_, int hi_, t4_byte *flags_, const
                                       c4_View &match_) const
@@ -873,9 +855,7 @@ c4_JoinPropViewer::c4_JoinPropViewer(c4_Sequence &seq_, const c4_ViewProp &sub_,
     }
 }
 
-c4_JoinPropViewer::~c4_JoinPropViewer()
-{
-}
+c4_JoinPropViewer::~c4_JoinPropViewer() = default;
 
 c4_View c4_JoinPropViewer::GetTemplate()
 {
@@ -997,9 +977,7 @@ c4_JoinViewer::c4_JoinViewer(c4_Sequence &seq_, const c4_View &keys_, const
     }
 }
 
-c4_JoinViewer::~c4_JoinViewer()
-{
-}
+c4_JoinViewer::~c4_JoinViewer() = default;
 
 c4_View c4_JoinViewer::GetTemplate()
 {

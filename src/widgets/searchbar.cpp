@@ -47,9 +47,7 @@ SearchBar::SearchBar(QWidget *parent)
     m_timer.setSingleShot(true);
 }
 
-SearchBar::~SearchBar()
-{
-}
+SearchBar::~SearchBar() = default;
 
 QString SearchBar::text() const
 {

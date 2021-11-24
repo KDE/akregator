@@ -26,7 +26,7 @@ using namespace Akregator;
 static QModelIndex prevIndex(const QModelIndex &idx)
 {
     if (!idx.isValid()) {
-        return QModelIndex();
+        return {};
     }
     const QAbstractItemModel *const model = idx.model();
     Q_ASSERT(model);
@@ -66,7 +66,7 @@ static QModelIndex lastLeaveChild(const QAbstractItemModel *const model)
 {
     Q_ASSERT(model);
     if (model->rowCount() == 0) {
-        return QModelIndex();
+        return {};
     }
     QModelIndex idx = model->index(model->rowCount() - 1, 0);
     while (model->hasChildren(idx)) {
@@ -78,7 +78,7 @@ static QModelIndex lastLeaveChild(const QAbstractItemModel *const model)
 static QModelIndex nextIndex(const QModelIndex &idx)
 {
     if (!idx.isValid()) {
-        return QModelIndex();
+        return {};
     }
     const QAbstractItemModel *const model = idx.model();
     Q_ASSERT(model);

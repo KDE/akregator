@@ -27,13 +27,9 @@ ProgressManager *ProgressManager::self()
     return m_self;
 }
 
-ProgressManager::ProgressManager()
-{
-}
+ProgressManager::ProgressManager() = default;
 
-ProgressManager::~ProgressManager()
-{
-}
+ProgressManager::~ProgressManager() = default;
 
 void ProgressManager::setFeedList(const QSharedPointer<FeedList> &feedList)
 {

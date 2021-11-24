@@ -23,7 +23,7 @@ public:
     Q_REQUIRED_RESULT QString formatSummary(TreeNode *node) const override;
 
 private:
-    DefaultCombinedViewFormatter();
+    DefaultCombinedViewFormatter() = delete;
     GrantleeViewFormatter *mGrantleeViewFormatter = nullptr;
 };
 }

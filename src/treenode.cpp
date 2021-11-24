@@ -107,12 +107,12 @@ Folder *TreeNode::parent()
 
 QList<const TreeNode *> TreeNode::children() const
 {
-    return QList<const TreeNode *>();
+    return {};
 }
 
 QList<TreeNode *> TreeNode::children()
 {
-    return QList<TreeNode *>();
+    return {};
 }
 
 const TreeNode *TreeNode::childAt(int pos) const

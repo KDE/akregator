@@ -36,9 +36,7 @@ c4_FormatHandler::c4_FormatHandler(const c4_Property &prop_, c4_HandlerSeq
 {
 }
 
-c4_FormatHandler::~c4_FormatHandler()
-{
-}
+c4_FormatHandler::~c4_FormatHandler() = default;
 
 d4_inline c4_HandlerSeq &c4_FormatHandler::Owner() const
 {
@@ -424,7 +422,7 @@ void c4_FormatB::Unmapped()
     _memoCol.ReleaseAllSegments();
 
     for (int i = 0; i < _memos.GetSize(); ++i) {
-        c4_Column *cp = (c4_Column *)_memos.GetAt(i);
+        auto *cp = (c4_Column *)_memos.GetAt(i);
         if (cp != nullptr) {
             cp->ReleaseAllSegments();
         }
@@ -458,7 +456,7 @@ void c4_FormatB::Define(int, const t4_byte **ptr_)
             row += c4_Column::PullValue(p);
             d4_assert(row < _memos.GetSize());
 
-            c4_Column *mc = d4_new c4_Column(_data.Persist());
+            auto *mc = d4_new c4_Column(_data.Persist());
             d4_assert(mc != 0);
             _memos.SetAt(row, mc);
 
@@ -489,7 +487,7 @@ void c4_FormatB::OldDefine(char type_, c4_Persist &pers_)
         for (int r = 0; r < rows; ++r) {
             t4_i32 sz = szVec.GetInt(r);
             if (sz > 0) {
-                c4_Column *mc = d4_new c4_Column(_data.Persist());
+                auto *mc = d4_new c4_Column(_data.Persist());
                 d4_assert(mc != 0);
                 _memos.SetAt(r, mc);
 
@@ -809,7 +807,7 @@ void c4_FormatB::Commit(c4_SaveContext &ar_)
 
     if (!full) {
         for (int i = 0; i < rows; ++i) {
-            c4_Column *col = (c4_Column *)_memos.GetAt(i);
+            auto *col = (c4_Column *)_memos.GetAt(i);
             if (col != nullptr) {
                 full = true;
                 break;
@@ -1028,7 +1026,7 @@ c4_HandlerSeq &c4_FormatV::At(int index_)
 {
     d4_assert(_inited);
 
-    c4_HandlerSeq * &hs = (c4_HandlerSeq * &)_subSeqs.ElementAt(index_);
+    auto &hs = (c4_HandlerSeq *&)_subSeqs.ElementAt(index_);
     if (hs == nullptr) {
         hs = d4_new c4_HandlerSeq(Owner(), this);
         hs->IncRef();
@@ -1093,7 +1091,7 @@ void c4_FormatV::OldDefine(char, c4_Persist &pers_)
         if (n) {
             // 14-11-2000: do not create again (this causes a mem leak)
             // 04-12-2000: but do create if absent (fixes occasional crash)
-            c4_HandlerSeq *hs = (c4_HandlerSeq *)_subSeqs.GetAt(i);
+            auto *hs = (c4_HandlerSeq *)_subSeqs.GetAt(i);
             if (hs == nullptr) {
                 hs = d4_new c4_HandlerSeq(Owner(), this);
                 _subSeqs.SetAt(i, hs);
@@ -1134,7 +1132,7 @@ const void *c4_FormatV::Get(int index_, int &length_)
     }
 
     At(index_); // forces existence of a real entry
-    c4_HandlerSeq * &e = (c4_HandlerSeq * &)_subSeqs.ElementAt(index_);
+    auto &e = (c4_HandlerSeq *&)_subSeqs.ElementAt(index_);
 
     length_ = sizeof(c4_HandlerSeq **);
     return &e;
@@ -1161,7 +1159,7 @@ void c4_FormatV::Replace(int index_, c4_HandlerSeq *seq_)
         SetupAllSubviews();
     }
 
-    c4_HandlerSeq * &curr = (c4_HandlerSeq * &)_subSeqs.ElementAt(index_);
+    auto &curr = (c4_HandlerSeq *&)_subSeqs.ElementAt(index_);
     if (seq_ == curr) {
         return;
     }
@@ -1276,7 +1274,7 @@ bool c4_FormatV::HasSubview(int index_)
 
 void c4_FormatV::ForgetSubview(int index_)
 {
-    c4_HandlerSeq * &seq = (c4_HandlerSeq * &)_subSeqs.ElementAt(index_);
+    auto &seq = (c4_HandlerSeq *&)_subSeqs.ElementAt(index_);
     if (seq != nullptr) {
         d4_assert(&seq->Parent() == &Owner());
         seq->DetachFromParent();

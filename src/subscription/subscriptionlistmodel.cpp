@@ -59,7 +59,7 @@ static QString errorCodeToString(Syndication::ErrorCode err)
     case Success:
     case Aborted:
     default:
-        return QString();
+        return {};
     }
 }
 
@@ -192,13 +192,13 @@ int Akregator::SubscriptionListModel::rowCount(const QModelIndex &parent) const
 QVariant Akregator::SubscriptionListModel::data(const QModelIndex &index, int role) const
 {
     if (!index.isValid()) {
-        return QVariant();
+        return {};
     }
 
     const Akregator::TreeNode *const node = nodeForIndex(index, m_feedList.data());
 
     if (!node) {
-        return QVariant();
+        return {};
     }
 
     const Feed *const feed = qobject_cast<const Feed *const>(node);
@@ -231,7 +231,7 @@ QVariant Akregator::SubscriptionListModel::data(const QModelIndex &index, int ro
     }
     case Qt::DecorationRole: {
         if (index.column() != TitleColumn) {
-            return QVariant();
+            return {};
         }
         const auto iconSize = QApplication::style()->pixelMetric(QStyle::PM_SmallIconSize);
         return feed && feed->isFetching() ? node->icon().pixmap(iconSize, QIcon::Active) : node->icon();
@@ -259,13 +259,13 @@ QVariant Akregator::SubscriptionListModel::data(const QModelIndex &index, int ro
         return node->unread() > 0;
     }
 
-    return QVariant();
+    return {};
 }
 
 QVariant Akregator::SubscriptionListModel::headerData(int section, Qt::Orientation, int role) const
 {
     if (role != Qt::DisplayRole) {
-        return QVariant();
+        return {};
     }
 
     switch (section) {
@@ -277,7 +277,7 @@ QVariant Akregator::SubscriptionListModel::headerData(int section, Qt::Orientati
         return i18nc("Feedlist's column header", "Total");
     }
 
-    return QVariant();
+    return {};
 }
 
 QModelIndex Akregator::SubscriptionListModel::parent(const QModelIndex &index) const
@@ -285,7 +285,7 @@ QModelIndex Akregator::SubscriptionListModel::parent(const QModelIndex &index) c
     const Akregator::TreeNode *const node = nodeForIndex(index, m_feedList.data());
 
     if (!node || !node->parent()) {
-        return QModelIndex();
+        return {};
     }
 
     const Akregator::Folder *parent = node->parent();
@@ -312,7 +312,7 @@ QModelIndex Akregator::SubscriptionListModel::index(int row, int column, const Q
     const Akregator::TreeNode *const parentNode = nodeForIndex(parent, m_feedList.data());
 
     if (!parentNode) {
-        return QModelIndex();
+        return {};
     }
 
     const Akregator::TreeNode *const childNode = parentNode->childAt(row);
@@ -322,7 +322,7 @@ QModelIndex Akregator::SubscriptionListModel::index(int row, int column, const Q
 QModelIndex SubscriptionListModel::indexForNode(const TreeNode *node) const
 {
     if (!node || !m_feedList) {
-        return QModelIndex();
+        return {};
     }
     const Folder *const parent = node->parent();
     if (!parent) {

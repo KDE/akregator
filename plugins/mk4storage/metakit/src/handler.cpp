@@ -353,7 +353,7 @@ void c4_HandlerSeq::Prepare(const t4_byte **ptr_, bool selfDesc_)
                 c4_String s = "[" + c4_String((const char *)*ptr_, n) + "]";
                 const char *desc = s;
 
-                c4_Field *f = d4_new c4_Field(desc);
+                auto *f = d4_new c4_Field(desc);
                 d4_assert(!*desc);
 
                 Restructure(*f, false);
@@ -406,9 +406,8 @@ void c4_HandlerSeq::ExchangeEntries(int srcPos_, c4_HandlerSeq &dst_, int
             d4_assert(dst_.IsNested(col));
 
             int n;
-            c4_HandlerSeq **e1 = (c4_HandlerSeq **)NthHandler(col).Get(srcPos_, n);
-            c4_HandlerSeq **e2 = (c4_HandlerSeq **)dst_.NthHandler(col).Get(dstPos_,
-                                                                            n);
+            auto **e1 = (c4_HandlerSeq **)NthHandler(col).Get(srcPos_, n);
+            auto **e2 = (c4_HandlerSeq **)dst_.NthHandler(col).Get(dstPos_, n);
             d4_assert(*e1 != 0 && *e2 != 0);
 
             // swap the two entries
@@ -476,7 +475,7 @@ c4_HandlerSeq &c4_HandlerSeq::SubEntry(int col_, int row_) const
     NthHandler(col_).GetBytes(row_, temp);
 
     d4_assert(temp.Size() == sizeof(c4_HandlerSeq **));
-    c4_HandlerSeq **p = (c4_HandlerSeq **)temp.Contents(); // loses const
+    auto **p = (c4_HandlerSeq **)temp.Contents(); // loses const
 
     d4_assert(p != 0 && *p != 0);
 

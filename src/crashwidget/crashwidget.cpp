@@ -54,9 +54,7 @@ CrashWidget::CrashWidget(QWidget *parent)
     buttonLayout->addStretch(0);
 }
 
-CrashWidget::~CrashWidget()
-{
-}
+CrashWidget::~CrashWidget() = default;
 
 void CrashWidget::slotRestoreSession()
 {

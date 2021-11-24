@@ -15,9 +15,7 @@ Plugin::Plugin(QObject *parent, const QVariantList &)
 {
 }
 
-Plugin::~Plugin()
-{
-}
+Plugin::~Plugin() = default;
 
 void Plugin::addPluginProperty(const QString &key, const QString &value)
 {

@@ -54,9 +54,7 @@ ArticleViewerWidget::ArticleViewerWidget(const QString &grantleeDirectory, KActi
     connect(m_articleViewerWidgetNg->articleViewerNg(), &ArticleViewerWebEngine::showStatusBarMessage, this, &ArticleViewerWidget::showStatusBarMessage);
 }
 
-ArticleViewerWidget::~ArticleViewerWidget()
-{
-}
+ArticleViewerWidget::~ArticleViewerWidget() = default;
 
 QSharedPointer<ArticleFormatter> ArticleViewerWidget::normalViewFormatter()
 {

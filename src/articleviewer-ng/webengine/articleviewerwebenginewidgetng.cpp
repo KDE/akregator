@@ -88,9 +88,7 @@ void ArticleViewerWebEngineWidgetNg::initializeLayout(KActionCollection *ac)
     connect(articleViewerNg(), &ArticleViewerWebEngine::findTextInHtml, this, &ArticleViewerWebEngineWidgetNg::slotFind);
 }
 
-ArticleViewerWebEngineWidgetNg::~ArticleViewerWebEngineWidgetNg()
-{
-}
+ArticleViewerWebEngineWidgetNg::~ArticleViewerWebEngineWidgetNg() = default;
 
 ArticleViewerWebEngine *ArticleViewerWebEngineWidgetNg::articleViewerNg() const
 {

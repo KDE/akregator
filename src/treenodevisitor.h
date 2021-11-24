@@ -18,9 +18,7 @@ class Feed;
 class AKREGATOR_EXPORT TreeNodeVisitor
 {
 public:
-    virtual ~TreeNodeVisitor()
-    {
-    }
+    virtual ~TreeNodeVisitor() = default;
 
     virtual bool visit(TreeNode *node);
     virtual bool visitTreeNode(TreeNode * /*node*/)

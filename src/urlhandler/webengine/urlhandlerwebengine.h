@@ -15,9 +15,7 @@ class ArticleViewerWebEngine;
 class URLHandlerWebEngine
 {
 public:
-    virtual ~URLHandlerWebEngine()
-    {
-    }
+    virtual ~URLHandlerWebEngine() = default;
 
     /**
      * Called when LMB-clicking on a link in the reader. Should start
@@ -55,9 +53,7 @@ public:
     {
     }
 
-    ~AkregatorConfigHandler() override
-    {
-    }
+    ~AkregatorConfigHandler() override = default;
 
     Q_REQUIRED_RESULT bool handleClick(const QUrl &, ArticleViewerWebEngine *) const override;
     Q_REQUIRED_RESULT bool handleContextMenuRequest(const QUrl &, const QPoint &, ArticleViewerWebEngine *) const override;
@@ -72,9 +68,7 @@ public:
     {
     }
 
-    ~MailToURLHandlerWebEngine() override
-    {
-    }
+    ~MailToURLHandlerWebEngine() override = default;
 
     Q_REQUIRED_RESULT bool handleClick(const QUrl &, ArticleViewerWebEngine *) const override;
     Q_REQUIRED_RESULT bool handleContextMenuRequest(const QUrl &, const QPoint &, ArticleViewerWebEngine *) const override;
@@ -89,9 +83,7 @@ public:
     {
     }
 
-    ~ActionURLHandlerWebEngine() override
-    {
-    }
+    ~ActionURLHandlerWebEngine() override = default;
 
     Q_REQUIRED_RESULT bool handleClick(const QUrl &, ArticleViewerWebEngine *) const override;
     Q_REQUIRED_RESULT bool handleContextMenuRequest(const QUrl &, const QPoint &, ArticleViewerWebEngine *) const override;

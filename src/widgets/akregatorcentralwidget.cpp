@@ -22,9 +22,7 @@ AkregatorCentralWidget::AkregatorCentralWidget(QWidget *parent)
     addWidget(mCrashWidget);
 }
 
-Akregator::AkregatorCentralWidget::~AkregatorCentralWidget()
-{
-}
+Akregator::AkregatorCentralWidget::~AkregatorCentralWidget() = default;
 
 bool AkregatorCentralWidget::previousSessionCrashed() const
 {

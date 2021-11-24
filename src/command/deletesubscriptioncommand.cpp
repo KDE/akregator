@@ -122,9 +122,7 @@ DeleteSubscriptionCommandPrivate::DeleteSubscriptionCommandPrivate(DeleteSubscri
 {
 }
 
-DeleteSubscriptionCommandPrivate::~DeleteSubscriptionCommandPrivate()
-{
-}
+DeleteSubscriptionCommandPrivate::~DeleteSubscriptionCommandPrivate() = default;
 
 DeleteSubscriptionCommand::DeleteSubscriptionCommand(QObject *parent)
     : Command(parent)

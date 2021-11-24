@@ -33,9 +33,7 @@ FeedPropertiesWidget::FeedPropertiesWidget(QWidget *parent, const QString &name)
     connect(rb_limitArticleNumber, &QRadioButton::toggled, sb_maxArticleNumber, &KPluralHandlingSpinBox::setEnabled);
 }
 
-FeedPropertiesWidget::~FeedPropertiesWidget()
-{
-}
+FeedPropertiesWidget::~FeedPropertiesWidget() = default;
 
 void FeedPropertiesWidget::slotUpdateComboBoxActivated(int index)
 {
@@ -86,9 +84,7 @@ FeedPropertiesDialog::FeedPropertiesDialog(QWidget *parent, const QString &name)
     connect(widget->feedNameEdit, &QLineEdit::textChanged, this, &FeedPropertiesDialog::slotSetWindowTitle);
 }
 
-FeedPropertiesDialog::~FeedPropertiesDialog()
-{
-}
+FeedPropertiesDialog::~FeedPropertiesDialog() = default;
 
 void FeedPropertiesDialog::accept()
 {

@@ -14,8 +14,7 @@ d4_inline c4_Handler::c4_Handler (const c4_Property& prop_)
 }
 
 d4_inline c4_Handler::~c4_Handler ()
-{
-}
+= default;
 
 d4_inline void c4_Handler::Define(int, const t4_byte**)
 {

@@ -40,5 +40,5 @@ QString DefaultCombinedViewFormatter::formatArticles(const QVector<Article> &art
 
 QString DefaultCombinedViewFormatter::formatSummary(TreeNode *) const
 {
-    return QString();
+    return {};
 }

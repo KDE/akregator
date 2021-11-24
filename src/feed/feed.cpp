@@ -204,12 +204,12 @@ bool Akregator::Feed::accept(TreeNodeVisitor *visitor)
 
 QVector<const Akregator::Folder *> Akregator::Feed::folders() const
 {
-    return QVector<const Folder *>();
+    return {};
 }
 
 QVector<Folder *> Akregator::Feed::folders()
 {
-    return QVector<Folder *>();
+    return {};
 }
 
 QVector<const Akregator::Feed *> Akregator::Feed::feeds() const

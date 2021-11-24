@@ -37,9 +37,7 @@ private Q_SLOTS:
 
 private:
     struct StatusInfo {
-        StatusInfo()
-        {
-        }
+        StatusInfo() = default;
 
         StatusInfo(const QString &text, const QIcon &icon)
             : mText(text)

@@ -1074,7 +1074,7 @@ bool c4_Persist::Rollback(bool full_)
         _space->Initialize();
     }
 
-    c4_HandlerSeq *seq = d4_new c4_HandlerSeq(this);
+    auto *seq = d4_new c4_HandlerSeq(this);
     seq->DefineRoot();
     SetRoot(seq);
 
@@ -1139,7 +1139,7 @@ void c4_Persist::LoadAll()
         c4_String s = "[" + c4_String((const char *)buf, n) + "]";
         const char *desc = s;
 
-        c4_Field *f = d4_new c4_Field(desc);
+        auto *f = d4_new c4_Field(desc);
         d4_assert(!*desc);
 
         //?_root->DefineRoot();
@@ -1241,7 +1241,7 @@ c4_HandlerSeq *c4_Persist::Load(c4_Stream *stream_)
 
     t4_i32 limit = head.Offset();
 
-    c4_StreamStrategy *strat = d4_new c4_StreamStrategy(limit);
+    auto *strat = d4_new c4_StreamStrategy(limit);
     strat->_bytesFlipped = head.IsFlipped();
     strat->DataWrite(strat->FileSize() - strat->_baseOffset, &head, sizeof head);
 
@@ -1252,8 +1252,8 @@ c4_HandlerSeq *c4_Persist::Load(c4_Stream *stream_)
         strat->DataWrite(strat->FileSize() - strat->_baseOffset, buffer, n);
     }
 
-    c4_Persist *pers = d4_new c4_Persist(*strat, true, 0);
-    c4_HandlerSeq *seq = d4_new c4_HandlerSeq(pers);
+    auto *pers = d4_new c4_Persist(*strat, true, 0);
+    auto *seq = d4_new c4_HandlerSeq(pers);
     seq->DefineRoot();
     pers->SetRoot(seq);
 

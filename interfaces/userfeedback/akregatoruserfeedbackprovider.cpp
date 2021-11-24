@@ -33,6 +33,4 @@ AkregatorUserFeedbackProvider::AkregatorUserFeedbackProvider(QObject *parent)
     addDataSource(new KUserFeedback::LocaleInfoSource);
 }
 
-AkregatorUserFeedbackProvider::~AkregatorUserFeedbackProvider()
-{
-}
+AkregatorUserFeedbackProvider::~AkregatorUserFeedbackProvider() = default;

@@ -44,9 +44,7 @@ TrayIcon::TrayIcon(QObject *parent)
     setIconByName(QStringLiteral("akregator"));
 }
 
-TrayIcon::~TrayIcon()
-{
-}
+TrayIcon::~TrayIcon() = default;
 
 void TrayIcon::slotSetUnread(int unread)
 {

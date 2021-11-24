@@ -14,9 +14,7 @@ DownloadFeedIconJob::DownloadFeedIconJob(QObject *parent)
 {
 }
 
-DownloadFeedIconJob::~DownloadFeedIconJob()
-{
-}
+DownloadFeedIconJob::~DownloadFeedIconJob() = default;
 
 bool DownloadFeedIconJob::start()
 {

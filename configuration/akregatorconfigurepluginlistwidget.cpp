@@ -23,9 +23,7 @@ AkregatorConfigurePluginListWidget::AkregatorConfigurePluginListWidget(QWidget *
     connect(this, &ConfigurePluginsListWidget::configureClicked, this, &AkregatorConfigurePluginListWidget::slotConfigureClicked);
 }
 
-AkregatorConfigurePluginListWidget::~AkregatorConfigurePluginListWidget()
-{
-}
+AkregatorConfigurePluginListWidget::~AkregatorConfigurePluginListWidget() = default;
 
 void AkregatorConfigurePluginListWidget::save()
 {

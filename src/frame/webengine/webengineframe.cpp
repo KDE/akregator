@@ -43,9 +43,7 @@ WebEngineFrame::WebEngineFrame(KActionCollection *ac, QWidget *parent)
     layout->addWidget(mArticleViewerWidgetNg);
 }
 
-WebEngineFrame::~WebEngineFrame()
-{
-}
+WebEngineFrame::~WebEngineFrame() = default;
 
 void WebEngineFrame::slotWebPageMutedOrAudibleChanged(bool isAudioMuted, bool wasRecentlyAudible)
 {

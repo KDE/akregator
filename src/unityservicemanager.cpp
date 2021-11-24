@@ -31,9 +31,7 @@ UnityServiceManager::UnityServiceManager(QObject *parent)
     initUnity();
 }
 
-UnityServiceManager::~UnityServiceManager()
-{
-}
+UnityServiceManager::~UnityServiceManager() = default;
 
 void UnityServiceManager::slotSetUnread(int unread)
 {

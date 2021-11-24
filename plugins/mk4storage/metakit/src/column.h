@@ -137,8 +137,8 @@ public:
     static int DoCompare(const c4_Bytes &b1_, const c4_Bytes &b2_);
 
 private:
-    typedef void (c4_ColOfInts:: *tGetter)(int);
-    typedef bool (c4_ColOfInts:: *tSetter)(int, const t4_byte *);
+    using tGetter = void (c4_ColOfInts::*)(int);
+    using tSetter = bool (c4_ColOfInts::*)(int, const t4_byte *);
 
     void Get_0b(int index_);
     void Get_1b(int index_);

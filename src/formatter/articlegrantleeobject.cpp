@@ -22,9 +22,7 @@ ArticleGrantleeObject::ArticleGrantleeObject(const Article &article, ArticleForm
 {
 }
 
-ArticleGrantleeObject::~ArticleGrantleeObject()
-{
-}
+ArticleGrantleeObject::~ArticleGrantleeObject() = default;
 
 ArticleGrantleeObject::ArticleStatus ArticleGrantleeObject::articleStatus() const
 {

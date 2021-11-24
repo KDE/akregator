@@ -17,9 +17,7 @@ ArticleHtmlWebEngineWriter::ArticleHtmlWebEngineWriter(ArticleViewerWebEngine *v
 {
 }
 
-ArticleHtmlWebEngineWriter::~ArticleHtmlWebEngineWriter()
-{
-}
+ArticleHtmlWebEngineWriter::~ArticleHtmlWebEngineWriter() = default;
 
 void ArticleHtmlWebEngineWriter::begin()
 {

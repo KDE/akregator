@@ -18,10 +18,10 @@
 #if q4_UNIV // until end of source
 /////////////////////////////////////////////////////////////////////////////
 
-#include <ctype.h>
-#include <stdarg.h>
-#include <stdio.h>
-#include <stdlib.h>
+#include <cctype>
+#include <cstdarg>
+#include <cstdio>
+#include <cstdlib>
 
 #ifdef _AIX
 #include <strings.h>
@@ -196,7 +196,7 @@ void c4_String::Init(const void *p, int n)
 
         if (!nullVec) {
             // obtain a valid new empty string buffer to keep around
-            unsigned char *nv = new unsigned char[3];
+            auto *nv = new unsigned char[3];
             nv[0] = nv[1] = nv[2] = 0;
             // only set static value after item is fully inited (avoid MT race)
             nullVec = nv;
@@ -226,7 +226,7 @@ int c4_String::FullLength() const
 c4_String c4_String::Mid(int nFirst, int nCount) const
 {
     if (nFirst >= GetLength()) {
-        return c4_String();
+        return {};
     }
 
     if (nFirst + nCount > GetLength()) {
@@ -237,7 +237,7 @@ c4_String c4_String::Mid(int nFirst, int nCount) const
         return *this;
     }
 
-    return c4_String(Data() + nFirst, nCount);
+    return {Data() + nFirst, nCount};
 }
 
 c4_String c4_String::Left(int nCount) const
@@ -246,7 +246,7 @@ c4_String c4_String::Left(int nCount) const
         return *this;
     }
 
-    return c4_String(Data(), nCount);
+    return {Data(), nCount};
 }
 
 c4_String c4_String::Right(int nCount) const
@@ -255,7 +255,7 @@ c4_String c4_String::Right(int nCount) const
         return *this;
     }
 
-    return c4_String(Data() + GetLength() - nCount, nCount);
+    return {Data() + GetLength() - nCount, nCount};
 }
 
 bool operator ==(const c4_String &a, const c4_String &b)

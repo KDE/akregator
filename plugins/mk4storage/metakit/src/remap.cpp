@@ -20,9 +20,7 @@ public:
     {
     }
 
-    ~c4_ReadOnlyViewer() override
-    {
-    }
+    ~c4_ReadOnlyViewer() override = default;
 
     c4_View GetTemplate() override
     {
@@ -148,9 +146,7 @@ c4_HashViewer::c4_HashViewer(c4_Sequence &seq_, int numKeys_, c4_Sequence *map_)
     }
 }
 
-c4_HashViewer::~c4_HashViewer()
-{
-}
+c4_HashViewer::~c4_HashViewer() = default;
 
 bool c4_HashViewer::IsUnused(int row_) const
 {
@@ -619,9 +615,7 @@ c4_BlockedViewer::c4_BlockedViewer(c4_Sequence &seq_) : _base(&seq_)
     Validate();
 }
 
-c4_BlockedViewer::~c4_BlockedViewer()
-{
-}
+c4_BlockedViewer::~c4_BlockedViewer() = default;
 
 int c4_BlockedViewer::Slot(int &pos_)
 {
@@ -935,9 +929,7 @@ c4_OrderedViewer::c4_OrderedViewer(c4_Sequence &seq_, int numKeys_) : _base
 {
 }
 
-c4_OrderedViewer::~c4_OrderedViewer()
-{
-}
+c4_OrderedViewer::~c4_OrderedViewer() = default;
 
 int c4_OrderedViewer::KeyCompare(int row_, c4_Cursor cursor_) const
 {
@@ -1091,9 +1083,7 @@ c4_IndexedViewer::c4_IndexedViewer(c4_Sequence &seq_, c4_Sequence &map_, const
     }
 }
 
-c4_IndexedViewer::~c4_IndexedViewer()
-{
-}
+c4_IndexedViewer::~c4_IndexedViewer() = default;
 
 int c4_IndexedViewer::KeyCompare(int row_, c4_Cursor cursor_) const
 {

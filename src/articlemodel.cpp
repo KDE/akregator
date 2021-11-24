@@ -52,9 +52,7 @@ ArticleModel::ArticleModel(const QVector<Article> &articles, QObject *parent)
     }
 }
 
-ArticleModel::~ArticleModel()
-{
-}
+ArticleModel::~ArticleModel() = default;
 
 int ArticleModel::columnCount(const QModelIndex &parent) const
 {
@@ -69,7 +67,7 @@ int ArticleModel::rowCount(const QModelIndex &parent) const
 QVariant ArticleModel::headerData(int section, Qt::Orientation, int role) const
 {
     if (role != Qt::DisplayRole) {
-        return QVariant();
+        return {};
     }
 
     switch (section) {
@@ -87,13 +85,13 @@ QVariant ArticleModel::headerData(int section, Qt::Orientation, int role) const
         return i18nc("Articlelist's column header", "Content");
     }
 
-    return QVariant();
+    return {};
 }
 
 QVariant ArticleModel::data(const QModelIndex &index, int role) const
 {
     if (!index.isValid() || index.row() < 0 || index.row() >= m_articles.count()) {
-        return QVariant();
+        return {};
     }
     const int row = index.row();
     const Article &article(m_articles[row]);
@@ -134,7 +132,7 @@ QVariant ArticleModel::data(const QModelIndex &index, int role) const
         return article.isDeleted();
     }
 
-    return QVariant();
+    return {};
 }
 
 void ArticleModel::clear()
@@ -206,7 +204,7 @@ bool ArticleModel::rowMatches(int row, const QSharedPointer<const Filters::Abstr
 Article ArticleModel::article(int row) const
 {
     if (row < 0 || row >= m_articles.count()) {
-        return Article();
+        return {};
     }
     return m_articles[row];
 }

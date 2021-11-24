@@ -21,13 +21,11 @@ MainFrame::MainFrame(QWidget *parent, QWidget *visibleWidget)
     layout->addWidget(visibleWidget, 0, 0);
 }
 
-MainFrame::~MainFrame()
-{
-}
+MainFrame::~MainFrame() = default;
 
 QUrl MainFrame::url() const
 {
-    return QUrl();
+    return {};
 }
 
 void MainFrame::setArticleViewer(Akregator::ArticleViewerWidget *articleViewer)

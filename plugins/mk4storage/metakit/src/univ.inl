@@ -27,12 +27,10 @@ d4_inline void* c4_BaseArray::GetData(int nIndex)
 // c4_PtrArray
 
 d4_inline c4_PtrArray::c4_PtrArray ()
-{ 
-}
+= default;
 
 d4_inline c4_PtrArray::~c4_PtrArray ()
-{ 
-}
+= default;
 
 d4_inline int c4_PtrArray::Off(int n_)
 {
@@ -68,12 +66,10 @@ d4_inline void*& c4_PtrArray::ElementAt(int nIndex)
 // c4_DWordArray
 
 d4_inline c4_DWordArray::c4_DWordArray ()
-{ 
-}
+= default;
 
 d4_inline c4_DWordArray::~c4_DWordArray ()
-{ 
-}
+= default;
 
 d4_inline int c4_DWordArray::Off(int n_)
 {
@@ -109,8 +105,7 @@ d4_inline t4_i32& c4_DWordArray::ElementAt(int nIndex)
 // c4_StringArray
 
 d4_inline c4_StringArray::c4_StringArray ()
-{ 
-}
+= default;
 
 d4_inline int c4_StringArray::GetSize() const
 { 

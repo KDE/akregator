@@ -7,7 +7,7 @@
 
 #pragma once
 
-#include <stdio.h>
+#include <cstdio>
 
 /////////////////////////////////////////////////////////////////////////////
 /// A file stream can be used to serialize using the stdio library.

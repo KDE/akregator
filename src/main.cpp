@@ -33,9 +33,7 @@ public:
     {
     }
 
-    ~Application() override
-    {
-    }
+    ~Application() override = default;
 
     int activate(const QStringList &args, const QString &workingDir) override;
 

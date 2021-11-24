@@ -48,7 +48,7 @@ QString MailToURLHandlerWebEngine::statusBarMessage(const QUrl &url, ArticleView
     if (url.scheme() == QLatin1String("mailto")) {
         return KEmailAddress::decodeMailtoUrl(url);
     }
-    return QString();
+    return {};
 }
 
 bool MailToURLHandlerWebEngine::handleContextMenuRequest(const QUrl &url, const QPoint &p, ArticleViewerWebEngine *) const

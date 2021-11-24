@@ -10,7 +10,7 @@
 #if q4_UNIV // until end of source
 /////////////////////////////////////////////////////////////////////////////
 
-#include <stdlib.h>   // malloc
+#include <cstdlib> // malloc
 
 #if !q4_INLINE
 #endif

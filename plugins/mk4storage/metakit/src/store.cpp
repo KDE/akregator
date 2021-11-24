@@ -24,9 +24,7 @@ c4_Dependencies::c4_Dependencies()
     _refs.SetSize(0, 3); // a little optimization
 }
 
-c4_Dependencies::~c4_Dependencies()
-{
-}
+c4_Dependencies::~c4_Dependencies() = default;
 
 void c4_Dependencies::Add(c4_Sequence *seq_)
 {
@@ -62,7 +60,7 @@ c4_Notifier::~c4_Notifier()
         c4_PtrArray &refs = _origin->GetDependencies()->_refs;
 
         for (int i = 0; i < refs.GetSize(); ++i) {
-            c4_Sequence *seq = (c4_Sequence *)refs.GetAt(i);
+            auto *seq = (c4_Sequence *)refs.GetAt(i);
             d4_assert(seq != 0);
 
             seq->PostChange(*this);
@@ -140,7 +138,7 @@ void c4_Notifier::Notify()
     c4_Notifier **rover = &_chain;
 
     for (int i = 0; i < n; ++i) {
-        c4_Sequence *seq = (c4_Sequence *)refs.GetAt(i);
+        auto *seq = (c4_Sequence *)refs.GetAt(i);
         d4_assert(seq != 0);
 
         c4_Notifier *ptr = seq->PreChange(*this);
@@ -209,7 +207,7 @@ c4_Storage::c4_Storage(c4_Strategy &strategy_, bool owned_, int mode_)
 
 c4_Storage::c4_Storage(const char *fname_, int mode_)
 {
-    c4_FileStrategy *strat = d4_new c4_FileStrategy;
+    auto *strat = d4_new c4_FileStrategy;
     strat->DataOpen(fname_, mode_);
 
     Initialize(*strat, true, mode_);
@@ -237,8 +235,8 @@ c4_Storage::~c4_Storage()
 
 void c4_Storage::Initialize(c4_Strategy &strategy_, bool owned_, int mode_)
 {
-    c4_Persist *pers = d4_new c4_Persist(strategy_, owned_, mode_);
-    c4_HandlerSeq *seq = d4_new c4_HandlerSeq(pers);
+    auto *pers = d4_new c4_Persist(strategy_, owned_, mode_);
+    auto *seq = d4_new c4_HandlerSeq(pers);
     seq->DefineRoot();
     *(c4_View *)this = seq;
     pers->SetRoot(seq);
@@ -289,7 +287,7 @@ c4_View c4_Storage::GetAs(const char *description_)
         }
     }
 
-    c4_Field *field = d4_new c4_Field(description_);
+    auto *field = d4_new c4_Field(description_);
     d4_assert(field != 0);
 
     d4_assert(!*description_);
@@ -333,7 +331,7 @@ c4_View c4_Storage::GetAs(const char *description_)
 
     if (!keep) {
         // 19990916: avoid adding an empty view again
-        return c4_View();
+        return {};
     }
 
     return View(name);
@@ -348,7 +346,7 @@ void c4_Storage::SetStructure(const char *description_)
         c4_String s = "[" + c4_String(description_) + "]";
         description_ = s;
 
-        c4_Field *field = d4_new c4_Field(description_);
+        auto *field = d4_new c4_Field(description_);
         d4_assert(!*description_);
 
         d4_assert(field != 0);
@@ -502,7 +500,7 @@ c4_Notifier *c4_DerivedSeq::PreChange(c4_Notifier &nf_)
         return nullptr;
     }
 
-    c4_Notifier *chg = d4_new c4_Notifier(this);
+    auto *chg = d4_new c4_Notifier(this);
 
     switch (nf_._type) {
     case c4_Notifier::kSetAt:

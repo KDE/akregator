@@ -302,7 +302,7 @@ int c4_Sequence::PropIndex(int propId_)
     // if the map is too small, resize it (with a little slack)
     if (propId_ >= _propertyLimit) {
         int round = (propId_ + 8) & ~0x07;
-        short *vec = d4_new short[round];
+        auto *vec = d4_new short[round];
 
         for (int i = 0; i < round; ++i) {
             vec[i] = i < _propertyLimit ? _propertyMap[i] : -1;
@@ -509,7 +509,7 @@ c4_FloatRef::operator double() const
 
 c4_FloatRef &c4_FloatRef::operator =(double value_)
 {
-    float v = (float)value_; // loses precision
+    auto v = (float)value_; // loses precision
     SetData(c4_Bytes(&v, sizeof v));
     return *this;
 }
@@ -574,26 +574,25 @@ c4_Bytes c4_BytesRef::Access(t4_i32 off_, int len_, bool noCopy_) const
                     // remember to check length of the returned bytes.
                     c4_ColIter iter(*col, off_, off_ + len_);
                     iter.Next();
-                    return c4_Bytes(iter.BufLoad(), iter.BufLen() < len_ ? iter.BufLen()
-                                    : len_);
+                    return {iter.BufLoad(), iter.BufLen() < len_ ? iter.BufLen() : len_};
                 } else {
                     const t4_byte *bytes = col->FetchBytes(off_, len_, buffer, false);
                     if (bytes == buffer.Contents()) {
                         return buffer;
                     }
-                    return c4_Bytes(bytes, len_);
+                    return {bytes, len_};
                 }
             } else {
                 // do it the hard way for custom/mapped views (2002-03-13)
                 c4_Bytes result;
                 GetData(result);
                 d4_assert(off_ + len_ <= result.Size());
-                return c4_Bytes(result.Contents() + off_, len_, true);
+                return {result.Contents() + off_, len_, true};
             }
         }
     }
 
-    return c4_Bytes();
+    return {};
 }
 
 bool c4_BytesRef::Modify(const c4_Bytes &buf_, t4_i32 off_, int diff_) const
@@ -679,9 +678,7 @@ c4_ViewRef &c4_ViewRef::operator =(const c4_View &value_)
 
 /////////////////////////////////////////////////////////////////////////////
 
-c4_Stream::~c4_Stream()
-{
-}
+c4_Stream::~c4_Stream() = default;
 
 /////////////////////////////////////////////////////////////////////////////
 

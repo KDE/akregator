@@ -36,8 +36,8 @@ private:
     static StorageFactoryRegistry *m_instance;
 
     StorageFactoryRegistry();
-    StorageFactoryRegistry(const StorageFactoryRegistry &);
-    StorageFactoryRegistry &operator=(const StorageFactoryRegistry &);
+    StorageFactoryRegistry(const StorageFactoryRegistry &) = delete;
+    StorageFactoryRegistry &operator=(const StorageFactoryRegistry &) = delete;
 
     QHash<QString, StorageFactory *> m_map;
 };

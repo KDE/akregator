@@ -19,13 +19,9 @@ namespace Akregator
 {
 namespace Filters
 {
-AbstractMatcher::AbstractMatcher()
-{
-}
+AbstractMatcher::AbstractMatcher() = default;
 
-AbstractMatcher::~AbstractMatcher()
-{
-}
+AbstractMatcher::~AbstractMatcher() = default;
 
 QString Criterion::subjectToString(Subject subj)
 {
@@ -97,9 +93,7 @@ Criterion::Predicate Criterion::stringToPredicate(const QString &predStr)
     return Contains;
 }
 
-Criterion::Criterion()
-{
-}
+Criterion::Criterion() = default;
 
 Criterion::Criterion(Subject subject, Predicate predicate, const QVariant &object)
     : m_subject(subject)
@@ -210,9 +204,7 @@ ArticleMatcher::ArticleMatcher()
 {
 }
 
-ArticleMatcher::~ArticleMatcher()
-{
-}
+ArticleMatcher::~ArticleMatcher() = default;
 
 ArticleMatcher::ArticleMatcher(const QVector<Criterion> &criteria, Association assoc)
     : m_criteria(criteria)

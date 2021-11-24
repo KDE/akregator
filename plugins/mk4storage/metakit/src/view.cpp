@@ -113,21 +113,13 @@ d4_inline c4_ThreadLock::Hold::~Hold()
 
 //  All other implementations revert to the simple "thread-less" case.
 
-d4_inline c4_ThreadLock::c4_ThreadLock()
-{
-}
+d4_inline c4_ThreadLock::c4_ThreadLock() = default;
 
-d4_inline c4_ThreadLock::~c4_ThreadLock()
-{
-}
+d4_inline c4_ThreadLock::~c4_ThreadLock() = default;
 
-d4_inline c4_ThreadLock::Hold::Hold()
-{
-}
+d4_inline c4_ThreadLock::Hold::Hold() = default;
 
-d4_inline c4_ThreadLock::Hold::~Hold()
-{
-}
+d4_inline c4_ThreadLock::Hold::~Hold() = default;
 
 #endif
 
@@ -386,8 +378,8 @@ bool c4_View::IsCompatibleWith(const c4_View &dest_) const
 
     c4_Sequence *s1 = _seq;
     c4_Sequence *s2 = dest_._seq;
-    c4_HandlerSeq *h1 = (c4_HandlerSeq *)s1->HandlerContext(0);
-    c4_HandlerSeq *h2 = (c4_HandlerSeq *)s2->HandlerContext(0);
+    auto *h1 = (c4_HandlerSeq *)s1->HandlerContext(0);
+    auto *h2 = (c4_HandlerSeq *)s2->HandlerContext(0);
 
     // both must be real handler views, not derived ones
     if (h1 != s1 || h2 != s2) {

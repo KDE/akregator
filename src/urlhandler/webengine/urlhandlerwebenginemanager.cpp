@@ -23,9 +23,7 @@ URLHandlerWebEngineManager::URLHandlerWebEngineManager(QObject *parent)
     registerHandler(new ActionURLHandlerWebEngine());
 }
 
-URLHandlerWebEngineManager::~URLHandlerWebEngineManager()
-{
-}
+URLHandlerWebEngineManager::~URLHandlerWebEngineManager() = default;
 
 URLHandlerWebEngineManager *URLHandlerWebEngineManager::instance()
 {

@@ -120,9 +120,7 @@ ArticleViewerWebEngine::ArticleViewerWebEngine(KActionCollection *ac, QWidget *p
     connect(phishingDatabase(), &WebEngineViewer::LocalDataBaseManager::checkUrlFinished, this, &ArticleViewerWebEngine::slotCheckedUrlFinished);
 }
 
-ArticleViewerWebEngine::~ArticleViewerWebEngine()
-{
-}
+ArticleViewerWebEngine::~ArticleViewerWebEngine() = default;
 
 void ArticleViewerWebEngine::execPrintPreviewPage(QPrinter *printer, int timeout)
 {
@@ -530,7 +528,7 @@ QList<QAction *> ArticleViewerWebEngine::viewerPluginActionList(MessageViewer::V
     if (mViewerPluginToolManager) {
         return mViewerPluginToolManager->viewerPluginActionList(features);
     }
-    return QList<QAction *>();
+    return {};
 }
 
 void ArticleViewerWebEngine::slotActivatePlugin(MessageViewer::ViewerPluginInterface *interface)

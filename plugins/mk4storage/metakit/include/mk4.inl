@@ -525,8 +525,7 @@ d4_inline c4_IntProp::c4_IntProp (const char* name_)
 }
 
 d4_inline c4_IntProp::~c4_IntProp ()
-{
-}
+= default;
 
 d4_inline c4_IntRef c4_IntProp::operator() (const c4_RowRef& rowRef_) const
 {
@@ -566,8 +565,7 @@ d4_inline c4_LongProp::c4_LongProp (const char* name_)
 }
 
 d4_inline c4_LongProp::~c4_LongProp ()
-{
-}
+= default;
 
 d4_inline c4_LongRef c4_LongProp::operator() (const c4_RowRef& rowRef_) const
 {
@@ -605,8 +603,7 @@ d4_inline c4_FloatProp::c4_FloatProp (const char* name_)
 }
 
 d4_inline c4_FloatProp::~c4_FloatProp ()
-{
-}
+= default;
 
 d4_inline c4_FloatRef c4_FloatProp::operator() (const c4_RowRef& rowRef_) const
 {
@@ -644,8 +641,7 @@ d4_inline c4_DoubleProp::c4_DoubleProp (const char* name_)
 }
 
 d4_inline c4_DoubleProp::~c4_DoubleProp ()
-{
-}
+= default;
 
 d4_inline c4_DoubleRef c4_DoubleProp::operator() (const c4_RowRef& rowRef_) const
 {
@@ -685,8 +681,7 @@ d4_inline c4_BytesProp::c4_BytesProp (const char* name_)
 }
     
 d4_inline c4_BytesProp::~c4_BytesProp ()
-{
-}
+= default;
 
 d4_inline c4_BytesRef c4_BytesProp::operator() (const c4_RowRef& rowRef_) const
 {
@@ -724,8 +719,7 @@ d4_inline c4_StringProp::c4_StringProp (const char* name_)
 }
     
 d4_inline c4_StringProp::~c4_StringProp ()
-{
-}
+= default;
 
 d4_inline c4_StringRef c4_StringProp::operator() (const c4_RowRef& rowRef_) const
 {
@@ -763,8 +757,7 @@ d4_inline c4_ViewProp::c4_ViewProp (const char* name_)
 }
     
 d4_inline c4_ViewProp::~c4_ViewProp ()
-{
-}
+= default;
 
 d4_inline c4_ViewRef c4_ViewProp::operator() (const c4_RowRef& rowRef_) const
 {
@@ -806,8 +799,7 @@ d4_inline bool c4_Strategy::IsValid() const
 // c4_CustomViewer
 
 d4_inline c4_CustomViewer::c4_CustomViewer()
-{
-}
+= default;
 
 d4_inline int c4_CustomViewer::Lookup(const c4_RowRef& r_, int& n_)
 {

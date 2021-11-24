@@ -80,9 +80,7 @@ EditSubscriptionCommandPrivate::EditSubscriptionCommandPrivate(EditSubscriptionC
 {
 }
 
-EditSubscriptionCommandPrivate::~EditSubscriptionCommandPrivate()
-{
-}
+EditSubscriptionCommandPrivate::~EditSubscriptionCommandPrivate() = default;
 
 EditSubscriptionCommand::EditSubscriptionCommand(QObject *parent)
     : Command(parent)

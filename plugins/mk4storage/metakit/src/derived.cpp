@@ -10,7 +10,7 @@
 #include "store.h"
 #include "derived.h"
 
-#include <stdlib.h>   // qsort
+#include <cstdlib> // qsort
 
 /////////////////////////////////////////////////////////////////////////////
 // Implemented in this file
@@ -153,9 +153,7 @@ c4_FilterSeq::c4_FilterSeq(c4_Sequence &seq_, c4_Cursor low_, c4_Cursor high_)
     FixupReverseMap();
 }
 
-c4_FilterSeq::~c4_FilterSeq()
-{
-}
+c4_FilterSeq::~c4_FilterSeq() = default;
 
 void c4_FilterSeq::FixupReverseMap()
 {
@@ -317,7 +315,7 @@ c4_Notifier *c4_FilterSeq::PreChange(c4_Notifier &nf_)
         return nullptr;
     }
 
-    c4_Notifier *chg = d4_new c4_Notifier(this);
+    auto *chg = d4_new c4_Notifier(this);
 
     bool pass = false;
 
@@ -499,7 +497,7 @@ void c4_FilterSeq::PostChange(c4_Notifier &nf_)
 class c4_SortSeq : public c4_FilterSeq
 {
 public:
-    typedef t4_i32 T;
+    using T = t4_i32;
 
     c4_SortSeq(c4_Sequence &seq_, c4_Sequence *down_);
     ~c4_SortSeq() override;
@@ -940,9 +938,7 @@ c4_ProjectSeq::c4_ProjectSeq(c4_Sequence &seq_, c4_Sequence &in_, bool reorder_,
     }
 }
 
-c4_ProjectSeq::~c4_ProjectSeq()
-{
-}
+c4_ProjectSeq::~c4_ProjectSeq() = default;
 
 int c4_ProjectSeq::NumHandlers() const
 {

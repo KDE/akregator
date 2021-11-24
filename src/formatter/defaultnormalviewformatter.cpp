@@ -29,9 +29,7 @@ public:
     {
     }
 
-    ~SummaryVisitor() override
-    {
-    }
+    ~SummaryVisitor() override = default;
 
     bool visitFeed(Feed *node) override
     {

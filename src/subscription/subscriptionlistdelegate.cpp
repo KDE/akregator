@@ -27,9 +27,7 @@ Akregator::SubscriptionListDelegate::SubscriptionListDelegate(QWidget *parent)
     recalculateRowHeight();
 }
 
-Akregator::SubscriptionListDelegate::~SubscriptionListDelegate()
-{
-}
+Akregator::SubscriptionListDelegate::~SubscriptionListDelegate() = default;
 
 QSize Akregator::SubscriptionListDelegate::sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const
 {

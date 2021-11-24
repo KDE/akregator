@@ -30,7 +30,7 @@ namespace
 static Akregator::Article articleForIndex(const QModelIndex &index, FeedList *feedList)
 {
     if (!index.isValid()) {
-        return Akregator::Article();
+        return {};
     }
 
     const QString guid = index.data(ArticleModel::GuidRole).toString();
@@ -135,7 +135,7 @@ void SelectionController::setSingleArticleDisplay(Akregator::SingleArticleDispla
 Akregator::Article SelectionController::currentArticle() const
 {
     if (!m_articleLister || !m_articleLister->articleSelectionModel()) {
-        return Article();
+        return {};
     }
     return ::articleForIndex(m_articleLister->articleSelectionModel()->currentIndex(), m_feedList.data());
 }
@@ -148,7 +148,7 @@ QModelIndex SelectionController::currentArticleIndex() const
 QVector<Akregator::Article> SelectionController::selectedArticles() const
 {
     if (!m_articleLister || !m_articleLister->articleSelectionModel()) {
-        return QVector<Akregator::Article>();
+        return {};
     }
     return ::articlesForIndexes(m_articleLister->articleSelectionModel()->selectedRows(), m_feedList.data());
 }

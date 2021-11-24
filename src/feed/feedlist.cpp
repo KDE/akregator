@@ -515,7 +515,7 @@ static QString path_of_folder(const Folder *fol)
 QStringList FeedListManagementImpl::categories() const
 {
     if (!m_feedList) {
-        return QStringList();
+        return {};
     }
     QStringList cats;
     const auto folders = m_feedList->folders();
@@ -528,7 +528,7 @@ QStringList FeedListManagementImpl::categories() const
 QStringList FeedListManagementImpl::feeds(const QString &catId) const
 {
     if (!m_feedList) {
-        return QStringList();
+        return {};
     }
 
     const uint lastcatid = catId.split(QLatin1Char('/'), Qt::SkipEmptyParts).last().toUInt();
