@@ -16,6 +16,7 @@
 #include <Syndication/Constants>
 #include <kcoreaddons_version.h>
 
+#include <KPluginMetaData>
 #include <QDateTime>
 #include <QFile>
 #include <QIODevice>
@@ -31,6 +32,7 @@
 
 #include <iostream>
 
+#include <KPluginFactory>
 #include <cassert>
 
 using namespace Akregator;
@@ -299,13 +301,9 @@ static KService::List queryStoragePlugins()
 
 static Plugin *createFromService(const KService::Ptr &service)
 {
-    KPluginLoader loader(*service);
-    KPluginFactory *factory = loader.factory();
+    KPluginFactory *factory = KPluginFactory::loadFactory(KPluginMetaData(service->library())).plugin;
     if (!factory) {
-        qCritical() << QStringLiteral(
-                           " Could not create plugin factory for: %1\n"
-                           " Error message: %2")
-                           .arg(service->library(), loader.errorString());
+        qCritical() << QStringLiteral(" Could not create plugin factory for: %1").arg(service->library());
         return nullptr;
     }
     return factory->create<Akregator::Plugin>();

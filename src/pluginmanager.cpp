@@ -49,13 +49,9 @@ Plugin *PluginManager::createFromService(const KService::Ptr &service, QObject *
 {
     qCDebug(AKREGATOR_LOG) << "Trying to load:" << service->library();
 
-    KPluginLoader loader(*service);
-    KPluginFactory *factory = loader.factory();
+    KPluginFactory *factory = KPluginFactory::loadFactory(KPluginMetaData(service->library())).plugin;
     if (!factory) {
-        qCWarning(AKREGATOR_LOG) << QStringLiteral(
-                                        " Could not create plugin factory for: %1\n"
-                                        " Error message: %2")
-                                        .arg(service->library(), loader.errorString());
+        qCWarning(AKREGATOR_LOG) << QStringLiteral(" Could not create plugin factory for: %1").arg(service->library());
         return nullptr;
     }
     auto const plugin = factory->create<Plugin>(parent);
