@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: CC0-1.0
+# SPDX-FileCopyrightText: none
 ########### next target ###############
 add_library(akregatorinterfaces)
 

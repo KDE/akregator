@@ -1,4 +1,5 @@
-
+# SPDX-License-Identifier: CC0-1.0
+# SPDX-FileCopyrightText: none
 include_directories(
     ${akregator_BINARY_DIR}/interfaces
     ${akregator_SOURCE_DIR}/interfaces

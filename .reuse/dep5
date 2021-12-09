@@ -1,0 +1,8 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: akregator
+Upstream-Contact: Montel Laurent <montel@kde.org>
+Source: https://invent.kde.org/pim/akregator
+
+Files: README MAINTAINERS AUTHORS
+Copyright: none
+License: CC0-1.0
