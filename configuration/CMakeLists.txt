@@ -19,7 +19,6 @@ target_link_libraries(akregator_config_general
     KF5::I18n
     )
 
-install(FILES akregator_config_general.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
 install(TARGETS akregator_config_general DESTINATION ${KDE_INSTALL_PLUGINDIR}/pim/kcms/akregator)
 
 ########### next target ###############
@@ -36,7 +35,6 @@ target_link_libraries(akregator_config_appearance
     KF5::I18n
     )
 
-install(FILES akregator_config_appearance.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
 install(TARGETS akregator_config_appearance DESTINATION ${KDE_INSTALL_PLUGINDIR}/pim/kcms/akregator)
 
 ########### next target ###############
@@ -68,7 +66,6 @@ target_link_libraries(akregator_config_browser
 
     )
 
-install(FILES akregator_config_browser.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
 install(TARGETS akregator_config_browser DESTINATION ${KDE_INSTALL_PLUGINDIR}/pim/kcms/akregator)
 
 ########### next target ###############
@@ -90,7 +87,6 @@ target_link_libraries(akregator_config_advanced
 if (COMPILE_WITH_UNITY_CMAKE_SUPPORT)
     set_target_properties(akregator_config_advanced PROPERTIES UNITY_BUILD ON)
 endif()
-install(FILES akregator_config_advanced.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
 install(TARGETS akregator_config_advanced DESTINATION ${KDE_INSTALL_PLUGINDIR}/pim/kcms/akregator)
 
 
@@ -119,7 +115,6 @@ if (COMPILE_WITH_UNITY_CMAKE_SUPPORT)
     set_target_properties(akregator_config_plugins PROPERTIES UNITY_BUILD ON)
 endif()
 
-install(FILES akregator_config_plugins.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
 install(TARGETS akregator_config_plugins DESTINATION ${KDE_INSTALL_PLUGINDIR}/pim/kcms/akregator)
 
 
@@ -137,7 +132,6 @@ if (TARGET KUserFeedbackWidgets)
         KUserFeedbackWidgets
         )
 
-    install(FILES akregator_config_userfeedback.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
     install(TARGETS akregator_config_userfeedback DESTINATION ${KDE_INSTALL_PLUGINDIR}/pim/kcms/akregator)
 endif()
 
@@ -161,5 +155,4 @@ if (COMPILE_WITH_UNITY_CMAKE_SUPPORT)
     set_target_properties(akregator_config_security PROPERTIES UNITY_BUILD ON)
 endif()
 
-install(FILES akregator_config_security.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
 install(TARGETS akregator_config_security DESTINATION ${KDE_INSTALL_PLUGINDIR}/pim/kcms/akregator)
