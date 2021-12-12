@@ -1,0 +1,41 @@
+{
+    "KPlugin": {
+        "Icon": "preferences-other",
+        "Name": "User Feedback",
+        "Name[ar]": "ملاحظات المستخدمين",
+        "Name[az]": "İstifadəçi Rəyi",
+        "Name[ca@valencia]": "Comentaris de l'usuari",
+        "Name[ca]": "Comentaris de l'usuari",
+        "Name[cs]": "Zpětná vazba uživatele",
+        "Name[da]": "Brugerfeedback",
+        "Name[de]": "Benutzer-Feedback",
+        "Name[el]": "Σχολιασμός χρήστη",
+        "Name[en_GB]": "User Feedback",
+        "Name[es]": "Comentarios del usuario",
+        "Name[et]": "Kasutaja tagasiside",
+        "Name[eu]": "Erabiltzailearen erreakzioa",
+        "Name[fi]": "Käyttäjäpalaute",
+        "Name[fr]": "Retours des utilisateurs",
+        "Name[hu]": "Felhasználói visszajelzés",
+        "Name[ia]": "Responsa del usator",
+        "Name[it]": "Segnalazioni degli utenti",
+        "Name[ko]": "사용자 피드백",
+        "Name[nl]": "Terugkoppeling van gebruiker",
+        "Name[nn]": "Tilbakemeldingar",
+        "Name[pl]": "Informacja zwrotna",
+        "Name[pt]": "Reacções do Utilizador",
+        "Name[pt_BR]": "Comentários do usuário",
+        "Name[ru]": "Обратная связь",
+        "Name[sk]": "Používateľská odozva",
+        "Name[sl]": "Odziv uporabnika",
+        "Name[sv]": "Användaråterkoppling",
+        "Name[uk]": "Відгуки користувача",
+        "Name[x-test]": "xxUser Feedbackxx",
+        "Name[zh_CN]": "用户反馈",
+        "Name[zh_TW]": "使用者回饋",
+        "ServiceTypes": [
+            "KCModule"
+        ]
+    },
+    "X-KDE-Weight": 250
+}
