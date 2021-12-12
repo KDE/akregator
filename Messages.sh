@@ -1,4 +1,7 @@
 #! /bin/sh
+# SPDX-License-Identifier: BSD-3-Clause
+# SPDX-FileCopyrightText: none
+
 $EXTRACT_GRANTLEE_TEMPLATE_STRINGS `find -name \*.html` >> rc.cpp
 $EXTRACTRC `find . -name "*.rc" -o -name "*.ui" -o -name "*.kcfg"` >> rc.cpp || exit 11
 $XGETTEXT $(find . -name "*.cpp" -o -name "*.h") -o $podir/akregator.pot
