@@ -13,8 +13,6 @@ target_sources(kontact_akregatorplugin PRIVATE akregator_plugin.cpp akregator_pl
 
 target_link_libraries(kontact_akregatorplugin KF5::I18n KF5::KontactInterface)
 
-kcoreaddons_desktop_to_json(kontact_akregatorplugin akregatorplugin.desktop  SERVICE_TYPES kcmodule.desktop)
-
 ########### install files ###############
 
 install(TARGETS kontact_akregatorplugin DESTINATION ${KDE_INSTALL_PLUGINDIR}/kontact5)
