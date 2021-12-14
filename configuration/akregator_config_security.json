@@ -1,6 +1,12 @@
 {
     "KPlugin": {
         "Description": "Configure Security",
+        "Description[ca]": "Configura la seguretat",
+        "Description[hu]": "Biztonsági beállítások",
+        "Description[nl]": "Beveiliging configureren",
+        "Description[sv]": "Anpassa säkerhet",
+        "Description[uk]": "Налаштовування захисту",
+        "Description[x-test]": "xxConfigure Securityxx",
         "Icon": "security-high",
         "Name": "Security",
         "Name[af]": "Sekuriteit",

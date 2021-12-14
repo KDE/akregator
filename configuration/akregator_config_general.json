@@ -1,6 +1,12 @@
 {
     "KPlugin": {
         "Description": "Configure Feeds",
+        "Description[ca]": "Configura les fonts",
+        "Description[hu]": "Csatornabeállítások",
+        "Description[nl]": "Feeds configureren",
+        "Description[sv]": "Anpassa kanaler",
+        "Description[uk]": "Налаштування подач",
+        "Description[x-test]": "xxConfigure Feedsxx",
         "Icon": "akregator",
         "Name": "General",
         "Name[af]": "Algemeen",

@@ -1,6 +1,12 @@
 {
     "KPlugin": {
         "Description": "Akregator Plugin",
+        "Description[ca]": "Connector Akregator",
+        "Description[hu]": "Akregator bővítmény",
+        "Description[nl]": "Akregatorplug-in",
+        "Description[sv]": "Akregator-insticksprogram",
+        "Description[uk]": "Додаток до Akregator",
+        "Description[x-test]": "xxAkregator Pluginxx",
         "EnabledByDefault": true,
         "Icon": "view-pim-news",
         "Id": "kontact_akregatorplugin",

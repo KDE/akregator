@@ -1,6 +1,12 @@
 {
     "KPlugin": {
         "Description": "Configure Internal Browser Component",
+        "Description[ca]": "Configura el component del navegador intern",
+        "Description[hu]": "A belső böngészőkomponens beállítása",
+        "Description[nl]": "Interne browsercomponent instellen",
+        "Description[sv]": "Anpassa intern webbläsningskomponent",
+        "Description[uk]": "Налаштування вбудованого компонента переглядача",
+        "Description[x-test]": "xxConfigure Internal Browser Componentxx",
         "Icon": "konqueror",
         "Name": "Browser",
         "Name[ar]": "المتصفّح",

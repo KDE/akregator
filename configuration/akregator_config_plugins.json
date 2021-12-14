@@ -1,6 +1,12 @@
 {
     "KPlugin": {
         "Description": "Configure Plugins",
+        "Description[ca]": "Configura els connectors",
+        "Description[hu]": "Bővítmények beállítása",
+        "Description[nl]": "Plugins configureren",
+        "Description[sv]": "Anpassa insticksprogram",
+        "Description[uk]": "Налаштовування додатків",
+        "Description[x-test]": "xxConfigure Pluginsxx",
         "Icon": "preferences-plugin",
         "Name": "Plugins",
         "Name[af]": "Inprop modules",

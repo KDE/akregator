@@ -1,6 +1,12 @@
 {
     "KPlugin": {
         "Description": "Advanced Feed Reader Settings",
+        "Description[ca]": "Configuració avançada del lector de fonts",
+        "Description[hu]": "Speciális hírolvasó-beállítások",
+        "Description[nl]": "Geavanceerde instellingen van feedlezer",
+        "Description[sv]": "Avancerade inställningar av kanalläsare",
+        "Description[uk]": "Додаткові параметри програми читання подач",
+        "Description[x-test]": "xxAdvanced Feed Reader Settingsxx",
         "Icon": "utilities-file-archiver",
         "Name": "Advanced",
         "Name[ar]": "متقدّم",
