@@ -1,9 +1,13 @@
 {
     "KPlugin": {
         "Description": "Configure Internal Browser Component",
+        "Description[ca@valencia]": "Configura el component del navegador intern",
         "Description[ca]": "Configura el component del navegador intern",
+        "Description[fr]": "Configurer le composant internet de navigation",
         "Description[hu]": "A belső böngészőkomponens beállítása",
+        "Description[it]": "Configura il componente interno di navigazione",
         "Description[nl]": "Interne browsercomponent instellen",
+        "Description[sl]": "Nastavi vgrajeni sestavni del za brskanje",
         "Description[sv]": "Anpassa intern webbläsningskomponent",
         "Description[uk]": "Налаштування вбудованого компонента переглядача",
         "Description[x-test]": "xxConfigure Internal Browser Componentxx",

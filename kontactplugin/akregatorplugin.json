@@ -1,9 +1,13 @@
 {
     "KPlugin": {
         "Description": "Akregator Plugin",
+        "Description[ca@valencia]": "Connector Akregator",
         "Description[ca]": "Connector Akregator",
+        "Description[fr]": "Module externe pour Akregator",
         "Description[hu]": "Akregator bővítmény",
+        "Description[it]": "Estensione di Akregator",
         "Description[nl]": "Akregatorplug-in",
+        "Description[sl]": "Vstavek Akregator",
         "Description[sv]": "Akregator-insticksprogram",
         "Description[uk]": "Додаток до Akregator",
         "Description[x-test]": "xxAkregator Pluginxx",

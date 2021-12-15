@@ -1,9 +1,13 @@
 {
     "KPlugin": {
         "Description": "Configure Feed Archive",
+        "Description[ca@valencia]": "Configura l'arxiu de fonts",
         "Description[ca]": "Configura l'arxiu de fonts",
+        "Description[fr]": "Configurer les archives des flux",
         "Description[hu]": "A hírarchívum beállításai",
+        "Description[it]": "Configura l'archivio delle fonti",
         "Description[nl]": "Feedarchief instellen",
+        "Description[sl]": "Nastavi arhiv virov",
         "Description[sv]": "Anpassa kanalarkivet",
         "Description[uk]": "Налаштування архіву подач",
         "Description[x-test]": "xxConfigure Feed Archivexx",
