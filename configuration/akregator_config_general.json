@@ -1,8 +1,10 @@
 {
     "KPlugin": {
         "Description": "Configure Feeds",
+        "Description[ar]": "اضبط التّغذيات",
         "Description[ca@valencia]": "Configura les fonts",
         "Description[ca]": "Configura les fonts",
+        "Description[es]": "Configurar fuentes",
         "Description[fr]": "Configurer les flux",
         "Description[hu]": "Csatornabeállítások",
         "Description[it]": "Configura le fonti",

@@ -1,8 +1,10 @@
 {
     "KPlugin": {
         "Description": "Configure Plugins",
+        "Description[ar]": "اضبط الملحقات",
         "Description[ca@valencia]": "Configura els connectors",
         "Description[ca]": "Configura els connectors",
+        "Description[es]": "Configurar complementos",
         "Description[fr]": "Configurer les modules externes",
         "Description[hu]": "Bővítmények beállítása",
         "Description[it]": "Configura le estensioni",

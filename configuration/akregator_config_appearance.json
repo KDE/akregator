@@ -1,8 +1,10 @@
 {
     "KPlugin": {
         "Description": "Configure the Feed Reader Appearance",
+        "Description[ar]": "اضبط مظهر قارئ التّغذيات",
         "Description[ca@valencia]": "Configura l'aparença del lector de fonts",
         "Description[ca]": "Configura l'aparença del lector de fonts",
+        "Description[es]": "Configurar la apariencia del lector de fuentes",
         "Description[fr]": "Configurer l'apparence du lecteur de flux",
         "Description[hu]": "A hírolvasó megjelenítésének beállítása",
         "Description[it]": "Configura l'aspetto del lettore di fonti",

@@ -1,8 +1,10 @@
 {
     "KPlugin": {
         "Description": "Advanced Feed Reader Settings",
+        "Description[ar]": "إعدادات قارئ التّغذيات المتقدّم",
         "Description[ca@valencia]": "Configuració avançada del lector de fonts",
         "Description[ca]": "Configuració avançada del lector de fonts",
+        "Description[es]": "Configuración avanzada del lector de fuentes",
         "Description[fr]": "Configuration avancé du lecteur de flux",
         "Description[hu]": "Speciális hírolvasó-beállítások",
         "Description[it]": "Impostazioni avanzate per il lettore di fonti",
