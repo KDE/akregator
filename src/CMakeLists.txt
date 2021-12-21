@@ -23,7 +23,7 @@ ecm_qt_declare_logging_category(akregator_common_SRCS HEADER akregator_debug.h I
         EXPORT AKREGATOR
     )
 
-set(akregator_SRCS main.cpp mainwindow.cpp ${akregator_common_SRCS})
+set(akregator_SRCS main.cpp mainwindow.cpp mainwindow.h ${akregator_common_SRCS})
 
 file(GLOB ICONS_AKREGATOR_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/icons/*-apps-akregator.png")
 ecm_add_app_icon(akregator_SRCS ICONS ${ICONS_AKREGATOR_SRCS})

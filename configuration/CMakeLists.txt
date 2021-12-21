@@ -55,7 +55,7 @@ install(TARGETS akregator_config_archive DESTINATION ${KDE_INSTALL_PLUGINDIR}/pi
 ########### next target ###############
 
 add_library(akregator_config_browser MODULE )
-target_sources(akregator_config_browser PRIVATE akregator_config_browser.cpp)
+target_sources(akregator_config_browser PRIVATE akregator_config_browser.cpp akregator_config_browser.h)
 
 ki18n_wrap_ui(akregator_config_browser ui/settings_browser.ui)
 
@@ -74,6 +74,8 @@ add_library(akregator_config_advanced MODULE)
 target_sources(akregator_config_advanced PRIVATE
     akregator_config_advanced.cpp
     settings_advanced.cpp
+    akregator_config_advanced.h
+    settings_advanced.h
     )
 
 ki18n_wrap_ui(akregator_config_advanced ui/settings_advancedbase.ui)
@@ -96,6 +98,8 @@ add_library(akregator_config_plugins MODULE)
 target_sources(akregator_config_plugins PRIVATE
     akregator_config_plugins.cpp
     akregatorconfigurepluginlistwidget.cpp
+    akregator_config_plugins.h
+    akregatorconfigurepluginlistwidget.h
     )
 
 ecm_qt_declare_logging_category(akregator_config_plugins HEADER kcm_config_plugins_debug.h IDENTIFIER AKREGATOR_CONFIG_PLUGIN_LOG CATEGORY_NAME org.kde.pim.akregator_config_plugin
