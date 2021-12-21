@@ -68,7 +68,9 @@ int Application::activate(const QStringList &args, const QString &workingDir)
 int main(int argc, char **argv)
 {
     QCoreApplication::setAttribute(Qt::AA_ShareOpenGLContexts);
-    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling, true);
+#endif
     QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps, true);
     Akregator::Application app(argc, &argv);
     KLocalizedString::setApplicationDomain("akregator");
