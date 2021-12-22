@@ -2,6 +2,7 @@
     "KPlugin": {
         "Description": "Configure Feed Archive",
         "Description[ar]": "اضبط أرشيف التّغذيات",
+        "Description[az]": "Xəbər lenti arxivini tənzimləyin",
         "Description[ca@valencia]": "Configura l'arxiu de fonts",
         "Description[ca]": "Configura l'arxiu de fonts",
         "Description[es]": "Configurar el archivo comprimido de fuentes",
@@ -10,6 +11,7 @@
         "Description[ia]": "Configura archivo de syndication",
         "Description[it]": "Configura l'archivio delle fonti",
         "Description[nl]": "Feedarchief instellen",
+        "Description[pt_BR]": "Configurar o arquivo de fontes de notícias",
         "Description[sl]": "Nastavi arhiv virov",
         "Description[sv]": "Anpassa kanalarkivet",
         "Description[uk]": "Налаштування архіву подач",

@@ -2,6 +2,7 @@
     "KPlugin": {
         "Description": "Configure Internal Browser Component",
         "Description[ar]": "اضبط مكوّن المتصفّح الدّاخليّ",
+        "Description[az]": "Daxili bələdçi komponentlrini tənzimləyin",
         "Description[ca@valencia]": "Configura el component del navegador intern",
         "Description[ca]": "Configura el component del navegador intern",
         "Description[es]": "Configurar el componente navegador interno",
@@ -10,6 +11,7 @@
         "Description[ia]": "Configura componente interne de navigator",
         "Description[it]": "Configura il componente interno di navigazione",
         "Description[nl]": "Interne browsercomponent instellen",
+        "Description[pt_BR]": "Configurar o componente de navegação interna",
         "Description[sl]": "Nastavi vgrajeni sestavni del za brskanje",
         "Description[sv]": "Anpassa intern webbläsningskomponent",
         "Description[uk]": "Налаштування вбудованого компонента переглядача",

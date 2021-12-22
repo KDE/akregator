@@ -2,6 +2,7 @@
     "KPlugin": {
         "Description": "Configure Security",
         "Description[ar]": "اضبط الأمن",
+        "Description[az]": "Təhlükəsizlik ayarları",
         "Description[ca@valencia]": "Configura la seguretat",
         "Description[ca]": "Configura la seguretat",
         "Description[es]": "Configurar la seguridad",
@@ -10,6 +11,7 @@
         "Description[ia]": "Configura securitate",
         "Description[it]": "Configura la sicurezza",
         "Description[nl]": "Beveiliging configureren",
+        "Description[pt_BR]": "Configurar segurança",
         "Description[sl]": "Nastavi varnost",
         "Description[sv]": "Anpassa säkerhet",
         "Description[uk]": "Налаштовування захисту",

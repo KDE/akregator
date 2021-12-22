@@ -2,6 +2,7 @@
     "KPlugin": {
         "Description": "Advanced Feed Reader Settings",
         "Description[ar]": "إعدادات قارئ التّغذيات المتقدّم",
+        "Description[az]": "Təkmilləşdirilmiş xəbər lenti ayarları",
         "Description[ca@valencia]": "Configuració avançada del lector de fonts",
         "Description[ca]": "Configuració avançada del lector de fonts",
         "Description[es]": "Configuración avanzada del lector de fuentes",
@@ -10,6 +11,7 @@
         "Description[ia]": "Preferentias avantiate de lector de syndication",
         "Description[it]": "Impostazioni avanzate per il lettore di fonti",
         "Description[nl]": "Geavanceerde instellingen van feedlezer",
+        "Description[pt_BR]": "Configuração avançada do leitor de fontes de notícias",
         "Description[sl]": "Napredne nastavitve bralnika virov",
         "Description[sv]": "Avancerade inställningar av kanalläsare",
         "Description[uk]": "Додаткові параметри програми читання подач",

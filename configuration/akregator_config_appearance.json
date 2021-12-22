@@ -2,6 +2,7 @@
     "KPlugin": {
         "Description": "Configure the Feed Reader Appearance",
         "Description[ar]": "اضبط مظهر قارئ التّغذيات",
+        "Description[az]": "Xəbər lenti görünüşünü tənzimləyin",
         "Description[ca@valencia]": "Configura l'aparença del lector de fonts",
         "Description[ca]": "Configura l'aparença del lector de fonts",
         "Description[es]": "Configurar la apariencia del lector de fuentes",
@@ -10,6 +11,7 @@
         "Description[ia]": "Configura le apparentia de lector de syndication",
         "Description[it]": "Configura l'aspetto del lettore di fonti",
         "Description[nl]": "Het uiterlijk van feedlezer instellen",
+        "Description[pt_BR]": "Configurar a aparência do leitor de fontes de notícias",
         "Description[sl]": "Nastavi videz bralnika virov",
         "Description[sv]": "Anpassa kanalläsarens utseende",
         "Description[uk]": "Налаштування вигляду програми читання подач",

@@ -2,6 +2,7 @@
     "KPlugin": {
         "Description": "Configure Plugins",
         "Description[ar]": "اضبط الملحقات",
+        "Description[az]": "Qoşmaları tənzimləyin",
         "Description[ca@valencia]": "Configura els connectors",
         "Description[ca]": "Configura els connectors",
         "Description[es]": "Configurar complementos",
@@ -10,6 +11,7 @@
         "Description[ia]": "Configura Plug-ins",
         "Description[it]": "Configura le estensioni",
         "Description[nl]": "Plugins configureren",
+        "Description[pt_BR]": "Configurar plugins",
         "Description[sl]": "Nastavi vstavke",
         "Description[sv]": "Anpassa insticksprogram",
         "Description[uk]": "Налаштовування додатків",

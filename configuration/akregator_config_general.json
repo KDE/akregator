@@ -2,6 +2,7 @@
     "KPlugin": {
         "Description": "Configure Feeds",
         "Description[ar]": "اضبط التّغذيات",
+        "Description[az]": "Xəbər lentini tənzimləyin",
         "Description[ca@valencia]": "Configura les fonts",
         "Description[ca]": "Configura les fonts",
         "Description[es]": "Configurar fuentes",
@@ -10,6 +11,7 @@
         "Description[ia]": "Configura syndicationes",
         "Description[it]": "Configura le fonti",
         "Description[nl]": "Feeds configureren",
+        "Description[pt_BR]": "Configurar as fontes de notícias",
         "Description[sl]": "Nastavi vire",
         "Description[sv]": "Anpassa kanaler",
         "Description[uk]": "Налаштування подач",
