@@ -180,3 +180,4 @@ Terminal=false
 Categories=Qt;KDE;Network;News;Feed;
 X-DBUS-StartupType=Unique
 X-DBUS-ServiceName=org.kde.akregator
+X-GNOME-SingleWindow=true
