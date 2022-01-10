@@ -57,7 +57,7 @@ set(PIMCOMMON_LIB_VERSION "5.19.40")
 option(KDEPIM_KUSERFEEDBACK "Enable user feedback support (experimental)" FALSE)
 
 
-find_package(Qt${QT_MAJOR_VERSION} ${QT_REQUIRED_VERSION} CONFIG REQUIRED Widgets Test WebEngine WebEngineWidgets PrintSupport)
+find_package(Qt${QT_MAJOR_VERSION} ${QT_REQUIRED_VERSION} CONFIG REQUIRED Widgets Test WebEngineWidgets PrintSupport)
 find_package(Grantlee5 "5.2" CONFIG REQUIRED)
 
 # Find KF5 package
