@@ -14,7 +14,6 @@
 #include <KLocalizedString>
 #include <Syndication/Atom/Atom>
 #include <Syndication/Constants>
-#include <kcoreaddons_version.h>
 
 #include <KPluginMetaData>
 #include <QDateTime>

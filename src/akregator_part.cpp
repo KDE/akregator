@@ -42,7 +42,6 @@
 #include <KPluginMetaData>
 #include <PimCommon/BroadcastStatus>
 #include <QFileDialog>
-#include <kcoreaddons_version.h>
 
 #include <KCMultiDialog>
 #include <KIO/StoredTransferJob>
@@ -55,8 +54,7 @@
 #include <QWebEngineSettings>
 #include <kxmlguifactory.h>
 
-#include <kcoreaddons_version.h>
-#if KCOREADDONS_VERSION < QT_VERSION_CHECK(6, 0, 0)
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
 #include "akregratormigrateapplication.h"
 #endif
 #include "partadaptor.h"
@@ -143,7 +141,7 @@ Part::Part(QWidget *parentWidget, QObject *parent, const QVariantList &)
     : KParts::Part(parent)
 {
     mySelf = this;
-#if KCOREADDONS_VERSION < QT_VERSION_CHECK(6, 0, 0)
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     AkregratorMigrateApplication migrate;
     migrate.migrate();
 #endif

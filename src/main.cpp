@@ -9,8 +9,7 @@
 #include "aboutdata.h"
 #include "akregator_debug.h"
 #include "akregator_options.h"
-#include <kcoreaddons_version.h>
-#if KCOREADDONS_VERSION < QT_VERSION_CHECK(6, 0, 0)
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
 #include "akregratormigrateapplication.h"
 #endif
 #include "mainwindow.h"
@@ -100,7 +99,7 @@ int main(int argc, char **argv)
         qCWarning(AKREGATOR_LOG) << "akregator is already running, exiting.";
         exit(0);
     }
-#if KCOREADDONS_VERSION < QT_VERSION_CHECK(6, 0, 0)
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     AkregratorMigrateApplication migrate;
     migrate.migrate();
 #endif
