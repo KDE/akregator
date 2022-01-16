@@ -1244,7 +1244,7 @@ void MainWidget::slotReloadAllTabs()
 
 bool MainWidget::isNetworkAvailable() const
 {
-    return PimCommon::NetworkManager::self()->networkConfigureManager()->isOnline();
+    return PimCommon::NetworkManager::self()->isOnline();
 }
 
 void MainWidget::slotNetworkStatusChanged(bool status)
