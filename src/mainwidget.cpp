@@ -58,7 +58,6 @@
 #include <QClipboard>
 #include <QDesktopServices>
 #include <QDomDocument>
-#include <QNetworkConfigurationManager>
 #include <QSplitter>
 #include <QTimer>
 #include <QUrlQuery>
@@ -144,10 +143,7 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
     connect(Kernel::self()->frameManager(), &FrameManager::signalFrameRemoved, this, &MainWidget::slotFramesChanged);
     connect(Kernel::self()->frameManager(), &FrameManager::signalCompleted, this, &MainWidget::slotFramesChanged);
 
-    connect(PimCommon::NetworkManager::self()->networkConfigureManager(),
-            &QNetworkConfigurationManager::onlineStateChanged,
-            this,
-            &MainWidget::slotNetworkStatusChanged);
+    connect(PimCommon::NetworkManager::self(), &PimCommon::NetworkManager::networkStatusChanged, this, &MainWidget::slotNetworkStatusChanged);
 
     m_tabWidget->setWhatsThis(i18n("You can view multiple articles in several open tabs."));
 
