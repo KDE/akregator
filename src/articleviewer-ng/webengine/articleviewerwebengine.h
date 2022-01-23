@@ -7,10 +7,10 @@
 #pragma once
 
 #include <MessageViewer/ViewerPluginInterface>
+#include <PimCommon/ShareServiceUrlManager>
 #include <WebEngineViewer/CheckPhishingUrlJob>
 #include <WebEngineViewer/WebEngineView>
 #include <openurlrequest.h>
-#include <shareserviceurlmanager.h>
 
 class KActionCollection;
 namespace WebEngineViewer
