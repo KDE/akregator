@@ -5,7 +5,7 @@
 */
 
 #include "akregratormigrateapplication.h"
-
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
 #include <Kdelibs4ConfigMigrator>
 
 AkregratorMigrateApplication::AkregratorMigrateApplication()
@@ -55,3 +55,4 @@ void AkregratorMigrateApplication::initializeMigrator()
     mMigrator.insertMigrateInfo(migrateInfoData);
     // TODO
 }
+#endif

@@ -6,6 +6,8 @@
 
 #pragma once
 
+#include <QObject>
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
 #include "akregator_export.h"
 #include <PimCommon/MigrateApplicationFiles>
 
@@ -19,4 +21,4 @@ private:
     void initializeMigrator();
     PimCommon::MigrateApplicationFiles mMigrator;
 };
-
+#endif
