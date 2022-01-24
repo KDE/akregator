@@ -11,7 +11,7 @@
 #include <KIO/OpenUrlJob>
 #include <KLocalizedString>
 #include <QVBoxLayout>
-#include <viewerplugintoolmanager.h>
+#include <messageviewer/viewerplugintoolmanager.h>
 
 #include <KPIMTextEdit/kpimtextedit/texttospeechwidget.h>
 

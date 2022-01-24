@@ -35,7 +35,7 @@
 #include <QPrinter>
 #include <QWebEngineProfile>
 #include <QWebEngineUrlRequestInterceptor>
-#include <viewerplugintoolmanager.h>
+#include <messageviewer/viewerplugintoolmanager.h>
 
 #include <WebEngineViewer/BlockExternalResourcesUrlInterceptor>
 #include <WebEngineViewer/BlockTrackingUrlInterceptor>
