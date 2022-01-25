@@ -27,6 +27,7 @@
 #include <KJobWidgets>
 #include <KLocalizedString>
 #include <KMessageBox>
+#include <MessageViewer/ViewerPluginToolManager>
 #include <QApplication>
 #include <QClipboard>
 #include <QFileDialog>
@@ -35,7 +36,6 @@
 #include <QPrinter>
 #include <QWebEngineProfile>
 #include <QWebEngineUrlRequestInterceptor>
-#include <messageviewer/viewerplugintoolmanager.h>
 
 #include <WebEngineViewer/BlockExternalResourcesUrlInterceptor>
 #include <WebEngineViewer/BlockTrackingUrlInterceptor>

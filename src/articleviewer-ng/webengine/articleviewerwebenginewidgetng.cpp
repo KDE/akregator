@@ -10,8 +10,8 @@
 #include <KIO/JobUiDelegate>
 #include <KIO/OpenUrlJob>
 #include <KLocalizedString>
+#include <MessageViewer/ViewerPluginToolManager>
 #include <QVBoxLayout>
-#include <messageviewer/viewerplugintoolmanager.h>
 
 #include <KPIMTextEdit/kpimtextedit/texttospeechwidget.h>
 
