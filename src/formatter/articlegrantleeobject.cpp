@@ -97,7 +97,9 @@ QString ArticleGrantleeObject::actionToken() const
 {
     QUrlQuery query;
     query.addQueryItem(QStringLiteral("id"), mArticle.guid());
-    query.addQueryItem(QStringLiteral("feed"), mArticle.feed()->xmlUrl());
+    if (mArticle.feed()) {
+        query.addQueryItem(QStringLiteral("feed"), mArticle.feed()->xmlUrl());
+    }
     return QLatin1Char('?') + query.toString(QUrl::FullyEncoded);
 }
 
