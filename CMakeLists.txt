@@ -58,7 +58,6 @@ option(KDEPIM_KUSERFEEDBACK "Enable user feedback support (experimental)" FALSE)
 
 
 find_package(Qt${QT_MAJOR_VERSION} ${QT_REQUIRED_VERSION} CONFIG REQUIRED Widgets Test WebEngineWidgets PrintSupport)
-find_package(Grantlee5 "5.2" CONFIG REQUIRED)
 
 # Find KF5 package
 find_package(KF5I18n ${KF5_MIN_VERSION} REQUIRED)

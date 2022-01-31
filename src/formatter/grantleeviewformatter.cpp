@@ -11,8 +11,6 @@
 #include "utils.h"
 #include <KLocalizedString>
 
-#include <grantlee/engine.h>
-
 #include <QApplication>
 #include <QVariantHash>
 #include <QVariantList>
