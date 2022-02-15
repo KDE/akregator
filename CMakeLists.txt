@@ -30,6 +30,7 @@ include(KDECMakeSettings)
 include(KDECompilerSettings NO_POLICY_SCOPE)
 include(ECMAddAppIcon)
 include(ECMQtDeclareLoggingCategory)
+include(ECMDeprecationSettings)
 
 
 # Do NOT add quote
@@ -95,8 +96,7 @@ set_package_properties(KUserFeedback PROPERTIES DESCRIPTION "User Feedback lib" 
 
 include_directories(${akregator_SOURCE_DIR} ${akregator_BINARY_DIR})
 add_definitions(-DTRANSLATION_DOMAIN=\"akregator\")
-add_definitions(-DQT_DISABLE_DEPRECATED_BEFORE=0x050e00)
-add_definitions(-DKF_DISABLE_DEPRECATED_BEFORE_AND_AT=0x055800)
+ecm_set_disabled_deprecation_versions(QT 5.15.0 KF 5.88.0)
 if (TARGET KUserFeedbackWidgets)
     add_definitions(-DWITH_KUSERFEEDBACK)
 endif()
