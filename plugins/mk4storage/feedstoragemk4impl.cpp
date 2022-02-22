@@ -256,7 +256,7 @@ void FeedStorageMK4Impl::setDeleted(const QString &guid)
 QString FeedStorageMK4Impl::link(const QString &guid) const
 {
     int findidx = findArticle(guid);
-    return findidx != -1 ? QString::fromLatin1(d->plink(d->archiveView.GetAt(findidx))) : QLatin1String("");
+    return findidx != -1 ? QString::fromUtf8(d->plink(d->archiveView.GetAt(findidx))) : QLatin1String("");
 }
 
 QDateTime FeedStorageMK4Impl::pubDate(const QString &guid) const
@@ -348,7 +348,7 @@ void FeedStorageMK4Impl::setLink(const QString &guid, const QString &link)
     }
     c4_Row row;
     row = d->archiveView.GetAt(findidx);
-    d->plink(row) = !link.isEmpty() ? link.toLatin1().constData() : "";
+    d->plink(row) = !link.isEmpty() ? link.toUtf8().constData() : "";
     d->archiveView.SetAt(findidx, row);
     markDirty();
 }
