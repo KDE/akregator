@@ -12,7 +12,10 @@
 #include "articleviewerwebenginepage.h"
 #include "urlhandler/webengine/urlhandlerwebengine.h"
 #include "webengine/urlhandlerwebenginemanager.h"
+#include <kpimtextedit/kpimtextedit-texttospeech.h>
+#ifdef KPIMTEXTEDIT_TEXT_TO_SPEECH
 #include <KPIMTextEdit/TextToSpeech>
+#endif
 #include <WebEngineViewer/InterceptorManager>
 #include <WebEngineViewer/WebEngineAccessKey>
 #include <WebEngineViewer/WebEngineManageScript>
@@ -305,10 +308,12 @@ void ArticleViewerWebEngine::slotWebHitFinished(const WebEngineViewer::WebHitTes
     popup.addAction(ActionManager::getInstance()->action(QStringLiteral("tab_unmute")));
     popup.addSeparator();
     popup.addAction(ActionManager::getInstance()->action(QStringLiteral("find_in_messages")));
+#ifdef KPIMTEXTEDIT_TEXT_TO_SPEECH
     if (KPIMTextEdit::TextToSpeech::self()->isReady()) {
         popup.addSeparator();
         popup.addAction(ActionManager::getInstance()->action(QStringLiteral("speak_text")));
     }
+#endif
     popup.exec(mapToGlobal(result.pos()));
 }
 

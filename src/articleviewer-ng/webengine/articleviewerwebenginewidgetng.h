@@ -8,6 +8,8 @@
 
 #include "akregator_export.h"
 #include "articleviewerwebengine.h"
+#include <kpimtextedit/kpimtextedit-texttospeech.h>
+
 #include <QWidget>
 class QPrinter;
 class KActionCollection;
@@ -55,7 +57,9 @@ private:
     void printRequested(QWebEnginePage *page);
     WebEngineViewer::FindBarWebEngineView *mFindBarWebView = nullptr;
     ArticleViewerWebEngine *mArticleViewerNg = nullptr;
+#ifdef KPIMTEXTEDIT_TEXT_TO_SPEECH
     KPIMTextEdit::TextToSpeechWidget *const mTextToSpeechWidget;
+#endif
     KPIMTextEdit::SlideContainer *const mSliderContainer;
     WebEngineViewer::TrackingWarningWidget *const mTrackingWarningWidget;
     QPrinter *mCurrentPrinter = nullptr;
