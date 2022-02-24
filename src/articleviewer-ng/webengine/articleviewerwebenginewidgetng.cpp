@@ -13,7 +13,7 @@
 #include <MessageViewer/ViewerPluginToolManager>
 #include <QVBoxLayout>
 #ifdef KPIMTEXTEDIT_TEXT_TO_SPEECH
-#include <KPIMTextEdit/kpimtextedit/texttospeechwidget.h>
+#include <kpimtextedit/texttospeechwidget.h>
 #endif
 #include <KPIMTextEdit/SlideContainer>
 
