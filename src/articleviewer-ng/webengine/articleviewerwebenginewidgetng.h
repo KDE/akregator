@@ -57,7 +57,7 @@ private:
     void printRequested(QWebEnginePage *page);
     WebEngineViewer::FindBarWebEngineView *mFindBarWebView = nullptr;
     ArticleViewerWebEngine *mArticleViewerNg = nullptr;
-#ifdef KPIMTEXTEDIT_TEXT_TO_SPEECH
+#if KPIMTEXTEDIT_TEXT_TO_SPEECH
     KPIMTextEdit::TextToSpeechWidget *const mTextToSpeechWidget;
 #endif
     KPIMTextEdit::SlideContainer *const mSliderContainer;

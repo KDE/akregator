@@ -16,7 +16,7 @@
 #include <KActionMenu>
 #include <KIO/KUriFilterSearchProviderActions>
 #include <kpimtextedit/kpimtextedit-texttospeech.h>
-#ifdef KPIMTEXTEDIT_TEXT_TO_SPEECH
+#if KPIMTEXTEDIT_TEXT_TO_SPEECH
 #include <KPIMTextEdit/TextToSpeech>
 #endif
 #include <QContextMenuEvent>
@@ -141,7 +141,7 @@ void AkrWebEngineViewer::slotWebHitFinished(const WebEngineViewer::WebHitTestRes
         popup.addActions(interceptorUrlActions);
     }
     popup.addSeparator();
-#ifdef KPIMTEXTEDIT_TEXT_TO_SPEECH
+#if KPIMTEXTEDIT_TEXT_TO_SPEECH
     popup.addAction(ActionManager::getInstance()->action(QStringLiteral("find_in_messages")));
     if (KPIMTextEdit::TextToSpeech::self()->isReady()) {
         popup.addSeparator();
