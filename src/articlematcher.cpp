@@ -9,6 +9,7 @@
 #include "akregator_debug.h"
 #include "article.h"
 #include "types.h"
+#include "utils/textutil.h"
 #include <KConfig>
 #include <KConfigGroup>
 #include <QUrl>
@@ -160,17 +161,17 @@ bool Criterion::satisfiedBy(const Article &article) const
 
     switch (predicateType) {
     case Contains:
-        satisfied = concreteSubject.toString().indexOf(m_object.toString(), 0, Qt::CaseInsensitive) != -1;
+        satisfied = TextUtil::normalize(concreteSubject.toString()).indexOf(m_object.toString(), 0, Qt::CaseInsensitive) != -1;
         break;
     case Equals:
         if (subjectType == QLatin1String("int")) {
             satisfied = concreteSubject.toInt() == m_object.toInt();
         } else {
-            satisfied = concreteSubject.toString() == m_object.toString();
+            satisfied = TextUtil::normalize(concreteSubject.toString()) == m_object.toString();
         }
         break;
     case Matches:
-        satisfied = concreteSubject.toString().contains(QRegularExpression(m_object.toString()));
+        satisfied = TextUtil::normalize(concreteSubject.toString()).contains(QRegularExpression(m_object.toString()));
         break;
     default:
         qCDebug(AKREGATOR_LOG) << "Internal inconsistency; predicateType should never be Negation";

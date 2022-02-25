@@ -10,6 +10,7 @@
 #include "akregatorconfig.h"
 
 #include "article.h"
+#include "utils/textutil.h"
 
 #include <KLineEdit>
 #include <KLocalizedString>
@@ -132,12 +133,13 @@ void SearchBar::slotActivateSearch()
     QVector<Criterion> statusCriteria;
 
     if (!m_searchText.isEmpty()) {
+        const QString searchTextDiacritic(TextUtil::normalize(m_searchText));
         textCriteria.reserve(3);
-        Criterion subjCrit(Criterion::Title, Criterion::Contains, m_searchText);
+        Criterion subjCrit(Criterion::Title, Criterion::Contains, searchTextDiacritic);
         textCriteria << subjCrit;
-        Criterion crit1(Criterion::Description, Criterion::Contains, m_searchText);
+        Criterion crit1(Criterion::Description, Criterion::Contains, searchTextDiacritic);
         textCriteria << crit1;
-        Criterion authCrit(Criterion::Author, Criterion::Contains, m_searchText);
+        Criterion authCrit(Criterion::Author, Criterion::Contains, searchTextDiacritic);
         textCriteria << authCrit;
     }
 
