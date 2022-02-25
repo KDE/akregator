@@ -190,6 +190,8 @@ target_sources(akregatorpart PRIVATE
     crashwidget/crashwidget.cpp
 
     utils/filtercolumnsproxymodel.cpp
+    utils/textutil.cpp
+    utils/textutil.h
 
     command/deletesubscriptioncommand.cpp
     command/createfeedcommand.cpp
