@@ -10,5 +10,4 @@
 namespace TextUtil
 {
 Q_REQUIRED_RESULT QString normalize(QStringView str);
-Q_REQUIRED_RESULT QChar normalize(QChar c);
 };
