@@ -1,11 +1,11 @@
 # SPDX-License-Identifier: CC0-1.0
 # SPDX-FileCopyrightText: none
 cmake_minimum_required(VERSION 3.16 FATAL_ERROR)
-set(PIM_VERSION "5.19.80")
+set(PIM_VERSION "5.19.90")
 project(akregator VERSION ${PIM_VERSION})
 
 set(KF5_MIN_VERSION "5.91.0")
-set(RELEASE_SERVICE_VERSION "22.03.80")
+set(RELEASE_SERVICE_VERSION "22.03.90")
 
 find_package(ECM ${KF5_MIN_VERSION} CONFIG REQUIRED)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
@@ -34,7 +34,7 @@ include(ECMDeprecationSettings)
 
 
 # Do NOT add quote
-set(KDEPIM_DEV_VERSION alpha)
+set(KDEPIM_DEV_VERSION rc)
 
 # add an extra space
 if(DEFINED KDEPIM_DEV_VERSION)
