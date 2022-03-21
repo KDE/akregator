@@ -14,7 +14,8 @@
 
 class QDomDocument;
 class QDomElement;
-template<class T> class QList;
+template<class T>
+class QList;
 
 namespace Akregator
 {
@@ -190,4 +191,3 @@ private:
     bool m_open = false;
 };
 } // namespace Akregator
-

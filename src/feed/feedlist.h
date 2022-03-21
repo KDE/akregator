@@ -20,8 +20,10 @@
 
 class QDomDocument;
 class QDomNode;
-template<class T> class QList;
-template<class K, class T> class QHash;
+template<class T>
+class QList;
+template<class K, class T>
+class QHash;
 class QString;
 
 class KJob;
@@ -184,4 +186,3 @@ private:
     std::unique_ptr<FeedListPrivate> const d;
 };
 } // namespace Akregator
-

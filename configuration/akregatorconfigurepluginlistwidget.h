@@ -24,4 +24,3 @@ private:
     void slotConfigureClicked(const QString &configureGroupName, const QString &identifier);
     QVector<PluginItem *> mPluginWebEngineItems;
 };
-

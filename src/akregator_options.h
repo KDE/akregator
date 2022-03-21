@@ -31,4 +31,3 @@ static void akregator_options(QCommandLineParser *parser)
 #endif
 }
 }
-

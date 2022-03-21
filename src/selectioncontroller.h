@@ -90,4 +90,3 @@ private:
     QPointer<ArticleListJob> m_listJob;
 };
 } // namespace Akregator
-

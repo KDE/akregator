@@ -104,4 +104,3 @@ Q_SIGNALS:
     void articleDoubleClicked(const Akregator::Article &);
 };
 } // namespace Akregator
-

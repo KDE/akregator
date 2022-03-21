@@ -41,7 +41,8 @@
 using Syndication::ItemPtr;
 using namespace Akregator;
 
-template<typename Key, typename Value, template<typename, typename> class Container> QVector<Value> valuesToVector(const Container<Key, Value> &container)
+template<typename Key, typename Value, template<typename, typename> class Container>
+QVector<Value> valuesToVector(const Container<Key, Value> &container)
 {
     QVector<Value> values;
     values.reserve(container.size());
@@ -710,8 +711,8 @@ bool Akregator::Feed::isExpired(const Article &a) const
         expiryAge = Settings::maxArticleAge() * 24 * 3600;
     } else // otherwise check if this feed has limitArticleAge set
         if (d->m_archiveMode == limitArticleAge) {
-        expiryAge = d->m_maxArticleAge * 24 * 3600;
-    }
+            expiryAge = d->m_maxArticleAge * 24 * 3600;
+        }
 
     return expiryAge != -1 && a.pubDate().secsTo(now) > expiryAge;
 }

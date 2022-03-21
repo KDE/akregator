@@ -72,4 +72,3 @@ private:
     KPIM::ProgressItem *m_progressItem = nullptr;
 };
 } // namespace Akregator
-

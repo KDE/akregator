@@ -46,4 +46,3 @@ private:
     std::unique_ptr<ImportFeedListCommandPrivate> const d;
 };
 }
-

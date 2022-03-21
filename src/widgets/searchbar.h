@@ -66,4 +66,3 @@ private:
     std::vector<QSharedPointer<const Filters::AbstractMatcher>> m_matchers;
 };
 } // namespace Akregator
-

@@ -51,4 +51,3 @@ private:
     FrameManager *m_frameManager = nullptr;
 };
 } // namespace Akregator
-

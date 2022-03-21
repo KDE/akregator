@@ -32,4 +32,3 @@ private:
     int mError = 0;
 };
 }
-

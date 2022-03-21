@@ -302,4 +302,3 @@ private:
     std::unique_ptr<FeedPrivate> const d;
 };
 } // namespace Akregator
-

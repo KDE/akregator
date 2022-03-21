@@ -25,4 +25,3 @@ private:
     QWidget *const m_widget;
     Akregator::Ui::SettingsAppearance m_ui;
 };
-

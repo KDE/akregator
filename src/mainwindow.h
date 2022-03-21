@@ -88,4 +88,3 @@ private:
     KToggleAction *mShowMenuBarAction = nullptr;
 };
 } // namespace Akregator
-

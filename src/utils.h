@@ -31,4 +31,3 @@ public:
     static QString convertHtmlTags(const QString &title);
 };
 } // namespace Akregator
-

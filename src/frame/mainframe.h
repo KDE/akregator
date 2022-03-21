@@ -47,4 +47,3 @@ private:
     Akregator::ArticleViewerWidget *mArticleViewer = nullptr;
 };
 } // namespace Akregator
-

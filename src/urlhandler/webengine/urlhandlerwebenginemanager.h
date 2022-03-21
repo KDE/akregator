@@ -35,4 +35,3 @@ private:
     HandlerList mHandlers;
 };
 }
-

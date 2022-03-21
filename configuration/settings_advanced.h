@@ -43,4 +43,3 @@ private:
     QHash<QString, Backend::StorageFactory *> m_factories;
 };
 } // namespace Akregator
-

@@ -399,7 +399,7 @@ void SubscriptionListView::slotSetLockFeedsInPlace(bool setting)
         return;
     }
 
-    setDragDropMode(setting? QAbstractItemView::NoDragDrop : QAbstractItemView::DragDrop);
+    setDragDropMode(setting ? QAbstractItemView::NoDragDrop : QAbstractItemView::DragDrop);
 
     Settings::setLockFeedsInPlace(setting);
 }

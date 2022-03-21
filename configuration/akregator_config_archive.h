@@ -32,4 +32,3 @@ private:
     QWidget *const m_widget;
     QButtonGroup *m_archiveModeGroup = nullptr;
 };
-

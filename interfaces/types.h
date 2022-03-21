@@ -16,4 +16,3 @@ enum ArticleStatus {
     New /**< article was fetched in the last fetch of it's feed and not read yet. Note that, semantically, new implies unread */
 };
 }
-

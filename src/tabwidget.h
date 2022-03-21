@@ -90,4 +90,3 @@ private:
     std::unique_ptr<TabWidgetPrivate> const d;
 };
 } // namespace Akregator
-

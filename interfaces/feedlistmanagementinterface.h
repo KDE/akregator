@@ -33,4 +33,3 @@ private:
     static FeedListManagementInterface *m_instance;
 };
 }
-

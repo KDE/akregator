@@ -83,4 +83,3 @@ private Q_SLOTS:
     void slotSetWindowTitle(const QString &);
 };
 } // namespace Akregator
-

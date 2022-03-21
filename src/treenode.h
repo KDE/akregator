@@ -19,7 +19,8 @@ class QDomDocument;
 class QDomElement;
 class QIcon;
 class QString;
-template<class T> class QList;
+template<class T>
+class QList;
 
 namespace Akregator
 {
@@ -221,4 +222,3 @@ private:
     bool m_signalDestroyedEmitted = false;
 };
 } // namespace Akregator
-

@@ -277,4 +277,3 @@ private:
     QList<QPointer<Akregator::DownloadArticleJob>> mListDownloadArticleJobs;
 };
 } // namespace Akregator
-

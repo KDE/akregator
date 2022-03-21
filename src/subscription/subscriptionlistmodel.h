@@ -136,4 +136,3 @@ private:
     QAbstractItemModel *m_model = nullptr;
 };
 } // namespace Akregator
-

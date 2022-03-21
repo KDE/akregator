@@ -139,4 +139,3 @@ private:
     WebEngineViewer::WebEngineAccessKey *mWebEngineViewAccessKey = nullptr;
 };
 }
-

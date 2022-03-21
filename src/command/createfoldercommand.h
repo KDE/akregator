@@ -39,4 +39,3 @@ private:
     std::unique_ptr<CreateFolderCommandPrivate> const d;
 };
 }
-

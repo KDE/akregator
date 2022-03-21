@@ -193,4 +193,3 @@ private: // attributes
     KSharedConfig::Ptr mConfig;
 };
 } // namespace Akregator
-

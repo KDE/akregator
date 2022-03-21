@@ -19,7 +19,8 @@
 #include <QUrl>
 
 class QContextMenuEvent;
-template<class T> class QList;
+template<class T>
+class QList;
 
 namespace Akregator
 {
@@ -147,4 +148,3 @@ private:
     QByteArray m_groupHeaderState;
 };
 } // namespace Akregator
-

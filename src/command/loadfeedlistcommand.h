@@ -49,4 +49,3 @@ private:
     std::unique_ptr<LoadFeedListCommandPrivate> const d;
 };
 }
-

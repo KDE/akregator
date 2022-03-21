@@ -129,4 +129,3 @@ protected:
     static int m_idCounter;
 };
 } // namespace Akregator
-

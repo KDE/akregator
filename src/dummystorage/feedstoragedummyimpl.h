@@ -80,4 +80,3 @@ private:
 };
 } // namespace Backend
 } // namespace Akregator
-

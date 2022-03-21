@@ -10,7 +10,8 @@
 
 namespace Akregator
 {
-template<typename T> class TemporaryValue
+template<typename T>
+class TemporaryValue
 {
 public:
     TemporaryValue(T &var_, const T &tempVal)
@@ -30,4 +31,3 @@ private:
     const T prev;
 };
 }
-

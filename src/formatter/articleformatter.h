@@ -36,4 +36,3 @@ private:
     Q_DISABLE_COPY(ArticleFormatter)
 };
 } // namespace Akregator
-

@@ -23,7 +23,8 @@
 using namespace Akregator;
 
 // efficient alternative so we don't convert first to a temporary QList then to QVector
-template<typename T> static QVector<T> hashValuesToVector(const QHash<int, T> &hash)
+template<typename T>
+static QVector<T> hashValuesToVector(const QHash<int, T> &hash)
 {
     QVector<T> result;
     result.reserve(hash.count());

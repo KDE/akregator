@@ -60,4 +60,3 @@ private:
     Akregator::ArticleViewerWebEngineWidgetNg *mArticleViewerWidgetNg = nullptr;
 };
 }
-

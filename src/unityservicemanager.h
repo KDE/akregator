@@ -30,4 +30,3 @@ private:
     int m_unread = 0;
     bool mUnityServiceAvailable = false;
 };
-

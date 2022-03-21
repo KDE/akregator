@@ -146,4 +146,3 @@ private:
     const QString m_grantleeDirectory;
 };
 } // namespace Akregator
-

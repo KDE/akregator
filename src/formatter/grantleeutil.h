@@ -14,4 +14,3 @@ namespace GrantleeUtil
 Q_REQUIRED_RESULT QString imageFeed(const Feed *feed);
 }
 }
-

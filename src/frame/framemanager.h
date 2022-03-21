@@ -88,4 +88,3 @@ private:
     QHash<int, Frame *> m_frames;
 };
 } // namespace Akregator
-

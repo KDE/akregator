@@ -73,4 +73,3 @@ private:
     static std::vector<StoreItem> m_store;
 };
 } // namespace Akregator
-

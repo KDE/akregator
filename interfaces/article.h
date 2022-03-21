@@ -18,7 +18,8 @@
 class QDateTime;
 class QString;
 
-template<class T> class QList;
+template<class T>
+class QList;
 
 using uint = unsigned int;
 

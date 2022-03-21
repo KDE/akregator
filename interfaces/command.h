@@ -50,4 +50,3 @@ private:
     std::unique_ptr<CommandPrivate> const d;
 };
 }
-

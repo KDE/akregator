@@ -69,4 +69,3 @@ private:
     QVector<QString> m_titleCache;
 };
 } // namespace Akregator
-

@@ -35,4 +35,3 @@ public:
 };
 } // namespace Backend
 } // namespace Akregator
-

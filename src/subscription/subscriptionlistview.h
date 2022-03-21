@@ -71,4 +71,3 @@ private:
     QByteArray m_headerState;
 };
 }
-

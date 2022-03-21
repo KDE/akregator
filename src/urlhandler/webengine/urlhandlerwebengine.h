@@ -90,4 +90,3 @@ public:
     Q_REQUIRED_RESULT QString statusBarMessage(const QUrl &, ArticleViewerWebEngine *) const override;
 };
 }
-

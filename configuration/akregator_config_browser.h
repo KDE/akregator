@@ -23,4 +23,3 @@ public:
 private:
     QWidget *const m_widget;
 };
-

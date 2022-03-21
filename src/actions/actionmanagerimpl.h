@@ -76,4 +76,3 @@ private:
     std::unique_ptr<ActionManagerImplPrivate> const d;
 };
 } // namespace Akregator
-

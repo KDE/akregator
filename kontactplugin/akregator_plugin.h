@@ -71,4 +71,3 @@ private:
     void addFeed();
     void setHelpText(QAction *action, const QString &text);
 };
-

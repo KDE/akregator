@@ -66,4 +66,3 @@ private:
     static NotificationManager *m_self;
 };
 } // namespace Akregator
-

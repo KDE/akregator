@@ -33,4 +33,3 @@ private:
     int m_viewIconHeight = 0;
 };
 }
-

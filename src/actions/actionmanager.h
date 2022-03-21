@@ -51,4 +51,3 @@ private:
     static ActionManager *m_self;
 };
 } // namespace Akregator
-

@@ -28,4 +28,3 @@ private Q_SLOTS:
     void slotWebHitFinished(const WebEngineViewer::WebHitTestResult &result);
 };
 }
-

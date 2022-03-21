@@ -45,4 +45,3 @@ private:
     QHash<QString, QString> m_properties;
 };
 } // namespace Akregator
-

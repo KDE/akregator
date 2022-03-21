@@ -35,4 +35,3 @@ private:
     Mode m_mode = Whitelist;
 };
 } // namespace Akregator
-

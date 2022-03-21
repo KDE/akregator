@@ -63,4 +63,3 @@ private:
     QList<Feed *> m_fetchingFeeds;
 };
 } // namespace Akregator
-

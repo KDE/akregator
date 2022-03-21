@@ -105,4 +105,3 @@ private:
     QVector<Article> m_articles;
 };
 } // namespace akregator
-

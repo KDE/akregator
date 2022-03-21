@@ -37,4 +37,3 @@ private:
     ArticleViewerWebEngine *const mWebView;
 };
 }
-

@@ -36,4 +36,3 @@ private:
     bool mEnabled = false;
 };
 } // namespace Akregator
-

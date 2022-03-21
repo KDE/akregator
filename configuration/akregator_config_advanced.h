@@ -29,4 +29,3 @@ public:
 private:
     Akregator::SettingsAdvanced *const m_widget;
 };
-

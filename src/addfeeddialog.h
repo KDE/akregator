@@ -53,4 +53,3 @@ private:
     QPushButton *mOkButton = nullptr;
 };
 } // namespace Akregator
-
