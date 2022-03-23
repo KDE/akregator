@@ -25,11 +25,15 @@
 #include <KShortcutsDialog>
 #include <KSqueezedTextLabel>
 #include <KStandardAction>
+#include <KToggleFullScreenAction>
 #include <KToolBar>
 #include <KXMLGUIFactory>
 #include <QApplication>
+#include <QFontDatabase>
 #include <QMenuBar>
 #include <QStatusBar>
+#include <QToolBar>
+#include <QToolButton>
 
 using namespace Akregator;
 
@@ -74,12 +78,36 @@ MainWindow::MainWindow(QWidget *parent)
         });
     }
 
+    mShowFullScreenAction = KStandardAction::fullScreen(nullptr, nullptr, this, actionCollection());
+    actionCollection()->setDefaultShortcut(mShowFullScreenAction, Qt::Key_F11);
+    connect(mShowFullScreenAction, &QAction::toggled, this, &MainWindow::slotFullScreen);
+
     setStandardToolBarMenuEnabled(true);
     createStandardStatusBarAction();
 
     connect(PimCommon::BroadcastStatus::instance(), &PimCommon::BroadcastStatus::statusMsg, this, &MainWindow::slotSetStatusBarText);
 
     connect(qApp, &QCoreApplication::aboutToQuit, this, &MainWindow::slotOnShutdown);
+}
+
+void MainWindow::slotFullScreen(bool t)
+{
+    KToggleFullScreenAction::setFullScreen(this, t);
+    QMenuBar *mb = menuBar();
+    if (t) {
+        auto b = new QToolButton(mb);
+        b->setDefaultAction(mShowFullScreenAction);
+        b->setSizePolicy(QSizePolicy(QSizePolicy::Minimum, QSizePolicy::Ignored));
+        b->setFont(QFontDatabase::systemFont(QFontDatabase::SmallestReadableFont));
+        mb->setCornerWidget(b, Qt::TopRightCorner);
+        b->setVisible(true);
+        b->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+    } else {
+        QWidget *w = mb->cornerWidget(Qt::TopRightCorner);
+        if (w) {
+            w->deleteLater();
+        }
+    }
 }
 
 void MainWindow::slotToggleMenubar(bool dontShowWarning)

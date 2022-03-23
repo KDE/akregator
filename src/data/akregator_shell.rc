@@ -15,6 +15,9 @@
   <Menu noMerge="1" name="view">
     <text>&amp;View</text>
     <Merge/>
+    <Separator/>
+    <Action name="fullscreen"/>
+
   </Menu>
 
   <Menu noMerge="1" name="go">

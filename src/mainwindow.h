@@ -16,6 +16,7 @@
 class KSqueezedTextLabel;
 class KHamburgerMenu;
 class KToggleAction;
+class KToggleFullScreenAction;
 namespace Akregator
 {
 class Part;
@@ -82,9 +83,11 @@ private Q_SLOTS:
 private:
     void updateHamburgerMenu();
     void slotToggleMenubar(bool dontShowWarning);
+    void slotFullScreen(bool t);
     QPointer<Akregator::Part> m_part;
     KSqueezedTextLabel *const m_statusLabel;
     KHamburgerMenu *mHamburgerMenu = nullptr;
     KToggleAction *mShowMenuBarAction = nullptr;
+    KToggleFullScreenAction *mShowFullScreenAction = nullptr;
 };
 } // namespace Akregator
