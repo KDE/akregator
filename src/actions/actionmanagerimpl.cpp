@@ -36,6 +36,7 @@
 #include <QMenu>
 #include <kxmlguifactory.h>
 
+#include <KColorSchemeManager>
 #include <QHash>
 #include <QWidget>
 
@@ -433,6 +434,9 @@ void ActionManagerImpl::initMainWidget(MainWidget *mainWidget)
     actionCollection()->setDefaultShortcut(d->mQuickSearchAction, QKeySequence(Qt::ALT | Qt::Key_Q));
     actionCollection()->addAction(QStringLiteral("focus_to_quickseach"), d->mQuickSearchAction);
     connect(d->mQuickSearchAction, &QAction::triggered, mainWidget, &MainWidget::slotFocusQuickSearch);
+
+    auto manager = new KColorSchemeManager(this);
+    coll->addAction(QStringLiteral("colorscheme_menu"), manager->createSchemeSelectionMenu(this));
 
     setArticleActionsEnabled(false);
 }
