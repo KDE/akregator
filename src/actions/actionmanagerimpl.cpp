@@ -431,8 +431,8 @@ void ActionManagerImpl::initMainWidget(MainWidget *mainWidget)
 
     d->mQuickSearchAction = new QAction(i18n("Set Focus to Quick Search"), this);
     // If change shortcut change Panel::setQuickSearchClickMessage(...) message
-    actionCollection()->setDefaultShortcut(d->mQuickSearchAction, QKeySequence(Qt::ALT | Qt::Key_Q));
-    actionCollection()->addAction(QStringLiteral("focus_to_quickseach"), d->mQuickSearchAction);
+    coll->setDefaultShortcut(d->mQuickSearchAction, QKeySequence(Qt::ALT | Qt::Key_Q));
+    coll->addAction(QStringLiteral("focus_to_quickseach"), d->mQuickSearchAction);
     connect(d->mQuickSearchAction, &QAction::triggered, mainWidget, &MainWidget::slotFocusQuickSearch);
 
     auto manager = new KColorSchemeManager(this);
