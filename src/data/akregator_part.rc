@@ -1,5 +1,5 @@
 <!DOCTYPE gui SYSTEM "kpartgui.dtd">
-<gui name="akregator_part" version="433" translationDomain="akregator">
+<gui name="akregator_part" version="434" translationDomain="akregator">
   <MenuBar>
     <Menu name="file">
       <Action name="file_import"/>
@@ -77,8 +77,6 @@
 
     <Menu noMerge="1" name="settings">
       <text>&amp;Settings</text>
-      <Separator/>
-      <Action name="colorscheme_menu" />
       <Separator/>
       <DefineGroup append="top_merge" name="top_merge" />
       <Action name="show_quick_filter" group="top_merge" />
