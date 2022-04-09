@@ -181,3 +181,4 @@ Categories=Qt;KDE;Network;News;Feed;
 X-DBUS-StartupType=Unique
 X-DBUS-ServiceName=org.kde.akregator
 SingleMainWindow=true
+Version=1.5
