@@ -159,7 +159,7 @@
   <summary xml:lang="x-test">xxA news feed readerxx</summary>
   <summary xml:lang="zh-CN">新闻订阅阅读器</summary>
   <summary xml:lang="zh-TW">新聞 Feed 閱讀程式</summary>
-  <url type="homepage">https://kontact.kde.org/components/akregator.html</url>
+  <url type="homepage">https://kontact.kde.org/components/akregator/</url>
   <url type="bugtracker">https://bugs.kde.org/enter_bug.cgi?format=guided&amp;product=akregator</url>
   <url type="help">https://docs.kde.org/?application=akregator</url>
   <screenshots>
