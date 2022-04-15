@@ -24,6 +24,7 @@
         "Description[sv]": "Anpassa kanaler",
         "Description[uk]": "Налаштування подач",
         "Description[x-test]": "xxConfigure Feedsxx",
+        "Description[zh_CN]": "配置订阅",
         "Icon": "akregator",
         "Name": "General",
         "Name[af]": "Algemeen",

@@ -24,6 +24,7 @@
         "Description[sv]": "Akregator-insticksprogram",
         "Description[uk]": "Додаток до Akregator",
         "Description[x-test]": "xxAkregator Pluginxx",
+        "Description[zh_CN]": "Akregator 插件",
         "EnabledByDefault": true,
         "Icon": "view-pim-news",
         "Id": "kontact_akregatorplugin",

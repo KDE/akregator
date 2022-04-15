@@ -24,6 +24,7 @@
         "Description[sv]": "Anpassa insticksprogram",
         "Description[uk]": "Налаштовування додатків",
         "Description[x-test]": "xxConfigure Pluginsxx",
+        "Description[zh_CN]": "配置插件",
         "Icon": "preferences-plugin",
         "Name": "Plugins",
         "Name[af]": "Inprop modules",

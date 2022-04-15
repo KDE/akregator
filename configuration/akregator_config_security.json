@@ -24,6 +24,7 @@
         "Description[sv]": "Anpassa säkerhet",
         "Description[uk]": "Налаштовування захисту",
         "Description[x-test]": "xxConfigure Securityxx",
+        "Description[zh_CN]": "安全性设置",
         "Icon": "security-high",
         "Name": "Security",
         "Name[af]": "Sekuriteit",
