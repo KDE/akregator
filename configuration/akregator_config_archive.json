@@ -25,6 +25,7 @@
         "Description[sv]": "Anpassa kanalarkivet",
         "Description[uk]": "Налаштування архіву подач",
         "Description[x-test]": "xxConfigure Feed Archivexx",
+        "Description[zh_CN]": "配置 Feed 存档",
         "Icon": "utilities-file-archiver",
         "Name": "Archive",
         "Name[ar]": "الأرشيف",

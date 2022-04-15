@@ -25,6 +25,7 @@
         "Description[sv]": "Anpassa kanalläsarens utseende",
         "Description[uk]": "Налаштування вигляду програми читання подач",
         "Description[x-test]": "xxConfigure the Feed Reader Appearancexx",
+        "Description[zh_CN]": "配置 Feed 阅读器外观",
         "Icon": "video-display",
         "Name": "Appearance",
         "Name[af]": "Appearance",

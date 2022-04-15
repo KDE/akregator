@@ -25,6 +25,7 @@
         "Description[sv]": "Anpassa intern webbläsningskomponent",
         "Description[uk]": "Налаштування вбудованого компонента переглядача",
         "Description[x-test]": "xxConfigure Internal Browser Componentxx",
+        "Description[zh_CN]": "配置内部浏览器组件",
         "Icon": "konqueror",
         "Name": "Browser",
         "Name[ar]": "المتصفّح",
