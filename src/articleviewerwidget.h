@@ -113,7 +113,7 @@ private:
     QSharedPointer<ArticleFormatter> normalViewFormatter();
     void keyPressEvent(QKeyEvent *e) override;
 
-    /** renders @c body. Use this method whereever possible.
+    /** renders @c body. Use this method wherever possible.
      *  @param body html to render, without header and footer */
     void renderContent(const QString &body);
 

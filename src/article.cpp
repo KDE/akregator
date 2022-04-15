@@ -147,7 +147,7 @@ public:
 private:
     const QString m_url;
     const QString m_type;
-    const QString m_title; // TODO underfined.
+    const QString m_title; // TODO undefined.
     const uint m_length;
 };
 }
