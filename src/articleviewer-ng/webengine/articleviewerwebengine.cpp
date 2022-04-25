@@ -198,6 +198,9 @@ void ArticleViewerWebEngine::slotSaveLinkAs()
             job->addMetaData(QStringLiteral("MaxCacheSize"), QStringLiteral("0")); // Don't store in http cache.
             job->addMetaData(QStringLiteral("cache"), QStringLiteral("cache")); // Use entry from cache if available.
             KJobWidgets::setWindow(job, this);
+            if (Settings::self()->disableSaveAsNotification()) {
+                job->setFinishedNotificationHidden(true);
+            }
             job->uiDelegate()->setAutoErrorHandlingEnabled(true);
         }
     });

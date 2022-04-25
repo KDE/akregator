@@ -8,7 +8,7 @@
     <x>0</x>
     <y>0</y>
     <width>362</width>
-    <height>378</height>
+    <height>446</height>
    </rect>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_4" stretch="0,0,0,1">
@@ -75,6 +75,13 @@
         </property>
         <property name="text">
          <string>Use &amp;notifications for all feeds</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="kcfg_DisableSaveAsNotification">
+        <property name="text">
+         <string>Disable save as finished notification</string>
         </property>
        </widget>
       </item>
