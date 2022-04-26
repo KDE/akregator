@@ -218,7 +218,6 @@ Part::Part(QWidget *parentWidget, QObject *parent, const QVariantList &)
     connect(m_autosaveTimer, &QTimer::timeout, this, &Part::slotSaveFeedList);
     m_autosaveTimer->start(5 * 60 * 1000); // 5 minutes
 
-    loadPlugins(QStringLiteral("extension")); // FIXME: also unload them!
     if (mCentralWidget->previousSessionCrashed()) {
         mCentralWidget->needToRestoreCrashedSession();
     } else {
