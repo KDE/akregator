@@ -67,8 +67,6 @@ private:
         KService::Ptr service;
     };
 
-    static std::vector<StoreItem>::iterator lookupPlugin(const Akregator::Plugin *plugin);
-
     // attributes:
     static std::vector<StoreItem> m_store;
 };

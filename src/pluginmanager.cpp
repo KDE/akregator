@@ -79,23 +79,4 @@ void PluginManager::dump(const KService::Ptr &service)
                            << "X-KDE-akregator-version          : " << service->property(QStringLiteral("X-KDE-akregator-version")).toString()
                            << "X-KDE-akregator-framework-version: " << service->property(QStringLiteral("X-KDE-akregator-framework-version")).toString();
 }
-
-/////////////////////////////////////////////////////////////////////////////////////
-// PRIVATE INTERFACE
-/////////////////////////////////////////////////////////////////////////////////////
-
-vector<PluginManager::StoreItem>::iterator PluginManager::lookupPlugin(const Plugin *plugin)
-{
-    vector<StoreItem>::iterator iter;
-
-    // search plugin pointer in store
-    vector<StoreItem>::const_iterator end;
-    for (iter = m_store.begin(); iter != end; ++iter) {
-        if ((*iter).plugin == plugin) {
-            break;
-        }
-    }
-
-    return iter;
-}
 } // namespace Akregator
