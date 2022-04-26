@@ -47,37 +47,8 @@ void OpenUrlRequest::setOpenInBackground(bool background)
     m_inBackground = background;
 }
 
-KParts::OpenUrlArguments OpenUrlRequest::args() const
-{
-    return m_args;
-}
-
-void OpenUrlRequest::setArgs(const KParts::OpenUrlArguments &args)
-{
-    // m_hasArgs = true;
-    m_args = args;
-}
-
-KParts::BrowserArguments OpenUrlRequest::browserArgs() const
-{
-    return m_browserArgs;
-}
-
-void OpenUrlRequest::setBrowserArgs(const KParts::BrowserArguments &args)
-{
-    m_browserArgs = args;
-}
-
 OpenUrlRequest::Options OpenUrlRequest::options() const
 {
-    if (m_options == None && m_browserArgs.frameName == QLatin1String("_blank")) {
-        if (Settings::newWindowInTab()) {
-            return NewTab;
-        } else {
-            return ExternalBrowser;
-        }
-    }
-
     return m_options;
 }
 
@@ -88,10 +59,9 @@ void OpenUrlRequest::setOptions(OpenUrlRequest::Options options)
 
 QString OpenUrlRequest::debugInfo() const
 {
-    return QStringLiteral("url=%1 mimeType=%2 newTab=%3 forcesNewWindow=%4 options=%5")
-        .arg(m_url.url(), m_args.mimeType())
-        .arg(m_browserArgs.newTab())
-        .arg(m_browserArgs.forcesNewWindow())
+    return QStringLiteral("url=%1 options=%2")
+        .arg(m_url.url())
+
         .arg(m_options);
 }
 

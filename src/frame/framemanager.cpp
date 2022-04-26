@@ -183,8 +183,7 @@ void FrameManager::slotSetStatusText(Frame *frame, const QString &statusText)
 
 void FrameManager::openUrl(OpenUrlRequest &request)
 {
-    if (request.browserArgs().newTab() || request.browserArgs().forcesNewWindow() || request.options() == OpenUrlRequest::NewTab
-        || (m_currentFrame->id() == 0)) {
+    if (request.options() == OpenUrlRequest::NewTab || (m_currentFrame->id() == 0)) {
         int newFrameId = -1;
         Q_EMIT signalRequestNewFrame(newFrameId);
         request.setFrameId(newFrameId);
@@ -221,12 +220,7 @@ void FrameManager::openInExternalBrowser(const OpenUrlRequest &request)
         }
     }
 
-    if (request.args().mimeType().isEmpty()) {
-        QDesktopServices::openUrl(url);
-    } else {
-        auto job = new KIO::OpenUrlJob(url, request.args().mimeType());
-        job->start();
-    }
+    QDesktopServices::openUrl(url);
 }
 
 void FrameManager::slotOpenUrlRequest(OpenUrlRequest &request, bool useOpenInBackgroundSetting)
@@ -240,7 +234,7 @@ void FrameManager::slotOpenUrlRequest(OpenUrlRequest &request, bool useOpenInBac
 
     if (useOpenInBackgroundSetting) {
         // Honour user's preference for foreground/background tabs
-        if (request.options() == OpenUrlRequest::NewTab || request.browserArgs().newTab()) {
+        if (request.options() == OpenUrlRequest::NewTab) {
             request.setOpenInBackground(Settings::lMBBehaviour() == Settings::EnumLMBBehaviour::OpenInBackground);
         }
     }
