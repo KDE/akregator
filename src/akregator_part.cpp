@@ -18,7 +18,6 @@
 #include "akregator_options.h"
 #include "akregatorconfig.h"
 #include "article.h"
-#include "dummystorage/storagefactorydummyimpl.h"
 #include "feedlist.h"
 #include "fetchqueue.h"
 #include "framemanager.h"
@@ -26,11 +25,7 @@
 #include "loadfeedlistcommand.h"
 #include "mainwidget.h"
 #include "notificationmanager.h"
-#include "plugin.h"
-#include "pluginmanager.h"
-#include "storage.h"
-#include "storagefactory.h"
-#include "storagefactoryregistry.h"
+#include "storage/storage.h"
 #include "trayicon.h"
 #include "unityservicemanager.h"
 #include "utils.h"
@@ -149,9 +144,6 @@ Part::Part(QWidget *parentWidget, QObject *parent, const QVariantList &)
     Part::config();
     initFonts();
 
-    setPluginLoadingMode(LoadPluginsIfEnabled);
-    setPluginInterfaceVersion(AKREGATOR_PLUGIN_INTERFACE_VERSION);
-
     setComponentName(QStringLiteral("akregator"), i18n("Akregator"));
     setXMLFile(QStringLiteral("akregator_part.rc"), true);
 
@@ -162,28 +154,9 @@ Part::Part(QWidget *parentWidget, QObject *parent, const QVariantList &)
     QDir().mkpath(path);
     m_standardFeedList = path + QStringLiteral("/feeds.opml");
 
-    auto dummyFactory = new Backend::StorageFactoryDummyImpl();
-    if (!Backend::StorageFactoryRegistry::self()->registerFactory(dummyFactory, dummyFactory->key())) {
-        // There was already a dummy factory registered.
-        delete dummyFactory;
-    }
-    loadPlugins(QStringLiteral("storage")); // FIXME: also unload them!
-
-    m_storage = nullptr;
-    Backend::StorageFactory *storageFactory = Backend::StorageFactoryRegistry::self()->getFactory(Settings::archiveBackend());
-    if (storageFactory != nullptr) {
-        m_storage = storageFactory->createStorage(QStringList());
-    }
-
-    if (!m_storage) { // Houston, we have a problem
-        m_storage = Backend::StorageFactoryRegistry::self()->getFactory(QStringLiteral("dummy"))->createStorage(QStringList());
-
-        KMessageBox::error(parentWidget,
-                           i18n("Unable to load storage backend plugin \"%1\". No feeds are archived.", Settings::archiveBackend()),
-                           i18n("Plugin error"));
-    }
-
+    m_storage = new Backend::Storage;
     m_storage->open(true);
+
     Kernel::self()->setStorage(m_storage);
 
     m_actionManager = new ActionManagerImpl(this);
@@ -239,20 +212,6 @@ void Part::updateQuickSearchLineText()
 {
     if (m_mainWidget) {
         m_mainWidget->updateQuickSearchLineText();
-    }
-}
-
-void Part::loadPlugins(const QString &type)
-{
-    const KService::List offers = PluginManager::query(QStringLiteral("[X-KDE-akregator-plugintype] == '%1'").arg(type));
-
-    for (const KService::Ptr &i : offers) {
-        Akregator::Plugin *plugin = PluginManager::createFromService(i, this);
-        if (!plugin) {
-            continue;
-        }
-        plugin->initialize();
-        plugin->insertGuiClients(this);
     }
 }
 

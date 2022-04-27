@@ -10,7 +10,7 @@
 #include "article.h"
 #include "feed.h"
 #include "folder.h"
-#include "storage.h"
+#include "storage/storage.h"
 #include "treenode.h"
 #include "treenodevisitor.h"
 

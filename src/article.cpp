@@ -9,9 +9,9 @@
 
 #include "article.h"
 #include "feed.h"
-#include "feedstorage.h"
 #include "shared.h"
-#include "storage.h"
+#include "storage/feedstorage.h"
+#include "storage/storage.h"
 #include "utils.h"
 
 #include <Syndication/Syndication>

@@ -9,59 +9,69 @@
 
 #pragma once
 
-#include "storage.h"
+#include "akregator_export.h"
 
+#include <QObject>
 #include <memory>
+
+#include "feedstorage.h"
 
 namespace Akregator
 {
 namespace Backend
 {
-/**
- * Metakit implementation of Storage interface
- */
-class StorageDummyImpl : public Storage
+class AKREGATOR_EXPORT Storage : public QObject
 {
     Q_OBJECT
 public:
-    StorageDummyImpl();
-    StorageDummyImpl(const StorageDummyImpl &);
-    StorageDummyImpl &operator=(const StorageDummyImpl &);
-    ~StorageDummyImpl() override;
-    void initialize(const QStringList &params) override;
+    Storage();
+    virtual ~Storage();
+
+    /** KGlobal::dirs()->saveLocation("data", "akregator")+"/Archive" */
+    static QString defaultArchivePath();
+
+    /** sets the directory where the metakit files will be stored.
+
+        @param archivePath the path to the archive, or QString() to reset it to the default.
+     */
+    void setArchivePath(const QString &archivePath);
+
+    /** returns the path to the metakit archives */
+    QString archivePath() const;
+
     /**
      * Open storage and prepare it for work.
      * @return true on success.
      */
-    bool open(bool autoCommit = false) override;
+    bool open(bool autoCommit = false);
 
     /**
      * Commit changes made in feeds and articles, making them persistent.
      * @return true on success.
      */
-    bool commit() override;
+    bool commit();
 
     /**
      * Rollback changes made in feeds and articles, reverting to last committed values.
      * @returns true on success.
      */
-    bool rollback() override;
+    bool rollback();
 
     /**
      * Closes storage, freeing all allocated resources. Called from destructor, so you don't need to call it directly.
      * @return true on success.
      */
-    void close() override;
+    void close();
 
     /**
      * @return Article archive for feed at given url.
      */
-    FeedStorage *archiveFor(const QString &url) override;
-    const FeedStorage *archiveFor(const QString &url) const override;
-    bool autoCommit() const override;
-    QStringList feeds() const override;
+    FeedStorage *archiveFor(const QString &url);
+    const FeedStorage *archiveFor(const QString &url) const;
 
-    // Mimic the MK4 api for feedstorage to alter the 'main' storage
+    bool autoCommit() const;
+
+    // API for FeedStorage to alter the feed index 'view'
     int unreadFor(const QString &url) const;
     void setUnreadFor(const QString &url, int unread);
     int totalCountFor(const QString &url) const;
@@ -69,15 +79,19 @@ public:
     QDateTime lastFetchFor(const QString &url) const;
     void setLastFetchFor(const QString &url, const QDateTime &lastFetch);
 
-    void storeFeedList(const QString &opmlStr) override;
-    QString restoreFeedList() const override;
+    QStringList feeds() const;
+
+    void storeFeedList(const QString &opmlStr);
+    QString restoreFeedList() const;
+
+    void markDirty();
 
 protected Q_SLOTS:
     void slotCommit();
 
 private:
-    class StorageDummyImplPrivate;
-    std::unique_ptr<StorageDummyImplPrivate> const d;
+    class StoragePrivate;
+    std::unique_ptr<StoragePrivate> const d;
 };
 } // namespace Backend
 } // namespace Akregator

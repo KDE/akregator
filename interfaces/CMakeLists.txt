@@ -6,8 +6,6 @@ add_library(akregatorinterfaces)
 target_sources(akregatorinterfaces PRIVATE
     command.cpp
     feedlistmanagementinterface.cpp
-    plugin.cpp
-    storagefactoryregistry.cpp
     )
 
 set(akregatorinterfaces_userfeedback_LIB_SRCS)

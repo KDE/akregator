@@ -42,12 +42,10 @@ KCMAkregatorAdvancedConfig::KCMAkregatorAdvancedConfig(QWidget *parent, const QV
 void KCMAkregatorAdvancedConfig::load()
 {
     KCModule::load();
-    m_widget->selectFactory(Settings::archiveBackend());
 }
 
 void KCMAkregatorAdvancedConfig::save()
 {
-    Settings::setArchiveBackend(m_widget->selectedFactory());
     KCModule::save();
 }
 

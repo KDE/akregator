@@ -9,7 +9,6 @@
 #include "loadfeedlistcommand.h"
 
 #include "feedlist.h"
-#include "storage.h"
 
 #include <KLocalizedString>
 #include <KMessageBox>

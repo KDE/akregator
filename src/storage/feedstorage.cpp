@@ -6,11 +6,10 @@
     SPDX-License-Identifier: GPL-2.0-or-later WITH Qt-Commercial-exception-1.0
 */
 
-#include "feedstoragemk4impl.h"
-#include "storagemk4impl.h"
+#include "feedstorage.h"
+#include "storage.h"
 
 #include <Syndication/DocumentSource>
-#include <Syndication/Global>
 #include <Syndication/Feed>
 #include <Syndication/Item>
 
@@ -20,7 +19,8 @@
 #include <QDebug>
 #include <QStandardPaths>
 
-namespace {
+namespace
+{
 static uint calcHash(const QString &str)
 {
     if (str.isNull()) { // handle null string as "", prevents crash
@@ -30,18 +30,20 @@ static uint calcHash(const QString &str)
     uint hash = 5381;
     int c;
     while ((c = *s++)) {
-        hash = ((hash << 5) + hash) + c;    // hash*33 + c
+        hash = ((hash << 5) + hash) + c; // hash*33 + c
     }
     return hash;
 }
 }
 
-namespace Akregator {
-namespace Backend {
-class FeedStorageMK4Impl::FeedStorageMK4ImplPrivate
+namespace Akregator
+{
+namespace Backend
+{
+class FeedStorage::FeedStoragePrivate
 {
 public:
-    FeedStorageMK4ImplPrivate()
+    FeedStoragePrivate()
         : modified(false)
         , pguid("guid")
         , ptitle("title")
@@ -71,17 +73,18 @@ public:
 
     QString url;
     c4_Storage *storage;
-    StorageMK4Impl *mainStorage;
+    Storage *mainStorage;
     c4_View archiveView;
 
     bool autoCommit;
     bool modified;
-    c4_StringProp pguid, ptitle, pdescription, pcontent, plink, pcommentsLink, ptag, pEnclosureType, pEnclosureUrl, pcatTerm, pcatScheme, pcatName, pauthorName, pauthorUri, pauthorEMail;
+    c4_StringProp pguid, ptitle, pdescription, pcontent, plink, pcommentsLink, ptag, pEnclosureType, pEnclosureUrl, pcatTerm, pcatScheme, pcatName, pauthorName,
+        pauthorUri, pauthorEMail;
     c4_IntProp phash, pguidIsHash, pguidIsPermaLink, pcomments, pstatus, ppubDate, pHasEnclosure, pEnclosureLength;
 };
 
-FeedStorageMK4Impl::FeedStorageMK4Impl(const QString &url, StorageMK4Impl *main)
-    : d(new FeedStorageMK4ImplPrivate)
+FeedStorage::FeedStorage(const QString &url, Storage *main)
+    : d(new FeedStoragePrivate)
 {
     d->autoCommit = main->autoCommit();
     d->url = url;
@@ -100,18 +103,20 @@ FeedStorageMK4Impl::FeedStorageMK4Impl(const QString &url, StorageMK4Impl *main)
     d->storage = new c4_Storage(QString(filePath + QLatin1String(".mk4")).toLocal8Bit().constData(), true);
 
     d->archiveView = d->storage->GetAs(
-        "articles[guid:S,title:S,hash:I,guidIsHash:I,guidIsPermaLink:I,description:S,link:S,comments:I,commentsLink:S,status:I,pubDate:I,tags[tag:S],hasEnclosure:I,enclosureUrl:S,enclosureType:S,enclosureLength:I,categories[catTerm:S,catScheme:S,catName:S],authorName:S,content:S,authorUri:S,authorEMail:S]");
+        "articles[guid:S,title:S,hash:I,guidIsHash:I,guidIsPermaLink:I,description:S,link:S,comments:I,commentsLink:S,status:I,pubDate:I,tags[tag:S],"
+        "hasEnclosure:I,enclosureUrl:S,enclosureType:S,enclosureLength:I,categories[catTerm:S,catScheme:S,catName:S],authorName:S,content:S,authorUri:S,"
+        "authorEMail:S]");
 
     c4_View hash = d->storage->GetAs("archiveHash[_H:I,_R:I]");
     d->archiveView = d->archiveView.Hash(hash, 1); // hash on guid
 }
 
-FeedStorageMK4Impl::~FeedStorageMK4Impl()
+FeedStorage::~FeedStorage()
 {
     delete d->storage;
 }
 
-void FeedStorageMK4Impl::markDirty()
+void FeedStorage::markDirty()
 {
     if (!d->modified) {
         d->modified = true;
@@ -120,7 +125,7 @@ void FeedStorageMK4Impl::markDirty()
     }
 }
 
-void FeedStorageMK4Impl::commit()
+void FeedStorage::commit()
 {
     if (d->modified) {
         d->storage->Commit();
@@ -128,60 +133,60 @@ void FeedStorageMK4Impl::commit()
     d->modified = false;
 }
 
-void FeedStorageMK4Impl::rollback()
+void FeedStorage::rollback()
 {
     d->storage->Rollback();
 }
 
-void FeedStorageMK4Impl::close()
+void FeedStorage::close()
 {
     if (d->autoCommit) {
         commit();
     }
 }
 
-int FeedStorageMK4Impl::unread() const
+int FeedStorage::unread() const
 {
     return d->mainStorage->unreadFor(d->url);
 }
 
-void FeedStorageMK4Impl::setUnread(int unread)
+void FeedStorage::setUnread(int unread)
 {
     d->mainStorage->setUnreadFor(d->url, unread);
 }
 
-int FeedStorageMK4Impl::totalCount() const
+int FeedStorage::totalCount() const
 {
     return d->mainStorage->totalCountFor(d->url);
 }
 
-void FeedStorageMK4Impl::setTotalCount(int total)
+void FeedStorage::setTotalCount(int total)
 {
     d->mainStorage->setTotalCountFor(d->url, total);
 }
 
-QDateTime FeedStorageMK4Impl::lastFetch() const
+QDateTime FeedStorage::lastFetch() const
 {
     return d->mainStorage->lastFetchFor(d->url);
 }
 
-void FeedStorageMK4Impl::setLastFetch(const QDateTime &lastFetch)
+void FeedStorage::setLastFetch(const QDateTime &lastFetch)
 {
     d->mainStorage->setLastFetchFor(d->url, lastFetch);
 }
 
-QStringList FeedStorageMK4Impl::articles() const
+QStringList FeedStorage::articles() const
 {
     QStringList list;
     int size = d->archiveView.GetSize();
     list.reserve(size);
-    for (int i = 0; i < size; ++i) {     // fill with guids
+    for (int i = 0; i < size; ++i) { // fill with guids
         list += QString::fromLatin1(d->pguid(d->archiveView.GetAt(i)));
     }
     return list;
 }
 
-void FeedStorageMK4Impl::addEntry(const QString &guid)
+void FeedStorage::addEntry(const QString &guid)
 {
     c4_Row row;
     d->pguid(row) = guid.toLatin1().constData();
@@ -192,19 +197,19 @@ void FeedStorageMK4Impl::addEntry(const QString &guid)
     }
 }
 
-bool FeedStorageMK4Impl::contains(const QString &guid) const
+bool FeedStorage::contains(const QString &guid) const
 {
     return findArticle(guid) != -1;
 }
 
-int FeedStorageMK4Impl::findArticle(const QString &guid) const
+int FeedStorage::findArticle(const QString &guid) const
 {
     c4_Row findrow;
     d->pguid(findrow) = guid.toLatin1().constData();
     return d->archiveView.Find(findrow);
 }
 
-void FeedStorageMK4Impl::deleteArticle(const QString &guid)
+void FeedStorage::deleteArticle(const QString &guid)
 {
     int findidx = findArticle(guid);
     if (findidx != -1) {
@@ -214,25 +219,25 @@ void FeedStorageMK4Impl::deleteArticle(const QString &guid)
     }
 }
 
-bool FeedStorageMK4Impl::guidIsHash(const QString &guid) const
+bool FeedStorage::guidIsHash(const QString &guid) const
 {
     int findidx = findArticle(guid);
     return findidx != -1 ? d->pguidIsHash(d->archiveView.GetAt(findidx)) : false;
 }
 
-bool FeedStorageMK4Impl::guidIsPermaLink(const QString &guid) const
+bool FeedStorage::guidIsPermaLink(const QString &guid) const
 {
     int findidx = findArticle(guid);
     return findidx != -1 ? d->pguidIsPermaLink(d->archiveView.GetAt(findidx)) : false;
 }
 
-uint FeedStorageMK4Impl::hash(const QString &guid) const
+uint FeedStorage::hash(const QString &guid) const
 {
     int findidx = findArticle(guid);
     return findidx != -1 ? d->phash(d->archiveView.GetAt(findidx)) : 0;
 }
 
-void FeedStorageMK4Impl::setDeleted(const QString &guid)
+void FeedStorage::setDeleted(const QString &guid)
 {
     int findidx = findArticle(guid);
     if (findidx == -1) {
@@ -253,25 +258,25 @@ void FeedStorageMK4Impl::setDeleted(const QString &guid)
     markDirty();
 }
 
-QString FeedStorageMK4Impl::link(const QString &guid) const
+QString FeedStorage::link(const QString &guid) const
 {
     int findidx = findArticle(guid);
     return findidx != -1 ? QString::fromUtf8(d->plink(d->archiveView.GetAt(findidx))) : QLatin1String("");
 }
 
-QDateTime FeedStorageMK4Impl::pubDate(const QString &guid) const
+QDateTime FeedStorage::pubDate(const QString &guid) const
 {
     int findidx = findArticle(guid);
     return findidx != -1 ? QDateTime::fromSecsSinceEpoch(d->ppubDate(d->archiveView.GetAt(findidx))) : QDateTime();
 }
 
-int FeedStorageMK4Impl::status(const QString &guid) const
+int FeedStorage::status(const QString &guid) const
 {
     int findidx = findArticle(guid);
     return findidx != -1 ? d->pstatus(d->archiveView.GetAt(findidx)) : 0;
 }
 
-void FeedStorageMK4Impl::setStatus(const QString &guid, int status)
+void FeedStorage::setStatus(const QString &guid, int status)
 {
     int findidx = findArticle(guid);
     if (findidx == -1) {
@@ -284,7 +289,7 @@ void FeedStorageMK4Impl::setStatus(const QString &guid, int status)
     markDirty();
 }
 
-void FeedStorageMK4Impl::article(const QString &guid, uint &hash, QString &title, int &status, QDateTime &pubDate) const
+void FeedStorage::article(const QString &guid, uint &hash, QString &title, int &status, QDateTime &pubDate) const
 {
     int idx = findArticle(guid);
     if (idx != -1) {
@@ -296,25 +301,25 @@ void FeedStorageMK4Impl::article(const QString &guid, uint &hash, QString &title
     }
 }
 
-QString FeedStorageMK4Impl::title(const QString &guid) const
+QString FeedStorage::title(const QString &guid) const
 {
     int findidx = findArticle(guid);
     return findidx != -1 ? QString::fromUtf8(d->ptitle(d->archiveView.GetAt(findidx))) : QLatin1String("");
 }
 
-QString FeedStorageMK4Impl::description(const QString &guid) const
+QString FeedStorage::description(const QString &guid) const
 {
     int findidx = findArticle(guid);
     return findidx != -1 ? QString::fromUtf8(d->pdescription(d->archiveView.GetAt(findidx))) : QLatin1String("");
 }
 
-QString FeedStorageMK4Impl::content(const QString &guid) const
+QString FeedStorage::content(const QString &guid) const
 {
     int findidx = findArticle(guid);
     return findidx != -1 ? QString::fromUtf8(d->pcontent(d->archiveView.GetAt(findidx))) : QLatin1String("");
 }
 
-void FeedStorageMK4Impl::setPubDate(const QString &guid, const QDateTime &pubdate)
+void FeedStorage::setPubDate(const QString &guid, const QDateTime &pubdate)
 {
     int findidx = findArticle(guid);
     if (findidx == -1) {
@@ -327,7 +332,7 @@ void FeedStorageMK4Impl::setPubDate(const QString &guid, const QDateTime &pubdat
     markDirty();
 }
 
-void FeedStorageMK4Impl::setGuidIsHash(const QString &guid, bool isHash)
+void FeedStorage::setGuidIsHash(const QString &guid, bool isHash)
 {
     int findidx = findArticle(guid);
     if (findidx == -1) {
@@ -340,7 +345,7 @@ void FeedStorageMK4Impl::setGuidIsHash(const QString &guid, bool isHash)
     markDirty();
 }
 
-void FeedStorageMK4Impl::setLink(const QString &guid, const QString &link)
+void FeedStorage::setLink(const QString &guid, const QString &link)
 {
     int findidx = findArticle(guid);
     if (findidx == -1) {
@@ -353,7 +358,7 @@ void FeedStorageMK4Impl::setLink(const QString &guid, const QString &link)
     markDirty();
 }
 
-void FeedStorageMK4Impl::setHash(const QString &guid, uint hash)
+void FeedStorage::setHash(const QString &guid, uint hash)
 {
     int findidx = findArticle(guid);
     if (findidx == -1) {
@@ -366,7 +371,7 @@ void FeedStorageMK4Impl::setHash(const QString &guid, uint hash)
     markDirty();
 }
 
-void FeedStorageMK4Impl::setTitle(const QString &guid, const QString &title)
+void FeedStorage::setTitle(const QString &guid, const QString &title)
 {
     int findidx = findArticle(guid);
     if (findidx == -1) {
@@ -379,7 +384,7 @@ void FeedStorageMK4Impl::setTitle(const QString &guid, const QString &title)
     markDirty();
 }
 
-void FeedStorageMK4Impl::setDescription(const QString &guid, const QString &description)
+void FeedStorage::setDescription(const QString &guid, const QString &description)
 {
     int findidx = findArticle(guid);
     if (findidx == -1) {
@@ -392,7 +397,7 @@ void FeedStorageMK4Impl::setDescription(const QString &guid, const QString &desc
     markDirty();
 }
 
-void FeedStorageMK4Impl::setContent(const QString &guid, const QString &content)
+void FeedStorage::setContent(const QString &guid, const QString &content)
 {
     int findidx = findArticle(guid);
     if (findidx == -1) {
@@ -405,7 +410,7 @@ void FeedStorageMK4Impl::setContent(const QString &guid, const QString &content)
     markDirty();
 }
 
-void FeedStorageMK4Impl::setAuthorName(const QString &guid, const QString &author)
+void FeedStorage::setAuthorName(const QString &guid, const QString &author)
 {
     int findidx = findArticle(guid);
     if (findidx == -1) {
@@ -418,7 +423,7 @@ void FeedStorageMK4Impl::setAuthorName(const QString &guid, const QString &autho
     markDirty();
 }
 
-void FeedStorageMK4Impl::setAuthorUri(const QString &guid, const QString &author)
+void FeedStorage::setAuthorUri(const QString &guid, const QString &author)
 {
     int findidx = findArticle(guid);
     if (findidx == -1) {
@@ -431,7 +436,7 @@ void FeedStorageMK4Impl::setAuthorUri(const QString &guid, const QString &author
     markDirty();
 }
 
-void FeedStorageMK4Impl::setAuthorEMail(const QString &guid, const QString &author)
+void FeedStorage::setAuthorEMail(const QString &guid, const QString &author)
 {
     int findidx = findArticle(guid);
     if (findidx == -1) {
@@ -444,25 +449,25 @@ void FeedStorageMK4Impl::setAuthorEMail(const QString &guid, const QString &auth
     markDirty();
 }
 
-QString FeedStorageMK4Impl::authorName(const QString &guid) const
+QString FeedStorage::authorName(const QString &guid) const
 {
     int findidx = findArticle(guid);
     return findidx != -1 ? QString::fromUtf8(d->pauthorName(d->archiveView.GetAt(findidx))) : QString();
 }
 
-QString FeedStorageMK4Impl::authorUri(const QString &guid) const
+QString FeedStorage::authorUri(const QString &guid) const
 {
     int findidx = findArticle(guid);
     return findidx != -1 ? QString::fromUtf8(d->pauthorUri(d->archiveView.GetAt(findidx))) : QString();
 }
 
-QString FeedStorageMK4Impl::authorEMail(const QString &guid) const
+QString FeedStorage::authorEMail(const QString &guid) const
 {
     int findidx = findArticle(guid);
     return findidx != -1 ? QString::fromUtf8(d->pauthorEMail(d->archiveView.GetAt(findidx))) : QString();
 }
 
-void FeedStorageMK4Impl::setGuidIsPermaLink(const QString &guid, bool isPermaLink)
+void FeedStorage::setGuidIsPermaLink(const QString &guid, bool isPermaLink)
 {
     int findidx = findArticle(guid);
     if (findidx == -1) {
@@ -475,7 +480,7 @@ void FeedStorageMK4Impl::setGuidIsPermaLink(const QString &guid, bool isPermaLin
     markDirty();
 }
 
-void FeedStorageMK4Impl::setEnclosure(const QString &guid, const QString &url, const QString &type, int length)
+void FeedStorage::setEnclosure(const QString &guid, const QString &url, const QString &type, int length)
 {
     int findidx = findArticle(guid);
     if (findidx == -1) {
@@ -492,7 +497,7 @@ void FeedStorageMK4Impl::setEnclosure(const QString &guid, const QString &url, c
     markDirty();
 }
 
-void FeedStorageMK4Impl::removeEnclosure(const QString &guid)
+void FeedStorage::removeEnclosure(const QString &guid)
 {
     int findidx = findArticle(guid);
     if (findidx == -1) {
@@ -509,7 +514,7 @@ void FeedStorageMK4Impl::removeEnclosure(const QString &guid)
     markDirty();
 }
 
-void FeedStorageMK4Impl::enclosure(const QString &guid, bool &hasEnclosure, QString &url, QString &type, int &length) const
+void FeedStorage::enclosure(const QString &guid, bool &hasEnclosure, QString &url, QString &type, int &length) const
 {
     int findidx = findArticle(guid);
     if (findidx == -1) {
@@ -526,14 +531,14 @@ void FeedStorageMK4Impl::enclosure(const QString &guid, bool &hasEnclosure, QStr
     length = d->pEnclosureLength(row);
 }
 
-void FeedStorageMK4Impl::setCategories(const QString &, const QStringList &categories)
+void FeedStorage::setCategories(const QString &, const QStringList &categories)
 {
-    //TODO
+    // TODO
 }
 
-QStringList FeedStorageMK4Impl::categories(const QString &guid) const
+QStringList FeedStorage::categories(const QString &guid) const
 {
-    //TODO
+    // TODO
     return {};
 }
 } // namespace Backend

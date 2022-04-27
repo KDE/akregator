@@ -116,6 +116,26 @@ target_sources(akregatorprivate PRIVATE
     frame/mainframe.h
     frame/framemanager.h
 
+    storage/metakit/src/column.cpp
+    storage/metakit/src/custom.cpp
+    storage/metakit/src/derived.cpp
+    storage/metakit/src/field.cpp
+    storage/metakit/src/fileio.cpp
+    storage/metakit/src/format.cpp
+    storage/metakit/src/handler.cpp
+    storage/metakit/src/persist.cpp
+    storage/metakit/src/remap.cpp
+    storage/metakit/src/std.cpp
+    storage/metakit/src/store.cpp
+    storage/metakit/src/string.cpp
+    storage/metakit/src/table.cpp
+    storage/metakit/src/univ.cpp
+    storage/metakit/src/view.cpp
+    storage/metakit/src/viewx.cpp
+    storage/feedstorage.cpp
+    storage/storage.cpp
+
+
     urlhandler/webengine/urlhandlerwebengine.h
     urlhandler/webengine/urlhandlerwebenginemanager.h
     akregratormigrateapplication.h
@@ -140,7 +160,7 @@ target_sources(akregatorprivate PRIVATE
     actions/actions.h
 
     )
-
+target_include_directories(akregatorprivate PRIVATE storage/metakit/include)
 
 if (COMPILE_WITH_UNITY_CMAKE_SUPPORT)
     set_target_properties(akregatorprivate PROPERTIES UNITY_BUILD ON)
@@ -212,7 +232,6 @@ target_sources(akregatorpart PRIVATE
     abstractselectioncontroller.cpp
     articlematcher.cpp
     articlemodel.cpp
-    pluginmanager.cpp
     selectioncontroller.cpp
     articlelistview.cpp
     actions/actionmanagerimpl.cpp
@@ -222,9 +241,6 @@ target_sources(akregatorpart PRIVATE
     progressmanager.cpp
     akregator_part.cpp
     mainwidget.cpp
-    dummystorage/storagedummyimpl.cpp
-    dummystorage/storagefactorydummyimpl.cpp
-    dummystorage/feedstoragedummyimpl.cpp
 
     crashwidget/crashwidget.h
 
@@ -249,7 +265,6 @@ target_sources(akregatorpart PRIVATE
     abstractselectioncontroller.h
     articlematcher.h
     articlemodel.h
-    pluginmanager.h
     selectioncontroller.h
     articlelistview.h
     actions/actionmanagerimpl.h
@@ -259,9 +274,6 @@ target_sources(akregatorpart PRIVATE
     progressmanager.h
     akregator_part.h
     mainwidget.h
-    dummystorage/storagedummyimpl.h
-    dummystorage/storagefactorydummyimpl.h
-    dummystorage/feedstoragedummyimpl.h
 
     )
 
@@ -300,7 +312,6 @@ install(TARGETS akregatorpart DESTINATION ${KDE_INSTALL_PLUGINDIR})
 
 install(PROGRAMS data/org.kde.akregator.desktop DESTINATION ${KDE_INSTALL_APPDIR})
 install(FILES data/org.kde.akregator.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
-install(FILES data/akregator_plugin.desktop DESTINATION ${KDE_INSTALL_KSERVICETYPESDIR})
 install(FILES org.kde.akregator.part.xml DESTINATION ${KDE_INSTALL_DBUSINTERFACEDIR})
 install(FILES data/akregator.notifyrc DESTINATION ${KDE_INSTALL_KNOTIFY5RCDIR} )
 

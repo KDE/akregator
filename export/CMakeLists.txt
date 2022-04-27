@@ -9,7 +9,7 @@ add_executable(akregatorstorageexporter)
 target_sources(akregatorstorageexporter PRIVATE akregatorstorageexporter.cpp)
 target_link_libraries(akregatorstorageexporter
     KF5::Syndication
-    akregatorinterfaces
+    akregatorprivate
     KF5::Service
     KF5::I18n
     )

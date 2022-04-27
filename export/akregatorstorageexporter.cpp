@@ -6,11 +6,8 @@
  * SPDX-License-Identifier: LGPL-2.0-or-later
  *
  */
-#include "feedstorage.h"
-#include "plugin.h"
-#include "storage.h"
-#include "storagefactory.h"
-#include "storagefactoryregistry.h"
+#include "storage/feedstorage.h"
+#include "storage/storage.h"
 #include <KLocalizedString>
 #include <Syndication/Atom/Atom>
 #include <Syndication/Constants>
@@ -290,24 +287,6 @@ static void serialize(Storage *storage, const QString &url, QIODevice *device)
     serialize(storage->archiveFor(url), url, device);
 }
 
-static KService::List queryStoragePlugins()
-{
-    return KServiceTypeTrader::self()->query(
-        QStringLiteral("Akregator/Plugin"),
-        QStringLiteral("[X-KDE-akregator-framework-version] == %1 and [X-KDE-akregator-plugintype] == 'storage' and [X-KDE-akregator-rank] > 0")
-            .arg(QString::number(AKREGATOR_PLUGIN_INTERFACE_VERSION)));
-}
-
-static Plugin *createFromService(const KService::Ptr &service)
-{
-    KPluginFactory *factory = KPluginFactory::loadFactory(KPluginMetaData(service->library())).plugin;
-    if (!factory) {
-        qCritical() << QStringLiteral(" Could not create plugin factory for: %1").arg(service->library());
-        return nullptr;
-    }
-    return factory->create<Akregator::Plugin>();
-}
-
 static void printUsage()
 {
     std::cout << "akregatorstorageexporter [--base64] url" << std::endl;
@@ -317,7 +296,6 @@ static void printUsage()
 int main(int argc, char *argv[])
 {
     QCoreApplication app(argc, argv);
-    const QString backend = QStringLiteral("metakit");
 
     if (argc < 2) {
         printUsage();
@@ -334,24 +312,7 @@ int main(int argc, char *argv[])
     const int pos = base64 ? 2 : 1;
     const QString url = QUrl::fromEncoded(base64 ? QByteArray::fromBase64(argv[pos]) : QByteArray(argv[pos])).toString();
 
-    const auto plugins = queryStoragePlugins();
-    for (const KService::Ptr &i : plugins) {
-        if (Plugin *const plugin = createFromService(i)) {
-            plugin->initialize();
-        }
-    }
-
-    const StorageFactory *const storageFactory = StorageFactoryRegistry::self()->getFactory(backend);
-    if (!storageFactory) {
-        qCritical() << "Could not create storage factory for " << qPrintable(backend);
-        return 1;
-    }
-
-    Storage *const storage = storageFactory->createStorage(QStringList());
-    if (!storage) {
-        qCritical() << "Could not create storage object for " << qPrintable(backend);
-        return 1;
-    }
+    Storage storage;
 
     QFile out;
     if (!out.open(stdout, QIODevice::WriteOnly)) {
@@ -359,7 +320,7 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    serialize(storage, url, &out);
+    serialize(&storage, url, &out);
 
     return app.exec();
 }
