@@ -322,5 +322,5 @@ int main(int argc, char *argv[])
 
     serialize(&storage, url, &out);
 
-    return app.exec();
+    return 0;
 }
