@@ -1,4 +1,4 @@
-<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
 <title>.</title>
@@ -117,10 +117,8 @@
       <div class="theactioncell"><a href="akregatoraction:sendFileArticle{{ article.actionToken }}">{% icon "mail-message-new" small _("Send File Address") %}</a></div>
       <div class="theactioncell"><a href="akregatoraction:sendUrlArticle{{ article.actionToken }}">{% icon "mail-message-new" small _("Send Link Address") %}</a></div>
       <div class="theactioncell theactionbigcell"><a href="akregatoraction:delete{{ article.actionToken }}">{% icon "edit-delete" small _("Delete Article") %}</a></div>
-    <div>
+    </div>
   </div>
-  </div>
-
 
 
   <div class="article">
@@ -149,15 +147,15 @@
   <hr>
 
   {% if article.content %}
-  <div dir="{{ applicationDir }}"><span class="content">{{ article.content|safe }}</span>
+  <div dir="{{ applicationDir }}"><span class="content">{{ article.content|safe }}</span></div>
   {% endif %}
 
   {% if article.articleCompleteStoryLink %}
   <p><a class="contentlink" href="{{ article.articleCompleteStoryLink }}">{{ completeStoryI18n }}</a></p>
   {% endif %}
-  </div>
-  </div><p>
+  <p>
 {% endfor %}
 {% endif %}
 
 </body>
+</html>
