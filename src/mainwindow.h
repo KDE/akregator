@@ -17,6 +17,7 @@ class KSqueezedTextLabel;
 class KHamburgerMenu;
 class KToggleAction;
 class KToggleFullScreenAction;
+class QTimer;
 namespace Akregator
 {
 class Part;
@@ -79,6 +80,7 @@ private Q_SLOTS:
     void optionsConfigureToolbars();
     void applyNewToolbarConfig();
     void slotOnShutdown();
+    void updateStatusbarProgressVisibility();
 
 private:
     void updateHamburgerMenu();
@@ -86,6 +88,8 @@ private:
     void slotFullScreen(bool t);
     QPointer<Akregator::Part> m_part;
     KSqueezedTextLabel *const m_statusLabel;
+    QWidget *m_statusbarProgress = nullptr;
+    QTimer *m_hideProgressTimer = nullptr;
     KHamburgerMenu *mHamburgerMenu = nullptr;
     KToggleAction *mShowMenuBarAction = nullptr;
     KToggleFullScreenAction *mShowFullScreenAction = nullptr;

@@ -10,6 +10,7 @@
 #include "akregator_part.h"
 #include "akregatorconfig.h"
 #include "trayicon.h"
+#include <Libkdepim/ProgressManager>
 #include <Libkdepim/ProgressStatusBarWidget>
 #include <Libkdepim/StatusbarProgressWidget>
 #include <PimCommon/BroadcastStatus>
@@ -34,6 +35,7 @@
 #include <QStatusBar>
 #include <QToolBar>
 #include <QToolButton>
+#include <QTimer>
 
 using namespace Akregator;
 
@@ -168,7 +170,31 @@ bool MainWindow::loadPart()
 void MainWindow::setupProgressWidgets()
 {
     auto progressStatusBarWidget = new KPIM::ProgressStatusBarWidget(statusBar(), this);
-    statusBar()->addPermanentWidget(progressStatusBarWidget->littleProgress(), 0);
+    m_statusbarProgress = progressStatusBarWidget->littleProgress();
+    statusBar()->addPermanentWidget(m_statusbarProgress, 0);
+
+    // The progress widget blocks a large part of the status bar, but is empty
+    // most of the time. Hide it when unused, allowing a longer status label.
+    m_hideProgressTimer = new QTimer(this);
+    m_hideProgressTimer->setSingleShot(true);
+    connect(m_hideProgressTimer, &QTimer::timeout,
+            m_statusbarProgress, &QWidget::hide);
+
+    connect(KPIM::ProgressManager::instance(), &KPIM::ProgressManager::progressItemAdded,
+            this, &MainWindow::updateStatusbarProgressVisibility);
+    connect(KPIM::ProgressManager::instance(), &KPIM::ProgressManager::progressItemCompleted,
+            this, &MainWindow::updateStatusbarProgressVisibility);
+    m_statusbarProgress->hide();
+}
+
+void MainWindow::updateStatusbarProgressVisibility()
+{
+    if (KPIM::ProgressManager::instance()->isEmpty()) {
+        m_hideProgressTimer->start(5000);
+    } else {
+        m_hideProgressTimer->stop();
+        m_statusbarProgress->show();
+    }
 }
 
 MainWindow::~MainWindow() = default;
