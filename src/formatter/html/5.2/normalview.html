@@ -17,17 +17,13 @@
     text-decoration: none;
     }
     .headertitle {
-    padding: 2px;
     color: rgb(100,100,100) ! important;
-    font-weight: bold;
     }
-    .header {
-    color: rgb(120, 125, 129) ! important;
+    .header, .headertitle {
     font-weight: bold;
     padding: 2px;
-    margin-right: 0.4em;
     }
-    .headertext {
+    .headerbox {
     color: rgb(120, 125, 129) ! important;
     }
     .headimage {
@@ -60,7 +56,7 @@
 {% if articles %}
 {% for article in articles %}
 
-  <div class="article">
+  <div class="headerbox">
   {% if article.imageFeed %}
   {{ article.imageFeed|safe }}
   {% endif %}
@@ -70,15 +66,18 @@
   {% endif %}
 
   {%if article.articlePubDate %}
-  <div><span class="header" dir="{{ applicationDir }}">{{ dateI18n }}:</span><span class="headertext">{{ article.articlePubDate }}</span></div>
+  <div><span class="header" dir="{{ applicationDir }}">{{ dateI18n }}:</span>
+      {{ article.articlePubDate }}</div>
   {% endif %}
 
   {% if article.author %}
-  <div><span class="header" dir="{{ applicationDir }}">{{ authorI18n }}:</span><span class="headertext">{{ article.author|safe }}</span></div>
+  <div><span class="header" dir="{{ applicationDir }}">{{ authorI18n }}:</span>
+      {{ article.author|safe }}</div>
   {% endif %}
 
   {% if article.enclosure %}
-  <div><span class="header" dir="{{ applicationDir }}">{{ enclosureI18n }}:</span><span class="headertext">{{ article.enclosure|safe }}</span></div>
+  <div><span class="header" dir="{{ applicationDir }}">{{ enclosureI18n }}:</span>
+      {{ article.enclosure|safe }}</div>
   {% endif %}
   </div>
 
