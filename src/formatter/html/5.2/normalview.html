@@ -12,64 +12,34 @@
     a {
     color: #2980b9 ! important;
     }
-    .headerbox {
-    background: #eff0f1 ! important;
-    color: #31363b ! important;
-    border:1px solid #000;
-    margin-bottom: 10pt;
-    font-size: 22px;
-    }
-    .headertitle a:link {
-    color: rgb(100,100,100) ! important;
-    text-decoration: none ! important;
-    }
-    .headertitle a:visited {
-    color: rgb(100,100,100) ! important;
-    text-decoration: none ! important;
-    }
-    .headertitle a:hover{
-    color: rgb(100,100,100) ! important;
-    text-decoration: none ! important;
-    }
-    .headertitle a:active {
-    color: rgb(100,100,100) ! important;
-    text-decoration: none ! important;
+    .headertitle a {
+    color: inherit ! important;
+    text-decoration: none;
     }
     .headertitle {
-    padding:2px;
+    padding: 2px;
     color: rgb(100,100,100) ! important;
     font-weight: bold;
-    text-decoration: none ! important;
     }
     .header {
     color: rgb(120, 125, 129) ! important;
     font-weight: bold;
-    padding:2px;
-    margin-right: 5px;
-    text-decoration: none ! important;
-    font-size: {{ mediumFontSize }}pt;
+    padding: 2px;
+    margin-right: 0.4em;
     }
     .headertext {
-    text-decoration: none ! important;
     color: rgb(120, 125, 129) ! important;
-    font-size: {{ mediumFontSize }}pt;
     }
     .headimage {
     float: right;
     margin-left: 5px;
     max-width: 150px;
     }
-    body {
-    clear: none;
-    }
     .content {
     display: block;
-    margin-bottom: 6px;
+    margin-bottom: 0.8em;
     }
-    .content > P:first-child {
-    margin-top: 1px;
-    }
-    .content > DIV:first-child {
+    .content > P:first-child, .content > DIV:first-child {
     margin-top: 1px;
     }
     .content > BR:first-child {
@@ -81,45 +51,46 @@
 </head>
 <body>
 {% if not loadExternalReference %}
-    <div>{% i18n_var "<b>Note:</b> For security reasons, external reference is blocked (See configure dialog)." as msg %}
-            {{ msg|safe }}
-    </div>
-    <br />
-    <br />
+    <p class="advisory">
+        {% i18n_var "<b>Note:</b> For security reasons, external reference is blocked (See configure dialog)." as msg %}
+        {{ msg|safe }}
+    </p>
 {% endif %}
 
 {% if articles %}
 {% for article in articles %}
 
-  <p><div class="article">
+  <div class="article">
+  {% if article.imageFeed %}
+  {{ article.imageFeed|safe }}
+  {% endif %}
+
   {% if article.strippedTitle %}
   <div class="headertitle" dir="{{ applicationDir }}"><a href="{{ article.articleLinkUrl }}">{{ article.strippedTitle|safe }}</a></div>
   {% endif %}
 
   {%if article.articlePubDate %}
-  <span class="header" dir="{{ applicationDir }}">{{ dateI18n }}:</span><span class="headertext">{{ article.articlePubDate }}</span>
+  <div><span class="header" dir="{{ applicationDir }}">{{ dateI18n }}:</span><span class="headertext">{{ article.articlePubDate }}</span></div>
   {% endif %}
 
   {% if article.author %}
-  <br/><span class="header" dir="{{ applicationDir }}">{{ authorI18n }}:</span><span class="headertext">{{ article.author|safe }}</span>
+  <div><span class="header" dir="{{ applicationDir }}">{{ authorI18n }}:</span><span class="headertext">{{ article.author|safe }}</span></div>
   {% endif %}
 
   {% if article.enclosure %}
-  <br/><span class="header" dir="{{ applicationDir }}">{{ enclosureI18n }}:</span><span class="headertext">{{ article.enclosure|safe }}</span>
+  <div><span class="header" dir="{{ applicationDir }}">{{ enclosureI18n }}:</span><span class="headertext">{{ article.enclosure|safe }}</span></div>
   {% endif %}
   </div>
 
-  {% if article.imageFeed %}
-  {{ article.imageFeed|safe }}
-  {% endif %}
-  <hr>
 
   {% if article.content %}
+  <hr>
   <div dir="{{ applicationDir }}"><span class="content">{{ article.content|safe }}</span></div>
   {% endif %}
 
   {% if article.articleCompleteStoryLink %}
-  <p><a class="contentlink" href="{{ article.articleCompleteStoryLink }}">{{ completeStoryI18n }}</a></p>
+  <hr>
+  <div><a class="contentlink" href="{{ article.articleCompleteStoryLink }}">{{ completeStoryI18n }}</a></div>
   {% endif %}
 {% endfor %}
 {% endif %}
