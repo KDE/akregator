@@ -313,7 +313,7 @@ install(TARGETS akregatorpart DESTINATION ${KDE_INSTALL_PLUGINDIR})
 install(PROGRAMS data/org.kde.akregator.desktop DESTINATION ${KDE_INSTALL_APPDIR})
 install(FILES data/org.kde.akregator.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
 install(FILES org.kde.akregator.part.xml DESTINATION ${KDE_INSTALL_DBUSINTERFACEDIR})
-install(FILES data/akregator.notifyrc DESTINATION ${KDE_INSTALL_KNOTIFY5RCDIR} )
+install(FILES data/akregator.notifyrc DESTINATION ${KDE_INSTALL_KNOTIFYRCDIR} )
 
 add_subdirectory(formatter/html)
 if(BUILD_TESTING)
