@@ -10,6 +10,8 @@
 
 #include "akregator_export.h"
 #include "article.h"
+#include "articlematcher.h"
+
 #include <QWidget>
 
 #include <QPointer>
@@ -23,10 +25,6 @@ class KActionCollection;
 
 namespace Akregator
 {
-namespace Filters
-{
-class AbstractMatcher;
-}
 
 class ArticleFormatter;
 class ArticleListJob;
