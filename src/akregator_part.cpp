@@ -61,6 +61,9 @@
 #include <QTextStream>
 #include <QTimer>
 #include <QWidget>
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+#include <QWebEngineProfile>
+#endif
 
 #include <QFontDatabase>
 #include <QStandardPaths>
@@ -624,12 +627,21 @@ void Part::initFonts()
         }
         Settings::setMediumFontSize(medfs);
     }
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     QWebEngineSettings::defaultSettings()->setFontFamily(QWebEngineSettings::StandardFont, Settings::standardFont());
     QWebEngineSettings::defaultSettings()->setFontFamily(QWebEngineSettings::FixedFont, Settings::fixedFont());
     QWebEngineSettings::defaultSettings()->setFontFamily(QWebEngineSettings::SerifFont, Settings::serifFont());
     QWebEngineSettings::defaultSettings()->setFontFamily(QWebEngineSettings::SansSerifFont, Settings::sansSerifFont());
     QWebEngineSettings::defaultSettings()->setFontSize(QWebEngineSettings::MinimumFontSize, Settings::minimumFontSize());
     QWebEngineSettings::defaultSettings()->setFontSize(QWebEngineSettings::DefaultFontSize, Settings::mediumFontSize());
+#else
+    QWebEngineProfile::defaultProfile()->settings()->setFontFamily(QWebEngineSettings::StandardFont, Settings::standardFont());
+    QWebEngineProfile::defaultProfile()->settings()->setFontFamily(QWebEngineSettings::FixedFont, Settings::fixedFont());
+    QWebEngineProfile::defaultProfile()->settings()->setFontFamily(QWebEngineSettings::SerifFont, Settings::serifFont());
+    QWebEngineProfile::defaultProfile()->settings()->setFontFamily(QWebEngineSettings::SansSerifFont, Settings::sansSerifFont());
+    QWebEngineProfile::defaultProfile()->settings()->setFontSize(QWebEngineSettings::MinimumFontSize, Settings::minimumFontSize());
+    QWebEngineProfile::defaultProfile()->settings()->setFontSize(QWebEngineSettings::DefaultFontSize, Settings::mediumFontSize());
+#endif
 }
 
 bool Part::handleCommandLine(const QStringList &args)

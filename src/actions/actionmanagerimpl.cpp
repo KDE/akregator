@@ -32,6 +32,7 @@
 #include <KStandardShortcut>
 #include <KToggleAction>
 #include <QAction>
+#include <QActionGroup>
 #include <QKeySequence>
 #include <QMenu>
 #include <kxmlguifactory.h>

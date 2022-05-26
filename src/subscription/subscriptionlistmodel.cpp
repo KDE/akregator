@@ -20,6 +20,7 @@
 #include <QApplication>
 #include <QByteArray>
 #include <QDataStream>
+#include <QIODevice>
 #include <QIcon>
 #include <QItemSelection>
 #include <QList>

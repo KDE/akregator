@@ -10,13 +10,13 @@
 #include <QAbstractTableModel>
 
 #include "akregatorpart_export.h"
+#include "article.h"
 
 #include <QSharedPointer>
 #include <vector>
 
 namespace Akregator
 {
-class Article;
 class TreeNode;
 
 namespace Filters
