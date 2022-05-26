@@ -9,8 +9,6 @@
 
 #pragma once
 
-#include "article.h"
-
 #include <KSharedConfig>
 #include <QPointer>
 #include <QVector>
@@ -31,7 +29,7 @@ namespace Backend
 {
 class Storage;
 }
-
+class Article;
 class ActionManagerImpl;
 class Feed;
 class FeedList;
