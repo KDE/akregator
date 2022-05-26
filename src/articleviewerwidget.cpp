@@ -17,7 +17,6 @@
 #include "akregatorconfig.h"
 #include "articleformatter.h"
 #include "articlejobs.h"
-#include "articlematcher.h"
 #include "feed.h"
 #include "folder.h"
 #include "openurlrequest.h"

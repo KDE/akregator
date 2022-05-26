@@ -181,7 +181,7 @@ QStringList FeedStorage::articles() const
     int size = d->archiveView.GetSize();
     list.reserve(size);
     for (int i = 0; i < size; ++i) { // fill with guids
-        list += QString::fromLatin1(d->pguid(d->archiveView.GetAt(i)));
+        list += QString::fromLatin1(QByteArray(d->pguid(d->archiveView.GetAt(i))));
     }
     return list;
 }
@@ -261,7 +261,7 @@ void FeedStorage::setDeleted(const QString &guid)
 QString FeedStorage::link(const QString &guid) const
 {
     int findidx = findArticle(guid);
-    return findidx != -1 ? QString::fromUtf8(d->plink(d->archiveView.GetAt(findidx))) : QLatin1String("");
+    return findidx != -1 ? QString::fromUtf8(QByteArray(d->plink(d->archiveView.GetAt(findidx)))) : QLatin1String("");
 }
 
 QDateTime FeedStorage::pubDate(const QString &guid) const
@@ -295,7 +295,7 @@ void FeedStorage::article(const QString &guid, uint &hash, QString &title, int &
     if (idx != -1) {
         auto view = d->archiveView.GetAt(idx);
         hash = d->phash(view);
-        title = QString::fromUtf8(d->ptitle(view));
+        title = QString::fromUtf8(QByteArray(d->ptitle(view)));
         status = d->pstatus(view);
         pubDate = QDateTime::fromSecsSinceEpoch(d->ppubDate(view));
     }
@@ -304,19 +304,19 @@ void FeedStorage::article(const QString &guid, uint &hash, QString &title, int &
 QString FeedStorage::title(const QString &guid) const
 {
     int findidx = findArticle(guid);
-    return findidx != -1 ? QString::fromUtf8(d->ptitle(d->archiveView.GetAt(findidx))) : QLatin1String("");
+    return findidx != -1 ? QString::fromUtf8(QByteArray(d->ptitle(d->archiveView.GetAt(findidx)))) : QLatin1String("");
 }
 
 QString FeedStorage::description(const QString &guid) const
 {
     int findidx = findArticle(guid);
-    return findidx != -1 ? QString::fromUtf8(d->pdescription(d->archiveView.GetAt(findidx))) : QLatin1String("");
+    return findidx != -1 ? QString::fromUtf8(QByteArray(d->pdescription(d->archiveView.GetAt(findidx)))) : QLatin1String("");
 }
 
 QString FeedStorage::content(const QString &guid) const
 {
     int findidx = findArticle(guid);
-    return findidx != -1 ? QString::fromUtf8(d->pcontent(d->archiveView.GetAt(findidx))) : QLatin1String("");
+    return findidx != -1 ? QString::fromUtf8(QByteArray(d->pcontent(d->archiveView.GetAt(findidx)))) : QLatin1String("");
 }
 
 void FeedStorage::setPubDate(const QString &guid, const QDateTime &pubdate)
@@ -452,19 +452,19 @@ void FeedStorage::setAuthorEMail(const QString &guid, const QString &author)
 QString FeedStorage::authorName(const QString &guid) const
 {
     int findidx = findArticle(guid);
-    return findidx != -1 ? QString::fromUtf8(d->pauthorName(d->archiveView.GetAt(findidx))) : QString();
+    return findidx != -1 ? QString::fromUtf8(QByteArray(d->pauthorName(d->archiveView.GetAt(findidx)))) : QString();
 }
 
 QString FeedStorage::authorUri(const QString &guid) const
 {
     int findidx = findArticle(guid);
-    return findidx != -1 ? QString::fromUtf8(d->pauthorUri(d->archiveView.GetAt(findidx))) : QString();
+    return findidx != -1 ? QString::fromUtf8(QByteArray(d->pauthorUri(d->archiveView.GetAt(findidx)))) : QString();
 }
 
 QString FeedStorage::authorEMail(const QString &guid) const
 {
     int findidx = findArticle(guid);
-    return findidx != -1 ? QString::fromUtf8(d->pauthorEMail(d->archiveView.GetAt(findidx))) : QString();
+    return findidx != -1 ? QString::fromUtf8(QByteArray(d->pauthorEMail(d->archiveView.GetAt(findidx)))) : QString();
 }
 
 void FeedStorage::setGuidIsPermaLink(const QString &guid, bool isPermaLink)

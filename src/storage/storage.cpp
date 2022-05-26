@@ -278,7 +278,7 @@ QStringList Akregator::Backend::Storage::feeds() const
     const int size = d->archiveView.GetSize();
     list.reserve(size);
     for (int i = 0; i < size; ++i) {
-        list += QString::fromLatin1(d->purl(d->archiveView.GetAt(i)));
+        list += QString::fromLatin1(QByteArray(d->purl(d->archiveView.GetAt(i))));
     }
     // fill with urls
     return list;
@@ -305,5 +305,5 @@ QString Akregator::Backend::Storage::restoreFeedList() const
     }
 
     c4_Row row = d->feedListView.GetAt(0);
-    return QString::fromUtf8(d->pFeedList(row));
+    return QString::fromUtf8(QByteArray(d->pFeedList(row)));
 }
