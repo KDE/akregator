@@ -21,8 +21,8 @@
 
 EXPORT_KONTACT_PLUGIN_WITH_JSON(AkregatorPlugin, "akregatorplugin.json")
 
-AkregatorPlugin::AkregatorPlugin(KontactInterface::Core *core, const QVariantList &)
-    : KontactInterface::Plugin(core, core, "akregator")
+AkregatorPlugin::AkregatorPlugin(KontactInterface::Core *core, const KPluginMetaData &data, const QVariantList &)
+    : KontactInterface::Plugin(core, core, data, "akregator")
 {
     setComponentName(QStringLiteral("akregator"), i18n("Akregator"));
 

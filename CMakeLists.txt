@@ -47,7 +47,7 @@ set(KDEPIM_LIB_SOVERSION "5")
 
 set(QT_REQUIRED_VERSION "5.15.2")
 set(GPGME_LIB_VERSION "1.16.0")
-set(KONTACTINTERFACE_LIB_VERSION "5.20.40")
+set(KONTACTINTERFACE_LIB_VERSION "5.20.41")
 set(KPIMTEXTEDIT_LIB_VERSION "5.20.40")
 set(LIBGRANTLEETHEME_LIB_VERSION "5.20.40")
 set(LIBKDEPIM_LIB_VERSION "5.20.40")
@@ -98,9 +98,9 @@ include_directories(${akregator_SOURCE_DIR} ${akregator_BINARY_DIR})
 add_definitions(-DTRANSLATION_DOMAIN=\"akregator\")
 ecm_set_disabled_deprecation_versions(QT 5.15.2
     KF 5.95.0
-    KCOREADDONS 5.88.0 #KPluginFactory::registerPlugin
     KSERVICE 5.89.0 #KServiceTypeTrader::self
     KPARTS 5.89.0 #setPluginLoadingMode
+    KCOREADDONS 5.88.0 #KPluginFactory::registerPlugin (remove it when we depend against kf5.95)
 )
 if (TARGET KUserFeedbackWidgets)
     add_definitions(-DWITH_KUSERFEEDBACK)
