@@ -105,7 +105,7 @@
         ],
         "Version": "1.0b2"
     },
-    "X-KDE-ConfigModuleNamespace": "pim/kcms/akregator/",
+    "X-KDE-ConfigModuleNamespace": "pim@QT_MAJOR_VERSION@/kcms/akregator/",
     "X-KDE-KontactPartExecutableName": "akregator",
     "X-KDE-KontactPartLibraryName": "akregatorpart",
     "X-KDE-KontactPartLoadOnStart": false,

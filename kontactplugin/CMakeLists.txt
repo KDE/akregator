@@ -7,6 +7,8 @@ include_directories(
 ########### next target ###############
 add_library(kontact_akregatorplugin MODULE)
 
+configure_file(akregatorplugin.json.cmake ${CMAKE_CURRENT_BINARY_DIR}/akregatorplugin.json )
+
 qt_add_dbus_interfaces(kontact_akregator_PART_SRCS ${akregator_SOURCE_DIR}/src/org.kde.akregator.part.xml)
 target_sources(kontact_akregatorplugin PRIVATE akregator_plugin.cpp akregator_plugin.h ${kontact_akregator_PART_SRCS})
 
