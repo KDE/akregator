@@ -109,6 +109,6 @@
     "X-KDE-KontactPartExecutableName": "akregator",
     "X-KDE-KontactPartLibraryName": "akregatorpart",
     "X-KDE-KontactPartLoadOnStart": false,
-    "X-KDE-KontactPluginVersion": 10,
+    "X-KDE-KontactPluginVersion": 11,
     "X-KDE-Weight": 475
 }
