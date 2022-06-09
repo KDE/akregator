@@ -17,4 +17,4 @@ target_link_libraries(kontact_akregatorplugin KF5::I18n KF5::KontactInterface)
 
 ########### install files ###############
 
-install(TARGETS kontact_akregatorplugin DESTINATION ${KDE_INSTALL_PLUGINDIR}/kontact${QT_MAJOR_VERSION})
+install(TARGETS kontact_akregatorplugin DESTINATION ${KDE_INSTALL_PLUGINDIR}/pim${QT_MAJOR_VERSION}/kontact)
