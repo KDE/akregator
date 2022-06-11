@@ -12,6 +12,7 @@ target_link_libraries(akregatorstorageexporter
     akregatorprivate
     KF5::Service
     KF5::I18n
+    KF5::CoreAddons
     )
 
 install(TARGETS akregatorstorageexporter ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
