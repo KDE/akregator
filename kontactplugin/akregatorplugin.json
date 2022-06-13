@@ -3,7 +3,7 @@
         "Description": "Akregator Plugin",
         "Description[ar]": "ملحق أكريغاتور",
         "Description[az]": "Akregator qoşması",
-        "Description[ca@valencia]": "Conector Akregator",
+        "Description[ca@valencia]": "Connector Akregator",
         "Description[ca]": "Connector Akregator",
         "Description[cs]": "Modul Akregatoru",
         "Description[de]": "Akregator-Modul",
