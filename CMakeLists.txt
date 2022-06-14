@@ -4,7 +4,7 @@ cmake_minimum_required(VERSION 3.16 FATAL_ERROR)
 set(PIM_VERSION "5.20.40")
 project(akregator VERSION ${PIM_VERSION})
 
-set(KF5_MIN_VERSION "5.94.0")
+set(KF5_MIN_VERSION "5.95.0")
 set(RELEASE_SERVICE_VERSION "22.07.40")
 
 find_package(ECM ${KF5_MIN_VERSION} CONFIG REQUIRED)
@@ -100,7 +100,6 @@ ecm_set_disabled_deprecation_versions(QT 5.15.2
     KF 5.95.0
     KSERVICE 5.89.0 #KServiceTypeTrader::self
     KPARTS 5.89.0 #setPluginLoadingMode
-    KCOREADDONS 5.88.0 #KPluginFactory::registerPlugin (remove it when we depend against kf5.95)
 )
 if (TARGET KUserFeedbackWidgets)
     add_definitions(-DWITH_KUSERFEEDBACK)
