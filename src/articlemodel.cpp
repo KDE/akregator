@@ -8,7 +8,6 @@
 #include "articlemodel.h"
 
 #include "akregatorconfig.h"
-#include "article.h"
 #include "articlematcher.h"
 #include "feed.h"
 #include "utils.h"
