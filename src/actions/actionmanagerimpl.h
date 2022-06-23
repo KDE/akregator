@@ -56,7 +56,7 @@ public:
     void setTrayIcon(TrayIcon *trayIcon);
     KActionCollection *actionCollection() const;
     WebEngineViewer::ZoomActionMenu *zoomActionMenu() const override;
-    QString quickSearchLineText() const;
+    Q_REQUIRED_RESULT QString quickSearchLineText() const;
 
 public Q_SLOTS:
 

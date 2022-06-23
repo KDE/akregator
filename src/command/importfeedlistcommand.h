@@ -30,7 +30,11 @@ public:
 
     void setTargetList(const QWeakPointer<FeedList> &feedList);
 
-    enum RootFolderOption { None, Auto, Ask };
+    enum RootFolderOption {
+        None,
+        Auto,
+        Ask,
+    };
 
     void setImportedRootFolderOption(RootFolderOption opt);
     void setImportedRootFolderName(const QString &defaultName);

@@ -27,6 +27,7 @@ using namespace Akregator::Filters;
 
 SearchBar::SearchBar(QWidget *parent)
     : QWidget(parent)
+    , m_searchLine(new StatusSearchLine(this))
 {
     m_delay = 400;
     auto layout = new QHBoxLayout(this);
@@ -35,7 +36,6 @@ SearchBar::SearchBar(QWidget *parent)
     layout->setSpacing(5);
     setSizePolicy(QSizePolicy(QSizePolicy::Minimum, QSizePolicy::Fixed));
 
-    m_searchLine = new StatusSearchLine(this);
     m_searchLine->setClearButtonEnabled(true);
     m_searchLine->setPlaceholderText(i18n("Search articles..."));
     layout->addWidget(m_searchLine);

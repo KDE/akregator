@@ -61,7 +61,7 @@ private:
 
     QString m_searchText;
     QTimer m_timer;
-    StatusSearchLine *m_searchLine = nullptr;
+    StatusSearchLine *const m_searchLine;
     int m_delay;
     std::vector<QSharedPointer<const Filters::AbstractMatcher>> m_matchers;
 };

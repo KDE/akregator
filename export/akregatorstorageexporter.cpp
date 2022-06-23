@@ -41,9 +41,18 @@ static QString akregatorNamespace()
     return QStringLiteral("http://akregator.kde.org/StorageExporter#");
 }
 
-enum TextMode { PlainText, Html };
+enum TextMode {
+    PlainText,
+    Html,
+};
 
-enum Status { Deleted = 0x01, Trash = 0x02, New = 0x04, Read = 0x08, Keep = 0x10 };
+enum Status {
+    Deleted = 0x01,
+    Trash = 0x02,
+    New = 0x04,
+    Read = 0x08,
+    Keep = 0x10,
+};
 
 class Element
 {

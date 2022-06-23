@@ -16,8 +16,8 @@ using namespace Akregator;
 
 AkregatorCentralWidget::AkregatorCentralWidget(QWidget *parent)
     : QStackedWidget(parent)
+    , mCrashWidget(new CrashWidget(this))
 {
-    mCrashWidget = new CrashWidget(this);
     connect(mCrashWidget, &CrashWidget::restoreSession, this, &AkregatorCentralWidget::slotRestoreSession);
     addWidget(mCrashWidget);
 }

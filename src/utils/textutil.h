@@ -10,4 +10,4 @@
 namespace TextUtil
 {
 Q_REQUIRED_RESULT QString normalize(QStringView str);
-};
+}

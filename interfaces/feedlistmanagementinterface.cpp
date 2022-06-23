@@ -12,6 +12,8 @@ using namespace Akregator;
 
 FeedListManagementInterface *FeedListManagementInterface::m_instance = nullptr;
 
+FeedListManagementInterface::~FeedListManagementInterface() = default;
+
 FeedListManagementInterface *FeedListManagementInterface::instance()
 {
     return m_instance;
@@ -21,5 +23,3 @@ void FeedListManagementInterface::setInstance(FeedListManagementInterface *iface
 {
     m_instance = iface;
 }
-
-FeedListManagementInterface::~FeedListManagementInterface() = default;

@@ -29,10 +29,10 @@ public:
     ~ExpireItemsCommand() override;
 
     void setFeedList(const QWeakPointer<FeedList> &feedList);
-    QWeakPointer<FeedList> feedList() const;
+    Q_REQUIRED_RESULT QWeakPointer<FeedList> feedList() const;
 
     void setFeeds(const QVector<uint> &feeds);
-    QVector<uint> feeds() const;
+    Q_REQUIRED_RESULT QVector<uint> feeds() const;
 
 private:
     void doStart() override;

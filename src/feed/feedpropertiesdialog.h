@@ -24,7 +24,12 @@ public:
     explicit FeedPropertiesWidget(QWidget *parent = nullptr, const QString &name = QString());
     ~FeedPropertiesWidget() override;
 
-    enum IntervalStep { Minutes = 0, Hours, Days, Never };
+    enum IntervalStep {
+        Minutes = 0,
+        Hours,
+        Days,
+        Never,
+    };
 
 public Q_SLOTS:
     void slotUpdateComboBoxActivated(int index);

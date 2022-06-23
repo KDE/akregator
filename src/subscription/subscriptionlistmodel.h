@@ -57,7 +57,12 @@ class AKREGATORPART_EXPORT SubscriptionListModel : public QAbstractItemModel
 public:
     enum Role { SubscriptionIdRole = Qt::UserRole, IsFetchableRole, IsGroupRole, IsAggregationRole, LinkRole, IdRole, IsOpenRole, HasUnreadRole };
 
-    enum Column { TitleColumn = 0, UnreadCountColumn = 1, TotalCountColumn = 2, ColumnCount = 3 };
+    enum Column {
+        TitleColumn = 0,
+        UnreadCountColumn = 1,
+        TotalCountColumn = 2,
+        ColumnCount = 3,
+    };
 
     explicit SubscriptionListModel(const QSharedPointer<const FeedList> &feedList, QObject *parent = nullptr);
 

@@ -16,7 +16,10 @@ namespace Akregator
 class FilterColumnsProxyModel : public QSortFilterProxyModel
 {
 public:
-    enum Mode { Blacklist, Whitelist };
+    enum Mode {
+        Blacklist,
+        Whitelist,
+    };
 
     explicit FilterColumnsProxyModel(QObject *parent = nullptr);
 
