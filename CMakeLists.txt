@@ -101,7 +101,7 @@ set_package_properties(KUserFeedback PROPERTIES DESCRIPTION "User Feedback lib" 
 include_directories(${akregator_SOURCE_DIR} ${akregator_BINARY_DIR})
 add_definitions(-DTRANSLATION_DOMAIN=\"akregator\")
 ecm_set_disabled_deprecation_versions(QT 5.15.2
-    KF 5.95.0
+    KF 5.96.0
     KSERVICE 5.89.0 #KServiceTypeTrader::self
     KPARTS 5.89.0 #setPluginLoadingMode
 )
