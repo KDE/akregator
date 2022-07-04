@@ -20,7 +20,6 @@
 #include <QVariant>
 #include <QXmlStreamWriter>
 
-#include <KPluginLoader>
 #include <KService>
 #include <KServiceTypeTrader>
 #include <QDebug>
