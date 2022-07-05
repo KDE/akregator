@@ -21,6 +21,7 @@
         "Description[pl]": "Wtyczka Akregatora",
         "Description[pt]": "'Plugin' do Akregator",
         "Description[pt_BR]": "Plugin do Akregator",
+        "Description[ru]": "Модуль Akregator",
         "Description[sk]": "Modul Akregatora",
         "Description[sl]": "Vstavek Akregator",
         "Description[sv]": "Akregator-insticksprogram",
