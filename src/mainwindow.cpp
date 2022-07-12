@@ -33,9 +33,8 @@
 #include <QFontDatabase>
 #include <QMenuBar>
 #include <QStatusBar>
-#include <QToolBar>
-#include <QToolButton>
 #include <QTimer>
+#include <QToolButton>
 
 using namespace Akregator;
 

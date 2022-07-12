@@ -14,7 +14,6 @@
 
 #include <KLocalizedString>
 
-#include <QDebug>
 #include <QTimer>
 #include <chrono>
 

@@ -43,7 +43,6 @@
 #include <KJobWidgets>
 #include <KParts/Plugin>
 #include <KPluginFactory>
-#include <KService>
 #include <QSaveFile>
 #include <QTemporaryFile>
 #include <QWebEngineSettings>
