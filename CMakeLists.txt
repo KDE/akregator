@@ -34,7 +34,7 @@ include(ECMDeprecationSettings)
 
 
 # Do NOT add quote
-set(KDEPIM_DEV_VERSION alpha)
+set(KDEPIM_DEV_VERSION rc)
 
 # add an extra space
 if(DEFINED KDEPIM_DEV_VERSION)
@@ -46,14 +46,13 @@ set(KDEPIM_LIB_VERSION "${PIM_VERSION}")
 set(KDEPIM_LIB_SOVERSION "5")
 
 set(QT_REQUIRED_VERSION "5.15.2")
-set(GPGME_LIB_VERSION "1.16.0")
-set(KONTACTINTERFACE_LIB_VERSION "5.20.41")
-set(KPIMTEXTEDIT_LIB_VERSION "5.20.40")
-set(LIBGRANTLEETHEME_LIB_VERSION "5.20.40")
-set(LIBKDEPIM_LIB_VERSION "5.20.40")
-set(LIBKLEO_LIB_VERSION "5.20.40")
-set(MESSAGELIB_LIB_VERSION "5.20.40")
-set(PIMCOMMON_LIB_VERSION "5.20.40")
+set(KONTACTINTERFACE_LIB_VERSION "5.20.80")
+set(KPIMTEXTEDIT_LIB_VERSION "5.20.80")
+set(LIBGRANTLEETHEME_LIB_VERSION "5.20.80")
+set(LIBKDEPIM_LIB_VERSION "5.20.80")
+set(LIBKLEO_LIB_VERSION "5.20.80")
+set(MESSAGELIB_LIB_VERSION "5.20.80")
+set(PIMCOMMON_LIB_VERSION "5.20.80")
 
 option(KDEPIM_KUSERFEEDBACK "Enable user feedback support (experimental)" FALSE)
 
@@ -85,11 +84,6 @@ find_package(KF5Libkleo ${LIBKLEO_LIB_VERSION} CONFIG REQUIRED)
 find_package(KF5MessageViewer ${MESSAGELIB_LIB_VERSION} CONFIG REQUIRED)
 find_package(KF5PimTextEdit ${KPIMTEXTEDIT_LIB_VERSION} CONFIG REQUIRED)
 find_package(KF5WebEngineViewer ${MESSAGELIB_LIB_VERSION} CONFIG REQUIRED)
-if (QT_MAJOR_VERSION STREQUAL "6")
-    find_package(QGpgmeQt6 ${GPGME_REQUIRED_VERSION} CONFIG REQUIRED)
-else()
-    find_package(QGpgme ${GPGME_REQUIRED_VERSION} CONFIG REQUIRED)
-endif()
 # Fix plugin support for removing theses dependencies
 find_package(KF5AkonadiMime ${AKONADI_MIMELIB_VERSION} CONFIG REQUIRED)
 find_package(KF5PimCommonAkonadi ${PIMCOMMON_LIB_VERSION} CONFIG REQUIRED)
@@ -102,7 +96,6 @@ include_directories(${akregator_SOURCE_DIR} ${akregator_BINARY_DIR})
 add_definitions(-DTRANSLATION_DOMAIN=\"akregator\")
 ecm_set_disabled_deprecation_versions(QT 5.15.2
     KF 5.96.0
-    KSERVICE 5.89.0 #KServiceTypeTrader::self
     KPARTS 5.89.0 #setPluginLoadingMode
 )
 if (TARGET KUserFeedbackWidgets)
