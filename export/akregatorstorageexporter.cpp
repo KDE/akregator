@@ -13,6 +13,7 @@
 #include <Syndication/Constants>
 
 #include <KPluginMetaData>
+#include <QCoreApplication>
 #include <QDateTime>
 #include <QFile>
 #include <QIODevice>
@@ -20,8 +21,6 @@
 #include <QVariant>
 #include <QXmlStreamWriter>
 
-#include <KService>
-#include <KServiceTypeTrader>
 #include <QDebug>
 #include <QUrl>
 
