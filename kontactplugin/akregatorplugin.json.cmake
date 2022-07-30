@@ -101,10 +101,6 @@
         "Name[x-test]": "xxFeedsxx",
         "Name[zh_CN]": "订阅",
         "Name[zh_TW]": "Feeds",
-        "ServiceTypes": [
-            "Kontact/Plugin",
-            "KPluginInfo"
-        ],
         "Version": "1.0b2"
     },
     "X-KDE-ConfigModuleNamespace": "pim@QT_MAJOR_VERSION@/kcms/akregator/",
