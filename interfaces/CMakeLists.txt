@@ -27,7 +27,7 @@ endif()
 
 target_link_libraries(akregatorinterfaces
     KF5::ConfigGui
-    Qt${QT_MAJOR_VERSION}::Widgets
+    Qt::Widgets
     )
 if (COMPILE_WITH_UNITY_CMAKE_SUPPORT)
     set_target_properties(akregatorinterfaces PROPERTIES UNITY_BUILD ON)

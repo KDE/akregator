@@ -186,7 +186,7 @@ target_link_libraries(akregatorprivate
     KF5::GrantleeTheme
     KF5::KIOGui
     KF5::MessageViewer
-    Qt${QT_MAJOR_VERSION}::PrintSupport
+    Qt::PrintSupport
     KF5::WebEngineViewer
     ${akregator_userfeedback_LIB}
     )
@@ -299,7 +299,7 @@ target_link_libraries(akregatorpart
     KF5::Parts
     KF5::Notifications
     KF5::TextWidgets
-    Qt${QT_MAJOR_VERSION}::WebEngineWidgets
+    Qt::WebEngineWidgets
     KF5::WebEngineViewer
     KF5::KIOGui
     )
