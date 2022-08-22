@@ -180,7 +180,6 @@ Comment[wa]=On lijheu d' floûs di noveles di KDE
 Comment[x-test]=xxA KDE News Feed Readerxx
 Comment[zh_CN]=KDE 新闻订阅阅读器
 Comment[zh_TW]=KDE 新聞 Feed 閱讀器
-Terminal=false
 Categories=Qt;KDE;Network;News;Feed;
 X-DBUS-StartupType=Unique
 X-DBUS-ServiceName=org.kde.akregator
