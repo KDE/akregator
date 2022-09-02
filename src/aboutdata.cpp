@@ -24,7 +24,6 @@ AboutData::AboutData()
                  QString(),
                  QStringLiteral("https://userbase.kde.org/Akregator"))
 {
-    setOrganizationDomain("kde.org"); // needed to get org.kde.akregator used for DBUS
     addAuthor(i18n("Laurent Montel"), i18n("Maintainer"), QStringLiteral("montel@kde.org"));
     addAuthor(i18n("Frank Osterfeld"), i18n("Former maintainer"), QStringLiteral("osterfeld@kde.org"));
     addAuthor(i18n("Teemu Rytilahti"), i18n("Developer"), QStringLiteral("tpr@d5k.net"));
