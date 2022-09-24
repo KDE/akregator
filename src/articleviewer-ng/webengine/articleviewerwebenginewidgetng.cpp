@@ -7,16 +7,12 @@
 #include "articleviewerwebenginewidgetng.h"
 #include "akregator_debug.h"
 #include <KActionCollection>
-#include <kio_version.h>
-#if KIO_VERSION >= QT_VERSION_CHECK(5, 98, 0)
 #include <KIO/JobUiDelegateFactory>
-#else
-#include <KIO/JobUiDelegate>
-#endif
 #include <KIO/OpenUrlJob>
 #include <KLocalizedString>
 #include <MessageViewer/ViewerPluginToolManager>
 #include <QVBoxLayout>
+#include <kio_version.h>
 #if KPIMTEXTEDIT_TEXT_TO_SPEECH
 #include <kpimtextedit/texttospeechwidget.h>
 #endif
@@ -186,12 +182,7 @@ void ArticleViewerWebEngineWidgetNg::slotOpenInBrowser()
         job->start();
     } else {
         auto job = new KIO::OpenUrlJob(currentUrl, QStringLiteral("text/html"));
-#if KIO_VERSION >= QT_VERSION_CHECK(5, 98, 0)
         job->setUiDelegate(KIO::createDefaultJobUiDelegate(KJobUiDelegate::AutoHandlingEnabled, this));
-#else
-        job->setUiDelegate(new KIO::JobUiDelegate(KJobUiDelegate::AutoHandlingEnabled, this));
-#endif
-
         job->setDeleteTemporaryFile(true);
         job->start();
     }
@@ -205,11 +196,7 @@ void ArticleViewerWebEngineWidgetNg::slotExportHtmlPageFailed()
 void ArticleViewerWebEngineWidgetNg::slotExportHtmlPageSuccess(const QString &filename)
 {
     auto job = new KIO::OpenUrlJob(QUrl::fromLocalFile(filename), QStringLiteral("text/html"));
-#if KIO_VERSION >= QT_VERSION_CHECK(5, 98, 0)
     job->setUiDelegate(KIO::createDefaultJobUiDelegate(KJobUiDelegate::AutoHandlingEnabled, this));
-#else
-    job->setUiDelegate(new KIO::JobUiDelegate(KJobUiDelegate::AutoHandlingEnabled, this));
-#endif
     job->setDeleteTemporaryFile(true);
     job->start();
 }
