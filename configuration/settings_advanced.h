@@ -10,8 +10,6 @@
 
 #include "ui_settings_advancedbase.h"
 
-#include <QHash>
-
 class QString;
 class QWidget;
 

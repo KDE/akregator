@@ -12,7 +12,6 @@
 #include <KLocalizedString>
 
 #include <QPushButton>
-#include <QStringList>
 #include <QWidget>
 
 #include <cassert>

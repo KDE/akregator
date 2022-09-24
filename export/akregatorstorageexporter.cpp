@@ -12,12 +12,10 @@
 #include <Syndication/Atom/Atom>
 #include <Syndication/Constants>
 
-#include <KPluginMetaData>
 #include <QCoreApplication>
 #include <QDateTime>
 #include <QFile>
 #include <QIODevice>
-#include <QStringList>
 #include <QVariant>
 #include <QXmlStreamWriter>
 

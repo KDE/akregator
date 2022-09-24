@@ -38,7 +38,6 @@
 #include <kxmlguifactory.h>
 
 #include <KColorSchemeManager>
-#include <QHash>
 #include <QWidget>
 
 using namespace Akregator;

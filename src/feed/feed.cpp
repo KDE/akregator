@@ -35,7 +35,6 @@
 #include <QRandomGenerator>
 #include <QTimer>
 
-#include <KIO/FavIconRequestJob>
 #include <QStandardPaths>
 
 using Syndication::ItemPtr;

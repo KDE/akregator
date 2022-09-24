@@ -13,8 +13,6 @@
 #include "frame.h"
 #include "openurlrequest.h"
 #include <KConfigGroup>
-#include <KIO/JobUiDelegate>
-#include <KIO/OpenUrlJob>
 #include <KMacroExpander>
 #include <KProcess>
 #include <KShell>
