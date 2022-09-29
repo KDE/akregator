@@ -6,6 +6,8 @@ add_library(akregatorinterfaces)
 target_sources(akregatorinterfaces PRIVATE
     command.cpp
     feedlistmanagementinterface.cpp
+    command.h
+    feedlistmanagementinterface.h
     )
 
 set(akregatorinterfaces_userfeedback_LIB_SRCS)
@@ -13,6 +15,8 @@ if (TARGET KUserFeedbackWidgets)
     target_sources(akregatorinterfaces PRIVATE
         userfeedback/userfeedbackmanager.cpp
         userfeedback/akregatoruserfeedbackprovider.cpp
+        userfeedback/userfeedbackmanager.h
+        userfeedback/akregatoruserfeedbackprovider.h
         )
 endif()
 
