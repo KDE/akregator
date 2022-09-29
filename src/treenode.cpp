@@ -14,8 +14,6 @@
 #include <QList>
 #include <QString>
 
-#include "akregator_debug.h"
-
 using namespace Akregator;
 
 TreeNode::TreeNode()

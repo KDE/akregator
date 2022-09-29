@@ -12,7 +12,6 @@
 #include "grantleeviewformatter.h"
 #include "treenode.h"
 #include "treenodevisitor.h"
-#include "utils.h"
 
 #include <QPaintDevice>
 #include <QString>

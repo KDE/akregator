@@ -9,19 +9,14 @@
 
 #include "articleviewerwidget.h"
 
-#include "aboutdata.h"
 #include "actionmanager.h"
-#include "actions.h"
-#include "akregator-version.h"
 #include "akregator_debug.h"
 #include "akregatorconfig.h"
 #include "articleformatter.h"
 #include "articlejobs.h"
 #include "feed.h"
-#include "folder.h"
 #include "openurlrequest.h"
 #include "treenode.h"
-#include "utils.h"
 
 #include <KActionCollection>
 

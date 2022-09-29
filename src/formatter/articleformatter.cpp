@@ -9,10 +9,6 @@
 #include "articleformatter.h"
 #include "akregatorconfig.h"
 #include "article.h"
-#include "feed.h"
-#include "folder.h"
-#include "treenode.h"
-#include "treenodevisitor.h"
 #include "utils.h"
 
 #include <KLocalizedString>

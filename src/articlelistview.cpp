@@ -10,9 +10,7 @@
 #include "articlelistview.h"
 #include "actionmanager.h"
 #include "akregatorconfig.h"
-#include "article.h"
 #include "articlemodel.h"
-#include "kernel.h"
 #include "types.h"
 
 #include <utils/filtercolumnsproxymodel.h>

@@ -11,12 +11,10 @@
 #include "mainwidget.h"
 #include "abstractselectioncontroller.h"
 #include "actionmanagerimpl.h"
-#include "addfeeddialog.h"
 #include "akregator_part.h"
 #include "akregatorconfig.h"
 #include "articlejobs.h"
 #include "articlelistview.h"
-#include "articlematcher.h"
 #include "articleviewerwidget.h"
 #include "createfeedcommand.h"
 #include "createfoldercommand.h"
@@ -28,23 +26,19 @@
 #include <PimCommon/BroadcastStatus>
 
 #include "feedlist.h"
-#include "feedpropertiesdialog.h"
 #include "fetchqueue.h"
 #include "folder.h"
 #include "framemanager.h"
 #include "job/downloadarticlejob.h"
 #include "kernel.h"
 #include "mainframe.h"
-#include "notificationmanager.h"
 #include "openurlrequest.h"
 #include "progressmanager.h"
 #include "selectioncontroller.h"
-#include "subscriptionlistjobs.h"
 #include "subscriptionlistmodel.h"
 #include "subscriptionlistview.h"
 #include "tabwidget.h"
 #include "treenode.h"
-#include "treenodevisitor.h"
 #include "types.h"
 #include "widgets/searchbar.h"
 #include <WebEngineViewer/ZoomActionMenu>
@@ -55,12 +49,14 @@
 
 #include <KToggleAction>
 
+#include <QApplication>
 #include <QClipboard>
 #include <QDesktopServices>
 #include <QDomDocument>
 #include <QSplitter>
 #include <QTimer>
 #include <QUrlQuery>
+#include <QVBoxLayout>
 
 #include <PimCommon/NetworkManager>
 #include <algorithm>

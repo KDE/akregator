@@ -8,7 +8,6 @@
 #include "articlematcher.h"
 #include "akregator_debug.h"
 #include "article.h"
-#include "types.h"
 #include "utils/textutil.h"
 #include <KConfig>
 #include <KConfigGroup>

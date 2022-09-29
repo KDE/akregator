@@ -10,7 +10,6 @@
 #include "akregator_debug.h"
 #include "akregatorconfig.h"
 #include "articleviewerwebenginepage.h"
-#include "urlhandler/webengine/urlhandlerwebengine.h"
 #include "webengine/urlhandlerwebenginemanager.h"
 #include <kpimtextedit/kpimtextedit-texttospeech.h>
 #if KPIMTEXTEDIT_TEXT_TO_SPEECH

@@ -10,7 +10,6 @@
 #include "feed.h"
 #include "kernel.h"
 
-#include "akregator_debug.h"
 #include <KLocalizedString>
 #include <KMessageBox>
 #include <QDialogButtonBox>

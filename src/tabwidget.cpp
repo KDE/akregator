@@ -17,18 +17,13 @@
 #include <QMenu>
 #include <QStyleOption>
 
-#include "akregator_debug.h"
 #include <KIO/Global>
 #include <KLocalizedString>
 #include <QTabBar>
 
-#include "actionmanager.h"
 #include "akregatorconfig.h"
 #include "frame.h"
-#include "framemanager.h"
-#include "kernel.h"
 #include "openurlrequest.h"
-#include "utils/temporaryvalue.h"
 
 using namespace Akregator;
 

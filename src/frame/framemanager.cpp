@@ -7,7 +7,6 @@
 */
 
 #include "framemanager.h"
-#include "actionmanager.h"
 #include "akregator_debug.h"
 #include "akregatorconfig.h"
 #include "frame.h"

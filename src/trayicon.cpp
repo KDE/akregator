@@ -9,7 +9,6 @@
 #include "trayicon.h"
 #include "akregatorconfig.h"
 
-#include "akregator_debug.h"
 #include <KLocalizedString>
 
 using namespace Akregator;

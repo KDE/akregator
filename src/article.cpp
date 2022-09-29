@@ -21,7 +21,6 @@
 #include <QRegularExpression>
 #include <qdom.h>
 
-#include "akregator_debug.h"
 #include <QUrl>
 #include <cassert>
 

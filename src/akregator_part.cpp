@@ -14,12 +14,10 @@
 
 #include "aboutdata.h"
 #include "actionmanagerimpl.h"
-#include "akregator-version.h"
 #include "akregator_options.h"
 #include "akregatorconfig.h"
 #include "article.h"
 #include "feedlist.h"
-#include "fetchqueue.h"
 #include "framemanager.h"
 #include "kernel.h"
 #include "loadfeedlistcommand.h"
@@ -28,7 +26,6 @@
 #include "storage/storage.h"
 #include "trayicon.h"
 #include "unityservicemanager.h"
-#include "utils.h"
 #include "widgets/akregatorcentralwidget.h"
 #include <KConfig>
 #include <KIO/FileCopyJob>
