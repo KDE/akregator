@@ -145,6 +145,7 @@ add_library(akregator_config_security MODULE)
 
 target_sources(akregator_config_security PRIVATE
     akregator_config_security.cpp
+    akregator_config_security.h
     )
 
 ki18n_wrap_ui(akregator_config_security ui/settings_security.ui)
