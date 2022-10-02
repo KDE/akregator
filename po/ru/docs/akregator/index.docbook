@@ -1,0 +1,1905 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Russian "INCLUDE">
+]>
+
+<book id="akregator" lang="&language;">
+
+<bookinfo id="akregatorinfo">
+<title
+>Руководство пользователя &akregator;</title>
+
+<authorgroup>
+
+<author
+><firstname
+>Frank</firstname
+> <surname
+>Osterfeld</surname
+> <affiliation
+><address
+><email
+>frank.osterfeld@kdemail.net</email
+>  
+</address
+></affiliation>
+</author>
+<author
+><firstname
+>Anne-Marie</firstname
+> <surname
+>Mahfouf</surname
+> <affiliation
+><address
+>&Anne-Marie.Mahfouf.mail; </address
+></affiliation>
+</author>
+
+<othercredit role="translator"
+><firstname
+>Сергей</firstname
+><surname
+>Жаринов</surname
+> <affiliation
+><address
+><email
+>sergei.zharinov@gmail.com</email
+></address
+></affiliation
+> <contrib
+>Перевод на русский язык</contrib
+></othercredit
+><othercredit role="translator"
+><firstname
+>Мария</firstname
+><surname
+>Шикунова</surname
+><affiliation
+><address
+><email
+>translation-team@basealt.ru</email
+></address
+></affiliation
+><contrib
+>Обновление перевода</contrib
+></othercredit
+><othercredit role="translator"
+><firstname
+>Олеся</firstname
+><surname
+>Герасименко</surname
+><affiliation
+><address
+><email
+>translation-team@basealt.ru</email
+></address
+></affiliation
+><contrib
+>Редактирование перевода</contrib
+></othercredit
+> 
+</authorgroup>
+<copyright>
+<year
+>2006</year>
+<holder
+>Frank Osterfeld</holder>
+</copyright>
+<copyright>
+<year
+>2006</year>
+<holder
+>&Anne-Marie.Mahfouf;</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>31 марта 2021 г.</date>
+<releaseinfo
+>Приложения KDE 21.08</releaseinfo>
+
+<!-- Abstract about this handbook -->
+
+<abstract>
+<para
+>&akregator; — это программа для чтения <acronym
+>RSS</acronym
+> и других лент новостей в режиме онлайн. </para>
+</abstract>
+
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>Akregator</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Введение</title>
+
+<sect1 id="what-is-akregator">
+<title
+>Что такое &akregator;?</title>
+
+<para
+>&akregator; — это приложение &kde;, которое обладает дружественным интерфейсом с широкими возможностями и позволяет читать ленты новостей и управлять ими.</para>
+
+<para
+>Это легковесная и быстрая программа для чтения новостей, поддерживающая большинство используемых версий лент новостей <acronym
+>RSS</acronym
+> и Atom. Её интерфейс напоминает интерфейс приложений для работы с электронной почтой, что позволяет пользователям быстрее освоить работу с программой. В число полезных функций входят поиск по заголовкам статей, хранение лент в папках и настройка архивации. Ленты новостей могут быть показаны подобно электронным письмам в почтовых клиентах. Веб-сайты, на которые ссылаются ленты, возможно просматривать во встроенном браузере &akregator; или, по желанию пользователя, во внешнем браузере.</para>
+</sect1>
+
+<sect1 id="rss-and-atom-feeds">
+<title
+>Ленты новостей <acronym
+>RSS</acronym
+> и Atom</title>
+
+<para
+><acronym
+>RSS</acronym
+> (Really Simple Syndication) — это основанный на &XML; формат, используемый для публикации новостей или статей. Файлы <acronym
+>RSS</acronym
+> или Atom также называются лентами. Программа, которая умеет читать такие ленты, называется агрегатором, откуда и происходит название программы — &akregator;.</para>
+
+<para
+>&akregator; автоматически извлекает свежие новости из ленты и отображает их в удобной для чтения форме. Это позволяет сэкономить время, затрачиваемое на регулярное посещение одних и тех же сайтов, так как теперь не нужно вручную проверять наличие свежей информации.</para>
+<para
+><acronym
+>RSS</acronym
+> имеет несколько разных версий, несовместимых между собой (это следствие конкуренции между несколькими компаниями). Существуют следующие версии: <acronym
+>RSS</acronym
+> 0.9, <acronym
+>RSS</acronym
+> 1.0 и <acronym
+>RSS</acronym
+> 2.0. Atom также является основанным на &XML; форматом, он был спроектирован с учётом потребностей блогеров и новостных сайтов. Atom призван заменить ленты <acronym
+>RSS</acronym
+> и устранить неудобства, связанные с несовместимостью их версий.</para>
+
+</sect1>
+
+</chapter>
+
+<chapter id="quick-start">
+<title
+>Начало работы с &akregator;</title>
+
+<para
+>Этот раздел посвящён изучению пользовательского интерфейса &akregator; и способа добавления лент новостей в список. Раздел будет особенно интересен тем пользователям, которые ещё не знакомы с лентами новостей <acronym
+>RSS</acronym
+>/Atom и программами-агрегаторами. </para>
+
+<sect1 id="main-window">
+<title
+>Главное окно</title>
+<!--part of kontact
+say how to start it -->
+<para
+>При первом запуске &akregator; откроется следующее окно: <screenshot>
+<screeninfo
+>Главное окно &akregator;</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="main-window.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Главное окно &akregator;</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para>
+
+<para
+>Главное окно содержит список лент, список заголовков статей и, самое главное, область просмотра отдельных статей. </para>
+<para
+>Слева находится иерархический список лент, которые возможно выбирать. Сама лента представляет собой список статей, например последние новости с новостного сайта или новые записи в блогах. В списке по умолчанию содержатся ленты, связанные спроектом &kde;, но, конечно же, пользователь может добавлять или удалять ленты по своему усмотрению. </para>
+<para
+>В верхней правой части окна находится список статей, содержащий все статьи выбранной ленты (если этот список пуст, выберите ленту). В списке показаны заголовки статей и даты публикации. По умолчанию самые свежие статьи расположены сверху. <screenshot>
+<screeninfo
+>Список статей</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="main-window2.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Список статей для одной ленты</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para>
+<para
+>При выборе статьи в списке она отображается в области просмотра, которая располагается в нижней правой части главного окна. В зависимости от параметров ленты, в этой области будет отображаться только заголовок, краткое описание или всё содержимое статьи. <screenshot>
+<screeninfo
+>Чтение статьи из ленты «Планета &kde;»</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="main-window4.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Чтение статьи из ленты «Планета &kde;»</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para>
+</sect1>
+
+<sect1 id="add-feed">
+<title
+>Добавление ленты</title>
+<para
+>В &akregator; по умолчанию уже собрано несколько лент, связанных с &kde;; разумеется, рано или поздно захочется добавить свои собственные ленты, например, с наиболее часто посещаемых новостных сайтов.</para>
+
+<itemizedlist>
+<listitem
+><para
+>Для этого либо перейдите в меню <guimenu
+>Лента</guimenu
+> и выберите пункт <guimenuitem
+>Добавить ленту...</guimenuitem
+>, либо нажмите клавишу <keycap
+>Ins</keycap
+>. Появится диалог с полем ввода <guilabel
+>Адрес ленты новостей</guilabel
+>. <screenshot>
+<screeninfo
+>Добавление новой ленты</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="add-feed.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Добавление новой ленты</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para
+></listitem>
+
+<listitem
+><para
+>Введите в поле <guilabel
+>Адрес ленты новостей</guilabel
+> ссылку на нужный веб-сайт, например <userinput
+>planet.ubuntu.com</userinput
+> или <userinput
+>http://planet.ubuntu.com</userinput
+>, и нажмите кнопку <guibutton
+>OK</guibutton
+>. </para
+></listitem>
+<listitem
+><para
+>В открывшемся окне возможно изменить параметры, установленные по умолчанию. Укажите нужные параметры и нажмите <guibutton
+>OK</guibutton
+> ещё раз. <screenshot>
+<screeninfo
+>Окно свойств ленты новостей</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="add-feed2.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Окно свойств ленты новостей</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para
+></listitem>
+<listitem
+><para
+>Теперь в список лент новостей добавлена лента «Планета Ubuntu». </para
+> </listitem>
+</itemizedlist>
+<para
+>Существуют различные способы поиска и добавления интересных лент новостей. В &kde;, когда выполняется просмотр веб-сайтов с помощью &konqueror;, в правом нижнем углу окна программы отображается характерный значок <quote
+>RSS</quote
+> <inlinemediaobject
+> <imageobject
+> <imagedata fileref="feed.png" format="PNG"/> </imageobject
+> </inlinemediaobject
+> в случае обнаружения совместимой ленты новостей. Щёлкните по этому значку левой кнопкой мыши и выберите пункт <guimenuitem
+>Добавить ленту новостей в &akregator;</guimenuitem
+>: <screenshot
+> <screeninfo
+>Автоматический поиск лент в &konqueror;</screeninfo
+> <mediaobject
+> <imageobject
+><imagedata fileref="konq2.png" format="PNG"/></imageobject
+> <textobject
+><phrase
+>Автоматический поиск лент в &konqueror;</phrase
+></textobject
+> </mediaobject
+> </screenshot
+> На страницах со значком «RSS» или со значком<inlinemediaobject
+> <imageobject
+> <imagedata fileref="rss.png" format="PNG"/> </imageobject
+> </inlinemediaobject
+> щёлкните по значку правой кнопкой мыши и в открывшемся контекстном меню выберите вариант <guimenuitem
+>Скопировать адрес ссылки</guimenuitem
+>: <screenshot>
+      <screeninfo
+>Автоматический поиск лент в &konqueror;</screeninfo>
+      <mediaobject>
+        <imageobject
+><imagedata fileref="konq.png" format="PNG"/></imageobject>
+        <textobject
+><phrase
+>Автоматический поиск лент в &konqueror;</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para>
+<para
+>Перейдите в &akregator; и нажмите кнопку <guimenuitem
+>Добавить ленту...</guimenuitem
+>: появится диалог с полем ввода <guilabel
+>Адрес ленты новостей</guilabel
+>, в которое будет автоматически вставлена ссылка на веб-сайт. </para>
+
+<para
+>Все ленты, добавленные таким образом, отображаются в папке <guilabel
+>Импортированные ленты новостей</guilabel
+> в списке лент; чтобы переместить их в другую папку, просто перетащите их мышкой. </para>
+</sect1>
+
+<sect1 id="creating-folder">
+<title
+>Создание папки</title>
+<para
+>После добавления собственных лент их возможно сгруппировать каким-либо образом, а не просто оставить неотсортированными. Создадим папку для только что добавленной ленты «Планета Ubuntu»:</para>
+<itemizedlist>
+<listitem
+><para
+>Выберите родительскую папку для создаваемой. В данном примере это <guilabel
+>Все ленты</guilabel
+>. </para
+></listitem>
+<listitem
+><para
+>Воспользуйтесь пунктом меню <menuchoice
+><guimenu
+>Лента</guimenu
+> <guimenuitem
+>Создать папку...</guimenuitem
+></menuchoice
+>. Введите подходящее название для категории (например, <userinput
+>Новости</userinput
+>) в поле ввода и нажмите кнопку <guibutton
+>OK</guibutton
+>. <screenshot>
+<screeninfo
+>Окно создания новой папки</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="add-folder.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Окно создания новой папки</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para
+> </listitem>
+<listitem
+><para
+>Перетащите ленту «Планета Ubuntu» в новую папку. <screenshot>
+<screeninfo
+>Папка «Новости» в списке лент</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="add-folder2.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Папка «Новости» в списке лент</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para
+> </listitem>
+</itemizedlist>
+</sect1>
+
+<sect1 id="browsing-inside">
+<title
+>Просмотр статей в &akregator;</title>
+<para
+>При чтении статей из ленты часто возникает необходимость в просмотре веб-страниц, связанных с этими статьями. Например, некоторые статьи содержат только заголовок без содержимого; в этом случае для прочтения статьи будет необходимо посетить веб-страницу. Возможно, статья будет ссылаться на какой-нибудь веб-сайт, или при чтении блога захочется оставить комментарий к записи. Для всех этих действий в &akregator; встроен простой веб-браузер. Каждая нажатая ссылка в статье по умолчанию будет открываться в новой вкладке встроенного в &akregator; браузера.</para>
+<note
+><para
+>Обратите внимание, что встроенный веб-браузер не заменяет браузер, установленный в системе по умолчанию. Он создан для чтения статей, их комментирования и быстрого просмотра страниц, на которые ссылаются статьи. Встроенный браузер не предназначен для полноценного использования, в нём отсутствуют многие функции обычных браузеров.</para
+></note>
+</sect1>
+</chapter>
+
+<chapter id="configuration">
+<title
+>Настройка &akregator;</title>
+<para
+>Большинство параметров &akregator; расположены в окне настройки приложения, которое открывается с помощью пункта меню <menuchoice
+> <guimenu
+>Настройка</guimenu
+><guimenuitem
+>Настроить &akregator;...</guimenuitem
+> </menuchoice
+>.</para>
+<sect1 id="general-tab">
+<title
+>Главное</title>
+<para
+>Вкладка «Главное» содержит основные или не попавшие в другие категории параметры &akregator;.</para>
+<screenshot>
+<screeninfo
+>Вкладка «Главное»</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="general-tab.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Вкладка «Главное»</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Общие параметры</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Показывать значок в системном лотке</guilabel
+></term>
+<listitem
+><para
+>Позволяет отображать значок &akregator; в системном лотке.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Показывать количество непрочитанных статей на панели задач</guilabel
+></term>
+<listitem
+><para
+>Определяет, нужно ли отображать на системной панели задач количество непрочитанных статей.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Скрывать ленты, в которых нет непрочитанных статей</guilabel
+></term>
+<listitem
+><para
+>Если флажок установлен, ленты, в которых нет непрочитанных статей, будут скрыты.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Зафиксировать ленты</guilabel
+></term>
+<listitem
+><para
+>Если флажок установлен, перемещение лент в списке будет запрещено; все ленты будут располагаться на своих изначальных позициях.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Автоматически разворачивать папки, в которых есть непрочитанные статьи</guilabel
+></term>
+<listitem
+><para
+>Если флажок установлен, папки с непрочитанными статьями будут автоматически разворачиваться.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Использовать уведомления для всех лент</guilabel
+></term>
+<listitem
+><para
+>Устанавливает уведомления о полученных статьях для всех лент. Этот параметр игнорирует индивидуальные параметры уведомлений для каждой отдельной ленты. Когда он установлен, &akregator; будет оповещать о каждой новой статье в каждой из лент. Если требуется включить уведомления лишь для некоторых (но не всех) лент, оставьте этот параметр отключённым и установите уведомления для каждой нужной ленты, используя окно настройки отдельной ленты.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Периодически получать новости</guilabel
+></term>
+<listitem
+><para
+>Если флажок не установлен, возможность выбора интервала проверки наличия новых статей программой &akregator; тоже отключена. В противном случае можно установить промежуток времени между автоматическими проверками с помощью параметра <guilabel
+>Проверять обновления каждые</guilabel
+>. Обратите внимание, что получение новостей расходует трафик, и это может быть дорогостоящим для того, кто размещает новости. Некоторые сайты могут даже заблокировать соединение с компьютером пользователя, если он будет слишком часто пытаться обновить ленту. Тридцатиминутный интервал обновления ленты считается оптимальным. </para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Проверять обновления каждые</guilabel
+></term>
+<listitem
+><para
+>Это поле ввода активно, когда установлен флажок <guilabel
+>Периодически получать новости</guilabel
+>. Здесь возможно указать временной интервал между проверками лент на наличие новых статей. По умолчанию установлен интервал в 30 минут.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>При запуске программы</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Отметить все новости как прочитанные при запуске</guilabel
+></term>
+<listitem
+><para
+>Когда флажок установлен, &akregator; при запуске будет помечать все статьи как прочитанные.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Обновлять все ленты при запуске</guilabel
+></term>
+<listitem
+><para
+>Когда флажок установлен, &akregator; при запуске обновляет все ленты.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Сеть</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Использовать кэш браузера (меньше трафика)</guilabel
+></term>
+<listitem
+><para
+>Когда флажок установлен, &akregator; во время обновления лент будет использовать общие для &kde; параметры кэширования браузера. Эти параметры возможно указать в диалоговом окне настройки &konqueror;.</para>
+<note
+><para
+>Рекомендуется оставить этот параметр включённым, так как его отключение приводит к увеличению сетевого трафика. При использовании агрегаторов, не задействующих кэширование, возрастает трафик поставщиков лент, что в будущем может уменьшить количество предлагаемых для просмотра лент.</para
+></note>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+
+<sect1 id="adblock-tab">
+<title
+>Перехватчик URL-адресов</title>
+<para
+>&akregator; позволяет заменять или просто удалять изображения из веб-страниц, соответствующих определённым критериям.</para>
+
+<screenshot>
+<screeninfo
+>Вкладка перехватчика URL-адресов</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="interceptor-tab.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Вкладка перехватчика URL-адресов</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+
+<para
+>Более подробная информация содержится на странице <ulink url="help:/kcontrol/khtml-adblock"
+>«Фильтры AdBlock»</ulink
+>. </para>
+</sect1>
+
+<sect1 id="archive-tab">
+<title
+>Архив</title>
+<para
+>Под архивированием статей подразумевается хранение ссылок на эти статьи. Эта вкладка позволяет настроить количество сохраняемых статей и метод, используемый для их архивирования. Это глобальные параметры, применяемые для всех лент в &akregator;. Чтобы настроить параметры для отдельной ленты, воспользуйтесь соответствующей вкладкой окна свойств ленты.</para>
+<screenshot>
+<screeninfo
+>Вкладка «Архив»</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="archive-tab.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Вкладка «Архив»</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Параметры хранения по умолчанию</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Хранить все статьи</guilabel
+></term>
+<listitem
+><para
+>Статьи будут храниться без ограничений по времени.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Ограничить хранение</guilabel
+></term
+> 
+<listitem
+><para
+>Когда число статей превысит выбранный лимит, наиболее старые из них будут удаляться. Обратите внимание, что при подсчёте количества статей не учитываются те из них, которые были отмечены. Допустим, был установлен лимит в 500 статей, имеется 510 неотмеченных и 50 отмеченных статей. &akregator; будет игнорировать эти 50 статей и удалит 10 из неотмеченных. Так, в данном примере останется 550 статей.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Удалять статьи через</guilabel
+></term>
+<listitem
+><para
+>Статьи старше указанного количества дней будут удаляться из архива, если они не отмечены. &akregator; проверяет наличие устаревших статей при запуске и затем каждый час, поэтому пометка статей в качестве устаревших может быть выполнена не сразу.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Не хранить статьи</guilabel
+></term>
+<listitem
+><para
+>Статьи будут удаляться после выхода из &akregator;.</para
+> </listitem>
+</varlistentry>
+</variablelist>
+
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Не помечать важные статьи как устаревшие</guilabel
+></term>
+<listitem
+><para
+>Чтобы пометить какую-либо статью как важную, щёлкните по ней правой кнопкой мыши и в открывшемся контекстном меню выберите пункт «Отметить как важную». Важные статьи не устаревают и продолжают храниться.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+<sect1 id="appearance-tab">
+<title
+>Внешний вид</title>
+<para
+>Эта вкладка позволяет настроить внешний вид области просмотра статей и вкладок браузера. Здесь возможно задать используемые цвета, шрифты и их размеры. </para>
+<screenshot>
+<screeninfo
+>Вкладка «Внешний вид»</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="appearance-tab.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Вкладка «Внешний вид»</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Цвета списка статей</guilabel
+></term>
+<listitem
+><para
+>Параметр <guilabel
+>Использовать цвета, заданные пользователем</guilabel
+> позволяет выбирать особые цвета для <guilabel
+>Непрочитанных статей</guilabel
+> и <guilabel
+>Новых статей</guilabel
+>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Размер шрифта</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Минимальный размер шрифта</guilabel
+></term>
+<listitem
+><para
+>Задаёт минимальный размер шрифта для области просмотра статей.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Средний размер шрифта</guilabel
+></term>
+<listitem
+><para
+>Задаёт средний размер шрифта для области просмотра статей.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Шрифты</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Обычный шрифт</guilabel
+></term>
+<listitem
+><para
+>В области просмотра статей содержимое отображается с использованием стандартного шрифта среднего размера. При изменении стандартного шрифта с помощью диалога настройки &akregator; в области просмотра будет использоваться новый шрифт.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Моноширинный шрифт</guilabel
+></term>
+<listitem
+><para
+>В статьях, использующих моноширинный шрифт, текст будет отображаться с использованием заданного здесь шрифта среднего размера. </para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Шрифт с засечками</guilabel
+></term>
+<listitem
+><para
+>В статьях, использующих шрифт с засечками, текст будет отображаться с использованием заданного здесь шрифта среднего размера.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Шрифт без засечек</guilabel
+></term>
+<listitem
+><para
+>В статьях, использующих шрифт без засечек, текст будет отображаться с использованием заданного здесь шрифта среднего размера.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Подчёркивать ссылки</guilabel
+></term>
+<listitem
+><para
+>Установите этот флажок, если следует по умолчанию подчёркивать ссылки в статьях.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+<sect1 id="browser-tab">
+<title
+>Просмотр</title>
+<para
+>Эта вкладка позволяет настроить поведение встроенного браузера.</para>
+<screenshot>
+<screeninfo
+>Вкладка «Просмотр»</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="browser-tab.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Вкладка «Просмотр»</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Левая кнопка мыши</guilabel
+></term>
+<listitem
+><para
+>Доступны три варианта действия для щелчка левой кнопкой мыши: <guilabel
+>Открыть во вкладке</guilabel
+> (открыть ссылку во вкладке и сделать её активной), <guilabel
+>Открыть в фоновой вкладке</guilabel
+> (открыть ссылку во вкладке, но оставить текущую вкладку активной) и <guilabel
+>Открыть во внешнем браузере</guilabel
+> (открыть в новом окне браузера по умолчанию).</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Средняя кнопка мыши</guilabel
+></term>
+<listitem
+><para
+>Как и у параметра выше, здесь доступны три варианта действий для щелчка средней кнопкой мыши.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Выбор браузера</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Использовать браузер по умолчанию</guilabel
+></term>
+<listitem
+><para
+>Если выбрана эта опция, &akregator; будет использовать браузер по умолчанию, который был установлен в «Параметрах системы». Это может быть &konqueror;, входящий в состав &kde;, или любой другой, в зависимости от того, что указано в поле ввода «Другая программа».</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Другая программа</guilabel
+></term>
+<listitem
+><para
+>В &akregator; возможно использовать другой веб-браузер, не установленный в &kde; как браузер по умолчанию. Чтобы это сделать, отметьте эту опцию и введите команду для запуска браузера, которую легко найти с помощью переменной окружения $<envar
+>PATH</envar
+>.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Вкладки</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Всегда показывать панель вкладок</guilabel
+></term>
+<listitem
+><para
+>Если этот флажок установлен, панель вкладок будет всегда отображаться, даже если открыта только одна вкладка. Это позволяет создавать вкладки непосредственно в панели вкладок. В противном случае панель вкладок будет отображаться только при открытии нескольких вкладок.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Показывать кнопки закрытия на вкладках</guilabel
+></term>
+<listitem
+><para
+>Если этот флажок установлен, при наведении курсора мыши на заголовки вкладок будет появляться кнопка закрытия, которая облегчает закрытие вкладок.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Открывать ссылки в новой вкладке, а не в новом окне</guilabel
+></term>
+<listitem
+><para
+>Если флажок установлен, &akregator; будет открывать в новой вкладке ссылки, которые обычно открываются в новом окне (внешнего браузера).</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Безопасность</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Проверять ссылки с использованием Safe Browsing API от Google</guilabel
+></term>
+<listitem
+><para
+>Если этот флажок установлен, программный интерфейс <ulink url="https://safebrowsing.google.com/"
+>Safe Browsing от Google</ulink
+> будет использоваться для проверки &URL;-адресов по постоянно обновляемым спискам небезопасных веб-ресурсов. Примерами небезопасных веб-ресурсов являются фишинговые и вводящие в заблуждение сайты, а также сайты, на которых размещено вредоносное или нежелательное программное обеспечение.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Включить JavaScript</guilabel
+></term>
+<listitem
+><para
+>Если флажок установлен, &akregator; будет использовать &javascript; при обработке веб-ресурсов. Использование &javascript; имеет несколько <ulink url="https://ru.wikipedia.org/wiki/JavaScript#Безопасность"
+>последствия для безопасности</ulink
+>.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Прочее</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Активация ссылок с клавиатуры (после нажатия Ctrl)</guilabel
+></term>
+<listitem
+><para
+>Это функция специальных возможностей. Когда флажок установлен, &akregator; обрабатывает свойство страницы accessKey, которое определяет комбинацию клавиш, используемую для перехода к указанному элементу.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+<sect1 id="advanced-tab">
+<title
+>Дополнительно</title>
+<para
+>Данная вкладка позволяет установить несколько дополнительных параметров. Если настройка вызывает сомнения, возможно просто оставить значения по умолчанию.</para>
+<screenshot>
+<screeninfo
+>Вкладка «Дополнительно»</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="advanced-tab.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Вкладка «Дополнительно»</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Хранение</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Движок хранения</guilabel
+></term>
+<listitem
+><para
+>По умолчанию в &akregator; используется база данных Metakit. </para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Список статей</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Отметить выбранную статью как прочитанную через</guilabel
+></term>
+<listitem
+><para
+>По умолчанию установлено значение «0 секунд»: это значит, что статья помечается как прочитанная сразу после нажатия на неё пользователем. Этот параметр позволяет самостоятельно выбирать, через сколько секунд после открытия статья будет помечаться как прочитанная.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Сбросить условия фильтра при переходе на другую ленту</guilabel
+></term>
+<listitem
+><para
+>Сбрасывает содержимое строки поиска, когда пользователь меняет просматриваемую ленту.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+</chapter>
+
+<chapter id="commands">
+<title
+>Список команд</title>
+
+<sect1 id="akregator-mainwindow">
+<title
+>Меню и комбинации клавиш</title>
+
+<sect2>
+<title
+>Меню «Файл»</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Файл</guimenu
+> <guimenuitem
+>Импорт списка...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Открывает диалог импорта лент для загрузки <quote
+>лент OPML</quote
+> с подписками. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Файл</guimenu
+> <guimenuitem
+>Экспорт списка...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Открывает диалог для сохранения и экспорта лент и структуры папок в качестве файла формата <filename class="extension"
+>.opml</filename
+>.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Файл</guimenu
+> <guimenuitem
+>Выход</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Закрывает &akregator;.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2>
+<title
+>Меню «Правка»</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycap
+>F2</keycap
+> </shortcut
+> <guimenu
+>Правка</guimenu
+> <guimenuitem
+>Свойства...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Позволяет отредактировать параметры текущей ленты в окне её свойств.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;<keycap
+>Del</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Правка</guimenu
+> <guimenuitem
+>Удалить ленту</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Удаляет выбранную ленту.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2>
+<title
+>Меню «Вид»</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>1</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Вид</guimenu
+><guimenuitem
+>Обычный вид</guimenuitem
+></menuchoice
+>, <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>2</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Вид</guimenu
+><guimenuitem
+>Для широкоформатного экрана</guimenuitem
+> </menuchoice
+> и <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>3</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Вид</guimenu
+><guimenuitem
+>В виде ленты</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Позволяет выбрать режим просмотра для &akregator;.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>+</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Вид</guimenu
+><guisubmenu
+>Масштаб&nbsp;&nbsp;&gt;</guisubmenu
+><guimenuitem
+>Увеличить</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Увеличивает размер шрифта в области просмотра статей.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>-</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Вид</guimenu
+><guisubmenu
+>Масштаб&nbsp;&nbsp;&gt;</guisubmenu
+><guimenuitem
+>Уменьшить</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Уменьшает размер шрифта в области просмотра статей.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2>
+<title
+>Меню «Переход»</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>Влево</keycap
+></shortcut
+> <guimenu
+>Переход</guimenu
+> <guimenuitem
+>Предыдущая статья</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Позволяет перейти к предыдущей статье из текущего списка статей.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>-</keycap
+></shortcut
+> <guimenu
+>Переход</guimenu
+> <guimenuitem
+>Предыдущая непрочитанная статья</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Позволяет перейти к предыдущей непрочитанной статье из текущего списка статей.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>Вправо</keycap
+></shortcut
+> <guimenu
+>Переход</guimenu
+> <guimenuitem
+>Следующая статья</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Позволяет перейти к следующей статье из текущего списка статей.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>+</keycap
+></shortcut
+> <guimenu
+>Переход</guimenu
+> <guimenuitem
+>Следующая непрочитанная статья</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Позволяет перейти к следующей непрочитанной статье из текущего списка статей.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>P</keycap
+></shortcut
+> <guimenu
+>Переход</guimenu
+> <guimenuitem
+>Предыдущая лента</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Позволяет перейти к предыдущей ленте в списке лент.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Alt;<keycap
+>-</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Переход</guimenu
+> <guimenuitem
+>Предыдущая непрочитанная лента</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Позволяет перейти к предыдущей непрочитанной ленте в списке лент.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>N</keycap
+></shortcut
+> <guimenu
+>Переход</guimenu
+> <guimenuitem
+>Следующая лента</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Позволяет перейти к следующей ленте в списке лент.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Alt;<keycap
+>+</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Переход</guimenu
+> <guimenuitem
+>Следующая непрочитанная лента</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Позволяет перейти к следующей непрочитанной ленте в списке лент.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2>
+<title
+>Меню «Лента»</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>Ins</keycap
+></shortcut
+> <guimenu
+>Лента</guimenu
+> <guimenuitem
+>Добавить ленту...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Открывает окно добавления ленты.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Shift;<keycap
+>Ins</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Лента</guimenu
+> <guimenuitem
+>Создать папку...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Открывает окно создания папки.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>R</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Лента</guimenu
+> <guimenuitem
+>Отметить ленту как прочитанную</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Отмечает текущую ленту как прочитанную.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl; &Shift;<keycap
+>R</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Лента</guimenu
+> <guimenuitem
+>Отметить все ленты как прочитанные</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Отмечает все ленты как уже прочитанные.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>F5</keycap
+></shortcut
+> <guimenu
+>Лента</guimenu
+> <guimenuitem
+>Обновить ленту</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Обновляет текущую ленту.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>L</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Лента</guimenu
+> <guimenuitem
+>Обновить все ленты</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Обновляет все ленты.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>Esc</keycap
+></shortcut
+> <guimenu
+>Лента</guimenu
+> <guimenuitem
+>Отменить обновление лент</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Останавливает обновление лент в &akregator;.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2>
+<title
+>Меню «Статья»</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Shift;<keycap
+>Return</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Статья</guimenu
+> <guimenuitem
+>Открыть во вкладке</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Открывает текущую статью во вкладке &akregator;.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>Return</keycap
+></shortcut
+> <guimenu
+>Статья</guimenu
+> <guimenuitem
+>Открыть в фоновой вкладке</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Загружает выделенную статью в новой вкладке, но не делает эту вкладку активной. Это позволяет при просмотре ленты открыть все интересные статьи в фоновых вкладках, чтобы в дальнейшем ознакомиться с ними. </para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl; &Shift;<keycap
+>Return</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Статья</guimenu
+> <guimenuitem
+>Открыть во внешнем браузере</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Открывает текущую статью во внешнем браузере.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>I</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Статья</guimenu
+> <guimenuitem
+>Отметить как важную</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Отмечает текущую статью как важную.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Статья</guimenu
+> <guimenuitem
+>Отметить как</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Отмечает текущую статью как «Прочитанную» <keycombo action="simul"
+>&Ctrl;<keycap
+>E</keycap
+></keycombo
+>, «Новую» <keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo
+> или «Непрочитанную» <keycombo action="simul"
+>&Ctrl;<keycap
+>U</keycap
+></keycombo
+>.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>Del</keycap
+></shortcut
+> <guimenu
+>Статья</guimenu
+> <guimenuitem
+>Удалить</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Удаляет текущую статью.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Статья</guimenu
+> <guimenuitem
+>Отправить ссылку на статью...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Открывает почтовый клиент и прикрепляет ссылку на статью к письму.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Статья</guimenu
+> <guimenuitem
+>Отправить статью...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Открывает почтовый клиент и прикрепляет файл со статьёй к письму. </para
+></listitem>
+</varlistentry>
+<!--FIXME not in kf5?
+<varlistentry>
+<term
+><menuchoice>
+<shortcut
+><keycombo
+action="simul"
+>&Ctrl;<keycap
+>S</keycap
+></keycombo
+></shortcut>
+<guimenu
+>Article</guimenu>
+<guimenuitem
+>Share Article</guimenuitem>
+</menuchoice
+></term>
+<listitem
+><para
+>Use this action you to share news 
+ with your friends using the microblog services identi.ca and twitter.
+</para
+></listitem>
+</varlistentry>
+-->
+</variablelist>
+</sect2>
+
+<sect2>
+<title
+>Меню «Настройка» и «Справка»</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Настройка</guimenu
+> <guimenuitem
+>Быстрый фильтр</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Показывает или скрывает быстрый фильтр. <screenshot>
+<screeninfo
+>Быстрый фильтр</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="quick-filter.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Быстрый фильтр</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+
+<para
+>Кроме того, меню &akregator; содержит общие для приложений &kde; пункты <guimenu
+>Настройка</guimenu
+> и <guimenu
+>Справка</guimenu
+>. Информацию о них возможно найти в разделах «Основ &kde;», посвящённых <ulink url="help:/fundamentals/menus.html#menus-settings"
+>Меню «Настройка»</ulink
+> и <ulink url="help:/fundamentals/menus.html#menus-help"
+>Меню «Справка»</ulink
+>. </para>
+
+<para
+>Многие действия, которые доступны в меню, также возможно выполнить с помощью контекстных меню списка лент, списка статей и области просмотра статей. </para>
+
+</sect2>
+
+</sect1>
+</chapter>
+
+<chapter id="credits">
+
+<title
+>Авторские права и лицензия</title>
+
+<para
+>&akregator; </para>
+<para
+>Авторские права на программу: &copy; Разработчики Akregator, 2004-2010 </para>
+
+<para
+>Авторские права на документацию: &copy; Frank Osterfeld <email
+>frank.osterfeld@kdemail.net</email
+>, 2006 </para>
+
+<para
+>Авторские права на документацию: &copy; &Anne-Marie.Mahfouf; &Anne-Marie.Mahfouf.mail;, 2006 </para>
+
+<para
+>Перевод на русский язык: Сергей Жаринов<email
+>sergei.zharinov@gmail.com</email
+>, Мария Шикунова<email
+>translation-team@basealt.ru</email
+></para
+><para
+>Олеся Герасименко<email
+>translation-team@basealt.ru</email
+></para
+> &underFDL; &underGPL; </chapter>
+
+&documentation.index;
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes: nil
+sgml-general-insert-case: lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+-->

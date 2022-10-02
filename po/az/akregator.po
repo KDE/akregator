@@ -1,0 +1,2618 @@
+# Copyright (C) YEAR This file is copyright:
+# This file is distributed under the same license as the akregator package.
+#
+# Kheyyam Gojayev <xxmn77@gmail.com>, 2021, 2022.
+msgid ""
+msgstr ""
+"Project-Id-Version: akregator\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-09-30 00:45+0000\n"
+"PO-Revision-Date: 2022-07-03 14:28+0400\n"
+"Last-Translator: Kheyyam <xxmn77@gmail.com>\n"
+"Language-Team: Azerbaijani <kde-i18n-doc@kde.org>\n"
+"Language: az\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Lokalize 22.04.2\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Xəyyam Qocayev"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "xxmn77@gmail.com"
+
+#: src/about/introduction_akregator.html:18
+msgid ""
+"Feed readers provide a convenient way to browse different kinds of content, "
+"including news, blogs, and other content from online sites. Instead of "
+"checking all your favorite web sites manually for updates, Akregator "
+"collects the content for you."
+msgstr ""
+"Xəbərlər lenti oxuma tətbiqi, İnternetdən, xəbərlər, bloqlar və bu kimi "
+"digər məlumat növlərini daha rahat gözdən keçirməyə imkan verir. Sevimli veb "
+"səhifələrindən hər dəfə yeni məlumatları yoxlamanız lazım gəlməyəcək, bunu "
+"sizin əvəzinizə Akregator edəcəkdir."
+
+#: src/about/introduction_akregator.html:19
+msgid ""
+"For more information about using Akregator, check the <a href='https://"
+"kontact.kde.org/components/akregator/'>Akregator website</a>. If you do not "
+"want to see this page anymore, <a href='config:/disable_introduction'>click "
+"here</a>."
+msgstr ""
+"Akregatordan istifadə haqqında daha çox məlumat üçün <a href='https://"
+"kontact.kde.org/components/akregator/'>Akragator veb səhifəsi</a>ni ziyarət "
+"edin. Bu səhifənin bir daha görünməsini istəmirsinizsə <a href='config:/"
+"disable_introduction'>bura klikləyin</a>."
+
+#: src/about/introduction_akregator.html:20
+msgid "We hope that you will enjoy Akregator."
+msgstr "Əminik ki, Akregator xoşunuza gələcək."
+
+#: src/about/introduction_akregator.html:21
+msgid "Thank you, The Akregator Team"
+msgstr "Çox sağ olun, Akregator komandası"
+
+#: src/formatter/html/5.2/combinedview.html:71
+msgid "Mark as Read"
+msgstr "Oxunmuş kimi işarələmək"
+
+#: src/formatter/html/5.2/combinedview.html:74
+msgid "Mark as Unread"
+msgstr "Oxunmamış kimi işarələmək"
+
+#: src/formatter/html/5.2/combinedview.html:78
+msgid "Remove Important Status"
+msgstr "Vacib statusları silmək"
+
+#: src/formatter/html/5.2/combinedview.html:80
+msgid "Mark as Important"
+msgstr "Vacib kimi işarələmək"
+
+#: src/formatter/html/5.2/combinedview.html:82
+msgid "Open Link in External Browser"
+msgstr "Keçidi xarici bələdçidə açmaq"
+
+#: src/formatter/html/5.2/combinedview.html:83
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:110
+#, kde-format
+msgid "Open In Background Tab"
+msgstr "Arxa plandakı vərəqdə açmaq"
+
+#: src/formatter/html/5.2/combinedview.html:84
+msgid "Send File Address"
+msgstr "Fayl ünvanını göndərmək"
+
+#: src/formatter/html/5.2/combinedview.html:85
+msgid "Send Link Address"
+msgstr "Keçid ünvanını göndərmək"
+
+#: src/formatter/html/5.2/combinedview.html:86 src/mainwidget.cpp:1063
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:96
+#, kde-format
+msgid "Delete Article"
+msgstr "Məqaləni silmək"
+
+#: src/formatter/html/5.2/normalview.html:51
+msgid ""
+"<b>Note:</b> For security reasons, external reference is blocked (See "
+"configure dialog)."
+msgstr ""
+"<b>Qeyd</b> Təhlükəsizlik səbəbindən xarici istinad əngəlləndi (Tənzimləmə "
+"dialoquna baxın)."
+
+#: configuration/akregator_config_advanced.cpp:30
+#, kde-format
+msgid "Advanced Feed Reader Settings"
+msgstr "Əlavə xəbər oxuma tətbiqi ayarları"
+
+#: configuration/akregator_config_advanced.cpp:34
+#: configuration/akregator_config_appearance.cpp:49
+#: configuration/akregator_config_archive.cpp:47
+#: configuration/akregator_config_browser.cpp:39
+#: configuration/akregator_config_general.cpp:42
+#, kde-format
+msgid "(c), 2004 - 2008 Frank Osterfeld"
+msgstr "(c), 2004 - 2008 Frank Osterfeld"
+
+#: configuration/akregator_config_advanced.cpp:36
+#: configuration/akregator_config_appearance.cpp:51
+#: configuration/akregator_config_archive.cpp:49
+#: configuration/akregator_config_browser.cpp:41
+#: configuration/akregator_config_general.cpp:44 src/aboutdata.cpp:28
+#, kde-format
+msgid "Frank Osterfeld"
+msgstr "Frank Osterfeld"
+
+#: configuration/akregator_config_appearance.cpp:45
+#, kde-format
+msgid "Configure Feed Reader Appearance"
+msgstr "Xəbər lenti görünüşünün tənzimlənməsi"
+
+#: configuration/akregator_config_archive.cpp:33
+#, kde-format
+msgctxt "Limit feed archive size to:"
+msgid " article"
+msgid_plural " articles"
+msgstr[0] " məqalə"
+msgstr[1] " məqalələr"
+
+#: configuration/akregator_config_archive.cpp:34
+#, kde-format
+msgctxt "Delete articles older than:"
+msgid " day"
+msgid_plural " days"
+msgstr[0] " gün"
+msgstr[1] " günlər"
+
+#: configuration/akregator_config_archive.cpp:43
+#, kde-format
+msgid "Configure Feed Reader Archive"
+msgstr "Xəbər lenti arxivinin tənzimlənməsi"
+
+#: configuration/akregator_config_browser.cpp:35
+#, kde-format
+msgid "Configure Feed Reader Browser"
+msgstr "Xəbər lenti bələdçisinin tənzimlənməsi"
+
+#: configuration/akregator_config_general.cpp:33
+#, kde-format
+msgid " minute"
+msgid_plural " minutes"
+msgstr[0] " dəqiqə"
+msgstr[1] " dəqiqələr"
+
+#: configuration/akregator_config_general.cpp:38
+#, kde-format
+msgid "Configure Feeds"
+msgstr "Lentin tənzimlənməsi"
+
+#: configuration/akregator_config_plugins.cpp:27
+#: configuration/akregator_config_security.cpp:29
+#, kde-format
+msgid "Configure Plugins"
+msgstr "Qoşmaların tənzimləməsi"
+
+#: configuration/akregator_config_plugins.cpp:31
+#, kde-format
+msgid "(c), 2016-2021 Laurent Montel"
+msgstr "(c), 2016-2021 Laurent Montel"
+
+#: configuration/akregator_config_plugins.cpp:33
+#: configuration/akregator_config_security.cpp:35
+#: configuration/akregator_config_userfeedback.cpp:34 src/aboutdata.cpp:27
+#, kde-format
+msgid "Laurent Montel"
+msgstr "Laurent Montel"
+
+#: configuration/akregator_config_security.cpp:33
+#, kde-format
+msgid "(c), 2021 Laurent Montel"
+msgstr "(c), 2021 Laurent Montel"
+
+#: configuration/akregator_config_userfeedback.cpp:28
+#, kde-format
+msgid "Configure User Feedback"
+msgstr "İstifadəçi əks əlaqəsinin tənzimlənməsi"
+
+#: configuration/akregator_config_userfeedback.cpp:32
+#, kde-format
+msgid "(c), 2020-2021 Laurent Montel"
+msgstr "(c), 2020-2021 Laurent Montel"
+
+#: configuration/akregatorconfigurepluginlistwidget.cpp:51
+#, kde-format
+msgid "Webengine Plugins"
+msgstr "Daxili bələdçi modulu"
+
+#: configuration/settings_advanced.cpp:27
+#, kde-format
+msgctxt "Mark selected article read after"
+msgid " second"
+msgid_plural " seconds"
+msgstr[0] " saniyə"
+msgstr[1] " saniyələr"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#: configuration/ui/settings_advancedbase.ui:30
+#, kde-format
+msgid "Article List"
+msgstr "Məqalə siyahısı"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_UseMarkReadDelay)
+#: configuration/ui/settings_advancedbase.ui:38
+#, kde-format
+msgid "Mar&k selected article read after"
+msgstr "Seçilmiş məqaləni sonra oxunmuş kimi işarələmə&k"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_ResetQuickFilterOnNodeChange)
+#: configuration/ui/settings_advancedbase.ui:73
+#, kde-format
+msgid "Reset search bar when changing feeds"
+msgstr "Başqa lentə keçdikdə axtarış panelini sıfırlamaq"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_3)
+#: configuration/ui/settings_appearance.ui:30
+#, kde-format
+msgid "Article List Colors"
+msgstr "Məqalə siyahısı rəngi"
+
+#. i18n: ectx: property (text), widget (QLabel, lbl_unreadArticles)
+#: configuration/ui/settings_appearance.ui:53
+#, kde-format
+msgid "Unread articles:"
+msgstr "Oxunmamış məqalələr:"
+
+#. i18n: ectx: property (text), widget (QLabel, lbl_newArticles)
+#: configuration/ui/settings_appearance.ui:76
+#, kde-format
+msgid "New articles:"
+msgstr "Yeni məqalələr:"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_UseCustomColors)
+#: configuration/ui/settings_appearance.ui:98
+#, kde-format
+msgid "Use custom colors"
+msgstr "Rəngləri seçmək"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
+#: configuration/ui/settings_appearance.ui:121
+#, kde-format
+msgid "Font Size"
+msgstr "Şrift ölçüsü"
+
+#. i18n: ectx: property (text), widget (QLabel, lbl_MinimumFontSize)
+#: configuration/ui/settings_appearance.ui:127
+#, kde-format
+msgid "Minimum font size:"
+msgstr "Minimum şrift ölçüsü:"
+
+#. i18n: ectx: property (text), widget (QLabel, lbl_MediumFontSize)
+#: configuration/ui/settings_appearance.ui:176
+#, kde-format
+msgid "Medium font size:"
+msgstr "Orta şrift ölçüsü:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#: configuration/ui/settings_appearance.ui:228
+#, kde-format
+msgid "Fonts"
+msgstr "Şriftlər"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel1)
+#: configuration/ui/settings_appearance.ui:234
+#, kde-format
+msgid "Standard font:"
+msgstr "Standart şrift:"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel2_2)
+#: configuration/ui/settings_appearance.ui:244
+#, kde-format
+msgid "Fixed font:"
+msgstr "Sabitlənmiş şrift:"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel3)
+#: configuration/ui/settings_appearance.ui:254
+#, kde-format
+msgid "Serif font:"
+msgstr "Kərtikli şrift:"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel4)
+#: configuration/ui/settings_appearance.ui:264
+#, kde-format
+msgid "Sans serif font:"
+msgstr "Kərtiksiz şrift:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#: configuration/ui/settings_archive.ui:30
+#, kde-format
+msgid "Default Archive Settings"
+msgstr "Standart arxiv ayarları"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rb_DisableArchiving)
+#: configuration/ui/settings_archive.ui:36
+#, kde-format
+msgid "Disa&ble archiving"
+msgstr "Arxivləməni sön&dürmək"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rb_KeepAllArticles)
+#. i18n: ectx: property (text), widget (QRadioButton, rb_keepAllArticles)
+#: configuration/ui/settings_archive.ui:43
+#: src/ui/feedpropertieswidgetbase.ui:332
+#, kde-format
+msgid "&Keep all articles"
+msgstr "Məqalələri saxla&maq"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rb_LimitArticleNumber)
+#: configuration/ui/settings_archive.ui:64
+#, kde-format
+msgid "Limit feed archi&ve size to:"
+msgstr "Lent arxi&vi ölçüsünün həddi"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rb_LimitArticleAge)
+#: configuration/ui/settings_archive.ui:100
+#, kde-format
+msgid "Delete articles older than: "
+msgstr "Bundan köhnə məqalələri silmək:"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_DoNotExpireImportantArticles)
+#: configuration/ui/settings_archive.ui:138
+#, kde-format
+msgid "Do not expire important articles"
+msgstr "Vacib məqalələri köhnəlmiş kimi işarələməmək"
+
+#. i18n: ectx: property (text), widget (QLabel, LMBlabel)
+#: configuration/ui/settings_browser.ui:20
+#, kde-format
+msgid "Left mouse click:"
+msgstr "Siçanın sol düyməsi kliki:"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, kcfg_LMBBehaviour)
+#. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
+#: configuration/ui/settings_browser.ui:28
+#: configuration/ui/settings_browser.ui:54
+#: src/actions/actionmanagerimpl.cpp:323
+#, kde-format
+msgid "Open in Tab"
+msgstr "Vərəqdə açmaq"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, kcfg_LMBBehaviour)
+#. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
+#: configuration/ui/settings_browser.ui:33
+#: configuration/ui/settings_browser.ui:59
+#: src/actions/actionmanagerimpl.cpp:329
+#, kde-format
+msgid "Open in Background Tab"
+msgstr "Arxa plandakı vərəqdə açmaq"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, kcfg_LMBBehaviour)
+#. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
+#: configuration/ui/settings_browser.ui:38
+#: configuration/ui/settings_browser.ui:64
+#: src/actions/actionmanagerimpl.cpp:335
+#, kde-format
+msgid "Open in External Browser"
+msgstr "Xarici bələdçidə açmaq"
+
+#. i18n: ectx: property (text), widget (QLabel, MMBlabel)
+#: configuration/ui/settings_browser.ui:46
+#, kde-format
+msgid "Middle mouse click:"
+msgstr "Orta siçan düyməsi kliki:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, externalBrowserGroupBox)
+#: configuration/ui/settings_browser.ui:74
+#, kde-format
+msgid "External Browsing"
+msgstr "Xarici bələdçi"
+
+#. i18n: ectx: property (text), widget (QLineEdit, kcfg_ExternalBrowserCustomCommand)
+#: configuration/ui/settings_browser.ui:83
+#, no-c-format, kde-format
+msgid "firefox %u"
+msgstr "firefox %u"
+
+#. i18n: ectx: property (text), widget (QRadioButton, kcfg_ExternalBrowserUseCustomCommand)
+#: configuration/ui/settings_browser.ui:90
+#, kde-format
+msgid "Use &this command:"
+msgstr "Bu əmri isti&fadə etmək:"
+
+#. i18n: ectx: property (text), widget (QRadioButton, kcfg_ExternalBrowserUseKdeDefault)
+#: configuration/ui/settings_browser.ui:97
+#, kde-format
+msgid "Use default web &browser"
+msgstr "Standart veb &bələdçidən istiafə etmək"
+
+#. i18n: ectx: property (title), widget (QGroupBox, tabsGroupBox)
+#: configuration/ui/settings_browser.ui:110
+#, kde-format
+msgid "Tabs"
+msgstr "Vərəqlər"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_AlwaysShowTabBar)
+#. i18n: ectx: label, entry, group (Browser)
+#: configuration/ui/settings_browser.ui:116 interfaces/akregator.kcfg:202
+#, kde-format
+msgid "Always show the tab bar"
+msgstr "Vərəqlər panelini həmişə göztərmək"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_CloseButtonOnTabs)
+#: configuration/ui/settings_browser.ui:123
+#, kde-format
+msgid "Show close button on each tab"
+msgstr "Hər vərəqdə \"bağla\" düyməsini göstərmək"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_NewWindowInTab)
+#. i18n: ectx: label, entry, group (Browser)
+#: configuration/ui/settings_browser.ui:130 interfaces/akregator.kcfg:212
+#, kde-format
+msgid "Open links in new tab instead of in new window"
+msgstr "Keçidləri yeni pəncərə əvəzinə yeni vərəqdə açmaq"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#: configuration/ui/settings_browser.ui:140
+#, kde-format
+msgid "Security"
+msgstr "Təhlükəsizlik"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_CheckPhishingUrl)
+#: configuration/ui/settings_browser.ui:146
+#, kde-format
+msgid "Verify URLs using Google's Safe Browsing API"
+msgstr "Keçidləri Google'dən Safe Browsing API isifadə edərək doğrulamaq"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_EnableJavascript)
+#. i18n: ectx: label, entry, group (Browser)
+#: configuration/ui/settings_browser.ui:153 interfaces/akregator.kcfg:198
+#, kde-format
+msgid "Enable Javascript"
+msgstr "JavaScript-i aktivləşdirmək"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
+#: configuration/ui/settings_browser.ui:163
+#, kde-format
+msgid "Misc"
+msgstr "Əlavə"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_AccessKeyEnabled)
+#: configuration/ui/settings_browser.ui:169
+#, kde-format
+msgid "Access Key Enabled"
+msgstr "Keçidləri klaviaturadan aktiv etmək (Ctrl basaraq)"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_3)
+#: configuration/ui/settings_general.ui:30
+#, kde-format
+msgctxt "global settings"
+msgid "Global"
+msgstr "Ümumi parametrlər"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_ShowTrayIcon)
+#: configuration/ui/settings_general.ui:36
+#, kde-format
+msgid "Show tra&y icon"
+msgstr "Nişanı tre&y'də göstərmək"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_ShowUnreadInTaskbar)
+#: configuration/ui/settings_general.ui:43
+#, kde-format
+msgid "Show unread articles in Taskbar"
+msgstr "Oxunmamış məqalələri Tapşırıq Panelində göstərmək"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_HideReadFeeds)
+#. i18n: ectx: label, entry, group (View)
+#: configuration/ui/settings_general.ui:50 interfaces/akregator.kcfg:9
+#, kde-format
+msgid "Hide feeds with no unread articles"
+msgstr "Oxunmamış məqalə olan lentləri gizlətmək"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_LockFeedsInPlace)
+#: configuration/ui/settings_general.ui:57
+#, kde-format
+msgid "Lock feeds in place"
+msgstr "Xəbər lentlərini yerində kilidləyin"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_AutoExpandFolders)
+#. i18n: ectx: whatsthis, entry, group (View)
+#: configuration/ui/settings_general.ui:64 interfaces/akregator.kcfg:27
+#, kde-format
+msgid "Auto-expand folders containing unread articles"
+msgstr "Oxunmamış məqalələrdən ibarət qovluqları avtomatik genişləndirmək"
+
+#. i18n: ectx: property (whatsThis), widget (QCheckBox, kcfg_UseNotifications)
+#: configuration/ui/settings_general.ui:74
+#, kde-format
+msgid "Select this if you want to get notified when there are new articles."
+msgstr "Yeni məqalə olduğu zaman bildiriş almaq istəsəniz bunu seçin"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_UseNotifications)
+#: configuration/ui/settings_general.ui:77
+#, kde-format
+msgid "Use &notifications for all feeds"
+msgstr "Bildirişləri bütün le&ntlər üçün istifadə etmək"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_DisableSaveAsNotification)
+#: configuration/ui/settings_general.ui:84
+#, kde-format
+msgid "Disable save as finished notification"
+msgstr "Sona çatmış bildiriş kimi saxlamağı söndürün"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_UseIntervalFetch)
+#: configuration/ui/settings_general.ui:91
+#, kde-format
+msgid "&Use interval fetching"
+msgstr "&Vaxtaşırı xəbərlər almaq"
+
+#. i18n: ectx: property (text), widget (QLabel, autoFetchIntervalLabel)
+#: configuration/ui/settings_general.ui:119
+#, kde-format
+msgid "Fetch feeds every:"
+msgstr "Xəbərlərin alınması tezliyi:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
+#: configuration/ui/settings_general.ui:160
+#, kde-format
+msgid "Startup"
+msgstr "Tətbiq başladıqda"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_MarkAllFeedsReadOnStartup)
+#: configuration/ui/settings_general.ui:166
+#, kde-format
+msgid "Mark &all feeds as read on startup"
+msgstr "Başl&adıqda bütün lentləri oxunmuş kimi göstərmək"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_FetchOnStartup)
+#: configuration/ui/settings_general.ui:173
+#, kde-format
+msgid "Fetch all fee&ds on startup"
+msgstr "Başla&dıqda bütün lentləri yeniləmək "
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#: configuration/ui/settings_general.ui:183
+#, kde-format
+msgid "Network"
+msgstr "Şəbəkə"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_UseHTMLCache)
+#: configuration/ui/settings_general.ui:189
+#, kde-format
+msgid "Use the &browser cache (less network traffic)"
+msgstr "&Bələdçi keşindən istifadə etmək (az trafik)"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_LoadExternalReferences)
+#: configuration/ui/settings_security.ui:17
+#, kde-format
+msgid "Allow feed to load external references from internet."
+msgstr ""
+"Xəbər lentlərinə internetdən xarici istinadları yükləməsinə icazə verin."
+
+#: export/akregatorstorageexporter.cpp:280
+#, kde-format
+msgid "Akregator Export for %1"
+msgstr "%1 üçün Akregator'dan İxrac"
+
+#. i18n: ectx: whatsthis, entry, group (View)
+#: interfaces/akregator.kcfg:10
+#, kde-format
+msgid "Hides feeds with no unread articles"
+msgstr "Oxunmamış məqalələr olan lentlər gizlənir"
+
+#. i18n: ectx: label, entry, group (View)
+#: interfaces/akregator.kcfg:21
+#, kde-format
+msgid "Prevent feeds from being moved in the list"
+msgstr "Xəbər lentlərinin siyahıda yerdəyişməsini qadağan edin"
+
+#. i18n: ectx: whatsthis, entry, group (View)
+#: interfaces/akregator.kcfg:22
+#, kde-format
+msgid "Locks feeds where they are"
+msgstr "Xəbər lentini olduğu yerdə kilidləyin"
+
+#. i18n: ectx: label, entry, group (View)
+#: interfaces/akregator.kcfg:26
+#, kde-format
+msgid "Auto-Expand folders with unread articles"
+msgstr "Oxunmamış məqaləli qovluqları avtomatik genişləndirmək"
+
+#. i18n: ectx: label, entry, group (View)
+#: interfaces/akregator.kcfg:31 src/actions/actionmanagerimpl.cpp:317
+#, kde-format
+msgid "Show Quick Filter"
+msgstr "Sürətli süzgəc"
+
+#. i18n: ectx: whatsthis, entry, group (View)
+#: interfaces/akregator.kcfg:32
+#, kde-format
+msgid "Show Quick Filter Bar"
+msgstr "Sürətli süzgəclər paneli"
+
+#. i18n: ectx: label, entry, group (View)
+#: interfaces/akregator.kcfg:36
+#, kde-format
+msgid "Status Filter"
+msgstr "Status süzgəci"
+
+#. i18n: ectx: whatsthis, entry, group (View)
+#: interfaces/akregator.kcfg:37
+#, kde-format
+msgid "Stores the last status filter setting"
+msgstr "Sonuncu status süzgəci ayarlarını saxlayır"
+
+#. i18n: ectx: label, entry, group (View)
+#: interfaces/akregator.kcfg:41
+#, kde-format
+msgid "Text Filter"
+msgstr "Mətn süzgəci"
+
+#. i18n: ectx: whatsthis, entry, group (View)
+#: interfaces/akregator.kcfg:42
+#, kde-format
+msgid "Stores the last search line text"
+msgstr "Sonuncu axtarış sətri mətnini saxlayır"
+
+#. i18n: ectx: label, entry, group (View)
+#: interfaces/akregator.kcfg:45
+#, kde-format
+msgid "View Mode"
+msgstr "Baxış rejimi"
+
+#. i18n: ectx: whatsthis, entry, group (View)
+#: interfaces/akregator.kcfg:46
+#, kde-format
+msgid "Article display mode."
+msgstr "Məqaləyə baxış rejimi"
+
+#. i18n: ectx: label, entry, group (View)
+#: interfaces/akregator.kcfg:50
+#, kde-format
+msgid "Sizes for first splitter"
+msgstr "Birinci ayırıcının ölçüləri"
+
+#. i18n: ectx: whatsthis, entry, group (View)
+#: interfaces/akregator.kcfg:51
+#, kde-format
+msgid "First (usually vertical) splitter widget sizes."
+msgstr "Birinci (adətən şaquli) ayırıcı vidjeti ölçüləri"
+
+#. i18n: ectx: label, entry, group (View)
+#: interfaces/akregator.kcfg:55
+#, kde-format
+msgid "Sizes for second splitter"
+msgstr "İkinci ayırıcı ölçüləri"
+
+#. i18n: ectx: whatsthis, entry, group (View)
+#: interfaces/akregator.kcfg:56
+#, kde-format
+msgid "Second (usually horizontal) splitter widget sizes."
+msgstr "İkinci (adətən üfüqi) ayırıcı vidjeti ölçüləri."
+
+#. i18n: ectx: label, entry, group (Archive)
+#: interfaces/akregator.kcfg:100
+#, kde-format
+msgid "Archive Mode"
+msgstr "Arxiv rejimi"
+
+#. i18n: ectx: label, entry, group (Archive)
+#: interfaces/akregator.kcfg:104
+#, kde-format
+msgid "Keep All Articles"
+msgstr "Bütün məqalələri saxlamaq"
+
+#. i18n: ectx: whatsthis, entry, group (Archive)
+#: interfaces/akregator.kcfg:105
+#, kde-format
+msgid "Save an unlimited number of articles."
+msgstr "Bütün məqalələri saxlamaq"
+
+#. i18n: ectx: label, entry, group (Archive)
+#: interfaces/akregator.kcfg:108
+#, kde-format
+msgid "Limit Number of Articles"
+msgstr "Saxlanılacaq məqalələrin sayı"
+
+#. i18n: ectx: whatsthis, entry, group (Archive)
+#: interfaces/akregator.kcfg:109
+#, kde-format
+msgid "Limit the number of articles in a feed"
+msgstr "Göstərilən sayda məqalələri saxlamaq"
+
+#. i18n: ectx: label, entry, group (Archive)
+#: interfaces/akregator.kcfg:112
+#, kde-format
+msgid "Delete Expired Articles"
+msgstr "Köhnəlmiş məqalələri silmək"
+
+#. i18n: ectx: whatsthis, entry, group (Archive)
+#: interfaces/akregator.kcfg:113
+#, kde-format
+msgid "Delete expired articles"
+msgstr "Köhnəlmiş məqalələri silmək"
+
+#. i18n: ectx: label, entry, group (Archive)
+#: interfaces/akregator.kcfg:116
+#, kde-format
+msgid "Disable Archiving"
+msgstr "Arxivləməni söndürmək"
+
+#. i18n: ectx: whatsthis, entry, group (Archive)
+#: interfaces/akregator.kcfg:117
+#, kde-format
+msgid "Do not save any articles"
+msgstr "Hüç bir məqaləni saxlmamaq"
+
+#. i18n: ectx: label, entry, group (Archive)
+#: interfaces/akregator.kcfg:122
+#, kde-format
+msgid "Expiry Age"
+msgstr "Köhnəlmə müddəti"
+
+#. i18n: ectx: whatsthis, entry, group (Archive)
+#: interfaces/akregator.kcfg:123
+#, kde-format
+msgid "Default expiry age for articles in days."
+msgstr "Gün ərzində məqalələrin standart köhnəlmə müddəti"
+
+#. i18n: ectx: label, entry, group (Archive)
+#: interfaces/akregator.kcfg:127
+#, kde-format
+msgid "Article Limit"
+msgstr "Məqalələrin həddi"
+
+#. i18n: ectx: whatsthis, entry, group (Archive)
+#: interfaces/akregator.kcfg:128
+#, kde-format
+msgid "Number of articles to keep per feed."
+msgstr "Hər lentdə saxlanılacaq məqalə sayı"
+
+#. i18n: ectx: label, entry, group (Archive)
+#: interfaces/akregator.kcfg:132
+#, kde-format
+msgid "Do Not Expire Important Articles"
+msgstr "Vacib məqalələri silməmək"
+
+#. i18n: ectx: whatsthis, entry, group (Archive)
+#: interfaces/akregator.kcfg:133
+#, kde-format
+msgid ""
+"When this option is enabled, articles you marked as important will not be "
+"removed when limit the archive size by either age or number of the articles."
+msgstr ""
+"Bu seçim aktiv edildikdə, vacib kimi işarələnmiş məqalələr silinməyəcəkdir, "
+"hətta onlar, köhnəlmiş məqalə şərtləri altında olsa belə."
+
+#. i18n: ectx: label, entry, group (Network)
+#: interfaces/akregator.kcfg:139
+#, kde-format
+msgid "Concurrent Fetches"
+msgstr "Paralel yükləmələr"
+
+#. i18n: ectx: whatsthis, entry, group (Network)
+#: interfaces/akregator.kcfg:140
+#, kde-format
+msgid "Number of concurrent fetches"
+msgstr "Paralel yükləmələrin sayı"
+
+#. i18n: ectx: label, entry, group (Network)
+#: interfaces/akregator.kcfg:144
+#, kde-format
+msgid "Use HTML Cache"
+msgstr "HTML keşi istifadə etmək"
+
+#. i18n: ectx: whatsthis, entry, group (Network)
+#: interfaces/akregator.kcfg:145
+#, kde-format
+msgid ""
+"Use the KDE-wide HTML cache settings when downloading feeds, to avoid "
+"unnecessary traffic. Disable only when necessary."
+msgstr ""
+"Məqalələr yüklənərkən trafiki azaltmaq üçün KDE-nin ümumi HTML-keşi "
+"ayarlarından istifadə etmək. Yalnız lazım olduqda söndürün."
+
+#. i18n: ectx: whatsthis, entry, group (Network)
+#: interfaces/akregator.kcfg:149
+#, kde-format
+msgid ""
+"This option allows user to specify custom user-agent string instead of using "
+"the default one. This is here because some proxies may interrupt the "
+"connection because of having \"gator\" in the name."
+msgstr ""
+"Bu seçim, istifadəçiyə standart bələdçi identifikatorunu göstərilən başqa "
+"biri ilə əvəz etməyə imkan verir. Bu bəzən, bəzi proksi serverlərin istifadə "
+"olunması zamanı faydalı ola bilər, hansı həmin proksi serverlər \"gator\" "
+"sözündən ibarət olan standart bələdçi agentləri ilə bağlantını əngəlləyir."
+
+#. i18n: ectx: label, entry, group (General)
+#: interfaces/akregator.kcfg:155
+#, kde-format
+msgid "Fetch on startup"
+msgstr "Başladıqda yeniləmək"
+
+#. i18n: ectx: whatsthis, entry, group (General)
+#: interfaces/akregator.kcfg:156
+#, kde-format
+msgid "Fetch feedlist on startup."
+msgstr "Başladıqda xəbər lentlərini yeniləmək."
+
+#. i18n: ectx: label, entry, group (General)
+#: interfaces/akregator.kcfg:160
+#, kde-format
+msgid "Mark all feeds as read on startup"
+msgstr "Başladıqda bütün xəbərləri oxunmuş kimi işarələmək"
+
+#. i18n: ectx: whatsthis, entry, group (General)
+#: interfaces/akregator.kcfg:161
+#, kde-format
+msgid "Mark all feeds as read on startup."
+msgstr "Başladıqda bütün xəbərləri oxunmuş kimi işarələmək."
+
+#. i18n: ectx: label, entry, group (General)
+#: interfaces/akregator.kcfg:165
+#, kde-format
+msgid "Use interval fetching"
+msgstr "Vaxtaşırı yeniləmək"
+
+#. i18n: ectx: whatsthis, entry, group (General)
+#: interfaces/akregator.kcfg:166
+#, no-c-format, kde-format
+msgid "Fetch all feeds every %1 minutes."
+msgstr "Lentləri hər %1 dəqiqədə yeniləmək."
+
+#. i18n: ectx: label, entry, group (General)
+#: interfaces/akregator.kcfg:170
+#, kde-format
+msgid "Interval for autofetching"
+msgstr "Avtomatik yeniləmə intervalı"
+
+#. i18n: ectx: whatsthis, entry, group (General)
+#: interfaces/akregator.kcfg:171
+#, kde-format
+msgid "Interval for autofetching in minutes."
+msgstr "Avtomatik yeniləmə intervalı, dəqiqələrlə."
+
+#. i18n: ectx: label, entry, group (General)
+#: interfaces/akregator.kcfg:175
+#, kde-format
+msgid "Use notifications"
+msgstr "Bildirişlərdən istifadə etmək"
+
+#. i18n: ectx: whatsthis, entry, group (General)
+#: interfaces/akregator.kcfg:176
+#, kde-format
+msgid "Specifies if the balloon notifications are used or not."
+msgstr "Bildiriş şarlarının göstərilib göstərilməməsini müəyyənləşdirmək."
+
+#. i18n: ectx: label, entry, group (General)
+#: interfaces/akregator.kcfg:180
+#, kde-format
+msgid "Show tray icon"
+msgstr "Nişanı treydə göstərmək"
+
+#. i18n: ectx: whatsthis, entry, group (General)
+#: interfaces/akregator.kcfg:181
+#, kde-format
+msgid "Specifies if the tray icon is shown or not."
+msgstr "Nişanın treydə göstərilib göstərilməməsini müəyyənləşdirir."
+
+#. i18n: ectx: label, entry, group (General)
+#: interfaces/akregator.kcfg:185
+#, kde-format
+msgid "Show Unread In Taskbar"
+msgstr "Oxunmamışı tapşırıq panelində göstərmək"
+
+#. i18n: ectx: whatsthis, entry, group (General)
+#: interfaces/akregator.kcfg:186
+#, kde-format
+msgid "Specifies if we show unread article in taskbar."
+msgstr ""
+"Oxunmamış məqalənin tapşırıq panelində göstırilib göstərilməməsini müəyyən "
+"edir"
+
+#. i18n: ectx: whatsthis, entry, group (Browser)
+#: interfaces/akregator.kcfg:203
+#, kde-format
+msgid "Always show the tab bar, even when only one tab is open"
+msgstr "Vərəqlər panelini həmişə göstərmək, hətta bir vərəq açıq olsa da"
+
+#. i18n: ectx: label, entry, group (Browser)
+#: interfaces/akregator.kcfg:207
+#, kde-format
+msgid "Show close buttons on tabs"
+msgstr "Vərəqlərdə \"bağlamaq\" düyməsini göstərmək"
+
+#. i18n: ectx: whatsthis, entry, group (Browser)
+#: interfaces/akregator.kcfg:208
+#, kde-format
+msgid "Show close buttons on tabs instead of icons"
+msgstr "Nişanlar əvəzinə vərəqlərdə \"bağlamaq\" düymələrini göstərmək"
+
+#. i18n: ectx: whatsthis, entry, group (Browser)
+#: interfaces/akregator.kcfg:213
+#, kde-format
+msgid ""
+"Open a link which would normally open in a new window (external browser) in "
+"a new tab instead"
+msgstr ""
+"Yeni bir pəncərədə (xarici bələdçi) açılacaq linki yeni bir vərəqdə açmaq"
+
+#. i18n: ectx: label, entry, group (Browser)
+#: interfaces/akregator.kcfg:217
+#, kde-format
+msgid "Use default KDE web browser"
+msgstr "Standart KDE veb bələdçisindən istifadə etmək"
+
+#. i18n: ectx: whatsthis, entry, group (Browser)
+#: interfaces/akregator.kcfg:218
+#, kde-format
+msgid "Use KDE web browser when opening in external browser."
+msgstr ""
+"Xarici bələdçidə açıldığı zaman standart KDE veb bələçisindən istifadə etmək."
+
+#. i18n: ectx: label, entry, group (Browser)
+#: interfaces/akregator.kcfg:222
+#, kde-format
+msgid "Use this command:"
+msgstr "Bu əmri istifadə edin:"
+
+#. i18n: ectx: whatsthis, entry, group (Browser)
+#: interfaces/akregator.kcfg:223
+#, kde-format
+msgid "Use the specified command when opening in external browser."
+msgstr "Xarici bələdçidə açdıqda göstərilmiş əmrdən istifadə edin."
+
+#. i18n: ectx: whatsthis, entry, group (Browser)
+#: interfaces/akregator.kcfg:227
+#, no-c-format, kde-format
+msgid "Command to launch external browser. URL will substitute for %u."
+msgstr "Xarici bələdçini başlatmaq əmri. Ünvan %u yerinə yazılacaqdır."
+
+#. i18n: ectx: whatsthis, entry, group (Browser)
+#: interfaces/akregator.kcfg:231
+#, kde-format
+msgid "What the click with left mouse button should do."
+msgstr "Siçanın sol düyməsinə vurduqda baş verəcəklər."
+
+#. i18n: ectx: whatsthis, entry, group (Browser)
+#: interfaces/akregator.kcfg:240
+#, kde-format
+msgid "What the click with middle mouse button should do."
+msgstr "Siçanın orta düyməsinə vurduqda baş verəcəklər."
+
+#. i18n: ectx: label, entry, group (Advanced)
+#: interfaces/akregator.kcfg:265
+#, kde-format
+msgid "Archive Backend"
+msgstr "Arxiv modulu"
+
+#. i18n: ectx: whatsthis, entry (UseMarkReadDelay), group (Advanced)
+#: interfaces/akregator.kcfg:269
+#, kde-format
+msgid "Whether to delay before marking an article as read upon selecting it."
+msgstr ""
+"Bir məqaləni seçdikdən sonra oxundu kimi işarələməsinə qədərki gecikmə."
+
+#. i18n: ectx: whatsthis, entry (MarkReadDelay), group (Advanced)
+#: interfaces/akregator.kcfg:273
+#, kde-format
+msgid ""
+"Configurable delay between selecting an article and it being marked as read."
+msgstr ""
+"Məqalə seçimi və oxunmuş kimi işarələnməsi arasında ayarlanabilən gecikmə."
+
+#. i18n: ectx: whatsthis, entry, group (Advanced)
+#: interfaces/akregator.kcfg:277
+#, kde-format
+msgid "Resets the quick filter when changing feeds."
+msgstr "Başqa lentə keçdikdə sürətli süzgəcləməni sıfırlamaq."
+
+#: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
+#: src/akregator_part.cpp:146
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:148
+#: src/trayicon.cpp:41 src/trayicon.cpp:42 src/trayicon.cpp:54
+#, kde-format
+msgid "Akregator"
+msgstr "Akregator"
+
+#: kontactplugin/akregator_plugin.cpp:29
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "New Feed..."
+msgstr "Yeni xəbər lenti"
+
+#: kontactplugin/akregator_plugin.cpp:32
+#, kde-format
+msgctxt "@info:status"
+msgid "Create a new feed"
+msgstr "Yeni xəbər lenti yaratmaq"
+
+#: kontactplugin/akregator_plugin.cpp:33
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid "You will be presented with a dialog where you can add a new feed."
+msgstr "Sizə yeni xəbər lenti yarada biləcəyiniz dialoq təqdim olunacaq."
+
+#: src/aboutdata.cpp:21
+#, kde-format
+msgid "A KDE Feed Reader"
+msgstr "KDE xəbər lenti oxuma tətbiqi"
+
+#: src/aboutdata.cpp:23
+#, kde-format
+msgid "Copyright © 2004–%1 Akregator authors"
+msgstr "Müəllif Hüquqları © 2004–%1 Akregator müəllifləri"
+
+#: src/aboutdata.cpp:27
+#, kde-format
+msgid "Maintainer"
+msgstr "Müşayətçi"
+
+#: src/aboutdata.cpp:28
+#, kde-format
+msgid "Former maintainer"
+msgstr "Əvvəlki Himayəçi"
+
+#: src/aboutdata.cpp:29
+#, kde-format
+msgid "Teemu Rytilahti"
+msgstr "Teemu Rytilahti"
+
+#: src/aboutdata.cpp:29 src/aboutdata.cpp:30 src/aboutdata.cpp:31
+#: src/aboutdata.cpp:32
+#, kde-format
+msgid "Developer"
+msgstr "Tərtibatçı"
+
+#: src/aboutdata.cpp:30
+#, kde-format
+msgid "Sashmit Bhaduri"
+msgstr "Sashmit Bhaduri"
+
+#: src/aboutdata.cpp:31
+#, kde-format
+msgid "Pierre Habouzit"
+msgstr "Pierre Habouzit"
+
+#: src/aboutdata.cpp:32
+#, kde-format
+msgid "Stanislav Karchebny"
+msgstr "Stanislav Karchebny"
+
+#: src/aboutdata.cpp:33
+#, kde-format
+msgid "Gary Cramblitt"
+msgstr "Gary Cramblitt"
+
+#: src/aboutdata.cpp:33 src/aboutdata.cpp:34 src/aboutdata.cpp:35
+#, kde-format
+msgid "Contributor"
+msgstr "Bu işə töhvə verənlər"
+
+#: src/aboutdata.cpp:34
+#, kde-format
+msgid "Stephan Binner"
+msgstr "Stephan Binner"
+
+#: src/aboutdata.cpp:35
+#, kde-format
+msgid "Christof Musik"
+msgstr "Christof Musik"
+
+#: src/aboutdata.cpp:36
+#, kde-format
+msgid "Anne-Marie Mahfouf"
+msgstr "Anne-Marie Mahfouf"
+
+#: src/aboutdata.cpp:36
+#, kde-format
+msgid "Handbook"
+msgstr "İstifadəçi Təlimatı"
+
+#: src/aboutdata.cpp:37
+#, kde-format
+msgid "Frerich Raabe"
+msgstr "Frerich Raabe"
+
+#: src/aboutdata.cpp:37
+#, kde-format
+msgid "Author of librss"
+msgstr "Librss müəlifi"
+
+#: src/aboutdata.cpp:38
+#, kde-format
+msgid "Eckhart Woerner"
+msgstr "Eckhart Woerner"
+
+#: src/aboutdata.cpp:38
+#, kde-format
+msgid "Bug tracker management, Usability improvements"
+msgstr "Xəta sazlama idarəsi, faydalı təkmilləşdirmələr"
+
+#: src/aboutdata.cpp:39
+#, kde-format
+msgid "Heinrich Wendel"
+msgstr "Heinrich Wendel"
+
+#: src/aboutdata.cpp:39
+#, kde-format
+msgid "Tons of bug fixes"
+msgstr "Çoxlu xəta düzəlişləri"
+
+#: src/aboutdata.cpp:40
+#, kde-format
+msgid "Eike Hein"
+msgstr "Eike Hein"
+
+#: src/aboutdata.cpp:40
+#, kde-format
+msgid "'Delayed mark as read' feature"
+msgstr "\"Oxunmuş kimi işarələnmısi gecikməsi\" imkanları"
+
+#: src/aboutdata.cpp:41
+#, kde-format
+msgid "Marcel Dierkes"
+msgstr "Marcel Dierkes"
+
+#: src/aboutdata.cpp:41
+#, kde-format
+msgid "Icons"
+msgstr "Nişanlar"
+
+#: src/aboutdata.cpp:42
+#, kde-format
+msgid "George Staikos"
+msgstr "George Staikos"
+
+#: src/aboutdata.cpp:42
+#, kde-format
+msgid "Insomnia"
+msgstr "Yuxusuz qalanlar"
+
+#: src/aboutdata.cpp:43
+#, kde-format
+msgid "Philipp Droessler"
+msgstr "Philipp Droessler"
+
+#: src/aboutdata.cpp:43
+#, kde-format
+msgid "Gentoo Ebuild"
+msgstr "Gentoo Ebuild"
+
+#: src/actions/actionmanagerimpl.cpp:63 src/actions/actionmanagerimpl.cpp:286
+#, kde-format
+msgid "&Fetch Feed"
+msgstr "Lentləri &yeniləmək"
+
+#: src/actions/actionmanagerimpl.cpp:64 src/actions/actionmanagerimpl.cpp:242
+#, kde-format
+msgid "&Delete Feed"
+msgstr "Lentləri &silmək"
+
+#: src/actions/actionmanagerimpl.cpp:65 src/actions/actionmanagerimpl.cpp:248
+#, kde-format
+msgid "&Edit Feed..."
+msgstr "Lentlərə &düzəliş"
+
+#: src/actions/actionmanagerimpl.cpp:66 src/actions/actionmanagerimpl.cpp:305
+#, kde-format
+msgid "&Mark Feed as Read"
+msgstr "Xəbərləri oxunmuş kimi işarələ&mək"
+
+#: src/actions/actionmanagerimpl.cpp:82
+#, kde-format
+msgid "&Fetch Feeds"
+msgstr "Lentlərin &yenilənməsi"
+
+#: src/actions/actionmanagerimpl.cpp:83
+#, kde-format
+msgid "&Delete Folder"
+msgstr "&Qovluğu silmək"
+
+#: src/actions/actionmanagerimpl.cpp:84
+#, kde-format
+msgid "&Rename Folder"
+msgstr "Qovluğun adını də&yişmək"
+
+#: src/actions/actionmanagerimpl.cpp:85
+#, kde-format
+msgid "&Mark Feeds as Read"
+msgstr "Xəbəri oxunmuş kimi işarələ&mək"
+
+#: src/actions/actionmanagerimpl.cpp:190
+#, kde-format
+msgid "&Import Feeds..."
+msgstr "Xəbərlərin &idxalı..."
+
+#: src/actions/actionmanagerimpl.cpp:194
+#, kde-format
+msgid "&Export Feeds..."
+msgstr "Xəbərlərin ixrac &edilməsi..."
+
+#: src/actions/actionmanagerimpl.cpp:199
+#, kde-format
+msgid "&Configure Akregator..."
+msgstr "Akregator'u &tənzimləmək..."
+
+#: src/actions/actionmanagerimpl.cpp:218
+#, kde-format
+msgid "&Open Homepage"
+msgstr "Ev səhifəsini &açmaq"
+
+#: src/actions/actionmanagerimpl.cpp:224
+#, kde-format
+msgid "Reload All Tabs"
+msgstr "Bütün vərəqləri yenidən yükləmək"
+
+#: src/actions/actionmanagerimpl.cpp:230
+#, kde-format
+msgid "&Add Feed..."
+msgstr "Lent əlavə e&tmək"
+
+#: src/actions/actionmanagerimpl.cpp:236
+#, kde-format
+msgid "Ne&w Folder..."
+msgstr "Ye&ni qovluq..."
+
+#: src/actions/actionmanagerimpl.cpp:261
+#, kde-format
+msgid "&Normal View"
+msgstr "No&rmal baxış"
+
+#: src/actions/actionmanagerimpl.cpp:270
+#, kde-format
+msgid "&Widescreen View"
+msgstr "&Geniş ekran görüntüsü"
+
+#: src/actions/actionmanagerimpl.cpp:279
+#, kde-format
+msgid "C&ombined View"
+msgstr "&Yığcam görüntü"
+
+#: src/actions/actionmanagerimpl.cpp:292
+#, kde-format
+msgid "Fe&tch All Feeds"
+msgstr "Bütün lentləri yeni&ləmək"
+
+#: src/actions/actionmanagerimpl.cpp:298
+#, kde-format
+msgid "C&ancel Feed Fetches"
+msgstr "Lentlərin yenilənməsini ləğ&v etmək"
+
+#: src/actions/actionmanagerimpl.cpp:311
+#, kde-format
+msgid "Ma&rk All Feeds as Read"
+msgstr "Bütün xəbərləri oxunmuş kimi işa&rələmək"
+
+#: src/actions/actionmanagerimpl.cpp:340 src/actions/actionmanagerimpl.cpp:608
+#, kde-format
+msgid "Copy Link Address"
+msgstr "Keçid ünvanını kopyalamaq"
+
+#: src/actions/actionmanagerimpl.cpp:345
+#, kde-format
+msgid "Pre&vious Unread Article"
+msgstr "Ə&vvəlki oxunmamış məqalə"
+
+#: src/actions/actionmanagerimpl.cpp:351
+#, kde-format
+msgid "Ne&xt Unread Article"
+msgstr "Növ&bəti oxunmamış məqalə"
+
+#: src/actions/actionmanagerimpl.cpp:359
+#, kde-format
+msgid "&Delete"
+msgstr "&silin"
+
+#: src/actions/actionmanagerimpl.cpp:364
+#, kde-format
+msgid "&Mark As"
+msgstr "Belə işarlə&mək"
+
+#: src/actions/actionmanagerimpl.cpp:368
+#, kde-format
+msgctxt "as in: mark as read"
+msgid "&Read"
+msgstr "&Oxumaq"
+
+#: src/actions/actionmanagerimpl.cpp:370
+#, kde-format
+msgid "Mark selected article as read"
+msgstr "Seçilmiş məqaləni oxunmuş kimi işarələmək"
+
+#: src/actions/actionmanagerimpl.cpp:376
+#, kde-format
+msgctxt "as in: mark as new"
+msgid "&New"
+msgstr "Ye&ni"
+
+#: src/actions/actionmanagerimpl.cpp:379
+#, kde-format
+msgid "Mark selected article as new"
+msgstr "Seçilmiş məqaləni yeni kimi işarələmək"
+
+#: src/actions/actionmanagerimpl.cpp:384
+#, kde-format
+msgctxt "as in: mark as unread"
+msgid "&Unread"
+msgstr "Ox&unmamış"
+
+#: src/actions/actionmanagerimpl.cpp:386
+#, kde-format
+msgid "Mark selected article as unread"
+msgstr "Seçilmiş məqaləni oxunmamış kimi işarələmək"
+
+#: src/actions/actionmanagerimpl.cpp:392
+#, kde-format
+msgid "&Mark as Important"
+msgstr "Vacib kimi işarələ&mək"
+
+#: src/actions/actionmanagerimpl.cpp:396
+#, kde-format
+msgid "Remove &Important Mark"
+msgstr "Vac&iblik işarəsini silmək"
+
+#: src/actions/actionmanagerimpl.cpp:400
+#, kde-format
+msgid "Move Node Up"
+msgstr "Yuxarı köçürmək"
+
+#: src/actions/actionmanagerimpl.cpp:405
+#, kde-format
+msgid "Move Node Down"
+msgstr "Aşağı köçürmək"
+
+#: src/actions/actionmanagerimpl.cpp:410
+#, kde-format
+msgid "Move Node Left"
+msgstr "Sola köçürmək"
+
+#: src/actions/actionmanagerimpl.cpp:415
+#, kde-format
+msgid "Move Node Right"
+msgstr "Sağa köçürmək"
+
+#: src/actions/actionmanagerimpl.cpp:421
+#, kde-format
+msgid "Send &Link Address..."
+msgstr "&Keçid ünvanını göndərmək..."
+
+#: src/actions/actionmanagerimpl.cpp:426
+#, kde-format
+msgid "Send &File..."
+msgstr "&Fayl göndərmək..."
+
+#: src/actions/actionmanagerimpl.cpp:432
+#, kde-format
+msgid "Set Focus to Quick Search"
+msgstr "Cəld axtarışı diqqətdə saxlamaq"
+
+#: src/actions/actionmanagerimpl.cpp:464
+#, kde-format
+msgid "&Previous Article"
+msgstr "&Əvvəlki məqalə"
+
+#: src/actions/actionmanagerimpl.cpp:468
+#, kde-format
+msgid "&Next Article"
+msgstr "&Növbəti məqalə"
+
+#: src/actions/actionmanagerimpl.cpp:484
+#, kde-format
+msgid "&Previous Feed"
+msgstr "&Əvvəlki lent"
+
+#: src/actions/actionmanagerimpl.cpp:489
+#, kde-format
+msgid "&Next Feed"
+msgstr "&Növbəti lent"
+
+#: src/actions/actionmanagerimpl.cpp:495
+#, kde-format
+msgid "N&ext Unread Feed"
+msgstr "Nö&vbəti oxunmamış lent"
+
+#: src/actions/actionmanagerimpl.cpp:501
+#, kde-format
+msgid "Prev&ious Unread Feed"
+msgstr "Əvvəlk&i oxunmamış lent"
+
+#: src/actions/actionmanagerimpl.cpp:506
+#, kde-format
+msgid "Go to Top of Tree"
+msgstr "Ən yuxarıya keçmək"
+
+#: src/actions/actionmanagerimpl.cpp:511
+#, kde-format
+msgid "Go to Bottom of Tree"
+msgstr "Ən aşağıya keçmək"
+
+#: src/actions/actionmanagerimpl.cpp:516
+#, kde-format
+msgid "Go Left in Tree"
+msgstr "Ən sola keçmək"
+
+#: src/actions/actionmanagerimpl.cpp:521
+#, kde-format
+msgid "Go Right in Tree"
+msgstr "Ən sağa keçmək"
+
+#: src/actions/actionmanagerimpl.cpp:526
+#, kde-format
+msgid "Go Up in Tree"
+msgstr "Ağacda yuxarıya keçmək"
+
+#: src/actions/actionmanagerimpl.cpp:531
+#, kde-format
+msgid "Go Down in Tree"
+msgstr "Ağacda aşağıya keçmək"
+
+#: src/actions/actionmanagerimpl.cpp:537
+#, kde-format
+msgid "Hide Read Feeds"
+msgstr "Oxunmuş lentləri gizlətmək"
+
+#: src/actions/actionmanagerimpl.cpp:543
+#, kde-format
+msgid "Lock Feeds In Place"
+msgstr "Xəbər lentlərini yerində kilidləyin"
+
+#: src/actions/actionmanagerimpl.cpp:549
+#, kde-format
+msgid "Auto-expand folders with unread articles"
+msgstr "Oxunmamış məqaləli qovluqları avtomatik genişləndirmək"
+
+#: src/actions/actionmanagerimpl.cpp:565
+#, kde-format
+msgid "Select Next Tab"
+msgstr "Növbəti vərəqi seçmək"
+
+#: src/actions/actionmanagerimpl.cpp:570
+#, kde-format
+msgid "Select Previous Tab"
+msgstr "Əvvəlki vərəqi seçmək"
+
+#: src/actions/actionmanagerimpl.cpp:576
+#, kde-format
+msgid "Detach Tab"
+msgstr "Vərəqi ayırmaq"
+
+#: src/actions/actionmanagerimpl.cpp:590
+#, kde-format
+msgid "Mute"
+msgstr "Susdurmaq"
+
+#: src/actions/actionmanagerimpl.cpp:594
+#, kde-format
+msgid "Unmute"
+msgstr "Səsi açmaq"
+
+#: src/actions/actionmanagerimpl.cpp:597
+#, kde-format
+msgid "Speak Text"
+msgstr "Mətni səsləndirmək"
+
+#: src/actions/actionmanagerimpl.cpp:602
+#, kde-format
+msgid "&Find in Message..."
+msgstr "İsmarıcda &tapmaq"
+
+#: src/actions/actionmanagerimpl.cpp:613
+#, kde-format
+msgid "Close Tab"
+msgstr "Vərəqi bağlamaq"
+
+#: src/actions/actionmanagerimpl.cpp:626
+#, kde-format
+msgid "Activate Tab %1"
+msgstr "%1 Vərəqi aktiv etmək"
+
+#: src/actions/actionmanagerimpl.cpp:632
+#, kde-format
+msgid "&Save Link As..."
+msgstr "Keçidi belə &saxlamaq..."
+
+#: src/actions/actionmanagerimpl.cpp:636
+#, kde-format
+msgid "Copy &Link Address"
+msgstr "Keçid ünvanını kopya&lamaq"
+
+#: src/actions/actionmanagerimpl.cpp:639
+#, kde-format
+msgid "Copy Image Location"
+msgstr "Şəklin yerini kopyalamaq"
+
+#: src/actions/actionmanagerimpl.cpp:646
+#, kde-format
+msgid "Save Image On Disk..."
+msgstr "Şəkili diskdə saxlamaq..."
+
+#: src/actions/actions.cpp:19
+#, kde-format
+msgid "Open Link in New &Tab"
+msgstr "Keçidi yeni &vərəqdə açmaq"
+
+#: src/actions/actions.cpp:26
+#, kde-format
+msgid "Open Link in External &Browser"
+msgstr "Keçidi xarici &bələdçidə açmaq"
+
+#: src/addfeeddialog.cpp:49
+#, kde-format
+msgctxt "@title:window"
+msgid "Add Feed"
+msgstr "Lent əlavə etmək"
+
+#: src/addfeeddialog.cpp:99
+#, kde-format
+msgid "Downloading %1"
+msgstr "%1 yüklənir"
+
+#: src/addfeeddialog.cpp:115
+#, kde-format
+msgid "Feed not found from %1."
+msgstr "%1 ünvanından xəbər lenti tapılmadı."
+
+#: src/addfeeddialog.cpp:121
+#, kde-format
+msgid "Feed found, downloading..."
+msgstr "Xəbər lent tapıldı, endirilir..."
+
+#: src/akregator_options.h:20 src/akregator_options.h:28
+#, kde-format
+msgid "Add a feed with the given URL"
+msgstr "Verilmiş ünvan ilə xəbər lenti əlavə etmək"
+
+#: src/akregator_options.h:23
+#, kde-format
+msgid "When adding feeds, place them in this group"
+msgstr "Yeni lentlər əlavə edildikdə onları bu qrupda yerləşdirmək"
+
+#: src/akregator_options.h:25
+#, kde-format
+msgid "Hide main window on startup"
+msgstr "Başladıqda əsas pəncərəni gizlətmək"
+
+#: src/akregator_options.h:30
+#, kde-format
+msgid "Lists the available options for user feedback"
+msgstr "İstifadəçi rəyi üçün mövcud seçimlərin siyahısı"
+
+#: src/akregator_part.cpp:84
+#, kde-format
+msgid "Feeds"
+msgstr "Xəbər lentləri"
+
+#: src/akregator_part.cpp:95
+#, kde-format
+msgid "KDE Dot News"
+msgstr "KDE Dot xəbərləri"
+
+#: src/akregator_part.cpp:100
+#, kde-format
+msgid "Linux.com"
+msgstr "Linux.com"
+
+#: src/akregator_part.cpp:105
+#, kde-format
+msgid "Planet KDE"
+msgstr "Planet KDE"
+
+#: src/akregator_part.cpp:110
+#, kde-format
+msgid "KDE Apps"
+msgstr "KDE Tətbiqləri"
+
+#: src/akregator_part.cpp:116
+#, kde-format
+msgid "Spanish feeds"
+msgstr "İspanca xəbərləri"
+
+#: src/akregator_part.cpp:120
+#, kde-format
+msgid "Planet KDE España"
+msgstr "Planet KDE España"
+
+#: src/akregator_part.cpp:440
+#, kde-format
+msgid ""
+"Access denied: Cannot save feed list to <b>%1</b>. Please check your "
+"permissions."
+msgstr ""
+"Girişə icazə verilmir. Xəbər lenti siyahısını <b>%1</b> ünvanında saxlamaq "
+"olmur. Lütfən icazənizi yoxlayın."
+
+#: src/akregator_part.cpp:441 src/akregator_part.cpp:492
+#, kde-format
+msgid "Write Error"
+msgstr "Yazılma xətası"
+
+#: src/akregator_part.cpp:477
+#, kde-format
+msgid "Could not import the file %1 (no valid OPML)"
+msgstr "%1 faylı idxal edilə bilmir (düzgün OPML yoxdur)"
+
+#: src/akregator_part.cpp:477 src/command/loadfeedlistcommand.cpp:71
+#, kde-format
+msgid "OPML Parsing Error"
+msgstr "OPML analizi xətası"
+
+#: src/akregator_part.cpp:481
+#, kde-format
+msgid ""
+"The file %1 could not be read, check if it exists or if it is readable for "
+"the current user."
+msgstr ""
+"%1 faylı oxuna bilmir, onun mövcud olduğunu və ya istifadəçi üçün oxunabilən "
+"olsub olmadığını yoxlayın."
+
+#: src/akregator_part.cpp:482 src/command/loadfeedlistcommand.cpp:142
+#, kde-format
+msgid "Read Error"
+msgstr "Oxuma xətası"
+
+#: src/akregator_part.cpp:492
+#, kde-format
+msgid "Access denied: cannot write to file %1. Please check your permissions."
+msgstr ""
+"Girişə icazə verilmədi, %1 faylı oxuna bilmədi. Lütfən icazənizi yoxlayın."
+
+#: src/akregator_part.cpp:507 src/akregator_part.cpp:516
+#, kde-format
+msgid "OPML Outlines (%1);;All Files (*)"
+msgstr "OPML Xülasəsi (%1);;Bütün fayllar (*)"
+
+#: src/akregator_part.cpp:650
+#, kde-format
+msgid "Imported Folder"
+msgstr "İdxal olunmuş qovluq"
+
+#: src/articlejobs.cpp:184
+#, kde-format
+msgid "The feed to be listed was already removed."
+msgstr "Sİyahıya alınacaq lent artıq silindi"
+
+#: src/articlelistview.cpp:156 src/subscription/subscriptionlistview.cpp:180
+#, kde-format
+msgid "Columns"
+msgstr "Sütunlar"
+
+#: src/articlelistview.cpp:214
+#, kde-format
+msgid "No result found"
+msgstr "Nəticə tapılmadı"
+
+#: src/articlelistview.cpp:375
+#, kde-format
+msgid ""
+"<h2>Article list</h2>Here you can browse articles from the currently "
+"selected feed. You can also manage articles, as marking them as persistent "
+"(\"Mark as Important\") or delete them, using the right mouse button menu. "
+"To view the web page of the article, you can open the article internally in "
+"a tab or in an external browser window."
+msgstr ""
+"<h2>Məqalə siyahısı</h2> Buray hazırda seçilmiş lentlərdən məqalələrə baxa "
+"bilərsiniz. Siz həmçinin siçanın sol süyməsi münyusundan, vacibliyinə görə "
+"işarələmə (\"Vacib kimi işarələmək\") və ya silmə kimi imkanlardan istifadə "
+"edərək məqalələri idarə edə bilərsiniz. Məqalənin veb səhifəsinə baxmaq üçün "
+"onu yeni vərəqdə və ya xarici bələdçi pəncərəsində aça bilərsiniz."
+
+#: src/articlemodel.cpp:74
+#, kde-format
+msgctxt "Articlelist's column header"
+msgid "Title"
+msgstr "Başlıq"
+
+#: src/articlemodel.cpp:76
+#, kde-format
+msgctxt "Articlelist's column header"
+msgid "Feed"
+msgstr "Xəbər lenti"
+
+#: src/articlemodel.cpp:78
+#, kde-format
+msgctxt "Articlelist's column header"
+msgid "Date"
+msgstr "Tarix"
+
+#: src/articlemodel.cpp:80
+#, kde-format
+msgctxt "Articlelist's column header"
+msgid "Author"
+msgstr "Müəllif"
+
+#: src/articlemodel.cpp:82
+#, kde-format
+msgctxt "Articlelist's column header"
+msgid "Description"
+msgstr "Təsviri"
+
+#: src/articlemodel.cpp:84
+#, kde-format
+msgctxt "Articlelist's column header"
+msgid "Content"
+msgstr "Tərkibi"
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:149
+#, kde-format
+msgid "Akregator is a KDE news feed reader."
+msgstr "Akregator KDE xəbər lenti oxuma tətbiqidir"
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:190
+#, kde-format
+msgctxt "@title:window"
+msgid "Save As"
+msgstr "Belə saxlayın"
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:382
+#, kde-format
+msgid "Disable"
+msgstr "Söndürmək"
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:384
+#, kde-format
+msgid "Keep Enabled"
+msgstr "Aktiv saxlamaq"
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:386
+#, kde-format
+msgid "Are you sure you want to disable this introduction page?"
+msgstr "Bu giriş səhifəsini söndürmək istədiyinizə əminsiniz?"
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:387
+#, kde-format
+msgid "Disable Introduction Page"
+msgstr "Giriş səhiəsini söndürmək"
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:422
+#, kde-format
+msgid "This web site is a malware, do you want to continue to show it?"
+msgstr ""
+"Veb səhifəsində zərərli proqram var, göstərməyə davam etmək istəyirsiniz?"
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:423
+#, kde-format
+msgid "Malware"
+msgstr "Malware"
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:435
+#, kde-format
+msgid "The network is broken."
+msgstr "Şəbəkə əlaqəsi kəsildi"
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:435
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:438
+#, kde-format
+msgid "Check Phishing Url"
+msgstr "Səhifənin təhlükəsizliyini yoxlayın"
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:438
+#, kde-format
+msgid "The url %1 is not valid."
+msgstr "%1 url etibarlı deyil."
+
+#: src/articleviewer-ng/webengine/articleviewerwebenginewidgetng.cpp:137
+#, kde-format
+msgctxt "@title:window"
+msgid "Print Document"
+msgstr "Sənədin çapı"
+
+#: src/command/createfoldercommand.cpp:47
+#, kde-format
+msgid "Add Folder"
+msgstr "Qovluq əlavə etmək"
+
+#: src/command/createfoldercommand.cpp:47
+#, kde-format
+msgid "Folder name:"
+msgstr "Qovluğun adı:"
+
+#: src/command/deletesubscriptioncommand.cpp:39
+#, kde-format
+msgid ""
+"<qt>Are you sure you want to delete this folder and its feeds and subfolders?"
+"</qt>"
+msgstr ""
+"<qt>Bu qovluğu tərkibındəki xəbər lentləri və alt qovluqları ilə birgə "
+"silmək istədiyinizə əminsiniz?</qt>"
+
+#: src/command/deletesubscriptioncommand.cpp:40
+#, kde-format
+msgid ""
+"<qt>Are you sure you want to delete folder <b>%1</b> and its feeds and "
+"subfolders?</qt>"
+msgstr ""
+"<qt><b>%1</b> qovluğunu tərkibındəki xəbər lentləri və alt qovluqları ilə "
+"birgə silmək istədiyinizə əminsiniz?</qt>"
+
+#: src/command/deletesubscriptioncommand.cpp:44
+#, kde-format
+msgid "Delete Folder"
+msgstr "Qovluğu silmək"
+
+#: src/command/deletesubscriptioncommand.cpp:61
+#, kde-format
+msgid "<qt>Are you sure you want to delete this feed?</qt>"
+msgstr "<qt>Bu xəbər lentini silmək istədiyinizə əminsiniz?</qt>"
+
+#: src/command/deletesubscriptioncommand.cpp:63
+#, kde-format
+msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
+msgstr "<qt><b>%1</b> lentini silmək istədiyinizə əminsiniz?</qt>"
+
+#: src/command/deletesubscriptioncommand.cpp:68
+#, kde-format
+msgid "Delete Feed"
+msgstr "Xəbər lentini silmək"
+
+#: src/command/importfeedlistcommand.cpp:48
+#, kde-format
+msgid "Imported Feeds"
+msgstr "İdxal edilmiş lentlər"
+
+#: src/command/importfeedlistcommand.cpp:77
+#, kde-format
+msgid "Add Imported Folder"
+msgstr "İdxal edilmiş qovluq əlavə etmək"
+
+#: src/command/importfeedlistcommand.cpp:78
+#, kde-format
+msgid "Imported folder name:"
+msgstr "İdxal edilmiş qovluq adı:"
+
+#: src/command/loadfeedlistcommand.cpp:63
+#, kde-format
+msgid ""
+"<qt>The standard feed list is corrupted (invalid OPML). A backup was created:"
+"<p><b>%1</b></p></qt>"
+msgstr ""
+"<qt>Standart lentlər siyahısı zədələnib (səhv OPML). Ehtiyyat nüsxə "
+"yaradıldı:<p><b>%1</b></p></qt>"
+
+#: src/command/loadfeedlistcommand.cpp:67
+#, kde-format
+msgid ""
+"<qt>The standard feed list is corrupted (invalid OPML). Could not create a "
+"backup.</qt>"
+msgstr ""
+"<qt>Standart lentlərsiyahısı zədələnib (səhv OPML). Ehtiyyat nüsxə yaradıla "
+"bilmədi.</qt>"
+
+#: src/command/loadfeedlistcommand.cpp:129
+#, kde-format
+msgid "Opening Feed List..."
+msgstr "Lentlər siyahısı açılır..."
+
+#: src/command/loadfeedlistcommand.cpp:142
+#, kde-format
+msgid "<qt>Could not open feed list (%1) for reading.</qt>"
+msgstr "<qt>Oxumaq üçün lentlər siyahısı (%1) açıla bilmədi.</qt>"
+
+#: src/command/loadfeedlistcommand.cpp:155
+#, kde-format
+msgctxt "error message window caption"
+msgid "XML Parsing Error"
+msgstr "XML təhlil xətası"
+
+#: src/command/loadfeedlistcommand.cpp:157
+#, kde-kuit-format
+msgid "<qt><p>XML parsing error in line %1, column %2 of %3:</p><p>%4</p></qt>"
+msgstr "<qt><p>XML analizi xətası, sətir %1, sütun %2/%3:</p><p>%4</p></qt>"
+
+#: src/command/loadfeedlistcommand.cpp:164
+#, kde-format
+msgid ""
+"<qt>The standard feed list is corrupted (invalid XML). A backup was created:"
+"<p><b>%1</b></p></qt>"
+msgstr ""
+"<qt>Standart lentlər siyahısı zədələnib (səhv XML) Ehtiyyat nüsxə yaradıldı:"
+"<p><b>%1</b></p></qt>"
+
+#: src/command/loadfeedlistcommand.cpp:168
+#, kde-format
+msgid ""
+"<qt>The standard feed list is corrupted (invalid XML). Could not create a "
+"backup.</qt>"
+msgstr ""
+"<qt>Standart lentlərsiyahısı zədələnib (səhv XML) Ehtiyyat nüsxə yaradıla "
+"bilmədi.</qt>"
+
+#: src/crashwidget/crashwidget.cpp:21
+#, kde-format
+msgid ""
+"Akregator did not close correctly. Would you like to restore the previous "
+"session?"
+msgstr ""
+"Akregator düzgün bağlanmadı. Əvvəlki sessiyanı bərpa etmək istəyirsiniz?"
+
+#: src/crashwidget/crashwidget.cpp:37
+#, kde-format
+msgid "Restore Session"
+msgstr "Sesiyanı bərpa etmək"
+
+#: src/crashwidget/crashwidget.cpp:43
+#, kde-format
+msgid "Do Not Restore Session"
+msgstr "Sesiyanı bərpa etməmək"
+
+#: src/crashwidget/crashwidget.cpp:49
+#, kde-format
+msgid "Ask me later"
+msgstr "Sonra soruşmaq"
+
+#. i18n: ectx: Menu (edit)
+#: src/data/akregator_part.rc:14 src/data/akregator_shell.rc:11
+#, kde-format
+msgid "&Edit"
+msgstr "&Düzəliş etmək"
+
+#. i18n: ectx: Menu (view)
+#: src/data/akregator_part.rc:21 src/data/akregator_shell.rc:16
+#, kde-format
+msgid "&View"
+msgstr "&Baxış"
+
+#. i18n: ectx: Menu (go)
+#: src/data/akregator_part.rc:36 src/data/akregator_shell.rc:24
+#, kde-format
+msgid "&Go"
+msgstr "&İrəli"
+
+#. i18n: ectx: Menu (feed)
+#: src/data/akregator_part.rc:49 src/data/akregator_shell.rc:29
+#, kde-format
+msgid "Fee&d"
+msgstr "&Xəbər lenti"
+
+#. i18n: ectx: Menu (article)
+#: src/data/akregator_part.rc:62 src/data/akregator_shell.rc:34
+#, kde-format
+msgid "&Article"
+msgstr "&Məqalə"
+
+#. i18n: ectx: Menu (settings)
+#: src/data/akregator_part.rc:79 src/data/akregator_shell.rc:39
+#, kde-format
+msgid "&Settings"
+msgstr "&Ayarlar"
+
+#. i18n: ectx: ToolBar (mainToolBar)
+#: src/data/akregator_part.rc:92 src/data/akregator_shell.rc:54
+#, kde-format
+msgid "Main Toolbar"
+msgstr "Əsas Alətlər Paneli"
+
+#. i18n: ectx: Menu (file)
+#: src/data/akregator_shell.rc:4
+#, kde-format
+msgid "&File"
+msgstr "&Fayl"
+
+#: src/feed/feedlist.cpp:160
+#, kde-format
+msgid "All Feeds"
+msgstr "Bütün xəbər lentləri"
+
+#: src/feed/feedpropertiesdialog.cpp:45 src/feed/feedpropertiesdialog.cpp:77
+#, kde-format
+msgid "Minute"
+msgid_plural "Minutes"
+msgstr[0] "Dəqiqə"
+msgstr[1] "Dəqiqələr"
+
+#: src/feed/feedpropertiesdialog.cpp:46 src/feed/feedpropertiesdialog.cpp:78
+#, kde-format
+msgid "Hour"
+msgid_plural "Hours"
+msgstr[0] "Saat"
+msgstr[1] "Saatlar"
+
+#: src/feed/feedpropertiesdialog.cpp:47 src/feed/feedpropertiesdialog.cpp:79
+#, kde-format
+msgid "Day"
+msgid_plural "Days"
+msgstr[0] "Gün"
+msgstr[1] "Günlər"
+
+#: src/feed/feedpropertiesdialog.cpp:60 src/feed/feedpropertiesdialog.cpp:112
+#, kde-format
+msgctxt "@title:window"
+msgid "Feed Properties"
+msgstr "Xəbər lenti xüsusiyyətləri"
+
+#: src/feed/feedpropertiesdialog.cpp:80
+#, kde-format
+msgctxt "never fetch new articles"
+msgid "Never"
+msgstr "Heç vaxt"
+
+#: src/feed/feedpropertiesdialog.cpp:81
+#, kde-format
+msgid " day"
+msgid_plural " days"
+msgstr[0] " gün"
+msgstr[1] " günlər"
+
+#: src/feed/feedpropertiesdialog.cpp:82
+#, kde-format
+msgid " article"
+msgid_plural " articles"
+msgstr[0] " məqalə"
+msgstr[1] " məqalələr"
+
+#: src/feed/feedpropertiesdialog.cpp:112
+#, kde-format
+msgctxt "@title:window"
+msgid "Properties of %1"
+msgstr "%1 xüsusiyyətləri"
+
+#: src/formatter/articleformatter.cpp:36
+#, kde-format
+msgid "(%1, %2)"
+msgstr "(%1, %2)"
+
+#: src/formatter/grantleeviewformatter.cpp:58
+#: src/formatter/grantleeviewformatter.cpp:109
+#, kde-format
+msgid " (no unread articles)"
+msgstr " (oxunmamış məqalələr yoxdur)"
+
+#: src/formatter/grantleeviewformatter.cpp:60
+#: src/formatter/grantleeviewformatter.cpp:111
+#, kde-format
+msgid " (1 unread article)"
+msgid_plural " (%1 unread articles)"
+msgstr[0] " (1 oxunmamış məqalə)"
+msgstr[1] " (%1 oxunmamış məqalə)"
+
+#: src/formatter/grantleeviewformatter.cpp:75
+#, kde-format
+msgid "<b>Description:</b> %1<br />"
+msgstr "<b>Təsviri:</b> %1<br />"
+
+#: src/formatter/grantleeviewformatter.cpp:82
+#, kde-format
+msgid "<b>Homepage:</b> <a href=\"%1\">%1</a>"
+msgstr "<b>Ev səhifəsi:</b> <a href=\"%1\">%1</a>"
+
+#: src/formatter/grantleeviewformatter.cpp:89
+#, kde-format
+msgid "<b>Copyright:</b> %1</a>"
+msgstr "<b>Müəllif Hüquqları:</b> %1</a>"
+
+#: src/formatter/grantleeviewformatter.cpp:141
+#, kde-format
+msgid "Date"
+msgstr "Tarix"
+
+#: src/formatter/grantleeviewformatter.cpp:142
+#, kde-format
+msgid "Comment"
+msgstr "Şərh"
+
+#: src/formatter/grantleeviewformatter.cpp:143
+#, kde-format
+msgid "Complete Story"
+msgstr "Yazının tamamı"
+
+#: src/formatter/grantleeviewformatter.cpp:144
+#, kde-format
+msgid "Author"
+msgstr "Müəllif"
+
+#: src/formatter/grantleeviewformatter.cpp:145
+#, kde-format
+msgid "Enclosure"
+msgstr "Əhatə dairəsi"
+
+#: src/frame/frame.cpp:21
+#, kde-format
+msgid "Untitled"
+msgstr "Adsız"
+
+#: src/frame/frame.cpp:141
+#, kde-format
+msgid "Loading..."
+msgstr "Yüklənir..."
+
+#: src/frame/frame.cpp:157
+#, kde-format
+msgid "Loading canceled"
+msgstr "Yüklənmə ləğv edildi"
+
+#: src/frame/frame.cpp:169
+#, kde-format
+msgid "Loading completed"
+msgstr "Yüklənmə başa çatdı"
+
+#: src/mainwidget.cpp:144
+#, kde-format
+msgid "You can view multiple articles in several open tabs."
+msgstr "Çoxsaylı məqalələrə bir neçə vərəqdə baxa bilərsiniz."
+
+#: src/mainwidget.cpp:148
+#, kde-format
+msgid "Articles list."
+msgstr "Məqalələr siyahısı."
+
+#: src/mainwidget.cpp:210 src/mainwidget.cpp:635
+#, kde-format
+msgid "Articles"
+msgstr "Məqalələr"
+
+#: src/mainwidget.cpp:239
+#, kde-format
+msgid "About"
+msgstr "Haqqında"
+
+#: src/mainwidget.cpp:765
+#, kde-format
+msgid ""
+"<qt>Are you sure you want to mark <b>all articles in the feed</b> as read?</"
+"qt>"
+msgstr ""
+"<qt> <b>Xəbər lentindəki bütün məqalələri</b> oxunmuş kimi işarələmək "
+"istəyirsiniz?</qt>"
+
+#: src/mainwidget.cpp:766
+#, kde-format
+msgid "Mark Feed as Read"
+msgstr "Xəbərləri oxunmuş kimi işarələyin"
+
+#: src/mainwidget.cpp:769
+#, kde-format
+msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
+msgstr "<qt> <b>Bütün xəbərləri</b>oxunmuş kimi işarələmək istəyirsiniz?</qt>"
+
+#: src/mainwidget.cpp:771
+#, kde-format
+msgid ""
+"<qt>Are you sure you want to mark <b>all feeds in the folder</b> as read?</"
+"qt>"
+msgstr ""
+"<qt><b>Qovluqdakı bütün xəbərləri</b>oxunmuş kimi işarələmək istəyirsiniz?</"
+"qt>"
+
+#: src/mainwidget.cpp:773
+#, kde-format
+msgid "Mark Feeds as Read"
+msgstr "Xəbəri oxunmuş kimi işarələyin"
+
+#: src/mainwidget.cpp:837 src/mainwidget.cpp:846 src/mainwidget.cpp:1248
+#, kde-format
+msgid "Networking is not available."
+msgstr "İnternet bağlantısı yoxdur."
+
+#: src/mainwidget.cpp:854
+#, kde-format
+msgid "Fetching Feeds..."
+msgstr "Lentlər yenilənir..."
+
+#: src/mainwidget.cpp:1053
+#, kde-format
+msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
+msgstr "<qt><b>%1</b> məqaləni silmək istədiyinizə əminsiniz?</qt>"
+
+#: src/mainwidget.cpp:1056
+#, kde-format
+msgid "<qt>Are you sure you want to delete the selected article?</qt>"
+msgid_plural ""
+"<qt>Are you sure you want to delete the %1 selected articles?</qt>"
+msgstr[0] "<qt>Seçilmiş məqaləni silmək istədiyinizə əminsiniz?</qt>"
+msgstr[1] "<qt>Seçilmiş %1 məqaləni silmək istədiyinizə əminsiniz?</qt>"
+
+#: src/mainwidget.cpp:1245
+#, kde-format
+msgid "Networking is available now."
+msgstr "İnternet şəbəkəsinə qoşuldu."
+
+#: src/mainwindow.cpp:124
+#, kde-format
+msgid ""
+"<qt>This will hide the menu bar completely. You can show it again by typing "
+"%1.</qt>"
+msgstr ""
+"<qt>Bu menyu panelini tamamilə gizlədəcək. Siz %1 yazmaqla onu yenidən "
+"göstərə bilərsiniz.</qt>"
+
+#: src/mainwindow.cpp:127
+#, kde-format
+msgid "Hide menu bar"
+msgstr "Menyu panelini gizlədin"
+
+#: src/mainwindow.cpp:156
+#, kde-format
+msgid ""
+"Could not find the Akregator part; please check your installation.\n"
+"%1"
+msgstr ""
+"Akregator tərkib hissəsi tapılmadı, düzgün quraşdırıldığını yoxlayın.%1"
+
+#: src/notificationmanager.cpp:49
+#, kde-format
+msgid ""
+"Feed added:\n"
+" %1"
+msgstr ""
+"Lent əlavə edildi:\n"
+" %1"
+
+#: src/notificationmanager.cpp:61
+#, kde-format
+msgid ""
+"Feeds added:\n"
+" %1"
+msgstr "Lentlər əlavə edildi: %1"
+
+#: src/notificationmanager.cpp:79
+#, kde-format
+msgid "<i>and 1 other</i>"
+msgid_plural "<i>and %1 others</i>"
+msgstr[0] "<i>və 1 başqası</i>"
+msgstr[1] "<i>və %1 başqaları</i>"
+
+#: src/progressmanager.cpp:127
+#, kde-format
+msgid "Fetch completed"
+msgstr "Yenilənmə tamamlandı"
+
+#: src/progressmanager.cpp:136
+#, kde-format
+msgid "Fetch error"
+msgstr "Yenilənmə xətası"
+
+#: src/progressmanager.cpp:145
+#, kde-format
+msgid "Fetch aborted"
+msgstr "Yenilənmə ləğöv edildi"
+
+#: src/subscription/subscriptionlistjobs.cpp:54
+#, kde-format
+msgid "Feed list was deleted"
+msgstr "Lent siyahısı silindi"
+
+#: src/subscription/subscriptionlistjobs.cpp:64
+#, kde-format
+msgid "Node or destination folder not found"
+msgstr "Qovşaq və ya təyinat qovluğu tapılmadı"
+
+#: src/subscription/subscriptionlistjobs.cpp:71
+#, kde-format
+msgid "Cannot move folder %1 to its own subfolder %2"
+msgstr "%1 qovluğu onun %2 alt qovluöuna köçürülmədi"
+
+#: src/subscription/subscriptionlistmodel.cpp:49
+#, kde-format
+msgid "Timeout on remote server"
+msgstr "Uzaq serverdə boşdayanma"
+
+#: src/subscription/subscriptionlistmodel.cpp:51
+#, kde-format
+msgid "Unknown host"
+msgstr "Naməlum Host"
+
+#: src/subscription/subscriptionlistmodel.cpp:53
+#, kde-format
+msgid "Feed file not found on remote server"
+msgstr "Xəbər kanalı uzaq serverdə tapılmadı"
+
+#: src/subscription/subscriptionlistmodel.cpp:55
+#, kde-format
+msgid "Could not read feed (invalid XML)"
+msgstr "Lent oxuna bilmədi (səhv XML)"
+
+#: src/subscription/subscriptionlistmodel.cpp:57
+#, kde-format
+msgid "Could not read feed (unknown format)"
+msgstr "Lent oxuna bilmədi (naməlum format)"
+
+#: src/subscription/subscriptionlistmodel.cpp:59
+#, kde-format
+msgid "Could not read feed (invalid feed)"
+msgstr "Lent oxuna bilmədi (naməlum xəbər lenti)"
+
+#: src/subscription/subscriptionlistmodel.cpp:229
+#, kde-format
+msgid "Could not fetch feed: %1"
+msgstr "Xəbər lenti yenilənə bilmədi: %1"
+
+#: src/subscription/subscriptionlistmodel.cpp:274
+#, kde-format
+msgctxt "Feedlist's column header"
+msgid "Feeds"
+msgstr "Xəbər lentləri"
+
+#: src/subscription/subscriptionlistmodel.cpp:276
+#, kde-format
+msgctxt "Feedlist's column header"
+msgid "Unread"
+msgstr "Oxunmamış"
+
+#: src/subscription/subscriptionlistmodel.cpp:278
+#, kde-format
+msgctxt "Feedlist's column header"
+msgid "Total"
+msgstr "Ümumi"
+
+#: src/tabwidget.cpp:92
+#, kde-format
+msgid "Close the current tab"
+msgstr "Cari vərəqi bağlamaq"
+
+#: src/tabwidget.cpp:95
+#, kde-format
+msgid "Close tab"
+msgstr "Vərəqi bağlamaq"
+
+#: src/tabwidget.cpp:118
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Detach Tab"
+msgstr "Vərəqi ayırmaq"
+
+#: src/tabwidget.cpp:123
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Close Tab"
+msgstr "Vərəqi bağlamaq"
+
+#: src/tabwidget.cpp:127
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Close All Other Tabs"
+msgstr "Bütün başqa vərəqləri bağlamaq"
+
+#: src/tabwidget.cpp:131
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Close All Tabs"
+msgstr "Bütün vərəqləri bağlamaq"
+
+#: src/trayicon.cpp:55
+#, kde-format
+msgid "There are no unread articles"
+msgstr "Oxunmamış məqalələr yoxdur"
+
+#: src/trayicon.cpp:55
+#, kde-format
+msgid "1 unread article"
+msgid_plural "%1 unread articles"
+msgstr[0] "1 oxunmamış məqalə"
+msgstr[1] "%1 oxunmamış məqalə"
+
+#. i18n: ectx: property (windowTitle), widget (QWidget, Akregator::AddFeedWidgetBase)
+#: src/ui/addfeedwidgetbase.ui:14
+#, kde-format
+msgid "Add Feed"
+msgstr "Lent əlavə etmək"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel1)
+#: src/ui/addfeedwidgetbase.ui:122
+#, kde-format
+msgid "Add New Source"
+msgstr "Yeni mənbə əlavə etmək"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel3)
+#: src/ui/addfeedwidgetbase.ui:135
+#, kde-format
+msgid "Feed &URL:"
+msgstr "Lent &URL-u:"
+
+#. i18n: ectx: property (windowTitle), widget (QWidget, Akregator::FeedPropertiesWidgetBase)
+#: src/ui/feedpropertieswidgetbase.ui:20
+#, kde-format
+msgid "Feed Properties"
+msgstr "Xəbər lenti xüsusiyyətləri"
+
+#. i18n: ectx: attribute (title), widget (QWidget, tab1)
+#: src/ui/feedpropertieswidgetbase.ui:42
+#, kde-format
+msgid "&General"
+msgstr "&Əsas"
+
+#. i18n: ectx: property (text), widget (QCheckBox, cb_updateInterval)
+#: src/ui/feedpropertieswidgetbase.ui:54
+#, kde-format
+msgid "U&se a custom update interval"
+msgstr "Başqa yenilənmə intervalı i&stifadə etmək"
+
+#. i18n: ectx: property (text), widget (QLabel, updateLabel)
+#: src/ui/feedpropertieswidgetbase.ui:88
+#, kde-format
+msgid "Update ever&y:"
+msgstr "Yenilənmə aralığı:"
+
+#. i18n: ectx: property (text), widget (QCheckBox, checkBox_useNotification)
+#: src/ui/feedpropertieswidgetbase.ui:117
+#, kde-format
+msgid "Notify when new articles arri&ve"
+msgstr "Yeni məqalələr alındığında &bildirmək"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel3)
+#: src/ui/feedpropertieswidgetbase.ui:132
+#, kde-format
+msgid "&URL:"
+msgstr "&URL:"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel2)
+#: src/ui/feedpropertieswidgetbase.ui:142
+#, kde-format
+msgid "&Name:"
+msgstr "&Adı:"
+
+#. i18n: ectx: property (toolTip), widget (QLineEdit, feedNameEdit)
+#: src/ui/feedpropertieswidgetbase.ui:161
+#, kde-format
+msgid "Display name of RSS column"
+msgstr "RSS sütununun adını göstərmək"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: src/ui/feedpropertieswidgetbase.ui:171
+#, kde-format
+msgid "Comment:"
+msgstr "Şərh:"
+
+#. i18n: ectx: attribute (title), widget (QWidget, tab2)
+#: src/ui/feedpropertieswidgetbase.ui:194
+#, kde-format
+msgid "Ar&chive"
+msgstr "Ar&xiv"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rb_globalDefault)
+#: src/ui/feedpropertieswidgetbase.ui:206
+#, kde-format
+msgid "&Use default settings"
+msgstr "Standart ayarlardan is&tifadə etmək"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rb_disableArchiving)
+#: src/ui/feedpropertieswidgetbase.ui:216
+#, kde-format
+msgid "Di&sable archiving"
+msgstr "Arxivləməni &söndürmək"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rb_limitArticleNumber)
+#: src/ui/feedpropertieswidgetbase.ui:247
+#, kde-format
+msgid "Limit archi&ve to:"
+msgstr "Arxi&vi məhdudlaşdırmaq:"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rb_limitArticleAge)
+#: src/ui/feedpropertieswidgetbase.ui:277
+#, kde-format
+msgid "&Delete articles older than:"
+msgstr "Bundan köhnə məqalələri si&lmək:"
+
+#. i18n: ectx: attribute (title), widget (QWidget, tab3)
+#: src/ui/feedpropertieswidgetbase.ui:340
+#, kde-format
+msgid "Adva&nced"
+msgstr "Əla&və"
+
+#. i18n: ectx: property (text), widget (QCheckBox, checkBox_loadWebsite)
+#: src/ui/feedpropertieswidgetbase.ui:373
+#, kde-format
+msgid "Load the &full website when reading articles"
+msgstr "Məqalələr oxunan zaman bü&töv veb səhifəni yükləmək"
+
+#. i18n: ectx: property (text), widget (QCheckBox, checkBox_markRead)
+#: src/ui/feedpropertieswidgetbase.ui:380
+#, kde-format
+msgid "Mar&k articles as read when they arrive"
+msgstr "Məqalələr alındığı zaman onları oxunmuş &kimi işarələmək"
+
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:40
+#, kde-format
+msgid "Disable Introduction"
+msgstr "Girişi söndürmək"
+
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:58
+#, kde-format
+msgid "&Copy Email Address"
+msgstr "&E-Poçt Ünvanını Kopyalamaq"
+
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:67
+#, kde-format
+msgid "Address copied to clipboard."
+msgstr "Ünvan mübadilə yaddaşına kopyalandı."
+
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:98
+#, kde-format
+msgid "Mark Article as Read"
+msgstr "Məqalni oxunmuş kimi işarələmək"
+
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:100
+#, kde-format
+msgid "Mark Article as Unread"
+msgstr "Məqaləni oxunmamış kimi işarələmək"
+
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:102
+#, kde-format
+msgid "Change Important Flag"
+msgstr "Vaciblik işarəsini dəyişmək"
+
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:104
+#, kde-format
+msgid "Send the URL of the article"
+msgstr "Məqalənin URLnu göndərmək"
+
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:106
+#, kde-format
+msgid "Send the Html Page of Article"
+msgstr "Məqalənin HTML səhifəsini göndərmək"
+
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:108
+#, kde-format
+msgid "Open In External Browser"
+msgstr "Xarici bələdçidə açmaq"
+
+#: src/widgets/searchbar.cpp:40
+#, kde-format
+msgid "Search articles..."
+msgstr "Məqalələr axtarmaq..."
+
+#: src/widgets/searchbar.cpp:112
+#, kde-format
+msgid "Search articles...<%1>"
+msgstr "Məqalələr axtarmaq...<%1>"
+
+#: src/widgets/statussearchline.cpp:42
+#, kde-format
+msgid "All Articles"
+msgstr "Bütün məqalələr"
+
+#: src/widgets/statussearchline.cpp:43
+#, kde-format
+msgctxt "Unread articles filter"
+msgid "Unread"
+msgstr "Oxunmamış"
+
+#: src/widgets/statussearchline.cpp:44
+#, kde-format
+msgctxt "New articles filter"
+msgid "New"
+msgstr "Yeni"
+
+#: src/widgets/statussearchline.cpp:45
+#, kde-format
+msgctxt "Read articles filter"
+msgid "Read"
+msgstr "Oxumaq"
+
+#: src/widgets/statussearchline.cpp:46
+#, kde-format
+msgctxt "Important articles filter"
+msgid "Important"
+msgstr "Vacib"
+
+#~ msgid "Archive"
+#~ msgstr "Arxiv"
+
+#~ msgid "Archive backend:"
+#~ msgstr "Arxiv modulu:"
+
+#~ msgid "&Configure..."
+#~ msgstr "&Tənzimləmək..."
+
+#~ msgid "Metakit"
+#~ msgstr "Metakit"
+
+#~ msgid "Unable to load storage backend plugin \"%1\". No feeds are archived."
+#~ msgstr "\"%1\" yaddaş modulu qoşması yüklənə bilmədi. Lentlər arxivlənmir."
+
+#~ msgid "Plugin error"
+#~ msgstr "Qoşma xətası"
+
+#~ msgid "No Archive"
+#~ msgstr "Arxiv yoxdur"
+
+#~ msgctxt "Name of the plugin"
+#~ msgid "Name"
+#~ msgstr "Adı"
+
+#~ msgctxt "Library name"
+#~ msgid "Library"
+#~ msgstr "Kitabxana"
+
+#~ msgctxt "Plugin authors"
+#~ msgid "Authors"
+#~ msgstr "Müəlliflər:"
+
+#~ msgctxt "Plugin authors' emaila addresses"
+#~ msgid "Email"
+#~ msgstr "E-poçt"
+
+#~ msgctxt "Plugin version"
+#~ msgid "Version"
+#~ msgstr "Versiya"
+
+#~ msgctxt "Framework version plugin requires"
+#~ msgid "Framework Version"
+#~ msgstr "Framework versiyası"
+
+#~ msgid "Plugin Information"
+#~ msgstr "Qoşma Məlumatı"

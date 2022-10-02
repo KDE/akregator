@@ -1,0 +1,2949 @@
+# Translation for akregator.po to Euskara/Basque (eu).
+# Copyright (C) 2005-2022, This file is copyright:
+# This file is distributed under the same license as the akregator package.
+# KDE euskaratzeko proiektuko arduraduna <xalba@ni.eus>.
+#
+# Translators:
+# Ion Gaztañaga <ion_g_m@hotmail.com>, 2005.
+# Marcos  <marcos@euskalgnu.org>, 2005.
+# Ion Gaztañaga <igaztanaga@gmail.com>, 2005.
+# marcos <marcos@euskalgnu.org>, 2006.
+# Iñigo Salvador Azurmendi <xalba@ni.eus>, 2020, 2021, 2022.
+msgid ""
+msgstr ""
+"Project-Id-Version: akregator\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-09-30 00:45+0000\n"
+"PO-Revision-Date: 2022-07-15 14:19+0200\n"
+"Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
+"Language-Team: Basque <kde-i18n-eu@kde.org>\n"
+"Language: eu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 22.04.3\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Ion Gaztañaga, Marcos"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "igaztanaga@gmail.com, marcos@euskalgnu.org"
+
+#: src/about/introduction_akregator.html:18
+msgid ""
+"Feed readers provide a convenient way to browse different kinds of content, "
+"including news, blogs, and other content from online sites. Instead of "
+"checking all your favorite web sites manually for updates, Akregator "
+"collects the content for you."
+msgstr ""
+"Jario-irakurleek eduki mota ezberdinak arakatzeko era egoki bat ematen dute, "
+"albisteak, blogak eta lerroko lekuetako beste eduki batzuk barne. Zure "
+"gogoko webgune guztien eguneratzeak eskuz egiaztatu ordez, Akregator-rek "
+"edukiak zuretzat biltzen ditu."
+
+#: src/about/introduction_akregator.html:19
+msgid ""
+"For more information about using Akregator, check the <a href='https://"
+"kontact.kde.org/components/akregator/'>Akregator website</a>. If you do not "
+"want to see this page anymore, <a href='config:/disable_introduction'>click "
+"here</a>."
+msgstr ""
+"Akregator erabiltzearen gaineko informazio gehiagorako, begiratu <a "
+"href='https://kontact.kde.org/components/akregator/'>Akregator-ren webgunea</"
+"a>. Orri hau berriz ikusi nahi ez baduzu, <a href='config:/"
+"disable_introduction'>egin klik hemen</a>."
+
+#: src/about/introduction_akregator.html:20
+msgid "We hope that you will enjoy Akregator."
+msgstr "Akregator gozatuko duzula espero dugu."
+
+#: src/about/introduction_akregator.html:21
+msgid "Thank you, The Akregator Team"
+msgstr "Eskerrik asko, Akregator taldea"
+
+#: src/formatter/html/5.2/combinedview.html:71
+msgid "Mark as Read"
+msgstr "Markatu irakurritako gisa"
+
+#: src/formatter/html/5.2/combinedview.html:74
+msgid "Mark as Unread"
+msgstr "Markatu irakurri gabeko gisa"
+
+#: src/formatter/html/5.2/combinedview.html:78
+msgid "Remove Important Status"
+msgstr "Kendu «Garrantzizkoa» egoera"
+
+#: src/formatter/html/5.2/combinedview.html:80
+msgid "Mark as Important"
+msgstr "Markatu «Garrantzizkoa» gisa"
+
+#: src/formatter/html/5.2/combinedview.html:82
+msgid "Open Link in External Browser"
+msgstr "Ireki esteka kanpoko arakatzailean"
+
+#: src/formatter/html/5.2/combinedview.html:83
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:110
+#, kde-format
+msgid "Open In Background Tab"
+msgstr "Ireki atzeko planoko fitxan"
+
+#: src/formatter/html/5.2/combinedview.html:84
+msgid "Send File Address"
+msgstr "Bidali fitxategiaren helbidea"
+
+#: src/formatter/html/5.2/combinedview.html:85
+msgid "Send Link Address"
+msgstr "Bidali estekaren helbidea"
+
+#: src/formatter/html/5.2/combinedview.html:86 src/mainwidget.cpp:1063
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:96
+#, kde-format
+msgid "Delete Article"
+msgstr "Ezabatu artikulua"
+
+#: src/formatter/html/5.2/normalview.html:51
+msgid ""
+"<b>Note:</b> For security reasons, external reference is blocked (See "
+"configure dialog)."
+msgstr ""
+"<b>Oharra:</b> Segurtasun arrazoiengatik, kanpoko erreferentzia blokeatu "
+"egiten da (begiratu konfiguratzeko elkarrizketa-koadroa)."
+
+#: configuration/akregator_config_advanced.cpp:30
+#, kde-format
+msgid "Advanced Feed Reader Settings"
+msgstr "Jario-irakurlearen ezarpen aurreratuak"
+
+#: configuration/akregator_config_advanced.cpp:34
+#: configuration/akregator_config_appearance.cpp:49
+#: configuration/akregator_config_archive.cpp:47
+#: configuration/akregator_config_browser.cpp:39
+#: configuration/akregator_config_general.cpp:42
+#, kde-format
+msgid "(c), 2004 - 2008 Frank Osterfeld"
+msgstr "(c), 2004 - 2008 Frank Osterfeld"
+
+#: configuration/akregator_config_advanced.cpp:36
+#: configuration/akregator_config_appearance.cpp:51
+#: configuration/akregator_config_archive.cpp:49
+#: configuration/akregator_config_browser.cpp:41
+#: configuration/akregator_config_general.cpp:44 src/aboutdata.cpp:28
+#, kde-format
+msgid "Frank Osterfeld"
+msgstr "Frank Osterfeld"
+
+#: configuration/akregator_config_appearance.cpp:45
+#, kde-format
+msgid "Configure Feed Reader Appearance"
+msgstr "Konfiguratu jario-irakurlearen itxura"
+
+#: configuration/akregator_config_archive.cpp:33
+#, kde-format
+msgctxt "Limit feed archive size to:"
+msgid " article"
+msgid_plural " articles"
+msgstr[0] " artikulu"
+msgstr[1] " artikulu"
+
+#: configuration/akregator_config_archive.cpp:34
+#, kde-format
+msgctxt "Delete articles older than:"
+msgid " day"
+msgid_plural " days"
+msgstr[0] " egun"
+msgstr[1] " egun"
+
+#: configuration/akregator_config_archive.cpp:43
+#, kde-format
+msgid "Configure Feed Reader Archive"
+msgstr "Konfiguratu jario-irakurlearen artxibatzea"
+
+#: configuration/akregator_config_browser.cpp:35
+#, kde-format
+msgid "Configure Feed Reader Browser"
+msgstr "Konfiguratu jario-irakurlearen arakatzailea"
+
+#: configuration/akregator_config_general.cpp:33
+#, kde-format
+msgid " minute"
+msgid_plural " minutes"
+msgstr[0] " minutu"
+msgstr[1] " minutu"
+
+#: configuration/akregator_config_general.cpp:38
+#, kde-format
+msgid "Configure Feeds"
+msgstr "Konfiguratu jarioak"
+
+#: configuration/akregator_config_plugins.cpp:27
+#: configuration/akregator_config_security.cpp:29
+#, kde-format
+msgid "Configure Plugins"
+msgstr "Konfiguratu pluginak"
+
+#: configuration/akregator_config_plugins.cpp:31
+#, kde-format
+msgid "(c), 2016-2021 Laurent Montel"
+msgstr "(c), 2016-2021 Laurent Montel"
+
+#: configuration/akregator_config_plugins.cpp:33
+#: configuration/akregator_config_security.cpp:35
+#: configuration/akregator_config_userfeedback.cpp:34 src/aboutdata.cpp:27
+#, kde-format
+msgid "Laurent Montel"
+msgstr "Laurent Montel"
+
+#: configuration/akregator_config_security.cpp:33
+#, kde-format
+msgid "(c), 2021 Laurent Montel"
+msgstr "(c), 2021 Laurent Montel"
+
+#: configuration/akregator_config_userfeedback.cpp:28
+#, kde-format
+msgid "Configure User Feedback"
+msgstr "Konfiguratu erabiltzaileen erreakzioa"
+
+#: configuration/akregator_config_userfeedback.cpp:32
+#, kde-format
+msgid "(c), 2020-2021 Laurent Montel"
+msgstr "(c), 2020-2021 Laurent Montel"
+
+#: configuration/akregatorconfigurepluginlistwidget.cpp:51
+#, kde-format
+msgid "Webengine Plugins"
+msgstr "Web-motorraren pluginak"
+
+#: configuration/settings_advanced.cpp:27
+#, kde-format
+msgctxt "Mark selected article read after"
+msgid " second"
+msgid_plural " seconds"
+msgstr[0] " segundo"
+msgstr[1] " segundo"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#: configuration/ui/settings_advancedbase.ui:30
+#, kde-format
+msgid "Article List"
+msgstr "Artikuluen zerrenda"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_UseMarkReadDelay)
+#: configuration/ui/settings_advancedbase.ui:38
+#, kde-format
+msgid "Mar&k selected article read after"
+msgstr "Mar&katu hautatutako artikulua irakurritako gisa ... ondoren"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_ResetQuickFilterOnNodeChange)
+#: configuration/ui/settings_advancedbase.ui:73
+#, kde-format
+msgid "Reset search bar when changing feeds"
+msgstr "Berrezarri bilaketa-barra jarioak aldatzean"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_3)
+#: configuration/ui/settings_appearance.ui:30
+#, kde-format
+msgid "Article List Colors"
+msgstr "Artikulu-zerrendaren koloreak"
+
+#. i18n: ectx: property (text), widget (QLabel, lbl_unreadArticles)
+#: configuration/ui/settings_appearance.ui:53
+#, kde-format
+msgid "Unread articles:"
+msgstr "Irakurri gabeko artikuluak:"
+
+#. i18n: ectx: property (text), widget (QLabel, lbl_newArticles)
+#: configuration/ui/settings_appearance.ui:76
+#, kde-format
+msgid "New articles:"
+msgstr "Artikulu berriak:"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_UseCustomColors)
+#: configuration/ui/settings_appearance.ui:98
+#, kde-format
+msgid "Use custom colors"
+msgstr "Erabili norberak finkatutako koloreak"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
+#: configuration/ui/settings_appearance.ui:121
+#, kde-format
+msgid "Font Size"
+msgstr "Letra-tipoen neurria"
+
+#. i18n: ectx: property (text), widget (QLabel, lbl_MinimumFontSize)
+#: configuration/ui/settings_appearance.ui:127
+#, kde-format
+msgid "Minimum font size:"
+msgstr "Letra-tipoaren neurri minimoa:"
+
+#. i18n: ectx: property (text), widget (QLabel, lbl_MediumFontSize)
+#: configuration/ui/settings_appearance.ui:176
+#, kde-format
+msgid "Medium font size:"
+msgstr "Letra-tipoaren neurri ertaina:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#: configuration/ui/settings_appearance.ui:228
+#, kde-format
+msgid "Fonts"
+msgstr "Letra-tipoak"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel1)
+#: configuration/ui/settings_appearance.ui:234
+#, kde-format
+msgid "Standard font:"
+msgstr "Letra-tipo estandarra:"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel2_2)
+#: configuration/ui/settings_appearance.ui:244
+#, kde-format
+msgid "Fixed font:"
+msgstr "Letra-tipo finkoa:"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel3)
+#: configuration/ui/settings_appearance.ui:254
+#, kde-format
+msgid "Serif font:"
+msgstr "Serif letra-tipoa:"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel4)
+#: configuration/ui/settings_appearance.ui:264
+#, kde-format
+msgid "Sans serif font:"
+msgstr "Sans serif letra-tipoa:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#: configuration/ui/settings_archive.ui:30
+#, kde-format
+msgid "Default Archive Settings"
+msgstr "Artxiboen ezarpen lehenetsiak"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rb_DisableArchiving)
+#: configuration/ui/settings_archive.ui:36
+#, kde-format
+msgid "Disa&ble archiving"
+msgstr "E&zgaitu artxibatzea"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rb_KeepAllArticles)
+#. i18n: ectx: property (text), widget (QRadioButton, rb_keepAllArticles)
+#: configuration/ui/settings_archive.ui:43
+#: src/ui/feedpropertieswidgetbase.ui:332
+#, kde-format
+msgid "&Keep all articles"
+msgstr "&Mantendu artikulu guztiak"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rb_LimitArticleNumber)
+#: configuration/ui/settings_archive.ui:64
+#, kde-format
+msgid "Limit feed archi&ve size to:"
+msgstr "Mugatu jario-artxi&boak neurri honetara:"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rb_LimitArticleAge)
+#: configuration/ui/settings_archive.ui:100
+#, kde-format
+msgid "Delete articles older than: "
+msgstr "Ezabatu hau baina zaharragoak diren artikuluak: "
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_DoNotExpireImportantArticles)
+#: configuration/ui/settings_archive.ui:138
+#, kde-format
+msgid "Do not expire important articles"
+msgstr "Ez iraungi garrantzizko artikuluak"
+
+#. i18n: ectx: property (text), widget (QLabel, LMBlabel)
+#: configuration/ui/settings_browser.ui:20
+#, kde-format
+msgid "Left mouse click:"
+msgstr "Ezker-botoiaren klik:"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, kcfg_LMBBehaviour)
+#. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
+#: configuration/ui/settings_browser.ui:28
+#: configuration/ui/settings_browser.ui:54
+#: src/actions/actionmanagerimpl.cpp:323
+#, kde-format
+msgid "Open in Tab"
+msgstr "Ireki fitxan"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, kcfg_LMBBehaviour)
+#. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
+#: configuration/ui/settings_browser.ui:33
+#: configuration/ui/settings_browser.ui:59
+#: src/actions/actionmanagerimpl.cpp:329
+#, kde-format
+msgid "Open in Background Tab"
+msgstr "Ireki atzeko planoko fitxan"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, kcfg_LMBBehaviour)
+#. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
+#: configuration/ui/settings_browser.ui:38
+#: configuration/ui/settings_browser.ui:64
+#: src/actions/actionmanagerimpl.cpp:335
+#, kde-format
+msgid "Open in External Browser"
+msgstr "Ireki kanpoko arakatzailean"
+
+#. i18n: ectx: property (text), widget (QLabel, MMBlabel)
+#: configuration/ui/settings_browser.ui:46
+#, kde-format
+msgid "Middle mouse click:"
+msgstr "Erdiko botoiaren klik:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, externalBrowserGroupBox)
+#: configuration/ui/settings_browser.ui:74
+#, kde-format
+msgid "External Browsing"
+msgstr "Kanpo-arakatzea"
+
+#. i18n: ectx: property (text), widget (QLineEdit, kcfg_ExternalBrowserCustomCommand)
+#: configuration/ui/settings_browser.ui:83
+#, no-c-format, kde-format
+msgid "firefox %u"
+msgstr "firefox %u"
+
+#. i18n: ectx: property (text), widget (QRadioButton, kcfg_ExternalBrowserUseCustomCommand)
+#: configuration/ui/settings_browser.ui:90
+#, kde-format
+msgid "Use &this command:"
+msgstr "Erabili komando &hau:"
+
+#. i18n: ectx: property (text), widget (QRadioButton, kcfg_ExternalBrowserUseKdeDefault)
+#: configuration/ui/settings_browser.ui:97
+#, kde-format
+msgid "Use default web &browser"
+msgstr "Erabili web-ara&katzaile lehenetsia"
+
+#. i18n: ectx: property (title), widget (QGroupBox, tabsGroupBox)
+#: configuration/ui/settings_browser.ui:110
+#, kde-format
+msgid "Tabs"
+msgstr "Fitxak"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_AlwaysShowTabBar)
+#. i18n: ectx: label, entry, group (Browser)
+#: configuration/ui/settings_browser.ui:116 interfaces/akregator.kcfg:202
+#, kde-format
+msgid "Always show the tab bar"
+msgstr "Beti erakutsi fitxa-barra"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_CloseButtonOnTabs)
+#: configuration/ui/settings_browser.ui:123
+#, kde-format
+msgid "Show close button on each tab"
+msgstr "Erakutsi ixteko botoia fitxa guztietan"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_NewWindowInTab)
+#. i18n: ectx: label, entry, group (Browser)
+#: configuration/ui/settings_browser.ui:130 interfaces/akregator.kcfg:212
+#, kde-format
+msgid "Open links in new tab instead of in new window"
+msgstr "Ireki estekak fitxa berrian, leiho berrian egin beharrean"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#: configuration/ui/settings_browser.ui:140
+#, kde-format
+msgid "Security"
+msgstr "Segurtasuna"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_CheckPhishingUrl)
+#: configuration/ui/settings_browser.ui:146
+#, kde-format
+msgid "Verify URLs using Google's Safe Browsing API"
+msgstr "Egiaztatu URLak Google-ren arakatze segurua APIa erabiliz"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_EnableJavascript)
+#. i18n: ectx: label, entry, group (Browser)
+#: configuration/ui/settings_browser.ui:153 interfaces/akregator.kcfg:198
+#, kde-format
+msgid "Enable Javascript"
+msgstr "Gaitu JavaScript"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
+#: configuration/ui/settings_browser.ui:163
+#, kde-format
+msgid "Misc"
+msgstr "Hainbat"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_AccessKeyEnabled)
+#: configuration/ui/settings_browser.ui:169
+#, kde-format
+msgid "Access Key Enabled"
+msgstr "Sartzeko gakoa gaituta"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_3)
+#: configuration/ui/settings_general.ui:30
+#, kde-format
+msgctxt "global settings"
+msgid "Global"
+msgstr "Globala"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_ShowTrayIcon)
+#: configuration/ui/settings_general.ui:36
+#, kde-format
+msgid "Show tra&y icon"
+msgstr "Erakutsi erre&tiluko ikonoa"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_ShowUnreadInTaskbar)
+#: configuration/ui/settings_general.ui:43
+#, kde-format
+msgid "Show unread articles in Taskbar"
+msgstr "Erakutsi irakurri gabeko artikuluak ataza-barran"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_HideReadFeeds)
+#. i18n: ectx: label, entry, group (View)
+#: configuration/ui/settings_general.ui:50 interfaces/akregator.kcfg:9
+#, kde-format
+msgid "Hide feeds with no unread articles"
+msgstr "Ezkutatu irakurri gabeko artikulurik ez duten jarioak"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_LockFeedsInPlace)
+#: configuration/ui/settings_general.ui:57
+#, kde-format
+msgid "Lock feeds in place"
+msgstr "Giltzatu jarioak bere lekuan"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_AutoExpandFolders)
+#. i18n: ectx: whatsthis, entry, group (View)
+#: configuration/ui/settings_general.ui:64 interfaces/akregator.kcfg:27
+#, kde-format
+msgid "Auto-expand folders containing unread articles"
+msgstr "Automatikoki zabaldu irakurri gabeko artikuluak dituzten karpetak"
+
+#. i18n: ectx: property (whatsThis), widget (QCheckBox, kcfg_UseNotifications)
+#: configuration/ui/settings_general.ui:74
+#, kde-format
+msgid "Select this if you want to get notified when there are new articles."
+msgstr "Hautatu hau artikulu berriak daudenean jakinarazpenak jasotzeko."
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_UseNotifications)
+#: configuration/ui/settings_general.ui:77
+#, kde-format
+msgid "Use &notifications for all feeds"
+msgstr "Erabili &jakinarazpenak jario guztietarako"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_DisableSaveAsNotification)
+#: configuration/ui/settings_general.ui:84
+#, kde-format
+msgid "Disable save as finished notification"
+msgstr "Ezgaitu gorde amaitutako jakinarazpen gisa"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_UseIntervalFetch)
+#: configuration/ui/settings_general.ui:91
+#, kde-format
+msgid "&Use interval fetching"
+msgstr "&Erabili tarteka ekartzea"
+
+#. i18n: ectx: property (text), widget (QLabel, autoFetchIntervalLabel)
+#: configuration/ui/settings_general.ui:119
+#, kde-format
+msgid "Fetch feeds every:"
+msgstr "Ekarri jarioak hainbestero:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
+#: configuration/ui/settings_general.ui:160
+#, kde-format
+msgid "Startup"
+msgstr "Abioa"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_MarkAllFeedsReadOnStartup)
+#: configuration/ui/settings_general.ui:166
+#, kde-format
+msgid "Mark &all feeds as read on startup"
+msgstr "Markatu jario &guztiak irakurritako gisa abioan"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_FetchOnStartup)
+#: configuration/ui/settings_general.ui:173
+#, kde-format
+msgid "Fetch all fee&ds on startup"
+msgstr "Ekarri &jario guztiak abioan"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#: configuration/ui/settings_general.ui:183
+#, kde-format
+msgid "Network"
+msgstr "Sarea"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_UseHTMLCache)
+#: configuration/ui/settings_general.ui:189
+#, kde-format
+msgid "Use the &browser cache (less network traffic)"
+msgstr "Erabili &arakatzailearen cachea (sareko trafiko gutxiago)"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_LoadExternalReferences)
+#: configuration/ui/settings_security.ui:17
+#, kde-format
+msgid "Allow feed to load external references from internet."
+msgstr "Baimendu jarioak kanpoko erreferentziak Internetetik zama ditzan."
+
+#: export/akregatorstorageexporter.cpp:280
+#, kde-format
+msgid "Akregator Export for %1"
+msgstr "Akregator esportatzea -> %1"
+
+#. i18n: ectx: whatsthis, entry, group (View)
+#: interfaces/akregator.kcfg:10
+#, kde-format
+msgid "Hides feeds with no unread articles"
+msgstr "Irakurri gabeko artikulurik ez duten jarioak ezkutatzen ditu"
+
+#. i18n: ectx: label, entry, group (View)
+#: interfaces/akregator.kcfg:21
+#, kde-format
+msgid "Prevent feeds from being moved in the list"
+msgstr "Eragotzi jarioak zerrendan mugitzea"
+
+#. i18n: ectx: whatsthis, entry, group (View)
+#: interfaces/akregator.kcfg:22
+#, kde-format
+msgid "Locks feeds where they are"
+msgstr "Giltzatu jarioak dauden lekuan"
+
+#. i18n: ectx: label, entry, group (View)
+#: interfaces/akregator.kcfg:26
+#, kde-format
+msgid "Auto-Expand folders with unread articles"
+msgstr "Automatikoki zabaldu irakurri gabeko artikuluak dituzten karpetak"
+
+#. i18n: ectx: label, entry, group (View)
+#: interfaces/akregator.kcfg:31 src/actions/actionmanagerimpl.cpp:317
+#, kde-format
+msgid "Show Quick Filter"
+msgstr "Erakutsi iragazki bizkorra"
+
+#. i18n: ectx: whatsthis, entry, group (View)
+#: interfaces/akregator.kcfg:32
+#, kde-format
+msgid "Show Quick Filter Bar"
+msgstr "Erakutsi iragazki bizkorren barra"
+
+#. i18n: ectx: label, entry, group (View)
+#: interfaces/akregator.kcfg:36
+#, kde-format
+msgid "Status Filter"
+msgstr "Egoera-iragazkia"
+
+#. i18n: ectx: whatsthis, entry, group (View)
+#: interfaces/akregator.kcfg:37
+#, kde-format
+msgid "Stores the last status filter setting"
+msgstr "Azken egoera-iragazkiaren ezarpena gordetzen du"
+
+#. i18n: ectx: label, entry, group (View)
+#: interfaces/akregator.kcfg:41
+#, kde-format
+msgid "Text Filter"
+msgstr "Testu-iragazkia"
+
+#. i18n: ectx: whatsthis, entry, group (View)
+#: interfaces/akregator.kcfg:42
+#, kde-format
+msgid "Stores the last search line text"
+msgstr "Azken bilaketa lerroko testua gordetzen du"
+
+#. i18n: ectx: label, entry, group (View)
+#: interfaces/akregator.kcfg:45
+#, kde-format
+msgid "View Mode"
+msgstr "Ikuspegi modua"
+
+#. i18n: ectx: whatsthis, entry, group (View)
+#: interfaces/akregator.kcfg:46
+#, kde-format
+msgid "Article display mode."
+msgstr "Artikuluak azaltzeko modua."
+
+#. i18n: ectx: label, entry, group (View)
+#: interfaces/akregator.kcfg:50
+#, kde-format
+msgid "Sizes for first splitter"
+msgstr "Lehenengo zatitzailearen neurriak"
+
+#. i18n: ectx: whatsthis, entry, group (View)
+#: interfaces/akregator.kcfg:51
+#, kde-format
+msgid "First (usually vertical) splitter widget sizes."
+msgstr "Lehenengo (normalean bertikala) trepeta-zatitzailearen neurriak."
+
+#. i18n: ectx: label, entry, group (View)
+#: interfaces/akregator.kcfg:55
+#, kde-format
+msgid "Sizes for second splitter"
+msgstr "Bigarren zatitzailearen neurriak"
+
+#. i18n: ectx: whatsthis, entry, group (View)
+#: interfaces/akregator.kcfg:56
+#, kde-format
+msgid "Second (usually horizontal) splitter widget sizes."
+msgstr "Bigarren (normalean horizontala) trepeta-zatitzailearen neurriak."
+
+#. i18n: ectx: label, entry, group (Archive)
+#: interfaces/akregator.kcfg:100
+#, kde-format
+msgid "Archive Mode"
+msgstr "Artxibatzeko modua"
+
+#. i18n: ectx: label, entry, group (Archive)
+#: interfaces/akregator.kcfg:104
+#, kde-format
+msgid "Keep All Articles"
+msgstr "Mantendu artikulu guztiak"
+
+#. i18n: ectx: whatsthis, entry, group (Archive)
+#: interfaces/akregator.kcfg:105
+#, kde-format
+msgid "Save an unlimited number of articles."
+msgstr "Gorde artikulu kopuru mugagabea."
+
+#. i18n: ectx: label, entry, group (Archive)
+#: interfaces/akregator.kcfg:108
+#, kde-format
+msgid "Limit Number of Articles"
+msgstr "Mugatu artikulu kopurua"
+
+#. i18n: ectx: whatsthis, entry, group (Archive)
+#: interfaces/akregator.kcfg:109
+#, kde-format
+msgid "Limit the number of articles in a feed"
+msgstr "Mugatu jario bateko artikulu kopurua"
+
+#. i18n: ectx: label, entry, group (Archive)
+#: interfaces/akregator.kcfg:112
+#, kde-format
+msgid "Delete Expired Articles"
+msgstr "Ezabatu iraungitako artikuluak"
+
+#. i18n: ectx: whatsthis, entry, group (Archive)
+#: interfaces/akregator.kcfg:113
+#, kde-format
+msgid "Delete expired articles"
+msgstr "Ezabatu iraungitako artikuluak"
+
+#. i18n: ectx: label, entry, group (Archive)
+#: interfaces/akregator.kcfg:116
+#, kde-format
+msgid "Disable Archiving"
+msgstr "Ezgaitu artxibatzea"
+
+#. i18n: ectx: whatsthis, entry, group (Archive)
+#: interfaces/akregator.kcfg:117
+#, kde-format
+msgid "Do not save any articles"
+msgstr "Ez gorde artikulurik"
+
+#. i18n: ectx: label, entry, group (Archive)
+#: interfaces/akregator.kcfg:122
+#, kde-format
+msgid "Expiry Age"
+msgstr "Iraungitze-antzinatasuna"
+
+#. i18n: ectx: whatsthis, entry, group (Archive)
+#: interfaces/akregator.kcfg:123
+#, kde-format
+msgid "Default expiry age for articles in days."
+msgstr "Artikuluen iraungitze-antzinatasun lehenetsia, egunetan."
+
+#. i18n: ectx: label, entry, group (Archive)
+#: interfaces/akregator.kcfg:127
+#, kde-format
+msgid "Article Limit"
+msgstr "Artikulu-muga"
+
+#. i18n: ectx: whatsthis, entry, group (Archive)
+#: interfaces/akregator.kcfg:128
+#, kde-format
+msgid "Number of articles to keep per feed."
+msgstr "Jarioko gorde beharreko artikulu kopurua."
+
+#. i18n: ectx: label, entry, group (Archive)
+#: interfaces/akregator.kcfg:132
+#, kde-format
+msgid "Do Not Expire Important Articles"
+msgstr "Ez iraungi garrantzizko artikuluak"
+
+#. i18n: ectx: whatsthis, entry, group (Archive)
+#: interfaces/akregator.kcfg:133
+#, kde-format
+msgid ""
+"When this option is enabled, articles you marked as important will not be "
+"removed when limit the archive size by either age or number of the articles."
+msgstr ""
+"Aukera hau gaitzen denean, garrantzizko gisa markatu dituzun artikuluak ez "
+"dira kenduko artxiboaren tamainaren muga antzinatasunagatik edo artikulu "
+"kopuruagatik mugatzean."
+
+#. i18n: ectx: label, entry, group (Network)
+#: interfaces/akregator.kcfg:139
+#, kde-format
+msgid "Concurrent Fetches"
+msgstr "Aldibereko eskuratzeak"
+
+#. i18n: ectx: whatsthis, entry, group (Network)
+#: interfaces/akregator.kcfg:140
+#, kde-format
+msgid "Number of concurrent fetches"
+msgstr "Aldibereko eskuratze kopurua"
+
+#. i18n: ectx: label, entry, group (Network)
+#: interfaces/akregator.kcfg:144
+#, kde-format
+msgid "Use HTML Cache"
+msgstr "Erabili HTML Cachea"
+
+#. i18n: ectx: whatsthis, entry, group (Network)
+#: interfaces/akregator.kcfg:145
+#, kde-format
+msgid ""
+"Use the KDE-wide HTML cache settings when downloading feeds, to avoid "
+"unnecessary traffic. Disable only when necessary."
+msgstr ""
+"Erabili KDE mailako HTML cache ezarpenak jarioak zama-jaistean, "
+"beharrezkoaez den trafikoa saihesteko. Beharrezkoa denean bakarrik ezgaitu."
+
+#. i18n: ectx: whatsthis, entry, group (Network)
+#: interfaces/akregator.kcfg:149
+#, kde-format
+msgid ""
+"This option allows user to specify custom user-agent string instead of using "
+"the default one. This is here because some proxies may interrupt the "
+"connection because of having \"gator\" in the name."
+msgstr ""
+"Aukera honek, erabiltzaileari, erabiltzaile-agente kate lehenetsiaren ordez "
+"berak nahi duena zehazteko aukera ematen dio. Hau hemen dago, ordezkari "
+"batzuek konexioa eten dezaketelako izenean «gator» izateagatik."
+
+#. i18n: ectx: label, entry, group (General)
+#: interfaces/akregator.kcfg:155
+#, kde-format
+msgid "Fetch on startup"
+msgstr "Ekarri abioan"
+
+#. i18n: ectx: whatsthis, entry, group (General)
+#: interfaces/akregator.kcfg:156
+#, kde-format
+msgid "Fetch feedlist on startup."
+msgstr "Ekarri jario-zerrenda abioan."
+
+#. i18n: ectx: label, entry, group (General)
+#: interfaces/akregator.kcfg:160
+#, kde-format
+msgid "Mark all feeds as read on startup"
+msgstr "Markatu jario guztiak irakurritako gisa abioan"
+
+#. i18n: ectx: whatsthis, entry, group (General)
+#: interfaces/akregator.kcfg:161
+#, kde-format
+msgid "Mark all feeds as read on startup."
+msgstr "Markatu jario guztiak irakurritako gisa abioan."
+
+#. i18n: ectx: label, entry, group (General)
+#: interfaces/akregator.kcfg:165
+#, kde-format
+msgid "Use interval fetching"
+msgstr "Erabili tarteka ekartzea"
+
+#. i18n: ectx: whatsthis, entry, group (General)
+#: interfaces/akregator.kcfg:166
+#, no-c-format, kde-format
+msgid "Fetch all feeds every %1 minutes."
+msgstr "Eskuratu jario guztiak %1 minutuero."
+
+#. i18n: ectx: label, entry, group (General)
+#: interfaces/akregator.kcfg:170
+#, kde-format
+msgid "Interval for autofetching"
+msgstr "Automatikoki ekartzeko tartea"
+
+#. i18n: ectx: whatsthis, entry, group (General)
+#: interfaces/akregator.kcfg:171
+#, kde-format
+msgid "Interval for autofetching in minutes."
+msgstr "Automatikoki ekartzeko tartea, minututan."
+
+#. i18n: ectx: label, entry, group (General)
+#: interfaces/akregator.kcfg:175
+#, kde-format
+msgid "Use notifications"
+msgstr "Erabili jakinarazpenak"
+
+#. i18n: ectx: whatsthis, entry, group (General)
+#: interfaces/akregator.kcfg:176
+#, kde-format
+msgid "Specifies if the balloon notifications are used or not."
+msgstr "Globo-jakinarazpenak erabiliko diren zehazten du."
+
+#. i18n: ectx: label, entry, group (General)
+#: interfaces/akregator.kcfg:180
+#, kde-format
+msgid "Show tray icon"
+msgstr "Erakutsi erretiluko ikonoa"
+
+#. i18n: ectx: whatsthis, entry, group (General)
+#: interfaces/akregator.kcfg:181
+#, kde-format
+msgid "Specifies if the tray icon is shown or not."
+msgstr "Erretiluko ikonoa erakusten den zehazten du."
+
+#. i18n: ectx: label, entry, group (General)
+#: interfaces/akregator.kcfg:185
+#, kde-format
+msgid "Show Unread In Taskbar"
+msgstr "Erakutsi irakurri gabekoak ataza-barran"
+
+#. i18n: ectx: whatsthis, entry, group (General)
+#: interfaces/akregator.kcfg:186
+#, kde-format
+msgid "Specifies if we show unread article in taskbar."
+msgstr "Ataza-barran irakurri gabeko artikuluak erakusten diren zehazten du."
+
+#. i18n: ectx: whatsthis, entry, group (Browser)
+#: interfaces/akregator.kcfg:203
+#, kde-format
+msgid "Always show the tab bar, even when only one tab is open"
+msgstr "Erakutsi beti fitxa-barra, fitxa bakarra irekita dagoenean ere"
+
+#. i18n: ectx: label, entry, group (Browser)
+#: interfaces/akregator.kcfg:207
+#, kde-format
+msgid "Show close buttons on tabs"
+msgstr "Erakutsi fitxetan ixteko botoiak"
+
+#. i18n: ectx: whatsthis, entry, group (Browser)
+#: interfaces/akregator.kcfg:208
+#, kde-format
+msgid "Show close buttons on tabs instead of icons"
+msgstr "Fitxetan ikonoen ordez ixteko botoiak erakutsi"
+
+#. i18n: ectx: whatsthis, entry, group (Browser)
+#: interfaces/akregator.kcfg:213
+#, kde-format
+msgid ""
+"Open a link which would normally open in a new window (external browser) in "
+"a new tab instead"
+msgstr ""
+"Ireki, normalean leiho berri batean irekiko litzatekeen esteka bat (kanpoko "
+"arakatzailea), fitxa berri batean"
+
+#. i18n: ectx: label, entry, group (Browser)
+#: interfaces/akregator.kcfg:217
+#, kde-format
+msgid "Use default KDE web browser"
+msgstr "Erabili KDEren web arakatzaile lehenetsia"
+
+#. i18n: ectx: whatsthis, entry, group (Browser)
+#: interfaces/akregator.kcfg:218
+#, kde-format
+msgid "Use KDE web browser when opening in external browser."
+msgstr "Erabili KDEren web arakatzailea kanpoko arakatzailean irekitzean."
+
+#. i18n: ectx: label, entry, group (Browser)
+#: interfaces/akregator.kcfg:222
+#, kde-format
+msgid "Use this command:"
+msgstr "Erabili komando hau:"
+
+#. i18n: ectx: whatsthis, entry, group (Browser)
+#: interfaces/akregator.kcfg:223
+#, kde-format
+msgid "Use the specified command when opening in external browser."
+msgstr "Erabili zehaztutako komandoa kanpoko arakatzailean irekitzean."
+
+#. i18n: ectx: whatsthis, entry, group (Browser)
+#: interfaces/akregator.kcfg:227
+#, no-c-format, kde-format
+msgid "Command to launch external browser. URL will substitute for %u."
+msgstr ""
+"Kanpoko arakatzailea abiarazteko agindua. URLa %u kateak ordezkatuko du."
+
+#. i18n: ectx: whatsthis, entry, group (Browser)
+#: interfaces/akregator.kcfg:231
+#, kde-format
+msgid "What the click with left mouse button should do."
+msgstr "Saguaren ezker botoiaren klik batek zer egin beharko lukeen."
+
+#. i18n: ectx: whatsthis, entry, group (Browser)
+#: interfaces/akregator.kcfg:240
+#, kde-format
+msgid "What the click with middle mouse button should do."
+msgstr "Saguaren erdiko botoiaren klik batek zer egin beharko lukeen."
+
+#. i18n: ectx: label, entry, group (Advanced)
+#: interfaces/akregator.kcfg:265
+#, kde-format
+msgid "Archive Backend"
+msgstr "Artxibatzeko bizkarraldekoa"
+
+#. i18n: ectx: whatsthis, entry (UseMarkReadDelay), group (Advanced)
+#: interfaces/akregator.kcfg:269
+#, kde-format
+msgid "Whether to delay before marking an article as read upon selecting it."
+msgstr ""
+"Artikulu bat hautatzean irakurritako gisa markatzeko atzerapenik egon behar "
+"den."
+
+#. i18n: ectx: whatsthis, entry (MarkReadDelay), group (Advanced)
+#: interfaces/akregator.kcfg:273
+#, kde-format
+msgid ""
+"Configurable delay between selecting an article and it being marked as read."
+msgstr ""
+"Artikulu bat hautatu, eta hura irakurritako gisa markatu arteko atzerapen "
+"konfiguragarria."
+
+#. i18n: ectx: whatsthis, entry, group (Advanced)
+#: interfaces/akregator.kcfg:277
+#, kde-format
+msgid "Resets the quick filter when changing feeds."
+msgstr "Jarioak aldatzean iragazki bizkorra berrezartzen du."
+
+#: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
+#: src/akregator_part.cpp:146
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:148
+#: src/trayicon.cpp:41 src/trayicon.cpp:42 src/trayicon.cpp:54
+#, kde-format
+msgid "Akregator"
+msgstr "Akregator"
+
+#: kontactplugin/akregator_plugin.cpp:29
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "New Feed..."
+msgstr "Jario berria..."
+
+#: kontactplugin/akregator_plugin.cpp:32
+#, kde-format
+msgctxt "@info:status"
+msgid "Create a new feed"
+msgstr "Sortu jario berri bat"
+
+#: kontactplugin/akregator_plugin.cpp:33
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid "You will be presented with a dialog where you can add a new feed."
+msgstr ""
+"Jario berri bat gehitzeko aukera ematen duen elkarrizketa-koadro bat "
+"aurkeztuko zaizu."
+
+#: src/aboutdata.cpp:21
+#, kde-format
+msgid "A KDE Feed Reader"
+msgstr "Jarioak irakurtzeko KDEren aplikazio bat"
+
+#: src/aboutdata.cpp:23
+#, kde-format
+msgid "Copyright © 2004–%1 Akregator authors"
+msgstr "Copyright © 2004–%1 Akregator egileek"
+
+#: src/aboutdata.cpp:27
+#, kde-format
+msgid "Maintainer"
+msgstr "Mantentzailea"
+
+#: src/aboutdata.cpp:28
+#, kde-format
+msgid "Former maintainer"
+msgstr "Aurreko mantentzailea"
+
+#: src/aboutdata.cpp:29
+#, kde-format
+msgid "Teemu Rytilahti"
+msgstr "Teemu Rytilahti"
+
+#: src/aboutdata.cpp:29 src/aboutdata.cpp:30 src/aboutdata.cpp:31
+#: src/aboutdata.cpp:32
+#, kde-format
+msgid "Developer"
+msgstr "Garatzailea"
+
+#: src/aboutdata.cpp:30
+#, kde-format
+msgid "Sashmit Bhaduri"
+msgstr "Sashmit Bhaduri"
+
+#: src/aboutdata.cpp:31
+#, kde-format
+msgid "Pierre Habouzit"
+msgstr "Pierre Habouzit"
+
+#: src/aboutdata.cpp:32
+#, kde-format
+msgid "Stanislav Karchebny"
+msgstr "Stanislav Karchebny"
+
+#: src/aboutdata.cpp:33
+#, kde-format
+msgid "Gary Cramblitt"
+msgstr "Gary Cramblitt"
+
+#: src/aboutdata.cpp:33 src/aboutdata.cpp:34 src/aboutdata.cpp:35
+#, kde-format
+msgid "Contributor"
+msgstr "Kolaboratzailea"
+
+#: src/aboutdata.cpp:34
+#, kde-format
+msgid "Stephan Binner"
+msgstr "Stephan Binner"
+
+#: src/aboutdata.cpp:35
+#, kde-format
+msgid "Christof Musik"
+msgstr "Christof Musik"
+
+#: src/aboutdata.cpp:36
+#, kde-format
+msgid "Anne-Marie Mahfouf"
+msgstr "Anne-Marie Mahfouf"
+
+#: src/aboutdata.cpp:36
+#, kde-format
+msgid "Handbook"
+msgstr "Eskuliburua"
+
+#: src/aboutdata.cpp:37
+#, kde-format
+msgid "Frerich Raabe"
+msgstr "Frerich Raabe"
+
+#: src/aboutdata.cpp:37
+#, kde-format
+msgid "Author of librss"
+msgstr "«librss»ren egilea"
+
+#: src/aboutdata.cpp:38
+#, kde-format
+msgid "Eckhart Woerner"
+msgstr "Eckhart Woerner"
+
+#: src/aboutdata.cpp:38
+#, kde-format
+msgid "Bug tracker management, Usability improvements"
+msgstr "Akatsen jarraipenaren kudeaketa, erabilgarritasun hobekuntzak"
+
+#: src/aboutdata.cpp:39
+#, kde-format
+msgid "Heinrich Wendel"
+msgstr "Heinrich Wendel"
+
+#: src/aboutdata.cpp:39
+#, kde-format
+msgid "Tons of bug fixes"
+msgstr "Akats-konponketa mordoa"
+
+#: src/aboutdata.cpp:40
+#, kde-format
+msgid "Eike Hein"
+msgstr "Eike Hein"
+
+#: src/aboutdata.cpp:40
+#, kde-format
+msgid "'Delayed mark as read' feature"
+msgstr "«Irakurritako gisa markatzea atzeratuta» ezaugarria"
+
+#: src/aboutdata.cpp:41
+#, kde-format
+msgid "Marcel Dierkes"
+msgstr "Marcel Dierkes"
+
+#: src/aboutdata.cpp:41
+#, kde-format
+msgid "Icons"
+msgstr "Ikonoak"
+
+#: src/aboutdata.cpp:42
+#, kde-format
+msgid "George Staikos"
+msgstr "George Staikos"
+
+#: src/aboutdata.cpp:42
+#, kde-format
+msgid "Insomnia"
+msgstr "Insomnia"
+
+#: src/aboutdata.cpp:43
+#, kde-format
+msgid "Philipp Droessler"
+msgstr "Philipp Droessler"
+
+#: src/aboutdata.cpp:43
+#, kde-format
+msgid "Gentoo Ebuild"
+msgstr "Gentoo Ebuild"
+
+#: src/actions/actionmanagerimpl.cpp:63 src/actions/actionmanagerimpl.cpp:286
+#, kde-format
+msgid "&Fetch Feed"
+msgstr "E&karri jarioa"
+
+#: src/actions/actionmanagerimpl.cpp:64 src/actions/actionmanagerimpl.cpp:242
+#, kde-format
+msgid "&Delete Feed"
+msgstr "E&zabatu jarioa"
+
+#: src/actions/actionmanagerimpl.cpp:65 src/actions/actionmanagerimpl.cpp:248
+#, kde-format
+msgid "&Edit Feed..."
+msgstr "&Editatu jarioa..."
+
+#: src/actions/actionmanagerimpl.cpp:66 src/actions/actionmanagerimpl.cpp:305
+#, kde-format
+msgid "&Mark Feed as Read"
+msgstr "&Markatu jarioa irakurritako gisa"
+
+#: src/actions/actionmanagerimpl.cpp:82
+#, kde-format
+msgid "&Fetch Feeds"
+msgstr "E&karri jarioak"
+
+#: src/actions/actionmanagerimpl.cpp:83
+#, kde-format
+msgid "&Delete Folder"
+msgstr "&Ezabatu karpeta"
+
+#: src/actions/actionmanagerimpl.cpp:84
+#, kde-format
+msgid "&Rename Folder"
+msgstr "Be&rrizendatu karpeta"
+
+#: src/actions/actionmanagerimpl.cpp:85
+#, kde-format
+msgid "&Mark Feeds as Read"
+msgstr "&Markatu jarioak irakurritako gisa"
+
+#: src/actions/actionmanagerimpl.cpp:190
+#, kde-format
+msgid "&Import Feeds..."
+msgstr "&Inportatu jarioak..."
+
+#: src/actions/actionmanagerimpl.cpp:194
+#, kde-format
+msgid "&Export Feeds..."
+msgstr "&Esportatu jarioak..."
+
+#: src/actions/actionmanagerimpl.cpp:199
+#, kde-format
+msgid "&Configure Akregator..."
+msgstr "&Konfiguratu Akregator..."
+
+#: src/actions/actionmanagerimpl.cpp:218
+#, kde-format
+msgid "&Open Homepage"
+msgstr "&Ireki orri nagusia"
+
+#: src/actions/actionmanagerimpl.cpp:224
+#, kde-format
+msgid "Reload All Tabs"
+msgstr "Birzamatu fitxa guztiak"
+
+#: src/actions/actionmanagerimpl.cpp:230
+#, kde-format
+msgid "&Add Feed..."
+msgstr "&Gehitu jarioa..."
+
+#: src/actions/actionmanagerimpl.cpp:236
+#, kde-format
+msgid "Ne&w Folder..."
+msgstr "Karpeta &berria..."
+
+#: src/actions/actionmanagerimpl.cpp:261
+#, kde-format
+msgid "&Normal View"
+msgstr "Ikuspegi &normala"
+
+#: src/actions/actionmanagerimpl.cpp:270
+#, kde-format
+msgid "&Widescreen View"
+msgstr "Ikuspegi &panoramikoa"
+
+#: src/actions/actionmanagerimpl.cpp:279
+#, kde-format
+msgid "C&ombined View"
+msgstr "Ikuspegi k&onbinatua"
+
+#: src/actions/actionmanagerimpl.cpp:292
+#, kde-format
+msgid "Fe&tch All Feeds"
+msgstr "E&karri jario guztiak"
+
+#: src/actions/actionmanagerimpl.cpp:298
+#, kde-format
+msgid "C&ancel Feed Fetches"
+msgstr "&Utzi jarioak ekartzeari"
+
+#: src/actions/actionmanagerimpl.cpp:311
+#, kde-format
+msgid "Ma&rk All Feeds as Read"
+msgstr "Ma&rkatu jarioa guztiak irakurritako gisa"
+
+#: src/actions/actionmanagerimpl.cpp:340 src/actions/actionmanagerimpl.cpp:608
+#, kde-format
+msgid "Copy Link Address"
+msgstr "Kopiatu estekaren helbidea"
+
+#: src/actions/actionmanagerimpl.cpp:345
+#, kde-format
+msgid "Pre&vious Unread Article"
+msgstr "Irakurri gabeko au&rreko artikulua"
+
+#: src/actions/actionmanagerimpl.cpp:351
+#, kde-format
+msgid "Ne&xt Unread Article"
+msgstr "Irakurri gabeko &hurrengo artikulua"
+
+#: src/actions/actionmanagerimpl.cpp:359
+#, kde-format
+msgid "&Delete"
+msgstr "&Ezabatu"
+
+#: src/actions/actionmanagerimpl.cpp:364
+#, kde-format
+msgid "&Mark As"
+msgstr "&Markatu honela"
+
+#: src/actions/actionmanagerimpl.cpp:368
+#, kde-format
+msgctxt "as in: mark as read"
+msgid "&Read"
+msgstr "&Irakurritakoa"
+
+#: src/actions/actionmanagerimpl.cpp:370
+#, kde-format
+msgid "Mark selected article as read"
+msgstr "Markatu hautatutako artikulua irakurritako gisa"
+
+#: src/actions/actionmanagerimpl.cpp:376
+#, kde-format
+msgctxt "as in: mark as new"
+msgid "&New"
+msgstr "&Berria"
+
+#: src/actions/actionmanagerimpl.cpp:379
+#, kde-format
+msgid "Mark selected article as new"
+msgstr "Markatu hautatutako artikulua berri gisa"
+
+#: src/actions/actionmanagerimpl.cpp:384
+#, kde-format
+msgctxt "as in: mark as unread"
+msgid "&Unread"
+msgstr "Irakurri &gabea"
+
+#: src/actions/actionmanagerimpl.cpp:386
+#, kde-format
+msgid "Mark selected article as unread"
+msgstr "Markatu hautatutako artikulua irakurri gabeko gisa"
+
+#: src/actions/actionmanagerimpl.cpp:392
+#, kde-format
+msgid "&Mark as Important"
+msgstr "&Markatu «Garrantzizkoa» gisa"
+
+#: src/actions/actionmanagerimpl.cpp:396
+#, kde-format
+msgid "Remove &Important Mark"
+msgstr "Kendu «&Garrantzizkoa» marka"
+
+#: src/actions/actionmanagerimpl.cpp:400
+#, kde-format
+msgid "Move Node Up"
+msgstr "Mugitu nodoa gorantz"
+
+#: src/actions/actionmanagerimpl.cpp:405
+#, kde-format
+msgid "Move Node Down"
+msgstr "Mugitu nodoa beherantz"
+
+#: src/actions/actionmanagerimpl.cpp:410
+#, kde-format
+msgid "Move Node Left"
+msgstr "Mugitu nodoa ezkerrera"
+
+#: src/actions/actionmanagerimpl.cpp:415
+#, kde-format
+msgid "Move Node Right"
+msgstr "Mugitu nodoa eskuinera"
+
+#: src/actions/actionmanagerimpl.cpp:421
+#, kde-format
+msgid "Send &Link Address..."
+msgstr "Bidali e&stekaren helbidea..."
+
+#: src/actions/actionmanagerimpl.cpp:426
+#, kde-format
+msgid "Send &File..."
+msgstr "Bidali &fitxategia..."
+
+#: src/actions/actionmanagerimpl.cpp:432
+#, kde-format
+msgid "Set Focus to Quick Search"
+msgstr "Ezarri fokua bilaketa bizkorrean"
+
+#: src/actions/actionmanagerimpl.cpp:464
+#, kde-format
+msgid "&Previous Article"
+msgstr "&Aurreko artikulua"
+
+#: src/actions/actionmanagerimpl.cpp:468
+#, kde-format
+msgid "&Next Article"
+msgstr "&Hurrengo artikulua"
+
+#: src/actions/actionmanagerimpl.cpp:484
+#, kde-format
+msgid "&Previous Feed"
+msgstr "&Aurreko jarioa"
+
+#: src/actions/actionmanagerimpl.cpp:489
+#, kde-format
+msgid "&Next Feed"
+msgstr "&Hurrengo jarioa"
+
+#: src/actions/actionmanagerimpl.cpp:495
+#, kde-format
+msgid "N&ext Unread Feed"
+msgstr "Irakurri gabeko &hurrengo jarioa"
+
+#: src/actions/actionmanagerimpl.cpp:501
+#, kde-format
+msgid "Prev&ious Unread Feed"
+msgstr "Aurre&ko irakurri gabeko jarioa"
+
+#: src/actions/actionmanagerimpl.cpp:506
+#, kde-format
+msgid "Go to Top of Tree"
+msgstr "Joan zuhaitzaren gailurrera"
+
+#: src/actions/actionmanagerimpl.cpp:511
+#, kde-format
+msgid "Go to Bottom of Tree"
+msgstr "Joan zuhaitzaren beheko aldera"
+
+#: src/actions/actionmanagerimpl.cpp:516
+#, kde-format
+msgid "Go Left in Tree"
+msgstr "Joan zuhaitzaren ezkerrera"
+
+#: src/actions/actionmanagerimpl.cpp:521
+#, kde-format
+msgid "Go Right in Tree"
+msgstr "Joan zuhaitzaren eskuinera"
+
+#: src/actions/actionmanagerimpl.cpp:526
+#, kde-format
+msgid "Go Up in Tree"
+msgstr "Joan zuhaitzean gora"
+
+#: src/actions/actionmanagerimpl.cpp:531
+#, kde-format
+msgid "Go Down in Tree"
+msgstr "Joan zuhaitzean behera"
+
+#: src/actions/actionmanagerimpl.cpp:537
+#, kde-format
+msgid "Hide Read Feeds"
+msgstr "Ezkutatu irakurritako jarioak"
+
+#: src/actions/actionmanagerimpl.cpp:543
+#, kde-format
+msgid "Lock Feeds In Place"
+msgstr "Giltzatu jarioak bere lekuan"
+
+#: src/actions/actionmanagerimpl.cpp:549
+#, kde-format
+msgid "Auto-expand folders with unread articles"
+msgstr "Automatikoki zabaldu irakurri gabeko artikuluak dituzten karpetak"
+
+#: src/actions/actionmanagerimpl.cpp:565
+#, kde-format
+msgid "Select Next Tab"
+msgstr "Hautatu hurrengo fitxa"
+
+#: src/actions/actionmanagerimpl.cpp:570
+#, kde-format
+msgid "Select Previous Tab"
+msgstr "Hautatu aurreko fitxa"
+
+#: src/actions/actionmanagerimpl.cpp:576
+#, kde-format
+msgid "Detach Tab"
+msgstr "Bereizi fitxa"
+
+#: src/actions/actionmanagerimpl.cpp:590
+#, kde-format
+msgid "Mute"
+msgstr "Isildu"
+
+#: src/actions/actionmanagerimpl.cpp:594
+#, kde-format
+msgid "Unmute"
+msgstr "Soinua egin"
+
+#: src/actions/actionmanagerimpl.cpp:597
+#, kde-format
+msgid "Speak Text"
+msgstr "Esan testua"
+
+#: src/actions/actionmanagerimpl.cpp:602
+#, kde-format
+msgid "&Find in Message..."
+msgstr "&Bilatu mezuan..."
+
+#: src/actions/actionmanagerimpl.cpp:613
+#, kde-format
+msgid "Close Tab"
+msgstr "Itxi fitxa"
+
+#: src/actions/actionmanagerimpl.cpp:626
+#, kde-format
+msgid "Activate Tab %1"
+msgstr "Aktibatu %1 fitxa"
+
+#: src/actions/actionmanagerimpl.cpp:632
+#, kde-format
+msgid "&Save Link As..."
+msgstr "&Gorde esteka honela..."
+
+#: src/actions/actionmanagerimpl.cpp:636
+#, kde-format
+msgid "Copy &Link Address"
+msgstr "Kopiatu es&tekaren helbidea"
+
+#: src/actions/actionmanagerimpl.cpp:639
+#, kde-format
+msgid "Copy Image Location"
+msgstr "Kopiatu irudiaren kokalekua"
+
+#: src/actions/actionmanagerimpl.cpp:646
+#, kde-format
+msgid "Save Image On Disk..."
+msgstr "Gorde irudia diskoan..."
+
+#: src/actions/actions.cpp:19
+#, kde-format
+msgid "Open Link in New &Tab"
+msgstr "Ireki esteka &fitxa berrian"
+
+#: src/actions/actions.cpp:26
+#, kde-format
+msgid "Open Link in External &Browser"
+msgstr "Ireki esteka kanpoko &arakatzailean"
+
+#: src/addfeeddialog.cpp:49
+#, kde-format
+msgctxt "@title:window"
+msgid "Add Feed"
+msgstr "Gehitu jarioa"
+
+#: src/addfeeddialog.cpp:99
+#, kde-format
+msgid "Downloading %1"
+msgstr "%1 zama-jaisten"
+
+#: src/addfeeddialog.cpp:115
+#, kde-format
+msgid "Feed not found from %1."
+msgstr "%1(e)ko jarioa ez da aurkitu."
+
+#: src/addfeeddialog.cpp:121
+#, kde-format
+msgid "Feed found, downloading..."
+msgstr "Jarioa aurkitu da, zama-jaisten..."
+
+#: src/akregator_options.h:20 src/akregator_options.h:28
+#, kde-format
+msgid "Add a feed with the given URL"
+msgstr "Gehitu emandako URLko jarioa"
+
+#: src/akregator_options.h:23
+#, kde-format
+msgid "When adding feeds, place them in this group"
+msgstr "Jarioak gehitzean, ipin itzazu talde honetan"
+
+#: src/akregator_options.h:25
+#, kde-format
+msgid "Hide main window on startup"
+msgstr "Ezkutatu leiho nagusia abiaraztean"
+
+#: src/akregator_options.h:30
+#, kde-format
+msgid "Lists the available options for user feedback"
+msgstr "Zerrendatu erabiltzaileen erreakzioetarako aukera erabilgarriak"
+
+#: src/akregator_part.cpp:84
+#, kde-format
+msgid "Feeds"
+msgstr "Jarioak"
+
+#: src/akregator_part.cpp:95
+#, kde-format
+msgid "KDE Dot News"
+msgstr "KDE Dot News"
+
+#: src/akregator_part.cpp:100
+#, kde-format
+msgid "Linux.com"
+msgstr "Linux.com"
+
+#: src/akregator_part.cpp:105
+#, kde-format
+msgid "Planet KDE"
+msgstr "Planet KDE"
+
+#: src/akregator_part.cpp:110
+#, kde-format
+msgid "KDE Apps"
+msgstr "KDE Apps"
+
+#: src/akregator_part.cpp:116
+#, kde-format
+msgid "Spanish feeds"
+msgstr "Espainiako jarioak"
+
+#: src/akregator_part.cpp:120
+#, kde-format
+msgid "Planet KDE España"
+msgstr "Planet KDE Espainia"
+
+#: src/akregator_part.cpp:440
+#, kde-format
+msgid ""
+"Access denied: Cannot save feed list to <b>%1</b>. Please check your "
+"permissions."
+msgstr ""
+"Sarbidea ukatuta: Jario-zerrenda ezin da <b>%1</b>(e)an gorde. Mesedez, "
+"egiaztatu zure baimenak."
+
+#: src/akregator_part.cpp:441 src/akregator_part.cpp:492
+#, kde-format
+msgid "Write Error"
+msgstr "Idazteko errorea"
+
+#: src/akregator_part.cpp:477
+#, kde-format
+msgid "Could not import the file %1 (no valid OPML)"
+msgstr "Ezin izan da %1 fitxategia inportatu (OPML baliogabea)"
+
+#: src/akregator_part.cpp:477 src/command/loadfeedlistcommand.cpp:71
+#, kde-format
+msgid "OPML Parsing Error"
+msgstr "OPML analisi errorea"
+
+#: src/akregator_part.cpp:481
+#, kde-format
+msgid ""
+"The file %1 could not be read, check if it exists or if it is readable for "
+"the current user."
+msgstr ""
+"Ezin izan da %1 fitxategia irakurri, egiaztatu existitzen den edo uneko "
+"erabiltzaileentzat irakurgarria den."
+
+#: src/akregator_part.cpp:482 src/command/loadfeedlistcommand.cpp:142
+#, kde-format
+msgid "Read Error"
+msgstr "Irakurtzeko errorea"
+
+#: src/akregator_part.cpp:492
+#, kde-format
+msgid "Access denied: cannot write to file %1. Please check your permissions."
+msgstr ""
+"Sarbidea ukatuta: ezin da %1 fitxategian idatzi. Mesedez, egiaztatu zure "
+"baimenak."
+
+#: src/akregator_part.cpp:507 src/akregator_part.cpp:516
+#, kde-format
+msgid "OPML Outlines (%1);;All Files (*)"
+msgstr "OPML gidalerroak (%1);;Fitxategi guztiak (*)"
+
+#: src/akregator_part.cpp:650
+#, kde-format
+msgid "Imported Folder"
+msgstr "Inportatutako karpeta"
+
+#: src/articlejobs.cpp:184
+#, kde-format
+msgid "The feed to be listed was already removed."
+msgstr "Zerrendatu beharreko jarioa dagoeneko kendu da."
+
+#: src/articlelistview.cpp:156 src/subscription/subscriptionlistview.cpp:180
+#, kde-format
+msgid "Columns"
+msgstr "Zutabeak"
+
+#: src/articlelistview.cpp:214
+#, kde-format
+msgid "No result found"
+msgstr "Ez da emaitzarik aurkitu"
+
+#: src/articlelistview.cpp:375
+#, kde-format
+msgid ""
+"<h2>Article list</h2>Here you can browse articles from the currently "
+"selected feed. You can also manage articles, as marking them as persistent "
+"(\"Mark as Important\") or delete them, using the right mouse button menu. "
+"To view the web page of the article, you can open the article internally in "
+"a tab or in an external browser window."
+msgstr ""
+"<h2>Artikulu zerrenda</h2>Hemen, une bakoitzean hautatuta dagoen jarioko "
+"artikuluak araka ditzakezu. Artikuluak kudeatzeko aukera ere baduzu, "
+"iraunkor gisa («Markatu garrantzizko gisa») markatuz edo, saguaren eskuin "
+"botoiko menua erabiliz, haiek ezabatu. Artikuluaren web-orria ikusteko, hura "
+"barnean, fitxa batean edo kanpoko arakatzaile batean ireki dezakezu."
+
+#: src/articlemodel.cpp:74
+#, kde-format
+msgctxt "Articlelist's column header"
+msgid "Title"
+msgstr "Titulua"
+
+#: src/articlemodel.cpp:76
+#, kde-format
+msgctxt "Articlelist's column header"
+msgid "Feed"
+msgstr "Jarioa"
+
+#: src/articlemodel.cpp:78
+#, kde-format
+msgctxt "Articlelist's column header"
+msgid "Date"
+msgstr "Data"
+
+#: src/articlemodel.cpp:80
+#, kde-format
+msgctxt "Articlelist's column header"
+msgid "Author"
+msgstr "Egilea"
+
+#: src/articlemodel.cpp:82
+#, kde-format
+msgctxt "Articlelist's column header"
+msgid "Description"
+msgstr "Deskribapena"
+
+#: src/articlemodel.cpp:84
+#, kde-format
+msgctxt "Articlelist's column header"
+msgid "Content"
+msgstr "Edukia"
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:149
+#, kde-format
+msgid "Akregator is a KDE news feed reader."
+msgstr "Akregator albiste-jarioak irakurtzeko KDEren aplikazioa da."
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:190
+#, kde-format
+msgctxt "@title:window"
+msgid "Save As"
+msgstr "Gorde honela"
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:382
+#, kde-format
+msgid "Disable"
+msgstr "Ezgaitu"
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:384
+#, kde-format
+msgid "Keep Enabled"
+msgstr "Mantendu gaituta"
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:386
+#, kde-format
+msgid "Are you sure you want to disable this introduction page?"
+msgstr "Ziur zaude sarrerako orri hau ezgaitu nahi duzula?"
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:387
+#, kde-format
+msgid "Disable Introduction Page"
+msgstr "Ezgaitu sarrerako orria"
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:422
+#, kde-format
+msgid "This web site is a malware, do you want to continue to show it?"
+msgstr ""
+"Webgune hau, malwarea, software gaiztoa da, erakusten jarraitzea nahi duzu?"
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:423
+#, kde-format
+msgid "Malware"
+msgstr "Software gaiztoa"
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:435
+#, kde-format
+msgid "The network is broken."
+msgstr "Sarea etenda dago."
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:435
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:438
+#, kde-format
+msgid "Check Phishing Url"
+msgstr "Egiaztatu «phishing»erako URLak"
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:438
+#, kde-format
+msgid "The url %1 is not valid."
+msgstr "%1 URLak ez du balio."
+
+#: src/articleviewer-ng/webengine/articleviewerwebenginewidgetng.cpp:137
+#, kde-format
+msgctxt "@title:window"
+msgid "Print Document"
+msgstr "Inprimatu dokumentua"
+
+#: src/command/createfoldercommand.cpp:47
+#, kde-format
+msgid "Add Folder"
+msgstr "Gehitu karpeta"
+
+#: src/command/createfoldercommand.cpp:47
+#, kde-format
+msgid "Folder name:"
+msgstr "Karpetaren izena:"
+
+#: src/command/deletesubscriptioncommand.cpp:39
+#, kde-format
+msgid ""
+"<qt>Are you sure you want to delete this folder and its feeds and subfolders?"
+"</qt>"
+msgstr ""
+"<qt>Ziur zaude karpeta hau eta bere jario eta azpi-karpetak ezabatu nahi "
+"dituzula?</qt>"
+
+#: src/command/deletesubscriptioncommand.cpp:40
+#, kde-format
+msgid ""
+"<qt>Are you sure you want to delete folder <b>%1</b> and its feeds and "
+"subfolders?</qt>"
+msgstr ""
+"<qt>Ziur zaude <b>%1</b> karpeta eta bere jario eta azpi-karpetak ezabatu "
+"nahi dituzula?</qt>"
+
+#: src/command/deletesubscriptioncommand.cpp:44
+#, kde-format
+msgid "Delete Folder"
+msgstr "Ezabatu karpeta"
+
+#: src/command/deletesubscriptioncommand.cpp:61
+#, kde-format
+msgid "<qt>Are you sure you want to delete this feed?</qt>"
+msgstr "<qt>Ziur zaude jario hau ezabatu nahi duzula?</qt>"
+
+#: src/command/deletesubscriptioncommand.cpp:63
+#, kde-format
+msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
+msgstr "<qt>Ziur zaude <b>%1</b> jarioa ezabatu nahi duzula?</qt>"
+
+#: src/command/deletesubscriptioncommand.cpp:68
+#, kde-format
+msgid "Delete Feed"
+msgstr "Ezabatu jarioa"
+
+#: src/command/importfeedlistcommand.cpp:48
+#, kde-format
+msgid "Imported Feeds"
+msgstr "Inportatutako jarioak"
+
+#: src/command/importfeedlistcommand.cpp:77
+#, kde-format
+msgid "Add Imported Folder"
+msgstr "Gehitu inportatutako karpeta"
+
+#: src/command/importfeedlistcommand.cpp:78
+#, kde-format
+msgid "Imported folder name:"
+msgstr "Inportatutako karpetaren izena:"
+
+#: src/command/loadfeedlistcommand.cpp:63
+#, kde-format
+msgid ""
+"<qt>The standard feed list is corrupted (invalid OPML). A backup was created:"
+"<p><b>%1</b></p></qt>"
+msgstr ""
+"<qt>Jario-zerrenda estandarra hondatuta dago (OPML baliogabea). Babes-kopia "
+"bat sortu da:<p><b>%1</b></p></qt>"
+
+#: src/command/loadfeedlistcommand.cpp:67
+#, kde-format
+msgid ""
+"<qt>The standard feed list is corrupted (invalid OPML). Could not create a "
+"backup.</qt>"
+msgstr ""
+"<qt>Jario-zerrenda estandarra hondatuta dago (OPML baliogabea). Ezin izan da "
+"babes-kopiarik sortu.</qt>"
+
+#: src/command/loadfeedlistcommand.cpp:129
+#, kde-format
+msgid "Opening Feed List..."
+msgstr "Jario-zerrenda irekitzen..."
+
+#: src/command/loadfeedlistcommand.cpp:142
+#, kde-format
+msgid "<qt>Could not open feed list (%1) for reading.</qt>"
+msgstr "<qt>Ezin izan da jario-zerrenda (%1) irakurtzeko ireki.</qt>"
+
+#: src/command/loadfeedlistcommand.cpp:155
+#, kde-format
+msgctxt "error message window caption"
+msgid "XML Parsing Error"
+msgstr "XML analisi errorea"
+
+#: src/command/loadfeedlistcommand.cpp:157
+#, kde-kuit-format
+msgid "<qt><p>XML parsing error in line %1, column %2 of %3:</p><p>%4</p></qt>"
+msgstr ""
+"<qt><p>XML analisi errorea %1 lerroan, %2/%3 zutabean:</p><p>%4</p></qt>"
+
+#: src/command/loadfeedlistcommand.cpp:164
+#, kde-format
+msgid ""
+"<qt>The standard feed list is corrupted (invalid XML). A backup was created:"
+"<p><b>%1</b></p></qt>"
+msgstr ""
+"<qt>Jario-zerrenda estandarra hondatuta dago (XML baliogabea). Babes-kopia "
+"bat sortu da:<p><b>%1</b></p></qt>"
+
+#: src/command/loadfeedlistcommand.cpp:168
+#, kde-format
+msgid ""
+"<qt>The standard feed list is corrupted (invalid XML). Could not create a "
+"backup.</qt>"
+msgstr ""
+"<qt>Jario-zerrenda estandarra hondatuta dago (XML baliogabea). Ezin izan da "
+"babes-kopiarik sortu:</qt>"
+
+#: src/crashwidget/crashwidget.cpp:21
+#, kde-format
+msgid ""
+"Akregator did not close correctly. Would you like to restore the previous "
+"session?"
+msgstr "Akregator ez da era egokian itxi. Aurreko saioa lehengoratu nahi duzu?"
+
+#: src/crashwidget/crashwidget.cpp:37
+#, kde-format
+msgid "Restore Session"
+msgstr "Lehengoratu saioa"
+
+#: src/crashwidget/crashwidget.cpp:43
+#, kde-format
+msgid "Do Not Restore Session"
+msgstr "Saioa ez lehengoratu"
+
+#: src/crashwidget/crashwidget.cpp:49
+#, kde-format
+msgid "Ask me later"
+msgstr "Galdetu beranduago"
+
+#. i18n: ectx: Menu (edit)
+#: src/data/akregator_part.rc:14 src/data/akregator_shell.rc:11
+#, kde-format
+msgid "&Edit"
+msgstr "&Editatu"
+
+#. i18n: ectx: Menu (view)
+#: src/data/akregator_part.rc:21 src/data/akregator_shell.rc:16
+#, kde-format
+msgid "&View"
+msgstr "&Ikuspegia"
+
+#. i18n: ectx: Menu (go)
+#: src/data/akregator_part.rc:36 src/data/akregator_shell.rc:24
+#, kde-format
+msgid "&Go"
+msgstr "&Joan"
+
+#. i18n: ectx: Menu (feed)
+#: src/data/akregator_part.rc:49 src/data/akregator_shell.rc:29
+#, kde-format
+msgid "Fee&d"
+msgstr "&Jarioa"
+
+#. i18n: ectx: Menu (article)
+#: src/data/akregator_part.rc:62 src/data/akregator_shell.rc:34
+#, kde-format
+msgid "&Article"
+msgstr "&Artikulua"
+
+#. i18n: ectx: Menu (settings)
+#: src/data/akregator_part.rc:79 src/data/akregator_shell.rc:39
+#, kde-format
+msgid "&Settings"
+msgstr "E&zarpenak"
+
+#. i18n: ectx: ToolBar (mainToolBar)
+#: src/data/akregator_part.rc:92 src/data/akregator_shell.rc:54
+#, kde-format
+msgid "Main Toolbar"
+msgstr "Tresna-barra nagusia"
+
+#. i18n: ectx: Menu (file)
+#: src/data/akregator_shell.rc:4
+#, kde-format
+msgid "&File"
+msgstr "&Fitxategia"
+
+#: src/feed/feedlist.cpp:160
+#, kde-format
+msgid "All Feeds"
+msgstr "Jario guztiak"
+
+#: src/feed/feedpropertiesdialog.cpp:45 src/feed/feedpropertiesdialog.cpp:77
+#, kde-format
+msgid "Minute"
+msgid_plural "Minutes"
+msgstr[0] "Minutu"
+msgstr[1] "Minutu"
+
+#: src/feed/feedpropertiesdialog.cpp:46 src/feed/feedpropertiesdialog.cpp:78
+#, kde-format
+msgid "Hour"
+msgid_plural "Hours"
+msgstr[0] "Ordu"
+msgstr[1] "Ordu"
+
+#: src/feed/feedpropertiesdialog.cpp:47 src/feed/feedpropertiesdialog.cpp:79
+#, kde-format
+msgid "Day"
+msgid_plural "Days"
+msgstr[0] "Egun"
+msgstr[1] "Egun"
+
+#: src/feed/feedpropertiesdialog.cpp:60 src/feed/feedpropertiesdialog.cpp:112
+#, kde-format
+msgctxt "@title:window"
+msgid "Feed Properties"
+msgstr "Jarioaren propietateak"
+
+#: src/feed/feedpropertiesdialog.cpp:80
+#, kde-format
+msgctxt "never fetch new articles"
+msgid "Never"
+msgstr "Inoiz ez"
+
+#: src/feed/feedpropertiesdialog.cpp:81
+#, kde-format
+msgid " day"
+msgid_plural " days"
+msgstr[0] " egun"
+msgstr[1] " egun"
+
+#: src/feed/feedpropertiesdialog.cpp:82
+#, kde-format
+msgid " article"
+msgid_plural " articles"
+msgstr[0] " artikulu"
+msgstr[1] " artikulu"
+
+#: src/feed/feedpropertiesdialog.cpp:112
+#, kde-format
+msgctxt "@title:window"
+msgid "Properties of %1"
+msgstr "%1(r)en propietateak"
+
+#: src/formatter/articleformatter.cpp:36
+#, kde-format
+msgid "(%1, %2)"
+msgstr "(%1, %2)"
+
+#: src/formatter/grantleeviewformatter.cpp:58
+#: src/formatter/grantleeviewformatter.cpp:109
+#, kde-format
+msgid " (no unread articles)"
+msgstr " (ez dago irakurri gabeko artikulurik)"
+
+#: src/formatter/grantleeviewformatter.cpp:60
+#: src/formatter/grantleeviewformatter.cpp:111
+#, kde-format
+msgid " (1 unread article)"
+msgid_plural " (%1 unread articles)"
+msgstr[0] " (irakurri gabeko artikulu 1)"
+msgstr[1] " (irakurri gabeko %1 artikulu)"
+
+#: src/formatter/grantleeviewformatter.cpp:75
+#, kde-format
+msgid "<b>Description:</b> %1<br />"
+msgstr "<b>Deskribapena:</b> %1<br />"
+
+#: src/formatter/grantleeviewformatter.cpp:82
+#, kde-format
+msgid "<b>Homepage:</b> <a href=\"%1\">%1</a>"
+msgstr "<b>Orri nagusia:</b> <a href=\"%1\">%1</a>"
+
+#: src/formatter/grantleeviewformatter.cpp:89
+#, kde-format
+msgid "<b>Copyright:</b> %1</a>"
+msgstr "<b>Copyright:</b> %1</a>"
+
+#: src/formatter/grantleeviewformatter.cpp:141
+#, kde-format
+msgid "Date"
+msgstr "Data"
+
+#: src/formatter/grantleeviewformatter.cpp:142
+#, kde-format
+msgid "Comment"
+msgstr "Iruzkina"
+
+#: src/formatter/grantleeviewformatter.cpp:143
+#, kde-format
+msgid "Complete Story"
+msgstr "Kontu osoa"
+
+#: src/formatter/grantleeviewformatter.cpp:144
+#, kde-format
+msgid "Author"
+msgstr "Egilea"
+
+#: src/formatter/grantleeviewformatter.cpp:145
+#, kde-format
+msgid "Enclosure"
+msgstr "Eranskina"
+
+#: src/frame/frame.cpp:21
+#, kde-format
+msgid "Untitled"
+msgstr "Titulu gabea"
+
+#: src/frame/frame.cpp:141
+#, kde-format
+msgid "Loading..."
+msgstr "Zamatzen..."
+
+#: src/frame/frame.cpp:157
+#, kde-format
+msgid "Loading canceled"
+msgstr "Zamatzea ezeztatuta"
+
+#: src/frame/frame.cpp:169
+#, kde-format
+msgid "Loading completed"
+msgstr "Zamatzea burututa"
+
+#: src/mainwidget.cpp:144
+#, kde-format
+msgid "You can view multiple articles in several open tabs."
+msgstr "Artikulu anizkoitzak ikus ditzakezu irekitako hainbat fitxetan."
+
+#: src/mainwidget.cpp:148
+#, kde-format
+msgid "Articles list."
+msgstr "Artikuluen zerrenda."
+
+#: src/mainwidget.cpp:210 src/mainwidget.cpp:635
+#, kde-format
+msgid "Articles"
+msgstr "Artikuluak"
+
+#: src/mainwidget.cpp:239
+#, kde-format
+msgid "About"
+msgstr "Honi buruz"
+
+#: src/mainwidget.cpp:765
+#, kde-format
+msgid ""
+"<qt>Are you sure you want to mark <b>all articles in the feed</b> as read?</"
+"qt>"
+msgstr ""
+"<qt>Ziur zaude <b>jarioko artikulu guztiak</b> irakurritako gisa markatu "
+"nahi dituzula?</qt>"
+
+#: src/mainwidget.cpp:766
+#, kde-format
+msgid "Mark Feed as Read"
+msgstr "Markatu jarioa irakurritako gisa"
+
+#: src/mainwidget.cpp:769
+#, kde-format
+msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
+msgstr ""
+"<qt>Ziur zaude <b>jario guztiak</b> irakurritako gisa markatu nahi dituzula?"
+"</qt>"
+
+#: src/mainwidget.cpp:771
+#, kde-format
+msgid ""
+"<qt>Are you sure you want to mark <b>all feeds in the folder</b> as read?</"
+"qt>"
+msgstr ""
+"<qt>Ziur zaude <b>karpetako jario guztiak</b> irakurritako gisa markatu nahi "
+"dituzula?</qt>"
+
+#: src/mainwidget.cpp:773
+#, kde-format
+msgid "Mark Feeds as Read"
+msgstr "Markatu jarioak irakurritako gisa"
+
+#: src/mainwidget.cpp:837 src/mainwidget.cpp:846 src/mainwidget.cpp:1248
+#, kde-format
+msgid "Networking is not available."
+msgstr "Sarea ez dago erabilgarri."
+
+#: src/mainwidget.cpp:854
+#, kde-format
+msgid "Fetching Feeds..."
+msgstr "Jarioak ekartzen..."
+
+#: src/mainwidget.cpp:1053
+#, kde-format
+msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
+msgstr "<qt>Ziur zaude <b>%1</b> artikulua ezabatu nahi duzula?</qt>"
+
+#: src/mainwidget.cpp:1056
+#, kde-format
+msgid "<qt>Are you sure you want to delete the selected article?</qt>"
+msgid_plural ""
+"<qt>Are you sure you want to delete the %1 selected articles?</qt>"
+msgstr[0] "<qt>Ziur zaude hautatutako artikulua ezabatu nahi duzula?</qt>"
+msgstr[1] ""
+"<qt>Ziur zaude hautatutako %1 artikuluak ezabatu nahi dituzula?</qt>"
+
+#: src/mainwidget.cpp:1245
+#, kde-format
+msgid "Networking is available now."
+msgstr "Sarea, orain, erabilgarri dago."
+
+#: src/mainwindow.cpp:124
+#, kde-format
+msgid ""
+"<qt>This will hide the menu bar completely. You can show it again by typing "
+"%1.</qt>"
+msgstr ""
+"<qt>Honek menu-barra erabat ezkutatuko du. %1 tekleatuta berriz erakuts "
+"dezakezu.</qt>"
+
+#: src/mainwindow.cpp:127
+#, kde-format
+msgid "Hide menu bar"
+msgstr "Ezkutatu menu-barra"
+
+#: src/mainwindow.cpp:156
+#, kde-format
+msgid ""
+"Could not find the Akregator part; please check your installation.\n"
+"%1"
+msgstr ""
+"Ezin da Akregator atala aurkitu; mesedez, egiaztatu zure instalazioa.\n"
+"%1"
+
+#: src/notificationmanager.cpp:49
+#, kde-format
+msgid ""
+"Feed added:\n"
+" %1"
+msgstr ""
+"Jarioa gehitu da:\n"
+"%1"
+
+#: src/notificationmanager.cpp:61
+#, kde-format
+msgid ""
+"Feeds added:\n"
+" %1"
+msgstr ""
+"Jarioak gehitu dira:\n"
+"%1"
+
+#: src/notificationmanager.cpp:79
+#, kde-format
+msgid "<i>and 1 other</i>"
+msgid_plural "<i>and %1 others</i>"
+msgstr[0] "<i>eta beste 1</i>"
+msgstr[1] "<i>eta beste %1</i>"
+
+#: src/progressmanager.cpp:127
+#, kde-format
+msgid "Fetch completed"
+msgstr "Ekartzea osatuta"
+
+#: src/progressmanager.cpp:136
+#, kde-format
+msgid "Fetch error"
+msgstr "Ekartzeko errorea"
+
+#: src/progressmanager.cpp:145
+#, kde-format
+msgid "Fetch aborted"
+msgstr "Ekartzea bertan behera utzita"
+
+#: src/subscription/subscriptionlistjobs.cpp:54
+#, kde-format
+msgid "Feed list was deleted"
+msgstr "Jario-zerrenda ezabatu da"
+
+#: src/subscription/subscriptionlistjobs.cpp:64
+#, kde-format
+msgid "Node or destination folder not found"
+msgstr "Ez da aurkitu nodoa edo helmugako karpeta"
+
+#: src/subscription/subscriptionlistjobs.cpp:71
+#, kde-format
+msgid "Cannot move folder %1 to its own subfolder %2"
+msgstr "Ezin da %1 karpeta bere %2 azpi-karpetara eraman"
+
+#: src/subscription/subscriptionlistmodel.cpp:49
+#, kde-format
+msgid "Timeout on remote server"
+msgstr "Denbora-muga urruneko zerbitzarian"
+
+#: src/subscription/subscriptionlistmodel.cpp:51
+#, kde-format
+msgid "Unknown host"
+msgstr "Ostalari ezezaguna"
+
+#: src/subscription/subscriptionlistmodel.cpp:53
+#, kde-format
+msgid "Feed file not found on remote server"
+msgstr "Urruneko zerbitzarian ez da jario-fitxategirik aurkitu"
+
+#: src/subscription/subscriptionlistmodel.cpp:55
+#, kde-format
+msgid "Could not read feed (invalid XML)"
+msgstr "Jarioa ezin izan da irakurri (XML baliogabea)"
+
+#: src/subscription/subscriptionlistmodel.cpp:57
+#, kde-format
+msgid "Could not read feed (unknown format)"
+msgstr "Jarioa ezin izan da irakurri (formatu ezezaguna)"
+
+#: src/subscription/subscriptionlistmodel.cpp:59
+#, kde-format
+msgid "Could not read feed (invalid feed)"
+msgstr "Jarioa ezin izan da irakurri (jario baliogabea)"
+
+#: src/subscription/subscriptionlistmodel.cpp:229
+#, kde-format
+msgid "Could not fetch feed: %1"
+msgstr "Jarioa ezin izan da ekarri: %1"
+
+#: src/subscription/subscriptionlistmodel.cpp:274
+#, kde-format
+msgctxt "Feedlist's column header"
+msgid "Feeds"
+msgstr "Jarioak"
+
+#: src/subscription/subscriptionlistmodel.cpp:276
+#, kde-format
+msgctxt "Feedlist's column header"
+msgid "Unread"
+msgstr "Irakurri gabea"
+
+#: src/subscription/subscriptionlistmodel.cpp:278
+#, kde-format
+msgctxt "Feedlist's column header"
+msgid "Total"
+msgstr "Guztira"
+
+#: src/tabwidget.cpp:92
+#, kde-format
+msgid "Close the current tab"
+msgstr "Itxi uneko fitxa"
+
+#: src/tabwidget.cpp:95
+#, kde-format
+msgid "Close tab"
+msgstr "Itxi fitxa"
+
+#: src/tabwidget.cpp:118
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Detach Tab"
+msgstr "Bereizi fitxa"
+
+#: src/tabwidget.cpp:123
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Close Tab"
+msgstr "Itxi fitxa"
+
+#: src/tabwidget.cpp:127
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Close All Other Tabs"
+msgstr "Itxi gainontzeko fitxak"
+
+#: src/tabwidget.cpp:131
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Close All Tabs"
+msgstr "Itxi fitxa guztiak"
+
+#: src/trayicon.cpp:55
+#, kde-format
+msgid "There are no unread articles"
+msgstr "Ez dago irakurri gabeko artikulurik"
+
+#: src/trayicon.cpp:55
+#, kde-format
+msgid "1 unread article"
+msgid_plural "%1 unread articles"
+msgstr[0] "Irakurri gabeko artikulu 1"
+msgstr[1] "Irakurri gabeko %1 artikulu"
+
+#. i18n: ectx: property (windowTitle), widget (QWidget, Akregator::AddFeedWidgetBase)
+#: src/ui/addfeedwidgetbase.ui:14
+#, kde-format
+msgid "Add Feed"
+msgstr "Gehitu jarioa"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel1)
+#: src/ui/addfeedwidgetbase.ui:122
+#, kde-format
+msgid "Add New Source"
+msgstr "Gehitu iturburu berria"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel3)
+#: src/ui/addfeedwidgetbase.ui:135
+#, kde-format
+msgid "Feed &URL:"
+msgstr "Jarioaren &URLa:"
+
+#. i18n: ectx: property (windowTitle), widget (QWidget, Akregator::FeedPropertiesWidgetBase)
+#: src/ui/feedpropertieswidgetbase.ui:20
+#, kde-format
+msgid "Feed Properties"
+msgstr "Jarioaren propietateak"
+
+#. i18n: ectx: attribute (title), widget (QWidget, tab1)
+#: src/ui/feedpropertieswidgetbase.ui:42
+#, kde-format
+msgid "&General"
+msgstr "&Orokorra"
+
+#. i18n: ectx: property (text), widget (QCheckBox, cb_updateInterval)
+#: src/ui/feedpropertieswidgetbase.ui:54
+#, kde-format
+msgid "U&se a custom update interval"
+msgstr "E&rabili norberak finkatutako eguneratze bitartea"
+
+#. i18n: ectx: property (text), widget (QLabel, updateLabel)
+#: src/ui/feedpropertieswidgetbase.ui:88
+#, kde-format
+msgid "Update ever&y:"
+msgstr "Eguneratu &honenbestero:"
+
+#. i18n: ectx: property (text), widget (QCheckBox, checkBox_useNotification)
+#: src/ui/feedpropertieswidgetbase.ui:117
+#, kde-format
+msgid "Notify when new articles arri&ve"
+msgstr "Jakinarazi artikulu berriak &iristen direnean"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel3)
+#: src/ui/feedpropertieswidgetbase.ui:132
+#, kde-format
+msgid "&URL:"
+msgstr "&URLa:"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel2)
+#: src/ui/feedpropertieswidgetbase.ui:142
+#, kde-format
+msgid "&Name:"
+msgstr "Ize&na:"
+
+#. i18n: ectx: property (toolTip), widget (QLineEdit, feedNameEdit)
+#: src/ui/feedpropertieswidgetbase.ui:161
+#, kde-format
+msgid "Display name of RSS column"
+msgstr "Azaldu RSS zutabearen izena"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: src/ui/feedpropertieswidgetbase.ui:171
+#, kde-format
+msgid "Comment:"
+msgstr "Iruzkina:"
+
+#. i18n: ectx: attribute (title), widget (QWidget, tab2)
+#: src/ui/feedpropertieswidgetbase.ui:194
+#, kde-format
+msgid "Ar&chive"
+msgstr "Ar&txiboa"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rb_globalDefault)
+#: src/ui/feedpropertieswidgetbase.ui:206
+#, kde-format
+msgid "&Use default settings"
+msgstr "&Erabili ezarpen lehenetsiak"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rb_disableArchiving)
+#: src/ui/feedpropertieswidgetbase.ui:216
+#, kde-format
+msgid "Di&sable archiving"
+msgstr "E&zgaitu artxibatzea"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rb_limitArticleNumber)
+#: src/ui/feedpropertieswidgetbase.ui:247
+#, kde-format
+msgid "Limit archi&ve to:"
+msgstr "Mugatu artxi&batzea honela:"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rb_limitArticleAge)
+#: src/ui/feedpropertieswidgetbase.ui:277
+#, kde-format
+msgid "&Delete articles older than:"
+msgstr "&Ezabatu hau baino zaharragoak diren artikuluak:"
+
+#. i18n: ectx: attribute (title), widget (QWidget, tab3)
+#: src/ui/feedpropertieswidgetbase.ui:340
+#, kde-format
+msgid "Adva&nced"
+msgstr "Aurrera&tua"
+
+#. i18n: ectx: property (text), widget (QCheckBox, checkBox_loadWebsite)
+#: src/ui/feedpropertieswidgetbase.ui:373
+#, kde-format
+msgid "Load the &full website when reading articles"
+msgstr "Zamatu web-gune &osoa artikuluak irakurtzean"
+
+#. i18n: ectx: property (text), widget (QCheckBox, checkBox_markRead)
+#: src/ui/feedpropertieswidgetbase.ui:380
+#, kde-format
+msgid "Mar&k articles as read when they arrive"
+msgstr "Mar&katu artikuluak irakurritako gisa iristen direnean"
+
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:40
+#, kde-format
+msgid "Disable Introduction"
+msgstr "Ezgaitu sarrerakoa"
+
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:58
+#, kde-format
+msgid "&Copy Email Address"
+msgstr "&Kopiatu e-posta helbidea"
+
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:67
+#, kde-format
+msgid "Address copied to clipboard."
+msgstr "Helbidea arbelera kopiatu da."
+
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:98
+#, kde-format
+msgid "Mark Article as Read"
+msgstr "Markatu artikulua irakurritako gisa"
+
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:100
+#, kde-format
+msgid "Mark Article as Unread"
+msgstr "Markatu artikulua irakurri gabeko gisa"
+
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:102
+#, kde-format
+msgid "Change Important Flag"
+msgstr "Aldatu «Garrantzizkoa» bandera"
+
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:104
+#, kde-format
+msgid "Send the URL of the article"
+msgstr "Bidali artikuluaren URLa"
+
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:106
+#, kde-format
+msgid "Send the Html Page of Article"
+msgstr "Bidali artikuluaren HTML orria"
+
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:108
+#, kde-format
+msgid "Open In External Browser"
+msgstr "Ireki kanpoko arakatzailean"
+
+#: src/widgets/searchbar.cpp:40
+#, kde-format
+msgid "Search articles..."
+msgstr " Bilatu artikuluak..."
+
+#: src/widgets/searchbar.cpp:112
+#, kde-format
+msgid "Search articles...<%1>"
+msgstr "Bilatu artikuluak...<%1>"
+
+#: src/widgets/statussearchline.cpp:42
+#, kde-format
+msgid "All Articles"
+msgstr "Artikulu guztiak"
+
+#: src/widgets/statussearchline.cpp:43
+#, kde-format
+msgctxt "Unread articles filter"
+msgid "Unread"
+msgstr "Irakurri gabekoak"
+
+#: src/widgets/statussearchline.cpp:44
+#, kde-format
+msgctxt "New articles filter"
+msgid "New"
+msgstr "Berriak"
+
+#: src/widgets/statussearchline.cpp:45
+#, kde-format
+msgctxt "Read articles filter"
+msgid "Read"
+msgstr "Irakurrita"
+
+#: src/widgets/statussearchline.cpp:46
+#, kde-format
+msgctxt "Important articles filter"
+msgid "Important"
+msgstr "Garrantzizkoak"
+
+#~ msgid "Archive"
+#~ msgstr "Artxiboa"
+
+#~ msgid "Archive backend:"
+#~ msgstr "Artxibatze bizkarraldekoa:"
+
+#~ msgid "&Configure..."
+#~ msgstr "&Konfiguratu..."
+
+#~ msgid "Metakit"
+#~ msgstr "Metakit"
+
+#~ msgid "Unable to load storage backend plugin \"%1\". No feeds are archived."
+#~ msgstr ""
+#~ "Ezin da biltegiratze-bizkarraldekoaren «%1» plugina zamatu. Ez da "
+#~ "jariorik artxibatu."
+
+#~ msgid "Plugin error"
+#~ msgstr "Plugin errorea"
+
+#~ msgid "No Archive"
+#~ msgstr "Artxiborik ez"
+
+#~ msgctxt "Name of the plugin"
+#~ msgid "Name"
+#~ msgstr "Izena"
+
+#~ msgctxt "Library name"
+#~ msgid "Library"
+#~ msgstr "Liburutegia"
+
+#~ msgctxt "Plugin authors"
+#~ msgid "Authors"
+#~ msgstr "Egileak"
+
+#~ msgctxt "Plugin authors' emaila addresses"
+#~ msgid "Email"
+#~ msgstr "E-posta"
+
+#~ msgctxt "Plugin version"
+#~ msgid "Version"
+#~ msgstr "Bertsioa"
+
+#~ msgctxt "Framework version plugin requires"
+#~ msgid "Framework Version"
+#~ msgstr "Azpiegituraren, Framework, bertsioa"
+
+#~ msgid "Plugin Information"
+#~ msgstr "Pluginaren informazioa"
+
+#, fuzzy
+#~| msgid "Planet KDE"
+#~ msgid "Planet KDE Brazilian Portuguese"
+#~ msgstr "KDE planeta"
+
+#, fuzzy
+#~| msgid "Use this command:"
+#~ msgid "&Use this command:"
+#~ msgstr "Erabili agindu hau:"
+
+#~ msgid "The file %1 already exists; do you want to overwrite it?"
+#~ msgstr "%1 fitxategia dagoeneko existitzen da; gainidatzi nahi duzu?"
+
+#, fuzzy
+#~| msgid "Planet KDE"
+#~ msgid "Planet KDE PIM"
+#~ msgstr "KDE planeta"
+
+#, fuzzy
+#~| msgid "&Fetch Feeds"
+#~ msgid "French feeds"
+#~ msgstr "&Eskuratu iturburuak"
+
+#, fuzzy
+#~| msgid "Planet KDE"
+#~ msgid "Planet KDE France"
+#~ msgstr "KDE planeta"
+
+#, fuzzy
+#~| msgid "For External Browsing"
+#~ msgid "Safe Browsing"
+#~ msgstr "Kanpo-arakatzerako"
+
+#, fuzzy
+#~| msgid "Copy Link Address"
+#~ msgid "&Open in Address Book"
+#~ msgstr "Kopiatu estekaren helbidea"
+
+#~ msgid "KDE Look"
+#~ msgstr "KDE Look"
+
+#, fuzzy
+#~| msgid "Browser"
+#~ msgid "Browser Toolbar"
+#~ msgstr "Arakatzailea"
+
+#~ msgid "Keep all articles"
+#~ msgstr "Mantendu artikulu guztiak"
+
+#, fuzzy
+#~| msgid "<b>Homepage:</b> <a href=\"%1\">%2</a>"
+#~ msgid "<a href=\"%1\">%2</a> %3"
+#~ msgstr "<b>Orri nagusia:</b> <a href=\"%1\">%2</a>"
+
+#, fuzzy
+#~| msgid "Concurrent Fetches"
+#~ msgid "Configure AdBlock"
+#~ msgstr "Aldibereko eskuraketak"
+
+#, fuzzy
+#~| msgid "&Use default settings"
+#~ msgid "Open Ad Block settings"
+#~ msgstr "&Erabili ezarpen lehenetsiak"
+
+#, fuzzy
+#~| msgid "&Next Article"
+#~ msgid "Send Url Article"
+#~ msgstr "&Hurrengo artikulua"
+
+#, fuzzy
+#~| msgid "&Mark As"
+#~ msgid "Mark as New"
+#~ msgstr "&Markatu honela"
+
+#, fuzzy
+#~ msgctxt "Reload current page"
+#~ msgid "Reload"
+#~ msgstr "&Irakurrita"
+
+#, fuzzy
+#~| msgid "&Mark as Important"
+#~ msgid "Mark Article as Important"
+#~ msgstr "&Markatu garrantzitsua bezala"
+
+#, fuzzy
+#~| msgid "S&earch:"
+#~ msgctxt "Title of article searchbar"
+#~ msgid "S&earch:"
+#~ msgstr "B&ilatu:"
+
+#~ msgid "Status:"
+#~ msgstr "Egoera:"
+
+#~ msgid "Enter space-separated terms to filter article list"
+#~ msgstr "Sartu zurigunez bereizitako terminoak artikulu zerrenda iragazteko"
+
+#~ msgid "Choose what kind of articles to show in article list"
+#~ msgstr "Hautatu zer motako artikuluak erakutsiko diren artikulu zerrendan"
+
+#~ msgid "Comments"
+#~ msgstr "Iruzkinak"
+
+#~ msgid "&Underline links"
+#~ msgstr "&Azpimarratu estekak"
+
+#, fuzzy
+#~| msgid "&Configure..."
+#~ msgid "Configurate"
+#~ msgstr "&Konfiguratu..."
+
+#, fuzzy
+#~ msgctxt "%1: Akregator version; %2: homepage URL; --- end of comment ---"
+#~ msgid ""
+#~ "<h2 style='margin-top: 0px;'>Welcome to Akregator %1</h2><p>Akregator is "
+#~ "a KDE news feed reader. Feed readers provide a convenient way to browse "
+#~ "different kinds of content, including news, blogs, and other content from "
+#~ "online sites. Instead of checking all your favorite web sites manually "
+#~ "for updates, Akregator collects the content for you.</p><p>For more "
+#~ "information about using Akregator, check the <a href=\"%2\">Akregator "
+#~ "website</a>. If you do not want to see this page anymore, <a href="
+#~ "\"config:/disable_introduction\">click here</a>.</p><p>We hope that you "
+#~ "will enjoy Akregator.</p>\n"
+#~ "<p>Thank you,</p>\n"
+#~ "<p style='margin-bottom: 0px'>&nbsp; &nbsp; The Akregator Team</p>\n"
+#~ msgstr ""
+#~ "<h2 style='margin-top: 0px;'>Ongi etorri Akregator %1-(e)ra</"
+#~ "h2><p>Akregator KDE-rako RSS iturburu agregatzailea bat da. Iturburu "
+#~ "agregatzaileek mota ezberdinetako edukin ezberdinak arakatzeko aukera "
+#~ "ematen dizute, adibidez, berriak, blog-ak, eta lineako beste edukinak. "
+#~ "Nahien dituzun zure web guneen eguneraketak eskuz egiaztatu beharrean, "
+#~ "Akregator-ek edukina zuretzako eskuratzen du.</p><p>Akregator-i buruz "
+#~ "informazio gehiago nahi baduzu, ikusi <a href=\"%3\">Akregator-en web-"
+#~ "gunea</a>. Orri hau gehiago ikusi nahi ez baduzu <a href=\"config:/"
+#~ "disable_introduction\">klikatu hemen</a>.</p><p> Akregator gogoko izan "
+#~ "dezazula espero dugu.</p>\n"
+#~ "<p>Eskerrik asko,</p>\n"
+#~ "<p style='margin-bottom: 0px'>&nbsp; &nbsp; Akregator taldea</p>\n"
+
+#, fuzzy
+#~| msgid "Serif font:"
+#~ msgid "Shrink Font"
+#~ msgstr "Serif letra-tipoa:"
+
+#~ msgid "Speech Toolbar"
+#~ msgstr "Ahoskapen tresna-barra"
+
+#~ msgid "Next Article: "
+#~ msgstr "Hurrengo artikulua: "
+
+#~ msgid "Browsing area."
+#~ msgstr "Arakatze-area"
+
+#~ msgid ""
+#~ "<div align=center><h3>No matches</h3>Filter does not match any articles, "
+#~ "please change your criteria and try again.</div>"
+#~ msgstr ""
+#~ "<div align=center><h3>Bat-egiterik ez</h3> Iragazkia ez dator bat eozein "
+#~ "artikulurekin, aldatu irizpidea eta saiatu berriro.</div>"
+
+#~ msgid ""
+#~ "<div align=center><h3>No feed selected</h3>This area is article list. "
+#~ "Select a feed from the feed list and you will see its articles here.</div>"
+#~ msgstr ""
+#~ "<div align=center><h3>Ez da iturbururik hautatu</h3> Hau artikuluen "
+#~ "zerrenda bat da. Hautatu iturburu bat iturburu-zerrendatik eta bere "
+#~ "artikuluak ikusiko dituzu.</div>"
+
+#, fuzzy
+#~| msgid "Loading..."
+#~ msgid "Manage..."
+#~ msgstr "Kargatzen..."
+
+#, fuzzy
+#~ msgid "Bar Settings"
+#~ msgstr "&Ezarri etiketak"
+
+#, fuzzy
+#~ msgid "File:"
+#~ msgstr "&Artikulua"
+
+#, fuzzy
+#~| msgid "&Add Feed..."
+#~ msgid "Add..."
+#~ msgstr "&Gehitu iturburua..."
+
+#, fuzzy
+#~| msgid "Loading..."
+#~ msgid "Modify..."
+#~ msgstr "Kargatzen..."
+
+#, fuzzy
+#~| msgid "Delete Feed"
+#~ msgid "Delete feeds:"
+#~ msgstr "Ezabatu iturburua"
+
+#~ msgid "&Speak Selected Articles"
+#~ msgstr "&Ahoskatu hautatutako artikuluak"
+
+#~ msgid "&Stop Speaking"
+#~ msgstr "&Gelditu ahoskatzen"
+
+#~ msgid "All Files"
+#~ msgstr "Fitxategi guztiak"
+
+#, fuzzy
+#~| msgid "Concurrent Fetches"
+#~ msgid "Configure Share Services"
+#~ msgstr "Aldibereko eskuraketak"
+
+#, fuzzy
+#~| msgid "Folder name:"
+#~ msgctxt "login identify for blog account"
+#~ msgid "Username:"
+#~ msgstr "Karpetaren izena:"
+
+#, fuzzy
+#~| msgid "Feed &URL:"
+#~ msgid "Service URL:"
+#~ msgstr "Iturburuaren &URL-a:"
+
+#, fuzzy
+#~| msgid "Feed &URL:"
+#~ msgid "Service URL"
+#~ msgstr "Iturburuaren &URL-a:"
+
+#, fuzzy
+#~| msgid "Folder name:"
+#~ msgctxt "login identify for blog account"
+#~ msgid "Username"
+#~ msgstr "Karpetaren izena:"
+
+#, fuzzy
+#~| msgid "<b>Open Link in New Tab</b><p>Opens current link in a new tab."
+#~ msgid "<b>Open Link in New Tab</b><p>Opens current link in a new tab.</p>"
+#~ msgstr ""
+#~ "<b>Ireki esteka fitxa berrian</b><p>Uneko esteka fitxa berri batean "
+#~ "irekitzen du."
+
+#~ msgid "Open Page in External Browser"
+#~ msgstr "Ireki orria kanpoko arakatzailean"
+
+#~ msgid "Add to Konqueror Bookmarks"
+#~ msgstr "Gehitu Konqueror-en laster-markei"
+
+#, fuzzy
+#~| msgid "Feeds"
+#~ msgid "Feed List"
+#~ msgstr "Iturburuak"
+
+#, fuzzy
+#~| msgid "Akregator - RSS Feed Reader"
+#~ msgid "Akregator - Feed Reader"
+#~ msgstr "Akregator -  RSS iturburu irakurlea"
+
+#, fuzzy
+#~ msgid "Akregator - 1 unread article"
+#~ msgid_plural "Akregator - %1 unread articles"
+#~ msgstr[0] "Akregator - Irakurri gabeko artikulu 1"
+#~ msgstr[1] "Akregator - Irakurri gabeko %1 artikulu"
+
+#, fuzzy
+#~| msgid ""
+#~| "<qt><p>Closing the main window will keep Akregator running in the system "
+#~| "tray. Use 'Quit' from the 'File' menu to quit the application.</"
+#~| "p><p><center><img source=\"systray_shot\"></center></p></qt>"
+#~ msgid ""
+#~ "<qt><p>Closing the main window will keep Akregator running in the system "
+#~ "tray. Use 'Quit' from the 'File' menu to quit the application.</"
+#~ "p><p><center>%1</center></p></qt>"
+#~ msgstr ""
+#~ "<qt><p>Lehio nagusia ixtean Akregator-ek sistemaren bandejan jarraituko "
+#~ "du lan egiten.</p><p><center><img source=\"systray_shot\"></center></p></"
+#~ "qt>"
+
+#~ msgid "Docking in System Tray"
+#~ msgstr "Sistemaren bandejan atrakatu"
+
+#~ msgid "An RSS feed reader for the K Desktop Environment."
+#~ msgstr "KDE-ren RSS iturburu irakurlea"
+
+#~ msgid "Akregator News"
+#~ msgstr "Akregator-en berriak"
+
+#~ msgid "Akregator Blog"
+#~ msgstr "Akregator Blog-as"
+
+#~ msgid "&Increase Font Sizes"
+#~ msgstr "&Handiagotu letra-tipoen tamainak"
+
+#~ msgid "&Decrease Font Sizes"
+#~ msgstr "&Txikiagotu letra-tipoen tamainak"
+
+#~ msgid "&Scroll Up"
+#~ msgstr "&Desplazatu gorantz"
+
+#~ msgid "&Scroll Down"
+#~ msgstr "&Desplazatu behera"
+
+#~ msgid " days"
+#~ msgstr " egun"
+
+#~ msgid " minutes"
+#~ msgstr " minutu"
+
+#~ msgid "General"
+#~ msgstr "Orokorra"
+
+#~ msgid "ExternalBrowser"
+#~ msgstr "ExternalBrowser"
+
+#~ msgid "&Abort Fetches"
+#~ msgstr "&Abortatu eskuratzeak"

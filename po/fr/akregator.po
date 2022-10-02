@@ -1,0 +1,3114 @@
+# translation of akregator.po to Français
+# translation of akregator.po to
+#
+# Nicolas Ternisien <nicolast@libertysurf.fr>, 2004, 2005.
+# Matthieu Robin <kde@macolu.org>, 2005, 2006.
+# Nicolas Ternisien <nicolas.ternisien@gmail.com>, 2005, 2008, 2009, 2010.
+# Matthieu Robin <matthieu@macolu.org>, 2005.
+# Anne-Marie Mahfouf <annemarie.mahfouf@free.fr>, 2006.
+# Mickael Sibelle <kimael@gmail.com>, 2008.
+# Bruno Patri <bruno.patri@gmail.com>, 2008.
+# Nicolas Ternisien <nternisien@meilleurtaux.com>, 2008, 2010, 2012.
+# Maxime Corteel <maxime.corteel@gadz.org>, 2013, 2015, 2016, 2017, 2018, 2019.
+# Sebastien Renard <renard@kde.org>, 2013, 2016.
+# xavier <xavier.besnard@neuf.fr>, 2013, 2014, 2020, 2021, 2022.
+# Vincent Pinon <vpinon@kde.org>, 2018.
+# Simon Depiets <sdepiets@gmail.com>, 2019, 2020.
+msgid ""
+msgstr ""
+"Project-Id-Version: akregator\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-09-30 00:45+0000\n"
+"PO-Revision-Date: 2022-04-27 19:04+0200\n"
+"Last-Translator: Xavier Besnard <xavier.besnard@neuf.fr>\n"
+"Language-Team: French <kde-francophone@kde.org>\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Lokalize 21.12.3\n"
+"X-Environment: kde\n"
+"X-Accelerator-Marker: &\n"
+"X-Text-Markup: kde4\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Nicolas Ternisien, Maxime Corteel, Simon Depiets, Xavier Besnard"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr ""
+"nicolas.ternisien@gmail.com, mcorteel@gmail.com, sdepiets@gmail.com, xavier."
+"besnard@neuf.fr"
+
+#: src/about/introduction_akregator.html:18
+msgid ""
+"Feed readers provide a convenient way to browse different kinds of content, "
+"including news, blogs, and other content from online sites. Instead of "
+"checking all your favorite web sites manually for updates, Akregator "
+"collects the content for you."
+msgstr ""
+"Les lecteurs de flux proposent une manière pratique de naviguer parmi "
+"plusieurs types de contenu comme des nouvelles, des blogs ou d'autres "
+"contenus publiés par des sites web. Plutôt que d'aller visiter vos sites "
+"favoris pour voir les mises à jour, Akregator centralise ce contenu pour "
+"vous."
+
+#: src/about/introduction_akregator.html:19
+msgid ""
+"For more information about using Akregator, check the <a href='https://"
+"kontact.kde.org/components/akregator/'>Akregator website</a>. If you do not "
+"want to see this page anymore, <a href='config:/disable_introduction'>click "
+"here</a>."
+msgstr ""
+"Pour plus d'informations sur l'utilisation d'Akregator, visitez le <a "
+"href='https://kontact.kde.org/components/akregator.html'>site Internet "
+"d'Akregator</a>. Si vous souhaitez que cette page n'apparaisse plus, <a "
+"href='config:/disable_introduction'>cliquez ici</a>."
+
+#: src/about/introduction_akregator.html:20
+msgid "We hope that you will enjoy Akregator."
+msgstr "Nous espérons que vous apprécierez Akregator."
+
+#: src/about/introduction_akregator.html:21
+msgid "Thank you, The Akregator Team"
+msgstr "Merci, l'équipe Akregator"
+
+#: src/formatter/html/5.2/combinedview.html:71
+msgid "Mark as Read"
+msgstr "Marquer comme lu"
+
+#: src/formatter/html/5.2/combinedview.html:74
+msgid "Mark as Unread"
+msgstr "Marquer comme non lu"
+
+#: src/formatter/html/5.2/combinedview.html:78
+msgid "Remove Important Status"
+msgstr "Retirer l'état « Important »"
+
+#: src/formatter/html/5.2/combinedview.html:80
+msgid "Mark as Important"
+msgstr "Marquer comme important"
+
+#: src/formatter/html/5.2/combinedview.html:82
+msgid "Open Link in External Browser"
+msgstr "Ouvrir le lien dans le navigateur externe"
+
+#: src/formatter/html/5.2/combinedview.html:83
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:110
+#, kde-format
+msgid "Open In Background Tab"
+msgstr "Ouvrir dans un onglet en arrière-plan"
+
+#: src/formatter/html/5.2/combinedview.html:84
+msgid "Send File Address"
+msgstr "Envoyer l'adresse du fichier"
+
+#: src/formatter/html/5.2/combinedview.html:85
+msgid "Send Link Address"
+msgstr "Envoyer l'adresse du lien"
+
+#: src/formatter/html/5.2/combinedview.html:86 src/mainwidget.cpp:1063
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:96
+#, kde-format
+msgid "Delete Article"
+msgstr "Supprimer un article"
+
+#: src/formatter/html/5.2/normalview.html:51
+msgid ""
+"<b>Note:</b> For security reasons, external reference is blocked (See "
+"configure dialog)."
+msgstr ""
+"<b>Remarque :</b> Pour des raisons de sécurité, la référence externe est "
+"bloquée (Voir la boîte de dialogue de configuration)."
+
+#: configuration/akregator_config_advanced.cpp:30
+#, kde-format
+msgid "Advanced Feed Reader Settings"
+msgstr "Configuration avancée du lecteur de flux"
+
+#: configuration/akregator_config_advanced.cpp:34
+#: configuration/akregator_config_appearance.cpp:49
+#: configuration/akregator_config_archive.cpp:47
+#: configuration/akregator_config_browser.cpp:39
+#: configuration/akregator_config_general.cpp:42
+#, kde-format
+msgid "(c), 2004 - 2008 Frank Osterfeld"
+msgstr "(c), 2004 - 2008 Frank Osterfeld"
+
+#: configuration/akregator_config_advanced.cpp:36
+#: configuration/akregator_config_appearance.cpp:51
+#: configuration/akregator_config_archive.cpp:49
+#: configuration/akregator_config_browser.cpp:41
+#: configuration/akregator_config_general.cpp:44 src/aboutdata.cpp:28
+#, kde-format
+msgid "Frank Osterfeld"
+msgstr "Frank Osterfeld"
+
+#: configuration/akregator_config_appearance.cpp:45
+#, kde-format
+msgid "Configure Feed Reader Appearance"
+msgstr "Configurer l'apparence du lecteur de flux"
+
+#: configuration/akregator_config_archive.cpp:33
+#, kde-format
+msgctxt "Limit feed archive size to:"
+msgid " article"
+msgid_plural " articles"
+msgstr[0] " article"
+msgstr[1] " articles"
+
+#: configuration/akregator_config_archive.cpp:34
+#, kde-format
+msgctxt "Delete articles older than:"
+msgid " day"
+msgid_plural " days"
+msgstr[0] " jour"
+msgstr[1] " jours"
+
+#: configuration/akregator_config_archive.cpp:43
+#, kde-format
+msgid "Configure Feed Reader Archive"
+msgstr "Configurer l'archive du lecteur de flux"
+
+#: configuration/akregator_config_browser.cpp:35
+#, kde-format
+msgid "Configure Feed Reader Browser"
+msgstr "Configurer le navigateur du lecteur de flux"
+
+#: configuration/akregator_config_general.cpp:33
+#, kde-format
+msgid " minute"
+msgid_plural " minutes"
+msgstr[0] " minute"
+msgstr[1] " minutes"
+
+#: configuration/akregator_config_general.cpp:38
+#, kde-format
+msgid "Configure Feeds"
+msgstr "Configurer les flux"
+
+#: configuration/akregator_config_plugins.cpp:27
+#: configuration/akregator_config_security.cpp:29
+#, kde-format
+msgid "Configure Plugins"
+msgstr "Configurer les modules externes"
+
+#: configuration/akregator_config_plugins.cpp:31
+#, kde-format
+msgid "(c), 2016-2021 Laurent Montel"
+msgstr "(c), 2016-2021 Laurent Montel"
+
+#: configuration/akregator_config_plugins.cpp:33
+#: configuration/akregator_config_security.cpp:35
+#: configuration/akregator_config_userfeedback.cpp:34 src/aboutdata.cpp:27
+#, kde-format
+msgid "Laurent Montel"
+msgstr "Laurent Montel"
+
+#: configuration/akregator_config_security.cpp:33
+#, kde-format
+msgid "(c), 2021 Laurent Montel"
+msgstr "(c), 2021 Laurent Montel"
+
+#: configuration/akregator_config_userfeedback.cpp:28
+#, kde-format
+msgid "Configure User Feedback"
+msgstr "Configurer les paramètres des retours des utilisateurs"
+
+#: configuration/akregator_config_userfeedback.cpp:32
+#, kde-format
+msgid "(c), 2020-2021 Laurent Montel"
+msgstr "(c), 2020-2021 Laurent Montel"
+
+#: configuration/akregatorconfigurepluginlistwidget.cpp:51
+#, kde-format
+msgid "Webengine Plugins"
+msgstr "Modules complémentaires Webengine"
+
+#: configuration/settings_advanced.cpp:27
+#, kde-format
+msgctxt "Mark selected article read after"
+msgid " second"
+msgid_plural " seconds"
+msgstr[0] " seconde"
+msgstr[1] " secondes"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#: configuration/ui/settings_advancedbase.ui:30
+#, kde-format
+msgid "Article List"
+msgstr "Liste des articles"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_UseMarkReadDelay)
+#: configuration/ui/settings_advancedbase.ui:38
+#, kde-format
+msgid "Mar&k selected article read after"
+msgstr "Mar&quer l'article sélectionné comme lu après"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_ResetQuickFilterOnNodeChange)
+#: configuration/ui/settings_advancedbase.ui:73
+#, kde-format
+msgid "Reset search bar when changing feeds"
+msgstr "Réinitialiser la barre de recherche lors du changement de flux"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_3)
+#: configuration/ui/settings_appearance.ui:30
+#, kde-format
+msgid "Article List Colors"
+msgstr "Couleurs de la liste d'articles"
+
+#. i18n: ectx: property (text), widget (QLabel, lbl_unreadArticles)
+#: configuration/ui/settings_appearance.ui:53
+#, kde-format
+msgid "Unread articles:"
+msgstr "Articles non lus :"
+
+#. i18n: ectx: property (text), widget (QLabel, lbl_newArticles)
+#: configuration/ui/settings_appearance.ui:76
+#, kde-format
+msgid "New articles:"
+msgstr "Nouveaux articles :"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_UseCustomColors)
+#: configuration/ui/settings_appearance.ui:98
+#, kde-format
+msgid "Use custom colors"
+msgstr "Utiliser des couleurs personnalisées"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
+#: configuration/ui/settings_appearance.ui:121
+#, kde-format
+msgid "Font Size"
+msgstr "Taille de la police"
+
+#. i18n: ectx: property (text), widget (QLabel, lbl_MinimumFontSize)
+#: configuration/ui/settings_appearance.ui:127
+#, kde-format
+msgid "Minimum font size:"
+msgstr "Taille minimale de police :"
+
+#. i18n: ectx: property (text), widget (QLabel, lbl_MediumFontSize)
+#: configuration/ui/settings_appearance.ui:176
+#, kde-format
+msgid "Medium font size:"
+msgstr "Taille normale de police :"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#: configuration/ui/settings_appearance.ui:228
+#, kde-format
+msgid "Fonts"
+msgstr "Polices"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel1)
+#: configuration/ui/settings_appearance.ui:234
+#, kde-format
+msgid "Standard font:"
+msgstr "Police standard :"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel2_2)
+#: configuration/ui/settings_appearance.ui:244
+#, kde-format
+msgid "Fixed font:"
+msgstr "Police à largeur fixe :"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel3)
+#: configuration/ui/settings_appearance.ui:254
+#, kde-format
+msgid "Serif font:"
+msgstr "Police Serif :"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel4)
+#: configuration/ui/settings_appearance.ui:264
+#, kde-format
+msgid "Sans serif font:"
+msgstr "Police Sans serif :"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#: configuration/ui/settings_archive.ui:30
+#, kde-format
+msgid "Default Archive Settings"
+msgstr "Configuration d'archivage par défaut"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rb_DisableArchiving)
+#: configuration/ui/settings_archive.ui:36
+#, kde-format
+msgid "Disa&ble archiving"
+msgstr "Désactiver l'archivage"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rb_KeepAllArticles)
+#. i18n: ectx: property (text), widget (QRadioButton, rb_keepAllArticles)
+#: configuration/ui/settings_archive.ui:43
+#: src/ui/feedpropertieswidgetbase.ui:332
+#, kde-format
+msgid "&Keep all articles"
+msgstr "&Conserver tous les articles"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rb_LimitArticleNumber)
+#: configuration/ui/settings_archive.ui:64
+#, kde-format
+msgid "Limit feed archi&ve size to:"
+msgstr "Limiter la taille de l'archi&ve de flux à :"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rb_LimitArticleAge)
+#: configuration/ui/settings_archive.ui:100
+#, kde-format
+msgid "Delete articles older than: "
+msgstr "Supprimer les articles plus anciens que :"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_DoNotExpireImportantArticles)
+#: configuration/ui/settings_archive.ui:138
+#, kde-format
+msgid "Do not expire important articles"
+msgstr "Ne pas faire expirer les articles importants"
+
+#. i18n: ectx: property (text), widget (QLabel, LMBlabel)
+#: configuration/ui/settings_browser.ui:20
+#, kde-format
+msgid "Left mouse click:"
+msgstr "Clic gauche de la souris :"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, kcfg_LMBBehaviour)
+#. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
+#: configuration/ui/settings_browser.ui:28
+#: configuration/ui/settings_browser.ui:54
+#: src/actions/actionmanagerimpl.cpp:323
+#, kde-format
+msgid "Open in Tab"
+msgstr "Ouvrir dans un onglet"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, kcfg_LMBBehaviour)
+#. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
+#: configuration/ui/settings_browser.ui:33
+#: configuration/ui/settings_browser.ui:59
+#: src/actions/actionmanagerimpl.cpp:329
+#, kde-format
+msgid "Open in Background Tab"
+msgstr "Ouvrir dans un onglet en arrière-plan"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, kcfg_LMBBehaviour)
+#. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
+#: configuration/ui/settings_browser.ui:38
+#: configuration/ui/settings_browser.ui:64
+#: src/actions/actionmanagerimpl.cpp:335
+#, kde-format
+msgid "Open in External Browser"
+msgstr "Ouvrir dans le navigateur externe"
+
+#. i18n: ectx: property (text), widget (QLabel, MMBlabel)
+#: configuration/ui/settings_browser.ui:46
+#, kde-format
+msgid "Middle mouse click:"
+msgstr "Clic central de la souris :"
+
+#. i18n: ectx: property (title), widget (QGroupBox, externalBrowserGroupBox)
+#: configuration/ui/settings_browser.ui:74
+#, kde-format
+msgid "External Browsing"
+msgstr "Navigation externe"
+
+#. i18n: ectx: property (text), widget (QLineEdit, kcfg_ExternalBrowserCustomCommand)
+#: configuration/ui/settings_browser.ui:83
+#, no-c-format, kde-format
+msgid "firefox %u"
+msgstr "firefox %u"
+
+#. i18n: ectx: property (text), widget (QRadioButton, kcfg_ExternalBrowserUseCustomCommand)
+#: configuration/ui/settings_browser.ui:90
+#, kde-format
+msgid "Use &this command:"
+msgstr "Utiliser &cette commande :"
+
+#. i18n: ectx: property (text), widget (QRadioButton, kcfg_ExternalBrowserUseKdeDefault)
+#: configuration/ui/settings_browser.ui:97
+#, kde-format
+msgid "Use default web &browser"
+msgstr "Utiliser le navigateur par défaut"
+
+#. i18n: ectx: property (title), widget (QGroupBox, tabsGroupBox)
+#: configuration/ui/settings_browser.ui:110
+#, kde-format
+msgid "Tabs"
+msgstr "Onglets"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_AlwaysShowTabBar)
+#. i18n: ectx: label, entry, group (Browser)
+#: configuration/ui/settings_browser.ui:116 interfaces/akregator.kcfg:202
+#, kde-format
+msgid "Always show the tab bar"
+msgstr "Toujours afficher la barre d'onglets"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_CloseButtonOnTabs)
+#: configuration/ui/settings_browser.ui:123
+#, kde-format
+msgid "Show close button on each tab"
+msgstr "Afficher les boutons de fermeture sur les onglets"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_NewWindowInTab)
+#. i18n: ectx: label, entry, group (Browser)
+#: configuration/ui/settings_browser.ui:130 interfaces/akregator.kcfg:212
+#, kde-format
+msgid "Open links in new tab instead of in new window"
+msgstr ""
+"Ouvrir les liens dans un nouvel onglet plutôt que dans une nouvelle fenêtre"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#: configuration/ui/settings_browser.ui:140
+#, kde-format
+msgid "Security"
+msgstr "Sécurité"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_CheckPhishingUrl)
+#: configuration/ui/settings_browser.ui:146
+#, kde-format
+msgid "Verify URLs using Google's Safe Browsing API"
+msgstr "Vérifier les URL grâce à l'API Safe Browsing de Google"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_EnableJavascript)
+#. i18n: ectx: label, entry, group (Browser)
+#: configuration/ui/settings_browser.ui:153 interfaces/akregator.kcfg:198
+#, kde-format
+msgid "Enable Javascript"
+msgstr "Activer JavaScript"
+
+# | msgctxt "Language"
+# | msgid "Cisco"
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
+#: configuration/ui/settings_browser.ui:163
+#, kde-format
+msgid "Misc"
+msgstr "Divers"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_AccessKeyEnabled)
+#: configuration/ui/settings_browser.ui:169
+#, kde-format
+msgid "Access Key Enabled"
+msgstr "Clé d'accès activée"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_3)
+#: configuration/ui/settings_general.ui:30
+#, kde-format
+msgctxt "global settings"
+msgid "Global"
+msgstr "Global"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_ShowTrayIcon)
+#: configuration/ui/settings_general.ui:36
+#, kde-format
+msgid "Show tra&y icon"
+msgstr "Afficher l'icône dans la boîte à &miniatures"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_ShowUnreadInTaskbar)
+#: configuration/ui/settings_general.ui:43
+#, kde-format
+msgid "Show unread articles in Taskbar"
+msgstr "Afficher les articles non lus dans la barre de tâches"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_HideReadFeeds)
+#. i18n: ectx: label, entry, group (View)
+#: configuration/ui/settings_general.ui:50 interfaces/akregator.kcfg:9
+#, kde-format
+msgid "Hide feeds with no unread articles"
+msgstr "Cacher les flux sans article non-lu"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_LockFeedsInPlace)
+#: configuration/ui/settings_general.ui:57
+#, kde-format
+msgid "Lock feeds in place"
+msgstr "Verrouiller les fils de discussions sur place"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_AutoExpandFolders)
+#. i18n: ectx: whatsthis, entry, group (View)
+#: configuration/ui/settings_general.ui:64 interfaces/akregator.kcfg:27
+#, kde-format
+msgid "Auto-expand folders containing unread articles"
+msgstr "Développer automatiquement les dossiers contenant des articles non-lus"
+
+#. i18n: ectx: property (whatsThis), widget (QCheckBox, kcfg_UseNotifications)
+#: configuration/ui/settings_general.ui:74
+#, kde-format
+msgid "Select this if you want to get notified when there are new articles."
+msgstr ""
+"Sélectionnez cette option si vous souhaitez être informé de l'existence de "
+"nouveaux articles."
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_UseNotifications)
+#: configuration/ui/settings_general.ui:77
+#, kde-format
+msgid "Use &notifications for all feeds"
+msgstr "Utiliser les &notifications pour tous les flux"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_DisableSaveAsNotification)
+#: configuration/ui/settings_general.ui:84
+#, kde-format
+msgid "Disable save as finished notification"
+msgstr "Désactiver « Enregistrer » comme notification de clôture"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_UseIntervalFetch)
+#: configuration/ui/settings_general.ui:91
+#, kde-format
+msgid "&Use interval fetching"
+msgstr "&Utiliser le téléchargement périodique"
+
+#. i18n: ectx: property (text), widget (QLabel, autoFetchIntervalLabel)
+#: configuration/ui/settings_general.ui:119
+#, kde-format
+msgid "Fetch feeds every:"
+msgstr "Télécharger les flux tous les :"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
+#: configuration/ui/settings_general.ui:160
+#, kde-format
+msgid "Startup"
+msgstr "Démarrage"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_MarkAllFeedsReadOnStartup)
+#: configuration/ui/settings_general.ui:166
+#, kde-format
+msgid "Mark &all feeds as read on startup"
+msgstr "M&arquer tous les flux comme lus au démarrage"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_FetchOnStartup)
+#: configuration/ui/settings_general.ui:173
+#, kde-format
+msgid "Fetch all fee&ds on startup"
+msgstr "Télécharger tous les flux au &démarrage"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#: configuration/ui/settings_general.ui:183
+#, kde-format
+msgid "Network"
+msgstr "Réseau"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_UseHTMLCache)
+#: configuration/ui/settings_general.ui:189
+#, kde-format
+msgid "Use the &browser cache (less network traffic)"
+msgstr "Utiliser le cache du &navigateur (trafic réseau plus faible)"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_LoadExternalReferences)
+#: configuration/ui/settings_security.ui:17
+#, kde-format
+msgid "Allow feed to load external references from internet."
+msgstr ""
+"Permettre à un fil de discussions de charger des références externes à "
+"partir d'Internet."
+
+#: export/akregatorstorageexporter.cpp:280
+#, kde-format
+msgid "Akregator Export for %1"
+msgstr "Export Akregator pour %1"
+
+#. i18n: ectx: whatsthis, entry, group (View)
+#: interfaces/akregator.kcfg:10
+#, kde-format
+msgid "Hides feeds with no unread articles"
+msgstr "Cache les flux sans article non-lu"
+
+#. i18n: ectx: label, entry, group (View)
+#: interfaces/akregator.kcfg:21
+#, kde-format
+msgid "Prevent feeds from being moved in the list"
+msgstr "Empêcher les fils de discussions d'être déplacés dans la liste."
+
+#. i18n: ectx: whatsthis, entry, group (View)
+#: interfaces/akregator.kcfg:22
+#, kde-format
+msgid "Locks feeds where they are"
+msgstr "Verrouille les fils de discussions sur leurs emplacements."
+
+#. i18n: ectx: label, entry, group (View)
+#: interfaces/akregator.kcfg:26
+#, kde-format
+msgid "Auto-Expand folders with unread articles"
+msgstr "Développer automatiquement les dossiers contenant des articles non-lus"
+
+#. i18n: ectx: label, entry, group (View)
+#: interfaces/akregator.kcfg:31 src/actions/actionmanagerimpl.cpp:317
+#, kde-format
+msgid "Show Quick Filter"
+msgstr "Afficher le filtre rapide"
+
+#. i18n: ectx: whatsthis, entry, group (View)
+#: interfaces/akregator.kcfg:32
+#, kde-format
+msgid "Show Quick Filter Bar"
+msgstr "Afficher la barre de filtrage rapide"
+
+#. i18n: ectx: label, entry, group (View)
+#: interfaces/akregator.kcfg:36
+#, kde-format
+msgid "Status Filter"
+msgstr "Filtre d'état"
+
+#. i18n: ectx: whatsthis, entry, group (View)
+#: interfaces/akregator.kcfg:37
+#, kde-format
+msgid "Stores the last status filter setting"
+msgstr "Enregistre la dernière configuration du filtrage par état"
+
+#. i18n: ectx: label, entry, group (View)
+#: interfaces/akregator.kcfg:41
+#, kde-format
+msgid "Text Filter"
+msgstr "Filtre de texte"
+
+#. i18n: ectx: whatsthis, entry, group (View)
+#: interfaces/akregator.kcfg:42
+#, kde-format
+msgid "Stores the last search line text"
+msgstr "Enregistre le dernier texte recherché"
+
+#. i18n: ectx: label, entry, group (View)
+#: interfaces/akregator.kcfg:45
+#, kde-format
+msgid "View Mode"
+msgstr "Mode d'affichage"
+
+#. i18n: ectx: whatsthis, entry, group (View)
+#: interfaces/akregator.kcfg:46
+#, kde-format
+msgid "Article display mode."
+msgstr "Mode d'affichage des articles."
+
+#. i18n: ectx: label, entry, group (View)
+#: interfaces/akregator.kcfg:50
+#, kde-format
+msgid "Sizes for first splitter"
+msgstr "Dimensions pour le premier séparateur"
+
+#. i18n: ectx: whatsthis, entry, group (View)
+#: interfaces/akregator.kcfg:51
+#, kde-format
+msgid "First (usually vertical) splitter widget sizes."
+msgstr ""
+"Dimensions du premier composant graphique de séparation (généralement "
+"vertical)."
+
+#. i18n: ectx: label, entry, group (View)
+#: interfaces/akregator.kcfg:55
+#, kde-format
+msgid "Sizes for second splitter"
+msgstr "Dimensions pour le second séparateur"
+
+#. i18n: ectx: whatsthis, entry, group (View)
+#: interfaces/akregator.kcfg:56
+#, kde-format
+msgid "Second (usually horizontal) splitter widget sizes."
+msgstr ""
+"Dimensions du second composant graphique de séparation (généralement "
+"horizontal)."
+
+#. i18n: ectx: label, entry, group (Archive)
+#: interfaces/akregator.kcfg:100
+#, kde-format
+msgid "Archive Mode"
+msgstr "Mode « Archive »"
+
+#. i18n: ectx: label, entry, group (Archive)
+#: interfaces/akregator.kcfg:104
+#, kde-format
+msgid "Keep All Articles"
+msgstr "Conserver tous les articles"
+
+#. i18n: ectx: whatsthis, entry, group (Archive)
+#: interfaces/akregator.kcfg:105
+#, kde-format
+msgid "Save an unlimited number of articles."
+msgstr "Enregistrer un nombre illimité d'articles."
+
+#. i18n: ectx: label, entry, group (Archive)
+#: interfaces/akregator.kcfg:108
+#, kde-format
+msgid "Limit Number of Articles"
+msgstr "Limiter le nombre d'articles"
+
+#. i18n: ectx: whatsthis, entry, group (Archive)
+#: interfaces/akregator.kcfg:109
+#, kde-format
+msgid "Limit the number of articles in a feed"
+msgstr "Limiter le nombre d'articles dans un flux"
+
+#. i18n: ectx: label, entry, group (Archive)
+#: interfaces/akregator.kcfg:112
+#, kde-format
+msgid "Delete Expired Articles"
+msgstr "Supprimer les articles expirés"
+
+#. i18n: ectx: whatsthis, entry, group (Archive)
+#: interfaces/akregator.kcfg:113
+#, kde-format
+msgid "Delete expired articles"
+msgstr "Supprimer les articles expirés"
+
+#. i18n: ectx: label, entry, group (Archive)
+#: interfaces/akregator.kcfg:116
+#, kde-format
+msgid "Disable Archiving"
+msgstr "Désactiver l'archivage"
+
+#. i18n: ectx: whatsthis, entry, group (Archive)
+#: interfaces/akregator.kcfg:117
+#, kde-format
+msgid "Do not save any articles"
+msgstr "Ne conserver aucun article"
+
+#. i18n: ectx: label, entry, group (Archive)
+#: interfaces/akregator.kcfg:122
+#, kde-format
+msgid "Expiry Age"
+msgstr "Délai avant expiration"
+
+#. i18n: ectx: whatsthis, entry, group (Archive)
+#: interfaces/akregator.kcfg:123
+#, kde-format
+msgid "Default expiry age for articles in days."
+msgstr "Délai par défaut, en jours, avant expiration des articles."
+
+#. i18n: ectx: label, entry, group (Archive)
+#: interfaces/akregator.kcfg:127
+#, kde-format
+msgid "Article Limit"
+msgstr "Limite d'articles"
+
+#. i18n: ectx: whatsthis, entry, group (Archive)
+#: interfaces/akregator.kcfg:128
+#, kde-format
+msgid "Number of articles to keep per feed."
+msgstr "Nombre d'articles à conserver par flux."
+
+#. i18n: ectx: label, entry, group (Archive)
+#: interfaces/akregator.kcfg:132
+#, kde-format
+msgid "Do Not Expire Important Articles"
+msgstr "Ne faire expirer aucun article important"
+
+#. i18n: ectx: whatsthis, entry, group (Archive)
+#: interfaces/akregator.kcfg:133
+#, kde-format
+msgid ""
+"When this option is enabled, articles you marked as important will not be "
+"removed when limit the archive size by either age or number of the articles."
+msgstr ""
+"Lorsque cette option est activée, les articles marqués comme « Important » "
+"ne seront pas supprimés même si la limite d'âge ou de nombre d'articles est "
+"franchie."
+
+#. i18n: ectx: label, entry, group (Network)
+#: interfaces/akregator.kcfg:139
+#, kde-format
+msgid "Concurrent Fetches"
+msgstr "Téléchargements simultanés"
+
+#. i18n: ectx: whatsthis, entry, group (Network)
+#: interfaces/akregator.kcfg:140
+#, kde-format
+msgid "Number of concurrent fetches"
+msgstr "Nombre de téléchargements simultanés"
+
+#. i18n: ectx: label, entry, group (Network)
+#: interfaces/akregator.kcfg:144
+#, kde-format
+msgid "Use HTML Cache"
+msgstr "Utiliser le cache HTML"
+
+#. i18n: ectx: whatsthis, entry, group (Network)
+#: interfaces/akregator.kcfg:145
+#, kde-format
+msgid ""
+"Use the KDE-wide HTML cache settings when downloading feeds, to avoid "
+"unnecessary traffic. Disable only when necessary."
+msgstr ""
+"Utiliser les paramètres de cache de KDE pour télécharger les flux, afin "
+"d'éviter un trafic inutile. Ne désactiver que si nécessaire."
+
+#. i18n: ectx: whatsthis, entry, group (Network)
+#: interfaces/akregator.kcfg:149
+#, kde-format
+msgid ""
+"This option allows user to specify custom user-agent string instead of using "
+"the default one. This is here because some proxies may interrupt the "
+"connection because of having \"gator\" in the name."
+msgstr ""
+"Cette option permet à l'utilisateur de modifier la chaîne d'identification "
+"du navigateur plutôt que d'utiliser celle envoyée par défaut. Ceci est "
+"particulièrement utile avec certains serveurs mandataires rompant la "
+"connexion lorsqu'il détectent « gator » dans cette chaîne."
+
+#. i18n: ectx: label, entry, group (General)
+#: interfaces/akregator.kcfg:155
+#, kde-format
+msgid "Fetch on startup"
+msgstr "Télécharger au démarrage"
+
+#. i18n: ectx: whatsthis, entry, group (General)
+#: interfaces/akregator.kcfg:156
+#, kde-format
+msgid "Fetch feedlist on startup."
+msgstr "Télécharger la liste de flux au démarrage."
+
+#. i18n: ectx: label, entry, group (General)
+#: interfaces/akregator.kcfg:160
+#, kde-format
+msgid "Mark all feeds as read on startup"
+msgstr "Marquer tous les flux comme lus au démarrage"
+
+#. i18n: ectx: whatsthis, entry, group (General)
+#: interfaces/akregator.kcfg:161
+#, kde-format
+msgid "Mark all feeds as read on startup."
+msgstr "Marquer tous les flux comme lus au démarrage."
+
+#. i18n: ectx: label, entry, group (General)
+#: interfaces/akregator.kcfg:165
+#, kde-format
+msgid "Use interval fetching"
+msgstr "Utiliser le téléchargement périodique"
+
+#. i18n: ectx: whatsthis, entry, group (General)
+#: interfaces/akregator.kcfg:166
+#, no-c-format, kde-format
+msgid "Fetch all feeds every %1 minutes."
+msgstr "Télécharger l'ensemble des flux toutes les %1 minutes."
+
+#. i18n: ectx: label, entry, group (General)
+#: interfaces/akregator.kcfg:170
+#, kde-format
+msgid "Interval for autofetching"
+msgstr "Intervalle du téléchargement automatique"
+
+#. i18n: ectx: whatsthis, entry, group (General)
+#: interfaces/akregator.kcfg:171
+#, kde-format
+msgid "Interval for autofetching in minutes."
+msgstr "Intervalle du téléchargement automatique en minutes."
+
+#. i18n: ectx: label, entry, group (General)
+#: interfaces/akregator.kcfg:175
+#, kde-format
+msgid "Use notifications"
+msgstr "Utiliser les notifications"
+
+#. i18n: ectx: whatsthis, entry, group (General)
+#: interfaces/akregator.kcfg:176
+#, kde-format
+msgid "Specifies if the balloon notifications are used or not."
+msgstr "Définit si les notifications en infobulles sont utilisées ou non."
+
+#. i18n: ectx: label, entry, group (General)
+#: interfaces/akregator.kcfg:180
+#, kde-format
+msgid "Show tray icon"
+msgstr "Afficher l'icône dans la boîte à miniatures"
+
+#. i18n: ectx: whatsthis, entry, group (General)
+#: interfaces/akregator.kcfg:181
+#, kde-format
+msgid "Specifies if the tray icon is shown or not."
+msgstr "Définit si l'icône est affichée dans la boîte à miniatures ou non."
+
+#. i18n: ectx: label, entry, group (General)
+#: interfaces/akregator.kcfg:185
+#, kde-format
+msgid "Show Unread In Taskbar"
+msgstr "Afficher les non lus dans la barre de tâches"
+
+#. i18n: ectx: whatsthis, entry, group (General)
+#: interfaces/akregator.kcfg:186
+#, kde-format
+msgid "Specifies if we show unread article in taskbar."
+msgstr "Indique si l'article non lu doit être affiché dans la barre de tâches."
+
+#. i18n: ectx: whatsthis, entry, group (Browser)
+#: interfaces/akregator.kcfg:203
+#, kde-format
+msgid "Always show the tab bar, even when only one tab is open"
+msgstr "Toujours afficher la barre d'onglets, même si un seul est ouvert"
+
+#. i18n: ectx: label, entry, group (Browser)
+#: interfaces/akregator.kcfg:207
+#, kde-format
+msgid "Show close buttons on tabs"
+msgstr "Afficher les boutons de fermeture sur les onglets"
+
+#. i18n: ectx: whatsthis, entry, group (Browser)
+#: interfaces/akregator.kcfg:208
+#, kde-format
+msgid "Show close buttons on tabs instead of icons"
+msgstr "Afficher les boutons de fermeture sur les onglets au lieu des icônes"
+
+#. i18n: ectx: whatsthis, entry, group (Browser)
+#: interfaces/akregator.kcfg:213
+#, kde-format
+msgid ""
+"Open a link which would normally open in a new window (external browser) in "
+"a new tab instead"
+msgstr ""
+"Ouvrir un lien qui devrait normalement s'afficher dans une nouvelle fenêtre "
+"(navigateur externe) dans un nouvel onglet à la place"
+
+#. i18n: ectx: label, entry, group (Browser)
+#: interfaces/akregator.kcfg:217
+#, kde-format
+msgid "Use default KDE web browser"
+msgstr "Utiliser le navigateur Internet par défaut de KDE"
+
+#. i18n: ectx: whatsthis, entry, group (Browser)
+#: interfaces/akregator.kcfg:218
+#, kde-format
+msgid "Use KDE web browser when opening in external browser."
+msgstr ""
+"Utiliser le navigateur Internet de KDE lors de l'ouverture dans une fenêtre "
+"externe."
+
+#. i18n: ectx: label, entry, group (Browser)
+#: interfaces/akregator.kcfg:222
+#, kde-format
+msgid "Use this command:"
+msgstr "Utiliser cette commande :"
+
+#. i18n: ectx: whatsthis, entry, group (Browser)
+#: interfaces/akregator.kcfg:223
+#, kde-format
+msgid "Use the specified command when opening in external browser."
+msgstr ""
+"Utiliser la commande spécifiée lors de l'ouverture dans un navigateur "
+"externe."
+
+#. i18n: ectx: whatsthis, entry, group (Browser)
+#: interfaces/akregator.kcfg:227
+#, no-c-format, kde-format
+msgid "Command to launch external browser. URL will substitute for %u."
+msgstr ""
+"Commande lançant le navigateur externe. « %u » sera remplacé par l'URL."
+
+#. i18n: ectx: whatsthis, entry, group (Browser)
+#: interfaces/akregator.kcfg:231
+#, kde-format
+msgid "What the click with left mouse button should do."
+msgstr "Définir l'action du bouton gauche de la souris."
+
+#. i18n: ectx: whatsthis, entry, group (Browser)
+#: interfaces/akregator.kcfg:240
+#, kde-format
+msgid "What the click with middle mouse button should do."
+msgstr "Définir l'action du bouton central de la souris."
+
+#. i18n: ectx: label, entry, group (Advanced)
+#: interfaces/akregator.kcfg:265
+#, kde-format
+msgid "Archive Backend"
+msgstr "Moteur d'archive"
+
+#. i18n: ectx: whatsthis, entry (UseMarkReadDelay), group (Advanced)
+#: interfaces/akregator.kcfg:269
+#, kde-format
+msgid "Whether to delay before marking an article as read upon selecting it."
+msgstr ""
+"Définit un délai avant de marquer un article comme lu après sa sélection."
+
+#. i18n: ectx: whatsthis, entry (MarkReadDelay), group (Advanced)
+#: interfaces/akregator.kcfg:273
+#, kde-format
+msgid ""
+"Configurable delay between selecting an article and it being marked as read."
+msgstr ""
+"Délai configurable avant qu'un article sélectionné soit considéré comme lu."
+
+#. i18n: ectx: whatsthis, entry, group (Advanced)
+#: interfaces/akregator.kcfg:277
+#, kde-format
+msgid "Resets the quick filter when changing feeds."
+msgstr "Efface la recherche rapide au changement de flux."
+
+#: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
+#: src/akregator_part.cpp:146
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:148
+#: src/trayicon.cpp:41 src/trayicon.cpp:42 src/trayicon.cpp:54
+#, kde-format
+msgid "Akregator"
+msgstr "Akregator"
+
+#: kontactplugin/akregator_plugin.cpp:29
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "New Feed..."
+msgstr "Nou&veau flux..."
+
+#: kontactplugin/akregator_plugin.cpp:32
+#, kde-format
+msgctxt "@info:status"
+msgid "Create a new feed"
+msgstr "Créer un nouveau flux"
+
+#: kontactplugin/akregator_plugin.cpp:33
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid "You will be presented with a dialog where you can add a new feed."
+msgstr "Un dialogue vous permettant d'ajouter un nouveau flux sera affiché."
+
+#: src/aboutdata.cpp:21
+#, kde-format
+msgid "A KDE Feed Reader"
+msgstr "Un agrégateur de flux pour KDE"
+
+#: src/aboutdata.cpp:23
+#, kde-format
+msgid "Copyright © 2004–%1 Akregator authors"
+msgstr "Copyright © 2004 – %1 Les auteurs d'Akregator"
+
+#: src/aboutdata.cpp:27
+#, kde-format
+msgid "Maintainer"
+msgstr "Mainteneur"
+
+#: src/aboutdata.cpp:28
+#, kde-format
+msgid "Former maintainer"
+msgstr "Ancien mainteneur"
+
+#: src/aboutdata.cpp:29
+#, kde-format
+msgid "Teemu Rytilahti"
+msgstr "Teemu Rytilahti"
+
+#: src/aboutdata.cpp:29 src/aboutdata.cpp:30 src/aboutdata.cpp:31
+#: src/aboutdata.cpp:32
+#, kde-format
+msgid "Developer"
+msgstr "Développeur"
+
+#: src/aboutdata.cpp:30
+#, kde-format
+msgid "Sashmit Bhaduri"
+msgstr "Sashmit Bhaduri"
+
+#: src/aboutdata.cpp:31
+#, kde-format
+msgid "Pierre Habouzit"
+msgstr "Pierre Habouzit"
+
+#: src/aboutdata.cpp:32
+#, kde-format
+msgid "Stanislav Karchebny"
+msgstr "Stanislav Karchebny"
+
+#: src/aboutdata.cpp:33
+#, kde-format
+msgid "Gary Cramblitt"
+msgstr "Gary Cramblitt"
+
+#: src/aboutdata.cpp:33 src/aboutdata.cpp:34 src/aboutdata.cpp:35
+#, kde-format
+msgid "Contributor"
+msgstr "Contributeur"
+
+#: src/aboutdata.cpp:34
+#, kde-format
+msgid "Stephan Binner"
+msgstr "Stephan Binner"
+
+#: src/aboutdata.cpp:35
+#, kde-format
+msgid "Christof Musik"
+msgstr "Christof Musik"
+
+#: src/aboutdata.cpp:36
+#, kde-format
+msgid "Anne-Marie Mahfouf"
+msgstr "Anne-Marie Mahfouf"
+
+#: src/aboutdata.cpp:36
+#, kde-format
+msgid "Handbook"
+msgstr "Manuel"
+
+#: src/aboutdata.cpp:37
+#, kde-format
+msgid "Frerich Raabe"
+msgstr "Frerich Raabe"
+
+#: src/aboutdata.cpp:37
+#, kde-format
+msgid "Author of librss"
+msgstr "Auteur de « librss »"
+
+#: src/aboutdata.cpp:38
+#, kde-format
+msgid "Eckhart Woerner"
+msgstr "Eckhart Woerner"
+
+#: src/aboutdata.cpp:38
+#, kde-format
+msgid "Bug tracker management, Usability improvements"
+msgstr "Gestion de la recherche de bogues, améliorations de l'ergonomie"
+
+#: src/aboutdata.cpp:39
+#, kde-format
+msgid "Heinrich Wendel"
+msgstr "Heinrich Wendel"
+
+#: src/aboutdata.cpp:39
+#, kde-format
+msgid "Tons of bug fixes"
+msgstr "Des milliers de corrections de bogues"
+
+#: src/aboutdata.cpp:40
+#, kde-format
+msgid "Eike Hein"
+msgstr "Eike Hein"
+
+#: src/aboutdata.cpp:40
+#, kde-format
+msgid "'Delayed mark as read' feature"
+msgstr "Fonction « Marquer à lire ultérieurement »"
+
+#: src/aboutdata.cpp:41
+#, kde-format
+msgid "Marcel Dierkes"
+msgstr "Marcel Dierkes"
+
+#: src/aboutdata.cpp:41
+#, kde-format
+msgid "Icons"
+msgstr "Icônes"
+
+#: src/aboutdata.cpp:42
+#, kde-format
+msgid "George Staikos"
+msgstr "George Staikos"
+
+#: src/aboutdata.cpp:42
+#, kde-format
+msgid "Insomnia"
+msgstr "Insomnie"
+
+#: src/aboutdata.cpp:43
+#, kde-format
+msgid "Philipp Droessler"
+msgstr "Philipp Droessler"
+
+#: src/aboutdata.cpp:43
+#, kde-format
+msgid "Gentoo Ebuild"
+msgstr "Ebuild Gentoo"
+
+#: src/actions/actionmanagerimpl.cpp:63 src/actions/actionmanagerimpl.cpp:286
+#, kde-format
+msgid "&Fetch Feed"
+msgstr "Télécharger le &flux"
+
+#: src/actions/actionmanagerimpl.cpp:64 src/actions/actionmanagerimpl.cpp:242
+#, kde-format
+msgid "&Delete Feed"
+msgstr "&Supprimer un flux"
+
+#: src/actions/actionmanagerimpl.cpp:65 src/actions/actionmanagerimpl.cpp:248
+#, kde-format
+msgid "&Edit Feed..."
+msgstr "Modifi&er un flux..."
+
+#: src/actions/actionmanagerimpl.cpp:66 src/actions/actionmanagerimpl.cpp:305
+#, kde-format
+msgid "&Mark Feed as Read"
+msgstr "&Marquer un flux comme lu"
+
+#: src/actions/actionmanagerimpl.cpp:82
+#, kde-format
+msgid "&Fetch Feeds"
+msgstr "Télécharger des &flux"
+
+#: src/actions/actionmanagerimpl.cpp:83
+#, kde-format
+msgid "&Delete Folder"
+msgstr "Supprimer un &dossier"
+
+#: src/actions/actionmanagerimpl.cpp:84
+#, kde-format
+msgid "&Rename Folder"
+msgstr "&Renommer un dossier"
+
+#: src/actions/actionmanagerimpl.cpp:85
+#, kde-format
+msgid "&Mark Feeds as Read"
+msgstr "&Marquer des flux comme lus"
+
+#: src/actions/actionmanagerimpl.cpp:190
+#, kde-format
+msgid "&Import Feeds..."
+msgstr "&Importer des flux..."
+
+#: src/actions/actionmanagerimpl.cpp:194
+#, kde-format
+msgid "&Export Feeds..."
+msgstr "&Exporter des flux..."
+
+#: src/actions/actionmanagerimpl.cpp:199
+#, kde-format
+msgid "&Configure Akregator..."
+msgstr "&Configurer Akregator..."
+
+#: src/actions/actionmanagerimpl.cpp:218
+#, kde-format
+msgid "&Open Homepage"
+msgstr "&Ouvrir la page d'accueil"
+
+#: src/actions/actionmanagerimpl.cpp:224
+#, kde-format
+msgid "Reload All Tabs"
+msgstr "Recharger tous les onglets"
+
+#: src/actions/actionmanagerimpl.cpp:230
+#, kde-format
+msgid "&Add Feed..."
+msgstr "&Ajouter un flux..."
+
+#: src/actions/actionmanagerimpl.cpp:236
+#, kde-format
+msgid "Ne&w Folder..."
+msgstr "Nou&veau dossier..."
+
+#: src/actions/actionmanagerimpl.cpp:261
+#, kde-format
+msgid "&Normal View"
+msgstr "Vue &normale"
+
+#: src/actions/actionmanagerimpl.cpp:270
+#, kde-format
+msgid "&Widescreen View"
+msgstr "Vue en écran &large"
+
+#: src/actions/actionmanagerimpl.cpp:279
+#, kde-format
+msgid "C&ombined View"
+msgstr "Vue c&ombinée"
+
+#: src/actions/actionmanagerimpl.cpp:292
+#, kde-format
+msgid "Fe&tch All Feeds"
+msgstr "Télé&charger tous les flux"
+
+#: src/actions/actionmanagerimpl.cpp:298
+#, kde-format
+msgid "C&ancel Feed Fetches"
+msgstr "&Annuler les téléchargements de flux"
+
+#: src/actions/actionmanagerimpl.cpp:311
+#, kde-format
+msgid "Ma&rk All Feeds as Read"
+msgstr "Ma&rquer tous les flux comme lus"
+
+#: src/actions/actionmanagerimpl.cpp:340 src/actions/actionmanagerimpl.cpp:608
+#, kde-format
+msgid "Copy Link Address"
+msgstr "Copier une adresse du lien"
+
+#: src/actions/actionmanagerimpl.cpp:345
+#, kde-format
+msgid "Pre&vious Unread Article"
+msgstr "Article non lu pré&cédent"
+
+#: src/actions/actionmanagerimpl.cpp:351
+#, kde-format
+msgid "Ne&xt Unread Article"
+msgstr "Article non lu sui&vant"
+
+#: src/actions/actionmanagerimpl.cpp:359
+#, kde-format
+msgid "&Delete"
+msgstr "&Supprimer"
+
+#: src/actions/actionmanagerimpl.cpp:364
+#, kde-format
+msgid "&Mark As"
+msgstr "&Marquer comme"
+
+#: src/actions/actionmanagerimpl.cpp:368
+#, kde-format
+msgctxt "as in: mark as read"
+msgid "&Read"
+msgstr "&Lu"
+
+#: src/actions/actionmanagerimpl.cpp:370
+#, kde-format
+msgid "Mark selected article as read"
+msgstr "Marquer l'article sélectionné comme lu"
+
+#: src/actions/actionmanagerimpl.cpp:376
+#, kde-format
+msgctxt "as in: mark as new"
+msgid "&New"
+msgstr "&Nouveau"
+
+#: src/actions/actionmanagerimpl.cpp:379
+#, kde-format
+msgid "Mark selected article as new"
+msgstr "Marquer l'article sélectionné comme nouveau"
+
+#: src/actions/actionmanagerimpl.cpp:384
+#, kde-format
+msgctxt "as in: mark as unread"
+msgid "&Unread"
+msgstr "Non l&u"
+
+#: src/actions/actionmanagerimpl.cpp:386
+#, kde-format
+msgid "Mark selected article as unread"
+msgstr "Marquer l'article sélectionné comme non lu"
+
+#: src/actions/actionmanagerimpl.cpp:392
+#, kde-format
+msgid "&Mark as Important"
+msgstr "&Marquer comme important"
+
+#: src/actions/actionmanagerimpl.cpp:396
+#, kde-format
+msgid "Remove &Important Mark"
+msgstr "Supprimer l'étiquette « &Important »"
+
+#: src/actions/actionmanagerimpl.cpp:400
+#, kde-format
+msgid "Move Node Up"
+msgstr "Déplacer le nœud vers le haut"
+
+#: src/actions/actionmanagerimpl.cpp:405
+#, kde-format
+msgid "Move Node Down"
+msgstr "Déplacer le nœud vers le bas"
+
+#: src/actions/actionmanagerimpl.cpp:410
+#, kde-format
+msgid "Move Node Left"
+msgstr "Déplacer le nœud à gauche"
+
+#: src/actions/actionmanagerimpl.cpp:415
+#, kde-format
+msgid "Move Node Right"
+msgstr "Déplacer le nœud à droite"
+
+#: src/actions/actionmanagerimpl.cpp:421
+#, kde-format
+msgid "Send &Link Address..."
+msgstr "Envoyer un &lien..."
+
+#: src/actions/actionmanagerimpl.cpp:426
+#, kde-format
+msgid "Send &File..."
+msgstr "Envoyer un &fichier..."
+
+#: src/actions/actionmanagerimpl.cpp:432
+#, kde-format
+msgid "Set Focus to Quick Search"
+msgstr "Passer le focus au champ de recherche rapide"
+
+#: src/actions/actionmanagerimpl.cpp:464
+#, kde-format
+msgid "&Previous Article"
+msgstr "Article &précédent"
+
+#: src/actions/actionmanagerimpl.cpp:468
+#, kde-format
+msgid "&Next Article"
+msgstr "Article suiva&nt"
+
+#: src/actions/actionmanagerimpl.cpp:484
+#, kde-format
+msgid "&Previous Feed"
+msgstr "Flux &précédent"
+
+#: src/actions/actionmanagerimpl.cpp:489
+#, kde-format
+msgid "&Next Feed"
+msgstr "Flux suiva&nt"
+
+#: src/actions/actionmanagerimpl.cpp:495
+#, kde-format
+msgid "N&ext Unread Feed"
+msgstr "Flux non lu s&uivant"
+
+#: src/actions/actionmanagerimpl.cpp:501
+#, kde-format
+msgid "Prev&ious Unread Feed"
+msgstr "Flux non lu pré&cédent"
+
+#: src/actions/actionmanagerimpl.cpp:506
+#, kde-format
+msgid "Go to Top of Tree"
+msgstr "Se déplacer en haut de l'arborescence"
+
+#: src/actions/actionmanagerimpl.cpp:511
+#, kde-format
+msgid "Go to Bottom of Tree"
+msgstr "Se déplacer en bas de l'arborescence"
+
+#: src/actions/actionmanagerimpl.cpp:516
+#, kde-format
+msgid "Go Left in Tree"
+msgstr "Se déplacer à gauche dans l'arborescence"
+
+#: src/actions/actionmanagerimpl.cpp:521
+#, kde-format
+msgid "Go Right in Tree"
+msgstr "Se déplacer à droite dans l'arborescence"
+
+#: src/actions/actionmanagerimpl.cpp:526
+#, kde-format
+msgid "Go Up in Tree"
+msgstr "Se déplacer dans l'arborescence"
+
+#: src/actions/actionmanagerimpl.cpp:531
+#, kde-format
+msgid "Go Down in Tree"
+msgstr "Se déplacer vers le bas dans l'arborescence"
+
+#: src/actions/actionmanagerimpl.cpp:537
+#, kde-format
+msgid "Hide Read Feeds"
+msgstr "Cacher les flux lus"
+
+#: src/actions/actionmanagerimpl.cpp:543
+#, kde-format
+msgid "Lock Feeds In Place"
+msgstr "Verrouiller les fils de discussions à leurs emplacements."
+
+#: src/actions/actionmanagerimpl.cpp:549
+#, kde-format
+msgid "Auto-expand folders with unread articles"
+msgstr "Développer automatiquement les dossiers contenant des articles non-lus"
+
+#: src/actions/actionmanagerimpl.cpp:565
+#, kde-format
+msgid "Select Next Tab"
+msgstr "Sélectionner l'onglet suivant"
+
+#: src/actions/actionmanagerimpl.cpp:570
+#, kde-format
+msgid "Select Previous Tab"
+msgstr "Sélectionner l'onglet précédent"
+
+#: src/actions/actionmanagerimpl.cpp:576
+#, kde-format
+msgid "Detach Tab"
+msgstr "Détacher un onglet"
+
+#: src/actions/actionmanagerimpl.cpp:590
+#, kde-format
+msgid "Mute"
+msgstr "Couper le son"
+
+#: src/actions/actionmanagerimpl.cpp:594
+#, kde-format
+msgid "Unmute"
+msgstr "Remettre le son"
+
+#: src/actions/actionmanagerimpl.cpp:597
+#, kde-format
+msgid "Speak Text"
+msgstr "Lire le texte"
+
+#: src/actions/actionmanagerimpl.cpp:602
+#, kde-format
+msgid "&Find in Message..."
+msgstr "Trouver un message..."
+
+#: src/actions/actionmanagerimpl.cpp:613
+#, kde-format
+msgid "Close Tab"
+msgstr "Fermer un onglet"
+
+#: src/actions/actionmanagerimpl.cpp:626
+#, kde-format
+msgid "Activate Tab %1"
+msgstr "Activer l'onglet %1"
+
+#: src/actions/actionmanagerimpl.cpp:632
+#, kde-format
+msgid "&Save Link As..."
+msgstr "Enregistrer la cible &sous..."
+
+#: src/actions/actionmanagerimpl.cpp:636
+#, kde-format
+msgid "Copy &Link Address"
+msgstr "Copier une adresse du &lien"
+
+#: src/actions/actionmanagerimpl.cpp:639
+#, kde-format
+msgid "Copy Image Location"
+msgstr "Copier l'emplacement de l'image"
+
+#: src/actions/actionmanagerimpl.cpp:646
+#, kde-format
+msgid "Save Image On Disk..."
+msgstr "Enregistrer l'image sous..."
+
+#: src/actions/actions.cpp:19
+#, kde-format
+msgid "Open Link in New &Tab"
+msgstr "Ouvrir le lien dans un nouvel ongle&t"
+
+#: src/actions/actions.cpp:26
+#, kde-format
+msgid "Open Link in External &Browser"
+msgstr "Ouvrir le lien dans le &navigateur externe"
+
+#: src/addfeeddialog.cpp:49
+#, kde-format
+msgctxt "@title:window"
+msgid "Add Feed"
+msgstr "Ajouter un flux"
+
+#: src/addfeeddialog.cpp:99
+#, kde-format
+msgid "Downloading %1"
+msgstr "Téléchargement de %1"
+
+#: src/addfeeddialog.cpp:115
+#, kde-format
+msgid "Feed not found from %1."
+msgstr "Impossible de trouver le flux dans %1."
+
+#: src/addfeeddialog.cpp:121
+#, kde-format
+msgid "Feed found, downloading..."
+msgstr "Flux trouvé. Téléchargement en cours..."
+
+#: src/akregator_options.h:20 src/akregator_options.h:28
+#, kde-format
+msgid "Add a feed with the given URL"
+msgstr "Ajouter un flux avec l'URL fournie"
+
+#: src/akregator_options.h:23
+#, kde-format
+msgid "When adding feeds, place them in this group"
+msgstr "L'ajout de flux se fait dans ce groupe"
+
+#: src/akregator_options.h:25
+#, kde-format
+msgid "Hide main window on startup"
+msgstr "Masquer la fenêtre principale au démarrage"
+
+#: src/akregator_options.h:30
+#, kde-format
+msgid "Lists the available options for user feedback"
+msgstr "Liste les options disponibles pour les retours des utilisateurs"
+
+#: src/akregator_part.cpp:84
+#, kde-format
+msgid "Feeds"
+msgstr "Flux"
+
+#: src/akregator_part.cpp:95
+#, kde-format
+msgid "KDE Dot News"
+msgstr "Nouvelles de « KDE Dot »"
+
+#: src/akregator_part.cpp:100
+#, kde-format
+msgid "Linux.com"
+msgstr "Linux.com"
+
+#: src/akregator_part.cpp:105
+#, kde-format
+msgid "Planet KDE"
+msgstr "Planète KDE"
+
+#: src/akregator_part.cpp:110
+#, kde-format
+msgid "KDE Apps"
+msgstr "KDE Apps"
+
+#: src/akregator_part.cpp:116
+#, kde-format
+msgid "Spanish feeds"
+msgstr "Flux espagnols"
+
+#: src/akregator_part.cpp:120
+#, kde-format
+msgid "Planet KDE España"
+msgstr "Planète KDE Espagne"
+
+#: src/akregator_part.cpp:440
+#, kde-format
+msgid ""
+"Access denied: Cannot save feed list to <b>%1</b>. Please check your "
+"permissions."
+msgstr ""
+"Accès refusé : impossible d'enregistrer la liste de flux dans <b>%1</b>. "
+"Veuillez vérifier vos droits d'accès."
+
+#: src/akregator_part.cpp:441 src/akregator_part.cpp:492
+#, kde-format
+msgid "Write Error"
+msgstr "Problème d'écriture"
+
+#: src/akregator_part.cpp:477
+#, kde-format
+msgid "Could not import the file %1 (no valid OPML)"
+msgstr "Impossible d'importer le fichier « %1 » (aucun « OPML » valable)"
+
+#: src/akregator_part.cpp:477 src/command/loadfeedlistcommand.cpp:71
+#, kde-format
+msgid "OPML Parsing Error"
+msgstr "Erreur d'analyse « OPML »"
+
+#: src/akregator_part.cpp:481
+#, kde-format
+msgid ""
+"The file %1 could not be read, check if it exists or if it is readable for "
+"the current user."
+msgstr ""
+"Impossible de lire le fichier « %1 ». Veuillez vérifier qu'il existe et que "
+"l'utilisateur actuel peut le lire."
+
+#: src/akregator_part.cpp:482 src/command/loadfeedlistcommand.cpp:142
+#, kde-format
+msgid "Read Error"
+msgstr "Erreur de lecture"
+
+#: src/akregator_part.cpp:492
+#, kde-format
+msgid "Access denied: cannot write to file %1. Please check your permissions."
+msgstr ""
+"Accès refusé : impossible d'écrire dans le fichier « %1 ». Veuillez vérifier "
+"vos droits d'accès."
+
+#: src/akregator_part.cpp:507 src/akregator_part.cpp:516
+#, kde-format
+msgid "OPML Outlines (%1);;All Files (*)"
+msgstr "Structures « OPML » (%1);;Tous les fichiers (*)"
+
+#: src/akregator_part.cpp:650
+#, kde-format
+msgid "Imported Folder"
+msgstr "Dossier importé"
+
+#: src/articlejobs.cpp:184
+#, kde-format
+msgid "The feed to be listed was already removed."
+msgstr "Le flux à afficher a déjà été supprimé."
+
+#: src/articlelistview.cpp:156 src/subscription/subscriptionlistview.cpp:180
+#, kde-format
+msgid "Columns"
+msgstr "Colonnes"
+
+#: src/articlelistview.cpp:214
+#, kde-format
+msgid "No result found"
+msgstr "Aucun résultat trouvé"
+
+#: src/articlelistview.cpp:375
+#, kde-format
+msgid ""
+"<h2>Article list</h2>Here you can browse articles from the currently "
+"selected feed. You can also manage articles, as marking them as persistent "
+"(\"Mark as Important\") or delete them, using the right mouse button menu. "
+"To view the web page of the article, you can open the article internally in "
+"a tab or in an external browser window."
+msgstr ""
+"<h2>Liste des articles</h2>Vous pouvez naviguer ici parmi les articles du "
+"flux sélectionné. Vous pouvez également gérer les articles en utilisant le "
+"menu du clic droit, par exemple en les marquant comme persistants (« Marquer "
+"comme important ») ou en les supprimant. Pour consulter la page d'un "
+"article, vous pouvez l'ouvrir en interne dans un onglet ou dans le "
+"navigateur externe."
+
+#: src/articlemodel.cpp:74
+#, kde-format
+msgctxt "Articlelist's column header"
+msgid "Title"
+msgstr "Titre"
+
+#: src/articlemodel.cpp:76
+#, kde-format
+msgctxt "Articlelist's column header"
+msgid "Feed"
+msgstr "Flux"
+
+#: src/articlemodel.cpp:78
+#, kde-format
+msgctxt "Articlelist's column header"
+msgid "Date"
+msgstr "Date"
+
+#: src/articlemodel.cpp:80
+#, kde-format
+msgctxt "Articlelist's column header"
+msgid "Author"
+msgstr "Auteur"
+
+#: src/articlemodel.cpp:82
+#, kde-format
+msgctxt "Articlelist's column header"
+msgid "Description"
+msgstr "Description"
+
+#: src/articlemodel.cpp:84
+#, kde-format
+msgctxt "Articlelist's column header"
+msgid "Content"
+msgstr "Contenu"
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:149
+#, kde-format
+msgid "Akregator is a KDE news feed reader."
+msgstr "Akregator est un agrégateur de flux pour KDE."
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:190
+#, kde-format
+msgctxt "@title:window"
+msgid "Save As"
+msgstr "Enregistrer sous"
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:382
+#, kde-format
+msgid "Disable"
+msgstr "Désactiver"
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:384
+#, kde-format
+msgid "Keep Enabled"
+msgstr "Laisser cette page active"
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:386
+#, kde-format
+msgid "Are you sure you want to disable this introduction page?"
+msgstr "Voulez-vous vraiment désactiver cette page d'introduction ?"
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:387
+#, kde-format
+msgid "Disable Introduction Page"
+msgstr "Désactiver la page d'introduction"
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:422
+#, kde-format
+msgid "This web site is a malware, do you want to continue to show it?"
+msgstr "Le site web est malveillant, voulez-vous continuer à l'afficher ?"
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:423
+#, kde-format
+msgid "Malware"
+msgstr "Malveillant"
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:435
+#, kde-format
+msgid "The network is broken."
+msgstr "Le réseau n'est pas opérationnel."
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:435
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:438
+#, kde-format
+msgid "Check Phishing Url"
+msgstr "Vérifier les URL d'hameçonnage"
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:438
+#, kde-format
+msgid "The url %1 is not valid."
+msgstr "L'URL %1 n'est pas valable."
+
+#: src/articleviewer-ng/webengine/articleviewerwebenginewidgetng.cpp:137
+#, kde-format
+msgctxt "@title:window"
+msgid "Print Document"
+msgstr "Imprimer le document"
+
+#: src/command/createfoldercommand.cpp:47
+#, kde-format
+msgid "Add Folder"
+msgstr "Ajouter un dossier"
+
+#: src/command/createfoldercommand.cpp:47
+#, kde-format
+msgid "Folder name:"
+msgstr "Nom du dossier :"
+
+#: src/command/deletesubscriptioncommand.cpp:39
+#, kde-format
+msgid ""
+"<qt>Are you sure you want to delete this folder and its feeds and subfolders?"
+"</qt>"
+msgstr ""
+"<qt>Voulez-vous vraiment supprimer ce dossier, ainsi que les flux et les "
+"sous-dossiers qu'il contient ?</qt>"
+
+#: src/command/deletesubscriptioncommand.cpp:40
+#, kde-format
+msgid ""
+"<qt>Are you sure you want to delete folder <b>%1</b> and its feeds and "
+"subfolders?</qt>"
+msgstr ""
+"<qt>Voulez-vous vraiment supprimer le dossier <b>%1</b>, ainsi que les flux "
+"et les sous-dossiers qu'il contient ?</qt>"
+
+#: src/command/deletesubscriptioncommand.cpp:44
+#, kde-format
+msgid "Delete Folder"
+msgstr "Supprimer un dossier"
+
+#: src/command/deletesubscriptioncommand.cpp:61
+#, kde-format
+msgid "<qt>Are you sure you want to delete this feed?</qt>"
+msgstr "<qt>Voulez-vous vraiment supprimer ce flux ?</qt>"
+
+#: src/command/deletesubscriptioncommand.cpp:63
+#, kde-format
+msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
+msgstr "<qt>Voulez-vous vraiment supprimer le flux <b>%1</b> ?</qt>"
+
+#: src/command/deletesubscriptioncommand.cpp:68
+#, kde-format
+msgid "Delete Feed"
+msgstr "Supprimer un flux"
+
+#: src/command/importfeedlistcommand.cpp:48
+#, kde-format
+msgid "Imported Feeds"
+msgstr "Flux importés"
+
+#: src/command/importfeedlistcommand.cpp:77
+#, kde-format
+msgid "Add Imported Folder"
+msgstr "Ajouter un dossier importé"
+
+#: src/command/importfeedlistcommand.cpp:78
+#, kde-format
+msgid "Imported folder name:"
+msgstr "Nom du dossier importé :"
+
+#: src/command/loadfeedlistcommand.cpp:63
+#, kde-format
+msgid ""
+"<qt>The standard feed list is corrupted (invalid OPML). A backup was created:"
+"<p><b>%1</b></p></qt>"
+msgstr ""
+"<qt>La liste de flux standard est corrompue (« OPML » non valable). Une "
+"sauvegarde a été créée : <p><b>%1</b></p></qt>"
+
+#: src/command/loadfeedlistcommand.cpp:67
+#, kde-format
+msgid ""
+"<qt>The standard feed list is corrupted (invalid OPML). Could not create a "
+"backup.</qt>"
+msgstr ""
+"<qt>La liste de flux standard est corrompue (« OPML » non valable). "
+"Impossible de créer une sauvegarde.</qt>"
+
+#: src/command/loadfeedlistcommand.cpp:129
+#, kde-format
+msgid "Opening Feed List..."
+msgstr "Ouverture de la liste de flux..."
+
+#: src/command/loadfeedlistcommand.cpp:142
+#, kde-format
+msgid "<qt>Could not open feed list (%1) for reading.</qt>"
+msgstr "<qt>Impossible d'ouvrir la liste de flux (%1) en lecture.</qt>"
+
+#: src/command/loadfeedlistcommand.cpp:155
+#, kde-format
+msgctxt "error message window caption"
+msgid "XML Parsing Error"
+msgstr "Erreur d'analyse XML"
+
+#: src/command/loadfeedlistcommand.cpp:157
+#, kde-kuit-format
+msgid "<qt><p>XML parsing error in line %1, column %2 of %3:</p><p>%4</p></qt>"
+msgstr ""
+"<qt><p>Erreur d'analyse XML à la ligne %1, colonne %2 sur %3 :</p><p>%4</p></"
+"qt>"
+
+#: src/command/loadfeedlistcommand.cpp:164
+#, kde-format
+msgid ""
+"<qt>The standard feed list is corrupted (invalid XML). A backup was created:"
+"<p><b>%1</b></p></qt>"
+msgstr ""
+"<qt>La liste de flux standard est corrompue (XML non valable). Une "
+"sauvegarde a été créée : <p><b>%1</b></p></qt>"
+
+#: src/command/loadfeedlistcommand.cpp:168
+#, kde-format
+msgid ""
+"<qt>The standard feed list is corrupted (invalid XML). Could not create a "
+"backup.</qt>"
+msgstr ""
+"<qt>La liste de flux standard est corrompue (XML non valable). Impossible de "
+"créer une sauvegarde.</qt>"
+
+#: src/crashwidget/crashwidget.cpp:21
+#, kde-format
+msgid ""
+"Akregator did not close correctly. Would you like to restore the previous "
+"session?"
+msgstr ""
+"Akregator ne s'est pas fermé correctement. Voulez-vous restaurer la session "
+"précédente ?"
+
+#: src/crashwidget/crashwidget.cpp:37
+#, kde-format
+msgid "Restore Session"
+msgstr "Restaurer la session"
+
+#: src/crashwidget/crashwidget.cpp:43
+#, kde-format
+msgid "Do Not Restore Session"
+msgstr "Ne pas restaurer la session"
+
+#: src/crashwidget/crashwidget.cpp:49
+#, kde-format
+msgid "Ask me later"
+msgstr "Me demander plus tard"
+
+#. i18n: ectx: Menu (edit)
+#: src/data/akregator_part.rc:14 src/data/akregator_shell.rc:11
+#, kde-format
+msgid "&Edit"
+msgstr "Modifi&er"
+
+#. i18n: ectx: Menu (view)
+#: src/data/akregator_part.rc:21 src/data/akregator_shell.rc:16
+#, kde-format
+msgid "&View"
+msgstr "&Affichage"
+
+#. i18n: ectx: Menu (go)
+#: src/data/akregator_part.rc:36 src/data/akregator_shell.rc:24
+#, kde-format
+msgid "&Go"
+msgstr "&Aller"
+
+#. i18n: ectx: Menu (feed)
+#: src/data/akregator_part.rc:49 src/data/akregator_shell.rc:29
+#, kde-format
+msgid "Fee&d"
+msgstr "F&lux"
+
+#. i18n: ectx: Menu (article)
+#: src/data/akregator_part.rc:62 src/data/akregator_shell.rc:34
+#, kde-format
+msgid "&Article"
+msgstr "&Article"
+
+#. i18n: ectx: Menu (settings)
+#: src/data/akregator_part.rc:79 src/data/akregator_shell.rc:39
+#, kde-format
+msgid "&Settings"
+msgstr "&Configuration"
+
+#. i18n: ectx: ToolBar (mainToolBar)
+#: src/data/akregator_part.rc:92 src/data/akregator_shell.rc:54
+#, kde-format
+msgid "Main Toolbar"
+msgstr "Barre principale d'outils"
+
+#. i18n: ectx: Menu (file)
+#: src/data/akregator_shell.rc:4
+#, kde-format
+msgid "&File"
+msgstr "&Fichier"
+
+#: src/feed/feedlist.cpp:160
+#, kde-format
+msgid "All Feeds"
+msgstr "Tous les flux"
+
+#: src/feed/feedpropertiesdialog.cpp:45 src/feed/feedpropertiesdialog.cpp:77
+#, kde-format
+msgid "Minute"
+msgid_plural "Minutes"
+msgstr[0] "Minute"
+msgstr[1] "Minutes"
+
+#: src/feed/feedpropertiesdialog.cpp:46 src/feed/feedpropertiesdialog.cpp:78
+#, kde-format
+msgid "Hour"
+msgid_plural "Hours"
+msgstr[0] "Heure"
+msgstr[1] "Heures"
+
+#: src/feed/feedpropertiesdialog.cpp:47 src/feed/feedpropertiesdialog.cpp:79
+#, kde-format
+msgid "Day"
+msgid_plural "Days"
+msgstr[0] "Jour"
+msgstr[1] "Jours"
+
+#: src/feed/feedpropertiesdialog.cpp:60 src/feed/feedpropertiesdialog.cpp:112
+#, kde-format
+msgctxt "@title:window"
+msgid "Feed Properties"
+msgstr "Propriétés du flux"
+
+#: src/feed/feedpropertiesdialog.cpp:80
+#, kde-format
+msgctxt "never fetch new articles"
+msgid "Never"
+msgstr "Jamais"
+
+#: src/feed/feedpropertiesdialog.cpp:81
+#, kde-format
+msgid " day"
+msgid_plural " days"
+msgstr[0] " jour"
+msgstr[1] " jours"
+
+#: src/feed/feedpropertiesdialog.cpp:82
+#, kde-format
+msgid " article"
+msgid_plural " articles"
+msgstr[0] " article"
+msgstr[1] " articles"
+
+#: src/feed/feedpropertiesdialog.cpp:112
+#, kde-format
+msgctxt "@title:window"
+msgid "Properties of %1"
+msgstr "Propriétés de %1"
+
+#: src/formatter/articleformatter.cpp:36
+#, kde-format
+msgid "(%1, %2)"
+msgstr "(%1, %2)"
+
+#: src/formatter/grantleeviewformatter.cpp:58
+#: src/formatter/grantleeviewformatter.cpp:109
+#, kde-format
+msgid " (no unread articles)"
+msgstr " (aucun article non lu)"
+
+#: src/formatter/grantleeviewformatter.cpp:60
+#: src/formatter/grantleeviewformatter.cpp:111
+#, kde-format
+msgid " (1 unread article)"
+msgid_plural " (%1 unread articles)"
+msgstr[0] " (1 article non lu)"
+msgstr[1] " (%1 articles non lus)"
+
+#: src/formatter/grantleeviewformatter.cpp:75
+#, kde-format
+msgid "<b>Description:</b> %1<br />"
+msgstr "<b>Description :</b> %1<br />"
+
+#: src/formatter/grantleeviewformatter.cpp:82
+#, kde-format
+msgid "<b>Homepage:</b> <a href=\"%1\">%1</a>"
+msgstr "<b>Page d'accueil :</b> <a href=\"%1\">%1</a>"
+
+#: src/formatter/grantleeviewformatter.cpp:89
+#, kde-format
+msgid "<b>Copyright:</b> %1</a>"
+msgstr "<b>Droits d'auteur :</b> %1<br />"
+
+#: src/formatter/grantleeviewformatter.cpp:141
+#, kde-format
+msgid "Date"
+msgstr "Date"
+
+#: src/formatter/grantleeviewformatter.cpp:142
+#, kde-format
+msgid "Comment"
+msgstr "Commentaire"
+
+#: src/formatter/grantleeviewformatter.cpp:143
+#, kde-format
+msgid "Complete Story"
+msgstr "Article complet"
+
+#: src/formatter/grantleeviewformatter.cpp:144
+#, kde-format
+msgid "Author"
+msgstr "Auteur"
+
+#: src/formatter/grantleeviewformatter.cpp:145
+#, kde-format
+msgid "Enclosure"
+msgstr "Contour"
+
+#: src/frame/frame.cpp:21
+#, kde-format
+msgid "Untitled"
+msgstr "Sans titre"
+
+#: src/frame/frame.cpp:141
+#, kde-format
+msgid "Loading..."
+msgstr "Chargement..."
+
+#: src/frame/frame.cpp:157
+#, kde-format
+msgid "Loading canceled"
+msgstr "Chargement annulé"
+
+#: src/frame/frame.cpp:169
+#, kde-format
+msgid "Loading completed"
+msgstr "Chargement terminé"
+
+#: src/mainwidget.cpp:144
+#, kde-format
+msgid "You can view multiple articles in several open tabs."
+msgstr "Vous pouvez voir plusieurs articles dans plusieurs onglets ouverts."
+
+#: src/mainwidget.cpp:148
+#, kde-format
+msgid "Articles list."
+msgstr "Liste des articles."
+
+#: src/mainwidget.cpp:210 src/mainwidget.cpp:635
+#, kde-format
+msgid "Articles"
+msgstr "Articles"
+
+#: src/mainwidget.cpp:239
+#, kde-format
+msgid "About"
+msgstr "À propos"
+
+#: src/mainwidget.cpp:765
+#, kde-format
+msgid ""
+"<qt>Are you sure you want to mark <b>all articles in the feed</b> as read?</"
+"qt>"
+msgstr ""
+"<qt>Voulez-vous vraiment marquer <b>tous les articles du flux</b> comme "
+"lus ? </qt>"
+
+#: src/mainwidget.cpp:766
+#, kde-format
+msgid "Mark Feed as Read"
+msgstr "Marquer un flux comme lu"
+
+#: src/mainwidget.cpp:769
+#, kde-format
+msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
+msgstr ""
+"<qt>Voulez-vous vraiment marquer <b>tous les flux</b> comme lus ? </qt>"
+
+#: src/mainwidget.cpp:771
+#, kde-format
+msgid ""
+"<qt>Are you sure you want to mark <b>all feeds in the folder</b> as read?</"
+"qt>"
+msgstr ""
+"<qt>Voulez-vous vraiment marquer <b>tous les flux du dossier</b> comme lus ? "
+"</qt>"
+
+#: src/mainwidget.cpp:773
+#, kde-format
+msgid "Mark Feeds as Read"
+msgstr "Marquer les flux comme lus"
+
+#: src/mainwidget.cpp:837 src/mainwidget.cpp:846 src/mainwidget.cpp:1248
+#, kde-format
+msgid "Networking is not available."
+msgstr "Le réseau n'est pas disponible."
+
+#: src/mainwidget.cpp:854
+#, kde-format
+msgid "Fetching Feeds..."
+msgstr "Téléchargement des flux..."
+
+#: src/mainwidget.cpp:1053
+#, kde-format
+msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
+msgstr "<qt>Voulez-vous vraiment supprimer l'article <b>%1</b> ?</qt>"
+
+#: src/mainwidget.cpp:1056
+#, kde-format
+msgid "<qt>Are you sure you want to delete the selected article?</qt>"
+msgid_plural ""
+"<qt>Are you sure you want to delete the %1 selected articles?</qt>"
+msgstr[0] "<qt>Voulez-vous vraiment supprimer l'article sélectionné ?</qt>"
+msgstr[1] ""
+"<qt>Voulez-vous vraiment supprimer les %1 articles sélectionnés ?</qt>"
+
+#: src/mainwidget.cpp:1245
+#, kde-format
+msgid "Networking is available now."
+msgstr "Le réseau est maintenant disponible."
+
+#: src/mainwindow.cpp:124
+#, kde-format
+msgid ""
+"<qt>This will hide the menu bar completely. You can show it again by typing "
+"%1.</qt>"
+msgstr ""
+"<qt>Ceci masquera totalement la barre de menus. Vous pourrez l'afficher de "
+"nouveau en appuyant sur %1.</qt>"
+
+#: src/mainwindow.cpp:127
+#, kde-format
+msgid "Hide menu bar"
+msgstr "Masquer la barre de menus"
+
+#: src/mainwindow.cpp:156
+#, kde-format
+msgid ""
+"Could not find the Akregator part; please check your installation.\n"
+"%1"
+msgstr ""
+"Impossible de trouver le composant Akregator. Veuillez vérifier votre "
+"installation.\n"
+"%1"
+
+#: src/notificationmanager.cpp:49
+#, kde-format
+msgid ""
+"Feed added:\n"
+" %1"
+msgstr ""
+"Flux ajouté :\n"
+" %1"
+
+#: src/notificationmanager.cpp:61
+#, kde-format
+msgid ""
+"Feeds added:\n"
+" %1"
+msgstr ""
+"Flux ajoutés :\n"
+" %1"
+
+#: src/notificationmanager.cpp:79
+#, kde-format
+msgid "<i>and 1 other</i>"
+msgid_plural "<i>and %1 others</i>"
+msgstr[0] "<i>et 1 autre</i>"
+msgstr[1] "<i>et %1 autres</i>"
+
+#: src/progressmanager.cpp:127
+#, kde-format
+msgid "Fetch completed"
+msgstr "Téléchargement terminé"
+
+#: src/progressmanager.cpp:136
+#, kde-format
+msgid "Fetch error"
+msgstr "Erreur de téléchargement"
+
+#: src/progressmanager.cpp:145
+#, kde-format
+msgid "Fetch aborted"
+msgstr "Téléchargement annulé"
+
+#: src/subscription/subscriptionlistjobs.cpp:54
+#, kde-format
+msgid "Feed list was deleted"
+msgstr "La liste des flux a été supprimée"
+
+#: src/subscription/subscriptionlistjobs.cpp:64
+#, kde-format
+msgid "Node or destination folder not found"
+msgstr "Impossible de trouver le nœud ou le dossier de destination"
+
+#: src/subscription/subscriptionlistjobs.cpp:71
+#, kde-format
+msgid "Cannot move folder %1 to its own subfolder %2"
+msgstr "Impossible de déplacer le dossier « %1 » dans son sous-dossier « %2 »"
+
+#: src/subscription/subscriptionlistmodel.cpp:49
+#, kde-format
+msgid "Timeout on remote server"
+msgstr "Délai dépassé sur le serveur distant"
+
+#: src/subscription/subscriptionlistmodel.cpp:51
+#, kde-format
+msgid "Unknown host"
+msgstr "Hôte inconnu"
+
+#: src/subscription/subscriptionlistmodel.cpp:53
+#, kde-format
+msgid "Feed file not found on remote server"
+msgstr "Impossible de trouver le flux sur le serveur distant"
+
+#: src/subscription/subscriptionlistmodel.cpp:55
+#, kde-format
+msgid "Could not read feed (invalid XML)"
+msgstr "Impossible de lire un flux (XML non valable)"
+
+#: src/subscription/subscriptionlistmodel.cpp:57
+#, kde-format
+msgid "Could not read feed (unknown format)"
+msgstr "Impossible de lire un flux (format inconnu)"
+
+#: src/subscription/subscriptionlistmodel.cpp:59
+#, kde-format
+msgid "Could not read feed (invalid feed)"
+msgstr "Impossible de lire un flux (flux non valable)"
+
+#: src/subscription/subscriptionlistmodel.cpp:229
+#, kde-format
+msgid "Could not fetch feed: %1"
+msgstr "Impossible de télécharger un flux : %1"
+
+#: src/subscription/subscriptionlistmodel.cpp:274
+#, kde-format
+msgctxt "Feedlist's column header"
+msgid "Feeds"
+msgstr "Flux"
+
+#: src/subscription/subscriptionlistmodel.cpp:276
+#, kde-format
+msgctxt "Feedlist's column header"
+msgid "Unread"
+msgstr "Non lu"
+
+#: src/subscription/subscriptionlistmodel.cpp:278
+#, kde-format
+msgctxt "Feedlist's column header"
+msgid "Total"
+msgstr "Total"
+
+#: src/tabwidget.cpp:92
+#, kde-format
+msgid "Close the current tab"
+msgstr "Fermer l'onglet courant"
+
+#: src/tabwidget.cpp:95
+#, kde-format
+msgid "Close tab"
+msgstr "Fermer un onglet"
+
+#: src/tabwidget.cpp:118
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Detach Tab"
+msgstr "Détacher un onglet"
+
+#: src/tabwidget.cpp:123
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Close Tab"
+msgstr "Fermer l'onglet"
+
+#: src/tabwidget.cpp:127
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Close All Other Tabs"
+msgstr "Fermer tous les autres onglets"
+
+#: src/tabwidget.cpp:131
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Close All Tabs"
+msgstr "Fermer tous les onglets"
+
+#: src/trayicon.cpp:55
+#, kde-format
+msgid "There are no unread articles"
+msgstr "Aucun article non lu"
+
+#: src/trayicon.cpp:55
+#, kde-format
+msgid "1 unread article"
+msgid_plural "%1 unread articles"
+msgstr[0] "1 article non lu"
+msgstr[1] "%1 articles non lus"
+
+#. i18n: ectx: property (windowTitle), widget (QWidget, Akregator::AddFeedWidgetBase)
+#: src/ui/addfeedwidgetbase.ui:14
+#, kde-format
+msgid "Add Feed"
+msgstr "Ajouter un flux"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel1)
+#: src/ui/addfeedwidgetbase.ui:122
+#, kde-format
+msgid "Add New Source"
+msgstr "Ajouter une nouvelle source"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel3)
+#: src/ui/addfeedwidgetbase.ui:135
+#, kde-format
+msgid "Feed &URL:"
+msgstr "&URL du flux :"
+
+#. i18n: ectx: property (windowTitle), widget (QWidget, Akregator::FeedPropertiesWidgetBase)
+#: src/ui/feedpropertieswidgetbase.ui:20
+#, kde-format
+msgid "Feed Properties"
+msgstr "Propriétés du flux"
+
+#. i18n: ectx: attribute (title), widget (QWidget, tab1)
+#: src/ui/feedpropertieswidgetbase.ui:42
+#, kde-format
+msgid "&General"
+msgstr "&Général"
+
+#. i18n: ectx: property (text), widget (QCheckBox, cb_updateInterval)
+#: src/ui/feedpropertieswidgetbase.ui:54
+#, kde-format
+msgid "U&se a custom update interval"
+msgstr "Utili&ser un intervalle personnalisé de mise à jour"
+
+#. i18n: ectx: property (text), widget (QLabel, updateLabel)
+#: src/ui/feedpropertieswidgetbase.ui:88
+#, kde-format
+msgid "Update ever&y:"
+msgstr "Mettre à jour toutes les :"
+
+#. i18n: ectx: property (text), widget (QCheckBox, checkBox_useNotification)
+#: src/ui/feedpropertieswidgetbase.ui:117
+#, kde-format
+msgid "Notify when new articles arri&ve"
+msgstr "Préve&nir lors de l'arrivée de nouveaux articles"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel3)
+#: src/ui/feedpropertieswidgetbase.ui:132
+#, kde-format
+msgid "&URL:"
+msgstr "&URL :"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel2)
+#: src/ui/feedpropertieswidgetbase.ui:142
+#, kde-format
+msgid "&Name:"
+msgstr "&Nom :"
+
+#. i18n: ectx: property (toolTip), widget (QLineEdit, feedNameEdit)
+#: src/ui/feedpropertieswidgetbase.ui:161
+#, kde-format
+msgid "Display name of RSS column"
+msgstr "Afficher le nom de la colonne RSS"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: src/ui/feedpropertieswidgetbase.ui:171
+#, kde-format
+msgid "Comment:"
+msgstr "Commentaire :"
+
+#. i18n: ectx: attribute (title), widget (QWidget, tab2)
+#: src/ui/feedpropertieswidgetbase.ui:194
+#, kde-format
+msgid "Ar&chive"
+msgstr "Ar&chiver"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rb_globalDefault)
+#: src/ui/feedpropertieswidgetbase.ui:206
+#, kde-format
+msgid "&Use default settings"
+msgstr "&Utiliser la configuration par défaut"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rb_disableArchiving)
+#: src/ui/feedpropertieswidgetbase.ui:216
+#, kde-format
+msgid "Di&sable archiving"
+msgstr "Dé&sactiver l'archivage"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rb_limitArticleNumber)
+#: src/ui/feedpropertieswidgetbase.ui:247
+#, kde-format
+msgid "Limit archi&ve to:"
+msgstr "&Limiter l'archivage à :"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rb_limitArticleAge)
+#: src/ui/feedpropertieswidgetbase.ui:277
+#, kde-format
+msgid "&Delete articles older than:"
+msgstr "&Supprimer les articles plus anciens que :"
+
+#. i18n: ectx: attribute (title), widget (QWidget, tab3)
+#: src/ui/feedpropertieswidgetbase.ui:340
+#, kde-format
+msgid "Adva&nced"
+msgstr "Ava&ncée"
+
+#. i18n: ectx: property (text), widget (QCheckBox, checkBox_loadWebsite)
+#: src/ui/feedpropertieswidgetbase.ui:373
+#, kde-format
+msgid "Load the &full website when reading articles"
+msgstr "&Charger le site Internet complet lors de la lecture des articles"
+
+#. i18n: ectx: property (text), widget (QCheckBox, checkBox_markRead)
+#: src/ui/feedpropertieswidgetbase.ui:380
+#, kde-format
+msgid "Mar&k articles as read when they arrive"
+msgstr "Mar&quer les articles comme lus dès leur téléchargement"
+
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:40
+#, kde-format
+msgid "Disable Introduction"
+msgstr "Désactiver l'introduction"
+
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:58
+#, kde-format
+msgid "&Copy Email Address"
+msgstr "&Copier l'adresse de courrier électronique"
+
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:67
+#, kde-format
+msgid "Address copied to clipboard."
+msgstr "Adresse copiée dans le presse-papier."
+
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:98
+#, kde-format
+msgid "Mark Article as Read"
+msgstr "Marquer l'article comme lu"
+
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:100
+#, kde-format
+msgid "Mark Article as Unread"
+msgstr "Marquer l'article comme non lu"
+
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:102
+#, kde-format
+msgid "Change Important Flag"
+msgstr "Modifier le drapeau « Important »"
+
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:104
+#, kde-format
+msgid "Send the URL of the article"
+msgstr "Envoyer l'URL de l'article"
+
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:106
+#, kde-format
+msgid "Send the Html Page of Article"
+msgstr "Envoyer la page HTML de l'article"
+
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:108
+#, kde-format
+msgid "Open In External Browser"
+msgstr "Ouvrir dans le navigateur externe"
+
+#: src/widgets/searchbar.cpp:40
+#, kde-format
+msgid "Search articles..."
+msgstr "Rechercher des articles..."
+
+#: src/widgets/searchbar.cpp:112
+#, kde-format
+msgid "Search articles...<%1>"
+msgstr "Articles non lus...<%1>"
+
+#: src/widgets/statussearchline.cpp:42
+#, kde-format
+msgid "All Articles"
+msgstr "Tous les articles"
+
+#: src/widgets/statussearchline.cpp:43
+#, kde-format
+msgctxt "Unread articles filter"
+msgid "Unread"
+msgstr "Non lu"
+
+#: src/widgets/statussearchline.cpp:44
+#, kde-format
+msgctxt "New articles filter"
+msgid "New"
+msgstr "Nouveau"
+
+#: src/widgets/statussearchline.cpp:45
+#, kde-format
+msgctxt "Read articles filter"
+msgid "Read"
+msgstr "Lu"
+
+#: src/widgets/statussearchline.cpp:46
+#, kde-format
+msgctxt "Important articles filter"
+msgid "Important"
+msgstr "Important"
+
+#~ msgid "Archive"
+#~ msgstr "Archive"
+
+#~ msgid "Archive backend:"
+#~ msgstr "Moteur d'archive :"
+
+#~ msgid "&Configure..."
+#~ msgstr "&Configurer..."
+
+#~ msgid "Metakit"
+#~ msgstr "Metakit"
+
+#~ msgid "Unable to load storage backend plugin \"%1\". No feeds are archived."
+#~ msgstr ""
+#~ "Impossible de charger le module externe du moteur de stockage « %1 ». "
+#~ "Aucun flux archivé."
+
+#~ msgid "Plugin error"
+#~ msgstr "Erreur du module externe"
+
+#~ msgid "No Archive"
+#~ msgstr "Aucune archive"
+
+#~ msgctxt "Name of the plugin"
+#~ msgid "Name"
+#~ msgstr "Nom"
+
+#~ msgctxt "Library name"
+#~ msgid "Library"
+#~ msgstr "Bibliothèque"
+
+#~ msgctxt "Plugin authors"
+#~ msgid "Authors"
+#~ msgstr "Auteurs"
+
+#~ msgctxt "Plugin authors' emaila addresses"
+#~ msgid "Email"
+#~ msgstr "Adresse de courrier électronique"
+
+#~ msgctxt "Plugin version"
+#~ msgid "Version"
+#~ msgstr "Version"
+
+#~ msgctxt "Framework version plugin requires"
+#~ msgid "Framework Version"
+#~ msgstr "Version de l'environnement"
+
+#~ msgid "Plugin Information"
+#~ msgstr "Informations sur le module externe"
+
+#~ msgid "Brazilian Portuguese feeds"
+#~ msgstr "Flux en portugais du Brésil"
+
+#~ msgid "Planet KDE Brazilian Portuguese"
+#~ msgstr "Planète KDE en portugais du Brésil"
+
+#~ msgid "Share"
+#~ msgstr "Partager"
+
+#~ msgid "Zoom:"
+#~ msgstr "Zoom :"
+
+#~ msgid "&Use this command:"
+#~ msgstr "&Utiliser cette commande :"
+
+#~ msgid "The file %1 already exists; do you want to overwrite it?"
+#~ msgstr "Le fichier « %1 » existe déjà. Voulez-vous vraiment l'écraser ?"
+
+#~ msgid "Export"
+#~ msgstr "Exporter"
+
+#~ msgid "Planet KDE PIM"
+#~ msgstr "Planète KDE PIM"
+
+#~ msgid "Hungarian feeds"
+#~ msgstr "Flux hongrois"
+
+#~ msgid "KDE.HU"
+#~ msgstr "KDE.HU"
+
+#~ msgid "French feeds"
+#~ msgstr "Flux français"
+
+#~ msgid "Planet KDE France"
+#~ msgstr "Planète KDE France"
+
+#~ msgid "Safe Browsing"
+#~ msgstr "Navigation sécurisée"
+
+#~ msgid "Check Url With Phishing Google System"
+#~ msgstr ""
+#~ "Vérifier l'URL grâce au système de détection d'hameçonnage de Google"
+
+#~ msgid "&Open in Address Book"
+#~ msgstr "&Ouvrir dans le carnet d'adresses"
+
+#~ msgid "KSqueezedTextLabel"
+#~ msgstr "KSqueezedTextLabel"
+
+#~ msgid "KDE Look"
+#~ msgstr "KDE Look"
+
+#~ msgid "Display an unread article &count in the tray icon"
+#~ msgstr ""
+#~ "Afficher le &nombre d'articles non lus sur l'icône de la boîte à "
+#~ "miniatures"
+
+#~ msgid "Display an unread article count in the tray icon"
+#~ msgstr "Afficher le total d'articles non lus dans la boîte à miniatures"
+
+#~ msgid ""
+#~ "Whether or not to show the number of unread articles in the tray icon. "
+#~ "Disable this if you find the unread article count distracting."
+#~ msgstr ""
+#~ "Définit si le nombre d'articles non lus est affiché ou non dans la boîte "
+#~ "à miniatures. Désactivez cette option si vous trouvez que cela vous "
+#~ "distrait."
+
+#~ msgid "Browser Toolbar"
+#~ msgstr "Barre du navigateur"
+
+#~ msgid "Keep all articles"
+#~ msgstr "Conserver tous les articles"
+
+#~ msgid "<a href=\"%1\">%2</a> %3"
+#~ msgstr "<a href=\"%1\">%2</a> %3"
+
+#~ msgid "Block image"
+#~ msgstr "Bloquer l'image"
+
+#~ msgid "Configure AdBlock"
+#~ msgstr "Configurer AdBlock"
+
+#~ msgid "Open Ad Block settings"
+#~ msgstr "Ouvrir la configuration d'AdBlock"
+
+#~ msgid "Send Url Article"
+#~ msgstr "Envoyer l'URL de cet article"
+
+#~ msgid "Restore Session?"
+#~ msgstr "Restaurer la session ?"
+
+#~ msgid "Do Not Restore"
+#~ msgstr "Ne pas restaurer"
+
+#~ msgid "Ask Me Later"
+#~ msgstr "Me demander plus tard"
+
+#~ msgid "Mark as New"
+#~ msgstr "Marquer comme nouveau"
+
+#~ msgctxt "Go forward in browser history"
+#~ msgid "Forward"
+#~ msgstr "Suivant"
+
+#~ msgctxt "Go back in browser history"
+#~ msgid "Back"
+#~ msgstr "Précédent"
+
+#~ msgctxt "Reload current page"
+#~ msgid "Reload"
+#~ msgstr "Recharger"
+
+#~ msgid "Stop"
+#~ msgstr "Arrêter"
+
+#, fuzzy
+#~| msgid "&Mark as Important"
+#~ msgid "Mark Article as Important"
+#~ msgstr "&Marquer comme important"
+
+#~ msgctxt "Title of article searchbar"
+#~ msgid "S&earch:"
+#~ msgstr "Ch&ercher :"
+
+#~ msgid "Status:"
+#~ msgstr "État :"
+
+#~ msgid "Enter space-separated terms to filter article list"
+#~ msgstr ""
+#~ "Saisissez des termes séparés par un espace pour filtrer la liste des "
+#~ "articles"
+
+#~ msgid "Choose what kind of articles to show in article list"
+#~ msgstr ""
+#~ "Sélectionnez le type d'articles à afficher dans la liste des articles"
+
+#~ msgid "Comments"
+#~ msgstr "Commentaires"
+
+#~ msgid "Enclosure:"
+#~ msgstr "Contour :"
+
+#~ msgid "&Underline links"
+#~ msgstr "So&uligner les liens"
+
+#, fuzzy
+#~| msgid "&Configure..."
+#~ msgid "Configurate"
+#~ msgstr "&Configurer..."
+
+#~ msgctxt "%1: Akregator version; %2: homepage URL; --- end of comment ---"
+#~ msgid ""
+#~ "<h2 style='margin-top: 0px;'>Welcome to Akregator %1</h2><p>Akregator is "
+#~ "a KDE news feed reader. Feed readers provide a convenient way to browse "
+#~ "different kinds of content, including news, blogs, and other content from "
+#~ "online sites. Instead of checking all your favorite web sites manually "
+#~ "for updates, Akregator collects the content for you.</p><p>For more "
+#~ "information about using Akregator, check the <a href=\"%2\">Akregator "
+#~ "website</a>. If you do not want to see this page anymore, <a href="
+#~ "\"config:/disable_introduction\">click here</a>.</p><p>We hope that you "
+#~ "will enjoy Akregator.</p>\n"
+#~ "<p>Thank you,</p>\n"
+#~ "<p style='margin-bottom: 0px'>&nbsp; &nbsp; The Akregator Team</p>\n"
+#~ msgstr ""
+#~ "<h2 style='margin-top: 0px'>Bienvenue sur Akregator %1</h2> <p>Akregator "
+#~ "est un agrégateur de flux RSS pour KDE. Ce type de logiciel fournit un "
+#~ "moyen efficace de naviguer parmi les différents types de contenus venant "
+#~ "de sites Internet, comme des nouvelles, des blogs et plus encore. Au lieu "
+#~ "de consulter tous vos sites Internet favoris manuellement, Akregator vous "
+#~ "permet de collecter automatiquement les nouveaux contenus.</p> <p>Pour "
+#~ "plus d'informations sur l'utilisation d'Akregator, veuillez consulter son "
+#~ "<a href=\"%2\">site Internet</a>. Si vous ne souhaitez plus voir cette "
+#~ "page, <a href=\"config:/disable_introduction\">cliquez ici</a>.</p> "
+#~ "<p>Nous espérons que vous apprécierez ce logiciel.</p>\n"
+#~ "<p>Merci, </p>\n"
+#~ "<p style='margin-bottom: 0px'>&nbsp; &nbsp; L'équipe d'Akregator</p>\n"
+
+#~ msgid "Enlarge Font"
+#~ msgstr "Agrandir la police"
+
+#~ msgid "Shrink Font"
+#~ msgstr "Réduire la police"
+
+#~ msgid "Speech Toolbar"
+#~ msgstr "Barre d'outils de synthèse vocale"
+
+#~ msgid "Next Article: "
+#~ msgstr "Article suivant : "
+
+#~ msgid "Browsing area."
+#~ msgstr "Zone de navigation."
+
+#~ msgid ""
+#~ "<div align=center><h3>No matches</h3>Filter does not match any articles, "
+#~ "please change your criteria and try again.</div>"
+#~ msgstr ""
+#~ "<div align=center><h3>Aucun résultat</h3>Le filtre n'a pas trouvé "
+#~ "d'article correspondant. Veuillez modifier vos critères et réessayez.</"
+#~ "div>"
+
+#~ msgid ""
+#~ "<div align=center><h3>No feed selected</h3>This area is article list. "
+#~ "Select a feed from the feed list and you will see its articles here.</div>"
+#~ msgstr ""
+#~ "<div align=center><h3>Aucun flux sélectionné</h3>Cette zone correspond à "
+#~ "la liste d'articles. Sélectionnez un flux dans la liste et vous verrez "
+#~ "alors les articles qu'il contient ici.</div>"
+
+#~ msgid "kcmakronlinesyncconfig"
+#~ msgstr "kcmakronlinesyncconfig"
+
+#~ msgid "Configure Online Readers"
+#~ msgstr "Configurer les lecteurs en ligne"
+
+#~ msgid "(c), 2008 Didier Hoarau"
+#~ msgstr "(c), 2008 Didier Hoarau"
+
+#~ msgid "Didier Hoarau"
+#~ msgstr "Didier Hoarau"
+
+#~ msgid "Synchronize Feeds"
+#~ msgstr "Synchroniser les flux"
+
+#~ msgid "Get from %1"
+#~ msgstr "Obtenir depuis %1"
+
+#~ msgid "Send to %1"
+#~ msgstr "Envoyer vers %1"
+
+#~ msgid "Manage..."
+#~ msgstr "Gérer..."
+
+#~ msgid "Bar Settings"
+#~ msgstr "Configuration de la barre"
+
+#~ msgid "Bar!"
+#~ msgstr "Bar !"
+
+#~ msgid ""
+#~ "Some categories and feeds have been marked for removal. Do you want to "
+#~ "delete them?"
+#~ msgstr ""
+#~ "Certaines catégories et flux ont été marqués comme « A supprimer ». "
+#~ "Voulez-vous vraiment effectuer cette action ?"
+
+#~ msgid "Remove nothing"
+#~ msgstr "Ne rien supprimer"
+
+#~ msgid "Remove only categories"
+#~ msgstr "Supprimer uniquement les catégories"
+
+#~ msgid "Remove feeds"
+#~ msgstr "Supprimer les flux"
+
+#~ msgid "An error occurred, synchronization aborted."
+#~ msgstr "Une erreur est survenue. Annulation de la synchronisation."
+
+#~ msgid "Authentication failed, synchronization aborted."
+#~ msgstr "Échec de l'authentification. Synchronisation annulée."
+
+#~ msgid "Online Reader Configuration"
+#~ msgstr "Configuration du lecteur en ligne"
+
+#~ msgid "Modify Online Reader Account"
+#~ msgstr "Modifier le compte du lecteur en ligne"
+
+#~ msgid "Google Reader"
+#~ msgstr "Google Reader"
+
+#~ msgid "Type:"
+#~ msgstr "Type :"
+
+#~ msgid "Login:"
+#~ msgstr "Nom d'utilisateur :"
+
+#~ msgid "Password:"
+#~ msgstr "Mot de passe :"
+
+#~ msgid "File:"
+#~ msgstr "Fichier :"
+
+#~ msgid "Nothing"
+#~ msgstr "Rien"
+
+#~ msgid "Categories"
+#~ msgstr "Catégories"
+
+#~ msgid "Ask"
+#~ msgstr "Demander"
+
+#~ msgid "Online reader accounts:"
+#~ msgstr "Comptes des lecteurs en ligne :"
+
+#~ msgid "Type"
+#~ msgstr "Type"
+
+#~ msgid "Description"
+#~ msgstr "Description"
+
+#~ msgid "Add..."
+#~ msgstr "Ajouter..."
+
+#~ msgid "Modify..."
+#~ msgstr "Modifier..."
+
+#~ msgid "Remove"
+#~ msgstr "Supprimer"
+
+#~ msgid "Delete feeds:"
+#~ msgstr "Supprimer les flux :"
+
+#~ msgid "&Speak Selected Articles"
+#~ msgstr "Énoncer les articles sélectionnés par &synthèse vocale"
+
+#~ msgid "&Stop Speaking"
+#~ msgstr "Arrêter la &synthèse vocale"
+
+#~ msgid "All Files"
+#~ msgstr "Tous les fichiers"
+
+#~ msgid "Configure Share Services"
+#~ msgstr "Configurer les services de partage"
+
+#~ msgid "Login"
+#~ msgstr "Connexion"
+
+#~ msgid "Service"
+#~ msgstr "Service"
+
+#~ msgctxt "login identify for blog account"
+#~ msgid "Username:"
+#~ msgstr "Nom d'utilisateur :"
+
+#~ msgid "Service URL:"
+#~ msgstr "URL du service :"
+
+#~ msgid "Please, configure the share service before using it."
+#~ msgstr "Veuillez configurer le service de partage avant de l'utiliser."
+
+#~ msgid "Service not configured"
+#~ msgstr "Service non configuré"
+
+#~ msgid "Sorry, could not share the article: %1"
+#~ msgstr "Désolé, impossible de partager l'article : %1"
+
+#~ msgid "Error during article share"
+#~ msgstr "Erreur lors du partage de l'article"
+
+#~ msgid "Service URL"
+#~ msgstr "URL du service"
+
+#~ msgctxt "login identify for blog account"
+#~ msgid "Username"
+#~ msgstr "Nom d'utilisateur"
+
+#~ msgid "kcmakradvancedconfig"
+#~ msgstr "kcmakradvancedconfig"
+
+#~ msgid "kcmakrappearanceconfig"
+#~ msgstr "kcmakrappearanceconfig"
+
+#~ msgid "kcmakrarchiveconfig"
+#~ msgstr "kcmakrarchiveconfig"
+
+#~ msgid "kcmakrbrowserconfig"
+#~ msgstr "kcmakrbrowserconfig"
+
+#~ msgid "kcmakrgeneralconfig"
+#~ msgstr "kcmakrgeneralconfig"
+
+#~ msgid "kcmakrshareconfig"
+#~ msgstr "kcmakrshareconfig"
+
+#~ msgid "(c), 2010 Artur Duque de Souza"
+#~ msgstr "(c), 2010 Artur Duque de Souza"
+
+#~ msgid "Artur Duque de Souza"
+#~ msgstr "Artur Duque de Souza"
+
+#~ msgid "<b>Open Link in New Tab</b><p>Opens current link in a new tab.</p>"
+#~ msgstr ""
+#~ "<b>Ouvrir le lien dans un nouvel onglet</b><p>Ouvre le lien courant dans "
+#~ "un nouvel onglet.</p>"
+
+#~ msgid "Open Page in External Browser"
+#~ msgstr "Ouvrir la page dans le navigateur externe"
+
+#~ msgid "Add to Konqueror Bookmarks"
+#~ msgstr "Ajouter aux signets de Konqueror"
+
+#, fuzzy
+#~| msgid "Feeds"
+#~ msgid "Feed List"
+#~ msgstr "Flux"
+
+#~ msgid "Akregator - Feed Reader"
+#~ msgstr "Akregator - Lecteur de flux"
+
+#~ msgid "Akregator - 1 unread article"
+#~ msgid_plural "Akregator - %1 unread articles"
+#~ msgstr[0] "Akregator - %1 article non lu"
+#~ msgstr[1] "Akregator - %1 articles non lus"
+
+#~ msgid ""
+#~ "<qt><p>Closing the main window will keep Akregator running in the system "
+#~ "tray. Use 'Quit' from the 'File' menu to quit the application.</"
+#~ "p><p><center>%1</center></p></qt>"
+#~ msgstr ""
+#~ "<qt><p>La fermeture de la fenêtre principale laissera Akregator démarré "
+#~ "dans la boîte à miniatures. Utilisez le menu « Fichier / Quitter » pour "
+#~ "réellement quitter l'application.</p><p><center>%1</center></p></qt>"
+
+#~ msgid "Docking in System Tray"
+#~ msgstr "Incrustation dans la boîte à miniatures"
+
+#~ msgid "An RSS feed reader for the K Desktop Environment."
+#~ msgstr "Un lecteur de flux RSS pour le bureau KDE."
+
+#~ msgid "Akregator News"
+#~ msgstr "Nouvelles d'Akregator"
+
+#~ msgid "Akregator Blog"
+#~ msgstr "Blog d'Akregator"
+
+#~ msgid "&Increase Font Sizes"
+#~ msgstr "&Augmenter la taille des polices"
+
+#~ msgid "&Decrease Font Sizes"
+#~ msgstr "&Réduire la taille des polices"
+
+#~ msgid "&Scroll Up"
+#~ msgstr "&Monter"
+
+#~ msgid "&Scroll Down"
+#~ msgstr "&Descendre"
+
+#~ msgid " days"
+#~ msgstr " jours"
+
+#~ msgid " minutes"
+#~ msgstr " minutes"
+
+#~ msgid "General"
+#~ msgstr "Général"
+
+#~ msgid "ExternalBrowser"
+#~ msgstr "Navigateur externe"
+
+#~ msgid "&Abort Fetches"
+#~ msgstr "&Annuler les téléchargements"

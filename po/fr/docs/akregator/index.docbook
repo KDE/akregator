@@ -1,0 +1,1789 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % French "INCLUDE">
+]>
+
+<book id="akregator" lang="&language;">
+
+<bookinfo id="akregatorinfo">
+<title
+>Manuel utilisateur de &akregator;</title>
+
+<authorgroup>
+
+<author
+><firstname
+>Frank</firstname
+> <surname
+>Osterfeld</surname
+> <affiliation
+><address
+><email
+>frank.osterfeld@kdemail.net</email
+>  
+</address
+></affiliation>
+</author>
+<author
+><firstname
+>Anne-Marie</firstname
+> <surname
+>Mahfouf</surname
+> <affiliation
+><address
+>&Anne-Marie.Mahfouf.mail; </address
+></affiliation>
+</author>
+
+&traducteurAnneMarieMahfouf; &traducteurJosephRichard;&relecteurLudovicGrossard; &traducteurXavierBesnard; 
+</authorgroup>
+<copyright>
+<year
+>2006</year>
+<holder
+>Frank Osterfeld</holder>
+</copyright>
+<copyright>
+<year
+>2006</year>
+<holder
+>&Anne-Marie.Mahfouf;</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>28-07-2016</date>
+<releaseinfo
+>5.3.40 (Applications 16.08)</releaseinfo>
+
+<!-- Abstract about this handbook -->
+
+<abstract>
+<para
+>&akregator; est un programme pour lire les flux <acronym
+>RSS</acronym
+> et autres flux de nouvelles en ligne. </para>
+</abstract>
+
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>Akregator</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Introduction</title>
+
+<sect1 id="what-is-akregator">
+<title
+>Qu'est ce qu'&akregator; ?</title>
+
+<para
+>&akregator; est un programme &kde; qui lit les flux de nouvelles en ligne. Il possède une interface puissante et facile d'utilisation pour lire les flux et les gérer.</para>
+
+<para
+>&akregator; est un programme léger et rapide qui affiche les nouvelles provenant de flux et qui gère toutes les versions habituelles des flux <acronym
+>RSS</acronym
+> et Atom. Son interface est similaire à celle de programmes de courrier électronique et sera donc familière à l'utilisateur. Les caractéristiques les plus utiles comprennent la recherche dans les titres d'articles, la gestion des flux dans des dossiers et la configuration des préférences des options d'archivage. Les flux peuvent être affichés de manière similaire à celle des courriers électroniques. Les sites web reliés à un flux peuvent être affichés dans le navigateur intégré d'&akregator; ou, selon le choix de l'utilisateur, être ouverts dans un navigateur externe.</para>
+</sect1>
+
+<sect1 id="rss-and-atom-feeds">
+<title
+>Flux <acronym
+>RSS</acronym
+> et Atom</title>
+
+<para
+><acronym
+>RSS</acronym
+> (<foreignphrase
+>Really Simple Syndication</foreignphrase
+>) ou souscription vraiment simple est un format fondé sur &XML; utilisé pour publier des nouvelles ou des articles sous une forme lisible par les machines. Un fichier <acronym
+>RSS</acronym
+> ou Atom est aussi appelé un flux. Un programme pouvant lire de tels flux est appelé un lecteur de flux ou un agrégateur, d'où le titre de l'application, &akregator;.</para>
+
+<para
+>&akregator; extrait automatiquement les nouvelles du flux et les affiche sous une forme lisible pour l'utilisateur. L'utilisateur peut ainsi gagner du temps sur des sites web fréquemment visités car il n'a pas besoin de les mettre à jour manuellement pour savoir s'il y a de nouvelles informations disponibles. </para>
+<para
+><acronym
+>RSS</acronym
+> est disponible en différentes versions qui ne sont pas compatibles les unes avec les autres (ceci en raison de la concurrence entre compagnies) : <acronym
+>RSS</acronym
+> 0.9, <acronym
+>RSS</acronym
+> 1.0 et <acronym
+>RSS</acronym
+> 2.0. Atom est aussi un langage de flux fondé sur &XML;qui a été réécrit pour répondre aux besoins des blogs et des sites de nouvelles. Atom essaie de remplacer les flux <acronym
+>RSS</acronym
+> et ainsi de supprimer l'incertitude liée aux incompatibilités entre les différentes versions <acronym
+>RSS</acronym
+>.</para>
+
+</sect1>
+
+</chapter>
+
+<chapter id="quick-start">
+<title
+>Démarrage rapide avec &akregator;</title>
+
+<para
+>Ce chapitre traite des débuts avec &akregator;. Il explique l'interface utilisateur et vous montre comment ajouter votre propre flux à la liste. Ce chapitre est particulièrement intéressant si vous n'êtes pas habitué aux concepts généraux de <acronym
+>RSS</acronym
+> / Atom et d'un agrégateur de flux. </para>
+
+<sect1 id="main-window">
+<title
+>La fenêtre principale</title>
+<!--part of kontact
+say how to start it -->
+<para
+>Lorsque vous démarrez &akregator; pour la première fois, vous voyez la fenêtre principale : <screenshot>
+<screeninfo
+>La fenêtre principale d'&akregator;</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="main-window.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>La fenêtre principale d'&akregator;</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para>
+
+<para
+>La fenêtre principale comprend la liste des flux, la liste des articles et la vue des articles.  </para>
+<para
+>La liste des flux est sur la gauche. Dans l'arborescence vous avez les flux de nouvelles que vous pouvez sélectionner. Un flux de nouvelles est une collection d'articles : par exemple les nouvelles récentes d'un site web de nouvelles ou les nouveaux billets d'un blog. La liste par défaut contient les flux relatifs au projet &kde; mais bien sûr vous pouvez ajouter vos propres flux ou supprimer ceux qui ne vous intéressent pas. </para>
+<para
+>En haut à droite se trouve la liste des articles. Elle contient tous les articles du flux sélectionné dans la liste des flux (si elle est vide, vous devez d'abord télécharger le flux). La liste montre les titres des articles et leur date de publication. Par défaut, les articles les plus récents sont en haut. <screenshot>
+<screeninfo
+>La liste des articles</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="main-window2.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>La liste des articles pour un flux</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para>
+<para
+>Si vous sélectionnez un article, il sera affiché dans la vue des articles dans la partie basse droite de la fenêtre. Selon le flux, il contient soit seulement un titre, soit un court résumé ou alors l'article au complet. <screenshot>
+<screeninfo
+>Lecture d'un article de Planet &kde;</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="main-window4.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Lecture d'un article de Planet &kde;</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para>
+</sect1>
+
+<sect1 id="add-feed">
+<title
+>Ajouter un flux</title>
+<para
+>&akregator; vous fournit des flux par défaut qui concernent &kde; - bien sûr, vous voudrez probablement ajouter vos propres flux. De bons candidats sont les sites de nouvelles que vous visitez régulièrement.</para>
+
+<itemizedlist>
+<listitem
+><para
+>Allez dans le menu <guimenu
+>Flux</guimenu
+> et choisissez <guimenuitem
+>Ajoutez un flux...</guimenuitem
+> ou utilisez le raccourci clavier par défaut (<keycap
+>Inser</keycap
+>). La boîte de dialogue suivante apparaît, avec un champ intitulé <guilabel
+>URL du flux :</guilabel
+> <screenshot>
+<screeninfo
+>Ajouter un nouveau flux</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="add-feed.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Ajouter un nouveau flux</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para
+></listitem>
+
+<listitem
+><para
+>Saisissez <userinput
+>planet.ubuntu.com</userinput
+> ou <userinput
+>http://planet.ubuntu.com</userinput
+> dans le champ de saisie de texte à côté de l'étiquette <guilabel
+>URL du flux</guilabel
+> et cliquez <guibutton
+>Ok</guibutton
+>. </para
+></listitem>
+<listitem
+><para
+>La boîte de dialogue des propriétés du flux apparaît et vous pouvez modifier les options par défaut. Lorsque vous êtes satisfait des options de configuration du flux, cliquez à nouveau sur <guibutton
+>Ok</guibutton
+>. <screenshot>
+<screeninfo
+>La boîte de dialogue des propriétés du flux</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="add-feed2.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>La boîte de dialogue des propriétés du flux</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para
+></listitem>
+<listitem
+><para
+>Maintenant, « Planet Ubuntu » a maintenant été ajouté dans votre liste des flux. </para
+> </listitem>
+</itemizedlist>
+<para
+>Il existe de nombreuses autres façons pour trouver et ajouter des flux intéressants. Dans &kde;, les sites Internet visités avec &konqueror; afficheront le rectangle &quot;RSS&quot; bien connu<inlinemediaobject
+> <imageobject
+> <imagedata fileref="feed. png" format="PNG"/></imageobject
+> </inlinemediaobject
+> en bas à droite si un flux de nouvelles compatible est détecté sur le site Internet. Faites un clic gauche de souris sur l'icône et choisissez <guimenuitem
+>Ajouter ce flux à &akregator;</guimenuitem
+> : <screenshot
+> <screeninfo
+>Trouver automatiquement des flux avec &konqueror;</screeninfo
+> <mediaobject
+><imageobject
+><imagedata fileref="konq2.png" format="PNG"/></imageobject
+> <textobject
+><phrase
+>Trouver automatiquement des flux avec &konqueror;</phrase
+></textobject
+></mediaobject
+> </screenshot
+>Sur les pages Web ayant cette icône <quote
+>RSS</quote
+> <inlinemediaobject
+> <imageobject
+> <imagedata fileref="rss.png" format="PNG"/> </imageobject
+> </inlinemediaobject
+>, faites un clic droit sur l'icône et choisissez dans le menu contextuel <guimenuitem
+>Copier l'adresse du lien</guimenuitem
+> : <screenshot>
+      <screeninfo
+>Trouver des flux automatiquement avec &konqueror;</screeninfo>
+      <mediaobject>
+        <imageobject
+><imagedata fileref="konq.png" format="PNG"/></imageobject>
+        <textobject
+><phrase
+>Trouver des flux automatiquement avec &konqueror;</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para>
+<para
+>Basculer vers &akregator;, sélectionnez <guimenuitem
+>Ajouter un flux...</guimenuitem
+> et <guilabel
+>Fournir une URL</guilabel
+> </para>
+
+<para
+>Tous les flux ajoutés en utilisant cette procédure apparaissent dans le dossier <guilabel
+>Flux importés</guilabel
+> dans la liste des flux. A partir de là, vous pouvez utiliser votre souris pour les faire glisser vers un autre dossier. </para>
+</sect1>
+
+<sect1 id="creating-folder">
+<title
+>Créer un dossier</title>
+<para
+>Après avoir ajouté vos propres flux, vous voulez peut-être les regrouper d'une certaine façon plutôt que de les laisser sans ordre. Ainsi, il est possible de créer un dossier pour le flux de « Planet Ubuntu » que vous venez juste d'ajouter :</para>
+<itemizedlist>
+<listitem
+><para
+>Sélectionnez le dossier parent du nouveau dossier. Dans cet exemple, nous sélectionnons <guilabel
+>Tous les flux</guilabel
+>. </para
+></listitem>
+<listitem
+><para
+>Ouvrez le menu <menuchoice
+><guimenu
+>Flux</guimenu
+> <guimenuitem
+>Nouveau dossier...</guimenuitem
+></menuchoice
+>. Saisissez <userinput
+>Nouvelles</userinput
+> (ou un nom plus approprié pour la catégorie de flux) dans le champ et choisissez <guibutton
+>Ok</guibutton
+>. <screenshot>
+<screeninfo
+>La boîte de dialogue Ajouter un dossier</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="add-folder.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>La boîte de dialogue Ajouter un dossier</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para
+> </listitem>
+<listitem
+><para
+>Maintenant, vous pouvez faire glisser le flux « Planet Ubuntu » dans le nouveau dossier. <screenshot>
+<screeninfo
+>Le dossier Nouvelles dans la liste des flux</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="add-folder2.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Le dossier Nouvelles dans la liste des flux</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para
+> </listitem>
+</itemizedlist>
+</sect1>
+
+<sect1 id="browsing-inside">
+<title
+>Naviguer dans &akregator;</title>
+<para
+>Lorsque vous lisez les articles d'un flux, vous voulez souvent lire la page web à laquelle l'article appartient : certains articles contiennent seulement le titre et non l'article lui-même. Dans ce cas, vous devez visiter la page web pour lire l'article au complet. Ou peut-être un article a un lien vers un site web, ou vous lisez un blog et vous voulez laisser un commentaire dans cette entrée. Pour toutes ces situations, &akregator; intègre un navigateur simple. Chaque fois que vous suivez un lien dans la vue des articles, &akregator; ouvre le lien dans un nouvel onglet :</para>
+<note
+><para
+>Veuillez noter que le navigateur d'&akregator; n'est pas destiné à remplacer votre navigateur internet préféré. Il est fait pour lire les articles, les commenter ou suivre rapidement un lien. Il n'est pas fait pour naviguer sur le web en général. Il lui manque de nombreuses fonctionnalités que les navigateurs internet proprement dits possèdent. </para
+></note>
+</sect1>
+</chapter>
+
+<chapter id="configuration">
+<title
+>Configuration de &akregator;</title>
+<para
+>La plupart des options de &akregator; sont définies dans la boîte de dialogue de configuration de &akregator;. La boîte de dialogue de configuration se trouve dans le menu dans <menuchoice
+> <guimenu
+>Configuration</guimenu
+><guimenuitem
+>Configurer &akregator;...</guimenuitem
+> </menuchoice
+></para>
+<sect1 id="general-tab">
+<title
+>Général</title>
+<para
+>L'onglet Général contient les options de base de &akregator; et celles qui ne peuvent pas être mises dans une autre catégorie.</para>
+<screenshot>
+<screeninfo
+>L'onglet Général</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="general-tab.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>L'onglet Général</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Global</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Afficher l'icône de la boîte à miniatures</guilabel
+></term>
+<listitem
+><para
+>Affiche l'icône de &akregator; dans la boîte à miniatures.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Utiliser les notifications pour tous les flux</guilabel
+></term>
+<listitem
+><para
+>Définit les notifications globales pour tous les flux. Cette option va annuler la valeur de notification individuelle pour chaque flux. Lorsque cette option est choisie, &akregator; va vous avertir lorsque de nouveaux articles sont arrivés pour tout flux. Si vous désirez être averti pour seulement certains flux mais pas tous, laissez cette option non cochée et utilisez l'option de notification pour chaque flux spécifique en ouvrant la boîte de dialogue de propriétés individuelle à chaque flux.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Utiliser un téléchargement par intervalle</guilabel
+></term>
+<listitem
+><para
+>Si cette option n'est pas cochée, le téléchargement par intervalle n'est pas disponible. Cependant, si elle est cochée, vous pouvez paramétrer dans <guilabel
+>Télécharger les flux toutes les : </guilabel
+> l'intervalle de temps pendant lequel &akregator; va automatiquement vérifier le téléchargement de nouvelles entrées. Remarquez que le téléchargement des articles génère du trafic et donc peut être coûteux pour le fournisseur qui héberge le flux que vous lisez. Certains sites peuvent même bloquer les connexions depuis votre ordinateur si vous essayez de télécharger les flux trop souvent. En général, 30 minutes est un bon choix.  </para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Télécharger les flux toutes les : </guilabel
+></term>
+<listitem
+><para
+>Ceci n'est disponible que si <guilabel
+>Utiliser un téléchargement par intervalle</guilabel
+> est coché. Vous pouvez spécifier l'intervalle de temps après lequel les flux sont téléchargés pour voir si de nouveaux articles sont disponibles. La valeur par défaut est de 30 minutes.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Démarrage</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Marquer tous les flux comme lus au démarrage</guilabel
+></term>
+<listitem
+><para
+>Quand ceci est coché, &akregator; va marquer tous les flux comme lus lorsqu'il est lancé.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Télécharger tous les flux au démarrage</guilabel
+></term>
+<listitem
+><para
+>Si l'option est cochée, &akregator; télécharge tous les flux juste après son démarrage. </para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Réseau</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Utilise le cache du navigateur (moins de trafic réseau)</guilabel
+></term>
+<listitem
+><para
+>Lorsque cette option est cochée, les options du cache du navigateur de &kde; sont utilisées lorsque les flux sont actualisés. Vous pouvez configurer le cache du navigateur de &kde; dans la boîte de dialogue de configuration de &konqueror;.</para>
+<note
+><para
+>Vous devriez laisser cette option activée chaque fois que possible. Désactiver cette option engendre un trafic plus important sur le réseau. Le trafic causé par les agrégateurs qui n'utilisent pas de cache augmente le coût pour les fournisseurs et peut diminuer le nombre de flux offerts dans le futur.</para
+></note>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+
+<sect1 id="adblock-tab">
+<title
+>Intercepteur d'URL</title>
+<para
+>&akregator; peut être configurer pour remplacer ou supprimer des images ou des trames de pages Internet correspondant à une série de filtres.</para>
+
+<screenshot>
+<screeninfo
+>L'onglet « Intercepteur d'URL »</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="interceptor-tab.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>L'onglet « Intercepteur d'URL »</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+
+<para
+>Pour une description détaillée de cette fonctionnalité, veuillez consulter la page <ulink url="help:/kcontrol/khtml-adblock"
+>Filtres AdBlock</ulink
+>. </para>
+</sect1>
+
+<sect1 id="archive-tab">
+<title
+>Archive</title>
+<para
+>Archiver des articles signifie enregistrer les liens des articles. Ici, vous pouvez limiter le nombre des articles enregistrés et configurer la méthode utilisée pour l'archivage. Ces options sont globales, utilisées pour tous les flux dans &akregator;. Si vous voulez utiliser une option personnelle pour un flux, vous pouvez la paramétrer dans la boîte de dialogue de propriétés du flux dans l'onglet Archiver.</para>
+<screenshot>
+<screeninfo
+>L'onglet Archive</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="archive-tab.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>L'onglet Archive</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Configuration de l'archivage par défaut</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Conserver tous les articles</guilabel
+></term>
+<listitem
+><para
+>Tous les articles sont conservés pour toujours.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Limiter la taille de l'archivage de flux à : </guilabel
+></term
+> 
+<listitem
+><para
+>Si le nombre d'articles est plus grand que la limite choisie, les articles les plus anciens seront supprimés. Remarquez que les articles marqués seront ignorés lors du compte du nombre d'articles : si votre limite est 500, et que vous avez 510 articles non marqués et 50 marqués, &akregator; va ignorer les 50 articles marqués et va seulement supprimer les 10 articles non marqués les plus anciens. Donc dans cet exemple, 550 articles seraient conservés.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Supprimer les articles plus anciens que : </guilabel
+></term>
+<listitem
+><para
+>Les articles plus anciens que le nombre de jours indiqué sont supprimés de l'archive, sauf s'ils sont marqués comme importants. &akregator; examine les articles expirés au démarrage puis une fois par heure, donc l'expiration peut être retardée.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Désactiver l'archivage</guilabel
+></term>
+<listitem
+><para
+>Aucun article n'est enregistré. Tous les articles sont supprimés lorsque vous quittez &akregator;.</para
+> </listitem>
+</varlistentry>
+</variablelist>
+
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Ne pas faire expirer les articles importants</guilabel
+></term>
+<listitem
+><para
+>Un clic droit sur un article ouvre un menu contextuel où vous pouvez marquer l'article comme important. Les articles marqués comme importants ne vont pas expirer, ils seront conservés.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+<sect1 id="appearance-tab">
+<title
+>Apparence</title>
+<para
+>Dans cette page, vous pouvez configurer l'apparence de la vue de l'article et des onglets du navigateur. Vous pouvez spécifier les couleurs, les tailles et les familles de police à utiliser. </para>
+<screenshot>
+<screeninfo
+>L'onglet Apparence</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="appearance-tab.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>L'onglet Apparence</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Couleurs de la liste d'articles</guilabel
+></term>
+<listitem
+><para
+>Sélectionner <guilabel
+>Utiliser des couleurs personnalisées</guilabel
+> vous permet de choisir vos propres couleurs pour les <guilabel
+>Articles non lus</guilabel
+> et les <guilabel
+>Nouveaux articles</guilabel
+></para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Taille de la police</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Taille de police minimale</guilabel
+></term>
+<listitem
+><para
+>Fixe la taille minimum pour la vue des articles</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Taille de police moyenne</guilabel
+></term>
+<listitem
+><para
+>Établit la taille par défaut de la police dans la vue des articles</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Polices</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Police standard : </guilabel
+></term>
+<listitem
+><para
+>Dans la vue des articles, le contenu est restitué en utilisant la police standard dans la taille moyenne. Si vous changez la police standard, le changement sera appliqué dans la vue des articles.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Police à chasse fixe : </guilabel
+></term>
+<listitem
+><para
+>Si l'article utilise des polices fixes dans la vue de l'article, elles seront restituées en utilisant la famille que vous choisissez ici, dans la taille moyenne. </para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Police serif : </guilabel
+></term>
+<listitem
+><para
+>Si l'article utilise des polices serif, elles seront restituées en utilisant la famille que vous choisissez ici, dans la taille moyenne.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Police sans serif : </guilabel
+></term>
+<listitem
+><para
+>Si l'article utilise des polices sans serif, elles seront restituées en utilisant la famille que vous choisissez ici, dans la taille moyenne.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Souligner les liens</guilabel
+></term>
+<listitem
+><para
+>Cochez cette case si vous souhaitez que les liens soient soulignés par défaut.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+<sect1 id="browser-tab">
+<title
+>Navigateur</title>
+<para
+>Cette page vous permet de personnaliser le comportement des onglets du navigateur interne.</para>
+<screenshot>
+<screeninfo
+>L'onglet Navigateur</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="browser-tab.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>L'onglet Navigateur</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Clic gauche de la souris</guilabel
+></term>
+<listitem
+><para
+>Vous pouvez choisir trois actions pour le clic gauche de la souris : <guilabel
+>Ouvrir dans un onglet</guilabel
+> (ouvre le lien dans un onglet et met l'onglet au premier plan), <guilabel
+>Ouvrir dans un onglet en arrière plan</guilabel
+> (ouvre le lien dans un onglet mais laisse l'onglet actif au premier plan) et <guilabel
+>Ouvrir dans le navigateur externe </guilabel
+>(ouvre une nouvelle fenêtre avec votre navigateur par défaut).</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Clic du bouton central de la souris</guilabel
+></term>
+<listitem
+><para
+>Comme ci-dessus, vous pouvez choisir l'une des trois actions pour le clic droit de la souris.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Pour la navigation externe</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Utiliser le navigateur web par défaut.</guilabel
+></term>
+<listitem
+><para
+>Si cette option est cochée, &akregator; va utiliser le navigateur web que vous avez configuré dans la &configurationDuSysteme;. Cela peut-être le navigateur par défaut de &kde;, &konqueror;, ou un autre navigateur, selon ce que vous avez choisi ici.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Utiliser cette commande : </guilabel
+></term>
+<listitem
+><para
+>Vous pouvez utiliser un autre navigateur web pour &akregator; différent de celui par défaut pour &kde;. Si vous voulez faire cela, cochez cette option et saisissez la commande pour le navigateur, si cette commande est dans votre $<envar
+>PATH</envar
+>.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Afficher le bouton de fermeture sur les onglets lorsque la souris passe dessus</guilabel
+></term>
+<listitem
+><para
+>Si cette option est cochée, le bouton de fermeture apparaît lorsque vous passez la souris sur le côté gauche du titre de l'onglet pour vous permettre de fermer les onglets facilement.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+<sect1 id="advanced-tab">
+<title
+>Expert</title>
+<para
+>L'onglet Expert vous permet de configurer des options plus avancées. Si vous n'êtes pas sûr de leur effet, vous pouvez simplement laisser celles par défaut.</para>
+<screenshot>
+<screeninfo
+>L'onglet Expert</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="advanced-tab.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>L'onglet Expert</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Archive</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Moteur d'archive : </guilabel
+></term>
+<listitem
+><para
+>&akregator; n'utilise actuellement que la base de données « Metakit ». </para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Liste des articles</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Marquer l'article sélectionné comme lu après</guilabel
+></term>
+<listitem
+><para
+>Le défaut est 0 seconde ce qui signifie que dès que vous cliquez sur un article il est marqué comme lu. Vous pouvez choisir de marquer tous les articles comme lus après un nombre spécifique de secondes.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Réinitialiser la barre de recherche lors du changement de flux</guilabel
+></term>
+<listitem
+><para
+>Cela va vider la barre de recherche lorsque vous changez de flux.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+</chapter>
+
+<chapter id="commands">
+<title
+>Références des commandes</title>
+
+<sect1 id="akregator-mainwindow">
+<title
+>Menus et raccourcis clavier</title>
+
+<sect2>
+<title
+>Le menu « Fichier »</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Fichier</guimenu
+> <guimenuitem
+>Importer des flux</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Ouvrir</action
+> la boîte de dialogue des flux importés pour importer les <quote
+>en-tête « OPML »</quote
+> avec les abonnements aux flux. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Fichier</guimenu
+> <guimenuitem
+>Exporter des flux</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Ouvrir</action
+> l'enregistrement comme une boîte de dialogue et exporter vos flux et votre structure de dossier dans un fichier au format <filename class="extension"
+>.opml</filename
+>.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Fichier</guimenu
+> <guimenuitem
+>Quitter</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Quitte</action
+> &akregator;</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2>
+<title
+>Le menu « Édition »</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycap
+>F2</keycap
+> </shortcut
+> <guimenu
+>Édition</guimenu
+> <guimenuitem
+>Modifier le flux...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Modifie</action
+> le flux actif en changeant ses propriétés dans la boîte de dialogue de propriétés du flux</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;<keycap
+>Suppr.</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Modifier</guimenu
+> <guimenuitem
+>Supprimer un flux</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Supprime</action
+> le flux actif</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2>
+<title
+>Le menu « Affichage »</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Maj;<keycap
+>1</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Affichage</guimenu
+><guimenuitem
+>Vue normale</guimenuitem
+></menuchoice
+>, <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Maj;<keycap
+>2</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Affichage</guimenu
+><guimenuitem
+>Vue écran large</guimenuitem
+> </menuchoice
+> et <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Maj;<keycap
+>3</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Affichage</guimenu
+><guimenuitem
+>Vue combinée</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Choisit</action
+> le mode d'affichage pour &akregator;</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>+</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Affichage</guimenu
+> <guimenuitem
+>Augmenter la taille des polices</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Augmente</action
+> la taille de la police de caractères dans la vue de l'article</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>-</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Affichage</guimenu
+> <guimenuitem
+>Réduire la taille des polices</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Diminue</action
+> la taille de la police de caractères dans la vue de l'article</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2>
+<title
+>Le menu « Aller »</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>Gauche</keycap
+></shortcut
+> <guimenu
+>Aller</guimenu
+> <guimenuitem
+>Article précédent</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Va</action
+> jusqu'à l'article précédent dans la liste des articles</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>-</keycap
+></shortcut
+> <guimenu
+>Aller</guimenu
+> <guimenuitem
+>Article précédent non lu</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Va</action
+> jusqu'à l'article précédent non lu dans la liste des articles</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>Droite</keycap
+></shortcut
+> <guimenu
+>Aller</guimenu
+> <guimenuitem
+>Article suivant</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Va</action
+> jusqu'à l'article suivant dans la liste des articles</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>+</keycap
+></shortcut
+> <guimenu
+>Aller</guimenu
+> <guimenuitem
+>Article suivant non lu</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Va</action
+> jusqu'à l'article suivant non lu dans la liste des articles</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>P</keycap
+></shortcut
+> <guimenu
+>Aller</guimenu
+> <guimenuitem
+>Flux précédent</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Va</action
+> jusqu'au flux précédent dans la liste des flux</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Alt;<keycap
+>-</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Aller</guimenu
+> <guimenuitem
+>Flux précédent non lu</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Va</action
+> jusqu'au flux précédent non lu dans la liste des flux</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>N</keycap
+></shortcut
+> <guimenu
+>Aller</guimenu
+> <guimenuitem
+>Flux suivant</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Va</action
+> jusqu'au flux suivant dans la liste des flux</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Alt;<keycap
+>+</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Aller</guimenu
+> <guimenuitem
+>Flux suivant non lu</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Va</action
+> jusqu'au flux suivant non lu dans la liste des flux</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2>
+<title
+>Le menu « Fournir »</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>Inser.</keycap
+></shortcut
+> <guimenu
+>Flux</guimenu
+> <guimenuitem
+>Ajouter un flux...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Ouvre</action
+> la boîte de dialogue d'ajout de flux</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Maj;<keycap
+>Inser.</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Flux</guimenu
+> <guimenuitem
+>Nouveau dossier...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Ouvre</action
+> la boîte de dialogue d'ajout de dossier</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>R</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Flux</guimenu
+> <guimenuitem
+>Marquer ce flux comme lu</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Marque</action
+> le flux actif comme lu</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl; &Maj;<keycap
+>R</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Flux</guimenu
+> <guimenuitem
+>Marquer tous les flux comme lus</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Marque</action
+> tous les flux comme déjà lus</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>F5</keycap
+></shortcut
+> <guimenu
+>Flux</guimenu
+> <guimenuitem
+>Télécharger le flux</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Télécharge</action
+> le flux actif</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>L</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Flux</guimenu
+> <guimenuitem
+>Télécharger tous les flux</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Télécharge</action
+> tous les flux</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>Échap.</keycap
+></shortcut
+> <guimenu
+>Flux</guimenu
+> <guimenuitem
+>Annuler les téléchargements</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Arrête</action
+> l'action de téléchargement des flux dans &akregator;</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2>
+<title
+>Le menu « Articles »</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Maj;<keycap
+>Entrée</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Article</guimenu
+> <guimenuitem
+>Ouvrir dans un onglet</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Ouvre</action
+> l'article actif dans un onglet dans &akregator;</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>Entrée</keycap
+></shortcut
+> <guimenu
+>Article</guimenu
+> <guimenuitem
+>Ouvrir dans un onglet d'arrière plan</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Charger</action
+> l'article courant dans un nouvel onglet mais ne pas activer automatiquement cet onglet. Ceci est utilise pour naviguer dans un flux, ouvrir tous les articles intéressants dans les onglets en arrière-plan et les lire tous plus tard. </para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl; &Maj;<keycap
+>Entrée</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Article</guimenu
+> <guimenuitem
+>Ouvrir dans le navigateur externe</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Ouvre</action
+> l'article courant dans le navigateur externe</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>I</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Article</guimenu
+> <guimenuitem
+>Marquer comme important</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Marque</action
+> l'article actif comme important</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Article</guimenu
+> <guimenuitem
+>Marquer comme</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Marquer</action
+> l'article courant comme « Lu »<keycombo action="simul"
+>&Ctrl;<keycap
+>E</keycap
+></keycombo
+>, Nouveau <keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo
+> ou « Non lu » <keycombo action="simul"
+>&Ctrl;<keycap
+>U</keycap
+></keycombo
+></para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>Suppr.</keycap
+></shortcut
+> <guimenu
+>Article</guimenu
+> <guimenuitem
+>Supprimer</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Supprime</action
+> l'article actif</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Article</guimenu
+> <guimenuitem
+>Envoyer le lien...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Ouvre</action
+> votre client de messagerie électronique et met le lien en pièce jointe dans le message</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Article</guimenu
+> <guimenuitem
+>Envoyer un fichier...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Ouvre</action
+> votre client de courrier électronique et met le fichier en pièce jointe dans le message </para
+></listitem>
+</varlistentry>
+<!--FIXME not in kf5?
+<varlistentry>
+<term
+><menuchoice>
+<shortcut
+><keycombo
+action="simul"
+>&Ctrl;<keycap
+>S</keycap
+></keycombo
+></shortcut>
+<guimenu
+>Article</guimenu>
+<guimenuitem
+>Share Article</guimenuitem>
+</menuchoice
+></term>
+<listitem
+><para
+>Use this action you to share news 
+ with your friends using the microblog services identi.ca and twitter.
+</para
+></listitem>
+</varlistentry>
+-->
+</variablelist>
+</sect2>
+
+<sect2>
+<title
+>Les menus « Configuration » et « Aide »</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Configuration</guimenu
+> <guimenuitem
+>Afficher le filtre rapide</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>(Dés)Active</action
+> l'affichage du filtre rapide (l'affiche ou le cache) <screenshot>
+<screeninfo
+>Le filtre rapide</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="quick-filter.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Le filtre rapide</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+
+<para
+>En plus, &akregator; possède des éléments communs de menu &kde; <guimenu
+>Configuration</guimenu
+> et <guimenu
+>Aide</guimenu
+>. Pour plus d'informations, veuillez consulter les sections <ulink url="help:/fundamentals/menus.html#menus-settings"
+>Menu de configuration</ulink
+> et <ulink url="help:/fundamentals/menus.html#menus-help"
+>Menu d'aide</ulink
+> des fondamentaux de &kde;. </para>
+
+<para
+>De nombreuses actions fournis par le menu sont aussi disponibles dans les menus contextuel de la liste des flux, la liste des articles et la vue des articles.  </para>
+
+</sect2>
+
+</sect1>
+</chapter>
+
+<chapter id="credits">
+
+<title
+>Remerciements et licence</title>
+
+<para
+>&akregator; </para>
+<para
+>Copyright du programme pour 2004-2010 par les auteurs de Akregator </para>
+
+<para
+>Documentation copyright 2006 Frank Osterfeld <email
+>frank.osterfeld@kdemail.net</email
+> </para>
+
+<para
+>Documentation copyright 2006 &Anne-Marie.Mahfouf; &Anne-Marie.Mahfouf.mail; </para>
+
+<para
+>Traduction française par &Anne-Marie.Mahfouf;, &JosephRichard; et &XavierBesnard;. Relecture par &LudovicGrossard;</para
+> &underFDL; &underGPL; </chapter>
+
+&documentation.index;
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes: nil
+sgml-general-insert-case: lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+-->

@@ -1,0 +1,3196 @@
+# translation of akregator.po to
+# Language AR translations for PACKAGE package.
+# Automatically generated, 2007.
+# Youssef Chahibi <chahibi@gmail.com>, 2007.
+# Abdalrahim G. Fakhouri <abdilra7eem@yahoo.com>, 2014.
+# Zayed Al-Saidi <zayed.alsaidi@gmail.com>, 2021, 2022.
+msgid ""
+msgstr ""
+"Project-Id-Version: akregator\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-09-30 00:45+0000\n"
+"PO-Revision-Date: 2022-04-28 12:20+0400\n"
+"Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
+"Language-Team: Arabic <kde-l10n-ar@kde.org>\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+"X-Generator: Lokalize 21.07.70\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Mohamed SAAD محمد سعد,زايد السعيدي,أسامة خالد,عبدالرحيم الفاخوري"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr ""
+"metehyi@free.fr,zayed.alsaidi@gmail.com,osamak.wfm@gmail.com,"
+"abdilra7eem@yahoo.com"
+
+#: src/about/introduction_akregator.html:18
+msgid ""
+"Feed readers provide a convenient way to browse different kinds of content, "
+"including news, blogs, and other content from online sites. Instead of "
+"checking all your favorite web sites manually for updates, Akregator "
+"collects the content for you."
+msgstr ""
+"توفر قارئات التغذيات طريقة مناسبة لتصفح أنواع مختلفة من المحتوى ، بما في ذلك "
+"الأخبار والمدونات والمحتويات الأخرى من المواقع عبر الإنترنت. بدلاً من التحقق "
+"من جميع مواقع الويب المفضلة لديك يدويًا للحصول على التحديثات ، يجمع أكريغاتور "
+"المحتوى لك."
+
+#: src/about/introduction_akregator.html:19
+msgid ""
+"For more information about using Akregator, check the <a href='https://"
+"kontact.kde.org/components/akregator/'>Akregator website</a>. If you do not "
+"want to see this page anymore, <a href='config:/disable_introduction'>click "
+"here</a>."
+msgstr ""
+"لمزيد من المعلومات حول اكريغاتور زر  <a href='https://kontact.kde.org/"
+"components/akregator/'>موقع اكريغاتور</a>. إذا لم ترغب برؤية هذه هذه الصفحة "
+"مجدداً <a href='config:/disable_introduction'>انقر هنا</a>."
+
+#: src/about/introduction_akregator.html:20
+msgid "We hope that you will enjoy Akregator."
+msgstr "نأمل أن تستمتع بِ‍اكريغاتور."
+
+#: src/about/introduction_akregator.html:21
+msgid "Thank you, The Akregator Team"
+msgstr "شكرًا لك، فريق اكريغاتور"
+
+#: src/formatter/html/5.2/combinedview.html:71
+msgid "Mark as Read"
+msgstr "علّم كمقروءة"
+
+#: src/formatter/html/5.2/combinedview.html:74
+msgid "Mark as Unread"
+msgstr "علّم كَغَير مقروءة"
+
+#: src/formatter/html/5.2/combinedview.html:78
+msgid "Remove Important Status"
+msgstr "أزل علامة مُهمّة"
+
+#: src/formatter/html/5.2/combinedview.html:80
+msgid "Mark as Important"
+msgstr "علّم كَهَامّة"
+
+#: src/formatter/html/5.2/combinedview.html:82
+msgid "Open Link in External Browser"
+msgstr "افتح الوصلة في متصفح خارجي"
+
+#: src/formatter/html/5.2/combinedview.html:83
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:110
+#, kde-format
+msgid "Open In Background Tab"
+msgstr "افتح في لسان خلفي"
+
+#: src/formatter/html/5.2/combinedview.html:84
+msgid "Send File Address"
+msgstr "أرسل عنوان الملف"
+
+#: src/formatter/html/5.2/combinedview.html:85
+msgid "Send Link Address"
+msgstr "أرسل عنوان الوصلة"
+
+#: src/formatter/html/5.2/combinedview.html:86 src/mainwidget.cpp:1063
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:96
+#, kde-format
+msgid "Delete Article"
+msgstr "احذف المقالة"
+
+#: src/formatter/html/5.2/normalview.html:51
+msgid ""
+"<b>Note:</b> For security reasons, external reference is blocked (See "
+"configure dialog)."
+msgstr ""
+"<b>ملاحظة:</b> لأسباب أمنية المصادر الخارجية محجوبة (انظر حواري الضبط)."
+
+#: configuration/akregator_config_advanced.cpp:30
+#, kde-format
+msgid "Advanced Feed Reader Settings"
+msgstr "إعدادات قارئ التلقيمات المتقدمة"
+
+#: configuration/akregator_config_advanced.cpp:34
+#: configuration/akregator_config_appearance.cpp:49
+#: configuration/akregator_config_archive.cpp:47
+#: configuration/akregator_config_browser.cpp:39
+#: configuration/akregator_config_general.cpp:42
+#, kde-format
+msgid "(c), 2004 - 2008 Frank Osterfeld"
+msgstr "(c), 2004 - 2008 Frank Osterfeld"
+
+#: configuration/akregator_config_advanced.cpp:36
+#: configuration/akregator_config_appearance.cpp:51
+#: configuration/akregator_config_archive.cpp:49
+#: configuration/akregator_config_browser.cpp:41
+#: configuration/akregator_config_general.cpp:44 src/aboutdata.cpp:28
+#, kde-format
+msgid "Frank Osterfeld"
+msgstr "Frank Osterfeld"
+
+#: configuration/akregator_config_appearance.cpp:45
+#, kde-format
+msgid "Configure Feed Reader Appearance"
+msgstr "ضبط مظهر قارئ التلقيمات"
+
+#: configuration/akregator_config_archive.cpp:33
+#, kde-format
+msgctxt "Limit feed archive size to:"
+msgid " article"
+msgid_plural " articles"
+msgstr[0] "لا مقالات"
+msgstr[1] " مقالة واحدة"
+msgstr[2] " مقالتان"
+msgstr[3] " مقالات"
+msgstr[4] " مقالة"
+msgstr[5] " مقالة"
+
+#: configuration/akregator_config_archive.cpp:34
+#, kde-format
+msgctxt "Delete articles older than:"
+msgid " day"
+msgid_plural " days"
+msgstr[0] "أقل من يوم"
+msgstr[1] " يوم واحد"
+msgstr[2] " يومان"
+msgstr[3] " أيام"
+msgstr[4] " يوماً"
+msgstr[5] " يوم"
+
+#: configuration/akregator_config_archive.cpp:43
+#, kde-format
+msgid "Configure Feed Reader Archive"
+msgstr "ضبط أرشيف قارئ التلقيمات"
+
+#: configuration/akregator_config_browser.cpp:35
+#, kde-format
+msgid "Configure Feed Reader Browser"
+msgstr "ضبط متصفح قارئ التلقيمات"
+
+#: configuration/akregator_config_general.cpp:33
+#, kde-format
+msgid " minute"
+msgid_plural " minutes"
+msgstr[0] " أقل من دقيقة"
+msgstr[1] " دقيقة واحدة"
+msgstr[2] " دقيقتان"
+msgstr[3] " دقائق"
+msgstr[4] " دقيقة"
+msgstr[5] " دقيقة"
+
+#: configuration/akregator_config_general.cpp:38
+#, kde-format
+msgid "Configure Feeds"
+msgstr "ضبط التلقيمات"
+
+#: configuration/akregator_config_plugins.cpp:27
+#: configuration/akregator_config_security.cpp:29
+#, kde-format
+msgid "Configure Plugins"
+msgstr "اضبط الملحقات"
+
+#: configuration/akregator_config_plugins.cpp:31
+#, kde-format
+msgid "(c), 2016-2021 Laurent Montel"
+msgstr "(c), 2016-2021 Laurent Montel"
+
+#: configuration/akregator_config_plugins.cpp:33
+#: configuration/akregator_config_security.cpp:35
+#: configuration/akregator_config_userfeedback.cpp:34 src/aboutdata.cpp:27
+#, kde-format
+msgid "Laurent Montel"
+msgstr "Laurent Montel"
+
+#: configuration/akregator_config_security.cpp:33
+#, kde-format
+msgid "(c), 2021 Laurent Montel"
+msgstr "(c), 2021 Laurent Montel"
+
+#: configuration/akregator_config_userfeedback.cpp:28
+#, kde-format
+msgid "Configure User Feedback"
+msgstr "اضبط إعدادات مشاركة البيانات"
+
+#: configuration/akregator_config_userfeedback.cpp:32
+#, kde-format
+msgid "(c), 2020-2021 Laurent Montel"
+msgstr "(c), 2020-2021 Laurent Montel"
+
+#: configuration/akregatorconfigurepluginlistwidget.cpp:51
+#, kde-format
+msgid "Webengine Plugins"
+msgstr "ملحقات محرّك الوبّ"
+
+#: configuration/settings_advanced.cpp:27
+#, kde-format
+msgctxt "Mark selected article read after"
+msgid " second"
+msgid_plural " seconds"
+msgstr[0] " أقل من ثانية"
+msgstr[1] " ثانية واحدة"
+msgstr[2] " ثانيتان"
+msgstr[3] " ثوان"
+msgstr[4] " ثانية"
+msgstr[5] " ثانية"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#: configuration/ui/settings_advancedbase.ui:30
+#, kde-format
+msgid "Article List"
+msgstr "قائمة المقالات"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_UseMarkReadDelay)
+#: configuration/ui/settings_advancedbase.ui:38
+#, kde-format
+msgid "Mar&k selected article read after"
+msgstr "&علّم المقالة المحدّدة مقروءة بعد"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_ResetQuickFilterOnNodeChange)
+#: configuration/ui/settings_advancedbase.ui:73
+#, kde-format
+msgid "Reset search bar when changing feeds"
+msgstr "أعد ضبط شريط البحث عند تغير التلقيمات."
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_3)
+#: configuration/ui/settings_appearance.ui:30
+#, kde-format
+msgid "Article List Colors"
+msgstr "ألوان قائمة المقالات"
+
+#. i18n: ectx: property (text), widget (QLabel, lbl_unreadArticles)
+#: configuration/ui/settings_appearance.ui:53
+#, kde-format
+msgid "Unread articles:"
+msgstr "المقالات غير المقروءة:"
+
+#. i18n: ectx: property (text), widget (QLabel, lbl_newArticles)
+#: configuration/ui/settings_appearance.ui:76
+#, kde-format
+msgid "New articles:"
+msgstr "المقالات الجديد:"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_UseCustomColors)
+#: configuration/ui/settings_appearance.ui:98
+#, kde-format
+msgid "Use custom colors"
+msgstr "استعمل ألوانًا مخصصة"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
+#: configuration/ui/settings_appearance.ui:121
+#, kde-format
+msgid "Font Size"
+msgstr "حجم الخط"
+
+#. i18n: ectx: property (text), widget (QLabel, lbl_MinimumFontSize)
+#: configuration/ui/settings_appearance.ui:127
+#, kde-format
+msgid "Minimum font size:"
+msgstr "حجم الخط الأدنى:"
+
+#. i18n: ectx: property (text), widget (QLabel, lbl_MediumFontSize)
+#: configuration/ui/settings_appearance.ui:176
+#, kde-format
+msgid "Medium font size:"
+msgstr "حجم الخط المتوسط:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#: configuration/ui/settings_appearance.ui:228
+#, kde-format
+msgid "Fonts"
+msgstr "الخطوط"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel1)
+#: configuration/ui/settings_appearance.ui:234
+#, kde-format
+msgid "Standard font:"
+msgstr "الخط القياسي:"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel2_2)
+#: configuration/ui/settings_appearance.ui:244
+#, kde-format
+msgid "Fixed font:"
+msgstr "الخط ثابت العرض:"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel3)
+#: configuration/ui/settings_appearance.ui:254
+#, kde-format
+msgid "Serif font:"
+msgstr "خط Serif:"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel4)
+#: configuration/ui/settings_appearance.ui:264
+#, kde-format
+msgid "Sans serif font:"
+msgstr "خط Sans serif:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#: configuration/ui/settings_archive.ui:30
+#, kde-format
+msgid "Default Archive Settings"
+msgstr "خصائص الأرشيف الافتراضية"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rb_DisableArchiving)
+#: configuration/ui/settings_archive.ui:36
+#, kde-format
+msgid "Disa&ble archiving"
+msgstr "ع&طّل الأرشفة"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rb_KeepAllArticles)
+#. i18n: ectx: property (text), widget (QRadioButton, rb_keepAllArticles)
+#: configuration/ui/settings_archive.ui:43
+#: src/ui/feedpropertieswidgetbase.ui:332
+#, kde-format
+msgid "&Keep all articles"
+msgstr "أ&بقِ جميع المقالات"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rb_LimitArticleNumber)
+#: configuration/ui/settings_archive.ui:64
+#, kde-format
+msgid "Limit feed archi&ve size to:"
+msgstr "حد &حجم أرشيف التلقيم إلى:"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rb_LimitArticleAge)
+#: configuration/ui/settings_archive.ui:100
+#, kde-format
+msgid "Delete articles older than: "
+msgstr "احذف المقالات الأقدم من: "
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_DoNotExpireImportantArticles)
+#: configuration/ui/settings_archive.ui:138
+#, kde-format
+msgid "Do not expire important articles"
+msgstr "لا تنهي المقالات المهمة"
+
+#. i18n: ectx: property (text), widget (QLabel, LMBlabel)
+#: configuration/ui/settings_browser.ui:20
+#, kde-format
+msgid "Left mouse click:"
+msgstr "نقرة الفأرة اليسرى:"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, kcfg_LMBBehaviour)
+#. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
+#: configuration/ui/settings_browser.ui:28
+#: configuration/ui/settings_browser.ui:54
+#: src/actions/actionmanagerimpl.cpp:323
+#, kde-format
+msgid "Open in Tab"
+msgstr "افتح في لسان"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, kcfg_LMBBehaviour)
+#. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
+#: configuration/ui/settings_browser.ui:33
+#: configuration/ui/settings_browser.ui:59
+#: src/actions/actionmanagerimpl.cpp:329
+#, kde-format
+msgid "Open in Background Tab"
+msgstr "افتح في لسان خلفي"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, kcfg_LMBBehaviour)
+#. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
+#: configuration/ui/settings_browser.ui:38
+#: configuration/ui/settings_browser.ui:64
+#: src/actions/actionmanagerimpl.cpp:335
+#, kde-format
+msgid "Open in External Browser"
+msgstr "افتح في متصفح خارجي"
+
+#. i18n: ectx: property (text), widget (QLabel, MMBlabel)
+#: configuration/ui/settings_browser.ui:46
+#, kde-format
+msgid "Middle mouse click:"
+msgstr "نقرة الفأرة الوسطى:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, externalBrowserGroupBox)
+#: configuration/ui/settings_browser.ui:74
+#, kde-format
+msgid "External Browsing"
+msgstr "المتصفح الخارجي"
+
+#. i18n: ectx: property (text), widget (QLineEdit, kcfg_ExternalBrowserCustomCommand)
+#: configuration/ui/settings_browser.ui:83
+#, no-c-format, kde-format
+msgid "firefox %u"
+msgstr "firefox %u"
+
+#. i18n: ectx: property (text), widget (QRadioButton, kcfg_ExternalBrowserUseCustomCommand)
+#: configuration/ui/settings_browser.ui:90
+#, kde-format
+msgid "Use &this command:"
+msgstr "استخدم &هذا الأمر:"
+
+#. i18n: ectx: property (text), widget (QRadioButton, kcfg_ExternalBrowserUseKdeDefault)
+#: configuration/ui/settings_browser.ui:97
+#, kde-format
+msgid "Use default web &browser"
+msgstr "استخدم &متصفح الوب المبدئي"
+
+#. i18n: ectx: property (title), widget (QGroupBox, tabsGroupBox)
+#: configuration/ui/settings_browser.ui:110
+#, kde-format
+msgid "Tabs"
+msgstr "الألسنة"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_AlwaysShowTabBar)
+#. i18n: ectx: label, entry, group (Browser)
+#: configuration/ui/settings_browser.ui:116 interfaces/akregator.kcfg:202
+#, kde-format
+msgid "Always show the tab bar"
+msgstr "أظهر شريط الألسنة دائمًا"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_CloseButtonOnTabs)
+#: configuration/ui/settings_browser.ui:123
+#, kde-format
+msgid "Show close button on each tab"
+msgstr "أظهر زر الإغلاق على كل لسان"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_NewWindowInTab)
+#. i18n: ectx: label, entry, group (Browser)
+#: configuration/ui/settings_browser.ui:130 interfaces/akregator.kcfg:212
+#, kde-format
+msgid "Open links in new tab instead of in new window"
+msgstr "افتح الروابط في لسان جديد بدل نافذة جديدة"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#: configuration/ui/settings_browser.ui:140
+#, kde-format
+msgid "Security"
+msgstr "الأمن"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_CheckPhishingUrl)
+#: configuration/ui/settings_browser.ui:146
+#, kde-format
+msgid "Verify URLs using Google's Safe Browsing API"
+msgstr "تأكد من العناوين باستخدام غوغل للتصفح الآمن"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_EnableJavascript)
+#. i18n: ectx: label, entry, group (Browser)
+#: configuration/ui/settings_browser.ui:153 interfaces/akregator.kcfg:198
+#, kde-format
+msgid "Enable Javascript"
+msgstr "مكن جافاسكربت"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
+#: configuration/ui/settings_browser.ui:163
+#, kde-format
+msgid "Misc"
+msgstr "متنوّع"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_AccessKeyEnabled)
+#: configuration/ui/settings_browser.ui:169
+#, kde-format
+msgid "Access Key Enabled"
+msgstr "مفاتيح الوصول ممكنةً"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_3)
+#: configuration/ui/settings_general.ui:30
+#, kde-format
+msgctxt "global settings"
+msgid "Global"
+msgstr "عام"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_ShowTrayIcon)
+#: configuration/ui/settings_general.ui:36
+#, kde-format
+msgid "Show tra&y icon"
+msgstr "أظهر أيقونة ال&صينية"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_ShowUnreadInTaskbar)
+#: configuration/ui/settings_general.ui:43
+#, kde-format
+msgid "Show unread articles in Taskbar"
+msgstr "أعرض المقالات غير المقروءة في شريط المهام"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_HideReadFeeds)
+#. i18n: ectx: label, entry, group (View)
+#: configuration/ui/settings_general.ui:50 interfaces/akregator.kcfg:9
+#, kde-format
+msgid "Hide feeds with no unread articles"
+msgstr "أخف التلقيمات ليس لديها مقالات غير مقروءة"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_LockFeedsInPlace)
+#: configuration/ui/settings_general.ui:57
+#, kde-format
+msgid "Lock feeds in place"
+msgstr "اقفل التلقيمات في مكانها"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_AutoExpandFolders)
+#. i18n: ectx: whatsthis, entry, group (View)
+#: configuration/ui/settings_general.ui:64 interfaces/akregator.kcfg:27
+#, kde-format
+msgid "Auto-expand folders containing unread articles"
+msgstr "وسع آليا المجلدات التي تحوي على مقالات غير مقروءة"
+
+#. i18n: ectx: property (whatsThis), widget (QCheckBox, kcfg_UseNotifications)
+#: configuration/ui/settings_general.ui:74
+#, kde-format
+msgid "Select this if you want to get notified when there are new articles."
+msgstr "اختر هذه إذا رغبت بأن تنبه عندما تكون هناك مقالات جديدة."
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_UseNotifications)
+#: configuration/ui/settings_general.ui:77
+#, kde-format
+msgid "Use &notifications for all feeds"
+msgstr "استخدم الإ&شعارات لكل التلقيمات"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_DisableSaveAsNotification)
+#: configuration/ui/settings_general.ui:84
+#, kde-format
+msgid "Disable save as finished notification"
+msgstr "عطّل احفظ كإشعار منتهي"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_UseIntervalFetch)
+#: configuration/ui/settings_general.ui:91
+#, kde-format
+msgid "&Use interval fetching"
+msgstr "ا&ستخدم الجلب على فترات"
+
+#. i18n: ectx: property (text), widget (QLabel, autoFetchIntervalLabel)
+#: configuration/ui/settings_general.ui:119
+#, kde-format
+msgid "Fetch feeds every:"
+msgstr "أحضر التلقيمات كل:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
+#: configuration/ui/settings_general.ui:160
+#, kde-format
+msgid "Startup"
+msgstr "بدء التشغيل"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_MarkAllFeedsReadOnStartup)
+#: configuration/ui/settings_general.ui:166
+#, kde-format
+msgid "Mark &all feeds as read on startup"
+msgstr "علّم &كل التلقيمات مقروءة عند البدء"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_FetchOnStartup)
+#: configuration/ui/settings_general.ui:173
+#, kde-format
+msgid "Fetch all fee&ds on startup"
+msgstr "أحضر &كل التلقيمات عند البدء"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#: configuration/ui/settings_general.ui:183
+#, kde-format
+msgid "Network"
+msgstr "الشبكة"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_UseHTMLCache)
+#: configuration/ui/settings_general.ui:189
+#, kde-format
+msgid "Use the &browser cache (less network traffic)"
+msgstr "استخدم &مختزن المتصفح (أقل مرور للشبكة)"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_LoadExternalReferences)
+#: configuration/ui/settings_security.ui:17
+#, kde-format
+msgid "Allow feed to load external references from internet."
+msgstr "اسمح للتلقيم بأن يحمل المصادر الخارجية من الإنترنت"
+
+#: export/akregatorstorageexporter.cpp:280
+#, kde-format
+msgid "Akregator Export for %1"
+msgstr "تصدير أكريغاتور لـ%1"
+
+#. i18n: ectx: whatsthis, entry, group (View)
+#: interfaces/akregator.kcfg:10
+#, kde-format
+msgid "Hides feeds with no unread articles"
+msgstr "تخفي التلقيمات ليس لديها مقالات غير مقروءة"
+
+#. i18n: ectx: label, entry, group (View)
+#: interfaces/akregator.kcfg:21
+#, kde-format
+msgid "Prevent feeds from being moved in the list"
+msgstr "امنع التلقيمات من أن تتحرك في القائمة"
+
+#. i18n: ectx: whatsthis, entry, group (View)
+#: interfaces/akregator.kcfg:22
+#, kde-format
+msgid "Locks feeds where they are"
+msgstr "اقفل على التلقيمات في مكانها"
+
+#. i18n: ectx: label, entry, group (View)
+#: interfaces/akregator.kcfg:26
+#, kde-format
+msgid "Auto-Expand folders with unread articles"
+msgstr "وسع آليا المجلدات ذات مقالات غير مقروءة"
+
+#. i18n: ectx: label, entry, group (View)
+#: interfaces/akregator.kcfg:31 src/actions/actionmanagerimpl.cpp:317
+#, kde-format
+msgid "Show Quick Filter"
+msgstr "اعرض المرشح السريع"
+
+#. i18n: ectx: whatsthis, entry, group (View)
+#: interfaces/akregator.kcfg:32
+#, kde-format
+msgid "Show Quick Filter Bar"
+msgstr "اعرض شريط المُرشّح السريع"
+
+#. i18n: ectx: label, entry, group (View)
+#: interfaces/akregator.kcfg:36
+#, kde-format
+msgid "Status Filter"
+msgstr "مُرشّح الحالة"
+
+#. i18n: ectx: whatsthis, entry, group (View)
+#: interfaces/akregator.kcfg:37
+#, kde-format
+msgid "Stores the last status filter setting"
+msgstr "يحفظ أخر إعداد لمرشح الحالة"
+
+#. i18n: ectx: label, entry, group (View)
+#: interfaces/akregator.kcfg:41
+#, kde-format
+msgid "Text Filter"
+msgstr "المُرشّح النصي"
+
+#. i18n: ectx: whatsthis, entry, group (View)
+#: interfaces/akregator.kcfg:42
+#, kde-format
+msgid "Stores the last search line text"
+msgstr "يحفظ أخر نص في سطر البحث"
+
+#. i18n: ectx: label, entry, group (View)
+#: interfaces/akregator.kcfg:45
+#, kde-format
+msgid "View Mode"
+msgstr "نمط العرض"
+
+#. i18n: ectx: whatsthis, entry, group (View)
+#: interfaces/akregator.kcfg:46
+#, kde-format
+msgid "Article display mode."
+msgstr "نمط عرض المقالات."
+
+#. i18n: ectx: label, entry, group (View)
+#: interfaces/akregator.kcfg:50
+#, kde-format
+msgid "Sizes for first splitter"
+msgstr "أحجام الفاصل الأول"
+
+#. i18n: ectx: whatsthis, entry, group (View)
+#: interfaces/akregator.kcfg:51
+#, kde-format
+msgid "First (usually vertical) splitter widget sizes."
+msgstr "أحجام ودجة الفاصل الأول (يكون عموديًا عادة). "
+
+#. i18n: ectx: label, entry, group (View)
+#: interfaces/akregator.kcfg:55
+#, kde-format
+msgid "Sizes for second splitter"
+msgstr "أحجام الفاصل الثاني"
+
+#. i18n: ectx: whatsthis, entry, group (View)
+#: interfaces/akregator.kcfg:56
+#, kde-format
+msgid "Second (usually horizontal) splitter widget sizes."
+msgstr "أحجام ودجة الفاصل الثاني (يكون أفيقًا عادة)."
+
+#. i18n: ectx: label, entry, group (Archive)
+#: interfaces/akregator.kcfg:100
+#, kde-format
+msgid "Archive Mode"
+msgstr "نمط الأرشيف"
+
+#. i18n: ectx: label, entry, group (Archive)
+#: interfaces/akregator.kcfg:104
+#, kde-format
+msgid "Keep All Articles"
+msgstr "أبقِ جميع المقالات"
+
+#. i18n: ectx: whatsthis, entry, group (Archive)
+#: interfaces/akregator.kcfg:105
+#, kde-format
+msgid "Save an unlimited number of articles."
+msgstr "احفظ رقمًا غير محدود من المقالات."
+
+#. i18n: ectx: label, entry, group (Archive)
+#: interfaces/akregator.kcfg:108
+#, kde-format
+msgid "Limit Number of Articles"
+msgstr "حد عدد المقالات"
+
+#. i18n: ectx: whatsthis, entry, group (Archive)
+#: interfaces/akregator.kcfg:109
+#, kde-format
+msgid "Limit the number of articles in a feed"
+msgstr "حد عدد المقالات في تلقيم"
+
+#. i18n: ectx: label, entry, group (Archive)
+#: interfaces/akregator.kcfg:112
+#, kde-format
+msgid "Delete Expired Articles"
+msgstr "احذف المقالات المنتهية"
+
+#. i18n: ectx: whatsthis, entry, group (Archive)
+#: interfaces/akregator.kcfg:113
+#, kde-format
+msgid "Delete expired articles"
+msgstr "احذف المقالات المنتهية"
+
+#. i18n: ectx: label, entry, group (Archive)
+#: interfaces/akregator.kcfg:116
+#, kde-format
+msgid "Disable Archiving"
+msgstr "عطّل الأرشفة"
+
+#. i18n: ectx: whatsthis, entry, group (Archive)
+#: interfaces/akregator.kcfg:117
+#, kde-format
+msgid "Do not save any articles"
+msgstr "لاتحفظ أي مقالات"
+
+#. i18n: ectx: label, entry, group (Archive)
+#: interfaces/akregator.kcfg:122
+#, kde-format
+msgid "Expiry Age"
+msgstr "عمر الانتهاء"
+
+#. i18n: ectx: whatsthis, entry, group (Archive)
+#: interfaces/akregator.kcfg:123
+#, kde-format
+msgid "Default expiry age for articles in days."
+msgstr "عمر الاتتهاء الافتراضي للمقالات بالأيام."
+
+#. i18n: ectx: label, entry, group (Archive)
+#: interfaces/akregator.kcfg:127
+#, kde-format
+msgid "Article Limit"
+msgstr "حد المقالات"
+
+#. i18n: ectx: whatsthis, entry, group (Archive)
+#: interfaces/akregator.kcfg:128
+#, kde-format
+msgid "Number of articles to keep per feed."
+msgstr "عدد المقالات المحتفظ بها لكل تلقيم."
+
+#. i18n: ectx: label, entry, group (Archive)
+#: interfaces/akregator.kcfg:132
+#, kde-format
+msgid "Do Not Expire Important Articles"
+msgstr "لا تنهي المقالات المهمة"
+
+#. i18n: ectx: whatsthis, entry, group (Archive)
+#: interfaces/akregator.kcfg:133
+#, kde-format
+msgid ""
+"When this option is enabled, articles you marked as important will not be "
+"removed when limit the archive size by either age or number of the articles."
+msgstr ""
+"عندما يُفعّل هذا الخيار فإن المقالات التي تُعلم مهمة لن تُزال عندما يصل حجم "
+"الأرشيف حده إما بسبب العمر أو عدد المقالات."
+
+#. i18n: ectx: label, entry, group (Network)
+#: interfaces/akregator.kcfg:139
+#, kde-format
+msgid "Concurrent Fetches"
+msgstr "الجلب المتوازي"
+
+#. i18n: ectx: whatsthis, entry, group (Network)
+#: interfaces/akregator.kcfg:140
+#, kde-format
+msgid "Number of concurrent fetches"
+msgstr "عدد عمليات الجلب المتوازية"
+
+#. i18n: ectx: label, entry, group (Network)
+#: interfaces/akregator.kcfg:144
+#, kde-format
+msgid "Use HTML Cache"
+msgstr "استعمل مختزن HTML"
+
+#. i18n: ectx: whatsthis, entry, group (Network)
+#: interfaces/akregator.kcfg:145
+#, kde-format
+msgid ""
+"Use the KDE-wide HTML cache settings when downloading feeds, to avoid "
+"unnecessary traffic. Disable only when necessary."
+msgstr ""
+"استعمل إعدادات كدي لمختزن HTML عند تنزيل التلقيمات لتفادي التنزيل غير "
+"الضروري. عطّله فقط عند الضرورة."
+
+#. i18n: ectx: whatsthis, entry, group (Network)
+#: interfaces/akregator.kcfg:149
+#, kde-format
+msgid ""
+"This option allows user to specify custom user-agent string instead of using "
+"the default one. This is here because some proxies may interrupt the "
+"connection because of having \"gator\" in the name."
+msgstr ""
+"يسمح هذا الخيار للمستخدم بأن يحدد نص معرف العميل بدلا عن استخدام التعريف "
+"الافتراضي ، بسب أن بعض الوكلاء قد يقاطع الاتصال بسبب وجود كلمة \"gator\" في "
+"تعريف العميل."
+
+#. i18n: ectx: label, entry, group (General)
+#: interfaces/akregator.kcfg:155
+#, kde-format
+msgid "Fetch on startup"
+msgstr "اجلب عند البدء"
+
+#. i18n: ectx: whatsthis, entry, group (General)
+#: interfaces/akregator.kcfg:156
+#, kde-format
+msgid "Fetch feedlist on startup."
+msgstr "اجلب قائمة التلقيمات عن البدء."
+
+#. i18n: ectx: label, entry, group (General)
+#: interfaces/akregator.kcfg:160
+#, kde-format
+msgid "Mark all feeds as read on startup"
+msgstr "علّم كل التلقيمات مقروءة عند البدء"
+
+#. i18n: ectx: whatsthis, entry, group (General)
+#: interfaces/akregator.kcfg:161
+#, kde-format
+msgid "Mark all feeds as read on startup."
+msgstr "علّم كل التلقيمات مقروءة عند البدء."
+
+#. i18n: ectx: label, entry, group (General)
+#: interfaces/akregator.kcfg:165
+#, kde-format
+msgid "Use interval fetching"
+msgstr "استخدم الجلب على فترات"
+
+#. i18n: ectx: whatsthis, entry, group (General)
+#: interfaces/akregator.kcfg:166
+#, no-c-format, kde-format
+msgid "Fetch all feeds every %1 minutes."
+msgstr "اجلب كل التلقيمات كل %1 دقيقة."
+
+#. i18n: ectx: label, entry, group (General)
+#: interfaces/akregator.kcfg:170
+#, kde-format
+msgid "Interval for autofetching"
+msgstr "فترة الجلب التلقائي"
+
+#. i18n: ectx: whatsthis, entry, group (General)
+#: interfaces/akregator.kcfg:171
+#, kde-format
+msgid "Interval for autofetching in minutes."
+msgstr "فترة الجلب التلقائي بالدقيقة."
+
+#. i18n: ectx: label, entry, group (General)
+#: interfaces/akregator.kcfg:175
+#, kde-format
+msgid "Use notifications"
+msgstr "استخدم التنبيهات"
+
+#. i18n: ectx: whatsthis, entry, group (General)
+#: interfaces/akregator.kcfg:176
+#, kde-format
+msgid "Specifies if the balloon notifications are used or not."
+msgstr "يحدد إذا ما كان سيسمح باستخدام التنبيهات أم لا."
+
+#. i18n: ectx: label, entry, group (General)
+#: interfaces/akregator.kcfg:180
+#, kde-format
+msgid "Show tray icon"
+msgstr "أظهر أيقونة الصينية"
+
+#. i18n: ectx: whatsthis, entry, group (General)
+#: interfaces/akregator.kcfg:181
+#, kde-format
+msgid "Specifies if the tray icon is shown or not."
+msgstr "يحدد إذا ما كان سيسمح بعرض أيقونة الصينية أم لا."
+
+#. i18n: ectx: label, entry, group (General)
+#: interfaces/akregator.kcfg:185
+#, kde-format
+msgid "Show Unread In Taskbar"
+msgstr "أعرض غير المقروءة في شريط المهام"
+
+#. i18n: ectx: whatsthis, entry, group (General)
+#: interfaces/akregator.kcfg:186
+#, kde-format
+msgid "Specifies if we show unread article in taskbar."
+msgstr "تحدد إذا ما سنعرض المقالات غير المقروءة في شريط المهام."
+
+#. i18n: ectx: whatsthis, entry, group (Browser)
+#: interfaces/akregator.kcfg:203
+#, kde-format
+msgid "Always show the tab bar, even when only one tab is open"
+msgstr "أظهر شريط الألسنة دائما حتى لو وُجد لسان واحد مفتوح فقط."
+
+#. i18n: ectx: label, entry, group (Browser)
+#: interfaces/akregator.kcfg:207
+#, kde-format
+msgid "Show close buttons on tabs"
+msgstr "أظهر زر الإغلاق على الألسنة"
+
+#. i18n: ectx: whatsthis, entry, group (Browser)
+#: interfaces/akregator.kcfg:208
+#, kde-format
+msgid "Show close buttons on tabs instead of icons"
+msgstr "أظهر زر الإغلاق على الألسنة بدلا عن الأيقونات."
+
+#. i18n: ectx: whatsthis, entry, group (Browser)
+#: interfaces/akregator.kcfg:213
+#, kde-format
+msgid ""
+"Open a link which would normally open in a new window (external browser) in "
+"a new tab instead"
+msgstr ""
+"افتح رابطاً يفترض أن يفتح نافذة في الوضع الاعتيادي (متصفح خارجي) في لسان جديد"
+
+#. i18n: ectx: label, entry, group (Browser)
+#: interfaces/akregator.kcfg:217
+#, kde-format
+msgid "Use default KDE web browser"
+msgstr "استخدم متصفح وب كدي الافتراضي"
+
+#. i18n: ectx: whatsthis, entry, group (Browser)
+#: interfaces/akregator.kcfg:218
+#, kde-format
+msgid "Use KDE web browser when opening in external browser."
+msgstr "استخدم متصفح وب كدي عند فتح في المتصفح الخارجي."
+
+#. i18n: ectx: label, entry, group (Browser)
+#: interfaces/akregator.kcfg:222
+#, kde-format
+msgid "Use this command:"
+msgstr "استخدم هذا الأمر:"
+
+#. i18n: ectx: whatsthis, entry, group (Browser)
+#: interfaces/akregator.kcfg:223
+#, kde-format
+msgid "Use the specified command when opening in external browser."
+msgstr "استخدم أمرًا مخصصًا عند فتح المتصفح الخارجي."
+
+#. i18n: ectx: whatsthis, entry, group (Browser)
+#: interfaces/akregator.kcfg:227
+#, no-c-format, kde-format
+msgid "Command to launch external browser. URL will substitute for %u."
+msgstr "أمر تشغيل المتصفح الخارجي. ستستبدل %u بالمسار."
+
+#. i18n: ectx: whatsthis, entry, group (Browser)
+#: interfaces/akregator.kcfg:231
+#, kde-format
+msgid "What the click with left mouse button should do."
+msgstr "ما يجب فعله عن النقر بالزر الأيسر للفأرة."
+
+#. i18n: ectx: whatsthis, entry, group (Browser)
+#: interfaces/akregator.kcfg:240
+#, kde-format
+msgid "What the click with middle mouse button should do."
+msgstr "ما يجب فعله عن النقر بالزر الأوسط للفأرة."
+
+#. i18n: ectx: label, entry, group (Advanced)
+#: interfaces/akregator.kcfg:265
+#, kde-format
+msgid "Archive Backend"
+msgstr "نهاية الأرشيف الخلفية"
+
+#. i18n: ectx: whatsthis, entry (UseMarkReadDelay), group (Advanced)
+#: interfaces/akregator.kcfg:269
+#, kde-format
+msgid "Whether to delay before marking an article as read upon selecting it."
+msgstr "الإمهال قبل تعليم المقالة مقروءة عند تحديدها من عدمه."
+
+#. i18n: ectx: whatsthis, entry (MarkReadDelay), group (Advanced)
+#: interfaces/akregator.kcfg:273
+#, kde-format
+msgid ""
+"Configurable delay between selecting an article and it being marked as read."
+msgstr "مهلة قابلة للضبط بين تحديد المقالة وتعليمها مقروءة."
+
+#. i18n: ectx: whatsthis, entry, group (Advanced)
+#: interfaces/akregator.kcfg:277
+#, kde-format
+msgid "Resets the quick filter when changing feeds."
+msgstr "أعد ضبط المرشح السريع عند تغير التلقيمات."
+
+#: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
+#: src/akregator_part.cpp:146
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:148
+#: src/trayicon.cpp:41 src/trayicon.cpp:42 src/trayicon.cpp:54
+#, kde-format
+msgid "Akregator"
+msgstr "أكريغاتور"
+
+#: kontactplugin/akregator_plugin.cpp:29
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "New Feed..."
+msgstr "تلقيم جديد..."
+
+#: kontactplugin/akregator_plugin.cpp:32
+#, kde-format
+msgctxt "@info:status"
+msgid "Create a new feed"
+msgstr "أنشئ تلقيماً جديدًا"
+
+#: kontactplugin/akregator_plugin.cpp:33
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid "You will be presented with a dialog where you can add a new feed."
+msgstr "ستعرض عليك حواري بحيث تستطيع أن تضيف تلقيما جديداً"
+
+#: src/aboutdata.cpp:21
+#, kde-format
+msgid "A KDE Feed Reader"
+msgstr "قارئ تلقيمات لكدي"
+
+#: src/aboutdata.cpp:23
+#, kde-format
+msgid "Copyright © 2004–%1 Akregator authors"
+msgstr "الحقوق محفوظة ©2004–%1 مطورو اكريغاتور"
+
+#: src/aboutdata.cpp:27
+#, kde-format
+msgid "Maintainer"
+msgstr "المشرف"
+
+#: src/aboutdata.cpp:28
+#, kde-format
+msgid "Former maintainer"
+msgstr "المشرف السابق"
+
+#: src/aboutdata.cpp:29
+#, kde-format
+msgid "Teemu Rytilahti"
+msgstr "Teemu Rytilahti"
+
+#: src/aboutdata.cpp:29 src/aboutdata.cpp:30 src/aboutdata.cpp:31
+#: src/aboutdata.cpp:32
+#, kde-format
+msgid "Developer"
+msgstr "مطور"
+
+#: src/aboutdata.cpp:30
+#, kde-format
+msgid "Sashmit Bhaduri"
+msgstr "Sashmit Bhaduri"
+
+#: src/aboutdata.cpp:31
+#, kde-format
+msgid "Pierre Habouzit"
+msgstr "Pierre Habouzit"
+
+#: src/aboutdata.cpp:32
+#, kde-format
+msgid "Stanislav Karchebny"
+msgstr "Stanislav Karchebny"
+
+#: src/aboutdata.cpp:33
+#, kde-format
+msgid "Gary Cramblitt"
+msgstr "Gary Cramblitt"
+
+#: src/aboutdata.cpp:33 src/aboutdata.cpp:34 src/aboutdata.cpp:35
+#, kde-format
+msgid "Contributor"
+msgstr "مساهم"
+
+#: src/aboutdata.cpp:34
+#, kde-format
+msgid "Stephan Binner"
+msgstr "Stephan Binner"
+
+#: src/aboutdata.cpp:35
+#, kde-format
+msgid "Christof Musik"
+msgstr "Christof Musik"
+
+#: src/aboutdata.cpp:36
+#, kde-format
+msgid "Anne-Marie Mahfouf"
+msgstr "Anne-Marie Mahfouf"
+
+#: src/aboutdata.cpp:36
+#, kde-format
+msgid "Handbook"
+msgstr "كتيب الاستعمال"
+
+#: src/aboutdata.cpp:37
+#, kde-format
+msgid "Frerich Raabe"
+msgstr "Frerich Raabe"
+
+#: src/aboutdata.cpp:37
+#, kde-format
+msgid "Author of librss"
+msgstr "مؤلف librss"
+
+#: src/aboutdata.cpp:38
+#, kde-format
+msgid "Eckhart Woerner"
+msgstr "Eckhart Woerner"
+
+#: src/aboutdata.cpp:38
+#, kde-format
+msgid "Bug tracker management, Usability improvements"
+msgstr "إدارة متتبع العلل، وتحسينات الاستخدامية"
+
+#: src/aboutdata.cpp:39
+#, kde-format
+msgid "Heinrich Wendel"
+msgstr "Heinrich Wendel"
+
+#: src/aboutdata.cpp:39
+#, kde-format
+msgid "Tons of bug fixes"
+msgstr "الكثير من إصلاحات العلل"
+
+#: src/aboutdata.cpp:40
+#, kde-format
+msgid "Eike Hein"
+msgstr "Eike Hein"
+
+#: src/aboutdata.cpp:40
+#, kde-format
+msgid "'Delayed mark as read' feature"
+msgstr "ميزة 'علّمها مقروءة بعد مدة'"
+
+#: src/aboutdata.cpp:41
+#, kde-format
+msgid "Marcel Dierkes"
+msgstr "Marcel Dierkes"
+
+#: src/aboutdata.cpp:41
+#, kde-format
+msgid "Icons"
+msgstr "الأيقونات"
+
+#: src/aboutdata.cpp:42
+#, kde-format
+msgid "George Staikos"
+msgstr "George Staikos"
+
+#: src/aboutdata.cpp:42
+#, kde-format
+msgid "Insomnia"
+msgstr "Insomnia"
+
+#: src/aboutdata.cpp:43
+#, kde-format
+msgid "Philipp Droessler"
+msgstr "Philipp Droessler"
+
+#: src/aboutdata.cpp:43
+#, kde-format
+msgid "Gentoo Ebuild"
+msgstr "بناء Gentoo"
+
+#: src/actions/actionmanagerimpl.cpp:63 src/actions/actionmanagerimpl.cpp:286
+#, kde-format
+msgid "&Fetch Feed"
+msgstr "ا&جلب التلقيم"
+
+#: src/actions/actionmanagerimpl.cpp:64 src/actions/actionmanagerimpl.cpp:242
+#, kde-format
+msgid "&Delete Feed"
+msgstr "ا&حذف التلقيم"
+
+#: src/actions/actionmanagerimpl.cpp:65 src/actions/actionmanagerimpl.cpp:248
+#, kde-format
+msgid "&Edit Feed..."
+msgstr "&حرّر التلقيم..."
+
+#: src/actions/actionmanagerimpl.cpp:66 src/actions/actionmanagerimpl.cpp:305
+#, kde-format
+msgid "&Mark Feed as Read"
+msgstr "&علّم التلقيم مقروءًا"
+
+#: src/actions/actionmanagerimpl.cpp:82
+#, kde-format
+msgid "&Fetch Feeds"
+msgstr "ا&جلب التلقيمات"
+
+#: src/actions/actionmanagerimpl.cpp:83
+#, kde-format
+msgid "&Delete Folder"
+msgstr "ا&حذف المجلد"
+
+#: src/actions/actionmanagerimpl.cpp:84
+#, kde-format
+msgid "&Rename Folder"
+msgstr "أ&عد تسمية المجلد"
+
+#: src/actions/actionmanagerimpl.cpp:85
+#, kde-format
+msgid "&Mark Feeds as Read"
+msgstr "&علّم التلقيمات مقروءة"
+
+#: src/actions/actionmanagerimpl.cpp:190
+#, kde-format
+msgid "&Import Feeds..."
+msgstr "ا&ستورد تلقيمات..."
+
+#: src/actions/actionmanagerimpl.cpp:194
+#, kde-format
+msgid "&Export Feeds..."
+msgstr "&صدّر التلقيمات..."
+
+#: src/actions/actionmanagerimpl.cpp:199
+#, kde-format
+msgid "&Configure Akregator..."
+msgstr "ا&ضبط أكريغاتور..."
+
+#: src/actions/actionmanagerimpl.cpp:218
+#, kde-format
+msgid "&Open Homepage"
+msgstr "ا&فتح الصفحة الرئيسية"
+
+#: src/actions/actionmanagerimpl.cpp:224
+#, kde-format
+msgid "Reload All Tabs"
+msgstr "أعد تحميل كل الألسنة"
+
+#: src/actions/actionmanagerimpl.cpp:230
+#, kde-format
+msgid "&Add Feed..."
+msgstr "أ&ضف تلقيمًا..."
+
+#: src/actions/actionmanagerimpl.cpp:236
+#, kde-format
+msgid "Ne&w Folder..."
+msgstr "مجلد &جديد..."
+
+#: src/actions/actionmanagerimpl.cpp:261
+#, kde-format
+msgid "&Normal View"
+msgstr "عرض عا&دي"
+
+#: src/actions/actionmanagerimpl.cpp:270
+#, kde-format
+msgid "&Widescreen View"
+msgstr "عرض &شاشة عريضة"
+
+#: src/actions/actionmanagerimpl.cpp:279
+#, kde-format
+msgid "C&ombined View"
+msgstr "عرض مشت&رك"
+
+#: src/actions/actionmanagerimpl.cpp:292
+#, kde-format
+msgid "Fe&tch All Feeds"
+msgstr "اج&لب كل التلقيمات"
+
+#: src/actions/actionmanagerimpl.cpp:298
+#, kde-format
+msgid "C&ancel Feed Fetches"
+msgstr "الغِ جلب التغذية"
+
+#: src/actions/actionmanagerimpl.cpp:311
+#, kde-format
+msgid "Ma&rk All Feeds as Read"
+msgstr "علّ&م كل التلقيمات مقروءة"
+
+#: src/actions/actionmanagerimpl.cpp:340 src/actions/actionmanagerimpl.cpp:608
+#, kde-format
+msgid "Copy Link Address"
+msgstr "انسخ عنوان الوصلة"
+
+#: src/actions/actionmanagerimpl.cpp:345
+#, kde-format
+msgid "Pre&vious Unread Article"
+msgstr "المقالة غير المقروءة الساب&قة"
+
+#: src/actions/actionmanagerimpl.cpp:351
+#, kde-format
+msgid "Ne&xt Unread Article"
+msgstr "المقالة غير المقروءة التال&ية"
+
+#: src/actions/actionmanagerimpl.cpp:359
+#, kde-format
+msgid "&Delete"
+msgstr "ا&حذف"
+
+#: src/actions/actionmanagerimpl.cpp:364
+#, kde-format
+msgid "&Mark As"
+msgstr "&علّم"
+
+#: src/actions/actionmanagerimpl.cpp:368
+#, kde-format
+msgctxt "as in: mark as read"
+msgid "&Read"
+msgstr "&مقروءة"
+
+#: src/actions/actionmanagerimpl.cpp:370
+#, kde-format
+msgid "Mark selected article as read"
+msgstr "علّم المقالة المحددة مقروءة"
+
+#: src/actions/actionmanagerimpl.cpp:376
+#, kde-format
+msgctxt "as in: mark as new"
+msgid "&New"
+msgstr "&جديد"
+
+#: src/actions/actionmanagerimpl.cpp:379
+#, kde-format
+msgid "Mark selected article as new"
+msgstr "علّم المقالة المحددة جديدة"
+
+#: src/actions/actionmanagerimpl.cpp:384
+#, kde-format
+msgctxt "as in: mark as unread"
+msgid "&Unread"
+msgstr "&غير مقروءة"
+
+#: src/actions/actionmanagerimpl.cpp:386
+#, kde-format
+msgid "Mark selected article as unread"
+msgstr "علّم المقالة المحددة غير مقروءة"
+
+#: src/actions/actionmanagerimpl.cpp:392
+#, kde-format
+msgid "&Mark as Important"
+msgstr "علّمها مُهمّة"
+
+#: src/actions/actionmanagerimpl.cpp:396
+#, kde-format
+msgid "Remove &Important Mark"
+msgstr "أزل علامة &مُهمّة"
+
+#: src/actions/actionmanagerimpl.cpp:400
+#, kde-format
+msgid "Move Node Up"
+msgstr "حرّك العقدة لأعلى"
+
+#: src/actions/actionmanagerimpl.cpp:405
+#, kde-format
+msgid "Move Node Down"
+msgstr "حرّك العقدة لأسفل"
+
+#: src/actions/actionmanagerimpl.cpp:410
+#, kde-format
+msgid "Move Node Left"
+msgstr "حرّك العقدة لليسار"
+
+#: src/actions/actionmanagerimpl.cpp:415
+#, kde-format
+msgid "Move Node Right"
+msgstr "حرّك العقدة لليمين"
+
+#: src/actions/actionmanagerimpl.cpp:421
+#, kde-format
+msgid "Send &Link Address..."
+msgstr "أرسل ع&نوان الوصلة..."
+
+#: src/actions/actionmanagerimpl.cpp:426
+#, kde-format
+msgid "Send &File..."
+msgstr "أرسل &ملفًا..."
+
+#: src/actions/actionmanagerimpl.cpp:432
+#, kde-format
+msgid "Set Focus to Quick Search"
+msgstr "اضبط التّركيز على البحث السّريع"
+
+#: src/actions/actionmanagerimpl.cpp:464
+#, kde-format
+msgid "&Previous Article"
+msgstr "المقالة ال&سابقة"
+
+#: src/actions/actionmanagerimpl.cpp:468
+#, kde-format
+msgid "&Next Article"
+msgstr "المقالة ال&تالية"
+
+#: src/actions/actionmanagerimpl.cpp:484
+#, kde-format
+msgid "&Previous Feed"
+msgstr "التل&قيم السابق"
+
+#: src/actions/actionmanagerimpl.cpp:489
+#, kde-format
+msgid "&Next Feed"
+msgstr "التلقي&م التالي"
+
+#: src/actions/actionmanagerimpl.cpp:495
+#, kde-format
+msgid "N&ext Unread Feed"
+msgstr "التلقيم غير المقروء ال&تالي"
+
+#: src/actions/actionmanagerimpl.cpp:501
+#, kde-format
+msgid "Prev&ious Unread Feed"
+msgstr "التلقيم غير المقروء ال&سابق"
+
+#: src/actions/actionmanagerimpl.cpp:506
+#, kde-format
+msgid "Go to Top of Tree"
+msgstr "اذهب إلى أعلى الشجرة"
+
+#: src/actions/actionmanagerimpl.cpp:511
+#, kde-format
+msgid "Go to Bottom of Tree"
+msgstr "اذهب إلى أسفل الشجرة"
+
+#: src/actions/actionmanagerimpl.cpp:516
+#, kde-format
+msgid "Go Left in Tree"
+msgstr "اذهب يسارا في الشجرة"
+
+#: src/actions/actionmanagerimpl.cpp:521
+#, kde-format
+msgid "Go Right in Tree"
+msgstr "اذهب يمينا في الشجرة"
+
+#: src/actions/actionmanagerimpl.cpp:526
+#, kde-format
+msgid "Go Up in Tree"
+msgstr "اذهب للأعلى في الشجرة"
+
+#: src/actions/actionmanagerimpl.cpp:531
+#, kde-format
+msgid "Go Down in Tree"
+msgstr "اذهب للأسفل في الشجرة"
+
+#: src/actions/actionmanagerimpl.cpp:537
+#, kde-format
+msgid "Hide Read Feeds"
+msgstr "أخفِ التلقيمات المقروءة"
+
+#: src/actions/actionmanagerimpl.cpp:543
+#, kde-format
+msgid "Lock Feeds In Place"
+msgstr "اقفل التلقيمات في مكانها"
+
+#: src/actions/actionmanagerimpl.cpp:549
+#, kde-format
+msgid "Auto-expand folders with unread articles"
+msgstr "وسع آليا المجلدات ذات مقالات غير مقروءة"
+
+#: src/actions/actionmanagerimpl.cpp:565
+#, kde-format
+msgid "Select Next Tab"
+msgstr "اختر اللسان التالي"
+
+#: src/actions/actionmanagerimpl.cpp:570
+#, kde-format
+msgid "Select Previous Tab"
+msgstr "اختر اللسان السابق"
+
+#: src/actions/actionmanagerimpl.cpp:576
+#, kde-format
+msgid "Detach Tab"
+msgstr "افصل اللسان"
+
+#: src/actions/actionmanagerimpl.cpp:590
+#, kde-format
+msgid "Mute"
+msgstr "اكتم"
+
+#: src/actions/actionmanagerimpl.cpp:594
+#, kde-format
+msgid "Unmute"
+msgstr "لا تكتم"
+
+#: src/actions/actionmanagerimpl.cpp:597
+#, kde-format
+msgid "Speak Text"
+msgstr "انطق النّصّ"
+
+#: src/actions/actionmanagerimpl.cpp:602
+#, kde-format
+msgid "&Find in Message..."
+msgstr "ا&بحث في الرّسالة..."
+
+#: src/actions/actionmanagerimpl.cpp:613
+#, kde-format
+msgid "Close Tab"
+msgstr "أ&غلق اللسان"
+
+#: src/actions/actionmanagerimpl.cpp:626
+#, kde-format
+msgid "Activate Tab %1"
+msgstr "فعِّل اللسان %1"
+
+#: src/actions/actionmanagerimpl.cpp:632
+#, kde-format
+msgid "&Save Link As..."
+msgstr "احفظ ال&وصلة باسم..."
+
+#: src/actions/actionmanagerimpl.cpp:636
+#, kde-format
+msgid "Copy &Link Address"
+msgstr "انسخ ع&نوان الوصلة"
+
+#: src/actions/actionmanagerimpl.cpp:639
+#, kde-format
+msgid "Copy Image Location"
+msgstr "انسخ موقع الصورة"
+
+#: src/actions/actionmanagerimpl.cpp:646
+#, kde-format
+msgid "Save Image On Disk..."
+msgstr "احفظ الصّورة على القرص..."
+
+#: src/actions/actions.cpp:19
+#, kde-format
+msgid "Open Link in New &Tab"
+msgstr "افتح الوصلة في لسان &جديد"
+
+#: src/actions/actions.cpp:26
+#, kde-format
+msgid "Open Link in External &Browser"
+msgstr "افتح الوصلة في &متصفح خارجي"
+
+#: src/addfeeddialog.cpp:49
+#, kde-format
+msgctxt "@title:window"
+msgid "Add Feed"
+msgstr "أضف تلقيمًا"
+
+#: src/addfeeddialog.cpp:99
+#, kde-format
+msgid "Downloading %1"
+msgstr "تنزيل %1"
+
+#: src/addfeeddialog.cpp:115
+#, kde-format
+msgid "Feed not found from %1."
+msgstr "التلقيم غير موجود في %1."
+
+#: src/addfeeddialog.cpp:121
+#, kde-format
+msgid "Feed found, downloading..."
+msgstr "وُجد التلقيم، يجري التنزيل..."
+
+#: src/akregator_options.h:20 src/akregator_options.h:28
+#, kde-format
+msgid "Add a feed with the given URL"
+msgstr "أضف تلقيمًا بواسطة الوصلة المعطاة"
+
+#: src/akregator_options.h:23
+#, kde-format
+msgid "When adding feeds, place them in this group"
+msgstr "عندما تضيف تلقيمات، ضعها في هذه المجموعة"
+
+#: src/akregator_options.h:25
+#, kde-format
+msgid "Hide main window on startup"
+msgstr "أخفِ النافذة الرئيسة عند البدء"
+
+#: src/akregator_options.h:30
+#, kde-format
+msgid "Lists the available options for user feedback"
+msgstr "يسرد الخيارات المتاحة لمشاركة بياناتك"
+
+#: src/akregator_part.cpp:84
+#, kde-format
+msgid "Feeds"
+msgstr "التلقيمات"
+
+#: src/akregator_part.cpp:95
+#, kde-format
+msgid "KDE Dot News"
+msgstr "KDE Dot News"
+
+#: src/akregator_part.cpp:100
+#, kde-format
+msgid "Linux.com"
+msgstr "Linux.com"
+
+#: src/akregator_part.cpp:105
+#, kde-format
+msgid "Planet KDE"
+msgstr "كوكب كدي"
+
+#: src/akregator_part.cpp:110
+#, kde-format
+msgid "KDE Apps"
+msgstr "KDE Apps"
+
+#: src/akregator_part.cpp:116
+#, kde-format
+msgid "Spanish feeds"
+msgstr "التغذيات الإسبانية"
+
+#: src/akregator_part.cpp:120
+#, kde-format
+msgid "Planet KDE España"
+msgstr "كوكب كدي الإسباني"
+
+#: src/akregator_part.cpp:440
+#, kde-format
+msgid ""
+"Access denied: Cannot save feed list to <b>%1</b>. Please check your "
+"permissions."
+msgstr ""
+"رُفض الوصول: لا يمكن حفظ قائمة التلقيمات في <b>%1</b>. الرجاء تأكد من "
+"صلاحياتك."
+
+#: src/akregator_part.cpp:441 src/akregator_part.cpp:492
+#, kde-format
+msgid "Write Error"
+msgstr "خطأ كتابة"
+
+#: src/akregator_part.cpp:477
+#, kde-format
+msgid "Could not import the file %1 (no valid OPML)"
+msgstr "لا يمكن استيراد الملف %1 (لا يوجد OPML صالح)"
+
+#: src/akregator_part.cpp:477 src/command/loadfeedlistcommand.cpp:71
+#, kde-format
+msgid "OPML Parsing Error"
+msgstr "خطأ في تحليل OPML"
+
+#: src/akregator_part.cpp:481
+#, kde-format
+msgid ""
+"The file %1 could not be read, check if it exists or if it is readable for "
+"the current user."
+msgstr ""
+"لا يمكن قراءة الملف %1، تأكد أنه موجود ومن أنه للمستخدم الحالي قادر على "
+"قراءته."
+
+#: src/akregator_part.cpp:482 src/command/loadfeedlistcommand.cpp:142
+#, kde-format
+msgid "Read Error"
+msgstr "خطأ قراءة"
+
+#: src/akregator_part.cpp:492
+#, kde-format
+msgid "Access denied: cannot write to file %1. Please check your permissions."
+msgstr "رُفض الوصول: لا يمكن الكتابة للملف %1. تأكد من صلاحياتك."
+
+#: src/akregator_part.cpp:507 src/akregator_part.cpp:516
+#, kde-format
+msgid "OPML Outlines (%1);;All Files (*)"
+msgstr "عناوين OPML (%1);;كل الملفات (*)"
+
+#: src/akregator_part.cpp:650
+#, kde-format
+msgid "Imported Folder"
+msgstr "المجلد المستورد"
+
+#: src/articlejobs.cpp:184
+#, kde-format
+msgid "The feed to be listed was already removed."
+msgstr "التقليم الذي يراد سرده محذوف."
+
+#: src/articlelistview.cpp:156 src/subscription/subscriptionlistview.cpp:180
+#, kde-format
+msgid "Columns"
+msgstr "الأعمدة"
+
+#: src/articlelistview.cpp:214
+#, kde-format
+msgid "No result found"
+msgstr "لا نتائج"
+
+#: src/articlelistview.cpp:375
+#, kde-format
+msgid ""
+"<h2>Article list</h2>Here you can browse articles from the currently "
+"selected feed. You can also manage articles, as marking them as persistent "
+"(\"Mark as Important\") or delete them, using the right mouse button menu. "
+"To view the web page of the article, you can open the article internally in "
+"a tab or in an external browser window."
+msgstr ""
+"<h2>قائمة المقالات</h2> يمكنك هنا استعراض المقالات الحالية من التلقيم "
+"المحدد، تستطيع أيضًا إدارة المقالات مثل أن تجعلها دائما موجودة (\"علمها بأنها "
+"مهمة\") أو أن تحذفها باستخدام القائمة المنسدلة للزر الأيمن للفأرة. لمشاهدة "
+"صفحة وب المقالة، تستطيع فتح المقالة داخليًا في لسان أو في نافذة متصفح خارجي."
+
+#: src/articlemodel.cpp:74
+#, kde-format
+msgctxt "Articlelist's column header"
+msgid "Title"
+msgstr "العنوان"
+
+#: src/articlemodel.cpp:76
+#, kde-format
+msgctxt "Articlelist's column header"
+msgid "Feed"
+msgstr "التلقيم"
+
+#: src/articlemodel.cpp:78
+#, kde-format
+msgctxt "Articlelist's column header"
+msgid "Date"
+msgstr "التاريخ"
+
+#: src/articlemodel.cpp:80
+#, kde-format
+msgctxt "Articlelist's column header"
+msgid "Author"
+msgstr "المؤلف"
+
+#: src/articlemodel.cpp:82
+#, kde-format
+msgctxt "Articlelist's column header"
+msgid "Description"
+msgstr "الوصف"
+
+#: src/articlemodel.cpp:84
+#, kde-format
+msgctxt "Articlelist's column header"
+msgid "Content"
+msgstr "المحتوى"
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:149
+#, kde-format
+msgid "Akregator is a KDE news feed reader."
+msgstr "أكريغاتور قارئ تلقيمات لكدي"
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:190
+#, kde-format
+msgctxt "@title:window"
+msgid "Save As"
+msgstr "احفظ كَ‍"
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:382
+#, kde-format
+msgid "Disable"
+msgstr "عطّلها"
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:384
+#, kde-format
+msgid "Keep Enabled"
+msgstr "أبقها ممكنًة"
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:386
+#, kde-format
+msgid "Are you sure you want to disable this introduction page?"
+msgstr "أمتأكد أنك تريد تعطيل صفحة المقدمة؟"
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:387
+#, kde-format
+msgid "Disable Introduction Page"
+msgstr "تعطيل صفحة المقدمة"
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:422
+#, kde-format
+msgid "This web site is a malware, do you want to continue to show it?"
+msgstr "هذا الموقع برنامجُ تجسّس، أتريد المتابعة وعرضه؟"
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:423
+#, kde-format
+msgid "Malware"
+msgstr "برنامج تجسّس"
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:435
+#, kde-format
+msgid "The network is broken."
+msgstr "الشّبكة معطوبة."
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:435
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:438
+#, kde-format
+msgid "Check Phishing Url"
+msgstr "افحص المسار المنتحل"
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:438
+#, kde-format
+msgid "The url %1 is not valid."
+msgstr "المسار %1 غير صالح."
+
+#: src/articleviewer-ng/webengine/articleviewerwebenginewidgetng.cpp:137
+#, kde-format
+msgctxt "@title:window"
+msgid "Print Document"
+msgstr "اطبع المستند"
+
+#: src/command/createfoldercommand.cpp:47
+#, kde-format
+msgid "Add Folder"
+msgstr "أضف مجلدًا"
+
+#: src/command/createfoldercommand.cpp:47
+#, kde-format
+msgid "Folder name:"
+msgstr "اسم المجلد:"
+
+#: src/command/deletesubscriptioncommand.cpp:39
+#, kde-format
+msgid ""
+"<qt>Are you sure you want to delete this folder and its feeds and subfolders?"
+"</qt>"
+msgstr ""
+"<qt>أمتأكد من أنك تريد حذف هذا المجلد بما فيه من تلقيمات ومجلدات فرعية؟</qt>"
+
+#: src/command/deletesubscriptioncommand.cpp:40
+#, kde-format
+msgid ""
+"<qt>Are you sure you want to delete folder <b>%1</b> and its feeds and "
+"subfolders?</qt>"
+msgstr ""
+"<qt>أمتأكد من حذف مجلد <b>%1</b> بما فيه من تلقيمات ومجلدات فرعية؟</qt>"
+
+#: src/command/deletesubscriptioncommand.cpp:44
+#, kde-format
+msgid "Delete Folder"
+msgstr "احذف المجلد"
+
+#: src/command/deletesubscriptioncommand.cpp:61
+#, kde-format
+msgid "<qt>Are you sure you want to delete this feed?</qt>"
+msgstr "<qt>أمتأكد من حذف هذا التلقيم؟</qt>"
+
+#: src/command/deletesubscriptioncommand.cpp:63
+#, kde-format
+msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
+msgstr "<qt>أمتأكد من حذف التلقيم <b>%1</b>؟</qt>"
+
+#: src/command/deletesubscriptioncommand.cpp:68
+#, kde-format
+msgid "Delete Feed"
+msgstr "احدف التلقيم"
+
+#: src/command/importfeedlistcommand.cpp:48
+#, kde-format
+msgid "Imported Feeds"
+msgstr "تلقيمات مستوردة"
+
+#: src/command/importfeedlistcommand.cpp:77
+#, kde-format
+msgid "Add Imported Folder"
+msgstr "أضف مجلدًا مستوردًا"
+
+#: src/command/importfeedlistcommand.cpp:78
+#, kde-format
+msgid "Imported folder name:"
+msgstr "اسم المجلد المستورد:"
+
+#: src/command/loadfeedlistcommand.cpp:63
+#, kde-format
+msgid ""
+"<qt>The standard feed list is corrupted (invalid OPML). A backup was created:"
+"<p><b>%1</b></p></qt>"
+msgstr ""
+"<qt>قائمة التلقيمات القياسية معطوبة (OPML غير صالح). أُنشئت نسخة احتياطية:"
+"<p><b>%1</b></p></qt>"
+
+#: src/command/loadfeedlistcommand.cpp:67
+#, kde-format
+msgid ""
+"<qt>The standard feed list is corrupted (invalid OPML). Could not create a "
+"backup.</qt>"
+msgstr ""
+"<qt>قائمة التلقيمات القياسية معطوبة (OPML غير صالح). تعذّر إنشاء نسخة "
+"احتياطية:</qt>"
+
+#: src/command/loadfeedlistcommand.cpp:129
+#, kde-format
+msgid "Opening Feed List..."
+msgstr "فتح قائمة التلقيمات..."
+
+#: src/command/loadfeedlistcommand.cpp:142
+#, kde-format
+msgid "<qt>Could not open feed list (%1) for reading.</qt>"
+msgstr "<qt>تعذر فتح قائمة التلقيمات (%1) للقراءة.</qt>"
+
+#: src/command/loadfeedlistcommand.cpp:155
+#, kde-format
+msgctxt "error message window caption"
+msgid "XML Parsing Error"
+msgstr "خطأ تحليل XML"
+
+#: src/command/loadfeedlistcommand.cpp:157
+#, kde-kuit-format
+msgid "<qt><p>XML parsing error in line %1, column %2 of %3:</p><p>%4</p></qt>"
+msgstr ""
+"<qt><p>خطأ في تحليل اكس ام ال في السطر %1، العمود %2 من %3:</p><p>%4</p></qt>"
+
+#: src/command/loadfeedlistcommand.cpp:164
+#, kde-format
+msgid ""
+"<qt>The standard feed list is corrupted (invalid XML). A backup was created:"
+"<p><b>%1</b></p></qt>"
+msgstr ""
+"<qt>قائمة التلقيمات القياسية معطوبة (XML غير صالح). أُنشئت نسخة احتياطية:"
+"<p><b>%1</b></p></qt>"
+
+#: src/command/loadfeedlistcommand.cpp:168
+#, kde-format
+msgid ""
+"<qt>The standard feed list is corrupted (invalid XML). Could not create a "
+"backup.</qt>"
+msgstr ""
+"<qt>قائمة التلقيمات القياسية معطوبة (XML غير صالح). تعذّر إنشاء نسخة احتياطية:"
+"</qt>"
+
+#: src/crashwidget/crashwidget.cpp:21
+#, kde-format
+msgid ""
+"Akregator did not close correctly. Would you like to restore the previous "
+"session?"
+msgstr "لم يُغلق أكريجاتور بشكل صحيح. أترغب باسترجاع الجلسة السابقة؟"
+
+#: src/crashwidget/crashwidget.cpp:37
+#, kde-format
+msgid "Restore Session"
+msgstr "استرجع الجلسة"
+
+#: src/crashwidget/crashwidget.cpp:43
+#, kde-format
+msgid "Do Not Restore Session"
+msgstr "لا تسترجع الجلسة"
+
+#: src/crashwidget/crashwidget.cpp:49
+#, kde-format
+msgid "Ask me later"
+msgstr "اسألني لاحقًا"
+
+#. i18n: ectx: Menu (edit)
+#: src/data/akregator_part.rc:14 src/data/akregator_shell.rc:11
+#, kde-format
+msgid "&Edit"
+msgstr "ت&حرير"
+
+#. i18n: ectx: Menu (view)
+#: src/data/akregator_part.rc:21 src/data/akregator_shell.rc:16
+#, kde-format
+msgid "&View"
+msgstr "&عرض"
+
+#. i18n: ectx: Menu (go)
+#: src/data/akregator_part.rc:36 src/data/akregator_shell.rc:24
+#, kde-format
+msgid "&Go"
+msgstr "&ذهاب"
+
+#. i18n: ectx: Menu (feed)
+#: src/data/akregator_part.rc:49 src/data/akregator_shell.rc:29
+#, kde-format
+msgid "Fee&d"
+msgstr "&تلقيمات"
+
+#. i18n: ectx: Menu (article)
+#: src/data/akregator_part.rc:62 src/data/akregator_shell.rc:34
+#, kde-format
+msgid "&Article"
+msgstr "م&قالات"
+
+#. i18n: ectx: Menu (settings)
+#: src/data/akregator_part.rc:79 src/data/akregator_shell.rc:39
+#, kde-format
+msgid "&Settings"
+msgstr "إ&عدادات"
+
+#. i18n: ectx: ToolBar (mainToolBar)
+#: src/data/akregator_part.rc:92 src/data/akregator_shell.rc:54
+#, kde-format
+msgid "Main Toolbar"
+msgstr "شريط الأدوات الرئيسي"
+
+#. i18n: ectx: Menu (file)
+#: src/data/akregator_shell.rc:4
+#, kde-format
+msgid "&File"
+msgstr "&ملف"
+
+#: src/feed/feedlist.cpp:160
+#, kde-format
+msgid "All Feeds"
+msgstr "كل التلقيمات"
+
+#: src/feed/feedpropertiesdialog.cpp:45 src/feed/feedpropertiesdialog.cpp:77
+#, kde-format
+msgid "Minute"
+msgid_plural "Minutes"
+msgstr[0] "أقل من دقيقة"
+msgstr[1] "دقيقة واحدة"
+msgstr[2] "دقيقتان"
+msgstr[3] "دقائق"
+msgstr[4] "دقيقة"
+msgstr[5] "دقيقة"
+
+#: src/feed/feedpropertiesdialog.cpp:46 src/feed/feedpropertiesdialog.cpp:78
+#, kde-format
+msgid "Hour"
+msgid_plural "Hours"
+msgstr[0] "أقل من ساعة"
+msgstr[1] "ساعة واحدة"
+msgstr[2] "ساعتان"
+msgstr[3] "ساعات"
+msgstr[4] "ساعة"
+msgstr[5] "ساعة"
+
+#: src/feed/feedpropertiesdialog.cpp:47 src/feed/feedpropertiesdialog.cpp:79
+#, kde-format
+msgid "Day"
+msgid_plural "Days"
+msgstr[0] "أقل من يوم"
+msgstr[1] "يوم واحد"
+msgstr[2] "يومان"
+msgstr[3] "أيام"
+msgstr[4] "يوماً"
+msgstr[5] "يوم"
+
+#: src/feed/feedpropertiesdialog.cpp:60 src/feed/feedpropertiesdialog.cpp:112
+#, kde-format
+msgctxt "@title:window"
+msgid "Feed Properties"
+msgstr "خصائص التلقيم"
+
+#: src/feed/feedpropertiesdialog.cpp:80
+#, kde-format
+msgctxt "never fetch new articles"
+msgid "Never"
+msgstr "مطلقاً"
+
+#: src/feed/feedpropertiesdialog.cpp:81
+#, kde-format
+msgid " day"
+msgid_plural " days"
+msgstr[0] "أقل من يوم"
+msgstr[1] "يوم واحد"
+msgstr[2] "يومان"
+msgstr[3] "أيام"
+msgstr[4] "يوماً"
+msgstr[5] "يوم"
+
+#: src/feed/feedpropertiesdialog.cpp:82
+#, kde-format
+msgid " article"
+msgid_plural " articles"
+msgstr[0] "لا مقالات"
+msgstr[1] "مقالة واحدة"
+msgstr[2] "مقالتان"
+msgstr[3] "مقالات"
+msgstr[4] "مقالة"
+msgstr[5] "مقالة"
+
+#: src/feed/feedpropertiesdialog.cpp:112
+#, kde-format
+msgctxt "@title:window"
+msgid "Properties of %1"
+msgstr "خصائص %1"
+
+#: src/formatter/articleformatter.cpp:36
+#, kde-format
+msgid "(%1, %2)"
+msgstr "(%1، %2)"
+
+#: src/formatter/grantleeviewformatter.cpp:58
+#: src/formatter/grantleeviewformatter.cpp:109
+#, kde-format
+msgid " (no unread articles)"
+msgstr " (لا توجد مقالات غير مقروءة)"
+
+#: src/formatter/grantleeviewformatter.cpp:60
+#: src/formatter/grantleeviewformatter.cpp:111
+#, kde-format
+msgid " (1 unread article)"
+msgid_plural " (%1 unread articles)"
+msgstr[0] "(لا توجد مقالات غير مقروءة)"
+msgstr[1] " (مقالة واحدة غير مقروءة)"
+msgstr[2] "  (مقالتان غير مقروءتان)"
+msgstr[3] " (%1 مقالات غير مقروءة)"
+msgstr[4] " (%1 مقالة غير مقروءة)"
+msgstr[5] " (%1 مقالة غير مقروءة)"
+
+#: src/formatter/grantleeviewformatter.cpp:75
+#, kde-format
+msgid "<b>Description:</b> %1<br />"
+msgstr "<b>الوصف:</b> %1<br />"
+
+#: src/formatter/grantleeviewformatter.cpp:82
+#, kde-format
+msgid "<b>Homepage:</b> <a href=\"%1\">%1</a>"
+msgstr "<b>الصّفحة الرّئيسيّة:</b> <a href=\"%1\">%1</a>"
+
+#: src/formatter/grantleeviewformatter.cpp:89
+#, kde-format
+msgid "<b>Copyright:</b> %1</a>"
+msgstr "<b>حقوق النسخ:</b> %1</a>"
+
+#: src/formatter/grantleeviewformatter.cpp:141
+#, kde-format
+msgid "Date"
+msgstr "التاريخ"
+
+#: src/formatter/grantleeviewformatter.cpp:142
+#, kde-format
+msgid "Comment"
+msgstr "التعليق"
+
+#: src/formatter/grantleeviewformatter.cpp:143
+#, kde-format
+msgid "Complete Story"
+msgstr "المقالة الكاملة"
+
+#: src/formatter/grantleeviewformatter.cpp:144
+#, kde-format
+msgid "Author"
+msgstr "المؤلف"
+
+#: src/formatter/grantleeviewformatter.cpp:145
+#, kde-format
+msgid "Enclosure"
+msgstr "المغلف"
+
+#: src/frame/frame.cpp:21
+#, kde-format
+msgid "Untitled"
+msgstr "بدون عنوان"
+
+#: src/frame/frame.cpp:141
+#, kde-format
+msgid "Loading..."
+msgstr "تحميل..."
+
+#: src/frame/frame.cpp:157
+#, kde-format
+msgid "Loading canceled"
+msgstr "أُلغي التحميل"
+
+#: src/frame/frame.cpp:169
+#, kde-format
+msgid "Loading completed"
+msgstr "اكتمل التحميل"
+
+#: src/mainwidget.cpp:144
+#, kde-format
+msgid "You can view multiple articles in several open tabs."
+msgstr "تستطيع أن ترى عدة مقالات في عدة ألسنة مفتوحة."
+
+#: src/mainwidget.cpp:148
+#, kde-format
+msgid "Articles list."
+msgstr "قائمة المقالات."
+
+#: src/mainwidget.cpp:210 src/mainwidget.cpp:635
+#, kde-format
+msgid "Articles"
+msgstr "المقالات"
+
+#: src/mainwidget.cpp:239
+#, kde-format
+msgid "About"
+msgstr "عن"
+
+#: src/mainwidget.cpp:765
+#, kde-format
+msgid ""
+"<qt>Are you sure you want to mark <b>all articles in the feed</b> as read?</"
+"qt>"
+msgstr "<qt>هل تريد أن تعلم <b>جميع المقالات في التلقيم</b> كمقروءة؟</qt>"
+
+#: src/mainwidget.cpp:766
+#, kde-format
+msgid "Mark Feed as Read"
+msgstr "علّم التلقيم مقروءًا"
+
+#: src/mainwidget.cpp:769
+#, kde-format
+msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
+msgstr "<qt>هل تريد أن تعلم <b>جميع التلقيمات </b>كمقروءة؟</qt>"
+
+#: src/mainwidget.cpp:771
+#, kde-format
+msgid ""
+"<qt>Are you sure you want to mark <b>all feeds in the folder</b> as read?</"
+"qt>"
+msgstr "<qt>هل تريد أن تعلم <b>جميع التلقيمات في المجلد</b> كمقروءة؟</qt>"
+
+#: src/mainwidget.cpp:773
+#, kde-format
+msgid "Mark Feeds as Read"
+msgstr "علّم التلقيمات مقروءة"
+
+#: src/mainwidget.cpp:837 src/mainwidget.cpp:846 src/mainwidget.cpp:1248
+#, kde-format
+msgid "Networking is not available."
+msgstr "الاتصال الشبكي غير متاح."
+
+#: src/mainwidget.cpp:854
+#, kde-format
+msgid "Fetching Feeds..."
+msgstr "جلب التلقيمات..."
+
+#: src/mainwidget.cpp:1053
+#, kde-format
+msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
+msgstr "<qt>أمتأكد من حذف المقالة <b>%1</b>؟</qt>"
+
+#: src/mainwidget.cpp:1056
+#, kde-format
+msgid "<qt>Are you sure you want to delete the selected article?</qt>"
+msgid_plural ""
+"<qt>Are you sure you want to delete the %1 selected articles?</qt>"
+msgstr[0] "<qt>أمتأكد من أنك تريد حذف المقالة المُحدّدة؟</qt>"
+msgstr[1] "<qt>أمتأكد من أنك تريد حذف المقالة المُحدّدة؟</qt>"
+msgstr[2] "<qt>أمتأكد من أنك تريد حذف المقالتين المُحدّدتين؟</qt>"
+msgstr[3] "<qt>أمتأكد من أنك تريد حذف ال%1 مقالات المُحدّدة؟</qt>"
+msgstr[4] "<qt>أمتأكد من أنك تريد حذف ال%1 مقالة المُحدّدة؟</qt>"
+msgstr[5] "<qt>أمتأكد من أنك تريد حذف ال%1 مقالة المُحدّدة؟</qt>"
+
+#: src/mainwidget.cpp:1245
+#, kde-format
+msgid "Networking is available now."
+msgstr "الاتصال الشبكي متاح الآن."
+
+#: src/mainwindow.cpp:124
+#, kde-format
+msgid ""
+"<qt>This will hide the menu bar completely. You can show it again by typing "
+"%1.</qt>"
+msgstr "<qt>سيُخفي هذا شريط القوائم بالكامل. يمكنك إظهاره ثانيةً بضغط %1.</qt>"
+
+#: src/mainwindow.cpp:127
+#, kde-format
+msgid "Hide menu bar"
+msgstr "أخفِ شريط القوائم"
+
+#: src/mainwindow.cpp:156
+#, kde-format
+msgid ""
+"Could not find the Akregator part; please check your installation.\n"
+"%1"
+msgstr ""
+"تعذر إيجاد جزء أكريغاتور؛ الرجاء فحص التثبيت.\n"
+"%1"
+
+#: src/notificationmanager.cpp:49
+#, kde-format
+msgid ""
+"Feed added:\n"
+" %1"
+msgstr ""
+"أضيف التلقيم:\n"
+"%1 "
+
+#: src/notificationmanager.cpp:61
+#, kde-format
+msgid ""
+"Feeds added:\n"
+" %1"
+msgstr ""
+"التلقيمات المضافة:\n"
+"%1 "
+
+#: src/notificationmanager.cpp:79
+#, kde-format
+msgid "<i>and 1 other</i>"
+msgid_plural "<i>and %1 others</i>"
+msgstr[0] "<i>و واحد أخر</i>"
+msgstr[1] "<i>و واحد أخر</i>"
+msgstr[2] "<i>و اثنين آخرين</i>"
+msgstr[3] "<i>و %1 أخرى</i>"
+msgstr[4] "<i>و %1 أخرى</i>"
+msgstr[5] "<i>و %1 أخرى</i>"
+
+#: src/progressmanager.cpp:127
+#, kde-format
+msgid "Fetch completed"
+msgstr "اكتمل الجلب"
+
+#: src/progressmanager.cpp:136
+#, kde-format
+msgid "Fetch error"
+msgstr "خطأ جلب"
+
+#: src/progressmanager.cpp:145
+#, kde-format
+msgid "Fetch aborted"
+msgstr "أجهض الجلب"
+
+#: src/subscription/subscriptionlistjobs.cpp:54
+#, kde-format
+msgid "Feed list was deleted"
+msgstr "حُذفت قائمة التلقيمات"
+
+#: src/subscription/subscriptionlistjobs.cpp:64
+#, kde-format
+msgid "Node or destination folder not found"
+msgstr "لم يعثر على مجلد المقصد أو العقدة"
+
+#: src/subscription/subscriptionlistjobs.cpp:71
+#, kde-format
+msgid "Cannot move folder %1 to its own subfolder %2"
+msgstr "لا يمكن نقل المجلد %1 إلى مجلده الفرعي %2"
+
+#: src/subscription/subscriptionlistmodel.cpp:49
+#, kde-format
+msgid "Timeout on remote server"
+msgstr "انتهت المهلة على الخادوم البعيد"
+
+#: src/subscription/subscriptionlistmodel.cpp:51
+#, kde-format
+msgid "Unknown host"
+msgstr "مضيف مجهول"
+
+#: src/subscription/subscriptionlistmodel.cpp:53
+#, kde-format
+msgid "Feed file not found on remote server"
+msgstr "ملف التلقيم غير موجود على الخادوم البعيد"
+
+#: src/subscription/subscriptionlistmodel.cpp:55
+#, kde-format
+msgid "Could not read feed (invalid XML)"
+msgstr "لا يمكن قراءة التلقيم (OPML غير صالح)"
+
+#: src/subscription/subscriptionlistmodel.cpp:57
+#, kde-format
+msgid "Could not read feed (unknown format)"
+msgstr "لا يمكن قراءة التلقيم (هيئة مجهولة)"
+
+#: src/subscription/subscriptionlistmodel.cpp:59
+#, kde-format
+msgid "Could not read feed (invalid feed)"
+msgstr "لا يمكن قراءة التلقيم (تلقيم غير صالح)"
+
+#: src/subscription/subscriptionlistmodel.cpp:229
+#, kde-format
+msgid "Could not fetch feed: %1"
+msgstr "تعذّر جلب التلقيم: %1"
+
+#: src/subscription/subscriptionlistmodel.cpp:274
+#, kde-format
+msgctxt "Feedlist's column header"
+msgid "Feeds"
+msgstr "التلقيمات"
+
+#: src/subscription/subscriptionlistmodel.cpp:276
+#, kde-format
+msgctxt "Feedlist's column header"
+msgid "Unread"
+msgstr "غير مقروءة"
+
+#: src/subscription/subscriptionlistmodel.cpp:278
+#, kde-format
+msgctxt "Feedlist's column header"
+msgid "Total"
+msgstr "المجموع"
+
+#: src/tabwidget.cpp:92
+#, kde-format
+msgid "Close the current tab"
+msgstr "أغلق اللسان الحالي"
+
+#: src/tabwidget.cpp:95
+#, kde-format
+msgid "Close tab"
+msgstr "أغلق اللسان"
+
+#: src/tabwidget.cpp:118
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Detach Tab"
+msgstr "افصل اللسان"
+
+#: src/tabwidget.cpp:123
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Close Tab"
+msgstr "أغلق اللسان"
+
+#: src/tabwidget.cpp:127
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Close All Other Tabs"
+msgstr "أغلق كلّ الألسنة الأخرى"
+
+#: src/tabwidget.cpp:131
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Close All Tabs"
+msgstr "أغلق كلّ الألسنة"
+
+#: src/trayicon.cpp:55
+#, kde-format
+msgid "There are no unread articles"
+msgstr "لا توجد مقالات غير مقروءة"
+
+#: src/trayicon.cpp:55
+#, kde-format
+msgid "1 unread article"
+msgid_plural "%1 unread articles"
+msgstr[0] "لا توجد مقالات غير مقروءة"
+msgstr[1] "مقالة واحدة غير مقروءة"
+msgstr[2] "مقالتان غير مقروءتين"
+msgstr[3] "%1 مقالات غير مقروءة"
+msgstr[4] "%1 مقالة غير مقروءة"
+msgstr[5] "%1 مقالة غير مقروءة"
+
+#. i18n: ectx: property (windowTitle), widget (QWidget, Akregator::AddFeedWidgetBase)
+#: src/ui/addfeedwidgetbase.ui:14
+#, kde-format
+msgid "Add Feed"
+msgstr "أضف تلقيمًا"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel1)
+#: src/ui/addfeedwidgetbase.ui:122
+#, kde-format
+msgid "Add New Source"
+msgstr "أضف مصدرًا جديدًا"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel3)
+#: src/ui/addfeedwidgetbase.ui:135
+#, kde-format
+msgid "Feed &URL:"
+msgstr "م&سار التلقيم:"
+
+#. i18n: ectx: property (windowTitle), widget (QWidget, Akregator::FeedPropertiesWidgetBase)
+#: src/ui/feedpropertieswidgetbase.ui:20
+#, kde-format
+msgid "Feed Properties"
+msgstr "خصائص التلقيم"
+
+#. i18n: ectx: attribute (title), widget (QWidget, tab1)
+#: src/ui/feedpropertieswidgetbase.ui:42
+#, kde-format
+msgid "&General"
+msgstr "&عام"
+
+#. i18n: ectx: property (text), widget (QCheckBox, cb_updateInterval)
+#: src/ui/feedpropertieswidgetbase.ui:54
+#, kde-format
+msgid "U&se a custom update interval"
+msgstr "ا&ستخدم فترة تحديث مخصصة"
+
+#. i18n: ectx: property (text), widget (QLabel, updateLabel)
+#: src/ui/feedpropertieswidgetbase.ui:88
+#, kde-format
+msgid "Update ever&y:"
+msgstr "حدّث &كل:"
+
+#. i18n: ectx: property (text), widget (QCheckBox, checkBox_useNotification)
+#: src/ui/feedpropertieswidgetbase.ui:117
+#, kde-format
+msgid "Notify when new articles arri&ve"
+msgstr "أخطرني عند وص&ول مقالات جديدة"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel3)
+#: src/ui/feedpropertieswidgetbase.ui:132
+#, kde-format
+msgid "&URL:"
+msgstr "الم&سار:"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel2)
+#: src/ui/feedpropertieswidgetbase.ui:142
+#, kde-format
+msgid "&Name:"
+msgstr "الا&سم:"
+
+#. i18n: ectx: property (toolTip), widget (QLineEdit, feedNameEdit)
+#: src/ui/feedpropertieswidgetbase.ui:161
+#, kde-format
+msgid "Display name of RSS column"
+msgstr "اعرض اسم عمود RSS"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: src/ui/feedpropertieswidgetbase.ui:171
+#, kde-format
+msgid "Comment:"
+msgstr "التعليق:"
+
+#. i18n: ectx: attribute (title), widget (QWidget, tab2)
+#: src/ui/feedpropertieswidgetbase.ui:194
+#, kde-format
+msgid "Ar&chive"
+msgstr "الأ&رشيف"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rb_globalDefault)
+#: src/ui/feedpropertieswidgetbase.ui:206
+#, kde-format
+msgid "&Use default settings"
+msgstr "ا&ستخدم الإعدادات الافتراضية"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rb_disableArchiving)
+#: src/ui/feedpropertieswidgetbase.ui:216
+#, kde-format
+msgid "Di&sable archiving"
+msgstr "ع&طّل الأرشفة"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rb_limitArticleNumber)
+#: src/ui/feedpropertieswidgetbase.ui:247
+#, kde-format
+msgid "Limit archi&ve to:"
+msgstr "حد الأرش&يف إلى:"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rb_limitArticleAge)
+#: src/ui/feedpropertieswidgetbase.ui:277
+#, kde-format
+msgid "&Delete articles older than:"
+msgstr "اح&ذف المقالات الأقدم من:"
+
+#. i18n: ectx: attribute (title), widget (QWidget, tab3)
+#: src/ui/feedpropertieswidgetbase.ui:340
+#, kde-format
+msgid "Adva&nced"
+msgstr "متق&دّم"
+
+#. i18n: ectx: property (text), widget (QCheckBox, checkBox_loadWebsite)
+#: src/ui/feedpropertieswidgetbase.ui:373
+#, kde-format
+msgid "Load the &full website when reading articles"
+msgstr "حمّل موقع الوب &كاملًا عند قراءة المقالات"
+
+#. i18n: ectx: property (text), widget (QCheckBox, checkBox_markRead)
+#: src/ui/feedpropertieswidgetbase.ui:380
+#, kde-format
+msgid "Mar&k articles as read when they arrive"
+msgstr "ع&لّم المقالات مقروءة عند وصولها"
+
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:40
+#, kde-format
+msgid "Disable Introduction"
+msgstr "عطل المقدمة"
+
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:58
+#, kde-format
+msgid "&Copy Email Address"
+msgstr "ا&نسخ عنوان البريد الإلكتروني"
+
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:67
+#, kde-format
+msgid "Address copied to clipboard."
+msgstr "نُسخ العنوان إلى الحافظة."
+
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:98
+#, kde-format
+msgid "Mark Article as Read"
+msgstr "علّ&م كل المقالات كمقروءة"
+
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:100
+#, kde-format
+msgid "Mark Article as Unread"
+msgstr "علّم المقالة المحددة كغير مقروءة"
+
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:102
+#, kde-format
+msgid "Change Important Flag"
+msgstr "غير علامة الأهمية"
+
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:104
+#, kde-format
+msgid "Send the URL of the article"
+msgstr "أرسل عنوان المقالة"
+
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:106
+#, kde-format
+msgid "Send the Html Page of Article"
+msgstr "أرسل صفية HTML للمقالة"
+
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:108
+#, kde-format
+msgid "Open In External Browser"
+msgstr "افتح في متصفح خارجي"
+
+#: src/widgets/searchbar.cpp:40
+#, kde-format
+msgid "Search articles..."
+msgstr "ابحث في المقالات..."
+
+#: src/widgets/searchbar.cpp:112
+#, kde-format
+msgid "Search articles...<%1>"
+msgstr "ابحث في المقالات...<%1>"
+
+#: src/widgets/statussearchline.cpp:42
+#, kde-format
+msgid "All Articles"
+msgstr "جميع المقالات"
+
+#: src/widgets/statussearchline.cpp:43
+#, kde-format
+msgctxt "Unread articles filter"
+msgid "Unread"
+msgstr "غير المقروءة"
+
+#: src/widgets/statussearchline.cpp:44
+#, kde-format
+msgctxt "New articles filter"
+msgid "New"
+msgstr "الجديدة"
+
+#: src/widgets/statussearchline.cpp:45
+#, kde-format
+msgctxt "Read articles filter"
+msgid "Read"
+msgstr "مقروءة"
+
+#: src/widgets/statussearchline.cpp:46
+#, kde-format
+msgctxt "Important articles filter"
+msgid "Important"
+msgstr "المُهمّة"
+
+#~ msgid "Archive"
+#~ msgstr "الأرشيف"
+
+#~ msgid "Archive backend:"
+#~ msgstr "سند الأرشيف:"
+
+#~ msgid "&Configure..."
+#~ msgstr "ا&ضبط..."
+
+#~ msgid "Metakit"
+#~ msgstr "Metakit"
+
+#~ msgid "Unable to load storage backend plugin \"%1\". No feeds are archived."
+#~ msgstr "لم يتمكن من تحميل ملحق التخزين الاحتياطي \"%1\". لم يؤرشف أي تلقيم."
+
+#~ msgid "Plugin error"
+#~ msgstr "خطأ ملحق"
+
+#~ msgid "No Archive"
+#~ msgstr "لا يوجد أرشيف"
+
+#~ msgctxt "Name of the plugin"
+#~ msgid "Name"
+#~ msgstr "الاسم"
+
+#~ msgctxt "Library name"
+#~ msgid "Library"
+#~ msgstr "المكتبة"
+
+#~ msgctxt "Plugin authors"
+#~ msgid "Authors"
+#~ msgstr "المؤلفون"
+
+#~ msgctxt "Plugin authors' emaila addresses"
+#~ msgid "Email"
+#~ msgstr "البريد الإلكتروني"
+
+#~ msgctxt "Plugin version"
+#~ msgid "Version"
+#~ msgstr "النسخة"
+
+#~ msgctxt "Framework version plugin requires"
+#~ msgid "Framework Version"
+#~ msgstr "إصدار إطار العمل"
+
+#~ msgid "Plugin Information"
+#~ msgstr "معلومات الملحق"
+
+#, fuzzy
+#~| msgid "Planet KDE"
+#~ msgid "Planet KDE Brazilian Portuguese"
+#~ msgstr "كوكب كدي"
+
+#, fuzzy
+#~| msgid "Use this command:"
+#~ msgid "&Use this command:"
+#~ msgstr "استخدم هذا الأمر:"
+
+#~ msgid "The file %1 already exists; do you want to overwrite it?"
+#~ msgstr "الملف %1 موجود مسبقًا؛ أتريد الكتابة فوقه؟"
+
+#~ msgid "Export"
+#~ msgstr "صدِّر"
+
+#, fuzzy
+#~ msgid "Planet KDE PIM"
+#~ msgstr "كوكب كدي"
+
+#~ msgid "Hungarian feeds"
+#~ msgstr "التغذيات الهنغارية"
+
+#~ msgid "KDE.HU"
+#~ msgstr "KDE.HU"
+
+#, fuzzy
+#~| msgid "&Fetch Feeds"
+#~ msgid "French feeds"
+#~ msgstr "ا&جلب التلقيمات"
+
+#, fuzzy
+#~| msgid "Planet KDE"
+#~ msgid "Planet KDE France"
+#~ msgstr "كوكب كدي"
+
+#, fuzzy
+#~| msgid "External Browsing"
+#~ msgid "Safe Browsing"
+#~ msgstr "المتصفح الخارجي"
+
+#, fuzzy
+#~| msgid "Copy Link Address"
+#~ msgid "&Open in Address Book"
+#~ msgstr "انسخ عنوان الوصلة"
+
+#~ msgid "KSqueezedTextLabel"
+#~ msgstr "KSqueezedTextLabel"
+
+#~ msgid "KDE Look"
+#~ msgstr "KDE Look"
+
+#~ msgid "Display an unread article &count in the tray icon"
+#~ msgstr "اعرض عدد المقالات غير المقروءة في أيقونة شريط النظام"
+
+#~ msgid "Display an unread article count in the tray icon"
+#~ msgstr "اعرض عدد المقالات غير المقروءة في أيقونة شريط النظام"
+
+#~ msgid ""
+#~ "Whether or not to show the number of unread articles in the tray icon. "
+#~ "Disable this if you find the unread article count distracting."
+#~ msgstr ""
+#~ "لتحديد ما إذا كان عدد المقالات غير المقروءة سيُعرَض في أيقونة النظام. عطّل "
+#~ "هذا الخيار إذا وجدت أن عدد المقالات غير المقروءة يشتتك."
+
+#~ msgid "Browser Toolbar"
+#~ msgstr "شريط أدوات المتصفح"
+
+#~ msgid "Keep all articles"
+#~ msgstr "أبقِ جميع المقالات"
+
+#~ msgid "<a href=\"%1\">%2</a> %3"
+#~ msgstr "<a href=\"%1\">%2</a> %3"
+
+#, fuzzy
+#~| msgid "Configure Feeds"
+#~ msgid "Configure AdBlock"
+#~ msgstr "ضبط التلقيمات"
+
+#, fuzzy
+#~| msgid "&Use default settings"
+#~ msgid "Open Ad Block settings"
+#~ msgstr "ا&ستخدم الإعدادات الافتراضية"
+
+#, fuzzy
+#~| msgid "Share Article"
+#~ msgid "Send Url Article"
+#~ msgstr "مقال مشارَك"
+
+#~ msgid "Restore Session?"
+#~ msgstr "أأسترجع الجلسة؟"
+
+#~ msgid "Do Not Restore"
+#~ msgstr "لا تسترجع"
+
+#~ msgid "Ask Me Later"
+#~ msgstr "اسألني لاحقاً"
+
+#, fuzzy
+#~| msgid "&Mark As"
+#~ msgid "Mark as New"
+#~ msgstr "&علّم"
+
+#~ msgctxt "Go forward in browser history"
+#~ msgid "Forward"
+#~ msgstr "للأمام"
+
+#~ msgctxt "Go back in browser history"
+#~ msgid "Back"
+#~ msgstr "للخلف"
+
+#~ msgctxt "Reload current page"
+#~ msgid "Reload"
+#~ msgstr "أعد التحميل"
+
+#~ msgid "Stop"
+#~ msgstr "قف"
+
+#, fuzzy
+#~| msgid "&Mark as Important"
+#~ msgid "Mark Article as Important"
+#~ msgstr "علّمها مُهمّة"
+
+#~ msgctxt "Title of article searchbar"
+#~ msgid "S&earch:"
+#~ msgstr "ا&بحث:"
+
+#~ msgid "Status:"
+#~ msgstr "الحالة:"
+
+#~ msgid "Enter space-separated terms to filter article list"
+#~ msgstr "أدخل مفردات مفصولة بمسافات لترشيح قائمة المقالات."
+
+#~ msgid "Choose what kind of articles to show in article list"
+#~ msgstr "اختر نوع المقالات التي تُعرض في القائمة"
+
+#~ msgid "Comments"
+#~ msgstr "التعليقات"
+
+#~ msgid "Enclosure:"
+#~ msgstr "المغلف:"
+
+#~ msgid "&Underline links"
+#~ msgstr "س&طّر الوصلات"
+
+#, fuzzy
+#~| msgid "&Configure..."
+#~ msgid "Configurate"
+#~ msgstr "ا&ضبط..."
+
+#, fuzzy
+#~ msgctxt "%1: Akregator version; %2: homepage URL; --- end of comment ---"
+#~ msgid ""
+#~ "<h2 style='margin-top: 0px;'>Welcome to Akregator %1</h2><p>Akregator is "
+#~ "a KDE news feed reader. Feed readers provide a convenient way to browse "
+#~ "different kinds of content, including news, blogs, and other content from "
+#~ "online sites. Instead of checking all your favorite web sites manually "
+#~ "for updates, Akregator collects the content for you.</p><p>For more "
+#~ "information about using Akregator, check the <a href=\"%2\">Akregator "
+#~ "website</a>. If you do not want to see this page anymore, <a href="
+#~ "\"config:/disable_introduction\">click here</a>.</p><p>We hope that you "
+#~ "will enjoy Akregator.</p>\n"
+#~ "<p>Thank you,</p>\n"
+#~ "<p style='margin-bottom: 0px'>&nbsp; &nbsp; The Akregator Team</p>\n"
+#~ msgstr ""
+#~ "<h2 style='margin-top: 0px;'>أهلا وسهلا بكم في أكريغاتور %1</"
+#~ "h2><p>أكريغاتور قارئ التلقيمات لبيئة سطح المكتب كدي. تقدم قارئات "
+#~ "التلقيمات طريقة سهلة لتصفح مختلف أصناف المحتويات بما فيها الأخبار "
+#~ "والمدونات وغيرها من المحتويات من مواقع الإنترنت. عوضًا عن تفحص مواقعك "
+#~ "المفضلة يدويًا، يقوم أكريغاتور بجمع المحتويات لك.</p><p>لمزيد من المعلومات "
+#~ "عن استخدام أكريغاتور، زُر <a href=\"%2\">موقع  أكريغاتور</a>. إذا لم ترغب "
+#~ "بمشاهدة هذه الصفحة بعد الآن <a href=\"config:/disable_introduction\">انقر "
+#~ "هنا</a>.</p><p>نأمل أن تستمتع باستخدام أكريغاتور.</p>\n"
+#~ "<p>شكرا لك</p>\n"
+#~ "<p style='margin-bottom: 0px'>&nbsp; &nbsp; فريق أكريغاتور</p>\n"
+
+#~ msgid "Enlarge Font"
+#~ msgstr "كبِّر الخط"
+
+#~ msgid "Shrink Font"
+#~ msgstr "قلِّص الخط"
+
+#~ msgid "Speech Toolbar"
+#~ msgstr "شريط أدوات النطق"
+
+#~ msgid "Next Article: "
+#~ msgstr "المقالة التالية:"
+
+#~ msgid "Browsing area."
+#~ msgstr "منطقة التصفّح."
+
+#~ msgid ""
+#~ "<div align=center><h3>No matches</h3>Filter does not match any articles, "
+#~ "please change your criteria and try again.</div>"
+#~ msgstr ""
+#~ "<div align=center><h3>لا توجد متطابقات</h3>لم يجد المُرّشح أي مقالة مطابقة، "
+#~ "من فضلك غيّر معايير البحث وحاول مرة أخرى.</div>"
+
+#~ msgid ""
+#~ "<div align=center><h3>No feed selected</h3>This area is article list. "
+#~ "Select a feed from the feed list and you will see its articles here.</div>"
+#~ msgstr ""
+#~ "<div align=center><h3>لم يُحدّد أي تلقيم</h3>هذه منطقة قائمة المقالات. اختر "
+#~ "أي تلقيم من قائمة التلقيمات وسترى قائمة مقالته هنا.</div>"
+
+#~ msgid "kcmakronlinesyncconfig"
+#~ msgstr "kcmakronlinesyncconfig"
+
+#~ msgid "Configure Online Readers"
+#~ msgstr "ضبط قارئات الإنترنت"
+
+#~ msgid "(c), 2008 Didier Hoarau"
+#~ msgstr "(c), 2008 Didier Hoarau"
+
+#~ msgid "Didier Hoarau"
+#~ msgstr "Didier Hoarau"
+
+#~ msgid "Synchronize Feeds"
+#~ msgstr "زامن التلقيمات"
+
+#~ msgid "Get from %1"
+#~ msgstr "خذها من %1"
+
+#~ msgid "Send to %1"
+#~ msgstr "أرسل إلى %1"
+
+#~ msgid "Manage..."
+#~ msgstr "أدر..."
+
+#~ msgid "Bar Settings"
+#~ msgstr "إعدادات الشريط"
+
+#~ msgid "Bar!"
+#~ msgstr "الشريط!"
+
+#~ msgid ""
+#~ "Some categories and feeds have been marked for removal. Do you want to "
+#~ "delete them?"
+#~ msgstr "بعض التصنيفات والتلقيمات عُلّمت للإزالة. هل ترغب في إزالتها؟"
+
+#~ msgid "Remove nothing"
+#~ msgstr "لا تحذف شيئًا"
+
+#~ msgid "Remove only categories"
+#~ msgstr "أزل التصنيفات فقط"
+
+#~ msgid "Remove feeds"
+#~ msgstr "أزل التلقيمات"
+
+#~ msgid "An error occurred, synchronization aborted."
+#~ msgstr "حدث خطأ، أُحبطت المزامنة."
+
+#~ msgid "Authentication failed, synchronization aborted."
+#~ msgstr "فشل الاستيثاق، أُحبطت المزامنة."
+
+#~ msgid "Online Reader Configuration"
+#~ msgstr "ضبط قارئ الإنترنت"
+
+#~ msgid "Modify Online Reader Account"
+#~ msgstr "عدّل حساب قارئ الإنترنت"
+
+#~ msgid "Google Reader"
+#~ msgstr "Google Reader"
+
+#~ msgid "Type:"
+#~ msgstr "النوع:"
+
+#~ msgid "Login:"
+#~ msgstr "الولوج:"
+
+#~ msgid "Password:"
+#~ msgstr "كلمة السر:"
+
+#~ msgid "File:"
+#~ msgstr "الملف:"
+
+#~ msgid "Nothing"
+#~ msgstr "لا شيء"
+
+#~ msgid "Categories"
+#~ msgstr "التصنيفات"
+
+#~ msgid "Ask"
+#~ msgstr "اسأل"
+
+#~ msgid "Online reader accounts:"
+#~ msgstr "حسابات قارئات الإنترنت:"
+
+#~ msgid "Type"
+#~ msgstr "النوع"
+
+#~ msgid "Description"
+#~ msgstr "الوصف"
+
+#~ msgid "Add..."
+#~ msgstr "أضف..."
+
+#~ msgid "Modify..."
+#~ msgstr "عدّل..."
+
+#~ msgid "Remove"
+#~ msgstr "أزل"
+
+#~ msgid "Delete feeds:"
+#~ msgstr "احذف تلقيمات:"
+
+#~ msgid "&Speak Selected Articles"
+#~ msgstr "ا&نطق المقالات المحددة"
+
+#~ msgid "&Stop Speaking"
+#~ msgstr "أ&وقف النطق"
+
+#~ msgid "All Files"
+#~ msgstr "جميع الملفات"
+
+#~ msgid "Configure Share Services"
+#~ msgstr "ضبط خدمات المشارَكة"
+
+#~ msgid "Login"
+#~ msgstr "الولوج"
+
+#~ msgid "Service"
+#~ msgstr "الخدمة"
+
+#~ msgctxt "login identify for blog account"
+#~ msgid "Username:"
+#~ msgstr "اسم المستخدم"
+
+#~ msgid "Service URL:"
+#~ msgstr "مسار التلقيم:"
+
+#~ msgid "Please, configure the share service before using it."
+#~ msgstr "يُرجى تضبيط خدمة المشارَكة قبل استخدامها."
+
+#~ msgid "Service not configured"
+#~ msgstr "الخدمة غير مضبّطة"
+
+#~ msgid "Sorry, could not share the article: %1"
+#~ msgstr "آسف، تعذّرت مشاركة المقالة: %1"
+
+#~ msgid "Error during article share"
+#~ msgstr "خطأ أثناء مشاركة المقالة"
+
+#~ msgid "Service URL"
+#~ msgstr "خدمة التلقيم:"
+
+#~ msgctxt "login identify for blog account"
+#~ msgid "Username"
+#~ msgstr "اسم المستخدِم"
+
+#~ msgid "kcmakradvancedconfig"
+#~ msgstr "kcmakradvancedconfig"
+
+#~ msgid "kcmakrappearanceconfig"
+#~ msgstr "kcmakrappearanceconfig"
+
+#~ msgid "kcmakrarchiveconfig"
+#~ msgstr "kcmakrarchiveconfig"
+
+#~ msgid "kcmakrbrowserconfig"
+#~ msgstr "kcmakrbrowserconfig"
+
+#~ msgid "kcmakrgeneralconfig"
+#~ msgstr "kcmakrgeneralconfig"
+
+#~ msgid "kcmakrshareconfig"
+#~ msgstr "kcmakrshareconfig"
+
+#~ msgid "(c), 2010 Artur Duque de Souza"
+#~ msgstr "(c), 2010 Artur Duque de Souza"
+
+#~ msgid "Artur Duque de Souza"
+#~ msgstr "Artur Duque de Souza"
+
+#~ msgid "<b>Open Link in New Tab</b><p>Opens current link in a new tab.</p>"
+#~ msgstr ""
+#~ "<b> افتح الوصلة في لسان جديد</b><p> يفتح الوصلة الحالية في لسان جديد.</p>"
+
+#~ msgid "Open Page in External Browser"
+#~ msgstr "افتح الصفحة في متصفح خارجي"
+
+#~ msgid "Add to Konqueror Bookmarks"
+#~ msgstr "أضف إلى علامات كنكرر"
+
+#, fuzzy
+#~| msgid "Feed Properties"
+#~ msgid "Feed List"
+#~ msgstr "خصائص التلقيم"
+
+#~ msgid "Akregator - Feed Reader"
+#~ msgstr "أكريغاتور - قارئ التلقيمات"
+
+#~ msgid "Akregator - 1 unread article"
+#~ msgid_plural "Akregator - %1 unread articles"
+#~ msgstr[0] "أكريغاتور - لا توجد مقالات"
+#~ msgstr[1] "أكريغاتور - مقالة واحدة غير مقروءة"
+#~ msgstr[2] "أكريغاتور - مقالتان غير مقروءتان"
+#~ msgstr[3] "أكريغاتور - %1 مقالات غير مقروءة"
+#~ msgstr[4] "أكريغاتور - %1 مقالة غير مقروءة"
+#~ msgstr[5] "أكريغاتور - %1 مقالة غير مقروءة"
+
+#~ msgid ""
+#~ "<qt><p>Closing the main window will keep Akregator running in the system "
+#~ "tray. Use 'Quit' from the 'File' menu to quit the application.</"
+#~ "p><p><center>%1</center></p></qt>"
+#~ msgstr ""
+#~ "<qt><p>إغلاق النافذة الرئيسية سوف يبقي أكريغاتور يعمل في صينية النظام. "
+#~ "استخدام 'أنهِ' من قائمة 'ملف' لإنهاء التطبيق.</p><p><center>%1</center></"
+#~ "p></qt>"
+
+#~ msgid "Docking in System Tray"
+#~ msgstr "وضع في صحن النظام"
+
+#~ msgid "An RSS feed reader for the K Desktop Environment."
+#~ msgstr "قارئ تلقيمات RSS لبيئة سطح المكتب كي."
+
+#~ msgid "Akregator News"
+#~ msgstr "أخبار أكريغاتور"
+
+#~ msgid "Akregator Blog"
+#~ msgstr "مدونة أكريغاتور"
+
+#~ msgid "&Increase Font Sizes"
+#~ msgstr "&زد حجم الخط"
+
+#~ msgid "&Decrease Font Sizes"
+#~ msgstr "&قلل حجم الخط"
+
+#~ msgid "&Scroll Up"
+#~ msgstr "&حرك للأعلى"
+
+#~ msgid "&Scroll Down"
+#~ msgstr "&حرك للأسفل"
+
+#, fuzzy
+#~ msgid " days"
+#~ msgstr " أيام"
+
+#, fuzzy
+#~ msgid " minutes"
+#~ msgstr " دقائق"
+
+#~ msgid "General"
+#~ msgstr "عام"
+
+#, fuzzy
+#~ msgid "ExternalBrowser"
+#~ msgstr "المتصفح الخارجي"
+
+#~ msgid "&Abort Fetches"
+#~ msgstr "&إحبط الاحضار"
+
+#, fuzzy
+#~| msgid ""
+#~| "<qt><p>Closing the main window will keep Akregator running in the system "
+#~| "tray. Use 'Quit' from the 'File' menu to quit the application.</"
+#~| "p><p><center><img source=\"systray_shot\"></center></p></qt>"
+#~ msgid ""
+#~ "<qt><p>Closing the main window will keep Akregator running in the system "
+#~ "tray. Use 'Quit' from the 'File' menu to quit the application.</"
+#~ "p><p><center><img source=\"systray_shot\" /></center></p></qt>"
+#~ msgstr ""
+#~ "<qt><p> الإغلاق رئيسي نافذة إبقاء اكريغاتور قارىء RSS جاري التنفيذ بوصة "
+#~ "نظام إستعمل اخرج من ملف قائمة إلى اخرج تطبيق</p><p><center><img source="
+#~ "\"systray_shot\" /></center></p></qt>"
+
+#~ msgid "&View Mode"
+#~ msgstr "&طريقة العرض"
+
+#~ msgid "&Feed"
+#~ msgstr "&تلقيم"
+
+#~ msgid "F&eed"
+#~ msgstr "ت&لقيم"
+
+#, fuzzy
+#~ msgid "Show tab close button on hover"
+#~ msgstr "اعرض لسان اغلق زر يعمل"
+
+#, fuzzy
+#~ msgid ""
+#~ "<p>KLibLoader could not load the plugin:<br/><i>%1</i></p><p>Error "
+#~ "message:<br/><i>%2</i></p>"
+#~ msgstr "<p> ليس التحميل ملحق<br/><i></i></p><p> خطأ رسالة<br/><i></i></p>"
+
+#, fuzzy
+#~ msgid ""
+#~ "<h2>Feeds tree</h2>Here you can browse tree of feeds. You can also add "
+#~ "feeds or feed groups (folders) using right-click menu, or reorganize them "
+#~ "using drag and drop."
+#~ msgstr ""
+#~ "<h2> تلقيمات شجرة</h2> هنا استعراض شجرة من أنت اضف أو تلقيم يمين انقر "
+#~ "قائمة أو سحب و."
+
+#, fuzzy
+#~ msgid ""
+#~ "<qt>The standard feed list is corrupted (no valid OPML). A backup of the "
+#~ "previous list was created:<p><b>%1</b></p></qt>"
+#~ msgstr "<qt> الـ قياسي تلقيم قائمة هو لا سليم A احتياطي<p><b></b></p></qt>"
+
+#, fuzzy
+#~ msgid ""
+#~ "<qt>The standard feed list is corrupted (no valid OPML). Could not create "
+#~ "a backup!></p></qt>"
+#~ msgstr "<qt> الـ قياسي تلقيم قائمة هو لا سليم A احتياطي<p><b></b></p></qt>"
+
+#~ msgid "Write error"
+#~ msgstr "خطأ كتابة"
+
+#~ msgid "Overwrite"
+#~ msgstr "الكتابة فوق"
+
+#, fuzzy
+#~ msgid "Appearance"
+#~ msgstr "المظهر"
+
+#~ msgid "Advanced"
+#~ msgstr "متقدم"
+
+#, fuzzy
+#~ msgid "Article title"
+#~ msgstr "قائمة المقال"
+
+#, fuzzy
+#~ msgid ""
+#~ "<html><head><meta name=\"qrichtext\" content=\"1\" /></head><body style="
+#~ "\" white-space: pre-wrap; font-family:Sans Serif; font-weight:400; font-"
+#~ "style:normal; text-decoration:none;\"><p style=\" margin-top:0px; margin-"
+#~ "bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-"
+#~ "indent:0px;\">Status:</p></body></html>"
+#~ msgstr ""
+#~ "<html><head><meta name=\"qrichtext\" content=\"1\" /></head><body style="
+#~ "\" white-space: pre-wrap; font-family:Sans Serif; font-weight:400; font-"
+#~ "style:normal; text-decoration:none;\"><p style=\" margin-top:0px; margin-"
+#~ "bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-"
+#~ "indent:0px;\"> الحالة</p></body></html>"

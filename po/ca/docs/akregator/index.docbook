@@ -1,0 +1,1917 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Catalan  "INCLUDE">
+]>
+
+<book id="akregator" lang="&language;">
+
+<bookinfo id="akregatorinfo">
+<title
+>El manual de l'&akregator;</title>
+
+<authorgroup>
+
+<author
+><firstname
+>Frank</firstname
+> <surname
+>Osterfeld</surname
+> <affiliation
+><address
+><email
+>frank.osterfeld@kdemail.net</email
+>  
+</address
+></affiliation>
+</author>
+<author
+><firstname
+>Anne-Marie</firstname
+> <surname
+>Mahfouf</surname
+> <affiliation
+><address
+>&Anne-Marie.Mahfouf.mail; </address
+></affiliation>
+</author>
+
+&traductor.Antoni.Bella; 
+</authorgroup>
+<copyright>
+<year
+>2006</year>
+<holder
+>Frank Osterfeld</holder>
+</copyright>
+<copyright>
+<year
+>2006</year>
+<holder
+>&Anne-Marie.Mahfouf;</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>31 de març de 2021</date>
+<releaseinfo
+>Aplicacions 21.08</releaseinfo>
+
+<!-- Abstract about this handbook -->
+
+<abstract>
+<para
+>L'&akregator; és un programa de lectura <acronym
+>RSS</acronym
+> i altres fonts de notícies en línia. </para>
+</abstract>
+
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>Akregator</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Introducció</title>
+
+<sect1 id="what-is-akregator">
+<title
+>Què és l'&akregator;?</title>
+
+<para
+>L'&akregator; és una aplicació &kde; per a la lectura de fonts de notícies en línia. Compta amb una interfície potent i fàcil d'usar per a la lectura de fonts i la seva gestió.</para>
+
+<para
+>L'&akregator; és un programa lleuger i ràpid per als articles de notícies proporcionats per les fonts, admet totes les versions utilitzades comunament per les fonts <acronym
+>RSS</acronym
+> i Atom. La seva interfície és similar a la dels programes de correu electrònic, per tant, esperem que sigui molt familiar per a l'usuari. característiques útils inclouen la cerca entre els títols de l'article, la gestió de fonts en carpetes i configuració per a les preferències d'arxivament. Les fonts es poden mostrar d'una manera similar als correus electrònics. Els llocs web relacionats amb una font es poden mostrar al navegador incrustat de l'&akregator; o, a elecció dels usuaris, obrir-los en un navegador extern.</para>
+</sect1>
+
+<sect1 id="rss-and-atom-feeds">
+<title
+>Fonts <acronym
+>RSS</acronym
+> i Atom</title>
+
+<para
+><acronym
+>RSS</acronym
+> (Really Simple Syndication) és un format basat en &XML; utilitzat per a la publicació de notícies o articles en una forma llegible des d'una màquina. Un fitxer <acronym
+>RSS</acronym
+> o Atom s'anomena també una font. Un programa que es pot usar per a llegir aquestes fonts s'anomena un lector de fonts o agregador, d'aquí el títol de l'aplicació, &akregator;.</para>
+
+<para
+>L'&akregator; extreu automàticament els articles nous des de les fonts i els mostra en una forma accessible per l'usuari. L'usuari pot, per tant estalviar temps amb els llocs web visitats amb regularitat, atès que ja no necessita comprovar manualment si hi ha disponibles noves peces d'informació.</para>
+<para
+><acronym
+>RSS</acronym
+> està disponible en diferents versions que no són compatibles entre si (aquesta situació és causa de la competició entre les empreses): <acronym
+>RSS</acronym
+> 0.9, <acronym
+>RSS</acronym
+> 1.0 i <acronym
+>RSS</acronym
+> 2.0. Atom també és un llenguatge de fonts basat en &XML; que ha estat redissenyat per adaptar-se a les necessitats dels autors de blogs i llocs de notícies. Atom intenta substituir les fonts <acronym
+>RSS</acronym
+> i eliminar la incertesa amb les incompatibilitats entre les diferents versions de <acronym
+>RSS</acronym
+>.</para>
+
+</sect1>
+
+</chapter>
+
+<chapter id="quick-start">
+<title
+>Inici ràpid amb l'&akregator;</title>
+
+<para
+>En aquesta secció es descriu com començar a utilitzar l'&akregator;. S'explica la interfície d'usuari i mostra com afegir la vostra pròpia font a la llista. Aquesta secció és particularment interessant si no esteu familiaritzat amb el concepte agregador de fonts <acronym
+>RSS</acronym
+>/Atom. </para>
+
+<sect1 id="main-window">
+<title
+>La finestra principal</title>
+<!--part of kontact
+say how to start it -->
+<para
+>En iniciar l'&akregator;, veureu la seva finestra principal: <screenshot>
+<screeninfo
+>Finestra principal de l'&akregator;</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="main-window.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Finestra principal de l'&akregator;</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para>
+
+<para
+>La finestra principal es compon de la llista de fonts, la llista i el visualitzador d'articles. </para>
+<para
+>La llista de fonts es troba a l'esquerra. En l'arbre, teniu les fonts de notícies que podeu seleccionar. Una font de notícies és un recull d'articles: per exemple, les notícies recents d'un lloc de notícies o les entrades noves d'un blog. La llista per omissió conté les fonts relacionades amb el projecte &kde;, però és clar, podeu afegir les vostres pròpies fonts i eliminar les que no us interessin. </para>
+<para
+>La part superior dreta és la llista d'articles. Conté tots els articles de la font d'informació seleccionada a la llista de fonts (si està buida, primer haureu d'obtenir la font). La llista mostra els títols dels articles i la data de publicació. Per omissió, els últims articles estaran a la part superior. <screenshot>
+<screeninfo
+>La llista d'articles</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="main-window2.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>La llista d'articles per a una font</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para>
+<para
+>Si seleccioneu un article, aquest apareixerà en el visualitzador d'articles a la part inferior dreta de la finestra. Depenent de la font, aquest contindrà només un títol, un breu resum o tot el contingut de l'article. <screenshot>
+<screeninfo
+>Llegint un article de Planet &kde;</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="main-window4.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Llegint un article de Planet &kde;</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para>
+</sect1>
+
+<sect1 id="add-feed">
+<title
+>Afegir una font</title>
+<para
+>L'&akregator; proporciona algunes fonts relacionades amb el &kde; -per descomptat, probablement voldreu afegir les vostres pròpies fonts-. Els millors candidats són els llocs de notícies que visiteu amb regularitat.</para>
+
+<itemizedlist>
+<listitem
+><para
+>Aneu al menú <guimenu
+>Font</guimenu
+> i seleccioneu <guimenuitem
+>Afegeix una font...</guimenuitem
+> o utilitzeu la drecera de teclat per omissió (<keycap
+>Inser</keycap
+>). Apareixerà el següent diàleg, amb una línia d'entrada anomenada <guilabel
+>URL de la font:</guilabel
+>. <screenshot>
+<screeninfo
+>Afegint una font nova</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="add-feed.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Afegint una font nova</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para
+></listitem>
+
+<listitem
+><para
+>Introduïu <userinput
+>planet.ubuntu.com</userinput
+> o <userinput
+>http://planet.ubuntu.com</userinput
+> en la línia d'edició al costat de l'<guilabel
+>URL de la font</guilabel
+> i feu clic a <guibutton
+>D'acord</guibutton
+>. </para
+></listitem>
+<listitem
+><para
+>Apareixerà el diàleg de configuració de la font i podreu modificar les opcions per omissió. Una vegada satisfeta la configuració de la font, feu clic a <guibutton
+>D'acord</guibutton
+> una altra vegada. <screenshot>
+<screeninfo
+>El diàleg de propietats de la font</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="add-feed2.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>El diàleg de propietats de la font</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para
+></listitem>
+<listitem
+><para
+>Ara Planet Ubuntu ha estat afegit a la vostra llista de fonts. </para
+> </listitem>
+</itemizedlist>
+<para
+>Hi ha diverses altres maneres de trobar i afegir fonts interessants. Dins del &kde;, navegant per llocs web amb el &konqueror; si es detecta una font de notícies compatible en la pàgina web us mostrarà la familiar icona <quote
+>RSS</quote
+> <inlinemediaobject
+> <imageobject
+> <imagedata fileref="feed.png" format="PNG"/> </imageobject
+> </inlinemediaobject
+> a la part inferior dreta. Simplement feu clic sobre la icona i trieu <guimenuitem
+>Afegeix aquesta font a l'&akregator;</guimenuitem
+>: <screenshot
+> <screeninfo
+>Troba automàticament les fonts a través del &konqueror;</screeninfo
+> <mediaobject
+> <imageobject
+><imagedata fileref="konq2.png" format="PNG"/></imageobject
+> <textobject
+><phrase
+>Troba automàticament les fonts a través del &konqueror;</phrase
+></textobject
+> </mediaobject
+> </screenshot
+> En les pàgines amb aquest <quote
+>RSS</quote
+> o la seva icona <inlinemediaobject
+> <imageobject
+> <imagedata fileref="rss.png" format="PNG"/> </imageobject
+> </inlinemediaobject
+>, feu clic dret sobre la icona i trieu al menú contextual <guimenuitem
+>Copia l'adreça de l'enllaç</guimenuitem
+>: <screenshot>
+      <screeninfo
+>Troba automàticament les fonts a través del &konqueror;</screeninfo>
+      <mediaobject>
+        <imageobject
+><imagedata fileref="konq.png" format="PNG"/></imageobject>
+        <textobject
+><phrase
+>Troba automàticament les fonts a través del &konqueror;</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para>
+<para
+>Canvieu a l'&akregator;, seleccioneu <guimenuitem
+>Afegeix una font...</guimenuitem
+> i l'<guilabel
+>URL de la font</guilabel
+> s'omplirà amb l'adreça de l'enllaç. </para>
+
+<para
+>Totes les fonts afegides utilitzant aquests procediments apareixeran a la carpeta <guilabel
+>Fonts importades</guilabel
+> a la llista de fonts, i des d'allà podreu utilitzar el ratolí per arrossegar-les a una carpeta diferent. </para>
+</sect1>
+
+<sect1 id="creating-folder">
+<title
+>Crear una carpeta</title>
+<para
+>Després d'afegir les vostres pròpies fonts, possiblement voldreu agrupar-les d'alguna manera, en lloc de deixar-les sense classificar. Així que crearem una carpeta per a la font Planet Ubuntu que acabeu d'afegir:</para>
+<itemizedlist>
+<listitem
+><para
+>Seleccioneu la carpeta pare de la carpeta nova. En aquest exemple, triem <guilabel
+>Totes les fonts</guilabel
+>. </para
+></listitem>
+<listitem
+><para
+>Obriu <menuchoice
+><guimenu
+>Font</guimenu
+><guimenuitem
+>Carpeta nova...</guimenuitem
+></menuchoice
+>. Introduïu <userinput
+>Notícies</userinput
+> (o un nom més apropiat per a la categoria d'aquesta font) en la línia d'edició i seleccioneu <guibutton
+>D'acord</guibutton
+>. <screenshot>
+<screeninfo
+>El diàleg de Carpeta nova</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="add-folder.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>El diàleg de Carpeta nova</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para
+> </listitem>
+<listitem
+><para
+>Ara podeu arrossegar la font Planet Ubuntu cap a la carpeta nova. <screenshot>
+<screeninfo
+>La carpeta de Notícies a la llista de fonts</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="add-folder2.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>La carpeta de Notícies a la llista de fonts</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para
+> </listitem>
+</itemizedlist>
+</sect1>
+
+<sect1 id="browsing-inside">
+<title
+>Navegació integrada de l'&akregator;</title>
+<para
+>Quan es llegeixen articles de la font, sovint voldreu llegir la pàgina web a la que pertany l'article: alguns articles només contenen el títol, i no el contingut real. En aquest cas, necessitareu visitar la pàgina web per llegir tot l'article. O potser un article enllaça a un lloc web, o esteu llegint un blog i voleu fer un comentari en una entrada. Per a aquestes situacions, l'&akregator; conté un navegador web senzill. Cada vegada que seguiu un enllaç en el visualitzador d'articles, per omissió, l'&akregator; obrirà l'enllaç en una pestanya nova.</para>
+<note
+><para
+>Tingueu en compte que el navegador de l'&akregator; no intenta substituir el vostre navegador web preferit. Està destinat a la lectura d'articles, comentaris sobre aquests, o seguir un enllaç ràpidament. No és per a navegar per la web en general. No conté moltes característiques com sí que ofereixen els navegadors web.</para
+></note>
+</sect1>
+</chapter>
+
+<chapter id="configuration">
+<title
+>Configurar l'&akregator;</title>
+<para
+>La majoria de les opcions de l'&akregator; s'enumeren en el seu diàleg de configuració. El diàleg de configuració es pot trobar sota el menú <menuchoice
+><guimenu
+>Arranjament</guimenu
+> <guimenuitem
+>Configura l'&akregator;...</guimenuitem
+></menuchoice
+></para>
+<sect1 id="general-tab">
+<title
+>General</title>
+<para
+>La pestanya General conté les opcions bàsiques i algunes altres sense categoria de l'&akregator;.</para>
+<screenshot>
+<screeninfo
+>La pestanya General</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="general-tab.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>La pestanya General</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Global</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Mostra una icona a la safata del sistema</guilabel
+></term>
+<listitem
+><para
+>Mostra la icona de l'&akregator; a la safata del sistema.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Mostra els articles sense llegir a la barra de tasques</guilabel
+></term>
+<listitem
+><para
+>Defineix si el nombre d'articles sense llegir s'ha de mostrar a l'element de la barra de tasques del sistema.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Oculta les fonts amb cap article sense llegir</guilabel
+></term>
+<listitem
+><para
+>Si està marcada, oculta les fonts on només hi hagi articles sense llegir.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Bloqueja les fonts a la posició</guilabel
+></term>
+<listitem
+><para
+>Si està marcada, evita que les fonts es moguin a la llista, totes les fonts es bloquejaran on estiguin.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Expandeix automàticament les carpetes amb articles sense llegir</guilabel
+></term>
+<listitem
+><para
+>Si està marcada, s'expandiran automàticament les carpetes amb articles sense llegir.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Usa notificacions per a totes les fonts</guilabel
+></term>
+<listitem
+><para
+>Estableix notificacions globals per a totes les fonts. Aquesta opció de configuració anul·la el valor de notificació individual de cada font. Quan s'habilita, l'&akregator; notificarà de tots els articles nous obtinguts a qualsevol font. Si només voleu habilitar les notificacions per a algunes (però no totes) les fonts, deixeu aquesta opció inhabilitada i habiliteu les notificacions per a cadascuna de les fonts utilitzant el diàleg de propietats de la font en qüestió.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Usa un interval d'obtenció</guilabel
+></term>
+<listitem
+><para
+>Si no està marcada, l'interval de revisió estarà inhabilitat. Però, si es marca aquesta opció, podreu establir en <guilabel
+>Obtén les fonts cada:</guilabel
+> l'interval en què l'&akregator; cercarà automàticament noves entrades a la font. Tingueu en compte que obtenir articles genera trànsit i per tant pot ser costós per al proveïdor d'allotjament de la font que esteu llegint. Alguns llocs fins i tot poden bloquejar les connexions des de l'ordinador si s'intenta obtenir la font amb massa freqüència. En general, a 30 minuts és una bona elecció. </para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Obtén les fonts cada:</guilabel
+></term>
+<listitem
+><para
+>Està habilitat quan <guilabel
+>Usa un interval d'obtenció</guilabel
+> es troba marcat. Podeu especificar un interval de temps, després del qual es comprovaran les fonts per a articles nous. Per omissió serà de 30 minuts.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>En iniciar</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Marca totes les fonts com a llegides en iniciar</guilabel
+></term>
+<listitem
+><para
+>Quan s'habilita, l'&akregator; marcarà tots els articles com a llegits a l'inici.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Obtén totes les fonts en iniciar</guilabel
+></term>
+<listitem
+><para
+>Quan s'habilita, l'&akregator; obtindrà totes les fonts a l'inici.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Xarxa</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Usa la memòria cau del navegador (menys trànsit de xarxa)</guilabel
+></term>
+<listitem
+><para
+>Quan s'habilita, la configuració del navegador usarà la seva memòria cau en l'actualització de les fonts. Podeu configurar-la en el diàleg de configuració del &konqueror;.</para>
+<note
+><para
+>Heu de deixar habilitada aquesta opció sempre que sigui possible. La inhabilitació d'aquesta opció condueix a un augment del trànsit de la xarxa. El trànsit causat pels agregadors que no utilitzen l'emmagatzematge en memòria cau augmenta els costos per als proveïdors i pot reduir la quantitat de fonts que ofereixin en el futur.</para
+></note>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+
+<sect1 id="adblock-tab">
+<title
+>Interceptor de l'URL</title>
+<para
+>L'&akregator; es pot configurar per a substituir o eliminar imatges o marcs de les pàgines web que coincideixin amb una sèrie de filtres.</para>
+
+<screenshot>
+<screeninfo
+>La pestanya Interceptor de l'URL</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="interceptor-tab.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>La pestanya Interceptor de l'URL</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+
+<para
+>Per a una descripció detallada d'aquesta característica, vegeu els <ulink url="help:/kcontrol/khtml-adblock"
+>Filtres de bloqueig publicitari</ulink
+>. </para>
+</sect1>
+
+<sect1 id="archive-tab">
+<title
+>Arxiu</title>
+<para
+>Arxiva els articles mitjançant l'emmagatzematge dels enllaços dels articles. Aquí podeu limitar el nombre d'articles emmagatzemats i el mètode emprat per al seu arxivat. Aquestes opcions de configuració són globals, emprades per totes les fonts de l'&akregator;. Si voleu utilitzar una configuració personalitzada per a una font, podeu establir-la en els diàlegs de propietats de cadascuna de les fonts a la pestanya Arxivat.</para>
+<screenshot>
+<screeninfo
+>La pestanya Arxiu</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="archive-tab.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>La pestanya Arxiu</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Paràmetres d'arxivat per omissió</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Conserva tots els articles</guilabel
+></term>
+<listitem
+><para
+>Tots els articles seran mantinguts per sempre.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Limita la mida de l'arxiu de fonts a:</guilabel
+></term
+> 
+<listitem
+><para
+>Si el nombre d'articles supera el límit escollit, els més antics s'esborraran. Tingueu en compte que els articles marcats seran ignorats en comptar el nombre d'articles: si el límit és de 500, i teniu 510 sense marcar i 50 marcats, l'&akregator; passarà per alt els 50 marcats i només eliminarà els 10 articles més antics sense marcar. Així que en aquest exemple, es mantindran 550 articles.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Suprimeix els articles més antics de:</guilabel
+></term>
+<listitem
+><para
+>Els articles més antics que el nombre de dies especificat seran eliminats de l'arxiu, llevat que tinguin establerta la marca de mantenir. L'&akregator; comprovarà el venciment dels articles a l'inici i després una vegada per hora, de manera que el seu venciment es pugui retardar.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Desactiva l'arxivat</guilabel
+></term>
+<listitem
+><para
+>Els articles no seran emmagatzemats -tots els articles seran rebutjats en sortir de l'&akregator;-.</para
+> </listitem>
+</varlistentry>
+</variablelist>
+
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>No fer vèncer els articles importants</guilabel
+></term>
+<listitem
+><para
+>Fent clic dret sobre un article s'obrirà un menú contextual des del qual podreu marcar aquest article com a important. Els articles marcats com a importants, no caduquen i seran conservats.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+<sect1 id="appearance-tab">
+<title
+>Aparença</title>
+<para
+>En aquesta pàgina podeu configurar l'aparença del visualitzador d'articles i les pestanyes del navegador. Podeu especificar els colors, les mides i les famílies del tipus de lletra a utilitzar. </para>
+<screenshot>
+<screeninfo
+>La pestanya Aparença</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="appearance-tab.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>La pestanya Aparença</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Colors de la llista d'articles</guilabel
+></term>
+<listitem
+><para
+>Seleccionant <guilabel
+>Usa colors personalitzats</guilabel
+> podreu seleccionar els colors propis dels <guilabel
+>Articles sense llegir</guilabel
+> i <guilabel
+>Articles nous</guilabel
+>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Mida del tipus de lletra</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Mida mínima del tipus de lletra:</guilabel
+></term>
+<listitem
+><para
+>Estableix la mida mínima per al visualitzador d'articles.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Mida mitjana del tipus de lletra:</guilabel
+></term>
+<listitem
+><para
+>Estableix la mida per omissió per al visualitzador d'articles.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Tipus de lletra</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Tipus de lletra estàndard:</guilabel
+></term>
+<listitem
+><para
+>En el visualitzador d'articles, el contingut es representa utilitzant el tipus de lletra estàndard en la mida tipus de lletra mitjana. Si canvieu el tipus de lletra estàndard, el canvi s'aplicarà en el visualitzador d'articles.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Tipus de lletra d'amplada fixa:</guilabel
+></term>
+<listitem
+><para
+>Si l'article utilitza un tipus de lletra fix al visualitzador d'articles, el contingut es representarà amb aquesta família de tipus de lletra en la mida tipus de lletra mitjana. </para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Tipus de lletra serif:</guilabel
+></term>
+<listitem
+><para
+>Si l'article utilitza el tipus de lletra Serif, el qual s'utilitzarà per representar la família que trieu aquí en la mida tipus de lletra mitjana.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Tipus de lletra sans serif:</guilabel
+></term>
+<listitem
+><para
+>Si l'article utilitza el tipus de lletra Sans-serif, el qual s'utilitzarà per representar la família que trieu aquí en la mida tipus de lletra mitjana.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Subratlla els enllaços</guilabel
+></term>
+<listitem
+><para
+>Marqueu-la si voleu subratllar per omissió els enllaços.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+<sect1 id="browser-tab">
+<title
+>Navegador</title>
+<para
+>Aquesta pestanya us permet personalitzar el comportament de les pestanyes del navegador intern.</para>
+<screenshot>
+<screeninfo
+>La pestanya Navegador</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="browser-tab.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>La pestanya Navegador</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Clic amb el botó esquerre:</guilabel
+></term>
+<listitem
+><para
+>Podeu triar tres accions per a l'acció del clic esquerre del ratolí: <guilabel
+>Obre en una pestanya</guilabel
+> (obre l'enllaç en una pestanya i posa en aquesta el focus), <guilabel
+>Obre en una pestanya de fons</guilabel
+> (obre l'enllaç en una pestanya, però manté el focus en l'actual) i <guilabel
+>Obre en un navegador extern</guilabel
+> per obrir un article en una finestra nova amb l'explorador per omissió.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Clic amb el botó del mig:</guilabel
+></term>
+<listitem
+><para
+>Com l'anterior, podeu establir una de les tres accions per al clic del mig del ratolí.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Navegació externa</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Usa el navegador web per omissió</guilabel
+></term>
+<listitem
+><para
+>Si està marcada, l'&akregator; utilitzarà el navegador web establert en &systemsettings;. Pot ser el valor per omissió del &kde;, &konqueror;, o un altre navegador en funció del que establiu aquí.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Usa aquesta ordre:</guilabel
+></term>
+<listitem
+><para
+>Podeu utilitzar un altre navegador web per al'&akregator; que no sigui el vostre per omissió al &kde;. Per a fer-ho, marqueu aquesta opció i introduïu l'ordre per al navegador, sempre que es trobi a la vostra $<envar
+>PATH</envar
+>.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Pestanyes</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Mostra sempre la barra de pestanyes</guilabel
+></term>
+<listitem
+><para
+>Si està marcada, la pestanya es mostrarà sempre, fins i tot quan només estigui oberta una pestanya. Això permet crear pestanyes directament des de la barra de pestanyes. Altrament, la barra de pestanyes només es mostrarà quan hi hagi diverses pestanyes obertes.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Mostra el botó de tancament en cada pestanya</guilabel
+></term>
+<listitem
+><para
+>Si aquesta opció està marcada, el botó de tancament apareixerà quan moveu el cursor sobre el costat esquerre del títol de la pestanya, de manera que pugueu tancar-les amb més facilitat.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Obre els enllaços en una pestanya nova en comptes d'una finestra nova</guilabel
+></term>
+<listitem
+><para
+>Si està marcada, l'&akregator; obrirà un enllaç que normalment s'obriria en una finestra nova (navegador extern) en una pestanya nova.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Seguretat</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Verifica els URL usant l'API de navegació segura de Google</guilabel
+></term>
+<listitem
+><para
+>Si està marcada, l'API de <ulink url="https://safebrowsing.google.com/"
+>navegació segura de Google</ulink
+> s'utilitzarà per a comparar els &URL; amb les llistes de recursos web no segurs que són actualitzats constantment per Google. Els exemples de recursos web no segurs són llocs d'enginyeria social (substitució i llocs enganyosos) i els llocs que allotgen programari maliciós o programari no desitjat.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Habilita el JavaScript</guilabel
+></term>
+<listitem
+><para
+>Si està marcada, l'&akregator; utilitzarà &javascript; en processar els recursos web. L'ús de &javascript; té diverses <ulink url="https://en.wikipedia.org/wiki/JavaScript#Security"
+>implicacions de seguretat</ulink
+>.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Miscel·lània</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Clau d'accés activada</guilabel
+></term>
+<listitem
+><para
+>Aquesta és una opció d'accessibilitat. Quan està marcada, l'&akregator; processarà la propietat accessKey de la pàgina web, la qual defineix la drecera de teclat utilitzada per a saltar a un element determinat.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+<sect1 id="advanced-tab">
+<title
+>Avançat</title>
+<para
+>La pestanya Avançat permet establir les opcions més avançades. Si no sabeu sobre els seus efectes, podeu deixar els valors per omissió.</para>
+<screenshot>
+<screeninfo
+>La pestanya Avançat</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="advanced-tab.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>La pestanya Avançat</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Arxivat</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Dorsal d'arxivat:</guilabel
+></term>
+<listitem
+><para
+>L'&akregator; actualment només utilitza la base de dades Metakit. </para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Llista d'articles</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Marca l'article seleccionat com a llegit després de</guilabel
+></term>
+<listitem
+><para
+>Per omissió és 0 segons, la qual cosa significa que tan aviat com es fa clic en un article és marcat com a llegit. Podeu triar marcar qualsevol article com a llegit després d'un nombre determinat de segons.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Reinicialitza la barra de cerques en canviar les fonts</guilabel
+></term>
+<listitem
+><para
+>Això netejarà la barra de cerca en canviar la font.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+</chapter>
+
+<chapter id="commands">
+<title
+>Referència d'ordres</title>
+
+<sect1 id="akregator-mainwindow">
+<title
+>Menús i dreceres de teclat</title>
+
+<sect2>
+<title
+>El menú Fitxer</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Fitxer</guimenu
+> <guimenuitem
+>Importa les fonts</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Obre</action
+> el diàleg importador de fonts per a carregar <quote
+>Esquemes OPML</quote
+> amb les subscripcions de les fonts. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Fitxer</guimenu
+> <guimenuitem
+>Exporta les fonts</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Obre</action
+> el diàleg desa com a i exporta les vostres fonts i estructura de carpetes com a un fitxer <filename class="extension"
+>.opml</filename
+>.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Fitxer</guimenu
+> <guimenuitem
+>Surt</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Surt</action
+> de l'&akregator;.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2>
+<title
+>El menú Edita</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycap
+>F2</keycap
+> </shortcut
+> <guimenu
+>Edita</guimenu
+> <guimenuitem
+>Edita la font...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Edita</action
+> la font actual per a canviar les seves propietats en el diàleg Propietats.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;<keycap
+>Supr</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Edita</guimenu
+> <guimenuitem
+>Suprimeix la font</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Suprimeix</action
+> la font actual.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2>
+<title
+>El menú Visualitza</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Maj;<keycap
+>1</keycap
+></keycombo
+></shortcut
+><guimenu
+>Visualitza</guimenu
+><guimenuitem
+>Visualització normal</guimenuitem
+></menuchoice
+>, <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Maj;<keycap
+>2</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Visualitza</guimenu
+><guimenuitem
+>Visualització de pantalla ampla</guimenuitem
+> </menuchoice
+> i <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Maj;<keycap
+>3</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Visualitza</guimenu
+><guimenuitem
+>Visualització combinada</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Tria</action
+> el mode de visualització de l'&akregator;.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>+</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Visualitza</guimenu
+> <guimenuitem
+>Augmenta el tipus de lletra</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Augmenta</action
+> la mida del tipus de lletra en el visualitzador d'articles.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>-</keycap
+></keycombo
+></shortcut
+><guimenu
+>Visualitza</guimenu
+> <guimenuitem
+>Minva el tipus de lletra</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Minva</action
+> la mida del tipus de lletra en el visualitzador d'articles.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2>
+<title
+>El menú Ves</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keysym
+>Fletxa esquerra</keysym
+></shortcut
+> <guimenu
+>Ves</guimenu
+> <guimenuitem
+>Article anterior</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Va</action
+> cap a l'anterior article a la llista d'articles.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>-</keycap
+></shortcut
+> <guimenu
+>Ves</guimenu
+> <guimenuitem
+>Article previ sense llegir</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Va</action
+> cap a l'anterior article sense llegir a la llista d'articles.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keysym
+>Fletxa dreta</keysym
+></shortcut
+> <guimenu
+>Ves</guimenu
+> <guimenuitem
+>Article següent</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Va</action
+> cap al següent article a la llista d'articles.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>+</keycap
+></shortcut
+> <guimenu
+>Ves</guimenu
+> <guimenuitem
+>Article següent sense llegir</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Va</action
+> cap al següent article sense llegir a la llista d'articles.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>P</keycap
+></shortcut
+> <guimenu
+>Ves</guimenu
+> <guimenuitem
+>Font anterior</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Va</action
+> cap a l'anterior font a la llista de fonts.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Alt;<keycap
+>-</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Ves</guimenu
+> <guimenuitem
+>Font anterior sense llegir</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Va</action
+> cap a l'anterior font sense llegir a la llista de fonts.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>N</keycap
+></shortcut
+> <guimenu
+>Ves</guimenu
+> <guimenuitem
+>Font següent</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Va</action
+> cap a la següent font a la llista de fonts.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Alt;<keycap
+>+</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Ves</guimenu
+> <guimenuitem
+>Font següent sense llegir</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Va</action
+> cap a la següent font sense llegir a la llista de fonts.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2>
+<title
+>El menú Font</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>Inser</keycap
+></shortcut
+> <guimenu
+>Font</guimenu
+> <guimenuitem
+>Afegeix una font...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Obre</action
+> el diàleg per afegir una font.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Maj;<keycap
+>Inser</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Font</guimenu
+> <guimenuitem
+>Carpeta nova...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Obre</action
+> el diàleg per afegir una carpeta.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>R</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Font</guimenu
+> <guimenuitem
+>Marca la font com a llegida</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Marca</action
+> la font actual com a llegida.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Maj;<keycap
+>R</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Font</guimenu
+> <guimenuitem
+>Marca totes les fonts com a llegides</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Marca</action
+> totes les fonts com a llegides.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>F5</keycap
+></shortcut
+> <guimenu
+>Font</guimenu
+> <guimenuitem
+>Obtén la font</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Obtén</action
+> la font actual.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>L</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Font</guimenu
+> <guimenuitem
+>Obtén totes les fonts</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Obtén</action
+> totes les fonts.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>Esc</keycap
+></shortcut
+> <guimenu
+>Font</guimenu
+> <guimenuitem
+>Cancel·la l'obtenció de les fonts</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Atura</action
+> l'&akregator; perquè no obtingui les fonts.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2>
+<title
+>El menú Article</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Maj;<keycap
+>Retorn</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Article</guimenu
+> <guimenuitem
+>Obre en una pestanya</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Obre</action
+> l'article actual en una pestanya dins de l'&akregator;.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+>&Intro;</shortcut
+> <guimenu
+>Article</guimenu
+> <guimenuitem
+>Obre en una pestanya de fons</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Carrega</action
+> l'article actual en una pestanya nova, però no donarà el focus automàticament a aquesta pestanya. Això és útil per a navegar en una font, obrir tots els articles interessants en pestanyes de fons i després llegir-los tots. </para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Maj;<keycap
+>Retorn</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Article</guimenu
+> <guimenuitem
+>Obre en un navegador extern</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Obre</action
+> l'article actual en un navegador extern.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>I</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Article</guimenu
+> <guimenuitem
+>Marca com a important</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Marca</action
+> l'article actual com a important.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Article</guimenu
+> <guimenuitem
+>Marca com a</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Marca</action
+> l'article actual com a llegit <keycombo action="simul"
+>&Ctrl;<keycap
+>E</keycap
+></keycombo
+>, nou <keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo
+> o sense llegir <keycombo action="simul"
+>&Ctrl;<keycap
+>U</keycap
+></keycombo
+></para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>Supr</keycap
+></shortcut
+> <guimenu
+>Article</guimenu
+> <guimenuitem
+>Suprimeix</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Suprimeix</action
+> l'article actual.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Article</guimenu
+> <guimenuitem
+>Envia l'adreça de l'enllaç...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Obre</action
+> el client de correu i adjunta l'enllaç en el correu.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Article</guimenu
+> <guimenuitem
+>Envia el fitxer...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Obre</action
+> el vostre client de correu i adjunta el fitxer en el correu. </para
+></listitem>
+</varlistentry>
+<!--FIXME not in kf5?
+<varlistentry>
+<term
+><menuchoice>
+<shortcut
+><keycombo
+action="simul"
+>&Ctrl;<keycap
+>S</keycap
+></keycombo
+></shortcut>
+<guimenu
+>Article</guimenu>
+<guimenuitem
+>Share Article</guimenuitem>
+</menuchoice
+></term>
+<listitem
+><para
+>Use this action you to share news 
+ with your friends using the microblog services identi.ca and twitter.
+</para
+></listitem>
+</varlistentry>
+-->
+</variablelist>
+</sect2>
+
+<sect2>
+<title
+>Els menús Arranjament i Ajuda</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Arranjament</guimenu
+> <guimenuitem
+>Mostra el filtre ràpid</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Mostra o culta</action
+> el filtre ràpid. <screenshot>
+<screeninfo
+>El filtre ràpid</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="quick-filter.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>El filtre ràpid</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+
+<para
+>De manera addicional, l'&akregator; té la configuració comuna al &kde; i els elements dels menús <guimenu
+>Arranjament</guimenu
+> i <guimenu
+>Ajuda</guimenu
+>. Per a obtenir més informació, llegiu les seccions sobre <ulink url="help:/fundamentals/menus.html#menus-settings"
+>El menú Arranjament</ulink
+> i <ulink url="help:/fundamentals/menus.html#menus-help"
+>El menú Ajuda</ulink
+> en els Fonaments del &kde;. </para>
+
+<para
+>Moltes de les accions proveïdes al menú també estan disponibles en els menús contextuals de la llista de fonts, a la llista d'articles i al visualitzador d'articles. </para>
+
+</sect2>
+
+</sect1>
+</chapter>
+
+<chapter id="credits">
+
+<title
+>Crèdits i llicència</title>
+
+<para
+>&akregator; </para>
+<para
+>Copyright del programa: 2004-2010 autors de l'Akregator </para>
+
+<para
+>Copyright de la documentació: 2006 Frank Osterfeld <email
+>frank.osterfeld@kdemail.net</email
+> </para>
+
+<para
+>Copyright de la documentació: 2006 &Anne-Marie.Mahfouf; &Anne-Marie.Mahfouf.mail; </para>
+
+<para
+>Traductor/Revisor de la documentació: &credits.Antoni.Bella;</para
+> &underFDL; &underGPL; </chapter>
+
+&documentation.index;
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes: nil
+sgml-general-insert-case: lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+-->

@@ -1,0 +1,1928 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Ukrainian "INCLUDE">
+]>
+
+<book id="akregator" lang="&language;">
+
+<bookinfo id="akregatorinfo">
+<title
+>Підручник з &akregator;</title>
+
+<authorgroup>
+
+<author
+><firstname
+>Frank</firstname
+> <surname
+>Osterfeld</surname
+> <affiliation
+><address
+><email
+>frank.osterfeld@kdemail.net</email
+>  
+</address
+></affiliation>
+</author>
+<author
+><firstname
+>Anne-Marie</firstname
+> <surname
+>Mahfouf</surname
+> <affiliation
+><address
+>&Anne-Marie.Mahfouf.mail; </address
+></affiliation>
+</author>
+
+<othercredit role="translator"
+><firstname
+>Юрій</firstname
+><surname
+>Чорноіван</surname
+><affiliation
+><address
+><email
+>yurchor@ukr.net</email
+></address
+></affiliation
+><contrib
+>Переклад українською</contrib
+></othercredit
+> 
+</authorgroup>
+<copyright>
+<year
+>2006</year>
+<holder
+>Frank Osterfeld</holder>
+</copyright>
+<copyright>
+<year
+>2006</year>
+<holder
+>&Anne-Marie.Mahfouf;</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>31 березня 2021 року</date>
+<releaseinfo
+>Програми 21.08</releaseinfo>
+
+<!-- Abstract about this handbook -->
+
+<abstract>
+<para
+>&akregator; — це програма для читання <acronym
+>RSS</acronym
+> та інших інтерактивних стрічок новин. </para>
+</abstract>
+
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>Akregator</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Вступ</title>
+
+<sect1 id="what-is-akregator">
+<title
+>Для чого призначено &akregator;?</title>
+
+<para
+>&akregator; — це програма &kde; для читання інтерактивних стрічок новин. Ця програма має потужний, дружній до користувача інтерфейс для читання подач і керування ними.</para>
+
+<para
+>&akregator; — це невелика і швидка програма для показу записів новин, які надходять у вигляді подач, ця програма підтримує всі найпоширеніші версії подач <acronym
+>RSS</acronym
+> і Atom. Інтерфейс програми подібний до інтерфейсу програм для роботи з електронною поштою, отже, користувачеві не потрібно буде знайомитися з елементами інтерфейсу повторно. Серед корисних можливостей програми ви знайдете: пошук у заголовках статей, керування подачами у теках і встановлення параметрів архівування. Подачі може бути показано у спосіб, подібний до показу повідомлень електронної пошти. Вебсайти, пов’язані з подачею, може бути показано у вбудованому переглядачі &akregator; або, за бажання користувача, відкрито у зовнішньому переглядачі.</para>
+</sect1>
+
+<sect1 id="rss-and-atom-feeds">
+<title
+>Подачі <acronym
+>RSS</acronym
+> і Atom</title>
+
+<para
+><acronym
+>RSS</acronym
+> (Really Simple Syndication (Справді просте транслювання)) — це формат, заснований на &XML;, який використовується для оприлюднення новин і статей у формі, придатній для комп’ютерної обробки. Файл <acronym
+>RSS</acronym
+> або Atom також називають подачею. Програму, яку можна використовувати для читання таких подач, називають засобом для читання подач або збирачем (англійською «aggregator»), звідси і походить назва програми, — &akregator;.</para>
+
+<para
+>&akregator; автоматично видобуває нові записи з подачі і показує їх у зручному для користувача вигляді. Таким чином, користувач може зекономити час на перегляді сайтів, які відвідуються регулярно, оскільки користувачеві не потрібно буде самостійно визначати нові для нього відомості з сайта.</para>
+<para
+><acronym
+>RSS</acronym
+> існує у декількох версіях, які не є сумісними між собою (такий стан справ спричинено конкуренцією між компаніями): <acronym
+>RSS</acronym
+> 0.9, <acronym
+>RSS</acronym
+> 1.0 і <acronym
+>RSS</acronym
+> 2.0. Atom також є заснованою на &XML; мовою подач, яку було спеціально розроблено для задоволення потреб власників блогів та сайтів новин. Atom є спробою замінити подачі <acronym
+>RSS</acronym
+> і таким чином позбутися непевності, пов’язаної з несумісністю різних версій <acronym
+>RSS</acronym
+>.</para>
+
+</sect1>
+
+</chapter>
+
+<chapter id="quick-start">
+<title
+>Короткий вступ до &akregator;</title>
+
+<para
+>У цьому розділі ви познайомитеся з тим, як розпочати роботу з &akregator;. Тут описано інтерфейс користувача і наведено інструкції щодо того, як ви можете додати вашу власну подачу до списку. Цей розділ буде для вас цікавим, якщо ви ще недостатньо знайомі з загальною концепцією <acronym
+>RSS</acronym
+>/Atom та збирачів подач. </para>
+
+<sect1 id="main-window">
+<title
+>Головне вікно</title>
+<!--part of kontact
+say how to start it -->
+<para
+>Після запуску &akregator; ви побачите головне вікно: <screenshot>
+<screeninfo
+>Головне вікно &akregator;</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="main-window.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Головне вікно &akregator;</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para>
+
+<para
+>Головне вікно складається зі списку подач, списку статей і перегляду статті. </para>
+<para
+>Список подач розташовано ліворуч, з нього ви можете обирати подачі новин. Подача новин — це збірка статей: наприклад, свіжих новин з сайта новин або нових записів у блозі. У типовому списку ви знайдете подачі, пов’язані з проєктом &kde;, але ви, звичайно ж, можете додати власні подачі або вилучити ті подачі, матеріали яких вам не цікаві. </para>
+<para
+>Вгорі праворуч показано список статей. У ньому містяться всі статті подачі, яку вибрано у списку подач (якщо цей список порожній, вам слід спочатку отримати подачу). У списку буде показано заголовки статей і дату їх опублікування. За типових налаштувань найсвіжіші статті знаходитимуться у верхній частині списку. <screenshot>
+<screeninfo
+>Список статей</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="main-window2.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Список статей для однієї подачі</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para>
+<para
+>Якщо ви оберете статтю, її вміст буде показано у переглядачі статей, який розташовано у вікні внизу праворуч. Залежно від подачі, буде показано лише заголовок, коротке резюме або повний вміст статті. <screenshot>
+<screeninfo
+>Читання статті з Planet &kde;</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="main-window4.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Читання статті з Planet &kde;</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para>
+</sect1>
+
+<sect1 id="add-feed">
+<title
+>Як додати подачу</title>
+<para
+>&akregator; постачається з деякими типовими подачами, пов’язаними з &kde;, — звичайно ж, ви напевне забажаєте додати ваші власні подачі. Серед кандидатів на додавання мають бути сайти новин, які ви регулярно відвідуєте.</para>
+
+<itemizedlist>
+<listitem
+><para
+>Відкрийте меню <guimenu
+>Подача</guimenu
+> і оберіть пункт <guimenuitem
+>Додати подачу...</guimenuitem
+> або скористайтеся типовим клавіатурним скороченням (<keycap
+>Ins</keycap
+>). Буде відкрито діалогове вікно, подібне на показане нижче, у якому ви побачите рядок для введення з міткою <guilabel
+>URL подачі:</guilabel
+>. <screenshot>
+<screeninfo
+>Додавання нової подачі</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="add-feed.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Додавання нової подачі</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para
+></listitem>
+
+<listitem
+><para
+>Введіть <userinput
+>planet.ubuntu.com</userinput
+> або <userinput
+>http://planet.ubuntu.com</userinput
+> у рядок поряд з міткою <guilabel
+>URL подачі</guilabel
+> і натисніть кнопку <guibutton
+>Гаразд</guibutton
+>. </para
+></listitem>
+<listitem
+><para
+>Буде відкрито діалогове вікно параметрів, у якому ви зможете змінити типові параметри подачі. Після встановлення належних параметрів знову натисніть кнопку <guibutton
+>Гаразд</guibutton
+>. <screenshot>
+<screeninfo
+>Діалогове вікно властивостей подачі</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="add-feed2.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Діалогове вікно властивостей подачі</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para
+></listitem>
+<listitem
+><para
+>Після виконання вказаних дій Planet Ubuntu буде додано до вашого списку подач. </para
+> </listitem>
+</itemizedlist>
+<para
+>Існує багато інших способів пошуку і додавання цікавих подач. У &kde;, під час перегляду вебсайтів за допомогою &konqueror; у правому нижньому куті вікна буде показано піктограму RSS <inlinemediaobject
+> <imageobject
+> <imagedata fileref="feed.png" format="PNG"/> </imageobject
+> </inlinemediaobject
+>, якщо на вебсайті, який ви переглядаєте, буде виявлено сумісну подачу новин. Вам просто слід навести вказівник миші на цю піктограму, клацнути лівою кнопкою миші і обрати пункт <guimenuitem
+>Додати подачу у &akregator;</guimenuitem
+>: <screenshot
+> <screeninfo
+>Автоматичний пошук подач за допомогою &konqueror;</screeninfo
+> <mediaobject
+> <imageobject
+><imagedata fileref="konq2.png" format="PNG"/></imageobject
+> <textobject
+><phrase
+>Автоматичний пошук подач за допомогою &konqueror;</phrase
+></textobject
+> </mediaobject
+> </screenshot
+> На сторінках з цією піктограмою RSS <inlinemediaobject
+> <imageobject
+> <imagedata fileref="rss.png" format="PNG"/> </imageobject
+> </inlinemediaobject
+> ви можете навести на піктограму вказівник миші, клацнути правою кнопкою миші і обрати з контекстного меню пункт <guimenuitem
+>Копіювати адресу посилання</guimenuitem
+>: <screenshot>
+      <screeninfo
+>Автоматичний пошук подач за допомогою &konqueror;</screeninfo>
+      <mediaobject>
+        <imageobject
+><imagedata fileref="konq.png" format="PNG"/></imageobject>
+        <textobject
+><phrase
+>Автоматичний пошук подач за допомогою &konqueror;</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para>
+<para
+>Перемкніться на вікно &akregator;, виберіть пункт <guimenuitem
+>Додати подачу...</guimenuitem
+>. У полі <guilabel
+>Адреса подачі</guilabel
+> має бути показано адресу посилання. </para>
+
+<para
+>Всі подачі, додані за допомогою цих дій, буде показано у теці <guilabel
+>Імпортовані подачі</guilabel
+> списку подач. Для пересування подач до інших тек ви можете скористатися перетягуванням відповідних пунктів за допомогою вказівника миші. </para>
+</sect1>
+
+<sect1 id="creating-folder">
+<title
+>Як створити теку</title>
+<para
+>Після додавання ваших власних подач, ймовірно, виникне потреба у певному їх групуванні, оскільки невпорядкованими вони виглядатимуть некрасиво. Отже, давайте створимо теку для подачі Planet Ubuntu, яку ми щойно створили:</para>
+<itemizedlist>
+<listitem
+><para
+>Виберіть батьківську теку нової теки. У нашому прикладі ми обрали <guilabel
+>Всі подачі</guilabel
+>. </para
+></listitem>
+<listitem
+><para
+>Скористайтеся пунктом меню <menuchoice
+><guimenu
+>Подача</guimenu
+> <guimenuitem
+>Нова тека...</guimenuitem
+></menuchoice
+>. Введіть <userinput
+>Новини</userinput
+> (або назву, яку ви вважаєте кращою для подібної категорії подач) у рядок для редагування і натисніть кнопку <guibutton
+>Гаразд</guibutton
+>. <screenshot>
+<screeninfo
+>Діалогове вікно «Створити теку»</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="add-folder.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Діалогове вікно «Створити теку»</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para
+> </listitem>
+<listitem
+><para
+>Тепер ви можете перетягнути позначку подачі Planet Ubuntu до нової теки. <screenshot>
+<screeninfo
+>Тека новин у списку подач</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="add-folder2.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Тека новин у списку подач</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para
+> </listitem>
+</itemizedlist>
+</sect1>
+
+<sect1 id="browsing-inside">
+<title
+>Перегляд подач у &akregator;</title>
+<para
+>Під час читання подач у вас може виникнути бажання прочитати вебсторінку, до якої належить стаття: деякі зі сторінок міститимуть лише заголовки, ви не зможете ознайомитися за їх допомогою зі змістом статті. У такому випадку вам потрібно буде відвідати вебсторінку, на якій розміщено повний текст статті. Іноді у статтях міститимуться посилання на певні вебсайти, іноді під час читання блогу вам захочеться прокоментувати запис. Для таких випадків у &akregator; включено простий переглядач Тенет. Після переходів на посиланнями у переглядачі статей, типово, &akregator; відкриватиме сторінки за посиланнями у нових вкладках.</para>
+<note
+><para
+>Зауважте, що вбудований переглядач &akregator; не замінить вашого улюбленого переглядача Тенет. Цей переглядач призначено для читання статей, коментування та швидкого переходу за посиланнями. Переглядач не призначено для перегляду будь-яких сайтів Тенет. У ньому немає багатьох функціональних можливостей, які запропонують вам повноцінні переглядачі.</para
+></note>
+</sect1>
+</chapter>
+
+<chapter id="configuration">
+<title
+>Як налаштувати &akregator;</title>
+<para
+>Доступ до більшої частини параметрів &akregator; можна отримати за допомогою діалогового вікна налаштування &akregator;. Відкрити діалогове вікно налаштування можна за допомогою пункту меню <menuchoice
+> <guimenu
+>Параметри</guimenu
+><guimenuitem
+>Налаштувати &akregator;...</guimenuitem
+> </menuchoice
+></para>
+<sect1 id="general-tab">
+<title
+>Загальне</title>
+<para
+>На вкладці «Загальне» містяться базові або такі, що не належать до інших категорій, параметри &akregator;.</para>
+<screenshot>
+<screeninfo
+>Вкладка «Загальне»</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="general-tab.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Вкладка «Загальне»</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Загальні</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Показувати піктограму у лотку</guilabel
+></term>
+<listitem
+><para
+>Показувати піктограму &akregator; у системному лотку.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Показувати кількість непрочитаних статей на панелі задач</guilabel
+></term>
+<listitem
+><para
+>Визначає, чи слід показувати кількість непрочитаних статей на пункті програми загальносистемної панелі задач.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Приховувати подачі, де немає непрочитаних статей</guilabel
+></term>
+<listitem
+><para
+>Якщо позначено, приховує пункти подач, у яких немає непрочитаних повідомлень.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Зафіксувати подачі на місці</guilabel
+></term>
+<listitem
+><para
+>Якщо позначено, запобігає пересуванню пунктів подач у списку, усі пункти подач буде зафіксовано там, де вони перебувають.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Автоматичне розгортання тек, які містять непрочитані статті</guilabel
+></term>
+<listitem
+><para
+>Якщо позначено, автоматично розгортати теки із непрочитаними статтями.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Використовувати сповіщення для всіх подач</guilabel
+></term>
+<listitem
+><para
+>Встановити загальне сповіщення для всіх подач. Позначення цього пункту перевизначить всі окремі значення сповіщень для кожної з подач. Якщо позначити цей пункт, &akregator; сповіщатиме вас про появу всіх нових статей у будь-якій з подач. Якщо вам потрібно увімкнути сповіщення лише для деяких (але не всіх) подач, зніміть позначку з цього пункту і вмикайте сповіщення для кожної з подач за допомогою відповідного діалогового вікна подачі.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Використовувати періодичні перевірки</guilabel
+></term>
+<listitem
+><para
+>Якщо позначки напроти пункту немає, регулярні перевірки подач буде вимкнено. Якщо ж цей пункт буде позначено, ви зможете вказати у полі з міткою <guilabel
+>Отримувати подачі кожні:</guilabel
+> проміжок часу між автоматичними перевірками &akregator; наявності нових записів у подачах. Зауважте, що отримання статей навантажує мережу і отже збільшує витрати постачальника інформації, яку ви читаєте. На деяких сайтах з’єднання з вашим комп’ютером може бути навіть заблоковано, якщо ви намагатиметесь отримувати подачі занадто часто. Загалом кажучи, значення у 30 хвилин є непоганим вибором. </para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Перевіряти подачі кожні:</guilabel
+></term>
+<listitem
+><para
+>Доступ до цього поля можна буде отримати лише у разі позначення пункту <guilabel
+>Використовувати періодичні перевірки</guilabel
+>. Тут ви можете встановити проміжок часу між повторними перевірками наявності нових повідомлень у подачах. Типовим є проміжок у 30 хвилин.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Запуск</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Позначити всі подачі як прочитані після запуску</guilabel
+></term>
+<listitem
+><para
+>Якщо позначити цей пункт, після запуску &akregator; позначатиме всі статті як прочитані.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Отримати всі подачі після запуску</guilabel
+></term>
+<listitem
+><para
+>Якщо позначити цей пункт, &akregator; отримуватиме всі подачі одразу після запуску.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Мережа</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Використовувати кеш переглядача</guilabel
+></term>
+<listitem
+><para
+>Якщо позначити цей пункт, під час виконання оновлення подач буде використано загальні для &kde; параметри кешування переглядача. Ви можете налаштувати загальні параметри кешування переглядача у &kde; або за допомогою діалогового вікна налаштування &konqueror;.</para>
+<note
+><para
+>Вам слід, за можливості, не знімати позначку з цього пункту. Зняття позначки призведе до збільшення об’ємів інформації, що передаватиметься мережею. Навантаження на мережу, що спричиняється переглядачами подач за умови, якщо не використовується кеш, збільшує витрати розповсюджувачів подач і може призвести до зменшення кількості пропонованих подач у майбутньому.</para
+></note>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+
+<sect1 id="adblock-tab">
+<title
+>Перехоплення адрес</title>
+<para
+>&akregator; можна налаштувати на заміну або вилучення з вебсторінок зображень і фреймів, які відповідають набору критеріїв.</para>
+
+<screenshot>
+<screeninfo
+>Вкладка перехоплення адрес</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="interceptor-tab.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Вкладка перехоплення адрес</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+
+<para
+>Докладний опис цієї можливості можна знайти у <ulink url="help:/kcontrol/khtml-adblock"
+>підручнику з фільтрів блокування реклами</ulink
+>. </para>
+</sect1>
+
+<sect1 id="archive-tab">
+<title
+>Архів</title>
+<para
+>Під архівуванням тут розуміємо зберігання посилань статей. Тут ви можете обмежити кількість статей, які зберігатимуться, і змінити спосіб архівування. Ці параметри є загальними, їх буде використано для всіх подач у &akregator;. Якщо ви бажаєте скористатися нетиповим параметром для певної подачі, ви можете встановити цей параметр для кожної з відповідних подач у діалоговому вікні властивостей подачі на вкладці архівування.</para>
+<screenshot>
+<screeninfo
+>Вкладка «Архів»</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="archive-tab.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Вкладка «Архів»</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Типові параметри архівування</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Зберігати всі статті</guilabel
+></term>
+<listitem
+><para
+>Всі статті зберігатимуть без обмеження терміну.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Обмежити розмір архіву до:</guilabel
+></term
+> 
+<listitem
+><para
+>Якщо кількість статей перевищить вказане обмеження, найстаріші статті буде вилучено. Зауважте, що під час підрахунку кількості статей статті з прапорцями буде проігноровано: якщо ви встановили обмеження у 500 статей, і ви маєте 510 статей без прапорців і 50 статей з прапорцями, &akregator; проігнорує 50 статей з прапорцями і вилучить лише 10 найдавніших статей без прапорців. Отже, в такому випадку, буде збережено 550 статей.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Вилучати статті, давніші ніж:</guilabel
+></term>
+<listitem
+><para
+>Статті, вік яких більший за вказану кількість днів буде вилучено з архіву, якщо для них не було встановлено прапорця зберігання. &akregator; перевіряє наявність прострочених статей під час запуску, а потім виконує цю операцію щогодини, отже, вилучення може відбутися не одразу.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Вимкнути архівування</guilabel
+></term>
+<listitem
+><para
+>Не зберігати ніяких статей — всі статті буде викинуто після завершення роботи &akregator;.</para
+> </listitem>
+</varlistentry>
+</variablelist>
+
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Важливі статті не мають строку давності</guilabel
+></term>
+<listitem
+><para
+>Наведення вказівника на позначку статті з наступним клацання правою кнопкою відкриває контекстне меню, у якому ви зможете позначити статтю як «Важливу». Статті з позначками «Важлива» не мають терміну придатності, вони завжди зберігатимуться.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+<sect1 id="appearance-tab">
+<title
+>Вигляд</title>
+<para
+>На цій сторінці ви можете налаштувати вигляд переглядача статей і вкладок. Ви можете вказати кольори, розміри і гарнітури шрифтів, які буде використано. </para>
+<screenshot>
+<screeninfo
+>Вкладка «Вигляд»</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="appearance-tab.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Вкладка «Вигляд»</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Кольори списку статей</guilabel
+></term>
+<listitem
+><para
+>Позначення пункту <guilabel
+>Використовувати нетипові кольори</guilabel
+> надасть вам змогу визначитися з бажаними кольорами записів <guilabel
+>Непрочитаних статей</guilabel
+> і <guilabel
+>Новий статей</guilabel
+></para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Розмір шрифту</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Мінімальний розмір шрифту</guilabel
+></term>
+<listitem
+><para
+>Визначає мінімальний розмір шрифту для перегляду статей</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Середній розмір шрифту</guilabel
+></term>
+<listitem
+><para
+>Визначає типовий розмір шрифту для перегляду статей</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Шрифти</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Звичайний шрифт:</guilabel
+></term>
+<listitem
+><para
+>У переглядачі статей вміст буде показано за допомогою Стандартного шрифту Середнього розміру. Якщо ви зміните параметри Стандартного шрифту, ці зміни стосуватимуться вигляду переглядача статей.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Моноширинний шрифт:</guilabel
+></term>
+<listitem
+><para
+>Якщо у статті, показаній у переглядачі статей, використано моноширинний шрифт, її вміст буде відтворено за допомогою вказаної тут гарнітури шрифтів з середнім розміром шрифту. </para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Шрифт з засічками:</guilabel
+></term>
+<listitem
+><para
+>Якщо у статті, показаній у переглядачі статей, використано шрифт з засічками, її вміст буде відтворено за допомогою вказаної тут гарнітури шрифтів з середнім розміром шрифту.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Шрифт без засічок:</guilabel
+></term>
+<listitem
+><para
+>Якщо у статті, показаній у переглядачі статей, використано шрифт без засічок, її вміст буде відтворено за допомогою вказаної тут гарнітури шрифтів з середнім розміром шрифту.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Підкреслювати посилання</guilabel
+></term>
+<listitem
+><para
+>Позначте цей пункт, якщо ви бажаєте, щоб типово текст посилання було підкреслено.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+<sect1 id="browser-tab">
+<title
+>Навігатор</title>
+<para
+>Цією вкладкою можна скористатися для налаштування поведінки вкладок внутрішнього переглядача Тенет.</para>
+<screenshot>
+<screeninfo
+>Вкладка «Навігатор»</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="browser-tab.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Вкладка «Навігатор»</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Клацання лівою кнопкою миші</guilabel
+></term>
+<listitem
+><para
+>Для клацання лівою кнопкою миші ви можете обрати одну з трьох дій: <guilabel
+>Відкрити у вкладці</guilabel
+> (відкрити посилання у вкладці і спрямувати фокус на це посилання), <guilabel
+>Відкрити у фоновій вкладці</guilabel
+> (відкрити посилання у вкладці, але залишити фокус на поточній вкладці) і <guilabel
+>Відкрити у зовнішньому переглядачі</guilabel
+> (відкрити у новому вікні за допомогою вашого типового переглядача).</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Клацання середньою кнопкою миші</guilabel
+></term>
+<listitem
+><para
+>Як і у попередньому випадку, ви можете встановити одну з трьох дій, які виконуватимуться у відповідь на клацання середньою кнопкою миші.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Зовнішній перегляд</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Використовувати типовий переглядач Тенет</guilabel
+></term>
+<listitem
+><para
+>Якщо позначено цей пункт, &akregator; використовуватиме переглядач, який визначено у «Системних параметрах». Цим переглядачем може бути типовий для &kde; &konqueror; або інший переглядач, який ви тут вкажете.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Використовувати команду:</guilabel
+></term>
+<listitem
+><para
+>Ви можете вказати інший, відмінний від типового для &kde;, переглядач для &akregator;. Якщо ви бажаєте це зробити, позначте цей пункт і введіть команду, яка запускатиме ваш переглядач, якщо теку, де знаходиться його виконуваний файл, записано до змінної середовища $<envar
+>PATH</envar
+> вашого користувача.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Вкладки</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Завжди показувати панель вкладок</guilabel
+></term>
+<listitem
+><para
+>Якщо позначено цей пункт, панель вкладок буде показано завжди, навіть якщо відкрито одну вкладку. Так ви зможете створювати вкладки безпосередньо з панелі вкладок. Якщо пункт не позначено, панель вкладок буде показано, лише якщо відкрито декілька вкладок.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Показувати кнопки закриття на вкладках</guilabel
+></term>
+<listitem
+><para
+>Якщо позначено цей пункт, після наведення вказівника миші на ліву частину заголовка вкладки на вкладці з’являтиметься кнопка закриття, за допомогою якої ви зможете легко закривати вкладки.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Відкривати посилання у новій вкладці замість нового вікна</guilabel
+></term>
+<listitem
+><para
+>Якщо позначено, &akregator; буде відкривати посилання, які за звичайних умов відкривалися б у новому вікні (зовнішнього переглядача), у новій вкладці.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Безпека</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Перевіряти адреси за допомогою Safe Browsing API Google</guilabel
+></term>
+<listitem
+><para
+>Якщо позначено цей пункт, для перевірки адрес буде використано програмний інтерфейс <ulink url="https://safebrowsing.google.com/"
+>Google Safe Browsing</ulink
+>, який використовує постійно оновлювані списки Google небезпечних вебресурсів. Прикладами небезпечних вебресурсів є сайти соціальної інженерії (виманювання даних та шахрайство) та сайти, де зловмисники розміщують шахрайське та небажане програмне забезпечення.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Увімкнути Javascript</guilabel
+></term>
+<listitem
+><para
+>Якщо позначено, &akregator; використовуватиме &javascript; при обробці вебресурсів. Використання &javascript; може бути пов'язане із певними <ulink url="https://en.wikipedia.org/wiki/JavaScript#Security"
+>вразливостями у захисті вашої системи</ulink
+>.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Інше</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Увімкнено клавішу доступу</guilabel
+></term>
+<listitem
+><para
+>Це пункт доступності. Якщо позначено, &akregator; оброблятиме властивість accessKey вебсторінок. Ця властивість встановлює комбінацію клавіш, за допомогою якої користувач може переходити до певного елемента сторінки.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+<sect1 id="advanced-tab">
+<title
+>Додатково</title>
+<para
+>За допомогою вкладки «Додатково» ви можете вказати додаткові параметри. Якщо ви не певні щодо значення цих параметрів, ви можете просто не змінювати їх типові значення.</para>
+<screenshot>
+<screeninfo
+>Вкладка «Додатково»</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="advanced-tab.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Вкладка «Додатково»</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Архів</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Сервер архівування:</guilabel
+></term>
+<listitem
+><para
+>У поточній версії &akregator; використовує лише базу даних Metakit. </para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Список статей</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Позначати вибрані статті як прочитані за</guilabel
+></term>
+<listitem
+><para
+>Типовим значенням є 0 секунд, це означає, що після наведення вказівника на позначку статті з наступним клацанням лівою кнопкою миші статтю негайно буде позначено як прочитану. Ви ж можете обрати час у секундах, який має пройти між вибором статті і її позначенням як прочитаної.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Скидати вміст панелі пошуку під час зміни подач</guilabel
+></term>
+<listitem
+><para
+>За умови позначення цього пункту після зміни подачі вміст рядка пошуку буде спорожнено.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+</chapter>
+
+<chapter id="commands">
+<title
+>Довідка щодо команд</title>
+
+<sect1 id="akregator-mainwindow">
+<title
+>Меню і клавіатурні скорочення</title>
+
+<sect2>
+<title
+>Меню «Файл»</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Файл</guimenu
+> <guimenuitem
+>Імпортувати подачі</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Відкрити</action
+> діалогове вікно імпортування подач для завантаження «опису OPML» з даними щодо підписок на подачі. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Файл</guimenu
+> <guimenuitem
+>Експортувати подачі</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Відкрити</action
+> діалогове вікно збереження з новою назвою та експортувати ваші записи подач та структуру тек у форматі файла <filename class="extension"
+>.opml</filename
+>.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Файл</guimenu
+> <guimenuitem
+>Вийти</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Завершує роботу</action
+> &akregator;</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2>
+<title
+>Меню «Зміни»</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycap
+>F2</keycap
+> </shortcut
+> <guimenu
+>Зміни</guimenu
+> <guimenuitem
+>Редагувати подачу...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Надає змогу змінити</action
+> властивості подачі у діалоговому вікні властивостей</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;<keycap
+>Del</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Зміни</guimenu
+> <guimenuitem
+>Вилучити подачу</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Вилучає</action
+> поточну подачу</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2>
+<title
+>Меню «Перегляд»</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>1</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Перегляд</guimenu
+><guimenuitem
+>Звичайний вигляд</guimenuitem
+></menuchoice
+>, <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>2</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Перегляд</guimenu
+><guimenuitem
+>Широкоекранний вигляд</guimenuitem
+> </menuchoice
+> і <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>3</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Перегляд</guimenu
+><guimenuitem
+>Суміщений вигляд</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Надає змогу обрати</action
+> режим перегляду для &akregator;</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>+</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Перегляд</guimenu
+><guimenuitem
+>Збільшити шрифт</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Збільшує</action
+> розмір шрифту у перегляді статей</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>-</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Перегляд</guimenu
+><guimenuitem
+>Зменшити шрифт</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Зменшує</action
+> розмір шрифту у перегляді статей</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2>
+<title
+>Меню «Перехід»</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>Стрілка ліворуч</keycap
+></shortcut
+> <guimenu
+>Перехід</guimenu
+> <guimenuitem
+>Попередня стаття</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Перехід</action
+> до попередньої статті у списку статей</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>-</keycap
+></shortcut
+> <guimenu
+>Перехід</guimenu
+> <guimenuitem
+>Попередня непрочитана стаття</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Перехід</action
+> до попередньої непрочитаної статті у списку статей</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>Стрілка праворуч</keycap
+></shortcut
+> <guimenu
+>Перехід</guimenu
+> <guimenuitem
+>Наступна стаття</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Перехід</action
+> до наступної статті у списку статей</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>+</keycap
+></shortcut
+> <guimenu
+>Перехід</guimenu
+> <guimenuitem
+>Наступна непрочитана стаття</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Перехід</action
+> до наступної непрочитаної статті у списку статей</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>P</keycap
+></shortcut
+> <guimenu
+>Перехід</guimenu
+> <guimenuitem
+>Попередня подача</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Перехід</action
+> до попередньої подачі у списку подач</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Alt;<keycap
+>-</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Перехід</guimenu
+> <guimenuitem
+>Попередня непрочитана подача</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Перехід</action
+> до попередньої непрочитаної подачі у списку подач</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>N</keycap
+></shortcut
+> <guimenu
+>Перехід</guimenu
+> <guimenuitem
+>Наступна подача</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Перехід</action
+> до наступної подачі у списку подач</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Alt;<keycap
+>+</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Перехід</guimenu
+> <guimenuitem
+>Наступна непрочитана подача</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Перехід</action
+> до наступної непрочитаної подачі у списку подач</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2>
+<title
+>Меню «Подача»</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>Ins</keycap
+></shortcut
+> <guimenu
+>Подача</guimenu
+> <guimenuitem
+>Додати подачу...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Відкриває</action
+> діалогове вікно додавання подачі</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Shift;<keycap
+>Ins</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Подача</guimenu
+> <guimenuitem
+>Нова тека...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Відкриває</action
+> діалогове вікно додавання теки</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>R</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Подача</guimenu
+> <guimenuitem
+>Позначити подачу як прочитану</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Позначає</action
+> поточну подачу як прочитану</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl; &Shift;<keycap
+>R</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Подача</guimenu
+> <guimenuitem
+>Позначити всі подачі як прочитані</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Позначити</action
+> всі подачі як вже прочитані</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>F5</keycap
+></shortcut
+> <guimenu
+>Подача</guimenu
+> <guimenuitem
+>Отримати подачу</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Перевірити наявність повідомлень і отримати нові повідомлення</action
+> поточної подачі</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>L</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Подача</guimenu
+> <guimenuitem
+>Отримати всі подачі</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Перевірити наявність повідомлень і отримати нові повідомлення</action
+> всіх подач</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>Esc</keycap
+></shortcut
+> <guimenu
+>Подача</guimenu
+> <guimenuitem
+>Перервати отримання</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Зупинити</action
+> отримання &akregator; подач</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2>
+<title
+>Меню «Стаття»</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Shift;<keycap
+>Enter</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Стаття</guimenu
+> <guimenuitem
+>Відкрити у вкладці</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Відкриває</action
+> поточну статтю у вкладці вікна &akregator;</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+>&Enter;</shortcut
+> <guimenu
+>Стаття</guimenu
+> <guimenuitem
+>Відкрити у фоновій вкладці</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Завантажити</action
+> поточну статтю до нової вкладки, але не активувати цю вкладку. Корисно, якщо ви, переглядаючи подачу, хочете відкрити всі цікаві статті у фонових вкладках, щоб потім ознайомитися з ними. </para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl; &Shift;<keycap
+>Enter</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Стаття</guimenu
+> <guimenuitem
+>Відкрити у зовнішньому навігаторі</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Відкриває</action
+> поточну статтю у зовнішньому переглядачі</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>I</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Стаття</guimenu
+> <guimenuitem
+>Позначити як важливе</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Позначає</action
+> поточну статтю як важливу</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Стаття</guimenu
+> <guimenuitem
+>Позначити як</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Позначити</action
+> поточну статтю як прочитану (<keycombo action="simul"
+>&Ctrl;<keycap
+>E</keycap
+></keycombo
+>), нову (<keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo
+>) або непрочитану (<keycombo action="simul"
+>&Ctrl;<keycap
+>U</keycap
+></keycombo
+>).</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>Del</keycap
+></shortcut
+> <guimenu
+>Стаття</guimenu
+> <guimenuitem
+>Вилучити</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Вилучає</action
+> поточну статтю</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Стаття</guimenu
+> <guimenuitem
+>Відіслати адресу посилання...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Відкрити</action
+> ваш клієнт електронної пошти і долучити посилання до повідомлення, створеного у ньому.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Стаття</guimenu
+> <guimenuitem
+>Відіслати файл...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Відкрити</action
+> ваш клієнт електронної пошти і долучити файл до повідомлення, створеного у ньому. </para
+></listitem>
+</varlistentry>
+<!--FIXME not in kf5?
+<varlistentry>
+<term
+><menuchoice>
+<shortcut
+><keycombo
+action="simul"
+>&Ctrl;<keycap
+>S</keycap
+></keycombo
+></shortcut>
+<guimenu
+>Article</guimenu>
+<guimenuitem
+>Share Article</guimenuitem>
+</menuchoice
+></term>
+<listitem
+><para
+>Use this action you to share news 
+ with your friends using the microblog services identi.ca and twitter.
+</para
+></listitem>
+</varlistentry>
+-->
+</variablelist>
+</sect2>
+
+<sect2>
+<title
+>Меню «Параметри» і «Довідка»</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Параметри</guimenu
+> <guimenuitem
+>Показати швидкий фільтр</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Показує або ховає</action
+> панель швидкого фільтрування <screenshot>
+<screeninfo
+>Швидке фільтрування</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="quick-filter.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Швидке фільтрування</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+
+<para
+>Крім того, у &akregator; передбачено типові для &kde; пункти меню <guimenu
+>Параметри</guimenu
+> і <guimenu
+>Довідка</guimenu
+>. Щоб дізнатися більше, ознайомтеся з розділами щодо <ulink url="help:/fundamentals/menus.html#menus-settings"
+>меню «Параметри»</ulink
+> та <ulink url="help:/fundamentals/menus.html#menus-help"
+>меню «Довідка»</ulink
+> підручника з основ роботи у &kde;. </para>
+
+<para
+>Доступ до багатьох дій, пов’язаних з пунктами головного меню, можна також здійснювати за допомогою контекстних меню списку подач, списку статей та панелі перегляду статей. </para>
+
+</sect2>
+
+</sect1>
+</chapter>
+
+<chapter id="credits">
+
+<title
+>Подяки і ліцензія</title>
+
+<para
+>&akregator; </para>
+<para
+>Авторські права на Akregator належать розробникам програми, 2004–2010 </para>
+
+<para
+>Авторські права на документацію належать Frank Osterfeld <email
+>frank.osterfeld@kdemail.net</email
+>, ©2006 </para>
+
+<para
+>Авторські права на документацію належать &Anne-Marie.Mahfouf; &Anne-Marie.Mahfouf.mail;, ©2006 </para>
+
+<para
+>Переклад українською: Юрій Чорноіван <email
+>yurchor@ukr.net</email
+></para
+> 
+&underFDL; &underGPL; </chapter>
+
+&documentation.index;
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes: nil
+sgml-general-insert-case: lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+-->

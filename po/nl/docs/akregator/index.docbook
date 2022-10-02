@@ -1,0 +1,1917 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Dutch "INCLUDE">
+]>
+
+<book id="akregator" lang="&language;">
+
+<bookinfo id="akregatorinfo">
+<title
+>Het handboek van &akregator;</title>
+
+<authorgroup>
+
+<author
+><firstname
+>Frank</firstname
+> <surname
+>Osterfeld</surname
+> <affiliation
+><address
+><email
+>frank.osterfeld@kdemail.net</email
+>  
+</address
+></affiliation>
+</author>
+<author
+><firstname
+>Anne-Marie</firstname
+> <surname
+>Mahfouf</surname
+> <affiliation
+><address
+>&Anne-Marie.Mahfouf.mail; </address
+></affiliation>
+</author>
+
+&Freek.de.Kruijf; 
+</authorgroup>
+<copyright>
+<year
+>2006</year>
+<holder
+>Frank Osterfeld</holder>
+</copyright>
+<copyright>
+<year
+>2006</year>
+<holder
+>&Anne-Marie.Mahfouf;</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>2021-03-31</date>
+<releaseinfo
+>Applications 21.08</releaseinfo>
+
+<!-- Abstract about this handbook -->
+
+<abstract>
+<para
+>&akregator; is een programma voor het lezen van <acronym
+>RSS</acronym
+> en andere online nieuwsbronnen. </para>
+</abstract>
+
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>Akregator</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Inleiding</title>
+
+<sect1 id="what-is-akregator">
+<title
+>Wat is &akregator;?</title>
+
+<para
+>&akregator; is een &kde;-applicatie voor het lezen van online nieuwsbronnen. Het heeft een krachtig, gebruikersvriendelijk interface voor het lezen van nieuwsbronnen en het beheer ervan.</para>
+
+<para
+>&akregator; is een lichtgewicht en snel programma voor het tonen van nieuwsitems geleverd door nieuwsbronnen, en ondersteunt alle gebruikelijke versies van <acronym
+>RSS</acronym
+> en Atom nieuwsbronnen. Het interface is hetzelfde als die van e-mailprogramma's, dus hopelijk al erg bekend aan de gebruiker. Bruikbare mogelijkheden omvatten zoeken in titels van artikelen, beheer van nieuwsbronnen in mappen en instelling van archiveringsvoorkeuren. Nieuwsbronnen kunnen op eenzelfde manier worden getoond als e-mails. Aan nieuwsbron gerelateerde websites van een nieuwsbron kunnen worden getoond in de in &akregator; ingebedde browser of, naar keuze van de gebruiker, worden geopend in een externe browser.</para>
+</sect1>
+
+<sect1 id="rss-and-atom-feeds">
+<title
+><acronym
+>RSS</acronym
+>- en Atom-nieuwsbronnen</title>
+
+<para
+><acronym
+>RSS</acronym
+> (Really Simple Syndication) is een op &XML; gebaseerd formaat dat wordt gebruikt voor het publiceren van nieuws of artikelen in een machineleesbare vorm. Een <acronym
+>RSS</acronym
+>- of Atom-bestand wordt ook een feed genoemd. Een programma dat gebruikt kan worden om zulke feeds te lezen wordt een feed-lezer of aggregator genoemd, vandaar de titel van de toepassing, &akregator;.</para>
+
+<para
+>&akregator; haalt automatisch nieuwe items op uit de feed en toont ze op een mensvriendelijke manier aan de gebruiker. De gebruiker kan dan tijd besparen met regelmatig bezochte websites, omdat het niet langer nodig is ze handmatig te controleren of er nieuwe informatie beschikbaar is.</para>
+<para
+><acronym
+>RSS</acronym
+> is beschikbaar in verschillende versies die niet compatibel zijn met elkaar (deze situatie wordt veroorzaakt door strijdende bedrijven): <acronym
+>RSS</acronym
+> 0.9, <acronym
+>RSS</acronym
+> 1.0 en <acronym
+>RSS</acronym
+> 2.0. Atom is ook een op &XML; gebaseerde feed-taal die opnieuw ontworpen is om te passen op de behoefte van webloggers en nieuwssites. Atom probeert <acronym
+>RSS</acronym
+>-feeds te vervangen en verwijdert de onzekerheid tengevolge van incompatibiliteiten tussen de verschillende <acronym
+>RSS</acronym
+> versies.</para>
+
+</sect1>
+
+</chapter>
+
+<chapter id="quick-start">
+<title
+>Snel beginnen met &akregator;</title>
+
+<para
+>Deze sectie beschrijft hoe te beginnen met het gebruik van &akregator;. Het verheldert de gebruikersinterface en toont u hoe uw eigen feed aan de lijst toe te voegen. Deze sectie is speciaal interessant als u nog niet bekend met het algemene concept <acronym
+>RSS</acronym
+>/Atom en feed-samenvoegen. </para>
+
+<sect1 id="main-window">
+<title
+>Het hoofdvenster</title>
+<!--part of kontact
+say how to start it -->
+<para
+>Als u voor het eerst begint met &akregator;, ziet u zijn hoofdvenster: <screenshot>
+<screeninfo
+>&akregator; hoofdvenster</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="main-window.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>&akregator; hoofdvenster</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para>
+
+<para
+>Het hoofdvenster bestaat uit de feed-lijst, de artikelenlijst en de artikelweergave. </para>
+<para
+>De lijst met feeds is links. In de boomstructuur vindt u nieuws-feeds die u kunt selecteren. Een nieuws-feed is een verzameling artikelen: bijvoorbeeld, het recente nieuws van een nieuwssite of de nieuwe bijdrage aan een blog. De standaard lijst bevat feeds gerelateerd aan het &kde;-project, maar u kunt natuurlijk uw eigen feeds toevoegen en verwijderen waarin u niet bent geïnteresseerd. </para>
+<para
+>Rechtsboven is de lijst met artikelen. Het bevat alle artikelen van de in de lijst met feeds geselecteerde feed (als deze leeg is, dan moet u eerst de feed ophalen). De lijst toont de koppen van de artikelen en de datum van publicatie. Standaard staan de nieuwste artikelen bovenaan. <screenshot>
+<screeninfo
+>De artikelenlijst</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="main-window2.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>De artikelenlijst voor één feed</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para>
+<para
+>Als u een artikel selecteert, zal het getoond worden in de artikelviewer rechtsonder in het venster. Afhankelijk van de feed, bevat het ofwel alleen een kop, een korte samenvatting of de complete inhoud van het artikel. <screenshot>
+<screeninfo
+>Een artikel lezen van Planet-&kde;</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="main-window4.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Een artikel lezen van Planet-&kde;</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para>
+</sect1>
+
+<sect1 id="add-feed">
+<title
+>Een feed toevoegen</title>
+<para
+>&akregator; biedt u enige standaard feeds gerelateerd aan &kde; - natuurlijk wilt u waarschijnlijk uw eigen feeds toevoegen. Goede kandidaten zijn de nieuwssites die u regelmatig bezoekt.</para>
+
+<itemizedlist>
+<listitem
+><para
+>Ga naar het menu <guimenu
+>Feed</guimenu
+> en kies <guimenuitem
+>Feed toevoegen...</guimenuitem
+> of gebruik de standaard sneltoets (<keycap
+>Ins</keycap
+>). De volgende dialoog verschijnt met een invoervak gelabeld <guilabel
+>Feed-URL:</guilabel
+>. <screenshot>
+<screeninfo
+>Een nieuwe feed toevoegen</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="add-feed.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Een nieuwe feed toevoegen</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para
+></listitem>
+
+<listitem
+><para
+>Voer <userinput
+>planet.ubuntu.com</userinput
+> in of <userinput
+>http://planet.ubuntu.com </userinput
+> in het tekstvak bij <guilabel
+>Feed-URL</guilabel
+> en klik op <guibutton
+>OK</guibutton
+>. </para
+></listitem>
+<listitem
+><para
+>De instellingendialoog voor feeds verschijnt en u kunt de standaard opties wijzigen. Wanneer u tevreden bent met de feed-instellingen, klikt opnieuw op <guibutton
+>OK</guibutton
+>. <screenshot>
+<screeninfo
+>Het dialoogvenster feed-eigenschappen</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="add-feed2.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Het dialoogvenster feed-eigenschappen</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para
+></listitem>
+<listitem
+><para
+>Planet Ubuntu is nu toegevoegd aan uw lijst met feeds. </para
+> </listitem>
+</itemizedlist>
+<para
+>Er zijn vele andere manieren om interessante feeds te vinden en toe te voegen. In &kde; zullen websites die bekeken worden met &konqueror; het herkenbare <quote
+>RSS</quote
+>-pictogram <inlinemediaobject
+> <imageobject
+> <imagedata fileref="feed.png" format="PNG"/> </imageobject
+> </inlinemediaobject
+>rechtsonder bevatten, als een compatibele newsfeed wordt gedetecteerd op de website. Klik links op het pictogram en kies <guimenuitem
+>Feed aan &akregator; toevoegen</guimenuitem
+>: <screenshot
+> <screeninfo
+>Automatisch feeds vinden met &konqueror;</screeninfo
+> <mediaobject
+> <imageobject
+><imagedata fileref="konq2.png" format="PNG"/></imageobject
+> <textobject
+><phrase
+>Automatisch feeds vinden met &konqueror;</phrase
+></textobject
+> </mediaobject
+> </screenshot
+> Op pagina's met dit <quote
+>RSS</quote
+> of dit pictogram<inlinemediaobject
+> <imageobject
+> <imagedata fileref="rss.png" format="PNG"/> </imageobject
+> </inlinemediaobject
+>, klikt u rechts op het pictogram en kiest u in het contextmenu <guimenuitem
+>Koppelingsadres kopiëren</guimenuitem
+>: <screenshot>
+      <screeninfo
+>Automatisch feeds zoeken via &konqueror;</screeninfo>
+      <mediaobject>
+        <imageobject
+><imagedata fileref="konq.png" format="PNG"/></imageobject>
+        <textobject
+><phrase
+>Automatisch feeds zoeken via &konqueror;</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para>
+<para
+>Schakel om naar &akregator;, selecteer <guimenuitem
+>Feed toevoegen...</guimenuitem
+> en de <guilabel
+>Feed-URL</guilabel
+> wordt ingevuld met het koppelingsadres. </para>
+
+<para
+>Alle met deze procedure toegevoegde feeds verschijnen onder map <guilabel
+>Geïmporteerde feeds</guilabel
+> in de lijst met feeds en vanaf daar kunt u uw muis gebruiken om ze naar een andere map te slepen. </para>
+</sect1>
+
+<sect1 id="creating-folder">
+<title
+>Een map aanmaken</title>
+<para
+>Na het toevoegen van uw eigen feeds, wilt u deze misschien op de een of andere manier groeperen, in plaats van ze ongesorteerd te laten. Laten we daarom een map aanmaken voor de Planet Ubuntu-feed die we zojuist hebben toegevoegd:</para>
+<itemizedlist>
+<listitem
+><para
+>Selecteer de bovenliggende map van de nieuwe map. We selecteren bijvoorbeeld <guilabel
+>Alle feeds</guilabel
+>. </para
+></listitem>
+<listitem
+><para
+>Open <menuchoice
+><guimenu
+>Feed</guimenu
+> <guimenuitem
+>Nieuwe map...</guimenuitem
+></menuchoice
+>. Voer <userinput
+>Nieuws</userinput
+> in (of een meer toepasselijke naam voor de categorie van de feed) in de het regelinvoervak en kies <guibutton
+>OK</guibutton
+>. <screenshot>
+<screeninfo
+>De dialoog Nieuwe map</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="add-folder.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>De dialoog Nieuwe map</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para
+> </listitem>
+<listitem
+><para
+>U kunt nu de Planet Ubuntu-feed naar de nieuwe map slepen. <screenshot>
+<screeninfo
+>De map Nieuws in de lijst met feeds</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="add-folder2.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>De map Nieuws in de lijst met feeds</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para
+> </listitem>
+</itemizedlist>
+</sect1>
+
+<sect1 id="browsing-inside">
+<title
+>Bladeren binnen &akregator;</title>
+<para
+>Bij het lezen van feed-artikelen kan het zijn dat u de webpagina wilt lezen die bij het artikel behoort: sommige artikelen bevatten alleen de kop en niet de actuele inhoud. In dat geval is het nodig om de webpagina te bezoeken om het complete artikel te kunnen lezen. Of een artikel kan verwijzen naar een website of u bent een blog aan het lezen en u wilt commentaar geven op deze blog. Voor deze situaties bevat &akregator; een eenvoudige webbrowser. Wanneer u een koppeling volgt in de artikelviewer, opent &akregator; standaard de koppeling in een nieuw tabblad.</para>
+<note
+><para
+>Denk er aan dat de browser in &akregator; niet de bedoeling heeft om uw favoriete webbrowser te vervangen. Het is bedoeld voor het lezen van artikelen, hierop commentaar te geven of snel een koppeling volgen. Het is niet bedoeld om voor webbrowsing in het algemeen. Er ontbreken vele functies die volledige webbrowsers wel bieden.</para
+></note>
+</sect1>
+</chapter>
+
+<chapter id="configuration">
+<title
+>&akregator; instellen</title>
+<para
+>De meeste opties van &akregator; worden genoemd in de instellingendialoog van &akregator;. De instellingendialoog is te vinden in het menu onder <menuchoice
+> <guimenu
+>Instellingen</guimenu
+><guimenuitem
+>&akregator; instellen...</guimenuitem
+> </menuchoice
+></para>
+<sect1 id="general-tab">
+<title
+>Algemeen</title>
+<para
+>Het tabblad Algemeen bevat de basis en niet in een categorie onder te brengen opties van &akregator;.</para>
+<screenshot>
+<screeninfo
+>Het tabblad Algemeen</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="general-tab.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Het tabblad Algemeen</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Globaal</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Systeemvakpictogram tonen</guilabel
+></term>
+<listitem
+><para
+>Het &akregator; pictogram in het systeemvak tonen.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Ongelezen artikelen in takenbalk tonen</guilabel
+></term>
+<listitem
+><para
+>Definieert of het aantal ongelezen artikelen getoond zou moeten worden in het item in het systeemvak.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Feeds zonder ongelezen artikelen verbergen</guilabel
+></term>
+<listitem
+><para
+>Indien geactiveerd, verbergt feeds zonder ongelezen artikelen.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Feeds in positie vergrendelen</guilabel
+></term>
+<listitem
+><para
+>Indien geactiveerd, voorkomt dat feeds verplaatst worden in de lijst, alle feeds zijn vergrendeld waar ze zijn.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Mappen met ongelezen artikelen automatisch uitklappen</guilabel
+></term>
+<listitem
+><para
+>Indien geactiveerd, mappen met ongelezen artikelen worden automatisch uitgevouwen.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Meldingen voor alle feeds inschakelen</guilabel
+></term>
+<listitem
+><para
+>Stel globale meldingen in voor alle feeds. Deze instelling zal boven de individuele meldingen gaan van elke feed. Wanneer ingeschakeld, zal &akregator; aan u alle nieuwe artikelen ophalen van elke feed. Als u alleen meldingen voor sommige (maar niet alle) feeds wilt inschakelen, laat deze optie dan uitgeschakeld en schakel meldingen in voor elke specifieke feed met de individuele eigenschappen van de feed in de dialoog.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Feeds met tijdsinterval ophalen</guilabel
+></term>
+<listitem
+><para
+>Als dit niet is geactiveerd, dan is intervalcontrole uitgeschakeld. Als dit echter is geactiveerd, dan kunt u in <guilabel
+>Feeds ophalen elke:</guilabel
+> het interval instellen dat &akregator; automatisch op nieuwe feed items controleren. Merk op dat artikelen ophalen verkeer genereert en kostbaar kan zijn voor de provider die host van de feed is die u leest. Sommige sites kunnen zelfs verbindingen vanaf uw computer blokkeren als u probeert om de feed te vaak op te halen. In het algemeen is 30 minuten een goede keuze. </para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Feeds ophalen elke:</guilabel
+></term>
+<listitem
+><para
+>Dit is ingeschakeld wanneer <guilabel
+>Met interval ophalen</guilabel
+> is geactiveerd. U kunt een tijdinterval specificeren, waarna de feeds gecontroleerd worden op nieuwe artikelen. De standaard is 30 minuten.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Opstarten</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Alle feeds als gelezen markeren bij opstarten</guilabel
+></term>
+<listitem
+><para
+>When enabled, &akregator; marks all articles as read when started.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Alle feeds ophalen bij opstarten</guilabel
+></term>
+<listitem
+><para
+>Indien ingeschakeld zal &akregator; alle feeds direct na de start ophalen.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Netwerk</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Browsercache gebruiken (minder netwerkverkeer)</guilabel
+></term>
+<listitem
+><para
+>Indien ingeschakeld zullen de &kde;-brede browsercacheinstellingen gebruikt worden bij het bijwerken van feeds. U kunt de &kde;-brede browsercache in de instellingendialoog van &konqueror; configureren. </para>
+<note
+><para
+>U zou deze optie, indien mogelijk, ingeschakeld moeten laten. Uitschakelen van deze optie leidt tot meer netwerkverkeer. Het verkeer veroorzaakt door aggregator die geen caching gebruiken, vergroot de kosten voor providers en kan het aantal te bieden feeds in de toekomst verminderen.</para
+></note>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+
+<sect1 id="adblock-tab">
+<title
+>URL-interceptor</title>
+<para
+>&akregator; kan ingesteld worden om afbeeldingen of frames van webpagina's te vervangen of te verwijderen, die met een reeks filters overeenkomen.</para>
+
+<screenshot>
+<screeninfo
+>Het tabblad URL Interceptor</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="interceptor-tab.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Het tabblad URL Interceptor</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+
+<para
+>Voor een gedetailleerde beschrijving van deze functie zie <ulink url="help:/kcontrol/khtml-adblock"
+>AdBlock-filters</ulink
+>. </para>
+</sect1>
+
+<sect1 id="archive-tab">
+<title
+>Archief</title>
+<para
+>Artikelen archiveren betekent het opslaan van koppelingen naar artikelen. Hier kunt u het aantal opgeslagen artikelen limiteren en de methode voor archivering. Deze instellingen zijn globale instellingen, die door alle feeds in &akregator; worden gebruikt. Als u een eigen instelling per feed wilt, dan kunt u die doen in de eigenschappendialoog in het tabblad Archief.</para>
+<screenshot>
+<screeninfo
+>Het tabblad Archief</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="archive-tab.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Het tabblad Archief</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Standaard archiefinstellingen</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Alle artikelen behouden</guilabel
+></term>
+<listitem
+><para
+>Alle artikelen worden voor altijd bewaard.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Grootte van feedarchief beperken tot:</guilabel
+></term
+> 
+<listitem
+><para
+>Als het aantal artikelen de gekozen limiet te boven gaat worden de oudste artikelen verwijderd. Merk op dat gemarkeerde artikelen genegeerd worden bij het aantal artikelen: als uw limiet 500 is en u hebt 510 niet gemarkeerde en 50 gemarkeerde artikelen, dan zal &akregator; de 50 gemarkeerden negeren en alleen de 10 oudste niet gemarkeerde artikelen verwijderen. Dus in dit voorbeeld blijven er 550 bewaard.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Artikelen verwijderen die ouder zijn dan:</guilabel
+></term>
+<listitem
+><para
+>Artikelen ouder dan het gespecificeerde aantal dagen worden verwijderd uit het archief, tenzij ze met de vlag bewaren zijn gemarkeerd. &akregator; controleert op vervallen artikelen bij opstarten en daarna één maal per uur, vervallen kan dus vertraagd zijn.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Archiveren uitschakelen</guilabel
+></term>
+<listitem
+><para
+>Er worden geen artikelen opgeslagen - alle artikelen worden verwijderd bij het beëindigen van &akregator;.</para
+> </listitem>
+</varlistentry>
+</variablelist>
+
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Belangrijke artikelen niet laten verlopen</guilabel
+></term>
+<listitem
+><para
+>Rechts klikken op een artikel opent een contextmenu waar u dit artikel als Belangrijk kunt markeren. Artikelen gemarkeerd als Belangrijk zullen niet vervallen, ze zullen worden bewaard.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+<sect1 id="appearance-tab">
+<title
+>Uiterlijk</title>
+<para
+>Op deze pagina kunt u het uiterlijk van de artikelviewer instellen en de tabbladen van de browser. U kunt de kleuren, grootte en lettertype van te gebruiken letters specificeren. </para>
+<screenshot>
+<screeninfo
+>Het tabblad Uiterlijk</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="appearance-tab.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Het tabblad Uiterlijk</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Artikellijstkleuren</guilabel
+></term>
+<listitem
+><para
+>Door <guilabel
+>Eigen kleuren gebruiken</guilabel
+> te selecteren bent u in staat om uw eigen kleuren voor <guilabel
+>Ongelezen artikelen</guilabel
+> en <guilabel
+>Nieuwe artikelen</guilabel
+> te selecteren</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Tekengrootte</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Minimum tekengrootte</guilabel
+></term>
+<listitem
+><para
+>Stel de minimale grootte voor de viewer voor artikelen in</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Middelste tekengrootte:</guilabel
+></term>
+<listitem
+><para
+>Stel de standaard grootte voor het lettertype in de viewer voor artikelen in</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Lettertypen</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Standaard lettertype:</guilabel
+></term>
+<listitem
+><para
+>In de artikelviewer wordt de inhoud weergegeven met het standaard lettertype in Middel lettertypegrootte. Als u het standaard lettertype wijzigt, zal de wijziging worden toegepast in de artikelviewer.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Lettertype met vaste breedte:</guilabel
+></term>
+<listitem
+><para
+>Als het artikel een vaste-breedte lettertype gebruikt in de artikelviewer, dan zal de inhoud worden weergegeven met dit lettertype in middel grootte. </para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Schreef-lettertype:</guilabel
+></term>
+<listitem
+><para
+>Als het artikel een Serif lettertype gebruikt, zullen zij worden weergegeven met het soort dat u hiervoor koos in midden grootte.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Schreefloos-lettertype:</guilabel
+></term>
+<listitem
+><para
+>Als het artikel een Sans-Serif lettertype gebruikt, zullen zij worden weergegeven met het soort dat u hiervoor koos in midden grootte.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Koppelingen onderstrepen</guilabel
+></term>
+<listitem
+><para
+>Activeer dit als u wilt dat koppelingen standaard onderstreept worden.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+<sect1 id="browser-tab">
+<title
+>Bladerprogramma</title>
+<para
+>Dit tabblad stelt u in staat het gedrag van de interne browsertabbladen aan te passen.</para>
+<screenshot>
+<screeninfo
+>Het tabblad Browser</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="browser-tab.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Het tabblad Browser</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Linker muisklik</guilabel
+></term>
+<listitem
+><para
+>U kunt drie acties kiezen voor de actie Linker muisklik: <guilabel
+>Openen in tabblad</guilabel
+> (open de koppeling in een tabblad en geef dit tabblad focus), <guilabel
+>Openen in achtergrond tabblad</guilabel
+> (open de koppeling in een tabblad maar de focus blijft in het huidige tabblad) en <guilabel
+>Openen in externe browser</guilabel
+> om een artikel in een nieuw venster in uw standaard browser te openen.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Middelste muisklik</guilabel
+></term>
+<listitem
+><para
+>Zoals boven, u kunt een van de drie acties instellen voor de middelste muisklik.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Externe browser</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Standaard webbrowser gebruiken</guilabel
+></term>
+<listitem
+><para
+>Als dit is geactiveerd zal &akregator; de webbrowser gebruiken die u hebt ingesteld in &systemsettings;. Het kan de &kde; standaard, &konqueror; zijn of een andere browser afhankelijk van wat u hier instelt.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Dit commando gebruiken:</guilabel
+></term>
+<listitem
+><para
+>U kunt een andere webbrowser voor &akregator; gebruiken anders dan uw &kde; standaard. Als u dat wilt, activeer dan deze optie en voer het commando voor de browser in, aangenomen dat deze in uw $<envar
+>PATH</envar
+> aanwezig is.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Tabbladen</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Altijd de tabbladbalk weergeven</guilabel
+></term>
+<listitem
+><para
+>Als deze optie is geactiveerd zal altijd het tabblad worden getoond, zelfs wanneer slechts één tabblad open is. Dit biedt u het aanmaken van tabbladen direct vanuit de tabbladbalk. Anders zal de tabbladbalk alleen getoond worden wanneer meerdere tabbladen open zijn.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Sluitknop op elk tabblad tonen</guilabel
+></term>
+<listitem
+><para
+>Als deze optie is geactiveerd zal de sluitknop verschijnen wanneer u uw muis over de linkerkant van de tabtitel beweegt zodat u gemakkelijker tabbladen kunt sluiten.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Koppelingen openen in nieuw tabblad in plaats van nieuw venster</guilabel
+></term>
+<listitem
+><para
+>Indien geactiveerd, &akregator; zal een koppeling openen, die normaal in een nieuw venster zou worden geopend (externe browser), in plaats daarvan in een nieuw tabblad.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Beveiliging</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>URL's verifiëren met Safe Browsing API van Google</guilabel
+></term>
+<listitem
+><para
+>Als deze optie is geactiveerd, zal API <ulink url="https://safebrowsing.google.com/"
+>Google Safe Browsing</ulink
+> gebruikt worden om &URL;'s te controleren tegen de constant bijgewerkte lijsten van Google met onveilige webhulpbronnen. Voorbeelden van onveilige webhulpbronnen zijn social engineering sites (phishing en bedrieglijke sites) en sites die malware of ongewenste software bevatten.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>JavaScript activeren</guilabel
+></term>
+<listitem
+><para
+>Indien geactiveerd, &akregator; zal &javascript; gebruiken bij verwerken van webhulpbronnen. &javascript; gebruik heeft verschillende <ulink url="https://en.wikipedia.org/wiki/JavaScript#Security"
+>implicaties voor beveiliging</ulink
+>.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Diversen</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Toegangsleutel ingeschakeld</guilabel
+></term>
+<listitem
+><para
+>Dit is een optie voor toegankelijkheid. Indien geactiveerd, &akregator; zal de eigenschap accessKey van de webpagina verwerken, die de sneltoets definieert gebruikt om naar een gegeven element te springen.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+<sect1 id="advanced-tab">
+<title
+>Geavanceerd</title>
+<para
+>Het tabblad Geavanceerd laat u meer geavanceerde opties instellen. Als u niet zeker bent van hun effect, dan kunt u deze de standaard waarden laten.</para>
+<screenshot>
+<screeninfo
+>Het tabblad Geavanceerd</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="advanced-tab.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Het tabblad Geavanceerd</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Archief</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Archiefbackend:</guilabel
+></term>
+<listitem
+><para
+>&akregator; gebruikt nu alleen de Metakit-database. </para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Artikellijst</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Geselecteerd artikel als gelezen markeren na</guilabel
+></term>
+<listitem
+><para
+>Standaard is 0 seconden, wat betekent dat zodra u op een artikel klikt het wordt gemarkeerd als gelezen. U kunt er voor kiezen om een artikel als gelezen after te markeren na een gespecificeerd aantal seconden.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Zoekbalk resetten tijdens het veranderen van feed</guilabel
+></term>
+<listitem
+><para
+>Dit zal de zoekbalk wissen wanneer u de feed wijzigt.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+</chapter>
+
+<chapter id="commands">
+<title
+>Overzicht van de opdrachten</title>
+
+<sect1 id="akregator-mainwindow">
+<title
+>Menu's en sneltoetsen</title>
+
+<sect2>
+<title
+>Het menu Bestand</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Bestand</guimenu
+> <guimenuitem
+>Feeds importeren</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Open</action
+> de dialoog om feeds te importeren om <quote
+>OPML-outlines</quote
+> te laden met inschrijvingen voor feeds. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Bestand</guimenu
+> <guimenuitem
+>Feeds exporteren</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Open</action
+> het opslaan als dialoog en exporteer uw feeds en mapstructuur als <filename class="extension"
+>.opml</filename
+> bestanden.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Bestand</guimenu
+><guimenuitem
+>Afsluiten</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Afsluiten</action
+> &akregator;</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2>
+<title
+>Het menu Bewerken</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycap
+>F2</keycap
+> </shortcut
+> <guimenu
+>Bewerken</guimenu
+> <guimenuitem
+>Feed bewerken...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Bewerk</action
+> huidige feed om zijn eigenschappen in de dialoog Eigenschappen te wijzigen</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;<keycap
+>Del</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Bewerken</guimenu
+> <guimenuitem
+>Feed verwijderen</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Verwijder</action
+> huidige feed</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2>
+<title
+>Het menu Beeld</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>1</keycap
+></keycombo
+></shortcut
+> <guimenu
+>View</guimenu
+><guimenuitem
+>Normaal beeld</guimenuitem
+></menuchoice
+>, <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>2</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Beeld</guimenu
+><guimenuitem
+>Breedbeeld weergave</guimenuitem
+> </menuchoice
+> en <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>3</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Beeld</guimenu
+><guimenuitem
+>Gecombineerde weergave</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Kies</action
+> de weergavemodus van &akregator;</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>+</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Beeld</guimenu
+><guimenuitem
+>Lettertype vergroten</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Vergroot</action
+> de grootte van het lettertype in de viewer voor artikelen</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>-</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Beeld</guimenu
+> <guimenuitem
+>Lettertype verkleinen</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Verklein</action
+> de grootte van het lettertype in de viewer voor artikelen</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2>
+<title
+>Het menu Ga naar</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>Links</keycap
+></shortcut
+> <guimenu
+>Ga naar</guimenu
+> <guimenuitem
+>Vorige artikel</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Ga naar</action
+> het vorige artikel in de lijst met artikel</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>/</keycap
+></shortcut
+> <guimenu
+>Ga naar</guimenu
+> <guimenuitem
+>Vorige ongelezen artikel</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Ga naar</action
+> het vorige ongelezen artikel in de lijst met artikelen</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>Rechts</keycap
+></shortcut
+> <guimenu
+>Ga naar</guimenu
+> <guimenuitem
+>Volgende artikel</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Ga naar</action
+> het volgende artikel in de lijst met artikelen</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>+</keycap
+></shortcut
+> <guimenu
+>Ga naar</guimenu
+> <guimenuitem
+>Volgende ongelezen artikel</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Ga naar</action
+> het volgende ongelezen artikel in de lijst met artikelen</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>P</keycap
+></shortcut
+> <guimenu
+>Ga naar</guimenu
+> <guimenuitem
+>Vorige feed</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Ga naar</action
+> de vorige feed in de lijst met feeds</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Alt;<keycap
+>-</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Ga naar</guimenu
+> <guimenuitem
+>Vorige ongelezen feed</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Ga naar</action
+> de vorige ongelezen feed in de lijst met feeds</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>N</keycap
+></shortcut
+> <guimenu
+>Ga naar</guimenu
+> <guimenuitem
+>Volgende feed</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Ga naar</action
+> de volgende feed in de lijst met feeds</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Alt;<keycap
+>+</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Ga naar</guimenu
+> <guimenuitem
+>Volgende ongelezen feed</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Ga naar</action
+> de volgende ongelezen feed in de lijst met feeds</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2>
+<title
+>Het menu Feed</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>Ins</keycap
+></shortcut
+> <guimenu
+>Feed</guimenu
+> <guimenuitem
+>Feed toevoegen...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>De dialoog voor Feed toevoegen <action
+>Openen</action
+></para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Shift;<keycap
+>Ins</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Feed</guimenu
+> <guimenuitem
+>Nieuwe map...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>De dialoog voor Map toevoegen <action
+>Openen</action
+></para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>R</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Feed</guimenu
+> <guimenuitem
+>Feed als gelezen markeren</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>De huidige feed als gelezen <action
+>Markeren</action
+></para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl; &Shift;<keycap
+>R</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Feed</guimenu
+> <guimenuitem
+>Alle feeds als gelezen markeren</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Alle feeds als gelezen <action
+>Markeren</action
+></para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>F5</keycap
+></shortcut
+> <guimenu
+>Feed</guimenu
+> <guimenuitem
+>Feed ophalen</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>De huidige feed <action
+>Ophalen</action
+></para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>L</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Feed</guimenu
+> <guimenuitem
+>Alle feeds ophalen</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Alle feeds <action
+>ophalen</action
+></para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>Esc</keycap
+></shortcut
+> <guimenu
+>Feed</guimenu
+> <guimenuitem
+>Ophalen annuleren</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Laat &akregator; <action
+>Stoppen</action
+> met ophalen van feeds</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2>
+<title
+>Het menu Artikel</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Shift;<keycap
+>Return</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Artikel</guimenu
+> <guimenuitem
+>Openen in tabblad</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Het huidige artikel in een tabblad in &akregator; <action
+>Openen</action
+>;</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>Return</keycap
+></shortcut
+> <guimenu
+>Artikel</guimenu
+> <guimenuitem
+>In achtergrond tabblad openen</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Laad</action
+> het huidige artikel in een nieuw tabblad, maar activeer dat tabblad niet automatisch. Het is handig om door een feed te bladeren, alle interessante artikelen in achtergrond tabbladen te openen en later ze allemaal te lezen. </para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl; &Shift;<keycap
+>Return</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Artikel</guimenu
+> <guimenuitem
+>Openen in externe browser</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Het huidige artikel in een externe browser <action
+>Openen</action
+></para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>I</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Artikel</guimenu
+> <guimenuitem
+>Markeren als belangrijk</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Het huidige artikel als belangrijk <action
+>Markeren</action
+></para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Artikel</guimenu
+> <guimenuitem
+>Markeren als</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Markeer</action
+> het huidige artikel als Gelezen <keycombo action="simul"
+>&Ctrl;<keycap
+>E</keycap
+></keycombo
+>, Nieuw <keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo
+> of Ongelezen <keycombo action="simul"
+>&Ctrl;<keycap
+>U</keycap
+></keycombo
+></para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>Del</keycap
+></shortcut
+> <guimenu
+>Artikel</guimenu
+> <guimenuitem
+>Verwijderen</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Het huidige artikel <action
+>Verwijderen</action
+></para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Artikel</guimenu
+> <guimenuitem
+>Koppelingsadres verzenden...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Uw e-mailclient <action
+>openen</action
+> en de koppeling aan het e-mailbericht hangen.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Artikel</guimenu
+> <guimenuitem
+>Bestand verzenden...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Uw e-mailclient <action
+>openen</action
+> en het bestand als bijlage aan het e-mailbericht toevoegen. </para
+></listitem>
+</varlistentry>
+<!--FIXME not in kf5?
+<varlistentry>
+<term
+><menuchoice>
+<shortcut
+><keycombo
+action="simul"
+>&Ctrl;<keycap
+>S</keycap
+></keycombo
+></shortcut>
+<guimenu
+>Article</guimenu>
+<guimenuitem
+>Share Article</guimenuitem>
+</menuchoice
+></term>
+<listitem
+><para
+>Use this action you to share news 
+ with your friends using the microblog services identi.ca and twitter.
+</para
+></listitem>
+</varlistentry>
+-->
+</variablelist>
+</sect2>
+
+<sect2>
+<title
+>De menu's Instellingen en Help</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Instellingen</guimenu
+> <guimenuitem
+>Snelfilter tonen</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Het snelfilter <action
+>tonen of verbergen</action
+> <screenshot>
+<screeninfo
+>Het snelfilter</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="quick-filter.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Het snelfilter</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+
+<para
+>Bovendien heeft &akregator; de gezamenlijke menu-items van &kde; <guimenu
+>Instellingen</guimenu
+> en <guimenu
+>Help</guimenu
+>, voor meer informatie lees de secties over de <ulink url="help:/fundamentals/menus.html#menus-settings"
+>Menu-instellingen</ulink
+> en <ulink url="help:/fundamentals/menus.html#menus-help"
+>Menu Help</ulink
+> van &kde;-fundamentals. </para>
+
+<para
+>Veel geboden acties in het menu zijn ook beschikbaar in de contextmenu's van de feed-lijst, de artikelenlijst en de artikelweergave. </para>
+
+</sect2>
+
+</sect1>
+</chapter>
+
+<chapter id="credits">
+
+<title
+>Dankbetuiging en licentie</title>
+
+<para
+>&akregator; </para>
+<para
+>Programma copyright 2004-2010 auteurs van Akregator </para>
+
+<para
+>Documentatie copyright 2006 Frank Osterfeld <email
+>frank.osterfeld@kdemail.net</email
+> </para>
+
+<para
+>Documentatie copyright 2006 &Anne-Marie.Mahfouf; &Anne-Marie.Mahfouf.mail; </para>
+
+&meld.fouten;&vertaling.freek; &underFDL; &underGPL; </chapter>
+
+&documentation.index;
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes: nil
+sgml-general-insert-case: lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+-->

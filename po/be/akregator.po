@@ -1,0 +1,3295 @@
+# translation of akregator.po to Belarusian
+# translation of akregator.po to
+# пераклад akregator.po на Belarusian
+# gthfrkfl akregator.po на Belarusian
+#
+# Symbol <symbol@akeeri.tk>, 2006.
+# Dorofey Proleskovskiy <symbol@akeeri.tk>, 2006.
+# Darafei Praliaskouski <symbol@akeeri.tk>, 2006.
+# Siarhei Liantsevich <serzh.by@gmail.com>, 2007.
+# Komяpa <symbol@me.by>, 2007.
+# Darafei Praliaskouski <komzpa@licei2.com>, 2007.
+# Darafei Praliaskouski <symbol@me.by>, 2007.
+# Darafei Praliaskouski <komzpa@gmail.com>, 2008.
+msgid ""
+msgstr ""
+"Project-Id-Version: akregator\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-09-30 00:45+0000\n"
+"PO-Revision-Date: 2008-02-11 23:19+0200\n"
+"Last-Translator: Darafei Praliaskouski <komzpa@gmail.com>\n"
+"Language-Team: Belarusian <i18n@mova.org>\n"
+"Language: be\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KAider 0.1\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || n%10>=5 && n%10<=9 || n"
+"%100>=11 && n%100<=14 ? 2 : 3);\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Дарафей Праляскоўскі"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "komzpa@licei2.com"
+
+#: src/about/introduction_akregator.html:18
+msgid ""
+"Feed readers provide a convenient way to browse different kinds of content, "
+"including news, blogs, and other content from online sites. Instead of "
+"checking all your favorite web sites manually for updates, Akregator "
+"collects the content for you."
+msgstr ""
+
+#: src/about/introduction_akregator.html:19
+msgid ""
+"For more information about using Akregator, check the <a href='https://"
+"kontact.kde.org/components/akregator/'>Akregator website</a>. If you do not "
+"want to see this page anymore, <a href='config:/disable_introduction'>click "
+"here</a>."
+msgstr ""
+
+#: src/about/introduction_akregator.html:20
+msgid "We hope that you will enjoy Akregator."
+msgstr ""
+
+#: src/about/introduction_akregator.html:21
+msgid "Thank you, The Akregator Team"
+msgstr ""
+
+#: src/formatter/html/5.2/combinedview.html:71
+#, fuzzy
+#| msgid "&Mark Feed as Read"
+msgid "Mark as Read"
+msgstr "&Памеціць стужку прачытанай"
+
+#: src/formatter/html/5.2/combinedview.html:74
+#, fuzzy
+#| msgid "&Mark Articles as Read"
+msgid "Mark as Unread"
+msgstr "&Памеціць артыкулы прачытанымі"
+
+#: src/formatter/html/5.2/combinedview.html:78
+#, fuzzy
+#| msgid "Remove &Important Mark"
+msgid "Remove Important Status"
+msgstr "&зняць паметку \"важны\""
+
+#: src/formatter/html/5.2/combinedview.html:80
+#, fuzzy
+#| msgid "&Mark as Important"
+msgid "Mark as Important"
+msgstr "&Памеціць як \"важны\""
+
+#: src/formatter/html/5.2/combinedview.html:82
+#, fuzzy
+#| msgid "Open Link in External &Browser"
+msgid "Open Link in External Browser"
+msgstr "Адкрыць спасылку ў знешнім браўзэры"
+
+#: src/formatter/html/5.2/combinedview.html:83
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:110
+#, fuzzy, kde-format
+#| msgid "Open in Background Tab"
+msgid "Open In Background Tab"
+msgstr "Адкрыць у фонавай картцы"
+
+#: src/formatter/html/5.2/combinedview.html:84
+#, fuzzy
+#| msgid "Send &Link Address..."
+msgid "Send File Address"
+msgstr "Даслаць &адрас спасылкі..."
+
+#: src/formatter/html/5.2/combinedview.html:85
+#, fuzzy
+#| msgid "Send &Link Address..."
+msgid "Send Link Address"
+msgstr "Даслаць &адрас спасылкі..."
+
+#: src/formatter/html/5.2/combinedview.html:86 src/mainwidget.cpp:1063
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:96
+#, kde-format
+msgid "Delete Article"
+msgstr "Выдаліць артыкул"
+
+#: src/formatter/html/5.2/normalview.html:51
+msgid ""
+"<b>Note:</b> For security reasons, external reference is blocked (See "
+"configure dialog)."
+msgstr ""
+
+#: configuration/akregator_config_advanced.cpp:30
+#, kde-format
+msgid "Advanced Feed Reader Settings"
+msgstr ""
+
+#: configuration/akregator_config_advanced.cpp:34
+#: configuration/akregator_config_appearance.cpp:49
+#: configuration/akregator_config_archive.cpp:47
+#: configuration/akregator_config_browser.cpp:39
+#: configuration/akregator_config_general.cpp:42
+#, fuzzy, kde-format
+#| msgid "Frank Osterfeld"
+msgid "(c), 2004 - 2008 Frank Osterfeld"
+msgstr "Франк Остэрфельд"
+
+#: configuration/akregator_config_advanced.cpp:36
+#: configuration/akregator_config_appearance.cpp:51
+#: configuration/akregator_config_archive.cpp:49
+#: configuration/akregator_config_browser.cpp:41
+#: configuration/akregator_config_general.cpp:44 src/aboutdata.cpp:28
+#, kde-format
+msgid "Frank Osterfeld"
+msgstr "Франк Остэрфельд"
+
+#: configuration/akregator_config_appearance.cpp:45
+#, kde-format
+msgid "Configure Feed Reader Appearance"
+msgstr ""
+
+#: configuration/akregator_config_archive.cpp:33
+#, fuzzy, kde-format
+#| msgid "1 article"
+msgctxt "Limit feed archive size to:"
+msgid " article"
+msgid_plural " articles"
+msgstr[0] "1 артыкул"
+msgstr[1] "1 артыкул"
+msgstr[2] "1 артыкул"
+
+#: configuration/akregator_config_archive.cpp:34
+#, fuzzy, kde-format
+#| msgid "1 day"
+msgctxt "Delete articles older than:"
+msgid " day"
+msgid_plural " days"
+msgstr[0] "1 дзень"
+msgstr[1] "1 дзень"
+msgstr[2] "1 дзень"
+
+#: configuration/akregator_config_archive.cpp:43
+#, kde-format
+msgid "Configure Feed Reader Archive"
+msgstr ""
+
+#: configuration/akregator_config_browser.cpp:35
+#, kde-format
+msgid "Configure Feed Reader Browser"
+msgstr ""
+
+#: configuration/akregator_config_general.cpp:33
+#, fuzzy, kde-format
+#| msgid "1 minute"
+msgid " minute"
+msgid_plural " minutes"
+msgstr[0] "1 хвіліна"
+msgstr[1] "1 хвіліна"
+msgstr[2] "1 хвіліна"
+
+#: configuration/akregator_config_general.cpp:38
+#, fuzzy, kde-format
+#| msgid "Concurrent Fetches"
+msgid "Configure Feeds"
+msgstr "Паралельныя загрузкі"
+
+#: configuration/akregator_config_plugins.cpp:27
+#: configuration/akregator_config_security.cpp:29
+#, fuzzy, kde-format
+#| msgid "Concurrent Fetches"
+msgid "Configure Plugins"
+msgstr "Паралельныя загрузкі"
+
+#: configuration/akregator_config_plugins.cpp:31
+#, kde-format
+msgid "(c), 2016-2021 Laurent Montel"
+msgstr ""
+
+#: configuration/akregator_config_plugins.cpp:33
+#: configuration/akregator_config_security.cpp:35
+#: configuration/akregator_config_userfeedback.cpp:34 src/aboutdata.cpp:27
+#, kde-format
+msgid "Laurent Montel"
+msgstr ""
+
+#: configuration/akregator_config_security.cpp:33
+#, kde-format
+msgid "(c), 2021 Laurent Montel"
+msgstr ""
+
+#: configuration/akregator_config_userfeedback.cpp:28
+#, fuzzy, kde-format
+#| msgid "Concurrent Fetches"
+msgid "Configure User Feedback"
+msgstr "Паралельныя загрузкі"
+
+#: configuration/akregator_config_userfeedback.cpp:32
+#, kde-format
+msgid "(c), 2020-2021 Laurent Montel"
+msgstr ""
+
+#: configuration/akregatorconfigurepluginlistwidget.cpp:51
+#, fuzzy, kde-format
+#| msgid "Concurrent Fetches"
+msgid "Webengine Plugins"
+msgstr "Паралельныя загрузкі"
+
+#: configuration/settings_advanced.cpp:27
+#, fuzzy, kde-format
+#| msgid " sec"
+msgctxt "Mark selected article read after"
+msgid " second"
+msgid_plural " seconds"
+msgstr[0] " сек"
+msgstr[1] " сек"
+msgstr[2] " сек"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#: configuration/ui/settings_advancedbase.ui:30
+#, kde-format
+msgid "Article List"
+msgstr "Спіс артыкулаў"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_UseMarkReadDelay)
+#: configuration/ui/settings_advancedbase.ui:38
+#, kde-format
+msgid "Mar&k selected article read after"
+msgstr "Адзначыць вылучаны артыкул як прачытаны праз"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_ResetQuickFilterOnNodeChange)
+#: configuration/ui/settings_advancedbase.ui:73
+#, kde-format
+msgid "Reset search bar when changing feeds"
+msgstr ""
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_3)
+#: configuration/ui/settings_appearance.ui:30
+#, kde-format
+msgid "Article List Colors"
+msgstr "Колеры спісу артыкулаў"
+
+#. i18n: ectx: property (text), widget (QLabel, lbl_unreadArticles)
+#: configuration/ui/settings_appearance.ui:53
+#, fuzzy, kde-format
+#| msgid "Unread articles"
+msgid "Unread articles:"
+msgstr "Непрачытаныя артыкулы"
+
+#. i18n: ectx: property (text), widget (QLabel, lbl_newArticles)
+#: configuration/ui/settings_appearance.ui:76
+#, fuzzy, kde-format
+#| msgid "New articles"
+msgid "New articles:"
+msgstr "Новыя артыкулы"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_UseCustomColors)
+#: configuration/ui/settings_appearance.ui:98
+#, kde-format
+msgid "Use custom colors"
+msgstr "Выкарыстаць свае колеры"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
+#: configuration/ui/settings_appearance.ui:121
+#, kde-format
+msgid "Font Size"
+msgstr "Памер шрыфта"
+
+#. i18n: ectx: property (text), widget (QLabel, lbl_MinimumFontSize)
+#: configuration/ui/settings_appearance.ui:127
+#, kde-format
+msgid "Minimum font size:"
+msgstr "Мінімальны памер шрыфта:"
+
+#. i18n: ectx: property (text), widget (QLabel, lbl_MediumFontSize)
+#: configuration/ui/settings_appearance.ui:176
+#, kde-format
+msgid "Medium font size:"
+msgstr "Сярэдні памер шрыфта:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#: configuration/ui/settings_appearance.ui:228
+#, kde-format
+msgid "Fonts"
+msgstr "Шрыфты"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel1)
+#: configuration/ui/settings_appearance.ui:234
+#, kde-format
+msgid "Standard font:"
+msgstr "Звычайны шрыфт:"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel2_2)
+#: configuration/ui/settings_appearance.ui:244
+#, kde-format
+msgid "Fixed font:"
+msgstr "Монашырынны шрыфт:"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel3)
+#: configuration/ui/settings_appearance.ui:254
+#, kde-format
+msgid "Serif font:"
+msgstr "Шрыфт з засечкамі:"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel4)
+#: configuration/ui/settings_appearance.ui:264
+#, kde-format
+msgid "Sans serif font:"
+msgstr "Шрыфт без засечак:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#: configuration/ui/settings_archive.ui:30
+#, kde-format
+msgid "Default Archive Settings"
+msgstr "Налады захоўвання па змаўчанні"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rb_DisableArchiving)
+#: configuration/ui/settings_archive.ui:36
+#, fuzzy, kde-format
+#| msgid "Disable archiving"
+msgid "Disa&ble archiving"
+msgstr "Адключыць архівірванне"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rb_KeepAllArticles)
+#. i18n: ectx: property (text), widget (QRadioButton, rb_keepAllArticles)
+#: configuration/ui/settings_archive.ui:43
+#: src/ui/feedpropertieswidgetbase.ui:332
+#, kde-format
+msgid "&Keep all articles"
+msgstr "&Захоўваць усе артыкулы"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rb_LimitArticleNumber)
+#: configuration/ui/settings_archive.ui:64
+#, fuzzy, kde-format
+#| msgid "Limit feed archive size to:"
+msgid "Limit feed archi&ve size to:"
+msgstr "Колькасць захоўваемых артыкулаў:"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rb_LimitArticleAge)
+#: configuration/ui/settings_archive.ui:100
+#, kde-format
+msgid "Delete articles older than: "
+msgstr "Выдаляць артыкулы праз: "
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_DoNotExpireImportantArticles)
+#: configuration/ui/settings_archive.ui:138
+#, kde-format
+msgid "Do not expire important articles"
+msgstr "Не адзначаць важныя артыкулы як састарэлыя"
+
+#. i18n: ectx: property (text), widget (QLabel, LMBlabel)
+#: configuration/ui/settings_browser.ui:20
+#, kde-format
+msgid "Left mouse click:"
+msgstr "Левая кнопка мышы:"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, kcfg_LMBBehaviour)
+#. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
+#: configuration/ui/settings_browser.ui:28
+#: configuration/ui/settings_browser.ui:54
+#: src/actions/actionmanagerimpl.cpp:323
+#, kde-format
+msgid "Open in Tab"
+msgstr "Адкрыць у картцы"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, kcfg_LMBBehaviour)
+#. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
+#: configuration/ui/settings_browser.ui:33
+#: configuration/ui/settings_browser.ui:59
+#: src/actions/actionmanagerimpl.cpp:329
+#, kde-format
+msgid "Open in Background Tab"
+msgstr "Адкрыць у фонавай картцы"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, kcfg_LMBBehaviour)
+#. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
+#: configuration/ui/settings_browser.ui:38
+#: configuration/ui/settings_browser.ui:64
+#: src/actions/actionmanagerimpl.cpp:335
+#, kde-format
+msgid "Open in External Browser"
+msgstr "Адкрыць у знешнім браўзэры"
+
+#. i18n: ectx: property (text), widget (QLabel, MMBlabel)
+#: configuration/ui/settings_browser.ui:46
+#, kde-format
+msgid "Middle mouse click:"
+msgstr "Сярэдняя кнопка мышы:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, externalBrowserGroupBox)
+#: configuration/ui/settings_browser.ui:74
+#, fuzzy, kde-format
+#| msgid "For External Browsing"
+msgid "External Browsing"
+msgstr "Выбар браўзэра"
+
+#. i18n: ectx: property (text), widget (QLineEdit, kcfg_ExternalBrowserCustomCommand)
+#: configuration/ui/settings_browser.ui:83
+#, no-c-format, kde-format
+msgid "firefox %u"
+msgstr "firefox %u"
+
+#. i18n: ectx: property (text), widget (QRadioButton, kcfg_ExternalBrowserUseCustomCommand)
+#: configuration/ui/settings_browser.ui:90
+#, fuzzy, kde-format
+#| msgid "Use this command:"
+msgid "Use &this command:"
+msgstr "Іншая праграма:"
+
+#. i18n: ectx: property (text), widget (QRadioButton, kcfg_ExternalBrowserUseKdeDefault)
+#: configuration/ui/settings_browser.ui:97
+#, fuzzy, kde-format
+#| msgid "Use default KDE web browser"
+msgid "Use default web &browser"
+msgstr "Браўзэр KDE па змаўчанні"
+
+#. i18n: ectx: property (title), widget (QGroupBox, tabsGroupBox)
+#: configuration/ui/settings_browser.ui:110
+#, fuzzy, kde-format
+#| msgid "Tags"
+msgid "Tabs"
+msgstr "Пазнакі"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_AlwaysShowTabBar)
+#. i18n: ectx: label, entry, group (Browser)
+#: configuration/ui/settings_browser.ui:116 interfaces/akregator.kcfg:202
+#, kde-format
+msgid "Always show the tab bar"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_CloseButtonOnTabs)
+#: configuration/ui/settings_browser.ui:123
+#, fuzzy, kde-format
+#| msgid "Show close buttons on tabs"
+msgid "Show close button on each tab"
+msgstr "Паказваць кнопкі закрыцця картак"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_NewWindowInTab)
+#. i18n: ectx: label, entry, group (Browser)
+#: configuration/ui/settings_browser.ui:130 interfaces/akregator.kcfg:212
+#, kde-format
+msgid "Open links in new tab instead of in new window"
+msgstr ""
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#: configuration/ui/settings_browser.ui:140
+#, kde-format
+msgid "Security"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_CheckPhishingUrl)
+#: configuration/ui/settings_browser.ui:146
+#, kde-format
+msgid "Verify URLs using Google's Safe Browsing API"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_EnableJavascript)
+#. i18n: ectx: label, entry, group (Browser)
+#: configuration/ui/settings_browser.ui:153 interfaces/akregator.kcfg:198
+#, kde-format
+msgid "Enable Javascript"
+msgstr ""
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
+#: configuration/ui/settings_browser.ui:163
+#, kde-format
+msgid "Misc"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_AccessKeyEnabled)
+#: configuration/ui/settings_browser.ui:169
+#, kde-format
+msgid "Access Key Enabled"
+msgstr ""
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_3)
+#: configuration/ui/settings_general.ui:30
+#, fuzzy, kde-format
+#| msgid "Global"
+msgctxt "global settings"
+msgid "Global"
+msgstr "Агульныя"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_ShowTrayIcon)
+#: configuration/ui/settings_general.ui:36
+#, kde-format
+msgid "Show tra&y icon"
+msgstr "П&аказваць значку сістэмнага трэя"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_ShowUnreadInTaskbar)
+#: configuration/ui/settings_general.ui:43
+#, fuzzy, kde-format
+#| msgid " (no unread articles)"
+msgid "Show unread articles in Taskbar"
+msgstr " (усе артыкулы прачытаныя)"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_HideReadFeeds)
+#. i18n: ectx: label, entry, group (View)
+#: configuration/ui/settings_general.ui:50 interfaces/akregator.kcfg:9
+#, fuzzy, kde-format
+#| msgid " (no unread articles)"
+msgid "Hide feeds with no unread articles"
+msgstr " (усе артыкулы прачытаныя)"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_LockFeedsInPlace)
+#: configuration/ui/settings_general.ui:57
+#, kde-format
+msgid "Lock feeds in place"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_AutoExpandFolders)
+#. i18n: ectx: whatsthis, entry, group (View)
+#: configuration/ui/settings_general.ui:64 interfaces/akregator.kcfg:27
+#, fuzzy, kde-format
+#| msgid " (no unread articles)"
+msgid "Auto-expand folders containing unread articles"
+msgstr " (усе артыкулы прачытаныя)"
+
+#. i18n: ectx: property (whatsThis), widget (QCheckBox, kcfg_UseNotifications)
+#: configuration/ui/settings_general.ui:74
+#, kde-format
+msgid "Select this if you want to get notified when there are new articles."
+msgstr "Паказваць абвяшчэнні аб наяўнасці новых артыкулаў."
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_UseNotifications)
+#: configuration/ui/settings_general.ui:77
+#, kde-format
+msgid "Use &notifications for all feeds"
+msgstr "Выкарыстоўваць абвяшчэнні для ўсіх стужак"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_DisableSaveAsNotification)
+#: configuration/ui/settings_general.ui:84
+#, kde-format
+msgid "Disable save as finished notification"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_UseIntervalFetch)
+#: configuration/ui/settings_general.ui:91
+#, kde-format
+msgid "&Use interval fetching"
+msgstr "Перыядычна атрымліваць навіны"
+
+#. i18n: ectx: property (text), widget (QLabel, autoFetchIntervalLabel)
+#: configuration/ui/settings_general.ui:119
+#, kde-format
+msgid "Fetch feeds every:"
+msgstr "Сцягваць стужкі кожныя:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
+#: configuration/ui/settings_general.ui:160
+#, kde-format
+msgid "Startup"
+msgstr "Запуск"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_MarkAllFeedsReadOnStartup)
+#: configuration/ui/settings_general.ui:166
+#, kde-format
+msgid "Mark &all feeds as read on startup"
+msgstr "Адзначыць усе навіны як прачытаныя пры запуску"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_FetchOnStartup)
+#: configuration/ui/settings_general.ui:173
+#, kde-format
+msgid "Fetch all fee&ds on startup"
+msgstr "Абнаўляць усе стужкі пры запуску"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#: configuration/ui/settings_general.ui:183
+#, kde-format
+msgid "Network"
+msgstr "Сетка"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_UseHTMLCache)
+#: configuration/ui/settings_general.ui:189
+#, kde-format
+msgid "Use the &browser cache (less network traffic)"
+msgstr "Карыстацца кэшам браўзэра (менш трафіку)"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_LoadExternalReferences)
+#: configuration/ui/settings_security.ui:17
+#, kde-format
+msgid "Allow feed to load external references from internet."
+msgstr ""
+
+#: export/akregatorstorageexporter.cpp:280
+#, kde-format
+msgid "Akregator Export for %1"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry, group (View)
+#: interfaces/akregator.kcfg:10
+#, fuzzy, kde-format
+#| msgid " (no unread articles)"
+msgid "Hides feeds with no unread articles"
+msgstr " (усе артыкулы прачытаныя)"
+
+#. i18n: ectx: label, entry, group (View)
+#: interfaces/akregator.kcfg:21
+#, kde-format
+msgid "Prevent feeds from being moved in the list"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry, group (View)
+#: interfaces/akregator.kcfg:22
+#, kde-format
+msgid "Locks feeds where they are"
+msgstr ""
+
+#. i18n: ectx: label, entry, group (View)
+#: interfaces/akregator.kcfg:26
+#, fuzzy, kde-format
+#| msgid " (no unread articles)"
+msgid "Auto-Expand folders with unread articles"
+msgstr " (усе артыкулы прачытаныя)"
+
+#. i18n: ectx: label, entry, group (View)
+#: interfaces/akregator.kcfg:31 src/actions/actionmanagerimpl.cpp:317
+#, kde-format
+msgid "Show Quick Filter"
+msgstr "Хуткі фільтр"
+
+#. i18n: ectx: whatsthis, entry, group (View)
+#: interfaces/akregator.kcfg:32
+#, kde-format
+msgid "Show Quick Filter Bar"
+msgstr "Панель фільтра"
+
+#. i18n: ectx: label, entry, group (View)
+#: interfaces/akregator.kcfg:36
+#, fuzzy, kde-format
+#| msgid "Show Quick Filter"
+msgid "Status Filter"
+msgstr "Хуткі фільтр"
+
+#. i18n: ectx: whatsthis, entry, group (View)
+#: interfaces/akregator.kcfg:37
+#, kde-format
+msgid "Stores the last status filter setting"
+msgstr ""
+
+#. i18n: ectx: label, entry, group (View)
+#: interfaces/akregator.kcfg:41
+#, kde-format
+msgid "Text Filter"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry, group (View)
+#: interfaces/akregator.kcfg:42
+#, kde-format
+msgid "Stores the last search line text"
+msgstr ""
+
+#. i18n: ectx: label, entry, group (View)
+#: interfaces/akregator.kcfg:45
+#, kde-format
+msgid "View Mode"
+msgstr "Рэжым выгляду"
+
+#. i18n: ectx: whatsthis, entry, group (View)
+#: interfaces/akregator.kcfg:46
+#, kde-format
+msgid "Article display mode."
+msgstr "Рэжым прагляду артыкула."
+
+#. i18n: ectx: label, entry, group (View)
+#: interfaces/akregator.kcfg:50
+#, kde-format
+msgid "Sizes for first splitter"
+msgstr "Памеры для першага падзельніка"
+
+#. i18n: ectx: whatsthis, entry, group (View)
+#: interfaces/akregator.kcfg:51
+#, kde-format
+msgid "First (usually vertical) splitter widget sizes."
+msgstr "Памер першага (звычайна вертыкальнага) падзяляльніка."
+
+#. i18n: ectx: label, entry, group (View)
+#: interfaces/akregator.kcfg:55
+#, kde-format
+msgid "Sizes for second splitter"
+msgstr "Памеры для другога падзяляльніка"
+
+#. i18n: ectx: whatsthis, entry, group (View)
+#: interfaces/akregator.kcfg:56
+#, kde-format
+msgid "Second (usually horizontal) splitter widget sizes."
+msgstr "Памер першага (звычайна гарызантальнага) падзяляльніка."
+
+#. i18n: ectx: label, entry, group (Archive)
+#: interfaces/akregator.kcfg:100
+#, kde-format
+msgid "Archive Mode"
+msgstr "Захоўванне"
+
+#. i18n: ectx: label, entry, group (Archive)
+#: interfaces/akregator.kcfg:104
+#, kde-format
+msgid "Keep All Articles"
+msgstr "Захоўваць усе артыкулы"
+
+#. i18n: ectx: whatsthis, entry, group (Archive)
+#: interfaces/akregator.kcfg:105
+#, kde-format
+msgid "Save an unlimited number of articles."
+msgstr "Захоўваць усе артыкулы."
+
+#. i18n: ectx: label, entry, group (Archive)
+#: interfaces/akregator.kcfg:108
+#, kde-format
+msgid "Limit Number of Articles"
+msgstr "Колькасць захоўваемых артыкулаў"
+
+#. i18n: ectx: whatsthis, entry, group (Archive)
+#: interfaces/akregator.kcfg:109
+#, kde-format
+msgid "Limit the number of articles in a feed"
+msgstr "Захоўваць пазначаную колькасць артыкулаў"
+
+#. i18n: ectx: label, entry, group (Archive)
+#: interfaces/akregator.kcfg:112
+#, kde-format
+msgid "Delete Expired Articles"
+msgstr "Выдаліць старыя артыкулы"
+
+#. i18n: ectx: whatsthis, entry, group (Archive)
+#: interfaces/akregator.kcfg:113
+#, kde-format
+msgid "Delete expired articles"
+msgstr "Выдаліць старыя артыкулы"
+
+#. i18n: ectx: label, entry, group (Archive)
+#: interfaces/akregator.kcfg:116
+#, kde-format
+msgid "Disable Archiving"
+msgstr "Адключыць архівірванне"
+
+#. i18n: ectx: whatsthis, entry, group (Archive)
+#: interfaces/akregator.kcfg:117
+#, kde-format
+msgid "Do not save any articles"
+msgstr "Не захоўваць артыкулы"
+
+#. i18n: ectx: label, entry, group (Archive)
+#: interfaces/akregator.kcfg:122
+#, kde-format
+msgid "Expiry Age"
+msgstr "Перыяд састарэння"
+
+#. i18n: ectx: whatsthis, entry, group (Archive)
+#: interfaces/akregator.kcfg:123
+#, kde-format
+msgid "Default expiry age for articles in days."
+msgstr "Перыяд састарэння па змаўчанні ў днях."
+
+#. i18n: ectx: label, entry, group (Archive)
+#: interfaces/akregator.kcfg:127
+#, kde-format
+msgid "Article Limit"
+msgstr "Колькасць захоўваемых артыкулаў"
+
+#. i18n: ectx: whatsthis, entry, group (Archive)
+#: interfaces/akregator.kcfg:128
+#, kde-format
+msgid "Number of articles to keep per feed."
+msgstr "Колькасць артыкулаў, якія захоўваюцца ў кожнай стужцы."
+
+#. i18n: ectx: label, entry, group (Archive)
+#: interfaces/akregator.kcfg:132
+#, kde-format
+msgid "Do Not Expire Important Articles"
+msgstr "Не выдаляць важныя артыкулы"
+
+#. i18n: ectx: whatsthis, entry, group (Archive)
+#: interfaces/akregator.kcfg:133
+#, kde-format
+msgid ""
+"When this option is enabled, articles you marked as important will not be "
+"removed when limit the archive size by either age or number of the articles."
+msgstr ""
+"Пры ўключэнні гэтай опцыі артыкулы, адзначаныя як важныя, не будуць "
+"выдаленыя, нават калі яны трапляюць пад умовы састарэлых артыкулаў."
+
+#. i18n: ectx: label, entry, group (Network)
+#: interfaces/akregator.kcfg:139
+#, kde-format
+msgid "Concurrent Fetches"
+msgstr "Паралельныя загрузкі"
+
+#. i18n: ectx: whatsthis, entry, group (Network)
+#: interfaces/akregator.kcfg:140
+#, kde-format
+msgid "Number of concurrent fetches"
+msgstr "Колькасць паралельных загрузак"
+
+#. i18n: ectx: label, entry, group (Network)
+#: interfaces/akregator.kcfg:144
+#, kde-format
+msgid "Use HTML Cache"
+msgstr "Выкарыстаць кэш для HTML"
+
+#. i18n: ectx: whatsthis, entry, group (Network)
+#: interfaces/akregator.kcfg:145
+#, kde-format
+msgid ""
+"Use the KDE-wide HTML cache settings when downloading feeds, to avoid "
+"unnecessary traffic. Disable only when necessary."
+msgstr ""
+"Выкарыстаць глабальныя настаўленні кэша KDE пры сцягванні артыкулаў для "
+"памяншэння трафіку. Выключайце гэтую опцыю толькі калі неабходна."
+
+#. i18n: ectx: whatsthis, entry, group (Network)
+#: interfaces/akregator.kcfg:149
+#, kde-format
+msgid ""
+"This option allows user to specify custom user-agent string instead of using "
+"the default one. This is here because some proxies may interrupt the "
+"connection because of having \"gator\" in the name."
+msgstr ""
+
+#. i18n: ectx: label, entry, group (General)
+#: interfaces/akregator.kcfg:155
+#, kde-format
+msgid "Fetch on startup"
+msgstr "Атрымоўваць навіны пры запуску"
+
+#. i18n: ectx: whatsthis, entry, group (General)
+#: interfaces/akregator.kcfg:156
+#, kde-format
+msgid "Fetch feedlist on startup."
+msgstr "Апытваць стужкі навін пры запуску."
+
+#. i18n: ectx: label, entry, group (General)
+#: interfaces/akregator.kcfg:160
+#, kde-format
+msgid "Mark all feeds as read on startup"
+msgstr "Адзначыць усе навіны як прачытаныя пры запуску"
+
+#. i18n: ectx: whatsthis, entry, group (General)
+#: interfaces/akregator.kcfg:161
+#, kde-format
+msgid "Mark all feeds as read on startup."
+msgstr "Адзначыць усе навіны як прачытаныя пры запуску."
+
+#. i18n: ectx: label, entry, group (General)
+#: interfaces/akregator.kcfg:165
+#, kde-format
+msgid "Use interval fetching"
+msgstr "Перыядычна атрымліваць навіны"
+
+#. i18n: ectx: whatsthis, entry, group (General)
+#: interfaces/akregator.kcfg:166
+#, no-c-format, kde-format
+msgid "Fetch all feeds every %1 minutes."
+msgstr "Атрымоўваць навіны кожныя %1 хв."
+
+#. i18n: ectx: label, entry, group (General)
+#: interfaces/akregator.kcfg:170
+#, kde-format
+msgid "Interval for autofetching"
+msgstr "Інтэрвал атрымання навінаў"
+
+#. i18n: ectx: whatsthis, entry, group (General)
+#: interfaces/akregator.kcfg:171
+#, kde-format
+msgid "Interval for autofetching in minutes."
+msgstr "Інтэрвал паміж атрыманнем навінаў у хвілінах."
+
+#. i18n: ectx: label, entry, group (General)
+#: interfaces/akregator.kcfg:175
+#, kde-format
+msgid "Use notifications"
+msgstr "Выкарыстаць абвяшчэнні"
+
+#. i18n: ectx: whatsthis, entry, group (General)
+#: interfaces/akregator.kcfg:176
+#, kde-format
+msgid "Specifies if the balloon notifications are used or not."
+msgstr "Выкарыстаць усплывальнае абвяшчэнне аб атрыманні новы артыкулаў."
+
+#. i18n: ectx: label, entry, group (General)
+#: interfaces/akregator.kcfg:180
+#, kde-format
+msgid "Show tray icon"
+msgstr "Паказваць значку сістэмнага трэя"
+
+#. i18n: ectx: whatsthis, entry, group (General)
+#: interfaces/akregator.kcfg:181
+#, kde-format
+msgid "Specifies if the tray icon is shown or not."
+msgstr "Паказваць значку праграмы ў сістэмным трэі."
+
+#. i18n: ectx: label, entry, group (General)
+#: interfaces/akregator.kcfg:185
+#, kde-format
+msgid "Show Unread In Taskbar"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry, group (General)
+#: interfaces/akregator.kcfg:186
+#, fuzzy, kde-format
+#| msgid " (no unread articles)"
+msgid "Specifies if we show unread article in taskbar."
+msgstr " (усе артыкулы прачытаныя)"
+
+#. i18n: ectx: whatsthis, entry, group (Browser)
+#: interfaces/akregator.kcfg:203
+#, kde-format
+msgid "Always show the tab bar, even when only one tab is open"
+msgstr ""
+
+#. i18n: ectx: label, entry, group (Browser)
+#: interfaces/akregator.kcfg:207
+#, kde-format
+msgid "Show close buttons on tabs"
+msgstr "Паказваць кнопкі закрыцця картак"
+
+#. i18n: ectx: whatsthis, entry, group (Browser)
+#: interfaces/akregator.kcfg:208
+#, kde-format
+msgid "Show close buttons on tabs instead of icons"
+msgstr "Паказваць кнопкі закрыцця картак замест значак"
+
+#. i18n: ectx: whatsthis, entry, group (Browser)
+#: interfaces/akregator.kcfg:213
+#, kde-format
+msgid ""
+"Open a link which would normally open in a new window (external browser) in "
+"a new tab instead"
+msgstr ""
+
+#. i18n: ectx: label, entry, group (Browser)
+#: interfaces/akregator.kcfg:217
+#, kde-format
+msgid "Use default KDE web browser"
+msgstr "Браўзэр KDE па змаўчанні"
+
+#. i18n: ectx: whatsthis, entry, group (Browser)
+#: interfaces/akregator.kcfg:218
+#, kde-format
+msgid "Use KDE web browser when opening in external browser."
+msgstr "Выкарыстаць браўзэр KDE для адкрыцця \"у знешнім браўзэры\"."
+
+#. i18n: ectx: label, entry, group (Browser)
+#: interfaces/akregator.kcfg:222
+#, kde-format
+msgid "Use this command:"
+msgstr "Іншая праграма:"
+
+#. i18n: ectx: whatsthis, entry, group (Browser)
+#: interfaces/akregator.kcfg:223
+#, kde-format
+msgid "Use the specified command when opening in external browser."
+msgstr "Выкарыстаць наступную каманду для адкрыцця ў знешнім браўзэры."
+
+#. i18n: ectx: whatsthis, entry, group (Browser)
+#: interfaces/akregator.kcfg:227
+#, fuzzy, no-c-format, kde-format
+#| msgid "Command to launch external browser.  URL will substitute for %u."
+msgid "Command to launch external browser. URL will substitute for %u."
+msgstr ""
+"Камандны радок запуску знешняга браўзэра.  %u будзе заменена на адпаведную "
+"спасылку."
+
+#. i18n: ectx: whatsthis, entry, group (Browser)
+#: interfaces/akregator.kcfg:231
+#, kde-format
+msgid "What the click with left mouse button should do."
+msgstr "Што рабіць пры пстрычцы левай кнопкай мышы."
+
+#. i18n: ectx: whatsthis, entry, group (Browser)
+#: interfaces/akregator.kcfg:240
+#, kde-format
+msgid "What the click with middle mouse button should do."
+msgstr "Што рабіць пры пстрычцы сярэдняй кнопкай мышы."
+
+#. i18n: ectx: label, entry, group (Advanced)
+#: interfaces/akregator.kcfg:265
+#, kde-format
+msgid "Archive Backend"
+msgstr "Рухавік захавання артыкулаў"
+
+#. i18n: ectx: whatsthis, entry (UseMarkReadDelay), group (Advanced)
+#: interfaces/akregator.kcfg:269
+#, kde-format
+msgid "Whether to delay before marking an article as read upon selecting it."
+msgstr "Затрымка адзнакі артыкула як прачытаны."
+
+#. i18n: ectx: whatsthis, entry (MarkReadDelay), group (Advanced)
+#: interfaces/akregator.kcfg:273
+#, fuzzy, kde-format
+#| msgid ""
+#| "Configurable delay between selecting and article and it being marked as "
+#| "read."
+msgid ""
+"Configurable delay between selecting an article and it being marked as read."
+msgstr "Затрымка паміж праглядам артыкула і адзнакай яго як прачытаны."
+
+#. i18n: ectx: whatsthis, entry, group (Advanced)
+#: interfaces/akregator.kcfg:277
+#, kde-format
+msgid "Resets the quick filter when changing feeds."
+msgstr ""
+
+#: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
+#: src/akregator_part.cpp:146
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:148
+#: src/trayicon.cpp:41 src/trayicon.cpp:42 src/trayicon.cpp:54
+#, kde-format
+msgid "Akregator"
+msgstr "Akregator"
+
+#: kontactplugin/akregator_plugin.cpp:29
+#, fuzzy, kde-format
+#| msgid "&Add Feed..."
+msgctxt "@action:inmenu"
+msgid "New Feed..."
+msgstr "&Дадаць стужку..."
+
+#: kontactplugin/akregator_plugin.cpp:32
+#, kde-format
+msgctxt "@info:status"
+msgid "Create a new feed"
+msgstr ""
+
+#: kontactplugin/akregator_plugin.cpp:33
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid "You will be presented with a dialog where you can add a new feed."
+msgstr ""
+
+#: src/aboutdata.cpp:21
+#, kde-format
+msgid "A KDE Feed Reader"
+msgstr "Праграма чытання стужак KDE"
+
+#: src/aboutdata.cpp:23
+#, fuzzy, kde-format
+#| msgid "(C) 2004, 2005 Akregator developers"
+msgid "Copyright © 2004–%1 Akregator authors"
+msgstr "(C) 2004, 2005 распрацоўшчыкі Akregator"
+
+#: src/aboutdata.cpp:27
+#, kde-format
+msgid "Maintainer"
+msgstr "Падтрымка"
+
+#: src/aboutdata.cpp:28
+#, fuzzy, kde-format
+#| msgid "Maintainer"
+msgid "Former maintainer"
+msgstr "Падтрымка"
+
+#: src/aboutdata.cpp:29
+#, kde-format
+msgid "Teemu Rytilahti"
+msgstr "Тээму Рыцілаці"
+
+#: src/aboutdata.cpp:29 src/aboutdata.cpp:30 src/aboutdata.cpp:31
+#: src/aboutdata.cpp:32
+#, kde-format
+msgid "Developer"
+msgstr "Распрацоўшчык"
+
+#: src/aboutdata.cpp:30
+#, kde-format
+msgid "Sashmit Bhaduri"
+msgstr "Сашміт Бхадуры"
+
+#: src/aboutdata.cpp:31
+#, kde-format
+msgid "Pierre Habouzit"
+msgstr "П'ер Габузіт"
+
+#: src/aboutdata.cpp:32
+#, kde-format
+msgid "Stanislav Karchebny"
+msgstr "Станіслаў Карчэбны"
+
+#: src/aboutdata.cpp:33
+#, kde-format
+msgid "Gary Cramblitt"
+msgstr "Гары Крамблітт"
+
+#: src/aboutdata.cpp:33 src/aboutdata.cpp:34 src/aboutdata.cpp:35
+#, kde-format
+msgid "Contributor"
+msgstr "Дапамога"
+
+#: src/aboutdata.cpp:34
+#, kde-format
+msgid "Stephan Binner"
+msgstr "Стэфан Біннэр"
+
+#: src/aboutdata.cpp:35
+#, kde-format
+msgid "Christof Musik"
+msgstr "Крыстаф Мьюзік"
+
+#: src/aboutdata.cpp:36
+#, kde-format
+msgid "Anne-Marie Mahfouf"
+msgstr "Анна-Мары Махфоф"
+
+#: src/aboutdata.cpp:36
+#, kde-format
+msgid "Handbook"
+msgstr "Падручнік"
+
+#: src/aboutdata.cpp:37
+#, kde-format
+msgid "Frerich Raabe"
+msgstr "Фрэрых Рэбэ"
+
+#: src/aboutdata.cpp:37
+#, kde-format
+msgid "Author of librss"
+msgstr "Аўтар librss"
+
+#: src/aboutdata.cpp:38
+#, kde-format
+msgid "Eckhart Woerner"
+msgstr "Экгарт Вёрнер"
+
+#: src/aboutdata.cpp:38
+#, kde-format
+msgid "Bug tracker management, Usability improvements"
+msgstr "Выпраўленне памылак, паляпшэнне знешняга выгляду"
+
+#: src/aboutdata.cpp:39
+#, kde-format
+msgid "Heinrich Wendel"
+msgstr "Генрых Вендэль"
+
+#: src/aboutdata.cpp:39
+#, kde-format
+msgid "Tons of bug fixes"
+msgstr "Выпраўленне мноства памылак"
+
+#: src/aboutdata.cpp:40
+#, kde-format
+msgid "Eike Hein"
+msgstr "Эйке Хайн"
+
+#: src/aboutdata.cpp:40
+#, kde-format
+msgid "'Delayed mark as read' feature"
+msgstr "Рэалізацыя магчымасці адкладзенай адзнакі аб чытанні"
+
+#: src/aboutdata.cpp:41
+#, kde-format
+msgid "Marcel Dierkes"
+msgstr "Марсэль Діркес"
+
+#: src/aboutdata.cpp:41
+#, kde-format
+msgid "Icons"
+msgstr "Значкі"
+
+#: src/aboutdata.cpp:42
+#, kde-format
+msgid "George Staikos"
+msgstr "Джордж Стайкас"
+
+#: src/aboutdata.cpp:42
+#, kde-format
+msgid "Insomnia"
+msgstr "Insomnia"
+
+#: src/aboutdata.cpp:43
+#, kde-format
+msgid "Philipp Droessler"
+msgstr "Філіп Дрёсслер"
+
+#: src/aboutdata.cpp:43
+#, kde-format
+msgid "Gentoo Ebuild"
+msgstr "Gentoo Ebuild"
+
+#: src/actions/actionmanagerimpl.cpp:63 src/actions/actionmanagerimpl.cpp:286
+#, kde-format
+msgid "&Fetch Feed"
+msgstr "&Сцягнуць стужку"
+
+#: src/actions/actionmanagerimpl.cpp:64 src/actions/actionmanagerimpl.cpp:242
+#, kde-format
+msgid "&Delete Feed"
+msgstr "&Выдаліць стужку"
+
+#: src/actions/actionmanagerimpl.cpp:65 src/actions/actionmanagerimpl.cpp:248
+#, kde-format
+msgid "&Edit Feed..."
+msgstr "У&ласцівасці стужкі..."
+
+#: src/actions/actionmanagerimpl.cpp:66 src/actions/actionmanagerimpl.cpp:305
+#, kde-format
+msgid "&Mark Feed as Read"
+msgstr "&Памеціць стужку прачытанай"
+
+#: src/actions/actionmanagerimpl.cpp:82
+#, kde-format
+msgid "&Fetch Feeds"
+msgstr "&Сцягнуць стужкі"
+
+#: src/actions/actionmanagerimpl.cpp:83
+#, kde-format
+msgid "&Delete Folder"
+msgstr "&Выдаліць тэчку"
+
+#: src/actions/actionmanagerimpl.cpp:84
+#, kde-format
+msgid "&Rename Folder"
+msgstr "&Перайменаваць тэчку"
+
+#: src/actions/actionmanagerimpl.cpp:85
+#, kde-format
+msgid "&Mark Feeds as Read"
+msgstr "&Памеціць стужкі прачытанымі"
+
+#: src/actions/actionmanagerimpl.cpp:190
+#, kde-format
+msgid "&Import Feeds..."
+msgstr "&Імпартаваць стужкі..."
+
+#: src/actions/actionmanagerimpl.cpp:194
+#, kde-format
+msgid "&Export Feeds..."
+msgstr "&Экспартаваць стужкі..."
+
+#: src/actions/actionmanagerimpl.cpp:199
+#, fuzzy, kde-format
+#| msgid "Configure &Akregator..."
+msgid "&Configure Akregator..."
+msgstr "Наставіць &Akregator..."
+
+#: src/actions/actionmanagerimpl.cpp:218
+#, kde-format
+msgid "&Open Homepage"
+msgstr "&Наведаць дамашнюю старонку"
+
+#: src/actions/actionmanagerimpl.cpp:224
+#, kde-format
+msgid "Reload All Tabs"
+msgstr ""
+
+#: src/actions/actionmanagerimpl.cpp:230
+#, kde-format
+msgid "&Add Feed..."
+msgstr "&Дадаць стужку..."
+
+#: src/actions/actionmanagerimpl.cpp:236
+#, kde-format
+msgid "Ne&w Folder..."
+msgstr "Новая &тэчка..."
+
+#: src/actions/actionmanagerimpl.cpp:261
+#, kde-format
+msgid "&Normal View"
+msgstr "Звычайны выгляд"
+
+#: src/actions/actionmanagerimpl.cpp:270
+#, kde-format
+msgid "&Widescreen View"
+msgstr "&Шырокаэкранны выгляд"
+
+#: src/actions/actionmanagerimpl.cpp:279
+#, kde-format
+msgid "C&ombined View"
+msgstr "У выглядзе стужкі"
+
+#: src/actions/actionmanagerimpl.cpp:292
+#, kde-format
+msgid "Fe&tch All Feeds"
+msgstr "&Сцягнуць усе стужкі"
+
+#: src/actions/actionmanagerimpl.cpp:298
+#, fuzzy, kde-format
+#| msgid "Concurrent Fetches"
+msgid "C&ancel Feed Fetches"
+msgstr "Паралельныя загрузкі"
+
+#: src/actions/actionmanagerimpl.cpp:311
+#, kde-format
+msgid "Ma&rk All Feeds as Read"
+msgstr "Адзначыць усе стужкі як прачытаныя"
+
+#: src/actions/actionmanagerimpl.cpp:340 src/actions/actionmanagerimpl.cpp:608
+#, kde-format
+msgid "Copy Link Address"
+msgstr "Скапіраваць адрас спасылкі"
+
+#: src/actions/actionmanagerimpl.cpp:345
+#, kde-format
+msgid "Pre&vious Unread Article"
+msgstr "Папярэдні непрачытаны артыкул"
+
+#: src/actions/actionmanagerimpl.cpp:351
+#, kde-format
+msgid "Ne&xt Unread Article"
+msgstr "Н&аступны непрачытаны артыкул"
+
+#: src/actions/actionmanagerimpl.cpp:359
+#, kde-format
+msgid "&Delete"
+msgstr "В&ыдаліць"
+
+#: src/actions/actionmanagerimpl.cpp:364
+#, kde-format
+msgid "&Mark As"
+msgstr "&Памеціць як"
+
+#: src/actions/actionmanagerimpl.cpp:368
+#, kde-format
+msgctxt "as in: mark as read"
+msgid "&Read"
+msgstr "&непрачытаны"
+
+#: src/actions/actionmanagerimpl.cpp:370
+#, kde-format
+msgid "Mark selected article as read"
+msgstr "Адзначыць вылучаны артыкул як прачытаны"
+
+#: src/actions/actionmanagerimpl.cpp:376
+#, fuzzy, kde-format
+#| msgid "&New"
+msgctxt "as in: mark as new"
+msgid "&New"
+msgstr "&Новы"
+
+#: src/actions/actionmanagerimpl.cpp:379
+#, kde-format
+msgid "Mark selected article as new"
+msgstr "Адзначыць вылучаны артыкул як новы"
+
+#: src/actions/actionmanagerimpl.cpp:384
+#, fuzzy, kde-format
+#| msgid "&Unread"
+msgctxt "as in: mark as unread"
+msgid "&Unread"
+msgstr "&Непрачытаны"
+
+#: src/actions/actionmanagerimpl.cpp:386
+#, kde-format
+msgid "Mark selected article as unread"
+msgstr "Адзначыць вылучаны артыкул як непрачытаны"
+
+#: src/actions/actionmanagerimpl.cpp:392
+#, kde-format
+msgid "&Mark as Important"
+msgstr "&Памеціць як \"важны\""
+
+#: src/actions/actionmanagerimpl.cpp:396
+#, kde-format
+msgid "Remove &Important Mark"
+msgstr "&зняць паметку \"важны\""
+
+#: src/actions/actionmanagerimpl.cpp:400
+#, kde-format
+msgid "Move Node Up"
+msgstr "Перамясціць вышэй"
+
+#: src/actions/actionmanagerimpl.cpp:405
+#, kde-format
+msgid "Move Node Down"
+msgstr "Перамясціць ніжэй"
+
+#: src/actions/actionmanagerimpl.cpp:410
+#, kde-format
+msgid "Move Node Left"
+msgstr "Перамясціць налева"
+
+#: src/actions/actionmanagerimpl.cpp:415
+#, kde-format
+msgid "Move Node Right"
+msgstr "Перамясціць направа"
+
+#: src/actions/actionmanagerimpl.cpp:421
+#, kde-format
+msgid "Send &Link Address..."
+msgstr "Даслаць &адрас спасылкі..."
+
+#: src/actions/actionmanagerimpl.cpp:426
+#, kde-format
+msgid "Send &File..."
+msgstr "Даслаць &файл..."
+
+#: src/actions/actionmanagerimpl.cpp:432
+#, kde-format
+msgid "Set Focus to Quick Search"
+msgstr ""
+
+#: src/actions/actionmanagerimpl.cpp:464
+#, kde-format
+msgid "&Previous Article"
+msgstr "&Папярэдні артыкул"
+
+#: src/actions/actionmanagerimpl.cpp:468
+#, kde-format
+msgid "&Next Article"
+msgstr "&Наступны артыкул"
+
+#: src/actions/actionmanagerimpl.cpp:484
+#, kde-format
+msgid "&Previous Feed"
+msgstr "Папярэдняя стужка"
+
+#: src/actions/actionmanagerimpl.cpp:489
+#, kde-format
+msgid "&Next Feed"
+msgstr "&Наступная стужка"
+
+#: src/actions/actionmanagerimpl.cpp:495
+#, kde-format
+msgid "N&ext Unread Feed"
+msgstr "Нас&тупная непрачытаная стужка"
+
+#: src/actions/actionmanagerimpl.cpp:501
+#, kde-format
+msgid "Prev&ious Unread Feed"
+msgstr "Папярэдняя непрачытаная стужка"
+
+#: src/actions/actionmanagerimpl.cpp:506
+#, kde-format
+msgid "Go to Top of Tree"
+msgstr "У пачатак"
+
+#: src/actions/actionmanagerimpl.cpp:511
+#, kde-format
+msgid "Go to Bottom of Tree"
+msgstr "У канец"
+
+#: src/actions/actionmanagerimpl.cpp:516
+#, kde-format
+msgid "Go Left in Tree"
+msgstr "Налева па дрэве"
+
+#: src/actions/actionmanagerimpl.cpp:521
+#, kde-format
+msgid "Go Right in Tree"
+msgstr "Направа па дрэве"
+
+#: src/actions/actionmanagerimpl.cpp:526
+#, kde-format
+msgid "Go Up in Tree"
+msgstr "Уверх па дрэве"
+
+#: src/actions/actionmanagerimpl.cpp:531
+#, kde-format
+msgid "Go Down in Tree"
+msgstr "Уніз па дрэве"
+
+#: src/actions/actionmanagerimpl.cpp:537
+#, fuzzy, kde-format
+#| msgid "N&ext Unread Feed"
+msgid "Hide Read Feeds"
+msgstr "Нас&тупная непрачытаная стужка"
+
+#: src/actions/actionmanagerimpl.cpp:543
+#, kde-format
+msgid "Lock Feeds In Place"
+msgstr ""
+
+#: src/actions/actionmanagerimpl.cpp:549
+#, fuzzy, kde-format
+#| msgid " (no unread articles)"
+msgid "Auto-expand folders with unread articles"
+msgstr " (усе артыкулы прачытаныя)"
+
+#: src/actions/actionmanagerimpl.cpp:565
+#, kde-format
+msgid "Select Next Tab"
+msgstr "Перайсці на наступную картку"
+
+#: src/actions/actionmanagerimpl.cpp:570
+#, kde-format
+msgid "Select Previous Tab"
+msgstr "Перайсці на папярэднюю картку"
+
+#: src/actions/actionmanagerimpl.cpp:576
+#, kde-format
+msgid "Detach Tab"
+msgstr "Аддзяліць картку"
+
+#: src/actions/actionmanagerimpl.cpp:590
+#, kde-format
+msgid "Mute"
+msgstr ""
+
+#: src/actions/actionmanagerimpl.cpp:594
+#, kde-format
+msgid "Unmute"
+msgstr ""
+
+#: src/actions/actionmanagerimpl.cpp:597
+#, kde-format
+msgid "Speak Text"
+msgstr ""
+
+#: src/actions/actionmanagerimpl.cpp:602
+#, kde-format
+msgid "&Find in Message..."
+msgstr ""
+
+#: src/actions/actionmanagerimpl.cpp:613
+#, fuzzy, kde-format
+#| msgid "&Close Tab"
+msgid "Close Tab"
+msgstr "&Закрыць картку"
+
+#: src/actions/actionmanagerimpl.cpp:626
+#, kde-format
+msgid "Activate Tab %1"
+msgstr ""
+
+#: src/actions/actionmanagerimpl.cpp:632
+#, kde-format
+msgid "&Save Link As..."
+msgstr "&Запісаць спасылку як..."
+
+#: src/actions/actionmanagerimpl.cpp:636
+#, kde-format
+msgid "Copy &Link Address"
+msgstr "Скапіраваць адрас &спасылкі"
+
+#: src/actions/actionmanagerimpl.cpp:639
+#, kde-format
+msgid "Copy Image Location"
+msgstr ""
+
+#: src/actions/actionmanagerimpl.cpp:646
+#, kde-format
+msgid "Save Image On Disk..."
+msgstr ""
+
+#: src/actions/actions.cpp:19
+#, kde-format
+msgid "Open Link in New &Tab"
+msgstr "Адкрыць у н&овай картцы"
+
+#: src/actions/actions.cpp:26
+#, kde-format
+msgid "Open Link in External &Browser"
+msgstr "Адкрыць спасылку ў знешнім браўзэры"
+
+#: src/addfeeddialog.cpp:49
+#, fuzzy, kde-format
+#| msgid "Add Feed"
+msgctxt "@title:window"
+msgid "Add Feed"
+msgstr "Дадаць стужку"
+
+#: src/addfeeddialog.cpp:99
+#, kde-format
+msgid "Downloading %1"
+msgstr "Сцягванне %1"
+
+#: src/addfeeddialog.cpp:115
+#, kde-format
+msgid "Feed not found from %1."
+msgstr "Стужка не знойдзеная па адрасе %1."
+
+#: src/addfeeddialog.cpp:121
+#, kde-format
+msgid "Feed found, downloading..."
+msgstr "Знойдзеная стужка навін, сцягванне..."
+
+#: src/akregator_options.h:20 src/akregator_options.h:28
+#, kde-format
+msgid "Add a feed with the given URL"
+msgstr ""
+
+#: src/akregator_options.h:23
+#, kde-format
+msgid "When adding feeds, place them in this group"
+msgstr ""
+
+#: src/akregator_options.h:25
+#, kde-format
+msgid "Hide main window on startup"
+msgstr ""
+
+#: src/akregator_options.h:30
+#, kde-format
+msgid "Lists the available options for user feedback"
+msgstr ""
+
+#: src/akregator_part.cpp:84
+#, kde-format
+msgid "Feeds"
+msgstr "Стужкі"
+
+#: src/akregator_part.cpp:95
+#, kde-format
+msgid "KDE Dot News"
+msgstr "Навіны KDE"
+
+#: src/akregator_part.cpp:100
+#, kde-format
+msgid "Linux.com"
+msgstr ""
+
+#: src/akregator_part.cpp:105
+#, kde-format
+msgid "Planet KDE"
+msgstr "Планета KDE"
+
+#: src/akregator_part.cpp:110
+#, kde-format
+msgid "KDE Apps"
+msgstr "Праграмы KDE"
+
+#: src/akregator_part.cpp:116
+#, kde-format
+msgid "Spanish feeds"
+msgstr ""
+
+#: src/akregator_part.cpp:120
+#, fuzzy, kde-format
+#| msgid "Planet KDE"
+msgid "Planet KDE España"
+msgstr "Планета KDE"
+
+#: src/akregator_part.cpp:440
+#, fuzzy, kde-format
+#| msgid "Access denied: cannot save feed list (%1)"
+msgid ""
+"Access denied: Cannot save feed list to <b>%1</b>. Please check your "
+"permissions."
+msgstr "Доступ забаронены: не атрымліваецца захаваць спіс стужак навін (%1)"
+
+#: src/akregator_part.cpp:441 src/akregator_part.cpp:492
+#, kde-format
+msgid "Write Error"
+msgstr "Памылка запісу"
+
+#: src/akregator_part.cpp:477
+#, kde-format
+msgid "Could not import the file %1 (no valid OPML)"
+msgstr "Немагчыма імпартаваць файл %1 (няслушны фармат OPML)"
+
+#: src/akregator_part.cpp:477 src/command/loadfeedlistcommand.cpp:71
+#, kde-format
+msgid "OPML Parsing Error"
+msgstr "Памылка апрацоўкі OPML"
+
+#: src/akregator_part.cpp:481
+#, kde-format
+msgid ""
+"The file %1 could not be read, check if it exists or if it is readable for "
+"the current user."
+msgstr ""
+"Немагчыма адкрыць файл %1. Праверце, ці існуе гэты файл і ці даступны ён для "
+"чытання."
+
+#: src/akregator_part.cpp:482 src/command/loadfeedlistcommand.cpp:142
+#, kde-format
+msgid "Read Error"
+msgstr "Памылка чытання"
+
+#: src/akregator_part.cpp:492
+#, fuzzy, kde-format
+#| msgid "Access denied: cannot write to file %1"
+msgid "Access denied: cannot write to file %1. Please check your permissions."
+msgstr "Доступ забаронены: немагчыма запісаць у файл %1"
+
+#: src/akregator_part.cpp:507 src/akregator_part.cpp:516
+#, fuzzy, kde-format
+#| msgid "OPML Outlines (*.opml, *.xml)"
+msgid "OPML Outlines (%1);;All Files (*)"
+msgstr "Стужкі OPML (*.opml, *.xml)"
+
+#: src/akregator_part.cpp:650
+#, kde-format
+msgid "Imported Folder"
+msgstr "Імпартаваная тэчка"
+
+#: src/articlejobs.cpp:184
+#, kde-format
+msgid "The feed to be listed was already removed."
+msgstr ""
+
+#: src/articlelistview.cpp:156 src/subscription/subscriptionlistview.cpp:180
+#, kde-format
+msgid "Columns"
+msgstr "Слупкі"
+
+#: src/articlelistview.cpp:214
+#, kde-format
+msgid "No result found"
+msgstr ""
+
+#: src/articlelistview.cpp:375
+#, fuzzy, kde-format
+#| msgid ""
+#| "<h2>Article list</h2>Here you can browse articles from the currently "
+#| "selected feed. You can also manage articles, as marking them as "
+#| "persistent (\"Keep Article\") or delete them, using the right mouse "
+#| "button menu.To view the web page of the article, you can open the article "
+#| "internally in a tab or in an external browser window."
+msgid ""
+"<h2>Article list</h2>Here you can browse articles from the currently "
+"selected feed. You can also manage articles, as marking them as persistent "
+"(\"Mark as Important\") or delete them, using the right mouse button menu. "
+"To view the web page of the article, you can open the article internally in "
+"a tab or in an external browser window."
+msgstr ""
+"<h2>Спіс артыкулаў</h2>Тут вы можаце праглядаць артыкулы вылучанай стужкі "
+"навін. Вы можаце кіраваць артыкуламі, адзначаючы іх як для сталага "
+"захоўвання (\"Пакінуць артыкул\") або выдаляць іх, карыстаючыся кантэкстным "
+"меню. Вы можаце праглядзець вэб-старонку артыкула на асобнай картцы або ў "
+"браўзэры."
+
+#: src/articlemodel.cpp:74
+#, fuzzy, kde-format
+#| msgid "Title"
+msgctxt "Articlelist's column header"
+msgid "Title"
+msgstr "Назва"
+
+#: src/articlemodel.cpp:76
+#, fuzzy, kde-format
+#| msgid "Feed"
+msgctxt "Articlelist's column header"
+msgid "Feed"
+msgstr "Стужка"
+
+#: src/articlemodel.cpp:78
+#, fuzzy, kde-format
+#| msgid "Date"
+msgctxt "Articlelist's column header"
+msgid "Date"
+msgstr "Дата"
+
+#: src/articlemodel.cpp:80
+#, fuzzy, kde-format
+#| msgid "Author"
+msgctxt "Articlelist's column header"
+msgid "Author"
+msgstr "Аўтар"
+
+#: src/articlemodel.cpp:82
+#, fuzzy, kde-format
+#| msgid "Description"
+msgctxt "Articlelist's column header"
+msgid "Description"
+msgstr "Апісанне"
+
+#: src/articlemodel.cpp:84
+#, fuzzy, kde-format
+#| msgid "Content"
+msgctxt "Articlelist's column header"
+msgid "Content"
+msgstr "Змест"
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:149
+#, fuzzy, kde-format
+#| msgid "A KDE Feed Reader"
+msgid "Akregator is a KDE news feed reader."
+msgstr "Праграма чытання стужак KDE"
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:190
+#, fuzzy, kde-format
+#| msgid "&Save Link As..."
+msgctxt "@title:window"
+msgid "Save As"
+msgstr "&Запісаць спасылку як..."
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:382
+#, kde-format
+msgid "Disable"
+msgstr ""
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:384
+#, kde-format
+msgid "Keep Enabled"
+msgstr ""
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:386
+#, fuzzy, kde-format
+#| msgid "<qt>Are you sure you want to delete this feed?</qt>"
+msgid "Are you sure you want to disable this introduction page?"
+msgstr "<qt>Выдаліць стужку навін?</qt>"
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:387
+#, fuzzy, kde-format
+#| msgid "Disable Archiving"
+msgid "Disable Introduction Page"
+msgstr "Адключыць архівірванне"
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:422
+#, kde-format
+msgid "This web site is a malware, do you want to continue to show it?"
+msgstr ""
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:423
+#, kde-format
+msgid "Malware"
+msgstr ""
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:435
+#, kde-format
+msgid "The network is broken."
+msgstr ""
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:435
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:438
+#, kde-format
+msgid "Check Phishing Url"
+msgstr ""
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:438
+#, kde-format
+msgid "The url %1 is not valid."
+msgstr ""
+
+#: src/articleviewer-ng/webengine/articleviewerwebenginewidgetng.cpp:137
+#, kde-format
+msgctxt "@title:window"
+msgid "Print Document"
+msgstr ""
+
+#: src/command/createfoldercommand.cpp:47
+#, kde-format
+msgid "Add Folder"
+msgstr "Дадаць тэчку"
+
+#: src/command/createfoldercommand.cpp:47
+#, kde-format
+msgid "Folder name:"
+msgstr "Назва тэчкі:"
+
+#: src/command/deletesubscriptioncommand.cpp:39
+#, kde-format
+msgid ""
+"<qt>Are you sure you want to delete this folder and its feeds and subfolders?"
+"</qt>"
+msgstr "<qt>Выдаліць тэчку са ўсімі яе падтэчкамі і стужкамі навін?</qt>"
+
+#: src/command/deletesubscriptioncommand.cpp:40
+#, kde-format
+msgid ""
+"<qt>Are you sure you want to delete folder <b>%1</b> and its feeds and "
+"subfolders?</qt>"
+msgstr ""
+"<qt>Выдаліць тэчку <b>%1</b> са ўсімі яе падтэчкамі і стужкамі навін?</qt>"
+
+#: src/command/deletesubscriptioncommand.cpp:44
+#, kde-format
+msgid "Delete Folder"
+msgstr "Выдаліць тэчку"
+
+#: src/command/deletesubscriptioncommand.cpp:61
+#, kde-format
+msgid "<qt>Are you sure you want to delete this feed?</qt>"
+msgstr "<qt>Выдаліць стужку навін?</qt>"
+
+#: src/command/deletesubscriptioncommand.cpp:63
+#, kde-format
+msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
+msgstr "<qt>Выдаліць стужку навін <b>%1</b>?</qt>"
+
+#: src/command/deletesubscriptioncommand.cpp:68
+#, kde-format
+msgid "Delete Feed"
+msgstr "Выдаліць стужку"
+
+#: src/command/importfeedlistcommand.cpp:48
+#, fuzzy, kde-format
+#| msgid "&Import Feeds..."
+msgid "Imported Feeds"
+msgstr "&Імпартаваць стужкі..."
+
+#: src/command/importfeedlistcommand.cpp:77
+#, kde-format
+msgid "Add Imported Folder"
+msgstr "Дадаць тэчку для імпартаваных стужак"
+
+#: src/command/importfeedlistcommand.cpp:78
+#, kde-format
+msgid "Imported folder name:"
+msgstr "Назва тэчкі для імпарту:"
+
+#: src/command/loadfeedlistcommand.cpp:63
+#, fuzzy, kde-format
+#| msgid ""
+#| "<qt>The standard feed list is corrupted (invalid XML). A backup was "
+#| "created:<p><b>%1</b></p></qt>"
+msgid ""
+"<qt>The standard feed list is corrupted (invalid OPML). A backup was created:"
+"<p><b>%1</b></p></qt>"
+msgstr ""
+"<qt>Спіс стужак пашкоджаны (памылка ў XML). Створаная рэзервовая копія:<p><b>"
+"%1</b></p></qt>"
+
+#: src/command/loadfeedlistcommand.cpp:67
+#, fuzzy, kde-format
+#| msgid ""
+#| "<qt>The standard feed list is corrupted (invalid XML). A backup was "
+#| "created:<p><b>%1</b></p></qt>"
+msgid ""
+"<qt>The standard feed list is corrupted (invalid OPML). Could not create a "
+"backup.</qt>"
+msgstr ""
+"<qt>Спіс стужак пашкоджаны (памылка ў XML). Створаная рэзервовая копія:<p><b>"
+"%1</b></p></qt>"
+
+#: src/command/loadfeedlistcommand.cpp:129
+#, kde-format
+msgid "Opening Feed List..."
+msgstr "Адкрыццё спісу стужак навін..."
+
+#: src/command/loadfeedlistcommand.cpp:142
+#, kde-format
+msgid "<qt>Could not open feed list (%1) for reading.</qt>"
+msgstr ""
+
+#: src/command/loadfeedlistcommand.cpp:155
+#, fuzzy, kde-format
+#| msgid "XML Parsing Error"
+msgctxt "error message window caption"
+msgid "XML Parsing Error"
+msgstr "Памылка разбору XML"
+
+#: src/command/loadfeedlistcommand.cpp:157
+#, kde-kuit-format
+msgid "<qt><p>XML parsing error in line %1, column %2 of %3:</p><p>%4</p></qt>"
+msgstr ""
+
+#: src/command/loadfeedlistcommand.cpp:164
+#, kde-format
+msgid ""
+"<qt>The standard feed list is corrupted (invalid XML). A backup was created:"
+"<p><b>%1</b></p></qt>"
+msgstr ""
+"<qt>Спіс стужак пашкоджаны (памылка ў XML). Створаная рэзервовая копія:<p><b>"
+"%1</b></p></qt>"
+
+#: src/command/loadfeedlistcommand.cpp:168
+#, fuzzy, kde-format
+#| msgid ""
+#| "<qt>The standard feed list is corrupted (invalid XML). A backup was "
+#| "created:<p><b>%1</b></p></qt>"
+msgid ""
+"<qt>The standard feed list is corrupted (invalid XML). Could not create a "
+"backup.</qt>"
+msgstr ""
+"<qt>Спіс стужак пашкоджаны (памылка ў XML). Створаная рэзервовая копія:<p><b>"
+"%1</b></p></qt>"
+
+#: src/crashwidget/crashwidget.cpp:21
+#, kde-format
+msgid ""
+"Akregator did not close correctly. Would you like to restore the previous "
+"session?"
+msgstr ""
+
+#: src/crashwidget/crashwidget.cpp:37
+#, kde-format
+msgid "Restore Session"
+msgstr ""
+
+#: src/crashwidget/crashwidget.cpp:43
+#, kde-format
+msgid "Do Not Restore Session"
+msgstr ""
+
+#: src/crashwidget/crashwidget.cpp:49
+#, kde-format
+msgid "Ask me later"
+msgstr ""
+
+#. i18n: ectx: Menu (edit)
+#: src/data/akregator_part.rc:14 src/data/akregator_shell.rc:11
+#, kde-format
+msgid "&Edit"
+msgstr "&Змяніць"
+
+#. i18n: ectx: Menu (view)
+#: src/data/akregator_part.rc:21 src/data/akregator_shell.rc:16
+#, kde-format
+msgid "&View"
+msgstr "&Выгляд"
+
+#. i18n: ectx: Menu (go)
+#: src/data/akregator_part.rc:36 src/data/akregator_shell.rc:24
+#, kde-format
+msgid "&Go"
+msgstr "Іс&ці"
+
+#. i18n: ectx: Menu (feed)
+#: src/data/akregator_part.rc:49 src/data/akregator_shell.rc:29
+#, fuzzy, kde-format
+#| msgid "Feed"
+msgid "Fee&d"
+msgstr "Стужка"
+
+#. i18n: ectx: Menu (article)
+#: src/data/akregator_part.rc:62 src/data/akregator_shell.rc:34
+#, kde-format
+msgid "&Article"
+msgstr "&Артыкул"
+
+#. i18n: ectx: Menu (settings)
+#: src/data/akregator_part.rc:79 src/data/akregator_shell.rc:39
+#, kde-format
+msgid "&Settings"
+msgstr "&Настаўленні"
+
+#. i18n: ectx: ToolBar (mainToolBar)
+#: src/data/akregator_part.rc:92 src/data/akregator_shell.rc:54
+#, kde-format
+msgid "Main Toolbar"
+msgstr "Галоўная панель начыння"
+
+#. i18n: ectx: Menu (file)
+#: src/data/akregator_shell.rc:4
+#, kde-format
+msgid "&File"
+msgstr "&Файл"
+
+#: src/feed/feedlist.cpp:160
+#, kde-format
+msgid "All Feeds"
+msgstr "Усе стужкі"
+
+#: src/feed/feedpropertiesdialog.cpp:45 src/feed/feedpropertiesdialog.cpp:77
+#, fuzzy, kde-format
+#| msgid "Minutes"
+msgid "Minute"
+msgid_plural "Minutes"
+msgstr[0] "Хвілінаў"
+msgstr[1] "Хвілінаў"
+msgstr[2] "Хвілінаў"
+
+#: src/feed/feedpropertiesdialog.cpp:46 src/feed/feedpropertiesdialog.cpp:78
+#, fuzzy, kde-format
+#| msgid "Hours"
+msgid "Hour"
+msgid_plural "Hours"
+msgstr[0] "гадзін"
+msgstr[1] "гадзін"
+msgstr[2] "гадзін"
+
+#: src/feed/feedpropertiesdialog.cpp:47 src/feed/feedpropertiesdialog.cpp:79
+#, fuzzy, kde-format
+#| msgid "Days"
+msgid "Day"
+msgid_plural "Days"
+msgstr[0] "Дзён"
+msgstr[1] "Дзён"
+msgstr[2] "Дзён"
+
+#: src/feed/feedpropertiesdialog.cpp:60 src/feed/feedpropertiesdialog.cpp:112
+#, fuzzy, kde-format
+#| msgid "Feed Properties"
+msgctxt "@title:window"
+msgid "Feed Properties"
+msgstr "Уласцівасці стужкі"
+
+#: src/feed/feedpropertiesdialog.cpp:80
+#, fuzzy, kde-format
+#| msgid "Never"
+msgctxt "never fetch new articles"
+msgid "Never"
+msgstr "Ніколі"
+
+#: src/feed/feedpropertiesdialog.cpp:81
+#, fuzzy, kde-format
+#| msgid "1 day"
+msgid " day"
+msgid_plural " days"
+msgstr[0] "1 дзень"
+msgstr[1] "1 дзень"
+msgstr[2] "1 дзень"
+
+#: src/feed/feedpropertiesdialog.cpp:82
+#, fuzzy, kde-format
+#| msgid "1 article"
+msgid " article"
+msgid_plural " articles"
+msgstr[0] "1 артыкул"
+msgstr[1] "1 артыкул"
+msgstr[2] "1 артыкул"
+
+#: src/feed/feedpropertiesdialog.cpp:112
+#, fuzzy, kde-format
+#| msgid "Properties of %1"
+msgctxt "@title:window"
+msgid "Properties of %1"
+msgstr "Уласцівасці для %1"
+
+#: src/formatter/articleformatter.cpp:36
+#, kde-format
+msgid "(%1, %2)"
+msgstr ""
+
+#: src/formatter/grantleeviewformatter.cpp:58
+#: src/formatter/grantleeviewformatter.cpp:109
+#, kde-format
+msgid " (no unread articles)"
+msgstr " (усе артыкулы прачытаныя)"
+
+#: src/formatter/grantleeviewformatter.cpp:60
+#: src/formatter/grantleeviewformatter.cpp:111
+#, fuzzy, kde-format
+msgid " (1 unread article)"
+msgid_plural " (%1 unread articles)"
+msgstr[0] " (%1 артыкул непрачытаны)"
+msgstr[1] " (%1 артыкулы непрачытана)"
+msgstr[2] " (%1 артыкулаў непрачытана)"
+
+#: src/formatter/grantleeviewformatter.cpp:75
+#, fuzzy, kde-format
+#| msgid "<b>Description:</b> %1<br><br>"
+msgid "<b>Description:</b> %1<br />"
+msgstr "<b> Апісанне:</b> %1<br><br>"
+
+#: src/formatter/grantleeviewformatter.cpp:82
+#, fuzzy, kde-format
+#| msgid "<b>Homepage:</b> <a href=\"%1\">%2</a>"
+msgid "<b>Homepage:</b> <a href=\"%1\">%1</a>"
+msgstr "<b>Дамашняя старонка:</b> <a href=\"%1\">%2</a>"
+
+#: src/formatter/grantleeviewformatter.cpp:89
+#, fuzzy, kde-format
+#| msgid "<b>Description:</b> %1<br><br>"
+msgid "<b>Copyright:</b> %1</a>"
+msgstr "<b> Апісанне:</b> %1<br><br>"
+
+#: src/formatter/grantleeviewformatter.cpp:141
+#, kde-format
+msgid "Date"
+msgstr "Дата"
+
+#: src/formatter/grantleeviewformatter.cpp:142
+#, fuzzy, kde-format
+#| msgid "Comments"
+msgid "Comment"
+msgstr "Каментары"
+
+#: src/formatter/grantleeviewformatter.cpp:143
+#, kde-format
+msgid "Complete Story"
+msgstr "Поўны артыкул"
+
+#: src/formatter/grantleeviewformatter.cpp:144
+#, kde-format
+msgid "Author"
+msgstr "Аўтар"
+
+#: src/formatter/grantleeviewformatter.cpp:145
+#, kde-format
+msgid "Enclosure"
+msgstr ""
+
+#: src/frame/frame.cpp:21
+#, kde-format
+msgid "Untitled"
+msgstr "Безназоўны"
+
+#: src/frame/frame.cpp:141
+#, kde-format
+msgid "Loading..."
+msgstr "Загрузка..."
+
+#: src/frame/frame.cpp:157
+#, kde-format
+msgid "Loading canceled"
+msgstr "Загрузка спынена"
+
+#: src/frame/frame.cpp:169
+#, kde-format
+msgid "Loading completed"
+msgstr "Загрузка завершана"
+
+#: src/mainwidget.cpp:144
+#, kde-format
+msgid "You can view multiple articles in several open tabs."
+msgstr "Вы можаце праглядаць накалькі артыкулаў у розных картках."
+
+#: src/mainwidget.cpp:148
+#, kde-format
+msgid "Articles list."
+msgstr "Спіс артыкулаў."
+
+#: src/mainwidget.cpp:210 src/mainwidget.cpp:635
+#, kde-format
+msgid "Articles"
+msgstr "Артыкулы"
+
+#: src/mainwidget.cpp:239
+#, kde-format
+msgid "About"
+msgstr "Пра праграму"
+
+#: src/mainwidget.cpp:765
+#, fuzzy, kde-format
+#| msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
+msgid ""
+"<qt>Are you sure you want to mark <b>all articles in the feed</b> as read?</"
+"qt>"
+msgstr "<qt>Выдаліць стужку навін <b>%1</b>?</qt>"
+
+#: src/mainwidget.cpp:766
+#, fuzzy, kde-format
+#| msgid "&Mark Feed as Read"
+msgid "Mark Feed as Read"
+msgstr "&Памеціць стужку прачытанай"
+
+#: src/mainwidget.cpp:769
+#, fuzzy, kde-format
+#| msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
+msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
+msgstr "<qt>Выдаліць стужку навін <b>%1</b>?</qt>"
+
+#: src/mainwidget.cpp:771
+#, fuzzy, kde-format
+#| msgid "<qt>Are you sure you want to delete this feed?</qt>"
+msgid ""
+"<qt>Are you sure you want to mark <b>all feeds in the folder</b> as read?</"
+"qt>"
+msgstr "<qt>Выдаліць стужку навін?</qt>"
+
+#: src/mainwidget.cpp:773
+#, fuzzy, kde-format
+#| msgid "&Mark Feeds as Read"
+msgid "Mark Feeds as Read"
+msgstr "&Памеціць стужкі прачытанымі"
+
+#: src/mainwidget.cpp:837 src/mainwidget.cpp:846 src/mainwidget.cpp:1248
+#, kde-format
+msgid "Networking is not available."
+msgstr ""
+
+#: src/mainwidget.cpp:854
+#, kde-format
+msgid "Fetching Feeds..."
+msgstr "Сцягваю стужкі..."
+
+#: src/mainwidget.cpp:1053
+#, kde-format
+msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
+msgstr "<qt>Выдаліць артыкул <b>%1</b>?</qt>"
+
+#: src/mainwidget.cpp:1056
+#, fuzzy, kde-format
+#| msgid "<qt>Are you sure you want to delete the %1 selected articles?</qt>"
+msgid "<qt>Are you sure you want to delete the selected article?</qt>"
+msgid_plural ""
+"<qt>Are you sure you want to delete the %1 selected articles?</qt>"
+msgstr[0] ""
+"<qt>Вы ўпэўнены ў тым, што хочаце выдаліць %1 выбраных артыкулаў?</qt>"
+msgstr[1] ""
+"<qt>Вы ўпэўнены ў тым, што хочаце выдаліць %1 выбраных артыкулаў?</qt>"
+msgstr[2] ""
+"<qt>Вы ўпэўнены ў тым, што хочаце выдаліць %1 выбраных артыкулаў?</qt>"
+
+#: src/mainwidget.cpp:1245
+#, kde-format
+msgid "Networking is available now."
+msgstr ""
+
+#: src/mainwindow.cpp:124
+#, kde-format
+msgid ""
+"<qt>This will hide the menu bar completely. You can show it again by typing "
+"%1.</qt>"
+msgstr ""
+
+#: src/mainwindow.cpp:127
+#, kde-format
+msgid "Hide menu bar"
+msgstr ""
+
+#: src/mainwindow.cpp:156
+#, fuzzy, kde-format
+#| msgid "Could not find the Akregator part; please check your installation."
+msgid ""
+"Could not find the Akregator part; please check your installation.\n"
+"%1"
+msgstr "Не знойдзены кампанент Akregator. Праверце ўсталёўку."
+
+#: src/notificationmanager.cpp:49
+#, kde-format
+msgid ""
+"Feed added:\n"
+" %1"
+msgstr ""
+"Дададзеная стужка:\n"
+" %1"
+
+#: src/notificationmanager.cpp:61
+#, kde-format
+msgid ""
+"Feeds added:\n"
+" %1"
+msgstr ""
+"Дададзеныя стужкі:\n"
+" %1"
+
+#: src/notificationmanager.cpp:79
+#, kde-format
+msgid "<i>and 1 other</i>"
+msgid_plural "<i>and %1 others</i>"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#: src/progressmanager.cpp:127
+#, kde-format
+msgid "Fetch completed"
+msgstr "Сцягванне завершана"
+
+#: src/progressmanager.cpp:136
+#, kde-format
+msgid "Fetch error"
+msgstr "Памылка сцягвання"
+
+#: src/progressmanager.cpp:145
+#, kde-format
+msgid "Fetch aborted"
+msgstr "Сцягванне адменена"
+
+#: src/subscription/subscriptionlistjobs.cpp:54
+#, kde-format
+msgid "Feed list was deleted"
+msgstr ""
+
+#: src/subscription/subscriptionlistjobs.cpp:64
+#, kde-format
+msgid "Node or destination folder not found"
+msgstr "Вузел ці тэчка прызначэння не знойдзены"
+
+#: src/subscription/subscriptionlistjobs.cpp:71
+#, kde-format
+msgid "Cannot move folder %1 to its own subfolder %2"
+msgstr ""
+
+#: src/subscription/subscriptionlistmodel.cpp:49
+#, kde-format
+msgid "Timeout on remote server"
+msgstr "Перавышэнне тэрміну чакання сервера"
+
+#: src/subscription/subscriptionlistmodel.cpp:51
+#, kde-format
+msgid "Unknown host"
+msgstr "Невядомы вузел"
+
+#: src/subscription/subscriptionlistmodel.cpp:53
+#, kde-format
+msgid "Feed file not found on remote server"
+msgstr "Стужка не знойдзеная на серверы."
+
+#: src/subscription/subscriptionlistmodel.cpp:55
+#, fuzzy, kde-format
+#| msgid "Could not import the file %1 (no valid OPML)"
+msgid "Could not read feed (invalid XML)"
+msgstr "Немагчыма імпартаваць файл %1 (няслушны фармат OPML)"
+
+#: src/subscription/subscriptionlistmodel.cpp:57
+#, kde-format
+msgid "Could not read feed (unknown format)"
+msgstr "Немагчыма прачытаць стужку (невядомы фармат)"
+
+#: src/subscription/subscriptionlistmodel.cpp:59
+#, fuzzy, kde-format
+#| msgid "Could not import the file %1 (no valid OPML)"
+msgid "Could not read feed (invalid feed)"
+msgstr "Немагчыма імпартаваць файл %1 (няслушны фармат OPML)"
+
+#: src/subscription/subscriptionlistmodel.cpp:229
+#, kde-format
+msgid "Could not fetch feed: %1"
+msgstr "Немагчыма сцягнуць стужку: %1"
+
+#: src/subscription/subscriptionlistmodel.cpp:274
+#, fuzzy, kde-format
+#| msgid "Feeds"
+msgctxt "Feedlist's column header"
+msgid "Feeds"
+msgstr "Стужкі"
+
+#: src/subscription/subscriptionlistmodel.cpp:276
+#, fuzzy, kde-format
+#| msgid "Unread"
+msgctxt "Feedlist's column header"
+msgid "Unread"
+msgstr "Непрачытаны"
+
+#: src/subscription/subscriptionlistmodel.cpp:278
+#, fuzzy, kde-format
+#| msgid "Total"
+msgctxt "Feedlist's column header"
+msgid "Total"
+msgstr "Усяго"
+
+#: src/tabwidget.cpp:92
+#, kde-format
+msgid "Close the current tab"
+msgstr "Закрыць гэтую картку"
+
+#: src/tabwidget.cpp:95
+#, fuzzy, kde-format
+#| msgid "&Close Tab"
+msgid "Close tab"
+msgstr "&Закрыць картку"
+
+#: src/tabwidget.cpp:118
+#, fuzzy, kde-format
+#| msgid "Detach Tab"
+msgctxt "@action:inmenu"
+msgid "Detach Tab"
+msgstr "Аддзяліць картку"
+
+#: src/tabwidget.cpp:123
+#, fuzzy, kde-format
+#| msgid "&Close Tab"
+msgctxt "@action:inmenu"
+msgid "Close Tab"
+msgstr "&Закрыць картку"
+
+#: src/tabwidget.cpp:127
+#, fuzzy, kde-format
+#| msgid "Close the current tab"
+msgctxt "@action:inmenu"
+msgid "Close All Other Tabs"
+msgstr "Закрыць гэтую картку"
+
+#: src/tabwidget.cpp:131
+#, fuzzy, kde-format
+#| msgid "&Close Tab"
+msgctxt "@action:inmenu"
+msgid "Close All Tabs"
+msgstr "&Закрыць картку"
+
+#: src/trayicon.cpp:55
+#, fuzzy, kde-format
+#| msgid " (no unread articles)"
+msgid "There are no unread articles"
+msgstr " (усе артыкулы прачытаныя)"
+
+#: src/trayicon.cpp:55
+#, fuzzy, kde-format
+#| msgid " (1 unread article)"
+#| msgid_plural " (%1 unread articles)"
+msgid "1 unread article"
+msgid_plural "%1 unread articles"
+msgstr[0] " (%1 артыкул непрачытаны)"
+msgstr[1] " (%1 артыкулы непрачытана)"
+msgstr[2] " (%1 артыкулаў непрачытана)"
+
+#. i18n: ectx: property (windowTitle), widget (QWidget, Akregator::AddFeedWidgetBase)
+#: src/ui/addfeedwidgetbase.ui:14
+#, kde-format
+msgid "Add Feed"
+msgstr "Дадаць стужку"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel1)
+#: src/ui/addfeedwidgetbase.ui:122
+#, kde-format
+msgid "Add New Source"
+msgstr "Дадаць стужку навін"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel3)
+#: src/ui/addfeedwidgetbase.ui:135
+#, kde-format
+msgid "Feed &URL:"
+msgstr "&URL стужкі:"
+
+#. i18n: ectx: property (windowTitle), widget (QWidget, Akregator::FeedPropertiesWidgetBase)
+#: src/ui/feedpropertieswidgetbase.ui:20
+#, kde-format
+msgid "Feed Properties"
+msgstr "Уласцівасці стужкі"
+
+#. i18n: ectx: attribute (title), widget (QWidget, tab1)
+#: src/ui/feedpropertieswidgetbase.ui:42
+#, kde-format
+msgid "&General"
+msgstr "&Агульныя"
+
+#. i18n: ectx: property (text), widget (QCheckBox, cb_updateInterval)
+#: src/ui/feedpropertieswidgetbase.ui:54
+#, kde-format
+msgid "U&se a custom update interval"
+msgstr "Задаць іншы інтэрвал абнаўлення"
+
+#. i18n: ectx: property (text), widget (QLabel, updateLabel)
+#: src/ui/feedpropertieswidgetbase.ui:88
+#, fuzzy, kde-format
+#| msgid "Update &every:"
+msgid "Update ever&y:"
+msgstr "Правяраць абнаўленні кожныя:"
+
+#. i18n: ectx: property (text), widget (QCheckBox, checkBox_useNotification)
+#: src/ui/feedpropertieswidgetbase.ui:117
+#, kde-format
+msgid "Notify when new articles arri&ve"
+msgstr "Паведаміць &аб з'яўленні новых артыкулаў"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel3)
+#: src/ui/feedpropertieswidgetbase.ui:132
+#, kde-format
+msgid "&URL:"
+msgstr "&URL:"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel2)
+#: src/ui/feedpropertieswidgetbase.ui:142
+#, kde-format
+msgid "&Name:"
+msgstr "&Імя:"
+
+#. i18n: ectx: property (toolTip), widget (QLineEdit, feedNameEdit)
+#: src/ui/feedpropertieswidgetbase.ui:161
+#, kde-format
+msgid "Display name of RSS column"
+msgstr "Паказаць назву RSS"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: src/ui/feedpropertieswidgetbase.ui:171
+#, fuzzy, kde-format
+#| msgid "Comments"
+msgid "Comment:"
+msgstr "Каментары"
+
+#. i18n: ectx: attribute (title), widget (QWidget, tab2)
+#: src/ui/feedpropertieswidgetbase.ui:194
+#, kde-format
+msgid "Ar&chive"
+msgstr "Ар&хіў"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rb_globalDefault)
+#: src/ui/feedpropertieswidgetbase.ui:206
+#, kde-format
+msgid "&Use default settings"
+msgstr "Выкарыстаць настаўленні па змаўчанні"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rb_disableArchiving)
+#: src/ui/feedpropertieswidgetbase.ui:216
+#, kde-format
+msgid "Di&sable archiving"
+msgstr "А&дключыць архівірванне"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rb_limitArticleNumber)
+#: src/ui/feedpropertieswidgetbase.ui:247
+#, kde-format
+msgid "Limit archi&ve to:"
+msgstr "Абмежаваць захоўванне:"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rb_limitArticleAge)
+#: src/ui/feedpropertieswidgetbase.ui:277
+#, kde-format
+msgid "&Delete articles older than:"
+msgstr "Выдаляць артыкулы праз:"
+
+#. i18n: ectx: attribute (title), widget (QWidget, tab3)
+#: src/ui/feedpropertieswidgetbase.ui:340
+#, kde-format
+msgid "Adva&nced"
+msgstr "Дадаткова"
+
+#. i18n: ectx: property (text), widget (QCheckBox, checkBox_loadWebsite)
+#: src/ui/feedpropertieswidgetbase.ui:373
+#, kde-format
+msgid "Load the &full website when reading articles"
+msgstr "Загружаць пры праглядзе артыкул цалкам"
+
+#. i18n: ectx: property (text), widget (QCheckBox, checkBox_markRead)
+#: src/ui/feedpropertieswidgetbase.ui:380
+#, kde-format
+msgid "Mar&k articles as read when they arrive"
+msgstr "Адзначыць усе новыя артыкулы як прачытаныя"
+
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:40
+#, fuzzy, kde-format
+#| msgid "Disable Archiving"
+msgid "Disable Introduction"
+msgstr "Адключыць архівірванне"
+
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:58
+#, fuzzy, kde-format
+#| msgid "Copy Link Address"
+msgid "&Copy Email Address"
+msgstr "Скапіраваць адрас спасылкі"
+
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:67
+#, kde-format
+msgid "Address copied to clipboard."
+msgstr ""
+
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:98
+#, fuzzy, kde-format
+#| msgid "&Mark Articles as Read"
+msgid "Mark Article as Read"
+msgstr "&Памеціць артыкулы прачытанымі"
+
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:100
+#, fuzzy, kde-format
+#| msgid "&Mark Articles as Read"
+msgid "Mark Article as Unread"
+msgstr "&Памеціць артыкулы прачытанымі"
+
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:102
+#, fuzzy, kde-format
+#| msgid "Remove &Important Mark"
+msgid "Change Important Flag"
+msgstr "&зняць паметку \"важны\""
+
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:104
+#, fuzzy, kde-format
+#| msgid "Article"
+msgid "Send the URL of the article"
+msgstr "Артыкул"
+
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:106
+#, fuzzy, kde-format
+#| msgid "Article"
+msgid "Send the Html Page of Article"
+msgstr "Артыкул"
+
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:108
+#, fuzzy, kde-format
+#| msgid "Open in External Browser"
+msgid "Open In External Browser"
+msgstr "Адкрыць у знешнім браўзэры"
+
+#: src/widgets/searchbar.cpp:40
+#, fuzzy, kde-format
+#| msgid " articles"
+msgid "Search articles..."
+msgstr " артыкулаў"
+
+#: src/widgets/searchbar.cpp:112
+#, fuzzy, kde-format
+#| msgid " articles"
+msgid "Search articles...<%1>"
+msgstr " артыкулаў"
+
+#: src/widgets/statussearchline.cpp:42
+#, kde-format
+msgid "All Articles"
+msgstr "усё"
+
+#: src/widgets/statussearchline.cpp:43
+#, fuzzy, kde-format
+#| msgid "Unread"
+msgctxt "Unread articles filter"
+msgid "Unread"
+msgstr "Непрачытаны"
+
+#: src/widgets/statussearchline.cpp:44
+#, fuzzy, kde-format
+#| msgid "New"
+msgctxt "New articles filter"
+msgid "New"
+msgstr "Новы"
+
+#: src/widgets/statussearchline.cpp:45
+#, fuzzy, kde-format
+#| msgctxt "as in: mark as read"
+#| msgid "&Read"
+msgctxt "Read articles filter"
+msgid "Read"
+msgstr "&непрачытаны"
+
+#: src/widgets/statussearchline.cpp:46
+#, fuzzy, kde-format
+#| msgid "Important"
+msgctxt "Important articles filter"
+msgid "Important"
+msgstr "Важнаы"
+
+#~ msgid "Archive"
+#~ msgstr "Архіў"
+
+#~ msgid "Archive backend:"
+#~ msgstr "Рухавік захоўвання:"
+
+#~ msgid "&Configure..."
+#~ msgstr "&Наставіць..."
+
+#~ msgid "Unable to load storage backend plugin \"%1\". No feeds are archived."
+#~ msgstr ""
+#~ "Немагчыма загрузіць модуль захоўвання \"%1\". Артыкулы не будуць "
+#~ "захаваныя."
+
+#~ msgid "Plugin error"
+#~ msgstr "Памылка ўтулкі"
+
+#~ msgid "No Archive"
+#~ msgstr "Няма архіва"
+
+#, fuzzy
+#~| msgid "Name"
+#~ msgctxt "Name of the plugin"
+#~ msgid "Name"
+#~ msgstr "Імя"
+
+#, fuzzy
+#~| msgid "Library"
+#~ msgctxt "Library name"
+#~ msgid "Library"
+#~ msgstr "Бібліятэка"
+
+#, fuzzy
+#~| msgid "Authors"
+#~ msgctxt "Plugin authors"
+#~ msgid "Authors"
+#~ msgstr "Аўтары"
+
+#, fuzzy
+#~| msgid "Email"
+#~ msgctxt "Plugin authors' emaila addresses"
+#~ msgid "Email"
+#~ msgstr "Электронная пошта"
+
+#, fuzzy
+#~| msgid "Version"
+#~ msgctxt "Plugin version"
+#~ msgid "Version"
+#~ msgstr "Версія"
+
+#, fuzzy
+#~| msgid "Framework Version"
+#~ msgctxt "Framework version plugin requires"
+#~ msgid "Framework Version"
+#~ msgstr "Версія асяроддзя"
+
+#~ msgid "Plugin Information"
+#~ msgstr "Інфармацыя ўтулкі"
+
+#, fuzzy
+#~| msgid "Planet KDE"
+#~ msgid "Planet KDE Brazilian Portuguese"
+#~ msgstr "Планета KDE"
+
+#, fuzzy
+#~| msgid "Use this command:"
+#~ msgid "&Use this command:"
+#~ msgstr "Іншая праграма:"
+
+#~ msgid "The file %1 already exists; do you want to overwrite it?"
+#~ msgstr "Файл %1 ужо існуе; вы сапраўды хочаце замяніць яго?"
+
+#~ msgid "Export"
+#~ msgstr "Экспарт"
+
+#, fuzzy
+#~| msgid "Planet KDE"
+#~ msgid "Planet KDE PIM"
+#~ msgstr "Планета KDE"
+
+#, fuzzy
+#~| msgid "&Fetch Feeds"
+#~ msgid "French feeds"
+#~ msgstr "&Сцягнуць стужкі"
+
+#, fuzzy
+#~| msgid "Planet KDE"
+#~ msgid "Planet KDE France"
+#~ msgstr "Планета KDE"
+
+#, fuzzy
+#~| msgid "For External Browsing"
+#~ msgid "Safe Browsing"
+#~ msgstr "Выбар браўзэра"
+
+#, fuzzy
+#~| msgid "Copy Link Address"
+#~ msgid "&Open in Address Book"
+#~ msgstr "Скапіраваць адрас спасылкі"
+
+#~ msgid "KDE Look"
+#~ msgstr "Выгляд KDE"
+
+#, fuzzy
+#~| msgid "Browser"
+#~ msgid "Browser Toolbar"
+#~ msgstr "Браўзэр"
+
+#~ msgid "Keep all articles"
+#~ msgstr "Захоўваць усе артыкулы"
+
+#, fuzzy
+#~| msgid "<b>Homepage:</b> <a href=\"%1\">%2</a>"
+#~ msgid "<a href=\"%1\">%2</a> %3"
+#~ msgstr "<b>Дамашняя старонка:</b> <a href=\"%1\">%2</a>"
+
+#, fuzzy
+#~| msgid "Concurrent Fetches"
+#~ msgid "Configure AdBlock"
+#~ msgstr "Паралельныя загрузкі"
+
+#, fuzzy
+#~| msgid "&Use default settings"
+#~ msgid "Open Ad Block settings"
+#~ msgstr "Выкарыстаць настаўленні па змаўчанні"
+
+#, fuzzy
+#~| msgid "Article"
+#~ msgid "Send Url Article"
+#~ msgstr "Артыкул"
+
+#, fuzzy
+#~| msgid "&Mark As"
+#~ msgid "Mark as New"
+#~ msgstr "&Памеціць як"
+
+#, fuzzy
+#~| msgid "Forward"
+#~ msgctxt "Go forward in browser history"
+#~ msgid "Forward"
+#~ msgstr "Наперад"
+
+#, fuzzy
+#~| msgid "Back"
+#~ msgctxt "Go back in browser history"
+#~ msgid "Back"
+#~ msgstr "Назад"
+
+#, fuzzy
+#~| msgid "Reload"
+#~ msgctxt "Reload current page"
+#~ msgid "Reload"
+#~ msgstr "Абнавіць"
+
+#~ msgid "Stop"
+#~ msgstr "Спыніць"
+
+#, fuzzy
+#~| msgid "&Mark as Important"
+#~ msgid "Mark Article as Important"
+#~ msgstr "&Памеціць як \"важны\""
+
+#, fuzzy
+#~| msgid "S&earch:"
+#~ msgctxt "Title of article searchbar"
+#~ msgid "S&earch:"
+#~ msgstr "&Шукаць:"
+
+#~ msgid "Status:"
+#~ msgstr "Стан:"
+
+#~ msgid "Enter space-separated terms to filter article list"
+#~ msgstr "Увядзіце ключавыя словы праз прабел для фільтрацыі артыкулаў"
+
+#~ msgid "Choose what kind of articles to show in article list"
+#~ msgstr "Якія артыкулы паказаць"
+
+#~ msgid "Comments"
+#~ msgstr "Каментары"
+
+#~ msgid "&Underline links"
+#~ msgstr "&Падкрэсліваць спасылкі"
+
+#, fuzzy
+#~| msgid "&Configure..."
+#~ msgid "Configurate"
+#~ msgstr "&Наставіць..."
+
+#, fuzzy
+#~| msgctxt "%1: Akregator version; %2: homepage URL; --- end of comment ---"
+#~| msgid ""
+#~| "<h2 style='margin-top: 0px;'>Welcome to Akregator %1</h2><p>Akregator is "
+#~| "a feed reader for the K Desktop Environment. Feed readers provide a "
+#~| "convenient way to browse different kinds of content, including news, "
+#~| "blogs, and other content from online sites. Instead of checking all your "
+#~| "favorite web sites manually for updates, Akregator collects the content "
+#~| "for you.</p><p>For more information about using Akregator, check the <a "
+#~| "href=\"%2\">Akregator website</a>. If you do not want to see this page "
+#~| "anymore, <a href=\"config:/disable_introduction\">click here</a>.</"
+#~| "p><p>We hope that you will enjoy Akregator.</p>\n"
+#~| "<p>Thank you,</p>\n"
+#~| "<p style='margin-bottom: 0px'>&nbsp; &nbsp; The Akregator Team</p>\n"
+#~ msgctxt "%1: Akregator version; %2: homepage URL; --- end of comment ---"
+#~ msgid ""
+#~ "<h2 style='margin-top: 0px;'>Welcome to Akregator %1</h2><p>Akregator is "
+#~ "a KDE news feed reader. Feed readers provide a convenient way to browse "
+#~ "different kinds of content, including news, blogs, and other content from "
+#~ "online sites. Instead of checking all your favorite web sites manually "
+#~ "for updates, Akregator collects the content for you.</p><p>For more "
+#~ "information about using Akregator, check the <a href=\"%2\">Akregator "
+#~ "website</a>. If you do not want to see this page anymore, <a href="
+#~ "\"config:/disable_introduction\">click here</a>.</p><p>We hope that you "
+#~ "will enjoy Akregator.</p>\n"
+#~ "<p>Thank you,</p>\n"
+#~ "<p style='margin-bottom: 0px'>&nbsp; &nbsp; The Akregator Team</p>\n"
+#~ msgstr ""
+#~ "<h2 style='margin-top: 0px;'>Вітаем у Akregator %1</h2><p>Akregator "
+#~ "з'яўляецца праграмай для чытання стужак навін для KDE. Стужкі навін "
+#~ "дазваляюць атрымліваць навіны, запісы блогаў і змены на сайтах. Цяпер вы "
+#~ "можаце не праглядаць змены змесціва вэб-сайтаў уручную.</p><p>Дадатковую "
+#~ "інфармацыю аб магчымасцях Akregator вы можаце атрымаць на <a href="
+#~ "\"%2\">вэб-сайце Akregator</a>. Калі вы не жадаеце больш бачыць гэтае "
+#~ "паведамленне, націсніце <a href=\"config:/disable_introduction\">тут</a>."
+#~ "</p><p>Мы спадзяемся, што вам спадабаецца працаваць у Akregator.</p>\n"
+#~ "<p>Дзякуй,</p>\n"
+#~ "<p style='margin-bottom: 0px'>&nbsp; &nbsp; каманда распрацоўшчыкаў "
+#~ "Akregator</p>\n"
+
+#, fuzzy
+#~| msgid "Serif font:"
+#~ msgid "Shrink Font"
+#~ msgstr "Шрыфт з засечкамі:"
+
+#~ msgid "Speech Toolbar"
+#~ msgstr "Панель прагаворвання"
+
+#~ msgid "Next Article: "
+#~ msgstr "Наступны артыкул:"
+
+#~ msgid "Browsing area."
+#~ msgstr "Вобласць прагляду."
+
+#~ msgid ""
+#~ "<div align=center><h3>No matches</h3>Filter does not match any articles, "
+#~ "please change your criteria and try again.</div>"
+#~ msgstr ""
+#~ "<div align=center><h3>Артыкулы не знойдзеныя</h3>Не знойдзены ні адзін "
+#~ "артыкул, які б задавальняў ўмовам пошуку. Выпраўце ўмовы пошуку і "
+#~ "паспрабуйце зноў.</div>"
+
+#~ msgid ""
+#~ "<div align=center><h3>No feed selected</h3>This area is article list. "
+#~ "Select a feed from the feed list and you will see its articles here.</div>"
+#~ msgstr ""
+#~ "<div align=center><h3>Не вылучаная стужка навін</h3>Гэтая вобласць "
+#~ "утрымоўвае артыкулы стужкі навін. Вылучыце стужку навін і тут будуць "
+#~ "паказаныя яе артыкулы.</div>"
+
+#, fuzzy
+#~| msgid "Loading..."
+#~ msgid "Manage..."
+#~ msgstr "Загрузка..."
+
+#, fuzzy
+#~| msgid "&Settings"
+#~ msgid "Bar Settings"
+#~ msgstr "&Настаўленні"
+
+#, fuzzy
+#~| msgid "&File"
+#~ msgid "File:"
+#~ msgstr "&Файл"
+
+#~ msgid "Description"
+#~ msgstr "Апісанне"
+
+#, fuzzy
+#~| msgid "&Add Feed..."
+#~ msgid "Add..."
+#~ msgstr "&Дадаць стужку..."
+
+#, fuzzy
+#~| msgid "Loading..."
+#~ msgid "Modify..."
+#~ msgstr "Загрузка..."
+
+#, fuzzy
+#~| msgid "Delete Feed"
+#~ msgid "Delete feeds:"
+#~ msgstr "Выдаліць стужку"
+
+#, fuzzy
+#~| msgid "Mark selected article as new"
+#~ msgid "&Speak Selected Articles"
+#~ msgstr "Адзначыць вылучаны артыкул як новы"
+
+#~ msgid "All Files"
+#~ msgstr "Усе файлы"
+
+#, fuzzy
+#~| msgid "Concurrent Fetches"
+#~ msgid "Configure Share Services"
+#~ msgstr "Паралельныя загрузкі"
+
+#, fuzzy
+#~| msgid "Serif font:"
+#~ msgid "Service"
+#~ msgstr "Шрыфт з засечкамі:"
+
+#, fuzzy
+#~| msgid "Folder name:"
+#~ msgctxt "login identify for blog account"
+#~ msgid "Username:"
+#~ msgstr "Назва тэчкі:"
+
+#, fuzzy
+#~| msgid "Feed &URL:"
+#~ msgid "Service URL:"
+#~ msgstr "&URL стужкі:"
+
+#, fuzzy
+#~| msgid "Feed &URL:"
+#~ msgid "Service URL"
+#~ msgstr "&URL стужкі:"
+
+#, fuzzy
+#~| msgid "Folder name:"
+#~ msgctxt "login identify for blog account"
+#~ msgid "Username"
+#~ msgstr "Назва тэчкі:"
+
+#~ msgid "<b>Open Link in New Tab</b><p>Opens current link in a new tab.</p>"
+#~ msgstr ""
+#~ "<b>Адкрыць у новай картцы</b><p>Адкрыць спасылку ў новай картцы.</p>"
+
+#~ msgid "Open Page in External Browser"
+#~ msgstr "Адкрыць старонку ў знешнім браўзэры"
+
+#~ msgid "Add to Konqueror Bookmarks"
+#~ msgstr "Дадаць у закладкі Konqueror"
+
+#, fuzzy
+#~| msgid "Feed Properties"
+#~ msgid "Feed List"
+#~ msgstr "Уласцівасці стужкі"
+
+#, fuzzy
+#~| msgid "Akregator - RSS Feed Reader"
+#~ msgid "Akregator - Feed Reader"
+#~ msgstr "Akregator - Чытанне стужак навін"
+
+#, fuzzy
+#~| msgid "Akregator - RSS Feed Reader"
+#~ msgid "Akregator - 1 unread article"
+#~ msgid_plural "Akregator - %1 unread articles"
+#~ msgstr[0] "Akregator - Чытанне стужак навін"
+#~ msgstr[1] "Akregator - Чытанне стужак навін"
+#~ msgstr[2] "Akregator - Чытанне стужак навін"
+
+#, fuzzy
+#~| msgid ""
+#~| "<qt><p>Closing the main window will keep Akregator running in the system "
+#~| "tray. Use 'Quit' from the 'File' menu to quit the application.</"
+#~| "p><p><center><img source=\"systray_shot\"></center></p></qt>"
+#~ msgid ""
+#~ "<qt><p>Closing the main window will keep Akregator running in the system "
+#~ "tray. Use 'Quit' from the 'File' menu to quit the application.</"
+#~ "p><p><center>%1</center></p></qt>"
+#~ msgstr ""
+#~ "<qt> <p>Закрыццё галоўнага акна не прывядзе да закрыцця Akregator, яго "
+#~ "значок застанецца ў сістэмным трэі. Для выхаду з праграмы карыстайцеся "
+#~ "пунктам меню 'Выхад'.</p><p><center><img source=\"systray_shot\" /></"
+#~ "center></p></qt>"
+
+#~ msgid "Docking in System Tray"
+#~ msgstr "Згортванне ў сістэмны трэй"
+
+#~ msgid "An RSS feed reader for the K Desktop Environment."
+#~ msgstr "Праграма чытання стужак навін RSS для KDE."
+
+#~ msgid "Akregator News"
+#~ msgstr "Навіны Akregator"
+
+#~ msgid "Akregator Blog"
+#~ msgstr "Блог Akregator"
+
+#~ msgid "&Increase Font Sizes"
+#~ msgstr "&Павялічыць памер шрыфта"
+
+#~ msgid "&Decrease Font Sizes"
+#~ msgstr "&Зменшыць памер шрыфта"
+
+#~ msgid "&Scroll Up"
+#~ msgstr "Пракруціць уверх"
+
+#~ msgid "&Scroll Down"
+#~ msgstr "Пракруціць уніз"
+
+#~ msgid " days"
+#~ msgstr " дзён"
+
+#~ msgid " minutes"
+#~ msgstr " хвіліны"
+
+#~ msgid "General"
+#~ msgstr "Агульныя"
+
+#~ msgid "ExternalBrowser"
+#~ msgstr "ExternalBrowser"
+
+#~ msgid "&Abort Fetches"
+#~ msgstr "Перапыніць загрузку"
+
+#, fuzzy
+#~| msgid ""
+#~| "<qt><p>Closing the main window will keep Akregator running in the system "
+#~| "tray. Use 'Quit' from the 'File' menu to quit the application.</"
+#~| "p><p><center><img source=\"systray_shot\"></center></p></qt>"
+#~ msgid ""
+#~ "<qt><p>Closing the main window will keep Akregator running in the system "
+#~ "tray. Use 'Quit' from the 'File' menu to quit the application.</"
+#~ "p><p><center><img source=\"systray_shot\" /></center></p></qt>"
+#~ msgstr ""
+#~ "<qt> <p>Закрыццё галоўнага акна не прывядзе да закрыцця Akregator, яго "
+#~ "значок застанецца ў сістэмным трэі. Для выхаду з праграмы карыстайцеся "
+#~ "пунктам меню 'Выхад'.</p><p><center><img source=\"systray_shot\" /></"
+#~ "center></p></qt>"
+
+#~ msgid "&View Mode"
+#~ msgstr "Рэжым &выгляду"
+
+#~ msgid "&Feed"
+#~ msgstr "&Стужка"
+
+#~ msgid "F&eed"
+#~ msgstr "С&тужка"
+
+#~ msgid "Show tab close button on hover"
+#~ msgstr "Паказаць кнопку закрыцця карткі пры навядзенні"
+
+#~ msgid ""
+#~ "<p>KLibLoader could not load the plugin:<br/><i>%1</i></p><p>Error "
+#~ "message:<br/><i>%2</i></p>"
+#~ msgstr ""
+#~ "<p>Немагчыма загрузіць утулку ў KLibLoader:<br/><i>%1</i></"
+#~ "p><p>Паведамленне аб памылцы:<br/><i>%2</i></p>"
+
+#~ msgid ""
+#~ "<h2>Feeds tree</h2>Here you can browse tree of feeds. You can also add "
+#~ "feeds or feed groups (folders) using right-click menu, or reorganize them "
+#~ "using drag and drop."
+#~ msgstr ""
+#~ "<h2>Дрэва стужак</h2>Тут вы можаце праглядаць стужкі навін, дадаваць, "
+#~ "размяшчаць па тэчках з дапамогай кантэкстнага меню або перацягвання."
+
+#, fuzzy
+#~| msgid ""
+#~| "<qt>The standard feed list is corrupted (no valid OPML). A backup was "
+#~| "created:<p><b>%1</b></p></qt>"
+#~ msgid ""
+#~ "<qt>The standard feed list is corrupted (no valid OPML). A backup of the "
+#~ "previous list was created:<p><b>%1</b></p></qt>"
+#~ msgstr ""
+#~ "<qt>Спіс стужак пашкоджаны (няправільны OPML). Створаная рэзервовая копія:"
+#~ "<p><b>%1</b></p></qt>"
+
+#, fuzzy
+#~| msgid ""
+#~| "<qt>The standard feed list is corrupted (no valid OPML). A backup was "
+#~| "created:<p><b>%1</b></p></qt>"
+#~ msgid ""
+#~ "<qt>The standard feed list is corrupted (no valid OPML). Could not create "
+#~ "a backup!></p></qt>"
+#~ msgstr ""
+#~ "<qt>Спіс стужак пашкоджаны (няправільны OPML). Створаная рэзервовая копія:"
+#~ "<p><b>%1</b></p></qt>"
+
+#~ msgid "Write error"
+#~ msgstr "Памылка запісу"
+
+#~ msgid "Overwrite"
+#~ msgstr "Замяніць"
+
+#~ msgid "Appearance"
+#~ msgstr "Вонкавы выгляд"
+
+#~ msgid "Advanced"
+#~ msgstr "Асаблівы"
+
+#, fuzzy
+#~| msgid "Article List"
+#~ msgid "Article title"
+#~ msgstr "Спіс артыкулаў"
+
+#, fuzzy
+#~| msgid ""
+#~| "<html><head><meta name=&quot;qrichtext&quot; content=&quot;1&quot; /></"
+#~| "head><body style=&quot; white-space: pre-wrap; font-family:Sans Serif; "
+#~| "font-weight:400; font-style:normal; text-decoration:none;&quot;><p "
+#~| "style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
+#~| "right:0px; -qt-block-indent:0; text-indent:0px;&quot;>Status:</p></"
+#~| "body></html>"
+#~ msgid ""
+#~ "<html><head><meta name=\"qrichtext\" content=\"1\" /></head><body style="
+#~ "\" white-space: pre-wrap; font-family:Sans Serif; font-weight:400; font-"
+#~ "style:normal; text-decoration:none;\"><p style=\" margin-top:0px; margin-"
+#~ "bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-"
+#~ "indent:0px;\">Status:</p></body></html>"
+#~ msgstr ""
+#~ "<html><head><meta name=&quot;qrichtext&quot; content=&quot;1&quot; /></"
+#~ "head><body style=&quot; white-space: pre-wrap; font-family:Sans Serif; "
+#~ "font-weight:400; font-style:normal; text-decoration:none;&quot;><p "
+#~ "style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
+#~ "right:0px; -qt-block-indent:0; text-indent:0px;&quot;>Стан:</p></body></"
+#~ "html>"
+
+#, fuzzy
+#~| msgid "Article"
+#~ msgid "Arial"
+#~ msgstr "Артыкул"
+
+#, fuzzy
+#~| msgid "Archive Backend"
+#~ msgid "Arial Black"
+#~ msgstr "Рухавік захавання артыкулаў"
+
+#, fuzzy
+#~| msgid "Feeds"
+#~ msgid "FreeSans"
+#~ msgstr "Стужкі"
+
+#, fuzzy
+#~ msgid "Georgia"
+#~ msgstr "Грузія"
+
+#, fuzzy
+#~| msgid "Important"
+#~ msgid "Impact"
+#~ msgstr "Важнаы"
+
+#, fuzzy
+#~| msgid "&Open Homepage"
+#~ msgid "MgOpen Cosmetica"
+#~ msgstr "MgOpen Cosmetica"
+
+#, fuzzy
+#~| msgid "Sans serif font:"
+#~ msgid "Sans Serif"
+#~ msgstr "Sans Serif"
+
+#, fuzzy
+#~| msgid "Standard font:"
+#~ msgid "Standard Symbols L"
+#~ msgstr "Звычайны шрыфт:"
+
+#, fuzzy
+#~| msgid "Never"
+#~ msgid "Steve"
+#~ msgstr "Ніколі"
+
+#~ msgid "Icon:"
+#~ msgstr "Значка:"
+
+#~ msgid "My Tags"
+#~ msgstr "Мае пазнакі"
+
+#~ msgid "Tag Properties"
+#~ msgstr "Уласцівасці пазнакі"
+
+#~ msgid "&Delete Tag"
+#~ msgstr "Выдаліць пазнаку"
+
+#~ msgid "&Edit Tag..."
+#~ msgstr "Пазнака..."
+
+#~ msgid "&New Tag..."
+#~ msgstr "Новая пазнака..."
+
+#~ msgid "&Set Tags"
+#~ msgstr "Усталяваць пазнакі"
+
+#~ msgid "Interesting"
+#~ msgstr "Цікавы"
+
+#~ msgid ""
+#~ "<qt>Are you sure you want to delete tag <b>%1</b>? The tag will be "
+#~ "removed from all articles.</qt>"
+#~ msgstr ""
+#~ "<qt>Выдаліць пазнаку <b>%1</b>? Яна будзе выдаленая з усіх артыкулаў.</qt>"
+
+#~ msgid "Delete Tag"
+#~ msgstr "Выдаліць пазнаку"

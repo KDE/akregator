@@ -1,0 +1,3091 @@
+# translation of akregator.po to Hindi
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Ravishankar Shrivastava <raviratlami@yahoo.com>, 2008.
+# Ravishankar Shrivastava <raviratlami@aol.in>, 2009.
+msgid ""
+msgstr ""
+"Project-Id-Version: akregator\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-09-30 00:45+0000\n"
+"PO-Revision-Date: 2009-02-27 17:34+0530\n"
+"Last-Translator: Ravishankar Shrivastava <raviratlami@aol.in>\n"
+"Language-Team: Hindi <kde-i18n-doc@lists.kde.org>\n"
+"Language: hne\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+"X-Generator: Lokalize 0.2\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "रविसंकर सिरीवास्तव, जी. करूनाकर"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "raviratlami@aol.in,"
+
+#: src/about/introduction_akregator.html:18
+msgid ""
+"Feed readers provide a convenient way to browse different kinds of content, "
+"including news, blogs, and other content from online sites. Instead of "
+"checking all your favorite web sites manually for updates, Akregator "
+"collects the content for you."
+msgstr ""
+
+#: src/about/introduction_akregator.html:19
+msgid ""
+"For more information about using Akregator, check the <a href='https://"
+"kontact.kde.org/components/akregator/'>Akregator website</a>. If you do not "
+"want to see this page anymore, <a href='config:/disable_introduction'>click "
+"here</a>."
+msgstr ""
+
+#: src/about/introduction_akregator.html:20
+msgid "We hope that you will enjoy Akregator."
+msgstr ""
+
+#: src/about/introduction_akregator.html:21
+msgid "Thank you, The Akregator Team"
+msgstr ""
+
+#: src/formatter/html/5.2/combinedview.html:71
+#, fuzzy
+#| msgid "&Mark Feed as Read"
+msgid "Mark as Read"
+msgstr "फीड ल पढ़िस चिनहा लगाव (&M)"
+
+#: src/formatter/html/5.2/combinedview.html:74
+#, fuzzy
+#| msgid "Mark selected article as unread"
+msgid "Mark as Unread"
+msgstr "चुने गे आलेख मन ल बिन पढ़िस चिनहा लगाव"
+
+#: src/formatter/html/5.2/combinedview.html:78
+#, fuzzy
+#| msgid "Remove &Important Mark"
+msgid "Remove Important Status"
+msgstr "महत्वपूर्न चिनहा मेटाव (&I)"
+
+#: src/formatter/html/5.2/combinedview.html:80
+#, fuzzy
+#| msgid "&Mark as Important"
+msgid "Mark as Important"
+msgstr "जरूरी के रूप मं चिनहा लगाव (&M)"
+
+#: src/formatter/html/5.2/combinedview.html:82
+#, fuzzy
+#| msgid "Open Link in External &Browser"
+msgid "Open Link in External Browser"
+msgstr "संकली बाहिरी ब्राउजर मं खोलव (&B)"
+
+#: src/formatter/html/5.2/combinedview.html:83
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:110
+#, fuzzy, kde-format
+#| msgid "Open in Background Tab"
+msgid "Open In Background Tab"
+msgstr "पेज-भूमि टैब मं खोलव"
+
+#: src/formatter/html/5.2/combinedview.html:84
+#, fuzzy
+#| msgid "Send &Link Address..."
+msgid "Send File Address"
+msgstr "संकली पता भेजव... (&L)"
+
+#: src/formatter/html/5.2/combinedview.html:85
+#, fuzzy
+#| msgid "Send &Link Address..."
+msgid "Send Link Address"
+msgstr "संकली पता भेजव... (&L)"
+
+#: src/formatter/html/5.2/combinedview.html:86 src/mainwidget.cpp:1063
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:96
+#, kde-format
+msgid "Delete Article"
+msgstr "आलेख मेटाव"
+
+#: src/formatter/html/5.2/normalview.html:51
+msgid ""
+"<b>Note:</b> For security reasons, external reference is blocked (See "
+"configure dialog)."
+msgstr ""
+
+#: configuration/akregator_config_advanced.cpp:30
+#, kde-format
+msgid "Advanced Feed Reader Settings"
+msgstr ""
+
+#: configuration/akregator_config_advanced.cpp:34
+#: configuration/akregator_config_appearance.cpp:49
+#: configuration/akregator_config_archive.cpp:47
+#: configuration/akregator_config_browser.cpp:39
+#: configuration/akregator_config_general.cpp:42
+#, kde-format
+msgid "(c), 2004 - 2008 Frank Osterfeld"
+msgstr "(c), 2004 - 2008 फ्रैंक ओस्टरफील्ड"
+
+#: configuration/akregator_config_advanced.cpp:36
+#: configuration/akregator_config_appearance.cpp:51
+#: configuration/akregator_config_archive.cpp:49
+#: configuration/akregator_config_browser.cpp:41
+#: configuration/akregator_config_general.cpp:44 src/aboutdata.cpp:28
+#, kde-format
+msgid "Frank Osterfeld"
+msgstr "फ्रैंक ओस्टरफील्ड"
+
+#: configuration/akregator_config_appearance.cpp:45
+#, kde-format
+msgid "Configure Feed Reader Appearance"
+msgstr ""
+
+#: configuration/akregator_config_archive.cpp:33
+#, fuzzy, kde-format
+#| msgid "1 article"
+msgctxt "Limit feed archive size to:"
+msgid " article"
+msgid_plural " articles"
+msgstr[0] "1 आलेख"
+msgstr[1] "1 आलेख"
+
+#: configuration/akregator_config_archive.cpp:34
+#, fuzzy, kde-format
+#| msgid "1 day"
+msgctxt "Delete articles older than:"
+msgid " day"
+msgid_plural " days"
+msgstr[0] "1 दिन"
+msgstr[1] "1 दिन"
+
+#: configuration/akregator_config_archive.cpp:43
+#, kde-format
+msgid "Configure Feed Reader Archive"
+msgstr ""
+
+#: configuration/akregator_config_browser.cpp:35
+#, kde-format
+msgid "Configure Feed Reader Browser"
+msgstr ""
+
+#: configuration/akregator_config_general.cpp:33
+#, fuzzy, kde-format
+#| msgid "1 minute"
+msgid " minute"
+msgid_plural " minutes"
+msgstr[0] "1 मिनट"
+msgstr[1] "1 मिनट"
+
+#: configuration/akregator_config_general.cpp:38
+#, kde-format
+msgid "Configure Feeds"
+msgstr "फीड कान्फिगर करव"
+
+#: configuration/akregator_config_plugins.cpp:27
+#: configuration/akregator_config_security.cpp:29
+#, fuzzy, kde-format
+#| msgid "Configure Feeds"
+msgid "Configure Plugins"
+msgstr "फीड कान्फिगर करव"
+
+#: configuration/akregator_config_plugins.cpp:31
+#, kde-format
+msgid "(c), 2016-2021 Laurent Montel"
+msgstr ""
+
+#: configuration/akregator_config_plugins.cpp:33
+#: configuration/akregator_config_security.cpp:35
+#: configuration/akregator_config_userfeedback.cpp:34 src/aboutdata.cpp:27
+#, kde-format
+msgid "Laurent Montel"
+msgstr ""
+
+#: configuration/akregator_config_security.cpp:33
+#, kde-format
+msgid "(c), 2021 Laurent Montel"
+msgstr ""
+
+#: configuration/akregator_config_userfeedback.cpp:28
+#, fuzzy, kde-format
+#| msgid "Configure Feeds"
+msgid "Configure User Feedback"
+msgstr "फीड कान्फिगर करव"
+
+#: configuration/akregator_config_userfeedback.cpp:32
+#, kde-format
+msgid "(c), 2020-2021 Laurent Montel"
+msgstr ""
+
+#: configuration/akregatorconfigurepluginlistwidget.cpp:51
+#, fuzzy, kde-format
+#| msgid "Configure Feeds"
+msgid "Webengine Plugins"
+msgstr "फीड कान्फिगर करव"
+
+#: configuration/settings_advanced.cpp:27
+#, fuzzy, kde-format
+#| msgid " sec"
+msgctxt "Mark selected article read after"
+msgid " second"
+msgid_plural " seconds"
+msgstr[0] "सेक."
+msgstr[1] "सेक."
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#: configuration/ui/settings_advancedbase.ui:30
+#, kde-format
+msgid "Article List"
+msgstr "आलेख सूची"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_UseMarkReadDelay)
+#: configuration/ui/settings_advancedbase.ui:38
+#, kde-format
+msgid "Mar&k selected article read after"
+msgstr "एखर बाद आलेख मन ल पढ़ ले गिस चिनहा लगाव: (&k)"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_ResetQuickFilterOnNodeChange)
+#: configuration/ui/settings_advancedbase.ui:73
+#, kde-format
+msgid "Reset search bar when changing feeds"
+msgstr ""
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_3)
+#: configuration/ui/settings_appearance.ui:30
+#, kde-format
+msgid "Article List Colors"
+msgstr "आलेख सूची रंग"
+
+#. i18n: ectx: property (text), widget (QLabel, lbl_unreadArticles)
+#: configuration/ui/settings_appearance.ui:53
+#, kde-format
+msgid "Unread articles:"
+msgstr "बिनपढ़े आलेख:"
+
+#. i18n: ectx: property (text), widget (QLabel, lbl_newArticles)
+#: configuration/ui/settings_appearance.ui:76
+#, kde-format
+msgid "New articles:"
+msgstr "नवा आलेख:"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_UseCustomColors)
+#: configuration/ui/settings_appearance.ui:98
+#, kde-format
+msgid "Use custom colors"
+msgstr "मनमाफिक रंग उपयोग करव"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
+#: configuration/ui/settings_appearance.ui:121
+#, kde-format
+msgid "Font Size"
+msgstr "फोंट आकार"
+
+#. i18n: ectx: property (text), widget (QLabel, lbl_MinimumFontSize)
+#: configuration/ui/settings_appearance.ui:127
+#, kde-format
+msgid "Minimum font size:"
+msgstr "सबसे कम फोंट आकार:"
+
+#. i18n: ectx: property (text), widget (QLabel, lbl_MediumFontSize)
+#: configuration/ui/settings_appearance.ui:176
+#, kde-format
+msgid "Medium font size:"
+msgstr "मध्यम फोंट आकार:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#: configuration/ui/settings_appearance.ui:228
+#, kde-format
+msgid "Fonts"
+msgstr "फोंट"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel1)
+#: configuration/ui/settings_appearance.ui:234
+#, kde-format
+msgid "Standard font:"
+msgstr "मानक फोंट:"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel2_2)
+#: configuration/ui/settings_appearance.ui:244
+#, kde-format
+msgid "Fixed font:"
+msgstr "स्थिर फोंटः"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel3)
+#: configuration/ui/settings_appearance.ui:254
+#, kde-format
+msgid "Serif font:"
+msgstr "सेरिफ फोंट:"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel4)
+#: configuration/ui/settings_appearance.ui:264
+#, kde-format
+msgid "Sans serif font:"
+msgstr "संस-सेरिफ फोंट:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#: configuration/ui/settings_archive.ui:30
+#, kde-format
+msgid "Default Archive Settings"
+msgstr "डिफाल्ट अभिलेख सेटिंग"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rb_DisableArchiving)
+#: configuration/ui/settings_archive.ui:36
+#, fuzzy, kde-format
+#| msgid "Disable archiving"
+msgid "Disa&ble archiving"
+msgstr "अभिलेखन अक्छम"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rb_KeepAllArticles)
+#. i18n: ectx: property (text), widget (QRadioButton, rb_keepAllArticles)
+#: configuration/ui/settings_archive.ui:43
+#: src/ui/feedpropertieswidgetbase.ui:332
+#, kde-format
+msgid "&Keep all articles"
+msgstr "सब्बो आलेख मन ल रखे रहव (&K)"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rb_LimitArticleNumber)
+#: configuration/ui/settings_archive.ui:64
+#, fuzzy, kde-format
+#| msgid "Limit feed archive size to:"
+msgid "Limit feed archi&ve size to:"
+msgstr "फीड अभिलेख आकार ल ए तक सीमित करव:"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rb_LimitArticleAge)
+#: configuration/ui/settings_archive.ui:100
+#, kde-format
+msgid "Delete articles older than: "
+msgstr "एखर से अधिक जुन्ना आलेख मन ल मेटाव:"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_DoNotExpireImportantArticles)
+#: configuration/ui/settings_archive.ui:138
+#, kde-format
+msgid "Do not expire important articles"
+msgstr "आयातित आलेख मन ल कालातीत नइ करव"
+
+#. i18n: ectx: property (text), widget (QLabel, LMBlabel)
+#: configuration/ui/settings_browser.ui:20
+#, kde-format
+msgid "Left mouse click:"
+msgstr "डेरी मुसुवा किलिक:"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, kcfg_LMBBehaviour)
+#. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
+#: configuration/ui/settings_browser.ui:28
+#: configuration/ui/settings_browser.ui:54
+#: src/actions/actionmanagerimpl.cpp:323
+#, kde-format
+msgid "Open in Tab"
+msgstr "टैब मं खोलव"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, kcfg_LMBBehaviour)
+#. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
+#: configuration/ui/settings_browser.ui:33
+#: configuration/ui/settings_browser.ui:59
+#: src/actions/actionmanagerimpl.cpp:329
+#, kde-format
+msgid "Open in Background Tab"
+msgstr "पेज-भूमि टैब मं खोलव"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, kcfg_LMBBehaviour)
+#. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
+#: configuration/ui/settings_browser.ui:38
+#: configuration/ui/settings_browser.ui:64
+#: src/actions/actionmanagerimpl.cpp:335
+#, kde-format
+msgid "Open in External Browser"
+msgstr "बाहिरी ब्राउजर मं खोलव"
+
+#. i18n: ectx: property (text), widget (QLabel, MMBlabel)
+#: configuration/ui/settings_browser.ui:46
+#, kde-format
+msgid "Middle mouse click:"
+msgstr "मध्य मुसुवा किलिक:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, externalBrowserGroupBox)
+#: configuration/ui/settings_browser.ui:74
+#, fuzzy, kde-format
+#| msgid "For External Browsing"
+msgid "External Browsing"
+msgstr "बाहिरी ब्राउजिंग बर"
+
+#. i18n: ectx: property (text), widget (QLineEdit, kcfg_ExternalBrowserCustomCommand)
+#: configuration/ui/settings_browser.ui:83
+#, no-c-format, kde-format
+msgid "firefox %u"
+msgstr "फायरफाक्स %u"
+
+#. i18n: ectx: property (text), widget (QRadioButton, kcfg_ExternalBrowserUseCustomCommand)
+#: configuration/ui/settings_browser.ui:90
+#, fuzzy, kde-format
+#| msgid "Use this command:"
+msgid "Use &this command:"
+msgstr "ये कमांड के उपयोग करव:"
+
+#. i18n: ectx: property (text), widget (QRadioButton, kcfg_ExternalBrowserUseKdeDefault)
+#: configuration/ui/settings_browser.ui:97
+#, fuzzy, kde-format
+#| msgid "Use default web browser"
+msgid "Use default web &browser"
+msgstr "डिफाल्ट वेब ब्राउजर उपयोग करव"
+
+#. i18n: ectx: property (title), widget (QGroupBox, tabsGroupBox)
+#: configuration/ui/settings_browser.ui:110
+#, kde-format
+msgid "Tabs"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_AlwaysShowTabBar)
+#. i18n: ectx: label, entry, group (Browser)
+#: configuration/ui/settings_browser.ui:116 interfaces/akregator.kcfg:202
+#, kde-format
+msgid "Always show the tab bar"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_CloseButtonOnTabs)
+#: configuration/ui/settings_browser.ui:123
+#, fuzzy, kde-format
+msgid "Show close button on each tab"
+msgstr "टैब्स मं बन्द बटन देखाव"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_NewWindowInTab)
+#. i18n: ectx: label, entry, group (Browser)
+#: configuration/ui/settings_browser.ui:130 interfaces/akregator.kcfg:212
+#, kde-format
+msgid "Open links in new tab instead of in new window"
+msgstr ""
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#: configuration/ui/settings_browser.ui:140
+#, kde-format
+msgid "Security"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_CheckPhishingUrl)
+#: configuration/ui/settings_browser.ui:146
+#, kde-format
+msgid "Verify URLs using Google's Safe Browsing API"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_EnableJavascript)
+#. i18n: ectx: label, entry, group (Browser)
+#: configuration/ui/settings_browser.ui:153 interfaces/akregator.kcfg:198
+#, kde-format
+msgid "Enable Javascript"
+msgstr ""
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
+#: configuration/ui/settings_browser.ui:163
+#, kde-format
+msgid "Misc"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_AccessKeyEnabled)
+#: configuration/ui/settings_browser.ui:169
+#, kde-format
+msgid "Access Key Enabled"
+msgstr ""
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_3)
+#: configuration/ui/settings_general.ui:30
+#, fuzzy, kde-format
+#| msgid "Global"
+msgctxt "global settings"
+msgid "Global"
+msgstr "वैस्विक"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_ShowTrayIcon)
+#: configuration/ui/settings_general.ui:36
+#, kde-format
+msgid "Show tra&y icon"
+msgstr "तस्तरी चिनहा देखाव (&y)"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_ShowUnreadInTaskbar)
+#: configuration/ui/settings_general.ui:43
+#, fuzzy, kde-format
+#| msgid " (no unread articles)"
+msgid "Show unread articles in Taskbar"
+msgstr "(बिनपढ़े आलेख नइ)"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_HideReadFeeds)
+#. i18n: ectx: label, entry, group (View)
+#: configuration/ui/settings_general.ui:50 interfaces/akregator.kcfg:9
+#, fuzzy, kde-format
+#| msgid " (no unread articles)"
+msgid "Hide feeds with no unread articles"
+msgstr "(बिनपढ़े आलेख नइ)"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_LockFeedsInPlace)
+#: configuration/ui/settings_general.ui:57
+#, kde-format
+msgid "Lock feeds in place"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_AutoExpandFolders)
+#. i18n: ectx: whatsthis, entry, group (View)
+#: configuration/ui/settings_general.ui:64 interfaces/akregator.kcfg:27
+#, fuzzy, kde-format
+#| msgid " (no unread articles)"
+msgid "Auto-expand folders containing unread articles"
+msgstr "(बिनपढ़े आलेख नइ)"
+
+#. i18n: ectx: property (whatsThis), widget (QCheckBox, kcfg_UseNotifications)
+#: configuration/ui/settings_general.ui:74
+#, kde-format
+msgid "Select this if you want to get notified when there are new articles."
+msgstr "एला चुनव यदि आप मन चाहथो कि नवा आलेख मन के आने के सूचना दे जाही."
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_UseNotifications)
+#: configuration/ui/settings_general.ui:77
+#, kde-format
+msgid "Use &notifications for all feeds"
+msgstr "सब्बो फीड मन बर सूचना मन ल उपयोग करव"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_DisableSaveAsNotification)
+#: configuration/ui/settings_general.ui:84
+#, kde-format
+msgid "Disable save as finished notification"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_UseIntervalFetch)
+#: configuration/ui/settings_general.ui:91
+#, kde-format
+msgid "&Use interval fetching"
+msgstr "अंतराल से प्राप्त करव (&U)"
+
+#. i18n: ectx: property (text), widget (QLabel, autoFetchIntervalLabel)
+#: configuration/ui/settings_general.ui:119
+#, kde-format
+msgid "Fetch feeds every:"
+msgstr "फीड्स प्राप्त करव हर एक:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
+#: configuration/ui/settings_general.ui:160
+#, kde-format
+msgid "Startup"
+msgstr "सुरू में"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_MarkAllFeedsReadOnStartup)
+#: configuration/ui/settings_general.ui:166
+#, kde-format
+msgid "Mark &all feeds as read on startup"
+msgstr "सुरू होत ही सब्बो फीड मन ल पढ़िस होय चिनहा लगाव (&a)"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_FetchOnStartup)
+#: configuration/ui/settings_general.ui:173
+#, kde-format
+msgid "Fetch all fee&ds on startup"
+msgstr "सुरू होत ही सब्बो फीड मन ल लाव (&d)"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#: configuration/ui/settings_general.ui:183
+#, kde-format
+msgid "Network"
+msgstr "नेटवर्क"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_UseHTMLCache)
+#: configuration/ui/settings_general.ui:189
+#, kde-format
+msgid "Use the &browser cache (less network traffic)"
+msgstr "ब्राउजर कैस परयोग करव (कम नेटवर्क ट्रैफिक) (&b)"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_LoadExternalReferences)
+#: configuration/ui/settings_security.ui:17
+#, kde-format
+msgid "Allow feed to load external references from internet."
+msgstr ""
+
+#: export/akregatorstorageexporter.cpp:280
+#, kde-format
+msgid "Akregator Export for %1"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry, group (View)
+#: interfaces/akregator.kcfg:10
+#, fuzzy, kde-format
+#| msgid " (no unread articles)"
+msgid "Hides feeds with no unread articles"
+msgstr "(बिनपढ़े आलेख नइ)"
+
+#. i18n: ectx: label, entry, group (View)
+#: interfaces/akregator.kcfg:21
+#, kde-format
+msgid "Prevent feeds from being moved in the list"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry, group (View)
+#: interfaces/akregator.kcfg:22
+#, kde-format
+msgid "Locks feeds where they are"
+msgstr ""
+
+#. i18n: ectx: label, entry, group (View)
+#: interfaces/akregator.kcfg:26
+#, fuzzy, kde-format
+#| msgid " (no unread articles)"
+msgid "Auto-Expand folders with unread articles"
+msgstr "(बिनपढ़े आलेख नइ)"
+
+#. i18n: ectx: label, entry, group (View)
+#: interfaces/akregator.kcfg:31 src/actions/actionmanagerimpl.cpp:317
+#, kde-format
+msgid "Show Quick Filter"
+msgstr "क्विक छनइया देखाव"
+
+#. i18n: ectx: whatsthis, entry, group (View)
+#: interfaces/akregator.kcfg:32
+#, kde-format
+msgid "Show Quick Filter Bar"
+msgstr "क्विक छनइया पट्टी देखाव"
+
+#. i18n: ectx: label, entry, group (View)
+#: interfaces/akregator.kcfg:36
+#, kde-format
+msgid "Status Filter"
+msgstr "स्थिति छनइया"
+
+#. i18n: ectx: whatsthis, entry, group (View)
+#: interfaces/akregator.kcfg:37
+#, kde-format
+msgid "Stores the last status filter setting"
+msgstr ""
+
+#. i18n: ectx: label, entry, group (View)
+#: interfaces/akregator.kcfg:41
+#, kde-format
+msgid "Text Filter"
+msgstr "पाठ छनइया"
+
+#. i18n: ectx: whatsthis, entry, group (View)
+#: interfaces/akregator.kcfg:42
+#, kde-format
+msgid "Stores the last search line text"
+msgstr ""
+
+#. i18n: ectx: label, entry, group (View)
+#: interfaces/akregator.kcfg:45
+#, kde-format
+msgid "View Mode"
+msgstr "दृस्य मोड"
+
+#. i18n: ectx: whatsthis, entry, group (View)
+#: interfaces/akregator.kcfg:46
+#, kde-format
+msgid "Article display mode."
+msgstr "आलेख प्रदर्सक मोड."
+
+#. i18n: ectx: label, entry, group (View)
+#: interfaces/akregator.kcfg:50
+#, kde-format
+msgid "Sizes for first splitter"
+msgstr "पहिली विभाजक बर आकार"
+
+#. i18n: ectx: whatsthis, entry, group (View)
+#: interfaces/akregator.kcfg:51
+#, kde-format
+msgid "First (usually vertical) splitter widget sizes."
+msgstr "पहिली (प्राय: खड़ा) विभाजक विजेट आकार."
+
+#. i18n: ectx: label, entry, group (View)
+#: interfaces/akregator.kcfg:55
+#, kde-format
+msgid "Sizes for second splitter"
+msgstr "दुसरा विभाजक बर आकार"
+
+#. i18n: ectx: whatsthis, entry, group (View)
+#: interfaces/akregator.kcfg:56
+#, kde-format
+msgid "Second (usually horizontal) splitter widget sizes."
+msgstr "दुसरा (प्राय: आड़ा) विभाजक विजेट आकार."
+
+#. i18n: ectx: label, entry, group (Archive)
+#: interfaces/akregator.kcfg:100
+#, kde-format
+msgid "Archive Mode"
+msgstr "अभिलेख मोड"
+
+#. i18n: ectx: label, entry, group (Archive)
+#: interfaces/akregator.kcfg:104
+#, kde-format
+msgid "Keep All Articles"
+msgstr "सब्बो आलेख मन ल रखे रहें"
+
+#. i18n: ectx: whatsthis, entry, group (Archive)
+#: interfaces/akregator.kcfg:105
+#, kde-format
+msgid "Save an unlimited number of articles."
+msgstr "आलेख मन के असीमित संख्या सहेजव."
+
+#. i18n: ectx: label, entry, group (Archive)
+#: interfaces/akregator.kcfg:108
+#, kde-format
+msgid "Limit Number of Articles"
+msgstr "आलेख मन के संख्या सीमित करव"
+
+#. i18n: ectx: whatsthis, entry, group (Archive)
+#: interfaces/akregator.kcfg:109
+#, kde-format
+msgid "Limit the number of articles in a feed"
+msgstr "फीड मं आलेख मन के संख्या सीमित करव"
+
+#. i18n: ectx: label, entry, group (Archive)
+#: interfaces/akregator.kcfg:112
+#, kde-format
+msgid "Delete Expired Articles"
+msgstr "कालातीत आलेख मन ल मेटाव"
+
+#. i18n: ectx: whatsthis, entry, group (Archive)
+#: interfaces/akregator.kcfg:113
+#, kde-format
+msgid "Delete expired articles"
+msgstr "कालातीत आलेख मन ल मेटाव"
+
+#. i18n: ectx: label, entry, group (Archive)
+#: interfaces/akregator.kcfg:116
+#, kde-format
+msgid "Disable Archiving"
+msgstr "अभिलेखन अक्छम"
+
+#. i18n: ectx: whatsthis, entry, group (Archive)
+#: interfaces/akregator.kcfg:117
+#, kde-format
+msgid "Do not save any articles"
+msgstr "कोनो आलेख मन ल सहेजव नइ"
+
+#. i18n: ectx: label, entry, group (Archive)
+#: interfaces/akregator.kcfg:122
+#, kde-format
+msgid "Expiry Age"
+msgstr "कालातीत होए के उम्र"
+
+#. i18n: ectx: whatsthis, entry, group (Archive)
+#: interfaces/akregator.kcfg:123
+#, kde-format
+msgid "Default expiry age for articles in days."
+msgstr "आलेख मन के कालातीत होए के डिफाल्ट उम्र दिनों में."
+
+#. i18n: ectx: label, entry, group (Archive)
+#: interfaces/akregator.kcfg:127
+#, kde-format
+msgid "Article Limit"
+msgstr "आलेख सीमा"
+
+#. i18n: ectx: whatsthis, entry, group (Archive)
+#: interfaces/akregator.kcfg:128
+#, kde-format
+msgid "Number of articles to keep per feed."
+msgstr "प्रति फीड रखे जाय वाले आलेख मन के संख्या."
+
+#. i18n: ectx: label, entry, group (Archive)
+#: interfaces/akregator.kcfg:132
+#, kde-format
+msgid "Do Not Expire Important Articles"
+msgstr "जरूरी आलेख मन के अवधि नइ बीते देव"
+
+#. i18n: ectx: whatsthis, entry, group (Archive)
+#: interfaces/akregator.kcfg:133
+#, kde-format
+msgid ""
+"When this option is enabled, articles you marked as important will not be "
+"removed when limit the archive size by either age or number of the articles."
+msgstr ""
+
+#. i18n: ectx: label, entry, group (Network)
+#: interfaces/akregator.kcfg:139
+#, kde-format
+msgid "Concurrent Fetches"
+msgstr "कान्करंट फेचेस"
+
+#. i18n: ectx: whatsthis, entry, group (Network)
+#: interfaces/akregator.kcfg:140
+#, kde-format
+msgid "Number of concurrent fetches"
+msgstr "समवर्ती प्राप्ति के संख्या"
+
+#. i18n: ectx: label, entry, group (Network)
+#: interfaces/akregator.kcfg:144
+#, kde-format
+msgid "Use HTML Cache"
+msgstr "एचटीएमएल कैस उपयोग करव"
+
+#. i18n: ectx: whatsthis, entry, group (Network)
+#: interfaces/akregator.kcfg:145
+#, kde-format
+msgid ""
+"Use the KDE-wide HTML cache settings when downloading feeds, to avoid "
+"unnecessary traffic. Disable only when necessary."
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry, group (Network)
+#: interfaces/akregator.kcfg:149
+#, kde-format
+msgid ""
+"This option allows user to specify custom user-agent string instead of using "
+"the default one. This is here because some proxies may interrupt the "
+"connection because of having \"gator\" in the name."
+msgstr ""
+
+#. i18n: ectx: label, entry, group (General)
+#: interfaces/akregator.kcfg:155
+#, kde-format
+msgid "Fetch on startup"
+msgstr "सुरू मं प्राप्त करव"
+
+#. i18n: ectx: whatsthis, entry, group (General)
+#: interfaces/akregator.kcfg:156
+#, kde-format
+msgid "Fetch feedlist on startup."
+msgstr "सुरू मं फीडसूची प्राप्त करव."
+
+#. i18n: ectx: label, entry, group (General)
+#: interfaces/akregator.kcfg:160
+#, kde-format
+msgid "Mark all feeds as read on startup"
+msgstr "सुरू मं सब्बो फीड्स ल पढ़िस होय चिनहा लगाव."
+
+#. i18n: ectx: whatsthis, entry, group (General)
+#: interfaces/akregator.kcfg:161
+#, kde-format
+msgid "Mark all feeds as read on startup."
+msgstr "सुरू मं सब्बो फीड्स ल पढ़िस होय चिनहा लगाव."
+
+#. i18n: ectx: label, entry, group (General)
+#: interfaces/akregator.kcfg:165
+#, kde-format
+msgid "Use interval fetching"
+msgstr "अंतराल से प्राप्त करना उपयोग करव"
+
+#. i18n: ectx: whatsthis, entry, group (General)
+#: interfaces/akregator.kcfg:166
+#, no-c-format, kde-format
+msgid "Fetch all feeds every %1 minutes."
+msgstr "सब्बो फीड्स ल हर एक %1 मिनट मं लाव."
+
+#. i18n: ectx: label, entry, group (General)
+#: interfaces/akregator.kcfg:170
+#, kde-format
+msgid "Interval for autofetching"
+msgstr "अपने अपन प्राप्त करे के अंतराल"
+
+#. i18n: ectx: whatsthis, entry, group (General)
+#: interfaces/akregator.kcfg:171
+#, kde-format
+msgid "Interval for autofetching in minutes."
+msgstr "अपने अपन प्राप्त करे के अंतराल मिनटों में."
+
+#. i18n: ectx: label, entry, group (General)
+#: interfaces/akregator.kcfg:175
+#, kde-format
+msgid "Use notifications"
+msgstr "सूचना मन ल उपयोग करव"
+
+#. i18n: ectx: whatsthis, entry, group (General)
+#: interfaces/akregator.kcfg:176
+#, kde-format
+msgid "Specifies if the balloon notifications are used or not."
+msgstr "निरधारित करथे  कि बैलून सूचना मन ल उपयोग के जाय या नइ."
+
+#. i18n: ectx: label, entry, group (General)
+#: interfaces/akregator.kcfg:180
+#, kde-format
+msgid "Show tray icon"
+msgstr "तस्तरी चिनहा देखाव"
+
+#. i18n: ectx: whatsthis, entry, group (General)
+#: interfaces/akregator.kcfg:181
+#, kde-format
+msgid "Specifies if the tray icon is shown or not."
+msgstr "निरधारित करथे  कि तस्तरी चिनहा देखाय  जाय या नइ."
+
+#. i18n: ectx: label, entry, group (General)
+#: interfaces/akregator.kcfg:185
+#, kde-format
+msgid "Show Unread In Taskbar"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry, group (General)
+#: interfaces/akregator.kcfg:186
+#, fuzzy, kde-format
+#| msgid " (no unread articles)"
+msgid "Specifies if we show unread article in taskbar."
+msgstr "(बिनपढ़े आलेख नइ)"
+
+#. i18n: ectx: whatsthis, entry, group (Browser)
+#: interfaces/akregator.kcfg:203
+#, kde-format
+msgid "Always show the tab bar, even when only one tab is open"
+msgstr ""
+
+#. i18n: ectx: label, entry, group (Browser)
+#: interfaces/akregator.kcfg:207
+#, kde-format
+msgid "Show close buttons on tabs"
+msgstr "टैब्स मं बन्द बटन देखाव"
+
+#. i18n: ectx: whatsthis, entry, group (Browser)
+#: interfaces/akregator.kcfg:208
+#, kde-format
+msgid "Show close buttons on tabs instead of icons"
+msgstr "चिनहा मन के बदले हर टैब के भीतर बन्द बटन दिखाव"
+
+#. i18n: ectx: whatsthis, entry, group (Browser)
+#: interfaces/akregator.kcfg:213
+#, kde-format
+msgid ""
+"Open a link which would normally open in a new window (external browser) in "
+"a new tab instead"
+msgstr ""
+
+#. i18n: ectx: label, entry, group (Browser)
+#: interfaces/akregator.kcfg:217
+#, kde-format
+msgid "Use default KDE web browser"
+msgstr "डिफाल्ट केडीई वेब ब्राउजर के उपयोग करव"
+
+#. i18n: ectx: whatsthis, entry, group (Browser)
+#: interfaces/akregator.kcfg:218
+#, kde-format
+msgid "Use KDE web browser when opening in external browser."
+msgstr "जब एक्सटर्नल ब्राउजर मं  खोलेजाही तहां केडीई वेब ब्राउजर के उपयोग करव."
+
+#. i18n: ectx: label, entry, group (Browser)
+#: interfaces/akregator.kcfg:222
+#, kde-format
+msgid "Use this command:"
+msgstr "ये कमांड के उपयोग करव:"
+
+#. i18n: ectx: whatsthis, entry, group (Browser)
+#: interfaces/akregator.kcfg:223
+#, kde-format
+msgid "Use the specified command when opening in external browser."
+msgstr "जब एक्सटर्नल ब्राउजर के साथ  खोलेजाए तहां निरधारित कमांड के उपयोग करव."
+
+#. i18n: ectx: whatsthis, entry, group (Browser)
+#: interfaces/akregator.kcfg:227
+#, fuzzy, no-c-format, kde-format
+#| msgid "Command to launch external browser.  URL will substitute for %u."
+msgid "Command to launch external browser. URL will substitute for %u."
+msgstr "एक्सटर्नल ब्राउजर चालू करे बर कमांड.  यूआरएल %u से प्रतिस्थापित होही."
+
+#. i18n: ectx: whatsthis, entry, group (Browser)
+#: interfaces/akregator.kcfg:231
+#, kde-format
+msgid "What the click with left mouse button should do."
+msgstr "डेरी मुसुवा बटन किलिक करे मं का होना चाही."
+
+#. i18n: ectx: whatsthis, entry, group (Browser)
+#: interfaces/akregator.kcfg:240
+#, kde-format
+msgid "What the click with middle mouse button should do."
+msgstr "मध्य मुसुवा बटन किलिक करे मं का होना चाही."
+
+#. i18n: ectx: label, entry, group (Advanced)
+#: interfaces/akregator.kcfg:265
+#, kde-format
+msgid "Archive Backend"
+msgstr "अभिलेखागार बैकएन्ड"
+
+#. i18n: ectx: whatsthis, entry (UseMarkReadDelay), group (Advanced)
+#: interfaces/akregator.kcfg:269
+#, kde-format
+msgid "Whether to delay before marking an article as read upon selecting it."
+msgstr "जब चुने जाय तहां कोनो आलेख ल पढ़ ले गिस चिनहित करे बर के कुछ देरी करे जाए."
+
+#. i18n: ectx: whatsthis, entry (MarkReadDelay), group (Advanced)
+#: interfaces/akregator.kcfg:273
+#, kde-format
+msgid ""
+"Configurable delay between selecting an article and it being marked as read."
+msgstr ""
+"कोनो आलेख ल चुने के अउ ओला पढ़ ले चिनहित करे के बीच के देरी के कान्फिगर करे जाय जा सके समय."
+
+#. i18n: ectx: whatsthis, entry, group (Advanced)
+#: interfaces/akregator.kcfg:277
+#, kde-format
+msgid "Resets the quick filter when changing feeds."
+msgstr ""
+
+#: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
+#: src/akregator_part.cpp:146
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:148
+#: src/trayicon.cpp:41 src/trayicon.cpp:42 src/trayicon.cpp:54
+#, kde-format
+msgid "Akregator"
+msgstr "ए-के-रेगेटर"
+
+#: kontactplugin/akregator_plugin.cpp:29
+#, fuzzy, kde-format
+#| msgid "&Add Feed..."
+msgctxt "@action:inmenu"
+msgid "New Feed..."
+msgstr "फीड जोड़व... (&A)"
+
+#: kontactplugin/akregator_plugin.cpp:32
+#, kde-format
+msgctxt "@info:status"
+msgid "Create a new feed"
+msgstr ""
+
+#: kontactplugin/akregator_plugin.cpp:33
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid "You will be presented with a dialog where you can add a new feed."
+msgstr ""
+
+#: src/aboutdata.cpp:21
+#, kde-format
+msgid "A KDE Feed Reader"
+msgstr "केडीई फीड रीडर"
+
+#: src/aboutdata.cpp:23
+#, fuzzy, kde-format
+#| msgid "(C) 2004-2008 Akregator developers"
+msgid "Copyright © 2004–%1 Akregator authors"
+msgstr "(c) 2004-2008 एकेरेगेटर बनइया"
+
+#: src/aboutdata.cpp:27
+#, kde-format
+msgid "Maintainer"
+msgstr "मेंटेनर"
+
+#: src/aboutdata.cpp:28
+#, fuzzy, kde-format
+#| msgid "Maintainer"
+msgid "Former maintainer"
+msgstr "मेंटेनर"
+
+#: src/aboutdata.cpp:29
+#, kde-format
+msgid "Teemu Rytilahti"
+msgstr "टीमू रायटिल्हाटी"
+
+#: src/aboutdata.cpp:29 src/aboutdata.cpp:30 src/aboutdata.cpp:31
+#: src/aboutdata.cpp:32
+#, kde-format
+msgid "Developer"
+msgstr "डेवलपर"
+
+#: src/aboutdata.cpp:30
+#, kde-format
+msgid "Sashmit Bhaduri"
+msgstr "सस्मित भादुड़ी"
+
+#: src/aboutdata.cpp:31
+#, kde-format
+msgid "Pierre Habouzit"
+msgstr "पियरे हबाउजित"
+
+#: src/aboutdata.cpp:32
+#, kde-format
+msgid "Stanislav Karchebny"
+msgstr "स्तानिस्लाव कार्चेबनी"
+
+#: src/aboutdata.cpp:33
+#, kde-format
+msgid "Gary Cramblitt"
+msgstr "गैरी क्रैम्ब्लिट"
+
+#: src/aboutdata.cpp:33 src/aboutdata.cpp:34 src/aboutdata.cpp:35
+#, kde-format
+msgid "Contributor"
+msgstr "सहयोगी"
+
+#: src/aboutdata.cpp:34
+#, kde-format
+msgid "Stephan Binner"
+msgstr "स्टीफन बिनर"
+
+#: src/aboutdata.cpp:35
+#, kde-format
+msgid "Christof Musik"
+msgstr "क्रिस्टोफ म्यूसिक"
+
+#: src/aboutdata.cpp:36
+#, kde-format
+msgid "Anne-Marie Mahfouf"
+msgstr "एन्ने मैरी मेहफोफ"
+
+#: src/aboutdata.cpp:36
+#, kde-format
+msgid "Handbook"
+msgstr " हेंडबुक"
+
+#: src/aboutdata.cpp:37
+#, kde-format
+msgid "Frerich Raabe"
+msgstr "फ्रेरिक राबे"
+
+#: src/aboutdata.cpp:37
+#, kde-format
+msgid "Author of librss"
+msgstr "लिबआरएसएस के लेखक"
+
+#: src/aboutdata.cpp:38
+#, kde-format
+msgid "Eckhart Woerner"
+msgstr "एकहार्ट वार्नर"
+
+#: src/aboutdata.cpp:38
+#, kde-format
+msgid "Bug tracker management, Usability improvements"
+msgstr "बग ट्रैकर प्रबंधन, उपयोगिता सुधार"
+
+#: src/aboutdata.cpp:39
+#, kde-format
+msgid "Heinrich Wendel"
+msgstr "हेनरिच वेंडेल"
+
+#: src/aboutdata.cpp:39
+#, kde-format
+msgid "Tons of bug fixes"
+msgstr "झौंहाों बग सुधार"
+
+#: src/aboutdata.cpp:40
+#, kde-format
+msgid "Eike Hein"
+msgstr "एइक हेइन"
+
+#: src/aboutdata.cpp:40
+#, kde-format
+msgid "'Delayed mark as read' feature"
+msgstr "'संदेस मन ल पढ़िस चिनहित करे मं देरी' विसेसता"
+
+#: src/aboutdata.cpp:41
+#, kde-format
+msgid "Marcel Dierkes"
+msgstr "मार्सल डिर्क्स"
+
+#: src/aboutdata.cpp:41
+#, kde-format
+msgid "Icons"
+msgstr "चिनहा"
+
+#: src/aboutdata.cpp:42
+#, kde-format
+msgid "George Staikos"
+msgstr "जार्ज स्टायकास"
+
+#: src/aboutdata.cpp:42
+#, kde-format
+msgid "Insomnia"
+msgstr "अनिद्रा"
+
+#: src/aboutdata.cpp:43
+#, kde-format
+msgid "Philipp Droessler"
+msgstr "फिलिप ड्रोसेलर"
+
+#: src/aboutdata.cpp:43
+#, kde-format
+msgid "Gentoo Ebuild"
+msgstr "जेंटू ई-बिल्ड"
+
+#: src/actions/actionmanagerimpl.cpp:63 src/actions/actionmanagerimpl.cpp:286
+#, kde-format
+msgid "&Fetch Feed"
+msgstr "फीड लाव (&F)"
+
+#: src/actions/actionmanagerimpl.cpp:64 src/actions/actionmanagerimpl.cpp:242
+#, kde-format
+msgid "&Delete Feed"
+msgstr "फीड मेटाव (&D)"
+
+#: src/actions/actionmanagerimpl.cpp:65 src/actions/actionmanagerimpl.cpp:248
+#, kde-format
+msgid "&Edit Feed..."
+msgstr "फीड संपादित करव..."
+
+#: src/actions/actionmanagerimpl.cpp:66 src/actions/actionmanagerimpl.cpp:305
+#, kde-format
+msgid "&Mark Feed as Read"
+msgstr "फीड ल पढ़िस चिनहा लगाव (&M)"
+
+#: src/actions/actionmanagerimpl.cpp:82
+#, kde-format
+msgid "&Fetch Feeds"
+msgstr "फीड लााव (&F)"
+
+#: src/actions/actionmanagerimpl.cpp:83
+#, kde-format
+msgid "&Delete Folder"
+msgstr "फोल्डर मेटाव (&D)"
+
+#: src/actions/actionmanagerimpl.cpp:84
+#, kde-format
+msgid "&Rename Folder"
+msgstr "फोल्डर नाम बदलव (&R)"
+
+#: src/actions/actionmanagerimpl.cpp:85
+#, kde-format
+msgid "&Mark Feeds as Read"
+msgstr "फीड्स ल पढ़िस होय चिनहा लगाव (&M)"
+
+#: src/actions/actionmanagerimpl.cpp:190
+#, kde-format
+msgid "&Import Feeds..."
+msgstr "फीड्स आयात करव... (&I)"
+
+#: src/actions/actionmanagerimpl.cpp:194
+#, kde-format
+msgid "&Export Feeds..."
+msgstr "फीड्स निर्यात करव... (&E)"
+
+#: src/actions/actionmanagerimpl.cpp:199
+#, kde-format
+msgid "&Configure Akregator..."
+msgstr "ए-के-रेगेटर कान्फिगर करव... (&C)"
+
+#: src/actions/actionmanagerimpl.cpp:218
+#, kde-format
+msgid "&Open Homepage"
+msgstr "घरपेज खोलव (&O)"
+
+#: src/actions/actionmanagerimpl.cpp:224
+#, kde-format
+msgid "Reload All Tabs"
+msgstr ""
+
+#: src/actions/actionmanagerimpl.cpp:230
+#, kde-format
+msgid "&Add Feed..."
+msgstr "फीड जोड़व... (&A)"
+
+#: src/actions/actionmanagerimpl.cpp:236
+#, kde-format
+msgid "Ne&w Folder..."
+msgstr "नवा फोल्डर... (&w)"
+
+#: src/actions/actionmanagerimpl.cpp:261
+#, kde-format
+msgid "&Normal View"
+msgstr "सामान्य दृस्य (&N)"
+
+#: src/actions/actionmanagerimpl.cpp:270
+#, kde-format
+msgid "&Widescreen View"
+msgstr "वाइडस्क्रीन दृस्य (&W)"
+
+#: src/actions/actionmanagerimpl.cpp:279
+#, kde-format
+msgid "C&ombined View"
+msgstr "मिलिस-जुला दृस्य (&o)"
+
+#: src/actions/actionmanagerimpl.cpp:292
+#, kde-format
+msgid "Fe&tch All Feeds"
+msgstr "सब्बो फीड्स लाव (&t)"
+
+#: src/actions/actionmanagerimpl.cpp:298
+#, fuzzy, kde-format
+#| msgid "Concurrent Fetches"
+msgid "C&ancel Feed Fetches"
+msgstr "कान्करंट फेचेस"
+
+#: src/actions/actionmanagerimpl.cpp:311
+#, kde-format
+msgid "Ma&rk All Feeds as Read"
+msgstr "सब्बो फीड्स ल पढ़िस चिनहा लगाव (&r)"
+
+#: src/actions/actionmanagerimpl.cpp:340 src/actions/actionmanagerimpl.cpp:608
+#, kde-format
+msgid "Copy Link Address"
+msgstr "संकली पता नकल करव"
+
+#: src/actions/actionmanagerimpl.cpp:345
+#, kde-format
+msgid "Pre&vious Unread Article"
+msgstr "पिछला बिनपढ़ा आलेख (&v)"
+
+#: src/actions/actionmanagerimpl.cpp:351
+#, kde-format
+msgid "Ne&xt Unread Article"
+msgstr "अगला बिनपढ़ा आलेख (&x)"
+
+#: src/actions/actionmanagerimpl.cpp:359
+#, kde-format
+msgid "&Delete"
+msgstr "मेटाव (&D)"
+
+#: src/actions/actionmanagerimpl.cpp:364
+#, kde-format
+msgid "&Mark As"
+msgstr "ये रूप मं चिनहा लगाव (&M)"
+
+#: src/actions/actionmanagerimpl.cpp:368
+#, kde-format
+msgctxt "as in: mark as read"
+msgid "&Read"
+msgstr "पढ़व (&R)"
+
+#: src/actions/actionmanagerimpl.cpp:370
+#, kde-format
+msgid "Mark selected article as read"
+msgstr "चुने गे संदेस मन ल पढ़िस चिनहा लगाव"
+
+#: src/actions/actionmanagerimpl.cpp:376
+#, kde-format
+msgctxt "as in: mark as new"
+msgid "&New"
+msgstr "नवा (&N)"
+
+#: src/actions/actionmanagerimpl.cpp:379
+#, kde-format
+msgid "Mark selected article as new"
+msgstr "चुने गे आलेख ल नवा चिनहा लगाव"
+
+#: src/actions/actionmanagerimpl.cpp:384
+#, kde-format
+msgctxt "as in: mark as unread"
+msgid "&Unread"
+msgstr "बिनपढ़ा (&U)"
+
+#: src/actions/actionmanagerimpl.cpp:386
+#, kde-format
+msgid "Mark selected article as unread"
+msgstr "चुने गे आलेख मन ल बिन पढ़िस चिनहा लगाव"
+
+#: src/actions/actionmanagerimpl.cpp:392
+#, kde-format
+msgid "&Mark as Important"
+msgstr "जरूरी के रूप मं चिनहा लगाव (&M)"
+
+#: src/actions/actionmanagerimpl.cpp:396
+#, kde-format
+msgid "Remove &Important Mark"
+msgstr "महत्वपूर्न चिनहा मेटाव (&I)"
+
+#: src/actions/actionmanagerimpl.cpp:400
+#, kde-format
+msgid "Move Node Up"
+msgstr "नोड ऊपर खिसकाव"
+
+#: src/actions/actionmanagerimpl.cpp:405
+#, kde-format
+msgid "Move Node Down"
+msgstr "मोड नीचे खिसकाव"
+
+#: src/actions/actionmanagerimpl.cpp:410
+#, kde-format
+msgid "Move Node Left"
+msgstr "नोड डेरी खिसकाव"
+
+#: src/actions/actionmanagerimpl.cpp:415
+#, kde-format
+msgid "Move Node Right"
+msgstr "नोड जेवनी खिसकाव"
+
+#: src/actions/actionmanagerimpl.cpp:421
+#, kde-format
+msgid "Send &Link Address..."
+msgstr "संकली पता भेजव... (&L)"
+
+#: src/actions/actionmanagerimpl.cpp:426
+#, kde-format
+msgid "Send &File..."
+msgstr "फाइल भेजव... (&F)"
+
+#: src/actions/actionmanagerimpl.cpp:432
+#, kde-format
+msgid "Set Focus to Quick Search"
+msgstr ""
+
+#: src/actions/actionmanagerimpl.cpp:464
+#, kde-format
+msgid "&Previous Article"
+msgstr "पिछला आलेख (&P)"
+
+#: src/actions/actionmanagerimpl.cpp:468
+#, kde-format
+msgid "&Next Article"
+msgstr "अगला आलेख (&N)"
+
+#: src/actions/actionmanagerimpl.cpp:484
+#, kde-format
+msgid "&Previous Feed"
+msgstr "पिछला फीड (&P)"
+
+#: src/actions/actionmanagerimpl.cpp:489
+#, kde-format
+msgid "&Next Feed"
+msgstr "अगला फीड (&N)"
+
+#: src/actions/actionmanagerimpl.cpp:495
+#, kde-format
+msgid "N&ext Unread Feed"
+msgstr "अगला बिनपढ़ा फीड (&e)"
+
+#: src/actions/actionmanagerimpl.cpp:501
+#, kde-format
+msgid "Prev&ious Unread Feed"
+msgstr "पिछला बिनपढ़ा फीड (&i)"
+
+#: src/actions/actionmanagerimpl.cpp:506
+#, kde-format
+msgid "Go to Top of Tree"
+msgstr "ट्री मं सीर्स मं जाव"
+
+#: src/actions/actionmanagerimpl.cpp:511
+#, kde-format
+msgid "Go to Bottom of Tree"
+msgstr "ट्री के तल मं जाव"
+
+#: src/actions/actionmanagerimpl.cpp:516
+#, kde-format
+msgid "Go Left in Tree"
+msgstr "ट्री मं डेरी जाव"
+
+#: src/actions/actionmanagerimpl.cpp:521
+#, kde-format
+msgid "Go Right in Tree"
+msgstr "ट्री मं जेवनी जाव"
+
+#: src/actions/actionmanagerimpl.cpp:526
+#, kde-format
+msgid "Go Up in Tree"
+msgstr "ट्री मं ऊपर जाव"
+
+#: src/actions/actionmanagerimpl.cpp:531
+#, kde-format
+msgid "Go Down in Tree"
+msgstr "ट्री मं नीचे जाव"
+
+#: src/actions/actionmanagerimpl.cpp:537
+#, fuzzy, kde-format
+#| msgid "N&ext Unread Feed"
+msgid "Hide Read Feeds"
+msgstr "अगला बिनपढ़ा फीड (&e)"
+
+#: src/actions/actionmanagerimpl.cpp:543
+#, kde-format
+msgid "Lock Feeds In Place"
+msgstr ""
+
+#: src/actions/actionmanagerimpl.cpp:549
+#, fuzzy, kde-format
+#| msgid " (no unread articles)"
+msgid "Auto-expand folders with unread articles"
+msgstr "(बिनपढ़े आलेख नइ)"
+
+#: src/actions/actionmanagerimpl.cpp:565
+#, kde-format
+msgid "Select Next Tab"
+msgstr "अगला टैब चुनव"
+
+#: src/actions/actionmanagerimpl.cpp:570
+#, kde-format
+msgid "Select Previous Tab"
+msgstr "पिछला टैब चुनव"
+
+#: src/actions/actionmanagerimpl.cpp:576
+#, kde-format
+msgid "Detach Tab"
+msgstr "टैब ल अलग करव"
+
+#: src/actions/actionmanagerimpl.cpp:590
+#, kde-format
+msgid "Mute"
+msgstr ""
+
+#: src/actions/actionmanagerimpl.cpp:594
+#, kde-format
+msgid "Unmute"
+msgstr ""
+
+#: src/actions/actionmanagerimpl.cpp:597
+#, kde-format
+msgid "Speak Text"
+msgstr ""
+
+#: src/actions/actionmanagerimpl.cpp:602
+#, kde-format
+msgid "&Find in Message..."
+msgstr ""
+
+#: src/actions/actionmanagerimpl.cpp:613
+#, fuzzy, kde-format
+#| msgid "&Close Tab"
+msgid "Close Tab"
+msgstr "टैब बंद करव (&C)"
+
+#: src/actions/actionmanagerimpl.cpp:626
+#, kde-format
+msgid "Activate Tab %1"
+msgstr ""
+
+#: src/actions/actionmanagerimpl.cpp:632
+#, kde-format
+msgid "&Save Link As..."
+msgstr "संकली अइसन सहेजव (&S)"
+
+#: src/actions/actionmanagerimpl.cpp:636
+#, kde-format
+msgid "Copy &Link Address"
+msgstr "संकली पता नकल करव (&L)"
+
+#: src/actions/actionmanagerimpl.cpp:639
+#, kde-format
+msgid "Copy Image Location"
+msgstr ""
+
+#: src/actions/actionmanagerimpl.cpp:646
+#, kde-format
+msgid "Save Image On Disk..."
+msgstr ""
+
+#: src/actions/actions.cpp:19
+#, kde-format
+msgid "Open Link in New &Tab"
+msgstr "संकली नवा टैब मं खोलव (&T)"
+
+#: src/actions/actions.cpp:26
+#, kde-format
+msgid "Open Link in External &Browser"
+msgstr "संकली बाहिरी ब्राउजर मं खोलव (&B)"
+
+#: src/addfeeddialog.cpp:49
+#, fuzzy, kde-format
+#| msgid "Add Feed"
+msgctxt "@title:window"
+msgid "Add Feed"
+msgstr "फीड जोड़व"
+
+#: src/addfeeddialog.cpp:99
+#, kde-format
+msgid "Downloading %1"
+msgstr "%1 ल डाउनलोड करत हे"
+
+#: src/addfeeddialog.cpp:115
+#, kde-format
+msgid "Feed not found from %1."
+msgstr "%1 से फीड नइ मिलिस."
+
+#: src/addfeeddialog.cpp:121
+#, kde-format
+msgid "Feed found, downloading..."
+msgstr "फीड मिलिस, डाउनलोड करत हे..."
+
+#: src/akregator_options.h:20 src/akregator_options.h:28
+#, kde-format
+msgid "Add a feed with the given URL"
+msgstr ""
+
+#: src/akregator_options.h:23
+#, kde-format
+msgid "When adding feeds, place them in this group"
+msgstr ""
+
+#: src/akregator_options.h:25
+#, kde-format
+msgid "Hide main window on startup"
+msgstr ""
+
+#: src/akregator_options.h:30
+#, kde-format
+msgid "Lists the available options for user feedback"
+msgstr ""
+
+#: src/akregator_part.cpp:84
+#, kde-format
+msgid "Feeds"
+msgstr "फीड्स"
+
+#: src/akregator_part.cpp:95
+#, kde-format
+msgid "KDE Dot News"
+msgstr "केडीई डाट समाचार"
+
+#: src/akregator_part.cpp:100
+#, kde-format
+msgid "Linux.com"
+msgstr ""
+
+#: src/akregator_part.cpp:105
+#, kde-format
+msgid "Planet KDE"
+msgstr "प्लेनेट केडीई"
+
+#: src/akregator_part.cpp:110
+#, kde-format
+msgid "KDE Apps"
+msgstr "केडीई अनुपरयोग"
+
+#: src/akregator_part.cpp:116
+#, kde-format
+msgid "Spanish feeds"
+msgstr ""
+
+#: src/akregator_part.cpp:120
+#, fuzzy, kde-format
+#| msgid "Planet KDE"
+msgid "Planet KDE España"
+msgstr "प्लेनेट केडीई"
+
+#: src/akregator_part.cpp:440
+#, kde-format
+msgid ""
+"Access denied: Cannot save feed list to <b>%1</b>. Please check your "
+"permissions."
+msgstr "पहुंच मना करिस: फीड सूची <b>%1</b> मं सहेज नइ सकिस. अपन अनुमति जांचव."
+
+#: src/akregator_part.cpp:441 src/akregator_part.cpp:492
+#, kde-format
+msgid "Write Error"
+msgstr "लिखे मं गलती"
+
+#: src/akregator_part.cpp:477
+#, kde-format
+msgid "Could not import the file %1 (no valid OPML)"
+msgstr "फाइल %1 आयात नइ कर सकिस (कोई वैध ओपीएमएल नइ)"
+
+#: src/akregator_part.cpp:477 src/command/loadfeedlistcommand.cpp:71
+#, kde-format
+msgid "OPML Parsing Error"
+msgstr "ओपीएमएल पारसिंग गलती"
+
+#: src/akregator_part.cpp:481
+#, kde-format
+msgid ""
+"The file %1 could not be read, check if it exists or if it is readable for "
+"the current user."
+msgstr ""
+"चुने गे फाइल %1 नइ पढ़ सकिस, देखव कि ए मिलत हे, या अभी हाल के कमइया से पढ़े जइसन हे."
+
+#: src/akregator_part.cpp:482 src/command/loadfeedlistcommand.cpp:142
+#, kde-format
+msgid "Read Error"
+msgstr "पढ़े मं गलती"
+
+#: src/akregator_part.cpp:492
+#, kde-format
+msgid "Access denied: cannot write to file %1. Please check your permissions."
+msgstr "पहुंच अस्वीकृत: फाइल %1 मं लिख नइ सकिस. अपन अनुमति जांचव."
+
+#: src/akregator_part.cpp:507 src/akregator_part.cpp:516
+#, fuzzy, kde-format
+#| msgid "OPML Outlines (*.opml, *.xml)"
+msgid "OPML Outlines (%1);;All Files (*)"
+msgstr "ओपीएमएल आउटलाइन्स (*.opml, *.xml)"
+
+#: src/akregator_part.cpp:650
+#, kde-format
+msgid "Imported Folder"
+msgstr "आयातित फोल्डर"
+
+#: src/articlejobs.cpp:184
+#, kde-format
+msgid "The feed to be listed was already removed."
+msgstr ""
+
+#: src/articlelistview.cpp:156 src/subscription/subscriptionlistview.cpp:180
+#, kde-format
+msgid "Columns"
+msgstr "खंभा"
+
+#: src/articlelistview.cpp:214
+#, kde-format
+msgid "No result found"
+msgstr ""
+
+#: src/articlelistview.cpp:375
+#, kde-format
+msgid ""
+"<h2>Article list</h2>Here you can browse articles from the currently "
+"selected feed. You can also manage articles, as marking them as persistent "
+"(\"Mark as Important\") or delete them, using the right mouse button menu. "
+"To view the web page of the article, you can open the article internally in "
+"a tab or in an external browser window."
+msgstr ""
+
+#: src/articlemodel.cpp:74
+#, kde-format
+msgctxt "Articlelist's column header"
+msgid "Title"
+msgstr "सीर्सक"
+
+#: src/articlemodel.cpp:76
+#, kde-format
+msgctxt "Articlelist's column header"
+msgid "Feed"
+msgstr "फीड"
+
+#: src/articlemodel.cpp:78
+#, kde-format
+msgctxt "Articlelist's column header"
+msgid "Date"
+msgstr "तारीक"
+
+#: src/articlemodel.cpp:80
+#, kde-format
+msgctxt "Articlelist's column header"
+msgid "Author"
+msgstr "लेखक"
+
+#: src/articlemodel.cpp:82
+#, kde-format
+msgctxt "Articlelist's column header"
+msgid "Description"
+msgstr ""
+
+#: src/articlemodel.cpp:84
+#, kde-format
+msgctxt "Articlelist's column header"
+msgid "Content"
+msgstr "सामान"
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:149
+#, fuzzy, kde-format
+#| msgid "A KDE Feed Reader"
+msgid "Akregator is a KDE news feed reader."
+msgstr "केडीई फीड रीडर"
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:190
+#, fuzzy, kde-format
+#| msgid "&Save Link As..."
+msgctxt "@title:window"
+msgid "Save As"
+msgstr "संकली अइसन सहेजव (&S)"
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:382
+#, kde-format
+msgid "Disable"
+msgstr ""
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:384
+#, kde-format
+msgid "Keep Enabled"
+msgstr ""
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:386
+#, fuzzy, kde-format
+#| msgid "<qt>Are you sure you want to delete this feed?</qt>"
+msgid "Are you sure you want to disable this introduction page?"
+msgstr "<qt>का आप मन सही मं एखर फीड ल मिटाना चाहथो ?</qt>"
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:387
+#, fuzzy, kde-format
+#| msgid "Disable archiving"
+msgid "Disable Introduction Page"
+msgstr "अभिलेखन अक्छम"
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:422
+#, kde-format
+msgid "This web site is a malware, do you want to continue to show it?"
+msgstr ""
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:423
+#, kde-format
+msgid "Malware"
+msgstr ""
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:435
+#, kde-format
+msgid "The network is broken."
+msgstr ""
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:435
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:438
+#, kde-format
+msgid "Check Phishing Url"
+msgstr ""
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:438
+#, kde-format
+msgid "The url %1 is not valid."
+msgstr ""
+
+#: src/articleviewer-ng/webengine/articleviewerwebenginewidgetng.cpp:137
+#, kde-format
+msgctxt "@title:window"
+msgid "Print Document"
+msgstr ""
+
+#: src/command/createfoldercommand.cpp:47
+#, kde-format
+msgid "Add Folder"
+msgstr "फोल्डर जोड़व"
+
+#: src/command/createfoldercommand.cpp:47
+#, kde-format
+msgid "Folder name:"
+msgstr "फोल्डर नाम:"
+
+#: src/command/deletesubscriptioncommand.cpp:39
+#, kde-format
+msgid ""
+"<qt>Are you sure you want to delete this folder and its feeds and subfolders?"
+"</qt>"
+msgstr ""
+"<qt>का आप मन सही मं एखर फोल्डर अउ एखर फीड अउ सबफोल्डर मन ल मिटाना चाहथो ?</qt>"
+
+#: src/command/deletesubscriptioncommand.cpp:40
+#, kde-format
+msgid ""
+"<qt>Are you sure you want to delete folder <b>%1</b> and its feeds and "
+"subfolders?</qt>"
+msgstr ""
+"का आप मन सचमुच एखर फोल्डर <b>%1</b> अउ एखर फीड मन अउ उप-फोल्डर मन ल मिटाना "
+"चाहथो ?"
+
+#: src/command/deletesubscriptioncommand.cpp:44
+#, kde-format
+msgid "Delete Folder"
+msgstr "फोल्डर मेटाव"
+
+#: src/command/deletesubscriptioncommand.cpp:61
+#, kde-format
+msgid "<qt>Are you sure you want to delete this feed?</qt>"
+msgstr "<qt>का आप मन सही मं एखर फीड ल मिटाना चाहथो ?</qt>"
+
+#: src/command/deletesubscriptioncommand.cpp:63
+#, kde-format
+msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
+msgstr "<qt>का आप मन सही मं एखर फीड <b>%1</b> ल मिटाना चाहथो ?</qt>"
+
+#: src/command/deletesubscriptioncommand.cpp:68
+#, kde-format
+msgid "Delete Feed"
+msgstr "फीड मेटाव"
+
+#: src/command/importfeedlistcommand.cpp:48
+#, fuzzy, kde-format
+msgid "Imported Feeds"
+msgstr "फीड्स आयात करव... (&I)"
+
+#: src/command/importfeedlistcommand.cpp:77
+#, kde-format
+msgid "Add Imported Folder"
+msgstr "आयातित फोल्डर जोड़व"
+
+#: src/command/importfeedlistcommand.cpp:78
+#, kde-format
+msgid "Imported folder name:"
+msgstr "आयातित फोल्डर नाम:"
+
+#: src/command/loadfeedlistcommand.cpp:63
+#, fuzzy, kde-format
+msgid ""
+"<qt>The standard feed list is corrupted (invalid OPML). A backup was created:"
+"<p><b>%1</b></p></qt>"
+msgstr ""
+"<qt>मानक फीड सूची खराब हे (अवैध एक्सएमएल). एक बैकअप बनाइस:<p><b>%1</b></p></qt>"
+
+#: src/command/loadfeedlistcommand.cpp:67
+#, fuzzy, kde-format
+msgid ""
+"<qt>The standard feed list is corrupted (invalid OPML). Could not create a "
+"backup.</qt>"
+msgstr "<qt>मानक फीड सूची खराब हे (अवैध एक्सएमएल). बैकअप नइ बना सकिस!</p></qt>"
+
+#: src/command/loadfeedlistcommand.cpp:129
+#, kde-format
+msgid "Opening Feed List..."
+msgstr "फीड सूची खोलत हे..."
+
+#: src/command/loadfeedlistcommand.cpp:142
+#, kde-format
+msgid "<qt>Could not open feed list (%1) for reading.</qt>"
+msgstr ""
+
+#: src/command/loadfeedlistcommand.cpp:155
+#, fuzzy, kde-format
+msgctxt "error message window caption"
+msgid "XML Parsing Error"
+msgstr "एक्सएमएल पारसिंग गलती"
+
+#: src/command/loadfeedlistcommand.cpp:157
+#, kde-kuit-format
+msgid "<qt><p>XML parsing error in line %1, column %2 of %3:</p><p>%4</p></qt>"
+msgstr ""
+
+#: src/command/loadfeedlistcommand.cpp:164
+#, kde-format
+msgid ""
+"<qt>The standard feed list is corrupted (invalid XML). A backup was created:"
+"<p><b>%1</b></p></qt>"
+msgstr ""
+"<qt>मानक फीड सूची खराब हे (अवैध एक्सएमएल). एक बैकअप बनाइस:<p><b>%1</b></p></qt>"
+
+#: src/command/loadfeedlistcommand.cpp:168
+#, fuzzy, kde-format
+msgid ""
+"<qt>The standard feed list is corrupted (invalid XML). Could not create a "
+"backup.</qt>"
+msgstr "<qt>मानक फीड सूची खराब हे (अवैध एक्सएमएल). बैकअप नइ बना सकिस!</p></qt>"
+
+#: src/crashwidget/crashwidget.cpp:21
+#, kde-format
+msgid ""
+"Akregator did not close correctly. Would you like to restore the previous "
+"session?"
+msgstr ""
+
+#: src/crashwidget/crashwidget.cpp:37
+#, kde-format
+msgid "Restore Session"
+msgstr ""
+
+#: src/crashwidget/crashwidget.cpp:43
+#, kde-format
+msgid "Do Not Restore Session"
+msgstr ""
+
+#: src/crashwidget/crashwidget.cpp:49
+#, kde-format
+msgid "Ask me later"
+msgstr ""
+
+#. i18n: ectx: Menu (edit)
+#: src/data/akregator_part.rc:14 src/data/akregator_shell.rc:11
+#, kde-format
+msgid "&Edit"
+msgstr "संपादन (&E)"
+
+#. i18n: ectx: Menu (view)
+#: src/data/akregator_part.rc:21 src/data/akregator_shell.rc:16
+#, kde-format
+msgid "&View"
+msgstr "देखव (&V)"
+
+#. i18n: ectx: Menu (go)
+#: src/data/akregator_part.rc:36 src/data/akregator_shell.rc:24
+#, kde-format
+msgid "&Go"
+msgstr "जाव (&G)"
+
+#. i18n: ectx: Menu (feed)
+#: src/data/akregator_part.rc:49 src/data/akregator_shell.rc:29
+#, fuzzy, kde-format
+msgid "Fee&d"
+msgstr "फीड"
+
+#. i18n: ectx: Menu (article)
+#: src/data/akregator_part.rc:62 src/data/akregator_shell.rc:34
+#, kde-format
+msgid "&Article"
+msgstr "आलेख (&A)"
+
+#. i18n: ectx: Menu (settings)
+#: src/data/akregator_part.rc:79 src/data/akregator_shell.rc:39
+#, kde-format
+msgid "&Settings"
+msgstr "सेटिंग (&S)"
+
+#. i18n: ectx: ToolBar (mainToolBar)
+#: src/data/akregator_part.rc:92 src/data/akregator_shell.rc:54
+#, kde-format
+msgid "Main Toolbar"
+msgstr "मुख्य औजार पट्टी"
+
+#. i18n: ectx: Menu (file)
+#: src/data/akregator_shell.rc:4
+#, kde-format
+msgid "&File"
+msgstr "फाइल (&F)"
+
+#: src/feed/feedlist.cpp:160
+#, kde-format
+msgid "All Feeds"
+msgstr "सब्बो फीड्स"
+
+#: src/feed/feedpropertiesdialog.cpp:45 src/feed/feedpropertiesdialog.cpp:77
+#, fuzzy, kde-format
+#| msgid "Minutes"
+msgid "Minute"
+msgid_plural "Minutes"
+msgstr[0] "मिनट्स"
+msgstr[1] "मिनट्स"
+
+#: src/feed/feedpropertiesdialog.cpp:46 src/feed/feedpropertiesdialog.cpp:78
+#, fuzzy, kde-format
+#| msgid "Hours"
+msgid "Hour"
+msgid_plural "Hours"
+msgstr[0] "घंटे"
+msgstr[1] "घंटे"
+
+#: src/feed/feedpropertiesdialog.cpp:47 src/feed/feedpropertiesdialog.cpp:79
+#, fuzzy, kde-format
+#| msgid "Days"
+msgid "Day"
+msgid_plural "Days"
+msgstr[0] "दिन"
+msgstr[1] "दिन"
+
+#: src/feed/feedpropertiesdialog.cpp:60 src/feed/feedpropertiesdialog.cpp:112
+#, fuzzy, kde-format
+#| msgid "Feed Properties"
+msgctxt "@title:window"
+msgid "Feed Properties"
+msgstr "फीड गुन"
+
+#: src/feed/feedpropertiesdialog.cpp:80
+#, fuzzy, kde-format
+#| msgid "Never"
+msgctxt "never fetch new articles"
+msgid "Never"
+msgstr "कभू नइ"
+
+#: src/feed/feedpropertiesdialog.cpp:81
+#, fuzzy, kde-format
+#| msgid "1 day"
+msgid " day"
+msgid_plural " days"
+msgstr[0] "1 दिन"
+msgstr[1] "1 दिन"
+
+#: src/feed/feedpropertiesdialog.cpp:82
+#, fuzzy, kde-format
+#| msgid "1 article"
+msgid " article"
+msgid_plural " articles"
+msgstr[0] "1 आलेख"
+msgstr[1] "1 आलेख"
+
+#: src/feed/feedpropertiesdialog.cpp:112
+#, fuzzy, kde-format
+#| msgid "Properties of %1"
+msgctxt "@title:window"
+msgid "Properties of %1"
+msgstr " %1 के गुन"
+
+#: src/formatter/articleformatter.cpp:36
+#, kde-format
+msgid "(%1, %2)"
+msgstr "(%1, %2)"
+
+#: src/formatter/grantleeviewformatter.cpp:58
+#: src/formatter/grantleeviewformatter.cpp:109
+#, kde-format
+msgid " (no unread articles)"
+msgstr "(बिनपढ़े आलेख नइ)"
+
+#: src/formatter/grantleeviewformatter.cpp:60
+#: src/formatter/grantleeviewformatter.cpp:111
+#, kde-format
+msgid " (1 unread article)"
+msgid_plural " (%1 unread articles)"
+msgstr[0] "(1बिनपढ़ा आलेख)"
+msgstr[1] "(%1 बिनपढ़े आलेख)"
+
+#: src/formatter/grantleeviewformatter.cpp:75
+#, fuzzy, kde-format
+#| msgid "<b>Description:</b> %1<br /><br />"
+msgid "<b>Description:</b> %1<br />"
+msgstr "<b>वर्नन:</b> %1<br /><br />"
+
+#: src/formatter/grantleeviewformatter.cpp:82
+#, fuzzy, kde-format
+#| msgid "<b>Homepage:</b> <a href=\"%1\">%2</a>"
+msgid "<b>Homepage:</b> <a href=\"%1\">%1</a>"
+msgstr "<b>घर-पेज:</b> <a href=\"%1\">%2</a>"
+
+#: src/formatter/grantleeviewformatter.cpp:89
+#, fuzzy, kde-format
+#| msgid "<b>Description:</b> %1<br /><br />"
+msgid "<b>Copyright:</b> %1</a>"
+msgstr "<b>वर्नन:</b> %1<br /><br />"
+
+#: src/formatter/grantleeviewformatter.cpp:141
+#, kde-format
+msgid "Date"
+msgstr "तारीक"
+
+#: src/formatter/grantleeviewformatter.cpp:142
+#, fuzzy, kde-format
+#| msgid "Comments"
+msgid "Comment"
+msgstr "टिप्पनियाँ"
+
+#: src/formatter/grantleeviewformatter.cpp:143
+#, kde-format
+msgid "Complete Story"
+msgstr "पूरा कथा"
+
+#: src/formatter/grantleeviewformatter.cpp:144
+#, kde-format
+msgid "Author"
+msgstr "लेखक"
+
+#: src/formatter/grantleeviewformatter.cpp:145
+#, kde-format
+msgid "Enclosure"
+msgstr ""
+
+#: src/frame/frame.cpp:21
+#, kde-format
+msgid "Untitled"
+msgstr "बिना सीर्सक"
+
+#: src/frame/frame.cpp:141
+#, kde-format
+msgid "Loading..."
+msgstr "लोड करत हे..."
+
+#: src/frame/frame.cpp:157
+#, kde-format
+msgid "Loading canceled"
+msgstr "लोड करना खारिज"
+
+#: src/frame/frame.cpp:169
+#, kde-format
+msgid "Loading completed"
+msgstr "लोड करना पूरा"
+
+#: src/mainwidget.cpp:144
+#, kde-format
+msgid "You can view multiple articles in several open tabs."
+msgstr "आप बहुत से आलेख मन ल बहुत अकन खुले टैब मं देख सकथो ."
+
+#: src/mainwidget.cpp:148
+#, kde-format
+msgid "Articles list."
+msgstr "आलेख मन के सूची."
+
+#: src/mainwidget.cpp:210 src/mainwidget.cpp:635
+#, kde-format
+msgid "Articles"
+msgstr "आलेख"
+
+#: src/mainwidget.cpp:239
+#, kde-format
+msgid "About"
+msgstr "के बारे में"
+
+#: src/mainwidget.cpp:765
+#, fuzzy, kde-format
+#| msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
+msgid ""
+"<qt>Are you sure you want to mark <b>all articles in the feed</b> as read?</"
+"qt>"
+msgstr "<qt>का आप मन सही मं एखर फीड <b>%1</b> ल मिटाना चाहथो ?</qt>"
+
+#: src/mainwidget.cpp:766
+#, fuzzy, kde-format
+#| msgid "&Mark Feed as Read"
+msgid "Mark Feed as Read"
+msgstr "फीड ल पढ़िस चिनहा लगाव (&M)"
+
+#: src/mainwidget.cpp:769
+#, fuzzy, kde-format
+#| msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
+msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
+msgstr "<qt>का आप मन सही मं एखर फीड <b>%1</b> ल मिटाना चाहथो ?</qt>"
+
+#: src/mainwidget.cpp:771
+#, fuzzy, kde-format
+#| msgid "<qt>Are you sure you want to delete this feed?</qt>"
+msgid ""
+"<qt>Are you sure you want to mark <b>all feeds in the folder</b> as read?</"
+"qt>"
+msgstr "<qt>का आप मन सही मं एखर फीड ल मिटाना चाहथो ?</qt>"
+
+#: src/mainwidget.cpp:773
+#, fuzzy, kde-format
+#| msgid "&Mark Feeds as Read"
+msgid "Mark Feeds as Read"
+msgstr "फीड्स ल पढ़िस होय चिनहा लगाव (&M)"
+
+#: src/mainwidget.cpp:837 src/mainwidget.cpp:846 src/mainwidget.cpp:1248
+#, kde-format
+msgid "Networking is not available."
+msgstr ""
+
+#: src/mainwidget.cpp:854
+#, kde-format
+msgid "Fetching Feeds..."
+msgstr "फीड्स प्राप्त करत हे..."
+
+#: src/mainwidget.cpp:1053
+#, kde-format
+msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
+msgstr "<qt>का आप मन सही मं आलेख <b>%1</b> ल मिटाना चाहथो ?</qt>"
+
+#: src/mainwidget.cpp:1056
+#, fuzzy, kde-format
+msgid "<qt>Are you sure you want to delete the selected article?</qt>"
+msgid_plural ""
+"<qt>Are you sure you want to delete the %1 selected articles?</qt>"
+msgstr[0] "<qt>का आप मन सही मं ए %1 चुने गे आलेख मन ल मिटाना चाहथो ?</qt>"
+msgstr[1] "<qt>का आप मन सही मं ए %1 चुने गे आलेख मन ल मिटाना चाहथो ?</qt>"
+
+#: src/mainwidget.cpp:1245
+#, kde-format
+msgid "Networking is available now."
+msgstr ""
+
+#: src/mainwindow.cpp:124
+#, kde-format
+msgid ""
+"<qt>This will hide the menu bar completely. You can show it again by typing "
+"%1.</qt>"
+msgstr ""
+
+#: src/mainwindow.cpp:127
+#, kde-format
+msgid "Hide menu bar"
+msgstr ""
+
+#: src/mainwindow.cpp:156
+#, fuzzy, kde-format
+#| msgid "Could not find the Akregator part; please check your installation."
+msgid ""
+"Could not find the Akregator part; please check your installation.\n"
+"%1"
+msgstr "ए-के-रेगेटर पार्ट नइ मिलिस. किरपा करके, अपन इंस्टालेसन जांचव."
+
+#: src/notificationmanager.cpp:49
+#, kde-format
+msgid ""
+"Feed added:\n"
+" %1"
+msgstr ""
+"फीड जोड़ दे गिस:\n"
+" %1"
+
+#: src/notificationmanager.cpp:61
+#, kde-format
+msgid ""
+"Feeds added:\n"
+" %1"
+msgstr ""
+"फीडों ल जोड़ दे गिस:\n"
+" %1"
+
+#: src/notificationmanager.cpp:79
+#, kde-format
+msgid "<i>and 1 other</i>"
+msgid_plural "<i>and %1 others</i>"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/progressmanager.cpp:127
+#, kde-format
+msgid "Fetch completed"
+msgstr "फीड लाना पूरा"
+
+#: src/progressmanager.cpp:136
+#, kde-format
+msgid "Fetch error"
+msgstr "फीड लाय मं गलती"
+
+#: src/progressmanager.cpp:145
+#, kde-format
+msgid "Fetch aborted"
+msgstr "फीड लाना छोड़ दे गिस."
+
+#: src/subscription/subscriptionlistjobs.cpp:54
+#, kde-format
+msgid "Feed list was deleted"
+msgstr ""
+
+#: src/subscription/subscriptionlistjobs.cpp:64
+#, kde-format
+msgid "Node or destination folder not found"
+msgstr ""
+
+#: src/subscription/subscriptionlistjobs.cpp:71
+#, kde-format
+msgid "Cannot move folder %1 to its own subfolder %2"
+msgstr ""
+
+#: src/subscription/subscriptionlistmodel.cpp:49
+#, kde-format
+msgid "Timeout on remote server"
+msgstr ""
+
+#: src/subscription/subscriptionlistmodel.cpp:51
+#, kde-format
+msgid "Unknown host"
+msgstr ""
+
+#: src/subscription/subscriptionlistmodel.cpp:53
+#, kde-format
+msgid "Feed file not found on remote server"
+msgstr ""
+
+#: src/subscription/subscriptionlistmodel.cpp:55
+#, kde-format
+msgid "Could not read feed (invalid XML)"
+msgstr ""
+
+#: src/subscription/subscriptionlistmodel.cpp:57
+#, kde-format
+msgid "Could not read feed (unknown format)"
+msgstr ""
+
+#: src/subscription/subscriptionlistmodel.cpp:59
+#, kde-format
+msgid "Could not read feed (invalid feed)"
+msgstr ""
+
+#: src/subscription/subscriptionlistmodel.cpp:229
+#, kde-format
+msgid "Could not fetch feed: %1"
+msgstr ""
+
+#: src/subscription/subscriptionlistmodel.cpp:274
+#, kde-format
+msgctxt "Feedlist's column header"
+msgid "Feeds"
+msgstr "फीड्स"
+
+#: src/subscription/subscriptionlistmodel.cpp:276
+#, kde-format
+msgctxt "Feedlist's column header"
+msgid "Unread"
+msgstr "बिनपढ़ा"
+
+#: src/subscription/subscriptionlistmodel.cpp:278
+#, kde-format
+msgctxt "Feedlist's column header"
+msgid "Total"
+msgstr "कुल"
+
+#: src/tabwidget.cpp:92
+#, kde-format
+msgid "Close the current tab"
+msgstr "अभी हाल के टैब बंद करव"
+
+#: src/tabwidget.cpp:95
+#, fuzzy, kde-format
+#| msgid "&Close Tab"
+msgid "Close tab"
+msgstr "टैब बंद करव (&C)"
+
+#: src/tabwidget.cpp:118
+#, fuzzy, kde-format
+#| msgid "Detach Tab"
+msgctxt "@action:inmenu"
+msgid "Detach Tab"
+msgstr "टैब ल अलग करव"
+
+#: src/tabwidget.cpp:123
+#, fuzzy, kde-format
+#| msgid "&Close Tab"
+msgctxt "@action:inmenu"
+msgid "Close Tab"
+msgstr "टैब बंद करव (&C)"
+
+#: src/tabwidget.cpp:127
+#, fuzzy, kde-format
+#| msgid "Close the current tab"
+msgctxt "@action:inmenu"
+msgid "Close All Other Tabs"
+msgstr "अभी हाल के टैब बंद करव"
+
+#: src/tabwidget.cpp:131
+#, fuzzy, kde-format
+#| msgid "&Close Tab"
+msgctxt "@action:inmenu"
+msgid "Close All Tabs"
+msgstr "टैब बंद करव (&C)"
+
+#: src/trayicon.cpp:55
+#, fuzzy, kde-format
+#| msgid " (no unread articles)"
+msgid "There are no unread articles"
+msgstr "(बिनपढ़े आलेख नइ)"
+
+#: src/trayicon.cpp:55
+#, fuzzy, kde-format
+#| msgid " (1 unread article)"
+#| msgid_plural " (%1 unread articles)"
+msgid "1 unread article"
+msgid_plural "%1 unread articles"
+msgstr[0] "(1बिनपढ़ा आलेख)"
+msgstr[1] "(%1 बिनपढ़े आलेख)"
+
+#. i18n: ectx: property (windowTitle), widget (QWidget, Akregator::AddFeedWidgetBase)
+#: src/ui/addfeedwidgetbase.ui:14
+#, kde-format
+msgid "Add Feed"
+msgstr "फीड जोड़व"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel1)
+#: src/ui/addfeedwidgetbase.ui:122
+#, kde-format
+msgid "Add New Source"
+msgstr "नवा स्त्रोत जोड़व"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel3)
+#: src/ui/addfeedwidgetbase.ui:135
+#, kde-format
+msgid "Feed &URL:"
+msgstr "फीड यूआरएल: (&U)"
+
+#. i18n: ectx: property (windowTitle), widget (QWidget, Akregator::FeedPropertiesWidgetBase)
+#: src/ui/feedpropertieswidgetbase.ui:20
+#, kde-format
+msgid "Feed Properties"
+msgstr "फीड गुन"
+
+#. i18n: ectx: attribute (title), widget (QWidget, tab1)
+#: src/ui/feedpropertieswidgetbase.ui:42
+#, kde-format
+msgid "&General"
+msgstr "सामान्य (&G)"
+
+#. i18n: ectx: property (text), widget (QCheckBox, cb_updateInterval)
+#: src/ui/feedpropertieswidgetbase.ui:54
+#, kde-format
+msgid "U&se a custom update interval"
+msgstr "मनमाफिक अपडेट अंतराल उपयोग करव (&s)"
+
+#. i18n: ectx: property (text), widget (QLabel, updateLabel)
+#: src/ui/feedpropertieswidgetbase.ui:88
+#, fuzzy, kde-format
+#| msgid "Update &every:"
+msgid "Update ever&y:"
+msgstr "अपडेट करव हर एक: (&e)"
+
+#. i18n: ectx: property (text), widget (QCheckBox, checkBox_useNotification)
+#: src/ui/feedpropertieswidgetbase.ui:117
+#, kde-format
+msgid "Notify when new articles arri&ve"
+msgstr "जब नवा आलेख प्राप्त होही तहां सूचित करव"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel3)
+#: src/ui/feedpropertieswidgetbase.ui:132
+#, kde-format
+msgid "&URL:"
+msgstr "यूआरएलः (&U)"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel2)
+#: src/ui/feedpropertieswidgetbase.ui:142
+#, kde-format
+msgid "&Name:"
+msgstr "नाम: (&N)"
+
+#. i18n: ectx: property (toolTip), widget (QLineEdit, feedNameEdit)
+#: src/ui/feedpropertieswidgetbase.ui:161
+#, kde-format
+msgid "Display name of RSS column"
+msgstr "आरएसएस खंभा के प्रदर्सक नाम"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: src/ui/feedpropertieswidgetbase.ui:171
+#, fuzzy, kde-format
+#| msgid "Comments"
+msgid "Comment:"
+msgstr "टिप्पनियाँ"
+
+#. i18n: ectx: attribute (title), widget (QWidget, tab2)
+#: src/ui/feedpropertieswidgetbase.ui:194
+#, kde-format
+msgid "Ar&chive"
+msgstr "अभिलेखागार मं डालव (&c)"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rb_globalDefault)
+#: src/ui/feedpropertieswidgetbase.ui:206
+#, kde-format
+msgid "&Use default settings"
+msgstr "डिफाल्ट सेटिंग उपयोग करव (&U)"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rb_disableArchiving)
+#: src/ui/feedpropertieswidgetbase.ui:216
+#, kde-format
+msgid "Di&sable archiving"
+msgstr "अभिलेखन अक्छम करव (&s)"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rb_limitArticleNumber)
+#: src/ui/feedpropertieswidgetbase.ui:247
+#, kde-format
+msgid "Limit archi&ve to:"
+msgstr "अभिलेख ल सीमित करव: (&v)"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rb_limitArticleAge)
+#: src/ui/feedpropertieswidgetbase.ui:277
+#, kde-format
+msgid "&Delete articles older than:"
+msgstr "एखर से अधिक जुन्ना आलेख मन ल मेटाव: (&D)"
+
+#. i18n: ectx: attribute (title), widget (QWidget, tab3)
+#: src/ui/feedpropertieswidgetbase.ui:340
+#, kde-format
+msgid "Adva&nced"
+msgstr "उन्नत (&n)"
+
+#. i18n: ectx: property (text), widget (QCheckBox, checkBox_loadWebsite)
+#: src/ui/feedpropertieswidgetbase.ui:373
+#, kde-format
+msgid "Load the &full website when reading articles"
+msgstr "जब आलेख मन ल पढ़ रहे होही तहां पूरा वेबसाइट पढ़व (&f)"
+
+#. i18n: ectx: property (text), widget (QCheckBox, checkBox_markRead)
+#: src/ui/feedpropertieswidgetbase.ui:380
+#, kde-format
+msgid "Mar&k articles as read when they arrive"
+msgstr "आलेख मन ल पढ़िस गिस चिनहा लगाव जब ओ मन आव (&k)"
+
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:40
+#, fuzzy, kde-format
+#| msgid "Disable archiving"
+msgid "Disable Introduction"
+msgstr "अभिलेखन अक्छम"
+
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:58
+#, fuzzy, kde-format
+#| msgid "Copy Link Address"
+msgid "&Copy Email Address"
+msgstr "संकली पता नकल करव"
+
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:67
+#, kde-format
+msgid "Address copied to clipboard."
+msgstr ""
+
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:98
+#, fuzzy, kde-format
+#| msgid "Ma&rk All Feeds as Read"
+msgid "Mark Article as Read"
+msgstr "सब्बो फीड्स ल पढ़िस चिनहा लगाव (&r)"
+
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:100
+#, fuzzy, kde-format
+#| msgid "Mark selected article as unread"
+msgid "Mark Article as Unread"
+msgstr "चुने गे आलेख मन ल बिन पढ़िस चिनहा लगाव"
+
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:102
+#, fuzzy, kde-format
+#| msgid "Remove &Important Mark"
+msgid "Change Important Flag"
+msgstr "महत्वपूर्न चिनहा मेटाव (&I)"
+
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:104
+#, fuzzy, kde-format
+#| msgid "Article"
+msgid "Send the URL of the article"
+msgstr "आलेख"
+
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:106
+#, fuzzy, kde-format
+#| msgid "Article"
+msgid "Send the Html Page of Article"
+msgstr "आलेख"
+
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:108
+#, fuzzy, kde-format
+#| msgid "Open in External Browser"
+msgid "Open In External Browser"
+msgstr "बाहिरी ब्राउजर मं खोलव"
+
+#: src/widgets/searchbar.cpp:40
+#, fuzzy, kde-format
+#| msgid " articles"
+msgid "Search articles..."
+msgstr "आलेख"
+
+#: src/widgets/searchbar.cpp:112
+#, fuzzy, kde-format
+#| msgid " articles"
+msgid "Search articles...<%1>"
+msgstr "आलेख"
+
+#: src/widgets/statussearchline.cpp:42
+#, kde-format
+msgid "All Articles"
+msgstr "सब्बो आलेख"
+
+#: src/widgets/statussearchline.cpp:43
+#, kde-format
+msgctxt "Unread articles filter"
+msgid "Unread"
+msgstr "बिनपढ़ा"
+
+#: src/widgets/statussearchline.cpp:44
+#, kde-format
+msgctxt "New articles filter"
+msgid "New"
+msgstr "नवा"
+
+#: src/widgets/statussearchline.cpp:45
+#, fuzzy, kde-format
+#| msgctxt "as in: mark as read"
+#| msgid "&Read"
+msgctxt "Read articles filter"
+msgid "Read"
+msgstr "पढ़व (&R)"
+
+#: src/widgets/statussearchline.cpp:46
+#, kde-format
+msgctxt "Important articles filter"
+msgid "Important"
+msgstr "जरूरी"
+
+#~ msgid "Archive"
+#~ msgstr "अभिलेखागार"
+
+#, fuzzy
+#~| msgid "Archive backend:"
+#~ msgid "Archive backend:"
+#~ msgstr "अभिलेखागार बैकएन्ड: %1."
+
+#~ msgid "&Configure..."
+#~ msgstr "कान्फिगर (&C)..."
+
+#~ msgid "Metakit"
+#~ msgstr "मेटाकिट"
+
+#~ msgid "Unable to load storage backend plugin \"%1\". No feeds are archived."
+#~ msgstr "भंडार बैकएन्ड प्लगइन \"%1\" लोड करे मं अक्छम. कोनो फीड भंडारित नइ करिस."
+
+#~ msgid "Plugin error"
+#~ msgstr "प्लगइन गलती"
+
+#~ msgid "No Archive"
+#~ msgstr "कोई अभिलेख नइ हे"
+
+#~ msgctxt "Name of the plugin"
+#~ msgid "Name"
+#~ msgstr "नाम"
+
+#~ msgctxt "Library name"
+#~ msgid "Library"
+#~ msgstr "लाइब्रेरी"
+
+#~ msgctxt "Plugin authors"
+#~ msgid "Authors"
+#~ msgstr "लेखक"
+
+#~ msgctxt "Plugin authors' emaila addresses"
+#~ msgid "Email"
+#~ msgstr "ईमेल"
+
+#~ msgctxt "Plugin version"
+#~ msgid "Version"
+#~ msgstr "संस्करन"
+
+#~ msgctxt "Framework version plugin requires"
+#~ msgid "Framework Version"
+#~ msgstr "फ्रेमवर्क संस्करन"
+
+#~ msgid "Plugin Information"
+#~ msgstr "प्लगइन जानकारी"
+
+#, fuzzy
+#~| msgid "Planet KDE"
+#~ msgid "Planet KDE Brazilian Portuguese"
+#~ msgstr "प्लेनेट केडीई"
+
+#, fuzzy
+#~| msgid "Use this command:"
+#~ msgid "&Use this command:"
+#~ msgstr "ये कमांड के उपयोग करव:"
+
+#~ msgid "The file %1 already exists; do you want to overwrite it?"
+#~ msgstr "फाइल %1 पहिली ही मौजूद हे; का आप मन एला मेटाय के लिखना चाहथो ?"
+
+#~ msgid "Export"
+#~ msgstr "निर्यात"
+
+#, fuzzy
+#~| msgid "Planet KDE"
+#~ msgid "Planet KDE PIM"
+#~ msgstr "प्लेनेट केडीई"
+
+#, fuzzy
+#~| msgid "&Fetch Feeds"
+#~ msgid "French feeds"
+#~ msgstr "फीड लााव (&F)"
+
+#, fuzzy
+#~| msgid "Planet KDE"
+#~ msgid "Planet KDE France"
+#~ msgstr "प्लेनेट केडीई"
+
+#, fuzzy
+#~| msgid "For External Browsing"
+#~ msgid "Safe Browsing"
+#~ msgstr "बाहिरी ब्राउजिंग बर"
+
+#, fuzzy
+#~| msgid "Copy Link Address"
+#~ msgid "&Open in Address Book"
+#~ msgstr "संकली पता नकल करव"
+
+#~ msgid "KDE Look"
+#~ msgstr "केडीई रूप"
+
+#~ msgid "Browser Toolbar"
+#~ msgstr "ब्राउज़र औजारपट्टी"
+
+#~ msgid "Keep all articles"
+#~ msgstr "आलेख मन ल रखे रहें"
+
+#~ msgid "<a href=\"%1\">%2</a> %3"
+#~ msgstr "<a href=\"%1\">%2</a> %3"
+
+#, fuzzy
+#~| msgid "Configure Feeds"
+#~ msgid "Configure AdBlock"
+#~ msgstr "फीड कान्फिगर करव"
+
+#, fuzzy
+#~| msgid "&Use default settings"
+#~ msgid "Open Ad Block settings"
+#~ msgstr "डिफाल्ट सेटिंग उपयोग करव (&U)"
+
+#, fuzzy
+#~| msgid "Article"
+#~ msgid "Send Url Article"
+#~ msgstr "आलेख"
+
+#, fuzzy
+#~| msgid "&Mark As"
+#~ msgid "Mark as New"
+#~ msgstr "ये रूप मं चिनहा लगाव (&M)"
+
+#~ msgctxt "Go forward in browser history"
+#~ msgid "Forward"
+#~ msgstr "आगू"
+
+#~ msgctxt "Go back in browser history"
+#~ msgid "Back"
+#~ msgstr "पीछू"
+
+#~ msgctxt "Reload current page"
+#~ msgid "Reload"
+#~ msgstr "री-लोड"
+
+#~ msgid "Stop"
+#~ msgstr "रुकव"
+
+#, fuzzy
+#~| msgid "&Mark as Important"
+#~ msgid "Mark Article as Important"
+#~ msgstr "जरूरी के रूप मं चिनहा लगाव (&M)"
+
+#~ msgctxt "Title of article searchbar"
+#~ msgid "S&earch:"
+#~ msgstr "खोजव: (&e)"
+
+#~ msgid "Status:"
+#~ msgstr "स्थिति:"
+
+#~ msgid "Enter space-separated terms to filter article list"
+#~ msgstr "आलेख सूची ल छनइया करे बर स्पेस-सेपरेटेड टर्म भरव"
+
+#~ msgid "Choose what kind of articles to show in article list"
+#~ msgstr "चुनव कि आलेख सूची मं कऊन किसम के आलेख देखाना हे"
+
+#~ msgid "Comments"
+#~ msgstr "टिप्पनियाँ"
+
+#~ msgid "&Underline links"
+#~ msgstr "कड़ियाँ रेखांकित करव (&U)"
+
+#, fuzzy
+#~| msgid "&Configure..."
+#~ msgid "Configurate"
+#~ msgstr "कान्फिगर (&C)..."
+
+#, fuzzy
+#~| msgctxt "%1: Akregator version; %2: homepage URL; --- end of comment ---"
+#~| msgid ""
+#~| "<h2 style='margin-top: 0px;'>Welcome to Akregator %1</h2><p>Akregator is "
+#~| "a feed reader for the K Desktop Environment. Feed readers provide a "
+#~| "convenient way to browse different kinds of content, including news, "
+#~| "blogs, and other content from online sites. Instead of checking all your "
+#~| "favorite web sites manually for updates, Akregator collects the content "
+#~| "for you.</p><p>For more information about using Akregator, check the <a "
+#~| "href=\"%2\">Akregator website</a>. If you do not want to see this page "
+#~| "anymore, <a href=\"config:/disable_introduction\">click here</a>.</"
+#~| "p><p>We hope that you will enjoy Akregator.</p>\n"
+#~| "<p>Thank you,</p>\n"
+#~| "<p style='margin-bottom: 0px'>&nbsp; &nbsp; The Akregator Team</p>\n"
+#~ msgctxt "%1: Akregator version; %2: homepage URL; --- end of comment ---"
+#~ msgid ""
+#~ "<h2 style='margin-top: 0px;'>Welcome to Akregator %1</h2><p>Akregator is "
+#~ "a KDE news feed reader. Feed readers provide a convenient way to browse "
+#~ "different kinds of content, including news, blogs, and other content from "
+#~ "online sites. Instead of checking all your favorite web sites manually "
+#~ "for updates, Akregator collects the content for you.</p><p>For more "
+#~ "information about using Akregator, check the <a href=\"%2\">Akregator "
+#~ "website</a>. If you do not want to see this page anymore, <a href="
+#~ "\"config:/disable_introduction\">click here</a>.</p><p>We hope that you "
+#~ "will enjoy Akregator.</p>\n"
+#~ "<p>Thank you,</p>\n"
+#~ "<p style='margin-bottom: 0px'>&nbsp; &nbsp; The Akregator Team</p>\n"
+#~ msgstr ""
+#~ "<h2 style='margin-top: 0px;'>एकेरेगेट %1 मं आप मन के स्वागत हे</h2><p>एकेरेगेटर, के "
+#~ "डेस्कटाप वातावरन बर एक आरएसएस फीड एग्रीगेटर हे. फीड एग्रीगेटर आप मन ल बहुत से "
+#~ "किसिमों के चीज मन, जऊन मं ब्लाग अउ दुसरा आनलाइन सामग्रियाँ इंटरनेट से प्रदान करथो . "
+#~ "एखर बदला मा कि आप रोज रोज खुद आनलाइन चीज मन के खोज इंटरनेट से करव, एकेरेगेटर आप "
+#~ "मन ए काम स्वयं, अपने अपन तरीके से करथे . </p><p>एकेरेगेटर परिचय अउ अधिक जानकारी बर "
+#~ "<a href=\"%2\">एकेरेगेटर जालस्थल</a> मं जाव. यदि आप मन एखर पेज ल दुबारा नइ देखना "
+#~ "चाहथो तहां <a href=\"config:/disable_introduction\">इहां किलिक करव</a>.</"
+#~ "p><p>हमन ल उम्मीद हे कि आप मन एकेरेगेटर के आनंद उठाय हो.</p>\n"
+#~ "<p>धन्यवाद,</p>\n"
+#~ "<p style='margin-bottom: 0px'>&nbsp; &nbsp; एकेरेगेटर टोली</p>\n"
+
+#, fuzzy
+#~| msgid "Serif font:"
+#~ msgid "Shrink Font"
+#~ msgstr "सेरिफ फोंट:"
+
+#~ msgid "Speech Toolbar"
+#~ msgstr "बोलनेढने के औजार पट्टी"
+
+#~ msgid "Next Article: "
+#~ msgstr "अगला आलेख:"
+
+#~ msgid "Browsing area."
+#~ msgstr "ब्राउजिंग छेत्र."
+
+#~ msgid ""
+#~ "<div align=center><h3>No matches</h3>Filter does not match any articles, "
+#~ "please change your criteria and try again.</div>"
+#~ msgstr ""
+#~ "<div align=center><h3>कोई मेल नइ</h3>फिल्टर ल कोनो मिलही जुलता कोनो आलेख नइ "
+#~ "मिलिस. किरपा करके, अपन खोजे के मापदन्डों ल बदलव अउ फिर कोसिस करव</div>"
+
+#~ msgid ""
+#~ "<div align=center><h3>No feed selected</h3>This area is article list. "
+#~ "Select a feed from the feed list and you will see its articles here.</div>"
+#~ msgstr ""
+#~ "<div align=center><h3>कोई फीड नइ चुने गे</h3>ये छेत्र आलेख सूची हे. फीड सूची मं से "
+#~ "फीड चुनव अउ आप मन इहां आलेख देख सकही.</div>"
+
+#~ msgid "(c), 2008 Didier Hoarau"
+#~ msgstr "(c), 2008 दिदिए होराउ"
+
+#~ msgid "Didier Hoarau"
+#~ msgstr "दिदिए होराउ"
+
+#~ msgid "Synchronize Feeds"
+#~ msgstr "फीड सिंक्रोनाइज करव"
+
+#~ msgid "Get from %1"
+#~ msgstr "%1 से लाव"
+
+#~ msgid "Send to %1"
+#~ msgstr "%1 मं भेजव"
+
+#~ msgid "Manage..."
+#~ msgstr "प्रबंधित करव..."
+
+#~ msgid "Bar Settings"
+#~ msgstr "पट्टी सेटिंग"
+
+#~ msgid "Bar!"
+#~ msgstr "बार!"
+
+#~ msgid "Remove nothing"
+#~ msgstr "कुछ नइ मेटाव"
+
+#~ msgid "Remove feeds"
+#~ msgstr "फीड मेटाव"
+
+#~ msgid "Google Reader"
+#~ msgstr "गूगल रीडर"
+
+#~ msgid "Type:"
+#~ msgstr "किसिमः"
+
+#~ msgid "Login:"
+#~ msgstr "लागिन:"
+
+#~ msgid "Password:"
+#~ msgstr "पासवर्ड: "
+
+#~ msgid "File:"
+#~ msgstr "फाइल:"
+
+#~ msgid "Nothing"
+#~ msgstr "कुछ नइ"
+
+#~ msgid "Categories"
+#~ msgstr "स्रेनी"
+
+#~ msgid "Ask"
+#~ msgstr "पूछव"
+
+#~ msgid "Online reader accounts:"
+#~ msgstr "आनलाइन रीडर खाता:"
+
+#~ msgid "Type"
+#~ msgstr "किसिम"
+
+#~ msgid "Description"
+#~ msgstr "वर्नन"
+
+#~ msgid "Add..."
+#~ msgstr "जोड़व..."
+
+#~ msgid "Modify..."
+#~ msgstr "सुधारव..."
+
+#~ msgid "Remove"
+#~ msgstr "हटाव"
+
+#, fuzzy
+#~| msgid "Delete feeds"
+#~ msgid "Delete feeds:"
+#~ msgstr "फीड मेटाव"
+
+#, fuzzy
+#~ msgid "&Speak Selected Articles"
+#~ msgstr "चुने गे आलेख ल नवा चिनहा लगाव"
+
+#~ msgid "All Files"
+#~ msgstr "सब्बो फाइल मन ल"
+
+#, fuzzy
+#~| msgid "Configure Feeds"
+#~ msgid "Configure Share Services"
+#~ msgstr "फीड कान्फिगर करव"
+
+#, fuzzy
+#~| msgid "Login:"
+#~ msgid "Login"
+#~ msgstr "लागिन:"
+
+#, fuzzy
+#~| msgid "Folder name:"
+#~ msgctxt "login identify for blog account"
+#~ msgid "Username:"
+#~ msgstr "फोल्डर नाम:"
+
+#, fuzzy
+#~| msgid "Feed &URL:"
+#~ msgid "Service URL:"
+#~ msgstr "फीड यूआरएल: (&U)"
+
+#, fuzzy
+#~| msgid "Feed &URL:"
+#~ msgid "Service URL"
+#~ msgstr "फीड यूआरएल: (&U)"
+
+#, fuzzy
+#~| msgid "Folder name:"
+#~ msgctxt "login identify for blog account"
+#~ msgid "Username"
+#~ msgstr "फोल्डर नाम:"
+
+#~ msgid "<b>Open Link in New Tab</b><p>Opens current link in a new tab.</p>"
+#~ msgstr "<b>संकली नवा टैब मं खोलव</b><p>अभी हाल के संकली ल नवा टैब मं खोलथे .</p>"
+
+#~ msgid "Open Page in External Browser"
+#~ msgstr "आलेख ल बाहिरी ब्राउजर मं खोलव"
+
+#~ msgid "Add to Konqueror Bookmarks"
+#~ msgstr "कान्करर निसानी मं जोड़व"
+
+#, fuzzy
+#~ msgid "Feed List"
+#~ msgstr "फीड गुन"
+
+#~ msgid "Akregator - Feed Reader"
+#~ msgstr "ए-के-रेगेटर - फीड पाठक"
+
+#~ msgid "Akregator - 1 unread article"
+#~ msgid_plural "Akregator - %1 unread articles"
+#~ msgstr[0] "एकेरेगेटर - 1 बिनपढ़ा आलेख"
+#~ msgstr[1] "एकेरेगेटर - %1 बिनपढ़े आलेख"
+
+#~ msgid "Docking in System Tray"
+#~ msgstr "तंत्र तस्तरी मं डाक करत हे"
+
+#~ msgid "An RSS feed reader for the K Desktop Environment."
+#~ msgstr "के डेस्कटाप वातावरन बर आरएसएस फीड रीडर."
+
+#~ msgid "Akregator News"
+#~ msgstr "ए-के-रेगेटर समाचार"
+
+#~ msgid "Akregator Blog"
+#~ msgstr "एकेरेगेटर ब्लाग"
+
+#~ msgid "&Increase Font Sizes"
+#~ msgstr "फोंट आकार बढ़ाव (&I)"
+
+#~ msgid "&Decrease Font Sizes"
+#~ msgstr "फोंट आकार घटाव (&D)"
+
+#~ msgid "&Scroll Up"
+#~ msgstr "ऊपर स्क्राल करव (&S)"
+
+#~ msgid "&Scroll Down"
+#~ msgstr "नीचे स्क्राल करव (&S)"
+
+#~ msgid " days"
+#~ msgstr "दिन"
+
+#~ msgid " minutes"
+#~ msgstr "मिनट"
+
+#~ msgid "General"
+#~ msgstr "सामान्य"
+
+#~ msgid "ExternalBrowser"
+#~ msgstr "एक्सटर्नल-ब्राउजर"
+
+#~ msgid "&Abort Fetches"
+#~ msgstr "फीड प्राप्त करना रोकव (&A)"
+
+#~ msgid ""
+#~ "<p>KLibLoader could not load the plugin:<br/><i>%1</i></p><p>Error "
+#~ "message:<br/><i>%2</i></p>"
+#~ msgstr ""
+#~ "<p>के-लिब-लोडर प्लगइन ल लोड नइ कर सकिस:<br/><i>%1</i></p><p>गलती संदेस:<br/"
+#~ "><i>%2</i></p>"
+
+#~| msgid ""
+#~| "<qt>The standard feed list is corrupted (no valid OPML). A backup was "
+#~| "created:<p><b>%1</b></p></qt>"
+#~ msgid ""
+#~ "<qt>The standard feed list is corrupted (no valid OPML). A backup of the "
+#~ "previous list was created:<p><b>%1</b></p></qt>"
+#~ msgstr ""
+#~ "<qt>मानक फीड सूची खराब हे (कोई वैध ओपीएमएल नइ). पिछला सूची के एक बैकअप बनाइस:"
+#~ "<p><b>%1</b></p></qt>"
+
+#~| msgid ""
+#~| "<qt>The standard feed list is corrupted (no valid OPML). A backup was "
+#~| "created:<p><b>%1</b></p></qt>"
+#~ msgid ""
+#~ "<qt>The standard feed list is corrupted (no valid OPML). Could not create "
+#~ "a backup!></p></qt>"
+#~ msgstr ""
+#~ "<qt>मानक फीड सूची खराब हे (कोई वैध ओपीएमएल नइ). बैकअप नइ बना सकिस!</p></qt>"
+
+#~ msgid "Write error"
+#~ msgstr "लिखे मं गलती"
+
+#~ msgid "&View Mode"
+#~ msgstr "दृस्य मोड (&V)"
+
+#~ msgid "&Feed"
+#~ msgstr "फीड (&F)"
+
+#~ msgid "F&eed"
+#~ msgstr "फीड: (&e)"
+
+#~ msgid "Show tab close button on hover"
+#~ msgstr "मुसुवा होवर मं टैब बन्द बटन देखाव"
+
+#~ msgid "Overwrite"
+#~ msgstr "मेटाय के लिखव"
+
+#~ msgid "Appearance"
+#~ msgstr "रूप"
+
+#~ msgid "Advanced"
+#~ msgstr "विस्तृत"
+
+#, fuzzy
+#~ msgid "Article title"
+#~ msgstr "आलेख सूची"
+
+#~ msgid ""
+#~ "<html><head><meta name=\"qrichtext\" content=\"1\" /></head><body style="
+#~ "\" white-space: pre-wrap; font-family:Sans Serif; font-weight:400; font-"
+#~ "style:normal; text-decoration:none;\"><p style=\" margin-top:0px; margin-"
+#~ "bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-"
+#~ "indent:0px;\">Status:</p></body></html>"
+#~ msgstr ""
+#~ "<html><head><meta name=\"qrichtext\" content=\"1\" /></head><body style="
+#~ "\" white-space: pre-wrap; font-family:Sans Serif; font-weight:400; font-"
+#~ "style:normal; text-decoration:none;\"><p style=\" margin-top:0px; margin-"
+#~ "bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-"
+#~ "indent:0px;\">स्थिति:</p></body></html>"

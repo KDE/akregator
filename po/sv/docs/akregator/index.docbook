@@ -1,0 +1,1935 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Swedish "INCLUDE">
+]>
+
+<book id="akregator" lang="&language;">
+
+<bookinfo id="akregatorinfo">
+<title
+>Handbok &akregator;</title>
+
+<authorgroup>
+
+<author
+><firstname
+>Frank</firstname
+> <surname
+>Osterfeld</surname
+> <affiliation
+><address
+><email
+>frank.osterfeld@kdemail.net</email
+>  
+</address
+></affiliation>
+</author>
+<author
+><firstname
+>Anne-Marie</firstname
+> <surname
+>Mahfouf</surname
+> <affiliation
+><address
+>&Anne-Marie.Mahfouf.mail; </address
+></affiliation>
+</author>
+
+<othercredit role="translator"
+> <firstname
+>Stefan</firstname
+> <surname
+>Asserhäll</surname
+> <affiliation
+><address
+><email
+>stefan.asserhall@bredband.net</email
+></address
+></affiliation
+> <contrib
+>Översättare</contrib
+></othercredit
+> 
+</authorgroup>
+<copyright>
+<year
+>2006</year>
+<holder
+>Frank Osterfeld</holder>
+</copyright>
+<copyright>
+<year
+>2006</year>
+<holder
+>&Anne-Marie.Mahfouf;</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>2021-03-31</date>
+<releaseinfo
+>Program 21.08</releaseinfo>
+
+<!-- Abstract about this handbook -->
+
+<abstract>
+<para
+>&akregator; är ett program för att läsa <acronym
+>RSS</acronym
+> och andra direktnyhetskanaler. </para>
+</abstract>
+
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>Akregator</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Inledning</title>
+
+<sect1 id="what-is-akregator">
+<title
+>Vad är &akregator;?</title>
+
+<para
+>&akregator; är ett &kde;-program för att läsa nyhetskanaler. Det har ett kraftfullt användarvänligt gränssnitt för att läsa kanaler och för att hantera dem.</para>
+
+<para
+>&akregator; är ett snålt och snabbt program för att visa nyhetsinslag som tillhandahålls av kanaler, med stöd för alla ofta använda versioner av <acronym
+>RSS</acronym
+>- och Atom-kanaler. Gränssnittet liknar det hos e-postprogram, och är därför förhoppningsvis välbekant för användaren. Användbara funktioner omfattar sökning bland artikelrubriker, hantering av kanaler med kataloger och inställning av arkiveringsalternativ. Kanaler kan visas på samma sätt som e-post. Webbplatser som hör ihop med en kanal kan visas i &akregator;s inbäddade webbläsare, eller om användaren väljer det, öppnas i en extern webbläsare.</para>
+</sect1>
+
+<sect1 id="rss-and-atom-feeds">
+<title
+><acronym
+>RSS</acronym
+>- och Atom-kanaler</title>
+
+<para
+><acronym
+>RSS</acronym
+> (Really Simple Syndication) är ett &XML;-baserat format som används för att publicera nyheter eller artiklar på ett maskinläsbart format. En <acronym
+>RSS</acronym
+>- eller Atom-fil kallas också en kanal. Ett program som kan användas för att läsa sådana kanaler, kallas kanalläsare eller kanalsamlare (aggregator på engelska), därav programmets namn, &akregator;.</para>
+
+<para
+>&akregator; hämtar automatiskt nya artiklar från kanalen och visar dem på ett enkelt läsbart sätt för användaren. Därför kan användaren spara tid för webbplatser som ofta besöks, eftersom ingen manuell kontroll om ny information är tillgänglig behöver göras.</para>
+<para
+><acronym
+>RSS</acronym
+> är tillgängligt med olika versioner som inte fungerar tillsammans (situationen är orsakad av konkurrerande företag): <acronym
+>RSS</acronym
+> 0.9, <acronym
+>RSS</acronym
+> 1.0 och <acronym
+>RSS</acronym
+> 2.0. Atom är också ett &XML;-baserat kanalspråk som har konstruerats om för att passa behoven för bloggar och nyhetsplatser. Atom försöker ersätta <acronym
+>RSS</acronym
+>-kanaler och ta bort osäkerheten med att de olika <acronym
+>RSS</acronym
+>-versionerna inte fungerar tillsammans.</para>
+
+</sect1>
+
+</chapter>
+
+<chapter id="quick-start">
+<title
+>Snabbt komma igång med &akregator;</title>
+
+<para
+>Det här avsnittet beskriver hur man börjar använda &akregator;. Det förklarar användargränssnittet och visar hur man lägger till egna kanaler i listan. Avsnittet är av särskilt intresse om du ännu inte känner till det allmänna konceptet hos <acronym
+>RSS</acronym
+>, Atom och kanalsamling. </para>
+
+<sect1 id="main-window">
+<title
+>Huvudfönstret</title>
+<!--part of kontact
+say how to start it -->
+<para
+>När du först startar &akregator;, ser du dess huvudfönster: <screenshot>
+<screeninfo
+>Huvudfönstret i &akregator;</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="main-window.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Huvudfönstret i &akregator;</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para>
+
+<para
+>Huvudfönstret består av kanallistan, artikellistan och artikelvisningen. </para>
+<para
+>Kanallistan finns till vänster. I trädet finns nyhetskanaler att välja. En nyhetskanal är en samling artiklar: till exempel senaste nytt från en nyhetsplats, eller nya anteckningar i en blogg. Standardlistan innehåller kanaler som har med &kde;-projektet att göra, men man kan naturligtvis lägga till egna kanaler och ta bort de som inte är intressanta. </para>
+<para
+>Överst till höger finns artikellistan. Den innehåller alla artiklar från kanalen som är vald i kanallistan (om den är tom, måste kanalen först hämtas). Listan visar artiklarnas rubriker och datum då de publicerades. Normalt är de senaste artiklarna längst upp. <screenshot>
+<screeninfo
+>Artikellistan</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="main-window2.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Artikellistan för en kanal</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para>
+<para
+>Om du markerar en artikel, visas den i artikelvyn längst ner till höger i fönstret. Beroende på kanalen innehåller den antingen en rubrik, en kort sammanfattning, eller hela artikelinnehållet. <screenshot>
+<screeninfo
+>Läsning av en artikel från Planet KDE</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="main-window4.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Läsning av en artikel från Planet KDE</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para>
+</sect1>
+
+<sect1 id="add-feed">
+<title
+>Lägga till en kanal</title>
+<para
+>&akregator; tillhandahåller några standardkanaler som har att göra med &kde;. Naturligtvis vill du troligen lägga till egna kanaler. Bra kandidater är nyhetsplatser som du regelbundet besöker.</para>
+
+<itemizedlist>
+<listitem
+><para
+>Gå till menyn <guimenu
+>Kanal</guimenu
+> och välj <guimenuitem
+>Lägg till kanal...</guimenuitem
+> eller använd den vanliga snabbtangenten (<keycap
+>Insert</keycap
+>). Följande dialogruta visas, med en inmatningsrad som heter <guilabel
+>Kanalens webbadress:</guilabel
+>. <screenshot>
+<screeninfo
+>Lägga till en ny kanal</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="add-feed.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Lägga till en ny kanal</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para
+></listitem>
+
+<listitem
+><para
+>Skriv in <userinput
+>planet.ubuntu.com</userinput
+> eller <userinput
+>http://planet.ubuntu.com</userinput
+> i textraden intill <guilabel
+>Kanalens webbadress</guilabel
+> och klicka på <guibutton
+>Ok</guibutton
+>. </para
+></listitem>
+<listitem
+><para
+>Dialogrutan med kanalinställningar visas där du kan ändra standardalternativen. När du är nöjd med kanalinställningarna, klicka på <guibutton
+>Ok</guibutton
+> igen. <screenshot>
+<screeninfo
+>Dialogrutan Kanalegenskaper</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="add-feed2.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Dialogrutan Kanalegenskaper</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para
+></listitem>
+<listitem
+><para
+>Nu har Planet Ubuntu lagts till i din kanallista. </para
+> </listitem>
+</itemizedlist>
+<para
+>Det finns flera andra sätt att hitta och lägga till intressanta kanaler. För webbplatser som besöks med &konqueror; i &kde; syns den lätt igenkända ikonen <quote
+>RSS</quote
+> <inlinemediaobject
+><imageobject
+><imagedata fileref="feed.png" format="PNG"/></imageobject
+></inlinemediaobject
+> längst ner till höger om en fungerande nyhetskanal upptäcks på webbplatsen. Högerklicka bara på ikonen och välj <guimenuitem
+>Lägg till kanal i &akregator;</guimenuitem
+>: <screenshot
+><screeninfo
+>Hitta kanaler automatiskt via &konqueror;</screeninfo
+> <mediaobject
+><imageobject
+><imagedata fileref="konq2.png" format="PNG"/></imageobject
+><textobject
+><phrase
+>Hitta kanaler automatiskt via &konqueror;</phrase
+></textobject
+> </mediaobject
+> </screenshot
+> På sidor med <quote
+>RSS</quote
+> eller ikonen <inlinemediaobject
+> <imageobject
+> <imagedata fileref="rss.png" format="PNG"/> </imageobject
+> </inlinemediaobject
+>, kan du högerklicka på ikonen och välja <guimenuitem
+>Kopiera länkadress</guimenuitem
+> i den sammanhangsberoende menyn. <screenshot>
+      <screeninfo
+>Hitta kanaler automatiskt via &konqueror;</screeninfo>
+      <mediaobject>
+        <imageobject
+><imagedata fileref="konq.png" format="PNG"/></imageobject>
+        <textobject
+><phrase
+>Hitta kanaler automatiskt via &konqueror;</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para>
+<para
+>Byt till &akregator;, välj <guimenuitem
+>Lägg till kanal...</guimenuitem
+> så fylls <guilabel
+>Kanalens webbadress</guilabel
+> i med länkadressen. </para>
+
+<para
+>Alla kanaler läggs till på detta sätt visas under katalogen <guilabel
+>Importerade kanaler</guilabel
+> i kanallistan, och du kan använda musen för att dra den till en annan katalog därifrån. </para>
+</sect1>
+
+<sect1 id="creating-folder">
+<title
+>Skapa en katalog</title>
+<para
+>När du har lagt till dina egna kanaler, kanske du vill gruppera dem på något sätt, istället för att bara lämna dem osorterade. Låt oss alltså skapa en katalog för kanalen Planet Ubuntu som vi just lagt till:</para>
+<itemizedlist>
+<listitem
+><para
+>Välj den nya katalogens överliggande katalog. I exemplet väljer vi <guilabel
+>Alla kanaler</guilabel
+>. </para
+></listitem>
+<listitem
+><para
+>Välj <menuchoice
+><guimenu
+>Kanal</guimenu
+> <guimenuitem
+>Ny katalog...</guimenuitem
+></menuchoice
+>. Skriv in <userinput
+>Nyheter</userinput
+> (eller ett lämpligare namn för kanalkategorin) i textraden och välj <guibutton
+>Ok</guibutton
+>. <screenshot>
+<screeninfo
+>Dialogrutan Ny katalog</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="add-folder.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Dialogrutan Ny katalog</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para
+> </listitem>
+<listitem
+><para
+>Nu kan du dra kanalen Planet Ubuntu till den nya katalogen. <screenshot>
+<screeninfo
+>Nyhetskatalogen i kanallistan</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="add-folder2.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Nyhetskatalogen i kanallistan</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para
+> </listitem>
+</itemizedlist>
+</sect1>
+
+<sect1 id="browsing-inside">
+<title
+>Bläddra inne i &akregator;</title>
+<para
+>När artiklar från en kanal läses, kan man ofta vilja läsa webbsidan som hör ihop med artikeln: vissa artiklar innehåller bara rubriken, och inte själva innehållet. I detta fall måste man besöka webbsidan för att läsa hela artikeln. Annars kanske länkar en artikel till någon webbplats, eller så läser man en blogg och vill kommentera en inlaga. &akregator; innehåller en enkel webbläsare för dessa situationer. Så fort man följer en länk i artikelvyn, öppnar &akregator; länken under en ny flik.</para>
+<note
+><para
+>Observera att webbläsaren i &akregator; inte är avsedd att ersätta din favoritwebbläsare. Den är avsedd för att läsa artiklar, kommentera dem eller snabbt följa en länk. Den är inte avsedd som en allmän webbläsare. Den saknar många funktioner som fullständiga webbläsare tillhandahåller.</para
+></note>
+</sect1>
+</chapter>
+
+<chapter id="configuration">
+<title
+>Anpassa &akregator;</title>
+<para
+>De flesta alternativ i &akregator; finns med i &akregator;s inställningsdialogruta. Inställningsdialogrutan hittas i menyn <menuchoice
+><guimenu
+>Inställningar</guimenu
+> <guimenuitem
+>Anpassa &akregator;...</guimenuitem
+></menuchoice
+>.</para>
+<sect1 id="general-tab">
+<title
+>Allmänt</title>
+<para
+>Fliken Allmänt innehåller grundläggande och andra alternativ utan kategori för &akregator;.</para>
+<screenshot>
+<screeninfo
+>Fliken Allmänt</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="general-tab.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Fliken Allmänt</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Globala</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Visa ikon i systembrickan</guilabel
+></term>
+<listitem
+><para
+>Visar &akregator;s ikon i systembrickan.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Visa olästa artiklar på aktivitetsraden</guilabel
+></term>
+<listitem
+><para
+>Definierar om antal olästa artiklar ska visas i systemets aktivitetshanterare.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Dölj kanaler utan olästa artiklar</guilabel
+></term>
+<listitem
+><para
+>Om markerat, döljer kanaler utan olästa artiklar.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Lås kanaler på plats</guilabel
+></term>
+<listitem
+><para
+>Om markerat, förhindrar att kanaler flyttas i listan. Alla kanaler är låsta där de befinner sig.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Expandera automatiskt kataloger som innehåller olästa artiklar</guilabel
+></term>
+<listitem
+><para
+>Om markerat, expanderar automatiskt kataloger med olästa artiklar.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Använd meddelanden för alla kanaler</guilabel
+></term>
+<listitem
+><para
+>Ställ in allmänna meddelanden för alla kanaler. Inställningen överskrider enskilda meddelandevärden för varje kanal. När de är aktiverade, underrättar &akregator; dig om alla nya artiklar som hämtas via någon kanal. Om du bara vill aktivera meddelanden för vissa (men inte alla) kanaler, lämna då alternativet avstängt och aktivera meddelanden för varje enskild kanal med kanalens egenskapsdialogruta.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Använd intervallhämtning</guilabel
+></term>
+<listitem
+><para
+>Om det här inte är markerat, är intervallhämtning avstängd. Om det dock är markerat, kan du ställa in intervallet som &akregator; använder för att automatiskt titta efter nya artiklar i kanaler med <guilabel
+>Hämta kanaler var:</guilabel
+>. Observera att det skapas trafik av att hämta artiklar, och det kan därför vara kostsamt för leverantören som är värd för kanalen du läser. Vissa platser kanske till och med blockerar anslutningar från din dator om du försöker hämta kanalen för ofta. I allmänhet är 30 minuter ett bra val. </para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Hämta kanaler var:</guilabel
+></term>
+<listitem
+><para
+>Det här aktiveras när <guilabel
+>Använd intervallhämtning</guilabel
+> är markerat. Du kan ange en tidsintervall innan kanaler kontrolleras om det finns nya artiklar. Normalvärdet är 30 minuter.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Start</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Markera alla kanaler som lästa vid start</guilabel
+></term>
+<listitem
+><para
+>Om aktiverad, markerar &akregator; alla artiklar som lästa vid start.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Hämta alla kanaler vid start</guilabel
+></term>
+<listitem
+><para
+>Om aktiverad, hämtar &akregator; alla kanaler direkt efter start.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Nätverk</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Använd bläddrarens cache (mindre nätverkstrafik)</guilabel
+></term>
+<listitem
+><para
+>Om aktiverad, används &kde;:s allmänna inställningar för webbläsarens cache vid uppdatering av kanaler. Du kan antingen ställa in &kde;:s allmänna inställningar för webbläsarens cache i &konqueror;s inställningsdialogruta.</para>
+<note
+><para
+>Du bör lämna alternativet aktiverad så långt det är möjligt. Att inaktivera alternativet leder till ökad nätverkstrafik. Trafiken som orsakas av kanalsamlare som inte använder cache ökar kostnaden för leverantörer, och skulle kunna leda till en minskning av antalet kanaler erbjudna i framtiden.</para
+></note>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+
+<sect1 id="adblock-tab">
+<title
+>Webbadressinfångning</title>
+<para
+>&akregator; kan ställas in att ersätta eller ta bort bilder eller ramar från webbsidor som matchar en serie av filter.</para>
+
+<screenshot>
+<screeninfo
+>Fliken Webbadressinfångning</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="interceptor-tab.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Fliken Webbadressinfångning</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+
+<para
+>För en detaljerad beskrivning av funktionen se <ulink url="help:/kcontrol/khtml-adblock"
+>Reklamblockeringsfilter</ulink
+>. </para>
+</sect1>
+
+<sect1 id="archive-tab">
+<title
+>Arkivera</title>
+<para
+>Att arkivera artiklar betyder att lagra artiklarnas länkar. Här kan du begränsa antalet artiklar som lagras, och metoden som används för arkivering. Inställningarna är allmänna inställningar som används av alla kanaler i &akregator;. Om du vill använda en egen inställning för en kanal, kan du ställa in den för varje kanal i egenskapsdialogrutan under arkivfliken.</para>
+<screenshot>
+<screeninfo
+>Fliken Arkivera</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="archive-tab.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Fliken Arkivera</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Förvalda arkivinställningar</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Behåll alla artiklar</guilabel
+></term>
+<listitem
+><para
+>Alla artiklar behålls för alltid.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Begränsa kanalarkivets storlek till:</guilabel
+></term
+> 
+<listitem
+><para
+>Om antalet artiklar överskrider den valda gränsen, tas de äldsta artiklarna bort. Observera att markerade artiklar ignoreras när antalet artiklar räknas: Om gränsen är 500, och du har 510 omarkerade och 50 markerade artiklar, ignorerar &akregator; de 50 markerade och tar bara bort de 10 äldsta omarkerade artiklarna. I exemplet skulle alltså 550 artiklar behållas.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Ta bort artiklar äldre än:</guilabel
+></term>
+<listitem
+><para
+>Artiklar äldre än det angivna antalet dagar tas bort från arkivet, om de inte är markerade att behållas. &akregator; kontrollerar utgångna artiklar vid start, och därefter en gång i timmen, så borttagningen kan vara fördröjd.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Inaktivera arkivering</guilabel
+></term>
+<listitem
+><para
+>Inga artiklar lagras: alla artiklar försvinner när &akregator; avslutas.</para
+> </listitem>
+</varlistentry>
+</variablelist>
+
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Låt inte viktiga artiklar utgå</guilabel
+></term>
+<listitem
+><para
+>Att högerklicka på en artikel visar en sammanhangsberoende meny där du kan markera artikeln som viktig. Artiklar som är markerade som viktiga utgår inte, utan kommer att behållas.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+<sect1 id="appearance-tab">
+<title
+>Utseende</title>
+<para
+>På den här sidan kan du ställa in utseendet hos artikelvyn och bläddrarflikarna. Du kan ange färger, teckenstorlekar och -familjer att använda. </para>
+<screenshot>
+<screeninfo
+>Fliken Utseende</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="appearance-tab.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Fliken Utseende</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Artikellistans färger</guilabel
+></term>
+<listitem
+><para
+>Att välja <guilabel
+>Använd egna färger</guilabel
+> låter dig välja egna färger för <guilabel
+>Olästa artiklar</guilabel
+> och <guilabel
+>Nya artiklar</guilabel
+></para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Teckenstorlek</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Minimal teckenstorlek</guilabel
+></term>
+<listitem
+><para
+>Ställ in den minimala storleken hos artikelvyn</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Medium teckenstorlek</guilabel
+></term>
+<listitem
+><para
+>Ställ in normal teckenstorlek för artikelvyn</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Teckensnitt</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Standardteckensnitt:</guilabel
+></term>
+<listitem
+><para
+>Innehållet i artikelvyn visas med standardteckensnittet och medium teckenstorlek. Om du ändrar standardteckensnittet, utförs ändringen i artikelvyn.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Teckensnitt med fast breddsteg:</guilabel
+></term>
+<listitem
+><para
+>Om artikeln använder ett teckensnitt med fast breddsteg i artikelvyn, visas innehållet med denna teckensnittsfamilj och medelstor text. </para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Serif-teckensnitt:</guilabel
+></term>
+<listitem
+><para
+>Om artikeln använder Serif-teckensnitt, visas de med familjen du väljer här och medelstor text.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Sans serif-teckensnitt:</guilabel
+></term>
+<listitem
+><para
+>Om artikeln använder Sans serif-teckensnitt, visas de med familjen du väljer här och medelstor text.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Stryk under länkar</guilabel
+></term>
+<listitem
+><para
+>Markera det här om du vill att länkar normalt ska vara understrukna.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+<sect1 id="browser-tab">
+<title
+>Webbläsare</title>
+<para
+>Den här fliken låter dig anpassa beteendet hos de interna webbläsningsflikarna.</para>
+<screenshot>
+<screeninfo
+>Fliken Webbläsare</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="browser-tab.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Fliken Webbläsare</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Klick med musens vänsterknapp</guilabel
+></term>
+<listitem
+><para
+>Du kan välja tre åtgärder för klick med musens vänsterknapp: <guilabel
+>Öppna under flik</guilabel
+> (öppna länken under en flik och fokusera fliken), <guilabel
+>Öppna under bakgrundsflik</guilabel
+> (öppna länken under en flik men behåll nuvarande flik i fokus), <guilabel
+>Öppna i extern webbläsare</guilabel
+> (öppna i ett nytt fönster med den förvalda webbläsaren).</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Klick med musens mittenknapp</guilabel
+></term>
+<listitem
+><para
+>Som ovan, kan du ange en av tre åtgärder för klick med musens mittenknapp.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Extern webbläsning</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Använd förvald webbläsare</guilabel
+></term>
+<listitem
+><para
+>Om det här är markerat, använder &akregator; webbläsaren som du ställt in i systeminställningarna. Det kan vara &kde;:s förvalda webbläsare, &konqueror;, eller en annan webbläsare, beroende på vad du ställer in här.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Använd detta kommando:</guilabel
+></term>
+<listitem
+><para
+>Du kan använda en annat webbläsare för &akregator; än &kde;:s förvalda. Om du vill göra det, markera alternativet och skriv in webbläsarens kommandonamn, under förutsättning att den finns i $<envar
+>PATH</envar
+>.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Flikar</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Visa alltid flikraden</guilabel
+></term>
+<listitem
+><para
+>Om alternativet är markerat, visas fliken alltid, även om bara en flik är öppen. Det låter dig skapa flikar direkt från flikraden. Annars visas flikraden bara när flera flikar är öppna.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Visa stängningsknapp på varje flik</guilabel
+></term>
+<listitem
+><para
+>Om alternativet är markerat, visas stängningsknappen när musen flyttas till vänster om flikens namn, så att det är enklare att stänga flikar.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Öppna länkar under ny flik istället för i nytt fönster</guilabel
+></term>
+<listitem
+><para
+>Om markerat, öppnar &akregator; en länk som normalt skulle öppnas i ett nytt fönster (extern webbläsare) under en ny flik istället.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Säkerhet</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Verifiera webbadresser med Googles programmeringsgränssnitt för säker bläddring</guilabel
+></term>
+<listitem
+><para
+>Om alternativet är markerat, används programmeringsgränssnittet <ulink url="https://safebrowsing.google.com/"
+>Google säker bläddring</ulink
+> för att kontrollera webbadresser mot Googles ständigt uppdaterade lista över osäkra webbresurser. Exempel på osäkra webbresurser är platser med social dupering (nätfiske och bedrägliga platser) och platser som har skadlig kod och oönskad programvara.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Aktivera Javascript</guilabel
+></term>
+<listitem
+><para
+>Om markerat, använder &akregator; &javascript; när webbresurser behandlas. Användning av &javascript; har flera <ulink url="https://en.wikipedia.org/wiki/JavaScript#Security"
+>säkerhetskonsekvenser</ulink
+>.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Diverse</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Åtkomstnyckel aktiverad</guilabel
+></term>
+<listitem
+><para
+>Det här är ett handikappstöd. När markerat, behandlar &akregator; webbsidans egenskap åtkomstnyckel, som definierar snabbtangenter använda för att gå till ett givet element.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+<sect1 id="advanced-tab">
+<title
+>Avancerat</title>
+<para
+>Fliken Avancerat låter dig ställa in mer avancerade inställningar. Om du inte är säker på deras effekt, kan du bara lämna förvalda värden.</para>
+<screenshot>
+<screeninfo
+>Fliken Avancerat</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="advanced-tab.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Fliken Avancerat</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Arkivera</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Arkiveringsgränssnitt:</guilabel
+></term>
+<listitem
+><para
+>För närvarande använder &akregator; bara databasen Metakit. </para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Artikellista</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Markera vald artikel som läst efter</guilabel
+></term>
+<listitem
+><para
+>Förval är 0 sekunder, vilket betyder att en artikel markeras som läst så fort du klickar på den. Du kan välja att markera en godtycklig artikel som läst efter ett angivet antal sekunder.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Återställ sökrad när kanal ändras</guilabel
+></term>
+<listitem
+><para
+>Det rensar sökraden när du byter kanal.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+</chapter>
+
+<chapter id="commands">
+<title
+>Kommandoreferens</title>
+
+<sect1 id="akregator-mainwindow">
+<title
+>Menyer och snabbtangenter</title>
+
+<sect2>
+<title
+>Menyn Arkiv</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Arkiv</guimenu
+> <guimenuitem
+>Importera kanaler</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Visa</action
+> dialogrutan för kanalimport för att läsa in kanalprenumerationer i <quote
+>OPML-sammanfattningar</quote
+>. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Arkiv</guimenu
+> <guimenuitem
+>Exportera kanaler</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Visa</action
+> dialogrutan Spara som och exportera kanaler och katalogstruktur som en <filename class="extension"
+>.opml</filename
+>-fil.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Arkiv</guimenu
+> <guimenuitem
+>Avsluta</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Avslutar</action
+> &akregator;</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2>
+<title
+>Menyn Redigera</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycap
+>F2</keycap
+> </shortcut
+> <guimenu
+>Redigera</guimenu
+> <guimenuitem
+>Redigera kanal...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Redigera</action
+> aktuell kanal för att ändra dess egenskaper i dialogrutan Egenskaper</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;<keycap
+>Delete</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Redigera</guimenu
+> <guimenuitem
+>Ta bort kanal</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Ta bort</action
+> aktuell kanal</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2>
+<title
+>Menyn Visa</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>1</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Visa</guimenu
+><guimenuitem
+>Normal vy</guimenuitem
+></menuchoice
+>, <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>2</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Visa</guimenu
+><guimenuitem
+>Bredbildsvy</guimenuitem
+> </menuchoice
+> och <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>3</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Visa</guimenu
+><guimenuitem
+>Kombinerad vy</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Välj</action
+> visningsläge för &akregator;</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>+</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Visa</guimenu
+><guimenuitem
+>Öka teckenstorlek</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Ökar</action
+> teckenstorleken i artikelvyn</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>-</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Visa</guimenu
+><guimenuitem
+>Minska teckenstorlek</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Minskar</action
+> teckenstorleken i artikelvyn</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2>
+<title
+>Menyn Gå</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>Vänster</keycap
+></shortcut
+> <guimenu
+>Gå</guimenu
+> <guimenuitem
+>Föregående artikel</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Går</action
+> till föregående artikel i artikellistan</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>-</keycap
+></shortcut
+> <guimenu
+>Gå</guimenu
+> <guimenuitem
+>Föregående olästa artikel</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Går</action
+> till föregående olästa artikel i artikellistan</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>Höger</keycap
+></shortcut
+> <guimenu
+>Gå</guimenu
+> <guimenuitem
+>Nästa artikel</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Går</action
+> till nästa artikel i artikellistan</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>+</keycap
+></shortcut
+> <guimenu
+>Gå</guimenu
+> <guimenuitem
+>Nästa olästa artikel</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Går</action
+> till nästa olästa artikel i artikellistan</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>P</keycap
+></shortcut
+> <guimenu
+>Gå</guimenu
+> <guimenuitem
+>Föregående kanal</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Går</action
+> till föregående kanal i kanallistan</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Alt;<keycap
+>-</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Gå</guimenu
+> <guimenuitem
+>Föregående olästa kanal</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Går</action
+> till föregående olästa kanal i kanallistan</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>N</keycap
+></shortcut
+> <guimenu
+>Gå</guimenu
+> <guimenuitem
+>Nästa kanal</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Går</action
+> till nästa kanal i kanallistan</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Alt;<keycap
+>+</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Gå</guimenu
+> <guimenuitem
+> Nästa olästa kanal</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Går</action
+> till nästa olästa kanal i kanallistan</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2>
+<title
+>Menyn Kanal</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>Insert</keycap
+></shortcut
+> <guimenu
+>Kanal</guimenu
+> <guimenuitem
+>Lägg till kanal...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Öppnar</action
+> dialogrutan Lägg till kanal</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Shift;<keycap
+>Insert</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Kanal</guimenu
+> <guimenuitem
+>Ny katalog...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Öppnar</action
+> dialogrutan Lägg till katalog</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>R</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Kanal</guimenu
+> <guimenuitem
+>Markera kanal som läst</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Markerar</action
+> aktuell kanal som läst</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl; &Shift;<keycap
+>R</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Kanal</guimenu
+> <guimenuitem
+>Markera alla kanaler som lästa</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Markerar</action
+> alla kanaler som redan lästa</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>F5</keycap
+></shortcut
+> <guimenu
+>Kanal</guimenu
+> <guimenuitem
+>Hämta kanal</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Hämtar</action
+> aktuell kanal</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>L</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Kanal</guimenu
+> <guimenuitem
+>Hämta alla kanaler</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Hämtar</action
+> alla kanaler</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>Esc</keycap
+></shortcut
+> <guimenu
+>Kanal</guimenu
+> <guimenuitem
+>Avbryt hämtningar</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Stoppar</action
+> hämtning av kanaler i &akregator;</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2>
+<title
+>Menyn Artikel</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Shift;<keycap
+>Retur</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Artikel</guimenu
+> <guimenuitem
+>Öppna under flik</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Öppnar</action
+> aktuell artikel under en flik inne i &akregator;</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>Retur</keycap
+></shortcut
+> <guimenu
+>Artikel</guimenu
+> <guimenuitem
+>Öppna i bakgrundsflik</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Läs in</action
+> aktuell artikel under en ny flik, men aktivera inte fliken automatiskt. Det är användbart för att bläddra igenom en kanal, öppna alla intressanta artiklar under bakgrundsflikar och senare läsa allihop. </para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl; &Shift;<keycap
+>Retur</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Artikel</guimenu
+> <guimenuitem
+>Öppna i extern webbläsare</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Öppnar</action
+> aktuell artikel i en extern webbläsare</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>I</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Artikel</guimenu
+> <guimenuitem
+>Markera som viktig</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Markerar</action
+> aktuell artikel som viktig</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Artikel</guimenu
+> <guimenuitem
+>Markera som</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Markera</action
+> aktuell artikel som Läst <keycombo action="simul"
+>&Ctrl;<keycap
+>E</keycap
+></keycombo
+>, Ny <keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo
+> eller Oläst <keycombo action="simul"
+>&Ctrl;<keycap
+>U</keycap
+></keycombo
+></para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>Delete</keycap
+></shortcut
+> <guimenu
+>Artikel</guimenu
+> <guimenuitem
+>Ta bort</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Tar bort</action
+> aktuell artikel</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Artikel</guimenu
+> <guimenuitem
+>Skicka länkadress...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Öppnar</action
+> ditt e-postprogram och lägger till länken i brevet.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Artikel</guimenu
+> <guimenuitem
+>Skicka fil...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Öppnar</action
+> ditt e-postprogram och lägger till filen som bilaga i brevet. </para
+></listitem>
+</varlistentry>
+<!--FIXME not in kf5?
+<varlistentry>
+<term
+><menuchoice>
+<shortcut
+><keycombo
+action="simul"
+>&Ctrl;<keycap
+>S</keycap
+></keycombo
+></shortcut>
+<guimenu
+>Article</guimenu>
+<guimenuitem
+>Share Article</guimenuitem>
+</menuchoice
+></term>
+<listitem
+><para
+>Use this action you to share news 
+ with your friends using the microblog services identi.ca and twitter.
+</para
+></listitem>
+</varlistentry>
+-->
+</variablelist>
+</sect2>
+
+<sect2>
+<title
+>Menyerna Inställningar och Hjälp</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Inställningar</guimenu
+> <guimenuitem
+>Visa snabbfilter</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Växla</action
+> snabbfiltret (visa eller dölj det) <screenshot>
+<screeninfo
+>Snabbfiltret</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="quick-filter.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Snabbfiltret</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+
+<para
+>Dessutom har &akregator; de vanliga menyalternativen <guimenu
+>Inställningar</guimenu
+> och <guimenu
+>Hjälp</guimenu
+> i &kde;. För mer information, läs avsnitten <ulink url="help:/fundamentals/menus.html#menus-settings"
+>Menyn Inställningar</ulink
+> och <ulink url="help:/fundamentals/menus.html#menus-help"
+>Menyn Hjälp</ulink
+> i &kde;:s Grunder. </para>
+
+<para
+>Menyalternativen som tillhandahålls i menyn är också tillgängliga i de sammanhangsberoende menyerna i kanallistan, artikellistan och artikelvisningen. </para>
+
+</sect2>
+
+</sect1>
+</chapter>
+
+<chapter id="credits">
+
+<title
+>Tack till och licens</title>
+
+<para
+>&akregator; </para>
+<para
+>Program copyright 2004–2010 Akregators upphovsmän </para>
+
+<para
+>Dokumentation copyright 2006 Frank Osterfeld <email
+>frank.osterfeld@kdemail.net</email
+> </para>
+
+<para
+>Dokumentation copyright 2006 &Anne-Marie.Mahfouf; &Anne-Marie.Mahfouf.mail; </para>
+
+<para
+>Översättning Stefan Asserhäll <email
+>stefan.asserhall@bredband.net</email
+></para
+> &underFDL; &underGPL; </chapter>
+
+&documentation.index;
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes: nil
+sgml-general-insert-case: lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+-->

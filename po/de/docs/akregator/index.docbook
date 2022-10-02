@@ -1,0 +1,1937 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % German "INCLUDE">
+]>
+
+<book id="akregator" lang="&language;">
+
+<bookinfo id="akregatorinfo">
+<title
+>Das Handbuch zu &akregator;</title>
+
+<authorgroup>
+
+<author
+><firstname
+>Frank</firstname
+> <surname
+>Osterfeld</surname
+>  <affiliation
+><address
+><email
+>frank.osterfeld@kdemail.net</email
+>  
+</address
+></affiliation>
+</author>
+<author
+><firstname
+>Anne-Marie</firstname
+> <surname
+>Mahfouf</surname
+> <affiliation
+><address
+>&Anne-Marie.Mahfouf.mail; </address
+></affiliation>
+</author>
+
+<othercredit role="translator"
+><firstname
+>Arndt</firstname
+><surname
+>Braun</surname
+><affiliation
+><address
+><email
+>arndtbraun@googlemail.com</email
+></address
+></affiliation
+><contrib
+>Übersetzung</contrib
+></othercredit
+> 
+</authorgroup>
+<copyright>
+<year
+>2006</year>
+<holder
+>Frank Osterfeld</holder>
+</copyright>
+<copyright>
+<year
+>2006</year>
+<holder
+>&Anne-Marie.Mahfouf;</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>2021-03-31</date>
+<releaseinfo
+>Anwendungen 21.08</releaseinfo>
+
+<!-- Abstract about this handbook -->
+
+<abstract>
+<para
+>&akregator; ist ein Programm zum Lesen von <acronym
+>RSS-</acronym
+> und anderen Nachrichtenquellen. </para>
+</abstract>
+
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>Akregator</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Einführung</title>
+
+<sect1 id="what-is-akregator">
+<title
+>Wozu dient &akregator;?</title>
+
+<para
+>&akregator; ist eine &kde;-Anwendung zum Lesen von Online-Nachrichten. &akregator; bietet eine vielseitige und benutzerfreundliche Oberfläche zum Lesen und Verwalten von Artikeln aus unterschiedlichen Nachrichtenquellen.</para>
+
+<para
+>&akregator; ist ein kompaktes und schnelles Programm zur Darstellung von Nachrichten aus Nachrichtenquellen, es werden alle Versionen von RSS und Atom-Quellen unterstützt. Die Oberflächengestaltung ist an die von E-Mail Programmen angelehnt, wodurch es für den Benutzer leicht zu erlernen sein sollte. Hilfreiche Funktionen wie die Artikelsuche, das Einsortieren von Nachrichtenquellen in Ordnern und Archivierungsoptionen. Nachrichtenquellen können ähnlich wie E-Mails dargestellt werden. Zu einer Nachricht gehörige Internetseiten können im integrierten Browser oder einem Browser der Wahl im eigenen Fenster dargestellt werden.</para>
+</sect1>
+
+<sect1 id="rss-and-atom-feeds">
+<title
+><acronym
+>RSS-</acronym
+> und Atom-Nachrichtenquellen</title>
+
+<para
+><acronym
+>RSS</acronym
+> (Really Simple Syndication, was auf Deutsch <quote
+>Wirklich einfache überregionale Verbreitung</quote
+> bedeutet) ist ein &XML;-basiertes Format, das bei der Nachrichtenveröffentlichung in maschinenlesbarer Form genutzt wird. Eine <acronym
+>RSS</acronym
+>- oder  Atom-Datei wird auch als Datenstrom bezeichnet. Ein Programm zum Lesen der Nachrichten wird auch als Datenstromleser oder Sammler bezeichnet, woher auch der Name der Anwendung &akregator; stammt.</para>
+
+<para
+>&akregator; extrahiert automatisch die Nachrichten aus dem Datenstrom und stellt sie in einer benutzerfreundlichen Weise dar. Der Benutzer kann sich hierdurch die Prüfung auf Neuigkeiten von oft besuchten Internetseiten ersparen, da &akregator; ihn auf Änderungen hinweist.</para>
+<para
+><acronym
+>RSS</acronym
+> gibt es in nicht immer untereinander kompatiblen Versionen (dieser Umstand ist durch die Arbeit konkurrierender Unternehmen bedingt): <acronym
+>RSS</acronym
+> 0.9, <acronym
+>RSS</acronym
+> 1.0 und <acronym
+>RSS</acronym
+> 2.0. Atom ist ein ebenfalls &XML;-basiertes Format, das den Bedürfnissen von Bloggern und Nachrichtenseiten angepasst wurde. Atom tritt an, um die <acronym
+>RSS</acronym
+>-Datenströme zu ersetzen und den leidigen Inkompatibilitäten in den verschiedenen <acronym
+>RSS</acronym
+>-Versionen ein Ende zu bereiten.</para>
+
+</sect1>
+
+</chapter>
+
+<chapter id="quick-start">
+<title
+>Schnellstart für &akregator;</title>
+
+<para
+>In diesem Kapitel wird die Bedienung von &akregator; erläutert. Es wird die Benutzeroberfläche, das Lesen von Artikeln und das Einbinden von Nachrichtenquellen erklärt. Dieses Kapitel wendet sich hauptsächlich an Personen, die nicht im Umgang mit <acronym
+>RSS</acronym
+>- und Atom-Nachrichten vertraut sind. </para>
+
+<sect1 id="main-window">
+<title
+>Das Hauptfenster</title>
+<!--part of kontact
+say how to start it -->
+<para
+>Beim ersten Start von &akregator; sehen Sie das Hauptfenster. <screenshot>
+<screeninfo
+>Hauptfenster von &akregator;</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="main-window.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Hauptfenster von &akregator;</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para>
+
+<para
+>Das Hauptfenster besteht aus der Nachrichtenquellenliste, der Artikelliste und der Artikeldarstellung. </para>
+<para
+>Die Nachrichtenquellenliste befindet sich auf der linken Seite. In der Baumansicht können die Nachrichtenquellen angewählt werden. Eine Nachrichtenquelle stellt eine Sammlung von Artikeln dar, z. B. die neuesten Nachrichten einer Internetseite oder die aktuellsten Einträge eines Blogs. Die Standardeinstellung beinhaltet die zum &kde;-Projekt gehörigen Nachrichtenquellen, aber es können selbstverständlich noch andere Nachrichtenquellen hinzugefügt oder die entfernt werden, die nicht von Interesse sind. </para>
+<para
+>In der oberen rechten Hälfte des Hauptfensters befindet sich die Artikelliste. Die Artikelliste beinhaltet alle Artikel der aktuell angewählten Nachrichtenquelle (Falls die Liste keine Artikel enthält, müssen diese erst abgeholt werden). Die Liste zeigt die Überschriften und das Veröffentlichungsdatum der Artikel. In der Standardeinstellung befindet sich der neuste Artikel ganz oben. <screenshot>
+<screeninfo
+>Die Artikelliste</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="main-window2.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Die Artikelliste für einen Datenstrom</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para>
+<para
+>Sobald ein Artikel aus der Artikelliste angewählt wird, stellt &akregator; ihn in der unteren rechten Hälfte dar. Abhängig von dem ausgewählten Artikel sehen Sie nun eine Überschrift, eine Kurzbeschreibung oder gleich den kompletten Artikel. <screenshot>
+<screeninfo
+>Lesen eines Artikels von Planet &kde;</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="main-window4.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Lesen eines Artikels von Planet &kde;</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para>
+</sect1>
+
+<sect1 id="add-feed">
+<title
+>Hinzufügen einer Nachrichtenquelle</title>
+<para
+>&akregator; bietet Ihnen standardmäßig mehrere Standardnachrichtenquellen, die mit dem &kde;-Projekt zu tun haben, aber höchstwahrscheinlich wollen Sie ihre eigenen Nachrichtenquellen hinzufügen. Gute Kandidaten hierfür stellen die von Ihnen häufig besuchten Internetseiten dar.</para>
+
+<itemizedlist>
+<listitem
+><para
+>Gehen Sie in das Menü <guimenu
+>Nachrichtenquelle</guimenu
+> und wählen Sie <guimenuitem
+>Nachrichtenquelle hinzufügen ...</guimenuitem
+>, oder benutzen Sie das jeweilige Tastaturkürzel (<keycap
+>Einfg</keycap
+>). Das folgende Fenster mit einem <guilabel
+>Adresse der Nachrichtenquelle:</guilabel
+> beschrifteten Eingabefeld öffnet sich. <screenshot>
+<screeninfo
+>Hinzufügen einer neuen Nachrichtenquelle</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="add-feed.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Hinzufügen einer neuen Nachrichtenquelle</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para
+></listitem>
+
+<listitem
+><para
+>Geben Sie nun <userinput
+>planet.ubuntu.com</userinput
+> oder <userinput
+>http://planet.ubuntu.com</userinput
+> in das Eingabefeld ein und klicken Sie auf <guibutton
+>OK</guibutton
+>. </para
+></listitem>
+<listitem
+><para
+>Es öffnet sich ein Fenster zur Einrichtung der Nachrichtenquelle, in dem die Standardeinstellungen geändert werden können. Wenn Sie mit den Standardeinstellungen zufrieden sind, klicken Sie wieder auf <guibutton
+>OK</guibutton
+>. <screenshot>
+<screeninfo
+>Der Dialog zur Einstellung der Nachrichtenquellen</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="add-feed2.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Der Dialog zur Einstellung der Nachrichtenquellen</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para
+></listitem>
+<listitem
+><para
+>Die Nachrichtenquelle „Planet Ubuntu“ wurde zu Ihrer Nachrichtenquellenliste hinzugefügt. </para
+> </listitem>
+</itemizedlist>
+<para
+>Es gibt viele andere Möglichkeiten, um interessante Nachrichtenquellen hinzuzufügen. Wenn Internetseiten eine RSS-Nachrichtenquelle besitzen, wird dies in &konqueror; mit dem gut sichtbaren <inlinemediaobject
+> <imageobject
+> <imagedata fileref="feed.png" format="PNG"/> </imageobject
+> </inlinemediaobject
+> <quote
+>RSS</quote
+>-Symbol in der unteren rechten Ecke von &konqueror; angezeigt.<inlinemediaobject
+> <imageobject
+> <imagedata fileref="rss3.png" format="PNG"/> </imageobject
+> </inlinemediaobject
+>Durch klicken auf das Symbol und anwählen von <guimenuitem
+>Nachrichtenquelle zu &akregator; hinzufügen</guimenuitem
+><screenshot
+> <screeninfo
+> Automatisches einfügen von Nachrichtenquellen mittels &konqueror;</screeninfo
+> <mediaobject
+> <imageobject
+><imagedata fileref="konq2.png" format="PNG"/></imageobject
+> <textobject
+><phrase
+>Automatisches einfügen von Nachrichtenquellen mittels &konqueror;</phrase
+></textobject
+> </mediaobject
+> </screenshot
+> Auf Seiten mit &quot;RSS&quot; oder dem Symbol<inlinemediaobject
+> <imageobject
+> <imagedata fileref="rss.png" format="PNG"/> </imageobject
+> </inlinemediaobject
+>, klicken Sie mit der rechten Maustaste auf das Symbol und wählen Sie dann im Kontextmenü <guimenuitem
+>Verknüpfungsadresse kopieren</guimenuitem
+>: <screenshot>
+      <screeninfo
+>Automatisches Auffinden von Nachrichtenquellen mittels &konqueror;</screeninfo>
+      <mediaobject>
+        <imageobject
+><imagedata fileref="konq.png" format="PNG"/></imageobject>
+        <textobject
+><phrase
+>Automatisches Auffinden von Nachrichtenquellen mittels &konqueror;</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para>
+<para
+>Wechseln Sie zu &akregator;, wählen Sie <guimenuitem
+>Nachrichtenquelle hinzufügen</guimenuitem
+> und die <guilabel
+>Adresse der Nachrichtenquelle</guilabel
+> wird mit der Verknüpfungsadresse ausgefüllt. </para>
+
+<para
+>Alle mit dieser Methode hinzugefügten Nachrichtenquellen werden im Ordner <guilabel
+>Importierte Nachrichtenquellen</guilabel
+> in der Liste der Nachrichtenquellen angezeigt. Sie können sie von dort mit der Maus in andere Ordner verschieben. </para>
+</sect1>
+
+<sect1 id="creating-folder">
+<title
+>Anlegen eines Ordners</title>
+<para
+>Nachdem Sie nun eine Nachrichtenquelle hinzugefügt haben, besteht evtl. das Bedürfnis mehrere Nachrichtenquellen zu gruppieren. Im folgenden erstellen Sie einen Ordner, in den Sie die Nachrichtenquelle „Planet Ubuntu“ einsortieren.</para>
+<itemizedlist>
+<listitem
+><para
+>Wählen Sie den Stammordner des neuen Ordners: In diesem Beispiel wählen Sie <guilabel
+>Alle Nachrichtenquellen</guilabel
+>. </para
+></listitem>
+<listitem
+><para
+>Wählen Sie im Menü <menuchoice
+><guimenu
+>Nachrichtenquellen</guimenu
+><guimenuitem
+>Neuer Ordner ...</guimenuitem
+></menuchoice
+> Geben Sie <userinput
+>Nachrichten</userinput
+> (oder einen anderen treffenden Namen für die Nachrichtenquelle) in das Eingabefeld ein und klicken Sie auf <guibutton
+>OK</guibutton
+>. <screenshot>
+<screeninfo
+>Der Dialog Neuer Ordner</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="add-folder.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Der Dialog Neuer Ordner</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para
+> </listitem>
+<listitem
+><para
+>Jetzt können Sie die Nachrichtenquelle „Planet Ubuntu“ in den neuen Ordner ziehen. <screenshot>
+<screeninfo
+>Der Nachrichtenordner in der Nachrichtenquellenliste</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="add-folder2.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Der Nachrichtenordner in der Nachrichtenquellenliste</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para
+> </listitem>
+</itemizedlist>
+</sect1>
+
+<sect1 id="browsing-inside">
+<title
+>Browsernutzung innerhalb von &akregator;</title>
+<para
+>Wenn Sie Artikel aus einer Nachrichtenquelle lesen, kann es oft passieren, dass Sie direkt die betreffende Webseite aufrufen möchten, da manche Artikel nur aus der Überschrift ohne Textkörper bestehen. In diesem Fall benötigen Sie einen Internetbrowser, um den gesamten Inhalt darstellen zu können. Manchmal kann es auch passieren, dass Sie z. B. einen Blog-Eintrag kommentieren wollen, wozu Sie auch einen Internetbrowser benötigen. Für solche und ähnliche Fälle beinhaltet &akregator; einen vereinfachten Internetbrowser. Immer wenn Sie auf eine Verknüpfung klicken, wird diese als neue Karteikarte durch den integrierten Internetbrowser dargestellt:</para>
+<note
+><para
+>Bitte bedenken Sie, dass der in &akregator; integrierte Internetbrowser nicht als Ersatz für Ihren Standardbrowser gedacht ist. Er ist nur zum Lesen, Kommentieren oder dem schnellen Folgen von Verknüpfungen geeignet. Er ist nicht als genereller Internetbrowser gedacht. Der integrierte Browser verfügt längst nicht über alle Möglichkeiten eines normalen Browsers.</para
+></note>
+</sect1>
+</chapter>
+
+<chapter id="configuration">
+<title
+>Anpassung von &akregator; </title>
+<para
+>Die meisten Einstellungen von &akregator; befinden sich im Einstellungsdialog. Der Einstellungsdialog kann im Menü unter dem Punkt <menuchoice
+> <guimenu
+>Einstellungen</guimenu
+><guimenuitem
+>&akregator; einrichten ...</guimenuitem
+> </menuchoice
+> gefunden werden.</para>
+<sect1 id="general-tab">
+<title
+>Allgemein</title>
+<para
+>Das Hauptfenster beinhaltet die Grund- und sonst nicht zuordnungsbaren Optionen von &akregator;.</para>
+<screenshot>
+<screeninfo
+>Die Karteikarte Allgemein</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="general-tab.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Die Karteikarte Allgemein</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Allgemein</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Symbol im Systembereich der Kontrollleiste anzeigen</guilabel
+></term>
+<listitem
+><para
+>Anzeigen des &akregator;-Symbols im Systembereich.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Ungelesene Artikel in der Fensterleiste anzeigen</guilabel
+></term>
+<listitem
+><para
+>Legt fest, ob ungelesene Artikel in der Fensterleiste des Systems angezeigt werden.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Nachrichtenquellen mit gelesenen Artikeln ausblenden</guilabel
+></term>
+<listitem
+><para
+>Ist dies ausgewählt, werden Nachrichtenquellen, in denen alle Artikel gelesen wurden, ausgeblendet.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Position von Nachrichtenquellen sperren</guilabel
+></term>
+<listitem
+><para
+>Ist dies ausgewählt, werden Nachrichtenquellen in der Liste nicht verschoben und bleiben an Ihren Platz in der Liste.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Ordner mit ungelesenen Artikeln automatisch ausklappen</guilabel
+></term>
+<listitem
+><para
+>Ist dies ausgewählt, werden Ordner mit ungelesenen Artikeln automatisch ausgeklappt.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Benachrichtigungen für alle Nachrichtenquellen benutzen</guilabel
+></term>
+<listitem
+><para
+>Einschalten von globalen Benachrichtigungen für alle Nachrichtenquellen. Diese Option überschreibt die individuell für jede Nachrichtenquelle ausgegebenen Benachrichtigungen.  Falls diese Option in &akregator; eingeschaltet ist, werden Sie über alle neuen Nachrichten benachrichtigt. Falls Sie nur die Benachrichtigungen für einige Nachrichtenquellen aktivieren wollen, sollten Sie diese Option nicht nutzen, sondern es sollten individuelle Benachrichtigungen für jede Nachrichtenquelle aktiviert werden.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>In Intervallen abholen</guilabel
+></term>
+<listitem
+><para
+>Falls diese Option nicht angewählt ist, wird die periodische Artikelabholung nicht durchgeführt. Falls sie aktiviert ist, können Sie im Eingabefeld <guilabel
+>Überprüfen der Nachrichtenquelle alle:</guilabel
+> XX Minuten das Intervall zur Artikelabholung festlegen. Bitte beachten Sie, dass die Artikelabholung Netzwerklast und damit evtl Kosten erzeugt. Manche Nachrichtenquellen verhindern allerdings aus Sicherheitsgründen das Abholen von Nachrichten in zu kurzen Intervallen. Ein Wert von 30 Minuten ist eine gute Wahl. </para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Abholen der Nachrichtenquellen alle:</guilabel
+></term>
+<listitem
+><para
+>Diese Einstellung ist aktiv, wenn das Ankreuzfeld <guilabel
+>In Intervallen abholen</guilabel
+> aktiviert ist. Es kann ein Intervall festgelegt werden, in dem die Artikel abgerufen werden. Die Voreinstellung ist 30 min.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Programmstart</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Alle Nachrichtenquellen beim Programmstart als gelesen markieren</guilabel
+></term>
+<listitem
+><para
+>Wenn diese Option aktiviert ist, markiert &akregator; alle Nachrichten beim Start als gelesen. </para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Alle Nachrichtenquellen beim Programmstart überprüfen</guilabel
+></term>
+<listitem
+><para
+>Wenn diese Option aktiviert ist, ruft &akregator; alle Nachrichten beim Start ab.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Netzwerk</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Browser-Zwischenspeicher verwenden (reduziert den Netzwerkverkehr)</guilabel
+></term>
+<listitem
+><para
+>Wenn dieses Ankreuzfeld aktiviert ist, wird der &kde;-weite Zwischenspeicher des Browsers zur Speicherung der Artikel genutzt. Er kann in &konqueror; eingerichtet werden.</para>
+<note
+><para
+>Sie sollten diese Einstellung, wenn möglich, immer aktiviert lassen. Durch Deaktivierung der Option erhöht sich die Netzwerklast dramatisch, da &akregator; in diesem Fall die Nachrichten bei jedem Start komplett neu laden muss.</para
+></note>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+
+<sect1 id="adblock-tab">
+<title
+>URL-Filter</title>
+<para
+>&akregator; kann so eingerichtet werden, dass Bilder oder Rahmen von Webseiten entfernt oder ersetzt werden. Dazu wird ein Satz an Filterregeln herangezogen.</para>
+
+<screenshot>
+<screeninfo
+>Die Karteikarte URL-Filter</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="interceptor-tab.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Die Karteikarte URL-Filter</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+
+<para
+>Eine ausführliche Beschreibung dieser Funktion finden Sie im Modul <ulink url="help:/kcontrol/khtml-adblock"
+>Werbefilter</ulink
+>. </para>
+</sect1>
+
+<sect1 id="archive-tab">
+<title
+>Archiv</title>
+<para
+>Das Archivieren von Artikeln ist das Abspeichern der Verknüpfungen und nicht der gesamten Artikel. Hier können die Anzahl und Methode der zu speichernden Artikel festgelegt werden. Diese Einstellungen sind globale Einstellungen, die alle Nachrichtenquellen von &akregator; betreffen. Falls Sie eine nachrichtenquellenspezifische Einstellung wünschen, können Sie dies über die Einstellungen der jeweiligen Nachrichtenquelle erledigen.</para>
+<screenshot>
+<screeninfo
+>Die Karteikarte Archiv</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="archive-tab.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Die Karteikarte Archiv</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Voreinstellungen für das Archiv</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Alle Artikel aufbewahren</guilabel
+></term>
+<listitem
+><para
+>Alle Nachrichten werden für immer aufbewahrt.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Archivgröße begrenzen auf:</guilabel
+></term
+> 
+<listitem
+><para
+>Falls die Anzahl der Artikel das eingestellte Limit überschreitet, werden die überzähligen Artikel gelöscht. Bitte beachten Sie, dass markierte Artikel bei der Anzahl ignoriert werden, falls Sie also das Limit auf 500 Artikel gesetzt haben, 510 unmarkierte und 50 markierte Artikel, werden nur 10 Artikel gelöscht.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Artikel löschen, die älter sind als:</guilabel
+></term>
+<listitem
+><para
+>Artikel, die älter als die angegebene Anzahl Tage sind, werden aus dem Archiv entfernt, es sei denn Sie wurden mit dem Markierung <quote
+>Behalten</quote
+> versehen. Die veralteten Artikel werden von &akregator; beim Start und stündlich geprüft, wodurch sich Verzögerungen ergeben können.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Archivierung abschalten</guilabel
+></term>
+<listitem
+><para
+>Die Artikel werden nicht gespeichert und alle Artikel beim Verlassen von &akregator; gelöscht.</para
+> </listitem>
+</varlistentry>
+</variablelist>
+
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Wichtige Artikel nicht verfallen lassen</guilabel
+></term>
+<listitem
+><para
+>Ein Rechtsklick auf den Artikel öffnet ein Kontextmenü, in dem Sie den Artikel als wichtig markieren können. Wichtige Artikel verfallen nicht und werden für immer gespeichert.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+<sect1 id="appearance-tab">
+<title
+>Erscheinungsbild</title>
+<para
+>Auf dieser Seite können Sie das Verhalten des Artikelbetrachters und der Browser-Reiter einstellen. Sie können Farben, Schriftgröße und Schriftfamilie einstellen. </para>
+<screenshot>
+<screeninfo
+>Die Karteikarte Erscheinungsbild</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="appearance-tab.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Die Karteikarte Erscheinungsbild</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Farben der Artikelliste</guilabel
+></term>
+<listitem
+><para
+>Aktivieren Sie <guilabel
+>Benutzerdefinierte Farben verwenden</guilabel
+>, dann können Sie die Farben für <guilabel
+>Ungelesene Artikel</guilabel
+> und <guilabel
+>Neue Artikel</guilabel
+> auswählen.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Schriftgröße</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Minimale Schriftgröße</guilabel
+></term>
+<listitem
+><para
+>Einstellung der minimalen Schriftgröße für das Artikelfenster</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Mittlere Schriftgröße</guilabel
+></term>
+<listitem
+><para
+>Einstellung der voreingestellten Schriftgröße des Artikelfensters</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Schriftarten</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Standardschriftart:</guilabel
+></term>
+<listitem
+><para
+>Im Artikelfenster wird der Inhalt mit der Standardschriftart in der mittleren Größe dargestellt. Wenn Sie die Standardschrift ändern, ändert sich auch die Schrift im Artikelfenster.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Schrift mit fester Breite:</guilabel
+></term>
+<listitem
+><para
+>Falls der Artikel eine Schriftart mit fester Breite verwendet, wird er mit dieser Schriftfamilie in mittlerer Größe dargestellt. </para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Serifenschrift:</guilabel
+></term>
+<listitem
+><para
+>Falls der Artikel Serifenschriften nutzt, wird er mit dieser Schriftfamilie in mittlerer Größe dargestellt.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Serifenlose Schrift:</guilabel
+></term>
+<listitem
+><para
+>Falls der Artikel serifenlose Schriftarten benutzt, wird er mit der als mittleren Schriftart dargestellten Schrift dargestellt.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Verknüpfungen unterstreichen</guilabel
+></term>
+<listitem
+><para
+>Markieren Sie dieses Feld, falls Sie wünschen, dass Verknüpfungen standardmäßig unterstrichen sind.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+<sect1 id="browser-tab">
+<title
+>Browser</title>
+<para
+>Auf dieser Seite können Sie das Verhalten der Reiter des internen Browsers zu einzurichten.</para>
+<screenshot>
+<screeninfo
+>Die Karteikarte Browser</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="browser-tab.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Die Karteikarte Browser</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Verhalten der linken Maustaste</guilabel
+></term>
+<listitem
+><para
+>Sie haben drei Möglichkeiten die linke Maustaste zu belegen: <guilabel
+>In neuem Unterfenster öffnen</guilabel
+>(Öffnet den aktuellen Artikel und stellt ihn in einem neuen obenstehenden Unterfenster dar), <guilabel
+>Unterfenster im Hintergrund öffnen</guilabel
+> (Öffnet den aktuellen Artikel und stellt ihn in einem hintenstehenden Unterfenster) und <guilabel
+>In externem Browser öffnen</guilabel
+> (Öffnet den aktuellen Artikel in einem externen Browser).</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Verhalten der mittleren Maustaste</guilabel
+></term>
+<listitem
+><para
+>Wie obenstehend können Sie eine der drei Optionen der mittleren Maustaste zuweisen.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>In externem Browser betrachten</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Voreingestellten Webbrowser verwenden</guilabel
+></term>
+<listitem
+><para
+>Falls diese Option markiert ist, verwendet &akregator; den in den  &systemsettings; festgelegten Webbrowser zur Darstellung des Artikels. Dies ist im Normalfall &konqueror;.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Diesen Befehl benutzen:</guilabel
+></term>
+<listitem
+><para
+>Sie können auch einen anderen Webbrowser als den von &kde; verwendeten &konqueror; zur Anzeige von Artikeln in &akregator; nutzen. Falls Sie dies wünschen, markieren Sie diese Einstellung und geben Sie den korrekten Startbefehl Ihres Browsers mit dem Pfad <envar
+>PATH</envar
+> ein.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Unterfenster</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Unterfensterleiste immer anzeigen</guilabel
+></term>
+<listitem
+><para
+>Ist dies aktiviert, wird die Unterfensterleiste immer angezeigt, sogar wenn nur ein Unterfenster geöffnet wird. Dann können Sie Unterfenster direkt mit der Unterfensterleiste erstellen. Ansonsten wird die Unterfensterleiste nur dann angezeigt, wenn mehrere Unterfenster geöffnet sind.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Knöpfe zum Schließen von Unterfenstern anzeigen</guilabel
+></term>
+<listitem
+><para
+>Falls diese Aktion angewählt ist, erscheint bei dem Überstreichen des Reiters mit dem Mauszeiger ein Knopf zum Schließen des Reiters, sodass die Funktion zum Schließen des Unterfensters leichter erreicht werden kann.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Verknüpfungen in Unterfenstern öffnen statt in eigenen Fenstern</guilabel
+></term>
+<listitem
+><para
+>Ist dies ausgewählt, werden Verknüpfung, die normalerweise in einem neuen Fenster (externer Browser) geöffnet würde, stattdessen in einem neuen Unterfenster geöffnet.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Sicherheit</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Überprüfen von URLs mit der API von Google's Safe Browsing</guilabel
+></term>
+<listitem
+><para
+>Mit dieser Einstellung wird die Programmierschnittstelle zu <ulink url="https://safebrowsing.google.com/"
+>Google Safe Browsing</ulink
+> benutzt, um &URL;s mit der immer aktuellen List unsicherer Web-Resourcen von Google zu überprüfen.Beispiele für unsichere Web-Ressourcen sind Social-Engineering-Seiten (Phishing- und betrügerische Seiten) und Seiten, die Malware oder unerwünschte Software enthalten.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>JavaScript aktivieren</guilabel
+></term>
+<listitem
+><para
+>Ist dies aktiviert, wird &javascript; bei der Verarbeitung von Web-Ressourcen verwendet. Die Anwendung von &javascript; hat mehrere <ulink url="https://en.wikipedia.org/wiki/JavaScript#Security"
+>Auswirkungen auf die Sicherheit</ulink
+>.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Verschiedenes</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Zugangsschlüssel aktiviert</guilabel
+></term>
+<listitem
+><para
+>Dies ist eine Einstellung zur Zugangshilfe. Ist sie aktiviert, verarbeitet &akregator; die Eigenschaft „accessKey“ der Webseite, die die Tastaturkürzel für die Navigation zu einem angegebenen Element definiert.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+<sect1 id="advanced-tab">
+<title
+>Erweitert</title>
+<para
+>Der Karteireiter Erweitert ermöglicht die Einstellung fortgeschrittener Funktionen, sollte aber auch nur benutzt werden, wenn Sie wissen, was sie tun.</para>
+<screenshot>
+<screeninfo
+>Die Karteikarte Erweitert</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="advanced-tab.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Die Karteikarte Erweitert</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Archiv</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Archiv-Modus:</guilabel
+></term>
+<listitem
+><para
+>&akregator; nutzt momentan nur die Metakit-Datenbank. </para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Artikelliste</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Ausgewählten Artikel als gelesen markieren nach</guilabel
+></term>
+<listitem
+><para
+>Der Standardwert beträgt 0 Sekunden, was bedeutet, dass sobald der Artikel angewählt wird, er auch als gelesen markiert wird. Es kann eine Zeit vorgegeben werden, nachdem alle Artikel als gelesen markiert werden.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Schnellsuche beim Wechsel der Nachrichtenquelle zurücksetzen</guilabel
+></term>
+<listitem
+><para
+>Hierdurch wird die Suche gelöscht, wenn die Nachrichtenquelle gewechselt wird.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+</chapter>
+
+<chapter id="commands">
+<title
+>Befehlsreferenz</title>
+
+<sect1 id="akregator-mainwindow">
+<title
+>Menüs und Tasten für Kurzbefehle</title>
+
+<sect2>
+<title
+>Das Menü Datei</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Datei</guimenu
+> <guimenuitem
+>Nachrichtenquellen importieren</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Öffnet</action
+> den Dialog zum Import von Nachrichtenquellen, um <quote
+>OPML-Gliederungen</quote
+> mit Abonnements für Nachrichtenquellen zu Laden. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Datei</guimenu
+> <guimenuitem
+>Nachrichtenquellen exportieren</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Öffnet</action
+> einen Speicherdialog, um Ihre Nachrichtenquellen und Ordnerstruktur als Datei im Format <filename class="extension"
+>.opml</filename
+> zu exportieren.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Datei</guimenu
+> <guimenuitem
+>Beenden</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Beendet</action
+> &akregator;</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2>
+<title
+>Das Menü Bearbeiten</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycap
+>F2</keycap
+> </shortcut
+> <guimenu
+>Bearbeiten</guimenu
+> <guimenuitem
+>Nachrichtenquelle bearbeiten ...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Bearbeiten</action
+> der aktuellen Nachrichtenquelle und deren Einstellungen in dem Einstellungsdialog</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;<keycap
+>Entf</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Bearbeiten</guimenu
+> <guimenuitem
+>Nachrichtenquelle löschen</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Entfernt</action
+> die ausgewählte Nachrichtenquelle </para
+></listitem>
+</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2>
+<title
+>Das Menü Ansicht</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>1</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Ansicht</guimenu
+><guimenuitem
+>Normale Ansicht</guimenuitem
+></menuchoice
+>, <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>2</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Ansicht</guimenu
+><guimenuitem
+>Breite Ansicht</guimenuitem
+> </menuchoice
+> und <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>3</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Ansicht</guimenu
+><guimenuitem
+>Kombinierte Ansicht</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Wahl</action
+> der Ansicht von &akregator;</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>+</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Ansicht</guimenu
+><guimenuitem
+>Schrift vergrößern</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Vergrößern</action
+> der Schriftgröße</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>-</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Ansicht</guimenu
+> <guimenuitem
+>Schrift verkleinern</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Verkleinern</action
+> der Schriftgröße</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2>
+<title
+>Das Menü Gehe zu</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>Pfeil links</keycap
+></shortcut
+> <guimenu
+>Gehe zu</guimenu
+> <guimenuitem
+>Vorheriger Artikel</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Gehe</action
+> zu dem letzten Artikel in der Nachrichtenliste</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>-</keycap
+></shortcut
+> <guimenu
+>Gehe zu</guimenu
+> <guimenuitem
+>Vorheriger ungelesener Artikel</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Gehe</action
+> zu dem letzten ungelesenen Artikel in der Nachrichtenliste</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>Pfeil rechts</keycap
+></shortcut
+> <guimenu
+>Gehe zu</guimenu
+> <guimenuitem
+>Nächster Artikel</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Gehe</action
+> zu dem nächsten Artikel</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>+</keycap
+></shortcut
+> <guimenu
+>Gehe zu</guimenu
+> <guimenuitem
+>Nächster ungelesener Artikel</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Gehe</action
+> zu dem nächsten ungelesenen Artikel in der Artikelliste</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>P</keycap
+></shortcut
+> <guimenu
+>Gehe zu</guimenu
+> <guimenuitem
+>Vorherige Nachrichtenquelle</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Gehe</action
+> zu der vorherigen Nachrichtenquelle in der Nachrichtenquellenliste</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Alt;<keycap
+>-</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Gehe zu</guimenu
+> <guimenuitem
+>Vorherige ungelesene Nachrichtenquelle</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Gehe</action
+> zu der nächsten ungelesenen Nachrichtenquelle in der Nachrichtenquellenliste</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>N</keycap
+></shortcut
+> <guimenu
+>Gehe zu</guimenu
+> <guimenuitem
+>Nächste Nachrichtenquelle</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Gehe</action
+> zu der nächsten Nachrichtenquelle in der Nachrichtenquellenliste</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Alt;<keycap
+>+</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Gehe</guimenu
+> <guimenuitem
+>Nächste ungelesene Nachrichtenquelle</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Gehe</action
+> zu der nächsten ungelesenen Nachrichtenquelle in der Nachrichtenquellenliste</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2>
+<title
+>Das Menü Nachrichtenquelle</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>Einfg</keycap
+></shortcut
+> <guimenu
+>Nachrichtenquelle</guimenu
+> <guimenuitem
+>Nachrichtenquelle hinzufügen ...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Hinzufügen</action
+> einer Nachrichtenquelle</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Shift;<keycap
+>Einfg</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Nachrichtenquelle</guimenu
+> <guimenuitem
+>Neuer Ordner ...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Anlegen</action
+> eines neuen Ordners</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>R</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Nachrichtenquelle</guimenu
+> <guimenuitem
+>Nachrichtenquelle als gelesen markieren</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Markieren</action
+> der aktuellen Nachrichtenquelle als gelesen</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl; &Shift;<keycap
+>R</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Nachrichtenquelle</guimenu
+> <guimenuitem
+>Alle Nachrichtenquellen als gelesen markieren</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Markieren</action
+> aller Nachrichtenquellen als gelesen</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>F5</keycap
+></shortcut
+> <guimenu
+>Nachrichtenquelle</guimenu
+> <guimenuitem
+>Nachrichtenquelle abholen</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Abholen</action
+> der aktuellen Nachrichtenquelle</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>L</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Nachrichtenquelle</guimenu
+> <guimenuitem
+>Alle Nachrichtenquelle abholen</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Abholen</action
+> aller Nachrichtenquellen</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>Esc</keycap
+></shortcut
+> <guimenu
+>Nachrichtenquelle</guimenu
+> <guimenuitem
+>Abholen von Nachrichten abbrechen</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Abbrechen</action
+> des Abholens von Nachrichtenquellen</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2>
+<title
+>Das Menu Artikel</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Shift;<keycap
+>Eingabe</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Artikel</guimenu
+> <guimenuitem
+>In neuem Unterfenster öffnen</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Öffnen</action
+> des aktuellen Artikels in einem separatem eingebettetem Fenster innerhalb von &akregator;</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>Eingabe</keycap
+></shortcut
+> <guimenu
+>Artikel</guimenu
+> <guimenuitem
+>In Unterfenster im Hintergrund öffnen</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Lädt</action
+> den aktuellen Artikel in einem neuen Unterfenster, aber dieses Unterfenster wird nicht automatisch aktiviert. Diese Funktionen können Sie benutzen, um eine Nachrichtenquelle durchzusehen, alle interessanten Artikel in Unterfenstern im Hintergrund zu öffnen und diese Artikel dann später zu lesen. </para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl; &Shift;<keycap
+>Eingabe</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Artikel</guimenu
+> <guimenuitem
+>In externem Browser öffnen.</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Öffnen</action
+> des aktuellen Artikels in einem externen Browser</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>I</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Artikel</guimenu
+> <guimenuitem
+>Als wichtig markieren</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Markieren</action
+> des aktuellen Artikels als wichtig</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Artikel</guimenu
+> <guimenuitem
+>Markieren als</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Markiert</action
+> den aktuellen Artikel als gelesen <keycombo action="simul"
+>&Ctrl;<keycap
+>E</keycap
+></keycombo
+>, Neu <keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo
+> oder ungelesen <keycombo action="simul"
+>&Ctrl;<keycap
+>U</keycap
+></keycombo
+></para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>Entf</keycap
+></shortcut
+> <guimenu
+>Artikel</guimenu
+> <guimenuitem
+>Löschen</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Löscht</action
+> den aktuellen Artikel</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Artikel</guimenu
+> <guimenuitem
+>Verknüpfungsadresse senden ...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Öffnen</action
+> des E-Mail Programms und Anhängen der aktuellen Nachricht als Verknüpfung an die E-Mail.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Artikel</guimenu
+> <guimenuitem
+>Datei senden ...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Öffnen</action
+> des E-Mail Programms und Anhängen der aktuellen Nachricht als Datei. </para
+></listitem>
+</varlistentry>
+<!--FIXME not in kf5?
+<varlistentry>
+<term
+><menuchoice>
+<shortcut
+><keycombo
+action="simul"
+>&Ctrl;<keycap
+>S</keycap
+></keycombo
+></shortcut>
+<guimenu
+>Article</guimenu>
+<guimenuitem
+>Share Article</guimenuitem>
+</menuchoice
+></term>
+<listitem
+><para
+>Use this action you to share news 
+ with your friends using the microblog services identi.ca and twitter.
+</para
+></listitem>
+</varlistentry>
+-->
+</variablelist>
+</sect2>
+
+<sect2>
+<title
+>Die Menüs Einstellungen und Hilfe</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Einstellungen</guimenu
+> <guimenuitem
+>Schnellfilter anzeigen</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Zeigt</action
+> die Schnellfilter an (Anzeigen oder Ausblenden) <screenshot>
+<screeninfo
+>Der Schnellfilter</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="quick-filter.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Der Schnellfilter</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+
+<para
+>Zusätzlich hat &akregator; die bekannten &kde;-Einträge im Menü <guimenu
+>Einstellungen</guimenu
+> und <guimenu
+>Hilfe</guimenu
+>, weitere Informationen dazu finden Sie in den Abschnitten über die Menüs <ulink url="help:/fundamentals/menus.html#menus-settings"
+>Einstellungen</ulink
+> und <ulink url="help:/fundamentals/menus.html#menus-help"
+>Hilfe</ulink
+> der &kde;-Grundlagen. </para>
+
+<para
+>Viele Aktionen im Menü sind auch in den Kontextmenüs der Artikelliste und der Artikelansicht erreichbar. </para>
+
+</sect2>
+
+</sect1>
+</chapter>
+
+<chapter id="credits">
+
+<title
+>Danksagungen und Lizenz</title>
+
+<para
+>&akregator; </para>
+<para
+>Program Copyright 2004-2010 Die Akregator-Autoren </para>
+
+<para
+>Copyright der Dokumentation 2006 Frank Osterfeld <email
+>frank.osterfeld@kdemail.net</email
+> </para>
+
+<para
+>Copyright der Dokumentation 2006 &Anne-Marie.Mahfouf; &Anne-Marie.Mahfouf.mail; </para>
+
+<para
+>Übersetzung: Arndt Braun <email
+>arndtbraun@googlemail.com</email
+></para
+> &underFDL; &underGPL; </chapter>
+
+&documentation.index;
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes: nil
+sgml-general-insert-case: lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+-->

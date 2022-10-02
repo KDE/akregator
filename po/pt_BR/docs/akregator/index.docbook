@@ -1,0 +1,1834 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY akregator        "<application
+>Akregator</application
+>">
+  <!ENTITY kappname "&akregator;">
+  <!ENTITY package "kdepim">
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Brazilian-Portuguese "INCLUDE">
+]>
+
+<book id="akregator" lang="&language;">
+
+<bookinfo id="akregatorinfo">
+<title
+>Manual do &akregator;</title>
+
+<authorgroup>
+
+<author
+><firstname
+>Frank</firstname
+> <surname
+>Osterfeld</surname
+> <affiliation
+><address
+><email
+>frank.osterfeld@kdemail.net</email
+>  
+</address
+></affiliation>
+</author>
+<author
+><firstname
+>Anne-Marie</firstname
+> <surname
+>Mahfouf</surname
+> <affiliation
+><address
+>&Anne-Marie.Mahfouf.mail; </address
+></affiliation>
+</author>
+
+<othercredit role="translator"
+><firstname
+>Marcus</firstname
+><surname
+>Gama</surname
+><affiliation
+><address
+><email
+>marcus.gama@gmail.com</email
+></address
+></affiliation
+><contrib
+>Tradução</contrib
+></othercredit
+> 
+</authorgroup>
+<copyright>
+<year
+>2006</year>
+<holder
+>Frank Osterfeld</holder>
+</copyright>
+<copyright>
+<year
+>2006</year>
+<holder
+>&Anne-Marie.Mahfouf;</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>25/05/2013</date>
+<releaseinfo
+>4.11 (&kde; 4.11)</releaseinfo>
+
+<!-- Abstract about this handbook -->
+
+<abstract>
+<para
+>O &akregator; é um programa para ler fontes de notícias de <acronym
+>RSS</acronym
+> e de outras notícias 'online'. </para>
+</abstract>
+
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>Akregator</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Introdução</title>
+
+<sect1 id="what-is-akregator">
+<title
+>O que é o &akregator;?</title>
+
+<para
+>O &akregator; é um aplicativo do &kde; para ler fontes de notícias. Ele possui uma interface de usuário amigável para ler e gerenciar fontes.</para>
+
+<para
+>O &akregator; é um programa leve e rápido para mostrar os itens de notícias, fornecidos por fontes, e que suporta todas as versões mais comuns de fontes <acronym
+>RSS</acronym
+> e Atom. A sua interface é semelhante à dos programas de e-mail, sendo assim bastante intuitiva. As funcionalidades úteis incluem a pesquisa nos títulos dos artigos, o gerenciamento das fontes em pastas e a definição de opções de armazenamento em arquivo. As fontes poderão ser mostradas como mensagens de e-mail, enquanto as páginas Web relacionadas com uma fonte poderão ser apresentadas no navegador incorporado do &akregator; ou abertas num navegador externo.</para>
+</sect1>
+
+<sect1 id="rss-and-atom-feeds">
+<title
+>Fontes de <acronym
+>RSS</acronym
+> e Atom</title>
+
+<para
+>O <acronym
+>RSS</acronym
+> (Really Simple Syndication) é um formato baseado em XML para publicar notícias ou artigos de uma forma legível para as máquinas. Um arquivo <acronym
+>RSS</acronym
+> é também chamado de fonte. Um programa que possa ser usado para ler essas fontes chama-se agregador ou leitor de fontes de notícias, daí o nome do aplicativo, &akregator;.</para>
+
+<para
+>O &akregator; extrai automaticamente os itens novos da fonte e exibe-os, de forma amigável, para o usuário. Ele poderá, deste modo, poupar tempo nas páginas Web visitadas com frequência, uma vez que não precisam verificar mais se existem pedaços de informação disponíveis.</para>
+<para
+>O <acronym
+>RSS</acronym
+> está disponível em diferentes versões, incompatíveis entre si (criadas por empresas concorrentes): <acronym
+>RSS</acronym
+> 0.9, <acronym
+>RSS</acronym
+> 1.0 e <acronym
+>RSS</acronym
+> 2.0. O Atom também é uma linguagem de fontes baseada em &XML; que foi desenhada para satisfazer as necessidades dos blogs e páginas de notícias. Ele tenta também substituir as fontes de <acronym
+>RSS</acronym
+> e remover a irritação causada pelas incompatibilidades entre as versões do <acronym
+>RSS</acronym
+>.</para>
+
+</sect1>
+
+</chapter>
+
+<chapter id="quick-start">
+<title
+>Introdução Rápida ao &akregator;</title>
+
+<para
+>Esta seção descreve como começar a usar o &akregator;. Ela explica a interface do usuário e mostra-lhe como adicionar a sua própria fonte à lista. É particularmente interessante se você não estiver familiarizado com as fontes de notícias <acronym
+>RSS</acronym
+>/Atom e os seus agregadores de notícias. </para>
+
+<sect1 id="main-window">
+<title
+>A Janela Principal</title>
+<!--part of kontact
+say how to start it -->
+<para
+>Quando você inicia pela primeira vez o &akregator;, você vê a sua janela principal: <screenshot>
+<screeninfo
+>janela principal do &akregator;</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="main-window.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>janela principal do &akregator;</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para>
+
+<para
+>A janela principal consiste na lista de fontes, a lista de artigos e o visualizador de artigo. </para>
+<para
+>A lista de fontes está à esquerda, onde você tem as fontes de notícias que pode selecionar. Uma fonte de notícias é uma coleção de artigos; por exemplo, as notícias recentes de uma página de notícias ou os itens de um 'blog'. A lista padrão contém as fontes relacionadas com o projeto do &kde;, mas você poderá adicionar à vontade as suas próprias fontes e remover as que não lhe interessam. <screenshot>
+<screeninfo
+>Todos os artigos foram obtidos</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="main-window2.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Todos os artigos foram obtidos</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para>
+<para
+>No canto superior direito, você poderá ver a lista de artigos. Ela contém os artigos da lista selecionada na lista de fontes (se estiver vazia, você terá de obter as notícias da fonte em primeiro lugar). A lista mostra os destaques dos artigos, bem como a data de publicação dos mesmos. Por padrão, os artigos mais recentes estão no topo. <screenshot>
+<screeninfo
+>A lista de artigos</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="main-window3.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>A lista de artigos para uma fonte</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para>
+<para
+>Se você selecionar um artigo, ele será apresentado no visualizador de artigos na parte inferior direita. Dependendo da fonte, tanto poderá conter apenas um destaque, um pequeno resumo ou o conteúdo completo do artigo. <screenshot>
+<screeninfo
+>Lendo um artigo do Planet &kde;</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="main-window4.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Lendo um artigo do Planet &kde;</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para>
+</sect1>
+
+<sect1 id="add-feed">
+<title
+>Adicionar uma fonte</title>
+<para
+>O &akregator; oferece-lhe algumas fontes relacionadas com o &kde; - obviamente, você poderá querer adicionar as suas próprias fontes. Alguns bons candidatos serão as páginas de notícias que o usuário visita regularmente, por exemplo.</para>
+
+<itemizedlist>
+<listitem
+><para
+>Vá ao menu <guimenu
+>Fonte</guimenu
+> e escolha <guimenuitem
+>Adicionar uma Fonte...</guimenuitem
+> ou use o atalho pré-definido (<keycap
+>Ins</keycap
+>). Aparecerá então a janela a seguir, com um campo de texto <guilabel
+>URL da Fonte:</guilabel
+>. <screenshot>
+<screeninfo
+>Adicionar uma nova fonte</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="add-feed.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Adicionar uma nova fonte</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para
+></listitem>
+
+<listitem
+><para
+>Insira <userinput
+>www.slashdot.org</userinput
+> ou <userinput
+>http://www.slashdot.org</userinput
+> no campo de texto ao lado do <guilabel
+>URL da Fonte</guilabel
+> e clique <guibutton
+>OK</guibutton
+>. </para
+></listitem>
+<listitem
+><para
+>Aparecerá então a janela de configuração da fonte, onde você poderá definir as opções padrão. Quando estiver satisfeito, clique <guibutton
+>OK</guibutton
+> novamente. <screenshot>
+<screeninfo
+>A janela de propriedades da fonte</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="add-feed2.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>A janela de propriedades da fonte</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para
+></listitem>
+<listitem
+><para
+>Com isto, o Slashdot foi adicionado à sua lista de fontes. </para
+> </listitem>
+</itemizedlist>
+<para
+>Existem diversas outras formas de encontrar e adicionar fontes interessantes. Dentro do &kde;, as páginas Web navegadas com o &konqueror; irão mostrar o símbolo do &quot;RSS&quot; <inlinemediaobject
+> <imageobject
+> <imagedata fileref="feed.png" format="PNG"/> </imageobject
+> </inlinemediaobject
+> no canto inferior direito, se for detectada alguma fonte de notícias compatível na página Web. Basta clicar com o botão esquerdo no ícone e escolher a opção <guimenuitem
+>Adicionar a Fonte ao &akregator;</guimenuitem
+>: <screenshot
+> <screeninfo
+>Descobrir automaticamente as fontes no &konqueror;</screeninfo
+> <mediaobject
+> <imageobject
+><imagedata fileref="konq2.png" format="PNG"/></imageobject
+> <textobject
+><phrase
+>Descobrir automaticamente as fontes no &konqueror;</phrase
+></textobject
+> </mediaobject
+> </screenshot
+> Nas páginas com o &quot;RSS&quot; ou este ícone <inlinemediaobject
+> <imageobject
+> <imagedata fileref="rss.png" format="PNG"/> </imageobject
+> </inlinemediaobject
+>, clique com o botão direito no ícone e escolha a opção do menu de contexto <guimenuitem
+>Copiar endereço do link</guimenuitem
+>: <screenshot>
+      <screeninfo
+>Descobrir automaticamente fontes através do &konqueror;</screeninfo>
+      <mediaobject>
+        <imageobject
+><imagedata fileref="konq.png" format="PNG"/></imageobject>
+        <textobject
+><phrase
+>Descobrir automaticamente fontes através do &konqueror;</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para>
+<para
+>Mude para o &akregator;, selecione <guimenuitem
+>Adicionar fonte...</guimenuitem
+> e a <guilabel
+>URL da fonte</guilabel
+> será preenchida com o endereço do link. </para>
+
+<para
+>Todas as fontes de notícias adicionadas com este procedimento aparecem sob a pasta <guilabel
+>Fontes importadas</guilabel
+> na lista de fontes e, a partir daí, você poderá usar o seu mouse para arrastá-las para uma pasta diferente. </para>
+</sect1>
+
+<sect1 id="creating-folder">
+<title
+>Criar uma Pasta</title>
+<para
+>Depois de adicionar as suas próprias fontes, você poderá agrupá-las de alguma forma, em vez de deixá-las desordenadas. Para isso, será criada agora uma pasta para a fonte do Slashdot adicionada há pouco:</para>
+<itemizedlist>
+<listitem
+><para
+>Selecione a pasta-mãe da nova pasta. Neste exemplo, foi selecionada a pasta <guilabel
+>Todas as Fontes</guilabel
+>. </para
+></listitem>
+<listitem
+><para
+>Abra a opção <menuchoice
+><guimenu
+>Fonte</guimenu
+> <guimenuitem
+>Nova pasta...</guimenuitem
+></menuchoice
+>. Insira <userinput
+>Notícias</userinput
+> (ou arranje outro nome melhor para atribuir à categoria) no campo de texto e clique <guibutton
+>OK</guibutton
+>. <screenshot>
+<screeninfo
+>A janela de Nova Pasta</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="add-folder.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>A janela de Nova Pasta</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para
+> </listitem>
+<listitem
+><para
+>Agora você poderá arrastar a fonte do Slashdot para a pasta nova. <screenshot>
+<screeninfo
+>A pasta de Notícias na lista de fontes</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="add-folder2.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>A pasta de Notícias na lista de fontes</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para
+> </listitem>
+</itemizedlist>
+</sect1>
+
+<sect1 id="browsing-inside">
+<title
+>Navegar dentro do &akregator;</title>
+<para
+>Ao ler os artigos das fontes, você poderá querer normalmente ler a página Web que pertence ao artigo. Alguns artigos só contém o destaque, não o conteúdo de fato. Neste caso, você terá que visitar a página Web para ler o artigo completo. Ou talvez um artigo poderá apontar para uma determinada página Web ou você poderá estar lendo um 'blog' e deseje comentar um determinado item. Para essas situações, o &akregator; contém um navegador Web simples. Quando seguir uma ligação no visualizador de artigos, o &akregator; abre a ligação numa página nova.</para>
+<note
+><para
+>Lembre-se que o navegador no &akregator; não pretende substituir o seu navegador Web favorito. Este navegador pretende ser usado para ler os artigos, comentá-los ou seguir uma hiperligação rapidamente. Ele não foi criado para ser usado para navegar na Web de um modo geral. Faltam-lhe muitas funcionalidades que os navegadores Web oferecem.</para
+></note>
+</sect1>
+</chapter>
+
+<chapter id="configuration">
+<title
+>Configurar o &akregator;</title>
+<para
+>A maior parte das opções do &akregator; estão na janela de configuração do &akregator;. Esta janela poderá ser encontrada no menu em <menuchoice
+> <guimenu
+>Configurações</guimenu
+><guimenuitem
+>Configurar o &akregator;...</guimenuitem
+> </menuchoice
+></para>
+<sect1 id="general-tab">
+<title
+>Geral</title>
+<para
+>A página Geral contém as opções básicas e não categorizadas do &akregator;.</para>
+<screenshot>
+<screeninfo
+>A página Geral</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="general-tab.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>A página Geral</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Global</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Mostrar o ícone na área de notificação</guilabel
+></term>
+<listitem
+><para
+>Mostra o ícone do &akregator; na área de notificação.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Usar as notificações para todas as fontes</guilabel
+></term>
+<listitem
+><para
+>Configura as notificações globais para todas as fontes. Esta configuração irá substituir a específica de cada fonte. Quando estiver ativada, o &akregator; irá notificá-lo de todos os artigos novos obtidos em qualquer fonte. Se você quiser ativar as notificações apenas para algumas fontes, não para todas, deixe esta opção desativada e ative-a apenas para cada fonte específica, usando a janela de propriedades da fonte.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Utilizar transferência por intervalo</guilabel
+></term>
+<listitem
+><para
+>Se esta opção não estiver assinalada, a opção a seguir não ficará disponível. Se estiver, por outro lado, você poderá definir na opção <guilabel
+>Obter as fontes a cada:</guilabel
+> o intervalo para o &akregator; transferir as fontes. Lembre-se que a transferência dos artigos gera tráfego e, deste modo, poderá ter custos para a fonte de onde está lendo. Algumas páginas até poderão bloqueá-lo, se consultar a fonte com demasiada frequência. De um modo geral, 30 minutos é uma boa escolha. </para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Transferir as fontes a cada:</guilabel
+></term>
+<listitem
+><para
+>Isto fica ativado quando a opção <guilabel
+>Usar a transferência por intervalo</guilabel
+> estiver assinalada. Você poderá definir um intervalo de tempo, ao fim do qual as fontes são verificadas à procura de novos artigos. O padrão é de um intervalo de 30 minutos.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Inicialização</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Marcar todas as fontes como lidas na inicialização</guilabel
+></term>
+<listitem
+><para
+>Quando a opção estiver ativa, o &akregator; marca todos os artigos como lidos, quando for iniciado.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Obter todas as fontes na inicialização</guilabel
+></term>
+<listitem
+><para
+>Quando a opção estiver assinalada, o &akregator; obtém todas as fontes, logo após a inicialização.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Rede</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Usar a 'cache' do navegador (menos tráfego de rede)</guilabel
+></term>
+<listitem
+><para
+>Quando estiver ativada a opção, é usada a 'cache' global do navegador do &kde;, ao se atualizarem as fontes. Você poderá configurar a 'cache' do &kde; no diálogo de configuração do &konqueror;.</para>
+<note
+><para
+>Você deverá deixar esta opção ativada sempre que possível. Se desativá-la, ocorrerá um aumento no tráfego de rede. O tráfego causado pelos agregadores que não usam a 'cache' aumentam os custos dos fornecedores, diminuindo assim a quantidade de notícias oferecidas por parte das fontes no futuro.</para
+></note>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+
+<sect1 id="share-services-tab">
+<title
+>Serviços de compartilhamento</title>
+<para
+>Esta funcionalidade usa o serviço de microblog do &plasma; para ajudá-lo a compartilhar notícias com os seus amigos através dos serviços de microblog (identi.ca e twitter). A publicação terá o título do artigo e um link para ele</para>
+<screenshot>
+<screeninfo
+>Aba Serviços de compartilhamento</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="share-services-tab.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Aba Serviços de compartilhamento</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+
+<para
+>Selecione uma <guilabel
+>URL de serviço</guilabel
+> e indique o seu <guilabel
+>Nome de usuário</guilabel
+> para este serviço. </para>
+
+</sect1>
+ 
+<sect1 id="archive-tab">
+<title
+>Arquivo</title>
+<para
+>O arquivo de artigos significa o armazenamento das referências aos mesmos. Aqui você poderá limitar o número de artigos arquivados e a forma como esse arquivamento é feito. Estas opções são globais e usadas por padrão por todas as fontes do &akregator;. Se você quiser usar uma configuração personalizada para uma determinada fonte, você poderá configurá-la na janela de propriedades de cada fonte, na página de Arquivo.</para>
+<screenshot>
+<screeninfo
+>A página de Arquivo</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="archive-tab.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>A página de Arquivo</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Configurações Padrão do Arquivo</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Manter todos os artigos</guilabel
+></term>
+<listitem
+><para
+>Todos os artigos são mantidos para sempre.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Limitar o tamanho do arquivo de fontes de notícias em:</guilabel
+></term
+> 
+<listitem
+><para
+>Se o número de artigos exceder o limite escolhido, são removidos os artigos mais antigos. Lembre-se que os artigos marcados são ignorados, ao contar o número de artigos: se o seu limite for de 500, e se você tiver 510 não-marcados e 50 marcados, o &akregator; irá ignorar os 50 marcados e só irá remover os 10 artigos mais antigos. Por isso, no total, serão mantidos 550 artigos.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Excluir os artigos mais antigos que:</guilabel
+></term>
+<listitem
+><para
+>Os artigos que tenham mais de 'n' dias são removidos do arquivo, a menos que tenham a opção para manter ativa. O &akregator; verifica os artigos expirados na inicialização e, depois disso, a cada hora - assim, a expiração poderá ser adiada.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Desabilitar arquivamento</guilabel
+></term>
+<listitem
+><para
+>Não são guardados artigos - todos os artigos são apagados ao sair do &akregator;.</para
+> </listitem>
+</varlistentry>
+</variablelist>
+
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Não expirar artigos importantes</guilabel
+></term>
+<listitem
+><para
+>Clicar com o botão direito num artigo, irá abrir um menu de contexto, onde você poderá marcar esse artigo como Importante. Os artigos marcados como Importantes não irão expirar, mantendo-se sempre presentes.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+<sect1 id="appearance-tab">
+<title
+>Aparência</title>
+<para
+>Nesta página, você poderá configurar a aparência do visualizador do artigo e as páginas do navegador. Você poderá definir as cores, os tamanhos de fonte e as famílias a usar. </para>
+<screenshot>
+<screeninfo
+>A página de Aparência</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="appearance-tab.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>A página de Aparência</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Cores da lista de artigos</guilabel
+></term>
+<listitem
+><para
+>Se selecionar a opção <guilabel
+>Usar cores personalizadas</guilabel
+>, você poderá selecionar as suas próprias cores para os <guilabel
+>Artigos não-lidos</guilabel
+> e os <guilabel
+>Artigos novos</guilabel
+></para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Tamanho da Fonte</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Tamanho de fonte mínimo</guilabel
+></term>
+<listitem
+><para
+>Define o tamanho de fonte mínimo para o visualizador de artigos</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Tamanho de fonte médio</guilabel
+></term>
+<listitem
+><para
+>Define o tamanho de fonte padrão para o visualizador de artigos</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Fontes</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Fonte padrão:</guilabel
+></term>
+<listitem
+><para
+>No visualizador de artigos, o conteúdo é apresentado com o tipo de fonte Normal e com o tamanho Médio. Se você mudar a fonte Normal, a alteração será aplicada no visualizador do artigo.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Fonte de largura fixa:</guilabel
+></term>
+<listitem
+><para
+>Se o artigo usar uma fonte monoespaçada, no visualizador de artigos, o conteúdo será apresentado com este tipo de fonte, usando um tamanho Médio. </para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Fonte com serifa:</guilabel
+></term>
+<listitem
+><para
+>Se no artigo existirem fontes Serif, o conteúdo será apresentado com a família de tipo de fonte que selecionar, usando um tamanho Médio.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Fonte Sans Serif:</guilabel
+></term>
+<listitem
+><para
+>Se no artigo existirem fontes Sans-Serif, o conteúdo será apresentado com a família de tipo de fonte que selecionar, usando um tamanho Médio.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Sublinhar as ligações</guilabel
+></term>
+<listitem
+><para
+>Assinale esta opção se quiser que as hiperligações apareçam sublinhadas por padrão.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+<sect1 id="browser-tab">
+<title
+>Navegador</title>
+<para
+>Esta página permite-lhe personalizar o comportamento da páginas internas do navegador.</para>
+<screenshot>
+<screeninfo
+>A página do Navegador</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="browser-tab.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>A página do Navegador</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Botão esquerdo do mouse</guilabel
+></term>
+<listitem
+><para
+>Você poderá escolher três ações para a ação do botão esquerdo do mouse: <guilabel
+>Abrir numa Página</guilabel
+> (abre a hiperligação numa página e coloca essa página em primeiro plano), <guilabel
+>Abrir numa Página em Segundo Plano</guilabel
+> (abrir a ligação numa página, mas mantendo a página atual em primeiro plano) e a opção <guilabel
+>Abrir num Navegador Externo</guilabel
+> para abrir um artigo em uma janela nova, com o seu navegador padrão.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Botão do meio do mouse</guilabel
+></term>
+<listitem
+><para
+>Como acima, você poderá definir uma das três ações para o botão do meio do mouse.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Para navegação externa</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Usar o navegador Web padrão</guilabel
+></term>
+<listitem
+><para
+>Se esta opção estiver assinalada, o &akregator; irá usar o navegador Web que tiver definido no &systemsettings;. Ele poderá ser o padrão do &kde;, o &konqueror; ou outro navegador, dependendo do que definir aqui.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Usar este comando:</guilabel
+></term>
+<listitem
+><para
+>Você poderá usar outro navegador Web para o &akregator; que não o padrão para o &kde;. Caso isso aconteça, assinale essa opção e insira o comando para o navegador, assumindo que ele está na sua $<envar
+>PATH</envar
+>.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Mostrar botão de fechar página ao passar</guilabel
+></term>
+<listitem
+><para
+>Se esta opção estiver assinalada, o botão para fechar irá aparecer, quando passar o cursor do mouse pelo lado esquerdo do título do separador da página, para que possa fechá-la facilmente.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+<sect1 id="advanced-tab">
+<title
+>Avançado</title>
+<para
+>A página Avançado permite-lhe definir as opções mais avançadas. Se você não tiver certeza do que estas opções fazem, poderá deixá-las com as opções padrão.</para>
+<screenshot>
+<screeninfo
+>A página Avançado</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="advanced-tab.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>A página Avançado</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Arquivo</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Infraestrutura do arquivo:</guilabel
+></term>
+<listitem
+><para
+>O &akregator; só suporta atualmente o banco de dados Metakit. </para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Lista de Artigos</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Marcar o artigo selecionado como lido ao fim de</guilabel
+></term>
+<listitem
+><para
+>Por padrão, o valor é igual a 0 segundos, o que significa que, assim que clicar no artigo, ele é marcado como lido. Você poderá optar por marcar todos os artigos como lidos ao fim de 'n' segundos.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Restaurar a barra de pesquisa ao alterar de fontes de notícias</guilabel
+></term>
+<listitem
+><para
+>Isto irá limpar a barra de procura quando mudar de fonte.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+</chapter>
+
+<chapter id="commands">
+<title
+>Referência de comandos</title>
+
+<sect1 id="akregator-mainwindow">
+<title
+>Menus e Teclas de Atalho</title>
+
+<sect2>
+<title
+>Menu Arquivo</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Arquivo</guimenu
+> <guimenuitem
+>Importar as Fontes...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Abre</action
+> a caixa de diálogo de importação de fontes de notícias para carregar os <quote
+>Formatação compatível com OPML</quote
+> com as inscrições em fontes de notícias. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Arquivo</guimenu
+> <guimenuitem
+>Exportar as Fontes...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Abre</action
+> a caixa de diálogo de gravação e exporte as suas fontes e estruturas de pastas como um arquivo <filename class="extension"
+>.opml</filename
+>.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Arquivo</guimenu
+> <guimenuitem
+>Sair</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Sai</action
+> do &akregator;</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2>
+<title
+>Menu Editar</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycap
+>F2</keycap
+> </shortcut
+> <guimenu
+>Editar</guimenu
+> <guimenuitem
+>Editar a Fonte...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Edita</action
+> a fonte atual para modificar as suas propriedades na janela de Propriedades</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;<keycap
+>Del</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Editar</guimenu
+> <guimenuitem
+>Excluir fonte</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Apaga</action
+> a fonte atual</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2>
+<title
+>Menu Exibir</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>1</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Ver</guimenu
+><guimenuitem
+>Vista Normal</guimenuitem
+></menuchoice
+>, <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>2</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Ver</guimenu
+><guimenuitem
+>Vista Panorâmica</guimenuitem
+> </menuchoice
+> e <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>3</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Ver</guimenu
+><guimenuitem
+>Vista Combinada</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Seleciona</action
+> o Modo de Visualização do &akregator;</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>+</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Exibir</guimenu
+><guimenuitem
+>Aumentar fonte</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Aumenta</action
+> o tamanho da fonte no visualizador de artigos</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>-</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Exibir</guimenu
+><guimenuitem
+>Diminuir fonte</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Diminui</action
+> o tamanho da fonte no visualizador de artigos</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2>
+<title
+>Menu Ir</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>Esquerda</keycap
+></shortcut
+> <guimenu
+>Ir</guimenu
+> <guimenuitem
+>Artigo Anterior</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Vai</action
+> para o artigo anterior na lista de artigos</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>-</keycap
+></shortcut
+> <guimenu
+>Ir</guimenu
+> <guimenuitem
+>Artigo Não-Lido Anterior</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Vai</action
+> para o artigo não-lido anterior na lista de artigos</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>Direita</keycap
+></shortcut
+> <guimenu
+>Ir</guimenu
+> <guimenuitem
+>Artigo Seguinte</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Vai</action
+> para o artigo seguinte na lista de artigos</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>+</keycap
+></shortcut
+> <guimenu
+>Ir</guimenu
+> <guimenuitem
+>Artigo Não-Lido Seguinte</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Vai</action
+> para o próximo artigo não-lido na lista de artigos</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>P</keycap
+></shortcut
+> <guimenu
+>Ir</guimenu
+> <guimenuitem
+>Fonte Anterior</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Vai</action
+> para a fonte anterior na lista de fontes</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Alt;<keycap
+>-</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Ir</guimenu
+> <guimenuitem
+>Fonte Não-Lida Anterior</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Vai</action
+> para a fonte não-lida anterior na lista de fontes</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>N</keycap
+></shortcut
+> <guimenu
+>Ir</guimenu
+> <guimenuitem
+>Fonte Seguinte</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Vai</action
+> para a fonte seguinte na lista de fontes</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Alt;<keycap
+>+</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Ir</guimenu
+> <guimenuitem
+>Fonte Não-Lida Seguinte</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Vai</action
+> para a fonte não-lida seguinte na lista de fontes</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2>
+<title
+>Menu <guimenu
+>Fonte de notícias</guimenu
+></title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>Ins</keycap
+></shortcut
+> <guimenu
+>Fonte de notícias</guimenu
+> <guimenuitem
+>Adicionar fonte...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Abre</action
+> a janela para Adicionar uma Fonte</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Shift;<keycap
+>Ins</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Fonte de notícias</guimenu
+> <guimenuitem
+>Nova pasta...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Abre</action
+> a janela para Adicionar uma Pasta</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>R</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Fonte</guimenu
+> <guimenuitem
+>Marcar a Fonte como Lida</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Marca</action
+> a fonte atual como lida na totalidade</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl; &Shift;<keycap
+>R</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Fonte</guimenu
+> <guimenuitem
+>Marcar Todas as Fontes como Lidas</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Marca</action
+> todas as fontes como lidas na totalidade</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>F5</keycap
+></shortcut
+> <guimenu
+>Fonte</guimenu
+> <guimenuitem
+>Transferir a Fonte</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Obtém</action
+> o conteúdo atual da fonte</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>L</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Fonte</guimenu
+> <guimenuitem
+>Transferir Todas as Fontes</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Obtém</action
+> o conteúdo de todas as fontes</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>Esc</keycap
+></shortcut
+> <guimenu
+>Fonte de notícias</guimenu
+> <guimenuitem
+>Cancelar as atualizações de fontes de notícias</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Interrompe</action
+> a transferência de conteúdos por parte do &akregator;</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2>
+<title
+>Menu Artigo</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Shift;<keycap
+>Return</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Artigo</guimenu
+> <guimenuitem
+>Abrir numa Página</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Abre</action
+> o artigo atual numa página dentro do &akregator;</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>Return</keycap
+></shortcut
+> <guimenu
+>Artigo</guimenu
+> <guimenuitem
+>Abre em aba no plano de fundo</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Carrega</action
+> o artigo atual em uma nova aba, mas não a ativa automaticamente. Isto é útil para navegar por uma fonte, abrir todos os artigos interessantes em segundo plano para leitura posterior. </para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl; &Shift;<keycap
+>Return</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Artigo</guimenu
+> <guimenuitem
+>Abrir num Navegador Externo</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Abre</action
+> o artigo atual num navegador Web externo</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>I</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Artigo</guimenu
+> <guimenuitem
+>Marcar como Importante</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Marca</action
+> o artigo atual como importante</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Artigo</guimenu
+> <guimenuitem
+>Marcar como</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Marca</action
+> o artigo selecionado como Lido <keycombo action="simul"
+>&Ctrl;<keycap
+>E</keycap
+></keycombo
+>, Novo <keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo
+> ou Não lido <keycombo action="simul"
+>&Ctrl;<keycap
+>U</keycap
+></keycombo
+></para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>Del</keycap
+></shortcut
+> <guimenu
+>Artigo</guimenu
+> <guimenuitem
+>Excluir</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Remove</action
+> o artigo atual</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Artigo</guimenu
+> <guimenuitem
+>Enviar o Endereço da Ligação...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Abre</action
+> o seu cliente de e-mail e anexa o endereço na mensagem de e-mail.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Artigo</guimenu
+> <guimenuitem
+>Enviar um Arquivo...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Abre</action
+> o seu cliente de e-mail e anexa o arquivo na mensagem de e-mail. </para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>S</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Artigo</guimenu
+> <guimenuitem
+>Compartilhar artigo</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Ao usar esta ação, você poderá compartilhar notícias com seus amigos, usando os serviços de microblog identi.ca e twitter. </para
+></listitem>
+</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2>
+<title
+>Menu Configurações</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Configurações</guimenu
+> <guimenuitem
+>Mostrar o Filtro Rápido</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Ativa ou desativa</action
+> o Filtro Rápido (mostra-o ou esconde-o) <screenshot>
+<screeninfo
+>O Filtro Rápido</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="quick-filter.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>O Filtro Rápido</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+
+<para
+>O &akregator; possui os itens dos menus <guimenu
+>Configurações</guimenu
+> e <guimenu
+>Ajuda</guimenu
+>, comuns do &kde;. Para mais informações, consulte as seções sobre o <ulink url="help:/fundamentals/ui.html#menus-settings"
+>Menu Configurações</ulink
+> e o <ulink url="help:/fundamentals/ui.html#menus-help"
+>Menu Ajuda</ulink
+> dos Fundamentos do &kde;. </para>
+
+<para
+>Muitas ações existentes no menu também estão disponíveis nos menus de contexto da lista de fontes de notícias, na lista de artigos e no visualizador do artigo. </para>
+
+</sect2>
+
+</sect1>
+</chapter>
+
+<chapter id="credits">
+
+<title
+>Créditos e licença</title>
+
+<para
+>&akregator; </para>
+<para
+>Direitos autorais do programa 2004-2010 dos autores do Akregator </para>
+
+<para
+>Documentação com 'copyright' 2006 de Frank Osterfeld <email
+>frank.osterfeld@kdemail.net</email
+> </para>
+
+<para
+>Documentação com 'copyright' 2006 de &Anne-Marie.Mahfouf; &Anne-Marie.Mahfouf.mail; </para>
+
+<para
+>Tradução de Marcus Gama <email
+>marcus.gama@gmail.com</email
+></para
+> 
+&underFDL; &underGPL; </chapter>
+
+<appendix id="installation">
+<title
+>Instalação</title>
+
+<sect1 id="getting-akregator">
+<title
+>Como obter o &akregator;</title>
+&install.intro.documentation; </sect1>
+
+<sect1 id="compilation">
+<title
+>Compilação e instalação</title>
+&install.compile.documentation; </sect1>
+</appendix>
+
+&documentation.index;
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes: nil
+sgml-general-insert-case: lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+-->

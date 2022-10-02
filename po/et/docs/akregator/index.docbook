@@ -1,0 +1,1832 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY akregator        "<application
+>Akregator</application
+>">
+  <!ENTITY kappname "&akregator;">
+  <!ENTITY package "kdepim">
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Estonian  "INCLUDE">
+]>
+
+<book id="akregator" lang="&language;">
+
+<bookinfo id="akregatorinfo">
+<title
+>&akregator;i käsiraamat</title>
+
+<authorgroup>
+
+<author
+><firstname
+>Frank</firstname
+> <surname
+>Osterfeld</surname
+> <affiliation
+><address
+><email
+>frank.osterfeld@kdemail.net</email
+>  
+</address
+></affiliation>
+</author>
+<author
+><firstname
+>Anne-Marie</firstname
+> <surname
+>Mahfouf</surname
+> <affiliation
+><address
+>&Anne-Marie.Mahfouf.mail; </address
+></affiliation>
+</author>
+
+<othercredit role="translator"
+><firstname
+>Marek</firstname
+> <surname
+>Laane</surname
+><affiliation
+><address
+><email
+>bald@starman.ee</email
+></address
+></affiliation
+><contrib
+>Tõlge eesti keelde</contrib
+></othercredit
+> 
+</authorgroup>
+<copyright>
+<year
+>2006</year>
+<holder
+>Frank Osterfeld</holder>
+</copyright>
+<copyright>
+<year
+>2006</year>
+<holder
+>&Anne-Marie.Mahfouf;</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>2013-05-25</date>
+<releaseinfo
+>4.11 (&kde; 4.11)</releaseinfo>
+
+<!-- Abstract about this handbook -->
+
+<abstract>
+<para
+>&akregator; on rakendus <acronym
+>RSS</acronym
+>- ja teiste võrgu-uudistekanalite lugemiseks. </para>
+</abstract>
+
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>Akregator</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Sissejuhatus</title>
+
+<sect1 id="what-is-akregator">
+<title
+>Mis on &akregator;?</title>
+
+<para
+>&akregator; on &kde; rakendus uudistekanalite lugemiseks. Selle võimas ja kasutajasõbralik kasutajaliides võimaldab kanaleid nii lugeda kui ka neid hallata.</para>
+
+<para
+>&akregator; on lihtne ja kiire programm, mis näitab uudistekanalite pakutavaid uudiseid, toetades kõiki levinumaid <acronym
+>RSS</acronym
+>- ja Atom-kanalite versioone. Liides sarnaneb e-posti rakendustele, mis muudab kasutamise väga lihtsaks. Muu hulgas saab otsida artikleid pealkirjade järgi, paigutada kanaleid rühmadesse ning määrata kindlaks arhiveerimise sätted. Kanaleid saab lasta näidata samamoodi nagu e-kirju. Kanaliga seotud veebilehekülgi võib vaadata kas &akregator;isse põimitud brauseris või avada need välises brauseris.</para>
+</sect1>
+
+<sect1 id="rss-and-atom-feeds">
+<title
+><acronym
+>RSS</acronym
+>- ja Atom-kanalid</title>
+
+<para
+><acronym
+>RSS</acronym
+> (Real Simple Syndication) on &XML;-põhine vorming uudiste või artiklite avaldamiseks masinloetaval kujul. <acronym
+>RSS</acronym
+>- või Atom-faili nimetatakse ka kanaliks. Programmi, mis selliseid kanaleid loeb, nimetatakse uudistelugejaks või agregaatoriks. Viimasest tuleneb ka rakenduse &akregator; nimi.</para>
+
+<para
+>&akregator; eraldab automaatselt kanalist üksikud elemendid ehk uudised ja näitab neid kasutajale. Nii võidab kasutaja ohtralt aega, sest ei pea enam regulaarselt veebilehele minema, et uut infot otsida.</para>
+<para
+><acronym
+>RSS</acronym
+>-il on mitu, omavahel ühildumatut versiooni (need on loonud omavahel konkureerivad firmad): <acronym
+>RSS</acronym
+> 0.9, <acronym
+>RSS</acronym
+> 1.0 ja <acronym
+>RSS</acronym
+> 2.0. Atom on samuti &XML;-põhine uudistekanalite keel, mis loodi spetsiifilisemalt veebipäevikute pidajate ja uudistesaitide vajadustest lähtuvalt. Ühtlasi üritab Atom asendada <acronym
+>RSS</acronym
+>-kanaleid ja kõrvaldada probleemid, mida tekitavad ühildumatud <acronym
+>RSS</acronym
+>-i versioonid.</para>
+
+</sect1>
+
+</chapter>
+
+<chapter id="quick-start">
+<title
+>&akregator;i kiirtutvustus</title>
+
+<para
+>Käesolev osa tutvustab, kuidas &akregator;it kasutama hakata. Siin selgitatakse kasutajaliidese komponente ja õpetatakse, kuidas lisada nimekirja omaenda kanaleid. Seda tasuks eriti lugeda neil, kellel pole seni olnud kokkupuuteid <acronym
+>RSS</acronym
+>/Atomi kanalitega ja uudistekanalite lugemise rakendustega. </para>
+
+<sect1 id="main-window">
+<title
+>Peaaken</title>
+<!--part of kontact
+say how to start it -->
+<para
+>&akregator;i esmakäivitusel näeb peaakent: <screenshot>
+<screeninfo
+>&akregator;i peaaken</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="main-window.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>&akregator;i peaaken</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para>
+
+<para
+>Peaaken koosneb kanalite nimekirjast, artiklite nimekirjast ja artiklite näitajast. </para>
+<para
+>Kanalite nimekiri asub vasakul. Puus leiab kõik olemasolevad uudistekanalid. Uudistekanal kujutab endast artiklite kogu, näiteks uudistesaidi viimaseid uudiseid või veebipäeviku uusi kirjeid. Vaikimisi on nimekirjas &kde;-ga seotud uudistekanalid, aga otse loomulikult võid sa kanaleid ise lisada ja ebavajalikke eemaldada. <screenshot>
+<screeninfo
+>Kõik artiklid on tõmmatud</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="main-window2.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Kõik artiklid on tõmmatud</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para>
+<para
+>Paremal ülal asub artiklite nimekiri. Selles leiduvad kanalite nimekirjas valitud uudistekanali artiklid (kui artiklite nimekiri on tühi, tuleb kõigepealt artiklid tõmmata). Nimekiri näitab artiklite pealkirju ja nende avaldamise aega. Vaikimisi on uusimad artiklid kõige ees. <screenshot>
+<screeninfo
+>Artiklite nimekiri</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="main-window3.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Ühe kanali artiklite nimekiri</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para>
+<para
+>Artiklit valides näidatakse seda paremal all asuvas artiklite näitajas. Sõltuvalt kanalist võib seal näha kas ainult pealkirja, lühikokkuvõtet või ka terve artiklit. <screenshot>
+<screeninfo
+>Planet &kde; artikli lugemine</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="main-window4.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Planet &kde; artikli lugemine</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para>
+</sect1>
+
+<sect1 id="add-feed">
+<title
+>Kanali lisamine</title>
+<para
+>&akregator; pakub vaikimisi mõningaid &kde;-ga seotud uudistekanaleid. Sa võid neile lisada muid vajalikke ja meelepäraseid kanaleid, näiteks selliste saitide uudised, mida sa nagunii regulaarselt külastad.</para>
+
+<itemizedlist>
+<listitem
+><para
+>Vali menüüst <guimenu
+>Kanal</guimenu
+> käsk <guimenuitem
+>Lisa kanal...</guimenuitem
+> või kasuta vaikimisi kiirklahvi (<keycap
+>Ins</keycap
+>). Ilmub järgmine dialoog, mille sisendrida kannab nimetust <guilabel
+>Kanali URL:</guilabel
+>. <screenshot>
+<screeninfo
+>Uue kanali lisamine</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="add-feed.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Uue kanali lisamine</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para
+></listitem>
+
+<listitem
+><para
+>Kirjuta <guilabel
+>Kanali URL</guilabel
+> järele näiteks <userinput
+>www.slashdot.org</userinput
+> või <userinput
+>http://www.slashdot.org </userinput
+>ja klõpsa <guibutton
+>OK</guibutton
+>. </para
+></listitem>
+<listitem
+><para
+>Ilmub kanali seadistustedialoog, kus saad valida vaikeväärtustest erinevad valikud. Kui kõik on seadistatud, klõpsa taas <guibutton
+>OK</guibutton
+>. <screenshot>
+<screeninfo
+>Kanali omaduste dialoog</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="add-feed2.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Kanali omaduste dialoog</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para
+></listitem>
+<listitem
+><para
+>Nüüd ongi Slashdot sinu kanalite nimekirja lisatud. </para
+> </listitem>
+</itemizedlist>
+<para
+>Huvipakkuvaid kanaleid saab leida ja lisada veel mitmel viisil. &kde;-d kasutades näitab &konqueror; veebisaitidel leitud &quot;RSS-vooge&quot;<inlinemediaobject
+> <imageobject
+> <imagedata fileref="feed.png" format="PNG"/> </imageobject
+> </inlinemediaobject
+> akna parempoolses alumises nurgas. Klõpsa lihtsalt ikoonile hiire vasaku nupuga ja vali <guimenuitem
+>Lisa kanal &akregator;ile</guimenuitem
+>: <screenshot
+> <screeninfo
+>Kanalite automaatne leidmine &konqueror;is</screeninfo
+> <mediaobject
+> <imageobject
+><imagedata fileref="konq2.png" format="PNG"/></imageobject
+> <textobject
+><phrase
+>Kanalite automaatne leidmine &konqueror;is</phrase
+></textobject
+> </mediaobject
+> </screenshot
+> Lehekülgedel, kus on RSS-i ikoon või ikoon <inlinemediaobject
+> <imageobject
+> <imagedata fileref="rss.png" format="PNG"/> </imageobject
+> </inlinemediaobject
+>, klõpsa ikoonile hiire parema nupuga ja vali kontekstimenüüst käsk <guimenuitem
+>Kopeeri lingi aadress</guimenuitem
+>: <screenshot>
+      <screeninfo
+>Kanalite automaatne leidmine &konqueror;is</screeninfo>
+      <mediaobject>
+        <imageobject
+><imagedata fileref="konq.png" format="PNG"/></imageobject>
+        <textobject
+><phrase
+>Kanalite automaatne leidmine &konqueror;is</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para>
+<para
+>Lülitu &akregator;ile, vali <guimenuitem
+>Lisa kanal...</guimenuitem
+> ning <guilabel
+>Kanali URL</guilabel
+> ongi juba täidetud lingi aadressiga. </para>
+
+<para
+>Kõik sel moel lisatud kanalid ilmuvad kanaliloendis kaustas <guilabel
+>Imporditud kanalid</guilabel
+>, kust neid saab vajaduse korral hiirega lohistada teise kataloogi. </para>
+</sect1>
+
+<sect1 id="creating-folder">
+<title
+>Kataloogi loomine</title>
+<para
+>Pärast oma kanalite lisamist võib tekkida soov neid mingil moel sorteerida. Loome selleks äsja lisatud Slashdoti kanalile omaette kataloogi:</para>
+<itemizedlist>
+<listitem
+><para
+>Vali uue kataloogi ülemkataloog. Antud näites valime selleks <guilabel
+>Kõik kanalid</guilabel
+>. </para
+></listitem>
+<listitem
+><para
+>Vali <menuchoice
+><guimenu
+>Kanal</guimenu
+> <guimenuitem
+>Uus kataloog...</guimenuitem
+></menuchoice
+> Kirjuta sisestusreale <userinput
+>Uudised</userinput
+> (või mis tahes sulle sobivana tunduv nimetus) ja klõpsa <guibutton
+>OK</guibutton
+>. <screenshot>
+<screeninfo
+>Uue kataloogi dialoog</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="add-folder.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Uue kataloogi dialoog</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para
+> </listitem>
+<listitem
+><para
+>Nüüd võid lohistada Slashdoti kanali uude kataloogi. <screenshot>
+<screeninfo
+>Uudiste kataloog kanalite nimekirjas</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="add-folder2.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Uudiste kataloog kanalite nimekirjas</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para
+> </listitem>
+</itemizedlist>
+</sect1>
+
+<sect1 id="browsing-inside">
+<title
+>Veebilehitsemine &akregator;is</title>
+<para
+>Kanali artikleid lugedes võib tihtipeale tekkida soov lugeda veebilehekülge, kust artikkel on pärit: mõnigi artikkel sisaldab ainult pealkirja, mitte aga sisu. Sel juhul tuleb terve artikli lugemiseks külastada veebilehekülge. Samasugune vajadus võib tekkida siis, kui artiklis on viidad mõnele muule veebileheküljele, või kui sa loed veebipäevikut ja soovid midagi kommenteerida. Sellisteks juhtumiteks pakub &akregator; omalt poolt välja väga lihtsa brauseri. Kui klõpsad artiklite näitajas viidale, avab &akregator; selle uuel kaardil.</para>
+<note
+><para
+>Pane tähele, et &akregator;i brauser ei ole mõeldud asendama sinu lemmikbrauserit. See on mõeldud artiklite lugemiseks, nende kommenteerimiseks või viitade kiireks avamiseks. See ei ole mõeldud kõikvõimalikuks veebilehitsemiseks, sest sellel puuduvad paljud täiemahuliste brauserite omadused.</para
+></note>
+</sect1>
+</chapter>
+
+<chapter id="configuration">
+<title
+>&akregator;i seadistamine</title>
+<para
+>Enamiku &akregator;i seadistamisvalikuid leiab &akregator;i seadistustedialoogist. Selle saab avada menüükäsuga <menuchoice
+> <guimenu
+>Seadistused</guimenu
+><guimenuitem
+>&akregator;i seadistamine...</guimenuitem
+> </menuchoice
+></para>
+<sect1 id="general-tab">
+<title
+>Üldine</title>
+<para
+>Kaardil Üldine paiknevad &akregator;i kõige peamised valikud, aga ka mõned valikud, mis mujale ei sobi.</para>
+<screenshot>
+<screeninfo
+>Kaart Üldine</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="general-tab.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Kaart Üldine</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Globaalne</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Paneeliikooni näitamine</guilabel
+></term>
+<listitem
+><para
+>&akregator;i ikooni näidatakse süsteemses salves.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Kõigil kanalitel kasutatakse märguandeid</guilabel
+></term>
+<listitem
+><para
+>Määrab globaalsed märguanded kõigile kanalitele. See valik tühistab kõik kanalitele määratud individuaalsed märguanded. Sisselülitamisel annab &akregator; märku kõigi kanalite uutest artiklitest. Kui soovid kasutada märguandeid ainult mõne, mitte kõigi kanalite korral, jäta see valik sisse lülitamata ning määra vajalikele kanalitele märguanded kanali omaduste dialoogis.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Kasutatakse intervalliga tõmbamist</guilabel
+></term>
+<listitem
+><para
+>Kui see on märkimata, on ka intervalliga tõmbamine keelatud. Kui see on aga märgitud, saad kastis <guilabel
+>Kanalid tõmmatakse iga:</guilabel
+> määrata intervalli, mille järel &akregator; automaatselt kontrollib, kas kanalites on uusi kirjeid. Pane tähele, et artiklite tõmbamine tekitab omajagu veebiliiklust ja võib kaasa tuua raskusi kanali pakkujale. Mõned saidid võivad isegi blokeerida sinu arvutist tulevad ühendused, kui sa neid liiga sageli külastad. Üldiselt on mõistlik intervall 30 minutit. </para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Kanalid tõmmatakse iga:</guilabel
+></term>
+<listitem
+><para
+>Seda valikut saab kasutada, kui sisse on lülitatud valik <guilabel
+>Kasutatakse intervalliga tõmbamist</guilabel
+>. Siin saab määrata ajavahemiku, mille järel kontrollitakse, kas kanalitel on uusi artikleid. Vaikimisi on intervalliks 30 minutit.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Käivitumine</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Kõik kanalid märgitakse käivitumisel loetuks</guilabel
+></term>
+<listitem
+><para
+>Sisselülitamisel märgib &akregator; käivitumisel kõik artiklid loetuks.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Kõik kanalid tõmmatakse käivitumisel</guilabel
+></term>
+<listitem
+><para
+>Sisselülitamisel tõmbab &akregator; kõik kanalid kohe pärast käivitumist.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Võrk</guilabel
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Veebilehitseja puhvri kasutamine (vähendab liiklust)</guilabel
+></term>
+<listitem
+><para
+>Sisselülitamisel kasutatakse kanalite uuendamisel kogu &kde;-s kehtivaid brauseri puhvri seadistusi. &kde;s kasutatavat puhvrit saab seadistada &konqueror;i seadistustedialoogis.</para>
+<note
+><para
+>Üldiselt oleks mõistlik seda valikut mitte välja lülitada. Väljalülitamise korral suureneb võrguliiklus. Puhverdamist mittekasutatavate uudistelugejate tekitatud liiklus suurendab uudistepakkujate koormust, mis võib kaasa tuua isegi pakutavate kanalite vähendamise.</para
+></note>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+
+<sect1 id="share-services-tab">
+<title
+>Jagamisteenused</title>
+<para
+>Siin kasutatakse &plasma; mikroblogimise teenust, mis aitab jagada uudiseid sõpradega mõne mikroblogiteenuse (identi.ca ja twitter) vahendusel. Postitustel on artikli pealkiri ja link sellele.</para>
+<screenshot>
+<screeninfo
+>Kaart Jagamisteenused</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="share-services-tab.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Kaart Jagamisteenused</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+
+<para
+>Vali <guilabel
+>teenuse URL</guilabel
+> ja kirjuta oma selle teenuse <guilabel
+>kasutajanimi</guilabel
+>. </para>
+
+</sect1>
+ 
+<sect1 id="archive-tab">
+<title
+>Säilitamine</title>
+<para
+>Artiklite säilitamine tähendab artiklite viitade säilitamist. Siin saab piirata säilitatavate artiklite arvu ja määrata säilitamiseks kasutatava meetodi. Need on globaalsed seadistused, mida kasutatakse kõigi &akregator;i kanalite puhul. Kui soovid mõne kanali puhul neid muuta, tuleb seda teha vajaliku kanali omaduste dialoogi säilitamise kaardil.</para>
+<screenshot>
+<screeninfo
+>Kaart Säilitamine</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="archive-tab.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Kaart Säilitamine</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Säilitamise vaikeseadistused</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Kõik artiklid hoitakse alles</guilabel
+></term>
+<listitem
+><para
+>Kõik artiklid hoitakse igavesti alles.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Säilitamise limiit:</guilabel
+></term
+> 
+<listitem
+><para
+>Kui artiklite arv ületab määratud piirangu, kustutatakse vanemad artiklid. Pane tähele, et artiklite arvu määramisel ei arvetata tähistatud artikleid: kui oled limiidiks valinud 500 ning sl on 510 tähistamata ja 50 tähistatud artiklit, eirab &akregator; 50 tähistatud artiklit ja kustutab ainult 10 vanemat tähistamata artiklit. See tähendab, et alles jäetakse kokku 550 artiklit.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Kustutatakse artiklid, mis on vanemad kui:</guilabel
+></term>
+<listitem
+><para
+>Artiklid, mis on vanemad kui määratud arv päevi, kustutatakse arhiivist, kui neid ei ole just säilitamiseks tähistatud. &akregator; kontrollib artiklite aegumist käivitamisel ja seejärel kord tunnis, mistõttu kustutamine käib teatud viivitusega.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Säilitamine keelatakse</guilabel
+></term>
+<listitem
+><para
+>Artikleid ei salvestata - kõik artiklid unustatakse &akregator;ist väljumisel.</para
+> </listitem>
+</varlistentry>
+</variablelist>
+
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Tähtsad artiklid ei aegu</guilabel
+></term>
+<listitem
+><para
+>Hiire parema nupuga artiklil klõpsates avaneb kontekstimenüü, mille abil saab artikli märkida tähtsaks. Tähtsaks märgitud artiklid ei aegu ja neid ei kustutata.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+<sect1 id="appearance-tab">
+<title
+>Välimus</title>
+<para
+>Sellel kaardil saab seadistada artiklite näitaja ja brauseri kaartide välimust. Siin saab määrata kasutatavate värvid, fontide suuruse ja perekonna. </para>
+<screenshot>
+<screeninfo
+>Kaart Välimus</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="appearance-tab.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Kaart Välimus</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Artiklite nimekirja värvid</guilabel
+></term>
+<listitem
+><para
+>Valiku <guilabel
+>Kohandatud värvide kasutamine</guilabel
+> sisseslülitamisel saab valida omaenda värvid nii <guilabel
+>lugemata artiklite</guilabel
+> kui ka <guilabel
+>uute artiklite</guilabel
+> tarbeks.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Fondi suurus</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Minimaalne fondisuurus</guilabel
+></term>
+<listitem
+><para
+>Fondi minimaalne suurus artiklite näitajas</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Keskmine fondisuurus</guilabel
+></term>
+<listitem
+><para
+>Fondi vaikimisi suurus artiklite näitajas</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Fondid</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Standardne font:</guilabel
+></term>
+<listitem
+><para
+>Artiklite näitajas kuvatakse sisu standardse fondiga ja keskmise fondi suurusega. Kui muudad standardset fonti, muutub ka artiklite välimus artiklite näitajas.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Fikseeritud font:</guilabel
+></term>
+<listitem
+><para
+>Kui artikkel kasutab artiklite näitajas fikseeritud laiusega fonti, kuvatakse sisu siin määratud fondiperet kasutades (keskmise fondi suurusega). </para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Serif-font:</guilabel
+></term>
+<listitem
+><para
+>Kui artikkel kasutab seriif-fonti, kuvatakse sisu siin määratud fondiperet kasutades (keskmise fondi suurusega).</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Sans serif-font:</guilabel
+></term>
+<listitem
+><para
+>Kui artikkel kasutab seriifita fonti, kuvatakse sisu siin määratud fondiperet kasutades (keskmise fondi suurusega).</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Viidad joonitakse alla</guilabel
+></term>
+<listitem
+><para
+>Märkimisel joonitakse viidad vaikimisi alla.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+<sect1 id="browser-tab">
+<title
+>Sirvija</title>
+<para
+>Sellel kaardil saab kohandada seesmise brauseri kaartide käitumist.</para>
+<screenshot>
+<screeninfo
+>Kaart Sirvija</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="browser-tab.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Kaart Sirvija</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Hiire vasaku nupu klõps annab käsu</guilabel
+></term>
+<listitem
+><para
+>Hiire vasaku nupu klõpsule saab valida kolm toimingut: <guilabel
+>Ava uuel kaardil</guilabel
+> (viit avatakse uuel kaardil, mis saab ka fookuse), <guilabel
+>Ava taustale jääval kaardil</guilabel
+> (viit avatakse uuel kaardil, kuid fookusse jääb aktiivne kaart) ja <guilabel
+>Ava välises veebilehitsejas</guilabel
+> (avatakse uus aken sinu vaikimisi brauseris).</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Hiire keskmise nupu klõps annab käsu</guilabel
+></term>
+<listitem
+><para
+>Nagu eespool, saab siin valida ühe kolmest toimingust hiire keskmise nupu klõpsu jaoks.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Välise veebilehitseja korral</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Kasutatakse vaikimisi veebilehitsejat</guilabel
+></term>
+<listitem
+><para
+>Märkimise korral kasutab &akregator; veebilehitsejat, mille oled määranud Süsteemi seadistustes. See võib olla &kde; vaikimisi brauser &konqueror; või ka midagi muud vastavalt sellele, mida oled valinud.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Kasutatakse järgmist käsku:</guilabel
+></term>
+<listitem
+><para
+>&akregator;is võib kasutada ka muud brauserit kui &kde; vaikebrauser. Sellise soovi korral märgi see kast ja sisesta brauseri käivitamiseks vajalik käsk (eeldusel, et see asub keskkonnamuutujaga $<envar
+>PATH</envar
+> määratud asukohas).</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Hiirekursori liikumisel sakile näidatakse sulgemisnuppu</guilabel
+></term>
+<listitem
+><para
+>Märkimise korral ilmub sulgemisnupp nähtavale, kui viid hiire kaardi saki vasakusse serva. See võimaldab hõlpsamini kaarte sulgeda.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+<sect1 id="advanced-tab">
+<title
+>Muud</title>
+<para
+>Kaardil Muud saab määrata mitmeid täppisseadistusi. Kui sa ei ole kindel, millist mõju need avaldavad, võid rahulikult jätta kehtima vaikeväärtused.</para>
+<screenshot>
+<screeninfo
+>Kaart Muud</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="advanced-tab.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Kaart Muud</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Säilitamine</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Arhiveerimisrakendus:</guilabel
+></term>
+<listitem
+><para
+>&akregator; kasutab praegu ainult Metakiti andmebaasi. </para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Artiklite nimekiri</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Valitud artikkel märgitakse loetuks pärast</guilabel
+></term>
+<listitem
+><para
+>Vaikeväärtus on 9 sekundit, mis tähendab seda, et artikkel märgitakse loetuks kohe, kui oled sellele klõpsanud. Vajaduse korral võid siin määrata, mitme sekundi pärast artikkel loetuks märgitakse.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Otsinguriba lähtestamine kanalite muutmisel</guilabel
+></term>
+<listitem
+><para
+>Märkimisel puhastatakse otsinguriba, kui vahetad kanalit.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+</chapter>
+
+<chapter id="commands">
+<title
+>Käskude seletus</title>
+
+<sect1 id="akregator-mainwindow">
+<title
+>Menüüd ja kiirklahvid</title>
+
+<sect2>
+<title
+>Menüü Fail</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Fail</guimenu
+> <guimenuitem
+>Impordi kanalid...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Avab</action
+> kanalite importimise dialoogi <quote
+>OPML.faili</quote
+> laadimiseks koos kanalite tellimustega. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Fail</guimenu
+> <guimenuitem
+>Ekspordi kanalid...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Avab</action
+> salvestamisdialoogi ning võimaldab eksportida kanalid ja kataloogistruktuuri <filename class="extension"
+>.opml</filename
+>-failina.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Fail</guimenu
+> <guimenuitem
+>Välju</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Lõpetab</action
+> &akregator;i töö</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2>
+<title
+>Menüü Redigeerimine</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycap
+>F2</keycap
+> </shortcut
+> <guimenu
+>Redigeerimine</guimenu
+> <guimenuitem
+>Muuda kanalit...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Võimaldab <action
+>muuta</action
+> aktiivse kanali omadusi selle omaduste dialoogis</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Alt;<keycap
+>Del</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Redigeerimine</guimenu
+> <guimenuitem
+>Kustuta kanal</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Kustutab</action
+> aktiivse kanali</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2>
+<title
+>Menüü Vaade</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>1</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Vaade</guimenu
+><guimenuitem
+>Tavaline vaade</guimenuitem
+></menuchoice
+>, <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>2</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Vaade</guimenu
+><guimenuitem
+>Laiekraanivaade</guimenuitem
+> </menuchoice
+> ja <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>3</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Vaade</guimenu
+><guimenuitem
+>Kombineeritud vaade</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Võimaldab <action
+>valida</action
+> &akregator;i vaaterežiimi</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>+</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Vaade</guimenu
+><guimenuitem
+>Suurenda fonti</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Suurendab</action
+> fonti artiklite näitajas</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>-</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Vaade</guimenu
+> <guimenuitem
+>Vähenda fonti</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Vähendab</action
+> fonti artiklite näitajas</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2>
+<title
+>Menüü Liikumine</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>Nool vasakule</keycap
+></shortcut
+> <guimenu
+>Liikumine</guimenu
+> <guimenuitem
+>Eelmine artikkel</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Liigub</action
+> artiklite nimekirja eelmisele artiklile</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>-</keycap
+></shortcut
+> <guimenu
+>Liikumine</guimenu
+> <guimenuitem
+>Eelmine lugemata artikkel</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Liigub</action
+> artiklite nimekirja eelmisele lugemata artiklile</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>Nool paremale</keycap
+></shortcut
+> <guimenu
+>Liikumine</guimenu
+> <guimenuitem
+>Järgmine artikkel</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Liigub</action
+> artiklite nimekirja järgmisele artiklile</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>+</keycap
+></shortcut
+> <guimenu
+>Liikumine</guimenu
+> <guimenuitem
+>Järgmine lugemata artikkel</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Liigub</action
+> artiklite nimekirja järgmisele lugemata artiklile</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>P</keycap
+></shortcut
+> <guimenu
+>Liikumine</guimenu
+> <guimenuitem
+>Eelmine kanal</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Liigub</action
+> kanalite nimekirja eelmisele kanalile</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Alt;<keycap
+>-</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Liikumine</guimenu
+> <guimenuitem
+>Eelmine lugemata kanal</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Liigub</action
+> kanalite nimekirja eelmisele lugemata kanalile</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>N</keycap
+></shortcut
+> <guimenu
+>Liikumine</guimenu
+> <guimenuitem
+>Järgmine kanal</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Liigub</action
+> kanalite nimekirja järgmisele kanalile</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Alt;<keycap
+>+</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Liikumine</guimenu
+> <guimenuitem
+>Järgmine lugemata kanal</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Liigub</action
+> kanalite nimekirja järgmisele lugemata kanalile</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2>
+<title
+>Menüü Kanal</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>Ins</keycap
+></shortcut
+> <guimenu
+>Kanal</guimenu
+> <guimenuitem
+>Lisa kanal...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Avab</action
+> kanali lisamise dialoogi</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Shift;<keycap
+>Ins</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Kanal</guimenu
+> <guimenuitem
+>Uus kataloog...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Avab</action
+> kataloogi lisamise dialoogi</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>R</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Kanal</guimenu
+> <guimenuitem
+>Märgi kanal loetuks</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Märgib</action
+> aktiivse kanali loetuks</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl; &Shift;<keycap
+>R</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Kanal</guimenu
+> <guimenuitem
+>Märgi kõik kanalid loetuks</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Märgib</action
+> kõik kanalid loetuks</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>F5</keycap
+></shortcut
+> <guimenu
+>Kanal</guimenu
+> <guimenuitem
+>Tõmba kanal</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Tõmbab</action
+> aktiivse kanali</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>L</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Kanal</guimenu
+> <guimenuitem
+>Tõmba kõik kanalid</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Tõmbab</action
+> kõik kanalid</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>Esc</keycap
+></shortcut
+> <guimenu
+>Kanal</guimenu
+> <guimenuitem
+>Loobu tõmbamisest</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Peatab</action
+> &akregator;i kanalite tõmbamise</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2>
+<title
+>Menüü Artikkel</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Shift;<keycap
+>Return</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Artikkel</guimenu
+> <guimenuitem
+>Ava uuel kaardil</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Avab</action
+> aktiivse artikli &akregator;i kaardil</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>Return</keycap
+></shortcut
+> <guimenu
+>Artikkel</guimenu
+> <guimenuitem
+>Ava taustale jääval kaardil</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Laadib</action
+> aktiivse artikli uuel kaardil, aga ei aktiveeri seda kaarti automaatselt. See on abiks, kui lappad kanalit läbi ning soovid avada kõik huvitavad artiklid taustal, et neid hiljem lugeda. </para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl; &Shift;<keycap
+>Return</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Artikkel</guimenu
+> <guimenuitem
+>Ava välises veebilehitsejas</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Avab</action
+> aktiivse artikli välises brauseris</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>I</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Artikkel</guimenu
+> <guimenuitem
+>Märgi artikkel tähtsaks</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Märgib</action
+> aktiivse artikli tähtsaks</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Artikkel</guimenu
+> <guimenuitem
+>Artikli märkimine</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Märgib</action
+> aktiivse artikli kas loetud <keycombo action="simul"
+>&Ctrl;<keycap
+>E</keycap
+></keycombo
+>, uueks <keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo
+> või lugemata artikliks <keycombo action="simul"
+>&Ctrl;<keycap
+>U</keycap
+></keycombo
+>.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>Del</keycap
+></shortcut
+> <guimenu
+>Artikkel</guimenu
+> <guimenuitem
+>Kustuta</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Kustutab</action
+> aktiivse artikli</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Artikkel</guimenu
+> <guimenuitem
+>Saada viida aadress...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Avab</action
+> e-posti kliendi ja lisab kirjale lingi</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Artikkel</guimenu
+> <guimenuitem
+>Saada fail...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Avab</action
+> e-posti kliendi ja lisab kirjale faili </para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>S</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Artikkel</guimenu
+> <guimenuitem
+>Jaga artiklit</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Sellega saab jagada uudist sõpradega identi.ca või twitteri mikroblogiteenuse vahendusel. </para
+></listitem>
+</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2>
+<title
+>Menüü Seadistused</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Seadistused</guimenu
+> <guimenuitem
+>Kiirfiltri näitamine</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Lülitab</action
+> kiirfiltri näitamist <screenshot>
+<screeninfo
+>Kiirfilter</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="quick-filter.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Kiirfilter</phrase
+></textobject>
+</mediaobject>
+</screenshot>
+</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+
+<para
+>Lisaks on &akregator;il tavapärased &kde; <guimenu
+>seadistuste</guimenu
+> ja <guimenu
+>abi</guimenu
+>menüü elemendid, mille kohta leiab rohkem teavet &kde; põhialuste käsiraamatu osadest <ulink url="help:/fundamentals/ui.html#menus-settings"
+>Menüü Seadistused</ulink
+> ja <ulink url="help:/fundamentals/ui.html#menus-help"
+>Menüü Abi</ulink
+>. </para>
+
+<para
+>Paljud menüükäsud on saadaval ka kanaliloendi, artikliloendi ja artiklite näitaja kontekstimenüüs. </para>
+
+</sect2>
+
+</sect1>
+</chapter>
+
+<chapter id="credits">
+
+<title
+>Autorid ja litsents</title>
+
+<para
+>&akregator; </para>
+<para
+>Rakenduse autoriõigus 2004-2010: Akregatori autorid </para>
+
+<para
+>Dokumentatsiooni autoriõigus 2006: Frank Osterfeld <email
+>frank.osterfeld@kdemail.net</email
+> </para>
+
+<para
+>Dokumentatsiooni autoriõigus 2006: &Anne-Marie.Mahfouf; &Anne-Marie.Mahfouf.mail; </para>
+
+<para
+>Tõlge eesti keelde: Marek Laane <email
+>bald@starman.ee</email
+></para
+> 
+&underFDL; &underGPL; </chapter>
+
+<appendix id="installation">
+<title
+>Paigaldamine</title>
+
+<sect1 id="getting-akregator">
+<title
+>&akregator;i hankimine</title>
+&install.intro.documentation; </sect1>
+
+<sect1 id="compilation">
+<title
+>Kompileerimine ja paigaldamine</title>
+&install.compile.documentation; </sect1>
+</appendix>
+
+&documentation.index;
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes: nil
+sgml-general-insert-case: lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+-->
