@@ -1502,7 +1502,7 @@ msgstr "Activa la pestanya %1"
 #: src/actions/actionmanagerimpl.cpp:632
 #, kde-format
 msgid "&Save Link As..."
-msgstr "Guar&da l'enllaç com a..."
+msgstr "Anomena i gu&arda l'enllaç..."
 
 #: src/actions/actionmanagerimpl.cpp:636
 #, kde-format
