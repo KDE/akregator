@@ -466,7 +466,7 @@ msgstr "Habilita JavaScript"
 #: configuration/ui/settings_browser.ui:163
 #, kde-format
 msgid "Misc"
-msgstr "Miscelànea"
+msgstr "Miscel·lània"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_AccessKeyEnabled)
 #: configuration/ui/settings_browser.ui:169
@@ -536,7 +536,7 @@ msgstr "Desactiva la notificació de finalització de «Anomena i guarda»"
 #: configuration/ui/settings_general.ui:91
 #, kde-format
 msgid "&Use interval fetching"
-msgstr "&Utilitza un interval d'obtenció"
+msgstr "Utilit&za un interval d'obtenció"
 
 #. i18n: ectx: property (text), widget (QLabel, autoFetchIntervalLabel)
 #: configuration/ui/settings_general.ui:119
@@ -1204,7 +1204,7 @@ msgstr "Sup&rimix la carpeta"
 #: src/actions/actionmanagerimpl.cpp:84
 #, kde-format
 msgid "&Rename Folder"
-msgstr "&Canvia el nom de la carpeta"
+msgstr "Ca&nvia el nom de la carpeta"
 
 #: src/actions/actionmanagerimpl.cpp:85
 #, kde-format
@@ -1229,7 +1229,7 @@ msgstr "&Configura Akregator..."
 #: src/actions/actionmanagerimpl.cpp:218
 #, kde-format
 msgid "&Open Homepage"
-msgstr "&Obri la pàgina web"
+msgstr "O&bri la pàgina web"
 
 #: src/actions/actionmanagerimpl.cpp:224
 #, kde-format
@@ -1239,7 +1239,7 @@ msgstr "Torna a carregar totes les pestanyes"
 #: src/actions/actionmanagerimpl.cpp:230
 #, kde-format
 msgid "&Add Feed..."
-msgstr "&Afig una font..."
+msgstr "Afi&g una font..."
 
 #: src/actions/actionmanagerimpl.cpp:236
 #, kde-format
@@ -1372,7 +1372,7 @@ msgstr "Envia l'ad&reça de l'enllaç..."
 #: src/actions/actionmanagerimpl.cpp:426
 #, kde-format
 msgid "Send &File..."
-msgstr "Envia el &fitxer..."
+msgstr "Envia el fi&txer..."
 
 #: src/actions/actionmanagerimpl.cpp:432
 #, kde-format
@@ -1980,7 +1980,7 @@ msgstr "Barra d'eines principal"
 #: src/data/akregator_shell.rc:4
 #, kde-format
 msgid "&File"
-msgstr "&Fitxer"
+msgstr "Fi&txer"
 
 #: src/feed/feedlist.cpp:160
 #, kde-format
@@ -2458,7 +2458,7 @@ msgstr "Ar&xivat"
 #: src/ui/feedpropertieswidgetbase.ui:206
 #, kde-format
 msgid "&Use default settings"
-msgstr "&Utilitza els paràmetres predeterminats"
+msgstr "Utilit&za els paràmetres predeterminats"
 
 #. i18n: ectx: property (text), widget (QRadioButton, rb_disableArchiving)
 #: src/ui/feedpropertieswidgetbase.ui:216
