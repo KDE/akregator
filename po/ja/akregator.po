@@ -2637,27 +2637,3 @@ msgstr "既読(&R)|/|$[~setProps ~full '記事を既読としてマーク']"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "重要"
-
-#~ msgid "Archive"
-#~ msgstr "アーカイブ"
-
-#~ msgid "Archive backend:"
-#~ msgstr "アーカイブ作成バックエンド:"
-
-# ACCELERATOR changed by translator
-#~ msgid "&Configure..."
-#~ msgstr "設定(&N)..."
-
-#~ msgid "Metakit"
-#~ msgstr "Metakit"
-
-#~ msgid "Unable to load storage backend plugin \"%1\". No feeds are archived."
-#~ msgstr ""
-#~ "保存バックエンドプラグイン “%1” をロードできません。フィードをアーカイブで"
-#~ "きません。"
-
-#~ msgid "Plugin error"
-#~ msgstr "プラグインのエラー"
-
-#~ msgid "No Archive"
-#~ msgstr "アーカイブなし"
