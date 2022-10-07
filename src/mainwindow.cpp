@@ -177,13 +177,10 @@ void MainWindow::setupProgressWidgets()
     // most of the time. Hide it when unused, allowing a longer status label.
     m_hideProgressTimer = new QTimer(this);
     m_hideProgressTimer->setSingleShot(true);
-    connect(m_hideProgressTimer, &QTimer::timeout,
-            m_statusbarProgress, &QWidget::hide);
+    connect(m_hideProgressTimer, &QTimer::timeout, m_statusbarProgress, &QWidget::hide);
 
-    connect(KPIM::ProgressManager::instance(), &KPIM::ProgressManager::progressItemAdded,
-            this, &MainWindow::updateStatusbarProgressVisibility);
-    connect(KPIM::ProgressManager::instance(), &KPIM::ProgressManager::progressItemCompleted,
-            this, &MainWindow::updateStatusbarProgressVisibility);
+    connect(KPIM::ProgressManager::instance(), &KPIM::ProgressManager::progressItemAdded, this, &MainWindow::updateStatusbarProgressVisibility);
+    connect(KPIM::ProgressManager::instance(), &KPIM::ProgressManager::progressItemCompleted, this, &MainWindow::updateStatusbarProgressVisibility);
     m_statusbarProgress->hide();
 }
 
