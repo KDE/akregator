@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-09-30 00:45+0000\n"
+"POT-Creation-Date: 2022-10-16 00:47+0000\n"
 "PO-Revision-Date: 2022-04-26 08:33+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
@@ -1015,7 +1015,7 @@ msgstr "Скидати вміст швидкого фільтрування пі
 
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
 #: src/akregator_part.cpp:146
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:148
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:149
 #: src/trayicon.cpp:41 src/trayicon.cpp:42 src/trayicon.cpp:54
 #, kde-format
 msgid "Akregator"
@@ -1744,12 +1744,12 @@ msgctxt "Articlelist's column header"
 msgid "Content"
 msgstr "Вміст"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:149
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:150
 #, kde-format
 msgid "Akregator is a KDE news feed reader."
 msgstr "Akregator — програма для читання подач новин у KDE."
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:190
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:191
 #, kde-format
 msgctxt "@title:window"
 msgid "Save As"
@@ -1760,45 +1760,45 @@ msgstr "Збереження із новою назвою"
 msgid "Disable"
 msgstr "Вимкнути"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:384
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:383
 #, kde-format
 msgid "Keep Enabled"
 msgstr "Залишити увімкненою"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:386
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:389
 #, kde-format
 msgid "Are you sure you want to disable this introduction page?"
 msgstr "Ви впевнені, що хочете вимкнути цю вступну сторінку?"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:387
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:390
 #, kde-format
 msgid "Disable Introduction Page"
 msgstr "Вимкнути вступну сторінку"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:422
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:434
 #, kde-format
 msgid "This web site is a malware, do you want to continue to show it?"
 msgstr ""
 "З цього сайта розповсюджується зловмисне програмне забезпечення. Хочете "
 "продовжити його перегляд попри це?"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:423
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:435
 #, kde-format
 msgid "Malware"
 msgstr "Зловмисне програмне забезпечення"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:435
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:447
 #, kde-format
 msgid "The network is broken."
 msgstr "Мережа не працює."
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:435
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:438
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:447
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:450
 #, kde-format
 msgid "Check Phishing Url"
 msgstr "Перевірка шахрайських адрес"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:438
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:450
 #, kde-format
 msgid "The url %1 is not valid."
 msgstr "Адреса %1 є некоректною."
