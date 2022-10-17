@@ -757,7 +757,7 @@ msgstr "Límit d'articles"
 #: interfaces/akregator.kcfg:128
 #, kde-format
 msgid "Number of articles to keep per feed."
-msgstr "Nombre d'articles que cal conservar per font."
+msgstr "Nombre d'articles que es conservaran per font."
 
 #. i18n: ectx: label, entry, group (Archive)
 #: interfaces/akregator.kcfg:132
@@ -2440,7 +2440,7 @@ msgstr "&Nom:"
 #: src/ui/feedpropertieswidgetbase.ui:161
 #, kde-format
 msgid "Display name of RSS column"
-msgstr "Nom que es mostrarà en la columna RSS"
+msgstr "Nom que s'ha de mostrar a la columna RSS"
 
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: src/ui/feedpropertieswidgetbase.ui:171
