@@ -10,7 +10,6 @@ Dependencies:
     'pim/kontactinterface' : '@same'
     'pim/kpimtextedit' : '@same'
     'pim/libkdepim' : '@same'
-    'pim/libkleo' : '@same'
     'pim/messagelib' : '@same'
     'pim/pimcommon' : '@same'
     'third-party/grantlee' : '@stable'
