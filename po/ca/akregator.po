@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-10-16 00:47+0000\n"
-"PO-Revision-Date: 2022-04-26 09:23+0200\n"
+"PO-Revision-Date: 2022-10-26 08:43+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca\n"
@@ -2208,7 +2208,7 @@ msgid ""
 "<qt>This will hide the menu bar completely. You can show it again by typing "
 "%1.</qt>"
 msgstr ""
-"<qt>Això ocultarà la barra de menús completament. La podeu tornar a mostrar "
+"<qt>Això ocultarà completament la barra de menús. La podeu tornar a mostrar "
 "prement %1.</qt>"
 
 #: src/mainwindow.cpp:127
@@ -2582,53 +2582,3 @@ msgstr "Llegit"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "Important"
-
-#~ msgid "Archive"
-#~ msgstr "Arxivat"
-
-#~ msgid "Archive backend:"
-#~ msgstr "Dorsal d'arxivat:"
-
-#~ msgid "&Configure..."
-#~ msgstr "&Configura..."
-
-#~ msgid "Metakit"
-#~ msgstr "Metakit"
-
-#~ msgid "Unable to load storage backend plugin \"%1\". No feeds are archived."
-#~ msgstr ""
-#~ "No s'ha pogut carregar el connector del dorsal d'emmagatzematge «%1». No "
-#~ "s'ha arxivat cap font."
-
-#~ msgid "Plugin error"
-#~ msgstr "Error del connector"
-
-#~ msgid "No Archive"
-#~ msgstr "Sense arxivat"
-
-#~ msgctxt "Name of the plugin"
-#~ msgid "Name"
-#~ msgstr "Nom"
-
-#~ msgctxt "Library name"
-#~ msgid "Library"
-#~ msgstr "Biblioteca"
-
-#~ msgctxt "Plugin authors"
-#~ msgid "Authors"
-#~ msgstr "Autors"
-
-#~ msgctxt "Plugin authors' emaila addresses"
-#~ msgid "Email"
-#~ msgstr "Correu electrònic"
-
-#~ msgctxt "Plugin version"
-#~ msgid "Version"
-#~ msgstr "Versió"
-
-#~ msgctxt "Framework version plugin requires"
-#~ msgid "Framework Version"
-#~ msgstr "Versió del marc de treball"
-
-#~ msgid "Plugin Information"
-#~ msgstr "Informació del connector"
