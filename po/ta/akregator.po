@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-10-16 00:47+0000\n"
-"PO-Revision-Date: 2022-10-27 21:37+0530\n"
+"PO-Revision-Date: 2022-11-03 20:56+0530\n"
 "Last-Translator: Kishore G <kishore96@gmail.com>\n"
 "Language-Team: Tamil <kde-i18n-doc@kde.org>\n"
 "Language: ta\n"
@@ -586,10 +586,9 @@ msgstr "தொகுப்புகளின் இருப்பிடத்�
 
 #. i18n: ectx: label, entry, group (View)
 #: interfaces/akregator.kcfg:26
-#, fuzzy, kde-format
-#| msgid " (no unread articles)"
+#, kde-format
 msgid "Auto-Expand folders with unread articles"
-msgstr " (படிக்காத கட்டுரைகள் இல்லை)"
+msgstr "படிக்காத கட்டுரைகளை கொண்ட அடைவுகளை தானாக விரிவுபடுத்து"
 
 #. i18n: ectx: label, entry, group (View)
 #: interfaces/akregator.kcfg:31 src/actions/actionmanagerimpl.cpp:317
