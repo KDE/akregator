@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-10-16 00:47+0000\n"
-"PO-Revision-Date: 2022-11-03 20:56+0530\n"
+"PO-Revision-Date: 2022-11-08 21:33+0530\n"
 "Last-Translator: Kishore G <kishore96@gmail.com>\n"
 "Language-Team: Tamil <kde-i18n-doc@kde.org>\n"
 "Language: ta\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 22.08.2\n"
+"X-Generator: Lokalize 22.08.3\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -594,13 +594,13 @@ msgstr "படிக்காத கட்டுரைகளை கொண்ட 
 #: interfaces/akregator.kcfg:31 src/actions/actionmanagerimpl.cpp:317
 #, kde-format
 msgid "Show Quick Filter"
-msgstr "உடனடி அலங்காரத்தை காட்டு"
+msgstr "விரை வடிகட்டியைக் காட்டு"
 
 #. i18n: ectx: whatsthis, entry, group (View)
 #: interfaces/akregator.kcfg:32
 #, kde-format
 msgid "Show Quick Filter Bar"
-msgstr "விரைவு அலங்கார பட்டியை காட்டு"
+msgstr "விரை வடிகட்டிப் பட்டையைக் காட்டும்"
 
 #. i18n: ectx: label, entry, group (View)
 #: interfaces/akregator.kcfg:36
