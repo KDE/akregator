@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: kdepim-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-10-16 00:47+0000\n"
-"PO-Revision-Date: 2022-11-10 03:50+0300\n"
+"PO-Revision-Date: 2022-11-14 14:13+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -149,7 +149,7 @@ msgstr "Frank Osterfeld"
 #: configuration/akregator_config_appearance.cpp:45
 #, kde-format
 msgid "Configure Feed Reader Appearance"
-msgstr "Haber Okuyucu Görünümünü Yapılandır"
+msgstr "Haber Okuyucu Görünüşünü Yapılandır"
 
 #: configuration/akregator_config_archive.cpp:33
 #, kde-format
