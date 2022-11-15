@@ -12,7 +12,6 @@
 #include "articleviewerwebenginepage.h"
 #include "webengine/urlhandlerwebenginemanager.h"
 #include <kpimtextedit/kpimtextedit-texttospeech.h>
-#include <kwidgetsaddons_version.h>
 #if KPIMTEXTEDIT_TEXT_TO_SPEECH
 #include <KPIMTextEdit/TextToSpeech>
 #endif
@@ -381,20 +380,12 @@ void ArticleViewerWebEngine::disableIntroduction()
 {
     KGuiItem yesButton(i18n("Disable"));
     KGuiItem noButton(i18n("Keep Enabled"));
-#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
     if (KMessageBox::questionTwoActions(this,
-#else
-    if (KMessageBox::questionYesNo(this,
-#endif
                                         i18n("Are you sure you want to disable this introduction page?"),
                                         i18n("Disable Introduction Page"),
                                         yesButton,
                                         noButton)
-#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
         == KMessageBox::PrimaryAction) {
-#else
-        == KMessageBox::Yes) {
-#endif
         Settings::self()->setDisableIntroduction(true);
         Settings::self()->save();
     }
@@ -424,13 +415,8 @@ void ArticleViewerWebEngine::forwardMouseReleaseEvent(QMouseEvent *event)
 
 bool ArticleViewerWebEngine::urlIsAMalwareButContinue()
 {
-#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
     if (KMessageBox::SecondaryAction
         == KMessageBox::questionTwoActions(this,
-#else
-    if (KMessageBox::No
-        == KMessageBox::warningYesNo(this,
-#endif
                                            i18n("This web site is a malware, do you want to continue to show it?"),
                                            i18n("Malware"),
                                            KStandardGuiItem::cont(),
