@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-10-16 00:47+0000\n"
+"POT-Creation-Date: 2022-11-16 00:47+0000\n"
 "PO-Revision-Date: 2019-07-07 16:38+0200\n"
 "Last-Translator: Mindaugas Baranauskas <opensuse.lietuviu.kalba@gmail.com>\n"
 "Language-Team: Lithuanian <kde-i18n-lt@kde.org>\n"
@@ -1017,7 +1017,7 @@ msgstr "Išvalo greitą filtrą keičiant kanalą."
 
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
 #: src/akregator_part.cpp:146
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:149
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:148
 #: src/trayicon.cpp:41 src/trayicon.cpp:42 src/trayicon.cpp:54
 #, kde-format
 msgid "Akregator"
@@ -1744,60 +1744,60 @@ msgctxt "Articlelist's column header"
 msgid "Content"
 msgstr "Turinys"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:150
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:149
 #, kde-format
 msgid "Akregator is a KDE news feed reader."
 msgstr "Akregator yra KDE naujienų kanalų skaitytuvė."
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:191
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:190
 #, fuzzy, kde-format
 #| msgid "&Save Link As..."
 msgctxt "@title:window"
 msgid "Save As"
 msgstr "Į&rašyti jungtį kaip..."
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:382
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:381
 #, kde-format
 msgid "Disable"
 msgstr "Išjungti"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:383
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:382
 #, kde-format
 msgid "Keep Enabled"
 msgstr "Laikyti įjungtą"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:389
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:384
 #, kde-format
 msgid "Are you sure you want to disable this introduction page?"
 msgstr "Ar tikrai norite išjungti įvadinį puslapį?"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:390
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:385
 #, kde-format
 msgid "Disable Introduction Page"
 msgstr "Išjungti įžanginį puslapį"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:434
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:420
 #, kde-format
 msgid "This web site is a malware, do you want to continue to show it?"
 msgstr "Ši svetainė kenksminga, tikrai norite ją atverti?"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:435
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:421
 #, kde-format
 msgid "Malware"
 msgstr "Kenkimo programinė įranga"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:447
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:433
 #, kde-format
 msgid "The network is broken."
 msgstr "Tinklo ryšio klaida."
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:447
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:450
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:433
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:436
 #, kde-format
 msgid "Check Phishing Url"
 msgstr "Tikrinti, ar URL apgaulingas"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:450
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:436
 #, kde-format
 msgid "The url %1 is not valid."
 msgstr "URL %1 nėra tinkamas"
