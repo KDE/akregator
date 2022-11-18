@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-11-16 00:47+0000\n"
-"PO-Revision-Date: 2022-11-10 21:40+0530\n"
+"PO-Revision-Date: 2022-11-17 19:37+0530\n"
 "Last-Translator: Kishore G <kishore96@gmail.com>\n"
 "Language-Team: Tamil <kde-i18n-doc@kde.org>\n"
 "Language: ta\n"
@@ -1319,32 +1319,32 @@ msgstr "முக்கி&யமில்லை என குறி"
 #: src/actions/actionmanagerimpl.cpp:400
 #, kde-format
 msgid "Move Node Up"
-msgstr "சேருமிடத்தை மேலே நகர்த்து"
+msgstr "உருப்படியை மேலே நகர்த்து"
 
 #: src/actions/actionmanagerimpl.cpp:405
 #, kde-format
 msgid "Move Node Down"
-msgstr "சேருமிடத்தை கீழே நகர்த்து"
+msgstr "உருப்படியை கீழே நகர்த்து"
 
 #: src/actions/actionmanagerimpl.cpp:410
 #, kde-format
 msgid "Move Node Left"
-msgstr "சேருமிடத்தை இடதுபுறம் நகர்த்து"
+msgstr "உருப்படியை இடதுபுறமாக நகர்த்து"
 
 #: src/actions/actionmanagerimpl.cpp:415
 #, kde-format
 msgid "Move Node Right"
-msgstr "சேருமிடத்தை வலதுபுறம் நகர்த்து"
+msgstr "உருப்படியை வலதுபுறமாக நகர்த்து"
 
 #: src/actions/actionmanagerimpl.cpp:421
-#, fuzzy, kde-format
+#, kde-format
 msgid "Send &Link Address..."
-msgstr "&இணைப்பு முகவரியை நகல் எடு"
+msgstr "&இணைப்பிற்கான முகவரியை அனுப்பு..."
 
 #: src/actions/actionmanagerimpl.cpp:426
 #, kde-format
 msgid "Send &File..."
-msgstr ""
+msgstr "&கோப்பை அனுப்பு..."
 
 #: src/actions/actionmanagerimpl.cpp:432
 #, kde-format
