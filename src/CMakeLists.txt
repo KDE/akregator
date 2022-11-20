@@ -183,6 +183,7 @@ target_link_libraries(akregatorprivate
     akregatorinterfaces
     KF5::PimCommon
     KF5::PimTextEdit
+    KF5::PimTextEditTextToSpeech
     KF5::GrantleeTheme
     KF5::KIOGui
     KF5::MessageViewer

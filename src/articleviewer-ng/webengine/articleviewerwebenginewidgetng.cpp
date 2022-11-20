@@ -14,7 +14,7 @@
 #include <QVBoxLayout>
 #include <kio_version.h>
 #if KPIMTEXTEDIT_TEXT_TO_SPEECH
-#include <kpimtextedit/texttospeechwidget.h>
+#include <KPIMTextEditTextToSpeech/TextToSpeechWidget>
 #endif
 #include <KPIMTextEdit/SlideContainer>
 
@@ -49,7 +49,7 @@ ArticleViewerWebEngineWidgetNg::ArticleViewerWebEngineWidgetNg(ArticleViewerWebE
     : QWidget(parent)
     , mArticleViewerNg(customViewer)
 #if KPIMTEXTEDIT_TEXT_TO_SPEECH
-    , mTextToSpeechWidget(new KPIMTextEdit::TextToSpeechWidget(this))
+    , mTextToSpeechWidget(new KPIMTextEditTextToSpeech::TextToSpeechWidget(this))
 #endif
     , mSliderContainer(new KPIMTextEdit::SlideContainer(this))
     , mTrackingWarningWidget(new WebEngineViewer::TrackingWarningWidget(this))

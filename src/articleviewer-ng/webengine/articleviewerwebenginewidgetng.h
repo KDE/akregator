@@ -17,6 +17,9 @@ class KActionCollection;
 namespace KPIMTextEdit
 {
 class SlideContainer;
+}
+namespace KPIMTextEditTextToSpeech
+{
 class TextToSpeechWidget;
 }
 
@@ -58,7 +61,7 @@ private:
     WebEngineViewer::FindBarWebEngineView *mFindBarWebView = nullptr;
     ArticleViewerWebEngine *mArticleViewerNg = nullptr;
 #if KPIMTEXTEDIT_TEXT_TO_SPEECH
-    KPIMTextEdit::TextToSpeechWidget *const mTextToSpeechWidget;
+    KPIMTextEditTextToSpeech::TextToSpeechWidget *const mTextToSpeechWidget;
 #endif
     KPIMTextEdit::SlideContainer *const mSliderContainer;
     WebEngineViewer::TrackingWarningWidget *const mTrackingWarningWidget;
