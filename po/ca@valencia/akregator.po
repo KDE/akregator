@@ -320,7 +320,7 @@ msgstr "Tipus de lletra sans serif:"
 #: configuration/ui/settings_archive.ui:30
 #, kde-format
 msgid "Default Archive Settings"
-msgstr "Paràmetres d'arxivat per defecte"
+msgstr "Paràmetres predeterminats d'arxivat"
 
 #. i18n: ectx: property (text), widget (QRadioButton, rb_DisableArchiving)
 #: configuration/ui/settings_archive.ui:36
@@ -2440,7 +2440,7 @@ msgstr "&Nom:"
 #: src/ui/feedpropertieswidgetbase.ui:161
 #, kde-format
 msgid "Display name of RSS column"
-msgstr "Nom que s'ha de mostrar a la columna RSS"
+msgstr "Nom que s'ha de mostrar en la columna RSS"
 
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: src/ui/feedpropertieswidgetbase.ui:171
