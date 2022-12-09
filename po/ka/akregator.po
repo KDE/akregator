@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-11-16 00:47+0000\n"
-"PO-Revision-Date: 2022-12-04 12:00+0100\n"
+"PO-Revision-Date: 2022-12-08 17:16+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -46,11 +46,11 @@ msgstr ""
 
 #: src/about/introduction_akregator.html:20
 msgid "We hope that you will enjoy Akregator."
-msgstr ""
+msgstr "იმედია, მოგწონთ Akregator."
 
 #: src/about/introduction_akregator.html:21
 msgid "Thank you, The Akregator Team"
-msgstr ""
+msgstr "მადლობა, Akregator-ის ჯგუფო"
 
 #: src/formatter/html/5.2/combinedview.html:71
 msgid "Mark as Read"
@@ -62,7 +62,7 @@ msgstr "მონიშნე როგორც წაუკითხავი"
 
 #: src/formatter/html/5.2/combinedview.html:78
 msgid "Remove Important Status"
-msgstr ""
+msgstr "მნიშვნელოვნობის სტატუსის წაშლა"
 
 #: src/formatter/html/5.2/combinedview.html:80
 msgid "Mark as Important"
@@ -70,13 +70,13 @@ msgstr "მნიშვნელოვნად მონიშვნა"
 
 #: src/formatter/html/5.2/combinedview.html:82
 msgid "Open Link in External Browser"
-msgstr ""
+msgstr "ბმულის გარე ბრაუზერში გახსნა"
 
 #: src/formatter/html/5.2/combinedview.html:83
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:110
 #, kde-format
 msgid "Open In Background Tab"
-msgstr ""
+msgstr "ფონურ ჩანართში გახსნა"
 
 #: src/formatter/html/5.2/combinedview.html:84
 msgid "Send File Address"
@@ -124,7 +124,7 @@ msgstr "Frank Osterfeld"
 #: configuration/akregator_config_appearance.cpp:45
 #, kde-format
 msgid "Configure Feed Reader Appearance"
-msgstr ""
+msgstr "ლენტის მკითხველის გარეგნობის მორგება"
 
 #: configuration/akregator_config_archive.cpp:33
 #, kde-format
@@ -145,12 +145,12 @@ msgstr[1] " დღე"
 #: configuration/akregator_config_archive.cpp:43
 #, kde-format
 msgid "Configure Feed Reader Archive"
-msgstr ""
+msgstr "ლენტის მკითხველის არქივის მორგება"
 
 #: configuration/akregator_config_browser.cpp:35
 #, kde-format
 msgid "Configure Feed Reader Browser"
-msgstr ""
+msgstr "ლენტის მკითხველის ბრაუზერის მორგება"
 
 #: configuration/akregator_config_general.cpp:33
 #, kde-format
@@ -190,7 +190,7 @@ msgstr "(c), 2021 Laurent Montel"
 #: configuration/akregator_config_userfeedback.cpp:28
 #, kde-format
 msgid "Configure User Feedback"
-msgstr ""
+msgstr "მომხმარებლის უკუკავშირის მორგება"
 
 #: configuration/akregator_config_userfeedback.cpp:32
 #, kde-format
@@ -200,7 +200,7 @@ msgstr "(c), 2020-2021 Laurent Montel"
 #: configuration/akregatorconfigurepluginlistwidget.cpp:51
 #, kde-format
 msgid "Webengine Plugins"
-msgstr ""
+msgstr "Webengine -ის დამატებები"
 
 #: configuration/settings_advanced.cpp:27
 #, kde-format
@@ -220,19 +220,19 @@ msgstr "სტატიების სია"
 #: configuration/ui/settings_advancedbase.ui:38
 #, kde-format
 msgid "Mar&k selected article read after"
-msgstr ""
+msgstr "მონიშნული სტატიის წაკითხულად დანიშვნა დროის შემდეგ"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ResetQuickFilterOnNodeChange)
 #: configuration/ui/settings_advancedbase.ui:73
 #, kde-format
 msgid "Reset search bar when changing feeds"
-msgstr ""
+msgstr "ლენტების შეცვლისას ძებნის ზოლის გასუფთავება"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_3)
 #: configuration/ui/settings_appearance.ui:30
 #, kde-format
 msgid "Article List Colors"
-msgstr ""
+msgstr "სტატიების ჩამონათვლის ფერი"
 
 #. i18n: ectx: property (text), widget (QLabel, lbl_unreadArticles)
 #: configuration/ui/settings_appearance.ui:53
@@ -250,7 +250,7 @@ msgstr "ახალი სტატიები:"
 #: configuration/ui/settings_appearance.ui:98
 #, kde-format
 msgid "Use custom colors"
-msgstr ""
+msgstr "ფერების ხელით მითითება"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #: configuration/ui/settings_appearance.ui:121
@@ -304,13 +304,13 @@ msgstr "Sans serif ფონტი:"
 #: configuration/ui/settings_archive.ui:30
 #, kde-format
 msgid "Default Archive Settings"
-msgstr ""
+msgstr "ნაგულისხმები არქივის მორგება"
 
 #. i18n: ectx: property (text), widget (QRadioButton, rb_DisableArchiving)
 #: configuration/ui/settings_archive.ui:36
 #, kde-format
 msgid "Disa&ble archiving"
-msgstr ""
+msgstr "არქივირების &გათიშვა"
 
 #. i18n: ectx: property (text), widget (QRadioButton, rb_KeepAllArticles)
 #. i18n: ectx: property (text), widget (QRadioButton, rb_keepAllArticles)
@@ -318,25 +318,25 @@ msgstr ""
 #: src/ui/feedpropertieswidgetbase.ui:332
 #, kde-format
 msgid "&Keep all articles"
-msgstr ""
+msgstr "&ყველა სტატიის შენარჩუნება"
 
 #. i18n: ectx: property (text), widget (QRadioButton, rb_LimitArticleNumber)
 #: configuration/ui/settings_archive.ui:64
 #, kde-format
 msgid "Limit feed archi&ve size to:"
-msgstr ""
+msgstr "ლენტის არქივის ზომის ზღვარი:"
 
 #. i18n: ectx: property (text), widget (QRadioButton, rb_LimitArticleAge)
 #: configuration/ui/settings_archive.ui:100
 #, kde-format
 msgid "Delete articles older than: "
-msgstr ""
+msgstr "წაიშლება სტატიები, ძველი, ვიდრე: "
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_DoNotExpireImportantArticles)
 #: configuration/ui/settings_archive.ui:138
 #, kde-format
 msgid "Do not expire important articles"
-msgstr ""
+msgstr "მნიშვნელოვან სტატიების ვადა არ გაუვათ"
 
 #. i18n: ectx: property (text), widget (QLabel, LMBlabel)
 #: configuration/ui/settings_browser.ui:20
@@ -360,7 +360,7 @@ msgstr "ჩანართში გახსნა"
 #: src/actions/actionmanagerimpl.cpp:329
 #, kde-format
 msgid "Open in Background Tab"
-msgstr ""
+msgstr "ფონურ ჩანართში გახსნა"
 
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_LMBBehaviour)
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
@@ -375,13 +375,13 @@ msgstr "გარე ბრაუზერში გახსნა"
 #: configuration/ui/settings_browser.ui:46
 #, kde-format
 msgid "Middle mouse click:"
-msgstr ""
+msgstr "თაგუნას შუა წკაპი:"
 
 #. i18n: ectx: property (title), widget (QGroupBox, externalBrowserGroupBox)
 #: configuration/ui/settings_browser.ui:74
 #, kde-format
 msgid "External Browsing"
-msgstr ""
+msgstr "გარე ბრაუზერი"
 
 #. i18n: ectx: property (text), widget (QLineEdit, kcfg_ExternalBrowserCustomCommand)
 #: configuration/ui/settings_browser.ui:83
@@ -393,13 +393,13 @@ msgstr "firefox %u"
 #: configuration/ui/settings_browser.ui:90
 #, kde-format
 msgid "Use &this command:"
-msgstr ""
+msgstr "ამ &ბრძანების გამოყენება:"
 
 #. i18n: ectx: property (text), widget (QRadioButton, kcfg_ExternalBrowserUseKdeDefault)
 #: configuration/ui/settings_browser.ui:97
 #, kde-format
 msgid "Use default web &browser"
-msgstr ""
+msgstr "&ნაგულისხმები ბრაუზერის გამოყენება"
 
 #. i18n: ectx: property (title), widget (QGroupBox, tabsGroupBox)
 #: configuration/ui/settings_browser.ui:110
@@ -412,20 +412,20 @@ msgstr "დაფები"
 #: configuration/ui/settings_browser.ui:116 interfaces/akregator.kcfg:202
 #, kde-format
 msgid "Always show the tab bar"
-msgstr ""
+msgstr "ჩანართების ზოლის ყოველთვის ჩვენება"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_CloseButtonOnTabs)
 #: configuration/ui/settings_browser.ui:123
 #, kde-format
 msgid "Show close button on each tab"
-msgstr ""
+msgstr "ჩანართებზე დახურვის ღილაკის ჩვენება"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_NewWindowInTab)
 #. i18n: ectx: label, entry, group (Browser)
 #: configuration/ui/settings_browser.ui:130 interfaces/akregator.kcfg:212
 #, kde-format
 msgid "Open links in new tab instead of in new window"
-msgstr ""
+msgstr "ახალი ჩანართის მაგიერ ბმულების ახალ ფანჯარაში გახსნა"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: configuration/ui/settings_browser.ui:140
@@ -437,7 +437,7 @@ msgstr "უსაფრთხოება"
 #: configuration/ui/settings_browser.ui:146
 #, kde-format
 msgid "Verify URLs using Google's Safe Browsing API"
-msgstr ""
+msgstr "ბმულების Google-ის უსაფრთხო ბრაუზინგის API-ის საშუალებით გადამოწება"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_EnableJavascript)
 #. i18n: ectx: label, entry, group (Browser)
@@ -469,33 +469,33 @@ msgstr "გლობალური"
 #: configuration/ui/settings_general.ui:36
 #, kde-format
 msgid "Show tra&y icon"
-msgstr ""
+msgstr "&საათთან ხატულის ჩვენება"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ShowUnreadInTaskbar)
 #: configuration/ui/settings_general.ui:43
 #, kde-format
 msgid "Show unread articles in Taskbar"
-msgstr ""
+msgstr "წაუკითხავების სტატიების ამოცანების პანელზე ჩვენება"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_HideReadFeeds)
 #. i18n: ectx: label, entry, group (View)
 #: configuration/ui/settings_general.ui:50 interfaces/akregator.kcfg:9
 #, kde-format
 msgid "Hide feeds with no unread articles"
-msgstr ""
+msgstr "წაუკითხავი სტატიების არმქონე ლენტების დამალვა"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_LockFeedsInPlace)
 #: configuration/ui/settings_general.ui:57
 #, kde-format
 msgid "Lock feeds in place"
-msgstr ""
+msgstr "ლენტების ადგილზე დამაგრება"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_AutoExpandFolders)
 #. i18n: ectx: whatsthis, entry, group (View)
 #: configuration/ui/settings_general.ui:64 interfaces/akregator.kcfg:27
 #, kde-format
 msgid "Auto-expand folders containing unread articles"
-msgstr ""
+msgstr "წაუკითხავი სტატიების მქონე საქაღალდეების ავტომატური ჩამოშლა"
 
 #. i18n: ectx: property (whatsThis), widget (QCheckBox, kcfg_UseNotifications)
 #: configuration/ui/settings_general.ui:74
@@ -507,7 +507,7 @@ msgstr ""
 #: configuration/ui/settings_general.ui:77
 #, kde-format
 msgid "Use &notifications for all feeds"
-msgstr ""
+msgstr "გაფრთხილებების &ყველა ლენტისთვის გამოყენება"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_DisableSaveAsNotification)
 #: configuration/ui/settings_general.ui:84
@@ -519,13 +519,13 @@ msgstr ""
 #: configuration/ui/settings_general.ui:91
 #, kde-format
 msgid "&Use interval fetching"
-msgstr ""
+msgstr "&ინტერვალით გამოთხოვის გამოყენება"
 
 #. i18n: ectx: property (text), widget (QLabel, autoFetchIntervalLabel)
 #: configuration/ui/settings_general.ui:119
 #, kde-format
 msgid "Fetch feeds every:"
-msgstr ""
+msgstr "ლენტის გამოთხოვა ყოველ:"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #: configuration/ui/settings_general.ui:160
@@ -537,13 +537,13 @@ msgstr "გაშვება"
 #: configuration/ui/settings_general.ui:166
 #, kde-format
 msgid "Mark &all feeds as read on startup"
-msgstr ""
+msgstr "&გაშვებისას ყველა ლენტის წაკითხულად მონიშვნა"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_FetchOnStartup)
 #: configuration/ui/settings_general.ui:173
 #, kde-format
 msgid "Fetch all fee&ds on startup"
-msgstr ""
+msgstr "გაშვებისას &ყველა ლენტის გამოთხოვა"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: configuration/ui/settings_general.ui:183
@@ -555,7 +555,7 @@ msgstr "ქსელი"
 #: configuration/ui/settings_general.ui:189
 #, kde-format
 msgid "Use the &browser cache (less network traffic)"
-msgstr ""
+msgstr "&ბრაუზერის ქეშის გამოყენება (გამოიყენებს ნაკლებ ტრაფიკს)"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_LoadExternalReferences)
 #: configuration/ui/settings_security.ui:17
@@ -566,13 +566,13 @@ msgstr ""
 #: export/akregatorstorageexporter.cpp:280
 #, kde-format
 msgid "Akregator Export for %1"
-msgstr ""
+msgstr "Akregator -ის გატანა %1-სთვის"
 
 #. i18n: ectx: whatsthis, entry, group (View)
 #: interfaces/akregator.kcfg:10
 #, kde-format
 msgid "Hides feeds with no unread articles"
-msgstr ""
+msgstr "წაუკითხავი სტატიების არმქონე ლენტების დამალვა"
 
 #. i18n: ectx: label, entry, group (View)
 #: interfaces/akregator.kcfg:21
@@ -596,13 +596,13 @@ msgstr ""
 #: interfaces/akregator.kcfg:31 src/actions/actionmanagerimpl.cpp:317
 #, kde-format
 msgid "Show Quick Filter"
-msgstr ""
+msgstr "სწრაფი ფილტრის ჩვენება"
 
 #. i18n: ectx: whatsthis, entry, group (View)
 #: interfaces/akregator.kcfg:32
 #, kde-format
 msgid "Show Quick Filter Bar"
-msgstr ""
+msgstr "ფილტრის ზოლის ჩვენება"
 
 #. i18n: ectx: label, entry, group (View)
 #: interfaces/akregator.kcfg:36
@@ -638,13 +638,13 @@ msgstr "ხედვის რეჟიმი"
 #: interfaces/akregator.kcfg:46
 #, kde-format
 msgid "Article display mode."
-msgstr ""
+msgstr "სტატიის ჩვენების რეჟიმი."
 
 #. i18n: ectx: label, entry, group (View)
 #: interfaces/akregator.kcfg:50
 #, kde-format
 msgid "Sizes for first splitter"
-msgstr ""
+msgstr "პირველი გამყოფის ზომები"
 
 #. i18n: ectx: whatsthis, entry, group (View)
 #: interfaces/akregator.kcfg:51
@@ -656,7 +656,7 @@ msgstr ""
 #: interfaces/akregator.kcfg:55
 #, kde-format
 msgid "Sizes for second splitter"
-msgstr ""
+msgstr "მეორე გამყოფის ზომები"
 
 #. i18n: ectx: whatsthis, entry, group (View)
 #: interfaces/akregator.kcfg:56
@@ -668,85 +668,85 @@ msgstr ""
 #: interfaces/akregator.kcfg:100
 #, kde-format
 msgid "Archive Mode"
-msgstr ""
+msgstr "არქივის რეჟიმი"
 
 #. i18n: ectx: label, entry, group (Archive)
 #: interfaces/akregator.kcfg:104
 #, kde-format
 msgid "Keep All Articles"
-msgstr ""
+msgstr "ყველა სტატიის შენარჩუნება"
 
 #. i18n: ectx: whatsthis, entry, group (Archive)
 #: interfaces/akregator.kcfg:105
 #, kde-format
 msgid "Save an unlimited number of articles."
-msgstr ""
+msgstr "შეუზღუდავი რაოდენობის სტატიების შენახვა."
 
 #. i18n: ectx: label, entry, group (Archive)
 #: interfaces/akregator.kcfg:108
 #, kde-format
 msgid "Limit Number of Articles"
-msgstr ""
+msgstr "სტატიების რაოდენობის შეზღუდვა"
 
 #. i18n: ectx: whatsthis, entry, group (Archive)
 #: interfaces/akregator.kcfg:109
 #, kde-format
 msgid "Limit the number of articles in a feed"
-msgstr ""
+msgstr "ლენტაში სტატიების რაოდენობის შეზღუდვა"
 
 #. i18n: ectx: label, entry, group (Archive)
 #: interfaces/akregator.kcfg:112
 #, kde-format
 msgid "Delete Expired Articles"
-msgstr ""
+msgstr "ვადაგასული სტატიების წაშლა"
 
 #. i18n: ectx: whatsthis, entry, group (Archive)
 #: interfaces/akregator.kcfg:113
 #, kde-format
 msgid "Delete expired articles"
-msgstr ""
+msgstr "ვადაგასული სტატიების წაშლა"
 
 #. i18n: ectx: label, entry, group (Archive)
 #: interfaces/akregator.kcfg:116
 #, kde-format
 msgid "Disable Archiving"
-msgstr ""
+msgstr "არქივირების გათიშვა"
 
 #. i18n: ectx: whatsthis, entry, group (Archive)
 #: interfaces/akregator.kcfg:117
 #, kde-format
 msgid "Do not save any articles"
-msgstr ""
+msgstr "სტატიები არ შეინახება"
 
 #. i18n: ectx: label, entry, group (Archive)
 #: interfaces/akregator.kcfg:122
 #, kde-format
 msgid "Expiry Age"
-msgstr ""
+msgstr "ვადის ასაკი"
 
 #. i18n: ectx: whatsthis, entry, group (Archive)
 #: interfaces/akregator.kcfg:123
 #, kde-format
 msgid "Default expiry age for articles in days."
-msgstr ""
+msgstr "სტატიების ვადა, დღეებში."
 
 #. i18n: ectx: label, entry, group (Archive)
 #: interfaces/akregator.kcfg:127
 #, kde-format
 msgid "Article Limit"
-msgstr ""
+msgstr "სტატიის ლიმიტი"
 
 #. i18n: ectx: whatsthis, entry, group (Archive)
 #: interfaces/akregator.kcfg:128
 #, kde-format
 msgid "Number of articles to keep per feed."
-msgstr ""
+msgstr "ლენტაში შენარჩუნებული სტატიების რაოდენობა."
 
 #. i18n: ectx: label, entry, group (Archive)
 #: interfaces/akregator.kcfg:132
 #, kde-format
 msgid "Do Not Expire Important Articles"
-msgstr ""
+msgstr "მნიშვნელოვან სტატიების ვადა არ გაუვათ"
 
 #. i18n: ectx: whatsthis, entry, group (Archive)
 #: interfaces/akregator.kcfg:133
@@ -760,19 +760,19 @@ msgstr ""
 #: interfaces/akregator.kcfg:139
 #, kde-format
 msgid "Concurrent Fetches"
-msgstr ""
+msgstr "ერთდროული გამოთხოვები"
 
 #. i18n: ectx: whatsthis, entry, group (Network)
 #: interfaces/akregator.kcfg:140
 #, kde-format
 msgid "Number of concurrent fetches"
-msgstr ""
+msgstr "ერთდროული გამოთხოვების რაოდენობა"
 
 #. i18n: ectx: label, entry, group (Network)
 #: interfaces/akregator.kcfg:144
 #, kde-format
 msgid "Use HTML Cache"
-msgstr ""
+msgstr "HTML ქეშის გაოყენება"
 
 #. i18n: ectx: whatsthis, entry, group (Network)
 #: interfaces/akregator.kcfg:145
@@ -795,61 +795,61 @@ msgstr ""
 #: interfaces/akregator.kcfg:155
 #, kde-format
 msgid "Fetch on startup"
-msgstr ""
+msgstr "გაშვებისას გამოთხოვა"
 
 #. i18n: ectx: whatsthis, entry, group (General)
 #: interfaces/akregator.kcfg:156
 #, kde-format
 msgid "Fetch feedlist on startup."
-msgstr ""
+msgstr "ლენტის გამოთხოვა გაშვებისას."
 
 #. i18n: ectx: label, entry, group (General)
 #: interfaces/akregator.kcfg:160
 #, kde-format
 msgid "Mark all feeds as read on startup"
-msgstr ""
+msgstr "გაშვებისას ყველა ლენტის წაკითხულად მონიშვნა"
 
 #. i18n: ectx: whatsthis, entry, group (General)
 #: interfaces/akregator.kcfg:161
 #, kde-format
 msgid "Mark all feeds as read on startup."
-msgstr ""
+msgstr "გაშვებისას ყველა ლენტის წაკითხულად მონიშვნა."
 
 #. i18n: ectx: label, entry, group (General)
 #: interfaces/akregator.kcfg:165
 #, kde-format
 msgid "Use interval fetching"
-msgstr ""
+msgstr "ინტერვალით გამოთხოვის გამოყენება"
 
 #. i18n: ectx: whatsthis, entry, group (General)
 #: interfaces/akregator.kcfg:166
 #, no-c-format, kde-format
 msgid "Fetch all feeds every %1 minutes."
-msgstr ""
+msgstr "ყველა ლენტის %1 წუთში გამოთხოვა."
 
 #. i18n: ectx: label, entry, group (General)
 #: interfaces/akregator.kcfg:170
 #, kde-format
 msgid "Interval for autofetching"
-msgstr ""
+msgstr "ავტომატური გამოთხოვის ინტერვალი"
 
 #. i18n: ectx: whatsthis, entry, group (General)
 #: interfaces/akregator.kcfg:171
 #, kde-format
 msgid "Interval for autofetching in minutes."
-msgstr ""
+msgstr "ავტომატური გამოთხოვის ინტერვალი, წუთებში."
 
 #. i18n: ectx: label, entry, group (General)
 #: interfaces/akregator.kcfg:175
 #, kde-format
 msgid "Use notifications"
-msgstr ""
+msgstr "გაფრთხილებების გამოყენება"
 
 #. i18n: ectx: whatsthis, entry, group (General)
 #: interfaces/akregator.kcfg:176
 #, kde-format
 msgid "Specifies if the balloon notifications are used or not."
-msgstr ""
+msgstr "მიუთითებს, გამოიყენება თუ არა ბუშტის ფორმის გაფრთხილებები."
 
 #. i18n: ectx: label, entry, group (General)
 #: interfaces/akregator.kcfg:180
@@ -861,19 +861,19 @@ msgstr "სისტემის კუთხეში ხატულის ჩ
 #: interfaces/akregator.kcfg:181
 #, kde-format
 msgid "Specifies if the tray icon is shown or not."
-msgstr ""
+msgstr "მიუთითებს, საათთან ხატულა გამოჩნდება, თუ არა."
 
 #. i18n: ectx: label, entry, group (General)
 #: interfaces/akregator.kcfg:185
 #, kde-format
 msgid "Show Unread In Taskbar"
-msgstr ""
+msgstr "წაუკითხავების ამოცანების პანელზე ჩვენება"
 
 #. i18n: ectx: whatsthis, entry, group (General)
 #: interfaces/akregator.kcfg:186
 #, kde-format
 msgid "Specifies if we show unread article in taskbar."
-msgstr ""
+msgstr "მიუთითებს, საათთან წაუკითხავი სტატია გამოჩნდება, თუ არა."
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
 #: interfaces/akregator.kcfg:203
@@ -885,13 +885,13 @@ msgstr ""
 #: interfaces/akregator.kcfg:207
 #, kde-format
 msgid "Show close buttons on tabs"
-msgstr ""
+msgstr "ჩანართებზე დახურვის ღილაკების ჩვენება"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
 #: interfaces/akregator.kcfg:208
 #, kde-format
 msgid "Show close buttons on tabs instead of icons"
-msgstr ""
+msgstr "ჩანართებზე ხატულის ნაცვლად დახურვის ღილაკების ჩვენება"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
 #: interfaces/akregator.kcfg:213
@@ -905,7 +905,7 @@ msgstr ""
 #: interfaces/akregator.kcfg:217
 #, kde-format
 msgid "Use default KDE web browser"
-msgstr ""
+msgstr "KDE-ის ნაგულისხმები ბრაუზერის გამოყენება"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
 #: interfaces/akregator.kcfg:218
@@ -947,7 +947,7 @@ msgstr ""
 #: interfaces/akregator.kcfg:265
 #, kde-format
 msgid "Archive Backend"
-msgstr ""
+msgstr "უკანაბოლოს არქივაცია"
 
 #. i18n: ectx: whatsthis, entry (UseMarkReadDelay), group (Advanced)
 #: interfaces/akregator.kcfg:269
@@ -980,13 +980,13 @@ msgstr "Akregator"
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "New Feed..."
-msgstr ""
+msgstr "ახალი ლენტა..."
 
 #: kontactplugin/akregator_plugin.cpp:32
 #, kde-format
 msgctxt "@info:status"
 msgid "Create a new feed"
-msgstr ""
+msgstr "ახალი ლენტის შექმნა"
 
 #: kontactplugin/akregator_plugin.cpp:33
 #, kde-format
@@ -997,12 +997,12 @@ msgstr ""
 #: src/aboutdata.cpp:21
 #, kde-format
 msgid "A KDE Feed Reader"
-msgstr ""
+msgstr "KDE-ის სიახლეების ლენტის წაკითხვა"
 
 #: src/aboutdata.cpp:23
 #, kde-format
 msgid "Copyright © 2004–%1 Akregator authors"
-msgstr ""
+msgstr "© 2004–%1 Akregator -ის ავტორები, ყველა უფლება დაცულია"
 
 #: src/aboutdata.cpp:27
 #, kde-format
@@ -1028,12 +1028,12 @@ msgstr "პროგრამისტი"
 #: src/aboutdata.cpp:30
 #, kde-format
 msgid "Sashmit Bhaduri"
-msgstr ""
+msgstr "Sashmit Bhaduri"
 
 #: src/aboutdata.cpp:31
 #, kde-format
 msgid "Pierre Habouzit"
-msgstr ""
+msgstr "Pierre Habouzit"
 
 #: src/aboutdata.cpp:32
 #, kde-format
@@ -1058,7 +1058,7 @@ msgstr "Stephan Binner"
 #: src/aboutdata.cpp:35
 #, kde-format
 msgid "Christof Musik"
-msgstr ""
+msgstr "Christof Musik"
 
 #: src/aboutdata.cpp:36
 #, kde-format
@@ -1078,27 +1078,27 @@ msgstr "Frerich Raabe"
 #: src/aboutdata.cpp:37
 #, kde-format
 msgid "Author of librss"
-msgstr ""
+msgstr "Librss-ის ავტორი"
 
 #: src/aboutdata.cpp:38
 #, kde-format
 msgid "Eckhart Woerner"
-msgstr ""
+msgstr "Eckhart Woerner"
 
 #: src/aboutdata.cpp:38
 #, kde-format
 msgid "Bug tracker management, Usability improvements"
-msgstr ""
+msgstr "შეცდომები, ინტერფეისის გაუმჯობესება"
 
 #: src/aboutdata.cpp:39
 #, kde-format
 msgid "Heinrich Wendel"
-msgstr ""
+msgstr "Heinrich Wendel"
 
 #: src/aboutdata.cpp:39
 #, kde-format
 msgid "Tons of bug fixes"
-msgstr ""
+msgstr "ტონობით შეცდომის გასწორება"
 
 #: src/aboutdata.cpp:40
 #, kde-format
@@ -1108,7 +1108,7 @@ msgstr "აიკე ჰაინი"
 #: src/aboutdata.cpp:40
 #, kde-format
 msgid "'Delayed mark as read' feature"
-msgstr ""
+msgstr "ფუნქცია 'დაყოვნებული წაკითხულად მონიშვნა"
 
 #: src/aboutdata.cpp:41
 #, kde-format
@@ -1133,37 +1133,37 @@ msgstr "უძილობა"
 #: src/aboutdata.cpp:43
 #, kde-format
 msgid "Philipp Droessler"
-msgstr ""
+msgstr "Philipp Droessler"
 
 #: src/aboutdata.cpp:43
 #, kde-format
 msgid "Gentoo Ebuild"
-msgstr ""
+msgstr "Gentoo Ebuild"
 
 #: src/actions/actionmanagerimpl.cpp:63 src/actions/actionmanagerimpl.cpp:286
 #, kde-format
 msgid "&Fetch Feed"
-msgstr ""
+msgstr "&ლენტის გამოთხოვა"
 
 #: src/actions/actionmanagerimpl.cpp:64 src/actions/actionmanagerimpl.cpp:242
 #, kde-format
 msgid "&Delete Feed"
-msgstr ""
+msgstr "&ლენტის წაშლა"
 
 #: src/actions/actionmanagerimpl.cpp:65 src/actions/actionmanagerimpl.cpp:248
 #, kde-format
 msgid "&Edit Feed..."
-msgstr ""
+msgstr "&ლენტის ჩასწორება..."
 
 #: src/actions/actionmanagerimpl.cpp:66 src/actions/actionmanagerimpl.cpp:305
 #, kde-format
 msgid "&Mark Feed as Read"
-msgstr ""
+msgstr "&ლენტის წაკითხულად მონიშვნა"
 
 #: src/actions/actionmanagerimpl.cpp:82
 #, kde-format
 msgid "&Fetch Feeds"
-msgstr ""
+msgstr "&ლენტების გამოთხოვა"
 
 #: src/actions/actionmanagerimpl.cpp:83
 #, kde-format
@@ -1173,77 +1173,77 @@ msgstr "&საქაღალდის წაშლა"
 #: src/actions/actionmanagerimpl.cpp:84
 #, kde-format
 msgid "&Rename Folder"
-msgstr ""
+msgstr "საქაღალდის სახელის &შეცვლა"
 
 #: src/actions/actionmanagerimpl.cpp:85
 #, kde-format
 msgid "&Mark Feeds as Read"
-msgstr ""
+msgstr "&ლენტების წაკითხულად მონიშვნა"
 
 #: src/actions/actionmanagerimpl.cpp:190
 #, kde-format
 msgid "&Import Feeds..."
-msgstr ""
+msgstr "&ლენტების შემოტანა…"
 
 #: src/actions/actionmanagerimpl.cpp:194
 #, kde-format
 msgid "&Export Feeds..."
-msgstr ""
+msgstr "&ლენტების გატანა…"
 
 #: src/actions/actionmanagerimpl.cpp:199
 #, kde-format
 msgid "&Configure Akregator..."
-msgstr ""
+msgstr "Akregator-ის &მორგება..."
 
 #: src/actions/actionmanagerimpl.cpp:218
 #, kde-format
 msgid "&Open Homepage"
-msgstr ""
+msgstr "საწყისი გვერდის &გახსნა"
 
 #: src/actions/actionmanagerimpl.cpp:224
 #, kde-format
 msgid "Reload All Tabs"
-msgstr ""
+msgstr "&ყველა ჩანართის თავიდან ჩატვირთვა"
 
 #: src/actions/actionmanagerimpl.cpp:230
 #, kde-format
 msgid "&Add Feed..."
-msgstr ""
+msgstr "ლენტის &დამატება…"
 
 #: src/actions/actionmanagerimpl.cpp:236
 #, kde-format
 msgid "Ne&w Folder..."
-msgstr ""
+msgstr "&ახალი საქაღალდე..."
 
 #: src/actions/actionmanagerimpl.cpp:261
 #, kde-format
 msgid "&Normal View"
-msgstr ""
+msgstr "&ნორმალური ხედი"
 
 #: src/actions/actionmanagerimpl.cpp:270
 #, kde-format
 msgid "&Widescreen View"
-msgstr ""
+msgstr "&ფართოეკრანიანი ხედი"
 
 #: src/actions/actionmanagerimpl.cpp:279
 #, kde-format
 msgid "C&ombined View"
-msgstr ""
+msgstr "&კომბინირებული ხედი"
 
 #: src/actions/actionmanagerimpl.cpp:292
 #, kde-format
 msgid "Fe&tch All Feeds"
-msgstr ""
+msgstr "&ყველა ხედის გამოთხოვა"
 
 #: src/actions/actionmanagerimpl.cpp:298
 #, kde-format
 msgid "C&ancel Feed Fetches"
-msgstr ""
+msgstr "ლენტების გამოთხოვის &გაუქმება"
 
 #: src/actions/actionmanagerimpl.cpp:311
 #, kde-format
 msgid "Ma&rk All Feeds as Read"
-msgstr ""
+msgstr "&ყველა ლენტის წაკითხულად მონიშვნა"
 
 #: src/actions/actionmanagerimpl.cpp:340 src/actions/actionmanagerimpl.cpp:608
 #, kde-format
@@ -1253,12 +1253,12 @@ msgstr "ბმულის მისამართის კოპირებ�
 #: src/actions/actionmanagerimpl.cpp:345
 #, kde-format
 msgid "Pre&vious Unread Article"
-msgstr ""
+msgstr "&წინა წაუკითხავი სტატია"
 
 #: src/actions/actionmanagerimpl.cpp:351
 #, kde-format
 msgid "Ne&xt Unread Article"
-msgstr ""
+msgstr "&შემდეგი წაუკითხავი სტატია"
 
 #: src/actions/actionmanagerimpl.cpp:359
 #, kde-format
@@ -1268,7 +1268,7 @@ msgstr "&წაშლა"
 #: src/actions/actionmanagerimpl.cpp:364
 #, kde-format
 msgid "&Mark As"
-msgstr ""
+msgstr "&დანიშვნა, როგორც"
 
 #: src/actions/actionmanagerimpl.cpp:368
 #, kde-format
@@ -1279,7 +1279,7 @@ msgstr "&წაკითხული"
 #: src/actions/actionmanagerimpl.cpp:370
 #, kde-format
 msgid "Mark selected article as read"
-msgstr ""
+msgstr "მონიშნული სტატიის წაკითხულად დანიშვნა"
 
 #: src/actions/actionmanagerimpl.cpp:376
 #, kde-format
@@ -1290,48 +1290,48 @@ msgstr "&ახალი"
 #: src/actions/actionmanagerimpl.cpp:379
 #, kde-format
 msgid "Mark selected article as new"
-msgstr ""
+msgstr "მონიშნული სტატიის ახლად დანიშვნა"
 
 #: src/actions/actionmanagerimpl.cpp:384
 #, kde-format
 msgctxt "as in: mark as unread"
 msgid "&Unread"
-msgstr ""
+msgstr "&წაუკითხავი"
 
 #: src/actions/actionmanagerimpl.cpp:386
 #, kde-format
 msgid "Mark selected article as unread"
-msgstr ""
+msgstr "მონიშნული სტატიის წაუკითხავად დანიშვნა"
 
 #: src/actions/actionmanagerimpl.cpp:392
 #, kde-format
 msgid "&Mark as Important"
-msgstr ""
+msgstr "&მნიშვნელოვნად დანიშვნა"
 
 #: src/actions/actionmanagerimpl.cpp:396
 #, kde-format
 msgid "Remove &Important Mark"
-msgstr ""
+msgstr "&მნიშვნელოვნობის ნიშნის მოცილება"
 
 #: src/actions/actionmanagerimpl.cpp:400
 #, kde-format
 msgid "Move Node Up"
-msgstr ""
+msgstr "კვანძის მაღლა აწევა"
 
 #: src/actions/actionmanagerimpl.cpp:405
 #, kde-format
 msgid "Move Node Down"
-msgstr ""
+msgstr "კვანძის დაბლა ჩამოწევა"
 
 #: src/actions/actionmanagerimpl.cpp:410
 #, kde-format
 msgid "Move Node Left"
-msgstr ""
+msgstr "კვანძის მარცხნივ გაწევა"
 
 #: src/actions/actionmanagerimpl.cpp:415
 #, kde-format
 msgid "Move Node Right"
-msgstr ""
+msgstr "კვანძის მარჯვნივ გაწევა"
 
 #: src/actions/actionmanagerimpl.cpp:421
 #, kde-format
@@ -1341,97 +1341,97 @@ msgstr "&ბმულის მისამართის გაგზავნ
 #: src/actions/actionmanagerimpl.cpp:426
 #, kde-format
 msgid "Send &File..."
-msgstr ""
+msgstr "ფაილის &გაგზავნა…"
 
 #: src/actions/actionmanagerimpl.cpp:432
 #, kde-format
 msgid "Set Focus to Quick Search"
-msgstr ""
+msgstr "ფოკუსის სწრაფ ძებნაზე დაყენება"
 
 #: src/actions/actionmanagerimpl.cpp:464
 #, kde-format
 msgid "&Previous Article"
-msgstr ""
+msgstr "&წინა სტატია"
 
 #: src/actions/actionmanagerimpl.cpp:468
 #, kde-format
 msgid "&Next Article"
-msgstr ""
+msgstr "&შემდეგი სტატია"
 
 #: src/actions/actionmanagerimpl.cpp:484
 #, kde-format
 msgid "&Previous Feed"
-msgstr ""
+msgstr "&წინა ლენტა"
 
 #: src/actions/actionmanagerimpl.cpp:489
 #, kde-format
 msgid "&Next Feed"
-msgstr ""
+msgstr "&შემდეგი ლენტა"
 
 #: src/actions/actionmanagerimpl.cpp:495
 #, kde-format
 msgid "N&ext Unread Feed"
-msgstr ""
+msgstr "&შემდეგი წაუკითხავი ლენტა"
 
 #: src/actions/actionmanagerimpl.cpp:501
 #, kde-format
 msgid "Prev&ious Unread Feed"
-msgstr ""
+msgstr "&წინა წაუკითხავი ლენტა"
 
 #: src/actions/actionmanagerimpl.cpp:506
 #, kde-format
 msgid "Go to Top of Tree"
-msgstr ""
+msgstr "ხის თავზე გადასვლა"
 
 #: src/actions/actionmanagerimpl.cpp:511
 #, kde-format
 msgid "Go to Bottom of Tree"
-msgstr ""
+msgstr "ხის ბოლოში გადასვლა"
 
 #: src/actions/actionmanagerimpl.cpp:516
 #, kde-format
 msgid "Go Left in Tree"
-msgstr ""
+msgstr "ხეზე მარცხნივ გასვლა"
 
 #: src/actions/actionmanagerimpl.cpp:521
 #, kde-format
 msgid "Go Right in Tree"
-msgstr ""
+msgstr "ხეზე მარჯვნივ გასვლა"
 
 #: src/actions/actionmanagerimpl.cpp:526
 #, kde-format
 msgid "Go Up in Tree"
-msgstr ""
+msgstr "ხეზე მაღლა ასვლა"
 
 #: src/actions/actionmanagerimpl.cpp:531
 #, kde-format
 msgid "Go Down in Tree"
-msgstr ""
+msgstr "ხეზე დაბლა ჩამოსვლა"
 
 #: src/actions/actionmanagerimpl.cpp:537
 #, kde-format
 msgid "Hide Read Feeds"
-msgstr ""
+msgstr "წაკითხული ლენტების დამალვა"
 
 #: src/actions/actionmanagerimpl.cpp:543
 #, kde-format
 msgid "Lock Feeds In Place"
-msgstr ""
+msgstr "ლენტების ადგილზე დამაგრება"
 
 #: src/actions/actionmanagerimpl.cpp:549
 #, kde-format
 msgid "Auto-expand folders with unread articles"
-msgstr ""
+msgstr "წაუკითხავი სტატიების მქონე საქაღალდეების ავტომატური ჩამოშლა"
 
 #: src/actions/actionmanagerimpl.cpp:565
 #, kde-format
 msgid "Select Next Tab"
-msgstr ""
+msgstr "შემდეგი ჩანართის მონიშვნა"
 
 #: src/actions/actionmanagerimpl.cpp:570
 #, kde-format
 msgid "Select Previous Tab"
-msgstr ""
+msgstr "წინა ჩანართის მონიშვნა"
 
 #: src/actions/actionmanagerimpl.cpp:576
 #, kde-format
@@ -1456,7 +1456,7 @@ msgstr "ტექსტის წაკითხვა"
 #: src/actions/actionmanagerimpl.cpp:602
 #, kde-format
 msgid "&Find in Message..."
-msgstr ""
+msgstr "&შეტყობინებაში მოძებნა..."
 
 #: src/actions/actionmanagerimpl.cpp:613
 #, kde-format
@@ -1476,7 +1476,7 @@ msgstr "ბმის &შენახვა როგორც..."
 #: src/actions/actionmanagerimpl.cpp:636
 #, kde-format
 msgid "Copy &Link Address"
-msgstr ""
+msgstr "&ბმულის მისამართის კოპირება"
 
 #: src/actions/actionmanagerimpl.cpp:639
 #, kde-format
@@ -1486,17 +1486,17 @@ msgstr "ნახატის ბმის კოპირება"
 #: src/actions/actionmanagerimpl.cpp:646
 #, kde-format
 msgid "Save Image On Disk..."
-msgstr ""
+msgstr "გამოსახულების დისკზე შენახვა..."
 
 #: src/actions/actions.cpp:19
 #, kde-format
 msgid "Open Link in New &Tab"
-msgstr ""
+msgstr "ბმულის ახალ ფანჯარაში &გახსნა"
 
 #: src/actions/actions.cpp:26
 #, kde-format
 msgid "Open Link in External &Browser"
-msgstr ""
+msgstr "ბმულის გარე &ბრაუზერში გახსნა"
 
 #: src/addfeeddialog.cpp:49
 #, kde-format
@@ -1512,27 +1512,27 @@ msgstr "%1-ის გადმოწერა"
 #: src/addfeeddialog.cpp:115
 #, kde-format
 msgid "Feed not found from %1."
-msgstr ""
+msgstr "%1-დან ლენტა ვერ ვიპოვე."
 
 #: src/addfeeddialog.cpp:121
 #, kde-format
 msgid "Feed found, downloading..."
-msgstr ""
+msgstr "ლენტა ნაპოვნია. მიმდინარეობს გადმოწერა..."
 
 #: src/akregator_options.h:20 src/akregator_options.h:28
 #, kde-format
 msgid "Add a feed with the given URL"
-msgstr ""
+msgstr "მითითებული URL-ით ლენტის დამატება"
 
 #: src/akregator_options.h:23
 #, kde-format
 msgid "When adding feeds, place them in this group"
-msgstr ""
+msgstr "ლენტების დამატებისას მათი ამ ჯგუფში ჩასმა"
 
 #: src/akregator_options.h:25
 #, kde-format
 msgid "Hide main window on startup"
-msgstr ""
+msgstr "გაშვებისას მთავარი ფანჯრის დამალვა"
 
 #: src/akregator_options.h:30
 #, kde-format
@@ -1547,12 +1547,12 @@ msgstr "ლენტები"
 #: src/akregator_part.cpp:95
 #, kde-format
 msgid "KDE Dot News"
-msgstr ""
+msgstr "KDE წერტილი სიახლეები"
 
 #: src/akregator_part.cpp:100
 #, kde-format
 msgid "Linux.com"
-msgstr ""
+msgstr "Linux.com"
 
 #: src/akregator_part.cpp:105
 #, kde-format
@@ -1562,17 +1562,17 @@ msgstr "Planet KDE"
 #: src/akregator_part.cpp:110
 #, kde-format
 msgid "KDE Apps"
-msgstr ""
+msgstr "KDE -ის აპები"
 
 #: src/akregator_part.cpp:116
 #, kde-format
 msgid "Spanish feeds"
-msgstr ""
+msgstr "ესპანური ლენტები"
 
 #: src/akregator_part.cpp:120
 #, kde-format
 msgid "Planet KDE España"
-msgstr ""
+msgstr "Planet KDE España"
 
 #: src/akregator_part.cpp:440
 #, kde-format
@@ -1584,17 +1584,17 @@ msgstr ""
 #: src/akregator_part.cpp:441 src/akregator_part.cpp:492
 #, kde-format
 msgid "Write Error"
-msgstr ""
+msgstr "ჩაწერის შეცდომა"
 
 #: src/akregator_part.cpp:477
 #, kde-format
 msgid "Could not import the file %1 (no valid OPML)"
-msgstr ""
+msgstr "ფაილის (%1) შემოტანის შეცდომა (არასწორი OPML)"
 
 #: src/akregator_part.cpp:477 src/command/loadfeedlistcommand.cpp:71
 #, kde-format
 msgid "OPML Parsing Error"
-msgstr ""
+msgstr "OPML_ის დამუშავების შეცდომა"
 
 #: src/akregator_part.cpp:481
 #, kde-format
@@ -1606,7 +1606,7 @@ msgstr ""
 #: src/akregator_part.cpp:482 src/command/loadfeedlistcommand.cpp:142
 #, kde-format
 msgid "Read Error"
-msgstr ""
+msgstr "წაკითხვის შეცდომა"
 
 #: src/akregator_part.cpp:492
 #, kde-format
@@ -1621,12 +1621,12 @@ msgstr ""
 #: src/akregator_part.cpp:650
 #, kde-format
 msgid "Imported Folder"
-msgstr ""
+msgstr "შემოტანილი საქაღლდე"
 
 #: src/articlejobs.cpp:184
 #, kde-format
 msgid "The feed to be listed was already removed."
-msgstr ""
+msgstr "საჩვენებელი ლენტა უკვე წაშლილია."
 
 #: src/articlelistview.cpp:156 src/subscription/subscriptionlistview.cpp:180
 #, kde-format
@@ -1658,7 +1658,7 @@ msgstr "სათაური"
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Feed"
-msgstr ""
+msgstr "ლენტა"
 
 #: src/articlemodel.cpp:78
 #, kde-format
@@ -1676,7 +1676,7 @@ msgstr "ავტორი"
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Description"
-msgstr ""
+msgstr "აღწერა"
 
 #: src/articlemodel.cpp:84
 #, kde-format
@@ -1687,7 +1687,7 @@ msgstr "შემცველობა"
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:149
 #, kde-format
 msgid "Akregator is a KDE news feed reader."
-msgstr ""
+msgstr "Akregator -ი KDE -ის სიახლეების წაკითხვის პროგრამაა."
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:190
 #, kde-format
@@ -1703,7 +1703,7 @@ msgstr "გამორთვა"
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:382
 #, kde-format
 msgid "Keep Enabled"
-msgstr ""
+msgstr "ჩართულად შენარჩუნება"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:384
 #, kde-format
@@ -1713,7 +1713,7 @@ msgstr ""
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:385
 #, kde-format
 msgid "Disable Introduction Page"
-msgstr ""
+msgstr "საწყისი გვერდის გამორთვა"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:420
 #, kde-format
@@ -1723,23 +1723,23 @@ msgstr ""
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:421
 #, kde-format
 msgid "Malware"
-msgstr ""
+msgstr "მავნე პროგრამა"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:433
 #, kde-format
 msgid "The network is broken."
-msgstr ""
+msgstr "ქსელთა მიერთება გათიშულია."
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:433
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:436
 #, kde-format
 msgid "Check Phishing Url"
-msgstr ""
+msgstr "ფიშინგის ბმულის შემოწმება"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:436
 #, kde-format
 msgid "The url %1 is not valid."
-msgstr ""
+msgstr "ბმული %1 არასწორია."
 
 #: src/articleviewer-ng/webengine/articleviewerwebenginewidgetng.cpp:137
 #, kde-format
@@ -1789,7 +1789,7 @@ msgstr ""
 #: src/command/deletesubscriptioncommand.cpp:68
 #, kde-format
 msgid "Delete Feed"
-msgstr ""
+msgstr "ლენტის წაშლა"
 
 #: src/command/importfeedlistcommand.cpp:48
 #, kde-format
@@ -1799,12 +1799,12 @@ msgstr "ლენტების შემოტანა"
 #: src/command/importfeedlistcommand.cpp:77
 #, kde-format
 msgid "Add Imported Folder"
-msgstr ""
+msgstr "შემოტანილი საქაღალდის დამატება"
 
 #: src/command/importfeedlistcommand.cpp:78
 #, kde-format
 msgid "Imported folder name:"
-msgstr ""
+msgstr "შემოტანილი საქაღალდის სახელი:"
 
 #: src/command/loadfeedlistcommand.cpp:63
 #, kde-format
@@ -1823,7 +1823,7 @@ msgstr ""
 #: src/command/loadfeedlistcommand.cpp:129
 #, kde-format
 msgid "Opening Feed List..."
-msgstr ""
+msgstr "ლენტების სიის გახსნა..."
 
 #: src/command/loadfeedlistcommand.cpp:142
 #, kde-format
@@ -1834,7 +1834,7 @@ msgstr ""
 #, kde-format
 msgctxt "error message window caption"
 msgid "XML Parsing Error"
-msgstr ""
+msgstr "XML დამუშავების შეცდომა"
 
 #: src/command/loadfeedlistcommand.cpp:157
 #, kde-kuit-format
@@ -1860,7 +1860,7 @@ msgstr ""
 msgid ""
 "Akregator did not close correctly. Would you like to restore the previous "
 "session?"
-msgstr ""
+msgstr "Akregator-ი არასწორად დაიხურა. გნებავთ წინა სესიის აღდგენა?"
 
 #: src/crashwidget/crashwidget.cpp:37
 #, kde-format
@@ -1870,12 +1870,12 @@ msgstr "სესიის აღდგენა"
 #: src/crashwidget/crashwidget.cpp:43
 #, kde-format
 msgid "Do Not Restore Session"
-msgstr ""
+msgstr "სესია არ აღდგება"
 
 #: src/crashwidget/crashwidget.cpp:49
 #, kde-format
 msgid "Ask me later"
-msgstr ""
+msgstr "მოგვიანებით მკითხე"
 
 #. i18n: ectx: Menu (edit)
 #: src/data/akregator_part.rc:14 src/data/akregator_shell.rc:11
@@ -1899,7 +1899,7 @@ msgstr "&გადასვლა"
 #: src/data/akregator_part.rc:49 src/data/akregator_shell.rc:29
 #, kde-format
 msgid "Fee&d"
-msgstr ""
+msgstr "&ლენტა"
 
 #. i18n: ectx: Menu (article)
 #: src/data/akregator_part.rc:62 src/data/akregator_shell.rc:34
@@ -1955,7 +1955,7 @@ msgstr[1] "დღე"
 #, kde-format
 msgctxt "@title:window"
 msgid "Feed Properties"
-msgstr ""
+msgstr "ლენტის მორგება"
 
 #: src/feed/feedpropertiesdialog.cpp:80
 #, kde-format
@@ -1992,30 +1992,30 @@ msgstr "(%1, %2)"
 #: src/formatter/grantleeviewformatter.cpp:109
 #, kde-format
 msgid " (no unread articles)"
-msgstr ""
+msgstr " (წაუკითხავი სტატიების გარეშე)"
 
 #: src/formatter/grantleeviewformatter.cpp:60
 #: src/formatter/grantleeviewformatter.cpp:111
 #, kde-format
 msgid " (1 unread article)"
 msgid_plural " (%1 unread articles)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] " (1 წაუკითხავი სტატია)"
+msgstr[1] " (%1 წაუკითხავი სტატია)"
 
 #: src/formatter/grantleeviewformatter.cpp:75
 #, kde-format
 msgid "<b>Description:</b> %1<br />"
-msgstr ""
+msgstr "<b>აღწერა:</b> %1<br />"
 
 #: src/formatter/grantleeviewformatter.cpp:82
 #, kde-format
 msgid "<b>Homepage:</b> <a href=\"%1\">%1</a>"
-msgstr ""
+msgstr "<b>საწყისი გვერდი:</b> <a href=\"%1\">%1</a>"
 
 #: src/formatter/grantleeviewformatter.cpp:89
 #, kde-format
 msgid "<b>Copyright:</b> %1</a>"
-msgstr ""
+msgstr "<b>საავტორო უფლებები:</b> %1</a>"
 
 #: src/formatter/grantleeviewformatter.cpp:141
 #, kde-format
@@ -2030,7 +2030,7 @@ msgstr "კომე_ნტარი"
 #: src/formatter/grantleeviewformatter.cpp:143
 #, kde-format
 msgid "Complete Story"
-msgstr ""
+msgstr "სრული ისტორია"
 
 #: src/formatter/grantleeviewformatter.cpp:144
 #, kde-format
@@ -2040,7 +2040,7 @@ msgstr "ავტორი"
 #: src/formatter/grantleeviewformatter.cpp:145
 #, kde-format
 msgid "Enclosure"
-msgstr ""
+msgstr "კალათი"
 
 #: src/frame/frame.cpp:21
 #, kde-format
@@ -2055,22 +2055,22 @@ msgstr "იტვირთება..."
 #: src/frame/frame.cpp:157
 #, kde-format
 msgid "Loading canceled"
-msgstr ""
+msgstr "ჩატვირთვა გაუქმდა"
 
 #: src/frame/frame.cpp:169
 #, kde-format
 msgid "Loading completed"
-msgstr ""
+msgstr "ჩატვირთვა დასრულდა"
 
 #: src/mainwidget.cpp:144
 #, kde-format
 msgid "You can view multiple articles in several open tabs."
-msgstr ""
+msgstr "ჩანართების საშუალებით ბევრი სტატიის ნახვა შეგიძლიათ."
 
 #: src/mainwidget.cpp:148
 #, kde-format
 msgid "Articles list."
-msgstr ""
+msgstr "სტატიების სია."
 
 #: src/mainwidget.cpp:210 src/mainwidget.cpp:635
 #, kde-format
@@ -2092,7 +2092,7 @@ msgstr ""
 #: src/mainwidget.cpp:766
 #, kde-format
 msgid "Mark Feed as Read"
-msgstr ""
+msgstr "ლენტის წაკითხულად მონიშვნა"
 
 #: src/mainwidget.cpp:769
 #, kde-format
@@ -2109,35 +2109,35 @@ msgstr ""
 #: src/mainwidget.cpp:773
 #, kde-format
 msgid "Mark Feeds as Read"
-msgstr ""
+msgstr "ლენტების წაკითხულად მონიშვნა"
 
 #: src/mainwidget.cpp:837 src/mainwidget.cpp:846 src/mainwidget.cpp:1248
 #, kde-format
 msgid "Networking is not available."
-msgstr ""
+msgstr "ქსელი ხელმიუწვდომელია."
 
 #: src/mainwidget.cpp:854
 #, kde-format
 msgid "Fetching Feeds..."
-msgstr ""
+msgstr "სიახლეების გამოთხოვა..."
 
 #: src/mainwidget.cpp:1053
 #, kde-format
 msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
-msgstr ""
+msgstr "<qt>დარწმუნებული ბრძანდებით, რომ გნებავთ, წაშალოთ <b>%1</b>?</qt>"
 
 #: src/mainwidget.cpp:1056
 #, kde-format
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
 msgid_plural ""
 "<qt>Are you sure you want to delete the %1 selected articles?</qt>"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<qt>მართლა გნებავთ მონიშნული სტატიის წაშლა?</qt>"
+msgstr[1] "<qt>მართლა გნებავთ %1 მონიშნული სტატიის წაშლა?</qt>"
 
 #: src/mainwidget.cpp:1245
 #, kde-format
 msgid "Networking is available now."
-msgstr ""
+msgstr "ქსელი ისევ ხელმისაწვდომია."
 
 #: src/mainwindow.cpp:124
 #, kde-format
@@ -2159,6 +2159,8 @@ msgid ""
 "Could not find the Akregator part; please check your installation.\n"
 "%1"
 msgstr ""
+"Akregator-ის ნაწილი ვერ ვიპოვე. შეამოწმეთ პროგრამის ფაილები.\n"
+"%1"
 
 #: src/notificationmanager.cpp:49
 #, kde-format
@@ -2166,6 +2168,8 @@ msgid ""
 "Feed added:\n"
 " %1"
 msgstr ""
+"ლენტა დამატებულია:\n"
+"%1"
 
 #: src/notificationmanager.cpp:61
 #, kde-format
@@ -2173,48 +2177,51 @@ msgid ""
 "Feeds added:\n"
 " %1"
 msgstr ""
+"ლენტა დამატებულია:\n"
+"%1"
 
 #: src/notificationmanager.cpp:79
 #, kde-format
 msgid "<i>and 1 other</i>"
 msgid_plural "<i>and %1 others</i>"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<i>და კიდევ 1</i>"
+msgstr[1] "<i>და კიდევ %1</i>"
 
 #: src/progressmanager.cpp:127
 #, kde-format
 msgid "Fetch completed"
-msgstr ""
+msgstr "გამოთხოვა დასრულდა"
 
 #: src/progressmanager.cpp:136
 #, kde-format
 msgid "Fetch error"
-msgstr ""
+msgstr "გამოთხოვის შეცდომა"
 
 #: src/progressmanager.cpp:145
 #, kde-format
 msgid "Fetch aborted"
-msgstr ""
+msgstr "გამოთხოვა გაუქმდა"
 
 #: src/subscription/subscriptionlistjobs.cpp:54
 #, kde-format
 msgid "Feed list was deleted"
-msgstr ""
+msgstr "ლენტის სია წაიშალა"
 
 #: src/subscription/subscriptionlistjobs.cpp:64
 #, kde-format
 msgid "Node or destination folder not found"
-msgstr ""
+msgstr "კვანძი ან სამიზნე საქაღალდე არ არსებობს"
 
 #: src/subscription/subscriptionlistjobs.cpp:71
 #, kde-format
 msgid "Cannot move folder %1 to its own subfolder %2"
 msgstr ""
+"საქაღალდის (%1) თავისივე თავის ქვესაქაღალდეში (%2) გადატანა შეუძლებელია"
 
 #: src/subscription/subscriptionlistmodel.cpp:49
 #, kde-format
 msgid "Timeout on remote server"
-msgstr ""
+msgstr "სერვერამდე კავშირის ვადა გავიდა"
 
 #: src/subscription/subscriptionlistmodel.cpp:51
 #, kde-format
@@ -2224,27 +2231,27 @@ msgstr "უცნობი ჰოსტი"
 #: src/subscription/subscriptionlistmodel.cpp:53
 #, kde-format
 msgid "Feed file not found on remote server"
-msgstr ""
+msgstr "დაშორებულ სერვერზე ლენტის ფაილი არ არსებობს"
 
 #: src/subscription/subscriptionlistmodel.cpp:55
 #, kde-format
 msgid "Could not read feed (invalid XML)"
-msgstr ""
+msgstr "ლენტის წაკითხვის შეცდომა (არასწორი XML)"
 
 #: src/subscription/subscriptionlistmodel.cpp:57
 #, kde-format
 msgid "Could not read feed (unknown format)"
-msgstr ""
+msgstr "ლენტის წაკითხვის შეცდომა (უცნობი ფორატი)"
 
 #: src/subscription/subscriptionlistmodel.cpp:59
 #, kde-format
 msgid "Could not read feed (invalid feed)"
-msgstr ""
+msgstr "ლენტის წაკითხვის შეცდომა (არასწორი ლენტა)"
 
 #: src/subscription/subscriptionlistmodel.cpp:229
 #, kde-format
 msgid "Could not fetch feed: %1"
-msgstr ""
+msgstr "ლენტის გამოთხოვის შეცდომა: %1"
 
 #: src/subscription/subscriptionlistmodel.cpp:274
 #, kde-format
@@ -2301,14 +2308,14 @@ msgstr "ყველა ჩანართის დახურვა"
 #: src/trayicon.cpp:55
 #, kde-format
 msgid "There are no unread articles"
-msgstr ""
+msgstr "წაუკითხავი სტატიები"
 
 #: src/trayicon.cpp:55
 #, kde-format
 msgid "1 unread article"
 msgid_plural "%1 unread articles"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "1 წაუკითხავი სტატია"
+msgstr[1] "%1 წაუკითხავი სტატია"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, Akregator::AddFeedWidgetBase)
 #: src/ui/addfeedwidgetbase.ui:14
@@ -2320,19 +2327,19 @@ msgstr "ლენტის დამატება"
 #: src/ui/addfeedwidgetbase.ui:122
 #, kde-format
 msgid "Add New Source"
-msgstr ""
+msgstr "ახალი წყაროს დამატება"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel3)
 #: src/ui/addfeedwidgetbase.ui:135
 #, kde-format
 msgid "Feed &URL:"
-msgstr ""
+msgstr "ლენტის &URL:"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, Akregator::FeedPropertiesWidgetBase)
 #: src/ui/feedpropertieswidgetbase.ui:20
 #, kde-format
 msgid "Feed Properties"
-msgstr ""
+msgstr "ლენტის მორგება"
 
 #. i18n: ectx: attribute (title), widget (QWidget, tab1)
 #: src/ui/feedpropertieswidgetbase.ui:42
@@ -2344,19 +2351,19 @@ msgstr "&ზოგადი"
 #: src/ui/feedpropertieswidgetbase.ui:54
 #, kde-format
 msgid "U&se a custom update interval"
-msgstr ""
+msgstr "განახლების პერიოდის ხელით &მითთება"
 
 #. i18n: ectx: property (text), widget (QLabel, updateLabel)
 #: src/ui/feedpropertieswidgetbase.ui:88
 #, kde-format
 msgid "Update ever&y:"
-msgstr ""
+msgstr "განახლების &ინტერვალი:"
 
 #. i18n: ectx: property (text), widget (QCheckBox, checkBox_useNotification)
 #: src/ui/feedpropertieswidgetbase.ui:117
 #, kde-format
 msgid "Notify when new articles arri&ve"
-msgstr ""
+msgstr "შეტყობინება ახალი სტატიის &მიღების შესახებ"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel3)
 #: src/ui/feedpropertieswidgetbase.ui:132
@@ -2374,7 +2381,7 @@ msgstr "&სახელი:"
 #: src/ui/feedpropertieswidgetbase.ui:161
 #, kde-format
 msgid "Display name of RSS column"
-msgstr ""
+msgstr "RSS-ის სვეტების საჩვენებელი სახელი"
 
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: src/ui/feedpropertieswidgetbase.ui:171
@@ -2392,25 +2399,25 @@ msgstr "&არქივი"
 #: src/ui/feedpropertieswidgetbase.ui:206
 #, kde-format
 msgid "&Use default settings"
-msgstr ""
+msgstr "ნაგულისხმები პარამეტრების &გამოყენება"
 
 #. i18n: ectx: property (text), widget (QRadioButton, rb_disableArchiving)
 #: src/ui/feedpropertieswidgetbase.ui:216
 #, kde-format
 msgid "Di&sable archiving"
-msgstr ""
+msgstr "არქივირების &გათიშვა"
 
 #. i18n: ectx: property (text), widget (QRadioButton, rb_limitArticleNumber)
 #: src/ui/feedpropertieswidgetbase.ui:247
 #, kde-format
 msgid "Limit archi&ve to:"
-msgstr ""
+msgstr "&არქივის ლიმიტი:"
 
 #. i18n: ectx: property (text), widget (QRadioButton, rb_limitArticleAge)
 #: src/ui/feedpropertieswidgetbase.ui:277
 #, kde-format
 msgid "&Delete articles older than:"
-msgstr ""
+msgstr "&წაიშლება სტატიები, ძველი, ვიდრე:"
 
 #. i18n: ectx: attribute (title), widget (QWidget, tab3)
 #: src/ui/feedpropertieswidgetbase.ui:340
@@ -2428,12 +2435,12 @@ msgstr ""
 #: src/ui/feedpropertieswidgetbase.ui:380
 #, kde-format
 msgid "Mar&k articles as read when they arrive"
-msgstr ""
+msgstr "სტატიების &მიღებისას მათი წაკთხულად მონიშვნა"
 
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:40
 #, kde-format
 msgid "Disable Introduction"
-msgstr ""
+msgstr "შესავლის გათიშვა"
 
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:58
 #, kde-format
@@ -2443,52 +2450,52 @@ msgstr "ელფოსტის მისამართის &კოპირ
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:67
 #, kde-format
 msgid "Address copied to clipboard."
-msgstr ""
+msgstr "მისამართი კოპირებულია ბუფერში."
 
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:98
 #, kde-format
 msgid "Mark Article as Read"
-msgstr ""
+msgstr "სტატიის წაკითხულად დანიშვნა"
 
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:100
 #, kde-format
 msgid "Mark Article as Unread"
-msgstr ""
+msgstr "სტატიის წაუკითხავად დანიშვნა"
 
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:102
 #, kde-format
 msgid "Change Important Flag"
-msgstr ""
+msgstr "მნიშვნელოვნობის ალმის შეცვლა"
 
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:104
 #, kde-format
 msgid "Send the URL of the article"
-msgstr ""
+msgstr "სტატიის ბმულის გაგზავნა"
 
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:106
 #, kde-format
 msgid "Send the Html Page of Article"
-msgstr ""
+msgstr "სტატიის HTML გვერდის გაგზავნა"
 
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:108
 #, kde-format
 msgid "Open In External Browser"
-msgstr ""
+msgstr "გარე ბრაუზერში გახსნა"
 
 #: src/widgets/searchbar.cpp:40
 #, kde-format
 msgid "Search articles..."
-msgstr ""
+msgstr "სტატიების ძებნა..."
 
 #: src/widgets/searchbar.cpp:112
 #, kde-format
 msgid "Search articles...<%1>"
-msgstr ""
+msgstr "სტატიების ძებნა... <%1>"
 
 #: src/widgets/statussearchline.cpp:42
 #, kde-format
 msgid "All Articles"
-msgstr ""
+msgstr "ყველა სტატია"
 
 #: src/widgets/statussearchline.cpp:43
 #, kde-format
