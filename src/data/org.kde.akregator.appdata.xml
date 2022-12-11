@@ -111,6 +111,7 @@
     <p xml:lang="ia">Akregator es un lector de syndication. Illo te habilita per sequer sitos de novas, blogs e altere sitos web activate per RSS/Atom sin le necessitate de verificar manualmente actualisationes usante cerca web. Akregator es designate per esser sia manual de usar e per esser assatis potente per leger centos de nove fontes convenientemente. Illo ha cerca rapide, functionalitate de archivar avantiate e un explorator interne per un facile lectura de novas.</p>
     <p xml:lang="id">Akregator adalah pembaca feed berita. Ini memungkinkan Anda untuk mengikuti situs berita, blog, dan situs RSS/Atom-yang-difungsikan lainnya tanpa harus memeriksa secara manual pembaruan berita menggunakan penelusur web. Akregator telah didesain menjadi mudah digunakan dan menjadi cukup hebat untuk membaca ratusan sumber berita secara nyaman. Ini hadir dengan pencarian yang cepat fungsionalitas pengarsipan terkemuka dan memiliki sebuah penelusur internal untuk kemudahan membaca berita.</p>
     <p xml:lang="it">Akregator è un lettore di fonti di notizie. Ti permette di seguire siti di notizie, blog e altri siti che dispongono di fonti RSS/Atom senza la necessità di controllare manualmente gli aggiornamenti con un browser web. Akregator è progettato per essere allo stesso tempo semplice usare e in grado di poter leggere comodamente centinaia di fonti di notizie. È provvisto di ricerca rapida, di funzioni avanzate di archiviazione e di un browser interno per una facile consultazione delle notizie.</p>
+    <p xml:lang="ka">Akregator სიახლეების წასაკითხი პროგრამაა. ის საშუალებას გაძლევთ, მიჰყვეთ სიახლეების საიტებს, ბლოგებს და სხვა RSS/Atom-ჩართულ ვებგვერდებს განახლებების ხელით შემოწმების საჭიროების გარეშე. Akregator-ი ორივე, ადვილი და მძლავრია, რომ ასობით სიახლის წყარო ადეკვატურად დაამუშაოს. მას ასევე მოჰყვება სწრაფი ძებნა, განვითარებული არქივირების ფუნქციონალი და სიახლეების ადვილად წასაკითხად, შიდა ბრაუზერი.</p>
     <p xml:lang="ko">Akregator는 뉴스 피드 리더입니다. 뉴스 사이트, 블로그, RSS/Atom 지원 웹사이트에 웹 브라우저로 직접 방문하지 않고 업데이트를 따라갈 수 있습니다. Akregator는 다량의 뉴스 사이트를 편하게 읽을 수 있음과 동시에 쉽게 사용할 수 있도록 설계되었습니다. 빠른 검색, 글 보관 기능을 지원하며 쉽게 글을 읽을 수 있는 내장 웹 브라우저가 있습니다.</p>
     <p xml:lang="nl">Akregator is een lezer voor newsfeed. Het laat u nieuwssites, blogs en andere RSS/Atom-ingeschakelde websites volgen zonder de noodzaak om handmatig te controleren op updates met een webbrowser. Akregator is ontworpen om zowel gemakkelijk te gebruiken als krachtig genoeg om honderden nieuwsbronnen gemakkelijk te volgen. Het komt met een snel zoeken, geavanceerd archiveren en met een interne browser voor gemakkelijk lezen van nieuws.</p>
     <p xml:lang="nn">Akregator er ein nyheitskjeldelesar. Han kan følgja nyheitsstadar, bloggar og andre nettstadar som tilbyr RSS/Atom-kjelder utan at du treng følgja med på oppdateringar manuelt. Akregator er utforma for å vera lett å bruka og kraftig nok til å visa hundrevis av nyheitskjelder på ein tilgjengeleg måte. Han kjem med eit snøggsøk, funksjonar for avansert arkivering og ein innebygd nettlesar for vising av nyheiter.</p>
@@ -148,6 +149,7 @@
   <summary xml:lang="ia">Un lector de syndication de novas</summary>
   <summary xml:lang="id">Sebuah pembaca feed berita</summary>
   <summary xml:lang="it">Un lettore di fonti di notizie</summary>
+  <summary xml:lang="ka">სიახლეების ლენტის კითხვა</summary>
   <summary xml:lang="ko">뉴스 피드 리더</summary>
   <summary xml:lang="nl">Een newsfeedlezer</summary>
   <summary xml:lang="nn">Ein nyheitskjeldelesar</summary>
@@ -193,6 +195,7 @@
       <caption xml:lang="ia">Leger syndicationes in Kontact con Akregator</caption>
       <caption xml:lang="id">Membaca feed di Kontact menggunakan Akregator</caption>
       <caption xml:lang="it">Lettura di notizie in Kontact con Akregator</caption>
+      <caption xml:lang="ka">წაიკთხეთ სიახლეები Kotact-ში Akragator-თან ერთად</caption>
       <caption xml:lang="ko">Akregator로 Kontact에서 피드 읽기</caption>
       <caption xml:lang="nl">Feeds lezen in Kontact met Akregator</caption>
       <caption xml:lang="nn">Lesing av kjelder i Kontact ved hjelp av Akregator</caption>
