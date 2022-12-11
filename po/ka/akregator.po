@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-11-16 00:47+0000\n"
-"PO-Revision-Date: 2022-12-08 17:16+0100\n"
+"PO-Revision-Date: 2022-12-10 13:29+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -35,6 +35,10 @@ msgid ""
 "checking all your favorite web sites manually for updates, Akregator "
 "collects the content for you."
 msgstr ""
+"ლენტის წამკითხავი საუკეთესო საშუალებაა სხვადასხვა შემცველობაში საქექად "
+"სიახლეების, ბლოგების და ა.შ. ჩათვლით. იმის მაგიერ, რომ თქვენი რჩეული "
+"ვებგვერდები განახლებებისთვის ხელით ამოწმოს, Akregator-ი შემცველობას "
+"თქვენთვის თვითონ მოაგროვებს."
 
 #: src/about/introduction_akregator.html:19
 msgid ""
@@ -43,6 +47,10 @@ msgid ""
 "want to see this page anymore, <a href='config:/disable_introduction'>click "
 "here</a>."
 msgstr ""
+"Akregator-ის გამოყენების შესახებ მეტი ინფორმაციის მისაღებად იხილეთ <a "
+"href='https://kontact.kde.org/components/akregator/'>Akregator -ის "
+"ვებგვერდი</a>. თუ არ გნებავთ, ეს გვერდი კიდევ იხილოთ,<a href='config:/"
+"disable_introduction'>აქ დააწკაპუნეთ</a>."
 
 #: src/about/introduction_akregator.html:20
 msgid "We hope that you will enjoy Akregator."
@@ -97,6 +105,8 @@ msgid ""
 "<b>Note:</b> For security reasons, external reference is blocked (See "
 "configure dialog)."
 msgstr ""
+"<b>შენიშვნა:</b> უსაფრთხოების მიზნით გარე მიმართვები დაბლოკილია (იხ. "
+"მორგების ფანჯარა)."
 
 #: configuration/akregator_config_advanced.cpp:30
 #, kde-format
@@ -502,6 +512,8 @@ msgstr "წაუკითხავი სტატიების მქონ�
 #, kde-format
 msgid "Select this if you want to get notified when there are new articles."
 msgstr ""
+"თუ გნებავთ, როცა ახალი სტატიები ხელმისაწვდომი იქნება, გაფრთხილება მიიღოთ, "
+"ჩართეთ."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_UseNotifications)
 #: configuration/ui/settings_general.ui:77
@@ -513,7 +525,7 @@ msgstr "გაფრთხილებების &ყველა ლენტ
 #: configuration/ui/settings_general.ui:84
 #, kde-format
 msgid "Disable save as finished notification"
-msgstr ""
+msgstr "დასრულებულად შენახვის გაფრთხილების გამორთვა"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_UseIntervalFetch)
 #: configuration/ui/settings_general.ui:91
@@ -561,7 +573,7 @@ msgstr "&ბრაუზერის ქეშის გამოყენებ
 #: configuration/ui/settings_security.ui:17
 #, kde-format
 msgid "Allow feed to load external references from internet."
-msgstr ""
+msgstr "ლენტისთვის ინტერნეტიდან გარე მიმართვების ჩატვირთვის ნების დართვა."
 
 #: export/akregatorstorageexporter.cpp:280
 #, kde-format
@@ -578,19 +590,19 @@ msgstr "წაუკითხავი სტატიების არმქ�
 #: interfaces/akregator.kcfg:21
 #, kde-format
 msgid "Prevent feeds from being moved in the list"
-msgstr ""
+msgstr "ლენტების სიაში გადატანის გამორთვა"
 
 #. i18n: ectx: whatsthis, entry, group (View)
 #: interfaces/akregator.kcfg:22
 #, kde-format
 msgid "Locks feeds where they are"
-msgstr ""
+msgstr "ლენტების ადგილზე დამაგრება"
 
 #. i18n: ectx: label, entry, group (View)
 #: interfaces/akregator.kcfg:26
 #, kde-format
 msgid "Auto-Expand folders with unread articles"
-msgstr ""
+msgstr "წაუკითხავი სტატიების მქონე საქაღალდეების ავტომატური ჩამოშლა"
 
 #. i18n: ectx: label, entry, group (View)
 #: interfaces/akregator.kcfg:31 src/actions/actionmanagerimpl.cpp:317
@@ -614,7 +626,7 @@ msgstr "სტატუსის ფილტრი"
 #: interfaces/akregator.kcfg:37
 #, kde-format
 msgid "Stores the last status filter setting"
-msgstr ""
+msgstr "უკანასკნელი სტატუსის ფილტრის პარამეტრების დამახსოვრება"
 
 #. i18n: ectx: label, entry, group (View)
 #: interfaces/akregator.kcfg:41
@@ -626,7 +638,7 @@ msgstr "ტექსტის ფილტრი"
 #: interfaces/akregator.kcfg:42
 #, kde-format
 msgid "Stores the last search line text"
-msgstr ""
+msgstr "უკანასკნელი ძებნის ხაზის ტექსტის დამახსოვრება"
 
 #. i18n: ectx: label, entry, group (View)
 #: interfaces/akregator.kcfg:45
@@ -650,7 +662,7 @@ msgstr "პირველი გამყოფის ზომები"
 #: interfaces/akregator.kcfg:51
 #, kde-format
 msgid "First (usually vertical) splitter widget sizes."
-msgstr ""
+msgstr "პირველი (ჩვეულებრივ, ვერტიკალური) გამყოფი ვიჯეტის ზომები."
 
 #. i18n: ectx: label, entry, group (View)
 #: interfaces/akregator.kcfg:55
@@ -662,7 +674,7 @@ msgstr "მეორე გამყოფის ზომები"
 #: interfaces/akregator.kcfg:56
 #, kde-format
 msgid "Second (usually horizontal) splitter widget sizes."
-msgstr ""
+msgstr "მეორე (ჩვეულებრივ, ჰორიზონტალური) გამყოფი ვიჯეტის ზომები."
 
 #. i18n: ectx: label, entry, group (Archive)
 #: interfaces/akregator.kcfg:100
@@ -755,6 +767,8 @@ msgid ""
 "When this option is enabled, articles you marked as important will not be "
 "removed when limit the archive size by either age or number of the articles."
 msgstr ""
+"როცა ეს პარამეტრი ჩართულია, სტატიები, რომლებსაც მნიშვნელოვნად მონიშნავთ, არ "
+"წაიშლება, როცა არქივის ზომა ასაკის ან სტატიების რაოდენობის ზღვარს მიაღწევს."
 
 #. i18n: ectx: label, entry, group (Network)
 #: interfaces/akregator.kcfg:139
@@ -781,6 +795,9 @@ msgid ""
 "Use the KDE-wide HTML cache settings when downloading feeds, to avoid "
 "unnecessary traffic. Disable only when necessary."
 msgstr ""
+"დამატებითი ტრაფიკის ხარჯვის თავიდან ასაცილებლად ლენტების გადმოწერისას KDE-ის "
+"ზოგადი HTML ქეშის პარამეტრების გამოყენება. გამორთეთ მხოლოდ აუცილებლობის "
+"შემთხვევაში."
 
 #. i18n: ectx: whatsthis, entry, group (Network)
 #: interfaces/akregator.kcfg:149
@@ -790,6 +807,9 @@ msgid ""
 "the default one. This is here because some proxies may interrupt the "
 "connection because of having \"gator\" in the name."
 msgstr ""
+"ეს პარამეტრი საშუალებას აძლევს მომხმარებელს, ნაგულისხმების მაგიერ სხვა user-"
+"agent-ის სტრიქონი გამოიყენოს. ეს პარამეტრი არსებობს იმიტომ, რომ ზოგიერთ "
+"პროქსის შეუძლია კავშირი სახელში \"gator\"-ის შემცველობის გამო გაგიწყვიტოთ."
 
 #. i18n: ectx: label, entry, group (General)
 #: interfaces/akregator.kcfg:155
@@ -880,6 +900,7 @@ msgstr "მიუთითებს, საათთან წაუკითხ
 #, kde-format
 msgid "Always show the tab bar, even when only one tab is open"
 msgstr ""
+"ჩანართების ზოლი ნაჩვენები იქნება მაშინაც კი, როცა მხოლოდ ერთი ჩანართია ღია"
 
 #. i18n: ectx: label, entry, group (Browser)
 #: interfaces/akregator.kcfg:207
@@ -900,6 +921,8 @@ msgid ""
 "Open a link which would normally open in a new window (external browser) in "
 "a new tab instead"
 msgstr ""
+"ბმულის გახსნა, ჩვეულებრივ, ახალი ჩანართის მაგიერ ახალ გარე ბრაუზერის "
+"ფანჯარას გაუშვებდა"
 
 #. i18n: ectx: label, entry, group (Browser)
 #: interfaces/akregator.kcfg:217
@@ -911,7 +934,7 @@ msgstr "KDE-ის ნაგულისხმები ბრაუზერი
 #: interfaces/akregator.kcfg:218
 #, kde-format
 msgid "Use KDE web browser when opening in external browser."
-msgstr ""
+msgstr "გარე ბრაუზერში გახსნისას KDE -ის ბრაუზერს გამოყენება."
 
 #. i18n: ectx: label, entry, group (Browser)
 #: interfaces/akregator.kcfg:222
@@ -923,25 +946,25 @@ msgstr "ამ ბრძანების გამოყენება:"
 #: interfaces/akregator.kcfg:223
 #, kde-format
 msgid "Use the specified command when opening in external browser."
-msgstr ""
+msgstr "გარე ბრაუზერის გახსნისას მითითებული ბრძანების გამოყენება."
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
 #: interfaces/akregator.kcfg:227
 #, no-c-format, kde-format
 msgid "Command to launch external browser. URL will substitute for %u."
-msgstr ""
+msgstr "გარე ბრაუზერის გამშვები ბრძანება. URL %u-ით ჩანაცვლდება."
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
 #: interfaces/akregator.kcfg:231
 #, kde-format
 msgid "What the click with left mouse button should do."
-msgstr ""
+msgstr "რას აკეთებს თაგუნას მარცხენა ღილაკის წკაპი."
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
 #: interfaces/akregator.kcfg:240
 #, kde-format
 msgid "What the click with middle mouse button should do."
-msgstr ""
+msgstr "რას აკეთებს თაგუნას შუა ღილაკის წკაპი."
 
 #. i18n: ectx: label, entry, group (Advanced)
 #: interfaces/akregator.kcfg:265
@@ -953,7 +976,7 @@ msgstr "უკანაბოლოს არქივაცია"
 #: interfaces/akregator.kcfg:269
 #, kde-format
 msgid "Whether to delay before marking an article as read upon selecting it."
-msgstr ""
+msgstr "დაყოვნება სტატიის მონიშვნასა და მის წაკითხულად მონიშვნას შორის."
 
 #. i18n: ectx: whatsthis, entry (MarkReadDelay), group (Advanced)
 #: interfaces/akregator.kcfg:273
@@ -961,12 +984,13 @@ msgstr ""
 msgid ""
 "Configurable delay between selecting an article and it being marked as read."
 msgstr ""
+"მორგებადი დაყოვნება სტატიის მონიშვნასა და მის წაკითხულად მონიშვნას შორის."
 
 #. i18n: ectx: whatsthis, entry, group (Advanced)
 #: interfaces/akregator.kcfg:277
 #, kde-format
 msgid "Resets the quick filter when changing feeds."
-msgstr ""
+msgstr "ლენტების გადართვისას სწრაფი ფილტრის საწყის მნიშვნელობებზე დაბრუნება."
 
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
 #: src/akregator_part.cpp:146
@@ -992,7 +1016,7 @@ msgstr "ახალი ლენტის შექმნა"
 #, kde-format
 msgctxt "@info:whatsthis"
 msgid "You will be presented with a dialog where you can add a new feed."
-msgstr ""
+msgstr "წარმოგედგინებათ ფანჯარა, საიდანაც ახალი ლენტის დამატება შეგიძლიათ."
 
 #: src/aboutdata.cpp:21
 #, kde-format
@@ -1580,6 +1604,8 @@ msgid ""
 "Access denied: Cannot save feed list to <b>%1</b>. Please check your "
 "permissions."
 msgstr ""
+"წვდომა აკრძალულია. ლენტის სიის <b>%1</b>-ზე შენახვა შეუძლებელია. გადაამოწმეთ "
+"თქვენი წვდომები."
 
 #: src/akregator_part.cpp:441 src/akregator_part.cpp:492
 #, kde-format
@@ -1602,6 +1628,8 @@ msgid ""
 "The file %1 could not be read, check if it exists or if it is readable for "
 "the current user."
 msgstr ""
+"ფაილის (%1) წაკითხვის შეცდომა. გადაამოწმეთ მისი არსებობა და წაკითხვადია თუა "
+"რა ის მიმდინარე მომხმარებლისთვის."
 
 #: src/akregator_part.cpp:482 src/command/loadfeedlistcommand.cpp:142
 #, kde-format
@@ -1612,11 +1640,12 @@ msgstr "წაკითხვის შეცდომა"
 #, kde-format
 msgid "Access denied: cannot write to file %1. Please check your permissions."
 msgstr ""
+"წვდომა აკრძალულია: ფაილში %1 ჩაწერა შეუძლებელია. გადაამოწმეთ თქვენი წვდომები."
 
 #: src/akregator_part.cpp:507 src/akregator_part.cpp:516
 #, kde-format
 msgid "OPML Outlines (%1);;All Files (*)"
-msgstr ""
+msgstr "OPML Outlines (%1);;ყველა ფაილი (*)"
 
 #: src/akregator_part.cpp:650
 #, kde-format
@@ -1647,6 +1676,10 @@ msgid ""
 "To view the web page of the article, you can open the article internally in "
 "a tab or in an external browser window."
 msgstr ""
+"<h2>სტატიების სია</h2>აქ შეგიძლიათ ამჟამად მონიშნული ლენტის სტატიები იხილოთ. "
+"ასევე შეგიძლიათ მართოთ ისინი მათი მუდმივად გადაკეთების საშუალებით ან წაშალოთ "
+"ისინი, კონტექსტური მენიუდან. სტატიის ვებგვერდის სანახავად შეგიძლიათ სტატია "
+"შიდა ჩანართში, ან ბრაუზერის გარე ფანჯარაში გახსნათ."
 
 #: src/articlemodel.cpp:74
 #, kde-format
@@ -1708,7 +1741,7 @@ msgstr "ჩართულად შენარჩუნება"
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:384
 #, kde-format
 msgid "Are you sure you want to disable this introduction page?"
-msgstr ""
+msgstr "დარწმუნებული ბრძანდებით, რომ გნებავთ, გამორთოთ მისასალმებელი გვერდი?"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:385
 #, kde-format
@@ -1719,6 +1752,7 @@ msgstr "საწყისი გვერდის გამორთვა"
 #, kde-format
 msgid "This web site is a malware, do you want to continue to show it?"
 msgstr ""
+"ეს ვებგვერდი საზიანო პროგრამებს შეიცავს. გნებავთ გააგრძელოთ მისი ჩვენება?"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:421
 #, kde-format
@@ -1763,6 +1797,8 @@ msgid ""
 "<qt>Are you sure you want to delete this folder and its feeds and subfolders?"
 "</qt>"
 msgstr ""
+"<qt>დარწმუნებული ბრძანდებით, რომ გნებავთ, ეს საქაღალდე და მისი "
+"ქვესაქაღალდეები წაშალოთ?</qt>"
 
 #: src/command/deletesubscriptioncommand.cpp:40
 #, kde-format
@@ -1770,6 +1806,8 @@ msgid ""
 "<qt>Are you sure you want to delete folder <b>%1</b> and its feeds and "
 "subfolders?</qt>"
 msgstr ""
+"<qt>დარწმუნებული ბრძანდებით, რომ გნებავთ, წაშალოთ საქაღალდე <b>%1</b> და "
+"მისი ლენტები და ქვესაქაღალდეები?</qt>"
 
 #: src/command/deletesubscriptioncommand.cpp:44
 #, kde-format
@@ -1779,12 +1817,13 @@ msgstr "საქაღალდის წაშლა"
 #: src/command/deletesubscriptioncommand.cpp:61
 #, kde-format
 msgid "<qt>Are you sure you want to delete this feed?</qt>"
-msgstr ""
+msgstr "<qt>დარწმუნებული ბრძანდებით, რომ გნებავთ, წაშალოთ ეს ლენტა??</qt>"
 
 #: src/command/deletesubscriptioncommand.cpp:63
 #, kde-format
 msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
 msgstr ""
+"<qt>დარწმუნებული ბრძადნებით, რომ გნებავთ, წაშალოთ ლენტა <b>%1</b>?</qt>"
 
 #: src/command/deletesubscriptioncommand.cpp:68
 #, kde-format
@@ -1812,6 +1851,8 @@ msgid ""
 "<qt>The standard feed list is corrupted (invalid OPML). A backup was created:"
 "<p><b>%1</b></p></qt>"
 msgstr ""
+"<qt>სტანდარტული ლენტის სია დაზიანებულია (არასწორი OPML). მარქაფი შექმნილია:"
+"<p><b>%1</b></p></qt>"
 
 #: src/command/loadfeedlistcommand.cpp:67
 #, kde-format
@@ -1819,6 +1860,8 @@ msgid ""
 "<qt>The standard feed list is corrupted (invalid OPML). Could not create a "
 "backup.</qt>"
 msgstr ""
+"<qt>სტანდარტული ლენტის სია დაზიანებულია (არასწორი OPML). მარქაფის შექმნის "
+"შეცდომა.</qt>"
 
 #: src/command/loadfeedlistcommand.cpp:129
 #, kde-format
@@ -1828,7 +1871,7 @@ msgstr "ლენტების სიის გახსნა..."
 #: src/command/loadfeedlistcommand.cpp:142
 #, kde-format
 msgid "<qt>Could not open feed list (%1) for reading.</qt>"
-msgstr ""
+msgstr "<qt>ლენტების სიის (%1) წასაკითხად მონიშვნის შეცდომა.</qt>"
 
 #: src/command/loadfeedlistcommand.cpp:155
 #, kde-format
@@ -1839,7 +1882,7 @@ msgstr "XML დამუშავების შეცდომა"
 #: src/command/loadfeedlistcommand.cpp:157
 #, kde-kuit-format
 msgid "<qt><p>XML parsing error in line %1, column %2 of %3:</p><p>%4</p></qt>"
-msgstr ""
+msgstr "<qt><p>XML -ის შეცდომა ხაზზე %1, სვეტი %2/%3:</p><p>%4</p></qt>"
 
 #: src/command/loadfeedlistcommand.cpp:164
 #, kde-format
@@ -1847,6 +1890,8 @@ msgid ""
 "<qt>The standard feed list is corrupted (invalid XML). A backup was created:"
 "<p><b>%1</b></p></qt>"
 msgstr ""
+"<qt>სტანდარტული ლენტის სია დაზიანებულია (არასწორი XML). მარქაფი შექმნილია:"
+"<p><b>%1</b></p></qt>"
 
 #: src/command/loadfeedlistcommand.cpp:168
 #, kde-format
@@ -1854,6 +1899,8 @@ msgid ""
 "<qt>The standard feed list is corrupted (invalid XML). Could not create a "
 "backup.</qt>"
 msgstr ""
+"<qt>სტანდარტული ლენტის სია დაზიანებულია (არასწორი XML). მარქაფის შექმნის "
+"შეცდომა.</qt>"
 
 #: src/crashwidget/crashwidget.cpp:21
 #, kde-format
@@ -2088,6 +2135,8 @@ msgid ""
 "<qt>Are you sure you want to mark <b>all articles in the feed</b> as read?</"
 "qt>"
 msgstr ""
+"<qt>დარწმუნებული ბრძანდებით, რომ გნებავთ <b>ამ ლენტაში არსებული ყველა "
+"სტატიის</b> წაკითხულად მონიშვნა?</qt>"
 
 #: src/mainwidget.cpp:766
 #, kde-format
@@ -2098,6 +2147,8 @@ msgstr "ლენტის წაკითხულად მონიშვნ�
 #, kde-format
 msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
 msgstr ""
+"<qt>დარწმუნებული ბრძანდებით, რომ გნებავთ <b>ყველა ლენტის</b> წაკითხულად "
+"მონიშვნა?</qt>"
 
 #: src/mainwidget.cpp:771
 #, kde-format
@@ -2105,6 +2156,8 @@ msgid ""
 "<qt>Are you sure you want to mark <b>all feeds in the folder</b> as read?</"
 "qt>"
 msgstr ""
+"<qt>დარწმუნებული ბრძანდებით, რომ გნებავთ <b>ამ საქაღალდეში არსებული ყველა "
+"ლენტის</b> წაკითხულად მონიშვნა?</qt>"
 
 #: src/mainwidget.cpp:773
 #, kde-format
@@ -2429,7 +2482,7 @@ msgstr "&დამატებით"
 #: src/ui/feedpropertieswidgetbase.ui:373
 #, kde-format
 msgid "Load the &full website when reading articles"
-msgstr ""
+msgstr "სტატიის წაკითხვისას &სრული ვებსაიტის გახსნა"
 
 #. i18n: ectx: property (text), widget (QCheckBox, checkBox_markRead)
 #: src/ui/feedpropertieswidgetbase.ui:380
