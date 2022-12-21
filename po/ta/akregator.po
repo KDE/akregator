@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-10-16 00:47+0000\n"
-"PO-Revision-Date: 2022-11-17 19:37+0530\n"
+"PO-Revision-Date: 2022-12-20 21:45+0530\n"
 "Last-Translator: Kishore G <kishore96@gmail.com>\n"
 "Language-Team: Tamil <kde-i18n-doc@kde.org>\n"
 "Language: ta\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 22.08.3\n"
+"X-Generator: Lokalize 22.12.0\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -1349,7 +1349,7 @@ msgstr "&கோப்பை அனுப்பு..."
 #: src/actions/actionmanagerimpl.cpp:432
 #, kde-format
 msgid "Set Focus to Quick Search"
-msgstr ""
+msgstr "விரை தேடலை குவியப்படுத்து"
 
 #: src/actions/actionmanagerimpl.cpp:464
 #, kde-format
@@ -1364,139 +1364,137 @@ msgstr "&அடுத்த கட்டுரை"
 #: src/actions/actionmanagerimpl.cpp:484
 #, kde-format
 msgid "&Previous Feed"
-msgstr "&முந்தைய உள்ளீடு"
+msgstr "&முந்தைய தொகுப்பு"
 
 #: src/actions/actionmanagerimpl.cpp:489
 #, kde-format
 msgid "&Next Feed"
-msgstr "&அடுத்த செலுத்தல்"
+msgstr "&அடுத்த தொகுப்பு"
 
 #: src/actions/actionmanagerimpl.cpp:495
 #, kde-format
 msgid "N&ext Unread Feed"
-msgstr "அடுத்த படிக்காத உள்ளீடு"
+msgstr "அ&டுத்த படிக்காத தொகுப்பு"
 
 #: src/actions/actionmanagerimpl.cpp:501
 #, kde-format
 msgid "Prev&ious Unread Feed"
-msgstr "முந்தைய படிக்காததுக்கு செல்"
+msgstr "மு&ந்தைய படிக்காத தொகுப்பு"
 
 #: src/actions/actionmanagerimpl.cpp:506
 #, kde-format
 msgid "Go to Top of Tree"
-msgstr "தொடரடைவின் மேலே செல்"
+msgstr "கிளையின் உச்சிக்கு செல்"
 
 #: src/actions/actionmanagerimpl.cpp:511
 #, kde-format
 msgid "Go to Bottom of Tree"
-msgstr "தொடரடைவின் கீழே செல்"
+msgstr "கிளையின் நுனிக்கு செல்"
 
 #: src/actions/actionmanagerimpl.cpp:516
-#, kde-format
+#, fuzzy, kde-format
 msgid "Go Left in Tree"
 msgstr "தொடர் அடைவில் இடதுபுறம் செல்"
 
 #: src/actions/actionmanagerimpl.cpp:521
-#, kde-format
+#, fuzzy, kde-format
 msgid "Go Right in Tree"
 msgstr "தொடர் அடைவில் வலதுபுறத்தில் செல்"
 
 #: src/actions/actionmanagerimpl.cpp:526
-#, kde-format
+#, fuzzy, kde-format
 msgid "Go Up in Tree"
 msgstr "தொடர் அடைவில் மேலே செல்"
 
 #: src/actions/actionmanagerimpl.cpp:531
-#, kde-format
+#, fuzzy, kde-format
 msgid "Go Down in Tree"
 msgstr "தொடர் அடைவில் கீழே செல்"
 
 #: src/actions/actionmanagerimpl.cpp:537
-#, fuzzy, kde-format
-#| msgid "N&ext Unread Feed"
+#, kde-format
 msgid "Hide Read Feeds"
-msgstr "அடுத்த படிக்காத உள்ளீடு"
+msgstr "படித்த தொகுப்புகளை மறை"
 
 #: src/actions/actionmanagerimpl.cpp:543
 #, kde-format
 msgid "Lock Feeds In Place"
-msgstr ""
+msgstr "தொகுப்புகளின் இருப்பிடத்தை பூட்டு"
 
 #: src/actions/actionmanagerimpl.cpp:549
-#, fuzzy, kde-format
-#| msgid " (no unread articles)"
+#, kde-format
 msgid "Auto-expand folders with unread articles"
-msgstr " (படிக்காத கட்டுரைகள் இல்லை)"
+msgstr "படிக்காத கட்டுரைகளை கொண்ட அடைவுகளை தானாக விரிவுபடுத்து"
 
 #: src/actions/actionmanagerimpl.cpp:565
 #, kde-format
 msgid "Select Next Tab"
-msgstr ""
+msgstr "அடுத்த கீற்றைத் தேர்ந்தெடு"
 
 #: src/actions/actionmanagerimpl.cpp:570
 #, kde-format
 msgid "Select Previous Tab"
-msgstr ""
+msgstr "முந்தைய கீற்றைத் தேர்ந்தெடு"
 
 #: src/actions/actionmanagerimpl.cpp:576
 #, kde-format
 msgid "Detach Tab"
-msgstr "பட்டியை பிரி"
+msgstr "கீற்றைப் பிரித்தெடு"
 
 #: src/actions/actionmanagerimpl.cpp:590
 #, kde-format
 msgid "Mute"
-msgstr ""
+msgstr "ஒலியை அடக்கு"
 
 #: src/actions/actionmanagerimpl.cpp:594
 #, kde-format
 msgid "Unmute"
-msgstr ""
+msgstr "ஒலிமுடக்கத்தை நீக்கு"
 
 #: src/actions/actionmanagerimpl.cpp:597
 #, kde-format
 msgid "Speak Text"
-msgstr ""
+msgstr "உரையைப் பேச்சாக்கு"
 
 #: src/actions/actionmanagerimpl.cpp:602
 #, kde-format
 msgid "&Find in Message..."
-msgstr ""
+msgstr "கட்டுரையில் &கண்டுபிடி..."
 
 #: src/actions/actionmanagerimpl.cpp:613
-#, fuzzy, kde-format
+#, kde-format
 msgid "Close Tab"
-msgstr "பட்டியை முடு"
+msgstr "கீற்றை மூடு"
 
 #: src/actions/actionmanagerimpl.cpp:626
 #, kde-format
 msgid "Activate Tab %1"
-msgstr ""
+msgstr "கீற்று %1-ஐ செயல்படுத்து"
 
 #: src/actions/actionmanagerimpl.cpp:632
 #, kde-format
 msgid "&Save Link As..."
-msgstr "&இணைப்பை இப்படியாகச் சேமி..."
+msgstr "&இணைப்பை இப்படி சேமி..."
 
 #: src/actions/actionmanagerimpl.cpp:636
 #, kde-format
 msgid "Copy &Link Address"
-msgstr "&இணைப்பு முகவரியை நகல் எடு"
+msgstr "இ&ணைப்பின் முகவரியை நகலெடு"
 
 #: src/actions/actionmanagerimpl.cpp:639
 #, kde-format
 msgid "Copy Image Location"
-msgstr ""
+msgstr "படத்தின் முகவரியை நகலெடு"
 
 #: src/actions/actionmanagerimpl.cpp:646
 #, kde-format
 msgid "Save Image On Disk..."
-msgstr ""
+msgstr "படத்தை வட்டில் சேமி..."
 
 #: src/actions/actions.cpp:19
 #, kde-format
 msgid "Open Link in New &Tab"
-msgstr "புதிய &தத்தலில் இணைப்பைத் திற"
+msgstr "புதிய &கீற்றில் இணைப்பைத் திற"
 
 #: src/actions/actions.cpp:26
 #, kde-format
@@ -1504,56 +1502,55 @@ msgid "Open Link in External &Browser"
 msgstr "வெளி &உலாவியில் இணைப்பை திற"
 
 #: src/addfeeddialog.cpp:49
-#, fuzzy, kde-format
-#| msgid "Add Feed"
+#, kde-format
 msgctxt "@title:window"
 msgid "Add Feed"
-msgstr "செலுத்தலை சேர்"
+msgstr "தொகுப்பைச் சேர்"
 
 #: src/addfeeddialog.cpp:99
 #, kde-format
 msgid "Downloading %1"
-msgstr "%1 ஏற்றுகிறது"
+msgstr "%1 பதிவிறக்கப்படுகிறது"
 
 #: src/addfeeddialog.cpp:115
 #, kde-format
 msgid "Feed not found from %1."
-msgstr "%1ல் இருந்து ஃபீட் இல்லை."
+msgstr "%1-இல் தொகுப்பு கண்டுபிடிக்கப்படவில்லை."
 
 #: src/addfeeddialog.cpp:121
 #, kde-format
 msgid "Feed found, downloading..."
-msgstr "செலுத்தல் கிடைத்தது, ஏற்றுகிறது..."
+msgstr "தொகுப்பு கண்டுபிடிக்கப்பட்டு பதிவிறக்கப்படுகிறது..."
 
 #: src/akregator_options.h:20 src/akregator_options.h:28
 #, kde-format
 msgid "Add a feed with the given URL"
-msgstr ""
+msgstr "குறிப்பிட்ட முகவரியிலுள்ள தொகுப்பை சேர்"
 
 #: src/akregator_options.h:23
 #, kde-format
 msgid "When adding feeds, place them in this group"
-msgstr ""
+msgstr "தொகுப்புகளை சேர்க்கும்போது இக்குழுவில் அவற்றை சேர்"
 
 #: src/akregator_options.h:25
 #, kde-format
 msgid "Hide main window on startup"
-msgstr ""
+msgstr "துவக்கும்போது பிரதான சாளரத்தை காட்டாதே"
 
 #: src/akregator_options.h:30
 #, kde-format
 msgid "Lists the available options for user feedback"
-msgstr ""
+msgstr "பயனர் பின்னூட்டத்துக்கு உள்ள விருப்பத்தேர்வுகளை பட்டியலிடும்"
 
 #: src/akregator_part.cpp:84
 #, kde-format
 msgid "Feeds"
-msgstr "செலுத்தல்கள்"
+msgstr "தொகுப்புகள்"
 
 #: src/akregator_part.cpp:95
-#, kde-format
+#, fuzzy, kde-format
 msgid "KDE Dot News"
-msgstr "கேடியி டாட் செய்திகள்"
+msgstr "கே.டீ.யீ. டாட் செய்திகள்"
 
 #: src/akregator_part.cpp:100
 #, kde-format
@@ -1561,12 +1558,12 @@ msgid "Linux.com"
 msgstr ""
 
 #: src/akregator_part.cpp:105
-#, kde-format
+#, fuzzy, kde-format
 msgid "Planet KDE"
 msgstr "கோள் கேடியி"
 
 #: src/akregator_part.cpp:110
-#, kde-format
+#, fuzzy, kde-format
 msgid "KDE Apps"
 msgstr "KDE Apps"
 
@@ -1582,27 +1579,28 @@ msgid "Planet KDE España"
 msgstr "கோள் கேடியி"
 
 #: src/akregator_part.cpp:440
-#, fuzzy, kde-format
-#| msgid "Access denied: cannot save feed list (%1)"
+#, kde-format
 msgid ""
 "Access denied: Cannot save feed list to <b>%1</b>. Please check your "
 "permissions."
-msgstr "அனுமதி மறுக்கப்பட்டது: பீஃட் பட்டியலை சேமிக்க முடியவில்லை (%1)"
+msgstr ""
+"அணுகல் மறுக்கப்பட்டது: தொக்குப்புகளின் பட்டியலை <b>%1</b> எனும் இடத்திற்கு சேமிக்க "
+"முடியவில்லை. உங்கள் அனுமதிகளை சரிபாருங்கள்."
 
 #: src/akregator_part.cpp:441 src/akregator_part.cpp:492
-#, fuzzy, kde-format
+#, kde-format
 msgid "Write Error"
-msgstr "எழுது பிழை"
+msgstr "எழுதுவதில் சிக்கல்"
 
 #: src/akregator_part.cpp:477
 #, kde-format
 msgid "Could not import the file %1 (no valid OPML)"
-msgstr ""
+msgstr "%1 எனும் கோப்பை இறக்குமதி செய்ய முடியவில்லை (முறையான OPML இல்லை)"
 
 #: src/akregator_part.cpp:477 src/command/loadfeedlistcommand.cpp:71
 #, kde-format
 msgid "OPML Parsing Error"
-msgstr "OPML உருவாக்கும்போது பிழை"
+msgstr "OPML இலக்கண பிழை"
 
 #: src/akregator_part.cpp:481
 #, kde-format
@@ -1610,11 +1608,13 @@ msgid ""
 "The file %1 could not be read, check if it exists or if it is readable for "
 "the current user."
 msgstr ""
+"%1 எனும் கோப்பை படிக்க முடியவில்லை. அது உள்ளதா எனும் தற்போதைய பயனரால் படிக்கக்கூடியதா "
+"எனும் சரிபாருங்கள்."
 
 #: src/akregator_part.cpp:482 src/command/loadfeedlistcommand.cpp:142
 #, kde-format
 msgid "Read Error"
-msgstr "படிக்கும்போது பிழை"
+msgstr "படிக்கும்போது சிக்கல்"
 
 #: src/akregator_part.cpp:492
 #, fuzzy, kde-format
