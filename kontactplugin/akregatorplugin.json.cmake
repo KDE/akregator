@@ -8,6 +8,7 @@
         "Description[ca]": "Connector Akregator",
         "Description[cs]": "Modul Akregatoru",
         "Description[de]": "Akregator-Modul",
+        "Description[el]": "Πρόσθετο του Akregator",
         "Description[en_GB]": "Akregator Plugin",
         "Description[es]": "Complemento de Akregator",
         "Description[eu]": "Akregator plugina",
