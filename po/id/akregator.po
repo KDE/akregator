@@ -1,13 +1,13 @@
 # Copyright (C) YEAR This file is copyright:
 # This file is distributed under the same license as the akregator package.
-# Wantoyèk <wantoyek@gmail.com>, 2022.
+# Wantoyèk <wantoyek@gmail.com>, 2022, 2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-10-16 00:47+0000\n"
-"PO-Revision-Date: 2022-11-24 22:46+0700\n"
+"PO-Revision-Date: 2023-01-02 07:22+0700\n"
 "Last-Translator: Wantoyèk <wantoyek@gmail.com>\n"
 "Language-Team: Indonesian <kde-i18n-doc@kde.org>\n"
 "Language: id\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 22.08.1\n"
+"X-Generator: Lokalize 22.08.3\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -197,7 +197,7 @@ msgstr "(c), 2021 Laurent Montel"
 #: configuration/akregator_config_userfeedback.cpp:28
 #, kde-format
 msgid "Configure User Feedback"
-msgstr "Konfigurasi Tanggapan Pengguna"
+msgstr "Konfigurasi Umpan Balik Pengguna"
 
 #: configuration/akregator_config_userfeedback.cpp:32
 #, kde-format
@@ -1544,7 +1544,7 @@ msgstr ""
 #: src/akregator_options.h:30
 #, kde-format
 msgid "Lists the available options for user feedback"
-msgstr "Daftar opsi yang tersedia untuk tanggapan pengguna"
+msgstr "Daftar opsi yang tersedia untuk umpan balik pengguna"
 
 #: src/akregator_part.cpp:84
 #, kde-format
