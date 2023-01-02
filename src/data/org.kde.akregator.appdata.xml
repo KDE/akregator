@@ -219,10 +219,10 @@
     <binary>akregator</binary>
   </provides>
   <releases>
+    <release version="5.22.1" date="2023-01-05"/>
     <release version="5.22.0" date="2022-12-08"/>
     <release version="5.21.3" date="2022-11-03"/>
     <release version="5.21.2" date="2022-10-13"/>
-    <release version="5.21.1" date="2022-09-08"/>
   </releases>
   <content_rating type="oars-1.1"/>
 </component>
