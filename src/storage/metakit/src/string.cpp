@@ -196,7 +196,7 @@ void c4_String::Init(const void *p, int n)
 
         if (!nullVec) {
             // obtain a valid new empty string buffer to keep around
-            auto *nv = new unsigned char[3];
+            auto nv = new unsigned char[3];
             nv[0] = nv[1] = nv[2] = 0;
             // only set static value after item is fully inited (avoid MT race)
             nullVec = nv;

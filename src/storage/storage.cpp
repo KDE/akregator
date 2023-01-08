@@ -61,7 +61,7 @@ Akregator::Backend::Storage::Storage()
 Akregator::Backend::FeedStorage *Akregator::Backend::Storage::StoragePrivate::createFeedStorage(const QString &url)
 {
     if (!feeds.contains(url)) {
-        auto *fs = new Akregator::Backend::FeedStorage(url, q);
+        auto fs = new Akregator::Backend::FeedStorage(url, q);
         feeds[url] = fs;
         c4_Row findrow;
         purl(findrow) = url.toLatin1().constData();
