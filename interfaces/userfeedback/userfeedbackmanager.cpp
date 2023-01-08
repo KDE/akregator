@@ -9,8 +9,8 @@
 using namespace Akregator;
 UserFeedBackManager::UserFeedBackManager(QObject *parent)
     : QObject(parent)
+    , mUserFeedbackProvider(new AkregatorUserFeedbackProvider(this))
 {
-    mUserFeedbackProvider = new AkregatorUserFeedbackProvider(this);
 }
 
 UserFeedBackManager *UserFeedBackManager::self()
