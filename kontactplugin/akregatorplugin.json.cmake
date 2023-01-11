@@ -28,7 +28,7 @@
         "Description[sk]": "Modul Akregatora",
         "Description[sl]": "Vstavek Akregator",
         "Description[sv]": "Akregator-insticksprogram",
-        "Description[tr]": "Akregator Eklentisi",
+        "Description[tr]": "Akregatör Eklentisi",
         "Description[uk]": "Додаток до Akregator",
         "Description[x-test]": "xxAkregator Pluginxx",
         "Description[zh_CN]": "Akregator 插件",
