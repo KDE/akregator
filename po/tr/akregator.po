@@ -14,13 +14,13 @@
 # sinan, 2005.
 # Volkan Gezer <volkangezer@gmail.com>, 2013-2014, 2017.
 # Kaan Ozdincer <kaanozdincer@gmail.com>, 2014.
-# Emir SARI <emir_sari@icloud.com>, 2022.
+# Emir SARI <emir_sari@icloud.com>, 2022, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: kdepim-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-10-16 00:47+0000\n"
-"PO-Revision-Date: 2022-12-11 19:55+0300\n"
+"PO-Revision-Date: 2023-01-10 22:03+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -53,7 +53,7 @@ msgstr ""
 "Özet akışı okuyucuları, haber, bloglar ve çevrimiçi sitelerdeki diğer "
 "içerikler de dahil olmak üzere farklı içerik türlerine göz atmak için uygun "
 "bir yol sağlar. En sevdiğiniz web sitelerini güncellemeler için elle "
-"denetlemek yerine, Akregator sizin için içeriği toplar."
+"denetlemek yerine, Akregatör sizin için içeriği toplar."
 
 #: src/about/introduction_akregator.html:19
 msgid ""
@@ -62,18 +62,18 @@ msgid ""
 "want to see this page anymore, <a href='config:/disable_introduction'>click "
 "here</a>."
 msgstr ""
-"Akregator kullanımı üzerine daha fazla bilgi almak istiyorsanız <a "
-"href='https://kontact.kde.org/components/akregator/'>Akregator web sitesini</"
+"Akregatör kullanımı üzerine daha fazla bilgi almak istiyorsanız <a "
+"href='https://kontact.kde.org/components/akregator/'>Akregatör web sitesini</"
 "a> ziyaret edin. Bu sayfayı bir daha görmek istemiyorsanız <a href='config:/"
 "disable_introduction'>buraya tıklayın</a>."
 
 #: src/about/introduction_akregator.html:20
 msgid "We hope that you will enjoy Akregator."
-msgstr "Umarız Akregator'dan hoşnut kalırsınız."
+msgstr "Umarız Akregatör'den hoşnut kalırsınız."
 
 #: src/about/introduction_akregator.html:21
 msgid "Thank you, The Akregator Team"
-msgstr "Teşekkürler, Akregator Ekibi"
+msgstr "Teşekkürler, Akregatör Ekibi"
 
 #: src/formatter/html/5.2/combinedview.html:71
 msgid "Mark as Read"
@@ -591,7 +591,7 @@ msgstr "Beslemenin, internetten dış başvuruları yüklemesine izin ver."
 #: export/akregatorstorageexporter.cpp:280
 #, kde-format
 msgid "Akregator Export for %1"
-msgstr "%1 için Akregator Dışa Aktarımı"
+msgstr "%1 için Akregatör Dışa Aktarımı"
 
 #. i18n: ectx: whatsthis, entry, group (View)
 #: interfaces/akregator.kcfg:10
@@ -1014,7 +1014,7 @@ msgstr "Beslemeler değiştirilirken hızlı süzgeci sıfırlar."
 #: src/trayicon.cpp:41 src/trayicon.cpp:42 src/trayicon.cpp:54
 #, kde-format
 msgid "Akregator"
-msgstr "Akregator"
+msgstr "Akregatör"
 
 #: kontactplugin/akregator_plugin.cpp:29
 #, kde-format
@@ -1042,7 +1042,7 @@ msgstr "Bir KDE Besleme Okuyucusu"
 #: src/aboutdata.cpp:23
 #, kde-format
 msgid "Copyright © 2004–%1 Akregator authors"
-msgstr "Telif hakkı © 2004–%1 Akregator yazarları"
+msgstr "Telif hakkı © 2004–%1 Akregatör yazarları"
 
 #: src/aboutdata.cpp:27
 #, kde-format
@@ -1233,7 +1233,7 @@ msgstr "B&eslemeleri Dışa Aktar..."
 #: src/actions/actionmanagerimpl.cpp:199
 #, kde-format
 msgid "&Configure Akregator..."
-msgstr "Akregator Uygulamasını &Yapılandır..."
+msgstr "Akregatör Uygulamasını &Yapılandır..."
 
 #: src/actions/actionmanagerimpl.cpp:218
 #, kde-format
@@ -1737,7 +1737,7 @@ msgstr "İçerik"
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:150
 #, kde-format
 msgid "Akregator is a KDE news feed reader."
-msgstr "Akregator, bir haber beslemesi okuyucudur."
+msgstr "Akregatör, bir haber beslemesi okuyucudur."
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:191
 #, kde-format
@@ -1927,7 +1927,7 @@ msgid ""
 "Akregator did not close correctly. Would you like to restore the previous "
 "session?"
 msgstr ""
-"Akregator önceki kullanımda doğru kapanmadı. Oturumun geri yüklenmesini "
+"Akregatör önceki kullanımda düzgün kapanmadı. Oturumun geri yüklenmesini "
 "ister misiniz?"
 
 #: src/crashwidget/crashwidget.cpp:37
@@ -2233,7 +2233,7 @@ msgid ""
 "Could not find the Akregator part; please check your installation.\n"
 "%1"
 msgstr ""
-"Bir Akregator parçası bulunamadı, lütfen kurulumunuzu denetleyin..\n"
+"Bir Akregatör parçası bulunamadı, lütfen kurulumunuzu denetleyin..\n"
 "%1"
 
 #: src/notificationmanager.cpp:49
