@@ -143,10 +143,8 @@ void AkrWebEngineViewer::slotWebHitFinished(const WebEngineViewer::WebHitTestRes
     popup.addSeparator();
 #if KPIMTEXTEDIT_TEXT_TO_SPEECH
     popup.addAction(ActionManager::getInstance()->action(QStringLiteral("find_in_messages")));
-    if (KPIMTextEditTextToSpeech::TextToSpeech::self()->isReady()) {
-        popup.addSeparator();
-        popup.addAction(ActionManager::getInstance()->action(QStringLiteral("speak_text")));
-    }
+    popup.addSeparator();
+    popup.addAction(ActionManager::getInstance()->action(QStringLiteral("speak_text")));
 #endif
     popup.exec(mapToGlobal(result.pos()));
 }
