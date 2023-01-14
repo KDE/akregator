@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-11-16 00:47+0000\n"
+"POT-Creation-Date: 2023-01-14 00:57+0000\n"
 "PO-Revision-Date: 2022-04-26 20:53+0200\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
@@ -1744,49 +1744,49 @@ msgctxt "@title:window"
 msgid "Save As"
 msgstr "Guardar como"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:381
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:379
 #, kde-format
 msgid "Disable"
 msgstr "Desactivar"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:382
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:380
 #, kde-format
 msgid "Keep Enabled"
 msgstr "Mantener activado"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:384
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:382
 #, kde-format
 msgid "Are you sure you want to disable this introduction page?"
 msgstr "¿Está seguro de que desea desactivar esta página de introducción?"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:385
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:383
 #, kde-format
 msgid "Disable Introduction Page"
 msgstr "Desactivar la página de introducción"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:420
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:418
 #, kde-format
 msgid "This web site is a malware, do you want to continue to show it?"
 msgstr ""
 "Este sitio web contiene programas malignos, ¿quiere continuar mostrándolo?"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:421
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:419
 #, kde-format
 msgid "Malware"
 msgstr "Programas malignos"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:433
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:431
 #, kde-format
 msgid "The network is broken."
 msgstr "La red está caída."
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:433
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:436
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:431
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:434
 #, kde-format
 msgid "Check Phishing Url"
 msgstr "Comprobar Url engañosa"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:436
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:434
 #, kde-format
 msgid "The url %1 is not valid."
 msgstr "El url %1 no es válido."

@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-11-16 00:47+0000\n"
+"POT-Creation-Date: 2023-01-14 00:57+0000\n"
 "PO-Revision-Date: 2022-06-17 18:43+0300\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
@@ -1739,49 +1739,49 @@ msgctxt "@title:window"
 msgid "Save As"
 msgstr "Tallenna nimellä"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:381
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:379
 #, kde-format
 msgid "Disable"
 msgstr "Poista käytöstä"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:382
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:380
 #, kde-format
 msgid "Keep Enabled"
 msgstr "Pidä käytössä"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:384
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:382
 #, kde-format
 msgid "Are you sure you want to disable this introduction page?"
 msgstr "Haluatko varmasti poistaa tämän esittelysivun käytöstä?"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:385
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:383
 #, kde-format
 msgid "Disable Introduction Page"
 msgstr "Poista esittelysivu käytöstä"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:420
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:418
 #, kde-format
 msgid "This web site is a malware, do you want to continue to show it?"
 msgstr ""
 "Tämä verkko-osoite on pahantahtoinen: haluatko silti jatkaa ja näyttää sen?"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:421
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:419
 #, kde-format
 msgid "Malware"
 msgstr "Pahantahtoinen sivusto"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:433
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:431
 #, kde-format
 msgid "The network is broken."
 msgstr "Verkko on rikki."
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:433
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:436
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:431
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:434
 #, kde-format
 msgid "Check Phishing Url"
 msgstr "Tarkista verkko-osoitteen väärennös"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:436
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:434
 #, kde-format
 msgid "The url %1 is not valid."
 msgstr "Verkko-osoite %1 ei ole kelvollinen."
