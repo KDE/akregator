@@ -15,7 +15,9 @@
 #include <WebEngineViewer/WebEngineAccessKey>
 #include <WebEngineViewer/WebEngineManageScript>
 #include <WebEngineViewer/ZoomActionMenu>
+#ifndef HAVE_KTEXTADDONS_TEXT_TO_SPEECH_SUPPORT
 #include <kpimtextedit/kpimtextedit-texttospeech.h>
+#endif
 
 #include <GrantleeTheme/GrantleeThemeManager>
 #include <KAboutData>
@@ -307,9 +309,14 @@ void ArticleViewerWebEngine::slotWebHitFinished(const WebEngineViewer::WebHitTes
     popup.addAction(ActionManager::getInstance()->action(QStringLiteral("tab_unmute")));
     popup.addSeparator();
     popup.addAction(ActionManager::getInstance()->action(QStringLiteral("find_in_messages")));
+#ifdef HAVE_KTEXTADDONS_TEXT_TO_SPEECH_SUPPORT
+    popup.addSeparator();
+    popup.addAction(ActionManager::getInstance()->action(QStringLiteral("speak_text")));
+#else
 #if KPIMTEXTEDIT_TEXT_TO_SPEECH
     popup.addSeparator();
     popup.addAction(ActionManager::getInstance()->action(QStringLiteral("speak_text")));
+#endif
 #endif
     popup.exec(mapToGlobal(result.pos()));
 }

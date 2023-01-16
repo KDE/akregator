@@ -24,7 +24,9 @@
 #include <WebEngineViewer/LoadExternalReferencesUrlInterceptor>
 #include <WebEngineViewer/WebHitTest>
 #include <WebEngineViewer/WebHitTestResult>
+#ifndef HAVE_KTEXTADDONS_TEXT_TO_SPEECH_SUPPORT
 #include <kpimtextedit/kpimtextedit-texttospeech.h>
+#endif
 
 using namespace Akregator;
 
@@ -139,9 +141,14 @@ void AkrWebEngineViewer::slotWebHitFinished(const WebEngineViewer::WebHitTestRes
     }
     popup.addSeparator();
     popup.addAction(ActionManager::getInstance()->action(QStringLiteral("find_in_messages")));
+#ifdef HAVE_KTEXTADDONS_TEXT_TO_SPEECH_SUPPORT
+    popup.addSeparator();
+    popup.addAction(ActionManager::getInstance()->action(QStringLiteral("speak_text")));
+#else
 #if KPIMTEXTEDIT_TEXT_TO_SPEECH
     popup.addSeparator();
     popup.addAction(ActionManager::getInstance()->action(QStringLiteral("speak_text")));
+#endif
 #endif
     popup.exec(mapToGlobal(result.pos()));
 }

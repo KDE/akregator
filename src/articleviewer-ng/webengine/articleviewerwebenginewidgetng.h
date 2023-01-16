@@ -8,7 +8,9 @@
 
 #include "akregator_export.h"
 #include "articleviewerwebengine.h"
+#ifndef HAVE_KTEXTADDONS_TEXT_TO_SPEECH_SUPPORT
 #include <kpimtextedit/kpimtextedit-texttospeech.h>
+#endif
 
 #include <QWidget>
 class QPrinter;
@@ -18,8 +20,14 @@ namespace KPIMTextEdit
 {
 class SlideContainer;
 }
-#if KPIMTEXTEDIT_TEXT_TO_SPEECH
+#ifdef KPIMTEXTEDIT_TEXT_TO_SPEECH
 namespace KPIMTextEditTextToSpeech
+{
+class TextToSpeechContainerWidget;
+}
+#endif
+#ifdef HAVE_KTEXTADDONS_TEXT_TO_SPEECH_SUPPORT
+namespace TextEditTextToSpeech
 {
 class TextToSpeechContainerWidget;
 }
@@ -62,8 +70,11 @@ private:
     void printRequested(QWebEnginePage *page);
     WebEngineViewer::FindBarWebEngineView *mFindBarWebView = nullptr;
     ArticleViewerWebEngine *mArticleViewerNg = nullptr;
-#if KPIMTEXTEDIT_TEXT_TO_SPEECH
+#ifdef KPIMTEXTEDIT_TEXT_TO_SPEECH
     KPIMTextEditTextToSpeech::TextToSpeechContainerWidget *const mTextToSpeechWidget;
+#endif
+#ifdef HAVE_KTEXTADDONS_TEXT_TO_SPEECH_SUPPORT
+    TextEditTextToSpeech::TextToSpeechContainerWidget *const mTextToSpeechWidget;
 #endif
     KPIMTextEdit::SlideContainer *const mSliderContainer;
     WebEngineViewer::TrackingWarningWidget *const mTrackingWarningWidget;

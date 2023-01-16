@@ -184,7 +184,6 @@ target_link_libraries(akregatorprivate
     akregatorinterfaces
     KF5::PimCommon
     KF5::PimTextEdit
-    KF5::PimTextEditTextToSpeech
     KF5::GrantleeTheme
     KF5::KIOGui
     KF5::MessageViewer
@@ -192,7 +191,17 @@ target_link_libraries(akregatorprivate
     KF5::WebEngineViewer
     ${akregator_userfeedback_LIB}
     )
-
+if (USE_KTEXTADDONS_LIB)
+    target_link_libraries(akregatorprivate
+        PRIVATE
+        KF5::TextEditTextToSpeech
+    )
+else()
+    target_link_libraries(akregatorprivate
+        PRIVATE
+        KF5::PimTextEditTextToSpeech
+    )
+endif()
 target_include_directories(akregatorprivate PUBLIC "$<BUILD_INTERFACE:${akregator_SOURCE_DIR}/src;${akregator_BINARY_DIR}/src>")
 
 set_target_properties(akregatorprivate

@@ -13,8 +13,11 @@
 #include <MessageViewer/ViewerPluginToolManager>
 #include <QVBoxLayout>
 #include <kio_version.h>
-#if KPIMTEXTEDIT_TEXT_TO_SPEECH
+#ifdef KPIMTEXTEDIT_TEXT_TO_SPEECH
 #include <KPIMTextEditTextToSpeech/TextToSpeechContainerWidget>
+#endif
+#ifdef HAVE_KTEXTADDONS_TEXT_TO_SPEECH_SUPPORT
+#include <TextEditTextToSpeech/TextToSpeechContainerWidget>
 #endif
 #include <KPIMTextEdit/SlideContainer>
 
@@ -48,7 +51,10 @@ InvokeWrapper<Arg, R, C> invoke(R *receiver, void (C::*memberFun)(Arg))
 ArticleViewerWebEngineWidgetNg::ArticleViewerWebEngineWidgetNg(ArticleViewerWebEngine *customViewer, KActionCollection *ac, QWidget *parent)
     : QWidget(parent)
     , mArticleViewerNg(customViewer)
-#if KPIMTEXTEDIT_TEXT_TO_SPEECH
+#ifdef HAVE_KTEXTADDONS_TEXT_TO_SPEECH_SUPPORT
+    , mTextToSpeechWidget(new TextEditTextToSpeech::TextToSpeechContainerWidget(this))
+#endif
+#ifdef KPIMTEXTEDIT_TEXT_TO_SPEECH
     , mTextToSpeechWidget(new KPIMTextEditTextToSpeech::TextToSpeechContainerWidget(this))
 #endif
     , mSliderContainer(new KPIMTextEdit::SlideContainer(this))
@@ -67,7 +73,11 @@ void ArticleViewerWebEngineWidgetNg::initializeLayout(KActionCollection *ac)
 {
     auto layout = new QVBoxLayout(this);
     layout->setContentsMargins({});
-#if KPIMTEXTEDIT_TEXT_TO_SPEECH
+#ifdef KPIMTEXTEDIT_TEXT_TO_SPEECH
+    mTextToSpeechWidget->setObjectName(QStringLiteral("texttospeechwidget"));
+    layout->addWidget(mTextToSpeechWidget);
+#endif
+#ifdef HAVE_KTEXTADDONS_TEXT_TO_SPEECH_SUPPORT
     mTextToSpeechWidget->setObjectName(QStringLiteral("texttospeechwidget"));
     layout->addWidget(mTextToSpeechWidget);
 #endif
@@ -112,7 +122,10 @@ void ArticleViewerWebEngineWidgetNg::slotFind()
 void ArticleViewerWebEngineWidgetNg::slotSpeakText()
 {
     const QString text = mArticleViewerNg->selectedText();
-#if KPIMTEXTEDIT_TEXT_TO_SPEECH
+#ifdef HAVE_KTEXTADDONS_TEXT_TO_SPEECH_SUPPORT
+    mTextToSpeechWidget->say(text);
+#endif
+#ifdef KPIMTEXTEDIT_TEXT_TO_SPEECH
     mTextToSpeechWidget->say(text);
 #endif
 }
