@@ -15,10 +15,6 @@
 #include <KActionCollection>
 #include <KActionMenu>
 #include <KIO/KUriFilterSearchProviderActions>
-#include <kpimtextedit/kpimtextedit-texttospeech.h>
-#if KPIMTEXTEDIT_TEXT_TO_SPEECH
-#include <KPIMTextEditTextToSpeech/TextToSpeech>
-#endif
 #include <QContextMenuEvent>
 #include <QMenu>
 #include <QWebEngineHistory>
@@ -28,6 +24,7 @@
 #include <WebEngineViewer/LoadExternalReferencesUrlInterceptor>
 #include <WebEngineViewer/WebHitTest>
 #include <WebEngineViewer/WebHitTestResult>
+#include <kpimtextedit/kpimtextedit-texttospeech.h>
 
 using namespace Akregator;
 

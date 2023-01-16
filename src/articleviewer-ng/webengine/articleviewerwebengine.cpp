@@ -11,14 +11,11 @@
 #include "akregatorconfig.h"
 #include "articleviewerwebenginepage.h"
 #include "webengine/urlhandlerwebenginemanager.h"
-#include <kpimtextedit/kpimtextedit-texttospeech.h>
-#if KPIMTEXTEDIT_TEXT_TO_SPEECH
-#include <KPIMTextEditTextToSpeech/TextToSpeech>
-#endif
 #include <WebEngineViewer/InterceptorManager>
 #include <WebEngineViewer/WebEngineAccessKey>
 #include <WebEngineViewer/WebEngineManageScript>
 #include <WebEngineViewer/ZoomActionMenu>
+#include <kpimtextedit/kpimtextedit-texttospeech.h>
 
 #include <GrantleeTheme/GrantleeThemeManager>
 #include <KAboutData>
