@@ -21,7 +21,7 @@ class SlideContainer;
 #if KPIMTEXTEDIT_TEXT_TO_SPEECH
 namespace KPIMTextEditTextToSpeech
 {
-class TextToSpeechWidget;
+class TextToSpeechContainerWidget;
 }
 #endif
 
@@ -63,7 +63,7 @@ private:
     WebEngineViewer::FindBarWebEngineView *mFindBarWebView = nullptr;
     ArticleViewerWebEngine *mArticleViewerNg = nullptr;
 #if KPIMTEXTEDIT_TEXT_TO_SPEECH
-    KPIMTextEditTextToSpeech::TextToSpeechWidget *const mTextToSpeechWidget;
+    KPIMTextEditTextToSpeech::TextToSpeechContainerWidget *const mTextToSpeechWidget;
 #endif
     KPIMTextEdit::SlideContainer *const mSliderContainer;
     WebEngineViewer::TrackingWarningWidget *const mTrackingWarningWidget;
