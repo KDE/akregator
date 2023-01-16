@@ -180,6 +180,7 @@ target_link_libraries(akregatorprivate
     KF5::Notifications
     KF5::Libkdepim
     KF5::Syndication
+    KF5::Codecs
     akregatorinterfaces
     KF5::PimCommon
     KF5::PimTextEdit
