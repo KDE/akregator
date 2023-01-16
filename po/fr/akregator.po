@@ -14,20 +14,21 @@
 # xavier <xavier.besnard@neuf.fr>, 2013, 2014, 2020, 2021, 2022.
 # Vincent Pinon <vpinon@kde.org>, 2018.
 # Simon Depiets <sdepiets@gmail.com>, 2019, 2020.
+# Xavier BESNARD <xavier.besnard]neuf.fr>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-01-14 00:57+0000\n"
-"PO-Revision-Date: 2022-04-27 19:04+0200\n"
-"Last-Translator: Xavier Besnard <xavier.besnard@neuf.fr>\n"
-"Language-Team: French <kde-francophone@kde.org>\n"
+"PO-Revision-Date: 2023-01-14 13:17+0100\n"
+"Last-Translator: Xavier BESNARD <xavier.besnard]neuf.fr>\n"
+"Language-Team: fr\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 21.12.3\n"
+"X-Generator: Lokalize 22.12.1\n"
 "X-Environment: kde\n"
 "X-Accelerator-Marker: &\n"
 "X-Text-Markup: kde4\n"
@@ -64,14 +65,14 @@ msgid ""
 "want to see this page anymore, <a href='config:/disable_introduction'>click "
 "here</a>."
 msgstr ""
-"Pour plus d'informations sur l'utilisation d'Akregator, visitez le <a "
-"href='https://kontact.kde.org/components/akregator.html'>site Internet "
-"d'Akregator</a>. Si vous souhaitez que cette page n'apparaisse plus, <a "
-"href='config:/disable_introduction'>cliquez ici</a>."
+"Pour plus d'informations sur l'utilisation de l'application Akregator, "
+"visitez le <a href='https://kontact.kde.org/components/akregator.html'>site "
+"Internet de l'application Akregator</a>. Si vous souhaitez que cette page "
+"n'apparaisse plus, <a href='config:/disable_introduction'>cliquez ici</a>."
 
 #: src/about/introduction_akregator.html:20
 msgid "We hope that you will enjoy Akregator."
-msgstr "Nous espérons que vous apprécierez Akregator."
+msgstr "Nous espérons que vous apprécierez l'application Akregator."
 
 #: src/about/introduction_akregator.html:21
 msgid "Thank you, The Akregator Team"
@@ -465,7 +466,7 @@ msgstr "Sécurité"
 #: configuration/ui/settings_browser.ui:146
 #, kde-format
 msgid "Verify URLs using Google's Safe Browsing API"
-msgstr "Vérifier les URL grâce à l'API Safe Browsing de Google"
+msgstr "Vérifier les URL grâce à l'API « Safe Browsing » de Google"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_EnableJavascript)
 #. i18n: ectx: label, entry, group (Browser)
@@ -1058,7 +1059,7 @@ msgstr "Un agrégateur de flux pour KDE"
 #: src/aboutdata.cpp:23
 #, kde-format
 msgid "Copyright © 2004–%1 Akregator authors"
-msgstr "Copyright © 2004 – %1 Les auteurs d'Akregator"
+msgstr "Copyright © 2004 – %1 Les auteurs de l'application Akregator"
 
 #: src/aboutdata.cpp:27
 #, kde-format
