@@ -1119,7 +1119,7 @@ msgstr "Eckhart Woerner"
 #: src/aboutdata.cpp:38
 #, kde-format
 msgid "Bug tracker management, Usability improvements"
-msgstr "Gestió del seguiment d'errors, millores d'usabilitat"
+msgstr "Gestioneu el seguiment d'errors, millores d'usabilitat"
 
 #: src/aboutdata.cpp:39
 #, kde-format
