@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: all2.po\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-01-14 00:57+0000\n"
+"POT-Creation-Date: 2023-01-17 00:58+0000\n"
 "PO-Revision-Date: 2004-09-20 15:44+0200\n"
 "Last-Translator: Thierry Vignaud <tvignaud@mandrakesoft.com>\n"
 "Language-Team: cy <LL@li.org>\n"
@@ -986,7 +986,7 @@ msgstr ""
 
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
 #: src/akregator_part.cpp:146
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:148
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:147
 #: src/trayicon.cpp:41 src/trayicon.cpp:42 src/trayicon.cpp:54
 #, kde-format
 msgid "Akregator"
@@ -1710,65 +1710,65 @@ msgctxt "Articlelist's column header"
 msgid "Content"
 msgstr "Sylwadau"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:149
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:148
 #, kde-format
 msgid "Akregator is a KDE news feed reader."
 msgstr ""
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:190
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:189
 #, fuzzy, kde-format
 #| msgid "&Save Link As..."
 msgctxt "@title:window"
 msgid "Save As"
 msgstr "&Cadw Cyswllt Fel ..."
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:379
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:383
 #, kde-format
 msgid "Disable"
 msgstr "Analluogi"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:380
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:384
 #, kde-format
 msgid "Keep Enabled"
 msgstr ""
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:382
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:386
 #, kde-format
 msgid "Are you sure you want to disable this introduction page?"
 msgstr ""
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:383
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:387
 #, fuzzy, kde-format
 msgid "Disable Introduction Page"
 msgstr "Archif"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:418
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:422
 #, kde-format
 msgid "This web site is a malware, do you want to continue to show it?"
 msgstr ""
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:419
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:423
 #, kde-format
 msgid "Malware"
 msgstr ""
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:431
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:435
 #, kde-format
 msgid "The network is broken."
 msgstr ""
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:431
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:434
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:435
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:438
 #, kde-format
 msgid "Check Phishing Url"
 msgstr ""
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:434
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:438
 #, kde-format
 msgid "The url %1 is not valid."
 msgstr ""
 
-#: src/articleviewer-ng/webengine/articleviewerwebenginewidgetng.cpp:137
+#: src/articleviewer-ng/webengine/articleviewerwebenginewidgetng.cpp:150
 #, kde-format
 msgctxt "@title:window"
 msgid "Print Document"

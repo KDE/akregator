@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-01-14 00:57+0000\n"
+"POT-Creation-Date: 2023-01-17 00:58+0000\n"
 "PO-Revision-Date: 2022-04-28 10:11+0200\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
@@ -1040,7 +1040,7 @@ msgstr "Reset de snelfilter wanneer er gewisseld wordt tussen feeds."
 
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
 #: src/akregator_part.cpp:146
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:148
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:147
 #: src/trayicon.cpp:41 src/trayicon.cpp:42 src/trayicon.cpp:54
 #, kde-format
 msgid "Akregator"
@@ -1788,67 +1788,67 @@ msgstr "Inhoud"
 # aggregator = verzamelaar
 # verderop in de vertaling wordt steeds naar feed(s) verwezen, de term RSS komt dan niet voor.
 # RSS => 'RSS-feed' of alleen 'feed'
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:149
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:148
 #, kde-format
 msgid "Akregator is a KDE news feed reader."
 msgstr "Akregator is een KDE newsfeedlezer."
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:190
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:189
 #, kde-format
 msgctxt "@title:window"
 msgid "Save As"
 msgstr "Opslaan als"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:379
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:383
 #, kde-format
 msgid "Disable"
 msgstr "Uitschakelen"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:380
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:384
 #, kde-format
 msgid "Keep Enabled"
 msgstr "Aan laten staan"
 
 #
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:382
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:386
 #, kde-format
 msgid "Are you sure you want to disable this introduction page?"
 msgstr "Wilt u deze introductiepagina uitschakelen?"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:383
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:387
 #, kde-format
 msgid "Disable Introduction Page"
 msgstr "Introductiepagina uitschakelen"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:418
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:422
 #, kde-format
 msgid "This web site is a malware, do you want to continue to show it?"
 msgstr ""
 "deze website bevat schadelijke software (malware), wilt u doorgaan met het "
 "weergeven?"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:419
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:423
 #, kde-format
 msgid "Malware"
 msgstr "Schadelijke software (malware)"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:431
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:435
 #, kde-format
 msgid "The network is broken."
 msgstr "Het netwerk is gebroken."
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:431
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:434
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:435
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:438
 #, kde-format
 msgid "Check Phishing Url"
 msgstr "Phishing URL controleren"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:434
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:438
 #, kde-format
 msgid "The url %1 is not valid."
 msgstr "De URL %1 is niet geldig."
 
-#: src/articleviewer-ng/webengine/articleviewerwebenginewidgetng.cpp:137
+#: src/articleviewer-ng/webengine/articleviewerwebenginewidgetng.cpp:150
 #, kde-format
 msgctxt "@title:window"
 msgid "Print Document"

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-01-14 00:57+0000\n"
+"POT-Creation-Date: 2023-01-17 00:58+0000\n"
 "PO-Revision-Date: 2007-09-07 10:35+0545\n"
 "Last-Translator: Nabin Gautam <nabin@mpp.org.np>\n"
 "Language-Team: Nepali <info@mpp.org.np>\n"
@@ -1018,7 +1018,7 @@ msgstr ""
 
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
 #: src/akregator_part.cpp:146
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:148
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:147
 #: src/trayicon.cpp:41 src/trayicon.cpp:42 src/trayicon.cpp:54
 #, kde-format
 msgid "Akregator"
@@ -1766,68 +1766,68 @@ msgctxt "Articlelist's column header"
 msgid "Content"
 msgstr "टिप्पणी"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:149
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:148
 #, fuzzy, kde-format
 #| msgid "A KDE Feed Aggregator"
 msgid "Akregator is a KDE news feed reader."
 msgstr "एउटा केडीई फिड एक्रिगेटर"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:190
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:189
 #, fuzzy, kde-format
 #| msgid "&Save Link As..."
 msgctxt "@title:window"
 msgid "Save As"
 msgstr "लिङ्क यस रूपमा बचत गर्नुहोस्..."
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:379
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:383
 #, kde-format
 msgid "Disable"
 msgstr ""
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:380
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:384
 #, kde-format
 msgid "Keep Enabled"
 msgstr ""
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:382
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:386
 #, fuzzy, kde-format
 #| msgid "<qt>Are you sure you want to delete this feed?</qt>"
 msgid "Are you sure you want to disable this introduction page?"
 msgstr "<qt>तपाईँ यो फिड मेट्ने चाहानामा निश्चिन्त हुनुहुन्छ ?</qt>"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:383
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:387
 #, fuzzy, kde-format
 #| msgid "Disable Archiving"
 msgid "Disable Introduction Page"
 msgstr "सङ्ग्रह अक्षम पार्नुहोस्"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:418
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:422
 #, kde-format
 msgid "This web site is a malware, do you want to continue to show it?"
 msgstr ""
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:419
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:423
 #, kde-format
 msgid "Malware"
 msgstr ""
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:431
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:435
 #, kde-format
 msgid "The network is broken."
 msgstr ""
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:431
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:434
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:435
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:438
 #, kde-format
 msgid "Check Phishing Url"
 msgstr ""
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:434
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:438
 #, kde-format
 msgid "The url %1 is not valid."
 msgstr ""
 
-#: src/articleviewer-ng/webengine/articleviewerwebenginewidgetng.cpp:137
+#: src/articleviewer-ng/webengine/articleviewerwebenginewidgetng.cpp:150
 #, kde-format
 msgctxt "@title:window"
 msgid "Print Document"
