@@ -4,10 +4,10 @@ cmake_minimum_required(VERSION 3.16 FATAL_ERROR)
 set(PIM_VERSION "5.22.40")
 project(akregator VERSION ${PIM_VERSION})
 
-set(KF5_MIN_VERSION "5.102.0")
+set(KF_MIN_VERSION "5.102.0")
 set(RELEASE_SERVICE_VERSION "23.03.40")
 
-find_package(ECM ${KF5_MIN_VERSION} CONFIG REQUIRED)
+find_package(ECM ${KF_MIN_VERSION} CONFIG REQUIRED)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
 include(ECMInstallIcons)
 
@@ -63,17 +63,17 @@ find_package(Qt${QT_MAJOR_VERSION} ${QT_REQUIRED_VERSION} CONFIG REQUIRED Widget
 option(USE_KTEXTADDONS_LIB "Use ktextaddons lib (experimental)" OFF)
 set(KTEXTADDONS_MIN_VERSION "1.0.0")
 # Find KF5 package
-find_package(KF5I18n ${KF5_MIN_VERSION} REQUIRED)
-find_package(KF5Crash ${KF5_MIN_VERSION} REQUIRED)
-find_package(KF5KCMUtils ${KF5_MIN_VERSION} CONFIG REQUIRED)
-find_package(KF5NotifyConfig ${KF5_MIN_VERSION} CONFIG REQUIRED)
-find_package(KF5Parts ${KF5_MIN_VERSION} CONFIG REQUIRED)
-find_package(KF5TextWidgets ${KF5_MIN_VERSION} CONFIG REQUIRED)
-find_package(KF5XmlGui ${KF5_MIN_VERSION} CONFIG REQUIRED)
-find_package(KF5Notifications ${KF5_MIN_VERSION} CONFIG REQUIRED)
-find_package(KF5Syndication ${KF5_MIN_VERSION} CONFIG REQUIRED)
-find_package(KF5Codecs ${KF5_MIN_VERSION} CONFIG REQUIRED)
-find_package(KF5DocTools ${KF5_MIN_VERSION})
+find_package(KF5I18n ${KF_MIN_VERSION} REQUIRED)
+find_package(KF5Crash ${KF_MIN_VERSION} REQUIRED)
+find_package(KF5KCMUtils ${KF_MIN_VERSION} CONFIG REQUIRED)
+find_package(KF5NotifyConfig ${KF_MIN_VERSION} CONFIG REQUIRED)
+find_package(KF5Parts ${KF_MIN_VERSION} CONFIG REQUIRED)
+find_package(KF5TextWidgets ${KF_MIN_VERSION} CONFIG REQUIRED)
+find_package(KF5XmlGui ${KF_MIN_VERSION} CONFIG REQUIRED)
+find_package(KF5Notifications ${KF_MIN_VERSION} CONFIG REQUIRED)
+find_package(KF5Syndication ${KF_MIN_VERSION} CONFIG REQUIRED)
+find_package(KF5Codecs ${KF_MIN_VERSION} CONFIG REQUIRED)
+find_package(KF5DocTools ${KF_MIN_VERSION})
 set_package_properties(KF5DocTools PROPERTIES DESCRIPTION
     "Tools to generate documentation"
     TYPE OPTIONAL
