@@ -30,7 +30,7 @@ if (TARGET KUserFeedbackWidgets)
 endif()
 
 target_link_libraries(akregatorinterfaces
-    KF5::ConfigGui
+    KF${KF_MAJOR_VERSION}::ConfigGui
     Qt::Widgets
     )
 if (COMPILE_WITH_UNITY_CMAKE_SUPPORT)

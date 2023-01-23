@@ -31,15 +31,15 @@ ecm_add_app_icon(akregator_SRCS ICONS ${ICONS_AKREGATOR_SRCS})
 add_executable(akregator ${akregator_SRCS})
 
 target_link_libraries(akregator
-    KF5::I18n
-    KF5::Crash
-    KF5::Notifications
+    KF${KF_MAJOR_VERSION}::I18n
+    KF${KF_MAJOR_VERSION}::Crash
+    KF${KF_MAJOR_VERSION}::Notifications
     KF5::KontactInterface
     KF5::Libkdepim
     akregatorprivate
     akregatorinterfaces
     KF5::PimCommon
-    KF5::Syndication
+    KF${KF_MAJOR_VERSION}::Syndication
     )
 
 install(TARGETS akregator ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
@@ -175,17 +175,19 @@ endif()
 
 target_link_libraries(akregatorprivate
     PRIVATE
-    KF5::I18n
-    KF5::Parts
-    KF5::Notifications
+    KF${KF_MAJOR_VERSION}::I18n
+    KF${KF_MAJOR_VERSION}::Parts
+    KF${KF_MAJOR_VERSION}::Notifications
     KF5::Libkdepim
-    KF5::Syndication
-    KF5::Codecs
+    KF${KF_MAJOR_VERSION}::Syndication
+    KF${KF_MAJOR_VERSION}::Codecs
+    KF${KF_MAJOR_VERSION}::JobWidgets
+    KF${KF_MAJOR_VERSION}::KIOWidgets
     akregatorinterfaces
     KF5::PimCommon
     KF5::PimTextEdit
     KF5::GrantleeTheme
-    KF5::KIOGui
+    KF${KF_MAJOR_VERSION}::KIOGui
     KF5::MessageViewer
     Qt::PrintSupport
     KF5::WebEngineViewer
@@ -298,21 +300,23 @@ generate_export_header(akregatorpart BASE_NAME akregatorpart)
 target_link_libraries(akregatorpart
     akregatorinterfaces
     akregatorprivate
-    KF5::I18n
-    KF5::KCMUtils
-    KF5::NotifyConfig
+    KF${KF_MAJOR_VERSION}::I18n
+    KF${KF_MAJOR_VERSION}::KCMUtils
+    KF${KF_MAJOR_VERSION}::NotifyConfig
     KF5::Libkdepim
-    KF5::Syndication
+    KF${KF_MAJOR_VERSION}::Syndication
     KF5::PimCommon
     KF5::PimTextEdit
     KF5::GrantleeTheme
     KF5::MessageViewer
-    KF5::Parts
-    KF5::Notifications
-    KF5::TextWidgets
+    KF${KF_MAJOR_VERSION}::Parts
+    KF${KF_MAJOR_VERSION}::Notifications
+    KF${KF_MAJOR_VERSION}::TextWidgets
     Qt::WebEngineWidgets
     KF5::WebEngineViewer
-    KF5::KIOGui
+    KF${KF_MAJOR_VERSION}::KIOGui
+    KF${KF_MAJOR_VERSION}::Completion
+    KF${KF_MAJOR_VERSION}::JobWidgets
     )
 if (COMPILE_WITH_UNITY_CMAKE_SUPPORT)
     set_target_properties(akregatorpart PROPERTIES UNITY_BUILD ON)

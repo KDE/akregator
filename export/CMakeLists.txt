@@ -8,10 +8,10 @@ include_directories(
 add_executable(akregatorstorageexporter)
 target_sources(akregatorstorageexporter PRIVATE akregatorstorageexporter.cpp)
 target_link_libraries(akregatorstorageexporter
-    KF5::Syndication
+    KF${KF_MAJOR_VERSION}::Syndication
     akregatorprivate
-    KF5::I18n
-    KF5::CoreAddons
+    KF${KF_MAJOR_VERSION}::I18n
+    KF${KF_MAJOR_VERSION}::CoreAddons
     )
 
 install(TARGETS akregatorstorageexporter ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
