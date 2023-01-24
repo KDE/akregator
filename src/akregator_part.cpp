@@ -38,7 +38,6 @@
 #include <KCMultiDialog>
 #include <KIO/StoredTransferJob>
 #include <KJobWidgets>
-#include <KParts/Plugin>
 #include <KPluginFactory>
 #include <QSaveFile>
 #include <QTemporaryFile>
