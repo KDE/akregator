@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-01-17 00:58+0000\n"
+"POT-Creation-Date: 2023-01-25 00:58+0000\n"
 "PO-Revision-Date: 2022-04-26 08:33+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
@@ -1014,7 +1014,7 @@ msgid "Resets the quick filter when changing feeds."
 msgstr "Скидати вміст швидкого фільтрування під час зміни подач."
 
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
-#: src/akregator_part.cpp:146
+#: src/akregator_part.cpp:145
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:147
 #: src/trayicon.cpp:41 src/trayicon.cpp:42 src/trayicon.cpp:54
 #, kde-format
@@ -1588,42 +1588,42 @@ msgstr "Сховати головне вікно після запуску"
 msgid "Lists the available options for user feedback"
 msgstr "Показати доступні варіанти для відгуків користувача"
 
-#: src/akregator_part.cpp:84
+#: src/akregator_part.cpp:83
 #, kde-format
 msgid "Feeds"
 msgstr "Подачі"
 
-#: src/akregator_part.cpp:95
+#: src/akregator_part.cpp:94
 #, kde-format
 msgid "KDE Dot News"
 msgstr "Новини KDE"
 
-#: src/akregator_part.cpp:100
+#: src/akregator_part.cpp:99
 #, kde-format
 msgid "Linux.com"
 msgstr "Linux.com"
 
-#: src/akregator_part.cpp:105
+#: src/akregator_part.cpp:104
 #, kde-format
 msgid "Planet KDE"
 msgstr "Планета KDE"
 
-#: src/akregator_part.cpp:110
+#: src/akregator_part.cpp:109
 #, kde-format
 msgid "KDE Apps"
 msgstr "Програми KDE"
 
-#: src/akregator_part.cpp:116
+#: src/akregator_part.cpp:115
 #, kde-format
 msgid "Spanish feeds"
 msgstr "Іспанські подачі"
 
-#: src/akregator_part.cpp:120
+#: src/akregator_part.cpp:119
 #, kde-format
 msgid "Planet KDE España"
 msgstr "Planet KDE España"
 
-#: src/akregator_part.cpp:440
+#: src/akregator_part.cpp:439
 #, kde-format
 msgid ""
 "Access denied: Cannot save feed list to <b>%1</b>. Please check your "
@@ -1632,22 +1632,22 @@ msgstr ""
 "Доступ заборонено: неможливо зберегти список подач до <b>%1</b>. Будь ласка, "
 "перевірте ваші дозволи."
 
-#: src/akregator_part.cpp:441 src/akregator_part.cpp:492
+#: src/akregator_part.cpp:440 src/akregator_part.cpp:491
 #, kde-format
 msgid "Write Error"
 msgstr "Помилка запису"
 
-#: src/akregator_part.cpp:477
+#: src/akregator_part.cpp:476
 #, kde-format
 msgid "Could not import the file %1 (no valid OPML)"
 msgstr "Не вдалось імпортувати файл %1 (немає чинної OPML)"
 
-#: src/akregator_part.cpp:477 src/command/loadfeedlistcommand.cpp:71
+#: src/akregator_part.cpp:476 src/command/loadfeedlistcommand.cpp:71
 #, kde-format
 msgid "OPML Parsing Error"
 msgstr "Помилка аналізу OPML"
 
-#: src/akregator_part.cpp:481
+#: src/akregator_part.cpp:480
 #, kde-format
 msgid ""
 "The file %1 could not be read, check if it exists or if it is readable for "
@@ -1656,24 +1656,24 @@ msgstr ""
 "Не вдалось прочитати файл %1; перевірте чи він існує і чи його можна читати "
 "поточному користувачу."
 
-#: src/akregator_part.cpp:482 src/command/loadfeedlistcommand.cpp:142
+#: src/akregator_part.cpp:481 src/command/loadfeedlistcommand.cpp:142
 #, kde-format
 msgid "Read Error"
 msgstr "Помилка читання"
 
-#: src/akregator_part.cpp:492
+#: src/akregator_part.cpp:491
 #, kde-format
 msgid "Access denied: cannot write to file %1. Please check your permissions."
 msgstr ""
 "Доступ заборонено: неможливо записати до файла %1. Будь ласка, перевірте "
 "ваші дозволи."
 
-#: src/akregator_part.cpp:507 src/akregator_part.cpp:516
+#: src/akregator_part.cpp:506 src/akregator_part.cpp:515
 #, kde-format
 msgid "OPML Outlines (%1);;All Files (*)"
 msgstr "примітки OPML (%1);;усі файли (*)"
 
-#: src/akregator_part.cpp:650
+#: src/akregator_part.cpp:649
 #, kde-format
 msgid "Imported Folder"
 msgstr "Імпортована тека"

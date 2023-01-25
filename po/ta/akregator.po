@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-01-17 00:58+0000\n"
+"POT-Creation-Date: 2023-01-25 00:58+0000\n"
 "PO-Revision-Date: 2022-12-20 21:45+0530\n"
 "Last-Translator: Kishore G <kishore96@gmail.com>\n"
 "Language-Team: Tamil <kde-i18n-doc@kde.org>\n"
@@ -971,7 +971,7 @@ msgid "Resets the quick filter when changing feeds."
 msgstr ""
 
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
-#: src/akregator_part.cpp:146
+#: src/akregator_part.cpp:145
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:147
 #: src/trayicon.cpp:41 src/trayicon.cpp:42 src/trayicon.cpp:54
 #, kde-format
@@ -1542,43 +1542,43 @@ msgstr "துவக்கும்போது பிரதான சாளர�
 msgid "Lists the available options for user feedback"
 msgstr "பயனர் பின்னூட்டத்துக்கு உள்ள விருப்பத்தேர்வுகளை பட்டியலிடும்"
 
-#: src/akregator_part.cpp:84
+#: src/akregator_part.cpp:83
 #, kde-format
 msgid "Feeds"
 msgstr "தொகுப்புகள்"
 
-#: src/akregator_part.cpp:95
+#: src/akregator_part.cpp:94
 #, fuzzy, kde-format
 msgid "KDE Dot News"
 msgstr "கே.டீ.யீ. டாட் செய்திகள்"
 
-#: src/akregator_part.cpp:100
+#: src/akregator_part.cpp:99
 #, kde-format
 msgid "Linux.com"
 msgstr ""
 
-#: src/akregator_part.cpp:105
+#: src/akregator_part.cpp:104
 #, fuzzy, kde-format
 msgid "Planet KDE"
 msgstr "கோள் கேடியி"
 
-#: src/akregator_part.cpp:110
+#: src/akregator_part.cpp:109
 #, fuzzy, kde-format
 msgid "KDE Apps"
 msgstr "KDE Apps"
 
-#: src/akregator_part.cpp:116
+#: src/akregator_part.cpp:115
 #, kde-format
 msgid "Spanish feeds"
 msgstr ""
 
-#: src/akregator_part.cpp:120
+#: src/akregator_part.cpp:119
 #, fuzzy, kde-format
 #| msgid "Planet KDE"
 msgid "Planet KDE España"
 msgstr "கோள் கேடியி"
 
-#: src/akregator_part.cpp:440
+#: src/akregator_part.cpp:439
 #, kde-format
 msgid ""
 "Access denied: Cannot save feed list to <b>%1</b>. Please check your "
@@ -1587,22 +1587,22 @@ msgstr ""
 "அணுகல் மறுக்கப்பட்டது: தொக்குப்புகளின் பட்டியலை <b>%1</b> எனும் இடத்திற்கு சேமிக்க "
 "முடியவில்லை. உங்கள் அனுமதிகளை சரிபாருங்கள்."
 
-#: src/akregator_part.cpp:441 src/akregator_part.cpp:492
+#: src/akregator_part.cpp:440 src/akregator_part.cpp:491
 #, kde-format
 msgid "Write Error"
 msgstr "எழுதுவதில் சிக்கல்"
 
-#: src/akregator_part.cpp:477
+#: src/akregator_part.cpp:476
 #, kde-format
 msgid "Could not import the file %1 (no valid OPML)"
 msgstr "%1 எனும் கோப்பை இறக்குமதி செய்ய முடியவில்லை (முறையான OPML இல்லை)"
 
-#: src/akregator_part.cpp:477 src/command/loadfeedlistcommand.cpp:71
+#: src/akregator_part.cpp:476 src/command/loadfeedlistcommand.cpp:71
 #, kde-format
 msgid "OPML Parsing Error"
 msgstr "OPML இலக்கண பிழை"
 
-#: src/akregator_part.cpp:481
+#: src/akregator_part.cpp:480
 #, kde-format
 msgid ""
 "The file %1 could not be read, check if it exists or if it is readable for "
@@ -1611,24 +1611,24 @@ msgstr ""
 "%1 எனும் கோப்பை படிக்க முடியவில்லை. அது உள்ளதா எனும் தற்போதைய பயனரால் படிக்கக்கூடியதா "
 "எனும் சரிபாருங்கள்."
 
-#: src/akregator_part.cpp:482 src/command/loadfeedlistcommand.cpp:142
+#: src/akregator_part.cpp:481 src/command/loadfeedlistcommand.cpp:142
 #, kde-format
 msgid "Read Error"
 msgstr "படிக்கும்போது சிக்கல்"
 
-#: src/akregator_part.cpp:492
+#: src/akregator_part.cpp:491
 #, fuzzy, kde-format
 #| msgid "Access denied: cannot write to file %1"
 msgid "Access denied: cannot write to file %1. Please check your permissions."
 msgstr "அனுமதி மறுக்கப்பட்டது: கோப்பு %1க்கு எழுத முடியவில்லை"
 
-#: src/akregator_part.cpp:507 src/akregator_part.cpp:516
+#: src/akregator_part.cpp:506 src/akregator_part.cpp:515
 #, fuzzy, kde-format
 #| msgid "OPML Outlines (*.opml, *.xml)"
 msgid "OPML Outlines (%1);;All Files (*)"
 msgstr "OPML வெளிக்கோடுகள் (*.opml, *.xml)"
 
-#: src/akregator_part.cpp:650
+#: src/akregator_part.cpp:649
 #, kde-format
 msgid "Imported Folder"
 msgstr "இறக்கிய அடைவு"

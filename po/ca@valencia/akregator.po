@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-01-17 00:58+0000\n"
+"POT-Creation-Date: 2023-01-25 00:58+0000\n"
 "PO-Revision-Date: 2022-10-26 08:43+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
@@ -1000,7 +1000,7 @@ msgid "Resets the quick filter when changing feeds."
 msgstr "Reinicia el filtre ràpid en canviar les fonts."
 
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
-#: src/akregator_part.cpp:146
+#: src/akregator_part.cpp:145
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:147
 #: src/trayicon.cpp:41 src/trayicon.cpp:42 src/trayicon.cpp:54
 #, kde-format
@@ -1570,42 +1570,42 @@ msgstr "Oculta la finestra principal en iniciar"
 msgid "Lists the available options for user feedback"
 msgstr "Llista les opcions disponibles per als comentaris dels usuaris"
 
-#: src/akregator_part.cpp:84
+#: src/akregator_part.cpp:83
 #, kde-format
 msgid "Feeds"
 msgstr "Fonts"
 
-#: src/akregator_part.cpp:95
+#: src/akregator_part.cpp:94
 #, kde-format
 msgid "KDE Dot News"
 msgstr "KDE Dot News"
 
-#: src/akregator_part.cpp:100
+#: src/akregator_part.cpp:99
 #, kde-format
 msgid "Linux.com"
 msgstr "Linux.com"
 
-#: src/akregator_part.cpp:105
+#: src/akregator_part.cpp:104
 #, kde-format
 msgid "Planet KDE"
 msgstr "Planet KDE"
 
-#: src/akregator_part.cpp:110
+#: src/akregator_part.cpp:109
 #, kde-format
 msgid "KDE Apps"
 msgstr "KDE Apps"
 
-#: src/akregator_part.cpp:116
+#: src/akregator_part.cpp:115
 #, kde-format
 msgid "Spanish feeds"
 msgstr "Fonts espanyoles"
 
-#: src/akregator_part.cpp:120
+#: src/akregator_part.cpp:119
 #, kde-format
 msgid "Planet KDE España"
 msgstr "Planet KDE España"
 
-#: src/akregator_part.cpp:440
+#: src/akregator_part.cpp:439
 #, kde-format
 msgid ""
 "Access denied: Cannot save feed list to <b>%1</b>. Please check your "
@@ -1614,22 +1614,22 @@ msgstr ""
 "Accés denegat: No s'ha pogut guardar la llista de fonts <b>%1</b>. Comproveu "
 "els permisos."
 
-#: src/akregator_part.cpp:441 src/akregator_part.cpp:492
+#: src/akregator_part.cpp:440 src/akregator_part.cpp:491
 #, kde-format
 msgid "Write Error"
 msgstr "S'ha produït un error d'escriptura"
 
-#: src/akregator_part.cpp:477
+#: src/akregator_part.cpp:476
 #, kde-format
 msgid "Could not import the file %1 (no valid OPML)"
 msgstr "No s'ha pogut importar el fitxer %1 (OPML no vàlid)"
 
-#: src/akregator_part.cpp:477 src/command/loadfeedlistcommand.cpp:71
+#: src/akregator_part.cpp:476 src/command/loadfeedlistcommand.cpp:71
 #, kde-format
 msgid "OPML Parsing Error"
 msgstr "S'ha produït un error en analitzar l'OPML"
 
-#: src/akregator_part.cpp:481
+#: src/akregator_part.cpp:480
 #, kde-format
 msgid ""
 "The file %1 could not be read, check if it exists or if it is readable for "
@@ -1638,24 +1638,24 @@ msgstr ""
 "El fitxer %1 no ha pogut ser llegit, comproveu que existix i que l'usuari "
 "actual el pot llegir."
 
-#: src/akregator_part.cpp:482 src/command/loadfeedlistcommand.cpp:142
+#: src/akregator_part.cpp:481 src/command/loadfeedlistcommand.cpp:142
 #, kde-format
 msgid "Read Error"
 msgstr "S'ha produït un error de lectura"
 
-#: src/akregator_part.cpp:492
+#: src/akregator_part.cpp:491
 #, kde-format
 msgid "Access denied: cannot write to file %1. Please check your permissions."
 msgstr ""
 "Accés denegat: No s'ha pogut escriure en el fitxer %1. Comproveu els "
 "permisos."
 
-#: src/akregator_part.cpp:507 src/akregator_part.cpp:516
+#: src/akregator_part.cpp:506 src/akregator_part.cpp:515
 #, kde-format
 msgid "OPML Outlines (%1);;All Files (*)"
 msgstr "Esquemes OPML (%1);;Tots els fitxers (*)"
 
-#: src/akregator_part.cpp:650
+#: src/akregator_part.cpp:649
 #, kde-format
 msgid "Imported Folder"
 msgstr "Carpeta importada"
