@@ -67,7 +67,7 @@ option(KDEPIM_KUSERFEEDBACK "Enable user feedback support (experimental)" FALSE)
 
 
 find_package(Qt${QT_MAJOR_VERSION} ${QT_REQUIRED_VERSION} CONFIG REQUIRED Widgets Test WebEngineWidgets PrintSupport)
-option(USE_KTEXTADDONS_LIB "Use ktextaddons lib (experimental)" OFF)
+option(USE_KTEXTADDONS_LIB "Use ktextaddons lib (experimental)" ON)
 set(KTEXTADDONS_MIN_VERSION "1.0.0")
 # Find KF5 package
 find_package(KF${KF_MAJOR_VERSION}I18n ${KF_MIN_VERSION} REQUIRED)
