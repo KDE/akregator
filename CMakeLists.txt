@@ -32,12 +32,14 @@ include(ECMAddAppIcon)
 include(ECMQtDeclareLoggingCategory)
 include(ECMDeprecationSettings)
 if (QT_MAJOR_VERSION STREQUAL "6")
+    set(KTEXTADDONS_MIN_VERSION "1.0.41")
     set(QT_REQUIRED_VERSION "6.4.0")
     set(KF_MIN_VERSION "5.240.0")
     set(KF_MAJOR_VERSION "6")
 else()
     set(KF_MIN_VERSION "5.100.0")
     set(KF_MAJOR_VERSION "5")
+    set(KTEXTADDONS_MIN_VERSION "1.0.0")
 endif()
 
 # Do NOT add quote
@@ -68,7 +70,6 @@ option(KDEPIM_KUSERFEEDBACK "Enable user feedback support (experimental)" FALSE)
 
 find_package(Qt${QT_MAJOR_VERSION} ${QT_REQUIRED_VERSION} CONFIG REQUIRED Widgets Test WebEngineWidgets PrintSupport)
 option(USE_KTEXTADDONS_LIB "Use ktextaddons lib (experimental)" ON)
-set(KTEXTADDONS_MIN_VERSION "1.0.0")
 # Find KF5 package
 find_package(KF${KF_MAJOR_VERSION}I18n ${KF_MIN_VERSION} REQUIRED)
 find_package(KF${KF_MAJOR_VERSION}Crash ${KF_MIN_VERSION} REQUIRED)
