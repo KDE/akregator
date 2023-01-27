@@ -76,7 +76,11 @@ public:
     void write(const QVariant &value, QXmlStreamWriter &writer, TextMode mode = PlainText) const
     {
         const QVariant qv(value);
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
         Q_ASSERT(qv.canConvert(QVariant::String));
+#else
+        Q_ASSERT(qv.canConvert<QString>());
+#endif
         const QString str = qv.toString();
         if (str.isEmpty()) {
             return;

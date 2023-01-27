@@ -26,5 +26,9 @@ QString Utils::stripTags(QString str)
 uint Utils::calcHash(const QString &str)
 {
     const QByteArray array = str.toLatin1();
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     return qChecksum(array.constData(), array.size());
+#else
+    return qChecksum(QByteArray(array.constData(), array.size()));
+#endif
 }
