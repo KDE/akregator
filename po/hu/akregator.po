@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: KDE 4.3\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-01-25 00:58+0000\n"
+"POT-Creation-Date: 2023-01-28 00:58+0000\n"
 "PO-Revision-Date: 2022-01-14 10:50+0100\n"
 "Last-Translator: Kristóf Kiszel <ulysses@fsf.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -580,7 +580,7 @@ msgstr ""
 msgid "Allow feed to load external references from internet."
 msgstr "A csatorna betölthet külső erőforrásokat az internetről."
 
-#: export/akregatorstorageexporter.cpp:280
+#: export/akregatorstorageexporter.cpp:284
 #, kde-format
 msgid "Akregator Export for %1"
 msgstr "Akregator exportálás ide: %1"

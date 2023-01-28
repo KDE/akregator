@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-01-25 00:58+0000\n"
+"POT-Creation-Date: 2023-01-28 00:58+0000\n"
 "PO-Revision-Date: 2022-07-04 15:56+0300\n"
 "Last-Translator: Olesya Gerasimenko <translation-team@basealt.ru>\n"
 "Language-Team: Basealt Translation Team\n"
@@ -595,7 +595,7 @@ msgstr "Использовать кэш &браузера (меньше траф
 msgid "Allow feed to load external references from internet."
 msgstr "Позволить ленте загружать внешние ссылки из сети"
 
-#: export/akregatorstorageexporter.cpp:280
+#: export/akregatorstorageexporter.cpp:284
 #, kde-format
 msgid "Akregator Export for %1"
 msgstr "Экспортировано в %1 из Akregator"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-01-25 00:58+0000\n"
+"POT-Creation-Date: 2023-01-28 00:58+0000\n"
 "PO-Revision-Date: 2022-04-18 17:54+0200\n"
 "Last-Translator: Roman Paholik <wizzardsk@gmail.com>\n"
 "Language-Team: Slovak <kde-sk@linux.sk>\n"
@@ -578,7 +578,7 @@ msgstr "Používať vyrovnávaciu pamäť &prehliadača (menšia sieťová prev�
 msgid "Allow feed to load external references from internet."
 msgstr "Umožní kanálu načítať externé referencie z internetu."
 
-#: export/akregatorstorageexporter.cpp:280
+#: export/akregatorstorageexporter.cpp:284
 #, kde-format
 msgid "Akregator Export for %1"
 msgstr "Akregator Export pre %1"

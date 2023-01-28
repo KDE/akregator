@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-01-25 00:58+0000\n"
+"POT-Creation-Date: 2023-01-28 00:58+0000\n"
 "PO-Revision-Date: 2017-05-16 07:04-0400\n"
 "Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
 "Language-Team: Hebrew <kde-i18n-doc@kde.org>\n"
@@ -571,7 +571,7 @@ msgstr "השתמש במטמון ה&דפדפן (פחות תעבורת רשת)"
 msgid "Allow feed to load external references from internet."
 msgstr ""
 
-#: export/akregatorstorageexporter.cpp:280
+#: export/akregatorstorageexporter.cpp:284
 #, kde-format
 msgid "Akregator Export for %1"
 msgstr ""

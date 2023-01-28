@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-01-25 00:58+0000\n"
+"POT-Creation-Date: 2023-01-28 00:58+0000\n"
 "PO-Revision-Date: 2022-07-23 23:12+0200\n"
 "Last-Translator: Frederik Schwarzer <schwarzer@kde.org>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
@@ -578,7 +578,7 @@ msgstr "&Browser-Zwischenspeicher verwenden (reduziert den Netzwerkverkehr)"
 msgid "Allow feed to load external references from internet."
 msgstr "Nachrichtenquellen dürfen externe Referenzen aus dem Internet laden."
 
-#: export/akregatorstorageexporter.cpp:280
+#: export/akregatorstorageexporter.cpp:284
 #, kde-format
 msgid "Akregator Export for %1"
 msgstr "Akregator-Export für %1"

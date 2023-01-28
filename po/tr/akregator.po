@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdepim-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-01-25 00:58+0000\n"
+"POT-Creation-Date: 2023-01-28 00:58+0000\n"
 "PO-Revision-Date: 2023-01-18 22:29+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
@@ -588,7 +588,7 @@ msgstr "Tarayıcı ön&belleğini kullan (ağ trafiğini azaltır)"
 msgid "Allow feed to load external references from internet."
 msgstr "Beslemenin, internetten dış başvuruları yüklemesine izin ver."
 
-#: export/akregatorstorageexporter.cpp:280
+#: export/akregatorstorageexporter.cpp:284
 #, kde-format
 msgid "Akregator Export for %1"
 msgstr "%1 için Akregatör Dışa Aktarımı"

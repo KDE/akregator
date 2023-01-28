@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-01-25 00:58+0000\n"
+"POT-Creation-Date: 2023-01-28 00:58+0000\n"
 "PO-Revision-Date: 2007-06-12 03:54+0200\n"
 "Last-Translator: Rinse de Vries <rinsedevries@kde.nl>\n"
 "Language-Team: Nederlands <kde-i18n-nl@kde.org>\n"
@@ -628,7 +628,7 @@ msgstr "&Browsercache brûke (minder netwurkferkear)"
 msgid "Allow feed to load external references from internet."
 msgstr ""
 
-#: export/akregatorstorageexporter.cpp:280
+#: export/akregatorstorageexporter.cpp:284
 #, kde-format
 msgid "Akregator Export for %1"
 msgstr ""
