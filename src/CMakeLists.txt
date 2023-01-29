@@ -196,7 +196,7 @@ target_link_libraries(akregatorprivate
 if (USE_KTEXTADDONS_LIB)
     target_link_libraries(akregatorprivate
         PRIVATE
-        KF5::TextEditTextToSpeech
+        KF${KF_MAJOR_VERSION}::TextEditTextToSpeech
     )
 else()
     target_link_libraries(akregatorprivate
