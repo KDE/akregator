@@ -43,9 +43,6 @@ MainWindow::MainWindow(QWidget *parent)
     , m_part()
     , m_statusLabel(new KSqueezedTextLabel(this))
 {
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-    setPluginLoadingMode(DoNotLoadPlugins);
-#endif
     // set the shell's ui resource file
     setXMLFile(QStringLiteral("akregator_shell.rc"));
 
