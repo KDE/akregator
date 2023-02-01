@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-01-28 00:58+0000\n"
+"POT-Creation-Date: 2023-02-01 00:57+0000\n"
 "PO-Revision-Date: 2023-01-02 07:22+0700\n"
 "Last-Translator: Wantoyèk <wantoyek@gmail.com>\n"
 "Language-Team: Indonesian <kde-i18n-doc@kde.org>\n"
@@ -2148,7 +2148,7 @@ msgstr[1] "<qt>Apakah Anda yakin ingin menghapus %1 artikel yang dipilih?</qt>"
 msgid "Networking is available now."
 msgstr "Jaringan sekarang tersedia."
 
-#: src/mainwindow.cpp:124
+#: src/mainwindow.cpp:121
 #, kde-format
 msgid ""
 "<qt>This will hide the menu bar completely. You can show it again by typing "
@@ -2157,12 +2157,12 @@ msgstr ""
 "<qt>Ini akan menyembunyikan bilah menu sepenuhnya. Kamu bisa menampilkannya "
 "lagi dengan mengetik \" \"%1.</qt>"
 
-#: src/mainwindow.cpp:127
+#: src/mainwindow.cpp:124
 #, kde-format
 msgid "Hide menu bar"
 msgstr "Sembunyikan bilah menu"
 
-#: src/mainwindow.cpp:156
+#: src/mainwindow.cpp:153
 #, kde-format
 msgid ""
 "Could not find the Akregator part; please check your installation.\n"

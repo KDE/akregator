@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-01-28 00:58+0000\n"
+"POT-Creation-Date: 2023-02-01 00:57+0000\n"
 "PO-Revision-Date: 2022-05-19 11:26+0200\n"
 "Last-Translator: Vit Pelcak <vpelcak@suse.cz>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
@@ -2202,7 +2202,7 @@ msgstr[2] "<qt>Opravdu si přejete smazat %1 vybraných článků?</qt>"
 msgid "Networking is available now."
 msgstr "Síť je nyní dostupná."
 
-#: src/mainwindow.cpp:124
+#: src/mainwindow.cpp:121
 #, kde-format
 msgid ""
 "<qt>This will hide the menu bar completely. You can show it again by typing "
@@ -2211,12 +2211,12 @@ msgstr ""
 "<qt>Toto úplně skryje panel nabídky. Můžete ji opětovně zobrazit pomocí %1.</"
 "qt>"
 
-#: src/mainwindow.cpp:127
+#: src/mainwindow.cpp:124
 #, kde-format
 msgid "Hide menu bar"
 msgstr "Skrýt nabídku"
 
-#: src/mainwindow.cpp:156
+#: src/mainwindow.cpp:153
 #, kde-format
 msgid ""
 "Could not find the Akregator part; please check your installation.\n"

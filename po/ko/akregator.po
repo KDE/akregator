@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdepim\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-01-28 00:58+0000\n"
+"POT-Creation-Date: 2023-02-01 00:57+0000\n"
 "PO-Revision-Date: 2022-05-06 00:29+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -2155,7 +2155,7 @@ msgstr[0] "<qt>선택한 글 %1개를 지우시겠습니까?</qt>"
 msgid "Networking is available now."
 msgstr "네트워크를 사용할 수 있습니다."
 
-#: src/mainwindow.cpp:124
+#: src/mainwindow.cpp:121
 #, kde-format
 msgid ""
 "<qt>This will hide the menu bar completely. You can show it again by typing "
@@ -2163,12 +2163,12 @@ msgid ""
 msgstr ""
 "<qt>메뉴 표시줄을 완전히 숨깁니다. %1 키를 눌러서 다시 볼 수 있습니다.</qt>"
 
-#: src/mainwindow.cpp:127
+#: src/mainwindow.cpp:124
 #, kde-format
 msgid "Hide menu bar"
 msgstr "메뉴 표시줄 숨기기"
 
-#: src/mainwindow.cpp:156
+#: src/mainwindow.cpp:153
 #, kde-format
 msgid ""
 "Could not find the Akregator part; please check your installation.\n"

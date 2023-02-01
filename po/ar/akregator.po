@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-01-28 00:58+0000\n"
+"POT-Creation-Date: 2023-02-01 00:57+0000\n"
 "PO-Revision-Date: 2022-04-28 12:20+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: Arabic <kde-l10n-ar@kde.org>\n"
@@ -2223,19 +2223,19 @@ msgstr[5] "<qt>أمتأكد من أنك تريد حذف ال%1 مقالة الم
 msgid "Networking is available now."
 msgstr "الاتصال الشبكي متاح الآن."
 
-#: src/mainwindow.cpp:124
+#: src/mainwindow.cpp:121
 #, kde-format
 msgid ""
 "<qt>This will hide the menu bar completely. You can show it again by typing "
 "%1.</qt>"
 msgstr "<qt>سيُخفي هذا شريط القوائم بالكامل. يمكنك إظهاره ثانيةً بضغط %1.</qt>"
 
-#: src/mainwindow.cpp:127
+#: src/mainwindow.cpp:124
 #, kde-format
 msgid "Hide menu bar"
 msgstr "أخفِ شريط القوائم"
 
-#: src/mainwindow.cpp:156
+#: src/mainwindow.cpp:153
 #, kde-format
 msgid ""
 "Could not find the Akregator part; please check your installation.\n"

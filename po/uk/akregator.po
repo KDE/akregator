@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-01-28 00:58+0000\n"
+"POT-Creation-Date: 2023-02-01 00:57+0000\n"
 "PO-Revision-Date: 2022-04-26 08:33+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
@@ -2234,7 +2234,7 @@ msgstr[3] "<qt>Ви впевнені, що хочете вилучити %1 ви
 msgid "Networking is available now."
 msgstr "Доступ до мережі відкрито."
 
-#: src/mainwindow.cpp:124
+#: src/mainwindow.cpp:121
 #, kde-format
 msgid ""
 "<qt>This will hide the menu bar completely. You can show it again by typing "
@@ -2243,12 +2243,12 @@ msgstr ""
 "<qt>У результаті виконання цієї дії смужку меню буде повністю приховано. Щоб "
 "відновити її показ, скористайтеся натисканням комбінації клавіш %1.</qt>"
 
-#: src/mainwindow.cpp:127
+#: src/mainwindow.cpp:124
 #, kde-format
 msgid "Hide menu bar"
 msgstr "Приховати смужку меню"
 
-#: src/mainwindow.cpp:156
+#: src/mainwindow.cpp:153
 #, kde-format
 msgid ""
 "Could not find the Akregator part; please check your installation.\n"
