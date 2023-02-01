@@ -20,12 +20,6 @@ namespace KPIMTextEdit
 {
 class SlideContainer;
 }
-#ifdef KPIMTEXTEDIT_TEXT_TO_SPEECH
-namespace KPIMTextEditTextToSpeech
-{
-class TextToSpeechContainerWidget;
-}
-#endif
 #ifdef HAVE_KTEXTADDONS_TEXT_TO_SPEECH_SUPPORT
 namespace TextEditTextToSpeech
 {
@@ -70,9 +64,6 @@ private:
     void printRequested(QWebEnginePage *page);
     WebEngineViewer::FindBarWebEngineView *mFindBarWebView = nullptr;
     ArticleViewerWebEngine *mArticleViewerNg = nullptr;
-#ifdef KPIMTEXTEDIT_TEXT_TO_SPEECH
-    KPIMTextEditTextToSpeech::TextToSpeechContainerWidget *const mTextToSpeechWidget;
-#endif
 #ifdef HAVE_KTEXTADDONS_TEXT_TO_SPEECH_SUPPORT
     TextEditTextToSpeech::TextToSpeechContainerWidget *const mTextToSpeechWidget;
 #endif
