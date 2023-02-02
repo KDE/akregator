@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-02-01 00:57+0000\n"
+"POT-Creation-Date: 2023-02-02 00:58+0000\n"
 "PO-Revision-Date: 2022-04-29 09:54+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
@@ -1789,7 +1789,7 @@ msgstr "Preveri URL za ribarjenjem"
 msgid "The url %1 is not valid."
 msgstr "Naslov URL %1 ni veljaven."
 
-#: src/articleviewer-ng/webengine/articleviewerwebenginewidgetng.cpp:150
+#: src/articleviewer-ng/webengine/articleviewerwebenginewidgetng.cpp:137
 #, kde-format
 msgctxt "@title:window"
 msgid "Print Document"

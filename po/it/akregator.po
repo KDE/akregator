@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-02-01 00:57+0000\n"
+"POT-Creation-Date: 2023-02-02 00:58+0000\n"
 "PO-Revision-Date: 2022-04-26 19:17+0200\n"
 "Last-Translator: Vincenzo Reale <smart2128vr@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
@@ -1779,7 +1779,7 @@ msgstr "Controlla l'URL di phishing"
 msgid "The url %1 is not valid."
 msgstr "L'URL %1 non è valido."
 
-#: src/articleviewer-ng/webengine/articleviewerwebenginewidgetng.cpp:150
+#: src/articleviewer-ng/webengine/articleviewerwebenginewidgetng.cpp:137
 #, kde-format
 msgctxt "@title:window"
 msgid "Print Document"

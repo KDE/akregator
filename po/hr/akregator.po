@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-02-01 00:57+0000\n"
+"POT-Creation-Date: 2023-02-02 00:58+0000\n"
 "PO-Revision-Date: 2010-01-24 17:23+0100\n"
 "Last-Translator: Andrej Dundovic <adundovi@gmail.com>\n"
 "Language-Team: Croatian <kde-croatia-list@lists.sourceforge.net>\n"
@@ -1746,7 +1746,7 @@ msgstr ""
 msgid "The url %1 is not valid."
 msgstr ""
 
-#: src/articleviewer-ng/webengine/articleviewerwebenginewidgetng.cpp:150
+#: src/articleviewer-ng/webengine/articleviewerwebenginewidgetng.cpp:137
 #, kde-format
 msgctxt "@title:window"
 msgid "Print Document"
