@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-02-01 00:57+0000\n"
+"POT-Creation-Date: 2023-02-02 00:58+0000\n"
 "PO-Revision-Date: 2021-04-09 23:49+0200\n"
 "Last-Translator: Karl Ove Hufthammer <karl@huftis.org>\n"
 "Language-Team: Norwegian Nynorsk <l10n-no@lister.huftis.org>\n"
@@ -1772,7 +1772,7 @@ msgstr "Sjekk adresse etter nettsvindel"
 msgid "The url %1 is not valid."
 msgstr "Adressa %1 er ugyldig."
 
-#: src/articleviewer-ng/webengine/articleviewerwebenginewidgetng.cpp:150
+#: src/articleviewer-ng/webengine/articleviewerwebenginewidgetng.cpp:137
 #, kde-format
 msgctxt "@title:window"
 msgid "Print Document"
