@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-10-16 00:47+0000\n"
-"PO-Revision-Date: 2023-01-14 13:17+0100\n"
+"PO-Revision-Date: 2023-02-05 17:31+0100\n"
 "Last-Translator: Xavier BESNARD <xavier.besnard]neuf.fr>\n"
 "Language-Team: fr\n"
 "Language: fr\n"
@@ -1619,7 +1619,7 @@ msgstr "Planète KDE"
 #: src/akregator_part.cpp:110
 #, kde-format
 msgid "KDE Apps"
-msgstr "KDE Apps"
+msgstr "Applications de KDE"
 
 #: src/akregator_part.cpp:116
 #, kde-format
