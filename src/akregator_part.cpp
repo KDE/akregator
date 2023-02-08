@@ -558,9 +558,9 @@ void Part::showOptions()
 
     if (!m_dialog) {
         m_dialog = new KCMultiDialog(m_mainWidget);
-        connect(m_dialog, qOverload<>(&KCMultiDialog::configCommitted), this, &Part::slotSettingsChanged);
+        connect(m_dialog, &KCMultiDialog::configCommitted, this, &Part::slotSettingsChanged);
         if (TrayIcon::getInstance()) {
-            connect(m_dialog, qOverload<>(&KCMultiDialog::configCommitted), TrayIcon::getInstance(), &TrayIcon::settingsChanged);
+            connect(m_dialog, &KCMultiDialog::configCommitted, TrayIcon::getInstance(), &TrayIcon::settingsChanged);
         }
         const QVector<KPluginMetaData> availablePlugins =
             KPluginMetaData::findPlugins(QStringLiteral("pim" QT_STRINGIFY(QT_VERSION_MAJOR)) + QStringLiteral("/kcms/akregator"));

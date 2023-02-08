@@ -39,8 +39,8 @@ KCMAkregatorAppearanceConfig::KCMAkregatorAppearanceConfig(QWidget *parent, cons
     connect(m_ui.slider_minimumFontSize, &QAbstractSlider::sliderMoved, m_ui.kcfg_MinimumFontSize, &QSpinBox::setValue);
     connect(m_ui.slider_mediumFontSize, &QAbstractSlider::sliderMoved, m_ui.kcfg_MediumFontSize, &QSpinBox::setValue);
 
-    connect(m_ui.kcfg_MinimumFontSize, qOverload<int>(&KPluralHandlingSpinBox::valueChanged), m_ui.slider_minimumFontSize, &QSlider::setValue);
-    connect(m_ui.kcfg_MediumFontSize, qOverload<int>(&KPluralHandlingSpinBox::valueChanged), m_ui.slider_mediumFontSize, &QSlider::setValue);
+    connect(m_ui.kcfg_MinimumFontSize, &KPluralHandlingSpinBox::valueChanged, m_ui.slider_minimumFontSize, &QSlider::setValue);
+    connect(m_ui.kcfg_MediumFontSize, &KPluralHandlingSpinBox::valueChanged, m_ui.slider_mediumFontSize, &QSlider::setValue);
     auto about = new KAboutData(QStringLiteral("kcmakrappearanceconfig"),
                                 i18n("Configure Feed Reader Appearance"),
                                 QString(),
