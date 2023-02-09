@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-10-16 00:47+0000\n"
-"PO-Revision-Date: 2022-12-14 18:48+0100\n"
+"PO-Revision-Date: 2023-02-08 10:23+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -1620,7 +1620,7 @@ msgstr "ფაილის (%1) შემოტანის შეცდომ�
 #: src/akregator_part.cpp:477 src/command/loadfeedlistcommand.cpp:71
 #, kde-format
 msgid "OPML Parsing Error"
-msgstr "OPML_ის დამუშავების შეცდომა"
+msgstr "OPML-ის დამუშავების შეცდომა"
 
 #: src/akregator_part.cpp:481
 #, kde-format
@@ -2072,7 +2072,7 @@ msgstr "თარიღი"
 #: src/formatter/grantleeviewformatter.cpp:142
 #, kde-format
 msgid "Comment"
-msgstr "კომე_ნტარი"
+msgstr "კომენტარი"
 
 #: src/formatter/grantleeviewformatter.cpp:143
 #, kde-format
@@ -2332,7 +2332,7 @@ msgstr "მიმდინარე ჩანართის დახურვ�
 #: src/tabwidget.cpp:95
 #, kde-format
 msgid "Close tab"
-msgstr "ჩანართის დ_ახურვა"
+msgstr "ჩანართის დახურვა"
 
 #: src/tabwidget.cpp:118
 #, kde-format
