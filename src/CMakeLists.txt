@@ -193,10 +193,14 @@ target_link_libraries(akregatorprivate
     KF5::WebEngineViewer
     ${akregator_userfeedback_LIB}
     )
+if (TARGET KF${KF_MAJOR_VERSION}::TextEditTextToSpeech)
     target_link_libraries(akregatorprivate
         PRIVATE
         KF${KF_MAJOR_VERSION}::TextEditTextToSpeech
     )
+endif()
+
+
 target_include_directories(akregatorprivate PUBLIC "$<BUILD_INTERFACE:${akregator_SOURCE_DIR}/src;${akregator_BINARY_DIR}/src>")
 
 set_target_properties(akregatorprivate

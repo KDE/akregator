@@ -112,7 +112,7 @@ void ArticleViewerWebEngineWidgetNg::slotFind()
 void ArticleViewerWebEngineWidgetNg::slotSpeakText()
 {
     const QString text = mArticleViewerNg->selectedText();
-#ifdef KPIMTEXTEDIT_TEXT_TO_SPEECH
+#ifdef HAVE_KTEXTADDONS_TEXT_TO_SPEECH_SUPPORT
     mTextToSpeechWidget->say(text);
 #endif
 }
