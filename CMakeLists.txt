@@ -109,7 +109,7 @@ set_package_properties(KUserFeedback PROPERTIES DESCRIPTION "User Feedback lib" 
 include_directories(${akregator_SOURCE_DIR} ${akregator_BINARY_DIR})
 add_definitions(-DTRANSLATION_DOMAIN=\"akregator\")
 ecm_set_disabled_deprecation_versions(QT 5.15.2
-     KF 5.102.0
+     KF 5.103.0
 )
 if (TARGET KUserFeedbackWidgets)
     add_definitions(-DWITH_KUSERFEEDBACK)
