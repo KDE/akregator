@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-02-02 00:58+0000\n"
+"POT-Creation-Date: 2023-02-19 00:58+0000\n"
 "PO-Revision-Date: 2022-04-28 10:11+0200\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
@@ -75,49 +75,49 @@ msgid "Thank you, The Akregator Team"
 msgstr "Hartelijk dank, het team van Akregator"
 
 # engelse tekst spreekt van enkelvoud (feed), nl tekst spreekt van meervoud (feeds)
-#: src/formatter/html/5.2/combinedview.html:71
+#: src/formatter/html/5.2/combinedview.html:72
 msgid "Mark as Read"
 msgstr "Markeren als gelezen"
 
 # artikel is enkelvoud, 'geselecteerde' is meervoud => 'geselecteerd'
-#: src/formatter/html/5.2/combinedview.html:74
+#: src/formatter/html/5.2/combinedview.html:75
 msgid "Mark as Unread"
 msgstr "Markeren als ongelezen"
 
-#: src/formatter/html/5.2/combinedview.html:78
+#: src/formatter/html/5.2/combinedview.html:79
 msgid "Remove Important Status"
 msgstr "Status belangrijk verwijderen"
 
-#: src/formatter/html/5.2/combinedview.html:80
+#: src/formatter/html/5.2/combinedview.html:81
 msgid "Mark as Important"
 msgstr "Markeren als belangrijk"
 
-#: src/formatter/html/5.2/combinedview.html:82
+#: src/formatter/html/5.2/combinedview.html:83
 msgid "Open Link in External Browser"
 msgstr "Koppeling openen in externe browser"
 
 # precieze vertaling
-#: src/formatter/html/5.2/combinedview.html:83
+#: src/formatter/html/5.2/combinedview.html:84
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:110
 #, kde-format
 msgid "Open In Background Tab"
 msgstr "Openen in achtergrondtabblad"
 
-#: src/formatter/html/5.2/combinedview.html:84
+#: src/formatter/html/5.2/combinedview.html:85
 msgid "Send File Address"
 msgstr "Adres van bestand verzenden"
 
-#: src/formatter/html/5.2/combinedview.html:85
+#: src/formatter/html/5.2/combinedview.html:86
 msgid "Send Link Address"
 msgstr "Koppelingsadres verzenden"
 
-#: src/formatter/html/5.2/combinedview.html:86 src/mainwidget.cpp:1063
+#: src/formatter/html/5.2/combinedview.html:87 src/mainwidget.cpp:1063
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:96
 #, kde-format
 msgid "Delete Article"
 msgstr "Artikel verwijderen"
 
-#: src/formatter/html/5.2/normalview.html:51
+#: src/formatter/html/5.2/normalview.html:52
 msgid ""
 "<b>Note:</b> For security reasons, external reference is blocked (See "
 "configure dialog)."

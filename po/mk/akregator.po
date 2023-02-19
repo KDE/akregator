@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-02-02 00:58+0000\n"
+"POT-Creation-Date: 2023-02-19 00:58+0000\n"
 "PO-Revision-Date: 2009-01-18 02:35+0100\n"
 "Last-Translator: Bozidar Proevski <bobibobi@freemail.com.mk>\n"
 "Language-Team: Macedonian <mkde-l10n@lists.sourceforge.net>\n"
@@ -54,62 +54,62 @@ msgstr ""
 msgid "Thank you, The Akregator Team"
 msgstr ""
 
-#: src/formatter/html/5.2/combinedview.html:71
+#: src/formatter/html/5.2/combinedview.html:72
 #, fuzzy
 #| msgid "&Mark Feed as Read"
 msgid "Mark as Read"
 msgstr "&Маркирај го доводот како прочитан"
 
-#: src/formatter/html/5.2/combinedview.html:74
+#: src/formatter/html/5.2/combinedview.html:75
 #, fuzzy
 #| msgid "Mark selected article as unread"
 msgid "Mark as Unread"
 msgstr "Означи го избраниот запис како непрочитан"
 
-#: src/formatter/html/5.2/combinedview.html:78
+#: src/formatter/html/5.2/combinedview.html:79
 #, fuzzy
 #| msgid "Remove &Important Mark"
 msgid "Remove Important Status"
 msgstr "Отстран&и ознака за важно"
 
-#: src/formatter/html/5.2/combinedview.html:80
+#: src/formatter/html/5.2/combinedview.html:81
 #, fuzzy
 #| msgid "&Mark as Important"
 msgid "Mark as Important"
 msgstr "&Означи како важно"
 
-#: src/formatter/html/5.2/combinedview.html:82
+#: src/formatter/html/5.2/combinedview.html:83
 #, fuzzy
 #| msgid "Open Link in External &Browser"
 msgid "Open Link in External Browser"
 msgstr "Отвори ја врската во нов &Прелистувач"
 
-#: src/formatter/html/5.2/combinedview.html:83
+#: src/formatter/html/5.2/combinedview.html:84
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:110
 #, fuzzy, kde-format
 #| msgid "Open in Background Tab"
 msgid "Open In Background Tab"
 msgstr "Отвори во позадинско ливче"
 
-#: src/formatter/html/5.2/combinedview.html:84
+#: src/formatter/html/5.2/combinedview.html:85
 #, fuzzy
 #| msgid "Send &Link Address..."
 msgid "Send File Address"
 msgstr "Испрати &врска од адресата..."
 
-#: src/formatter/html/5.2/combinedview.html:85
+#: src/formatter/html/5.2/combinedview.html:86
 #, fuzzy
 #| msgid "Send &Link Address..."
 msgid "Send Link Address"
 msgstr "Испрати &врска од адресата..."
 
-#: src/formatter/html/5.2/combinedview.html:86 src/mainwidget.cpp:1063
+#: src/formatter/html/5.2/combinedview.html:87 src/mainwidget.cpp:1063
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:96
 #, kde-format
 msgid "Delete Article"
 msgstr "Избришани написи4"
 
-#: src/formatter/html/5.2/normalview.html:51
+#: src/formatter/html/5.2/normalview.html:52
 msgid ""
 "<b>Note:</b> For security reasons, external reference is blocked (See "
 "configure dialog)."

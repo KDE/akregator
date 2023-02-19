@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-02-02 00:58+0000\n"
+"POT-Creation-Date: 2023-02-19 00:58+0000\n"
 "PO-Revision-Date: 2007-09-07 10:35+0545\n"
 "Last-Translator: Nabin Gautam <nabin@mpp.org.np>\n"
 "Language-Team: Nepali <info@mpp.org.np>\n"
@@ -51,62 +51,62 @@ msgstr ""
 msgid "Thank you, The Akregator Team"
 msgstr ""
 
-#: src/formatter/html/5.2/combinedview.html:71
+#: src/formatter/html/5.2/combinedview.html:72
 #, fuzzy
 #| msgid "&Mark Feed as Read"
 msgid "Mark as Read"
 msgstr "पढिएका रूपमा फिडमा चिन्ह लगाउनुहोस्"
 
-#: src/formatter/html/5.2/combinedview.html:74
+#: src/formatter/html/5.2/combinedview.html:75
 #, fuzzy
 #| msgid "Mark selected article as unread"
 msgid "Mark as Unread"
 msgstr "चयन गरिएका लेखलाई नपढिएका रूपमा चिन्ह लगाउनुहोस्"
 
-#: src/formatter/html/5.2/combinedview.html:78
+#: src/formatter/html/5.2/combinedview.html:79
 #, fuzzy
 #| msgid "Remove &Important Mark"
 msgid "Remove Important Status"
 msgstr "महत्वपूर्ण चिन्ह हटाउनुहोस्"
 
-#: src/formatter/html/5.2/combinedview.html:80
+#: src/formatter/html/5.2/combinedview.html:81
 #, fuzzy
 #| msgid "&Mark as Important"
 msgid "Mark as Important"
 msgstr "महत्वपूर्णका रूपमा चिन्ह लगाउनुहोस्"
 
-#: src/formatter/html/5.2/combinedview.html:82
+#: src/formatter/html/5.2/combinedview.html:83
 #, fuzzy
 #| msgid "Open Link in External &Browser"
 msgid "Open Link in External Browser"
 msgstr "लिङ्क बाह्य ब्राउजरमा खोल्नुहोस्"
 
-#: src/formatter/html/5.2/combinedview.html:83
+#: src/formatter/html/5.2/combinedview.html:84
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:110
 #, fuzzy, kde-format
 #| msgid "Open in Background Tab"
 msgid "Open In Background Tab"
 msgstr "पृष्ठभूमि ट्याबमा खोल्नुहोस्"
 
-#: src/formatter/html/5.2/combinedview.html:84
+#: src/formatter/html/5.2/combinedview.html:85
 #, fuzzy
 #| msgid "Send &Link Address..."
 msgid "Send File Address"
 msgstr "लिङ्क ठेगाना पठाउनुहोस्..."
 
-#: src/formatter/html/5.2/combinedview.html:85
+#: src/formatter/html/5.2/combinedview.html:86
 #, fuzzy
 #| msgid "Send &Link Address..."
 msgid "Send Link Address"
 msgstr "लिङ्क ठेगाना पठाउनुहोस्..."
 
-#: src/formatter/html/5.2/combinedview.html:86 src/mainwidget.cpp:1063
+#: src/formatter/html/5.2/combinedview.html:87 src/mainwidget.cpp:1063
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:96
 #, kde-format
 msgid "Delete Article"
 msgstr "लेख मेट्नुहोस्"
 
-#: src/formatter/html/5.2/normalview.html:51
+#: src/formatter/html/5.2/normalview.html:52
 msgid ""
 "<b>Note:</b> For security reasons, external reference is blocked (See "
 "configure dialog)."

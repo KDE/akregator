@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdepim\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-02-02 00:58+0000\n"
+"POT-Creation-Date: 2023-02-19 00:58+0000\n"
 "PO-Revision-Date: 2009-09-04 19:26+0000\n"
 "Last-Translator: Vilson Gjeci <vilsongjeci@gmail.com>\n"
 "Language-Team: Albanian <sq@li.org>\n"
@@ -53,62 +53,62 @@ msgstr ""
 msgid "Thank you, The Akregator Team"
 msgstr ""
 
-#: src/formatter/html/5.2/combinedview.html:71
+#: src/formatter/html/5.2/combinedview.html:72
 #, fuzzy
 #| msgid "&Mark Feed as Read"
 msgid "Mark as Read"
 msgstr "&Shënoje Burimin si të Lexuar"
 
-#: src/formatter/html/5.2/combinedview.html:74
+#: src/formatter/html/5.2/combinedview.html:75
 #, fuzzy
 #| msgid "Mark selected article as unread"
 msgid "Mark as Unread"
 msgstr "Shënoje artikullin e përzgjedhur si të pa lexuar"
 
-#: src/formatter/html/5.2/combinedview.html:78
+#: src/formatter/html/5.2/combinedview.html:79
 #, fuzzy
 #| msgid "Remove &Important Mark"
 msgid "Remove Important Status"
 msgstr "Hiqe &Shënimin si të Rëndësishëm"
 
-#: src/formatter/html/5.2/combinedview.html:80
+#: src/formatter/html/5.2/combinedview.html:81
 #, fuzzy
 #| msgid "&Mark as Important"
 msgid "Mark as Important"
 msgstr "&Shënoje si të Rëndësishëm"
 
-#: src/formatter/html/5.2/combinedview.html:82
+#: src/formatter/html/5.2/combinedview.html:83
 #, fuzzy
 #| msgid "Open Link in External &Browser"
 msgid "Open Link in External Browser"
 msgstr "Hape Lidhjen në Shfletuesin e &Jashtëm"
 
-#: src/formatter/html/5.2/combinedview.html:83
+#: src/formatter/html/5.2/combinedview.html:84
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:110
 #, fuzzy, kde-format
 #| msgid "Open in Background Tab"
 msgid "Open In Background Tab"
 msgstr "Hape në Tabelën e Sfondit"
 
-#: src/formatter/html/5.2/combinedview.html:84
+#: src/formatter/html/5.2/combinedview.html:85
 #, fuzzy
 #| msgid "Send &Link Address..."
 msgid "Send File Address"
 msgstr "Dërgo &Adresën e Shkurtores..."
 
-#: src/formatter/html/5.2/combinedview.html:85
+#: src/formatter/html/5.2/combinedview.html:86
 #, fuzzy
 #| msgid "Send &Link Address..."
 msgid "Send Link Address"
 msgstr "Dërgo &Adresën e Shkurtores..."
 
-#: src/formatter/html/5.2/combinedview.html:86 src/mainwidget.cpp:1063
+#: src/formatter/html/5.2/combinedview.html:87 src/mainwidget.cpp:1063
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:96
 #, kde-format
 msgid "Delete Article"
 msgstr "Fshije Artikullin"
 
-#: src/formatter/html/5.2/normalview.html:51
+#: src/formatter/html/5.2/normalview.html:52
 msgid ""
 "<b>Note:</b> For security reasons, external reference is blocked (See "
 "configure dialog)."
