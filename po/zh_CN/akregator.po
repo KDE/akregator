@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-10-16 00:47+0000\n"
+"POT-Creation-Date: 2023-02-19 02:56+0000\n"
 "PO-Revision-Date: 2023-02-15 11:07\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -56,47 +56,47 @@ msgstr "我们希望您会喜欢 Akregator。"
 msgid "Thank you, The Akregator Team"
 msgstr "谢谢，Akregator 团队"
 
-#: src/formatter/html/5.2/combinedview.html:71
+#: src/formatter/html/5.2/combinedview.html:72
 msgid "Mark as Read"
 msgstr "标记为已读"
 
-#: src/formatter/html/5.2/combinedview.html:74
+#: src/formatter/html/5.2/combinedview.html:75
 msgid "Mark as Unread"
 msgstr "标记为未读"
 
-#: src/formatter/html/5.2/combinedview.html:78
+#: src/formatter/html/5.2/combinedview.html:79
 msgid "Remove Important Status"
 msgstr "删除重要标记"
 
-#: src/formatter/html/5.2/combinedview.html:80
+#: src/formatter/html/5.2/combinedview.html:81
 msgid "Mark as Important"
 msgstr "标记为重要"
 
-#: src/formatter/html/5.2/combinedview.html:82
+#: src/formatter/html/5.2/combinedview.html:83
 msgid "Open Link in External Browser"
 msgstr "在外部浏览器中打开链接"
 
-#: src/formatter/html/5.2/combinedview.html:83
+#: src/formatter/html/5.2/combinedview.html:84
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:110
 #, kde-format
 msgid "Open In Background Tab"
 msgstr "在后台标签页中打开"
 
-#: src/formatter/html/5.2/combinedview.html:84
+#: src/formatter/html/5.2/combinedview.html:85
 msgid "Send File Address"
 msgstr "发送文件地址"
 
-#: src/formatter/html/5.2/combinedview.html:85
+#: src/formatter/html/5.2/combinedview.html:86
 msgid "Send Link Address"
 msgstr "发送链接地址"
 
-#: src/formatter/html/5.2/combinedview.html:86 src/mainwidget.cpp:1063
+#: src/formatter/html/5.2/combinedview.html:87 src/mainwidget.cpp:1063
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:96
 #, kde-format
 msgid "Delete Article"
 msgstr "删除文章"
 
-#: src/formatter/html/5.2/normalview.html:51
+#: src/formatter/html/5.2/normalview.html:52
 msgid ""
 "<b>Note:</b> For security reasons, external reference is blocked (See "
 "configure dialog)."
