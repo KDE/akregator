@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-02-19 00:58+0000\n"
+"POT-Creation-Date: 2023-02-21 01:00+0000\n"
 "PO-Revision-Date: 2022-04-18 17:54+0200\n"
 "Last-Translator: Roman Paholik <wizzardsk@gmail.com>\n"
 "Language-Team: Slovak <kde-sk@linux.sk>\n"
@@ -998,7 +998,7 @@ msgstr "Obnoví rýchly filter pri zmene kanálov."
 
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
 #: src/akregator_part.cpp:145
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:147
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:144
 #: src/trayicon.cpp:41 src/trayicon.cpp:42 src/trayicon.cpp:54
 #, kde-format
 msgid "Akregator"
@@ -1722,59 +1722,59 @@ msgctxt "Articlelist's column header"
 msgid "Content"
 msgstr "Obsah"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:148
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:145
 #, kde-format
 msgid "Akregator is a KDE news feed reader."
 msgstr "Akregator je KDE čítačka noviniek."
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:189
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:186
 #, kde-format
 msgctxt "@title:window"
 msgid "Save As"
 msgstr "Uložiť ako"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:383
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:375
 #, kde-format
 msgid "Disable"
 msgstr "Zakázať"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:384
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:376
 #, kde-format
 msgid "Keep Enabled"
 msgstr "Nechať povolenú"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:386
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:378
 #, kde-format
 msgid "Are you sure you want to disable this introduction page?"
 msgstr "Naozaj chcete zakázať túto úvodnú stránku?"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:387
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:379
 #, kde-format
 msgid "Disable Introduction Page"
 msgstr "Zakázať úvodnú stránku"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:422
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:414
 #, kde-format
 msgid "This web site is a malware, do you want to continue to show it?"
 msgstr "Táto webová stránka je malvér, chcete pokračovať v jej zobrazovaní?"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:423
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:415
 #, kde-format
 msgid "Malware"
 msgstr "Malvér"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:435
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:427
 #, kde-format
 msgid "The network is broken."
 msgstr "Sieť je poškodená."
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:435
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:438
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:427
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:430
 #, kde-format
 msgid "Check Phishing Url"
 msgstr "Skontrolovať podvodné URL"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:438
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:430
 #, kde-format
 msgid "The url %1 is not valid."
 msgstr "URL %1 nie je platné."

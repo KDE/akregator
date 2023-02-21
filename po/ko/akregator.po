@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdepim\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-02-19 00:58+0000\n"
+"POT-Creation-Date: 2023-02-21 01:00+0000\n"
 "PO-Revision-Date: 2022-05-06 00:29+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -979,7 +979,7 @@ msgstr "피드를 바꿀 때 빠른 필터를 초기화합니다."
 
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
 #: src/akregator_part.cpp:145
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:147
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:144
 #: src/trayicon.cpp:41 src/trayicon.cpp:42 src/trayicon.cpp:54
 #, kde-format
 msgid "Akregator"
@@ -1699,59 +1699,59 @@ msgctxt "Articlelist's column header"
 msgid "Content"
 msgstr "내용"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:148
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:145
 #, kde-format
 msgid "Akregator is a KDE news feed reader."
 msgstr "Akregator는 KDE 뉴스 피드 리더입니다."
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:189
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:186
 #, kde-format
 msgctxt "@title:window"
 msgid "Save As"
 msgstr "다른 이름으로 저장"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:383
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:375
 #, kde-format
 msgid "Disable"
 msgstr "보지 않기"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:384
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:376
 #, kde-format
 msgid "Keep Enabled"
 msgstr "계속 보기"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:386
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:378
 #, kde-format
 msgid "Are you sure you want to disable this introduction page?"
 msgstr "이 소개 페이지를 보지 않으시겠습니까?"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:387
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:379
 #, kde-format
 msgid "Disable Introduction Page"
 msgstr "소개 페이지 끄기"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:422
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:414
 #, kde-format
 msgid "This web site is a malware, do you want to continue to show it?"
 msgstr "이 웹사이트에 멀웨어가 있습니다. 그래도 여시겠습니까?"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:423
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:415
 #, kde-format
 msgid "Malware"
 msgstr "멀웨어"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:435
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:427
 #, kde-format
 msgid "The network is broken."
 msgstr "네트워크를 사용할 수 없습니다."
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:435
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:438
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:427
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:430
 #, kde-format
 msgid "Check Phishing Url"
 msgstr "피싱 URL 확인"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:438
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:430
 #, kde-format
 msgid "The url %1 is not valid."
 msgstr "%1 URL이 올바르지 않습니다."
