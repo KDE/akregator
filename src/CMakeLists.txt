@@ -34,8 +34,8 @@ target_link_libraries(akregator
     KF${KF_MAJOR_VERSION}::I18n
     KF${KF_MAJOR_VERSION}::Crash
     KF${KF_MAJOR_VERSION}::Notifications
-    KF5::KontactInterface
-    KF5::Libkdepim
+    KPim${KF_MAJOR_VERSION}::KontactInterface
+    KPim${KF_MAJOR_VERSION}::Libkdepim
     akregatorprivate
     akregatorinterfaces
     KF5::PimCommon
@@ -178,7 +178,7 @@ target_link_libraries(akregatorprivate
     KF${KF_MAJOR_VERSION}::I18n
     KF${KF_MAJOR_VERSION}::Parts
     KF${KF_MAJOR_VERSION}::Notifications
-    KF5::Libkdepim
+    KPim${KF_MAJOR_VERSION}::Libkdepim
     KF${KF_MAJOR_VERSION}::Syndication
     KF${KF_MAJOR_VERSION}::Codecs
     KF${KF_MAJOR_VERSION}::JobWidgets
@@ -186,7 +186,7 @@ target_link_libraries(akregatorprivate
     akregatorinterfaces
     KF5::PimCommon
     KF5::PimTextEdit
-    KF5::GrantleeTheme
+    KPim${KF_MAJOR_VERSION}::GrantleeTheme
     KF${KF_MAJOR_VERSION}::KIOGui
     KF5::MessageViewer
     Qt::PrintSupport
@@ -300,11 +300,11 @@ target_link_libraries(akregatorpart
     KF${KF_MAJOR_VERSION}::I18n
     KF${KF_MAJOR_VERSION}::KCMUtils
     KF${KF_MAJOR_VERSION}::NotifyConfig
-    KF5::Libkdepim
+    KPim${KF_MAJOR_VERSION}::Libkdepim
     KF${KF_MAJOR_VERSION}::Syndication
     KF5::PimCommon
     KF5::PimTextEdit
-    KF5::GrantleeTheme
+    KPim${KF_MAJOR_VERSION}::GrantleeTheme
     KF5::MessageViewer
     KF${KF_MAJOR_VERSION}::Parts
     KF${KF_MAJOR_VERSION}::Notifications
