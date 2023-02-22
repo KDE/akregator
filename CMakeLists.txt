@@ -99,7 +99,7 @@ if (TARGET KF${KF_MAJOR_VERSION}::TextEditTextToSpeech)
 endif()
 find_package(KF5WebEngineViewer ${MESSAGELIB_LIB_VERSION} CONFIG REQUIRED)
 # Fix plugin support for removing theses dependencies
-find_package(KF5AkonadiMime ${AKONADI_MIMELIB_VERSION} CONFIG REQUIRED)
+find_package(KPim${KF_MAJOR_VERSION}AkonadiMime ${AKONADI_MIMELIB_VERSION} CONFIG REQUIRED)
 find_package(KF5PimCommonAkonadi ${PIMCOMMON_LIB_VERSION} CONFIG REQUIRED)
 
 find_package(KUserFeedback 1.2.0 CONFIG) 
