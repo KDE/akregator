@@ -185,7 +185,7 @@ target_link_libraries(akregatorprivate
     KF${KF_MAJOR_VERSION}::KIOWidgets
     akregatorinterfaces
     KF5::PimCommon
-    KF5::PimTextEdit
+    KPim${KF_MAJOR_VERSION}::PimTextEdit
     KPim${KF_MAJOR_VERSION}::GrantleeTheme
     KF${KF_MAJOR_VERSION}::KIOGui
     KF5::MessageViewer
@@ -303,7 +303,7 @@ target_link_libraries(akregatorpart
     KPim${KF_MAJOR_VERSION}::Libkdepim
     KF${KF_MAJOR_VERSION}::Syndication
     KF5::PimCommon
-    KF5::PimTextEdit
+    KPim${KF_MAJOR_VERSION}::PimTextEdit
     KPim${KF_MAJOR_VERSION}::GrantleeTheme
     KF5::MessageViewer
     KF${KF_MAJOR_VERSION}::Parts
