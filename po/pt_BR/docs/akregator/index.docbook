@@ -1,10 +1,5 @@
 <?xml version="1.0" ?>
 <!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
-  <!ENTITY akregator        "<application
->Akregator</application
->">
-  <!ENTITY kappname "&akregator;">
-  <!ENTITY package "kdepim">
   <!ENTITY % addindex "IGNORE">
   <!ENTITY % Brazilian-Portuguese "INCLUDE">
 ]>
@@ -54,6 +49,18 @@
 ></affiliation
 ><contrib
 >Tradução</contrib
+><firstname
+>Antonio Henrique Lacerda</firstname
+><surname
+>Rodrigues</surname
+><affiliation
+><address
+><email
+>ahlr_2000@yahoo.com</email
+></address
+></affiliation
+><contrib
+>Tradução</contrib
 ></othercredit
 > 
 </authorgroup>
@@ -74,9 +81,9 @@
 >&FDLNotice;</legalnotice>
 
 <date
->25/05/2013</date>
+>2021-03-31</date>
 <releaseinfo
->4.11 (&kde; 4.11)</releaseinfo>
+>Aplicativos 21.08</releaseinfo>
 
 <!-- Abstract about this handbook -->
 
@@ -111,7 +118,7 @@
 <para
 >O &akregator; é um programa leve e rápido para mostrar os itens de notícias, fornecidos por fontes, e que suporta todas as versões mais comuns de fontes <acronym
 >RSS</acronym
-> e Atom. A sua interface é semelhante à dos programas de e-mail, sendo assim bastante intuitiva. As funcionalidades úteis incluem a pesquisa nos títulos dos artigos, o gerenciamento das fontes em pastas e a definição de opções de armazenamento em arquivo. As fontes poderão ser mostradas como mensagens de e-mail, enquanto as páginas Web relacionadas com uma fonte poderão ser apresentadas no navegador incorporado do &akregator; ou abertas num navegador externo.</para>
+> e Atom. A sua interface é semelhante à dos programas de e-mail, sendo assim bastante intuitiva. As funcionalidades úteis incluem a pesquisa nos títulos dos artigos, o gerenciamento das fontes em pastas e a definição de opções de armazenamento em arquivo. As fontes poderão ser mostradas como mensagens de e-mail, enquanto os sites relacionados com uma fonte poderão ser apresentadas no navegador incorporado do &akregator; ou abertas num navegador externo.</para>
 </sect1>
 
 <sect1 id="rss-and-atom-feeds">
@@ -128,7 +135,7 @@
 > é também chamado de fonte. Um programa que possa ser usado para ler essas fontes chama-se agregador ou leitor de fontes de notícias, daí o nome do aplicativo, &akregator;.</para>
 
 <para
->O &akregator; extrai automaticamente os itens novos da fonte e exibe-os, de forma amigável, para o usuário. Ele poderá, deste modo, poupar tempo nas páginas Web visitadas com frequência, uma vez que não precisam verificar mais se existem pedaços de informação disponíveis.</para>
+>O &akregator; extrai automaticamente os itens novos da fonte e exibe-os, de forma amigável, para o usuário. Ele poderá, deste modo, poupar tempo nos sites visitados com frequência, uma vez que não precisam verificar mais se existem pedaços de informação disponíveis.</para>
 <para
 >O <acronym
 >RSS</acronym
@@ -180,26 +187,14 @@ say how to start it -->
 <para
 >A janela principal consiste na lista de fontes, a lista de artigos e o visualizador de artigo. </para>
 <para
->A lista de fontes está à esquerda, onde você tem as fontes de notícias que pode selecionar. Uma fonte de notícias é uma coleção de artigos; por exemplo, as notícias recentes de uma página de notícias ou os itens de um 'blog'. A lista padrão contém as fontes relacionadas com o projeto do &kde;, mas você poderá adicionar à vontade as suas próprias fontes e remover as que não lhe interessam. <screenshot>
-<screeninfo
->Todos os artigos foram obtidos</screeninfo>
-<mediaobject>
-<imageobject
-><imagedata fileref="main-window2.png" format="PNG"/></imageobject>
-<textobject
-><phrase
->Todos os artigos foram obtidos</phrase
-></textobject>
-</mediaobject>
-</screenshot>
-</para>
+>A lista de fontes está à esquerda, onde você tem as fontes de notícias que pode selecionar. Uma fonte de notícias é uma coleção de artigos; por exemplo, as notícias recentes de uma página de notícias ou os itens de um 'blog'. A lista padrão contém as fontes relacionadas com o projeto do &kde;, mas você poderá adicionar à vontade as suas próprias fontes e remover as que não lhe interessam. </para>
 <para
 >No canto superior direito, você poderá ver a lista de artigos. Ela contém os artigos da lista selecionada na lista de fontes (se estiver vazia, você terá de obter as notícias da fonte em primeiro lugar). A lista mostra os destaques dos artigos, bem como a data de publicação dos mesmos. Por padrão, os artigos mais recentes estão no topo. <screenshot>
 <screeninfo
 >A lista de artigos</screeninfo>
 <mediaobject>
 <imageobject
-><imagedata fileref="main-window3.png" format="PNG"/></imageobject>
+><imagedata fileref="main-window2.png" format="PNG"/></imageobject>
 <textobject
 ><phrase
 >A lista de artigos para uma fonte</phrase
@@ -258,11 +253,11 @@ say how to start it -->
 <listitem
 ><para
 >Insira <userinput
->www.slashdot.org</userinput
+>planet.ubuntu.com</userinput
 > ou <userinput
->http://www.slashdot.org</userinput
-> no campo de texto ao lado do <guilabel
->URL da Fonte</guilabel
+>http://planet.ubuntu.com</userinput
+> no campo de texto ao lado <guilabel
+>URL da Feed</guilabel
 > e clique <guibutton
 >OK</guibutton
 >. </para
@@ -287,16 +282,18 @@ say how to start it -->
 ></listitem>
 <listitem
 ><para
->Com isto, o Slashdot foi adicionado à sua lista de fontes. </para
+>Agora, o feed oPlaneta Ubuntu foi adicionado à sua lista de feeds. </para
 > </listitem>
 </itemizedlist>
 <para
->Existem diversas outras formas de encontrar e adicionar fontes interessantes. Dentro do &kde;, as páginas Web navegadas com o &konqueror; irão mostrar o símbolo do &quot;RSS&quot; <inlinemediaobject
+>Existem diversas outras formas de encontrar e adicionar fontes interessantes. Dentro do &kde;, os sites navegados com o &konqueror; irão mostrar o ícone do <quote
+>RSS</quote
+> <inlinemediaobject
 > <imageobject
 > <imagedata fileref="feed.png" format="PNG"/> </imageobject
 > </inlinemediaobject
-> no canto inferior direito, se for detectada alguma fonte de notícias compatível na página Web. Basta clicar com o botão esquerdo no ícone e escolher a opção <guimenuitem
->Adicionar a Fonte ao &akregator;</guimenuitem
+>no canto inferior direito, se for detectada alguma fonte de notícias compatível no site. Basta clicar com o botão esquerdo no ícone e escolher a opção <guimenuitem
+>Adicionar a fonte ao &akregator;</guimenuitem
 >: <screenshot
 > <screeninfo
 >Descobrir automaticamente as fontes no &konqueror;</screeninfo
@@ -309,7 +306,9 @@ say how to start it -->
 ></textobject
 > </mediaobject
 > </screenshot
-> Nas páginas com o &quot;RSS&quot; ou este ícone <inlinemediaobject
+> Nas páginas com o <quote
+>RSS</quote
+> ou este ícone <inlinemediaobject
 > <imageobject
 > <imagedata fileref="rss.png" format="PNG"/> </imageobject
 > </inlinemediaobject
@@ -345,7 +344,7 @@ say how to start it -->
 <title
 >Criar uma Pasta</title>
 <para
->Depois de adicionar as suas próprias fontes, você poderá agrupá-las de alguma forma, em vez de deixá-las desordenadas. Para isso, será criada agora uma pasta para a fonte do Slashdot adicionada há pouco:</para>
+>Depois de adicionar as suas próprias feeds, você poderá agrupá-las de alguma forma, em vez de deixá-las desordenadas. Para isso, será criada agora uma pasta para a feed Planeta Ubuntu adicionada há pouco:</para>
 <itemizedlist>
 <listitem
 ><para
@@ -381,7 +380,7 @@ say how to start it -->
 > </listitem>
 <listitem
 ><para
->Agora você poderá arrastar a fonte do Slashdot para a pasta nova. <screenshot>
+>Agora você pode arrastar o feed Planet Ubuntu para a nova pasta. <screenshot>
 <screeninfo
 >A pasta de Notícias na lista de fontes</screeninfo>
 <mediaobject>
@@ -402,7 +401,7 @@ say how to start it -->
 <title
 >Navegar dentro do &akregator;</title>
 <para
->Ao ler os artigos das fontes, você poderá querer normalmente ler a página Web que pertence ao artigo. Alguns artigos só contém o destaque, não o conteúdo de fato. Neste caso, você terá que visitar a página Web para ler o artigo completo. Ou talvez um artigo poderá apontar para uma determinada página Web ou você poderá estar lendo um 'blog' e deseje comentar um determinado item. Para essas situações, o &akregator; contém um navegador Web simples. Quando seguir uma ligação no visualizador de artigos, o &akregator; abre a ligação numa página nova.</para>
+>Ao ler os artigos das fontes, você poderá querer normalmente ler o site que pertence ao artigo. Alguns artigos só contém o destaque, não o conteúdo de fato. Neste caso, você terá que visitar o site para ler o artigo completo. Ou talvez um artigo poderá apontar para um determinado site ou você poderá estar lendo um 'blog' e deseje comentar um determinado item. Para essas situações, o &akregator; contém um navegador Web simples. Quando seguir uma ligação no visualizador de artigos, o &akregator; abre a ligação numa página nova.</para>
 <note
 ><para
 >Lembre-se que o navegador no &akregator; não pretende substituir o seu navegador Web favorito. Este navegador pretende ser usado para ler os artigos, comentá-los ou seguir uma hiperligação rapidamente. Ele não foi criado para ser usado para navegar na Web de um modo geral. Faltam-lhe muitas funcionalidades que os navegadores Web oferecem.</para
@@ -456,6 +455,46 @@ say how to start it -->
 <listitem
 ><para
 >Mostra o ícone do &akregator; na área de notificação.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Mostrar artigos não lidos na barra de tarefas</guilabel
+></term>
+<listitem
+><para
+>Define se o número de artigos não lidos deve ser mostrado como item na barra de tarefas do sistema.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Ocultar feeds sem artigos não lidos</guilabel
+></term>
+<listitem
+><para
+>Se marcado, ocultará feeds sem artigos não lidos.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Bloquear arquivos no lugar</guilabel
+></term>
+<listitem
+><para
+>Se marcado, impede que os feeds sejam movidos na lista, todos os feeds serão trancados onde estão.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Auto-expande pastas que contém artigos não lidos</guilabel
+></term>
+<listitem
+><para
+>Se marcado, auto-expande pastas com artigos não lidos.</para>
 </listitem>
 </varlistentry>
 <varlistentry>
@@ -556,33 +595,31 @@ say how to start it -->
 
 </sect1>
 
-<sect1 id="share-services-tab">
+<sect1 id="adblock-tab">
 <title
->Serviços de compartilhamento</title>
+>Interceptador de URL</title>
 <para
->Esta funcionalidade usa o serviço de microblog do &plasma; para ajudá-lo a compartilhar notícias com os seus amigos através dos serviços de microblog (identi.ca e twitter). A publicação terá o título do artigo e um link para ele</para>
+>&akregator; pode ser configurado para substituir ou remover imagens ou frames das páginas da web que correspondem a uma série de filtros.</para>
+
 <screenshot>
 <screeninfo
->Aba Serviços de compartilhamento</screeninfo>
+>A aba do interceptador de URL</screeninfo>
 <mediaobject>
 <imageobject
-><imagedata fileref="share-services-tab.png" format="PNG"/></imageobject>
+><imagedata fileref="interceptor-tab.png" format="PNG"/></imageobject>
 <textobject
 ><phrase
->Aba Serviços de compartilhamento</phrase
+>A aba do interceptador de URL</phrase
 ></textobject>
 </mediaobject>
 </screenshot>
 
 <para
->Selecione uma <guilabel
->URL de serviço</guilabel
-> e indique o seu <guilabel
->Nome de usuário</guilabel
-> para este serviço. </para>
-
+>Para obter uma descrição detalhada desse recurso, consulte <ulink url="help:/kcontrol/khtml-adblock"
+>Filtros AdBlock</ulink
+>. </para>
 </sect1>
- 
+
 <sect1 id="archive-tab">
 <title
 >Arquivo</title>
@@ -850,7 +887,7 @@ say how to start it -->
 <varlistentry>
 <term
 ><guilabel
->Para navegação externa</guilabel
+>Navegação externa</guilabel
 ></term>
 <listitem>
 
@@ -884,11 +921,101 @@ say how to start it -->
 <varlistentry>
 <term
 ><guilabel
->Mostrar botão de fechar página ao passar</guilabel
+>Abas</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Sempre mostrar a barra de abas</guilabel
+></term>
+<listitem
+><para
+>Se esta opção estiver marcada, a aba será sempre mostrada, mesmo quando apenas umaguia está aberta. Isso permite que você crie abas diretamente da barra de abas.Caso contrário, a barra de guias será exibida apenas quando várias guias estiverem abertas.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Mostrar o botão de fechar em cada aba </guilabel
 ></term>
 <listitem
 ><para
 >Se esta opção estiver assinalada, o botão para fechar irá aparecer, quando passar o cursor do mouse pelo lado esquerdo do título do separador da página, para que possa fechá-la facilmente.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Abrir links em uma nova aba ou em uma nova janela</guilabel
+></term>
+<listitem
+><para
+>Se marcado, &akregator; abrirá um link que normalmente abriria em um novojanela (navegador externo) em uma nova guia.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Segurança</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Verifique os URLs usando a API de navegação segura do Google</guilabel
+></term>
+<listitem
+><para
+>Se esta opção estiver marcada, <ulink url="https://safebrowsing.google.com/"
+>A API de navegação segura do Google</ulink
+> será usada para verificar &URL;s em relaçãoas listas constantemente atualizadas do Google de recursos da web não seguros. Exemplos derecursos da web inseguros são sites de engenharia social (phishing esites enganosos) e sites que hospedam malware ou software indesejado.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Ativar JavaScript</guilabel
+></term>
+<listitem
+><para
+>Se estiver marcado, o &akregator; irá usar &javascript; ao processar recursos da web.O uso de &javascript; tem várias <ulink url="https://en.wikipedia.org/wiki/JavaScript#Security"
+>implicações de segurança</ulink
+>.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Diversos</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Chave de acesso habilitada</guilabel
+></term>
+<listitem
+><para
+>Esta é uma opção de acessibilidade. Quando marcado, o &akregator; irá processar opropriedade accessKey da página da web, que define o atalho de teclado usado parasaltar para um determinado elemento.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+</variablelist>
+
 </listitem>
 </varlistentry>
 </variablelist>
@@ -991,7 +1118,7 @@ say how to start it -->
 ><guimenu
 >Arquivo</guimenu
 > <guimenuitem
->Importar as Fontes...</guimenuitem
+>Importar Feeds</guimenuitem
 > </menuchoice
 ></term>
 <listitem
@@ -1010,7 +1137,7 @@ say how to start it -->
 ><guimenu
 >Arquivo</guimenu
 > <guimenuitem
->Exportar as Fontes...</guimenuitem
+>Exportar as Feeds</guimenuitem
 > </menuchoice
 ></term>
 <listitem
@@ -1702,33 +1829,37 @@ say how to start it -->
 > o seu cliente de e-mail e anexa o arquivo na mensagem de e-mail. </para
 ></listitem>
 </varlistentry>
+<!--FIXME not in kf5?
 <varlistentry>
 <term
-><menuchoice
-><shortcut
-><keycombo action="simul"
+><menuchoice>
+<shortcut
+><keycombo
+action="simul"
 >&Ctrl;<keycap
 >S</keycap
 ></keycombo
-></shortcut
-> <guimenu
->Artigo</guimenu
-> <guimenuitem
->Compartilhar artigo</guimenuitem
-> </menuchoice
+></shortcut>
+<guimenu
+>Article</guimenu>
+<guimenuitem
+>Share Article</guimenuitem>
+</menuchoice
 ></term>
 <listitem
 ><para
->Ao usar esta ação, você poderá compartilhar notícias com seus amigos, usando os serviços de microblog identi.ca e twitter. </para
+>Use this action you to share news 
+ with your friends using the microblog services identi.ca and twitter.
+</para
 ></listitem>
 </varlistentry>
+-->
 </variablelist>
-
 </sect2>
 
 <sect2>
 <title
->Menu Configurações</title>
+>Os menus Configurações e Ajuda</title>
 
 <variablelist>
 <varlistentry>
@@ -1803,23 +1934,7 @@ say how to start it -->
 >Tradução de Marcus Gama <email
 >marcus.gama@gmail.com</email
 ></para
-> 
-&underFDL; &underGPL; </chapter>
-
-<appendix id="installation">
-<title
->Instalação</title>
-
-<sect1 id="getting-akregator">
-<title
->Como obter o &akregator;</title>
-&install.intro.documentation; </sect1>
-
-<sect1 id="compilation">
-<title
->Compilação e instalação</title>
-&install.compile.documentation; </sect1>
-</appendix>
+> &underFDL; &underGPL; </chapter>
 
 &documentation.index;
 </book>
