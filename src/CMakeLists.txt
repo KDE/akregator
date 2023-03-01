@@ -188,9 +188,9 @@ target_link_libraries(akregatorprivate
     KPim${KF_MAJOR_VERSION}::PimTextEdit
     KPim${KF_MAJOR_VERSION}::GrantleeTheme
     KF${KF_MAJOR_VERSION}::KIOGui
-    KF5::MessageViewer
+    KPim${KF_MAJOR_VERSION}::MessageViewer
     Qt::PrintSupport
-    KF5::WebEngineViewer
+    KPim${KF_MAJOR_VERSION}::WebEngineViewer
     ${akregator_userfeedback_LIB}
     )
 if (TARGET KF${KF_MAJOR_VERSION}::TextEditTextToSpeech)
@@ -305,12 +305,12 @@ target_link_libraries(akregatorpart
     KF5::PimCommon
     KPim${KF_MAJOR_VERSION}::PimTextEdit
     KPim${KF_MAJOR_VERSION}::GrantleeTheme
-    KF5::MessageViewer
+    KPim${KF_MAJOR_VERSION}::MessageViewer
     KF${KF_MAJOR_VERSION}::Parts
     KF${KF_MAJOR_VERSION}::Notifications
     KF${KF_MAJOR_VERSION}::TextWidgets
     Qt::WebEngineWidgets
-    KF5::WebEngineViewer
+    KPim${KF_MAJOR_VERSION}::WebEngineViewer
     KF${KF_MAJOR_VERSION}::KIOGui
     KF${KF_MAJOR_VERSION}::Completion
     KF${KF_MAJOR_VERSION}::JobWidgets

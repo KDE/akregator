@@ -113,7 +113,7 @@ target_link_libraries(akregator_config_plugins
     akregatorinterfaces
     KF${KF_MAJOR_VERSION}::KCMUtils
     KF${KF_MAJOR_VERSION}::I18n
-    KF5::WebEngineViewer
+    KPim${KF_MAJOR_VERSION}::WebEngineViewer
     )
 if (COMPILE_WITH_UNITY_CMAKE_SUPPORT)
     set_target_properties(akregator_config_plugins PROPERTIES UNITY_BUILD ON)
@@ -154,7 +154,7 @@ target_link_libraries(akregator_config_security
     akregatorinterfaces
     KF${KF_MAJOR_VERSION}::KCMUtils
     KF${KF_MAJOR_VERSION}::I18n
-    KF5::WebEngineViewer
+    KPim${KF_MAJOR_VERSION}::WebEngineViewer
     )
 if (COMPILE_WITH_UNITY_CMAKE_SUPPORT)
     set_target_properties(akregator_config_security PROPERTIES UNITY_BUILD ON)
