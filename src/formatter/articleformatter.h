@@ -9,7 +9,7 @@
 #pragma once
 
 #include <QVector>
-#include <enclosure.h>
+#include <Syndication/Enclosure>
 
 namespace Akregator
 {
