@@ -11,7 +11,7 @@ target_sources(akregatorinterfaces PRIVATE
     )
 
 set(akregatorinterfaces_userfeedback_LIB_SRCS)
-if (TARGET KUserFeedbackWidgets)
+if (TARGET KUserFeedbackWidgets${KUSERFEEDBACK_SUFFIX})
     target_sources(akregatorinterfaces PRIVATE
         userfeedback/userfeedbackmanager.cpp
         userfeedback/akregatoruserfeedbackprovider.cpp
@@ -25,8 +25,8 @@ kconfig_add_kcfg_files(akregatorinterfaces akregatorconfig.kcfgc)
 
 generate_export_header(akregatorinterfaces BASE_NAME akregatorinterfaces)
 
-if (TARGET KUserFeedbackWidgets)
-    target_link_libraries(akregatorinterfaces KUserFeedbackWidgets)
+if (TARGET KUserFeedbackWidgets${KUSERFEEDBACK_SUFFIX})
+    target_link_libraries(akregatorinterfaces KUserFeedbackWidgets${KUSERFEEDBACK_SUFFIX})
 endif()
 
 target_link_libraries(akregatorinterfaces
