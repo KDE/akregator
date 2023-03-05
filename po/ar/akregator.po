@@ -812,7 +812,7 @@ msgid ""
 "Use the KDE-wide HTML cache settings when downloading feeds, to avoid "
 "unnecessary traffic. Disable only when necessary."
 msgstr ""
-"استعمل إعدادات كدي لمختزن HTML عند تنزيل التلقيمات لتفادي التنزيل غير "
+"استعمل إعدادات كِيدِي لمختزن HTML عند تنزيل التلقيمات لتفادي التنزيل غير "
 "الضروري. عطّله فقط عند الضرورة."
 
 #. i18n: ectx: whatsthis, entry, group (Network)
@@ -942,13 +942,13 @@ msgstr ""
 #: interfaces/akregator.kcfg:217
 #, kde-format
 msgid "Use default KDE web browser"
-msgstr "استخدم متصفح وب كدي الافتراضي"
+msgstr "استخدم متصفح وب كِيدِي الافتراضي"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
 #: interfaces/akregator.kcfg:218
 #, kde-format
 msgid "Use KDE web browser when opening in external browser."
-msgstr "استخدم متصفح وب كدي عند فتح في المتصفح الخارجي."
+msgstr "استخدم متصفح وب كِيدِي عند فتح في المتصفح الخارجي."
 
 #. i18n: ectx: label, entry, group (Browser)
 #: interfaces/akregator.kcfg:222
@@ -1034,7 +1034,7 @@ msgstr "ستعرض عليك حواري بحيث تستطيع أن تضيف تل�
 #: src/aboutdata.cpp:21
 #, kde-format
 msgid "A KDE Feed Reader"
-msgstr "قارئ تلقيمات لكدي"
+msgstr "قارئ تلقيمات لكِيدِي"
 
 #: src/aboutdata.cpp:23
 #, kde-format
@@ -1594,7 +1594,7 @@ msgstr "Linux.com"
 #: src/akregator_part.cpp:104
 #, kde-format
 msgid "Planet KDE"
-msgstr "كوكب كدي"
+msgstr "كوكب كِيدِي"
 
 #: src/akregator_part.cpp:109
 #, kde-format
@@ -1609,7 +1609,7 @@ msgstr "التغذيات الإسبانية"
 #: src/akregator_part.cpp:119
 #, kde-format
 msgid "Planet KDE España"
-msgstr "كوكب كدي الإسباني"
+msgstr "كوكب كِيدِي الإسباني"
 
 #: src/akregator_part.cpp:439
 #, kde-format
@@ -1732,7 +1732,7 @@ msgstr "المحتوى"
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:145
 #, kde-format
 msgid "Akregator is a KDE news feed reader."
-msgstr "أكريغاتور قارئ تلقيمات لكدي"
+msgstr "أكريغاتور قارئ تلقيمات لكِيدِي"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:186
 #, kde-format
@@ -2661,7 +2661,7 @@ msgstr "المُهمّة"
 #, fuzzy
 #~| msgid "Planet KDE"
 #~ msgid "Planet KDE Brazilian Portuguese"
-#~ msgstr "كوكب كدي"
+#~ msgstr "كوكب كِيدِي"
 
 #, fuzzy
 #~| msgid "Use this command:"
@@ -2676,7 +2676,7 @@ msgstr "المُهمّة"
 
 #, fuzzy
 #~ msgid "Planet KDE PIM"
-#~ msgstr "كوكب كدي"
+#~ msgstr "كوكب كِيدِي"
 
 #~ msgid "Hungarian feeds"
 #~ msgstr "التغذيات الهنغارية"
@@ -2692,7 +2692,7 @@ msgstr "المُهمّة"
 #, fuzzy
 #~| msgid "Planet KDE"
 #~ msgid "Planet KDE France"
-#~ msgstr "كوكب كدي"
+#~ msgstr "كوكب كِيدِي"
 
 #, fuzzy
 #~| msgid "External Browsing"
@@ -2824,7 +2824,7 @@ msgstr "المُهمّة"
 #~ "<p style='margin-bottom: 0px'>&nbsp; &nbsp; The Akregator Team</p>\n"
 #~ msgstr ""
 #~ "<h2 style='margin-top: 0px;'>أهلا وسهلا بكم في أكريغاتور %1</"
-#~ "h2><p>أكريغاتور قارئ التلقيمات لبيئة سطح المكتب كدي. تقدم قارئات "
+#~ "h2><p>أكريغاتور قارئ التلقيمات لبيئة سطح المكتب كِيدِي. تقدم قارئات "
 #~ "التلقيمات طريقة سهلة لتصفح مختلف أصناف المحتويات بما فيها الأخبار "
 #~ "والمدونات وغيرها من المحتويات من مواقع الإنترنت. عوضًا عن تفحص مواقعك "
 #~ "المفضلة يدويًا، يقوم أكريغاتور بجمع المحتويات لك.</p><p>لمزيد من المعلومات "
