@@ -5,6 +5,15 @@
 */
 
 #include "akregatoruserfeedbackprovider.h"
+#ifdef USE_KUSERFEEDBACK_QT6
+#include <KUserFeedbackQt6/ApplicationVersionSource>
+#include <KUserFeedbackQt6/LocaleInfoSource>
+#include <KUserFeedbackQt6/PlatformInfoSource>
+#include <KUserFeedbackQt6/QtVersionSource>
+#include <KUserFeedbackQt6/ScreenInfoSource>
+#include <KUserFeedbackQt6/StartCountSource>
+#include <KUserFeedbackQt6/UsageTimeSource>
+#else
 #include <KUserFeedback/ApplicationVersionSource>
 #include <KUserFeedback/LocaleInfoSource>
 #include <KUserFeedback/PlatformInfoSource>
@@ -12,6 +21,7 @@
 #include <KUserFeedback/ScreenInfoSource>
 #include <KUserFeedback/StartCountSource>
 #include <KUserFeedback/UsageTimeSource>
+#endif
 using namespace Akregator;
 AkregatorUserFeedbackProvider::AkregatorUserFeedbackProvider(QObject *parent)
     : KUserFeedback::Provider(parent)

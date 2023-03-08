@@ -65,9 +65,6 @@ set(LIBKDEPIM_LIB_VERSION "5.22.40")
 set(MESSAGELIB_LIB_VERSION "5.22.40")
 set(PIMCOMMON_LIB_VERSION "5.22.40")
 
-option(KDEPIM_KUSERFEEDBACK "Enable user feedback support (experimental)" FALSE)
-
-
 find_package(Qt${QT_MAJOR_VERSION} ${QT_REQUIRED_VERSION} CONFIG REQUIRED Widgets Test WebEngineWidgets PrintSupport)
 # Find KF5 package
 find_package(KF${KF_MAJOR_VERSION}I18n ${KF_MIN_VERSION} REQUIRED)
@@ -102,12 +99,15 @@ find_package(KPim${KF_MAJOR_VERSION}WebEngineViewer ${MESSAGELIB_LIB_VERSION} CO
 find_package(KPim${KF_MAJOR_VERSION}AkonadiMime ${AKONADI_MIMELIB_VERSION} CONFIG REQUIRED)
 find_package(KF5PimCommonAkonadi ${PIMCOMMON_LIB_VERSION} CONFIG REQUIRED)
 
+
 set(KUSERFEEDBACK_SUFFIX)
-# Laurent reactivate when I will merge KuserFeedBack
-#if (QT_MAJOR_VERSION STREQUAL "6")
-#    set(KUSERFEEDBACK_SUFFIX "Qt6")
-#endif()
-find_package(KUserFeedback${KUSERFEEDBACK_SUFFIX} 1.2.0 CONFIG)
+if (QT_MAJOR_VERSION STREQUAL "6")
+    set(KUSERFEEDBACK_SUFFIX "Qt6")
+    find_package(KUserFeedback${KUSERFEEDBACK_SUFFIX} 1.2.1 CONFIG)
+    add_definitions(-DUSE_KUSERFEEDBACK_QT6)
+else()
+    find_package(KUserFeedback${KUSERFEEDBACK_SUFFIX} 1.2.0 CONFIG)
+endif()
 set_package_properties(KUserFeedback${KUSERFEEDBACK_SUFFIX} PROPERTIES DESCRIPTION "User Feedback lib" TYPE OPTIONAL PURPOSE "Allow to send Telemetry Information (optional). It can be disable in apps.")
 
 
