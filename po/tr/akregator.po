@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: kdepim-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-02-21 01:00+0000\n"
-"PO-Revision-Date: 2023-01-18 22:29+0300\n"
+"PO-Revision-Date: 2023-03-07 20:02+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -28,7 +28,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 22.12.1\n"
+"X-Generator: Lokalize 22.12.3\n"
 "(http: //www.transifex.com/projects/p/kdepim-k-tr/language/tr/)\n"
 
 #, kde-format
@@ -965,7 +965,7 @@ msgstr "Dış bir ağ tarayıcı açarken belirtilen komutu kullan."
 #, no-c-format, kde-format
 msgid "Command to launch external browser. URL will substitute for %u."
 msgstr ""
-"Dış bir ağ tarayıcısı çalıştırmak için kullanılacak komut. Adres, %u yerine "
+"Dış bir ağ tarayıcısı çalıştırmak için kullanılacak komut. URL, %u yerine "
 "yazılacaktır."
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
@@ -1562,7 +1562,7 @@ msgstr "Besleme bulundu, indiriliyor..."
 #: src/akregator_options.h:20 src/akregator_options.h:28
 #, kde-format
 msgid "Add a feed with the given URL"
-msgstr "Verilen bir adres ile besleme ekle"
+msgstr "Verilen bir URL ile besleme ekle"
 
 #: src/akregator_options.h:23
 #, kde-format
@@ -1791,7 +1791,7 @@ msgstr "Kimlik Avı URL'sini denetle"
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:430
 #, kde-format
 msgid "The url %1 is not valid."
-msgstr "%1 adresi geçerli değil."
+msgstr "%1 URL'si geçerli değil."
 
 #: src/articleviewer-ng/webengine/articleviewerwebenginewidgetng.cpp:137
 #, kde-format
@@ -2406,7 +2406,7 @@ msgstr "Yeni Bir Besleme Ekle"
 #: src/ui/addfeedwidgetbase.ui:135
 #, kde-format
 msgid "Feed &URL:"
-msgstr "&Besleme Adresi:"
+msgstr "&Besleme URL'si:"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, Akregator::FeedPropertiesWidgetBase)
 #: src/ui/feedpropertieswidgetbase.ui:20
@@ -2442,7 +2442,7 @@ msgstr "Yeni yazı gelince u&yar"
 #: src/ui/feedpropertieswidgetbase.ui:132
 #, kde-format
 msgid "&URL:"
-msgstr "&Adres:"
+msgstr "&URL:"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel2)
 #: src/ui/feedpropertieswidgetbase.ui:142
