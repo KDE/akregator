@@ -8,9 +8,6 @@
 
 #include "akregator_export.h"
 #include "articleviewerwebengine.h"
-#ifndef HAVE_KTEXTADDONS_TEXT_TO_SPEECH_SUPPORT
-#include <kpimtextedit/kpimtextedit-texttospeech.h>
-#endif
 
 #include <QWidget>
 class QPrinter;
