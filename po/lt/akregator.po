@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-02-21 01:00+0000\n"
+"POT-Creation-Date: 2023-03-09 00:47+0000\n"
 "PO-Revision-Date: 2019-07-07 16:38+0200\n"
 "Last-Translator: Mindaugas Baranauskas <opensuse.lietuviu.kalba@gmail.com>\n"
 "Language-Team: Lithuanian <kde-i18n-lt@kde.org>\n"
@@ -205,7 +205,7 @@ msgstr "(c), 2016-2019 Laurent Montel"
 
 #: configuration/akregator_config_plugins.cpp:33
 #: configuration/akregator_config_security.cpp:35
-#: configuration/akregator_config_userfeedback.cpp:34 src/aboutdata.cpp:27
+#: configuration/akregator_config_userfeedback.cpp:38 src/aboutdata.cpp:27
 #, kde-format
 msgid "Laurent Montel"
 msgstr "Laurent Montel"
@@ -216,13 +216,13 @@ msgstr "Laurent Montel"
 msgid "(c), 2021 Laurent Montel"
 msgstr "(c), 2016-2019 Laurent Montel"
 
-#: configuration/akregator_config_userfeedback.cpp:28
+#: configuration/akregator_config_userfeedback.cpp:32
 #, fuzzy, kde-format
 #| msgid "Configure Feeds"
 msgid "Configure User Feedback"
 msgstr "Konfigūruoti kanalus"
 
-#: configuration/akregator_config_userfeedback.cpp:32
+#: configuration/akregator_config_userfeedback.cpp:36
 #, fuzzy, kde-format
 #| msgid "(c), 2016-2019 Laurent Montel"
 msgid "(c), 2020-2021 Laurent Montel"

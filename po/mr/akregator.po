@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-02-21 01:00+0000\n"
+"POT-Creation-Date: 2023-03-09 00:47+0000\n"
 "PO-Revision-Date: 2013-03-06 10:12+0530\n"
 "Last-Translator: Chetan Khona <chetan@kompkin.com>\n"
 "Language-Team: Marathi <kde-i18n-doc@kde.org>\n"
@@ -181,7 +181,7 @@ msgstr ""
 
 #: configuration/akregator_config_plugins.cpp:33
 #: configuration/akregator_config_security.cpp:35
-#: configuration/akregator_config_userfeedback.cpp:34 src/aboutdata.cpp:27
+#: configuration/akregator_config_userfeedback.cpp:38 src/aboutdata.cpp:27
 #, kde-format
 msgid "Laurent Montel"
 msgstr ""
@@ -191,13 +191,13 @@ msgstr ""
 msgid "(c), 2021 Laurent Montel"
 msgstr ""
 
-#: configuration/akregator_config_userfeedback.cpp:28
+#: configuration/akregator_config_userfeedback.cpp:32
 #, fuzzy, kde-format
 #| msgid "Configure Feeds"
 msgid "Configure User Feedback"
 msgstr "फीड संयोजीत करा"
 
-#: configuration/akregator_config_userfeedback.cpp:32
+#: configuration/akregator_config_userfeedback.cpp:36
 #, kde-format
 msgid "(c), 2020-2021 Laurent Montel"
 msgstr ""

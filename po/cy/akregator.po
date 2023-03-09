@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: all2.po\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-02-21 01:00+0000\n"
+"POT-Creation-Date: 2023-03-09 00:47+0000\n"
 "PO-Revision-Date: 2004-09-20 15:44+0200\n"
 "Last-Translator: Thierry Vignaud <tvignaud@mandrakesoft.com>\n"
 "Language-Team: cy <LL@li.org>\n"
@@ -184,7 +184,7 @@ msgstr ""
 
 #: configuration/akregator_config_plugins.cpp:33
 #: configuration/akregator_config_security.cpp:35
-#: configuration/akregator_config_userfeedback.cpp:34 src/aboutdata.cpp:27
+#: configuration/akregator_config_userfeedback.cpp:38 src/aboutdata.cpp:27
 #, kde-format
 msgid "Laurent Montel"
 msgstr ""
@@ -194,13 +194,13 @@ msgstr ""
 msgid "(c), 2021 Laurent Montel"
 msgstr ""
 
-#: configuration/akregator_config_userfeedback.cpp:28
+#: configuration/akregator_config_userfeedback.cpp:32
 #, fuzzy, kde-format
 #| msgid "&Configure..."
 msgid "Configure User Feedback"
 msgstr "&Ffurfweddu..."
 
-#: configuration/akregator_config_userfeedback.cpp:32
+#: configuration/akregator_config_userfeedback.cpp:36
 #, kde-format
 msgid "(c), 2020-2021 Laurent Montel"
 msgstr ""

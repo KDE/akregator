@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-02-21 01:00+0000\n"
+"POT-Creation-Date: 2023-03-09 00:47+0000\n"
 "PO-Revision-Date: 2022-06-29 14:35+0200\n"
 "Last-Translator: giovanni <g.sora@tiscali.it>\n"
 "Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
@@ -186,7 +186,7 @@ msgstr "(c), 2016-2021 Laurent Montel"
 
 #: configuration/akregator_config_plugins.cpp:33
 #: configuration/akregator_config_security.cpp:35
-#: configuration/akregator_config_userfeedback.cpp:34 src/aboutdata.cpp:27
+#: configuration/akregator_config_userfeedback.cpp:38 src/aboutdata.cpp:27
 #, kde-format
 msgid "Laurent Montel"
 msgstr "Laurent Montel"
@@ -196,12 +196,12 @@ msgstr "Laurent Montel"
 msgid "(c), 2021 Laurent Montel"
 msgstr "(c), 2021 Laurent Montel"
 
-#: configuration/akregator_config_userfeedback.cpp:28
+#: configuration/akregator_config_userfeedback.cpp:32
 #, kde-format
 msgid "Configure User Feedback"
 msgstr "Configura Responsa de usator"
 
-#: configuration/akregator_config_userfeedback.cpp:32
+#: configuration/akregator_config_userfeedback.cpp:36
 #, kde-format
 msgid "(c), 2020-2021 Laurent Montel"
 msgstr "(c), 2020-2021 Laurent Montel"

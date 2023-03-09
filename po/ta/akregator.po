@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-02-21 01:00+0000\n"
+"POT-Creation-Date: 2023-03-09 00:47+0000\n"
 "PO-Revision-Date: 2022-12-20 21:45+0530\n"
 "Last-Translator: Kishore G <kishore96@gmail.com>\n"
 "Language-Team: Tamil <kde-i18n-doc@kde.org>\n"
@@ -175,7 +175,7 @@ msgstr "(c), 2016-2021 லாரெண்டு மாண்டெல்"
 
 #: configuration/akregator_config_plugins.cpp:33
 #: configuration/akregator_config_security.cpp:35
-#: configuration/akregator_config_userfeedback.cpp:34 src/aboutdata.cpp:27
+#: configuration/akregator_config_userfeedback.cpp:38 src/aboutdata.cpp:27
 #, kde-format
 msgid "Laurent Montel"
 msgstr "லாரெண்டு மாண்டெல்"
@@ -185,12 +185,12 @@ msgstr "லாரெண்டு மாண்டெல்"
 msgid "(c), 2021 Laurent Montel"
 msgstr "(c), 2021 லாரெண்டு மாண்டெல்"
 
-#: configuration/akregator_config_userfeedback.cpp:28
+#: configuration/akregator_config_userfeedback.cpp:32
 #, kde-format
 msgid "Configure User Feedback"
 msgstr "பயனர் பின்னூட்டத்தை அமை"
 
-#: configuration/akregator_config_userfeedback.cpp:32
+#: configuration/akregator_config_userfeedback.cpp:36
 #, kde-format
 msgid "(c), 2020-2021 Laurent Montel"
 msgstr "(c), 2020-2021 லாரெண்டு மாண்டெல்"
