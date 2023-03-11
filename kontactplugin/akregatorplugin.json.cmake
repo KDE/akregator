@@ -10,7 +10,6 @@
         "Description[de]": "Akregator-Modul",
         "Description[el]": "Πρόσθετο του Akregator",
         "Description[en_GB]": "Akregator Plugin",
-        "Description[eo]": "Akregator-Kromprogramo",
         "Description[es]": "Complemento de Akregator",
         "Description[eu]": "Akregator plugina",
         "Description[fi]": "Akregator-liitännäinen",
