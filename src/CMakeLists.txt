@@ -38,7 +38,7 @@ target_link_libraries(akregator
     KPim${KF_MAJOR_VERSION}::Libkdepim
     akregatorprivate
     akregatorinterfaces
-    KF5::PimCommon
+    KPim${KF_MAJOR_VERSION}::PimCommon
     KF${KF_MAJOR_VERSION}::Syndication
     )
 
@@ -184,7 +184,7 @@ target_link_libraries(akregatorprivate
     KF${KF_MAJOR_VERSION}::JobWidgets
     KF${KF_MAJOR_VERSION}::KIOWidgets
     akregatorinterfaces
-    KF5::PimCommon
+    KPim${KF_MAJOR_VERSION}::PimCommon
     KPim${KF_MAJOR_VERSION}::PimTextEdit
     KPim${KF_MAJOR_VERSION}::GrantleeTheme
     KF${KF_MAJOR_VERSION}::KIOGui
@@ -302,7 +302,7 @@ target_link_libraries(akregatorpart
     KF${KF_MAJOR_VERSION}::NotifyConfig
     KPim${KF_MAJOR_VERSION}::Libkdepim
     KF${KF_MAJOR_VERSION}::Syndication
-    KF5::PimCommon
+    KPim${KF_MAJOR_VERSION}::PimCommon
     KPim${KF_MAJOR_VERSION}::PimTextEdit
     KPim${KF_MAJOR_VERSION}::GrantleeTheme
     KPim${KF_MAJOR_VERSION}::MessageViewer
