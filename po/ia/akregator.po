@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-09 00:47+0000\n"
+"POT-Creation-Date: 2023-03-15 00:47+0000\n"
 "PO-Revision-Date: 2022-06-29 14:35+0200\n"
 "Last-Translator: giovanni <g.sora@tiscali.it>\n"
 "Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
@@ -1940,37 +1940,37 @@ msgid "&Edit"
 msgstr "&Edita"
 
 #. i18n: ectx: Menu (view)
-#: src/data/akregator_part.rc:21 src/data/akregator_shell.rc:16
+#: src/data/akregator_part.rc:22 src/data/akregator_shell.rc:16
 #, kde-format
 msgid "&View"
 msgstr "&Vide"
 
 #. i18n: ectx: Menu (go)
-#: src/data/akregator_part.rc:36 src/data/akregator_shell.rc:24
+#: src/data/akregator_part.rc:37 src/data/akregator_shell.rc:24
 #, kde-format
 msgid "&Go"
 msgstr "V&ade"
 
 #. i18n: ectx: Menu (feed)
-#: src/data/akregator_part.rc:49 src/data/akregator_shell.rc:29
+#: src/data/akregator_part.rc:50 src/data/akregator_shell.rc:29
 #, kde-format
 msgid "Fee&d"
 msgstr "Syn&dication"
 
 #. i18n: ectx: Menu (article)
-#: src/data/akregator_part.rc:62 src/data/akregator_shell.rc:34
+#: src/data/akregator_part.rc:63 src/data/akregator_shell.rc:34
 #, kde-format
 msgid "&Article"
 msgstr "&Articulo"
 
 #. i18n: ectx: Menu (settings)
-#: src/data/akregator_part.rc:79 src/data/akregator_shell.rc:39
+#: src/data/akregator_part.rc:80 src/data/akregator_shell.rc:39
 #, kde-format
 msgid "&Settings"
 msgstr "Preferentia&s"
 
 #. i18n: ectx: ToolBar (mainToolBar)
-#: src/data/akregator_part.rc:92 src/data/akregator_shell.rc:54
+#: src/data/akregator_part.rc:93 src/data/akregator_shell.rc:54
 #, kde-format
 msgid "Main Toolbar"
 msgstr "Barra de instrumento principal"

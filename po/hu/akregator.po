@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: KDE 4.3\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-09 00:47+0000\n"
+"POT-Creation-Date: 2023-03-15 00:47+0000\n"
 "PO-Revision-Date: 2022-01-14 10:50+0100\n"
 "Last-Translator: Kristóf Kiszel <ulysses@fsf.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -1945,37 +1945,37 @@ msgid "&Edit"
 msgstr "S&zerkesztés"
 
 #. i18n: ectx: Menu (view)
-#: src/data/akregator_part.rc:21 src/data/akregator_shell.rc:16
+#: src/data/akregator_part.rc:22 src/data/akregator_shell.rc:16
 #, kde-format
 msgid "&View"
 msgstr "Né&zet"
 
 #. i18n: ectx: Menu (go)
-#: src/data/akregator_part.rc:36 src/data/akregator_shell.rc:24
+#: src/data/akregator_part.rc:37 src/data/akregator_shell.rc:24
 #, kde-format
 msgid "&Go"
 msgstr "&Indítás"
 
 #. i18n: ectx: Menu (feed)
-#: src/data/akregator_part.rc:49 src/data/akregator_shell.rc:29
+#: src/data/akregator_part.rc:50 src/data/akregator_shell.rc:29
 #, kde-format
 msgid "Fee&d"
 msgstr "&Csatorna"
 
 #. i18n: ectx: Menu (article)
-#: src/data/akregator_part.rc:62 src/data/akregator_shell.rc:34
+#: src/data/akregator_part.rc:63 src/data/akregator_shell.rc:34
 #, kde-format
 msgid "&Article"
 msgstr "&Hír"
 
 #. i18n: ectx: Menu (settings)
-#: src/data/akregator_part.rc:79 src/data/akregator_shell.rc:39
+#: src/data/akregator_part.rc:80 src/data/akregator_shell.rc:39
 #, kde-format
 msgid "&Settings"
 msgstr "&Beállítások"
 
 #. i18n: ectx: ToolBar (mainToolBar)
-#: src/data/akregator_part.rc:92 src/data/akregator_shell.rc:54
+#: src/data/akregator_part.rc:93 src/data/akregator_shell.rc:54
 #, kde-format
 msgid "Main Toolbar"
 msgstr "Fő eszköztár"
