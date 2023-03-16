@@ -6,7 +6,7 @@
 */
 
 #pragma once
-
+#include "kcmutils_version.h"
 #include <KCModule>
 
 #include <QVariant>
@@ -21,7 +21,11 @@ class KCMAkregatorAdvancedConfig : public KCModule
     Q_OBJECT
 
 public:
-    KCMAkregatorAdvancedConfig(QWidget *parent, const QVariantList &args);
+#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
+    explicit KCMAkregatorAdvancedConfig(QWidget *parent, const QVariantList &args);
+#else
+    explicit KCMAkregatorAdvancedConfig(QObject *parent, const KPluginMetaData &data, const QVariantList &args);
+#endif
 
     void load() override;
     void save() override;

@@ -14,27 +14,27 @@
 using namespace Akregator;
 
 K_PLUGIN_CLASS_WITH_JSON(KCMAkregatorSecurityConfig, "akregator_config_security.json")
+#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
 
 KCMAkregatorSecurityConfig::KCMAkregatorSecurityConfig(QWidget *parent, const QVariantList &args)
     : KCModule(parent, args)
     , m_widget(new QWidget(this))
+#else
+KCMAkregatorSecurityConfig::KCMAkregatorSecurityConfig(QObject *parent, const KPluginMetaData &data, const QVariantList &args)
+    : KCModule(parent, data, args)
+    , m_widget(new QWidget(widget()))
+#endif
 {
+#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
     auto lay = new QHBoxLayout(this);
+#else
+    auto lay = new QHBoxLayout(widget());
+#endif
     lay->setContentsMargins({});
     Ui::SettingsSecurity ui;
     ui.setupUi(m_widget);
     lay->addWidget(m_widget);
 
-    auto about = new KAboutData(QStringLiteral("kcmakrsecutiryconfig"),
-                                i18n("Configure Plugins"),
-                                QString(),
-                                QString(),
-                                KAboutLicense::GPL,
-                                i18n("(c), 2021 Laurent Montel"));
-
-    about->addAuthor(i18n("Laurent Montel"), QString(), QStringLiteral("montel@kde.org"));
-
-    setAboutData(about);
     addConfig(Settings::self(), m_widget);
 }
 

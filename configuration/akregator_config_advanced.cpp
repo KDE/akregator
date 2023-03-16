@@ -20,22 +20,22 @@ using namespace Akregator;
 
 K_PLUGIN_CLASS_WITH_JSON(KCMAkregatorAdvancedConfig, "akregator_config_advanced.json")
 
+#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
 KCMAkregatorAdvancedConfig::KCMAkregatorAdvancedConfig(QWidget *parent, const QVariantList &args)
     : KCModule(parent, args)
     , m_widget(new SettingsAdvanced(this))
+#else
+KCMAkregatorAdvancedConfig::KCMAkregatorAdvancedConfig(QObject *parent, const KPluginMetaData &data, const QVariantList &args)
+    : KCModule(parent, data, args)
+    , m_widget(new SettingsAdvanced(widget()))
+#endif
 {
+#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
     auto layout = new QVBoxLayout(this);
+#else
+    auto layout = new QVBoxLayout(widget());
+#endif
     layout->addWidget(m_widget);
-    auto about = new KAboutData(QStringLiteral("kcmakradvancedconfig"),
-                                i18n("Advanced Feed Reader Settings"),
-                                QString(),
-                                QString(),
-                                KAboutLicense::GPL,
-                                i18n("(c), 2004 - 2008 Frank Osterfeld"));
-
-    about->addAuthor(i18n("Frank Osterfeld"), QString(), QStringLiteral("osterfeld@kde.org"));
-
-    setAboutData(about);
     addConfig(Settings::self(), m_widget);
 }
 

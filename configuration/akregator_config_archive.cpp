@@ -18,13 +18,23 @@ using namespace Akregator;
 
 K_PLUGIN_CLASS_WITH_JSON(KCMAkregatorArchiveConfig, "akregator_config_archive.json")
 
+#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
 KCMAkregatorArchiveConfig::KCMAkregatorArchiveConfig(QWidget *parent, const QVariantList &args)
     : KCModule(parent, args)
     , m_widget(new QWidget(this))
+#else
+KCMAkregatorArchiveConfig::KCMAkregatorArchiveConfig(QObject *parent, const KPluginMetaData &data, const QVariantList &args)
+    : KCModule(parent, data, args)
+    , m_widget(new QWidget(widget()))
+#endif
 {
     Ui::SettingsArchive m_ui;
     m_ui.setupUi(m_widget);
+#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
     auto layout = new QVBoxLayout(this);
+#else
+    auto layout = new QVBoxLayout(widget());
+#endif
     layout->addWidget(m_widget);
 
     connect(m_ui.rb_LimitArticleNumber, &QAbstractButton::toggled, m_ui.kcfg_MaxArticleNumber, &QWidget::setEnabled);
@@ -38,16 +48,6 @@ KCMAkregatorArchiveConfig::KCMAkregatorArchiveConfig(QWidget *parent, const QVar
     m_archiveModeGroup->addButton(m_ui.rb_LimitArticleAge, Settings::EnumArchiveMode::limitArticleAge);
     m_archiveModeGroup->addButton(m_ui.rb_DisableArchiving, Settings::EnumArchiveMode::disableArchiving);
     connect(m_archiveModeGroup, &QButtonGroup::buttonClicked, this, &KCMAkregatorArchiveConfig::markAsChanged);
-
-    auto about = new KAboutData(QStringLiteral("kcmakrarchiveconfig"),
-                                i18n("Configure Feed Reader Archive"),
-                                QString(),
-                                QString(),
-                                KAboutLicense::GPL,
-                                i18n("(c), 2004 - 2008 Frank Osterfeld"));
-
-    about->addAuthor(i18n("Frank Osterfeld"), QString(), QStringLiteral("osterfeld@kde.org"));
-    setAboutData(about);
 
     addConfig(Settings::self(), m_widget);
 }
