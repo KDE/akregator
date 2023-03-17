@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-15 00:47+0000\n"
+"POT-Creation-Date: 2023-03-17 00:58+0000\n"
 "PO-Revision-Date: 2022-04-26 19:17+0200\n"
 "Last-Translator: Vincenzo Reale <smart2128vr@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
@@ -108,35 +108,7 @@ msgstr ""
 "<b>Nota:</b> per motivi di sicurezza, i riferimenti esterni sono bloccati "
 "(vedi la finestra di configurazione)."
 
-#: configuration/akregator_config_advanced.cpp:30
-#, kde-format
-msgid "Advanced Feed Reader Settings"
-msgstr "Impostazioni avanzate per il lettore di fonti"
-
-#: configuration/akregator_config_advanced.cpp:34
-#: configuration/akregator_config_appearance.cpp:49
-#: configuration/akregator_config_archive.cpp:47
-#: configuration/akregator_config_browser.cpp:39
-#: configuration/akregator_config_general.cpp:42
-#, kde-format
-msgid "(c), 2004 - 2008 Frank Osterfeld"
-msgstr "© 2004–2008 Frank Osterfeld"
-
-#: configuration/akregator_config_advanced.cpp:36
-#: configuration/akregator_config_appearance.cpp:51
-#: configuration/akregator_config_archive.cpp:49
-#: configuration/akregator_config_browser.cpp:41
-#: configuration/akregator_config_general.cpp:44 src/aboutdata.cpp:28
-#, kde-format
-msgid "Frank Osterfeld"
-msgstr "Frank Osterfeld"
-
-#: configuration/akregator_config_appearance.cpp:45
-#, kde-format
-msgid "Configure Feed Reader Appearance"
-msgstr "Configura l'aspetto del lettore di fonti"
-
-#: configuration/akregator_config_archive.cpp:33
+#: configuration/akregator_config_archive.cpp:43
 #, kde-format
 msgctxt "Limit feed archive size to:"
 msgid " article"
@@ -144,7 +116,7 @@ msgid_plural " articles"
 msgstr[0] " articolo"
 msgstr[1] " articoli"
 
-#: configuration/akregator_config_archive.cpp:34
+#: configuration/akregator_config_archive.cpp:44
 #, kde-format
 msgctxt "Delete articles older than:"
 msgid " day"
@@ -152,60 +124,12 @@ msgid_plural " days"
 msgstr[0] " giorno"
 msgstr[1] " giorni"
 
-#: configuration/akregator_config_archive.cpp:43
-#, kde-format
-msgid "Configure Feed Reader Archive"
-msgstr "Configura l'archivio del lettore di fonti"
-
-#: configuration/akregator_config_browser.cpp:35
-#, kde-format
-msgid "Configure Feed Reader Browser"
-msgstr "Configura il navigatore del lettore di fonti"
-
-#: configuration/akregator_config_general.cpp:33
+#: configuration/akregator_config_general.cpp:42
 #, kde-format
 msgid " minute"
 msgid_plural " minutes"
 msgstr[0] " minuto"
 msgstr[1] " minuti"
-
-#: configuration/akregator_config_general.cpp:38
-#, kde-format
-msgid "Configure Feeds"
-msgstr "Configura fonti"
-
-#: configuration/akregator_config_plugins.cpp:27
-#: configuration/akregator_config_security.cpp:29
-#, kde-format
-msgid "Configure Plugins"
-msgstr "Configura le estensioni"
-
-#: configuration/akregator_config_plugins.cpp:31
-#, kde-format
-msgid "(c), 2016-2021 Laurent Montel"
-msgstr "©, 2016-2021 Laurent Montel"
-
-#: configuration/akregator_config_plugins.cpp:33
-#: configuration/akregator_config_security.cpp:35
-#: configuration/akregator_config_userfeedback.cpp:38 src/aboutdata.cpp:27
-#, kde-format
-msgid "Laurent Montel"
-msgstr "Laurent Montel"
-
-#: configuration/akregator_config_security.cpp:33
-#, kde-format
-msgid "(c), 2021 Laurent Montel"
-msgstr "©, 2021 Laurent Montel"
-
-#: configuration/akregator_config_userfeedback.cpp:32
-#, kde-format
-msgid "Configure User Feedback"
-msgstr "Configura commenti degli utenti"
-
-#: configuration/akregator_config_userfeedback.cpp:36
-#, kde-format
-msgid "(c), 2020-2021 Laurent Montel"
-msgstr "©, 2020-2021 Laurent Montel"
 
 #: configuration/akregatorconfigurepluginlistwidget.cpp:51
 #, kde-format
@@ -1034,8 +958,18 @@ msgstr "Copyright © 2004–%1 Gli autori di Akregator"
 
 #: src/aboutdata.cpp:27
 #, kde-format
+msgid "Laurent Montel"
+msgstr "Laurent Montel"
+
+#: src/aboutdata.cpp:27
+#, kde-format
 msgid "Maintainer"
 msgstr "Responsabile"
+
+#: src/aboutdata.cpp:28
+#, kde-format
+msgid "Frank Osterfeld"
+msgstr "Frank Osterfeld"
 
 #: src/aboutdata.cpp:28
 #, kde-format
@@ -2582,6 +2516,39 @@ msgstr "Letto"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "Importanti"
+
+#~ msgid "Advanced Feed Reader Settings"
+#~ msgstr "Impostazioni avanzate per il lettore di fonti"
+
+#~ msgid "(c), 2004 - 2008 Frank Osterfeld"
+#~ msgstr "© 2004–2008 Frank Osterfeld"
+
+#~ msgid "Configure Feed Reader Appearance"
+#~ msgstr "Configura l'aspetto del lettore di fonti"
+
+#~ msgid "Configure Feed Reader Archive"
+#~ msgstr "Configura l'archivio del lettore di fonti"
+
+#~ msgid "Configure Feed Reader Browser"
+#~ msgstr "Configura il navigatore del lettore di fonti"
+
+#~ msgid "Configure Feeds"
+#~ msgstr "Configura fonti"
+
+#~ msgid "Configure Plugins"
+#~ msgstr "Configura le estensioni"
+
+#~ msgid "(c), 2016-2021 Laurent Montel"
+#~ msgstr "©, 2016-2021 Laurent Montel"
+
+#~ msgid "(c), 2021 Laurent Montel"
+#~ msgstr "©, 2021 Laurent Montel"
+
+#~ msgid "Configure User Feedback"
+#~ msgstr "Configura commenti degli utenti"
+
+#~ msgid "(c), 2020-2021 Laurent Montel"
+#~ msgstr "©, 2020-2021 Laurent Montel"
 
 #~ msgid "Archive"
 #~ msgstr "Archivio"

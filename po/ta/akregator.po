@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-15 00:47+0000\n"
+"POT-Creation-Date: 2023-03-17 00:58+0000\n"
 "PO-Revision-Date: 2022-12-20 21:45+0530\n"
 "Last-Translator: Kishore G <kishore96@gmail.com>\n"
 "Language-Team: Tamil <kde-i18n-doc@kde.org>\n"
@@ -96,35 +96,7 @@ msgstr ""
 "<b>குறிப்பு:</b> பாதுகாப்பு கருதி, வெளி இணைப்புகள் தடுக்கப்பட்டுள்ளன (அமைப்புகளைப் "
 "பாருங்கள்)."
 
-#: configuration/akregator_config_advanced.cpp:30
-#, fuzzy, kde-format
-msgid "Advanced Feed Reader Settings"
-msgstr "மேம்பட்ட "
-
-#: configuration/akregator_config_advanced.cpp:34
-#: configuration/akregator_config_appearance.cpp:49
-#: configuration/akregator_config_archive.cpp:47
-#: configuration/akregator_config_browser.cpp:39
-#: configuration/akregator_config_general.cpp:42
-#, kde-format
-msgid "(c), 2004 - 2008 Frank Osterfeld"
-msgstr ""
-
-#: configuration/akregator_config_advanced.cpp:36
-#: configuration/akregator_config_appearance.cpp:51
-#: configuration/akregator_config_archive.cpp:49
-#: configuration/akregator_config_browser.cpp:41
-#: configuration/akregator_config_general.cpp:44 src/aboutdata.cpp:28
-#, kde-format
-msgid "Frank Osterfeld"
-msgstr ""
-
-#: configuration/akregator_config_appearance.cpp:45
-#, kde-format
-msgid "Configure Feed Reader Appearance"
-msgstr "தொகுப்பு படிப்பியின் தோற்றத்தை அமை"
-
-#: configuration/akregator_config_archive.cpp:33
+#: configuration/akregator_config_archive.cpp:43
 #, kde-format
 msgctxt "Limit feed archive size to:"
 msgid " article"
@@ -132,7 +104,7 @@ msgid_plural " articles"
 msgstr[0] " கட்டுரை"
 msgstr[1] " கட்டுரைகள்"
 
-#: configuration/akregator_config_archive.cpp:34
+#: configuration/akregator_config_archive.cpp:44
 #, kde-format
 msgctxt "Delete articles older than:"
 msgid " day"
@@ -140,60 +112,12 @@ msgid_plural " days"
 msgstr[0] " நாள்"
 msgstr[1] " நாட்கள்"
 
-#: configuration/akregator_config_archive.cpp:43
-#, kde-format
-msgid "Configure Feed Reader Archive"
-msgstr "தொகுப்பு படிப்பியின் காப்பகத்தை அமை"
-
-#: configuration/akregator_config_browser.cpp:35
-#, kde-format
-msgid "Configure Feed Reader Browser"
-msgstr "தொகுப்பு படிப்பியின் உலாவியை அமை"
-
-#: configuration/akregator_config_general.cpp:33
+#: configuration/akregator_config_general.cpp:42
 #, kde-format
 msgid " minute"
 msgid_plural " minutes"
 msgstr[0] " நிமிடம்"
 msgstr[1] " நிமிடங்கள்"
-
-#: configuration/akregator_config_general.cpp:38
-#, kde-format
-msgid "Configure Feeds"
-msgstr "தொகுப்புகளை அமை"
-
-#: configuration/akregator_config_plugins.cpp:27
-#: configuration/akregator_config_security.cpp:29
-#, kde-format
-msgid "Configure Plugins"
-msgstr "செருகுநிரல்களை அமை"
-
-#: configuration/akregator_config_plugins.cpp:31
-#, kde-format
-msgid "(c), 2016-2021 Laurent Montel"
-msgstr "(c), 2016-2021 லாரெண்டு மாண்டெல்"
-
-#: configuration/akregator_config_plugins.cpp:33
-#: configuration/akregator_config_security.cpp:35
-#: configuration/akregator_config_userfeedback.cpp:38 src/aboutdata.cpp:27
-#, kde-format
-msgid "Laurent Montel"
-msgstr "லாரெண்டு மாண்டெல்"
-
-#: configuration/akregator_config_security.cpp:33
-#, kde-format
-msgid "(c), 2021 Laurent Montel"
-msgstr "(c), 2021 லாரெண்டு மாண்டெல்"
-
-#: configuration/akregator_config_userfeedback.cpp:32
-#, kde-format
-msgid "Configure User Feedback"
-msgstr "பயனர் பின்னூட்டத்தை அமை"
-
-#: configuration/akregator_config_userfeedback.cpp:36
-#, kde-format
-msgid "(c), 2020-2021 Laurent Montel"
-msgstr "(c), 2020-2021 லாரெண்டு மாண்டெல்"
 
 #: configuration/akregatorconfigurepluginlistwidget.cpp:51
 #, kde-format
@@ -1008,8 +932,18 @@ msgstr "பதிப்புரிமை © 2004–%1 அக்றிகேட�
 
 #: src/aboutdata.cpp:27
 #, kde-format
+msgid "Laurent Montel"
+msgstr "லாரெண்டு மாண்டெல்"
+
+#: src/aboutdata.cpp:27
+#, kde-format
 msgid "Maintainer"
 msgstr "பராமரிப்பாளர்"
+
+#: src/aboutdata.cpp:28
+#, kde-format
+msgid "Frank Osterfeld"
+msgstr ""
 
 #: src/aboutdata.cpp:28
 #, kde-format
@@ -2587,6 +2521,37 @@ msgstr ""
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "அனைத்தையும் படிக்காததாக மாற்று"
+
+#, fuzzy
+#~ msgid "Advanced Feed Reader Settings"
+#~ msgstr "மேம்பட்ட "
+
+#~ msgid "Configure Feed Reader Appearance"
+#~ msgstr "தொகுப்பு படிப்பியின் தோற்றத்தை அமை"
+
+#~ msgid "Configure Feed Reader Archive"
+#~ msgstr "தொகுப்பு படிப்பியின் காப்பகத்தை அமை"
+
+#~ msgid "Configure Feed Reader Browser"
+#~ msgstr "தொகுப்பு படிப்பியின் உலாவியை அமை"
+
+#~ msgid "Configure Feeds"
+#~ msgstr "தொகுப்புகளை அமை"
+
+#~ msgid "Configure Plugins"
+#~ msgstr "செருகுநிரல்களை அமை"
+
+#~ msgid "(c), 2016-2021 Laurent Montel"
+#~ msgstr "(c), 2016-2021 லாரெண்டு மாண்டெல்"
+
+#~ msgid "(c), 2021 Laurent Montel"
+#~ msgstr "(c), 2021 லாரெண்டு மாண்டெல்"
+
+#~ msgid "Configure User Feedback"
+#~ msgstr "பயனர் பின்னூட்டத்தை அமை"
+
+#~ msgid "(c), 2020-2021 Laurent Montel"
+#~ msgstr "(c), 2020-2021 லாரெண்டு மாண்டெல்"
 
 #~ msgid "Archive"
 #~ msgstr "காப்பகம்"

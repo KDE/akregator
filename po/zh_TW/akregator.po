@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-15 00:47+0000\n"
+"POT-Creation-Date: 2023-03-17 00:58+0000\n"
 "PO-Revision-Date: 2020-09-17 13:59+0800\n"
 "Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese <zh-l10n@linux.org.tw>\n"
@@ -115,104 +115,25 @@ msgid ""
 "configure dialog)."
 msgstr ""
 
-#: configuration/akregator_config_advanced.cpp:30
-#, kde-format
-msgid "Advanced Feed Reader Settings"
-msgstr "進階 Feed 閱讀器設定"
-
-#: configuration/akregator_config_advanced.cpp:34
-#: configuration/akregator_config_appearance.cpp:49
-#: configuration/akregator_config_archive.cpp:47
-#: configuration/akregator_config_browser.cpp:39
-#: configuration/akregator_config_general.cpp:42
-#, kde-format
-msgid "(c), 2004 - 2008 Frank Osterfeld"
-msgstr "(c), 2004 - 2008 Frank Osterfeld"
-
-#: configuration/akregator_config_advanced.cpp:36
-#: configuration/akregator_config_appearance.cpp:51
-#: configuration/akregator_config_archive.cpp:49
-#: configuration/akregator_config_browser.cpp:41
-#: configuration/akregator_config_general.cpp:44 src/aboutdata.cpp:28
-#, kde-format
-msgid "Frank Osterfeld"
-msgstr "Frank Osterfeld"
-
-#: configuration/akregator_config_appearance.cpp:45
-#, kde-format
-msgid "Configure Feed Reader Appearance"
-msgstr "設定 Feed 閱讀器外觀"
-
-#: configuration/akregator_config_archive.cpp:33
+#: configuration/akregator_config_archive.cpp:43
 #, kde-format
 msgctxt "Limit feed archive size to:"
 msgid " article"
 msgid_plural " articles"
 msgstr[0] " 篇文章"
 
-#: configuration/akregator_config_archive.cpp:34
+#: configuration/akregator_config_archive.cpp:44
 #, kde-format
 msgctxt "Delete articles older than:"
 msgid " day"
 msgid_plural " days"
 msgstr[0] " 天"
 
-#: configuration/akregator_config_archive.cpp:43
-#, kde-format
-msgid "Configure Feed Reader Archive"
-msgstr "設定 Feed 閱讀器文章收集"
-
-#: configuration/akregator_config_browser.cpp:35
-#, kde-format
-msgid "Configure Feed Reader Browser"
-msgstr "設定 Feed 閱讀器的瀏覽器"
-
-#: configuration/akregator_config_general.cpp:33
+#: configuration/akregator_config_general.cpp:42
 #, kde-format
 msgid " minute"
 msgid_plural " minutes"
 msgstr[0] " 分鐘"
-
-#: configuration/akregator_config_general.cpp:38
-#, kde-format
-msgid "Configure Feeds"
-msgstr "設定 Feed"
-
-#: configuration/akregator_config_plugins.cpp:27
-#: configuration/akregator_config_security.cpp:29
-#, kde-format
-msgid "Configure Plugins"
-msgstr "設定附加元件"
-
-#: configuration/akregator_config_plugins.cpp:31
-#, fuzzy, kde-format
-#| msgid "(c), 2016-2020 Laurent Montel"
-msgid "(c), 2016-2021 Laurent Montel"
-msgstr "(c), 2016-2020 Laurent Montel"
-
-#: configuration/akregator_config_plugins.cpp:33
-#: configuration/akregator_config_security.cpp:35
-#: configuration/akregator_config_userfeedback.cpp:38 src/aboutdata.cpp:27
-#, kde-format
-msgid "Laurent Montel"
-msgstr "Laurent Montel"
-
-#: configuration/akregator_config_security.cpp:33
-#, fuzzy, kde-format
-#| msgid "(c), 2020 Laurent Montel"
-msgid "(c), 2021 Laurent Montel"
-msgstr "(c), 2020 Laurent Montel"
-
-#: configuration/akregator_config_userfeedback.cpp:32
-#, kde-format
-msgid "Configure User Feedback"
-msgstr "設定使用者回饋"
-
-#: configuration/akregator_config_userfeedback.cpp:36
-#, fuzzy, kde-format
-#| msgid "(c), 2016-2020 Laurent Montel"
-msgid "(c), 2020-2021 Laurent Montel"
-msgstr "(c), 2016-2020 Laurent Montel"
 
 #: configuration/akregatorconfigurepluginlistwidget.cpp:51
 #, kde-format
@@ -1029,8 +950,18 @@ msgstr "Copyright © 2004–2020 Akregator 開發團隊"
 
 #: src/aboutdata.cpp:27
 #, kde-format
+msgid "Laurent Montel"
+msgstr "Laurent Montel"
+
+#: src/aboutdata.cpp:27
+#, kde-format
 msgid "Maintainer"
 msgstr "維護者"
+
+#: src/aboutdata.cpp:28
+#, kde-format
+msgid "Frank Osterfeld"
+msgstr "Frank Osterfeld"
 
 #: src/aboutdata.cpp:28
 #, kde-format
@@ -2548,6 +2479,45 @@ msgstr "已讀(&R)"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "重要文章"
+
+#~ msgid "Advanced Feed Reader Settings"
+#~ msgstr "進階 Feed 閱讀器設定"
+
+#~ msgid "(c), 2004 - 2008 Frank Osterfeld"
+#~ msgstr "(c), 2004 - 2008 Frank Osterfeld"
+
+#~ msgid "Configure Feed Reader Appearance"
+#~ msgstr "設定 Feed 閱讀器外觀"
+
+#~ msgid "Configure Feed Reader Archive"
+#~ msgstr "設定 Feed 閱讀器文章收集"
+
+#~ msgid "Configure Feed Reader Browser"
+#~ msgstr "設定 Feed 閱讀器的瀏覽器"
+
+#~ msgid "Configure Feeds"
+#~ msgstr "設定 Feed"
+
+#~ msgid "Configure Plugins"
+#~ msgstr "設定附加元件"
+
+#, fuzzy
+#~| msgid "(c), 2016-2020 Laurent Montel"
+#~ msgid "(c), 2016-2021 Laurent Montel"
+#~ msgstr "(c), 2016-2020 Laurent Montel"
+
+#, fuzzy
+#~| msgid "(c), 2020 Laurent Montel"
+#~ msgid "(c), 2021 Laurent Montel"
+#~ msgstr "(c), 2020 Laurent Montel"
+
+#~ msgid "Configure User Feedback"
+#~ msgstr "設定使用者回饋"
+
+#, fuzzy
+#~| msgid "(c), 2016-2020 Laurent Montel"
+#~ msgid "(c), 2020-2021 Laurent Montel"
+#~ msgstr "(c), 2016-2020 Laurent Montel"
 
 #~ msgid "Archive"
 #~ msgstr "文章收集"

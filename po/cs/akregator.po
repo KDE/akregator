@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-15 00:47+0000\n"
+"POT-Creation-Date: 2023-03-17 00:58+0000\n"
 "PO-Revision-Date: 2023-02-22 16:44+0100\n"
 "Last-Translator: Vit Pelcak <vit@pelcak.org>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
@@ -111,35 +111,7 @@ msgstr ""
 "<b>Poznámka:</b> Z bezpečnostních důvodů je externí odkaz blokován (viz "
 "dialog nastavení)."
 
-#: configuration/akregator_config_advanced.cpp:30
-#, kde-format
-msgid "Advanced Feed Reader Settings"
-msgstr "Pokročilá nastavení čtečky kanálů"
-
-#: configuration/akregator_config_advanced.cpp:34
-#: configuration/akregator_config_appearance.cpp:49
-#: configuration/akregator_config_archive.cpp:47
-#: configuration/akregator_config_browser.cpp:39
-#: configuration/akregator_config_general.cpp:42
-#, kde-format
-msgid "(c), 2004 - 2008 Frank Osterfeld"
-msgstr "(c), 2004 - 2008 Frank Osterfeld"
-
-#: configuration/akregator_config_advanced.cpp:36
-#: configuration/akregator_config_appearance.cpp:51
-#: configuration/akregator_config_archive.cpp:49
-#: configuration/akregator_config_browser.cpp:41
-#: configuration/akregator_config_general.cpp:44 src/aboutdata.cpp:28
-#, kde-format
-msgid "Frank Osterfeld"
-msgstr "Frank Osterfeld"
-
-#: configuration/akregator_config_appearance.cpp:45
-#, kde-format
-msgid "Configure Feed Reader Appearance"
-msgstr "Nastavit vzhled čtečky kanálů"
-
-#: configuration/akregator_config_archive.cpp:33
+#: configuration/akregator_config_archive.cpp:43
 #, kde-format
 msgctxt "Limit feed archive size to:"
 msgid " article"
@@ -148,7 +120,7 @@ msgstr[0] " článek"
 msgstr[1] " články"
 msgstr[2] " článků"
 
-#: configuration/akregator_config_archive.cpp:34
+#: configuration/akregator_config_archive.cpp:44
 #, kde-format
 msgctxt "Delete articles older than:"
 msgid " day"
@@ -157,61 +129,13 @@ msgstr[0] " den"
 msgstr[1] " dny"
 msgstr[2] " dnů"
 
-#: configuration/akregator_config_archive.cpp:43
-#, kde-format
-msgid "Configure Feed Reader Archive"
-msgstr "Nastavit archiv čtečky kanálů"
-
-#: configuration/akregator_config_browser.cpp:35
-#, kde-format
-msgid "Configure Feed Reader Browser"
-msgstr "Nastavit prohlížeč čtečky kanálů"
-
-#: configuration/akregator_config_general.cpp:33
+#: configuration/akregator_config_general.cpp:42
 #, kde-format
 msgid " minute"
 msgid_plural " minutes"
 msgstr[0] " minuta"
 msgstr[1] " minuty"
 msgstr[2] " minut"
-
-#: configuration/akregator_config_general.cpp:38
-#, kde-format
-msgid "Configure Feeds"
-msgstr "Nastavit kanály"
-
-#: configuration/akregator_config_plugins.cpp:27
-#: configuration/akregator_config_security.cpp:29
-#, kde-format
-msgid "Configure Plugins"
-msgstr "Nastavit zásuvné moduly"
-
-#: configuration/akregator_config_plugins.cpp:31
-#, kde-format
-msgid "(c), 2016-2021 Laurent Montel"
-msgstr "(c), 2016-2021 Laurent Montel"
-
-#: configuration/akregator_config_plugins.cpp:33
-#: configuration/akregator_config_security.cpp:35
-#: configuration/akregator_config_userfeedback.cpp:38 src/aboutdata.cpp:27
-#, kde-format
-msgid "Laurent Montel"
-msgstr "Laurent Montel"
-
-#: configuration/akregator_config_security.cpp:33
-#, kde-format
-msgid "(c), 2021 Laurent Montel"
-msgstr "(c), 2021 Laurent Montel"
-
-#: configuration/akregator_config_userfeedback.cpp:32
-#, kde-format
-msgid "Configure User Feedback"
-msgstr "Nastavení uživatelské zpětné vazby"
-
-#: configuration/akregator_config_userfeedback.cpp:36
-#, kde-format
-msgid "(c), 2020-2021 Laurent Montel"
-msgstr "(c), 2020-2021 Laurent Montel"
 
 #: configuration/akregatorconfigurepluginlistwidget.cpp:51
 #, kde-format
@@ -1035,8 +959,18 @@ msgstr "Autorská práva © 2004–%1, Autoři Akregatoru"
 
 #: src/aboutdata.cpp:27
 #, kde-format
+msgid "Laurent Montel"
+msgstr "Laurent Montel"
+
+#: src/aboutdata.cpp:27
+#, kde-format
 msgid "Maintainer"
 msgstr "Správce"
+
+#: src/aboutdata.cpp:28
+#, kde-format
+msgid "Frank Osterfeld"
+msgstr "Frank Osterfeld"
 
 #: src/aboutdata.cpp:28
 #, kde-format
@@ -2584,3 +2518,36 @@ msgstr "Přečteno"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "Důležité"
+
+#~ msgid "Advanced Feed Reader Settings"
+#~ msgstr "Pokročilá nastavení čtečky kanálů"
+
+#~ msgid "(c), 2004 - 2008 Frank Osterfeld"
+#~ msgstr "(c), 2004 - 2008 Frank Osterfeld"
+
+#~ msgid "Configure Feed Reader Appearance"
+#~ msgstr "Nastavit vzhled čtečky kanálů"
+
+#~ msgid "Configure Feed Reader Archive"
+#~ msgstr "Nastavit archiv čtečky kanálů"
+
+#~ msgid "Configure Feed Reader Browser"
+#~ msgstr "Nastavit prohlížeč čtečky kanálů"
+
+#~ msgid "Configure Feeds"
+#~ msgstr "Nastavit kanály"
+
+#~ msgid "Configure Plugins"
+#~ msgstr "Nastavit zásuvné moduly"
+
+#~ msgid "(c), 2016-2021 Laurent Montel"
+#~ msgstr "(c), 2016-2021 Laurent Montel"
+
+#~ msgid "(c), 2021 Laurent Montel"
+#~ msgstr "(c), 2021 Laurent Montel"
+
+#~ msgid "Configure User Feedback"
+#~ msgstr "Nastavení uživatelské zpětné vazby"
+
+#~ msgid "(c), 2020-2021 Laurent Montel"
+#~ msgstr "(c), 2020-2021 Laurent Montel"

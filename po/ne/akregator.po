@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-15 00:47+0000\n"
+"POT-Creation-Date: 2023-03-17 00:58+0000\n"
 "PO-Revision-Date: 2007-09-07 10:35+0545\n"
 "Last-Translator: Nabin Gautam <nabin@mpp.org.np>\n"
 "Language-Team: Nepali <info@mpp.org.np>\n"
@@ -112,36 +112,7 @@ msgid ""
 "configure dialog)."
 msgstr ""
 
-#: configuration/akregator_config_advanced.cpp:30
-#, kde-format
-msgid "Advanced Feed Reader Settings"
-msgstr ""
-
-#: configuration/akregator_config_advanced.cpp:34
-#: configuration/akregator_config_appearance.cpp:49
-#: configuration/akregator_config_archive.cpp:47
-#: configuration/akregator_config_browser.cpp:39
-#: configuration/akregator_config_general.cpp:42
-#, fuzzy, kde-format
-#| msgid "Frank Osterfeld"
-msgid "(c), 2004 - 2008 Frank Osterfeld"
-msgstr "फ्राङ्क ओस्टरफेल्ड"
-
-#: configuration/akregator_config_advanced.cpp:36
-#: configuration/akregator_config_appearance.cpp:51
-#: configuration/akregator_config_archive.cpp:49
-#: configuration/akregator_config_browser.cpp:41
-#: configuration/akregator_config_general.cpp:44 src/aboutdata.cpp:28
-#, kde-format
-msgid "Frank Osterfeld"
-msgstr "फ्राङ्क ओस्टरफेल्ड"
-
-#: configuration/akregator_config_appearance.cpp:45
-#, kde-format
-msgid "Configure Feed Reader Appearance"
-msgstr ""
-
-#: configuration/akregator_config_archive.cpp:33
+#: configuration/akregator_config_archive.cpp:43
 #, fuzzy, kde-format
 #| msgid "1 article"
 msgctxt "Limit feed archive size to:"
@@ -150,7 +121,7 @@ msgid_plural " articles"
 msgstr[0] "१ लेख"
 msgstr[1] "१ लेख"
 
-#: configuration/akregator_config_archive.cpp:34
+#: configuration/akregator_config_archive.cpp:44
 #, fuzzy, kde-format
 #| msgid "1 day"
 msgctxt "Delete articles older than:"
@@ -159,64 +130,13 @@ msgid_plural " days"
 msgstr[0] "१ दिन"
 msgstr[1] "१ दिन"
 
-#: configuration/akregator_config_archive.cpp:43
-#, kde-format
-msgid "Configure Feed Reader Archive"
-msgstr ""
-
-#: configuration/akregator_config_browser.cpp:35
-#, kde-format
-msgid "Configure Feed Reader Browser"
-msgstr ""
-
-#: configuration/akregator_config_general.cpp:33
+#: configuration/akregator_config_general.cpp:42
 #, fuzzy, kde-format
 #| msgid "1 minute"
 msgid " minute"
 msgid_plural " minutes"
 msgstr[0] "१ मिनेट"
 msgstr[1] "१ मिनेट"
-
-#: configuration/akregator_config_general.cpp:38
-#, fuzzy, kde-format
-#| msgid "Concurrent Fetches"
-msgid "Configure Feeds"
-msgstr "समरूपी फेच"
-
-#: configuration/akregator_config_plugins.cpp:27
-#: configuration/akregator_config_security.cpp:29
-#, fuzzy, kde-format
-#| msgid "Concurrent Fetches"
-msgid "Configure Plugins"
-msgstr "समरूपी फेच"
-
-#: configuration/akregator_config_plugins.cpp:31
-#, kde-format
-msgid "(c), 2016-2021 Laurent Montel"
-msgstr ""
-
-#: configuration/akregator_config_plugins.cpp:33
-#: configuration/akregator_config_security.cpp:35
-#: configuration/akregator_config_userfeedback.cpp:38 src/aboutdata.cpp:27
-#, kde-format
-msgid "Laurent Montel"
-msgstr ""
-
-#: configuration/akregator_config_security.cpp:33
-#, kde-format
-msgid "(c), 2021 Laurent Montel"
-msgstr ""
-
-#: configuration/akregator_config_userfeedback.cpp:32
-#, fuzzy, kde-format
-#| msgid "Concurrent Fetches"
-msgid "Configure User Feedback"
-msgstr "समरूपी फेच"
-
-#: configuration/akregator_config_userfeedback.cpp:36
-#, kde-format
-msgid "(c), 2020-2021 Laurent Montel"
-msgstr ""
 
 #: configuration/akregatorconfigurepluginlistwidget.cpp:51
 #, fuzzy, kde-format
@@ -1057,8 +977,18 @@ msgstr "(C) २००४, २००५ एक्रिगेटर विका�
 
 #: src/aboutdata.cpp:27
 #, kde-format
+msgid "Laurent Montel"
+msgstr ""
+
+#: src/aboutdata.cpp:27
+#, kde-format
 msgid "Maintainer"
 msgstr "सम्भारकर्ता"
+
+#: src/aboutdata.cpp:28
+#, kde-format
+msgid "Frank Osterfeld"
+msgstr "फ्राङ्क ओस्टरफेल्ड"
 
 #: src/aboutdata.cpp:28
 #, fuzzy, kde-format
@@ -2674,6 +2604,26 @@ msgstr "पढ्नुहोस्"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "महत्वपूर्ण"
+
+#, fuzzy
+#~| msgid "Frank Osterfeld"
+#~ msgid "(c), 2004 - 2008 Frank Osterfeld"
+#~ msgstr "फ्राङ्क ओस्टरफेल्ड"
+
+#, fuzzy
+#~| msgid "Concurrent Fetches"
+#~ msgid "Configure Feeds"
+#~ msgstr "समरूपी फेच"
+
+#, fuzzy
+#~| msgid "Concurrent Fetches"
+#~ msgid "Configure Plugins"
+#~ msgstr "समरूपी फेच"
+
+#, fuzzy
+#~| msgid "Concurrent Fetches"
+#~ msgid "Configure User Feedback"
+#~ msgstr "समरूपी फेच"
 
 #~ msgid "Archive"
 #~ msgstr "सङ्ग्रह"

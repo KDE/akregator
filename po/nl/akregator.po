@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-15 00:47+0000\n"
+"POT-Creation-Date: 2023-03-17 00:58+0000\n"
 "PO-Revision-Date: 2022-04-28 10:11+0200\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
@@ -125,35 +125,7 @@ msgstr ""
 "<b>Opmerking:</b> Om redenen van veiligheid zijn externe referenties "
 "geblokkeerd (Zie configuratiedialoog)."
 
-#: configuration/akregator_config_advanced.cpp:30
-#, kde-format
-msgid "Advanced Feed Reader Settings"
-msgstr "Geavanceerde instellingen van feedlezer"
-
-#: configuration/akregator_config_advanced.cpp:34
-#: configuration/akregator_config_appearance.cpp:49
-#: configuration/akregator_config_archive.cpp:47
-#: configuration/akregator_config_browser.cpp:39
-#: configuration/akregator_config_general.cpp:42
-#, kde-format
-msgid "(c), 2004 - 2008 Frank Osterfeld"
-msgstr "(c), 2004 - 2008 Frank Osterfeld"
-
-#: configuration/akregator_config_advanced.cpp:36
-#: configuration/akregator_config_appearance.cpp:51
-#: configuration/akregator_config_archive.cpp:49
-#: configuration/akregator_config_browser.cpp:41
-#: configuration/akregator_config_general.cpp:44 src/aboutdata.cpp:28
-#, kde-format
-msgid "Frank Osterfeld"
-msgstr "Frank Osterfeld"
-
-#: configuration/akregator_config_appearance.cpp:45
-#, kde-format
-msgid "Configure Feed Reader Appearance"
-msgstr "Uiterlijk van feedlezer instellen"
-
-#: configuration/akregator_config_archive.cpp:33
+#: configuration/akregator_config_archive.cpp:43
 #, kde-format
 msgctxt "Limit feed archive size to:"
 msgid " article"
@@ -161,7 +133,7 @@ msgid_plural " articles"
 msgstr[0] " artikel"
 msgstr[1] " artikelen"
 
-#: configuration/akregator_config_archive.cpp:34
+#: configuration/akregator_config_archive.cpp:44
 #, kde-format
 msgctxt "Delete articles older than:"
 msgid " day"
@@ -169,60 +141,12 @@ msgid_plural " days"
 msgstr[0] " dag"
 msgstr[1] " dagen"
 
-#: configuration/akregator_config_archive.cpp:43
-#, kde-format
-msgid "Configure Feed Reader Archive"
-msgstr "Archief van feedlezer instellen"
-
-#: configuration/akregator_config_browser.cpp:35
-#, kde-format
-msgid "Configure Feed Reader Browser"
-msgstr "Browser van feedlezer instellen"
-
-#: configuration/akregator_config_general.cpp:33
+#: configuration/akregator_config_general.cpp:42
 #, kde-format
 msgid " minute"
 msgid_plural " minutes"
 msgstr[0] " minuut"
 msgstr[1] " minuten"
-
-#: configuration/akregator_config_general.cpp:38
-#, kde-format
-msgid "Configure Feeds"
-msgstr "Feeds configureren"
-
-#: configuration/akregator_config_plugins.cpp:27
-#: configuration/akregator_config_security.cpp:29
-#, kde-format
-msgid "Configure Plugins"
-msgstr "Plugins instellen"
-
-#: configuration/akregator_config_plugins.cpp:31
-#, kde-format
-msgid "(c), 2016-2021 Laurent Montel"
-msgstr "(c), 2016-2021 Laurent Montel"
-
-#: configuration/akregator_config_plugins.cpp:33
-#: configuration/akregator_config_security.cpp:35
-#: configuration/akregator_config_userfeedback.cpp:38 src/aboutdata.cpp:27
-#, kde-format
-msgid "Laurent Montel"
-msgstr "Laurent Montel"
-
-#: configuration/akregator_config_security.cpp:33
-#, kde-format
-msgid "(c), 2021 Laurent Montel"
-msgstr "(c), 2021 Laurent Montel"
-
-#: configuration/akregator_config_userfeedback.cpp:32
-#, kde-format
-msgid "Configure User Feedback"
-msgstr "Terugkoppeling van gebruiker configureren"
-
-#: configuration/akregator_config_userfeedback.cpp:36
-#, kde-format
-msgid "(c), 2020-2021 Laurent Montel"
-msgstr "(c), 2020-2021 Laurent Montel"
 
 #: configuration/akregatorconfigurepluginlistwidget.cpp:51
 #, kde-format
@@ -1080,8 +1004,18 @@ msgstr "Copyright © 2004–%1 De auteurs Akregator"
 
 #: src/aboutdata.cpp:27
 #, kde-format
+msgid "Laurent Montel"
+msgstr "Laurent Montel"
+
+#: src/aboutdata.cpp:27
+#, kde-format
 msgid "Maintainer"
 msgstr "Onderhouder"
+
+#: src/aboutdata.cpp:28
+#, kde-format
+msgid "Frank Osterfeld"
+msgstr "Frank Osterfeld"
 
 #: src/aboutdata.cpp:28
 #, kde-format
@@ -2653,6 +2587,39 @@ msgstr "Gelezen"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "Belangrijk"
+
+#~ msgid "Advanced Feed Reader Settings"
+#~ msgstr "Geavanceerde instellingen van feedlezer"
+
+#~ msgid "(c), 2004 - 2008 Frank Osterfeld"
+#~ msgstr "(c), 2004 - 2008 Frank Osterfeld"
+
+#~ msgid "Configure Feed Reader Appearance"
+#~ msgstr "Uiterlijk van feedlezer instellen"
+
+#~ msgid "Configure Feed Reader Archive"
+#~ msgstr "Archief van feedlezer instellen"
+
+#~ msgid "Configure Feed Reader Browser"
+#~ msgstr "Browser van feedlezer instellen"
+
+#~ msgid "Configure Feeds"
+#~ msgstr "Feeds configureren"
+
+#~ msgid "Configure Plugins"
+#~ msgstr "Plugins instellen"
+
+#~ msgid "(c), 2016-2021 Laurent Montel"
+#~ msgstr "(c), 2016-2021 Laurent Montel"
+
+#~ msgid "(c), 2021 Laurent Montel"
+#~ msgstr "(c), 2021 Laurent Montel"
+
+#~ msgid "Configure User Feedback"
+#~ msgstr "Terugkoppeling van gebruiker configureren"
+
+#~ msgid "(c), 2020-2021 Laurent Montel"
+#~ msgstr "(c), 2020-2021 Laurent Montel"
 
 #~ msgid "Archive"
 #~ msgstr "Archief"

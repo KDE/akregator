@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-15 00:47+0000\n"
+"POT-Creation-Date: 2023-03-17 00:58+0000\n"
 "PO-Revision-Date: 2023-02-03 15:39+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
@@ -108,35 +108,7 @@ msgstr ""
 "<b>შენიშვნა:</b> უსაფრთხოების მიზნით გარე მიმართვები დაბლოკილია (იხ. "
 "მორგების ფანჯარა)."
 
-#: configuration/akregator_config_advanced.cpp:30
-#, kde-format
-msgid "Advanced Feed Reader Settings"
-msgstr "სიახლეების ლენტის მკითხველის დამატებითი პარამეტრები"
-
-#: configuration/akregator_config_advanced.cpp:34
-#: configuration/akregator_config_appearance.cpp:49
-#: configuration/akregator_config_archive.cpp:47
-#: configuration/akregator_config_browser.cpp:39
-#: configuration/akregator_config_general.cpp:42
-#, kde-format
-msgid "(c), 2004 - 2008 Frank Osterfeld"
-msgstr "(c), 2004 - 2008 Frank Osterfeld"
-
-#: configuration/akregator_config_advanced.cpp:36
-#: configuration/akregator_config_appearance.cpp:51
-#: configuration/akregator_config_archive.cpp:49
-#: configuration/akregator_config_browser.cpp:41
-#: configuration/akregator_config_general.cpp:44 src/aboutdata.cpp:28
-#, kde-format
-msgid "Frank Osterfeld"
-msgstr "Frank Osterfeld"
-
-#: configuration/akregator_config_appearance.cpp:45
-#, kde-format
-msgid "Configure Feed Reader Appearance"
-msgstr "ლენტის მკითხველის გარეგნობის მორგება"
-
-#: configuration/akregator_config_archive.cpp:33
+#: configuration/akregator_config_archive.cpp:43
 #, kde-format
 msgctxt "Limit feed archive size to:"
 msgid " article"
@@ -144,7 +116,7 @@ msgid_plural " articles"
 msgstr[0] " სტატია"
 msgstr[1] " სტატია"
 
-#: configuration/akregator_config_archive.cpp:34
+#: configuration/akregator_config_archive.cpp:44
 #, kde-format
 msgctxt "Delete articles older than:"
 msgid " day"
@@ -152,60 +124,12 @@ msgid_plural " days"
 msgstr[0] " დღე"
 msgstr[1] " დღე"
 
-#: configuration/akregator_config_archive.cpp:43
-#, kde-format
-msgid "Configure Feed Reader Archive"
-msgstr "ლენტის მკითხველის არქივის მორგება"
-
-#: configuration/akregator_config_browser.cpp:35
-#, kde-format
-msgid "Configure Feed Reader Browser"
-msgstr "ლენტის მკითხველის ბრაუზერის მორგება"
-
-#: configuration/akregator_config_general.cpp:33
+#: configuration/akregator_config_general.cpp:42
 #, kde-format
 msgid " minute"
 msgid_plural " minutes"
 msgstr[0] " წუთი"
 msgstr[1] " წუთი"
-
-#: configuration/akregator_config_general.cpp:38
-#, kde-format
-msgid "Configure Feeds"
-msgstr "ლენტების მორგება"
-
-#: configuration/akregator_config_plugins.cpp:27
-#: configuration/akregator_config_security.cpp:29
-#, kde-format
-msgid "Configure Plugins"
-msgstr "დამატებების მორგება"
-
-#: configuration/akregator_config_plugins.cpp:31
-#, kde-format
-msgid "(c), 2016-2021 Laurent Montel"
-msgstr "(c), 2016-2021 Laurent Montel"
-
-#: configuration/akregator_config_plugins.cpp:33
-#: configuration/akregator_config_security.cpp:35
-#: configuration/akregator_config_userfeedback.cpp:38 src/aboutdata.cpp:27
-#, kde-format
-msgid "Laurent Montel"
-msgstr "Laurent Montel"
-
-#: configuration/akregator_config_security.cpp:33
-#, kde-format
-msgid "(c), 2021 Laurent Montel"
-msgstr "(c), 2021 Laurent Montel"
-
-#: configuration/akregator_config_userfeedback.cpp:32
-#, kde-format
-msgid "Configure User Feedback"
-msgstr "მომხმარებლის უკუკავშირის მორგება"
-
-#: configuration/akregator_config_userfeedback.cpp:36
-#, kde-format
-msgid "(c), 2020-2021 Laurent Montel"
-msgstr "(c), 2020-2021 Laurent Montel"
 
 #: configuration/akregatorconfigurepluginlistwidget.cpp:51
 #, kde-format
@@ -1030,8 +954,18 @@ msgstr "© 2004–%1 Akregator -ის ავტორები, ყველა
 
 #: src/aboutdata.cpp:27
 #, kde-format
+msgid "Laurent Montel"
+msgstr "Laurent Montel"
+
+#: src/aboutdata.cpp:27
+#, kde-format
 msgid "Maintainer"
 msgstr "წამყვანი პროგრამისტი"
+
+#: src/aboutdata.cpp:28
+#, kde-format
+msgid "Frank Osterfeld"
+msgstr "Frank Osterfeld"
 
 #: src/aboutdata.cpp:28
 #, kde-format
@@ -2573,3 +2507,36 @@ msgstr "წაკითხვა"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "მნიშვნელოვანი"
+
+#~ msgid "Advanced Feed Reader Settings"
+#~ msgstr "სიახლეების ლენტის მკითხველის დამატებითი პარამეტრები"
+
+#~ msgid "(c), 2004 - 2008 Frank Osterfeld"
+#~ msgstr "(c), 2004 - 2008 Frank Osterfeld"
+
+#~ msgid "Configure Feed Reader Appearance"
+#~ msgstr "ლენტის მკითხველის გარეგნობის მორგება"
+
+#~ msgid "Configure Feed Reader Archive"
+#~ msgstr "ლენტის მკითხველის არქივის მორგება"
+
+#~ msgid "Configure Feed Reader Browser"
+#~ msgstr "ლენტის მკითხველის ბრაუზერის მორგება"
+
+#~ msgid "Configure Feeds"
+#~ msgstr "ლენტების მორგება"
+
+#~ msgid "Configure Plugins"
+#~ msgstr "დამატებების მორგება"
+
+#~ msgid "(c), 2016-2021 Laurent Montel"
+#~ msgstr "(c), 2016-2021 Laurent Montel"
+
+#~ msgid "(c), 2021 Laurent Montel"
+#~ msgstr "(c), 2021 Laurent Montel"
+
+#~ msgid "Configure User Feedback"
+#~ msgstr "მომხმარებლის უკუკავშირის მორგება"
+
+#~ msgid "(c), 2020-2021 Laurent Montel"
+#~ msgstr "(c), 2020-2021 Laurent Montel"

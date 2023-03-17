@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-15 00:47+0000\n"
+"POT-Creation-Date: 2023-03-17 00:58+0000\n"
 "PO-Revision-Date: 2012-07-09 22:08+0800\n"
 "Last-Translator: Lê Hoàng Phương <herophuong93@gmail.com>\n"
 "Language-Team: Vietnamese <kde-i18n-vi@kde.org>\n"
@@ -112,103 +112,25 @@ msgid ""
 "configure dialog)."
 msgstr ""
 
-#: configuration/akregator_config_advanced.cpp:30
-#, kde-format
-msgid "Advanced Feed Reader Settings"
-msgstr "Thiết lập trình đọc nguồn tin nâng cao"
-
-#: configuration/akregator_config_advanced.cpp:34
-#: configuration/akregator_config_appearance.cpp:49
-#: configuration/akregator_config_archive.cpp:47
-#: configuration/akregator_config_browser.cpp:39
-#: configuration/akregator_config_general.cpp:42
-#, kde-format
-msgid "(c), 2004 - 2008 Frank Osterfeld"
-msgstr "(c), 2004 - 2008 Frank Osterfeld"
-
-#: configuration/akregator_config_advanced.cpp:36
-#: configuration/akregator_config_appearance.cpp:51
-#: configuration/akregator_config_archive.cpp:49
-#: configuration/akregator_config_browser.cpp:41
-#: configuration/akregator_config_general.cpp:44 src/aboutdata.cpp:28
-#, kde-format
-msgid "Frank Osterfeld"
-msgstr "Frank Osterfeld"
-
-#: configuration/akregator_config_appearance.cpp:45
-#, kde-format
-msgid "Configure Feed Reader Appearance"
-msgstr "Thiết lập diện mạo trình đọc nguồn tin"
-
-#: configuration/akregator_config_archive.cpp:33
+#: configuration/akregator_config_archive.cpp:43
 #, kde-format
 msgctxt "Limit feed archive size to:"
 msgid " article"
 msgid_plural " articles"
 msgstr[0] " bài viết"
 
-#: configuration/akregator_config_archive.cpp:34
+#: configuration/akregator_config_archive.cpp:44
 #, kde-format
 msgctxt "Delete articles older than:"
 msgid " day"
 msgid_plural " days"
 msgstr[0] " ngày"
 
-#: configuration/akregator_config_archive.cpp:43
-#, kde-format
-msgid "Configure Feed Reader Archive"
-msgstr "Thiết lập lưu trữ trình đọc nguồn tin"
-
-#: configuration/akregator_config_browser.cpp:35
-#, kde-format
-msgid "Configure Feed Reader Browser"
-msgstr "Thiết lập trình duyệt của trình đọc nguồn tin"
-
-#: configuration/akregator_config_general.cpp:33
+#: configuration/akregator_config_general.cpp:42
 #, kde-format
 msgid " minute"
 msgid_plural " minutes"
 msgstr[0] " phút"
-
-#: configuration/akregator_config_general.cpp:38
-#, kde-format
-msgid "Configure Feeds"
-msgstr "Thiết lập nguồn tin"
-
-#: configuration/akregator_config_plugins.cpp:27
-#: configuration/akregator_config_security.cpp:29
-#, fuzzy, kde-format
-#| msgid "Configure Feeds"
-msgid "Configure Plugins"
-msgstr "Thiết lập nguồn tin"
-
-#: configuration/akregator_config_plugins.cpp:31
-#, kde-format
-msgid "(c), 2016-2021 Laurent Montel"
-msgstr ""
-
-#: configuration/akregator_config_plugins.cpp:33
-#: configuration/akregator_config_security.cpp:35
-#: configuration/akregator_config_userfeedback.cpp:38 src/aboutdata.cpp:27
-#, kde-format
-msgid "Laurent Montel"
-msgstr ""
-
-#: configuration/akregator_config_security.cpp:33
-#, kde-format
-msgid "(c), 2021 Laurent Montel"
-msgstr ""
-
-#: configuration/akregator_config_userfeedback.cpp:32
-#, fuzzy, kde-format
-#| msgid "Configure Feeds"
-msgid "Configure User Feedback"
-msgstr "Thiết lập nguồn tin"
-
-#: configuration/akregator_config_userfeedback.cpp:36
-#, kde-format
-msgid "(c), 2020-2021 Laurent Montel"
-msgstr ""
 
 #: configuration/akregatorconfigurepluginlistwidget.cpp:51
 #, fuzzy, kde-format
@@ -1043,8 +965,18 @@ msgstr "Bản quyền © 2004–2010 các tác giả Akregator"
 
 #: src/aboutdata.cpp:27
 #, kde-format
+msgid "Laurent Montel"
+msgstr ""
+
+#: src/aboutdata.cpp:27
+#, kde-format
 msgid "Maintainer"
 msgstr "Người duy trì"
+
+#: src/aboutdata.cpp:28
+#, kde-format
+msgid "Frank Osterfeld"
+msgstr "Frank Osterfeld"
 
 #: src/aboutdata.cpp:28
 #, fuzzy, kde-format
@@ -2619,6 +2551,34 @@ msgstr "Đã đọ&c"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "Quan trọng"
+
+#~ msgid "Advanced Feed Reader Settings"
+#~ msgstr "Thiết lập trình đọc nguồn tin nâng cao"
+
+#~ msgid "(c), 2004 - 2008 Frank Osterfeld"
+#~ msgstr "(c), 2004 - 2008 Frank Osterfeld"
+
+#~ msgid "Configure Feed Reader Appearance"
+#~ msgstr "Thiết lập diện mạo trình đọc nguồn tin"
+
+#~ msgid "Configure Feed Reader Archive"
+#~ msgstr "Thiết lập lưu trữ trình đọc nguồn tin"
+
+#~ msgid "Configure Feed Reader Browser"
+#~ msgstr "Thiết lập trình duyệt của trình đọc nguồn tin"
+
+#~ msgid "Configure Feeds"
+#~ msgstr "Thiết lập nguồn tin"
+
+#, fuzzy
+#~| msgid "Configure Feeds"
+#~ msgid "Configure Plugins"
+#~ msgstr "Thiết lập nguồn tin"
+
+#, fuzzy
+#~| msgid "Configure Feeds"
+#~ msgid "Configure User Feedback"
+#~ msgstr "Thiết lập nguồn tin"
 
 #~ msgid "Archive"
 #~ msgstr "Lưu trữ"

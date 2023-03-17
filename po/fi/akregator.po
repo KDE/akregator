@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-15 00:47+0000\n"
+"POT-Creation-Date: 2023-03-17 00:58+0000\n"
 "PO-Revision-Date: 2022-06-17 18:43+0300\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
@@ -118,35 +118,7 @@ msgstr ""
 "<b>Huomaa:</b> Tietoturvasyistä ulkoiset viittaukset on estetty (ks. "
 "asetusikkunaa)."
 
-#: configuration/akregator_config_advanced.cpp:30
-#, kde-format
-msgid "Advanced Feed Reader Settings"
-msgstr "Syötteenlukijan lisäasetukset"
-
-#: configuration/akregator_config_advanced.cpp:34
-#: configuration/akregator_config_appearance.cpp:49
-#: configuration/akregator_config_archive.cpp:47
-#: configuration/akregator_config_browser.cpp:39
-#: configuration/akregator_config_general.cpp:42
-#, kde-format
-msgid "(c), 2004 - 2008 Frank Osterfeld"
-msgstr "© 2004–2008 Frank Osterfeld"
-
-#: configuration/akregator_config_advanced.cpp:36
-#: configuration/akregator_config_appearance.cpp:51
-#: configuration/akregator_config_archive.cpp:49
-#: configuration/akregator_config_browser.cpp:41
-#: configuration/akregator_config_general.cpp:44 src/aboutdata.cpp:28
-#, kde-format
-msgid "Frank Osterfeld"
-msgstr "Frank Osterfeld"
-
-#: configuration/akregator_config_appearance.cpp:45
-#, kde-format
-msgid "Configure Feed Reader Appearance"
-msgstr "Syötteenlukijan ulkoasuasetukset"
-
-#: configuration/akregator_config_archive.cpp:33
+#: configuration/akregator_config_archive.cpp:43
 #, kde-format
 msgctxt "Limit feed archive size to:"
 msgid " article"
@@ -154,7 +126,7 @@ msgid_plural " articles"
 msgstr[0] " artikkeli"
 msgstr[1] " artikkelia"
 
-#: configuration/akregator_config_archive.cpp:34
+#: configuration/akregator_config_archive.cpp:44
 #, kde-format
 msgctxt "Delete articles older than:"
 msgid " day"
@@ -162,60 +134,12 @@ msgid_plural " days"
 msgstr[0] " päivä"
 msgstr[1] " päivää"
 
-#: configuration/akregator_config_archive.cpp:43
-#, kde-format
-msgid "Configure Feed Reader Archive"
-msgstr "Syötteenlukijan arkistointiasetukset"
-
-#: configuration/akregator_config_browser.cpp:35
-#, kde-format
-msgid "Configure Feed Reader Browser"
-msgstr "Syötteenlukijan selainasetukset"
-
-#: configuration/akregator_config_general.cpp:33
+#: configuration/akregator_config_general.cpp:42
 #, kde-format
 msgid " minute"
 msgid_plural " minutes"
 msgstr[0] " minuutti"
 msgstr[1] " minuuttia"
-
-#: configuration/akregator_config_general.cpp:38
-#, kde-format
-msgid "Configure Feeds"
-msgstr "Syöteasetukset"
-
-#: configuration/akregator_config_plugins.cpp:27
-#: configuration/akregator_config_security.cpp:29
-#, kde-format
-msgid "Configure Plugins"
-msgstr "Liitännäisasetukset"
-
-#: configuration/akregator_config_plugins.cpp:31
-#, kde-format
-msgid "(c), 2016-2021 Laurent Montel"
-msgstr "© 2016–2021 Laurent Montel"
-
-#: configuration/akregator_config_plugins.cpp:33
-#: configuration/akregator_config_security.cpp:35
-#: configuration/akregator_config_userfeedback.cpp:38 src/aboutdata.cpp:27
-#, kde-format
-msgid "Laurent Montel"
-msgstr "Laurent Montel"
-
-#: configuration/akregator_config_security.cpp:33
-#, kde-format
-msgid "(c), 2021 Laurent Montel"
-msgstr "© 2021 Laurent Montel"
-
-#: configuration/akregator_config_userfeedback.cpp:32
-#, kde-format
-msgid "Configure User Feedback"
-msgstr "Käyttäjäpalauteasetukset"
-
-#: configuration/akregator_config_userfeedback.cpp:36
-#, kde-format
-msgid "(c), 2020-2021 Laurent Montel"
-msgstr "© 2020–2021 Laurent Montel"
 
 #: configuration/akregatorconfigurepluginlistwidget.cpp:51
 #, kde-format
@@ -1041,8 +965,18 @@ msgstr "Tekijänoikeudet © 2004–%1 Akregator-kehittäjät"
 
 #: src/aboutdata.cpp:27
 #, kde-format
+msgid "Laurent Montel"
+msgstr "Laurent Montel"
+
+#: src/aboutdata.cpp:27
+#, kde-format
 msgid "Maintainer"
 msgstr "Ylläpitäjä"
+
+#: src/aboutdata.cpp:28
+#, kde-format
+msgid "Frank Osterfeld"
+msgstr "Frank Osterfeld"
 
 #: src/aboutdata.cpp:28
 #, kde-format
@@ -2581,6 +2515,39 @@ msgstr "Luetut"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "Tärkeät"
+
+#~ msgid "Advanced Feed Reader Settings"
+#~ msgstr "Syötteenlukijan lisäasetukset"
+
+#~ msgid "(c), 2004 - 2008 Frank Osterfeld"
+#~ msgstr "© 2004–2008 Frank Osterfeld"
+
+#~ msgid "Configure Feed Reader Appearance"
+#~ msgstr "Syötteenlukijan ulkoasuasetukset"
+
+#~ msgid "Configure Feed Reader Archive"
+#~ msgstr "Syötteenlukijan arkistointiasetukset"
+
+#~ msgid "Configure Feed Reader Browser"
+#~ msgstr "Syötteenlukijan selainasetukset"
+
+#~ msgid "Configure Feeds"
+#~ msgstr "Syöteasetukset"
+
+#~ msgid "Configure Plugins"
+#~ msgstr "Liitännäisasetukset"
+
+#~ msgid "(c), 2016-2021 Laurent Montel"
+#~ msgstr "© 2016–2021 Laurent Montel"
+
+#~ msgid "(c), 2021 Laurent Montel"
+#~ msgstr "© 2021 Laurent Montel"
+
+#~ msgid "Configure User Feedback"
+#~ msgstr "Käyttäjäpalauteasetukset"
+
+#~ msgid "(c), 2020-2021 Laurent Montel"
+#~ msgstr "© 2020–2021 Laurent Montel"
 
 #~ msgid "Archive"
 #~ msgstr "Arki&sto"

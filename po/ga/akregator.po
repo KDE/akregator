@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdepim/akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-15 00:47+0000\n"
+"POT-Creation-Date: 2023-03-17 00:58+0000\n"
 "PO-Revision-Date: 2004-12-11 20:53-0500\n"
 "Last-Translator: Kevin Scannell <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -110,35 +110,7 @@ msgid ""
 "configure dialog)."
 msgstr ""
 
-#: configuration/akregator_config_advanced.cpp:30
-#, kde-format
-msgid "Advanced Feed Reader Settings"
-msgstr ""
-
-#: configuration/akregator_config_advanced.cpp:34
-#: configuration/akregator_config_appearance.cpp:49
-#: configuration/akregator_config_archive.cpp:47
-#: configuration/akregator_config_browser.cpp:39
-#: configuration/akregator_config_general.cpp:42
-#, kde-format
-msgid "(c), 2004 - 2008 Frank Osterfeld"
-msgstr "© 2004 - 2008 Frank Osterfeld"
-
-#: configuration/akregator_config_advanced.cpp:36
-#: configuration/akregator_config_appearance.cpp:51
-#: configuration/akregator_config_archive.cpp:49
-#: configuration/akregator_config_browser.cpp:41
-#: configuration/akregator_config_general.cpp:44 src/aboutdata.cpp:28
-#, kde-format
-msgid "Frank Osterfeld"
-msgstr "Frank Osterfeld"
-
-#: configuration/akregator_config_appearance.cpp:45
-#, kde-format
-msgid "Configure Feed Reader Appearance"
-msgstr ""
-
-#: configuration/akregator_config_archive.cpp:33
+#: configuration/akregator_config_archive.cpp:43
 #, kde-format
 msgctxt "Limit feed archive size to:"
 msgid " article"
@@ -149,7 +121,7 @@ msgstr[2] " alt"
 msgstr[3] " n-alt"
 msgstr[4] " alt"
 
-#: configuration/akregator_config_archive.cpp:34
+#: configuration/akregator_config_archive.cpp:44
 #, kde-format
 msgctxt "Delete articles older than:"
 msgid " day"
@@ -160,17 +132,7 @@ msgstr[2] " lá"
 msgstr[3] " lá"
 msgstr[4] " lá"
 
-#: configuration/akregator_config_archive.cpp:43
-#, kde-format
-msgid "Configure Feed Reader Archive"
-msgstr ""
-
-#: configuration/akregator_config_browser.cpp:35
-#, kde-format
-msgid "Configure Feed Reader Browser"
-msgstr ""
-
-#: configuration/akregator_config_general.cpp:33
+#: configuration/akregator_config_general.cpp:42
 #, kde-format
 msgid " minute"
 msgid_plural " minutes"
@@ -179,46 +141,6 @@ msgstr[1] " noiméad"
 msgstr[2] " noiméad"
 msgstr[3] " noiméad"
 msgstr[4] " noiméad"
-
-#: configuration/akregator_config_general.cpp:38
-#, kde-format
-msgid "Configure Feeds"
-msgstr "Cumraigh Fothaí"
-
-#: configuration/akregator_config_plugins.cpp:27
-#: configuration/akregator_config_security.cpp:29
-#, fuzzy, kde-format
-#| msgid "Configure Feeds"
-msgid "Configure Plugins"
-msgstr "Cumraigh Fothaí"
-
-#: configuration/akregator_config_plugins.cpp:31
-#, kde-format
-msgid "(c), 2016-2021 Laurent Montel"
-msgstr ""
-
-#: configuration/akregator_config_plugins.cpp:33
-#: configuration/akregator_config_security.cpp:35
-#: configuration/akregator_config_userfeedback.cpp:38 src/aboutdata.cpp:27
-#, kde-format
-msgid "Laurent Montel"
-msgstr ""
-
-#: configuration/akregator_config_security.cpp:33
-#, kde-format
-msgid "(c), 2021 Laurent Montel"
-msgstr ""
-
-#: configuration/akregator_config_userfeedback.cpp:32
-#, fuzzy, kde-format
-#| msgid "Configure Feeds"
-msgid "Configure User Feedback"
-msgstr "Cumraigh Fothaí"
-
-#: configuration/akregator_config_userfeedback.cpp:36
-#, kde-format
-msgid "(c), 2020-2021 Laurent Montel"
-msgstr ""
 
 #: configuration/akregatorconfigurepluginlistwidget.cpp:51
 #, fuzzy, kde-format
@@ -1045,8 +967,18 @@ msgstr "© 2004-2010 Forbróirí Akregator"
 
 #: src/aboutdata.cpp:27
 #, kde-format
+msgid "Laurent Montel"
+msgstr ""
+
+#: src/aboutdata.cpp:27
+#, kde-format
 msgid "Maintainer"
 msgstr "Cothaitheoir"
+
+#: src/aboutdata.cpp:28
+#, kde-format
+msgid "Frank Osterfeld"
+msgstr "Frank Osterfeld"
 
 #: src/aboutdata.cpp:28
 #, fuzzy, kde-format
@@ -2633,6 +2565,22 @@ msgstr "&Léite"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "Tábhachtach"
+
+#~ msgid "(c), 2004 - 2008 Frank Osterfeld"
+#~ msgstr "© 2004 - 2008 Frank Osterfeld"
+
+#~ msgid "Configure Feeds"
+#~ msgstr "Cumraigh Fothaí"
+
+#, fuzzy
+#~| msgid "Configure Feeds"
+#~ msgid "Configure Plugins"
+#~ msgstr "Cumraigh Fothaí"
+
+#, fuzzy
+#~| msgid "Configure Feeds"
+#~ msgid "Configure User Feedback"
+#~ msgstr "Cumraigh Fothaí"
 
 #~ msgid "Archive"
 #~ msgstr "Cartlann"

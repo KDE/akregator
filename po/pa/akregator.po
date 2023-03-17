@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-15 00:47+0000\n"
+"POT-Creation-Date: 2023-03-17 00:58+0000\n"
 "PO-Revision-Date: 2011-06-29 22:48+0530\n"
 "Last-Translator: A S Alam <aalam@users.sf.net>\n"
 "Language-Team: Punjabi/Panjabi <punjab-l10n@list.sf.net>\n"
@@ -114,35 +114,7 @@ msgid ""
 "configure dialog)."
 msgstr ""
 
-#: configuration/akregator_config_advanced.cpp:30
-#, kde-format
-msgid "Advanced Feed Reader Settings"
-msgstr "ਮਾਹਰ ਫੀਡ ਰੀਡਰ ਸੈਟਿੰਗ"
-
-#: configuration/akregator_config_advanced.cpp:34
-#: configuration/akregator_config_appearance.cpp:49
-#: configuration/akregator_config_archive.cpp:47
-#: configuration/akregator_config_browser.cpp:39
-#: configuration/akregator_config_general.cpp:42
-#, kde-format
-msgid "(c), 2004 - 2008 Frank Osterfeld"
-msgstr "(c), 2004 - 2008 Frank Osterfeld"
-
-#: configuration/akregator_config_advanced.cpp:36
-#: configuration/akregator_config_appearance.cpp:51
-#: configuration/akregator_config_archive.cpp:49
-#: configuration/akregator_config_browser.cpp:41
-#: configuration/akregator_config_general.cpp:44 src/aboutdata.cpp:28
-#, kde-format
-msgid "Frank Osterfeld"
-msgstr ""
-
-#: configuration/akregator_config_appearance.cpp:45
-#, kde-format
-msgid "Configure Feed Reader Appearance"
-msgstr "ਫੀਡ ਰੀਡਰ ਦਿੱਖ ਸੰਰਚਨਾ"
-
-#: configuration/akregator_config_archive.cpp:33
+#: configuration/akregator_config_archive.cpp:43
 #, kde-format
 msgctxt "Limit feed archive size to:"
 msgid " article"
@@ -150,7 +122,7 @@ msgid_plural " articles"
 msgstr[0] " ਲੇਖ"
 msgstr[1] " ਲੇਖ"
 
-#: configuration/akregator_config_archive.cpp:34
+#: configuration/akregator_config_archive.cpp:44
 #, kde-format
 msgctxt "Delete articles older than:"
 msgid " day"
@@ -158,62 +130,12 @@ msgid_plural " days"
 msgstr[0] " ਦਿਨ"
 msgstr[1] " ਦਿਨ"
 
-#: configuration/akregator_config_archive.cpp:43
-#, kde-format
-msgid "Configure Feed Reader Archive"
-msgstr "ਫੀਡ ਰੀਡਰ ਅਕਾਇਵ ਸੰਰਚਨਾ"
-
-#: configuration/akregator_config_browser.cpp:35
-#, kde-format
-msgid "Configure Feed Reader Browser"
-msgstr "ਫੀਡ ਰੀਡਰ ਬਰਾਊਜ਼ਰ ਸੰਰਚਨਾ"
-
-#: configuration/akregator_config_general.cpp:33
+#: configuration/akregator_config_general.cpp:42
 #, kde-format
 msgid " minute"
 msgid_plural " minutes"
 msgstr[0] " ਮਿੰਟ"
 msgstr[1] " ਮਿੰਟ"
-
-#: configuration/akregator_config_general.cpp:38
-#, kde-format
-msgid "Configure Feeds"
-msgstr "ਫੀਡ ਸੰਰਚਨਾ"
-
-#: configuration/akregator_config_plugins.cpp:27
-#: configuration/akregator_config_security.cpp:29
-#, fuzzy, kde-format
-#| msgid "Configure Feeds"
-msgid "Configure Plugins"
-msgstr "ਫੀਡ ਸੰਰਚਨਾ"
-
-#: configuration/akregator_config_plugins.cpp:31
-#, kde-format
-msgid "(c), 2016-2021 Laurent Montel"
-msgstr ""
-
-#: configuration/akregator_config_plugins.cpp:33
-#: configuration/akregator_config_security.cpp:35
-#: configuration/akregator_config_userfeedback.cpp:38 src/aboutdata.cpp:27
-#, kde-format
-msgid "Laurent Montel"
-msgstr ""
-
-#: configuration/akregator_config_security.cpp:33
-#, kde-format
-msgid "(c), 2021 Laurent Montel"
-msgstr ""
-
-#: configuration/akregator_config_userfeedback.cpp:32
-#, fuzzy, kde-format
-#| msgid "Configure Feeds"
-msgid "Configure User Feedback"
-msgstr "ਫੀਡ ਸੰਰਚਨਾ"
-
-#: configuration/akregator_config_userfeedback.cpp:36
-#, kde-format
-msgid "(c), 2020-2021 Laurent Montel"
-msgstr ""
 
 #: configuration/akregatorconfigurepluginlistwidget.cpp:51
 #, fuzzy, kde-format
@@ -1040,8 +962,18 @@ msgstr "(C) 2004-2010 ਐਕਰੀਗੇਟਰ ਡਿਵੈਲਪਰ"
 
 #: src/aboutdata.cpp:27
 #, kde-format
+msgid "Laurent Montel"
+msgstr ""
+
+#: src/aboutdata.cpp:27
+#, kde-format
 msgid "Maintainer"
 msgstr "ਪਰਬੰਧਕ"
+
+#: src/aboutdata.cpp:28
+#, kde-format
+msgid "Frank Osterfeld"
+msgstr ""
 
 #: src/aboutdata.cpp:28
 #, fuzzy, kde-format
@@ -2593,6 +2525,34 @@ msgstr "ਪੜ੍ਹੇ(&R)"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "ਖਾਸ"
+
+#~ msgid "Advanced Feed Reader Settings"
+#~ msgstr "ਮਾਹਰ ਫੀਡ ਰੀਡਰ ਸੈਟਿੰਗ"
+
+#~ msgid "(c), 2004 - 2008 Frank Osterfeld"
+#~ msgstr "(c), 2004 - 2008 Frank Osterfeld"
+
+#~ msgid "Configure Feed Reader Appearance"
+#~ msgstr "ਫੀਡ ਰੀਡਰ ਦਿੱਖ ਸੰਰਚਨਾ"
+
+#~ msgid "Configure Feed Reader Archive"
+#~ msgstr "ਫੀਡ ਰੀਡਰ ਅਕਾਇਵ ਸੰਰਚਨਾ"
+
+#~ msgid "Configure Feed Reader Browser"
+#~ msgstr "ਫੀਡ ਰੀਡਰ ਬਰਾਊਜ਼ਰ ਸੰਰਚਨਾ"
+
+#~ msgid "Configure Feeds"
+#~ msgstr "ਫੀਡ ਸੰਰਚਨਾ"
+
+#, fuzzy
+#~| msgid "Configure Feeds"
+#~ msgid "Configure Plugins"
+#~ msgstr "ਫੀਡ ਸੰਰਚਨਾ"
+
+#, fuzzy
+#~| msgid "Configure Feeds"
+#~ msgid "Configure User Feedback"
+#~ msgstr "ਫੀਡ ਸੰਰਚਨਾ"
 
 #~ msgid "Archive"
 #~ msgstr "ਅਕਾਇਵ"

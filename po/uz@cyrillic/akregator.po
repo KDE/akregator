@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-15 00:47+0000\n"
+"POT-Creation-Date: 2023-03-17 00:58+0000\n"
 "PO-Revision-Date: 2006-02-08 21:32+0100\n"
 "Last-Translator: Mashrab Kuvatov <kmashrab@uni-bremen.de>\n"
 "Language-Team: Uzbek <floss-uz-l10n@googlegroups.com>\n"
@@ -112,35 +112,7 @@ msgid ""
 "configure dialog)."
 msgstr ""
 
-#: configuration/akregator_config_advanced.cpp:30
-#, kde-format
-msgid "Advanced Feed Reader Settings"
-msgstr ""
-
-#: configuration/akregator_config_advanced.cpp:34
-#: configuration/akregator_config_appearance.cpp:49
-#: configuration/akregator_config_archive.cpp:47
-#: configuration/akregator_config_browser.cpp:39
-#: configuration/akregator_config_general.cpp:42
-#, kde-format
-msgid "(c), 2004 - 2008 Frank Osterfeld"
-msgstr ""
-
-#: configuration/akregator_config_advanced.cpp:36
-#: configuration/akregator_config_appearance.cpp:51
-#: configuration/akregator_config_archive.cpp:49
-#: configuration/akregator_config_browser.cpp:41
-#: configuration/akregator_config_general.cpp:44 src/aboutdata.cpp:28
-#, kde-format
-msgid "Frank Osterfeld"
-msgstr ""
-
-#: configuration/akregator_config_appearance.cpp:45
-#, kde-format
-msgid "Configure Feed Reader Appearance"
-msgstr ""
-
-#: configuration/akregator_config_archive.cpp:33
+#: configuration/akregator_config_archive.cpp:43
 #, fuzzy, kde-format
 #| msgid "1 article"
 msgctxt "Limit feed archive size to:"
@@ -148,7 +120,7 @@ msgid " article"
 msgid_plural " articles"
 msgstr[0] "1 мақола"
 
-#: configuration/akregator_config_archive.cpp:34
+#: configuration/akregator_config_archive.cpp:44
 #, fuzzy, kde-format
 #| msgid "1 day"
 msgctxt "Delete articles older than:"
@@ -156,63 +128,12 @@ msgid " day"
 msgid_plural " days"
 msgstr[0] "1 кун"
 
-#: configuration/akregator_config_archive.cpp:43
-#, kde-format
-msgid "Configure Feed Reader Archive"
-msgstr ""
-
-#: configuration/akregator_config_browser.cpp:35
-#, kde-format
-msgid "Configure Feed Reader Browser"
-msgstr ""
-
-#: configuration/akregator_config_general.cpp:33
+#: configuration/akregator_config_general.cpp:42
 #, fuzzy, kde-format
 #| msgid "1 minute"
 msgid " minute"
 msgid_plural " minutes"
 msgstr[0] "1 дақиқа"
-
-#: configuration/akregator_config_general.cpp:38
-#, fuzzy, kde-format
-#| msgid "&Configure..."
-msgid "Configure Feeds"
-msgstr "&Мослаш..."
-
-#: configuration/akregator_config_plugins.cpp:27
-#: configuration/akregator_config_security.cpp:29
-#, fuzzy, kde-format
-#| msgid "&Configure..."
-msgid "Configure Plugins"
-msgstr "&Мослаш..."
-
-#: configuration/akregator_config_plugins.cpp:31
-#, kde-format
-msgid "(c), 2016-2021 Laurent Montel"
-msgstr ""
-
-#: configuration/akregator_config_plugins.cpp:33
-#: configuration/akregator_config_security.cpp:35
-#: configuration/akregator_config_userfeedback.cpp:38 src/aboutdata.cpp:27
-#, kde-format
-msgid "Laurent Montel"
-msgstr ""
-
-#: configuration/akregator_config_security.cpp:33
-#, kde-format
-msgid "(c), 2021 Laurent Montel"
-msgstr ""
-
-#: configuration/akregator_config_userfeedback.cpp:32
-#, fuzzy, kde-format
-#| msgid "&Configure..."
-msgid "Configure User Feedback"
-msgstr "&Мослаш..."
-
-#: configuration/akregator_config_userfeedback.cpp:36
-#, kde-format
-msgid "(c), 2020-2021 Laurent Montel"
-msgstr ""
 
 #: configuration/akregatorconfigurepluginlistwidget.cpp:51
 #, fuzzy, kde-format
@@ -1062,8 +983,18 @@ msgstr "(C) 2004-2005, Akregator тузувчилари"
 
 #: src/aboutdata.cpp:27
 #, kde-format
+msgid "Laurent Montel"
+msgstr ""
+
+#: src/aboutdata.cpp:27
+#, kde-format
 msgid "Maintainer"
 msgstr "Таъминловчи"
+
+#: src/aboutdata.cpp:28
+#, kde-format
+msgid "Frank Osterfeld"
+msgstr ""
 
 #: src/aboutdata.cpp:28
 #, fuzzy, kde-format
@@ -2623,6 +2554,21 @@ msgstr "Ўқи&лган"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "Муҳим"
+
+#, fuzzy
+#~| msgid "&Configure..."
+#~ msgid "Configure Feeds"
+#~ msgstr "&Мослаш..."
+
+#, fuzzy
+#~| msgid "&Configure..."
+#~ msgid "Configure Plugins"
+#~ msgstr "&Мослаш..."
+
+#, fuzzy
+#~| msgid "&Configure..."
+#~ msgid "Configure User Feedback"
+#~ msgstr "&Мослаш..."
 
 #~ msgid "Archive"
 #~ msgstr "Архивлаш"
