@@ -2518,36 +2518,3 @@ msgstr "Přečteno"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "Důležité"
-
-#~ msgid "Advanced Feed Reader Settings"
-#~ msgstr "Pokročilá nastavení čtečky kanálů"
-
-#~ msgid "(c), 2004 - 2008 Frank Osterfeld"
-#~ msgstr "(c), 2004 - 2008 Frank Osterfeld"
-
-#~ msgid "Configure Feed Reader Appearance"
-#~ msgstr "Nastavit vzhled čtečky kanálů"
-
-#~ msgid "Configure Feed Reader Archive"
-#~ msgstr "Nastavit archiv čtečky kanálů"
-
-#~ msgid "Configure Feed Reader Browser"
-#~ msgstr "Nastavit prohlížeč čtečky kanálů"
-
-#~ msgid "Configure Feeds"
-#~ msgstr "Nastavit kanály"
-
-#~ msgid "Configure Plugins"
-#~ msgstr "Nastavit zásuvné moduly"
-
-#~ msgid "(c), 2016-2021 Laurent Montel"
-#~ msgstr "(c), 2016-2021 Laurent Montel"
-
-#~ msgid "(c), 2021 Laurent Montel"
-#~ msgstr "(c), 2021 Laurent Montel"
-
-#~ msgid "Configure User Feedback"
-#~ msgstr "Nastavení uživatelské zpětné vazby"
-
-#~ msgid "(c), 2020-2021 Laurent Montel"
-#~ msgstr "(c), 2020-2021 Laurent Montel"
