@@ -453,7 +453,7 @@ msgstr "Seguretat"
 #: configuration/ui/settings_browser.ui:146
 #, kde-format
 msgid "Verify URLs using Google's Safe Browsing API"
-msgstr "Verifica els URL utilitzant la API de navegació segura de Google"
+msgstr "Verifica els URL utilitzant l'API de navegació segura de Google"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_EnableJavascript)
 #. i18n: ectx: label, entry, group (Browser)
