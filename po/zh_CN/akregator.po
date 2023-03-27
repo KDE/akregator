@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-03-17 00:58+0000\n"
-"PO-Revision-Date: 2023-03-11 04:51\n"
+"PO-Revision-Date: 2023-03-26 02:18\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
@@ -2451,36 +2451,3 @@ msgstr "已读"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "重要"
-
-#~ msgid "Advanced Feed Reader Settings"
-#~ msgstr "高级订阅阅读器设置"
-
-#~ msgid "(c), 2004 - 2008 Frank Osterfeld"
-#~ msgstr "(c), 2004 - 2008 Frank Osterfeld"
-
-#~ msgid "Configure Feed Reader Appearance"
-#~ msgstr "配置订阅阅读器外观"
-
-#~ msgid "Configure Feed Reader Archive"
-#~ msgstr "配置订阅阅读器存档"
-
-#~ msgid "Configure Feed Reader Browser"
-#~ msgstr "配置订阅阅读器浏览器"
-
-#~ msgid "Configure Feeds"
-#~ msgstr "配置订阅"
-
-#~ msgid "Configure Plugins"
-#~ msgstr "配置插件"
-
-#~ msgid "(c), 2016-2021 Laurent Montel"
-#~ msgstr "(c), 2016-2021 Laurent Montel"
-
-#~ msgid "(c), 2021 Laurent Montel"
-#~ msgstr "(c), 2021 Laurent Montel"
-
-#~ msgid "Configure User Feedback"
-#~ msgstr "配置用户反馈"
-
-#~ msgid "(c), 2020-2021 Laurent Montel"
-#~ msgstr "(c), 2020-2021 Laurent Montel"
