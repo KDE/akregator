@@ -48,7 +48,11 @@ class Part : public KParts::Part
     Q_OBJECT
 public:
     /** Default constructor.*/
-    Part(QWidget *parentWidget, QObject *parent, const QVariantList &);
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+    explicit Part(QWidget *parentWidget, QObject *parent, const QVariantList &);
+#else
+    explicit Part(QWidget *parentWidget, QObject *parent, const KPluginMetaData &data, const QVariantList &);
+#endif
 
     /** Destructor. */
     ~Part() override;

@@ -130,8 +130,13 @@ K_PLUGIN_FACTORY(AkregatorFactory, registerPlugin<Part>();)
 
 static Part *mySelf = nullptr;
 
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
 Part::Part(QWidget *parentWidget, QObject *parent, const QVariantList &)
     : KParts::Part(parent)
+#else
+Part::Part(QWidget *parentWidget, QObject *parent, const KPluginMetaData &data, const QVariantList &)
+    : KParts::Part(parent, data)
+#endif
 {
     mySelf = this;
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
