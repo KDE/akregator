@@ -122,9 +122,14 @@ ArticleViewerWebEngine::~ArticleViewerWebEngine() = default;
 
 void ArticleViewerWebEngine::execPrintPreviewPage(QPrinter *printer, int timeout)
 {
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     if (!mPageEngine->execPrintPreviewPage(printer, timeout)) {
         qCWarning(AKREGATOR_LOG) << "Impossible to print page";
     }
+#else
+    // TODO fix QT6
+    // printPreviewPage(printer);
+#endif
 }
 
 void ArticleViewerWebEngine::updateSecurity()
