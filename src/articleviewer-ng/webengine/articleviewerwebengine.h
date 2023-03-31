@@ -66,6 +66,8 @@ public:
 
     virtual void updateSecurity();
 
+    void printPreviewPage(QPrinter *printer);
+
 protected:
     QUrl mCurrentUrl;
     KActionCollection *const mActionCollection;
