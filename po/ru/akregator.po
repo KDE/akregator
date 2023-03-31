@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-17 00:58+0000\n"
+"POT-Creation-Date: 2023-03-31 00:47+0000\n"
 "PO-Revision-Date: 2022-07-04 15:56+0300\n"
 "Last-Translator: Olesya Gerasimenko <translation-team@basealt.ru>\n"
 "Language-Team: Basealt Translation Team\n"
@@ -936,8 +936,8 @@ msgid "Resets the quick filter when changing feeds."
 msgstr "Сбросить фильтр при переходе на другую ленту."
 
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
-#: src/akregator_part.cpp:145
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:144
+#: src/akregator_part.cpp:150
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:149
 #: src/trayicon.cpp:41 src/trayicon.cpp:42 src/trayicon.cpp:54
 #, kde-format
 msgid "Akregator"
@@ -1551,7 +1551,7 @@ msgstr "Испанские ленты новостей"
 msgid "Planet KDE España"
 msgstr "Планета KDE Испания"
 
-#: src/akregator_part.cpp:439
+#: src/akregator_part.cpp:444
 #, kde-format
 msgid ""
 "Access denied: Cannot save feed list to <b>%1</b>. Please check your "
@@ -1560,22 +1560,22 @@ msgstr ""
 "Доступ запрещён: не удаётся сохранить список лент новостей <b>%1</b>. "
 "Проверьте права доступа."
 
-#: src/akregator_part.cpp:440 src/akregator_part.cpp:491
+#: src/akregator_part.cpp:445 src/akregator_part.cpp:496
 #, kde-format
 msgid "Write Error"
 msgstr "Ошибка записи"
 
-#: src/akregator_part.cpp:476
+#: src/akregator_part.cpp:481
 #, kde-format
 msgid "Could not import the file %1 (no valid OPML)"
 msgstr "Невозможно импортировать файл %1 (неверный формат OPML)"
 
-#: src/akregator_part.cpp:476 src/command/loadfeedlistcommand.cpp:71
+#: src/akregator_part.cpp:481 src/command/loadfeedlistcommand.cpp:71
 #, kde-format
 msgid "OPML Parsing Error"
 msgstr "Ошибка обработки OPML"
 
-#: src/akregator_part.cpp:480
+#: src/akregator_part.cpp:485
 #, kde-format
 msgid ""
 "The file %1 could not be read, check if it exists or if it is readable for "
@@ -1584,23 +1584,23 @@ msgstr ""
 "Невозможно открыть файл %1. Проверьте, существует ли этот файл и доступен ли "
 "он для чтения."
 
-#: src/akregator_part.cpp:481 src/command/loadfeedlistcommand.cpp:142
+#: src/akregator_part.cpp:486 src/command/loadfeedlistcommand.cpp:142
 #, kde-format
 msgid "Read Error"
 msgstr "Ошибка чтения"
 
-#: src/akregator_part.cpp:491
+#: src/akregator_part.cpp:496
 #, kde-format
 msgid "Access denied: cannot write to file %1. Please check your permissions."
 msgstr ""
 "Доступ запрещён: невозможно сохранить в файл %1. Проверьте права доступа."
 
-#: src/akregator_part.cpp:506 src/akregator_part.cpp:515
+#: src/akregator_part.cpp:511 src/akregator_part.cpp:520
 #, kde-format
 msgid "OPML Outlines (%1);;All Files (*)"
 msgstr "Ленты OPML (%1);;Все файлы (*)"
 
-#: src/akregator_part.cpp:649
+#: src/akregator_part.cpp:654
 #, kde-format
 msgid "Imported Folder"
 msgstr "Импортировано"
@@ -1671,59 +1671,59 @@ msgctxt "Articlelist's column header"
 msgid "Content"
 msgstr "Содержимое"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:145
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:150
 #, kde-format
 msgid "Akregator is a KDE news feed reader."
 msgstr "Akregator — это программа чтения лент новостей от KDE."
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:186
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:191
 #, kde-format
 msgctxt "@title:window"
 msgid "Save As"
 msgstr "Сохранение в указанном формате"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:375
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:380
 #, kde-format
 msgid "Disable"
 msgstr "Отключить"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:376
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:381
 #, kde-format
 msgid "Keep Enabled"
 msgstr "Оставить"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:378
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:383
 #, kde-format
 msgid "Are you sure you want to disable this introduction page?"
 msgstr "Отключить показ заставки?"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:379
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:384
 #, kde-format
 msgid "Disable Introduction Page"
 msgstr "Показ заставки"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:414
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:419
 #, kde-format
 msgid "This web site is a malware, do you want to continue to show it?"
 msgstr "Этот веб-сайт вредоносный, продолжить?"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:415
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:420
 #, kde-format
 msgid "Malware"
 msgstr "Вредоносный сайт"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:427
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:432
 #, kde-format
 msgid "The network is broken."
 msgstr "Нет подключения к сети."
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:427
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:430
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:432
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:435
 #, kde-format
 msgid "Check Phishing Url"
 msgstr "Проверка фишинговых ссылок"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:430
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:435
 #, kde-format
 msgid "The url %1 is not valid."
 msgstr "Некорректная ссылка %1."

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdepim\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-17 00:58+0000\n"
+"POT-Creation-Date: 2023-03-31 00:47+0000\n"
 "PO-Revision-Date: 2022-05-06 00:29+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -902,8 +902,8 @@ msgid "Resets the quick filter when changing feeds."
 msgstr "피드를 바꿀 때 빠른 필터를 초기화합니다."
 
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
-#: src/akregator_part.cpp:145
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:144
+#: src/akregator_part.cpp:150
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:149
 #: src/trayicon.cpp:41 src/trayicon.cpp:42 src/trayicon.cpp:54
 #, kde-format
 msgid "Akregator"
@@ -1517,7 +1517,7 @@ msgstr "스페인어 피드"
 msgid "Planet KDE España"
 msgstr "플래닛 KDE España"
 
-#: src/akregator_part.cpp:439
+#: src/akregator_part.cpp:444
 #, kde-format
 msgid ""
 "Access denied: Cannot save feed list to <b>%1</b>. Please check your "
@@ -1525,22 +1525,22 @@ msgid ""
 msgstr ""
 "접근 거부됨: 피드 목록을 <b>%1</b>에 저장할 수 없습니다. 권한을 확인하십시오."
 
-#: src/akregator_part.cpp:440 src/akregator_part.cpp:491
+#: src/akregator_part.cpp:445 src/akregator_part.cpp:496
 #, kde-format
 msgid "Write Error"
 msgstr "쓰기 오류"
 
-#: src/akregator_part.cpp:476
+#: src/akregator_part.cpp:481
 #, kde-format
 msgid "Could not import the file %1 (no valid OPML)"
 msgstr "%1 파일에서 가져올 수 없음(잘못된 OPML)"
 
-#: src/akregator_part.cpp:476 src/command/loadfeedlistcommand.cpp:71
+#: src/akregator_part.cpp:481 src/command/loadfeedlistcommand.cpp:71
 #, kde-format
 msgid "OPML Parsing Error"
 msgstr "OPML 해석 오류"
 
-#: src/akregator_part.cpp:480
+#: src/akregator_part.cpp:485
 #, kde-format
 msgid ""
 "The file %1 could not be read, check if it exists or if it is readable for "
@@ -1549,22 +1549,22 @@ msgstr ""
 "%1 파일을 읽을 수 없습니다. 파일이 존재하는지, 그리고 읽기 권한이 있는지 확인"
 "하십시오."
 
-#: src/akregator_part.cpp:481 src/command/loadfeedlistcommand.cpp:142
+#: src/akregator_part.cpp:486 src/command/loadfeedlistcommand.cpp:142
 #, kde-format
 msgid "Read Error"
 msgstr "읽기 오류"
 
-#: src/akregator_part.cpp:491
+#: src/akregator_part.cpp:496
 #, kde-format
 msgid "Access denied: cannot write to file %1. Please check your permissions."
 msgstr "접근 거부됨: %1 파일에 쓸 수 없습니다. 권한을 확인하십시오."
 
-#: src/akregator_part.cpp:506 src/akregator_part.cpp:515
+#: src/akregator_part.cpp:511 src/akregator_part.cpp:520
 #, kde-format
 msgid "OPML Outlines (%1);;All Files (*)"
 msgstr "OPML 개요 (%1);;모든 파일 (*)"
 
-#: src/akregator_part.cpp:649
+#: src/akregator_part.cpp:654
 #, kde-format
 msgid "Imported Folder"
 msgstr "가져온 폴더"
@@ -1633,59 +1633,59 @@ msgctxt "Articlelist's column header"
 msgid "Content"
 msgstr "내용"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:145
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:150
 #, kde-format
 msgid "Akregator is a KDE news feed reader."
 msgstr "Akregator는 KDE 뉴스 피드 리더입니다."
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:186
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:191
 #, kde-format
 msgctxt "@title:window"
 msgid "Save As"
 msgstr "다른 이름으로 저장"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:375
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:380
 #, kde-format
 msgid "Disable"
 msgstr "보지 않기"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:376
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:381
 #, kde-format
 msgid "Keep Enabled"
 msgstr "계속 보기"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:378
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:383
 #, kde-format
 msgid "Are you sure you want to disable this introduction page?"
 msgstr "이 소개 페이지를 보지 않으시겠습니까?"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:379
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:384
 #, kde-format
 msgid "Disable Introduction Page"
 msgstr "소개 페이지 끄기"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:414
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:419
 #, kde-format
 msgid "This web site is a malware, do you want to continue to show it?"
 msgstr "이 웹사이트에 멀웨어가 있습니다. 그래도 여시겠습니까?"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:415
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:420
 #, kde-format
 msgid "Malware"
 msgstr "멀웨어"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:427
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:432
 #, kde-format
 msgid "The network is broken."
 msgstr "네트워크를 사용할 수 없습니다."
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:427
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:430
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:432
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:435
 #, kde-format
 msgid "Check Phishing Url"
 msgstr "피싱 URL 확인"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:430
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:435
 #, kde-format
 msgid "The url %1 is not valid."
 msgstr "%1 URL이 올바르지 않습니다."

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-17 00:58+0000\n"
+"POT-Creation-Date: 2023-03-31 00:47+0000\n"
 "PO-Revision-Date: 2022-12-29 16:56+0200\n"
 "Last-Translator: Stelios <sstavra@gmail.com>\n"
 "Language-Team: Greek <kde-i18n-el@kde.org>\n"
@@ -926,8 +926,8 @@ msgid "Resets the quick filter when changing feeds."
 msgstr "Μηδενισμός του γρήγορου φίλτρου όταν γίνεται αλλαγή ροής."
 
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
-#: src/akregator_part.cpp:145
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:144
+#: src/akregator_part.cpp:150
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:149
 #: src/trayicon.cpp:41 src/trayicon.cpp:42 src/trayicon.cpp:54
 #, kde-format
 msgid "Akregator"
@@ -1541,7 +1541,7 @@ msgstr "Spanish feeds"
 msgid "Planet KDE España"
 msgstr "Planet KDE España"
 
-#: src/akregator_part.cpp:439
+#: src/akregator_part.cpp:444
 #, kde-format
 msgid ""
 "Access denied: Cannot save feed list to <b>%1</b>. Please check your "
@@ -1550,22 +1550,22 @@ msgstr ""
 "Άρνηση πρόσβασης: αδυναμία αποθήκευσης λίστας ροής <b>%1</b>.Παρακαλώ "
 "ελέγξτε τα δικαιώματά σας."
 
-#: src/akregator_part.cpp:440 src/akregator_part.cpp:491
+#: src/akregator_part.cpp:445 src/akregator_part.cpp:496
 #, kde-format
 msgid "Write Error"
 msgstr "Σφάλμα εγγραφής"
 
-#: src/akregator_part.cpp:476
+#: src/akregator_part.cpp:481
 #, kde-format
 msgid "Could not import the file %1 (no valid OPML)"
 msgstr "Αδυναμία εισαγωγής του αρχείου %1 (μη έγκυρο OPML)"
 
-#: src/akregator_part.cpp:476 src/command/loadfeedlistcommand.cpp:71
+#: src/akregator_part.cpp:481 src/command/loadfeedlistcommand.cpp:71
 #, kde-format
 msgid "OPML Parsing Error"
 msgstr "Σφάλμα ανάλυσης OPML"
 
-#: src/akregator_part.cpp:480
+#: src/akregator_part.cpp:485
 #, kde-format
 msgid ""
 "The file %1 could not be read, check if it exists or if it is readable for "
@@ -1574,24 +1574,24 @@ msgstr ""
 "Το αρχείο %1 δεν μπορεί να αναγνωσθεί, ελέγξτε αν υπάρχει και αν είναι "
 "αναγνώσιμο από τον τρέχοντα χρήστη."
 
-#: src/akregator_part.cpp:481 src/command/loadfeedlistcommand.cpp:142
+#: src/akregator_part.cpp:486 src/command/loadfeedlistcommand.cpp:142
 #, kde-format
 msgid "Read Error"
 msgstr "Σφάλμα ανάγνωσης"
 
-#: src/akregator_part.cpp:491
+#: src/akregator_part.cpp:496
 #, kde-format
 msgid "Access denied: cannot write to file %1. Please check your permissions."
 msgstr ""
 "Άρνηση πρόσβασης: αδυναμία εγγραφής στο αρχείο %1. Παρακαλώ ελέγξτε τα "
 "δικαιώματά σας."
 
-#: src/akregator_part.cpp:506 src/akregator_part.cpp:515
+#: src/akregator_part.cpp:511 src/akregator_part.cpp:520
 #, kde-format
 msgid "OPML Outlines (%1);;All Files (*)"
 msgstr "Περιγραφές OPML (%1);;Όλα τα αρχεία (*)"
 
-#: src/akregator_part.cpp:649
+#: src/akregator_part.cpp:654
 #, kde-format
 msgid "Imported Folder"
 msgstr "Εισηγμένος φάκελος"
@@ -1663,59 +1663,59 @@ msgctxt "Articlelist's column header"
 msgid "Content"
 msgstr "Περιεχόμενο"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:145
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:150
 #, kde-format
 msgid "Akregator is a KDE news feed reader."
 msgstr "Το Akregator είναι ένας αναγνώστης ροών ειδήσεων του KDE."
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:186
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:191
 #, kde-format
 msgctxt "@title:window"
 msgid "Save As"
 msgstr "Αποθήκευση ως"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:375
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:380
 #, kde-format
 msgid "Disable"
 msgstr "Απενεργοποίηση"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:376
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:381
 #, kde-format
 msgid "Keep Enabled"
 msgstr "Διατήρηση ενεργοποιημένο"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:378
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:383
 #, kde-format
 msgid "Are you sure you want to disable this introduction page?"
 msgstr "Επιθυμείτε σίγουρα την απενεργοποίηση της εισαγωγικής σελίδας;"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:379
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:384
 #, kde-format
 msgid "Disable Introduction Page"
 msgstr "Απενεργοποίηση εισαγωγικής σελίδας"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:414
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:419
 #, kde-format
 msgid "This web site is a malware, do you want to continue to show it?"
 msgstr "Αυτός ο ιστότοπος είναι κακόβουλος, θέλετε να συνεχίσετε;"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:415
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:420
 #, kde-format
 msgid "Malware"
 msgstr "Κακόβουλο"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:427
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:432
 #, kde-format
 msgid "The network is broken."
 msgstr "Δεν υπάρχει δίκτυο."
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:427
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:430
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:432
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:435
 #, kde-format
 msgid "Check Phishing Url"
 msgstr "Έλεγχος για Url-δόλωμα"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:430
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:435
 #, kde-format
 msgid "The url %1 is not valid."
 msgstr "Το url %1 δεν είναι έγκυρο."
