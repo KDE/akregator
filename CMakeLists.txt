@@ -113,7 +113,7 @@ set_package_properties(KUserFeedback${KUSERFEEDBACK_SUFFIX} PROPERTIES DESCRIPTI
 include_directories(${akregator_SOURCE_DIR} ${akregator_BINARY_DIR})
 add_definitions(-DTRANSLATION_DOMAIN=\"akregator\")
 ecm_set_disabled_deprecation_versions(QT 5.15.2
-     KF 5.104.0
+     KF 5.105.0
 )
 if (TARGET KUserFeedbackWidgets${KUSERFEEDBACK_SUFFIX})
     add_definitions(-DWITH_KUSERFEEDBACK)
