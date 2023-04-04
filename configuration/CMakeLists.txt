@@ -19,7 +19,7 @@ target_link_libraries(akregator_config_general
     KF6::I18n
     )
 
-install(TARGETS akregator_config_general DESTINATION ${KDE_INSTALL_PLUGINDIR}/pim${QT_MAJOR_VERSION}/kcms/akregator)
+install(TARGETS akregator_config_general DESTINATION ${KDE_INSTALL_PLUGINDIR}/pim6/kcms/akregator)
 
 ########### next target ###############
 
@@ -35,7 +35,7 @@ target_link_libraries(akregator_config_appearance
     KF6::I18n
     )
 
-install(TARGETS akregator_config_appearance DESTINATION ${KDE_INSTALL_PLUGINDIR}/pim${QT_MAJOR_VERSION}/kcms/akregator)
+install(TARGETS akregator_config_appearance DESTINATION ${KDE_INSTALL_PLUGINDIR}/pim6/kcms/akregator)
 
 ########### next target ###############
 
@@ -50,7 +50,7 @@ target_link_libraries(akregator_config_archive
     KF6::TextWidgets
     KF6::I18n
     )
-install(TARGETS akregator_config_archive DESTINATION ${KDE_INSTALL_PLUGINDIR}/pim${QT_MAJOR_VERSION}/kcms/akregator)
+install(TARGETS akregator_config_archive DESTINATION ${KDE_INSTALL_PLUGINDIR}/pim6/kcms/akregator)
 
 ########### next target ###############
 
@@ -66,7 +66,7 @@ target_link_libraries(akregator_config_browser
 
     )
 
-install(TARGETS akregator_config_browser DESTINATION ${KDE_INSTALL_PLUGINDIR}/pim${QT_MAJOR_VERSION}/kcms/akregator)
+install(TARGETS akregator_config_browser DESTINATION ${KDE_INSTALL_PLUGINDIR}/pim6/kcms/akregator)
 
 ########### next target ###############
 
@@ -89,7 +89,7 @@ target_link_libraries(akregator_config_advanced
 if (COMPILE_WITH_UNITY_CMAKE_SUPPORT)
     set_target_properties(akregator_config_advanced PROPERTIES UNITY_BUILD ON)
 endif()
-install(TARGETS akregator_config_advanced DESTINATION ${KDE_INSTALL_PLUGINDIR}/pim${QT_MAJOR_VERSION}/kcms/akregator)
+install(TARGETS akregator_config_advanced DESTINATION ${KDE_INSTALL_PLUGINDIR}/pim6/kcms/akregator)
 
 
 ########### next target ###############
@@ -119,7 +119,7 @@ if (COMPILE_WITH_UNITY_CMAKE_SUPPORT)
     set_target_properties(akregator_config_plugins PROPERTIES UNITY_BUILD ON)
 endif()
 
-install(TARGETS akregator_config_plugins DESTINATION ${KDE_INSTALL_PLUGINDIR}/pim${QT_MAJOR_VERSION}/kcms/akregator)
+install(TARGETS akregator_config_plugins DESTINATION ${KDE_INSTALL_PLUGINDIR}/pim6/kcms/akregator)
 
 
 ########### next target ###############
@@ -136,7 +136,7 @@ if (TARGET KUserFeedbackWidgetsQt6)
         KUserFeedbackWidgetsQt6
         )
 
-    install(TARGETS akregator_config_userfeedback DESTINATION ${KDE_INSTALL_PLUGINDIR}/pim${QT_MAJOR_VERSION}/kcms/akregator)
+    install(TARGETS akregator_config_userfeedback DESTINATION ${KDE_INSTALL_PLUGINDIR}/pim6/kcms/akregator)
 endif()
 
 
@@ -160,4 +160,4 @@ if (COMPILE_WITH_UNITY_CMAKE_SUPPORT)
     set_target_properties(akregator_config_security PROPERTIES UNITY_BUILD ON)
 endif()
 
-install(TARGETS akregator_config_security DESTINATION ${KDE_INSTALL_PLUGINDIR}/pim${QT_MAJOR_VERSION}/kcms/akregator)
+install(TARGETS akregator_config_security DESTINATION ${KDE_INSTALL_PLUGINDIR}/pim6/kcms/akregator)
