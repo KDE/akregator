@@ -31,15 +31,15 @@ ecm_add_app_icon(akregator_SRCS ICONS ${ICONS_AKREGATOR_SRCS})
 add_executable(akregator ${akregator_SRCS})
 
 target_link_libraries(akregator
-    KF${KF_MAJOR_VERSION}::I18n
-    KF${KF_MAJOR_VERSION}::Crash
-    KF${KF_MAJOR_VERSION}::Notifications
-    KPim${KF_MAJOR_VERSION}::KontactInterface
-    KPim${KF_MAJOR_VERSION}::Libkdepim
+    KF6::I18n
+    KF6::Crash
+    KF6::Notifications
+    KPim6::KontactInterface
+    KPim6::Libkdepim
     akregatorprivate
     akregatorinterfaces
-    KPim${KF_MAJOR_VERSION}::PimCommon
-    KF${KF_MAJOR_VERSION}::Syndication
+    KPim6::PimCommon
+    KF6::Syndication
     )
 
 install(TARGETS akregator ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
@@ -175,28 +175,28 @@ endif()
 
 target_link_libraries(akregatorprivate
     PRIVATE
-    KF${KF_MAJOR_VERSION}::I18n
-    KF${KF_MAJOR_VERSION}::Parts
-    KF${KF_MAJOR_VERSION}::Notifications
-    KPim${KF_MAJOR_VERSION}::Libkdepim
-    KF${KF_MAJOR_VERSION}::Syndication
-    KF${KF_MAJOR_VERSION}::Codecs
-    KF${KF_MAJOR_VERSION}::JobWidgets
-    KF${KF_MAJOR_VERSION}::KIOWidgets
+    KF6::I18n
+    KF6::Parts
+    KF6::Notifications
+    KPim6::Libkdepim
+    KF6::Syndication
+    KF6::Codecs
+    KF6::JobWidgets
+    KF6::KIOWidgets
     akregatorinterfaces
-    KPim${KF_MAJOR_VERSION}::PimCommon
-    KPim${KF_MAJOR_VERSION}::PimTextEdit
-    KPim${KF_MAJOR_VERSION}::GrantleeTheme
-    KF${KF_MAJOR_VERSION}::KIOGui
-    KPim${KF_MAJOR_VERSION}::MessageViewer
+    KPim6::PimCommon
+    KPim6::PimTextEdit
+    KPim6::GrantleeTheme
+    KF6::KIOGui
+    KPim6::MessageViewer
     Qt::PrintSupport
-    KPim${KF_MAJOR_VERSION}::WebEngineViewer
+    KPim6::WebEngineViewer
     ${akregator_userfeedback_LIB}
     )
-if (TARGET KF${KF_MAJOR_VERSION}::TextEditTextToSpeech)
+if (TARGET KF6::TextEditTextToSpeech)
     target_link_libraries(akregatorprivate
         PRIVATE
-        KF${KF_MAJOR_VERSION}::TextEditTextToSpeech
+        KF6::TextEditTextToSpeech
     )
 endif()
 
@@ -297,23 +297,23 @@ generate_export_header(akregatorpart BASE_NAME akregatorpart)
 target_link_libraries(akregatorpart
     akregatorinterfaces
     akregatorprivate
-    KF${KF_MAJOR_VERSION}::I18n
-    KF${KF_MAJOR_VERSION}::KCMUtils
-    KF${KF_MAJOR_VERSION}::NotifyConfig
-    KPim${KF_MAJOR_VERSION}::Libkdepim
-    KF${KF_MAJOR_VERSION}::Syndication
-    KPim${KF_MAJOR_VERSION}::PimCommon
-    KPim${KF_MAJOR_VERSION}::PimTextEdit
-    KPim${KF_MAJOR_VERSION}::GrantleeTheme
-    KPim${KF_MAJOR_VERSION}::MessageViewer
-    KF${KF_MAJOR_VERSION}::Parts
-    KF${KF_MAJOR_VERSION}::Notifications
-    KF${KF_MAJOR_VERSION}::TextWidgets
+    KF6::I18n
+    KF6::KCMUtils
+    KF6::NotifyConfig
+    KPim6::Libkdepim
+    KF6::Syndication
+    KPim6::PimCommon
+    KPim6::PimTextEdit
+    KPim6::GrantleeTheme
+    KPim6::MessageViewer
+    KF6::Parts
+    KF6::Notifications
+    KF6::TextWidgets
     Qt::WebEngineWidgets
-    KPim${KF_MAJOR_VERSION}::WebEngineViewer
-    KF${KF_MAJOR_VERSION}::KIOGui
-    KF${KF_MAJOR_VERSION}::Completion
-    KF${KF_MAJOR_VERSION}::JobWidgets
+    KPim6::WebEngineViewer
+    KF6::KIOGui
+    KF6::Completion
+    KF6::JobWidgets
     )
 if (COMPILE_WITH_UNITY_CMAKE_SUPPORT)
     set_target_properties(akregatorpart PROPERTIES UNITY_BUILD ON)

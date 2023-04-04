@@ -14,9 +14,9 @@ ki18n_wrap_ui(akregator_config_general ui/settings_general.ui)
 
 target_link_libraries(akregator_config_general
     akregatorinterfaces
-    KF${KF_MAJOR_VERSION}::TextWidgets
-    KF${KF_MAJOR_VERSION}::KCMUtils
-    KF${KF_MAJOR_VERSION}::I18n
+    KF6::TextWidgets
+    KF6::KCMUtils
+    KF6::I18n
     )
 
 install(TARGETS akregator_config_general DESTINATION ${KDE_INSTALL_PLUGINDIR}/pim${QT_MAJOR_VERSION}/kcms/akregator)
@@ -30,9 +30,9 @@ ki18n_wrap_ui(akregator_config_appearance ui/settings_appearance.ui)
 
 target_link_libraries(akregator_config_appearance
     akregatorinterfaces
-    KF${KF_MAJOR_VERSION}::TextWidgets
-    KF${KF_MAJOR_VERSION}::KCMUtils
-    KF${KF_MAJOR_VERSION}::I18n
+    KF6::TextWidgets
+    KF6::KCMUtils
+    KF6::I18n
     )
 
 install(TARGETS akregator_config_appearance DESTINATION ${KDE_INSTALL_PLUGINDIR}/pim${QT_MAJOR_VERSION}/kcms/akregator)
@@ -45,10 +45,10 @@ target_sources(akregator_config_archive PRIVATE akregator_config_archive.cpp akr
 ki18n_wrap_ui(akregator_config_archive ui/settings_archive.ui)
 
 target_link_libraries(akregator_config_archive
-    KF${KF_MAJOR_VERSION}::KCMUtils
+    KF6::KCMUtils
     akregatorinterfaces
-    KF${KF_MAJOR_VERSION}::TextWidgets
-    KF${KF_MAJOR_VERSION}::I18n
+    KF6::TextWidgets
+    KF6::I18n
     )
 install(TARGETS akregator_config_archive DESTINATION ${KDE_INSTALL_PLUGINDIR}/pim${QT_MAJOR_VERSION}/kcms/akregator)
 
@@ -61,8 +61,8 @@ ki18n_wrap_ui(akregator_config_browser ui/settings_browser.ui)
 
 target_link_libraries(akregator_config_browser
     akregatorinterfaces
-    KF${KF_MAJOR_VERSION}::KCMUtils
-    KF${KF_MAJOR_VERSION}::I18n
+    KF6::KCMUtils
+    KF6::I18n
 
     )
 
@@ -82,9 +82,9 @@ ki18n_wrap_ui(akregator_config_advanced ui/settings_advancedbase.ui)
 
 target_link_libraries(akregator_config_advanced
     akregatorinterfaces
-    KF${KF_MAJOR_VERSION}::TextWidgets
-    KF${KF_MAJOR_VERSION}::KCMUtils
-    KF${KF_MAJOR_VERSION}::I18n
+    KF6::TextWidgets
+    KF6::KCMUtils
+    KF6::I18n
     )
 if (COMPILE_WITH_UNITY_CMAKE_SUPPORT)
     set_target_properties(akregator_config_advanced PROPERTIES UNITY_BUILD ON)
@@ -111,9 +111,9 @@ ecm_qt_declare_logging_category(akregator_config_plugins HEADER kcm_config_plugi
 
 target_link_libraries(akregator_config_plugins
     akregatorinterfaces
-    KF${KF_MAJOR_VERSION}::KCMUtils
-    KF${KF_MAJOR_VERSION}::I18n
-    KPim${KF_MAJOR_VERSION}::WebEngineViewer
+    KF6::KCMUtils
+    KF6::I18n
+    KPim6::WebEngineViewer
     )
 if (COMPILE_WITH_UNITY_CMAKE_SUPPORT)
     set_target_properties(akregator_config_plugins PROPERTIES UNITY_BUILD ON)
@@ -130,9 +130,9 @@ if (TARGET KUserFeedbackWidgets${KUSERFEEDBACK_SUFFIX})
 
     target_link_libraries(akregator_config_userfeedback
         akregatorinterfaces
-        KF${KF_MAJOR_VERSION}::TextWidgets
-        KF${KF_MAJOR_VERSION}::KCMUtils
-        KF${KF_MAJOR_VERSION}::I18n
+        KF6::TextWidgets
+        KF6::KCMUtils
+        KF6::I18n
         KUserFeedbackWidgets${KUSERFEEDBACK_SUFFIX}
         )
 
@@ -152,9 +152,9 @@ ki18n_wrap_ui(akregator_config_security ui/settings_security.ui)
 
 target_link_libraries(akregator_config_security
     akregatorinterfaces
-    KF${KF_MAJOR_VERSION}::KCMUtils
-    KF${KF_MAJOR_VERSION}::I18n
-    KPim${KF_MAJOR_VERSION}::WebEngineViewer
+    KF6::KCMUtils
+    KF6::I18n
+    KPim6::WebEngineViewer
     )
 if (COMPILE_WITH_UNITY_CMAKE_SUPPORT)
     set_target_properties(akregator_config_security PROPERTIES UNITY_BUILD ON)
