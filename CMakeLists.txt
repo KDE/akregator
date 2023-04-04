@@ -89,10 +89,8 @@ find_package(KPim6AkonadiMime ${AKONADI_MIMELIB_VERSION} CONFIG REQUIRED)
 find_package(KPim6PimCommonAkonadi ${PIMCOMMON_LIB_VERSION} CONFIG REQUIRED)
 
 
-set(KUSERFEEDBACK_SUFFIX "Qt6")
-find_package(KUserFeedback${KUSERFEEDBACK_SUFFIX} 1.2.1 CONFIG)
-add_definitions(-DUSE_KUSERFEEDBACK_QT6)
-set_package_properties(KUserFeedback${KUSERFEEDBACK_SUFFIX} PROPERTIES DESCRIPTION "User Feedback lib" TYPE OPTIONAL PURPOSE "Allow to send Telemetry Information (optional). It can be disable in apps.")
+find_package(KUserFeedbackQt6 1.2.1 CONFIG)
+set_package_properties(KUserFeedbackQt6 PROPERTIES DESCRIPTION "User Feedback lib" TYPE OPTIONAL PURPOSE "Allow to send Telemetry Information (optional). It can be disable in apps.")
 
 
 include_directories(${akregator_SOURCE_DIR} ${akregator_BINARY_DIR})
@@ -100,7 +98,7 @@ add_definitions(-DTRANSLATION_DOMAIN=\"akregator\")
 ecm_set_disabled_deprecation_versions(QT 5.15.2
      KF 5.105.0
 )
-if (TARGET KUserFeedbackWidgets${KUSERFEEDBACK_SUFFIX})
+if (TARGET KUserFeedbackWidgetsQt6)
     add_definitions(-DWITH_KUSERFEEDBACK)
 endif()
 

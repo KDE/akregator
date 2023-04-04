@@ -166,8 +166,8 @@ if (COMPILE_WITH_UNITY_CMAKE_SUPPORT)
 endif()
 generate_export_header(akregatorprivate BASE_NAME akregator)
 
-if (TARGET KUserFeedbackWidgets${KUSERFEEDBACK_SUFFIX})
-    target_link_libraries(akregatorprivate PRIVATE KUserFeedbackWidgets${KUSERFEEDBACK_SUFFIX})
+if (TARGET KUserFeedbackWidgetsQt6)
+    target_link_libraries(akregatorprivate PRIVATE KUserFeedbackWidgetsQt6)
 endif()
 
 
