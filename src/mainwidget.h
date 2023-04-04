@@ -112,7 +112,7 @@ Q_SIGNALS:
     void signalUnreadCountChanged(int);
 
     /** emitted when the articles selected changed */
-    void signalArticlesSelected(const QVector<Akregator::Article> &);
+    void signalArticlesSelected(const QList<Akregator::Article> &);
 
 public Q_SLOTS:
 

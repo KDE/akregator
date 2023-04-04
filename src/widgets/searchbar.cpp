@@ -129,8 +129,8 @@ void SearchBar::slotStopActiveSearch()
 
 void SearchBar::slotActivateSearch()
 {
-    QVector<Criterion> textCriteria;
-    QVector<Criterion> statusCriteria;
+    QList<Criterion> textCriteria;
+    QList<Criterion> statusCriteria;
 
     if (!m_searchText.isEmpty()) {
         const QString searchTextDiacritic(TextUtil::normalize(m_searchText));

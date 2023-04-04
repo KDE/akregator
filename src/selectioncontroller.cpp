@@ -38,9 +38,9 @@ static Akregator::Article articleForIndex(const QModelIndex &index, FeedList *fe
     return feedList->findArticle(feedId, guid);
 }
 
-static QVector<Akregator::Article> articlesForIndexes(const QModelIndexList &indexes, FeedList *feedList)
+static QList<Akregator::Article> articlesForIndexes(const QModelIndexList &indexes, FeedList *feedList)
 {
-    QVector<Akregator::Article> articles;
+    QList<Akregator::Article> articles;
     for (const QModelIndex &i : indexes) {
         const Article a = articleForIndex(i, feedList);
         if (a.isNull()) {
@@ -145,7 +145,7 @@ QModelIndex SelectionController::currentArticleIndex() const
     return m_articleLister->articleSelectionModel()->currentIndex();
 }
 
-QVector<Akregator::Article> SelectionController::selectedArticles() const
+QList<Akregator::Article> SelectionController::selectedArticles() const
 {
     if (!m_articleLister || !m_articleLister->articleSelectionModel()) {
         return {};

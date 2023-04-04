@@ -14,9 +14,9 @@
 
 #include <Syndication/Tools>
 
+#include <QList>
 #include <QMimeData>
 #include <QString>
-#include <QVector>
 
 #include <KLocalizedString>
 #include <QUrl>
@@ -40,7 +40,7 @@ static QString stripHtml(const QString &html)
     return str.simplified();
 }
 
-ArticleModel::ArticleModel(const QVector<Article> &articles, QObject *parent)
+ArticleModel::ArticleModel(const QList<Article> &articles, QObject *parent)
     : QAbstractTableModel(parent)
     , m_articles(articles)
 {
@@ -142,7 +142,7 @@ void ArticleModel::clear()
     endResetModel();
 }
 
-void ArticleModel::articlesAdded(Akregator::TreeNode *, const QVector<Article> &l)
+void ArticleModel::articlesAdded(Akregator::TreeNode *, const QList<Article> &l)
 {
     if (l.isEmpty()) { // assert?
         return;
@@ -161,7 +161,7 @@ void ArticleModel::articlesAdded(Akregator::TreeNode *, const QVector<Article> &
     endInsertRows();
 }
 
-void ArticleModel::articlesRemoved(Akregator::TreeNode *, const QVector<Article> &l)
+void ArticleModel::articlesRemoved(Akregator::TreeNode *, const QList<Article> &l)
 {
     // might want to avoid indexOf() in case of performance problems
     for (const Article &i : l) {
@@ -171,7 +171,7 @@ void ArticleModel::articlesRemoved(Akregator::TreeNode *, const QVector<Article>
     }
 }
 
-void ArticleModel::articlesUpdated(Akregator::TreeNode *, const QVector<Article> &l)
+void ArticleModel::articlesUpdated(Akregator::TreeNode *, const QList<Article> &l)
 {
     int rmin = 0;
     int rmax = 0;

@@ -22,11 +22,11 @@
 
 using namespace Akregator;
 
-// efficient alternative so we don't convert first to a temporary QList then to QVector
+// efficient alternative so we don't convert first to a temporary QList then to QList
 template<typename T>
-static QVector<T> hashValuesToVector(const QHash<int, T> &hash)
+static QList<T> hashValuesToVector(const QHash<int, T> &hash)
 {
-    QVector<T> result;
+    QList<T> result;
     result.reserve(hash.count());
     for (auto it = hash.cbegin(), end = hash.cend(); it != end; ++it) {
         result.append(it.value());
@@ -67,9 +67,9 @@ Folder::~Folder()
     emitSignalDestroyed();
 }
 
-QVector<Article> Folder::articles()
+QList<Article> Folder::articles()
 {
-    QVector<Article> seq;
+    QList<Article> seq;
     const auto f = feeds();
     for (Feed *const i : f) {
         seq += i->articles();
@@ -107,7 +107,7 @@ QList<TreeNode *> Folder::children()
     return m_children;
 }
 
-QVector<const Akregator::Feed *> Folder::feeds() const
+QList<const Akregator::Feed *> Folder::feeds() const
 {
     QHash<int, const Akregator::Feed *> feedsById;
     for (const TreeNode *i : std::as_const(m_children)) {
@@ -120,7 +120,7 @@ QVector<const Akregator::Feed *> Folder::feeds() const
     return hashValuesToVector<const Akregator::Feed *>(feedsById);
 }
 
-QVector<Akregator::Feed *> Folder::feeds()
+QList<Akregator::Feed *> Folder::feeds()
 {
     QHash<int, Akregator::Feed *> feedsById;
     for (TreeNode *i : std::as_const(m_children)) {
@@ -133,7 +133,7 @@ QVector<Akregator::Feed *> Folder::feeds()
     return hashValuesToVector<Akregator::Feed *>(feedsById);
 }
 
-QVector<const Folder *> Folder::folders() const
+QList<const Folder *> Folder::folders() const
 {
     QHash<int, const Folder *> foldersById;
     foldersById.insert(id(), this);
@@ -147,7 +147,7 @@ QVector<const Folder *> Folder::folders() const
     return hashValuesToVector<const Folder *>(foldersById);
 }
 
-QVector<Folder *> Folder::folders()
+QList<Folder *> Folder::folders()
 {
     QHash<int, Folder *> foldersById;
     foldersById.insert(id(), this);

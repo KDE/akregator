@@ -8,8 +8,8 @@
 
 #pragma once
 
+#include <QList>
 #include <QObject>
-#include <QVector>
 
 #include "akregator_export.h"
 #include "article.h"
@@ -61,7 +61,7 @@ private:
     QWidget *m_widget = nullptr;
     QString m_componantName;
 
-    QVector<Article> m_articles;
+    QList<Article> m_articles;
 
     static NotificationManager *m_self;
 };

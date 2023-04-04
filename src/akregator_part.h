@@ -10,8 +10,8 @@
 #pragma once
 
 #include <KSharedConfig>
+#include <QList>
 #include <QPointer>
-#include <QVector>
 
 #include <QUrl>
 #include <kparts/part.h>
@@ -111,7 +111,7 @@ public Q_SLOTS:
 
 Q_SIGNALS:
     void signalSettingsChanged();
-    void signalArticlesSelected(const QVector<Akregator::Article> &);
+    void signalArticlesSelected(const QList<Akregator::Article> &);
 
 private:
     /** @return Whether the tray icon is enabled or not */
@@ -183,7 +183,7 @@ private: // attributes
         QString group;
     };
     QPointer<LoadFeedListCommand> m_loadFeedListCommand;
-    QVector<AddFeedRequest> m_requests;
+    QList<AddFeedRequest> m_requests;
     KSharedConfig::Ptr mConfig;
 };
 } // namespace Akregator

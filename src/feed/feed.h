@@ -210,10 +210,10 @@ public:
 
     Q_REQUIRED_RESULT bool isFetching() const;
 
-    QVector<const Feed *> feeds() const override;
-    QVector<Feed *> feeds() override;
-    QVector<const Folder *> folders() const override;
-    QVector<Folder *> folders() override;
+    QList<const Feed *> feeds() const override;
+    QList<Feed *> feeds() override;
+    QList<const Folder *> folders() const override;
+    QList<Folder *> folders() override;
 
     KJob *createMarkAsReadJob() override;
 
@@ -251,7 +251,7 @@ private:
 private:
     void setFavicon(const QIcon &icon);
     void loadFavicon(const QString &url, bool downloadFavicon);
-    QVector<Article> articles() override;
+    QList<Article> articles() override;
 
     /** loads articles from archive **/
     void loadArticles();

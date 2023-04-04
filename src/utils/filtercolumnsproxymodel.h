@@ -8,8 +8,8 @@
 
 #pragma once
 
+#include <QList>
 #include <QSortFilterProxyModel>
-#include <QVector>
 
 namespace Akregator
 {
@@ -33,7 +33,7 @@ private:
     Q_REQUIRED_RESULT bool filterAcceptsColumn(int source_column, const QModelIndex &source_parent) const override;
 
 private:
-    QVector<bool> m_columnStates;
+    QList<bool> m_columnStates;
     int m_vecSize = 0;
     Mode m_mode = Whitelist;
 };

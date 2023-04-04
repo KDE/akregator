@@ -7,8 +7,8 @@
 #pragma once
 
 #include "akregator_export.h"
+#include <QList>
 #include <QObject>
-#include <QVector>
 
 namespace Akregator
 {
@@ -31,7 +31,7 @@ public:
 private:
     explicit URLHandlerWebEngineManager(QObject *parent = nullptr);
     static URLHandlerWebEngineManager *self;
-    using HandlerList = QVector<const URLHandlerWebEngine *>;
+    using HandlerList = QList<const URLHandlerWebEngine *>;
     HandlerList mHandlers;
 };
 }

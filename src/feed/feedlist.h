@@ -93,16 +93,16 @@ public:
     /**
      * returns all feeds in this list
      */
-    Q_REQUIRED_RESULT QVector<const Akregator::Feed *> feeds() const;
-    Q_REQUIRED_RESULT QVector<Akregator::Feed *> feeds();
+    Q_REQUIRED_RESULT QList<const Akregator::Feed *> feeds() const;
+    Q_REQUIRED_RESULT QList<Akregator::Feed *> feeds();
 
-    Q_REQUIRED_RESULT QVector<uint> feedIds() const;
+    Q_REQUIRED_RESULT QList<uint> feedIds() const;
 
     /**
      * returns all folders in this list
      */
-    Q_REQUIRED_RESULT QVector<const Folder *> folders() const;
-    Q_REQUIRED_RESULT QVector<Folder *> folders();
+    Q_REQUIRED_RESULT QList<const Folder *> folders() const;
+    Q_REQUIRED_RESULT QList<Folder *> folders();
 
     /** appends another feed list as sub tree. The root node of @c list is ignored. NOTE: nodes are _moved_ from @c list to this feed list, not copied */
 

@@ -550,7 +550,7 @@ void Part::showOptions()
         if (TrayIcon::getInstance()) {
             connect(m_dialog, &KCMultiDialog::configCommitted, TrayIcon::getInstance(), &TrayIcon::settingsChanged);
         }
-        const QVector<KPluginMetaData> availablePlugins = KPluginMetaData::findPlugins(QStringLiteral("pim6/kcms/akregator"));
+        const QList<KPluginMetaData> availablePlugins = KPluginMetaData::findPlugins(QStringLiteral("pim6/kcms/akregator"));
         for (const KPluginMetaData &metaData : availablePlugins) {
             m_dialog->addModule(metaData);
         }

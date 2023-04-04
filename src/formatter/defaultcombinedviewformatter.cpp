@@ -28,7 +28,7 @@ DefaultCombinedViewFormatter::~DefaultCombinedViewFormatter()
     delete mGrantleeViewFormatter;
 }
 
-QString DefaultCombinedViewFormatter::formatArticles(const QVector<Article> &articles, IconOption icon) const
+QString DefaultCombinedViewFormatter::formatArticles(const QList<Article> &articles, IconOption icon) const
 {
     return mGrantleeViewFormatter->formatArticles(articles, icon);
 }

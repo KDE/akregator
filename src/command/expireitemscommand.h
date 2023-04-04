@@ -10,7 +10,7 @@
 
 #include "command.h"
 
-#include <QVector>
+#include <QList>
 
 #include <QWeakPointer>
 
@@ -31,8 +31,8 @@ public:
     void setFeedList(const QWeakPointer<FeedList> &feedList);
     Q_REQUIRED_RESULT QWeakPointer<FeedList> feedList() const;
 
-    void setFeeds(const QVector<uint> &feeds);
-    Q_REQUIRED_RESULT QVector<uint> feeds() const;
+    void setFeeds(const QList<uint> &feeds);
+    Q_REQUIRED_RESULT QList<uint> feeds() const;
 
 private:
     void doStart() override;

@@ -9,9 +9,9 @@
 #pragma once
 
 #include "akregator_export.h"
+#include <QList>
 #include <QObject>
 #include <QPoint>
-#include <QVector>
 
 class KJob;
 
@@ -97,11 +97,11 @@ public:
     virtual QList<const TreeNode *> children() const;
     virtual QList<TreeNode *> children();
 
-    virtual QVector<const Feed *> feeds() const = 0;
-    virtual QVector<Feed *> feeds() = 0;
+    virtual QList<const Feed *> feeds() const = 0;
+    virtual QList<Feed *> feeds() = 0;
 
-    virtual QVector<const Folder *> folders() const = 0;
-    virtual QVector<Folder *> folders() = 0;
+    virtual QList<const Folder *> folders() const = 0;
+    virtual QList<Folder *> folders() = 0;
 
     virtual TreeNode *childAt(int pos);
     virtual const TreeNode *childAt(int pos) const;
@@ -179,14 +179,14 @@ Q_SIGNALS:
         @param TreeNode* the node articles were added to
         @param guids the guids of the articles added
     */
-    void signalArticlesAdded(Akregator::TreeNode *, const QVector<Akregator::Article> &guids);
+    void signalArticlesAdded(Akregator::TreeNode *, const QList<Akregator::Article> &guids);
 
     /** emitted when articles were updated */
-    void signalArticlesUpdated(Akregator::TreeNode *, const QVector<Akregator::Article> &guids);
+    void signalArticlesUpdated(Akregator::TreeNode *, const QList<Akregator::Article> &guids);
 
     /** emitted when articles were removed from this subtree. Note that this has nothing to do with actual article deletion! The article might have moved
      * somewhere else in the tree, e.g. if the user moved the feed */
-    void signalArticlesRemoved(Akregator::TreeNode *, const QVector<Akregator::Article> &guids);
+    void signalArticlesRemoved(Akregator::TreeNode *, const QList<Akregator::Article> &guids);
 
 protected:
     /** call this if you modified the actual node (title, unread count).
@@ -209,7 +209,7 @@ private:
     /** Returns a sequence of the articles this node contains. For feed groups, this returns a concatenated list of all articles in the sub tree.
     @return sequence of articles */
 
-    virtual QVector<Article> articles() = 0;
+    virtual QList<Article> articles() = 0;
 
 private:
     bool m_doNotify = true;

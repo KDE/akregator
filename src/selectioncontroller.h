@@ -43,7 +43,7 @@ public:
     Q_REQUIRED_RESULT QModelIndex currentArticleIndex() const override;
 
     // impl
-    Q_REQUIRED_RESULT QVector<Akregator::Article> selectedArticles() const override;
+    Q_REQUIRED_RESULT QList<Akregator::Article> selectedArticles() const override;
 
     // impl
     void setSingleArticleDisplay(Akregator::SingleArticleDisplay *display) override;

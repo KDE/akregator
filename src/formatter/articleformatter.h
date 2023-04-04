@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include <QVector>
+#include <QList>
 #include <Syndication/Enclosure>
 
 namespace Akregator
@@ -26,7 +26,7 @@ public:
 
     virtual ~ArticleFormatter();
 
-    virtual QString formatArticles(const QVector<Article> &article, IconOption icon) const = 0;
+    virtual QString formatArticles(const QList<Article> &article, IconOption icon) const = 0;
 
     virtual QString formatSummary(TreeNode *node) const = 0;
 

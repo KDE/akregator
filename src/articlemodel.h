@@ -33,7 +33,7 @@ public:
 
     enum Role { SortRole = Qt::UserRole, LinkRole, GuidRole, ItemIdRole, FeedIdRole, StatusRole, IsImportantRole, IsDeletedRole };
 
-    explicit ArticleModel(const QVector<Article> &articles, QObject *parent = nullptr);
+    explicit ArticleModel(const QList<Article> &articles, QObject *parent = nullptr);
     ~ArticleModel() override;
 
     Q_REQUIRED_RESULT int columnCount(const QModelIndex &parent = QModelIndex()) const override;
@@ -56,16 +56,16 @@ public:
 
 public Q_SLOTS:
 
-    void articlesAdded(Akregator::TreeNode *, const QVector<Akregator::Article> &);
-    void articlesUpdated(Akregator::TreeNode *, const QVector<Akregator::Article> &);
-    void articlesRemoved(Akregator::TreeNode *, const QVector<Akregator::Article> &);
+    void articlesAdded(Akregator::TreeNode *, const QList<Akregator::Article> &);
+    void articlesUpdated(Akregator::TreeNode *, const QList<Akregator::Article> &);
+    void articlesRemoved(Akregator::TreeNode *, const QList<Akregator::Article> &);
     void clear();
 
 private:
     ArticleModel(const ArticleModel &);
     ArticleModel &operator=(const ArticleModel &);
 
-    QVector<Article> m_articles;
-    QVector<QString> m_titleCache;
+    QList<Article> m_articles;
+    QList<QString> m_titleCache;
 };
 } // namespace Akregator

@@ -76,7 +76,7 @@ QString DefaultNormalViewFormatter::formatSummary(TreeNode *node) const
     return m_summaryVisitor->formatSummary(node);
 }
 
-QString DefaultNormalViewFormatter::formatArticles(const QVector<Article> &articles, IconOption icon) const
+QString DefaultNormalViewFormatter::formatArticles(const QList<Article> &articles, IconOption icon) const
 {
     if (articles.count() != 1) {
         return {};

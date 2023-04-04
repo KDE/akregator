@@ -35,7 +35,7 @@ public:
     void jobFinished(KJob *);
 
     QWeakPointer<FeedList> m_feedList;
-    QVector<uint> m_feeds;
+    QList<uint> m_feeds;
     QSet<KJob *> m_jobs;
 };
 
@@ -106,12 +106,12 @@ QWeakPointer<FeedList> ExpireItemsCommand::feedList() const
     return d->m_feedList;
 }
 
-void ExpireItemsCommand::setFeeds(const QVector<uint> &feeds)
+void ExpireItemsCommand::setFeeds(const QList<uint> &feeds)
 {
     d->m_feeds = feeds;
 }
 
-QVector<uint> ExpireItemsCommand::feeds() const
+QList<uint> ExpireItemsCommand::feeds() const
 {
     return d->m_feeds;
 }

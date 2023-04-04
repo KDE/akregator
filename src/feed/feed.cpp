@@ -41,9 +41,9 @@ using Syndication::ItemPtr;
 using namespace Akregator;
 
 template<typename Key, typename Value, template<typename, typename> class Container>
-QVector<Value> valuesToVector(const Container<Key, Value> &container)
+QList<Value> valuesToVector(const Container<Key, Value> &container)
 {
-    QVector<Value> values;
+    QList<Value> values;
     values.reserve(container.size());
     for (const Value &value : container) {
         values << value;
@@ -85,13 +85,13 @@ public:
     QHash<QString, Article> articles;
 
     /** list of deleted articles. This contains **/
-    QVector<Article> m_deletedArticles;
+    QList<Article> m_deletedArticles;
 
     /** caches guids of deleted articles for notification */
 
-    QVector<Article> m_addedArticlesNotify;
-    QVector<Article> m_removedArticlesNotify;
-    QVector<Article> m_updatedArticlesNotify;
+    QList<Article> m_addedArticlesNotify;
+    QList<Article> m_removedArticlesNotify;
+    QList<Article> m_updatedArticlesNotify;
 
     Feed::ImageInfo m_logoInfo;
     Feed::ImageInfo m_faviconInfo;
@@ -202,26 +202,26 @@ bool Akregator::Feed::accept(TreeNodeVisitor *visitor)
     }
 }
 
-QVector<const Akregator::Folder *> Akregator::Feed::folders() const
+QList<const Akregator::Folder *> Akregator::Feed::folders() const
 {
     return {};
 }
 
-QVector<Folder *> Akregator::Feed::folders()
+QList<Folder *> Akregator::Feed::folders()
 {
     return {};
 }
 
-QVector<const Akregator::Feed *> Akregator::Feed::feeds() const
+QList<const Akregator::Feed *> Akregator::Feed::feeds() const
 {
-    QVector<const Akregator::Feed *> list;
+    QList<const Akregator::Feed *> list;
     list.append(this);
     return list;
 }
 
-QVector<Akregator::Feed *> Akregator::Feed::feeds()
+QList<Akregator::Feed *> Akregator::Feed::feeds()
 {
-    QVector<Feed *> list;
+    QList<Feed *> list;
     list.append(this);
     return list;
 }
@@ -231,7 +231,7 @@ Article Akregator::Feed::findArticle(const QString &guid) const
     return d->articles.value(guid);
 }
 
-QVector<Article> Akregator::Feed::articles()
+QList<Article> Akregator::Feed::articles()
 {
     if (!d->m_articlesLoaded) {
         loadArticles();
@@ -270,9 +270,9 @@ void Akregator::Feed::loadArticles()
 
 void Akregator::Feed::recalcUnreadCount()
 {
-    QVector<Article> tarticles = articles();
-    QVector<Article>::ConstIterator it;
-    QVector<Article>::ConstIterator en = tarticles.constEnd();
+    QList<Article> tarticles = articles();
+    QList<Article>::ConstIterator it;
+    QList<Article>::ConstIterator en = tarticles.constEnd();
 
     int oldUnread = d->m_archive->unread();
 
@@ -635,7 +635,7 @@ void Akregator::Feed::appendArticles(const Syndication::FeedPtr &feed)
 
     int nudge = 0;
 
-    QVector<Article> deletedArticles = d->m_deletedArticles;
+    QList<Article> deletedArticles = d->m_deletedArticles;
 
     for (; it != en; ++it) {
         if (!d->articles.contains((*it)->id())) { // article not in list
@@ -676,9 +676,9 @@ void Akregator::Feed::appendArticles(const Syndication::FeedPtr &feed)
         }
     }
 
-    QVector<Article>::ConstIterator dit = deletedArticles.constBegin();
-    QVector<Article>::ConstIterator dtmp;
-    QVector<Article>::ConstIterator den = deletedArticles.constEnd();
+    QList<Article>::ConstIterator dit = deletedArticles.constBegin();
+    QList<Article>::ConstIterator dtmp;
+    QList<Article>::ConstIterator den = deletedArticles.constEnd();
 
     // delete articles with delete flag set completely from archive, which aren't in the current feed source anymore
     while (dit != den) {
@@ -976,21 +976,21 @@ void Akregator::Feed::doArticleNotification()
     if (!d->m_addedArticlesNotify.isEmpty()) {
         // copy list, otherwise the refcounting in Article::Private breaks for
         // some reason (causing segfaults)
-        const QVector<Article> l = d->m_addedArticlesNotify;
+        const QList<Article> l = d->m_addedArticlesNotify;
         Q_EMIT signalArticlesAdded(this, l);
         d->m_addedArticlesNotify.clear();
     }
     if (!d->m_updatedArticlesNotify.isEmpty()) {
         // copy list, otherwise the refcounting in Article::Private breaks for
         // some reason (causing segfaults)
-        const QVector<Article> l = d->m_updatedArticlesNotify;
+        const QList<Article> l = d->m_updatedArticlesNotify;
         Q_EMIT signalArticlesUpdated(this, l);
         d->m_updatedArticlesNotify.clear();
     }
     if (!d->m_removedArticlesNotify.isEmpty()) {
         // copy list, otherwise the refcounting in Article::Private breaks for
         // some reason (causing segfaults)
-        const QVector<Article> l = d->m_removedArticlesNotify;
+        const QList<Article> l = d->m_removedArticlesNotify;
         Q_EMIT signalArticlesRemoved(this, l);
         d->m_removedArticlesNotify.clear();
     }
@@ -1010,7 +1010,7 @@ void Akregator::Feed::enforceLimitArticleNumber()
         return;
     }
 
-    QVector<Article> articles = valuesToVector(d->articles);
+    QList<Article> articles = valuesToVector(d->articles);
     std::sort(articles.begin(), articles.end());
 
     int c = 0;

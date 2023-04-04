@@ -82,10 +82,10 @@ public:
 
     Q_REQUIRED_RESULT QList<TreeNode *> children() override;
 
-    Q_REQUIRED_RESULT QVector<const Feed *> feeds() const override;
-    Q_REQUIRED_RESULT QVector<Feed *> feeds() override;
-    Q_REQUIRED_RESULT QVector<const Folder *> folders() const override;
-    Q_REQUIRED_RESULT QVector<Folder *> folders() override;
+    Q_REQUIRED_RESULT QList<const Feed *> feeds() const override;
+    Q_REQUIRED_RESULT QList<Feed *> feeds() override;
+    Q_REQUIRED_RESULT QList<const Folder *> folders() const override;
+    Q_REQUIRED_RESULT QList<Folder *> folders() override;
 
     Q_REQUIRED_RESULT int indexOf(const TreeNode *node) const;
 
@@ -177,7 +177,7 @@ protected:
     void doArticleNotification() override;
 
 private:
-    QVector<Article> articles() override;
+    QList<Article> articles() override;
 
     void connectToNode(TreeNode *child);
     void disconnectFromNode(TreeNode *child);

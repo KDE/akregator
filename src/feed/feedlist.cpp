@@ -163,9 +163,9 @@ FeedList::FeedList(Backend::Storage *storage)
     addNode(rootNode, true);
 }
 
-QVector<uint> FeedList::feedIds() const
+QList<uint> FeedList::feedIds() const
 {
-    QVector<uint> ids;
+    QList<uint> ids;
     const auto f = feeds();
     for (const Feed *const i : f) {
         ids += i->id();
@@ -173,9 +173,9 @@ QVector<uint> FeedList::feedIds() const
     return ids;
 }
 
-QVector<const Akregator::Feed *> FeedList::feeds() const
+QList<const Akregator::Feed *> FeedList::feeds() const
 {
-    QVector<const Akregator::Feed *> constList;
+    QList<const Akregator::Feed *> constList;
     const auto rootNodeFeeds = d->rootNode->feeds();
     for (const Akregator::Feed *const i : rootNodeFeeds) {
         constList.append(i);
@@ -183,14 +183,14 @@ QVector<const Akregator::Feed *> FeedList::feeds() const
     return constList;
 }
 
-QVector<Akregator::Feed *> FeedList::feeds()
+QList<Akregator::Feed *> FeedList::feeds()
 {
     return d->rootNode->feeds();
 }
 
-QVector<const Folder *> FeedList::folders() const
+QList<const Folder *> FeedList::folders() const
 {
-    QVector<const Folder *> constList;
+    QList<const Folder *> constList;
     const auto nodeFolders = d->rootNode->folders();
     for (const Folder *const i : nodeFolders) {
         constList.append(i);
@@ -198,7 +198,7 @@ QVector<const Folder *> FeedList::folders() const
     return constList;
 }
 
-QVector<Folder *> FeedList::folders()
+QList<Folder *> FeedList::folders()
 {
     return d->rootNode->folders();
 }
@@ -554,7 +554,7 @@ void FeedListManagementImpl::addFeed(const QString &url, const QString &catId)
 
     // Get the folder
     Folder *m_folder = nullptr;
-    const QVector<Folder *> vector = m_feedList->folders();
+    const QList<Folder *> vector = m_feedList->folders();
     for (int i = 0; i < vector.size(); ++i) {
         if (vector.at(i)->id() == folder_id) {
             m_folder = vector.at(i);

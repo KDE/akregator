@@ -172,7 +172,7 @@ void ArticleViewerWidget::showArticle(const Akregator::Article &article)
     if (article.feed()->loadLinkedWebsite()) {
         openUrl(article.link());
     } else {
-        renderContent(normalViewFormatter()->formatArticles(QVector<Akregator::Article>() << article, ArticleFormatter::ShowIcon));
+        renderContent(normalViewFormatter()->formatArticles(QList<Akregator::Article>() << article, ArticleFormatter::ShowIcon));
     }
 
     setArticleActionsEnabled(true);
@@ -218,7 +218,7 @@ void ArticleViewerWidget::slotUpdateCombinedView()
 
     const auto filterEnd = m_filters.cend();
 
-    QVector<Article> articles;
+    QList<Article> articles;
     for (const Article &i : std::as_const(m_articles)) {
         if (i.isDeleted()) {
             continue;
@@ -241,14 +241,14 @@ void ArticleViewerWidget::slotUpdateCombinedView()
     qCDebug(AKREGATOR_LOG) << "HTML rendering:" << spent.elapsed() << "ms";
 }
 
-void ArticleViewerWidget::slotArticlesUpdated(TreeNode * /*node*/, const QVector<Article> & /*list*/)
+void ArticleViewerWidget::slotArticlesUpdated(TreeNode * /*node*/, const QList<Article> & /*list*/)
 {
     if (m_viewMode == CombinedView) {
         slotUpdateCombinedView();
     }
 }
 
-void ArticleViewerWidget::slotArticlesAdded(TreeNode * /*node*/, const QVector<Article> &list)
+void ArticleViewerWidget::slotArticlesAdded(TreeNode * /*node*/, const QList<Article> &list)
 {
     if (m_viewMode == CombinedView) {
         // TODO sort list, then merge
@@ -258,7 +258,7 @@ void ArticleViewerWidget::slotArticlesAdded(TreeNode * /*node*/, const QVector<A
     }
 }
 
-void ArticleViewerWidget::slotArticlesRemoved(TreeNode * /*node*/, const QVector<Article> &list)
+void ArticleViewerWidget::slotArticlesRemoved(TreeNode * /*node*/, const QList<Article> &list)
 {
     Q_UNUSED(list)
 
@@ -344,7 +344,7 @@ void ArticleViewerWidget::updateAfterConfigChanged()
     switch (m_viewMode) {
     case NormalView:
         if (!m_article.isNull()) {
-            renderContent(normalViewFormatter()->formatArticles(QVector<Akregator::Article>() << m_article, ArticleFormatter::ShowIcon));
+            renderContent(normalViewFormatter()->formatArticles(QList<Akregator::Article>() << m_article, ArticleFormatter::ShowIcon));
         }
         break;
     case CombinedView:

@@ -206,7 +206,7 @@ ArticleMatcher::ArticleMatcher()
 
 ArticleMatcher::~ArticleMatcher() = default;
 
-ArticleMatcher::ArticleMatcher(const QVector<Criterion> &criteria, Association assoc)
+ArticleMatcher::ArticleMatcher(const QList<Criterion> &criteria, Association assoc)
     : m_criteria(criteria)
     , m_association(assoc)
 {

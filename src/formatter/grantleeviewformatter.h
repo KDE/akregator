@@ -18,7 +18,7 @@ public:
     explicit GrantleeViewFormatter(const QString &htmlFileName, const QString &themePath, int deviceDpiY);
     ~GrantleeViewFormatter();
 
-    Q_REQUIRED_RESULT QString formatArticles(const QVector<Article> &article, ArticleFormatter::IconOption icon);
+    Q_REQUIRED_RESULT QString formatArticles(const QList<Article> &article, ArticleFormatter::IconOption icon);
     Q_REQUIRED_RESULT QString formatFolder(Akregator::Folder *node);
     Q_REQUIRED_RESULT QString formatFeed(Akregator::Feed *feed);
 

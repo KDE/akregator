@@ -46,7 +46,7 @@ void ProgressManager::setFeedList(const QSharedPointer<FeedList> &feedList)
     m_feedList = feedList;
 
     if (m_feedList) {
-        const QVector<Feed *> list = feedList->feeds();
+        const QList<Feed *> list = feedList->feeds();
 
         for (TreeNode *i : list) {
             slotNodeAdded(i);

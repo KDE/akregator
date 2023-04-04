@@ -9,9 +9,9 @@
 #pragma once
 
 #include "akregatorpart_export.h"
+#include <QList>
 #include <QString>
 #include <QVariant>
-#include <QVector>
 
 class KConfigGroup;
 
@@ -56,7 +56,7 @@ public:
     enum Association { None, LogicalAnd, LogicalOr };
 
     ArticleMatcher();
-    ArticleMatcher(const QVector<Criterion> &criteria, Association assoc);
+    ArticleMatcher(const QList<Criterion> &criteria, Association assoc);
 
     ~ArticleMatcher() override;
 
@@ -74,7 +74,7 @@ private:
     bool anyCriterionMatches(const Article &a) const;
     bool allCriteriaMatch(const Article &a) const;
 
-    QVector<Criterion> m_criteria;
+    QList<Criterion> m_criteria;
     Association m_association;
 };
 
