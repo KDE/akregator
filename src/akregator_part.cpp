@@ -44,9 +44,6 @@
 #include <QWebEngineSettings>
 #include <kxmlguifactory.h>
 
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-#include "akregratormigrateapplication.h"
-#endif
 #include "partadaptor.h"
 #include <QApplication>
 #include <QDomDocument>
@@ -55,10 +52,8 @@
 #include <QStringList>
 #include <QTextStream>
 #include <QTimer>
-#include <QWidget>
-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
 #include <QWebEngineProfile>
-#endif
+#include <QWidget>
 
 #include <QFontDatabase>
 #include <QStandardPaths>
@@ -130,19 +125,10 @@ K_PLUGIN_FACTORY(AkregatorFactory, registerPlugin<Part>();)
 
 static Part *mySelf = nullptr;
 
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-Part::Part(QWidget *parentWidget, QObject *parent, const QVariantList &)
-    : KParts::Part(parent)
-#else
 Part::Part(QWidget *parentWidget, QObject *parent, const KPluginMetaData &data, const QVariantList &)
     : KParts::Part(parent, data)
-#endif
 {
     mySelf = this;
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-    AkregratorMigrateApplication migrate;
-    migrate.migrate();
-#endif
     // Make sure to initialize settings
     Part::config();
     initFonts();
@@ -367,9 +353,6 @@ bool Part::writeToTextFile(const QString &data, const QString &filename) const
         return false;
     }
     QTextStream stream(&file);
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-    stream.setCodec("UTF-8");
-#endif
     stream << data << Qt::endl;
     return file.commit();
 }
@@ -567,8 +550,7 @@ void Part::showOptions()
         if (TrayIcon::getInstance()) {
             connect(m_dialog, &KCMultiDialog::configCommitted, TrayIcon::getInstance(), &TrayIcon::settingsChanged);
         }
-        const QVector<KPluginMetaData> availablePlugins =
-            KPluginMetaData::findPlugins(QStringLiteral("pim" QT_STRINGIFY(QT_VERSION_MAJOR)) + QStringLiteral("/kcms/akregator"));
+        const QVector<KPluginMetaData> availablePlugins = KPluginMetaData::findPlugins(QStringLiteral("pim6/kcms/akregator"));
         for (const KPluginMetaData &metaData : availablePlugins) {
             m_dialog->addModule(metaData);
         }
@@ -628,21 +610,12 @@ void Part::initFonts()
         }
         Settings::setMediumFontSize(medfs);
     }
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-    QWebEngineSettings::defaultSettings()->setFontFamily(QWebEngineSettings::StandardFont, Settings::standardFont());
-    QWebEngineSettings::defaultSettings()->setFontFamily(QWebEngineSettings::FixedFont, Settings::fixedFont());
-    QWebEngineSettings::defaultSettings()->setFontFamily(QWebEngineSettings::SerifFont, Settings::serifFont());
-    QWebEngineSettings::defaultSettings()->setFontFamily(QWebEngineSettings::SansSerifFont, Settings::sansSerifFont());
-    QWebEngineSettings::defaultSettings()->setFontSize(QWebEngineSettings::MinimumFontSize, Settings::minimumFontSize());
-    QWebEngineSettings::defaultSettings()->setFontSize(QWebEngineSettings::DefaultFontSize, Settings::mediumFontSize());
-#else
     QWebEngineProfile::defaultProfile()->settings()->setFontFamily(QWebEngineSettings::StandardFont, Settings::standardFont());
     QWebEngineProfile::defaultProfile()->settings()->setFontFamily(QWebEngineSettings::FixedFont, Settings::fixedFont());
     QWebEngineProfile::defaultProfile()->settings()->setFontFamily(QWebEngineSettings::SerifFont, Settings::serifFont());
     QWebEngineProfile::defaultProfile()->settings()->setFontFamily(QWebEngineSettings::SansSerifFont, Settings::sansSerifFont());
     QWebEngineProfile::defaultProfile()->settings()->setFontSize(QWebEngineSettings::MinimumFontSize, Settings::minimumFontSize());
     QWebEngineProfile::defaultProfile()->settings()->setFontSize(QWebEngineSettings::DefaultFontSize, Settings::mediumFontSize());
-#endif
 }
 
 bool Part::handleCommandLine(const QStringList &args)

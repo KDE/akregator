@@ -73,7 +73,6 @@ target_sources(akregatorprivate PRIVATE
 
     urlhandler/webengine/urlhandlerwebengine.cpp
     urlhandler/webengine/urlhandlerwebenginemanager.cpp
-    akregratormigrateapplication.cpp
     articleviewerwidget.cpp
     aboutdata.cpp
     trayicon.cpp
@@ -139,7 +138,6 @@ target_sources(akregatorprivate PRIVATE
 
     urlhandler/webengine/urlhandlerwebengine.h
     urlhandler/webengine/urlhandlerwebenginemanager.h
-    akregratormigrateapplication.h
     articleviewerwidget.h
     aboutdata.h
     trayicon.h

@@ -62,8 +62,6 @@ public:
 
     void createViewerPluginToolManager(KActionCollection *ac, QWidget *parent);
 
-    void execPrintPreviewPage(QPrinter *printer, int timeout);
-
     virtual void updateSecurity();
 
     void printPreviewPage(QPrinter *printer);

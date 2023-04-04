@@ -16,27 +16,12 @@
 using namespace Akregator;
 
 K_PLUGIN_CLASS_WITH_JSON(KCMAkregatorPluginsConfig, "akregator_config_plugins.json")
-#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
-
-KCMAkregatorPluginsConfig::KCMAkregatorPluginsConfig(QWidget *parent, const QVariantList &args)
-    : KCModule(parent, args)
-#else
 KCMAkregatorPluginsConfig::KCMAkregatorPluginsConfig(QObject *parent, const KPluginMetaData &data, const QVariantList &args)
     : KCModule(parent, data, args)
-
-#endif
 {
-#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
-    auto lay = new QHBoxLayout(this);
-#else
     auto lay = new QHBoxLayout(widget());
-#endif
     lay->setContentsMargins({});
-#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
-    mConfigurePluginWidget = new PimCommon::ConfigurePluginsWidget(new AkregatorConfigurePluginListWidget(this), this);
-#else
     mConfigurePluginWidget = new PimCommon::ConfigurePluginsWidget(new AkregatorConfigurePluginListWidget(widget()), widget());
-#endif
     mConfigurePluginWidget->setObjectName(QStringLiteral("configurePluginWidget"));
     connect(mConfigurePluginWidget, &PimCommon::ConfigurePluginsWidget::changed, this, &KCMAkregatorPluginsConfig::slotConfigChanged);
     lay->addWidget(mConfigurePluginWidget);
@@ -44,11 +29,7 @@ KCMAkregatorPluginsConfig::KCMAkregatorPluginsConfig(QObject *parent, const KPlu
 
 void KCMAkregatorPluginsConfig::slotConfigChanged()
 {
-#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
-    Q_EMIT changed(true);
-#else
     markAsChanged();
-#endif
 }
 
 void KCMAkregatorPluginsConfig::save()

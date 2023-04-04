@@ -141,11 +141,7 @@ void ArticleViewerWebEngineWidgetNg::printRequested(QWebEnginePage *page)
         return;
     }
     delete dialog;
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-    page->print(mCurrentPrinter, invoke(this, &ArticleViewerWebEngineWidgetNg::slotHandlePagePrinted));
-#else
 #pragma "Fix port printing"
-#endif
 }
 
 void ArticleViewerWebEngineWidgetNg::slotHandlePagePrinted(bool result)
@@ -164,11 +160,7 @@ void ArticleViewerWebEngineWidgetNg::slotPrintPreview()
     connect(dialog, &QPrintPreviewDialog::paintRequested, this, [=](QPrinter *printing) {
         QApplication::setOverrideCursor(Qt::WaitCursor);
 
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-        mArticleViewerNg->execPrintPreviewPage(printing, 10 * 1000);
-#else
         mArticleViewerNg->printPreviewPage(printing);
-#endif
         QApplication::restoreOverrideCursor();
     });
 

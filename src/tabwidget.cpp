@@ -486,9 +486,5 @@ void TabWidget::slotCloseRequest(int index)
 
 void TabWidget::slotActivateTab()
 {
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-    setCurrentIndex(sender()->objectName().rightRef(2).toInt() - 1);
-#else
     setCurrentIndex(QStringView(sender()->objectName()).right(2).toInt() - 1);
-#endif
 }
