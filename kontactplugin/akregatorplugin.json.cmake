@@ -34,7 +34,6 @@
         "Description[zh_CN]": "Akregator 插件",
         "EnabledByDefault": true,
         "Icon": "view-pim-news",
-        "Id": "kontact_akregatorplugin",
         "License": "GPL",
         "Name": "Feeds",
         "Name[af]": "Strome",
