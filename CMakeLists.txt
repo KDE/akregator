@@ -96,7 +96,7 @@ set_package_properties(KUserFeedbackQt6 PROPERTIES DESCRIPTION "User Feedback li
 include_directories(${akregator_SOURCE_DIR} ${akregator_BINARY_DIR})
 add_definitions(-DTRANSLATION_DOMAIN=\"akregator\")
 ecm_set_disabled_deprecation_versions(QT 5.15.2
-     KF 5.105.0
+     KF 5.240.0
 )
 if (TARGET KUserFeedbackWidgetsQt6)
     add_definitions(-DWITH_KUSERFEEDBACK)
