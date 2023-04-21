@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-31 00:47+0000\n"
+"POT-Creation-Date: 2023-04-01 00:51+0000\n"
 "PO-Revision-Date: 2023-03-11 23:26+0100\n"
 "Last-Translator: Karl Ove Hufthammer <karl@huftis.org>\n"
 "Language-Team: Norwegian Nynorsk <l10n-no@lister.huftis.org>\n"
@@ -914,7 +914,7 @@ msgstr "Nullstillar snøggsøkfilteret ved byte av felt."
 
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
 #: src/akregator_part.cpp:150
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:149
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:153
 #: src/trayicon.cpp:41 src/trayicon.cpp:42 src/trayicon.cpp:54
 #, kde-format
 msgid "Akregator"
@@ -1648,60 +1648,60 @@ msgctxt "Articlelist's column header"
 msgid "Content"
 msgstr "Innhald"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:150
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:154
 #, kde-format
 msgid "Akregator is a KDE news feed reader."
 msgstr "Akregator er ein nyheitskjeldelesar frå KDE."
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:191
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:195
 #, kde-format
 msgctxt "@title:window"
 msgid "Save As"
 msgstr ""
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:380
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:384
 #, kde-format
 msgid "Disable"
 msgstr "Slå av"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:381
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:385
 #, kde-format
 msgid "Keep Enabled"
 msgstr "Hald påslått"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:383
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:387
 #, kde-format
 msgid "Are you sure you want to disable this introduction page?"
 msgstr "Er du sikker på at du vil fjerna velkomstsida?"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:384
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:388
 #, kde-format
 msgid "Disable Introduction Page"
 msgstr "Ikkje vis velkomstsida"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:419
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:423
 #, kde-format
 msgid "This web site is a malware, do you want to continue to show it?"
 msgstr ""
 "Denne nettstaden inneheld skadeleg programvare. Vil du framleis visa han?"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:420
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:424
 #, kde-format
 msgid "Malware"
 msgstr "Skadeleg programvare"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:432
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:436
 #, kde-format
 msgid "The network is broken."
 msgstr "Nettverket er øydelagt."
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:432
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:435
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:436
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:439
 #, kde-format
 msgid "Check Phishing Url"
 msgstr "Sjekk adresse etter nettsvindel"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:435
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:439
 #, kde-format
 msgid "The url %1 is not valid."
 msgstr "Adressa %1 er ugyldig."
