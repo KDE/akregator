@@ -12,7 +12,6 @@
 #include <KLocalizedString>
 #include <MessageViewer/ViewerPluginToolManager>
 #include <QVBoxLayout>
-#include <kio_version.h>
 #ifdef HAVE_KTEXTADDONS_TEXT_TO_SPEECH_SUPPORT
 #include <TextEditTextToSpeech/TextToSpeechContainerWidget>
 #endif
