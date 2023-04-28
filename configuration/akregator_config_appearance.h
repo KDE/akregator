@@ -7,7 +7,6 @@
 
 #pragma once
 
-#include "kcmutils_version.h"
 #include "ui_settings_appearance.h"
 #include <KCModule>
 

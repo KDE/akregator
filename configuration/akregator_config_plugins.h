@@ -5,7 +5,6 @@
 */
 
 #pragma once
-#include "kcmutils_version.h"
 #include <KCModule>
 #include <QVariant>
 namespace PimCommon
