@@ -1,12 +1,14 @@
-# traduko de akregator.po al
-#
+# traduko de akregator.po al esperanto
+# Copyright (C) 2006 Free Software Foundation, Inc.
 # Felix Zesch <post@felix-zesch.de>, 2006, 2007.
+# Oliver Kellogg <okellogg@users.sourceforge.net>, 2023.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-04-01 00:51+0000\n"
-"PO-Revision-Date: 2023-03-20 22:31+0100\n"
+"PO-Revision-Date: 2023-05-03 06:40+0100\n"
 "Last-Translator: Oliver Kellogg <okellogg@users.sourceforge.net>\n"
 "Language-Team: Esperanto <kde-i18n-eo@kde.org>\n"
 "Language: eo\n"
@@ -184,43 +186,43 @@ msgstr ""
 #: configuration/ui/settings_appearance.ui:127
 #, kde-format
 msgid "Minimum font size:"
-msgstr "Minimuma skribaĵgrandeco"
+msgstr "Minimuma tipargrandeco"
 
 #. i18n: ectx: property (text), widget (QLabel, lbl_MediumFontSize)
 #: configuration/ui/settings_appearance.ui:176
 #, kde-format
 msgid "Medium font size:"
-msgstr "Averaĝa skribaĵgrandeco:"
+msgstr "Averaĝa tipargrandeco:"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: configuration/ui/settings_appearance.ui:228
 #, kde-format
 msgid "Fonts"
-msgstr ""
+msgstr "Tiparoj"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel1)
 #: configuration/ui/settings_appearance.ui:234
 #, kde-format
 msgid "Standard font:"
-msgstr "Kutima skribaĵo:"
+msgstr "Norma tiparo:"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel2_2)
 #: configuration/ui/settings_appearance.ui:244
 #, kde-format
 msgid "Fixed font:"
-msgstr "Fiksa skribaĵo"
+msgstr "Fiksa tiparo"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel3)
 #: configuration/ui/settings_appearance.ui:254
 #, kde-format
 msgid "Serif font:"
-msgstr "Serifa skribaĵo:"
+msgstr "Serifa tiparo:"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel4)
 #: configuration/ui/settings_appearance.ui:264
 #, kde-format
 msgid "Sans serif font:"
-msgstr "Senserifa skribaĵo:"
+msgstr "Senserifa tiparo:"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: configuration/ui/settings_archive.ui:30
@@ -650,7 +652,7 @@ msgstr "Malaktualiĝa aĝo"
 #: interfaces/akregator.kcfg:123
 #, kde-format
 msgid "Default expiry age for articles in days."
-msgstr "Kutima malaktualiĝa aĝo de artikoloj en tagoj"
+msgstr "Defaŭlta malaktualiĝa aĝo de artikoloj en tagoj"
 
 #. i18n: ectx: label, entry, group (Archive)
 #: interfaces/akregator.kcfg:127
@@ -1057,7 +1059,7 @@ msgstr "Marcel Dierkes"
 #: src/aboutdata.cpp:41
 #, kde-format
 msgid "Icons"
-msgstr "Ikonoj"
+msgstr "Piktogramoj"
 
 #: src/aboutdata.cpp:42
 #, kde-format
@@ -2348,7 +2350,7 @@ msgstr "Arĥivo"
 #: src/ui/feedpropertieswidgetbase.ui:206
 #, kde-format
 msgid "&Use default settings"
-msgstr "&Uzu kutiman konfiguracion"
+msgstr "&Uzi defaŭltan agordon"
 
 #. i18n: ectx: property (text), widget (QRadioButton, rb_disableArchiving)
 #: src/ui/feedpropertieswidgetbase.ui:216

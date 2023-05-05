@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-02-21 01:00+0000\n"
+"POT-Creation-Date: 2023-04-01 00:51+0000\n"
 "PO-Revision-Date: 2010-03-14 01:57+0100\n"
 "Last-Translator: Børre Gaup <boerre@skolelinux.no>\n"
 "Language-Team: Northern Sami <l10n-no@lister.huftis.org>\n"
@@ -99,35 +99,7 @@ msgid ""
 "configure dialog)."
 msgstr ""
 
-#: configuration/akregator_config_advanced.cpp:30
-#, kde-format
-msgid "Advanced Feed Reader Settings"
-msgstr "Erenoamáš gáldologanheivehusat"
-
-#: configuration/akregator_config_advanced.cpp:34
-#: configuration/akregator_config_appearance.cpp:49
-#: configuration/akregator_config_archive.cpp:47
-#: configuration/akregator_config_browser.cpp:39
-#: configuration/akregator_config_general.cpp:42
-#, kde-format
-msgid "(c), 2004 - 2008 Frank Osterfeld"
-msgstr "©, 2004 – 2008 Frank Osterfeld"
-
-#: configuration/akregator_config_advanced.cpp:36
-#: configuration/akregator_config_appearance.cpp:51
-#: configuration/akregator_config_archive.cpp:49
-#: configuration/akregator_config_browser.cpp:41
-#: configuration/akregator_config_general.cpp:44 src/aboutdata.cpp:28
-#, kde-format
-msgid "Frank Osterfeld"
-msgstr "Frank Osterfeld"
-
-#: configuration/akregator_config_appearance.cpp:45
-#, kde-format
-msgid "Configure Feed Reader Appearance"
-msgstr "Heivet gáldologana fárdda"
-
-#: configuration/akregator_config_archive.cpp:33
+#: configuration/akregator_config_archive.cpp:43
 #, kde-format
 msgctxt "Limit feed archive size to:"
 msgid " article"
@@ -135,7 +107,7 @@ msgid_plural " articles"
 msgstr[0] " artihkal"
 msgstr[1] " artihkkala"
 
-#: configuration/akregator_config_archive.cpp:34
+#: configuration/akregator_config_archive.cpp:44
 #, kde-format
 msgctxt "Delete articles older than:"
 msgid " day"
@@ -143,60 +115,12 @@ msgid_plural " days"
 msgstr[0] " beaivi"
 msgstr[1] " beaivvi"
 
-#: configuration/akregator_config_archive.cpp:43
-#, kde-format
-msgid "Configure Feed Reader Archive"
-msgstr "Heivet gáldologana vuorká"
-
-#: configuration/akregator_config_browser.cpp:35
-#, kde-format
-msgid "Configure Feed Reader Browser"
-msgstr "Heivet gáldologana fierbmelogana"
-
-#: configuration/akregator_config_general.cpp:33
+#: configuration/akregator_config_general.cpp:42
 #, kde-format
 msgid " minute"
 msgid_plural " minutes"
 msgstr[0] " minuhtta"
 msgstr[1] " minuhta"
-
-#: configuration/akregator_config_general.cpp:38
-#, kde-format
-msgid "Configure Feeds"
-msgstr "Heivet gálduid"
-
-#: configuration/akregator_config_plugins.cpp:27
-#: configuration/akregator_config_security.cpp:29
-#, kde-format
-msgid "Configure Plugins"
-msgstr ""
-
-#: configuration/akregator_config_plugins.cpp:31
-#, kde-format
-msgid "(c), 2016-2021 Laurent Montel"
-msgstr ""
-
-#: configuration/akregator_config_plugins.cpp:33
-#: configuration/akregator_config_security.cpp:35
-#: configuration/akregator_config_userfeedback.cpp:34 src/aboutdata.cpp:27
-#, kde-format
-msgid "Laurent Montel"
-msgstr "Laurent Montel"
-
-#: configuration/akregator_config_security.cpp:33
-#, kde-format
-msgid "(c), 2021 Laurent Montel"
-msgstr ""
-
-#: configuration/akregator_config_userfeedback.cpp:28
-#, kde-format
-msgid "Configure User Feedback"
-msgstr ""
-
-#: configuration/akregator_config_userfeedback.cpp:32
-#, kde-format
-msgid "(c), 2020-2021 Laurent Montel"
-msgstr ""
 
 #: configuration/akregatorconfigurepluginlistwidget.cpp:51
 #, kde-format
@@ -984,8 +908,8 @@ msgid "Resets the quick filter when changing feeds."
 msgstr "Sálke filtara go manná eará gáldui."
 
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
-#: src/akregator_part.cpp:145
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:144
+#: src/akregator_part.cpp:150
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:153
 #: src/trayicon.cpp:41 src/trayicon.cpp:42 src/trayicon.cpp:54
 #, kde-format
 msgid "Akregator"
@@ -1021,8 +945,18 @@ msgstr ""
 
 #: src/aboutdata.cpp:27
 #, kde-format
+msgid "Laurent Montel"
+msgstr "Laurent Montel"
+
+#: src/aboutdata.cpp:27
+#, kde-format
 msgid "Maintainer"
 msgstr "Máŧasdoalli"
+
+#: src/aboutdata.cpp:28
+#, kde-format
+msgid "Frank Osterfeld"
+msgstr "Frank Osterfeld"
 
 #: src/aboutdata.cpp:28
 #, kde-format
@@ -1589,7 +1523,7 @@ msgstr ""
 msgid "Planet KDE España"
 msgstr ""
 
-#: src/akregator_part.cpp:439
+#: src/akregator_part.cpp:444
 #, kde-format
 msgid ""
 "Access denied: Cannot save feed list to <b>%1</b>. Please check your "
@@ -1597,22 +1531,22 @@ msgid ""
 msgstr ""
 "Ii sáhte vurket gáldolisttu <b>%1:i</b>. Dárkkis beassanvuoigatvuođaid."
 
-#: src/akregator_part.cpp:440 src/akregator_part.cpp:491
+#: src/akregator_part.cpp:445 src/akregator_part.cpp:496
 #, kde-format
 msgid "Write Error"
 msgstr "Čállinmeattáhus"
 
-#: src/akregator_part.cpp:476
+#: src/akregator_part.cpp:481
 #, kde-format
 msgid "Could not import the file %1 (no valid OPML)"
 msgstr "Ii sáhttán sisafievrridit filla %1 (gustohis OPML)"
 
-#: src/akregator_part.cpp:476 src/command/loadfeedlistcommand.cpp:71
+#: src/akregator_part.cpp:481 src/command/loadfeedlistcommand.cpp:71
 #, kde-format
 msgid "OPML Parsing Error"
 msgstr "OPML dulkonmeattáhus"
 
-#: src/akregator_part.cpp:480
+#: src/akregator_part.cpp:485
 #, kde-format
 msgid ""
 "The file %1 could not be read, check if it exists or if it is readable for "
@@ -1621,22 +1555,22 @@ msgstr ""
 "Ii sáhttán lohkat fiilla %1. Dárkkis jus dat gávdno dahje lea logahahtti "
 "dálá geavaheaddjái."
 
-#: src/akregator_part.cpp:481 src/command/loadfeedlistcommand.cpp:142
+#: src/akregator_part.cpp:486 src/command/loadfeedlistcommand.cpp:142
 #, kde-format
 msgid "Read Error"
 msgstr "Lohkanmeattáhus"
 
-#: src/akregator_part.cpp:491
+#: src/akregator_part.cpp:496
 #, kde-format
 msgid "Access denied: cannot write to file %1. Please check your permissions."
 msgstr "Ii sáhte čállit %1-fiilii. Dárkkis beassanvuoigatvuođaid."
 
-#: src/akregator_part.cpp:506 src/akregator_part.cpp:515
+#: src/akregator_part.cpp:511 src/akregator_part.cpp:520
 #, kde-format
 msgid "OPML Outlines (%1);;All Files (*)"
 msgstr ""
 
-#: src/akregator_part.cpp:649
+#: src/akregator_part.cpp:654
 #, kde-format
 msgid "Imported Folder"
 msgstr "Sisafievrriduvvon máhppa"
@@ -1703,59 +1637,59 @@ msgctxt "Articlelist's column header"
 msgid "Content"
 msgstr "Sisdoallu"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:145
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:154
 #, kde-format
 msgid "Akregator is a KDE news feed reader."
 msgstr ""
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:186
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:195
 #, kde-format
 msgctxt "@title:window"
 msgid "Save As"
 msgstr ""
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:375
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:384
 #, kde-format
 msgid "Disable"
 msgstr "Ale čájet álgosiiddu fas"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:376
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:385
 #, kde-format
 msgid "Keep Enabled"
 msgstr "Čájet álgosiiddu fas"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:378
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:387
 #, kde-format
 msgid "Are you sure you want to disable this introduction page?"
 msgstr "Háliidatgo ahte álgosiidu ii šat oidno?"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:379
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:388
 #, kde-format
 msgid "Disable Introduction Page"
 msgstr "Ále čájet álgosiiddu šat"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:414
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:423
 #, kde-format
 msgid "This web site is a malware, do you want to continue to show it?"
 msgstr ""
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:415
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:424
 #, kde-format
 msgid "Malware"
 msgstr ""
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:427
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:436
 #, kde-format
 msgid "The network is broken."
 msgstr ""
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:427
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:430
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:436
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:439
 #, kde-format
 msgid "Check Phishing Url"
 msgstr ""
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:430
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:439
 #, kde-format
 msgid "The url %1 is not valid."
 msgstr ""
@@ -1914,37 +1848,37 @@ msgid "&Edit"
 msgstr "&Doaimmat"
 
 #. i18n: ectx: Menu (view)
-#: src/data/akregator_part.rc:21 src/data/akregator_shell.rc:16
+#: src/data/akregator_part.rc:22 src/data/akregator_shell.rc:16
 #, kde-format
 msgid "&View"
 msgstr "Čá&jet"
 
 #. i18n: ectx: Menu (go)
-#: src/data/akregator_part.rc:36 src/data/akregator_shell.rc:24
+#: src/data/akregator_part.rc:37 src/data/akregator_shell.rc:24
 #, kde-format
 msgid "&Go"
 msgstr "&Mana"
 
 #. i18n: ectx: Menu (feed)
-#: src/data/akregator_part.rc:49 src/data/akregator_shell.rc:29
+#: src/data/akregator_part.rc:50 src/data/akregator_shell.rc:29
 #, kde-format
 msgid "Fee&d"
 msgstr "Gál&du"
 
 #. i18n: ectx: Menu (article)
-#: src/data/akregator_part.rc:62 src/data/akregator_shell.rc:34
+#: src/data/akregator_part.rc:63 src/data/akregator_shell.rc:34
 #, kde-format
 msgid "&Article"
 msgstr "&Artihkal"
 
 #. i18n: ectx: Menu (settings)
-#: src/data/akregator_part.rc:79 src/data/akregator_shell.rc:39
+#: src/data/akregator_part.rc:80 src/data/akregator_shell.rc:39
 #, kde-format
 msgid "&Settings"
 msgstr "&Heivehusat"
 
 #. i18n: ectx: ToolBar (mainToolBar)
-#: src/data/akregator_part.rc:92 src/data/akregator_shell.rc:54
+#: src/data/akregator_part.rc:93 src/data/akregator_shell.rc:54
 #, kde-format
 msgid "Main Toolbar"
 msgstr "Váldoreaidoholga"
