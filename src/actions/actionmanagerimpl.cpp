@@ -26,6 +26,7 @@
 #include "akregator_debug.h"
 #include <KActionCollection>
 #include <KActionMenu>
+#include <KColorSchemeMenu>
 #include <KGuiItem>
 #include <KLocalizedString>
 #include <KStandardAction>
@@ -436,7 +437,7 @@ void ActionManagerImpl::initMainWidget(MainWidget *mainWidget)
     connect(d->mQuickSearchAction, &QAction::triggered, mainWidget, &MainWidget::slotFocusQuickSearch);
 
     auto manager = new KColorSchemeManager(this);
-    coll->addAction(QStringLiteral("colorscheme_menu"), manager->createSchemeSelectionMenu(this));
+    coll->addAction(QStringLiteral("colorscheme_menu"), KColorSchemeMenu::createMenu(manager, this));
 
     setArticleActionsEnabled(false);
 }
