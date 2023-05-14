@@ -3,14 +3,14 @@
 # Xosé <xosecalvo@gmail.com>, 2012, 2013.
 # Marce Villarino <mvillarino@kde-espana.es>, 2012, 2013, 2014.
 # Adrian Chaves Fernandez <adriyetichaves@gmail.com>, 2013, 2015, 2016, 2017.
-# Adrián Chaves (Gallaecio) <adrian@chaves.io>, 2017, 2018, 2019, 2020.
+# Adrián Chaves (Gallaecio) <adrian@chaves.io>, 2017, 2018, 2019, 2020, 2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-04-01 00:51+0000\n"
-"PO-Revision-Date: 2020-01-05 19:20+0100\n"
+"PO-Revision-Date: 2023-05-11 23:48+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Galician <proxecto@trasno.gal>\n"
 "Language: gl\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 19.08.3\n"
+"X-Generator: Lokalize 23.04.0\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -38,17 +38,11 @@ msgid ""
 "collects the content for you."
 msgstr ""
 "Os lectores de novas fornecen unha forma cómoda de explorar distintos tipos "
-"de contidos, como novas, blogues, e outros contidos de sitios en Internet. "
-"En vez de consultar manualmente todos os sitios en Internet para comprobar "
-"se hai actualizacións, Akregator recolle o contido por vostede."
+"de contidos, como novas, blogs, e outros contidos de sitios en Internet. En "
+"vez de consultar manualmente todos os sitios en Internet para comprobar se "
+"hai actualizacións, Akregator recolle o contido por vostede."
 
 #: src/about/introduction_akregator.html:19
-#, fuzzy
-#| msgid ""
-#| "For more information about using Akregator, check the <a href='https://"
-#| "kontact.kde.org/components/akregator.html'>Akregator website</a>. If you "
-#| "do not want to see this page anymore, <a href='config:/"
-#| "disable_introduction'>click here</a>."
 msgid ""
 "For more information about using Akregator, check the <a href='https://"
 "kontact.kde.org/components/akregator/'>Akregator website</a>. If you do not "
@@ -56,9 +50,9 @@ msgid ""
 "here</a>."
 msgstr ""
 "Para máis información sobre como usar Akregator, revise o <a href='https://"
-"kontact.kde.org/components/akregator.html'>sitio web de Akregator</a>. Se "
-"non quere volver ver esta páxina, <a href='config:/"
-"disable_introduction'>prema aquí</a>."
+"kontact.kde.org/components/akregator/'>sitio web de Akregator</a>. Se non "
+"quere volver ver esta páxina, <a href='config:/disable_introduction'>prema "
+"aquí</a>."
 
 #: src/about/introduction_akregator.html:20
 msgid "We hope that you will enjoy Akregator."
@@ -113,6 +107,8 @@ msgid ""
 "<b>Note:</b> For security reasons, external reference is blocked (See "
 "configure dialog)."
 msgstr ""
+"<b>Nota:</b> Bloqueouse unha referencia externa por seguranza (consulte o "
+"diálogo de configuración)."
 
 #: configuration/akregator_config_archive.cpp:43
 #, kde-format
@@ -428,7 +424,7 @@ msgstr "Ocultar as fontes de novas sen artigos sen ler."
 #: configuration/ui/settings_general.ui:57
 #, kde-format
 msgid "Lock feeds in place"
-msgstr ""
+msgstr "Bloquear a posición das fontes"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_AutoExpandFolders)
 #. i18n: ectx: whatsthis, entry, group (View)
@@ -454,7 +450,7 @@ msgstr "Usar &notificacións para todas as fontes"
 #: configuration/ui/settings_general.ui:84
 #, kde-format
 msgid "Disable save as finished notification"
-msgstr ""
+msgstr "Desactivar a notificación de finalización de gardar como"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_UseIntervalFetch)
 #: configuration/ui/settings_general.ui:91
@@ -502,7 +498,7 @@ msgstr "U&sar a caché do navegador (menor tráfico de rede)"
 #: configuration/ui/settings_security.ui:17
 #, kde-format
 msgid "Allow feed to load external references from internet."
-msgstr ""
+msgstr "Permitir á fonte cargar referencias externas de Internet"
 
 #: export/akregatorstorageexporter.cpp:284
 #, kde-format
@@ -519,13 +515,13 @@ msgstr "Oculta as fontes de novas sen artigos sen ler."
 #: interfaces/akregator.kcfg:21
 #, kde-format
 msgid "Prevent feeds from being moved in the list"
-msgstr ""
+msgstr "Impedir que as fontes se movan na lista"
 
 #. i18n: ectx: whatsthis, entry, group (View)
 #: interfaces/akregator.kcfg:22
 #, kde-format
 msgid "Locks feeds where they are"
-msgstr ""
+msgstr "Bloquea a posición das fontes"
 
 #. i18n: ectx: label, entry, group (View)
 #: interfaces/akregator.kcfg:26
@@ -957,10 +953,9 @@ msgid "A KDE Feed Reader"
 msgstr "Un lector de fontes de novas para KDE"
 
 #: src/aboutdata.cpp:23
-#, fuzzy, kde-format
-#| msgid "Copyright © 2004–2019 Akregator authors"
+#, kde-format
 msgid "Copyright © 2004–%1 Akregator authors"
-msgstr "© 2004–2019 Autores de Akregator"
+msgstr "© 2004–%1 Persoas autoras de Akregator"
 
 #: src/aboutdata.cpp:27
 #, kde-format
@@ -1385,7 +1380,7 @@ msgstr "Agochar as fontes lidas"
 #: src/actions/actionmanagerimpl.cpp:543
 #, kde-format
 msgid "Lock Feeds In Place"
-msgstr ""
+msgstr "Bloquear a posición das fontes"
 
 #: src/actions/actionmanagerimpl.cpp:549
 #, kde-format
@@ -1468,8 +1463,7 @@ msgid "Open Link in External &Browser"
 msgstr "Abrir a ligazón nun &navegador externo"
 
 #: src/addfeeddialog.cpp:49
-#, fuzzy, kde-format
-#| msgid "Add Feed"
+#, kde-format
 msgctxt "@title:window"
 msgid "Add Feed"
 msgstr "Engadir unha fonte"
@@ -1507,7 +1501,7 @@ msgstr "Agochar a xanela principal no inicio"
 #: src/akregator_options.h:30
 #, kde-format
 msgid "Lists the available options for user feedback"
-msgstr ""
+msgstr "Lista todas as opcións dispoñíbeis de comentarios"
 
 #: src/akregator_part.cpp:83
 #, kde-format
@@ -1590,10 +1584,9 @@ msgstr ""
 "permisos."
 
 #: src/akregator_part.cpp:511 src/akregator_part.cpp:520
-#, fuzzy, kde-format
-#| msgid "OPML Outlines (*.opml *.xml);;All Files (*)"
+#, kde-format
 msgid "OPML Outlines (%1);;All Files (*)"
-msgstr "Esquemas OPML (*.opml *.xml);;Todos os ficheiros (*)"
+msgstr "Esquemas OPML (%1);;Todos os ficheiros (*)"
 
 #: src/akregator_part.cpp:654
 #, kde-format
@@ -1672,11 +1665,10 @@ msgid "Akregator is a KDE news feed reader."
 msgstr "Akregator é un lector de fontes de novas de KDE."
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:195
-#, fuzzy, kde-format
-#| msgid "&Save Link As..."
+#, kde-format
 msgctxt "@title:window"
 msgid "Save As"
-msgstr "&Gardar a ligazón como…"
+msgstr "Gardar como"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:384
 #, kde-format
@@ -1725,8 +1717,7 @@ msgid "The url %1 is not valid."
 msgstr "O URL %1 non é válido."
 
 #: src/articleviewer-ng/webengine/articleviewerwebenginewidgetng.cpp:137
-#, fuzzy, kde-format
-#| msgid "Print Document"
+#, kde-format
 msgctxt "@title:window"
 msgid "Print Document"
 msgstr "Imprimir o documento"
@@ -1951,11 +1942,10 @@ msgstr[0] "Día"
 msgstr[1] "Días"
 
 #: src/feed/feedpropertiesdialog.cpp:60 src/feed/feedpropertiesdialog.cpp:112
-#, fuzzy, kde-format
-#| msgid "Feed Properties"
+#, kde-format
 msgctxt "@title:window"
 msgid "Feed Properties"
-msgstr "Propiedades da fonte"
+msgstr "1Propiedades da fonte"
 
 #: src/feed/feedpropertiesdialog.cpp:80
 #, kde-format
@@ -1978,8 +1968,7 @@ msgstr[0] " artigo"
 msgstr[1] " artigos"
 
 #: src/feed/feedpropertiesdialog.cpp:112
-#, fuzzy, kde-format
-#| msgid "Properties of %1"
+#, kde-format
 msgctxt "@title:window"
 msgid "Properties of %1"
 msgstr "Propiedades de %1"
@@ -2084,38 +2073,36 @@ msgid "About"
 msgstr "Sobre"
 
 #: src/mainwidget.cpp:765
-#, fuzzy, kde-format
-#| msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
+#, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all articles in the feed</b> as read?</"
 "qt>"
-msgstr "<qt>Seguro que quere eliminar a fonte de novas <b>%1</b>?</qt>"
+msgstr ""
+"<qt>Seguro que quere marcar <b>todos os artigos da fonte</b> como lidos?</qt>"
 
 #: src/mainwidget.cpp:766
-#, fuzzy, kde-format
-#| msgid "&Mark Feed as Read"
+#, kde-format
 msgid "Mark Feed as Read"
-msgstr "&Marcar a fonte como lida"
+msgstr "Marcar a fonte como lida"
 
 #: src/mainwidget.cpp:769
-#, fuzzy, kde-format
-#| msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
+#, kde-format
 msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
-msgstr "<qt>Seguro que quere eliminar a fonte de novas <b>%1</b>?</qt>"
+msgstr "<qt>Seguro que quere marcar <b>todas as fontes</b> como lidas?</qt>"
 
 #: src/mainwidget.cpp:771
-#, fuzzy, kde-format
-#| msgid "<qt>Are you sure you want to delete this feed?</qt>"
+#, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all feeds in the folder</b> as read?</"
 "qt>"
-msgstr "<qt>Seguro que quere eliminar esta fonte de novas?</qt>"
+msgstr ""
+"<qt>Seguro que quere marcar <b>todas as fontes do cartafol</b> como lidas?</"
+"qt>"
 
 #: src/mainwidget.cpp:773
-#, fuzzy, kde-format
-#| msgid "&Mark Feeds as Read"
+#, kde-format
 msgid "Mark Feeds as Read"
-msgstr "&Marcar as fontes como lidas"
+msgstr "Marcar as fontes como lidas"
 
 #: src/mainwidget.cpp:837 src/mainwidget.cpp:846 src/mainwidget.cpp:1248
 #, kde-format
@@ -2151,11 +2138,12 @@ msgid ""
 "<qt>This will hide the menu bar completely. You can show it again by typing "
 "%1.</qt>"
 msgstr ""
+"<qt>Isto agocha a barra de menú. Para mostrala de novo, escriba %1.</qt>"
 
 #: src/mainwindow.cpp:124
 #, kde-format
 msgid "Hide menu bar"
-msgstr ""
+msgstr "Agochar a barra de menú"
 
 #: src/mainwindow.cpp:153
 #, kde-format
@@ -2513,12 +2501,10 @@ msgid "New"
 msgstr "Novo"
 
 #: src/widgets/statussearchline.cpp:45
-#, fuzzy, kde-format
-#| msgctxt "as in: mark as read"
-#| msgid "&Read"
+#, kde-format
 msgctxt "Read articles filter"
 msgid "Read"
-msgstr "&Lido"
+msgstr "Lido"
 
 #: src/widgets/statussearchline.cpp:46
 #, kde-format
