@@ -10,7 +10,6 @@
 #include "articleviewerwebengine.h"
 
 #include <QWidget>
-class QPrinter;
 class KActionCollection;
 
 namespace KPIMTextEdit
@@ -53,12 +52,10 @@ private Q_SLOTS:
     void slotOpenInBrowser();
     void slotExportHtmlPageSuccess(const QString &filename);
     void slotExportHtmlPageFailed();
-    void slotHandlePagePrinted(bool result);
 
 private:
     void initializeActions(KActionCollection *ac);
     void initializeLayout(KActionCollection *ac);
-    void printRequested(QWebEnginePage *page);
     WebEngineViewer::FindBarWebEngineView *mFindBarWebView = nullptr;
     ArticleViewerWebEngine *mArticleViewerNg = nullptr;
 #ifdef HAVE_KTEXTADDONS_TEXT_TO_SPEECH_SUPPORT
@@ -66,6 +63,5 @@ private:
 #endif
     KPIMTextEdit::SlideContainer *const mSliderContainer;
     WebEngineViewer::TrackingWarningWidget *const mTrackingWarningWidget;
-    QPrinter *mCurrentPrinter = nullptr;
 };
 }

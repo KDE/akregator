@@ -10,6 +10,7 @@
 #include <KIO/JobUiDelegateFactory>
 #include <KIO/OpenUrlJob>
 #include <KLocalizedString>
+#include <MessageViewer/PrintMessage>
 #include <MessageViewer/ViewerPluginToolManager>
 #include <QVBoxLayout>
 #ifdef HAVE_KTEXTADDONS_TEXT_TO_SPEECH_SUPPORT
@@ -22,9 +23,6 @@
 #include <WebEngineViewer/WebEngineExportHtmlPageJob>
 
 #include <QApplication>
-#include <QPrintDialog>
-#include <QPrintPreviewDialog>
-#include <QPrinter>
 
 using namespace Akregator;
 template<typename Arg, typename R, typename C>
@@ -123,47 +121,19 @@ void ArticleViewerWebEngineWidgetNg::saveCurrentPosition()
 
 void ArticleViewerWebEngineWidgetNg::slotPrint()
 {
-    printRequested(mArticleViewerNg->page());
-}
-
-void ArticleViewerWebEngineWidgetNg::printRequested(QWebEnginePage *page)
-{
-    if (mCurrentPrinter) {
-        return;
-    }
-    mCurrentPrinter = new QPrinter();
-    QPointer<QPrintDialog> dialog = new QPrintDialog(mCurrentPrinter, this);
-    dialog->setWindowTitle(i18nc("@title:window", "Print Document"));
-    if (dialog->exec() != QDialog::Accepted) {
-        slotHandlePagePrinted(false);
-        delete dialog;
-        return;
-    }
-    delete dialog;
-#pragma "Fix port printing"
-}
-
-void ArticleViewerWebEngineWidgetNg::slotHandlePagePrinted(bool result)
-{
-    Q_UNUSED(result)
-    delete mCurrentPrinter;
-    mCurrentPrinter = nullptr;
+    auto printMessage = new MessageViewer::PrintMessage(this);
+    printMessage->setParentWidget(this);
+    printMessage->setView(mArticleViewerNg);
+    printMessage->print();
 }
 
 void ArticleViewerWebEngineWidgetNg::slotPrintPreview()
 {
-    auto dialog = new QPrintPreviewDialog(this);
-    dialog->setAttribute(Qt::WA_DeleteOnClose);
-    dialog->resize(800, 750);
-
-    connect(dialog, &QPrintPreviewDialog::paintRequested, this, [=](QPrinter *printing) {
-        QApplication::setOverrideCursor(Qt::WaitCursor);
-
-        mArticleViewerNg->printPreviewPage(printing);
-        QApplication::restoreOverrideCursor();
-    });
-
-    dialog->open();
+    qDebug() << " print preview ";
+    auto printMessage = new MessageViewer::PrintMessage(this);
+    printMessage->setParentWidget(this);
+    printMessage->setView(mArticleViewerNg);
+    printMessage->printPreview();
 }
 
 void ArticleViewerWebEngineWidgetNg::slotOpenInBrowser()
