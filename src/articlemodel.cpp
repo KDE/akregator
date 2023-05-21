@@ -215,7 +215,7 @@ QStringList ArticleModel::mimeTypes() const
 
 QMimeData *ArticleModel::mimeData(const QModelIndexList &indexes) const
 {
-    QScopedPointer<QMimeData> md(new QMimeData);
+    std::unique_ptr<QMimeData> md(new QMimeData);
     QList<QUrl> urls;
     QList<int> seenArticles;
     for (const QModelIndex &i : indexes) {
@@ -235,7 +235,7 @@ QMimeData *ArticleModel::mimeData(const QModelIndexList &indexes) const
         }
     }
     md->setUrls(urls);
-    return md.take();
+    return md.release();
 }
 
 Qt::ItemFlags ArticleModel::flags(const QModelIndex &idx) const
