@@ -16,7 +16,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "X-Accelerator-Marker: &\n"
 "X-Text-Markup: kde4\n"
 
@@ -122,7 +122,6 @@ msgctxt "Limit feed archive size to:"
 msgid " article"
 msgid_plural " articles"
 msgstr[0] " 件"
-msgstr[1] " 件"
 
 #: configuration/akregator_config_archive.cpp:44
 #, kde-format
@@ -130,14 +129,12 @@ msgctxt "Delete articles older than:"
 msgid " day"
 msgid_plural " days"
 msgstr[0] " 日"
-msgstr[1] " 日"
 
 #: configuration/akregator_config_general.cpp:42
 #, kde-format
 msgid " minute"
 msgid_plural " minutes"
 msgstr[0] " 分"
-msgstr[1] " 分"
 
 #: configuration/akregatorconfigurepluginlistwidget.cpp:51
 #, fuzzy, kde-format
@@ -151,7 +148,6 @@ msgctxt "Mark selected article read after"
 msgid " second"
 msgid_plural " seconds"
 msgstr[0] " 秒"
-msgstr[1] " 秒"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: configuration/ui/settings_advancedbase.ui:30
@@ -1955,21 +1951,18 @@ msgstr "すべてのフィード"
 msgid "Minute"
 msgid_plural "Minutes"
 msgstr[0] "分"
-msgstr[1] "分"
 
 #: src/feed/feedpropertiesdialog.cpp:46 src/feed/feedpropertiesdialog.cpp:78
 #, kde-format
 msgid "Hour"
 msgid_plural "Hours"
 msgstr[0] "時間"
-msgstr[1] "時間"
 
 #: src/feed/feedpropertiesdialog.cpp:47 src/feed/feedpropertiesdialog.cpp:79
 #, kde-format
 msgid "Day"
 msgid_plural "Days"
 msgstr[0] "日"
-msgstr[1] "日"
 
 #: src/feed/feedpropertiesdialog.cpp:60 src/feed/feedpropertiesdialog.cpp:112
 #, fuzzy, kde-format
@@ -1989,14 +1982,12 @@ msgstr "しない"
 msgid " day"
 msgid_plural " days"
 msgstr[0] " 日"
-msgstr[1] " 日"
 
 #: src/feed/feedpropertiesdialog.cpp:82
 #, kde-format
 msgid " article"
 msgid_plural " articles"
 msgstr[0] " 件"
-msgstr[1] " 件"
 
 #: src/feed/feedpropertiesdialog.cpp:112
 #, fuzzy, kde-format
@@ -2021,8 +2012,7 @@ msgstr " (未読の記事はありません)"
 #, kde-format
 msgid " (1 unread article)"
 msgid_plural " (%1 unread articles)"
-msgstr[0] " (1 件の未読記事)"
-msgstr[1] " (%1 件の未読記事)"
+msgstr[0] " (%1 件の未読記事)"
 
 # dummy markup
 #: src/formatter/grantleeviewformatter.cpp:75
@@ -2165,8 +2155,7 @@ msgstr "<qt>本当に記事 “%1” を削除しますか？</qt>"
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
 msgid_plural ""
 "<qt>Are you sure you want to delete the %1 selected articles?</qt>"
-msgstr[0] "<qt>本当に選択した記事を削除しますか？</qt>"
-msgstr[1] "<qt>本当に選択した %1 件の記事を削除しますか？</qt>"
+msgstr[0] "<qt>本当に選択した %1 件の記事を削除しますか？</qt>"
 
 #: src/mainwidget.cpp:1245
 #, kde-format
@@ -2217,7 +2206,6 @@ msgstr ""
 msgid "<i>and 1 other</i>"
 msgid_plural "<i>and %1 others</i>"
 msgstr[0] ""
-msgstr[1] ""
 
 #: src/progressmanager.cpp:127
 #, kde-format
@@ -2349,8 +2337,7 @@ msgstr "未読の記事はありません"
 #, kde-format
 msgid "1 unread article"
 msgid_plural "%1 unread articles"
-msgstr[0] "1 件の未読記事"
-msgstr[1] "%1 件の未読記事"
+msgstr[0] "%1 件の未読記事"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, Akregator::AddFeedWidgetBase)
 #: src/ui/addfeedwidgetbase.ui:14
