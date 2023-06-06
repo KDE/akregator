@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-04-01 00:51+0000\n"
-"PO-Revision-Date: 2023-05-11 23:48+0200\n"
+"PO-Revision-Date: 2023-06-05 12:46+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Galician <proxecto@trasno.gal>\n"
 "Language: gl\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 23.04.0\n"
+"X-Generator: Lokalize 23.04.1\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -1290,12 +1290,12 @@ msgstr "Baixar o nodo"
 #: src/actions/actionmanagerimpl.cpp:410
 #, kde-format
 msgid "Move Node Left"
-msgstr "Mover o nodo cara a esquerda"
+msgstr "Mover o nodo cara á esquerda"
 
 #: src/actions/actionmanagerimpl.cpp:415
 #, kde-format
 msgid "Move Node Right"
-msgstr "Mover o nodo cara a dereita"
+msgstr "Mover o nodo cara á dereita"
 
 #: src/actions/actionmanagerimpl.cpp:421
 #, kde-format
@@ -1355,12 +1355,12 @@ msgstr "Ir á fin da árbore"
 #: src/actions/actionmanagerimpl.cpp:516
 #, kde-format
 msgid "Go Left in Tree"
-msgstr "Ir cara a esquerda na árbore"
+msgstr "Ir cara á esquerda na árbore"
 
 #: src/actions/actionmanagerimpl.cpp:521
 #, kde-format
 msgid "Go Right in Tree"
-msgstr "Ir cara a dereita na árbore"
+msgstr "Ir cara á dereita na árbore"
 
 #: src/actions/actionmanagerimpl.cpp:526
 #, kde-format
@@ -1693,7 +1693,7 @@ msgstr "Desactivar a páxina de presentación"
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:423
 #, kde-format
 msgid "This web site is a malware, do you want to continue to show it?"
-msgstr "Este sitio web é software malicioso, quere mostralo de todos xeitos?"
+msgstr "Este sitio web é software malicioso, quere mostralo aínda así?"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:424
 #, kde-format
@@ -2481,7 +2481,7 @@ msgstr "Buscar nos artigos…"
 #: src/widgets/searchbar.cpp:112
 #, kde-format
 msgid "Search articles...<%1>"
-msgstr "Buscar nos artigos…<%1>"
+msgstr "Buscar nos artigos… <%1>"
 
 #: src/widgets/statussearchline.cpp:42
 #, kde-format
