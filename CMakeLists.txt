@@ -1,11 +1,11 @@
 # SPDX-License-Identifier: CC0-1.0
 # SPDX-FileCopyrightText: none
 cmake_minimum_required(VERSION 3.16 FATAL_ERROR)
-set(PIM_VERSION "5.23.2")
+set(PIM_VERSION "5.23.3")
 project(akregator VERSION ${PIM_VERSION})
 
 set(KF_MIN_VERSION "5.103.0")
-set(RELEASE_SERVICE_VERSION "23.04.2")
+set(RELEASE_SERVICE_VERSION "23.04.3")
 
 find_package(ECM ${KF_MIN_VERSION} CONFIG REQUIRED)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
