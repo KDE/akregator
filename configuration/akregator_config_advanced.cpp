@@ -20,8 +20,8 @@ using namespace Akregator;
 
 K_PLUGIN_CLASS_WITH_JSON(KCMAkregatorAdvancedConfig, "akregator_config_advanced.json")
 
-KCMAkregatorAdvancedConfig::KCMAkregatorAdvancedConfig(QObject *parent, const KPluginMetaData &data, const QVariantList &args)
-    : KCModule(parent, data, args)
+KCMAkregatorAdvancedConfig::KCMAkregatorAdvancedConfig(QObject *parent, const KPluginMetaData &data)
+    : KCModule(parent, data)
     , m_widget(new SettingsAdvanced(widget()))
 {
     auto layout = new QVBoxLayout(widget());

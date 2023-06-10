@@ -18,7 +18,7 @@ class KCMAkregatorAppearanceConfig : public KCModule
 {
     Q_OBJECT
 public:
-    explicit KCMAkregatorAppearanceConfig(QObject *parent, const KPluginMetaData &data, const QVariantList &args);
+    explicit KCMAkregatorAppearanceConfig(QObject *parent, const KPluginMetaData &data);
 
 private:
     QWidget *const m_widget;

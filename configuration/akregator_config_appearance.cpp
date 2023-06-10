@@ -18,8 +18,8 @@
 using namespace Akregator;
 
 K_PLUGIN_CLASS_WITH_JSON(KCMAkregatorAppearanceConfig, "akregator_config_appearance.json")
-KCMAkregatorAppearanceConfig::KCMAkregatorAppearanceConfig(QObject *parent, const KPluginMetaData &data, const QVariantList &args)
-    : KCModule(parent, data, args)
+KCMAkregatorAppearanceConfig::KCMAkregatorAppearanceConfig(QObject *parent, const KPluginMetaData &data)
+    : KCModule(parent, data)
     , m_widget(new QWidget(widget()))
 {
     m_ui.setupUi(m_widget);

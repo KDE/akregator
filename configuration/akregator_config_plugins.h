@@ -18,7 +18,7 @@ class KCMAkregatorPluginsConfig : public KCModule
 {
     Q_OBJECT
 public:
-    explicit KCMAkregatorPluginsConfig(QObject *parent, const KPluginMetaData &data, const QVariantList &args);
+    explicit KCMAkregatorPluginsConfig(QObject *parent, const KPluginMetaData &data);
     void load() override;
     void save() override;
     void defaults() override;

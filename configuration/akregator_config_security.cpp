@@ -14,8 +14,8 @@
 using namespace Akregator;
 
 K_PLUGIN_CLASS_WITH_JSON(KCMAkregatorSecurityConfig, "akregator_config_security.json")
-KCMAkregatorSecurityConfig::KCMAkregatorSecurityConfig(QObject *parent, const KPluginMetaData &data, const QVariantList &args)
-    : KCModule(parent, data, args)
+KCMAkregatorSecurityConfig::KCMAkregatorSecurityConfig(QObject *parent, const KPluginMetaData &data)
+    : KCModule(parent, data)
     , m_widget(new QWidget(widget()))
 {
     auto lay = new QHBoxLayout(widget());

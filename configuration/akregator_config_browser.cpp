@@ -19,8 +19,8 @@
 using namespace Akregator;
 
 K_PLUGIN_CLASS_WITH_JSON(KCMAkregatorBrowserConfig, "akregator_config_browser.json")
-KCMAkregatorBrowserConfig::KCMAkregatorBrowserConfig(QObject *parent, const KPluginMetaData &data, const QVariantList &args)
-    : KCModule(parent, data, args)
+KCMAkregatorBrowserConfig::KCMAkregatorBrowserConfig(QObject *parent, const KPluginMetaData &data)
+    : KCModule(parent, data)
     , m_widget(new QWidget(widget()))
 {
     Ui::SettingsBrowser ui;

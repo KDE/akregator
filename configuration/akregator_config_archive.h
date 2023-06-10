@@ -19,7 +19,7 @@ class KCMAkregatorArchiveConfig : public KCModule
     Q_OBJECT
 
 public:
-    explicit KCMAkregatorArchiveConfig(QObject *parent, const KPluginMetaData &data, const QVariantList &args);
+    explicit KCMAkregatorArchiveConfig(QObject *parent, const KPluginMetaData &data);
 
     void setArchiveMode(int mode);
     int archiveMode() const;

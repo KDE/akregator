@@ -14,7 +14,7 @@ class KCMAkregatorSecurityConfig : public KCModule
 {
     Q_OBJECT
 public:
-    explicit KCMAkregatorSecurityConfig(QObject *parent, const KPluginMetaData &data, const QVariantList &args);
+    explicit KCMAkregatorSecurityConfig(QObject *parent, const KPluginMetaData &data);
 
 private:
     QWidget *const m_widget;

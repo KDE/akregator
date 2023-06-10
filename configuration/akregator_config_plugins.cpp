@@ -16,8 +16,8 @@
 using namespace Akregator;
 
 K_PLUGIN_CLASS_WITH_JSON(KCMAkregatorPluginsConfig, "akregator_config_plugins.json")
-KCMAkregatorPluginsConfig::KCMAkregatorPluginsConfig(QObject *parent, const KPluginMetaData &data, const QVariantList &args)
-    : KCModule(parent, data, args)
+KCMAkregatorPluginsConfig::KCMAkregatorPluginsConfig(QObject *parent, const KPluginMetaData &data)
+    : KCModule(parent, data)
 {
     auto lay = new QHBoxLayout(widget());
     lay->setContentsMargins({});

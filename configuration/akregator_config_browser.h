@@ -17,7 +17,7 @@ class KCMAkregatorBrowserConfig : public KCModule
     Q_OBJECT
 
 public:
-    explicit KCMAkregatorBrowserConfig(QObject *parent, const KPluginMetaData &data, const QVariantList &args);
+    explicit KCMAkregatorBrowserConfig(QObject *parent, const KPluginMetaData &data);
 
 private:
     QWidget *const m_widget;

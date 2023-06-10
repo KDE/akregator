@@ -19,8 +19,8 @@
 using namespace Akregator;
 
 K_PLUGIN_CLASS_WITH_JSON(KCMAkregatorGeneralConfig, "akregator_config_general.json")
-KCMAkregatorGeneralConfig::KCMAkregatorGeneralConfig(QObject *parent, const KPluginMetaData &data, const QVariantList &args)
-    : KCModule(parent, data, args)
+KCMAkregatorGeneralConfig::KCMAkregatorGeneralConfig(QObject *parent, const KPluginMetaData &data)
+    : KCModule(parent, data)
     , m_widget(new QWidget(widget()))
 {
     Ui::SettingsGeneral ui;
