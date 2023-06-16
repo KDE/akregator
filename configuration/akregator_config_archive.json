@@ -34,6 +34,7 @@
         "Description[uk]": "Налаштування архіву подач",
         "Description[x-test]": "xxConfigure Feed Archivexx",
         "Description[zh_CN]": "配置 Feed 存档",
+        "Description[zh_TW]": "設定 Feed 歸檔",
         "Icon": "utilities-file-archiver",
         "Name": "Archive",
         "Name[ar]": "الأرشيف",

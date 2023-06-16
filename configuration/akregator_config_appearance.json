@@ -34,6 +34,7 @@
         "Description[uk]": "Налаштування вигляду програми читання подач",
         "Description[x-test]": "xxConfigure the Feed Reader Appearancexx",
         "Description[zh_CN]": "配置 Feed 阅读器外观",
+        "Description[zh_TW]": "設定 Feed 閱讀器外觀",
         "Icon": "video-display",
         "Name": "Appearance",
         "Name[af]": "Appearance",

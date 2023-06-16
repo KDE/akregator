@@ -34,6 +34,7 @@
         "Description[uk]": "Налаштовування захисту",
         "Description[x-test]": "xxConfigure Securityxx",
         "Description[zh_CN]": "安全性设置",
+        "Description[zh_TW]": "設定安全性",
         "Icon": "security-high",
         "Name": "Security",
         "Name[af]": "Sekuriteit",
@@ -99,6 +100,7 @@
         "Name[wa]": "Såvrité",
         "Name[x-test]": "xxSecurityxx",
         "Name[zh_CN]": "安全",
+        "Name[zh_TW]": "安全性",
         "ServiceTypes": [
             "KCModule"
         ]
