@@ -34,6 +34,7 @@
         "Description[uk]": "Додаток до Akregator",
         "Description[x-test]": "xxAkregator Pluginxx",
         "Description[zh_CN]": "Akregator 插件",
+        "Description[zh_TW]": "Akregator 外掛程式",
         "EnabledByDefault": true,
         "Icon": "view-pim-news",
         "License": "GPL",
