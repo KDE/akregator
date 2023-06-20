@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-04-01 00:51+0000\n"
-"PO-Revision-Date: 2023-06-17 09:07+0200\n"
+"PO-Revision-Date: 2023-06-19 11:46+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Galician <proxecto@trasno.gal>\n"
 "Language: gl\n"
@@ -38,9 +38,9 @@ msgid ""
 "collects the content for you."
 msgstr ""
 "Os lectores de novas fornecen unha forma cómoda de explorar distintos tipos "
-"de contidos, como novas, blogs, e outros contidos de sitios en Internet. En "
-"vez de consultar manualmente todos os sitios en Internet para comprobar se "
-"hai actualizacións, Akregator recolle o contido por vostede."
+"de contidos, como novas, bitácoras, e outros contidos de sitios en Internet. "
+"En vez de consultar manualmente todos os sitios en Internet para comprobar "
+"se hai actualizacións, Akregator recolle o contido por vostede."
 
 #: src/about/introduction_akregator.html:19
 msgid ""
@@ -107,7 +107,7 @@ msgid ""
 "<b>Note:</b> For security reasons, external reference is blocked (See "
 "configure dialog)."
 msgstr ""
-"<b>Nota:</b> Bloqueouse unha referencia externa por seguranza (consulte o "
+"<b>Nota:</b> Bloqueouse unha referencia externa por seguridade (consulte o "
 "diálogo de configuración)."
 
 #: configuration/akregator_config_archive.cpp:43
@@ -186,7 +186,7 @@ msgstr "Artigos novos:"
 #: configuration/ui/settings_appearance.ui:98
 #, kde-format
 msgid "Use custom colors"
-msgstr "Empregar cores personalizadas."
+msgstr "Usar cores personalizadas."
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #: configuration/ui/settings_appearance.ui:121
@@ -348,13 +348,13 @@ msgstr "Separadores"
 #: configuration/ui/settings_browser.ui:116 interfaces/akregator.kcfg:202
 #, kde-format
 msgid "Always show the tab bar"
-msgstr "Mostrar sempre a barra de separadores"
+msgstr "Amosar sempre a barra de separadores"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_CloseButtonOnTabs)
 #: configuration/ui/settings_browser.ui:123
 #, kde-format
 msgid "Show close button on each tab"
-msgstr "Mostrar o botón de pechar en cada separador"
+msgstr "Amosar o botón de pechar en cada separador"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_NewWindowInTab)
 #. i18n: ectx: label, entry, group (Browser)
@@ -367,7 +367,7 @@ msgstr "Abrir as ligazóns nun novo separador no canto de nunha xanela nova"
 #: configuration/ui/settings_browser.ui:140
 #, kde-format
 msgid "Security"
-msgstr "Seguranza"
+msgstr "Seguridade"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_CheckPhishingUrl)
 #: configuration/ui/settings_browser.ui:146
@@ -405,13 +405,13 @@ msgstr "Global"
 #: configuration/ui/settings_general.ui:36
 #, kde-format
 msgid "Show tra&y icon"
-msgstr "Mostrar a icona na bande&xa"
+msgstr "Amosar a icona na bande&xa"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ShowUnreadInTaskbar)
 #: configuration/ui/settings_general.ui:43
 #, kde-format
 msgid "Show unread articles in Taskbar"
-msgstr "Mostrar os artigos sen ler na barra de tarefas"
+msgstr "Amosar os artigos sen ler na barra de tarefas"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_HideReadFeeds)
 #. i18n: ectx: label, entry, group (View)
@@ -533,13 +533,13 @@ msgstr "Expande automaticamente os cartafoles con artigos sen ler."
 #: interfaces/akregator.kcfg:31 src/actions/actionmanagerimpl.cpp:317
 #, kde-format
 msgid "Show Quick Filter"
-msgstr "Mostrar o filtro rápido"
+msgstr "Amosar o filtro rápido"
 
 #. i18n: ectx: whatsthis, entry, group (View)
 #: interfaces/akregator.kcfg:32
 #, kde-format
 msgid "Show Quick Filter Bar"
-msgstr "Mostrar o filtro rápido"
+msgstr "Amosar o filtro rápido"
 
 #. i18n: ectx: label, entry, group (View)
 #: interfaces/akregator.kcfg:36
@@ -732,10 +732,9 @@ msgid ""
 "the default one. This is here because some proxies may interrupt the "
 "connection because of having \"gator\" in the name."
 msgstr ""
-"Esta opción permite que o usuario especifique unha cadea personalizada co "
-"axente de usuario no canto de empregar o predeterminado. Isto aparece aquí "
-"porque algúns proxies poden interromper a conexión se «gator» aparecer no "
-"nome."
+"Esta opción permite que o usuario indique unha cadea personalizada co axente "
+"de usuario no canto de usar o predeterminado. Isto aparece aquí porque "
+"algúns mandatarios poden interromper a conexión se «gator» aparecer no nome."
 
 #. i18n: ectx: label, entry, group (General)
 #: interfaces/akregator.kcfg:155
@@ -789,7 +788,7 @@ msgstr "Intervalo para a obtención automática en minutos."
 #: interfaces/akregator.kcfg:175
 #, kde-format
 msgid "Use notifications"
-msgstr "Empregar notificacións"
+msgstr "Usar notificacións"
 
 #. i18n: ectx: whatsthis, entry, group (General)
 #: interfaces/akregator.kcfg:176
@@ -801,45 +800,44 @@ msgstr "Indica se usar notificacións de globo."
 #: interfaces/akregator.kcfg:180
 #, kde-format
 msgid "Show tray icon"
-msgstr "Mostrar a icona na bandexa"
+msgstr "Amosar a icona na bandexa"
 
 #. i18n: ectx: whatsthis, entry, group (General)
 #: interfaces/akregator.kcfg:181
 #, kde-format
 msgid "Specifies if the tray icon is shown or not."
-msgstr "Especifica se se mostra ou non a icona na bandexa."
+msgstr "Indica se se amosa ou non a icona na bandexa."
 
 #. i18n: ectx: label, entry, group (General)
 #: interfaces/akregator.kcfg:185
 #, kde-format
 msgid "Show Unread In Taskbar"
-msgstr "Mostrar o non lido na barra de tarefas"
+msgstr "Amosar o non lido na barra de tarefas"
 
 #. i18n: ectx: whatsthis, entry, group (General)
 #: interfaces/akregator.kcfg:186
 #, kde-format
 msgid "Specifies if we show unread article in taskbar."
-msgstr "Indica se se mostran os artigos sen ler na barra de tarefas."
+msgstr "Indica se se amosan os artigos sen ler na barra de tarefas."
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
 #: interfaces/akregator.kcfg:203
 #, kde-format
 msgid "Always show the tab bar, even when only one tab is open"
 msgstr ""
-"Mostrar sempre a barra de separadores, mesmo cando só haxa un separador "
-"aberto"
+"Amosar sempre a barra de separadores, mesmo cando só haxa un separador aberto"
 
 #. i18n: ectx: label, entry, group (Browser)
 #: interfaces/akregator.kcfg:207
 #, kde-format
 msgid "Show close buttons on tabs"
-msgstr "Mostrar os botóns de pechar nos separadores"
+msgstr "Amosar os botóns de pechar nos separadores"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
 #: interfaces/akregator.kcfg:208
 #, kde-format
 msgid "Show close buttons on tabs instead of icons"
-msgstr "Mostrar botóns de pechar nos separadores no canto de iconas"
+msgstr "Amosar botóns de pechar nos separadores no canto de iconas"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
 #: interfaces/akregator.kcfg:213
@@ -855,7 +853,7 @@ msgstr ""
 #: interfaces/akregator.kcfg:217
 #, kde-format
 msgid "Use default KDE web browser"
-msgstr "Empregar o navegador web predeterminado de KDE"
+msgstr "Usar o navegador web predeterminado de KDE"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
 #: interfaces/akregator.kcfg:218
@@ -867,7 +865,7 @@ msgstr "Utilizar o navegador web de KDE ao abrir nun navegador externo."
 #: interfaces/akregator.kcfg:222
 #, kde-format
 msgid "Use this command:"
-msgstr "Empregar esta orde:"
+msgstr "Usar esta orde:"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
 #: interfaces/akregator.kcfg:223
@@ -939,7 +937,7 @@ msgstr "Nova fonte…"
 #, kde-format
 msgctxt "@info:status"
 msgid "Create a new feed"
-msgstr "Crear unha fonte nova"
+msgstr "Crear unha fonte nova."
 
 #: kontactplugin/akregator_plugin.cpp:33
 #, kde-format
@@ -1310,7 +1308,7 @@ msgstr "Enviar un &ficheiro…"
 #: src/actions/actionmanagerimpl.cpp:432
 #, kde-format
 msgid "Set Focus to Quick Search"
-msgstr "Estabelecer o foco na busca rápida"
+msgstr "Poñer o foco na busca rápida"
 
 #: src/actions/actionmanagerimpl.cpp:464
 #, kde-format
@@ -1526,7 +1524,7 @@ msgstr "Planeta KDE"
 #: src/akregator_part.cpp:109
 #, kde-format
 msgid "KDE Apps"
-msgstr "Aplicativos de KDE"
+msgstr "Aplicacións de KDE"
 
 #: src/akregator_part.cpp:115
 #, kde-format
@@ -1693,7 +1691,7 @@ msgstr "Desactivar a páxina de presentación"
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:423
 #, kde-format
 msgid "This web site is a malware, do you want to continue to show it?"
-msgstr "Este sitio web é software malicioso, quere mostralo aínda así?"
+msgstr "Este sitio web é software malicioso, quere amosalo aínda así?"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:424
 #, kde-format
@@ -1792,7 +1790,7 @@ msgid ""
 "<p><b>%1</b></p></qt>"
 msgstr ""
 "<qt>A lista estándar de fontes está corrupta (a OPML é incorrecta). Creouse "
-"unha copia de seguranza:<p><b>%1</b></p></qt>"
+"unha copia de seguridade:<p><b>%1</b></p></qt>"
 
 #: src/command/loadfeedlistcommand.cpp:67
 #, kde-format
@@ -1801,7 +1799,7 @@ msgid ""
 "backup.</qt>"
 msgstr ""
 "<qt>A lista estándar de fontes está corrupta (a OPML é incorrecta). Non se "
-"puido crear un ficheiro de seguranza.</qt>"
+"puido crear un ficheiro de seguridade.</qt>"
 
 #: src/command/loadfeedlistcommand.cpp:129
 #, kde-format
@@ -1833,7 +1831,7 @@ msgid ""
 "<p><b>%1</b></p></qt>"
 msgstr ""
 "<qt>A lista estándar de fontes está estragada (o XML é incorrecto). Creouse "
-"unha copia de seguranza:<p><b>%1</b></p></qt>"
+"unha copia de seguridade:<p><b>%1</b></p></qt>"
 
 #: src/command/loadfeedlistcommand.cpp:168
 #, kde-format
@@ -1842,7 +1840,7 @@ msgid ""
 "backup.</qt>"
 msgstr ""
 "<qt>A lista estándar de fontes está estragada (o XML é incorrecto). Non se "
-"puido crear un ficheiro de seguranza.</qt>"
+"puido crear un ficheiro de seguridade.</qt>"
 
 #: src/crashwidget/crashwidget.cpp:21
 #, kde-format
@@ -2138,7 +2136,7 @@ msgid ""
 "<qt>This will hide the menu bar completely. You can show it again by typing "
 "%1.</qt>"
 msgstr ""
-"<qt>Isto agocha a barra de menú. Para mostrala de novo, escriba %1.</qt>"
+"<qt>Isto agocha a barra de menú. Para amosala de novo, escriba %1.</qt>"
 
 #: src/mainwindow.cpp:124
 #, kde-format
@@ -2372,7 +2370,7 @@ msgstr "&Nome:"
 #: src/ui/feedpropertieswidgetbase.ui:161
 #, kde-format
 msgid "Display name of RSS column"
-msgstr "Nome para mostrar da columna RSS"
+msgstr "Nome visual da columna RSS"
 
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: src/ui/feedpropertieswidgetbase.ui:171
