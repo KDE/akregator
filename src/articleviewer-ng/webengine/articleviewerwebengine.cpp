@@ -539,3 +539,5 @@ void ArticleViewerWebEngine::slotActivatePlugin(MessageViewer::ViewerPluginInter
 }
 
 #include "articleviewerwebengine.moc"
+
+#include "moc_articleviewerwebengine.cpp"

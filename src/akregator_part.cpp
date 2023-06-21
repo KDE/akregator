@@ -728,3 +728,5 @@ void Part::slotRestoreSession(Akregator::CrashWidget::CrashAction type)
 }
 } // namespace Akregator
 #include "akregator_part.moc"
+
+#include "moc_akregator_part.cpp"

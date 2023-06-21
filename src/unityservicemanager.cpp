@@ -91,3 +91,5 @@ void UnityServiceManager::initUnity()
         }
     });
 }
+
+#include "moc_unityservicemanager.cpp"

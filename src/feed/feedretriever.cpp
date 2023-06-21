@@ -61,3 +61,5 @@ void FeedRetriever::getFinished(KJob *job)
 
     Q_EMIT dataRetrieved(static_cast<KIO::StoredTransferJob *>(job)->data(), true);
 }
+
+#include "moc_feedretriever.cpp"

@@ -700,3 +700,5 @@ QString ActionManagerImpl::ActionManagerImplPrivate::quickSearchLineText() const
 {
     return mQuickSearchAction->shortcut().toString();
 }
+
+#include "moc_actionmanagerimpl.cpp"

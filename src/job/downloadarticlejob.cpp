@@ -99,3 +99,5 @@ void DownloadArticleJob::setText(const QString &text)
 {
     mText = text;
 }
+
+#include "moc_downloadarticlejob.cpp"

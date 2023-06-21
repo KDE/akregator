@@ -61,3 +61,5 @@ void TrayIcon::settingsChanged()
 {
     slotSetUnread(m_unread);
 }
+
+#include "moc_trayicon.cpp"

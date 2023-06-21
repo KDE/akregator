@@ -537,3 +537,5 @@ void ArticleListView::setFilters(const std::vector<QSharedPointer<const Filters:
         m_proxy->setFilters(matchers);
     }
 }
+
+#include "moc_articlelistview.cpp"

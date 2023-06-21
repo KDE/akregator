@@ -306,3 +306,5 @@ QString Akregator::Backend::Storage::restoreFeedList() const
     c4_Row row = d->feedListView.GetAt(0);
     return QString::fromUtf8(QByteArray(d->pFeedList(row)));
 }
+
+#include "moc_storage.cpp"

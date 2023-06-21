@@ -37,3 +37,5 @@ KCMAkregatorGeneralConfig::KCMAkregatorGeneralConfig(QObject *parent, const KPlu
 }
 
 #include "akregator_config_general.moc"
+
+#include "moc_akregator_config_general.cpp"

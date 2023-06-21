@@ -611,3 +611,5 @@ QString FeedListManagementImpl::getCategoryName(const QString &catId) const
 
     return catname;
 }
+
+#include "moc_feedlist.cpp"

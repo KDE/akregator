@@ -26,3 +26,5 @@ SettingsAdvanced::SettingsAdvanced(QWidget *parent)
 
     kcfg_MarkReadDelay->setSuffix(ki18ncp("Mark selected article read after", " second", " seconds"));
 }
+
+#include "moc_settings_advanced.cpp"

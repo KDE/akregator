@@ -70,3 +70,5 @@ void CrashWidget::slotAskMeLater()
 {
     Q_EMIT restoreSession(AskMeLater);
 }
+
+#include "moc_crashwidget.cpp"

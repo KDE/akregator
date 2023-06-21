@@ -23,3 +23,5 @@ KUserFeedback::Provider *UserFeedBackManager::userFeedbackProvider() const
 {
     return mUserFeedbackProvider;
 }
+
+#include "moc_userfeedbackmanager.cpp"

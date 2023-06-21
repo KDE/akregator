@@ -464,3 +464,5 @@ QList<TreeNode *> Folder::namedChildren(const QString &title)
     }
     return nodeList;
 }
+
+#include "moc_folder.cpp"

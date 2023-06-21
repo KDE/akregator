@@ -20,3 +20,5 @@ void DownloadFeedIconJobTest::shouldHaveDefaultValues()
     QVERIFY(job.downloadFavicon());
     QVERIFY(job.feedIconUrl().isEmpty());
 }
+
+#include "moc_downloadfeediconjobtest.cpp"

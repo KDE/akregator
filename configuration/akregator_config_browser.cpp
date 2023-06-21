@@ -33,3 +33,5 @@ KCMAkregatorBrowserConfig::KCMAkregatorBrowserConfig(QObject *parent, const KPlu
 }
 
 #include "akregator_config_browser.moc"
+
+#include "moc_akregator_config_browser.cpp"

@@ -191,3 +191,5 @@ void Akregator::SearchBar::triggerTimer()
 
     m_timer.start(200ms);
 }
+
+#include "moc_searchbar.cpp"

@@ -60,3 +60,5 @@ void DownloadFeedIconJob::setDownloadFavicon(bool downloadFavicon)
 {
     mDownloadFavicon = downloadFavicon;
 }
+
+#include "moc_downloadfeediconjob.cpp"

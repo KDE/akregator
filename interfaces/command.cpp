@@ -67,3 +67,5 @@ void Command::waitForFinished()
     connect(this, &Command::finished, &loop, &QEventLoop::quit);
     loop.exec();
 }
+
+#include "moc_command.cpp"

@@ -337,3 +337,5 @@ void FeedPropertiesDialog::selectFeedName()
 {
     widget->feedNameEdit->selectAll();
 }
+
+#include "moc_feedpropertiesdialog.cpp"

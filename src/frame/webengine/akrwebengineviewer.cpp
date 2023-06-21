@@ -156,3 +156,5 @@ QWebEngineView *AkrWebEngineViewer::createWindow(QWebEnginePage::WebWindowType t
     Q_UNUSED(type)
     return this;
 }
+
+#include "moc_akrwebengineviewer.cpp"

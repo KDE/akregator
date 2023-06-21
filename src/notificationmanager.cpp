@@ -131,3 +131,5 @@ NotificationManager *NotificationManager::self()
     }
     return m_self;
 }
+
+#include "moc_notificationmanager.cpp"

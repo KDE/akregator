@@ -40,3 +40,5 @@ void KCMAkregatorAdvancedConfig::save()
 }
 
 #include "akregator_config_advanced.moc"
+
+#include "moc_akregator_config_advanced.cpp"

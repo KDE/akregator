@@ -68,3 +68,5 @@ void AkregatorConfigurePluginListWidget::slotConfigureClicked(const QString &con
         }
     }
 }
+
+#include "moc_akregatorconfigurepluginlistwidget.cpp"

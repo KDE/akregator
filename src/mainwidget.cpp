@@ -1324,3 +1324,5 @@ void MainWidget::slotArticleAction(Akregator::ArticleViewerWebEngine::ArticleAct
     }
     }
 }
+
+#include "moc_mainwidget.cpp"

@@ -488,3 +488,5 @@ void TabWidget::slotActivateTab()
 {
     setCurrentIndex(QStringView(sender()->objectName()).right(2).toInt() - 1);
 }
+
+#include "moc_tabwidget.cpp"

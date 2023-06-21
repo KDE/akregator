@@ -259,3 +259,5 @@ void FrameManager::saveProperties(KConfigGroup &config)
     }
     config.writeEntry(QStringLiteral("Children"), strlst);
 }
+
+#include "moc_framemanager.cpp"

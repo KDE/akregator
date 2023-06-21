@@ -343,3 +343,5 @@ void SelectionController::forceFilterUpdate()
     Q_ASSERT(m_articleLister);
     m_articleLister->forceFilterUpdate();
 }
+
+#include "moc_selectioncontroller.cpp"

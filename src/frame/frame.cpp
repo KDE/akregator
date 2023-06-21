@@ -178,3 +178,5 @@ int Frame::progress() const
 {
     return m_progress;
 }
+
+#include "moc_frame.cpp"

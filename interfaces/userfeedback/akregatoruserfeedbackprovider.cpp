@@ -34,3 +34,5 @@ AkregatorUserFeedbackProvider::AkregatorUserFeedbackProvider(QObject *parent)
 }
 
 AkregatorUserFeedbackProvider::~AkregatorUserFeedbackProvider() = default;
+
+#include "moc_akregatoruserfeedbackprovider.cpp"

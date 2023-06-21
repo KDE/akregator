@@ -122,3 +122,5 @@ int AkregatorUniqueAppHandler::activate(const QStringList &args, const QString &
 }
 
 #include "akregator_plugin.moc"
+
+#include "moc_akregator_plugin.cpp"

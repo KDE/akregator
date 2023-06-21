@@ -216,3 +216,5 @@ void WebEngineFrame::slotMute(int frameId, bool mute)
     }
     mArticleViewerWidgetNg->articleViewerNg()->slotMute(mute);
 }
+
+#include "moc_webengineframe.cpp"

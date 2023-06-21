@@ -49,3 +49,5 @@ KCMAkregatorAppearanceConfig::KCMAkregatorAppearanceConfig(QObject *parent, cons
 }
 
 #include "akregator_config_appearance.moc"
+
+#include "moc_akregator_config_appearance.cpp"

@@ -126,3 +126,5 @@ void AddFeedDialog::textChanged(const QString &text)
 {
     mOkButton->setEnabled(!text.trimmed().isEmpty());
 }
+
+#include "moc_addfeeddialog.cpp"

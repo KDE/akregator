@@ -125,3 +125,5 @@ void MainFrame::slotCopyImageLocationInFrame(int frameId)
     }
     mArticleViewer->articleViewerWidgetNg()->articleViewerNg()->slotCopyImageLocationInFrame();
 }
+
+#include "moc_mainframe.cpp"

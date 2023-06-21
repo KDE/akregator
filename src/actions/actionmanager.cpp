@@ -27,3 +27,5 @@ ActionManager::ActionManager(QObject *parent)
 }
 
 ActionManager::~ActionManager() = default;
+
+#include "moc_actionmanager.cpp"

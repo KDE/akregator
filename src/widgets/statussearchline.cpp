@@ -102,3 +102,5 @@ StatusSearchLine::Status StatusSearchLine::status() const
 {
     return mDefaultStatus;
 }
+
+#include "moc_statussearchline.cpp"

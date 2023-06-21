@@ -557,3 +557,5 @@ bool SubscriptionListModel::dropMimeData(const QMimeData *data, Qt::DropAction a
 
     return true;
 }
+
+#include "moc_subscriptionlistmodel.cpp"

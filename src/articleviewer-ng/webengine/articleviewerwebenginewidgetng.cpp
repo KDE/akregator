@@ -165,3 +165,5 @@ void ArticleViewerWebEngineWidgetNg::slotExportHtmlPageSuccess(const QString &fi
     job->setDeleteTemporaryFile(true);
     job->start();
 }
+
+#include "moc_articleviewerwebenginewidgetng.cpp"

@@ -48,3 +48,5 @@ void KCMAkregatorUserFeedBackConfig::defaults()
 }
 
 #include "akregator_config_userfeedback.moc"
+
+#include "moc_akregator_config_userfeedback.cpp"

@@ -64,3 +64,5 @@ void ArticleViewerWebEnginePage::onLoadProgress()
         setZoomFactor(newZoom);
     }
 }
+
+#include "moc_articleviewerwebenginepage.cpp"

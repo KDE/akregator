@@ -107,3 +107,5 @@ bool ArticleGrantleeObject::important() const
 {
     return mArticle.keep();
 }
+
+#include "moc_articlegrantleeobject.cpp"

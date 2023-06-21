@@ -28,3 +28,5 @@ KCMAkregatorSecurityConfig::KCMAkregatorSecurityConfig(QObject *parent, const KP
 }
 
 #include "akregator_config_security.moc"
+
+#include "moc_akregator_config_security.cpp"

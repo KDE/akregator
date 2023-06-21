@@ -386,3 +386,5 @@ Akregator::ArticleViewerWebEngineWidgetNg *ArticleViewerWidget::articleViewerWid
 {
     return m_articleViewerWidgetNg;
 }
+
+#include "moc_articleviewerwidget.cpp"

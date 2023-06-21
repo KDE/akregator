@@ -74,3 +74,5 @@ void ArticleHtmlWebEngineWriter::flush()
     mState = Begun; // don't run into end()'s warning
     end();
 }
+
+#include "moc_articlehtmlwebenginewriter.cpp"

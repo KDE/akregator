@@ -454,3 +454,5 @@ void Akregator::SubscriptionListView::startNodeRenaming(Akregator::TreeNode *nod
     }
     edit(current);
 }
+
+#include "moc_subscriptionlistview.cpp"

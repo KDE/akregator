@@ -47,3 +47,5 @@ void KCMAkregatorPluginsConfig::defaults()
 }
 
 #include "akregator_config_plugins.moc"
+
+#include "moc_akregator_config_plugins.cpp"

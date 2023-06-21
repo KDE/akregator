@@ -81,3 +81,5 @@ QString URLHandlerWebEngineManager::statusBarMessage(const QUrl &url, ArticleVie
     }
     return {};
 }
+
+#include "moc_urlhandlerwebenginemanager.cpp"

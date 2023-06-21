@@ -54,3 +54,5 @@ void AkregatorCentralWidget::setMainWidget(Akregator::MainWidget *mainWidget)
         setCurrentWidget(mMainWidget);
     }
 }
+
+#include "moc_akregatorcentralwidget.cpp"

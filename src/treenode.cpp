@@ -195,3 +195,5 @@ ArticleListJob *TreeNode::createListJob()
 {
     return new ArticleListJob(this);
 }
+
+#include "moc_treenode.cpp"

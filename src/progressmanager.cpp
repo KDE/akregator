@@ -147,3 +147,5 @@ void ProgressItemHandler::slotFetchAborted()
         m_progressItem = nullptr;
     }
 }
+
+#include "moc_progressmanager.cpp"

@@ -74,3 +74,5 @@ int KCMAkregatorArchiveConfig::archiveMode() const
 }
 
 #include "akregator_config_archive.moc"
+
+#include "moc_akregator_config_archive.cpp"

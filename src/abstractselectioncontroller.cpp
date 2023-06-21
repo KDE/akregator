@@ -15,3 +15,5 @@ AbstractSelectionController::AbstractSelectionController(QObject *parent)
 }
 
 AbstractSelectionController::~AbstractSelectionController() = default;
+
+#include "moc_abstractselectioncontroller.cpp"

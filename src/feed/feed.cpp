@@ -1036,3 +1036,5 @@ bool Akregator::Feed::ImageInfo::operator!=(const Akregator::Feed::ImageInfo &ot
 {
     return !ImageInfo::operator==(other);
 }
+
+#include "moc_feed.cpp"

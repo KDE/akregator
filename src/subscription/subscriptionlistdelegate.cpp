@@ -98,3 +98,5 @@ void Akregator::SubscriptionListDelegate::initStyleOption(QStyleOptionViewItem *
         optionV4->text += QStringLiteral(" (%1)").arg(unread);
     }
 }
+
+#include "moc_subscriptionlistdelegate.cpp"
