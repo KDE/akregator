@@ -15,7 +15,7 @@
         "Description[eu]": "Akregator plugina",
         "Description[fi]": "Akregator-liitännäinen",
         "Description[fr]": "Module externe pour Akregator",
-        "Description[gl]": "Complemento de Akregator",
+        "Description[gl]": "Complemento de Akregator.",
         "Description[hu]": "Akregator bővítmény",
         "Description[ia]": "Plug-in Akregator",
         "Description[id]": "Plugin Akregator",
