@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-04-01 00:51+0000\n"
-"PO-Revision-Date: 2023-06-23 20:56+0200\n"
+"PO-Revision-Date: 2023-06-24 12:08+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Galician <proxecto@trasno.gal>\n"
 "Language: gl\n"
@@ -732,9 +732,10 @@ msgid ""
 "the default one. This is here because some proxies may interrupt the "
 "connection because of having \"gator\" in the name."
 msgstr ""
-"Esta opción permite que o usuario indique unha cadea personalizada co axente "
-"de usuario no canto de usar o predeterminado. Isto aparece aquí porque "
-"algúns mandatarios poden interromper a conexión se «gator» aparecer no nome."
+"Esta opción permite que a persoa usuaria indique unha cadea personalizada co "
+"axente de usuario no canto de usar o predeterminado. Isto aparece aquí "
+"porque algúns mandatarios poden interromper a conexión se «gator» aparecer "
+"no nome."
 
 #. i18n: ectx: label, entry, group (General)
 #: interfaces/akregator.kcfg:155
@@ -1039,7 +1040,7 @@ msgstr "Frerich Raabe"
 #: src/aboutdata.cpp:37
 #, kde-format
 msgid "Author of librss"
-msgstr "Autor de librss"
+msgstr "Persoa autora de librss."
 
 #: src/aboutdata.cpp:38
 #, kde-format
@@ -1566,8 +1567,8 @@ msgid ""
 "The file %1 could not be read, check if it exists or if it is readable for "
 "the current user."
 msgstr ""
-"Non se puido ler o ficheiro %1; comprobe que existe e que é lexíbel para o "
-"usuario actual."
+"Non se puido ler o ficheiro %1; comprobe que existe e que é lexíbel para a "
+"persoa usuaria actual."
 
 #: src/akregator_part.cpp:486 src/command/loadfeedlistcommand.cpp:142
 #, kde-format
@@ -1643,7 +1644,7 @@ msgstr "Data"
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Author"
-msgstr "Autor"
+msgstr "Autora"
 
 #: src/articlemodel.cpp:82
 #, kde-format
@@ -2023,7 +2024,7 @@ msgstr "Historia completa"
 #: src/formatter/grantleeviewformatter.cpp:144
 #, kde-format
 msgid "Author"
-msgstr "Autor"
+msgstr "Autora"
 
 #: src/formatter/grantleeviewformatter.cpp:145
 #, kde-format
@@ -2370,7 +2371,7 @@ msgstr "&Nome:"
 #: src/ui/feedpropertieswidgetbase.ui:161
 #, kde-format
 msgid "Display name of RSS column"
-msgstr "Nome visual da columna RSS"
+msgstr "Nome visual da columna RSS."
 
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: src/ui/feedpropertieswidgetbase.ui:171
