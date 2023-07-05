@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Lokalize 1.2\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -115,18 +115,20 @@ msgid ""
 msgstr ""
 
 #: configuration/akregator_config_archive.cpp:43
-#, kde-format
+#, fuzzy, kde-format
 msgctxt "Limit feed archive size to:"
 msgid " article"
 msgid_plural " articles"
 msgstr[0] " مقالات"
+msgstr[1] ""
 
 #: configuration/akregator_config_archive.cpp:44
-#, kde-format
+#, fuzzy, kde-format
 msgctxt "Delete articles older than:"
 msgid " day"
 msgid_plural " days"
 msgstr[0] " روز"
+msgstr[1] ""
 
 #: configuration/akregator_config_general.cpp:42
 #, fuzzy, kde-format
@@ -134,6 +136,7 @@ msgstr[0] " روز"
 msgid " minute"
 msgid_plural " minutes"
 msgstr[0] "%1 دقیقه"
+msgstr[1] ""
 
 #: configuration/akregatorconfigurepluginlistwidget.cpp:51
 #, fuzzy, kde-format
@@ -142,11 +145,12 @@ msgid "Webengine Plugins"
 msgstr "واکشیهای هم‌روند"
 
 #: configuration/settings_advanced.cpp:27
-#, kde-format
+#, fuzzy, kde-format
 msgctxt "Mark selected article read after"
 msgid " second"
 msgid_plural " seconds"
 msgstr[0] " ثانیه"
+msgstr[1] ""
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: configuration/ui/settings_advancedbase.ui:30
@@ -1962,10 +1966,11 @@ msgid "All Feeds"
 msgstr "همه خوراندنها"
 
 #: src/feed/feedpropertiesdialog.cpp:45 src/feed/feedpropertiesdialog.cpp:77
-#, kde-format
+#, fuzzy, kde-format
 msgid "Minute"
 msgid_plural "Minutes"
 msgstr[0] "دقیقه"
+msgstr[1] ""
 
 #: src/feed/feedpropertiesdialog.cpp:46 src/feed/feedpropertiesdialog.cpp:78
 #, fuzzy, kde-format
@@ -1973,12 +1978,14 @@ msgstr[0] "دقیقه"
 msgid "Hour"
 msgid_plural "Hours"
 msgstr[0] "%1 ساعت"
+msgstr[1] ""
 
 #: src/feed/feedpropertiesdialog.cpp:47 src/feed/feedpropertiesdialog.cpp:79
-#, kde-format
+#, fuzzy, kde-format
 msgid "Day"
 msgid_plural "Days"
 msgstr[0] "روز"
+msgstr[1] ""
 
 #: src/feed/feedpropertiesdialog.cpp:60 src/feed/feedpropertiesdialog.cpp:112
 #, fuzzy, kde-format
@@ -1995,10 +2002,11 @@ msgid "Never"
 msgstr "هرگز"
 
 #: src/feed/feedpropertiesdialog.cpp:81
-#, kde-format
+#, fuzzy, kde-format
 msgid " day"
 msgid_plural " days"
 msgstr[0] " روز"
+msgstr[1] ""
 
 #: src/feed/feedpropertiesdialog.cpp:82
 #, fuzzy, kde-format
@@ -2006,6 +2014,7 @@ msgstr[0] " روز"
 msgid " article"
 msgid_plural " articles"
 msgstr[0] "۱ مقاله"
+msgstr[1] ""
 
 #: src/feed/feedpropertiesdialog.cpp:112
 #, fuzzy, kde-format
@@ -2027,10 +2036,11 @@ msgstr " )بدون مقالات خوانده‌نشده("
 
 #: src/formatter/grantleeviewformatter.cpp:60
 #: src/formatter/grantleeviewformatter.cpp:111
-#, kde-format
+#, fuzzy, kde-format
 msgid " (1 unread article)"
 msgid_plural " (%1 unread articles)"
 msgstr[0] " (%1 مقاله خوانده‌نشده)"
+msgstr[1] ""
 
 #: src/formatter/grantleeviewformatter.cpp:75
 #, fuzzy, kde-format
@@ -2172,6 +2182,7 @@ msgid "<qt>Are you sure you want to delete the selected article?</qt>"
 msgid_plural ""
 "<qt>Are you sure you want to delete the %1 selected articles?</qt>"
 msgstr[0] "<qt>مطمئنید که می‌خواهید %1 مقاله برگزیده را حذف کنید؟</qt>"
+msgstr[1] ""
 
 #: src/mainwidget.cpp:1245
 #, kde-format
@@ -2221,6 +2232,7 @@ msgstr ""
 msgid "<i>and 1 other</i>"
 msgid_plural "<i>and %1 others</i>"
 msgstr[0] ""
+msgstr[1] ""
 
 #: src/progressmanager.cpp:127
 #, kde-format
@@ -2363,6 +2375,7 @@ msgstr " )بدون مقالات خوانده‌نشده("
 msgid "1 unread article"
 msgid_plural "%1 unread articles"
 msgstr[0] " (%1 مقاله خوانده‌نشده)"
+msgstr[1] ""
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, Akregator::AddFeedWidgetBase)
 #: src/ui/addfeedwidgetbase.ui:14
