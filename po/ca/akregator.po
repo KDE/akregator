@@ -2516,36 +2516,3 @@ msgstr "Llegit"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "Important"
-
-#~ msgid "Advanced Feed Reader Settings"
-#~ msgstr "Arranjament avançat del lector de fonts"
-
-#~ msgid "(c), 2004 - 2008 Frank Osterfeld"
-#~ msgstr "(c), 2004 - 2008 Frank Osterfeld"
-
-#~ msgid "Configure Feed Reader Appearance"
-#~ msgstr "Configura l'aparença del lector de fonts"
-
-#~ msgid "Configure Feed Reader Archive"
-#~ msgstr "Configura l'arxivat del lector de fonts"
-
-#~ msgid "Configure Feed Reader Browser"
-#~ msgstr "Configura el navegador del lector de fonts"
-
-#~ msgid "Configure Feeds"
-#~ msgstr "Configura les fonts"
-
-#~ msgid "Configure Plugins"
-#~ msgstr "Configura els connectors"
-
-#~ msgid "(c), 2016-2021 Laurent Montel"
-#~ msgstr "(c), 2016-2021 Laurent Montel"
-
-#~ msgid "(c), 2021 Laurent Montel"
-#~ msgstr "(c), 2021 Laurent Montel"
-
-#~ msgid "Configure User Feedback"
-#~ msgstr "Configura els comentaris de l'usuari"
-
-#~ msgid "(c), 2020-2021 Laurent Montel"
-#~ msgstr "(c), 2020-2021 Laurent Montel"
