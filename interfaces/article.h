@@ -136,4 +136,4 @@ private:
     Private *d;
 };
 } // namespace Akregator
-Q_DECLARE_TYPEINFO(Akregator::Article, Q_MOVABLE_TYPE);
+Q_DECLARE_TYPEINFO(Akregator::Article, Q_RELOCATABLE_TYPE);
