@@ -10,7 +10,7 @@
 #include "akregatorconfig.h"
 
 #include "article.h"
-#include "utils/textutil.h"
+#include <TextUtils/ConvertText>
 
 #include <KLineEdit>
 #include <KLocalizedString>
@@ -133,7 +133,7 @@ void SearchBar::slotActivateSearch()
     QList<Criterion> statusCriteria;
 
     if (!m_searchText.isEmpty()) {
-        const QString searchTextDiacritic(TextUtil::normalize(m_searchText));
+        const QString searchTextDiacritic(TextUtils::ConvertText::normalize(m_searchText));
         textCriteria.reserve(3);
         Criterion subjCrit(Criterion::Title, Criterion::Contains, searchTextDiacritic);
         textCriteria << subjCrit;

@@ -219,8 +219,6 @@ target_sources(akregatorpart PRIVATE
     crashwidget/crashwidget.cpp
 
     utils/filtercolumnsproxymodel.cpp
-    utils/textutil.cpp
-    utils/textutil.h
 
     command/deletesubscriptioncommand.cpp
     command/createfeedcommand.cpp
@@ -312,6 +310,7 @@ target_link_libraries(akregatorpart
     KF6::KIOGui
     KF6::Completion
     KF6::JobWidgets
+    KF6::TextUtils
     )
 if (COMPILE_WITH_UNITY_CMAKE_SUPPORT)
     set_target_properties(akregatorpart PROPERTIES UNITY_BUILD ON)
