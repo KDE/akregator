@@ -23,6 +23,7 @@
         "Description[ka]": "Akregator -ის დამატება",
         "Description[ko]": "Akregator 플러그인",
         "Description[nl]": "Akregatorplug-in",
+        "Description[nn]": "Akregator-tillegg",
         "Description[pl]": "Wtyczka Akregatora",
         "Description[pt]": "'Plugin' do Akregator",
         "Description[pt_BR]": "Plugin do Akregator",
