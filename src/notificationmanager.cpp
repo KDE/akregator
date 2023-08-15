@@ -45,24 +45,14 @@ void NotificationManager::slotNotifyFeeds(const QStringList &feeds)
 {
     const int feedsCount(feeds.count());
     if (feedsCount == 1) {
-        KNotification::event(QStringLiteral("FeedAdded"),
-                             i18n("Feed added:\n %1", feeds[0]),
-                             QPixmap(),
-                             m_widget,
-                             KNotification::CloseOnTimeout,
-                             m_componantName);
+        KNotification::event(QStringLiteral("FeedAdded"), i18n("Feed added:\n %1", feeds[0]), QPixmap(), KNotification::CloseOnTimeout, m_componantName);
     } else if (feedsCount > 1) {
         QString message;
         QStringList::ConstIterator end = feeds.constEnd();
         for (QStringList::ConstIterator it = feeds.constBegin(); it != end; ++it) {
             message += *it + QLatin1Char('\n');
         }
-        KNotification::event(QStringLiteral("FeedAdded"),
-                             i18n("Feeds added:\n %1", message),
-                             QPixmap(),
-                             m_widget,
-                             KNotification::CloseOnTimeout,
-                             m_componantName);
+        KNotification::event(QStringLiteral("FeedAdded"), i18n("Feeds added:\n %1", message), QPixmap(), KNotification::CloseOnTimeout, m_componantName);
     }
 }
 
@@ -99,7 +89,7 @@ void NotificationManager::doNotify()
     }
     feedClosure();
     message += QLatin1String("</body></html>");
-    KNotification::event(QStringLiteral("NewArticles"), message, QPixmap(), m_widget, KNotification::CloseOnTimeout, m_componantName);
+    KNotification::event(QStringLiteral("NewArticles"), message, QPixmap(), KNotification::CloseOnTimeout, m_componantName);
 
     m_articles.clear();
     m_running = false;
