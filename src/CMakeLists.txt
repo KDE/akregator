@@ -34,6 +34,7 @@ target_link_libraries(akregator
     KF6::I18n
     KF6::Crash
     KF6::Notifications
+    KF6::StatusNotifierItem
     KPim6::KontactInterface
     KPim6::Libkdepim
     akregatorprivate
@@ -181,6 +182,7 @@ target_link_libraries(akregatorprivate
     KF6::Codecs
     KF6::JobWidgets
     KF6::KIOWidgets
+    KF6::StatusNotifierItem
     akregatorinterfaces
     KPim6::PimCommon
     KPim6::PimTextEdit
@@ -296,6 +298,7 @@ target_link_libraries(akregatorpart
     KF6::I18n
     KF6::KCMUtils
     KF6::NotifyConfig
+    KF6::StatusNotifierItem
     KPim6::Libkdepim
     KF6::Syndication
     KPim6::PimCommon
