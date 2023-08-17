@@ -12,7 +12,7 @@
 #include <QWidget>
 class KActionCollection;
 
-namespace KPIMTextEdit
+namespace TextAddonsWidgets
 {
 class SlideContainer;
 }
@@ -61,7 +61,7 @@ private:
 #ifdef HAVE_KTEXTADDONS_TEXT_TO_SPEECH_SUPPORT
     TextEditTextToSpeech::TextToSpeechContainerWidget *const mTextToSpeechWidget;
 #endif
-    KPIMTextEdit::SlideContainer *const mSliderContainer;
+    TextAddonsWidgets::SlideContainer *const mSliderContainer;
     WebEngineViewer::TrackingWarningWidget *const mTrackingWarningWidget;
 };
 }

@@ -192,6 +192,7 @@ target_link_libraries(akregatorprivate
     Qt::PrintSupport
     KPim6::WebEngineViewer
     ${akregator_userfeedback_LIB}
+    KF6::TextAddonsWidgets
     )
 if (TARGET KF6::TextEditTextToSpeech)
     target_link_libraries(akregatorprivate

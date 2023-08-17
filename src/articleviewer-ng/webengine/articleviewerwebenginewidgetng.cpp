@@ -16,7 +16,7 @@
 #ifdef HAVE_KTEXTADDONS_TEXT_TO_SPEECH_SUPPORT
 #include <TextEditTextToSpeech/TextToSpeechContainerWidget>
 #endif
-#include <KPIMTextEdit/SlideContainer>
+#include <TextAddonsWidgets/SlideContainer>
 
 #include <WebEngineViewer/FindBarWebEngineView>
 #include <WebEngineViewer/TrackingWarningWidget>
@@ -48,7 +48,7 @@ ArticleViewerWebEngineWidgetNg::ArticleViewerWebEngineWidgetNg(ArticleViewerWebE
 #ifdef HAVE_KTEXTADDONS_TEXT_TO_SPEECH_SUPPORT
     , mTextToSpeechWidget(new TextEditTextToSpeech::TextToSpeechContainerWidget(this))
 #endif
-    , mSliderContainer(new KPIMTextEdit::SlideContainer(this))
+    , mSliderContainer(new TextAddonsWidgets::SlideContainer(this))
     , mTrackingWarningWidget(new WebEngineViewer::TrackingWarningWidget(this))
 
 {
@@ -83,7 +83,7 @@ void ArticleViewerWebEngineWidgetNg::initializeLayout(KActionCollection *ac)
     mSliderContainer->setObjectName(QStringLiteral("slidercontainer"));
     mFindBarWebView = new WebEngineViewer::FindBarWebEngineView(mArticleViewerNg, this);
     mFindBarWebView->setObjectName(QStringLiteral("findbarwebview"));
-    connect(mFindBarWebView, &WebEngineViewer::FindBarWebEngineView::hideFindBar, mSliderContainer, &KPIMTextEdit::SlideContainer::slideOut);
+    connect(mFindBarWebView, &WebEngineViewer::FindBarWebEngineView::hideFindBar, mSliderContainer, &TextAddonsWidgets::SlideContainer::slideOut);
     mSliderContainer->setContent(mFindBarWebView);
     layout->addWidget(mSliderContainer);
     connect(articleViewerNg(), &ArticleViewerWebEngine::textToSpeech, this, &ArticleViewerWebEngineWidgetNg::slotSpeakText);
