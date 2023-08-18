@@ -13,6 +13,7 @@ Dependencies:
     'pim/messagelib' : '@latest-kf6'
     'pim/pimcommon' : '@latest-kf6'
     'libraries/ktextaddons': '@latest-kf6'
+    'libraries/kuserfeedback': '@latest-kf6'
 
 Options:
   require-passing-tests-on: [ 'Linux', 'FreeBSD' ]
