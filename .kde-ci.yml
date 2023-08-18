@@ -7,7 +7,6 @@ Dependencies:
     'frameworks/extra-cmake-modules': '@latest-kf6'
     'frameworks/kcodecs': '@latest-kf6'
     'frameworks/kstatusnotifieritem': '@latest-kf6'
-    'pim/akonadi-mime' : '@latest-kf6'
     'pim/grantleetheme' : '@latest-kf6'
     'pim/kontactinterface' : '@latest-kf6'
     'pim/libkdepim' : '@latest-kf6'
