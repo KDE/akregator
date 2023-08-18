@@ -185,7 +185,6 @@ target_link_libraries(akregatorprivate
     KF6::StatusNotifierItem
     akregatorinterfaces
     KPim6::PimCommon
-    KPim6::PimTextEdit
     KPim6::GrantleeTheme
     KF6::KIOGui
     KPim6::MessageViewer
@@ -303,7 +302,6 @@ target_link_libraries(akregatorpart
     KPim6::Libkdepim
     KF6::Syndication
     KPim6::PimCommon
-    KPim6::PimTextEdit
     KPim6::GrantleeTheme
     KPim6::MessageViewer
     KF6::Parts
