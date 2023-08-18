@@ -10,7 +10,6 @@ Dependencies:
     'pim/akonadi-mime' : '@latest-kf6'
     'pim/grantleetheme' : '@latest-kf6'
     'pim/kontactinterface' : '@latest-kf6'
-    'pim/kpimtextedit' : '@latest-kf6'
     'pim/libkdepim' : '@latest-kf6'
     'pim/messagelib' : '@latest-kf6'
     'pim/pimcommon' : '@latest-kf6'
