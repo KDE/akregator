@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: kdepim-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-04-01 00:51+0000\n"
-"PO-Revision-Date: 2023-08-22 01:03+0300\n"
+"PO-Revision-Date: 2023-08-26 12:26+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -348,7 +348,7 @@ msgstr "Bu k&omutu kullanın:"
 #: configuration/ui/settings_browser.ui:97
 #, kde-format
 msgid "Use default web &browser"
-msgstr "Öntanımlı ağ &tarayıcıyı kullan"
+msgstr "Öntanımlı web &tarayıcısını kullan"
 
 #. i18n: ectx: property (title), widget (QGroupBox, tabsGroupBox)
 #: configuration/ui/settings_browser.ui:110
@@ -870,7 +870,7 @@ msgstr "Öntanımlı KDE tarayıcısını kullan"
 #: interfaces/akregator.kcfg:218
 #, kde-format
 msgid "Use KDE web browser when opening in external browser."
-msgstr "Dış tarayıcı ile açarken KDE web tarayıcısını kullan."
+msgstr "Dış tarayıcı ile açarken KDE web tarayıcısını kullanın."
 
 #. i18n: ectx: label, entry, group (Browser)
 #: interfaces/akregator.kcfg:222
@@ -882,7 +882,7 @@ msgstr "Bu komutu kullan:"
 #: interfaces/akregator.kcfg:223
 #, kde-format
 msgid "Use the specified command when opening in external browser."
-msgstr "Dış bir ağ tarayıcı açarken belirtilen komutu kullan."
+msgstr "Dış bir tarayıcıda açarken belirtilen komutu kullanın."
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
 #: interfaces/akregator.kcfg:227
