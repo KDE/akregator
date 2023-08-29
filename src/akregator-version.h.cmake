@@ -15,10 +15,6 @@
   build against older kdelibs releases.
 */
 
-#ifndef AKREGATOR_VERSION_H
-#define AKREGATOR_VERSION_H
-
+#pragma once
 
 #define AKREGATOR_VERSION "@KDEPIM_VERSION@"
-
-#endif
