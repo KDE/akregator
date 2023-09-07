@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: kdepim-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-04-01 00:51+0000\n"
-"PO-Revision-Date: 2023-08-26 12:26+0300\n"
+"PO-Revision-Date: 2023-09-03 21:38+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -77,11 +77,11 @@ msgstr "Teşekkürler, Akregatör Ekibi"
 
 #: src/formatter/html/5.2/combinedview.html:72
 msgid "Mark as Read"
-msgstr "Okunmuş Olarak İşaretle"
+msgstr "Okundu Olarak İmle"
 
 #: src/formatter/html/5.2/combinedview.html:75
 msgid "Mark as Unread"
-msgstr "Okunmamış olarak İşaretle"
+msgstr "Okunmadı Olarak İmle"
 
 #: src/formatter/html/5.2/combinedview.html:79
 msgid "Remove Important Status"
@@ -89,7 +89,7 @@ msgstr "Önemli Durumunu Kaldır"
 
 #: src/formatter/html/5.2/combinedview.html:81
 msgid "Mark as Important"
-msgstr "Önemli Olarak İşaretle"
+msgstr "Önemli Olarak İmle"
 
 #: src/formatter/html/5.2/combinedview.html:83
 msgid "Open Link in External Browser"
@@ -169,7 +169,7 @@ msgstr "Yazı Listesi"
 #: configuration/ui/settings_advancedbase.ui:38
 #, kde-format
 msgid "Mar&k selected article read after"
-msgstr "Seçilen yazıyı o&kunmuş olarak işaretle"
+msgstr "Şu kadar süreden sonra seçili yazıyı okundu olarak imle"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ResetQuickFilterOnNodeChange)
 #: configuration/ui/settings_advancedbase.ui:73
@@ -424,14 +424,14 @@ msgstr "Siste&m tepsisi simgesini göster"
 #: configuration/ui/settings_general.ui:43
 #, kde-format
 msgid "Show unread articles in Taskbar"
-msgstr "Görev çubuğunda okunmamış yazıları göster"
+msgstr "Görev çubuğunda okunmayan yazıları göster"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_HideReadFeeds)
 #. i18n: ectx: label, entry, group (View)
 #: configuration/ui/settings_general.ui:50 interfaces/akregator.kcfg:9
 #, kde-format
 msgid "Hide feeds with no unread articles"
-msgstr "Okunmamış yazı olan beslemeleri gizle"
+msgstr "Okunmayan yazı olan beslemeleri gizle"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_LockFeedsInPlace)
 #: configuration/ui/settings_general.ui:57
@@ -444,7 +444,7 @@ msgstr "Beslemeleri yerlerine kilitle"
 #: configuration/ui/settings_general.ui:64 interfaces/akregator.kcfg:27
 #, kde-format
 msgid "Auto-expand folders containing unread articles"
-msgstr "Okunmamış yazı içeren klasörleri otomatik olarak genişlet"
+msgstr "Okunmayan yazı içeren klasörleri otomatik olarak genişlet"
 
 #. i18n: ectx: property (whatsThis), widget (QCheckBox, kcfg_UseNotifications)
 #: configuration/ui/settings_general.ui:74
@@ -486,7 +486,7 @@ msgstr "Başlangıç"
 #: configuration/ui/settings_general.ui:166
 #, kde-format
 msgid "Mark &all feeds as read on startup"
-msgstr "B&aşlarken tüm beslemeleri okundu olarak işaretle"
+msgstr "B&aşlarken tüm beslemeleri okundu olarak imle"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_FetchOnStartup)
 #: configuration/ui/settings_general.ui:173
@@ -521,7 +521,7 @@ msgstr "%1 için Akregatör Dışa Aktarımı"
 #: interfaces/akregator.kcfg:10
 #, kde-format
 msgid "Hides feeds with no unread articles"
-msgstr "Okunmamış yazı olmayan beslemeleri gizler"
+msgstr "Okunmayan yazı olmayan beslemeleri gizler"
 
 #. i18n: ectx: label, entry, group (View)
 #: interfaces/akregator.kcfg:21
@@ -539,7 +539,7 @@ msgstr "Beslemeleri yerlerine kilitle"
 #: interfaces/akregator.kcfg:26
 #, kde-format
 msgid "Auto-Expand folders with unread articles"
-msgstr "Okunmamış yazı olan klasörleri otomatik olarak genişlet"
+msgstr "Okunmayan yazı olan klasörleri otomatik olarak genişlet"
 
 #. i18n: ectx: label, entry, group (View)
 #: interfaces/akregator.kcfg:31 src/actions/actionmanagerimpl.cpp:317
@@ -704,7 +704,7 @@ msgid ""
 "When this option is enabled, articles you marked as important will not be "
 "removed when limit the archive size by either age or number of the articles."
 msgstr ""
-"Bu seçenek etkinleştirildiğinde, önemli olarak işaretlediğiniz yazılar arşiv "
+"Bu seçenek etkinleştirildiğinde, önemli olarak imlediğiniz yazılar arşiv "
 "boyutu zaman veya miktara göre sınırlandırıldığında bile silinmeyecektir."
 
 #. i18n: ectx: label, entry, group (Network)
@@ -764,13 +764,13 @@ msgstr "Başlarken yazıları getir."
 #: interfaces/akregator.kcfg:160
 #, kde-format
 msgid "Mark all feeds as read on startup"
-msgstr "Başlarken tüm beslemeleri okunmuş olarak işaretle"
+msgstr "Başlarken tüm beslemeleri okundu olarak imle"
 
 #. i18n: ectx: whatsthis, entry, group (General)
 #: interfaces/akregator.kcfg:161
 #, kde-format
 msgid "Mark all feeds as read on startup."
-msgstr "Başlangıçta tüm beslemeleri okunmuş olarak işaretle."
+msgstr "Başlangıçta tüm beslemeleri okundu olarak imleyin."
 
 #. i18n: ectx: label, entry, group (General)
 #: interfaces/akregator.kcfg:165
@@ -824,14 +824,14 @@ msgstr "Sistem tepsisinin görünür olup olmadığını belirler."
 #: interfaces/akregator.kcfg:185
 #, kde-format
 msgid "Show Unread In Taskbar"
-msgstr "Görev Çubuğunda Okunmamışları Göster"
+msgstr "Görev Çubuğunda Okunmayanları Göster"
 
 #. i18n: ectx: whatsthis, entry, group (General)
 #: interfaces/akregator.kcfg:186
 #, kde-format
 msgid "Specifies if we show unread article in taskbar."
 msgstr ""
-"Görev çubuğunda okunmamış yazıları gösterip göstermeyeceğimizi belirtir."
+"Görev çubuğunda okunmayan yazıları gösterip göstermeyeceğimizi belirtir."
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
 #: interfaces/akregator.kcfg:203
@@ -914,8 +914,7 @@ msgstr "Arşivleme Arka Ucu"
 #: interfaces/akregator.kcfg:269
 #, kde-format
 msgid "Whether to delay before marking an article as read upon selecting it."
-msgstr ""
-"Yazının üzerine gelindiğinde okundu olarak işaretlenmeden önceki gecikme."
+msgstr "Yazının üzerine gelindiğinde okundu olarak imlemeden önceki gecikme."
 
 #. i18n: ectx: whatsthis, entry (MarkReadDelay), group (Advanced)
 #: interfaces/akregator.kcfg:273
@@ -923,8 +922,7 @@ msgstr ""
 msgid ""
 "Configurable delay between selecting an article and it being marked as read."
 msgstr ""
-"Yazının seçilmesi ile okundu olarak işaretlenmesi arasında geçmesi gereken "
-"süre."
+"Yazının seçilmesi ile okundu olarak imlenmesi arasında geçmesi gereken süre."
 
 #. i18n: ectx: whatsthis, entry, group (Advanced)
 #: interfaces/akregator.kcfg:277
@@ -1082,7 +1080,7 @@ msgstr "Eike Hein"
 #: src/aboutdata.cpp:40
 #, kde-format
 msgid "'Delayed mark as read' feature"
-msgstr "'Daha sonra okunmuş olarak işaretle' özelliği"
+msgstr "'Daha sonra okundu olarak imle' özelliği"
 
 #: src/aboutdata.cpp:41
 #, kde-format
@@ -1132,7 +1130,7 @@ msgstr "Beslemeyi Dü&zenle..."
 #: src/actions/actionmanagerimpl.cpp:66 src/actions/actionmanagerimpl.cpp:305
 #, kde-format
 msgid "&Mark Feed as Read"
-msgstr "Beslemeyi &Okunmuş Olarak İşaretle"
+msgstr "Beslemeyi &Okundu Olarak İmle"
 
 #: src/actions/actionmanagerimpl.cpp:82
 #, kde-format
@@ -1152,7 +1150,7 @@ msgstr "Klasörü &Yeniden Adlandır"
 #: src/actions/actionmanagerimpl.cpp:85
 #, kde-format
 msgid "&Mark Feeds as Read"
-msgstr "Beslemeleri &Okundu Olarak İşaretle"
+msgstr "Beslemeleri &Okundu Olarak İmle"
 
 #: src/actions/actionmanagerimpl.cpp:190
 #, kde-format
@@ -1217,7 +1215,7 @@ msgstr "Beslemeleri &Getirmeyi İptal Et"
 #: src/actions/actionmanagerimpl.cpp:311
 #, kde-format
 msgid "Ma&rk All Feeds as Read"
-msgstr "&Tüm Beslemeleri Okunmuş Olarak İşaretle"
+msgstr "&Tüm Beslemeleri Okundu Olarak İmle"
 
 #: src/actions/actionmanagerimpl.cpp:340 src/actions/actionmanagerimpl.cpp:608
 #, kde-format
@@ -1227,12 +1225,12 @@ msgstr "Bağlantı Adresini Kopyala"
 #: src/actions/actionmanagerimpl.cpp:345
 #, kde-format
 msgid "Pre&vious Unread Article"
-msgstr "Ö&nceki Okunmamış Yazı"
+msgstr "Ö&nceki Okunmayan Yazı"
 
 #: src/actions/actionmanagerimpl.cpp:351
 #, kde-format
 msgid "Ne&xt Unread Article"
-msgstr "So&nraki Okunmamış Yazı"
+msgstr "So&nraki Okunmayan Yazı"
 
 #: src/actions/actionmanagerimpl.cpp:359
 #, kde-format
@@ -1242,18 +1240,18 @@ msgstr "Si&l"
 #: src/actions/actionmanagerimpl.cpp:364
 #, kde-format
 msgid "&Mark As"
-msgstr "&Farklı İşaretle"
+msgstr "&Farklı İmle"
 
 #: src/actions/actionmanagerimpl.cpp:368
 #, kde-format
 msgctxt "as in: mark as read"
 msgid "&Read"
-msgstr "&Okunmuş"
+msgstr "&Okundu"
 
 #: src/actions/actionmanagerimpl.cpp:370
 #, kde-format
 msgid "Mark selected article as read"
-msgstr "Seçilen yazıyı okunmuş olarak işaretle"
+msgstr "Seçilen yazıyı okundu olarak imle"
 
 #: src/actions/actionmanagerimpl.cpp:376
 #, kde-format
@@ -1264,28 +1262,28 @@ msgstr "&Yeni"
 #: src/actions/actionmanagerimpl.cpp:379
 #, kde-format
 msgid "Mark selected article as new"
-msgstr "Seçilmiş yazıyı yeni olarak işaretle"
+msgstr "Seçili yazıyı yeni olarak imle"
 
 #: src/actions/actionmanagerimpl.cpp:384
 #, kde-format
 msgctxt "as in: mark as unread"
 msgid "&Unread"
-msgstr "Okun&mamış"
+msgstr "&Okunmadı"
 
 #: src/actions/actionmanagerimpl.cpp:386
 #, kde-format
 msgid "Mark selected article as unread"
-msgstr "Seçilen yazıyı okunmamış olarak işaretle"
+msgstr "Seçili yazıyı okunmadı olarak imle"
 
 #: src/actions/actionmanagerimpl.cpp:392
 #, kde-format
 msgid "&Mark as Important"
-msgstr "Öne&mli olarak İşaretle"
+msgstr "Öne&mli Olarak İmle"
 
 #: src/actions/actionmanagerimpl.cpp:396
 #, kde-format
 msgid "Remove &Important Mark"
-msgstr "Önemli İşaretini Kald&ır"
+msgstr "Önemli İmini Kald&ır"
 
 #: src/actions/actionmanagerimpl.cpp:400
 #, kde-format
@@ -1345,12 +1343,12 @@ msgstr "&Sonraki Besleme"
 #: src/actions/actionmanagerimpl.cpp:495
 #, kde-format
 msgid "N&ext Unread Feed"
-msgstr "So&nraki Okunmamış Besleme"
+msgstr "So&nraki Okunmayan Besleme"
 
 #: src/actions/actionmanagerimpl.cpp:501
 #, kde-format
 msgid "Prev&ious Unread Feed"
-msgstr "Ön&ceki Okunmamış Besleme"
+msgstr "Ön&ceki Okunmayan Besleme"
 
 #: src/actions/actionmanagerimpl.cpp:506
 #, kde-format
@@ -1385,7 +1383,7 @@ msgstr "Ağaçta Aşağı Git"
 #: src/actions/actionmanagerimpl.cpp:537
 #, kde-format
 msgid "Hide Read Feeds"
-msgstr "Okunmuş Beslemeleri Gizle"
+msgstr "Okunan Beslemeleri Gizle"
 
 #: src/actions/actionmanagerimpl.cpp:543
 #, kde-format
@@ -1395,7 +1393,7 @@ msgstr "Beslemeleri Yerlerine Kilitle"
 #: src/actions/actionmanagerimpl.cpp:549
 #, kde-format
 msgid "Auto-expand folders with unread articles"
-msgstr "Okunmamış Yazılı Klasörleri Kendiliğinden Genişlet"
+msgstr "Okunmayan Yazı İçeren Klasörleri Kendiliğinden Genişlet"
 
 #: src/actions/actionmanagerimpl.cpp:565
 #, kde-format
@@ -1627,10 +1625,9 @@ msgid ""
 "a tab or in an external browser window."
 msgstr ""
 "<h2>Yazı listesi</h2>Buradan seçilen beslemenin yazılarına bakabilirsiniz. "
-"Sağ tık menüsünü kullanarak yazıları (\"Önemli Olarak İşaretle\")  seçeneği "
-"ile kalıcı olarak işaretleyebilir ya da silebilirsiniz. Yazının web "
-"sayfasını görmek için yazıyı bir iç sekmede veya dış tarayıcı penceresinde "
-"açabilirsiniz."
+"Sağ tık menüsünü kullanarak yazıları (\"Önemli Olarak İmle\")  seçeneği ile "
+"kalıcı olarak imleyebilir veya silebilirsiniz. Yazının web sayfasını görmek "
+"için yazıyı bir iç sekmede veya dış tarayıcı penceresinde açabilirsiniz."
 
 #: src/articlemodel.cpp:74
 #, kde-format
@@ -1994,15 +1991,15 @@ msgstr "(%1, %2)"
 #: src/formatter/grantleeviewformatter.cpp:109
 #, kde-format
 msgid " (no unread articles)"
-msgstr " (okunmamış yazı yok)"
+msgstr " (okunmayan yazı yok)"
 
 #: src/formatter/grantleeviewformatter.cpp:60
 #: src/formatter/grantleeviewformatter.cpp:111
 #, kde-format
 msgid " (1 unread article)"
 msgid_plural " (%1 unread articles)"
-msgstr[0] " (1 okunmamış yazı)"
-msgstr[1] " (%1 okunmamış yazı)"
+msgstr[0] " (1 okunmayan yazı)"
+msgstr[1] " (%1 okunmayan yazı)"
 
 #: src/formatter/grantleeviewformatter.cpp:75
 #, kde-format
@@ -2090,20 +2087,20 @@ msgid ""
 "<qt>Are you sure you want to mark <b>all articles in the feed</b> as read?</"
 "qt>"
 msgstr ""
-"<qt><b>Beslemedeki tüm yazıları</b> okunmuş olarak işaretlemek "
-"istediğinizden emin misiniz?</qt>"
+"<qt><b>Beslemedeki tüm yazıları</b> okundu olarak imlemek istediğinizden "
+"emin misiniz?</qt>"
 
 #: src/mainwidget.cpp:766
 #, kde-format
 msgid "Mark Feed as Read"
-msgstr "Beslemeyi Okunmuş Olarak İşaretle"
+msgstr "Beslemeyi Okundu Olarak İmle"
 
 #: src/mainwidget.cpp:769
 #, kde-format
 msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
 msgstr ""
-"<qt><b>Tüm beslemeleri</b> okunmuş olarak işaretlemek istediğinizden emin "
-"misiniz?</qt>"
+"<qt><b>Tüm beslemeleri</b> okundu olarak imlemek istediğinizden emin misiniz?"
+"</qt>"
 
 #: src/mainwidget.cpp:771
 #, kde-format
@@ -2111,13 +2108,13 @@ msgid ""
 "<qt>Are you sure you want to mark <b>all feeds in the folder</b> as read?</"
 "qt>"
 msgstr ""
-"<qt><b>Klasördeki tüm beslemeleri</b> okunmuş olarak işaretlemek "
-"istediğinizden emin misiniz?</qt>"
+"<qt><b>Klasördeki tüm beslemeleri</b> okundu olarak imlemek istediğinizden "
+"emin misiniz?</qt>"
 
 #: src/mainwidget.cpp:773
 #, kde-format
 msgid "Mark Feeds as Read"
-msgstr "Beslemeleri Okunmuş Olarak İşaretle"
+msgstr "Beslemeleri Okundu Olarak İmle"
 
 #: src/mainwidget.cpp:837 src/mainwidget.cpp:846 src/mainwidget.cpp:1248
 #, kde-format
@@ -2270,7 +2267,7 @@ msgstr "Beslemeler"
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Unread"
-msgstr "Okunmamış"
+msgstr "Okunmayan"
 
 #: src/subscription/subscriptionlistmodel.cpp:278
 #, kde-format
@@ -2315,14 +2312,14 @@ msgstr "Tüm Sekmeleri Kapat"
 #: src/trayicon.cpp:55
 #, kde-format
 msgid "There are no unread articles"
-msgstr "Okunmamış yazı yok"
+msgstr "Okunmayan yazı yok"
 
 #: src/trayicon.cpp:55
 #, kde-format
 msgid "1 unread article"
 msgid_plural "%1 unread articles"
-msgstr[0] "1 okunmamış yazı"
-msgstr[1] "%1 okunmamış yazı"
+msgstr[0] "1 okunmayan yazı"
+msgstr[1] "%1 okunmayan yazı"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, Akregator::AddFeedWidgetBase)
 #: src/ui/addfeedwidgetbase.ui:14
@@ -2442,7 +2439,7 @@ msgstr "Yazıları okurken tüm ağ sayfasını yük&le"
 #: src/ui/feedpropertieswidgetbase.ui:380
 #, kde-format
 msgid "Mar&k articles as read when they arrive"
-msgstr "Alındıklarında, tüm yazıları okunmuş olara&k işaretle"
+msgstr "Alındıklarında, tüm yazıları okundu olara&k imle"
 
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:40
 #, kde-format
@@ -2462,12 +2459,12 @@ msgstr "Adres panoya kopyalandı."
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:98
 #, kde-format
 msgid "Mark Article as Read"
-msgstr "Yazıyı Okundu Olarak İşaretle"
+msgstr "Yazıyı Okundu Olarak İmle"
 
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:100
 #, kde-format
 msgid "Mark Article as Unread"
-msgstr "Yazıyı Okunmadı Olarak İşaretle"
+msgstr "Yazıyı Okunmadı Olarak İmle"
 
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:102
 #, kde-format
@@ -2508,7 +2505,7 @@ msgstr "Tüm Yazılar"
 #, kde-format
 msgctxt "Unread articles filter"
 msgid "Unread"
-msgstr "Okunmamış"
+msgstr "Okunmayan"
 
 #: src/widgets/statussearchline.cpp:44
 #, kde-format
@@ -2520,7 +2517,7 @@ msgstr "Yeni"
 #, kde-format
 msgctxt "Read articles filter"
 msgid "Read"
-msgstr "Okunmuş"
+msgstr "Okunan"
 
 #: src/widgets/statussearchline.cpp:46
 #, kde-format
