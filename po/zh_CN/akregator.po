@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-04-01 00:51+0000\n"
+"POT-Creation-Date: 2023-09-21 00:45+0000\n"
 "PO-Revision-Date: 2023-09-16 10:08\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -102,21 +102,21 @@ msgid ""
 "configure dialog)."
 msgstr "<b>注意：</b> 出于安全原因，外部引用被禁用(见配置对话框)。"
 
-#: configuration/akregator_config_archive.cpp:43
+#: configuration/akregator_config_archive.cpp:33
 #, kde-format
 msgctxt "Limit feed archive size to:"
 msgid " article"
 msgid_plural " articles"
 msgstr[0] " 篇文章"
 
-#: configuration/akregator_config_archive.cpp:44
+#: configuration/akregator_config_archive.cpp:34
 #, kde-format
 msgctxt "Delete articles older than:"
 msgid " day"
 msgid_plural " days"
 msgstr[0] " 天"
 
-#: configuration/akregator_config_general.cpp:42
+#: configuration/akregator_config_general.cpp:32
 #, kde-format
 msgid " minute"
 msgid_plural " minutes"
@@ -272,7 +272,7 @@ msgstr "鼠标左键点击："
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
 #: configuration/ui/settings_browser.ui:28
 #: configuration/ui/settings_browser.ui:54
-#: src/actions/actionmanagerimpl.cpp:323
+#: src/actions/actionmanagerimpl.cpp:324
 #, kde-format
 msgid "Open in Tab"
 msgstr "在标签中打开"
@@ -281,7 +281,7 @@ msgstr "在标签中打开"
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
 #: configuration/ui/settings_browser.ui:33
 #: configuration/ui/settings_browser.ui:59
-#: src/actions/actionmanagerimpl.cpp:329
+#: src/actions/actionmanagerimpl.cpp:330
 #, kde-format
 msgid "Open in Background Tab"
 msgstr "在后台标签中打开"
@@ -290,7 +290,7 @@ msgstr "在后台标签中打开"
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
 #: configuration/ui/settings_browser.ui:38
 #: configuration/ui/settings_browser.ui:64
-#: src/actions/actionmanagerimpl.cpp:335
+#: src/actions/actionmanagerimpl.cpp:336
 #, kde-format
 msgid "Open in External Browser"
 msgstr "在外部浏览器中打开"
@@ -487,7 +487,7 @@ msgstr "使用浏览器缓存(可降低网络浏览)(&B)"
 msgid "Allow feed to load external references from internet."
 msgstr "允许订阅从互联网加载外部引用。"
 
-#: export/akregatorstorageexporter.cpp:284
+#: export/akregatorstorageexporter.cpp:280
 #, kde-format
 msgid "Akregator Export for %1"
 msgstr "Akregator 导出 %1"
@@ -517,7 +517,7 @@ msgid "Auto-Expand folders with unread articles"
 msgstr "自动展开包含未读文章的文件夹"
 
 #. i18n: ectx: label, entry, group (View)
-#: interfaces/akregator.kcfg:31 src/actions/actionmanagerimpl.cpp:317
+#: interfaces/akregator.kcfg:31 src/actions/actionmanagerimpl.cpp:318
 #, kde-format
 msgid "Show Quick Filter"
 msgstr "显示快速过滤器"
@@ -899,8 +899,8 @@ msgid "Resets the quick filter when changing feeds."
 msgstr "更改订阅时重置快速过滤器。"
 
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
-#: src/akregator_part.cpp:150
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:153
+#: src/akregator_part.cpp:136
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:142
 #: src/trayicon.cpp:41 src/trayicon.cpp:42 src/trayicon.cpp:54
 #, kde-format
 msgid "Akregator"
@@ -1080,350 +1080,350 @@ msgstr "Philipp Droessler"
 msgid "Gentoo Ebuild"
 msgstr "Gentoo Ebuild"
 
-#: src/actions/actionmanagerimpl.cpp:63 src/actions/actionmanagerimpl.cpp:286
+#: src/actions/actionmanagerimpl.cpp:64 src/actions/actionmanagerimpl.cpp:287
 #, kde-format
 msgid "&Fetch Feed"
 msgstr "抓取订阅(&F)"
 
-#: src/actions/actionmanagerimpl.cpp:64 src/actions/actionmanagerimpl.cpp:242
+#: src/actions/actionmanagerimpl.cpp:65 src/actions/actionmanagerimpl.cpp:243
 #, kde-format
 msgid "&Delete Feed"
 msgstr "删除订阅(&D)"
 
-#: src/actions/actionmanagerimpl.cpp:65 src/actions/actionmanagerimpl.cpp:248
+#: src/actions/actionmanagerimpl.cpp:66 src/actions/actionmanagerimpl.cpp:249
 #, kde-format
 msgid "&Edit Feed..."
 msgstr "编辑订阅(&E)..."
 
-#: src/actions/actionmanagerimpl.cpp:66 src/actions/actionmanagerimpl.cpp:305
+#: src/actions/actionmanagerimpl.cpp:67 src/actions/actionmanagerimpl.cpp:306
 #, kde-format
 msgid "&Mark Feed as Read"
 msgstr "将订阅标为已读(&M)"
 
-#: src/actions/actionmanagerimpl.cpp:82
+#: src/actions/actionmanagerimpl.cpp:83
 #, kde-format
 msgid "&Fetch Feeds"
 msgstr "抓取订阅(&F)"
 
-#: src/actions/actionmanagerimpl.cpp:83
+#: src/actions/actionmanagerimpl.cpp:84
 #, kde-format
 msgid "&Delete Folder"
 msgstr "删除文件夹(&D)"
 
-#: src/actions/actionmanagerimpl.cpp:84
+#: src/actions/actionmanagerimpl.cpp:85
 #, kde-format
 msgid "&Rename Folder"
 msgstr "重命名文件夹(&R)"
 
-#: src/actions/actionmanagerimpl.cpp:85
+#: src/actions/actionmanagerimpl.cpp:86
 #, kde-format
 msgid "&Mark Feeds as Read"
 msgstr "将订阅标为已读(&M)"
 
-#: src/actions/actionmanagerimpl.cpp:190
+#: src/actions/actionmanagerimpl.cpp:191
 #, kde-format
 msgid "&Import Feeds..."
 msgstr "导入订阅(&I)..."
 
-#: src/actions/actionmanagerimpl.cpp:194
+#: src/actions/actionmanagerimpl.cpp:195
 #, kde-format
 msgid "&Export Feeds..."
 msgstr "导出订阅(&E)..."
 
-#: src/actions/actionmanagerimpl.cpp:199
+#: src/actions/actionmanagerimpl.cpp:200
 #, kde-format
 msgid "&Configure Akregator..."
 msgstr "配置 Akregator(&C)..."
 
-#: src/actions/actionmanagerimpl.cpp:218
+#: src/actions/actionmanagerimpl.cpp:219
 #, kde-format
 msgid "&Open Homepage"
 msgstr "打开主页(&O)"
 
-#: src/actions/actionmanagerimpl.cpp:224
+#: src/actions/actionmanagerimpl.cpp:225
 #, kde-format
 msgid "Reload All Tabs"
 msgstr "重新加载全部标签"
 
-#: src/actions/actionmanagerimpl.cpp:230
+#: src/actions/actionmanagerimpl.cpp:231
 #, kde-format
 msgid "&Add Feed..."
 msgstr "添加订阅(&A)..."
 
-#: src/actions/actionmanagerimpl.cpp:236
+#: src/actions/actionmanagerimpl.cpp:237
 #, kde-format
 msgid "Ne&w Folder..."
 msgstr "新建文件夹(&W)..."
 
-#: src/actions/actionmanagerimpl.cpp:261
+#: src/actions/actionmanagerimpl.cpp:262
 #, kde-format
 msgid "&Normal View"
 msgstr "普通视图(&N)"
 
-#: src/actions/actionmanagerimpl.cpp:270
+#: src/actions/actionmanagerimpl.cpp:271
 #, kde-format
 msgid "&Widescreen View"
 msgstr "宽屏视图(&W)"
 
-#: src/actions/actionmanagerimpl.cpp:279
+#: src/actions/actionmanagerimpl.cpp:280
 #, kde-format
 msgid "C&ombined View"
 msgstr "组合视图(&O)"
 
-#: src/actions/actionmanagerimpl.cpp:292
+#: src/actions/actionmanagerimpl.cpp:293
 #, kde-format
 msgid "Fe&tch All Feeds"
 msgstr "抓取全部订阅(&T)"
 
-#: src/actions/actionmanagerimpl.cpp:298
+#: src/actions/actionmanagerimpl.cpp:299
 #, kde-format
 msgid "C&ancel Feed Fetches"
 msgstr "取消抓取订阅(&A)"
 
-#: src/actions/actionmanagerimpl.cpp:311
+#: src/actions/actionmanagerimpl.cpp:312
 #, kde-format
 msgid "Ma&rk All Feeds as Read"
 msgstr "将全部订阅标为已读(&R)"
 
-#: src/actions/actionmanagerimpl.cpp:340 src/actions/actionmanagerimpl.cpp:608
+#: src/actions/actionmanagerimpl.cpp:341 src/actions/actionmanagerimpl.cpp:609
 #, kde-format
 msgid "Copy Link Address"
 msgstr "复制链接地址"
 
-#: src/actions/actionmanagerimpl.cpp:345
+#: src/actions/actionmanagerimpl.cpp:346
 #, kde-format
 msgid "Pre&vious Unread Article"
 msgstr "上篇未读文章(&V)"
 
-#: src/actions/actionmanagerimpl.cpp:351
+#: src/actions/actionmanagerimpl.cpp:352
 #, kde-format
 msgid "Ne&xt Unread Article"
 msgstr "下篇未读文章(&X)"
 
-#: src/actions/actionmanagerimpl.cpp:359
+#: src/actions/actionmanagerimpl.cpp:360
 #, kde-format
 msgid "&Delete"
 msgstr "删除(&D)"
 
-#: src/actions/actionmanagerimpl.cpp:364
+#: src/actions/actionmanagerimpl.cpp:365
 #, kde-format
 msgid "&Mark As"
 msgstr "标记为(&M)"
 
-#: src/actions/actionmanagerimpl.cpp:368
+#: src/actions/actionmanagerimpl.cpp:369
 #, kde-format
 msgctxt "as in: mark as read"
 msgid "&Read"
 msgstr "已读(&R)"
 
-#: src/actions/actionmanagerimpl.cpp:370
+#: src/actions/actionmanagerimpl.cpp:371
 #, kde-format
 msgid "Mark selected article as read"
 msgstr "将选中文章标为已读"
 
-#: src/actions/actionmanagerimpl.cpp:376
+#: src/actions/actionmanagerimpl.cpp:377
 #, kde-format
 msgctxt "as in: mark as new"
 msgid "&New"
 msgstr "新建(&N)"
 
-#: src/actions/actionmanagerimpl.cpp:379
+#: src/actions/actionmanagerimpl.cpp:380
 #, kde-format
 msgid "Mark selected article as new"
 msgstr "将选中文章标为新文章"
 
-#: src/actions/actionmanagerimpl.cpp:384
+#: src/actions/actionmanagerimpl.cpp:385
 #, kde-format
 msgctxt "as in: mark as unread"
 msgid "&Unread"
 msgstr "未读文章(&U)"
 
-#: src/actions/actionmanagerimpl.cpp:386
+#: src/actions/actionmanagerimpl.cpp:387
 #, kde-format
 msgid "Mark selected article as unread"
 msgstr "将选中文章标为未读"
 
-#: src/actions/actionmanagerimpl.cpp:392
+#: src/actions/actionmanagerimpl.cpp:393
 #, kde-format
 msgid "&Mark as Important"
 msgstr "标为重要(&M)"
 
-#: src/actions/actionmanagerimpl.cpp:396
+#: src/actions/actionmanagerimpl.cpp:397
 #, kde-format
 msgid "Remove &Important Mark"
 msgstr "删除重要标记(&I)"
 
-#: src/actions/actionmanagerimpl.cpp:400
+#: src/actions/actionmanagerimpl.cpp:401
 #, kde-format
 msgid "Move Node Up"
 msgstr "节点上移"
 
-#: src/actions/actionmanagerimpl.cpp:405
+#: src/actions/actionmanagerimpl.cpp:406
 #, kde-format
 msgid "Move Node Down"
 msgstr "节点下移"
 
-#: src/actions/actionmanagerimpl.cpp:410
+#: src/actions/actionmanagerimpl.cpp:411
 #, kde-format
 msgid "Move Node Left"
 msgstr "节点左移"
 
-#: src/actions/actionmanagerimpl.cpp:415
+#: src/actions/actionmanagerimpl.cpp:416
 #, kde-format
 msgid "Move Node Right"
 msgstr "节点右移"
 
-#: src/actions/actionmanagerimpl.cpp:421
+#: src/actions/actionmanagerimpl.cpp:422
 #, kde-format
 msgid "Send &Link Address..."
 msgstr "发送链接地址(&L)..."
 
-#: src/actions/actionmanagerimpl.cpp:426
+#: src/actions/actionmanagerimpl.cpp:427
 #, kde-format
 msgid "Send &File..."
 msgstr "发送文件(&F)..."
 
-#: src/actions/actionmanagerimpl.cpp:432
+#: src/actions/actionmanagerimpl.cpp:433
 #, kde-format
 msgid "Set Focus to Quick Search"
 msgstr "聚焦到快速搜索栏"
 
-#: src/actions/actionmanagerimpl.cpp:464
+#: src/actions/actionmanagerimpl.cpp:465
 #, kde-format
 msgid "&Previous Article"
 msgstr "上篇文章(&P)"
 
-#: src/actions/actionmanagerimpl.cpp:468
+#: src/actions/actionmanagerimpl.cpp:469
 #, kde-format
 msgid "&Next Article"
 msgstr "下篇文章(&N)"
 
-#: src/actions/actionmanagerimpl.cpp:484
+#: src/actions/actionmanagerimpl.cpp:485
 #, kde-format
 msgid "&Previous Feed"
 msgstr "上一个订阅(&P)"
 
-#: src/actions/actionmanagerimpl.cpp:489
+#: src/actions/actionmanagerimpl.cpp:490
 #, kde-format
 msgid "&Next Feed"
 msgstr "下一个订阅(&N)"
 
-#: src/actions/actionmanagerimpl.cpp:495
+#: src/actions/actionmanagerimpl.cpp:496
 #, kde-format
 msgid "N&ext Unread Feed"
 msgstr "下一个未读订阅(&E)"
 
-#: src/actions/actionmanagerimpl.cpp:501
+#: src/actions/actionmanagerimpl.cpp:502
 #, kde-format
 msgid "Prev&ious Unread Feed"
 msgstr "上一个未读订阅(&I)"
 
-#: src/actions/actionmanagerimpl.cpp:506
+#: src/actions/actionmanagerimpl.cpp:507
 #, kde-format
 msgid "Go to Top of Tree"
 msgstr "转到树的顶端"
 
-#: src/actions/actionmanagerimpl.cpp:511
+#: src/actions/actionmanagerimpl.cpp:512
 #, kde-format
 msgid "Go to Bottom of Tree"
 msgstr "转到树的底端"
 
-#: src/actions/actionmanagerimpl.cpp:516
+#: src/actions/actionmanagerimpl.cpp:517
 #, kde-format
 msgid "Go Left in Tree"
 msgstr "在树中向左"
 
-#: src/actions/actionmanagerimpl.cpp:521
+#: src/actions/actionmanagerimpl.cpp:522
 #, kde-format
 msgid "Go Right in Tree"
 msgstr "在树中向右"
 
-#: src/actions/actionmanagerimpl.cpp:526
+#: src/actions/actionmanagerimpl.cpp:527
 #, kde-format
 msgid "Go Up in Tree"
 msgstr "在树中向上"
 
-#: src/actions/actionmanagerimpl.cpp:531
+#: src/actions/actionmanagerimpl.cpp:532
 #, kde-format
 msgid "Go Down in Tree"
 msgstr "在树中向下"
 
-#: src/actions/actionmanagerimpl.cpp:537
+#: src/actions/actionmanagerimpl.cpp:538
 #, kde-format
 msgid "Hide Read Feeds"
 msgstr "隐藏已读的订阅"
 
-#: src/actions/actionmanagerimpl.cpp:543
+#: src/actions/actionmanagerimpl.cpp:544
 #, kde-format
 msgid "Lock Feeds In Place"
 msgstr "在原地固定订阅"
 
-#: src/actions/actionmanagerimpl.cpp:549
+#: src/actions/actionmanagerimpl.cpp:550
 #, kde-format
 msgid "Auto-expand folders with unread articles"
 msgstr "自动展开包含未读文章的文件夹"
 
-#: src/actions/actionmanagerimpl.cpp:565
+#: src/actions/actionmanagerimpl.cpp:566
 #, kde-format
 msgid "Select Next Tab"
 msgstr "选择下个标签"
 
-#: src/actions/actionmanagerimpl.cpp:570
+#: src/actions/actionmanagerimpl.cpp:571
 #, kde-format
 msgid "Select Previous Tab"
 msgstr "选择上个标签"
 
-#: src/actions/actionmanagerimpl.cpp:576
+#: src/actions/actionmanagerimpl.cpp:577
 #, kde-format
 msgid "Detach Tab"
 msgstr "漂移标签"
 
-#: src/actions/actionmanagerimpl.cpp:590
+#: src/actions/actionmanagerimpl.cpp:591
 #, kde-format
 msgid "Mute"
 msgstr "静音"
 
-#: src/actions/actionmanagerimpl.cpp:594
+#: src/actions/actionmanagerimpl.cpp:595
 #, kde-format
 msgid "Unmute"
 msgstr "取消静音"
 
-#: src/actions/actionmanagerimpl.cpp:597
+#: src/actions/actionmanagerimpl.cpp:598
 #, kde-format
 msgid "Speak Text"
 msgstr "朗读文本"
 
-#: src/actions/actionmanagerimpl.cpp:602
+#: src/actions/actionmanagerimpl.cpp:603
 #, kde-format
 msgid "&Find in Message..."
 msgstr "在信件中查找(&F)..."
 
-#: src/actions/actionmanagerimpl.cpp:613
+#: src/actions/actionmanagerimpl.cpp:614
 #, kde-format
 msgid "Close Tab"
 msgstr "关闭标签"
 
-#: src/actions/actionmanagerimpl.cpp:626
+#: src/actions/actionmanagerimpl.cpp:627
 #, kde-format
 msgid "Activate Tab %1"
 msgstr "激活标签 %1"
 
-#: src/actions/actionmanagerimpl.cpp:632
+#: src/actions/actionmanagerimpl.cpp:633
 #, kde-format
 msgid "&Save Link As..."
 msgstr "链接另存为(&S)..."
 
-#: src/actions/actionmanagerimpl.cpp:636
+#: src/actions/actionmanagerimpl.cpp:637
 #, kde-format
 msgid "Copy &Link Address"
 msgstr "复制链接地址(&L)"
 
-#: src/actions/actionmanagerimpl.cpp:639
+#: src/actions/actionmanagerimpl.cpp:640
 #, kde-format
 msgid "Copy Image Location"
 msgstr "复制图像位置"
 
-#: src/actions/actionmanagerimpl.cpp:646
+#: src/actions/actionmanagerimpl.cpp:647
 #, kde-format
 msgid "Save Image On Disk..."
 msgstr "保存图像到磁盘..."
@@ -1479,86 +1479,86 @@ msgstr "启动时隐藏主窗口"
 msgid "Lists the available options for user feedback"
 msgstr "列出用户反馈的可用选项"
 
-#: src/akregator_part.cpp:83
+#: src/akregator_part.cpp:78
 #, kde-format
 msgid "Feeds"
 msgstr "订阅"
 
-#: src/akregator_part.cpp:94
+#: src/akregator_part.cpp:89
 #, kde-format
 msgid "KDE Dot News"
 msgstr "KDE Dot 新闻"
 
-#: src/akregator_part.cpp:99
+#: src/akregator_part.cpp:94
 #, kde-format
 msgid "Linux.com"
 msgstr "Linux.com"
 
-#: src/akregator_part.cpp:104
+#: src/akregator_part.cpp:99
 #, kde-format
 msgid "Planet KDE"
 msgstr "KDE 贡献人博客"
 
-#: src/akregator_part.cpp:109
+#: src/akregator_part.cpp:104
 #, kde-format
 msgid "KDE Apps"
 msgstr "KDE 软件网站"
 
-#: src/akregator_part.cpp:115
+#: src/akregator_part.cpp:110
 #, kde-format
 msgid "Spanish feeds"
 msgstr "西班牙语订阅"
 
-#: src/akregator_part.cpp:119
+#: src/akregator_part.cpp:114
 #, kde-format
 msgid "Planet KDE España"
 msgstr "KDE 贡献人博客 (西班牙)"
 
-#: src/akregator_part.cpp:444
+#: src/akregator_part.cpp:427
 #, kde-format
 msgid ""
 "Access denied: Cannot save feed list to <b>%1</b>. Please check your "
 "permissions."
 msgstr "访问被禁止：无法保存订阅列表至 <b>%1</b>。请检查您的权限。"
 
-#: src/akregator_part.cpp:445 src/akregator_part.cpp:496
+#: src/akregator_part.cpp:428 src/akregator_part.cpp:479
 #, kde-format
 msgid "Write Error"
 msgstr "写错误"
 
-#: src/akregator_part.cpp:481
+#: src/akregator_part.cpp:464
 #, kde-format
 msgid "Could not import the file %1 (no valid OPML)"
 msgstr "无法导入文件 %1(无有效的 OPML)"
 
-#: src/akregator_part.cpp:481 src/command/loadfeedlistcommand.cpp:71
+#: src/akregator_part.cpp:464 src/command/loadfeedlistcommand.cpp:71
 #, kde-format
 msgid "OPML Parsing Error"
 msgstr "OPML 解析错误"
 
-#: src/akregator_part.cpp:485
+#: src/akregator_part.cpp:468
 #, kde-format
 msgid ""
 "The file %1 could not be read, check if it exists or if it is readable for "
 "the current user."
 msgstr "无法读取文件 %1，请检查该文件是否存在，或者当前用户是否可读取该文件。"
 
-#: src/akregator_part.cpp:486 src/command/loadfeedlistcommand.cpp:142
+#: src/akregator_part.cpp:469 src/command/loadfeedlistcommand.cpp:142
 #, kde-format
 msgid "Read Error"
 msgstr "读取错误"
 
-#: src/akregator_part.cpp:496
+#: src/akregator_part.cpp:479
 #, kde-format
 msgid "Access denied: cannot write to file %1. Please check your permissions."
 msgstr "访问被禁止：无法写入文件 %1。请检查您的权限。"
 
-#: src/akregator_part.cpp:511 src/akregator_part.cpp:520
+#: src/akregator_part.cpp:494 src/akregator_part.cpp:503
 #, kde-format
 msgid "OPML Outlines (%1);;All Files (*)"
 msgstr "OPML 大纲 (%1);;所有文件 (*)"
 
-#: src/akregator_part.cpp:654
+#: src/akregator_part.cpp:627
 #, kde-format
 msgid "Imported Folder"
 msgstr "导入的文件夹"
@@ -1627,68 +1627,62 @@ msgctxt "Articlelist's column header"
 msgid "Content"
 msgstr "内容"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:154
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:143
 #, kde-format
 msgid "Akregator is a KDE news feed reader."
 msgstr "Akregator 是 KDE 的新闻订阅阅读器。"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:195
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:184
 #, kde-format
 msgctxt "@title:window"
 msgid "Save As"
 msgstr "另存为"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:384
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:373
 #, kde-format
 msgid "Disable"
 msgstr "禁用"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:385
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:374
 #, kde-format
 msgid "Keep Enabled"
 msgstr "保持启用"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:387
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:376
 #, kde-format
 msgid "Are you sure you want to disable this introduction page?"
 msgstr "您确定要禁用此介绍页吗？"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:388
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:377
 #, kde-format
 msgid "Disable Introduction Page"
 msgstr "禁用介绍页"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:423
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:412
 #, kde-format
 msgid "This web site is a malware, do you want to continue to show it?"
 msgstr "此网站包含恶意软件，您想要继续显示它吗？"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:424
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:413
 #, kde-format
 msgid "Malware"
 msgstr "恶意软件"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:436
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:425
 #, kde-format
 msgid "The network is broken."
 msgstr "网络中断。"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:436
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:439
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:425
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:428
 #, kde-format
 msgid "Check Phishing Url"
 msgstr "检查钓鱼链接"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:439
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:428
 #, kde-format
 msgid "The url %1 is not valid."
 msgstr "链接 %1 无效。"
-
-#: src/articleviewer-ng/webengine/articleviewerwebenginewidgetng.cpp:137
-#, kde-format
-msgctxt "@title:window"
-msgid "Print Document"
-msgstr "打印文档"
 
 #: src/command/createfoldercommand.cpp:47
 #, kde-format
@@ -2096,7 +2090,7 @@ msgstr ""
 "找不到 Akregator 部件；请检查您的安装。\n"
 "%1"
 
-#: src/notificationmanager.cpp:49
+#: src/notificationmanager.cpp:48
 #, kde-format
 msgid ""
 "Feed added:\n"
@@ -2105,7 +2099,7 @@ msgstr ""
 "订阅已添加：\n"
 " %1"
 
-#: src/notificationmanager.cpp:61
+#: src/notificationmanager.cpp:55
 #, kde-format
 msgid ""
 "Feeds added:\n"
@@ -2114,7 +2108,7 @@ msgstr ""
 "订阅已添加：\n"
 " %1"
 
-#: src/notificationmanager.cpp:79
+#: src/notificationmanager.cpp:69
 #, kde-format
 msgid "<i>and 1 other</i>"
 msgid_plural "<i>and %1 others</i>"
@@ -2451,3 +2445,7 @@ msgstr "已读"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "重要"
+
+#~ msgctxt "@title:window"
+#~ msgid "Print Document"
+#~ msgstr "打印文档"

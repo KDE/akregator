@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-04-01 00:51+0000\n"
+"POT-Creation-Date: 2023-09-21 00:45+0000\n"
 "PO-Revision-Date: 2019-07-07 16:38+0200\n"
 "Last-Translator: Mindaugas Baranauskas <opensuse.lietuviu.kalba@gmail.com>\n"
 "Language-Team: Lithuanian <kde-i18n-lt@kde.org>\n"
@@ -119,7 +119,7 @@ msgid ""
 "configure dialog)."
 msgstr ""
 
-#: configuration/akregator_config_archive.cpp:43
+#: configuration/akregator_config_archive.cpp:33
 #, kde-format
 msgctxt "Limit feed archive size to:"
 msgid " article"
@@ -129,7 +129,7 @@ msgstr[1] " straipsnių"
 msgstr[2] " straipsnių"
 msgstr[3] " straipsnio"
 
-#: configuration/akregator_config_archive.cpp:44
+#: configuration/akregator_config_archive.cpp:34
 #, kde-format
 msgctxt "Delete articles older than:"
 msgid " day"
@@ -139,7 +139,7 @@ msgstr[1] " dienos"
 msgstr[2] " dienų"
 msgstr[3] " diena"
 
-#: configuration/akregator_config_general.cpp:42
+#: configuration/akregator_config_general.cpp:32
 #, kde-format
 msgid " minute"
 msgid_plural " minutes"
@@ -301,7 +301,7 @@ msgstr "Spragtelėjimas kairiu pelės mygtuku:"
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
 #: configuration/ui/settings_browser.ui:28
 #: configuration/ui/settings_browser.ui:54
-#: src/actions/actionmanagerimpl.cpp:323
+#: src/actions/actionmanagerimpl.cpp:324
 #, kde-format
 msgid "Open in Tab"
 msgstr "Atverti kortelėje"
@@ -310,7 +310,7 @@ msgstr "Atverti kortelėje"
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
 #: configuration/ui/settings_browser.ui:33
 #: configuration/ui/settings_browser.ui:59
-#: src/actions/actionmanagerimpl.cpp:329
+#: src/actions/actionmanagerimpl.cpp:330
 #, kde-format
 msgid "Open in Background Tab"
 msgstr "Atidaryti foninėje kortelėje"
@@ -319,7 +319,7 @@ msgstr "Atidaryti foninėje kortelėje"
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
 #: configuration/ui/settings_browser.ui:38
 #: configuration/ui/settings_browser.ui:64
-#: src/actions/actionmanagerimpl.cpp:335
+#: src/actions/actionmanagerimpl.cpp:336
 #, kde-format
 msgid "Open in External Browser"
 msgstr "Atverti išorinėje naršyklėje"
@@ -518,7 +518,7 @@ msgstr "Naudoti naršyklės krepšį (reikės mažiau tinklo pralaidumo)"
 msgid "Allow feed to load external references from internet."
 msgstr ""
 
-#: export/akregatorstorageexporter.cpp:284
+#: export/akregatorstorageexporter.cpp:280
 #, kde-format
 msgid "Akregator Export for %1"
 msgstr "Akregator eksportavimas į %1"
@@ -548,7 +548,7 @@ msgid "Auto-Expand folders with unread articles"
 msgstr "Automatiškai išplečia aplankus, kuriuose yra neperskaitytų straipsnių"
 
 #. i18n: ectx: label, entry, group (View)
-#: interfaces/akregator.kcfg:31 src/actions/actionmanagerimpl.cpp:317
+#: interfaces/akregator.kcfg:31 src/actions/actionmanagerimpl.cpp:318
 #, kde-format
 msgid "Show Quick Filter"
 msgstr "Rodyti greito filtro juostą"
@@ -936,8 +936,8 @@ msgid "Resets the quick filter when changing feeds."
 msgstr "Išvalo greitą filtrą keičiant kanalą."
 
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
-#: src/akregator_part.cpp:150
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:153
+#: src/akregator_part.cpp:136
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:142
 #: src/trayicon.cpp:41 src/trayicon.cpp:42 src/trayicon.cpp:54
 #, kde-format
 msgid "Akregator"
@@ -1118,350 +1118,350 @@ msgstr "Philipp Droessler"
 msgid "Gentoo Ebuild"
 msgstr "Gentoo Ebuildas"
 
-#: src/actions/actionmanagerimpl.cpp:63 src/actions/actionmanagerimpl.cpp:286
+#: src/actions/actionmanagerimpl.cpp:64 src/actions/actionmanagerimpl.cpp:287
 #, kde-format
 msgid "&Fetch Feed"
 msgstr "&Atsiųsti kanalo naujienas"
 
-#: src/actions/actionmanagerimpl.cpp:64 src/actions/actionmanagerimpl.cpp:242
+#: src/actions/actionmanagerimpl.cpp:65 src/actions/actionmanagerimpl.cpp:243
 #, kde-format
 msgid "&Delete Feed"
 msgstr "Iš&trinti kanalą"
 
-#: src/actions/actionmanagerimpl.cpp:65 src/actions/actionmanagerimpl.cpp:248
+#: src/actions/actionmanagerimpl.cpp:66 src/actions/actionmanagerimpl.cpp:249
 #, kde-format
 msgid "&Edit Feed..."
 msgstr "&Redaguoti kanalą..."
 
-#: src/actions/actionmanagerimpl.cpp:66 src/actions/actionmanagerimpl.cpp:305
+#: src/actions/actionmanagerimpl.cpp:67 src/actions/actionmanagerimpl.cpp:306
 #, kde-format
 msgid "&Mark Feed as Read"
 msgstr "Žy&mėti kanalą skaitytu"
 
-#: src/actions/actionmanagerimpl.cpp:82
+#: src/actions/actionmanagerimpl.cpp:83
 #, kde-format
 msgid "&Fetch Feeds"
 msgstr "&Atsiųsti kanalo naujienas"
 
-#: src/actions/actionmanagerimpl.cpp:83
+#: src/actions/actionmanagerimpl.cpp:84
 #, kde-format
 msgid "&Delete Folder"
 msgstr "&Trinti aplanką"
 
-#: src/actions/actionmanagerimpl.cpp:84
+#: src/actions/actionmanagerimpl.cpp:85
 #, kde-format
 msgid "&Rename Folder"
 msgstr "Pe&rvadinti aplanką"
 
-#: src/actions/actionmanagerimpl.cpp:85
+#: src/actions/actionmanagerimpl.cpp:86
 #, kde-format
 msgid "&Mark Feeds as Read"
 msgstr "Žy&mėti kanalą skaitytu"
 
-#: src/actions/actionmanagerimpl.cpp:190
+#: src/actions/actionmanagerimpl.cpp:191
 #, kde-format
 msgid "&Import Feeds..."
 msgstr "&Importuoti kanalus..."
 
-#: src/actions/actionmanagerimpl.cpp:194
+#: src/actions/actionmanagerimpl.cpp:195
 #, kde-format
 msgid "&Export Feeds..."
 msgstr "&Eksportuoti kanalus..."
 
-#: src/actions/actionmanagerimpl.cpp:199
+#: src/actions/actionmanagerimpl.cpp:200
 #, kde-format
 msgid "&Configure Akregator..."
 msgstr "&Konfigūruoti Akregator..."
 
-#: src/actions/actionmanagerimpl.cpp:218
+#: src/actions/actionmanagerimpl.cpp:219
 #, kde-format
 msgid "&Open Homepage"
 msgstr "Atverti namų svetainę"
 
-#: src/actions/actionmanagerimpl.cpp:224
+#: src/actions/actionmanagerimpl.cpp:225
 #, kde-format
 msgid "Reload All Tabs"
 msgstr "Iš naujo įkelti visas korteles"
 
-#: src/actions/actionmanagerimpl.cpp:230
+#: src/actions/actionmanagerimpl.cpp:231
 #, kde-format
 msgid "&Add Feed..."
 msgstr "&Pridėti kanalą..."
 
-#: src/actions/actionmanagerimpl.cpp:236
+#: src/actions/actionmanagerimpl.cpp:237
 #, kde-format
 msgid "Ne&w Folder..."
 msgstr "&Naujas aplankas..."
 
-#: src/actions/actionmanagerimpl.cpp:261
+#: src/actions/actionmanagerimpl.cpp:262
 #, kde-format
 msgid "&Normal View"
 msgstr "&Paprastas rodinys"
 
-#: src/actions/actionmanagerimpl.cpp:270
+#: src/actions/actionmanagerimpl.cpp:271
 #, kde-format
 msgid "&Widescreen View"
 msgstr "Plačia&ekranis rodinys"
 
-#: src/actions/actionmanagerimpl.cpp:279
+#: src/actions/actionmanagerimpl.cpp:280
 #, kde-format
 msgid "C&ombined View"
 msgstr "&Kombinuotas rodinys"
 
-#: src/actions/actionmanagerimpl.cpp:292
+#: src/actions/actionmanagerimpl.cpp:293
 #, kde-format
 msgid "Fe&tch All Feeds"
 msgstr "&Atsiųsti visų kanalų naujienas"
 
-#: src/actions/actionmanagerimpl.cpp:298
+#: src/actions/actionmanagerimpl.cpp:299
 #, kde-format
 msgid "C&ancel Feed Fetches"
 msgstr "Nutr&aukti naujienų atsiuntimą"
 
-#: src/actions/actionmanagerimpl.cpp:311
+#: src/actions/actionmanagerimpl.cpp:312
 #, kde-format
 msgid "Ma&rk All Feeds as Read"
 msgstr "Žymė&ti visus kanalus skaitytais"
 
-#: src/actions/actionmanagerimpl.cpp:340 src/actions/actionmanagerimpl.cpp:608
+#: src/actions/actionmanagerimpl.cpp:341 src/actions/actionmanagerimpl.cpp:609
 #, kde-format
 msgid "Copy Link Address"
 msgstr "Kopijuoti nuorodos adresą"
 
-#: src/actions/actionmanagerimpl.cpp:345
+#: src/actions/actionmanagerimpl.cpp:346
 #, kde-format
 msgid "Pre&vious Unread Article"
 msgstr "&Ankstesnis neskaitytas straipsnis"
 
-#: src/actions/actionmanagerimpl.cpp:351
+#: src/actions/actionmanagerimpl.cpp:352
 #, kde-format
 msgid "Ne&xt Unread Article"
 msgstr "&Kitas neskaitytas straipsnis"
 
-#: src/actions/actionmanagerimpl.cpp:359
+#: src/actions/actionmanagerimpl.cpp:360
 #, kde-format
 msgid "&Delete"
 msgstr "&Trinti"
 
-#: src/actions/actionmanagerimpl.cpp:364
+#: src/actions/actionmanagerimpl.cpp:365
 #, kde-format
 msgid "&Mark As"
 msgstr "Ž&ymėti kaip"
 
-#: src/actions/actionmanagerimpl.cpp:368
+#: src/actions/actionmanagerimpl.cpp:369
 #, kde-format
 msgctxt "as in: mark as read"
 msgid "&Read"
 msgstr "&Skaitytu"
 
-#: src/actions/actionmanagerimpl.cpp:370
+#: src/actions/actionmanagerimpl.cpp:371
 #, kde-format
 msgid "Mark selected article as read"
 msgstr "Žymėti pasirinktą straipsnį skaitytu"
 
-#: src/actions/actionmanagerimpl.cpp:376
+#: src/actions/actionmanagerimpl.cpp:377
 #, kde-format
 msgctxt "as in: mark as new"
 msgid "&New"
 msgstr "&Nauju"
 
-#: src/actions/actionmanagerimpl.cpp:379
+#: src/actions/actionmanagerimpl.cpp:380
 #, kde-format
 msgid "Mark selected article as new"
 msgstr "Žymėti pasirinktą straipsnį nauju"
 
-#: src/actions/actionmanagerimpl.cpp:384
+#: src/actions/actionmanagerimpl.cpp:385
 #, kde-format
 msgctxt "as in: mark as unread"
 msgid "&Unread"
 msgstr "N&eskaitytu"
 
-#: src/actions/actionmanagerimpl.cpp:386
+#: src/actions/actionmanagerimpl.cpp:387
 #, kde-format
 msgid "Mark selected article as unread"
 msgstr "Žymėti pasirinktą straipsnį perskaitytu"
 
-#: src/actions/actionmanagerimpl.cpp:392
+#: src/actions/actionmanagerimpl.cpp:393
 #, kde-format
 msgid "&Mark as Important"
 msgstr "Žymėti s&varbiu"
 
-#: src/actions/actionmanagerimpl.cpp:396
+#: src/actions/actionmanagerimpl.cpp:397
 #, kde-format
 msgid "Remove &Important Mark"
 msgstr "Naikinti žymę „&Svarbus“"
 
-#: src/actions/actionmanagerimpl.cpp:400
+#: src/actions/actionmanagerimpl.cpp:401
 #, kde-format
 msgid "Move Node Up"
 msgstr "Kelti elementą aukštyn"
 
-#: src/actions/actionmanagerimpl.cpp:405
+#: src/actions/actionmanagerimpl.cpp:406
 #, kde-format
 msgid "Move Node Down"
 msgstr "Kelti elementą žemyn"
 
-#: src/actions/actionmanagerimpl.cpp:410
+#: src/actions/actionmanagerimpl.cpp:411
 #, kde-format
 msgid "Move Node Left"
 msgstr "Stumti elementą kairėn"
 
-#: src/actions/actionmanagerimpl.cpp:415
+#: src/actions/actionmanagerimpl.cpp:416
 #, kde-format
 msgid "Move Node Right"
 msgstr "Stumti elementą dešinėn"
 
-#: src/actions/actionmanagerimpl.cpp:421
+#: src/actions/actionmanagerimpl.cpp:422
 #, kde-format
 msgid "Send &Link Address..."
 msgstr "Siųsti nuo&rodą..."
 
-#: src/actions/actionmanagerimpl.cpp:426
+#: src/actions/actionmanagerimpl.cpp:427
 #, kde-format
 msgid "Send &File..."
 msgstr "Siųsti &failą..."
 
-#: src/actions/actionmanagerimpl.cpp:432
+#: src/actions/actionmanagerimpl.cpp:433
 #, kde-format
 msgid "Set Focus to Quick Search"
 msgstr "Nustatyti fokusavimą greitai paieškai"
 
-#: src/actions/actionmanagerimpl.cpp:464
+#: src/actions/actionmanagerimpl.cpp:465
 #, kde-format
 msgid "&Previous Article"
 msgstr "&Ankstesnis straipsnis"
 
-#: src/actions/actionmanagerimpl.cpp:468
+#: src/actions/actionmanagerimpl.cpp:469
 #, kde-format
 msgid "&Next Article"
 msgstr "&Kitas straipsnis"
 
-#: src/actions/actionmanagerimpl.cpp:484
+#: src/actions/actionmanagerimpl.cpp:485
 #, kde-format
 msgid "&Previous Feed"
 msgstr "&Ankstesnis kanalas"
 
-#: src/actions/actionmanagerimpl.cpp:489
+#: src/actions/actionmanagerimpl.cpp:490
 #, kde-format
 msgid "&Next Feed"
 msgstr "&Kitas kanalas"
 
-#: src/actions/actionmanagerimpl.cpp:495
+#: src/actions/actionmanagerimpl.cpp:496
 #, kde-format
 msgid "N&ext Unread Feed"
 msgstr "Kitas &neskaitytas kanalas"
 
-#: src/actions/actionmanagerimpl.cpp:501
+#: src/actions/actionmanagerimpl.cpp:502
 #, kde-format
 msgid "Prev&ious Unread Feed"
 msgstr "Ank&stesnis neskaitytas kanalas"
 
-#: src/actions/actionmanagerimpl.cpp:506
+#: src/actions/actionmanagerimpl.cpp:507
 #, kde-format
 msgid "Go to Top of Tree"
 msgstr "Eiti į medžio viršūnę"
 
-#: src/actions/actionmanagerimpl.cpp:511
+#: src/actions/actionmanagerimpl.cpp:512
 #, kde-format
 msgid "Go to Bottom of Tree"
 msgstr "Eiti į medžio apačią"
 
-#: src/actions/actionmanagerimpl.cpp:516
+#: src/actions/actionmanagerimpl.cpp:517
 #, kde-format
 msgid "Go Left in Tree"
 msgstr "Eiti medžiu kairėn"
 
-#: src/actions/actionmanagerimpl.cpp:521
+#: src/actions/actionmanagerimpl.cpp:522
 #, kde-format
 msgid "Go Right in Tree"
 msgstr "Eiti medžiu dešinėn"
 
-#: src/actions/actionmanagerimpl.cpp:526
+#: src/actions/actionmanagerimpl.cpp:527
 #, kde-format
 msgid "Go Up in Tree"
 msgstr "Eiti medžiu aukštyn"
 
-#: src/actions/actionmanagerimpl.cpp:531
+#: src/actions/actionmanagerimpl.cpp:532
 #, kde-format
 msgid "Go Down in Tree"
 msgstr "Eiti medžiu žemyn"
 
-#: src/actions/actionmanagerimpl.cpp:537
+#: src/actions/actionmanagerimpl.cpp:538
 #, kde-format
 msgid "Hide Read Feeds"
 msgstr "Slėpti skaitytus kanalus"
 
-#: src/actions/actionmanagerimpl.cpp:543
+#: src/actions/actionmanagerimpl.cpp:544
 #, kde-format
 msgid "Lock Feeds In Place"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:549
+#: src/actions/actionmanagerimpl.cpp:550
 #, kde-format
 msgid "Auto-expand folders with unread articles"
 msgstr "Automatiškai išplėsti aplankus, kuriuose yra neperskaitytų straipsnių"
 
-#: src/actions/actionmanagerimpl.cpp:565
+#: src/actions/actionmanagerimpl.cpp:566
 #, kde-format
 msgid "Select Next Tab"
 msgstr "Pažymėti kitą kortelę"
 
-#: src/actions/actionmanagerimpl.cpp:570
+#: src/actions/actionmanagerimpl.cpp:571
 #, kde-format
 msgid "Select Previous Tab"
 msgstr "Pažymėti ankstesnę kortelę"
 
-#: src/actions/actionmanagerimpl.cpp:576
+#: src/actions/actionmanagerimpl.cpp:577
 #, kde-format
 msgid "Detach Tab"
 msgstr "Atkabinti kortelę"
 
-#: src/actions/actionmanagerimpl.cpp:590
+#: src/actions/actionmanagerimpl.cpp:591
 #, kde-format
 msgid "Mute"
 msgstr "Nutildyti"
 
-#: src/actions/actionmanagerimpl.cpp:594
+#: src/actions/actionmanagerimpl.cpp:595
 #, kde-format
 msgid "Unmute"
 msgstr "Įjungti garsą"
 
-#: src/actions/actionmanagerimpl.cpp:597
+#: src/actions/actionmanagerimpl.cpp:598
 #, kde-format
 msgid "Speak Text"
 msgstr "Balsu perskaityti tekstą"
 
-#: src/actions/actionmanagerimpl.cpp:602
+#: src/actions/actionmanagerimpl.cpp:603
 #, kde-format
 msgid "&Find in Message..."
 msgstr "&Ieškoti pranešime..."
 
-#: src/actions/actionmanagerimpl.cpp:613
+#: src/actions/actionmanagerimpl.cpp:614
 #, kde-format
 msgid "Close Tab"
 msgstr "Užverti kortelę"
 
-#: src/actions/actionmanagerimpl.cpp:626
+#: src/actions/actionmanagerimpl.cpp:627
 #, kde-format
 msgid "Activate Tab %1"
 msgstr "Aktyvinti kortelę %1"
 
-#: src/actions/actionmanagerimpl.cpp:632
+#: src/actions/actionmanagerimpl.cpp:633
 #, kde-format
 msgid "&Save Link As..."
 msgstr "Į&rašyti jungtį kaip..."
 
-#: src/actions/actionmanagerimpl.cpp:636
+#: src/actions/actionmanagerimpl.cpp:637
 #, kde-format
 msgid "Copy &Link Address"
 msgstr "Kopijuoti &nuorodos adresą"
 
-#: src/actions/actionmanagerimpl.cpp:639
+#: src/actions/actionmanagerimpl.cpp:640
 #, kde-format
 msgid "Copy Image Location"
 msgstr "Kopijuoti piešinio vietą"
 
-#: src/actions/actionmanagerimpl.cpp:646
+#: src/actions/actionmanagerimpl.cpp:647
 #, kde-format
 msgid "Save Image On Disk..."
 msgstr "Įrašyti paveikslą į diską..."
@@ -1518,42 +1518,42 @@ msgstr "Paleidus slėpti pagrindinį programos langą"
 msgid "Lists the available options for user feedback"
 msgstr ""
 
-#: src/akregator_part.cpp:83
+#: src/akregator_part.cpp:78
 #, kde-format
 msgid "Feeds"
 msgstr "Kanalai"
 
-#: src/akregator_part.cpp:94
+#: src/akregator_part.cpp:89
 #, kde-format
 msgid "KDE Dot News"
 msgstr "KDE Dot naujienos"
 
-#: src/akregator_part.cpp:99
+#: src/akregator_part.cpp:94
 #, kde-format
 msgid "Linux.com"
 msgstr "Linux.com"
 
-#: src/akregator_part.cpp:104
+#: src/akregator_part.cpp:99
 #, kde-format
 msgid "Planet KDE"
 msgstr "KDE Planeta"
 
-#: src/akregator_part.cpp:109
+#: src/akregator_part.cpp:104
 #, kde-format
 msgid "KDE Apps"
 msgstr "KDE Apps"
 
-#: src/akregator_part.cpp:115
+#: src/akregator_part.cpp:110
 #, kde-format
 msgid "Spanish feeds"
 msgstr "Spanish feeds"
 
-#: src/akregator_part.cpp:119
+#: src/akregator_part.cpp:114
 #, kde-format
 msgid "Planet KDE España"
 msgstr "Planet KDE España"
 
-#: src/akregator_part.cpp:444
+#: src/akregator_part.cpp:427
 #, kde-format
 msgid ""
 "Access denied: Cannot save feed list to <b>%1</b>. Please check your "
@@ -1562,22 +1562,22 @@ msgstr ""
 "Nėra teisių prisijungti: nepavyko nusiųsti kanalų sąrašą į <b>%1</b>. "
 "Pasitikrinkite savo teises."
 
-#: src/akregator_part.cpp:445 src/akregator_part.cpp:496
+#: src/akregator_part.cpp:428 src/akregator_part.cpp:479
 #, kde-format
 msgid "Write Error"
 msgstr "Rašymo klaida"
 
-#: src/akregator_part.cpp:481
+#: src/akregator_part.cpp:464
 #, kde-format
 msgid "Could not import the file %1 (no valid OPML)"
 msgstr "Nepavyko importuoti failo %1 (netinkamas OPML)"
 
-#: src/akregator_part.cpp:481 src/command/loadfeedlistcommand.cpp:71
+#: src/akregator_part.cpp:464 src/command/loadfeedlistcommand.cpp:71
 #, kde-format
 msgid "OPML Parsing Error"
 msgstr "OPML sintaksės analizavimo klaida"
 
-#: src/akregator_part.cpp:485
+#: src/akregator_part.cpp:468
 #, kde-format
 msgid ""
 "The file %1 could not be read, check if it exists or if it is readable for "
@@ -1586,23 +1586,23 @@ msgstr ""
 "Nepavyko nuskaityti failo %1, patikrinkite, ar jis tikrai egzistuoja ir ar "
 "šis naudotojas turi teisę jį skaityti."
 
-#: src/akregator_part.cpp:486 src/command/loadfeedlistcommand.cpp:142
+#: src/akregator_part.cpp:469 src/command/loadfeedlistcommand.cpp:142
 #, kde-format
 msgid "Read Error"
 msgstr "Skaitymo klaida"
 
-#: src/akregator_part.cpp:496
+#: src/akregator_part.cpp:479
 #, kde-format
 msgid "Access denied: cannot write to file %1. Please check your permissions."
 msgstr "Nėra teisių: nepavyko rašyti į failą %1. Patikrinkite savo teises."
 
-#: src/akregator_part.cpp:511 src/akregator_part.cpp:520
+#: src/akregator_part.cpp:494 src/akregator_part.cpp:503
 #, fuzzy, kde-format
 #| msgid "OPML Outlines (*.opml *.xml);;All Files (*)"
 msgid "OPML Outlines (%1);;All Files (*)"
 msgstr "OPML kontūrai (*.opml *.xml);;Visi failai (*)"
 
-#: src/akregator_part.cpp:654
+#: src/akregator_part.cpp:627
 #, kde-format
 msgid "Imported Folder"
 msgstr "Importuotas aplankas"
@@ -1674,70 +1674,63 @@ msgctxt "Articlelist's column header"
 msgid "Content"
 msgstr "Turinys"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:154
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:143
 #, kde-format
 msgid "Akregator is a KDE news feed reader."
 msgstr "Akregator yra KDE naujienų kanalų skaitytuvė."
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:195
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:184
 #, fuzzy, kde-format
 #| msgid "&Save Link As..."
 msgctxt "@title:window"
 msgid "Save As"
 msgstr "Į&rašyti jungtį kaip..."
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:384
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:373
 #, kde-format
 msgid "Disable"
 msgstr "Išjungti"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:385
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:374
 #, kde-format
 msgid "Keep Enabled"
 msgstr "Laikyti įjungtą"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:387
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:376
 #, kde-format
 msgid "Are you sure you want to disable this introduction page?"
 msgstr "Ar tikrai norite išjungti įvadinį puslapį?"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:388
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:377
 #, kde-format
 msgid "Disable Introduction Page"
 msgstr "Išjungti įžanginį puslapį"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:423
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:412
 #, kde-format
 msgid "This web site is a malware, do you want to continue to show it?"
 msgstr "Ši svetainė kenksminga, tikrai norite ją atverti?"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:424
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:413
 #, kde-format
 msgid "Malware"
 msgstr "Kenkimo programinė įranga"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:436
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:425
 #, kde-format
 msgid "The network is broken."
 msgstr "Tinklo ryšio klaida."
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:436
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:439
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:425
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:428
 #, kde-format
 msgid "Check Phishing Url"
 msgstr "Tikrinti, ar URL apgaulingas"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:439
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:428
 #, kde-format
 msgid "The url %1 is not valid."
 msgstr "URL %1 nėra tinkamas"
-
-#: src/articleviewer-ng/webengine/articleviewerwebenginewidgetng.cpp:137
-#, fuzzy, kde-format
-#| msgid "Print Document"
-msgctxt "@title:window"
-msgid "Print Document"
-msgstr "Spausdinti dokumentą"
 
 #: src/command/createfoldercommand.cpp:47
 #, kde-format
@@ -2190,7 +2183,7 @@ msgstr ""
 "Nerasta Akregator komponentė, patikrinkite įdiegimą.\n"
 "%1"
 
-#: src/notificationmanager.cpp:49
+#: src/notificationmanager.cpp:48
 #, kde-format
 msgid ""
 "Feed added:\n"
@@ -2199,7 +2192,7 @@ msgstr ""
 "Pridėtas naujienų kanalas:\n"
 " %1"
 
-#: src/notificationmanager.cpp:61
+#: src/notificationmanager.cpp:55
 #, kde-format
 msgid ""
 "Feeds added:\n"
@@ -2208,7 +2201,7 @@ msgstr ""
 "Pridėti naujienų kanalai:\n"
 " %1"
 
-#: src/notificationmanager.cpp:79
+#: src/notificationmanager.cpp:69
 #, kde-format
 msgid "<i>and 1 other</i>"
 msgid_plural "<i>and %1 others</i>"
@@ -2553,6 +2546,12 @@ msgstr "&Skaitytu"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "Svarbus"
+
+#, fuzzy
+#~| msgid "Print Document"
+#~ msgctxt "@title:window"
+#~ msgid "Print Document"
+#~ msgstr "Spausdinti dokumentą"
 
 #~ msgid "Advanced Feed Reader Settings"
 #~ msgstr "Išsamesnės kanalų skaitytuvo nuostatos"
