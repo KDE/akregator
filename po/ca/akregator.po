@@ -3,7 +3,7 @@
 #
 # Albert Astals Cid <aacid@kde.org>, 2004, 2005, 2006.
 # Sebastià Pla i Sanz <sps@sastia.com>, 2006.
-# Josep M. Ferrer <txemaq@gmail.com>, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022.
+# Josep M. Ferrer <txemaq@gmail.com>, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023.
 # Manuel Tortosa <manutortosa@chakra-project.org>, 2010, 2011.
 # Antoni Bella Pérez <antonibella5@yahoo.com>, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022.
 msgid ""
@@ -11,14 +11,14 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-09-21 00:45+0000\n"
-"PO-Revision-Date: 2022-10-26 08:43+0200\n"
+"PO-Revision-Date: 2023-09-21 16:56+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 20.12.0\n"
+"X-Generator: Lokalize 22.12.3\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Accelerator-Marker: &\n"
 
@@ -196,49 +196,49 @@ msgstr "Usa colors personalitzats"
 #: configuration/ui/settings_appearance.ui:121
 #, kde-format
 msgid "Font Size"
-msgstr "Mida del tipus de lletra"
+msgstr "Mida de la lletra"
 
 #. i18n: ectx: property (text), widget (QLabel, lbl_MinimumFontSize)
 #: configuration/ui/settings_appearance.ui:127
 #, kde-format
 msgid "Minimum font size:"
-msgstr "Mida mínima del tipus de lletra:"
+msgstr "Mida mínima de la lletra:"
 
 #. i18n: ectx: property (text), widget (QLabel, lbl_MediumFontSize)
 #: configuration/ui/settings_appearance.ui:176
 #, kde-format
 msgid "Medium font size:"
-msgstr "Mida mitjana del tipus de lletra:"
+msgstr "Mida mitjana de la lletra:"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: configuration/ui/settings_appearance.ui:228
 #, kde-format
 msgid "Fonts"
-msgstr "Tipus de lletra"
+msgstr "Lletres"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel1)
 #: configuration/ui/settings_appearance.ui:234
 #, kde-format
 msgid "Standard font:"
-msgstr "Tipus de lletra estàndard:"
+msgstr "Lletra estàndard:"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel2_2)
 #: configuration/ui/settings_appearance.ui:244
 #, kde-format
 msgid "Fixed font:"
-msgstr "Tipus de lletra d'amplada fixa:"
+msgstr "Lletra d'amplada fixa:"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel3)
 #: configuration/ui/settings_appearance.ui:254
 #, kde-format
 msgid "Serif font:"
-msgstr "Tipus de lletra serif:"
+msgstr "Lletra serif:"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel4)
 #: configuration/ui/settings_appearance.ui:264
 #, kde-format
 msgid "Sans serif font:"
-msgstr "Tipus de lletra sans serif:"
+msgstr "Lletra sans serif:"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: configuration/ui/settings_archive.ui:30
