@@ -684,7 +684,7 @@ say how to start it -->
 <title
 >Aparença</title>
 <para
->En aquesta pàgina podeu configurar l'aparença del visualitzador d'articles i les pestanyes del navegador. Podeu especificar els colors, les mides i les famílies del tipus de lletra a utilitzar. </para>
+>En aquesta pàgina podeu configurar l'aparença del visualitzador d'articles i les pestanyes del navegador. Podeu especificar els colors, les mides i les famílies de la lletra a utilitzar. </para>
 <screenshot>
 <screeninfo
 >La pestanya Aparença</screeninfo>
@@ -719,7 +719,7 @@ say how to start it -->
 <varlistentry>
 <term
 ><guilabel
->Mida del tipus de lletra</guilabel
+>Mida de la lletra</guilabel
 ></term>
 <listitem>
 
@@ -727,7 +727,7 @@ say how to start it -->
 <varlistentry>
 <term
 ><guilabel
->Mida mínima del tipus de lletra:</guilabel
+>Mida mínima de la lletra:</guilabel
 ></term>
 <listitem
 ><para
@@ -737,11 +737,11 @@ say how to start it -->
 <varlistentry>
 <term
 ><guilabel
->Mida mitjana del tipus de lletra:</guilabel
+>Mida mitjana de la lletra:</guilabel
 ></term>
 <listitem
 ><para
->Estableix la mida per omissió per al visualitzador d'articles.</para>
+>Estableix la mida de lletra predeterminada per al visualitzador d'articles.</para>
 </listitem>
 </varlistentry>
 </variablelist>
@@ -751,7 +751,7 @@ say how to start it -->
 <varlistentry>
 <term
 ><guilabel
->Tipus de lletra</guilabel
+>Lletres</guilabel
 ></term>
 <listitem>
 
@@ -759,41 +759,41 @@ say how to start it -->
 <varlistentry>
 <term
 ><guilabel
->Tipus de lletra estàndard:</guilabel
+>Lletra estàndard:</guilabel
 ></term>
 <listitem
 ><para
->En el visualitzador d'articles, el contingut es representa utilitzant el tipus de lletra estàndard en la mida tipus de lletra mitjana. Si canvieu el tipus de lletra estàndard, el canvi s'aplicarà en el visualitzador d'articles.</para>
+>En el visualitzador d'articles, el contingut es representa utilitzant la lletra estàndard en la mida de lletra mitjana. Si canvieu la lletra estàndard, el canvi s'aplicarà en el visualitzador d'articles.</para>
 </listitem>
 </varlistentry>
 <varlistentry>
 <term
 ><guilabel
->Tipus de lletra d'amplada fixa:</guilabel
+>Lletra d'amplada fixa:</guilabel
 ></term>
 <listitem
 ><para
->Si l'article utilitza un tipus de lletra fix al visualitzador d'articles, el contingut es representarà amb aquesta família de tipus de lletra en la mida tipus de lletra mitjana. </para>
+>Si l'article utilitza una lletra fixa al visualitzador d'articles, el contingut es representarà amb aquesta família de lletra en la mida de lletra mitjana. </para>
 </listitem>
 </varlistentry>
 <varlistentry>
 <term
 ><guilabel
->Tipus de lletra serif:</guilabel
+>Lletra serif:</guilabel
 ></term>
 <listitem
 ><para
->Si l'article utilitza el tipus de lletra Serif, el qual s'utilitzarà per representar la família que trieu aquí en la mida tipus de lletra mitjana.</para>
+>Si l'article utilitza les lletres Serif, es representaran utilitzant la família que trieu aquí en la mida de lletra mitjana.</para>
 </listitem>
 </varlistentry>
 <varlistentry>
 <term
 ><guilabel
->Tipus de lletra sans serif:</guilabel
+>Lletra sans serif:</guilabel
 ></term>
 <listitem
 ><para
->Si l'article utilitza el tipus de lletra Sans-serif, el qual s'utilitzarà per representar la família que trieu aquí en la mida tipus de lletra mitjana.</para>
+>Si l'article utilitza les lletres Sans-serif, es representaran utilitzant la família que trieu aquí en la mida de lletra mitjana.</para>
 </listitem>
 </varlistentry>
 </variablelist>
@@ -1264,14 +1264,14 @@ say how to start it -->
 > <guimenu
 >Visualitza</guimenu
 > <guimenuitem
->Augmenta el tipus de lletra</guimenuitem
+>Augmenta la lletra</guimenuitem
 > </menuchoice
 ></term>
 <listitem
 ><para
 ><action
 >Augmenta</action
-> la mida del tipus de lletra en el visualitzador d'articles.</para>
+> la mida de la lletra en el visualitzador d'articles.</para>
 </listitem>
 </varlistentry>
 <varlistentry>
@@ -1286,14 +1286,14 @@ say how to start it -->
 ><guimenu
 >Visualitza</guimenu
 > <guimenuitem
->Minva el tipus de lletra</guimenuitem
+>Minva la lletra</guimenuitem
 > </menuchoice
 ></term>
 <listitem
 ><para
 ><action
 >Minva</action
-> la mida del tipus de lletra en el visualitzador d'articles.</para>
+> la mida de la lletra en el visualitzador d'articles.</para>
 </listitem>
 </varlistentry>
 </variablelist>
