@@ -1,5 +1,5 @@
 # Translation of akregator.po to Catalan (Valencian)
-# Copyright (C) 2004-2022 This_file_is_part_of_KDE
+# Copyright (C) 2004-2023 This_file_is_part_of_KDE
 #
 # Albert Astals Cid <aacid@kde.org>, 2004, 2005, 2006.
 # Sebastià Pla i Sanz <sps@sastia.com>, 2006.

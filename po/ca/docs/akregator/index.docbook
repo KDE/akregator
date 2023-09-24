@@ -109,7 +109,7 @@
 > o Atom s'anomena també una font. Un programa que es pot usar per a llegir aquestes fonts s'anomena un lector de fonts o agregador, d'aquí el títol de l'aplicació, &akregator;.</para>
 
 <para
->L'&akregator; extreu automàticament els articles nous des de les fonts i els mostra en una forma accessible per l'usuari. L'usuari pot, per tant estalviar temps amb els llocs web visitats amb regularitat, atès que ja no necessita comprovar manualment si hi ha disponibles noves peces d'informació.</para>
+>L'&akregator; extreu automàticament els articles nous des de les fonts i els mostra en una forma accessible per l'usuari. L'usuari pot, per tant, estalviar temps amb els llocs web visitats amb regularitat, atès que ja no necessita comprovar manualment si hi ha disponibles noves peces d'informació.</para>
 <para
 ><acronym
 >RSS</acronym
@@ -119,7 +119,7 @@
 >RSS</acronym
 > 1.0 i <acronym
 >RSS</acronym
-> 2.0. Atom també és un llenguatge de fonts basat en &XML; que ha estat redissenyat per adaptar-se a les necessitats dels autors de blogs i llocs de notícies. Atom intenta substituir les fonts <acronym
+> 2.0. Atom també és un llenguatge de fonts basat en &XML; que ha estat redissenyat per a adaptar-se a les necessitats dels autors de blogs i llocs de notícies. Atom intenta substituir les fonts <acronym
 >RSS</acronym
 > i eliminar la incertesa amb les incompatibilitats entre les diferents versions de <acronym
 >RSS</acronym
@@ -311,7 +311,7 @@ say how to start it -->
 <para
 >Totes les fonts afegides utilitzant aquests procediments apareixeran a la carpeta <guilabel
 >Fonts importades</guilabel
-> a la llista de fonts, i des d'allà podreu utilitzar el ratolí per arrossegar-les a una carpeta diferent. </para>
+> a la llista de fonts, i des d'allà podreu utilitzar el ratolí per a arrossegar-les a una carpeta diferent. </para>
 </sect1>
 
 <sect1 id="creating-folder">
@@ -375,7 +375,7 @@ say how to start it -->
 <title
 >Navegació integrada de l'&akregator;</title>
 <para
->Quan es llegeixen articles de la font, sovint voldreu llegir la pàgina web a la que pertany l'article: alguns articles només contenen el títol, i no el contingut real. En aquest cas, necessitareu visitar la pàgina web per llegir tot l'article. O potser un article enllaça a un lloc web, o esteu llegint un blog i voleu fer un comentari en una entrada. Per a aquestes situacions, l'&akregator; conté un navegador web senzill. Cada vegada que seguiu un enllaç en el visualitzador d'articles, per omissió, l'&akregator; obrirà l'enllaç en una pestanya nova.</para>
+>Quan es llegeixen articles de la font, sovint voldreu llegir la pàgina web a la qual pertany l'article: alguns articles només contenen el títol, i no el contingut real. En aquest cas, necessitareu visitar la pàgina web per a llegir tot l'article. O potser un article enllaça a un lloc web, o esteu llegint un blog i voleu fer un comentari en una entrada. Per a aquestes situacions, l'&akregator; conté un navegador web senzill. Cada vegada que seguiu un enllaç en el visualitzador d'articles, per omissió, l'&akregator; obrirà l'enllaç en una pestanya nova.</para>
 <note
 ><para
 >Tingueu en compte que el navegador de l'&akregator; no intenta substituir el vostre navegador web preferit. Està destinat a la lectura d'articles, comentaris sobre aquests, o seguir un enllaç ràpidament. No és per a navegar per la web en general. No conté moltes característiques com sí que ofereixen els navegadors web.</para
@@ -490,7 +490,7 @@ say how to start it -->
 ><para
 >Si no està marcada, l'interval de revisió estarà inhabilitat. Però, si es marca aquesta opció, podreu establir en <guilabel
 >Obtén les fonts cada:</guilabel
-> l'interval en què l'&akregator; cercarà automàticament noves entrades a la font. Tingueu en compte que obtenir articles genera trànsit i per tant pot ser costós per al proveïdor d'allotjament de la font que esteu llegint. Alguns llocs fins i tot poden bloquejar les connexions des de l'ordinador si s'intenta obtenir la font amb massa freqüència. En general, a 30 minuts és una bona elecció. </para>
+> l'interval en què l'&akregator; cercarà automàticament noves entrades a la font. Tingueu en compte que obtenir articles genera trànsit i, per tant, pot ser costós per al proveïdor d'allotjament de la font que esteu llegint. Alguns llocs fins i tot poden bloquejar les connexions des de l'ordinador si s'intenta obtenir la font amb massa freqüència. En general, a 30 minuts és una bona elecció. </para>
 </listitem>
 </varlistentry>
 <varlistentry>
@@ -845,7 +845,7 @@ say how to start it -->
 >Obre en una pestanya de fons</guilabel
 > (obre l'enllaç en una pestanya, però manté el focus en l'actual) i <guilabel
 >Obre en un navegador extern</guilabel
-> per obrir un article en una finestra nova amb l'explorador per omissió.</para>
+> per a obrir un article en una finestra nova amb l'explorador per omissió.</para>
 </listitem>
 </varlistentry>
 <varlistentry>
@@ -1495,7 +1495,7 @@ say how to start it -->
 ><para
 ><action
 >Obre</action
-> el diàleg per afegir una font.</para
+> el diàleg d'afegir una font.</para
 ></listitem>
 </varlistentry>
 <varlistentry>
@@ -1517,7 +1517,7 @@ say how to start it -->
 ><para
 ><action
 >Obre</action
-> el diàleg per afegir una carpeta.</para
+> el diàleg d'afegir una carpeta.</para
 ></listitem>
 </varlistentry>
 <varlistentry>
