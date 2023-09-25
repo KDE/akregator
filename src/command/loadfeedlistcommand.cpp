@@ -68,7 +68,7 @@ void LoadFeedListCommandPrivate::handleDocument(const QDomDocument &doc)
                                               "Could not create a backup.</qt>");
 
         QPointer<QObject> that(q);
-        KMessageBox::error(q->parentWidget(), msg, i18n("OPML Parsing Error"));
+        KMessageBox::error(q->parentWidget(), msg, i18nc("@title:window", "OPML Parsing Error"));
         if (!that) {
             return;
         }
@@ -139,7 +139,9 @@ void LoadFeedListCommandPrivate::doLoad()
 
     if (!file.open(QIODevice::ReadOnly)) {
         QPointer<QObject> that(q);
-        KMessageBox::error(q->parentWidget(), i18n("<qt>Could not open feed list (%1) for reading.</qt>", file.fileName()), i18n("Read Error"));
+        KMessageBox::error(q->parentWidget(),
+                           i18n("<qt>Could not open feed list (%1) for reading.</qt>", file.fileName()),
+                           i18nc("@title:window", "Read Error"));
         if (that) {
             handleDocument(defaultFeedList);
         }

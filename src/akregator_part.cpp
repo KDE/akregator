@@ -461,12 +461,12 @@ void Part::importFile(const QUrl &url)
         if (doc.setContent(file.readAll())) {
             m_mainWidget->importFeedList(doc);
         } else {
-            KMessageBox::error(m_mainWidget, i18n("Could not import the file %1 (no valid OPML)", filename), i18n("OPML Parsing Error"));
+            KMessageBox::error(m_mainWidget, i18n("Could not import the file %1 (no valid OPML)", filename), i18nc("@title:window", "OPML Parsing Error"));
         }
     } else {
         KMessageBox::error(m_mainWidget,
                            i18n("The file %1 could not be read, check if it exists or if it is readable for the current user.", filename),
-                           i18n("Read Error"));
+                           i18nc("@title:window", "Read Error"));
     }
 }
 
@@ -476,7 +476,9 @@ void Part::exportFile(const QUrl &url)
         const QString fname = url.toLocalFile();
 
         if (!writeToTextFile(m_mainWidget->feedListToOPML().toString(), fname)) {
-            KMessageBox::error(m_mainWidget, i18n("Access denied: cannot write to file %1. Please check your permissions.", fname), i18n("Write Error"));
+            KMessageBox::error(m_mainWidget,
+                               i18n("Access denied: cannot write to file %1. Please check your permissions.", fname),
+                               i18nc("@title:window", "Write Error"));
         }
 
         return;

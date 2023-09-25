@@ -41,7 +41,7 @@ public:
 
         if (KMessageBox::warningContinueCancel(m_widget,
                                                msg,
-                                               i18n("Delete Folder"),
+                                               i18nc("@title:window", "Delete Folder"),
                                                KStandardGuiItem::del(),
                                                KStandardGuiItem::cancel(),
                                                QStringLiteral("Disable delete folder confirmation"))
@@ -65,7 +65,7 @@ public:
 
         if (KMessageBox::warningContinueCancel(m_widget,
                                                msg,
-                                               i18n("Delete Feed"),
+                                               i18nc("@title:window", "Delete Feed"),
                                                KStandardGuiItem::del(),
                                                KStandardGuiItem::cancel(),
                                                QStringLiteral("Disable delete feed confirmation"))

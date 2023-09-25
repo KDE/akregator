@@ -763,14 +763,14 @@ bool MainWidget::confirmMarkFeedAsRead(bool isSingleFeed, bool isGroup)
     QString msg, caption;
     if (isSingleFeed && !isGroup) {
         msg = i18n("<qt>Are you sure you want to mark <b>all articles in the feed</b> as read?</qt>");
-        caption = i18n("Mark Feed as Read");
+        caption = i18nc("@title:window", "Mark Feed as Read");
     } else {
         if (!isGroup) {
             msg = i18n("<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>");
         } else {
             msg = i18n("<qt>Are you sure you want to mark <b>all feeds in the folder</b> as read?</qt>");
         }
-        caption = i18n("Mark Feeds as Read");
+        caption = i18nc("@title:window", "Mark Feeds as Read");
     }
     if (KMessageBox::warningContinueCancel(this,
                                            msg,
@@ -1060,7 +1060,7 @@ void MainWidget::slotArticleDelete()
 
     if (KMessageBox::warningContinueCancel(this,
                                            msg,
-                                           i18n("Delete Article"),
+                                           i18nc("@title:window", "Delete Article"),
                                            KStandardGuiItem::del(),
                                            KStandardGuiItem::cancel(),
                                            QStringLiteral("Disable delete article confirmation"))

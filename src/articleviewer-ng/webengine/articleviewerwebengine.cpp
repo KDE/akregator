@@ -374,7 +374,7 @@ void ArticleViewerWebEngine::disableIntroduction()
     KGuiItem noButton(i18n("Keep Enabled"));
     if (KMessageBox::questionTwoActions(this,
                                         i18n("Are you sure you want to disable this introduction page?"),
-                                        i18n("Disable Introduction Page"),
+                                        i18nc("@title:window", "Disable Introduction Page"),
                                         yesButton,
                                         noButton)
         == KMessageBox::PrimaryAction) {
@@ -410,7 +410,7 @@ bool ArticleViewerWebEngine::urlIsAMalwareButContinue()
     if (KMessageBox::SecondaryAction
         == KMessageBox::questionTwoActions(this,
                                            i18n("This web site is a malware, do you want to continue to show it?"),
-                                           i18n("Malware"),
+                                           i18nc("@title:window", "Malware"),
                                            KStandardGuiItem::cont(),
                                            KStandardGuiItem::cancel())) {
         return false;
@@ -422,10 +422,10 @@ void ArticleViewerWebEngine::slotCheckedUrlFinished(const QUrl &url, WebEngineVi
 {
     switch (status) {
     case WebEngineViewer::CheckPhishingUrlUtil::BrokenNetwork:
-        KMessageBox::error(this, i18n("The network is broken."), i18n("Check Phishing Url"));
+        KMessageBox::error(this, i18n("The network is broken."), i18nc("@title:window", "Check Phishing Url"));
         break;
     case WebEngineViewer::CheckPhishingUrlUtil::InvalidUrl:
-        KMessageBox::error(this, i18n("The url %1 is not valid.", url.toString()), i18n("Check Phishing Url"));
+        KMessageBox::error(this, i18n("The url %1 is not valid.", url.toString()), i18nc("@title:window", "Check Phishing Url"));
         break;
     case WebEngineViewer::CheckPhishingUrlUtil::Ok:
         break;
