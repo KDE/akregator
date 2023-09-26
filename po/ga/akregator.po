@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdepim/akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-21 00:45+0000\n"
+"POT-Creation-Date: 2023-09-26 01:46+0000\n"
 "PO-Revision-Date: 2004-12-11 20:53-0500\n"
 "Last-Translator: Kevin Scannell <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -98,7 +98,7 @@ msgstr "Seol Seo&ladh an Naisc..."
 msgid "Send Link Address"
 msgstr "Seol Seo&ladh an Naisc..."
 
-#: src/formatter/html/5.2/combinedview.html:87 src/mainwidget.cpp:1063
+#: src/formatter/html/5.2/combinedview.html:87
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:96
 #, kde-format
 msgid "Delete Article"
@@ -1556,7 +1556,7 @@ msgid ""
 "permissions."
 msgstr ""
 
-#: src/akregator_part.cpp:428 src/akregator_part.cpp:479
+#: src/akregator_part.cpp:428
 #, kde-format
 msgid "Write Error"
 msgstr "Earráid sa Scríobh"
@@ -1567,7 +1567,9 @@ msgid "Could not import the file %1 (no valid OPML)"
 msgstr "Níorbh fhéidir comhad %1 a iompórtáil (gan OPML bailí)"
 
 #: src/akregator_part.cpp:464 src/command/loadfeedlistcommand.cpp:71
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "OPML Parsing Error"
+msgctxt "@title:window"
 msgid "OPML Parsing Error"
 msgstr "Earráid Parsála OPML"
 
@@ -1578,23 +1580,32 @@ msgid ""
 "the current user."
 msgstr ""
 
-#: src/akregator_part.cpp:469 src/command/loadfeedlistcommand.cpp:142
-#, kde-format
+#: src/akregator_part.cpp:469 src/command/loadfeedlistcommand.cpp:144
+#, fuzzy, kde-format
+#| msgid "Read Error"
+msgctxt "@title:window"
 msgid "Read Error"
 msgstr "Earráid sa Léamh"
 
-#: src/akregator_part.cpp:479
+#: src/akregator_part.cpp:480
 #, kde-format
 msgid "Access denied: cannot write to file %1. Please check your permissions."
 msgstr ""
 
-#: src/akregator_part.cpp:494 src/akregator_part.cpp:503
+#: src/akregator_part.cpp:481
+#, fuzzy, kde-format
+#| msgid "Write Error"
+msgctxt "@title:window"
+msgid "Write Error"
+msgstr "Earráid sa Scríobh"
+
+#: src/akregator_part.cpp:496 src/akregator_part.cpp:505
 #, fuzzy, kde-format
 #| msgid "OPML Outlines (*.opml, *.xml)"
 msgid "OPML Outlines (%1);;All Files (*)"
 msgstr "Imlínte OPML (*.opml, *.xml)"
 
-#: src/akregator_part.cpp:627
+#: src/akregator_part.cpp:629
 #, kde-format
 msgid "Imported Folder"
 msgstr "Fillteán Iompórtáilte"
@@ -1690,7 +1701,9 @@ msgstr ""
 "An bhfuil tú cinnte gur mian leat an leathanach brollaigh seo a dhíchumasú?"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:377
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Disable Introduction Page"
+msgctxt "@title:window"
 msgid "Disable Introduction Page"
 msgstr "Díchumasaigh an Leathanach Brollaigh"
 
@@ -1701,6 +1714,7 @@ msgstr ""
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:413
 #, kde-format
+msgctxt "@title:window"
 msgid "Malware"
 msgstr ""
 
@@ -1712,6 +1726,7 @@ msgstr ""
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:425
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:428
 #, kde-format
+msgctxt "@title:window"
 msgid "Check Phishing Url"
 msgstr ""
 
@@ -1745,7 +1760,9 @@ msgid ""
 msgstr ""
 
 #: src/command/deletesubscriptioncommand.cpp:44
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Delete Folder"
+msgctxt "@title:window"
 msgid "Delete Folder"
 msgstr "Scrios Fillteán"
 
@@ -1761,7 +1778,9 @@ msgstr ""
 "<qt>An bhfuil tú cinnte gur mian leat fotha <b>%1</b> a scriosadh?</qt>"
 
 #: src/command/deletesubscriptioncommand.cpp:68
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Delete Feed"
+msgctxt "@title:window"
 msgid "Delete Feed"
 msgstr "Scrios Fotha"
 
@@ -1803,23 +1822,23 @@ msgstr ""
 msgid "Opening Feed List..."
 msgstr "Liosta Fothaí á Oscailt..."
 
-#: src/command/loadfeedlistcommand.cpp:142
+#: src/command/loadfeedlistcommand.cpp:143
 #, kde-format
 msgid "<qt>Could not open feed list (%1) for reading.</qt>"
 msgstr ""
 
-#: src/command/loadfeedlistcommand.cpp:155
+#: src/command/loadfeedlistcommand.cpp:157
 #, kde-format
 msgctxt "error message window caption"
 msgid "XML Parsing Error"
 msgstr "Earráid Parsála XML"
 
-#: src/command/loadfeedlistcommand.cpp:157
+#: src/command/loadfeedlistcommand.cpp:159
 #, kde-kuit-format
 msgid "<qt><p>XML parsing error in line %1, column %2 of %3:</p><p>%4</p></qt>"
 msgstr ""
 
-#: src/command/loadfeedlistcommand.cpp:164
+#: src/command/loadfeedlistcommand.cpp:166
 #, kde-format
 msgid ""
 "<qt>The standard feed list is corrupted (invalid XML). A backup was created:"
@@ -1828,7 +1847,7 @@ msgstr ""
 "<qt>Is truaillithe é an liosta caighdeánach d'fhothaí (XML neamhbhailí). "
 "Cruthaíodh cúltaca:<p><b>%1</b></p></qt>"
 
-#: src/command/loadfeedlistcommand.cpp:168
+#: src/command/loadfeedlistcommand.cpp:170
 #, kde-format
 msgid ""
 "<qt>The standard feed list is corrupted (invalid XML). Could not create a "
@@ -2102,6 +2121,7 @@ msgstr ""
 #: src/mainwidget.cpp:766
 #, fuzzy, kde-format
 #| msgid "&Mark Feed as Read"
+msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "&Marcáil Fotha mar Léite"
 
@@ -2123,6 +2143,7 @@ msgstr "<qt>An bhfuil tú cinnte gur mian leat an fotha seo a scriosadh?</qt>"
 #: src/mainwidget.cpp:773
 #, fuzzy, kde-format
 #| msgid "&Mark Feeds as Read"
+msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "&Marcáil Fothaí mar Léite"
 
@@ -2158,6 +2179,13 @@ msgstr[3] ""
 msgstr[4] ""
 "<qt>An bhfuil tú cinnte gur mian leat na %1 alt roghnaithe a scriosadh?</qt>"
 
+#: src/mainwidget.cpp:1063
+#, fuzzy, kde-format
+#| msgid "Delete Article"
+msgctxt "@title:window"
+msgid "Delete Article"
+msgstr "Scrios Alt"
+
 #: src/mainwidget.cpp:1245
 #, kde-format
 msgid "Networking is available now."
@@ -2172,6 +2200,7 @@ msgstr ""
 
 #: src/mainwindow.cpp:124
 #, kde-format
+msgctxt "@title:window"
 msgid "Hide menu bar"
 msgstr ""
 

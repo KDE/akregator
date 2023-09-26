@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-21 00:45+0000\n"
+"POT-Creation-Date: 2023-09-26 01:46+0000\n"
 "PO-Revision-Date: 2008-04-07 23:17+0700\n"
 "Last-Translator: Thanomsub Noppaburana <donga.nb@gmail.com>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
@@ -100,7 +100,7 @@ msgstr "ส่งที่อยู่ตำแหน่งเชื่อมโ
 msgid "Send Link Address"
 msgstr "ส่งที่อยู่ตำแหน่งเชื่อมโยง..."
 
-#: src/formatter/html/5.2/combinedview.html:87 src/mainwidget.cpp:1063
+#: src/formatter/html/5.2/combinedview.html:87
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:96
 #, kde-format
 msgid "Delete Article"
@@ -1586,7 +1586,7 @@ msgid ""
 "permissions."
 msgstr "การเข้าถึงถูกปฎิเสธ: ไม่สามารถบันทึกรายการแหล่งป้อนได้ (%1)"
 
-#: src/akregator_part.cpp:428 src/akregator_part.cpp:479
+#: src/akregator_part.cpp:428
 #, kde-format
 msgid "Write Error"
 msgstr "เกิดข้อผิดพลาดในการเขียน"
@@ -1597,7 +1597,9 @@ msgid "Could not import the file %1 (no valid OPML)"
 msgstr "ไม่สามารถนำเข้าแฟ้ม %1 ได้ (ไม่มี OPML ที่ถูกต้อง)"
 
 #: src/akregator_part.cpp:464 src/command/loadfeedlistcommand.cpp:71
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "OPML Parsing Error"
+msgctxt "@title:window"
 msgid "OPML Parsing Error"
 msgstr "การวิเคราะห์รูปแบบ OPML เกิดข้อผิดพลาด"
 
@@ -1609,24 +1611,33 @@ msgid ""
 msgstr ""
 "ไม่สามารถอ่านแฟ้ม %1 ได้ โปรดตรวจสอบว่ามีแฟ้มอยู่ หรือแฟ้มนั้นสามารถอ่านได้โดยผู้ใช้ปัจจุบันหรือไม่"
 
-#: src/akregator_part.cpp:469 src/command/loadfeedlistcommand.cpp:142
-#, kde-format
+#: src/akregator_part.cpp:469 src/command/loadfeedlistcommand.cpp:144
+#, fuzzy, kde-format
+#| msgid "Read Error"
+msgctxt "@title:window"
 msgid "Read Error"
 msgstr "เกิดข้อผิดพลาดในการอ่าน"
 
-#: src/akregator_part.cpp:479
+#: src/akregator_part.cpp:480
 #, fuzzy, kde-format
 #| msgid "Access denied: cannot write to file %1"
 msgid "Access denied: cannot write to file %1. Please check your permissions."
 msgstr "การเข้าถึงถูกปฏิเสธ: ไม่สามารถเขียนแฟ้ม %1 ได้"
 
-#: src/akregator_part.cpp:494 src/akregator_part.cpp:503
+#: src/akregator_part.cpp:481
+#, fuzzy, kde-format
+#| msgid "Write Error"
+msgctxt "@title:window"
+msgid "Write Error"
+msgstr "เกิดข้อผิดพลาดในการเขียน"
+
+#: src/akregator_part.cpp:496 src/akregator_part.cpp:505
 #, fuzzy, kde-format
 #| msgid "OPML Outlines (*.opml, *.xml)"
 msgid "OPML Outlines (%1);;All Files (*)"
 msgstr "รูปแบบ OPML (*.opml, *.xml)"
 
-#: src/akregator_part.cpp:627
+#: src/akregator_part.cpp:629
 #, kde-format
 msgid "Imported Folder"
 msgstr "โฟลเดอร์ที่นำเข้ามา"
@@ -1740,6 +1751,7 @@ msgstr "<qt>คุณแน่ใจหรือว่าต้องการ�
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:377
 #, fuzzy, kde-format
 #| msgid "Di&sable archiving"
+msgctxt "@title:window"
 msgid "Disable Introduction Page"
 msgstr "ปิด&การใช้งานการจัดเก็บ"
 
@@ -1750,6 +1762,7 @@ msgstr ""
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:413
 #, kde-format
+msgctxt "@title:window"
 msgid "Malware"
 msgstr ""
 
@@ -1761,6 +1774,7 @@ msgstr ""
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:425
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:428
 #, kde-format
+msgctxt "@title:window"
 msgid "Check Phishing Url"
 msgstr ""
 
@@ -1797,7 +1811,9 @@ msgstr ""
 "รวมทั้งแหล่งป้อนและโฟลเดอร์ย่อยของมันด้วย ? </qt>"
 
 #: src/command/deletesubscriptioncommand.cpp:44
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Delete Folder"
+msgctxt "@title:window"
 msgid "Delete Folder"
 msgstr "ลบโฟลเดอร์"
 
@@ -1812,7 +1828,9 @@ msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
 msgstr "<qt>คุณแน่ใจหรือว่าต้องการจะลบแหล่งป้อน <b>%1</b> นี้ ?</qt>"
 
 #: src/command/deletesubscriptioncommand.cpp:68
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Delete Feed"
+msgctxt "@title:window"
 msgid "Delete Feed"
 msgstr "ลบแหล่งป้อน"
 
@@ -1861,24 +1879,24 @@ msgstr ""
 msgid "Opening Feed List..."
 msgstr "กำลังเปิดรายการแหล่งป้อน..."
 
-#: src/command/loadfeedlistcommand.cpp:142
+#: src/command/loadfeedlistcommand.cpp:143
 #, kde-format
 msgid "<qt>Could not open feed list (%1) for reading.</qt>"
 msgstr ""
 
-#: src/command/loadfeedlistcommand.cpp:155
+#: src/command/loadfeedlistcommand.cpp:157
 #, fuzzy, kde-format
 #| msgid "XML Parsing Error"
 msgctxt "error message window caption"
 msgid "XML Parsing Error"
 msgstr "การวิเคราะห์รูปแบบ XML เกิดข้อผิดพลาด"
 
-#: src/command/loadfeedlistcommand.cpp:157
+#: src/command/loadfeedlistcommand.cpp:159
 #, kde-kuit-format
 msgid "<qt><p>XML parsing error in line %1, column %2 of %3:</p><p>%4</p></qt>"
 msgstr ""
 
-#: src/command/loadfeedlistcommand.cpp:164
+#: src/command/loadfeedlistcommand.cpp:166
 #, kde-format
 msgid ""
 "<qt>The standard feed list is corrupted (invalid XML). A backup was created:"
@@ -1887,7 +1905,7 @@ msgstr ""
 "<qt>รายการแหล่งป้อนมาตรฐานเกิดความเสียหาย (XML ใช้งานไม่ได้), "
 "ทำการสร้างแฟ้มสำรองข้อมูล: <p><b>%1</b></p></qt>"
 
-#: src/command/loadfeedlistcommand.cpp:168
+#: src/command/loadfeedlistcommand.cpp:170
 #, fuzzy, kde-format
 #| msgid ""
 #| "<qt>The standard feed list is corrupted (invalid XML). A backup was "
@@ -2144,6 +2162,7 @@ msgstr "<qt>คุณแน่ใจหรือว่าต้องการ�
 #: src/mainwidget.cpp:766
 #, fuzzy, kde-format
 #| msgid "&Mark Feed as Read"
+msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "&ตั้งสถานะว่าอ่านแล้ว"
 
@@ -2164,6 +2183,7 @@ msgstr "<qt>คุณแน่ใจหรือว่าต้องการ�
 #: src/mainwidget.cpp:773
 #, fuzzy, kde-format
 #| msgid "&Mark Feeds as Read"
+msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "&ตั้งสถานะว่าอ่านแล้ว"
 
@@ -2190,6 +2210,13 @@ msgid_plural ""
 "<qt>Are you sure you want to delete the %1 selected articles?</qt>"
 msgstr[0] "<qt>คุณแน่ใจหรือว่า ต้องการจะลบบทความที่เลือกไว้จำนวน %1 บทความนี้ ?</qt>"
 
+#: src/mainwidget.cpp:1063
+#, fuzzy, kde-format
+#| msgid "Delete Article"
+msgctxt "@title:window"
+msgid "Delete Article"
+msgstr "ลบบทความ"
+
 #: src/mainwidget.cpp:1245
 #, kde-format
 msgid "Networking is available now."
@@ -2204,6 +2231,7 @@ msgstr ""
 
 #: src/mainwindow.cpp:124
 #, kde-format
+msgctxt "@title:window"
 msgid "Hide menu bar"
 msgstr ""
 

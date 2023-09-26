@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-21 00:45+0000\n"
+"POT-Creation-Date: 2023-09-26 01:46+0000\n"
 "PO-Revision-Date: 2020-06-13 19:12+0300\n"
 "Last-Translator: Marek Laane <qiilaq69@gmail.com>\n"
 "Language-Team: Estonian <kde-et@lists.linux.ee>\n"
@@ -98,7 +98,7 @@ msgstr "Saada faili aadress..."
 msgid "Send Link Address"
 msgstr "Saada lingi aadress..."
 
-#: src/formatter/html/5.2/combinedview.html:87 src/mainwidget.cpp:1063
+#: src/formatter/html/5.2/combinedview.html:87
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:96
 #, kde-format
 msgid "Delete Article"
@@ -1539,7 +1539,7 @@ msgstr ""
 "Ligipääs keelatud: uudistevoogude nimekirja salvestamine asukohta <b>%1</b> "
 "_nurjus. Palun kontrolli oma õigusi."
 
-#: src/akregator_part.cpp:428 src/akregator_part.cpp:479
+#: src/akregator_part.cpp:428
 #, kde-format
 msgid "Write Error"
 msgstr "Kirjutamise viga"
@@ -1550,7 +1550,9 @@ msgid "Could not import the file %1 (no valid OPML)"
 msgstr "Faili %1 import nurjus (puudub korrektne OPML)"
 
 #: src/akregator_part.cpp:464 src/command/loadfeedlistcommand.cpp:71
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "OPML Parsing Error"
+msgctxt "@title:window"
 msgid "OPML Parsing Error"
 msgstr "OPML-i parsimise viga"
 
@@ -1563,23 +1565,32 @@ msgstr ""
 "Faili %1 lugemine nurjus. Kontrolli, kas see on üldse olemas ja kas "
 "praegusel kasutajal on õigus seda lugeda."
 
-#: src/akregator_part.cpp:469 src/command/loadfeedlistcommand.cpp:142
-#, kde-format
+#: src/akregator_part.cpp:469 src/command/loadfeedlistcommand.cpp:144
+#, fuzzy, kde-format
+#| msgid "Read Error"
+msgctxt "@title:window"
 msgid "Read Error"
 msgstr "Lugemise viga"
 
-#: src/akregator_part.cpp:479
+#: src/akregator_part.cpp:480
 #, kde-format
 msgid "Access denied: cannot write to file %1. Please check your permissions."
 msgstr ""
 "Ligipääs keelatud: faili %1 kirjutamine nurjus. Palun kontrolli oma õigusi."
 
-#: src/akregator_part.cpp:494 src/akregator_part.cpp:503
+#: src/akregator_part.cpp:481
+#, fuzzy, kde-format
+#| msgid "Write Error"
+msgctxt "@title:window"
+msgid "Write Error"
+msgstr "Kirjutamise viga"
+
+#: src/akregator_part.cpp:496 src/akregator_part.cpp:505
 #, kde-format
 msgid "OPML Outlines (%1);;All Files (*)"
 msgstr "OPML struktuurid (%1);;Kõik failid (*)"
 
-#: src/akregator_part.cpp:627
+#: src/akregator_part.cpp:629
 #, kde-format
 msgid "Imported Folder"
 msgstr "Imporditud kataloog"
@@ -1678,7 +1689,9 @@ msgid "Are you sure you want to disable this introduction page?"
 msgstr "Kas tõesti keelata sissejuhatav lehekülg?"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:377
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Disable Introduction Page"
+msgctxt "@title:window"
 msgid "Disable Introduction Page"
 msgstr "Sissejuhatuse keelamine"
 
@@ -1688,7 +1701,9 @@ msgid "This web site is a malware, do you want to continue to show it?"
 msgstr "See veebilehekülg sisaldab kahjurvara, kas tõesti seda näidata?"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:413
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Malware"
+msgctxt "@title:window"
 msgid "Malware"
 msgstr "Kahjurvara"
 
@@ -1699,7 +1714,9 @@ msgstr "Võrk on katki."
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:425
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:428
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Check Phishing Url"
+msgctxt "@title:window"
 msgid "Check Phishing Url"
 msgstr "URL-i õngitsemise kontroll"
 
@@ -1737,7 +1754,9 @@ msgstr ""
 "alamkataloogid?</qt>"
 
 #: src/command/deletesubscriptioncommand.cpp:44
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Delete Folder"
+msgctxt "@title:window"
 msgid "Delete Folder"
 msgstr "Kataloogi kustutamine"
 
@@ -1752,7 +1771,9 @@ msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
 msgstr "<qt>Kas tõesti kustutada uudistevoog <b>%1</b>?</qt>"
 
 #: src/command/deletesubscriptioncommand.cpp:68
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Delete Feed"
+msgctxt "@title:window"
 msgid "Delete Feed"
 msgstr "Uudistevoo kustutamine"
 
@@ -1794,23 +1815,23 @@ msgstr ""
 msgid "Opening Feed List..."
 msgstr "Uudistevoogude nimekirja avamine..."
 
-#: src/command/loadfeedlistcommand.cpp:142
+#: src/command/loadfeedlistcommand.cpp:143
 #, kde-format
 msgid "<qt>Could not open feed list (%1) for reading.</qt>"
 msgstr "<qt>Uudistevoogude nimekirja (%1) avamine lugemiseks nurjus.</qt>"
 
-#: src/command/loadfeedlistcommand.cpp:155
+#: src/command/loadfeedlistcommand.cpp:157
 #, kde-format
 msgctxt "error message window caption"
 msgid "XML Parsing Error"
 msgstr "XML-i parsimise viga"
 
-#: src/command/loadfeedlistcommand.cpp:157
+#: src/command/loadfeedlistcommand.cpp:159
 #, kde-kuit-format
 msgid "<qt><p>XML parsing error in line %1, column %2 of %3:</p><p>%4</p></qt>"
 msgstr "<qt><p>XML-i parsimise viga real %1, veerus %2 / %3:</p><p>%4</p></qt>"
 
-#: src/command/loadfeedlistcommand.cpp:164
+#: src/command/loadfeedlistcommand.cpp:166
 #, kde-format
 msgid ""
 "<qt>The standard feed list is corrupted (invalid XML). A backup was created:"
@@ -1819,7 +1840,7 @@ msgstr ""
 "<qt>Standardne uudistevoogude nimekiri on rikutud (vigane XML). Loodi "
 "varukoopia:<p><b>%1</b></p></qt>"
 
-#: src/command/loadfeedlistcommand.cpp:168
+#: src/command/loadfeedlistcommand.cpp:170
 #, kde-format
 msgid ""
 "<qt>The standard feed list is corrupted (invalid XML). Could not create a "
@@ -2067,6 +2088,7 @@ msgstr "<qt>Kas tõesti kustutada uudistevoog <b>%1</b>?</qt>"
 #: src/mainwidget.cpp:766
 #, fuzzy, kde-format
 #| msgid "&Mark Feed as Read"
+msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "&Märgi uudistevoog loetuks"
 
@@ -2087,6 +2109,7 @@ msgstr "<qt>Kas tõesti kustutada see uudistevoog?</qt>"
 #: src/mainwidget.cpp:773
 #, fuzzy, kde-format
 #| msgid "&Mark Feeds as Read"
+msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "&Märgi uudistevood loetuks"
 
@@ -2113,6 +2136,13 @@ msgid_plural ""
 msgstr[0] "<qt>Kas tõesti kustutada valitud artikkel?</qt>"
 msgstr[1] "<qt>Kas tõesti kustutada %1 valitud artiklit?</qt>"
 
+#: src/mainwidget.cpp:1063
+#, fuzzy, kde-format
+#| msgid "Delete Article"
+msgctxt "@title:window"
+msgid "Delete Article"
+msgstr "Artikli kustutamine"
+
 #: src/mainwidget.cpp:1245
 #, kde-format
 msgid "Networking is available now."
@@ -2127,6 +2157,7 @@ msgstr ""
 
 #: src/mainwindow.cpp:124
 #, kde-format
+msgctxt "@title:window"
 msgid "Hide menu bar"
 msgstr ""
 

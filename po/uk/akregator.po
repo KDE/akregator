@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-21 00:45+0000\n"
+"POT-Creation-Date: 2023-09-26 01:46+0000\n"
 "PO-Revision-Date: 2022-04-26 08:33+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
@@ -99,7 +99,7 @@ msgstr "Надсилання адреси файла"
 msgid "Send Link Address"
 msgstr "Надсилання адреси посилання"
 
-#: src/formatter/html/5.2/combinedview.html:87 src/mainwidget.cpp:1063
+#: src/formatter/html/5.2/combinedview.html:87
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:96
 #, kde-format
 msgid "Delete Article"
@@ -1566,7 +1566,7 @@ msgstr ""
 "Доступ заборонено: неможливо зберегти список подач до <b>%1</b>. Будь ласка, "
 "перевірте ваші дозволи."
 
-#: src/akregator_part.cpp:428 src/akregator_part.cpp:479
+#: src/akregator_part.cpp:428
 #, kde-format
 msgid "Write Error"
 msgstr "Помилка запису"
@@ -1577,7 +1577,9 @@ msgid "Could not import the file %1 (no valid OPML)"
 msgstr "Не вдалось імпортувати файл %1 (немає чинної OPML)"
 
 #: src/akregator_part.cpp:464 src/command/loadfeedlistcommand.cpp:71
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "OPML Parsing Error"
+msgctxt "@title:window"
 msgid "OPML Parsing Error"
 msgstr "Помилка аналізу OPML"
 
@@ -1590,24 +1592,33 @@ msgstr ""
 "Не вдалось прочитати файл %1; перевірте чи він існує і чи його можна читати "
 "поточному користувачу."
 
-#: src/akregator_part.cpp:469 src/command/loadfeedlistcommand.cpp:142
-#, kde-format
+#: src/akregator_part.cpp:469 src/command/loadfeedlistcommand.cpp:144
+#, fuzzy, kde-format
+#| msgid "Read Error"
+msgctxt "@title:window"
 msgid "Read Error"
 msgstr "Помилка читання"
 
-#: src/akregator_part.cpp:479
+#: src/akregator_part.cpp:480
 #, kde-format
 msgid "Access denied: cannot write to file %1. Please check your permissions."
 msgstr ""
 "Доступ заборонено: неможливо записати до файла %1. Будь ласка, перевірте "
 "ваші дозволи."
 
-#: src/akregator_part.cpp:494 src/akregator_part.cpp:503
+#: src/akregator_part.cpp:481
+#, fuzzy, kde-format
+#| msgid "Write Error"
+msgctxt "@title:window"
+msgid "Write Error"
+msgstr "Помилка запису"
+
+#: src/akregator_part.cpp:496 src/akregator_part.cpp:505
 #, kde-format
 msgid "OPML Outlines (%1);;All Files (*)"
 msgstr "примітки OPML (%1);;усі файли (*)"
 
-#: src/akregator_part.cpp:627
+#: src/akregator_part.cpp:629
 #, kde-format
 msgid "Imported Folder"
 msgstr "Імпортована тека"
@@ -1705,7 +1716,9 @@ msgid "Are you sure you want to disable this introduction page?"
 msgstr "Ви впевнені, що хочете вимкнути цю вступну сторінку?"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:377
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Disable Introduction Page"
+msgctxt "@title:window"
 msgid "Disable Introduction Page"
 msgstr "Вимкнути вступну сторінку"
 
@@ -1717,7 +1730,9 @@ msgstr ""
 "продовжити його перегляд попри це?"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:413
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Malware"
+msgctxt "@title:window"
 msgid "Malware"
 msgstr "Зловмисне програмне забезпечення"
 
@@ -1728,7 +1743,9 @@ msgstr "Мережа не працює."
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:425
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:428
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Check Phishing Url"
+msgctxt "@title:window"
 msgid "Check Phishing Url"
 msgstr "Перевірка шахрайських адрес"
 
@@ -1765,7 +1782,9 @@ msgstr ""
 "підтеками?</qt>"
 
 #: src/command/deletesubscriptioncommand.cpp:44
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Delete Folder"
+msgctxt "@title:window"
 msgid "Delete Folder"
 msgstr "Вилучити теку"
 
@@ -1780,7 +1799,9 @@ msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
 msgstr "<qt>Ви впевнені, що хочете вилучити подачу <b>%1</b>?</qt>"
 
 #: src/command/deletesubscriptioncommand.cpp:68
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Delete Feed"
+msgctxt "@title:window"
 msgid "Delete Feed"
 msgstr "Вилучити подачу"
 
@@ -1822,25 +1843,25 @@ msgstr ""
 msgid "Opening Feed List..."
 msgstr "Відкриття списку подач..."
 
-#: src/command/loadfeedlistcommand.cpp:142
+#: src/command/loadfeedlistcommand.cpp:143
 #, kde-format
 msgid "<qt>Could not open feed list (%1) for reading.</qt>"
 msgstr "<qt>Не вдалося відкрити список подач (%1) для читання.</qt>"
 
-#: src/command/loadfeedlistcommand.cpp:155
+#: src/command/loadfeedlistcommand.cpp:157
 #, kde-format
 msgctxt "error message window caption"
 msgid "XML Parsing Error"
 msgstr "Помилка аналізу XML"
 
-#: src/command/loadfeedlistcommand.cpp:157
+#: src/command/loadfeedlistcommand.cpp:159
 #, kde-kuit-format
 msgid "<qt><p>XML parsing error in line %1, column %2 of %3:</p><p>%4</p></qt>"
 msgstr ""
 "<qt><p>Помилка під час спроби аналізу XML у рядку %1, позиція %2 з %3:</p><p>"
 "%4</p></qt>"
 
-#: src/command/loadfeedlistcommand.cpp:164
+#: src/command/loadfeedlistcommand.cpp:166
 #, kde-format
 msgid ""
 "<qt>The standard feed list is corrupted (invalid XML). A backup was created:"
@@ -1849,7 +1870,7 @@ msgstr ""
 "<qt>Стандартний список подач пошкоджений (помилка в XML). Створено резервну "
 "копію:<p><b>%1</b></p></qt>"
 
-#: src/command/loadfeedlistcommand.cpp:168
+#: src/command/loadfeedlistcommand.cpp:170
 #, kde-format
 msgid ""
 "<qt>The standard feed list is corrupted (invalid XML). Could not create a "
@@ -2108,7 +2129,9 @@ msgstr ""
 "</qt>"
 
 #: src/mainwidget.cpp:766
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Mark Feed as Read"
+msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "Позначити подачу як прочитану"
 
@@ -2128,7 +2151,9 @@ msgstr ""
 "qt>"
 
 #: src/mainwidget.cpp:773
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Mark Feeds as Read"
+msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "Позначити подачі як прочитані"
 
@@ -2157,6 +2182,13 @@ msgstr[1] "<qt>Ви впевнені, що хочете вилучити %1 ви
 msgstr[2] "<qt>Ви впевнені, що хочете вилучити %1 вибраних статей?</qt>"
 msgstr[3] "<qt>Ви впевнені, що хочете вилучити %1 вибрану статтю?</qt>"
 
+#: src/mainwidget.cpp:1063
+#, fuzzy, kde-format
+#| msgid "Delete Article"
+msgctxt "@title:window"
+msgid "Delete Article"
+msgstr "Вилучити статтю"
+
 #: src/mainwidget.cpp:1245
 #, kde-format
 msgid "Networking is available now."
@@ -2172,7 +2204,9 @@ msgstr ""
 "відновити її показ, скористайтеся натисканням комбінації клавіш %1.</qt>"
 
 #: src/mainwindow.cpp:124
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Hide menu bar"
+msgctxt "@title:window"
 msgid "Hide menu bar"
 msgstr "Приховати смужку меню"
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdepim\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-21 00:45+0000\n"
+"POT-Creation-Date: 2023-09-26 01:46+0000\n"
 "PO-Revision-Date: 2009-09-04 19:26+0000\n"
 "Last-Translator: Vilson Gjeci <vilsongjeci@gmail.com>\n"
 "Language-Team: Albanian <sq@li.org>\n"
@@ -102,7 +102,7 @@ msgstr "Dërgo &Adresën e Shkurtores..."
 msgid "Send Link Address"
 msgstr "Dërgo &Adresën e Shkurtores..."
 
-#: src/formatter/html/5.2/combinedview.html:87 src/mainwidget.cpp:1063
+#: src/formatter/html/5.2/combinedview.html:87
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:96
 #, kde-format
 msgid "Delete Article"
@@ -1567,7 +1567,7 @@ msgid ""
 "permissions."
 msgstr ""
 
-#: src/akregator_part.cpp:428 src/akregator_part.cpp:479
+#: src/akregator_part.cpp:428
 #, kde-format
 msgid "Write Error"
 msgstr "Gabim Shkrimi"
@@ -1578,7 +1578,9 @@ msgid "Could not import the file %1 (no valid OPML)"
 msgstr ""
 
 #: src/akregator_part.cpp:464 src/command/loadfeedlistcommand.cpp:71
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "OPML Parsing Error"
+msgctxt "@title:window"
 msgid "OPML Parsing Error"
 msgstr "Gabim në Krahasimin e OPML"
 
@@ -1589,25 +1591,34 @@ msgid ""
 "the current user."
 msgstr ""
 
-#: src/akregator_part.cpp:469 src/command/loadfeedlistcommand.cpp:142
-#, kde-format
+#: src/akregator_part.cpp:469 src/command/loadfeedlistcommand.cpp:144
+#, fuzzy, kde-format
+#| msgid "Read Error"
+msgctxt "@title:window"
 msgid "Read Error"
 msgstr "Gabim Leximi"
 
-#: src/akregator_part.cpp:479
+#: src/akregator_part.cpp:480
 #, kde-format
 msgid "Access denied: cannot write to file %1. Please check your permissions."
 msgstr ""
 "Hyrja u mohua: nuk mund të shkruaj tek skedari %1. Ju lutemi të kontrolloni "
 "lejet tuaja."
 
-#: src/akregator_part.cpp:494 src/akregator_part.cpp:503
+#: src/akregator_part.cpp:481
+#, fuzzy, kde-format
+#| msgid "Write Error"
+msgctxt "@title:window"
+msgid "Write Error"
+msgstr "Gabim Shkrimi"
+
+#: src/akregator_part.cpp:496 src/akregator_part.cpp:505
 #, fuzzy, kde-format
 #| msgid "OPML Outlines (*.opml, *.xml)"
 msgid "OPML Outlines (%1);;All Files (*)"
 msgstr "OPML Outlines (*.opml, *.xml)"
 
-#: src/akregator_part.cpp:627
+#: src/akregator_part.cpp:629
 #, kde-format
 msgid "Imported Folder"
 msgstr "Dosja e Importuar"
@@ -1713,7 +1724,9 @@ msgid "Are you sure you want to disable this introduction page?"
 msgstr "Jeni të sigurtë që doni ta çaktivizoni faqen hyrëse?"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:377
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Disable Introduction Page"
+msgctxt "@title:window"
 msgid "Disable Introduction Page"
 msgstr "Çaktivizoje Faqen Hyrëse"
 
@@ -1724,6 +1737,7 @@ msgstr ""
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:413
 #, kde-format
+msgctxt "@title:window"
 msgid "Malware"
 msgstr ""
 
@@ -1735,6 +1749,7 @@ msgstr ""
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:425
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:428
 #, kde-format
+msgctxt "@title:window"
 msgid "Check Phishing Url"
 msgstr ""
 
@@ -1768,7 +1783,9 @@ msgid ""
 msgstr ""
 
 #: src/command/deletesubscriptioncommand.cpp:44
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Delete Folder"
+msgctxt "@title:window"
 msgid "Delete Folder"
 msgstr "Fshije Kartelën"
 
@@ -1783,7 +1800,9 @@ msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
 msgstr ""
 
 #: src/command/deletesubscriptioncommand.cpp:68
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Delete Feed"
+msgctxt "@title:window"
 msgid "Delete Feed"
 msgstr "Fshije Burimin"
 
@@ -1828,19 +1847,19 @@ msgstr ""
 msgid "Opening Feed List..."
 msgstr "Duke Hapur Listën e Lajmeve..."
 
-#: src/command/loadfeedlistcommand.cpp:142
+#: src/command/loadfeedlistcommand.cpp:143
 #, fuzzy, kde-format
 #| msgid "<qt>Could not open feed list (%1) for reading.</p></qt>"
 msgid "<qt>Could not open feed list (%1) for reading.</qt>"
 msgstr "<qt>Nuk mund të hap listën e lajmeve (%1) për lexim.</p></qt>"
 
-#: src/command/loadfeedlistcommand.cpp:155
+#: src/command/loadfeedlistcommand.cpp:157
 #, kde-format
 msgctxt "error message window caption"
 msgid "XML Parsing Error"
 msgstr "GAbim në Krahasimin e XML"
 
-#: src/command/loadfeedlistcommand.cpp:157
+#: src/command/loadfeedlistcommand.cpp:159
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<qt><p>XML parsing error in line %1, column %2 of %3:</p><p>%4</p></qt>"
@@ -1848,7 +1867,7 @@ msgid "<qt><p>XML parsing error in line %1, column %2 of %3:</p><p>%4</p></qt>"
 msgstr ""
 "<qt><p>XML parsing error in line %1, column %2 of %3:</p><p>%4</p></qt>"
 
-#: src/command/loadfeedlistcommand.cpp:164
+#: src/command/loadfeedlistcommand.cpp:166
 #, kde-format
 msgid ""
 "<qt>The standard feed list is corrupted (invalid XML). A backup was created:"
@@ -1857,7 +1876,7 @@ msgstr ""
 "<qt>The standard feed list is corrupted (invalid XML). A backup was created:"
 "<p><b>%1</b></p></qt>"
 
-#: src/command/loadfeedlistcommand.cpp:168
+#: src/command/loadfeedlistcommand.cpp:170
 #, fuzzy, kde-format
 #| msgid ""
 #| "<qt>The standard feed list is corrupted (invalid XML). Could not create a "
@@ -2114,6 +2133,7 @@ msgstr "Jeni të sigurtë që doni ta çaktivizoni faqen hyrëse?"
 #: src/mainwidget.cpp:766
 #, fuzzy, kde-format
 #| msgid "&Mark Feed as Read"
+msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "&Shënoje Burimin si të Lexuar"
 
@@ -2132,6 +2152,7 @@ msgstr ""
 #: src/mainwidget.cpp:773
 #, fuzzy, kde-format
 #| msgid "&Mark Feeds as Read"
+msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "&Shënoji Burimet si të Lexuara"
 
@@ -2158,6 +2179,13 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
+#: src/mainwidget.cpp:1063
+#, fuzzy, kde-format
+#| msgid "Delete Article"
+msgctxt "@title:window"
+msgid "Delete Article"
+msgstr "Fshije Artikullin"
+
 #: src/mainwidget.cpp:1245
 #, kde-format
 msgid "Networking is available now."
@@ -2172,6 +2200,7 @@ msgstr ""
 
 #: src/mainwindow.cpp:124
 #, kde-format
+msgctxt "@title:window"
 msgid "Hide menu bar"
 msgstr ""
 

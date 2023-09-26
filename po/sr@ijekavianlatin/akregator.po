@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-21 00:45+0000\n"
+"POT-Creation-Date: 2023-09-26 01:46+0000\n"
 "PO-Revision-Date: 2018-01-06 09:21+0100\n"
 "Last-Translator: Chusslove Illich <caslav.ilic@gmx.net>\n"
 "Language-Team: Serbian <kde-i18n-sr@kde.org>\n"
@@ -100,7 +100,7 @@ msgstr "Pošalji adresu fajla..."
 msgid "Send Link Address"
 msgstr "Pošalji adresu veze..."
 
-#: src/formatter/html/5.2/combinedview.html:87 src/mainwidget.cpp:1063
+#: src/formatter/html/5.2/combinedview.html:87
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:96
 #, kde-format
 msgid "Delete Article"
@@ -1581,7 +1581,7 @@ msgstr ""
 "svoje dozvole."
 
 # >> @title:window
-#: src/akregator_part.cpp:428 src/akregator_part.cpp:479
+#: src/akregator_part.cpp:428
 #, kde-format
 msgid "Write Error"
 msgstr "Greška pisanja"
@@ -1593,7 +1593,9 @@ msgstr "Ne mogu da uvezem fajl %1 (loš OPML)."
 
 # >> @title:window
 #: src/akregator_part.cpp:464 src/command/loadfeedlistcommand.cpp:71
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "OPML Parsing Error"
+msgctxt "@title:window"
 msgid "OPML Parsing Error"
 msgstr "Greška u raščlanjivanju OPML‑a"
 
@@ -1607,23 +1609,33 @@ msgstr ""
 "trenutnog korisnika."
 
 # >> @title:window
-#: src/akregator_part.cpp:469 src/command/loadfeedlistcommand.cpp:142
-#, kde-format
+#: src/akregator_part.cpp:469 src/command/loadfeedlistcommand.cpp:144
+#, fuzzy, kde-format
+#| msgid "Read Error"
+msgctxt "@title:window"
 msgid "Read Error"
 msgstr "Greška čitanja"
 
-#: src/akregator_part.cpp:479
+#: src/akregator_part.cpp:480
 #, kde-format
 msgid "Access denied: cannot write to file %1. Please check your permissions."
 msgstr "Pristup odbijen: ne mogu da pišem u fajl %1. Proverite svoje dozvole."
 
-#: src/akregator_part.cpp:494 src/akregator_part.cpp:503
+# >> @title:window
+#: src/akregator_part.cpp:481
+#, fuzzy, kde-format
+#| msgid "Write Error"
+msgctxt "@title:window"
+msgid "Write Error"
+msgstr "Greška pisanja"
+
+#: src/akregator_part.cpp:496 src/akregator_part.cpp:505
 #, fuzzy, kde-format
 #| msgid "OPML Outlines (*.opml *.xml);;All Files (*)"
 msgid "OPML Outlines (%1);;All Files (*)"
 msgstr "OPML pregledi (*.opml *.xml);;svi fajlovi (*)"
 
-#: src/akregator_part.cpp:627
+#: src/akregator_part.cpp:629
 #, kde-format
 msgid "Imported Folder"
 msgstr "Uvezena fascikla"
@@ -1724,7 +1736,9 @@ msgstr "Želite li zaista da isključite ovu uvodnu stranicu?"
 
 # >> @title:window
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:377
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Disable Introduction Page"
+msgctxt "@title:window"
 msgid "Disable Introduction Page"
 msgstr "Isključivanje uvodne stranice"
 
@@ -1734,7 +1748,9 @@ msgid "This web site is a malware, do you want to continue to show it?"
 msgstr "Ovaj sajt sadrži malver, želite li zaista da ga posetite?"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:413
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Malware"
+msgctxt "@title:window"
 msgid "Malware"
 msgstr "Malver"
 
@@ -1746,7 +1762,9 @@ msgstr "Mreža je pokvarena."
 # >> @title:window
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:425
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:428
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Check Phishing Url"
+msgctxt "@title:window"
 msgid "Check Phishing Url"
 msgstr "Provera URL‑a protiv prevare"
 
@@ -1786,7 +1804,9 @@ msgstr ""
 
 # >> @title:window
 #: src/command/deletesubscriptioncommand.cpp:44
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Delete Folder"
+msgctxt "@title:window"
 msgid "Delete Folder"
 msgstr "Brisanje fascikle"
 
@@ -1802,7 +1822,9 @@ msgstr "<qt>Želite li zaista da obrišete dovod <b>%1</b>?</qt>"
 
 # >> @title:window
 #: src/command/deletesubscriptioncommand.cpp:68
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Delete Feed"
+msgctxt "@title:window"
 msgid "Delete Feed"
 msgstr "Brisanje dovoda"
 
@@ -1845,25 +1867,25 @@ msgstr ""
 msgid "Opening Feed List..."
 msgstr "Otvaram listu dovoda..."
 
-#: src/command/loadfeedlistcommand.cpp:142
+#: src/command/loadfeedlistcommand.cpp:143
 #, kde-format
 msgid "<qt>Could not open feed list (%1) for reading.</qt>"
 msgstr "<qt>Ne mogu da otvorim listu dovoda (%1) za čitanje.</qt>"
 
-#: src/command/loadfeedlistcommand.cpp:155
+#: src/command/loadfeedlistcommand.cpp:157
 #, kde-format
 msgctxt "error message window caption"
 msgid "XML Parsing Error"
 msgstr "Greška raščlanjivanja XML‑a"
 
-#: src/command/loadfeedlistcommand.cpp:157
+#: src/command/loadfeedlistcommand.cpp:159
 #, kde-kuit-format
 msgid "<qt><p>XML parsing error in line %1, column %2 of %3:</p><p>%4</p></qt>"
 msgstr ""
 "<qt><p>Greška raščlanjivanja XML‑a u redu %1, koloni %2 u %3:</p><p>%4</p></"
 "qt>"
 
-#: src/command/loadfeedlistcommand.cpp:164
+#: src/command/loadfeedlistcommand.cpp:166
 #, kde-format
 msgid ""
 "<qt>The standard feed list is corrupted (invalid XML). A backup was created:"
@@ -1872,7 +1894,7 @@ msgstr ""
 "<qt>Standardna lista dovoda je oštećena (loš XML). Napravljena je rezerva:"
 "<p><b>%1</b></p></qt>"
 
-#: src/command/loadfeedlistcommand.cpp:168
+#: src/command/loadfeedlistcommand.cpp:170
 #, kde-format
 msgid ""
 "<qt>The standard feed list is corrupted (invalid XML). Could not create a "
@@ -2137,6 +2159,7 @@ msgstr "<qt>Želite li zaista da obrišete dovod <b>%1</b>?</qt>"
 #: src/mainwidget.cpp:766
 #, fuzzy, kde-format
 #| msgid "&Mark Feed as Read"
+msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "Označi dovod kao &pročitan"
 
@@ -2157,6 +2180,7 @@ msgstr "<qt>Želite li zaista da obrišete ovaj dovod?</qt>"
 #: src/mainwidget.cpp:773
 #, fuzzy, kde-format
 #| msgid "&Mark Feeds as Read"
+msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "&Označi dovode kao pročitane"
 
@@ -2186,6 +2210,13 @@ msgstr[1] "<qt>Želite li zaista da obrišete %1 odabrana članka?</qt>"
 msgstr[2] "<qt>Želite li zaista da obrišete %1 odabranih članaka?</qt>"
 msgstr[3] "<qt>Želite li zaista da obrišete odabrani članak?</qt>"
 
+#: src/mainwidget.cpp:1063
+#, fuzzy, kde-format
+#| msgid "Delete Article"
+msgctxt "@title:window"
+msgid "Delete Article"
+msgstr "Obriši članak"
+
 # rewrite-msgid: /Networking/Network/
 #: src/mainwidget.cpp:1245
 #, kde-format
@@ -2201,6 +2232,7 @@ msgstr ""
 
 #: src/mainwindow.cpp:124
 #, kde-format
+msgctxt "@title:window"
 msgid "Hide menu bar"
 msgstr ""
 

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-21 00:45+0000\n"
+"POT-Creation-Date: 2023-09-26 01:46+0000\n"
 "PO-Revision-Date: 2012-12-25 13:50+0700\n"
 "Last-Translator: sutha <sutha@khmeros.info>\n"
 "Language-Team: Khmer <support@khmeros>\n"
@@ -101,7 +101,7 @@ msgstr "ផ្ញើ​អាសយដ្ឋាន​តំណ..."
 msgid "Send Link Address"
 msgstr "ផ្ញើ​អាសយដ្ឋាន​តំណ..."
 
-#: src/formatter/html/5.2/combinedview.html:87 src/mainwidget.cpp:1063
+#: src/formatter/html/5.2/combinedview.html:87
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:96
 #, kde-format
 msgid "Delete Article"
@@ -1554,7 +1554,7 @@ msgstr ""
 "ការ​ចូលដំណើរការ​ត្រូវ​បាន​បដិសេធ ៖ មិន​អាច​រក្សាទុក​បញ្ជី​មតិព័ត៌មាន​ទៅ​កាន់ <b>%1</b> បាន​ទេ ។ សូម​ពិនិត្យ​"
 "មើល​សិទ្ធិ​របស់​អ្នក ។"
 
-#: src/akregator_part.cpp:428 src/akregator_part.cpp:479
+#: src/akregator_part.cpp:428
 #, kde-format
 msgid "Write Error"
 msgstr "កំហុស​សរសេរ"
@@ -1565,7 +1565,9 @@ msgid "Could not import the file %1 (no valid OPML)"
 msgstr "មិន​អាច​នាំចូល​ឯកសារ %1 បាន​ឡើយ (មិន​មាន OPML ត្រឹមត្រូវ)"
 
 #: src/akregator_part.cpp:464 src/command/loadfeedlistcommand.cpp:71
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "OPML Parsing Error"
+msgctxt "@title:window"
 msgid "OPML Parsing Error"
 msgstr "កំហុស​ក្នុង​ការ​ញែក OPML"
 
@@ -1578,24 +1580,33 @@ msgstr ""
 "មិន​អាច​អាន​ឯកសារ %1 បាន​ឡើយ ។ សូម​ពិនិត្យមើល​ថា​តើ​មាន​វា​ឬ​ទេ ហើយ​អ្នក​ប្រើ​បច្ចុប្បន្ន​អាច​អាន​វា​បាន​ឬ​"
 "អត់ ។"
 
-#: src/akregator_part.cpp:469 src/command/loadfeedlistcommand.cpp:142
-#, kde-format
+#: src/akregator_part.cpp:469 src/command/loadfeedlistcommand.cpp:144
+#, fuzzy, kde-format
+#| msgid "Read Error"
+msgctxt "@title:window"
 msgid "Read Error"
 msgstr "កំហុស​អាន"
 
-#: src/akregator_part.cpp:479
+#: src/akregator_part.cpp:480
 #, kde-format
 msgid "Access denied: cannot write to file %1. Please check your permissions."
 msgstr ""
 "ការ​ចូលដំណើរការ​ត្រូវ​បាន​បដិសេធ ៖ មិន​អាច​សរសេរ​ទៅ​ឯកសារ %1 បាន​ឡើយ ។ សូម​ពិនិត្យ​មើល​សិទ្ធិ​របស់​អ្នក ។"
 
-#: src/akregator_part.cpp:494 src/akregator_part.cpp:503
+#: src/akregator_part.cpp:481
+#, fuzzy, kde-format
+#| msgid "Write Error"
+msgctxt "@title:window"
+msgid "Write Error"
+msgstr "កំហុស​សរសេរ"
+
+#: src/akregator_part.cpp:496 src/akregator_part.cpp:505
 #, fuzzy, kde-format
 #| msgid "OPML Outlines (*.opml, *.xml)"
 msgid "OPML Outlines (%1);;All Files (*)"
 msgstr "គ្រោង OPML (*.opml, *.xml)"
 
-#: src/akregator_part.cpp:627
+#: src/akregator_part.cpp:629
 #, kde-format
 msgid "Imported Folder"
 msgstr "ថត​ដែល​បាន​នាំចូល"
@@ -1700,7 +1711,9 @@ msgid "Are you sure you want to disable this introduction page?"
 msgstr "តើ​អ្នក​ប្រាកដ​ជា​ចង់​បិទ​ទំព័រ​ណែនាំ​នេះ​ដែរ​ឬទេ ?"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:377
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Disable Introduction Page"
+msgctxt "@title:window"
 msgid "Disable Introduction Page"
 msgstr "បិទ​ទំព័រ​ណែនាំ"
 
@@ -1711,6 +1724,7 @@ msgstr ""
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:413
 #, kde-format
+msgctxt "@title:window"
 msgid "Malware"
 msgstr ""
 
@@ -1722,6 +1736,7 @@ msgstr ""
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:425
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:428
 #, kde-format
+msgctxt "@title:window"
 msgid "Check Phishing Url"
 msgstr ""
 
@@ -1755,7 +1770,9 @@ msgid ""
 msgstr "<qt>តើ​អ្នក​ពិត​ជា​ចង់​លុប​ថត <b>%1</b> និង​មតិព័ត៌មាន ព្រមទាំង​ថត​រង​របស់​វាឬ ?</qt>"
 
 #: src/command/deletesubscriptioncommand.cpp:44
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Delete Folder"
+msgctxt "@title:window"
 msgid "Delete Folder"
 msgstr "លុប​ថត"
 
@@ -1770,7 +1787,9 @@ msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
 msgstr "<qt>តើ​អ្នក​ពិត​ជា​ចង់​លុប​មតិ​ព័ត៌មាន <b>%1</b> ឬ ?</qt>"
 
 #: src/command/deletesubscriptioncommand.cpp:68
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Delete Feed"
+msgctxt "@title:window"
 msgid "Delete Feed"
 msgstr "លុប​មតិព័ត៌មាន"
 
@@ -1811,18 +1830,18 @@ msgstr ""
 msgid "Opening Feed List..."
 msgstr "កំពុង​បើក​បញ្ជី​មតិព័ត៌មាន..."
 
-#: src/command/loadfeedlistcommand.cpp:142
+#: src/command/loadfeedlistcommand.cpp:143
 #, kde-format
 msgid "<qt>Could not open feed list (%1) for reading.</qt>"
 msgstr "<qt>មិន​អាច​បើក​បញ្ជី​មតិ​ព័ត៌មាន (%1) ដើម្បី​អាន​បាន​ទេ ។</qt>"
 
-#: src/command/loadfeedlistcommand.cpp:155
+#: src/command/loadfeedlistcommand.cpp:157
 #, kde-format
 msgctxt "error message window caption"
 msgid "XML Parsing Error"
 msgstr "កំហុស​ក្នុង​ការ​ញែក XML"
 
-#: src/command/loadfeedlistcommand.cpp:157
+#: src/command/loadfeedlistcommand.cpp:159
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<qt><p>XML parsing error in line <numid>%1</numid>, column <numid>%2</"
@@ -1832,7 +1851,7 @@ msgstr ""
 "<qt><p>កំហុស​ក្នុង​ការ​ញែក XML នៅ​បន្ទាត់ <numid>%1</numid> ជួរឈរ <numid>%2</numid> នៃ "
 "%3 ៖</p><p>%4</p></qt>"
 
-#: src/command/loadfeedlistcommand.cpp:164
+#: src/command/loadfeedlistcommand.cpp:166
 #, kde-format
 msgid ""
 "<qt>The standard feed list is corrupted (invalid XML). A backup was created:"
@@ -1841,7 +1860,7 @@ msgstr ""
 "<qt>បញ្ជី​មតិព័ត៌មាន​ស្តង់ដារ​បាន​ខូច​ហើយ (XML មិន​ត្រឹមត្រូវ) ។ ព័ត៌មាន​បម្រុង​មួយ​ត្រូវ​បាន​បង្កើត​ឡើង ៖"
 "<p><b>%1</b></p></qt>"
 
-#: src/command/loadfeedlistcommand.cpp:168
+#: src/command/loadfeedlistcommand.cpp:170
 #, kde-format
 msgid ""
 "<qt>The standard feed list is corrupted (invalid XML). Could not create a "
@@ -2089,6 +2108,7 @@ msgstr "<qt>តើ​អ្នក​ពិត​ជា​ចង់​លុប�
 #: src/mainwidget.cpp:766
 #, fuzzy, kde-format
 #| msgid "&Mark Feed as Read"
+msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "សម្គាល់​មតិ​ព័ត៌មាន​ថា​អាន​រួច"
 
@@ -2109,6 +2129,7 @@ msgstr "<qt>តើ​អ្នក​ពិត​ជា​ចង់​លុប�
 #: src/mainwidget.cpp:773
 #, fuzzy, kde-format
 #| msgid "&Mark Feeds as Read"
+msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "សម្គាល់​មតិ​ព័ត៌មាន​ថា​អាន​រួច"
 
@@ -2134,6 +2155,13 @@ msgid_plural ""
 "<qt>Are you sure you want to delete the %1 selected articles?</qt>"
 msgstr[0] "<qt>តើ​អ្នក​ពិត​ជា​ចង់​លុប​អត្ថបទ %1 ដែល​បាន​ជ្រើស​ឬ ?</qt>"
 
+#: src/mainwidget.cpp:1063
+#, fuzzy, kde-format
+#| msgid "Delete Article"
+msgctxt "@title:window"
+msgid "Delete Article"
+msgstr "លុប​អត្ថបទ"
+
 #: src/mainwidget.cpp:1245
 #, kde-format
 msgid "Networking is available now."
@@ -2148,6 +2176,7 @@ msgstr ""
 
 #: src/mainwindow.cpp:124
 #, kde-format
+msgctxt "@title:window"
 msgid "Hide menu bar"
 msgstr ""
 

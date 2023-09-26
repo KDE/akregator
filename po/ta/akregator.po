@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-21 00:45+0000\n"
+"POT-Creation-Date: 2023-09-26 01:46+0000\n"
 "PO-Revision-Date: 2022-12-20 21:45+0530\n"
 "Last-Translator: Kishore G <kishore96@gmail.com>\n"
 "Language-Team: Tamil <kde-i18n-doc@kde.org>\n"
@@ -82,7 +82,7 @@ msgstr "கோப்பின் முகவரியை அனுப்பு"
 msgid "Send Link Address"
 msgstr "இணைப்பின் முகவரியை அனுப்பு"
 
-#: src/formatter/html/5.2/combinedview.html:87 src/mainwidget.cpp:1063
+#: src/formatter/html/5.2/combinedview.html:87
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:96
 #, kde-format
 msgid "Delete Article"
@@ -1521,7 +1521,7 @@ msgstr ""
 "அணுகல் மறுக்கப்பட்டது: தொக்குப்புகளின் பட்டியலை <b>%1</b> எனும் இடத்திற்கு சேமிக்க "
 "முடியவில்லை. உங்கள் அனுமதிகளை சரிபாருங்கள்."
 
-#: src/akregator_part.cpp:428 src/akregator_part.cpp:479
+#: src/akregator_part.cpp:428
 #, kde-format
 msgid "Write Error"
 msgstr "எழுதுவதில் சிக்கல்"
@@ -1532,7 +1532,9 @@ msgid "Could not import the file %1 (no valid OPML)"
 msgstr "%1 எனும் கோப்பை இறக்குமதி செய்ய முடியவில்லை (முறையான OPML இல்லை)"
 
 #: src/akregator_part.cpp:464 src/command/loadfeedlistcommand.cpp:71
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "OPML Parsing Error"
+msgctxt "@title:window"
 msgid "OPML Parsing Error"
 msgstr "OPML இலக்கண பிழை"
 
@@ -1545,24 +1547,33 @@ msgstr ""
 "%1 எனும் கோப்பை படிக்க முடியவில்லை. அது உள்ளதா எனும் தற்போதைய பயனரால் படிக்கக்கூடியதா "
 "எனும் சரிபாருங்கள்."
 
-#: src/akregator_part.cpp:469 src/command/loadfeedlistcommand.cpp:142
-#, kde-format
+#: src/akregator_part.cpp:469 src/command/loadfeedlistcommand.cpp:144
+#, fuzzy, kde-format
+#| msgid "Read Error"
+msgctxt "@title:window"
 msgid "Read Error"
 msgstr "படிக்கும்போது சிக்கல்"
 
-#: src/akregator_part.cpp:479
+#: src/akregator_part.cpp:480
 #, fuzzy, kde-format
 #| msgid "Access denied: cannot write to file %1"
 msgid "Access denied: cannot write to file %1. Please check your permissions."
 msgstr "அனுமதி மறுக்கப்பட்டது: கோப்பு %1க்கு எழுத முடியவில்லை"
 
-#: src/akregator_part.cpp:494 src/akregator_part.cpp:503
+#: src/akregator_part.cpp:481
+#, fuzzy, kde-format
+#| msgid "Write Error"
+msgctxt "@title:window"
+msgid "Write Error"
+msgstr "எழுதுவதில் சிக்கல்"
+
+#: src/akregator_part.cpp:496 src/akregator_part.cpp:505
 #, fuzzy, kde-format
 #| msgid "OPML Outlines (*.opml, *.xml)"
 msgid "OPML Outlines (%1);;All Files (*)"
 msgstr "OPML வெளிக்கோடுகள் (*.opml, *.xml)"
 
-#: src/akregator_part.cpp:627
+#: src/akregator_part.cpp:629
 #, kde-format
 msgid "Imported Folder"
 msgstr "இறக்கிய அடைவு"
@@ -1672,6 +1683,7 @@ msgstr "<qt>நீங்கள் கண்டிப்பாக இந்த �
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:377
 #, fuzzy, kde-format
+msgctxt "@title:window"
 msgid "Disable Introduction Page"
 msgstr "பின்காப்பகத்தை தடை நீக்கு"
 
@@ -1682,6 +1694,7 @@ msgstr ""
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:413
 #, kde-format
+msgctxt "@title:window"
 msgid "Malware"
 msgstr ""
 
@@ -1693,6 +1706,7 @@ msgstr ""
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:425
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:428
 #, kde-format
+msgctxt "@title:window"
 msgid "Check Phishing Url"
 msgstr ""
 
@@ -1730,7 +1744,9 @@ msgstr ""
 "மற்றும் செலுத்தல்கள்?</qt>"
 
 #: src/command/deletesubscriptioncommand.cpp:44
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Delete Folder"
+msgctxt "@title:window"
 msgid "Delete Folder"
 msgstr "அடைவை நீக்கு"
 
@@ -1745,7 +1761,9 @@ msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
 msgstr "<qt>நீங்கள் கண்டிப்பாக செலுத்தலை நீக்க விரும்புகிறீர்களா<br><b>%1</b>?</qt>"
 
 #: src/command/deletesubscriptioncommand.cpp:68
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Delete Feed"
+msgctxt "@title:window"
 msgid "Delete Feed"
 msgstr "செலுத்தலை நீக்கு"
 
@@ -1788,24 +1806,24 @@ msgstr ""
 msgid "Opening Feed List..."
 msgstr "செலுத்தல் பட்டியலை திறக்கிறது..."
 
-#: src/command/loadfeedlistcommand.cpp:142
+#: src/command/loadfeedlistcommand.cpp:143
 #, kde-format
 msgid "<qt>Could not open feed list (%1) for reading.</qt>"
 msgstr ""
 
-#: src/command/loadfeedlistcommand.cpp:155
+#: src/command/loadfeedlistcommand.cpp:157
 #, fuzzy, kde-format
 #| msgid "XML Parsing Error"
 msgctxt "error message window caption"
 msgid "XML Parsing Error"
 msgstr "XML உருவாக்கும்போது பிழை"
 
-#: src/command/loadfeedlistcommand.cpp:157
+#: src/command/loadfeedlistcommand.cpp:159
 #, kde-kuit-format
 msgid "<qt><p>XML parsing error in line %1, column %2 of %3:</p><p>%4</p></qt>"
 msgstr ""
 
-#: src/command/loadfeedlistcommand.cpp:164
+#: src/command/loadfeedlistcommand.cpp:166
 #, fuzzy, kde-format
 msgid ""
 "<qt>The standard feed list is corrupted (invalid XML). A backup was created:"
@@ -1814,7 +1832,7 @@ msgstr ""
 "<qt>நிலையான உள்ளீட்டு பட்டியல் பழுதடைந்துள்ளது (தவறான XML). ஒரு பின்காப்பு "
 "உருவாக்கப்பட்டது:<p><b>%2</b></p></qt>"
 
-#: src/command/loadfeedlistcommand.cpp:168
+#: src/command/loadfeedlistcommand.cpp:170
 #, fuzzy, kde-format
 msgid ""
 "<qt>The standard feed list is corrupted (invalid XML). Could not create a "
@@ -2072,6 +2090,7 @@ msgstr "<qt>நீங்கள் கண்டிப்பாக செலுத
 #: src/mainwidget.cpp:766
 #, fuzzy, kde-format
 #| msgid "&Mark Feed as Read"
+msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "&செலுத்தப்பட்ட அனைத்தையும் படித்ததாக மாற்று"
 
@@ -2090,6 +2109,7 @@ msgstr "<qt>நீங்கள் கண்டிப்பாக இந்த �
 
 #: src/mainwidget.cpp:773
 #, fuzzy, kde-format
+msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "&செலுத்தப்பட்ட அனைத்தையும் படித்ததாக மாற்று"
 
@@ -2116,6 +2136,13 @@ msgid_plural ""
 msgstr[0] "<qt>நீங்கள் கண்டிப்பாக இந்த ஃபீட்டை நீக்க விரும்புகிறீர்களா</qt>"
 msgstr[1] "<qt>நீங்கள் கண்டிப்பாக இந்த ஃபீட்டை நீக்க விரும்புகிறீர்களா</qt>"
 
+#: src/mainwidget.cpp:1063
+#, fuzzy, kde-format
+#| msgid "Delete Article"
+msgctxt "@title:window"
+msgid "Delete Article"
+msgstr "கட்டுரையை நீக்கு"
+
 #: src/mainwidget.cpp:1245
 #, kde-format
 msgid "Networking is available now."
@@ -2130,6 +2157,7 @@ msgstr ""
 
 #: src/mainwindow.cpp:124
 #, kde-format
+msgctxt "@title:window"
 msgid "Hide menu bar"
 msgstr ""
 

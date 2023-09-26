@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-21 00:45+0000\n"
+"POT-Creation-Date: 2023-09-26 01:46+0000\n"
 "PO-Revision-Date: 2023-04-19 00:41+0200\n"
 "Last-Translator: Frederik Schwarzer <schwarzer@kde.org>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
@@ -97,7 +97,7 @@ msgstr "Dateiadresse senden"
 msgid "Send Link Address"
 msgstr "Verknüpfungsadresse senden"
 
-#: src/formatter/html/5.2/combinedview.html:87 src/mainwidget.cpp:1063
+#: src/formatter/html/5.2/combinedview.html:87
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:96
 #, kde-format
 msgid "Delete Article"
@@ -1561,7 +1561,7 @@ msgstr ""
 "Zugriff verweigert: Die Liste der Nachrichtenquellen kann nicht in <b>%1</b> "
 "gespeichert werden. Bitte überprüfen Sie Ihre Benutzerrechte."
 
-#: src/akregator_part.cpp:428 src/akregator_part.cpp:479
+#: src/akregator_part.cpp:428
 #, kde-format
 msgid "Write Error"
 msgstr "Schreibfehler"
@@ -1572,7 +1572,9 @@ msgid "Could not import the file %1 (no valid OPML)"
 msgstr "Die Datei %1 kann nicht importiert werden (kein gültiges OPML)."
 
 #: src/akregator_part.cpp:464 src/command/loadfeedlistcommand.cpp:71
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "OPML Parsing Error"
+msgctxt "@title:window"
 msgid "OPML Parsing Error"
 msgstr "OPML-Parserfehler"
 
@@ -1585,24 +1587,33 @@ msgstr ""
 "Die Datei %1 kann nicht gelesen werden. Überprüfen Sie, ob die Datei "
 "vorhanden ist und für den aktuellen Benutzer lesbar ist."
 
-#: src/akregator_part.cpp:469 src/command/loadfeedlistcommand.cpp:142
-#, kde-format
+#: src/akregator_part.cpp:469 src/command/loadfeedlistcommand.cpp:144
+#, fuzzy, kde-format
+#| msgid "Read Error"
+msgctxt "@title:window"
 msgid "Read Error"
 msgstr "Lesefehler"
 
-#: src/akregator_part.cpp:479
+#: src/akregator_part.cpp:480
 #, kde-format
 msgid "Access denied: cannot write to file %1. Please check your permissions."
 msgstr ""
 "Zugriff verweigert: In die Datei %1 kann nicht geschrieben werden. Bitte "
 "überprüfen Sie Ihre Benutzerrechte."
 
-#: src/akregator_part.cpp:494 src/akregator_part.cpp:503
+#: src/akregator_part.cpp:481
+#, fuzzy, kde-format
+#| msgid "Write Error"
+msgctxt "@title:window"
+msgid "Write Error"
+msgstr "Schreibfehler"
+
+#: src/akregator_part.cpp:496 src/akregator_part.cpp:505
 #, kde-format
 msgid "OPML Outlines (%1);;All Files (*)"
 msgstr "OPML-Gliederungen (%1);;Alle Dateien (*)"
 
-#: src/akregator_part.cpp:627
+#: src/akregator_part.cpp:629
 #, kde-format
 msgid "Imported Folder"
 msgstr "Importierter Ordner"
@@ -1700,7 +1711,9 @@ msgid "Are you sure you want to disable this introduction page?"
 msgstr "Möchten Sie diese Begrüßungsseite wirklich deaktivieren?"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:377
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Disable Introduction Page"
+msgctxt "@title:window"
 msgid "Disable Introduction Page"
 msgstr "Begrüßungsseite deaktivieren"
 
@@ -1712,7 +1725,9 @@ msgstr ""
 "lassen?"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:413
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Malware"
+msgctxt "@title:window"
 msgid "Malware"
 msgstr "Schadsoftware"
 
@@ -1723,7 +1738,9 @@ msgstr "Das Netzwerk funktioniert nicht."
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:425
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:428
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Check Phishing Url"
+msgctxt "@title:window"
 msgid "Check Phishing Url"
 msgstr "Phishing-Adresse überprüfen"
 
@@ -1761,7 +1778,9 @@ msgstr ""
 "Unterordnern wirklich löschen?</qt>"
 
 #: src/command/deletesubscriptioncommand.cpp:44
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Delete Folder"
+msgctxt "@title:window"
 msgid "Delete Folder"
 msgstr "Ordner löschen"
 
@@ -1776,7 +1795,9 @@ msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
 msgstr "<qt>Möchten Sie die Nachrichtenquelle <b>%1</b> wirklich löschen?</qt>"
 
 #: src/command/deletesubscriptioncommand.cpp:68
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Delete Feed"
+msgctxt "@title:window"
 msgid "Delete Feed"
 msgstr "Nachrichtenquelle löschen"
 
@@ -1818,26 +1839,26 @@ msgstr ""
 msgid "Opening Feed List..."
 msgstr "Liste der Nachrichtenquellen wird geöffnet ..."
 
-#: src/command/loadfeedlistcommand.cpp:142
+#: src/command/loadfeedlistcommand.cpp:143
 #, kde-format
 msgid "<qt>Could not open feed list (%1) for reading.</qt>"
 msgstr ""
 "<qt>Die Liste der Nachrichtenquellen (%1) kann nicht zum Lesen geöffnet "
 "werden.</qt>"
 
-#: src/command/loadfeedlistcommand.cpp:155
+#: src/command/loadfeedlistcommand.cpp:157
 #, kde-format
 msgctxt "error message window caption"
 msgid "XML Parsing Error"
 msgstr "XML-Parserfehler"
 
-#: src/command/loadfeedlistcommand.cpp:157
+#: src/command/loadfeedlistcommand.cpp:159
 #, kde-kuit-format
 msgid "<qt><p>XML parsing error in line %1, column %2 of %3:</p><p>%4</p></qt>"
 msgstr ""
 "<qt><p>XML-Einlesefehler in Zeile %1, Spalte %2 von %3:</p><p>%4</p></qt>"
 
-#: src/command/loadfeedlistcommand.cpp:164
+#: src/command/loadfeedlistcommand.cpp:166
 #, kde-format
 msgid ""
 "<qt>The standard feed list is corrupted (invalid XML). A backup was created:"
@@ -1846,7 +1867,7 @@ msgstr ""
 "<qt>Die Standardliste der Nachrichtenquellen ist beschädigt (ungültiges "
 "XML). Eine Sicherung wurde angelegt:<p><b>%1</b></p></qt>"
 
-#: src/command/loadfeedlistcommand.cpp:168
+#: src/command/loadfeedlistcommand.cpp:170
 #, kde-format
 msgid ""
 "<qt>The standard feed list is corrupted (invalid XML). Could not create a "
@@ -2094,7 +2115,9 @@ msgstr ""
 "markieren?</qt>"
 
 #: src/mainwidget.cpp:766
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Mark Feed as Read"
+msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "Nachrichtenquelle als gelesen markieren"
 
@@ -2114,7 +2137,9 @@ msgstr ""
 "markieren?</qt>"
 
 #: src/mainwidget.cpp:773
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Mark Feeds as Read"
+msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "Nachrichtenquellen als gelesen markieren"
 
@@ -2141,6 +2166,13 @@ msgid_plural ""
 msgstr[0] "<qt>Möchten Sie den ausgewählten Artikel wirklich löschen?</qt>"
 msgstr[1] "<qt>Möchten Sie die %1 ausgewählten Artikel wirklich löschen?</qt>"
 
+#: src/mainwidget.cpp:1063
+#, fuzzy, kde-format
+#| msgid "Delete Article"
+msgctxt "@title:window"
+msgid "Delete Article"
+msgstr "Artikel löschen"
+
 #: src/mainwidget.cpp:1245
 #, kde-format
 msgid "Networking is available now."
@@ -2156,7 +2188,9 @@ msgstr ""
 "wieder anzeigen.</qt>"
 
 #: src/mainwindow.cpp:124
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Hide menu bar"
+msgctxt "@title:window"
 msgid "Hide menu bar"
 msgstr "Menüleiste ausblenden"
 

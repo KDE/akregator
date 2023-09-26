@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-21 00:45+0000\n"
-"PO-Revision-Date: 2023-09-21 16:56+0200\n"
+"POT-Creation-Date: 2023-09-26 01:46+0000\n"
+"PO-Revision-Date: 2023-09-25 12:33+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca@valencia\n"
@@ -100,7 +100,7 @@ msgstr "Envia l'adreça del fitxer"
 msgid "Send Link Address"
 msgstr "Envia l'adreça de l'enllaç"
 
-#: src/formatter/html/5.2/combinedview.html:87 src/mainwidget.cpp:1063
+#: src/formatter/html/5.2/combinedview.html:87
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:96
 #, kde-format
 msgid "Delete Article"
@@ -1548,7 +1548,7 @@ msgstr ""
 "Accés denegat: No s'ha pogut guardar la llista de fonts <b>%1</b>. Comproveu "
 "els permisos."
 
-#: src/akregator_part.cpp:428 src/akregator_part.cpp:479
+#: src/akregator_part.cpp:428
 #, kde-format
 msgid "Write Error"
 msgstr "S'ha produït un error d'escriptura"
@@ -1559,7 +1559,9 @@ msgid "Could not import the file %1 (no valid OPML)"
 msgstr "No s'ha pogut importar el fitxer %1 (OPML no vàlid)"
 
 #: src/akregator_part.cpp:464 src/command/loadfeedlistcommand.cpp:71
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "OPML Parsing Error"
+msgctxt "@title:window"
 msgid "OPML Parsing Error"
 msgstr "S'ha produït un error en analitzar l'OPML"
 
@@ -1572,24 +1574,33 @@ msgstr ""
 "El fitxer %1 no ha pogut ser llegit, comproveu que existix i que l'usuari "
 "actual el pot llegir."
 
-#: src/akregator_part.cpp:469 src/command/loadfeedlistcommand.cpp:142
-#, kde-format
+#: src/akregator_part.cpp:469 src/command/loadfeedlistcommand.cpp:144
+#, fuzzy, kde-format
+#| msgid "Read Error"
+msgctxt "@title:window"
 msgid "Read Error"
 msgstr "S'ha produït un error de lectura"
 
-#: src/akregator_part.cpp:479
+#: src/akregator_part.cpp:480
 #, kde-format
 msgid "Access denied: cannot write to file %1. Please check your permissions."
 msgstr ""
 "Accés denegat: No s'ha pogut escriure en el fitxer %1. Comproveu els "
 "permisos."
 
-#: src/akregator_part.cpp:494 src/akregator_part.cpp:503
+#: src/akregator_part.cpp:481
+#, fuzzy, kde-format
+#| msgid "Write Error"
+msgctxt "@title:window"
+msgid "Write Error"
+msgstr "S'ha produït un error d'escriptura"
+
+#: src/akregator_part.cpp:496 src/akregator_part.cpp:505
 #, kde-format
 msgid "OPML Outlines (%1);;All Files (*)"
 msgstr "Esquemes OPML (%1);;Tots els fitxers (*)"
 
-#: src/akregator_part.cpp:627
+#: src/akregator_part.cpp:629
 #, kde-format
 msgid "Imported Folder"
 msgstr "Carpeta importada"
@@ -1687,7 +1698,9 @@ msgid "Are you sure you want to disable this introduction page?"
 msgstr "Segur que voleu desactivar esta pàgina d'introducció?"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:377
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Disable Introduction Page"
+msgctxt "@title:window"
 msgid "Disable Introduction Page"
 msgstr "Desactiva la pàgina d'introducció"
 
@@ -1697,7 +1710,9 @@ msgid "This web site is a malware, do you want to continue to show it?"
 msgstr "Este lloc web és maliciós. Voleu continuar mostrant-lo?"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:413
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Malware"
+msgctxt "@title:window"
 msgid "Malware"
 msgstr "Programari maliciós"
 
@@ -1708,7 +1723,9 @@ msgstr "La xarxa no funciona."
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:425
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:428
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Check Phishing Url"
+msgctxt "@title:window"
 msgid "Check Phishing Url"
 msgstr "Comprovació d'URL de pesca"
 
@@ -1746,7 +1763,9 @@ msgstr ""
 "i subcarpetes?</qt>"
 
 #: src/command/deletesubscriptioncommand.cpp:44
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Delete Folder"
+msgctxt "@title:window"
 msgid "Delete Folder"
 msgstr "Suprimix la carpeta"
 
@@ -1761,7 +1780,9 @@ msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
 msgstr "<qt>Segur que voleu suprimir la font <b>%1</b>?</qt>"
 
 #: src/command/deletesubscriptioncommand.cpp:68
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Delete Feed"
+msgctxt "@title:window"
 msgid "Delete Feed"
 msgstr "Suprimix la font"
 
@@ -1803,25 +1824,25 @@ msgstr ""
 msgid "Opening Feed List..."
 msgstr "S'està obrint la llista de fonts..."
 
-#: src/command/loadfeedlistcommand.cpp:142
+#: src/command/loadfeedlistcommand.cpp:143
 #, kde-format
 msgid "<qt>Could not open feed list (%1) for reading.</qt>"
 msgstr "<qt>No s'ha pogut obrir la llista de fonts (%1) per a llegir-la.</qt>"
 
-#: src/command/loadfeedlistcommand.cpp:155
+#: src/command/loadfeedlistcommand.cpp:157
 #, kde-format
 msgctxt "error message window caption"
 msgid "XML Parsing Error"
 msgstr "S'ha produït un error en analitzar l'XML"
 
-#: src/command/loadfeedlistcommand.cpp:157
+#: src/command/loadfeedlistcommand.cpp:159
 #, kde-kuit-format
 msgid "<qt><p>XML parsing error in line %1, column %2 of %3:</p><p>%4</p></qt>"
 msgstr ""
 "<qt><p>S'ha produït un error en analitzar l'XML en la línia %1, columna %2 "
 "de %3:</p><p>%4</p></qt>"
 
-#: src/command/loadfeedlistcommand.cpp:164
+#: src/command/loadfeedlistcommand.cpp:166
 #, kde-format
 msgid ""
 "<qt>The standard feed list is corrupted (invalid XML). A backup was created:"
@@ -1830,7 +1851,7 @@ msgstr ""
 "<qt>La llista de fonts estàndard s'ha fet malbé (XML no vàlid). S'ha creat "
 "una còpia de seguretat:<p><b>%1</b></p></qt>"
 
-#: src/command/loadfeedlistcommand.cpp:168
+#: src/command/loadfeedlistcommand.cpp:170
 #, kde-format
 msgid ""
 "<qt>The standard feed list is corrupted (invalid XML). Could not create a "
@@ -2077,7 +2098,9 @@ msgstr ""
 "</qt>"
 
 #: src/mainwidget.cpp:766
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Mark Feed as Read"
+msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "Marca la font com a llegida"
 
@@ -2095,7 +2118,9 @@ msgstr ""
 "<qt>Segur que voleu <b>totes les fonts en la carpeta</b> com a llegides?</qt>"
 
 #: src/mainwidget.cpp:773
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Mark Feeds as Read"
+msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "Marca les fonts com a llegides"
 
@@ -2122,6 +2147,13 @@ msgid_plural ""
 msgstr[0] "<qt>Segur que voleu suprimir l'article seleccionat?</qt>"
 msgstr[1] "<qt>Segur que voleu suprimir els %1 articles seleccionats?</qt>"
 
+#: src/mainwidget.cpp:1063
+#, fuzzy, kde-format
+#| msgid "Delete Article"
+msgctxt "@title:window"
+msgid "Delete Article"
+msgstr "Suprimix l'article"
+
 #: src/mainwidget.cpp:1245
 #, kde-format
 msgid "Networking is available now."
@@ -2137,7 +2169,9 @@ msgstr ""
 "prement %1.</qt>"
 
 #: src/mainwindow.cpp:124
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Hide menu bar"
+msgctxt "@title:window"
 msgid "Hide menu bar"
 msgstr "Oculta la barra de menús"
 

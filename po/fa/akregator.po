@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-21 00:45+0000\n"
+"POT-Creation-Date: 2023-09-26 01:46+0000\n"
 "PO-Revision-Date: 2012-01-12 17:34+0330\n"
 "Last-Translator: Mohammad Reza Mirdamadi <mohi@ubuntu.ir>\n"
 "Language-Team: Farsi (Persian) <>\n"
@@ -102,7 +102,7 @@ msgstr "ارسال نشانی &پیوند...‌"
 msgid "Send Link Address"
 msgstr "ارسال نشانی &پیوند...‌"
 
-#: src/formatter/html/5.2/combinedview.html:87 src/mainwidget.cpp:1063
+#: src/formatter/html/5.2/combinedview.html:87
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:96
 #, kde-format
 msgid "Delete Article"
@@ -1571,7 +1571,7 @@ msgid ""
 "permissions."
 msgstr "انکار دستیابی: فهرست خوراندن )%1( را نمی‌توان ذخیره کرد"
 
-#: src/akregator_part.cpp:428 src/akregator_part.cpp:479
+#: src/akregator_part.cpp:428
 #, kde-format
 msgid "Write Error"
 msgstr "خطای نوشتن"
@@ -1582,7 +1582,9 @@ msgid "Could not import the file %1 (no valid OPML)"
 msgstr "نتوانست پرونده %1 را وارد کند )بدون OPML معتبر("
 
 #: src/akregator_part.cpp:464 src/command/loadfeedlistcommand.cpp:71
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "OPML Parsing Error"
+msgctxt "@title:window"
 msgid "OPML Parsing Error"
 msgstr "خطای تجزیه OPML"
 
@@ -1595,24 +1597,33 @@ msgstr ""
 "پرونده %1 را نتوانست بخواند، بررسی کنید که آیا وجود دارد یا برای کاربر جاری "
 "قابل خواندن می‌باشد."
 
-#: src/akregator_part.cpp:469 src/command/loadfeedlistcommand.cpp:142
-#, kde-format
+#: src/akregator_part.cpp:469 src/command/loadfeedlistcommand.cpp:144
+#, fuzzy, kde-format
+#| msgid "Read Error"
+msgctxt "@title:window"
 msgid "Read Error"
 msgstr "خطای خواندن"
 
-#: src/akregator_part.cpp:479
+#: src/akregator_part.cpp:480
 #, fuzzy, kde-format
 #| msgid "Access denied: cannot write to file %1"
 msgid "Access denied: cannot write to file %1. Please check your permissions."
 msgstr "انکار دستیابی: در پرونده %1 نمی‌توان نوشت"
 
-#: src/akregator_part.cpp:494 src/akregator_part.cpp:503
+#: src/akregator_part.cpp:481
+#, fuzzy, kde-format
+#| msgid "Write Error"
+msgctxt "@title:window"
+msgid "Write Error"
+msgstr "خطای نوشتن"
+
+#: src/akregator_part.cpp:496 src/akregator_part.cpp:505
 #, fuzzy, kde-format
 #| msgid "OPML Outlines (*.opml, *.xml)"
 msgid "OPML Outlines (%1);;All Files (*)"
 msgstr "طرحهای کلی OPML )*.opml، *.xml("
 
-#: src/akregator_part.cpp:627
+#: src/akregator_part.cpp:629
 #, kde-format
 msgid "Imported Folder"
 msgstr "پوشه وارد‌شده"
@@ -1724,6 +1735,7 @@ msgstr "<qt>مطمئنید که می‌خواهید این خوراندن را �
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:377
 #, fuzzy, kde-format
 #| msgid "Disable Archiving"
+msgctxt "@title:window"
 msgid "Disable Introduction Page"
 msgstr "غیرفعال کردن بایگانی"
 
@@ -1734,6 +1746,7 @@ msgstr ""
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:413
 #, kde-format
+msgctxt "@title:window"
 msgid "Malware"
 msgstr ""
 
@@ -1745,6 +1758,7 @@ msgstr ""
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:425
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:428
 #, kde-format
+msgctxt "@title:window"
 msgid "Check Phishing Url"
 msgstr ""
 
@@ -1781,7 +1795,9 @@ msgstr ""
 "</qt>"
 
 #: src/command/deletesubscriptioncommand.cpp:44
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Delete Folder"
+msgctxt "@title:window"
 msgid "Delete Folder"
 msgstr "حذف پوشه"
 
@@ -1796,7 +1812,9 @@ msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
 msgstr "<qt>مطمئنید که می‌خواهید خوراندن <b>%1</b>را حذف کنید؟</qt>"
 
 #: src/command/deletesubscriptioncommand.cpp:68
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Delete Feed"
+msgctxt "@title:window"
 msgid "Delete Feed"
 msgstr "حذف خوراندن"
 
@@ -1845,24 +1863,24 @@ msgstr ""
 msgid "Opening Feed List..."
 msgstr "باز کردن فهرست خوراندن..."
 
-#: src/command/loadfeedlistcommand.cpp:142
+#: src/command/loadfeedlistcommand.cpp:143
 #, kde-format
 msgid "<qt>Could not open feed list (%1) for reading.</qt>"
 msgstr ""
 
-#: src/command/loadfeedlistcommand.cpp:155
+#: src/command/loadfeedlistcommand.cpp:157
 #, fuzzy, kde-format
 #| msgid "XML Parsing Error"
 msgctxt "error message window caption"
 msgid "XML Parsing Error"
 msgstr "خطای تجزیه  XML"
 
-#: src/command/loadfeedlistcommand.cpp:157
+#: src/command/loadfeedlistcommand.cpp:159
 #, kde-kuit-format
 msgid "<qt><p>XML parsing error in line %1, column %2 of %3:</p><p>%4</p></qt>"
 msgstr ""
 
-#: src/command/loadfeedlistcommand.cpp:164
+#: src/command/loadfeedlistcommand.cpp:166
 #, kde-format
 msgid ""
 "<qt>The standard feed list is corrupted (invalid XML). A backup was created:"
@@ -1871,7 +1889,7 @@ msgstr ""
 "<qt>فهرست استاندارد خوراندن خراب شد (XML نامعتبر). پشتیبانی ایجاد شده بود:"
 "<p><b>%1</b></p></qt>"
 
-#: src/command/loadfeedlistcommand.cpp:168
+#: src/command/loadfeedlistcommand.cpp:170
 #, fuzzy, kde-format
 #| msgid ""
 #| "<qt>The standard feed list is corrupted (invalid XML). A backup was "
@@ -2131,6 +2149,7 @@ msgstr "<qt>مطمئنید که می‌خواهید خوراندن <b>%1</b>را
 #: src/mainwidget.cpp:766
 #, fuzzy, kde-format
 #| msgid "&Mark Feed as Read"
+msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "&نشان‌دار کردن خوراندن به عنوان خوانده‌شده‌"
 
@@ -2151,6 +2170,7 @@ msgstr "<qt>مطمئنید که می‌خواهید این خوراندن را �
 #: src/mainwidget.cpp:773
 #, fuzzy, kde-format
 #| msgid "&Mark Feeds as Read"
+msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "&نشان‌دار کردن خوراندنها به عنوان خوانده‌شده‌"
 
@@ -2178,6 +2198,13 @@ msgid_plural ""
 msgstr[0] "<qt>مطمئنید که می‌خواهید %1 مقاله برگزیده را حذف کنید؟</qt>"
 msgstr[1] ""
 
+#: src/mainwidget.cpp:1063
+#, fuzzy, kde-format
+#| msgid "Delete Article"
+msgctxt "@title:window"
+msgid "Delete Article"
+msgstr "حذف مقاله"
+
 #: src/mainwidget.cpp:1245
 #, kde-format
 msgid "Networking is available now."
@@ -2192,6 +2219,7 @@ msgstr ""
 
 #: src/mainwindow.cpp:124
 #, kde-format
+msgctxt "@title:window"
 msgid "Hide menu bar"
 msgstr ""
 

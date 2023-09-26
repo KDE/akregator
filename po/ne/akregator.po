@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-21 00:45+0000\n"
+"POT-Creation-Date: 2023-09-26 01:46+0000\n"
 "PO-Revision-Date: 2007-09-07 10:35+0545\n"
 "Last-Translator: Nabin Gautam <nabin@mpp.org.np>\n"
 "Language-Team: Nepali <info@mpp.org.np>\n"
@@ -100,7 +100,7 @@ msgstr "लिङ्क ठेगाना पठाउनुहोस्..."
 msgid "Send Link Address"
 msgstr "लिङ्क ठेगाना पठाउनुहोस्..."
 
-#: src/formatter/html/5.2/combinedview.html:87 src/mainwidget.cpp:1063
+#: src/formatter/html/5.2/combinedview.html:87
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:96
 #, kde-format
 msgid "Delete Article"
@@ -1573,7 +1573,7 @@ msgid ""
 "permissions."
 msgstr "पहुँच अस्वीकृत: फिड सूची (%1) बचत गर्न सकिँदैन"
 
-#: src/akregator_part.cpp:428 src/akregator_part.cpp:479
+#: src/akregator_part.cpp:428
 #, kde-format
 msgid "Write Error"
 msgstr "लेख्दा त्रुटि"
@@ -1584,7 +1584,9 @@ msgid "Could not import the file %1 (no valid OPML)"
 msgstr "फाइल %1 आयात गर्न सकेन (OPML वैध छैन)"
 
 #: src/akregator_part.cpp:464 src/command/loadfeedlistcommand.cpp:71
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "OPML Parsing Error"
+msgctxt "@title:window"
 msgid "OPML Parsing Error"
 msgstr "OPML पद वर्णन गर्दा त्रुटि"
 
@@ -1597,24 +1599,33 @@ msgstr ""
 "फाइल %1 पढ्न सक्दैन, यो अवस्थित भएको वा हालको प्रयोगकर्ताले पढ्नयोग्य भएको जाँच गर्नुहोस् "
 "।"
 
-#: src/akregator_part.cpp:469 src/command/loadfeedlistcommand.cpp:142
-#, kde-format
+#: src/akregator_part.cpp:469 src/command/loadfeedlistcommand.cpp:144
+#, fuzzy, kde-format
+#| msgid "Read Error"
+msgctxt "@title:window"
 msgid "Read Error"
 msgstr "पढ्दा त्रुटि"
 
-#: src/akregator_part.cpp:479
+#: src/akregator_part.cpp:480
 #, fuzzy, kde-format
 #| msgid "Access denied: cannot write to file %1"
 msgid "Access denied: cannot write to file %1. Please check your permissions."
 msgstr "पहुँच अस्वीकृत: फाइल %1 मा लेख्न सकिँदैन"
 
-#: src/akregator_part.cpp:494 src/akregator_part.cpp:503
+#: src/akregator_part.cpp:481
+#, fuzzy, kde-format
+#| msgid "Write Error"
+msgctxt "@title:window"
+msgid "Write Error"
+msgstr "लेख्दा त्रुटि"
+
+#: src/akregator_part.cpp:496 src/akregator_part.cpp:505
 #, fuzzy, kde-format
 #| msgid "OPML Outlines (*.opml, *.xml)"
 msgid "OPML Outlines (%1);;All Files (*)"
 msgstr "OPML रुपरेखा (*.opml, *.xml)"
 
-#: src/akregator_part.cpp:627
+#: src/akregator_part.cpp:629
 #, kde-format
 msgid "Imported Folder"
 msgstr "आयातित फोल्डर"
@@ -1728,6 +1739,7 @@ msgstr "<qt>तपाईँ यो फिड मेट्ने चाहान�
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:377
 #, fuzzy, kde-format
 #| msgid "Disable Archiving"
+msgctxt "@title:window"
 msgid "Disable Introduction Page"
 msgstr "सङ्ग्रह अक्षम पार्नुहोस्"
 
@@ -1738,6 +1750,7 @@ msgstr ""
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:413
 #, kde-format
+msgctxt "@title:window"
 msgid "Malware"
 msgstr ""
 
@@ -1749,6 +1762,7 @@ msgstr ""
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:425
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:428
 #, kde-format
+msgctxt "@title:window"
 msgid "Check Phishing Url"
 msgstr ""
 
@@ -1785,7 +1799,9 @@ msgstr ""
 "qt>"
 
 #: src/command/deletesubscriptioncommand.cpp:44
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Delete Folder"
+msgctxt "@title:window"
 msgid "Delete Folder"
 msgstr "फोल्डर मेट्नुहोस्"
 
@@ -1800,7 +1816,9 @@ msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
 msgstr "<qt>तपाईँ फिड <b>%1</b> मेटाउने चाहानामा निश्चित हुनुहुन्छ ?</qt>"
 
 #: src/command/deletesubscriptioncommand.cpp:68
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Delete Feed"
+msgctxt "@title:window"
 msgid "Delete Feed"
 msgstr "फिड मेट्नुहोस्"
 
@@ -1849,24 +1867,24 @@ msgstr ""
 msgid "Opening Feed List..."
 msgstr "फिड सूची खोल्दैछ..."
 
-#: src/command/loadfeedlistcommand.cpp:142
+#: src/command/loadfeedlistcommand.cpp:143
 #, kde-format
 msgid "<qt>Could not open feed list (%1) for reading.</qt>"
 msgstr ""
 
-#: src/command/loadfeedlistcommand.cpp:155
+#: src/command/loadfeedlistcommand.cpp:157
 #, fuzzy, kde-format
 #| msgid "XML Parsing Error"
 msgctxt "error message window caption"
 msgid "XML Parsing Error"
 msgstr "XML पद वर्णन गर्दा त्रुटि"
 
-#: src/command/loadfeedlistcommand.cpp:157
+#: src/command/loadfeedlistcommand.cpp:159
 #, kde-kuit-format
 msgid "<qt><p>XML parsing error in line %1, column %2 of %3:</p><p>%4</p></qt>"
 msgstr ""
 
-#: src/command/loadfeedlistcommand.cpp:164
+#: src/command/loadfeedlistcommand.cpp:166
 #, kde-format
 msgid ""
 "<qt>The standard feed list is corrupted (invalid XML). A backup was created:"
@@ -1875,7 +1893,7 @@ msgstr ""
 "<qt>मानक फिड सूची बिग्रिएको छ (अवैध XML) । जगेडा सिर्जना गरिएको थियो:<p><b>%1</"
 "b></p></qt>"
 
-#: src/command/loadfeedlistcommand.cpp:168
+#: src/command/loadfeedlistcommand.cpp:170
 #, fuzzy, kde-format
 #| msgid ""
 #| "<qt>The standard feed list is corrupted (invalid XML). A backup was "
@@ -2138,6 +2156,7 @@ msgstr "<qt>तपाईँ फिड <b>%1</b> मेटाउने चाह�
 #: src/mainwidget.cpp:766
 #, fuzzy, kde-format
 #| msgid "&Mark Feed as Read"
+msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "पढिएका रूपमा फिडमा चिन्ह लगाउनुहोस्"
 
@@ -2158,6 +2177,7 @@ msgstr "<qt>तपाईँ यो फिड मेट्ने चाहान�
 #: src/mainwidget.cpp:773
 #, fuzzy, kde-format
 #| msgid "&Mark Feeds as Read"
+msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "पढिएका रूपमा फिडमा चिन्ह लगाउनुहोस्"
 
@@ -2185,6 +2205,13 @@ msgid_plural ""
 msgstr[0] "<qt>तपाईँ चयन गरिएका %1 लेख मेट्न निश्चित हुनुहुन्छ ?</qt>"
 msgstr[1] "<qt>तपाईँ चयन गरिएका %1 लेख मेट्न निश्चित हुनुहुन्छ ?</qt>"
 
+#: src/mainwidget.cpp:1063
+#, fuzzy, kde-format
+#| msgid "Delete Article"
+msgctxt "@title:window"
+msgid "Delete Article"
+msgstr "लेख मेट्नुहोस्"
+
 #: src/mainwidget.cpp:1245
 #, kde-format
 msgid "Networking is available now."
@@ -2199,6 +2226,7 @@ msgstr ""
 
 #: src/mainwindow.cpp:124
 #, kde-format
+msgctxt "@title:window"
 msgid "Hide menu bar"
 msgstr ""
 

@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-21 00:45+0000\n"
+"POT-Creation-Date: 2023-09-26 01:46+0000\n"
 "PO-Revision-Date: 2023-02-05 17:31+0100\n"
 "Last-Translator: Xavier BESNARD <xavier.besnard]neuf.fr>\n"
 "Language-Team: fr\n"
@@ -112,7 +112,7 @@ msgstr "Envoyer l'adresse du fichier"
 msgid "Send Link Address"
 msgstr "Envoyer l'adresse du lien"
 
-#: src/formatter/html/5.2/combinedview.html:87 src/mainwidget.cpp:1063
+#: src/formatter/html/5.2/combinedview.html:87
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:96
 #, kde-format
 msgid "Delete Article"
@@ -1574,7 +1574,7 @@ msgstr ""
 "Accès refusé : impossible d'enregistrer la liste de flux dans <b>%1</b>. "
 "Veuillez vérifier vos droits d'accès."
 
-#: src/akregator_part.cpp:428 src/akregator_part.cpp:479
+#: src/akregator_part.cpp:428
 #, kde-format
 msgid "Write Error"
 msgstr "Problème d'écriture"
@@ -1585,7 +1585,9 @@ msgid "Could not import the file %1 (no valid OPML)"
 msgstr "Impossible d'importer le fichier « %1 » (aucun « OPML » valable)"
 
 #: src/akregator_part.cpp:464 src/command/loadfeedlistcommand.cpp:71
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "OPML Parsing Error"
+msgctxt "@title:window"
 msgid "OPML Parsing Error"
 msgstr "Erreur d'analyse « OPML »"
 
@@ -1598,24 +1600,33 @@ msgstr ""
 "Impossible de lire le fichier « %1 ». Veuillez vérifier qu'il existe et que "
 "l'utilisateur actuel peut le lire."
 
-#: src/akregator_part.cpp:469 src/command/loadfeedlistcommand.cpp:142
-#, kde-format
+#: src/akregator_part.cpp:469 src/command/loadfeedlistcommand.cpp:144
+#, fuzzy, kde-format
+#| msgid "Read Error"
+msgctxt "@title:window"
 msgid "Read Error"
 msgstr "Erreur de lecture"
 
-#: src/akregator_part.cpp:479
+#: src/akregator_part.cpp:480
 #, kde-format
 msgid "Access denied: cannot write to file %1. Please check your permissions."
 msgstr ""
 "Accès refusé : impossible d'écrire dans le fichier « %1 ». Veuillez vérifier "
 "vos droits d'accès."
 
-#: src/akregator_part.cpp:494 src/akregator_part.cpp:503
+#: src/akregator_part.cpp:481
+#, fuzzy, kde-format
+#| msgid "Write Error"
+msgctxt "@title:window"
+msgid "Write Error"
+msgstr "Problème d'écriture"
+
+#: src/akregator_part.cpp:496 src/akregator_part.cpp:505
 #, kde-format
 msgid "OPML Outlines (%1);;All Files (*)"
 msgstr "Structures « OPML » (%1);;Tous les fichiers (*)"
 
-#: src/akregator_part.cpp:627
+#: src/akregator_part.cpp:629
 #, kde-format
 msgid "Imported Folder"
 msgstr "Dossier importé"
@@ -1714,7 +1725,9 @@ msgid "Are you sure you want to disable this introduction page?"
 msgstr "Voulez-vous vraiment désactiver cette page d'introduction ?"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:377
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Disable Introduction Page"
+msgctxt "@title:window"
 msgid "Disable Introduction Page"
 msgstr "Désactiver la page d'introduction"
 
@@ -1724,7 +1737,9 @@ msgid "This web site is a malware, do you want to continue to show it?"
 msgstr "Le site web est malveillant, voulez-vous continuer à l'afficher ?"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:413
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Malware"
+msgctxt "@title:window"
 msgid "Malware"
 msgstr "Malveillant"
 
@@ -1735,7 +1750,9 @@ msgstr "Le réseau n'est pas opérationnel."
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:425
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:428
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Check Phishing Url"
+msgctxt "@title:window"
 msgid "Check Phishing Url"
 msgstr "Vérifier les URL d'hameçonnage"
 
@@ -1773,7 +1790,9 @@ msgstr ""
 "et les sous-dossiers qu'il contient ?</qt>"
 
 #: src/command/deletesubscriptioncommand.cpp:44
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Delete Folder"
+msgctxt "@title:window"
 msgid "Delete Folder"
 msgstr "Supprimer un dossier"
 
@@ -1788,7 +1807,9 @@ msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
 msgstr "<qt>Voulez-vous vraiment supprimer le flux <b>%1</b> ?</qt>"
 
 #: src/command/deletesubscriptioncommand.cpp:68
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Delete Feed"
+msgctxt "@title:window"
 msgid "Delete Feed"
 msgstr "Supprimer un flux"
 
@@ -1830,25 +1851,25 @@ msgstr ""
 msgid "Opening Feed List..."
 msgstr "Ouverture de la liste de flux..."
 
-#: src/command/loadfeedlistcommand.cpp:142
+#: src/command/loadfeedlistcommand.cpp:143
 #, kde-format
 msgid "<qt>Could not open feed list (%1) for reading.</qt>"
 msgstr "<qt>Impossible d'ouvrir la liste de flux (%1) en lecture.</qt>"
 
-#: src/command/loadfeedlistcommand.cpp:155
+#: src/command/loadfeedlistcommand.cpp:157
 #, kde-format
 msgctxt "error message window caption"
 msgid "XML Parsing Error"
 msgstr "Erreur d'analyse XML"
 
-#: src/command/loadfeedlistcommand.cpp:157
+#: src/command/loadfeedlistcommand.cpp:159
 #, kde-kuit-format
 msgid "<qt><p>XML parsing error in line %1, column %2 of %3:</p><p>%4</p></qt>"
 msgstr ""
 "<qt><p>Erreur d'analyse XML à la ligne %1, colonne %2 sur %3 :</p><p>%4</p></"
 "qt>"
 
-#: src/command/loadfeedlistcommand.cpp:164
+#: src/command/loadfeedlistcommand.cpp:166
 #, kde-format
 msgid ""
 "<qt>The standard feed list is corrupted (invalid XML). A backup was created:"
@@ -1857,7 +1878,7 @@ msgstr ""
 "<qt>La liste de flux standard est corrompue (XML non valable). Une "
 "sauvegarde a été créée : <p><b>%1</b></p></qt>"
 
-#: src/command/loadfeedlistcommand.cpp:168
+#: src/command/loadfeedlistcommand.cpp:170
 #, kde-format
 msgid ""
 "<qt>The standard feed list is corrupted (invalid XML). Could not create a "
@@ -2105,7 +2126,9 @@ msgstr ""
 "lus ? </qt>"
 
 #: src/mainwidget.cpp:766
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Mark Feed as Read"
+msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "Marquer un flux comme lu"
 
@@ -2125,7 +2148,9 @@ msgstr ""
 "</qt>"
 
 #: src/mainwidget.cpp:773
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Mark Feeds as Read"
+msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "Marquer les flux comme lus"
 
@@ -2153,6 +2178,13 @@ msgstr[0] "<qt>Voulez-vous vraiment supprimer l'article sélectionné ?</qt>"
 msgstr[1] ""
 "<qt>Voulez-vous vraiment supprimer les %1 articles sélectionnés ?</qt>"
 
+#: src/mainwidget.cpp:1063
+#, fuzzy, kde-format
+#| msgid "Delete Article"
+msgctxt "@title:window"
+msgid "Delete Article"
+msgstr "Supprimer un article"
+
 #: src/mainwidget.cpp:1245
 #, kde-format
 msgid "Networking is available now."
@@ -2168,7 +2200,9 @@ msgstr ""
 "nouveau en appuyant sur %1.</qt>"
 
 #: src/mainwindow.cpp:124
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Hide menu bar"
+msgctxt "@title:window"
 msgid "Hide menu bar"
 msgstr "Masquer la barre de menus"
 

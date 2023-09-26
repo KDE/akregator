@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-21 00:45+0000\n"
+"POT-Creation-Date: 2023-09-26 01:46+0000\n"
 "PO-Revision-Date: 2023-03-16 16:57+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
@@ -98,7 +98,7 @@ msgstr "أرسل عنوان الملف"
 msgid "Send Link Address"
 msgstr "أرسل عنوان الوصلة"
 
-#: src/formatter/html/5.2/combinedview.html:87 src/mainwidget.cpp:1063
+#: src/formatter/html/5.2/combinedview.html:87
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:96
 #, kde-format
 msgid "Delete Article"
@@ -1554,7 +1554,7 @@ msgstr ""
 "رُفض الوصول: لا يمكن حفظ قائمة التلقيمات في <b>%1</b>. الرجاء تأكد من "
 "صلاحياتك."
 
-#: src/akregator_part.cpp:428 src/akregator_part.cpp:479
+#: src/akregator_part.cpp:428
 #, kde-format
 msgid "Write Error"
 msgstr "خطأ كتابة"
@@ -1565,7 +1565,9 @@ msgid "Could not import the file %1 (no valid OPML)"
 msgstr "لا يمكن استيراد الملف %1 (لا يوجد OPML صالح)"
 
 #: src/akregator_part.cpp:464 src/command/loadfeedlistcommand.cpp:71
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "OPML Parsing Error"
+msgctxt "@title:window"
 msgid "OPML Parsing Error"
 msgstr "خطأ في تحليل OPML"
 
@@ -1578,22 +1580,31 @@ msgstr ""
 "لا يمكن قراءة الملف %1، تأكد أنه موجود ومن أنه للمستخدم الحالي قادر على "
 "قراءته."
 
-#: src/akregator_part.cpp:469 src/command/loadfeedlistcommand.cpp:142
-#, kde-format
+#: src/akregator_part.cpp:469 src/command/loadfeedlistcommand.cpp:144
+#, fuzzy, kde-format
+#| msgid "Read Error"
+msgctxt "@title:window"
 msgid "Read Error"
 msgstr "خطأ قراءة"
 
-#: src/akregator_part.cpp:479
+#: src/akregator_part.cpp:480
 #, kde-format
 msgid "Access denied: cannot write to file %1. Please check your permissions."
 msgstr "رُفض الوصول: لا يمكن الكتابة للملف %1. تأكد من صلاحياتك."
 
-#: src/akregator_part.cpp:494 src/akregator_part.cpp:503
+#: src/akregator_part.cpp:481
+#, fuzzy, kde-format
+#| msgid "Write Error"
+msgctxt "@title:window"
+msgid "Write Error"
+msgstr "خطأ كتابة"
+
+#: src/akregator_part.cpp:496 src/akregator_part.cpp:505
 #, kde-format
 msgid "OPML Outlines (%1);;All Files (*)"
 msgstr "عناوين OPML (%1);;كل الملفات (*)"
 
-#: src/akregator_part.cpp:627
+#: src/akregator_part.cpp:629
 #, kde-format
 msgid "Imported Folder"
 msgstr "المجلد المستورد"
@@ -1690,7 +1701,9 @@ msgid "Are you sure you want to disable this introduction page?"
 msgstr "أمتأكد أنك تريد تعطيل صفحة المقدمة؟"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:377
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Disable Introduction Page"
+msgctxt "@title:window"
 msgid "Disable Introduction Page"
 msgstr "تعطيل صفحة المقدمة"
 
@@ -1700,7 +1713,9 @@ msgid "This web site is a malware, do you want to continue to show it?"
 msgstr "هذا الموقع برنامجُ تجسّس، أتريد المتابعة وعرضه؟"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:413
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Malware"
+msgctxt "@title:window"
 msgid "Malware"
 msgstr "برنامج تجسّس"
 
@@ -1711,7 +1726,9 @@ msgstr "الشّبكة معطوبة."
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:425
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:428
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Check Phishing Url"
+msgctxt "@title:window"
 msgid "Check Phishing Url"
 msgstr "افحص المسار المنتحل"
 
@@ -1747,7 +1764,9 @@ msgstr ""
 "<qt>أمتأكد من حذف مجلد <b>%1</b> بما فيه من تلقيمات ومجلدات فرعية؟</qt>"
 
 #: src/command/deletesubscriptioncommand.cpp:44
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Delete Folder"
+msgctxt "@title:window"
 msgid "Delete Folder"
 msgstr "احذف المجلد"
 
@@ -1762,7 +1781,9 @@ msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
 msgstr "<qt>أمتأكد من حذف التلقيم <b>%1</b>؟</qt>"
 
 #: src/command/deletesubscriptioncommand.cpp:68
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Delete Feed"
+msgctxt "@title:window"
 msgid "Delete Feed"
 msgstr "احذف التلقيم"
 
@@ -1804,24 +1825,24 @@ msgstr ""
 msgid "Opening Feed List..."
 msgstr "فتح قائمة التلقيمات..."
 
-#: src/command/loadfeedlistcommand.cpp:142
+#: src/command/loadfeedlistcommand.cpp:143
 #, kde-format
 msgid "<qt>Could not open feed list (%1) for reading.</qt>"
 msgstr "<qt>تعذر فتح قائمة التلقيمات (%1) للقراءة.</qt>"
 
-#: src/command/loadfeedlistcommand.cpp:155
+#: src/command/loadfeedlistcommand.cpp:157
 #, kde-format
 msgctxt "error message window caption"
 msgid "XML Parsing Error"
 msgstr "خطأ تحليل XML"
 
-#: src/command/loadfeedlistcommand.cpp:157
+#: src/command/loadfeedlistcommand.cpp:159
 #, kde-kuit-format
 msgid "<qt><p>XML parsing error in line %1, column %2 of %3:</p><p>%4</p></qt>"
 msgstr ""
 "<qt><p>خطأ في تحليل اكس ام ال في السطر %1، العمود %2 من %3:</p><p>%4</p></qt>"
 
-#: src/command/loadfeedlistcommand.cpp:164
+#: src/command/loadfeedlistcommand.cpp:166
 #, kde-format
 msgid ""
 "<qt>The standard feed list is corrupted (invalid XML). A backup was created:"
@@ -1830,7 +1851,7 @@ msgstr ""
 "<qt>قائمة التلقيمات القياسية معطوبة (XML غير صالح). أُنشئت نسخة احتياطية:"
 "<p><b>%1</b></p></qt>"
 
-#: src/command/loadfeedlistcommand.cpp:168
+#: src/command/loadfeedlistcommand.cpp:170
 #, kde-format
 msgid ""
 "<qt>The standard feed list is corrupted (invalid XML). Could not create a "
@@ -2098,7 +2119,9 @@ msgid ""
 msgstr "<qt>هل تريد أن تعلم <b>جميع المقالات في التلقيم</b> كمقروءة؟</qt>"
 
 #: src/mainwidget.cpp:766
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Mark Feed as Read"
+msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "علّم التلقيم مقروءًا"
 
@@ -2115,7 +2138,9 @@ msgid ""
 msgstr "<qt>هل تريد أن تعلم <b>جميع التلقيمات في المجلد</b> كمقروءة؟</qt>"
 
 #: src/mainwidget.cpp:773
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Mark Feeds as Read"
+msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "علّم التلقيمات مقروءة"
 
@@ -2146,6 +2171,13 @@ msgstr[3] "<qt>أمتأكد من أنك تريد حذف ال%1 مقالات ال
 msgstr[4] "<qt>أمتأكد من أنك تريد حذف ال%1 مقالة المُحدّدة؟</qt>"
 msgstr[5] "<qt>أمتأكد من أنك تريد حذف ال%1 مقالة المُحدّدة؟</qt>"
 
+#: src/mainwidget.cpp:1063
+#, fuzzy, kde-format
+#| msgid "Delete Article"
+msgctxt "@title:window"
+msgid "Delete Article"
+msgstr "احذف المقالة"
+
 #: src/mainwidget.cpp:1245
 #, kde-format
 msgid "Networking is available now."
@@ -2159,7 +2191,9 @@ msgid ""
 msgstr "<qt>سيُخفي هذا شريط القوائم بالكامل. يمكنك إظهاره ثانيةً بضغط %1.</qt>"
 
 #: src/mainwindow.cpp:124
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Hide menu bar"
+msgctxt "@title:window"
 msgid "Hide menu bar"
 msgstr "أخفِ شريط القوائم"
 

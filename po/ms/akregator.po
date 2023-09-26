@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Mimos\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-21 00:45+0000\n"
+"POT-Creation-Date: 2023-09-26 01:46+0000\n"
 "PO-Revision-Date: 2005-10-12 11:13+0800\n"
 "Last-Translator: MIMOS <opensource@mimos.my>\n"
 "Language-Team: Malay <kedidiemas@yahoogroups.com>\n"
@@ -94,7 +94,7 @@ msgstr "Alamat Hantar &Pautan..."
 msgid "Send Link Address"
 msgstr "Alamat Hantar &Pautan..."
 
-#: src/formatter/html/5.2/combinedview.html:87 src/mainwidget.cpp:1063
+#: src/formatter/html/5.2/combinedview.html:87
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:96
 #, kde-format
 msgid "Delete Article"
@@ -1555,7 +1555,7 @@ msgid ""
 "permissions."
 msgstr "Akses ditolak: tidak dapat menyimpan senarai suapan (%1)"
 
-#: src/akregator_part.cpp:428 src/akregator_part.cpp:479
+#: src/akregator_part.cpp:428
 #, fuzzy, kde-format
 msgid "Write Error"
 msgstr "Ralat menulis"
@@ -1566,7 +1566,9 @@ msgid "Could not import the file %1 (no valid OPML)"
 msgstr "Tidak dapat mengimport fail  %1 (tiada OPML yang sah)"
 
 #: src/akregator_part.cpp:464 src/command/loadfeedlistcommand.cpp:71
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "OPML Parsing Error"
+msgctxt "@title:window"
 msgid "OPML Parsing Error"
 msgstr "Ralat Kaji Hurai OPML "
 
@@ -1579,24 +1581,32 @@ msgstr ""
 "Fail %1 tidak dapat dibaca, semak sama ada ia wujud atau boleh dibaca untuk "
 "pengguna semasa."
 
-#: src/akregator_part.cpp:469 src/command/loadfeedlistcommand.cpp:142
-#, kde-format
+#: src/akregator_part.cpp:469 src/command/loadfeedlistcommand.cpp:144
+#, fuzzy, kde-format
+#| msgid "Read Error"
+msgctxt "@title:window"
 msgid "Read Error"
 msgstr "Ralat Bacaan"
 
-#: src/akregator_part.cpp:479
+#: src/akregator_part.cpp:480
 #, fuzzy, kde-format
 #| msgid "Access denied: cannot write to file %1"
 msgid "Access denied: cannot write to file %1. Please check your permissions."
 msgstr "Akses ditolak: tidak dapat menulis ke fail %1"
 
-#: src/akregator_part.cpp:494 src/akregator_part.cpp:503
+#: src/akregator_part.cpp:481
+#, fuzzy, kde-format
+msgctxt "@title:window"
+msgid "Write Error"
+msgstr "Ralat menulis"
+
+#: src/akregator_part.cpp:496 src/akregator_part.cpp:505
 #, fuzzy, kde-format
 #| msgid "OPML Outlines (*.opml, *.xml)"
 msgid "OPML Outlines (%1);;All Files (*)"
 msgstr "Garis kasar OPML  (*.opml, *.xml)"
 
-#: src/akregator_part.cpp:627
+#: src/akregator_part.cpp:629
 #, kde-format
 msgid "Imported Folder"
 msgstr "Folder yang Diimport"
@@ -1706,7 +1716,9 @@ msgid "Are you sure you want to disable this introduction page?"
 msgstr "Anda pasti ingin menyahaktifkan halaman pengenalan ini?"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:377
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Disable Introduction Page"
+msgctxt "@title:window"
 msgid "Disable Introduction Page"
 msgstr "Nyahaktifkan Halaman Pengenalan"
 
@@ -1717,6 +1729,7 @@ msgstr ""
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:413
 #, kde-format
+msgctxt "@title:window"
 msgid "Malware"
 msgstr ""
 
@@ -1728,6 +1741,7 @@ msgstr ""
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:425
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:428
 #, kde-format
+msgctxt "@title:window"
 msgid "Check Phishing Url"
 msgstr ""
 
@@ -1765,7 +1779,9 @@ msgstr ""
 "subfoldernya?</qt>"
 
 #: src/command/deletesubscriptioncommand.cpp:44
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Delete Folder"
+msgctxt "@title:window"
 msgid "Delete Folder"
 msgstr "Hapuskan Folder"
 
@@ -1780,7 +1796,9 @@ msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
 msgstr "<qt>Anda pasti ingin menghapuskan suapan<br><b>%1</b>?</qt>"
 
 #: src/command/deletesubscriptioncommand.cpp:68
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Delete Feed"
+msgctxt "@title:window"
 msgid "Delete Feed"
 msgstr "Hapuskan Suapan"
 
@@ -1823,24 +1841,24 @@ msgstr ""
 msgid "Opening Feed List..."
 msgstr "Membuka Senarai Suapan"
 
-#: src/command/loadfeedlistcommand.cpp:142
+#: src/command/loadfeedlistcommand.cpp:143
 #, kde-format
 msgid "<qt>Could not open feed list (%1) for reading.</qt>"
 msgstr ""
 
-#: src/command/loadfeedlistcommand.cpp:155
+#: src/command/loadfeedlistcommand.cpp:157
 #, fuzzy, kde-format
 #| msgid "XML Parsing Error"
 msgctxt "error message window caption"
 msgid "XML Parsing Error"
 msgstr "Ralat Kaji Hurai XML"
 
-#: src/command/loadfeedlistcommand.cpp:157
+#: src/command/loadfeedlistcommand.cpp:159
 #, kde-kuit-format
 msgid "<qt><p>XML parsing error in line %1, column %2 of %3:</p><p>%4</p></qt>"
 msgstr ""
 
-#: src/command/loadfeedlistcommand.cpp:164
+#: src/command/loadfeedlistcommand.cpp:166
 #, fuzzy, kde-format
 msgid ""
 "<qt>The standard feed list is corrupted (invalid XML). A backup was created:"
@@ -1849,7 +1867,7 @@ msgstr ""
 "<qt>Senarai suapan piawai rosak( XML tidak sah). sandaran telah dicipta:"
 "<p><b>%2</b></p></qt>"
 
-#: src/command/loadfeedlistcommand.cpp:168
+#: src/command/loadfeedlistcommand.cpp:170
 #, fuzzy, kde-format
 msgid ""
 "<qt>The standard feed list is corrupted (invalid XML). Could not create a "
@@ -2107,6 +2125,7 @@ msgstr "<qt>Anda pasti ingin menghapuskan suapan<br><b>%1</b>?</qt>"
 #: src/mainwidget.cpp:766
 #, fuzzy, kde-format
 #| msgid "&Mark Feed as Read"
+msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "&Tandakan Suapan Sebagai Sudah Baca"
 
@@ -2125,6 +2144,7 @@ msgstr "<qt>Anda pasti ingin menghapuskan suapan ini?</qt>"
 
 #: src/mainwidget.cpp:773
 #, fuzzy, kde-format
+msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "&Tandakan Suapan Sebagai Sudah Baca"
 
@@ -2151,6 +2171,13 @@ msgid_plural ""
 msgstr[0] "<qt>Anda pasti ingin menghapuskan %2 artikel yang dipilih?</qt>"
 msgstr[1] "<qt>Anda pasti ingin menghapuskan %2 artikel yang dipilih?</qt>"
 
+#: src/mainwidget.cpp:1063
+#, fuzzy, kde-format
+#| msgid "Delete Article"
+msgctxt "@title:window"
+msgid "Delete Article"
+msgstr "Hapuskan Artikel"
+
 #: src/mainwidget.cpp:1245
 #, kde-format
 msgid "Networking is available now."
@@ -2165,6 +2192,7 @@ msgstr ""
 
 #: src/mainwindow.cpp:124
 #, kde-format
+msgctxt "@title:window"
 msgid "Hide menu bar"
 msgstr ""
 
