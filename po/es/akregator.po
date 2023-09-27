@@ -10,7 +10,7 @@
 # Franco Mariluis <fmariluis@gmail.com>, 2008, 2009.
 # Dario Andres Rodriguez <andresbajotierra@gmail.com>, 2009.
 # Dario Andres Rodriguez <andrebajotierra@gmail.com>, 2009.
-# Eloy Cuadra <ecuadra@eloihr.net>, 2009, 2010, 2019, 2020, 2021, 2022.
+# SPDX-FileCopyrightText: 2009, 2010, 2019, 2020, 2021, 2022, 2023 Eloy Cuadra <ecuadra@eloihr.net>
 # Javier Viñal <fjvinal@gmail.com>, 2010, 2012, 2013.
 # Javier Vinal <fjvinalgmail.com>, 2010, 2011, 2012, 2014, 2015, 2016, 2017, 2018, 2019.
 msgid ""
@@ -18,14 +18,14 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-09-26 01:46+0000\n"
-"PO-Revision-Date: 2022-04-26 20:53+0200\n"
+"PO-Revision-Date: 2023-09-27 00:52+0200\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 22.04.0\n"
+"X-Generator: Lokalize 23.08.1\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #, kde-format
@@ -1552,8 +1552,8 @@ msgid ""
 "Access denied: Cannot save feed list to <b>%1</b>. Please check your "
 "permissions."
 msgstr ""
-"Acceso denegado: no se puede guardar la lista de fuentes <b>%1</b>. Por "
-"favor, compruebe sus permisos."
+"Acceso denegado: no se puede guardar la lista de fuentes <b>%1</b>. "
+"Compruebe sus permisos."
 
 #: src/akregator_part.cpp:428
 #, kde-format
@@ -1566,11 +1566,10 @@ msgid "Could not import the file %1 (no valid OPML)"
 msgstr "No se ha podido importar el archivo %1 (OPML no válido)"
 
 #: src/akregator_part.cpp:464 src/command/loadfeedlistcommand.cpp:71
-#, fuzzy, kde-format
-#| msgid "OPML Parsing Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "OPML Parsing Error"
-msgstr "Error al analizar el OPML"
+msgstr "Error al analizar OPML"
 
 #: src/akregator_part.cpp:468
 #, kde-format
@@ -1582,8 +1581,7 @@ msgstr ""
 "el usuario actual."
 
 #: src/akregator_part.cpp:469 src/command/loadfeedlistcommand.cpp:144
-#, fuzzy, kde-format
-#| msgid "Read Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "Read Error"
 msgstr "Error de lectura"
@@ -1592,12 +1590,11 @@ msgstr "Error de lectura"
 #, kde-format
 msgid "Access denied: cannot write to file %1. Please check your permissions."
 msgstr ""
-"Acceso denegado: no se puede escribir en el archivo %1. Por favor, compruebe "
-"sus permisos."
+"Acceso denegado: no se puede escribir en el archivo %1. Compruebe sus "
+"permisos."
 
 #: src/akregator_part.cpp:481
-#, fuzzy, kde-format
-#| msgid "Write Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "Write Error"
 msgstr "Error de escritura"
@@ -1705,8 +1702,7 @@ msgid "Are you sure you want to disable this introduction page?"
 msgstr "¿Está seguro de que desea desactivar esta página de introducción?"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:377
-#, fuzzy, kde-format
-#| msgid "Disable Introduction Page"
+#, kde-format
 msgctxt "@title:window"
 msgid "Disable Introduction Page"
 msgstr "Desactivar la página de introducción"
@@ -1715,14 +1711,13 @@ msgstr "Desactivar la página de introducción"
 #, kde-format
 msgid "This web site is a malware, do you want to continue to show it?"
 msgstr ""
-"Este sitio web contiene programas malignos, ¿quiere continuar mostrándolo?"
+"Este sitio web contiene programas maliciosos. ¿Quiere continuar mostrándolo?"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:413
-#, fuzzy, kde-format
-#| msgid "Malware"
+#, kde-format
 msgctxt "@title:window"
 msgid "Malware"
-msgstr "Programas malignos"
+msgstr "Programas maliciosos"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:425
 #, kde-format
@@ -1731,11 +1726,10 @@ msgstr "La red está caída."
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:425
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:428
-#, fuzzy, kde-format
-#| msgid "Check Phishing Url"
+#, kde-format
 msgctxt "@title:window"
 msgid "Check Phishing Url"
-msgstr "Comprobar Url engañosa"
+msgstr "Comprobar URL engañosa"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:428
 #, kde-format
@@ -1771,8 +1765,7 @@ msgstr ""
 "subcarpetas?</qt>"
 
 #: src/command/deletesubscriptioncommand.cpp:44
-#, fuzzy, kde-format
-#| msgid "Delete Folder"
+#, kde-format
 msgctxt "@title:window"
 msgid "Delete Folder"
 msgstr "Borrar carpeta"
@@ -1788,8 +1781,7 @@ msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
 msgstr "<qt>¿Está seguro de que quiere borrar la fuente <b>%1</b>?</qt>"
 
 #: src/command/deletesubscriptioncommand.cpp:68
-#, fuzzy, kde-format
-#| msgid "Delete Feed"
+#, kde-format
 msgctxt "@title:window"
 msgid "Delete Feed"
 msgstr "Borrar fuente"
@@ -2107,8 +2099,7 @@ msgstr ""
 "leídos?</qt>"
 
 #: src/mainwidget.cpp:766
-#, fuzzy, kde-format
-#| msgid "Mark Feed as Read"
+#, kde-format
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "Marcar fuente como leída"
@@ -2129,8 +2120,7 @@ msgstr ""
 "leídas?</qt>"
 
 #: src/mainwidget.cpp:773
-#, fuzzy, kde-format
-#| msgid "Mark Feeds as Read"
+#, kde-format
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "Marcar fuentes como leídas"
@@ -2161,8 +2151,7 @@ msgstr[1] ""
 "<qt>¿Está seguro de que quiere borrar los %1 artículos seleccionados?</qt>"
 
 #: src/mainwidget.cpp:1063
-#, fuzzy, kde-format
-#| msgid "Delete Article"
+#, kde-format
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "Borrar artículo"
@@ -2182,8 +2171,7 @@ msgstr ""
 "pulsando %1.</qt>"
 
 #: src/mainwindow.cpp:124
-#, fuzzy, kde-format
-#| msgid "Hide menu bar"
+#, kde-format
 msgctxt "@title:window"
 msgid "Hide menu bar"
 msgstr "Ocultar la barra de menú"
@@ -2194,7 +2182,7 @@ msgid ""
 "Could not find the Akregator part; please check your installation.\n"
 "%1"
 msgstr ""
-"No se ha podido encontrar el componente de Akregator; por favor compruebe su "
+"No se ha podido encontrar el componente de Akregator; Compruebe su "
 "instalación.\n"
 "%1"
 

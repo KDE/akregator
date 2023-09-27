@@ -6,13 +6,13 @@
 # Ivan Petrouchtchak <fr.ivan@ukrainian-orthodox.org>, 2004, 2005, 2006, 2007, 2008.
 # Eugene Onischenko <oneugene@ukr.net>, 2005.
 # Andriy Rysin <rysin@kde.org>, 2006.
-# Yuri Chornoivan <yurchor@ukr.net>, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022.
+# Yuri Chornoivan <yurchor@ukr.net>, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-09-26 01:46+0000\n"
-"PO-Revision-Date: 2022-04-26 08:33+0300\n"
+"PO-Revision-Date: 2023-09-26 18:50+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "Language: uk\n"
@@ -1577,8 +1577,7 @@ msgid "Could not import the file %1 (no valid OPML)"
 msgstr "Не вдалось імпортувати файл %1 (немає чинної OPML)"
 
 #: src/akregator_part.cpp:464 src/command/loadfeedlistcommand.cpp:71
-#, fuzzy, kde-format
-#| msgid "OPML Parsing Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "OPML Parsing Error"
 msgstr "Помилка аналізу OPML"
@@ -1593,8 +1592,7 @@ msgstr ""
 "поточному користувачу."
 
 #: src/akregator_part.cpp:469 src/command/loadfeedlistcommand.cpp:144
-#, fuzzy, kde-format
-#| msgid "Read Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "Read Error"
 msgstr "Помилка читання"
@@ -1607,8 +1605,7 @@ msgstr ""
 "ваші дозволи."
 
 #: src/akregator_part.cpp:481
-#, fuzzy, kde-format
-#| msgid "Write Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "Write Error"
 msgstr "Помилка запису"
@@ -1716,11 +1713,10 @@ msgid "Are you sure you want to disable this introduction page?"
 msgstr "Ви впевнені, що хочете вимкнути цю вступну сторінку?"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:377
-#, fuzzy, kde-format
-#| msgid "Disable Introduction Page"
+#, kde-format
 msgctxt "@title:window"
 msgid "Disable Introduction Page"
-msgstr "Вимкнути вступну сторінку"
+msgstr "Вимикання вступної сторінки"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:412
 #, kde-format
@@ -1730,8 +1726,7 @@ msgstr ""
 "продовжити його перегляд попри це?"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:413
-#, fuzzy, kde-format
-#| msgid "Malware"
+#, kde-format
 msgctxt "@title:window"
 msgid "Malware"
 msgstr "Зловмисне програмне забезпечення"
@@ -1743,8 +1738,7 @@ msgstr "Мережа не працює."
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:425
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:428
-#, fuzzy, kde-format
-#| msgid "Check Phishing Url"
+#, kde-format
 msgctxt "@title:window"
 msgid "Check Phishing Url"
 msgstr "Перевірка шахрайських адрес"
@@ -1782,11 +1776,10 @@ msgstr ""
 "підтеками?</qt>"
 
 #: src/command/deletesubscriptioncommand.cpp:44
-#, fuzzy, kde-format
-#| msgid "Delete Folder"
+#, kde-format
 msgctxt "@title:window"
 msgid "Delete Folder"
-msgstr "Вилучити теку"
+msgstr "Вилучення теки"
 
 #: src/command/deletesubscriptioncommand.cpp:61
 #, kde-format
@@ -1799,11 +1792,10 @@ msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
 msgstr "<qt>Ви впевнені, що хочете вилучити подачу <b>%1</b>?</qt>"
 
 #: src/command/deletesubscriptioncommand.cpp:68
-#, fuzzy, kde-format
-#| msgid "Delete Feed"
+#, kde-format
 msgctxt "@title:window"
 msgid "Delete Feed"
-msgstr "Вилучити подачу"
+msgstr "Вилучення подачі"
 
 #: src/command/importfeedlistcommand.cpp:48
 #, kde-format
@@ -2129,11 +2121,10 @@ msgstr ""
 "</qt>"
 
 #: src/mainwidget.cpp:766
-#, fuzzy, kde-format
-#| msgid "Mark Feed as Read"
+#, kde-format
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
-msgstr "Позначити подачу як прочитану"
+msgstr "Позначення подачі як прочитаної"
 
 #: src/mainwidget.cpp:769
 #, kde-format
@@ -2151,11 +2142,10 @@ msgstr ""
 "qt>"
 
 #: src/mainwidget.cpp:773
-#, fuzzy, kde-format
-#| msgid "Mark Feeds as Read"
+#, kde-format
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
-msgstr "Позначити подачі як прочитані"
+msgstr "Позначення подач як прочитаних"
 
 #: src/mainwidget.cpp:837 src/mainwidget.cpp:846 src/mainwidget.cpp:1248
 #, kde-format
@@ -2183,11 +2173,10 @@ msgstr[2] "<qt>Ви впевнені, що хочете вилучити %1 ви
 msgstr[3] "<qt>Ви впевнені, що хочете вилучити %1 вибрану статтю?</qt>"
 
 #: src/mainwidget.cpp:1063
-#, fuzzy, kde-format
-#| msgid "Delete Article"
+#, kde-format
 msgctxt "@title:window"
 msgid "Delete Article"
-msgstr "Вилучити статтю"
+msgstr "Вилучення статті"
 
 #: src/mainwidget.cpp:1245
 #, kde-format
@@ -2204,11 +2193,10 @@ msgstr ""
 "відновити її показ, скористайтеся натисканням комбінації клавіш %1.</qt>"
 
 #: src/mainwindow.cpp:124
-#, fuzzy, kde-format
-#| msgid "Hide menu bar"
+#, kde-format
 msgctxt "@title:window"
 msgid "Hide menu bar"
-msgstr "Приховати смужку меню"
+msgstr "Приховування смужки меню"
 
 #: src/mainwindow.cpp:153
 #, kde-format

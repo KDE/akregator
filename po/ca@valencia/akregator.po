@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-09-26 01:46+0000\n"
-"PO-Revision-Date: 2023-09-25 12:33+0200\n"
+"PO-Revision-Date: 2023-09-26 12:18+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca@valencia\n"
@@ -1559,8 +1559,7 @@ msgid "Could not import the file %1 (no valid OPML)"
 msgstr "No s'ha pogut importar el fitxer %1 (OPML no vàlid)"
 
 #: src/akregator_part.cpp:464 src/command/loadfeedlistcommand.cpp:71
-#, fuzzy, kde-format
-#| msgid "OPML Parsing Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "OPML Parsing Error"
 msgstr "S'ha produït un error en analitzar l'OPML"
@@ -1575,8 +1574,7 @@ msgstr ""
 "actual el pot llegir."
 
 #: src/akregator_part.cpp:469 src/command/loadfeedlistcommand.cpp:144
-#, fuzzy, kde-format
-#| msgid "Read Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "Read Error"
 msgstr "S'ha produït un error de lectura"
@@ -1589,8 +1587,7 @@ msgstr ""
 "permisos."
 
 #: src/akregator_part.cpp:481
-#, fuzzy, kde-format
-#| msgid "Write Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "Write Error"
 msgstr "S'ha produït un error d'escriptura"
@@ -1698,8 +1695,7 @@ msgid "Are you sure you want to disable this introduction page?"
 msgstr "Segur que voleu desactivar esta pàgina d'introducció?"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:377
-#, fuzzy, kde-format
-#| msgid "Disable Introduction Page"
+#, kde-format
 msgctxt "@title:window"
 msgid "Disable Introduction Page"
 msgstr "Desactiva la pàgina d'introducció"
@@ -1710,8 +1706,7 @@ msgid "This web site is a malware, do you want to continue to show it?"
 msgstr "Este lloc web és maliciós. Voleu continuar mostrant-lo?"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:413
-#, fuzzy, kde-format
-#| msgid "Malware"
+#, kde-format
 msgctxt "@title:window"
 msgid "Malware"
 msgstr "Programari maliciós"
@@ -1723,8 +1718,7 @@ msgstr "La xarxa no funciona."
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:425
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:428
-#, fuzzy, kde-format
-#| msgid "Check Phishing Url"
+#, kde-format
 msgctxt "@title:window"
 msgid "Check Phishing Url"
 msgstr "Comprovació d'URL de pesca"
@@ -1763,11 +1757,10 @@ msgstr ""
 "i subcarpetes?</qt>"
 
 #: src/command/deletesubscriptioncommand.cpp:44
-#, fuzzy, kde-format
-#| msgid "Delete Folder"
+#, kde-format
 msgctxt "@title:window"
 msgid "Delete Folder"
-msgstr "Suprimix la carpeta"
+msgstr "Supressió de carpeta"
 
 #: src/command/deletesubscriptioncommand.cpp:61
 #, kde-format
@@ -1780,11 +1773,10 @@ msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
 msgstr "<qt>Segur que voleu suprimir la font <b>%1</b>?</qt>"
 
 #: src/command/deletesubscriptioncommand.cpp:68
-#, fuzzy, kde-format
-#| msgid "Delete Feed"
+#, kde-format
 msgctxt "@title:window"
 msgid "Delete Feed"
-msgstr "Suprimix la font"
+msgstr "Supressió de font"
 
 #: src/command/importfeedlistcommand.cpp:48
 #, kde-format
@@ -2098,8 +2090,7 @@ msgstr ""
 "</qt>"
 
 #: src/mainwidget.cpp:766
-#, fuzzy, kde-format
-#| msgid "Mark Feed as Read"
+#, kde-format
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "Marca la font com a llegida"
@@ -2118,8 +2109,7 @@ msgstr ""
 "<qt>Segur que voleu <b>totes les fonts en la carpeta</b> com a llegides?</qt>"
 
 #: src/mainwidget.cpp:773
-#, fuzzy, kde-format
-#| msgid "Mark Feeds as Read"
+#, kde-format
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "Marca les fonts com a llegides"
@@ -2148,11 +2138,10 @@ msgstr[0] "<qt>Segur que voleu suprimir l'article seleccionat?</qt>"
 msgstr[1] "<qt>Segur que voleu suprimir els %1 articles seleccionats?</qt>"
 
 #: src/mainwidget.cpp:1063
-#, fuzzy, kde-format
-#| msgid "Delete Article"
+#, kde-format
 msgctxt "@title:window"
 msgid "Delete Article"
-msgstr "Suprimix l'article"
+msgstr "Supressió d'article"
 
 #: src/mainwidget.cpp:1245
 #, kde-format
@@ -2169,11 +2158,10 @@ msgstr ""
 "prement %1.</qt>"
 
 #: src/mainwindow.cpp:124
-#, fuzzy, kde-format
-#| msgid "Hide menu bar"
+#, kde-format
 msgctxt "@title:window"
 msgid "Hide menu bar"
-msgstr "Oculta la barra de menús"
+msgstr "Ocultació de la barra de menús"
 
 #: src/mainwindow.cpp:153
 #, kde-format

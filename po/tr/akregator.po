@@ -14,13 +14,13 @@
 # sinan, 2005.
 # Volkan Gezer <volkangezer@gmail.com>, 2013-2014, 2017.
 # Kaan Ozdincer <kaanozdincer@gmail.com>, 2014.
-# Emir SARI <emir_sari@icloud.com>, 2022, 2023.
+# SPDX-FileCopyrightText: 2022, 2023 Emir SARI <emir_sari@icloud.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kdepim-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-09-26 01:46+0000\n"
-"PO-Revision-Date: 2023-09-03 21:38+0300\n"
+"PO-Revision-Date: 2023-09-26 06:14+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -28,7 +28,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 23.11.70\n"
+"X-Generator: Lokalize 23.08.1\n"
 "(http: //www.transifex.com/projects/p/kdepim-k-tr/language/tr/)\n"
 
 #, kde-format
@@ -1566,8 +1566,7 @@ msgid "Could not import the file %1 (no valid OPML)"
 msgstr "%1 dosyası alınamadı (Geçerli OPML yok)"
 
 #: src/akregator_part.cpp:464 src/command/loadfeedlistcommand.cpp:71
-#, fuzzy, kde-format
-#| msgid "OPML Parsing Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "OPML Parsing Error"
 msgstr "OPML Ayrıştırma Hatası"
@@ -1582,11 +1581,10 @@ msgstr ""
 "kullanıcının okuma izninin olup olmadığını denetleyin."
 
 #: src/akregator_part.cpp:469 src/command/loadfeedlistcommand.cpp:144
-#, fuzzy, kde-format
-#| msgid "Read Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "Read Error"
-msgstr "Okuma hatası"
+msgstr "Okuma Hatası"
 
 #: src/akregator_part.cpp:480
 #, kde-format
@@ -1595,11 +1593,10 @@ msgstr ""
 "Erişim engellendi: %1 dosyasına yazılamadı. Lütfen izinlerinizi denetleyin."
 
 #: src/akregator_part.cpp:481
-#, fuzzy, kde-format
-#| msgid "Write Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "Write Error"
-msgstr "Yazma hatası"
+msgstr "Yazma Hatası"
 
 #: src/akregator_part.cpp:496 src/akregator_part.cpp:505
 #, kde-format
@@ -1703,8 +1700,7 @@ msgid "Are you sure you want to disable this introduction page?"
 msgstr "Bu giriş sayfasını pasifleştirmek istediğinizden emin misiniz?"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:377
-#, fuzzy, kde-format
-#| msgid "Disable Introduction Page"
+#, kde-format
 msgctxt "@title:window"
 msgid "Disable Introduction Page"
 msgstr "Giriş Sayfasını Devre Dışı Bırak"
@@ -1717,8 +1713,7 @@ msgstr ""
 "istiyor musunuz?"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:413
-#, fuzzy, kde-format
-#| msgid "Malware"
+#, kde-format
 msgctxt "@title:window"
 msgid "Malware"
 msgstr "Zararlı Yazılım"
@@ -1730,11 +1725,10 @@ msgstr "Ağ bozuk."
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:425
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:428
-#, fuzzy, kde-format
-#| msgid "Check Phishing Url"
+#, kde-format
 msgctxt "@title:window"
 msgid "Check Phishing Url"
-msgstr "Kimlik Avı URL'sini denetle"
+msgstr "Kimlik Avı URL'sini Denetle"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:428
 #, kde-format
@@ -1770,8 +1764,7 @@ msgstr ""
 "klasörleri silmek istiyor musunuz?</qt>"
 
 #: src/command/deletesubscriptioncommand.cpp:44
-#, fuzzy, kde-format
-#| msgid "Delete Folder"
+#, kde-format
 msgctxt "@title:window"
 msgid "Delete Folder"
 msgstr "Klasörü Sil"
@@ -1787,8 +1780,7 @@ msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
 msgstr "<qt><b>%1</b> beslemesini gerçekten silmek istiyor musunuz?</qt>"
 
 #: src/command/deletesubscriptioncommand.cpp:68
-#, fuzzy, kde-format
-#| msgid "Delete Feed"
+#, kde-format
 msgctxt "@title:window"
 msgid "Delete Feed"
 msgstr "Beslemeyi Sil"
@@ -2106,8 +2098,7 @@ msgstr ""
 "emin misiniz?</qt>"
 
 #: src/mainwidget.cpp:766
-#, fuzzy, kde-format
-#| msgid "Mark Feed as Read"
+#, kde-format
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "Beslemeyi Okundu Olarak İmle"
@@ -2129,8 +2120,7 @@ msgstr ""
 "emin misiniz?</qt>"
 
 #: src/mainwidget.cpp:773
-#, fuzzy, kde-format
-#| msgid "Mark Feeds as Read"
+#, kde-format
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "Beslemeleri Okundu Olarak İmle"
@@ -2159,8 +2149,7 @@ msgstr[0] "<qt>Seçili yazıyı silmek istediğinizden emin misiniz?</qt>"
 msgstr[1] "<qt>Seçili %1 yazıyı silmek istediğinizden emin misiniz?</qt>"
 
 #: src/mainwidget.cpp:1063
-#, fuzzy, kde-format
-#| msgid "Delete Article"
+#, kde-format
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "Yazıyı Sil"
@@ -2180,11 +2169,10 @@ msgstr ""
 "gösterebilirsiniz.</qt>"
 
 #: src/mainwindow.cpp:124
-#, fuzzy, kde-format
-#| msgid "Hide menu bar"
+#, kde-format
 msgctxt "@title:window"
 msgid "Hide menu bar"
-msgstr "Menu çubuğunu gizle"
+msgstr "Menü Çubuğunu Gizle"
 
 #: src/mainwindow.cpp:153
 #, kde-format

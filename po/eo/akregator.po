@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-09-26 01:46+0000\n"
-"PO-Revision-Date: 2023-05-03 06:40+0100\n"
+"PO-Revision-Date: 2023-09-26 20:18+0100\n"
 "Last-Translator: Oliver Kellogg <okellogg@users.sourceforge.net>\n"
 "Language-Team: Esperanto <kde-i18n-eo@kde.org>\n"
 "Language: eo\n"
@@ -1533,11 +1533,10 @@ msgid "Could not import the file %1 (no valid OPML)"
 msgstr "Ne eblis importi la dosieron %1 (nevalida OPML)"
 
 #: src/akregator_part.cpp:464 src/command/loadfeedlistcommand.cpp:71
-#, fuzzy, kde-format
-#| msgid "OPML Parsing Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "OPML Parsing Error"
-msgstr "OPML foliuma eraro"
+msgstr "OPML-Analiza Eraro"
 
 #: src/akregator_part.cpp:468
 #, kde-format
@@ -1549,28 +1548,27 @@ msgstr ""
 "legebla por la aktuala uzanto."
 
 #: src/akregator_part.cpp:469 src/command/loadfeedlistcommand.cpp:144
-#, fuzzy, kde-format
-#| msgid "Read Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "Read Error"
-msgstr "Lega eraro"
+msgstr "Lega Eraro"
 
 #: src/akregator_part.cpp:480
 #, kde-format
 msgid "Access denied: cannot write to file %1. Please check your permissions."
 msgstr ""
+"Aliro neita: ne eblas skribi al dosiero %1. Bv kontroli viajn permesojn."
 
 #: src/akregator_part.cpp:481
-#, fuzzy, kde-format
-#| msgid "Write Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "Write Error"
-msgstr "Skriba eraro"
+msgstr "Skriba Eraro"
 
 #: src/akregator_part.cpp:496 src/akregator_part.cpp:505
 #, kde-format
 msgid "OPML Outlines (%1);;All Files (*)"
-msgstr ""
+msgstr "OPML-Skizoj (%1);;Ĉiuj Dosieroj (*)"
 
 #: src/akregator_part.cpp:629
 #, kde-format
@@ -1580,17 +1578,17 @@ msgstr "Importitaj dosierujoj"
 #: src/articlejobs.cpp:184
 #, kde-format
 msgid "The feed to be listed was already removed."
-msgstr ""
+msgstr "La fluo listigenda jam estis forigita."
 
 #: src/articlelistview.cpp:156 src/subscription/subscriptionlistview.cpp:180
 #, kde-format
 msgid "Columns"
-msgstr ""
+msgstr "Kolumnoj"
 
 #: src/articlelistview.cpp:214
 #, kde-format
 msgid "No result found"
-msgstr ""
+msgstr "Trovis neniun rezulton"
 
 #: src/articlelistview.cpp:375
 #, kde-format
@@ -1670,39 +1668,38 @@ msgid "Are you sure you want to disable this introduction page?"
 msgstr "Ĉu vi certas, ke vi volas malfunkciigi tiun ĉi enkondukan paĝon?"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:377
-#, fuzzy, kde-format
-#| msgid "Disable Introduction Page"
+#, kde-format
 msgctxt "@title:window"
 msgid "Disable Introduction Page"
-msgstr "Malfunkciigu enkondukan paĝon"
+msgstr "Malŝalti Enkondukan Paĝon"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:412
 #, kde-format
 msgid "This web site is a malware, do you want to continue to show it?"
-msgstr ""
+msgstr "Ĉi tiu retejo estas fiprogramaro, ĉu vi volas plue montri ĝin?"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:413
 #, kde-format
 msgctxt "@title:window"
 msgid "Malware"
-msgstr ""
+msgstr "Malware"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:425
 #, kde-format
 msgid "The network is broken."
-msgstr ""
+msgstr "Le reto estas rompita."
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:425
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:428
 #, kde-format
 msgctxt "@title:window"
 msgid "Check Phishing Url"
-msgstr ""
+msgstr "Kontroli Phishing-URL"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:428
 #, kde-format
 msgid "The url %1 is not valid."
-msgstr ""
+msgstr "La URL %1 ne validas."
 
 #: src/command/createfoldercommand.cpp:47
 #, kde-format
@@ -1733,11 +1730,10 @@ msgstr ""
 "kaj subdosierujojn?</qt>"
 
 #: src/command/deletesubscriptioncommand.cpp:44
-#, fuzzy, kde-format
-#| msgid "Delete Folder"
+#, kde-format
 msgctxt "@title:window"
 msgid "Delete Folder"
-msgstr "Forviŝita dosierujo"
+msgstr "Forigi Dosierujon"
 
 #: src/command/deletesubscriptioncommand.cpp:61
 #, kde-format
@@ -1750,16 +1746,15 @@ msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
 msgstr "<qt>Ĉu vi certas, ke vi volas forviŝi la fluon <b>%1</b>?</qt>"
 
 #: src/command/deletesubscriptioncommand.cpp:68
-#, fuzzy, kde-format
-#| msgid "Delete Feed"
+#, kde-format
 msgctxt "@title:window"
 msgid "Delete Feed"
-msgstr "Forviŝi fluon"
+msgstr "Forigi Fluon"
 
 #: src/command/importfeedlistcommand.cpp:48
 #, kde-format
 msgid "Imported Feeds"
-msgstr ""
+msgstr "Importitaj Fluoj"
 
 #: src/command/importfeedlistcommand.cpp:77
 #, kde-format
@@ -2057,18 +2052,20 @@ msgid ""
 "<qt>Are you sure you want to mark <b>all articles in the feed</b> as read?</"
 "qt>"
 msgstr ""
+"<qt>Ĉu vi certas, ke vi volas marki <b>ĉiujn artikolojn en la fluo</b> kiel "
+"legitaj?</qt>"
 
 #: src/mainwidget.cpp:766
-#, fuzzy, kde-format
-#| msgid "Mark Feed as Read"
+#, kde-format
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
-msgstr "Marki fluon kiel legita"
+msgstr "Marki Fluon kiel Legita"
 
 #: src/mainwidget.cpp:769
 #, kde-format
 msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
 msgstr ""
+"<qt>Ĉu vi certas, ke vi volas marki <b>ĉiujn fluojn</b> kiel legitaj?</qt>"
 
 #: src/mainwidget.cpp:771
 #, kde-format
@@ -2076,18 +2073,19 @@ msgid ""
 "<qt>Are you sure you want to mark <b>all feeds in the folder</b> as read?</"
 "qt>"
 msgstr ""
+"<qt>Ĉu vi certas, ke vi volas marki <b>ĉiujn fluojn en la dosierujo</b> kiel "
+"legitaj?</qt>"
 
 #: src/mainwidget.cpp:773
-#, fuzzy, kde-format
-#| msgid "Mark Feeds as Read"
+#, kde-format
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
-msgstr "Marki fluojn kiel legitaj"
+msgstr "Marki Fluojn kiel Legitaj"
 
 #: src/mainwidget.cpp:837 src/mainwidget.cpp:846 src/mainwidget.cpp:1248
 #, kde-format
 msgid "Networking is not available."
-msgstr ""
+msgstr "Reto ne estas atingebla."
 
 #: src/mainwidget.cpp:854
 #, kde-format
@@ -2104,20 +2102,20 @@ msgstr "<qt>Ĉu vi certas voli forviŝi la artikolon <b>%1</b>?</qt>"
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
 msgid_plural ""
 "<qt>Are you sure you want to delete the %1 selected articles?</qt>"
-msgstr[0] ""
+msgstr[0] "<qt>Ĉu vi certas, ke vi volas forigi la elektitan artikolon?</qt>"
 msgstr[1] ""
+"<qt>Ĉu vi certas, ke vi volas forigi la %1 elektitajn artikolojn?</qt>"
 
 #: src/mainwidget.cpp:1063
-#, fuzzy, kde-format
-#| msgid "Delete Article"
+#, kde-format
 msgctxt "@title:window"
 msgid "Delete Article"
-msgstr "Forviŝi artikolon"
+msgstr "Forigi Artikolon"
 
 #: src/mainwidget.cpp:1245
 #, kde-format
 msgid "Networking is available now."
-msgstr ""
+msgstr "Retumado nun estas je dispono."
 
 #: src/mainwindow.cpp:121
 #, kde-format
@@ -2130,7 +2128,7 @@ msgstr ""
 #, kde-format
 msgctxt "@title:window"
 msgid "Hide menu bar"
-msgstr ""
+msgstr "Kaŝi menubreton"
 
 #: src/mainwindow.cpp:153
 #, kde-format
@@ -2245,23 +2243,23 @@ msgstr "Nelegita"
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Total"
-msgstr ""
+msgstr "Sumo"
 
 #: src/tabwidget.cpp:92
 #, kde-format
 msgid "Close the current tab"
-msgstr "Fermu la aktualan trabon"
+msgstr "Fermi la aktualan trabon"
 
 #: src/tabwidget.cpp:95
 #, kde-format
 msgid "Close tab"
-msgstr ""
+msgstr "Fermi langeton"
 
 #: src/tabwidget.cpp:118
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Detach Tab"
-msgstr "Malfiksigu trabon"
+msgstr "Malfiksigi trabon"
 
 #: src/tabwidget.cpp:123
 #, kde-format
@@ -2273,18 +2271,18 @@ msgstr "Fermi Langeton"
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Close All Other Tabs"
-msgstr ""
+msgstr "Fermi Ĉiujn Aliajn Langetojn"
 
 #: src/tabwidget.cpp:131
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Close All Tabs"
-msgstr ""
+msgstr "Fermi Ĉiujn Langetojn"
 
 #: src/trayicon.cpp:55
 #, kde-format
 msgid "There are no unread articles"
-msgstr ""
+msgstr "Ne estas nelegitaj artikoloj"
 
 #: src/trayicon.cpp:55
 #, kde-format
@@ -2416,12 +2414,12 @@ msgstr "Signu artikolojn kiel legitaj, kiam ili alvenas"
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:40
 #, kde-format
 msgid "Disable Introduction"
-msgstr ""
+msgstr "Malŝalti Enkondukon"
 
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:58
 #, kde-format
 msgid "&Copy Email Address"
-msgstr ""
+msgstr "&Kopii Retpoŝtan Adreson"
 
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:67
 #, kde-format
@@ -2456,17 +2454,17 @@ msgstr ""
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:108
 #, kde-format
 msgid "Open In External Browser"
-msgstr ""
+msgstr "Malfermi en Ekstera Foliumilo"
 
 #: src/widgets/searchbar.cpp:40
 #, kde-format
 msgid "Search articles..."
-msgstr ""
+msgstr "Serĉi artikolojn..."
 
 #: src/widgets/searchbar.cpp:112
 #, kde-format
 msgid "Search articles...<%1>"
-msgstr ""
+msgstr "Serĉi artikolojn...<%1>"
 
 #: src/widgets/statussearchline.cpp:42
 #, kde-format
@@ -2489,7 +2487,7 @@ msgstr "Nova"
 #, kde-format
 msgctxt "Read articles filter"
 msgid "Read"
-msgstr ""
+msgstr "Legita"
 
 #: src/widgets/statussearchline.cpp:46
 #, kde-format
