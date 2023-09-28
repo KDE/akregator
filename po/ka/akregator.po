@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-09-26 01:46+0000\n"
-"PO-Revision-Date: 2023-02-03 15:39+0100\n"
+"PO-Revision-Date: 2023-09-27 05:33+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.3.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -1552,8 +1552,7 @@ msgid "Could not import the file %1 (no valid OPML)"
 msgstr "ფაილის (%1) შემოტანის შეცდომა (არასწორი OPML)"
 
 #: src/akregator_part.cpp:464 src/command/loadfeedlistcommand.cpp:71
-#, fuzzy, kde-format
-#| msgid "OPML Parsing Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "OPML Parsing Error"
 msgstr "OPML-ის დამუშავების შეცდომა"
@@ -1568,8 +1567,7 @@ msgstr ""
 "რა ის მიმდინარე მომხმარებლისთვის."
 
 #: src/akregator_part.cpp:469 src/command/loadfeedlistcommand.cpp:144
-#, fuzzy, kde-format
-#| msgid "Read Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "Read Error"
 msgstr "წაკითხვის შეცდომა"
@@ -1581,8 +1579,7 @@ msgstr ""
 "წვდომა აკრძალულია: ფაილში %1 ჩაწერა შეუძლებელია. გადაამოწმეთ თქვენი წვდომები."
 
 #: src/akregator_part.cpp:481
-#, fuzzy, kde-format
-#| msgid "Write Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "Write Error"
 msgstr "ჩაწერის შეცდომა"
@@ -1689,8 +1686,7 @@ msgid "Are you sure you want to disable this introduction page?"
 msgstr "დარწმუნებული ბრძანდებით, რომ გნებავთ, გამორთოთ მისასალმებელი გვერდი?"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:377
-#, fuzzy, kde-format
-#| msgid "Disable Introduction Page"
+#, kde-format
 msgctxt "@title:window"
 msgid "Disable Introduction Page"
 msgstr "საწყისი გვერდის გამორთვა"
@@ -1702,8 +1698,7 @@ msgstr ""
 "ეს ვებგვერდი საზიანო პროგრამებს შეიცავს. გნებავთ გააგრძელოთ მისი ჩვენება?"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:413
-#, fuzzy, kde-format
-#| msgid "Malware"
+#, kde-format
 msgctxt "@title:window"
 msgid "Malware"
 msgstr "მავნე პროგრამა"
@@ -1715,8 +1710,7 @@ msgstr "ქსელთა მიერთება გათიშულია.
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:425
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:428
-#, fuzzy, kde-format
-#| msgid "Check Phishing Url"
+#, kde-format
 msgctxt "@title:window"
 msgid "Check Phishing Url"
 msgstr "ფიშინგის ბმულის შემოწმება"
@@ -1755,8 +1749,7 @@ msgstr ""
 "მისი ლენტები და ქვესაქაღალდეები?</qt>"
 
 #: src/command/deletesubscriptioncommand.cpp:44
-#, fuzzy, kde-format
-#| msgid "Delete Folder"
+#, kde-format
 msgctxt "@title:window"
 msgid "Delete Folder"
 msgstr "საქაღალდის წაშლა"
@@ -1773,8 +1766,7 @@ msgstr ""
 "<qt>დარწმუნებული ბრძადნებით, რომ გნებავთ, წაშალოთ ლენტა <b>%1</b>?</qt>"
 
 #: src/command/deletesubscriptioncommand.cpp:68
-#, fuzzy, kde-format
-#| msgid "Delete Feed"
+#, kde-format
 msgctxt "@title:window"
 msgid "Delete Feed"
 msgstr "ლენტის წაშლა"
@@ -2088,8 +2080,7 @@ msgstr ""
 "სტატიის</b> წაკითხულად მონიშვნა?</qt>"
 
 #: src/mainwidget.cpp:766
-#, fuzzy, kde-format
-#| msgid "Mark Feed as Read"
+#, kde-format
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "ლენტის წაკითხულად მონიშვნა"
@@ -2111,8 +2102,7 @@ msgstr ""
 "ლენტის</b> წაკითხულად მონიშვნა?</qt>"
 
 #: src/mainwidget.cpp:773
-#, fuzzy, kde-format
-#| msgid "Mark Feeds as Read"
+#, kde-format
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "ლენტების წაკითხულად მონიშვნა"
@@ -2141,8 +2131,7 @@ msgstr[0] "<qt>მართლა გნებავთ მონიშნულ
 msgstr[1] "<qt>მართლა გნებავთ %1 მონიშნული სტატიის წაშლა?</qt>"
 
 #: src/mainwidget.cpp:1063
-#, fuzzy, kde-format
-#| msgid "Delete Article"
+#, kde-format
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "სტატიის წაშლა"
@@ -2162,8 +2151,7 @@ msgstr ""
 "qt>"
 
 #: src/mainwindow.cpp:124
-#, fuzzy, kde-format
-#| msgid "Hide menu bar"
+#, kde-format
 msgctxt "@title:window"
 msgid "Hide menu bar"
 msgstr "მენიუს ზოლის დამალვა"

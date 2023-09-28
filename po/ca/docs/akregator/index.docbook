@@ -773,7 +773,7 @@ say how to start it -->
 ></term>
 <listitem
 ><para
->Si l'article utilitza una lletra fixa al visualitzador d'articles, el contingut es representarà amb aquesta família de lletra en la mida de lletra mitjana. </para>
+>Si l'article utilitza una lletra fixa al visualitzador d'articles, el contingut es representarà amb aquesta família de lletres en la mida de lletra mitjana. </para>
 </listitem>
 </varlistentry>
 <varlistentry>
@@ -873,7 +873,7 @@ say how to start it -->
 ></term>
 <listitem
 ><para
->Si està marcada, l'&akregator; utilitzarà el navegador web establert en &systemsettings;. Pot ser el valor per omissió del &kde;, &konqueror;, o un altre navegador en funció del que establiu aquí.</para>
+>Si està marcada, l'&akregator; utilitzarà el navegador web establert en &systemsettings;. Pot ser el valor per omissió del &kde;, &konqueror;, o un altre navegador en funció d'allò que establiu aquí.</para>
 </listitem>
 </varlistentry>
 <varlistentry>
