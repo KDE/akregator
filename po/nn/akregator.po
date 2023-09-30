@@ -2526,7 +2526,3 @@ msgstr "Lesne"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "Viktige"
-
-#~ msgctxt "@title:window"
-#~ msgid "Print Document"
-#~ msgstr "Skriv ut dokument"
