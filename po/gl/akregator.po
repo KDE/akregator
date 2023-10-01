@@ -3,14 +3,14 @@
 # Xosé <xosecalvo@gmail.com>, 2012, 2013.
 # Marce Villarino <mvillarino@kde-espana.es>, 2012, 2013, 2014.
 # Adrian Chaves Fernandez <adriyetichaves@gmail.com>, 2013, 2015, 2016, 2017.
-# Adrián Chaves (Gallaecio) <adrian@chaves.io>, 2017, 2018, 2019, 2020, 2023.
+# SPDX-FileCopyrightText: 2023 Adrián Chaves (Gallaecio)
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-04-01 00:51+0000\n"
-"PO-Revision-Date: 2023-09-03 13:34+0200\n"
+"PO-Revision-Date: 2023-09-30 12:54+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Galician <proxecto@trasno.gal>\n"
 "Language: gl\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 23.04.3\n"
+"X-Generator: Lokalize 23.08.1\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -86,7 +86,7 @@ msgstr "Abrir a ligazón nun navegador externo"
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:110
 #, kde-format
 msgid "Open In Background Tab"
-msgstr "Abrir nun separador en segundo plano"
+msgstr "Abrir nunha lapela en segundo plano"
 
 #: src/formatter/html/5.2/combinedview.html:85
 msgid "Send File Address"
@@ -152,17 +152,18 @@ msgstr[1] " segundos"
 msgid "Article List"
 msgstr "Lista de artigos"
 
+# skip-rule: proposta-gl-dous-puntos-finais
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_UseMarkReadDelay)
 #: configuration/ui/settings_advancedbase.ui:38
 #, kde-format
 msgid "Mar&k selected article read after"
-msgstr "Mar&car o artigo seleccionado como lido despois de"
+msgstr "Mar&car o artigo seleccionado como lido despois de:"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ResetQuickFilterOnNodeChange)
 #: configuration/ui/settings_advancedbase.ui:73
 #, kde-format
 msgid "Reset search bar when changing feeds"
-msgstr "Restaurar a barra de buscas ao cambiar de fontes"
+msgstr "Restaurar a barra de buscas ao cambiar de fontes."
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_3)
 #: configuration/ui/settings_appearance.ui:30
@@ -272,7 +273,7 @@ msgstr "Eliminar os artigos de máis de: "
 #: configuration/ui/settings_archive.ui:138
 #, kde-format
 msgid "Do not expire important articles"
-msgstr "Os artigos importantes non caducan"
+msgstr "Os artigos importantes non caducan."
 
 #. i18n: ectx: property (text), widget (QLabel, LMBlabel)
 #: configuration/ui/settings_browser.ui:20
@@ -287,7 +288,7 @@ msgstr "Clic esquerdo de rato:"
 #: src/actions/actionmanagerimpl.cpp:323
 #, kde-format
 msgid "Open in Tab"
-msgstr "Abrir nun separador"
+msgstr "Abrir nunha lapela"
 
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_LMBBehaviour)
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
@@ -296,7 +297,7 @@ msgstr "Abrir nun separador"
 #: src/actions/actionmanagerimpl.cpp:329
 #, kde-format
 msgid "Open in Background Tab"
-msgstr "Abrir nun separador en segundo plano"
+msgstr "Abrir nunha lapela en segundo plano."
 
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_LMBBehaviour)
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
@@ -341,27 +342,27 @@ msgstr "Usar o nave&gador web predeterminado"
 #: configuration/ui/settings_browser.ui:110
 #, kde-format
 msgid "Tabs"
-msgstr "Separadores"
+msgstr "Lapelas"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_AlwaysShowTabBar)
 #. i18n: ectx: label, entry, group (Browser)
 #: configuration/ui/settings_browser.ui:116 interfaces/akregator.kcfg:202
 #, kde-format
 msgid "Always show the tab bar"
-msgstr "Amosar sempre a barra de lapelas"
+msgstr "Amosar sempre a barra de lapelas."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_CloseButtonOnTabs)
 #: configuration/ui/settings_browser.ui:123
 #, kde-format
 msgid "Show close button on each tab"
-msgstr "Amosar o botón de pechar en cada separador"
+msgstr "Amosar o botón de pechar en cada lapela."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_NewWindowInTab)
 #. i18n: ectx: label, entry, group (Browser)
 #: configuration/ui/settings_browser.ui:130 interfaces/akregator.kcfg:212
 #, kde-format
 msgid "Open links in new tab instead of in new window"
-msgstr "Abrir as ligazóns nun novo separador no canto de nunha xanela nova"
+msgstr "Abrir as ligazóns nunha nova lapela no canto de nunha xanela nova."
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: configuration/ui/settings_browser.ui:140
@@ -392,7 +393,7 @@ msgstr "Varios"
 #: configuration/ui/settings_browser.ui:169
 #, kde-format
 msgid "Access Key Enabled"
-msgstr "Chave de acceso activada"
+msgstr "Chave de acceso activada."
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_3)
 #: configuration/ui/settings_general.ui:30
@@ -405,13 +406,13 @@ msgstr "Global"
 #: configuration/ui/settings_general.ui:36
 #, kde-format
 msgid "Show tra&y icon"
-msgstr "Amosar a icona na bande&xa"
+msgstr "Amosar a icona na bande&xa."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ShowUnreadInTaskbar)
 #: configuration/ui/settings_general.ui:43
 #, kde-format
 msgid "Show unread articles in Taskbar"
-msgstr "Amosar os artigos sen ler na barra de tarefas"
+msgstr "Amosar os artigos sen ler na barra de tarefas."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_HideReadFeeds)
 #. i18n: ectx: label, entry, group (View)
@@ -424,7 +425,7 @@ msgstr "Ocultar as fontes de novas sen artigos sen ler."
 #: configuration/ui/settings_general.ui:57
 #, kde-format
 msgid "Lock feeds in place"
-msgstr "Bloquear a posición das fontes"
+msgstr "Bloquear a posición das fontes."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_AutoExpandFolders)
 #. i18n: ectx: whatsthis, entry, group (View)
@@ -444,19 +445,19 @@ msgstr ""
 #: configuration/ui/settings_general.ui:77
 #, kde-format
 msgid "Use &notifications for all feeds"
-msgstr "Usar &notificacións para todas as fontes"
+msgstr "Usar &notificacións para todas as fontes."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_DisableSaveAsNotification)
 #: configuration/ui/settings_general.ui:84
 #, kde-format
 msgid "Disable save as finished notification"
-msgstr "Desactivar a notificación de finalización de gardar como"
+msgstr "Desactivar a notificación de finalización de gardar como."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_UseIntervalFetch)
 #: configuration/ui/settings_general.ui:91
 #, kde-format
 msgid "&Use interval fetching"
-msgstr "&Usar a obtención a intervalos"
+msgstr "&Usar a obtención a intervalos."
 
 #. i18n: ectx: property (text), widget (QLabel, autoFetchIntervalLabel)
 #: configuration/ui/settings_general.ui:119
@@ -474,13 +475,13 @@ msgstr "Inicio"
 #: configuration/ui/settings_general.ui:166
 #, kde-format
 msgid "Mark &all feeds as read on startup"
-msgstr "M&arcar todas as fontes como lidas no inicio"
+msgstr "M&arcar todas as fontes como lidas no inicio."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_FetchOnStartup)
 #: configuration/ui/settings_general.ui:173
 #, kde-format
 msgid "Fetch all fee&ds on startup"
-msgstr "Ob&ter todas as fontes no inicio"
+msgstr "Ob&ter todas as fontes no inicio."
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: configuration/ui/settings_general.ui:183
@@ -492,13 +493,13 @@ msgstr "Rede"
 #: configuration/ui/settings_general.ui:189
 #, kde-format
 msgid "Use the &browser cache (less network traffic)"
-msgstr "U&sar a caché do navegador (menor tráfico de rede)"
+msgstr "U&sar a caché do navegador (menor tráfico de rede)."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_LoadExternalReferences)
 #: configuration/ui/settings_security.ui:17
 #, kde-format
 msgid "Allow feed to load external references from internet."
-msgstr "Permitir á fonte cargar referencias externas de Internet"
+msgstr "Permitir á fonte cargar referencias externas de Internet."
 
 #: export/akregatorstorageexporter.cpp:284
 #, kde-format
@@ -521,7 +522,7 @@ msgstr "Impedir que as fontes se movan na lista"
 #: interfaces/akregator.kcfg:22
 #, kde-format
 msgid "Locks feeds where they are"
-msgstr "Bloquea a posición das fontes"
+msgstr "Bloquea a posición das fontes."
 
 #. i18n: ectx: label, entry, group (View)
 #: interfaces/akregator.kcfg:26
@@ -539,7 +540,7 @@ msgstr "Amosar o filtro rápido"
 #: interfaces/akregator.kcfg:32
 #, kde-format
 msgid "Show Quick Filter Bar"
-msgstr "Amosar o filtro rápido"
+msgstr "Amosar o filtro rápido."
 
 #. i18n: ectx: label, entry, group (View)
 #: interfaces/akregator.kcfg:36
@@ -551,7 +552,7 @@ msgstr "Filtro do estado"
 #: interfaces/akregator.kcfg:37
 #, kde-format
 msgid "Stores the last status filter setting"
-msgstr "Almacena a última configuración do filtro do estado"
+msgstr "Almacena a última configuración do filtro do estado."
 
 #. i18n: ectx: label, entry, group (View)
 #: interfaces/akregator.kcfg:41
@@ -563,7 +564,7 @@ msgstr "Filtro do texto"
 #: interfaces/akregator.kcfg:42
 #, kde-format
 msgid "Stores the last search line text"
-msgstr "Almacena o texto da última busca"
+msgstr "Almacena o texto da última liña de busca."
 
 #. i18n: ectx: label, entry, group (View)
 #: interfaces/akregator.kcfg:45
@@ -629,7 +630,7 @@ msgstr "Limitar o número de artigos"
 #: interfaces/akregator.kcfg:109
 #, kde-format
 msgid "Limit the number of articles in a feed"
-msgstr "Limitar o número de artigos dunha fonte"
+msgstr "Limitar o número de artigos dunha fonte."
 
 #. i18n: ectx: label, entry, group (Archive)
 #: interfaces/akregator.kcfg:112
@@ -641,7 +642,7 @@ msgstr "Eliminar os artigos caducados"
 #: interfaces/akregator.kcfg:113
 #, kde-format
 msgid "Delete expired articles"
-msgstr "Eliminar os artigos que xa caducasen"
+msgstr "Eliminar os artigos que xa caducasen."
 
 #. i18n: ectx: label, entry, group (Archive)
 #: interfaces/akregator.kcfg:116
@@ -653,7 +654,7 @@ msgstr "Desactivar o arquivado"
 #: interfaces/akregator.kcfg:117
 #, kde-format
 msgid "Do not save any articles"
-msgstr "Non gardar ningún artigo"
+msgstr "Non gardar ningún artigo."
 
 #. i18n: ectx: label, entry, group (Archive)
 #: interfaces/akregator.kcfg:122
@@ -706,7 +707,7 @@ msgstr "Obtencións simultáneas"
 #: interfaces/akregator.kcfg:140
 #, kde-format
 msgid "Number of concurrent fetches"
-msgstr "Número de obtencións simultáneas"
+msgstr "Número de obtencións simultáneas."
 
 #. i18n: ectx: label, entry, group (Network)
 #: interfaces/akregator.kcfg:144
@@ -765,7 +766,7 @@ msgstr "Marcar todas as fontes como lidas no inicio."
 #: interfaces/akregator.kcfg:165
 #, kde-format
 msgid "Use interval fetching"
-msgstr "Utilizar a obtención a intervalos"
+msgstr "Usar a obtención a intervalos"
 
 #. i18n: ectx: whatsthis, entry, group (General)
 #: interfaces/akregator.kcfg:166
@@ -826,19 +827,19 @@ msgstr "Indica se se amosan os artigos sen ler na barra de tarefas."
 #, kde-format
 msgid "Always show the tab bar, even when only one tab is open"
 msgstr ""
-"Amosar sempre a barra de lapelas, mesmo cando só haxa unha lapela aberta"
+"Amosar sempre a barra de lapelas, mesmo cando só haxa unha lapela aberta."
 
 #. i18n: ectx: label, entry, group (Browser)
 #: interfaces/akregator.kcfg:207
 #, kde-format
 msgid "Show close buttons on tabs"
-msgstr "Amosar os botóns de pechar nos separadores"
+msgstr "Amosar os botóns de pechar nas lapelas."
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
 #: interfaces/akregator.kcfg:208
 #, kde-format
 msgid "Show close buttons on tabs instead of icons"
-msgstr "Amosar botóns de pechar nos separadores no canto de iconas"
+msgstr "Amosar botóns de pechar nas lapelas, no canto de iconas."
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
 #: interfaces/akregator.kcfg:213
@@ -848,7 +849,7 @@ msgid ""
 "a new tab instead"
 msgstr ""
 "No canto de abrir unha ligazón que normalmente se abriría nunha xanela nova "
-"(navegador externo), abrila nun novo separador"
+"(navegador externo), abrila nunha nova lapela."
 
 #. i18n: ectx: label, entry, group (Browser)
 #: interfaces/akregator.kcfg:217
@@ -860,7 +861,7 @@ msgstr "Usar o navegador web predeterminado de KDE"
 #: interfaces/akregator.kcfg:218
 #, kde-format
 msgid "Use KDE web browser when opening in external browser."
-msgstr "Utilizar o navegador web de KDE ao abrir nun navegador externo."
+msgstr "Usar o navegador web de KDE ao abrir nun navegador externo."
 
 #. i18n: ectx: label, entry, group (Browser)
 #: interfaces/akregator.kcfg:222
@@ -872,7 +873,7 @@ msgstr "Usar esta orde:"
 #: interfaces/akregator.kcfg:223
 #, kde-format
 msgid "Use the specified command when opening in external browser."
-msgstr "Utilizar a orde indicada ao abrir nun navegador externo."
+msgstr "Usar a orde indicada ao abrir nun navegador externo."
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
 #: interfaces/akregator.kcfg:227
@@ -974,7 +975,7 @@ msgstr "Frank Osterfeld"
 #: src/aboutdata.cpp:28
 #, kde-format
 msgid "Former maintainer"
-msgstr "Antigo mantedor"
+msgstr "Mantemento anterior."
 
 #: src/aboutdata.cpp:29
 #, kde-format
@@ -985,7 +986,7 @@ msgstr "Teemu Rytilahti"
 #: src/aboutdata.cpp:32
 #, kde-format
 msgid "Developer"
-msgstr "Desenvolvedor"
+msgstr "Desenvolvemento."
 
 #: src/aboutdata.cpp:30
 #, kde-format
@@ -1166,7 +1167,7 @@ msgstr "&Abrir a páxina principal"
 #: src/actions/actionmanagerimpl.cpp:224
 #, kde-format
 msgid "Reload All Tabs"
-msgstr "Recargar todos os separadores"
+msgstr "Recargar todas as lapelas"
 
 #: src/actions/actionmanagerimpl.cpp:230
 #, kde-format
@@ -1389,17 +1390,17 @@ msgstr "Expande automaticamente os cartafoles con artigos sen ler"
 #: src/actions/actionmanagerimpl.cpp:565
 #, kde-format
 msgid "Select Next Tab"
-msgstr "Seleccionar o seguinte separador"
+msgstr "Seleccionar a seguinte lapela"
 
 #: src/actions/actionmanagerimpl.cpp:570
 #, kde-format
 msgid "Select Previous Tab"
-msgstr "Seleccionar o separador anterior"
+msgstr "Seleccionar a lapela anterior"
 
 #: src/actions/actionmanagerimpl.cpp:576
 #, kde-format
 msgid "Detach Tab"
-msgstr "Desprender o separador"
+msgstr "Desprender a lapela"
 
 #: src/actions/actionmanagerimpl.cpp:590
 #, kde-format
@@ -1424,12 +1425,12 @@ msgstr "&Atopar na mensaxe…"
 #: src/actions/actionmanagerimpl.cpp:613
 #, kde-format
 msgid "Close Tab"
-msgstr "Pechar o separador"
+msgstr "Pechar a lapela"
 
 #: src/actions/actionmanagerimpl.cpp:626
 #, kde-format
 msgid "Activate Tab %1"
-msgstr "Activar o separador %1"
+msgstr "Activar a lapela %1"
 
 #: src/actions/actionmanagerimpl.cpp:632
 #, kde-format
@@ -1454,7 +1455,7 @@ msgstr "Gardar unha imaxe nun disco…"
 #: src/actions/actions.cpp:19
 #, kde-format
 msgid "Open Link in New &Tab"
-msgstr "Abrir a ligazón nun novo &separador"
+msgstr "Abrir a ligazón nunha nova &lapela"
 
 #: src/actions/actions.cpp:26
 #, kde-format
@@ -1470,7 +1471,7 @@ msgstr "Engadir unha fonte"
 #: src/addfeeddialog.cpp:99
 #, kde-format
 msgid "Downloading %1"
-msgstr "Estase a descargar %1"
+msgstr "Descargando %1"
 
 #: src/addfeeddialog.cpp:115
 #, kde-format
@@ -1554,7 +1555,7 @@ msgstr "Erro de escritura"
 #: src/akregator_part.cpp:481
 #, kde-format
 msgid "Could not import the file %1 (no valid OPML)"
-msgstr "Non se puido importar o ficheiro %1 (non é un OPML correcto)"
+msgstr "Non foi posíbel importar o ficheiro %1 (non é un OPML correcto)"
 
 #: src/akregator_part.cpp:481 src/command/loadfeedlistcommand.cpp:71
 #, kde-format
@@ -1567,8 +1568,8 @@ msgid ""
 "The file %1 could not be read, check if it exists or if it is readable for "
 "the current user."
 msgstr ""
-"Non se puido ler o ficheiro %1; comprobe que existe e que é lexíbel para a "
-"persoa usuaria actual."
+"Non foi posíbel ler o ficheiro %1; comprobe que existe e que é lexíbel para "
+"a persoa usuaria actual."
 
 #: src/akregator_part.cpp:486 src/command/loadfeedlistcommand.cpp:142
 #, kde-format
@@ -1619,8 +1620,8 @@ msgstr ""
 "<h2>Lista de artigos</h2>Aquí pode navegar entre os artigos da fonte "
 "seleccionada. Pode tamén xestionar os artigos, marcándoos como persistentes "
 "(«Marcar como importante») ou eliminalos, usando o menú do botón dereito do "
-"rato. Para ver a páxina web do artigo pode abrir o artigo internamente nun "
-"separador ou nunha xanela externa dun navegador."
+"rato. Para ver a páxina web do artigo pode abrir o artigo internamente nunha "
+"lapela ou nunha xanela externa dun navegador."
 
 #: src/articlemodel.cpp:74
 #, kde-format
@@ -1692,12 +1693,12 @@ msgstr "Desactivar a páxina de presentación"
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:423
 #, kde-format
 msgid "This web site is a malware, do you want to continue to show it?"
-msgstr "Este sitio web é software malicioso, quere amosalo aínda así?"
+msgstr "Este sitio web ten código malicioso, quere amosalo aínda así?"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:424
 #, kde-format
 msgid "Malware"
-msgstr "Software malicioso"
+msgstr "Código malicioso"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:436
 #, kde-format
@@ -1791,7 +1792,7 @@ msgid ""
 "<p><b>%1</b></p></qt>"
 msgstr ""
 "<qt>A lista estándar de fontes está corrupta (a OPML é incorrecta). Creouse "
-"unha copia de seguridade:<p><b>%1</b></p></qt>"
+"unha salvagarda:<p><b>%1</b></p></qt>"
 
 #: src/command/loadfeedlistcommand.cpp:67
 #, kde-format
@@ -1800,12 +1801,12 @@ msgid ""
 "backup.</qt>"
 msgstr ""
 "<qt>A lista estándar de fontes está corrupta (a OPML é incorrecta). Non se "
-"puido crear un ficheiro de seguridade.</qt>"
+"puido crear unha salvagarda.</qt>"
 
 #: src/command/loadfeedlistcommand.cpp:129
 #, kde-format
 msgid "Opening Feed List..."
-msgstr "Estase a abrir a lista de fontes…"
+msgstr "Abrindo a lista de fontes…"
 
 #: src/command/loadfeedlistcommand.cpp:142
 #, kde-format
@@ -1832,7 +1833,7 @@ msgid ""
 "<p><b>%1</b></p></qt>"
 msgstr ""
 "<qt>A lista estándar de fontes está estragada (o XML é incorrecto). Creouse "
-"unha copia de seguridade:<p><b>%1</b></p></qt>"
+"unha salvagarda:<p><b>%1</b></p></qt>"
 
 #: src/command/loadfeedlistcommand.cpp:168
 #, kde-format
@@ -1841,7 +1842,7 @@ msgid ""
 "backup.</qt>"
 msgstr ""
 "<qt>A lista estándar de fontes está estragada (o XML é incorrecto). Non se "
-"puido crear un ficheiro de seguridade.</qt>"
+"puido crear unha salvagarda.</qt>"
 
 #: src/crashwidget/crashwidget.cpp:21
 #, kde-format
@@ -2039,7 +2040,7 @@ msgstr "Sen título"
 #: src/frame/frame.cpp:141
 #, kde-format
 msgid "Loading..."
-msgstr "Estase a cargar…"
+msgstr "Cargando…"
 
 #: src/frame/frame.cpp:157
 #, kde-format
@@ -2054,7 +2055,7 @@ msgstr "Rematou a carga"
 #: src/mainwidget.cpp:144
 #, kde-format
 msgid "You can view multiple articles in several open tabs."
-msgstr "Pódense ver varios artigos en varios separadores abertos."
+msgstr "Pódense ver varios artigos en varias lapelas abertas."
 
 #: src/mainwidget.cpp:148
 #, kde-format
@@ -2150,7 +2151,7 @@ msgid ""
 "Could not find the Akregator part; please check your installation.\n"
 "%1"
 msgstr ""
-"Non se puido atopar a parte de Akregator; comprobe a instalación.\n"
+"Non foi posíbel atopar a parte de Akregator; comprobe a instalación.\n"
 "%1"
 
 #: src/notificationmanager.cpp:49
@@ -2206,7 +2207,7 @@ msgstr "Non se atopou o nodo ou cartafol de destino"
 #: src/subscription/subscriptionlistjobs.cpp:71
 #, kde-format
 msgid "Cannot move folder %1 to its own subfolder %2"
-msgstr "Non se pode mover o cartafol %1 para o seu propio subcartafol %2"
+msgstr "Non é posíbel mover o cartafol %1 para o seu propio subcartafol %2"
 
 #: src/subscription/subscriptionlistmodel.cpp:49
 #, kde-format
@@ -2226,22 +2227,22 @@ msgstr "Non se atopou o ficheiro coa fonte no servidor remoto"
 #: src/subscription/subscriptionlistmodel.cpp:55
 #, kde-format
 msgid "Could not read feed (invalid XML)"
-msgstr "Non se puido ler a fonte (o XML é incorrecto)"
+msgstr "Non foi posíbel ler a fonte (o XML é incorrecto)"
 
 #: src/subscription/subscriptionlistmodel.cpp:57
 #, kde-format
 msgid "Could not read feed (unknown format)"
-msgstr "Non se puido ler a fonte (descoñécese este formato)"
+msgstr "Non foi posíbel ler a fonte (descoñécese este formato)"
 
 #: src/subscription/subscriptionlistmodel.cpp:59
 #, kde-format
 msgid "Could not read feed (invalid feed)"
-msgstr "Non se puido ler a fonte (a fonte é incorrecta)"
+msgstr "Non foi posíbel ler a fonte (a fonte é incorrecta)"
 
 #: src/subscription/subscriptionlistmodel.cpp:229
 #, kde-format
 msgid "Could not fetch feed: %1"
-msgstr "Non se puido obter a fonte: %1"
+msgstr "Non foi posíbel obter a fonte: %1"
 
 #: src/subscription/subscriptionlistmodel.cpp:274
 #, kde-format
@@ -2264,36 +2265,36 @@ msgstr "Total"
 #: src/tabwidget.cpp:92
 #, kde-format
 msgid "Close the current tab"
-msgstr "Pechar o separador actual"
+msgstr "Pechar a lapela actual"
 
 #: src/tabwidget.cpp:95
 #, kde-format
 msgid "Close tab"
-msgstr "Pechar o separador"
+msgstr "Pechar a lapela"
 
 #: src/tabwidget.cpp:118
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Detach Tab"
-msgstr "Desprender o separador"
+msgstr "Desprender a lapela"
 
 #: src/tabwidget.cpp:123
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Close Tab"
-msgstr "Pechar o separador"
+msgstr "Pechar a lapela"
 
 #: src/tabwidget.cpp:127
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Close All Other Tabs"
-msgstr "Pechar os outros separadores"
+msgstr "Pechar as outras lapelas"
 
 #: src/tabwidget.cpp:131
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Close All Tabs"
-msgstr "Pechar todos os separadores"
+msgstr "Pechar todas as lapelas"
 
 #: src/trayicon.cpp:55
 #, kde-format
@@ -2341,7 +2342,7 @@ msgstr "&Xeral"
 #: src/ui/feedpropertieswidgetbase.ui:54
 #, kde-format
 msgid "U&se a custom update interval"
-msgstr "U&sar un intervalo de actualización personalizado"
+msgstr "U&sar un intervalo de actualización personalizado."
 
 #. i18n: ectx: property (text), widget (QLabel, updateLabel)
 #: src/ui/feedpropertieswidgetbase.ui:88
@@ -2353,7 +2354,7 @@ msgstr "Actuali&zar cada:"
 #: src/ui/feedpropertieswidgetbase.ui:117
 #, kde-format
 msgid "Notify when new articles arri&ve"
-msgstr "Notificar cando cheguen artigos no&vos"
+msgstr "Notificar cando cheguen artigos no&vos."
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel3)
 #: src/ui/feedpropertieswidgetbase.ui:132
@@ -2419,13 +2420,13 @@ msgstr "Ava&nzado"
 #: src/ui/feedpropertieswidgetbase.ui:373
 #, kde-format
 msgid "Load the &full website when reading articles"
-msgstr "Cargar o sitio &web completo cando se lean os artigos"
+msgstr "Cargar o sitio &web completo cando se lean os artigos."
 
 #. i18n: ectx: property (text), widget (QCheckBox, checkBox_markRead)
 #: src/ui/feedpropertieswidgetbase.ui:380
 #, kde-format
 msgid "Mar&k articles as read when they arrive"
-msgstr "Marc&ar os artigos como lidos cando cheguen"
+msgstr "Marc&ar os artigos como lidos cando cheguen."
 
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:40
 #, kde-format
