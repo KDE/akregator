@@ -7,7 +7,6 @@
 */
 
 #include "trayicon.h"
-#include "akregatorconfig.h"
 
 #include <KLocalizedString>
 
