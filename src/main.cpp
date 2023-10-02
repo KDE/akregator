@@ -10,6 +10,7 @@
 #include "akregator_debug.h"
 #include "akregator_options.h"
 #include "mainwindow.h"
+#include "trayicon.h"
 #ifdef WITH_KUSERFEEDBACK
 #include "userfeedback/akregatoruserfeedbackprovider.h"
 #endif
@@ -51,6 +52,9 @@ int Application::activate(const QStringList &args, const QString &workingDir)
             mMainWindow->setupProgressWidgets();
             if (!parser->isSet(QStringLiteral("hide-mainwindow"))) {
                 mMainWindow->show();
+            }
+            if (Akregator::TrayIcon::getInstance() && !Akregator::TrayIcon::getInstance()->associatedWindow()) {
+                Akregator::TrayIcon::getInstance()->setAssociatedWindow(mMainWindow->windowHandle());
             }
             akr.call(QStringLiteral("openStandardFeedList"));
         }
