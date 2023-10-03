@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdepim\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-26 01:46+0000\n"
+"POT-Creation-Date: 2023-10-03 01:38+0000\n"
 "PO-Revision-Date: 2023-07-23 20:22+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -904,7 +904,7 @@ msgstr "피드를 바꿀 때 빠른 필터를 초기화합니다."
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
 #: src/akregator_part.cpp:136
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:142
-#: src/trayicon.cpp:41 src/trayicon.cpp:42 src/trayicon.cpp:54
+#: src/trayicon.cpp:40 src/trayicon.cpp:41 src/trayicon.cpp:53
 #, kde-format
 msgid "Akregator"
 msgstr "Akregator"
@@ -2280,12 +2280,12 @@ msgctxt "@action:inmenu"
 msgid "Close All Tabs"
 msgstr "모든 탭 닫기"
 
-#: src/trayicon.cpp:55
+#: src/trayicon.cpp:54
 #, kde-format
 msgid "There are no unread articles"
 msgstr "읽지 않은 글 없음"
 
-#: src/trayicon.cpp:55
+#: src/trayicon.cpp:54
 #, kde-format
 msgid "1 unread article"
 msgid_plural "%1 unread articles"
@@ -2494,6 +2494,12 @@ msgstr "읽음"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "중요한 글"
+
+#: src/widgets/statussearchline.cpp:63
+#, fuzzy, kde-format
+#| msgid "Text Filter"
+msgid "Filter"
+msgstr "텍스트 필터"
 
 #~ msgctxt "@title:window"
 #~ msgid "Print Document"

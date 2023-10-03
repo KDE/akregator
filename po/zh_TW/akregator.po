@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-26 01:46+0000\n"
+"POT-Creation-Date: 2023-10-03 01:38+0000\n"
 "PO-Revision-Date: 2023-06-15 04:40+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Chinese <zh-l10n@linux.org.tw>\n"
@@ -909,7 +909,7 @@ msgstr "變更 feeds 時重置快速過濾器"
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
 #: src/akregator_part.cpp:136
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:142
-#: src/trayicon.cpp:41 src/trayicon.cpp:42 src/trayicon.cpp:54
+#: src/trayicon.cpp:40 src/trayicon.cpp:41 src/trayicon.cpp:53
 #, kde-format
 msgid "Akregator"
 msgstr "Akregator"
@@ -2278,12 +2278,12 @@ msgctxt "@action:inmenu"
 msgid "Close All Tabs"
 msgstr "關閉所有分頁"
 
-#: src/trayicon.cpp:55
+#: src/trayicon.cpp:54
 #, kde-format
 msgid "There are no unread articles"
 msgstr "沒有未讀文章"
 
-#: src/trayicon.cpp:55
+#: src/trayicon.cpp:54
 #, kde-format
 msgid "1 unread article"
 msgid_plural "%1 unread articles"
@@ -2492,6 +2492,12 @@ msgstr "已讀"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "重要文章"
+
+#: src/widgets/statussearchline.cpp:63
+#, fuzzy, kde-format
+#| msgid "Text Filter"
+msgid "Filter"
+msgstr "文字過濾器"
 
 #~ msgctxt "@title:window"
 #~ msgid "Print Document"

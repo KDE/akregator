@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: KDE 4.3\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-26 01:46+0000\n"
+"POT-Creation-Date: 2023-10-03 01:38+0000\n"
 "PO-Revision-Date: 2022-01-14 10:50+0100\n"
 "Last-Translator: Kristóf Kiszel <ulysses@fsf.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -928,7 +928,7 @@ msgstr "Alapállapotba hozza a gyorsszűrőt csatornaváltáskor."
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
 #: src/akregator_part.cpp:136
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:142
-#: src/trayicon.cpp:41 src/trayicon.cpp:42 src/trayicon.cpp:54
+#: src/trayicon.cpp:40 src/trayicon.cpp:41 src/trayicon.cpp:53
 #, kde-format
 msgid "Akregator"
 msgstr "Akregator"
@@ -2332,12 +2332,12 @@ msgctxt "@action:inmenu"
 msgid "Close All Tabs"
 msgstr "Összes lap bezárása"
 
-#: src/trayicon.cpp:55
+#: src/trayicon.cpp:54
 #, kde-format
 msgid "There are no unread articles"
 msgstr "Nincsenek olvasatlan cikkek"
 
-#: src/trayicon.cpp:55
+#: src/trayicon.cpp:54
 #, kde-format
 msgid "1 unread article"
 msgid_plural "%1 unread articles"
@@ -2547,6 +2547,12 @@ msgstr "Olvasott"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "Fontos"
+
+#: src/widgets/statussearchline.cpp:63
+#, fuzzy, kde-format
+#| msgid "Text Filter"
+msgid "Filter"
+msgstr "Szövegszűrő"
 
 #~ msgctxt "@title:window"
 #~ msgid "Print Document"

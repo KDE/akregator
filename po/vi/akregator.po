@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-26 01:46+0000\n"
+"POT-Creation-Date: 2023-10-03 01:38+0000\n"
 "PO-Revision-Date: 2012-07-09 22:08+0800\n"
 "Last-Translator: Lê Hoàng Phương <herophuong93@gmail.com>\n"
 "Language-Team: Vietnamese <kde-i18n-vi@kde.org>\n"
@@ -928,7 +928,7 @@ msgstr "Thiết lập lại bộ lọc nhanh khi thay đổi nguồn tin."
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
 #: src/akregator_part.cpp:136
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:142
-#: src/trayicon.cpp:41 src/trayicon.cpp:42 src/trayicon.cpp:54
+#: src/trayicon.cpp:40 src/trayicon.cpp:41 src/trayicon.cpp:53
 #, kde-format
 msgid "Akregator"
 msgstr "Akregator"
@@ -2345,13 +2345,13 @@ msgctxt "@action:inmenu"
 msgid "Close All Tabs"
 msgstr "Đóng thẻ"
 
-#: src/trayicon.cpp:55
+#: src/trayicon.cpp:54
 #, fuzzy, kde-format
 #| msgid " (no unread articles)"
 msgid "There are no unread articles"
 msgstr "(không có bài viết chưa đọc)"
 
-#: src/trayicon.cpp:55
+#: src/trayicon.cpp:54
 #, kde-format
 msgid "1 unread article"
 msgid_plural "%1 unread articles"
@@ -2574,6 +2574,12 @@ msgstr "Đã đọ&c"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "Quan trọng"
+
+#: src/widgets/statussearchline.cpp:63
+#, fuzzy, kde-format
+#| msgid "Text Filter"
+msgid "Filter"
+msgstr "Lọc văn bản"
 
 #~ msgid "Advanced Feed Reader Settings"
 #~ msgstr "Thiết lập trình đọc nguồn tin nâng cao"

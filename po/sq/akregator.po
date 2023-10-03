@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdepim\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-26 01:46+0000\n"
+"POT-Creation-Date: 2023-10-03 01:38+0000\n"
 "PO-Revision-Date: 2009-09-04 19:26+0000\n"
 "Last-Translator: Vilson Gjeci <vilsongjeci@gmail.com>\n"
 "Language-Team: Albanian <sq@li.org>\n"
@@ -938,7 +938,7 @@ msgstr ""
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
 #: src/akregator_part.cpp:136
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:142
-#: src/trayicon.cpp:41 src/trayicon.cpp:42 src/trayicon.cpp:54
+#: src/trayicon.cpp:40 src/trayicon.cpp:41 src/trayicon.cpp:53
 #, kde-format
 msgid "Akregator"
 msgstr "Akregator"
@@ -2358,14 +2358,14 @@ msgctxt "@action:inmenu"
 msgid "Close All Tabs"
 msgstr "&Mbylle Tabelën"
 
-#: src/trayicon.cpp:55
+#: src/trayicon.cpp:54
 #, fuzzy, kde-format
 #| msgid "Akregator - 1 unread article"
 #| msgid_plural "Akregator - %1 unread articles"
 msgid "There are no unread articles"
 msgstr "Akregator - 1 artikull i palexuar"
 
-#: src/trayicon.cpp:55
+#: src/trayicon.cpp:54
 #, fuzzy, kde-format
 #| msgid "Unread articles:"
 msgid "1 unread article"
@@ -2590,6 +2590,12 @@ msgstr "&Lexo"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "I rëndësishëm"
+
+#: src/widgets/statussearchline.cpp:63
+#, fuzzy, kde-format
+#| msgid "Text Filter"
+msgid "Filter"
+msgstr "Filtri i Tekstit"
 
 #~ msgid "Advanced Feed Reader Settings"
 #~ msgstr "Parametra të Avancuara të Lexuesit të Lajmeve"

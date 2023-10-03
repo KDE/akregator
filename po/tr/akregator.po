@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdepim-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-26 01:46+0000\n"
+"POT-Creation-Date: 2023-10-03 01:38+0000\n"
 "PO-Revision-Date: 2023-09-26 06:14+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
@@ -933,7 +933,7 @@ msgstr "Beslemeler değiştirilirken hızlı süzgeci sıfırlar."
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
 #: src/akregator_part.cpp:136
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:142
-#: src/trayicon.cpp:41 src/trayicon.cpp:42 src/trayicon.cpp:54
+#: src/trayicon.cpp:40 src/trayicon.cpp:41 src/trayicon.cpp:53
 #, kde-format
 msgid "Akregator"
 msgstr "Akregatör"
@@ -2325,12 +2325,12 @@ msgctxt "@action:inmenu"
 msgid "Close All Tabs"
 msgstr "Tüm Sekmeleri Kapat"
 
-#: src/trayicon.cpp:55
+#: src/trayicon.cpp:54
 #, kde-format
 msgid "There are no unread articles"
 msgstr "Okunmayan yazı yok"
 
-#: src/trayicon.cpp:55
+#: src/trayicon.cpp:54
 #, kde-format
 msgid "1 unread article"
 msgid_plural "%1 unread articles"
@@ -2540,6 +2540,12 @@ msgstr "Okunan"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "Önemli"
+
+#: src/widgets/statussearchline.cpp:63
+#, fuzzy, kde-format
+#| msgid "Text Filter"
+msgid "Filter"
+msgstr "Metin Süzgeci"
 
 #~ msgctxt "@title:window"
 #~ msgid "Print Document"

@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-26 01:46+0000\n"
+"POT-Creation-Date: 2023-10-03 01:38+0000\n"
 "PO-Revision-Date: 2023-09-26 10:52+0200\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
@@ -965,7 +965,7 @@ msgstr "Reset de snelfilter wanneer er gewisseld wordt tussen feeds."
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
 #: src/akregator_part.cpp:136
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:142
-#: src/trayicon.cpp:41 src/trayicon.cpp:42 src/trayicon.cpp:54
+#: src/trayicon.cpp:40 src/trayicon.cpp:41 src/trayicon.cpp:53
 #, kde-format
 msgid "Akregator"
 msgstr "Akregator"
@@ -2382,13 +2382,13 @@ msgctxt "@action:inmenu"
 msgid "Close All Tabs"
 msgstr "Alle tabbladen sluiten"
 
-#: src/trayicon.cpp:55
+#: src/trayicon.cpp:54
 #, kde-format
 msgid "There are no unread articles"
 msgstr "Er zijn geen ongelezen artikelen"
 
 # in het engels plaatsen de ze 1 bij enkelvoud als vaste tekst. waarom wij in NL met een variable %n?
-#: src/trayicon.cpp:55
+#: src/trayicon.cpp:54
 #, kde-format
 msgid "1 unread article"
 msgid_plural "%1 unread articles"
@@ -2603,6 +2603,12 @@ msgstr "Gelezen"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "Belangrijk"
+
+#: src/widgets/statussearchline.cpp:63
+#, fuzzy, kde-format
+#| msgid "Text Filter"
+msgid "Filter"
+msgstr "Tekstfilter"
 
 #~ msgctxt "@title:window"
 #~ msgid "Print Document"

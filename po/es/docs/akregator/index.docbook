@@ -261,7 +261,7 @@ say how to start it -->
 >Fuente</guimenu
 > y escoja <guimenuitem
 >Añadir fuente...</guimenuitem
-> o use el acceso rápido de teclado predeterminado (<keycap
+> o use el atajo de teclado predeterminado (<keycap
 >Insert</keycap
 >). El siguiente diálogo aparecerá, con la etiqueta <guilabel
 >URL de la fuente:</guilabel
@@ -1039,7 +1039,7 @@ say how to start it -->
 ></term>
 <listitem
 ><para
->Esta opción es de accesibilidad. Cuando está marcada, &akregator; procesará la propiedad «accessKey» de la página web, que define el acceso rápido de teclado que se usa para saltar hasta un elemento determinado.</para>
+>Esta opción es de accesibilidad. Cuando está marcada, &akregator; procesará la propiedad «accessKey» de la página web, que define el atajo de teclado que se usa para saltar hasta un elemento determinado.</para>
 </listitem>
 </varlistentry>
 </variablelist>
@@ -1137,7 +1137,7 @@ say how to start it -->
 
 <sect1 id="akregator-mainwindow">
 <title
->Menús y accesos rápidos</title>
+>Menús y atajos de teclado</title>
 
 <sect2>
 <title

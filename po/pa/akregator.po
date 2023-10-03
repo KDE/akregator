@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-26 01:46+0000\n"
+"POT-Creation-Date: 2023-10-03 01:38+0000\n"
 "PO-Revision-Date: 2011-06-29 22:48+0530\n"
 "Last-Translator: A S Alam <aalam@users.sf.net>\n"
 "Language-Team: Punjabi/Panjabi <punjab-l10n@list.sf.net>\n"
@@ -925,7 +925,7 @@ msgstr ""
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
 #: src/akregator_part.cpp:136
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:142
-#: src/trayicon.cpp:41 src/trayicon.cpp:42 src/trayicon.cpp:54
+#: src/trayicon.cpp:40 src/trayicon.cpp:41 src/trayicon.cpp:53
 #, kde-format
 msgid "Akregator"
 msgstr "ਐਕਰੀਗੇਟਰ"
@@ -2318,13 +2318,13 @@ msgctxt "@action:inmenu"
 msgid "Close All Tabs"
 msgstr "ਟੈਬ ਬੰਦ ਕਰੋ"
 
-#: src/trayicon.cpp:55
+#: src/trayicon.cpp:54
 #, fuzzy, kde-format
 #| msgid " (no unread articles)"
 msgid "There are no unread articles"
 msgstr "(ਕੋਈ ਨਾ-ਪੜ੍ਹੇ ਲੇਖ ਨਹੀਂ)"
 
-#: src/trayicon.cpp:55
+#: src/trayicon.cpp:54
 #, kde-format
 msgid "1 unread article"
 msgid_plural "%1 unread articles"
@@ -2548,6 +2548,12 @@ msgstr "ਪੜ੍ਹੇ(&R)"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "ਖਾਸ"
+
+#: src/widgets/statussearchline.cpp:63
+#, fuzzy, kde-format
+#| msgid "Text Filter"
+msgid "Filter"
+msgstr "ਟੈਕਸਟ ਫਿਲਟਰ"
 
 #~ msgid "Advanced Feed Reader Settings"
 #~ msgstr "ਮਾਹਰ ਫੀਡ ਰੀਡਰ ਸੈਟਿੰਗ"
