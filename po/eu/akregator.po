@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-10-03 01:38+0000\n"
-"PO-Revision-Date: 2023-09-26 23:35+0200\n"
+"PO-Revision-Date: 2023-10-03 07:39+0200\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
 "Language: eu\n"
@@ -2536,10 +2536,9 @@ msgid "Important"
 msgstr "Garrantzizkoak"
 
 #: src/widgets/statussearchline.cpp:63
-#, fuzzy, kde-format
-#| msgid "Text Filter"
+#, kde-format
 msgid "Filter"
-msgstr "Testu-iragazkia"
+msgstr "Iragazkia"
 
 #~ msgctxt "@title:window"
 #~ msgid "Print Document"
