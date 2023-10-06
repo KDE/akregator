@@ -24,13 +24,13 @@ public:
     explicit FilterColumnsProxyModel(QObject *parent = nullptr);
 
     void setColumnEnabled(int col, bool enabled = true);
-    Q_REQUIRED_RESULT bool isColumnEnabled(int col) const;
+    [[nodiscard]] bool isColumnEnabled(int col) const;
 
-    Q_REQUIRED_RESULT Mode mode() const;
+    [[nodiscard]] Mode mode() const;
     void setMode(Mode mode);
 
 private:
-    Q_REQUIRED_RESULT bool filterAcceptsColumn(int source_column, const QModelIndex &source_parent) const override;
+    [[nodiscard]] bool filterAcceptsColumn(int source_column, const QModelIndex &source_parent) const override;
 
 private:
     QList<bool> m_columnStates;

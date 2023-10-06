@@ -22,7 +22,7 @@ public:
 
     void retrieveData(const QUrl &url) override;
     void abort() override;
-    Q_REQUIRED_RESULT int errorCode() const override;
+    [[nodiscard]] int errorCode() const override;
 
 private Q_SLOTS:
     void getFinished(KJob *job);

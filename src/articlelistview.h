@@ -46,7 +46,7 @@ class AKREGATORPART_EXPORT SortColorizeProxyModel : public QSortFilterProxyModel
 public:
     explicit SortColorizeProxyModel(QObject *parent = nullptr);
 
-    Q_REQUIRED_RESULT QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
+    [[nodiscard]] QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
 
     void setFilters(const std::vector<QSharedPointer<const Akregator::Filters::AbstractMatcher>> &);
 
@@ -81,7 +81,7 @@ public:
     QAbstractItemView *itemView() override;
 
     // impl ArticleLister
-    Q_REQUIRED_RESULT QPoint scrollBarPositions() const override;
+    [[nodiscard]] QPoint scrollBarPositions() const override;
 
     // impl ArticleLister
     void setScrollBarPositions(const QPoint &p) override;

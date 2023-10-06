@@ -34,18 +34,18 @@ public:
     int frameId() const;
     void setFrameId(int frameId);
 
-    Q_REQUIRED_RESULT QUrl url() const;
+    [[nodiscard]] QUrl url() const;
     void setUrl(const QUrl &url);
 
-    Q_REQUIRED_RESULT Options options() const;
+    [[nodiscard]] Options options() const;
     void setOptions(Options options);
 
-    Q_REQUIRED_RESULT bool openInBackground() const;
+    [[nodiscard]] bool openInBackground() const;
     void setOpenInBackground(bool background);
 
-    Q_REQUIRED_RESULT QString debugInfo() const;
+    [[nodiscard]] QString debugInfo() const;
 
-    Q_REQUIRED_RESULT bool wasHandled() const;
+    [[nodiscard]] bool wasHandled() const;
     void setWasHandled(bool handled);
 
 private:

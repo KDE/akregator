@@ -37,13 +37,13 @@ public:
     void setArticleLister(Akregator::ArticleLister *lister) override;
 
     // impl
-    Q_REQUIRED_RESULT Akregator::Article currentArticle() const override;
+    [[nodiscard]] Akregator::Article currentArticle() const override;
 
     // impl
-    Q_REQUIRED_RESULT QModelIndex currentArticleIndex() const override;
+    [[nodiscard]] QModelIndex currentArticleIndex() const override;
 
     // impl
-    Q_REQUIRED_RESULT QList<Akregator::Article> selectedArticles() const override;
+    [[nodiscard]] QList<Akregator::Article> selectedArticles() const override;
 
     // impl
     void setSingleArticleDisplay(Akregator::SingleArticleDisplay *display) override;

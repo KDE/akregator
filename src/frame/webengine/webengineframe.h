@@ -21,12 +21,12 @@ public:
     explicit WebEngineFrame(KActionCollection *ac, QWidget *parent = nullptr);
     ~WebEngineFrame() override;
 
-    Q_REQUIRED_RESULT QUrl url() const override;
-    Q_REQUIRED_RESULT bool openUrl(const OpenUrlRequest &request) override;
+    [[nodiscard]] QUrl url() const override;
+    [[nodiscard]] bool openUrl(const OpenUrlRequest &request) override;
     void loadConfig(const KConfigGroup &, const QString &) override;
-    Q_REQUIRED_RESULT bool saveConfig(KConfigGroup &, const QString &) override;
+    [[nodiscard]] bool saveConfig(KConfigGroup &, const QString &) override;
 
-    Q_REQUIRED_RESULT qreal zoomFactor() const override;
+    [[nodiscard]] qreal zoomFactor() const override;
 
 public Q_SLOTS:
     void slotReload() override;

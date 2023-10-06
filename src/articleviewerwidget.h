@@ -53,9 +53,9 @@ public:
      *  @param node The node to observe */
     void showNode(Akregator::TreeNode *node);
 
-    Q_REQUIRED_RESULT QSize sizeHint() const override;
+    [[nodiscard]] QSize sizeHint() const override;
 
-    Q_REQUIRED_RESULT qreal zoomFactor() const;
+    [[nodiscard]] qreal zoomFactor() const;
 
     Akregator::ArticleViewerWebEngineWidgetNg *articleViewerWidgetNg() const;
 

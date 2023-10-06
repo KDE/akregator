@@ -44,22 +44,22 @@ public:
      * all tabs but the main tab can be removed.
      * Default is @c true
      */
-    Q_REQUIRED_RESULT bool isRemovable() const;
+    [[nodiscard]] bool isRemovable() const;
 
     /**
      * returns the URL of the embedded part
      */
     virtual QUrl url() const = 0;
 
-    Q_REQUIRED_RESULT QString title() const;
-    Q_REQUIRED_RESULT QString caption() const;
-    Q_REQUIRED_RESULT State state() const;
-    Q_REQUIRED_RESULT int progress() const;
-    Q_REQUIRED_RESULT QString statusText() const;
-    Q_REQUIRED_RESULT QIcon icon() const;
+    [[nodiscard]] QString title() const;
+    [[nodiscard]] QString caption() const;
+    [[nodiscard]] State state() const;
+    [[nodiscard]] int progress() const;
+    [[nodiscard]] QString statusText() const;
+    [[nodiscard]] QIcon icon() const;
     void setIcon(const QIcon &icon);
 
-    Q_REQUIRED_RESULT int id() const;
+    [[nodiscard]] int id() const;
     /**
      * returns whether the embedded part is loading a website. If so, it can be stopped using slotStop() */
     virtual bool isLoading() const;

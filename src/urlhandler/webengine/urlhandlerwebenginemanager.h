@@ -24,9 +24,9 @@ public:
     void registerHandler(const URLHandlerWebEngine *handler);
     void unregisterHandler(const URLHandlerWebEngine *handler);
 
-    Q_REQUIRED_RESULT bool handleClick(const QUrl &url, ArticleViewerWebEngine *w = nullptr) const;
-    Q_REQUIRED_RESULT bool handleContextMenuRequest(const QUrl &url, const QPoint &p, ArticleViewerWebEngine *w = nullptr) const;
-    Q_REQUIRED_RESULT QString statusBarMessage(const QUrl &url, ArticleViewerWebEngine *w = nullptr) const;
+    [[nodiscard]] bool handleClick(const QUrl &url, ArticleViewerWebEngine *w = nullptr) const;
+    [[nodiscard]] bool handleContextMenuRequest(const QUrl &url, const QPoint &p, ArticleViewerWebEngine *w = nullptr) const;
+    [[nodiscard]] QString statusBarMessage(const QUrl &url, ArticleViewerWebEngine *w = nullptr) const;
 
 private:
     explicit URLHandlerWebEngineManager(QObject *parent = nullptr);

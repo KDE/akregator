@@ -65,7 +65,7 @@ public:
     /** Get title of node.
     @return the title of the node */
 
-    Q_REQUIRED_RESULT QString title() const;
+    [[nodiscard]] QString title() const;
 
     /** Sets the title of the node.
     @c title should not contain entities.

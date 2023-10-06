@@ -35,17 +35,17 @@ public:
 
     Akregator::ArticleGrantleeObject::ArticleStatus articleStatus() const;
 
-    Q_REQUIRED_RESULT QString strippedTitle() const;
-    Q_REQUIRED_RESULT QString author() const;
-    Q_REQUIRED_RESULT QString content() const;
-    Q_REQUIRED_RESULT QString articleLinkUrl() const;
-    Q_REQUIRED_RESULT QString articlePubDate() const;
-    Q_REQUIRED_RESULT QString enclosure() const;
-    Q_REQUIRED_RESULT QString articleCompleteStoryLink() const;
-    Q_REQUIRED_RESULT QString imageFeed() const;
+    [[nodiscard]] QString strippedTitle() const;
+    [[nodiscard]] QString author() const;
+    [[nodiscard]] QString content() const;
+    [[nodiscard]] QString articleLinkUrl() const;
+    [[nodiscard]] QString articlePubDate() const;
+    [[nodiscard]] QString enclosure() const;
+    [[nodiscard]] QString articleCompleteStoryLink() const;
+    [[nodiscard]] QString imageFeed() const;
 
-    Q_REQUIRED_RESULT bool important() const;
-    Q_REQUIRED_RESULT QString actionToken() const;
+    [[nodiscard]] bool important() const;
+    [[nodiscard]] QString actionToken() const;
 
 private:
     const Article mArticle;

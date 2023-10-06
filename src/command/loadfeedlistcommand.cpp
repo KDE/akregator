@@ -38,7 +38,7 @@ public:
     }
 
     void handleDocument(const QDomDocument &doc);
-    Q_REQUIRED_RESULT QString createBackup(const QString &path, bool *ok);
+    [[nodiscard]] QString createBackup(const QString &path, bool *ok);
     void emitResult(const QSharedPointer<FeedList> &list);
     void doLoad();
 

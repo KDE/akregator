@@ -27,7 +27,7 @@ class TreeNode;
 struct ArticleId {
     QString feedUrl;
     QString guid;
-    Q_REQUIRED_RESULT bool operator<(const ArticleId &other) const
+    [[nodiscard]] bool operator<(const ArticleId &other) const
     {
         return feedUrl < other.feedUrl || (feedUrl == other.feedUrl && guid < other.guid);
     }
@@ -40,7 +40,7 @@ class AKREGATOR_EXPORT CompositeJob : public KCompositeJob
     Q_OBJECT
 public:
     explicit CompositeJob(QObject *parent = nullptr);
-    Q_REQUIRED_RESULT bool addSubjob(KJob *job) override;
+    [[nodiscard]] bool addSubjob(KJob *job) override;
     void start() override;
 };
 

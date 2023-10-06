@@ -32,7 +32,7 @@ class FilterUnreadProxyModel : public QSortFilterProxyModel
 public:
     explicit FilterUnreadProxyModel(QObject *parent = nullptr);
 
-    Q_REQUIRED_RESULT bool doFilter() const;
+    [[nodiscard]] bool doFilter() const;
 
     void setDoFilter(bool v);
 
@@ -43,7 +43,7 @@ public Q_SLOTS:
     void clearCache();
 
 private:
-    Q_REQUIRED_RESULT bool filterAcceptsRow(int source_row, const QModelIndex &source_parent) const override;
+    [[nodiscard]] bool filterAcceptsRow(int source_row, const QModelIndex &source_parent) const override;
 
     using SelectionHierarchy = QSet<QModelIndex>;
 

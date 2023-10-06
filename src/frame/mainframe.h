@@ -19,16 +19,16 @@ public:
     explicit MainFrame(QWidget *parent, QWidget *widget);
     ~MainFrame() override;
 
-    Q_REQUIRED_RESULT QUrl url() const override;
+    [[nodiscard]] QUrl url() const override;
 
-    Q_REQUIRED_RESULT bool openUrl(const OpenUrlRequest &) override
+    [[nodiscard]] bool openUrl(const OpenUrlRequest &) override
     {
         return false;
     }
 
     void setArticleViewer(Akregator::ArticleViewerWidget *articleViewer);
 
-    Q_REQUIRED_RESULT qreal zoomFactor() const override;
+    [[nodiscard]] qreal zoomFactor() const override;
 
 public Q_SLOTS:
     void slotCopyLinkAsInFrame(int frameId);

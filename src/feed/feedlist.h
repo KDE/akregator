@@ -48,11 +48,11 @@ public:
     explicit FeedListManagementImpl(const QSharedPointer<FeedList> &list = QSharedPointer<FeedList>());
     void setFeedList(const QSharedPointer<FeedList> &list);
 
-    Q_REQUIRED_RESULT QStringList categories() const override;
-    Q_REQUIRED_RESULT QStringList feeds(const QString &catId) const override;
+    [[nodiscard]] QStringList categories() const override;
+    [[nodiscard]] QStringList feeds(const QString &catId) const override;
     void addFeed(const QString &url, const QString &catId) override;
     void removeFeed(const QString &url, const QString &catId) override;
-    Q_REQUIRED_RESULT QString getCategoryName(const QString &catId) const override;
+    [[nodiscard]] QString getCategoryName(const QString &catId) const override;
 
 private:
     QSharedPointer<FeedList> m_feedList;
@@ -76,16 +76,16 @@ public:
     const Folder *allFeedsFolder() const;
     Folder *allFeedsFolder();
 
-    Q_REQUIRED_RESULT bool isEmpty() const;
+    [[nodiscard]] bool isEmpty() const;
 
     const TreeNode *findByID(uint id) const;
     TreeNode *findByID(uint id);
 
-    Q_REQUIRED_RESULT QList<const TreeNode *> findByTitle(const QString &title) const;
-    Q_REQUIRED_RESULT QList<TreeNode *> findByTitle(const QString &title);
+    [[nodiscard]] QList<const TreeNode *> findByTitle(const QString &title) const;
+    [[nodiscard]] QList<TreeNode *> findByTitle(const QString &title);
 
     /** returns the title of the feed list (as used in the OPML document) */
-    Q_REQUIRED_RESULT QString title() const;
+    [[nodiscard]] QString title() const;
 
     /** sets the title of the feed list */
     void setTitle(const QString &name);
@@ -93,16 +93,16 @@ public:
     /**
      * returns all feeds in this list
      */
-    Q_REQUIRED_RESULT QList<const Akregator::Feed *> feeds() const;
-    Q_REQUIRED_RESULT QList<Akregator::Feed *> feeds();
+    [[nodiscard]] QList<const Akregator::Feed *> feeds() const;
+    [[nodiscard]] QList<Akregator::Feed *> feeds();
 
-    Q_REQUIRED_RESULT QList<uint> feedIds() const;
+    [[nodiscard]] QList<uint> feedIds() const;
 
     /**
      * returns all folders in this list
      */
-    Q_REQUIRED_RESULT QList<const Folder *> folders() const;
-    Q_REQUIRED_RESULT QList<Folder *> folders();
+    [[nodiscard]] QList<const Folder *> folders() const;
+    [[nodiscard]] QList<Folder *> folders();
 
     /** appends another feed list as sub tree. The root node of @c list is ignored. NOTE: nodes are _moved_ from @c list to this feed list, not copied */
 
@@ -112,10 +112,10 @@ public:
         @param doc the OPML document to parse
         @return whether parsing was successful or not (TODO: make errors more detailed)
     */
-    Q_REQUIRED_RESULT bool readFromOpml(const QDomDocument &doc);
+    [[nodiscard]] bool readFromOpml(const QDomDocument &doc);
 
     /** exports the feed list as OPML. The root node ("All Feeds") is ignored! */
-    Q_REQUIRED_RESULT QDomDocument toOpml() const;
+    [[nodiscard]] QDomDocument toOpml() const;
 
     /** returns a feed object for a given feed URL. If the feed list does not contain a feed with @c url, NULL is returned. If it contains the same feed
      * multiple times, any of the Feed objects is returned. */
@@ -124,7 +124,7 @@ public:
 
     const Article findArticle(const QString &feedURL, const QString &guid) const;
 
-    Q_REQUIRED_RESULT int unread() const;
+    [[nodiscard]] int unread() const;
 
     void addToFetchQueue(FetchQueue *queue, bool intervalOnly = false);
     KJob *createMarkAsReadJob();

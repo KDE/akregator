@@ -76,16 +76,16 @@ public:
     explicit Feed(Akregator::Backend::Storage *storage);
     ~Feed() override;
 
-    Q_REQUIRED_RESULT bool accept(TreeNodeVisitor *visitor) override;
+    [[nodiscard]] bool accept(TreeNodeVisitor *visitor) override;
 
     /** exports the feed settings to OPML */
-    Q_REQUIRED_RESULT QDomElement toOPML(QDomElement parent, QDomDocument document) const override;
+    [[nodiscard]] QDomElement toOPML(QDomElement parent, QDomDocument document) const override;
 
     /**
         returns whether this feed uses its own fetch interval or the global setting
         @return @c true iff this feed has a custom fetch interval
         */
-    Q_REQUIRED_RESULT bool useCustomFetchInterval() const;
+    [[nodiscard]] bool useCustomFetchInterval() const;
 
     /** set if the feed has its custom fetch interval or uses the
         global setting
@@ -96,67 +96,67 @@ public:
     // FIXME is it -1 or 0 to disable interval fetching?
     /** Returns custom auto fetch interval of this feed.
     @return custom fetch interval in minutes, 0 if disabled */
-    Q_REQUIRED_RESULT int fetchInterval() const;
+    [[nodiscard]] int fetchInterval() const;
 
     /** Sets custom auto fetch interval.
     @param interval interval in minutes, -1 for disabling auto fetching */
     void setFetchInterval(int interval);
 
     /** returns the archiving mode which is used for this feed */
-    Q_REQUIRED_RESULT ArchiveMode archiveMode() const;
+    [[nodiscard]] ArchiveMode archiveMode() const;
 
     /** sets the archiving mode for this feed */
     void setArchiveMode(ArchiveMode archiveMode);
 
     /** returns the maximum age of articles used for expiration by age (used in @c limitArticleAge archive mode)
     @return expiry age in days */
-    Q_REQUIRED_RESULT int maxArticleAge() const;
+    [[nodiscard]] int maxArticleAge() const;
 
     /** sets the maximum age of articles used for expiration by age (used in @c limitArticleAge archive mode)
     @param maxArticleAge expiry age in days */
     void setMaxArticleAge(int maxArticleAge);
 
     /** returns the article count limit used in @c limitArticleNumber archive mode **/
-    Q_REQUIRED_RESULT int maxArticleNumber() const;
+    [[nodiscard]] int maxArticleNumber() const;
 
     /** sets the article count limit used in @c limitArticleNumber archive mode **/
     void setMaxArticleNumber(int maxArticleNumber);
 
     /** if @c true, new articles are marked immediately as read instead of new/unread. Useful for high-traffic feeds. */
-    Q_REQUIRED_RESULT bool markImmediatelyAsRead() const;
+    [[nodiscard]] bool markImmediatelyAsRead() const;
 
     void setMarkImmediatelyAsRead(bool enabled);
 
     void setUseNotification(bool enabled);
 
-    Q_REQUIRED_RESULT bool useNotification() const;
+    [[nodiscard]] bool useNotification() const;
 
     /** if true, the linked URL is loaded directly in the article viewer instead of showing the description */
     void setLoadLinkedWebsite(bool enabled);
 
-    Q_REQUIRED_RESULT bool loadLinkedWebsite() const;
+    [[nodiscard]] bool loadLinkedWebsite() const;
 
     /** returns the feed logo */
-    Q_REQUIRED_RESULT Feed::ImageInfo logoInfo() const;
+    [[nodiscard]] Feed::ImageInfo logoInfo() const;
 
     /** sets the feed image */
     void setLogoInfo(const ImageInfo &image);
 
     /** returns the url of the actual feed source (rss/rdf/atom file) */
-    Q_REQUIRED_RESULT QString xmlUrl() const;
+    [[nodiscard]] QString xmlUrl() const;
     /** sets the url of the actual feed source (rss/rdf/atom file) */
     void setXmlUrl(const QString &s);
 
     /** returns the URL of the HTML page of this feed */
-    Q_REQUIRED_RESULT QString htmlUrl() const;
+    [[nodiscard]] QString htmlUrl() const;
     /** sets the URL of the HTML page of this feed */
     void setHtmlUrl(const QString &s);
 
-    Q_REQUIRED_RESULT Feed::ImageInfo faviconInfo() const;
+    [[nodiscard]] Feed::ImageInfo faviconInfo() const;
     void setFaviconInfo(const Feed::ImageInfo &url);
 
     /** returns the description of this feed */
-    Q_REQUIRED_RESULT QString description() const;
+    [[nodiscard]] QString description() const;
 
     /** sets the description of this feed */
     void setDescription(const QString &s);
@@ -166,32 +166,32 @@ public:
      * @return the article object with the given guid, or a
      * null article if non-existent
      */
-    Q_REQUIRED_RESULT Article findArticle(const QString &guid) const;
+    [[nodiscard]] Article findArticle(const QString &guid) const;
 
     /** returns whether a fetch error has occurred */
-    Q_REQUIRED_RESULT bool fetchErrorOccurred() const;
+    [[nodiscard]] bool fetchErrorOccurred() const;
 
     Syndication::ErrorCode fetchErrorCode() const;
 
     /** returns the unread count for this feed */
-    Q_REQUIRED_RESULT int unread() const override;
+    [[nodiscard]] int unread() const override;
 
     /** returns the number of total articles in this feed
     @return number of articles */
 
-    Q_REQUIRED_RESULT int totalCount() const override;
+    [[nodiscard]] int totalCount() const override;
 
     /** returns if the article archive of this feed is loaded */
-    Q_REQUIRED_RESULT bool isArticlesLoaded() const;
+    [[nodiscard]] bool isArticlesLoaded() const;
 
     /** returns if this node is a feed group (@c false here) */
-    Q_REQUIRED_RESULT bool isGroup() const override
+    [[nodiscard]] bool isGroup() const override
     {
         return false;
     }
 
     // impl
-    Q_REQUIRED_RESULT bool isAggregation() const override
+    [[nodiscard]] bool isAggregation() const override
     {
         return false;
     }
@@ -203,12 +203,12 @@ public:
     TreeNode *next() override;
 
     // impl
-    Q_REQUIRED_RESULT QIcon icon() const override;
+    [[nodiscard]] QIcon icon() const override;
 
     /** deletes expired articles */
     void deleteExpiredArticles(Akregator::ArticleDeleteJob *job);
 
-    Q_REQUIRED_RESULT bool isFetching() const;
+    [[nodiscard]] bool isFetching() const;
 
     QList<const Feed *> feeds() const override;
     QList<Feed *> feeds() override;
@@ -217,11 +217,11 @@ public:
 
     KJob *createMarkAsReadJob() override;
 
-    Q_REQUIRED_RESULT QString comment() const;
+    [[nodiscard]] QString comment() const;
     void setComment(const QString &comment);
     void setFaviconLocalPath(const QString &file);
     void setCopyright(const QString &copyright);
-    Q_REQUIRED_RESULT QString copyright() const;
+    [[nodiscard]] QString copyright() const;
 public Q_SLOTS:
     /** starts fetching */
     void fetch(bool followDiscovery = false);

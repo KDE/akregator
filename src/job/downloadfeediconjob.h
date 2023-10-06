@@ -18,13 +18,13 @@ class AKREGATOR_EXPORT DownloadFeedIconJob : public QObject
 public:
     explicit DownloadFeedIconJob(QObject *parent = nullptr);
     ~DownloadFeedIconJob() override;
-    Q_REQUIRED_RESULT bool start();
-    Q_REQUIRED_RESULT bool canStart() const;
+    [[nodiscard]] bool start();
+    [[nodiscard]] bool canStart() const;
 
-    Q_REQUIRED_RESULT QUrl feedIconUrl() const;
+    [[nodiscard]] QUrl feedIconUrl() const;
     void setFeedIconUrl(const QUrl &feedIconUrl);
 
-    Q_REQUIRED_RESULT bool downloadFavicon() const;
+    [[nodiscard]] bool downloadFavicon() const;
     void setDownloadFavicon(bool downloadFavicon);
 
 Q_SIGNALS:

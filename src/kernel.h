@@ -33,7 +33,7 @@ public:
     Backend::Storage *storage();
     void setStorage(Backend::Storage *storage);
 
-    Q_REQUIRED_RESULT QSharedPointer<FeedList> feedList() const;
+    [[nodiscard]] QSharedPointer<FeedList> feedList() const;
     void setFeedList(const QSharedPointer<FeedList> &feedList);
 
     FetchQueue *fetchQueue() const;

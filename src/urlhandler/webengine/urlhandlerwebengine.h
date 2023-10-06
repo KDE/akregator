@@ -55,9 +55,9 @@ public:
 
     ~AkregatorConfigHandler() override = default;
 
-    Q_REQUIRED_RESULT bool handleClick(const QUrl &, ArticleViewerWebEngine *) const override;
-    Q_REQUIRED_RESULT bool handleContextMenuRequest(const QUrl &, const QPoint &, ArticleViewerWebEngine *) const override;
-    Q_REQUIRED_RESULT QString statusBarMessage(const QUrl &, ArticleViewerWebEngine *) const override;
+    [[nodiscard]] bool handleClick(const QUrl &, ArticleViewerWebEngine *) const override;
+    [[nodiscard]] bool handleContextMenuRequest(const QUrl &, const QPoint &, ArticleViewerWebEngine *) const override;
+    [[nodiscard]] QString statusBarMessage(const QUrl &, ArticleViewerWebEngine *) const override;
 };
 
 class MailToURLHandlerWebEngine : public URLHandlerWebEngine
@@ -70,9 +70,9 @@ public:
 
     ~MailToURLHandlerWebEngine() override = default;
 
-    Q_REQUIRED_RESULT bool handleClick(const QUrl &, ArticleViewerWebEngine *) const override;
-    Q_REQUIRED_RESULT bool handleContextMenuRequest(const QUrl &, const QPoint &, ArticleViewerWebEngine *) const override;
-    Q_REQUIRED_RESULT QString statusBarMessage(const QUrl &, ArticleViewerWebEngine *) const override;
+    [[nodiscard]] bool handleClick(const QUrl &, ArticleViewerWebEngine *) const override;
+    [[nodiscard]] bool handleContextMenuRequest(const QUrl &, const QPoint &, ArticleViewerWebEngine *) const override;
+    [[nodiscard]] QString statusBarMessage(const QUrl &, ArticleViewerWebEngine *) const override;
 };
 
 class ActionURLHandlerWebEngine : public URLHandlerWebEngine
@@ -85,8 +85,8 @@ public:
 
     ~ActionURLHandlerWebEngine() override = default;
 
-    Q_REQUIRED_RESULT bool handleClick(const QUrl &, ArticleViewerWebEngine *) const override;
-    Q_REQUIRED_RESULT bool handleContextMenuRequest(const QUrl &, const QPoint &, ArticleViewerWebEngine *) const override;
-    Q_REQUIRED_RESULT QString statusBarMessage(const QUrl &, ArticleViewerWebEngine *) const override;
+    [[nodiscard]] bool handleClick(const QUrl &, ArticleViewerWebEngine *) const override;
+    [[nodiscard]] bool handleContextMenuRequest(const QUrl &, const QPoint &, ArticleViewerWebEngine *) const override;
+    [[nodiscard]] QString statusBarMessage(const QUrl &, ArticleViewerWebEngine *) const override;
 };
 }

@@ -73,7 +73,7 @@ public:
     /**
      * @return the displayed Feed List in OPML format
      */
-    Q_REQUIRED_RESULT QDomDocument feedListToOPML();
+    [[nodiscard]] QDomDocument feedListToOPML();
 
     void setFeedList(const QSharedPointer<FeedList> &feedList);
 
@@ -86,7 +86,7 @@ public:
      */
     void addFeedToGroup(const QString &url, const QString &group);
 
-    Q_REQUIRED_RESULT QSharedPointer<FeedList> allFeedsList()
+    [[nodiscard]] QSharedPointer<FeedList> allFeedsList()
     {
         return m_feedList;
     }
@@ -96,7 +96,7 @@ public:
     void saveProperties(KConfigGroup &config);
 
     // Returns true if networking is available
-    Q_REQUIRED_RESULT bool isNetworkAvailable() const;
+    [[nodiscard]] bool isNetworkAvailable() const;
 
     enum ViewMode { NormalView = 0, WidescreenView, CombinedView };
 
@@ -238,7 +238,7 @@ private:
     void connectFrame(Akregator::WebEngineFrame *frame);
     void cleanUpDownloadFile();
     /** ask for confirmation when marking feed(s) as read */
-    Q_REQUIRED_RESULT bool confirmMarkFeedAsRead(bool isSingleFeed, bool isGroup);
+    [[nodiscard]] bool confirmMarkFeedAsRead(bool isSingleFeed, bool isGroup);
 
     /** opens current article in new tab, background/foreground depends on settings TODO: use selected instead of current? */
     void openSelectedArticles(bool openInBackground);

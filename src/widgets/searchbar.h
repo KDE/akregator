@@ -30,14 +30,14 @@ public:
     explicit SearchBar(QWidget *parent = nullptr);
     ~SearchBar() override;
 
-    Q_REQUIRED_RESULT QString text() const;
-    Q_REQUIRED_RESULT StatusSearchLine::Status status() const;
+    [[nodiscard]] QString text() const;
+    [[nodiscard]] StatusSearchLine::Status status() const;
 
     void setDelay(int ms);
-    Q_REQUIRED_RESULT int delay() const;
+    [[nodiscard]] int delay() const;
 
     void setFocusSearchLine();
-    Q_REQUIRED_RESULT std::vector<QSharedPointer<const Filters::AbstractMatcher>> matchers() const;
+    [[nodiscard]] std::vector<QSharedPointer<const Filters::AbstractMatcher>> matchers() const;
     void updateQuickSearchLineText(const QString &searchLine);
 
 Q_SIGNALS:

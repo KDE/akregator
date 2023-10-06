@@ -23,7 +23,7 @@ public:
 
     void setStatus(StatusSearchLine::Status status);
 
-    Q_REQUIRED_RESULT Status status() const;
+    [[nodiscard]] Status status() const;
 
 Q_SIGNALS:
     void statusChanged(Akregator::StatusSearchLine::Status status);

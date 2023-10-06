@@ -24,36 +24,36 @@ public:
     FeedStorage(const QString &url, Storage *main);
     ~FeedStorage();
 
-    Q_REQUIRED_RESULT int unread() const;
+    [[nodiscard]] int unread() const;
     void setUnread(int unread);
-    Q_REQUIRED_RESULT int totalCount() const;
-    Q_REQUIRED_RESULT QDateTime lastFetch() const;
+    [[nodiscard]] int totalCount() const;
+    [[nodiscard]] QDateTime lastFetch() const;
     void setLastFetch(const QDateTime &lastFetch);
 
-    Q_REQUIRED_RESULT QStringList articles() const;
+    [[nodiscard]] QStringList articles() const;
 
     void article(const QString &guid, uint &hash, QString &title, int &status, QDateTime &pubDate) const;
     bool contains(const QString &guid) const;
     void addEntry(const QString &guid);
     void deleteArticle(const QString &guid);
-    Q_REQUIRED_RESULT bool guidIsHash(const QString &guid) const;
+    [[nodiscard]] bool guidIsHash(const QString &guid) const;
     void setGuidIsHash(const QString &guid, bool isHash);
     bool guidIsPermaLink(const QString &guid) const;
     void setGuidIsPermaLink(const QString &guid, bool isPermaLink);
-    Q_REQUIRED_RESULT uint hash(const QString &guid) const;
+    [[nodiscard]] uint hash(const QString &guid) const;
     void setHash(const QString &guid, uint hash);
     void setDeleted(const QString &guid);
-    Q_REQUIRED_RESULT QString link(const QString &guid) const;
+    [[nodiscard]] QString link(const QString &guid) const;
     void setLink(const QString &guid, const QString &link);
-    Q_REQUIRED_RESULT QDateTime pubDate(const QString &guid) const;
+    [[nodiscard]] QDateTime pubDate(const QString &guid) const;
     void setPubDate(const QString &guid, const QDateTime &pubdate);
-    Q_REQUIRED_RESULT int status(const QString &guid) const;
+    [[nodiscard]] int status(const QString &guid) const;
     void setStatus(const QString &guid, int status);
-    Q_REQUIRED_RESULT QString title(const QString &guid) const;
+    [[nodiscard]] QString title(const QString &guid) const;
     void setTitle(const QString &guid, const QString &title);
-    Q_REQUIRED_RESULT QString description(const QString &guid) const;
+    [[nodiscard]] QString description(const QString &guid) const;
     void setDescription(const QString &guid, const QString &description);
-    Q_REQUIRED_RESULT QString content(const QString &guid) const;
+    [[nodiscard]] QString content(const QString &guid) const;
     void setContent(const QString &guid, const QString &content);
 
     void setEnclosure(const QString &guid, const QString &url, const QString &type, int length);
@@ -64,12 +64,12 @@ public:
     void setAuthorUri(const QString &guid, const QString &uri);
     void setAuthorEMail(const QString &guid, const QString &email);
 
-    Q_REQUIRED_RESULT QString authorName(const QString &guid) const;
-    Q_REQUIRED_RESULT QString authorUri(const QString &guid) const;
-    Q_REQUIRED_RESULT QString authorEMail(const QString &guid) const;
+    [[nodiscard]] QString authorName(const QString &guid) const;
+    [[nodiscard]] QString authorUri(const QString &guid) const;
+    [[nodiscard]] QString authorEMail(const QString &guid) const;
 
     void setCategories(const QString &, const QStringList &categories);
-    Q_REQUIRED_RESULT QStringList categories(const QString &guid) const;
+    [[nodiscard]] QStringList categories(const QString &guid) const;
 
     void close();
     void commit();

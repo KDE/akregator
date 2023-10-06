@@ -95,7 +95,7 @@ private:
 class ActionManagerImpl::ActionManagerImplPrivate
 {
 public:
-    Q_REQUIRED_RESULT QString quickSearchLineText() const;
+    [[nodiscard]] QString quickSearchLineText() const;
     NodeSelectVisitor *nodeSelectVisitor = nullptr;
     ArticleListView *articleList = nullptr;
     SubscriptionListView *subscriptionListView = nullptr;

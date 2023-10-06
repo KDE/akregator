@@ -26,7 +26,7 @@ public:
     ~FetchQueue() override;
 
     /** returns true when no feeds are neither fetching nor queued */
-    Q_REQUIRED_RESULT bool isEmpty() const;
+    [[nodiscard]] bool isEmpty() const;
 
     /** adds a feed to the queue */
     void addFeed(Feed *f);

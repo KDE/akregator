@@ -54,17 +54,17 @@ public Q_SLOTS:
     void accept() override;
 
 protected:
-    Q_REQUIRED_RESULT QString comment() const;
-    Q_REQUIRED_RESULT QString feedName() const;
-    Q_REQUIRED_RESULT QString url() const;
-    Q_REQUIRED_RESULT bool autoFetch() const;
-    Q_REQUIRED_RESULT int fetchInterval() const;
-    Q_REQUIRED_RESULT Feed::ArchiveMode archiveMode() const;
-    Q_REQUIRED_RESULT int maxArticleAge() const;
-    Q_REQUIRED_RESULT int maxArticleNumber() const;
-    Q_REQUIRED_RESULT bool markImmediatelyAsRead() const;
-    Q_REQUIRED_RESULT bool useNotification() const;
-    Q_REQUIRED_RESULT bool loadLinkedWebsite() const;
+    [[nodiscard]] QString comment() const;
+    [[nodiscard]] QString feedName() const;
+    [[nodiscard]] QString url() const;
+    [[nodiscard]] bool autoFetch() const;
+    [[nodiscard]] int fetchInterval() const;
+    [[nodiscard]] Feed::ArchiveMode archiveMode() const;
+    [[nodiscard]] int maxArticleAge() const;
+    [[nodiscard]] int maxArticleNumber() const;
+    [[nodiscard]] bool markImmediatelyAsRead() const;
+    [[nodiscard]] bool useNotification() const;
+    [[nodiscard]] bool loadLinkedWebsite() const;
 
     void setFeedName(const QString &title);
     void setUrl(const QString &url);

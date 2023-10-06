@@ -36,23 +36,23 @@ public:
     explicit ArticleModel(const QList<Article> &articles, QObject *parent = nullptr);
     ~ArticleModel() override;
 
-    Q_REQUIRED_RESULT int columnCount(const QModelIndex &parent = QModelIndex()) const override;
+    [[nodiscard]] int columnCount(const QModelIndex &parent = QModelIndex()) const override;
 
-    Q_REQUIRED_RESULT int rowCount(const QModelIndex &parent = QModelIndex()) const override;
+    [[nodiscard]] int rowCount(const QModelIndex &parent = QModelIndex()) const override;
 
-    Q_REQUIRED_RESULT QVariant headerData(int section, Qt::Orientation, int role) const override;
+    [[nodiscard]] QVariant headerData(int section, Qt::Orientation, int role) const override;
 
-    Q_REQUIRED_RESULT QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
+    [[nodiscard]] QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
 
-    Q_REQUIRED_RESULT bool rowMatches(int row, const QSharedPointer<const Akregator::Filters::AbstractMatcher> &matcher) const;
+    [[nodiscard]] bool rowMatches(int row, const QSharedPointer<const Akregator::Filters::AbstractMatcher> &matcher) const;
 
-    Q_REQUIRED_RESULT Article article(int row) const;
+    [[nodiscard]] Article article(int row) const;
 
-    Q_REQUIRED_RESULT QStringList mimeTypes() const override;
+    [[nodiscard]] QStringList mimeTypes() const override;
 
     QMimeData *mimeData(const QModelIndexList &indexes) const override;
 
-    Q_REQUIRED_RESULT Qt::ItemFlags flags(const QModelIndex &idx) const override;
+    [[nodiscard]] Qt::ItemFlags flags(const QModelIndex &idx) const override;
 
 public Q_SLOTS:
 

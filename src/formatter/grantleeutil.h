@@ -11,6 +11,6 @@ namespace Akregator
 class Feed;
 namespace GrantleeUtil
 {
-Q_REQUIRED_RESULT QString imageFeed(const Feed *feed);
+[[nodiscard]] QString imageFeed(const Feed *feed);
 }
 }
