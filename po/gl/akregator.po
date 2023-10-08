@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-10-03 01:38+0000\n"
-"PO-Revision-Date: 2023-09-30 12:54+0200\n"
+"PO-Revision-Date: 2023-10-07 12:22+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Galician <proxecto@trasno.gal>\n"
 "Language: gl\n"
@@ -1544,8 +1544,8 @@ msgid ""
 "Access denied: Cannot save feed list to <b>%1</b>. Please check your "
 "permissions."
 msgstr ""
-"Acceso denegado: non se pode gardar a lista de fontes en <b>%1</b>. Comprobe "
-"os seus permisos."
+"Acceso denegado: non é posíbel gardar a lista de fontes en <b>%1</b>. "
+"Comprobe os seus permisos."
 
 #: src/akregator_part.cpp:428
 #, kde-format
@@ -1807,8 +1807,8 @@ msgid ""
 "<qt>The standard feed list is corrupted (invalid OPML). Could not create a "
 "backup.</qt>"
 msgstr ""
-"<qt>A lista estándar de fontes está corrupta (a OPML é incorrecta). Non se "
-"puido crear unha salvagarda.</qt>"
+"<qt>A lista estándar de fontes está corrupta (a OPML é incorrecta). Non foi "
+"posíbel crear unha salvagarda.</qt>"
 
 #: src/command/loadfeedlistcommand.cpp:129
 #, kde-format
@@ -1818,7 +1818,7 @@ msgstr "Abrindo a lista de fontes…"
 #: src/command/loadfeedlistcommand.cpp:143
 #, kde-format
 msgid "<qt>Could not open feed list (%1) for reading.</qt>"
-msgstr "<qt>Non se puido abrir a lista de fontes (%1) para ler.</qt>"
+msgstr "<qt>Non foi posíbel abrir a lista de fontes (%1) para ler.</qt>"
 
 #: src/command/loadfeedlistcommand.cpp:157
 #, kde-format
@@ -1848,8 +1848,8 @@ msgid ""
 "<qt>The standard feed list is corrupted (invalid XML). Could not create a "
 "backup.</qt>"
 msgstr ""
-"<qt>A lista estándar de fontes está estragada (o XML é incorrecto). Non se "
-"puido crear unha salvagarda.</qt>"
+"<qt>A lista estándar de fontes está estragada (o XML é incorrecto). Non foi "
+"posíbel crear unha salvagarda.</qt>"
 
 #: src/crashwidget/crashwidget.cpp:21
 #, kde-format
@@ -2529,10 +2529,9 @@ msgid "Important"
 msgstr "Importante"
 
 #: src/widgets/statussearchline.cpp:63
-#, fuzzy, kde-format
-#| msgid "Text Filter"
+#, kde-format
 msgid "Filter"
-msgstr "Filtro do texto"
+msgstr "Filtrar"
 
 #~ msgctxt "@title:window"
 #~ msgid "Print Document"
