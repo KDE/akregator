@@ -2585,31 +2585,3 @@ msgstr "重要"
 #| msgid "Text Filter"
 msgid "Filter"
 msgstr "テキストフィルタ"
-
-#~ msgid "Advanced Feed Reader Settings"
-#~ msgstr "フィードリーダーの詳細設定"
-
-#~ msgid "(c), 2004 - 2008 Frank Osterfeld"
-#~ msgstr "(c) 2004-2008 Frank Osterfeld"
-
-#~ msgid "Configure Feed Reader Appearance"
-#~ msgstr "フィードリーダーの外観設定"
-
-#~ msgid "Configure Feed Reader Archive"
-#~ msgstr "フィードリーダーのアーカイブ設定"
-
-#~ msgid "Configure Feed Reader Browser"
-#~ msgstr "フィードリーダーのブラウザ設定"
-
-#~ msgid "Configure Feeds"
-#~ msgstr "フィードの全般設定"
-
-#, fuzzy
-#~| msgid "Configure Feeds"
-#~ msgid "Configure Plugins"
-#~ msgstr "フィードの全般設定"
-
-#, fuzzy
-#~| msgid "Configure Feeds"
-#~ msgid "Configure User Feedback"
-#~ msgstr "フィードの全般設定"
