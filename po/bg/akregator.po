@@ -2515,36 +2515,3 @@ msgstr "Четене"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "Важно"
-
-#~ msgid "Advanced Feed Reader Settings"
-#~ msgstr "Разширени настройки"
-
-#~ msgid "(c), 2004 - 2008 Frank Osterfeld"
-#~ msgstr "(c), 2004 - 2008 Frank Osterfeld"
-
-#~ msgid "Configure Feed Reader Appearance"
-#~ msgstr "Настройване на външния вид"
-
-#~ msgid "Configure Feed Reader Archive"
-#~ msgstr "Конфигуриране на обратна връзка от потребителя"
-
-#~ msgid "Configure Feed Reader Browser"
-#~ msgstr "Настройване на браузъра за източниците"
-
-#~ msgid "Configure Feeds"
-#~ msgstr "Настройване на източниците"
-
-#~ msgid "Configure Plugins"
-#~ msgstr "Конфигуриране на приставки"
-
-#~ msgid "(c), 2016-2021 Laurent Montel"
-#~ msgstr "(c), 2016-2021 Laurent Montel"
-
-#~ msgid "(c), 2021 Laurent Montel"
-#~ msgstr "(c), 2021 Laurent Montel"
-
-#~ msgid "Configure User Feedback"
-#~ msgstr "Конфигуриране на обратна връзка от потребителя"
-
-#~ msgid "(c), 2020-2021 Laurent Montel"
-#~ msgstr "(c), 2020-2021 Laurent Montel"

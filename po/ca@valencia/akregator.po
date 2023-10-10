@@ -1561,7 +1561,7 @@ msgstr "No s'ha pogut importar el fitxer %1 (OPML no vàlid)"
 #: src/akregator_part.cpp:481 src/command/loadfeedlistcommand.cpp:71
 #, kde-format
 msgid "OPML Parsing Error"
-msgstr "S'ha produït un error en analitzar l'OPML"
+msgstr "S'ha produït un error en l'anàlisi sintàctica de l'OPML"
 
 #: src/akregator_part.cpp:485
 #, kde-format
@@ -1818,14 +1818,14 @@ msgstr "<qt>No s'ha pogut obrir la llista de fonts (%1) per a llegir-la.</qt>"
 #, kde-format
 msgctxt "error message window caption"
 msgid "XML Parsing Error"
-msgstr "S'ha produït un error en analitzar l'XML"
+msgstr "S'ha produït un error en l'anàlisi sintàctica de l'XML"
 
 #: src/command/loadfeedlistcommand.cpp:157
 #, kde-kuit-format
 msgid "<qt><p>XML parsing error in line %1, column %2 of %3:</p><p>%4</p></qt>"
 msgstr ""
-"<qt><p>S'ha produït un error en analitzar l'XML en la línia %1, columna %2 "
-"de %3:</p><p>%4</p></qt>"
+"<qt><p>S'ha produït un error en l'anàlisi sintàctica de l'XML en la línia "
+"%1, columna %2 de %3:</p><p>%4</p></qt>"
 
 #: src/command/loadfeedlistcommand.cpp:164
 #, kde-format
