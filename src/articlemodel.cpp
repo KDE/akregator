@@ -100,7 +100,7 @@ QVariant ArticleModel::data(const QModelIndex &index, int role) const
         if (index.column() == DateColumn) {
             return article.pubDate();
         }
-        Q_FALLTHROUGH();
+        [[fallthrough]];
     // no break
     case Qt::DisplayRole:
         switch (index.column()) {
