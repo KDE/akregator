@@ -1557,11 +1557,10 @@ msgid "Could not import the file %1 (no valid OPML)"
 msgstr "Nelze importovat soubor %1 (neplatné OPML)"
 
 #: src/akregator_part.cpp:464 src/command/loadfeedlistcommand.cpp:71
-#, fuzzy, kde-format
-#| msgid "OPML Parsing Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "OPML Parsing Error"
-msgstr "Chyba v analýze OPML"
+msgstr ""
 
 #: src/akregator_part.cpp:468
 #, kde-format
@@ -1573,11 +1572,10 @@ msgstr ""
 "uživatel jej může číst."
 
 #: src/akregator_part.cpp:469 src/command/loadfeedlistcommand.cpp:144
-#, fuzzy, kde-format
-#| msgid "Read Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "Read Error"
-msgstr "Chyba při čtení"
+msgstr ""
 
 #: src/akregator_part.cpp:480
 #, kde-format
@@ -1587,11 +1585,10 @@ msgstr ""
 "oprávnění."
 
 #: src/akregator_part.cpp:481
-#, fuzzy, kde-format
-#| msgid "Write Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "Write Error"
-msgstr "Chyba při zápisu"
+msgstr ""
 
 #: src/akregator_part.cpp:496 src/akregator_part.cpp:505
 #, kde-format
@@ -1695,11 +1692,10 @@ msgid "Are you sure you want to disable this introduction page?"
 msgstr "Opravdu si přejete zakázat úvodní stránku?"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:377
-#, fuzzy, kde-format
-#| msgid "Disable Introduction Page"
+#, kde-format
 msgctxt "@title:window"
 msgid "Disable Introduction Page"
-msgstr "Zakázat úvodní stránku"
+msgstr ""
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:412
 #, kde-format
@@ -1707,11 +1703,10 @@ msgid "This web site is a malware, do you want to continue to show it?"
 msgstr "Tato webová stránka je malware, chcete pokračovat s jejím zobrazením?"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:413
-#, fuzzy, kde-format
-#| msgid "Malware"
+#, kde-format
 msgctxt "@title:window"
 msgid "Malware"
-msgstr "Malware"
+msgstr ""
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:425
 #, kde-format
@@ -1720,11 +1715,10 @@ msgstr "Síť je přerušena."
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:425
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:428
-#, fuzzy, kde-format
-#| msgid "Check Phishing Url"
+#, kde-format
 msgctxt "@title:window"
 msgid "Check Phishing Url"
-msgstr "Zkontrolovat URL Phishing "
+msgstr ""
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:428
 #, kde-format
@@ -1758,11 +1752,10 @@ msgstr ""
 "<qt>Opravdu si přejete smazat složku <b>%1</b>a její podsložky a kanály?</qt>"
 
 #: src/command/deletesubscriptioncommand.cpp:44
-#, fuzzy, kde-format
-#| msgid "Delete Folder"
+#, kde-format
 msgctxt "@title:window"
 msgid "Delete Folder"
-msgstr "Smazat složku"
+msgstr ""
 
 #: src/command/deletesubscriptioncommand.cpp:61
 #, kde-format
@@ -1775,11 +1768,10 @@ msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
 msgstr "<qt>Opravdu si přejete smazat kanál<b>%1</b>?</qt>"
 
 #: src/command/deletesubscriptioncommand.cpp:68
-#, fuzzy, kde-format
-#| msgid "Delete Feed"
+#, kde-format
 msgctxt "@title:window"
 msgid "Delete Feed"
-msgstr "Smazat kanál"
+msgstr ""
 
 #: src/command/importfeedlistcommand.cpp:48
 #, kde-format
@@ -2098,11 +2090,10 @@ msgstr ""
 "</qt>"
 
 #: src/mainwidget.cpp:766
-#, fuzzy, kde-format
-#| msgid "Mark Feed as Read"
+#, kde-format
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
-msgstr "Označit kanál jako přečtený"
+msgstr ""
 
 #: src/mainwidget.cpp:769
 #, kde-format
@@ -2120,11 +2111,10 @@ msgstr ""
 "</qt>"
 
 #: src/mainwidget.cpp:773
-#, fuzzy, kde-format
-#| msgid "Mark Feeds as Read"
+#, kde-format
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
-msgstr "Označit kanály jako přečtené"
+msgstr ""
 
 #: src/mainwidget.cpp:837 src/mainwidget.cpp:846 src/mainwidget.cpp:1248
 #, kde-format
@@ -2151,11 +2141,10 @@ msgstr[1] "<qt>Opravdu si přejete smazat %1 vybrané články?</qt>"
 msgstr[2] "<qt>Opravdu si přejete smazat %1 vybraných článků?</qt>"
 
 #: src/mainwidget.cpp:1063
-#, fuzzy, kde-format
-#| msgid "Delete Article"
+#, kde-format
 msgctxt "@title:window"
 msgid "Delete Article"
-msgstr "Smazat článek"
+msgstr ""
 
 #: src/mainwidget.cpp:1245
 #, kde-format
@@ -2172,11 +2161,10 @@ msgstr ""
 "qt>"
 
 #: src/mainwindow.cpp:124
-#, fuzzy, kde-format
-#| msgid "Hide menu bar"
+#, kde-format
 msgctxt "@title:window"
 msgid "Hide menu bar"
-msgstr "Skrýt nabídku"
+msgstr ""
 
 #: src/mainwindow.cpp:153
 #, kde-format
@@ -2548,7 +2536,6 @@ msgid "Important"
 msgstr "Důležité"
 
 #: src/widgets/statussearchline.cpp:63
-#, fuzzy, kde-format
-#| msgid "Text Filter"
+#, kde-format
 msgid "Filter"
-msgstr "Textový filtr"
+msgstr "Filtr"

@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-10-03 01:38+0000\n"
-"PO-Revision-Date: 2023-09-16 10:08\n"
+"PO-Revision-Date: 2023-10-10 14:25\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
@@ -14,8 +14,8 @@ msgstr ""
 "X-Crowdin-Project: kdeorg\n"
 "X-Crowdin-Project-ID: 269464\n"
 "X-Crowdin-Language: zh-CN\n"
-"X-Crowdin-File: /kf5-trunk/messages/akregator/akregator.pot\n"
-"X-Crowdin-File-ID: 3835\n"
+"X-Crowdin-File: /kf6-trunk/messages/akregator/akregator.pot\n"
+"X-Crowdin-File-ID: 45243\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -1532,8 +1532,7 @@ msgid "Could not import the file %1 (no valid OPML)"
 msgstr "无法导入文件 %1(无有效的 OPML)"
 
 #: src/akregator_part.cpp:464 src/command/loadfeedlistcommand.cpp:71
-#, fuzzy, kde-format
-#| msgid "OPML Parsing Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "OPML Parsing Error"
 msgstr "OPML 解析错误"
@@ -1546,8 +1545,7 @@ msgid ""
 msgstr "无法读取文件 %1，请检查该文件是否存在，或者当前用户是否可读取该文件。"
 
 #: src/akregator_part.cpp:469 src/command/loadfeedlistcommand.cpp:144
-#, fuzzy, kde-format
-#| msgid "Read Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "Read Error"
 msgstr "读取错误"
@@ -1558,8 +1556,7 @@ msgid "Access denied: cannot write to file %1. Please check your permissions."
 msgstr "访问被禁止：无法写入文件 %1。请检查您的权限。"
 
 #: src/akregator_part.cpp:481
-#, fuzzy, kde-format
-#| msgid "Write Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "Write Error"
 msgstr "写错误"
@@ -1665,8 +1662,7 @@ msgid "Are you sure you want to disable this introduction page?"
 msgstr "您确定要禁用此介绍页吗？"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:377
-#, fuzzy, kde-format
-#| msgid "Disable Introduction Page"
+#, kde-format
 msgctxt "@title:window"
 msgid "Disable Introduction Page"
 msgstr "禁用介绍页"
@@ -1677,8 +1673,7 @@ msgid "This web site is a malware, do you want to continue to show it?"
 msgstr "此网站包含恶意软件，您想要继续显示它吗？"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:413
-#, fuzzy, kde-format
-#| msgid "Malware"
+#, kde-format
 msgctxt "@title:window"
 msgid "Malware"
 msgstr "恶意软件"
@@ -1690,8 +1685,7 @@ msgstr "网络中断。"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:425
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:428
-#, fuzzy, kde-format
-#| msgid "Check Phishing Url"
+#, kde-format
 msgctxt "@title:window"
 msgid "Check Phishing Url"
 msgstr "检查钓鱼链接"
@@ -1726,8 +1720,7 @@ msgid ""
 msgstr "<qt>您确定要删除文件夹 <b>%1</b> 及其中的订阅和子文件夹吗？</qt>"
 
 #: src/command/deletesubscriptioncommand.cpp:44
-#, fuzzy, kde-format
-#| msgid "Delete Folder"
+#, kde-format
 msgctxt "@title:window"
 msgid "Delete Folder"
 msgstr "删除文件夹"
@@ -1743,8 +1736,7 @@ msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
 msgstr "<qt>您确定要删除订阅 <b>%1</b> 吗？</qt>"
 
 #: src/command/deletesubscriptioncommand.cpp:68
-#, fuzzy, kde-format
-#| msgid "Delete Feed"
+#, kde-format
 msgctxt "@title:window"
 msgid "Delete Feed"
 msgstr "删除订阅"
@@ -2042,8 +2034,7 @@ msgid ""
 msgstr "<qt>你确定你想要将该订阅中的<b>所有文章</b>标记为已读？</qt>"
 
 #: src/mainwidget.cpp:766
-#, fuzzy, kde-format
-#| msgid "Mark Feed as Read"
+#, kde-format
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "将订阅标为已读"
@@ -2061,8 +2052,7 @@ msgid ""
 msgstr "<qt>你确定你想要将<b>该文件夹中的所有订阅</b>标记为已读？</qt>"
 
 #: src/mainwidget.cpp:773
-#, fuzzy, kde-format
-#| msgid "Mark Feeds as Read"
+#, kde-format
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "将订阅标为已读"
@@ -2090,8 +2080,7 @@ msgid_plural ""
 msgstr[0] "<qt>您确定要删除这 %1 篇文章吗？</qt>"
 
 #: src/mainwidget.cpp:1063
-#, fuzzy, kde-format
-#| msgid "Delete Article"
+#, kde-format
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "删除文章"
@@ -2109,8 +2098,7 @@ msgid ""
 msgstr "<qt>这将完全隐藏菜单栏。您可以按下 %1 使其重新显示。</qt>"
 
 #: src/mainwindow.cpp:124
-#, fuzzy, kde-format
-#| msgid "Hide menu bar"
+#, kde-format
 msgctxt "@title:window"
 msgid "Hide menu bar"
 msgstr "隐藏菜单栏"
@@ -2481,11 +2469,6 @@ msgid "Important"
 msgstr "重要"
 
 #: src/widgets/statussearchline.cpp:63
-#, fuzzy, kde-format
-#| msgid "Text Filter"
+#, kde-format
 msgid "Filter"
-msgstr "文本过滤器"
-
-#~ msgctxt "@title:window"
-#~ msgid "Print Document"
-#~ msgstr "打印文档"
+msgstr ""
