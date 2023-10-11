@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: CC0-1.0
 # SPDX-FileCopyrightText: none
-configure_file(akregator-version.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/akregator-version.h @ONLY)
+configure_file(akregator-version.h.in ${CMAKE_CURRENT_BINARY_DIR}/akregator-version.h @ONLY)
 include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/command/
     ${CMAKE_CURRENT_SOURCE_DIR}/formatter/
