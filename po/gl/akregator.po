@@ -734,7 +734,7 @@ msgid ""
 "connection because of having \"gator\" in the name."
 msgstr ""
 "Esta opción permite que a persoa usuaria indique unha cadea personalizada co "
-"axente de usuario no canto de usar o predeterminado. Isto aparece aquí "
+"axente de usuaria no canto de usar o predeterminado. Isto aparece aquí "
 "porque algúns mandatarios poden interromper a conexión se «gator» aparecer "
 "no nome."
 
