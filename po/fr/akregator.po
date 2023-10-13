@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-10-03 01:38+0000\n"
-"PO-Revision-Date: 2023-10-04 07:49+0200\n"
+"PO-Revision-Date: 2023-10-11 17:00+0200\n"
 "Last-Translator: Xavier BESNARD <xavier.besnard@neuf.fr>\n"
 "Language-Team: fr\n"
 "Language: fr\n"
@@ -390,7 +390,9 @@ msgstr "Sécurité"
 #: configuration/ui/settings_browser.ui:146
 #, kde-format
 msgid "Verify URLs using Google's Safe Browsing API"
-msgstr "Vérifier les URL grâce à l'API « Safe Browsing » de Google"
+msgstr ""
+"Vérifier les URL grâce à l'API « Safe Browsing » de Google pour la "
+"navigation sécurisée » "
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_EnableJavascript)
 #. i18n: ectx: label, entry, group (Browser)
