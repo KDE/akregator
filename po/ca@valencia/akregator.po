@@ -1346,22 +1346,22 @@ msgstr "Font anter&ior sense llegir"
 #: src/actions/actionmanagerimpl.cpp:507
 #, kde-format
 msgid "Go to Top of Tree"
-msgstr "Ves al cim de l'arbre"
+msgstr "Ves fins al cim de l'arbre"
 
 #: src/actions/actionmanagerimpl.cpp:512
 #, kde-format
 msgid "Go to Bottom of Tree"
-msgstr "Ves al capdavall de l'arbre"
+msgstr "Ves fins al capdavall de l'arbre"
 
 #: src/actions/actionmanagerimpl.cpp:517
 #, kde-format
 msgid "Go Left in Tree"
-msgstr "Ves a l'esquerra per l'arbre"
+msgstr "Ves cap a l'esquerra per l'arbre"
 
 #: src/actions/actionmanagerimpl.cpp:522
 #, kde-format
 msgid "Go Right in Tree"
-msgstr "Ves a la dreta per l'arbre"
+msgstr "Ves cap a la dreta per l'arbre"
 
 #: src/actions/actionmanagerimpl.cpp:527
 #, kde-format
@@ -2225,7 +2225,7 @@ msgstr "No s'ha trobat el node o la carpeta de destinació"
 #: src/subscription/subscriptionlistjobs.cpp:71
 #, kde-format
 msgid "Cannot move folder %1 to its own subfolder %2"
-msgstr "No s'ha pogut moure la carpeta %1 a la seua pròpia subcarpeta %2"
+msgstr "No s'ha pogut moure la carpeta %1 cap a la seua pròpia subcarpeta %2"
 
 #: src/subscription/subscriptionlistmodel.cpp:49
 #, kde-format
