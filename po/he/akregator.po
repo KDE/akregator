@@ -15,7 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Zanata 3.9.6\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 && "
+"n % 10 == 0) ? 2 : 3));\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -111,6 +112,8 @@ msgid " article"
 msgid_plural " articles"
 msgstr[0] "מאמר אחד"
 msgstr[1] "מאמר אחד"
+msgstr[2] ""
+msgstr[3] ""
 
 #: configuration/akregator_config_archive.cpp:34
 #, fuzzy, kde-format
@@ -119,6 +122,8 @@ msgid " day"
 msgid_plural " days"
 msgstr[0] "יום אחד"
 msgstr[1] "יום אחד"
+msgstr[2] ""
+msgstr[3] ""
 
 #: configuration/akregator_config_general.cpp:32
 #, fuzzy, kde-format
@@ -126,6 +131,8 @@ msgid " minute"
 msgid_plural " minutes"
 msgstr[0] "דקה אחת"
 msgstr[1] "דקה אחת"
+msgstr[2] ""
+msgstr[3] ""
 
 #: configuration/akregatorconfigurepluginlistwidget.cpp:51
 #, fuzzy, kde-format
@@ -139,6 +146,8 @@ msgid " second"
 msgid_plural " seconds"
 msgstr[0] "שנייה"
 msgstr[1] "שנייה"
+msgstr[2] ""
+msgstr[3] ""
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: configuration/ui/settings_advancedbase.ui:30
@@ -1916,6 +1925,8 @@ msgid "Minute"
 msgid_plural "Minutes"
 msgstr[0] "דקות"
 msgstr[1] "דקות"
+msgstr[2] ""
+msgstr[3] ""
 
 #: src/feed/feedpropertiesdialog.cpp:46 src/feed/feedpropertiesdialog.cpp:78
 #, fuzzy, kde-format
@@ -1923,6 +1934,8 @@ msgid "Hour"
 msgid_plural "Hours"
 msgstr[0] "שעות"
 msgstr[1] "שעות"
+msgstr[2] ""
+msgstr[3] ""
 
 #: src/feed/feedpropertiesdialog.cpp:47 src/feed/feedpropertiesdialog.cpp:79
 #, fuzzy, kde-format
@@ -1930,6 +1943,8 @@ msgid "Day"
 msgid_plural "Days"
 msgstr[0] "ימים"
 msgstr[1] "ימים"
+msgstr[2] ""
+msgstr[3] ""
 
 #: src/feed/feedpropertiesdialog.cpp:60 src/feed/feedpropertiesdialog.cpp:112
 #, fuzzy, kde-format
@@ -1950,6 +1965,8 @@ msgid " day"
 msgid_plural " days"
 msgstr[0] "יום אחד"
 msgstr[1] "יום אחד"
+msgstr[2] ""
+msgstr[3] ""
 
 #: src/feed/feedpropertiesdialog.cpp:82
 #, fuzzy, kde-format
@@ -1957,6 +1974,8 @@ msgid " article"
 msgid_plural " articles"
 msgstr[0] "מאמר אחד"
 msgstr[1] "מאמר אחד"
+msgstr[2] ""
+msgstr[3] ""
 
 #: src/feed/feedpropertiesdialog.cpp:112
 #, fuzzy, kde-format
@@ -1983,6 +2002,8 @@ msgid " (1 unread article)"
 msgid_plural " (%1 unread articles)"
 msgstr[0] "(מאמר אחד שלא נקרא)"
 msgstr[1] "(%1 מאמרים שלא נקראו)"
+msgstr[2] ""
+msgstr[3] ""
 
 #: src/formatter/grantleeviewformatter.cpp:75
 #, fuzzy, kde-format
@@ -2123,6 +2144,8 @@ msgid_plural ""
 "<qt>Are you sure you want to delete the %1 selected articles?</qt>"
 msgstr[0] "<qt>האם אתה בטוח שברצונך למחוק את המאמרים המסומן?</qt>"
 msgstr[1] "<qt>האם אתה בטוח שברצונך למחוק את המאמרים המסומן?</qt>"
+msgstr[2] ""
+msgstr[3] ""
 
 #: src/mainwidget.cpp:1063
 #, fuzzy, kde-format
@@ -2180,6 +2203,8 @@ msgid "<i>and 1 other</i>"
 msgid_plural "<i>and %1 others</i>"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: src/progressmanager.cpp:127
 #, kde-format
@@ -2309,6 +2334,8 @@ msgid "1 unread article"
 msgid_plural "%1 unread articles"
 msgstr[0] "(מאמר אחד שלא נקרא)"
 msgstr[1] "(%1 מאמרים שלא נקראו)"
+msgstr[2] ""
+msgstr[3] ""
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, Akregator::AddFeedWidgetBase)
 #: src/ui/addfeedwidgetbase.ui:14
