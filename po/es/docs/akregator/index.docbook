@@ -200,7 +200,7 @@
 <!--part of kontact
 say how to start it -->
 <para
->Cuando inicia &akregator;, usted puede ver la ventana principal: <screenshot>
+>Cuando inicia &akregator;, puede ver la ventana principal: <screenshot>
 <screeninfo
 >&akregator; ventana principal</screeninfo>
 <mediaobject>
@@ -217,9 +217,9 @@ say how to start it -->
 <para
 >La ventana principal consta de la lista de fuentes, la lista de artículos y el visor de artículos. </para>
 <para
->La lista de las fuentes se encuentra a la izquierda. En el árbol, usted dispone de fuentes de noticias que puede seleccionar. Una fuente de noticias es una colección de artículos: por ejemplo, las noticias recientes de un sitio o las nuevas entradas de un blog. La lista por defecto contiene fuentes relacionadas con el proyecto &kde;, pero, por supuesto, puede añadir sus propias fuentes y eliminar las que no le interesen.añadir sus propias fuentes y eliminar las que no le interesen. </para>
+>La lista de las fuentes se encuentra a la izquierda. En el árbol,  dispone de fuentes de noticias que puede seleccionar. Una fuente de noticias es una colección de artículos: por ejemplo, las noticias recientes de un sitio o las nuevas entradas de un blog. La lista por defecto contiene fuentes relacionadas con el proyecto &kde;, pero, por supuesto, puede añadir sus propias fuentes y eliminar las que no le interesen.añadir sus propias fuentes y eliminar las que no le interesen. </para>
 <para
->Arriba a la derecha se encuentra la lista de artículos. Esta contiene todos los artículos de la fuente seleccionada en la lista de fuentes (si dicha lista está vacía, en primer lugar, usted debe obtener la fuente). La lista muestra las cabeceras de los artículos y la fecha de publicación de los mismos. Por defecto, los artículos más recientes, aparecerán al principio. <screenshot>
+>Arriba a la derecha se encuentra la lista de artículos. Esta contiene todos los artículos de la fuente seleccionada en la lista de fuentes (si dicha lista está vacía, en primer lugar, debe obtener la fuente). La lista muestra las cabeceras de los artículos y la fecha de publicación de los mismos. Por defecto, los artículos más recientes, aparecerán al principio. <screenshot>
 <screeninfo
 >La lista de artículos</screeninfo>
 <mediaobject>
@@ -294,7 +294,7 @@ say how to start it -->
 ></listitem>
 <listitem
 ><para
->El diálogo de preferencias de la fuente aparecerá y usted podrá modificar las opciones por defecto. Cuando esté satisfecho con las preferencias de la fuente, pulse <guibutton
+>El diálogo de preferencias de la fuente aparecerá y podrá modificar las opciones por defecto. Cuando esté satisfecho con las preferencias de la fuente, pulse <guibutton
 >Aceptar</guibutton
 > de nuevo.fuente, pulse <guibutton
 >Aceptar</guibutton
@@ -369,7 +369,7 @@ say how to start it -->
 <para
 >Todas las fuente añadidas mediante estos procedimientos aparecen bajo la carpeta <guilabel
 >Fuentes importadas</guilabel
-> en la lista de fuentes y desde allí, usted puede usar su ratón para arrastrarlas a una carpeta distinta. </para>
+> en la lista de fuentes, donde puede usar el ratón para arrastrarlas a una carpeta distinta. </para>
 </sect1>
 
 <sect1 id="creating-folder">
@@ -412,7 +412,7 @@ say how to start it -->
 > </listitem>
 <listitem
 ><para
->Ahora, usted puede arrastrar la fuente Planet Ubuntu a la nueva carpeta. <screenshot>
+>Ahora puede arrastrar la fuente Planet Ubuntu a la nueva carpeta. <screenshot>
 <screeninfo
 >La carpeta de noticias en la lista de fuentes</screeninfo>
 <mediaobject>
@@ -548,7 +548,7 @@ say how to start it -->
 ><para
 >Si no está marcada, el intervalo de comprobación estará desactivado. Sin embargo, si está marcada, puede establecer en <guilabel
 >Obtener fuentes cada:</guilabel
-> el intervalo que &akregator; comprobará automáticamente nuevas entradas en las fuentes. Note que actualizar artículos, genera tráfico y por lo tanto, puede ser costoso para el proveedor que hospeda la fuente que usted está leyendo. Algunos sitios, pueden bloquear conexiones desde su equipo si intenta actualizar la fuente con mucha frecuencia. Generalmente, 30 minutos es una buena elección. </para>
+> el intervalo que &akregator; comprobará automáticamente nuevas entradas en las fuentes. Note que actualizar artículos, genera tráfico y por lo tanto, puede ser costoso para el proveedor que hospeda la fuente que está leyendo. Algunos sitios, pueden bloquear conexiones desde su equipo si intenta actualizar la fuente con mucha frecuencia. Generalmente, 30 minutos es una buena elección. </para>
 </listitem>
 </varlistentry>
 <varlistentry>
@@ -560,7 +560,7 @@ say how to start it -->
 ><para
 >Esto está activado cuando <guilabel
 >Utilizar el intervalo de actualización de fuentes </guilabel
-> esté marcado. Usted puede especificar un tiempo determinado, después del cual, se comprobarán de nuevo las fuentes para encontrar nuevos artículos. Por defecto 30 minutos.</para>
+> esté marcado. Puede especificar un tiempo determinado, después del cual, se comprobarán de nuevo las fuentes para encontrar nuevos artículos. Por defecto 30 minutos.</para>
 </listitem>
 </varlistentry>
 </variablelist>
@@ -613,10 +613,10 @@ say how to start it -->
 ></term>
 <listitem
 ><para
->Cuando está activada, la caché general de preferencias del navegador de &kde; se usa para actualizar las fuentes. Usted puede configurar la caché general del navegador de &kde; en el diálogo de configuración de &konqueror;.</para>
+>Cuando está activada, la caché general de preferencias del navegador de &kde; se usa para actualizar las fuentes. Puede configurar la caché general del navegador de &kde; en el diálogo de configuración de &konqueror;.</para>
 <note
 ><para
->Usted debería dejar esta opción activada siempre que sea posible. Desactivar esta opción incrementa el tráfico de la red. El tráfico de la red causado por agregadores que no usan caché, aumenta los costes a los proveedores y puede disminuir el número de fuentes disponibles en el futuro.</para
+>Debería dejar esta opción activada siempre que sea posible. Desactivar esta opción incrementa el tráfico de la red. El tráfico de la red causado por agregadores que no usan caché, aumenta los costes a los proveedores y puede disminuir el número de fuentes disponibles en el futuro.</para
 ></note>
 </listitem>
 </varlistentry>
@@ -732,7 +732,7 @@ say how to start it -->
 ></term>
 <listitem
 ><para
->Al pulsar con el botón derecho sobre un artículo se abrirá un menú de contexto donde usted podrá marcar el artículo como importante o destacado. Los artículos marcados como importantes o destacados, no expirarán, serán conservados.</para>
+>Al pulsar con el botón derecho sobre un artículo se abrirá un menú de contexto donde podrá marcar el artículo como importante o destacado. Los artículos marcados como importantes o destacados, no expirarán, serán conservados.</para>
 </listitem>
 </varlistentry>
 </variablelist>
@@ -742,7 +742,7 @@ say how to start it -->
 <title
 >Apariencia</title>
 <para
->En esta página, usted puede configurar el aspecto del visor de artículos y de las pestañas del navegador. Usted puede especificar los colores y el tamaño y familias de los tipos de letra que se usarán. </para>
+>En esta página puede configurar el aspecto del visor de artículos y de las pestañas del navegador. Puede especificar los colores y el tamaño y familias de los tipos de letra que se usarán. </para>
 <screenshot>
 <screeninfo
 >La pestaña de apariencia</screeninfo>
@@ -841,7 +841,7 @@ say how to start it -->
 ></term>
 <listitem
 ><para
->Si el artículo usa tipos de letra Serif, será representado usando la familia que usted elija aquí en tipo de letra de tamaño mediano.</para>
+>Si el artículo usa tipos de letra Serif, será representado usando la familia que elija aquí en tipo de letra de tamaño mediano.</para>
 </listitem>
 </varlistentry>
 <varlistentry>
@@ -851,7 +851,7 @@ say how to start it -->
 ></term>
 <listitem
 ><para
->Si el artículo utiliza tipos de letra Sans-serif, será representado usando la familia que usted elija aquí en tipo de letra de tamaño mediano.</para>
+>Si el artículo utiliza tipos de letra Sans-serif, será representado usando la familia que elija aquí en tipo de letra de tamaño mediano.</para>
 </listitem>
 </varlistentry>
 </variablelist>
@@ -913,7 +913,7 @@ say how to start it -->
 ></term>
 <listitem
 ><para
->Como arriba, usted puede establecer una de las 3 acciones para pulsar con el botón del medio del ratón.</para>
+>Como arriba, puede establecer una de las 3 acciones para pulsar con el botón del medio del ratón.</para>
 </listitem>
 </varlistentry>
 <varlistentry>
@@ -931,7 +931,7 @@ say how to start it -->
 ></term>
 <listitem
 ><para
->Si está marcado, &akregator; usará el navegador web que usted haya establecido en &systemsettings;. Puede ser el navegador predeterminado de &kde;, &konqueror; u otro, dependiendo lo que usted haya establecido aquí.</para>
+>Si está marcado, &akregator; usará el navegador web que haya establecido en &systemsettings;. Puede ser el navegador predeterminado de &kde;, &konqueror; u otro, dependiendo lo que haya establecido aquí.</para>
 </listitem>
 </varlistentry>
 <varlistentry>
@@ -975,7 +975,7 @@ say how to start it -->
 ></term>
 <listitem
 ><para
->Si esta opción está marcada, el botón cerrar aparecerá cuando mueva el ratón al lado izquierdo del título de la pestaña, para que usted pueda cerrar las pestañas más fácilmente.</para>
+>Si esta opción está marcada, el botón cerrar aparecerá cuando mueva el ratón al lado izquierdo del título de la pestaña, para que pueda cerrar las pestañas más fácilmente.</para>
 </listitem>
 </varlistentry>
 <varlistentry>
@@ -1119,7 +1119,7 @@ say how to start it -->
 ></term>
 <listitem
 ><para
->Esto borrará la barra de búsqueda cuando usted cambie la fuente.</para>
+>Esto borrará la barra de búsqueda cuando cambie la fuente.</para>
 </listitem>
 </varlistentry>
 </variablelist>
@@ -1961,11 +1961,15 @@ action="simul"
 >Derechos de autor de la documentación 2006 &Anne-Marie.Mahfouf; &Anne-Marie.Mahfouf.mail; </para>
 
 <para
->Traducido por Juan Manuel García Molina<email
+>Documentación traducida por Juan Manuel García Molina <email
 >juanma@superiodico.net</email
->y Javier Viñal <email
+>, Francol Mariluis <email
+>fmariluis@gmail.com</email
+>, Adrián Martínez <email
+>sfxgt3@gmail.com</email
+> y Javier Viñal <email
 >fjvinal@gmail.com</email
-> </para
+>.</para
 > &underFDL; &underGPL; </chapter>
 
 &documentation.index;
