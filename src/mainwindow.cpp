@@ -133,7 +133,7 @@ void MainWindow::slotToggleMenubar(bool dontShowWarning)
 void MainWindow::updateHamburgerMenu()
 {
     auto menu = new QMenu(this);
-    menu->addAction(actionCollection()->action(QLatin1String(KStandardAction::name(KStandardAction::Quit))));
+    menu->addAction(actionCollection()->action(KStandardAction::name(KStandardAction::Quit)));
     mHamburgerMenu->setMenu(menu);
 }
 
