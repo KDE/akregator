@@ -69,7 +69,7 @@ int main(int argc, char **argv)
 {
     QCoreApplication::setAttribute(Qt::AA_ShareOpenGLContexts);
     Akregator::Application app(argc, &argv);
-    KLocalizedString::setApplicationDomain("akregator");
+    KLocalizedString::setApplicationDomain(QByteArrayLiteral("akregator"));
 
     KCrash::initialize();
 
