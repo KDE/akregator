@@ -5,6 +5,7 @@
   <project_license>GPL-2.0+</project_license>
   <name>Akregator</name>
   <name xml:lang="ar">أكريغاتور</name>
+  <name xml:lang="ast">Akregator</name>
   <name xml:lang="az">Akregator</name>
   <name xml:lang="bg">Akregator</name>
   <name xml:lang="bs">Akregator</name>
@@ -52,6 +53,7 @@
   <name xml:lang="zh-TW">Akregator</name>
   <developer_name>The KDE Community</developer_name>
   <developer_name xml:lang="ar">مجتمع كِيدِي</developer_name>
+  <developer_name xml:lang="ast">La comunidá KDE</developer_name>
   <developer_name xml:lang="az">KDE Cəmiyyəti</developer_name>
   <developer_name xml:lang="bg">Общността на KDE</developer_name>
   <developer_name xml:lang="ca">La comunitat KDE</developer_name>
