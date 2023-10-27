@@ -260,9 +260,7 @@ say how to start it -->
 > </listitem>
 </itemizedlist>
 <para
->Hi ha diverses altres maneres de trobar i afegir fonts interessants. Dins del &kde;, navegant per llocs web amb el &konqueror; si es detecta una font de notícies compatible en la pàgina web us mostrarà la familiar icona <quote
->RSS</quote
-> <inlinemediaobject
+>Hi ha diverses altres maneres de trobar i afegir fonts interessants. Dins del &kde;, navegant per llocs web amb el &konqueror; si es detecta una font de notícies compatible en la pàgina web us mostrarà la familiar icona «RSS» <inlinemediaobject
 > <imageobject
 > <imagedata fileref="feed.png" format="PNG"/> </imageobject
 > </inlinemediaobject
@@ -280,9 +278,7 @@ say how to start it -->
 ></textobject
 > </mediaobject
 > </screenshot
-> En les pàgines amb aquest <quote
->RSS</quote
-> o la seva icona <inlinemediaobject
+> En les pàgines amb aquest «RSS» o la seva icona <inlinemediaobject
 > <imageobject
 > <imagedata fileref="rss.png" format="PNG"/> </imageobject
 > </inlinemediaobject
@@ -1099,9 +1095,7 @@ say how to start it -->
 ><para
 ><action
 >Obre</action
-> el diàleg importador de fonts per a carregar <quote
->Esquemes OPML</quote
-> amb les subscripcions de les fonts. </para
+> el diàleg importador de fonts per a carregar «Esquemes OPML» amb les subscripcions de les fonts. </para
 ></listitem>
 </varlistentry>
 
