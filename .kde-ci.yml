@@ -7,13 +7,13 @@ Dependencies:
     'frameworks/extra-cmake-modules': '@latest-kf6'
     'frameworks/kcodecs': '@latest-kf6'
     'frameworks/kstatusnotifieritem': '@latest-kf6'
+    'frameworks/kuserfeedback': '@latest-kf6'
     'pim/grantleetheme' : '@same'
     'pim/kontactinterface' : '@same'
     'pim/libkdepim' : '@same'
     'pim/messagelib' : '@same'
     'pim/pimcommon' : '@same'
     'libraries/ktextaddons': '@latest-kf6'
-    'libraries/kuserfeedback': '@latest-kf6'
 
 Options:
   require-passing-tests-on: [ 'Linux', 'FreeBSD' ]
