@@ -4,14 +4,15 @@
 # Michal Sulek <misurel@gmail.com>, 2009, 2010.
 # Roman Paholík <wizzardsk@gmail.com>, 2012, 2013, 2014, 2015, 2016, 2017, 2021, 2022.
 # Matej Mrenica <matejm98mthw@gmail.com>, 2019, 2020.
+# Ferdinand Galko <galko.ferdinand@gmail.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-10-03 01:38+0000\n"
-"PO-Revision-Date: 2022-04-18 17:54+0200\n"
-"Last-Translator: Roman Paholik <wizzardsk@gmail.com>\n"
-"Language-Team: Slovak <kde-sk@linux.sk>\n"
+"PO-Revision-Date: 2023-11-05 21:15+0100\n"
+"Last-Translator: Ferdinand Galko <galko.ferdinand@gmail.com>\n"
+"Language-Team: Slovak <opensuse-translation@opensuse.org>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -452,7 +453,7 @@ msgstr "Použiť upozor&nenia pre všetky kanály"
 #: configuration/ui/settings_general.ui:84
 #, kde-format
 msgid "Disable save as finished notification"
-msgstr ""
+msgstr "Zakázať oznámenie o dokončení ukladania"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_UseIntervalFetch)
 #: configuration/ui/settings_general.ui:91
@@ -1130,7 +1131,7 @@ msgstr "Stiah&nuť kanály"
 #: src/actions/actionmanagerimpl.cpp:84
 #, kde-format
 msgid "&Delete Folder"
-msgstr "O&dstrániť priečinok"
+msgstr "Vymazať priečinok"
 
 #: src/actions/actionmanagerimpl.cpp:85
 #, kde-format
@@ -1556,8 +1557,7 @@ msgid "Could not import the file %1 (no valid OPML)"
 msgstr "Nedá sa importovať súbor %1 (neplatný OPML)"
 
 #: src/akregator_part.cpp:464 src/command/loadfeedlistcommand.cpp:71
-#, fuzzy, kde-format
-#| msgid "OPML Parsing Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "OPML Parsing Error"
 msgstr "Chyba analýzy OPML"
@@ -1572,8 +1572,7 @@ msgstr ""
 "aktuálneho užívateľa."
 
 #: src/akregator_part.cpp:469 src/command/loadfeedlistcommand.cpp:144
-#, fuzzy, kde-format
-#| msgid "Read Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "Read Error"
 msgstr "Chyba čítania"
@@ -1585,8 +1584,7 @@ msgstr ""
 "Prístup zamietnutý: nedá sa zapísať do súboru %1. Skontrolujte svoje práva."
 
 #: src/akregator_part.cpp:481
-#, fuzzy, kde-format
-#| msgid "Write Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "Write Error"
 msgstr "Chyba zápisu"
@@ -1694,8 +1692,7 @@ msgid "Are you sure you want to disable this introduction page?"
 msgstr "Naozaj chcete zakázať túto úvodnú stránku?"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:377
-#, fuzzy, kde-format
-#| msgid "Disable Introduction Page"
+#, kde-format
 msgctxt "@title:window"
 msgid "Disable Introduction Page"
 msgstr "Zakázať úvodnú stránku"
@@ -1706,8 +1703,7 @@ msgid "This web site is a malware, do you want to continue to show it?"
 msgstr "Táto webová stránka je malvér, chcete pokračovať v jej zobrazovaní?"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:413
-#, fuzzy, kde-format
-#| msgid "Malware"
+#, kde-format
 msgctxt "@title:window"
 msgid "Malware"
 msgstr "Malvér"
@@ -1719,11 +1715,10 @@ msgstr "Sieť je poškodená."
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:425
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:428
-#, fuzzy, kde-format
-#| msgid "Check Phishing Url"
+#, kde-format
 msgctxt "@title:window"
 msgid "Check Phishing Url"
-msgstr "Skontrolovať podvodné URL"
+msgstr "Skontrolovať podvodné Url"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:428
 #, kde-format
@@ -1759,11 +1754,10 @@ msgstr ""
 "</qt>"
 
 #: src/command/deletesubscriptioncommand.cpp:44
-#, fuzzy, kde-format
-#| msgid "Delete Folder"
+#, kde-format
 msgctxt "@title:window"
 msgid "Delete Folder"
-msgstr "Odstrániť priečinok"
+msgstr "Vymazať priečinok"
 
 #: src/command/deletesubscriptioncommand.cpp:61
 #, kde-format
@@ -1776,11 +1770,10 @@ msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
 msgstr "<qt>Naozaj chcete odstrániť kanál <b>%1</b>?</qt>"
 
 #: src/command/deletesubscriptioncommand.cpp:68
-#, fuzzy, kde-format
-#| msgid "Delete Feed"
+#, kde-format
 msgctxt "@title:window"
 msgid "Delete Feed"
-msgstr "Odstrániť kanál"
+msgstr "Vymazať kanál"
 
 #: src/command/importfeedlistcommand.cpp:48
 #, kde-format
@@ -2098,8 +2091,7 @@ msgstr ""
 "<qt>Naozaj chcete označiť <b>všetky články v kanáli</b> ako prečítané?</qt>"
 
 #: src/mainwidget.cpp:766
-#, fuzzy, kde-format
-#| msgid "Mark Feed as Read"
+#, kde-format
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "Označiť kanál ako prečítaný"
@@ -2119,8 +2111,7 @@ msgstr ""
 "qt>"
 
 #: src/mainwidget.cpp:773
-#, fuzzy, kde-format
-#| msgid "Mark Feeds as Read"
+#, kde-format
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "Označiť kanály ako prečítané"
@@ -2150,11 +2141,10 @@ msgstr[1] "<qt>Naozaj chcete odstrániť %1 vybrané články?</qt>"
 msgstr[2] "<qt>Naozaj chcete odstrániť %1 vybraných článkov?</qt>"
 
 #: src/mainwidget.cpp:1063
-#, fuzzy, kde-format
-#| msgid "Delete Article"
+#, kde-format
 msgctxt "@title:window"
 msgid "Delete Article"
-msgstr "Odstrániť článok"
+msgstr "Vymazať článok"
 
 #: src/mainwidget.cpp:1245
 #, kde-format
@@ -2166,15 +2156,13 @@ msgstr "Sieť je teraz dostupná."
 msgid ""
 "<qt>This will hide the menu bar completely. You can show it again by typing "
 "%1.</qt>"
-msgstr ""
-"<qt>Toto skryje panel ponuky úplne. Môžete ju zobraziť zadaním %1.</qt>"
+msgstr "<qt>Toto skryje panel menu úplne. Môžete ju zobraziť zadaním %1.</qt>"
 
 #: src/mainwindow.cpp:124
-#, fuzzy, kde-format
-#| msgid "Hide menu bar"
+#, kde-format
 msgctxt "@title:window"
 msgid "Hide menu bar"
-msgstr "Skryť panel ponuky"
+msgstr "Skryť panel menu"
 
 #: src/mainwindow.cpp:153
 #, kde-format
@@ -2546,10 +2534,9 @@ msgid "Important"
 msgstr "Dôležité"
 
 #: src/widgets/statussearchline.cpp:63
-#, fuzzy, kde-format
-#| msgid "Text Filter"
+#, kde-format
 msgid "Filter"
-msgstr "Textový filter"
+msgstr "Filter"
 
 #~ msgctxt "@title:window"
 #~ msgid "Print Document"
