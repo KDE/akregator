@@ -228,14 +228,14 @@ void ArticleListView::saveHeaderSettings()
         }
     }
 
-    KConfigGroup conf(Settings::self()->config(), QLatin1String("General"));
+    KConfigGroup conf(Settings::self()->config(), QStringLiteral("General"));
     conf.writeEntry("ArticleListFeedHeaders", m_feedHeaderState.toBase64());
     conf.writeEntry("ArticleListGroupHeaders", m_groupHeaderState.toBase64());
 }
 
 void ArticleListView::loadHeaderSettings()
 {
-    KConfigGroup conf(Settings::self()->config(), QLatin1String("General"));
+    KConfigGroup conf(Settings::self()->config(), QStringLiteral("General"));
     m_feedHeaderState = QByteArray::fromBase64(conf.readEntry("ArticleListFeedHeaders").toLatin1());
     m_groupHeaderState = QByteArray::fromBase64(conf.readEntry("ArticleListGroupHeaders").toLatin1());
 }

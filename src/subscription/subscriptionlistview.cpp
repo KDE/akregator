@@ -211,13 +211,13 @@ void Akregator::SubscriptionListView::saveHeaderSettings()
     if (model()) {
         m_headerState = header()->saveState();
     }
-    KConfigGroup conf(Settings::self()->config(), QLatin1String("General"));
+    KConfigGroup conf(Settings::self()->config(), QStringLiteral("General"));
     conf.writeEntry("SubscriptionListHeaders", m_headerState.toBase64());
 }
 
 void Akregator::SubscriptionListView::loadHeaderSettings()
 {
-    const KConfigGroup conf(Settings::self()->config(), QLatin1String("General"));
+    const KConfigGroup conf(Settings::self()->config(), QStringLiteral("General"));
     m_headerState = QByteArray::fromBase64(conf.readEntry("SubscriptionListHeaders").toLatin1());
     restoreHeaderState();
 }
