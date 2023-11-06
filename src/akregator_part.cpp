@@ -588,10 +588,10 @@ void Part::initFonts()
 
     // TODO add CursiveFont, FantasyFont
 
-    KConfigGroup conf(Settings::self()->config(), "HTML Settings");
+    KConfigGroup conf(Settings::self()->config(), QLatin1String("HTML Settings"));
 
     KConfig _konq(QStringLiteral("konquerorrc"), KConfig::NoGlobals);
-    KConfigGroup konq(&_konq, "HTML Settings");
+    KConfigGroup konq(&_konq, QLatin1String("HTML Settings"));
 
     if (!conf.hasKey("MinimumFontSize")) {
         int minfs;
@@ -665,7 +665,7 @@ void Part::clearCrashProperties()
         return;
     }
     KConfig config(QStringLiteral("crashed"), KConfig::SimpleConfig, QStandardPaths::AppDataLocation);
-    KConfigGroup configGroup(&config, "Part");
+    KConfigGroup configGroup(&config, QLatin1String("Part"));
     configGroup.writeEntry("crashed", false);
 }
 
@@ -675,7 +675,7 @@ void Part::saveCrashProperties()
         return;
     }
     KConfig config(QStringLiteral("crashed"), KConfig::SimpleConfig, QStandardPaths::AppDataLocation);
-    KConfigGroup configGroup(&config, "Part");
+    KConfigGroup configGroup(&config, QLatin1String("Part"));
     configGroup.deleteGroup();
 
     configGroup.writeEntry("crashed", true);
@@ -691,7 +691,7 @@ void Part::slotAutoSave()
 void Part::autoSaveProperties()
 {
     KConfig config(QStringLiteral("autosaved"), KConfig::SimpleConfig, QStandardPaths::AppDataLocation);
-    KConfigGroup configGroup(&config, "Part");
+    KConfigGroup configGroup(&config, QLatin1String("Part"));
     configGroup.deleteGroup();
 
     saveProperties(configGroup);
@@ -705,7 +705,7 @@ void Part::autoReadProperties()
         return;
     }
     KConfig config(QStringLiteral("autosaved"), KConfig::SimpleConfig, QStandardPaths::AppDataLocation);
-    KConfigGroup configGroup(&config, "Part");
+    KConfigGroup configGroup(&config, QLatin1String("Part"));
 
     readProperties(configGroup);
 }
@@ -715,7 +715,7 @@ void Part::slotRestoreSession(Akregator::CrashWidget::CrashAction type)
     switch (type) {
     case Akregator::CrashWidget::RestoreSession: {
         KConfig config(QStringLiteral("crashed"), KConfig::SimpleConfig, QStandardPaths::AppDataLocation);
-        KConfigGroup configGroup(&config, "Part");
+        KConfigGroup configGroup(&config, QLatin1String("Part"));
         readProperties(configGroup);
         clearCrashProperties();
         break;

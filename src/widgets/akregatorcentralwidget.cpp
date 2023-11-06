@@ -27,7 +27,7 @@ Akregator::AkregatorCentralWidget::~AkregatorCentralWidget() = default;
 bool AkregatorCentralWidget::previousSessionCrashed() const
 {
     KConfig config(QStringLiteral("crashed"), KConfig::SimpleConfig, QStandardPaths::AppDataLocation);
-    KConfigGroup configGroup(&config, "Part");
+    KConfigGroup configGroup(&config, QLatin1String("Part"));
 
     if (!configGroup.readEntry("crashed", false)) {
         return false;

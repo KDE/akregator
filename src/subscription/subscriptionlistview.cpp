@@ -211,7 +211,7 @@ void Akregator::SubscriptionListView::saveHeaderSettings()
     if (model()) {
         m_headerState = header()->saveState();
     }
-    KConfigGroup conf(Settings::self()->config(), "General");
+    KConfigGroup conf(Settings::self()->config(), QLatin1String("General"));
     conf.writeEntry("SubscriptionListHeaders", m_headerState.toBase64());
 }
 
