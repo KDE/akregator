@@ -1,6 +1,6 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# Vít Pelčák <vit@pelcak.org>, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020.
+# SPDX-FileCopyrightText: 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2023 Vít Pelčák <vit@pelcak.org>
 # Tomáš Chvátal <tomas.chvatal@gmail.com>, 2012, 2013.
 # Vit Pelcak <vit@pelcak.org>, 2021, 2022, 2023.
 #
@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-10-03 01:38+0000\n"
-"PO-Revision-Date: 2023-06-14 13:37+0200\n"
+"PO-Revision-Date: 2023-11-02 14:14+0100\n"
 "Last-Translator: Vit Pelcak <vit@pelcak.org>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
 "Language: cs\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Lokalize 23.04.2\n"
+"X-Generator: Lokalize 23.08.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -1560,7 +1560,7 @@ msgstr "Nelze importovat soubor %1 (neplatné OPML)"
 #, kde-format
 msgctxt "@title:window"
 msgid "OPML Parsing Error"
-msgstr ""
+msgstr "Chyba v analýze OPML"
 
 #: src/akregator_part.cpp:468
 #, kde-format
@@ -1575,7 +1575,7 @@ msgstr ""
 #, kde-format
 msgctxt "@title:window"
 msgid "Read Error"
-msgstr ""
+msgstr "Chyba při čtení"
 
 #: src/akregator_part.cpp:480
 #, kde-format
@@ -1588,7 +1588,7 @@ msgstr ""
 #, kde-format
 msgctxt "@title:window"
 msgid "Write Error"
-msgstr ""
+msgstr "Chyba při zápisu"
 
 #: src/akregator_part.cpp:496 src/akregator_part.cpp:505
 #, kde-format
@@ -1695,7 +1695,7 @@ msgstr "Opravdu si přejete zakázat úvodní stránku?"
 #, kde-format
 msgctxt "@title:window"
 msgid "Disable Introduction Page"
-msgstr ""
+msgstr "Zakázat úvodní stránku"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:412
 #, kde-format
@@ -1706,7 +1706,7 @@ msgstr "Tato webová stránka je malware, chcete pokračovat s jejím zobrazení
 #, kde-format
 msgctxt "@title:window"
 msgid "Malware"
-msgstr ""
+msgstr "Malware"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:425
 #, kde-format
@@ -1718,7 +1718,7 @@ msgstr "Síť je přerušena."
 #, kde-format
 msgctxt "@title:window"
 msgid "Check Phishing Url"
-msgstr ""
+msgstr "Zkontrolovat URL Phishing "
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:428
 #, kde-format
@@ -1755,7 +1755,7 @@ msgstr ""
 #, kde-format
 msgctxt "@title:window"
 msgid "Delete Folder"
-msgstr ""
+msgstr "Smazat složku"
 
 #: src/command/deletesubscriptioncommand.cpp:61
 #, kde-format
@@ -1771,7 +1771,7 @@ msgstr "<qt>Opravdu si přejete smazat kanál<b>%1</b>?</qt>"
 #, kde-format
 msgctxt "@title:window"
 msgid "Delete Feed"
-msgstr ""
+msgstr "Smazat kanál"
 
 #: src/command/importfeedlistcommand.cpp:48
 #, kde-format
@@ -2093,7 +2093,7 @@ msgstr ""
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
-msgstr ""
+msgstr "Označit kanál jako přečtený"
 
 #: src/mainwidget.cpp:769
 #, kde-format
@@ -2114,7 +2114,7 @@ msgstr ""
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
-msgstr ""
+msgstr "Označit kanály jako přečtené"
 
 #: src/mainwidget.cpp:837 src/mainwidget.cpp:846 src/mainwidget.cpp:1248
 #, kde-format
@@ -2144,7 +2144,7 @@ msgstr[2] "<qt>Opravdu si přejete smazat %1 vybraných článků?</qt>"
 #, kde-format
 msgctxt "@title:window"
 msgid "Delete Article"
-msgstr ""
+msgstr "Smazat článek"
 
 #: src/mainwidget.cpp:1245
 #, kde-format
@@ -2164,7 +2164,7 @@ msgstr ""
 #, kde-format
 msgctxt "@title:window"
 msgid "Hide menu bar"
-msgstr ""
+msgstr "Skrýt nabídku"
 
 #: src/mainwindow.cpp:153
 #, kde-format
