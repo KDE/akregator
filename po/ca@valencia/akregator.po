@@ -44,7 +44,7 @@ msgstr ""
 "Els lectors de fonts proporcionen una manera adequada de veure diferents "
 "classes de continguts, incloent-hi notícies, blogs i altre contingut des "
 "dels llocs web. En lloc de comprovar manualment les actualitzacions a tots "
-"els llocs web preferits, Akregator recupera els continguts per vós."
+"els llocs web preferits, Akregator recupera els continguts per tu."
 
 #: src/about/introduction_akregator.html:19
 msgid ""
@@ -696,7 +696,7 @@ msgid ""
 "When this option is enabled, articles you marked as important will not be "
 "removed when limit the archive size by either age or number of the articles."
 msgstr ""
-"Quan esta opció està activada, els articles que heu marcat com a importants "
+"Quan se selecciona esta opció, els articles que heu marcat com a importants "
 "no s'eliminaran quan s'arribe al límit d'arxiu per temps o nombre d'articles."
 
 #. i18n: ectx: label, entry, group (Network)
