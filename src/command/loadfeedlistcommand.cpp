@@ -148,20 +148,18 @@ void LoadFeedListCommandPrivate::doLoad()
         return;
     }
 
-    QString errMsg;
-    int errLine = 0;
-    int errCol = 0;
-    if (!doc.setContent(&file, true, &errMsg, &errLine, &errCol)) {
+    const auto result = doc.setContent(&file);
+    if (!result) {
         bool backupCreated = false;
         const QString backupFile = createBackup(fileName, &backupCreated);
         const QString title = i18nc("error message window caption", "XML Parsing Error");
         const QString details = xi18n(
             "<qt><p>XML parsing error in line %1, "
             "column %2 of %3:</p><p>%4</p></qt>",
-            QString::number(errLine),
-            QString::number(errCol),
+            QString::number(result.errorLine),
+            QString::number(result.errorColumn),
             fileName,
-            errMsg);
+            result.errorMessage);
         const QString msg = backupCreated ? i18n(
                                 "<qt>The standard feed list is corrupted (invalid XML). "
                                 "A backup was created:<p><b>%1</b></p></qt>",
