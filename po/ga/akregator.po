@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdepim/akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-03 01:38+0000\n"
+"POT-Creation-Date: 2023-11-24 01:34+0000\n"
 "PO-Revision-Date: 2004-12-11 20:53-0500\n"
 "Last-Translator: Kevin Scannell <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -1827,18 +1827,18 @@ msgstr "Liosta Fothaí á Oscailt..."
 msgid "<qt>Could not open feed list (%1) for reading.</qt>"
 msgstr ""
 
-#: src/command/loadfeedlistcommand.cpp:157
+#: src/command/loadfeedlistcommand.cpp:155
 #, kde-format
 msgctxt "error message window caption"
 msgid "XML Parsing Error"
 msgstr "Earráid Parsála XML"
 
-#: src/command/loadfeedlistcommand.cpp:159
+#: src/command/loadfeedlistcommand.cpp:157
 #, kde-kuit-format
 msgid "<qt><p>XML parsing error in line %1, column %2 of %3:</p><p>%4</p></qt>"
 msgstr ""
 
-#: src/command/loadfeedlistcommand.cpp:166
+#: src/command/loadfeedlistcommand.cpp:164
 #, kde-format
 msgid ""
 "<qt>The standard feed list is corrupted (invalid XML). A backup was created:"
@@ -1847,7 +1847,7 @@ msgstr ""
 "<qt>Is truaillithe é an liosta caighdeánach d'fhothaí (XML neamhbhailí). "
 "Cruthaíodh cúltaca:<p><b>%1</b></p></qt>"
 
-#: src/command/loadfeedlistcommand.cpp:170
+#: src/command/loadfeedlistcommand.cpp:168
 #, kde-format
 msgid ""
 "<qt>The standard feed list is corrupted (invalid XML). Could not create a "

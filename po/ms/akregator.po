@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Mimos\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-03 01:38+0000\n"
+"POT-Creation-Date: 2023-11-24 01:34+0000\n"
 "PO-Revision-Date: 2005-10-12 11:13+0800\n"
 "Last-Translator: MIMOS <opensource@mimos.my>\n"
 "Language-Team: Malay <kedidiemas@yahoogroups.com>\n"
@@ -1846,19 +1846,19 @@ msgstr "Membuka Senarai Suapan"
 msgid "<qt>Could not open feed list (%1) for reading.</qt>"
 msgstr ""
 
-#: src/command/loadfeedlistcommand.cpp:157
+#: src/command/loadfeedlistcommand.cpp:155
 #, fuzzy, kde-format
 #| msgid "XML Parsing Error"
 msgctxt "error message window caption"
 msgid "XML Parsing Error"
 msgstr "Ralat Kaji Hurai XML"
 
-#: src/command/loadfeedlistcommand.cpp:159
+#: src/command/loadfeedlistcommand.cpp:157
 #, kde-kuit-format
 msgid "<qt><p>XML parsing error in line %1, column %2 of %3:</p><p>%4</p></qt>"
 msgstr ""
 
-#: src/command/loadfeedlistcommand.cpp:166
+#: src/command/loadfeedlistcommand.cpp:164
 #, fuzzy, kde-format
 msgid ""
 "<qt>The standard feed list is corrupted (invalid XML). A backup was created:"
@@ -1867,7 +1867,7 @@ msgstr ""
 "<qt>Senarai suapan piawai rosak( XML tidak sah). sandaran telah dicipta:"
 "<p><b>%2</b></p></qt>"
 
-#: src/command/loadfeedlistcommand.cpp:170
+#: src/command/loadfeedlistcommand.cpp:168
 #, fuzzy, kde-format
 msgid ""
 "<qt>The standard feed list is corrupted (invalid XML). Could not create a "

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-03 01:38+0000\n"
+"POT-Creation-Date: 2023-11-24 01:34+0000\n"
 "PO-Revision-Date: 2023-11-05 21:15+0100\n"
 "Last-Translator: Ferdinand Galko <galko.ferdinand@gmail.com>\n"
 "Language-Team: Slovak <opensuse-translation@opensuse.org>\n"
@@ -1818,19 +1818,19 @@ msgstr "Otvára sa zoznam kanálov..."
 msgid "<qt>Could not open feed list (%1) for reading.</qt>"
 msgstr "<qt>Nepodarilo sa otvoriť zoznam kanálov (%1) na čítanie.</qt>"
 
-#: src/command/loadfeedlistcommand.cpp:157
+#: src/command/loadfeedlistcommand.cpp:155
 #, kde-format
 msgctxt "error message window caption"
 msgid "XML Parsing Error"
 msgstr "Chyba analýzy XML"
 
-#: src/command/loadfeedlistcommand.cpp:159
+#: src/command/loadfeedlistcommand.cpp:157
 #, kde-kuit-format
 msgid "<qt><p>XML parsing error in line %1, column %2 of %3:</p><p>%4</p></qt>"
 msgstr ""
 "<qt><p>Chyba spracovania XML na riadku %1, stĺpci %2 z %3:</p><p>%4</p></qt>"
 
-#: src/command/loadfeedlistcommand.cpp:166
+#: src/command/loadfeedlistcommand.cpp:164
 #, kde-format
 msgid ""
 "<qt>The standard feed list is corrupted (invalid XML). A backup was created:"
@@ -1839,7 +1839,7 @@ msgstr ""
 "<qt>Štandardný zoznam kanálov je poškodený (neplatný XML). Bola vytvorená "
 "záloha: <p><b>%1</b></p></qt>"
 
-#: src/command/loadfeedlistcommand.cpp:170
+#: src/command/loadfeedlistcommand.cpp:168
 #, kde-format
 msgid ""
 "<qt>The standard feed list is corrupted (invalid XML). Could not create a "

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-03 01:38+0000\n"
+"POT-Creation-Date: 2023-11-24 01:34+0000\n"
 "PO-Revision-Date: 2023-11-19 03:37\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -1780,25 +1780,25 @@ msgstr "正在打开订阅列表..."
 msgid "<qt>Could not open feed list (%1) for reading.</qt>"
 msgstr "<qt>无法打开订阅列表 (%1) 进行读取。</qt>"
 
-#: src/command/loadfeedlistcommand.cpp:157
+#: src/command/loadfeedlistcommand.cpp:155
 #, kde-format
 msgctxt "error message window caption"
 msgid "XML Parsing Error"
 msgstr "XML 解析错误"
 
-#: src/command/loadfeedlistcommand.cpp:159
+#: src/command/loadfeedlistcommand.cpp:157
 #, kde-kuit-format
 msgid "<qt><p>XML parsing error in line %1, column %2 of %3:</p><p>%4</p></qt>"
 msgstr "<qt><p>XML 解析错误，位于 %3 的第 %1 行第 %2 列：</p><p>%4</p></qt>"
 
-#: src/command/loadfeedlistcommand.cpp:166
+#: src/command/loadfeedlistcommand.cpp:164
 #, kde-format
 msgid ""
 "<qt>The standard feed list is corrupted (invalid XML). A backup was created:"
 "<p><b>%1</b></p></qt>"
 msgstr "<qt>标准订阅列表已损坏(无效的 XML)。备份创建于：<p><b>%1</b></p></qt>"
 
-#: src/command/loadfeedlistcommand.cpp:170
+#: src/command/loadfeedlistcommand.cpp:168
 #, kde-format
 msgid ""
 "<qt>The standard feed list is corrupted (invalid XML). Could not create a "

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-03 01:38+0000\n"
+"POT-Creation-Date: 2023-11-24 01:34+0000\n"
 "PO-Revision-Date: 2012-07-09 22:08+0800\n"
 "Last-Translator: Lê Hoàng Phương <herophuong93@gmail.com>\n"
 "Language-Team: Vietnamese <kde-i18n-vi@kde.org>\n"
@@ -1841,13 +1841,13 @@ msgstr "Đang mở danh sách nguồn tin..."
 msgid "<qt>Could not open feed list (%1) for reading.</qt>"
 msgstr "<qt>Không thể mở danh sách nguồn tin (%1) để đọc.</qt>"
 
-#: src/command/loadfeedlistcommand.cpp:157
+#: src/command/loadfeedlistcommand.cpp:155
 #, kde-format
 msgctxt "error message window caption"
 msgid "XML Parsing Error"
 msgstr "Lỗi phân tích XML"
 
-#: src/command/loadfeedlistcommand.cpp:159
+#: src/command/loadfeedlistcommand.cpp:157
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<qt><p>XML parsing error in line <numid>%1</numid>, column <numid>%2</"
@@ -1857,7 +1857,7 @@ msgstr ""
 "<qt><p>Lỗi phân tích XML tại dòng <numid>%1</numid>, cột <numid>%2</numid> "
 "trong %3:</p><p>%4</p></qt>"
 
-#: src/command/loadfeedlistcommand.cpp:166
+#: src/command/loadfeedlistcommand.cpp:164
 #, kde-format
 msgid ""
 "<qt>The standard feed list is corrupted (invalid XML). A backup was created:"
@@ -1866,7 +1866,7 @@ msgstr ""
 "<qt>Danh sách nguồn tin chuẩn đã bị hỏng (XML không hợp lệ). Một bản sao lưu "
 "đã được tạo: <p><b>%1</b></p></qt>"
 
-#: src/command/loadfeedlistcommand.cpp:170
+#: src/command/loadfeedlistcommand.cpp:168
 #, kde-format
 msgid ""
 "<qt>The standard feed list is corrupted (invalid XML). Could not create a "

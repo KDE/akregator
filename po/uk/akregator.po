@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-03 01:38+0000\n"
+"POT-Creation-Date: 2023-11-24 01:34+0000\n"
 "PO-Revision-Date: 2023-10-03 08:31+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
@@ -1840,20 +1840,20 @@ msgstr "Відкриття списку подач..."
 msgid "<qt>Could not open feed list (%1) for reading.</qt>"
 msgstr "<qt>Не вдалося відкрити список подач (%1) для читання.</qt>"
 
-#: src/command/loadfeedlistcommand.cpp:157
+#: src/command/loadfeedlistcommand.cpp:155
 #, kde-format
 msgctxt "error message window caption"
 msgid "XML Parsing Error"
 msgstr "Помилка аналізу XML"
 
-#: src/command/loadfeedlistcommand.cpp:159
+#: src/command/loadfeedlistcommand.cpp:157
 #, kde-kuit-format
 msgid "<qt><p>XML parsing error in line %1, column %2 of %3:</p><p>%4</p></qt>"
 msgstr ""
 "<qt><p>Помилка під час спроби аналізу XML у рядку %1, позиція %2 з %3:</p><p>"
 "%4</p></qt>"
 
-#: src/command/loadfeedlistcommand.cpp:166
+#: src/command/loadfeedlistcommand.cpp:164
 #, kde-format
 msgid ""
 "<qt>The standard feed list is corrupted (invalid XML). A backup was created:"
@@ -1862,7 +1862,7 @@ msgstr ""
 "<qt>Стандартний список подач пошкоджений (помилка в XML). Створено резервну "
 "копію:<p><b>%1</b></p></qt>"
 
-#: src/command/loadfeedlistcommand.cpp:170
+#: src/command/loadfeedlistcommand.cpp:168
 #, kde-format
 msgid ""
 "<qt>The standard feed list is corrupted (invalid XML). Could not create a "

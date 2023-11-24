@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdepim\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-03 01:38+0000\n"
+"POT-Creation-Date: 2023-11-24 01:34+0000\n"
 "PO-Revision-Date: 2009-09-04 19:26+0000\n"
 "Last-Translator: Vilson Gjeci <vilsongjeci@gmail.com>\n"
 "Language-Team: Albanian <sq@li.org>\n"
@@ -1853,13 +1853,13 @@ msgstr "Duke Hapur Listën e Lajmeve..."
 msgid "<qt>Could not open feed list (%1) for reading.</qt>"
 msgstr "<qt>Nuk mund të hap listën e lajmeve (%1) për lexim.</p></qt>"
 
-#: src/command/loadfeedlistcommand.cpp:157
+#: src/command/loadfeedlistcommand.cpp:155
 #, kde-format
 msgctxt "error message window caption"
 msgid "XML Parsing Error"
 msgstr "GAbim në Krahasimin e XML"
 
-#: src/command/loadfeedlistcommand.cpp:159
+#: src/command/loadfeedlistcommand.cpp:157
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<qt><p>XML parsing error in line %1, column %2 of %3:</p><p>%4</p></qt>"
@@ -1867,7 +1867,7 @@ msgid "<qt><p>XML parsing error in line %1, column %2 of %3:</p><p>%4</p></qt>"
 msgstr ""
 "<qt><p>XML parsing error in line %1, column %2 of %3:</p><p>%4</p></qt>"
 
-#: src/command/loadfeedlistcommand.cpp:166
+#: src/command/loadfeedlistcommand.cpp:164
 #, kde-format
 msgid ""
 "<qt>The standard feed list is corrupted (invalid XML). A backup was created:"
@@ -1876,7 +1876,7 @@ msgstr ""
 "<qt>The standard feed list is corrupted (invalid XML). A backup was created:"
 "<p><b>%1</b></p></qt>"
 
-#: src/command/loadfeedlistcommand.cpp:170
+#: src/command/loadfeedlistcommand.cpp:168
 #, fuzzy, kde-format
 #| msgid ""
 #| "<qt>The standard feed list is corrupted (invalid XML). Could not create a "

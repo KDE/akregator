@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdepim\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-03 01:38+0000\n"
+"POT-Creation-Date: 2023-11-24 01:34+0000\n"
 "PO-Revision-Date: 2014-01-31 18:57+0100\n"
 "Last-Translator: Samir Ribić <megaribi@epn.ba>\n"
 "Language-Team: Bosnian <bs@li.org>\n"
@@ -1856,13 +1856,13 @@ msgstr "Otvaram listu dovoda..."
 msgid "<qt>Could not open feed list (%1) for reading.</qt>"
 msgstr "<qt>Ne mogu otvoriti listu dovoda (%1) za čitanje.</qt>"
 
-#: src/command/loadfeedlistcommand.cpp:157
+#: src/command/loadfeedlistcommand.cpp:155
 #, kde-format
 msgctxt "error message window caption"
 msgid "XML Parsing Error"
 msgstr "Greška u raščlanjivanju XML-a"
 
-#: src/command/loadfeedlistcommand.cpp:159
+#: src/command/loadfeedlistcommand.cpp:157
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<qt><p>XML parsing error in line <numid>%1</numid>, column <numid>%2</"
@@ -1872,7 +1872,7 @@ msgstr ""
 "<qt><p>Greška XML parsiranja u liniji <numid>%1</numid>, kolona <numid>%2</"
 "numid> od %3:</p><p>%4</p></qt>"
 
-#: src/command/loadfeedlistcommand.cpp:166
+#: src/command/loadfeedlistcommand.cpp:164
 #, kde-format
 msgid ""
 "<qt>The standard feed list is corrupted (invalid XML). A backup was created:"
@@ -1881,7 +1881,7 @@ msgstr ""
 "<qt>Standardna lista dovoda je pokvarena (nevaljali XML). Kreirana je "
 "sigurnosna kopija:<p><b>%1</b></p></qt>"
 
-#: src/command/loadfeedlistcommand.cpp:170
+#: src/command/loadfeedlistcommand.cpp:168
 #, kde-format
 msgid ""
 "<qt>The standard feed list is corrupted (invalid XML). Could not create a "

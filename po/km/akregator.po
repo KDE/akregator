@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-03 01:38+0000\n"
+"POT-Creation-Date: 2023-11-24 01:34+0000\n"
 "PO-Revision-Date: 2012-12-25 13:50+0700\n"
 "Last-Translator: sutha <sutha@khmeros.info>\n"
 "Language-Team: Khmer <support@khmeros>\n"
@@ -1835,13 +1835,13 @@ msgstr "កំពុង​បើក​បញ្ជី​មតិព័ត៌ម
 msgid "<qt>Could not open feed list (%1) for reading.</qt>"
 msgstr "<qt>មិន​អាច​បើក​បញ្ជី​មតិ​ព័ត៌មាន (%1) ដើម្បី​អាន​បាន​ទេ ។</qt>"
 
-#: src/command/loadfeedlistcommand.cpp:157
+#: src/command/loadfeedlistcommand.cpp:155
 #, kde-format
 msgctxt "error message window caption"
 msgid "XML Parsing Error"
 msgstr "កំហុស​ក្នុង​ការ​ញែក XML"
 
-#: src/command/loadfeedlistcommand.cpp:159
+#: src/command/loadfeedlistcommand.cpp:157
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<qt><p>XML parsing error in line <numid>%1</numid>, column <numid>%2</"
@@ -1851,7 +1851,7 @@ msgstr ""
 "<qt><p>កំហុស​ក្នុង​ការ​ញែក XML នៅ​បន្ទាត់ <numid>%1</numid> ជួរឈរ <numid>%2</numid> នៃ "
 "%3 ៖</p><p>%4</p></qt>"
 
-#: src/command/loadfeedlistcommand.cpp:166
+#: src/command/loadfeedlistcommand.cpp:164
 #, kde-format
 msgid ""
 "<qt>The standard feed list is corrupted (invalid XML). A backup was created:"
@@ -1860,7 +1860,7 @@ msgstr ""
 "<qt>បញ្ជី​មតិព័ត៌មាន​ស្តង់ដារ​បាន​ខូច​ហើយ (XML មិន​ត្រឹមត្រូវ) ។ ព័ត៌មាន​បម្រុង​មួយ​ត្រូវ​បាន​បង្កើត​ឡើង ៖"
 "<p><b>%1</b></p></qt>"
 
-#: src/command/loadfeedlistcommand.cpp:170
+#: src/command/loadfeedlistcommand.cpp:168
 #, kde-format
 msgid ""
 "<qt>The standard feed list is corrupted (invalid XML). Could not create a "

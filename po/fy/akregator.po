@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-03 01:38+0000\n"
+"POT-Creation-Date: 2023-11-24 01:34+0000\n"
 "PO-Revision-Date: 2007-06-12 03:54+0200\n"
 "Last-Translator: Rinse de Vries <rinsedevries@kde.nl>\n"
 "Language-Team: Nederlands <kde-i18n-nl@kde.org>\n"
@@ -1953,20 +1953,20 @@ msgstr "Feedlist wurdt iepene..."
 msgid "<qt>Could not open feed list (%1) for reading.</qt>"
 msgstr ""
 
-#: src/command/loadfeedlistcommand.cpp:157
+#: src/command/loadfeedlistcommand.cpp:155
 #, fuzzy, kde-format
 #| msgid "XML Parsing Error"
 msgctxt "error message window caption"
 msgid "XML Parsing Error"
 msgstr "XML-ûntleedfout"
 
-#: src/command/loadfeedlistcommand.cpp:159
+#: src/command/loadfeedlistcommand.cpp:157
 #, kde-kuit-format
 msgid "<qt><p>XML parsing error in line %1, column %2 of %3:</p><p>%4</p></qt>"
 msgstr ""
 
 # opmaak gelijk aan engelse tekst
-#: src/command/loadfeedlistcommand.cpp:166
+#: src/command/loadfeedlistcommand.cpp:164
 #, fuzzy, kde-format
 #| msgid ""
 #| "<qt>The standard feed list is corrupted (invalid XML). A backup was "
@@ -1979,7 +1979,7 @@ msgstr ""
 "oanmakke:<p><b>%2</b></p></qt>"
 
 # opmaak gelijk aan engelse tekst
-#: src/command/loadfeedlistcommand.cpp:170
+#: src/command/loadfeedlistcommand.cpp:168
 #, fuzzy, kde-format
 #| msgid ""
 #| "<qt>The standard feed list is corrupted (invalid XML). A backup was "
