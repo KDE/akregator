@@ -7,7 +7,7 @@
 #pragma once
 
 #include "akregatorinterfaces_export.h"
-#include <KUserFeedbackQt6/Provider>
+#include <KUserFeedback/Provider>
 namespace Akregator
 {
 class AKREGATORINTERFACES_EXPORT AkregatorUserFeedbackProvider : public KUserFeedback::Provider

@@ -167,8 +167,8 @@ if (COMPILE_WITH_UNITY_CMAKE_SUPPORT)
 endif()
 generate_export_header(akregatorprivate BASE_NAME akregator)
 
-if (TARGET KUserFeedbackWidgetsQt6)
-    target_link_libraries(akregatorprivate PRIVATE KUserFeedbackWidgetsQt6)
+if (TARGET KF6::UserFeedbackWidgets)
+    target_link_libraries(akregatorprivate PRIVATE KF6::UserFeedbackWidgets)
 endif()
 
 
@@ -190,7 +190,6 @@ target_link_libraries(akregatorprivate
     KPim6::MessageViewer
     Qt::PrintSupport
     KPim6::WebEngineViewer
-    ${akregator_userfeedback_LIB}
     KF6::TextAddonsWidgets
     )
 if (TARGET KF6::TextEditTextToSpeech)

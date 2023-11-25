@@ -88,8 +88,8 @@ find_package(KPim6WebEngineViewer ${MESSAGELIB_LIB_VERSION} CONFIG REQUIRED)
 find_package(KPim6PimCommon ${PIMCOMMON_LIB_VERSION} CONFIG REQUIRED)
 
 
-find_package(KUserFeedbackQt6 1.3.0 CONFIG)
-set_package_properties(KUserFeedbackQt6 PROPERTIES DESCRIPTION "User Feedback lib" TYPE OPTIONAL PURPOSE "Allow to send Telemetry Information (optional). It can be disable in apps.")
+find_package(KF6UserFeedback ${KF_MIN_VERSION} CONFIG)
+set_package_properties(KF6UserFeedback PROPERTIES DESCRIPTION "User Feedback lib" TYPE OPTIONAL PURPOSE "Allow to send Telemetry Information (optional). It can be disable in apps.")
 
 
 include_directories(${akregator_SOURCE_DIR} ${akregator_BINARY_DIR})
@@ -98,7 +98,7 @@ add_definitions(-DQT_NO_CONTEXTLESS_CONNECT)
 ecm_set_disabled_deprecation_versions(QT 5.15.2
      KF 5.245.0
 )
-if (TARGET KUserFeedbackWidgetsQt6)
+if (TARGET KF6::UserFeedbackWidgets)
     add_definitions(-DWITH_KUSERFEEDBACK)
 endif()
 

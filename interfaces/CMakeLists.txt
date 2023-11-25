@@ -11,7 +11,7 @@ target_sources(akregatorinterfaces PRIVATE
     )
 
 set(akregatorinterfaces_userfeedback_LIB_SRCS)
-if (TARGET KUserFeedbackWidgetsQt6)
+if (TARGET KF6::UserFeedbackWidgets)
     target_sources(akregatorinterfaces PRIVATE
         userfeedback/userfeedbackmanager.cpp
         userfeedback/akregatoruserfeedbackprovider.cpp
@@ -25,8 +25,8 @@ kconfig_add_kcfg_files(akregatorinterfaces akregatorconfig.kcfgc)
 
 generate_export_header(akregatorinterfaces BASE_NAME akregatorinterfaces)
 
-if (TARGET KUserFeedbackWidgetsQt6)
-    target_link_libraries(akregatorinterfaces KUserFeedbackWidgetsQt6)
+if (TARGET KF6::UserFeedbackWidgets)
+    target_link_libraries(akregatorinterfaces KF6::UserFeedbackWidgets)
 endif()
 
 target_link_libraries(akregatorinterfaces

@@ -123,7 +123,7 @@ install(TARGETS akregator_config_plugins DESTINATION ${KDE_INSTALL_PLUGINDIR}/pi
 
 
 ########### next target ###############
-if (TARGET KUserFeedbackWidgetsQt6)
+if (TARGET KF6::UserFeedbackWidgets)
     add_library(akregator_config_userfeedback MODULE)
     target_sources(akregator_config_userfeedback PRIVATE akregator_config_userfeedback.cpp akregator_config_userfeedback.h)
 
@@ -133,7 +133,7 @@ if (TARGET KUserFeedbackWidgetsQt6)
         KF6::TextWidgets
         KF6::KCMUtils
         KF6::I18n
-        KUserFeedbackWidgetsQt6
+        KF6::UserFeedbackWidgets
         )
 
     install(TARGETS akregator_config_userfeedback DESTINATION ${KDE_INSTALL_PLUGINDIR}/pim6/kcms/akregator)

@@ -11,7 +11,7 @@
 #include <QHBoxLayout>
 #ifdef WITH_KUSERFEEDBACK
 #include "userfeedback/userfeedbackmanager.h"
-#include <KUserFeedbackQt6/FeedbackConfigWidget>
+#include <KUserFeedback/FeedbackConfigWidget>
 #endif
 
 using namespace Akregator;
