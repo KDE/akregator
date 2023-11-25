@@ -154,7 +154,7 @@ bool MainWindow::loadPart()
         return false;
     }
 
-    m_part->setObjectName(QStringLiteral("akregator_part"));
+    m_part->setObjectName(QLatin1StringView("akregator_part"));
     setCentralWidget(m_part->widget());
 
     connect(m_part.data(), &Part::setWindowCaption, this, qOverload<const QString &>(&KMainWindow::setCaption));

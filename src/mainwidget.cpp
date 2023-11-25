@@ -109,7 +109,7 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
     connect(Kernel::self()->fetchQueue(), &FetchQueue::signalStopped, this, &MainWidget::slotFetchingStopped);
 
     m_feedListView = new SubscriptionListView(m_horizontalSplitter);
-    m_feedListView->setObjectName(QStringLiteral("feedtree"));
+    m_feedListView->setObjectName(QLatin1StringView("feedtree"));
     m_actionManager->initSubscriptionListView(m_feedListView);
 
     connect(m_feedListView, &SubscriptionListView::userActionTakingPlace, this, &MainWidget::ensureArticleTabVisible);
@@ -144,7 +144,7 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
     m_tabWidget->setWhatsThis(i18n("You can view multiple articles in several open tabs."));
 
     m_mainTab = new QWidget(this);
-    m_mainTab->setObjectName(QStringLiteral("Article Tab"));
+    m_mainTab->setObjectName(QLatin1StringView("Article Tab"));
     m_mainTab->setWhatsThis(i18n("Articles list."));
 
     auto mainTabLayout = new QVBoxLayout(m_mainTab);
@@ -156,7 +156,7 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
     }
     connect(m_searchBar, &SearchBar::forceLostFocus, this, &MainWidget::slotSetFocusToViewer);
     m_articleSplitter = new QSplitter(Qt::Vertical, m_mainTab);
-    m_articleSplitter->setObjectName(QStringLiteral("panner2"));
+    m_articleSplitter->setObjectName(QLatin1StringView("panner2"));
     m_articleSplitter->setChildrenCollapsible(false);
 
     m_articleWidget = new QWidget(m_articleSplitter);

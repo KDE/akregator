@@ -65,24 +65,24 @@ void ArticleViewerWebEngineWidgetNg::initializeLayout(KActionCollection *ac)
     auto layout = new QVBoxLayout(this);
     layout->setContentsMargins({});
 #ifdef HAVE_KTEXTADDONS_TEXT_TO_SPEECH_SUPPORT
-    mTextToSpeechWidget->setObjectName(QStringLiteral("texttospeechwidget"));
+    mTextToSpeechWidget->setObjectName(QLatin1StringView("texttospeechwidget"));
     layout->addWidget(mTextToSpeechWidget);
 #endif
-    mTrackingWarningWidget->setObjectName(QStringLiteral("mTrackingWarningWidget"));
+    mTrackingWarningWidget->setObjectName(QLatin1StringView("mTrackingWarningWidget"));
     layout->addWidget(mTrackingWarningWidget);
 
     if (!mArticleViewerNg) {
         mArticleViewerNg = new ArticleViewerWebEngine(ac, this);
     }
-    mArticleViewerNg->setObjectName(QStringLiteral("articleviewerng"));
+    mArticleViewerNg->setObjectName(QLatin1StringView("articleviewerng"));
     layout->addWidget(mArticleViewerNg);
     connect(mArticleViewerNg, &ArticleViewerWebEngine::mailTrackingFound, mTrackingWarningWidget, &WebEngineViewer::TrackingWarningWidget::addTracker);
 
     mArticleViewerNg->createViewerPluginToolManager(ac, this);
 
-    mSliderContainer->setObjectName(QStringLiteral("slidercontainer"));
+    mSliderContainer->setObjectName(QLatin1StringView("slidercontainer"));
     mFindBarWebView = new WebEngineViewer::FindBarWebEngineView(mArticleViewerNg, this);
-    mFindBarWebView->setObjectName(QStringLiteral("findbarwebview"));
+    mFindBarWebView->setObjectName(QLatin1StringView("findbarwebview"));
     connect(mFindBarWebView, &WebEngineViewer::FindBarWebEngineView::hideFindBar, mSliderContainer, &TextAddonsWidgets::SlideContainer::slideOut);
     mSliderContainer->setContent(mFindBarWebView);
     layout->addWidget(mSliderContainer);
