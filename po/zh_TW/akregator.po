@@ -8,20 +8,20 @@
 # Frank Weng (a.k.a. Franklin) <franklin@goodhorse.idv.tw>, 2009.
 # pan93412 <pan93412@gmail.com>, 2018, 2019.
 # Jeff Huang <s8321414@gmail.com>, 2020.
-# Kisaragi Hiu <mail@kisaragi-hiu.com>, 2023.
+# SPDX-FileCopyrightText: 2023 Kisaragi Hiu <mail@kisaragi-hiu.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-11-24 01:34+0000\n"
-"PO-Revision-Date: 2023-06-15 04:40+0900\n"
+"PO-Revision-Date: 2023-11-29 18:30+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
-"Language-Team: Chinese <zh-l10n@linux.org.tw>\n"
+"Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 23.04.2\n"
+"X-Generator: Lokalize 23.08.3\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #, kde-format
@@ -1540,8 +1540,7 @@ msgid "Could not import the file %1 (no valid OPML)"
 msgstr "無法匯入檔案 %1（沒有合法的 OPML）"
 
 #: src/akregator_part.cpp:464 src/command/loadfeedlistcommand.cpp:71
-#, fuzzy, kde-format
-#| msgid "OPML Parsing Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "OPML Parsing Error"
 msgstr "OPML 剖析錯誤"
@@ -1555,8 +1554,7 @@ msgstr ""
 "無法讀取檔案 %1，請檢查該檔是否存在，或是該檔是否能被現在的使用者讀取。"
 
 #: src/akregator_part.cpp:469 src/command/loadfeedlistcommand.cpp:144
-#, fuzzy, kde-format
-#| msgid "Read Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "Read Error"
 msgstr "讀取錯誤"
@@ -1567,8 +1565,7 @@ msgid "Access denied: cannot write to file %1. Please check your permissions."
 msgstr "存取被拒：無法寫入檔案 %1。請檢查您的權限。"
 
 #: src/akregator_part.cpp:481
-#, fuzzy, kde-format
-#| msgid "Write Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "Write Error"
 msgstr "寫入錯誤"
@@ -1674,8 +1671,7 @@ msgid "Are you sure you want to disable this introduction page?"
 msgstr "您確定要關閉此介紹頁面嗎？"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:377
-#, fuzzy, kde-format
-#| msgid "Disable Introduction Page"
+#, kde-format
 msgctxt "@title:window"
 msgid "Disable Introduction Page"
 msgstr "關閉介紹頁面"
@@ -1686,8 +1682,7 @@ msgid "This web site is a malware, do you want to continue to show it?"
 msgstr "這網站為惡意網站，你仍然要繼續顯示它嗎？"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:413
-#, fuzzy, kde-format
-#| msgid "Malware"
+#, kde-format
 msgctxt "@title:window"
 msgid "Malware"
 msgstr "惡意網站"
@@ -1699,8 +1694,7 @@ msgstr "網路損壞。"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:425
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:428
-#, fuzzy, kde-format
-#| msgid "Check Phishing Url"
+#, kde-format
 msgctxt "@title:window"
 msgid "Check Phishing Url"
 msgstr "檢查釣魚網址"
@@ -1735,8 +1729,7 @@ msgid ""
 msgstr "<qt>您確定您要刪除資料夾 <b>%1</b> 及裡面的所有內容嗎？</qt>"
 
 #: src/command/deletesubscriptioncommand.cpp:44
-#, fuzzy, kde-format
-#| msgid "Delete Folder"
+#, kde-format
 msgctxt "@title:window"
 msgid "Delete Folder"
 msgstr "刪除資料夾"
@@ -1752,8 +1745,7 @@ msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
 msgstr "<qt>您確定要刪除 feed <b>%1</b> 嗎？</qt>"
 
 #: src/command/deletesubscriptioncommand.cpp:68
-#, fuzzy, kde-format
-#| msgid "Delete Feed"
+#, kde-format
 msgctxt "@title:window"
 msgid "Delete Feed"
 msgstr "刪除 feed"
@@ -2055,8 +2047,7 @@ msgid ""
 msgstr "<qt>您確定要標記 <b>feed 中的所有文章</b>為已讀嗎？</qt>"
 
 #: src/mainwidget.cpp:766
-#, fuzzy, kde-format
-#| msgid "Mark Feed as Read"
+#, kde-format
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "將 feed 標為已讀"
@@ -2074,8 +2065,7 @@ msgid ""
 msgstr "<qt>您確定要標記<b>所有這個資料夾裡的 feed</b> 為已讀嗎？</qt>"
 
 #: src/mainwidget.cpp:773
-#, fuzzy, kde-format
-#| msgid "Mark Feeds as Read"
+#, kde-format
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "將 feed 標記為已讀"
@@ -2103,8 +2093,7 @@ msgid_plural ""
 msgstr[0] "<qt>您確定要刪除這 %1 篇文章嗎？</qt>"
 
 #: src/mainwidget.cpp:1063
-#, fuzzy, kde-format
-#| msgid "Delete Article"
+#, kde-format
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "刪除文章"
@@ -2122,8 +2111,7 @@ msgid ""
 msgstr "<qt>這會完全隱藏選單列。您可以按下 %1 重新顯示選單列。</qt>"
 
 #: src/mainwindow.cpp:124
-#, fuzzy, kde-format
-#| msgid "Hide menu bar"
+#, kde-format
 msgctxt "@title:window"
 msgid "Hide menu bar"
 msgstr "隱藏選單列"
@@ -2494,10 +2482,9 @@ msgid "Important"
 msgstr "重要文章"
 
 #: src/widgets/statussearchline.cpp:63
-#, fuzzy, kde-format
-#| msgid "Text Filter"
+#, kde-format
 msgid "Filter"
-msgstr "文字過濾器"
+msgstr "過濾器"
 
 #~ msgctxt "@title:window"
 #~ msgid "Print Document"
