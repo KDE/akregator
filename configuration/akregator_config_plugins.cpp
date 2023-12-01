@@ -20,6 +20,7 @@ KCMAkregatorPluginsConfig::KCMAkregatorPluginsConfig(QObject *parent, const KPlu
     : KCModule(parent, data)
 {
     auto lay = new QHBoxLayout(widget());
+    lay->setContentsMargins({});
     mConfigurePluginWidget = new PimCommon::ConfigurePluginsWidget(new AkregatorConfigurePluginListWidget(widget()), widget());
     mConfigurePluginWidget->setObjectName(QLatin1StringView("configurePluginWidget"));
     connect(mConfigurePluginWidget, &PimCommon::ConfigurePluginsWidget::changed, this, &KCMAkregatorPluginsConfig::slotConfigChanged);
