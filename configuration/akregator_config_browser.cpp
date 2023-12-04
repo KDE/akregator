@@ -27,6 +27,7 @@ KCMAkregatorBrowserConfig::KCMAkregatorBrowserConfig(QObject *parent, const KPlu
     ui.setupUi(m_widget);
     auto layout = new QVBoxLayout(widget());
     layout->addWidget(m_widget);
+    layout->setContentsMargins({});
 
     connect(ui.kcfg_ExternalBrowserUseCustomCommand, &QAbstractButton::toggled, ui.kcfg_ExternalBrowserCustomCommand, &QWidget::setEnabled);
     addConfig(Settings::self(), m_widget);
