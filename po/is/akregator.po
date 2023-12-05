@@ -2,19 +2,20 @@
 #
 # Arnar Leósson <leosson@frisurf.no>, 2005.
 # Sveinn í Felli <sveinki@nett.is>, 2009.
+# SPDX-FileCopyrightText: 2023 Guðmundur Erlingsson <gudmundure@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-11-24 01:34+0000\n"
-"PO-Revision-Date: 2009-06-08 21:40+0000\n"
-"Last-Translator: Sveinn í Felli <sveinki@nett.is>\n"
-"Language-Team: Icelandic <kde-isl@molar.is>\n"
+"PO-Revision-Date: 2023-12-04 10:05+0000\n"
+"Last-Translator: Guðmundur Erlingsson <gudmundure@gmail.com>\n"
+"Language-Team: Icelandic <kde-i18n-doc@kde.org>\n"
 "Language: is\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
+"X-Generator: Lokalize 23.08.3\n"
 "Plural-Forms: Plural-Forms: nplurals=2; plural=n != 1;\n"
 "\n"
 "\n"
@@ -22,12 +23,12 @@ msgstr ""
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "Arnar Leósson, Richard Allen"
+msgstr "Arnar Leósson, Richard Allen, Guðmundur Erlingsson"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "leosson@frisurf.no, ra@ra.is"
+msgstr "leosson@frisurf.no, ra@ra.is, gudmundure@gmail.com"
 
 #: src/about/introduction_akregator.html:18
 msgid ""
@@ -36,6 +37,10 @@ msgid ""
 "checking all your favorite web sites manually for updates, Akregator "
 "collects the content for you."
 msgstr ""
+"Fréttalesarar bjóða upp á þægilega leið til að fylgjast með alls kyns efni, "
+"t.d. fréttum, bloggi og öðru efni af netinu. Í stað þess að þurfa að opna "
+"uppáhaldssíðurnar þínar í hvert sinn, hverja á eftir annarri, safnar "
+"Akregator saman efni þeirra fyrir þig."
 
 #: src/about/introduction_akregator.html:19
 msgid ""
@@ -44,63 +49,52 @@ msgid ""
 "want to see this page anymore, <a href='config:/disable_introduction'>click "
 "here</a>."
 msgstr ""
+"Frekari upplýsingar um notkun Akregator er að finna á <a href='https://"
+"kontact.kde.org/components/akregator/'>Akregator vefsíðunni</a>. Ef þú vilt "
+"ekki sjá þessa síðu aftur skaltu <a href='config:/"
+"disable_introduction'>smella hér</a>."
 
 #: src/about/introduction_akregator.html:20
 msgid "We hope that you will enjoy Akregator."
-msgstr ""
+msgstr "Við vonum að þú njótir þess að nota Akregator."
 
 #: src/about/introduction_akregator.html:21
 msgid "Thank you, The Akregator Team"
-msgstr ""
+msgstr "Kærar þakkir frá Akregator-teyminu"
 
 #: src/formatter/html/5.2/combinedview.html:72
-#, fuzzy
-#| msgid "&Mark Feed as Read"
 msgid "Mark as Read"
-msgstr "&Merkja straum sem lesinn"
+msgstr "Merkja sem lesið"
 
 #: src/formatter/html/5.2/combinedview.html:75
-#, fuzzy
-#| msgid "Mark selected article as unread"
 msgid "Mark as Unread"
-msgstr "Merkja völdu greinina sem ólesna"
+msgstr "Merkja sem ólesið"
 
 #: src/formatter/html/5.2/combinedview.html:79
-#, fuzzy
-#| msgid "Remove &Important Mark"
 msgid "Remove Important Status"
-msgstr "&Afmerkja sem áríðandi"
+msgstr "Afmerkja sem mikilvægt"
 
 #: src/formatter/html/5.2/combinedview.html:81
-#, fuzzy
-#| msgid "&Mark as Important"
 msgid "Mark as Important"
-msgstr "&Merkja sem áríðandi"
+msgstr "Merkja sem mikilvægt"
 
 #: src/formatter/html/5.2/combinedview.html:83
-#, fuzzy
-#| msgid "Open Link in External &Browser"
 msgid "Open Link in External Browser"
-msgstr "Opna ten&gil í ytri vafra"
+msgstr "Opna tengil í ytri vafra"
 
 #: src/formatter/html/5.2/combinedview.html:84
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:110
-#, fuzzy, kde-format
-#| msgid "Open in Background Tab"
+#, kde-format
 msgid "Open In Background Tab"
 msgstr "Opna í bakgrunnsflipa"
 
 #: src/formatter/html/5.2/combinedview.html:85
-#, fuzzy
-#| msgid "Send &Link Address..."
 msgid "Send File Address"
-msgstr "Senda vistfang tengi&ls..."
+msgstr "Senda slóð skráar"
 
 #: src/formatter/html/5.2/combinedview.html:86
-#, fuzzy
-#| msgid "Send &Link Address..."
 msgid "Send Link Address"
-msgstr "Senda vistfang tengi&ls..."
+msgstr "Senda slóð tengils"
 
 #: src/formatter/html/5.2/combinedview.html:87
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:96
@@ -113,53 +107,50 @@ msgid ""
 "<b>Note:</b> For security reasons, external reference is blocked (See "
 "configure dialog)."
 msgstr ""
+"<b>Ath.:</b> Lokað er á ytri tilvísun af öryggisástæðum "
+"(sjágrunnstillingargluggann)."
 
 #: configuration/akregator_config_archive.cpp:33
-#, fuzzy, kde-format
-#| msgid "1 article"
+#, kde-format
 msgctxt "Limit feed archive size to:"
 msgid " article"
 msgid_plural " articles"
-msgstr[0] "1 grein"
-msgstr[1] "1 grein"
+msgstr[0] " grein"
+msgstr[1] " greinar"
 
 #: configuration/akregator_config_archive.cpp:34
-#, fuzzy, kde-format
-#| msgid "1 day"
+#, kde-format
 msgctxt "Delete articles older than:"
 msgid " day"
 msgid_plural " days"
-msgstr[0] "1 dagur"
-msgstr[1] "1 dagur"
+msgstr[0] " dagur"
+msgstr[1] " dagar"
 
 #: configuration/akregator_config_general.cpp:32
-#, fuzzy, kde-format
-#| msgid "1 minute"
+#, kde-format
 msgid " minute"
 msgid_plural " minutes"
-msgstr[0] "1 mínúta"
-msgstr[1] "1 mínúta"
+msgstr[0] " mínúta"
+msgstr[1] " mínútur"
 
 #: configuration/akregatorconfigurepluginlistwidget.cpp:51
-#, fuzzy, kde-format
-#| msgid "Concurrent Fetches"
+#, kde-format
 msgid "Webengine Plugins"
-msgstr "Samhliða sóknir"
+msgstr "Webengine-viðbætur"
 
 #: configuration/settings_advanced.cpp:27
-#, fuzzy, kde-format
-#| msgid " sec"
+#, kde-format
 msgctxt "Mark selected article read after"
 msgid " second"
 msgid_plural " seconds"
-msgstr[0] " sek"
-msgstr[1] " sek"
+msgstr[0] " sekúnda"
+msgstr[1] " sekúndur"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: configuration/ui/settings_advancedbase.ui:30
 #, kde-format
 msgid "Article List"
-msgstr "Greinarlisti"
+msgstr "Greinalisti"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_UseMarkReadDelay)
 #: configuration/ui/settings_advancedbase.ui:38
@@ -171,43 +162,43 @@ msgstr "Mer&kja völdu greinina sem lesna eftir"
 #: configuration/ui/settings_advancedbase.ui:73
 #, kde-format
 msgid "Reset search bar when changing feeds"
-msgstr "Hreinsa leitarslá þegar skipt er um straum"
+msgstr "Hreinsa leitarglugga þegar skipt er um straum"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_3)
 #: configuration/ui/settings_appearance.ui:30
-#, fuzzy, kde-format
+#, kde-format
 msgid "Article List Colors"
-msgstr "Greinarlisti"
+msgstr "Litir í greinalista"
 
 #. i18n: ectx: property (text), widget (QLabel, lbl_unreadArticles)
 #: configuration/ui/settings_appearance.ui:53
-#, fuzzy, kde-format
+#, kde-format
 msgid "Unread articles:"
-msgstr " (engar ólesnar greinar)"
+msgstr "Ólesnar greinar:"
 
 #. i18n: ectx: property (text), widget (QLabel, lbl_newArticles)
 #: configuration/ui/settings_appearance.ui:76
-#, fuzzy, kde-format
+#, kde-format
 msgid "New articles:"
-msgstr " greinar"
+msgstr "Nýjar greinar:"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_UseCustomColors)
 #: configuration/ui/settings_appearance.ui:98
 #, kde-format
 msgid "Use custom colors"
-msgstr ""
+msgstr "Nota sérsniðna liti"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #: configuration/ui/settings_appearance.ui:121
-#, fuzzy, kde-format
+#, kde-format
 msgid "Font Size"
-msgstr "&Stækka letur"
+msgstr "Leturstærð"
 
 #. i18n: ectx: property (text), widget (QLabel, lbl_MinimumFontSize)
 #: configuration/ui/settings_appearance.ui:127
 #, kde-format
 msgid "Minimum font size:"
-msgstr "Lágmarks leturstærð:"
+msgstr "Lágmarksleturstærð:"
 
 #. i18n: ectx: property (text), widget (QLabel, lbl_MediumFontSize)
 #: configuration/ui/settings_appearance.ui:176
@@ -217,15 +208,15 @@ msgstr "Miðlungs leturstærð:"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: configuration/ui/settings_appearance.ui:228
-#, fuzzy, kde-format
+#, kde-format
 msgid "Fonts"
-msgstr "Athugasemdir"
+msgstr "Leturgerðir"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel1)
 #: configuration/ui/settings_appearance.ui:234
 #, kde-format
 msgid "Standard font:"
-msgstr "Venjulegt letur:"
+msgstr "Staðlað letur:"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel2_2)
 #: configuration/ui/settings_appearance.ui:244
@@ -237,26 +228,25 @@ msgstr "Jafnbreitt letur:"
 #: configuration/ui/settings_appearance.ui:254
 #, kde-format
 msgid "Serif font:"
-msgstr "Serif letur:"
+msgstr "Krókaletur (serif):"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel4)
 #: configuration/ui/settings_appearance.ui:264
 #, kde-format
 msgid "Sans serif font:"
-msgstr "Sans serif letur:"
+msgstr "Steinskrift (sans serif):"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: configuration/ui/settings_archive.ui:30
 #, kde-format
 msgid "Default Archive Settings"
-msgstr "Sjálfgefnar stillingar við vistun"
+msgstr "Sjálfgefnar safnvistunarstillingar"
 
 #. i18n: ectx: property (text), widget (QRadioButton, rb_DisableArchiving)
 #: configuration/ui/settings_archive.ui:36
-#, fuzzy, kde-format
-#| msgid "Disable archiving"
+#, kde-format
 msgid "Disa&ble archiving"
-msgstr "Slökkva á vistun"
+msgstr "Slökk&va á safnvistun"
 
 #. i18n: ectx: property (text), widget (QRadioButton, rb_KeepAllArticles)
 #. i18n: ectx: property (text), widget (QRadioButton, rb_keepAllArticles)
@@ -268,10 +258,9 @@ msgstr "&Halda öllum greinum"
 
 #. i18n: ectx: property (text), widget (QRadioButton, rb_LimitArticleNumber)
 #: configuration/ui/settings_archive.ui:64
-#, fuzzy, kde-format
-#| msgid "Limit feed archive size to:"
+#, kde-format
 msgid "Limit feed archi&ve size to:"
-msgstr "Takmarka vistunarstærð við:"
+msgstr "Takmarka stærð á fréttasafni við:"
 
 #. i18n: ectx: property (text), widget (QRadioButton, rb_LimitArticleAge)
 #: configuration/ui/settings_archive.ui:100
@@ -283,7 +272,7 @@ msgstr "Eyða greinum eldri en: "
 #: configuration/ui/settings_archive.ui:138
 #, kde-format
 msgid "Do not expire important articles"
-msgstr "Ekki úrelda áríðandi greinar"
+msgstr "Ekki úrelda mikilvægar greinar"
 
 #. i18n: ectx: property (text), widget (QLabel, LMBlabel)
 #: configuration/ui/settings_browser.ui:20
@@ -322,14 +311,13 @@ msgstr "Opna í ytri vafra"
 #: configuration/ui/settings_browser.ui:46
 #, kde-format
 msgid "Middle mouse click:"
-msgstr "Mið músarsmellur:"
+msgstr "Miðjumúsarsmellur:"
 
 #. i18n: ectx: property (title), widget (QGroupBox, externalBrowserGroupBox)
 #: configuration/ui/settings_browser.ui:74
-#, fuzzy, kde-format
-#| msgid "For External Browsing"
+#, kde-format
 msgid "External Browsing"
-msgstr "Fyrir ytri flakk"
+msgstr "Ytri vefskoðun"
 
 #. i18n: ectx: property (text), widget (QLineEdit, kcfg_ExternalBrowserCustomCommand)
 #: configuration/ui/settings_browser.ui:83
@@ -339,127 +327,117 @@ msgstr "firefox %u"
 
 #. i18n: ectx: property (text), widget (QRadioButton, kcfg_ExternalBrowserUseCustomCommand)
 #: configuration/ui/settings_browser.ui:90
-#, fuzzy, kde-format
-#| msgid "Use this command:"
+#, kde-format
 msgid "Use &this command:"
-msgstr "Nota þessa skipun:"
+msgstr "No&ta þessa skipun:"
 
 #. i18n: ectx: property (text), widget (QRadioButton, kcfg_ExternalBrowserUseKdeDefault)
 #: configuration/ui/settings_browser.ui:97
-#, fuzzy, kde-format
-#| msgid "Use default KDE web browser"
+#, kde-format
 msgid "Use default web &browser"
-msgstr "Nota sjálfgefna KDE vafrann"
+msgstr "Nota sjálfgefinn &vafra"
 
 #. i18n: ectx: property (title), widget (QGroupBox, tabsGroupBox)
 #: configuration/ui/settings_browser.ui:110
-#, fuzzy, kde-format
-#| msgid "Tags"
+#, kde-format
 msgid "Tabs"
-msgstr "Tög"
+msgstr "Flipar"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_AlwaysShowTabBar)
 #. i18n: ectx: label, entry, group (Browser)
 #: configuration/ui/settings_browser.ui:116 interfaces/akregator.kcfg:202
 #, kde-format
 msgid "Always show the tab bar"
-msgstr ""
+msgstr "Alltaf sýna flipastiku"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_CloseButtonOnTabs)
 #: configuration/ui/settings_browser.ui:123
-#, fuzzy, kde-format
-#| msgid "Show close buttons on tabs"
+#, kde-format
 msgid "Show close button on each tab"
-msgstr "Sýna lokunarhnappa á flipum"
+msgstr "Sýna lokunarhnapp á flipum"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_NewWindowInTab)
 #. i18n: ectx: label, entry, group (Browser)
 #: configuration/ui/settings_browser.ui:130 interfaces/akregator.kcfg:212
 #, kde-format
 msgid "Open links in new tab instead of in new window"
-msgstr ""
+msgstr "Opna tengla í nýjum flipa í stað nýs glugga"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: configuration/ui/settings_browser.ui:140
 #, kde-format
 msgid "Security"
-msgstr ""
+msgstr "Öryggi"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_CheckPhishingUrl)
 #: configuration/ui/settings_browser.ui:146
 #, kde-format
 msgid "Verify URLs using Google's Safe Browsing API"
-msgstr ""
+msgstr "Sannprófa slóðir með Google Safe Browsing API"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_EnableJavascript)
 #. i18n: ectx: label, entry, group (Browser)
 #: configuration/ui/settings_browser.ui:153 interfaces/akregator.kcfg:198
 #, kde-format
 msgid "Enable Javascript"
-msgstr ""
+msgstr "Virkja Javascript"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #: configuration/ui/settings_browser.ui:163
 #, kde-format
 msgid "Misc"
-msgstr ""
+msgstr "Ýmislegt"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_AccessKeyEnabled)
 #: configuration/ui/settings_browser.ui:169
-#, fuzzy, kde-format
-#| msgid "Keep Enabled"
+#, kde-format
 msgid "Access Key Enabled"
-msgstr "Nota áfram"
+msgstr "Aðgangslykill virkjaður"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_3)
 #: configuration/ui/settings_general.ui:30
-#, fuzzy, kde-format
-#| msgid "Global"
+#, kde-format
 msgctxt "global settings"
 msgid "Global"
-msgstr "Víðvært"
+msgstr "Altækt"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ShowTrayIcon)
 #: configuration/ui/settings_general.ui:36
 #, kde-format
 msgid "Show tra&y icon"
-msgstr "Sýna &táknmynd í kerfisbakka"
+msgstr "Sýna &tákn í kerfisbakka"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ShowUnreadInTaskbar)
 #: configuration/ui/settings_general.ui:43
-#, fuzzy, kde-format
-#| msgid " (no unread articles)"
+#, kde-format
 msgid "Show unread articles in Taskbar"
-msgstr " (engar ólesnar greinar)"
+msgstr "Sýna ólesnar greinar í verkstiku"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_HideReadFeeds)
 #. i18n: ectx: label, entry, group (View)
 #: configuration/ui/settings_general.ui:50 interfaces/akregator.kcfg:9
-#, fuzzy, kde-format
-#| msgid " (no unread articles)"
+#, kde-format
 msgid "Hide feeds with no unread articles"
-msgstr " (engar ólesnar greinar)"
+msgstr "Fela strauma með engar ólesnar greinar"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_LockFeedsInPlace)
 #: configuration/ui/settings_general.ui:57
 #, kde-format
 msgid "Lock feeds in place"
-msgstr ""
+msgstr "Festa strauma á sínum stað"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_AutoExpandFolders)
 #. i18n: ectx: whatsthis, entry, group (View)
 #: configuration/ui/settings_general.ui:64 interfaces/akregator.kcfg:27
-#, fuzzy, kde-format
-#| msgid " (no unread articles)"
+#, kde-format
 msgid "Auto-expand folders containing unread articles"
-msgstr " (engar ólesnar greinar)"
+msgstr "Opna möppur sjálfkrafa sem innihalda ólesnar greinar"
 
 #. i18n: ectx: property (whatsThis), widget (QCheckBox, kcfg_UseNotifications)
 #: configuration/ui/settings_general.ui:74
 #, kde-format
 msgid "Select this if you want to get notified when there are new articles."
-msgstr ""
-"Veldu þetta ef þú vilt fá tilkynningu þegar nýjar greinar eru fáanlegar."
+msgstr "Veldu þetta ef þú vilt fá tilkynningu þegar nýjar greinar eru í boði."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_UseNotifications)
 #: configuration/ui/settings_general.ui:77
@@ -471,19 +449,19 @@ msgstr "&Nota tilkynningar fyrir alla strauma"
 #: configuration/ui/settings_general.ui:84
 #, kde-format
 msgid "Disable save as finished notification"
-msgstr ""
+msgstr "Slökkva á tilkynningu um að vistun sé lokið"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_UseIntervalFetch)
 #: configuration/ui/settings_general.ui:91
 #, kde-format
 msgid "&Use interval fetching"
-msgstr "&Nota reglulegar sóknir"
+msgstr "&Sækja strauma með reglulegu millibili"
 
 #. i18n: ectx: property (text), widget (QLabel, autoFetchIntervalLabel)
 #: configuration/ui/settings_general.ui:119
 #, kde-format
 msgid "Fetch feeds every:"
-msgstr "Sækja strauma hverja:"
+msgstr "Millibil:"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #: configuration/ui/settings_general.ui:160
@@ -501,7 +479,7 @@ msgstr "Merkja &alla strauma sem lesna við ræsingu"
 #: configuration/ui/settings_general.ui:173
 #, kde-format
 msgid "Fetch all fee&ds on startup"
-msgstr "Ná í alla strauma &við ræsingu"
+msgstr "Sækja alla strauma &við ræsingu"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: configuration/ui/settings_general.ui:183
@@ -513,44 +491,42 @@ msgstr "Net"
 #: configuration/ui/settings_general.ui:189
 #, kde-format
 msgid "Use the &browser cache (less network traffic)"
-msgstr "Nota &skyndiminni veflesara (minni netumferð)"
+msgstr "Nota &skyndiminni vafra (minni netnotkun)"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_LoadExternalReferences)
 #: configuration/ui/settings_security.ui:17
 #, kde-format
 msgid "Allow feed to load external references from internet."
-msgstr ""
+msgstr "Leyfa straumi að hlaða inn ytra efni af netinu."
 
 #: export/akregatorstorageexporter.cpp:280
 #, kde-format
 msgid "Akregator Export for %1"
-msgstr ""
+msgstr "Akregator útflutningur fyrir %1"
 
 #. i18n: ectx: whatsthis, entry, group (View)
 #: interfaces/akregator.kcfg:10
-#, fuzzy, kde-format
-#| msgid " (no unread articles)"
+#, kde-format
 msgid "Hides feeds with no unread articles"
-msgstr " (engar ólesnar greinar)"
+msgstr "Felur strauma með engum ólesnum greinum"
 
 #. i18n: ectx: label, entry, group (View)
 #: interfaces/akregator.kcfg:21
 #, kde-format
 msgid "Prevent feeds from being moved in the list"
-msgstr ""
+msgstr "Kemur í veg fyrir að straumar færist til á listanum"
 
 #. i18n: ectx: whatsthis, entry, group (View)
 #: interfaces/akregator.kcfg:22
 #, kde-format
 msgid "Locks feeds where they are"
-msgstr ""
+msgstr "Læsir straumum þar sem þeir eru"
 
 #. i18n: ectx: label, entry, group (View)
 #: interfaces/akregator.kcfg:26
-#, fuzzy, kde-format
-#| msgid " (no unread articles)"
+#, kde-format
 msgid "Auto-Expand folders with unread articles"
-msgstr " (engar ólesnar greinar)"
+msgstr "Opnar sjálfkrafa möppur sem innihalda ólesnar greinar"
 
 #. i18n: ectx: label, entry, group (View)
 #: interfaces/akregator.kcfg:31 src/actions/actionmanagerimpl.cpp:318
@@ -562,7 +538,7 @@ msgstr "Sýna flýtisíu"
 #: interfaces/akregator.kcfg:32
 #, kde-format
 msgid "Show Quick Filter Bar"
-msgstr "Sýna flýtisíuslá"
+msgstr "Sýna flýtisíustiku"
 
 #. i18n: ectx: label, entry, group (View)
 #: interfaces/akregator.kcfg:36
@@ -574,7 +550,7 @@ msgstr "Stöðusía"
 #: interfaces/akregator.kcfg:37
 #, kde-format
 msgid "Stores the last status filter setting"
-msgstr "Vistar stillingar seinustu stöðusíu"
+msgstr "Vistar stillingar síðustu stöðusíu"
 
 #. i18n: ectx: label, entry, group (View)
 #: interfaces/akregator.kcfg:41
@@ -586,19 +562,19 @@ msgstr "Textasía"
 #: interfaces/akregator.kcfg:42
 #, kde-format
 msgid "Stores the last search line text"
-msgstr "Vistar seinasta leitartextann"
+msgstr "Vistar síðasta leitartextann"
 
 #. i18n: ectx: label, entry, group (View)
 #: interfaces/akregator.kcfg:45
 #, kde-format
 msgid "View Mode"
-msgstr "Skoðunarhamur"
+msgstr "Skoðunarsnið"
 
 #. i18n: ectx: whatsthis, entry, group (View)
 #: interfaces/akregator.kcfg:46
 #, kde-format
 msgid "Article display mode."
-msgstr "Birtingarhamur greina:"
+msgstr "Greinayfirlit."
 
 #. i18n: ectx: label, entry, group (View)
 #: interfaces/akregator.kcfg:50
@@ -610,7 +586,7 @@ msgstr "Stærðir fyrir fyrsta klofning"
 #: interfaces/akregator.kcfg:51
 #, kde-format
 msgid "First (usually vertical) splitter widget sizes."
-msgstr "Stærð fyrsta klofningarhlutans (vanalega lóðréttur)."
+msgstr "Stærð fyrsta klofningshlutans (vanalega lóðréttur)."
 
 #. i18n: ectx: label, entry, group (View)
 #: interfaces/akregator.kcfg:55
@@ -622,13 +598,13 @@ msgstr "Stærðir fyrir annan klofning"
 #: interfaces/akregator.kcfg:56
 #, kde-format
 msgid "Second (usually horizontal) splitter widget sizes."
-msgstr "Stærð annars klofningarhlutans (vanalega láréttur)."
+msgstr "Stærð annars klofningshlutans (vanalega láréttur)."
 
 #. i18n: ectx: label, entry, group (Archive)
 #: interfaces/akregator.kcfg:100
 #, kde-format
 msgid "Archive Mode"
-msgstr "Vistunarhamur"
+msgstr "Safnvistunarsnið"
 
 #. i18n: ectx: label, entry, group (Archive)
 #: interfaces/akregator.kcfg:104
@@ -652,7 +628,7 @@ msgstr "Takmarka fjölda greina"
 #: interfaces/akregator.kcfg:109
 #, kde-format
 msgid "Limit the number of articles in a feed"
-msgstr "Takmarka fjölda greina í straum"
+msgstr "Takmarka fjölda greina í straumi"
 
 #. i18n: ectx: label, entry, group (Archive)
 #: interfaces/akregator.kcfg:112
@@ -670,7 +646,7 @@ msgstr "Eyða útrunnum greinum"
 #: interfaces/akregator.kcfg:116
 #, kde-format
 msgid "Disable Archiving"
-msgstr "Slökkva á vistun"
+msgstr "Slökkva á safnvistun"
 
 #. i18n: ectx: whatsthis, entry, group (Archive)
 #: interfaces/akregator.kcfg:117
@@ -688,25 +664,25 @@ msgstr "Úreldingaraldur"
 #: interfaces/akregator.kcfg:123
 #, kde-format
 msgid "Default expiry age for articles in days."
-msgstr "Sjálfgefinn úreldingaraldur í dögum fyrir greinar."
+msgstr "Sjálfgefinn úreldingaraldur greina í dögum."
 
 #. i18n: ectx: label, entry, group (Archive)
 #: interfaces/akregator.kcfg:127
 #, kde-format
 msgid "Article Limit"
-msgstr "Greinartakmörk"
+msgstr "Greinatakmörk"
 
 #. i18n: ectx: whatsthis, entry, group (Archive)
 #: interfaces/akregator.kcfg:128
 #, kde-format
 msgid "Number of articles to keep per feed."
-msgstr "Fjöldi greina sem á að halda í hverjum straum."
+msgstr "Fjöldi greina sem á að halda fyrir hvern straum."
 
 #. i18n: ectx: label, entry, group (Archive)
 #: interfaces/akregator.kcfg:132
 #, kde-format
 msgid "Do Not Expire Important Articles"
-msgstr "Ekki úrelda áríðandi greinar"
+msgstr "Ekki úrelda mikilvægar greinar"
 
 #. i18n: ectx: whatsthis, entry, group (Archive)
 #: interfaces/akregator.kcfg:133
@@ -715,27 +691,27 @@ msgid ""
 "When this option is enabled, articles you marked as important will not be "
 "removed when limit the archive size by either age or number of the articles."
 msgstr ""
-"Þegar þetta er valið verða greinar sem eru merktar sem áríðandi ekki "
-"úreldaðar þegar mörkum á vistun er náð með annað hvort aldri eða fjölda "
-"greina."
+"Þegar þetta er valið verða greinar sem eru merktar sem mikilvægar ekki "
+"úreltar þegar stærð vistunarsafns er takmörkuð af annað hvort aldri eða "
+"fjölda greina."
 
 #. i18n: ectx: label, entry, group (Network)
 #: interfaces/akregator.kcfg:139
 #, kde-format
 msgid "Concurrent Fetches"
-msgstr "Samhliða sóknir"
+msgstr "Samhliða söfnun"
 
 #. i18n: ectx: whatsthis, entry, group (Network)
 #: interfaces/akregator.kcfg:140
 #, kde-format
 msgid "Number of concurrent fetches"
-msgstr "Fjöldi samhliða sókna"
+msgstr "Fjöldi samhliða safnana"
 
 #. i18n: ectx: label, entry, group (Network)
 #: interfaces/akregator.kcfg:144
 #, kde-format
 msgid "Use HTML Cache"
-msgstr "Nota HTML skyndiminni"
+msgstr "Nota HTML-biðminni"
 
 #. i18n: ectx: whatsthis, entry, group (Network)
 #: interfaces/akregator.kcfg:145
@@ -744,8 +720,8 @@ msgid ""
 "Use the KDE-wide HTML cache settings when downloading feeds, to avoid "
 "unnecessary traffic. Disable only when necessary."
 msgstr ""
-"Nota KDE HTML skyndiminnisstillingarnar þegar náð er í strauma, til að koma "
-"í veg fyrir óþarfa umferð. Slökktu einungis á þessu þegar það er nauðsynlegt."
+"Nota HTML-biðminnisstillingarnar KDE þegar straumar eru sóttir til að koma í "
+"veg fyrir óþarfa netálag. Slökktu einungis á þessu ef það er nauðsynlegt."
 
 #. i18n: ectx: whatsthis, entry, group (Network)
 #: interfaces/akregator.kcfg:149
@@ -755,18 +731,21 @@ msgid ""
 "the default one. This is here because some proxies may interrupt the "
 "connection because of having \"gator\" in the name."
 msgstr ""
+"Með þessum valkosti getur notandinn tilgreint sérstakan söfnunarstreng fyrir "
+"strauma í staðinn fyrir þann sjálfgefna. Þetta er í boði vegna þess að sumir "
+"milliþjónar eiga það til að rjúfa tenginguna ef \"gator\" er í heitinu."
 
 #. i18n: ectx: label, entry, group (General)
 #: interfaces/akregator.kcfg:155
 #, kde-format
 msgid "Fetch on startup"
-msgstr "Ná í við ræsingu"
+msgstr "Sækja við ræsingu"
 
 #. i18n: ectx: whatsthis, entry, group (General)
 #: interfaces/akregator.kcfg:156
 #, kde-format
 msgid "Fetch feedlist on startup."
-msgstr "Ná í straumlista við ræsingu."
+msgstr "Sækja straumlista við ræsingu."
 
 #. i18n: ectx: label, entry, group (General)
 #: interfaces/akregator.kcfg:160
@@ -784,25 +763,25 @@ msgstr "Merkja alla strauma sem lesna við ræsingu."
 #: interfaces/akregator.kcfg:165
 #, kde-format
 msgid "Use interval fetching"
-msgstr "Nota tímabundnar sóknir"
+msgstr "Nota tímabundna söfnun"
 
 #. i18n: ectx: whatsthis, entry, group (General)
 #: interfaces/akregator.kcfg:166
 #, no-c-format, kde-format
 msgid "Fetch all feeds every %1 minutes."
-msgstr "Ná í alla strauma hverja %1 mínútur."
+msgstr "Sækja alla strauma á %1 mínútna fresti."
 
 #. i18n: ectx: label, entry, group (General)
 #: interfaces/akregator.kcfg:170
 #, kde-format
 msgid "Interval for autofetching"
-msgstr "Bil milli sjálfvirkna sókna"
+msgstr "Millibil fyrir sjálfvirka söfnun"
 
 #. i18n: ectx: whatsthis, entry, group (General)
 #: interfaces/akregator.kcfg:171
 #, kde-format
 msgid "Interval for autofetching in minutes."
-msgstr "Bil í mínútum milli sjálfvirkna sókna."
+msgstr "Millibil í mínútum fyrir sjálfvirka söfnun."
 
 #. i18n: ectx: label, entry, group (General)
 #: interfaces/akregator.kcfg:175
@@ -814,50 +793,49 @@ msgstr "Nota tilkynningar"
 #: interfaces/akregator.kcfg:176
 #, kde-format
 msgid "Specifies if the balloon notifications are used or not."
-msgstr "Skilgreinir hvort eigi að nota blöðru tilkynningar."
+msgstr "Skilgreinir hvort eigi að nota blöðrutilkynningar eða ekki."
 
 #. i18n: ectx: label, entry, group (General)
 #: interfaces/akregator.kcfg:180
 #, kde-format
 msgid "Show tray icon"
-msgstr "Sýna táknmynd í kerfisbakka"
+msgstr "Sýna tákn í kerfisbakka"
 
 #. i18n: ectx: whatsthis, entry, group (General)
 #: interfaces/akregator.kcfg:181
 #, kde-format
 msgid "Specifies if the tray icon is shown or not."
-msgstr "Skilgreinir hvort eigi að sýna táknmynd í kerfisbakka."
+msgstr "Skilgreinir hvort eigi að sýna tákn í kerfisbakka eða ekki."
 
 #. i18n: ectx: label, entry, group (General)
 #: interfaces/akregator.kcfg:185
 #, kde-format
 msgid "Show Unread In Taskbar"
-msgstr ""
+msgstr "Sýna ólesið á verkstiku"
 
 #. i18n: ectx: whatsthis, entry, group (General)
 #: interfaces/akregator.kcfg:186
-#, fuzzy, kde-format
-#| msgid " (no unread articles)"
+#, kde-format
 msgid "Specifies if we show unread article in taskbar."
-msgstr " (engar ólesnar greinar)"
+msgstr "Skilgreinir hvort sýna eigi ólesnar greinar í verkstikunni."
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
 #: interfaces/akregator.kcfg:203
 #, kde-format
 msgid "Always show the tab bar, even when only one tab is open"
-msgstr ""
+msgstr "Alltaf sýna flipastikuna, líka þegar aðeins einn flipi er opinn"
 
 #. i18n: ectx: label, entry, group (Browser)
 #: interfaces/akregator.kcfg:207
 #, kde-format
 msgid "Show close buttons on tabs"
-msgstr "Sýna lokunarhnappa á flipum"
+msgstr "Sýna lokunarhnapp á flipum"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
 #: interfaces/akregator.kcfg:208
 #, kde-format
 msgid "Show close buttons on tabs instead of icons"
-msgstr "Sýna lokunarhnappa á flipum í stað táknmynda"
+msgstr "Sýna lokunarhnapp á flipum í stað tákna"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
 #: interfaces/akregator.kcfg:213
@@ -866,18 +844,20 @@ msgid ""
 "Open a link which would normally open in a new window (external browser) in "
 "a new tab instead"
 msgstr ""
+"Opna tengil, sem myndi venjulega opnast í nýjum glugga (ytri vafra), í nýjum "
+"flipa í staðinn"
 
 #. i18n: ectx: label, entry, group (Browser)
 #: interfaces/akregator.kcfg:217
 #, kde-format
 msgid "Use default KDE web browser"
-msgstr "Nota sjálfgefna KDE vafrann"
+msgstr "Nota sjálfgefinn vafra KDE"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
 #: interfaces/akregator.kcfg:218
 #, kde-format
 msgid "Use KDE web browser when opening in external browser."
-msgstr "Nota KDE veflesara þegar opnað er í ytri vafra."
+msgstr "Nota KDE vafra þegar opnað er í ytri vafra."
 
 #. i18n: ectx: label, entry, group (Browser)
 #: interfaces/akregator.kcfg:222
@@ -889,48 +869,46 @@ msgstr "Nota þessa skipun:"
 #: interfaces/akregator.kcfg:223
 #, kde-format
 msgid "Use the specified command when opening in external browser."
-msgstr "Nota uppgefnu skipunina þegar opnað er í ytri vafra."
+msgstr "Nota skipunina sem er tilgreind þegar opnað er í ytri vafra."
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
 #: interfaces/akregator.kcfg:227
-#, fuzzy, no-c-format, kde-format
-#| msgid "Command to launch external browser.  URL will substitute for %u."
+#, no-c-format, kde-format
 msgid "Command to launch external browser. URL will substitute for %u."
-msgstr "Skipun til að ræsa ytri vafra. Slóðin mun koma í stað %u."
+msgstr "Skipun til að keyra ytri vafra. Slóðin kemur í stað %u."
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
 #: interfaces/akregator.kcfg:231
 #, kde-format
 msgid "What the click with left mouse button should do."
-msgstr "Hvað vinstrismellurinn með músinni á að gera."
+msgstr "Hvað vinstrismellur með músinni á að gera."
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
 #: interfaces/akregator.kcfg:240
 #, kde-format
 msgid "What the click with middle mouse button should do."
-msgstr "Hvað miðsmellurinn með músinni á að gera."
+msgstr "Hvað miðjusmellur með músinni á að gera."
 
 #. i18n: ectx: label, entry, group (Advanced)
 #: interfaces/akregator.kcfg:265
 #, kde-format
 msgid "Archive Backend"
-msgstr "Vistunarbakendi"
+msgstr "Safnvistunarbakendi"
 
 #. i18n: ectx: whatsthis, entry (UseMarkReadDelay), group (Advanced)
 #: interfaces/akregator.kcfg:269
 #, kde-format
 msgid "Whether to delay before marking an article as read upon selecting it."
-msgstr "Hvort eigi að bíða áður en valin grein er merkt sem lesin."
+msgstr ""
+"Hvort eigi að bíða þegar grein er valin og þar til hún er merkt sem lesin."
 
 #. i18n: ectx: whatsthis, entry (MarkReadDelay), group (Advanced)
 #: interfaces/akregator.kcfg:273
-#, fuzzy, kde-format
-#| msgid ""
-#| "Configurable delay between selecting and article and it being marked as "
-#| "read."
+#, kde-format
 msgid ""
 "Configurable delay between selecting an article and it being marked as read."
-msgstr "Stillanlegt tímabil áður en valin grein er merkt sem lesin."
+msgstr ""
+"Stillanleg töf á milli þess að greinin er valin og hún er merkt sem lesin."
 
 #. i18n: ectx: whatsthis, entry, group (Advanced)
 #: interfaces/akregator.kcfg:277
@@ -947,40 +925,37 @@ msgid "Akregator"
 msgstr "Akregator"
 
 #: kontactplugin/akregator_plugin.cpp:29
-#, fuzzy, kde-format
-#| msgid "&Add Feed..."
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "New Feed..."
-msgstr "&Bæta straum við..."
+msgstr "Nýr straumur..."
 
 #: kontactplugin/akregator_plugin.cpp:32
 #, kde-format
 msgctxt "@info:status"
 msgid "Create a new feed"
-msgstr ""
+msgstr "Búa til nýjan straum"
 
 #: kontactplugin/akregator_plugin.cpp:33
 #, kde-format
 msgctxt "@info:whatsthis"
 msgid "You will be presented with a dialog where you can add a new feed."
-msgstr ""
+msgstr "Þú færð upp svarglugga þar sem þú getur bætt við nýjum straumi."
 
 #: src/aboutdata.cpp:21
-#, fuzzy, kde-format
-#| msgid "A KDE Feed Aggregator"
+#, kde-format
 msgid "A KDE Feed Reader"
-msgstr "KDE straumsafnari"
+msgstr "KDE fréttalesari"
 
 #: src/aboutdata.cpp:23
-#, fuzzy, kde-format
-#| msgid "(C) 2004, 2005 Akregator developers"
+#, kde-format
 msgid "Copyright © 2004–%1 Akregator authors"
-msgstr "(C) 2004, 2005 Akregator höfundarnir"
+msgstr "Copyright © 2004–%1 höfundar Akregator"
 
 #: src/aboutdata.cpp:27
 #, kde-format
 msgid "Laurent Montel"
-msgstr ""
+msgstr "Laurent Montel"
 
 #: src/aboutdata.cpp:27
 #, kde-format
@@ -990,18 +965,17 @@ msgstr "Umsjónaraðili"
 #: src/aboutdata.cpp:28
 #, kde-format
 msgid "Frank Osterfeld"
-msgstr ""
+msgstr "Frank Osterfeld"
 
 #: src/aboutdata.cpp:28
-#, fuzzy, kde-format
-#| msgid "Maintainer"
+#, kde-format
 msgid "Former maintainer"
-msgstr "Umsjónaraðili"
+msgstr "Fyrrum umsjónaraðili"
 
 #: src/aboutdata.cpp:29
 #, kde-format
 msgid "Teemu Rytilahti"
-msgstr ""
+msgstr "Teemu Rytilahti"
 
 #: src/aboutdata.cpp:29 src/aboutdata.cpp:30 src/aboutdata.cpp:31
 #: src/aboutdata.cpp:32
@@ -1012,73 +986,72 @@ msgstr "Forritari"
 #: src/aboutdata.cpp:30
 #, kde-format
 msgid "Sashmit Bhaduri"
-msgstr ""
+msgstr "Sashmit Bhaduri"
 
 #: src/aboutdata.cpp:31
 #, kde-format
 msgid "Pierre Habouzit"
-msgstr ""
+msgstr "Pierre Habouzit"
 
 #: src/aboutdata.cpp:32
 #, kde-format
 msgid "Stanislav Karchebny"
-msgstr ""
+msgstr "Stanislav Karchebny"
 
 #: src/aboutdata.cpp:33
 #, kde-format
 msgid "Gary Cramblitt"
-msgstr ""
+msgstr "Gary Cramblitt"
 
 #: src/aboutdata.cpp:33 src/aboutdata.cpp:34 src/aboutdata.cpp:35
 #, kde-format
 msgid "Contributor"
-msgstr "Framlög"
+msgstr "Þátttakandi"
 
 #: src/aboutdata.cpp:34
 #, kde-format
 msgid "Stephan Binner"
-msgstr ""
+msgstr "Stephan Binner"
 
 #: src/aboutdata.cpp:35
 #, kde-format
 msgid "Christof Musik"
-msgstr ""
+msgstr "Christof Musik"
 
 #: src/aboutdata.cpp:36
 #, kde-format
 msgid "Anne-Marie Mahfouf"
-msgstr ""
+msgstr "Anne-Marie Mahfouf"
 
 #: src/aboutdata.cpp:36
 #, kde-format
 msgid "Handbook"
-msgstr ""
+msgstr "Handbók"
 
 #: src/aboutdata.cpp:37
-#, fuzzy, kde-format
-#| msgid "Fetch aborted"
+#, kde-format
 msgid "Frerich Raabe"
-msgstr "Hætt við sókn"
+msgstr "Frerich Raabe"
 
 #: src/aboutdata.cpp:37
 #, kde-format
 msgid "Author of librss"
-msgstr "Höfundur af librss"
+msgstr "Höfundur librss"
 
 #: src/aboutdata.cpp:38
 #, kde-format
 msgid "Eckhart Woerner"
-msgstr ""
+msgstr "Eckhart Woerner"
 
 #: src/aboutdata.cpp:38
 #, kde-format
 msgid "Bug tracker management, Usability improvements"
-msgstr "Villuleitarumsjón, nytsemisendurbætur"
+msgstr "Villuleitarumsjón, endurbætur á nothæfi"
 
 #: src/aboutdata.cpp:39
 #, kde-format
 msgid "Heinrich Wendel"
-msgstr ""
+msgstr "Heinrich Wendel"
 
 #: src/aboutdata.cpp:39
 #, kde-format
@@ -1088,27 +1061,27 @@ msgstr "Hellingur af villuleiðréttingum"
 #: src/aboutdata.cpp:40
 #, kde-format
 msgid "Eike Hein"
-msgstr ""
+msgstr "Eike Hein"
 
 #: src/aboutdata.cpp:40
 #, kde-format
 msgid "'Delayed mark as read' feature"
-msgstr "'Tafin merkja sem lesin' aðgerð"
+msgstr "Eiginleikinn 'Töf við að merkja sem lesið'"
 
 #: src/aboutdata.cpp:41
 #, kde-format
 msgid "Marcel Dierkes"
-msgstr ""
+msgstr "Marcel Dierkes"
 
 #: src/aboutdata.cpp:41
 #, kde-format
 msgid "Icons"
-msgstr "Táknmyndir"
+msgstr "Tákn"
 
 #: src/aboutdata.cpp:42
 #, kde-format
 msgid "George Staikos"
-msgstr ""
+msgstr "George Staikos"
 
 #: src/aboutdata.cpp:42
 #, kde-format
@@ -1118,7 +1091,7 @@ msgstr "Insomnia"
 #: src/aboutdata.cpp:43
 #, kde-format
 msgid "Philipp Droessler"
-msgstr ""
+msgstr "Philipp Droessler"
 
 #: src/aboutdata.cpp:43
 #, kde-format
@@ -1128,17 +1101,17 @@ msgstr "Gentoo útgáfa"
 #: src/actions/actionmanagerimpl.cpp:64 src/actions/actionmanagerimpl.cpp:287
 #, kde-format
 msgid "&Fetch Feed"
-msgstr "&Ná í straum"
+msgstr "&Sækja straum"
 
 #: src/actions/actionmanagerimpl.cpp:65 src/actions/actionmanagerimpl.cpp:243
 #, kde-format
 msgid "&Delete Feed"
-msgstr "&Eyða straum"
+msgstr "&Eyða straumi"
 
 #: src/actions/actionmanagerimpl.cpp:66 src/actions/actionmanagerimpl.cpp:249
 #, kde-format
 msgid "&Edit Feed..."
-msgstr "&Breyta straum..."
+msgstr "&Breyta straumi..."
 
 #: src/actions/actionmanagerimpl.cpp:67 src/actions/actionmanagerimpl.cpp:306
 #, kde-format
@@ -1148,7 +1121,7 @@ msgstr "&Merkja straum sem lesinn"
 #: src/actions/actionmanagerimpl.cpp:83
 #, kde-format
 msgid "&Fetch Feeds"
-msgstr "&Ná í strauma"
+msgstr "&Sækja strauma"
 
 #: src/actions/actionmanagerimpl.cpp:84
 #, kde-format
@@ -1176,10 +1149,9 @@ msgid "&Export Feeds..."
 msgstr "&Flytja út strauma..."
 
 #: src/actions/actionmanagerimpl.cpp:200
-#, fuzzy, kde-format
-#| msgid "Configure &Akregator..."
+#, kde-format
 msgid "&Configure Akregator..."
-msgstr "Stilla &Akregator..."
+msgstr "&Grunnstilla Akregator..."
 
 #: src/actions/actionmanagerimpl.cpp:219
 #, kde-format
@@ -1189,12 +1161,12 @@ msgstr "&Opna heimasíðu"
 #: src/actions/actionmanagerimpl.cpp:225
 #, kde-format
 msgid "Reload All Tabs"
-msgstr ""
+msgstr "Endurhlaða alla flipa"
 
 #: src/actions/actionmanagerimpl.cpp:231
 #, kde-format
 msgid "&Add Feed..."
-msgstr "&Bæta straum við..."
+msgstr "&Bæta við straumi..."
 
 #: src/actions/actionmanagerimpl.cpp:237
 #, kde-format
@@ -1204,28 +1176,27 @@ msgstr "&Ný mappa..."
 #: src/actions/actionmanagerimpl.cpp:262
 #, kde-format
 msgid "&Normal View"
-msgstr "&Venjuleg sýn"
+msgstr "&Venjulegt yfirlit"
 
 #: src/actions/actionmanagerimpl.cpp:271
 #, kde-format
 msgid "&Widescreen View"
-msgstr "&Breiðskjá sýn"
+msgstr "&Vítt yfirlit"
 
 #: src/actions/actionmanagerimpl.cpp:280
 #, kde-format
 msgid "C&ombined View"
-msgstr "&Sameinuð sýn"
+msgstr "&Samfellt yfirlit"
 
 #: src/actions/actionmanagerimpl.cpp:293
 #, kde-format
 msgid "Fe&tch All Feeds"
-msgstr "Ná í &alla strauma"
+msgstr "Sækja &alla strauma"
 
 #: src/actions/actionmanagerimpl.cpp:299
-#, fuzzy, kde-format
-#| msgid "Concurrent Fetches"
+#, kde-format
 msgid "C&ancel Feed Fetches"
-msgstr "Samhliða sóknir"
+msgstr "Hætta við &að sækja strauma"
 
 #: src/actions/actionmanagerimpl.cpp:312
 #, kde-format
@@ -1235,7 +1206,7 @@ msgstr "Me&rkja alla strauma sem lesna"
 #: src/actions/actionmanagerimpl.cpp:341 src/actions/actionmanagerimpl.cpp:609
 #, kde-format
 msgid "Copy Link Address"
-msgstr "Afrita vistfang tengils"
+msgstr "Afrita slóð tengils"
 
 #: src/actions/actionmanagerimpl.cpp:346
 #, kde-format
@@ -1248,20 +1219,20 @@ msgid "Ne&xt Unread Article"
 msgstr "N&æsta ólesin grein"
 
 #: src/actions/actionmanagerimpl.cpp:360
-#, fuzzy, kde-format
+#, kde-format
 msgid "&Delete"
-msgstr "&Eyða tagi"
+msgstr "&Eyða"
 
 #: src/actions/actionmanagerimpl.cpp:365
 #, kde-format
 msgid "&Mark As"
-msgstr "M&erkja sem"
+msgstr "&Merkja sem"
 
 #: src/actions/actionmanagerimpl.cpp:369
 #, kde-format
 msgctxt "as in: mark as read"
 msgid "&Read"
-msgstr "lesin"
+msgstr "&Lesin"
 
 #: src/actions/actionmanagerimpl.cpp:371
 #, kde-format
@@ -1269,8 +1240,7 @@ msgid "Mark selected article as read"
 msgstr "Merkja völdu greinina sem lesna"
 
 #: src/actions/actionmanagerimpl.cpp:377
-#, fuzzy, kde-format
-#| msgid "&New"
+#, kde-format
 msgctxt "as in: mark as new"
 msgid "&New"
 msgstr "&Ný"
@@ -1281,8 +1251,7 @@ msgid "Mark selected article as new"
 msgstr "Merkja völdu greinina sem nýja"
 
 #: src/actions/actionmanagerimpl.cpp:385
-#, fuzzy, kde-format
-#| msgid "&Unread"
+#, kde-format
 msgctxt "as in: mark as unread"
 msgid "&Unread"
 msgstr "Ól&esin"
@@ -1295,37 +1264,37 @@ msgstr "Merkja völdu greinina sem ólesna"
 #: src/actions/actionmanagerimpl.cpp:393
 #, kde-format
 msgid "&Mark as Important"
-msgstr "&Merkja sem áríðandi"
+msgstr "&Merkja sem mikilvæga"
 
 #: src/actions/actionmanagerimpl.cpp:397
 #, kde-format
 msgid "Remove &Important Mark"
-msgstr "&Afmerkja sem áríðandi"
+msgstr "&Afmerkja sem mikilvæga"
 
 #: src/actions/actionmanagerimpl.cpp:401
 #, kde-format
 msgid "Move Node Up"
-msgstr "Flytja hnúð upp"
+msgstr "Færa hnút upp"
 
 #: src/actions/actionmanagerimpl.cpp:406
 #, kde-format
 msgid "Move Node Down"
-msgstr "Flytja hnúð niður"
+msgstr "Færa hnút niður"
 
 #: src/actions/actionmanagerimpl.cpp:411
 #, kde-format
 msgid "Move Node Left"
-msgstr "Flytja hnúð til vinstri"
+msgstr "Færa hnút til vinstri"
 
 #: src/actions/actionmanagerimpl.cpp:416
 #, kde-format
 msgid "Move Node Right"
-msgstr "Flytja hnúð til hægri"
+msgstr "Færa hnút til hægri"
 
 #: src/actions/actionmanagerimpl.cpp:422
 #, kde-format
 msgid "Send &Link Address..."
-msgstr "Senda vistfang tengi&ls..."
+msgstr "Senda slóð tengi&ls..."
 
 #: src/actions/actionmanagerimpl.cpp:427
 #, kde-format
@@ -1335,7 +1304,7 @@ msgstr "Senda &skrá..."
 #: src/actions/actionmanagerimpl.cpp:433
 #, kde-format
 msgid "Set Focus to Quick Search"
-msgstr ""
+msgstr "Setja fókus á flýtileit"
 
 #: src/actions/actionmanagerimpl.cpp:465
 #, kde-format
@@ -1398,21 +1367,19 @@ msgid "Go Down in Tree"
 msgstr "Fara niður í tré"
 
 #: src/actions/actionmanagerimpl.cpp:538
-#, fuzzy, kde-format
-#| msgid "N&ext Unread Feed"
+#, kde-format
 msgid "Hide Read Feeds"
-msgstr "N&æsti ólesni straumur"
+msgstr "Fela lesna strauma"
 
 #: src/actions/actionmanagerimpl.cpp:544
 #, kde-format
 msgid "Lock Feeds In Place"
-msgstr ""
+msgstr "Festa strauma á sínum stað"
 
 #: src/actions/actionmanagerimpl.cpp:550
-#, fuzzy, kde-format
-#| msgid " (no unread articles)"
+#, kde-format
 msgid "Auto-expand folders with unread articles"
-msgstr " (engar ólesnar greinar)"
+msgstr "Opna sjálfkrafa möppur með ólesnar greinar"
 
 #: src/actions/actionmanagerimpl.cpp:566
 #, kde-format
@@ -1432,33 +1399,32 @@ msgstr "Aftengja flipa"
 #: src/actions/actionmanagerimpl.cpp:591
 #, kde-format
 msgid "Mute"
-msgstr ""
+msgstr "Þagga"
 
 #: src/actions/actionmanagerimpl.cpp:595
 #, kde-format
 msgid "Unmute"
-msgstr ""
+msgstr "Afþagga"
 
 #: src/actions/actionmanagerimpl.cpp:598
 #, kde-format
 msgid "Speak Text"
-msgstr ""
+msgstr "Lesa texta upphátt"
 
 #: src/actions/actionmanagerimpl.cpp:603
 #, kde-format
 msgid "&Find in Message..."
-msgstr ""
+msgstr "&Finna í skeyti..."
 
 #: src/actions/actionmanagerimpl.cpp:614
-#, fuzzy, kde-format
-#| msgid "&Close Tab"
+#, kde-format
 msgid "Close Tab"
-msgstr "&Loka flipa"
+msgstr "Loka flipa"
 
 #: src/actions/actionmanagerimpl.cpp:627
 #, kde-format
 msgid "Activate Tab %1"
-msgstr ""
+msgstr "Virkja flipa %1"
 
 #: src/actions/actionmanagerimpl.cpp:633
 #, kde-format
@@ -1473,12 +1439,12 @@ msgstr "Afrita vistfang tengi&ls"
 #: src/actions/actionmanagerimpl.cpp:640
 #, kde-format
 msgid "Copy Image Location"
-msgstr ""
+msgstr "Afrita staðsetningu myndar"
 
 #: src/actions/actionmanagerimpl.cpp:647
 #, kde-format
 msgid "Save Image On Disk..."
-msgstr ""
+msgstr "Vista mynd á disk..."
 
 #: src/actions/actions.cpp:19
 #, kde-format
@@ -1491,16 +1457,15 @@ msgid "Open Link in External &Browser"
 msgstr "Opna ten&gil í ytri vafra"
 
 #: src/addfeeddialog.cpp:49
-#, fuzzy, kde-format
-#| msgid "Add Feed"
+#, kde-format
 msgctxt "@title:window"
 msgid "Add Feed"
-msgstr "Bæta við straum"
+msgstr "Bæta við straumi"
 
 #: src/addfeeddialog.cpp:99
 #, kde-format
 msgid "Downloading %1"
-msgstr "Hleð niður %1"
+msgstr "Sæki %1"
 
 #: src/addfeeddialog.cpp:115
 #, kde-format
@@ -1510,27 +1475,27 @@ msgstr "Straumur fannst ekki á %1."
 #: src/addfeeddialog.cpp:121
 #, kde-format
 msgid "Feed found, downloading..."
-msgstr "Straumur fannst, hleð niður..."
+msgstr "Straumur fannst, sæki..."
 
 #: src/akregator_options.h:20 src/akregator_options.h:28
 #, kde-format
 msgid "Add a feed with the given URL"
-msgstr ""
+msgstr "Bæta við straumi með tilgreindu slóðina"
 
 #: src/akregator_options.h:23
 #, kde-format
 msgid "When adding feeds, place them in this group"
-msgstr ""
+msgstr "Þegar straumum er bætt við á að setja þá í þennan flokk"
 
 #: src/akregator_options.h:25
 #, kde-format
 msgid "Hide main window on startup"
-msgstr ""
+msgstr "Fela aðalgluggann við ræsingu"
 
 #: src/akregator_options.h:30
 #, kde-format
 msgid "Lists the available options for user feedback"
-msgstr ""
+msgstr "Telur upp tiltæka valkosti fyrir umsagnir notenda"
 
 #: src/akregator_part.cpp:78
 #, kde-format
@@ -1540,17 +1505,17 @@ msgstr "Straumar"
 #: src/akregator_part.cpp:89
 #, kde-format
 msgid "KDE Dot News"
-msgstr "KDE Dot fréttir"
+msgstr "KDE Dot News"
 
 #: src/akregator_part.cpp:94
 #, kde-format
 msgid "Linux.com"
-msgstr ""
+msgstr "Linux.com"
 
 #: src/akregator_part.cpp:99
 #, kde-format
 msgid "Planet KDE"
-msgstr "Plánetan KDE"
+msgstr "Planet KDE"
 
 #: src/akregator_part.cpp:104
 #, kde-format
@@ -1560,21 +1525,21 @@ msgstr "KDE forrit"
 #: src/akregator_part.cpp:110
 #, kde-format
 msgid "Spanish feeds"
-msgstr ""
+msgstr "Straumar á spænsku"
 
 #: src/akregator_part.cpp:114
-#, fuzzy, kde-format
-#| msgid "Planet KDE"
+#, kde-format
 msgid "Planet KDE España"
-msgstr "Plánetan KDE"
+msgstr "Planet KDE España"
 
 #: src/akregator_part.cpp:427
-#, fuzzy, kde-format
-#| msgid "Access denied: cannot save feed list (%1)"
+#, kde-format
 msgid ""
 "Access denied: Cannot save feed list to <b>%1</b>. Please check your "
 "permissions."
-msgstr "Aðgangi hafnað. Get ekki vistað straumlista (%1)"
+msgstr ""
+"Aðgangi hafnað: Get ekki vistað lista í <b>%1</b>. Athugaðu hvort þú sért "
+"með aðgangsheimild."
 
 #: src/akregator_part.cpp:428
 #, kde-format
@@ -1584,14 +1549,13 @@ msgstr "Skrifvilla"
 #: src/akregator_part.cpp:464
 #, kde-format
 msgid "Could not import the file %1 (no valid OPML)"
-msgstr "Gat ekki flutt inn skrána %1 (engin gild OPML)"
+msgstr "Gat ekki flutt inn skrána %1 (ekkert gilt OPML)"
 
 #: src/akregator_part.cpp:464 src/command/loadfeedlistcommand.cpp:71
-#, fuzzy, kde-format
-#| msgid "OPML Parsing Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "OPML Parsing Error"
-msgstr "OPML þáttunarvilla"
+msgstr "OPML-þáttunarvilla"
 
 #: src/akregator_part.cpp:468
 #, kde-format
@@ -1599,34 +1563,32 @@ msgid ""
 "The file %1 could not be read, check if it exists or if it is readable for "
 "the current user."
 msgstr ""
-"Ekki tókst að lesa skrána %1, athugaðu hvort hún sé til og hvort hún sé "
-"lesanleg af notandanum."
+"Ekki tókst að lesa skrána %1. Athugaðu hvort hún sé til og hvort núverandi "
+"notandi geti lesið hana."
 
 #: src/akregator_part.cpp:469 src/command/loadfeedlistcommand.cpp:144
-#, fuzzy, kde-format
-#| msgid "Read Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "Read Error"
 msgstr "Lesvilla"
 
 #: src/akregator_part.cpp:480
-#, fuzzy, kde-format
-#| msgid "Access denied: cannot write to file %1"
+#, kde-format
 msgid "Access denied: cannot write to file %1. Please check your permissions."
-msgstr "Aðgangi hafnað, get ekki skrifað í skrána %1"
+msgstr ""
+"Aðgangi hafnað: get ekki skrifað í skrána %1. Athugaðu hvort þú sért með "
+"aðgangsheimild."
 
 #: src/akregator_part.cpp:481
-#, fuzzy, kde-format
-#| msgid "Write Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "Write Error"
 msgstr "Skrifvilla"
 
 #: src/akregator_part.cpp:496 src/akregator_part.cpp:505
-#, fuzzy, kde-format
-#| msgid "OPML Outlines (*.opml, *.xml)"
+#, kde-format
 msgid "OPML Outlines (%1);;All Files (*)"
-msgstr "OPML útlínur (*.opml, *.xml)"
+msgstr "OPML efnisskipanir (%1);;Allar skrár (*)"
 
 #: src/akregator_part.cpp:629
 #, kde-format
@@ -1636,27 +1598,20 @@ msgstr "Innflutt mappa"
 #: src/articlejobs.cpp:184
 #, kde-format
 msgid "The feed to be listed was already removed."
-msgstr ""
+msgstr "Straumurinn sem á að birta hefur nú þegar verið fjarlægður."
 
 #: src/articlelistview.cpp:156 src/subscription/subscriptionlistview.cpp:180
-#, fuzzy, kde-format
-#| msgid "Comments"
+#, kde-format
 msgid "Columns"
-msgstr "Athugasemdir"
+msgstr "Dálkar"
 
 #: src/articlelistview.cpp:214
 #, kde-format
 msgid "No result found"
-msgstr ""
+msgstr "Engin niðurstaða fannst"
 
 #: src/articlelistview.cpp:375
-#, fuzzy, kde-format
-#| msgid ""
-#| "<h2>Article list</h2>Here you can browse articles from the currently "
-#| "selected feed. You can also manage articles, as marking them as "
-#| "persistent (\"Keep Article\") or delete them, using the right mouse "
-#| "button menu.To view the web page of the article, you can open the article "
-#| "internally in a tab or in an external browser window."
+#, kde-format
 msgid ""
 "<h2>Article list</h2>Here you can browse articles from the currently "
 "selected feed. You can also manage articles, as marking them as persistent "
@@ -1664,64 +1619,57 @@ msgid ""
 "To view the web page of the article, you can open the article internally in "
 "a tab or in an external browser window."
 msgstr ""
-"<h2>Greinarlisti</h2>Hér getur þú skoðað greinar valda straumsins. Þú getur "
-"einnig sýslað með greinar með því að merkja þær sem fastar (\"Varðveita grein"
-"\"), eða eyða þeim með því að nota hægri músarhnapps valmyndina. Til að "
-"skoða vefsíðu greinarinnar, getur þú opnað hana innbyggt í flipa eða í ytri "
-"vafra."
+"<h2>Greinalisti</h2>Hér getur þú skoðað greinar úr straumnum sem er valinn. "
+"Þú getur einnig opnað valmynd með hægri músarhnappinum og merkt greinar sem "
+"fastar (\"Merkja sem mikilvæga\"), eða eytt þeim. Til að skoða vefsíðu "
+"greinarinnar getur þú opnað hana í flipa í þessu forriti eða í vafra."
 
 #: src/articlemodel.cpp:74
-#, fuzzy, kde-format
-#| msgid "Title:"
+#, kde-format
 msgctxt "Articlelist's column header"
 msgid "Title"
-msgstr "Titill:"
+msgstr "Titill"
 
 #: src/articlemodel.cpp:76
-#, fuzzy, kde-format
-#| msgid "Feed"
+#, kde-format
 msgctxt "Articlelist's column header"
 msgid "Feed"
 msgstr "Straumur"
 
 #: src/articlemodel.cpp:78
-#, fuzzy, kde-format
-#| msgid "Date"
+#, kde-format
 msgctxt "Articlelist's column header"
 msgid "Date"
 msgstr "Dagsetning"
 
 #: src/articlemodel.cpp:80
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Articlelist's column header"
 msgid "Author"
-msgstr "Höfundar"
+msgstr "Höfundur"
 
 #: src/articlemodel.cpp:82
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Description"
-msgstr ""
+msgstr "Lýsing"
 
 #: src/articlemodel.cpp:84
-#, fuzzy, kde-format
-#| msgid "Comments"
+#, kde-format
 msgctxt "Articlelist's column header"
 msgid "Content"
-msgstr "Athugasemdir"
+msgstr "Efni"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:143
-#, fuzzy, kde-format
-#| msgid "A KDE Feed Aggregator"
+#, kde-format
 msgid "Akregator is a KDE news feed reader."
-msgstr "KDE straumsafnari"
+msgstr "Akregator er fréttalesari frá KDE."
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:184
-#, fuzzy, kde-format
-#| msgid "&Save Link As..."
+#, kde-format
 msgctxt "@title:window"
 msgid "Save As"
-msgstr "&Vista tengil sem..."
+msgstr "Vista sem"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:373
 #, kde-format
@@ -1739,8 +1687,7 @@ msgid "Are you sure you want to disable this introduction page?"
 msgstr "Ertu viss um að þú viljir slökkva á kynningarsíðunni?"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:377
-#, fuzzy, kde-format
-#| msgid "Disable Introduction Page"
+#, kde-format
 msgctxt "@title:window"
 msgid "Disable Introduction Page"
 msgstr "Slökkva á kynningarsíðu"
@@ -1748,30 +1695,30 @@ msgstr "Slökkva á kynningarsíðu"
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:412
 #, kde-format
 msgid "This web site is a malware, do you want to continue to show it?"
-msgstr ""
+msgstr "Þetta vefsvæði inniheldur spilliforrit. Viltu halda áfram að opna það?"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:413
 #, kde-format
 msgctxt "@title:window"
 msgid "Malware"
-msgstr ""
+msgstr "Spilliforrit"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:425
 #, kde-format
 msgid "The network is broken."
-msgstr ""
+msgstr "Netið er bilað."
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:425
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:428
 #, kde-format
 msgctxt "@title:window"
 msgid "Check Phishing Url"
-msgstr ""
+msgstr "Skoða vefveiðaslóð (phishing)"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:428
 #, kde-format
 msgid "The url %1 is not valid."
-msgstr ""
+msgstr "Slóðin %1 er ekki gild."
 
 #: src/command/createfoldercommand.cpp:47
 #, kde-format
@@ -1802,8 +1749,7 @@ msgstr ""
 "undirmöppum hennar?</qt>"
 
 #: src/command/deletesubscriptioncommand.cpp:44
-#, fuzzy, kde-format
-#| msgid "Delete Folder"
+#, kde-format
 msgctxt "@title:window"
 msgid "Delete Folder"
 msgstr "Eyða möppu"
@@ -1811,7 +1757,7 @@ msgstr "Eyða möppu"
 #: src/command/deletesubscriptioncommand.cpp:61
 #, kde-format
 msgid "<qt>Are you sure you want to delete this feed?</qt>"
-msgstr "<qt>Ertu viss um að þú viljir eyða þessum straum?</qt>"
+msgstr "<qt>Ertu viss um að þú viljir eyða þessum straumi?</qt>"
 
 #: src/command/deletesubscriptioncommand.cpp:63
 #, kde-format
@@ -1819,17 +1765,15 @@ msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
 msgstr "<qt>Ertu viss um að þú viljir eyða straumnum <b>%1</b>?</qt>"
 
 #: src/command/deletesubscriptioncommand.cpp:68
-#, fuzzy, kde-format
-#| msgid "Delete Feed"
+#, kde-format
 msgctxt "@title:window"
 msgid "Delete Feed"
-msgstr "Eyða straum"
+msgstr "Eyða straumi"
 
 #: src/command/importfeedlistcommand.cpp:48
-#, fuzzy, kde-format
-#| msgid "&Import Feeds..."
+#, kde-format
 msgid "Imported Feeds"
-msgstr "Flytja &inn strauma..."
+msgstr "Innfluttir straumar"
 
 #: src/command/importfeedlistcommand.cpp:77
 #, kde-format
@@ -1842,22 +1786,22 @@ msgid "Imported folder name:"
 msgstr "Nafn á innfluttri möppu:"
 
 #: src/command/loadfeedlistcommand.cpp:63
-#, fuzzy, kde-format
+#, kde-format
 msgid ""
 "<qt>The standard feed list is corrupted (invalid OPML). A backup was created:"
 "<p><b>%1</b></p></qt>"
 msgstr ""
-"<qt>Staðlaði straumlistinn er ónýtur (ógilt XML). Afrit var búið til:<p><b>"
-"%2</b></p></qt>"
+"<qt>Staðlaði straumlistinn er skemmdur (ógilt OPML). Afrit var búið til: "
+"<p><b>%1</b></p></qt>"
 
 #: src/command/loadfeedlistcommand.cpp:67
-#, fuzzy, kde-format
+#, kde-format
 msgid ""
 "<qt>The standard feed list is corrupted (invalid OPML). Could not create a "
 "backup.</qt>"
 msgstr ""
-"<qt>Staðlaði straumlistinn er ónýtur (ógilt XML). Afrit var búið til:<p><b>"
-"%2</b></p></qt>"
+"<qt>Staðlaði straumlistinn er skemmdur (ógilt OPML). Gat ekki búið til afrit."
+"</qt>"
 
 #: src/command/loadfeedlistcommand.cpp:129
 #, kde-format
@@ -1867,71 +1811,70 @@ msgstr "Opna straumlista..."
 #: src/command/loadfeedlistcommand.cpp:143
 #, kde-format
 msgid "<qt>Could not open feed list (%1) for reading.</qt>"
-msgstr ""
+msgstr "<qt>Gat ekki opnað straumlista (%1) til lestrar.</qt>"
 
 #: src/command/loadfeedlistcommand.cpp:155
-#, fuzzy, kde-format
-#| msgid "XML Parsing Error"
+#, kde-format
 msgctxt "error message window caption"
 msgid "XML Parsing Error"
-msgstr "XML þáttunarvilla"
+msgstr "XML-þáttunarvilla"
 
 #: src/command/loadfeedlistcommand.cpp:157
 #, kde-kuit-format
 msgid "<qt><p>XML parsing error in line %1, column %2 of %3:</p><p>%4</p></qt>"
-msgstr ""
+msgstr "<qt><p>XML-þáttunarvilla í línu %1, dálki %2 af %3:</p><p>%4</p></qt>"
 
 #: src/command/loadfeedlistcommand.cpp:164
-#, fuzzy, kde-format
+#, kde-format
 msgid ""
 "<qt>The standard feed list is corrupted (invalid XML). A backup was created:"
 "<p><b>%1</b></p></qt>"
 msgstr ""
-"<qt>Staðlaði straumlistinn er ónýtur (ógilt XML). Afrit var búið til:<p><b>"
-"%2</b></p></qt>"
+"<qt>Staðlaði straumlistinn er skemmdur (ógilt XML). Afrit var búið til:<p><b>"
+"%1</b></p></qt>"
 
 #: src/command/loadfeedlistcommand.cpp:168
-#, fuzzy, kde-format
+#, kde-format
 msgid ""
 "<qt>The standard feed list is corrupted (invalid XML). Could not create a "
 "backup.</qt>"
 msgstr ""
-"<qt>Staðlaði straumlistinn er ónýtur (ógilt XML). Afrit var búið til:<p><b>"
-"%2</b></p></qt>"
+"<qt>Staðlaði straumlistinn er skemmdur (ógilt XML). Gat ekki búið til afrit."
+"</qt>"
 
 #: src/crashwidget/crashwidget.cpp:21
 #, kde-format
 msgid ""
 "Akregator did not close correctly. Would you like to restore the previous "
 "session?"
-msgstr ""
+msgstr "Akregator lokaðist ekki rétt. Viltu endurheimta fyrri setu?"
 
 #: src/crashwidget/crashwidget.cpp:37
 #, kde-format
 msgid "Restore Session"
-msgstr ""
+msgstr "Endurheimta setu"
 
 #: src/crashwidget/crashwidget.cpp:43
 #, kde-format
 msgid "Do Not Restore Session"
-msgstr ""
+msgstr "Ekki endurheimta setu"
 
 #: src/crashwidget/crashwidget.cpp:49
 #, kde-format
 msgid "Ask me later"
-msgstr ""
+msgstr "Spyrja síðar"
 
 #. i18n: ectx: Menu (edit)
 #: src/data/akregator_part.rc:14 src/data/akregator_shell.rc:11
 #, kde-format
 msgid "&Edit"
-msgstr ""
+msgstr "Br&eyta"
 
 #. i18n: ectx: Menu (view)
 #: src/data/akregator_part.rc:22 src/data/akregator_shell.rc:16
-#, fuzzy, kde-format
+#, kde-format
 msgid "&View"
-msgstr "&Skoðunarhamur"
+msgstr "S&koða"
 
 #. i18n: ectx: Menu (go)
 #: src/data/akregator_part.rc:37 src/data/akregator_shell.rc:24
@@ -1941,10 +1884,9 @@ msgstr "F&ara"
 
 #. i18n: ectx: Menu (feed)
 #: src/data/akregator_part.rc:50 src/data/akregator_shell.rc:29
-#, fuzzy, kde-format
-#| msgid "Feed"
+#, kde-format
 msgid "Fee&d"
-msgstr "Straumur"
+msgstr "St&raumur"
 
 #. i18n: ectx: Menu (article)
 #: src/data/akregator_part.rc:63 src/data/akregator_shell.rc:34
@@ -1954,21 +1896,21 @@ msgstr "&Grein"
 
 #. i18n: ectx: Menu (settings)
 #: src/data/akregator_part.rc:80 src/data/akregator_shell.rc:39
-#, fuzzy, kde-format
+#, kde-format
 msgid "&Settings"
-msgstr "&Setja tög"
+msgstr "&Stillingar"
 
 #. i18n: ectx: ToolBar (mainToolBar)
 #: src/data/akregator_part.rc:93 src/data/akregator_shell.rc:54
-#, fuzzy, kde-format
+#, kde-format
 msgid "Main Toolbar"
-msgstr "Talslá"
+msgstr "Aðaltækjastika"
 
 #. i18n: ectx: Menu (file)
 #: src/data/akregator_shell.rc:4
-#, fuzzy, kde-format
+#, kde-format
 msgid "&File"
-msgstr "&Grein"
+msgstr "&Skrá"
 
 #: src/feed/feedlist.cpp:160
 #, kde-format
@@ -1976,62 +1918,54 @@ msgid "All Feeds"
 msgstr "Allir straumar"
 
 #: src/feed/feedpropertiesdialog.cpp:45 src/feed/feedpropertiesdialog.cpp:77
-#, fuzzy, kde-format
-#| msgid "Minutes"
+#, kde-format
 msgid "Minute"
 msgid_plural "Minutes"
-msgstr[0] "mínútur"
-msgstr[1] "mínútur"
+msgstr[0] "Mínúta"
+msgstr[1] "Mínútur"
 
 #: src/feed/feedpropertiesdialog.cpp:46 src/feed/feedpropertiesdialog.cpp:78
-#, fuzzy, kde-format
-#| msgid "Hours"
+#, kde-format
 msgid "Hour"
 msgid_plural "Hours"
-msgstr[0] "klukkustundir"
-msgstr[1] "klukkustundir"
+msgstr[0] "Klukkustund"
+msgstr[1] "Klukkustundir"
 
 #: src/feed/feedpropertiesdialog.cpp:47 src/feed/feedpropertiesdialog.cpp:79
-#, fuzzy, kde-format
-#| msgid "Days"
+#, kde-format
 msgid "Day"
 msgid_plural "Days"
-msgstr[0] "daga"
-msgstr[1] "daga"
+msgstr[0] "Dagur"
+msgstr[1] "Dagar"
 
 #: src/feed/feedpropertiesdialog.cpp:60 src/feed/feedpropertiesdialog.cpp:112
-#, fuzzy, kde-format
-#| msgid "Feed Properties"
+#, kde-format
 msgctxt "@title:window"
 msgid "Feed Properties"
 msgstr "Eiginleikar straums"
 
 #: src/feed/feedpropertiesdialog.cpp:80
-#, fuzzy, kde-format
-#| msgid "Never"
+#, kde-format
 msgctxt "never fetch new articles"
 msgid "Never"
 msgstr "Aldrei"
 
 #: src/feed/feedpropertiesdialog.cpp:81
-#, fuzzy, kde-format
-#| msgid "1 day"
+#, kde-format
 msgid " day"
 msgid_plural " days"
-msgstr[0] "1 dagur"
-msgstr[1] "1 dagur"
+msgstr[0] " dagur"
+msgstr[1] " dagar"
 
 #: src/feed/feedpropertiesdialog.cpp:82
-#, fuzzy, kde-format
-#| msgid "1 article"
+#, kde-format
 msgid " article"
 msgid_plural " articles"
-msgstr[0] "1 grein"
-msgstr[1] "1 grein"
+msgstr[0] " grein"
+msgstr[1] " greinar"
 
 #: src/feed/feedpropertiesdialog.cpp:112
-#, fuzzy, kde-format
-#| msgid "Properties of %1"
+#, kde-format
 msgctxt "@title:window"
 msgid "Properties of %1"
 msgstr "Eiginleikar %1"
@@ -2039,7 +1973,7 @@ msgstr "Eiginleikar %1"
 #: src/formatter/articleformatter.cpp:36
 #, kde-format
 msgid "(%1, %2)"
-msgstr ""
+msgstr "(%1, %2)"
 
 #: src/formatter/grantleeviewformatter.cpp:58
 #: src/formatter/grantleeviewformatter.cpp:109
@@ -2049,29 +1983,26 @@ msgstr " (engar ólesnar greinar)"
 
 #: src/formatter/grantleeviewformatter.cpp:60
 #: src/formatter/grantleeviewformatter.cpp:111
-#, fuzzy, kde-format
+#, kde-format
 msgid " (1 unread article)"
 msgid_plural " (%1 unread articles)"
 msgstr[0] " (1 ólesin grein)"
 msgstr[1] " (%1 ólesnar greinar)"
 
 #: src/formatter/grantleeviewformatter.cpp:75
-#, fuzzy, kde-format
-#| msgid "<b>Description:</b> %1<br><br>"
+#, kde-format
 msgid "<b>Description:</b> %1<br />"
 msgstr "<b>Lýsing:</b> %1<br><br>"
 
 #: src/formatter/grantleeviewformatter.cpp:82
-#, fuzzy, kde-format
-#| msgid "<b>Homepage:</b> <a href=\"%1\">%2</a>"
+#, kde-format
 msgid "<b>Homepage:</b> <a href=\"%1\">%1</a>"
-msgstr "<b>Heimasíða:</b> <a href=\"%1\">%2</a>"
+msgstr "<b>Heimasíða:</b> <a href=\"%1\">%1</a>"
 
 #: src/formatter/grantleeviewformatter.cpp:89
-#, fuzzy, kde-format
-#| msgid "<b>Description:</b> %1<br><br>"
+#, kde-format
 msgid "<b>Copyright:</b> %1</a>"
-msgstr "<b>Lýsing:</b> %1<br><br>"
+msgstr "<b>Höfundarréttur:</b> %1</a>"
 
 #: src/formatter/grantleeviewformatter.cpp:141
 #, kde-format
@@ -2079,10 +2010,9 @@ msgid "Date"
 msgstr "Dagsetning"
 
 #: src/formatter/grantleeviewformatter.cpp:142
-#, fuzzy, kde-format
-#| msgid "Comments"
+#, kde-format
 msgid "Comment"
-msgstr "Athugasemdir"
+msgstr "Athugasemd"
 
 #: src/formatter/grantleeviewformatter.cpp:143
 #, kde-format
@@ -2090,19 +2020,19 @@ msgid "Complete Story"
 msgstr "Öll greinin"
 
 #: src/formatter/grantleeviewformatter.cpp:144
-#, fuzzy, kde-format
+#, kde-format
 msgid "Author"
-msgstr "Höfundar"
+msgstr "Höfundur"
 
 #: src/formatter/grantleeviewformatter.cpp:145
 #, kde-format
 msgid "Enclosure"
-msgstr ""
+msgstr "Fylgiskrá"
 
 #: src/frame/frame.cpp:21
 #, kde-format
 msgid "Untitled"
-msgstr ""
+msgstr "Án titils"
 
 #: src/frame/frame.cpp:141
 #, kde-format
@@ -2122,7 +2052,7 @@ msgstr "Hleðslu lokið"
 #: src/mainwidget.cpp:144
 #, kde-format
 msgid "You can view multiple articles in several open tabs."
-msgstr "Þú getur skoðað margar greinar í fleiri opnum flipum."
+msgstr "Þú getur skoðað fleiri greinar í nokkrum opnum flipum."
 
 #: src/mainwidget.cpp:148
 #, kde-format
@@ -2137,53 +2067,53 @@ msgstr "Greinar"
 #: src/mainwidget.cpp:239
 #, kde-format
 msgid "About"
-msgstr ""
+msgstr "Um hugbúnaðinn"
 
 #: src/mainwidget.cpp:765
-#, fuzzy, kde-format
-#| msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
+#, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all articles in the feed</b> as read?</"
 "qt>"
-msgstr "<qt>Ertu viss um að þú viljir eyða straumnum <b>%1</b>?</qt>"
+msgstr ""
+"<qt>Ertu viss um að þú viljir merkja <b>allar greinar í straumnum</b> sem "
+"lesnar?</qt>"
 
 #: src/mainwidget.cpp:766
-#, fuzzy, kde-format
-#| msgid "&Mark Feed as Read"
+#, kde-format
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
-msgstr "&Merkja straum sem lesinn"
+msgstr "Merkja straum sem lesinn"
 
 #: src/mainwidget.cpp:769
-#, fuzzy, kde-format
-#| msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
+#, kde-format
 msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
-msgstr "<qt>Ertu viss um að þú viljir eyða straumnum <b>%1</b>?</qt>"
+msgstr ""
+"<qt>Ertu viss um að þú viljir merkja <b>alla strauma</b>sem lesna?</qt>"
 
 #: src/mainwidget.cpp:771
-#, fuzzy, kde-format
-#| msgid "<qt>Are you sure you want to delete this feed?</qt>"
+#, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all feeds in the folder</b> as read?</"
 "qt>"
-msgstr "<qt>Ertu viss um að þú viljir eyða þessum straum?</qt>"
+msgstr ""
+"<qt>Ertu viss um að þú viljir merkja <b>alla strauma í möppunni</b> sem "
+"lesna?</qt>"
 
 #: src/mainwidget.cpp:773
-#, fuzzy, kde-format
-#| msgid "&Mark Feeds as Read"
+#, kde-format
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
-msgstr "&Merkja strauma sem lesna"
+msgstr "Merkja strauma sem lesna"
 
 #: src/mainwidget.cpp:837 src/mainwidget.cpp:846 src/mainwidget.cpp:1248
 #, kde-format
 msgid "Networking is not available."
-msgstr ""
+msgstr "Net er ekki tiltækt"
 
 #: src/mainwidget.cpp:854
 #, kde-format
 msgid "Fetching Feeds..."
-msgstr "Næ í strauma..."
+msgstr "Sæki strauma..."
 
 #: src/mainwidget.cpp:1053
 #, kde-format
@@ -2191,16 +2121,15 @@ msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
 msgstr "<qt>Ertu viss um að þú viljir eyða greininni <b>%1</b>?</qt>"
 
 #: src/mainwidget.cpp:1056
-#, fuzzy, kde-format
+#, kde-format
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
 msgid_plural ""
 "<qt>Are you sure you want to delete the %1 selected articles?</qt>"
 msgstr[0] "<qt>Ertu viss um að þú viljir eyða völdu greininni?</qt>"
-msgstr[1] "<qt>Ertu viss um að þú viljir eyða völdu greininni?</qt>"
+msgstr[1] "<qt>Ertu viss um að þú viljir eyða völdu greinunum %1?</qt>"
 
 #: src/mainwidget.cpp:1063
-#, fuzzy, kde-format
-#| msgid "Delete Article"
+#, kde-format
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "Eyða grein"
@@ -2208,7 +2137,7 @@ msgstr "Eyða grein"
 #: src/mainwidget.cpp:1245
 #, kde-format
 msgid "Networking is available now."
-msgstr ""
+msgstr "Net er núna tiltækt"
 
 #: src/mainwindow.cpp:121
 #, kde-format
@@ -2216,20 +2145,23 @@ msgid ""
 "<qt>This will hide the menu bar completely. You can show it again by typing "
 "%1.</qt>"
 msgstr ""
+"<qt>Þetta felur alveg valmyndastikuna. Þú getur kallað hana fram aftur með "
+"því að slá inn %1.</qt>"
 
 #: src/mainwindow.cpp:124
 #, kde-format
 msgctxt "@title:window"
 msgid "Hide menu bar"
-msgstr ""
+msgstr "Fela valmyndastiku"
 
 #: src/mainwindow.cpp:153
-#, fuzzy, kde-format
-#| msgid "Could not find the Akregator part; please check your installation."
+#, kde-format
 msgid ""
 "Could not find the Akregator part; please check your installation.\n"
 "%1"
-msgstr "Fann ekki Akregator hlutann, skoðaðu uppsetninguna þína."
+msgstr ""
+"Fann ekki Akregator-hlutann. Athugaðu uppsetninguna þína.\n"
+"%1"
 
 #: src/notificationmanager.cpp:48
 #, kde-format
@@ -2237,7 +2169,7 @@ msgid ""
 "Feed added:\n"
 " %1"
 msgstr ""
-"Straum bætt við:\n"
+"Straumi bætt við:\n"
 " %1"
 
 #: src/notificationmanager.cpp:55
@@ -2253,97 +2185,91 @@ msgstr ""
 #, kde-format
 msgid "<i>and 1 other</i>"
 msgid_plural "<i>and %1 others</i>"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<i>og 1 til viðbótar</i>"
+msgstr[1] "<i>og %1 til viðbótar</i>"
 
 #: src/progressmanager.cpp:127
 #, kde-format
 msgid "Fetch completed"
-msgstr "Sókn lokið"
+msgstr "Söfnun lokið"
 
 #: src/progressmanager.cpp:136
 #, kde-format
 msgid "Fetch error"
-msgstr "Villa við sókn"
+msgstr "Söfnunarvilla"
 
 #: src/progressmanager.cpp:145
 #, kde-format
 msgid "Fetch aborted"
-msgstr "Hætt við sókn"
+msgstr "Hætt við söfnun"
 
 #: src/subscription/subscriptionlistjobs.cpp:54
 #, kde-format
 msgid "Feed list was deleted"
-msgstr ""
+msgstr "Straumlista var eytt"
 
 #: src/subscription/subscriptionlistjobs.cpp:64
 #, kde-format
 msgid "Node or destination folder not found"
-msgstr ""
+msgstr "Hnútur eða móttökumappa fannst ekki"
 
 #: src/subscription/subscriptionlistjobs.cpp:71
 #, kde-format
 msgid "Cannot move folder %1 to its own subfolder %2"
-msgstr ""
+msgstr "Get ekki fært möppu %1 inn í sína eigin undirmöppu %2"
 
 #: src/subscription/subscriptionlistmodel.cpp:49
 #, kde-format
 msgid "Timeout on remote server"
-msgstr ""
+msgstr "Tímalokun á fjartengdum þjóni"
 
 #: src/subscription/subscriptionlistmodel.cpp:51
 #, kde-format
 msgid "Unknown host"
-msgstr ""
+msgstr "Óþekkt vél"
 
 #: src/subscription/subscriptionlistmodel.cpp:53
-#, fuzzy, kde-format
-#| msgid "Feed not found from %1."
+#, kde-format
 msgid "Feed file not found on remote server"
-msgstr "Straumur fannst ekki á %1."
+msgstr "Straumskrá fannst ekki á fjartengdum þjóni"
 
 #: src/subscription/subscriptionlistmodel.cpp:55
-#, fuzzy, kde-format
-#| msgid "Could not import the file %1 (no valid OPML)"
+#, kde-format
 msgid "Could not read feed (invalid XML)"
-msgstr "Gat ekki flutt inn skrána %1 (engin gild OPML)"
+msgstr "Gat ekki lesið straum (ógilt XML)"
 
 #: src/subscription/subscriptionlistmodel.cpp:57
 #, kde-format
 msgid "Could not read feed (unknown format)"
-msgstr ""
+msgstr "Gat ekki lesið straum (ógilt snið)"
 
 #: src/subscription/subscriptionlistmodel.cpp:59
-#, fuzzy, kde-format
-#| msgid "Could not import the file %1 (no valid OPML)"
+#, kde-format
 msgid "Could not read feed (invalid feed)"
-msgstr "Gat ekki flutt inn skrána %1 (engin gild OPML)"
+msgstr "Gat ekki lesið straum (ógildur straumur)"
 
 #: src/subscription/subscriptionlistmodel.cpp:229
 #, kde-format
 msgid "Could not fetch feed: %1"
-msgstr ""
+msgstr "Gat ekki sótt straum: %1"
 
 #: src/subscription/subscriptionlistmodel.cpp:274
-#, fuzzy, kde-format
-#| msgid "Feeds"
+#, kde-format
 msgctxt "Feedlist's column header"
 msgid "Feeds"
 msgstr "Straumar"
 
 #: src/subscription/subscriptionlistmodel.cpp:276
-#, fuzzy, kde-format
-#| msgid "Unread"
+#, kde-format
 msgctxt "Feedlist's column header"
 msgid "Unread"
-msgstr "Ólesnar"
+msgstr "Ólesið"
 
 #: src/subscription/subscriptionlistmodel.cpp:278
-#, fuzzy, kde-format
-#| msgid "Title:"
+#, kde-format
 msgctxt "Feedlist's column header"
 msgid "Total"
-msgstr "Titill:"
+msgstr "Samtals"
 
 #: src/tabwidget.cpp:92
 #, kde-format
@@ -2351,63 +2277,57 @@ msgid "Close the current tab"
 msgstr "Loka núverandi flipa"
 
 #: src/tabwidget.cpp:95
-#, fuzzy, kde-format
-#| msgid "&Close Tab"
+#, kde-format
 msgid "Close tab"
-msgstr "&Loka flipa"
+msgstr "Loka flipa"
 
 #: src/tabwidget.cpp:118
-#, fuzzy, kde-format
-#| msgid "Detach Tab"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Detach Tab"
-msgstr "Aftengja flipa"
+msgstr "Losa flipa"
 
 #: src/tabwidget.cpp:123
-#, fuzzy, kde-format
-#| msgid "&Close Tab"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Close Tab"
-msgstr "&Loka flipa"
+msgstr "Loka flipa"
 
 #: src/tabwidget.cpp:127
-#, fuzzy, kde-format
-#| msgid "Close the current tab"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Close All Other Tabs"
-msgstr "Loka núverandi flipa"
+msgstr "Loka öllum öðrum flipum"
 
 #: src/tabwidget.cpp:131
-#, fuzzy, kde-format
-#| msgid "&Close Tab"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Close All Tabs"
-msgstr "&Loka flipa"
+msgstr "Loka öllum flipum"
 
 #: src/trayicon.cpp:54
-#, fuzzy, kde-format
-#| msgid " (no unread articles)"
+#, kde-format
 msgid "There are no unread articles"
-msgstr " (engar ólesnar greinar)"
+msgstr "Það eru engar ólesnar greinar"
 
 #: src/trayicon.cpp:54
-#, fuzzy, kde-format
+#, kde-format
 msgid "1 unread article"
 msgid_plural "%1 unread articles"
-msgstr[0] " (1 ólesin grein)"
-msgstr[1] " (%1 ólesnar greinar)"
+msgstr[0] "1 ólesin grein"
+msgstr[1] "%1 ólesnar greinar"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, Akregator::AddFeedWidgetBase)
 #: src/ui/addfeedwidgetbase.ui:14
 #, kde-format
 msgid "Add Feed"
-msgstr "Bæta við straum"
+msgstr "Bæta við straumi"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel1)
 #: src/ui/addfeedwidgetbase.ui:122
 #, kde-format
 msgid "Add New Source"
-msgstr "Bæta nýjum uppruna við"
+msgstr "Bæta við nýrri uppsprettu"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel3)
 #: src/ui/addfeedwidgetbase.ui:135
@@ -2431,14 +2351,13 @@ msgstr "&Almennt"
 #: src/ui/feedpropertieswidgetbase.ui:54
 #, kde-format
 msgid "U&se a custom update interval"
-msgstr "Nota &sérniðið uppfærslutímabil"
+msgstr "Nota &sérsniðið uppfærslumillibil"
 
 #. i18n: ectx: property (text), widget (QLabel, updateLabel)
 #: src/ui/feedpropertieswidgetbase.ui:88
-#, fuzzy, kde-format
-#| msgid "Update &every:"
+#, kde-format
 msgid "Update ever&y:"
-msgstr "Uppfæra straum hv&erja:"
+msgstr "Millibil u&ppfærslu:"
 
 #. i18n: ectx: property (text), widget (QCheckBox, checkBox_useNotification)
 #: src/ui/feedpropertieswidgetbase.ui:117
@@ -2462,20 +2381,19 @@ msgstr "&Nafn:"
 #: src/ui/feedpropertieswidgetbase.ui:161
 #, kde-format
 msgid "Display name of RSS column"
-msgstr "Sýna nafn á RSS dálk"
+msgstr "Sýna nafn RSS-dálks"
 
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: src/ui/feedpropertieswidgetbase.ui:171
-#, fuzzy, kde-format
-#| msgid "Comments"
+#, kde-format
 msgid "Comment:"
-msgstr "Athugasemdir"
+msgstr "Athugasemd:"
 
 #. i18n: ectx: attribute (title), widget (QWidget, tab2)
 #: src/ui/feedpropertieswidgetbase.ui:194
 #, kde-format
 msgid "Ar&chive"
-msgstr "&Vistun"
+msgstr "&Safnvistun"
 
 #. i18n: ectx: property (text), widget (QRadioButton, rb_globalDefault)
 #: src/ui/feedpropertieswidgetbase.ui:206
@@ -2487,13 +2405,13 @@ msgstr "&Nota sjálfgefnar stillingar"
 #: src/ui/feedpropertieswidgetbase.ui:216
 #, kde-format
 msgid "Di&sable archiving"
-msgstr "&Slökkva á vistun"
+msgstr "&Slökkva á safnvistun"
 
 #. i18n: ectx: property (text), widget (QRadioButton, rb_limitArticleNumber)
 #: src/ui/feedpropertieswidgetbase.ui:247
 #, kde-format
 msgid "Limit archi&ve to:"
-msgstr "Takmarka &vistun við:"
+msgstr "Takmarka safn&vistun við:"
 
 #. i18n: ectx: property (text), widget (QRadioButton, rb_limitArticleAge)
 #: src/ui/feedpropertieswidgetbase.ui:277
@@ -2505,7 +2423,7 @@ msgstr "&Eyða greinum eldri en:"
 #: src/ui/feedpropertieswidgetbase.ui:340
 #, kde-format
 msgid "Adva&nced"
-msgstr "&Nánar"
+msgstr "Í&tarlegt"
 
 #. i18n: ectx: property (text), widget (QCheckBox, checkBox_loadWebsite)
 #: src/ui/feedpropertieswidgetbase.ui:373
@@ -2520,69 +2438,59 @@ msgid "Mar&k articles as read when they arrive"
 msgstr "Mer&kja greinar sem lesnar þegar þær koma"
 
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:40
-#, fuzzy, kde-format
-#| msgid "Disable Introduction Page"
+#, kde-format
 msgid "Disable Introduction"
 msgstr "Slökkva á kynningarsíðu"
 
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:58
-#, fuzzy, kde-format
-#| msgid "Copy Link Address"
+#, kde-format
 msgid "&Copy Email Address"
-msgstr "Afrita vistfang tengils"
+msgstr "Afrita net&fang"
 
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:67
 #, kde-format
 msgid "Address copied to clipboard."
-msgstr ""
+msgstr "Netfang afritað á klippispjaldið."
 
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:98
-#, fuzzy, kde-format
-#| msgid "Ma&rk All Feeds as Read"
+#, kde-format
 msgid "Mark Article as Read"
-msgstr "Me&rkja alla strauma sem lesna"
+msgstr "Merkja grein sem lesna"
 
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:100
-#, fuzzy, kde-format
-#| msgid "Mark selected article as unread"
+#, kde-format
 msgid "Mark Article as Unread"
-msgstr "Merkja völdu greinina sem ólesna"
+msgstr "Merkja grein sem ólesna"
 
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:102
-#, fuzzy, kde-format
-#| msgid "Remove &Important Mark"
+#, kde-format
 msgid "Change Important Flag"
-msgstr "&Afmerkja sem áríðandi"
+msgstr "Breyta mikilvægisflaggi"
 
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:104
-#, fuzzy, kde-format
-#| msgid "&Next Article"
+#, kde-format
 msgid "Send the URL of the article"
-msgstr "&Næsta grein"
+msgstr "Senda slóð greinarinnar"
 
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:106
-#, fuzzy, kde-format
-#| msgid "&Next Article"
+#, kde-format
 msgid "Send the Html Page of Article"
-msgstr "&Næsta grein"
+msgstr "Senda Html-síðu greinarinnar"
 
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:108
-#, fuzzy, kde-format
-#| msgid "Open in External Browser"
+#, kde-format
 msgid "Open In External Browser"
 msgstr "Opna í ytri vafra"
 
 #: src/widgets/searchbar.cpp:40
-#, fuzzy, kde-format
-#| msgid " articles"
+#, kde-format
 msgid "Search articles..."
-msgstr " greinar"
+msgstr "Leita í greinum..."
 
 #: src/widgets/searchbar.cpp:112
-#, fuzzy, kde-format
-#| msgid " articles"
+#, kde-format
 msgid "Search articles...<%1>"
-msgstr " greinar"
+msgstr "Leita í greinum...<%1>"
 
 #: src/widgets/statussearchline.cpp:42
 #, kde-format
@@ -2590,39 +2498,33 @@ msgid "All Articles"
 msgstr "Allar greinar"
 
 #: src/widgets/statussearchline.cpp:43
-#, fuzzy, kde-format
-#| msgid "Unread"
+#, kde-format
 msgctxt "Unread articles filter"
 msgid "Unread"
 msgstr "Ólesnar"
 
 #: src/widgets/statussearchline.cpp:44
-#, fuzzy, kde-format
-#| msgid "New"
+#, kde-format
 msgctxt "New articles filter"
 msgid "New"
 msgstr "Nýjar"
 
 #: src/widgets/statussearchline.cpp:45
-#, fuzzy, kde-format
-#| msgctxt "as in: mark as read"
-#| msgid "&Read"
+#, kde-format
 msgctxt "Read articles filter"
 msgid "Read"
-msgstr "lesin"
+msgstr "Lesnar"
 
 #: src/widgets/statussearchline.cpp:46
-#, fuzzy, kde-format
-#| msgid "Important"
+#, kde-format
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "Mikilvægar"
 
 #: src/widgets/statussearchline.cpp:63
-#, fuzzy, kde-format
-#| msgid "Text Filter"
+#, kde-format
 msgid "Filter"
-msgstr "Textasía"
+msgstr "Sía"
 
 #, fuzzy
 #~| msgid "Concurrent Fetches"
