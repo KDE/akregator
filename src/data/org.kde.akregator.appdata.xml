@@ -26,6 +26,7 @@
   <name xml:lang="hu">Akregator</name>
   <name xml:lang="ia">Akregator</name>
   <name xml:lang="id">Akregator</name>
+  <name xml:lang="is">Akregator</name>
   <name xml:lang="it">Akregator</name>
   <name xml:lang="ka">Akregator</name>
   <name xml:lang="ko">Akregator</name>
@@ -73,6 +74,7 @@
   <developer_name xml:lang="hu">A KDE Közösség</developer_name>
   <developer_name xml:lang="ia">Le communitate de KDE</developer_name>
   <developer_name xml:lang="id">Komunitas KDE</developer_name>
+  <developer_name xml:lang="is">KDE-samfélagið</developer_name>
   <developer_name xml:lang="it">La comunità KDE</developer_name>
   <developer_name xml:lang="ka">KDE-ის საზოგადოება</developer_name>
   <developer_name xml:lang="ko">KDE 커뮤니티</developer_name>
@@ -116,6 +118,7 @@
     <p xml:lang="hu">Az Akregator egy hírolvasó alkalmazás. Lehetővé teszi híroldalak, blogok, és más RSS/Atom források követését anélkül, hogy kézzel kellene ellenőriznie a frissítéseket webböngészőjében. Úgy tervezték, hogy egyszerű legyen használni, ugyanakkor hatékonyan és kényelmesen lehessen követni akár több száz hírforrást is. A keresője gyors, az archiválási funkciói fejlettek, a beépített böngésző pedig megkönnyíti a hírek olvasását.</p>
     <p xml:lang="ia">Akregator es un lector de syndication. Illo te habilita per sequer sitos de novas, blogs e altere sitos web activate per RSS/Atom sin le necessitate de verificar manualmente actualisationes usante cerca web. Akregator es designate per esser sia manual de usar e per esser assatis potente per leger centos de nove fontes convenientemente. Illo ha cerca rapide, functionalitate de archivar avantiate e un explorator interne per un facile lectura de novas.</p>
     <p xml:lang="id">Akregator adalah pembaca feed berita. Ini memungkinkan Anda untuk mengikuti situs berita, blog, dan situs RSS/Atom-yang-difungsikan lainnya tanpa harus memeriksa secara manual pembaruan berita menggunakan penelusur web. Akregator telah didesain menjadi mudah digunakan dan menjadi cukup hebat untuk membaca ratusan sumber berita secara nyaman. Ini hadir dengan pencarian yang cepat fungsionalitas pengarsipan terkemuka dan memiliki sebuah penelusur internal untuk kemudahan membaca berita.</p>
+    <p xml:lang="is">Akregator er fréttalesaraforrit. Með því geturðu fylgst með fréttasíðum, bloggum og öðrum vefsíðum sem bjóða upp á RSS/Atom-strauma, án þess að þurfa að fletta þeim sífellt upp í vafra. Akregator er bæði auðvelt í notkun og nógu öflugt til að geta fylgst með hundruðum af fréttauppsprettum með léttum leik. Forritið er með hraðvirka leit, ítarlega safnvistunareiginleika og innbyggðan vafra til að auðvelda fréttalestur.</p>
     <p xml:lang="it">Akregator è un lettore di fonti di notizie. Ti permette di seguire siti di notizie, blog e altri siti che dispongono di fonti RSS/Atom senza la necessità di controllare manualmente gli aggiornamenti con un browser web. Akregator è progettato per essere allo stesso tempo semplice usare e in grado di poter leggere comodamente centinaia di fonti di notizie. È provvisto di ricerca rapida, di funzioni avanzate di archiviazione e di un browser interno per una facile consultazione delle notizie.</p>
     <p xml:lang="ka">Akregator სიახლეების წასაკითხი პროგრამაა. ის საშუალებას გაძლევთ, მიჰყვეთ სიახლეების საიტებს, ბლოგებს და სხვა RSS/Atom-ჩართულ ვებგვერდებს განახლებების ხელით შემოწმების საჭიროების გარეშე. Akregator-ი ორივე, ადვილი და მძლავრია, რომ ასობით სიახლის წყარო ადეკვატურად დაამუშაოს. მას ასევე მოჰყვება სწრაფი ძებნა, განვითარებული არქივირების ფუნქციონალი და სიახლეების ადვილად წასაკითხად, შიდა ბრაუზერი.</p>
     <p xml:lang="ko">Akregator는 뉴스 피드 리더입니다. 뉴스 사이트, 블로그, RSS/Atom 지원 웹사이트에 웹 브라우저로 직접 방문하지 않고 업데이트를 따라갈 수 있습니다. Akregator는 다량의 뉴스 사이트를 편하게 읽을 수 있음과 동시에 쉽게 사용할 수 있도록 설계되었습니다. 빠른 검색, 글 보관 기능을 지원하며 쉽게 글을 읽을 수 있는 내장 웹 브라우저가 있습니다.</p>
@@ -155,6 +158,7 @@
   <summary xml:lang="hu">Hírolvasó alkalmazás</summary>
   <summary xml:lang="ia">Un lector de syndication de novas</summary>
   <summary xml:lang="id">Sebuah pembaca feed berita</summary>
+  <summary xml:lang="is">Fréttalesari</summary>
   <summary xml:lang="it">Un lettore di fonti di notizie</summary>
   <summary xml:lang="ka">სიახლეების ლენტის კითხვა</summary>
   <summary xml:lang="ko">뉴스 피드 리더</summary>
@@ -202,6 +206,7 @@
       <caption xml:lang="hu">Hírek olvasása Akregatorral Kontactban</caption>
       <caption xml:lang="ia">Leger syndicationes in Kontact con Akregator</caption>
       <caption xml:lang="id">Membaca feed di Kontact menggunakan Akregator</caption>
+      <caption xml:lang="is">Lestur strauma í Kontact með Akregator</caption>
       <caption xml:lang="it">Lettura di notizie in Kontact con Akregator</caption>
       <caption xml:lang="ka">წაიკთხეთ სიახლეები Kotact-ში Akragator-თან ერთად</caption>
       <caption xml:lang="ko">Akregator로 Kontact에서 피드 읽기</caption>
