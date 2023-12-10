@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-11-24 01:34+0000\n"
-"PO-Revision-Date: 2023-11-25 02:26\n"
+"PO-Revision-Date: 2023-12-09 09:24\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
@@ -275,7 +275,7 @@ msgstr "鼠标左键点击："
 #: src/actions/actionmanagerimpl.cpp:324
 #, kde-format
 msgid "Open in Tab"
-msgstr "在标签中打开"
+msgstr "在标签页中打开"
 
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_LMBBehaviour)
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
@@ -284,7 +284,7 @@ msgstr "在标签中打开"
 #: src/actions/actionmanagerimpl.cpp:330
 #, kde-format
 msgid "Open in Background Tab"
-msgstr "在后台标签中打开"
+msgstr "在后台标签页中打开"
 
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_LMBBehaviour)
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
@@ -329,27 +329,27 @@ msgstr "使用默认网页浏览器(&B)"
 #: configuration/ui/settings_browser.ui:110
 #, kde-format
 msgid "Tabs"
-msgstr "标签"
+msgstr "标签页"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_AlwaysShowTabBar)
 #. i18n: ectx: label, entry, group (Browser)
 #: configuration/ui/settings_browser.ui:116 interfaces/akregator.kcfg:202
 #, kde-format
 msgid "Always show the tab bar"
-msgstr "总是显示标签栏"
+msgstr "总是显示标签页栏"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_CloseButtonOnTabs)
 #: configuration/ui/settings_browser.ui:123
 #, kde-format
 msgid "Show close button on each tab"
-msgstr "在每个标签上显示关闭按钮"
+msgstr "在每个标签页上显示关闭按钮"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_NewWindowInTab)
 #. i18n: ectx: label, entry, group (Browser)
 #: configuration/ui/settings_browser.ui:130 interfaces/akregator.kcfg:212
 #, kde-format
 msgid "Open links in new tab instead of in new window"
-msgstr "在新标签而不是新窗口中打开链接"
+msgstr "在新标签页而不是新窗口中打开链接"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: configuration/ui/settings_browser.ui:140
@@ -568,25 +568,25 @@ msgstr "文章显示模式。"
 #: interfaces/akregator.kcfg:50
 #, kde-format
 msgid "Sizes for first splitter"
-msgstr "第一个分隔栏尺寸"
+msgstr "第一条拆分线的大小"
 
 #. i18n: ectx: whatsthis, entry, group (View)
 #: interfaces/akregator.kcfg:51
 #, kde-format
 msgid "First (usually vertical) splitter widget sizes."
-msgstr "第一个分隔栏 (通常是垂直的) 部件尺寸。"
+msgstr "第一条拆分线 (通常是垂直的) 的部件大小。"
 
 #. i18n: ectx: label, entry, group (View)
 #: interfaces/akregator.kcfg:55
 #, kde-format
 msgid "Sizes for second splitter"
-msgstr "第二个分隔栏尺寸"
+msgstr "第二条拆分线大小"
 
 #. i18n: ectx: whatsthis, entry, group (View)
 #: interfaces/akregator.kcfg:56
 #, kde-format
 msgid "Second (usually horizontal) splitter widget sizes."
-msgstr "第二个分隔栏 (通常是水平的) 部件尺寸。"
+msgstr "第二条拆分线 (通常是水平的) 的部件大小。"
 
 #. i18n: ectx: label, entry, group (Archive)
 #: interfaces/akregator.kcfg:100
@@ -809,19 +809,19 @@ msgstr "指定是否在任务栏中显示未读文章。"
 #: interfaces/akregator.kcfg:203
 #, kde-format
 msgid "Always show the tab bar, even when only one tab is open"
-msgstr "总是显示标签栏，即使只打开了一个标签"
+msgstr "总是显示标签页栏，即使只打开了一个标签页"
 
 #. i18n: ectx: label, entry, group (Browser)
 #: interfaces/akregator.kcfg:207
 #, kde-format
 msgid "Show close buttons on tabs"
-msgstr "在标签上显示关闭按钮"
+msgstr "在标签页上显示关闭按钮"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
 #: interfaces/akregator.kcfg:208
 #, kde-format
 msgid "Show close buttons on tabs instead of icons"
-msgstr "在标签上显示关闭按钮而不是图标"
+msgstr "在标签页上显示关闭按钮而不是图标"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
 #: interfaces/akregator.kcfg:213
@@ -829,7 +829,7 @@ msgstr "在标签上显示关闭按钮而不是图标"
 msgid ""
 "Open a link which would normally open in a new window (external browser) in "
 "a new tab instead"
-msgstr "在新窗口(外部浏览器)中打开的连接将会以新标签打开"
+msgstr "在新窗口 (外部浏览器) 中打开的连接将会以新标签页打开"
 
 #. i18n: ectx: label, entry, group (Browser)
 #: interfaces/akregator.kcfg:217
@@ -1143,7 +1143,7 @@ msgstr "打开主页(&O)"
 #: src/actions/actionmanagerimpl.cpp:225
 #, kde-format
 msgid "Reload All Tabs"
-msgstr "重新加载全部标签"
+msgstr "重新加载全部标签页"
 
 #: src/actions/actionmanagerimpl.cpp:231
 #, kde-format
@@ -1366,17 +1366,17 @@ msgstr "自动展开包含未读文章的文件夹"
 #: src/actions/actionmanagerimpl.cpp:566
 #, kde-format
 msgid "Select Next Tab"
-msgstr "选择下个标签"
+msgstr "选择下一个标签页"
 
 #: src/actions/actionmanagerimpl.cpp:571
 #, kde-format
 msgid "Select Previous Tab"
-msgstr "选择上个标签"
+msgstr "选择上一个标签页"
 
 #: src/actions/actionmanagerimpl.cpp:577
 #, kde-format
 msgid "Detach Tab"
-msgstr "漂移标签"
+msgstr "分离标签页"
 
 #: src/actions/actionmanagerimpl.cpp:591
 #, kde-format
@@ -1401,12 +1401,12 @@ msgstr "在信件中查找(&F)..."
 #: src/actions/actionmanagerimpl.cpp:614
 #, kde-format
 msgid "Close Tab"
-msgstr "关闭标签"
+msgstr "关闭标签页"
 
 #: src/actions/actionmanagerimpl.cpp:627
 #, kde-format
 msgid "Activate Tab %1"
-msgstr "激活标签 %1"
+msgstr "激活标签页 %1"
 
 #: src/actions/actionmanagerimpl.cpp:633
 #, kde-format
@@ -1431,7 +1431,7 @@ msgstr "保存图像到磁盘..."
 #: src/actions/actions.cpp:19
 #, kde-format
 msgid "Open Link in New &Tab"
-msgstr "在新标签中打开链接(&T)"
+msgstr "在新标签页中打开链接(&T)"
 
 #: src/actions/actions.cpp:26
 #, kde-format
@@ -1597,7 +1597,7 @@ msgid ""
 msgstr ""
 "<h2>文章列表</h2>您可在此浏览目前所选订阅的文章。您还可以使用鼠标右键菜单管理"
 "文章，将其设置为永久 (标记为重要) 或删除文章。要查看文章所属网页，您可以在内"
-"部标签中打开文章，或者在外部浏览器窗口中打开。"
+"部标签页中打开文章，或者在外部浏览器窗口中打开。"
 
 #: src/articlemodel.cpp:74
 #, kde-format
@@ -2009,7 +2009,7 @@ msgstr "加载已完成"
 #: src/mainwidget.cpp:144
 #, kde-format
 msgid "You can view multiple articles in several open tabs."
-msgstr "您可以在多个打开的标签内查看多篇文章。"
+msgstr "您可以在多个打开的标签页中查看多篇文章。"
 
 #: src/mainwidget.cpp:148
 #, kde-format
@@ -2222,18 +2222,18 @@ msgstr "合计"
 #: src/tabwidget.cpp:92
 #, kde-format
 msgid "Close the current tab"
-msgstr "关闭当前标签"
+msgstr "关闭当前标签页"
 
 #: src/tabwidget.cpp:95
 #, kde-format
 msgid "Close tab"
-msgstr "关闭标签"
+msgstr "关闭标签页"
 
 #: src/tabwidget.cpp:118
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Detach Tab"
-msgstr "漂移标签"
+msgstr "分离标签页"
 
 #: src/tabwidget.cpp:123
 #, kde-format
@@ -2245,13 +2245,13 @@ msgstr "关闭标签页"
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Close All Other Tabs"
-msgstr "关闭全部其他标签"
+msgstr "关闭全部其他标签页"
 
 #: src/tabwidget.cpp:131
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Close All Tabs"
-msgstr "关闭所有标签"
+msgstr "关闭所有标签页"
 
 #: src/trayicon.cpp:54
 #, kde-format
