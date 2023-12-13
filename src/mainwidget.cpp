@@ -43,6 +43,7 @@
 #include "widgets/searchbar.h"
 #include <WebEngineViewer/ZoomActionMenu>
 
+#include <KAboutData>
 #include <KLocalizedString>
 #include <KMessageBox>
 #include <KShell>
@@ -58,6 +59,8 @@
 #include <QUrlQuery>
 #include <QVBoxLayout>
 
+#include <PimCommon/NeedUpdateVersionUtils>
+#include <PimCommon/NeedUpdateVersionWidget>
 #include <PimCommon/NetworkManager>
 #include <algorithm>
 #include <chrono>
@@ -96,14 +99,23 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
 
     connect(m_part, &Part::signalSettingsChanged, m_actionManager, &ActionManagerImpl::slotSettingsChanged);
 
-    auto lt = new QVBoxLayout(this);
-    lt->setContentsMargins({});
+    auto topLayout = new QVBoxLayout(this);
+    topLayout->setContentsMargins({});
+    topLayout->setSpacing(0);
+    if (PimCommon::NeedUpdateVersionUtils::checkVersion()) {
+        const auto status = PimCommon::NeedUpdateVersionUtils::obsoleteVersionStatus(KAboutData::applicationData().version(), QDate::currentDate());
+        if (status != PimCommon::NeedUpdateVersionUtils::ObsoleteVersion::NotObsoleteYet) {
+            auto needUpdateVersionWidget = new PimCommon::NeedUpdateVersionWidget(this);
+            topLayout->addWidget(needUpdateVersionWidget);
+            needUpdateVersionWidget->setObsoleteVersion(status);
+        }
+    }
 
     m_horizontalSplitter = new QSplitter(Qt::Horizontal, this);
 
     m_horizontalSplitter->setOpaqueResize(true);
     m_horizontalSplitter->setChildrenCollapsible(false);
-    lt->addWidget(m_horizontalSplitter);
+    topLayout->addWidget(m_horizontalSplitter);
 
     connect(Kernel::self()->fetchQueue(), &FetchQueue::signalStarted, this, &MainWidget::slotFetchingStarted);
     connect(Kernel::self()->fetchQueue(), &FetchQueue::signalStopped, this, &MainWidget::slotFetchingStopped);
