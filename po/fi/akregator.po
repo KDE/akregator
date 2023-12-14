@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-24 01:34+0000\n"
+"POT-Creation-Date: 2023-12-14 01:35+0000\n"
 "PO-Revision-Date: 2022-06-17 18:43+0300\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
@@ -2070,27 +2070,27 @@ msgstr "Lataus peruttu"
 msgid "Loading completed"
 msgstr "Lataus valmis"
 
-#: src/mainwidget.cpp:144
+#: src/mainwidget.cpp:156
 #, kde-format
 msgid "You can view multiple articles in several open tabs."
 msgstr "Voit lukea useita artikkeleja eri välilehdiltä."
 
-#: src/mainwidget.cpp:148
+#: src/mainwidget.cpp:160
 #, kde-format
 msgid "Articles list."
 msgstr "Artikkeliluettelo."
 
-#: src/mainwidget.cpp:210 src/mainwidget.cpp:635
+#: src/mainwidget.cpp:222 src/mainwidget.cpp:647
 #, kde-format
 msgid "Articles"
 msgstr "Artikkelit"
 
-#: src/mainwidget.cpp:239
+#: src/mainwidget.cpp:251
 #, kde-format
 msgid "About"
 msgstr "Tietoa ohjelmasta"
 
-#: src/mainwidget.cpp:765
+#: src/mainwidget.cpp:777
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all articles in the feed</b> as read?</"
@@ -2099,19 +2099,19 @@ msgstr ""
 "<qt>Haluatko varmasti merkitä <b>syötteen kaikki artikkelit</b> luetuiksi?</"
 "qt>"
 
-#: src/mainwidget.cpp:766
+#: src/mainwidget.cpp:778
 #, fuzzy, kde-format
 #| msgid "Mark Feed as Read"
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "Merkitse syöte luetuksi"
 
-#: src/mainwidget.cpp:769
+#: src/mainwidget.cpp:781
 #, kde-format
 msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
 msgstr "<qt>Haluatko varmasti merkitä <b>kaikki syötteet</b> luetuiksi?</qt>"
 
-#: src/mainwidget.cpp:771
+#: src/mainwidget.cpp:783
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all feeds in the folder</b> as read?</"
@@ -2119,29 +2119,29 @@ msgid ""
 msgstr ""
 "<qt>Haluatko varmasti merkitä <b>kansion kaikki syötteet</b> luetuiksi?</qt>"
 
-#: src/mainwidget.cpp:773
+#: src/mainwidget.cpp:785
 #, fuzzy, kde-format
 #| msgid "Mark Feeds as Read"
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "Merkitse syötteet luetuiksi"
 
-#: src/mainwidget.cpp:837 src/mainwidget.cpp:846 src/mainwidget.cpp:1248
+#: src/mainwidget.cpp:849 src/mainwidget.cpp:858 src/mainwidget.cpp:1260
 #, kde-format
 msgid "Networking is not available."
 msgstr "Verkkoyhteys ei ole saatavilla."
 
-#: src/mainwidget.cpp:854
+#: src/mainwidget.cpp:866
 #, kde-format
 msgid "Fetching Feeds..."
 msgstr "Päivitetään syötteitä…"
 
-#: src/mainwidget.cpp:1053
+#: src/mainwidget.cpp:1065
 #, kde-format
 msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
 msgstr "<qt>Haluatko varmasti poistaa artikkelin <b>%1</b>?</qt>"
 
-#: src/mainwidget.cpp:1056
+#: src/mainwidget.cpp:1068
 #, kde-format
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
 msgid_plural ""
@@ -2149,14 +2149,14 @@ msgid_plural ""
 msgstr[0] "<qt>Haluatko varmasti poistaa valitun artikkelin?</qt>"
 msgstr[1] "<qt>Haluatko varmasti poistaa valitut %1 artikkelia?</qt>"
 
-#: src/mainwidget.cpp:1063
+#: src/mainwidget.cpp:1075
 #, fuzzy, kde-format
 #| msgid "Delete Article"
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "Poista artikkeli"
 
-#: src/mainwidget.cpp:1245
+#: src/mainwidget.cpp:1257
 #, kde-format
 msgid "Networking is available now."
 msgstr "Verkkoyhteys on nyt saatavilla."

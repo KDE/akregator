@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-24 01:34+0000\n"
+"POT-Creation-Date: 2023-12-14 01:35+0000\n"
 "PO-Revision-Date: 2023-10-03 09:13+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
@@ -2077,27 +2077,27 @@ msgstr "Nalaganje preklicano"
 msgid "Loading completed"
 msgstr "Nalaganje zaključeno"
 
-#: src/mainwidget.cpp:144
+#: src/mainwidget.cpp:156
 #, kde-format
 msgid "You can view multiple articles in several open tabs."
 msgstr "Več člankov lahko odprete v več zavihkov."
 
-#: src/mainwidget.cpp:148
+#: src/mainwidget.cpp:160
 #, kde-format
 msgid "Articles list."
 msgstr "Seznam člankov."
 
-#: src/mainwidget.cpp:210 src/mainwidget.cpp:635
+#: src/mainwidget.cpp:222 src/mainwidget.cpp:647
 #, kde-format
 msgid "Articles"
 msgstr "Članki"
 
-#: src/mainwidget.cpp:239
+#: src/mainwidget.cpp:251
 #, kde-format
 msgid "About"
 msgstr "O"
 
-#: src/mainwidget.cpp:765
+#: src/mainwidget.cpp:777
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all articles in the feed</b> as read?</"
@@ -2106,19 +2106,19 @@ msgstr ""
 "<qt>Ali ste prepričani, da želite označiti<b>vse članke vira</b> kot "
 "prebrane?</qt>"
 
-#: src/mainwidget.cpp:766
+#: src/mainwidget.cpp:778
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "Označi vir kot prebran"
 
-#: src/mainwidget.cpp:769
+#: src/mainwidget.cpp:781
 #, kde-format
 msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
 msgstr ""
 "<qt>Ali ste prepričani, da želite označiti <b>vse vire</b> kot prebrane?</qt>"
 
-#: src/mainwidget.cpp:771
+#: src/mainwidget.cpp:783
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all feeds in the folder</b> as read?</"
@@ -2127,28 +2127,28 @@ msgstr ""
 "<qt>Ali ste prepričani, da želite označiti <b>vse vire v mapi</b> kot "
 "prebrane?</qt>"
 
-#: src/mainwidget.cpp:773
+#: src/mainwidget.cpp:785
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "Označi vire kot prebrane"
 
-#: src/mainwidget.cpp:837 src/mainwidget.cpp:846 src/mainwidget.cpp:1248
+#: src/mainwidget.cpp:849 src/mainwidget.cpp:858 src/mainwidget.cpp:1260
 #, kde-format
 msgid "Networking is not available."
 msgstr "Omrežje ni na voljo."
 
-#: src/mainwidget.cpp:854
+#: src/mainwidget.cpp:866
 #, kde-format
 msgid "Fetching Feeds..."
 msgstr "Pridobivanje virov ..."
 
-#: src/mainwidget.cpp:1053
+#: src/mainwidget.cpp:1065
 #, kde-format
 msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
 msgstr "<qt>Ali ste prepričani, da želite izbrisati članek <b>%1</b>?</qt>"
 
-#: src/mainwidget.cpp:1056
+#: src/mainwidget.cpp:1068
 #, kde-format
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
 msgid_plural ""
@@ -2159,13 +2159,13 @@ msgstr[2] "<qt>Ali ste prepričani, da želite izbrisati %1 izbrane članke?</qt
 msgstr[3] ""
 "<qt>Ali ste prepričani, da želite izbrisati %1 izbranih člankov?</qt>"
 
-#: src/mainwidget.cpp:1063
+#: src/mainwidget.cpp:1075
 #, kde-format
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "Izbriši članek"
 
-#: src/mainwidget.cpp:1245
+#: src/mainwidget.cpp:1257
 #, kde-format
 msgid "Networking is available now."
 msgstr "Omrežje je sedaj na voljo."

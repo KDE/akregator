@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-24 01:34+0000\n"
+"POT-Creation-Date: 2023-12-14 01:35+0000\n"
 "PO-Revision-Date: 2023-11-29 18:30+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
@@ -2019,86 +2019,86 @@ msgstr "載入取消"
 msgid "Loading completed"
 msgstr "載入完成"
 
-#: src/mainwidget.cpp:144
+#: src/mainwidget.cpp:156
 #, kde-format
 msgid "You can view multiple articles in several open tabs."
 msgstr "您可以在數個開啟的分頁中瀏覽多篇文章。"
 
-#: src/mainwidget.cpp:148
+#: src/mainwidget.cpp:160
 #, kde-format
 msgid "Articles list."
 msgstr "文章列表。"
 
-#: src/mainwidget.cpp:210 src/mainwidget.cpp:635
+#: src/mainwidget.cpp:222 src/mainwidget.cpp:647
 #, kde-format
 msgid "Articles"
 msgstr "文章"
 
-#: src/mainwidget.cpp:239
+#: src/mainwidget.cpp:251
 #, kde-format
 msgid "About"
 msgstr "關於"
 
-#: src/mainwidget.cpp:765
+#: src/mainwidget.cpp:777
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all articles in the feed</b> as read?</"
 "qt>"
 msgstr "<qt>您確定要標記 <b>feed 中的所有文章</b>為已讀嗎？</qt>"
 
-#: src/mainwidget.cpp:766
+#: src/mainwidget.cpp:778
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "將 feed 標為已讀"
 
-#: src/mainwidget.cpp:769
+#: src/mainwidget.cpp:781
 #, kde-format
 msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
 msgstr "<qt>您確定要標記<b>所有 feed</b> 為已讀嗎？</qt>"
 
-#: src/mainwidget.cpp:771
+#: src/mainwidget.cpp:783
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all feeds in the folder</b> as read?</"
 "qt>"
 msgstr "<qt>您確定要標記<b>所有這個資料夾裡的 feed</b> 為已讀嗎？</qt>"
 
-#: src/mainwidget.cpp:773
+#: src/mainwidget.cpp:785
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "將 feed 標記為已讀"
 
-#: src/mainwidget.cpp:837 src/mainwidget.cpp:846 src/mainwidget.cpp:1248
+#: src/mainwidget.cpp:849 src/mainwidget.cpp:858 src/mainwidget.cpp:1260
 #, kde-format
 msgid "Networking is not available."
 msgstr "網路無法使用。"
 
-#: src/mainwidget.cpp:854
+#: src/mainwidget.cpp:866
 #, kde-format
 msgid "Fetching Feeds..."
 msgstr "抓取 feed 中..."
 
-#: src/mainwidget.cpp:1053
+#: src/mainwidget.cpp:1065
 #, kde-format
 msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
 msgstr "<qt>您確定要刪除文章 <b>%1</b> 嗎？</qt>"
 
-#: src/mainwidget.cpp:1056
+#: src/mainwidget.cpp:1068
 #, kde-format
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
 msgid_plural ""
 "<qt>Are you sure you want to delete the %1 selected articles?</qt>"
 msgstr[0] "<qt>您確定要刪除這 %1 篇文章嗎？</qt>"
 
-#: src/mainwidget.cpp:1063
+#: src/mainwidget.cpp:1075
 #, kde-format
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "刪除文章"
 
-#: src/mainwidget.cpp:1245
+#: src/mainwidget.cpp:1257
 #, kde-format
 msgid "Networking is available now."
 msgstr "網路現在可以使用。"

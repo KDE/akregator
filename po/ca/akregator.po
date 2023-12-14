@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-24 01:34+0000\n"
+"POT-Creation-Date: 2023-12-14 01:35+0000\n"
 "PO-Revision-Date: 2023-10-03 13:52+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
@@ -2060,27 +2060,27 @@ msgstr "Càrrega cancel·lada"
 msgid "Loading completed"
 msgstr "Càrrega completada"
 
-#: src/mainwidget.cpp:144
+#: src/mainwidget.cpp:156
 #, kde-format
 msgid "You can view multiple articles in several open tabs."
 msgstr "Podeu veure múltiples articles en diverses pestanyes obertes."
 
-#: src/mainwidget.cpp:148
+#: src/mainwidget.cpp:160
 #, kde-format
 msgid "Articles list."
 msgstr "Llista d'articles."
 
-#: src/mainwidget.cpp:210 src/mainwidget.cpp:635
+#: src/mainwidget.cpp:222 src/mainwidget.cpp:647
 #, kde-format
 msgid "Articles"
 msgstr "Articles"
 
-#: src/mainwidget.cpp:239
+#: src/mainwidget.cpp:251
 #, kde-format
 msgid "About"
 msgstr "Quant a"
 
-#: src/mainwidget.cpp:765
+#: src/mainwidget.cpp:777
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all articles in the feed</b> as read?</"
@@ -2089,19 +2089,19 @@ msgstr ""
 "<qt>Esteu segur que voleu marcar <b>tots els articles de la font</b> com a "
 "llegits?</qt>"
 
-#: src/mainwidget.cpp:766
+#: src/mainwidget.cpp:778
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "Marca la font com a llegida"
 
-#: src/mainwidget.cpp:769
+#: src/mainwidget.cpp:781
 #, kde-format
 msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
 msgstr ""
 "<qt>Esteu segur que voleu marcar <b>totes les fonts</b> com a llegides?</qt>"
 
-#: src/mainwidget.cpp:771
+#: src/mainwidget.cpp:783
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all feeds in the folder</b> as read?</"
@@ -2110,28 +2110,28 @@ msgstr ""
 "<qt>Esteu segur que voleu <b>totes les fonts a la carpeta</b> com a llegides?"
 "</qt>"
 
-#: src/mainwidget.cpp:773
+#: src/mainwidget.cpp:785
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "Marca les fonts com a llegides"
 
-#: src/mainwidget.cpp:837 src/mainwidget.cpp:846 src/mainwidget.cpp:1248
+#: src/mainwidget.cpp:849 src/mainwidget.cpp:858 src/mainwidget.cpp:1260
 #, kde-format
 msgid "Networking is not available."
 msgstr "La xarxa no està disponible."
 
-#: src/mainwidget.cpp:854
+#: src/mainwidget.cpp:866
 #, kde-format
 msgid "Fetching Feeds..."
 msgstr "S'estan obtenint les fonts..."
 
-#: src/mainwidget.cpp:1053
+#: src/mainwidget.cpp:1065
 #, kde-format
 msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
 msgstr "<qt>Esteu segur que voleu suprimir l'article <b>%1</b>?</qt>"
 
-#: src/mainwidget.cpp:1056
+#: src/mainwidget.cpp:1068
 #, kde-format
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
 msgid_plural ""
@@ -2140,13 +2140,13 @@ msgstr[0] "<qt>Esteu segur que voleu suprimir l'article seleccionat?</qt>"
 msgstr[1] ""
 "<qt>Esteu segur que voleu suprimir els %1 articles seleccionats?</qt>"
 
-#: src/mainwidget.cpp:1063
+#: src/mainwidget.cpp:1075
 #, kde-format
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "Supressió d'article"
 
-#: src/mainwidget.cpp:1245
+#: src/mainwidget.cpp:1257
 #, kde-format
 msgid "Networking is available now."
 msgstr "La xarxa ara està disponible."

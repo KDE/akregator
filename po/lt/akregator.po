@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-24 01:34+0000\n"
+"POT-Creation-Date: 2023-12-14 01:35+0000\n"
 "PO-Revision-Date: 2019-07-07 16:38+0200\n"
 "Last-Translator: Mindaugas Baranauskas <opensuse.lietuviu.kalba@gmail.com>\n"
 "Language-Team: Lithuanian <kde-i18n-lt@kde.org>\n"
@@ -2099,27 +2099,27 @@ msgstr "Įkėlimas atšauktas"
 msgid "Loading completed"
 msgstr "Įkėlimas užbaigtas"
 
-#: src/mainwidget.cpp:144
+#: src/mainwidget.cpp:156
 #, kde-format
 msgid "You can view multiple articles in several open tabs."
 msgstr "Galite peržiūrėti kelis straipsnius keliose atvertose kortelėse"
 
-#: src/mainwidget.cpp:148
+#: src/mainwidget.cpp:160
 #, kde-format
 msgid "Articles list."
 msgstr "Straipsnių sąrašas."
 
-#: src/mainwidget.cpp:210 src/mainwidget.cpp:635
+#: src/mainwidget.cpp:222 src/mainwidget.cpp:647
 #, kde-format
 msgid "Articles"
 msgstr "Straipsniai"
 
-#: src/mainwidget.cpp:239
+#: src/mainwidget.cpp:251
 #, kde-format
 msgid "About"
 msgstr "Apie"
 
-#: src/mainwidget.cpp:765
+#: src/mainwidget.cpp:777
 #, fuzzy, kde-format
 #| msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
 msgid ""
@@ -2127,20 +2127,20 @@ msgid ""
 "qt>"
 msgstr "<qt>Ar tikrai norite pašalinti kanalą <b>%1</b>?</qt>"
 
-#: src/mainwidget.cpp:766
+#: src/mainwidget.cpp:778
 #, fuzzy, kde-format
 #| msgid "&Mark Feed as Read"
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "Žy&mėti kanalą skaitytu"
 
-#: src/mainwidget.cpp:769
+#: src/mainwidget.cpp:781
 #, fuzzy, kde-format
 #| msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
 msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
 msgstr "<qt>Ar tikrai norite pašalinti kanalą <b>%1</b>?</qt>"
 
-#: src/mainwidget.cpp:771
+#: src/mainwidget.cpp:783
 #, fuzzy, kde-format
 #| msgid "<qt>Are you sure you want to delete this feed?</qt>"
 msgid ""
@@ -2148,29 +2148,29 @@ msgid ""
 "qt>"
 msgstr "<qt>Ar tikrai norite pašalinti šį kanalą?</qt>"
 
-#: src/mainwidget.cpp:773
+#: src/mainwidget.cpp:785
 #, fuzzy, kde-format
 #| msgid "&Mark Feeds as Read"
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "Žy&mėti kanalą skaitytu"
 
-#: src/mainwidget.cpp:837 src/mainwidget.cpp:846 src/mainwidget.cpp:1248
+#: src/mainwidget.cpp:849 src/mainwidget.cpp:858 src/mainwidget.cpp:1260
 #, kde-format
 msgid "Networking is not available."
 msgstr "Tinklas nepasiekiamas."
 
-#: src/mainwidget.cpp:854
+#: src/mainwidget.cpp:866
 #, kde-format
 msgid "Fetching Feeds..."
 msgstr "Atsiunčiami kanalai..."
 
-#: src/mainwidget.cpp:1053
+#: src/mainwidget.cpp:1065
 #, kde-format
 msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
 msgstr "<qt>Ar tikrai norite ištrinti straipsnį <b>%1</b>?</qt>"
 
-#: src/mainwidget.cpp:1056
+#: src/mainwidget.cpp:1068
 #, kde-format
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
 msgid_plural ""
@@ -2180,14 +2180,14 @@ msgstr[1] "<qt>Ar tikrai norite ištrinti %1 dabartinius straipsnius?</qt>"
 msgstr[2] "<qt>Ar tikrai norite ištrinti %1 dabartinių straipsnių?</qt>"
 msgstr[3] "<qt>Ar tikrai norite ištrinti %1 dabartinį straipsnį?</qt>"
 
-#: src/mainwidget.cpp:1063
+#: src/mainwidget.cpp:1075
 #, fuzzy, kde-format
 #| msgid "Delete Article"
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "Trinti straipsnį"
 
-#: src/mainwidget.cpp:1245
+#: src/mainwidget.cpp:1257
 #, kde-format
 msgid "Networking is available now."
 msgstr "Tinklas dabar yra pasiekiamas."

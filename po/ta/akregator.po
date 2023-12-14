@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-24 01:34+0000\n"
+"POT-Creation-Date: 2023-12-14 01:35+0000\n"
 "PO-Revision-Date: 2022-12-20 21:45+0530\n"
 "Last-Translator: Kishore G <kishore96@gmail.com>\n"
 "Language-Team: Tamil <kde-i18n-doc@kde.org>\n"
@@ -2060,46 +2060,46 @@ msgstr "ஏற்றுவது ரத்து செய்யப்பட்�
 msgid "Loading completed"
 msgstr "ஏற்றுவது முடிந்தது"
 
-#: src/mainwidget.cpp:144
+#: src/mainwidget.cpp:156
 #, kde-format
 msgid "You can view multiple articles in several open tabs."
 msgstr "பல திறந்த பட்டியில் நீங்கள் பலவித கட்டுரையை பார்க்கலாம்."
 
-#: src/mainwidget.cpp:148
+#: src/mainwidget.cpp:160
 #, kde-format
 msgid "Articles list."
 msgstr "கட்டுரை பட்டியல்."
 
-#: src/mainwidget.cpp:210 src/mainwidget.cpp:635
+#: src/mainwidget.cpp:222 src/mainwidget.cpp:647
 #, kde-format
 msgid "Articles"
 msgstr "கட்டுரைகள்"
 
-#: src/mainwidget.cpp:239
+#: src/mainwidget.cpp:251
 #, kde-format
 msgid "About"
 msgstr ""
 
-#: src/mainwidget.cpp:765
+#: src/mainwidget.cpp:777
 #, fuzzy, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all articles in the feed</b> as read?</"
 "qt>"
 msgstr "<qt>நீங்கள் கண்டிப்பாக செலுத்தலை நீக்க விரும்புகிறீர்களா<br><b>%1</b>?</qt>"
 
-#: src/mainwidget.cpp:766
+#: src/mainwidget.cpp:778
 #, fuzzy, kde-format
 #| msgid "&Mark Feed as Read"
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "&செலுத்தப்பட்ட அனைத்தையும் படித்ததாக மாற்று"
 
-#: src/mainwidget.cpp:769
+#: src/mainwidget.cpp:781
 #, fuzzy, kde-format
 msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
 msgstr "<qt>நீங்கள் கண்டிப்பாக செலுத்தலை நீக்க விரும்புகிறீர்களா<br><b>%1</b>?</qt>"
 
-#: src/mainwidget.cpp:771
+#: src/mainwidget.cpp:783
 #, fuzzy, kde-format
 #| msgid "<qt>Are you sure you want to delete this feed?</qt>"
 msgid ""
@@ -2107,28 +2107,28 @@ msgid ""
 "qt>"
 msgstr "<qt>நீங்கள் கண்டிப்பாக இந்த ஃபீட்டை நீக்க விரும்புகிறீர்களா</qt>"
 
-#: src/mainwidget.cpp:773
+#: src/mainwidget.cpp:785
 #, fuzzy, kde-format
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "&செலுத்தப்பட்ட அனைத்தையும் படித்ததாக மாற்று"
 
-#: src/mainwidget.cpp:837 src/mainwidget.cpp:846 src/mainwidget.cpp:1248
+#: src/mainwidget.cpp:849 src/mainwidget.cpp:858 src/mainwidget.cpp:1260
 #, kde-format
 msgid "Networking is not available."
 msgstr ""
 
-#: src/mainwidget.cpp:854
+#: src/mainwidget.cpp:866
 #, kde-format
 msgid "Fetching Feeds..."
 msgstr "செலுத்தலை கொண்டுவருகிறது..."
 
-#: src/mainwidget.cpp:1053
+#: src/mainwidget.cpp:1065
 #, kde-format
 msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
 msgstr "<qt>நீங்கள் கண்டிப்பாக செலுத்தலை நீக்க விரும்புகிறீர்களா<b>%1</b>?</qt>"
 
-#: src/mainwidget.cpp:1056
+#: src/mainwidget.cpp:1068
 #, fuzzy, kde-format
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
 msgid_plural ""
@@ -2136,14 +2136,14 @@ msgid_plural ""
 msgstr[0] "<qt>நீங்கள் கண்டிப்பாக இந்த ஃபீட்டை நீக்க விரும்புகிறீர்களா</qt>"
 msgstr[1] "<qt>நீங்கள் கண்டிப்பாக இந்த ஃபீட்டை நீக்க விரும்புகிறீர்களா</qt>"
 
-#: src/mainwidget.cpp:1063
+#: src/mainwidget.cpp:1075
 #, fuzzy, kde-format
 #| msgid "Delete Article"
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "கட்டுரையை நீக்கு"
 
-#: src/mainwidget.cpp:1245
+#: src/mainwidget.cpp:1257
 #, kde-format
 msgid "Networking is available now."
 msgstr ""

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-24 01:34+0000\n"
+"POT-Creation-Date: 2023-12-14 01:35+0000\n"
 "PO-Revision-Date: 2023-11-12 16:39+0100\n"
 "Last-Translator: Oliver Kellogg <okellogg@users.sourceforge.net>\n"
 "Language-Team: Esperanto <kde-i18n-eo@kde.org>\n"
@@ -2048,27 +2048,27 @@ msgstr "Ĉesitas ŝarĝado"
 msgid "Loading completed"
 msgstr "Ŝarĝado sukcese finita"
 
-#: src/mainwidget.cpp:144
+#: src/mainwidget.cpp:156
 #, kde-format
 msgid "You can view multiple articles in several open tabs."
 msgstr "Vi povas rigardi plurajn artikolojn en pluraj malfermitaj traboj."
 
-#: src/mainwidget.cpp:148
+#: src/mainwidget.cpp:160
 #, kde-format
 msgid "Articles list."
 msgstr "Artikola listo"
 
-#: src/mainwidget.cpp:210 src/mainwidget.cpp:635
+#: src/mainwidget.cpp:222 src/mainwidget.cpp:647
 #, kde-format
 msgid "Articles"
 msgstr "Artikoloj"
 
-#: src/mainwidget.cpp:239
+#: src/mainwidget.cpp:251
 #, kde-format
 msgid "About"
 msgstr "Pri"
 
-#: src/mainwidget.cpp:765
+#: src/mainwidget.cpp:777
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all articles in the feed</b> as read?</"
@@ -2077,19 +2077,19 @@ msgstr ""
 "<qt>Ĉu vi certas, ke vi volas marki <b>ĉiujn artikolojn en la fluo</b> kiel "
 "legitaj?</qt>"
 
-#: src/mainwidget.cpp:766
+#: src/mainwidget.cpp:778
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "Marki Fluon kiel Legita"
 
-#: src/mainwidget.cpp:769
+#: src/mainwidget.cpp:781
 #, kde-format
 msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
 msgstr ""
 "<qt>Ĉu vi certas, ke vi volas marki <b>ĉiujn fluojn</b> kiel legitaj?</qt>"
 
-#: src/mainwidget.cpp:771
+#: src/mainwidget.cpp:783
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all feeds in the folder</b> as read?</"
@@ -2098,28 +2098,28 @@ msgstr ""
 "<qt>Ĉu vi certas, ke vi volas marki <b>ĉiujn fluojn en la dosierujo</b> kiel "
 "legitaj?</qt>"
 
-#: src/mainwidget.cpp:773
+#: src/mainwidget.cpp:785
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "Marki Fluojn kiel Legitaj"
 
-#: src/mainwidget.cpp:837 src/mainwidget.cpp:846 src/mainwidget.cpp:1248
+#: src/mainwidget.cpp:849 src/mainwidget.cpp:858 src/mainwidget.cpp:1260
 #, kde-format
 msgid "Networking is not available."
 msgstr "Reto ne estas atingebla."
 
-#: src/mainwidget.cpp:854
+#: src/mainwidget.cpp:866
 #, kde-format
 msgid "Fetching Feeds..."
 msgstr "Kolektante fluojn..."
 
-#: src/mainwidget.cpp:1053
+#: src/mainwidget.cpp:1065
 #, kde-format
 msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
 msgstr "<qt>Ĉu vi certas voli forviŝi la artikolon <b>%1</b>?</qt>"
 
-#: src/mainwidget.cpp:1056
+#: src/mainwidget.cpp:1068
 #, kde-format
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
 msgid_plural ""
@@ -2128,13 +2128,13 @@ msgstr[0] "<qt>Ĉu vi certas, ke vi volas forigi la elektitan artikolon?</qt>"
 msgstr[1] ""
 "<qt>Ĉu vi certas, ke vi volas forigi la %1 elektitajn artikolojn?</qt>"
 
-#: src/mainwidget.cpp:1063
+#: src/mainwidget.cpp:1075
 #, kde-format
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "Forigi Artikolon"
 
-#: src/mainwidget.cpp:1245
+#: src/mainwidget.cpp:1257
 #, kde-format
 msgid "Networking is available now."
 msgstr "Retumado nun estas je dispono."
