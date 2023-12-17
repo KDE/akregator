@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-12-14 01:35+0000\n"
-"PO-Revision-Date: 2023-11-12 16:39+0100\n"
+"PO-Revision-Date: 2023-12-16 23:54+0100\n"
 "Last-Translator: Oliver Kellogg <okellogg@users.sourceforge.net>\n"
 "Language-Team: Esperanto <kde-i18n-eo@kde.org>\n"
 "Language: eo\n"
@@ -252,7 +252,7 @@ msgstr "Male&bligi enarkivigon"
 #: src/ui/feedpropertieswidgetbase.ui:332
 #, kde-format
 msgid "&Keep all articles"
-msgstr "&Konservu ĉiujn artikolojn"
+msgstr "&Konservi ĉiujn artikolojn"
 
 #. i18n: ectx: property (text), widget (QRadioButton, rb_LimitArticleNumber)
 #: configuration/ui/settings_archive.ui:64
@@ -264,13 +264,13 @@ msgstr "Limigi grandecon de la fluarki&vo al:"
 #: configuration/ui/settings_archive.ui:100
 #, kde-format
 msgid "Delete articles older than: "
-msgstr "Forviŝu artikolojn pli malnovajn ol: "
+msgstr "Forigi artikolojn pli malnovajn ol: "
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_DoNotExpireImportantArticles)
 #: configuration/ui/settings_archive.ui:138
 #, kde-format
 msgid "Do not expire important articles"
-msgstr "Ne forviŝu malnovajn gravajn artikolojn"
+msgstr "Ne forigi malnovajn gravajn artikolojn"
 
 #. i18n: ectx: property (text), widget (QLabel, LMBlabel)
 #: configuration/ui/settings_browser.ui:20
@@ -285,7 +285,7 @@ msgstr "Maldekstromusbutona klako"
 #: src/actions/actionmanagerimpl.cpp:324
 #, kde-format
 msgid "Open in Tab"
-msgstr "Malfermu en trabo"
+msgstr "Malfermi en Langeto"
 
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_LMBBehaviour)
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
@@ -294,7 +294,7 @@ msgstr "Malfermu en trabo"
 #: src/actions/actionmanagerimpl.cpp:330
 #, kde-format
 msgid "Open in Background Tab"
-msgstr "Malfermu en fona trabo"
+msgstr "Malfermi en Fona Langeto"
 
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_LMBBehaviour)
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
@@ -303,7 +303,7 @@ msgstr "Malfermu en fona trabo"
 #: src/actions/actionmanagerimpl.cpp:336
 #, kde-format
 msgid "Open in External Browser"
-msgstr "Malfermu en ekstera retumilo"
+msgstr "Malfermi en ekstera retumilo"
 
 #. i18n: ectx: property (text), widget (QLabel, MMBlabel)
 #: configuration/ui/settings_browser.ui:46
@@ -403,7 +403,7 @@ msgstr "Ĉie"
 #: configuration/ui/settings_general.ui:36
 #, kde-format
 msgid "Show tra&y icon"
-msgstr "Montru agordotraban piktogramon"
+msgstr "Montri agordopletan piktogramon"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ShowUnreadInTaskbar)
 #: configuration/ui/settings_general.ui:43
@@ -441,7 +441,7 @@ msgstr "Elektu tion, se vi volas esti informata kiam alvenas novaj artikoloj."
 #: configuration/ui/settings_general.ui:77
 #, kde-format
 msgid "Use &notifications for all feeds"
-msgstr "Uzu &anoncojn por ĉiuj fluoj"
+msgstr "Uzi sciigoj&n por ĉiuj fluoj"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_DisableSaveAsNotification)
 #: configuration/ui/settings_general.ui:84
@@ -453,13 +453,13 @@ msgstr "Malebligi konservi kiel plenumita sciigo"
 #: configuration/ui/settings_general.ui:91
 #, kde-format
 msgid "&Use interval fetching"
-msgstr "&Uzu intervalan kolektadon"
+msgstr "&Uzi intervalan kolektadon"
 
 #. i18n: ectx: property (text), widget (QLabel, autoFetchIntervalLabel)
 #: configuration/ui/settings_general.ui:119
 #, kde-format
 msgid "Fetch feeds every:"
-msgstr "Kolektu fluojn ĉiujn:"
+msgstr "Kolekti fluojn ĉiujn:"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #: configuration/ui/settings_general.ui:160
@@ -471,13 +471,13 @@ msgstr "Programekigo"
 #: configuration/ui/settings_general.ui:166
 #, kde-format
 msgid "Mark &all feeds as read on startup"
-msgstr "Signu ĉ&iujn fluojn kiel legitaj je programekigo"
+msgstr "Marki ĉ&iujn fluojn kiel legitaj je programekigo"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_FetchOnStartup)
 #: configuration/ui/settings_general.ui:173
 #, kde-format
 msgid "Fetch all fee&ds on startup"
-msgstr "Kolektu ĉiujn fluon je programekigo"
+msgstr "Kolekti ĉiujn fluon je programekigo"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: configuration/ui/settings_general.ui:183
@@ -489,7 +489,7 @@ msgstr "komputilreto"
 #: configuration/ui/settings_general.ui:189
 #, kde-format
 msgid "Use the &browser cache (less network traffic)"
-msgstr "Uzu &retumilan staplon (malpli da reta trafiko)"
+msgstr "Uzi &retumilan staplon (malpli da reta trafiko)"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_LoadExternalReferences)
 #: configuration/ui/settings_security.ui:17
@@ -530,13 +530,13 @@ msgstr "Aŭtomate vastigi dosierujojn kun nelegitaj artikoloj"
 #: interfaces/akregator.kcfg:31 src/actions/actionmanagerimpl.cpp:318
 #, kde-format
 msgid "Show Quick Filter"
-msgstr "Montru rapidfiltrilon"
+msgstr "Montri rapidfiltrilon"
 
 #. i18n: ectx: whatsthis, entry, group (View)
 #: interfaces/akregator.kcfg:32
 #, kde-format
 msgid "Show Quick Filter Bar"
-msgstr "Montru rapidfiltrilotrabon"
+msgstr "Montri rapidfiltrilan langeton"
 
 #. i18n: ectx: label, entry, group (View)
 #: interfaces/akregator.kcfg:36
@@ -608,49 +608,49 @@ msgstr "Arĥiva moduso"
 #: interfaces/akregator.kcfg:104
 #, kde-format
 msgid "Keep All Articles"
-msgstr "Konservu ĉiujn artikolojn"
+msgstr "Konservi ĉiujn artikolojn"
 
 #. i18n: ectx: whatsthis, entry, group (Archive)
 #: interfaces/akregator.kcfg:105
 #, kde-format
 msgid "Save an unlimited number of articles."
-msgstr "Konservu nelimigitan nombron de artikoloj"
+msgstr "Konservi nelimigitan nombron de artikoloj"
 
 #. i18n: ectx: label, entry, group (Archive)
 #: interfaces/akregator.kcfg:108
 #, kde-format
 msgid "Limit Number of Articles"
-msgstr "Limigu nombron de artikoloj"
+msgstr "Limigi nombron de artikoloj"
 
 #. i18n: ectx: whatsthis, entry, group (Archive)
 #: interfaces/akregator.kcfg:109
 #, kde-format
 msgid "Limit the number of articles in a feed"
-msgstr "Limigu la nombron de la artikoloj en fluo"
+msgstr "Limigi la nombron de la artikoloj en fluo"
 
 #. i18n: ectx: label, entry, group (Archive)
 #: interfaces/akregator.kcfg:112
 #, kde-format
 msgid "Delete Expired Articles"
-msgstr "Forviŝu malaktualajn artikolojn"
+msgstr "Forigi malaktualajn artikolojn"
 
 #. i18n: ectx: whatsthis, entry, group (Archive)
 #: interfaces/akregator.kcfg:113
 #, kde-format
 msgid "Delete expired articles"
-msgstr "Forviŝu malaktualajn artikolojn"
+msgstr "Forigi malaktualajn artikolojn"
 
 #. i18n: ectx: label, entry, group (Archive)
 #: interfaces/akregator.kcfg:116
 #, kde-format
 msgid "Disable Archiving"
-msgstr "Malfunkciigu enarkivigon"
+msgstr "Malebligi Enarkivigon"
 
 #. i18n: ectx: whatsthis, entry, group (Archive)
 #: interfaces/akregator.kcfg:117
 #, kde-format
 msgid "Do not save any articles"
-msgstr "Ne konservu ajnajn artikolojn"
+msgstr "Ne konservi ajnajn artikolojn"
 
 #. i18n: ectx: label, entry, group (Archive)
 #: interfaces/akregator.kcfg:122
@@ -680,7 +680,7 @@ msgstr "Nombro de artikoloj konservendaj po fluo."
 #: interfaces/akregator.kcfg:132
 #, kde-format
 msgid "Do Not Expire Important Articles"
-msgstr "Ne malvalidigu gravajn artikolojn"
+msgstr "Ne malvalidigi gravajn artikolojn"
 
 #. i18n: ectx: whatsthis, entry, group (Archive)
 #: interfaces/akregator.kcfg:133
@@ -709,7 +709,7 @@ msgstr "Nombro de samtempaj kolektoj"
 #: interfaces/akregator.kcfg:144
 #, kde-format
 msgid "Use HTML Cache"
-msgstr "Uzu HTML-staplo"
+msgstr "Uzi HTML-Kaŝmemoron"
 
 #. i18n: ectx: whatsthis, entry, group (Network)
 #: interfaces/akregator.kcfg:145
@@ -718,7 +718,7 @@ msgid ""
 "Use the KDE-wide HTML cache settings when downloading feeds, to avoid "
 "unnecessary traffic. Disable only when necessary."
 msgstr ""
-"Uzu KDE-skalan HTML-staplokonfiguracion elŝutante fluojn por eviti nenecesan "
+"Uzi KDE-skalan HTML-kaŝmemoragordon elŝutante fluojn por eviti nenecesan "
 "trafikon. Malfunkciigu nur se necesas."
 
 #. i18n: ectx: whatsthis, entry, group (Network)
@@ -737,37 +737,37 @@ msgstr ""
 #: interfaces/akregator.kcfg:155
 #, kde-format
 msgid "Fetch on startup"
-msgstr "Kolektu je ekigo."
+msgstr "Kolekti je ekigo"
 
 #. i18n: ectx: whatsthis, entry, group (General)
 #: interfaces/akregator.kcfg:156
 #, kde-format
 msgid "Fetch feedlist on startup."
-msgstr "Kolektu fluliston je programekigo."
+msgstr "Kolekti fluliston je programekigo."
 
 #. i18n: ectx: label, entry, group (General)
 #: interfaces/akregator.kcfg:160
 #, kde-format
 msgid "Mark all feeds as read on startup"
-msgstr "Signu ĉiujn fluojn kiel legitaj je programekigo."
+msgstr "Marki ĉiujn fluojn kiel legitaj je programekigo."
 
 #. i18n: ectx: whatsthis, entry, group (General)
 #: interfaces/akregator.kcfg:161
 #, kde-format
 msgid "Mark all feeds as read on startup."
-msgstr "Signu ĉiujn fluojn kiel legitaj je programekigo."
+msgstr "Marki ĉiujn fluojn kiel legitaj je programekigo."
 
 #. i18n: ectx: label, entry, group (General)
 #: interfaces/akregator.kcfg:165
 #, kde-format
 msgid "Use interval fetching"
-msgstr "Uzu intervalan kolektadon"
+msgstr "Uzi intervalan kolektadon"
 
 #. i18n: ectx: whatsthis, entry, group (General)
 #: interfaces/akregator.kcfg:166
 #, no-c-format, kde-format
 msgid "Fetch all feeds every %1 minutes."
-msgstr "Kolektu ĉiujn fluojn ĉiujn %1 minutojn."
+msgstr "Kolekti ĉiujn fluojn ĉiujn %1 minutojn."
 
 #. i18n: ectx: label, entry, group (General)
 #: interfaces/akregator.kcfg:170
@@ -785,7 +785,7 @@ msgstr "Intervalo por aŭtomata kolektado en minutoj."
 #: interfaces/akregator.kcfg:175
 #, kde-format
 msgid "Use notifications"
-msgstr "Uzu anoncojn"
+msgstr "Uzi anoncojn"
 
 #. i18n: ectx: whatsthis, entry, group (General)
 #: interfaces/akregator.kcfg:176
@@ -797,13 +797,13 @@ msgstr "Agordas, ĉu la balonaj informoj uzatas aŭ ne."
 #: interfaces/akregator.kcfg:180
 #, kde-format
 msgid "Show tray icon"
-msgstr "Montru agordotraban piktogramon"
+msgstr "Montri agordopletan piktogramon"
 
 #. i18n: ectx: whatsthis, entry, group (General)
 #: interfaces/akregator.kcfg:181
 #, kde-format
 msgid "Specifies if the tray icon is shown or not."
-msgstr "Agordas, ĉu la agordotraba piktogramo estas videbla aŭ ne"
+msgstr "Agordas, ĉu la agordopleta piktogramo estas videbla aŭ ne"
 
 #. i18n: ectx: label, entry, group (General)
 #: interfaces/akregator.kcfg:185
@@ -827,13 +827,13 @@ msgstr "Ĉiam montri la langeton, eĉ kiam nur unu langeto estas malfermita"
 #: interfaces/akregator.kcfg:207
 #, kde-format
 msgid "Show close buttons on tabs"
-msgstr "Montru fermobutonon sur langetoj"
+msgstr "Montri fermobutonon sur langetoj"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
 #: interfaces/akregator.kcfg:208
 #, kde-format
 msgid "Show close buttons on tabs instead of icons"
-msgstr "Montru fermobutonojn sur langetoj anstataŭ piktogramoj"
+msgstr "Montri fermobutonojn sur langetoj anstataŭ piktogramoj"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
 #: interfaces/akregator.kcfg:213
@@ -849,25 +849,25 @@ msgstr ""
 #: interfaces/akregator.kcfg:217
 #, kde-format
 msgid "Use default KDE web browser"
-msgstr "Uzu normalan KDE-retumilon"
+msgstr "Uzi normalan KDE-retumilon"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
 #: interfaces/akregator.kcfg:218
 #, kde-format
 msgid "Use KDE web browser when opening in external browser."
-msgstr "Uzu KDE-retumilon malfermante per ekstera retumilo."
+msgstr "Uzi KDE-retumilon malfermante per ekstera retumilo."
 
 #. i18n: ectx: label, entry, group (Browser)
 #: interfaces/akregator.kcfg:222
 #, kde-format
 msgid "Use this command:"
-msgstr "Uzu tiun ĉi komandon:"
+msgstr "Uzi tiun ĉi komandon:"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
 #: interfaces/akregator.kcfg:223
 #, kde-format
 msgid "Use the specified command when opening in external browser."
-msgstr "Uzu la donitan komandon malfermante per ekstera retumilo"
+msgstr "Uzi la donitan komandon malfermante per ekstera retumilo"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
 #: interfaces/akregator.kcfg:227
@@ -1064,7 +1064,7 @@ msgstr "Eike Hein"
 #: src/aboutdata.cpp:40
 #, kde-format
 msgid "'Delayed mark as read' feature"
-msgstr "'Signu prokrastitajn kiel legita'-trajto"
+msgstr "'Marki prokrastitajn kiel legita'-trajto"
 
 #: src/aboutdata.cpp:41
 #, kde-format
@@ -1099,52 +1099,52 @@ msgstr "Gentoo Ebuild"
 #: src/actions/actionmanagerimpl.cpp:64 src/actions/actionmanagerimpl.cpp:287
 #, kde-format
 msgid "&Fetch Feed"
-msgstr "&Kolektu fluon"
+msgstr "Kolekti &Fluon"
 
 #: src/actions/actionmanagerimpl.cpp:65 src/actions/actionmanagerimpl.cpp:243
 #, kde-format
 msgid "&Delete Feed"
-msgstr "&Forviŝu fluon"
+msgstr "For&igi Fluon"
 
 #: src/actions/actionmanagerimpl.cpp:66 src/actions/actionmanagerimpl.cpp:249
 #, kde-format
 msgid "&Edit Feed..."
-msgstr "&Prilaboru fluon"
+msgstr "R&edakti fluon"
 
 #: src/actions/actionmanagerimpl.cpp:67 src/actions/actionmanagerimpl.cpp:306
 #, kde-format
 msgid "&Mark Feed as Read"
-msgstr "&Signu fluon kiel legita"
+msgstr "&Marki fluon kiel legita"
 
 #: src/actions/actionmanagerimpl.cpp:83
 #, kde-format
 msgid "&Fetch Feeds"
-msgstr "&Kolektu fluojn"
+msgstr "Kolekti &Fluojn"
 
 #: src/actions/actionmanagerimpl.cpp:84
 #, kde-format
 msgid "&Delete Folder"
-msgstr "&Forviŝu dosierujon"
+msgstr "For&igi Dosierujon"
 
 #: src/actions/actionmanagerimpl.cpp:85
 #, kde-format
 msgid "&Rename Folder"
-msgstr "&Renomu dosierujon"
+msgstr "Alinomi dosie&rujon"
 
 #: src/actions/actionmanagerimpl.cpp:86
 #, kde-format
 msgid "&Mark Feeds as Read"
-msgstr "&Signu fluojn kiel legitaj"
+msgstr "&Marki Fluojn kiel Legitaj"
 
 #: src/actions/actionmanagerimpl.cpp:191
 #, kde-format
 msgid "&Import Feeds..."
-msgstr "&Importi fluojn..."
+msgstr "&Importi Fluojn..."
 
 #: src/actions/actionmanagerimpl.cpp:195
 #, kde-format
 msgid "&Export Feeds..."
-msgstr "&Eksporti fluojn..."
+msgstr "&Eksporti Fluojn..."
 
 #: src/actions/actionmanagerimpl.cpp:200
 #, kde-format
@@ -1154,7 +1154,7 @@ msgstr "Agordi &Akregator..."
 #: src/actions/actionmanagerimpl.cpp:219
 #, kde-format
 msgid "&Open Homepage"
-msgstr "Malfermi retpaĝ&on"
+msgstr "Malfermi hejmpaĝ&on"
 
 #: src/actions/actionmanagerimpl.cpp:225
 #, kde-format
@@ -1164,12 +1164,12 @@ msgstr "Reŝargi ĉiujn langetojn"
 #: src/actions/actionmanagerimpl.cpp:231
 #, kde-format
 msgid "&Add Feed..."
-msgstr "&Aldonu fluon"
+msgstr "&Aldoni Fluon..."
 
 #: src/actions/actionmanagerimpl.cpp:237
 #, kde-format
 msgid "Ne&w Folder..."
-msgstr "&Nova dosierujo"
+msgstr "No&va dosierujo"
 
 #: src/actions/actionmanagerimpl.cpp:262
 #, kde-format
@@ -1189,7 +1189,7 @@ msgstr "K&ombinita aspekto"
 #: src/actions/actionmanagerimpl.cpp:293
 #, kde-format
 msgid "Fe&tch All Feeds"
-msgstr "Kole&ktu ĉiujn fluojn"
+msgstr "Kole&kti ĉiujn fluojn"
 
 #: src/actions/actionmanagerimpl.cpp:299
 #, kde-format
@@ -1199,22 +1199,22 @@ msgstr "Nuligi &Alprenojn de Fluoj"
 #: src/actions/actionmanagerimpl.cpp:312
 #, kde-format
 msgid "Ma&rk All Feeds as Read"
-msgstr "Signu ĉi&ujn fluojn kiel legitaj"
+msgstr "Ma&rki Ĉiujn Fluojn kiel Legitaj"
 
 #: src/actions/actionmanagerimpl.cpp:341 src/actions/actionmanagerimpl.cpp:609
 #, kde-format
 msgid "Copy Link Address"
-msgstr "Kopiu adreson de la ligilo"
+msgstr "Kopii Ligilan Adreson"
 
 #: src/actions/actionmanagerimpl.cpp:346
 #, kde-format
 msgid "Pre&vious Unread Article"
-msgstr "Antaŭa nelegita artikolo"
+msgstr "Antaŭa &Nelegita Artikolo"
 
 #: src/actions/actionmanagerimpl.cpp:352
 #, kde-format
 msgid "Ne&xt Unread Article"
-msgstr "Sekvonta nelegita artikolo"
+msgstr "Se&kvonta Nelegita Artikolo"
 
 #: src/actions/actionmanagerimpl.cpp:360
 #, kde-format
@@ -1224,7 +1224,7 @@ msgstr "&Forigi"
 #: src/actions/actionmanagerimpl.cpp:365
 #, kde-format
 msgid "&Mark As"
-msgstr "&Signu kiel"
+msgstr "&Marki kiel"
 
 #: src/actions/actionmanagerimpl.cpp:369
 #, kde-format
@@ -1235,7 +1235,7 @@ msgstr "&Legi"
 #: src/actions/actionmanagerimpl.cpp:371
 #, kde-format
 msgid "Mark selected article as read"
-msgstr "Signu elektitajn artikolojn kiel legitaj"
+msgstr "Marki elektitajn artikolojn kiel legitaj"
 
 #: src/actions/actionmanagerimpl.cpp:377
 #, kde-format
@@ -1246,7 +1246,7 @@ msgstr "&Nova"
 #: src/actions/actionmanagerimpl.cpp:380
 #, kde-format
 msgid "Mark selected article as new"
-msgstr "Signu elektitajn artikolojn kiel novaj"
+msgstr "Signi elektitajn artikolojn kiel novaj"
 
 #: src/actions/actionmanagerimpl.cpp:385
 #, kde-format
@@ -1257,47 +1257,47 @@ msgstr "&Nelegita"
 #: src/actions/actionmanagerimpl.cpp:387
 #, kde-format
 msgid "Mark selected article as unread"
-msgstr "Signu elektitan artikolon kiel nelegita"
+msgstr "Marki elektitan artikolon kiel nelegita"
 
 #: src/actions/actionmanagerimpl.cpp:393
 #, kde-format
 msgid "&Mark as Important"
-msgstr "&Signu kiel grava"
+msgstr "&Marki kiel Grava"
 
 #: src/actions/actionmanagerimpl.cpp:397
 #, kde-format
 msgid "Remove &Important Mark"
-msgstr "Forigu signon &grava"
+msgstr "Forigi signon &grava"
 
 #: src/actions/actionmanagerimpl.cpp:401
 #, kde-format
 msgid "Move Node Up"
-msgstr "Movu nodon supren"
+msgstr "Movi nodon supren"
 
 #: src/actions/actionmanagerimpl.cpp:406
 #, kde-format
 msgid "Move Node Down"
-msgstr "Movu nodon suben"
+msgstr "Movi nodon suben"
 
 #: src/actions/actionmanagerimpl.cpp:411
 #, kde-format
 msgid "Move Node Left"
-msgstr "Movu nodon maldekstren"
+msgstr "Movi nodon maldekstren"
 
 #: src/actions/actionmanagerimpl.cpp:416
 #, kde-format
 msgid "Move Node Right"
-msgstr "Movu nodon dekstren"
+msgstr "Movi nodon dekstren"
 
 #: src/actions/actionmanagerimpl.cpp:422
 #, kde-format
 msgid "Send &Link Address..."
-msgstr "Sendu &ligilan adreson"
+msgstr "Sendi &Ligilan Adreson..."
 
 #: src/actions/actionmanagerimpl.cpp:427
 #, kde-format
 msgid "Send &File..."
-msgstr "Sendu &dosieron"
+msgstr "Sendi &dosieron..."
 
 #: src/actions/actionmanagerimpl.cpp:433
 #, kde-format
@@ -1337,32 +1337,32 @@ msgstr "Antaŭa ne&legita fluo"
 #: src/actions/actionmanagerimpl.cpp:507
 #, kde-format
 msgid "Go to Top of Tree"
-msgstr "Iru al la pinto de la arbo"
+msgstr "Iri al la pinto de la arbo"
 
 #: src/actions/actionmanagerimpl.cpp:512
 #, kde-format
 msgid "Go to Bottom of Tree"
-msgstr "Iru al la subo de la arbo"
+msgstr "Iri al la subo de la arbo"
 
 #: src/actions/actionmanagerimpl.cpp:517
 #, kde-format
 msgid "Go Left in Tree"
-msgstr "Iru maldekstren en arbo"
+msgstr "Iri maldekstren en arbo"
 
 #: src/actions/actionmanagerimpl.cpp:522
 #, kde-format
 msgid "Go Right in Tree"
-msgstr "Iru dekstren en arbo"
+msgstr "Iri dekstren en arbo"
 
 #: src/actions/actionmanagerimpl.cpp:527
 #, kde-format
 msgid "Go Up in Tree"
-msgstr "Iru supren en arbo"
+msgstr "Iri supren en arbo"
 
 #: src/actions/actionmanagerimpl.cpp:532
 #, kde-format
 msgid "Go Down in Tree"
-msgstr "Iru suben en arbo"
+msgstr "Iri suben en arbo"
 
 #: src/actions/actionmanagerimpl.cpp:538
 #, kde-format
@@ -1382,17 +1382,17 @@ msgstr "Aŭtomate vastigi dosierujojn kun nelegitaj artikoloj"
 #: src/actions/actionmanagerimpl.cpp:566
 #, kde-format
 msgid "Select Next Tab"
-msgstr "Elektu sekvontan trabon"
+msgstr "Elekti sekvontan langeton"
 
 #: src/actions/actionmanagerimpl.cpp:571
 #, kde-format
 msgid "Select Previous Tab"
-msgstr "Elektu antaŭan trabon"
+msgstr "Elekti antaŭan langeton"
 
 #: src/actions/actionmanagerimpl.cpp:577
 #, kde-format
 msgid "Detach Tab"
-msgstr "Malfiksigu trabon"
+msgstr "Malfiksigi langeton"
 
 #: src/actions/actionmanagerimpl.cpp:591
 #, kde-format
@@ -1427,12 +1427,12 @@ msgstr "Aktivigi Langeton %1"
 #: src/actions/actionmanagerimpl.cpp:633
 #, kde-format
 msgid "&Save Link As..."
-msgstr "&Konservu ligilon kiel ..."
+msgstr "&Konservi ligilon kiel ..."
 
 #: src/actions/actionmanagerimpl.cpp:637
 #, kde-format
 msgid "Copy &Link Address"
-msgstr "&Kopiu ligilan adreson"
+msgstr "&Kopii ligilan adreson"
 
 #: src/actions/actionmanagerimpl.cpp:640
 #, kde-format
@@ -1447,18 +1447,18 @@ msgstr "Konservi Bildon Sur Disko..."
 #: src/actions/actions.cpp:19
 #, kde-format
 msgid "Open Link in New &Tab"
-msgstr "Malfermu ligilon en nova &trabo"
+msgstr "Malfermi ligilon en nova &langeto"
 
 #: src/actions/actions.cpp:26
 #, kde-format
 msgid "Open Link in External &Browser"
-msgstr "Malfermu ligilon en ekstera &retumilo"
+msgstr "Malfermi ligilon en ekstera &retumilo"
 
 #: src/addfeeddialog.cpp:49
 #, kde-format
 msgctxt "@title:window"
 msgid "Add Feed"
-msgstr "Aldonu fluon"
+msgstr "Aldoni fluon"
 
 #: src/addfeeddialog.cpp:99
 #, kde-format
@@ -1561,8 +1561,8 @@ msgid ""
 "The file %1 could not be read, check if it exists or if it is readable for "
 "the current user."
 msgstr ""
-"Ne eblis legi la dosieron %1 , kontrolu ĉu ĝi ekzistas aŭ ĉu ĝi estas "
-"legebla por la aktuala uzanto."
+"Ne eblis legi la dosieron %1, kontrolu ĉu ĝi ekzistas aŭ ĉu ĝi estas legebla "
+"por la aktuala uzanto."
 
 #: src/akregator_part.cpp:469 src/command/loadfeedlistcommand.cpp:144
 #, kde-format
@@ -1672,12 +1672,12 @@ msgstr "Konservi kiel"
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:373
 #, kde-format
 msgid "Disable"
-msgstr "Malfunkciigu"
+msgstr "Malebligi"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:374
 #, kde-format
 msgid "Keep Enabled"
-msgstr "Konservu kiel funkcianta"
+msgstr "Konservi Funkcianta"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:376
 #, kde-format
@@ -1721,7 +1721,7 @@ msgstr "La URL %1 ne validas."
 #: src/command/createfoldercommand.cpp:47
 #, kde-format
 msgid "Add Folder"
-msgstr "Aldonu dosierujon"
+msgstr "Aldoni dosierujon"
 
 #: src/command/createfoldercommand.cpp:47
 #, kde-format
@@ -1776,7 +1776,7 @@ msgstr "Importitaj Fluoj"
 #: src/command/importfeedlistcommand.cpp:77
 #, kde-format
 msgid "Add Imported Folder"
-msgstr "Aldonu importitan dosierujon"
+msgstr "Aldoni importitan dosierujon"
 
 #: src/command/importfeedlistcommand.cpp:78
 #, kde-format
@@ -1879,7 +1879,7 @@ msgstr "&Vidi"
 #: src/data/akregator_part.rc:37 src/data/akregator_shell.rc:24
 #, kde-format
 msgid "&Go"
-msgstr "&Iru"
+msgstr "&Iri"
 
 #. i18n: ectx: Menu (feed)
 #: src/data/akregator_part.rc:50 src/data/akregator_shell.rc:29
@@ -2036,22 +2036,22 @@ msgstr "Sentitola"
 #: src/frame/frame.cpp:141
 #, kde-format
 msgid "Loading..."
-msgstr "Ŝarĝante..."
+msgstr "Ŝargante..."
 
 #: src/frame/frame.cpp:157
 #, kde-format
 msgid "Loading canceled"
-msgstr "Ĉesitas ŝarĝado"
+msgstr "Nuliĝis ŝargado"
 
 #: src/frame/frame.cpp:169
 #, kde-format
 msgid "Loading completed"
-msgstr "Ŝarĝado sukcese finita"
+msgstr "Ŝargado sukcese finita"
 
 #: src/mainwidget.cpp:156
 #, kde-format
 msgid "You can view multiple articles in several open tabs."
-msgstr "Vi povas rigardi plurajn artikolojn en pluraj malfermitaj traboj."
+msgstr "Vi povas rigardi plurajn artikolojn en pluraj malfermitaj langetoj."
 
 #: src/mainwidget.cpp:160
 #, kde-format
@@ -2112,7 +2112,7 @@ msgstr "Reto ne estas atingebla."
 #: src/mainwidget.cpp:866
 #, kde-format
 msgid "Fetching Feeds..."
-msgstr "Kolektante fluojn..."
+msgstr "Kolektante Fluojn..."
 
 #: src/mainwidget.cpp:1065
 #, kde-format
@@ -2274,7 +2274,7 @@ msgstr "Sumo"
 #: src/tabwidget.cpp:92
 #, kde-format
 msgid "Close the current tab"
-msgstr "Fermi la aktualan trabon"
+msgstr "Fermi la aktualan langeton"
 
 #: src/tabwidget.cpp:95
 #, kde-format
@@ -2285,7 +2285,7 @@ msgstr "Fermi langeton"
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Detach Tab"
-msgstr "Malfiksigi trabon"
+msgstr "Malfiksigi langeton"
 
 #: src/tabwidget.cpp:123
 #, kde-format
@@ -2321,13 +2321,13 @@ msgstr[1] "%1 nelegitaj artikoloj"
 #: src/ui/addfeedwidgetbase.ui:14
 #, kde-format
 msgid "Add Feed"
-msgstr "Aldonu fluon"
+msgstr "Aldoni fluon"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel1)
 #: src/ui/addfeedwidgetbase.ui:122
 #, kde-format
 msgid "Add New Source"
-msgstr "Aldonu novan fonton"
+msgstr "Aldoni novan fonton"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel3)
 #: src/ui/addfeedwidgetbase.ui:135
@@ -2351,7 +2351,7 @@ msgstr "&Ĝenerale"
 #: src/ui/feedpropertieswidgetbase.ui:54
 #, kde-format
 msgid "U&se a custom update interval"
-msgstr "U&zu propran ĝisdatigan intervalon"
+msgstr "U&zi propran ĝisdatigan intervalon"
 
 #. i18n: ectx: property (text), widget (QLabel, updateLabel)
 #: src/ui/feedpropertieswidgetbase.ui:88
@@ -2363,7 +2363,7 @@ msgstr "Ĝisdatigi ĉi&ujn:"
 #: src/ui/feedpropertieswidgetbase.ui:117
 #, kde-format
 msgid "Notify when new articles arri&ve"
-msgstr "Informu, kiam novaj artikoloj alvenas"
+msgstr "Informi, kiam novaj artikoloj alvenas"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel3)
 #: src/ui/feedpropertieswidgetbase.ui:132
@@ -2381,7 +2381,7 @@ msgstr "&Nomo:"
 #: src/ui/feedpropertieswidgetbase.ui:161
 #, kde-format
 msgid "Display name of RSS column"
-msgstr "Montru nomon de la RSS-a kolumno"
+msgstr "Montri nomon de la RSS-a kolumno"
 
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: src/ui/feedpropertieswidgetbase.ui:171
@@ -2405,37 +2405,37 @@ msgstr "&Uzi defaŭltan agordon"
 #: src/ui/feedpropertieswidgetbase.ui:216
 #, kde-format
 msgid "Di&sable archiving"
-msgstr "Malfunkciigu enarĥivigon"
+msgstr "Malebligi enarĥivigon"
 
 #. i18n: ectx: property (text), widget (QRadioButton, rb_limitArticleNumber)
 #: src/ui/feedpropertieswidgetbase.ui:247
 #, kde-format
 msgid "Limit archi&ve to:"
-msgstr "Limigu arĥivon je:"
+msgstr "Limigi arki&von al:"
 
 #. i18n: ectx: property (text), widget (QRadioButton, rb_limitArticleAge)
 #: src/ui/feedpropertieswidgetbase.ui:277
 #, kde-format
 msgid "&Delete articles older than:"
-msgstr "&Forviŝu artikolojn pli malnovajn ol:"
+msgstr "&Forigi artikolojn pli malnovajn ol:"
 
 #. i18n: ectx: attribute (title), widget (QWidget, tab3)
 #: src/ui/feedpropertieswidgetbase.ui:340
 #, kde-format
 msgid "Adva&nced"
-msgstr "Progresite"
+msgstr "Alt&nivela"
 
 #. i18n: ectx: property (text), widget (QCheckBox, checkBox_loadWebsite)
 #: src/ui/feedpropertieswidgetbase.ui:373
 #, kde-format
 msgid "Load the &full website when reading articles"
-msgstr "Elŝutu la &tutan retpaĝon, kiam mi legas artikolojn"
+msgstr "Elŝuti la &tutan retpaĝon, kiam mi legas artikolojn"
 
 #. i18n: ectx: property (text), widget (QCheckBox, checkBox_markRead)
 #: src/ui/feedpropertieswidgetbase.ui:380
 #, kde-format
 msgid "Mar&k articles as read when they arrive"
-msgstr "Signu artikolojn kiel legitaj, kiam ili alvenas"
+msgstr "Mar&ki artikolojn kiel legitaj, kiam ili alvenas"
 
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:40
 #, kde-format
