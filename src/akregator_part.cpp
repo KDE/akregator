@@ -336,13 +336,13 @@ void Part::openFile(const QString &filePath)
     if (m_loadFeedListCommand || m_standardListLoaded) {
         return;
     }
-    QScopedPointer<LoadFeedListCommand> cmd(new LoadFeedListCommand(m_mainWidget));
+    std::unique_ptr<LoadFeedListCommand> cmd(new LoadFeedListCommand(m_mainWidget));
     cmd->setParentWidget(m_mainWidget);
     cmd->setStorage(Kernel::self()->storage());
     cmd->setFileName(filePath);
     cmd->setDefaultFeedList(createDefaultFeedList());
-    connect(cmd.data(), &LoadFeedListCommand::result, this, &Part::feedListLoaded);
-    m_loadFeedListCommand = cmd.take();
+    connect(cmd.get(), &LoadFeedListCommand::result, this, &Part::feedListLoaded);
+    m_loadFeedListCommand = cmd.release();
     m_loadFeedListCommand->start();
 }
 
