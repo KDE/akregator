@@ -14,13 +14,13 @@
 # sinan, 2005.
 # Volkan Gezer <volkangezer@gmail.com>, 2013-2014, 2017.
 # Kaan Ozdincer <kaanozdincer@gmail.com>, 2014.
-# Emir SARI <emir_sari@icloud.com>, 2022, 2023.
+# SPDX-FileCopyrightText: 2022, 2023 Emir SARI <emir_sari@icloud.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kdepim-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-04-01 00:51+0000\n"
-"PO-Revision-Date: 2023-09-03 21:38+0300\n"
+"PO-Revision-Date: 2023-12-27 14:29+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -28,7 +28,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 23.11.70\n"
+"X-Generator: Lokalize 24.01.85\n"
 "(http: //www.transifex.com/projects/p/kdepim-k-tr/language/tr/)\n"
 
 #, kde-format
@@ -545,13 +545,13 @@ msgstr "Okunmayan yazı olan klasörleri otomatik olarak genişlet"
 #: interfaces/akregator.kcfg:31 src/actions/actionmanagerimpl.cpp:317
 #, kde-format
 msgid "Show Quick Filter"
-msgstr "Hızlı Süzgeci Göster"
+msgstr "Tez Süzgeci Göster"
 
 #. i18n: ectx: whatsthis, entry, group (View)
 #: interfaces/akregator.kcfg:32
 #, kde-format
 msgid "Show Quick Filter Bar"
-msgstr "Hızlı Süzgeç Çubuğunu Göster"
+msgstr "Tez Süzgeç Çubuğunu Göster"
 
 #. i18n: ectx: label, entry, group (View)
 #: interfaces/akregator.kcfg:36
@@ -928,7 +928,7 @@ msgstr ""
 #: interfaces/akregator.kcfg:277
 #, kde-format
 msgid "Resets the quick filter when changing feeds."
-msgstr "Beslemeler değiştirilirken hızlı süzgeci sıfırlar."
+msgstr "Beslemeler değiştirilirken tez süzgeci sıfırlar."
 
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
 #: src/akregator_part.cpp:150
@@ -1318,7 +1318,7 @@ msgstr "Dos&ya Gönder..."
 #: src/actions/actionmanagerimpl.cpp:432
 #, kde-format
 msgid "Set Focus to Quick Search"
-msgstr "Odaklamayı Hızlı Aramaya Ayarla"
+msgstr "Odağı Tez Aramaya Ayarla"
 
 #: src/actions/actionmanagerimpl.cpp:464
 #, kde-format
