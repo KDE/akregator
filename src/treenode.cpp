@@ -11,7 +11,6 @@
 #include "articlejobs.h"
 #include "folder.h"
 
-#include <QList>
 #include <QString>
 
 using namespace Akregator;
