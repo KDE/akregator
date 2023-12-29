@@ -16,6 +16,7 @@ Q_DECLARE_METATYPE(Akregator::StatusSearchLine::Status)
 StatusSearchLine::StatusSearchLine(QWidget *parent)
     : KLineEdit(parent)
 {
+    setProperty("_breeze_borders_sides", QVariant::fromValue(QFlags{Qt::BottomEdge}));
     initializeHash();
     initializeActions();
 }

@@ -64,6 +64,7 @@ void ArticleViewerWebEngineWidgetNg::initializeLayout(KActionCollection *ac)
 {
     auto layout = new QVBoxLayout(this);
     layout->setContentsMargins({});
+    layout->setSpacing(0);
 #ifdef HAVE_KTEXTADDONS_TEXT_TO_SPEECH_SUPPORT
     mTextToSpeechWidget->setObjectName(QLatin1StringView("texttospeechwidget"));
     layout->addWidget(mTextToSpeechWidget);
