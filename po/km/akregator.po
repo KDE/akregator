@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-12-14 01:35+0000\n"
+"POT-Creation-Date: 2023-12-30 01:38+0000\n"
 "PO-Revision-Date: 2012-12-25 13:50+0700\n"
 "Last-Translator: sutha <sutha@khmeros.info>\n"
 "Language-Team: Khmer <support@khmeros>\n"
@@ -2533,24 +2533,24 @@ msgstr "អត្ថបទ​មិនទាន់​អាន ៖"
 msgid "Search articles...<%1>"
 msgstr "អត្ថបទ​មិនទាន់​អាន ៖"
 
-#: src/widgets/statussearchline.cpp:42
+#: src/widgets/statussearchline.cpp:43
 #, kde-format
 msgid "All Articles"
 msgstr "អត្ថបទ​ទាំងអស់"
 
-#: src/widgets/statussearchline.cpp:43
+#: src/widgets/statussearchline.cpp:44
 #, kde-format
 msgctxt "Unread articles filter"
 msgid "Unread"
 msgstr "មិន​ទាន់​អាន"
 
-#: src/widgets/statussearchline.cpp:44
+#: src/widgets/statussearchline.cpp:45
 #, kde-format
 msgctxt "New articles filter"
 msgid "New"
 msgstr "ថ្មី"
 
-#: src/widgets/statussearchline.cpp:45
+#: src/widgets/statussearchline.cpp:46
 #, fuzzy, kde-format
 #| msgctxt "as in: mark as read"
 #| msgid "&Read"
@@ -2558,13 +2558,13 @@ msgctxt "Read articles filter"
 msgid "Read"
 msgstr "អាន​រួច"
 
-#: src/widgets/statussearchline.cpp:46
+#: src/widgets/statussearchline.cpp:47
 #, kde-format
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "សំខាន់"
 
-#: src/widgets/statussearchline.cpp:63
+#: src/widgets/statussearchline.cpp:64
 #, fuzzy, kde-format
 #| msgid "Text Filter"
 msgid "Filter"

@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-12-14 01:35+0000\n"
+"POT-Creation-Date: 2023-12-30 01:38+0000\n"
 "PO-Revision-Date: 2023-11-08 16:19-0300\n"
 "Last-Translator: Luiz Fernando Ranghetti <elchevive@opensuse.org>\n"
 "Language-Team: Brazilian Portuguese <kde-i18n-pt_BR@kde.org>\n"
@@ -2512,36 +2512,36 @@ msgstr "Procurar artigos..."
 msgid "Search articles...<%1>"
 msgstr "Procurar artigos...<%1>"
 
-#: src/widgets/statussearchline.cpp:42
+#: src/widgets/statussearchline.cpp:43
 #, kde-format
 msgid "All Articles"
 msgstr "Todos os artigos"
 
-#: src/widgets/statussearchline.cpp:43
+#: src/widgets/statussearchline.cpp:44
 #, kde-format
 msgctxt "Unread articles filter"
 msgid "Unread"
 msgstr "Não lidos"
 
-#: src/widgets/statussearchline.cpp:44
+#: src/widgets/statussearchline.cpp:45
 #, kde-format
 msgctxt "New articles filter"
 msgid "New"
 msgstr "Novos"
 
-#: src/widgets/statussearchline.cpp:45
+#: src/widgets/statussearchline.cpp:46
 #, kde-format
 msgctxt "Read articles filter"
 msgid "Read"
 msgstr "Lido"
 
-#: src/widgets/statussearchline.cpp:46
+#: src/widgets/statussearchline.cpp:47
 #, kde-format
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "Importantes"
 
-#: src/widgets/statussearchline.cpp:63
+#: src/widgets/statussearchline.cpp:64
 #, kde-format
 msgid "Filter"
 msgstr "Filtro"

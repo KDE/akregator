@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-12-14 01:35+0000\n"
+"POT-Creation-Date: 2023-12-30 01:38+0000\n"
 "PO-Revision-Date: 2023-12-27 08:54+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
@@ -2513,24 +2513,24 @@ msgstr " מאמרים"
 msgid "Search articles...<%1>"
 msgstr " מאמרים"
 
-#: src/widgets/statussearchline.cpp:42
+#: src/widgets/statussearchline.cpp:43
 #, kde-format
 msgid "All Articles"
 msgstr "כל המאמרים"
 
-#: src/widgets/statussearchline.cpp:43
+#: src/widgets/statussearchline.cpp:44
 #, fuzzy, kde-format
 msgctxt "Unread articles filter"
 msgid "Unread"
 msgstr "לא נקרא"
 
-#: src/widgets/statussearchline.cpp:44
+#: src/widgets/statussearchline.cpp:45
 #, fuzzy, kde-format
 msgctxt "New articles filter"
 msgid "New"
 msgstr "חדש"
 
-#: src/widgets/statussearchline.cpp:45
+#: src/widgets/statussearchline.cpp:46
 #, fuzzy, kde-format
 #| msgctxt "as in: mark as read"
 #| msgid "&Read"
@@ -2538,13 +2538,13 @@ msgctxt "Read articles filter"
 msgid "Read"
 msgstr "&נקרא"
 
-#: src/widgets/statussearchline.cpp:46
+#: src/widgets/statussearchline.cpp:47
 #, fuzzy, kde-format
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "חשוב"
 
-#: src/widgets/statussearchline.cpp:63
+#: src/widgets/statussearchline.cpp:64
 #, fuzzy, kde-format
 #| msgid "Text Filter"
 msgid "Filter"

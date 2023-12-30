@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-12-14 01:35+0000\n"
+"POT-Creation-Date: 2023-12-30 01:38+0000\n"
 "PO-Revision-Date: 2023-12-23 08:00\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -2439,36 +2439,36 @@ msgstr "搜索文章..."
 msgid "Search articles...<%1>"
 msgstr "搜索文章...<%1>"
 
-#: src/widgets/statussearchline.cpp:42
+#: src/widgets/statussearchline.cpp:43
 #, kde-format
 msgid "All Articles"
 msgstr "全部文章"
 
-#: src/widgets/statussearchline.cpp:43
+#: src/widgets/statussearchline.cpp:44
 #, kde-format
 msgctxt "Unread articles filter"
 msgid "Unread"
 msgstr "未读文章"
 
-#: src/widgets/statussearchline.cpp:44
+#: src/widgets/statussearchline.cpp:45
 #, kde-format
 msgctxt "New articles filter"
 msgid "New"
 msgstr "新文章"
 
-#: src/widgets/statussearchline.cpp:45
+#: src/widgets/statussearchline.cpp:46
 #, kde-format
 msgctxt "Read articles filter"
 msgid "Read"
 msgstr "已读"
 
-#: src/widgets/statussearchline.cpp:46
+#: src/widgets/statussearchline.cpp:47
 #, kde-format
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "重要"
 
-#: src/widgets/statussearchline.cpp:63
+#: src/widgets/statussearchline.cpp:64
 #, kde-format
 msgid "Filter"
 msgstr ""

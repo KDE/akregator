@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: all2.po\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-12-14 01:35+0000\n"
+"POT-Creation-Date: 2023-12-30 01:38+0000\n"
 "PO-Revision-Date: 2004-09-20 15:44+0200\n"
 "Last-Translator: Thierry Vignaud <tvignaud@mandriva.com>\n"
 "Language-Team: br <LL@li.org>\n"
@@ -2520,26 +2520,26 @@ msgstr " pennadoù"
 msgid "Search articles...<%1>"
 msgstr " pennadoù"
 
-#: src/widgets/statussearchline.cpp:42
+#: src/widgets/statussearchline.cpp:43
 #, kde-format
 msgid "All Articles"
 msgstr "An holl bennadoù"
 
-#: src/widgets/statussearchline.cpp:43
+#: src/widgets/statussearchline.cpp:44
 #, fuzzy, kde-format
 #| msgid "Unread"
 msgctxt "Unread articles filter"
 msgid "Unread"
 msgstr "Anlennet"
 
-#: src/widgets/statussearchline.cpp:44
+#: src/widgets/statussearchline.cpp:45
 #, fuzzy, kde-format
 #| msgid "New"
 msgctxt "New articles filter"
 msgid "New"
 msgstr "Nevez"
 
-#: src/widgets/statussearchline.cpp:45
+#: src/widgets/statussearchline.cpp:46
 #, fuzzy, kde-format
 #| msgctxt "as in: mark as read"
 #| msgid "&Read"
@@ -2547,14 +2547,14 @@ msgctxt "Read articles filter"
 msgid "Read"
 msgstr "&Lenn"
 
-#: src/widgets/statussearchline.cpp:46
+#: src/widgets/statussearchline.cpp:47
 #, fuzzy, kde-format
 #| msgid "Important"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "Pouezus"
 
-#: src/widgets/statussearchline.cpp:63
+#: src/widgets/statussearchline.cpp:64
 #, fuzzy, kde-format
 msgid "Filter"
 msgstr "Goullonderiñ ar sil"

@@ -1,7 +1,7 @@
 # translation of akregator.po to Français
 # translation of akregator.po to
 #
-# SPDX-FileCopyrightText: 2013, 2014, 2020, 2021, 2022, 2023 xavier <xavier.besnard@kde.org>
+# SPDX-FileCopyrightText: 2013, 2014, 2020, 2021, 2022, 2023 Xavier Besnard <xavier.besnard@kde.org>
 # Nicolas Ternisien <nicolast@libertysurf.fr>, 2004, 2005.
 # Matthieu Robin <kde@macolu.org>, 2005, 2006.
 # Nicolas Ternisien <nicolas.ternisien@gmail.com>, 2005, 2008, 2009, 2010.
@@ -14,12 +14,12 @@
 # Sebastien Renard <renard@kde.org>, 2013, 2016.
 # Vincent Pinon <vpinon@kde.org>, 2018.
 # Simon Depiets <sdepiets@gmail.com>, 2019, 2020.
-# Xavier BESNARD <xavier.besnard@kde.org>, 2023.
+# Xavier Besnard <xavier.besnard@kde.org>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-12-14 01:35+0000\n"
+"POT-Creation-Date: 2023-12-30 01:38+0000\n"
 "PO-Revision-Date: 2023-10-11 17:00+0200\n"
 "Last-Translator: Xavier BESNARD <xavier.besnard@kde.org>\n"
 "Language-Team: fr\n"
@@ -2535,36 +2535,36 @@ msgstr "Rechercher des articles..."
 msgid "Search articles...<%1>"
 msgstr "Articles non lus...<%1>"
 
-#: src/widgets/statussearchline.cpp:42
+#: src/widgets/statussearchline.cpp:43
 #, kde-format
 msgid "All Articles"
 msgstr "Tous les articles"
 
-#: src/widgets/statussearchline.cpp:43
+#: src/widgets/statussearchline.cpp:44
 #, kde-format
 msgctxt "Unread articles filter"
 msgid "Unread"
 msgstr "Non lu"
 
-#: src/widgets/statussearchline.cpp:44
+#: src/widgets/statussearchline.cpp:45
 #, kde-format
 msgctxt "New articles filter"
 msgid "New"
 msgstr "Nouveau"
 
-#: src/widgets/statussearchline.cpp:45
+#: src/widgets/statussearchline.cpp:46
 #, kde-format
 msgctxt "Read articles filter"
 msgid "Read"
 msgstr "Lu"
 
-#: src/widgets/statussearchline.cpp:46
+#: src/widgets/statussearchline.cpp:47
 #, kde-format
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "Important"
 
-#: src/widgets/statussearchline.cpp:63
+#: src/widgets/statussearchline.cpp:64
 #, kde-format
 msgid "Filter"
 msgstr "Filtre"
