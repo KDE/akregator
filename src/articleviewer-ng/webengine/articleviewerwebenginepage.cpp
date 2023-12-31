@@ -31,6 +31,7 @@ ArticleViewerWebEnginePage::ArticleViewerWebEnginePage(QObject *parent)
     settings()->setAttribute(QWebEngineSettings::PluginsEnabled, false);
     settings()->setAttribute(QWebEngineSettings::WebGLEnabled, false);
     settings()->setAttribute(QWebEngineSettings::XSSAuditingEnabled, false);
+    settings()->setAttribute(QWebEngineSettings::NavigateOnDropEnabled, false);
 
     connect(this, &QWebEnginePage::featurePermissionRequested, this, &ArticleViewerWebEnginePage::slotFeaturePermissionRequested);
     connect(this, &QWebEnginePage::loadProgress, this, &ArticleViewerWebEnginePage::onLoadProgress);
