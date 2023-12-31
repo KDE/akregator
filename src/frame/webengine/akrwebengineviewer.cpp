@@ -46,6 +46,7 @@ AkrWebEngineViewer::AkrWebEngineViewer(KActionCollection *ac, QWidget *parent)
     settings()->setAttribute(QWebEngineSettings::XSSAuditingEnabled, false);
     settings()->setAttribute(QWebEngineSettings::ErrorPageEnabled, false);
     settings()->setAttribute(QWebEngineSettings::LocalContentCanAccessRemoteUrls, false);
+    settings()->setAttribute(QWebEngineSettings::NavigateOnDropEnabled, false);
     // settings()->setAttribute(QWebEngineSettings::LocalContentCanAccessFileUrls, false);
 
     settings()->setAttribute(QWebEngineSettings::AutoLoadIconsForPage, false);
