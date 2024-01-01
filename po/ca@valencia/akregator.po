@@ -2459,7 +2459,7 @@ msgstr "&Copia l'adreça de correu"
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:67
 #, kde-format
 msgid "Address copied to clipboard."
-msgstr "Adreça copiada al porta-retalls."
+msgstr "Adreça copiada a dins del porta-retalls."
 
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:98
 #, kde-format
