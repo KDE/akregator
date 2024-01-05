@@ -23,7 +23,8 @@ public:
     [[nodiscard]] QString formatFeed(Akregator::Feed *feed);
 
 private:
-    void addStandardObject(QVariantHash &grantleeObject);
+    void addStandardObject(QVariantHash &grantleeObject) const;
+    [[nodiscard]] QString sidebarCss() const;
     [[nodiscard]] int pointsToPixel(int pointSize) const;
     const QString mHtmlArticleFileName;
     const QString mDirectionString;
