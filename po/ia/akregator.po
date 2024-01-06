@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-12-30 01:38+0000\n"
+"POT-Creation-Date: 2024-01-06 01:33+0000\n"
 "PO-Revision-Date: 2023-10-03 12:01+0200\n"
 "Last-Translator: giovanni <g.sora@tiscali.it>\n"
 "Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
@@ -60,47 +60,47 @@ msgstr "Nos spera que tu gaudera de Akregator."
 msgid "Thank you, The Akregator Team"
 msgstr "Gratias, le equipa de Akregator"
 
-#: src/formatter/html/5.2/combinedview.html:72
+#: src/formatter/html/5.2/combinedview.html:74
 msgid "Mark as Read"
 msgstr "Marca como legite"
 
-#: src/formatter/html/5.2/combinedview.html:75
+#: src/formatter/html/5.2/combinedview.html:77
 msgid "Mark as Unread"
 msgstr "Marca como non legite"
 
-#: src/formatter/html/5.2/combinedview.html:79
+#: src/formatter/html/5.2/combinedview.html:81
 msgid "Remove Important Status"
 msgstr "Remove Stato Importante"
 
-#: src/formatter/html/5.2/combinedview.html:81
+#: src/formatter/html/5.2/combinedview.html:83
 msgid "Mark as Important"
 msgstr "Marca como importante"
 
-#: src/formatter/html/5.2/combinedview.html:83
+#: src/formatter/html/5.2/combinedview.html:85
 msgid "Open Link in External Browser"
 msgstr "Aperi ligamine in Navigator externe"
 
-#: src/formatter/html/5.2/combinedview.html:84
+#: src/formatter/html/5.2/combinedview.html:86
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:110
 #, kde-format
 msgid "Open In Background Tab"
 msgstr "Aperi in scheda de fundo"
 
-#: src/formatter/html/5.2/combinedview.html:85
+#: src/formatter/html/5.2/combinedview.html:87
 msgid "Send File Address"
 msgstr "Invia adresse de file"
 
-#: src/formatter/html/5.2/combinedview.html:86
+#: src/formatter/html/5.2/combinedview.html:88
 msgid "Send Link Address"
 msgstr "Invia adresse de Ligamine"
 
-#: src/formatter/html/5.2/combinedview.html:87
+#: src/formatter/html/5.2/combinedview.html:89
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:96
 #, kde-format
 msgid "Delete Article"
 msgstr "Dele articulo"
 
-#: src/formatter/html/5.2/normalview.html:52
+#: src/formatter/html/5.2/normalview.html:54
 msgid ""
 "<b>Note:</b> For security reasons, external reference is blocked (See "
 "configure dialog)."
@@ -1986,56 +1986,56 @@ msgstr "Proprietates de %1"
 msgid "(%1, %2)"
 msgstr "(%1, %2)"
 
-#: src/formatter/grantleeviewformatter.cpp:58
-#: src/formatter/grantleeviewformatter.cpp:109
+#: src/formatter/grantleeviewformatter.cpp:100
+#: src/formatter/grantleeviewformatter.cpp:151
 #, kde-format
 msgid " (no unread articles)"
 msgstr " (nulle articulos legite)"
 
-#: src/formatter/grantleeviewformatter.cpp:60
-#: src/formatter/grantleeviewformatter.cpp:111
+#: src/formatter/grantleeviewformatter.cpp:102
+#: src/formatter/grantleeviewformatter.cpp:153
 #, kde-format
 msgid " (1 unread article)"
 msgid_plural " (%1 unread articles)"
 msgstr[0] " (1 articulo non legite)"
 msgstr[1] " (%1 articulos non legite)"
 
-#: src/formatter/grantleeviewformatter.cpp:75
+#: src/formatter/grantleeviewformatter.cpp:117
 #, kde-format
 msgid "<b>Description:</b> %1<br />"
 msgstr "<b>Description:</b> %1<br />"
 
-#: src/formatter/grantleeviewformatter.cpp:82
+#: src/formatter/grantleeviewformatter.cpp:124
 #, kde-format
 msgid "<b>Homepage:</b> <a href=\"%1\">%1</a>"
 msgstr "<b>Pagina Domo o Principal:</b> <a href=\"%1\">%1</a>"
 
-#: src/formatter/grantleeviewformatter.cpp:89
+#: src/formatter/grantleeviewformatter.cpp:131
 #, kde-format
 msgid "<b>Copyright:</b> %1</a>"
 msgstr "<b>Copyright:</b> %1</a>"
 
-#: src/formatter/grantleeviewformatter.cpp:141
+#: src/formatter/grantleeviewformatter.cpp:183
 #, kde-format
 msgid "Date"
 msgstr "Data"
 
-#: src/formatter/grantleeviewformatter.cpp:142
+#: src/formatter/grantleeviewformatter.cpp:184
 #, kde-format
 msgid "Comment"
 msgstr "Commento"
 
-#: src/formatter/grantleeviewformatter.cpp:143
+#: src/formatter/grantleeviewformatter.cpp:185
 #, kde-format
 msgid "Complete Story"
 msgstr "Historia complete"
 
-#: src/formatter/grantleeviewformatter.cpp:144
+#: src/formatter/grantleeviewformatter.cpp:186
 #, kde-format
 msgid "Author"
 msgstr "Autor"
 
-#: src/formatter/grantleeviewformatter.cpp:145
+#: src/formatter/grantleeviewformatter.cpp:187
 #, kde-format
 msgid "Enclosure"
 msgstr "Clausura"

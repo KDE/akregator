@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-12-30 01:38+0000\n"
+"POT-Creation-Date: 2024-01-06 01:33+0000\n"
 "PO-Revision-Date: 2018-01-06 09:21+0100\n"
 "Last-Translator: Chusslove Illich <caslav.ilic@gmx.net>\n"
 "Language-Team: Serbian <kde-i18n-sr@kde.org>\n"
@@ -66,47 +66,47 @@ msgstr "Надамо се да ћете уживати уз Акрегатор."
 msgid "Thank you, The Akregator Team"
 msgstr "Са захвалношћу, тим Акрегатора"
 
-#: src/formatter/html/5.2/combinedview.html:72
+#: src/formatter/html/5.2/combinedview.html:74
 msgid "Mark as Read"
 msgstr "Означи као прочитан"
 
-#: src/formatter/html/5.2/combinedview.html:75
+#: src/formatter/html/5.2/combinedview.html:77
 msgid "Mark as Unread"
 msgstr "Означи као непрочитан"
 
-#: src/formatter/html/5.2/combinedview.html:79
+#: src/formatter/html/5.2/combinedview.html:81
 msgid "Remove Important Status"
 msgstr "Уклони стање важности"
 
-#: src/formatter/html/5.2/combinedview.html:81
+#: src/formatter/html/5.2/combinedview.html:83
 msgid "Mark as Important"
 msgstr "Означи као важан"
 
-#: src/formatter/html/5.2/combinedview.html:83
+#: src/formatter/html/5.2/combinedview.html:85
 msgid "Open Link in External Browser"
 msgstr "Отвори везу у спољашњем прегледачу"
 
-#: src/formatter/html/5.2/combinedview.html:84
+#: src/formatter/html/5.2/combinedview.html:86
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:110
 #, kde-format
 msgid "Open In Background Tab"
 msgstr "Отвори језичак у позадини"
 
-#: src/formatter/html/5.2/combinedview.html:85
+#: src/formatter/html/5.2/combinedview.html:87
 msgid "Send File Address"
 msgstr "Пошаљи адресу фајла..."
 
-#: src/formatter/html/5.2/combinedview.html:86
+#: src/formatter/html/5.2/combinedview.html:88
 msgid "Send Link Address"
 msgstr "Пошаљи адресу везе..."
 
-#: src/formatter/html/5.2/combinedview.html:87
+#: src/formatter/html/5.2/combinedview.html:89
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:96
 #, kde-format
 msgid "Delete Article"
 msgstr "Обриши чланак"
 
-#: src/formatter/html/5.2/normalview.html:52
+#: src/formatter/html/5.2/normalview.html:54
 msgid ""
 "<b>Note:</b> For security reasons, external reference is blocked (See "
 "configure dialog)."
@@ -2046,14 +2046,14 @@ msgstr "Својства — %1"
 msgid "(%1, %2)"
 msgstr "(%1, %2)"
 
-#: src/formatter/grantleeviewformatter.cpp:58
-#: src/formatter/grantleeviewformatter.cpp:109
+#: src/formatter/grantleeviewformatter.cpp:100
+#: src/formatter/grantleeviewformatter.cpp:151
 #, kde-format
 msgid " (no unread articles)"
 msgstr " (без непрочитаних чланака)"
 
-#: src/formatter/grantleeviewformatter.cpp:60
-#: src/formatter/grantleeviewformatter.cpp:111
+#: src/formatter/grantleeviewformatter.cpp:102
+#: src/formatter/grantleeviewformatter.cpp:153
 #, kde-format
 msgid " (1 unread article)"
 msgid_plural " (%1 unread articles)"
@@ -2062,44 +2062,44 @@ msgstr[1] " (%1 непрочитана чланка)"
 msgstr[2] " (%1 непрочитаних чланака)"
 msgstr[3] " (%1 непрочитан чланак)"
 
-#: src/formatter/grantleeviewformatter.cpp:75
+#: src/formatter/grantleeviewformatter.cpp:117
 #, kde-format
 msgid "<b>Description:</b> %1<br />"
 msgstr "<b>Опис:</b> %1<br />"
 
-#: src/formatter/grantleeviewformatter.cpp:82
+#: src/formatter/grantleeviewformatter.cpp:124
 #, fuzzy, kde-format
 #| msgid "<b>Homepage:</b> <a href=\"%1\">%2</a>"
 msgid "<b>Homepage:</b> <a href=\"%1\">%1</a>"
 msgstr "<b>Домаћа страница:</b> <a href=\"%1\">%2</a>"
 
-#: src/formatter/grantleeviewformatter.cpp:89
+#: src/formatter/grantleeviewformatter.cpp:131
 #, fuzzy, kde-format
 #| msgid "<b>Description:</b> %1<br />"
 msgid "<b>Copyright:</b> %1</a>"
 msgstr "<b>Опис:</b> %1<br />"
 
-#: src/formatter/grantleeviewformatter.cpp:141
+#: src/formatter/grantleeviewformatter.cpp:183
 #, kde-format
 msgid "Date"
 msgstr "Датум"
 
-#: src/formatter/grantleeviewformatter.cpp:142
+#: src/formatter/grantleeviewformatter.cpp:184
 #, kde-format
 msgid "Comment"
 msgstr "Коментар"
 
-#: src/formatter/grantleeviewformatter.cpp:143
+#: src/formatter/grantleeviewformatter.cpp:185
 #, kde-format
 msgid "Complete Story"
 msgstr "Цео чланак"
 
-#: src/formatter/grantleeviewformatter.cpp:144
+#: src/formatter/grantleeviewformatter.cpp:186
 #, kde-format
 msgid "Author"
 msgstr "Аутор"
 
-#: src/formatter/grantleeviewformatter.cpp:145
+#: src/formatter/grantleeviewformatter.cpp:187
 #, kde-format
 msgid "Enclosure"
 msgstr "Прилог"

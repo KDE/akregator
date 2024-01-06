@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-12-30 01:38+0000\n"
+"POT-Creation-Date: 2024-01-06 01:33+0000\n"
 "PO-Revision-Date: 2008-04-07 23:17+0700\n"
 "Last-Translator: Thanomsub Noppaburana <donga.nb@gmail.com>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
@@ -51,62 +51,62 @@ msgstr ""
 msgid "Thank you, The Akregator Team"
 msgstr ""
 
-#: src/formatter/html/5.2/combinedview.html:72
+#: src/formatter/html/5.2/combinedview.html:74
 #, fuzzy
 #| msgid "&Mark Feed as Read"
 msgid "Mark as Read"
 msgstr "&ตั้งสถานะว่าอ่านแล้ว"
 
-#: src/formatter/html/5.2/combinedview.html:75
+#: src/formatter/html/5.2/combinedview.html:77
 #, fuzzy
 #| msgid "Mark selected article as unread"
 msgid "Mark as Unread"
 msgstr "ตั้งสถานะบทความที่เลือกเป็นยังไม่อ่าน"
 
-#: src/formatter/html/5.2/combinedview.html:79
+#: src/formatter/html/5.2/combinedview.html:81
 #, fuzzy
 #| msgid "Remove &Important Mark"
 msgid "Remove Important Status"
 msgstr "ลบการตั้งสถานะว่าสำคัญออก"
 
-#: src/formatter/html/5.2/combinedview.html:81
+#: src/formatter/html/5.2/combinedview.html:83
 #, fuzzy
 #| msgid "&Mark as Important"
 msgid "Mark as Important"
 msgstr "&ตั้งสถานะว่าสำคัญ"
 
-#: src/formatter/html/5.2/combinedview.html:83
+#: src/formatter/html/5.2/combinedview.html:85
 #, fuzzy
 #| msgid "Open Link in External &Browser"
 msgid "Open Link in External Browser"
 msgstr "เปิดตำแหน่งเชื่อมโยงใน&เบราว์เซอร์ภายนอก"
 
-#: src/formatter/html/5.2/combinedview.html:84
+#: src/formatter/html/5.2/combinedview.html:86
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:110
 #, fuzzy, kde-format
 #| msgid "Open in Tab"
 msgid "Open In Background Tab"
 msgstr "เปิดในแท็บใหม่"
 
-#: src/formatter/html/5.2/combinedview.html:85
+#: src/formatter/html/5.2/combinedview.html:87
 #, fuzzy
 #| msgid "Send &Link Address..."
 msgid "Send File Address"
 msgstr "ส่งที่อยู่ตำแหน่งเชื่อมโยง..."
 
-#: src/formatter/html/5.2/combinedview.html:86
+#: src/formatter/html/5.2/combinedview.html:88
 #, fuzzy
 #| msgid "Send &Link Address..."
 msgid "Send Link Address"
 msgstr "ส่งที่อยู่ตำแหน่งเชื่อมโยง..."
 
-#: src/formatter/html/5.2/combinedview.html:87
+#: src/formatter/html/5.2/combinedview.html:89
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:96
 #, kde-format
 msgid "Delete Article"
 msgstr "ลบบทความ"
 
-#: src/formatter/html/5.2/normalview.html:52
+#: src/formatter/html/5.2/normalview.html:54
 msgid ""
 "<b>Note:</b> For security reasons, external reference is blocked (See "
 "configure dialog)."
@@ -2054,59 +2054,59 @@ msgstr "คุณสมบัติของ %1"
 msgid "(%1, %2)"
 msgstr ""
 
-#: src/formatter/grantleeviewformatter.cpp:58
-#: src/formatter/grantleeviewformatter.cpp:109
+#: src/formatter/grantleeviewformatter.cpp:100
+#: src/formatter/grantleeviewformatter.cpp:151
 #, kde-format
 msgid " (no unread articles)"
 msgstr " (ไม่มีบทความที่ยังไม่ได้อ่าน)"
 
-#: src/formatter/grantleeviewformatter.cpp:60
-#: src/formatter/grantleeviewformatter.cpp:111
+#: src/formatter/grantleeviewformatter.cpp:102
+#: src/formatter/grantleeviewformatter.cpp:153
 #, kde-format
 msgid " (1 unread article)"
 msgid_plural " (%1 unread articles)"
 msgstr[0] " (%1 บทความที่ยังไม่ได้อ่าน)"
 
-#: src/formatter/grantleeviewformatter.cpp:75
+#: src/formatter/grantleeviewformatter.cpp:117
 #, fuzzy, kde-format
 #| msgid "<b>Description:</b> %1<br /><br />"
 msgid "<b>Description:</b> %1<br />"
 msgstr "<b>คำอธิบาย:</b> %1 <br /><br />"
 
-#: src/formatter/grantleeviewformatter.cpp:82
+#: src/formatter/grantleeviewformatter.cpp:124
 #, fuzzy, kde-format
 #| msgid "<b>Homepage:</b> <a href=\"%1\">%2</a>"
 msgid "<b>Homepage:</b> <a href=\"%1\">%1</a>"
 msgstr "<b>หน้าเว็บ: </b> <a href=\"%1\">%2</a>"
 
-#: src/formatter/grantleeviewformatter.cpp:89
+#: src/formatter/grantleeviewformatter.cpp:131
 #, fuzzy, kde-format
 #| msgid "<b>Description:</b> %1<br /><br />"
 msgid "<b>Copyright:</b> %1</a>"
 msgstr "<b>คำอธิบาย:</b> %1 <br /><br />"
 
-#: src/formatter/grantleeviewformatter.cpp:141
+#: src/formatter/grantleeviewformatter.cpp:183
 #, kde-format
 msgid "Date"
 msgstr "วันที่"
 
-#: src/formatter/grantleeviewformatter.cpp:142
+#: src/formatter/grantleeviewformatter.cpp:184
 #, fuzzy, kde-format
 #| msgid "Comments"
 msgid "Comment"
 msgstr "ความเห็น"
 
-#: src/formatter/grantleeviewformatter.cpp:143
+#: src/formatter/grantleeviewformatter.cpp:185
 #, kde-format
 msgid "Complete Story"
 msgstr "บทความสมบูรณ์"
 
-#: src/formatter/grantleeviewformatter.cpp:144
+#: src/formatter/grantleeviewformatter.cpp:186
 #, kde-format
 msgid "Author"
 msgstr "ผู้เขียน"
 
-#: src/formatter/grantleeviewformatter.cpp:145
+#: src/formatter/grantleeviewformatter.cpp:187
 #, kde-format
 msgid "Enclosure"
 msgstr ""

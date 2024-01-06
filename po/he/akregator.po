@@ -7,17 +7,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-12-30 01:38+0000\n"
-"PO-Revision-Date: 2023-12-28 15:19+0200\n"
+"POT-Creation-Date: 2024-01-06 01:33+0000\n"
+"PO-Revision-Date: 2024-01-05 14:34+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 23.08.4\n"
 "Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 && "
 "n % 10 == 0) ? 2 : 3));\n"
+"X-Generator: Poedit 3.4.1\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -36,6 +36,9 @@ msgid ""
 "checking all your favorite web sites manually for updates, Akregator "
 "collects the content for you."
 msgstr ""
+"קוראי ערוצים מספקים דרך נוחה לעיין בסוגים מגוונים של תוכן, לרבות חדשות, "
+"בלוגים ותוכן נוסף מאתרים מקוונים. במקום לעבור בין כל האתרים האהובים עליך "
+"ידנית לראות אם הם התעדכנו, Akregator אוסף אותם בשבילך."
 
 #: src/about/introduction_akregator.html:19
 msgid ""
@@ -44,6 +47,9 @@ msgid ""
 "want to see this page anymore, <a href='config:/disable_introduction'>click "
 "here</a>."
 msgstr ""
+"למידע נוסף על השימוש ב־Akregator, ניתן לגשת ל<a href='https://kontact.kde."
+"org/components/akregator/'>אתר של Akregator</a>. כדי להפסיק לראות את העמוד "
+"הזה בעתיד, אפשר <a href='config:/disable_introduction'>ללחוץ כאן</a>."
 
 #: src/about/introduction_akregator.html:20
 msgid "We hope that you will enjoy Akregator."
@@ -53,68 +59,63 @@ msgstr "אנו מקווים ש־Akregator מסב לך הנאה."
 msgid "Thank you, The Akregator Team"
 msgstr "תודה רבה לך, צוות Akregator"
 
-#: src/formatter/html/5.2/combinedview.html:72
-#, fuzzy
+#: src/formatter/html/5.2/combinedview.html:74
 msgid "Mark as Read"
-msgstr "&סמן ערוץ כנקרא"
+msgstr "סימון כנקרא"
 
-#: src/formatter/html/5.2/combinedview.html:75
-#, fuzzy
+#: src/formatter/html/5.2/combinedview.html:77
 msgid "Mark as Unread"
-msgstr "ס&מן את המאמרים כנקרא"
-
-#: src/formatter/html/5.2/combinedview.html:79
-#, fuzzy
-msgid "Remove Important Status"
-msgstr "הסר סימון &חושב"
+msgstr "סימון כלא נקרא"
 
 #: src/formatter/html/5.2/combinedview.html:81
-#, fuzzy
-msgid "Mark as Important"
-msgstr "סמן מאמר בתור &חשוב"
+msgid "Remove Important Status"
+msgstr "הסרת סימון חשוב"
 
 #: src/formatter/html/5.2/combinedview.html:83
-#, fuzzy
-msgid "Open Link in External Browser"
-msgstr "פתח ב&דפדפן חיצוני"
-
-#: src/formatter/html/5.2/combinedview.html:84
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:110
-#, fuzzy, kde-format
-msgid "Open In Background Tab"
-msgstr "פתח בכרטיסיית רקע"
+msgid "Mark as Important"
+msgstr "סימון כחשוב"
 
 #: src/formatter/html/5.2/combinedview.html:85
-#, fuzzy
-msgid "Send File Address"
-msgstr "שלח &קישור לכתובת..."
+msgid "Open Link in External Browser"
+msgstr "פתיחת קישור בדפדפן חיצוני"
 
 #: src/formatter/html/5.2/combinedview.html:86
-#, fuzzy
-msgid "Send Link Address"
-msgstr "שלח &קישור לכתובת..."
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:110
+#, kde-format
+msgid "Open In Background Tab"
+msgstr "פתיחה בלשונית ברקע"
 
 #: src/formatter/html/5.2/combinedview.html:87
+msgid "Send File Address"
+msgstr "שליחת כתובת קובץ"
+
+#: src/formatter/html/5.2/combinedview.html:88
+msgid "Send Link Address"
+msgstr "שליחת כתובת קישור"
+
+#: src/formatter/html/5.2/combinedview.html:89
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:96
 #, kde-format
 msgid "Delete Article"
 msgstr "מחיקת מאמר"
 
-#: src/formatter/html/5.2/normalview.html:52
+#: src/formatter/html/5.2/normalview.html:54
 msgid ""
 "<b>Note:</b> For security reasons, external reference is blocked (See "
 "configure dialog)."
 msgstr ""
+"<b>לתשומת ליבך:</b> מטעמי אבטחה, הפניה חיצונית חסומה (מידע נוסף בחלונית "
+"ההגדרות)."
 
 #: configuration/akregator_config_archive.cpp:33
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Limit feed archive size to:"
 msgid " article"
 msgid_plural " articles"
-msgstr[0] "מאמר אחד"
-msgstr[1] "שני מאמרים"
-msgstr[2] "%1 מאמרים"
-msgstr[3] "%1 מאמרים"
+msgstr[0] " כתבה"
+msgstr[1] " כתבות"
+msgstr[2] " כתבות"
+msgstr[3] " כתבות"
 
 #: configuration/akregator_config_archive.cpp:34
 #, kde-format
@@ -127,7 +128,7 @@ msgstr[2] " ימים"
 msgstr[3] " ימים"
 
 #: configuration/akregator_config_general.cpp:32
-#, fuzzy, kde-format
+#, kde-format
 msgid " minute"
 msgid_plural " minutes"
 msgstr[0] " דקה"
@@ -136,9 +137,9 @@ msgstr[2] " דקות"
 msgstr[3] " דקות"
 
 #: configuration/akregatorconfigurepluginlistwidget.cpp:51
-#, fuzzy, kde-format
+#, kde-format
 msgid "Webengine Plugins"
-msgstr "הורדות במקביל"
+msgstr "תוספי מנועי דפדפן"
 
 #: configuration/settings_advanced.cpp:27
 #, kde-format
@@ -170,21 +171,21 @@ msgstr "איפוס המסנן בעת מעבר בין ערוצים"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_3)
 #: configuration/ui/settings_appearance.ui:30
-#, fuzzy, kde-format
+#, kde-format
 msgid "Article List Colors"
-msgstr "רשימת מאמרים"
+msgstr "צבעי רשימת מאמרים"
 
 #. i18n: ectx: property (text), widget (QLabel, lbl_unreadArticles)
 #: configuration/ui/settings_appearance.ui:53
-#, fuzzy, kde-format
+#, kde-format
 msgid "Unread articles:"
-msgstr " (אין מאמרים שלא ניקרא)"
+msgstr "מאמרים שלא נקראו:"
 
 #. i18n: ectx: property (text), widget (QLabel, lbl_newArticles)
 #: configuration/ui/settings_appearance.ui:76
-#, fuzzy, kde-format
+#, kde-format
 msgid "New articles:"
-msgstr " מאמרים"
+msgstr "מאמרים חדשים:"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_UseCustomColors)
 #: configuration/ui/settings_appearance.ui:98
@@ -194,9 +195,9 @@ msgstr "להשתמש בצבעים בהתאמה אישית"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #: configuration/ui/settings_appearance.ui:121
-#, fuzzy, kde-format
+#, kde-format
 msgid "Font Size"
-msgstr "ה&גדל גודל הגופנים"
+msgstr "גודל כתב"
 
 #. i18n: ectx: property (text), widget (QLabel, lbl_MinimumFontSize)
 #: configuration/ui/settings_appearance.ui:127
@@ -212,9 +213,9 @@ msgstr "גודל כתב בינוני:"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: configuration/ui/settings_appearance.ui:228
-#, fuzzy, kde-format
+#, kde-format
 msgid "Fonts"
-msgstr "הערות"
+msgstr "גופנים"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel1)
 #: configuration/ui/settings_appearance.ui:234
@@ -248,9 +249,9 @@ msgstr "הגדרות ארכיון כברירת מחדל"
 
 #. i18n: ectx: property (text), widget (QRadioButton, rb_DisableArchiving)
 #: configuration/ui/settings_archive.ui:36
-#, fuzzy, kde-format
+#, kde-format
 msgid "Disa&ble archiving"
-msgstr "בטל שמירת ארכיבים"
+msgstr "השבתת העברה ל&ארכיון"
 
 #. i18n: ectx: property (text), widget (QRadioButton, rb_KeepAllArticles)
 #. i18n: ectx: property (text), widget (QRadioButton, rb_keepAllArticles)
@@ -262,15 +263,15 @@ msgstr "&שמירה על כל המאמרים"
 
 #. i18n: ectx: property (text), widget (QRadioButton, rb_LimitArticleNumber)
 #: configuration/ui/settings_archive.ui:64
-#, fuzzy, kde-format
+#, kde-format
 msgid "Limit feed archi&ve size to:"
-msgstr "הגבל את גודל ארכיבי הערוצים אל:"
+msgstr "הגבלת &גודל ארכיון הערוצים לכדי:"
 
 #. i18n: ectx: property (text), widget (QRadioButton, rb_LimitArticleAge)
 #: configuration/ui/settings_archive.ui:100
 #, kde-format
 msgid "Delete articles older than: "
-msgstr "מחיקת ארכיונים ישנים מ־:"
+msgstr "מחיקת ארכיונים ישנים מ־: "
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_DoNotExpireImportantArticles)
 #: configuration/ui/settings_archive.ui:138
@@ -319,9 +320,9 @@ msgstr "כפתור אמצעי:"
 
 #. i18n: ectx: property (title), widget (QGroupBox, externalBrowserGroupBox)
 #: configuration/ui/settings_browser.ui:74
-#, fuzzy, kde-format
+#, kde-format
 msgid "External Browsing"
-msgstr "עבור עיון חיצוני"
+msgstr "עיון חיצוני"
 
 #. i18n: ectx: property (text), widget (QLineEdit, kcfg_ExternalBrowserCustomCommand)
 #: configuration/ui/settings_browser.ui:83
@@ -331,22 +332,21 @@ msgstr "firefox %u"
 
 #. i18n: ectx: property (text), widget (QRadioButton, kcfg_ExternalBrowserUseCustomCommand)
 #: configuration/ui/settings_browser.ui:90
-#, fuzzy, kde-format
-#| msgid "Use this command:"
+#, kde-format
 msgid "Use &this command:"
-msgstr "השתמש בפקודה זו:"
+msgstr "להשתמש ב&פקודה הזאת:"
 
 #. i18n: ectx: property (text), widget (QRadioButton, kcfg_ExternalBrowserUseKdeDefault)
 #: configuration/ui/settings_browser.ui:97
-#, fuzzy, kde-format
+#, kde-format
 msgid "Use default web &browser"
-msgstr "השתמש בדפדפן ברירת המחדל של KDE"
+msgstr "להשתמש בדפדפן &ברירת המחדל"
 
 #. i18n: ectx: property (title), widget (QGroupBox, tabsGroupBox)
 #: configuration/ui/settings_browser.ui:110
-#, fuzzy, kde-format
+#, kde-format
 msgid "Tabs"
-msgstr "תגיות"
+msgstr "לשוניות"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_AlwaysShowTabBar)
 #. i18n: ectx: label, entry, group (Browser)
@@ -357,16 +357,16 @@ msgstr "תמיד להציג את סרגל הלשוניות"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_CloseButtonOnTabs)
 #: configuration/ui/settings_browser.ui:123
-#, fuzzy, kde-format
+#, kde-format
 msgid "Show close button on each tab"
-msgstr "הצג כפתורי סגירה על הלשוניות"
+msgstr "להציג כפתור סגירה על כל לשונית"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_NewWindowInTab)
 #. i18n: ectx: label, entry, group (Browser)
 #: configuration/ui/settings_browser.ui:130 interfaces/akregator.kcfg:212
 #, kde-format
 msgid "Open links in new tab instead of in new window"
-msgstr ""
+msgstr "לפתוח קישורים בלשונית חדשה במקום בחלון חדש"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: configuration/ui/settings_browser.ui:140
@@ -378,7 +378,7 @@ msgstr "אבטחה"
 #: configuration/ui/settings_browser.ui:146
 #, kde-format
 msgid "Verify URLs using Google's Safe Browsing API"
-msgstr ""
+msgstr "אימות כתובות באמצעות API הגלישה הבטוחה של Google"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_EnableJavascript)
 #. i18n: ectx: label, entry, group (Browser)
@@ -395,13 +395,13 @@ msgstr "שונות"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_AccessKeyEnabled)
 #: configuration/ui/settings_browser.ui:169
-#, fuzzy, kde-format
+#, kde-format
 msgid "Access Key Enabled"
-msgstr "השאר מופעל"
+msgstr "מקש הגישה פעיל"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_3)
 #: configuration/ui/settings_general.ui:30
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "global settings"
 msgid "Global"
 msgstr "כללי"
@@ -414,17 +414,16 @@ msgstr "הצגת סמל ב&מגש מערכת"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ShowUnreadInTaskbar)
 #: configuration/ui/settings_general.ui:43
-#, fuzzy, kde-format
-#| msgid " (no unread articles)"
+#, kde-format
 msgid "Show unread articles in Taskbar"
-msgstr " (אין מאמרים שלא ניקרא)"
+msgstr "הצגת כתבות שלא נקראו בסרגל המשימות"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_HideReadFeeds)
 #. i18n: ectx: label, entry, group (View)
 #: configuration/ui/settings_general.ui:50 interfaces/akregator.kcfg:9
-#, fuzzy, kde-format
+#, kde-format
 msgid "Hide feeds with no unread articles"
-msgstr " (אין מאמרים שלא ניקרא)"
+msgstr "הסתרת ערוצים שאין בהם כתבות שלא נקראו"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_LockFeedsInPlace)
 #: configuration/ui/settings_general.ui:57
@@ -435,9 +434,9 @@ msgstr "נועל את הערוצים במקום"
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_AutoExpandFolders)
 #. i18n: ectx: whatsthis, entry, group (View)
 #: configuration/ui/settings_general.ui:64 interfaces/akregator.kcfg:27
-#, fuzzy, kde-format
+#, kde-format
 msgid "Auto-expand folders containing unread articles"
-msgstr " (אין מאמרים שלא ניקרא)"
+msgstr "להרחיב אוטומטית תיקיות שמכילות כתבות שלא נקראו"
 
 #. i18n: ectx: property (whatsThis), widget (QCheckBox, kcfg_UseNotifications)
 #: configuration/ui/settings_general.ui:74
@@ -512,9 +511,9 @@ msgstr "ייצוא מ־Akregator של %1"
 
 #. i18n: ectx: whatsthis, entry, group (View)
 #: interfaces/akregator.kcfg:10
-#, fuzzy, kde-format
+#, kde-format
 msgid "Hides feeds with no unread articles"
-msgstr " (אין מאמרים שלא ניקרא)"
+msgstr "להסתיר ערוצים בלי כתבות שלא נקראו"
 
 #. i18n: ectx: label, entry, group (View)
 #: interfaces/akregator.kcfg:21
@@ -530,9 +529,9 @@ msgstr "נועל את הערוצים במקומם"
 
 #. i18n: ectx: label, entry, group (View)
 #: interfaces/akregator.kcfg:26
-#, fuzzy, kde-format
+#, kde-format
 msgid "Auto-Expand folders with unread articles"
-msgstr " (אין מאמרים שלא ניקרא)"
+msgstr "להרחיב אוטומטית תיקיות עם כתבות שלא נקראו"
 
 #. i18n: ectx: label, entry, group (View)
 #: interfaces/akregator.kcfg:31 src/actions/actionmanagerimpl.cpp:318
@@ -736,6 +735,9 @@ msgid ""
 "the default one. This is here because some proxies may interrupt the "
 "connection because of having \"gator\" in the name."
 msgstr ""
+"אפשר זו מאפשרת להגדיר מחרוזת user-agent (סוכן משתמש) במקום להשתמש במחרוזת "
+"ברירת המחדל. זה כאן כיוון שחלק משרתי התיווך יכולים להפריע לחיבור כי יש בשם "
+"את הביטוי „gator”."
 
 #. i18n: ectx: label, entry, group (General)
 #: interfaces/akregator.kcfg:155
@@ -813,19 +815,19 @@ msgstr "קובע האם להשתמש בסמל במגש מערכת או לא."
 #: interfaces/akregator.kcfg:185
 #, kde-format
 msgid "Show Unread In Taskbar"
-msgstr ""
+msgstr "הצגת פריטים שלא נקראו בסרגל המשימות"
 
 #. i18n: ectx: whatsthis, entry, group (General)
 #: interfaces/akregator.kcfg:186
-#, fuzzy, kde-format
+#, kde-format
 msgid "Specifies if we show unread article in taskbar."
-msgstr " (אין מאמרים שלא ניקרא)"
+msgstr "מציין אם להציג כתבות שלא נקראו בסרגל המשימות."
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
 #: interfaces/akregator.kcfg:203
 #, kde-format
 msgid "Always show the tab bar, even when only one tab is open"
-msgstr ""
+msgstr "תמיד להציג"
 
 #. i18n: ectx: label, entry, group (Browser)
 #: interfaces/akregator.kcfg:207
@@ -846,6 +848,7 @@ msgid ""
 "Open a link which would normally open in a new window (external browser) in "
 "a new tab instead"
 msgstr ""
+"לפתוח קישור שבדרך כלל ייפתח בחלון חדש (דפדפן חיצוני) בלשונית חדשה במקום"
 
 #. i18n: ectx: label, entry, group (Browser)
 #: interfaces/akregator.kcfg:217
@@ -873,9 +876,9 @@ msgstr "להשתמש בפקודה הבאה כדי לפתוח מאמר בדפדפ
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
 #: interfaces/akregator.kcfg:227
-#, fuzzy, no-c-format, kde-format
+#, no-c-format, kde-format
 msgid "Command to launch external browser. URL will substitute for %u."
-msgstr "הפקודה להפעלת הדפדפן החיצוני. הכתובת תומר ב־%u."
+msgstr "פקודה להפעלת דפדפן חיצוני. הכתובת תוחלף ב־‎%u."
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
 #: interfaces/akregator.kcfg:231
@@ -903,10 +906,10 @@ msgstr "האם לחכות לפני סימון מאמר בתור נקרא כאש�
 
 #. i18n: ectx: whatsthis, entry (MarkReadDelay), group (Advanced)
 #: interfaces/akregator.kcfg:273
-#, fuzzy, kde-format
+#, kde-format
 msgid ""
 "Configurable delay between selecting an article and it being marked as read."
-msgstr "השהייה ניתנת לתכנות של בחירת מאמר וסימונו בתור ניקרא."
+msgstr "השהיה שאפשר להגדיר בין בחירת כתבה וסימונה כנקראה."
 
 #. i18n: ectx: whatsthis, entry, group (Advanced)
 #: interfaces/akregator.kcfg:277
@@ -923,32 +926,32 @@ msgid "Akregator"
 msgstr "Akregator"
 
 #: kontactplugin/akregator_plugin.cpp:29
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "New Feed..."
-msgstr "&הוסף ערוץ..."
+msgstr "ערוץ חדש…"
 
 #: kontactplugin/akregator_plugin.cpp:32
 #, kde-format
 msgctxt "@info:status"
 msgid "Create a new feed"
-msgstr ""
+msgstr "יצירת ערוץ חדש"
 
 #: kontactplugin/akregator_plugin.cpp:33
 #, kde-format
 msgctxt "@info:whatsthis"
 msgid "You will be presented with a dialog where you can add a new feed."
-msgstr ""
+msgstr "תופיע חלונית בה ניתן להוסיף ערוץ חדש."
 
 #: src/aboutdata.cpp:21
-#, fuzzy, kde-format
+#, kde-format
 msgid "A KDE Feed Reader"
-msgstr "קורא פידים או חדשות (RSS) עבור KDE"
+msgstr "קורא ערוצי חדשות (RSS) ל־KDE"
 
 #: src/aboutdata.cpp:23
-#, fuzzy, kde-format
+#, kde-format
 msgid "Copyright © 2004–%1 Akregator authors"
-msgstr "(C) 2004, 2005 Akregator המפתחים של"
+msgstr "כל הזכויות שמורות © 2004‏–%1 יוצרי Akregator"
 
 #: src/aboutdata.cpp:27
 #, kde-format
@@ -966,14 +969,14 @@ msgid "Frank Osterfeld"
 msgstr "פרנק אוסטרפלד"
 
 #: src/aboutdata.cpp:28
-#, fuzzy, kde-format
+#, kde-format
 msgid "Former maintainer"
-msgstr "מתחזק"
+msgstr "מתחזק לשעבר"
 
 #: src/aboutdata.cpp:29
 #, kde-format
 msgid "Teemu Rytilahti"
-msgstr ""
+msgstr "טימו רייטילאהטי"
 
 #: src/aboutdata.cpp:29 src/aboutdata.cpp:30 src/aboutdata.cpp:31
 #: src/aboutdata.cpp:32
@@ -989,7 +992,7 @@ msgstr "סשמיט בהדורי"
 #: src/aboutdata.cpp:31
 #, kde-format
 msgid "Pierre Habouzit"
-msgstr ""
+msgstr "פייר אבוזית"
 
 #: src/aboutdata.cpp:32
 #, kde-format
@@ -999,7 +1002,7 @@ msgstr "סטניסלב קרצ׳בני"
 #: src/aboutdata.cpp:33
 #, kde-format
 msgid "Gary Cramblitt"
-msgstr ""
+msgstr "גארי קרמבליט"
 
 #: src/aboutdata.cpp:33 src/aboutdata.cpp:34 src/aboutdata.cpp:35
 #, kde-format
@@ -1009,12 +1012,12 @@ msgstr "תורם"
 #: src/aboutdata.cpp:34
 #, kde-format
 msgid "Stephan Binner"
-msgstr ""
+msgstr "סטיבן בינר"
 
 #: src/aboutdata.cpp:35
 #, kde-format
 msgid "Christof Musik"
-msgstr ""
+msgstr "כריסטוף מוזיק"
 
 #: src/aboutdata.cpp:36
 #, kde-format
@@ -1027,9 +1030,9 @@ msgid "Handbook"
 msgstr "ספרון הדרכה"
 
 #: src/aboutdata.cpp:37
-#, fuzzy, kde-format
+#, kde-format
 msgid "Frerich Raabe"
-msgstr "הקבלה בוטלה"
+msgstr "פרריך ראבה"
 
 #: src/aboutdata.cpp:37
 #, kde-format
@@ -1039,7 +1042,7 @@ msgstr "היוצר של librss"
 #: src/aboutdata.cpp:38
 #, kde-format
 msgid "Eckhart Woerner"
-msgstr ""
+msgstr "אקהארט וירנר"
 
 #: src/aboutdata.cpp:38
 #, kde-format
@@ -1049,7 +1052,7 @@ msgstr "ניהול מעקב אחר תקלות, שיפורי שימושיות"
 #: src/aboutdata.cpp:39
 #, kde-format
 msgid "Heinrich Wendel"
-msgstr ""
+msgstr "היינריך ונדל"
 
 #: src/aboutdata.cpp:39
 #, kde-format
@@ -1069,7 +1072,7 @@ msgstr "אפשרות חדשה של ‚השהיית סימון כנקרא’"
 #: src/aboutdata.cpp:41
 #, kde-format
 msgid "Marcel Dierkes"
-msgstr ""
+msgstr "מרסל דירקס"
 
 #: src/aboutdata.cpp:41
 #, kde-format
@@ -1147,9 +1150,9 @@ msgid "&Export Feeds..."
 msgstr "יי&צוא ערוצים…"
 
 #: src/actions/actionmanagerimpl.cpp:200
-#, fuzzy, kde-format
+#, kde-format
 msgid "&Configure Akregator..."
-msgstr "&תצורה של Akregator..."
+msgstr "ה&גדרת Akregator…"
 
 #: src/actions/actionmanagerimpl.cpp:219
 #, kde-format
@@ -1192,9 +1195,9 @@ msgid "Fe&tch All Feeds"
 msgstr "&עדכון כל הערוצים"
 
 #: src/actions/actionmanagerimpl.cpp:299
-#, fuzzy, kde-format
+#, kde-format
 msgid "C&ancel Feed Fetches"
-msgstr "הורדות במקביל"
+msgstr "&ביטול משיכות ערוצים"
 
 #: src/actions/actionmanagerimpl.cpp:312
 #, kde-format
@@ -1217,9 +1220,9 @@ msgid "Ne&xt Unread Article"
 msgstr "המאמר הבא שלא נק&רא"
 
 #: src/actions/actionmanagerimpl.cpp:360
-#, fuzzy, kde-format
+#, kde-format
 msgid "&Delete"
-msgstr "&מחק תגית"
+msgstr "&מחיקה"
 
 #: src/actions/actionmanagerimpl.cpp:365
 #, kde-format
@@ -1238,7 +1241,7 @@ msgid "Mark selected article as read"
 msgstr "סימון מאמר נבחר כנקרא"
 
 #: src/actions/actionmanagerimpl.cpp:377
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "as in: mark as new"
 msgid "&New"
 msgstr "&חדש"
@@ -1249,7 +1252,7 @@ msgid "Mark selected article as new"
 msgstr "סימון מאמר נבחר בתור חדש"
 
 #: src/actions/actionmanagerimpl.cpp:385
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "as in: mark as unread"
 msgid "&Unread"
 msgstr "&לא נקרא"
@@ -1365,10 +1368,9 @@ msgid "Go Down in Tree"
 msgstr "ירידה מטה בעץ"
 
 #: src/actions/actionmanagerimpl.cpp:538
-#, fuzzy, kde-format
-#| msgid "N&ext Unread Feed"
+#, kde-format
 msgid "Hide Read Feeds"
-msgstr "הערוץ ה&בא שלא נקרא"
+msgstr "הסתרת ערוצים שנקראו"
 
 #: src/actions/actionmanagerimpl.cpp:544
 #, kde-format
@@ -1376,9 +1378,9 @@ msgid "Lock Feeds In Place"
 msgstr "לנעול את הערוצים במקום"
 
 #: src/actions/actionmanagerimpl.cpp:550
-#, fuzzy, kde-format
+#, kde-format
 msgid "Auto-expand folders with unread articles"
-msgstr " (אין מאמרים שלא ניקרא)"
+msgstr "להרחיב אוטומטית תיקיות עם כתבות שלא נקראו"
 
 #: src/actions/actionmanagerimpl.cpp:566
 #, kde-format
@@ -1416,9 +1418,9 @@ msgid "&Find in Message..."
 msgstr "&איתור בהודעה…"
 
 #: src/actions/actionmanagerimpl.cpp:614
-#, fuzzy, kde-format
+#, kde-format
 msgid "Close Tab"
-msgstr "&סגור לשונית"
+msgstr "סגירת לשונית"
 
 #: src/actions/actionmanagerimpl.cpp:627
 #, kde-format
@@ -1456,11 +1458,10 @@ msgid "Open Link in External &Browser"
 msgstr "פתיחת הקישור בדפדפן &חיצוני"
 
 #: src/addfeeddialog.cpp:49
-#, fuzzy, kde-format
-#| msgid "Add Feed"
+#, kde-format
 msgctxt "@title:window"
 msgid "Add Feed"
-msgstr "הוסף ערוץ"
+msgstr "הוספת ערוץ"
 
 #: src/addfeeddialog.cpp:99
 #, kde-format
@@ -1528,12 +1529,12 @@ msgid "Spanish feeds"
 msgstr "ערוצים בספרדית"
 
 #: src/akregator_part.cpp:114
-#, fuzzy, kde-format
+#, kde-format
 msgid "Planet KDE España"
-msgstr "פלנטת KDE"
+msgstr "פלנטת KDE הספרדית"
 
 #: src/akregator_part.cpp:427
-#, fuzzy, kde-format
+#, kde-format
 msgid ""
 "Access denied: Cannot save feed list to <b>%1</b>. Please check your "
 "permissions."
@@ -1550,11 +1551,10 @@ msgid "Could not import the file %1 (no valid OPML)"
 msgstr "אי אפשר לייבא את הקובץ %1 (אין OPML תקין)"
 
 #: src/akregator_part.cpp:464 src/command/loadfeedlistcommand.cpp:71
-#, fuzzy, kde-format
-#| msgid "OPML Parsing Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "OPML Parsing Error"
-msgstr "שגיאת פענוח של OPML"
+msgstr "שגיאת פענוח OPML"
 
 #: src/akregator_part.cpp:468
 #, kde-format
@@ -1566,28 +1566,26 @@ msgstr ""
 "הנוכחי."
 
 #: src/akregator_part.cpp:469 src/command/loadfeedlistcommand.cpp:144
-#, fuzzy, kde-format
-#| msgid "Read Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "Read Error"
 msgstr "שגיאת קריאה"
 
 #: src/akregator_part.cpp:480
-#, fuzzy, kde-format
+#, kde-format
 msgid "Access denied: cannot write to file %1. Please check your permissions."
-msgstr "שיאה נדחתה: לא ניתן לכתוב אל קובץ %1"
+msgstr "הגישה נדחתה: לא ניתן לכתוב לקובץ %1. נא לבדוק את ההרשאות שלך."
 
 #: src/akregator_part.cpp:481
-#, fuzzy, kde-format
-#| msgid "Write Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "Write Error"
 msgstr "שגיאת כתיבה"
 
 #: src/akregator_part.cpp:496 src/akregator_part.cpp:505
-#, fuzzy, kde-format
+#, kde-format
 msgid "OPML Outlines (%1);;All Files (*)"
-msgstr "קבצי (OPML  (*.opml, *.xml"
+msgstr "מתארי OPML‏ (%1);;כל הקבצים (*)"
 
 #: src/akregator_part.cpp:629
 #, kde-format
@@ -1600,9 +1598,9 @@ msgid "The feed to be listed was already removed."
 msgstr "הערוץ להצגה כבר הוסר."
 
 #: src/articlelistview.cpp:156 src/subscription/subscriptionlistview.cpp:180
-#, fuzzy, kde-format
+#, kde-format
 msgid "Columns"
-msgstr "הערות"
+msgstr "עמודות"
 
 #: src/articlelistview.cpp:214
 #, kde-format
@@ -1610,7 +1608,7 @@ msgid "No result found"
 msgstr "לא נמצאו תוצאות"
 
 #: src/articlelistview.cpp:375
-#, fuzzy, kde-format
+#, kde-format
 msgid ""
 "<h2>Article list</h2>Here you can browse articles from the currently "
 "selected feed. You can also manage articles, as marking them as persistent "
@@ -1618,34 +1616,34 @@ msgid ""
 "To view the web page of the article, you can open the article internally in "
 "a tab or in an external browser window."
 msgstr ""
-"<h2>רשימת מאמרים</h2> כאן ניתן לדפדף במאמרים מהערוץ הנבחר. ניתן גם לנהל "
-"מאמרים, לסמן אותם בתור יציבים (\"שמור מאמר\") או למחוק אותם באמצעות תפריט "
-"העכבר הימני. לתצוגה של אתר האינטרנט של המאמר, ניתן לפתוח את המאמר בלשונית "
-"פנימית או בדפדפן חיצוני."
+"<h2>רשימת מאמרים</h2> כאן ניתן לעיין בכתבות מהערוץ הנבחר. ניתן גם לנהל "
+"כתבות, לסמן אותן בתור קבועות („שמירת כתבה”) או למחוק אותן דרך תפריט העכבר "
+"הימני. לתצוגה של אתר האינטרנט של הכתבה, ניתן לפתוח את הכתבה בלשונית פנימית "
+"או בדפדפן חיצוני."
 
 #: src/articlemodel.cpp:74
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Articlelist's column header"
 msgid "Title"
-msgstr "כותרת:"
+msgstr "כותרת"
 
 #: src/articlemodel.cpp:76
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Articlelist's column header"
 msgid "Feed"
 msgstr "ערוץ"
 
 #: src/articlemodel.cpp:78
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Articlelist's column header"
 msgid "Date"
 msgstr "תאריך"
 
 #: src/articlemodel.cpp:80
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Articlelist's column header"
 msgid "Author"
-msgstr "כותב"
+msgstr "יוצר"
 
 #: src/articlemodel.cpp:82
 #, kde-format
@@ -1654,22 +1652,21 @@ msgid "Description"
 msgstr "תיאור"
 
 #: src/articlemodel.cpp:84
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Articlelist's column header"
 msgid "Content"
-msgstr "הערות"
+msgstr "תוכן"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:143
-#, fuzzy, kde-format
+#, kde-format
 msgid "Akregator is a KDE news feed reader."
-msgstr "קורא פידים או חדשות (RSS) עבור KDE"
+msgstr "Akregator הוא קורא ערוצי חדשות של KDE."
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:184
-#, fuzzy, kde-format
-#| msgid "&Save Link As..."
+#, kde-format
 msgctxt "@title:window"
 msgid "Save As"
-msgstr "&שמור קישור בתור..."
+msgstr "שמירה בשם"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:373
 #, kde-format
@@ -1687,11 +1684,10 @@ msgid "Are you sure you want to disable this introduction page?"
 msgstr "לבטל את עמוד ההקדמה הזה?"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:377
-#, fuzzy, kde-format
-#| msgid "Disable Introduction Page"
+#, kde-format
 msgctxt "@title:window"
 msgid "Disable Introduction Page"
-msgstr "בטל עמוד הקדמה"
+msgstr "השבתת עמוד קבלת פנים"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:412
 #, kde-format
@@ -1747,11 +1743,10 @@ msgstr ""
 "<qt> למחוק את התיקייה <b>%1</b> ואת הערוצים שלה כולל תת התיקיות שלה? </qt>"
 
 #: src/command/deletesubscriptioncommand.cpp:44
-#, fuzzy, kde-format
-#| msgid "Delete Folder"
+#, kde-format
 msgctxt "@title:window"
 msgid "Delete Folder"
-msgstr "מחק תיקייה"
+msgstr "מחיקת תיקייה"
 
 #: src/command/deletesubscriptioncommand.cpp:61
 #, kde-format
@@ -1764,16 +1759,15 @@ msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
 msgstr "<qt>למחוק את הערוץ <b>%1</b>?</qt>"
 
 #: src/command/deletesubscriptioncommand.cpp:68
-#, fuzzy, kde-format
-#| msgid "Delete Feed"
+#, kde-format
 msgctxt "@title:window"
 msgid "Delete Feed"
-msgstr "מחק ערוץ"
+msgstr "מחיקת ערוץ"
 
 #: src/command/importfeedlistcommand.cpp:48
-#, fuzzy, kde-format
+#, kde-format
 msgid "Imported Feeds"
-msgstr "&ייבוא ערוצים..."
+msgstr "ערוצים שיובאו"
 
 #: src/command/importfeedlistcommand.cpp:77
 #, kde-format
@@ -1786,22 +1780,19 @@ msgid "Imported folder name:"
 msgstr "שם תיקייה מיובאת:"
 
 #: src/command/loadfeedlistcommand.cpp:63
-#, fuzzy, kde-format
+#, kde-format
 msgid ""
 "<qt>The standard feed list is corrupted (invalid OPML). A backup was created:"
 "<p><b>%1</b></p></qt>"
 msgstr ""
-"<qt> רשימת הערוצים הרגילה מקולקל (xml לא תקין).נוצר גיבוי:<p><b>%2</b></p></"
-"qt>"
+"<qt>רשימת הערוצים הרגילה פגומה (OPML שגוי).נוצר גיבוי:<p><b>%1</b></p></qt>"
 
 #: src/command/loadfeedlistcommand.cpp:67
-#, fuzzy, kde-format
+#, kde-format
 msgid ""
 "<qt>The standard feed list is corrupted (invalid OPML). Could not create a "
 "backup.</qt>"
-msgstr ""
-"<qt> רשימת הערוצים הרגילה מקולקל (xml לא תקין).נוצר גיבוי:<p><b>%2</b></p></"
-"qt>"
+msgstr "<qt>רשימת הערוצים הרגילה פגומה (OPML שגוי). לא ניתן ליצור גיבוי.</qt>"
 
 #: src/command/loadfeedlistcommand.cpp:129
 #, kde-format
@@ -1814,7 +1805,7 @@ msgid "<qt>Could not open feed list (%1) for reading.</qt>"
 msgstr "<qt>לא ניתן לפתוח את רשימת הערוצים (%1) לקריאה.</qt>"
 
 #: src/command/loadfeedlistcommand.cpp:155
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "error message window caption"
 msgid "XML Parsing Error"
 msgstr "שגיאת פענוח XML"
@@ -1822,16 +1813,15 @@ msgstr "שגיאת פענוח XML"
 #: src/command/loadfeedlistcommand.cpp:157
 #, kde-kuit-format
 msgid "<qt><p>XML parsing error in line %1, column %2 of %3:</p><p>%4</p></qt>"
-msgstr ""
+msgstr "<qt><p>שגיאת פענוח XML בשורה %1, עמודה %2 מתוך %3:</p><p>%4</p></qt>"
 
 #: src/command/loadfeedlistcommand.cpp:164
-#, fuzzy, kde-format
+#, kde-format
 msgid ""
 "<qt>The standard feed list is corrupted (invalid XML). A backup was created:"
 "<p><b>%1</b></p></qt>"
 msgstr ""
-"<qt> רשימת הערוצים הרגילה מקולקל (xml לא תקין).נוצר גיבוי:<p><b>%2</b></p></"
-"qt>"
+"<qt>רשימת הערוצים הרגילה פגומה (XML שגוי).נוצר גיבוי:<p><b>%1</b></p></qt>"
 
 #: src/command/loadfeedlistcommand.cpp:168
 #, kde-format
@@ -1845,28 +1835,28 @@ msgstr "<qt>רשימת הערוצים הרגילה פגומה (XML שגוי). ל
 msgid ""
 "Akregator did not close correctly. Would you like to restore the previous "
 "session?"
-msgstr ""
+msgstr "Akregator לא נסגר כראוי. לשחזר את ההפעלה הקודמת?"
 
 #: src/crashwidget/crashwidget.cpp:37
 #, kde-format
 msgid "Restore Session"
-msgstr ""
+msgstr "לשחזר את ההפעלה"
 
 #: src/crashwidget/crashwidget.cpp:43
 #, kde-format
 msgid "Do Not Restore Session"
-msgstr ""
+msgstr "לא לשחזר את ההפעלה"
 
 #: src/crashwidget/crashwidget.cpp:49
 #, kde-format
 msgid "Ask me later"
-msgstr ""
+msgstr "לשאול בהמשך"
 
 #. i18n: ectx: Menu (edit)
 #: src/data/akregator_part.rc:14 src/data/akregator_shell.rc:11
 #, kde-format
 msgid "&Edit"
-msgstr ""
+msgstr "&עריכה"
 
 #. i18n: ectx: Menu (view)
 #: src/data/akregator_part.rc:22 src/data/akregator_shell.rc:16
@@ -1916,31 +1906,31 @@ msgid "All Feeds"
 msgstr "כל הערוצים"
 
 #: src/feed/feedpropertiesdialog.cpp:45 src/feed/feedpropertiesdialog.cpp:77
-#, fuzzy, kde-format
+#, kde-format
 msgid "Minute"
 msgid_plural "Minutes"
-msgstr[0] "דקות"
+msgstr[0] "דקה"
 msgstr[1] "דקות"
-msgstr[2] ""
-msgstr[3] ""
+msgstr[2] "דקות"
+msgstr[3] "דקות"
 
 #: src/feed/feedpropertiesdialog.cpp:46 src/feed/feedpropertiesdialog.cpp:78
-#, fuzzy, kde-format
+#, kde-format
 msgid "Hour"
 msgid_plural "Hours"
-msgstr[0] "שעות"
-msgstr[1] "שעות"
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "שעה"
+msgstr[1] "שעתיים"
+msgstr[2] "שעות"
+msgstr[3] "שעות"
 
 #: src/feed/feedpropertiesdialog.cpp:47 src/feed/feedpropertiesdialog.cpp:79
-#, fuzzy, kde-format
+#, kde-format
 msgid "Day"
 msgid_plural "Days"
-msgstr[0] "ימים"
-msgstr[1] "ימים"
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "יום"
+msgstr[1] "יומיים"
+msgstr[2] "יום"
+msgstr[3] "ימים"
 
 #: src/feed/feedpropertiesdialog.cpp:60 src/feed/feedpropertiesdialog.cpp:112
 #, kde-format
@@ -1955,22 +1945,22 @@ msgid "Never"
 msgstr "לעולם לא"
 
 #: src/feed/feedpropertiesdialog.cpp:81
-#, fuzzy, kde-format
+#, kde-format
 msgid " day"
 msgid_plural " days"
-msgstr[0] "יום אחד"
-msgstr[1] "יום אחד"
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] " יום"
+msgstr[1] " יומיים"
+msgstr[2] " יום"
+msgstr[3] " ימים"
 
 #: src/feed/feedpropertiesdialog.cpp:82
-#, fuzzy, kde-format
+#, kde-format
 msgid " article"
 msgid_plural " articles"
-msgstr[0] "מאמר אחד"
-msgstr[1] "מאמר אחד"
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "  מאמר"
+msgstr[1] " מאמרים"
+msgstr[2] " מאמרים"
+msgstr[3] " מאמרים"
 
 #: src/feed/feedpropertiesdialog.cpp:112
 #, kde-format
@@ -1981,68 +1971,68 @@ msgstr "מאפייני %1"
 #: src/formatter/articleformatter.cpp:36
 #, kde-format
 msgid "(%1, %2)"
-msgstr ""
+msgstr "(%1, %2)"
 
-#: src/formatter/grantleeviewformatter.cpp:58
-#: src/formatter/grantleeviewformatter.cpp:109
+#: src/formatter/grantleeviewformatter.cpp:100
+#: src/formatter/grantleeviewformatter.cpp:151
 #, kde-format
 msgid " (no unread articles)"
 msgstr " (אין מאמרים שלא נקראו)"
 
-#: src/formatter/grantleeviewformatter.cpp:60
-#: src/formatter/grantleeviewformatter.cpp:111
-#, fuzzy, kde-format
+#: src/formatter/grantleeviewformatter.cpp:102
+#: src/formatter/grantleeviewformatter.cpp:153
+#, kde-format
 msgid " (1 unread article)"
 msgid_plural " (%1 unread articles)"
-msgstr[0] "(מאמר אחד שלא נקרא)"
-msgstr[1] "(%1 מאמרים שלא נקראו)"
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] " (כתבה שלא נקראה)"
+msgstr[1] " (שתי כתבות שלא נקראו)"
+msgstr[2] " (%1 כתבות שלא נקראו)"
+msgstr[3] " (%1 כתבות שלא נקראו)"
 
-#: src/formatter/grantleeviewformatter.cpp:75
+#: src/formatter/grantleeviewformatter.cpp:117
 #, kde-format
 msgid "<b>Description:</b> %1<br />"
 msgstr "<b>תיאור:</b> %1<br />"
 
-#: src/formatter/grantleeviewformatter.cpp:82
+#: src/formatter/grantleeviewformatter.cpp:124
 #, kde-format
 msgid "<b>Homepage:</b> <a href=\"%1\">%1</a>"
 msgstr "<b>דף הבית:</b> <a href=\"%1\">%1</a>"
 
-#: src/formatter/grantleeviewformatter.cpp:89
+#: src/formatter/grantleeviewformatter.cpp:131
 #, kde-format
 msgid "<b>Copyright:</b> %1</a>"
 msgstr "<b>זכויות יוצרים:</b> %1</a>"
 
-#: src/formatter/grantleeviewformatter.cpp:141
+#: src/formatter/grantleeviewformatter.cpp:183
 #, kde-format
 msgid "Date"
 msgstr "תאריך"
 
-#: src/formatter/grantleeviewformatter.cpp:142
+#: src/formatter/grantleeviewformatter.cpp:184
 #, kde-format
 msgid "Comment"
 msgstr "הערה"
 
-#: src/formatter/grantleeviewformatter.cpp:143
+#: src/formatter/grantleeviewformatter.cpp:185
 #, kde-format
 msgid "Complete Story"
 msgstr "הסיפור המלא"
 
-#: src/formatter/grantleeviewformatter.cpp:144
+#: src/formatter/grantleeviewformatter.cpp:186
 #, kde-format
 msgid "Author"
 msgstr "כותב"
 
-#: src/formatter/grantleeviewformatter.cpp:145
+#: src/formatter/grantleeviewformatter.cpp:187
 #, kde-format
 msgid "Enclosure"
-msgstr ""
+msgstr "מעטפת"
 
 #: src/frame/frame.cpp:21
 #, kde-format
 msgid "Untitled"
-msgstr ""
+msgstr "ללא כותרת"
 
 #: src/frame/frame.cpp:141
 #, kde-format
@@ -2077,7 +2067,7 @@ msgstr "מאמרים"
 #: src/mainwidget.cpp:251
 #, kde-format
 msgid "About"
-msgstr ""
+msgstr "על אודות"
 
 #: src/mainwidget.cpp:777
 #, kde-format
@@ -2113,7 +2103,7 @@ msgstr "סימון ערוצים כנקראו"
 #: src/mainwidget.cpp:849 src/mainwidget.cpp:858 src/mainwidget.cpp:1260
 #, kde-format
 msgid "Networking is not available."
-msgstr ""
+msgstr "התקשורת לא זמינה."
 
 #: src/mainwidget.cpp:866
 #, kde-format
@@ -2126,14 +2116,14 @@ msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
 msgstr "<qt>למחוק את המאמר <b>%1</b>?</qt>"
 
 #: src/mainwidget.cpp:1068
-#, fuzzy, kde-format
+#, kde-format
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
 msgid_plural ""
 "<qt>Are you sure you want to delete the %1 selected articles?</qt>"
-msgstr[0] "<qt>האם אתה בטוח שברצונך למחוק את המאמרים המסומן?</qt>"
-msgstr[1] "<qt>האם אתה בטוח שברצונך למחוק את המאמרים המסומן?</qt>"
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "<qt>למחוק את הכתבה הנבחרת?</qt>"
+msgstr[1] "<qt>למחוק את שתי הכתבות הנבחרות?</qt>"
+msgstr[2] "<qt>למחוק את %1 הכתבות הנבחרות?</qt>"
+msgstr[3] "<qt>למחוק את %1 הכתבות הנבחרות?</qt>"
 
 #: src/mainwidget.cpp:1075
 #, kde-format
@@ -2144,7 +2134,7 @@ msgstr "מחיקת מאמר"
 #: src/mainwidget.cpp:1257
 #, kde-format
 msgid "Networking is available now."
-msgstr ""
+msgstr "התקשורת זמינה כעת."
 
 #: src/mainwindow.cpp:121
 #, kde-format
@@ -2152,12 +2142,14 @@ msgid ""
 "<qt>This will hide the menu bar completely. You can show it again by typing "
 "%1.</qt>"
 msgstr ""
+"<qt>פעולה זו תסתיר את סרגל התפריטים לחלוטין. אפשר להציג אותו שוב בהקלדת %1.</"
+"qt>"
 
 #: src/mainwindow.cpp:124
 #, kde-format
 msgctxt "@title:window"
 msgid "Hide menu bar"
-msgstr ""
+msgstr "הסתרת סרגל התפריטים"
 
 #: src/mainwindow.cpp:153
 #, kde-format
@@ -2190,10 +2182,10 @@ msgstr ""
 #, kde-format
 msgid "<i>and 1 other</i>"
 msgid_plural "<i>and %1 others</i>"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "<i>ועוד אחד</i>"
+msgstr[1] "<i>ועוד שניים</i>"
+msgstr[2] "<i>ועוד %1</i>"
+msgstr[3] "<i>ועוד %1</i>"
 
 #: src/progressmanager.cpp:127
 #, kde-format
@@ -2213,27 +2205,27 @@ msgstr "המשיכה בוטלה"
 #: src/subscription/subscriptionlistjobs.cpp:54
 #, kde-format
 msgid "Feed list was deleted"
-msgstr ""
+msgstr "רשימת הערוצים נמחקה"
 
 #: src/subscription/subscriptionlistjobs.cpp:64
 #, kde-format
 msgid "Node or destination folder not found"
-msgstr ""
+msgstr "המפרק או תיקיית היעד לא נמצאו"
 
 #: src/subscription/subscriptionlistjobs.cpp:71
 #, kde-format
 msgid "Cannot move folder %1 to its own subfolder %2"
-msgstr ""
+msgstr "לא ניתן להעביר את התיקייה %1 לתת־תיקייה של עצמה %2"
 
 #: src/subscription/subscriptionlistmodel.cpp:49
 #, kde-format
 msgid "Timeout on remote server"
-msgstr ""
+msgstr "תם זמן ההמתנה לשרת המרוחק"
 
 #: src/subscription/subscriptionlistmodel.cpp:51
 #, kde-format
 msgid "Unknown host"
-msgstr ""
+msgstr "מארח לא ידוע"
 
 #: src/subscription/subscriptionlistmodel.cpp:53
 #, kde-format
@@ -2248,7 +2240,7 @@ msgstr "לא ניתן לקרוא את הערוץ (XML שגוי)"
 #: src/subscription/subscriptionlistmodel.cpp:57
 #, kde-format
 msgid "Could not read feed (unknown format)"
-msgstr ""
+msgstr "לא ניתן לקרוא את הערוץ (תסדיר זר)"
 
 #: src/subscription/subscriptionlistmodel.cpp:59
 #, kde-format
@@ -2258,7 +2250,7 @@ msgstr "לא ניתן לקרוא את הערוץ (ערוץ שגוי)"
 #: src/subscription/subscriptionlistmodel.cpp:229
 #, kde-format
 msgid "Could not fetch feed: %1"
-msgstr ""
+msgstr "לא ניתן למשוך ערוץ: %1"
 
 #: src/subscription/subscriptionlistmodel.cpp:274
 #, kde-format
@@ -2318,13 +2310,13 @@ msgid "There are no unread articles"
 msgstr "אין מאמרים שטרם קראת"
 
 #: src/trayicon.cpp:54
-#, fuzzy, kde-format
+#, kde-format
 msgid "1 unread article"
 msgid_plural "%1 unread articles"
-msgstr[0] "(מאמר אחד שלא נקרא)"
-msgstr[1] "(%1 מאמרים שלא נקראו)"
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "מאמר שלא נקרא"
+msgstr[1] "שני מאמרים שלא נקראו"
+msgstr[2] "%1 מאמרים שלא נקראו"
+msgstr[3] "%1 מאמרים שלא נקראו"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, Akregator::AddFeedWidgetBase)
 #: src/ui/addfeedwidgetbase.ui:14
@@ -2459,7 +2451,7 @@ msgstr "העתקת כתובת &דוא״ל"
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:67
 #, kde-format
 msgid "Address copied to clipboard."
-msgstr ""
+msgstr "הכתובת הועתקה ללוח הגזירים."
 
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:98
 #, kde-format
