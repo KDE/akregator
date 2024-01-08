@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-06 01:33+0000\n"
-"PO-Revision-Date: 2024-01-05 14:34+0200\n"
+"PO-Revision-Date: 2024-01-06 14:06+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -97,7 +97,7 @@ msgstr "שליחת כתובת קישור"
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:96
 #, kde-format
 msgid "Delete Article"
-msgstr "מחיקת מאמר"
+msgstr "מחיקת כתבה"
 
 #: src/formatter/html/5.2/normalview.html:54
 msgid ""
@@ -155,13 +155,13 @@ msgstr[3] " שניות"
 #: configuration/ui/settings_advancedbase.ui:30
 #, kde-format
 msgid "Article List"
-msgstr "רשימת מאמרים"
+msgstr "רשימת כתבות"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_UseMarkReadDelay)
 #: configuration/ui/settings_advancedbase.ui:38
 #, kde-format
 msgid "Mar&k selected article read after"
-msgstr "&סימון מאמר כנקרא לאחר"
+msgstr "&סימון כתבה כנקראה לאחר"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ResetQuickFilterOnNodeChange)
 #: configuration/ui/settings_advancedbase.ui:73
@@ -173,19 +173,19 @@ msgstr "איפוס המסנן בעת מעבר בין ערוצים"
 #: configuration/ui/settings_appearance.ui:30
 #, kde-format
 msgid "Article List Colors"
-msgstr "צבעי רשימת מאמרים"
+msgstr "צבעי רשימת כתבות"
 
 #. i18n: ectx: property (text), widget (QLabel, lbl_unreadArticles)
 #: configuration/ui/settings_appearance.ui:53
 #, kde-format
 msgid "Unread articles:"
-msgstr "מאמרים שלא נקראו:"
+msgstr "כתבות שלא נקראו:"
 
 #. i18n: ectx: property (text), widget (QLabel, lbl_newArticles)
 #: configuration/ui/settings_appearance.ui:76
 #, kde-format
 msgid "New articles:"
-msgstr "מאמרים חדשים:"
+msgstr "כתבות חדשות:"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_UseCustomColors)
 #: configuration/ui/settings_appearance.ui:98
@@ -259,7 +259,7 @@ msgstr "השבתת העברה ל&ארכיון"
 #: src/ui/feedpropertieswidgetbase.ui:332
 #, kde-format
 msgid "&Keep all articles"
-msgstr "&שמירה על כל המאמרים"
+msgstr "&שמירה על כל הכתבות"
 
 #. i18n: ectx: property (text), widget (QRadioButton, rb_LimitArticleNumber)
 #: configuration/ui/settings_archive.ui:64
@@ -277,7 +277,7 @@ msgstr "מחיקת ארכיונים ישנים מ־: "
 #: configuration/ui/settings_archive.ui:138
 #, kde-format
 msgid "Do not expire important articles"
-msgstr "אין תפוגה על מאמרים חשובים"
+msgstr "אין תפוגה על כתבות חשובות"
 
 #. i18n: ectx: property (text), widget (QLabel, LMBlabel)
 #: configuration/ui/settings_browser.ui:20
@@ -442,7 +442,7 @@ msgstr "להרחיב אוטומטית תיקיות שמכילות כתבות ש�
 #: configuration/ui/settings_general.ui:74
 #, kde-format
 msgid "Select this if you want to get notified when there are new articles."
-msgstr "נא לבחור באפשרות זו כדי לקבל התראות כשיש מאמרים חדשים."
+msgstr "נא לבחור באפשרות זו כדי לקבל התראות כשיש כתבות חדשות."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_UseNotifications)
 #: configuration/ui/settings_general.ui:77
@@ -460,7 +460,7 @@ msgstr "להשבית את התראת סיום שמירה"
 #: configuration/ui/settings_general.ui:91
 #, kde-format
 msgid "&Use interval fetching"
-msgstr "ה&פרש בין עדכוני מאמרים"
+msgstr "ה&פרש בין עדכוני כתבות"
 
 #. i18n: ectx: property (text), widget (QLabel, autoFetchIntervalLabel)
 #: configuration/ui/settings_general.ui:119
@@ -579,7 +579,7 @@ msgstr "מצב תצוגה"
 #: interfaces/akregator.kcfg:46
 #, kde-format
 msgid "Article display mode."
-msgstr "מצב תצוגת מאמרים."
+msgstr "מצב תצוגת כתבות."
 
 #. i18n: ectx: label, entry, group (View)
 #: interfaces/akregator.kcfg:50
@@ -615,37 +615,37 @@ msgstr "מצב ארכיון"
 #: interfaces/akregator.kcfg:104
 #, kde-format
 msgid "Keep All Articles"
-msgstr "לשמור על כל המאמרים"
+msgstr "לשמור על כל הכתבות"
 
 #. i18n: ectx: whatsthis, entry, group (Archive)
 #: interfaces/akregator.kcfg:105
 #, kde-format
 msgid "Save an unlimited number of articles."
-msgstr "שמירת מספר בלתי מוגבל של מאמרים."
+msgstr "שמירת מספר בלתי מוגבל של כתבות."
 
 #. i18n: ectx: label, entry, group (Archive)
 #: interfaces/akregator.kcfg:108
 #, kde-format
 msgid "Limit Number of Articles"
-msgstr "הגבלת מספר המאמרים"
+msgstr "הגבלת מספר הכתבות"
 
 #. i18n: ectx: whatsthis, entry, group (Archive)
 #: interfaces/akregator.kcfg:109
 #, kde-format
 msgid "Limit the number of articles in a feed"
-msgstr "הגבלת מספר המאמרים בערוץ"
+msgstr "הגבלת מספר הכתבות בערוץ"
 
 #. i18n: ectx: label, entry, group (Archive)
 #: interfaces/akregator.kcfg:112
 #, kde-format
 msgid "Delete Expired Articles"
-msgstr "מחיקת מאמרים שתוקפם פג"
+msgstr "מחיקת כתבות שתוקפן פג"
 
 #. i18n: ectx: whatsthis, entry, group (Archive)
 #: interfaces/akregator.kcfg:113
 #, kde-format
 msgid "Delete expired articles"
-msgstr "מחיקת מאמרים שתוקפם פג"
+msgstr "מחיקת כתבות שתוקפן פג"
 
 #. i18n: ectx: label, entry, group (Archive)
 #: interfaces/akregator.kcfg:116
@@ -657,7 +657,7 @@ msgstr "ביטול שמירת ארכיונים"
 #: interfaces/akregator.kcfg:117
 #, kde-format
 msgid "Do not save any articles"
-msgstr "לא לשמור מאמרים כלל"
+msgstr "לא לשמור כתבות כלל"
 
 #. i18n: ectx: label, entry, group (Archive)
 #: interfaces/akregator.kcfg:122
@@ -669,25 +669,25 @@ msgstr "תאריך תפוגה"
 #: interfaces/akregator.kcfg:123
 #, kde-format
 msgid "Default expiry age for articles in days."
-msgstr "זמן תפוגת מאמרים בימים."
+msgstr "זמן תפוגת כתבות בימים."
 
 #. i18n: ectx: label, entry, group (Archive)
 #: interfaces/akregator.kcfg:127
 #, kde-format
 msgid "Article Limit"
-msgstr "גבול המאמרים"
+msgstr "גבול הכתבות"
 
 #. i18n: ectx: whatsthis, entry, group (Archive)
 #: interfaces/akregator.kcfg:128
 #, kde-format
 msgid "Number of articles to keep per feed."
-msgstr "מספר המאמרים לשמירה לערוץ."
+msgstr "מספר הכתבות לשמירה לערוץ."
 
 #. i18n: ectx: label, entry, group (Archive)
 #: interfaces/akregator.kcfg:132
 #, kde-format
 msgid "Do Not Expire Important Articles"
-msgstr "לא למחוק מאמרים חשובים"
+msgstr "לא למחוק כתבות חשובות"
 
 #. i18n: ectx: whatsthis, entry, group (Archive)
 #: interfaces/akregator.kcfg:133
@@ -696,7 +696,7 @@ msgid ""
 "When this option is enabled, articles you marked as important will not be "
 "removed when limit the archive size by either age or number of the articles."
 msgstr ""
-"כאשר אפשרות זו מסומנת, מאמרים שסימנת בתור חשובים לא יוסרו כאשר מכסת המאמרים "
+"כאשר אפשרות זו מסומנת, כתבות שסימנת כחשובות לא תוסרנה כאשר מכסת הכתבות "
 "מבחינת כמות או נפח מגיעה אל קיצה."
 
 #. i18n: ectx: label, entry, group (Network)
@@ -779,13 +779,13 @@ msgstr "לעדכן את כל הערוצים כל %1 דקות."
 #: interfaces/akregator.kcfg:170
 #, kde-format
 msgid "Interval for autofetching"
-msgstr "הפרש בין עדכוני מאמרים"
+msgstr "הפרש בין עדכוני כתבות"
 
 #. i18n: ectx: whatsthis, entry, group (General)
 #: interfaces/akregator.kcfg:171
 #, kde-format
 msgid "Interval for autofetching in minutes."
-msgstr "הפרש בין עדכוני מאמרים אוטומטיים בדקות."
+msgstr "הפרש בין עדכוני כתבות אוטומטיים בדקות."
 
 #. i18n: ectx: label, entry, group (General)
 #: interfaces/akregator.kcfg:175
@@ -872,7 +872,7 @@ msgstr "להשתמש בפקודה זו:"
 #: interfaces/akregator.kcfg:223
 #, kde-format
 msgid "Use the specified command when opening in external browser."
-msgstr "להשתמש בפקודה הבאה כדי לפתוח מאמר בדפדפן חיצוני."
+msgstr "להשתמש בפקודה הבאה כדי לפתוח כתבה בדפדפן חיצוני."
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
 #: interfaces/akregator.kcfg:227
@@ -902,7 +902,7 @@ msgstr "מנוע הארכיון"
 #: interfaces/akregator.kcfg:269
 #, kde-format
 msgid "Whether to delay before marking an article as read upon selecting it."
-msgstr "האם לחכות לפני סימון מאמר בתור נקרא כאשר הוא נבחר."
+msgstr "האם לחכות לפני סימון כתבה כנקראה כאשר היא נבחרת."
 
 #. i18n: ectx: whatsthis, entry (MarkReadDelay), group (Advanced)
 #: interfaces/akregator.kcfg:273
@@ -1212,12 +1212,12 @@ msgstr "העתקת כתובת הקישור"
 #: src/actions/actionmanagerimpl.cpp:346
 #, kde-format
 msgid "Pre&vious Unread Article"
-msgstr "המאמר הקודם שלא נ&קרא"
+msgstr "הכתבה הקודמת שלא נ&קראה"
 
 #: src/actions/actionmanagerimpl.cpp:352
 #, kde-format
 msgid "Ne&xt Unread Article"
-msgstr "המאמר הבא שלא נק&רא"
+msgstr "הכתבה הבאה שלא נק&ראה"
 
 #: src/actions/actionmanagerimpl.cpp:360
 #, kde-format
@@ -1238,7 +1238,7 @@ msgstr "&נקרא"
 #: src/actions/actionmanagerimpl.cpp:371
 #, kde-format
 msgid "Mark selected article as read"
-msgstr "סימון מאמר נבחר כנקרא"
+msgstr "סימון הכתבה הנבחרת כנקראה"
 
 #: src/actions/actionmanagerimpl.cpp:377
 #, kde-format
@@ -1249,7 +1249,7 @@ msgstr "&חדש"
 #: src/actions/actionmanagerimpl.cpp:380
 #, kde-format
 msgid "Mark selected article as new"
-msgstr "סימון מאמר נבחר בתור חדש"
+msgstr "סימון כתבה נבחרת כחדשה"
 
 #: src/actions/actionmanagerimpl.cpp:385
 #, kde-format
@@ -1260,12 +1260,12 @@ msgstr "&לא נקרא"
 #: src/actions/actionmanagerimpl.cpp:387
 #, kde-format
 msgid "Mark selected article as unread"
-msgstr "סימון מאמר נבחר כלא נקרא"
+msgstr "סימון כתבה נבחרת כלא נקראה"
 
 #: src/actions/actionmanagerimpl.cpp:393
 #, kde-format
 msgid "&Mark as Important"
-msgstr "סימון מאמר כ&חשוב"
+msgstr "סימון כתבה כ&חשובה"
 
 #: src/actions/actionmanagerimpl.cpp:397
 #, kde-format
@@ -1310,12 +1310,12 @@ msgstr "הגדרת המיקוד לחיפוש המהיר"
 #: src/actions/actionmanagerimpl.cpp:465
 #, kde-format
 msgid "&Previous Article"
-msgstr "המאמר ה&קודם"
+msgstr "הכתבה ה&קודמת"
 
 #: src/actions/actionmanagerimpl.cpp:469
 #, kde-format
 msgid "&Next Article"
-msgstr "המאמר &הבא"
+msgstr "הכתבה ה&באה"
 
 #: src/actions/actionmanagerimpl.cpp:485
 #, kde-format
@@ -1616,10 +1616,10 @@ msgid ""
 "To view the web page of the article, you can open the article internally in "
 "a tab or in an external browser window."
 msgstr ""
-"<h2>רשימת מאמרים</h2> כאן ניתן לעיין בכתבות מהערוץ הנבחר. ניתן גם לנהל "
-"כתבות, לסמן אותן בתור קבועות („שמירת כתבה”) או למחוק אותן דרך תפריט העכבר "
-"הימני. לתצוגה של אתר האינטרנט של הכתבה, ניתן לפתוח את הכתבה בלשונית פנימית "
-"או בדפדפן חיצוני."
+"<h2>רשימת כתבות</h2> כאן ניתן לעיין בכתבות מהערוץ הנבחר. ניתן גם לנהל כתבות, "
+"לסמן אותן בתור קבועות („שמירת כתבה”) או למחוק אותן דרך תפריט העכבר הימני. "
+"לתצוגה של אתר האינטרנט של הכתבה, ניתן לפתוח את הכתבה בלשונית פנימית או "
+"בדפדפן חיצוני."
 
 #: src/articlemodel.cpp:74
 #, kde-format
@@ -1880,7 +1880,7 @@ msgstr "&ערוץ"
 #: src/data/akregator_part.rc:63 src/data/akregator_shell.rc:34
 #, kde-format
 msgid "&Article"
-msgstr "&מאמר"
+msgstr "&כתבה"
 
 #. i18n: ectx: Menu (settings)
 #: src/data/akregator_part.rc:80 src/data/akregator_shell.rc:39
@@ -1957,10 +1957,10 @@ msgstr[3] " ימים"
 #, kde-format
 msgid " article"
 msgid_plural " articles"
-msgstr[0] "  מאמר"
-msgstr[1] " מאמרים"
-msgstr[2] " מאמרים"
-msgstr[3] " מאמרים"
+msgstr[0] "  כתבה"
+msgstr[1] " כתבות"
+msgstr[2] " כתבות"
+msgstr[3] " כתבות"
 
 #: src/feed/feedpropertiesdialog.cpp:112
 #, kde-format
@@ -1977,7 +1977,7 @@ msgstr "(%1, %2)"
 #: src/formatter/grantleeviewformatter.cpp:151
 #, kde-format
 msgid " (no unread articles)"
-msgstr " (אין מאמרים שלא נקראו)"
+msgstr " (אין כתבות שלא נקראו)"
 
 #: src/formatter/grantleeviewformatter.cpp:102
 #: src/formatter/grantleeviewformatter.cpp:153
@@ -2052,17 +2052,17 @@ msgstr "הטעינה הסתיימה"
 #: src/mainwidget.cpp:156
 #, kde-format
 msgid "You can view multiple articles in several open tabs."
-msgstr "אפשר לצפות במאמרים רבים במגוון לשוניות."
+msgstr "אפשר לצפות בכתבות רבות במגוון לשוניות."
 
 #: src/mainwidget.cpp:160
 #, kde-format
 msgid "Articles list."
-msgstr "רשימת מאמרים."
+msgstr "רשימת כתבות."
 
 #: src/mainwidget.cpp:222 src/mainwidget.cpp:647
 #, kde-format
 msgid "Articles"
-msgstr "מאמרים"
+msgstr "כתבות"
 
 #: src/mainwidget.cpp:251
 #, kde-format
@@ -2074,7 +2074,7 @@ msgstr "על אודות"
 msgid ""
 "<qt>Are you sure you want to mark <b>all articles in the feed</b> as read?</"
 "qt>"
-msgstr "<qt>לסמן את <b>כל המאמרים בערוץ</b> כנקראו?</qt>"
+msgstr "<qt>לסמן את <b>כל הכתבות בערוץ</b> כנקראו?</qt>"
 
 #: src/mainwidget.cpp:778
 #, kde-format
@@ -2113,7 +2113,7 @@ msgstr "ערוצים מתעדכנים…"
 #: src/mainwidget.cpp:1065
 #, kde-format
 msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
-msgstr "<qt>למחוק את המאמר <b>%1</b>?</qt>"
+msgstr "<qt>למחוק את הכתבה <b>%1</b>?</qt>"
 
 #: src/mainwidget.cpp:1068
 #, kde-format
@@ -2129,7 +2129,7 @@ msgstr[3] "<qt>למחוק את %1 הכתבות הנבחרות?</qt>"
 #, kde-format
 msgctxt "@title:window"
 msgid "Delete Article"
-msgstr "מחיקת מאמר"
+msgstr "מחיקת כתבה"
 
 #: src/mainwidget.cpp:1257
 #, kde-format
@@ -2307,16 +2307,16 @@ msgstr "סגירת כל הלשוניות"
 #: src/trayicon.cpp:54
 #, kde-format
 msgid "There are no unread articles"
-msgstr "אין מאמרים שטרם קראת"
+msgstr "אין כתבות שטרם קראת"
 
 #: src/trayicon.cpp:54
 #, kde-format
 msgid "1 unread article"
 msgid_plural "%1 unread articles"
-msgstr[0] "מאמר שלא נקרא"
-msgstr[1] "שני מאמרים שלא נקראו"
-msgstr[2] "%1 מאמרים שלא נקראו"
-msgstr[3] "%1 מאמרים שלא נקראו"
+msgstr[0] "כתבה שלא נקראה"
+msgstr[1] "שתי כתבות שלא נקראו"
+msgstr[2] "%1 כתבות שלא נקראו"
+msgstr[3] "%1 כתבות שלא נקראו"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, Akregator::AddFeedWidgetBase)
 #: src/ui/addfeedwidgetbase.ui:14
@@ -2364,7 +2364,7 @@ msgstr "לעדכן &כל:"
 #: src/ui/feedpropertieswidgetbase.ui:117
 #, kde-format
 msgid "Notify when new articles arri&ve"
-msgstr "להודיע כשמאמרים חדשים מ&גיעים"
+msgstr "להודיע כשכתבות חדשות מ&גיעות"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel3)
 #: src/ui/feedpropertieswidgetbase.ui:132
@@ -2418,7 +2418,7 @@ msgstr "הגבלת גודל ה&ארכיון ל־:"
 #: src/ui/feedpropertieswidgetbase.ui:277
 #, kde-format
 msgid "&Delete articles older than:"
-msgstr "מ&חיקת מאמרים מלפני:"
+msgstr "מ&חיקת כתבות מלפני:"
 
 #. i18n: ectx: attribute (title), widget (QWidget, tab3)
 #: src/ui/feedpropertieswidgetbase.ui:340
@@ -2430,13 +2430,13 @@ msgstr "מת&קדם"
 #: src/ui/feedpropertieswidgetbase.ui:373
 #, kde-format
 msgid "Load the &full website when reading articles"
-msgstr "לטעון את &כל האתר בעת קריאת מאמרים"
+msgstr "לטעון את &כל האתר בעת קריאת כתבות"
 
 #. i18n: ectx: property (text), widget (QCheckBox, checkBox_markRead)
 #: src/ui/feedpropertieswidgetbase.ui:380
 #, kde-format
 msgid "Mar&k articles as read when they arrive"
-msgstr "&סימון מאמרים כנקראו כאשר הם מגיעים"
+msgstr "&סימון כתבות כנקראו כאשר הן מגיעות"
 
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:40
 #, kde-format
@@ -2456,12 +2456,12 @@ msgstr "הכתובת הועתקה ללוח הגזירים."
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:98
 #, kde-format
 msgid "Mark Article as Read"
-msgstr "סימון מאמר כ&נקרא"
+msgstr "סימון כתבה כ&נקראה"
 
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:100
 #, kde-format
 msgid "Mark Article as Unread"
-msgstr "סימון המאמר כנקרא"
+msgstr "סימון הכתבה כנקראה"
 
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:102
 #, kde-format
@@ -2471,12 +2471,12 @@ msgstr "החלפת סימון חשוב"
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:104
 #, kde-format
 msgid "Send the URL of the article"
-msgstr "שליחת כתובת המאמר"
+msgstr "שליחת כתובת הכתבה"
 
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:106
 #, kde-format
 msgid "Send the Html Page of Article"
-msgstr "שליחת דף ה־HTML של המאמר"
+msgstr "שליחת דף ה־HTML של הכתבה"
 
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:108
 #, kde-format
@@ -2486,17 +2486,17 @@ msgstr "פתיחה בדפדפן חיצוני"
 #: src/widgets/searchbar.cpp:40
 #, kde-format
 msgid "Search articles..."
-msgstr "חיפוש מאמרים…"
+msgstr "חיפוש כתבות…"
 
 #: src/widgets/searchbar.cpp:112
 #, kde-format
 msgid "Search articles...<%1>"
-msgstr "חיפוש מאמרים…<%1>"
+msgstr "חיפוש כתבות…<%1>"
 
 #: src/widgets/statussearchline.cpp:43
 #, kde-format
 msgid "All Articles"
-msgstr "כל המאמרים"
+msgstr "כל הכתבות"
 
 #: src/widgets/statussearchline.cpp:44
 #, kde-format
