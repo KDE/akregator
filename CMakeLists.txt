@@ -96,7 +96,7 @@ include_directories(${akregator_SOURCE_DIR} ${akregator_BINARY_DIR})
 add_definitions(-DTRANSLATION_DOMAIN=\"akregator\")
 add_definitions(-DQT_NO_CONTEXTLESS_CONNECT)
 ecm_set_disabled_deprecation_versions(QT 6.6
-     KF 5.247.0
+     KF 5.248.0
 )
 if (TARGET KF6::UserFeedbackWidgets)
     add_definitions(-DWITH_KUSERFEEDBACK)
