@@ -31,7 +31,7 @@ include(KDECompilerSettings NO_POLICY_SCOPE)
 include(ECMAddAppIcon)
 include(ECMQtDeclareLoggingCategory)
 include(ECMDeprecationSettings)
-set(KTEXTADDONS_MIN_VERSION "1.5.2")
+set(KTEXTADDONS_MIN_VERSION "1.5.3")
 
 # Do NOT add quote
 set(KDEPIM_DEV_VERSION alpha)
