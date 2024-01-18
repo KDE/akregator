@@ -83,6 +83,7 @@ int main(int argc, char **argv)
     const QStringList args = QCoreApplication::arguments();
     cmdArgs->process(args);
     about.processCommandLine(cmdArgs);
+    QApplication::setWindowIcon(QIcon::fromTheme(QStringLiteral("akregator")));
 
 #ifdef WITH_KUSERFEEDBACK
     if (cmdArgs->isSet(QStringLiteral("feedback"))) {
