@@ -785,11 +785,11 @@ say how to start it -->
 <varlistentry>
 <term
 ><guilabel
->Lletra sans serif:</guilabel
+>Lletra de pal sec:</guilabel
 ></term>
 <listitem
 ><para
->Si l'article utilitza les lletres Sans-serif, es representaran utilitzant la família que trieu aquí en la mida de lletra mitjana.</para>
+>Si l'article utilitza les lletres de pal sec, es representaran utilitzant la família que trieu aquí en la mida de lletra mitjana.</para>
 </listitem>
 </varlistentry>
 </variablelist>
