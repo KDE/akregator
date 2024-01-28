@@ -31,6 +31,7 @@ include(KDECompilerSettings NO_POLICY_SCOPE)
 include(ECMAddAppIcon)
 include(ECMQtDeclareLoggingCategory)
 include(ECMDeprecationSettings)
+include(ECMFeatureSummary)
 set(KTEXTADDONS_MIN_VERSION "1.5.3")
 
 # Do NOT add quote
@@ -126,4 +127,4 @@ if(KF6DocTools_FOUND)
     add_subdirectory(doc)
 endif()
 
-feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)
+ecm_feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)
