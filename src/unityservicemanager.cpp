@@ -44,7 +44,7 @@ void UnityServiceManager::slotSetUnread(int unread)
 void UnityServiceManager::updateCount()
 {
     if (mUnityServiceAvailable) {
-        const QString launcherId = qApp->desktopFileName() + QLatin1String(".desktop");
+        const QString launcherId = qApp->desktopFileName() + QLatin1StringView(".desktop");
 
         const QVariantMap properties{{QStringLiteral("count-visible"), m_unread > 0}, {QStringLiteral("count"), m_unread}};
 
@@ -85,7 +85,7 @@ void UnityServiceManager::initUnity()
 
         const QStringList &services = reply.value();
 
-        mUnityServiceAvailable = services.contains(QLatin1String("com.canonical.Unity"));
+        mUnityServiceAvailable = services.contains(QLatin1StringView("com.canonical.Unity"));
         if (mUnityServiceAvailable) {
             updateCount();
         }

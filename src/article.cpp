@@ -49,12 +49,12 @@ QString buildTitle(const QString &description)
         QString toReplace;
         QString replaceWith;
         int repStart = 0;
-        if (tagName.compare(QLatin1String("script"), Qt::CaseInsensitive) == 0) {
+        if (tagName.compare(QLatin1StringView("script"), Qt::CaseInsensitive) == 0) {
             // E.g.: <script foo="bar">some js here</script>
             // strip tag AND tag contents
             toReplace = rmatch.captured(0);
             repStart = rmatch.capturedStart(0);
-        } else if (tagName.startsWith(QLatin1String("br"), Qt::CaseInsensitive)) {
+        } else if (tagName.startsWith(QLatin1StringView("br"), Qt::CaseInsensitive)) {
             toReplace = rmatch.captured(1);
             repStart = rmatch.capturedStart(1);
             replaceWith = QLatin1Char(' ');
@@ -67,7 +67,7 @@ QString buildTitle(const QString &description)
         offset = repStart + replaceWith.length();
     }
     if (s.length() > 90) {
-        s = s.left(90) + QLatin1String("...");
+        s = s.left(90) + QLatin1StringView("...");
     }
     return s.simplified();
 }
@@ -198,7 +198,7 @@ Article::Private::Private(const ItemPtr &article, Feed *feed_, Backend::FeedStor
         archive->setDescription(guid, article->description());
         archive->setLink(guid, article->link());
         archive->setGuidIsPermaLink(guid, false);
-        archive->setGuidIsHash(guid, guid.startsWith(QLatin1String("hash:")));
+        archive->setGuidIsHash(guid, guid.startsWith(QLatin1StringView("hash:")));
         const time_t datePublished = article->datePublished();
         if (datePublished > 0) {
             pubDate = QDateTime::fromSecsSinceEpoch(datePublished);

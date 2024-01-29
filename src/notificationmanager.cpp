@@ -66,7 +66,7 @@ void NotificationManager::doNotify()
     // adding information about how many new articles
     auto feedClosure = [&entriesCount, &message]() {
         if ((entriesCount - maxNewArticlesShown) > 1) {
-            message += i18np("<i>and 1 other</i>", "<i>and %1 others</i>", entriesCount - maxNewArticlesShown - 1) + QLatin1String("<br>");
+            message += i18np("<i>and 1 other</i>", "<i>and %1 others</i>", entriesCount - maxNewArticlesShown - 1) + QLatin1StringView("<br>");
         }
     };
 
@@ -83,12 +83,12 @@ void NotificationManager::doNotify()
         }
         // check not exceeding maxNewArticlesShown per feed
         if (entriesCount <= maxNewArticlesShown) {
-            message += i.title() + QLatin1String("<br>");
+            message += i.title() + QLatin1StringView("<br>");
         }
         entriesCount++;
     }
     feedClosure();
-    message += QLatin1String("</body></html>");
+    message += QLatin1StringView("</body></html>");
     KNotification::event(QStringLiteral("NewArticles"), message, QPixmap(), KNotification::CloseOnTimeout, m_componantName);
 
     m_articles.clear();

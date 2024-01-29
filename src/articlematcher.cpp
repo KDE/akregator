@@ -44,17 +44,17 @@ QString Criterion::subjectToString(Subject subj)
 
 Criterion::Subject Criterion::stringToSubject(const QString &subjStr)
 {
-    if (subjStr == QLatin1String("Title")) {
+    if (subjStr == QLatin1StringView("Title")) {
         return Title;
-    } else if (subjStr == QLatin1String("Link")) {
+    } else if (subjStr == QLatin1StringView("Link")) {
         return Link;
-    } else if (subjStr == QLatin1String("Description")) {
+    } else if (subjStr == QLatin1StringView("Description")) {
         return Description;
-    } else if (subjStr == QLatin1String("Status")) {
+    } else if (subjStr == QLatin1StringView("Status")) {
         return Status;
-    } else if (subjStr == QLatin1String("KeepFlag")) {
+    } else if (subjStr == QLatin1StringView("KeepFlag")) {
         return KeepFlag;
-    } else if (subjStr == QLatin1String("Author")) {
+    } else if (subjStr == QLatin1StringView("Author")) {
         return Author;
     }
 
@@ -79,13 +79,13 @@ QString Criterion::predicateToString(Predicate pred)
 
 Criterion::Predicate Criterion::stringToPredicate(const QString &predStr)
 {
-    if (predStr == QLatin1String("Contains")) {
+    if (predStr == QLatin1StringView("Contains")) {
         return Contains;
-    } else if (predStr == QLatin1String("Equals")) {
+    } else if (predStr == QLatin1StringView("Equals")) {
         return Equals;
-    } else if (predStr == QLatin1String("Matches")) {
+    } else if (predStr == QLatin1StringView("Matches")) {
         return Matches;
-    } else if (predStr == QLatin1String("Negation")) {
+    } else if (predStr == QLatin1StringView("Negation")) {
         return Negation;
     }
 
@@ -156,14 +156,14 @@ bool Criterion::satisfiedBy(const Article &article) const
     bool satisfied = false;
 
     const auto predicateType = static_cast<Predicate>(m_predicate & ~Negation);
-    QString subjectType = QLatin1String(concreteSubject.typeName());
+    QString subjectType = QLatin1StringView(concreteSubject.typeName());
 
     switch (predicateType) {
     case Contains:
         satisfied = TextUtils::ConvertText::normalize(concreteSubject.toString()).indexOf(m_object.toString(), 0, Qt::CaseInsensitive) != -1;
         break;
     case Equals:
-        if (subjectType == QLatin1String("int")) {
+        if (subjectType == QLatin1StringView("int")) {
             satisfied = concreteSubject.toInt() == m_object.toInt();
         } else {
             satisfied = TextUtils::ConvertText::normalize(concreteSubject.toString()) == m_object.toString();
@@ -231,7 +231,7 @@ void ArticleMatcher::writeConfig(KConfigGroup *config) const
 
     config->writeEntry(QStringLiteral("matcherCriteriaCount"), m_criteria.count());
 
-    QString criterionGroupPrefix = config->name() + QLatin1String("_Criterion");
+    QString criterionGroupPrefix = config->name() + QLatin1StringView("_Criterion");
 
     const int criteriaSize(m_criteria.size());
     for (int index = 0; index < criteriaSize; ++index) {
@@ -247,7 +247,7 @@ void ArticleMatcher::readConfig(KConfigGroup *config)
 
     const int count = config->readEntry(QStringLiteral("matcherCriteriaCount"), 0);
 
-    const QString criterionGroupPrefix = config->name() + QLatin1String("_Criterion");
+    const QString criterionGroupPrefix = config->name() + QLatin1StringView("_Criterion");
 
     for (int i = 0; i < count; ++i) {
         Criterion c;
@@ -303,9 +303,9 @@ bool ArticleMatcher::allCriteriaMatch(const Article &a) const
 
 ArticleMatcher::Association ArticleMatcher::stringToAssociation(const QString &assocStr)
 {
-    if (assocStr == QLatin1String("LogicalAnd")) {
+    if (assocStr == QLatin1StringView("LogicalAnd")) {
         return LogicalAnd;
-    } else if (assocStr == QLatin1String("LogicalOr")) {
+    } else if (assocStr == QLatin1StringView("LogicalOr")) {
         return LogicalOr;
     } else {
         return None;

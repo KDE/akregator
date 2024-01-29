@@ -105,7 +105,7 @@ void WebEngineFrame::loadConfig(const KConfigGroup &config, const QString &prefi
 bool WebEngineFrame::saveConfig(KConfigGroup &config, const QString &prefix)
 {
     const QString urlPath(url().url());
-    if (urlPath != QLatin1String("about:blank")) {
+    if (urlPath != QLatin1StringView("about:blank")) {
         config.writeEntry(QStringLiteral("url").prepend(prefix), urlPath);
         config.writeEntry(QStringLiteral("zoom").prepend(prefix), zoomFactor());
         return true;

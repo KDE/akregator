@@ -253,12 +253,12 @@ bool FeedList::readFromOpml(const QDomDocument &doc)
     QElapsedTimer spent;
     spent.start();
 
-    if (root.tagName().toLower() != QLatin1String("opml")) {
+    if (root.tagName().toLower() != QLatin1StringView("opml")) {
         return false;
     }
     QDomNode bodyNode = root.firstChild();
 
-    while (!bodyNode.isNull() && bodyNode.toElement().tagName().toLower() != QLatin1String("body")) {
+    while (!bodyNode.isNull() && bodyNode.toElement().tagName().toLower() != QLatin1StringView("body")) {
         bodyNode = bodyNode.nextSibling();
     }
 

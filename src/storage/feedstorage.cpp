@@ -24,7 +24,7 @@ namespace
 static uint calcHash(const QString &str)
 {
     if (str.isNull()) { // handle null string as "", prevents crash
-        return calcHash(QLatin1String(""));
+        return calcHash(QLatin1StringView(""));
     }
     const char *s = str.toLatin1().constData();
     uint hash = 5381;
@@ -100,7 +100,7 @@ FeedStorage::FeedStorage(const QString &url, Storage *main)
     QString t = url2;
     QString t2 = url2;
     QString filePath = main->archivePath() + QLatin1Char('/') + t.replace(QLatin1Char('/'), QLatin1Char('_')).replace(QLatin1Char(':'), QLatin1Char('_'));
-    d->storage = new c4_Storage(QString(filePath + QLatin1String(".mk4")).toLocal8Bit().constData(), true);
+    d->storage = new c4_Storage(QString(filePath + QLatin1StringView(".mk4")).toLocal8Bit().constData(), true);
 
     d->archiveView = d->storage->GetAs(
         "articles[guid:S,title:S,hash:I,guidIsHash:I,guidIsPermaLink:I,description:S,link:S,comments:I,commentsLink:S,status:I,pubDate:I,tags[tag:S],"
@@ -261,7 +261,7 @@ void FeedStorage::setDeleted(const QString &guid)
 QString FeedStorage::link(const QString &guid) const
 {
     int findidx = findArticle(guid);
-    return findidx != -1 ? QString::fromUtf8(QByteArray(d->plink(d->archiveView.GetAt(findidx)))) : QLatin1String("");
+    return findidx != -1 ? QString::fromUtf8(QByteArray(d->plink(d->archiveView.GetAt(findidx)))) : QLatin1StringView("");
 }
 
 QDateTime FeedStorage::pubDate(const QString &guid) const
@@ -304,19 +304,19 @@ void FeedStorage::article(const QString &guid, uint &hash, QString &title, int &
 QString FeedStorage::title(const QString &guid) const
 {
     int findidx = findArticle(guid);
-    return findidx != -1 ? QString::fromUtf8(QByteArray(d->ptitle(d->archiveView.GetAt(findidx)))) : QLatin1String("");
+    return findidx != -1 ? QString::fromUtf8(QByteArray(d->ptitle(d->archiveView.GetAt(findidx)))) : QLatin1StringView("");
 }
 
 QString FeedStorage::description(const QString &guid) const
 {
     int findidx = findArticle(guid);
-    return findidx != -1 ? QString::fromUtf8(QByteArray(d->pdescription(d->archiveView.GetAt(findidx)))) : QLatin1String("");
+    return findidx != -1 ? QString::fromUtf8(QByteArray(d->pdescription(d->archiveView.GetAt(findidx)))) : QLatin1StringView("");
 }
 
 QString FeedStorage::content(const QString &guid) const
 {
     int findidx = findArticle(guid);
-    return findidx != -1 ? QString::fromUtf8(QByteArray(d->pcontent(d->archiveView.GetAt(findidx)))) : QLatin1String("");
+    return findidx != -1 ? QString::fromUtf8(QByteArray(d->pcontent(d->archiveView.GetAt(findidx)))) : QLatin1StringView("");
 }
 
 void FeedStorage::setPubDate(const QString &guid, const QDateTime &pubdate)
@@ -526,8 +526,8 @@ void FeedStorage::enclosure(const QString &guid, bool &hasEnclosure, QString &ur
     }
     c4_Row row = d->archiveView.GetAt(findidx);
     hasEnclosure = d->pHasEnclosure(row);
-    url = QLatin1String(d->pEnclosureUrl(row));
-    type = QLatin1String(d->pEnclosureType(row));
+    url = QLatin1StringView(d->pEnclosureUrl(row));
+    type = QLatin1StringView(d->pEnclosureType(row));
     length = d->pEnclosureLength(row);
 }
 

@@ -282,7 +282,7 @@ int TabWidgetPrivate::tabBarWidthForMaxChars(int maxLength)
         }
         QString newTitle = f->title();
         if (newTitle.length() > maxLength) {
-            newTitle = newTitle.left(maxLength - 3) + QLatin1String("...");
+            newTitle = newTitle.left(maxLength - 3) + QLatin1StringView("...");
         }
 
         int lw = fm.boundingRect(newTitle).width();
@@ -356,7 +356,7 @@ void TabWidgetPrivate::setTitle(const QString &title, QWidget *sender)
     QString newTitle = title;
     if (newTitle.length() > newMaxLength) {
         q->setTabToolTip(senderIndex, newTitle);
-        newTitle = newTitle.left(newMaxLength - 3) + QLatin1String("...");
+        newTitle = newTitle.left(newMaxLength - 3) + QLatin1StringView("...");
     }
 
     newTitle.replace(QLatin1Char('&'), QStringLiteral("&&"));
@@ -377,7 +377,7 @@ void TabWidgetPrivate::setTitle(const QString &title, QWidget *sender)
 
             if (newTitle.length() > newMaxLength) {
                 q->setTabToolTip(index, newTitle);
-                newTitle = newTitle.left(newMaxLength - 3) + QLatin1String("...");
+                newTitle = newTitle.left(newMaxLength - 3) + QLatin1StringView("...");
             }
 
             newTitle.replace(QLatin1Char('&'), QStringLiteral("&&"));

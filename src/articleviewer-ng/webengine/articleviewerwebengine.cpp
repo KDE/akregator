@@ -175,7 +175,7 @@ void ArticleViewerWebEngine::slotSaveLinkAs()
     QUrl url(mCurrentUrl);
     if (url.fileName().isEmpty()) {
         url = url.adjusted(QUrl::StripTrailingSlash);
-        url.setPath(url.path() + QLatin1String("/index.html"));
+        url.setPath(url.path() + QLatin1StringView("/index.html"));
     }
 
     auto dlg = new QFileDialog(this);

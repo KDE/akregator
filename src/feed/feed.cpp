@@ -131,7 +131,7 @@ Akregator::Feed *Akregator::Feed::fromOPML(const QDomElement &e, Backend::Storag
         xmlUrl = e.attribute(QStringLiteral("xmlURL"));
     }
 
-    bool useCustomFetchInterval = e.attribute(QStringLiteral("useCustomFetchInterval")) == QLatin1String("true");
+    bool useCustomFetchInterval = e.attribute(QStringLiteral("useCustomFetchInterval")) == QLatin1StringView("true");
 
     const QString htmlUrl = e.attribute(QStringLiteral("htmlUrl"));
     const QString description = e.attribute(QStringLiteral("description"));
@@ -140,9 +140,9 @@ Akregator::Feed *Akregator::Feed::fromOPML(const QDomElement &e, Backend::Storag
     const Akregator::Feed::ArchiveMode archiveMode = stringToArchiveMode(e.attribute(QStringLiteral("archiveMode")));
     const int maxArticleAge = e.attribute(QStringLiteral("maxArticleAge")).toUInt();
     const int maxArticleNumber = e.attribute(QStringLiteral("maxArticleNumber")).toUInt();
-    const bool markImmediatelyAsRead = e.attribute(QStringLiteral("markImmediatelyAsRead")) == QLatin1String("true");
-    const bool useNotification = e.attribute(QStringLiteral("useNotification")) == QLatin1String("true");
-    const bool loadLinkedWebsite = e.attribute(QStringLiteral("loadLinkedWebsite")) == QLatin1String("true");
+    const bool markImmediatelyAsRead = e.attribute(QStringLiteral("markImmediatelyAsRead")) == QLatin1StringView("true");
+    const bool useNotification = e.attribute(QStringLiteral("useNotification")) == QLatin1StringView("true");
+    const bool loadLinkedWebsite = e.attribute(QStringLiteral("loadLinkedWebsite")) == QLatin1StringView("true");
     const QString comment = e.attribute(QStringLiteral("comment"));
     const QString faviconUrl = e.attribute(QStringLiteral("faviconUrl"));
     Feed::ImageInfo faviconInfo;
@@ -292,15 +292,15 @@ void Akregator::Feed::recalcUnreadCount()
 
 Akregator::Feed::ArchiveMode Akregator::Feed::stringToArchiveMode(const QString &str)
 {
-    if (str == QLatin1String("globalDefault")) {
+    if (str == QLatin1StringView("globalDefault")) {
         return globalDefault;
-    } else if (str == QLatin1String("keepAllArticles")) {
+    } else if (str == QLatin1StringView("keepAllArticles")) {
         return keepAllArticles;
-    } else if (str == QLatin1String("disableArchiving")) {
+    } else if (str == QLatin1StringView("disableArchiving")) {
         return disableArchiving;
-    } else if (str == QLatin1String("limitArticleNumber")) {
+    } else if (str == QLatin1StringView("limitArticleNumber")) {
         return limitArticleNumber;
-    } else if (str == QLatin1String("limitArticleAge")) {
+    } else if (str == QLatin1StringView("limitArticleAge")) {
         return limitArticleAge;
     }
 
