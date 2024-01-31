@@ -10,14 +10,14 @@
 # Teemu Rytilahti <tpr@d5k.net>, 2005.
 # Ilpo Kantonen <ilpo@iki.fi>, 2006.
 # Mikko Piippo <piippo@cc.helsinki.fi>, 2007.
-# Tommi Nieminen <translator@legisign.org>, 2009, 2010, 2011, 2013, 2016, 2017, 2018, 2019, 2020, 2021, 2022.
+# Tommi Nieminen <translator@legisign.org>, 2009, 2010, 2011, 2013, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023.
 # Lasse Liehu <lasse.liehu@gmail.com>, 2010, 2011, 2012, 2013, 2014, 2015, 2016.
 msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-06 01:33+0000\n"
-"PO-Revision-Date: 2022-06-17 18:43+0300\n"
+"PO-Revision-Date: 2023-11-22 18:44+0200\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
 "Language: fi\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-POT-Import-Date: 2012-12-01 22:24:51+0000\n"
-"X-Generator: Lokalize 20.12.0\n"
+"X-Generator: Lokalize 22.12.3\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -1563,8 +1563,7 @@ msgid "Could not import the file %1 (no valid OPML)"
 msgstr "Ei voitu tuoda tiedostosta %1 (kelvoton OPML)"
 
 #: src/akregator_part.cpp:464 src/command/loadfeedlistcommand.cpp:71
-#, fuzzy, kde-format
-#| msgid "OPML Parsing Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "OPML Parsing Error"
 msgstr "OPML-jäsennysvirhe"
@@ -1579,8 +1578,7 @@ msgstr ""
 "käyttäjän luettavissa."
 
 #: src/akregator_part.cpp:469 src/command/loadfeedlistcommand.cpp:144
-#, fuzzy, kde-format
-#| msgid "Read Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "Read Error"
 msgstr "Lukuvirhe"
@@ -1591,8 +1589,7 @@ msgid "Access denied: cannot write to file %1. Please check your permissions."
 msgstr "Ei voitu kirjoittaa tiedostoon ”%1”. Tarkista käyttöoikeutesi."
 
 #: src/akregator_part.cpp:481
-#, fuzzy, kde-format
-#| msgid "Write Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "Write Error"
 msgstr "Kirjoitusvirhe"
@@ -1700,8 +1697,7 @@ msgid "Are you sure you want to disable this introduction page?"
 msgstr "Haluatko varmasti poistaa tämän esittelysivun käytöstä?"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:377
-#, fuzzy, kde-format
-#| msgid "Disable Introduction Page"
+#, kde-format
 msgctxt "@title:window"
 msgid "Disable Introduction Page"
 msgstr "Poista esittelysivu käytöstä"
@@ -1713,8 +1709,7 @@ msgstr ""
 "Tämä verkko-osoite on pahantahtoinen: haluatko silti jatkaa ja näyttää sen?"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:413
-#, fuzzy, kde-format
-#| msgid "Malware"
+#, kde-format
 msgctxt "@title:window"
 msgid "Malware"
 msgstr "Pahantahtoinen sivusto"
@@ -1726,8 +1721,7 @@ msgstr "Verkko on rikki."
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:425
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:428
-#, fuzzy, kde-format
-#| msgid "Check Phishing Url"
+#, kde-format
 msgctxt "@title:window"
 msgid "Check Phishing Url"
 msgstr "Tarkista verkko-osoitteen väärennös"
@@ -1766,8 +1760,7 @@ msgstr ""
 "alikansioineen?</qt>"
 
 #: src/command/deletesubscriptioncommand.cpp:44
-#, fuzzy, kde-format
-#| msgid "Delete Folder"
+#, kde-format
 msgctxt "@title:window"
 msgid "Delete Folder"
 msgstr "Poista kansio"
@@ -1783,8 +1776,7 @@ msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
 msgstr "<qt>Haluatko varmasti poistaa syötteen <b>%1</b>?</qt>"
 
 #: src/command/deletesubscriptioncommand.cpp:68
-#, fuzzy, kde-format
-#| msgid "Delete Feed"
+#, kde-format
 msgctxt "@title:window"
 msgid "Delete Feed"
 msgstr "Poista syöte"
@@ -2100,8 +2092,7 @@ msgstr ""
 "qt>"
 
 #: src/mainwidget.cpp:778
-#, fuzzy, kde-format
-#| msgid "Mark Feed as Read"
+#, kde-format
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "Merkitse syöte luetuksi"
@@ -2120,8 +2111,7 @@ msgstr ""
 "<qt>Haluatko varmasti merkitä <b>kansion kaikki syötteet</b> luetuiksi?</qt>"
 
 #: src/mainwidget.cpp:785
-#, fuzzy, kde-format
-#| msgid "Mark Feeds as Read"
+#, kde-format
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "Merkitse syötteet luetuiksi"
@@ -2150,8 +2140,7 @@ msgstr[0] "<qt>Haluatko varmasti poistaa valitun artikkelin?</qt>"
 msgstr[1] "<qt>Haluatko varmasti poistaa valitut %1 artikkelia?</qt>"
 
 #: src/mainwidget.cpp:1075
-#, fuzzy, kde-format
-#| msgid "Delete Article"
+#, kde-format
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "Poista artikkeli"
@@ -2171,8 +2160,7 @@ msgstr ""
 "painamalla %1.</qt>"
 
 #: src/mainwindow.cpp:124
-#, fuzzy, kde-format
-#| msgid "Hide menu bar"
+#, kde-format
 msgctxt "@title:window"
 msgid "Hide menu bar"
 msgstr "Piilota valikkorivi"
@@ -2545,10 +2533,9 @@ msgid "Important"
 msgstr "Tärkeät"
 
 #: src/widgets/statussearchline.cpp:64
-#, fuzzy, kde-format
-#| msgid "Text Filter"
+#, kde-format
 msgid "Filter"
-msgstr "Tekstisuodatin"
+msgstr "Suodatin"
 
 #~ msgctxt "@title:window"
 #~ msgid "Print Document"
