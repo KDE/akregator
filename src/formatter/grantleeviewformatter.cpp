@@ -11,11 +11,11 @@
 #include "utils.h"
 #include <KLocalizedString>
 
+#include "feed.h"
+#include "folder.h"
 #include <QApplication>
 #include <QVariantHash>
 #include <QVariantList>
-#include <feed.h>
-#include <folder.h>
 
 using namespace Akregator;
 

@@ -22,14 +22,14 @@
 
 #include <QElapsedTimer>
 
+#include "articleviewer-ng/webengine/articlehtmlwebenginewriter.h"
+#include "articleviewer-ng/webengine/articleviewerwebengine.h"
+#include "articleviewer-ng/webengine/articleviewerwebenginewidgetng.h"
+#include "defaultnormalviewformatter.h"
 #include <QGridLayout>
 #include <QKeyEvent>
-#include <articleviewer-ng/webengine/articlehtmlwebenginewriter.h>
-#include <articleviewer-ng/webengine/articleviewerwebengine.h>
-#include <articleviewer-ng/webengine/articleviewerwebenginewidgetng.h>
-#include <defaultnormalviewformatter.h>
 
-#include <defaultcombinedviewformatter.h>
+#include "defaultcombinedviewformatter.h"
 
 using namespace Akregator;
 using namespace Akregator::Filters;

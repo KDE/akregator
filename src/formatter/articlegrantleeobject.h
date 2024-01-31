@@ -6,9 +6,9 @@
 
 #pragma once
 
+#include "article.h"
 #include "articleformatter.h"
 #include <QObject>
-#include <article.h>
 namespace Akregator
 {
 class ArticleGrantleeObject : public QObject

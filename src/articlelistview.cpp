@@ -13,7 +13,7 @@
 #include "articlemodel.h"
 #include "types.h"
 
-#include <utils/filtercolumnsproxymodel.h>
+#include "utils/filtercolumnsproxymodel.h"
 
 #include <KColorScheme>
 #include <KLocalizedString>

@@ -5,9 +5,9 @@
 */
 
 #include "articleviewerwebenginepage.h"
+#include "actionmanager.h"
 #include <QWebEngineSettings>
 #include <WebEngineViewer/ZoomActionMenu>
-#include <actionmanager.h>
 
 #include "akregatorconfig.h"
 

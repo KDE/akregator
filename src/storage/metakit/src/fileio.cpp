@@ -20,7 +20,7 @@
 #endif
 
 #if q4_UNIX && defined(HAVE_MMAP) && HAVE_MMAP
-#include <sys/types.h>
+#include "sys/types.h"
 #include <sys/mman.h>
 #endif
 

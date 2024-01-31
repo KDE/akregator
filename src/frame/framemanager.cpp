@@ -11,13 +11,13 @@
 #include "akregatorconfig.h"
 #include "frame.h"
 #include "openurlrequest.h"
+#include "webengine/webengineframe.h"
 #include <KConfigGroup>
 #include <KMacroExpander>
 #include <KProcess>
 #include <KShell>
 #include <QDesktopServices>
 #include <QStringList>
-#include <webengine/webengineframe.h>
 
 using namespace Akregator;
 

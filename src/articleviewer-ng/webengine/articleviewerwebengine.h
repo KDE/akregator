@@ -6,11 +6,11 @@
 
 #pragma once
 
+#include "openurlrequest.h"
 #include <MessageViewer/ViewerPluginInterface>
 #include <PimCommon/ShareServiceUrlManager>
 #include <WebEngineViewer/CheckPhishingUrlJob>
 #include <WebEngineViewer/WebEngineView>
-#include <openurlrequest.h>
 
 class KActionCollection;
 namespace WebEngineViewer

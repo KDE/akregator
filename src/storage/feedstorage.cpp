@@ -13,7 +13,7 @@
 #include <Syndication/Feed>
 #include <Syndication/Item>
 
-#include <mk4.h>
+#include "mk4.h"
 
 #include <QDateTime>
 #include <QDebug>
