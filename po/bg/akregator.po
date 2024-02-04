@@ -2536,7 +2536,3 @@ msgstr "Важно"
 #, kde-format
 msgid "Filter"
 msgstr "Филтър"
-
-#~ msgctxt "@title:window"
-#~ msgid "Print Document"
-#~ msgstr "Отпечатване на документ"
