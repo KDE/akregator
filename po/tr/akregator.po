@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Translators:
-# SPDX-FileCopyrightText: 2022, 2023 Emir SARI <emir_sari@icloud.com>
+# SPDX-FileCopyrightText: 2022, 2023, 2024 Emir SARI <emir_sari@icloud.com>
 # Bülent Bolat <bbolat@yildiz.edu.tr>, 2004.
 # Engin Çağatay <engincagatay@yahoo.com>, 2005.
 # Görkem Çetin <gorkem@kde.org>, 2004.
@@ -21,7 +21,7 @@ msgstr ""
 "Project-Id-Version: kdepim-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-06 01:33+0000\n"
-"PO-Revision-Date: 2023-12-27 14:29+0300\n"
+"PO-Revision-Date: 2024-02-09 17:45+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -29,7 +29,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 24.01.85\n"
+"X-Generator: Lokalize 24.01.95\n"
 "(http: //www.transifex.com/projects/p/kdepim-k-tr/language/tr/)\n"
 
 #, kde-format
@@ -70,7 +70,7 @@ msgstr ""
 
 #: src/about/introduction_akregator.html:20
 msgid "We hope that you will enjoy Akregator."
-msgstr "Umarız Akregatör'den hoşnut kalırsınız."
+msgstr "Umarız Akregatör’den hoşnut kalırsınız."
 
 #: src/about/introduction_akregator.html:21
 msgid "Thank you, The Akregator Team"
@@ -387,14 +387,14 @@ msgstr "Güvenlik"
 #: configuration/ui/settings_browser.ui:146
 #, kde-format
 msgid "Verify URLs using Google's Safe Browsing API"
-msgstr "Google Güven Tarayıcı API'sini kullanarak URL'leri onayla"
+msgstr "Google Güven Tarayıcı API’sini kullanarak URL’leri onayla"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_EnableJavascript)
 #. i18n: ectx: label, entry, group (Browser)
 #: configuration/ui/settings_browser.ui:153 interfaces/akregator.kcfg:198
 #, kde-format
 msgid "Enable Javascript"
-msgstr "JavaScript'i Etkinleştir"
+msgstr "JavaScript’i Etkinleştir"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #: configuration/ui/settings_browser.ui:163
@@ -733,7 +733,7 @@ msgid ""
 "Use the KDE-wide HTML cache settings when downloading feeds, to avoid "
 "unnecessary traffic. Disable only when necessary."
 msgstr ""
-"Haberleri indirirken, trafiği azlatmak için, KDE'nin geniş HTML önbellek "
+"Haberleri indirirken, trafiği azlatmak için, KDE’nin geniş HTML önbellek "
 "ayarlarını kullan. Bu seçeneği yalnızca gerektiği durumlarda kapatın."
 
 #. i18n: ectx: whatsthis, entry, group (Network)
@@ -1729,12 +1729,12 @@ msgstr "Ağ bozuk."
 #, kde-format
 msgctxt "@title:window"
 msgid "Check Phishing Url"
-msgstr "Kimlik Avı URL'sini Denetle"
+msgstr "Kimlik Avı URL’sini Denetle"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:428
 #, kde-format
 msgid "The url %1 is not valid."
-msgstr "%1 URL'si geçerli değil."
+msgstr "%1 URL’si geçerli değil."
 
 #: src/command/createfoldercommand.cpp:47
 #, kde-format
@@ -2354,7 +2354,7 @@ msgstr "Yeni Bir Besleme Ekle"
 #: src/ui/addfeedwidgetbase.ui:135
 #, kde-format
 msgid "Feed &URL:"
-msgstr "&Besleme URL'si:"
+msgstr "&Besleme URL’si:"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, Akregator::FeedPropertiesWidgetBase)
 #: src/ui/feedpropertieswidgetbase.ui:20
@@ -2491,7 +2491,7 @@ msgstr "Önemli Bayrağını Değiştir"
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:104
 #, kde-format
 msgid "Send the URL of the article"
-msgstr "Yazının URL'sini gönder"
+msgstr "Yazının URL’sini gönder"
 
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:106
 #, kde-format
