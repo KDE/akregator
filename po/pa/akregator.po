@@ -2,22 +2,22 @@
 # Copyright (C) YEAR This_file_is_part_of_KDE
 # This file is distributed under the same license as the PACKAGE package.
 #
-# A S Alam <aalam@users.sf.net>, 2009, 2011.
+# SPDX-FileCopyrightText: 2009, 2011, 2024 A S Alam <aalam@users.sf.net>
 # Amanpreet Singh Alam <aalam@users.sf.net>, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-06 01:33+0000\n"
-"PO-Revision-Date: 2011-06-29 22:48+0530\n"
-"Last-Translator: A S Alam <aalam@users.sf.net>\n"
-"Language-Team: Punjabi/Panjabi <punjab-l10n@list.sf.net>\n"
+"PO-Revision-Date: 2024-02-11 11:46-0600\n"
+"Last-Translator: A S Alam <aalam@punlinux.org>\n"
+"Language-Team: Punjabi <kde-i18n-doc@kde.org>\n"
 "Language: pa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 1.2\n"
+"X-Generator: Lokalize 23.08.4\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -27,7 +27,7 @@ msgstr "ਅਮਨਪਰੀਤ ਸਿੰਘ ਆਲਮ (A S Alam)"
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "aalam@users.sf.net"
+msgstr "aalam@punlinux.org"
 
 #: src/about/introduction_akregator.html:18
 msgid ""
@@ -54,53 +54,38 @@ msgid "Thank you, The Akregator Team"
 msgstr ""
 
 #: src/formatter/html/5.2/combinedview.html:74
-#, fuzzy
-#| msgid "&Mark Feed as Read"
 msgid "Mark as Read"
-msgstr "ਫੀਡ ਪੜ੍ਹੀ ਮਾਰਕ ਕਰੋ(&M)"
+msgstr "ਪੜ੍ਹੀ ਨਿਸ਼ਾਨ ਲਾਓ"
 
 #: src/formatter/html/5.2/combinedview.html:77
-#, fuzzy
-#| msgid "Mark selected article as unread"
 msgid "Mark as Unread"
-msgstr "ਚੁਣਿਆ ਲੇਖ ਨਾ-ਪੜ੍ਹਿਆ ਮਾਰਕ ਕਰੋ"
+msgstr "ਨਾ-ਪੜ੍ਹਿਆ ਨਿਸ਼ਾਨ ਲਾਓ"
 
 #: src/formatter/html/5.2/combinedview.html:81
-#, fuzzy
-#| msgid "Remove &Important Mark"
 msgid "Remove Important Status"
-msgstr "ਖਾਸ ਮਾਰਕ ਹਟਾਓ(&I)"
+msgstr "ਖਾਸ ਹਾਲਤ ਹਟਾਓ"
 
 #: src/formatter/html/5.2/combinedview.html:83
-#, fuzzy
-#| msgid "&Mark as Important"
 msgid "Mark as Important"
-msgstr "ਖਾਸ ਮਾਰਕ ਕਰੋ(&M)"
+msgstr "ਖਾਸ ਵਜੋਂ ਨਿਸ਼ਾਨ ਲਾਓ"
 
 #: src/formatter/html/5.2/combinedview.html:85
-#, fuzzy
-#| msgid "Open Link in External &Browser"
 msgid "Open Link in External Browser"
-msgstr "ਲਿੰਕ ਨੂੰ ਬਾਹਰੀ ਬਰਾਊਜ਼ਰ ਵਿੱਚ ਖੋਲ੍ਹੋ(&B)"
+msgstr "ਲਿੰਕ ਨੂੰ ਬਾਹਰੀ ਬਰਾਊਜ਼ਰ ਵਿੱਚ ਖੋਲ੍ਹੋ"
 
 #: src/formatter/html/5.2/combinedview.html:86
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:110
-#, fuzzy, kde-format
-#| msgid "Open in Background Tab"
+#, kde-format
 msgid "Open In Background Tab"
 msgstr "ਬੈਕਗਰਾਊਂਡ ਟੈਬ ਵਿੱਚ ਖੋਲ੍ਹੋ"
 
 #: src/formatter/html/5.2/combinedview.html:87
-#, fuzzy
-#| msgid "Send &Link Address..."
 msgid "Send File Address"
-msgstr "ਲਿੰਕ ਐਡਰੈੱਸ ਭੇਜੋ(&L)..."
+msgstr "ਫਾਇਲ ਐਡਰੈੱਸ ਭੇਜੋ"
 
 #: src/formatter/html/5.2/combinedview.html:88
-#, fuzzy
-#| msgid "Send &Link Address..."
 msgid "Send Link Address"
-msgstr "ਲਿੰਕ ਐਡਰੈੱਸ ਭੇਜੋ(&L)..."
+msgstr "ਲਿੰਕ ਐਡਰੈੱਸ ਭੇਜੋ"
 
 #: src/formatter/html/5.2/combinedview.html:89
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:96
@@ -138,14 +123,12 @@ msgstr[0] " ਮਿੰਟ"
 msgstr[1] " ਮਿੰਟ"
 
 #: configuration/akregatorconfigurepluginlistwidget.cpp:51
-#, fuzzy, kde-format
-#| msgid "Configure Feeds"
+#, kde-format
 msgid "Webengine Plugins"
-msgstr "ਫੀਡ ਸੰਰਚਨਾ"
+msgstr "ਵੈੱਬ-ਇੰਜਣ ਪਲੱਗਇਨਾਂ"
 
 #: configuration/settings_advanced.cpp:27
-#, fuzzy, kde-format
-#| msgid " sec"
+#, kde-format
 msgctxt "Mark selected article read after"
 msgid " second"
 msgid_plural " seconds"
@@ -162,7 +145,7 @@ msgstr "ਲੇਖ ਲਿਸਟ"
 #: configuration/ui/settings_advancedbase.ui:38
 #, kde-format
 msgid "Mar&k selected article read after"
-msgstr "ਚੁਣੇ ਲੇਖ ਨੂੰ ਇਨ੍ਹਾਂ ਸਕਿੰਟ ਬਾਅਦ ਪੜ੍ਹਿਆ ਮਾਰਕ"
+msgstr "ਚੁਣੇ ਲੇਖ ਨੂੰ ਇਨ੍ਹਾਂ ਸਕਿੰਟ ਬਾਅਦ ਪੜ੍ਹਿਆ ਮਾਰਕ(&k)"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ResetQuickFilterOnNodeChange)
 #: configuration/ui/settings_advancedbase.ui:73
@@ -198,19 +181,19 @@ msgstr "ਕਸਟਮ ਰੰਗ ਵਰਤੋਂ"
 #: configuration/ui/settings_appearance.ui:121
 #, kde-format
 msgid "Font Size"
-msgstr "ਫੋਂਟ ਸਾਈਜ਼"
+msgstr "ਫੋਂਟ ਆਕਾਰ"
 
 #. i18n: ectx: property (text), widget (QLabel, lbl_MinimumFontSize)
 #: configuration/ui/settings_appearance.ui:127
 #, kde-format
 msgid "Minimum font size:"
-msgstr "ਨਿਊਨਤਮ ਫੋਂਟ ਸਾਇਜ਼:"
+msgstr "ਘੱਟੋ-ਘੱਟ ਫੋਂਟ ਆਕਾਰ:"
 
 #. i18n: ectx: property (text), widget (QLabel, lbl_MediumFontSize)
 #: configuration/ui/settings_appearance.ui:176
 #, kde-format
 msgid "Medium font size:"
-msgstr "ਮੱਧਮ ਫੋਂਟ ਸਾਇਜ਼:"
+msgstr "ਮੱਧਮ ਫੋਂਟ ਆਕਾਰ:"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: configuration/ui/settings_appearance.ui:228
@@ -246,14 +229,13 @@ msgstr "Sans serif ਫੋਂਟ:"
 #: configuration/ui/settings_archive.ui:30
 #, kde-format
 msgid "Default Archive Settings"
-msgstr "ਡਿਫਾਲਟ ਅਕਾਇਵ ਸੈਟਿੰਗ"
+msgstr "ਡਿਫਾਲਟ ਅਕਾਇਵ ਸੈਟਿੰਗਾ"
 
 #. i18n: ectx: property (text), widget (QRadioButton, rb_DisableArchiving)
 #: configuration/ui/settings_archive.ui:36
-#, fuzzy, kde-format
-#| msgid "Disable archiving"
+#, kde-format
 msgid "Disa&ble archiving"
-msgstr "ਅਕਾਇਵ ਰੱਖਣਾ ਆਯੋਗ"
+msgstr "ਅਕਾਇਵ ਰੱਖਣਾ ਅਸਮਰੱਥ(&b)"
 
 #. i18n: ectx: property (text), widget (QRadioButton, rb_KeepAllArticles)
 #. i18n: ectx: property (text), widget (QRadioButton, rb_keepAllArticles)
@@ -334,17 +316,15 @@ msgstr "firefox %u"
 
 #. i18n: ectx: property (text), widget (QRadioButton, kcfg_ExternalBrowserUseCustomCommand)
 #: configuration/ui/settings_browser.ui:90
-#, fuzzy, kde-format
-#| msgid "Use this command:"
+#, kde-format
 msgid "Use &this command:"
-msgstr "ਇਹ ਕਮਾਂਡ ਵਰਤੋਂ:"
+msgstr "ਇਹ ਕਮਾਂਡ ਵਰਤੋਂ(&t):"
 
 #. i18n: ectx: property (text), widget (QRadioButton, kcfg_ExternalBrowserUseKdeDefault)
 #: configuration/ui/settings_browser.ui:97
-#, fuzzy, kde-format
-#| msgid "Use default web browser"
+#, kde-format
 msgid "Use default web &browser"
-msgstr "ਡਿਫਾਲਟ ਵੈੱਬ ਬਰਾਊਜ਼ਰ ਵਰਤੋਂ"
+msgstr "ਡਿਫਾਲਟ ਵੈੱਬ ਬਰਾਊਜ਼ਰ ਵਰਤੋਂ(&b)"
 
 #. i18n: ectx: property (title), widget (QGroupBox, tabsGroupBox)
 #: configuration/ui/settings_browser.ui:110
@@ -357,14 +337,13 @@ msgstr "ਟੈਬ"
 #: configuration/ui/settings_browser.ui:116 interfaces/akregator.kcfg:202
 #, kde-format
 msgid "Always show the tab bar"
-msgstr "ਟੈਬਾਂ"
+msgstr "ਟੈਬ ਪੱਟੀ ਹਮੇਸ਼ਾਂ ਵੇਖਾਓ"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_CloseButtonOnTabs)
 #: configuration/ui/settings_browser.ui:123
-#, fuzzy, kde-format
-#| msgid "Show close buttons on tabs"
+#, kde-format
 msgid "Show close button on each tab"
-msgstr "ਟੈਬ ਉੱਤੇ ਬੰਦ ਕਰੋ ਬਟਨ ਵੇਖੋ"
+msgstr "ਹਰ ਟੈਬ ਉੱਤੇ ਬੰਦ ਕਰੋ ਬਟਨ ਵੇਖਾਓ"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_NewWindowInTab)
 #. i18n: ectx: label, entry, group (Browser)
@@ -377,7 +356,7 @@ msgstr "ਲਿੰਕ ਨਵੀਂ ਵਿੰਡੋ ਦੀ ਬਜਾਏ ਨਵੀ�
 #: configuration/ui/settings_browser.ui:140
 #, kde-format
 msgid "Security"
-msgstr ""
+msgstr "ਸੁਰੱਖਿਆ"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_CheckPhishingUrl)
 #: configuration/ui/settings_browser.ui:146
@@ -390,25 +369,23 @@ msgstr ""
 #: configuration/ui/settings_browser.ui:153 interfaces/akregator.kcfg:198
 #, kde-format
 msgid "Enable Javascript"
-msgstr ""
+msgstr "ਜਾਵਾ-ਸਕ੍ਰਿਪਟ ਸਮਰੱਥ ਕਰੋ"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #: configuration/ui/settings_browser.ui:163
 #, kde-format
 msgid "Misc"
-msgstr ""
+msgstr "ਫੁਟਕਲ"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_AccessKeyEnabled)
 #: configuration/ui/settings_browser.ui:169
-#, fuzzy, kde-format
-#| msgid "Keep Enabled"
+#, kde-format
 msgid "Access Key Enabled"
-msgstr "ਚਾਲੂ ਰੱਖੋ"
+msgstr "ਪਹੁੰਚ ਸਵਿੱਚ ਸਮਰੱਥ"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_3)
 #: configuration/ui/settings_general.ui:30
-#, fuzzy, kde-format
-#| msgid "Global"
+#, kde-format
 msgctxt "global settings"
 msgid "Global"
 msgstr "ਗਲੋਬਲ"
@@ -421,10 +398,9 @@ msgstr "ਟਰੇ ਆਈਕਾਨ ਵੇਖੋ(&i)"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ShowUnreadInTaskbar)
 #: configuration/ui/settings_general.ui:43
-#, fuzzy, kde-format
-#| msgid " (no unread articles)"
+#, kde-format
 msgid "Show unread articles in Taskbar"
-msgstr "(ਕੋਈ ਨਾ-ਪੜ੍ਹੇ ਲੇਖ ਨਹੀਂ)"
+msgstr "ਨਾ-ਪੜ੍ਹੇ ਲੇਖਾਂ ਨੂੰ ਟਾਸਕ-ਪੱਟੀ ਵਿੱਚ ਵੇਖਾਓ"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_HideReadFeeds)
 #. i18n: ectx: label, entry, group (View)
@@ -931,17 +907,16 @@ msgid "Akregator"
 msgstr "ਐਕਰੀਗੇਟਰ"
 
 #: kontactplugin/akregator_plugin.cpp:29
-#, fuzzy, kde-format
-#| msgid "&Add Feed..."
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "New Feed..."
-msgstr "ਫੀਡ ਸ਼ਾਮਲ(&A)..."
+msgstr "ਨਵੀਂ ਫੀਡ..."
 
 #: kontactplugin/akregator_plugin.cpp:32
 #, kde-format
 msgctxt "@info:status"
 msgid "Create a new feed"
-msgstr ""
+msgstr "ਨਵੀਂ ਫੀਡ ਬਣਾਓ"
 
 #: kontactplugin/akregator_plugin.cpp:33
 #, kde-format
@@ -952,13 +927,12 @@ msgstr ""
 #: src/aboutdata.cpp:21
 #, kde-format
 msgid "A KDE Feed Reader"
-msgstr "ਇੱਕ ਕੇਡੀਈ ਫੀਡ ਰੀਡਰ"
+msgstr "ਕੇਡੀਈ ਫੀਡ ਰੀਡਰ"
 
 #: src/aboutdata.cpp:23
-#, fuzzy, kde-format
-#| msgid "Copyright © 2004–2010 Akregator authors"
+#, kde-format
 msgid "Copyright © 2004–%1 Akregator authors"
-msgstr "(C) 2004-2010 ਐਕਰੀਗੇਟਰ ਡਿਵੈਲਪਰ"
+msgstr "ਕਾਪੀਰਾਈਟ (C) 2004–%1 ਐਕਰੀਗੇਟਰ ਡਿਵੈਲਪਰ"
 
 #: src/aboutdata.cpp:27
 #, kde-format
@@ -1563,8 +1537,7 @@ msgid "Could not import the file %1 (no valid OPML)"
 msgstr ""
 
 #: src/akregator_part.cpp:464 src/command/loadfeedlistcommand.cpp:71
-#, fuzzy, kde-format
-#| msgid "OPML Parsing Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "OPML Parsing Error"
 msgstr "OPML ਪਾਰਸਿੰਗ ਗਲਤੀ"
@@ -1577,8 +1550,7 @@ msgid ""
 msgstr ""
 
 #: src/akregator_part.cpp:469 src/command/loadfeedlistcommand.cpp:144
-#, fuzzy, kde-format
-#| msgid "Read Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "Read Error"
 msgstr "ਪੜ੍ਹਨ ਗਲਤੀ"
@@ -1589,17 +1561,15 @@ msgid "Access denied: cannot write to file %1. Please check your permissions."
 msgstr ""
 
 #: src/akregator_part.cpp:481
-#, fuzzy, kde-format
-#| msgid "Write Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "Write Error"
 msgstr "ਲਿਖਣ ਗਲਤੀ"
 
 #: src/akregator_part.cpp:496 src/akregator_part.cpp:505
-#, fuzzy, kde-format
-#| msgid "OPML Outlines (*.opml, *.xml)"
+#, kde-format
 msgid "OPML Outlines (%1);;All Files (*)"
-msgstr "OPML ਆਉਟਲਾਈਨ (*.opml, *.xml)"
+msgstr "OPML ਆਉਟਲਾਈਨਾਂ (%1);;ਸਭ ਫਾਇਲਾਂ (*)"
 
 #: src/akregator_part.cpp:629
 #, kde-format
@@ -1668,55 +1638,52 @@ msgid "Content"
 msgstr "ਸਮੱਗਰੀ"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:143
-#, fuzzy, kde-format
-#| msgid "A KDE news feed reader."
+#, kde-format
 msgid "Akregator is a KDE news feed reader."
-msgstr "ਇੱਕ ਕੇਡੀਈ ਫੀਡ ਰੀਡਰ।"
+msgstr "ਐਕਰੀਗੇਟਰ ਕੇਡੀਈ ਨਿਊਜ਼ ਫੀਡ ਰੀਡਰ ਹੈ।"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:184
-#, fuzzy, kde-format
-#| msgid "&Save Link As..."
+#, kde-format
 msgctxt "@title:window"
 msgid "Save As"
-msgstr "ਲਿੰਕ ਇੰਝ ਸੰਭਾਲੋ(&S)...."
+msgstr "ਇੰਝ ਸੰਭਾਲੋ"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:373
 #, kde-format
 msgid "Disable"
-msgstr "ਅਯੋਗ"
+msgstr "ਅਸਮਰੱਥ"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:374
 #, kde-format
 msgid "Keep Enabled"
-msgstr "ਚਾਲੂ ਰੱਖੋ"
+msgstr "ਸਮਰੱਥ ਰੱਖੋ"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:376
 #, kde-format
 msgid "Are you sure you want to disable this introduction page?"
-msgstr "ਕੀ ਤੁਸੀਂ ਇਹ ਜਾਣ-ਪਛਾਣ ਪੇਜ਼ ਨੂੰ ਬੰਦ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ?"
+msgstr "ਕੀ ਤੁਸੀਂ ਇਹ ਜਾਣ-ਪਛਾਣ ਸਫ਼ੇ ਨੂੰ ਬੰਦ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ?"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:377
-#, fuzzy, kde-format
-#| msgid "Disable Introduction Page"
+#, kde-format
 msgctxt "@title:window"
 msgid "Disable Introduction Page"
-msgstr "ਜਾਣ ਪਛਾਣ ਬੰਦ ਕਰੋ"
+msgstr "ਜਾਣ ਪਛਾਣ ਸਫ਼ੇ ਨੂੰ ਅਸਮਰੱਥ ਕਰੋ"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:412
 #, kde-format
 msgid "This web site is a malware, do you want to continue to show it?"
-msgstr ""
+msgstr "ਇਹ ਵੈੱਬਸਾਈਟ ਮਾਲਵੇਅਰ ਹੈ, ਕੀ ਤੁਸੀਂ ਇਸ ਨੂੰ ਵੇਖਣਾ ਚਾਹੁੰਦੇ ਹੋ?"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:413
 #, kde-format
 msgctxt "@title:window"
 msgid "Malware"
-msgstr ""
+msgstr "ਮਾਲਵੇਅਰ"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:425
 #, kde-format
 msgid "The network is broken."
-msgstr ""
+msgstr "ਨੈੱਟਵਰਕ ਖ਼ਰਾਬ ਹੈ।"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:425
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:428
@@ -1733,7 +1700,7 @@ msgstr ""
 #: src/command/createfoldercommand.cpp:47
 #, kde-format
 msgid "Add Folder"
-msgstr "ਫੋਲਡਰ ਸ਼ਾਮਲ"
+msgstr "ਫੋਲਡਰ ਜੋੜੋ"
 
 #: src/command/createfoldercommand.cpp:47
 #, kde-format
@@ -1756,11 +1723,10 @@ msgstr ""
 "<qt>ਕੀ ਤੁਸੀਂ <b>%1</b> ਫੋਲਡਰ ਅਤੇ ਇਸ ਦੀ ਫੀਡ ਤੇ ਸਬ-ਫੋਲਡਰਾਂ ਨੂੰ ਹਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?</qt>"
 
 #: src/command/deletesubscriptioncommand.cpp:44
-#, fuzzy, kde-format
-#| msgid "Delete Folder"
+#, kde-format
 msgctxt "@title:window"
 msgid "Delete Folder"
-msgstr "ਫੋਲਡਰ ਹਟਾਓ"
+msgstr "ਫੋਲਡਰ ਨੂੰ ਹਟਾਓ"
 
 #: src/command/deletesubscriptioncommand.cpp:61
 #, kde-format
@@ -1773,11 +1739,10 @@ msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
 msgstr "<qt>ਕੀ ਤੁਸੀਂ <b>%1</b> ਫੀਡ ਹਟਾਉਣੀ ਚਾਹੁੰਦੇ ਹੋ?</qt>"
 
 #: src/command/deletesubscriptioncommand.cpp:68
-#, fuzzy, kde-format
-#| msgid "Delete Feed"
+#, kde-format
 msgctxt "@title:window"
 msgid "Delete Feed"
-msgstr "ਫੀਡ ਹਟਾਓ"
+msgstr "ਫੀਡ ਨੂੰ ਹਟਾਓ"
 
 #: src/command/importfeedlistcommand.cpp:48
 #, kde-format
@@ -1787,7 +1752,7 @@ msgstr "ਇੰਪੋਰਟ ਕੀਤੇ ਫੀਡ"
 #: src/command/importfeedlistcommand.cpp:77
 #, kde-format
 msgid "Add Imported Folder"
-msgstr "ਇੰਪੋਰਟ ਕੀਤਾ ਫੋਲਡਰ ਸ਼ਾਮਲ"
+msgstr "ਇੰਪੋਰਟ ਕੀਤਾ ਫੋਲਡਰ ਜੋੜੋ"
 
 #: src/command/importfeedlistcommand.cpp:78
 #, kde-format
@@ -1856,14 +1821,12 @@ msgid "Restore Session"
 msgstr "ਸ਼ੈਸ਼ਨ ਮੁੜ-ਸਟੋਰ ਕਰੋ"
 
 #: src/crashwidget/crashwidget.cpp:43
-#, fuzzy, kde-format
-#| msgid "Restore Session"
+#, kde-format
 msgid "Do Not Restore Session"
-msgstr "ਸ਼ੈਸ਼ਨ ਮੁੜ-ਸਟੋਰ ਕਰੋ"
+msgstr "ਸ਼ੈਸ਼ਨ ਬਹਾਲ ਨਾ ਕਰੋ"
 
 #: src/crashwidget/crashwidget.cpp:49
-#, fuzzy, kde-format
-#| msgid "Ask Me Later"
+#, kde-format
 msgid "Ask me later"
 msgstr "ਮੈਨੂੰ ਬਾਅਦ 'ਚ ਪੁੱਛੋ"
 
@@ -1901,7 +1864,7 @@ msgstr "ਲੇਖ(&A)"
 #: src/data/akregator_part.rc:80 src/data/akregator_shell.rc:39
 #, kde-format
 msgid "&Settings"
-msgstr "ਸੈਟਿੰਗ(&S)"
+msgstr "ਸੈਟਿੰਗਾਂ(&S)"
 
 #. i18n: ectx: ToolBar (mainToolBar)
 #: src/data/akregator_part.rc:93 src/data/akregator_shell.rc:54
@@ -1918,7 +1881,7 @@ msgstr "ਫਾਇਲ(&F)"
 #: src/feed/feedlist.cpp:160
 #, kde-format
 msgid "All Feeds"
-msgstr "ਸਭ ਫੀਡ"
+msgstr "ਸਭ ਫੀਡਾਂ"
 
 #: src/feed/feedpropertiesdialog.cpp:45 src/feed/feedpropertiesdialog.cpp:77
 #, kde-format
@@ -1942,15 +1905,13 @@ msgstr[0] "ਦਿਨ"
 msgstr[1] "ਦਿਨ"
 
 #: src/feed/feedpropertiesdialog.cpp:60 src/feed/feedpropertiesdialog.cpp:112
-#, fuzzy, kde-format
-#| msgid "Feed Properties"
+#, kde-format
 msgctxt "@title:window"
 msgid "Feed Properties"
-msgstr "ਫੀਡ ਵਿਸ਼ੇਸ਼ਤਾ"
+msgstr "ਫੀਡ ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ"
 
 #: src/feed/feedpropertiesdialog.cpp:80
-#, fuzzy, kde-format
-#| msgid "Never"
+#, kde-format
 msgctxt "never fetch new articles"
 msgid "Never"
 msgstr "ਕਦੇ ਨਹੀਂ"
@@ -1970,8 +1931,7 @@ msgstr[0] " ਲੇਖ"
 msgstr[1] " ਲੇਖ"
 
 #: src/feed/feedpropertiesdialog.cpp:112
-#, fuzzy, kde-format
-#| msgid "Properties of %1"
+#, kde-format
 msgctxt "@title:window"
 msgid "Properties of %1"
 msgstr "%1 ਦੀ ਵਿਸ਼ੇਸ਼ਤਾ"
@@ -1996,31 +1956,27 @@ msgstr[0] "(1 ਨਾ-ਪੜ੍ਹਿਆ ਲੇਖ)"
 msgstr[1] "(%1 ਨਾ-ਪੜ੍ਹਿਆ ਲੇਖ)"
 
 #: src/formatter/grantleeviewformatter.cpp:117
-#, fuzzy, kde-format
-#| msgid "<b>Description:</b> %1<br /><br />"
+#, kde-format
 msgid "<b>Description:</b> %1<br />"
-msgstr "<b>ਲੇਖ:</b> %1<br /><br />"
+msgstr "<b>ਵਰਣਨ:</b> %1<br />"
 
 #: src/formatter/grantleeviewformatter.cpp:124
-#, fuzzy, kde-format
-#| msgid "<b>Homepage:</b> <a href=\"%1\">%2</a>"
+#, kde-format
 msgid "<b>Homepage:</b> <a href=\"%1\">%1</a>"
-msgstr "<b>ਮੇਨ-ਪੇਜ਼:</b> <a href=\"%1\">%2</a>"
+msgstr "<b>ਮੁੱਖ-ਸਫ਼ਾ:</b> <a href=\"%1\">%1</a>"
 
 #: src/formatter/grantleeviewformatter.cpp:131
-#, fuzzy, kde-format
-#| msgid "<b>Description:</b> %1<br /><br />"
+#, kde-format
 msgid "<b>Copyright:</b> %1</a>"
-msgstr "<b>ਲੇਖ:</b> %1<br /><br />"
+msgstr "<b>ਕਾਪੀਰਾਈਟ:</b> %1</a>"
 
 #: src/formatter/grantleeviewformatter.cpp:183
 #, kde-format
 msgid "Date"
-msgstr "ਮਿਤੀ"
+msgstr "ਤਾਰੀਖ"
 
 #: src/formatter/grantleeviewformatter.cpp:184
-#, fuzzy, kde-format
-#| msgid "Comments"
+#, kde-format
 msgid "Comment"
 msgstr "ਟਿੱਪਣੀ"
 
@@ -2088,11 +2044,10 @@ msgid ""
 msgstr "<qt>ਕੀ ਤੁਸੀਂ <b>%1</b> ਫੀਡ ਹਟਾਉਣੀ ਚਾਹੁੰਦੇ ਹੋ?</qt>"
 
 #: src/mainwidget.cpp:778
-#, fuzzy, kde-format
-#| msgid "&Mark Feed as Read"
+#, kde-format
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
-msgstr "ਫੀਡ ਪੜ੍ਹੀ ਮਾਰਕ ਕਰੋ(&M)"
+msgstr "ਫੀਡ ਪੜ੍ਹੀ ਵਜੋਂ ਮਾਰਕ ਕਰੋ"
 
 #: src/mainwidget.cpp:781
 #, fuzzy, kde-format
@@ -2109,16 +2064,15 @@ msgid ""
 msgstr "<qt>ਕੀ ਤੁਸੀਂ ਇਹ ਫੀਡ ਹਟਾਉਣੀ ਚਾਹੁੰਦੇ ਹੋ?</qt>"
 
 #: src/mainwidget.cpp:785
-#, fuzzy, kde-format
-#| msgid "&Mark Feeds as Read"
+#, kde-format
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
-msgstr "ਫੀਡ ਪੜ੍ਹੀ ਮਾਰਕ ਕਰੋ(&M)"
+msgstr "ਫੀਡਾਂ ਨੂੰ ਪੜ੍ਹੀਆਂ ਵਜੋਂ ਮਾਰਕ ਕਰੋ"
 
 #: src/mainwidget.cpp:849 src/mainwidget.cpp:858 src/mainwidget.cpp:1260
 #, kde-format
 msgid "Networking is not available."
-msgstr ""
+msgstr "ਨੈੱਟਵਰਕ ਮੌਜੂਦ ਨਹੀਂ ਹੈ।"
 
 #: src/mainwidget.cpp:866
 #, kde-format
