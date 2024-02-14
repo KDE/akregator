@@ -32,6 +32,7 @@
   <name xml:lang="ka">Akregator</name>
   <name xml:lang="ko">Akregator</name>
   <name xml:lang="lt">Akregator</name>
+  <name xml:lang="lv">Akregator</name>
   <name xml:lang="nb">Akregator</name>
   <name xml:lang="nds">Akregator</name>
   <name xml:lang="nl">Akregator</name>
@@ -81,6 +82,7 @@
   <developer_name xml:lang="ka">KDE-ის საზოგადოება</developer_name>
   <developer_name xml:lang="ko">KDE 커뮤니티</developer_name>
   <developer_name xml:lang="lt">KDE bendruomenė</developer_name>
+  <developer_name xml:lang="lv">KDE kopiena</developer_name>
   <developer_name xml:lang="nl">De KDE gemeenschap</developer_name>
   <developer_name xml:lang="nn">KDE-fellesskapet</developer_name>
   <developer_name xml:lang="pl">Społeczność KDE</developer_name>
@@ -127,6 +129,7 @@
     <p xml:lang="ka">Akregator სიახლეების წასაკითხი პროგრამაა. ის საშუალებას გაძლევთ, მიჰყვეთ სიახლეების საიტებს, ბლოგებს და სხვა RSS/Atom-ჩართულ ვებგვერდებს განახლებების ხელით შემოწმების საჭიროების გარეშე. Akregator-ი ორივე, ადვილი და მძლავრია, რომ ასობით სიახლის წყარო ადეკვატურად დაამუშაოს. მას ასევე მოჰყვება სწრაფი ძებნა, განვითარებული არქივირების ფუნქციონალი და სიახლეების ადვილად წასაკითხად, შიდა ბრაუზერი.</p>
     <p xml:lang="ko">Akregator는 뉴스 피드 리더입니다. 뉴스 사이트, 블로그, RSS/Atom 지원 웹사이트에 웹 브라우저로 직접 방문하지 않고 업데이트를 따라갈 수 있습니다. Akregator는 다량의 뉴스 사이트를 편하게 읽을 수 있음과 동시에 쉽게 사용할 수 있도록 설계되었습니다. 빠른 검색, 글 보관 기능을 지원하며 쉽게 글을 읽을 수 있는 내장 웹 브라우저가 있습니다.</p>
     <p xml:lang="lt">Akregator yra naujienų sklaidos kanalų skaitytuvė. Ji leidžia sekti naujienų internetines svetaines, tinklaraščius bei kitas RSS/Atom įgalintas internetines svetaines be būtinybės rankiniu būdu tikrinti svetainės atnaujinimus naudojant saityno naršyklę. Akregator sukurta, kad ja būtų lengva naudotis ir, kad ji būtų pakankamai galinga siekiant patogiai skaityti šimtus naujienų iš įvairių šaltinių. Akregator patogiam naujienų skaitymui pateikiama su greita paieška, išplėstiniu archyvavimo funkcionalumu ir vidine naršykle.</p>
+    <p xml:lang="lv">„Akregator“ ir ziņu plūsmu lasītājs. Šī programma ļauj sekot ziņu lapām, emuāriem un citām vietnēm, kurās darbojas „RSS/Atom“ funkcija, ļaujot izvairīties no manuālas ziņu pārbaudes tīmekļa pārlūkprogrammā. „Akregator“ ir veidots, lai būtu viegli lietojams, bet arī pietiekami jaudīgs ērtai simtiem ziņu avotu pārlūkošanai. Tam ir iebūvēta ātra meklēšana, paplašināta arhivēšanas funkcionalitāte un iekšējs pārlūks vieglai ziņu lasīšanai.</p>
     <p xml:lang="nl">Akregator is een lezer voor newsfeed. Het laat u nieuwssites, blogs en andere RSS/Atom-ingeschakelde websites volgen zonder de noodzaak om handmatig te controleren op updates met een webbrowser. Akregator is ontworpen om zowel gemakkelijk te gebruiken als krachtig genoeg om honderden nieuwsbronnen gemakkelijk te volgen. Het komt met een snel zoeken, geavanceerd archiveren en met een interne browser voor gemakkelijk lezen van nieuws.</p>
     <p xml:lang="nn">Akregator er ein nyheitskjeldelesar. Han kan følgja nyheitsstadar, bloggar og andre nettstadar som tilbyr RSS/Atom-kjelder utan at du treng følgja med på oppdateringar manuelt. Akregator er utforma for å vera lett å bruka og kraftig nok til å visa hundrevis av nyheitskjelder på ein tilgjengeleg måte. Han kjem med eit snøggsøk, funksjonar for avansert arkivering og ein innebygd nettlesar for vising av nyheiter.</p>
     <p xml:lang="pl">Akregator jest czytnikiem kanałów aktualności. Umożliwia śledzenie stron z aktualnościami, bloków i innych stron z włączonym  RSS/Atom bez potrzeby ręcznego sprawdzania uaktualnień poprzez przeglądarkę sieciową. Akregator został zaprojektowany, aby był zarówno łatwy w użyciu i na tyle zaawansowany, żeby mógł czytać z setek źródeł aktualności w sposób wygodny. Program umożliwia szybkie wyszukiwanie, rozbudowane archiwizowanie oraz wewnętrzną przeglądarkę dla łatwości odczytywania wieści.</p>
@@ -169,6 +172,7 @@
   <summary xml:lang="ka">სიახლეების ლენტის კითხვა</summary>
   <summary xml:lang="ko">뉴스 피드 리더</summary>
   <summary xml:lang="lt">Naujienų sklaidos kanalų skaitytuvė</summary>
+  <summary xml:lang="lv">Ziņu plūsmu lasītājs</summary>
   <summary xml:lang="nl">Een newsfeedlezer</summary>
   <summary xml:lang="nn">Ein nyheitskjeldelesar</summary>
   <summary xml:lang="pl">Czytnik kanałów wiadomości</summary>
@@ -220,6 +224,7 @@
       <caption xml:lang="ka">წაიკთხეთ სიახლეები Kotact-ში Akragator-თან ერთად</caption>
       <caption xml:lang="ko">Akregator로 Kontact에서 피드 읽기</caption>
       <caption xml:lang="lt">Sklaidos kanalų skaitymas Kontact programoje naudojant Akregator</caption>
+      <caption xml:lang="lv">Plūsmu lasīšana „Kontact“ programmā ar „Akregator“</caption>
       <caption xml:lang="nl">Feeds lezen in Kontact met Akregator</caption>
       <caption xml:lang="nn">Lesing av kjelder i Kontact ved hjelp av Akregator</caption>
       <caption xml:lang="pl">Czytanie kanałów w Kontact przy użyciu Akregatora</caption>
