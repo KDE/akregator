@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdepim\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-06 01:33+0000\n"
+"POT-Creation-Date: 2024-02-15 00:37+0000\n"
 "PO-Revision-Date: 2023-10-08 22:22+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -2118,7 +2118,7 @@ msgctxt "@title:window"
 msgid "Hide menu bar"
 msgstr "메뉴 표시줄 숨기기"
 
-#: src/mainwindow.cpp:153
+#: src/mainwindow.cpp:154
 #, kde-format
 msgid ""
 "Could not find the Akregator part; please check your installation.\n"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: KDE 4.3\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-06 01:33+0000\n"
+"POT-Creation-Date: 2024-02-15 00:37+0000\n"
 "PO-Revision-Date: 2024-01-08 13:27+0100\n"
 "Last-Translator: Kristof Kiszel <ulysses@fsf.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -2163,7 +2163,7 @@ msgctxt "@title:window"
 msgid "Hide menu bar"
 msgstr "Menüsáv elrejtése"
 
-#: src/mainwindow.cpp:153
+#: src/mainwindow.cpp:154
 #, kde-format
 msgid ""
 "Could not find the Akregator part; please check your installation.\n"
