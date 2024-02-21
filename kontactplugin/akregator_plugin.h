@@ -57,6 +57,7 @@ public:
     }
 
     OrgKdeAkregatorPartInterface *interface();
+    [[nodiscard]] QStringList invisibleToolbarActions() const override;
 
     bool isRunningStandalone() const override;
     void readProperties(const KConfigGroup &config) override;

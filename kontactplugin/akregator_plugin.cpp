@@ -52,6 +52,11 @@ void AkregatorPlugin::setHelpText(QAction *action, const QString &text)
     }
 }
 
+QStringList AkregatorPlugin::invisibleToolbarActions() const
+{
+    return QStringList() << QStringLiteral("feed_add");
+}
+
 bool AkregatorPlugin::isRunningStandalone() const
 {
     return mUniqueAppWatcher->isRunningStandalone();
