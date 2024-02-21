@@ -20,7 +20,6 @@
 
 #include <WebEngineViewer/FindBarWebEngineView>
 #include <WebEngineViewer/TrackingWarningWidget>
-#include <WebEngineViewer/WebEngineExportHtmlPageJob>
 
 #include <QApplication>
 
