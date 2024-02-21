@@ -137,34 +137,4 @@ void ArticleViewerWebEngineWidgetNg::slotPrintPreview()
     printMessage->printPreview();
 }
 
-void ArticleViewerWebEngineWidgetNg::slotOpenInBrowser()
-{
-    const QUrl currentUrl(mArticleViewerNg->url());
-    if (currentUrl.isLocalFile()) {
-        auto job = new WebEngineViewer::WebEngineExportHtmlPageJob;
-        job->setEngineView(mArticleViewerNg);
-        connect(job, &WebEngineViewer::WebEngineExportHtmlPageJob::failed, this, &ArticleViewerWebEngineWidgetNg::slotExportHtmlPageFailed);
-        connect(job, &WebEngineViewer::WebEngineExportHtmlPageJob::success, this, &ArticleViewerWebEngineWidgetNg::slotExportHtmlPageSuccess);
-        job->start();
-    } else {
-        auto job = new KIO::OpenUrlJob(currentUrl, QStringLiteral("text/html"));
-        job->setUiDelegate(KIO::createDefaultJobUiDelegate(KJobUiDelegate::AutoHandlingEnabled, this));
-        job->setDeleteTemporaryFile(true);
-        job->start();
-    }
-}
-
-void ArticleViewerWebEngineWidgetNg::slotExportHtmlPageFailed()
-{
-    qCDebug(AKREGATOR_LOG) << " Failed to export as HTML";
-}
-
-void ArticleViewerWebEngineWidgetNg::slotExportHtmlPageSuccess(const QString &filename)
-{
-    auto job = new KIO::OpenUrlJob(QUrl::fromLocalFile(filename), QStringLiteral("text/html"));
-    job->setUiDelegate(KIO::createDefaultJobUiDelegate(KJobUiDelegate::AutoHandlingEnabled, this));
-    job->setDeleteTemporaryFile(true);
-    job->start();
-}
-
 #include "moc_articleviewerwebenginewidgetng.cpp"

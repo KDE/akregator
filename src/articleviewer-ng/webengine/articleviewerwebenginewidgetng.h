@@ -48,11 +48,6 @@ public Q_SLOTS:
     void slotPrint();
     void slotPrintPreview();
 
-private Q_SLOTS:
-    void slotOpenInBrowser();
-    void slotExportHtmlPageSuccess(const QString &filename);
-    void slotExportHtmlPageFailed();
-
 private:
     void initializeActions(KActionCollection *ac);
     void initializeLayout(KActionCollection *ac);
