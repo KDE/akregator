@@ -108,51 +108,6 @@
     <p xml:lang="zh-TW">Akregator 一款新聞 feed 閱讀器。它讓您可以輕鬆取得新聞站台、部落格與其它 RSS/Atom 文章來源，不需要自己親自去每個站台看看有沒有新文章。Akregator 設計成非常易用，並且夠強大，方便讀取上百個新聞來源。它也有快速搜尋與進階封存功能，以及內部瀏覽器以供簡易閱讀新聞。</p>
   </description>
   <summary>Keep up with your feeds</summary>
-  <summary xml:lang="ar">قارئ تغذيات الأخبار</summary>
-  <summary xml:lang="az">Xəbərlər lenti oxuma tətbiqi</summary>
-  <summary xml:lang="bg">Преглед на емисии</summary>
-  <summary xml:lang="ca">Un lector de fonts d'informació</summary>
-  <summary xml:lang="ca-valencia">Un lector de fonts d'informació</summary>
-  <summary xml:lang="cs">Čtečka kanálů novinek</summary>
-  <summary xml:lang="da">En nyhedsfeed-læser</summary>
-  <summary xml:lang="de">Ein Nachrichtensammler</summary>
-  <summary xml:lang="el">Ένας αναγνώστης ροών ειδήσεων</summary>
-  <summary xml:lang="en-GB">A news feed reader</summary>
-  <summary xml:lang="eo">Novaĵflua legilo</summary>
-  <summary xml:lang="es">Un lector de fuentes de noticias</summary>
-  <summary xml:lang="et">Uudistevoogude lugeja</summary>
-  <summary xml:lang="eu">Albiste jarioak irakurtzekoa</summary>
-  <summary xml:lang="fi">Syötteenlukija</summary>
-  <summary xml:lang="fr">Un agrégateur de flux</summary>
-  <summary xml:lang="gl">Un lector de fontes de novas.</summary>
-  <summary xml:lang="he">מציג ערוצי חדשות</summary>
-  <summary xml:lang="hu">Hírolvasó alkalmazás</summary>
-  <summary xml:lang="ia">Un lector de syndication de novas</summary>
-  <summary xml:lang="id">Sebuah pembaca feed berita</summary>
-  <summary xml:lang="is">Fréttalesari</summary>
-  <summary xml:lang="it">Un lettore di fonti di notizie</summary>
-  <summary xml:lang="ka">სიახლეების ლენტის კითხვა</summary>
-  <summary xml:lang="ko">뉴스 피드 리더</summary>
-  <summary xml:lang="lt">Naujienų sklaidos kanalų skaitytuvė</summary>
-  <summary xml:lang="lv">Ziņu plūsmu lasītājs</summary>
-  <summary xml:lang="nl">Een newsfeedlezer</summary>
-  <summary xml:lang="nn">Ein nyheitskjeldelesar</summary>
-  <summary xml:lang="pl">Czytnik kanałów wiadomości</summary>
-  <summary xml:lang="pt">Um leitor de fontes de notícias</summary>
-  <summary xml:lang="pt-BR">Um leitor de fontes de notícias</summary>
-  <summary xml:lang="ru">Программа чтения лент новостей</summary>
-  <summary xml:lang="sk">Čítačka noviniek</summary>
-  <summary xml:lang="sl">Bralnik virov novic</summary>
-  <summary xml:lang="sr">Читач довода вести</summary>
-  <summary xml:lang="sr-Latn">Čitač dovoda vesti</summary>
-  <summary xml:lang="sr-ijekavian">Читач довода вести</summary>
-  <summary xml:lang="sr-ijekavianlatin">Čitač dovoda vesti</summary>
-  <summary xml:lang="sv">Läsning av nyhetskanaler</summary>
-  <summary xml:lang="tr">Haber beslemesi okuyucusu</summary>
-  <summary xml:lang="uk">Програма для читання подач</summary>
-  <summary xml:lang="x-test">xxA news feed readerxx</summary>
-  <summary xml:lang="zh-CN">新闻订阅阅读器</summary>
-  <summary xml:lang="zh-TW">新聞 Feed 閱讀程式</summary>
   <url type="homepage">https://apps.kde.org/akregator</url>
   <url type="bugtracker">https://bugs.kde.org/enter_bug.cgi?format=guided&amp;product=akregator</url>
   <url type="help">https://docs.kde.org/?application=akregator</url>
@@ -219,7 +174,7 @@
     <release version="6.0.0" date="2024-02-28">
       <url>https://kde.org/announcements/megarelease/6/</url>
       <description>
-          <p>This release port Akgregator to Qt6 and tweak a bit the design of the app.</p>
+        <p>This release port Akgregator to Qt6 and tweak a bit the design of the app.</p>
       </description>
     </release>
     <release version="5.24.5" date="2024-02-15"/>
