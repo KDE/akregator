@@ -108,6 +108,17 @@
     <p xml:lang="zh-TW">Akregator 一款新聞 feed 閱讀器。它讓您可以輕鬆取得新聞站台、部落格與其它 RSS/Atom 文章來源，不需要自己親自去每個站台看看有沒有新文章。Akregator 設計成非常易用，並且夠強大，方便讀取上百個新聞來源。它也有快速搜尋與進階封存功能，以及內部瀏覽器以供簡易閱讀新聞。</p>
   </description>
   <summary>Keep up with your feeds</summary>
+  <summary xml:lang="ca">Mantenir-se al dia amb les vostres fonts</summary>
+  <summary xml:lang="ca-valencia">Mantindre's al dia amb les vostres fonts</summary>
+  <summary xml:lang="es">Manténgase al día con sus fuentes de noticias</summary>
+  <summary xml:lang="eu">Jarioekin egunean egon zaitezen</summary>
+  <summary xml:lang="he">להתעדכן במה שמעניין אותך</summary>
+  <summary xml:lang="ia">Mantene le passo con tu syndicationes</summary>
+  <summary xml:lang="ka">ადევნეთ თვალყური თქვენს ლენტებს</summary>
+  <summary xml:lang="nl">Uw feeds bijhouden</summary>
+  <summary xml:lang="sl">Bodite na tekočem s svojimi viri</summary>
+  <summary xml:lang="tr">Beslemelerinizi takip edin</summary>
+  <summary xml:lang="x-test">xxKeep up with your feedsxx</summary>
   <url type="homepage">https://kontact.kde.org/components/akregator/</url>
   <url type="bugtracker">https://bugs.kde.org/enter_bug.cgi?format=guided&amp;product=akregator</url>
   <url type="help">https://docs.kde.org/?application=akregator</url>
@@ -145,7 +156,7 @@
       <caption xml:lang="id">Membaca feed di Kontact menggunakan Akregator</caption>
       <caption xml:lang="is">Lestur strauma í Kontact með Akregator</caption>
       <caption xml:lang="it">Lettura di notizie in Kontact con Akregator</caption>
-      <caption xml:lang="ka">წაიკთხეთ სიახლეები Kotact-ში Akragator-თან ერთად</caption>
+      <caption xml:lang="ka">წაიკთხეთ სიახლეები Kontact-ში Akragator-თან ერთად</caption>
       <caption xml:lang="ko">Akregator로 Kontact에서 피드 읽기</caption>
       <caption xml:lang="lt">Sklaidos kanalų skaitymas Kontact programoje naudojant Akregator</caption>
       <caption xml:lang="lv">Plūsmu lasīšana „Kontact“ programmā ar „Akregator“</caption>
