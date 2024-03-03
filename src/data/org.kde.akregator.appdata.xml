@@ -114,10 +114,13 @@
   <summary xml:lang="eu">Jarioekin egunean egon zaitezen</summary>
   <summary xml:lang="he">להתעדכן במה שמעניין אותך</summary>
   <summary xml:lang="ia">Mantene le passo con tu syndicationes</summary>
+  <summary xml:lang="it">Resta aggiornato con le tue fonti</summary>
   <summary xml:lang="ka">ადევნეთ თვალყური თქვენს ლენტებს</summary>
   <summary xml:lang="nl">Uw feeds bijhouden</summary>
+  <summary xml:lang="pl">Nie przegap niczego, co się dzieje na twoich kanałach</summary>
   <summary xml:lang="sl">Bodite na tekočem s svojimi viri</summary>
   <summary xml:lang="tr">Beslemelerinizi takip edin</summary>
+  <summary xml:lang="uk">Стежте за вашими стрічками новин</summary>
   <summary xml:lang="x-test">xxKeep up with your feedsxx</summary>
   <url type="homepage">https://kontact.kde.org/components/akregator/</url>
   <url type="bugtracker">https://bugs.kde.org/enter_bug.cgi?format=guided&amp;product=akregator</url>
