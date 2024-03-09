@@ -21,7 +21,7 @@ msgstr ""
 "Project-Id-Version: kdepim-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-02-15 00:37+0000\n"
-"PO-Revision-Date: 2024-02-09 17:45+0300\n"
+"PO-Revision-Date: 2024-03-08 23:17+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -29,7 +29,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 24.01.95\n"
+"X-Generator: Lokalize 24.02.0\n"
 "(http: //www.transifex.com/projects/p/kdepim-k-tr/language/tr/)\n"
 
 #, kde-format
@@ -188,7 +188,7 @@ msgstr "Yazı Listesi Renkleri"
 #: configuration/ui/settings_appearance.ui:53
 #, kde-format
 msgid "Unread articles:"
-msgstr "Okunmayan yazılar:"
+msgstr "Okunmamış yazılar:"
 
 #. i18n: ectx: property (text), widget (QLabel, lbl_newArticles)
 #: configuration/ui/settings_appearance.ui:76
@@ -425,14 +425,14 @@ msgstr "Siste&m tepsisi simgesini göster"
 #: configuration/ui/settings_general.ui:43
 #, kde-format
 msgid "Show unread articles in Taskbar"
-msgstr "Görev çubuğunda okunmayan yazıları göster"
+msgstr "Görev çubuğunda okunmamış yazıları göster"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_HideReadFeeds)
 #. i18n: ectx: label, entry, group (View)
 #: configuration/ui/settings_general.ui:50 interfaces/akregator.kcfg:9
 #, kde-format
 msgid "Hide feeds with no unread articles"
-msgstr "Okunmayan yazı olan beslemeleri gizle"
+msgstr "Okunmamış yazı olan beslemeleri gizle"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_LockFeedsInPlace)
 #: configuration/ui/settings_general.ui:57
@@ -445,7 +445,7 @@ msgstr "Beslemeleri yerlerine kilitle"
 #: configuration/ui/settings_general.ui:64 interfaces/akregator.kcfg:27
 #, kde-format
 msgid "Auto-expand folders containing unread articles"
-msgstr "Okunmayan yazı içeren klasörleri kendiliğinden genişlet"
+msgstr "Okunmamış yazı içeren klasörleri kendiliğinden genişlet"
 
 #. i18n: ectx: property (whatsThis), widget (QCheckBox, kcfg_UseNotifications)
 #: configuration/ui/settings_general.ui:74
@@ -522,7 +522,7 @@ msgstr "%1 için Akregatör Dışa Aktarımı"
 #: interfaces/akregator.kcfg:10
 #, kde-format
 msgid "Hides feeds with no unread articles"
-msgstr "Okunmayan yazı olmayan beslemeleri gizler"
+msgstr "Okunmamış yazı olmayan beslemeleri gizler"
 
 #. i18n: ectx: label, entry, group (View)
 #: interfaces/akregator.kcfg:21
@@ -540,7 +540,7 @@ msgstr "Beslemeleri yerlerine kilitle"
 #: interfaces/akregator.kcfg:26
 #, kde-format
 msgid "Auto-Expand folders with unread articles"
-msgstr "Okunmayan yazı olan klasörleri kendiliğinden genişlet"
+msgstr "Okunmamış yazı olan klasörleri kendiliğinden genişlet"
 
 #. i18n: ectx: label, entry, group (View)
 #: interfaces/akregator.kcfg:31 src/actions/actionmanagerimpl.cpp:318
@@ -825,14 +825,14 @@ msgstr "Sistem tepsisinin görünür olup olmadığını belirler."
 #: interfaces/akregator.kcfg:185
 #, kde-format
 msgid "Show Unread In Taskbar"
-msgstr "Görev Çubuğunda Okunmayanları Göster"
+msgstr "Görev Çubuğunda Okunmamışları Göster"
 
 #. i18n: ectx: whatsthis, entry, group (General)
 #: interfaces/akregator.kcfg:186
 #, kde-format
 msgid "Specifies if we show unread article in taskbar."
 msgstr ""
-"Görev çubuğunda okunmayan yazıları gösterip göstermeyeceğimizi belirtir."
+"Görev çubuğunda okunmamış yazıları gösterip göstermeyeceğimizi belirtir."
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
 #: interfaces/akregator.kcfg:203
@@ -1226,12 +1226,12 @@ msgstr "Bağlantı Adresini Kopyala"
 #: src/actions/actionmanagerimpl.cpp:346
 #, kde-format
 msgid "Pre&vious Unread Article"
-msgstr "Ö&nceki Okunmayan Yazı"
+msgstr "Ö&nceki Okunmamış Yazı"
 
 #: src/actions/actionmanagerimpl.cpp:352
 #, kde-format
 msgid "Ne&xt Unread Article"
-msgstr "So&nraki Okunmayan Yazı"
+msgstr "So&nraki Okunmamış Yazı"
 
 #: src/actions/actionmanagerimpl.cpp:360
 #, kde-format
@@ -1344,12 +1344,12 @@ msgstr "&Sonraki Besleme"
 #: src/actions/actionmanagerimpl.cpp:496
 #, kde-format
 msgid "N&ext Unread Feed"
-msgstr "So&nraki Okunmayan Besleme"
+msgstr "So&nraki Okunmamış Besleme"
 
 #: src/actions/actionmanagerimpl.cpp:502
 #, kde-format
 msgid "Prev&ious Unread Feed"
-msgstr "Ön&ceki Okunmayan Besleme"
+msgstr "Ön&ceki Okunmamış Besleme"
 
 #: src/actions/actionmanagerimpl.cpp:507
 #, kde-format
@@ -1394,7 +1394,7 @@ msgstr "Beslemeleri Yerlerine Kilitle"
 #: src/actions/actionmanagerimpl.cpp:550
 #, kde-format
 msgid "Auto-expand folders with unread articles"
-msgstr "Okunmayan Yazı İçeren Klasörleri Kendiliğinden Genişlet"
+msgstr "Okunmamış Yazı İçeren Klasörleri Kendiliğinden Genişlet"
 
 #: src/actions/actionmanagerimpl.cpp:566
 #, kde-format
@@ -1761,8 +1761,8 @@ msgid ""
 "<qt>Are you sure you want to delete folder <b>%1</b> and its feeds and "
 "subfolders?</qt>"
 msgstr ""
-"<qt>Gerçekten <b>%1</b> klasörünü ve içindeki tüm beslemeleri ve alt "
-"klasörleri silmek istiyor musunuz?</qt>"
+"<qt><b>%1</b> klasörünü, içindeki tüm beslemeleri ve alt klasörleri silmeyi "
+"gerçekten istiyor musunuz?</qt>"
 
 #: src/command/deletesubscriptioncommand.cpp:44
 #, kde-format
@@ -1999,15 +1999,15 @@ msgstr "(%1, %2)"
 #: src/formatter/grantleeviewformatter.cpp:151
 #, kde-format
 msgid " (no unread articles)"
-msgstr " (okunmayan yazı yok)"
+msgstr " (okunmamış yazı yok)"
 
 #: src/formatter/grantleeviewformatter.cpp:102
 #: src/formatter/grantleeviewformatter.cpp:153
 #, kde-format
 msgid " (1 unread article)"
 msgid_plural " (%1 unread articles)"
-msgstr[0] " (1 okunmayan yazı)"
-msgstr[1] " (%1 okunmayan yazı)"
+msgstr[0] " (1 okunmamış yazı)"
+msgstr[1] " (%1 okunmamış yazı)"
 
 #: src/formatter/grantleeviewformatter.cpp:117
 #, kde-format
@@ -2284,7 +2284,7 @@ msgstr "Beslemeler"
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Unread"
-msgstr "Okunmayan"
+msgstr "Okunmamış"
 
 #: src/subscription/subscriptionlistmodel.cpp:278
 #, kde-format
@@ -2329,14 +2329,14 @@ msgstr "Tüm Sekmeleri Kapat"
 #: src/trayicon.cpp:54
 #, kde-format
 msgid "There are no unread articles"
-msgstr "Okunmayan yazı yok"
+msgstr "Okunmamış yazı yok"
 
 #: src/trayicon.cpp:54
 #, kde-format
 msgid "1 unread article"
 msgid_plural "%1 unread articles"
-msgstr[0] "1 okunmayan yazı"
-msgstr[1] "%1 okunmayan yazı"
+msgstr[0] "1 okunmamış yazı"
+msgstr[1] "%1 okunmamış yazı"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, Akregator::AddFeedWidgetBase)
 #: src/ui/addfeedwidgetbase.ui:14
@@ -2522,7 +2522,7 @@ msgstr "Tüm Yazılar"
 #, kde-format
 msgctxt "Unread articles filter"
 msgid "Unread"
-msgstr "Okunmayan"
+msgstr "Okunmamış"
 
 #: src/widgets/statussearchline.cpp:45
 #, kde-format
