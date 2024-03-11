@@ -17,7 +17,6 @@
 #include <QMenu>
 #include <QStyleOption>
 
-#include <KIO/Global>
 #include <KLocalizedString>
 #include <QTabBar>
 

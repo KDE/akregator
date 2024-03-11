@@ -11,9 +11,8 @@
 #include "article.h"
 #include "utils.h"
 
+#include <KFormat>
 #include <KLocalizedString>
-
-#include <KIO/Global>
 
 using namespace Syndication;
 using namespace Akregator;
@@ -33,11 +32,13 @@ QString ArticleFormatter::formatEnclosure(const Enclosure &enclosure)
     const QString type = enclosure.type();
     QString inf;
     if (!type.isEmpty() && length > 0) {
-        inf = i18n("(%1, %2)", type, KIO::convertSize(length));
+        KFormat format;
+        inf = i18n("(%1, %2)", type, format.formatByteSize(length));
     } else if (!type.isNull()) {
         inf = type;
     } else if (length > 0) {
-        inf = KIO::convertSize(length);
+        KFormat format;
+        inf = format.formatByteSize(length);
     }
     const QString str = QStringLiteral("<a href=\"%1\">%2</a> %3").arg(enclosure.url(), title, inf);
     return str;
