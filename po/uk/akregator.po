@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-02-15 00:37+0000\n"
+"POT-Creation-Date: 2024-03-12 00:38+0000\n"
 "PO-Revision-Date: 2023-10-03 08:31+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
@@ -2318,35 +2318,35 @@ msgctxt "Feedlist's column header"
 msgid "Total"
 msgstr "Всього"
 
-#: src/tabwidget.cpp:92
+#: src/tabwidget.cpp:91
 #, kde-format
 msgid "Close the current tab"
 msgstr "Закрити поточну вкладку"
 
-#: src/tabwidget.cpp:95
+#: src/tabwidget.cpp:94
 #, kde-format
 msgid "Close tab"
 msgstr "Закрити вкладку"
 
-#: src/tabwidget.cpp:118
+#: src/tabwidget.cpp:117
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Detach Tab"
 msgstr "Відокремити вкладку"
 
-#: src/tabwidget.cpp:123
+#: src/tabwidget.cpp:122
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Close Tab"
 msgstr "Закрити вкладку"
 
-#: src/tabwidget.cpp:127
+#: src/tabwidget.cpp:126
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Close All Other Tabs"
 msgstr "Закрити усі інші вкладки"
 
-#: src/tabwidget.cpp:131
+#: src/tabwidget.cpp:130
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Close All Tabs"

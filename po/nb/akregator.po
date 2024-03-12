@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-02-15 00:37+0000\n"
+"POT-Creation-Date: 2024-03-12 00:38+0000\n"
 "PO-Revision-Date: 2015-02-07 19:02+0100\n"
 "Last-Translator: Bjørn Steensrud <bjornst@skogkatt.homelinux.org>\n"
 "Language-Team: Norwegian Bokmål <l10n-no@lister.huftis.org>\n"
@@ -2270,35 +2270,35 @@ msgctxt "Feedlist's column header"
 msgid "Total"
 msgstr "Totalt"
 
-#: src/tabwidget.cpp:92
+#: src/tabwidget.cpp:91
 #, kde-format
 msgid "Close the current tab"
 msgstr "Lukk denne fanen"
 
-#: src/tabwidget.cpp:95
+#: src/tabwidget.cpp:94
 #, kde-format
 msgid "Close tab"
 msgstr "Lukk fane"
 
-#: src/tabwidget.cpp:118
+#: src/tabwidget.cpp:117
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Detach Tab"
 msgstr "Frakoble faneblad"
 
-#: src/tabwidget.cpp:123
+#: src/tabwidget.cpp:122
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Close Tab"
 msgstr "Lukk fane"
 
-#: src/tabwidget.cpp:127
+#: src/tabwidget.cpp:126
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Close All Other Tabs"
 msgstr "Lukk alle andre faner"
 
-#: src/tabwidget.cpp:131
+#: src/tabwidget.cpp:130
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Close All Tabs"

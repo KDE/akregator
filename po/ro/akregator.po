@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-02-15 00:37+0000\n"
+"POT-Creation-Date: 2024-03-12 00:38+0000\n"
 "PO-Revision-Date: 2012-12-11 09:10+0200\n"
 "Last-Translator: Sergiu Bivol <sergiu@cip.md>\n"
 "Language-Team: Romanian <kde-i18n-ro@kde.org>\n"
@@ -2297,38 +2297,38 @@ msgctxt "Feedlist's column header"
 msgid "Total"
 msgstr "Total"
 
-#: src/tabwidget.cpp:92
+#: src/tabwidget.cpp:91
 #, kde-format
 msgid "Close the current tab"
 msgstr "Închide fila curentă"
 
-#: src/tabwidget.cpp:95
+#: src/tabwidget.cpp:94
 #, kde-format
 msgid "Close tab"
 msgstr "Închide fila"
 
-#: src/tabwidget.cpp:118
+#: src/tabwidget.cpp:117
 #, fuzzy, kde-format
 #| msgid "Detach Tab"
 msgctxt "@action:inmenu"
 msgid "Detach Tab"
 msgstr "Detașează fila"
 
-#: src/tabwidget.cpp:123
+#: src/tabwidget.cpp:122
 #, fuzzy, kde-format
 #| msgid "Close Tab"
 msgctxt "@action:inmenu"
 msgid "Close Tab"
 msgstr "Închide fila"
 
-#: src/tabwidget.cpp:127
+#: src/tabwidget.cpp:126
 #, fuzzy, kde-format
 #| msgid "Close the current tab"
 msgctxt "@action:inmenu"
 msgid "Close All Other Tabs"
 msgstr "Închide fila curentă"
 
-#: src/tabwidget.cpp:131
+#: src/tabwidget.cpp:130
 #, fuzzy, kde-format
 #| msgid "Close Tab"
 msgctxt "@action:inmenu"

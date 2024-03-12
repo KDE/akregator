@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-02-15 00:37+0000\n"
+"POT-Creation-Date: 2024-03-12 00:38+0000\n"
 "PO-Revision-Date: 2008-02-11 23:19+0200\n"
 "Last-Translator: Darafei Praliaskouski <komzpa@gmail.com>\n"
 "Language-Team: Belarusian <i18n@mova.org>\n"
@@ -2377,39 +2377,39 @@ msgctxt "Feedlist's column header"
 msgid "Total"
 msgstr "Усяго"
 
-#: src/tabwidget.cpp:92
+#: src/tabwidget.cpp:91
 #, kde-format
 msgid "Close the current tab"
 msgstr "Закрыць гэтую картку"
 
-#: src/tabwidget.cpp:95
+#: src/tabwidget.cpp:94
 #, fuzzy, kde-format
 #| msgid "&Close Tab"
 msgid "Close tab"
 msgstr "&Закрыць картку"
 
-#: src/tabwidget.cpp:118
+#: src/tabwidget.cpp:117
 #, fuzzy, kde-format
 #| msgid "Detach Tab"
 msgctxt "@action:inmenu"
 msgid "Detach Tab"
 msgstr "Аддзяліць картку"
 
-#: src/tabwidget.cpp:123
+#: src/tabwidget.cpp:122
 #, fuzzy, kde-format
 #| msgid "&Close Tab"
 msgctxt "@action:inmenu"
 msgid "Close Tab"
 msgstr "&Закрыць картку"
 
-#: src/tabwidget.cpp:127
+#: src/tabwidget.cpp:126
 #, fuzzy, kde-format
 #| msgid "Close the current tab"
 msgctxt "@action:inmenu"
 msgid "Close All Other Tabs"
 msgstr "Закрыць гэтую картку"
 
-#: src/tabwidget.cpp:131
+#: src/tabwidget.cpp:130
 #, fuzzy, kde-format
 #| msgid "&Close Tab"
 msgctxt "@action:inmenu"

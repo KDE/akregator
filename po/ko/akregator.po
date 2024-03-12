@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdepim\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-02-15 00:37+0000\n"
+"POT-Creation-Date: 2024-03-12 00:38+0000\n"
 "PO-Revision-Date: 2023-10-08 22:22+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -2234,35 +2234,35 @@ msgctxt "Feedlist's column header"
 msgid "Total"
 msgstr "합계"
 
-#: src/tabwidget.cpp:92
+#: src/tabwidget.cpp:91
 #, kde-format
 msgid "Close the current tab"
 msgstr "현재 탭 닫기"
 
-#: src/tabwidget.cpp:95
+#: src/tabwidget.cpp:94
 #, kde-format
 msgid "Close tab"
 msgstr "탭 닫기"
 
-#: src/tabwidget.cpp:118
+#: src/tabwidget.cpp:117
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Detach Tab"
 msgstr "탭 떼내기"
 
-#: src/tabwidget.cpp:123
+#: src/tabwidget.cpp:122
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Close Tab"
 msgstr "탭 닫기"
 
-#: src/tabwidget.cpp:127
+#: src/tabwidget.cpp:126
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Close All Other Tabs"
 msgstr "모든 다른 탭 닫기"
 
-#: src/tabwidget.cpp:131
+#: src/tabwidget.cpp:130
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Close All Tabs"
