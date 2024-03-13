@@ -52,8 +52,7 @@
   <name xml:lang="x-test">xxAkregatorxx</name>
   <name xml:lang="zh-CN">Akregator</name>
   <name xml:lang="zh-TW">Akregator</name>
-  <developer>
-    <id>kde.org</id>
+  <developer id="org.kde">
     <name>The KDE Community</name>
     <url>https://kde.org</url>
   </developer>
