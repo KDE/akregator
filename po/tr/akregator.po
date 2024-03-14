@@ -21,7 +21,7 @@ msgstr ""
 "Project-Id-Version: kdepim-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-03-12 00:38+0000\n"
-"PO-Revision-Date: 2024-03-08 23:17+0300\n"
+"PO-Revision-Date: 2024-03-13 20:07+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -387,7 +387,7 @@ msgstr "Güvenlik"
 #: configuration/ui/settings_browser.ui:146
 #, kde-format
 msgid "Verify URLs using Google's Safe Browsing API"
-msgstr "Google Güven Tarayıcı API’sini kullanarak URL’leri onayla"
+msgstr "Google’ın Güvenli Tarama API’sini kullanarak URL’leri onayla"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_EnableJavascript)
 #. i18n: ectx: label, entry, group (Browser)
@@ -744,9 +744,9 @@ msgid ""
 "the default one. This is here because some proxies may interrupt the "
 "connection because of having \"gator\" in the name."
 msgstr ""
-"Bu seçenek kullanıcıların kullanıcı-istemcisi için kullanılan öntanımlı "
+"Bu seçenek kullanıcıların kullanıcı istemcisi için kullanılan öntanımlı "
 "ifade yerine özel bir ifade belirlemesine izin verir. Bu seçeneğin "
-"oluşturulma amacı bazı vekil sunucuların \"gator\" ifadesi nedeni ile "
+"oluşturulma amacı bazı vekil sunucuların “gator” ifadesi nedeni ile "
 "bağlantıyı kesmesidir."
 
 #. i18n: ectx: label, entry, group (General)
@@ -943,7 +943,7 @@ msgstr "Akregatör"
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "New Feed..."
-msgstr "Yeni Besleme..."
+msgstr "Yeni Besleme…"
 
 #: kontactplugin/akregator_plugin.cpp:32
 #, kde-format
@@ -1036,7 +1036,7 @@ msgstr "Christof Musik"
 #: src/aboutdata.cpp:36
 #, kde-format
 msgid "Anne-Marie Mahfouf"
-msgstr "Anne-Marie Mahfouf"
+msgstr "Anne–Marie Mahfouf"
 
 #: src/aboutdata.cpp:36
 #, kde-format
@@ -1081,7 +1081,7 @@ msgstr "Eike Hein"
 #: src/aboutdata.cpp:40
 #, kde-format
 msgid "'Delayed mark as read' feature"
-msgstr "'Daha sonra okundu olarak imle' özelliği"
+msgstr "‘Daha sonra okundu olarak imle’ özelliği"
 
 #: src/aboutdata.cpp:41
 #, kde-format
@@ -1126,7 +1126,7 @@ msgstr "Be&slemeyi Sil"
 #: src/actions/actionmanagerimpl.cpp:66 src/actions/actionmanagerimpl.cpp:249
 #, kde-format
 msgid "&Edit Feed..."
-msgstr "Beslemeyi Dü&zenle..."
+msgstr "Beslemeyi Dü&zenle…"
 
 #: src/actions/actionmanagerimpl.cpp:67 src/actions/actionmanagerimpl.cpp:306
 #, kde-format
@@ -1156,17 +1156,17 @@ msgstr "Beslemeleri &Okundu Olarak İmle"
 #: src/actions/actionmanagerimpl.cpp:191
 #, kde-format
 msgid "&Import Feeds..."
-msgstr "&Beslemeleri İçe Aktar..."
+msgstr "&Beslemeleri İçe Aktar…"
 
 #: src/actions/actionmanagerimpl.cpp:195
 #, kde-format
 msgid "&Export Feeds..."
-msgstr "B&eslemeleri Dışa Aktar..."
+msgstr "B&eslemeleri Dışa Aktar…"
 
 #: src/actions/actionmanagerimpl.cpp:200
 #, kde-format
 msgid "&Configure Akregator..."
-msgstr "Akregatör Uygulamasını &Yapılandır..."
+msgstr "Akregatör Uygulamasını &Yapılandır…"
 
 #: src/actions/actionmanagerimpl.cpp:219
 #, kde-format
@@ -1181,12 +1181,12 @@ msgstr "Tüm Sekmeleri Yeniden Yükle"
 #: src/actions/actionmanagerimpl.cpp:231
 #, kde-format
 msgid "&Add Feed..."
-msgstr "Besleme &Ekle..."
+msgstr "Besleme &Ekle…"
 
 #: src/actions/actionmanagerimpl.cpp:237
 #, kde-format
 msgid "Ne&w Folder..."
-msgstr "&Yeni Klasör..."
+msgstr "&Yeni Klasör…"
 
 #: src/actions/actionmanagerimpl.cpp:262
 #, kde-format
@@ -1309,12 +1309,12 @@ msgstr "Sağa Taşı"
 #: src/actions/actionmanagerimpl.cpp:422
 #, kde-format
 msgid "Send &Link Address..."
-msgstr "Yazının &Bağlantı Adresini Gönder..."
+msgstr "&Bağlantı Adresini Gönder…"
 
 #: src/actions/actionmanagerimpl.cpp:427
 #, kde-format
 msgid "Send &File..."
-msgstr "Dos&ya Gönder..."
+msgstr "Dos&ya Gönder…"
 
 #: src/actions/actionmanagerimpl.cpp:433
 #, kde-format
@@ -1429,7 +1429,7 @@ msgstr "Metni Konuş"
 #: src/actions/actionmanagerimpl.cpp:603
 #, kde-format
 msgid "&Find in Message..."
-msgstr "İletide &Bul..."
+msgstr "İletide &Bul…"
 
 #: src/actions/actionmanagerimpl.cpp:614
 #, kde-format
@@ -1444,7 +1444,7 @@ msgstr "%1. Sekmeyi Etkinleştir"
 #: src/actions/actionmanagerimpl.cpp:633
 #, kde-format
 msgid "&Save Link As..."
-msgstr "Bağlantıyı Farklı &Kaydet..."
+msgstr "Bağlantıyı Farklı &Kaydet…"
 
 #: src/actions/actionmanagerimpl.cpp:637
 #, kde-format
@@ -1459,7 +1459,7 @@ msgstr "Bağlantı Yolunu Kopyala"
 #: src/actions/actionmanagerimpl.cpp:647
 #, kde-format
 msgid "Save Image On Disk..."
-msgstr "Resmi Diske Kaydet..."
+msgstr "Görseli Diske Kaydet…"
 
 #: src/actions/actions.cpp:19
 #, kde-format
@@ -1490,7 +1490,7 @@ msgstr "%1 adresinde besleme bulunamadı."
 #: src/addfeeddialog.cpp:121
 #, kde-format
 msgid "Feed found, downloading..."
-msgstr "Besleme bulundu, indiriliyor..."
+msgstr "Besleme bulundu, indiriliyor…"
 
 #: src/akregator_options.h:20 src/akregator_options.h:28
 #, kde-format
@@ -1634,7 +1634,7 @@ msgid ""
 "a tab or in an external browser window."
 msgstr ""
 "<h2>Yazı listesi</h2>Buradan seçilen beslemenin yazılarına bakabilirsiniz. "
-"Sağ tık menüsünü kullanarak yazıları (\"Önemli Olarak İmle\")  seçeneği ile "
+"Sağ tık menüsünü kullanarak yazıları ‘Önemli Olarak İmle’ seçeneği ile "
 "kalıcı olarak imleyebilir veya silebilirsiniz. Yazının web sayfasını görmek "
 "için yazıyı bir iç sekmede veya dış tarayıcı penceresinde açabilirsiniz."
 
@@ -1822,7 +1822,7 @@ msgstr ""
 #: src/command/loadfeedlistcommand.cpp:129
 #, kde-format
 msgid "Opening Feed List..."
-msgstr "Besleme Listesi Açılıyor..."
+msgstr "Besleme listesi açılıyor…"
 
 #: src/command/loadfeedlistcommand.cpp:143
 #, kde-format
@@ -2017,7 +2017,7 @@ msgstr "<b>Açıklama:</b> %1<br />"
 #: src/formatter/grantleeviewformatter.cpp:124
 #, kde-format
 msgid "<b>Homepage:</b> <a href=\"%1\">%1</a>"
-msgstr "<b>Anasayfa:</b> <a href=\"%1\">%1</a>"
+msgstr "<b>Ana sayfa:</b> <a href=\"%1\">%1</a>"
 
 #: src/formatter/grantleeviewformatter.cpp:131
 #, kde-format
@@ -2057,7 +2057,7 @@ msgstr "Başlıksız"
 #: src/frame/frame.cpp:141
 #, kde-format
 msgid "Loading..."
-msgstr "Yükleniyor..."
+msgstr "Yükleniyor…"
 
 #: src/frame/frame.cpp:157
 #, kde-format
@@ -2134,7 +2134,7 @@ msgstr "Ağ iletişimi kullanılabilir değil."
 #: src/mainwidget.cpp:866
 #, kde-format
 msgid "Fetching Feeds..."
-msgstr "Beslemeler Alınıyor..."
+msgstr "Beslemeler Alınıyor…"
 
 #: src/mainwidget.cpp:1065
 #, kde-format
@@ -2506,12 +2506,12 @@ msgstr "Dış Tarayıcıda Aç"
 #: src/widgets/searchbar.cpp:40
 #, kde-format
 msgid "Search articles..."
-msgstr "Yazılarda ara..."
+msgstr "Yazılarda ara…"
 
 #: src/widgets/searchbar.cpp:112
 #, kde-format
 msgid "Search articles...<%1>"
-msgstr "Yazılarda ara...<%1>"
+msgstr "Yazılarda ara…<%1>"
 
 #: src/widgets/statussearchline.cpp:43
 #, kde-format
