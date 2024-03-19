@@ -21,7 +21,7 @@ msgstr ""
 "Project-Id-Version: kdepim-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-03-12 00:38+0000\n"
-"PO-Revision-Date: 2024-03-13 20:07+0300\n"
+"PO-Revision-Date: 2024-03-18 19:44+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -2072,7 +2072,7 @@ msgstr "Yükleme tamamlandı"
 #: src/mainwidget.cpp:156
 #, kde-format
 msgid "You can view multiple articles in several open tabs."
-msgstr "Bir çok açık sekme içinde birden fazla yazıyı okuyabilirsiniz."
+msgstr "Birçok açık sekme içinde birden fazla yazıyı okuyabilirsiniz."
 
 #: src/mainwidget.cpp:160
 #, kde-format
