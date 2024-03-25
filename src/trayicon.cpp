@@ -39,7 +39,7 @@ TrayIcon::TrayIcon(QObject *parent)
 {
     setToolTipTitle(i18n("Akregator"));
     setToolTipIconByName(i18n("Akregator"));
-    setIconByName(QStringLiteral("akregator"));
+    setIconByName(QStringLiteral("akregator-symbolic"));
 }
 
 TrayIcon::~TrayIcon() = default;
