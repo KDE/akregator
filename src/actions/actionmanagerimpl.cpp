@@ -698,7 +698,7 @@ QString ActionManagerImpl::quickSearchLineText() const
 
 QString ActionManagerImpl::ActionManagerImplPrivate::quickSearchLineText() const
 {
-    return mQuickSearchAction->shortcut().toString();
+    return mQuickSearchAction->shortcut().toString(QKeySequence::NativeText);
 }
 
 #include "moc_actionmanagerimpl.cpp"
