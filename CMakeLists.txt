@@ -32,7 +32,7 @@ include(ECMAddAppIcon)
 include(ECMQtDeclareLoggingCategory)
 include(ECMDeprecationSettings)
 include(ECMFeatureSummary)
-set(KTEXTADDONS_MIN_VERSION "1.5.3")
+set(KTEXTADDONS_MIN_VERSION "1.5.4")
 
 # Do NOT add quote
 set(KDEPIM_DEV_VERSION alpha)
