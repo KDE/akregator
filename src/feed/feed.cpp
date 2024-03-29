@@ -101,7 +101,7 @@ public:
     void setTotalCountDirty() const;
 };
 
-QString Akregator::Feed::archiveModeToString(ArchiveMode mode)
+QString Feed::archiveModeToString(ArchiveMode mode)
 {
     switch (mode) {
     case keepAllArticles:
@@ -118,7 +118,7 @@ QString Akregator::Feed::archiveModeToString(ArchiveMode mode)
     return QStringLiteral("globalDefault");
 }
 
-Akregator::Feed *Akregator::Feed::fromOPML(const QDomElement &e, Backend::Storage *storage)
+Akregator::Feed *Feed::fromOPML(const QDomElement &e, Backend::Storage *storage)
 {
     if (!e.hasAttribute(QStringLiteral("xmlUrl")) && !e.hasAttribute(QStringLiteral("xmlurl")) && !e.hasAttribute(QStringLiteral("xmlURL"))) {
         return nullptr;
@@ -137,7 +137,7 @@ Akregator::Feed *Akregator::Feed::fromOPML(const QDomElement &e, Backend::Storag
     const QString description = e.attribute(QStringLiteral("description"));
     const QString copyright = e.attribute(QStringLiteral("copyright"));
     const int fetchInterval = e.attribute(QStringLiteral("fetchInterval")).toInt();
-    const Akregator::Feed::ArchiveMode archiveMode = stringToArchiveMode(e.attribute(QStringLiteral("archiveMode")));
+    const Feed::ArchiveMode archiveMode = stringToArchiveMode(e.attribute(QStringLiteral("archiveMode")));
     const int maxArticleAge = e.attribute(QStringLiteral("maxArticleAge")).toUInt();
     const int maxArticleNumber = e.attribute(QStringLiteral("maxArticleNumber")).toUInt();
     const bool markImmediatelyAsRead = e.attribute(QStringLiteral("markImmediatelyAsRead")) == QLatin1StringView("true");
@@ -193,7 +193,7 @@ Akregator::Feed *Akregator::Feed::fromOPML(const QDomElement &e, Backend::Storag
     return feed;
 }
 
-bool Akregator::Feed::accept(TreeNodeVisitor *visitor)
+bool Feed::accept(TreeNodeVisitor *visitor)
 {
     if (visitor->visitFeed(this)) {
         return true;
@@ -202,36 +202,36 @@ bool Akregator::Feed::accept(TreeNodeVisitor *visitor)
     }
 }
 
-QList<const Akregator::Folder *> Akregator::Feed::folders() const
+QList<const Akregator::Folder *> Feed::folders() const
 {
     return {};
 }
 
-QList<Folder *> Akregator::Feed::folders()
+QList<Folder *> Feed::folders()
 {
     return {};
 }
 
-QList<const Akregator::Feed *> Akregator::Feed::feeds() const
+QList<const Akregator::Feed *> Feed::feeds() const
 {
     QList<const Akregator::Feed *> list;
     list.append(this);
     return list;
 }
 
-QList<Akregator::Feed *> Akregator::Feed::feeds()
+QList<Akregator::Feed *> Feed::feeds()
 {
     QList<Feed *> list;
     list.append(this);
     return list;
 }
 
-Article Akregator::Feed::findArticle(const QString &guid) const
+Article Feed::findArticle(const QString &guid) const
 {
     return d->articles.value(guid);
 }
 
-QList<Article> Akregator::Feed::articles()
+QList<Article> Feed::articles()
 {
     if (!d->m_articlesLoaded) {
         loadArticles();
@@ -239,12 +239,12 @@ QList<Article> Akregator::Feed::articles()
     return valuesToVector(d->articles);
 }
 
-Backend::Storage *Akregator::Feed::storage()
+Backend::Storage *Feed::storage()
 {
     return d->m_storage;
 }
 
-void Akregator::Feed::loadArticles()
+void Feed::loadArticles()
 {
     if (d->m_articlesLoaded) {
         return;
@@ -268,7 +268,7 @@ void Akregator::Feed::loadArticles()
     recalcUnreadCount();
 }
 
-void Akregator::Feed::recalcUnreadCount()
+void Feed::recalcUnreadCount()
 {
     QList<Article> tarticles = articles();
     QList<Article>::ConstIterator it;
@@ -290,7 +290,7 @@ void Akregator::Feed::recalcUnreadCount()
     }
 }
 
-Akregator::Feed::ArchiveMode Akregator::Feed::stringToArchiveMode(const QString &str)
+Feed::ArchiveMode Feed::stringToArchiveMode(const QString &str)
 {
     if (str == QLatin1StringView("globalDefault")) {
         return globalDefault;
@@ -335,19 +335,19 @@ void Akregator::FeedPrivate::setTotalCountDirty() const
     m_totalCount = -1;
 }
 
-Akregator::Feed::Feed(Backend::Storage *storage)
+Feed::Feed(Backend::Storage *storage)
     : TreeNode()
     , d(new FeedPrivate(storage, this))
 {
 }
 
-Akregator::Feed::~Feed()
+Feed::~Feed()
 {
     slotAbortFetch();
     emitSignalDestroyed();
 }
 
-void Akregator::Feed::loadFavicon(const QString &url, bool downloadFavicon)
+void Feed::loadFavicon(const QString &url, bool downloadFavicon)
 {
     QUrl u(url);
     if (u.scheme().isEmpty()) {
@@ -368,102 +368,102 @@ void Akregator::Feed::loadFavicon(const QString &url, bool downloadFavicon)
     }
 }
 
-bool Akregator::Feed::useCustomFetchInterval() const
+bool Feed::useCustomFetchInterval() const
 {
     return d->m_autoFetch;
 }
 
-void Akregator::Feed::setCustomFetchIntervalEnabled(bool enabled)
+void Feed::setCustomFetchIntervalEnabled(bool enabled)
 {
     d->m_autoFetch = enabled;
 }
 
-int Akregator::Feed::fetchInterval() const
+int Feed::fetchInterval() const
 {
     return d->m_fetchInterval;
 }
 
-void Akregator::Feed::setFetchInterval(int interval)
+void Feed::setFetchInterval(int interval)
 {
     d->m_fetchInterval = interval;
 }
 
-int Akregator::Feed::maxArticleAge() const
+int Feed::maxArticleAge() const
 {
     return d->m_maxArticleAge;
 }
 
-void Akregator::Feed::setMaxArticleAge(int maxArticleAge)
+void Feed::setMaxArticleAge(int maxArticleAge)
 {
     d->m_maxArticleAge = maxArticleAge;
 }
 
-int Akregator::Feed::maxArticleNumber() const
+int Feed::maxArticleNumber() const
 {
     return d->m_maxArticleNumber;
 }
 
-void Akregator::Feed::setMaxArticleNumber(int maxArticleNumber)
+void Feed::setMaxArticleNumber(int maxArticleNumber)
 {
     d->m_maxArticleNumber = maxArticleNumber;
 }
 
-bool Akregator::Feed::markImmediatelyAsRead() const
+bool Feed::markImmediatelyAsRead() const
 {
     return d->m_markImmediatelyAsRead;
 }
 
-bool Akregator::Feed::isFetching() const
+bool Feed::isFetching() const
 {
     return d->m_loader != nullptr;
 }
 
-void Akregator::Feed::setMarkImmediatelyAsRead(bool enabled)
+void Feed::setMarkImmediatelyAsRead(bool enabled)
 {
     d->m_markImmediatelyAsRead = enabled;
 }
 
-void Akregator::Feed::setComment(const QString &comment)
+void Feed::setComment(const QString &comment)
 {
     d->m_comment = comment;
 }
 
-QString Akregator::Feed::comment() const
+QString Feed::comment() const
 {
     return d->m_comment;
 }
 
-void Akregator::Feed::setUseNotification(bool enabled)
+void Feed::setUseNotification(bool enabled)
 {
     d->m_useNotification = enabled;
 }
 
-bool Akregator::Feed::useNotification() const
+bool Feed::useNotification() const
 {
     return d->m_useNotification;
 }
 
-void Akregator::Feed::setLoadLinkedWebsite(bool enabled)
+void Feed::setLoadLinkedWebsite(bool enabled)
 {
     d->m_loadLinkedWebsite = enabled;
 }
 
-bool Akregator::Feed::loadLinkedWebsite() const
+bool Feed::loadLinkedWebsite() const
 {
     return d->m_loadLinkedWebsite;
 }
 
-Akregator::Feed::ImageInfo Akregator::Feed::logoInfo() const
+Feed::ImageInfo Feed::logoInfo() const
 {
     return d->m_logoInfo;
 }
 
-QString Akregator::Feed::xmlUrl() const
+QString Feed::xmlUrl() const
 {
     return d->m_xmlUrl;
 }
 
-void Akregator::Feed::setXmlUrl(const QString &s)
+void Feed::setXmlUrl(const QString &s)
 {
     d->m_xmlUrl = s;
     if (!Settings::fetchOnStartup()) {
@@ -474,28 +474,28 @@ void Akregator::Feed::setXmlUrl(const QString &s)
     }
 }
 
-QString Akregator::Feed::htmlUrl() const
+QString Feed::htmlUrl() const
 {
     return d->m_htmlUrl;
 }
 
-void Akregator::Feed::setHtmlUrl(const QString &s)
+void Feed::setHtmlUrl(const QString &s)
 {
     d->m_htmlUrl = s;
 }
 
-Akregator::Feed::ImageInfo Akregator::Feed::faviconInfo() const
+Feed::ImageInfo Feed::faviconInfo() const
 {
     return d->m_faviconInfo;
 }
 
-void Akregator::Feed::setFaviconLocalPath(const QString &localPath)
+void Feed::setFaviconLocalPath(const QString &localPath)
 {
     d->m_faviconInfo.imageUrl = QUrl::fromLocalFile(localPath).toString();
     setFavicon(QIcon(localPath));
 }
 
-void Akregator::Feed::setFaviconInfo(const Akregator::Feed::ImageInfo &info)
+void Feed::setFaviconInfo(const Feed::ImageInfo &info)
 {
     d->m_faviconInfo = info;
     QUrl u(info.imageUrl);
@@ -504,32 +504,32 @@ void Akregator::Feed::setFaviconInfo(const Akregator::Feed::ImageInfo &info)
     }
 }
 
-QString Akregator::Feed::description() const
+QString Feed::description() const
 {
     return d->m_description;
 }
 
-void Akregator::Feed::setDescription(const QString &s)
+void Feed::setDescription(const QString &s)
 {
     d->m_description = s;
 }
 
-bool Akregator::Feed::fetchErrorOccurred() const
+bool Feed::fetchErrorOccurred() const
 {
     return d->m_fetchErrorCode != Syndication::Success;
 }
 
-Syndication::ErrorCode Akregator::Feed::fetchErrorCode() const
+Syndication::ErrorCode Feed::fetchErrorCode() const
 {
     return d->m_fetchErrorCode;
 }
 
-bool Akregator::Feed::isArticlesLoaded() const
+bool Feed::isArticlesLoaded() const
 {
     return d->m_articlesLoaded;
 }
 
-QDomElement Akregator::Feed::toOPML(QDomElement parent, QDomDocument document) const
+QDomElement Feed::toOPML(QDomElement parent, QDomDocument document) const
 {
     QDomElement el = document.createElement(QStringLiteral("outline"));
     el.setAttribute(QStringLiteral("text"), title());
@@ -580,7 +580,7 @@ QDomElement Akregator::Feed::toOPML(QDomElement parent, QDomDocument document) c
     return el;
 }
 
-KJob *Akregator::Feed::createMarkAsReadJob()
+KJob *Feed::createMarkAsReadJob()
 {
     auto job = new ArticleModifyJob;
     const auto arts = articles();
@@ -591,7 +591,7 @@ KJob *Akregator::Feed::createMarkAsReadJob()
     return job;
 }
 
-void Akregator::Feed::slotAddToFetchQueue(FetchQueue *queue, bool intervalFetchOnly)
+void Feed::slotAddToFetchQueue(FetchQueue *queue, bool intervalFetchOnly)
 {
     if (!intervalFetchOnly) {
         queue->addFeed(this);
@@ -614,7 +614,7 @@ void Akregator::Feed::slotAddToFetchQueue(FetchQueue *queue, bool intervalFetchO
     }
 }
 
-void Akregator::Feed::slotAddFeedIconListener()
+void Feed::slotAddFeedIconListener()
 {
     if (d->m_faviconInfo.imageUrl.isEmpty()) {
         loadFavicon(d->m_xmlUrl, true);
@@ -623,7 +623,7 @@ void Akregator::Feed::slotAddFeedIconListener()
     }
 }
 
-void Akregator::Feed::appendArticles(const Syndication::FeedPtr &feed)
+void Feed::appendArticles(const Syndication::FeedPtr &feed)
 {
     d->setTotalCountDirty();
     bool changed = false;
@@ -696,12 +696,12 @@ void Akregator::Feed::appendArticles(const Syndication::FeedPtr &feed)
     }
 }
 
-bool Akregator::Feed::usesExpiryByAge() const
+bool Feed::usesExpiryByAge() const
 {
     return (d->m_archiveMode == globalDefault && Settings::archiveMode() == Settings::EnumArchiveMode::limitArticleAge) || d->m_archiveMode == limitArticleAge;
 }
 
-bool Akregator::Feed::isExpired(const Article &a) const
+bool Feed::isExpired(const Article &a) const
 {
     const QDateTime now = QDateTime::currentDateTime();
     int expiryAge = -1;
@@ -716,7 +716,7 @@ bool Akregator::Feed::isExpired(const Article &a) const
     return expiryAge != -1 && a.pubDate().secsTo(now) > expiryAge;
 }
 
-void Akregator::Feed::appendArticle(const Article &a)
+void Feed::appendArticle(const Article &a)
 {
     if ((a.keep() && Settings::doNotExpireImportantArticles()) || (!usesExpiryByAge() || !isExpired(a))) { // if not expired
         if (!d->articles.contains(a.guid())) {
@@ -728,7 +728,7 @@ void Akregator::Feed::appendArticle(const Article &a)
     }
 }
 
-void Akregator::Feed::fetch(bool followDiscovery)
+void Feed::fetch(bool followDiscovery)
 {
     d->m_followDiscovery = followDiscovery;
     d->m_fetchTries = 0;
@@ -745,14 +745,14 @@ void Akregator::Feed::fetch(bool followDiscovery)
     tryFetch();
 }
 
-void Akregator::Feed::slotAbortFetch()
+void Feed::slotAbortFetch()
 {
     if (d->m_loader) {
         d->m_loader->abort();
     }
 }
 
-void Akregator::Feed::tryFetch()
+void Feed::tryFetch()
 {
     d->m_fetchErrorCode = Syndication::Success;
 
@@ -760,7 +760,7 @@ void Akregator::Feed::tryFetch()
     d->m_loader->loadFrom(QUrl(d->m_xmlUrl), new FeedRetriever());
 }
 
-void Akregator::Feed::fetchCompleted(Syndication::Loader *l, Syndication::FeedPtr doc, Syndication::ErrorCode status)
+void Feed::fetchCompleted(Syndication::Loader *l, Syndication::FeedPtr doc, Syndication::ErrorCode status)
 {
     // Note that loader instances delete themselves
     d->m_loader = nullptr;
@@ -814,14 +814,14 @@ void Akregator::Feed::fetchCompleted(Syndication::Loader *l, Syndication::FeedPt
     Q_EMIT fetched(this);
 }
 
-void Akregator::Feed::markAsFetchedNow()
+void Feed::markAsFetchedNow()
 {
     if (d->m_archive) {
         d->m_archive->setLastFetch(QDateTime::currentDateTimeUtc());
     }
 }
 
-QIcon Akregator::Feed::icon() const
+QIcon Feed::icon() const
 {
     if (fetchErrorOccurred()) {
         return QIcon::fromTheme(QStringLiteral("dialog-error"));
@@ -830,7 +830,7 @@ QIcon Akregator::Feed::icon() const
     return !d->m_favicon.isNull() ? d->m_favicon : QIcon::fromTheme(QStringLiteral("text-html"));
 }
 
-void Akregator::Feed::deleteExpiredArticles(ArticleDeleteJob *deleteJob)
+void Feed::deleteExpiredArticles(ArticleDeleteJob *deleteJob)
 {
     if (!usesExpiryByAge()) {
         return;
@@ -853,23 +853,23 @@ void Akregator::Feed::deleteExpiredArticles(ArticleDeleteJob *deleteJob)
     setNotificationMode(true);
 }
 
-QString Akregator::Feed::copyright() const
+QString Feed::copyright() const
 {
     return d->m_copyright;
 }
 
-void Akregator::Feed::setCopyright(const QString &copyright)
+void Feed::setCopyright(const QString &copyright)
 {
     d->m_copyright = copyright;
 }
 
-void Akregator::Feed::setFavicon(const QIcon &icon)
+void Feed::setFavicon(const QIcon &icon)
 {
     d->m_favicon = icon;
     nodeModified();
 }
 
-void Akregator::Feed::setLogoInfo(const ImageInfo &image)
+void Feed::setLogoInfo(const ImageInfo &image)
 {
     if (d->m_logoInfo != image) {
         d->m_logoInfo = image;
@@ -877,22 +877,22 @@ void Akregator::Feed::setLogoInfo(const ImageInfo &image)
     }
 }
 
-Akregator::Feed::ArchiveMode Akregator::Feed::archiveMode() const
+Feed::ArchiveMode Feed::archiveMode() const
 {
     return d->m_archiveMode;
 }
 
-void Akregator::Feed::setArchiveMode(ArchiveMode archiveMode)
+void Feed::setArchiveMode(ArchiveMode archiveMode)
 {
     d->m_archiveMode = archiveMode;
 }
 
-int Akregator::Feed::unread() const
+int Feed::unread() const
 {
     return d->m_archive ? d->m_archive->unread() : 0;
 }
 
-void Akregator::Feed::setUnread(int unread)
+void Feed::setUnread(int unread)
 {
     if (d->m_archive && unread != d->m_archive->unread()) {
         d->m_archive->setUnread(unread);
@@ -900,7 +900,7 @@ void Akregator::Feed::setUnread(int unread)
     }
 }
 
-void Akregator::Feed::setArticleDeleted(Article &a)
+void Feed::setArticleDeleted(Article &a)
 {
     d->setTotalCountDirty();
     if (!d->m_deletedArticles.contains(a)) {
@@ -911,7 +911,7 @@ void Akregator::Feed::setArticleDeleted(Article &a)
     articlesModified();
 }
 
-void Akregator::Feed::setArticleChanged(Article &a, int oldStatus, bool process)
+void Feed::setArticleChanged(Article &a, int oldStatus, bool process)
 {
     int newStatus = a.status();
     if (oldStatus != -1) {
@@ -927,7 +927,7 @@ void Akregator::Feed::setArticleChanged(Article &a, int oldStatus, bool process)
     }
 }
 
-int Akregator::Feed::totalCount() const
+int Feed::totalCount() const
 {
     if (d->m_totalCount == -1) {
         d->m_totalCount = std::count_if(d->articles.constBegin(), d->articles.constEnd(), [](const Article &art) -> bool {
@@ -937,7 +937,7 @@ int Akregator::Feed::totalCount() const
     return d->m_totalCount;
 }
 
-TreeNode *Akregator::Feed::next()
+TreeNode *Feed::next()
 {
     if (nextSibling()) {
         return nextSibling();
@@ -954,7 +954,7 @@ TreeNode *Akregator::Feed::next()
     return nullptr;
 }
 
-const TreeNode *Akregator::Feed::next() const
+const TreeNode *Feed::next() const
 {
     if (nextSibling()) {
         return nextSibling();
@@ -971,7 +971,7 @@ const TreeNode *Akregator::Feed::next() const
     return nullptr;
 }
 
-void Akregator::Feed::doArticleNotification()
+void Feed::doArticleNotification()
 {
     if (!d->m_addedArticlesNotify.isEmpty()) {
         // copy list, otherwise the refcounting in Article::Private breaks for
@@ -997,7 +997,7 @@ void Akregator::Feed::doArticleNotification()
     TreeNode::doArticleNotification();
 }
 
-void Akregator::Feed::enforceLimitArticleNumber()
+void Feed::enforceLimitArticleNumber()
 {
     int limit = -1;
     if (d->m_archiveMode == globalDefault && Settings::archiveMode() == Settings::EnumArchiveMode::limitArticleNumber) {
@@ -1027,12 +1027,12 @@ void Akregator::Feed::enforceLimitArticleNumber()
     }
 }
 
-bool Akregator::Feed::ImageInfo::operator==(const Akregator::Feed::ImageInfo &other) const
+bool Feed::ImageInfo::operator==(const Feed::ImageInfo &other) const
 {
     return other.width == width && other.height == height && other.imageUrl == imageUrl;
 }
 
-bool Akregator::Feed::ImageInfo::operator!=(const Akregator::Feed::ImageInfo &other) const
+bool Feed::ImageInfo::operator!=(const Feed::ImageInfo &other) const
 {
     return !ImageInfo::operator==(other);
 }
