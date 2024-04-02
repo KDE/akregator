@@ -41,7 +41,10 @@ void GrantleeViewFormatter::addStandardObject(QVariantHash &grantleeObject) cons
     grantleeObject.insert(QStringLiteral("absoluteThemePath"), mGrantleeThemePath);
     grantleeObject.insert(QStringLiteral("applicationDir"), mDirectionString);
     grantleeObject.insert(QStringLiteral("standardFamilyFont"), Settings::standardFont());
+    grantleeObject.insert(QStringLiteral("sansSerifFont"), Settings::sansSerifFont());
+    grantleeObject.insert(QStringLiteral("serifFont"), Settings::serifFont());
     grantleeObject.insert(QStringLiteral("mediumFontSize"), Settings::mediumFontSize());
+    grantleeObject.insert(QStringLiteral("smallFontSize"), Settings::minimumFontSize());
     grantleeObject.insert(QStringLiteral("sidebarCss"), sidebarCss());
 }
 
