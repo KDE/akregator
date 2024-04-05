@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-12 00:38+0000\n"
+"POT-Creation-Date: 2024-04-05 00:38+0000\n"
 "PO-Revision-Date: 2023-11-29 18:30+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
@@ -104,7 +104,7 @@ msgstr "送出連結位址"
 msgid "Delete Article"
 msgstr "刪除文章"
 
-#: src/formatter/html/5.2/normalview.html:54
+#: src/formatter/html/5.2/normalview.html:115
 msgid ""
 "<b>Note:</b> For security reasons, external reference is blocked (See "
 "configure dialog)."
@@ -1946,55 +1946,55 @@ msgstr "%1 的內容"
 msgid "(%1, %2)"
 msgstr "（%1，%2）"
 
-#: src/formatter/grantleeviewformatter.cpp:100
-#: src/formatter/grantleeviewformatter.cpp:151
+#: src/formatter/grantleeviewformatter.cpp:103
+#: src/formatter/grantleeviewformatter.cpp:154
 #, kde-format
 msgid " (no unread articles)"
 msgstr " （沒有未讀文章）"
 
-#: src/formatter/grantleeviewformatter.cpp:102
-#: src/formatter/grantleeviewformatter.cpp:153
+#: src/formatter/grantleeviewformatter.cpp:105
+#: src/formatter/grantleeviewformatter.cpp:156
 #, kde-format
 msgid " (1 unread article)"
 msgid_plural " (%1 unread articles)"
 msgstr[0] " （%1 篇未讀文章）"
 
-#: src/formatter/grantleeviewformatter.cpp:117
+#: src/formatter/grantleeviewformatter.cpp:120
 #, kde-format
 msgid "<b>Description:</b> %1<br />"
 msgstr "<b>描述：</b> %1<br />"
 
-#: src/formatter/grantleeviewformatter.cpp:124
+#: src/formatter/grantleeviewformatter.cpp:127
 #, kde-format
 msgid "<b>Homepage:</b> <a href=\"%1\">%1</a>"
 msgstr "<b>首頁：</b> <a href=\"%1\">%1</a>"
 
-#: src/formatter/grantleeviewformatter.cpp:131
+#: src/formatter/grantleeviewformatter.cpp:134
 #, kde-format
 msgid "<b>Copyright:</b> %1</a>"
 msgstr "<b>著作權：</b> %1<br />"
 
-#: src/formatter/grantleeviewformatter.cpp:183
+#: src/formatter/grantleeviewformatter.cpp:186
 #, kde-format
 msgid "Date"
 msgstr "日期"
 
-#: src/formatter/grantleeviewformatter.cpp:184
+#: src/formatter/grantleeviewformatter.cpp:187
 #, kde-format
 msgid "Comment"
 msgstr "註解"
 
-#: src/formatter/grantleeviewformatter.cpp:185
+#: src/formatter/grantleeviewformatter.cpp:188
 #, kde-format
 msgid "Complete Story"
 msgstr "完整的內容"
 
-#: src/formatter/grantleeviewformatter.cpp:186
+#: src/formatter/grantleeviewformatter.cpp:189
 #, kde-format
 msgid "Author"
 msgstr "作者"
 
-#: src/formatter/grantleeviewformatter.cpp:187
+#: src/formatter/grantleeviewformatter.cpp:190
 #, kde-format
 msgid "Enclosure"
 msgstr "封裝"

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-12 00:38+0000\n"
+"POT-Creation-Date: 2024-04-05 00:38+0000\n"
 "PO-Revision-Date: 2024-03-02 01:08+0100\n"
 "Last-Translator: Jure Repinc <jlp@holodeck1.com>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
@@ -106,7 +106,7 @@ msgstr "Pošlji naslov povezave"
 msgid "Delete Article"
 msgstr "Izbriši članek"
 
-#: src/formatter/html/5.2/normalview.html:54
+#: src/formatter/html/5.2/normalview.html:115
 msgid ""
 "<b>Note:</b> For security reasons, external reference is blocked (See "
 "configure dialog)."
@@ -2001,14 +2001,14 @@ msgstr "Lastnosti %1"
 msgid "(%1, %2)"
 msgstr "(%1, %2)"
 
-#: src/formatter/grantleeviewformatter.cpp:100
-#: src/formatter/grantleeviewformatter.cpp:151
+#: src/formatter/grantleeviewformatter.cpp:103
+#: src/formatter/grantleeviewformatter.cpp:154
 #, kde-format
 msgid " (no unread articles)"
 msgstr " (ni neprebranih člankov)"
 
-#: src/formatter/grantleeviewformatter.cpp:102
-#: src/formatter/grantleeviewformatter.cpp:153
+#: src/formatter/grantleeviewformatter.cpp:105
+#: src/formatter/grantleeviewformatter.cpp:156
 #, kde-format
 msgid " (1 unread article)"
 msgid_plural " (%1 unread articles)"
@@ -2017,42 +2017,42 @@ msgstr[1] " (%1 neprebran članek)"
 msgstr[2] " (%1 neprebrana članka)"
 msgstr[3] " (%1 neprebrani članki)"
 
-#: src/formatter/grantleeviewformatter.cpp:117
+#: src/formatter/grantleeviewformatter.cpp:120
 #, kde-format
 msgid "<b>Description:</b> %1<br />"
 msgstr "<b>Opis:</b> %1<br />"
 
-#: src/formatter/grantleeviewformatter.cpp:124
+#: src/formatter/grantleeviewformatter.cpp:127
 #, kde-format
 msgid "<b>Homepage:</b> <a href=\"%1\">%1</a>"
 msgstr "<b>Domača stran:</b> <a href=\"%1\">%1</a>"
 
-#: src/formatter/grantleeviewformatter.cpp:131
+#: src/formatter/grantleeviewformatter.cpp:134
 #, kde-format
 msgid "<b>Copyright:</b> %1</a>"
 msgstr "<b>Copyright:</b> %1<br />"
 
-#: src/formatter/grantleeviewformatter.cpp:183
+#: src/formatter/grantleeviewformatter.cpp:186
 #, kde-format
 msgid "Date"
 msgstr "Datum"
 
-#: src/formatter/grantleeviewformatter.cpp:184
+#: src/formatter/grantleeviewformatter.cpp:187
 #, kde-format
 msgid "Comment"
 msgstr "Opomba"
 
-#: src/formatter/grantleeviewformatter.cpp:185
+#: src/formatter/grantleeviewformatter.cpp:188
 #, kde-format
 msgid "Complete Story"
 msgstr "Celotna zgodba"
 
-#: src/formatter/grantleeviewformatter.cpp:186
+#: src/formatter/grantleeviewformatter.cpp:189
 #, kde-format
 msgid "Author"
 msgstr "Avtor"
 
-#: src/formatter/grantleeviewformatter.cpp:187
+#: src/formatter/grantleeviewformatter.cpp:190
 #, kde-format
 msgid "Enclosure"
 msgstr "Priloga"

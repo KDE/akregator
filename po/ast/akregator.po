@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-12 00:38+0000\n"
+"POT-Creation-Date: 2024-04-05 00:38+0000\n"
 "PO-Revision-Date: 2023-11-07 21:26+0100\n"
 "Last-Translator: Enol P. <enolp@softastur.org>\n"
 "Language-Team: \n"
@@ -91,7 +91,7 @@ msgstr ""
 msgid "Delete Article"
 msgstr ""
 
-#: src/formatter/html/5.2/normalview.html:54
+#: src/formatter/html/5.2/normalview.html:115
 msgid ""
 "<b>Note:</b> For security reasons, external reference is blocked (See "
 "configure dialog)."
@@ -1928,56 +1928,56 @@ msgstr ""
 msgid "(%1, %2)"
 msgstr ""
 
-#: src/formatter/grantleeviewformatter.cpp:100
-#: src/formatter/grantleeviewformatter.cpp:151
+#: src/formatter/grantleeviewformatter.cpp:103
+#: src/formatter/grantleeviewformatter.cpp:154
 #, kde-format
 msgid " (no unread articles)"
 msgstr ""
 
-#: src/formatter/grantleeviewformatter.cpp:102
-#: src/formatter/grantleeviewformatter.cpp:153
+#: src/formatter/grantleeviewformatter.cpp:105
+#: src/formatter/grantleeviewformatter.cpp:156
 #, kde-format
 msgid " (1 unread article)"
 msgid_plural " (%1 unread articles)"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/formatter/grantleeviewformatter.cpp:117
+#: src/formatter/grantleeviewformatter.cpp:120
 #, kde-format
 msgid "<b>Description:</b> %1<br />"
 msgstr ""
 
-#: src/formatter/grantleeviewformatter.cpp:124
+#: src/formatter/grantleeviewformatter.cpp:127
 #, kde-format
 msgid "<b>Homepage:</b> <a href=\"%1\">%1</a>"
 msgstr ""
 
-#: src/formatter/grantleeviewformatter.cpp:131
+#: src/formatter/grantleeviewformatter.cpp:134
 #, kde-format
 msgid "<b>Copyright:</b> %1</a>"
 msgstr ""
 
-#: src/formatter/grantleeviewformatter.cpp:183
+#: src/formatter/grantleeviewformatter.cpp:186
 #, kde-format
 msgid "Date"
 msgstr ""
 
-#: src/formatter/grantleeviewformatter.cpp:184
+#: src/formatter/grantleeviewformatter.cpp:187
 #, kde-format
 msgid "Comment"
 msgstr ""
 
-#: src/formatter/grantleeviewformatter.cpp:185
+#: src/formatter/grantleeviewformatter.cpp:188
 #, kde-format
 msgid "Complete Story"
 msgstr ""
 
-#: src/formatter/grantleeviewformatter.cpp:186
+#: src/formatter/grantleeviewformatter.cpp:189
 #, kde-format
 msgid "Author"
 msgstr ""
 
-#: src/formatter/grantleeviewformatter.cpp:187
+#: src/formatter/grantleeviewformatter.cpp:190
 #, kde-format
 msgid "Enclosure"
 msgstr ""

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-12 00:38+0000\n"
+"POT-Creation-Date: 2024-04-05 00:38+0000\n"
 "PO-Revision-Date: 2023-12-17 16:44+0530\n"
 "Last-Translator: Kishore G <kishore96@gmail.com>\n"
 "Language-Team: Tamil <kde-i18n-doc@kde.org>\n"
@@ -88,7 +88,7 @@ msgstr "இணைப்பின் முகவரியை அனுப்ப�
 msgid "Delete Article"
 msgstr "கட்டுரையை நீக்கு"
 
-#: src/formatter/html/5.2/normalview.html:54
+#: src/formatter/html/5.2/normalview.html:115
 msgid ""
 "<b>Note:</b> For security reasons, external reference is blocked (See "
 "configure dialog)."
@@ -1982,60 +1982,60 @@ msgstr "பண்புகளின் செலுத்தல்"
 msgid "(%1, %2)"
 msgstr ""
 
-#: src/formatter/grantleeviewformatter.cpp:100
-#: src/formatter/grantleeviewformatter.cpp:151
+#: src/formatter/grantleeviewformatter.cpp:103
+#: src/formatter/grantleeviewformatter.cpp:154
 #, kde-format
 msgid " (no unread articles)"
 msgstr " (படிக்காத கட்டுரைகள் இல்லை)"
 
-#: src/formatter/grantleeviewformatter.cpp:102
-#: src/formatter/grantleeviewformatter.cpp:153
+#: src/formatter/grantleeviewformatter.cpp:105
+#: src/formatter/grantleeviewformatter.cpp:156
 #, fuzzy, kde-format
 msgid " (1 unread article)"
 msgid_plural " (%1 unread articles)"
 msgstr[0] "(%1 படிக்காத கட்டுரைகள்)"
 msgstr[1] ""
 
-#: src/formatter/grantleeviewformatter.cpp:117
+#: src/formatter/grantleeviewformatter.cpp:120
 #, fuzzy, kde-format
 #| msgid "<b>Description:</b> %1<br><br>"
 msgid "<b>Description:</b> %1<br />"
 msgstr "<b>விவரம்:</b> %1<br><br>"
 
-#: src/formatter/grantleeviewformatter.cpp:124
+#: src/formatter/grantleeviewformatter.cpp:127
 #, fuzzy, kde-format
 #| msgid "<b>Homepage:</b> <a href=\"%1\">%2</a>"
 msgid "<b>Homepage:</b> <a href=\"%1\">%1</a>"
 msgstr "<b>ஆரம்ப பக்கம்:</b> <a href=\"%1\">%2</a>"
 
-#: src/formatter/grantleeviewformatter.cpp:131
+#: src/formatter/grantleeviewformatter.cpp:134
 #, fuzzy, kde-format
 #| msgid "<b>Description:</b> %1<br><br>"
 msgid "<b>Copyright:</b> %1</a>"
 msgstr "<b>விவரம்:</b> %1<br><br>"
 
-#: src/formatter/grantleeviewformatter.cpp:183
+#: src/formatter/grantleeviewformatter.cpp:186
 #, kde-format
 msgid "Date"
 msgstr "தேதி"
 
-#: src/formatter/grantleeviewformatter.cpp:184
+#: src/formatter/grantleeviewformatter.cpp:187
 #, fuzzy, kde-format
 #| msgid "Comments"
 msgid "Comment"
 msgstr "குறிப்புகள்"
 
-#: src/formatter/grantleeviewformatter.cpp:185
+#: src/formatter/grantleeviewformatter.cpp:188
 #, kde-format
 msgid "Complete Story"
 msgstr "முழுக்கதை"
 
-#: src/formatter/grantleeviewformatter.cpp:186
+#: src/formatter/grantleeviewformatter.cpp:189
 #, fuzzy, kde-format
 msgid "Author"
 msgstr "librssசின் எழுதியவர்"
 
-#: src/formatter/grantleeviewformatter.cpp:187
+#: src/formatter/grantleeviewformatter.cpp:190
 #, kde-format
 msgid "Enclosure"
 msgstr ""

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-12 00:38+0000\n"
+"POT-Creation-Date: 2024-04-05 00:38+0000\n"
 "PO-Revision-Date: 2023-10-03 08:31+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
@@ -105,7 +105,7 @@ msgstr "Надсилання адреси посилання"
 msgid "Delete Article"
 msgstr "Вилучити статтю"
 
-#: src/formatter/html/5.2/normalview.html:54
+#: src/formatter/html/5.2/normalview.html:115
 msgid ""
 "<b>Note:</b> For security reasons, external reference is blocked (See "
 "configure dialog)."
@@ -2015,14 +2015,14 @@ msgstr "Властивості %1"
 msgid "(%1, %2)"
 msgstr "(%1, %2)"
 
-#: src/formatter/grantleeviewformatter.cpp:100
-#: src/formatter/grantleeviewformatter.cpp:151
+#: src/formatter/grantleeviewformatter.cpp:103
+#: src/formatter/grantleeviewformatter.cpp:154
 #, kde-format
 msgid " (no unread articles)"
 msgstr " (немає непрочитаних статей)"
 
-#: src/formatter/grantleeviewformatter.cpp:102
-#: src/formatter/grantleeviewformatter.cpp:153
+#: src/formatter/grantleeviewformatter.cpp:105
+#: src/formatter/grantleeviewformatter.cpp:156
 #, kde-format
 msgid " (1 unread article)"
 msgid_plural " (%1 unread articles)"
@@ -2031,42 +2031,42 @@ msgstr[1] " (%1 непрочитані статті)"
 msgstr[2] " (%1 непрочитаних статей)"
 msgstr[3] " (%1 непрочитана стаття)"
 
-#: src/formatter/grantleeviewformatter.cpp:117
+#: src/formatter/grantleeviewformatter.cpp:120
 #, kde-format
 msgid "<b>Description:</b> %1<br />"
 msgstr "<b>Опис:</b> %1<br />"
 
-#: src/formatter/grantleeviewformatter.cpp:124
+#: src/formatter/grantleeviewformatter.cpp:127
 #, kde-format
 msgid "<b>Homepage:</b> <a href=\"%1\">%1</a>"
 msgstr "<b>Домашня сторінка:</b> <a href=\"%1\">%1</a>"
 
-#: src/formatter/grantleeviewformatter.cpp:131
+#: src/formatter/grantleeviewformatter.cpp:134
 #, kde-format
 msgid "<b>Copyright:</b> %1</a>"
 msgstr "<b>Авторські права:</b> %1</a>"
 
-#: src/formatter/grantleeviewformatter.cpp:183
+#: src/formatter/grantleeviewformatter.cpp:186
 #, kde-format
 msgid "Date"
 msgstr "Дата"
 
-#: src/formatter/grantleeviewformatter.cpp:184
+#: src/formatter/grantleeviewformatter.cpp:187
 #, kde-format
 msgid "Comment"
 msgstr "Коментар"
 
-#: src/formatter/grantleeviewformatter.cpp:185
+#: src/formatter/grantleeviewformatter.cpp:188
 #, kde-format
 msgid "Complete Story"
 msgstr "Повна стаття"
 
-#: src/formatter/grantleeviewformatter.cpp:186
+#: src/formatter/grantleeviewformatter.cpp:189
 #, kde-format
 msgid "Author"
 msgstr "Автор"
 
-#: src/formatter/grantleeviewformatter.cpp:187
+#: src/formatter/grantleeviewformatter.cpp:190
 #, kde-format
 msgid "Enclosure"
 msgstr "Вкладення"
