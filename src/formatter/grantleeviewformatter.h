@@ -11,6 +11,10 @@
 #include <GrantleeTheme/GenericFormatter>
 namespace Akregator
 {
+struct Colors {
+    QString colorScheme;
+    QString backgroundColor;
+};
 class Folder;
 class GrantleeViewFormatter : public GrantleeTheme::GenericFormatter
 {
@@ -23,8 +27,9 @@ public:
     [[nodiscard]] QString formatFeed(Akregator::Feed *feed);
 
 private:
+    Colors getAppColor() const;
     void addStandardObject(QVariantHash &grantleeObject) const;
-    [[nodiscard]] QString sidebarCss() const;
+    [[nodiscard]] QString sidebarCss(const Colors &colors) const;
     [[nodiscard]] int pointsToPixel(int pointSize) const;
     const QString mHtmlArticleFileName;
     const QString mDirectionString;

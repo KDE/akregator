@@ -2,16 +2,23 @@
 <html>
 <head>
 <style type="text/css">
-:root {
+body {
     --body-max-width: 35rem;
     --font-size-large: 20pt;
     --font-size-medium: {{ mediumFontSize }}pt;
     --font-size-small: 10pt;
-    --background-color: #fff;
     --text-color-primary: #111;
     --text-color-secondary: #777;
     --border-color: rgba(0,0,0,0.1);
     --line-height: 1.4;
+    --background-color: #fff;
+}
+
+body.color-scheme-dark {
+    --text-color-primary: #fff;
+    --text-color-secondary: #c6c6c6;
+    --border-color: rgba(254,254,254,0.1);
+    --background-color: {{backgroundColor}};
 }
 
 @media screen, print {
@@ -26,6 +33,8 @@
     }
     a {
         color: var(--text-color-primary);
+    }
+    a:hover {
         cursor: pointer;
     }
     hr {
@@ -50,15 +59,17 @@
         max-width: 40px;
         height: auto;
     }
-    .header-title a {
+    .header-title {
+        text-decoration: none;
+    }
+    .header-title h1 {
         font-family: {{ serifFont }};
         font-size: var(--font-size-large);
         font-weight: 700;
         color: var(--text-color);
         line-height: 1.2;
         letter-spacing: -0.02em;
-        text-decoration: none;
-        text-balance: wrap;
+        text-wrap: balance;
     }
     .header-author {
         margin-top: 0.5em;
@@ -109,7 +120,7 @@
 </style>
 <title>.</title>
 </head>
-<body>
+<body class="color-scheme-{{colorScheme}}">
 {% if not loadExternalReference %}
     <p class="advisory">
         {% i18n_var "<b>Note:</b> For security reasons, external reference is blocked (See configure dialog)." as msg %}
@@ -127,9 +138,9 @@
     {% endif %}
 
     {% if article.strippedTitle %}
-    <div class="header-title" dir="{{ applicationDir }}">
-        <a href="{{ article.articleLinkUrl }}">{{ article.strippedTitle|safe }}</a>
-    </div>
+    <a class="header-title" href="{{ article.articleLinkUrl }}" dir="{{ applicationDir }}">
+        <h1>{{ article.strippedTitle|safe }}</h1>
+    </a>
     {% endif %}
 
     {% if article.author %}

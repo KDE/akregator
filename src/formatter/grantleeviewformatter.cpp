@@ -14,6 +14,9 @@
 #include "feed.h"
 #include "folder.h"
 #include <QApplication>
+#include <QCoreApplication>
+#include <QGuiApplication>
+#include <QPalette>
 #include <QVariantHash>
 #include <QVariantList>
 
@@ -38,6 +41,9 @@ int GrantleeViewFormatter::pointsToPixel(int pointSize) const
 
 void GrantleeViewFormatter::addStandardObject(QVariantHash &grantleeObject) const
 {
+    // get color scheme and window background color
+    Colors appColor = getAppColor();
+
     grantleeObject.insert(QStringLiteral("absoluteThemePath"), mGrantleeThemePath);
     grantleeObject.insert(QStringLiteral("applicationDir"), mDirectionString);
     grantleeObject.insert(QStringLiteral("standardFamilyFont"), Settings::standardFont());
@@ -45,48 +51,92 @@ void GrantleeViewFormatter::addStandardObject(QVariantHash &grantleeObject) cons
     grantleeObject.insert(QStringLiteral("serifFont"), Settings::serifFont());
     grantleeObject.insert(QStringLiteral("mediumFontSize"), Settings::mediumFontSize());
     grantleeObject.insert(QStringLiteral("smallFontSize"), Settings::minimumFontSize());
-    grantleeObject.insert(QStringLiteral("sidebarCss"), sidebarCss());
+    grantleeObject.insert(QStringLiteral("sidebarCss"), sidebarCss(appColor));
+    grantleeObject.insert(QStringLiteral("colorScheme"), appColor.colorScheme);
+    grantleeObject.insert(QStringLiteral("backgroundColor"), appColor.backgroundColor);
 }
 
-QString GrantleeViewFormatter::sidebarCss() const
+Colors GrantleeViewFormatter::getAppColor() const
 {
+    QGuiApplication *guiApp = qobject_cast<QGuiApplication *>(QCoreApplication::instance());
+
+    const QPalette palette = guiApp->palette();
+    const QColor windowColor = palette.window().color();
+    const QColor windowTextColor = palette.windowText().color();
+
+    Colors values;
+    values.backgroundColor = windowColor.name();
+
+    // dark or light mode
+    if (windowColor.value() < windowTextColor.value()) {
+        values.colorScheme = QStringLiteral("dark");
+    } else {
+        values.colorScheme = QStringLiteral("light");
+    }
+
+    return values;
+}
+
+QString lighterColor(QString inputColor, int factor)
+{
+    QColor color(inputColor);
+    color = color.lighter(factor);
+    return color.name();
+}
+
+QString GrantleeViewFormatter::sidebarCss(const Colors &colors) const
+{
+    bool isDark = colors.colorScheme == QStringLiteral("dark");
+
+    QString backgroundColor = isDark ? colors.backgroundColor : QStringLiteral("#fff");
+    QString borderColor = isDark ? QStringLiteral("#55595C") : QStringLiteral("#BBBDBE");
+
+    // use background color for scrollbar on dark themes to adapt better to color schemes
+    QString lighterBackgroundColor = lighterColor(colors.backgroundColor, 200);
+    QString thumbColor = isDark ? lighterBackgroundColor : QStringLiteral("#CACCCC");
+    QString thumbHoverColor = isDark ? QStringLiteral("#346D8E") : QStringLiteral("#90C7E4");
+
     return QStringLiteral(
-        "html::-webkit-scrollbar {\n"
-        "  /* we'll add padding as \"border\" in the thumb*/\n"
-        "    height: 20px;\n"
-        "    width: 20px;\n"
-        "    background: white;\n"
-        "    border-left: 1px solid #e5e5e5;\n"
-        "    padding-left: 1px;\n"
-        "}\n\n"
+               "html::-webkit-scrollbar {\n"
+               "  /* we'll add padding as \"border\" in the thumb*/\n"
+               "    height: 20px;\n"
+               "    width: 20px;\n"
+               "    background: %1;\n"
+               "    border-left: 1px solid %2;\n"
+               "    padding-left: 1px;\n"
+               "}\n\n"
 
-        "html::-webkit-scrollbar-track {\n"
-        "    border-radius: 20px;\n"
-        "    width: 6px !important;\n"
-        "    box-sizing: content-box;\n"
-        "}\n\n"
+               "html::-webkit-scrollbar-track {\n"
+               "    border-radius: 20px;\n"
+               "    width: 6px !important;\n"
+               "    box-sizing: content-box;\n"
+               "}\n\n"
 
-        "html::-webkit-scrollbar-thumb {\n"
-        "    background-color: #CBCDCD;\n"
-        "    border: 6px solid transparent;\n"
-        "    border-radius: 20px;\n"
-        "    background-clip: content-box;\n"
-        "    width: 8px !important; /* 20px scrollbar - 2 * 6px border */\n"
-        "    box-sizing: content-box;\n"
-        "    min-height: 30px;\n"
-        "}\n\n"
+               "html::-webkit-scrollbar-thumb {\n"
+               "    background-color: %3;\n"
+               "    border: 6px solid transparent;\n"
+               "    border-radius: 20px;\n"
+               "    background-clip: content-box;\n"
+               "    width: 8px !important; /* 20px scrollbar - 2 * 6px border */\n"
+               "    box-sizing: content-box;\n"
+               "    min-height: 30px;\n"
+               "}\n\n"
 
-        "html::-webkit-scrollbar-thumb:window-inactive {\n"
-        "   background-color: #949699; /* when window is inactive it's gray */\n"
-        "}\n\n"
+               "html::-webkit-scrollbar-thumb:window-inactive {\n"
+               "   background-color: %3; /* when window is inactive it's gray */\n"
+               "}\n\n"
 
-        "html::-webkit-scrollbar-thumb:hover {\n"
-        "    background-color: #93CEE9; /* hovered is a lighter blue */\n"
-        "}\n\n"
+               "html::-webkit-scrollbar-thumb:hover {\n"
+               "    background-color: %4; /* hovered is a lighter blue */\n"
+               "}\n\n"
 
-        "html::-webkit-scrollbar-corner {\n"
-        "    background-color: white;\n"
-        "}\n\n");
+               "html::-webkit-scrollbar-corner {\n"
+               "    background-color: white;\n"
+               "}\n\n")
+        .arg(backgroundColor)
+        .arg(borderColor)
+        .arg(thumbColor)
+        .arg(thumbHoverColor);
 }
 
 QString GrantleeViewFormatter::formatFeed(Akregator::Feed *feed)
