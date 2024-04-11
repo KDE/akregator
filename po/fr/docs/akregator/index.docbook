@@ -36,7 +36,7 @@
 ></affiliation>
 </author>
 
-&traducteurAnneMarieMahfouf; &traducteurJosephRichard;&relecteurLudovicGrossard; &traducteurXavierBesnard; 
+&traducteurAnneMarieMahfouf; &traducteurJosephRichard; &relecteurLudovicGrossard; &traducteurXavierBesnard; 
 </authorgroup>
 <copyright>
 <year
@@ -55,9 +55,9 @@
 >&FDLNotice;</legalnotice>
 
 <date
->28-07-2016</date>
+>31-03-2021</date>
 <releaseinfo
->5.3.40 (Applications 16.08)</releaseinfo>
+>Applications 21.08</releaseinfo>
 
 <!-- Abstract about this handbook -->
 
@@ -208,7 +208,7 @@ say how to start it -->
 > et choisissez <guimenuitem
 >Ajoutez un flux...</guimenuitem
 > ou utilisez le raccourci clavier par défaut (<keycap
->Inser</keycap
+>Ins.</keycap
 >). La boîte de dialogue suivante apparaît, avec un champ intitulé <guilabel
 >URL du flux :</guilabel
 > <screenshot>
@@ -429,6 +429,46 @@ say how to start it -->
 <listitem
 ><para
 >Affiche l'icône de &akregator; dans la boîte à miniatures.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Afficher les articles non lus dans la barre de tâches</guilabel
+></term>
+<listitem
+><para
+>Définit si le nombre d'articles non lus doit être affiché sur l'élément de la barre de tâches du système.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Masquer les fils de discussions avec des articles non lus</guilabel
+></term>
+<listitem
+><para
+>Si cette option est sélectionnée, masque les fils de discussions incluant des articles non lus.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Verrouiller les flux en place</guilabel
+></term>
+<listitem
+><para
+>Si cette option est sélectionnée, empêche les fils de discussions d'être déplacés dans la liste. Tous les fils de discussions seront verrouillés là où ils se trouvent.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Développer automatiquement les dossiers contenant des articles non lus</guilabel
+></term>
+<listitem
+><para
+>Si cette option est sélectionnée, développe automatiquement les dossiers contenant des articles non lus.</para>
 </listitem>
 </varlistentry>
 <varlistentry>
@@ -821,7 +861,7 @@ say how to start it -->
 <varlistentry>
 <term
 ><guilabel
->Pour la navigation externe</guilabel
+>Navigation externe</guilabel
 ></term>
 <listitem>
 
@@ -855,11 +895,101 @@ say how to start it -->
 <varlistentry>
 <term
 ><guilabel
->Afficher le bouton de fermeture sur les onglets lorsque la souris passe dessus</guilabel
+>Onglets</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Toujours afficher la barre d'onglets</guilabel
+></term>
+<listitem
+><para
+>Si cette option est sélectionnée, l'onglet sera toujours affiché, même lorsqu'un seul onglet est ouvert.Cela vous permet de créer des onglets directement à partir de la barre d'onglets. Sinon, la barre d'onglet ne sera affichée que lorsque plusieurs onglets seront ouverts.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Afficher un bouton de fermeture dans chaque onglet</guilabel
 ></term>
 <listitem
 ><para
 >Si cette option est cochée, le bouton de fermeture apparaît lorsque vous passez la souris sur le côté gauche du titre de l'onglet pour vous permettre de fermer les onglets facilement.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Ouvrir les liens dans un nouvel onglet plutôt que dans une nouvelle fenêtre</guilabel
+></term>
+<listitem
+><para
+>Si cette option est sélectionnée, &akregator;ouvrira un lien qui devrait normalement s'ouvrir dans une nouvelle fenêtre (navigateur externe) plutôt que dans un nouvel onglet.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Sécurité</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Vérifier les URL à l'aide de l'API de navigation sécurisée de Google</guilabel
+></term>
+<listitem
+><para
+>Si cette option est sélectionnée, <ulink url = "https://safebrowsing.google.com/"
+> L'API de navigation sécurisée de Google </ulink
+> sera utilisée pour vérifier les &URL; en regard de listes de ressources Internet constamment mises à jour de Google concernant des ressources Internet non fiables. Des exemples de ressources Internet non fiables sont les sites d'ingénierie sociale (sites d'hameçonnage et mensongers) et des sites hébergeant des logiciels malveillants ou des logiciels indésirables.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Activer JavaScript</guilabel
+></term>
+<listitem
+><para
+>Si cette option est sélectionnée, &akregator; utilisera &javascript; lors du traitement des ressources Internet. L'utilisation de &javascript; conduit à plusieurs <ulink url = "https://fr.wikipedia.org/wiki/JavaScript"
+> répercussions en termes de sécurité</ulink
+>.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Divers</guilabel
+></term>
+<listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Clé d'accès activée</guilabel
+></term>
+<listitem
+><para
+>Il s'agit d'une option d'accessibilité. Si cette option est sélectionnée, &akregator; traitera la propriété « AccessKey » de la page Internet, définissant le raccourci clavier à utiliser pour passer à un élément donné.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</listitem>
+</varlistentry>
+</variablelist>
+
 </listitem>
 </varlistentry>
 </variablelist>
@@ -1353,7 +1483,7 @@ say how to start it -->
 ><menuchoice
 ><shortcut
 ><keycap
->Inser.</keycap
+>Ins.</keycap
 ></shortcut
 > <guimenu
 >Flux</guimenu
@@ -1374,7 +1504,7 @@ say how to start it -->
 ><shortcut
 ><keycombo action="simul"
 >&Maj;<keycap
->Inser.</keycap
+>Ins.</keycap
 ></keycombo
 ></shortcut
 > <guimenu
