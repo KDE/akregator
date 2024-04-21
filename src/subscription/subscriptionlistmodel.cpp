@@ -74,7 +74,6 @@ Akregator::FilterUnreadProxyModel::FilterUnreadProxyModel(QObject *parent)
     : QSortFilterProxyModel(parent)
     , m_selectedHierarchy()
 {
-    setDynamicSortFilter(true);
 }
 
 bool Akregator::FilterUnreadProxyModel::doFilter() const
