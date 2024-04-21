@@ -69,7 +69,7 @@ static const TreeNode *nodeForIndex(const QModelIndex &index, const FeedList *fe
     return (!index.isValid() || !feedList) ? nullptr : feedList->findByID(index.internalId());
 }
 }
-
+// TODO add activities support here.
 FilterUnreadProxyModel::FilterUnreadProxyModel(QObject *parent)
     : QSortFilterProxyModel(parent)
     , m_selectedHierarchy()
