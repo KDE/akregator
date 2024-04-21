@@ -99,7 +99,7 @@ bool Akregator::FilterUnreadProxyModel::filterAcceptsRow(int source_row, const Q
         return true;
     }
 
-    QModelIndex idx = sourceModel()->index(source_row, 0, source_parent);
+    const QModelIndex idx = sourceModel()->index(source_row, 0, source_parent);
 
     if (m_selectedHierarchy.contains(idx)) {
         return true;
