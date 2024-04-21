@@ -98,9 +98,13 @@ public:
     // Returns true if networking is available
     [[nodiscard]] bool isNetworkAvailable() const;
 
-    enum ViewMode { NormalView = 0, WidescreenView, CombinedView };
+    enum ViewMode {
+        NormalView = 0,
+        WidescreenView,
+        CombinedView,
+    };
 
-    ViewMode viewMode() const
+    [[nodiscard]] ViewMode viewMode() const
     {
         return m_viewMode;
     }

@@ -37,7 +37,7 @@ public:
     explicit FilterDeletedProxyModel(QObject *parent = nullptr);
 
 private:
-    bool filterAcceptsRow(int source_row, const QModelIndex &source_parent) const override;
+    [[nodiscard]] bool filterAcceptsRow(int source_row, const QModelIndex &source_parent) const override;
 };
 
 class AKREGATORPART_EXPORT SortColorizeProxyModel : public QSortFilterProxyModel
@@ -72,13 +72,13 @@ public:
     void setArticleModel(Akregator::ArticleModel *model) override;
 
     // impl ArticleLister
-    QItemSelectionModel *articleSelectionModel() const override;
+    [[nodiscard]] QItemSelectionModel *articleSelectionModel() const override;
 
     // impl ArticleLister
-    const QAbstractItemView *itemView() const override;
+    [[nodiscard]] const QAbstractItemView *itemView() const override;
 
     // impl ArticleLister
-    QAbstractItemView *itemView() override;
+    [[nodiscard]] QAbstractItemView *itemView() override;
 
     // impl ArticleLister
     [[nodiscard]] QPoint scrollBarPositions() const override;
@@ -132,14 +132,14 @@ private:
     void setFeedMode();
     void setGroupMode();
 
-private Q_SLOTS:
-    void showHeaderMenu(const QPoint &pos);
-    void startResizingTitleColumn();
     void finishResizingTitleColumn();
-
-private:
+    void startResizingTitleColumn();
+    void showHeaderMenu(const QPoint &pos);
     void generalPaletteChanged();
-    enum ColumnMode { GroupMode, FeedMode };
+    enum ColumnMode {
+        GroupMode,
+        FeedMode,
+    };
     ColumnMode m_columnMode;
     QColor mTextColor;
     QPointer<SortColorizeProxyModel> m_proxy;

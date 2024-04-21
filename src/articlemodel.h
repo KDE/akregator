@@ -28,9 +28,26 @@ class AKREGATORPART_EXPORT ArticleModel : public QAbstractTableModel
     Q_OBJECT
 
 public:
-    enum Column { ItemTitleColumn = 0, FeedTitleColumn, AuthorColumn, DateColumn, DescriptionColumn, ContentColumn, ColumnCount };
+    enum Column {
+        ItemTitleColumn = 0,
+        FeedTitleColumn,
+        AuthorColumn,
+        DateColumn,
+        DescriptionColumn,
+        ContentColumn,
+        ColumnCount,
+    };
 
-    enum Role { SortRole = Qt::UserRole, LinkRole, GuidRole, ItemIdRole, FeedIdRole, StatusRole, IsImportantRole, IsDeletedRole };
+    enum Role {
+        SortRole = Qt::UserRole,
+        LinkRole,
+        GuidRole,
+        ItemIdRole,
+        FeedIdRole,
+        StatusRole,
+        IsImportantRole,
+        IsDeletedRole,
+    };
 
     explicit ArticleModel(const QList<Article> &articles, QObject *parent = nullptr);
     ~ArticleModel() override;

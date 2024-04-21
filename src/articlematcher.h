@@ -53,7 +53,11 @@ private:
 class AKREGATORPART_EXPORT ArticleMatcher : public AbstractMatcher
 {
 public:
-    enum Association { None, LogicalAnd, LogicalOr };
+    enum Association {
+        None,
+        LogicalAnd,
+        LogicalOr,
+    };
 
     ArticleMatcher();
     ArticleMatcher(const QList<Criterion> &criteria, Association assoc);
@@ -71,8 +75,8 @@ private:
     static Association stringToAssociation(const QString &assocStr);
     static QString associationToString(Association association);
 
-    bool anyCriterionMatches(const Article &a) const;
-    bool allCriteriaMatch(const Article &a) const;
+    [[nodiscard]] bool anyCriterionMatches(const Article &a) const;
+    [[nodiscard]] bool allCriteriaMatch(const Article &a) const;
 
     QList<Criterion> m_criteria;
     Association m_association;
@@ -84,12 +88,24 @@ private:
 class AKREGATORPART_EXPORT Criterion
 {
 public:
-    enum Subject { Title, Description, Link, Status, KeepFlag, Author };
+    enum Subject {
+        Title,
+        Description,
+        Link,
+        Status,
+        KeepFlag,
+        Author,
+    };
 
     static QString subjectToString(Subject subj);
     static Subject stringToSubject(const QString &subjStr);
 
-    enum Predicate { Contains = 0x01, Equals = 0x02, Matches = 0x03, Negation = 0x80 };
+    enum Predicate {
+        Contains = 0x01,
+        Equals = 0x02,
+        Matches = 0x03,
+        Negation = 0x80,
+    };
 
     static QString predicateToString(Predicate pred);
     static Predicate stringToPredicate(const QString &predStr);
@@ -103,8 +119,8 @@ public:
     virtual void writeConfig(KConfigGroup *config) const;
     virtual void readConfig(KConfigGroup *config);
 
-    Subject subject() const;
-    Predicate predicate() const;
+    [[nodiscard]] Subject subject() const;
+    [[nodiscard]] Predicate predicate() const;
     QVariant object() const;
     bool operator==(const Criterion &other) const
     {
