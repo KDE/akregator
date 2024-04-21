@@ -137,7 +137,7 @@
   <url type="vcs-browser">https://invent.kde.org/pim/akregator/</url>
   <url type="contact">https://go.kde.org/matrix/#/#kontact:kde.org</url>
   <url type="contribute">https://community.kde.org/Get_Involved/</url>
-  <launchable type="desktop-id">org.kde.akgregator.desktop</launchable>
+  <launchable type="desktop-id">org.kde.akregator.desktop</launchable>
   <keywords>
     <keyword>Qt</keyword>
   </keywords>
