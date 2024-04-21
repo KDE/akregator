@@ -59,14 +59,11 @@ public:
     [[nodiscard]] QString quickSearchLineText() const;
 
 public Q_SLOTS:
-
     void slotNodeSelected(Akregator::TreeNode *node);
     void slotSettingsChanged();
 
-private Q_SLOTS:
-    void slotServiceUrlSelected(PimCommon::ShareServiceUrlManager::ServiceType type);
-
 private:
+    void slotServiceUrlSelected(PimCommon::ShareServiceUrlManager::ServiceType type);
     void initPart();
 
     friend class NodeSelectVisitor;

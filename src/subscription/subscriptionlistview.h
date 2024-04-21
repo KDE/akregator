@@ -67,8 +67,6 @@ private:
     void saveHeaderSettings();
     void loadHeaderSettings();
     void restoreHeaderState();
-
-private:
     void showHeaderMenu(const QPoint &pos);
     void headerMenuItemTriggered(QAction *action);
 

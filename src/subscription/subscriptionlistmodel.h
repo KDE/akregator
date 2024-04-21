@@ -55,7 +55,16 @@ class AKREGATORPART_EXPORT SubscriptionListModel : public QAbstractItemModel
 {
     Q_OBJECT
 public:
-    enum Role { SubscriptionIdRole = Qt::UserRole, IsFetchableRole, IsGroupRole, IsAggregationRole, LinkRole, IdRole, IsOpenRole, HasUnreadRole };
+    enum Role {
+        SubscriptionIdRole = Qt::UserRole,
+        IsFetchableRole,
+        IsGroupRole,
+        IsAggregationRole,
+        LinkRole,
+        IdRole,
+        IsOpenRole,
+        HasUnreadRole,
+    };
 
     enum Column {
         TitleColumn = 0,
@@ -91,8 +100,7 @@ public:
 private:
     QModelIndex indexForNode(const TreeNode *node) const;
 
-private Q_SLOTS:
-
+private:
     void subscriptionAdded(Akregator::TreeNode *);
 
     void aboutToRemoveSubscription(Akregator::TreeNode *);
@@ -109,7 +117,6 @@ private Q_SLOTS:
 
     void fetchAborted(Akregator::Feed *);
 
-private:
     QSharedPointer<const FeedList> m_feedList;
     bool m_beganRemoval;
 

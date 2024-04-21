@@ -50,13 +50,11 @@ public Q_SLOTS:
     void slotSetStatus(int status);
     void slotSetText(const QString &text);
 
-private Q_SLOTS:
+private:
     void slotSearchStringChanged(const QString &search);
     void slotStopActiveSearch();
     void slotActivateSearch();
     void slotStatusChanged(Akregator::StatusSearchLine::Status);
-
-private:
     void triggerTimer();
 
     QString m_searchText;
