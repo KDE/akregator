@@ -13,7 +13,6 @@
 #include "article.h"
 
 #include <QSharedPointer>
-#include <vector>
 
 namespace Akregator
 {
