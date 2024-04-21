@@ -64,36 +64,36 @@ static QString errorCodeToString(Syndication::ErrorCode err)
     }
 }
 
-static const Akregator::TreeNode *nodeForIndex(const QModelIndex &index, const FeedList *feedList)
+static const TreeNode *nodeForIndex(const QModelIndex &index, const FeedList *feedList)
 {
     return (!index.isValid() || !feedList) ? nullptr : feedList->findByID(index.internalId());
 }
 }
 
-Akregator::FilterUnreadProxyModel::FilterUnreadProxyModel(QObject *parent)
+FilterUnreadProxyModel::FilterUnreadProxyModel(QObject *parent)
     : QSortFilterProxyModel(parent)
     , m_selectedHierarchy()
 {
 }
 
-bool Akregator::FilterUnreadProxyModel::doFilter() const
+bool FilterUnreadProxyModel::doFilter() const
 {
     return m_doFilter;
 }
 
-void Akregator::FilterUnreadProxyModel::setDoFilter(bool v)
+void FilterUnreadProxyModel::setDoFilter(bool v)
 {
     m_doFilter = v;
     invalidateFilter();
 }
 
-void Akregator::FilterUnreadProxyModel::setSourceModel(QAbstractItemModel *src)
+void FilterUnreadProxyModel::setSourceModel(QAbstractItemModel *src)
 {
     clearCache();
     QSortFilterProxyModel::setSourceModel(src);
 }
 
-bool Akregator::FilterUnreadProxyModel::filterAcceptsRow(int source_row, const QModelIndex &source_parent) const
+bool FilterUnreadProxyModel::filterAcceptsRow(int source_row, const QModelIndex &source_parent) const
 {
     if (!m_doFilter) {
         return true;
@@ -119,7 +119,7 @@ bool Akregator::FilterUnreadProxyModel::filterAcceptsRow(int source_row, const Q
  * which would occur otherwise (we'd select the last article to read, it would
  * become unread, and disappear from the list without letting us view it).
  **/
-void Akregator::FilterUnreadProxyModel::selectionChanged(const QItemSelection &selected, const QItemSelection &deselected)
+void FilterUnreadProxyModel::selectionChanged(const QItemSelection &selected, const QItemSelection &deselected)
 {
     QModelIndexList desel = mapSelectionToSource(deselected).indexes();
     // calling invalidateFilter causes refiltering at the call point, so we should
@@ -150,12 +150,12 @@ void Akregator::FilterUnreadProxyModel::selectionChanged(const QItemSelection &s
     }
 }
 
-void Akregator::FilterUnreadProxyModel::clearCache()
+void FilterUnreadProxyModel::clearCache()
 {
     m_selectedHierarchy.clear();
 }
 
-Akregator::SubscriptionListModel::SubscriptionListModel(const QSharedPointer<const FeedList> &feedList, QObject *parent)
+SubscriptionListModel::SubscriptionListModel(const QSharedPointer<const FeedList> &feedList, QObject *parent)
     : QAbstractItemModel(parent)
     , m_feedList(feedList)
     , m_beganRemoval(false)
@@ -174,28 +174,28 @@ Akregator::SubscriptionListModel::SubscriptionListModel(const QSharedPointer<con
     m_errorColor = KColorScheme(QPalette::Normal, KColorScheme::View).foreground(KColorScheme::NegativeText).color();
 }
 
-int Akregator::SubscriptionListModel::columnCount(const QModelIndex &) const
+int SubscriptionListModel::columnCount(const QModelIndex &) const
 {
     return 3;
 }
 
-int Akregator::SubscriptionListModel::rowCount(const QModelIndex &parent) const
+int SubscriptionListModel::rowCount(const QModelIndex &parent) const
 {
     if (!parent.isValid()) {
         return 1;
     }
 
-    const Akregator::TreeNode *const node = nodeForIndex(parent, m_feedList.data());
+    const TreeNode *const node = nodeForIndex(parent, m_feedList.data());
     return node ? node->children().count() : 0;
 }
 
-QVariant Akregator::SubscriptionListModel::data(const QModelIndex &index, int role) const
+QVariant SubscriptionListModel::data(const QModelIndex &index, int role) const
 {
     if (!index.isValid()) {
         return {};
     }
 
-    const Akregator::TreeNode *const node = nodeForIndex(index, m_feedList.data());
+    const TreeNode *const node = nodeForIndex(index, m_feedList.data());
 
     if (!node) {
         return {};
@@ -251,7 +251,7 @@ QVariant Akregator::SubscriptionListModel::data(const QModelIndex &index, int ro
         if (!node->isGroup()) {
             return false;
         }
-        const auto *const folder = qobject_cast<const Akregator::Folder *const>(node);
+        const auto *const folder = qobject_cast<const Folder *const>(node);
         Q_ASSERT(folder);
         return folder->isOpen();
     }
@@ -262,7 +262,7 @@ QVariant Akregator::SubscriptionListModel::data(const QModelIndex &index, int ro
     return {};
 }
 
-QVariant Akregator::SubscriptionListModel::headerData(int section, Qt::Orientation, int role) const
+QVariant SubscriptionListModel::headerData(int section, Qt::Orientation, int role) const
 {
     if (role != Qt::DisplayRole) {
         return {};
@@ -280,21 +280,21 @@ QVariant Akregator::SubscriptionListModel::headerData(int section, Qt::Orientati
     return {};
 }
 
-QModelIndex Akregator::SubscriptionListModel::parent(const QModelIndex &index) const
+QModelIndex SubscriptionListModel::parent(const QModelIndex &index) const
 {
-    const Akregator::TreeNode *const node = nodeForIndex(index, m_feedList.data());
+    const TreeNode *const node = nodeForIndex(index, m_feedList.data());
 
     if (!node || !node->parent()) {
         return {};
     }
 
-    const Akregator::Folder *parent = node->parent();
+    const Folder *parent = node->parent();
 
     if (!parent->parent()) {
         return createIndex(0, 0, parent->id());
     }
 
-    const Akregator::Folder *const grandparent = parent->parent();
+    const Folder *const grandparent = parent->parent();
 
     const int row = grandparent->indexOf(parent);
 
@@ -303,19 +303,19 @@ QModelIndex Akregator::SubscriptionListModel::parent(const QModelIndex &index) c
     return createIndex(row, 0, parent->id());
 }
 
-QModelIndex Akregator::SubscriptionListModel::index(int row, int column, const QModelIndex &parent) const
+QModelIndex SubscriptionListModel::index(int row, int column, const QModelIndex &parent) const
 {
     if (!parent.isValid()) {
         return (row == 0 && m_feedList) ? createIndex(row, column, m_feedList->allFeedsFolder()->id()) : QModelIndex();
     }
 
-    const Akregator::TreeNode *const parentNode = nodeForIndex(parent, m_feedList.data());
+    const TreeNode *const parentNode = nodeForIndex(parent, m_feedList.data());
 
     if (!parentNode) {
         return {};
     }
 
-    const Akregator::TreeNode *const childNode = parentNode->childAt(row);
+    const TreeNode *const childNode = parentNode->childAt(row);
     return childNode ? createIndex(row, column, childNode->id()) : QModelIndex();
 }
 
@@ -335,7 +335,7 @@ QModelIndex SubscriptionListModel::indexForNode(const TreeNode *node) const
     return idx;
 }
 
-void Akregator::SubscriptionListModel::subscriptionAdded(Akregator::TreeNode *subscription)
+void SubscriptionListModel::subscriptionAdded(TreeNode *subscription)
 {
     const Folder *const parent = subscription->parent();
     const int row = parent ? parent->indexOf(subscription) : 0;
@@ -344,7 +344,7 @@ void Akregator::SubscriptionListModel::subscriptionAdded(Akregator::TreeNode *su
     endInsertRows();
 }
 
-void Akregator::SubscriptionListModel::aboutToRemoveSubscription(Akregator::TreeNode *subscription)
+void SubscriptionListModel::aboutToRemoveSubscription(TreeNode *subscription)
 {
     qCDebug(AKREGATOR_LOG) << subscription->id();
     const Folder *const parent = subscription->parent();
@@ -356,7 +356,7 @@ void Akregator::SubscriptionListModel::aboutToRemoveSubscription(Akregator::Tree
     m_beganRemoval = true;
 }
 
-void Akregator::SubscriptionListModel::subscriptionRemoved(TreeNode *subscription)
+void SubscriptionListModel::subscriptionRemoved(TreeNode *subscription)
 {
     qCDebug(AKREGATOR_LOG) << subscription->id();
     if (m_beganRemoval) {
@@ -365,7 +365,7 @@ void Akregator::SubscriptionListModel::subscriptionRemoved(TreeNode *subscriptio
     }
 }
 
-void Akregator::SubscriptionListModel::subscriptionChanged(TreeNode *node)
+void SubscriptionListModel::subscriptionChanged(TreeNode *node)
 {
     const QModelIndex idx = indexForNode(node);
     if (!idx.isValid()) {
@@ -374,47 +374,47 @@ void Akregator::SubscriptionListModel::subscriptionChanged(TreeNode *node)
     Q_EMIT dataChanged(index(idx.row(), 0, idx.parent()), index(idx.row(), ColumnCount - 1, idx.parent()));
 }
 
-void SubscriptionListModel::fetchStarted(Akregator::Feed *node)
+void SubscriptionListModel::fetchStarted(Feed *node)
 {
     subscriptionChanged(node);
 }
 
-void SubscriptionListModel::fetched(Akregator::Feed *node)
+void SubscriptionListModel::fetched(Feed *node)
 {
     subscriptionChanged(node);
 }
 
-void SubscriptionListModel::fetchError(Akregator::Feed *node)
+void SubscriptionListModel::fetchError(Feed *node)
 {
     subscriptionChanged(node);
 }
 
-void SubscriptionListModel::fetchAborted(Akregator::Feed *node)
+void SubscriptionListModel::fetchAborted(Feed *node)
 {
     subscriptionChanged(node);
 }
 
-void Akregator::FolderExpansionHandler::itemExpanded(const QModelIndex &idx)
+void FolderExpansionHandler::itemExpanded(const QModelIndex &idx)
 {
     setExpanded(idx, true);
 }
 
-void Akregator::FolderExpansionHandler::itemCollapsed(const QModelIndex &idx)
+void FolderExpansionHandler::itemCollapsed(const QModelIndex &idx)
 {
     setExpanded(idx, false);
 }
 
-void Akregator::FolderExpansionHandler::setExpanded(const QModelIndex &idx, bool expanded)
+void FolderExpansionHandler::setExpanded(const QModelIndex &idx, bool expanded)
 {
     if (!m_feedList || !m_model) {
         return;
     }
-    Akregator::TreeNode *const node = m_feedList->findByID(nodeIdForIndex(idx));
+    TreeNode *const node = m_feedList->findByID(nodeIdForIndex(idx));
     if (!node || !node->isGroup()) {
         return;
     }
 
-    auto const folder = qobject_cast<Akregator::Folder *>(node);
+    auto const folder = qobject_cast<Folder *>(node);
     Q_ASSERT(folder);
     folder->setOpen(expanded);
 }
