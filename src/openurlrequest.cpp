@@ -7,7 +7,6 @@
 */
 
 #include "openurlrequest.h"
-#include "akregatorconfig.h"
 
 using namespace Akregator;
 
