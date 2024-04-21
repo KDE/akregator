@@ -9,7 +9,6 @@
 #include "frame.h"
 #include "utils.h"
 
-#include "akregator_debug.h"
 #include <KLocalizedString>
 
 #include <Libkdepim/ProgressManager>
