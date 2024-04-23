@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-04-22 00:38+0000\n"
+"POT-Creation-Date: 2024-04-23 00:38+0000\n"
 "PO-Revision-Date: 2024-02-02 13:49+0200\n"
 "Last-Translator: Mindaugas Baranauskas <opensuse.lietuviu.kalba@gmail.com>\n"
 "Language-Team: Lithuanian <kde-i18n-lt@kde.org>\n"
@@ -108,7 +108,7 @@ msgstr "Siųsti nuorodos adresą"
 msgid "Delete Article"
 msgstr "Ištrinti straipsnį"
 
-#: src/formatter/html/5.2/normalview.html:115
+#: src/formatter/html/5.2/normalview.html:126
 msgid ""
 "<b>Note:</b> For security reasons, external reference is blocked (See "
 "configure dialog)."
@@ -2004,14 +2004,14 @@ msgstr "%1 savybės"
 msgid "(%1, %2)"
 msgstr "(%1, %2)"
 
-#: src/formatter/grantleeviewformatter.cpp:103
-#: src/formatter/grantleeviewformatter.cpp:154
+#: src/formatter/grantleeviewformatter.cpp:153
+#: src/formatter/grantleeviewformatter.cpp:204
 #, kde-format
 msgid " (no unread articles)"
 msgstr " (nėra neskaitytų straipsnių)"
 
-#: src/formatter/grantleeviewformatter.cpp:105
-#: src/formatter/grantleeviewformatter.cpp:156
+#: src/formatter/grantleeviewformatter.cpp:155
+#: src/formatter/grantleeviewformatter.cpp:206
 #, kde-format
 msgid " (1 unread article)"
 msgid_plural " (%1 unread articles)"
@@ -2020,42 +2020,42 @@ msgstr[1] " (%1 neskaityti straipsniai)"
 msgstr[2] " (%1 neskaitytų straipsnių)"
 msgstr[3] " (%1 neskaitytas straipsnis)"
 
-#: src/formatter/grantleeviewformatter.cpp:120
+#: src/formatter/grantleeviewformatter.cpp:170
 #, kde-format
 msgid "<b>Description:</b> %1<br />"
 msgstr "<b>Aprašymas:</b> %1<br />"
 
-#: src/formatter/grantleeviewformatter.cpp:127
+#: src/formatter/grantleeviewformatter.cpp:177
 #, kde-format
 msgid "<b>Homepage:</b> <a href=\"%1\">%1</a>"
 msgstr "<b>Svetainė:</b> <a href=\"%1\">%1</a>"
 
-#: src/formatter/grantleeviewformatter.cpp:134
+#: src/formatter/grantleeviewformatter.cpp:184
 #, kde-format
 msgid "<b>Copyright:</b> %1</a>"
 msgstr "<b>Autorių teisės:</b> %1</a>"
 
-#: src/formatter/grantleeviewformatter.cpp:186
+#: src/formatter/grantleeviewformatter.cpp:236
 #, kde-format
 msgid "Date"
 msgstr "Data"
 
-#: src/formatter/grantleeviewformatter.cpp:187
+#: src/formatter/grantleeviewformatter.cpp:237
 #, kde-format
 msgid "Comment"
 msgstr "Komentaras"
 
-#: src/formatter/grantleeviewformatter.cpp:188
+#: src/formatter/grantleeviewformatter.cpp:238
 #, kde-format
 msgid "Complete Story"
 msgstr "Pilnas pasakojimas"
 
-#: src/formatter/grantleeviewformatter.cpp:189
+#: src/formatter/grantleeviewformatter.cpp:239
 #, kde-format
 msgid "Author"
 msgstr "Autorius"
 
-#: src/formatter/grantleeviewformatter.cpp:190
+#: src/formatter/grantleeviewformatter.cpp:240
 #, kde-format
 msgid "Enclosure"
 msgstr "Santrumpa"

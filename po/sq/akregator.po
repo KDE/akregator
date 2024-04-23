@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdepim\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-04-22 00:38+0000\n"
+"POT-Creation-Date: 2024-04-23 00:38+0000\n"
 "PO-Revision-Date: 2009-09-04 19:26+0000\n"
 "Last-Translator: Vilson Gjeci <vilsongjeci@gmail.com>\n"
 "Language-Team: Albanian <sq@li.org>\n"
@@ -108,7 +108,7 @@ msgstr "Dërgo &Adresën e Shkurtores..."
 msgid "Delete Article"
 msgstr "Fshije Artikullin"
 
-#: src/formatter/html/5.2/normalview.html:115
+#: src/formatter/html/5.2/normalview.html:126
 msgid ""
 "<b>Note:</b> For security reasons, external reference is blocked (See "
 "configure dialog)."
@@ -2024,60 +2024,60 @@ msgstr "Parametrat e %1"
 msgid "(%1, %2)"
 msgstr "(%1, %2)"
 
-#: src/formatter/grantleeviewformatter.cpp:103
-#: src/formatter/grantleeviewformatter.cpp:154
+#: src/formatter/grantleeviewformatter.cpp:153
+#: src/formatter/grantleeviewformatter.cpp:204
 #, kde-format
 msgid " (no unread articles)"
 msgstr ""
 
-#: src/formatter/grantleeviewformatter.cpp:105
-#: src/formatter/grantleeviewformatter.cpp:156
+#: src/formatter/grantleeviewformatter.cpp:155
+#: src/formatter/grantleeviewformatter.cpp:206
 #, kde-format
 msgid " (1 unread article)"
 msgid_plural " (%1 unread articles)"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/formatter/grantleeviewformatter.cpp:120
+#: src/formatter/grantleeviewformatter.cpp:170
 #, fuzzy, kde-format
 #| msgid "<b>Description:</b> %1<br /><br />"
 msgid "<b>Description:</b> %1<br />"
 msgstr "<b>Përshkrimi:</b> %1<br /><br />"
 
-#: src/formatter/grantleeviewformatter.cpp:127
+#: src/formatter/grantleeviewformatter.cpp:177
 #, fuzzy, kde-format
 #| msgid "<b>Homepage:</b> <a href=\"%1\">%2</a>"
 msgid "<b>Homepage:</b> <a href=\"%1\">%1</a>"
 msgstr "<b>Faqja bazë:</b> <a href=\"%1\">%2</a>"
 
-#: src/formatter/grantleeviewformatter.cpp:134
+#: src/formatter/grantleeviewformatter.cpp:184
 #, fuzzy, kde-format
 #| msgid "<b>Description:</b> %1<br /><br />"
 msgid "<b>Copyright:</b> %1</a>"
 msgstr "<b>Përshkrimi:</b> %1<br /><br />"
 
-#: src/formatter/grantleeviewformatter.cpp:186
+#: src/formatter/grantleeviewformatter.cpp:236
 #, kde-format
 msgid "Date"
 msgstr "Data"
 
-#: src/formatter/grantleeviewformatter.cpp:187
+#: src/formatter/grantleeviewformatter.cpp:237
 #, fuzzy, kde-format
 #| msgid "Comments"
 msgid "Comment"
 msgstr "Komentet"
 
-#: src/formatter/grantleeviewformatter.cpp:188
+#: src/formatter/grantleeviewformatter.cpp:238
 #, kde-format
 msgid "Complete Story"
 msgstr "Historia e Plotë"
 
-#: src/formatter/grantleeviewformatter.cpp:189
+#: src/formatter/grantleeviewformatter.cpp:239
 #, kde-format
 msgid "Author"
 msgstr "Autori"
 
-#: src/formatter/grantleeviewformatter.cpp:190
+#: src/formatter/grantleeviewformatter.cpp:240
 #, kde-format
 msgid "Enclosure"
 msgstr "Mbyllja"

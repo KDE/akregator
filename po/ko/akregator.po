@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdepim\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-04-22 00:38+0000\n"
+"POT-Creation-Date: 2024-04-23 00:38+0000\n"
 "PO-Revision-Date: 2023-10-08 22:22+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -98,7 +98,7 @@ msgstr "링크 주소 보내기"
 msgid "Delete Article"
 msgstr "글 삭제"
 
-#: src/formatter/html/5.2/normalview.html:115
+#: src/formatter/html/5.2/normalview.html:126
 msgid ""
 "<b>Note:</b> For security reasons, external reference is blocked (See "
 "configure dialog)."
@@ -1945,55 +1945,55 @@ msgstr "%1 속성"
 msgid "(%1, %2)"
 msgstr "(%1, %2)"
 
-#: src/formatter/grantleeviewformatter.cpp:103
-#: src/formatter/grantleeviewformatter.cpp:154
+#: src/formatter/grantleeviewformatter.cpp:153
+#: src/formatter/grantleeviewformatter.cpp:204
 #, kde-format
 msgid " (no unread articles)"
 msgstr "(읽지 않은 글 없음)"
 
-#: src/formatter/grantleeviewformatter.cpp:105
-#: src/formatter/grantleeviewformatter.cpp:156
+#: src/formatter/grantleeviewformatter.cpp:155
+#: src/formatter/grantleeviewformatter.cpp:206
 #, kde-format
 msgid " (1 unread article)"
 msgid_plural " (%1 unread articles)"
 msgstr[0] "(읽지 않은 글 %1개)"
 
-#: src/formatter/grantleeviewformatter.cpp:120
+#: src/formatter/grantleeviewformatter.cpp:170
 #, kde-format
 msgid "<b>Description:</b> %1<br />"
 msgstr "<b>설명:</b> %1<br />"
 
-#: src/formatter/grantleeviewformatter.cpp:127
+#: src/formatter/grantleeviewformatter.cpp:177
 #, kde-format
 msgid "<b>Homepage:</b> <a href=\"%1\">%1</a>"
 msgstr "<b>홈페이지:</b> <a href=\"%1\">%1</a>"
 
-#: src/formatter/grantleeviewformatter.cpp:134
+#: src/formatter/grantleeviewformatter.cpp:184
 #, kde-format
 msgid "<b>Copyright:</b> %1</a>"
 msgstr "<b>저작권:</b> %1</a>"
 
-#: src/formatter/grantleeviewformatter.cpp:186
+#: src/formatter/grantleeviewformatter.cpp:236
 #, kde-format
 msgid "Date"
 msgstr "날짜"
 
-#: src/formatter/grantleeviewformatter.cpp:187
+#: src/formatter/grantleeviewformatter.cpp:237
 #, kde-format
 msgid "Comment"
 msgstr "설명"
 
-#: src/formatter/grantleeviewformatter.cpp:188
+#: src/formatter/grantleeviewformatter.cpp:238
 #, kde-format
 msgid "Complete Story"
 msgstr "글 전체 보기"
 
-#: src/formatter/grantleeviewformatter.cpp:189
+#: src/formatter/grantleeviewformatter.cpp:239
 #, kde-format
 msgid "Author"
 msgstr "작성자"
 
-#: src/formatter/grantleeviewformatter.cpp:190
+#: src/formatter/grantleeviewformatter.cpp:240
 #, kde-format
 msgid "Enclosure"
 msgstr "인클로저"

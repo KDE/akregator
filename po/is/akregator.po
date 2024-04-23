@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-04-22 00:38+0000\n"
+"POT-Creation-Date: 2024-04-23 00:38+0000\n"
 "PO-Revision-Date: 2023-12-04 10:05+0000\n"
 "Last-Translator: Guðmundur Erlingsson <gudmundure@gmail.com>\n"
 "Language-Team: Icelandic <kde-i18n-doc@kde.org>\n"
@@ -102,7 +102,7 @@ msgstr "Senda slóð tengils"
 msgid "Delete Article"
 msgstr "Eyða grein"
 
-#: src/formatter/html/5.2/normalview.html:115
+#: src/formatter/html/5.2/normalview.html:126
 msgid ""
 "<b>Note:</b> For security reasons, external reference is blocked (See "
 "configure dialog)."
@@ -1975,56 +1975,56 @@ msgstr "Eiginleikar %1"
 msgid "(%1, %2)"
 msgstr "(%1, %2)"
 
-#: src/formatter/grantleeviewformatter.cpp:103
-#: src/formatter/grantleeviewformatter.cpp:154
+#: src/formatter/grantleeviewformatter.cpp:153
+#: src/formatter/grantleeviewformatter.cpp:204
 #, kde-format
 msgid " (no unread articles)"
 msgstr " (engar ólesnar greinar)"
 
-#: src/formatter/grantleeviewformatter.cpp:105
-#: src/formatter/grantleeviewformatter.cpp:156
+#: src/formatter/grantleeviewformatter.cpp:155
+#: src/formatter/grantleeviewformatter.cpp:206
 #, kde-format
 msgid " (1 unread article)"
 msgid_plural " (%1 unread articles)"
 msgstr[0] " (1 ólesin grein)"
 msgstr[1] " (%1 ólesnar greinar)"
 
-#: src/formatter/grantleeviewformatter.cpp:120
+#: src/formatter/grantleeviewformatter.cpp:170
 #, kde-format
 msgid "<b>Description:</b> %1<br />"
 msgstr "<b>Lýsing:</b> %1<br><br>"
 
-#: src/formatter/grantleeviewformatter.cpp:127
+#: src/formatter/grantleeviewformatter.cpp:177
 #, kde-format
 msgid "<b>Homepage:</b> <a href=\"%1\">%1</a>"
 msgstr "<b>Heimasíða:</b> <a href=\"%1\">%1</a>"
 
-#: src/formatter/grantleeviewformatter.cpp:134
+#: src/formatter/grantleeviewformatter.cpp:184
 #, kde-format
 msgid "<b>Copyright:</b> %1</a>"
 msgstr "<b>Höfundarréttur:</b> %1</a>"
 
-#: src/formatter/grantleeviewformatter.cpp:186
+#: src/formatter/grantleeviewformatter.cpp:236
 #, kde-format
 msgid "Date"
 msgstr "Dagsetning"
 
-#: src/formatter/grantleeviewformatter.cpp:187
+#: src/formatter/grantleeviewformatter.cpp:237
 #, kde-format
 msgid "Comment"
 msgstr "Athugasemd"
 
-#: src/formatter/grantleeviewformatter.cpp:188
+#: src/formatter/grantleeviewformatter.cpp:238
 #, kde-format
 msgid "Complete Story"
 msgstr "Öll greinin"
 
-#: src/formatter/grantleeviewformatter.cpp:189
+#: src/formatter/grantleeviewformatter.cpp:239
 #, kde-format
 msgid "Author"
 msgstr "Höfundur"
 
-#: src/formatter/grantleeviewformatter.cpp:190
+#: src/formatter/grantleeviewformatter.cpp:240
 #, kde-format
 msgid "Enclosure"
 msgstr "Fylgiskrá"
