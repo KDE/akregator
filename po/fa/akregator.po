@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-04-05 00:38+0000\n"
+"POT-Creation-Date: 2024-04-24 02:56+0000\n"
 "PO-Revision-Date: 2012-01-12 17:34+0330\n"
 "Last-Translator: Mohammad Reza Mirdamadi <mohi@ubuntu.ir>\n"
 "Language-Team: Farsi (Persian) <>\n"
@@ -2098,22 +2098,22 @@ msgstr "نویسنده"
 msgid "Enclosure"
 msgstr ""
 
-#: src/frame/frame.cpp:21
+#: src/frame/frame.cpp:20
 #, kde-format
 msgid "Untitled"
 msgstr "بدون عنوان"
 
-#: src/frame/frame.cpp:141
+#: src/frame/frame.cpp:140
 #, kde-format
 msgid "Loading..."
 msgstr "در حال بارگذاری..."
 
-#: src/frame/frame.cpp:157
+#: src/frame/frame.cpp:156
 #, kde-format
 msgid "Loading canceled"
 msgstr "بارگذاری لغو شد"
 
-#: src/frame/frame.cpp:169
+#: src/frame/frame.cpp:168
 #, kde-format
 msgid "Loading completed"
 msgstr "بارگذاری کامل شد"
@@ -2319,26 +2319,26 @@ msgstr ""
 msgid "Could not read feed (invalid feed)"
 msgstr "نتوانست پرونده %1 را وارد کند )بدون OPML معتبر("
 
-#: src/subscription/subscriptionlistmodel.cpp:229
+#: src/subscription/subscriptionlistmodel.cpp:228
 #, kde-format
 msgid "Could not fetch feed: %1"
 msgstr ""
 
-#: src/subscription/subscriptionlistmodel.cpp:274
+#: src/subscription/subscriptionlistmodel.cpp:273
 #, fuzzy, kde-format
 #| msgid "Feeds"
 msgctxt "Feedlist's column header"
 msgid "Feeds"
 msgstr "خوراندنها"
 
-#: src/subscription/subscriptionlistmodel.cpp:276
+#: src/subscription/subscriptionlistmodel.cpp:275
 #, fuzzy, kde-format
 #| msgid "Unread"
 msgctxt "Feedlist's column header"
 msgid "Unread"
 msgstr "خوانده‌نشده"
 
-#: src/subscription/subscriptionlistmodel.cpp:278
+#: src/subscription/subscriptionlistmodel.cpp:277
 #, fuzzy, kde-format
 #| msgid "Total"
 msgctxt "Feedlist's column header"

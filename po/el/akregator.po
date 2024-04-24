@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-04-05 00:38+0000\n"
+"POT-Creation-Date: 2024-04-24 02:56+0000\n"
 "PO-Revision-Date: 2022-12-29 16:56+0200\n"
 "Last-Translator: Stelios <sstavra@gmail.com>\n"
 "Language-Team: Greek <kde-i18n-el@kde.org>\n"
@@ -2051,22 +2051,22 @@ msgstr "Συγγραφέας"
 msgid "Enclosure"
 msgstr "Εσώκλειστο έγγραφο"
 
-#: src/frame/frame.cpp:21
+#: src/frame/frame.cpp:20
 #, kde-format
 msgid "Untitled"
 msgstr "Χωρίς τίτλο"
 
-#: src/frame/frame.cpp:141
+#: src/frame/frame.cpp:140
 #, kde-format
 msgid "Loading..."
 msgstr "Φόρτωση..."
 
-#: src/frame/frame.cpp:157
+#: src/frame/frame.cpp:156
 #, kde-format
 msgid "Loading canceled"
 msgstr "Ακύρωση φόρτωσης"
 
-#: src/frame/frame.cpp:169
+#: src/frame/frame.cpp:168
 #, kde-format
 msgid "Loading completed"
 msgstr "Ολοκλήρωση φόρτωσης"
@@ -2276,24 +2276,24 @@ msgstr "Αδυναμία ανάγνωσης της ροής (άγνωστη μο
 msgid "Could not read feed (invalid feed)"
 msgstr "Αδυναμία ανάγνωσης της ροής (μη έγκυρη ροή)"
 
-#: src/subscription/subscriptionlistmodel.cpp:229
+#: src/subscription/subscriptionlistmodel.cpp:228
 #, kde-format
 msgid "Could not fetch feed: %1"
 msgstr "Αδύνατη η λήψη της ροής: %1"
 
-#: src/subscription/subscriptionlistmodel.cpp:274
+#: src/subscription/subscriptionlistmodel.cpp:273
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Feeds"
 msgstr "Ροές"
 
-#: src/subscription/subscriptionlistmodel.cpp:276
+#: src/subscription/subscriptionlistmodel.cpp:275
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Unread"
 msgstr "Μη αναγνωσμένα"
 
-#: src/subscription/subscriptionlistmodel.cpp:278
+#: src/subscription/subscriptionlistmodel.cpp:277
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Total"

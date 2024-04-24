@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-04-05 00:38+0000\n"
+"POT-Creation-Date: 2024-04-24 02:56+0000\n"
 "PO-Revision-Date: 2015-02-07 19:02+0100\n"
 "Last-Translator: Bjørn Steensrud <bjornst@skogkatt.homelinux.org>\n"
 "Language-Team: Norwegian Bokmål <l10n-no@lister.huftis.org>\n"
@@ -2032,22 +2032,22 @@ msgstr "Forfatter"
 msgid "Enclosure"
 msgstr "Vedlegg"
 
-#: src/frame/frame.cpp:21
+#: src/frame/frame.cpp:20
 #, kde-format
 msgid "Untitled"
 msgstr "Uten navn"
 
-#: src/frame/frame.cpp:141
+#: src/frame/frame.cpp:140
 #, kde-format
 msgid "Loading..."
 msgstr "Laster inn …"
 
-#: src/frame/frame.cpp:157
+#: src/frame/frame.cpp:156
 #, kde-format
 msgid "Loading canceled"
 msgstr "Innlasting avbrutt"
 
-#: src/frame/frame.cpp:169
+#: src/frame/frame.cpp:168
 #, kde-format
 msgid "Loading completed"
 msgstr "Innlasting ferdig"
@@ -2247,24 +2247,24 @@ msgstr "Klarte ikke å lese kilden (ukjent format)"
 msgid "Could not read feed (invalid feed)"
 msgstr "Klarte ikke å lese kilden (ugyldig kilde)"
 
-#: src/subscription/subscriptionlistmodel.cpp:229
+#: src/subscription/subscriptionlistmodel.cpp:228
 #, kde-format
 msgid "Could not fetch feed: %1"
 msgstr "Klarte ikke å hente kilde: %1"
 
-#: src/subscription/subscriptionlistmodel.cpp:274
+#: src/subscription/subscriptionlistmodel.cpp:273
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Feeds"
 msgstr "Kilder"
 
-#: src/subscription/subscriptionlistmodel.cpp:276
+#: src/subscription/subscriptionlistmodel.cpp:275
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Unread"
 msgstr "Uleste"
 
-#: src/subscription/subscriptionlistmodel.cpp:278
+#: src/subscription/subscriptionlistmodel.cpp:277
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Total"

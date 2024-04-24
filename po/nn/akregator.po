@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-04-05 00:38+0000\n"
+"POT-Creation-Date: 2024-04-24 02:56+0000\n"
 "PO-Revision-Date: 2023-08-24 21:37+0200\n"
 "Last-Translator: Karl Ove Hufthammer <karl@huftis.org>\n"
 "Language-Team: Norwegian Nynorsk <l10n-no@lister.huftis.org>\n"
@@ -2036,22 +2036,22 @@ msgstr "Forfattar"
 msgid "Enclosure"
 msgstr "Vedlegg"
 
-#: src/frame/frame.cpp:21
+#: src/frame/frame.cpp:20
 #, kde-format
 msgid "Untitled"
 msgstr "Namnlaus"
 
-#: src/frame/frame.cpp:141
+#: src/frame/frame.cpp:140
 #, kde-format
 msgid "Loading..."
 msgstr "Hentar …"
 
-#: src/frame/frame.cpp:157
+#: src/frame/frame.cpp:156
 #, kde-format
 msgid "Loading canceled"
 msgstr "Avbroten henting"
 
-#: src/frame/frame.cpp:169
+#: src/frame/frame.cpp:168
 #, kde-format
 msgid "Loading completed"
 msgstr "Fullført henting"
@@ -2254,24 +2254,24 @@ msgstr "Klarte ikkje lesa kjelda (ukjent format)"
 msgid "Could not read feed (invalid feed)"
 msgstr "Klarte ikkje lesa kjelda (ugyldig kjelde)"
 
-#: src/subscription/subscriptionlistmodel.cpp:229
+#: src/subscription/subscriptionlistmodel.cpp:228
 #, kde-format
 msgid "Could not fetch feed: %1"
 msgstr "Klarte ikkje henta kjelda: %1"
 
-#: src/subscription/subscriptionlistmodel.cpp:274
+#: src/subscription/subscriptionlistmodel.cpp:273
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Feeds"
 msgstr "Kjelder"
 
-#: src/subscription/subscriptionlistmodel.cpp:276
+#: src/subscription/subscriptionlistmodel.cpp:275
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Unread"
 msgstr "Ulesen"
 
-#: src/subscription/subscriptionlistmodel.cpp:278
+#: src/subscription/subscriptionlistmodel.cpp:277
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Total"

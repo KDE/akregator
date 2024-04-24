@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-04-05 00:38+0000\n"
+"POT-Creation-Date: 2024-04-24 02:56+0000\n"
 "PO-Revision-Date: 2008-02-11 23:19+0200\n"
 "Last-Translator: Darafei Praliaskouski <komzpa@gmail.com>\n"
 "Language-Team: Belarusian <i18n@mova.org>\n"
@@ -2126,22 +2126,22 @@ msgstr "Аўтар"
 msgid "Enclosure"
 msgstr ""
 
-#: src/frame/frame.cpp:21
+#: src/frame/frame.cpp:20
 #, kde-format
 msgid "Untitled"
 msgstr "Безназоўны"
 
-#: src/frame/frame.cpp:141
+#: src/frame/frame.cpp:140
 #, kde-format
 msgid "Loading..."
 msgstr "Загрузка..."
 
-#: src/frame/frame.cpp:157
+#: src/frame/frame.cpp:156
 #, kde-format
 msgid "Loading canceled"
 msgstr "Загрузка спынена"
 
-#: src/frame/frame.cpp:169
+#: src/frame/frame.cpp:168
 #, kde-format
 msgid "Loading completed"
 msgstr "Загрузка завершана"
@@ -2351,26 +2351,26 @@ msgstr "Немагчыма прачытаць стужку (невядомы ф�
 msgid "Could not read feed (invalid feed)"
 msgstr "Немагчыма імпартаваць файл %1 (няслушны фармат OPML)"
 
-#: src/subscription/subscriptionlistmodel.cpp:229
+#: src/subscription/subscriptionlistmodel.cpp:228
 #, kde-format
 msgid "Could not fetch feed: %1"
 msgstr "Немагчыма сцягнуць стужку: %1"
 
-#: src/subscription/subscriptionlistmodel.cpp:274
+#: src/subscription/subscriptionlistmodel.cpp:273
 #, fuzzy, kde-format
 #| msgid "Feeds"
 msgctxt "Feedlist's column header"
 msgid "Feeds"
 msgstr "Стужкі"
 
-#: src/subscription/subscriptionlistmodel.cpp:276
+#: src/subscription/subscriptionlistmodel.cpp:275
 #, fuzzy, kde-format
 #| msgid "Unread"
 msgctxt "Feedlist's column header"
 msgid "Unread"
 msgstr "Непрачытаны"
 
-#: src/subscription/subscriptionlistmodel.cpp:278
+#: src/subscription/subscriptionlistmodel.cpp:277
 #, fuzzy, kde-format
 #| msgid "Total"
 msgctxt "Feedlist's column header"
