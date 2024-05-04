@@ -23,11 +23,11 @@ public:
 
     virtual ~FeedListManagementInterface();
 
-    virtual QStringList categories() const = 0;
-    virtual QStringList feeds(const QString &catId) const = 0;
+    [[nodiscard]] virtual QStringList categories() const = 0;
+    [[nodiscard]] virtual QStringList feeds(const QString &catId) const = 0;
     virtual void addFeed(const QString &url, const QString &catId) = 0;
     virtual void removeFeed(const QString &url, const QString &catId) = 0;
-    virtual QString getCategoryName(const QString &catId) const = 0;
+    [[nodiscard]] virtual QString getCategoryName(const QString &catId) const = 0;
 
 private:
     static FeedListManagementInterface *m_instance;

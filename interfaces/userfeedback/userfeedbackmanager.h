@@ -21,7 +21,7 @@ public:
     explicit UserFeedBackManager(QObject *parent = nullptr);
     static UserFeedBackManager *self();
 
-    KUserFeedback::Provider *userFeedbackProvider() const;
+    [[nodiscard]] KUserFeedback::Provider *userFeedbackProvider() const;
 
 private:
     KUserFeedback::Provider *const mUserFeedbackProvider;
