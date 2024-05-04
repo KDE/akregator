@@ -158,7 +158,6 @@ void FilterUnreadProxyModel::clearCache()
 SubscriptionListModel::SubscriptionListModel(const QSharedPointer<const FeedList> &feedList, QObject *parent)
     : QAbstractItemModel(parent)
     , m_feedList(feedList)
-    , m_beganRemoval(false)
 {
     if (!m_feedList) {
         return;
@@ -422,7 +421,6 @@ void FolderExpansionHandler::setExpanded(const QModelIndex &idx, bool expanded)
 FolderExpansionHandler::FolderExpansionHandler(QObject *parent)
     : QObject(parent)
     , m_feedList()
-    , m_model(nullptr)
 {
 }
 

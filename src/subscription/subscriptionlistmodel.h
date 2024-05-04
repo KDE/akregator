@@ -118,7 +118,7 @@ private:
     void fetchAborted(Akregator::Feed *);
 
     QSharedPointer<const FeedList> m_feedList;
-    bool m_beganRemoval;
+    bool m_beganRemoval = false;
 
     QColor m_errorColor;
 };
