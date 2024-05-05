@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-04-23 00:38+0000\n"
+"POT-Creation-Date: 2024-05-05 00:39+0000\n"
 "PO-Revision-Date: 2024-04-23 19:24\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -2196,24 +2196,24 @@ msgstr "无法读取订阅(未知格式)"
 msgid "Could not read feed (invalid feed)"
 msgstr "无法读取订阅(无效的订阅)"
 
-#: src/subscription/subscriptionlistmodel.cpp:228
+#: src/subscription/subscriptionlistmodel.cpp:227
 #, kde-format
 msgid "Could not fetch feed: %1"
 msgstr "无法抓取订阅：%1"
 
-#: src/subscription/subscriptionlistmodel.cpp:273
+#: src/subscription/subscriptionlistmodel.cpp:272
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Feeds"
 msgstr "订阅"
 
-#: src/subscription/subscriptionlistmodel.cpp:275
+#: src/subscription/subscriptionlistmodel.cpp:274
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Unread"
 msgstr "未读"
 
-#: src/subscription/subscriptionlistmodel.cpp:277
+#: src/subscription/subscriptionlistmodel.cpp:276
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Total"

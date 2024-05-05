@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-04-23 00:38+0000\n"
+"POT-Creation-Date: 2024-05-05 00:39+0000\n"
 "PO-Revision-Date: 2014-07-03 09:47+0200\n"
 "Last-Translator: Sönke Dibbern <s_dibbern@web.de>\n"
 "Language-Team: Low Saxon <kde-i18n-nds@kde.org>\n"
@@ -2296,24 +2296,24 @@ msgstr "Stroom lett sik nich lesen (Formaat nich begäng)"
 msgid "Could not read feed (invalid feed)"
 msgstr "Stroom lett sik nich lesen (leeg Stroom)"
 
-#: src/subscription/subscriptionlistmodel.cpp:228
+#: src/subscription/subscriptionlistmodel.cpp:227
 #, kde-format
 msgid "Could not fetch feed: %1"
 msgstr "Stroom lett sik nich halen: %1"
 
-#: src/subscription/subscriptionlistmodel.cpp:273
+#: src/subscription/subscriptionlistmodel.cpp:272
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Feeds"
 msgstr "Strööm"
 
-#: src/subscription/subscriptionlistmodel.cpp:275
+#: src/subscription/subscriptionlistmodel.cpp:274
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Unread"
 msgstr "Nich leest"
 
-#: src/subscription/subscriptionlistmodel.cpp:277
+#: src/subscription/subscriptionlistmodel.cpp:276
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Total"

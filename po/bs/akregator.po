@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdepim\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-04-23 00:38+0000\n"
+"POT-Creation-Date: 2024-05-05 00:39+0000\n"
 "PO-Revision-Date: 2014-01-31 18:57+0100\n"
 "Last-Translator: Samir Ribić <megaribi@epn.ba>\n"
 "Language-Team: Bosnian <bs@li.org>\n"
@@ -2312,24 +2312,24 @@ msgstr "Nije moguće pročitati dovod (nepoznat format)"
 msgid "Could not read feed (invalid feed)"
 msgstr "Nije moguće pročitati dovod (nevaljan dovod)"
 
-#: src/subscription/subscriptionlistmodel.cpp:228
+#: src/subscription/subscriptionlistmodel.cpp:227
 #, kde-format
 msgid "Could not fetch feed: %1"
 msgstr "Nije moguće dohvatiti dovod: %1"
 
-#: src/subscription/subscriptionlistmodel.cpp:273
+#: src/subscription/subscriptionlistmodel.cpp:272
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Feeds"
 msgstr "Dovodi"
 
-#: src/subscription/subscriptionlistmodel.cpp:275
+#: src/subscription/subscriptionlistmodel.cpp:274
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Unread"
 msgstr "Nepročitano"
 
-#: src/subscription/subscriptionlistmodel.cpp:277
+#: src/subscription/subscriptionlistmodel.cpp:276
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Total"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-04-23 00:38+0000\n"
+"POT-Creation-Date: 2024-05-05 00:39+0000\n"
 "PO-Revision-Date: 2022-04-26 19:44+0200\n"
 "Last-Translator: Stefan Asserhäll <stefan.asserhall@bredband.net>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
@@ -2266,24 +2266,24 @@ msgstr "Kunde inte läsa kanalen (okänt format)"
 msgid "Could not read feed (invalid feed)"
 msgstr "Kunde inte läsa kanalen (ogiltig kanal)"
 
-#: src/subscription/subscriptionlistmodel.cpp:228
+#: src/subscription/subscriptionlistmodel.cpp:227
 #, kde-format
 msgid "Could not fetch feed: %1"
 msgstr "Kunde inte hämta kanal: %1"
 
-#: src/subscription/subscriptionlistmodel.cpp:273
+#: src/subscription/subscriptionlistmodel.cpp:272
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Feeds"
 msgstr "Kanaler"
 
-#: src/subscription/subscriptionlistmodel.cpp:275
+#: src/subscription/subscriptionlistmodel.cpp:274
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Unread"
 msgstr "Olästa"
 
-#: src/subscription/subscriptionlistmodel.cpp:277
+#: src/subscription/subscriptionlistmodel.cpp:276
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Total"

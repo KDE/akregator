@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-04-23 00:38+0000\n"
+"POT-Creation-Date: 2024-05-05 00:39+0000\n"
 "PO-Revision-Date: 2024-01-06 14:06+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
@@ -2247,24 +2247,24 @@ msgstr "לא ניתן לקרוא את הערוץ (תסדיר זר)"
 msgid "Could not read feed (invalid feed)"
 msgstr "לא ניתן לקרוא את הערוץ (ערוץ שגוי)"
 
-#: src/subscription/subscriptionlistmodel.cpp:228
+#: src/subscription/subscriptionlistmodel.cpp:227
 #, kde-format
 msgid "Could not fetch feed: %1"
 msgstr "לא ניתן למשוך ערוץ: %1"
 
-#: src/subscription/subscriptionlistmodel.cpp:273
+#: src/subscription/subscriptionlistmodel.cpp:272
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Feeds"
 msgstr "ערוצים"
 
-#: src/subscription/subscriptionlistmodel.cpp:275
+#: src/subscription/subscriptionlistmodel.cpp:274
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Unread"
 msgstr "לא נקרא"
 
-#: src/subscription/subscriptionlistmodel.cpp:277
+#: src/subscription/subscriptionlistmodel.cpp:276
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Total"

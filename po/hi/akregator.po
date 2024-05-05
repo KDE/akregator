@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-04-23 00:38+0000\n"
+"POT-Creation-Date: 2024-05-05 00:39+0000\n"
 "PO-Revision-Date: 2021-06-29 20:38+0530\n"
 "Last-Translator: Raghavendra Kamath <raghu@raghukamath.com>\n"
 "Language-Team: kde-hindi\n"
@@ -2310,26 +2310,26 @@ msgstr ""
 msgid "Could not read feed (invalid feed)"
 msgstr "फ़ाइल %1 आयात नहीं किया जा सका (कोई वैध ओपीएमएल नहीं)"
 
-#: src/subscription/subscriptionlistmodel.cpp:228
+#: src/subscription/subscriptionlistmodel.cpp:227
 #, kde-format
 msgid "Could not fetch feed: %1"
 msgstr ""
 
-#: src/subscription/subscriptionlistmodel.cpp:273
+#: src/subscription/subscriptionlistmodel.cpp:272
 #, fuzzy, kde-format
 #| msgid "Feeds"
 msgctxt "Feedlist's column header"
 msgid "Feeds"
 msgstr "फ़ीड्स"
 
-#: src/subscription/subscriptionlistmodel.cpp:275
+#: src/subscription/subscriptionlistmodel.cpp:274
 #, fuzzy, kde-format
 #| msgid "Unread"
 msgctxt "Feedlist's column header"
 msgid "Unread"
 msgstr "बिनपढ़ा"
 
-#: src/subscription/subscriptionlistmodel.cpp:277
+#: src/subscription/subscriptionlistmodel.cpp:276
 #, fuzzy, kde-format
 #| msgid "Total"
 msgctxt "Feedlist's column header"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-04-23 00:38+0000\n"
+"POT-Creation-Date: 2024-05-05 00:39+0000\n"
 "PO-Revision-Date: 2012-12-25 13:50+0700\n"
 "Last-Translator: sutha <sutha@khmeros.info>\n"
 "Language-Team: Khmer <support@khmeros>\n"
@@ -2273,24 +2273,24 @@ msgstr "មិន​អាច​អាន​មតិ​ព័ត៌មាន (�
 msgid "Could not read feed (invalid feed)"
 msgstr "មិន​អាច​អាន​មតិ​ព័ត៌មាន (មតិ​ព័ត៌មាន​មិន​ត្រឹមត្រូវ)"
 
-#: src/subscription/subscriptionlistmodel.cpp:228
+#: src/subscription/subscriptionlistmodel.cpp:227
 #, kde-format
 msgid "Could not fetch feed: %1"
 msgstr "មិន​អាច​ទៅ​យក​មតិព័ត៌មាន ៖ %1"
 
-#: src/subscription/subscriptionlistmodel.cpp:273
+#: src/subscription/subscriptionlistmodel.cpp:272
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Feeds"
 msgstr "មតិព័ត៌មាន"
 
-#: src/subscription/subscriptionlistmodel.cpp:275
+#: src/subscription/subscriptionlistmodel.cpp:274
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Unread"
 msgstr "មិន​ទាន់​អាន"
 
-#: src/subscription/subscriptionlistmodel.cpp:277
+#: src/subscription/subscriptionlistmodel.cpp:276
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Total"

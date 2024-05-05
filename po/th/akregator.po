@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-04-23 00:38+0000\n"
+"POT-Creation-Date: 2024-05-05 00:39+0000\n"
 "PO-Revision-Date: 2008-04-07 23:17+0700\n"
 "Last-Translator: Thanomsub Noppaburana <donga.nb@gmail.com>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
@@ -2327,26 +2327,26 @@ msgstr "ไม่สามารถอ่านแหล่งป้อนได
 msgid "Could not read feed (invalid feed)"
 msgstr "ไม่สามารถอ่านแหล่งป้อนได้ (แหล่งป้อนไม่ถูกต้อง)"
 
-#: src/subscription/subscriptionlistmodel.cpp:228
+#: src/subscription/subscriptionlistmodel.cpp:227
 #, kde-format
 msgid "Could not fetch feed: %1"
 msgstr "ไม่สามารถอ่านแหล่งป้อนได้: %1"
 
-#: src/subscription/subscriptionlistmodel.cpp:273
+#: src/subscription/subscriptionlistmodel.cpp:272
 #, fuzzy, kde-format
 #| msgid "Feeds"
 msgctxt "Feedlist's column header"
 msgid "Feeds"
 msgstr "แหล่งป้อน"
 
-#: src/subscription/subscriptionlistmodel.cpp:275
+#: src/subscription/subscriptionlistmodel.cpp:274
 #, fuzzy, kde-format
 #| msgid "Unread"
 msgctxt "Feedlist's column header"
 msgid "Unread"
 msgstr "ยังไม่อ่าน"
 
-#: src/subscription/subscriptionlistmodel.cpp:277
+#: src/subscription/subscriptionlistmodel.cpp:276
 #, fuzzy, kde-format
 #| msgid "Total"
 msgctxt "Feedlist's column header"
