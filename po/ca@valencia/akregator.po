@@ -696,8 +696,8 @@ msgid ""
 "When this option is enabled, articles you marked as important will not be "
 "removed when limit the archive size by either age or number of the articles."
 msgstr ""
-"Quan se selecciona esta opció, els articles que heu marcat com a importants "
-"no s'eliminaran quan s'arribe al límit d'arxiu per temps o nombre d'articles."
+"Quan es marca esta opció, els articles que heu marcat com a importants no "
+"s'eliminaran quan s'arribe al límit d'arxiu per temps o nombre d'articles."
 
 #. i18n: ectx: label, entry, group (Network)
 #: interfaces/akregator.kcfg:139
@@ -935,7 +935,7 @@ msgstr "Akregator"
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "New Feed..."
-msgstr "Font nova..."
+msgstr "Font nova…"
 
 #: kontactplugin/akregator_plugin.cpp:32
 #, kde-format
@@ -1063,7 +1063,7 @@ msgstr "Heinrich Wendel"
 #: src/aboutdata.cpp:39
 #, kde-format
 msgid "Tons of bug fixes"
-msgstr "Moltes correccions d'error"
+msgstr "Moltes esmenes d'errors"
 
 #: src/aboutdata.cpp:40
 #, kde-format
@@ -1118,7 +1118,7 @@ msgstr "Sup&rimix la font"
 #: src/actions/actionmanagerimpl.cpp:66 src/actions/actionmanagerimpl.cpp:249
 #, kde-format
 msgid "&Edit Feed..."
-msgstr "&Edita la font..."
+msgstr "&Edita la font…"
 
 #: src/actions/actionmanagerimpl.cpp:67 src/actions/actionmanagerimpl.cpp:306
 #, kde-format
@@ -1148,17 +1148,17 @@ msgstr "&Marca les fonts com a llegides"
 #: src/actions/actionmanagerimpl.cpp:191
 #, kde-format
 msgid "&Import Feeds..."
-msgstr "&Importa les fonts..."
+msgstr "&Importa les fonts…"
 
 #: src/actions/actionmanagerimpl.cpp:195
 #, kde-format
 msgid "&Export Feeds..."
-msgstr "&Exporta les fonts..."
+msgstr "&Exporta les fonts…"
 
 #: src/actions/actionmanagerimpl.cpp:200
 #, kde-format
 msgid "&Configure Akregator..."
-msgstr "&Configura Akregator..."
+msgstr "&Configura Akregator…"
 
 #: src/actions/actionmanagerimpl.cpp:219
 #, kde-format
@@ -1173,12 +1173,12 @@ msgstr "Torna a carregar totes les pestanyes"
 #: src/actions/actionmanagerimpl.cpp:231
 #, kde-format
 msgid "&Add Feed..."
-msgstr "Afi&g una font..."
+msgstr "Afi&g una font…"
 
 #: src/actions/actionmanagerimpl.cpp:237
 #, kde-format
 msgid "Ne&w Folder..."
-msgstr "Carpeta no&va..."
+msgstr "Carpeta no&va…"
 
 #: src/actions/actionmanagerimpl.cpp:262
 #, kde-format
@@ -1301,12 +1301,12 @@ msgstr "Mou el node a la dreta"
 #: src/actions/actionmanagerimpl.cpp:422
 #, kde-format
 msgid "Send &Link Address..."
-msgstr "Envia l'ad&reça de l'enllaç..."
+msgstr "Envia l'ad&reça de l'enllaç…"
 
 #: src/actions/actionmanagerimpl.cpp:427
 #, kde-format
 msgid "Send &File..."
-msgstr "Envia el fi&txer..."
+msgstr "Envia el fi&txer…"
 
 #: src/actions/actionmanagerimpl.cpp:433
 #, kde-format
@@ -1421,7 +1421,7 @@ msgstr "Llig el text"
 #: src/actions/actionmanagerimpl.cpp:603
 #, kde-format
 msgid "&Find in Message..."
-msgstr "Bu&sca en el missatge..."
+msgstr "Bu&sca en el missatge…"
 
 #: src/actions/actionmanagerimpl.cpp:614
 #, kde-format
@@ -1436,7 +1436,7 @@ msgstr "Activa la pestanya %1"
 #: src/actions/actionmanagerimpl.cpp:633
 #, kde-format
 msgid "&Save Link As..."
-msgstr "Anomena i gu&arda l'enllaç..."
+msgstr "Anomena i gu&arda l'enllaç…"
 
 #: src/actions/actionmanagerimpl.cpp:637
 #, kde-format
@@ -1451,7 +1451,7 @@ msgstr "Copia la ubicació de la imatge"
 #: src/actions/actionmanagerimpl.cpp:647
 #, kde-format
 msgid "Save Image On Disk..."
-msgstr "Guarda la imatge al disc..."
+msgstr "Guarda la imatge al disc…"
 
 #: src/actions/actions.cpp:19
 #, kde-format
@@ -1482,7 +1482,7 @@ msgstr "No s'ha trobat cap font a %1."
 #: src/addfeeddialog.cpp:121
 #, kde-format
 msgid "Feed found, downloading..."
-msgstr "S'ha trobat la font, s'està baixant..."
+msgstr "S'ha trobat la font, s'està baixant…"
 
 #: src/akregator_options.h:20 src/akregator_options.h:28
 #, kde-format
@@ -1760,7 +1760,7 @@ msgstr ""
 #, kde-format
 msgctxt "@title:window"
 msgid "Delete Folder"
-msgstr "Supressió de carpeta"
+msgstr "Suprimiu la carpeta"
 
 #: src/command/deletesubscriptioncommand.cpp:61
 #, kde-format
@@ -1776,7 +1776,7 @@ msgstr "<qt>Segur que voleu suprimir la font <b>%1</b>?</qt>"
 #, kde-format
 msgctxt "@title:window"
 msgid "Delete Feed"
-msgstr "Supressió de font"
+msgstr "Suprimiu la font"
 
 #: src/command/importfeedlistcommand.cpp:48
 #, kde-format
@@ -1814,7 +1814,7 @@ msgstr ""
 #: src/command/loadfeedlistcommand.cpp:129
 #, kde-format
 msgid "Opening Feed List..."
-msgstr "S'està obrint la llista de fonts..."
+msgstr "S'està obrint la llista de fonts…"
 
 #: src/command/loadfeedlistcommand.cpp:143
 #, kde-format
@@ -2048,7 +2048,7 @@ msgstr "Sense títol"
 #: src/frame/frame.cpp:140
 #, kde-format
 msgid "Loading..."
-msgstr "S'està carregant..."
+msgstr "S'està carregant…"
 
 #: src/frame/frame.cpp:156
 #, kde-format
@@ -2122,7 +2122,7 @@ msgstr "La xarxa no està disponible."
 #: src/mainwidget.cpp:866
 #, kde-format
 msgid "Fetching Feeds..."
-msgstr "S'estan obtenint les fonts..."
+msgstr "S'estan obtenint les fonts…"
 
 #: src/mainwidget.cpp:1065
 #, kde-format
@@ -2141,7 +2141,7 @@ msgstr[1] "<qt>Segur que voleu suprimir els %1 articles seleccionats?</qt>"
 #, kde-format
 msgctxt "@title:window"
 msgid "Delete Article"
-msgstr "Supressió d'article"
+msgstr "Suprimiu l'article"
 
 #: src/mainwidget.cpp:1257
 #, kde-format
@@ -2494,12 +2494,12 @@ msgstr "Obri en un navegador extern"
 #: src/widgets/searchbar.cpp:40
 #, kde-format
 msgid "Search articles..."
-msgstr "Busca articles..."
+msgstr "Busca articles…"
 
 #: src/widgets/searchbar.cpp:112
 #, kde-format
 msgid "Search articles...<%1>"
-msgstr "Busca articles...<%1>"
+msgstr "Busca articles…<%1>"
 
 #: src/widgets/statussearchline.cpp:43
 #, kde-format
