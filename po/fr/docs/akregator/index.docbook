@@ -907,7 +907,7 @@ say how to start it -->
 ></term>
 <listitem
 ><para
->Si cette option est sélectionnée, l'onglet sera toujours affiché, même lorsqu'un seul onglet est ouvert.Cela vous permet de créer des onglets directement à partir de la barre d'onglets. Sinon, la barre d'onglet ne sera affichée que lorsque plusieurs onglets seront ouverts.</para>
+>Si cette option est sélectionnée, l'onglet sera toujours affiché, même lorsqu'un seul onglet est ouvert. Cela vous permet de créer des onglets directement à partir de la barre d'onglets. Sinon, la barre d'onglet ne sera affichée que lorsque plusieurs onglets seront ouverts.</para>
 </listitem>
 </varlistentry>
 <varlistentry>
