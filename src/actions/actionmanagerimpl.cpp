@@ -63,7 +63,7 @@ public:
         }
         m_manager->action(QStringLiteral("feed_fetch"))->setText(i18n("&Fetch Feed"));
         m_manager->action(QStringLiteral("feed_remove"))->setText(i18n("&Delete Feed"));
-        m_manager->action(QStringLiteral("feed_modify"))->setText(i18n("&Edit Feed..."));
+        m_manager->action(QStringLiteral("feed_modify"))->setText(i18n("&Edit Feed…"));
         m_manager->action(QStringLiteral("feed_mark_all_as_read"))->setText(i18n("&Mark Feed as Read"));
 
         return true;
@@ -188,16 +188,16 @@ void ActionManagerImpl::setTrayIcon(TrayIcon *trayIcon)
 void ActionManagerImpl::initPart()
 {
     QAction *action = d->actionCollection->addAction(QStringLiteral("file_import"));
-    action->setText(i18n("&Import Feeds..."));
+    action->setText(i18n("&Import Feeds…"));
     action->setIcon(QIcon::fromTheme(QStringLiteral("document-import")));
     connect(action, &QAction::triggered, d->part, &Part::fileImport);
     action = d->actionCollection->addAction(QStringLiteral("file_export"));
-    action->setText(i18n("&Export Feeds..."));
+    action->setText(i18n("&Export Feeds…"));
     action->setIcon(QIcon::fromTheme(QStringLiteral("document-export")));
     connect(action, &QAction::triggered, d->part, &Part::fileExport);
 
     QAction *configure = d->actionCollection->addAction(QStringLiteral("options_configure"));
-    configure->setText(i18n("&Configure Akregator..."));
+    configure->setText(i18n("&Configure Akregator…"));
     configure->setIcon(QIcon::fromTheme(QStringLiteral("configure")));
     connect(configure, &QAction::triggered, d->part, &Part::showOptions);
 
@@ -228,13 +228,13 @@ void ActionManagerImpl::initMainWidget(MainWidget *mainWidget)
 
     action = coll->addAction(QStringLiteral("feed_add"));
     action->setIcon(QIcon::fromTheme(QStringLiteral("feed-subscribe")));
-    action->setText(i18n("&Add Feed..."));
+    action->setText(i18n("&Add Feed…"));
     connect(action, &QAction::triggered, d->mainWidget, &MainWidget::slotFeedAdd);
     coll->setDefaultShortcut(action, QKeySequence(Qt::Key_Insert));
 
     action = coll->addAction(QStringLiteral("feed_add_group"));
     action->setIcon(QIcon::fromTheme(QStringLiteral("folder-new")));
-    action->setText(i18n("Ne&w Folder..."));
+    action->setText(i18n("Ne&w Folder…"));
     connect(action, &QAction::triggered, d->mainWidget, &MainWidget::slotFeedAddGroup);
     coll->setDefaultShortcut(action, QKeySequence(Qt::SHIFT | Qt::Key_Insert));
 
@@ -246,7 +246,7 @@ void ActionManagerImpl::initMainWidget(MainWidget *mainWidget)
 
     action = coll->addAction(QStringLiteral("feed_modify"));
     action->setIcon(QIcon::fromTheme(QStringLiteral("document-properties")));
-    action->setText(i18n("&Edit Feed..."));
+    action->setText(i18n("&Edit Feed…"));
     connect(action, &QAction::triggered, d->mainWidget, &MainWidget::slotFeedModify);
     coll->setDefaultShortcut(action, QKeySequence(Qt::Key_F2));
 
@@ -419,19 +419,19 @@ void ActionManagerImpl::initMainWidget(MainWidget *mainWidget)
 
     action = coll->addAction(QStringLiteral("file_sendlink"));
     action->setIcon(QIcon::fromTheme(QStringLiteral("mail-message-new")));
-    action->setText(i18n("Send &Link Address..."));
+    action->setText(i18n("Send &Link Address…"));
     connect(action, &QAction::triggered, mainWidget, &MainWidget::slotSendLink);
 
     action = coll->addAction(QStringLiteral("file_sendfile"));
     action->setIcon(QIcon::fromTheme(QStringLiteral("mail-message-new")));
-    action->setText(i18n("Send &File..."));
+    action->setText(i18n("Send &File…"));
     connect(action, &QAction::triggered, mainWidget, &MainWidget::slotSendFile);
 
     coll->addAction(QStringLiteral("share_serviceurl"), d->shareServiceManager->menu());
     connect(d->shareServiceManager, &PimCommon::ShareServiceUrlManager::serviceUrlSelected, this, &ActionManagerImpl::slotServiceUrlSelected);
 
     d->mQuickSearchAction = new QAction(i18n("Set Focus to Quick Search"), this);
-    // If change shortcut change Panel::setQuickSearchClickMessage(...) message
+    // If change shortcut change Panel::setQuickSearchClickMessage(…) message
     coll->setDefaultShortcut(d->mQuickSearchAction, QKeySequence(Qt::ALT | Qt::Key_Q));
     coll->addAction(QStringLiteral("focus_to_quickseach"), d->mQuickSearchAction);
     connect(d->mQuickSearchAction, &QAction::triggered, mainWidget, &MainWidget::slotFocusQuickSearch);
@@ -600,7 +600,7 @@ void ActionManagerImpl::initTabWidget(TabWidget *tabWidget)
     coll->addAction(QStringLiteral("speak_text"), action);
     connect(action, &QAction::triggered, d->tabWidget, &TabWidget::slotTextToSpeech);
 
-    action = new QAction(QIcon::fromTheme(QStringLiteral("edit-find")), i18n("&Find in Message..."), this);
+    action = new QAction(QIcon::fromTheme(QStringLiteral("edit-find")), i18n("&Find in Message…"), this);
     coll->addAction(QStringLiteral("find_in_messages"), action);
     connect(action, &QAction::triggered, d->tabWidget, &TabWidget::slotFindTextInHtml);
     coll->setDefaultShortcut(action, KStandardShortcut::find().first());
@@ -630,7 +630,7 @@ void ActionManagerImpl::initTabWidget(TabWidget *tabWidget)
         connect(action, &QAction::triggered, d->tabWidget, &TabWidget::slotActivateTab);
     }
     action = coll->addAction(QStringLiteral("savelinkas"));
-    action->setText(i18n("&Save Link As..."));
+    action->setText(i18n("&Save Link As…"));
     connect(action, &QAction::triggered, d->tabWidget, &TabWidget::slotSaveLinkAs);
 
     action = coll->addAction(QStringLiteral("copylinkaddress"));
@@ -644,7 +644,7 @@ void ActionManagerImpl::initTabWidget(TabWidget *tabWidget)
     connect(action, &QAction::triggered, d->tabWidget, &TabWidget::slotCopyImageLocation);
 
     // save Image On Disk
-    action = new QAction(i18n("Save Image On Disk..."), this);
+    action = new QAction(i18n("Save Image On Disk…"), this);
     coll->addAction(QStringLiteral("saveas_imageurl"), action);
     coll->setShortcutsConfigurable(action, false);
     connect(action, &QAction::triggered, d->tabWidget, &TabWidget::slotSaveImageOnDisk);

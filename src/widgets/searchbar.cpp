@@ -37,7 +37,7 @@ SearchBar::SearchBar(QWidget *parent)
     setSizePolicy(QSizePolicy(QSizePolicy::Minimum, QSizePolicy::Fixed));
 
     m_searchLine->setClearButtonEnabled(true);
-    m_searchLine->setPlaceholderText(i18n("Search articles..."));
+    m_searchLine->setPlaceholderText(i18n("Search articles…"));
     layout->addWidget(m_searchLine);
 
     connect(m_searchLine, &KLineEdit::textChanged, this, &SearchBar::slotSearchStringChanged);
@@ -109,7 +109,7 @@ std::vector<QSharedPointer<const AbstractMatcher>> SearchBar::matchers() const
 
 void SearchBar::updateQuickSearchLineText(const QString &searchLineShortcut)
 {
-    m_searchLine->setPlaceholderText(i18n("Search articles...<%1>", searchLineShortcut));
+    m_searchLine->setPlaceholderText(i18n("Search articles…<%1>", searchLineShortcut));
 }
 
 void SearchBar::slotSearchStringChanged(const QString &search)

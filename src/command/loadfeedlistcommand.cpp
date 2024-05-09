@@ -126,7 +126,7 @@ void LoadFeedListCommandPrivate::doLoad()
 {
     Q_ASSERT(storage);
     Q_ASSERT(!fileName.isNull());
-    Q_EMIT q->progress(0, i18n("Opening Feed List..."));
+    Q_EMIT q->progress(0, i18n("Opening Feed List…"));
 
     QDomDocument doc;
 

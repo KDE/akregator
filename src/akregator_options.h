@@ -25,7 +25,7 @@ static void akregator_options(QCommandLineParser *parser)
             << QCommandLineOption(QStringLiteral("hide-mainwindow"), i18n("Hide main window on startup"));
 
     parser->addOptions(options);
-    parser->addPositionalArgument(QStringLiteral("url"), i18n("Add a feed with the given URL"), QStringLiteral("[url...]"));
+    parser->addPositionalArgument(QStringLiteral("url"), i18n("Add a feed with the given URL"), QStringLiteral("[url…]"));
 #ifdef WITH_KUSERFEEDBACK
     parser->addOption(QCommandLineOption(QStringLiteral("feedback"), i18n("Lists the available options for user feedback")));
 #endif

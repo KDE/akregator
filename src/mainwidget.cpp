@@ -863,7 +863,7 @@ void MainWidget::slotFetchingStarted()
 {
     m_mainFrame->slotSetState(Frame::Started);
     m_actionManager->action(QStringLiteral("feed_stop"))->setEnabled(true);
-    m_mainFrame->slotSetStatusText(i18n("Fetching Feeds..."));
+    m_mainFrame->slotSetStatusText(i18n("Fetching Feeds…"));
 }
 
 void MainWidget::slotFetchingStopped()

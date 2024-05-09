@@ -118,7 +118,7 @@ void AddFeedDialog::fetchError(Feed *)
 
 void AddFeedDialog::fetchDiscovery(Feed *f)
 {
-    widget->statusLabel->setText(i18n("Feed found, downloading..."));
+    widget->statusLabel->setText(i18n("Feed found, downloading…"));
     mFeedUrl = f->xmlUrl();
 }
 
