@@ -137,12 +137,12 @@ void ArticleViewerWebEngine::slotWebPageMutedOrAudibleChanged()
 
 QVariantHash ArticleViewerWebEngine::introductionData() const
 {
-    QVariantHash data;
-    data[QStringLiteral("icon")] = QStringLiteral("akregator");
-    data[QStringLiteral("name")] = i18n("Akregator");
-    data[QStringLiteral("subtitle")] = i18n("Akregator is a KDE news feed reader.");
-    data[QStringLiteral("version")] = KAboutData::applicationData().version();
-    return data;
+    return {
+        {QStringLiteral("icon"), QStringLiteral("akregator")},
+        {QStringLiteral("name"), i18n("Akregator")},
+        {QStringLiteral("subtitle"), i18n("Akregator is a KDE news feed reader.")},
+        {QStringLiteral("version"), KAboutData::applicationData().version()},
+    };
 }
 
 void ArticleViewerWebEngine::showAboutPage()
