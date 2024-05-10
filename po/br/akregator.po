@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: all2.po\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-05 00:39+0000\n"
+"POT-Creation-Date: 2024-05-10 00:38+0000\n"
 "PO-Revision-Date: 2004-09-20 15:44+0200\n"
 "Last-Translator: Thierry Vignaud <tvignaud@mandriva.com>\n"
 "Language-Team: br <LL@li.org>\n"
@@ -1117,7 +1117,7 @@ msgstr "&Lemel ar pennad"
 
 #: src/actions/actionmanagerimpl.cpp:66 src/actions/actionmanagerimpl.cpp:249
 #, fuzzy, kde-format
-msgid "&Edit Feed..."
+msgid "&Edit Feed…"
 msgstr "&Aozañ ..."
 
 #: src/actions/actionmanagerimpl.cpp:67 src/actions/actionmanagerimpl.cpp:306
@@ -1146,19 +1146,21 @@ msgid "&Mark Feeds as Read"
 msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:191
-#, kde-format
-msgid "&Import Feeds..."
-msgstr ""
+#, fuzzy, kde-format
+#| msgid "Imported Folder"
+msgid "&Import Feeds…"
+msgstr "Renkell enporzhet"
 
 #: src/actions/actionmanagerimpl.cpp:195
-#, kde-format
-msgid "&Export Feeds..."
-msgstr ""
+#, fuzzy, kde-format
+#| msgid "Imported Folder"
+msgid "&Export Feeds…"
+msgstr "Renkell enporzhet"
 
 #: src/actions/actionmanagerimpl.cpp:200
 #, fuzzy, kde-format
 #| msgid "Configure &Akregator..."
-msgid "&Configure Akregator..."
+msgid "&Configure Akregator…"
 msgstr "Kefluniañ &Akregator ..."
 
 #: src/actions/actionmanagerimpl.cpp:219
@@ -1172,13 +1174,15 @@ msgid "Reload All Tabs"
 msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:231
-#, kde-format
-msgid "&Add Feed..."
-msgstr ""
+#, fuzzy, kde-format
+#| msgid "Add Folder"
+msgid "&Add Feed…"
+msgstr "Ouzhpennañ ur renkell"
 
 #: src/actions/actionmanagerimpl.cpp:237
-#, kde-format
-msgid "Ne&w Folder..."
+#, fuzzy, kde-format
+#| msgid "Ne&w Folder..."
+msgid "Ne&w Folder…"
 msgstr "Re&nkell nevez ..."
 
 #: src/actions/actionmanagerimpl.cpp:262
@@ -1302,13 +1306,15 @@ msgid "Move Node Right"
 msgstr "Fiñval ar skoulm d'a-zehou"
 
 #: src/actions/actionmanagerimpl.cpp:422
-#, kde-format
-msgid "Send &Link Address..."
+#, fuzzy, kde-format
+#| msgid "Send &Link Address..."
+msgid "Send &Link Address…"
 msgstr "Kas chomlec'h al &liamm ..."
 
 #: src/actions/actionmanagerimpl.cpp:427
-#, kde-format
-msgid "Send &File..."
+#, fuzzy, kde-format
+#| msgid "Send &File..."
+msgid "Send &File…"
 msgstr "Kas ar restr ..."
 
 #: src/actions/actionmanagerimpl.cpp:433
@@ -1424,7 +1430,7 @@ msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:603
 #, kde-format
-msgid "&Find in Message..."
+msgid "&Find in Message…"
 msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:614
@@ -1439,8 +1445,9 @@ msgid "Activate Tab %1"
 msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:633
-#, kde-format
-msgid "&Save Link As..."
+#, fuzzy, kde-format
+#| msgid "&Save Link As..."
+msgid "&Save Link As…"
 msgstr "Enrollañ al liamm e ..."
 
 #: src/actions/actionmanagerimpl.cpp:637
@@ -1455,7 +1462,7 @@ msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:647
 #, kde-format
-msgid "Save Image On Disk..."
+msgid "Save Image On Disk…"
 msgstr ""
 
 #: src/actions/actions.cpp:19
@@ -1487,7 +1494,7 @@ msgstr ""
 
 #: src/addfeeddialog.cpp:121
 #, kde-format
-msgid "Feed found, downloading..."
+msgid "Feed found, downloading…"
 msgstr ""
 
 #: src/akregator_options.h:20 src/akregator_options.h:28
@@ -1814,9 +1821,10 @@ msgid ""
 msgstr ""
 
 #: src/command/loadfeedlistcommand.cpp:129
-#, kde-format
-msgid "Opening Feed List..."
-msgstr ""
+#, fuzzy, kde-format
+#| msgid "Feed"
+msgid "Opening Feed List…"
+msgstr "Magañ"
 
 #: src/command/loadfeedlistcommand.cpp:143
 #, kde-format
@@ -2055,8 +2063,9 @@ msgid "Untitled"
 msgstr "Diditl"
 
 #: src/frame/frame.cpp:140
-#, kde-format
-msgid "Loading..."
+#, fuzzy, kde-format
+#| msgid "Loading..."
+msgid "Loading…"
 msgstr "Emaon o kargañ ..."
 
 #: src/frame/frame.cpp:156
@@ -2127,9 +2136,9 @@ msgid "Networking is not available."
 msgstr ""
 
 #: src/mainwidget.cpp:866
-#, kde-format
-msgid "Fetching Feeds..."
-msgstr ""
+#, fuzzy, kde-format
+msgid "Fetching Feeds…"
+msgstr "&Degas"
 
 #: src/mainwidget.cpp:1065
 #, kde-format
@@ -2511,13 +2520,13 @@ msgstr "Digerñ e-barzh ur furcher diavaez"
 #: src/widgets/searchbar.cpp:40
 #, fuzzy, kde-format
 #| msgid " articles"
-msgid "Search articles..."
+msgid "Search articles…"
 msgstr " pennadoù"
 
 #: src/widgets/searchbar.cpp:112
 #, fuzzy, kde-format
 #| msgid " articles"
-msgid "Search articles...<%1>"
+msgid "Search articles…<%1>"
 msgstr " pennadoù"
 
 #: src/widgets/statussearchline.cpp:43
@@ -2558,6 +2567,9 @@ msgstr "Pouezus"
 #, fuzzy, kde-format
 msgid "Filter"
 msgstr "Goullonderiñ ar sil"
+
+#~ msgid "Send &Link Address..."
+#~ msgstr "Kas chomlec'h al &liamm ..."
 
 #, fuzzy
 #~| msgid "&Configure..."
@@ -2813,11 +2825,6 @@ msgstr "Goullonderiñ ar sil"
 
 #~ msgid "Open Page in External Browser"
 #~ msgstr "Digerñ ar bajenn e-barzh ur &furcher diavaez"
-
-#, fuzzy
-#~| msgid "Feed"
-#~ msgid "Feed List"
-#~ msgstr "Magañ"
 
 #~ msgid "Akregator - 1 unread article"
 #~ msgid_plural "Akregator - %1 unread articles"

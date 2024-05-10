@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-05 00:39+0000\n"
+"POT-Creation-Date: 2024-05-10 00:38+0000\n"
 "PO-Revision-Date: 2022-04-26 19:44+0200\n"
 "Last-Translator: Stefan Asserhäll <stefan.asserhall@bredband.net>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
@@ -1111,8 +1111,9 @@ msgid "&Delete Feed"
 msgstr "&Ta bort kanal"
 
 #: src/actions/actionmanagerimpl.cpp:66 src/actions/actionmanagerimpl.cpp:249
-#, kde-format
-msgid "&Edit Feed..."
+#, fuzzy, kde-format
+#| msgid "&Edit Feed..."
+msgid "&Edit Feed…"
 msgstr "&Redigera kanal..."
 
 #: src/actions/actionmanagerimpl.cpp:67 src/actions/actionmanagerimpl.cpp:306
@@ -1141,18 +1142,21 @@ msgid "&Mark Feeds as Read"
 msgstr "&Markera kanaler som lästa"
 
 #: src/actions/actionmanagerimpl.cpp:191
-#, kde-format
-msgid "&Import Feeds..."
+#, fuzzy, kde-format
+#| msgid "&Import Feeds..."
+msgid "&Import Feeds…"
 msgstr "&Importera kanaler..."
 
 #: src/actions/actionmanagerimpl.cpp:195
-#, kde-format
-msgid "&Export Feeds..."
+#, fuzzy, kde-format
+#| msgid "&Export Feeds..."
+msgid "&Export Feeds…"
 msgstr "&Exportera kanaler..."
 
 #: src/actions/actionmanagerimpl.cpp:200
-#, kde-format
-msgid "&Configure Akregator..."
+#, fuzzy, kde-format
+#| msgid "&Configure Akregator..."
+msgid "&Configure Akregator…"
 msgstr "A&npassa Akregator..."
 
 #: src/actions/actionmanagerimpl.cpp:219
@@ -1166,13 +1170,15 @@ msgid "Reload All Tabs"
 msgstr "Uppdatera alla flikar"
 
 #: src/actions/actionmanagerimpl.cpp:231
-#, kde-format
-msgid "&Add Feed..."
-msgstr "&Lägg till kanal..."
+#, fuzzy, kde-format
+#| msgid "Add Feed"
+msgid "&Add Feed…"
+msgstr "Lägg till kanal"
 
 #: src/actions/actionmanagerimpl.cpp:237
-#, kde-format
-msgid "Ne&w Folder..."
+#, fuzzy, kde-format
+#| msgid "Ne&w Folder..."
+msgid "Ne&w Folder…"
 msgstr "Ny &katalog..."
 
 #: src/actions/actionmanagerimpl.cpp:262
@@ -1294,13 +1300,15 @@ msgid "Move Node Right"
 msgstr "Flytta nod åt höger"
 
 #: src/actions/actionmanagerimpl.cpp:422
-#, kde-format
-msgid "Send &Link Address..."
-msgstr "Skicka &länkadress..."
+#, fuzzy, kde-format
+#| msgid "Send Link Address"
+msgid "Send &Link Address…"
+msgstr "Skicka länkadress"
 
 #: src/actions/actionmanagerimpl.cpp:427
-#, kde-format
-msgid "Send &File..."
+#, fuzzy, kde-format
+#| msgid "Send &File..."
+msgid "Send &File…"
 msgstr "Skicka &fil..."
 
 #: src/actions/actionmanagerimpl.cpp:433
@@ -1414,8 +1422,9 @@ msgid "Speak Text"
 msgstr "Läs upp text"
 
 #: src/actions/actionmanagerimpl.cpp:603
-#, kde-format
-msgid "&Find in Message..."
+#, fuzzy, kde-format
+#| msgid "&Find in Message..."
+msgid "&Find in Message…"
 msgstr "Sö&k i meddelande..."
 
 #: src/actions/actionmanagerimpl.cpp:614
@@ -1429,8 +1438,9 @@ msgid "Activate Tab %1"
 msgstr "Aktivera flik %1"
 
 #: src/actions/actionmanagerimpl.cpp:633
-#, kde-format
-msgid "&Save Link As..."
+#, fuzzy, kde-format
+#| msgid "&Save Link As..."
+msgid "&Save Link As…"
 msgstr "&Spara länk som..."
 
 #: src/actions/actionmanagerimpl.cpp:637
@@ -1444,8 +1454,9 @@ msgid "Copy Image Location"
 msgstr "Kopiera bildplats"
 
 #: src/actions/actionmanagerimpl.cpp:647
-#, kde-format
-msgid "Save Image On Disk..."
+#, fuzzy, kde-format
+#| msgid "Save Image On Disk..."
+msgid "Save Image On Disk…"
 msgstr "Spara bild på disk..."
 
 #: src/actions/actions.cpp:19
@@ -1475,8 +1486,9 @@ msgid "Feed not found from %1."
 msgstr "Kanalen från %1 hittades inte."
 
 #: src/addfeeddialog.cpp:121
-#, kde-format
-msgid "Feed found, downloading..."
+#, fuzzy, kde-format
+#| msgid "Feed found, downloading..."
+msgid "Feed found, downloading…"
 msgstr "Kanal hittades, laddar ner..."
 
 #: src/akregator_options.h:20 src/akregator_options.h:28
@@ -1815,8 +1827,9 @@ msgstr ""
 "säkerhetskopia.</qt>"
 
 #: src/command/loadfeedlistcommand.cpp:129
-#, kde-format
-msgid "Opening Feed List..."
+#, fuzzy, kde-format
+#| msgid "Opening Feed List..."
+msgid "Opening Feed List…"
 msgstr "Öppnar kanallista..."
 
 #: src/command/loadfeedlistcommand.cpp:143
@@ -2048,8 +2061,9 @@ msgid "Untitled"
 msgstr "Namnlös"
 
 #: src/frame/frame.cpp:140
-#, kde-format
-msgid "Loading..."
+#, fuzzy, kde-format
+#| msgid "Loading..."
+msgid "Loading…"
 msgstr "Laddar..."
 
 #: src/frame/frame.cpp:156
@@ -2126,8 +2140,9 @@ msgid "Networking is not available."
 msgstr "Nätverksanslutning är inte tillgänglig."
 
 #: src/mainwidget.cpp:866
-#, kde-format
-msgid "Fetching Feeds..."
+#, fuzzy, kde-format
+#| msgid "Fetching Feeds..."
+msgid "Fetching Feeds…"
 msgstr "Hämtar kanaler..."
 
 #: src/mainwidget.cpp:1065
@@ -2501,13 +2516,15 @@ msgid "Open In External Browser"
 msgstr "Öppna i extern webbläsare"
 
 #: src/widgets/searchbar.cpp:40
-#, kde-format
-msgid "Search articles..."
+#, fuzzy, kde-format
+#| msgid "Search articles..."
+msgid "Search articles…"
 msgstr "Sök efter artiklar..."
 
 #: src/widgets/searchbar.cpp:112
-#, kde-format
-msgid "Search articles...<%1>"
+#, fuzzy, kde-format
+#| msgid "Search articles...<%1>"
+msgid "Search articles…<%1>"
 msgstr "Sök efter artiklar...<%1>"
 
 #: src/widgets/statussearchline.cpp:43
@@ -2544,6 +2561,12 @@ msgstr "Viktiga"
 #| msgid "Text Filter"
 msgid "Filter"
 msgstr "Textfilter"
+
+#~ msgid "&Add Feed..."
+#~ msgstr "&Lägg till kanal..."
+
+#~ msgid "Send &Link Address..."
+#~ msgstr "Skicka &länkadress..."
 
 #~ msgctxt "@title:window"
 #~ msgid "Print Document"

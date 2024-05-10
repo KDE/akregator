@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-05 00:39+0000\n"
+"POT-Creation-Date: 2024-05-10 00:38+0000\n"
 "PO-Revision-Date: 2006-02-08 21:32+0100\n"
 "Last-Translator: Mashrab Kuvatov <kmashrab@uni-bremen.de>\n"
 "Language-Team: Uzbek <floss-uz-l10n@googlegroups.com>\n"
@@ -1139,8 +1139,9 @@ msgid "&Delete Feed"
 msgstr "Yangi&liklar tasmasini olib tashlash"
 
 #: src/actions/actionmanagerimpl.cpp:66 src/actions/actionmanagerimpl.cpp:249
-#, kde-format
-msgid "&Edit Feed..."
+#, fuzzy, kde-format
+#| msgid "&Edit Feed..."
+msgid "&Edit Feed…"
 msgstr "Yangiliklar tasmasini &tahrirlash..."
 
 #: src/actions/actionmanagerimpl.cpp:67 src/actions/actionmanagerimpl.cpp:306
@@ -1169,19 +1170,21 @@ msgid "&Mark Feeds as Read"
 msgstr "Yangiliklar tasmalarini oʻqilgan deb &belgilash"
 
 #: src/actions/actionmanagerimpl.cpp:191
-#, kde-format
-msgid "&Import Feeds..."
+#, fuzzy, kde-format
+#| msgid "&Import Feeds..."
+msgid "&Import Feeds…"
 msgstr "Yangiliklar tasmasini &import qilish"
 
 #: src/actions/actionmanagerimpl.cpp:195
-#, kde-format
-msgid "&Export Feeds..."
+#, fuzzy, kde-format
+#| msgid "&Export Feeds..."
+msgid "&Export Feeds…"
 msgstr "Yangiliklar tasmasini &eksport qilish"
 
 #: src/actions/actionmanagerimpl.cpp:200
 #, fuzzy, kde-format
 #| msgid "Configure &Akregator..."
-msgid "&Configure Akregator..."
+msgid "&Configure Akregator…"
 msgstr "Akregator &moslamasi"
 
 #: src/actions/actionmanagerimpl.cpp:219
@@ -1195,13 +1198,15 @@ msgid "Reload All Tabs"
 msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:231
-#, kde-format
-msgid "&Add Feed..."
-msgstr "Yangiliklar tasmasini qoʻ&shish"
+#, fuzzy, kde-format
+#| msgid "Add Feed"
+msgid "&Add Feed…"
+msgstr "Yangiliklar tasmasini qoʻshish"
 
 #: src/actions/actionmanagerimpl.cpp:237
-#, kde-format
-msgid "Ne&w Folder..."
+#, fuzzy, kde-format
+#| msgid "Ne&w Folder..."
+msgid "Ne&w Folder…"
 msgstr "Yangi &jild"
 
 #: src/actions/actionmanagerimpl.cpp:262
@@ -1326,13 +1331,15 @@ msgid "Move Node Right"
 msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:422
-#, kde-format
-msgid "Send &Link Address..."
+#, fuzzy, kde-format
+#| msgid "Send &Link Address..."
+msgid "Send &Link Address…"
 msgstr "&Bogʻ manzilini joʻnatish"
 
 #: src/actions/actionmanagerimpl.cpp:427
-#, kde-format
-msgid "Send &File..."
+#, fuzzy, kde-format
+#| msgid "Send &File..."
+msgid "Send &File…"
 msgstr "&Fayl joʻnatish"
 
 #: src/actions/actionmanagerimpl.cpp:433
@@ -1449,7 +1456,7 @@ msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:603
 #, kde-format
-msgid "&Find in Message..."
+msgid "&Find in Message…"
 msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:614
@@ -1464,8 +1471,9 @@ msgid "Activate Tab %1"
 msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:633
-#, kde-format
-msgid "&Save Link As..."
+#, fuzzy, kde-format
+#| msgid "&Save Link As..."
+msgid "&Save Link As…"
 msgstr "Bogʻni &saqlash"
 
 #: src/actions/actionmanagerimpl.cpp:637
@@ -1480,7 +1488,7 @@ msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:647
 #, kde-format
-msgid "Save Image On Disk..."
+msgid "Save Image On Disk…"
 msgstr ""
 
 #: src/actions/actions.cpp:19
@@ -1511,8 +1519,9 @@ msgid "Feed not found from %1."
 msgstr "Quyidagi joyda yangiliklar tasmasi topilmadi: %1"
 
 #: src/addfeeddialog.cpp:121
-#, kde-format
-msgid "Feed found, downloading..."
+#, fuzzy, kde-format
+#| msgid "Feed found, downloading..."
+msgid "Feed found, downloading…"
 msgstr "Yangiliklar tasmasi topildi. Yozib olinmoqda..."
 
 #: src/akregator_options.h:20 src/akregator_options.h:28
@@ -1838,9 +1847,10 @@ msgid ""
 msgstr ""
 
 #: src/command/loadfeedlistcommand.cpp:129
-#, kde-format
-msgid "Opening Feed List..."
-msgstr ""
+#, fuzzy, kde-format
+#| msgid "Feed Properties"
+msgid "Opening Feed List…"
+msgstr "Yangiliklar tasmasining xossalari"
 
 #: src/command/loadfeedlistcommand.cpp:143
 #, kde-format
@@ -2072,8 +2082,9 @@ msgid "Untitled"
 msgstr ""
 
 #: src/frame/frame.cpp:140
-#, kde-format
-msgid "Loading..."
+#, fuzzy, kde-format
+#| msgid "Loading..."
+msgid "Loading…"
 msgstr "Yuklanmoqda..."
 
 #: src/frame/frame.cpp:156
@@ -2147,8 +2158,9 @@ msgid "Networking is not available."
 msgstr ""
 
 #: src/mainwidget.cpp:866
-#, kde-format
-msgid "Fetching Feeds..."
+#, fuzzy, kde-format
+#| msgid "Fetching Feeds..."
+msgid "Fetching Feeds…"
 msgstr "Yangiliklar tasmalari olinmoqda..."
 
 #: src/mainwidget.cpp:1065
@@ -2533,13 +2545,13 @@ msgstr "Tashqi brauzerda ochish"
 #: src/widgets/searchbar.cpp:40
 #, fuzzy, kde-format
 #| msgid " articles"
-msgid "Search articles..."
+msgid "Search articles…"
 msgstr " maqola"
 
 #: src/widgets/searchbar.cpp:112
 #, fuzzy, kde-format
 #| msgid " articles"
-msgid "Search articles...<%1>"
+msgid "Search articles…<%1>"
 msgstr " maqola"
 
 #: src/widgets/statussearchline.cpp:43
@@ -2581,6 +2593,12 @@ msgstr "Muhim"
 #| msgid "Clear filter"
 msgid "Filter"
 msgstr "Filterni tozalash"
+
+#~ msgid "&Add Feed..."
+#~ msgstr "Yangiliklar tasmasini qoʻ&shish"
+
+#~ msgid "Send &Link Address..."
+#~ msgstr "&Bogʻ manzilini joʻnatish"
 
 #, fuzzy
 #~| msgid "&Configure..."
@@ -2828,11 +2846,6 @@ msgstr "Filterni tozalash"
 
 #~ msgid "Add to Konqueror Bookmarks"
 #~ msgstr "Konqueror xatchoʻplariga qoʻshish"
-
-#, fuzzy
-#~| msgid "Feed Properties"
-#~ msgid "Feed List"
-#~ msgstr "Yangiliklar tasmasining xossalari"
 
 #, fuzzy
 #~| msgid "Akregator - RSS Feed Reader"

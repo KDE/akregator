@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdepim/akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-05 00:39+0000\n"
+"POT-Creation-Date: 2024-05-10 00:38+0000\n"
 "PO-Revision-Date: 2004-12-11 20:53-0500\n"
 "Last-Translator: Kevin Scannell <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -1123,8 +1123,9 @@ msgid "&Delete Feed"
 msgstr "&Scrios Fotha"
 
 #: src/actions/actionmanagerimpl.cpp:66 src/actions/actionmanagerimpl.cpp:249
-#, kde-format
-msgid "&Edit Feed..."
+#, fuzzy, kde-format
+#| msgid "&Edit Feed..."
+msgid "&Edit Feed…"
 msgstr "Cuir Fotha in &Eagar..."
 
 #: src/actions/actionmanagerimpl.cpp:67 src/actions/actionmanagerimpl.cpp:306
@@ -1153,18 +1154,21 @@ msgid "&Mark Feeds as Read"
 msgstr "&Marcáil Fothaí mar Léite"
 
 #: src/actions/actionmanagerimpl.cpp:191
-#, kde-format
-msgid "&Import Feeds..."
+#, fuzzy, kde-format
+#| msgid "&Import Feeds..."
+msgid "&Import Feeds…"
 msgstr "&Iompórtáil Fothaí..."
 
 #: src/actions/actionmanagerimpl.cpp:195
-#, kde-format
-msgid "&Export Feeds..."
+#, fuzzy, kde-format
+#| msgid "&Export Feeds..."
+msgid "&Export Feeds…"
 msgstr "&Easpórtáil Fothaí..."
 
 #: src/actions/actionmanagerimpl.cpp:200
-#, kde-format
-msgid "&Configure Akregator..."
+#, fuzzy, kde-format
+#| msgid "&Configure Akregator..."
+msgid "&Configure Akregator…"
 msgstr "Cumraigh &Akregator..."
 
 #: src/actions/actionmanagerimpl.cpp:219
@@ -1178,13 +1182,15 @@ msgid "Reload All Tabs"
 msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:231
-#, kde-format
-msgid "&Add Feed..."
-msgstr "Cuir Foth&a Leis..."
+#, fuzzy, kde-format
+#| msgid "Add Feed"
+msgid "&Add Feed…"
+msgstr "Cuir Fotha Leis"
 
 #: src/actions/actionmanagerimpl.cpp:237
-#, kde-format
-msgid "Ne&w Folder..."
+#, fuzzy, kde-format
+#| msgid "Ne&w Folder..."
+msgid "Ne&w Folder…"
 msgstr "Fi&llteán Nua..."
 
 #: src/actions/actionmanagerimpl.cpp:262
@@ -1306,13 +1312,15 @@ msgid "Move Node Right"
 msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:422
-#, kde-format
-msgid "Send &Link Address..."
+#, fuzzy, kde-format
+#| msgid "Send &Link Address..."
+msgid "Send &Link Address…"
 msgstr "Seol Seo&ladh an Naisc..."
 
 #: src/actions/actionmanagerimpl.cpp:427
-#, kde-format
-msgid "Send &File..."
+#, fuzzy, kde-format
+#| msgid "Send &File..."
+msgid "Send &File…"
 msgstr "Seol &Comhad..."
 
 #: src/actions/actionmanagerimpl.cpp:433
@@ -1429,7 +1437,7 @@ msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:603
 #, kde-format
-msgid "&Find in Message..."
+msgid "&Find in Message…"
 msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:614
@@ -1443,8 +1451,9 @@ msgid "Activate Tab %1"
 msgstr "Gníomhachtaigh Cluaisín %1"
 
 #: src/actions/actionmanagerimpl.cpp:633
-#, kde-format
-msgid "&Save Link As..."
+#, fuzzy, kde-format
+#| msgid "&Save Link As..."
+msgid "&Save Link As…"
 msgstr "&Sábháil an Nasc Mar..."
 
 #: src/actions/actionmanagerimpl.cpp:637
@@ -1459,7 +1468,7 @@ msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:647
 #, kde-format
-msgid "Save Image On Disk..."
+msgid "Save Image On Disk…"
 msgstr ""
 
 #: src/actions/actions.cpp:19
@@ -1491,7 +1500,7 @@ msgstr "Fotha gan aimsiú ó %1."
 
 #: src/addfeeddialog.cpp:121
 #, kde-format
-msgid "Feed found, downloading..."
+msgid "Feed found, downloading…"
 msgstr ""
 
 #: src/akregator_options.h:20 src/akregator_options.h:28
@@ -1818,8 +1827,9 @@ msgstr ""
 "Níorbh fhéidir cúltaca a chruthú.</qt>"
 
 #: src/command/loadfeedlistcommand.cpp:129
-#, kde-format
-msgid "Opening Feed List..."
+#, fuzzy, kde-format
+#| msgid "Opening Feed List..."
+msgid "Opening Feed List…"
 msgstr "Liosta Fothaí á Oscailt..."
 
 #: src/command/loadfeedlistcommand.cpp:143
@@ -2075,8 +2085,9 @@ msgid "Untitled"
 msgstr "Gan Teideal"
 
 #: src/frame/frame.cpp:140
-#, kde-format
-msgid "Loading..."
+#, fuzzy, kde-format
+#| msgid "Loading..."
+msgid "Loading…"
 msgstr "Á Luchtú..."
 
 #: src/frame/frame.cpp:156
@@ -2153,8 +2164,9 @@ msgid "Networking is not available."
 msgstr ""
 
 #: src/mainwidget.cpp:866
-#, kde-format
-msgid "Fetching Feeds..."
+#, fuzzy, kde-format
+#| msgid "Fetching Feeds..."
+msgid "Fetching Feeds…"
 msgstr "Fothaí á bhFáil..."
 
 #: src/mainwidget.cpp:1065
@@ -2549,13 +2561,13 @@ msgstr "Oscail i mBrabhsálaí Seachtrach"
 #: src/widgets/searchbar.cpp:40
 #, fuzzy, kde-format
 #| msgid " articles"
-msgid "Search articles..."
+msgid "Search articles…"
 msgstr " alt"
 
 #: src/widgets/searchbar.cpp:112
 #, fuzzy, kde-format
 #| msgid " articles"
-msgid "Search articles...<%1>"
+msgid "Search articles…<%1>"
 msgstr " alt"
 
 #: src/widgets/statussearchline.cpp:43
@@ -2594,6 +2606,12 @@ msgstr "Tábhachtach"
 #| msgid "Text Filter"
 msgid "Filter"
 msgstr "Scagaire Téacs"
+
+#~ msgid "&Add Feed..."
+#~ msgstr "Cuir Foth&a Leis..."
+
+#~ msgid "Send &Link Address..."
+#~ msgstr "Seol Seo&ladh an Naisc..."
 
 #~ msgid "(c), 2004 - 2008 Frank Osterfeld"
 #~ msgstr "© 2004 - 2008 Frank Osterfeld"

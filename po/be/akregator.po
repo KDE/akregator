@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-05 00:39+0000\n"
+"POT-Creation-Date: 2024-05-10 00:38+0000\n"
 "PO-Revision-Date: 2008-02-11 23:19+0200\n"
 "Last-Translator: Darafei Praliaskouski <komzpa@gmail.com>\n"
 "Language-Team: Belarusian <i18n@mova.org>\n"
@@ -1149,8 +1149,9 @@ msgid "&Delete Feed"
 msgstr "&Выдаліць стужку"
 
 #: src/actions/actionmanagerimpl.cpp:66 src/actions/actionmanagerimpl.cpp:249
-#, kde-format
-msgid "&Edit Feed..."
+#, fuzzy, kde-format
+#| msgid "&Edit Feed..."
+msgid "&Edit Feed…"
 msgstr "У&ласцівасці стужкі..."
 
 #: src/actions/actionmanagerimpl.cpp:67 src/actions/actionmanagerimpl.cpp:306
@@ -1179,19 +1180,21 @@ msgid "&Mark Feeds as Read"
 msgstr "&Памеціць стужкі прачытанымі"
 
 #: src/actions/actionmanagerimpl.cpp:191
-#, kde-format
-msgid "&Import Feeds..."
+#, fuzzy, kde-format
+#| msgid "&Import Feeds..."
+msgid "&Import Feeds…"
 msgstr "&Імпартаваць стужкі..."
 
 #: src/actions/actionmanagerimpl.cpp:195
-#, kde-format
-msgid "&Export Feeds..."
+#, fuzzy, kde-format
+#| msgid "&Export Feeds..."
+msgid "&Export Feeds…"
 msgstr "&Экспартаваць стужкі..."
 
 #: src/actions/actionmanagerimpl.cpp:200
 #, fuzzy, kde-format
 #| msgid "Configure &Akregator..."
-msgid "&Configure Akregator..."
+msgid "&Configure Akregator…"
 msgstr "Наставіць &Akregator..."
 
 #: src/actions/actionmanagerimpl.cpp:219
@@ -1205,13 +1208,15 @@ msgid "Reload All Tabs"
 msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:231
-#, kde-format
-msgid "&Add Feed..."
-msgstr "&Дадаць стужку..."
+#, fuzzy, kde-format
+#| msgid "Add Feed"
+msgid "&Add Feed…"
+msgstr "Дадаць стужку"
 
 #: src/actions/actionmanagerimpl.cpp:237
-#, kde-format
-msgid "Ne&w Folder..."
+#, fuzzy, kde-format
+#| msgid "Ne&w Folder..."
+msgid "Ne&w Folder…"
 msgstr "Новая &тэчка..."
 
 #: src/actions/actionmanagerimpl.cpp:262
@@ -1336,13 +1341,15 @@ msgid "Move Node Right"
 msgstr "Перамясціць направа"
 
 #: src/actions/actionmanagerimpl.cpp:422
-#, kde-format
-msgid "Send &Link Address..."
+#, fuzzy, kde-format
+#| msgid "Send &Link Address..."
+msgid "Send &Link Address…"
 msgstr "Даслаць &адрас спасылкі..."
 
 #: src/actions/actionmanagerimpl.cpp:427
-#, kde-format
-msgid "Send &File..."
+#, fuzzy, kde-format
+#| msgid "Send &File..."
+msgid "Send &File…"
 msgstr "Даслаць &файл..."
 
 #: src/actions/actionmanagerimpl.cpp:433
@@ -1459,7 +1466,7 @@ msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:603
 #, kde-format
-msgid "&Find in Message..."
+msgid "&Find in Message…"
 msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:614
@@ -1474,8 +1481,9 @@ msgid "Activate Tab %1"
 msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:633
-#, kde-format
-msgid "&Save Link As..."
+#, fuzzy, kde-format
+#| msgid "&Save Link As..."
+msgid "&Save Link As…"
 msgstr "&Запісаць спасылку як..."
 
 #: src/actions/actionmanagerimpl.cpp:637
@@ -1490,7 +1498,7 @@ msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:647
 #, kde-format
-msgid "Save Image On Disk..."
+msgid "Save Image On Disk…"
 msgstr ""
 
 #: src/actions/actions.cpp:19
@@ -1521,8 +1529,9 @@ msgid "Feed not found from %1."
 msgstr "Стужка не знойдзеная па адрасе %1."
 
 #: src/addfeeddialog.cpp:121
-#, kde-format
-msgid "Feed found, downloading..."
+#, fuzzy, kde-format
+#| msgid "Feed found, downloading..."
+msgid "Feed found, downloading…"
 msgstr "Знойдзеная стужка навін, сцягванне..."
 
 #: src/akregator_options.h:20 src/akregator_options.h:28
@@ -1878,8 +1887,9 @@ msgstr ""
 "%1</b></p></qt>"
 
 #: src/command/loadfeedlistcommand.cpp:129
-#, kde-format
-msgid "Opening Feed List..."
+#, fuzzy, kde-format
+#| msgid "Opening Feed List..."
+msgid "Opening Feed List…"
 msgstr "Адкрыццё спісу стужак навін..."
 
 #: src/command/loadfeedlistcommand.cpp:143
@@ -2132,8 +2142,9 @@ msgid "Untitled"
 msgstr "Безназоўны"
 
 #: src/frame/frame.cpp:140
-#, kde-format
-msgid "Loading..."
+#, fuzzy, kde-format
+#| msgid "Loading..."
+msgid "Loading…"
 msgstr "Загрузка..."
 
 #: src/frame/frame.cpp:156
@@ -2208,8 +2219,9 @@ msgid "Networking is not available."
 msgstr ""
 
 #: src/mainwidget.cpp:866
-#, kde-format
-msgid "Fetching Feeds..."
+#, fuzzy, kde-format
+#| msgid "Fetching Feeds..."
+msgid "Fetching Feeds…"
 msgstr "Сцягваю стужкі..."
 
 #: src/mainwidget.cpp:1065
@@ -2610,13 +2622,13 @@ msgstr "Адкрыць у знешнім браўзэры"
 #: src/widgets/searchbar.cpp:40
 #, fuzzy, kde-format
 #| msgid " articles"
-msgid "Search articles..."
+msgid "Search articles…"
 msgstr " артыкулаў"
 
 #: src/widgets/searchbar.cpp:112
 #, fuzzy, kde-format
 #| msgid " articles"
-msgid "Search articles...<%1>"
+msgid "Search articles…<%1>"
 msgstr " артыкулаў"
 
 #: src/widgets/statussearchline.cpp:43
@@ -2658,6 +2670,12 @@ msgstr "Важнаы"
 #| msgid "Show Quick Filter"
 msgid "Filter"
 msgstr "Хуткі фільтр"
+
+#~ msgid "&Add Feed..."
+#~ msgstr "&Дадаць стужку..."
+
+#~ msgid "Send &Link Address..."
+#~ msgstr "Даслаць &адрас спасылкі..."
 
 #, fuzzy
 #~| msgid "Frank Osterfeld"

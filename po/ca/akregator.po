@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-05 00:39+0000\n"
+"POT-Creation-Date: 2024-05-10 00:38+0000\n"
 "PO-Revision-Date: 2023-10-03 13:52+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
@@ -1117,8 +1117,9 @@ msgid "&Delete Feed"
 msgstr "Su&primeix la font"
 
 #: src/actions/actionmanagerimpl.cpp:66 src/actions/actionmanagerimpl.cpp:249
-#, kde-format
-msgid "&Edit Feed..."
+#, fuzzy, kde-format
+#| msgid "&Edit Feed..."
+msgid "&Edit Feed…"
 msgstr "&Edita la font..."
 
 #: src/actions/actionmanagerimpl.cpp:67 src/actions/actionmanagerimpl.cpp:306
@@ -1147,18 +1148,21 @@ msgid "&Mark Feeds as Read"
 msgstr "&Marca les fonts com a llegides"
 
 #: src/actions/actionmanagerimpl.cpp:191
-#, kde-format
-msgid "&Import Feeds..."
+#, fuzzy, kde-format
+#| msgid "&Import Feeds..."
+msgid "&Import Feeds…"
 msgstr "&Importa les fonts..."
 
 #: src/actions/actionmanagerimpl.cpp:195
-#, kde-format
-msgid "&Export Feeds..."
+#, fuzzy, kde-format
+#| msgid "&Export Feeds..."
+msgid "&Export Feeds…"
 msgstr "&Exporta les fonts..."
 
 #: src/actions/actionmanagerimpl.cpp:200
-#, kde-format
-msgid "&Configure Akregator..."
+#, fuzzy, kde-format
+#| msgid "&Configure Akregator..."
+msgid "&Configure Akregator…"
 msgstr "&Configura l'Akregator..."
 
 #: src/actions/actionmanagerimpl.cpp:219
@@ -1172,13 +1176,15 @@ msgid "Reload All Tabs"
 msgstr "Recarrega totes les pestanyes"
 
 #: src/actions/actionmanagerimpl.cpp:231
-#, kde-format
-msgid "&Add Feed..."
-msgstr "&Afegeix una font..."
+#, fuzzy, kde-format
+#| msgid "Add Feed"
+msgid "&Add Feed…"
+msgstr "Afegeix una font"
 
 #: src/actions/actionmanagerimpl.cpp:237
-#, kde-format
-msgid "Ne&w Folder..."
+#, fuzzy, kde-format
+#| msgid "Ne&w Folder..."
+msgid "Ne&w Folder…"
 msgstr "Carpeta no&va..."
 
 #: src/actions/actionmanagerimpl.cpp:262
@@ -1300,13 +1306,15 @@ msgid "Move Node Right"
 msgstr "Mou el node a la dreta"
 
 #: src/actions/actionmanagerimpl.cpp:422
-#, kde-format
-msgid "Send &Link Address..."
-msgstr "Envia l'ad&reça de l'enllaç..."
+#, fuzzy, kde-format
+#| msgid "Send Link Address"
+msgid "Send &Link Address…"
+msgstr "Envia l'adreça de l'enllaç"
 
 #: src/actions/actionmanagerimpl.cpp:427
-#, kde-format
-msgid "Send &File..."
+#, fuzzy, kde-format
+#| msgid "Send &File..."
+msgid "Send &File…"
 msgstr "Envia el &fitxer..."
 
 #: src/actions/actionmanagerimpl.cpp:433
@@ -1420,8 +1428,9 @@ msgid "Speak Text"
 msgstr "Pronuncia el text"
 
 #: src/actions/actionmanagerimpl.cpp:603
-#, kde-format
-msgid "&Find in Message..."
+#, fuzzy, kde-format
+#| msgid "&Find in Message..."
+msgid "&Find in Message…"
 msgstr "&Cerca al missatge..."
 
 #: src/actions/actionmanagerimpl.cpp:614
@@ -1435,8 +1444,9 @@ msgid "Activate Tab %1"
 msgstr "Activa la pestanya %1"
 
 #: src/actions/actionmanagerimpl.cpp:633
-#, kde-format
-msgid "&Save Link As..."
+#, fuzzy, kde-format
+#| msgid "&Save Link As..."
+msgid "&Save Link As…"
 msgstr "&Desa l'enllaç com a..."
 
 #: src/actions/actionmanagerimpl.cpp:637
@@ -1450,8 +1460,9 @@ msgid "Copy Image Location"
 msgstr "Copia la ubicació de la imatge"
 
 #: src/actions/actionmanagerimpl.cpp:647
-#, kde-format
-msgid "Save Image On Disk..."
+#, fuzzy, kde-format
+#| msgid "Save Image On Disk..."
+msgid "Save Image On Disk…"
 msgstr "Desa la imatge al disc..."
 
 #: src/actions/actions.cpp:19
@@ -1481,8 +1492,9 @@ msgid "Feed not found from %1."
 msgstr "No s'ha trobat cap font a %1."
 
 #: src/addfeeddialog.cpp:121
-#, kde-format
-msgid "Feed found, downloading..."
+#, fuzzy, kde-format
+#| msgid "Feed found, downloading..."
+msgid "Feed found, downloading…"
 msgstr "S'ha trobat la font, s'està baixant..."
 
 #: src/akregator_options.h:20 src/akregator_options.h:28
@@ -1812,8 +1824,9 @@ msgstr ""
 "pogut crear cap còpia de seguretat.</qt>"
 
 #: src/command/loadfeedlistcommand.cpp:129
-#, kde-format
-msgid "Opening Feed List..."
+#, fuzzy, kde-format
+#| msgid "Opening Feed List..."
+msgid "Opening Feed List…"
 msgstr "S'està obrint la llista de fonts..."
 
 #: src/command/loadfeedlistcommand.cpp:143
@@ -2046,8 +2059,9 @@ msgid "Untitled"
 msgstr "Sense títol"
 
 #: src/frame/frame.cpp:140
-#, kde-format
-msgid "Loading..."
+#, fuzzy, kde-format
+#| msgid "Loading..."
+msgid "Loading…"
 msgstr "S'està carregant..."
 
 #: src/frame/frame.cpp:156
@@ -2122,8 +2136,9 @@ msgid "Networking is not available."
 msgstr "La xarxa no està disponible."
 
 #: src/mainwidget.cpp:866
-#, kde-format
-msgid "Fetching Feeds..."
+#, fuzzy, kde-format
+#| msgid "Fetching Feeds..."
+msgid "Fetching Feeds…"
 msgstr "S'estan obtenint les fonts..."
 
 #: src/mainwidget.cpp:1065
@@ -2495,13 +2510,15 @@ msgid "Open In External Browser"
 msgstr "Obre en un navegador extern"
 
 #: src/widgets/searchbar.cpp:40
-#, kde-format
-msgid "Search articles..."
+#, fuzzy, kde-format
+#| msgid "Search articles..."
+msgid "Search articles…"
 msgstr "Cerca articles..."
 
 #: src/widgets/searchbar.cpp:112
-#, kde-format
-msgid "Search articles...<%1>"
+#, fuzzy, kde-format
+#| msgid "Search articles...<%1>"
+msgid "Search articles…<%1>"
 msgstr "Cerca articles...<%1>"
 
 #: src/widgets/statussearchline.cpp:43
@@ -2537,6 +2554,12 @@ msgstr "Important"
 #, kde-format
 msgid "Filter"
 msgstr "Filtre"
+
+#~ msgid "&Add Feed..."
+#~ msgstr "&Afegeix una font..."
+
+#~ msgid "Send &Link Address..."
+#~ msgstr "Envia l'ad&reça de l'enllaç..."
 
 #~ msgctxt "@title:window"
 #~ msgid "Print Document"

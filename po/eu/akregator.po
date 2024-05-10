@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-05 00:39+0000\n"
+"POT-Creation-Date: 2024-05-10 00:38+0000\n"
 "PO-Revision-Date: 2023-10-03 07:39+0200\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
@@ -1118,8 +1118,9 @@ msgid "&Delete Feed"
 msgstr "E&zabatu jarioa"
 
 #: src/actions/actionmanagerimpl.cpp:66 src/actions/actionmanagerimpl.cpp:249
-#, kde-format
-msgid "&Edit Feed..."
+#, fuzzy, kde-format
+#| msgid "&Edit Feed..."
+msgid "&Edit Feed…"
 msgstr "&Editatu jarioa..."
 
 #: src/actions/actionmanagerimpl.cpp:67 src/actions/actionmanagerimpl.cpp:306
@@ -1148,18 +1149,21 @@ msgid "&Mark Feeds as Read"
 msgstr "&Markatu jarioak irakurritako gisa"
 
 #: src/actions/actionmanagerimpl.cpp:191
-#, kde-format
-msgid "&Import Feeds..."
+#, fuzzy, kde-format
+#| msgid "&Import Feeds..."
+msgid "&Import Feeds…"
 msgstr "&Inportatu jarioak..."
 
 #: src/actions/actionmanagerimpl.cpp:195
-#, kde-format
-msgid "&Export Feeds..."
+#, fuzzy, kde-format
+#| msgid "&Export Feeds..."
+msgid "&Export Feeds…"
 msgstr "&Esportatu jarioak..."
 
 #: src/actions/actionmanagerimpl.cpp:200
-#, kde-format
-msgid "&Configure Akregator..."
+#, fuzzy, kde-format
+#| msgid "&Configure Akregator..."
+msgid "&Configure Akregator…"
 msgstr "&Konfiguratu Akregator..."
 
 #: src/actions/actionmanagerimpl.cpp:219
@@ -1173,13 +1177,15 @@ msgid "Reload All Tabs"
 msgstr "Birzamatu fitxa guztiak"
 
 #: src/actions/actionmanagerimpl.cpp:231
-#, kde-format
-msgid "&Add Feed..."
-msgstr "&Gehitu jarioa..."
+#, fuzzy, kde-format
+#| msgid "Add Feed"
+msgid "&Add Feed…"
+msgstr "Gehitu jarioa"
 
 #: src/actions/actionmanagerimpl.cpp:237
-#, kde-format
-msgid "Ne&w Folder..."
+#, fuzzy, kde-format
+#| msgid "Ne&w Folder..."
+msgid "Ne&w Folder…"
 msgstr "Karpeta &berria..."
 
 #: src/actions/actionmanagerimpl.cpp:262
@@ -1301,13 +1307,15 @@ msgid "Move Node Right"
 msgstr "Mugitu nodoa eskuinera"
 
 #: src/actions/actionmanagerimpl.cpp:422
-#, kde-format
-msgid "Send &Link Address..."
-msgstr "Bidali e&stekaren helbidea..."
+#, fuzzy, kde-format
+#| msgid "Send Link Address"
+msgid "Send &Link Address…"
+msgstr "Bidali estekaren helbidea"
 
 #: src/actions/actionmanagerimpl.cpp:427
-#, kde-format
-msgid "Send &File..."
+#, fuzzy, kde-format
+#| msgid "Send &File..."
+msgid "Send &File…"
 msgstr "Bidali &fitxategia..."
 
 #: src/actions/actionmanagerimpl.cpp:433
@@ -1421,8 +1429,9 @@ msgid "Speak Text"
 msgstr "Esan testua"
 
 #: src/actions/actionmanagerimpl.cpp:603
-#, kde-format
-msgid "&Find in Message..."
+#, fuzzy, kde-format
+#| msgid "&Find in Message..."
+msgid "&Find in Message…"
 msgstr "&Bilatu mezuan..."
 
 #: src/actions/actionmanagerimpl.cpp:614
@@ -1436,8 +1445,9 @@ msgid "Activate Tab %1"
 msgstr "Aktibatu %1 fitxa"
 
 #: src/actions/actionmanagerimpl.cpp:633
-#, kde-format
-msgid "&Save Link As..."
+#, fuzzy, kde-format
+#| msgid "&Save Link As..."
+msgid "&Save Link As…"
 msgstr "&Gorde esteka honela..."
 
 #: src/actions/actionmanagerimpl.cpp:637
@@ -1451,8 +1461,9 @@ msgid "Copy Image Location"
 msgstr "Kopiatu irudiaren kokalekua"
 
 #: src/actions/actionmanagerimpl.cpp:647
-#, kde-format
-msgid "Save Image On Disk..."
+#, fuzzy, kde-format
+#| msgid "Save Image On Disk..."
+msgid "Save Image On Disk…"
 msgstr "Gorde irudia diskoan..."
 
 #: src/actions/actions.cpp:19
@@ -1482,8 +1493,9 @@ msgid "Feed not found from %1."
 msgstr "%1(e)ko jarioa ez da aurkitu."
 
 #: src/addfeeddialog.cpp:121
-#, kde-format
-msgid "Feed found, downloading..."
+#, fuzzy, kde-format
+#| msgid "Feed found, downloading..."
+msgid "Feed found, downloading…"
 msgstr "Jarioa aurkitu da, zama-jaisten..."
 
 #: src/akregator_options.h:20 src/akregator_options.h:28
@@ -1815,8 +1827,9 @@ msgstr ""
 "babes-kopiarik sortu.</qt>"
 
 #: src/command/loadfeedlistcommand.cpp:129
-#, kde-format
-msgid "Opening Feed List..."
+#, fuzzy, kde-format
+#| msgid "Opening Feed List..."
+msgid "Opening Feed List…"
 msgstr "Jario-zerrenda irekitzen..."
 
 #: src/command/loadfeedlistcommand.cpp:143
@@ -2047,8 +2060,9 @@ msgid "Untitled"
 msgstr "Titulu gabea"
 
 #: src/frame/frame.cpp:140
-#, kde-format
-msgid "Loading..."
+#, fuzzy, kde-format
+#| msgid "Loading..."
+msgid "Loading…"
 msgstr "Zamatzen..."
 
 #: src/frame/frame.cpp:156
@@ -2124,8 +2138,9 @@ msgid "Networking is not available."
 msgstr "Sarea ez dago erabilgarri."
 
 #: src/mainwidget.cpp:866
-#, kde-format
-msgid "Fetching Feeds..."
+#, fuzzy, kde-format
+#| msgid "Fetching Feeds..."
+msgid "Fetching Feeds…"
 msgstr "Jarioak ekartzen..."
 
 #: src/mainwidget.cpp:1065
@@ -2497,13 +2512,15 @@ msgid "Open In External Browser"
 msgstr "Ireki kanpoko arakatzailean"
 
 #: src/widgets/searchbar.cpp:40
-#, kde-format
-msgid "Search articles..."
+#, fuzzy, kde-format
+#| msgid "Search articles..."
+msgid "Search articles…"
 msgstr " Bilatu artikuluak..."
 
 #: src/widgets/searchbar.cpp:112
-#, kde-format
-msgid "Search articles...<%1>"
+#, fuzzy, kde-format
+#| msgid "Search articles...<%1>"
+msgid "Search articles…<%1>"
 msgstr "Bilatu artikuluak...<%1>"
 
 #: src/widgets/statussearchline.cpp:43
@@ -2539,6 +2556,12 @@ msgstr "Garrantzizkoak"
 #, kde-format
 msgid "Filter"
 msgstr "Iragazkia"
+
+#~ msgid "&Add Feed..."
+#~ msgstr "&Gehitu jarioa..."
+
+#~ msgid "Send &Link Address..."
+#~ msgstr "Bidali e&stekaren helbidea..."
 
 #~ msgctxt "@title:window"
 #~ msgid "Print Document"

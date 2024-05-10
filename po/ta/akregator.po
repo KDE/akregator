@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-05 00:39+0000\n"
+"POT-Creation-Date: 2024-05-10 00:38+0000\n"
 "PO-Revision-Date: 2023-12-17 16:44+0530\n"
 "Last-Translator: Kishore G <kishore96@gmail.com>\n"
 "Language-Team: Tamil <kde-i18n-doc@kde.org>\n"
@@ -1088,8 +1088,9 @@ msgid "&Delete Feed"
 msgstr "தொகுப்பை &நீக்கு"
 
 #: src/actions/actionmanagerimpl.cpp:66 src/actions/actionmanagerimpl.cpp:249
-#, kde-format
-msgid "&Edit Feed..."
+#, fuzzy, kde-format
+#| msgid "&Edit Feed..."
+msgid "&Edit Feed…"
 msgstr "தொகுப்பைத் &திருத்து..."
 
 #: src/actions/actionmanagerimpl.cpp:67 src/actions/actionmanagerimpl.cpp:306
@@ -1118,18 +1119,21 @@ msgid "&Mark Feeds as Read"
 msgstr "தொகுப்புகளைப் படித்த‍தாக‍க் கு&றி"
 
 #: src/actions/actionmanagerimpl.cpp:191
-#, kde-format
-msgid "&Import Feeds..."
+#, fuzzy, kde-format
+#| msgid "&Import Feeds..."
+msgid "&Import Feeds…"
 msgstr "தொகுப்புகளை &இறக்குமதி செய்..."
 
 #: src/actions/actionmanagerimpl.cpp:195
-#, kde-format
-msgid "&Export Feeds..."
+#, fuzzy, kde-format
+#| msgid "&Export Feeds..."
+msgid "&Export Feeds…"
 msgstr "தொகுப்புகளை &ஏற்றுமதி செய்..."
 
 #: src/actions/actionmanagerimpl.cpp:200
-#, kde-format
-msgid "&Configure Akregator..."
+#, fuzzy, kde-format
+#| msgid "&Configure Akregator..."
+msgid "&Configure Akregator…"
 msgstr "அக்றிகேட்டரை &அமை"
 
 #: src/actions/actionmanagerimpl.cpp:219
@@ -1143,13 +1147,15 @@ msgid "Reload All Tabs"
 msgstr "அனைத்து கீற்றுகளையும் மீளேற்று"
 
 #: src/actions/actionmanagerimpl.cpp:231
-#, kde-format
-msgid "&Add Feed..."
-msgstr "&தொகுப்பைச் சேர்..."
+#, fuzzy, kde-format
+#| msgid "Add Feed"
+msgid "&Add Feed…"
+msgstr "செலுத்தலை சேர்"
 
 #: src/actions/actionmanagerimpl.cpp:237
-#, kde-format
-msgid "Ne&w Folder..."
+#, fuzzy, kde-format
+#| msgid "Ne&w Folder..."
+msgid "Ne&w Folder…"
 msgstr "புதி&ய அடைவு..."
 
 #: src/actions/actionmanagerimpl.cpp:262
@@ -1271,13 +1277,15 @@ msgid "Move Node Right"
 msgstr "உருப்படியை வலதுபுறமாக நகர்த்து"
 
 #: src/actions/actionmanagerimpl.cpp:422
-#, kde-format
-msgid "Send &Link Address..."
-msgstr "&இணைப்பிற்கான முகவரியை அனுப்பு..."
+#, fuzzy, kde-format
+#| msgid "Send Link Address"
+msgid "Send &Link Address…"
+msgstr "இணைப்பின் முகவரியை அனுப்பு"
 
 #: src/actions/actionmanagerimpl.cpp:427
-#, kde-format
-msgid "Send &File..."
+#, fuzzy, kde-format
+#| msgid "Send &File..."
+msgid "Send &File…"
 msgstr "&கோப்பை அனுப்பு..."
 
 #: src/actions/actionmanagerimpl.cpp:433
@@ -1391,8 +1399,9 @@ msgid "Speak Text"
 msgstr "உரையைப் பேச்சாக்கு"
 
 #: src/actions/actionmanagerimpl.cpp:603
-#, kde-format
-msgid "&Find in Message..."
+#, fuzzy, kde-format
+#| msgid "&Find in Message..."
+msgid "&Find in Message…"
 msgstr "கட்டுரையில் &கண்டுபிடி..."
 
 #: src/actions/actionmanagerimpl.cpp:614
@@ -1406,8 +1415,9 @@ msgid "Activate Tab %1"
 msgstr "கீற்று %1-ஐ செயல்படுத்து"
 
 #: src/actions/actionmanagerimpl.cpp:633
-#, kde-format
-msgid "&Save Link As..."
+#, fuzzy, kde-format
+#| msgid "&Save Link As..."
+msgid "&Save Link As…"
 msgstr "&இணைப்பை இப்படி சேமி..."
 
 #: src/actions/actionmanagerimpl.cpp:637
@@ -1421,8 +1431,9 @@ msgid "Copy Image Location"
 msgstr "படத்தின் முகவரியை நகலெடு"
 
 #: src/actions/actionmanagerimpl.cpp:647
-#, kde-format
-msgid "Save Image On Disk..."
+#, fuzzy, kde-format
+#| msgid "Save Image On Disk..."
+msgid "Save Image On Disk…"
 msgstr "படத்தை வட்டில் சேமி..."
 
 #: src/actions/actions.cpp:19
@@ -1452,8 +1463,9 @@ msgid "Feed not found from %1."
 msgstr "%1-இல் தொகுப்பு கண்டுபிடிக்கப்படவில்லை."
 
 #: src/addfeeddialog.cpp:121
-#, kde-format
-msgid "Feed found, downloading..."
+#, fuzzy, kde-format
+#| msgid "Feed found, downloading..."
+msgid "Feed found, downloading…"
 msgstr "தொகுப்பு கண்டுபிடிக்கப்பட்டு பதிவிறக்கப்படுகிறது..."
 
 #: src/akregator_options.h:20 src/akregator_options.h:28
@@ -1802,8 +1814,9 @@ msgstr ""
 "உருவாக்கப்பட்டது:<p><b>%2</b></p></qt>"
 
 #: src/command/loadfeedlistcommand.cpp:129
-#, kde-format
-msgid "Opening Feed List..."
+#, fuzzy, kde-format
+#| msgid "Opening Feed List..."
+msgid "Opening Feed List…"
 msgstr "செலுத்தல் பட்டியலை திறக்கிறது..."
 
 #: src/command/loadfeedlistcommand.cpp:143
@@ -2046,8 +2059,9 @@ msgid "Untitled"
 msgstr "தலைப்பில்லாதது"
 
 #: src/frame/frame.cpp:140
-#, kde-format
-msgid "Loading..."
+#, fuzzy, kde-format
+#| msgid "Loading..."
+msgid "Loading…"
 msgstr "ஏற்றுகிறது..."
 
 #: src/frame/frame.cpp:156
@@ -2119,8 +2133,9 @@ msgid "Networking is not available."
 msgstr ""
 
 #: src/mainwidget.cpp:866
-#, kde-format
-msgid "Fetching Feeds..."
+#, fuzzy, kde-format
+#| msgid "Fetching Feeds..."
+msgid "Fetching Feeds…"
 msgstr "செலுத்தலை கொண்டுவருகிறது..."
 
 #: src/mainwidget.cpp:1065
@@ -2504,13 +2519,13 @@ msgstr "வெளி உலாவியில் இணைப்பை திற
 #: src/widgets/searchbar.cpp:40
 #, fuzzy, kde-format
 #| msgid " articles"
-msgid "Search articles..."
+msgid "Search articles…"
 msgstr " கட்டுரைகள்"
 
 #: src/widgets/searchbar.cpp:112
 #, fuzzy, kde-format
 #| msgid " articles"
-msgid "Search articles...<%1>"
+msgid "Search articles…<%1>"
 msgstr " கட்டுரைகள்"
 
 #: src/widgets/statussearchline.cpp:43
@@ -2548,6 +2563,12 @@ msgstr "அனைத்தையும் படிக்காததாக ம�
 #, fuzzy, kde-format
 msgid "Filter"
 msgstr "அலங்காரத்தை துடை"
+
+#~ msgid "&Add Feed..."
+#~ msgstr "&தொகுப்பைச் சேர்..."
+
+#~ msgid "Send &Link Address..."
+#~ msgstr "&இணைப்பிற்கான முகவரியை அனுப்பு..."
 
 #, fuzzy
 #~ msgid "Advanced Feed Reader Settings"

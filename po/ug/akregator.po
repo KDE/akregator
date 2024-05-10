@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-05 00:39+0000\n"
+"POT-Creation-Date: 2024-05-10 00:38+0000\n"
 "PO-Revision-Date: 2013-09-08 07:05+0900\n"
 "Last-Translator: Gheyret Kenji <gheyret@gmail.com>\n"
 "Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
@@ -1092,7 +1092,7 @@ msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:66 src/actions/actionmanagerimpl.cpp:249
 #, kde-format
-msgid "&Edit Feed..."
+msgid "&Edit Feed…"
 msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:67 src/actions/actionmanagerimpl.cpp:306
@@ -1121,18 +1121,20 @@ msgid "&Mark Feeds as Read"
 msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:191
-#, kde-format
-msgid "&Import Feeds..."
-msgstr ""
+#, fuzzy, kde-format
+#| msgid "Imported Feeds"
+msgid "&Import Feeds…"
+msgstr "ئەكىرگەن قاناللار"
 
 #: src/actions/actionmanagerimpl.cpp:195
-#, kde-format
-msgid "&Export Feeds..."
-msgstr ""
+#, fuzzy, kde-format
+#| msgid "Imported Feeds"
+msgid "&Export Feeds…"
+msgstr "ئەكىرگەن قاناللار"
 
 #: src/actions/actionmanagerimpl.cpp:200
 #, kde-format
-msgid "&Configure Akregator..."
+msgid "&Configure Akregator…"
 msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:219
@@ -1146,13 +1148,15 @@ msgid "Reload All Tabs"
 msgstr "ھەممە بەتكۈچنى قايتا يۈكلە"
 
 #: src/actions/actionmanagerimpl.cpp:231
-#, kde-format
-msgid "&Add Feed..."
-msgstr ""
+#, fuzzy, kde-format
+#| msgid "Add Folder"
+msgid "&Add Feed…"
+msgstr "قىسقۇچ قوشۇش"
 
 #: src/actions/actionmanagerimpl.cpp:237
-#, kde-format
-msgid "Ne&w Folder..."
+#, fuzzy, kde-format
+#| msgid "Ne&w Folder..."
+msgid "Ne&w Folder…"
 msgstr "يېڭى قىسقۇچ(&W)…"
 
 #: src/actions/actionmanagerimpl.cpp:262
@@ -1274,13 +1278,15 @@ msgid "Move Node Right"
 msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:422
-#, kde-format
-msgid "Send &Link Address..."
+#, fuzzy, kde-format
+#| msgid "Send &Link Address..."
+msgid "Send &Link Address…"
 msgstr "ئۇلانما ئادرېسىنى ئەۋەت(L)…"
 
 #: src/actions/actionmanagerimpl.cpp:427
-#, kde-format
-msgid "Send &File..."
+#, fuzzy, kde-format
+#| msgid "Send &File..."
+msgid "Send &File…"
 msgstr "ھۆججەت ئەۋەت(&F)…"
 
 #: src/actions/actionmanagerimpl.cpp:433
@@ -1395,7 +1401,7 @@ msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:603
 #, kde-format
-msgid "&Find in Message..."
+msgid "&Find in Message…"
 msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:614
@@ -1409,8 +1415,9 @@ msgid "Activate Tab %1"
 msgstr "بەتكۈچ %1 نى ئاكتىپلا"
 
 #: src/actions/actionmanagerimpl.cpp:633
-#, kde-format
-msgid "&Save Link As..."
+#, fuzzy, kde-format
+#| msgid "&Save Link As..."
+msgid "&Save Link As…"
 msgstr "ئۇلانمىنى باشقا ئاتتا ساقلا(&S)…"
 
 #: src/actions/actionmanagerimpl.cpp:637
@@ -1425,7 +1432,7 @@ msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:647
 #, kde-format
-msgid "Save Image On Disk..."
+msgid "Save Image On Disk…"
 msgstr ""
 
 #: src/actions/actions.cpp:19
@@ -1457,7 +1464,7 @@ msgstr ""
 
 #: src/addfeeddialog.cpp:121
 #, kde-format
-msgid "Feed found, downloading..."
+msgid "Feed found, downloading…"
 msgstr ""
 
 #: src/akregator_options.h:20 src/akregator_options.h:28
@@ -1774,9 +1781,10 @@ msgid ""
 msgstr ""
 
 #: src/command/loadfeedlistcommand.cpp:129
-#, kde-format
-msgid "Opening Feed List..."
-msgstr ""
+#, fuzzy, kde-format
+#| msgid "Feed List"
+msgid "Opening Feed List…"
+msgstr "قانال"
 
 #: src/command/loadfeedlistcommand.cpp:143
 #, kde-format
@@ -2000,8 +2008,9 @@ msgid "Untitled"
 msgstr "ماۋزۇسىز"
 
 #: src/frame/frame.cpp:140
-#, kde-format
-msgid "Loading..."
+#, fuzzy, kde-format
+#| msgid "Loading..."
+msgid "Loading…"
 msgstr "ئوقۇۋاتىدۇ…"
 
 #: src/frame/frame.cpp:156
@@ -2072,7 +2081,7 @@ msgstr ""
 
 #: src/mainwidget.cpp:866
 #, kde-format
-msgid "Fetching Feeds..."
+msgid "Fetching Feeds…"
 msgstr ""
 
 #: src/mainwidget.cpp:1065
@@ -2444,13 +2453,13 @@ msgstr ""
 #: src/widgets/searchbar.cpp:40
 #, fuzzy, kde-format
 #| msgid "Unread articles:"
-msgid "Search articles..."
+msgid "Search articles…"
 msgstr "ئوقۇلمىغان ماقالىلەر:"
 
 #: src/widgets/searchbar.cpp:112
 #, fuzzy, kde-format
 #| msgid "Unread articles:"
-msgid "Search articles...<%1>"
+msgid "Search articles…<%1>"
 msgstr "ئوقۇلمىغان ماقالىلەر:"
 
 #: src/widgets/statussearchline.cpp:43
@@ -2487,6 +2496,9 @@ msgstr "مۇھىم"
 #| msgid "Text Filter"
 msgid "Filter"
 msgstr "تېكىست سۈزگۈچ"
+
+#~ msgid "Send &Link Address..."
+#~ msgstr "ئۇلانما ئادرېسىنى ئەۋەت(L)…"
 
 #, fuzzy
 #~| msgid "&Configure..."
@@ -2656,7 +2668,3 @@ msgstr "تېكىست سۈزگۈچ"
 #~ msgctxt "login identify for blog account"
 #~ msgid "Username"
 #~ msgstr "ئىشلەتكۈچى ئاتى"
-
-#~| msgid "Feeds"
-#~ msgid "Feed List"
-#~ msgstr "قانال"

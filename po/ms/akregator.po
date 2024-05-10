@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Mimos\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-05 00:39+0000\n"
+"POT-Creation-Date: 2024-05-10 00:38+0000\n"
 "PO-Revision-Date: 2005-10-12 11:13+0800\n"
 "Last-Translator: MIMOS <opensource@mimos.my>\n"
 "Language-Team: Malay <kedidiemas@yahoogroups.com>\n"
@@ -1118,8 +1118,9 @@ msgid "&Delete Feed"
 msgstr "&Hapuskan Suapan"
 
 #: src/actions/actionmanagerimpl.cpp:66 src/actions/actionmanagerimpl.cpp:249
-#, kde-format
-msgid "&Edit Feed..."
+#, fuzzy, kde-format
+#| msgid "&Edit Feed..."
+msgid "&Edit Feed…"
 msgstr "&Edit Suapan..."
 
 #: src/actions/actionmanagerimpl.cpp:67 src/actions/actionmanagerimpl.cpp:306
@@ -1148,19 +1149,21 @@ msgid "&Mark Feeds as Read"
 msgstr "&Tandakan Suapan Sebagai Sudah Baca"
 
 #: src/actions/actionmanagerimpl.cpp:191
-#, kde-format
-msgid "&Import Feeds..."
+#, fuzzy, kde-format
+#| msgid "&Import Feeds..."
+msgid "&Import Feeds…"
 msgstr "Suapan &Import..."
 
 #: src/actions/actionmanagerimpl.cpp:195
-#, kde-format
-msgid "&Export Feeds..."
+#, fuzzy, kde-format
+#| msgid "&Export Feeds..."
+msgid "&Export Feeds…"
 msgstr "Suapan &Eksport..."
 
 #: src/actions/actionmanagerimpl.cpp:200
 #, fuzzy, kde-format
 #| msgid "Configure &Akregator..."
-msgid "&Configure Akregator..."
+msgid "&Configure Akregator…"
 msgstr "Konfigurkan &Akregator..."
 
 #: src/actions/actionmanagerimpl.cpp:219
@@ -1174,13 +1177,15 @@ msgid "Reload All Tabs"
 msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:231
-#, kde-format
-msgid "&Add Feed..."
-msgstr "&Tambah Suapan..."
+#, fuzzy, kde-format
+#| msgid "Add Feed"
+msgid "&Add Feed…"
+msgstr "Tambah Suapan"
 
 #: src/actions/actionmanagerimpl.cpp:237
-#, kde-format
-msgid "Ne&w Folder..."
+#, fuzzy, kde-format
+#| msgid "Ne&w Folder..."
+msgid "Ne&w Folder…"
 msgstr "Folder &Baru..."
 
 #: src/actions/actionmanagerimpl.cpp:262
@@ -1303,13 +1308,15 @@ msgid "Move Node Right"
 msgstr "Alihkan Nod ke Kanan"
 
 #: src/actions/actionmanagerimpl.cpp:422
-#, kde-format
-msgid "Send &Link Address..."
+#, fuzzy, kde-format
+#| msgid "Send &Link Address..."
+msgid "Send &Link Address…"
 msgstr "Alamat Hantar &Pautan..."
 
 #: src/actions/actionmanagerimpl.cpp:427
-#, kde-format
-msgid "Send &File..."
+#, fuzzy, kde-format
+#| msgid "Send &File..."
+msgid "Send &File…"
 msgstr "Hantar &Fail..."
 
 #: src/actions/actionmanagerimpl.cpp:433
@@ -1426,7 +1433,7 @@ msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:603
 #, kde-format
-msgid "&Find in Message..."
+msgid "&Find in Message…"
 msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:614
@@ -1440,8 +1447,9 @@ msgid "Activate Tab %1"
 msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:633
-#, kde-format
-msgid "&Save Link As..."
+#, fuzzy, kde-format
+#| msgid "&Save Link As..."
+msgid "&Save Link As…"
 msgstr "&Simpan Pautan Sebagai..."
 
 #: src/actions/actionmanagerimpl.cpp:637
@@ -1456,7 +1464,7 @@ msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:647
 #, kde-format
-msgid "Save Image On Disk..."
+msgid "Save Image On Disk…"
 msgstr ""
 
 #: src/actions/actions.cpp:19
@@ -1487,8 +1495,9 @@ msgid "Feed not found from %1."
 msgstr "Suapan tidak ditemui dari  %1."
 
 #: src/addfeeddialog.cpp:121
-#, kde-format
-msgid "Feed found, downloading..."
+#, fuzzy, kde-format
+#| msgid "Feed found, downloading..."
+msgid "Feed found, downloading…"
 msgstr "Suapan ditemui, memuat turun..."
 
 #: src/akregator_options.h:20 src/akregator_options.h:28
@@ -1837,8 +1846,9 @@ msgstr ""
 "<p><b>%2</b></p></qt>"
 
 #: src/command/loadfeedlistcommand.cpp:129
-#, kde-format
-msgid "Opening Feed List..."
+#, fuzzy, kde-format
+#| msgid "Opening Feed List..."
+msgid "Opening Feed List…"
 msgstr "Membuka Senarai Suapan"
 
 #: src/command/loadfeedlistcommand.cpp:143
@@ -2081,8 +2091,9 @@ msgid "Untitled"
 msgstr ""
 
 #: src/frame/frame.cpp:140
-#, kde-format
-msgid "Loading..."
+#, fuzzy, kde-format
+#| msgid "Loading..."
+msgid "Loading…"
 msgstr "Memuatkan..."
 
 #: src/frame/frame.cpp:156
@@ -2154,8 +2165,9 @@ msgid "Networking is not available."
 msgstr ""
 
 #: src/mainwidget.cpp:866
-#, kde-format
-msgid "Fetching Feeds..."
+#, fuzzy, kde-format
+#| msgid "Fetching Feeds..."
+msgid "Fetching Feeds…"
 msgstr "Mengutip Suapan..."
 
 #: src/mainwidget.cpp:1065
@@ -2540,13 +2552,13 @@ msgstr "Buka dalam Pelayar Luar"
 #: src/widgets/searchbar.cpp:40
 #, fuzzy, kde-format
 #| msgid " articles"
-msgid "Search articles..."
+msgid "Search articles…"
 msgstr "artikel"
 
 #: src/widgets/searchbar.cpp:112
 #, fuzzy, kde-format
 #| msgid " articles"
-msgid "Search articles...<%1>"
+msgid "Search articles…<%1>"
 msgstr "artikel"
 
 #: src/widgets/statussearchline.cpp:43
@@ -2584,6 +2596,12 @@ msgstr "Tandakan sebagai &belum baca"
 #, fuzzy, kde-format
 msgid "Filter"
 msgstr "Kosongkan penapis"
+
+#~ msgid "&Add Feed..."
+#~ msgstr "&Tambah Suapan..."
+
+#~ msgid "Send &Link Address..."
+#~ msgstr "Alamat Hantar &Pautan..."
 
 #, fuzzy
 #~| msgid "Concurrent Fetches"

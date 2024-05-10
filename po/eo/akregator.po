@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-05 00:39+0000\n"
+"POT-Creation-Date: 2024-05-10 00:38+0000\n"
 "PO-Revision-Date: 2024-01-03 12:30+0100\n"
 "Last-Translator: Oliver Kellogg <okellogg@users.sourceforge.net>\n"
 "Language-Team: Esperanto <kde-i18n-eo@kde.org>\n"
@@ -1107,8 +1107,9 @@ msgid "&Delete Feed"
 msgstr "For&igi Fluon"
 
 #: src/actions/actionmanagerimpl.cpp:66 src/actions/actionmanagerimpl.cpp:249
-#, kde-format
-msgid "&Edit Feed..."
+#, fuzzy, kde-format
+#| msgid "&Edit Feed..."
+msgid "&Edit Feed…"
 msgstr "R&edakti fluon"
 
 #: src/actions/actionmanagerimpl.cpp:67 src/actions/actionmanagerimpl.cpp:306
@@ -1137,18 +1138,21 @@ msgid "&Mark Feeds as Read"
 msgstr "&Marki Fluojn kiel Legitaj"
 
 #: src/actions/actionmanagerimpl.cpp:191
-#, kde-format
-msgid "&Import Feeds..."
+#, fuzzy, kde-format
+#| msgid "&Import Feeds..."
+msgid "&Import Feeds…"
 msgstr "&Importi Fluojn..."
 
 #: src/actions/actionmanagerimpl.cpp:195
-#, kde-format
-msgid "&Export Feeds..."
+#, fuzzy, kde-format
+#| msgid "&Export Feeds..."
+msgid "&Export Feeds…"
 msgstr "&Eksporti Fluojn..."
 
 #: src/actions/actionmanagerimpl.cpp:200
-#, kde-format
-msgid "&Configure Akregator..."
+#, fuzzy, kde-format
+#| msgid "&Configure Akregator..."
+msgid "&Configure Akregator…"
 msgstr "Agordi &Akregator..."
 
 #: src/actions/actionmanagerimpl.cpp:219
@@ -1162,13 +1166,15 @@ msgid "Reload All Tabs"
 msgstr "Reŝargi ĉiujn langetojn"
 
 #: src/actions/actionmanagerimpl.cpp:231
-#, kde-format
-msgid "&Add Feed..."
-msgstr "&Aldoni Fluon..."
+#, fuzzy, kde-format
+#| msgid "Add Feed"
+msgid "&Add Feed…"
+msgstr "Aldoni fluon"
 
 #: src/actions/actionmanagerimpl.cpp:237
-#, kde-format
-msgid "Ne&w Folder..."
+#, fuzzy, kde-format
+#| msgid "Ne&w Folder..."
+msgid "Ne&w Folder…"
 msgstr "No&va dosierujo"
 
 #: src/actions/actionmanagerimpl.cpp:262
@@ -1290,13 +1296,15 @@ msgid "Move Node Right"
 msgstr "Movi nodon dekstren"
 
 #: src/actions/actionmanagerimpl.cpp:422
-#, kde-format
-msgid "Send &Link Address..."
-msgstr "Sendi &Ligilan Adreson..."
+#, fuzzy, kde-format
+#| msgid "Send Link Address"
+msgid "Send &Link Address…"
+msgstr "Sendi ligilan adreson"
 
 #: src/actions/actionmanagerimpl.cpp:427
-#, kde-format
-msgid "Send &File..."
+#, fuzzy, kde-format
+#| msgid "Send &File..."
+msgid "Send &File…"
 msgstr "Sendi &dosieron..."
 
 #: src/actions/actionmanagerimpl.cpp:433
@@ -1410,8 +1418,9 @@ msgid "Speak Text"
 msgstr "Paroli Tekston"
 
 #: src/actions/actionmanagerimpl.cpp:603
-#, kde-format
-msgid "&Find in Message..."
+#, fuzzy, kde-format
+#| msgid "&Find in Message..."
+msgid "&Find in Message…"
 msgstr "&Trovi en Mesaĝo..."
 
 #: src/actions/actionmanagerimpl.cpp:614
@@ -1425,8 +1434,9 @@ msgid "Activate Tab %1"
 msgstr "Aktivigi Langeton %1"
 
 #: src/actions/actionmanagerimpl.cpp:633
-#, kde-format
-msgid "&Save Link As..."
+#, fuzzy, kde-format
+#| msgid "&Save Link As..."
+msgid "&Save Link As…"
 msgstr "&Konservi ligilon kiel ..."
 
 #: src/actions/actionmanagerimpl.cpp:637
@@ -1440,8 +1450,9 @@ msgid "Copy Image Location"
 msgstr "Kopii Bildan Lokon"
 
 #: src/actions/actionmanagerimpl.cpp:647
-#, kde-format
-msgid "Save Image On Disk..."
+#, fuzzy, kde-format
+#| msgid "Save Image On Disk..."
+msgid "Save Image On Disk…"
 msgstr "Konservi Bildon Sur Disko..."
 
 #: src/actions/actions.cpp:19
@@ -1471,8 +1482,9 @@ msgid "Feed not found from %1."
 msgstr "Fluo ne trovita de %1"
 
 #: src/addfeeddialog.cpp:121
-#, kde-format
-msgid "Feed found, downloading..."
+#, fuzzy, kde-format
+#| msgid "Feed found, downloading..."
+msgid "Feed found, downloading…"
 msgstr "Fluo trovita, elŝutanta..."
 
 #: src/akregator_options.h:20 src/akregator_options.h:28
@@ -1802,8 +1814,9 @@ msgstr ""
 "sekurkopion.</qt>"
 
 #: src/command/loadfeedlistcommand.cpp:129
-#, kde-format
-msgid "Opening Feed List..."
+#, fuzzy, kde-format
+#| msgid "Opening Feed List..."
+msgid "Opening Feed List…"
 msgstr "Malfermane fluliston..."
 
 #: src/command/loadfeedlistcommand.cpp:143
@@ -2034,8 +2047,9 @@ msgid "Untitled"
 msgstr "Sentitola"
 
 #: src/frame/frame.cpp:140
-#, kde-format
-msgid "Loading..."
+#, fuzzy, kde-format
+#| msgid "Loading..."
+msgid "Loading…"
 msgstr "Ŝargante..."
 
 #: src/frame/frame.cpp:156
@@ -2110,8 +2124,9 @@ msgid "Networking is not available."
 msgstr "Reto ne estas atingebla."
 
 #: src/mainwidget.cpp:866
-#, kde-format
-msgid "Fetching Feeds..."
+#, fuzzy, kde-format
+#| msgid "Fetching Feeds..."
+msgid "Fetching Feeds…"
 msgstr "Kolektante Fluojn..."
 
 #: src/mainwidget.cpp:1065
@@ -2483,13 +2498,15 @@ msgid "Open In External Browser"
 msgstr "Malfermi en Ekstera Foliumilo"
 
 #: src/widgets/searchbar.cpp:40
-#, kde-format
-msgid "Search articles..."
+#, fuzzy, kde-format
+#| msgid "Search articles..."
+msgid "Search articles…"
 msgstr "Serĉi artikolojn..."
 
 #: src/widgets/searchbar.cpp:112
-#, kde-format
-msgid "Search articles...<%1>"
+#, fuzzy, kde-format
+#| msgid "Search articles...<%1>"
+msgid "Search articles…<%1>"
 msgstr "Serĉi artikolojn...<%1>"
 
 #: src/widgets/statussearchline.cpp:43
@@ -2525,3 +2542,9 @@ msgstr "Grava"
 #, kde-format
 msgid "Filter"
 msgstr "Filtrilo"
+
+#~ msgid "&Add Feed..."
+#~ msgstr "&Aldoni Fluon..."
+
+#~ msgid "Send &Link Address..."
+#~ msgstr "Sendi &Ligilan Adreson..."

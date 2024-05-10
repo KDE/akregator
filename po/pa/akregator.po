@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-05 00:39+0000\n"
+"POT-Creation-Date: 2024-05-10 00:38+0000\n"
 "PO-Revision-Date: 2024-02-11 11:46-0600\n"
 "Last-Translator: A S Alam <aalam@punlinux.org>\n"
 "Language-Team: Punjabi <kde-i18n-doc@kde.org>\n"
@@ -1092,8 +1092,9 @@ msgid "&Delete Feed"
 msgstr "ਫੀਡ ਹਟਾਓ(&D)"
 
 #: src/actions/actionmanagerimpl.cpp:66 src/actions/actionmanagerimpl.cpp:249
-#, kde-format
-msgid "&Edit Feed..."
+#, fuzzy, kde-format
+#| msgid "&Edit Feed..."
+msgid "&Edit Feed…"
 msgstr "ਫੀਡ ਸੋਧ(&E)..."
 
 #: src/actions/actionmanagerimpl.cpp:67 src/actions/actionmanagerimpl.cpp:306
@@ -1122,18 +1123,21 @@ msgid "&Mark Feeds as Read"
 msgstr "ਫੀਡ ਪੜ੍ਹੀ ਮਾਰਕ ਕਰੋ(&M)"
 
 #: src/actions/actionmanagerimpl.cpp:191
-#, kde-format
-msgid "&Import Feeds..."
+#, fuzzy, kde-format
+#| msgid "&Import Feeds..."
+msgid "&Import Feeds…"
 msgstr "ਫੀਡ ਇੰਪੋਰਟ(&I)..."
 
 #: src/actions/actionmanagerimpl.cpp:195
-#, kde-format
-msgid "&Export Feeds..."
+#, fuzzy, kde-format
+#| msgid "&Export Feeds..."
+msgid "&Export Feeds…"
 msgstr "ਫੀਡ ਐਕਸਪੋਰਟ(&E)..."
 
 #: src/actions/actionmanagerimpl.cpp:200
-#, kde-format
-msgid "&Configure Akregator..."
+#, fuzzy, kde-format
+#| msgid "&Configure Akregator..."
+msgid "&Configure Akregator…"
 msgstr "ਐਕਰੀਗੇਟਰ ਸੰਰਚਨਾ(&C)..."
 
 #: src/actions/actionmanagerimpl.cpp:219
@@ -1147,13 +1151,15 @@ msgid "Reload All Tabs"
 msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:231
-#, kde-format
-msgid "&Add Feed..."
-msgstr "ਫੀਡ ਸ਼ਾਮਲ(&A)..."
+#, fuzzy, kde-format
+#| msgid "Add Feed"
+msgid "&Add Feed…"
+msgstr "ਫੀਡ ਸ਼ਾਮਲ"
 
 #: src/actions/actionmanagerimpl.cpp:237
-#, kde-format
-msgid "Ne&w Folder..."
+#, fuzzy, kde-format
+#| msgid "Ne&w Folder..."
+msgid "Ne&w Folder…"
 msgstr "ਨਵਾਂ ਫੋਲਡਰ(&w)..."
 
 #: src/actions/actionmanagerimpl.cpp:262
@@ -1275,13 +1281,15 @@ msgid "Move Node Right"
 msgstr "ਨੋਡ ਸੱਜੇ ਭੇਜੋ"
 
 #: src/actions/actionmanagerimpl.cpp:422
-#, kde-format
-msgid "Send &Link Address..."
-msgstr "ਲਿੰਕ ਐਡਰੈੱਸ ਭੇਜੋ(&L)..."
+#, fuzzy, kde-format
+#| msgid "Send Link Address"
+msgid "Send &Link Address…"
+msgstr "ਲਿੰਕ ਐਡਰੈੱਸ ਭੇਜੋ"
 
 #: src/actions/actionmanagerimpl.cpp:427
-#, kde-format
-msgid "Send &File..."
+#, fuzzy, kde-format
+#| msgid "Send &File..."
+msgid "Send &File…"
 msgstr "ਫਾਇਲ ਭੇਜੋ(&F)..."
 
 #: src/actions/actionmanagerimpl.cpp:433
@@ -1398,7 +1406,7 @@ msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:603
 #, kde-format
-msgid "&Find in Message..."
+msgid "&Find in Message…"
 msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:614
@@ -1412,8 +1420,9 @@ msgid "Activate Tab %1"
 msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:633
-#, kde-format
-msgid "&Save Link As..."
+#, fuzzy, kde-format
+#| msgid "&Save Link As..."
+msgid "&Save Link As…"
 msgstr "ਲਿੰਕ ਇੰਝ ਸੰਭਾਲੋ(&S)...."
 
 #: src/actions/actionmanagerimpl.cpp:637
@@ -1428,7 +1437,7 @@ msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:647
 #, kde-format
-msgid "Save Image On Disk..."
+msgid "Save Image On Disk…"
 msgstr ""
 
 #: src/actions/actions.cpp:19
@@ -1459,8 +1468,9 @@ msgid "Feed not found from %1."
 msgstr "%1 ਤੋਂ ਫੀਡ ਨਹੀਂ ਲੱਭੀ ਜਾ ਸਕੀ।"
 
 #: src/addfeeddialog.cpp:121
-#, kde-format
-msgid "Feed found, downloading..."
+#, fuzzy, kde-format
+#| msgid "Feed found, downloading..."
+msgid "Feed found, downloading…"
 msgstr "ਫੀਡ ਲੱਭੀ, ਡਾਊਨਲੋਡ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ..."
 
 #: src/akregator_options.h:20 src/akregator_options.h:28
@@ -1774,8 +1784,9 @@ msgid ""
 msgstr ""
 
 #: src/command/loadfeedlistcommand.cpp:129
-#, kde-format
-msgid "Opening Feed List..."
+#, fuzzy, kde-format
+#| msgid "Opening Feed List..."
+msgid "Opening Feed List…"
 msgstr "ਫੀਡ ਲਿਸਟ ਖੋਲ੍ਹੀ ਜਾ ਰਹੀ ਹੈ..."
 
 #: src/command/loadfeedlistcommand.cpp:143
@@ -2001,8 +2012,9 @@ msgid "Untitled"
 msgstr "ਬਿਨਾਂ ਨਾਂ"
 
 #: src/frame/frame.cpp:140
-#, kde-format
-msgid "Loading..."
+#, fuzzy, kde-format
+#| msgid "Loading..."
+msgid "Loading…"
 msgstr "ਲੋਡ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ..."
 
 #: src/frame/frame.cpp:156
@@ -2075,8 +2087,9 @@ msgid "Networking is not available."
 msgstr "ਨੈੱਟਵਰਕ ਮੌਜੂਦ ਨਹੀਂ ਹੈ।"
 
 #: src/mainwidget.cpp:866
-#, kde-format
-msgid "Fetching Feeds..."
+#, fuzzy, kde-format
+#| msgid "Fetching Feeds..."
+msgid "Fetching Feeds…"
 msgstr "ਫੀਡ ਲਈ ਜਾ ਰਹੀ ਹੈ..."
 
 #: src/mainwidget.cpp:1065
@@ -2463,13 +2476,13 @@ msgstr "ਬਾਹਰੀ ਬਰਾਊਜ਼ਰ ਵਿੱਚ ਖੋਲ੍ਹੋ"
 #: src/widgets/searchbar.cpp:40
 #, fuzzy, kde-format
 #| msgid " articles"
-msgid "Search articles..."
+msgid "Search articles…"
 msgstr " ਲੇਖ"
 
 #: src/widgets/searchbar.cpp:112
 #, fuzzy, kde-format
 #| msgid " articles"
-msgid "Search articles...<%1>"
+msgid "Search articles…<%1>"
 msgstr " ਲੇਖ"
 
 #: src/widgets/statussearchline.cpp:43
@@ -2508,6 +2521,12 @@ msgstr "ਖਾਸ"
 #| msgid "Text Filter"
 msgid "Filter"
 msgstr "ਟੈਕਸਟ ਫਿਲਟਰ"
+
+#~ msgid "&Add Feed..."
+#~ msgstr "ਫੀਡ ਸ਼ਾਮਲ(&A)..."
+
+#~ msgid "Send &Link Address..."
+#~ msgstr "ਲਿੰਕ ਐਡਰੈੱਸ ਭੇਜੋ(&L)..."
 
 #~ msgid "Advanced Feed Reader Settings"
 #~ msgstr "ਮਾਹਰ ਫੀਡ ਰੀਡਰ ਸੈਟਿੰਗ"

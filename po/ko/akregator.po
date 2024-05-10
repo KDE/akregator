@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdepim\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-05 00:39+0000\n"
+"POT-Creation-Date: 2024-05-10 00:38+0000\n"
 "PO-Revision-Date: 2023-10-08 22:22+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -1094,8 +1094,9 @@ msgid "&Delete Feed"
 msgstr "피드 삭제(&D)"
 
 #: src/actions/actionmanagerimpl.cpp:66 src/actions/actionmanagerimpl.cpp:249
-#, kde-format
-msgid "&Edit Feed..."
+#, fuzzy, kde-format
+#| msgid "&Edit Feed..."
+msgid "&Edit Feed…"
 msgstr "피드 편집(&E)..."
 
 #: src/actions/actionmanagerimpl.cpp:67 src/actions/actionmanagerimpl.cpp:306
@@ -1124,18 +1125,21 @@ msgid "&Mark Feeds as Read"
 msgstr "피드를 읽은 것으로 표시(&M)"
 
 #: src/actions/actionmanagerimpl.cpp:191
-#, kde-format
-msgid "&Import Feeds..."
+#, fuzzy, kde-format
+#| msgid "&Import Feeds..."
+msgid "&Import Feeds…"
 msgstr "피드 가져오기(&I)..."
 
 #: src/actions/actionmanagerimpl.cpp:195
-#, kde-format
-msgid "&Export Feeds..."
+#, fuzzy, kde-format
+#| msgid "&Export Feeds..."
+msgid "&Export Feeds…"
 msgstr "피드 내보내기(&E)..."
 
 #: src/actions/actionmanagerimpl.cpp:200
-#, kde-format
-msgid "&Configure Akregator..."
+#, fuzzy, kde-format
+#| msgid "&Configure Akregator..."
+msgid "&Configure Akregator…"
 msgstr "Akregator 설정(&C)..."
 
 #: src/actions/actionmanagerimpl.cpp:219
@@ -1149,13 +1153,15 @@ msgid "Reload All Tabs"
 msgstr "모든 탭 새로 고침"
 
 #: src/actions/actionmanagerimpl.cpp:231
-#, kde-format
-msgid "&Add Feed..."
-msgstr "피드 추가(&A)..."
+#, fuzzy, kde-format
+#| msgid "Add Feed"
+msgid "&Add Feed…"
+msgstr "피드 추가"
 
 #: src/actions/actionmanagerimpl.cpp:237
-#, kde-format
-msgid "Ne&w Folder..."
+#, fuzzy, kde-format
+#| msgid "Ne&w Folder..."
+msgid "Ne&w Folder…"
 msgstr "새 폴더(&W)..."
 
 #: src/actions/actionmanagerimpl.cpp:262
@@ -1277,13 +1283,15 @@ msgid "Move Node Right"
 msgstr "노드 오른쪽으로 이동"
 
 #: src/actions/actionmanagerimpl.cpp:422
-#, kde-format
-msgid "Send &Link Address..."
-msgstr "링크 주소 보내기(&L)..."
+#, fuzzy, kde-format
+#| msgid "Send Link Address"
+msgid "Send &Link Address…"
+msgstr "링크 주소 보내기"
 
 #: src/actions/actionmanagerimpl.cpp:427
-#, kde-format
-msgid "Send &File..."
+#, fuzzy, kde-format
+#| msgid "Send &File..."
+msgid "Send &File…"
 msgstr "파일 보내기(&F)..."
 
 #: src/actions/actionmanagerimpl.cpp:433
@@ -1397,8 +1405,9 @@ msgid "Speak Text"
 msgstr "텍스트 말하기"
 
 #: src/actions/actionmanagerimpl.cpp:603
-#, kde-format
-msgid "&Find in Message..."
+#, fuzzy, kde-format
+#| msgid "&Find in Message..."
+msgid "&Find in Message…"
 msgstr "메시지에서 찾기(&F)..."
 
 #: src/actions/actionmanagerimpl.cpp:614
@@ -1412,8 +1421,9 @@ msgid "Activate Tab %1"
 msgstr "탭 %1 활성화"
 
 #: src/actions/actionmanagerimpl.cpp:633
-#, kde-format
-msgid "&Save Link As..."
+#, fuzzy, kde-format
+#| msgid "&Save Link As..."
+msgid "&Save Link As…"
 msgstr "다른 이름으로 링크 저장(&S)..."
 
 #: src/actions/actionmanagerimpl.cpp:637
@@ -1427,8 +1437,9 @@ msgid "Copy Image Location"
 msgstr "그림 주소 복사"
 
 #: src/actions/actionmanagerimpl.cpp:647
-#, kde-format
-msgid "Save Image On Disk..."
+#, fuzzy, kde-format
+#| msgid "Save Image On Disk..."
+msgid "Save Image On Disk…"
 msgstr "디스크에 그림 저장..."
 
 #: src/actions/actions.cpp:19
@@ -1458,8 +1469,9 @@ msgid "Feed not found from %1."
 msgstr "%1에서 피드를 찾을 수 없습니다."
 
 #: src/addfeeddialog.cpp:121
-#, kde-format
-msgid "Feed found, downloading..."
+#, fuzzy, kde-format
+#| msgid "Feed found, downloading..."
+msgid "Feed found, downloading…"
 msgstr "피드 찾았음, 다운로드 중..."
 
 #: src/akregator_options.h:20 src/akregator_options.h:28
@@ -1780,8 +1792,9 @@ msgstr ""
 "<qt>표준 피드 목록이 손상되었습니다(잘못된 OPML). 백업할 수 없습니다.</qt>"
 
 #: src/command/loadfeedlistcommand.cpp:129
-#, kde-format
-msgid "Opening Feed List..."
+#, fuzzy, kde-format
+#| msgid "Opening Feed List..."
+msgid "Opening Feed List…"
 msgstr "피드 목록 여는 중..."
 
 #: src/command/loadfeedlistcommand.cpp:143
@@ -2004,8 +2017,9 @@ msgid "Untitled"
 msgstr "제목 없음"
 
 #: src/frame/frame.cpp:140
-#, kde-format
-msgid "Loading..."
+#, fuzzy, kde-format
+#| msgid "Loading..."
+msgid "Loading…"
 msgstr "불러오는 중..."
 
 #: src/frame/frame.cpp:156
@@ -2075,8 +2089,9 @@ msgid "Networking is not available."
 msgstr "네트워크를 사용할 수 없습니다."
 
 #: src/mainwidget.cpp:866
-#, kde-format
-msgid "Fetching Feeds..."
+#, fuzzy, kde-format
+#| msgid "Fetching Feeds..."
+msgid "Fetching Feeds…"
 msgstr "피드 가져오는 중..."
 
 #: src/mainwidget.cpp:1065
@@ -2445,13 +2460,15 @@ msgid "Open In External Browser"
 msgstr "외부 브라우저로 열기"
 
 #: src/widgets/searchbar.cpp:40
-#, kde-format
-msgid "Search articles..."
+#, fuzzy, kde-format
+#| msgid "Search articles..."
+msgid "Search articles…"
 msgstr "글 찾기..."
 
 #: src/widgets/searchbar.cpp:112
-#, kde-format
-msgid "Search articles...<%1>"
+#, fuzzy, kde-format
+#| msgid "Search articles...<%1>"
+msgid "Search articles…<%1>"
 msgstr "글 찾는 중...<%1>"
 
 #: src/widgets/statussearchline.cpp:43
@@ -2487,6 +2504,12 @@ msgstr "중요한 글"
 #, kde-format
 msgid "Filter"
 msgstr "텍스트 필터"
+
+#~ msgid "&Add Feed..."
+#~ msgstr "피드 추가(&A)..."
+
+#~ msgid "Send &Link Address..."
+#~ msgstr "링크 주소 보내기(&L)..."
 
 #~ msgctxt "@title:window"
 #~ msgid "Print Document"

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-05 00:39+0000\n"
+"POT-Creation-Date: 2024-05-10 00:38+0000\n"
 "PO-Revision-Date: 2007-06-12 03:54+0200\n"
 "Last-Translator: Rinse de Vries <rinsedevries@kde.nl>\n"
 "Language-Team: Nederlands <kde-i18n-nl@kde.org>\n"
@@ -1193,8 +1193,9 @@ msgid "&Delete Feed"
 msgstr "Fee&d weismite"
 
 #: src/actions/actionmanagerimpl.cpp:66 src/actions/actionmanagerimpl.cpp:249
-#, kde-format
-msgid "&Edit Feed..."
+#, fuzzy, kde-format
+#| msgid "&Edit Feed..."
+msgid "&Edit Feed…"
 msgstr "Feed b&ewurkje..."
 
 # engelse tekst spreekt van enkelvoud (feed), nl tekst spreekt van meervoud (feeds)
@@ -1225,20 +1226,22 @@ msgid "&Mark Feeds as Read"
 msgstr "Feeds as lêzen &markearje"
 
 #: src/actions/actionmanagerimpl.cpp:191
-#, kde-format
-msgid "&Import Feeds..."
+#, fuzzy, kde-format
+#| msgid "&Import Feeds..."
+msgid "&Import Feeds…"
 msgstr "Feeds &ymportearje..."
 
 #: src/actions/actionmanagerimpl.cpp:195
-#, kde-format
-msgid "&Export Feeds..."
+#, fuzzy, kde-format
+#| msgid "&Export Feeds..."
+msgid "&Export Feeds…"
 msgstr "Feeds &eksportearje..."
 
 # configuregen ipv instellen?
 #: src/actions/actionmanagerimpl.cpp:200
 #, fuzzy, kde-format
 #| msgid "Configure &Akregator..."
-msgid "&Configure Akregator..."
+msgid "&Configure Akregator…"
 msgstr "&Akregator ynstelle..."
 
 #: src/actions/actionmanagerimpl.cpp:219
@@ -1252,13 +1255,15 @@ msgid "Reload All Tabs"
 msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:231
-#, kde-format
-msgid "&Add Feed..."
-msgstr "Feed &taheakje..."
+#, fuzzy, kde-format
+#| msgid "Add Feed"
+msgid "&Add Feed…"
+msgstr "Feed tafoegje"
 
 #: src/actions/actionmanagerimpl.cpp:237
-#, kde-format
-msgid "Ne&w Folder..."
+#, fuzzy, kde-format
+#| msgid "Ne&w Folder..."
+msgid "Ne&w Folder…"
 msgstr "&Nije map..."
 
 #: src/actions/actionmanagerimpl.cpp:262
@@ -1388,13 +1393,15 @@ msgid "Move Node Right"
 msgstr "Knooppunt nei rjochts ferpleatse"
 
 #: src/actions/actionmanagerimpl.cpp:422
-#, kde-format
-msgid "Send &Link Address..."
+#, fuzzy, kde-format
+#| msgid "Send &Link Address..."
+msgid "Send &Link Address…"
 msgstr "Keppe&lingsadres ferstjoere..."
 
 #: src/actions/actionmanagerimpl.cpp:427
-#, kde-format
-msgid "Send &File..."
+#, fuzzy, kde-format
+#| msgid "Send &File..."
+msgid "Send &File…"
 msgstr "Triem &ferstjoere..."
 
 #: src/actions/actionmanagerimpl.cpp:433
@@ -1512,7 +1519,7 @@ msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:603
 #, kde-format
-msgid "&Find in Message..."
+msgid "&Find in Message…"
 msgstr ""
 
 #
@@ -1528,8 +1535,9 @@ msgid "Activate Tab %1"
 msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:633
-#, kde-format
-msgid "&Save Link As..."
+#, fuzzy, kde-format
+#| msgid "&Save Link As..."
+msgid "&Save Link As…"
 msgstr "Keppeling op&slaan as..."
 
 #: src/actions/actionmanagerimpl.cpp:637
@@ -1544,7 +1552,7 @@ msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:647
 #, kde-format
-msgid "Save Image On Disk..."
+msgid "Save Image On Disk…"
 msgstr ""
 
 #: src/actions/actions.cpp:19
@@ -1577,8 +1585,9 @@ msgid "Feed not found from %1."
 msgstr "Gjin feed fûn op %1."
 
 #: src/addfeeddialog.cpp:121
-#, kde-format
-msgid "Feed found, downloading..."
+#, fuzzy, kde-format
+#| msgid "Feed found, downloading..."
+msgid "Feed found, downloading…"
 msgstr "Feed fûn, dwaande mei downloaden..."
 
 #: src/akregator_options.h:20 src/akregator_options.h:28
@@ -1944,8 +1953,9 @@ msgstr ""
 "oanmakke:<p><b>%2</b></p></qt>"
 
 #: src/command/loadfeedlistcommand.cpp:129
-#, kde-format
-msgid "Opening Feed List..."
+#, fuzzy, kde-format
+#| msgid "Opening Feed List..."
+msgid "Opening Feed List…"
 msgstr "Feedlist wurdt iepene..."
 
 #: src/command/loadfeedlistcommand.cpp:143
@@ -2205,8 +2215,9 @@ msgid "Untitled"
 msgstr ""
 
 #: src/frame/frame.cpp:140
-#, kde-format
-msgid "Loading..."
+#, fuzzy, kde-format
+#| msgid "Loading..."
+msgid "Loading…"
 msgstr "Dwaande mei laden..."
 
 #: src/frame/frame.cpp:156
@@ -2284,8 +2295,9 @@ msgid "Networking is not available."
 msgstr ""
 
 #: src/mainwidget.cpp:866
-#, kde-format
-msgid "Fetching Feeds..."
+#, fuzzy, kde-format
+#| msgid "Fetching Feeds..."
+msgid "Fetching Feeds…"
 msgstr "Feeds wurde ymportearre..."
 
 #: src/mainwidget.cpp:1065
@@ -2695,13 +2707,13 @@ msgstr "Iepenje yn eksterne blêder"
 #: src/widgets/searchbar.cpp:40
 #, fuzzy, kde-format
 #| msgid " articles"
-msgid "Search articles..."
+msgid "Search articles…"
 msgstr " artikels"
 
 #: src/widgets/searchbar.cpp:112
 #, fuzzy, kde-format
 #| msgid " articles"
-msgid "Search articles...<%1>"
+msgid "Search articles…<%1>"
 msgstr " artikels"
 
 #: src/widgets/statussearchline.cpp:43
@@ -2744,6 +2756,12 @@ msgstr "Wichtich"
 #| msgid "Text Filter"
 msgid "Filter"
 msgstr "Tekstfilter"
+
+#~ msgid "&Add Feed..."
+#~ msgstr "Feed &taheakje..."
+
+#~ msgid "Send &Link Address..."
+#~ msgstr "Keppe&lingsadres ferstjoere..."
 
 #, fuzzy
 #~| msgid "Concurrent Fetches"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-05 00:39+0000\n"
+"POT-Creation-Date: 2024-05-10 00:38+0000\n"
 "PO-Revision-Date: 2023-10-03 10:18+0200\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: \n"
@@ -1111,8 +1111,9 @@ msgid "&Delete Feed"
 msgstr "&Изтриване на емисия"
 
 #: src/actions/actionmanagerimpl.cpp:66 src/actions/actionmanagerimpl.cpp:249
-#, kde-format
-msgid "&Edit Feed..."
+#, fuzzy, kde-format
+#| msgid "&Edit Feed..."
+msgid "&Edit Feed…"
 msgstr "&Редактиране на емисия..."
 
 #: src/actions/actionmanagerimpl.cpp:67 src/actions/actionmanagerimpl.cpp:306
@@ -1141,18 +1142,21 @@ msgid "&Mark Feeds as Read"
 msgstr "М&аркиране на емисиите като прочетени"
 
 #: src/actions/actionmanagerimpl.cpp:191
-#, kde-format
-msgid "&Import Feeds..."
+#, fuzzy, kde-format
+#| msgid "&Import Feeds..."
+msgid "&Import Feeds…"
 msgstr "И&мпортиране на емисии..."
 
 #: src/actions/actionmanagerimpl.cpp:195
-#, kde-format
-msgid "&Export Feeds..."
+#, fuzzy, kde-format
+#| msgid "&Export Feeds..."
+msgid "&Export Feeds…"
 msgstr "&Експортиране на емисии..."
 
 #: src/actions/actionmanagerimpl.cpp:200
-#, kde-format
-msgid "&Configure Akregator..."
+#, fuzzy, kde-format
+#| msgid "&Configure Akregator..."
+msgid "&Configure Akregator…"
 msgstr "&Конфигуриране на Akregator..."
 
 #: src/actions/actionmanagerimpl.cpp:219
@@ -1166,13 +1170,15 @@ msgid "Reload All Tabs"
 msgstr "Презареждане на всички раздели"
 
 #: src/actions/actionmanagerimpl.cpp:231
-#, kde-format
-msgid "&Add Feed..."
-msgstr "До&бавяне на емисия..."
+#, fuzzy, kde-format
+#| msgid "Add Feed"
+msgid "&Add Feed…"
+msgstr "Добавяне на емисия"
 
 #: src/actions/actionmanagerimpl.cpp:237
-#, kde-format
-msgid "Ne&w Folder..."
+#, fuzzy, kde-format
+#| msgid "Ne&w Folder..."
+msgid "Ne&w Folder…"
 msgstr "&Нова папка..."
 
 #: src/actions/actionmanagerimpl.cpp:262
@@ -1294,13 +1300,15 @@ msgid "Move Node Right"
 msgstr "Преместване на възел надясно"
 
 #: src/actions/actionmanagerimpl.cpp:422
-#, kde-format
-msgid "Send &Link Address..."
-msgstr "Изпращане на &адрес на връзката..."
+#, fuzzy, kde-format
+#| msgid "Send Link Address"
+msgid "Send &Link Address…"
+msgstr "Изпращане на адрес за връзка"
 
 #: src/actions/actionmanagerimpl.cpp:427
-#, kde-format
-msgid "Send &File..."
+#, fuzzy, kde-format
+#| msgid "Send &File..."
+msgid "Send &File…"
 msgstr "Изпращане на &файл..."
 
 #: src/actions/actionmanagerimpl.cpp:433
@@ -1414,8 +1422,9 @@ msgid "Speak Text"
 msgstr "Изговаряне на текст"
 
 #: src/actions/actionmanagerimpl.cpp:603
-#, kde-format
-msgid "&Find in Message..."
+#, fuzzy, kde-format
+#| msgid "&Find in Message..."
+msgid "&Find in Message…"
 msgstr "Тър&сене в съобщение..."
 
 #: src/actions/actionmanagerimpl.cpp:614
@@ -1429,8 +1438,9 @@ msgid "Activate Tab %1"
 msgstr "Активиране на раздел %1"
 
 #: src/actions/actionmanagerimpl.cpp:633
-#, kde-format
-msgid "&Save Link As..."
+#, fuzzy, kde-format
+#| msgid "&Save Link As..."
+msgid "&Save Link As…"
 msgstr "&Запазване на връзка като..."
 
 #: src/actions/actionmanagerimpl.cpp:637
@@ -1444,8 +1454,9 @@ msgid "Copy Image Location"
 msgstr "Копиране на местоположението на изображението"
 
 #: src/actions/actionmanagerimpl.cpp:647
-#, kde-format
-msgid "Save Image On Disk..."
+#, fuzzy, kde-format
+#| msgid "Save Image On Disk..."
+msgid "Save Image On Disk…"
 msgstr "Запазване на изображението на диска..."
 
 #: src/actions/actions.cpp:19
@@ -1475,8 +1486,9 @@ msgid "Feed not found from %1."
 msgstr "Не са намерени емисии от %1."
 
 #: src/addfeeddialog.cpp:121
-#, kde-format
-msgid "Feed found, downloading..."
+#, fuzzy, kde-format
+#| msgid "Feed found, downloading..."
+msgid "Feed found, downloading…"
 msgstr "Намерени са емисии, изтегляне..."
 
 #: src/akregator_options.h:20 src/akregator_options.h:28
@@ -1809,8 +1821,9 @@ msgstr ""
 "създаде резервно копие. </qt>"
 
 #: src/command/loadfeedlistcommand.cpp:129
-#, kde-format
-msgid "Opening Feed List..."
+#, fuzzy, kde-format
+#| msgid "Opening Feed List..."
+msgid "Opening Feed List…"
 msgstr "Отваряне на списък с емисии..."
 
 #: src/command/loadfeedlistcommand.cpp:143
@@ -2043,8 +2056,9 @@ msgid "Untitled"
 msgstr "Неозаглавен"
 
 #: src/frame/frame.cpp:140
-#, kde-format
-msgid "Loading..."
+#, fuzzy, kde-format
+#| msgid "Loading..."
+msgid "Loading…"
 msgstr "Зареждане..."
 
 #: src/frame/frame.cpp:156
@@ -2122,8 +2136,9 @@ msgid "Networking is not available."
 msgstr "Мрежата не е налична."
 
 #: src/mainwidget.cpp:866
-#, kde-format
-msgid "Fetching Feeds..."
+#, fuzzy, kde-format
+#| msgid "Fetching Feeds..."
+msgid "Fetching Feeds…"
 msgstr "Изтегляне на емисии..."
 
 #: src/mainwidget.cpp:1065
@@ -2494,13 +2509,15 @@ msgid "Open In External Browser"
 msgstr "Отваряне във външен браузър"
 
 #: src/widgets/searchbar.cpp:40
-#, kde-format
-msgid "Search articles..."
+#, fuzzy, kde-format
+#| msgid "Search articles..."
+msgid "Search articles…"
 msgstr "Търсене на статии..."
 
 #: src/widgets/searchbar.cpp:112
-#, kde-format
-msgid "Search articles...<%1>"
+#, fuzzy, kde-format
+#| msgid "Search articles...<%1>"
+msgid "Search articles…<%1>"
 msgstr "Търсене на статии... <%1>"
 
 #: src/widgets/statussearchline.cpp:43
@@ -2536,3 +2553,9 @@ msgstr "Важно"
 #, kde-format
 msgid "Filter"
 msgstr "Филтър"
+
+#~ msgid "&Add Feed..."
+#~ msgstr "До&бавяне на емисия..."
+
+#~ msgid "Send &Link Address..."
+#~ msgstr "Изпращане на &адрес на връзката..."

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-05 00:39+0000\n"
+"POT-Creation-Date: 2024-05-10 00:38+0000\n"
 "PO-Revision-Date: 2012-01-12 17:34+0330\n"
 "Last-Translator: Mohammad Reza Mirdamadi <mohi@ubuntu.ir>\n"
 "Language-Team: Farsi (Persian) <>\n"
@@ -1133,8 +1133,9 @@ msgid "&Delete Feed"
 msgstr "&حذف خوراندن‌"
 
 #: src/actions/actionmanagerimpl.cpp:66 src/actions/actionmanagerimpl.cpp:249
-#, kde-format
-msgid "&Edit Feed..."
+#, fuzzy, kde-format
+#| msgid "&Edit Feed..."
+msgid "&Edit Feed…"
 msgstr "&ویرایش خوراندن...‌"
 
 #: src/actions/actionmanagerimpl.cpp:67 src/actions/actionmanagerimpl.cpp:306
@@ -1163,19 +1164,21 @@ msgid "&Mark Feeds as Read"
 msgstr "&نشان‌دار کردن خوراندنها به عنوان خوانده‌شده‌"
 
 #: src/actions/actionmanagerimpl.cpp:191
-#, kde-format
-msgid "&Import Feeds..."
+#, fuzzy, kde-format
+#| msgid "&Import Feeds..."
+msgid "&Import Feeds…"
 msgstr "&واردات خوراندنها...‌"
 
 #: src/actions/actionmanagerimpl.cpp:195
-#, kde-format
-msgid "&Export Feeds..."
+#, fuzzy, kde-format
+#| msgid "&Export Feeds..."
+msgid "&Export Feeds…"
 msgstr "&صادرات خوراندنها...‌"
 
 #: src/actions/actionmanagerimpl.cpp:200
 #, fuzzy, kde-format
 #| msgid "Configure &Akregator..."
-msgid "&Configure Akregator..."
+msgid "&Configure Akregator…"
 msgstr "پیکربندی &Akregator...‌"
 
 #: src/actions/actionmanagerimpl.cpp:219
@@ -1189,13 +1192,15 @@ msgid "Reload All Tabs"
 msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:231
-#, kde-format
-msgid "&Add Feed..."
-msgstr "&افزودن خوراندن...‌"
+#, fuzzy, kde-format
+#| msgid "Add Feed"
+msgid "&Add Feed…"
+msgstr "افزودن خوراندن"
 
 #: src/actions/actionmanagerimpl.cpp:237
-#, kde-format
-msgid "Ne&w Folder..."
+#, fuzzy, kde-format
+#| msgid "Ne&w Folder..."
+msgid "Ne&w Folder…"
 msgstr "پوشه &جدید...‌"
 
 #: src/actions/actionmanagerimpl.cpp:262
@@ -1319,13 +1324,15 @@ msgid "Move Node Right"
 msgstr "حرکت گره به راست"
 
 #: src/actions/actionmanagerimpl.cpp:422
-#, kde-format
-msgid "Send &Link Address..."
+#, fuzzy, kde-format
+#| msgid "Send &Link Address..."
+msgid "Send &Link Address…"
 msgstr "ارسال نشانی &پیوند...‌"
 
 #: src/actions/actionmanagerimpl.cpp:427
-#, kde-format
-msgid "Send &File..."
+#, fuzzy, kde-format
+#| msgid "Send &File..."
+msgid "Send &File…"
 msgstr "ارسال &پرونده...‌"
 
 #: src/actions/actionmanagerimpl.cpp:433
@@ -1442,7 +1449,7 @@ msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:603
 #, kde-format
-msgid "&Find in Message..."
+msgid "&Find in Message…"
 msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:614
@@ -1457,8 +1464,9 @@ msgid "Activate Tab %1"
 msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:633
-#, kde-format
-msgid "&Save Link As..."
+#, fuzzy, kde-format
+#| msgid "&Save Link As..."
+msgid "&Save Link As…"
 msgstr "&ذخیره پیوند به عنوان...‌"
 
 #: src/actions/actionmanagerimpl.cpp:637
@@ -1473,7 +1481,7 @@ msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:647
 #, kde-format
-msgid "Save Image On Disk..."
+msgid "Save Image On Disk…"
 msgstr ""
 
 #: src/actions/actions.cpp:19
@@ -1504,8 +1512,9 @@ msgid "Feed not found from %1."
 msgstr "خوراندن از %1 یافت نشد."
 
 #: src/addfeeddialog.cpp:121
-#, kde-format
-msgid "Feed found, downloading..."
+#, fuzzy, kde-format
+#| msgid "Feed found, downloading..."
+msgid "Feed found, downloading…"
 msgstr "خوراندن یافت شد، بارگیری..."
 
 #: src/akregator_options.h:20 src/akregator_options.h:28
@@ -1859,8 +1868,9 @@ msgstr ""
 "<p><b>%1</b></p></qt>"
 
 #: src/command/loadfeedlistcommand.cpp:129
-#, kde-format
-msgid "Opening Feed List..."
+#, fuzzy, kde-format
+#| msgid "Opening Feed List..."
+msgid "Opening Feed List…"
 msgstr "باز کردن فهرست خوراندن..."
 
 #: src/command/loadfeedlistcommand.cpp:143
@@ -2104,8 +2114,9 @@ msgid "Untitled"
 msgstr "بدون عنوان"
 
 #: src/frame/frame.cpp:140
-#, kde-format
-msgid "Loading..."
+#, fuzzy, kde-format
+#| msgid "Loading..."
+msgid "Loading…"
 msgstr "در حال بارگذاری..."
 
 #: src/frame/frame.cpp:156
@@ -2180,8 +2191,9 @@ msgid "Networking is not available."
 msgstr ""
 
 #: src/mainwidget.cpp:866
-#, kde-format
-msgid "Fetching Feeds..."
+#, fuzzy, kde-format
+#| msgid "Fetching Feeds..."
+msgid "Fetching Feeds…"
 msgstr "واکشی خوراندنها..."
 
 #: src/mainwidget.cpp:1065
@@ -2577,13 +2589,13 @@ msgstr "باز کردن در مرورگر خارجی"
 #: src/widgets/searchbar.cpp:40
 #, fuzzy, kde-format
 #| msgid " articles"
-msgid "Search articles..."
+msgid "Search articles…"
 msgstr " مقاله"
 
 #: src/widgets/searchbar.cpp:112
 #, fuzzy, kde-format
 #| msgid " articles"
-msgid "Search articles...<%1>"
+msgid "Search articles…<%1>"
 msgstr " مقاله"
 
 #: src/widgets/statussearchline.cpp:43
@@ -2624,6 +2636,12 @@ msgstr "مهم"
 #| msgid "Show Quick Filter"
 msgid "Filter"
 msgstr "نمایش پالایه سریع"
+
+#~ msgid "&Add Feed..."
+#~ msgstr "&افزودن خوراندن...‌"
+
+#~ msgid "Send &Link Address..."
+#~ msgstr "ارسال نشانی &پیوند...‌"
 
 #~ msgid "(c), 2004 - 2008 Frank Osterfeld"
 #~ msgstr "(c), 2004 - 2008 Frank Osterfeld"

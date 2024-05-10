@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-05 00:39+0000\n"
+"POT-Creation-Date: 2024-05-10 00:38+0000\n"
 "PO-Revision-Date: 2018-01-06 09:21+0100\n"
 "Last-Translator: Chusslove Illich <caslav.ilic@gmx.net>\n"
 "Language-Team: Serbian <kde-i18n-sr@kde.org>\n"
@@ -1139,8 +1139,9 @@ msgid "&Delete Feed"
 msgstr "O&briši dovod"
 
 #: src/actions/actionmanagerimpl.cpp:66 src/actions/actionmanagerimpl.cpp:249
-#, kde-format
-msgid "&Edit Feed..."
+#, fuzzy, kde-format
+#| msgid "&Edit Feed..."
+msgid "&Edit Feed…"
 msgstr "&Uredi dovod..."
 
 #: src/actions/actionmanagerimpl.cpp:67 src/actions/actionmanagerimpl.cpp:306
@@ -1169,18 +1170,21 @@ msgid "&Mark Feeds as Read"
 msgstr "&Označi dovode kao pročitane"
 
 #: src/actions/actionmanagerimpl.cpp:191
-#, kde-format
-msgid "&Import Feeds..."
+#, fuzzy, kde-format
+#| msgid "&Import Feeds..."
+msgid "&Import Feeds…"
 msgstr "&Uvezi dovode..."
 
 #: src/actions/actionmanagerimpl.cpp:195
-#, kde-format
-msgid "&Export Feeds..."
+#, fuzzy, kde-format
+#| msgid "&Export Feeds..."
+msgid "&Export Feeds…"
 msgstr "&Izvezi dovode..."
 
 #: src/actions/actionmanagerimpl.cpp:200
-#, kde-format
-msgid "&Configure Akregator..."
+#, fuzzy, kde-format
+#| msgid "&Configure Akregator..."
+msgid "&Configure Akregator…"
 msgstr "&Podesi Akregator..."
 
 #: src/actions/actionmanagerimpl.cpp:219
@@ -1194,13 +1198,15 @@ msgid "Reload All Tabs"
 msgstr "Ponovo učitaj sve jezičke"
 
 #: src/actions/actionmanagerimpl.cpp:231
-#, kde-format
-msgid "&Add Feed..."
-msgstr "&Dodaj dovod..."
+#, fuzzy, kde-format
+#| msgid "Add Feed"
+msgid "&Add Feed…"
+msgstr "Dodavanje dovoda"
 
 #: src/actions/actionmanagerimpl.cpp:237
-#, kde-format
-msgid "Ne&w Folder..."
+#, fuzzy, kde-format
+#| msgid "Ne&w Folder..."
+msgid "Ne&w Folder…"
 msgstr "No&va fascikla..."
 
 #: src/actions/actionmanagerimpl.cpp:262
@@ -1322,13 +1328,15 @@ msgid "Move Node Right"
 msgstr "Pomeri čvor udesno"
 
 #: src/actions/actionmanagerimpl.cpp:422
-#, kde-format
-msgid "Send &Link Address..."
-msgstr "Pošalji &adresu veze..."
+#, fuzzy, kde-format
+#| msgid "Send Link Address"
+msgid "Send &Link Address…"
+msgstr "Pošalji adresu veze..."
 
 #: src/actions/actionmanagerimpl.cpp:427
-#, kde-format
-msgid "Send &File..."
+#, fuzzy, kde-format
+#| msgid "Send &File..."
+msgid "Send &File…"
 msgstr "Pošalji &fajl..."
 
 #: src/actions/actionmanagerimpl.cpp:433
@@ -1442,8 +1450,9 @@ msgid "Speak Text"
 msgstr "Izgovori tekst"
 
 #: src/actions/actionmanagerimpl.cpp:603
-#, kde-format
-msgid "&Find in Message..."
+#, fuzzy, kde-format
+#| msgid "&Find in Message..."
+msgid "&Find in Message…"
 msgstr "&Pronađi u poruci..."
 
 #: src/actions/actionmanagerimpl.cpp:614
@@ -1457,8 +1466,9 @@ msgid "Activate Tab %1"
 msgstr "Aktiviraj jezičak %1"
 
 #: src/actions/actionmanagerimpl.cpp:633
-#, kde-format
-msgid "&Save Link As..."
+#, fuzzy, kde-format
+#| msgid "&Save Link As..."
+msgid "&Save Link As…"
 msgstr "&Sačuvaj vezu kao..."
 
 #: src/actions/actionmanagerimpl.cpp:637
@@ -1472,8 +1482,9 @@ msgid "Copy Image Location"
 msgstr "Kopiraj lokaciju slike"
 
 #: src/actions/actionmanagerimpl.cpp:647
-#, kde-format
-msgid "Save Image On Disk..."
+#, fuzzy, kde-format
+#| msgid "Save Image On Disk..."
+msgid "Save Image On Disk…"
 msgstr "Sačuvaj sliku na disk..."
 
 #: src/actions/actions.cpp:19
@@ -1506,8 +1517,9 @@ msgid "Feed not found from %1."
 msgstr "Dovod nije pronađen na %1."
 
 #: src/addfeeddialog.cpp:121
-#, kde-format
-msgid "Feed found, downloading..."
+#, fuzzy, kde-format
+#| msgid "Feed found, downloading..."
+msgid "Feed found, downloading…"
 msgstr "Dovod pronađen, preuzimam..."
 
 #: src/akregator_options.h:20 src/akregator_options.h:28
@@ -1863,8 +1875,9 @@ msgstr ""
 "rezervu.</qt>"
 
 #: src/command/loadfeedlistcommand.cpp:129
-#, kde-format
-msgid "Opening Feed List..."
+#, fuzzy, kde-format
+#| msgid "Opening Feed List..."
+msgid "Opening Feed List…"
 msgstr "Otvaram listu dovoda..."
 
 #: src/command/loadfeedlistcommand.cpp:143
@@ -2114,8 +2127,9 @@ msgid "Untitled"
 msgstr "Bez naslova"
 
 #: src/frame/frame.cpp:140
-#, kde-format
-msgid "Loading..."
+#, fuzzy, kde-format
+#| msgid "Loading..."
+msgid "Loading…"
 msgstr "Učitavam..."
 
 #: src/frame/frame.cpp:156
@@ -2191,8 +2205,9 @@ msgid "Networking is not available."
 msgstr "Mreža nije dostupna."
 
 #: src/mainwidget.cpp:866
-#, kde-format
-msgid "Fetching Feeds..."
+#, fuzzy, kde-format
+#| msgid "Fetching Feeds..."
+msgid "Fetching Feeds…"
 msgstr "Očitavam dovode..."
 
 #: src/mainwidget.cpp:1065
@@ -2571,13 +2586,15 @@ msgid "Open In External Browser"
 msgstr "Otvori u spoljašnjem pregledaču"
 
 #: src/widgets/searchbar.cpp:40
-#, kde-format
-msgid "Search articles..."
+#, fuzzy, kde-format
+#| msgid "Search articles..."
+msgid "Search articles…"
 msgstr "Pretraži članke..."
 
 #: src/widgets/searchbar.cpp:112
-#, kde-format
-msgid "Search articles...<%1>"
+#, fuzzy, kde-format
+#| msgid "Search articles...<%1>"
+msgid "Search articles…<%1>"
 msgstr "Pretraži članke...<%1>"
 
 #: src/widgets/statussearchline.cpp:43
@@ -2616,6 +2633,12 @@ msgstr "Važni"
 #| msgid "Text Filter"
 msgid "Filter"
 msgstr "Filter teksta"
+
+#~ msgid "&Add Feed..."
+#~ msgstr "&Dodaj dovod..."
+
+#~ msgid "Send &Link Address..."
+#~ msgstr "Pošalji &adresu veze..."
 
 # >> @title
 #~ msgid "Advanced Feed Reader Settings"

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-05 00:39+0000\n"
+"POT-Creation-Date: 2024-05-10 00:38+0000\n"
 "PO-Revision-Date: 2023-10-07 12:22+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Galician <proxecto@trasno.gal>\n"
@@ -1115,8 +1115,9 @@ msgid "&Delete Feed"
 msgstr "Elimina&r a fonte"
 
 #: src/actions/actionmanagerimpl.cpp:66 src/actions/actionmanagerimpl.cpp:249
-#, kde-format
-msgid "&Edit Feed..."
+#, fuzzy, kde-format
+#| msgid "&Edit Feed..."
+msgid "&Edit Feed…"
 msgstr "&Editar a fonte…"
 
 #: src/actions/actionmanagerimpl.cpp:67 src/actions/actionmanagerimpl.cpp:306
@@ -1145,18 +1146,21 @@ msgid "&Mark Feeds as Read"
 msgstr "&Marcar as fontes como lidas"
 
 #: src/actions/actionmanagerimpl.cpp:191
-#, kde-format
-msgid "&Import Feeds..."
+#, fuzzy, kde-format
+#| msgid "&Import Feeds..."
+msgid "&Import Feeds…"
 msgstr "&Importar fontes…"
 
 #: src/actions/actionmanagerimpl.cpp:195
-#, kde-format
-msgid "&Export Feeds..."
+#, fuzzy, kde-format
+#| msgid "&Export Feeds..."
+msgid "&Export Feeds…"
 msgstr "&Exportar fontes…"
 
 #: src/actions/actionmanagerimpl.cpp:200
-#, kde-format
-msgid "&Configure Akregator..."
+#, fuzzy, kde-format
+#| msgid "&Configure Akregator..."
+msgid "&Configure Akregator…"
 msgstr "Configurar o &Akregator…"
 
 #: src/actions/actionmanagerimpl.cpp:219
@@ -1170,13 +1174,15 @@ msgid "Reload All Tabs"
 msgstr "Recargar todas as lapelas"
 
 #: src/actions/actionmanagerimpl.cpp:231
-#, kde-format
-msgid "&Add Feed..."
-msgstr "Eng&adir unha fonte…"
+#, fuzzy, kde-format
+#| msgid "Add Feed"
+msgid "&Add Feed…"
+msgstr "Engadir unha fonte"
 
 #: src/actions/actionmanagerimpl.cpp:237
-#, kde-format
-msgid "Ne&w Folder..."
+#, fuzzy, kde-format
+#| msgid "Ne&w Folder..."
+msgid "Ne&w Folder…"
 msgstr "No&vo cartafol…"
 
 #: src/actions/actionmanagerimpl.cpp:262
@@ -1298,13 +1304,15 @@ msgid "Move Node Right"
 msgstr "Mover o nodo cara á dereita"
 
 #: src/actions/actionmanagerimpl.cpp:422
-#, kde-format
-msgid "Send &Link Address..."
-msgstr "Enviar o enderezo da &ligazón…"
+#, fuzzy, kde-format
+#| msgid "Send Link Address"
+msgid "Send &Link Address…"
+msgstr "Enviar o enderezo da ligazón"
 
 #: src/actions/actionmanagerimpl.cpp:427
-#, kde-format
-msgid "Send &File..."
+#, fuzzy, kde-format
+#| msgid "Send &File..."
+msgid "Send &File…"
 msgstr "Enviar un &ficheiro…"
 
 #: src/actions/actionmanagerimpl.cpp:433
@@ -1418,8 +1426,9 @@ msgid "Speak Text"
 msgstr "Ler o texto"
 
 #: src/actions/actionmanagerimpl.cpp:603
-#, kde-format
-msgid "&Find in Message..."
+#, fuzzy, kde-format
+#| msgid "&Find in Message..."
+msgid "&Find in Message…"
 msgstr "&Atopar na mensaxe…"
 
 #: src/actions/actionmanagerimpl.cpp:614
@@ -1433,8 +1442,9 @@ msgid "Activate Tab %1"
 msgstr "Activar a lapela %1"
 
 #: src/actions/actionmanagerimpl.cpp:633
-#, kde-format
-msgid "&Save Link As..."
+#, fuzzy, kde-format
+#| msgid "&Save Link As..."
+msgid "&Save Link As…"
 msgstr "&Gardar a ligazón como…"
 
 #: src/actions/actionmanagerimpl.cpp:637
@@ -1448,8 +1458,9 @@ msgid "Copy Image Location"
 msgstr "Copiar o lugar onde está a imaxe"
 
 #: src/actions/actionmanagerimpl.cpp:647
-#, kde-format
-msgid "Save Image On Disk..."
+#, fuzzy, kde-format
+#| msgid "Save Image On Disk..."
+msgid "Save Image On Disk…"
 msgstr "Gardar unha imaxe nun disco…"
 
 #: src/actions/actions.cpp:19
@@ -1479,8 +1490,9 @@ msgid "Feed not found from %1."
 msgstr "Non se atopou a fonte de %1."
 
 #: src/addfeeddialog.cpp:121
-#, kde-format
-msgid "Feed found, downloading..."
+#, fuzzy, kde-format
+#| msgid "Feed found, downloading..."
+msgid "Feed found, downloading…"
 msgstr "Atopouse a fonte, descargándoa…"
 
 #: src/akregator_options.h:20 src/akregator_options.h:28
@@ -1811,8 +1823,9 @@ msgstr ""
 "posíbel crear unha salvagarda.</qt>"
 
 #: src/command/loadfeedlistcommand.cpp:129
-#, kde-format
-msgid "Opening Feed List..."
+#, fuzzy, kde-format
+#| msgid "Opening Feed List..."
+msgid "Opening Feed List…"
 msgstr "Abrindo a lista de fontes…"
 
 #: src/command/loadfeedlistcommand.cpp:143
@@ -2045,8 +2058,9 @@ msgid "Untitled"
 msgstr "Sen título"
 
 #: src/frame/frame.cpp:140
-#, kde-format
-msgid "Loading..."
+#, fuzzy, kde-format
+#| msgid "Loading..."
+msgid "Loading…"
 msgstr "Cargando…"
 
 #: src/frame/frame.cpp:156
@@ -2119,8 +2133,9 @@ msgid "Networking is not available."
 msgstr "A rede non está dispoñíbel."
 
 #: src/mainwidget.cpp:866
-#, kde-format
-msgid "Fetching Feeds..."
+#, fuzzy, kde-format
+#| msgid "Fetching Feeds..."
+msgid "Fetching Feeds…"
 msgstr "Estanse a obter as fontes…"
 
 #: src/mainwidget.cpp:1065
@@ -2490,13 +2505,15 @@ msgid "Open In External Browser"
 msgstr "Abrir nun navegador externo"
 
 #: src/widgets/searchbar.cpp:40
-#, kde-format
-msgid "Search articles..."
+#, fuzzy, kde-format
+#| msgid "Search articles..."
+msgid "Search articles…"
 msgstr "Buscar nos artigos…"
 
 #: src/widgets/searchbar.cpp:112
-#, kde-format
-msgid "Search articles...<%1>"
+#, fuzzy, kde-format
+#| msgid "Search articles...<%1>"
+msgid "Search articles…<%1>"
 msgstr "Buscar nos artigos… <%1>"
 
 #: src/widgets/statussearchline.cpp:43
@@ -2532,6 +2549,12 @@ msgstr "Importante"
 #, kde-format
 msgid "Filter"
 msgstr "Filtrar"
+
+#~ msgid "&Add Feed..."
+#~ msgstr "Eng&adir unha fonte…"
+
+#~ msgid "Send &Link Address..."
+#~ msgstr "Enviar o enderezo da &ligazón…"
 
 #~ msgctxt "@title:window"
 #~ msgid "Print Document"

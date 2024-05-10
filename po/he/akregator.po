@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-05 00:39+0000\n"
+"POT-Creation-Date: 2024-05-10 00:38+0000\n"
 "PO-Revision-Date: 2024-01-06 14:06+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
@@ -1110,8 +1110,9 @@ msgid "&Delete Feed"
 msgstr "מ&חיקת ערוץ"
 
 #: src/actions/actionmanagerimpl.cpp:66 src/actions/actionmanagerimpl.cpp:249
-#, kde-format
-msgid "&Edit Feed..."
+#, fuzzy, kde-format
+#| msgid "&Edit Feed..."
+msgid "&Edit Feed…"
 msgstr "&עריכת ערוץ…"
 
 #: src/actions/actionmanagerimpl.cpp:67 src/actions/actionmanagerimpl.cpp:306
@@ -1140,18 +1141,21 @@ msgid "&Mark Feeds as Read"
 msgstr "&סימון ערוצים כנקראו"
 
 #: src/actions/actionmanagerimpl.cpp:191
-#, kde-format
-msgid "&Import Feeds..."
+#, fuzzy, kde-format
+#| msgid "&Import Feeds..."
+msgid "&Import Feeds…"
 msgstr "יי&בוא ערוצים…"
 
 #: src/actions/actionmanagerimpl.cpp:195
-#, kde-format
-msgid "&Export Feeds..."
+#, fuzzy, kde-format
+#| msgid "&Export Feeds..."
+msgid "&Export Feeds…"
 msgstr "יי&צוא ערוצים…"
 
 #: src/actions/actionmanagerimpl.cpp:200
-#, kde-format
-msgid "&Configure Akregator..."
+#, fuzzy, kde-format
+#| msgid "&Configure Akregator..."
+msgid "&Configure Akregator…"
 msgstr "ה&גדרת Akregator…"
 
 #: src/actions/actionmanagerimpl.cpp:219
@@ -1165,13 +1169,15 @@ msgid "Reload All Tabs"
 msgstr "רענון כל הלשוניות"
 
 #: src/actions/actionmanagerimpl.cpp:231
-#, kde-format
-msgid "&Add Feed..."
-msgstr "&הוספת ערוץ…"
+#, fuzzy, kde-format
+#| msgid "Add Feed"
+msgid "&Add Feed…"
+msgstr "הוספת ערוץ"
 
 #: src/actions/actionmanagerimpl.cpp:237
-#, kde-format
-msgid "Ne&w Folder..."
+#, fuzzy, kde-format
+#| msgid "Ne&w Folder..."
+msgid "Ne&w Folder…"
 msgstr "&תיקייה חדשה…"
 
 #: src/actions/actionmanagerimpl.cpp:262
@@ -1293,13 +1299,15 @@ msgid "Move Node Right"
 msgstr "העברת מפרק ימינה"
 
 #: src/actions/actionmanagerimpl.cpp:422
-#, kde-format
-msgid "Send &Link Address..."
-msgstr "שליחת &קישור לכתובת…"
+#, fuzzy, kde-format
+#| msgid "Send Link Address"
+msgid "Send &Link Address…"
+msgstr "שליחת כתובת קישור"
 
 #: src/actions/actionmanagerimpl.cpp:427
-#, kde-format
-msgid "Send &File..."
+#, fuzzy, kde-format
+#| msgid "Send &File..."
+msgid "Send &File…"
 msgstr "שליחת &קובץ…"
 
 #: src/actions/actionmanagerimpl.cpp:433
@@ -1413,8 +1421,9 @@ msgid "Speak Text"
 msgstr "הקראת טקסט"
 
 #: src/actions/actionmanagerimpl.cpp:603
-#, kde-format
-msgid "&Find in Message..."
+#, fuzzy, kde-format
+#| msgid "&Find in Message..."
+msgid "&Find in Message…"
 msgstr "&איתור בהודעה…"
 
 #: src/actions/actionmanagerimpl.cpp:614
@@ -1428,8 +1437,9 @@ msgid "Activate Tab %1"
 msgstr "הפעלת הלשונית %1"
 
 #: src/actions/actionmanagerimpl.cpp:633
-#, kde-format
-msgid "&Save Link As..."
+#, fuzzy, kde-format
+#| msgid "&Save Link As..."
+msgid "&Save Link As…"
 msgstr "&שמירת קישור בתור…"
 
 #: src/actions/actionmanagerimpl.cpp:637
@@ -1443,8 +1453,9 @@ msgid "Copy Image Location"
 msgstr "העתקת מקום התמונה"
 
 #: src/actions/actionmanagerimpl.cpp:647
-#, kde-format
-msgid "Save Image On Disk..."
+#, fuzzy, kde-format
+#| msgid "Save Image On Disk..."
+msgid "Save Image On Disk…"
 msgstr "שמירת תמונה לכונן…"
 
 #: src/actions/actions.cpp:19
@@ -1474,8 +1485,9 @@ msgid "Feed not found from %1."
 msgstr "ערוץ %1 לא נמצא."
 
 #: src/addfeeddialog.cpp:121
-#, kde-format
-msgid "Feed found, downloading..."
+#, fuzzy, kde-format
+#| msgid "Feed found, downloading..."
+msgid "Feed found, downloading…"
 msgstr "ערוץ נמצא, מתעדכן…"
 
 #: src/akregator_options.h:20 src/akregator_options.h:28
@@ -1795,8 +1807,9 @@ msgid ""
 msgstr "<qt>רשימת הערוצים הרגילה פגומה (OPML שגוי). לא ניתן ליצור גיבוי.</qt>"
 
 #: src/command/loadfeedlistcommand.cpp:129
-#, kde-format
-msgid "Opening Feed List..."
+#, fuzzy, kde-format
+#| msgid "Opening Feed List..."
+msgid "Opening Feed List…"
 msgstr "פותח רשימת ערוצים..."
 
 #: src/command/loadfeedlistcommand.cpp:143
@@ -2035,8 +2048,9 @@ msgid "Untitled"
 msgstr "ללא כותרת"
 
 #: src/frame/frame.cpp:140
-#, kde-format
-msgid "Loading..."
+#, fuzzy, kde-format
+#| msgid "Loading..."
+msgid "Loading…"
 msgstr "בטעינה…"
 
 #: src/frame/frame.cpp:156
@@ -2106,8 +2120,9 @@ msgid "Networking is not available."
 msgstr "התקשורת לא זמינה."
 
 #: src/mainwidget.cpp:866
-#, kde-format
-msgid "Fetching Feeds..."
+#, fuzzy, kde-format
+#| msgid "Fetching Feeds..."
+msgid "Fetching Feeds…"
 msgstr "ערוצים מתעדכנים…"
 
 #: src/mainwidget.cpp:1065
@@ -2484,13 +2499,15 @@ msgid "Open In External Browser"
 msgstr "פתיחה בדפדפן חיצוני"
 
 #: src/widgets/searchbar.cpp:40
-#, kde-format
-msgid "Search articles..."
+#, fuzzy, kde-format
+#| msgid "Search articles..."
+msgid "Search articles…"
 msgstr "חיפוש כתבות…"
 
 #: src/widgets/searchbar.cpp:112
-#, kde-format
-msgid "Search articles...<%1>"
+#, fuzzy, kde-format
+#| msgid "Search articles...<%1>"
+msgid "Search articles…<%1>"
 msgstr "חיפוש כתבות…<%1>"
 
 #: src/widgets/statussearchline.cpp:43
@@ -2526,6 +2543,12 @@ msgstr "חשוב"
 #, kde-format
 msgid "Filter"
 msgstr "סינון"
+
+#~ msgid "&Add Feed..."
+#~ msgstr "&הוספת ערוץ…"
+
+#~ msgid "Send &Link Address..."
+#~ msgstr "שליחת &קישור לכתובת…"
 
 #, fuzzy
 #~ msgid "Configure Feeds"
