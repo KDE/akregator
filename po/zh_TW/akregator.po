@@ -8,20 +8,20 @@
 # Frank Weng (a.k.a. Franklin) <franklin@goodhorse.idv.tw>, 2009.
 # pan93412 <pan93412@gmail.com>, 2018, 2019.
 # Jeff Huang <s8321414@gmail.com>, 2020.
-# SPDX-FileCopyrightText: 2023 Kisaragi Hiu <mail@kisaragi-hiu.com>
+# SPDX-FileCopyrightText: 2023, 2024 Kisaragi Hiu <mail@kisaragi-hiu.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-10 00:38+0000\n"
-"PO-Revision-Date: 2023-11-29 18:30+0900\n"
+"PO-Revision-Date: 2024-05-10 16:43+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 23.08.3\n"
+"X-Generator: Lokalize 24.04.70\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #, kde-format
@@ -158,7 +158,7 @@ msgstr "多久後將所選擇的文章標示為已讀(&K)："
 #: configuration/ui/settings_advancedbase.ui:73
 #, kde-format
 msgid "Reset search bar when changing feeds"
-msgstr "變更 feeds 重置搜尋列"
+msgstr "變更 feeds 重設搜尋列"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_3)
 #: configuration/ui/settings_appearance.ui:30
@@ -904,7 +904,7 @@ msgstr "設定在選擇一篇文章到設定該文章為已讀間要延遲多少
 #: interfaces/akregator.kcfg:277
 #, kde-format
 msgid "Resets the quick filter when changing feeds."
-msgstr "變更 feeds 時重置快速過濾器"
+msgstr "變更 feeds 時重設快速過濾器。"
 
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
 #: src/akregator_part.cpp:136
@@ -918,7 +918,7 @@ msgstr "Akregator"
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "New Feed..."
-msgstr "新增 Feed..."
+msgstr "新增 Feed…"
 
 #: kontactplugin/akregator_plugin.cpp:32
 #, kde-format
@@ -1099,10 +1099,9 @@ msgid "&Delete Feed"
 msgstr "刪除 feed(&D)"
 
 #: src/actions/actionmanagerimpl.cpp:66 src/actions/actionmanagerimpl.cpp:249
-#, fuzzy, kde-format
-#| msgid "&Edit Feed..."
+#, kde-format
 msgid "&Edit Feed…"
-msgstr "編輯 feed(&E)..."
+msgstr "編輯 feed(&E)…"
 
 #: src/actions/actionmanagerimpl.cpp:67 src/actions/actionmanagerimpl.cpp:306
 #, kde-format
@@ -1130,22 +1129,19 @@ msgid "&Mark Feeds as Read"
 msgstr "將 feed 標記為已讀(&M)"
 
 #: src/actions/actionmanagerimpl.cpp:191
-#, fuzzy, kde-format
-#| msgid "&Import Feeds..."
+#, kde-format
 msgid "&Import Feeds…"
-msgstr "匯入 feed (&I)..."
+msgstr "匯入 feed(&I)…"
 
 #: src/actions/actionmanagerimpl.cpp:195
-#, fuzzy, kde-format
-#| msgid "&Export Feeds..."
+#, kde-format
 msgid "&Export Feeds…"
-msgstr "匯出 feed (&E)..."
+msgstr "匯出 feed(&E)…"
 
 #: src/actions/actionmanagerimpl.cpp:200
-#, fuzzy, kde-format
-#| msgid "&Configure Akregator..."
+#, kde-format
 msgid "&Configure Akregator…"
-msgstr "設定 Akregator(&C)..."
+msgstr "設定 Akregator(&C)…"
 
 #: src/actions/actionmanagerimpl.cpp:219
 #, kde-format
@@ -1158,16 +1154,14 @@ msgid "Reload All Tabs"
 msgstr "重新載入所有的分頁"
 
 #: src/actions/actionmanagerimpl.cpp:231
-#, fuzzy, kde-format
-#| msgid "Add Feed"
+#, kde-format
 msgid "&Add Feed…"
-msgstr "新增 feed"
+msgstr "新增 feed(&A)…"
 
 #: src/actions/actionmanagerimpl.cpp:237
-#, fuzzy, kde-format
-#| msgid "Ne&w Folder..."
+#, kde-format
 msgid "Ne&w Folder…"
-msgstr "新資料夾(&W)..."
+msgstr "新資料夾(&W)…"
 
 #: src/actions/actionmanagerimpl.cpp:262
 #, kde-format
@@ -1288,16 +1282,14 @@ msgid "Move Node Right"
 msgstr "將節點右移"
 
 #: src/actions/actionmanagerimpl.cpp:422
-#, fuzzy, kde-format
-#| msgid "Send Link Address"
+#, kde-format
 msgid "Send &Link Address…"
-msgstr "送出連結位址"
+msgstr "傳送連結位址(&L)…"
 
 #: src/actions/actionmanagerimpl.cpp:427
-#, fuzzy, kde-format
-#| msgid "Send &File..."
+#, kde-format
 msgid "Send &File…"
-msgstr "送出檔案(&F)..."
+msgstr "傳送檔案(&F)…"
 
 #: src/actions/actionmanagerimpl.cpp:433
 #, kde-format
@@ -1410,10 +1402,9 @@ msgid "Speak Text"
 msgstr "說出文字"
 
 #: src/actions/actionmanagerimpl.cpp:603
-#, fuzzy, kde-format
-#| msgid "&Find in Message..."
+#, kde-format
 msgid "&Find in Message…"
-msgstr "在訊息中尋找(&F)..."
+msgstr "在訊息中尋找(&F)…"
 
 #: src/actions/actionmanagerimpl.cpp:614
 #, kde-format
@@ -1426,10 +1417,9 @@ msgid "Activate Tab %1"
 msgstr "作用分頁 %1"
 
 #: src/actions/actionmanagerimpl.cpp:633
-#, fuzzy, kde-format
-#| msgid "&Save Link As..."
+#, kde-format
 msgid "&Save Link As…"
-msgstr "另存連結(&S)..."
+msgstr "另存連結(&S)…"
 
 #: src/actions/actionmanagerimpl.cpp:637
 #, kde-format
@@ -1442,8 +1432,7 @@ msgid "Copy Image Location"
 msgstr "複製圖片位置"
 
 #: src/actions/actionmanagerimpl.cpp:647
-#, fuzzy, kde-format
-#| msgid "Save Image On Disk..."
+#, kde-format
 msgid "Save Image On Disk…"
 msgstr "在磁碟上儲存圖片…"
 
@@ -1474,10 +1463,9 @@ msgid "Feed not found from %1."
 msgstr "從 %1 找不到 feed。"
 
 #: src/addfeeddialog.cpp:121
-#, fuzzy, kde-format
-#| msgid "Feed found, downloading..."
+#, kde-format
 msgid "Feed found, downloading…"
-msgstr "找到 feed。下載中..."
+msgstr "找到 feed。下載中…"
 
 #: src/akregator_options.h:20 src/akregator_options.h:28
 #, kde-format
@@ -1793,10 +1781,9 @@ msgid ""
 msgstr "<qt>標準的 feed 列表已損毀（錯誤的 OPML）。無法建立備份！</qt>"
 
 #: src/command/loadfeedlistcommand.cpp:129
-#, fuzzy, kde-format
-#| msgid "Opening Feed List..."
+#, kde-format
 msgid "Opening Feed List…"
-msgstr "開啟 feed 列表中..."
+msgstr "開啟 feed 列表中…"
 
 #: src/command/loadfeedlistcommand.cpp:143
 #, kde-format
@@ -2018,10 +2005,9 @@ msgid "Untitled"
 msgstr "未命名"
 
 #: src/frame/frame.cpp:140
-#, fuzzy, kde-format
-#| msgid "Loading..."
+#, kde-format
 msgid "Loading…"
-msgstr "載入中..."
+msgstr "載入中…"
 
 #: src/frame/frame.cpp:156
 #, kde-format
@@ -2090,10 +2076,9 @@ msgid "Networking is not available."
 msgstr "網路無法使用。"
 
 #: src/mainwidget.cpp:866
-#, fuzzy, kde-format
-#| msgid "Fetching Feeds..."
+#, kde-format
 msgid "Fetching Feeds…"
-msgstr "抓取 feed 中..."
+msgstr "抓取 feed 中…"
 
 #: src/mainwidget.cpp:1065
 #, kde-format
@@ -2458,16 +2443,14 @@ msgid "Open In External Browser"
 msgstr "在外部瀏覽器開啟"
 
 #: src/widgets/searchbar.cpp:40
-#, fuzzy, kde-format
-#| msgid "Search articles..."
+#, kde-format
 msgid "Search articles…"
 msgstr "搜尋文章…"
 
 #: src/widgets/searchbar.cpp:112
-#, fuzzy, kde-format
-#| msgid "Search articles...<%1>"
+#, kde-format
 msgid "Search articles…<%1>"
-msgstr "搜尋文章...<%1>"
+msgstr "搜尋文章…<%1>"
 
 #: src/widgets/statussearchline.cpp:43
 #, kde-format

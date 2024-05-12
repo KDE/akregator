@@ -1091,10 +1091,9 @@ msgid "&Delete Feed"
 msgstr "删除订阅(&D)"
 
 #: src/actions/actionmanagerimpl.cpp:66 src/actions/actionmanagerimpl.cpp:249
-#, fuzzy, kde-format
-#| msgid "&Edit Feed..."
+#, kde-format
 msgid "&Edit Feed…"
-msgstr "编辑订阅(&E)..."
+msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:67 src/actions/actionmanagerimpl.cpp:306
 #, kde-format
@@ -1122,22 +1121,19 @@ msgid "&Mark Feeds as Read"
 msgstr "将订阅标为已读(&M)"
 
 #: src/actions/actionmanagerimpl.cpp:191
-#, fuzzy, kde-format
-#| msgid "&Import Feeds..."
+#, kde-format
 msgid "&Import Feeds…"
-msgstr "导入订阅(&I)..."
+msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:195
-#, fuzzy, kde-format
-#| msgid "&Export Feeds..."
+#, kde-format
 msgid "&Export Feeds…"
-msgstr "导出订阅(&E)..."
+msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:200
-#, fuzzy, kde-format
-#| msgid "&Configure Akregator..."
+#, kde-format
 msgid "&Configure Akregator…"
-msgstr "配置 Akregator(&C)..."
+msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:219
 #, kde-format
@@ -1150,16 +1146,14 @@ msgid "Reload All Tabs"
 msgstr "重新加载全部标签页"
 
 #: src/actions/actionmanagerimpl.cpp:231
-#, fuzzy, kde-format
-#| msgid "Add Feed"
+#, kde-format
 msgid "&Add Feed…"
-msgstr "添加订阅"
+msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:237
-#, fuzzy, kde-format
-#| msgid "Ne&w Folder..."
+#, kde-format
 msgid "Ne&w Folder…"
-msgstr "新建文件夹(&W)..."
+msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:262
 #, kde-format
@@ -1280,16 +1274,14 @@ msgid "Move Node Right"
 msgstr "节点右移"
 
 #: src/actions/actionmanagerimpl.cpp:422
-#, fuzzy, kde-format
-#| msgid "Send Link Address"
+#, kde-format
 msgid "Send &Link Address…"
-msgstr "发送链接地址"
+msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:427
-#, fuzzy, kde-format
-#| msgid "Send &File..."
+#, kde-format
 msgid "Send &File…"
-msgstr "发送文件(&F)..."
+msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:433
 #, kde-format
@@ -1402,10 +1394,9 @@ msgid "Speak Text"
 msgstr "朗读文本"
 
 #: src/actions/actionmanagerimpl.cpp:603
-#, fuzzy, kde-format
-#| msgid "&Find in Message..."
+#, kde-format
 msgid "&Find in Message…"
-msgstr "在信件中查找(&F)..."
+msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:614
 #, kde-format
@@ -1418,10 +1409,9 @@ msgid "Activate Tab %1"
 msgstr "激活标签页 %1"
 
 #: src/actions/actionmanagerimpl.cpp:633
-#, fuzzy, kde-format
-#| msgid "&Save Link As..."
+#, kde-format
 msgid "&Save Link As…"
-msgstr "链接另存为(&S)..."
+msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:637
 #, kde-format
@@ -1434,10 +1424,9 @@ msgid "Copy Image Location"
 msgstr "复制图像位置"
 
 #: src/actions/actionmanagerimpl.cpp:647
-#, fuzzy, kde-format
-#| msgid "Save Image On Disk..."
+#, kde-format
 msgid "Save Image On Disk…"
-msgstr "保存图像到磁盘..."
+msgstr ""
 
 #: src/actions/actions.cpp:19
 #, kde-format
@@ -1466,10 +1455,9 @@ msgid "Feed not found from %1."
 msgstr "%1 未找到订阅。"
 
 #: src/addfeeddialog.cpp:121
-#, fuzzy, kde-format
-#| msgid "Feed found, downloading..."
+#, kde-format
 msgid "Feed found, downloading…"
-msgstr "找到了订阅，正在下载..."
+msgstr ""
 
 #: src/akregator_options.h:20 src/akregator_options.h:28
 #, kde-format
@@ -1783,10 +1771,9 @@ msgid ""
 msgstr "<qt>标准订阅列表已损坏(无效的 OPML)。无法创建备份。</qt>"
 
 #: src/command/loadfeedlistcommand.cpp:129
-#, fuzzy, kde-format
-#| msgid "Opening Feed List..."
+#, kde-format
 msgid "Opening Feed List…"
-msgstr "正在打开订阅列表..."
+msgstr ""
 
 #: src/command/loadfeedlistcommand.cpp:143
 #, kde-format
@@ -2005,10 +1992,9 @@ msgid "Untitled"
 msgstr "无标题"
 
 #: src/frame/frame.cpp:140
-#, fuzzy, kde-format
-#| msgid "Loading..."
+#, kde-format
 msgid "Loading…"
-msgstr "正在加载..."
+msgstr ""
 
 #: src/frame/frame.cpp:156
 #, kde-format
@@ -2077,10 +2063,9 @@ msgid "Networking is not available."
 msgstr "网络不可用。"
 
 #: src/mainwidget.cpp:866
-#, fuzzy, kde-format
-#| msgid "Fetching Feeds..."
+#, kde-format
 msgid "Fetching Feeds…"
-msgstr "正在抓取订阅..."
+msgstr ""
 
 #: src/mainwidget.cpp:1065
 #, kde-format
@@ -2445,16 +2430,14 @@ msgid "Open In External Browser"
 msgstr "在外部浏览器中打开"
 
 #: src/widgets/searchbar.cpp:40
-#, fuzzy, kde-format
-#| msgid "Search articles..."
+#, kde-format
 msgid "Search articles…"
-msgstr "搜索文章..."
+msgstr ""
 
 #: src/widgets/searchbar.cpp:112
-#, fuzzy, kde-format
-#| msgid "Search articles...<%1>"
+#, kde-format
 msgid "Search articles…<%1>"
-msgstr "搜索文章...<%1>"
+msgstr ""
 
 #: src/widgets/statussearchline.cpp:43
 #, kde-format
@@ -2489,9 +2472,3 @@ msgstr "重要"
 #, kde-format
 msgid "Filter"
 msgstr "过滤器"
-
-#~ msgid "&Add Feed..."
-#~ msgstr "添加订阅(&A)..."
-
-#~ msgid "Send &Link Address..."
-#~ msgstr "发送链接地址(&L)..."

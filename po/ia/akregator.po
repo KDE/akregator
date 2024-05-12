@@ -2,13 +2,13 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # SPDX-FileCopyrightText: 2011, 2012, 2013, 2014, 2017, 2020, 2021, 2022, 2023 g.sora <g.sora@tiscali.it>
-# giovanni <g.sora@tiscali.it>, 2023.
+# giovanni <g.sora@tiscali.it>, 2023, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-10 00:38+0000\n"
-"PO-Revision-Date: 2023-10-03 12:01+0200\n"
+"PO-Revision-Date: 2024-05-10 12:32+0200\n"
 "Last-Translator: giovanni <g.sora@tiscali.it>\n"
 "Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
 "Language: ia\n"
@@ -1114,8 +1114,7 @@ msgid "&Delete Feed"
 msgstr "&Dele syndication"
 
 #: src/actions/actionmanagerimpl.cpp:66 src/actions/actionmanagerimpl.cpp:249
-#, fuzzy, kde-format
-#| msgid "&Edit Feed..."
+#, kde-format
 msgid "&Edit Feed…"
 msgstr "&Modifica syndication..."
 
@@ -1145,20 +1144,17 @@ msgid "&Mark Feeds as Read"
 msgstr "&Marca syndicationes como legite"
 
 #: src/actions/actionmanagerimpl.cpp:191
-#, fuzzy, kde-format
-#| msgid "&Import Feeds..."
+#, kde-format
 msgid "&Import Feeds…"
 msgstr "&Importa syndicationes..."
 
 #: src/actions/actionmanagerimpl.cpp:195
-#, fuzzy, kde-format
-#| msgid "&Export Feeds..."
+#, kde-format
 msgid "&Export Feeds…"
 msgstr "&Exporta syndicationes..."
 
 #: src/actions/actionmanagerimpl.cpp:200
-#, fuzzy, kde-format
-#| msgid "&Configure Akregator..."
+#, kde-format
 msgid "&Configure Akregator…"
 msgstr "&Configura Akregator..."
 
@@ -1173,14 +1169,12 @@ msgid "Reload All Tabs"
 msgstr "Recarga omne schedas"
 
 #: src/actions/actionmanagerimpl.cpp:231
-#, fuzzy, kde-format
-#| msgid "Add Feed"
+#, kde-format
 msgid "&Add Feed…"
-msgstr "Adde syndication"
+msgstr "&Adde syndication…"
 
 #: src/actions/actionmanagerimpl.cpp:237
-#, fuzzy, kde-format
-#| msgid "Ne&w Folder..."
+#, kde-format
 msgid "Ne&w Folder…"
 msgstr "No&ve dossier..."
 
@@ -1303,16 +1297,14 @@ msgid "Move Node Right"
 msgstr "Move nodo a dextera"
 
 #: src/actions/actionmanagerimpl.cpp:422
-#, fuzzy, kde-format
-#| msgid "Send Link Address"
+#, kde-format
 msgid "Send &Link Address…"
-msgstr "Invia adresse de Ligamine"
+msgstr "Invia Adresse de &Ligamine ..."
 
 #: src/actions/actionmanagerimpl.cpp:427
-#, fuzzy, kde-format
-#| msgid "Send &File..."
+#, kde-format
 msgid "Send &File…"
-msgstr "Invia &file"
+msgstr "Invia &File..."
 
 #: src/actions/actionmanagerimpl.cpp:433
 #, kde-format
@@ -1425,10 +1417,9 @@ msgid "Speak Text"
 msgstr "Pronuncia texto"
 
 #: src/actions/actionmanagerimpl.cpp:603
-#, fuzzy, kde-format
-#| msgid "&Find in Message..."
+#, kde-format
 msgid "&Find in Message…"
-msgstr "&Trova in Message ..."
+msgstr "&Trova in message..."
 
 #: src/actions/actionmanagerimpl.cpp:614
 #, kde-format
@@ -1441,10 +1432,9 @@ msgid "Activate Tab %1"
 msgstr "Activa scheda %1"
 
 #: src/actions/actionmanagerimpl.cpp:633
-#, fuzzy, kde-format
-#| msgid "&Save Link As..."
+#, kde-format
 msgid "&Save Link As…"
-msgstr "&Salveguarda ligamine como ..."
+msgstr "&Salveguarda Ligamine como ..."
 
 #: src/actions/actionmanagerimpl.cpp:637
 #, kde-format
@@ -1457,8 +1447,7 @@ msgid "Copy Image Location"
 msgstr "Copia location del imagine"
 
 #: src/actions/actionmanagerimpl.cpp:647
-#, fuzzy, kde-format
-#| msgid "Save Image On Disk..."
+#, kde-format
 msgid "Save Image On Disk…"
 msgstr "Salveguarda Imagine sur disco..."
 
@@ -1489,8 +1478,7 @@ msgid "Feed not found from %1."
 msgstr "Syndication non trovate ex %1"
 
 #: src/addfeeddialog.cpp:121
-#, fuzzy, kde-format
-#| msgid "Feed found, downloading..."
+#, kde-format
 msgid "Feed found, downloading…"
 msgstr "Syndication trovate, discargante..."
 
@@ -1823,8 +1811,7 @@ msgstr ""
 "poteva crear un retrocopia .</qt>"
 
 #: src/command/loadfeedlistcommand.cpp:129
-#, fuzzy, kde-format
-#| msgid "Opening Feed List..."
+#, kde-format
 msgid "Opening Feed List…"
 msgstr "Aperiente lista de syndication..."
 
@@ -2059,8 +2046,7 @@ msgid "Untitled"
 msgstr "Sin titulo"
 
 #: src/frame/frame.cpp:140
-#, fuzzy, kde-format
-#| msgid "Loading..."
+#, kde-format
 msgid "Loading…"
 msgstr "Cargante..."
 
@@ -2137,8 +2123,7 @@ msgid "Networking is not available."
 msgstr "Rete non disponibile."
 
 #: src/mainwidget.cpp:866
-#, fuzzy, kde-format
-#| msgid "Fetching Feeds..."
+#, kde-format
 msgid "Fetching Feeds…"
 msgstr "Trovante syndicationes..."
 
@@ -2511,16 +2496,14 @@ msgid "Open In External Browser"
 msgstr "Aperi in navigator externe"
 
 #: src/widgets/searchbar.cpp:40
-#, fuzzy, kde-format
-#| msgid "Search articles..."
+#, kde-format
 msgid "Search articles…"
 msgstr "Cerca articulos..."
 
 #: src/widgets/searchbar.cpp:112
-#, fuzzy, kde-format
-#| msgid "Search articles...<%1>"
+#, kde-format
 msgid "Search articles…<%1>"
-msgstr "Cerca articulos...<%1>"
+msgstr "Cerca articulos…<%1>"
 
 #: src/widgets/statussearchline.cpp:43
 #, kde-format

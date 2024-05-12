@@ -9,21 +9,21 @@
 # Rinse de Vries <RinseDeVries@home.nl>, 2005.
 # Antoon Tolboom <atolboo@casema.nl>, 2008.
 # Antoon Tolboom <atolboo@telfort.nl>, 2008.
-# SPDX-FileCopyrightText: 2009, 2023 Freek de Kruijf <f.de.kruijf@hetnet.nl>
+# SPDX-FileCopyrightText: 2009, 2023, 2024 Freek de Kruijf <f.de.kruijf@hetnet.nl>
 # Freek de Kruijf <freekdekruijf@kde.nl>, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-10 00:38+0000\n"
-"PO-Revision-Date: 2023-10-03 17:42+0200\n"
+"PO-Revision-Date: 2024-05-10 11:14+0200\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 23.08.1\n"
+"X-Generator: Lokalize 24.02.2\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 # mezelf toegevoegd
@@ -32,7 +32,7 @@ msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
 msgstr ""
 "Rinse de Vries,Wilbert Berendsen,Bram Schoenmakers,Marout Yasuo Borms,Freek "
-"de Kruijf - t/m 2023"
+"de Kruijf - t/m 2024"
 
 # mezelf toegevoegd
 #, kde-format
@@ -1162,10 +1162,9 @@ msgid "&Delete Feed"
 msgstr "Fee&d verwijderen"
 
 #: src/actions/actionmanagerimpl.cpp:66 src/actions/actionmanagerimpl.cpp:249
-#, fuzzy, kde-format
-#| msgid "&Edit Feed..."
+#, kde-format
 msgid "&Edit Feed…"
-msgstr "Feed b&ewerken..."
+msgstr "Feed b&ewerken…"
 
 # engelse tekst spreekt van enkelvoud (feed), nl tekst spreekt van meervoud (feeds)
 #: src/actions/actionmanagerimpl.cpp:67 src/actions/actionmanagerimpl.cpp:306
@@ -1195,23 +1194,20 @@ msgid "&Mark Feeds as Read"
 msgstr "Feeds als gelezen &markeren"
 
 #: src/actions/actionmanagerimpl.cpp:191
-#, fuzzy, kde-format
-#| msgid "&Import Feeds..."
+#, kde-format
 msgid "&Import Feeds…"
-msgstr "Feeds &importeren..."
+msgstr "Feeds &importeren…"
 
 #: src/actions/actionmanagerimpl.cpp:195
-#, fuzzy, kde-format
-#| msgid "&Export Feeds..."
+#, kde-format
 msgid "&Export Feeds…"
-msgstr "Feeds &exporteren..."
+msgstr "Feeds &exporteren…"
 
 # configuregen ipv instellen?
 #: src/actions/actionmanagerimpl.cpp:200
-#, fuzzy, kde-format
-#| msgid "&Configure Akregator..."
+#, kde-format
 msgid "&Configure Akregator…"
-msgstr "&Akregator instellen..."
+msgstr "&Akregator configureren…"
 
 #: src/actions/actionmanagerimpl.cpp:219
 #, kde-format
@@ -1224,16 +1220,14 @@ msgid "Reload All Tabs"
 msgstr "Alle Tabs Vernieuwen"
 
 #: src/actions/actionmanagerimpl.cpp:231
-#, fuzzy, kde-format
-#| msgid "Add Feed"
+#, kde-format
 msgid "&Add Feed…"
-msgstr "Feed toevoegen"
+msgstr "Feed &toevoegen…"
 
 #: src/actions/actionmanagerimpl.cpp:237
-#, fuzzy, kde-format
-#| msgid "Ne&w Folder..."
+#, kde-format
 msgid "Ne&w Folder…"
-msgstr "&Nieuwe map..."
+msgstr "Nieu&we map…"
 
 #: src/actions/actionmanagerimpl.cpp:262
 #, kde-format
@@ -1357,16 +1351,14 @@ msgid "Move Node Right"
 msgstr "Knooppunt naar rechts verplaatsen"
 
 #: src/actions/actionmanagerimpl.cpp:422
-#, fuzzy, kde-format
-#| msgid "Send Link Address"
+#, kde-format
 msgid "Send &Link Address…"
-msgstr "Koppelingsadres verzenden"
+msgstr "Koppe&lingsadres verzenden…"
 
 #: src/actions/actionmanagerimpl.cpp:427
-#, fuzzy, kde-format
-#| msgid "Send &File..."
+#, kde-format
 msgid "Send &File…"
-msgstr "Bestand &verzenden..."
+msgstr "&Bestand verzenden…"
 
 #: src/actions/actionmanagerimpl.cpp:433
 #, kde-format
@@ -1480,10 +1472,9 @@ msgid "Speak Text"
 msgstr "Tekst uitspreken"
 
 #: src/actions/actionmanagerimpl.cpp:603
-#, fuzzy, kde-format
-#| msgid "&Find in Message..."
+#, kde-format
 msgid "&Find in Message…"
-msgstr "In bericht &zoeken..."
+msgstr "&Zoeken in bericht…"
 
 #: src/actions/actionmanagerimpl.cpp:614
 #, kde-format
@@ -1496,10 +1487,9 @@ msgid "Activate Tab %1"
 msgstr "Tabblad %1 activeren"
 
 #: src/actions/actionmanagerimpl.cpp:633
-#, fuzzy, kde-format
-#| msgid "&Save Link As..."
+#, kde-format
 msgid "&Save Link As…"
-msgstr "Koppeling op&slaan als..."
+msgstr "Koppeling op&slaan als…"
 
 #: src/actions/actionmanagerimpl.cpp:637
 #, kde-format
@@ -1512,10 +1502,9 @@ msgid "Copy Image Location"
 msgstr "Afbeeldingslocatie kopiëren"
 
 #: src/actions/actionmanagerimpl.cpp:647
-#, fuzzy, kde-format
-#| msgid "Save Image On Disk..."
+#, kde-format
 msgid "Save Image On Disk…"
-msgstr "Afbeelding opslaan op schijf..."
+msgstr "Afbeelding opslaan op schijf…"
 
 #: src/actions/actions.cpp:19
 #, kde-format
@@ -1544,10 +1533,9 @@ msgid "Feed not found from %1."
 msgstr "Geen feed gevonden op %1."
 
 #: src/addfeeddialog.cpp:121
-#, fuzzy, kde-format
-#| msgid "Feed found, downloading..."
+#, kde-format
 msgid "Feed found, downloading…"
-msgstr "Feed gevonden, bezig met downloaden..."
+msgstr "Feed gevonden, bezig met downloaden…"
 
 #: src/akregator_options.h:20 src/akregator_options.h:28
 #, kde-format
@@ -1892,10 +1880,9 @@ msgstr ""
 "kan niet aangemaakt worden.</qt>"
 
 #: src/command/loadfeedlistcommand.cpp:129
-#, fuzzy, kde-format
-#| msgid "Opening Feed List..."
+#, kde-format
 msgid "Opening Feed List…"
-msgstr "Feedlijst wordt geopend..."
+msgstr "Feedlijst wordt geopend…"
 
 #: src/command/loadfeedlistcommand.cpp:143
 #, kde-format
@@ -2128,10 +2115,9 @@ msgid "Untitled"
 msgstr "Naamloos"
 
 #: src/frame/frame.cpp:140
-#, fuzzy, kde-format
-#| msgid "Loading..."
+#, kde-format
 msgid "Loading…"
-msgstr "Bezig met laden..."
+msgstr "Bezig met laden…"
 
 #: src/frame/frame.cpp:156
 #, kde-format
@@ -2202,10 +2188,9 @@ msgid "Networking is not available."
 msgstr "Netwerken is niet beschikbaar."
 
 #: src/mainwidget.cpp:866
-#, fuzzy, kde-format
-#| msgid "Fetching Feeds..."
+#, kde-format
 msgid "Fetching Feeds…"
-msgstr "Feeds ophalen..."
+msgstr "Feeds ophalen…"
 
 #: src/mainwidget.cpp:1065
 #, kde-format
@@ -2581,16 +2566,14 @@ msgid "Open In External Browser"
 msgstr "In externe browser openen"
 
 #: src/widgets/searchbar.cpp:40
-#, fuzzy, kde-format
-#| msgid "Search articles..."
+#, kde-format
 msgid "Search articles…"
-msgstr "Artikelen zoeken..."
+msgstr "Artikelen zoeken…"
 
 #: src/widgets/searchbar.cpp:112
-#, fuzzy, kde-format
-#| msgid "Search articles...<%1>"
+#, kde-format
 msgid "Search articles…<%1>"
-msgstr "Artikelen zoeken...<%1>"
+msgstr "Artikelen zoeken…<%1>"
 
 #: src/widgets/statussearchline.cpp:43
 #, kde-format

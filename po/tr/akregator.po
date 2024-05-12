@@ -21,7 +21,7 @@ msgstr ""
 "Project-Id-Version: kdepim-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-10 00:38+0000\n"
-"PO-Revision-Date: 2024-03-18 19:44+0300\n"
+"PO-Revision-Date: 2024-05-10 13:44+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -29,7 +29,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 24.02.0\n"
+"X-Generator: Lokalize 24.07.70\n"
 "(http: //www.transifex.com/projects/p/kdepim-k-tr/language/tr/)\n"
 
 #, kde-format
@@ -1124,8 +1124,7 @@ msgid "&Delete Feed"
 msgstr "Be&slemeyi Sil"
 
 #: src/actions/actionmanagerimpl.cpp:66 src/actions/actionmanagerimpl.cpp:249
-#, fuzzy, kde-format
-#| msgid "&Edit Feed..."
+#, kde-format
 msgid "&Edit Feed…"
 msgstr "Beslemeyi Dü&zenle…"
 
@@ -1155,20 +1154,17 @@ msgid "&Mark Feeds as Read"
 msgstr "Beslemeleri &Okundu Olarak İmle"
 
 #: src/actions/actionmanagerimpl.cpp:191
-#, fuzzy, kde-format
-#| msgid "&Import Feeds..."
+#, kde-format
 msgid "&Import Feeds…"
-msgstr "&Beslemeleri İçe Aktar…"
+msgstr "&Beslemeler İçe Aktar…"
 
 #: src/actions/actionmanagerimpl.cpp:195
-#, fuzzy, kde-format
-#| msgid "&Export Feeds..."
+#, kde-format
 msgid "&Export Feeds…"
 msgstr "B&eslemeleri Dışa Aktar…"
 
 #: src/actions/actionmanagerimpl.cpp:200
-#, fuzzy, kde-format
-#| msgid "&Configure Akregator..."
+#, kde-format
 msgid "&Configure Akregator…"
 msgstr "Akregatör Uygulamasını &Yapılandır…"
 
@@ -1183,14 +1179,12 @@ msgid "Reload All Tabs"
 msgstr "Tüm Sekmeleri Yeniden Yükle"
 
 #: src/actions/actionmanagerimpl.cpp:231
-#, fuzzy, kde-format
-#| msgid "Add Feed"
+#, kde-format
 msgid "&Add Feed…"
-msgstr "Besleme Ekle"
+msgstr "Besleme &Ekle"
 
 #: src/actions/actionmanagerimpl.cpp:237
-#, fuzzy, kde-format
-#| msgid "Ne&w Folder..."
+#, kde-format
 msgid "Ne&w Folder…"
 msgstr "&Yeni Klasör…"
 
@@ -1313,14 +1307,12 @@ msgid "Move Node Right"
 msgstr "Sağa Taşı"
 
 #: src/actions/actionmanagerimpl.cpp:422
-#, fuzzy, kde-format
-#| msgid "Send Link Address"
+#, kde-format
 msgid "Send &Link Address…"
-msgstr "Bağlantı Adresini Gönder"
+msgstr "&Bağlantı Adresini Gönder…"
 
 #: src/actions/actionmanagerimpl.cpp:427
-#, fuzzy, kde-format
-#| msgid "Send &File..."
+#, kde-format
 msgid "Send &File…"
 msgstr "Dos&ya Gönder…"
 
@@ -1435,8 +1427,7 @@ msgid "Speak Text"
 msgstr "Metni Konuş"
 
 #: src/actions/actionmanagerimpl.cpp:603
-#, fuzzy, kde-format
-#| msgid "&Find in Message..."
+#, kde-format
 msgid "&Find in Message…"
 msgstr "İletide &Bul…"
 
@@ -1451,8 +1442,7 @@ msgid "Activate Tab %1"
 msgstr "%1. Sekmeyi Etkinleştir"
 
 #: src/actions/actionmanagerimpl.cpp:633
-#, fuzzy, kde-format
-#| msgid "&Save Link As..."
+#, kde-format
 msgid "&Save Link As…"
 msgstr "Bağlantıyı Farklı &Kaydet…"
 
@@ -1467,8 +1457,7 @@ msgid "Copy Image Location"
 msgstr "Bağlantı Yolunu Kopyala"
 
 #: src/actions/actionmanagerimpl.cpp:647
-#, fuzzy, kde-format
-#| msgid "Save Image On Disk..."
+#, kde-format
 msgid "Save Image On Disk…"
 msgstr "Görseli Diske Kaydet…"
 
@@ -1499,8 +1488,7 @@ msgid "Feed not found from %1."
 msgstr "%1 adresinde besleme bulunamadı."
 
 #: src/addfeeddialog.cpp:121
-#, fuzzy, kde-format
-#| msgid "Feed found, downloading..."
+#, kde-format
 msgid "Feed found, downloading…"
 msgstr "Besleme bulundu, indiriliyor…"
 
@@ -1832,8 +1820,7 @@ msgstr ""
 "</qt>"
 
 #: src/command/loadfeedlistcommand.cpp:129
-#, fuzzy, kde-format
-#| msgid "Opening Feed List..."
+#, kde-format
 msgid "Opening Feed List…"
 msgstr "Besleme listesi açılıyor…"
 
@@ -2068,8 +2055,7 @@ msgid "Untitled"
 msgstr "Başlıksız"
 
 #: src/frame/frame.cpp:140
-#, fuzzy, kde-format
-#| msgid "Loading..."
+#, kde-format
 msgid "Loading…"
 msgstr "Yükleniyor…"
 
@@ -2146,10 +2132,9 @@ msgid "Networking is not available."
 msgstr "Ağ iletişimi kullanılabilir değil."
 
 #: src/mainwidget.cpp:866
-#, fuzzy, kde-format
-#| msgid "Fetching Feeds..."
+#, kde-format
 msgid "Fetching Feeds…"
-msgstr "Beslemeler Alınıyor…"
+msgstr "Beslemeler getiriliyor…"
 
 #: src/mainwidget.cpp:1065
 #, kde-format
@@ -2519,14 +2504,12 @@ msgid "Open In External Browser"
 msgstr "Dış Tarayıcıda Aç"
 
 #: src/widgets/searchbar.cpp:40
-#, fuzzy, kde-format
-#| msgid "Search articles..."
+#, kde-format
 msgid "Search articles…"
 msgstr "Yazılarda ara…"
 
 #: src/widgets/searchbar.cpp:112
-#, fuzzy, kde-format
-#| msgid "Search articles...<%1>"
+#, kde-format
 msgid "Search articles…<%1>"
 msgstr "Yazılarda ara…<%1>"
 
