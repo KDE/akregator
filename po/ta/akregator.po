@@ -1,10 +1,10 @@
-# SPDX-FileCopyrightText: 2021, 2022, 2023 Kishore G <kishore96@gmail.com>
+# SPDX-FileCopyrightText: 2021, 2022, 2023, 2024 Kishore G <kishore96@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-10 00:38+0000\n"
-"PO-Revision-Date: 2023-12-17 16:44+0530\n"
+"PO-Revision-Date: 2024-05-12 14:49+0530\n"
 "Last-Translator: Kishore G <kishore96@gmail.com>\n"
 "Language-Team: Tamil <kde-i18n-doc@kde.org>\n"
 "Language: ta\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 23.08.4\n"
+"X-Generator: Lokalize 24.02.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -435,7 +435,7 @@ msgstr "&அனைத்து தொகுப்புகளுக்கும�
 #: configuration/ui/settings_general.ui:84
 #, kde-format
 msgid "Disable save as finished notification"
-msgstr ""
+msgstr "வேறு பெயரில் சேமிப்பது முடிந்ததற்கான அறிவிப்பை முடக்கு"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_UseIntervalFetch)
 #: configuration/ui/settings_general.ui:91
@@ -528,9 +528,9 @@ msgstr "விரை வடிகட்டிப் பட்டையைக் 
 
 #. i18n: ectx: label, entry, group (View)
 #: interfaces/akregator.kcfg:36
-#, fuzzy, kde-format
+#, kde-format
 msgid "Status Filter"
-msgstr "சீக்கிர வடிகட்டி"
+msgstr "நிலை வடிகட்டி"
 
 #. i18n: ectx: whatsthis, entry, group (View)
 #: interfaces/akregator.kcfg:37
@@ -540,9 +540,9 @@ msgstr ""
 
 #. i18n: ectx: label, entry, group (View)
 #: interfaces/akregator.kcfg:41
-#, fuzzy, kde-format
+#, kde-format
 msgid "Text Filter"
-msgstr "அலங்காரத்தை துடை"
+msgstr "உரை வடிகட்டி"
 
 #. i18n: ectx: whatsthis, entry, group (View)
 #: interfaces/akregator.kcfg:42
@@ -554,7 +554,7 @@ msgstr ""
 #: interfaces/akregator.kcfg:45
 #, kde-format
 msgid "View Mode"
-msgstr "காட்சி பாங்கு"
+msgstr "காட்சி முறை"
 
 #. i18n: ectx: whatsthis, entry, group (View)
 #: interfaces/akregator.kcfg:46
@@ -632,7 +632,7 @@ msgstr "காலாவதியான கட்டுரைகளை நீக�
 #: interfaces/akregator.kcfg:116
 #, kde-format
 msgid "Disable Archiving"
-msgstr "காப்பகத்தை செயல் நீக்கு"
+msgstr "காப்பகப்படுத்துவதை முடக்கு"
 
 #. i18n: ectx: whatsthis, entry, group (Archive)
 #: interfaces/akregator.kcfg:117
@@ -644,7 +644,7 @@ msgstr "கட்டுரைகள் எதையும் சேமிக்�
 #: interfaces/akregator.kcfg:122
 #, kde-format
 msgid "Expiry Age"
-msgstr "காலாவதியான வயது"
+msgstr "காலாவதி வயது"
 
 #. i18n: ectx: whatsthis, entry, group (Archive)
 #: interfaces/akregator.kcfg:123
@@ -666,9 +666,9 @@ msgstr "ஒவ்வொரு உள்ளீட்டுக்கும் உ�
 
 #. i18n: ectx: label, entry, group (Archive)
 #: interfaces/akregator.kcfg:132
-#, fuzzy, kde-format
+#, kde-format
 msgid "Do Not Expire Important Articles"
-msgstr "காலாவதியான கட்டுரைகளை நீக்கு"
+msgstr "முக்கியமான கட்டுரைகளை காலாவதியாக்காதே"
 
 #. i18n: ectx: whatsthis, entry, group (Archive)
 #: interfaces/akregator.kcfg:133
@@ -1088,10 +1088,9 @@ msgid "&Delete Feed"
 msgstr "தொகுப்பை &நீக்கு"
 
 #: src/actions/actionmanagerimpl.cpp:66 src/actions/actionmanagerimpl.cpp:249
-#, fuzzy, kde-format
-#| msgid "&Edit Feed..."
+#, kde-format
 msgid "&Edit Feed…"
-msgstr "தொகுப்பைத் &திருத்து..."
+msgstr "தொகுப்பைத் &திருத்து…"
 
 #: src/actions/actionmanagerimpl.cpp:67 src/actions/actionmanagerimpl.cpp:306
 #, kde-format
@@ -1119,22 +1118,19 @@ msgid "&Mark Feeds as Read"
 msgstr "தொகுப்புகளைப் படித்த‍தாக‍க் கு&றி"
 
 #: src/actions/actionmanagerimpl.cpp:191
-#, fuzzy, kde-format
-#| msgid "&Import Feeds..."
+#, kde-format
 msgid "&Import Feeds…"
-msgstr "தொகுப்புகளை &இறக்குமதி செய்..."
+msgstr "தொகுப்புகளை &இறக்குமதி செய்…"
 
 #: src/actions/actionmanagerimpl.cpp:195
-#, fuzzy, kde-format
-#| msgid "&Export Feeds..."
+#, kde-format
 msgid "&Export Feeds…"
-msgstr "தொகுப்புகளை &ஏற்றுமதி செய்..."
+msgstr "தொகுப்புகளை &ஏற்றுமதி செய்…"
 
 #: src/actions/actionmanagerimpl.cpp:200
-#, fuzzy, kde-format
-#| msgid "&Configure Akregator..."
+#, kde-format
 msgid "&Configure Akregator…"
-msgstr "அக்றிகேட்டரை &அமை"
+msgstr "அக்றிகேட்டரை &அமை…"
 
 #: src/actions/actionmanagerimpl.cpp:219
 #, kde-format
@@ -1147,16 +1143,14 @@ msgid "Reload All Tabs"
 msgstr "அனைத்து கீற்றுகளையும் மீளேற்று"
 
 #: src/actions/actionmanagerimpl.cpp:231
-#, fuzzy, kde-format
-#| msgid "Add Feed"
+#, kde-format
 msgid "&Add Feed…"
-msgstr "செலுத்தலை சேர்"
+msgstr "தொ&குப்பைச் சேர்…"
 
 #: src/actions/actionmanagerimpl.cpp:237
-#, fuzzy, kde-format
-#| msgid "Ne&w Folder..."
+#, kde-format
 msgid "Ne&w Folder…"
-msgstr "புதி&ய அடைவு..."
+msgstr "புதி&ய அடைவு…"
 
 #: src/actions/actionmanagerimpl.cpp:262
 #, kde-format
@@ -1277,16 +1271,14 @@ msgid "Move Node Right"
 msgstr "உருப்படியை வலதுபுறமாக நகர்த்து"
 
 #: src/actions/actionmanagerimpl.cpp:422
-#, fuzzy, kde-format
-#| msgid "Send Link Address"
+#, kde-format
 msgid "Send &Link Address…"
-msgstr "இணைப்பின் முகவரியை அனுப்பு"
+msgstr "&இணைப்பின் முகவரியை அனுப்பு…"
 
 #: src/actions/actionmanagerimpl.cpp:427
-#, fuzzy, kde-format
-#| msgid "Send &File..."
+#, kde-format
 msgid "Send &File…"
-msgstr "&கோப்பை அனுப்பு..."
+msgstr "&கோப்பை அனுப்பு…"
 
 #: src/actions/actionmanagerimpl.cpp:433
 #, kde-format
@@ -1399,10 +1391,9 @@ msgid "Speak Text"
 msgstr "உரையைப் பேச்சாக்கு"
 
 #: src/actions/actionmanagerimpl.cpp:603
-#, fuzzy, kde-format
-#| msgid "&Find in Message..."
+#, kde-format
 msgid "&Find in Message…"
-msgstr "கட்டுரையில் &கண்டுபிடி..."
+msgstr "செய்தியில் &கண்டுபிடி…"
 
 #: src/actions/actionmanagerimpl.cpp:614
 #, kde-format
@@ -1415,10 +1406,9 @@ msgid "Activate Tab %1"
 msgstr "கீற்று %1-ஐ செயல்படுத்து"
 
 #: src/actions/actionmanagerimpl.cpp:633
-#, fuzzy, kde-format
-#| msgid "&Save Link As..."
+#, kde-format
 msgid "&Save Link As…"
-msgstr "&இணைப்பை இப்படி சேமி..."
+msgstr "&இணைப்பை இப்படி சேமி…"
 
 #: src/actions/actionmanagerimpl.cpp:637
 #, kde-format
@@ -1431,10 +1421,9 @@ msgid "Copy Image Location"
 msgstr "படத்தின் முகவரியை நகலெடு"
 
 #: src/actions/actionmanagerimpl.cpp:647
-#, fuzzy, kde-format
-#| msgid "Save Image On Disk..."
+#, kde-format
 msgid "Save Image On Disk…"
-msgstr "படத்தை வட்டில் சேமி..."
+msgstr "படத்தை வட்டில் சேமி…"
 
 #: src/actions/actions.cpp:19
 #, kde-format
@@ -1463,10 +1452,9 @@ msgid "Feed not found from %1."
 msgstr "%1-இல் தொகுப்பு கண்டுபிடிக்கப்படவில்லை."
 
 #: src/addfeeddialog.cpp:121
-#, fuzzy, kde-format
-#| msgid "Feed found, downloading..."
+#, kde-format
 msgid "Feed found, downloading…"
-msgstr "தொகுப்பு கண்டுபிடிக்கப்பட்டு பதிவிறக்கப்படுகிறது..."
+msgstr "தொகுப்பு கண்டுபிடிக்கப்பட்டு பதிவிறக்கப்படுகிறது…"
 
 #: src/akregator_options.h:20 src/akregator_options.h:28
 #, kde-format
@@ -1814,10 +1802,9 @@ msgstr ""
 "உருவாக்கப்பட்டது:<p><b>%2</b></p></qt>"
 
 #: src/command/loadfeedlistcommand.cpp:129
-#, fuzzy, kde-format
-#| msgid "Opening Feed List..."
+#, kde-format
 msgid "Opening Feed List…"
-msgstr "செலுத்தல் பட்டியலை திறக்கிறது..."
+msgstr "தொகுப்புகளின் பட்டியலைத் திறக்கிறது…"
 
 #: src/command/loadfeedlistcommand.cpp:143
 #, kde-format
@@ -2059,10 +2046,9 @@ msgid "Untitled"
 msgstr "தலைப்பில்லாதது"
 
 #: src/frame/frame.cpp:140
-#, fuzzy, kde-format
-#| msgid "Loading..."
+#, kde-format
 msgid "Loading…"
-msgstr "ஏற்றுகிறது..."
+msgstr "ஏற்றுகிறது…"
 
 #: src/frame/frame.cpp:156
 #, kde-format
@@ -2133,10 +2119,9 @@ msgid "Networking is not available."
 msgstr ""
 
 #: src/mainwidget.cpp:866
-#, fuzzy, kde-format
-#| msgid "Fetching Feeds..."
+#, kde-format
 msgid "Fetching Feeds…"
-msgstr "செலுத்தலை கொண்டுவருகிறது..."
+msgstr "தொகுப்புகளைப் புதுப்பிக்கிறது…"
 
 #: src/mainwidget.cpp:1065
 #, kde-format
@@ -2517,16 +2502,14 @@ msgid "Open In External Browser"
 msgstr "வெளி உலாவியில் இணைப்பை திற"
 
 #: src/widgets/searchbar.cpp:40
-#, fuzzy, kde-format
-#| msgid " articles"
+#, kde-format
 msgid "Search articles…"
-msgstr " கட்டுரைகள்"
+msgstr "கட்டுரைகளில் தேடு…"
 
 #: src/widgets/searchbar.cpp:112
-#, fuzzy, kde-format
-#| msgid " articles"
+#, kde-format
 msgid "Search articles…<%1>"
-msgstr " கட்டுரைகள்"
+msgstr "கட்டுரைகளில் தேடு…<%1>"
 
 #: src/widgets/statussearchline.cpp:43
 #, kde-format
