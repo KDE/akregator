@@ -430,7 +430,7 @@ void ActionManagerImpl::initMainWidget(MainWidget *mainWidget)
     coll->addAction(QStringLiteral("share_serviceurl"), d->shareServiceManager->menu());
     connect(d->shareServiceManager, &PimCommon::ShareServiceUrlManager::serviceUrlSelected, this, &ActionManagerImpl::slotServiceUrlSelected);
 
-    d->mQuickSearchAction = new QAction(i18n("Set Focus to Quick Search"), this);
+    d->mQuickSearchAction = new QAction(i18nc("@action", "Set Focus to Quick Search"), this);
     // If change shortcut change Panel::setQuickSearchClickMessage(…) message
     coll->setDefaultShortcut(d->mQuickSearchAction, QKeySequence(Qt::ALT | Qt::Key_Q));
     coll->addAction(QStringLiteral("focus_to_quickseach"), d->mQuickSearchAction);
@@ -595,7 +595,7 @@ void ActionManagerImpl::initTabWidget(TabWidget *tabWidget)
     action->setText(i18n("Unmute"));
     connect(action, &QAction::triggered, d->tabWidget, &TabWidget::slotUnMute);
 
-    action = new QAction(i18n("Speak Text"), this);
+    action = new QAction(i18nc("@action", "Speak Text"), this);
     action->setIcon(QIcon::fromTheme(QStringLiteral("preferences-desktop-text-to-speech")));
     coll->addAction(QStringLiteral("speak_text"), action);
     connect(action, &QAction::triggered, d->tabWidget, &TabWidget::slotTextToSpeech);
@@ -624,7 +624,7 @@ void ActionManagerImpl::initTabWidget(TabWidget *tabWidget)
     QString actionname;
     for (int i = 1; i < 10; ++i) {
         actionname = QString::asprintf("activate_tab_%02d", i);
-        action = new QAction(i18n("Activate Tab %1", i), this);
+        action = new QAction(i18nc("@action", "Activate Tab %1", i), this);
         coll->addAction(actionname, action);
         coll->setDefaultShortcut(action, QKeySequence(QStringLiteral("Alt+%1").arg(i)));
         connect(action, &QAction::triggered, d->tabWidget, &TabWidget::slotActivateTab);
@@ -637,14 +637,14 @@ void ActionManagerImpl::initTabWidget(TabWidget *tabWidget)
     action->setText(i18n("Copy &Link Address"));
     connect(action, &QAction::triggered, d->tabWidget, &TabWidget::slotCopyLinkAddress);
 
-    action = new QAction(i18n("Copy Image Location"), this);
+    action = new QAction(i18nc("@action", "Copy Image Location"), this);
     action->setIcon(QIcon::fromTheme(QStringLiteral("view-media-visualization")));
     coll->addAction(QStringLiteral("copy_image_location"), action);
     coll->setShortcutsConfigurable(action, false);
     connect(action, &QAction::triggered, d->tabWidget, &TabWidget::slotCopyImageLocation);
 
     // save Image On Disk
-    action = new QAction(i18n("Save Image On Disk…"), this);
+    action = new QAction(i18nc("@action", "Save Image On Disk…"), this);
     coll->addAction(QStringLiteral("saveas_imageurl"), action);
     coll->setShortcutsConfigurable(action, false);
     connect(action, &QAction::triggered, d->tabWidget, &TabWidget::slotSaveImageOnDisk);
