@@ -394,7 +394,7 @@ void ActionManagerImpl::initMainWidget(MainWidget *mainWidget)
     importantAction->setIcon(QIcon::fromTheme(QStringLiteral("mail-mark-important")));
     const QList<QKeySequence> importantSC = {QKeySequence(Qt::CTRL | Qt::Key_I), QKeySequence(Qt::Key_I)};
     coll->setDefaultShortcuts(importantAction, importantSC);
-    importantAction->setCheckedState(KGuiItem(i18n("Remove &Important Mark")));
+    importantAction->setCheckedState(KGuiItem(i18nc("@action:button", "Remove &Important Mark")));
     connect(importantAction, &QAction::triggered, d->mainWidget, &MainWidget::slotArticleToggleKeepFlag);
 
     action = coll->addAction(QStringLiteral("feedstree_move_up"));
