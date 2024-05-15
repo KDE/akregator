@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-10 00:38+0000\n"
+"POT-Creation-Date: 2024-05-15 00:39+0000\n"
 "PO-Revision-Date: 2024-02-10 14:32+0300\n"
 "Last-Translator: Alexander Yavorsky <kekcuha@gmail.com>\n"
 "Language-Team: Russian <kde-russian@lists.kde.ru>\n"
@@ -1330,7 +1330,9 @@ msgid "Send &File…"
 msgstr "Отправить с&татью..."
 
 #: src/actions/actionmanagerimpl.cpp:433
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Set Focus to Quick Search"
+msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr "Перевести фокус на поле быстрого поиска"
 
@@ -1435,7 +1437,9 @@ msgid "Unmute"
 msgstr "Включить звук"
 
 #: src/actions/actionmanagerimpl.cpp:598
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Speak Text"
+msgctxt "@action"
 msgid "Speak Text"
 msgstr "Зачитать текст"
 
@@ -1451,7 +1455,9 @@ msgid "Close Tab"
 msgstr "Закрыть вкладку"
 
 #: src/actions/actionmanagerimpl.cpp:627
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Activate Tab %1"
+msgctxt "@action"
 msgid "Activate Tab %1"
 msgstr "Перейти на вкладку %1"
 
@@ -1467,13 +1473,16 @@ msgid "Copy &Link Address"
 msgstr "&Скопировать адрес ссылки"
 
 #: src/actions/actionmanagerimpl.cpp:640
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Copy Image Location"
+msgctxt "@action"
 msgid "Copy Image Location"
 msgstr "Копировать ссылку на изображение"
 
 #: src/actions/actionmanagerimpl.cpp:647
 #, fuzzy, kde-format
 #| msgid "Save Image On Disk..."
+msgctxt "@action"
 msgid "Save Image On Disk…"
 msgstr "Сохранить изображение на диск..."
 

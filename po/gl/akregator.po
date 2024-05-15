@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-10 00:38+0000\n"
+"POT-Creation-Date: 2024-05-15 00:39+0000\n"
 "PO-Revision-Date: 2024-05-10 23:44+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Proxecto Trasno (proxecto@trasno.gal)\n"
@@ -1308,7 +1308,9 @@ msgid "Send &File…"
 msgstr "Enviar un &ficheiro…"
 
 #: src/actions/actionmanagerimpl.cpp:433
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Set Focus to Quick Search"
+msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr "Poñer o foco na busca rápida"
 
@@ -1413,7 +1415,9 @@ msgid "Unmute"
 msgstr "Activar o son"
 
 #: src/actions/actionmanagerimpl.cpp:598
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Speak Text"
+msgctxt "@action"
 msgid "Speak Text"
 msgstr "Ler o texto"
 
@@ -1428,7 +1432,9 @@ msgid "Close Tab"
 msgstr "Pechar a lapela"
 
 #: src/actions/actionmanagerimpl.cpp:627
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Activate Tab %1"
+msgctxt "@action"
 msgid "Activate Tab %1"
 msgstr "Activar a lapela %1"
 
@@ -1443,12 +1449,16 @@ msgid "Copy &Link Address"
 msgstr "Copiar o enderezo da &ligazón"
 
 #: src/actions/actionmanagerimpl.cpp:640
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Copy Image Location"
+msgctxt "@action"
 msgid "Copy Image Location"
 msgstr "Copiar o lugar onde está a imaxe"
 
 #: src/actions/actionmanagerimpl.cpp:647
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Save Image On Disk…"
+msgctxt "@action"
 msgid "Save Image On Disk…"
 msgstr "Gardar unha imaxe nun disco…"
 

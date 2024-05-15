@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-10 00:38+0000\n"
+"POT-Creation-Date: 2024-05-15 00:39+0000\n"
 "PO-Revision-Date: 2010-03-14 01:57+0100\n"
 "Last-Translator: Børre Gaup <boerre@skolelinux.no>\n"
 "Language-Team: Northern Sami <l10n-no@lister.huftis.org>\n"
@@ -1302,6 +1302,7 @@ msgstr "Sádde &fiilla …"
 
 #: src/actions/actionmanagerimpl.cpp:433
 #, kde-format
+msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr ""
 
@@ -1406,7 +1407,9 @@ msgid "Unmute"
 msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:598
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Speak Text"
+msgctxt "@action"
 msgid "Speak Text"
 msgstr "Huma teavstta"
 
@@ -1422,7 +1425,9 @@ msgid "Close Tab"
 msgstr "Gidde gilkora"
 
 #: src/actions/actionmanagerimpl.cpp:627
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Activate Tab %1"
+msgctxt "@action"
 msgid "Activate Tab %1"
 msgstr "Mana %1 gilkorii"
 
@@ -1438,12 +1443,15 @@ msgid "Copy &Link Address"
 msgstr "Máŋge &liŋkačujuhusa"
 
 #: src/actions/actionmanagerimpl.cpp:640
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Copy Image Location"
+msgctxt "@action"
 msgid "Copy Image Location"
 msgstr "Máŋge govvačujuhusa"
 
 #: src/actions/actionmanagerimpl.cpp:647
 #, kde-format
+msgctxt "@action"
 msgid "Save Image On Disk…"
 msgstr ""
 

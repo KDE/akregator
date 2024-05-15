@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdepim\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-10 00:38+0000\n"
+"POT-Creation-Date: 2024-05-15 00:39+0000\n"
 "PO-Revision-Date: 2009-09-04 19:26+0000\n"
 "Last-Translator: Vilson Gjeci <vilsongjeci@gmail.com>\n"
 "Language-Team: Albanian <sq@li.org>\n"
@@ -1333,6 +1333,7 @@ msgstr "Dërgo &Skedarin..."
 
 #: src/actions/actionmanagerimpl.cpp:433
 #, kde-format
+msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr ""
 
@@ -1441,6 +1442,7 @@ msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:598
 #, kde-format
+msgctxt "@action"
 msgid "Speak Text"
 msgstr ""
 
@@ -1457,6 +1459,7 @@ msgstr "&Mbylle Tabelën"
 
 #: src/actions/actionmanagerimpl.cpp:627
 #, kde-format
+msgctxt "@action"
 msgid "Activate Tab %1"
 msgstr ""
 
@@ -1473,11 +1476,13 @@ msgstr "Kopjo &Adresën e Lidhjes"
 
 #: src/actions/actionmanagerimpl.cpp:640
 #, kde-format
+msgctxt "@action"
 msgid "Copy Image Location"
 msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:647
 #, kde-format
+msgctxt "@action"
 msgid "Save Image On Disk…"
 msgstr ""
 

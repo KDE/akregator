@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: KDE 4.3\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-10 00:38+0000\n"
-"PO-Revision-Date: 2024-03-08 13:31+0100\n"
+"POT-Creation-Date: 2024-05-15 00:39+0000\n"
+"PO-Revision-Date: 2024-05-14 11:38+0200\n"
 "Last-Translator: Kristof Kiszel <ulysses@fsf.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 23.08.5\n"
+"X-Generator: Lokalize 24.07.70\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -1112,8 +1112,7 @@ msgid "&Delete Feed"
 msgstr "&Törlés"
 
 #: src/actions/actionmanagerimpl.cpp:66 src/actions/actionmanagerimpl.cpp:249
-#, fuzzy, kde-format
-#| msgid "&Edit Feed..."
+#, kde-format
 msgid "&Edit Feed…"
 msgstr "Mó&dosítás…"
 
@@ -1143,20 +1142,17 @@ msgid "&Mark Feeds as Read"
 msgstr "A csatornák megjelölése olv&asottnak"
 
 #: src/actions/actionmanagerimpl.cpp:191
-#, fuzzy, kde-format
-#| msgid "&Import Feeds..."
+#, kde-format
 msgid "&Import Feeds…"
 msgstr "Hírcsatornák &importálása…"
 
 #: src/actions/actionmanagerimpl.cpp:195
-#, fuzzy, kde-format
-#| msgid "&Export Feeds..."
+#, kde-format
 msgid "&Export Feeds…"
 msgstr "Hírcsatorna e&xportálása…"
 
 #: src/actions/actionmanagerimpl.cpp:200
-#, fuzzy, kde-format
-#| msgid "&Configure Akregator..."
+#, kde-format
 msgid "&Configure Akregator…"
 msgstr "Beá&llítóablak: Akregator…"
 
@@ -1171,14 +1167,12 @@ msgid "Reload All Tabs"
 msgstr "Összes lap újratöltése"
 
 #: src/actions/actionmanagerimpl.cpp:231
-#, fuzzy, kde-format
-#| msgid "Add Feed"
+#, kde-format
 msgid "&Add Feed…"
-msgstr "Hírcsatorna hozzáadása"
+msgstr "Hírcsatorna hozzá&adása…"
 
 #: src/actions/actionmanagerimpl.cpp:237
-#, fuzzy, kde-format
-#| msgid "Ne&w Folder..."
+#, kde-format
 msgid "Ne&w Folder…"
 msgstr "Új ma&ppa…"
 
@@ -1301,19 +1295,19 @@ msgid "Move Node Right"
 msgstr "Egy csomóponttal jobbra"
 
 #: src/actions/actionmanagerimpl.cpp:422
-#, fuzzy, kde-format
-#| msgid "Send Link Address"
+#, kde-format
 msgid "Send &Link Address…"
-msgstr "Hivatkozás címének küldése"
+msgstr "Hivat&kozás címének küldése…"
 
 #: src/actions/actionmanagerimpl.cpp:427
-#, fuzzy, kde-format
-#| msgid "Send &File..."
+#, kde-format
 msgid "Send &File…"
 msgstr "Fájl kül&dése…"
 
 #: src/actions/actionmanagerimpl.cpp:433
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Set Focus to Quick Search"
+msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr "Fókusz beállítása a gyors keresőre"
 
@@ -1418,13 +1412,14 @@ msgid "Unmute"
 msgstr "Visszahangosítás"
 
 #: src/actions/actionmanagerimpl.cpp:598
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Speak Text"
+msgctxt "@action"
 msgid "Speak Text"
 msgstr "Szöveg felolvasása"
 
 #: src/actions/actionmanagerimpl.cpp:603
-#, fuzzy, kde-format
-#| msgid "&Find in Message..."
+#, kde-format
 msgid "&Find in Message…"
 msgstr "&Keresés az üzenetben…"
 
@@ -1434,15 +1429,16 @@ msgid "Close Tab"
 msgstr "Lap bezárása"
 
 #: src/actions/actionmanagerimpl.cpp:627
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Activate Tab %1"
+msgctxt "@action"
 msgid "Activate Tab %1"
 msgstr "Váltás a(z) %1. lapra"
 
 #: src/actions/actionmanagerimpl.cpp:633
-#, fuzzy, kde-format
-#| msgid "&Save Link As..."
+#, kde-format
 msgid "&Save Link As…"
-msgstr "A &link mentése mint…"
+msgstr "Hivatkozás menté&se másként…"
 
 #: src/actions/actionmanagerimpl.cpp:637
 #, kde-format
@@ -1450,13 +1446,16 @@ msgid "Copy &Link Address"
 msgstr "A link címének má&solása"
 
 #: src/actions/actionmanagerimpl.cpp:640
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Copy Image Location"
+msgctxt "@action"
 msgid "Copy Image Location"
 msgstr "Kép helyének másolása"
 
 #: src/actions/actionmanagerimpl.cpp:647
 #, fuzzy, kde-format
-#| msgid "Save Image On Disk..."
+#| msgid "Save Image On Disk…"
+msgctxt "@action"
 msgid "Save Image On Disk…"
 msgstr "Kép mentése a lemezre…"
 
@@ -1487,8 +1486,7 @@ msgid "Feed not found from %1."
 msgstr "Nem található hírcsatorna: %1."
 
 #: src/addfeeddialog.cpp:121
-#, fuzzy, kde-format
-#| msgid "Feed found, downloading..."
+#, kde-format
 msgid "Feed found, downloading…"
 msgstr "A hírcsatorna elérhető, kezdődik a letöltés…"
 
@@ -1821,10 +1819,9 @@ msgstr ""
 "biztonsági mentést készíteni.</qt>"
 
 #: src/command/loadfeedlistcommand.cpp:129
-#, fuzzy, kde-format
-#| msgid "Opening Feed List..."
+#, kde-format
 msgid "Opening Feed List…"
-msgstr "A csatornalista megnyitása…"
+msgstr "Csatornalista megnyitása…"
 
 #: src/command/loadfeedlistcommand.cpp:143
 #, kde-format
@@ -2057,8 +2054,7 @@ msgid "Untitled"
 msgstr "Névtelen"
 
 #: src/frame/frame.cpp:140
-#, fuzzy, kde-format
-#| msgid "Loading..."
+#, kde-format
 msgid "Loading…"
 msgstr "Betöltés…"
 
@@ -2134,8 +2130,7 @@ msgid "Networking is not available."
 msgstr "A hálózat nem érhető el."
 
 #: src/mainwidget.cpp:866
-#, fuzzy, kde-format
-#| msgid "Fetching Feeds..."
+#, kde-format
 msgid "Fetching Feeds…"
 msgstr "Csatornák letöltése…"
 
@@ -2507,14 +2502,12 @@ msgid "Open In External Browser"
 msgstr "Megnyitás külső böngészőben"
 
 #: src/widgets/searchbar.cpp:40
-#, fuzzy, kde-format
-#| msgid "Search articles..."
+#, kde-format
 msgid "Search articles…"
 msgstr "Cikkek keresése…"
 
 #: src/widgets/searchbar.cpp:112
-#, fuzzy, kde-format
-#| msgid "Search articles...<%1>"
+#, kde-format
 msgid "Search articles…<%1>"
 msgstr "Cikkek keresése…<%1>"
 

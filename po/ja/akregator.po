@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-10 00:38+0000\n"
+"POT-Creation-Date: 2024-05-15 00:39+0000\n"
 "PO-Revision-Date: 2019-04-21 19:02-0700\n"
 "Last-Translator: Fumiaki Okushi <fumiaki.okushi@gmail.com>\n"
 "Language-Team: Japanese <kde-jp@kde.org>\n"
@@ -1337,6 +1337,7 @@ msgstr "ファイルを送信(&F)..."
 
 #: src/actions/actionmanagerimpl.cpp:433
 #, kde-format
+msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr ""
 
@@ -1446,6 +1447,7 @@ msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:598
 #, kde-format
+msgctxt "@action"
 msgid "Speak Text"
 msgstr ""
 
@@ -1461,6 +1463,7 @@ msgstr "タブを閉じる"
 
 #: src/actions/actionmanagerimpl.cpp:627
 #, kde-format
+msgctxt "@action"
 msgid "Activate Tab %1"
 msgstr ""
 
@@ -1477,11 +1480,13 @@ msgstr "リンクアドレスをコピー(&L)"
 
 #: src/actions/actionmanagerimpl.cpp:640
 #, kde-format
+msgctxt "@action"
 msgid "Copy Image Location"
 msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:647
 #, kde-format
+msgctxt "@action"
 msgid "Save Image On Disk…"
 msgstr ""
 

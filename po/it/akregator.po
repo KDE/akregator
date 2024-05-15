@@ -8,16 +8,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-10 00:38+0000\n"
-"PO-Revision-Date: 2024-02-20 23:44+0100\n"
-"Last-Translator: Paolo Zamponi <feus73@gmail.com>\n"
+"POT-Creation-Date: 2024-05-15 00:39+0000\n"
+"PO-Revision-Date: 2024-05-10 16:23+0200\n"
+"Last-Translator: Vincenzo Reale <smart2128vr@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 23.08.4\n"
+"X-Generator: Lokalize 24.02.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -1114,10 +1114,9 @@ msgid "&Delete Feed"
 msgstr "&Elimina fonte"
 
 #: src/actions/actionmanagerimpl.cpp:66 src/actions/actionmanagerimpl.cpp:249
-#, fuzzy, kde-format
-#| msgid "&Edit Feed..."
+#, kde-format
 msgid "&Edit Feed…"
-msgstr "&Modifica fonte..."
+msgstr "&Modifica fonte…"
 
 #: src/actions/actionmanagerimpl.cpp:67 src/actions/actionmanagerimpl.cpp:306
 #, kde-format
@@ -1145,22 +1144,19 @@ msgid "&Mark Feeds as Read"
 msgstr "Se&gna fonti come lette"
 
 #: src/actions/actionmanagerimpl.cpp:191
-#, fuzzy, kde-format
-#| msgid "&Import Feeds..."
+#, kde-format
 msgid "&Import Feeds…"
-msgstr "&Importa fonti..."
+msgstr "&Importa fonti…"
 
 #: src/actions/actionmanagerimpl.cpp:195
-#, fuzzy, kde-format
-#| msgid "&Export Feeds..."
+#, kde-format
 msgid "&Export Feeds…"
-msgstr "&Esporta fonti..."
+msgstr "&Esporta fonti…"
 
 #: src/actions/actionmanagerimpl.cpp:200
-#, fuzzy, kde-format
-#| msgid "&Configure Akregator..."
+#, kde-format
 msgid "&Configure Akregator…"
-msgstr "&Configura Akregator..."
+msgstr "&Configura Akregator…"
 
 #: src/actions/actionmanagerimpl.cpp:219
 #, kde-format
@@ -1173,16 +1169,14 @@ msgid "Reload All Tabs"
 msgstr "Ricarica tutte le schede"
 
 #: src/actions/actionmanagerimpl.cpp:231
-#, fuzzy, kde-format
-#| msgid "Add Feed"
+#, kde-format
 msgid "&Add Feed…"
-msgstr "Aggiungi fonte"
+msgstr "&Aggiungi fonte…"
 
 #: src/actions/actionmanagerimpl.cpp:237
-#, fuzzy, kde-format
-#| msgid "Ne&w Folder..."
+#, kde-format
 msgid "Ne&w Folder…"
-msgstr "&Nuova cartella..."
+msgstr "&Nuova cartella…"
 
 #: src/actions/actionmanagerimpl.cpp:262
 #, kde-format
@@ -1303,19 +1297,19 @@ msgid "Move Node Right"
 msgstr "Sposta il nodo a destra"
 
 #: src/actions/actionmanagerimpl.cpp:422
-#, fuzzy, kde-format
-#| msgid "Send Link Address"
+#, kde-format
 msgid "Send &Link Address…"
-msgstr "Spedisci indirizzo del collegamento"
+msgstr "Invia indirizzo del collegamento…"
 
 #: src/actions/actionmanagerimpl.cpp:427
-#, fuzzy, kde-format
-#| msgid "Send &File..."
+#, kde-format
 msgid "Send &File…"
-msgstr "Spedisci &file..."
+msgstr "Invia &file…"
 
 #: src/actions/actionmanagerimpl.cpp:433
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Set Focus to Quick Search"
+msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr "Dai il fuoco alla ricerca veloce"
 
@@ -1420,15 +1414,16 @@ msgid "Unmute"
 msgstr "Rimuovi il silenzio"
 
 #: src/actions/actionmanagerimpl.cpp:598
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Speak Text"
+msgctxt "@action"
 msgid "Speak Text"
 msgstr "Pronuncia il testo"
 
 #: src/actions/actionmanagerimpl.cpp:603
-#, fuzzy, kde-format
-#| msgid "&Find in Message..."
+#, kde-format
 msgid "&Find in Message…"
-msgstr "&Trova nel messaggio..."
+msgstr "&Trova nel messaggio…"
 
 #: src/actions/actionmanagerimpl.cpp:614
 #, kde-format
@@ -1436,15 +1431,16 @@ msgid "Close Tab"
 msgstr "Chiudi scheda"
 
 #: src/actions/actionmanagerimpl.cpp:627
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Activate Tab %1"
+msgctxt "@action"
 msgid "Activate Tab %1"
 msgstr "Attiva scheda %1"
 
 #: src/actions/actionmanagerimpl.cpp:633
-#, fuzzy, kde-format
-#| msgid "&Save Link As..."
+#, kde-format
 msgid "&Save Link As…"
-msgstr "&Salva collegamento come..."
+msgstr "&Salva collegamento come…"
 
 #: src/actions/actionmanagerimpl.cpp:637
 #, kde-format
@@ -1452,15 +1448,18 @@ msgid "Copy &Link Address"
 msgstr "Copia indirizzo de&l collegamento"
 
 #: src/actions/actionmanagerimpl.cpp:640
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Copy Image Location"
+msgctxt "@action"
 msgid "Copy Image Location"
 msgstr "Copia il percorso dell'immagine"
 
 #: src/actions/actionmanagerimpl.cpp:647
 #, fuzzy, kde-format
-#| msgid "Save Image On Disk..."
+#| msgid "Save Image On Disk…"
+msgctxt "@action"
 msgid "Save Image On Disk…"
-msgstr "Salva l'immagine su disco..."
+msgstr "Salva l'immagine su disco…"
 
 #: src/actions/actions.cpp:19
 #, kde-format
@@ -1489,10 +1488,9 @@ msgid "Feed not found from %1."
 msgstr "Fonte non trovata in %1."
 
 #: src/addfeeddialog.cpp:121
-#, fuzzy, kde-format
-#| msgid "Feed found, downloading..."
+#, kde-format
 msgid "Feed found, downloading…"
-msgstr "Fonte trovata, scaricamento in corso..."
+msgstr "Fonte trovata, scaricamento in corso…"
 
 #: src/akregator_options.h:20 src/akregator_options.h:28
 #, kde-format
@@ -1821,10 +1819,9 @@ msgstr ""
 "creata una copia di sicurezza:</qt>"
 
 #: src/command/loadfeedlistcommand.cpp:129
-#, fuzzy, kde-format
-#| msgid "Opening Feed List..."
+#, kde-format
 msgid "Opening Feed List…"
-msgstr "Apertura della lista di fonti..."
+msgstr "Apertura dell'elenco di fonti…"
 
 #: src/command/loadfeedlistcommand.cpp:143
 #, kde-format
@@ -2059,10 +2056,9 @@ msgid "Untitled"
 msgstr "Senza titolo"
 
 #: src/frame/frame.cpp:140
-#, fuzzy, kde-format
-#| msgid "Loading..."
+#, kde-format
 msgid "Loading…"
-msgstr "Caricamento in corso..."
+msgstr "Caricamento…"
 
 #: src/frame/frame.cpp:156
 #, kde-format
@@ -2136,10 +2132,9 @@ msgid "Networking is not available."
 msgstr "La rete non è disponibile"
 
 #: src/mainwidget.cpp:866
-#, fuzzy, kde-format
-#| msgid "Fetching Feeds..."
+#, kde-format
 msgid "Fetching Feeds…"
-msgstr "Scaricamento fonti..."
+msgstr "Scaricamento fonti…"
 
 #: src/mainwidget.cpp:1065
 #, kde-format
@@ -2511,14 +2506,12 @@ msgid "Open In External Browser"
 msgstr "Apri in un browser esterno"
 
 #: src/widgets/searchbar.cpp:40
-#, fuzzy, kde-format
-#| msgid "Search articles..."
+#, kde-format
 msgid "Search articles…"
 msgstr "Cerca gli articoli..."
 
 #: src/widgets/searchbar.cpp:112
-#, fuzzy, kde-format
-#| msgid "Search articles...<%1>"
+#, kde-format
 msgid "Search articles…<%1>"
 msgstr "Cerca gli articoli...<%1>"
 

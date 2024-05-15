@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-10 00:38+0000\n"
+"POT-Creation-Date: 2024-05-15 00:39+0000\n"
 "PO-Revision-Date: 2024-02-11 11:46-0600\n"
 "Last-Translator: A S Alam <aalam@punlinux.org>\n"
 "Language-Team: Punjabi <kde-i18n-doc@kde.org>\n"
@@ -1294,6 +1294,7 @@ msgstr "ਫਾਇਲ ਭੇਜੋ(&F)..."
 
 #: src/actions/actionmanagerimpl.cpp:433
 #, kde-format
+msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr ""
 
@@ -1401,6 +1402,7 @@ msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:598
 #, kde-format
+msgctxt "@action"
 msgid "Speak Text"
 msgstr ""
 
@@ -1416,6 +1418,7 @@ msgstr "ਟੈਬ ਬੰਦ ਕਰੋ"
 
 #: src/actions/actionmanagerimpl.cpp:627
 #, kde-format
+msgctxt "@action"
 msgid "Activate Tab %1"
 msgstr ""
 
@@ -1432,11 +1435,13 @@ msgstr "ਲਿੰਕ ਐਡਰੈੱਸ ਕਾਪੀ ਕਰੋ(&L)"
 
 #: src/actions/actionmanagerimpl.cpp:640
 #, kde-format
+msgctxt "@action"
 msgid "Copy Image Location"
 msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:647
 #, kde-format
+msgctxt "@action"
 msgid "Save Image On Disk…"
 msgstr ""
 

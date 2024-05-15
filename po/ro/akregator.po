@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-10 00:38+0000\n"
+"POT-Creation-Date: 2024-05-15 00:39+0000\n"
 "PO-Revision-Date: 2012-12-11 09:10+0200\n"
 "Last-Translator: Sergiu Bivol <sergiu@cip.md>\n"
 "Language-Team: Romanian <kde-i18n-ro@kde.org>\n"
@@ -1333,6 +1333,7 @@ msgstr "Trimite &fișier..."
 
 #: src/actions/actionmanagerimpl.cpp:433
 #, kde-format
+msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr ""
 
@@ -1440,6 +1441,7 @@ msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:598
 #, kde-format
+msgctxt "@action"
 msgid "Speak Text"
 msgstr ""
 
@@ -1454,7 +1456,9 @@ msgid "Close Tab"
 msgstr "Închide fila"
 
 #: src/actions/actionmanagerimpl.cpp:627
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Activate Tab %1"
+msgctxt "@action"
 msgid "Activate Tab %1"
 msgstr "Activează fila %1"
 
@@ -1471,11 +1475,13 @@ msgstr "Copiază adresa &legăturii"
 
 #: src/actions/actionmanagerimpl.cpp:640
 #, kde-format
+msgctxt "@action"
 msgid "Copy Image Location"
 msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:647
 #, kde-format
+msgctxt "@action"
 msgid "Save Image On Disk…"
 msgstr ""
 

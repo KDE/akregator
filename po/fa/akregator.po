@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-10 00:38+0000\n"
+"POT-Creation-Date: 2024-05-15 00:39+0000\n"
 "PO-Revision-Date: 2012-01-12 17:34+0330\n"
 "Last-Translator: Mohammad Reza Mirdamadi <mohi@ubuntu.ir>\n"
 "Language-Team: Farsi (Persian) <>\n"
@@ -1337,6 +1337,7 @@ msgstr "ارسال &پرونده...‌"
 
 #: src/actions/actionmanagerimpl.cpp:433
 #, kde-format
+msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr ""
 
@@ -1444,6 +1445,7 @@ msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:598
 #, kde-format
+msgctxt "@action"
 msgid "Speak Text"
 msgstr ""
 
@@ -1460,6 +1462,7 @@ msgstr "&بستن تب‌"
 
 #: src/actions/actionmanagerimpl.cpp:627
 #, kde-format
+msgctxt "@action"
 msgid "Activate Tab %1"
 msgstr ""
 
@@ -1476,11 +1479,13 @@ msgstr "رونوشت نشانی &پیوند‌"
 
 #: src/actions/actionmanagerimpl.cpp:640
 #, kde-format
+msgctxt "@action"
 msgid "Copy Image Location"
 msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:647
 #, kde-format
+msgctxt "@action"
 msgid "Save Image On Disk…"
 msgstr ""
 
