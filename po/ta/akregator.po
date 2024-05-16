@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-15 00:39+0000\n"
+"POT-Creation-Date: 2024-05-16 00:38+0000\n"
 "PO-Revision-Date: 2024-05-12 14:49+0530\n"
 "Last-Translator: Kishore G <kishore96@gmail.com>\n"
 "Language-Team: Tamil <kde-i18n-doc@kde.org>\n"
@@ -931,7 +931,9 @@ msgid "Copyright © 2004–%1 Akregator authors"
 msgstr "பதிப்புரிமை © 2004–%1 அக்றிகேட்டர் நிரலாளர்கள்"
 
 #: src/aboutdata.cpp:27
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Laurent Montel"
+msgctxt "@info:credit"
 msgid "Laurent Montel"
 msgstr "லாரெண்டு மாண்டெல்"
 
@@ -942,6 +944,7 @@ msgstr "பராமரிப்பாளர்"
 
 #: src/aboutdata.cpp:28
 #, kde-format
+msgctxt "@info:credit"
 msgid "Frank Osterfeld"
 msgstr ""
 
@@ -951,7 +954,9 @@ msgid "Former maintainer"
 msgstr "முந்தைய பராமரிப்பாளர்"
 
 #: src/aboutdata.cpp:29
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Teemu Rytilahti"
+msgctxt "@info:credit"
 msgid "Teemu Rytilahti"
 msgstr "டீமு ரிட்டிலாட்டி"
 
@@ -963,21 +968,25 @@ msgstr "நிரலாளர்"
 
 #: src/aboutdata.cpp:30
 #, kde-format
+msgctxt "@info:credit"
 msgid "Sashmit Bhaduri"
 msgstr ""
 
 #: src/aboutdata.cpp:31
 #, kde-format
+msgctxt "@info:credit"
 msgid "Pierre Habouzit"
 msgstr ""
 
 #: src/aboutdata.cpp:32
 #, kde-format
+msgctxt "@info:credit"
 msgid "Stanislav Karchebny"
 msgstr ""
 
 #: src/aboutdata.cpp:33
 #, kde-format
+msgctxt "@info:credit"
 msgid "Gary Cramblitt"
 msgstr ""
 
@@ -988,16 +997,19 @@ msgstr "பங்களிப்பாளர்"
 
 #: src/aboutdata.cpp:34
 #, kde-format
+msgctxt "@info:credit"
 msgid "Stephan Binner"
 msgstr ""
 
 #: src/aboutdata.cpp:35
 #, kde-format
+msgctxt "@info:credit"
 msgid "Christof Musik"
 msgstr ""
 
 #: src/aboutdata.cpp:36
 #, kde-format
+msgctxt "@info:credit"
 msgid "Anne-Marie Mahfouf"
 msgstr ""
 
@@ -1009,6 +1021,7 @@ msgstr "கையேடு"
 #: src/aboutdata.cpp:37
 #, fuzzy, kde-format
 #| msgid "Fetch aborted"
+msgctxt "@info:credit"
 msgid "Frerich Raabe"
 msgstr "கொண்டுவருவது நிறுத்தப்பட்டது"
 
@@ -1019,6 +1032,7 @@ msgstr "librss-ஐ எழுதியவர்"
 
 #: src/aboutdata.cpp:38
 #, kde-format
+msgctxt "@info:credit"
 msgid "Eckhart Woerner"
 msgstr ""
 
@@ -1029,6 +1043,7 @@ msgstr ""
 
 #: src/aboutdata.cpp:39
 #, kde-format
+msgctxt "@info:credit"
 msgid "Heinrich Wendel"
 msgstr ""
 
@@ -1039,6 +1054,7 @@ msgstr ""
 
 #: src/aboutdata.cpp:40
 #, kde-format
+msgctxt "@info:credit"
 msgid "Eike Hein"
 msgstr ""
 
@@ -1049,6 +1065,7 @@ msgstr ""
 
 #: src/aboutdata.cpp:41
 #, kde-format
+msgctxt "@info:credit"
 msgid "Marcel Dierkes"
 msgstr ""
 
@@ -1059,6 +1076,7 @@ msgstr "சின்னங்கள்"
 
 #: src/aboutdata.cpp:42
 #, kde-format
+msgctxt "@info:credit"
 msgid "George Staikos"
 msgstr ""
 
@@ -1069,6 +1087,7 @@ msgstr ""
 
 #: src/aboutdata.cpp:43
 #, kde-format
+msgctxt "@info:credit"
 msgid "Philipp Droessler"
 msgstr ""
 
@@ -1246,7 +1265,9 @@ msgid "&Mark as Important"
 msgstr "&முக்கியமானதென குறி"
 
 #: src/actions/actionmanagerimpl.cpp:397
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Remove &Important Mark"
+msgctxt "@action:button"
 msgid "Remove &Important Mark"
 msgstr "முக்கி&யமில்லை என குறி"
 

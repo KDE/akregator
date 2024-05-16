@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-15 00:39+0000\n"
-"PO-Revision-Date: 2024-05-10 07:26+0200\n"
+"POT-Creation-Date: 2024-05-16 00:38+0000\n"
+"PO-Revision-Date: 2024-05-15 05:19+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -953,7 +953,9 @@ msgid "Copyright © 2004–%1 Akregator authors"
 msgstr "© 2004–%1 Akregator -ის ავტორები, ყველა უფლება დაცულია"
 
 #: src/aboutdata.cpp:27
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Laurent Montel"
+msgctxt "@info:credit"
 msgid "Laurent Montel"
 msgstr "Laurent Montel"
 
@@ -963,7 +965,9 @@ msgid "Maintainer"
 msgstr "წამყვანი პროგრამისტი"
 
 #: src/aboutdata.cpp:28
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Frank Osterfeld"
+msgctxt "@info:credit"
 msgid "Frank Osterfeld"
 msgstr "Frank Osterfeld"
 
@@ -973,7 +977,9 @@ msgid "Former maintainer"
 msgstr "ყოფილი პროგრამისტი"
 
 #: src/aboutdata.cpp:29
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Teemu Rytilahti"
+msgctxt "@info:credit"
 msgid "Teemu Rytilahti"
 msgstr "Teemu Rytilahti"
 
@@ -984,22 +990,30 @@ msgid "Developer"
 msgstr "პროგრამისტი"
 
 #: src/aboutdata.cpp:30
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Sashmit Bhaduri"
+msgctxt "@info:credit"
 msgid "Sashmit Bhaduri"
 msgstr "Sashmit Bhaduri"
 
 #: src/aboutdata.cpp:31
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Pierre Habouzit"
+msgctxt "@info:credit"
 msgid "Pierre Habouzit"
 msgstr "Pierre Habouzit"
 
 #: src/aboutdata.cpp:32
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Stanislav Karchebny"
+msgctxt "@info:credit"
 msgid "Stanislav Karchebny"
 msgstr "Stanislav Karchebny"
 
 #: src/aboutdata.cpp:33
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Gary Cramblitt"
+msgctxt "@info:credit"
 msgid "Gary Cramblitt"
 msgstr "Gary Cramblitt"
 
@@ -1009,17 +1023,23 @@ msgid "Contributor"
 msgstr "მოხალისე"
 
 #: src/aboutdata.cpp:34
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Stephan Binner"
+msgctxt "@info:credit"
 msgid "Stephan Binner"
 msgstr "Stephan Binner"
 
 #: src/aboutdata.cpp:35
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Christof Musik"
+msgctxt "@info:credit"
 msgid "Christof Musik"
 msgstr "Christof Musik"
 
 #: src/aboutdata.cpp:36
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Anne-Marie Mahfouf"
+msgctxt "@info:credit"
 msgid "Anne-Marie Mahfouf"
 msgstr "Anne-Marie Mahfouf"
 
@@ -1029,7 +1049,9 @@ msgid "Handbook"
 msgstr "სახელმძღვანელო"
 
 #: src/aboutdata.cpp:37
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Frerich Raabe"
+msgctxt "@info:credit"
 msgid "Frerich Raabe"
 msgstr "Frerich Raabe"
 
@@ -1039,7 +1061,9 @@ msgid "Author of librss"
 msgstr "Librss-ის ავტორი"
 
 #: src/aboutdata.cpp:38
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Eckhart Woerner"
+msgctxt "@info:credit"
 msgid "Eckhart Woerner"
 msgstr "Eckhart Woerner"
 
@@ -1049,7 +1073,9 @@ msgid "Bug tracker management, Usability improvements"
 msgstr "შეცდომები, ინტერფეისის გაუმჯობესება"
 
 #: src/aboutdata.cpp:39
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Heinrich Wendel"
+msgctxt "@info:credit"
 msgid "Heinrich Wendel"
 msgstr "Heinrich Wendel"
 
@@ -1059,7 +1085,9 @@ msgid "Tons of bug fixes"
 msgstr "ტონობით შეცდომის გასწორება"
 
 #: src/aboutdata.cpp:40
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Eike Hein"
+msgctxt "@info:credit"
 msgid "Eike Hein"
 msgstr "აიკე ჰაინი"
 
@@ -1069,7 +1097,9 @@ msgid "'Delayed mark as read' feature"
 msgstr "ფუნქცია 'დაყოვნებული წაკითხულად მონიშვნა"
 
 #: src/aboutdata.cpp:41
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Marcel Dierkes"
+msgctxt "@info:credit"
 msgid "Marcel Dierkes"
 msgstr "Marcel Dierkes"
 
@@ -1079,7 +1109,9 @@ msgid "Icons"
 msgstr "ხატულები"
 
 #: src/aboutdata.cpp:42
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "George Staikos"
+msgctxt "@info:credit"
 msgid "George Staikos"
 msgstr "George Staikos"
 
@@ -1089,7 +1121,9 @@ msgid "Insomnia"
 msgstr "უძილობა"
 
 #: src/aboutdata.cpp:43
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Philipp Droessler"
+msgctxt "@info:credit"
 msgid "Philipp Droessler"
 msgstr "Philipp Droessler"
 
@@ -1267,7 +1301,9 @@ msgid "&Mark as Important"
 msgstr "&მნიშვნელოვნად დანიშვნა"
 
 #: src/actions/actionmanagerimpl.cpp:397
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Remove &Important Mark"
+msgctxt "@action:button"
 msgid "Remove &Important Mark"
 msgstr "&მნიშვნელოვნობის ნიშნის მოცილება"
 
@@ -1302,8 +1338,7 @@ msgid "Send &File…"
 msgstr "ფაილის &გაგზავნა…"
 
 #: src/actions/actionmanagerimpl.cpp:433
-#, fuzzy, kde-format
-#| msgid "Set Focus to Quick Search"
+#, kde-format
 msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr "ფოკუსის სწრაფ ძებნაზე დაყენება"
@@ -1409,8 +1444,7 @@ msgid "Unmute"
 msgstr "დადუმების გამორთვა"
 
 #: src/actions/actionmanagerimpl.cpp:598
-#, fuzzy, kde-format
-#| msgid "Speak Text"
+#, kde-format
 msgctxt "@action"
 msgid "Speak Text"
 msgstr "ტექსტის წაკითხვა"
@@ -1426,8 +1460,7 @@ msgid "Close Tab"
 msgstr "ჩანართის დახურვა"
 
 #: src/actions/actionmanagerimpl.cpp:627
-#, fuzzy, kde-format
-#| msgid "Activate Tab %1"
+#, kde-format
 msgctxt "@action"
 msgid "Activate Tab %1"
 msgstr "%1-ე ჩანართის გააქტიურება"
@@ -1443,15 +1476,13 @@ msgid "Copy &Link Address"
 msgstr "&ბმულის მისამართის კოპირება"
 
 #: src/actions/actionmanagerimpl.cpp:640
-#, fuzzy, kde-format
-#| msgid "Copy Image Location"
+#, kde-format
 msgctxt "@action"
 msgid "Copy Image Location"
-msgstr "ნახატის ბმის კოპირება"
+msgstr "გამოსახულების მდებარეობის კოპირება"
 
 #: src/actions/actionmanagerimpl.cpp:647
-#, fuzzy, kde-format
-#| msgid "Save Image On Disk…"
+#, kde-format
 msgctxt "@action"
 msgid "Save Image On Disk…"
 msgstr "გამოსახულების დისკზე შენახვა…"
@@ -2048,7 +2079,7 @@ msgstr "უსათაურო"
 #: src/frame/frame.cpp:140
 #, kde-format
 msgid "Loading…"
-msgstr "ჩატვირთვა..."
+msgstr "ჩატვირთვა…"
 
 #: src/frame/frame.cpp:156
 #, kde-format

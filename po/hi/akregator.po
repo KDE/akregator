@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-15 00:39+0000\n"
+"POT-Creation-Date: 2024-05-16 00:38+0000\n"
 "PO-Revision-Date: 2021-06-29 20:38+0530\n"
 "Last-Translator: Raghavendra Kamath <raghu@raghukamath.com>\n"
 "Language-Team: kde-hindi\n"
@@ -974,6 +974,7 @@ msgstr "(c) 1997 - 2005 एकेरेगेटर विकासकर्त�
 
 #: src/aboutdata.cpp:27
 #, kde-format
+msgctxt "@info:credit"
 msgid "Laurent Montel"
 msgstr ""
 
@@ -983,7 +984,9 @@ msgid "Maintainer"
 msgstr "मेंटेनर"
 
 #: src/aboutdata.cpp:28
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Frank Osterfeld"
+msgctxt "@info:credit"
 msgid "Frank Osterfeld"
 msgstr "फ्रैंक ओस्टरफ़ील्ड"
 
@@ -994,7 +997,9 @@ msgid "Former maintainer"
 msgstr "मेंटेनर"
 
 #: src/aboutdata.cpp:29
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Teemu Rytilahti"
+msgctxt "@info:credit"
 msgid "Teemu Rytilahti"
 msgstr "टीमू रायटिल्हाटी"
 
@@ -1005,22 +1010,30 @@ msgid "Developer"
 msgstr "डेवलपर"
 
 #: src/aboutdata.cpp:30
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Sashmit Bhaduri"
+msgctxt "@info:credit"
 msgid "Sashmit Bhaduri"
 msgstr "सश्मित भादुड़ी"
 
 #: src/aboutdata.cpp:31
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Pierre Habouzit"
+msgctxt "@info:credit"
 msgid "Pierre Habouzit"
 msgstr "पियरे हबाउजित"
 
 #: src/aboutdata.cpp:32
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Stanislav Karchebny"
+msgctxt "@info:credit"
 msgid "Stanislav Karchebny"
 msgstr "स्तानिस्लाव कार्चेबनी"
 
 #: src/aboutdata.cpp:33
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Gary Cramblitt"
+msgctxt "@info:credit"
 msgid "Gary Cramblitt"
 msgstr "गैरी क्रैम्ब्लिट"
 
@@ -1030,17 +1043,23 @@ msgid "Contributor"
 msgstr "सहयोगी"
 
 #: src/aboutdata.cpp:34
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Stephan Binner"
+msgctxt "@info:credit"
 msgid "Stephan Binner"
 msgstr "स्टीफन बिनर"
 
 #: src/aboutdata.cpp:35
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Christof Musik"
+msgctxt "@info:credit"
 msgid "Christof Musik"
 msgstr "क्रिस्टोफ़ म्यूसिक"
 
 #: src/aboutdata.cpp:36
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Anne-Marie Mahfouf"
+msgctxt "@info:credit"
 msgid "Anne-Marie Mahfouf"
 msgstr "एन्ने मैरी मेहफोफ"
 
@@ -1050,7 +1069,9 @@ msgid "Handbook"
 msgstr "हैंडबुक"
 
 #: src/aboutdata.cpp:37
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Frerich Raabe"
+msgctxt "@info:credit"
 msgid "Frerich Raabe"
 msgstr "फ्रेरिक राबे"
 
@@ -1060,7 +1081,9 @@ msgid "Author of librss"
 msgstr "लिबआरएसएस के लेखक"
 
 #: src/aboutdata.cpp:38
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Eckhart Woerner"
+msgctxt "@info:credit"
 msgid "Eckhart Woerner"
 msgstr "एकहार्ट वार्नर"
 
@@ -1070,7 +1093,9 @@ msgid "Bug tracker management, Usability improvements"
 msgstr "बग ट्रैकर प्रबंधन, उपयोगिता सुधार"
 
 #: src/aboutdata.cpp:39
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Heinrich Wendel"
+msgctxt "@info:credit"
 msgid "Heinrich Wendel"
 msgstr "हेनरिच वेंडेल"
 
@@ -1080,7 +1105,9 @@ msgid "Tons of bug fixes"
 msgstr "ढेरों बग सुधार"
 
 #: src/aboutdata.cpp:40
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Eike Hein"
+msgctxt "@info:credit"
 msgid "Eike Hein"
 msgstr "एइक हेइन"
 
@@ -1090,7 +1117,9 @@ msgid "'Delayed mark as read' feature"
 msgstr "'संदेशों को पढ़ा चिह्नित करने में देरी' विशेषता"
 
 #: src/aboutdata.cpp:41
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Marcel Dierkes"
+msgctxt "@info:credit"
 msgid "Marcel Dierkes"
 msgstr "मार्सल डिर्क्स"
 
@@ -1100,7 +1129,9 @@ msgid "Icons"
 msgstr "प्रतीक"
 
 #: src/aboutdata.cpp:42
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "George Staikos"
+msgctxt "@info:credit"
 msgid "George Staikos"
 msgstr "जॉर्ज स्टायकॉस"
 
@@ -1110,7 +1141,9 @@ msgid "Insomnia"
 msgstr "अनिद्रा"
 
 #: src/aboutdata.cpp:43
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Philipp Droessler"
+msgctxt "@info:credit"
 msgid "Philipp Droessler"
 msgstr "फ़िलिप ड्रोसेलर"
 
@@ -1297,7 +1330,9 @@ msgid "&Mark as Important"
 msgstr "महत्वपूर्ण के रूप में चिह्नित करें (&M)"
 
 #: src/actions/actionmanagerimpl.cpp:397
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Remove &Important Mark"
+msgctxt "@action:button"
 msgid "Remove &Important Mark"
 msgstr "मह्त्वपूर्ण चिह्न मिटाएँ (&I)"
 

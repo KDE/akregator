@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-15 00:39+0000\n"
+"POT-Creation-Date: 2024-05-16 00:38+0000\n"
 "PO-Revision-Date: 2013-09-08 07:05+0900\n"
 "Last-Translator: Gheyret Kenji <gheyret@gmail.com>\n"
 "Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
@@ -935,6 +935,7 @@ msgstr ""
 
 #: src/aboutdata.cpp:27
 #, kde-format
+msgctxt "@info:credit"
 msgid "Laurent Montel"
 msgstr ""
 
@@ -944,7 +945,9 @@ msgid "Maintainer"
 msgstr "مەسئۇل كىشى"
 
 #: src/aboutdata.cpp:28
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Frank Osterfeld"
+msgctxt "@info:credit"
 msgid "Frank Osterfeld"
 msgstr "Frank Osterfeld"
 
@@ -956,6 +959,7 @@ msgstr "مەسئۇل كىشى"
 
 #: src/aboutdata.cpp:29
 #, kde-format
+msgctxt "@info:credit"
 msgid "Teemu Rytilahti"
 msgstr ""
 
@@ -967,21 +971,27 @@ msgstr "ئىجادىيەتچى"
 
 #: src/aboutdata.cpp:30
 #, kde-format
+msgctxt "@info:credit"
 msgid "Sashmit Bhaduri"
 msgstr ""
 
 #: src/aboutdata.cpp:31
 #, kde-format
+msgctxt "@info:credit"
 msgid "Pierre Habouzit"
 msgstr ""
 
 #: src/aboutdata.cpp:32
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Stanislav Karchebny"
+msgctxt "@info:credit"
 msgid "Stanislav Karchebny"
 msgstr "Stanislav Karchebny"
 
 #: src/aboutdata.cpp:33
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Gary Cramblitt"
+msgctxt "@info:credit"
 msgid "Gary Cramblitt"
 msgstr "Gary Cramblitt"
 
@@ -991,17 +1001,22 @@ msgid "Contributor"
 msgstr "تۆھپىكار"
 
 #: src/aboutdata.cpp:34
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Stephan Binner"
+msgctxt "@info:credit"
 msgid "Stephan Binner"
 msgstr "Stephan Binner"
 
 #: src/aboutdata.cpp:35
 #, kde-format
+msgctxt "@info:credit"
 msgid "Christof Musik"
 msgstr ""
 
 #: src/aboutdata.cpp:36
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Anne-Marie Mahfouf"
+msgctxt "@info:credit"
 msgid "Anne-Marie Mahfouf"
 msgstr "Anne-Marie Mahfouf"
 
@@ -1011,7 +1026,9 @@ msgid "Handbook"
 msgstr "قوللانما"
 
 #: src/aboutdata.cpp:37
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Frerich Raabe"
+msgctxt "@info:credit"
 msgid "Frerich Raabe"
 msgstr "Frerich Raabe"
 
@@ -1022,6 +1039,7 @@ msgstr "librss ئاپتورى"
 
 #: src/aboutdata.cpp:38
 #, kde-format
+msgctxt "@info:credit"
 msgid "Eckhart Woerner"
 msgstr ""
 
@@ -1032,6 +1050,7 @@ msgstr ""
 
 #: src/aboutdata.cpp:39
 #, kde-format
+msgctxt "@info:credit"
 msgid "Heinrich Wendel"
 msgstr ""
 
@@ -1041,7 +1060,9 @@ msgid "Tons of bug fixes"
 msgstr ""
 
 #: src/aboutdata.cpp:40
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Eike Hein"
+msgctxt "@info:credit"
 msgid "Eike Hein"
 msgstr "Eike Hein"
 
@@ -1051,7 +1072,9 @@ msgid "'Delayed mark as read' feature"
 msgstr ""
 
 #: src/aboutdata.cpp:41
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Marcel Dierkes"
+msgctxt "@info:credit"
 msgid "Marcel Dierkes"
 msgstr "Marcel Dierkes"
 
@@ -1061,7 +1084,9 @@ msgid "Icons"
 msgstr "سىنبەلگىلەر"
 
 #: src/aboutdata.cpp:42
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "George Staikos"
+msgctxt "@info:credit"
 msgid "George Staikos"
 msgstr "George Staikos"
 
@@ -1072,6 +1097,7 @@ msgstr ""
 
 #: src/aboutdata.cpp:43
 #, kde-format
+msgctxt "@info:credit"
 msgid "Philipp Droessler"
 msgstr ""
 
@@ -1254,6 +1280,7 @@ msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:397
 #, kde-format
+msgctxt "@action:button"
 msgid "Remove &Important Mark"
 msgstr ""
 

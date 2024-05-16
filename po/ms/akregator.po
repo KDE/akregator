@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Mimos\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-15 00:39+0000\n"
+"POT-Creation-Date: 2024-05-16 00:38+0000\n"
 "PO-Revision-Date: 2005-10-12 11:13+0800\n"
 "Last-Translator: MIMOS <opensource@mimos.my>\n"
 "Language-Team: Malay <kedidiemas@yahoogroups.com>\n"
@@ -961,6 +961,7 @@ msgstr "Pembangun (C) 2004, 2005 Akregator "
 
 #: src/aboutdata.cpp:27
 #, kde-format
+msgctxt "@info:credit"
 msgid "Laurent Montel"
 msgstr ""
 
@@ -971,6 +972,7 @@ msgstr "Penyenggara"
 
 #: src/aboutdata.cpp:28
 #, kde-format
+msgctxt "@info:credit"
 msgid "Frank Osterfeld"
 msgstr ""
 
@@ -982,6 +984,7 @@ msgstr "Penyenggara"
 
 #: src/aboutdata.cpp:29
 #, kde-format
+msgctxt "@info:credit"
 msgid "Teemu Rytilahti"
 msgstr ""
 
@@ -993,21 +996,25 @@ msgstr "Pembangun"
 
 #: src/aboutdata.cpp:30
 #, kde-format
+msgctxt "@info:credit"
 msgid "Sashmit Bhaduri"
 msgstr ""
 
 #: src/aboutdata.cpp:31
 #, kde-format
+msgctxt "@info:credit"
 msgid "Pierre Habouzit"
 msgstr ""
 
 #: src/aboutdata.cpp:32
 #, kde-format
+msgctxt "@info:credit"
 msgid "Stanislav Karchebny"
 msgstr ""
 
 #: src/aboutdata.cpp:33
 #, kde-format
+msgctxt "@info:credit"
 msgid "Gary Cramblitt"
 msgstr ""
 
@@ -1018,16 +1025,19 @@ msgstr "Penyumbang"
 
 #: src/aboutdata.cpp:34
 #, kde-format
+msgctxt "@info:credit"
 msgid "Stephan Binner"
 msgstr ""
 
 #: src/aboutdata.cpp:35
 #, kde-format
+msgctxt "@info:credit"
 msgid "Christof Musik"
 msgstr ""
 
 #: src/aboutdata.cpp:36
 #, kde-format
+msgctxt "@info:credit"
 msgid "Anne-Marie Mahfouf"
 msgstr ""
 
@@ -1039,6 +1049,7 @@ msgstr ""
 #: src/aboutdata.cpp:37
 #, fuzzy, kde-format
 #| msgid "Fetch aborted"
+msgctxt "@info:credit"
 msgid "Frerich Raabe"
 msgstr "Kutip dihenti paksa"
 
@@ -1049,6 +1060,7 @@ msgstr "Pengarang  librss"
 
 #: src/aboutdata.cpp:38
 #, kde-format
+msgctxt "@info:credit"
 msgid "Eckhart Woerner"
 msgstr ""
 
@@ -1059,6 +1071,7 @@ msgstr "Pengurusan penjejak pepijat, penambahbaikan kebolehgunaan"
 
 #: src/aboutdata.cpp:39
 #, kde-format
+msgctxt "@info:credit"
 msgid "Heinrich Wendel"
 msgstr ""
 
@@ -1069,6 +1082,7 @@ msgstr ""
 
 #: src/aboutdata.cpp:40
 #, kde-format
+msgctxt "@info:credit"
 msgid "Eike Hein"
 msgstr ""
 
@@ -1079,6 +1093,7 @@ msgstr ""
 
 #: src/aboutdata.cpp:41
 #, kde-format
+msgctxt "@info:credit"
 msgid "Marcel Dierkes"
 msgstr ""
 
@@ -1089,6 +1104,7 @@ msgstr "Ikon"
 
 #: src/aboutdata.cpp:42
 #, kde-format
+msgctxt "@info:credit"
 msgid "George Staikos"
 msgstr ""
 
@@ -1099,6 +1115,7 @@ msgstr "Insomnia"
 
 #: src/aboutdata.cpp:43
 #, kde-format
+msgctxt "@info:credit"
 msgid "Philipp Droessler"
 msgstr ""
 
@@ -1284,6 +1301,7 @@ msgstr "Tandakan sebagai &belum baca"
 
 #: src/actions/actionmanagerimpl.cpp:397
 #, kde-format
+msgctxt "@action:button"
 msgid "Remove &Important Mark"
 msgstr ""
 

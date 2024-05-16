@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-15 00:39+0000\n"
+"POT-Creation-Date: 2024-05-16 00:38+0000\n"
 "PO-Revision-Date: 2007-06-12 03:54+0200\n"
 "Last-Translator: Rinse de Vries <rinsedevries@kde.nl>\n"
 "Language-Team: Nederlands <kde-i18n-nl@kde.org>\n"
@@ -1033,6 +1033,7 @@ msgstr "(C) 2004, 2005 de ûntwikkelders fan Akregator"
 
 #: src/aboutdata.cpp:27
 #, kde-format
+msgctxt "@info:credit"
 msgid "Laurent Montel"
 msgstr ""
 
@@ -1043,6 +1044,7 @@ msgstr "Underhâlder"
 
 #: src/aboutdata.cpp:28
 #, kde-format
+msgctxt "@info:credit"
 msgid "Frank Osterfeld"
 msgstr ""
 
@@ -1054,6 +1056,7 @@ msgstr "Underhâlder"
 
 #: src/aboutdata.cpp:29
 #, kde-format
+msgctxt "@info:credit"
 msgid "Teemu Rytilahti"
 msgstr ""
 
@@ -1065,21 +1068,25 @@ msgstr "Untwikkelder"
 
 #: src/aboutdata.cpp:30
 #, kde-format
+msgctxt "@info:credit"
 msgid "Sashmit Bhaduri"
 msgstr ""
 
 #: src/aboutdata.cpp:31
 #, kde-format
+msgctxt "@info:credit"
 msgid "Pierre Habouzit"
 msgstr ""
 
 #: src/aboutdata.cpp:32
 #, kde-format
+msgctxt "@info:credit"
 msgid "Stanislav Karchebny"
 msgstr ""
 
 #: src/aboutdata.cpp:33
 #, kde-format
+msgctxt "@info:credit"
 msgid "Gary Cramblitt"
 msgstr ""
 
@@ -1092,16 +1099,19 @@ msgstr "Meiwurker"
 
 #: src/aboutdata.cpp:34
 #, kde-format
+msgctxt "@info:credit"
 msgid "Stephan Binner"
 msgstr ""
 
 #: src/aboutdata.cpp:35
 #, kde-format
+msgctxt "@info:credit"
 msgid "Christof Musik"
 msgstr ""
 
 #: src/aboutdata.cpp:36
 #, kde-format
+msgctxt "@info:credit"
 msgid "Anne-Marie Mahfouf"
 msgstr ""
 
@@ -1113,6 +1123,7 @@ msgstr "Hânboek"
 #: src/aboutdata.cpp:37
 #, fuzzy, kde-format
 #| msgid "Fetch aborted"
+msgctxt "@info:credit"
 msgid "Frerich Raabe"
 msgstr "Opheljen ôfbrutsen"
 
@@ -1123,6 +1134,7 @@ msgstr "Auteur fan librss"
 
 #: src/aboutdata.cpp:38
 #, kde-format
+msgctxt "@info:credit"
 msgid "Eckhart Woerner"
 msgstr ""
 
@@ -1134,6 +1146,7 @@ msgstr "Behear fan bugsdatabank, ferbetterings fan de gebrûksfreonlikens"
 
 #: src/aboutdata.cpp:39
 #, kde-format
+msgctxt "@info:credit"
 msgid "Heinrich Wendel"
 msgstr ""
 
@@ -1144,6 +1157,7 @@ msgstr "In hiel soad bugs oplost"
 
 #: src/aboutdata.cpp:40
 #, kde-format
+msgctxt "@info:credit"
 msgid "Eike Hein"
 msgstr ""
 
@@ -1154,6 +1168,7 @@ msgstr "Moogelikheid foar fertraging om artikel as lêzen te markearjen"
 
 #: src/aboutdata.cpp:41
 #, kde-format
+msgctxt "@info:credit"
 msgid "Marcel Dierkes"
 msgstr ""
 
@@ -1164,6 +1179,7 @@ msgstr "Piktogrammen"
 
 #: src/aboutdata.cpp:42
 #, kde-format
+msgctxt "@info:credit"
 msgid "George Staikos"
 msgstr ""
 
@@ -1174,6 +1190,7 @@ msgstr "Sliepeleazens"
 
 #: src/aboutdata.cpp:43
 #, kde-format
+msgctxt "@info:credit"
 msgid "Philipp Droessler"
 msgstr ""
 
@@ -1368,7 +1385,9 @@ msgid "&Mark as Important"
 msgstr "&Markearje as wichtich"
 
 #: src/actions/actionmanagerimpl.cpp:397
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Remove &Important Mark"
+msgctxt "@action:button"
 msgid "Remove &Important Mark"
 msgstr "Net markearje as wicht&ich"
 
