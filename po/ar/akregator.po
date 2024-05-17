@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-16 00:38+0000\n"
-"PO-Revision-Date: 2024-02-10 21:22+0400\n"
+"PO-Revision-Date: 2024-05-16 12:25+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
 "Language: ar\n"
@@ -966,11 +966,10 @@ msgid "Copyright © 2004–%1 Akregator authors"
 msgstr "الحقوق محفوظة ©2004–%1 مطورو اكريغاتور"
 
 #: src/aboutdata.cpp:27
-#, fuzzy, kde-format
-#| msgid "Laurent Montel"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Laurent Montel"
-msgstr "Laurent Montel"
+msgstr "لوران مونتال"
 
 #: src/aboutdata.cpp:27
 #, kde-format
@@ -978,11 +977,10 @@ msgid "Maintainer"
 msgstr "المشرف"
 
 #: src/aboutdata.cpp:28
-#, fuzzy, kde-format
-#| msgid "Frank Osterfeld"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Frank Osterfeld"
-msgstr "Frank Osterfeld"
+msgstr "فرانك اوسترفيلد"
 
 #: src/aboutdata.cpp:28
 #, kde-format
@@ -990,11 +988,10 @@ msgid "Former maintainer"
 msgstr "المشرف السابق"
 
 #: src/aboutdata.cpp:29
-#, fuzzy, kde-format
-#| msgid "Teemu Rytilahti"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Teemu Rytilahti"
-msgstr "Teemu Rytilahti"
+msgstr "تيمو ريتيلاهتي"
 
 #: src/aboutdata.cpp:29 src/aboutdata.cpp:30 src/aboutdata.cpp:31
 #: src/aboutdata.cpp:32
@@ -1003,32 +1000,28 @@ msgid "Developer"
 msgstr "مطور"
 
 #: src/aboutdata.cpp:30
-#, fuzzy, kde-format
-#| msgid "Sashmit Bhaduri"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Sashmit Bhaduri"
-msgstr "Sashmit Bhaduri"
+msgstr "ساشميت بهادوري"
 
 #: src/aboutdata.cpp:31
-#, fuzzy, kde-format
-#| msgid "Pierre Habouzit"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Pierre Habouzit"
-msgstr "Pierre Habouzit"
+msgstr "بيار حبوزيت"
 
 #: src/aboutdata.cpp:32
-#, fuzzy, kde-format
-#| msgid "Stanislav Karchebny"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Stanislav Karchebny"
-msgstr "Stanislav Karchebny"
+msgstr "ستانيسلاف كارشيبني"
 
 #: src/aboutdata.cpp:33
-#, fuzzy, kde-format
-#| msgid "Gary Cramblitt"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Gary Cramblitt"
-msgstr "Gary Cramblitt"
+msgstr "غاري كرامبليت"
 
 #: src/aboutdata.cpp:33 src/aboutdata.cpp:34 src/aboutdata.cpp:35
 #, kde-format
@@ -1036,25 +1029,22 @@ msgid "Contributor"
 msgstr "مساهم"
 
 #: src/aboutdata.cpp:34
-#, fuzzy, kde-format
-#| msgid "Stephan Binner"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Stephan Binner"
-msgstr "Stephan Binner"
+msgstr "ستيفان بينر"
 
 #: src/aboutdata.cpp:35
-#, fuzzy, kde-format
-#| msgid "Christof Musik"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Christof Musik"
-msgstr "Christof Musik"
+msgstr "كريستوف ميوزيك"
 
 #: src/aboutdata.cpp:36
-#, fuzzy, kde-format
-#| msgid "Anne-Marie Mahfouf"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Anne-Marie Mahfouf"
-msgstr "Anne-Marie Mahfouf"
+msgstr "آن ماري محفوف"
 
 #: src/aboutdata.cpp:36
 #, kde-format
@@ -1062,11 +1052,10 @@ msgid "Handbook"
 msgstr "كتيب الاستعمال"
 
 #: src/aboutdata.cpp:37
-#, fuzzy, kde-format
-#| msgid "Frerich Raabe"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Frerich Raabe"
-msgstr "Frerich Raabe"
+msgstr "فريريش رابي"
 
 #: src/aboutdata.cpp:37
 #, kde-format
@@ -1074,11 +1063,10 @@ msgid "Author of librss"
 msgstr "مؤلف librss"
 
 #: src/aboutdata.cpp:38
-#, fuzzy, kde-format
-#| msgid "Eckhart Woerner"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Eckhart Woerner"
-msgstr "Eckhart Woerner"
+msgstr "إيكهارت وورنر"
 
 #: src/aboutdata.cpp:38
 #, kde-format
@@ -1086,11 +1074,10 @@ msgid "Bug tracker management, Usability improvements"
 msgstr "إدارة متتبع العلل، وتحسينات الاستخدامية"
 
 #: src/aboutdata.cpp:39
-#, fuzzy, kde-format
-#| msgid "Heinrich Wendel"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Heinrich Wendel"
-msgstr "Heinrich Wendel"
+msgstr "هاينريش فيندل"
 
 #: src/aboutdata.cpp:39
 #, kde-format
@@ -1098,11 +1085,10 @@ msgid "Tons of bug fixes"
 msgstr "الكثير من إصلاحات العلل"
 
 #: src/aboutdata.cpp:40
-#, fuzzy, kde-format
-#| msgid "Eike Hein"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Eike Hein"
-msgstr "Eike Hein"
+msgstr "إيكي هين"
 
 #: src/aboutdata.cpp:40
 #, kde-format
@@ -1110,11 +1096,10 @@ msgid "'Delayed mark as read' feature"
 msgstr "ميزة 'علّمها مقروءة بعد مدة'"
 
 #: src/aboutdata.cpp:41
-#, fuzzy, kde-format
-#| msgid "Marcel Dierkes"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Marcel Dierkes"
-msgstr "Marcel Dierkes"
+msgstr "مارسيل ديركيس"
 
 #: src/aboutdata.cpp:41
 #, kde-format
@@ -1122,11 +1107,10 @@ msgid "Icons"
 msgstr "الأيقونات"
 
 #: src/aboutdata.cpp:42
-#, fuzzy, kde-format
-#| msgid "George Staikos"
+#, kde-format
 msgctxt "@info:credit"
 msgid "George Staikos"
-msgstr "George Staikos"
+msgstr "جورج ستايكوس"
 
 #: src/aboutdata.cpp:42
 #, kde-format
@@ -1134,11 +1118,10 @@ msgid "Insomnia"
 msgstr "Insomnia"
 
 #: src/aboutdata.cpp:43
-#, fuzzy, kde-format
-#| msgid "Philipp Droessler"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Philipp Droessler"
-msgstr "Philipp Droessler"
+msgstr "فيليب دروسلر"
 
 #: src/aboutdata.cpp:43
 #, kde-format
@@ -1156,10 +1139,9 @@ msgid "&Delete Feed"
 msgstr "ا&حذف التلقيم"
 
 #: src/actions/actionmanagerimpl.cpp:66 src/actions/actionmanagerimpl.cpp:249
-#, fuzzy, kde-format
-#| msgid "&Edit Feed..."
+#, kde-format
 msgid "&Edit Feed…"
-msgstr "&حرّر التلقيم..."
+msgstr "&حرّر التلقيم…"
 
 #: src/actions/actionmanagerimpl.cpp:67 src/actions/actionmanagerimpl.cpp:306
 #, kde-format
@@ -1187,22 +1169,19 @@ msgid "&Mark Feeds as Read"
 msgstr "&علّم التلقيمات مقروءة"
 
 #: src/actions/actionmanagerimpl.cpp:191
-#, fuzzy, kde-format
-#| msgid "&Import Feeds..."
+#, kde-format
 msgid "&Import Feeds…"
-msgstr "ا&ستورد تلقيمات..."
+msgstr "ا&ستورد تلقيمات…"
 
 #: src/actions/actionmanagerimpl.cpp:195
-#, fuzzy, kde-format
-#| msgid "&Export Feeds..."
+#, kde-format
 msgid "&Export Feeds…"
-msgstr "&صدّر التلقيمات..."
+msgstr "&صدّر التلقيمات…"
 
 #: src/actions/actionmanagerimpl.cpp:200
-#, fuzzy, kde-format
-#| msgid "&Configure Akregator..."
+#, kde-format
 msgid "&Configure Akregator…"
-msgstr "ا&ضبط أكريغاتور..."
+msgstr "ا&ضبط أكريغاتور…"
 
 #: src/actions/actionmanagerimpl.cpp:219
 #, kde-format
@@ -1215,16 +1194,14 @@ msgid "Reload All Tabs"
 msgstr "أعد تحميل كل الألسنة"
 
 #: src/actions/actionmanagerimpl.cpp:231
-#, fuzzy, kde-format
-#| msgid "Add Feed"
+#, kde-format
 msgid "&Add Feed…"
-msgstr "أضف تلقيمًا"
+msgstr "أ&ضف تلقيمًا…"
 
 #: src/actions/actionmanagerimpl.cpp:237
-#, fuzzy, kde-format
-#| msgid "Ne&w Folder..."
+#, kde-format
 msgid "Ne&w Folder…"
-msgstr "مجلد &جديد..."
+msgstr "مجلد &جديد…"
 
 #: src/actions/actionmanagerimpl.cpp:262
 #, kde-format
@@ -1320,8 +1297,7 @@ msgid "&Mark as Important"
 msgstr "علّمها مُهمّة"
 
 #: src/actions/actionmanagerimpl.cpp:397
-#, fuzzy, kde-format
-#| msgid "Remove &Important Mark"
+#, kde-format
 msgctxt "@action:button"
 msgid "Remove &Important Mark"
 msgstr "أزل علامة &مُهمّة"
@@ -1347,20 +1323,17 @@ msgid "Move Node Right"
 msgstr "حرّك العقدة لليمين"
 
 #: src/actions/actionmanagerimpl.cpp:422
-#, fuzzy, kde-format
-#| msgid "Send Link Address"
+#, kde-format
 msgid "Send &Link Address…"
-msgstr "أرسل عنوان الوصلة"
+msgstr "أرسل ع&نوان الوصلة…"
 
 #: src/actions/actionmanagerimpl.cpp:427
-#, fuzzy, kde-format
-#| msgid "Send &File..."
+#, kde-format
 msgid "Send &File…"
-msgstr "أرسل &ملفًا..."
+msgstr "أرسل &ملفًا…"
 
 #: src/actions/actionmanagerimpl.cpp:433
-#, fuzzy, kde-format
-#| msgid "Set Focus to Quick Search"
+#, kde-format
 msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr "اضبط التّركيز على البحث السّريع"
@@ -1466,17 +1439,15 @@ msgid "Unmute"
 msgstr "لا تكتم"
 
 #: src/actions/actionmanagerimpl.cpp:598
-#, fuzzy, kde-format
-#| msgid "Speak Text"
+#, kde-format
 msgctxt "@action"
 msgid "Speak Text"
 msgstr "انطق النّصّ"
 
 #: src/actions/actionmanagerimpl.cpp:603
-#, fuzzy, kde-format
-#| msgid "&Find in Message..."
+#, kde-format
 msgid "&Find in Message…"
-msgstr "ا&بحث في الرّسالة..."
+msgstr "ا&بحث في الرّسالة…"
 
 #: src/actions/actionmanagerimpl.cpp:614
 #, kde-format
@@ -1484,17 +1455,15 @@ msgid "Close Tab"
 msgstr "أ&غلق اللسان"
 
 #: src/actions/actionmanagerimpl.cpp:627
-#, fuzzy, kde-format
-#| msgid "Activate Tab %1"
+#, kde-format
 msgctxt "@action"
 msgid "Activate Tab %1"
 msgstr "فعِّل اللسان %1"
 
 #: src/actions/actionmanagerimpl.cpp:633
-#, fuzzy, kde-format
-#| msgid "&Save Link As..."
+#, kde-format
 msgid "&Save Link As…"
-msgstr "احفظ ال&وصلة باسم..."
+msgstr "احفظ ال&وصلة باسم…"
 
 #: src/actions/actionmanagerimpl.cpp:637
 #, kde-format
@@ -1502,18 +1471,16 @@ msgid "Copy &Link Address"
 msgstr "انسخ ع&نوان الوصلة"
 
 #: src/actions/actionmanagerimpl.cpp:640
-#, fuzzy, kde-format
-#| msgid "Copy Image Location"
+#, kde-format
 msgctxt "@action"
 msgid "Copy Image Location"
 msgstr "انسخ موقع الصورة"
 
 #: src/actions/actionmanagerimpl.cpp:647
-#, fuzzy, kde-format
-#| msgid "Save Image On Disk..."
+#, kde-format
 msgctxt "@action"
 msgid "Save Image On Disk…"
-msgstr "احفظ الصّورة على القرص..."
+msgstr "احفظ الصّورة على القرص…"
 
 #: src/actions/actions.cpp:19
 #, kde-format
@@ -1542,10 +1509,9 @@ msgid "Feed not found from %1."
 msgstr "التلقيم غير موجود في %1."
 
 #: src/addfeeddialog.cpp:121
-#, fuzzy, kde-format
-#| msgid "Feed found, downloading..."
+#, kde-format
 msgid "Feed found, downloading…"
-msgstr "وُجد التلقيم، يجري التنزيل..."
+msgstr "وُجد التلقيم، يجري التنزيل…"
 
 #: src/akregator_options.h:20 src/akregator_options.h:28
 #, kde-format
@@ -1870,10 +1836,9 @@ msgstr ""
 "احتياطية:</qt>"
 
 #: src/command/loadfeedlistcommand.cpp:129
-#, fuzzy, kde-format
-#| msgid "Opening Feed List..."
+#, kde-format
 msgid "Opening Feed List…"
-msgstr "فتح قائمة التلقيمات..."
+msgstr "فتح قائمة التلقيمات…"
 
 #: src/command/loadfeedlistcommand.cpp:143
 #, kde-format
@@ -2127,10 +2092,9 @@ msgid "Untitled"
 msgstr "بدون عنوان"
 
 #: src/frame/frame.cpp:140
-#, fuzzy, kde-format
-#| msgid "Loading..."
+#, kde-format
 msgid "Loading…"
-msgstr "تحميل..."
+msgstr "يحمّل..."
 
 #: src/frame/frame.cpp:156
 #, kde-format
@@ -2199,10 +2163,9 @@ msgid "Networking is not available."
 msgstr "الاتصال الشبكي غير متاح."
 
 #: src/mainwidget.cpp:866
-#, fuzzy, kde-format
-#| msgid "Fetching Feeds..."
+#, kde-format
 msgid "Fetching Feeds…"
-msgstr "جلب التلقيمات..."
+msgstr "جلب التلقيمات…"
 
 #: src/mainwidget.cpp:1065
 #, kde-format
@@ -2582,16 +2545,14 @@ msgid "Open In External Browser"
 msgstr "افتح في متصفح خارجي"
 
 #: src/widgets/searchbar.cpp:40
-#, fuzzy, kde-format
-#| msgid "Search articles..."
+#, kde-format
 msgid "Search articles…"
-msgstr "ابحث في المقالات..."
+msgstr "ابحث في المقالات…"
 
 #: src/widgets/searchbar.cpp:112
-#, fuzzy, kde-format
-#| msgid "Search articles...<%1>"
+#, kde-format
 msgid "Search articles…<%1>"
-msgstr "ابحث في المقالات...<%1>"
+msgstr "ابحث في المقالات…<%1>"
 
 #: src/widgets/statussearchline.cpp:43
 #, kde-format

@@ -958,8 +958,7 @@ msgid "Copyright © 2004–%1 Akregator authors"
 msgstr "Autorská práva © 2004–%1, Autoři Akregatoru"
 
 #: src/aboutdata.cpp:27
-#, fuzzy, kde-format
-#| msgid "Laurent Montel"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Laurent Montel"
 msgstr "Laurent Montel"
@@ -970,11 +969,10 @@ msgid "Maintainer"
 msgstr "Správce"
 
 #: src/aboutdata.cpp:28
-#, fuzzy, kde-format
-#| msgid "Frank Osterfeld"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Frank Osterfeld"
-msgstr "Frank Osterfeld"
+msgstr ""
 
 #: src/aboutdata.cpp:28
 #, kde-format
@@ -982,11 +980,10 @@ msgid "Former maintainer"
 msgstr "Předchozí správce"
 
 #: src/aboutdata.cpp:29
-#, fuzzy, kde-format
-#| msgid "Teemu Rytilahti"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Teemu Rytilahti"
-msgstr "Teemu Rytilahti"
+msgstr ""
 
 #: src/aboutdata.cpp:29 src/aboutdata.cpp:30 src/aboutdata.cpp:31
 #: src/aboutdata.cpp:32
@@ -995,32 +992,28 @@ msgid "Developer"
 msgstr "Vývojář"
 
 #: src/aboutdata.cpp:30
-#, fuzzy, kde-format
-#| msgid "Sashmit Bhaduri"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Sashmit Bhaduri"
-msgstr "Sashmit Bhaduri"
+msgstr ""
 
 #: src/aboutdata.cpp:31
-#, fuzzy, kde-format
-#| msgid "Pierre Habouzit"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Pierre Habouzit"
-msgstr "Pierre Habouzit"
+msgstr ""
 
 #: src/aboutdata.cpp:32
-#, fuzzy, kde-format
-#| msgid "Stanislav Karchebny"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Stanislav Karchebny"
-msgstr "Stanislav Karchebny"
+msgstr ""
 
 #: src/aboutdata.cpp:33
-#, fuzzy, kde-format
-#| msgid "Gary Cramblitt"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Gary Cramblitt"
-msgstr "Gary Cramblitt"
+msgstr ""
 
 #: src/aboutdata.cpp:33 src/aboutdata.cpp:34 src/aboutdata.cpp:35
 #, kde-format
@@ -1028,25 +1021,22 @@ msgid "Contributor"
 msgstr "Přispěl"
 
 #: src/aboutdata.cpp:34
-#, fuzzy, kde-format
-#| msgid "Stephan Binner"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Stephan Binner"
 msgstr "Stephan Binner"
 
 #: src/aboutdata.cpp:35
-#, fuzzy, kde-format
-#| msgid "Christof Musik"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Christof Musik"
-msgstr "Christof Musik"
+msgstr ""
 
 #: src/aboutdata.cpp:36
-#, fuzzy, kde-format
-#| msgid "Anne-Marie Mahfouf"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Anne-Marie Mahfouf"
-msgstr "Anne-Marie Mahfouf"
+msgstr ""
 
 #: src/aboutdata.cpp:36
 #, kde-format
@@ -1054,11 +1044,10 @@ msgid "Handbook"
 msgstr "Příručka"
 
 #: src/aboutdata.cpp:37
-#, fuzzy, kde-format
-#| msgid "Frerich Raabe"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Frerich Raabe"
-msgstr "Frerich Raabe"
+msgstr ""
 
 #: src/aboutdata.cpp:37
 #, kde-format
@@ -1066,11 +1055,10 @@ msgid "Author of librss"
 msgstr "Autor librss"
 
 #: src/aboutdata.cpp:38
-#, fuzzy, kde-format
-#| msgid "Eckhart Woerner"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Eckhart Woerner"
-msgstr "Eckhart Woerner"
+msgstr ""
 
 #: src/aboutdata.cpp:38
 #, kde-format
@@ -1078,11 +1066,10 @@ msgid "Bug tracker management, Usability improvements"
 msgstr "Správa sledování chyb, vylepšení použitelnosti"
 
 #: src/aboutdata.cpp:39
-#, fuzzy, kde-format
-#| msgid "Heinrich Wendel"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Heinrich Wendel"
-msgstr "Heinrich Wendel"
+msgstr ""
 
 #: src/aboutdata.cpp:39
 #, kde-format
@@ -1090,8 +1077,7 @@ msgid "Tons of bug fixes"
 msgstr "Spousta oprav chyb"
 
 #: src/aboutdata.cpp:40
-#, fuzzy, kde-format
-#| msgid "Eike Hein"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Eike Hein"
 msgstr "Eike Hein"
@@ -1102,11 +1088,10 @@ msgid "'Delayed mark as read' feature"
 msgstr "Funkce 'Označení jako přečtené po prodlevě'"
 
 #: src/aboutdata.cpp:41
-#, fuzzy, kde-format
-#| msgid "Marcel Dierkes"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Marcel Dierkes"
-msgstr "Marcel Dierkes"
+msgstr ""
 
 #: src/aboutdata.cpp:41
 #, kde-format
@@ -1114,11 +1099,10 @@ msgid "Icons"
 msgstr "Ikony"
 
 #: src/aboutdata.cpp:42
-#, fuzzy, kde-format
-#| msgid "George Staikos"
+#, kde-format
 msgctxt "@info:credit"
 msgid "George Staikos"
-msgstr "George Staikos"
+msgstr ""
 
 #: src/aboutdata.cpp:42
 #, kde-format
@@ -1126,11 +1110,10 @@ msgid "Insomnia"
 msgstr "Nespavost"
 
 #: src/aboutdata.cpp:43
-#, fuzzy, kde-format
-#| msgid "Philipp Droessler"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Philipp Droessler"
-msgstr "Philipp Droessler"
+msgstr ""
 
 #: src/aboutdata.cpp:43
 #, kde-format
@@ -1306,11 +1289,10 @@ msgid "&Mark as Important"
 msgstr "Označit &jako důležitý"
 
 #: src/actions/actionmanagerimpl.cpp:397
-#, fuzzy, kde-format
-#| msgid "Remove &Important Mark"
+#, kde-format
 msgctxt "@action:button"
 msgid "Remove &Important Mark"
-msgstr "Zruš&it značku \"důležitý\""
+msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:401
 #, kde-format

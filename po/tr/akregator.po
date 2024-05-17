@@ -21,7 +21,7 @@ msgstr ""
 "Project-Id-Version: kdepim-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-16 00:38+0000\n"
-"PO-Revision-Date: 2024-05-10 13:44+0300\n"
+"PO-Revision-Date: 2024-05-16 13:30+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -968,8 +968,7 @@ msgid "Copyright © 2004–%1 Akregator authors"
 msgstr "Telif hakkı © 2004–%1 Akregatör yazarları"
 
 #: src/aboutdata.cpp:27
-#, fuzzy, kde-format
-#| msgid "Laurent Montel"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Laurent Montel"
 msgstr "Laurent Montel"
@@ -980,8 +979,7 @@ msgid "Maintainer"
 msgstr "Projeyi Yürüten"
 
 #: src/aboutdata.cpp:28
-#, fuzzy, kde-format
-#| msgid "Frank Osterfeld"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Frank Osterfeld"
 msgstr "Frank Osterfeld"
@@ -992,8 +990,7 @@ msgid "Former maintainer"
 msgstr "Önceki geliştirici"
 
 #: src/aboutdata.cpp:29
-#, fuzzy, kde-format
-#| msgid "Teemu Rytilahti"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Teemu Rytilahti"
 msgstr "Teemu Rytilahti"
@@ -1005,29 +1002,25 @@ msgid "Developer"
 msgstr "Geliştirici"
 
 #: src/aboutdata.cpp:30
-#, fuzzy, kde-format
-#| msgid "Sashmit Bhaduri"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Sashmit Bhaduri"
-msgstr "Sashmit Bhaduri"
+msgstr "Saşmit Bhaduri"
 
 #: src/aboutdata.cpp:31
-#, fuzzy, kde-format
-#| msgid "Pierre Habouzit"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Pierre Habouzit"
 msgstr "Pierre Habouzit"
 
 #: src/aboutdata.cpp:32
-#, fuzzy, kde-format
-#| msgid "Stanislav Karchebny"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Stanislav Karchebny"
-msgstr "Stanislav Karchebny"
+msgstr "Stanislav Karçebniy"
 
 #: src/aboutdata.cpp:33
-#, fuzzy, kde-format
-#| msgid "Gary Cramblitt"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Gary Cramblitt"
 msgstr "Gary Cramblitt"
@@ -1038,22 +1031,19 @@ msgid "Contributor"
 msgstr "Katkıcı"
 
 #: src/aboutdata.cpp:34
-#, fuzzy, kde-format
-#| msgid "Stephan Binner"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Stephan Binner"
 msgstr "Stephan Binner"
 
 #: src/aboutdata.cpp:35
-#, fuzzy, kde-format
-#| msgid "Christof Musik"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Christof Musik"
 msgstr "Christof Musik"
 
 #: src/aboutdata.cpp:36
-#, fuzzy, kde-format
-#| msgid "Anne-Marie Mahfouf"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Anne-Marie Mahfouf"
 msgstr "Anne–Marie Mahfouf"
@@ -1064,8 +1054,7 @@ msgid "Handbook"
 msgstr "El Kitabı"
 
 #: src/aboutdata.cpp:37
-#, fuzzy, kde-format
-#| msgid "Frerich Raabe"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Frerich Raabe"
 msgstr "Frerich Raabe"
@@ -1076,11 +1065,10 @@ msgid "Author of librss"
 msgstr "Librss Yazarı"
 
 #: src/aboutdata.cpp:38
-#, fuzzy, kde-format
-#| msgid "Eckhart Woerner"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Eckhart Woerner"
-msgstr "Eckhart Woerner"
+msgstr "Eckhart Wörner"
 
 #: src/aboutdata.cpp:38
 #, kde-format
@@ -1088,8 +1076,7 @@ msgid "Bug tracker management, Usability improvements"
 msgstr "Hata izleme yönetimi, kullanabilirlikteki ilerlemeler"
 
 #: src/aboutdata.cpp:39
-#, fuzzy, kde-format
-#| msgid "Heinrich Wendel"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Heinrich Wendel"
 msgstr "Heinrich Wendel"
@@ -1100,8 +1087,7 @@ msgid "Tons of bug fixes"
 msgstr "Birçok hata düzeltmesi"
 
 #: src/aboutdata.cpp:40
-#, fuzzy, kde-format
-#| msgid "Eike Hein"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Eike Hein"
 msgstr "Eike Hein"
@@ -1112,8 +1098,7 @@ msgid "'Delayed mark as read' feature"
 msgstr "‘Daha sonra okundu olarak imle’ özelliği"
 
 #: src/aboutdata.cpp:41
-#, fuzzy, kde-format
-#| msgid "Marcel Dierkes"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Marcel Dierkes"
 msgstr "Marcel Dierkes"
@@ -1124,8 +1109,7 @@ msgid "Icons"
 msgstr "Simgeler"
 
 #: src/aboutdata.cpp:42
-#, fuzzy, kde-format
-#| msgid "George Staikos"
+#, kde-format
 msgctxt "@info:credit"
 msgid "George Staikos"
 msgstr "George Staikos"
@@ -1136,11 +1120,10 @@ msgid "Insomnia"
 msgstr "Uykusuzluk"
 
 #: src/aboutdata.cpp:43
-#, fuzzy, kde-format
-#| msgid "Philipp Droessler"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Philipp Droessler"
-msgstr "Philipp Droessler"
+msgstr "Philipp Drössler"
 
 #: src/aboutdata.cpp:43
 #, kde-format
@@ -1316,8 +1299,7 @@ msgid "&Mark as Important"
 msgstr "Öne&mli Olarak İmle"
 
 #: src/actions/actionmanagerimpl.cpp:397
-#, fuzzy, kde-format
-#| msgid "Remove &Important Mark"
+#, kde-format
 msgctxt "@action:button"
 msgid "Remove &Important Mark"
 msgstr "Önemli İmini Kald&ır"
@@ -1353,8 +1335,7 @@ msgid "Send &File…"
 msgstr "Dos&ya Gönder…"
 
 #: src/actions/actionmanagerimpl.cpp:433
-#, fuzzy, kde-format
-#| msgid "Set Focus to Quick Search"
+#, kde-format
 msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr "Odağı Tez Aramaya Ayarla"
@@ -1460,8 +1441,7 @@ msgid "Unmute"
 msgstr "Sesini aç"
 
 #: src/actions/actionmanagerimpl.cpp:598
-#, fuzzy, kde-format
-#| msgid "Speak Text"
+#, kde-format
 msgctxt "@action"
 msgid "Speak Text"
 msgstr "Metni Konuş"
@@ -1477,8 +1457,7 @@ msgid "Close Tab"
 msgstr "Se&kmeyi Kapat"
 
 #: src/actions/actionmanagerimpl.cpp:627
-#, fuzzy, kde-format
-#| msgid "Activate Tab %1"
+#, kde-format
 msgctxt "@action"
 msgid "Activate Tab %1"
 msgstr "%1. Sekmeyi Etkinleştir"
@@ -1494,15 +1473,13 @@ msgid "Copy &Link Address"
 msgstr "&Bağlantı Adresini Kopyala"
 
 #: src/actions/actionmanagerimpl.cpp:640
-#, fuzzy, kde-format
-#| msgid "Copy Image Location"
+#, kde-format
 msgctxt "@action"
 msgid "Copy Image Location"
-msgstr "Bağlantı Yolunu Kopyala"
+msgstr "Görsel Konumunu Kopyala"
 
 #: src/actions/actionmanagerimpl.cpp:647
-#, fuzzy, kde-format
-#| msgid "Save Image On Disk…"
+#, kde-format
 msgctxt "@action"
 msgid "Save Image On Disk…"
 msgstr "Görseli Diske Kaydet…"
