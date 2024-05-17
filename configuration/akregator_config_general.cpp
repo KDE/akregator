@@ -7,6 +7,7 @@
 
 #include "akregator_config_general.h"
 #include "akregatorconfig.h"
+#include "config-akregator.h"
 
 #include "ui_settings_general.h"
 
@@ -34,6 +35,9 @@ KCMAkregatorGeneralConfig::KCMAkregatorGeneralConfig(QObject *parent, const KPlu
     connect(ui.kcfg_UseIntervalFetch, &QAbstractButton::toggled, ui.kcfg_AutoFetchInterval, &QWidget::setEnabled);
     connect(ui.kcfg_UseIntervalFetch, &QAbstractButton::toggled, ui.autoFetchIntervalLabel, &QWidget::setEnabled);
     addConfig(Settings::self(), m_widget);
+#if !HAVE_ACTIVITY_SUPPORT
+    ui.kcfg_PlasmaActivitySupport->hide();
+#endif
 }
 
 #include "akregator_config_general.moc"
