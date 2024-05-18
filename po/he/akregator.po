@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-16 00:38+0000\n"
+"POT-Creation-Date: 2024-05-18 00:39+0000\n"
 "PO-Revision-Date: 2024-05-16 06:36+0300\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
@@ -127,7 +127,7 @@ msgstr[1] " ימים"
 msgstr[2] " ימים"
 msgstr[3] " ימים"
 
-#: configuration/akregator_config_general.cpp:32
+#: configuration/akregator_config_general.cpp:33
 #, kde-format
 msgid " minute"
 msgid_plural " minutes"
@@ -468,32 +468,38 @@ msgstr "ה&פרש בין עדכוני כתבות"
 msgid "Fetch feeds every:"
 msgstr "למשוך ערוצים כל:"
 
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_PlasmaActivitySupport)
+#: configuration/ui/settings_general.ui:157
+#, kde-format
+msgid "Enable Plasma Activities"
+msgstr ""
+
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
-#: configuration/ui/settings_general.ui:160
+#: configuration/ui/settings_general.ui:167
 #, kde-format
 msgid "Startup"
 msgstr "הפעלה"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_MarkAllFeedsReadOnStartup)
-#: configuration/ui/settings_general.ui:166
+#: configuration/ui/settings_general.ui:173
 #, kde-format
 msgid "Mark &all feeds as read on startup"
 msgstr "לסמן את &כל הערוצים כנקראו בהפעלה"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_FetchOnStartup)
-#: configuration/ui/settings_general.ui:173
+#: configuration/ui/settings_general.ui:180
 #, kde-format
 msgid "Fetch all fee&ds on startup"
 msgstr "לעדכן את כל ה&ערוצים בהפעלה"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
-#: configuration/ui/settings_general.ui:183
+#: configuration/ui/settings_general.ui:190
 #, kde-format
 msgid "Network"
 msgstr "רשת"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_UseHTMLCache)
-#: configuration/ui/settings_general.ui:189
+#: configuration/ui/settings_general.ui:196
 #, kde-format
 msgid "Use the &browser cache (less network traffic)"
 msgstr "להשתמש במטמון ה&דפדפן (פחות תעבורת רשת)"

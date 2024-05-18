@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-16 00:38+0000\n"
+"POT-Creation-Date: 2024-05-18 00:39+0000\n"
 "PO-Revision-Date: 2024-05-12 14:49+0530\n"
 "Last-Translator: Kishore G <kishore96@gmail.com>\n"
 "Language-Team: Tamil <kde-i18n-doc@kde.org>\n"
@@ -112,7 +112,7 @@ msgid_plural " days"
 msgstr[0] " நாள்"
 msgstr[1] " நாட்கள்"
 
-#: configuration/akregator_config_general.cpp:32
+#: configuration/akregator_config_general.cpp:33
 #, kde-format
 msgid " minute"
 msgid_plural " minutes"
@@ -449,32 +449,38 @@ msgstr "&அவ்வப்போது புதுப்பி"
 msgid "Fetch feeds every:"
 msgstr "இந்த இடைவெளியில் புதுப்பி:"
 
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_PlasmaActivitySupport)
+#: configuration/ui/settings_general.ui:157
+#, kde-format
+msgid "Enable Plasma Activities"
+msgstr ""
+
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
-#: configuration/ui/settings_general.ui:160
+#: configuration/ui/settings_general.ui:167
 #, kde-format
 msgid "Startup"
 msgstr "துவக்கம்"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_MarkAllFeedsReadOnStartup)
-#: configuration/ui/settings_general.ui:166
+#: configuration/ui/settings_general.ui:173
 #, kde-format
 msgid "Mark &all feeds as read on startup"
 msgstr "&துவக்கத்தின்போது எல்லா தொகுப்புகளையும் படித்ததாக குறி"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_FetchOnStartup)
-#: configuration/ui/settings_general.ui:173
+#: configuration/ui/settings_general.ui:180
 #, kde-format
 msgid "Fetch all fee&ds on startup"
 msgstr "துவக்கத்தில் உள்ள அனைத்து தொகுப்புகளையும் புதுப்பி"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
-#: configuration/ui/settings_general.ui:183
+#: configuration/ui/settings_general.ui:190
 #, kde-format
 msgid "Network"
 msgstr "பிணையம்"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_UseHTMLCache)
-#: configuration/ui/settings_general.ui:189
+#: configuration/ui/settings_general.ui:196
 #, kde-format
 msgid "Use the &browser cache (less network traffic)"
 msgstr "உலாவியின் தற்காலிக நினைவிடத்தை பயன்படுத்து (போக்குவரத்தை குறைக்கும்)"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-16 00:38+0000\n"
+"POT-Creation-Date: 2024-05-18 00:39+0000\n"
 "PO-Revision-Date: 2012-12-11 09:10+0200\n"
 "Last-Translator: Sergiu Bivol <sergiu@cip.md>\n"
 "Language-Team: Romanian <kde-i18n-ro@kde.org>\n"
@@ -132,7 +132,7 @@ msgstr[0] " zi"
 msgstr[1] " zile"
 msgstr[2] " de zile"
 
-#: configuration/akregator_config_general.cpp:32
+#: configuration/akregator_config_general.cpp:33
 #, kde-format
 msgid " minute"
 msgid_plural " minutes"
@@ -480,32 +480,38 @@ msgstr "Folosește prel&uarea la interval"
 msgid "Fetch feeds every:"
 msgstr "Preia fluxuri la fiecare:"
 
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_PlasmaActivitySupport)
+#: configuration/ui/settings_general.ui:157
+#, kde-format
+msgid "Enable Plasma Activities"
+msgstr ""
+
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
-#: configuration/ui/settings_general.ui:160
+#: configuration/ui/settings_general.ui:167
 #, kde-format
 msgid "Startup"
 msgstr "Pornire"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_MarkAllFeedsReadOnStartup)
-#: configuration/ui/settings_general.ui:166
+#: configuration/ui/settings_general.ui:173
 #, kde-format
 msgid "Mark &all feeds as read on startup"
 msgstr "M&archează toate fluxurile ca citite la pornire"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_FetchOnStartup)
-#: configuration/ui/settings_general.ui:173
+#: configuration/ui/settings_general.ui:180
 #, kde-format
 msgid "Fetch all fee&ds on startup"
 msgstr "P&reia toate fluxurile la pornire"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
-#: configuration/ui/settings_general.ui:183
+#: configuration/ui/settings_general.ui:190
 #, kde-format
 msgid "Network"
 msgstr "Rețea"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_UseHTMLCache)
-#: configuration/ui/settings_general.ui:189
+#: configuration/ui/settings_general.ui:196
 #, kde-format
 msgid "Use the &browser cache (less network traffic)"
 msgstr "Folo&sește stocarea locală a navigatorului (mai puțin trafic de rețea)"

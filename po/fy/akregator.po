@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-16 00:38+0000\n"
+"POT-Creation-Date: 2024-05-18 00:39+0000\n"
 "PO-Revision-Date: 2007-06-12 03:54+0200\n"
 "Last-Translator: Rinse de Vries <rinsedevries@kde.nl>\n"
 "Language-Team: Nederlands <kde-i18n-nl@kde.org>\n"
@@ -141,7 +141,7 @@ msgid_plural " days"
 msgstr[0] "1 dag"
 msgstr[1] "1 dag"
 
-#: configuration/akregator_config_general.cpp:32
+#: configuration/akregator_config_general.cpp:33
 #, fuzzy, kde-format
 #| msgid "1 minute"
 msgid " minute"
@@ -513,32 +513,38 @@ msgstr "Feeds mei tusken&tiden ophelje"
 msgid "Fetch feeds every:"
 msgstr "Feeds ophelje elke:"
 
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_PlasmaActivitySupport)
+#: configuration/ui/settings_general.ui:157
+#, kde-format
+msgid "Enable Plasma Activities"
+msgstr ""
+
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
-#: configuration/ui/settings_general.ui:160
+#: configuration/ui/settings_general.ui:167
 #, kde-format
 msgid "Startup"
 msgstr "Opstarte"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_MarkAllFeedsReadOnStartup)
-#: configuration/ui/settings_general.ui:166
+#: configuration/ui/settings_general.ui:173
 #, kde-format
 msgid "Mark &all feeds as read on startup"
 msgstr "&Alle feeds as lêzen markearje by opstarten"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_FetchOnStartup)
-#: configuration/ui/settings_general.ui:173
+#: configuration/ui/settings_general.ui:180
 #, kde-format
 msgid "Fetch all fee&ds on startup"
 msgstr "Alle fee&ds ophelje by opstarten"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
-#: configuration/ui/settings_general.ui:183
+#: configuration/ui/settings_general.ui:190
 #, kde-format
 msgid "Network"
 msgstr "Netwurk"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_UseHTMLCache)
-#: configuration/ui/settings_general.ui:189
+#: configuration/ui/settings_general.ui:196
 #, kde-format
 msgid "Use the &browser cache (less network traffic)"
 msgstr "&Browsercache brûke (minder netwurkferkear)"

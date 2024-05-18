@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-16 00:38+0000\n"
+"POT-Creation-Date: 2024-05-18 00:39+0000\n"
 "PO-Revision-Date: 2009-02-27 17:34+0530\n"
 "Last-Translator: Ravishankar Shrivastava <raviratlami@aol.in>\n"
 "Language-Team: Hindi <kde-i18n-doc@lists.kde.org>\n"
@@ -132,7 +132,7 @@ msgid_plural " days"
 msgstr[0] "1 दिन"
 msgstr[1] "1 दिन"
 
-#: configuration/akregator_config_general.cpp:32
+#: configuration/akregator_config_general.cpp:33
 #, fuzzy, kde-format
 #| msgid "1 minute"
 msgid " minute"
@@ -481,32 +481,38 @@ msgstr "अंतराल से प्राप्त करव (&U)"
 msgid "Fetch feeds every:"
 msgstr "फीड्स प्राप्त करव हर एक:"
 
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_PlasmaActivitySupport)
+#: configuration/ui/settings_general.ui:157
+#, kde-format
+msgid "Enable Plasma Activities"
+msgstr ""
+
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
-#: configuration/ui/settings_general.ui:160
+#: configuration/ui/settings_general.ui:167
 #, kde-format
 msgid "Startup"
 msgstr "सुरू में"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_MarkAllFeedsReadOnStartup)
-#: configuration/ui/settings_general.ui:166
+#: configuration/ui/settings_general.ui:173
 #, kde-format
 msgid "Mark &all feeds as read on startup"
 msgstr "सुरू होत ही सब्बो फीड मन ल पढ़िस होय चिनहा लगाव (&a)"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_FetchOnStartup)
-#: configuration/ui/settings_general.ui:173
+#: configuration/ui/settings_general.ui:180
 #, kde-format
 msgid "Fetch all fee&ds on startup"
 msgstr "सुरू होत ही सब्बो फीड मन ल लाव (&d)"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
-#: configuration/ui/settings_general.ui:183
+#: configuration/ui/settings_general.ui:190
 #, kde-format
 msgid "Network"
 msgstr "नेटवर्क"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_UseHTMLCache)
-#: configuration/ui/settings_general.ui:189
+#: configuration/ui/settings_general.ui:196
 #, kde-format
 msgid "Use the &browser cache (less network traffic)"
 msgstr "ब्राउजर कैस परयोग करव (कम नेटवर्क ट्रैफिक) (&b)"

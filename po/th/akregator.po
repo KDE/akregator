@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-16 00:38+0000\n"
+"POT-Creation-Date: 2024-05-18 00:39+0000\n"
 "PO-Revision-Date: 2008-04-07 23:17+0700\n"
 "Last-Translator: Thanomsub Noppaburana <donga.nb@gmail.com>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
@@ -128,7 +128,7 @@ msgid " day"
 msgid_plural " days"
 msgstr[0] "1 วัน"
 
-#: configuration/akregator_config_general.cpp:32
+#: configuration/akregator_config_general.cpp:33
 #, fuzzy, kde-format
 #| msgid "Minutes"
 msgid " minute"
@@ -485,36 +485,42 @@ msgstr "ใช้ค่าปริ&ยาย"
 msgid "Fetch feeds every:"
 msgstr "ดึ&งจากแหล่งป้อน"
 
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_PlasmaActivitySupport)
+#: configuration/ui/settings_general.ui:157
+#, kde-format
+msgid "Enable Plasma Activities"
+msgstr ""
+
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
-#: configuration/ui/settings_general.ui:160
+#: configuration/ui/settings_general.ui:167
 #, fuzzy, kde-format
 #| msgid "Status:"
 msgid "Startup"
 msgstr "สถานะ:"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_MarkAllFeedsReadOnStartup)
-#: configuration/ui/settings_general.ui:166
+#: configuration/ui/settings_general.ui:173
 #, fuzzy, kde-format
 #| msgid "Ma&rk All Feeds as Read"
 msgid "Mark &all feeds as read on startup"
 msgstr "ตั้ง&สถานะว่าอ่านแล้ว"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_FetchOnStartup)
-#: configuration/ui/settings_general.ui:173
+#: configuration/ui/settings_general.ui:180
 #, fuzzy, kde-format
 #| msgid "Fe&tch All Feeds"
 msgid "Fetch all fee&ds on startup"
 msgstr "ดึงจากแ&หล่งป้อนทั้งหมด"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
-#: configuration/ui/settings_general.ui:183
+#: configuration/ui/settings_general.ui:190
 #, fuzzy, kde-format
 #| msgid "New"
 msgid "Network"
 msgstr "บทความใหม่"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_UseHTMLCache)
-#: configuration/ui/settings_general.ui:189
+#: configuration/ui/settings_general.ui:196
 #, kde-format
 msgid "Use the &browser cache (less network traffic)"
 msgstr ""
