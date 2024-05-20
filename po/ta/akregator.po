@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-04-24 02:56+0000\n"
-"PO-Revision-Date: 2024-05-12 14:49+0530\n"
+"PO-Revision-Date: 2024-05-19 16:25+0530\n"
 "Last-Translator: Kishore G <kishore96@gmail.com>\n"
 "Language-Team: Tamil <kde-i18n-doc@kde.org>\n"
 "Language: ta\n"
@@ -488,7 +488,7 @@ msgstr "இணையத்திலிருந்து வெளி இணை�
 #: export/akregatorstorageexporter.cpp:280
 #, kde-format
 msgid "Akregator Export for %1"
-msgstr ""
+msgstr "%1 தனக்கான அக்றிகேட்டர் ஏற்றுமதி"
 
 #. i18n: ectx: whatsthis, entry, group (View)
 #: interfaces/akregator.kcfg:10
@@ -791,7 +791,7 @@ msgstr "தட்டு குறும்படம் தெரியுமா 
 #: interfaces/akregator.kcfg:185
 #, kde-format
 msgid "Show Unread In Taskbar"
-msgstr ""
+msgstr "படிக்காதவற்றை பணிப்பட்டையில் காட்டு"
 
 #. i18n: ectx: whatsthis, entry, group (General)
 #: interfaces/akregator.kcfg:186
@@ -804,7 +804,7 @@ msgstr " (படிக்காத கட்டுரைகள் இல்ல�
 #: interfaces/akregator.kcfg:203
 #, kde-format
 msgid "Always show the tab bar, even when only one tab is open"
-msgstr ""
+msgstr "ஒரு கீற்றே திறந்திருந்தாலும் கீற்றுப்பட்டையைக் காட்டு"
 
 #. i18n: ectx: label, entry, group (Browser)
 #: interfaces/akregator.kcfg:207
@@ -825,6 +825,8 @@ msgid ""
 "Open a link which would normally open in a new window (external browser) in "
 "a new tab instead"
 msgstr ""
+"புதிய சாளரத்தில் (வெளி இணைய உலாவியில்) இயல்பாக திறக்கப்படும் இணைப்புகளை புதிய "
+"கீற்றுகளிலேயே திற"
 
 #. i18n: ectx: label, entry, group (Browser)
 #: interfaces/akregator.kcfg:217
@@ -852,10 +854,9 @@ msgstr "வெளி உலாவியைத் திறக்கும் ப
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
 #: interfaces/akregator.kcfg:227
-#, fuzzy, no-c-format, kde-format
-#| msgid "Command to launch external browser.  URL will substitute for %u."
+#, no-c-format, kde-format
 msgid "Command to launch external browser. URL will substitute for %u."
-msgstr "வெளி உலாவியை ஏவுதலுக்கானக் கட்டளை. URL என்பது %u க்கு பதிலாகப் பயன்படுத்தலாம்."
+msgstr "வெளி உலாவியைத் திறப்பதற்கான கட்டளை. %u என்பதற்கு பதிலாக முகவரி இடப்படும்."
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
 #: interfaces/akregator.kcfg:231
@@ -871,15 +872,15 @@ msgstr "மத்திய சுட்டியின் சொடுக்க�
 
 #. i18n: ectx: label, entry, group (Advanced)
 #: interfaces/akregator.kcfg:265
-#, fuzzy, kde-format
+#, kde-format
 msgid "Archive Backend"
-msgstr "காப்பக வகை"
+msgstr "காப்பக பின்நிலை"
 
 #. i18n: ectx: whatsthis, entry (UseMarkReadDelay), group (Advanced)
 #: interfaces/akregator.kcfg:269
 #, kde-format
 msgid "Whether to delay before marking an article as read upon selecting it."
-msgstr ""
+msgstr "தேர்ந்தெடுத்த கட்டுரையைப் படித்ததாக குறிக்குமுன் தாமதிக்க வேண்டுமா"
 
 #. i18n: ectx: whatsthis, entry (MarkReadDelay), group (Advanced)
 #: interfaces/akregator.kcfg:273
@@ -918,7 +919,7 @@ msgstr "புதிய தொகுப்பை உருவாக்கும�
 #, kde-format
 msgctxt "@info:whatsthis"
 msgid "You will be presented with a dialog where you can add a new feed."
-msgstr ""
+msgstr "புதிய தொகுப்பை சேர்க்க விடும் சாளரம் காட்டப்படும்."
 
 #: src/aboutdata.cpp:21
 #, kde-format
@@ -1007,10 +1008,9 @@ msgid "Handbook"
 msgstr "கையேடு"
 
 #: src/aboutdata.cpp:37
-#, fuzzy, kde-format
-#| msgid "Fetch aborted"
+#, kde-format
 msgid "Frerich Raabe"
-msgstr "கொண்டுவருவது நிறுத்தப்பட்டது"
+msgstr ""
 
 #: src/aboutdata.cpp:37
 #, kde-format
@@ -1035,7 +1035,7 @@ msgstr ""
 #: src/aboutdata.cpp:39
 #, kde-format
 msgid "Tons of bug fixes"
-msgstr ""
+msgstr "பல பிழைதிருத்தங்கள்"
 
 #: src/aboutdata.cpp:40
 #, kde-format
@@ -1045,7 +1045,7 @@ msgstr ""
 #: src/aboutdata.cpp:40
 #, kde-format
 msgid "'Delayed mark as read' feature"
-msgstr ""
+msgstr "தாமதித்து படித்ததாகக் குறிக்கும் அம்சம்"
 
 #: src/aboutdata.cpp:41
 #, kde-format
@@ -1065,7 +1065,7 @@ msgstr ""
 #: src/aboutdata.cpp:42
 #, kde-format
 msgid "Insomnia"
-msgstr ""
+msgstr "தூக்கமின்மை"
 
 #: src/aboutdata.cpp:43
 #, kde-format
@@ -1073,9 +1073,9 @@ msgid "Philipp Droessler"
 msgstr ""
 
 #: src/aboutdata.cpp:43
-#, fuzzy, kde-format
+#, kde-format
 msgid "Gentoo Ebuild"
-msgstr "ஜேண்டோ Eகட்டு"
+msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:64 src/actions/actionmanagerimpl.cpp:287
 #, kde-format
@@ -1214,9 +1214,9 @@ msgid "&Read"
 msgstr "&படித்த‍து"
 
 #: src/actions/actionmanagerimpl.cpp:371
-#, fuzzy, kde-format
+#, kde-format
 msgid "Mark selected article as read"
-msgstr "தேர்ந்தெடுக்கப்பட்ட கட்டுரையை படிக்காததாக திற"
+msgstr "தேர்ந்தெடுத்துள்ள கட்டுரையைப் படிக்காததாகக் குறி"
 
 #: src/actions/actionmanagerimpl.cpp:377
 #, kde-format
@@ -1225,9 +1225,9 @@ msgid "&New"
 msgstr "பு&தியது"
 
 #: src/actions/actionmanagerimpl.cpp:380
-#, fuzzy, kde-format
+#, kde-format
 msgid "Mark selected article as new"
-msgstr "தேர்ந்தெடுக்கப்பட்ட கட்டுரையை புதிதாக திற"
+msgstr "தேர்ந்தெடுத்துள்ள கட்டுரையைப் புதிதாகக் குறி"
 
 #: src/actions/actionmanagerimpl.cpp:385
 #, kde-format
@@ -1236,9 +1236,9 @@ msgid "&Unread"
 msgstr "ப&டிக்காத‍து"
 
 #: src/actions/actionmanagerimpl.cpp:387
-#, fuzzy, kde-format
+#, kde-format
 msgid "Mark selected article as unread"
-msgstr "தேர்ந்தெடுக்கப்பட்ட கட்டுரையை படிக்காததாக திற"
+msgstr "தேர்ந்தெடுத்துள்ள கட்டுரையைப் படிக்காததாகக் குறி"
 
 #: src/actions/actionmanagerimpl.cpp:393
 #, kde-format
