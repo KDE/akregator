@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-18 00:39+0000\n"
-"PO-Revision-Date: 2024-05-16 11:20+0200\n"
+"PO-Revision-Date: 2024-05-19 09:51+0200\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
 "Language: bg\n"
@@ -466,7 +466,7 @@ msgstr "Изтегляне на емисии на всеки:"
 #: configuration/ui/settings_general.ui:157
 #, kde-format
 msgid "Enable Plasma Activities"
-msgstr ""
+msgstr "Активиране на дейности на Plasma"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #: configuration/ui/settings_general.ui:167
