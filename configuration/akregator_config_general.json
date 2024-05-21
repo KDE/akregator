@@ -39,7 +39,7 @@
         "Description[uk]": "Налаштування подач",
         "Description[x-test]": "xxConfigure Feedsxx",
         "Description[zh_CN]": "配置订阅",
-        "Description[zh_TW]": "設定 Feed",
+        "Description[zh_TW]": "設定訂閱來源",
         "Icon": "akregator",
         "Name": "General",
         "Name[af]": "Algemeen",
@@ -114,7 +114,7 @@
         "Name[wa]": "Djenerå",
         "Name[x-test]": "xxGeneralxx",
         "Name[zh_CN]": "常规",
-        "Name[zh_TW]": "General",
+        "Name[zh_TW]": "一般",
         "ServiceTypes": [
             "KCModule"
         ]

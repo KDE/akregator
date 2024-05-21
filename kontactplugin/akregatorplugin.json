@@ -111,7 +111,7 @@
         "Name[wa]": "Floûs",
         "Name[x-test]": "xxFeedsxx",
         "Name[zh_CN]": "订阅",
-        "Name[zh_TW]": "Feeds",
+        "Name[zh_TW]": "訂閱來源",
         "Version": "1.0b2"
     },
     "X-KDE-ConfigModuleNamespace": "pim6/kcms/akregator/",
