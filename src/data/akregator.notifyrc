@@ -67,7 +67,7 @@ Comment[uz@cyrillic]=Akregator
 Comment[wa]=Akregator
 Comment[x-test]=xxAkregatorxx
 Comment[zh_CN]=Akregator
-Comment[zh_TW]=RSS 閱讀器 Akregator
+Comment[zh_TW]=Akregator
 
 [Event/FeedAdded]
 Name=Feed added
@@ -132,7 +132,7 @@ Name[uz@cyrillic]=Янгиликлар тасмаси қўшилди
 Name[wa]=Floû radjouté
 Name[x-test]=xxFeed addedxx
 Name[zh_CN]=添加了订阅
-Name[zh_TW]=已新增 Feed
+Name[zh_TW]=已新增訂閱來源
 Comment=A new feed was remotely added to Akregator
 Comment[af]='n Nuwe stroom was vanaf 'n afgeleë ligging by Akregator bygevoeg.
 Comment[ar]=أُضيفت تغذية جديدة إلى أكريغاتور عن بُعد
@@ -195,7 +195,7 @@ Comment[uz@cyrillic]=Akregator дастурига янги янгиликлар 
 Comment[wa]=On novea floû a stî radjouté då lon a Akregator
 Comment[x-test]=xxA new feed was remotely added to Akregatorxx
 Comment[zh_CN]=一个新种子已通过远程添加进 Akregator
-Comment[zh_TW]=已從遠端新增 Feed 到 Akregator
+Comment[zh_TW]=已從遠端新增訂閱來源到 Akregator
 Action=Popup
 
 [Event/NewArticles]
@@ -326,6 +326,6 @@ Comment[uk]=Отримано нові статті
 Comment[wa]=Des noveas papîs ont stî a aberwetés
 Comment[x-test]=xxNew articles were fetchedxx
 Comment[zh_CN]=获取了新文章
-Comment[zh_TW]=有新文章進來
+Comment[zh_TW]=已取得新文章
 Action=Popup
 
