@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-18 00:39+0000\n"
-"PO-Revision-Date: 2024-05-17 06:24+0100\n"
+"PO-Revision-Date: 2024-05-20 13:35+0100\n"
 "Last-Translator: Oliver Kellogg <olivermkellogg@gmail.com>\n"
 "Language-Team: Esperanto <kde-i18n-eo@kde.org>\n"
 "Language: eo\n"
@@ -465,7 +465,7 @@ msgstr "Kolekti fluojn ĉiujn:"
 #: configuration/ui/settings_general.ui:157
 #, kde-format
 msgid "Enable Plasma Activities"
-msgstr ""
+msgstr "Ebligi Aktivecojn de Plasma"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #: configuration/ui/settings_general.ui:167
@@ -695,7 +695,7 @@ msgid ""
 "When this option is enabled, articles you marked as important will not be "
 "removed when limit the archive size by either age or number of the articles."
 msgstr ""
-"Kiam tiu opcio estas aktiva, artikoloj, kiujn vi signis kiel gravaj, ne "
+"Kiam tiu elekteblo estas aktiva, artikoloj, kiujn vi signis kiel gravaj, ne "
 "estos forigitaj kiam la limo de la arĥivo estas atingita ĉu pro aĝo ĉu pro "
 "nombro de artikoloj."
 
@@ -735,7 +735,7 @@ msgid ""
 "the default one. This is here because some proxies may interrupt the "
 "connection because of having \"gator\" in the name."
 msgstr ""
-"Ĉi tiu opcio permesas al uzanto specifi laŭmendan uzant-agentan ĉenon "
+"Ĉi tiu elekteblo permesas al uzanto specifi laŭmendan uzant-agentan ĉenon "
 "anstataŭ uzi la defaŭltan. Ĉi tio estas ĉi tie ĉar iuj prokuriloj povas "
 "interrompi la konekton pro havi \"gator\" en la nomo."
 

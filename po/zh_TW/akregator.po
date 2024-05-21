@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-18 00:39+0000\n"
-"PO-Revision-Date: 2024-05-10 16:43+0900\n"
+"PO-Revision-Date: 2024-05-21 00:40+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
 "Language: zh_TW\n"
@@ -41,9 +41,8 @@ msgid ""
 "checking all your favorite web sites manually for updates, Akregator "
 "collects the content for you."
 msgstr ""
-"Feed 閱讀器提供了一個方便的方式來瀏覽不同類型的資訊，其中包含了網路上新聞、網"
-"誌與其他的資訊，Akregator 幫你匯集了這些資訊，以取代自己檢查你所有喜歡網站上"
-"面的更新。"
+"Feed 閱讀器提供瀏覽不同類型資訊的方便的途徑，包含網路上的新聞、部落格及其他內"
+"容。Akregator 幫您彙集資訊，讓您不用自己手動到各網站檢查更新。"
 
 #: src/about/introduction_akregator.html:19
 msgid ""
@@ -52,13 +51,13 @@ msgid ""
 "want to see this page anymore, <a href='config:/disable_introduction'>click "
 "here</a>."
 msgstr ""
-"取得使用 Akregator 的更多資訊，請查看 <a href='https://kontact.kde.org/"
-"components/akregator/'>Akregator 網站</a>。如果你不再希望看到這個頁面，<a "
-"href='config:/disable_introduction'>請點這</a>。"
+"關於 Akregator 的更多資訊，請查看 <a href='https://kontact.kde.org/"
+"components/akregator/'>Akregator 網站</a>。如果您不希望再看到此頁面，<a "
+"href='config:/disable_introduction'>請點擊此處</a>。"
 
 #: src/about/introduction_akregator.html:20
 msgid "We hope that you will enjoy Akregator."
-msgstr "我們希望你將會享受 Akregator。"
+msgstr "我們希望您享受使用 Akregator。"
 
 #: src/about/introduction_akregator.html:21
 msgid "Thank you, The Akregator Team"
@@ -158,7 +157,7 @@ msgstr "多久後將所選擇的文章標示為已讀(&K)："
 #: configuration/ui/settings_advancedbase.ui:73
 #, kde-format
 msgid "Reset search bar when changing feeds"
-msgstr "變更 feeds 重設搜尋列"
+msgstr "變更訂閱來源時重設搜尋列"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_3)
 #: configuration/ui/settings_appearance.ui:30
@@ -414,13 +413,13 @@ msgstr "在工作列顯示未讀文章"
 #: configuration/ui/settings_general.ui:50 interfaces/akregator.kcfg:9
 #, kde-format
 msgid "Hide feeds with no unread articles"
-msgstr "隱藏從不閱讀文章的 Feed"
+msgstr "隱藏從不閱讀文章的訂閱來源"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_LockFeedsInPlace)
 #: configuration/ui/settings_general.ui:57
 #, kde-format
 msgid "Lock feeds in place"
-msgstr "原地鎖定 feed"
+msgstr "原地鎖定訂閱來源"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_AutoExpandFolders)
 #. i18n: ectx: whatsthis, entry, group (View)
@@ -439,7 +438,7 @@ msgstr "選取此項，您會在新文章進來後收到通知。"
 #: configuration/ui/settings_general.ui:77
 #, kde-format
 msgid "Use &notifications for all feeds"
-msgstr "對所有 feed 使用通知(&N)"
+msgstr "對所有訂閱來源使用通知(&N)"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_DisableSaveAsNotification)
 #: configuration/ui/settings_general.ui:84
@@ -457,13 +456,13 @@ msgstr "使用間隔抓取(&U)"
 #: configuration/ui/settings_general.ui:119
 #, kde-format
 msgid "Fetch feeds every:"
-msgstr "抓取 feed 間隔："
+msgstr "訂閱來源抓取間隔："
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_PlasmaActivitySupport)
 #: configuration/ui/settings_general.ui:157
 #, kde-format
 msgid "Enable Plasma Activities"
-msgstr ""
+msgstr "啟用 Plasma 活動"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #: configuration/ui/settings_general.ui:167
@@ -475,13 +474,13 @@ msgstr "啟動"
 #: configuration/ui/settings_general.ui:173
 #, kde-format
 msgid "Mark &all feeds as read on startup"
-msgstr "啟動時將所有的 feed 標示為已讀(&A)"
+msgstr "啟動時將所有的訂閱來源標示為已讀(&A)"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_FetchOnStartup)
 #: configuration/ui/settings_general.ui:180
 #, kde-format
 msgid "Fetch all fee&ds on startup"
-msgstr "啟動時抓取所有的 feed (&D)"
+msgstr "啟動時抓取所有的訂閱來源(&D)"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: configuration/ui/settings_general.ui:190
@@ -499,7 +498,7 @@ msgstr "使用瀏覽器快取以減少網路流量(&B)"
 #: configuration/ui/settings_security.ui:17
 #, kde-format
 msgid "Allow feed to load external references from internet."
-msgstr "允許 feed 從網路上下載外部參照。"
+msgstr "允許訂閱來源載入網路上的外部參照。"
 
 #: export/akregatorstorageexporter.cpp:280
 #, kde-format
@@ -510,25 +509,25 @@ msgstr "Akregator 為 %1 匯出"
 #: interfaces/akregator.kcfg:10
 #, kde-format
 msgid "Hides feeds with no unread articles"
-msgstr "隱藏從不閱讀文章的 Feed"
+msgstr "隱藏無未讀文章的訂閱來源"
 
 #. i18n: ectx: label, entry, group (View)
 #: interfaces/akregator.kcfg:21
 #, kde-format
 msgid "Prevent feeds from being moved in the list"
-msgstr "防止 feed 在列表中被移動"
+msgstr "防止訂閱來源在列表中被移動"
 
 #. i18n: ectx: whatsthis, entry, group (View)
 #: interfaces/akregator.kcfg:22
 #, kde-format
 msgid "Locks feeds where they are"
-msgstr "將 feed 鎖定在它們所在的地方"
+msgstr "將訂閱來源鎖定在它們所在的地方"
 
 #. i18n: ectx: label, entry, group (View)
 #: interfaces/akregator.kcfg:26
 #, kde-format
 msgid "Auto-Expand folders with unread articles"
-msgstr "自動展開未閱讀文章的資料夾"
+msgstr "自動展開有未閱讀文章的資料夾"
 
 #. i18n: ectx: label, entry, group (View)
 #: interfaces/akregator.kcfg:31 src/actions/actionmanagerimpl.cpp:318
@@ -618,7 +617,7 @@ msgstr "保存所有的文章"
 #: interfaces/akregator.kcfg:105
 #, kde-format
 msgid "Save an unlimited number of articles."
-msgstr "保存所有的文章，直到硬碟爆掉為止。"
+msgstr "不限制保存文章的數量。"
 
 #. i18n: ectx: label, entry, group (Archive)
 #: interfaces/akregator.kcfg:108
@@ -630,7 +629,7 @@ msgstr "限制保存文章數"
 #: interfaces/akregator.kcfg:109
 #, kde-format
 msgid "Limit the number of articles in a feed"
-msgstr "限制保存文章數，以免硬碟爆掉"
+msgstr "限制保存文章數，以避免使用過量空間"
 
 #. i18n: ectx: label, entry, group (Archive)
 #: interfaces/akregator.kcfg:112
@@ -678,7 +677,7 @@ msgstr "文章收集限制"
 #: interfaces/akregator.kcfg:128
 #, kde-format
 msgid "Number of articles to keep per feed."
-msgstr "每個 feed 要保留多少文章。"
+msgstr "每個訂閱來源要保留多少文章。"
 
 #. i18n: ectx: label, entry, group (Archive)
 #: interfaces/akregator.kcfg:132
@@ -721,8 +720,8 @@ msgid ""
 "Use the KDE-wide HTML cache settings when downloading feeds, to avoid "
 "unnecessary traffic. Disable only when necessary."
 msgstr ""
-"下載 feed 內容時使用 KDE 系統的 HTML 快取設定，可避免不必要的網路交通流量。請"
-"只在必要時關閉。"
+"下載訂閱來源內容時使用 KDE 系統的 HTML 快取設定，可避免不必要的網路交通流量。"
+"請只在必要時關閉。"
 
 #. i18n: ectx: whatsthis, entry, group (Network)
 #: interfaces/akregator.kcfg:149
@@ -745,19 +744,19 @@ msgstr "啟動時抓取"
 #: interfaces/akregator.kcfg:156
 #, kde-format
 msgid "Fetch feedlist on startup."
-msgstr "啟動程式時自動抓取 feed。"
+msgstr "啟動程式時自動抓取訂閱來源。"
 
 #. i18n: ectx: label, entry, group (General)
 #: interfaces/akregator.kcfg:160
 #, kde-format
 msgid "Mark all feeds as read on startup"
-msgstr "啟動時將所有的 feed 標示為已讀"
+msgstr "啟動時將所有的訂閱來源標示為已讀"
 
 #. i18n: ectx: whatsthis, entry, group (General)
 #: interfaces/akregator.kcfg:161
 #, kde-format
 msgid "Mark all feeds as read on startup."
-msgstr "啟動時將所有的 feed 標示為已讀"
+msgstr "啟動時將所有的訂閱來源標示為已讀。"
 
 #. i18n: ectx: label, entry, group (General)
 #: interfaces/akregator.kcfg:165
@@ -769,7 +768,7 @@ msgstr "使用間隔抓取"
 #: interfaces/akregator.kcfg:166
 #, no-c-format, kde-format
 msgid "Fetch all feeds every %1 minutes."
-msgstr "每 %1 分鐘自動抓取所有的 feed。"
+msgstr "每 %1 分鐘自動抓取所有的訂閱來源。"
 
 #. i18n: ectx: label, entry, group (General)
 #: interfaces/akregator.kcfg:170
@@ -829,13 +828,13 @@ msgstr "總是顯示分頁列，即使只開啟了一個分頁"
 #: interfaces/akregator.kcfg:207
 #, kde-format
 msgid "Show close buttons on tabs"
-msgstr "在分頁標籤上顯示關閉按鍵。"
+msgstr "在分頁標籤上顯示關閉按鍵"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
 #: interfaces/akregator.kcfg:208
 #, kde-format
 msgid "Show close buttons on tabs instead of icons"
-msgstr "在分頁標籤上顯示關閉按鍵，而不是顯示圖示。"
+msgstr "在分頁標籤上顯示關閉按鍵，而不是顯示圖示"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
 #: interfaces/akregator.kcfg:213
@@ -855,7 +854,7 @@ msgstr "使用預設的 KDE 網頁瀏覽器"
 #: interfaces/akregator.kcfg:218
 #, kde-format
 msgid "Use KDE web browser when opening in external browser."
-msgstr "選擇在外部瀏覽器開啟時，使用 KDE 網頁瀏覽器。"
+msgstr "在外部瀏覽器開啟時使用 KDE 的網頁瀏覽器。"
 
 #. i18n: ectx: label, entry, group (Browser)
 #: interfaces/akregator.kcfg:222
@@ -867,7 +866,7 @@ msgstr "使用此指令："
 #: interfaces/akregator.kcfg:223
 #, kde-format
 msgid "Use the specified command when opening in external browser."
-msgstr "選擇在外部瀏覽器開啟時，使用此指令。"
+msgstr "在外部瀏覽器開啟時使用指定的指令。"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
 #: interfaces/akregator.kcfg:227
@@ -885,7 +884,7 @@ msgstr "點擊滑鼠左鍵時要做什麼事情。"
 #: interfaces/akregator.kcfg:240
 #, kde-format
 msgid "What the click with middle mouse button should do."
-msgstr "點擊滑鼠右鍵時要做什麼事情。"
+msgstr "點擊滑鼠中鍵時要做什麼事情。"
 
 #. i18n: ectx: label, entry, group (Advanced)
 #: interfaces/akregator.kcfg:265
@@ -910,7 +909,7 @@ msgstr "設定在選擇一篇文章到設定該文章為已讀間要延遲多少
 #: interfaces/akregator.kcfg:277
 #, kde-format
 msgid "Resets the quick filter when changing feeds."
-msgstr "變更 feeds 時重設快速過濾器。"
+msgstr "變更訂閱來源時重設快速過濾器。"
 
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
 #: src/akregator_part.cpp:136
@@ -924,24 +923,24 @@ msgstr "Akregator"
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "New Feed..."
-msgstr "新增 Feed…"
+msgstr "新增訂閱來源…"
 
 #: kontactplugin/akregator_plugin.cpp:32
 #, kde-format
 msgctxt "@info:status"
 msgid "Create a new feed"
-msgstr "建立新的 feed"
+msgstr "建立新的訂閱來源"
 
 #: kontactplugin/akregator_plugin.cpp:33
 #, kde-format
 msgctxt "@info:whatsthis"
 msgid "You will be presented with a dialog where you can add a new feed."
-msgstr "會顯示一對話框，讓您新增 feed。"
+msgstr "會顯示一對話框，讓您新增訂閱來源。"
 
 #: src/aboutdata.cpp:21
 #, kde-format
 msgid "A KDE Feed Reader"
-msgstr "KDE Feed 閱讀器"
+msgstr "KDE 的 Feed 閱讀器"
 
 #: src/aboutdata.cpp:23
 #, kde-format
@@ -949,8 +948,7 @@ msgid "Copyright © 2004–%1 Akregator authors"
 msgstr "Copyright © 2004–%1 Akregator 開發團隊"
 
 #: src/aboutdata.cpp:27
-#, fuzzy, kde-format
-#| msgid "Laurent Montel"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Laurent Montel"
 msgstr "Laurent Montel"
@@ -961,8 +959,7 @@ msgid "Maintainer"
 msgstr "維護者"
 
 #: src/aboutdata.cpp:28
-#, fuzzy, kde-format
-#| msgid "Frank Osterfeld"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Frank Osterfeld"
 msgstr "Frank Osterfeld"
@@ -973,8 +970,7 @@ msgid "Former maintainer"
 msgstr "前任維護者"
 
 #: src/aboutdata.cpp:29
-#, fuzzy, kde-format
-#| msgid "Teemu Rytilahti"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Teemu Rytilahti"
 msgstr "Teemu Rytilahti"
@@ -986,29 +982,25 @@ msgid "Developer"
 msgstr "開發者"
 
 #: src/aboutdata.cpp:30
-#, fuzzy, kde-format
-#| msgid "Sashmit Bhaduri"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Sashmit Bhaduri"
 msgstr "Sashmit Bhaduri"
 
 #: src/aboutdata.cpp:31
-#, fuzzy, kde-format
-#| msgid "Pierre Habouzit"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Pierre Habouzit"
 msgstr "Pierre Habouzit"
 
 #: src/aboutdata.cpp:32
-#, fuzzy, kde-format
-#| msgid "Stanislav Karchebny"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Stanislav Karchebny"
 msgstr "Stanislav Karchebny"
 
 #: src/aboutdata.cpp:33
-#, fuzzy, kde-format
-#| msgid "Gary Cramblitt"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Gary Cramblitt"
 msgstr "Gary Cramblitt"
@@ -1019,22 +1011,19 @@ msgid "Contributor"
 msgstr "貢獻者"
 
 #: src/aboutdata.cpp:34
-#, fuzzy, kde-format
-#| msgid "Stephan Binner"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Stephan Binner"
 msgstr "Stephan Binner"
 
 #: src/aboutdata.cpp:35
-#, fuzzy, kde-format
-#| msgid "Christof Musik"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Christof Musik"
 msgstr "Christof Musik"
 
 #: src/aboutdata.cpp:36
-#, fuzzy, kde-format
-#| msgid "Anne-Marie Mahfouf"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Anne-Marie Mahfouf"
 msgstr "Anne-Marie Mahfouf"
@@ -1045,8 +1034,7 @@ msgid "Handbook"
 msgstr "手冊"
 
 #: src/aboutdata.cpp:37
-#, fuzzy, kde-format
-#| msgid "Frerich Raabe"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Frerich Raabe"
 msgstr "Frerich Raabe"
@@ -1057,8 +1045,7 @@ msgid "Author of librss"
 msgstr "librss 函式庫作者"
 
 #: src/aboutdata.cpp:38
-#, fuzzy, kde-format
-#| msgid "Eckhart Woerner"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Eckhart Woerner"
 msgstr "Eckhart Woerner"
@@ -1069,8 +1056,7 @@ msgid "Bug tracker management, Usability improvements"
 msgstr "錯誤追蹤管理，使用性改進"
 
 #: src/aboutdata.cpp:39
-#, fuzzy, kde-format
-#| msgid "Heinrich Wendel"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Heinrich Wendel"
 msgstr "Heinrich Wendel"
@@ -1081,8 +1067,7 @@ msgid "Tons of bug fixes"
 msgstr "一大堆錯誤修正"
 
 #: src/aboutdata.cpp:40
-#, fuzzy, kde-format
-#| msgid "Eike Hein"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Eike Hein"
 msgstr "Eike Hein"
@@ -1093,8 +1078,7 @@ msgid "'Delayed mark as read' feature"
 msgstr "「延遲標記已讀」功能"
 
 #: src/aboutdata.cpp:41
-#, fuzzy, kde-format
-#| msgid "Marcel Dierkes"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Marcel Dierkes"
 msgstr "Marcel Dierkes"
@@ -1105,8 +1089,7 @@ msgid "Icons"
 msgstr "圖示"
 
 #: src/aboutdata.cpp:42
-#, fuzzy, kde-format
-#| msgid "George Staikos"
+#, kde-format
 msgctxt "@info:credit"
 msgid "George Staikos"
 msgstr "George Staikos"
@@ -1117,8 +1100,7 @@ msgid "Insomnia"
 msgstr "Insomnia"
 
 #: src/aboutdata.cpp:43
-#, fuzzy, kde-format
-#| msgid "Philipp Droessler"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Philipp Droessler"
 msgstr "Philipp Droessler"
@@ -1131,27 +1113,27 @@ msgstr "Gentoo Ebuild"
 #: src/actions/actionmanagerimpl.cpp:64 src/actions/actionmanagerimpl.cpp:287
 #, kde-format
 msgid "&Fetch Feed"
-msgstr "抓取 feed(&F)"
+msgstr "抓取訂閱來源(&F)"
 
 #: src/actions/actionmanagerimpl.cpp:65 src/actions/actionmanagerimpl.cpp:243
 #, kde-format
 msgid "&Delete Feed"
-msgstr "刪除 feed(&D)"
+msgstr "刪除訂閱來源(&D)"
 
 #: src/actions/actionmanagerimpl.cpp:66 src/actions/actionmanagerimpl.cpp:249
 #, kde-format
 msgid "&Edit Feed…"
-msgstr "編輯 feed(&E)…"
+msgstr "編輯訂閱來源(&E)…"
 
 #: src/actions/actionmanagerimpl.cpp:67 src/actions/actionmanagerimpl.cpp:306
 #, kde-format
 msgid "&Mark Feed as Read"
-msgstr "將 feed 標為已讀(&M)"
+msgstr "將訂閱來源標為已讀(&M)"
 
 #: src/actions/actionmanagerimpl.cpp:83
 #, kde-format
 msgid "&Fetch Feeds"
-msgstr "抓取 feed(&F)"
+msgstr "抓取訂閱來源(&F)"
 
 #: src/actions/actionmanagerimpl.cpp:84
 #, kde-format
@@ -1161,22 +1143,22 @@ msgstr "刪除資料夾(&D)"
 #: src/actions/actionmanagerimpl.cpp:85
 #, kde-format
 msgid "&Rename Folder"
-msgstr "重命名資料夾(&R)"
+msgstr "重新命名資料夾(&R)"
 
 #: src/actions/actionmanagerimpl.cpp:86
 #, kde-format
 msgid "&Mark Feeds as Read"
-msgstr "將 feed 標記為已讀(&M)"
+msgstr "將訂閱來源標記為已讀(&M)"
 
 #: src/actions/actionmanagerimpl.cpp:191
 #, kde-format
 msgid "&Import Feeds…"
-msgstr "匯入 feed(&I)…"
+msgstr "匯入訂閱來源(&I)…"
 
 #: src/actions/actionmanagerimpl.cpp:195
 #, kde-format
 msgid "&Export Feeds…"
-msgstr "匯出 feed(&E)…"
+msgstr "匯出訂閱來源(&E)…"
 
 #: src/actions/actionmanagerimpl.cpp:200
 #, kde-format
@@ -1196,7 +1178,7 @@ msgstr "重新載入所有的分頁"
 #: src/actions/actionmanagerimpl.cpp:231
 #, kde-format
 msgid "&Add Feed…"
-msgstr "新增 feed(&A)…"
+msgstr "新增訂閱來源(&A)…"
 
 #: src/actions/actionmanagerimpl.cpp:237
 #, kde-format
@@ -1221,17 +1203,17 @@ msgstr "組合顯示(&O)"
 #: src/actions/actionmanagerimpl.cpp:293
 #, kde-format
 msgid "Fe&tch All Feeds"
-msgstr "抓取所有的 feed (&T)"
+msgstr "抓取所有的訂閱來源(&T)"
 
 #: src/actions/actionmanagerimpl.cpp:299
 #, kde-format
 msgid "C&ancel Feed Fetches"
-msgstr "取消 Feed 抓取(&A)"
+msgstr "取消訂閱來源抓取(&A)"
 
 #: src/actions/actionmanagerimpl.cpp:312
 #, kde-format
 msgid "Ma&rk All Feeds as Read"
-msgstr "將所有的 feed 標示為已讀(&R)"
+msgstr "將所有的訂閱來源標示為已讀(&R)"
 
 #: src/actions/actionmanagerimpl.cpp:341 src/actions/actionmanagerimpl.cpp:609
 #, kde-format
@@ -1297,8 +1279,7 @@ msgid "&Mark as Important"
 msgstr "標記為重要(&M)"
 
 #: src/actions/actionmanagerimpl.cpp:397
-#, fuzzy, kde-format
-#| msgid "Remove &Important Mark"
+#, kde-format
 msgctxt "@action:button"
 msgid "Remove &Important Mark"
 msgstr "移除重要標示(&I)"
@@ -1334,11 +1315,10 @@ msgid "Send &File…"
 msgstr "傳送檔案(&F)…"
 
 #: src/actions/actionmanagerimpl.cpp:433
-#, fuzzy, kde-format
-#| msgid "Set Focus to Quick Search"
+#, kde-format
 msgctxt "@action"
 msgid "Set Focus to Quick Search"
-msgstr "設定焦點至「快速搜尋」"
+msgstr "設定焦點到快速搜尋"
 
 #: src/actions/actionmanagerimpl.cpp:465
 #, kde-format
@@ -1353,22 +1333,22 @@ msgstr "下一篇文章(&N)"
 #: src/actions/actionmanagerimpl.cpp:485
 #, kde-format
 msgid "&Previous Feed"
-msgstr "前一個 feed(&P)"
+msgstr "前一個訂閱來源(&P)"
 
 #: src/actions/actionmanagerimpl.cpp:490
 #, kde-format
 msgid "&Next Feed"
-msgstr "下一個 feed(&N)"
+msgstr "下一個訂閱來源(&N)"
 
 #: src/actions/actionmanagerimpl.cpp:496
 #, kde-format
 msgid "N&ext Unread Feed"
-msgstr "下一篇未讀 feed(&E)"
+msgstr "下一個未讀訂閱來源(&E)"
 
 #: src/actions/actionmanagerimpl.cpp:502
 #, kde-format
 msgid "Prev&ious Unread Feed"
-msgstr "前一篇未讀 feed(&I)"
+msgstr "前一個未讀訂閱來源(&I)"
 
 #: src/actions/actionmanagerimpl.cpp:507
 #, kde-format
@@ -1403,17 +1383,17 @@ msgstr "到樹狀圖下方"
 #: src/actions/actionmanagerimpl.cpp:538
 #, kde-format
 msgid "Hide Read Feeds"
-msgstr "隱藏已閱讀的 Feed"
+msgstr "隱藏已閱讀的訂閱來源"
 
 #: src/actions/actionmanagerimpl.cpp:544
 #, kde-format
 msgid "Lock Feeds In Place"
-msgstr "原地鎖定 feed"
+msgstr "原地鎖定訂閱來源"
 
 #: src/actions/actionmanagerimpl.cpp:550
 #, kde-format
 msgid "Auto-expand folders with unread articles"
-msgstr "自動展開未閱讀文章的資料夾"
+msgstr "自動展開有未閱讀文章的資料夾"
 
 #: src/actions/actionmanagerimpl.cpp:566
 #, kde-format
@@ -1441,11 +1421,10 @@ msgid "Unmute"
 msgstr "解除靜音"
 
 #: src/actions/actionmanagerimpl.cpp:598
-#, fuzzy, kde-format
-#| msgid "Speak Text"
+#, kde-format
 msgctxt "@action"
 msgid "Speak Text"
-msgstr "說出文字"
+msgstr "唸出文字"
 
 #: src/actions/actionmanagerimpl.cpp:603
 #, kde-format
@@ -1458,11 +1437,10 @@ msgid "Close Tab"
 msgstr "關閉分頁"
 
 #: src/actions/actionmanagerimpl.cpp:627
-#, fuzzy, kde-format
-#| msgid "Activate Tab %1"
+#, kde-format
 msgctxt "@action"
 msgid "Activate Tab %1"
-msgstr "作用分頁 %1"
+msgstr "跳到分頁 %1"
 
 #: src/actions/actionmanagerimpl.cpp:633
 #, kde-format
@@ -1475,15 +1453,13 @@ msgid "Copy &Link Address"
 msgstr "複製連結位址(&L)"
 
 #: src/actions/actionmanagerimpl.cpp:640
-#, fuzzy, kde-format
-#| msgid "Copy Image Location"
+#, kde-format
 msgctxt "@action"
 msgid "Copy Image Location"
 msgstr "複製圖片位置"
 
 #: src/actions/actionmanagerimpl.cpp:647
-#, fuzzy, kde-format
-#| msgid "Save Image On Disk…"
+#, kde-format
 msgctxt "@action"
 msgid "Save Image On Disk…"
 msgstr "在磁碟上儲存圖片…"
@@ -1502,7 +1478,7 @@ msgstr "在外部瀏覽器中開啟連結(&B)"
 #, kde-format
 msgctxt "@title:window"
 msgid "Add Feed"
-msgstr "新增 feed"
+msgstr "新增訂閱來源"
 
 #: src/addfeeddialog.cpp:99
 #, kde-format
@@ -1512,22 +1488,22 @@ msgstr "下載 %1 中"
 #: src/addfeeddialog.cpp:115
 #, kde-format
 msgid "Feed not found from %1."
-msgstr "從 %1 找不到 feed。"
+msgstr "從 %1 找不到訂閱來源。"
 
 #: src/addfeeddialog.cpp:121
 #, kde-format
 msgid "Feed found, downloading…"
-msgstr "找到 feed。下載中…"
+msgstr "找到訂閱來源，下載中…"
 
 #: src/akregator_options.h:20 src/akregator_options.h:28
 #, kde-format
 msgid "Add a feed with the given URL"
-msgstr "使用指定的網址新增 feed"
+msgstr "使用指定的網址新增訂閱來源"
 
 #: src/akregator_options.h:23
 #, kde-format
 msgid "When adding feeds, place them in this group"
-msgstr "新增 feed 時，將它們放在此群組"
+msgstr "新增訂閱來源時，將它們放在此群組"
 
 #: src/akregator_options.h:25
 #, kde-format
@@ -1542,7 +1518,7 @@ msgstr "列出可用的使用者回饋選項"
 #: src/akregator_part.cpp:78
 #, kde-format
 msgid "Feeds"
-msgstr "Feed"
+msgstr "訂閱來源"
 
 #: src/akregator_part.cpp:89
 #, kde-format
@@ -1567,7 +1543,7 @@ msgstr "KDE Apps"
 #: src/akregator_part.cpp:110
 #, kde-format
 msgid "Spanish feeds"
-msgstr "西班牙文的 feeds"
+msgstr "西班牙文的訂閱來源"
 
 #: src/akregator_part.cpp:114
 #, kde-format
@@ -1579,7 +1555,7 @@ msgstr "Planet KDE España"
 msgid ""
 "Access denied: Cannot save feed list to <b>%1</b>. Please check your "
 "permissions."
-msgstr "存取被拒：無法儲存 feed 列表到 <b>%1</b>。請檢查您的權限。"
+msgstr "存取被拒：無法儲存訂閱來源列表到 <b>%1</b>。請檢查您的權限。"
 
 #: src/akregator_part.cpp:428
 #, kde-format
@@ -1589,7 +1565,7 @@ msgstr "寫入錯誤"
 #: src/akregator_part.cpp:464
 #, kde-format
 msgid "Could not import the file %1 (no valid OPML)"
-msgstr "無法匯入檔案 %1（沒有合法的 OPML）"
+msgstr "無法匯入檔案 %1（沒有有效的 OPML）"
 
 #: src/akregator_part.cpp:464 src/command/loadfeedlistcommand.cpp:71
 #, kde-format
@@ -1635,7 +1611,7 @@ msgstr "匯入的資料夾"
 #: src/articlejobs.cpp:184
 #, kde-format
 msgid "The feed to be listed was already removed."
-msgstr "要列出的 feed 已移除。"
+msgstr "要列出的訂閱來源已移除。"
 
 #: src/articlelistview.cpp:156 src/subscription/subscriptionlistview.cpp:180
 #, kde-format
@@ -1656,9 +1632,9 @@ msgid ""
 "To view the web page of the article, you can open the article internally in "
 "a tab or in an external browser window."
 msgstr ""
-"<h2>文章列表</h2>您可以在這裡瀏覽所有從目前選定的 feed 中的文章。您也可以用滑"
-"鼠右鍵管理文章，標記為保留（重要）或刪除。要看文章的網頁，您可以直接在分頁中"
-"或是在外部瀏覽器開啟。"
+"<h2>文章列表</h2>您可以在這裡瀏覽所有從目前選定的訂閱來源中的文章。您也可以用"
+"滑鼠右鍵管理文章，標記為保留（重要）或刪除。要看文章的網頁，您可以直接在分頁"
+"中或是在外部瀏覽器開啟。"
 
 #: src/articlemodel.cpp:74
 #, kde-format
@@ -1670,7 +1646,7 @@ msgstr "標題"
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Feed"
-msgstr "Feed"
+msgstr "訂閱來源"
 
 #: src/articlemodel.cpp:78
 #, kde-format
@@ -1699,7 +1675,7 @@ msgstr "內容"
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:143
 #, kde-format
 msgid "Akregator is a KDE news feed reader."
-msgstr "Akregator 是個 KDE 新聞 Feed 閱讀器"
+msgstr "Akregator 是個 KDE 新聞 feed 閱讀器"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:184
 #, kde-format
@@ -1720,18 +1696,18 @@ msgstr "保持開啟"
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:376
 #, kde-format
 msgid "Are you sure you want to disable this introduction page?"
-msgstr "您確定要關閉此介紹頁面嗎？"
+msgstr "您確定要停用此介紹頁面嗎？"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:377
 #, kde-format
 msgctxt "@title:window"
 msgid "Disable Introduction Page"
-msgstr "關閉介紹頁面"
+msgstr "停用介紹頁面"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:412
 #, kde-format
 msgid "This web site is a malware, do you want to continue to show it?"
-msgstr "這網站為惡意網站，你仍然要繼續顯示它嗎？"
+msgstr "這網站為惡意網站，您確定仍然要繼續顯示它嗎？"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:413
 #, kde-format
@@ -1789,23 +1765,23 @@ msgstr "刪除資料夾"
 #: src/command/deletesubscriptioncommand.cpp:61
 #, kde-format
 msgid "<qt>Are you sure you want to delete this feed?</qt>"
-msgstr "<qt>您確定要刪除這個 feed 嗎？</qt>"
+msgstr "<qt>您確定要刪除這個訂閱來源嗎？</qt>"
 
 #: src/command/deletesubscriptioncommand.cpp:63
 #, kde-format
 msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
-msgstr "<qt>您確定要刪除 feed <b>%1</b> 嗎？</qt>"
+msgstr "<qt>您確定要刪除訂閱來源<b>%1</b> 嗎？</qt>"
 
 #: src/command/deletesubscriptioncommand.cpp:68
 #, kde-format
 msgctxt "@title:window"
 msgid "Delete Feed"
-msgstr "刪除 feed"
+msgstr "刪除訂閱來源"
 
 #: src/command/importfeedlistcommand.cpp:48
 #, kde-format
 msgid "Imported Feeds"
-msgstr "匯入 feed"
+msgstr "匯入訂閱來源"
 
 #: src/command/importfeedlistcommand.cpp:77
 #, kde-format
@@ -1823,24 +1799,25 @@ msgid ""
 "<qt>The standard feed list is corrupted (invalid OPML). A backup was created:"
 "<p><b>%1</b></p></qt>"
 msgstr ""
-"<qt>標準的 feed 列表已損毀（錯誤的 OPML）。已產生備份：<p><b>%1</b></p></qt>"
+"<qt>標準的訂閱來源列表已損毀（錯誤的 OPML）。已建立備份：<p><b>%1</b></p></"
+"qt>"
 
 #: src/command/loadfeedlistcommand.cpp:67
 #, kde-format
 msgid ""
 "<qt>The standard feed list is corrupted (invalid OPML). Could not create a "
 "backup.</qt>"
-msgstr "<qt>標準的 feed 列表已損毀（錯誤的 OPML）。無法建立備份！</qt>"
+msgstr "<qt>標準的訂閱來源列表已損毀（錯誤的 OPML）。無法建立備份！</qt>"
 
 #: src/command/loadfeedlistcommand.cpp:129
 #, kde-format
 msgid "Opening Feed List…"
-msgstr "開啟 feed 列表中…"
+msgstr "開啟訂閱來源列表中…"
 
 #: src/command/loadfeedlistcommand.cpp:143
 #, kde-format
 msgid "<qt>Could not open feed list (%1) for reading.</qt>"
-msgstr "<qt>無法開啟 feed 列表（%1）以讀取。</qt>"
+msgstr "<qt>無法開啟訂閱來源列表（%1）以讀取。</qt>"
 
 #: src/command/loadfeedlistcommand.cpp:155
 #, kde-format
@@ -1861,14 +1838,14 @@ msgid ""
 "<qt>The standard feed list is corrupted (invalid XML). A backup was created:"
 "<p><b>%1</b></p></qt>"
 msgstr ""
-"<qt>標準的 feed 列表已損毀（錯誤的 XML）。已產生備份：<p><b>%1</b></p></qt>"
+"<qt>標準的訂閱來源列表已損毀（錯誤的 XML）。已建立備份：<p><b>%1</b></p></qt>"
 
 #: src/command/loadfeedlistcommand.cpp:168
 #, kde-format
 msgid ""
 "<qt>The standard feed list is corrupted (invalid XML). Could not create a "
 "backup.</qt>"
-msgstr "<qt>標準的 feed 列表已損毀（錯誤的 XML）。無法建立備份！</qt>"
+msgstr "<qt>標準的訂閱來源列表已損毀（錯誤的 XML）。無法建立備份！</qt>"
 
 #: src/crashwidget/crashwidget.cpp:21
 #, kde-format
@@ -1885,7 +1862,7 @@ msgstr "回復工作階段"
 #: src/crashwidget/crashwidget.cpp:43
 #, kde-format
 msgid "Do Not Restore Session"
-msgstr "永不還原工作階段"
+msgstr "不要還原工作階段"
 
 #: src/crashwidget/crashwidget.cpp:49
 #, kde-format
@@ -1908,13 +1885,13 @@ msgstr "檢視(&V)"
 #: src/data/akregator_part.rc:37 src/data/akregator_shell.rc:24
 #, kde-format
 msgid "&Go"
-msgstr "Go(&G)"
+msgstr "跳到(&G)"
 
 #. i18n: ectx: Menu (feed)
 #: src/data/akregator_part.rc:50 src/data/akregator_shell.rc:29
 #, kde-format
 msgid "Fee&d"
-msgstr "Feed(&D)"
+msgstr "訂閱來源(&D)"
 
 #. i18n: ectx: Menu (article)
 #: src/data/akregator_part.rc:63 src/data/akregator_shell.rc:34
@@ -1943,7 +1920,7 @@ msgstr "檔案(&F)"
 #: src/feed/feedlist.cpp:160
 #, kde-format
 msgid "All Feeds"
-msgstr "所有的 feed"
+msgstr "所有的訂閱來源"
 
 #: src/feed/feedpropertiesdialog.cpp:45 src/feed/feedpropertiesdialog.cpp:77
 #, kde-format
@@ -1967,7 +1944,7 @@ msgstr[0] "天"
 #, kde-format
 msgctxt "@title:window"
 msgid "Feed Properties"
-msgstr "feed 內容"
+msgstr "訂閱來源內容"
 
 #: src/feed/feedpropertiesdialog.cpp:80
 #, kde-format
@@ -2096,31 +2073,31 @@ msgstr "關於"
 msgid ""
 "<qt>Are you sure you want to mark <b>all articles in the feed</b> as read?</"
 "qt>"
-msgstr "<qt>您確定要標記 <b>feed 中的所有文章</b>為已讀嗎？</qt>"
+msgstr "<qt>您確定要標記<b>訂閱來源中的所有文章</b>為已讀嗎？</qt>"
 
 #: src/mainwidget.cpp:778
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
-msgstr "將 feed 標為已讀"
+msgstr "將訂閱來源標為已讀"
 
 #: src/mainwidget.cpp:781
 #, kde-format
 msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
-msgstr "<qt>您確定要標記<b>所有 feed</b> 為已讀嗎？</qt>"
+msgstr "<qt>您確定要標記<b>所有訂閱來源</b>為已讀嗎？</qt>"
 
 #: src/mainwidget.cpp:783
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all feeds in the folder</b> as read?</"
 "qt>"
-msgstr "<qt>您確定要標記<b>所有這個資料夾裡的 feed</b> 為已讀嗎？</qt>"
+msgstr "<qt>您確定要標記<b>所有這個資料夾裡的訂閱來源</b>為已讀嗎？</qt>"
 
 #: src/mainwidget.cpp:785
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
-msgstr "將 feed 標記為已讀"
+msgstr "將訂閱來源標記為已讀"
 
 #: src/mainwidget.cpp:849 src/mainwidget.cpp:858 src/mainwidget.cpp:1260
 #, kde-format
@@ -2130,7 +2107,7 @@ msgstr "網路無法使用。"
 #: src/mainwidget.cpp:866
 #, kde-format
 msgid "Fetching Feeds…"
-msgstr "抓取 feed 中…"
+msgstr "抓取訂閱來源中…"
 
 #: src/mainwidget.cpp:1065
 #, kde-format
@@ -2183,7 +2160,7 @@ msgid ""
 "Feed added:\n"
 " %1"
 msgstr ""
-"新增 feed：\n"
+"新增訂閱來源：\n"
 "%1"
 
 #: src/notificationmanager.cpp:55
@@ -2192,7 +2169,7 @@ msgid ""
 "Feeds added:\n"
 " %1"
 msgstr ""
-"新增 feed：\n"
+"新增訂閱來源：\n"
 "%1"
 
 #: src/notificationmanager.cpp:69
@@ -2219,7 +2196,7 @@ msgstr "取消抓取"
 #: src/subscription/subscriptionlistjobs.cpp:54
 #, kde-format
 msgid "Feed list was deleted"
-msgstr "Feed 列表已刪除"
+msgstr "訂閱來源列表已刪除"
 
 #: src/subscription/subscriptionlistjobs.cpp:64
 #, kde-format
@@ -2244,33 +2221,33 @@ msgstr "未知的主機"
 #: src/subscription/subscriptionlistmodel.cpp:53
 #, kde-format
 msgid "Feed file not found on remote server"
-msgstr "遠端伺服器找不到 Feed 檔"
+msgstr "遠端伺服器找不到訂閱來源檔"
 
 #: src/subscription/subscriptionlistmodel.cpp:55
 #, kde-format
 msgid "Could not read feed (invalid XML)"
-msgstr "無法讀取 feed（不合法的 XML）"
+msgstr "無法讀取訂閱來源（無效的 XML）"
 
 #: src/subscription/subscriptionlistmodel.cpp:57
 #, kde-format
 msgid "Could not read feed (unknown format)"
-msgstr "無法讀取 feed（未知的格式）"
+msgstr "無法讀取訂閱來源（未知的格式）"
 
 #: src/subscription/subscriptionlistmodel.cpp:59
 #, kde-format
 msgid "Could not read feed (invalid feed)"
-msgstr "無法讀取 feed（不合法的 feed）"
+msgstr "無法讀取訂閱來源（無效的訂閱來源）"
 
 #: src/subscription/subscriptionlistmodel.cpp:227
 #, kde-format
 msgid "Could not fetch feed: %1"
-msgstr "無法抓取 feed：%1"
+msgstr "無法抓取訂閱來源：%1"
 
 #: src/subscription/subscriptionlistmodel.cpp:272
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Feeds"
-msgstr "Feeds"
+msgstr "訂閱來源"
 
 #: src/subscription/subscriptionlistmodel.cpp:274
 #, kde-format
@@ -2333,7 +2310,7 @@ msgstr[0] "%1 篇未讀文章"
 #: src/ui/addfeedwidgetbase.ui:14
 #, kde-format
 msgid "Add Feed"
-msgstr "新增 feed"
+msgstr "新增訂閱來源"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel1)
 #: src/ui/addfeedwidgetbase.ui:122
@@ -2345,13 +2322,13 @@ msgstr "新增來源"
 #: src/ui/addfeedwidgetbase.ui:135
 #, kde-format
 msgid "Feed &URL:"
-msgstr "Feed 網址(&U)："
+msgstr "訂閱來源網址(&U)："
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, Akregator::FeedPropertiesWidgetBase)
 #: src/ui/feedpropertieswidgetbase.ui:20
 #, kde-format
 msgid "Feed Properties"
-msgstr "feed 內容"
+msgstr "訂閱來源內容"
 
 #. i18n: ectx: attribute (title), widget (QWidget, tab1)
 #: src/ui/feedpropertieswidgetbase.ui:42
@@ -2363,7 +2340,7 @@ msgstr "一般(&G)"
 #: src/ui/feedpropertieswidgetbase.ui:54
 #, kde-format
 msgid "U&se a custom update interval"
-msgstr "自定更新間隔(&S)"
+msgstr "自訂更新間隔(&S)"
 
 #. i18n: ectx: property (text), widget (QLabel, updateLabel)
 #: src/ui/feedpropertieswidgetbase.ui:88
