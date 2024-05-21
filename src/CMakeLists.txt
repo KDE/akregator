@@ -42,7 +42,9 @@ target_link_libraries(akregator
     KPim6::PimCommon
     KF6::Syndication
     )
-
+if(TARGET KF6::IconThemes)
+    target_link_libraries(akregator KF6::IconThemes)
+endif()
 install(TARGETS akregator ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 
 ########### next target ###############

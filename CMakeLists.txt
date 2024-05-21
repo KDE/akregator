@@ -65,6 +65,7 @@ find_package(KF6Notifications ${KF_MIN_VERSION} CONFIG REQUIRED)
 find_package(KF6Syndication ${KF_MIN_VERSION} CONFIG REQUIRED)
 find_package(KF6Codecs ${KF_MIN_VERSION} CONFIG REQUIRED)
 find_package(KF6StatusNotifierItem ${KF_MIN_VERSION} CONFIG REQUIRED)
+find_package(KF6IconThemes ${KF_MIN_VERSION} CONFIG REQUIRED)
 find_package(KF6DocTools ${KF_MIN_VERSION})
 set_package_properties(KF6DocTools PROPERTIES DESCRIPTION
     "Tools to generate documentation"
