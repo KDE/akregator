@@ -3,61 +3,59 @@
 <head>
 <title>.</title>
 <style type="text/css">
-@media screen, print {
-    body {
-        font-family: {{ standardFamilyFont }} ! important;
-        font-size: {{ mediumFontSize }}pt ! important;
-        color: #31363b ! important;
-        background: #fcfcfc ! important;
-    }
-    a {
-        color: #2980b9 ! important;
-    }
-    .actiontable {
-        width: 100%;
-    }
-    .actionrowtable {
-        display:table-row;
-    }
-    .theactioncell {
-        display: table-cell;
-        padding: 0px 4px 0.5em; /* just some padding */
-        white-space: pre; /* this will avoid line breaks */
-        text-align: right;
-    }
-    .theactionbigcell {
-        width: 100%; /* this will shrink other cells */
-    }
-    .headerbox {
-        color: rgb(120, 125, 129) ! important;
-    }
-    .headertitle a {
-        color: inherit ! important;
-        text-decoration: none;
-    }
-    .headertitle {
-        color: rgb(100,100,100) ! important;
-    }
-    .header, .headertitle {
-        font-weight: bold;
-        padding: 2px;
-    }
-    .headimage {
-        float: right;
-        margin-left: 5px;
-        max-width: 150px;
-        height: auto;
-    }
-    .content {
-        display: block;
-        margin-bottom: 0.8em;
-    }
-    .content > P:first-child, .content > DIV:first-child {
-        margin-top: 1px;
-    }
-    .content > BR:first-child {
-        display: none;
-    }
+body {
+    font-family: {{ standardFamilyFont }} ! important;
+    font-size: {{ mediumFontSize }}pt ! important;
+    background-color: var(--kcolorscheme-background);
+    color: var(--kcolorscheme-text);
+}
+a {
+    color: var(--kcolorscheme-text-link);
+}
+.actiontable {
+    width: 100%;
+}
+.actionrowtable {
+    display:table-row;
+}
+.theactioncell {
+    display: table-cell;
+    padding: 0px 4px 0.5em; /* just some padding */
+    white-space: pre; /* this will avoid line breaks */
+    text-align: right;
+}
+.theactionbigcell {
+    width: 100%; /* this will shrink other cells */
+}
+.headerbox {
+    color: rgb(120, 125, 129) ! important;
+}
+.headertitle a {
+    color: inherit ! important;
+    text-decoration: none;
+}
+.headertitle {
+    color: rgb(100,100,100) ! important;
+}
+.header, .headertitle {
+    font-weight: bold;
+    padding: 2px;
+}
+.headimage {
+    float: right;
+    margin-left: 5px;
+    max-width: 150px;
+    height: auto;
+}
+.content {
+    display: block;
+    margin-bottom: 0.8em;
+}
+.content > P:first-child, .content > DIV:first-child {
+    margin-top: 1px;
+}
+.content > BR:first-child {
+    display: none;
 }
 
 {{ sidebarCss }}
