@@ -39,7 +39,7 @@
         "Description[uk]": "Налаштування архіву подач",
         "Description[x-test]": "xxConfigure Feed Archivexx",
         "Description[zh_CN]": "配置 Feed 存档",
-        "Description[zh_TW]": "設定 Feed 歸檔",
+        "Description[zh_TW]": "設定訂閱來源文章收集",
         "Icon": "utilities-file-archiver",
         "Name": "Archive",
         "Name[ar]": "الأرشيف",
@@ -101,7 +101,7 @@
         "Name[wa]": "Årtchive",
         "Name[x-test]": "xxArchivexx",
         "Name[zh_CN]": "归档",
-        "Name[zh_TW]": "歸檔",
+        "Name[zh_TW]": "文章收集",
         "ServiceTypes": [
             "KCModule"
         ]
