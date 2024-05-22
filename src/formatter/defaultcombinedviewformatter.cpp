@@ -5,7 +5,6 @@
 */
 
 #include "defaultcombinedviewformatter.h"
-#include "akregatorconfig.h"
 #include "article.h"
 #include "grantleeviewformatter.h"
 #include "treenode.h"
@@ -14,19 +13,13 @@
 #include <QString>
 using namespace Akregator;
 
-DefaultCombinedViewFormatter::DefaultCombinedViewFormatter(const QString &grantleeDirectory, QPaintDevice *device)
+DefaultCombinedViewFormatter::DefaultCombinedViewFormatter(QPaintDevice *device)
     : ArticleFormatter()
 {
-    const QString combinedPath = QStandardPaths::locate(QStandardPaths::GenericDataLocation,
-                                                        QStringLiteral("akregator/grantleetheme/%1/").arg(grantleeDirectory),
-                                                        QStandardPaths::LocateDirectory);
-    mGrantleeViewFormatter = new GrantleeViewFormatter(QStringLiteral("combinedview.html"), combinedPath, device->logicalDpiY());
+    mGrantleeViewFormatter = std::make_unique<GrantleeViewFormatter>(QStringLiteral(":/formatter/html/combinedview.html"), device->logicalDpiY());
 }
 
-DefaultCombinedViewFormatter::~DefaultCombinedViewFormatter()
-{
-    delete mGrantleeViewFormatter;
-}
+DefaultCombinedViewFormatter::~DefaultCombinedViewFormatter() = default;
 
 QString DefaultCombinedViewFormatter::formatArticles(const QList<Article> &articles, IconOption icon) const
 {

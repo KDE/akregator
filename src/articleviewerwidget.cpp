@@ -34,11 +34,10 @@
 using namespace Akregator;
 using namespace Akregator::Filters;
 
-ArticleViewerWidget::ArticleViewerWidget(const QString &grantleeDirectory, KActionCollection *ac, QWidget *parent)
+ArticleViewerWidget::ArticleViewerWidget(KActionCollection *ac, QWidget *parent)
     : QWidget(parent)
     , m_node(nullptr)
     , m_articleViewerWidgetNg(new Akregator::ArticleViewerWebEngineWidgetNg(ac, this))
-    , m_grantleeDirectory(grantleeDirectory)
 {
     auto layout = new QGridLayout(this);
     layout->setContentsMargins({});
@@ -53,8 +52,7 @@ ArticleViewerWidget::~ArticleViewerWidget() = default;
 QSharedPointer<ArticleFormatter> ArticleViewerWidget::normalViewFormatter()
 {
     if (!m_normalViewFormatter.data()) {
-        m_normalViewFormatter =
-            QSharedPointer<ArticleFormatter>(new DefaultNormalViewFormatter(m_grantleeDirectory, m_articleViewerWidgetNg->articleViewerNg()));
+        m_normalViewFormatter = QSharedPointer<ArticleFormatter>(new DefaultNormalViewFormatter(m_articleViewerWidgetNg->articleViewerNg()));
     }
     return m_normalViewFormatter;
 }
@@ -62,8 +60,7 @@ QSharedPointer<ArticleFormatter> ArticleViewerWidget::normalViewFormatter()
 QSharedPointer<ArticleFormatter> ArticleViewerWidget::combinedViewFormatter()
 {
     if (!m_combinedViewFormatter.data()) {
-        m_combinedViewFormatter =
-            QSharedPointer<ArticleFormatter>(new DefaultCombinedViewFormatter(m_grantleeDirectory, m_articleViewerWidgetNg->articleViewerNg()));
+        m_combinedViewFormatter = QSharedPointer<ArticleFormatter>(new DefaultCombinedViewFormatter(m_articleViewerWidgetNg->articleViewerNg()));
     }
     return m_combinedViewFormatter;
 }

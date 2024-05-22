@@ -8,7 +8,8 @@
 
 #include "article.h"
 #include "articleformatter.h"
-#include <GrantleeTheme/GenericFormatter>
+#include <GrantleeTheme/GrantleeThemeEngine>
+
 namespace Akregator
 {
 struct Colors {
@@ -16,10 +17,10 @@ struct Colors {
     QString backgroundColor;
 };
 class Folder;
-class GrantleeViewFormatter : public GrantleeTheme::GenericFormatter
+class GrantleeViewFormatter
 {
 public:
-    explicit GrantleeViewFormatter(const QString &htmlFileName, const QString &themePath, int deviceDpiY);
+    explicit GrantleeViewFormatter(const QString &htmlFileName, int deviceDpiY);
     ~GrantleeViewFormatter();
 
     [[nodiscard]] QString formatArticles(const QList<Article> &article, ArticleFormatter::IconOption icon);
@@ -33,7 +34,8 @@ private:
     [[nodiscard]] int pointsToPixel(int pointSize) const;
     const QString mHtmlArticleFileName;
     const QString mDirectionString;
-    const QString mGrantleeThemePath;
+    GrantleeTheme::Engine mEngine;
+    KTextTemplate::Template mTemplate;
     const int mDeviceDpiY;
 };
 }

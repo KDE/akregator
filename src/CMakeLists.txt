@@ -165,6 +165,14 @@ target_sources(akregatorprivate PRIVATE
     )
 target_include_directories(akregatorprivate PRIVATE storage/metakit/include)
 
+qt_add_resources(akregatorprivate "html"
+    FILES
+        formatter/html/combinedview.html
+        formatter/html/defaultnormalvisitfeed.html
+        formatter/html/defaultnormalvisitfolder.html
+        formatter/html/normalview.html
+)
+
 if (COMPILE_WITH_UNITY_CMAKE_SUPPORT)
     set_target_properties(akregatorprivate PROPERTIES UNITY_BUILD ON)
 endif()
@@ -329,7 +337,6 @@ install(FILES data/org.kde.akregator.appdata.xml DESTINATION ${KDE_INSTALL_METAI
 install(FILES org.kde.akregator.part.xml DESTINATION ${KDE_INSTALL_DBUSINTERFACEDIR})
 install(FILES data/akregator.notifyrc DESTINATION ${KDE_INSTALL_KNOTIFYRCDIR} )
 
-add_subdirectory(formatter/html)
 if(BUILD_TESTING)
    add_subdirectory(job/autotests)
 endif()

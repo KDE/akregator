@@ -13,6 +13,8 @@
 
 #include "feed.h"
 #include "folder.h"
+#include <GrantleeTheme/GrantleeKi18nLocalizer>
+#include <GrantleeTheme/QtResourceTemplateLoader>
 #include <QApplication>
 #include <QCoreApplication>
 #include <QGuiApplication>
@@ -22,14 +24,13 @@
 
 using namespace Akregator;
 
-GrantleeViewFormatter::GrantleeViewFormatter(const QString &htmlFileName, const QString &themePath, int deviceDpiY)
-    : GrantleeTheme::GenericFormatter(htmlFileName, themePath)
-    , mHtmlArticleFileName(htmlFileName)
+GrantleeViewFormatter::GrantleeViewFormatter(const QString &htmlFileName, int deviceDpiY)
+    : mHtmlArticleFileName(htmlFileName)
     , mDirectionString(QApplication::isRightToLeft() ? QStringLiteral("rtl") : QStringLiteral("ltr"))
-    , mGrantleeThemePath(QStringLiteral("file://") + themePath + QLatin1Char('/'))
     , mDeviceDpiY(deviceDpiY)
 {
-    setApplicationDomain("akregator");
+    mEngine.localizer()->setApplicationDomain("akregator");
+    mEngine.addTemplateLoader(QSharedPointer<GrantleeTheme::QtResourceTemplateLoader>::create());
 }
 
 GrantleeViewFormatter::~GrantleeViewFormatter() = default;
@@ -44,7 +45,6 @@ void GrantleeViewFormatter::addStandardObject(QVariantHash &grantleeObject) cons
     // get color scheme and window background color
     Colors appColor = getAppColor();
 
-    grantleeObject.insert(QStringLiteral("absoluteThemePath"), mGrantleeThemePath);
     grantleeObject.insert(QStringLiteral("applicationDir"), mDirectionString);
     grantleeObject.insert(QStringLiteral("standardFamilyFont"), Settings::standardFont());
     grantleeObject.insert(QStringLiteral("sansSerifFont"), Settings::sansSerifFont());
@@ -141,9 +141,9 @@ QString GrantleeViewFormatter::sidebarCss(const Colors &colors) const
 
 QString GrantleeViewFormatter::formatFeed(Akregator::Feed *feed)
 {
-    setDefaultHtmlMainFile(QStringLiteral("defaultnormalvisitfeed.html"));
-    if (!errorMessage().isEmpty()) {
-        return errorMessage();
+    mTemplate = mEngine.loadByName(QStringLiteral(":/formatter/html/defaultnormalvisitfeed.html"));
+    if (mTemplate->error()) {
+        return mTemplate->errorString();
     }
     QVariantHash feedObject;
     addStandardObject(feedObject);
@@ -186,14 +186,18 @@ QString GrantleeViewFormatter::formatFeed(Akregator::Feed *feed)
         feedObject.insert(QStringLiteral("feedCopyright"), feedCopyright);
     }
 
-    return render(feedObject);
+    KTextTemplate::Context context(feedObject);
+    context.setLocalizer(mEngine.localizer());
+
+    const QString contentHtml = mTemplate->render(&context);
+    return contentHtml;
 }
 
 QString GrantleeViewFormatter::formatFolder(Akregator::Folder *node)
 {
-    setDefaultHtmlMainFile(QStringLiteral("defaultnormalvisitfolder.html"));
-    if (!errorMessage().isEmpty()) {
-        return errorMessage();
+    mTemplate = mEngine.loadByName(QStringLiteral(":/formatter/html/defaultnormalvisitfolder.html"));
+    if (mTemplate->error()) {
+        return mTemplate->errorString();
     }
     QVariantHash folderObject;
     addStandardObject(folderObject);
@@ -207,14 +211,18 @@ QString GrantleeViewFormatter::formatFolder(Akregator::Folder *node)
     }
 
     folderObject.insert(QStringLiteral("nodeCount"), numberOfArticle);
-    return render(folderObject);
+    KTextTemplate::Context context(folderObject);
+    context.setLocalizer(mEngine.localizer());
+
+    const QString contentHtml = mTemplate->render(&context);
+    return contentHtml;
 }
 
 QString GrantleeViewFormatter::formatArticles(const QList<Article> &article, ArticleFormatter::IconOption icon)
 {
-    setDefaultHtmlMainFile(mHtmlArticleFileName);
-    if (!errorMessage().isEmpty()) {
-        return errorMessage();
+    mTemplate = mEngine.loadByName(QStringLiteral(":/formatter/html/normalview.html"));
+    if (mTemplate->error()) {
+        return mTemplate->errorString();
     }
 
     QVariantHash articleObject;
@@ -239,7 +247,10 @@ QString GrantleeViewFormatter::formatArticles(const QList<Article> &article, Art
     articleObject.insert(QStringLiteral("authorI18n"), i18n("Author"));
     articleObject.insert(QStringLiteral("enclosureI18n"), i18n("Enclosure"));
 
-    const QString str = render(articleObject);
+    KTextTemplate::Context context(articleObject);
+    context.setLocalizer(mEngine.localizer());
+
+    const QString contentHtml = mTemplate->render(&context);
     qDeleteAll(lstObj);
-    return str;
+    return contentHtml;
 }

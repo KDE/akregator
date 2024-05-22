@@ -37,7 +37,7 @@ class AKREGATOR_EXPORT ArticleViewerWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit ArticleViewerWidget(const QString &grantleeDirectory, KActionCollection *ac, QWidget *parent);
+    explicit ArticleViewerWidget(KActionCollection *ac, QWidget *parent);
     ~ArticleViewerWidget() override;
 
     /** Repaints the view. */
@@ -141,6 +141,5 @@ private:
     Akregator::ArticleViewerWebEngineWidgetNg *const m_articleViewerWidgetNg;
     QSharedPointer<ArticleFormatter> m_normalViewFormatter;
     QSharedPointer<ArticleFormatter> m_combinedViewFormatter;
-    const QString m_grantleeDirectory;
 };
 } // namespace Akregator

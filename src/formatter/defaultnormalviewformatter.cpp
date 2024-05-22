@@ -55,21 +55,14 @@ private:
     DefaultNormalViewFormatter *const parent;
 };
 
-DefaultNormalViewFormatter::DefaultNormalViewFormatter(const QString &grantleeDirectory, QPaintDevice *device)
+DefaultNormalViewFormatter::DefaultNormalViewFormatter(QPaintDevice *device)
     : ArticleFormatter()
-    , m_summaryVisitor(new SummaryVisitor(this))
+    , m_summaryVisitor(std::make_unique<SummaryVisitor>(this))
+    , mGrantleeViewFormatter(std::make_unique<GrantleeViewFormatter>(QStringLiteral(":/formatter/html/normalview.html"), device->logicalDpiY()))
 {
-    m_DefaultThemePath = QStandardPaths::locate(QStandardPaths::GenericDataLocation,
-                                                QStringLiteral("akregator/grantleetheme/%1/").arg(grantleeDirectory),
-                                                QStandardPaths::LocateDirectory);
-    mGrantleeViewFormatter = new GrantleeViewFormatter(QStringLiteral("normalview.html"), m_DefaultThemePath, device->logicalDpiY());
 }
 
-DefaultNormalViewFormatter::~DefaultNormalViewFormatter()
-{
-    delete mGrantleeViewFormatter;
-    delete m_summaryVisitor;
-}
+DefaultNormalViewFormatter::~DefaultNormalViewFormatter() = default;
 
 QString DefaultNormalViewFormatter::formatSummary(TreeNode *node) const
 {
