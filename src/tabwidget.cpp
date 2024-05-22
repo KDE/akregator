@@ -88,7 +88,7 @@ TabWidget::TabWidget(QWidget *parent)
     d->tabsClose->setIcon(QIcon::fromTheme(QStringLiteral("tab-close")));
     d->tabsClose->setEnabled(false);
     d->tabsClose->adjustSize();
-    d->tabsClose->setToolTip(i18n("Close the current tab"));
+    d->tabsClose->setToolTip(i18nc("@info:tooltip", "Close the current tab"));
 
 #ifndef QT_NO_ACCESSIBILITY
     d->tabsClose->setAccessibleName(i18n("Close tab"));

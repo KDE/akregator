@@ -368,7 +368,7 @@ void ActionManagerImpl::initMainWidget(MainWidget *mainWidget)
     action = coll->addAction(QStringLiteral("article_set_status_read"));
     action->setText(i18nc("as in: mark as read", "&Read"));
     action->setIcon(QIcon::fromTheme(QStringLiteral("mail-mark-read")));
-    action->setToolTip(i18n("Mark selected article as read"));
+    action->setToolTip(i18nc("@info:tooltip", "Mark selected article as read"));
     coll->setDefaultShortcut(action, QKeySequence(Qt::CTRL | Qt::Key_E));
     connect(action, &QAction::triggered, d->mainWidget, &MainWidget::slotSetSelectedArticleRead);
     statusMenu->addAction(action);
@@ -377,14 +377,14 @@ void ActionManagerImpl::initMainWidget(MainWidget *mainWidget)
     action->setText(i18nc("as in: mark as new", "&New"));
     action->setIcon(QIcon::fromTheme(QStringLiteral("mail-mark-unread-new")));
     coll->setDefaultShortcut(action, QKeySequence(Qt::CTRL | Qt::Key_N));
-    action->setToolTip(i18n("Mark selected article as new"));
+    action->setToolTip(i18nc("@info:tooltip", "Mark selected article as new"));
     connect(action, &QAction::triggered, d->mainWidget, &MainWidget::slotSetSelectedArticleNew);
     statusMenu->addAction(action);
 
     action = coll->addAction(QStringLiteral("article_set_status_unread"));
     action->setText(i18nc("as in: mark as unread", "&Unread"));
     action->setIcon(QIcon::fromTheme(QStringLiteral("mail-mark-unread")));
-    action->setToolTip(i18n("Mark selected article as unread"));
+    action->setToolTip(i18nc("@info:tooltip", "Mark selected article as unread"));
     coll->setDefaultShortcut(action, QKeySequence(Qt::CTRL | Qt::Key_U));
     connect(action, &QAction::triggered, d->mainWidget, &MainWidget::slotSetSelectedArticleUnread);
     statusMenu->addAction(action);
