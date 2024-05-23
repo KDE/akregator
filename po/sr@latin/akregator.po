@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-18 00:39+0000\n"
+"POT-Creation-Date: 2024-05-23 00:39+0000\n"
 "PO-Revision-Date: 2018-01-06 09:21+0100\n"
 "Last-Translator: Chusslove Illich <caslav.ilic@gmx.net>\n"
 "Language-Team: Serbian <kde-i18n-sr@kde.org>\n"
@@ -1311,7 +1311,9 @@ msgid "&Read"
 msgstr "&Pročitan"
 
 #: src/actions/actionmanagerimpl.cpp:371
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Mark selected article as read"
+msgctxt "@info:tooltip"
 msgid "Mark selected article as read"
 msgstr "Označi odabrani članak kao pročitan"
 
@@ -1322,7 +1324,9 @@ msgid "&New"
 msgstr "&Novi"
 
 #: src/actions/actionmanagerimpl.cpp:380
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Mark selected article as new"
+msgctxt "@info:tooltip"
 msgid "Mark selected article as new"
 msgstr "Označi označeni članak kao novi"
 
@@ -1333,7 +1337,9 @@ msgid "&Unread"
 msgstr "&Nepročitan"
 
 #: src/actions/actionmanagerimpl.cpp:387
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Mark selected article as unread"
+msgctxt "@info:tooltip"
 msgid "Mark selected article as unread"
 msgstr "Označi odabrani članak kao nepročitan"
 
@@ -2422,7 +2428,9 @@ msgid "Total"
 msgstr "ukupno"
 
 #: src/tabwidget.cpp:91
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Close the current tab"
+msgctxt "@info:tooltip"
 msgid "Close the current tab"
 msgstr "Zatvori trenutni jezičak"
 

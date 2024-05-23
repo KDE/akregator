@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-18 00:39+0000\n"
+"POT-Creation-Date: 2024-05-23 00:39+0000\n"
 "PO-Revision-Date: 2007-06-12 03:54+0200\n"
 "Last-Translator: Rinse de Vries <rinsedevries@kde.nl>\n"
 "Language-Team: Nederlands <kde-i18n-nl@kde.org>\n"
@@ -1355,7 +1355,9 @@ msgstr "&Lêzen"
 
 # artikel is enkelvoud, 'geselecteerde' is meervoud => 'geselecteerd'
 #: src/actions/actionmanagerimpl.cpp:371
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Mark selected article as read"
+msgctxt "@info:tooltip"
 msgid "Mark selected article as read"
 msgstr "Selektearre artikel markearje as lêzen"
 
@@ -1368,7 +1370,9 @@ msgstr "&Nij"
 
 # artikel is enkelvoud, 'geselecteerde' is meervoud => 'geselecteerd'
 #: src/actions/actionmanagerimpl.cpp:380
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Mark selected article as new"
+msgctxt "@info:tooltip"
 msgid "Mark selected article as new"
 msgstr "Selektearre artikel as nij markearje"
 
@@ -1381,7 +1385,9 @@ msgstr "&Net-lêzen"
 
 # artikel is enkelvoud, 'geselecteerde' is meervoud => 'geselecteerd'
 #: src/actions/actionmanagerimpl.cpp:387
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Mark selected article as unread"
+msgctxt "@info:tooltip"
 msgid "Mark selected article as unread"
 msgstr "Selektearre artikel markearje as net-lêzen"
 
@@ -2496,7 +2502,9 @@ msgid "Total"
 msgstr "Titel:"
 
 #: src/tabwidget.cpp:91
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Close the current tab"
+msgctxt "@info:tooltip"
 msgid "Close the current tab"
 msgstr "It tabblêd fan no slute"
 

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-18 00:39+0000\n"
+"POT-Creation-Date: 2024-05-23 00:39+0000\n"
 "PO-Revision-Date: 2013-03-06 10:12+0530\n"
 "Last-Translator: Chetan Khona <chetan@kompkin.com>\n"
 "Language-Team: Marathi <kde-i18n-doc@kde.org>\n"
@@ -1250,6 +1250,7 @@ msgstr "वाचा (&R)"
 
 #: src/actions/actionmanagerimpl.cpp:371
 #, kde-format
+msgctxt "@info:tooltip"
 msgid "Mark selected article as read"
 msgstr ""
 
@@ -1261,6 +1262,7 @@ msgstr "नवीन (&N)"
 
 #: src/actions/actionmanagerimpl.cpp:380
 #, kde-format
+msgctxt "@info:tooltip"
 msgid "Mark selected article as new"
 msgstr ""
 
@@ -1272,6 +1274,7 @@ msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:387
 #, kde-format
+msgctxt "@info:tooltip"
 msgid "Mark selected article as unread"
 msgstr ""
 
@@ -2274,9 +2277,11 @@ msgid "Total"
 msgstr "एकूण"
 
 #: src/tabwidget.cpp:91
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Reload All Tabs"
+msgctxt "@info:tooltip"
 msgid "Close the current tab"
-msgstr ""
+msgstr "सर्व टॅब पुन्हा दाखल करा"
 
 #: src/tabwidget.cpp:94
 #, kde-format

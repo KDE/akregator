@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-18 00:39+0000\n"
+"POT-Creation-Date: 2024-05-23 00:39+0000\n"
 "PO-Revision-Date: 2009-02-27 17:34+0530\n"
 "Last-Translator: Ravishankar Shrivastava <raviratlami@aol.in>\n"
 "Language-Team: Hindi <kde-i18n-doc@lists.kde.org>\n"
@@ -1295,7 +1295,9 @@ msgid "&Read"
 msgstr "पढ़व (&R)"
 
 #: src/actions/actionmanagerimpl.cpp:371
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Mark selected article as read"
+msgctxt "@info:tooltip"
 msgid "Mark selected article as read"
 msgstr "चुने गे संदेस मन ल पढ़िस चिनहा लगाव"
 
@@ -1306,7 +1308,9 @@ msgid "&New"
 msgstr "नवा (&N)"
 
 #: src/actions/actionmanagerimpl.cpp:380
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Mark selected article as new"
+msgctxt "@info:tooltip"
 msgid "Mark selected article as new"
 msgstr "चुने गे आलेख ल नवा चिनहा लगाव"
 
@@ -1317,7 +1321,9 @@ msgid "&Unread"
 msgstr "बिनपढ़ा (&U)"
 
 #: src/actions/actionmanagerimpl.cpp:387
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Mark selected article as unread"
+msgctxt "@info:tooltip"
 msgid "Mark selected article as unread"
 msgstr "चुने गे आलेख मन ल बिन पढ़िस चिनहा लगाव"
 
@@ -2355,7 +2361,9 @@ msgid "Total"
 msgstr "कुल"
 
 #: src/tabwidget.cpp:91
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Close the current tab"
+msgctxt "@info:tooltip"
 msgid "Close the current tab"
 msgstr "अभी हाल के टैब बंद करव"
 

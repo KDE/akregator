@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-18 00:39+0000\n"
+"POT-Creation-Date: 2024-05-23 00:39+0000\n"
 "PO-Revision-Date: 2012-12-11 09:10+0200\n"
 "Last-Translator: Sergiu Bivol <sergiu@cip.md>\n"
 "Language-Team: Romanian <kde-i18n-ro@kde.org>\n"
@@ -1302,7 +1302,9 @@ msgid "&Read"
 msgstr "&Citit"
 
 #: src/actions/actionmanagerimpl.cpp:371
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Mark selected article as read"
+msgctxt "@info:tooltip"
 msgid "Mark selected article as read"
 msgstr "Marchează articolul ales ca citit"
 
@@ -1313,7 +1315,9 @@ msgid "&New"
 msgstr "&Nou"
 
 #: src/actions/actionmanagerimpl.cpp:380
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Mark selected article as new"
+msgctxt "@info:tooltip"
 msgid "Mark selected article as new"
 msgstr "Marchează articolul ales ca nou"
 
@@ -1324,7 +1328,9 @@ msgid "&Unread"
 msgstr "N&ecitit"
 
 #: src/actions/actionmanagerimpl.cpp:387
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Mark selected article as unread"
+msgctxt "@info:tooltip"
 msgid "Mark selected article as unread"
 msgstr "Marchează articolul ales ca necitit"
 
@@ -2358,7 +2364,9 @@ msgid "Total"
 msgstr "Total"
 
 #: src/tabwidget.cpp:91
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Close the current tab"
+msgctxt "@info:tooltip"
 msgid "Close the current tab"
 msgstr "Închide fila curentă"
 

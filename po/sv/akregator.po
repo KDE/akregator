@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-18 00:39+0000\n"
+"POT-Creation-Date: 2024-05-23 00:39+0000\n"
 "PO-Revision-Date: 2022-04-26 19:44+0200\n"
 "Last-Translator: Stefan Asserhäll <stefan.asserhall@bredband.net>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
@@ -1283,7 +1283,9 @@ msgid "&Read"
 msgstr "&Läst"
 
 #: src/actions/actionmanagerimpl.cpp:371
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Mark selected article as read"
+msgctxt "@info:tooltip"
 msgid "Mark selected article as read"
 msgstr "Markera vald artikel som läst"
 
@@ -1294,7 +1296,9 @@ msgid "&New"
 msgstr "&Ny"
 
 #: src/actions/actionmanagerimpl.cpp:380
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Mark selected article as new"
+msgctxt "@info:tooltip"
 msgid "Mark selected article as new"
 msgstr "Markera vald artikel som ny"
 
@@ -1305,7 +1309,9 @@ msgid "&Unread"
 msgstr "&Oläst"
 
 #: src/actions/actionmanagerimpl.cpp:387
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Mark selected article as unread"
+msgctxt "@info:tooltip"
 msgid "Mark selected article as unread"
 msgstr "Markera vald artikel som oläst"
 
@@ -2356,7 +2362,9 @@ msgid "Total"
 msgstr "Totalt"
 
 #: src/tabwidget.cpp:91
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Close the current tab"
+msgctxt "@info:tooltip"
 msgid "Close the current tab"
 msgstr "Stäng aktuell flik"
 

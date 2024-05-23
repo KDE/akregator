@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: all2.po\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-18 00:39+0000\n"
+"POT-Creation-Date: 2024-05-23 00:39+0000\n"
 "PO-Revision-Date: 2004-09-20 15:44+0200\n"
 "Last-Translator: Thierry Vignaud <tvignaud@mandrakesoft.com>\n"
 "Language-Team: cy <LL@li.org>\n"
@@ -1252,9 +1252,11 @@ msgid "&Read"
 msgstr "&Darllen"
 
 #: src/actions/actionmanagerimpl.cpp:371
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "&Next Article"
+msgctxt "@info:tooltip"
 msgid "Mark selected article as read"
-msgstr ""
+msgstr "Erthygl &Nesaf"
 
 #: src/actions/actionmanagerimpl.cpp:377
 #, fuzzy, kde-format
@@ -1264,9 +1266,10 @@ msgid "&New"
 msgstr "&Newydd"
 
 #: src/actions/actionmanagerimpl.cpp:380
-#, kde-format
+#, fuzzy, kde-format
+msgctxt "@info:tooltip"
 msgid "Mark selected article as new"
-msgstr ""
+msgstr "Dileu Erthygl"
 
 #: src/actions/actionmanagerimpl.cpp:385
 #, fuzzy, kde-format
@@ -1276,9 +1279,11 @@ msgid "&Unread"
 msgstr "&Heb ei ddarllen:"
 
 #: src/actions/actionmanagerimpl.cpp:387
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "&Next Article"
+msgctxt "@info:tooltip"
 msgid "Mark selected article as unread"
-msgstr ""
+msgstr "Erthygl &Nesaf"
 
 #: src/actions/actionmanagerimpl.cpp:393
 #, kde-format
@@ -2291,7 +2296,9 @@ msgid "Total"
 msgstr "Teitl:"
 
 #: src/tabwidget.cpp:91
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Close the current tab"
+msgctxt "@info:tooltip"
 msgid "Close the current tab"
 msgstr "Cau'r tab cyfredol"
 
@@ -2698,10 +2705,6 @@ msgstr "Gwagio hidlen"
 #~| msgid "Delete Feed"
 #~ msgid "Delete feeds:"
 #~ msgstr "Dileu'r Porthiant"
-
-#, fuzzy
-#~ msgid "&Speak Selected Articles"
-#~ msgstr "Dileu Erthygl"
 
 #~ msgid "All Files"
 #~ msgstr "Pob Ffeil"

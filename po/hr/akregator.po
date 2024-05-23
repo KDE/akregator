@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-18 00:39+0000\n"
+"POT-Creation-Date: 2024-05-23 00:39+0000\n"
 "PO-Revision-Date: 2010-01-24 17:23+0100\n"
 "Last-Translator: Andrej Dundovic <adundovi@gmail.com>\n"
 "Language-Team: Croatian <kde-croatia-list@lists.sourceforge.net>\n"
@@ -1241,6 +1241,7 @@ msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:371
 #, kde-format
+msgctxt "@info:tooltip"
 msgid "Mark selected article as read"
 msgstr ""
 
@@ -1252,6 +1253,7 @@ msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:380
 #, kde-format
+msgctxt "@info:tooltip"
 msgid "Mark selected article as new"
 msgstr ""
 
@@ -1263,6 +1265,7 @@ msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:387
 #, kde-format
+msgctxt "@info:tooltip"
 msgid "Mark selected article as unread"
 msgstr ""
 
@@ -2250,6 +2253,7 @@ msgstr ""
 
 #: src/tabwidget.cpp:91
 #, kde-format
+msgctxt "@info:tooltip"
 msgid "Close the current tab"
 msgstr ""
 

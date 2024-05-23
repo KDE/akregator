@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-18 00:39+0000\n"
+"POT-Creation-Date: 2024-05-23 00:39+0000\n"
 "PO-Revision-Date: 2008-04-07 23:17+0700\n"
 "Last-Translator: Thanomsub Noppaburana <donga.nb@gmail.com>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
@@ -1318,7 +1318,9 @@ msgid "&Read"
 msgstr "อ่&านแล้ว"
 
 #: src/actions/actionmanagerimpl.cpp:371
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Mark selected article as read"
+msgctxt "@info:tooltip"
 msgid "Mark selected article as read"
 msgstr "ตั้งสถานะบทความที่เลือกเป็นอ่านแล้ว"
 
@@ -1330,7 +1332,9 @@ msgid "&New"
 msgstr "บทความใ&หม่"
 
 #: src/actions/actionmanagerimpl.cpp:380
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Mark selected article as new"
+msgctxt "@info:tooltip"
 msgid "Mark selected article as new"
 msgstr "ตั้งสถานะบทความที่เลือกเป็นบทความใหม่"
 
@@ -1342,7 +1346,9 @@ msgid "&Unread"
 msgstr "ยั&งไม่อ่าน"
 
 #: src/actions/actionmanagerimpl.cpp:387
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Mark selected article as unread"
+msgctxt "@info:tooltip"
 msgid "Mark selected article as unread"
 msgstr "ตั้งสถานะบทความที่เลือกเป็นยังไม่อ่าน"
 
@@ -2412,7 +2418,9 @@ msgid "Total"
 msgstr "รวม"
 
 #: src/tabwidget.cpp:91
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Close the current tab"
+msgctxt "@info:tooltip"
 msgid "Close the current tab"
 msgstr "ปิดแท็บปัจจุบัน"
 
