@@ -1,0 +1,103 @@
+/* SPDX-FileCopyrightText: 2024 Martín González Gómez <m@martingonzalez.net>
+ * SPDX-FileCopyrightText: 2024 Carl Schwan <carl@carlschwan.eu>
+ * SPDX-License-Identifier: GPL-2.0-or-later
+ */
+
+body {
+    --body-max-width: 35rem;
+    --font-size-large: 20pt;
+    --font-size-small: 10pt;
+    --line-height: 1.4;
+
+    font-family: var(--font-standard);
+    font-size: var(--font-size-medium);
+    line-height: var(--line-height);
+    margin-top: 1.25em;
+    margin-bottom: 2em;
+    background-color: var(--kcolorscheme-background);
+    color: var(--kcolorscheme-text);
+}
+a {
+    color: var(--kcolorscheme-text-link);
+}
+a:hover {
+    cursor: pointer;
+}
+hr {
+    border-top: none;
+    border-bottom: 1px solid var(--border-color);
+}
+header {
+    max-width: var(--body-max-width);
+    margin: 0 auto;
+    margin-bottom: 1em;
+}
+.header-image {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid var(--border-color);
+}
+.header-image img {
+    max-width: 40px;
+    height: auto;
+}
+.header-title {
+    text-decoration: none;
+}
+.header-title h1 {
+    font-family: var(--font-serif);
+    font-size: var(--font-size-large);
+    font-weight: 700;
+    color: var(--text-color);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+}
+.header-author {
+    margin-top: 0.5em;
+    font-size: var(--font-size-small);
+    font-weight: 700;
+    color: var(--kcolorscheme-text-disabled);
+;
+}
+.header-author a {
+    color: inherit;
+    text-decoration: none;
+}
+.header-date {
+    font-weight: 400;
+    margin-left: 4px;
+    font-size: var(--font-size-small);
+}
+.article-enclosure {
+    font-size: var(--font-size-small);
+    color: var(--text-color-secondary);
+    font-style: italic;
+    margin-top: 0.5em;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+.content {
+    max-width: var(--body-max-width);
+    display: block;
+    margin: 0 auto;
+    font-family: var(--font-serif);
+    line-height: 1.4;
+}
+.content img,
+.content video,
+.content iframe {
+    height: auto;
+    max-width: 100%;
+}
+.complete-link {
+    text-align: center;
+    max-width: var(--body-max-width);;
+    margin: 0 auto;
+    padding-top: 0.2em;
+    margin-top: 1em;
+}

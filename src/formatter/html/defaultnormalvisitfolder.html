@@ -4,45 +4,11 @@
 <meta charset="UTF-8">
 <style type="text/css">
 body {
-    font-family: {{ standardFamilyFont }} ! important;
-    font-size: {{ mediumFontSize }}pt ! important;
-    background-color: var(--kcolorscheme-background);
-    color: var(--kcolorscheme-text);
+    --font-size-medium: {{ mediumFontSize }}pt;
+    --font-serif: {{ serifFont }};
+    --font-standard: {{ standardFamilyFont }};
 }
-a {
-    color: var(--kcolorscheme-text-link);
-}
-.headerbox {
-    color: rgb(120, 125, 129) ! important;
-}
-.headertitle a {
-    color: inherit ! important;
-    text-decoration: none;
-}
-.headertitle {
-    color: rgb(100,100,100) ! important;
-}
-.header, .headertitle {
-    font-weight: bold;
-    padding: 2px;
-}
-.headimage {
-    float: right;
-    margin-left: 5px;
-    max-width: 150px;
-    height: auto;
-}
-.content {
-    display: block;
-    margin-bottom: 0.8em;
-}
-.content > P:first-child, .content > DIV:first-child {
-    margin-top: 1px;
-}
-.content > BR:first-child {
-    display: none;
-}
-
+{{ css }}
 {{ sidebarCss }}
 </style>
 <title>.</title>

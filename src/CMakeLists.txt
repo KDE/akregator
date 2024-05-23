@@ -171,6 +171,7 @@ qt_add_resources(akregatorprivate "html"
         formatter/html/defaultnormalvisitfeed.html
         formatter/html/defaultnormalvisitfolder.html
         formatter/html/normalview.html
+        formatter/html/style.css
 )
 
 if (COMPILE_WITH_UNITY_CMAKE_SUPPORT)

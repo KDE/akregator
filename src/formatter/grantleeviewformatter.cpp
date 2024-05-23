@@ -17,6 +17,7 @@
 #include <GrantleeTheme/QtResourceTemplateLoader>
 #include <QApplication>
 #include <QCoreApplication>
+#include <QFile>
 #include <QGuiApplication>
 #include <QPalette>
 #include <QVariantHash>
@@ -45,6 +46,13 @@ void GrantleeViewFormatter::addStandardObject(QVariantHash &grantleeObject) cons
     // get color scheme and window background color
     Colors appColor = getAppColor();
 
+    // Ideally we should use <link href=""> in the html but this doesn't
+    // work because the html is loaded via data:/ and can't access qrc.
+    QFile cssFile(QStringLiteral(":/formatter/html/style.css"));
+    if (!cssFile.open(QIODeviceBase::ReadOnly)) {
+        Q_ASSERT(false);
+    }
+
     grantleeObject.insert(QStringLiteral("applicationDir"), mDirectionString);
     grantleeObject.insert(QStringLiteral("standardFamilyFont"), Settings::standardFont());
     grantleeObject.insert(QStringLiteral("sansSerifFont"), Settings::sansSerifFont());
@@ -52,6 +60,7 @@ void GrantleeViewFormatter::addStandardObject(QVariantHash &grantleeObject) cons
     grantleeObject.insert(QStringLiteral("mediumFontSize"), Settings::mediumFontSize());
     grantleeObject.insert(QStringLiteral("smallFontSize"), Settings::minimumFontSize());
     grantleeObject.insert(QStringLiteral("sidebarCss"), sidebarCss(appColor));
+    grantleeObject.insert(QStringLiteral("css"), cssFile.readAll());
     grantleeObject.insert(QStringLiteral("colorScheme"), appColor.colorScheme);
     grantleeObject.insert(QStringLiteral("backgroundColor"), appColor.backgroundColor);
 }
