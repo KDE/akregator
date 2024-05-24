@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-23 00:39+0000\n"
-"PO-Revision-Date: 2024-05-18 09:09+0300\n"
+"PO-Revision-Date: 2024-05-23 06:23+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian\n"
 "Language: uk\n"
@@ -1283,8 +1283,7 @@ msgid "&Read"
 msgstr "&Прочитане"
 
 #: src/actions/actionmanagerimpl.cpp:371
-#, fuzzy, kde-format
-#| msgid "Mark selected article as read"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as read"
 msgstr "Позначити вибрані статті як прочитані"
@@ -1296,8 +1295,7 @@ msgid "&New"
 msgstr "&Нове"
 
 #: src/actions/actionmanagerimpl.cpp:380
-#, fuzzy, kde-format
-#| msgid "Mark selected article as new"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as new"
 msgstr "Позначити вибрану статтю як нову"
@@ -1309,8 +1307,7 @@ msgid "&Unread"
 msgstr "Непр&очитане"
 
 #: src/actions/actionmanagerimpl.cpp:387
-#, fuzzy, kde-format
-#| msgid "Mark selected article as unread"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as unread"
 msgstr "Позначити вибрану статтю як непрочитану"
@@ -2354,8 +2351,7 @@ msgid "Total"
 msgstr "Всього"
 
 #: src/tabwidget.cpp:91
-#, fuzzy, kde-format
-#| msgid "Close the current tab"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Close the current tab"
 msgstr "Закрити поточну вкладку"

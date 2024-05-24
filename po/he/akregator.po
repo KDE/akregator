@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-23 00:39+0000\n"
-"PO-Revision-Date: 2024-05-18 07:16+0300\n"
+"PO-Revision-Date: 2024-05-23 08:06+0300\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -1259,8 +1259,7 @@ msgid "&Read"
 msgstr "&נקרא"
 
 #: src/actions/actionmanagerimpl.cpp:371
-#, fuzzy, kde-format
-#| msgid "Mark selected article as read"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as read"
 msgstr "סימון הכתבה הנבחרת כנקראה"
@@ -1272,8 +1271,7 @@ msgid "&New"
 msgstr "&חדש"
 
 #: src/actions/actionmanagerimpl.cpp:380
-#, fuzzy, kde-format
-#| msgid "Mark selected article as new"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as new"
 msgstr "סימון כתבה נבחרת כחדשה"
@@ -1285,8 +1283,7 @@ msgid "&Unread"
 msgstr "&לא נקרא"
 
 #: src/actions/actionmanagerimpl.cpp:387
-#, fuzzy, kde-format
-#| msgid "Mark selected article as unread"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as unread"
 msgstr "סימון כתבה נבחרת כלא נקראה"
@@ -2306,8 +2303,7 @@ msgid "Total"
 msgstr "סך הכול"
 
 #: src/tabwidget.cpp:91
-#, fuzzy, kde-format
-#| msgid "Close the current tab"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Close the current tab"
 msgstr "לסגור את הלשונית הנוכחית"

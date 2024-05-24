@@ -1266,8 +1266,7 @@ msgid "&Read"
 msgstr "&Llegit"
 
 #: src/actions/actionmanagerimpl.cpp:371
-#, fuzzy, kde-format
-#| msgid "Mark selected article as read"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as read"
 msgstr "Marca l'article seleccionat com a llegit"
@@ -1279,8 +1278,7 @@ msgid "&New"
 msgstr "&Nou"
 
 #: src/actions/actionmanagerimpl.cpp:380
-#, fuzzy, kde-format
-#| msgid "Mark selected article as new"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as new"
 msgstr "Marca l'article seleccionat com a nou"
@@ -1292,8 +1290,7 @@ msgid "&Unread"
 msgstr "&Sense llegir"
 
 #: src/actions/actionmanagerimpl.cpp:387
-#, fuzzy, kde-format
-#| msgid "Mark selected article as unread"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as unread"
 msgstr "Marca l'article seleccionat com a no llegit"
@@ -2319,8 +2316,7 @@ msgid "Total"
 msgstr "Total"
 
 #: src/tabwidget.cpp:91
-#, fuzzy, kde-format
-#| msgid "Close the current tab"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Close the current tab"
 msgstr "Tanca la pestanya actual"

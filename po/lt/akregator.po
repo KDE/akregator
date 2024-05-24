@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-23 00:39+0000\n"
-"PO-Revision-Date: 2024-02-02 13:49+0200\n"
+"PO-Revision-Date: 2024-05-24 00:57+0300\n"
 "Last-Translator: Mindaugas Baranauskas <opensuse.lietuviu.kalba@gmail.com>\n"
 "Language-Team: Lithuanian <kde-i18n-lt@kde.org>\n"
 "Language: lt\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : n%10>=2 && (n%100<10 || n"
 "%100>=20) ? 1 : n%10==0 || (n%100>10 && n%100<20) ? 2 : 3);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -483,7 +483,7 @@ msgstr "Atsiųsti naujienas kas:"
 #: configuration/ui/settings_general.ui:157
 #, kde-format
 msgid "Enable Plasma Activities"
-msgstr ""
+msgstr "Įjungti Plasma veiklas"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #: configuration/ui/settings_general.ui:167
@@ -975,8 +975,7 @@ msgid "Copyright © 2004–%1 Akregator authors"
 msgstr "Autorių teisės © 2004–%1 Akregator autoriai"
 
 #: src/aboutdata.cpp:27
-#, fuzzy, kde-format
-#| msgid "Laurent Montel"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Laurent Montel"
 msgstr "Laurent Montel"
@@ -987,8 +986,7 @@ msgid "Maintainer"
 msgstr "Prižiūrėtojas"
 
 #: src/aboutdata.cpp:28
-#, fuzzy, kde-format
-#| msgid "Frank Osterfeld"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Frank Osterfeld"
 msgstr "Frank Osterfeld"
@@ -999,8 +997,7 @@ msgid "Former maintainer"
 msgstr "Ankstesnis prižiūrėtojas"
 
 #: src/aboutdata.cpp:29
-#, fuzzy, kde-format
-#| msgid "Teemu Rytilahti"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Teemu Rytilahti"
 msgstr "Teemu Rytilahti"
@@ -1012,29 +1009,25 @@ msgid "Developer"
 msgstr "Programuotojas"
 
 #: src/aboutdata.cpp:30
-#, fuzzy, kde-format
-#| msgid "Sashmit Bhaduri"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Sashmit Bhaduri"
 msgstr "Sashmit Bhaduri"
 
 #: src/aboutdata.cpp:31
-#, fuzzy, kde-format
-#| msgid "Pierre Habouzit"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Pierre Habouzit"
 msgstr "Pierre Habouzit"
 
 #: src/aboutdata.cpp:32
-#, fuzzy, kde-format
-#| msgid "Stanislav Karchebny"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Stanislav Karchebny"
 msgstr "Stanislav Karchebny"
 
 #: src/aboutdata.cpp:33
-#, fuzzy, kde-format
-#| msgid "Gary Cramblitt"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Gary Cramblitt"
 msgstr "Gary Cramblitt"
@@ -1045,22 +1038,19 @@ msgid "Contributor"
 msgstr "Bendradarbiai"
 
 #: src/aboutdata.cpp:34
-#, fuzzy, kde-format
-#| msgid "Stephan Binner"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Stephan Binner"
 msgstr "Stephan Binner"
 
 #: src/aboutdata.cpp:35
-#, fuzzy, kde-format
-#| msgid "Christof Musik"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Christof Musik"
 msgstr "Christof Musik"
 
 #: src/aboutdata.cpp:36
-#, fuzzy, kde-format
-#| msgid "Anne-Marie Mahfouf"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Anne-Marie Mahfouf"
 msgstr "Anne-Marie Mahfouf"
@@ -1071,8 +1061,7 @@ msgid "Handbook"
 msgstr "Žinynas"
 
 #: src/aboutdata.cpp:37
-#, fuzzy, kde-format
-#| msgid "Frerich Raabe"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Frerich Raabe"
 msgstr "Frerich Raabe"
@@ -1083,8 +1072,7 @@ msgid "Author of librss"
 msgstr "librss autorius"
 
 #: src/aboutdata.cpp:38
-#, fuzzy, kde-format
-#| msgid "Eckhart Woerner"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Eckhart Woerner"
 msgstr "Eckhart Woerner"
@@ -1095,8 +1083,7 @@ msgid "Bug tracker management, Usability improvements"
 msgstr "Klaidų valdymas, naudojimo patobulinimai"
 
 #: src/aboutdata.cpp:39
-#, fuzzy, kde-format
-#| msgid "Heinrich Wendel"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Heinrich Wendel"
 msgstr "Heinrich Wendel"
@@ -1107,8 +1094,7 @@ msgid "Tons of bug fixes"
 msgstr "Būrys pataisymų"
 
 #: src/aboutdata.cpp:40
-#, fuzzy, kde-format
-#| msgid "Eike Hein"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Eike Hein"
 msgstr "Eike Hein"
@@ -1119,8 +1105,7 @@ msgid "'Delayed mark as read' feature"
 msgstr "Funkcija 'Atidėti žymimi kaip skaityti'"
 
 #: src/aboutdata.cpp:41
-#, fuzzy, kde-format
-#| msgid "Marcel Dierkes"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Marcel Dierkes"
 msgstr "Marcel Dierkes"
@@ -1131,8 +1116,7 @@ msgid "Icons"
 msgstr "Ženkliukai"
 
 #: src/aboutdata.cpp:42
-#, fuzzy, kde-format
-#| msgid "George Staikos"
+#, kde-format
 msgctxt "@info:credit"
 msgid "George Staikos"
 msgstr "George Staikos"
@@ -1143,8 +1127,7 @@ msgid "Insomnia"
 msgstr "Nemiga"
 
 #: src/aboutdata.cpp:43
-#, fuzzy, kde-format
-#| msgid "Philipp Droessler"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Philipp Droessler"
 msgstr "Philipp Droessler"
@@ -1165,10 +1148,9 @@ msgid "&Delete Feed"
 msgstr "Iš&trinti kanalą"
 
 #: src/actions/actionmanagerimpl.cpp:66 src/actions/actionmanagerimpl.cpp:249
-#, fuzzy, kde-format
-#| msgid "&Edit Feed..."
+#, kde-format
 msgid "&Edit Feed…"
-msgstr "&Redaguoti kanalą..."
+msgstr "&Taisyti kanalą…"
 
 #: src/actions/actionmanagerimpl.cpp:67 src/actions/actionmanagerimpl.cpp:306
 #, kde-format
@@ -1196,22 +1178,19 @@ msgid "&Mark Feeds as Read"
 msgstr "Žy&mėti kanalą skaitytu"
 
 #: src/actions/actionmanagerimpl.cpp:191
-#, fuzzy, kde-format
-#| msgid "&Import Feeds..."
+#, kde-format
 msgid "&Import Feeds…"
-msgstr "&Importuoti kanalus..."
+msgstr "&Importuoti kanalus…"
 
 #: src/actions/actionmanagerimpl.cpp:195
-#, fuzzy, kde-format
-#| msgid "&Export Feeds..."
+#, kde-format
 msgid "&Export Feeds…"
-msgstr "&Eksportuoti kanalus..."
+msgstr "&Eksportuoti kanalus…"
 
 #: src/actions/actionmanagerimpl.cpp:200
-#, fuzzy, kde-format
-#| msgid "&Configure Akregator..."
+#, kde-format
 msgid "&Configure Akregator…"
-msgstr "&Konfigūruoti Akregator..."
+msgstr "&Konfigūruoti Akregator…"
 
 #: src/actions/actionmanagerimpl.cpp:219
 #, kde-format
@@ -1224,16 +1203,14 @@ msgid "Reload All Tabs"
 msgstr "Iš naujo įkelti visas korteles"
 
 #: src/actions/actionmanagerimpl.cpp:231
-#, fuzzy, kde-format
-#| msgid "Add Feed"
+#, kde-format
 msgid "&Add Feed…"
-msgstr "Pridėti kanalą"
+msgstr "&Pridėti kanalą…"
 
 #: src/actions/actionmanagerimpl.cpp:237
-#, fuzzy, kde-format
-#| msgid "Ne&w Folder..."
+#, kde-format
 msgid "Ne&w Folder…"
-msgstr "&Naujas aplankas..."
+msgstr "&Naujas aplankas…"
 
 #: src/actions/actionmanagerimpl.cpp:262
 #, kde-format
@@ -1297,11 +1274,10 @@ msgid "&Read"
 msgstr "&Skaitytu"
 
 #: src/actions/actionmanagerimpl.cpp:371
-#, fuzzy, kde-format
-#| msgid "Mark selected article as read"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as read"
-msgstr "Žymėti pasirinktą straipsnį skaitytu"
+msgstr "Žymėti pasirinktą straipsnį kaip skaitytą"
 
 #: src/actions/actionmanagerimpl.cpp:377
 #, kde-format
@@ -1310,11 +1286,10 @@ msgid "&New"
 msgstr "&Nauju"
 
 #: src/actions/actionmanagerimpl.cpp:380
-#, fuzzy, kde-format
-#| msgid "Mark selected article as new"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as new"
-msgstr "Žymėti pasirinktą straipsnį nauju"
+msgstr "Žymėti pasirinktą straipsnį kaip naują"
 
 #: src/actions/actionmanagerimpl.cpp:385
 #, kde-format
@@ -1323,11 +1298,10 @@ msgid "&Unread"
 msgstr "N&eskaitytu"
 
 #: src/actions/actionmanagerimpl.cpp:387
-#, fuzzy, kde-format
-#| msgid "Mark selected article as unread"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as unread"
-msgstr "Žymėti pasirinktą straipsnį skaitytu"
+msgstr "Žymėti pasirinktą straipsnį kaip neskaitytą"
 
 #: src/actions/actionmanagerimpl.cpp:393
 #, kde-format
@@ -1335,11 +1309,10 @@ msgid "&Mark as Important"
 msgstr "Žymėti s&varbiu"
 
 #: src/actions/actionmanagerimpl.cpp:397
-#, fuzzy, kde-format
-#| msgid "Remove &Important Mark"
+#, kde-format
 msgctxt "@action:button"
 msgid "Remove &Important Mark"
-msgstr "Naikinti žymę „&Svarbus“"
+msgstr "Šalinti žymę „&Svarbus“"
 
 #: src/actions/actionmanagerimpl.cpp:401
 #, kde-format
@@ -1362,23 +1335,20 @@ msgid "Move Node Right"
 msgstr "Stumti elementą dešinėn"
 
 #: src/actions/actionmanagerimpl.cpp:422
-#, fuzzy, kde-format
-#| msgid "Send Link Address"
+#, kde-format
 msgid "Send &Link Address…"
-msgstr "Siųsti nuorodos adresą"
+msgstr "Siųsti &nuorodos adresą…"
 
 #: src/actions/actionmanagerimpl.cpp:427
-#, fuzzy, kde-format
-#| msgid "Send &File..."
+#, kde-format
 msgid "Send &File…"
-msgstr "Siųsti &failą..."
+msgstr "Siųsti &failą…"
 
 #: src/actions/actionmanagerimpl.cpp:433
-#, fuzzy, kde-format
-#| msgid "Set Focus to Quick Search"
+#, kde-format
 msgctxt "@action"
 msgid "Set Focus to Quick Search"
-msgstr "Nustatyti fokusavimą greitai paieškai"
+msgstr "Fokusuoti į greitą paiešką"
 
 #: src/actions/actionmanagerimpl.cpp:465
 #, kde-format
@@ -1481,17 +1451,15 @@ msgid "Unmute"
 msgstr "Įjungti garsą"
 
 #: src/actions/actionmanagerimpl.cpp:598
-#, fuzzy, kde-format
-#| msgid "Speak Text"
+#, kde-format
 msgctxt "@action"
 msgid "Speak Text"
 msgstr "Balsu skaityti tekstą"
 
 #: src/actions/actionmanagerimpl.cpp:603
-#, fuzzy, kde-format
-#| msgid "&Find in Message..."
+#, kde-format
 msgid "&Find in Message…"
-msgstr "&Ieškoti pranešime..."
+msgstr "&Ieškoti pranešime…"
 
 #: src/actions/actionmanagerimpl.cpp:614
 #, kde-format
@@ -1499,17 +1467,15 @@ msgid "Close Tab"
 msgstr "Užverti kortelę"
 
 #: src/actions/actionmanagerimpl.cpp:627
-#, fuzzy, kde-format
-#| msgid "Activate Tab %1"
+#, kde-format
 msgctxt "@action"
 msgid "Activate Tab %1"
 msgstr "Aktyvinti kortelę %1"
 
 #: src/actions/actionmanagerimpl.cpp:633
-#, fuzzy, kde-format
-#| msgid "&Save Link As..."
+#, kde-format
 msgid "&Save Link As…"
-msgstr "Į&rašyti nuorodą kaip..."
+msgstr "Į&rašyti nuorodą kaip…"
 
 #: src/actions/actionmanagerimpl.cpp:637
 #, kde-format
@@ -1517,18 +1483,16 @@ msgid "Copy &Link Address"
 msgstr "Kopijuoti &nuorodos adresą"
 
 #: src/actions/actionmanagerimpl.cpp:640
-#, fuzzy, kde-format
-#| msgid "Copy Image Location"
+#, kde-format
 msgctxt "@action"
 msgid "Copy Image Location"
-msgstr "Kopijuoti piešinio vietą"
+msgstr "Kopijuoti paveikslo vietą"
 
 #: src/actions/actionmanagerimpl.cpp:647
-#, fuzzy, kde-format
-#| msgid "Save Image On Disk..."
+#, kde-format
 msgctxt "@action"
 msgid "Save Image On Disk…"
-msgstr "Įrašyti paveikslą į diską..."
+msgstr "Įrašyti paveikslą į diską…"
 
 #: src/actions/actions.cpp:19
 #, kde-format
@@ -1557,10 +1521,9 @@ msgid "Feed not found from %1."
 msgstr "Kanalas šaltinyje %1 nerastas."
 
 #: src/addfeeddialog.cpp:121
-#, fuzzy, kde-format
-#| msgid "Feed found, downloading..."
+#, kde-format
 msgid "Feed found, downloading…"
-msgstr "Kanalas rastas, atsiunčiama..."
+msgstr "Kanalas rastas, atsiunčiama…"
 
 #: src/akregator_options.h:20 src/akregator_options.h:28
 #, kde-format
@@ -1889,10 +1852,9 @@ msgstr ""
 "sukurti atsarginės kopijos.</qt>"
 
 #: src/command/loadfeedlistcommand.cpp:129
-#, fuzzy, kde-format
-#| msgid "Opening Feed List..."
+#, kde-format
 msgid "Opening Feed List…"
-msgstr "Atveriamas kanalų sąrašas..."
+msgstr "Atveriamas kanalų sąrašas…"
 
 #: src/command/loadfeedlistcommand.cpp:143
 #, kde-format
@@ -2136,10 +2098,9 @@ msgid "Untitled"
 msgstr "Be pavadinimo"
 
 #: src/frame/frame.cpp:140
-#, fuzzy, kde-format
-#| msgid "Loading..."
+#, kde-format
 msgid "Loading…"
-msgstr "Įkeliama..."
+msgstr "Įkeliama…"
 
 #: src/frame/frame.cpp:156
 #, kde-format
@@ -2212,10 +2173,9 @@ msgid "Networking is not available."
 msgstr "Tinklas nepasiekiamas."
 
 #: src/mainwidget.cpp:866
-#, fuzzy, kde-format
-#| msgid "Fetching Feeds..."
+#, kde-format
 msgid "Fetching Feeds…"
-msgstr "Atsiunčiami kanalai..."
+msgstr "Atsiunčiami kanalai…"
 
 #: src/mainwidget.cpp:1065
 #, kde-format
@@ -2378,11 +2338,10 @@ msgid "Total"
 msgstr "Viso"
 
 #: src/tabwidget.cpp:91
-#, fuzzy, kde-format
-#| msgid "Close the current tab"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Close the current tab"
-msgstr "Užverti esamą kortelę"
+msgstr "Užverti dabartinę kortelę"
 
 #: src/tabwidget.cpp:94
 #, kde-format
@@ -2593,16 +2552,14 @@ msgid "Open In External Browser"
 msgstr "Atverti išorinėje naršyklėje"
 
 #: src/widgets/searchbar.cpp:40
-#, fuzzy, kde-format
-#| msgid "Search articles..."
+#, kde-format
 msgid "Search articles…"
-msgstr "Ieškoti straipsnių..."
+msgstr "Ieškoti straipsnių…"
 
 #: src/widgets/searchbar.cpp:112
-#, fuzzy, kde-format
-#| msgid "Search articles...<%1>"
+#, kde-format
 msgid "Search articles…<%1>"
-msgstr "Ieškoti straipsnių...<%1>"
+msgstr "Ieškoti straipsnių…<%1>"
 
 #: src/widgets/statussearchline.cpp:43
 #, kde-format
