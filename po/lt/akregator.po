@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-04-24 02:56+0000\n"
-"PO-Revision-Date: 2024-02-02 13:49+0200\n"
+"PO-Revision-Date: 2024-05-24 00:57+0300\n"
 "Last-Translator: Mindaugas Baranauskas <opensuse.lietuviu.kalba@gmail.com>\n"
 "Language-Team: Lithuanian <kde-i18n-lt@kde.org>\n"
 "Language: lt\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : n%10>=2 && (n%100<10 || n"
 "%100>=20) ? 1 : n%10==0 || (n%100>10 && n%100<20) ? 2 : 3);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -1127,7 +1127,7 @@ msgstr "Iš&trinti kanalą"
 #: src/actions/actionmanagerimpl.cpp:66 src/actions/actionmanagerimpl.cpp:249
 #, kde-format
 msgid "&Edit Feed..."
-msgstr "&Redaguoti kanalą..."
+msgstr "&Taisyti kanalą..."
 
 #: src/actions/actionmanagerimpl.cpp:67 src/actions/actionmanagerimpl.cpp:306
 #, kde-format
@@ -1253,7 +1253,7 @@ msgstr "&Skaitytu"
 #: src/actions/actionmanagerimpl.cpp:371
 #, kde-format
 msgid "Mark selected article as read"
-msgstr "Žymėti pasirinktą straipsnį skaitytu"
+msgstr "Žymėti pasirinktą straipsnį kaip skaitytą"
 
 #: src/actions/actionmanagerimpl.cpp:377
 #, kde-format
@@ -1264,7 +1264,7 @@ msgstr "&Nauju"
 #: src/actions/actionmanagerimpl.cpp:380
 #, kde-format
 msgid "Mark selected article as new"
-msgstr "Žymėti pasirinktą straipsnį nauju"
+msgstr "Žymėti pasirinktą straipsnį kaip naują"
 
 #: src/actions/actionmanagerimpl.cpp:385
 #, kde-format
@@ -1275,7 +1275,7 @@ msgstr "N&eskaitytu"
 #: src/actions/actionmanagerimpl.cpp:387
 #, kde-format
 msgid "Mark selected article as unread"
-msgstr "Žymėti pasirinktą straipsnį skaitytu"
+msgstr "Žymėti pasirinktą straipsnį kaip neskaitytą"
 
 #: src/actions/actionmanagerimpl.cpp:393
 #, kde-format
@@ -1285,7 +1285,7 @@ msgstr "Žymėti s&varbiu"
 #: src/actions/actionmanagerimpl.cpp:397
 #, kde-format
 msgid "Remove &Important Mark"
-msgstr "Naikinti žymę „&Svarbus“"
+msgstr "Šalinti žymę „&Svarbus“"
 
 #: src/actions/actionmanagerimpl.cpp:401
 #, kde-format
@@ -1310,7 +1310,7 @@ msgstr "Stumti elementą dešinėn"
 #: src/actions/actionmanagerimpl.cpp:422
 #, kde-format
 msgid "Send &Link Address..."
-msgstr "Siųsti nuo&rodą..."
+msgstr "Siųsti &nuorodos adresą..."
 
 #: src/actions/actionmanagerimpl.cpp:427
 #, kde-format
@@ -1320,7 +1320,7 @@ msgstr "Siųsti &failą..."
 #: src/actions/actionmanagerimpl.cpp:433
 #, kde-format
 msgid "Set Focus to Quick Search"
-msgstr "Nustatyti fokusavimą greitai paieškai"
+msgstr "Fokusuoti į greitą paiešką"
 
 #: src/actions/actionmanagerimpl.cpp:465
 #, kde-format
@@ -1455,7 +1455,7 @@ msgstr "Kopijuoti &nuorodos adresą"
 #: src/actions/actionmanagerimpl.cpp:640
 #, kde-format
 msgid "Copy Image Location"
-msgstr "Kopijuoti piešinio vietą"
+msgstr "Kopijuoti paveikslo vietą"
 
 #: src/actions/actionmanagerimpl.cpp:647
 #, kde-format
@@ -2308,7 +2308,7 @@ msgstr "Viso"
 #: src/tabwidget.cpp:91
 #, kde-format
 msgid "Close the current tab"
-msgstr "Užverti esamą kortelę"
+msgstr "Užverti dabartinę kortelę"
 
 #: src/tabwidget.cpp:94
 #, kde-format
