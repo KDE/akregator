@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-23 00:39+0000\n"
-"PO-Revision-Date: 2024-05-19 05:18+0200\n"
+"PO-Revision-Date: 2024-05-24 16:21+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -1258,8 +1258,7 @@ msgid "&Read"
 msgstr "&წაკითხული"
 
 #: src/actions/actionmanagerimpl.cpp:371
-#, fuzzy, kde-format
-#| msgid "Mark selected article as read"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as read"
 msgstr "მონიშნული სტატიის წაკითხულად დანიშვნა"
@@ -1271,8 +1270,7 @@ msgid "&New"
 msgstr "&ახალი"
 
 #: src/actions/actionmanagerimpl.cpp:380
-#, fuzzy, kde-format
-#| msgid "Mark selected article as new"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as new"
 msgstr "მონიშნული სტატიის ახლად დანიშვნა"
@@ -1284,8 +1282,7 @@ msgid "&Unread"
 msgstr "&წაუკითხავი"
 
 #: src/actions/actionmanagerimpl.cpp:387
-#, fuzzy, kde-format
-#| msgid "Mark selected article as unread"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as unread"
 msgstr "მონიშნული სტატიის წაუკითხავად დანიშვნა"
@@ -2310,8 +2307,7 @@ msgid "Total"
 msgstr "ჯამში"
 
 #: src/tabwidget.cpp:91
-#, fuzzy, kde-format
-#| msgid "Close the current tab"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Close the current tab"
 msgstr "მიმდინარე ჩანართის დახურვა"

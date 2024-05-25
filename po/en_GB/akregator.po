@@ -1,21 +1,21 @@
 # translation of akregator.po to British English
 # Andrew Coles <andrew_coles@yahoo.co.uk>, 2004, 2005, 2009, 2010.
 # Malcolm Hunter <malcolm.hunter@gmx.co.uk>, 2005, 2006.
-# Steve Allewell <steve.allewell@gmail.com>, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022.
+# SPDX-FileCopyrightText: 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2024 Steve Allewell <steve.allewell@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-23 00:39+0000\n"
-"PO-Revision-Date: 2022-07-22 14:34+0100\n"
+"PO-Revision-Date: 2024-05-24 16:17+0100\n"
 "Last-Translator: Steve Allewell <steve.allewell@gmail.com>\n"
-"Language-Team: British English <kde-l10n-en_gb@kde.org>\n"
+"Language-Team: British English\n"
 "Language: en_GB\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 22.04.3\n"
+"X-Generator: Lokalize 24.02.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -464,7 +464,7 @@ msgstr "Fetch feeds every:"
 #: configuration/ui/settings_general.ui:157
 #, kde-format
 msgid "Enable Plasma Activities"
-msgstr ""
+msgstr "Enable Plasma Activities"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #: configuration/ui/settings_general.ui:167
@@ -954,8 +954,7 @@ msgid "Copyright © 2004–%1 Akregator authors"
 msgstr "Copyright © 2004–%1 Akregator authors"
 
 #: src/aboutdata.cpp:27
-#, fuzzy, kde-format
-#| msgid "Laurent Montel"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Laurent Montel"
 msgstr "Laurent Montel"
@@ -966,8 +965,7 @@ msgid "Maintainer"
 msgstr "Maintainer"
 
 #: src/aboutdata.cpp:28
-#, fuzzy, kde-format
-#| msgid "Frank Osterfeld"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Frank Osterfeld"
 msgstr "Frank Osterfeld"
@@ -978,8 +976,7 @@ msgid "Former maintainer"
 msgstr "Former maintainer"
 
 #: src/aboutdata.cpp:29
-#, fuzzy, kde-format
-#| msgid "Teemu Rytilahti"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Teemu Rytilahti"
 msgstr "Teemu Rytilahti"
@@ -991,29 +988,25 @@ msgid "Developer"
 msgstr "Developer"
 
 #: src/aboutdata.cpp:30
-#, fuzzy, kde-format
-#| msgid "Sashmit Bhaduri"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Sashmit Bhaduri"
 msgstr "Sashmit Bhaduri"
 
 #: src/aboutdata.cpp:31
-#, fuzzy, kde-format
-#| msgid "Pierre Habouzit"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Pierre Habouzit"
 msgstr "Pierre Habouzit"
 
 #: src/aboutdata.cpp:32
-#, fuzzy, kde-format
-#| msgid "Stanislav Karchebny"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Stanislav Karchebny"
 msgstr "Stanislav Karchebny"
 
 #: src/aboutdata.cpp:33
-#, fuzzy, kde-format
-#| msgid "Gary Cramblitt"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Gary Cramblitt"
 msgstr "Gary Cramblitt"
@@ -1024,22 +1017,19 @@ msgid "Contributor"
 msgstr "Contributor"
 
 #: src/aboutdata.cpp:34
-#, fuzzy, kde-format
-#| msgid "Stephan Binner"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Stephan Binner"
 msgstr "Stephan Binner"
 
 #: src/aboutdata.cpp:35
-#, fuzzy, kde-format
-#| msgid "Christof Musik"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Christof Musik"
 msgstr "Christof Musik"
 
 #: src/aboutdata.cpp:36
-#, fuzzy, kde-format
-#| msgid "Anne-Marie Mahfouf"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Anne-Marie Mahfouf"
 msgstr "Anne-Marie Mahfouf"
@@ -1050,8 +1040,7 @@ msgid "Handbook"
 msgstr "Handbook"
 
 #: src/aboutdata.cpp:37
-#, fuzzy, kde-format
-#| msgid "Frerich Raabe"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Frerich Raabe"
 msgstr "Frerich Raabe"
@@ -1062,8 +1051,7 @@ msgid "Author of librss"
 msgstr "Author of librss"
 
 #: src/aboutdata.cpp:38
-#, fuzzy, kde-format
-#| msgid "Eckhart Woerner"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Eckhart Woerner"
 msgstr "Eckhart Woerner"
@@ -1074,8 +1062,7 @@ msgid "Bug tracker management, Usability improvements"
 msgstr "Bug tracker management, Usability improvements"
 
 #: src/aboutdata.cpp:39
-#, fuzzy, kde-format
-#| msgid "Heinrich Wendel"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Heinrich Wendel"
 msgstr "Heinrich Wendel"
@@ -1086,8 +1073,7 @@ msgid "Tons of bug fixes"
 msgstr "Tons of bug fixes"
 
 #: src/aboutdata.cpp:40
-#, fuzzy, kde-format
-#| msgid "Eike Hein"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Eike Hein"
 msgstr "Eike Hein"
@@ -1098,8 +1084,7 @@ msgid "'Delayed mark as read' feature"
 msgstr "'Delayed mark as read' feature"
 
 #: src/aboutdata.cpp:41
-#, fuzzy, kde-format
-#| msgid "Marcel Dierkes"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Marcel Dierkes"
 msgstr "Marcel Dierkes"
@@ -1110,8 +1095,7 @@ msgid "Icons"
 msgstr "Icons"
 
 #: src/aboutdata.cpp:42
-#, fuzzy, kde-format
-#| msgid "George Staikos"
+#, kde-format
 msgctxt "@info:credit"
 msgid "George Staikos"
 msgstr "George Staikos"
@@ -1122,8 +1106,7 @@ msgid "Insomnia"
 msgstr "Insomnia"
 
 #: src/aboutdata.cpp:43
-#, fuzzy, kde-format
-#| msgid "Philipp Droessler"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Philipp Droessler"
 msgstr "Philipp Droessler"
@@ -1144,10 +1127,9 @@ msgid "&Delete Feed"
 msgstr "&Delete Feed"
 
 #: src/actions/actionmanagerimpl.cpp:66 src/actions/actionmanagerimpl.cpp:249
-#, fuzzy, kde-format
-#| msgid "&Edit Feed..."
+#, kde-format
 msgid "&Edit Feed…"
-msgstr "&Edit Feed..."
+msgstr "&Edit Feed…"
 
 #: src/actions/actionmanagerimpl.cpp:67 src/actions/actionmanagerimpl.cpp:306
 #, kde-format
@@ -1175,22 +1157,19 @@ msgid "&Mark Feeds as Read"
 msgstr "&Mark Feeds as Read"
 
 #: src/actions/actionmanagerimpl.cpp:191
-#, fuzzy, kde-format
-#| msgid "&Import Feeds..."
+#, kde-format
 msgid "&Import Feeds…"
-msgstr "&Import Feeds..."
+msgstr "&Import Feeds…"
 
 #: src/actions/actionmanagerimpl.cpp:195
-#, fuzzy, kde-format
-#| msgid "&Export Feeds..."
+#, kde-format
 msgid "&Export Feeds…"
-msgstr "&Export Feeds..."
+msgstr "&Export Feeds…"
 
 #: src/actions/actionmanagerimpl.cpp:200
-#, fuzzy, kde-format
-#| msgid "&Configure Akregator..."
+#, kde-format
 msgid "&Configure Akregator…"
-msgstr "&Configure Akregator..."
+msgstr "&Configure Akregator…"
 
 #: src/actions/actionmanagerimpl.cpp:219
 #, kde-format
@@ -1203,16 +1182,14 @@ msgid "Reload All Tabs"
 msgstr "Reload All Tabs"
 
 #: src/actions/actionmanagerimpl.cpp:231
-#, fuzzy, kde-format
-#| msgid "Add Feed"
+#, kde-format
 msgid "&Add Feed…"
-msgstr "Add Feed"
+msgstr "&Add Feed…"
 
 #: src/actions/actionmanagerimpl.cpp:237
-#, fuzzy, kde-format
-#| msgid "Ne&w Folder..."
+#, kde-format
 msgid "Ne&w Folder…"
-msgstr "Ne&w Folder..."
+msgstr "Ne&w Folder…"
 
 #: src/actions/actionmanagerimpl.cpp:262
 #, kde-format
@@ -1276,8 +1253,7 @@ msgid "&Read"
 msgstr "&Read"
 
 #: src/actions/actionmanagerimpl.cpp:371
-#, fuzzy, kde-format
-#| msgid "Mark selected article as read"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as read"
 msgstr "Mark selected article as read"
@@ -1289,8 +1265,7 @@ msgid "&New"
 msgstr "&New"
 
 #: src/actions/actionmanagerimpl.cpp:380
-#, fuzzy, kde-format
-#| msgid "Mark selected article as new"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as new"
 msgstr "Mark selected article as new"
@@ -1302,8 +1277,7 @@ msgid "&Unread"
 msgstr "&Unread"
 
 #: src/actions/actionmanagerimpl.cpp:387
-#, fuzzy, kde-format
-#| msgid "Mark selected article as unread"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as unread"
 msgstr "Mark selected article as unread"
@@ -1314,8 +1288,7 @@ msgid "&Mark as Important"
 msgstr "&Mark as Important"
 
 #: src/actions/actionmanagerimpl.cpp:397
-#, fuzzy, kde-format
-#| msgid "Remove &Important Mark"
+#, kde-format
 msgctxt "@action:button"
 msgid "Remove &Important Mark"
 msgstr "Remove &Important Mark"
@@ -1341,20 +1314,17 @@ msgid "Move Node Right"
 msgstr "Move Node Right"
 
 #: src/actions/actionmanagerimpl.cpp:422
-#, fuzzy, kde-format
-#| msgid "Send Link Address"
+#, kde-format
 msgid "Send &Link Address…"
-msgstr "Send Link Address"
+msgstr "Send &Link Address…"
 
 #: src/actions/actionmanagerimpl.cpp:427
-#, fuzzy, kde-format
-#| msgid "Send &File..."
+#, kde-format
 msgid "Send &File…"
-msgstr "Send &File..."
+msgstr "Send &File…"
 
 #: src/actions/actionmanagerimpl.cpp:433
-#, fuzzy, kde-format
-#| msgid "Set Focus to Quick Search"
+#, kde-format
 msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr "Set Focus to Quick Search"
@@ -1460,17 +1430,15 @@ msgid "Unmute"
 msgstr "Unmute"
 
 #: src/actions/actionmanagerimpl.cpp:598
-#, fuzzy, kde-format
-#| msgid "Speak Text"
+#, kde-format
 msgctxt "@action"
 msgid "Speak Text"
 msgstr "Speak Text"
 
 #: src/actions/actionmanagerimpl.cpp:603
-#, fuzzy, kde-format
-#| msgid "&Find in Message..."
+#, kde-format
 msgid "&Find in Message…"
-msgstr "&Find in Message..."
+msgstr "&Find in Message…"
 
 #: src/actions/actionmanagerimpl.cpp:614
 #, kde-format
@@ -1478,17 +1446,15 @@ msgid "Close Tab"
 msgstr "Close Tab"
 
 #: src/actions/actionmanagerimpl.cpp:627
-#, fuzzy, kde-format
-#| msgid "Activate Tab %1"
+#, kde-format
 msgctxt "@action"
 msgid "Activate Tab %1"
 msgstr "Activate Tab %1"
 
 #: src/actions/actionmanagerimpl.cpp:633
-#, fuzzy, kde-format
-#| msgid "&Save Link As..."
+#, kde-format
 msgid "&Save Link As…"
-msgstr "&Save Link As..."
+msgstr "&Save Link As…"
 
 #: src/actions/actionmanagerimpl.cpp:637
 #, kde-format
@@ -1496,18 +1462,16 @@ msgid "Copy &Link Address"
 msgstr "Copy &Link Address"
 
 #: src/actions/actionmanagerimpl.cpp:640
-#, fuzzy, kde-format
-#| msgid "Copy Image Location"
+#, kde-format
 msgctxt "@action"
 msgid "Copy Image Location"
 msgstr "Copy Image Location"
 
 #: src/actions/actionmanagerimpl.cpp:647
-#, fuzzy, kde-format
-#| msgid "Save Image On Disk..."
+#, kde-format
 msgctxt "@action"
 msgid "Save Image On Disk…"
-msgstr "Save Image On Disk..."
+msgstr "Save Image On Disk…"
 
 #: src/actions/actions.cpp:19
 #, kde-format
@@ -1536,10 +1500,9 @@ msgid "Feed not found from %1."
 msgstr "Feed not found from %1."
 
 #: src/addfeeddialog.cpp:121
-#, fuzzy, kde-format
-#| msgid "Feed found, downloading..."
+#, kde-format
 msgid "Feed found, downloading…"
-msgstr "Feed found, downloading..."
+msgstr "Feed found, downloading…"
 
 #: src/akregator_options.h:20 src/akregator_options.h:28
 #, kde-format
@@ -1616,8 +1579,7 @@ msgid "Could not import the file %1 (no valid OPML)"
 msgstr "Could not import the file %1 (no valid OPML)"
 
 #: src/akregator_part.cpp:464 src/command/loadfeedlistcommand.cpp:71
-#, fuzzy, kde-format
-#| msgid "OPML Parsing Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "OPML Parsing Error"
 msgstr "OPML Parsing Error"
@@ -1632,8 +1594,7 @@ msgstr ""
 "the current user."
 
 #: src/akregator_part.cpp:469 src/command/loadfeedlistcommand.cpp:144
-#, fuzzy, kde-format
-#| msgid "Read Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "Read Error"
 msgstr "Read Error"
@@ -1644,8 +1605,7 @@ msgid "Access denied: cannot write to file %1. Please check your permissions."
 msgstr "Access denied: cannot write to file %1. Please check your permissions."
 
 #: src/akregator_part.cpp:481
-#, fuzzy, kde-format
-#| msgid "Write Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "Write Error"
 msgstr "Write Error"
@@ -1753,8 +1713,7 @@ msgid "Are you sure you want to disable this introduction page?"
 msgstr "Are you sure you want to disable this introduction page?"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:377
-#, fuzzy, kde-format
-#| msgid "Disable Introduction Page"
+#, kde-format
 msgctxt "@title:window"
 msgid "Disable Introduction Page"
 msgstr "Disable Introduction Page"
@@ -1765,8 +1724,7 @@ msgid "This web site is a malware, do you want to continue to show it?"
 msgstr "This web site is a malware, do you want to continue to show it?"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:413
-#, fuzzy, kde-format
-#| msgid "Malware"
+#, kde-format
 msgctxt "@title:window"
 msgid "Malware"
 msgstr "Malware"
@@ -1778,8 +1736,7 @@ msgstr "The network is broken."
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:425
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:428
-#, fuzzy, kde-format
-#| msgid "Check Phishing Url"
+#, kde-format
 msgctxt "@title:window"
 msgid "Check Phishing Url"
 msgstr "Check Phishing URL"
@@ -1818,8 +1775,7 @@ msgstr ""
 "subfolders?</qt>"
 
 #: src/command/deletesubscriptioncommand.cpp:44
-#, fuzzy, kde-format
-#| msgid "Delete Folder"
+#, kde-format
 msgctxt "@title:window"
 msgid "Delete Folder"
 msgstr "Delete Folder"
@@ -1835,8 +1791,7 @@ msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
 msgstr "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
 
 #: src/command/deletesubscriptioncommand.cpp:68
-#, fuzzy, kde-format
-#| msgid "Delete Feed"
+#, kde-format
 msgctxt "@title:window"
 msgid "Delete Feed"
 msgstr "Delete Feed"
@@ -1875,10 +1830,9 @@ msgstr ""
 "backup.</qt>"
 
 #: src/command/loadfeedlistcommand.cpp:129
-#, fuzzy, kde-format
-#| msgid "Opening Feed List..."
+#, kde-format
 msgid "Opening Feed List…"
-msgstr "Opening Feed List..."
+msgstr "Opening Feed List…"
 
 #: src/command/loadfeedlistcommand.cpp:143
 #, kde-format
@@ -2110,10 +2064,9 @@ msgid "Untitled"
 msgstr "Untitled"
 
 #: src/frame/frame.cpp:140
-#, fuzzy, kde-format
-#| msgid "Loading..."
+#, kde-format
 msgid "Loading…"
-msgstr "Loading..."
+msgstr "Loading…"
 
 #: src/frame/frame.cpp:156
 #, kde-format
@@ -2155,8 +2108,7 @@ msgstr ""
 "qt>"
 
 #: src/mainwidget.cpp:778
-#, fuzzy, kde-format
-#| msgid "Mark Feed as Read"
+#, kde-format
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "Mark Feed as Read"
@@ -2176,8 +2128,7 @@ msgstr ""
 "qt>"
 
 #: src/mainwidget.cpp:785
-#, fuzzy, kde-format
-#| msgid "Mark Feeds as Read"
+#, kde-format
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "Mark Feeds as Read"
@@ -2188,10 +2139,9 @@ msgid "Networking is not available."
 msgstr "Networking is not available."
 
 #: src/mainwidget.cpp:866
-#, fuzzy, kde-format
-#| msgid "Fetching Feeds..."
+#, kde-format
 msgid "Fetching Feeds…"
-msgstr "Fetching Feeds..."
+msgstr "Fetching Feeds…"
 
 #: src/mainwidget.cpp:1065
 #, kde-format
@@ -2207,8 +2157,7 @@ msgstr[0] "<qt>Are you sure you want to delete the selected article?</qt>"
 msgstr[1] "<qt>Are you sure you want to delete the %1 selected articles?</qt>"
 
 #: src/mainwidget.cpp:1075
-#, fuzzy, kde-format
-#| msgid "Delete Article"
+#, kde-format
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "Delete Article"
@@ -2228,8 +2177,7 @@ msgstr ""
 "%1.</qt>"
 
 #: src/mainwindow.cpp:124
-#, fuzzy, kde-format
-#| msgid "Hide menu bar"
+#, kde-format
 msgctxt "@title:window"
 msgid "Hide menu bar"
 msgstr "Hide menu bar"
@@ -2352,8 +2300,7 @@ msgid "Total"
 msgstr "Total"
 
 #: src/tabwidget.cpp:91
-#, fuzzy, kde-format
-#| msgid "Close the current tab"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Close the current tab"
 msgstr "Close the current tab"
@@ -2565,16 +2512,14 @@ msgid "Open In External Browser"
 msgstr "Open In External Browser"
 
 #: src/widgets/searchbar.cpp:40
-#, fuzzy, kde-format
-#| msgid "Search articles..."
+#, kde-format
 msgid "Search articles…"
-msgstr "Search articles..."
+msgstr "Search articles…"
 
 #: src/widgets/searchbar.cpp:112
-#, fuzzy, kde-format
-#| msgid "Search articles...<%1>"
+#, kde-format
 msgid "Search articles…<%1>"
-msgstr "Search articles...<%1>"
+msgstr "Search articles…<%1>"
 
 #: src/widgets/statussearchline.cpp:43
 #, kde-format
@@ -2606,10 +2551,9 @@ msgid "Important"
 msgstr "Important"
 
 #: src/widgets/statussearchline.cpp:64
-#, fuzzy, kde-format
-#| msgid "Text Filter"
+#, kde-format
 msgid "Filter"
-msgstr "Text Filter"
+msgstr "Filter"
 
 #~ msgid "&Add Feed..."
 #~ msgstr "&Add Feed..."
