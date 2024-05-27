@@ -18,7 +18,7 @@ CrashWidget::CrashWidget(QWidget *parent)
     auto vbox = new QVBoxLayout(this);
 
     auto labelLayout = new QHBoxLayout;
-    auto label = new QLabel(i18n("Akregator did not close correctly. Would you like to restore the previous session?"), this);
+    auto label = new QLabel(i18nc("@label:textbox", "Akregator did not close correctly. Would you like to restore the previous session?"), this);
     label->setObjectName(QLatin1StringView("restoresessionlabel"));
     label->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     QFont font = label->font();
