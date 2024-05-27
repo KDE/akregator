@@ -6,22 +6,22 @@
 # Robert Gomulka <rgom@o2.pl>, 2006, 2007.
 # Marta Rybczyńska <kde-i18n@rybczynska.net>, 2008, 2010.
 # Maciej Wikło <maciej.wiklo@wp.pl>, 2010.
-# Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023.
+# SPDX-FileCopyrightText: 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024 Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-23 00:39+0000\n"
-"PO-Revision-Date: 2023-10-07 07:32+0200\n"
+"PO-Revision-Date: 2024-05-26 12:03+0200\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 23.04.3\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
-"|| n%100>=20) ? 1 : 2);\n"
+"X-Generator: Lokalize 23.08.5\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10"
+" || n%100>=20) ? 1 : 2);\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -477,7 +477,7 @@ msgstr "Pobieraj kanały co:"
 #: configuration/ui/settings_general.ui:157
 #, kde-format
 msgid "Enable Plasma Activities"
-msgstr ""
+msgstr "Włącz aktywności Plazmy"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #: configuration/ui/settings_general.ui:167
@@ -489,7 +489,7 @@ msgstr "Uruchomienie"
 #: configuration/ui/settings_general.ui:173
 #, kde-format
 msgid "Mark &all feeds as read on startup"
-msgstr "Po uruchomieniu oznacz &wszystkie kanały RSS jako przeczytane "
+msgstr "Po uruchomieniu oznacz &wszystkie kanały jako przeczytane "
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_FetchOnStartup)
 #: configuration/ui/settings_general.ui:180
@@ -772,13 +772,13 @@ msgstr "Po uruchomieniu pobierz listę kanałów."
 #: interfaces/akregator.kcfg:160
 #, kde-format
 msgid "Mark all feeds as read on startup"
-msgstr "Po uruchomieniu oznacz wszystkie kanały RSS jako przeczytane"
+msgstr "Po uruchomieniu oznacz wszystkie kanały jako przeczytane"
 
 #. i18n: ectx: whatsthis, entry, group (General)
 #: interfaces/akregator.kcfg:161
 #, kde-format
 msgid "Mark all feeds as read on startup."
-msgstr "Po uruchomieniu oznacz wszystkie kanały RSS jako przeczytane."
+msgstr "Po uruchomieniu oznacz wszystkie kanały jako przeczytane."
 
 #. i18n: ectx: label, entry, group (General)
 #: interfaces/akregator.kcfg:165
@@ -969,7 +969,7 @@ msgstr "Zostanie pokazane okno dialogowe gdzie możesz dodać nowy kanał."
 #: src/aboutdata.cpp:21
 #, kde-format
 msgid "A KDE Feed Reader"
-msgstr "Przeglądarka kanałów RSS dla KDE"
+msgstr "Przeglądarka kanałów dla KDE"
 
 #: src/aboutdata.cpp:23
 #, kde-format
@@ -977,7 +977,7 @@ msgid "Copyright © 2004–%1 Akregator authors"
 msgstr "Prawa autorskie © 2004–%1 autorzy Akregatora"
 
 #: src/aboutdata.cpp:27
-#, fuzzy, kde-format
+#, kde-format
 #| msgid "Laurent Montel"
 msgctxt "@info:credit"
 msgid "Laurent Montel"
@@ -989,7 +989,7 @@ msgid "Maintainer"
 msgstr "Opiekun"
 
 #: src/aboutdata.cpp:28
-#, fuzzy, kde-format
+#, kde-format
 #| msgid "Frank Osterfeld"
 msgctxt "@info:credit"
 msgid "Frank Osterfeld"
@@ -1001,7 +1001,7 @@ msgid "Former maintainer"
 msgstr "Poprzedni opiekun"
 
 #: src/aboutdata.cpp:29
-#, fuzzy, kde-format
+#, kde-format
 #| msgid "Teemu Rytilahti"
 msgctxt "@info:credit"
 msgid "Teemu Rytilahti"
@@ -1014,28 +1014,28 @@ msgid "Developer"
 msgstr "Programista"
 
 #: src/aboutdata.cpp:30
-#, fuzzy, kde-format
+#, kde-format
 #| msgid "Sashmit Bhaduri"
 msgctxt "@info:credit"
 msgid "Sashmit Bhaduri"
 msgstr "Sashmit Bhaduri"
 
 #: src/aboutdata.cpp:31
-#, fuzzy, kde-format
+#, kde-format
 #| msgid "Pierre Habouzit"
 msgctxt "@info:credit"
 msgid "Pierre Habouzit"
 msgstr "Pierre Habouzit"
 
 #: src/aboutdata.cpp:32
-#, fuzzy, kde-format
+#, kde-format
 #| msgid "Stanislav Karchebny"
 msgctxt "@info:credit"
 msgid "Stanislav Karchebny"
 msgstr "Stanislav Karchebny"
 
 #: src/aboutdata.cpp:33
-#, fuzzy, kde-format
+#, kde-format
 #| msgid "Gary Cramblitt"
 msgctxt "@info:credit"
 msgid "Gary Cramblitt"
@@ -1047,21 +1047,21 @@ msgid "Contributor"
 msgstr "Współtwórca"
 
 #: src/aboutdata.cpp:34
-#, fuzzy, kde-format
+#, kde-format
 #| msgid "Stephan Binner"
 msgctxt "@info:credit"
 msgid "Stephan Binner"
 msgstr "Stephan Binner"
 
 #: src/aboutdata.cpp:35
-#, fuzzy, kde-format
+#, kde-format
 #| msgid "Christof Musik"
 msgctxt "@info:credit"
 msgid "Christof Musik"
 msgstr "Christof Musik"
 
 #: src/aboutdata.cpp:36
-#, fuzzy, kde-format
+#, kde-format
 #| msgid "Anne-Marie Mahfouf"
 msgctxt "@info:credit"
 msgid "Anne-Marie Mahfouf"
@@ -1073,7 +1073,7 @@ msgid "Handbook"
 msgstr "Podręcznik"
 
 #: src/aboutdata.cpp:37
-#, fuzzy, kde-format
+#, kde-format
 #| msgid "Frerich Raabe"
 msgctxt "@info:credit"
 msgid "Frerich Raabe"
@@ -1085,7 +1085,7 @@ msgid "Author of librss"
 msgstr "Autor librss"
 
 #: src/aboutdata.cpp:38
-#, fuzzy, kde-format
+#, kde-format
 #| msgid "Eckhart Woerner"
 msgctxt "@info:credit"
 msgid "Eckhart Woerner"
@@ -1098,7 +1098,7 @@ msgstr ""
 "Zarządzanie systemem śledzenia błędów, usprawnienia w łatwości użytkowania"
 
 #: src/aboutdata.cpp:39
-#, fuzzy, kde-format
+#, kde-format
 #| msgid "Heinrich Wendel"
 msgctxt "@info:credit"
 msgid "Heinrich Wendel"
@@ -1110,7 +1110,7 @@ msgid "Tons of bug fixes"
 msgstr "Poprawki mnóstwa błędów"
 
 #: src/aboutdata.cpp:40
-#, fuzzy, kde-format
+#, kde-format
 #| msgid "Eike Hein"
 msgctxt "@info:credit"
 msgid "Eike Hein"
@@ -1122,7 +1122,7 @@ msgid "'Delayed mark as read' feature"
 msgstr "Właściwość opóźnionego zaznaczania jako przeczytane"
 
 #: src/aboutdata.cpp:41
-#, fuzzy, kde-format
+#, kde-format
 #| msgid "Marcel Dierkes"
 msgctxt "@info:credit"
 msgid "Marcel Dierkes"
@@ -1134,7 +1134,7 @@ msgid "Icons"
 msgstr "Ikony"
 
 #: src/aboutdata.cpp:42
-#, fuzzy, kde-format
+#, kde-format
 #| msgid "George Staikos"
 msgctxt "@info:credit"
 msgid "George Staikos"
@@ -1146,7 +1146,7 @@ msgid "Insomnia"
 msgstr "Bezsenność"
 
 #: src/aboutdata.cpp:43
-#, fuzzy, kde-format
+#, kde-format
 #| msgid "Philipp Droessler"
 msgctxt "@info:credit"
 msgid "Philipp Droessler"
@@ -1160,28 +1160,28 @@ msgstr "Ebuild Gentoo"
 #: src/actions/actionmanagerimpl.cpp:64 src/actions/actionmanagerimpl.cpp:287
 #, kde-format
 msgid "&Fetch Feed"
-msgstr "Pobier&z kanał RSS"
+msgstr "Pobier&z kanał"
 
 #: src/actions/actionmanagerimpl.cpp:65 src/actions/actionmanagerimpl.cpp:243
 #, kde-format
 msgid "&Delete Feed"
-msgstr "&Usuń kanał RSS"
+msgstr "&Usuń kanał"
 
 #: src/actions/actionmanagerimpl.cpp:66 src/actions/actionmanagerimpl.cpp:249
-#, fuzzy, kde-format
+#, kde-format
 #| msgid "&Edit Feed..."
 msgid "&Edit Feed…"
-msgstr "&Edytuj kanał RSS..."
+msgstr "&Edytuj kanał…"
 
 #: src/actions/actionmanagerimpl.cpp:67 src/actions/actionmanagerimpl.cpp:306
 #, kde-format
 msgid "&Mark Feed as Read"
-msgstr "&Oznacz kanał RSS jako przeczytany"
+msgstr "&Oznacz kanał jako przeczytany"
 
 #: src/actions/actionmanagerimpl.cpp:83
 #, kde-format
 msgid "&Fetch Feeds"
-msgstr "Pobier&z kanały RSS"
+msgstr "Pobier&z kanały"
 
 #: src/actions/actionmanagerimpl.cpp:84
 #, kde-format
@@ -1196,25 +1196,25 @@ msgstr "&Zmień nazwę katalogu"
 #: src/actions/actionmanagerimpl.cpp:86
 #, kde-format
 msgid "&Mark Feeds as Read"
-msgstr "&Oznacz kanały RSS jako przeczytane"
+msgstr "&Oznacz kanały jako przeczytane"
 
 #: src/actions/actionmanagerimpl.cpp:191
-#, fuzzy, kde-format
+#, kde-format
 #| msgid "&Import Feeds..."
 msgid "&Import Feeds…"
-msgstr "&Importuj kanały RSS..."
+msgstr "Za&importuj kanały..."
 
 #: src/actions/actionmanagerimpl.cpp:195
-#, fuzzy, kde-format
+#, kde-format
 #| msgid "&Export Feeds..."
 msgid "&Export Feeds…"
-msgstr "Wy&eksportuj kanały RSS..."
+msgstr "Wy&eksportuj kanały…"
 
 #: src/actions/actionmanagerimpl.cpp:200
-#, fuzzy, kde-format
+#, kde-format
 #| msgid "&Configure Akregator..."
 msgid "&Configure Akregator…"
-msgstr "Ustawienia &Akregatora..."
+msgstr "Ustawienia &Akregatora…"
 
 #: src/actions/actionmanagerimpl.cpp:219
 #, kde-format
@@ -1227,16 +1227,16 @@ msgid "Reload All Tabs"
 msgstr "Wczytaj ponownie wszystkie karty"
 
 #: src/actions/actionmanagerimpl.cpp:231
-#, fuzzy, kde-format
+#, kde-format
 #| msgid "Add Feed"
 msgid "&Add Feed…"
-msgstr "Dodaj kanał RSS"
+msgstr "Dod&aj kanał…"
 
 #: src/actions/actionmanagerimpl.cpp:237
-#, fuzzy, kde-format
+#, kde-format
 #| msgid "Ne&w Folder..."
 msgid "Ne&w Folder…"
-msgstr "No&wy katalog..."
+msgstr "No&wy katalog…"
 
 #: src/actions/actionmanagerimpl.cpp:262
 #, kde-format
@@ -1256,7 +1256,7 @@ msgstr "Widok łą&czony"
 #: src/actions/actionmanagerimpl.cpp:293
 #, kde-format
 msgid "Fe&tch All Feeds"
-msgstr "Pobierz &wszystkie kanały RSS"
+msgstr "Pobierz &wszystkie kanały"
 
 #: src/actions/actionmanagerimpl.cpp:299
 #, kde-format
@@ -1266,7 +1266,7 @@ msgstr "Porzuć pobier&anie kanałów"
 #: src/actions/actionmanagerimpl.cpp:312
 #, kde-format
 msgid "Ma&rk All Feeds as Read"
-msgstr "Oznacz &wszystkie kanały RSS jako przeczytane"
+msgstr "Oznacz &wszystkie kanały jako przeczytane"
 
 #: src/actions/actionmanagerimpl.cpp:341 src/actions/actionmanagerimpl.cpp:609
 #, kde-format
@@ -1300,7 +1300,7 @@ msgid "&Read"
 msgstr "&Przeczytany"
 
 #: src/actions/actionmanagerimpl.cpp:371
-#, fuzzy, kde-format
+#, kde-format
 #| msgid "Mark selected article as read"
 msgctxt "@info:tooltip"
 msgid "Mark selected article as read"
@@ -1313,7 +1313,7 @@ msgid "&New"
 msgstr "&Nowy"
 
 #: src/actions/actionmanagerimpl.cpp:380
-#, fuzzy, kde-format
+#, kde-format
 #| msgid "Mark selected article as new"
 msgctxt "@info:tooltip"
 msgid "Mark selected article as new"
@@ -1326,7 +1326,7 @@ msgid "&Unread"
 msgstr "Niep&rzeczytany"
 
 #: src/actions/actionmanagerimpl.cpp:387
-#, fuzzy, kde-format
+#, kde-format
 #| msgid "Mark selected article as unread"
 msgctxt "@info:tooltip"
 msgid "Mark selected article as unread"
@@ -1338,7 +1338,7 @@ msgid "&Mark as Important"
 msgstr "Oznacz wybrany artykuł jako &ważny"
 
 #: src/actions/actionmanagerimpl.cpp:397
-#, fuzzy, kde-format
+#, kde-format
 #| msgid "Remove &Important Mark"
 msgctxt "@action:button"
 msgid "Remove &Important Mark"
@@ -1365,19 +1365,19 @@ msgid "Move Node Right"
 msgstr "Przenieś w prawo"
 
 #: src/actions/actionmanagerimpl.cpp:422
-#, fuzzy, kde-format
+#, kde-format
 #| msgid "Send Link Address"
 msgid "Send &Link Address…"
-msgstr "Wyślij adres odnośnika"
+msgstr "Wyś&lij adres odnośnika…"
 
 #: src/actions/actionmanagerimpl.cpp:427
-#, fuzzy, kde-format
+#, kde-format
 #| msgid "Send &File..."
 msgid "Send &File…"
-msgstr "Wyślij &plik..."
+msgstr "Wyślij &plik…"
 
 #: src/actions/actionmanagerimpl.cpp:433
-#, fuzzy, kde-format
+#, kde-format
 #| msgid "Set Focus to Quick Search"
 msgctxt "@action"
 msgid "Set Focus to Quick Search"
@@ -1396,12 +1396,12 @@ msgstr "&Następny artykuł"
 #: src/actions/actionmanagerimpl.cpp:485
 #, kde-format
 msgid "&Previous Feed"
-msgstr "&Poprzedni kanał RSS"
+msgstr "&Poprzedni kanał"
 
 #: src/actions/actionmanagerimpl.cpp:490
 #, kde-format
 msgid "&Next Feed"
-msgstr "&Następny kanał RSS"
+msgstr "&Następny kanał"
 
 #: src/actions/actionmanagerimpl.cpp:496
 #, kde-format
@@ -1411,7 +1411,7 @@ msgstr "N&astępny nieprzeczytany kanał"
 #: src/actions/actionmanagerimpl.cpp:502
 #, kde-format
 msgid "Prev&ious Unread Feed"
-msgstr "Poprze&dni nieprzeczytany kanał"
+msgstr "Poprzedn&i nieprzeczytany kanał"
 
 #: src/actions/actionmanagerimpl.cpp:507
 #, kde-format
@@ -1484,17 +1484,17 @@ msgid "Unmute"
 msgstr "Wyłącz wyciszenie"
 
 #: src/actions/actionmanagerimpl.cpp:598
-#, fuzzy, kde-format
+#, kde-format
 #| msgid "Speak Text"
 msgctxt "@action"
 msgid "Speak Text"
 msgstr "Wypowiedz tekst"
 
 #: src/actions/actionmanagerimpl.cpp:603
-#, fuzzy, kde-format
+#, kde-format
 #| msgid "&Find in Message..."
 msgid "&Find in Message…"
-msgstr "&Znajdź w wiadomości..."
+msgstr "&Znajdź w wiadomości…"
 
 #: src/actions/actionmanagerimpl.cpp:614
 #, kde-format
@@ -1502,17 +1502,17 @@ msgid "Close Tab"
 msgstr "Zamknij kartę"
 
 #: src/actions/actionmanagerimpl.cpp:627
-#, fuzzy, kde-format
+#, kde-format
 #| msgid "Activate Tab %1"
 msgctxt "@action"
 msgid "Activate Tab %1"
 msgstr "Uaktywnij kartę %1"
 
 #: src/actions/actionmanagerimpl.cpp:633
-#, fuzzy, kde-format
+#, kde-format
 #| msgid "&Save Link As..."
 msgid "&Save Link As…"
-msgstr "Zapi&sz odnośnik jako..."
+msgstr "Zapi&sz odnośnik jako…"
 
 #: src/actions/actionmanagerimpl.cpp:637
 #, kde-format
@@ -1520,18 +1520,18 @@ msgid "Copy &Link Address"
 msgstr "Skopiuj a&dres odnośnika"
 
 #: src/actions/actionmanagerimpl.cpp:640
-#, fuzzy, kde-format
+#, kde-format
 #| msgid "Copy Image Location"
 msgctxt "@action"
 msgid "Copy Image Location"
 msgstr "Skopiuj położenie obrazu"
 
 #: src/actions/actionmanagerimpl.cpp:647
-#, fuzzy, kde-format
+#, kde-format
 #| msgid "Save Image On Disk..."
 msgctxt "@action"
 msgid "Save Image On Disk…"
-msgstr "Zapisz obraz na dysku..."
+msgstr "Zapisz obraz na dysku…"
 
 #: src/actions/actions.cpp:19
 #, kde-format
@@ -1560,10 +1560,10 @@ msgid "Feed not found from %1."
 msgstr "Nie znaleziono kanału RSS na %1."
 
 #: src/addfeeddialog.cpp:121
-#, fuzzy, kde-format
+#, kde-format
 #| msgid "Feed found, downloading..."
 msgid "Feed found, downloading…"
-msgstr "Kanał RSS znaleziony, pobieranie..."
+msgstr "Znaleziono kanał, pobieram…"
 
 #: src/akregator_options.h:20 src/akregator_options.h:28
 #, kde-format
@@ -1588,7 +1588,7 @@ msgstr "Wymień dostępne możliwości informacji zwrotnej"
 #: src/akregator_part.cpp:78
 #, kde-format
 msgid "Feeds"
-msgstr "Kanały RSS"
+msgstr "Kanały"
 
 #: src/akregator_part.cpp:89
 #, kde-format
@@ -1722,7 +1722,7 @@ msgstr "Tytuł"
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Feed"
-msgstr "Kanał RSS"
+msgstr "Kanał"
 
 #: src/articlemodel.cpp:78
 #, kde-format
@@ -1751,7 +1751,7 @@ msgstr "Treść"
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:143
 #, kde-format
 msgid "Akregator is a KDE news feed reader."
-msgstr "Akregator jest czytnikiem kanałów RSS dla KDE."
+msgstr "Akregator jest czytnikiem kanałów dla KDE."
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:184
 #, kde-format
@@ -1824,7 +1824,7 @@ msgid ""
 "<qt>Are you sure you want to delete this folder and its feeds and subfolders?"
 "</qt>"
 msgstr ""
-"<qt>Czy jesteś pewny, że chcesz usunąć ten katalog, jego kanały RSS i "
+"<qt>Czy jesteś pewny, że chcesz usunąć ten katalog, jego kanały i "
 "podkatalogi?</qt>"
 
 #: src/command/deletesubscriptioncommand.cpp:40
@@ -1833,7 +1833,7 @@ msgid ""
 "<qt>Are you sure you want to delete folder <b>%1</b> and its feeds and "
 "subfolders?</qt>"
 msgstr ""
-"<qt>Czy jesteś pewny, że chcesz usunąć katalog <b>%1</b>, jego kanały RSS i "
+"<qt>Czy jesteś pewny, że chcesz usunąć katalog <b>%1</b>, jego kanały i "
 "podkatalogi?</qt>"
 
 #: src/command/deletesubscriptioncommand.cpp:44
@@ -1845,18 +1845,18 @@ msgstr "Usuń katalog"
 #: src/command/deletesubscriptioncommand.cpp:61
 #, kde-format
 msgid "<qt>Are you sure you want to delete this feed?</qt>"
-msgstr "<qt>Czy jesteś pewny, że chcesz usunąć ten kanał RSS?</qt>"
+msgstr "<qt>Czy jesteś pewny, że chcesz usunąć ten kanał?</qt>"
 
 #: src/command/deletesubscriptioncommand.cpp:63
 #, kde-format
 msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
-msgstr "<qt>Czy jesteś pewny, że chcesz usunąć kanał RSS <b>%1</b>?</qt>"
+msgstr "<qt>Czy jesteś pewny, że chcesz usunąć kanał <b>%1</b>?</qt>"
 
 #: src/command/deletesubscriptioncommand.cpp:68
 #, kde-format
 msgctxt "@title:window"
 msgid "Delete Feed"
-msgstr "Usuń kanał RSS"
+msgstr "Usuń kanał"
 
 #: src/command/importfeedlistcommand.cpp:48
 #, kde-format
@@ -1892,10 +1892,10 @@ msgstr ""
 "stworzyć kopii zapasowej!</qt>"
 
 #: src/command/loadfeedlistcommand.cpp:129
-#, fuzzy, kde-format
+#, kde-format
 #| msgid "Opening Feed List..."
 msgid "Opening Feed List…"
-msgstr "Otwieranie kanału RSS..."
+msgstr "Otwieranie listy kanału…"
 
 #: src/command/loadfeedlistcommand.cpp:143
 #, kde-format
@@ -2008,7 +2008,7 @@ msgstr "&Plik"
 #: src/feed/feedlist.cpp:160
 #, kde-format
 msgid "All Feeds"
-msgstr "Wszystkie kanały RSS"
+msgstr "Wszystkie kanały"
 
 #: src/feed/feedpropertiesdialog.cpp:45 src/feed/feedpropertiesdialog.cpp:77
 #, kde-format
@@ -2134,10 +2134,10 @@ msgid "Untitled"
 msgstr "Nienazwany"
 
 #: src/frame/frame.cpp:140
-#, fuzzy, kde-format
+#, kde-format
 #| msgid "Loading..."
 msgid "Loading…"
-msgstr "Wczytywanie..."
+msgstr "Wczytywanie…"
 
 #: src/frame/frame.cpp:156
 #, kde-format
@@ -2210,10 +2210,10 @@ msgid "Networking is not available."
 msgstr "Sieć jest niedostępna."
 
 #: src/mainwidget.cpp:866
-#, fuzzy, kde-format
+#, kde-format
 #| msgid "Fetching Feeds..."
 msgid "Fetching Feeds…"
-msgstr "Pobieranie kanałów..."
+msgstr "Pobieranie kanałów…"
 
 #: src/mainwidget.cpp:1065
 #, kde-format
@@ -2280,7 +2280,7 @@ msgid ""
 "Feeds added:\n"
 " %1"
 msgstr ""
-"Dodano kanały RSS:\n"
+"Dodano kanały:\n"
 " %1"
 
 #: src/notificationmanager.cpp:69
@@ -2375,7 +2375,7 @@ msgid "Total"
 msgstr "W sumie"
 
 #: src/tabwidget.cpp:91
-#, fuzzy, kde-format
+#, kde-format
 #| msgid "Close the current tab"
 msgctxt "@info:tooltip"
 msgid "Close the current tab"
@@ -2427,7 +2427,7 @@ msgstr[2] "%1 nieprzeczytanych artykułów"
 #: src/ui/addfeedwidgetbase.ui:14
 #, kde-format
 msgid "Add Feed"
-msgstr "Dodaj kanał RSS"
+msgstr "Dodaj kanał"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel1)
 #: src/ui/addfeedwidgetbase.ui:122
@@ -2589,16 +2589,16 @@ msgid "Open In External Browser"
 msgstr "Otwórz w zewnętrznej przeglądarce"
 
 #: src/widgets/searchbar.cpp:40
-#, fuzzy, kde-format
+#, kde-format
 #| msgid "Search articles..."
 msgid "Search articles…"
-msgstr "Wyszukaj artykuł"
+msgstr "Poszukaj artykułów…"
 
 #: src/widgets/searchbar.cpp:112
-#, fuzzy, kde-format
+#, kde-format
 #| msgid "Search articles...<%1>"
 msgid "Search articles…<%1>"
-msgstr "Wyszukaj artykuł...<%1>"
+msgstr "Poszukaj artykułów…<%1>"
 
 #: src/widgets/statussearchline.cpp:43
 #, kde-format
@@ -3232,3 +3232,4 @@ msgstr "Filtr"
 
 #~ msgid "Show tab close button on hover"
 #~ msgstr "Pokaż przycisk zamknięcia karty po najechaniu myszką"
+
