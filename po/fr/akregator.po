@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-23 00:39+0000\n"
+"POT-Creation-Date: 2024-05-28 00:38+0000\n"
 "PO-Revision-Date: 2024-05-24 09:09+0200\n"
 "Last-Translator: Xavier Besnard <xavier.besnard@kde.org>\n"
 "Language-Team: French <French <kde-francophone@kde.org>>\n"
@@ -1914,7 +1914,11 @@ msgstr ""
 "créer une sauvegarde.</qt>"
 
 #: src/crashwidget/crashwidget.cpp:21
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "Akregator did not close correctly. Would you like to restore the previous "
+#| "session?"
+msgctxt "@label:textbox"
 msgid ""
 "Akregator did not close correctly. Would you like to restore the previous "
 "session?"

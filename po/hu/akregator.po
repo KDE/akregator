@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: KDE 4.3\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-23 00:39+0000\n"
-"PO-Revision-Date: 2024-05-22 10:38+0200\n"
+"POT-Creation-Date: 2024-05-28 00:38+0000\n"
+"PO-Revision-Date: 2024-05-23 11:35+0200\n"
 "Last-Translator: Kristof Kiszel <ulysses@fsf.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -1261,11 +1261,10 @@ msgid "&Read"
 msgstr "&Olvasott"
 
 #: src/actions/actionmanagerimpl.cpp:371
-#, fuzzy, kde-format
-#| msgid "Mark selected article as read"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as read"
-msgstr "A kijelölt hír megjelölése olva&sottnak"
+msgstr "A kijelölt hír megjelölése olvasottnak"
 
 #: src/actions/actionmanagerimpl.cpp:377
 #, kde-format
@@ -1274,11 +1273,10 @@ msgid "&New"
 msgstr "Ú&j"
 
 #: src/actions/actionmanagerimpl.cpp:380
-#, fuzzy, kde-format
-#| msgid "Mark selected article as new"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as new"
-msgstr "A hír megjelölése újnak"
+msgstr "A kijelölt hír megjelölése újnak"
 
 #: src/actions/actionmanagerimpl.cpp:385
 #, kde-format
@@ -1287,11 +1285,10 @@ msgid "&Unread"
 msgstr "&Olvasatlan"
 
 #: src/actions/actionmanagerimpl.cpp:387
-#, fuzzy, kde-format
-#| msgid "Mark selected article as unread"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as unread"
-msgstr "A hír megjelölése olvasatlannak"
+msgstr "A kijelölt hír megjelölése olvasatlannak"
 
 #: src/actions/actionmanagerimpl.cpp:393
 #, kde-format
@@ -1885,7 +1882,11 @@ msgstr ""
 "biztonsági mentést készíteni.</qt>"
 
 #: src/crashwidget/crashwidget.cpp:21
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "Akregator did not close correctly. Would you like to restore the previous "
+#| "session?"
+msgctxt "@label:textbox"
 msgid ""
 "Akregator did not close correctly. Would you like to restore the previous "
 "session?"
@@ -2316,8 +2317,7 @@ msgid "Total"
 msgstr "Összesen"
 
 #: src/tabwidget.cpp:91
-#, fuzzy, kde-format
-#| msgid "Close the current tab"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Close the current tab"
 msgstr "Az aktuális lap bezárása"
