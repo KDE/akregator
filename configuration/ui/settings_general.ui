@@ -154,7 +154,7 @@
       <item>
        <widget class="QCheckBox" name="kcfg_PlasmaActivitySupport">
         <property name="text">
-         <string>Enable Plasma Activities</string>
+         <string>Enable Plasma Activities integration</string>
         </property>
        </widget>
       </item>
