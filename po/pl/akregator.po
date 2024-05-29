@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-23 00:39+0000\n"
+"POT-Creation-Date: 2024-05-28 00:38+0000\n"
 "PO-Revision-Date: 2024-05-26 12:03+0200\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -19,9 +19,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 23.08.5\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10"
-" || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2);\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -978,7 +977,6 @@ msgstr "Prawa autorskie © 2004–%1 autorzy Akregatora"
 
 #: src/aboutdata.cpp:27
 #, kde-format
-#| msgid "Laurent Montel"
 msgctxt "@info:credit"
 msgid "Laurent Montel"
 msgstr "Laurent Montel"
@@ -990,7 +988,6 @@ msgstr "Opiekun"
 
 #: src/aboutdata.cpp:28
 #, kde-format
-#| msgid "Frank Osterfeld"
 msgctxt "@info:credit"
 msgid "Frank Osterfeld"
 msgstr "Frank Osterfeld"
@@ -1002,7 +999,6 @@ msgstr "Poprzedni opiekun"
 
 #: src/aboutdata.cpp:29
 #, kde-format
-#| msgid "Teemu Rytilahti"
 msgctxt "@info:credit"
 msgid "Teemu Rytilahti"
 msgstr "Teemu Rytilahti"
@@ -1015,28 +1011,24 @@ msgstr "Programista"
 
 #: src/aboutdata.cpp:30
 #, kde-format
-#| msgid "Sashmit Bhaduri"
 msgctxt "@info:credit"
 msgid "Sashmit Bhaduri"
 msgstr "Sashmit Bhaduri"
 
 #: src/aboutdata.cpp:31
 #, kde-format
-#| msgid "Pierre Habouzit"
 msgctxt "@info:credit"
 msgid "Pierre Habouzit"
 msgstr "Pierre Habouzit"
 
 #: src/aboutdata.cpp:32
 #, kde-format
-#| msgid "Stanislav Karchebny"
 msgctxt "@info:credit"
 msgid "Stanislav Karchebny"
 msgstr "Stanislav Karchebny"
 
 #: src/aboutdata.cpp:33
 #, kde-format
-#| msgid "Gary Cramblitt"
 msgctxt "@info:credit"
 msgid "Gary Cramblitt"
 msgstr "Gary Cramblitt"
@@ -1048,21 +1040,18 @@ msgstr "Współtwórca"
 
 #: src/aboutdata.cpp:34
 #, kde-format
-#| msgid "Stephan Binner"
 msgctxt "@info:credit"
 msgid "Stephan Binner"
 msgstr "Stephan Binner"
 
 #: src/aboutdata.cpp:35
 #, kde-format
-#| msgid "Christof Musik"
 msgctxt "@info:credit"
 msgid "Christof Musik"
 msgstr "Christof Musik"
 
 #: src/aboutdata.cpp:36
 #, kde-format
-#| msgid "Anne-Marie Mahfouf"
 msgctxt "@info:credit"
 msgid "Anne-Marie Mahfouf"
 msgstr "Anne-Marie Mahfouf"
@@ -1074,7 +1063,6 @@ msgstr "Podręcznik"
 
 #: src/aboutdata.cpp:37
 #, kde-format
-#| msgid "Frerich Raabe"
 msgctxt "@info:credit"
 msgid "Frerich Raabe"
 msgstr "Frerich Raabe"
@@ -1086,7 +1074,6 @@ msgstr "Autor librss"
 
 #: src/aboutdata.cpp:38
 #, kde-format
-#| msgid "Eckhart Woerner"
 msgctxt "@info:credit"
 msgid "Eckhart Woerner"
 msgstr "Eckhart Woerner"
@@ -1099,7 +1086,6 @@ msgstr ""
 
 #: src/aboutdata.cpp:39
 #, kde-format
-#| msgid "Heinrich Wendel"
 msgctxt "@info:credit"
 msgid "Heinrich Wendel"
 msgstr "Heinrich Wendel"
@@ -1111,7 +1097,6 @@ msgstr "Poprawki mnóstwa błędów"
 
 #: src/aboutdata.cpp:40
 #, kde-format
-#| msgid "Eike Hein"
 msgctxt "@info:credit"
 msgid "Eike Hein"
 msgstr "Eike Hein"
@@ -1123,7 +1108,6 @@ msgstr "Właściwość opóźnionego zaznaczania jako przeczytane"
 
 #: src/aboutdata.cpp:41
 #, kde-format
-#| msgid "Marcel Dierkes"
 msgctxt "@info:credit"
 msgid "Marcel Dierkes"
 msgstr "Marcel Dierkes"
@@ -1135,7 +1119,6 @@ msgstr "Ikony"
 
 #: src/aboutdata.cpp:42
 #, kde-format
-#| msgid "George Staikos"
 msgctxt "@info:credit"
 msgid "George Staikos"
 msgstr "George Staikos"
@@ -1147,7 +1130,6 @@ msgstr "Bezsenność"
 
 #: src/aboutdata.cpp:43
 #, kde-format
-#| msgid "Philipp Droessler"
 msgctxt "@info:credit"
 msgid "Philipp Droessler"
 msgstr "Philipp Droessler"
@@ -1169,7 +1151,6 @@ msgstr "&Usuń kanał"
 
 #: src/actions/actionmanagerimpl.cpp:66 src/actions/actionmanagerimpl.cpp:249
 #, kde-format
-#| msgid "&Edit Feed..."
 msgid "&Edit Feed…"
 msgstr "&Edytuj kanał…"
 
@@ -1200,19 +1181,16 @@ msgstr "&Oznacz kanały jako przeczytane"
 
 #: src/actions/actionmanagerimpl.cpp:191
 #, kde-format
-#| msgid "&Import Feeds..."
 msgid "&Import Feeds…"
 msgstr "Za&importuj kanały..."
 
 #: src/actions/actionmanagerimpl.cpp:195
 #, kde-format
-#| msgid "&Export Feeds..."
 msgid "&Export Feeds…"
 msgstr "Wy&eksportuj kanały…"
 
 #: src/actions/actionmanagerimpl.cpp:200
 #, kde-format
-#| msgid "&Configure Akregator..."
 msgid "&Configure Akregator…"
 msgstr "Ustawienia &Akregatora…"
 
@@ -1228,13 +1206,11 @@ msgstr "Wczytaj ponownie wszystkie karty"
 
 #: src/actions/actionmanagerimpl.cpp:231
 #, kde-format
-#| msgid "Add Feed"
 msgid "&Add Feed…"
 msgstr "Dod&aj kanał…"
 
 #: src/actions/actionmanagerimpl.cpp:237
 #, kde-format
-#| msgid "Ne&w Folder..."
 msgid "Ne&w Folder…"
 msgstr "No&wy katalog…"
 
@@ -1301,7 +1277,6 @@ msgstr "&Przeczytany"
 
 #: src/actions/actionmanagerimpl.cpp:371
 #, kde-format
-#| msgid "Mark selected article as read"
 msgctxt "@info:tooltip"
 msgid "Mark selected article as read"
 msgstr "Oznacz wybrany artykuł jako przeczytany"
@@ -1314,7 +1289,6 @@ msgstr "&Nowy"
 
 #: src/actions/actionmanagerimpl.cpp:380
 #, kde-format
-#| msgid "Mark selected article as new"
 msgctxt "@info:tooltip"
 msgid "Mark selected article as new"
 msgstr "Oznacz wybrany artykuł jako nowy"
@@ -1327,7 +1301,6 @@ msgstr "Niep&rzeczytany"
 
 #: src/actions/actionmanagerimpl.cpp:387
 #, kde-format
-#| msgid "Mark selected article as unread"
 msgctxt "@info:tooltip"
 msgid "Mark selected article as unread"
 msgstr "Oznacz wybrany artykuł jako nieczytany"
@@ -1339,7 +1312,6 @@ msgstr "Oznacz wybrany artykuł jako &ważny"
 
 #: src/actions/actionmanagerimpl.cpp:397
 #, kde-format
-#| msgid "Remove &Important Mark"
 msgctxt "@action:button"
 msgid "Remove &Important Mark"
 msgstr "Usuń znacznik w&ażności"
@@ -1366,19 +1338,16 @@ msgstr "Przenieś w prawo"
 
 #: src/actions/actionmanagerimpl.cpp:422
 #, kde-format
-#| msgid "Send Link Address"
 msgid "Send &Link Address…"
 msgstr "Wyś&lij adres odnośnika…"
 
 #: src/actions/actionmanagerimpl.cpp:427
 #, kde-format
-#| msgid "Send &File..."
 msgid "Send &File…"
 msgstr "Wyślij &plik…"
 
 #: src/actions/actionmanagerimpl.cpp:433
 #, kde-format
-#| msgid "Set Focus to Quick Search"
 msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr "Uaktywnij pole szybkiego wyszukiwania"
@@ -1485,14 +1454,12 @@ msgstr "Wyłącz wyciszenie"
 
 #: src/actions/actionmanagerimpl.cpp:598
 #, kde-format
-#| msgid "Speak Text"
 msgctxt "@action"
 msgid "Speak Text"
 msgstr "Wypowiedz tekst"
 
 #: src/actions/actionmanagerimpl.cpp:603
 #, kde-format
-#| msgid "&Find in Message..."
 msgid "&Find in Message…"
 msgstr "&Znajdź w wiadomości…"
 
@@ -1503,14 +1470,12 @@ msgstr "Zamknij kartę"
 
 #: src/actions/actionmanagerimpl.cpp:627
 #, kde-format
-#| msgid "Activate Tab %1"
 msgctxt "@action"
 msgid "Activate Tab %1"
 msgstr "Uaktywnij kartę %1"
 
 #: src/actions/actionmanagerimpl.cpp:633
 #, kde-format
-#| msgid "&Save Link As..."
 msgid "&Save Link As…"
 msgstr "Zapi&sz odnośnik jako…"
 
@@ -1521,14 +1486,12 @@ msgstr "Skopiuj a&dres odnośnika"
 
 #: src/actions/actionmanagerimpl.cpp:640
 #, kde-format
-#| msgid "Copy Image Location"
 msgctxt "@action"
 msgid "Copy Image Location"
 msgstr "Skopiuj położenie obrazu"
 
 #: src/actions/actionmanagerimpl.cpp:647
 #, kde-format
-#| msgid "Save Image On Disk..."
 msgctxt "@action"
 msgid "Save Image On Disk…"
 msgstr "Zapisz obraz na dysku…"
@@ -1561,7 +1524,6 @@ msgstr "Nie znaleziono kanału RSS na %1."
 
 #: src/addfeeddialog.cpp:121
 #, kde-format
-#| msgid "Feed found, downloading..."
 msgid "Feed found, downloading…"
 msgstr "Znaleziono kanał, pobieram…"
 
@@ -1893,7 +1855,6 @@ msgstr ""
 
 #: src/command/loadfeedlistcommand.cpp:129
 #, kde-format
-#| msgid "Opening Feed List..."
 msgid "Opening Feed List…"
 msgstr "Otwieranie listy kanału…"
 
@@ -1934,7 +1895,11 @@ msgstr ""
 "stworzyć kopii zapasowej!</qt>"
 
 #: src/crashwidget/crashwidget.cpp:21
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "Akregator did not close correctly. Would you like to restore the previous "
+#| "session?"
+msgctxt "@label:textbox"
 msgid ""
 "Akregator did not close correctly. Would you like to restore the previous "
 "session?"
@@ -2135,7 +2100,6 @@ msgstr "Nienazwany"
 
 #: src/frame/frame.cpp:140
 #, kde-format
-#| msgid "Loading..."
 msgid "Loading…"
 msgstr "Wczytywanie…"
 
@@ -2211,7 +2175,6 @@ msgstr "Sieć jest niedostępna."
 
 #: src/mainwidget.cpp:866
 #, kde-format
-#| msgid "Fetching Feeds..."
 msgid "Fetching Feeds…"
 msgstr "Pobieranie kanałów…"
 
@@ -2376,7 +2339,6 @@ msgstr "W sumie"
 
 #: src/tabwidget.cpp:91
 #, kde-format
-#| msgid "Close the current tab"
 msgctxt "@info:tooltip"
 msgid "Close the current tab"
 msgstr "Zamknij bieżącą kartę"
@@ -2590,13 +2552,11 @@ msgstr "Otwórz w zewnętrznej przeglądarce"
 
 #: src/widgets/searchbar.cpp:40
 #, kde-format
-#| msgid "Search articles..."
 msgid "Search articles…"
 msgstr "Poszukaj artykułów…"
 
 #: src/widgets/searchbar.cpp:112
 #, kde-format
-#| msgid "Search articles...<%1>"
 msgid "Search articles…<%1>"
 msgstr "Poszukaj artykułów…<%1>"
 
@@ -3232,4 +3192,3 @@ msgstr "Filtr"
 
 #~ msgid "Show tab close button on hover"
 #~ msgstr "Pokaż przycisk zamknięcia karty po najechaniu myszką"
-

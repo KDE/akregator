@@ -1838,10 +1838,7 @@ msgid ""
 msgstr "<qt>标准订阅列表已损坏(无效的 XML)。无法创建备份。</qt>"
 
 #: src/crashwidget/crashwidget.cpp:21
-#, fuzzy, kde-format
-#| msgid ""
-#| "Akregator did not close correctly. Would you like to restore the previous "
-#| "session?"
+#, kde-format
 msgctxt "@label:textbox"
 msgid ""
 "Akregator did not close correctly. Would you like to restore the previous "
