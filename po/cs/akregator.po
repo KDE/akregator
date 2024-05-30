@@ -2,22 +2,22 @@
 # This file is distributed under the same license as the PACKAGE package.
 # SPDX-FileCopyrightText: 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2023 Vít Pelčák <vit@pelcak.org>
 # Tomáš Chvátal <tomas.chvatal@gmail.com>, 2012, 2013.
-# Vit Pelcak <vit@pelcak.org>, 2021, 2022, 2023.
+# SPDX-FileCopyrightText: 2021, 2022, 2023, 2024 Vit Pelcak <vit@pelcak.org>
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-28 00:38+0000\n"
-"PO-Revision-Date: 2023-11-02 14:14+0100\n"
-"Last-Translator: Vit Pelcak <vit@pelcak.org>\n"
+"POT-Creation-Date: 2024-05-30 00:38+0000\n"
+"PO-Revision-Date: 2024-05-29 11:22+0200\n"
+"Last-Translator: Vit Pelcak <vpelcak@suse.cz>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Lokalize 23.08.2\n"
+"X-Generator: Lokalize 24.02.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -471,9 +471,10 @@ msgstr "Stahovat kanály každých:"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_PlasmaActivitySupport)
 #: configuration/ui/settings_general.ui:157
-#, kde-format
-msgid "Enable Plasma Activities"
-msgstr ""
+#, fuzzy, kde-format
+#| msgid "Enable Plasma Activities"
+msgid "Enable Plasma Activities integration"
+msgstr "Povolit Aktivity Plasma"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #: configuration/ui/settings_general.ui:167
@@ -978,7 +979,7 @@ msgstr "Správce"
 #, kde-format
 msgctxt "@info:credit"
 msgid "Frank Osterfeld"
-msgstr ""
+msgstr "Frank Osterfeld"
 
 #: src/aboutdata.cpp:28
 #, kde-format
@@ -989,7 +990,7 @@ msgstr "Předchozí správce"
 #, kde-format
 msgctxt "@info:credit"
 msgid "Teemu Rytilahti"
-msgstr ""
+msgstr "Teemu Rytilahti"
 
 #: src/aboutdata.cpp:29 src/aboutdata.cpp:30 src/aboutdata.cpp:31
 #: src/aboutdata.cpp:32
@@ -1001,25 +1002,25 @@ msgstr "Vývojář"
 #, kde-format
 msgctxt "@info:credit"
 msgid "Sashmit Bhaduri"
-msgstr ""
+msgstr "Sashmit Bhaduri"
 
 #: src/aboutdata.cpp:31
 #, kde-format
 msgctxt "@info:credit"
 msgid "Pierre Habouzit"
-msgstr ""
+msgstr "Pierre Habouzit"
 
 #: src/aboutdata.cpp:32
 #, kde-format
 msgctxt "@info:credit"
 msgid "Stanislav Karchebny"
-msgstr ""
+msgstr "Stanislav Karchebny"
 
 #: src/aboutdata.cpp:33
 #, kde-format
 msgctxt "@info:credit"
 msgid "Gary Cramblitt"
-msgstr ""
+msgstr "Gary Cramblitt"
 
 #: src/aboutdata.cpp:33 src/aboutdata.cpp:34 src/aboutdata.cpp:35
 #, kde-format
@@ -1036,13 +1037,13 @@ msgstr "Stephan Binner"
 #, kde-format
 msgctxt "@info:credit"
 msgid "Christof Musik"
-msgstr ""
+msgstr "Christof Musik"
 
 #: src/aboutdata.cpp:36
 #, kde-format
 msgctxt "@info:credit"
 msgid "Anne-Marie Mahfouf"
-msgstr ""
+msgstr "Anne-Marie Mahfouf"
 
 #: src/aboutdata.cpp:36
 #, kde-format
@@ -1053,7 +1054,7 @@ msgstr "Příručka"
 #, kde-format
 msgctxt "@info:credit"
 msgid "Frerich Raabe"
-msgstr ""
+msgstr "Frerich Raabe"
 
 #: src/aboutdata.cpp:37
 #, kde-format
@@ -1064,7 +1065,7 @@ msgstr "Autor librss"
 #, kde-format
 msgctxt "@info:credit"
 msgid "Eckhart Woerner"
-msgstr ""
+msgstr "Eckhart Woerner"
 
 #: src/aboutdata.cpp:38
 #, kde-format
@@ -1075,7 +1076,7 @@ msgstr "Správa sledování chyb, vylepšení použitelnosti"
 #, kde-format
 msgctxt "@info:credit"
 msgid "Heinrich Wendel"
-msgstr ""
+msgstr "Heinrich Wendel"
 
 #: src/aboutdata.cpp:39
 #, kde-format
@@ -1097,7 +1098,7 @@ msgstr "Funkce 'Označení jako přečtené po prodlevě'"
 #, kde-format
 msgctxt "@info:credit"
 msgid "Marcel Dierkes"
-msgstr ""
+msgstr "Marcel Dierkes"
 
 #: src/aboutdata.cpp:41
 #, kde-format
@@ -1108,7 +1109,7 @@ msgstr "Ikony"
 #, kde-format
 msgctxt "@info:credit"
 msgid "George Staikos"
-msgstr ""
+msgstr "George Staikos"
 
 #: src/aboutdata.cpp:42
 #, kde-format
@@ -1119,7 +1120,7 @@ msgstr "Nespavost"
 #, kde-format
 msgctxt "@info:credit"
 msgid "Philipp Droessler"
-msgstr ""
+msgstr "Philipp Droessler"
 
 #: src/aboutdata.cpp:43
 #, kde-format
@@ -1139,7 +1140,7 @@ msgstr "S&mazat kanál"
 #: src/actions/actionmanagerimpl.cpp:66 src/actions/actionmanagerimpl.cpp:249
 #, kde-format
 msgid "&Edit Feed…"
-msgstr ""
+msgstr "Upr&avit kanál…"
 
 #: src/actions/actionmanagerimpl.cpp:67 src/actions/actionmanagerimpl.cpp:306
 #, kde-format
@@ -1169,17 +1170,17 @@ msgstr "Ozn&ačit kanály jako přečtené"
 #: src/actions/actionmanagerimpl.cpp:191
 #, kde-format
 msgid "&Import Feeds…"
-msgstr ""
+msgstr "&Importovat kanály…"
 
 #: src/actions/actionmanagerimpl.cpp:195
 #, kde-format
 msgid "&Export Feeds…"
-msgstr ""
+msgstr "&Exportovat kanály…"
 
 #: src/actions/actionmanagerimpl.cpp:200
 #, kde-format
 msgid "&Configure Akregator…"
-msgstr ""
+msgstr "Nastavit &Akregator…"
 
 #: src/actions/actionmanagerimpl.cpp:219
 #, kde-format
@@ -1194,12 +1195,12 @@ msgstr "Znovu načíst všechny karty"
 #: src/actions/actionmanagerimpl.cpp:231
 #, kde-format
 msgid "&Add Feed…"
-msgstr ""
+msgstr "Přid&at kanál…"
 
 #: src/actions/actionmanagerimpl.cpp:237
 #, kde-format
 msgid "Ne&w Folder…"
-msgstr ""
+msgstr "No&vá složka…"
 
 #: src/actions/actionmanagerimpl.cpp:262
 #, kde-format
@@ -1263,8 +1264,7 @@ msgid "&Read"
 msgstr "Přečt&ené"
 
 #: src/actions/actionmanagerimpl.cpp:371
-#, fuzzy, kde-format
-#| msgid "Mark selected article as read"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as read"
 msgstr "Označit vybraný článek jako přečtený"
@@ -1276,8 +1276,7 @@ msgid "&New"
 msgstr "&Nový"
 
 #: src/actions/actionmanagerimpl.cpp:380
-#, fuzzy, kde-format
-#| msgid "Mark selected article as new"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as new"
 msgstr "Označit vybraný článek jako nový"
@@ -1289,8 +1288,7 @@ msgid "&Unread"
 msgstr "N&epřečtený"
 
 #: src/actions/actionmanagerimpl.cpp:387
-#, fuzzy, kde-format
-#| msgid "Mark selected article as unread"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as unread"
 msgstr "Označit vybraný článek jako nepřečtený"
@@ -1304,7 +1302,7 @@ msgstr "Označit &jako důležitý"
 #, kde-format
 msgctxt "@action:button"
 msgid "Remove &Important Mark"
-msgstr ""
+msgstr "Zruš&it značku \"důležitý\""
 
 #: src/actions/actionmanagerimpl.cpp:401
 #, kde-format
@@ -1329,18 +1327,18 @@ msgstr "Přesunout uzel doprava"
 #: src/actions/actionmanagerimpl.cpp:422
 #, kde-format
 msgid "Send &Link Address…"
-msgstr ""
+msgstr "Odes&lat adresu odkazu…"
 
 #: src/actions/actionmanagerimpl.cpp:427
 #, kde-format
 msgid "Send &File…"
-msgstr ""
+msgstr "Poslat &soubor…"
 
 #: src/actions/actionmanagerimpl.cpp:433
 #, kde-format
 msgctxt "@action"
 msgid "Set Focus to Quick Search"
-msgstr ""
+msgstr "Přejít do rychlého vyhledávání"
 
 #: src/actions/actionmanagerimpl.cpp:465
 #, kde-format
@@ -1446,12 +1444,12 @@ msgstr "Povolit zvuk"
 #, kde-format
 msgctxt "@action"
 msgid "Speak Text"
-msgstr ""
+msgstr "Přečíst text"
 
 #: src/actions/actionmanagerimpl.cpp:603
 #, kde-format
 msgid "&Find in Message…"
-msgstr ""
+msgstr "Hle&dat ve zprávě…"
 
 #: src/actions/actionmanagerimpl.cpp:614
 #, kde-format
@@ -1462,12 +1460,12 @@ msgstr "Zavřít kartu"
 #, kde-format
 msgctxt "@action"
 msgid "Activate Tab %1"
-msgstr ""
+msgstr "Aktivovat kartu %1"
 
 #: src/actions/actionmanagerimpl.cpp:633
 #, kde-format
 msgid "&Save Link As…"
-msgstr ""
+msgstr "Uložit odkaz j&ako…"
 
 #: src/actions/actionmanagerimpl.cpp:637
 #, kde-format
@@ -1478,13 +1476,13 @@ msgstr "Ko&pírovat adresu odkazu"
 #, kde-format
 msgctxt "@action"
 msgid "Copy Image Location"
-msgstr ""
+msgstr "Kopírovat umístění obrázku"
 
 #: src/actions/actionmanagerimpl.cpp:647
 #, kde-format
 msgctxt "@action"
 msgid "Save Image On Disk…"
-msgstr ""
+msgstr "Uložit obrázek na disk…"
 
 #: src/actions/actions.cpp:19
 #, kde-format
@@ -1515,7 +1513,7 @@ msgstr "Kanál nenalezen v %1."
 #: src/addfeeddialog.cpp:121
 #, kde-format
 msgid "Feed found, downloading…"
-msgstr ""
+msgstr "Nalezeny kanál, probíhá stahování…"
 
 #: src/akregator_options.h:20 src/akregator_options.h:28
 #, kde-format
@@ -1844,7 +1842,7 @@ msgstr ""
 #: src/command/loadfeedlistcommand.cpp:129
 #, kde-format
 msgid "Opening Feed List…"
-msgstr ""
+msgstr "Otevírám seznam kanálů…"
 
 #: src/command/loadfeedlistcommand.cpp:143
 #, kde-format
@@ -1883,10 +1881,7 @@ msgstr ""
 "zálohu.</qt>"
 
 #: src/crashwidget/crashwidget.cpp:21
-#, fuzzy, kde-format
-#| msgid ""
-#| "Akregator did not close correctly. Would you like to restore the previous "
-#| "session?"
+#, kde-format
 msgctxt "@label:textbox"
 msgid ""
 "Akregator did not close correctly. Would you like to restore the previous "
@@ -2163,7 +2158,7 @@ msgstr "Síť je nedostupná."
 #: src/mainwidget.cpp:866
 #, kde-format
 msgid "Fetching Feeds…"
-msgstr ""
+msgstr "Probíhá stahování kanálů…"
 
 #: src/mainwidget.cpp:1065
 #, kde-format
@@ -2324,11 +2319,10 @@ msgid "Total"
 msgstr "Celkem"
 
 #: src/tabwidget.cpp:91
-#, fuzzy, kde-format
-#| msgid "Close the current tab"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Close the current tab"
-msgstr "Zavřít současnou kartu"
+msgstr "Zavřít aktuální kartu"
 
 #: src/tabwidget.cpp:94
 #, kde-format
@@ -2540,12 +2534,12 @@ msgstr "Otevřít v externím prohlížeči"
 #: src/widgets/searchbar.cpp:40
 #, kde-format
 msgid "Search articles…"
-msgstr ""
+msgstr "Hledat články..."
 
 #: src/widgets/searchbar.cpp:112
 #, kde-format
 msgid "Search articles…<%1>"
-msgstr ""
+msgstr "Hledat články...<%1>"
 
 #: src/widgets/statussearchline.cpp:43
 #, kde-format

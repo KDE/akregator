@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-28 00:38+0000\n"
-"PO-Revision-Date: 2024-05-23 05:51+0100\n"
+"POT-Creation-Date: 2024-05-30 00:38+0000\n"
+"PO-Revision-Date: 2024-05-29 22:04+0200\n"
 "Last-Translator: Oliver Kellogg <olivermkellogg@gmail.com>\n"
 "Language-Team: Esperanto <kde-i18n-eo@kde.org>\n"
 "Language: eo\n"
@@ -463,8 +463,9 @@ msgstr "Kolekti fluojn ĉiujn:"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_PlasmaActivitySupport)
 #: configuration/ui/settings_general.ui:157
-#, kde-format
-msgid "Enable Plasma Activities"
+#, fuzzy, kde-format
+#| msgid "Enable Plasma Activities"
+msgid "Enable Plasma Activities integration"
 msgstr "Ebligi Aktivecojn de Plasma"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
@@ -1874,10 +1875,7 @@ msgstr ""
 "sekurkopion.</qt>"
 
 #: src/crashwidget/crashwidget.cpp:21
-#, fuzzy, kde-format
-#| msgid ""
-#| "Akregator did not close correctly. Would you like to restore the previous "
-#| "session?"
+#, kde-format
 msgctxt "@label:textbox"
 msgid ""
 "Akregator did not close correctly. Would you like to restore the previous "

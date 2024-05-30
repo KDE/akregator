@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-28 00:38+0000\n"
+"POT-Creation-Date: 2024-05-30 00:38+0000\n"
 "PO-Revision-Date: 2008-04-07 23:17+0700\n"
 "Last-Translator: Thanomsub Noppaburana <donga.nb@gmail.com>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
@@ -488,7 +488,7 @@ msgstr "ดึ&งจากแหล่งป้อน"
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_PlasmaActivitySupport)
 #: configuration/ui/settings_general.ui:157
 #, kde-format
-msgid "Enable Plasma Activities"
+msgid "Enable Plasma Activities integration"
 msgstr ""
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
