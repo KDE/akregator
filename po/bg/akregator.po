@@ -1,21 +1,21 @@
 # Copyright (C) 2023 This file is copyright:
 # This file is distributed under the same license as the akregator package.
 #
-# SPDX-FileCopyrightText: 2022, 2023 Mincho Kondarev <mkondarev@yahoo.de>
+# SPDX-FileCopyrightText: 2022, 2023, 2024 Mincho Kondarev <mkondarev@yahoo.de>
 msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-04-24 02:56+0000\n"
-"PO-Revision-Date: 2023-10-03 10:18+0200\n"
+"PO-Revision-Date: 2024-05-30 16:57+0200\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
-"Language-Team: \n"
+"Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 23.08.1\n"
+"X-Generator: Lokalize 24.05.0\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -104,7 +104,7 @@ msgid ""
 "<b>Note:</b> For security reasons, external reference is blocked (See "
 "configure dialog)."
 msgstr ""
-"<b> Забележка: </ b> От съображения за сигурност, външната справка е "
+"<b> Забележка: </b> От съображения за сигурност, външната справка е "
 "блокирана (вижте диалоговия прозорец за конфигуриране)."
 
 #: configuration/akregator_config_archive.cpp:33
@@ -1828,8 +1828,8 @@ msgstr "Грешка при синтактичния анализ на XML"
 #, kde-kuit-format
 msgid "<qt><p>XML parsing error in line %1, column %2 of %3:</p><p>%4</p></qt>"
 msgstr ""
-"<qt> <p> Грешка при синтактичния анализ на XML в ред %1, колона %2 от %3: </"
-"p> <p> %4 </p> </qt>"
+"<qt><p> Грешка при синтактичния анализ на XML в ред %1, колона %2 от %3: </"
+"p><p> %4 </p></qt>"
 
 #: src/command/loadfeedlistcommand.cpp:164
 #, kde-format
@@ -2005,7 +2005,7 @@ msgstr "<b> Описание: </b> %1 <br />"
 #: src/formatter/grantleeviewformatter.cpp:127
 #, kde-format
 msgid "<b>Homepage:</b> <a href=\"%1\">%1</a>"
-msgstr "<b> Начална страница: </b> <a href=\"%1\"> %1 </a>"
+msgstr "<b> Начална страница: </b><a href=\"%1\"> %1 </a>"
 
 #: src/formatter/grantleeviewformatter.cpp:134
 #, kde-format

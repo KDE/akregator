@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-04-24 02:56+0000\n"
-"PO-Revision-Date: 2024-05-26 12:03+0200\n"
+"PO-Revision-Date: 2024-05-30 10:50+0200\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
 "Language: pl\n"
@@ -21,6 +21,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
+"X-Generator: Lokalize 23.08.5\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -1868,18 +1869,17 @@ msgid ""
 "Akregator did not close correctly. Would you like to restore the previous "
 "session?"
 msgstr ""
-"Akregator nie zakończył poprawnie. Czy chciał(a)byś przywrócić poprzednią "
-"sesję?"
+"Akregator nie zakończył poprawnie. Czy przywrócić poprzednie posiedzenie?"
 
 #: src/crashwidget/crashwidget.cpp:37
 #, kde-format
 msgid "Restore Session"
-msgstr "Przywróć sesję"
+msgstr "Przywróć posiedzenie"
 
 #: src/crashwidget/crashwidget.cpp:43
 #, kde-format
 msgid "Do Not Restore Session"
-msgstr "Nie przywracaj sesji"
+msgstr "Nie przywracaj posiedzenia"
 
 #: src/crashwidget/crashwidget.cpp:49
 #, kde-format
@@ -1902,7 +1902,7 @@ msgstr "&Widok"
 #: src/data/akregator_part.rc:37 src/data/akregator_shell.rc:24
 #, kde-format
 msgid "&Go"
-msgstr "&Idź"
+msgstr "&Przejdź"
 
 #. i18n: ectx: Menu (feed)
 #: src/data/akregator_part.rc:50 src/data/akregator_shell.rc:29
