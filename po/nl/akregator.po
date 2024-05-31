@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-30 00:38+0000\n"
-"PO-Revision-Date: 2024-05-28 09:47+0200\n"
+"PO-Revision-Date: 2024-05-30 21:07+0200\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -492,10 +492,9 @@ msgstr "Feeds ophalen elke:"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_PlasmaActivitySupport)
 #: configuration/ui/settings_general.ui:157
-#, fuzzy, kde-format
-#| msgid "Enable Plasma Activities"
+#, kde-format
 msgid "Enable Plasma Activities integration"
-msgstr "Activiteiten van Plasma inschakelen"
+msgstr "Integratie van activiteiten van Plasma inschakelen"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #: configuration/ui/settings_general.ui:167

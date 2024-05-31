@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-30 00:38+0000\n"
-"PO-Revision-Date: 2024-05-30 03:02+0900\n"
+"PO-Revision-Date: 2024-05-30 20:52+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
 "Language: zh_TW\n"
@@ -460,10 +460,9 @@ msgstr "訂閱來源抓取間隔："
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_PlasmaActivitySupport)
 #: configuration/ui/settings_general.ui:157
-#, fuzzy, kde-format
-#| msgid "Enable Plasma Activities"
+#, kde-format
 msgid "Enable Plasma Activities integration"
-msgstr "啟用 Plasma 活動"
+msgstr "啟用 Plasma 活動整合"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #: configuration/ui/settings_general.ui:167
