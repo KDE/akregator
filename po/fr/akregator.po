@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-30 00:38+0000\n"
-"PO-Revision-Date: 2024-05-29 08:45+0200\n"
+"PO-Revision-Date: 2024-05-31 11:10+0200\n"
 "Last-Translator: Xavier Besnard <xavier.besnard@kde.org>\n"
 "Language-Team: French <French <kde-francophone@kde.org>>\n"
 "Language: fr\n"
@@ -488,10 +488,9 @@ msgstr "Télécharger les flux tous les :"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_PlasmaActivitySupport)
 #: configuration/ui/settings_general.ui:157
-#, fuzzy, kde-format
-#| msgid "Enable Plasma Activities"
+#, kde-format
 msgid "Enable Plasma Activities integration"
-msgstr "Activer les activités de Plasma"
+msgstr "Activer l'intégration avec les activités de Plasma"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #: configuration/ui/settings_general.ui:167
