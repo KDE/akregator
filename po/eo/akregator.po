@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-04-24 02:56+0000\n"
-"PO-Revision-Date: 2024-05-23 05:51+0100\n"
+"PO-Revision-Date: 2024-05-30 07:49+0200\n"
 "Last-Translator: Oliver Kellogg <olivermkellogg@gmail.com>\n"
 "Language-Team: Esperanto <kde-i18n-eo@kde.org>\n"
 "Language: eo\n"
@@ -403,7 +403,7 @@ msgstr "Ĉie"
 #: configuration/ui/settings_general.ui:36
 #, kde-format
 msgid "Show tra&y icon"
-msgstr "Montri agordopletan piktogramon"
+msgstr "Montr&i agordopletan piktogramon"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ShowUnreadInTaskbar)
 #: configuration/ui/settings_general.ui:43
@@ -477,13 +477,13 @@ msgstr "Marki ĉ&iujn fluojn kiel legitaj je programekigo"
 #: configuration/ui/settings_general.ui:173
 #, kde-format
 msgid "Fetch all fee&ds on startup"
-msgstr "Kolekti ĉiujn fluon je programekigo"
+msgstr "Alpreni ĉiujn fluo&jn je programekigo"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: configuration/ui/settings_general.ui:183
 #, kde-format
 msgid "Network"
-msgstr "komputilreto"
+msgstr "Komputilreto"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_UseHTMLCache)
 #: configuration/ui/settings_general.ui:189
@@ -2363,7 +2363,7 @@ msgstr "Ĝisdatigi ĉi&ujn:"
 #: src/ui/feedpropertieswidgetbase.ui:117
 #, kde-format
 msgid "Notify when new articles arri&ve"
-msgstr "Informi, kiam novaj artikoloj alvenas"
+msgstr "Informi, kiam novaj artikoloj al&venas"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel3)
 #: src/ui/feedpropertieswidgetbase.ui:132
@@ -2393,7 +2393,7 @@ msgstr "Komento:"
 #: src/ui/feedpropertieswidgetbase.ui:194
 #, kde-format
 msgid "Ar&chive"
-msgstr "Arĥivo"
+msgstr "Ar&kivo"
 
 #. i18n: ectx: property (text), widget (QRadioButton, rb_globalDefault)
 #: src/ui/feedpropertieswidgetbase.ui:206
@@ -2405,7 +2405,7 @@ msgstr "&Uzi defaŭltan agordon"
 #: src/ui/feedpropertieswidgetbase.ui:216
 #, kde-format
 msgid "Di&sable archiving"
-msgstr "Malebligi enarĥivigon"
+msgstr "&Malebligi enarkivigon"
 
 #. i18n: ectx: property (text), widget (QRadioButton, rb_limitArticleNumber)
 #: src/ui/feedpropertieswidgetbase.ui:247
