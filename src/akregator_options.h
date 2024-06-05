@@ -17,17 +17,17 @@ static void akregator_options(QCommandLineParser *parser)
 {
     QList<QCommandLineOption> options;
     options << QCommandLineOption(QStringList() << QStringLiteral("a") << QStringLiteral("addfeed"),
-                                  i18n("Add a feed with the given URL"),
+                                  i18nc("@info:shell", "Add a feed with the given URL"),
                                   QStringLiteral("url"))
             << QCommandLineOption(QStringList() << QStringLiteral("g") << QStringLiteral("group"),
-                                  i18n("When adding feeds, place them in this group"),
+                                  i18nc("@info:shell", "When adding feeds, place them in this group"),
                                   QStringLiteral("groupname")) //     "Imported"
-            << QCommandLineOption(QStringLiteral("hide-mainwindow"), i18n("Hide main window on startup"));
+            << QCommandLineOption(QStringLiteral("hide-mainwindow"), i18nc("@info:shell", "Hide main window on startup"));
 
     parser->addOptions(options);
-    parser->addPositionalArgument(QStringLiteral("url"), i18n("Add a feed with the given URL"), QStringLiteral("[url…]"));
+    parser->addPositionalArgument(QStringLiteral("url"), i18nc("@info:shell", "Add a feed with the given URL"), QStringLiteral("[url…]"));
 #ifdef WITH_KUSERFEEDBACK
-    parser->addOption(QCommandLineOption(QStringLiteral("feedback"), i18n("Lists the available options for user feedback")));
+    parser->addOption(QCommandLineOption(QStringLiteral("feedback"), i18nc("@info:shell", "Lists the available options for user feedback")));
 #endif
 }
 }
