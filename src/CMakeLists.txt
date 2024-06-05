@@ -160,6 +160,7 @@ target_sources(akregatorprivate PRIVATE
     openurlrequest.h
     actions/actionmanager.h
     actions/actions.h
+    akregator_options.h
 
     )
 target_include_directories(akregatorprivate PRIVATE storage/metakit/include)
