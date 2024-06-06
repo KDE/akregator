@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: KDE 4.3\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-30 00:38+0000\n"
+"POT-Creation-Date: 2024-06-06 00:39+0000\n"
 "PO-Revision-Date: 2024-05-29 09:40+0200\n"
 "Last-Translator: Kristof Kiszel <ulysses@fsf.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -1514,22 +1514,30 @@ msgid "Feed found, downloading…"
 msgstr "A hírcsatorna elérhető, kezdődik a letöltés…"
 
 #: src/akregator_options.h:20 src/akregator_options.h:28
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Add a feed with the given URL"
+msgctxt "@info:shell"
 msgid "Add a feed with the given URL"
 msgstr "Csatorna felvétele (URL)"
 
 #: src/akregator_options.h:23
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "When adding feeds, place them in this group"
+msgctxt "@info:shell"
 msgid "When adding feeds, place them in this group"
 msgstr "A felvett csatornák ebbe a csoportba kerülnek"
 
 #: src/akregator_options.h:25
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Hide main window on startup"
+msgctxt "@info:shell"
 msgid "Hide main window on startup"
 msgstr "A főablak elrejtése induláskor"
 
 #: src/akregator_options.h:30
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Lists the available options for user feedback"
+msgctxt "@info:shell"
 msgid "Lists the available options for user feedback"
 msgstr "Felsorolja a felhasználói visszajelzés lehetőségeit"
 

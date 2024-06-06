@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-30 00:38+0000\n"
+"POT-Creation-Date: 2024-06-06 00:39+0000\n"
 "PO-Revision-Date: 2024-05-30 10:14+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
@@ -1517,22 +1517,30 @@ msgid "Feed found, downloading…"
 msgstr "S'ha trobat la font, s'està baixant…"
 
 #: src/akregator_options.h:20 src/akregator_options.h:28
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Add a feed with the given URL"
+msgctxt "@info:shell"
 msgid "Add a feed with the given URL"
 msgstr "Afig una font amb l'URL indicat"
 
 #: src/akregator_options.h:23
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "When adding feeds, place them in this group"
+msgctxt "@info:shell"
 msgid "When adding feeds, place them in this group"
 msgstr "Quan s'afigen fonts, situa-les en este grup"
 
 #: src/akregator_options.h:25
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Hide main window on startup"
+msgctxt "@info:shell"
 msgid "Hide main window on startup"
 msgstr "Oculta la finestra principal en iniciar"
 
 #: src/akregator_options.h:30
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Lists the available options for user feedback"
+msgctxt "@info:shell"
 msgid "Lists the available options for user feedback"
 msgstr "Llista les opcions disponibles per als comentaris dels usuaris"
 

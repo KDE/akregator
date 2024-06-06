@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-30 00:38+0000\n"
+"POT-Creation-Date: 2024-06-06 00:39+0000\n"
 "PO-Revision-Date: 2024-05-30 21:07+0200\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
@@ -1570,22 +1570,30 @@ msgid "Feed found, downloading…"
 msgstr "Feed gevonden, bezig met downloaden…"
 
 #: src/akregator_options.h:20 src/akregator_options.h:28
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Add a feed with the given URL"
+msgctxt "@info:shell"
 msgid "Add a feed with the given URL"
 msgstr "Voeg een feed toe met de gegeven URL"
 
 #: src/akregator_options.h:23
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "When adding feeds, place them in this group"
+msgctxt "@info:shell"
 msgid "When adding feeds, place them in this group"
 msgstr "Bij toevoegen van feeds, plaats ze in deze groep"
 
 #: src/akregator_options.h:25
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Hide main window on startup"
+msgctxt "@info:shell"
 msgid "Hide main window on startup"
 msgstr "Verberg het hoofdvenster bij opstarten"
 
 #: src/akregator_options.h:30
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Lists the available options for user feedback"
+msgctxt "@info:shell"
 msgid "Lists the available options for user feedback"
 msgstr ""
 "Geeft een lijst met de beschikbare opties voor terugkoppeling van gebruiker"

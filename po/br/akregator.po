@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: all2.po\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-30 00:38+0000\n"
+"POT-Creation-Date: 2024-06-06 00:39+0000\n"
 "PO-Revision-Date: 2004-09-20 15:44+0200\n"
 "Last-Translator: Thierry Vignaud <tvignaud@mandriva.com>\n"
 "Language-Team: br <LL@li.org>\n"
@@ -1536,21 +1536,25 @@ msgstr ""
 
 #: src/akregator_options.h:20 src/akregator_options.h:28
 #, kde-format
+msgctxt "@info:shell"
 msgid "Add a feed with the given URL"
 msgstr ""
 
 #: src/akregator_options.h:23
 #, kde-format
+msgctxt "@info:shell"
 msgid "When adding feeds, place them in this group"
 msgstr ""
 
 #: src/akregator_options.h:25
 #, kde-format
+msgctxt "@info:shell"
 msgid "Hide main window on startup"
 msgstr ""
 
 #: src/akregator_options.h:30
 #, kde-format
+msgctxt "@info:shell"
 msgid "Lists the available options for user feedback"
 msgstr ""
 

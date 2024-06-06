@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Mimos\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-30 00:38+0000\n"
+"POT-Creation-Date: 2024-06-06 00:39+0000\n"
 "PO-Revision-Date: 2005-10-12 11:13+0800\n"
 "Last-Translator: MIMOS <opensource@mimos.my>\n"
 "Language-Team: Malay <kedidiemas@yahoogroups.com>\n"
@@ -1537,21 +1537,25 @@ msgstr "Suapan ditemui, memuat turun..."
 
 #: src/akregator_options.h:20 src/akregator_options.h:28
 #, kde-format
+msgctxt "@info:shell"
 msgid "Add a feed with the given URL"
 msgstr ""
 
 #: src/akregator_options.h:23
 #, kde-format
+msgctxt "@info:shell"
 msgid "When adding feeds, place them in this group"
 msgstr ""
 
 #: src/akregator_options.h:25
 #, kde-format
+msgctxt "@info:shell"
 msgid "Hide main window on startup"
 msgstr ""
 
 #: src/akregator_options.h:30
 #, kde-format
+msgctxt "@info:shell"
 msgid "Lists the available options for user feedback"
 msgstr ""
 
