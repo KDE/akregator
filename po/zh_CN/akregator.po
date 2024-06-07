@@ -1492,29 +1492,25 @@ msgid "Feed found, downloading…"
 msgstr ""
 
 #: src/akregator_options.h:20 src/akregator_options.h:28
-#, fuzzy, kde-format
-#| msgid "Add a feed with the given URL"
+#, kde-format
 msgctxt "@info:shell"
 msgid "Add a feed with the given URL"
 msgstr "通过指定地址添加订阅"
 
 #: src/akregator_options.h:23
-#, fuzzy, kde-format
-#| msgid "When adding feeds, place them in this group"
+#, kde-format
 msgctxt "@info:shell"
 msgid "When adding feeds, place them in this group"
 msgstr "在添加订阅时将其放入此分组"
 
 #: src/akregator_options.h:25
-#, fuzzy, kde-format
-#| msgid "Hide main window on startup"
+#, kde-format
 msgctxt "@info:shell"
 msgid "Hide main window on startup"
 msgstr "启动时隐藏主窗口"
 
 #: src/akregator_options.h:30
-#, fuzzy, kde-format
-#| msgid "Lists the available options for user feedback"
+#, kde-format
 msgctxt "@info:shell"
 msgid "Lists the available options for user feedback"
 msgstr "列出用户反馈的可用选项"

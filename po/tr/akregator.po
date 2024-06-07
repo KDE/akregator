@@ -21,7 +21,7 @@ msgstr ""
 "Project-Id-Version: kdepim-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-06-06 00:39+0000\n"
-"PO-Revision-Date: 2024-05-31 14:19+0300\n"
+"PO-Revision-Date: 2024-06-06 11:10+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -74,7 +74,7 @@ msgstr "Umarız Akregatör’den hoşnut kalırsınız."
 
 #: src/about/introduction_akregator.html:21
 msgid "Thank you, The Akregator Team"
-msgstr "Teşekkürler, Akregatör Ekibi"
+msgstr "Teşekkürler, Akregatör Takımı"
 
 #: src/formatter/html/5.2/combinedview.html:74
 msgid "Mark as Read"
@@ -1525,29 +1525,25 @@ msgid "Feed found, downloading…"
 msgstr "Besleme bulundu, indiriliyor…"
 
 #: src/akregator_options.h:20 src/akregator_options.h:28
-#, fuzzy, kde-format
-#| msgid "Add a feed with the given URL"
+#, kde-format
 msgctxt "@info:shell"
 msgid "Add a feed with the given URL"
 msgstr "Verilen bir URL ile besleme ekle"
 
 #: src/akregator_options.h:23
-#, fuzzy, kde-format
-#| msgid "When adding feeds, place them in this group"
+#, kde-format
 msgctxt "@info:shell"
 msgid "When adding feeds, place them in this group"
 msgstr "Beslemeler eklenirken bu gruba ekle"
 
 #: src/akregator_options.h:25
-#, fuzzy, kde-format
-#| msgid "Hide main window on startup"
+#, kde-format
 msgctxt "@info:shell"
 msgid "Hide main window on startup"
 msgstr "Başlangıçta ana pencereyi gizle"
 
 #: src/akregator_options.h:30
-#, fuzzy, kde-format
-#| msgid "Lists the available options for user feedback"
+#, kde-format
 msgctxt "@info:shell"
 msgid "Lists the available options for user feedback"
 msgstr "Kullanıcı geri bildirimi için kullanılabilir seçenekleri listeler"

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-06-06 00:39+0000\n"
-"PO-Revision-Date: 2024-05-30 10:13+0200\n"
+"PO-Revision-Date: 2024-06-06 09:30+0200\n"
 "Last-Translator: giovanni <g.sora@tiscali.it>\n"
 "Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
 "Language: ia\n"
@@ -1515,29 +1515,25 @@ msgid "Feed found, downloading…"
 msgstr "Syndication trovate, discargante..."
 
 #: src/akregator_options.h:20 src/akregator_options.h:28
-#, fuzzy, kde-format
-#| msgid "Add a feed with the given URL"
+#, kde-format
 msgctxt "@info:shell"
 msgid "Add a feed with the given URL"
 msgstr "Adde un syndication con le date URL"
 
 #: src/akregator_options.h:23
-#, fuzzy, kde-format
-#| msgid "When adding feeds, place them in this group"
+#, kde-format
 msgctxt "@info:shell"
 msgid "When adding feeds, place them in this group"
 msgstr "Quando on adde syndicationes, on placia lor in iste gruppo"
 
 #: src/akregator_options.h:25
-#, fuzzy, kde-format
-#| msgid "Hide main window on startup"
+#, kde-format
 msgctxt "@info:shell"
 msgid "Hide main window on startup"
 msgstr "Cela fenestra principal quando on starta"
 
 #: src/akregator_options.h:30
-#, fuzzy, kde-format
-#| msgid "Lists the available options for user feedback"
+#, kde-format
 msgctxt "@info:shell"
 msgid "Lists the available options for user feedback"
 msgstr "Lista le optiones disponibile per responsa de usator"
