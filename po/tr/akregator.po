@@ -21,7 +21,7 @@ msgstr ""
 "Project-Id-Version: kdepim-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-04-24 02:56+0000\n"
-"PO-Revision-Date: 2024-03-18 19:44+0300\n"
+"PO-Revision-Date: 2024-06-06 11:05+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -29,7 +29,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 24.02.0\n"
+"X-Generator: Lokalize 24.07.70\n"
 "(http: //www.transifex.com/projects/p/kdepim-k-tr/language/tr/)\n"
 
 #, kde-format
@@ -74,7 +74,7 @@ msgstr "Umarız Akregatör’den hoşnut kalırsınız."
 
 #: src/about/introduction_akregator.html:21
 msgid "Thank you, The Akregator Team"
-msgstr "Teşekkürler, Akregatör Ekibi"
+msgstr "Teşekkürler, Akregatör Takımı"
 
 #: src/formatter/html/5.2/combinedview.html:74
 msgid "Mark as Read"

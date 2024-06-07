@@ -18,14 +18,14 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-04-24 02:56+0000\n"
-"PO-Revision-Date: 2024-05-16 00:56+0200\n"
+"PO-Revision-Date: 2024-06-06 18:30+0200\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 24.02.2\n"
+"X-Generator: Lokalize 24.05.0\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #, kde-format
@@ -381,7 +381,7 @@ msgstr "Seguridad"
 #: configuration/ui/settings_browser.ui:146
 #, kde-format
 msgid "Verify URLs using Google's Safe Browsing API"
-msgstr "Verificar los URL usando el API de navegación segura de Google"
+msgstr "Verificar las URL usando la API de navegación segura de Google"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_EnableJavascript)
 #. i18n: ectx: label, entry, group (Browser)
@@ -889,7 +889,7 @@ msgstr "Usa la orden indicada cuando se pide abrir en el navegador externo."
 #, no-c-format, kde-format
 msgid "Command to launch external browser. URL will substitute for %u."
 msgstr ""
-"Orden que debe lanzar el navegador externo. El URL se sustituye por %u."
+"Orden que debe lanzar el navegador externo. La URL se sustituye por %u."
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
 #: interfaces/akregator.kcfg:231
@@ -1494,7 +1494,7 @@ msgstr "Fuente encontrada, descargando..."
 #: src/akregator_options.h:20 src/akregator_options.h:28
 #, kde-format
 msgid "Add a feed with the given URL"
-msgstr "Añadir una fuente con el URL dado"
+msgstr "Añadir una fuente con la URL indicada"
 
 #: src/akregator_options.h:23
 #, kde-format
@@ -1734,7 +1734,7 @@ msgstr "Comprobar URL engañosa"
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:428
 #, kde-format
 msgid "The url %1 is not valid."
-msgstr "El url %1 no es válido."
+msgstr "La URL %1 no es válida."
 
 #: src/command/createfoldercommand.cpp:47
 #, kde-format
@@ -2498,7 +2498,7 @@ msgstr "Enviar URL del artículo"
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:106
 #, kde-format
 msgid "Send the Html Page of Article"
-msgstr "Enviar la página Html del artículo"
+msgstr "Enviar la página HTML del artículo"
 
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:108
 #, kde-format
