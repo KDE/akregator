@@ -77,7 +77,7 @@ int Application::activate(const QStringList &args, const QString &workingDir)
 
 int main(int argc, char **argv)
 {
-#if HAVE_KICONTHEME && (KICONTHEMES_VERSION >= QT_VERSION_CHECK(6, 3, 0))
+#if HAVE_KICONTHEME
     KIconTheme::initTheme();
 #endif
     QCoreApplication::setAttribute(Qt::AA_ShareOpenGLContexts);
