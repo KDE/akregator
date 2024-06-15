@@ -242,6 +242,10 @@
     <choice name="OpenInExternalBrowser" />
    </choices>
   </entry>
+    <entry key="PlasmaActivitySupport" type="Bool">
+    <label>Enabled Plasma Activity</label>
+    <default>false</default>
+  </entry>
   </group>
 <group name="Columns" >
   <entry key="Feedlist Header States" type="IntList" ><!-- move back to type String, when the saveState()-Qt-Bug is fixed -->
