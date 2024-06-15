@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-06-06 00:39+0000\n"
-"PO-Revision-Date: 2024-02-12 18:44+0200\n"
-"Last-Translator: Toms Trasūns <toms.trasuns@posteo.net>\n"
+"PO-Revision-Date: 2024-05-28 09:59+0300\n"
+"Last-Translator: Toms Trasuns <toms.trasuns@posteo.net>\n"
 "Language-Team: Latvian <kde-i18n-doc@kde.org>\n"
 "Language: lv\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
 "2);\n"
-"X-Generator: Lokalize 23.08.4\n"
+"X-Generator: Lokalize 24.02.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -471,9 +471,10 @@ msgstr "Plūsmu ielādēšanas biežums:"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_PlasmaActivitySupport)
 #: configuration/ui/settings_general.ui:157
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Enable Plasma Activities"
 msgid "Enable Plasma Activities integration"
-msgstr ""
+msgstr "Ieslēgt „Plasma“ aktivitātes"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #: configuration/ui/settings_general.ui:167
@@ -964,8 +965,7 @@ msgid "Copyright © 2004–%1 Akregator authors"
 msgstr "Autortiesības © 2004–%1 „Akregator“ autori"
 
 #: src/aboutdata.cpp:27
-#, fuzzy, kde-format
-#| msgid "Laurent Montel"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Laurent Montel"
 msgstr "Laurent Montel"
@@ -976,8 +976,7 @@ msgid "Maintainer"
 msgstr "Uzturētājs"
 
 #: src/aboutdata.cpp:28
-#, fuzzy, kde-format
-#| msgid "Frank Osterfeld"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Frank Osterfeld"
 msgstr "Frank Osterfeld"
@@ -988,8 +987,7 @@ msgid "Former maintainer"
 msgstr "Agrākais uzturētājs"
 
 #: src/aboutdata.cpp:29
-#, fuzzy, kde-format
-#| msgid "Teemu Rytilahti"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Teemu Rytilahti"
 msgstr "Teemu Rytilahti"
@@ -1001,29 +999,25 @@ msgid "Developer"
 msgstr "Izstrādātājs"
 
 #: src/aboutdata.cpp:30
-#, fuzzy, kde-format
-#| msgid "Sashmit Bhaduri"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Sashmit Bhaduri"
 msgstr "Sashmit Bhaduri"
 
 #: src/aboutdata.cpp:31
-#, fuzzy, kde-format
-#| msgid "Pierre Habouzit"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Pierre Habouzit"
 msgstr "Pierre Habouzit"
 
 #: src/aboutdata.cpp:32
-#, fuzzy, kde-format
-#| msgid "Stanislav Karchebny"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Stanislav Karchebny"
 msgstr "Stanislav Karchebny"
 
 #: src/aboutdata.cpp:33
-#, fuzzy, kde-format
-#| msgid "Gary Cramblitt"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Gary Cramblitt"
 msgstr "Gary Cramblitt"
@@ -1034,22 +1028,19 @@ msgid "Contributor"
 msgstr "Atbalstītājs"
 
 #: src/aboutdata.cpp:34
-#, fuzzy, kde-format
-#| msgid "Stephan Binner"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Stephan Binner"
 msgstr "Stephan Binner"
 
 #: src/aboutdata.cpp:35
-#, fuzzy, kde-format
-#| msgid "Christof Musik"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Christof Musik"
 msgstr "Christof Musik"
 
 #: src/aboutdata.cpp:36
-#, fuzzy, kde-format
-#| msgid "Anne-Marie Mahfouf"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Anne-Marie Mahfouf"
 msgstr "Anne-Marie Mahfouf"
@@ -1060,8 +1051,7 @@ msgid "Handbook"
 msgstr "Palīdzības rokasgrāmata"
 
 #: src/aboutdata.cpp:37
-#, fuzzy, kde-format
-#| msgid "Frerich Raabe"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Frerich Raabe"
 msgstr "Frerich Raabe"
@@ -1072,8 +1062,7 @@ msgid "Author of librss"
 msgstr "„librss“ autors"
 
 #: src/aboutdata.cpp:38
-#, fuzzy, kde-format
-#| msgid "Eckhart Woerner"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Eckhart Woerner"
 msgstr "Eckhart Woerner"
@@ -1084,8 +1073,7 @@ msgid "Bug tracker management, Usability improvements"
 msgstr "Atkļūdošana, uzlabojumi"
 
 #: src/aboutdata.cpp:39
-#, fuzzy, kde-format
-#| msgid "Heinrich Wendel"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Heinrich Wendel"
 msgstr "Heinrich Wendel"
@@ -1096,8 +1084,7 @@ msgid "Tons of bug fixes"
 msgstr "Kļūdu labojumi"
 
 #: src/aboutdata.cpp:40
-#, fuzzy, kde-format
-#| msgid "Eike Hein"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Eike Hein"
 msgstr "Eike Hein"
@@ -1108,8 +1095,7 @@ msgid "'Delayed mark as read' feature"
 msgstr "„Aizkavēta atzīmēšana, ka lasīts“ funkcija"
 
 #: src/aboutdata.cpp:41
-#, fuzzy, kde-format
-#| msgid "Marcel Dierkes"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Marcel Dierkes"
 msgstr "Marcel Dierkes"
@@ -1120,8 +1106,7 @@ msgid "Icons"
 msgstr "Ikonas"
 
 #: src/aboutdata.cpp:42
-#, fuzzy, kde-format
-#| msgid "George Staikos"
+#, kde-format
 msgctxt "@info:credit"
 msgid "George Staikos"
 msgstr "George Staikos"
@@ -1132,8 +1117,7 @@ msgid "Insomnia"
 msgstr "Bezmiega naktis"
 
 #: src/aboutdata.cpp:43
-#, fuzzy, kde-format
-#| msgid "Philipp Droessler"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Philipp Droessler"
 msgstr "Philipp Droessler"
@@ -1154,10 +1138,9 @@ msgid "&Delete Feed"
 msgstr "&Dzēst plūsmu"
 
 #: src/actions/actionmanagerimpl.cpp:66 src/actions/actionmanagerimpl.cpp:249
-#, fuzzy, kde-format
-#| msgid "&Edit Feed..."
+#, kde-format
 msgid "&Edit Feed…"
-msgstr "&Labot plūsmu"
+msgstr "&Rediģēt plūsmu…"
 
 #: src/actions/actionmanagerimpl.cpp:67 src/actions/actionmanagerimpl.cpp:306
 #, kde-format
@@ -1185,22 +1168,19 @@ msgid "&Mark Feeds as Read"
 msgstr "Atzī&mēt plūsmas kā lasītas"
 
 #: src/actions/actionmanagerimpl.cpp:191
-#, fuzzy, kde-format
-#| msgid "&Import Feeds..."
+#, kde-format
 msgid "&Import Feeds…"
-msgstr "I&mportēt plūsmas..."
+msgstr "I&mportēt plūsmas…"
 
 #: src/actions/actionmanagerimpl.cpp:195
-#, fuzzy, kde-format
-#| msgid "&Export Feeds..."
+#, kde-format
 msgid "&Export Feeds…"
-msgstr "&Eksportēt plūsmas..."
+msgstr "&Eksportēt plūsmas…"
 
 #: src/actions/actionmanagerimpl.cpp:200
-#, fuzzy, kde-format
-#| msgid "&Configure Akregator..."
+#, kde-format
 msgid "&Configure Akregator…"
-msgstr "Konfigurēt „&Akregator“..."
+msgstr "Konfigurēt „&Akregator“…"
 
 #: src/actions/actionmanagerimpl.cpp:219
 #, kde-format
@@ -1213,16 +1193,14 @@ msgid "Reload All Tabs"
 msgstr "Pārlādēt visas cilnes"
 
 #: src/actions/actionmanagerimpl.cpp:231
-#, fuzzy, kde-format
-#| msgid "Add Feed"
+#, kde-format
 msgid "&Add Feed…"
-msgstr "Plūsmas pievienošana"
+msgstr "&Pievienot plūsmu…"
 
 #: src/actions/actionmanagerimpl.cpp:237
-#, fuzzy, kde-format
-#| msgid "Ne&w Folder..."
+#, kde-format
 msgid "Ne&w Folder…"
-msgstr "&Jauna mape..."
+msgstr "&Jauna mape…"
 
 #: src/actions/actionmanagerimpl.cpp:262
 #, kde-format
@@ -1286,11 +1264,10 @@ msgid "&Read"
 msgstr "&Lasītu"
 
 #: src/actions/actionmanagerimpl.cpp:371
-#, fuzzy, kde-format
-#| msgid "Mark selected article as read"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as read"
-msgstr "Atzīmēt izvēlēto rakstu kā lasītu"
+msgstr "Atzīmēt atlasīto rakstu kā lasītu"
 
 #: src/actions/actionmanagerimpl.cpp:377
 #, kde-format
@@ -1299,11 +1276,10 @@ msgid "&New"
 msgstr "Jau&nu"
 
 #: src/actions/actionmanagerimpl.cpp:380
-#, fuzzy, kde-format
-#| msgid "Mark selected article as new"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as new"
-msgstr "Atzīmēt izvēlēto rakstu kā jaunu"
+msgstr "Atzīmēt atlasīto rakstu kā jaunu"
 
 #: src/actions/actionmanagerimpl.cpp:385
 #, kde-format
@@ -1312,11 +1288,10 @@ msgid "&Unread"
 msgstr "&Nelasītu"
 
 #: src/actions/actionmanagerimpl.cpp:387
-#, fuzzy, kde-format
-#| msgid "Mark selected article as unread"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as unread"
-msgstr "Atzīmēt izvēlēto rakstu kā nelasītu"
+msgstr "Atzīmēt atlasīto rakstu kā nelasītu"
 
 #: src/actions/actionmanagerimpl.cpp:393
 #, kde-format
@@ -1324,8 +1299,7 @@ msgid "&Mark as Important"
 msgstr "Atzī&mēt kā svarīgu"
 
 #: src/actions/actionmanagerimpl.cpp:397
-#, fuzzy, kde-format
-#| msgid "Remove &Important Mark"
+#, kde-format
 msgctxt "@action:button"
 msgid "Remove &Important Mark"
 msgstr "Noņemt svarīguma atzīm&i"
@@ -1351,20 +1325,17 @@ msgid "Move Node Right"
 msgstr "Pārvietot mezglu pa labi"
 
 #: src/actions/actionmanagerimpl.cpp:422
-#, fuzzy, kde-format
-#| msgid "Send Link Address"
+#, kde-format
 msgid "Send &Link Address…"
-msgstr "Nosūtīt saites adresi"
+msgstr "Nosūtīt &saites adresi…"
 
 #: src/actions/actionmanagerimpl.cpp:427
-#, fuzzy, kde-format
-#| msgid "Send &File..."
+#, kde-format
 msgid "Send &File…"
-msgstr "Sūtīt &datni"
+msgstr "Sūtīt &datni…"
 
 #: src/actions/actionmanagerimpl.cpp:433
-#, fuzzy, kde-format
-#| msgid "Set Focus to Quick Search"
+#, kde-format
 msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr "Iestatīt fokusu uz ātro meklēšanu"
@@ -1470,17 +1441,15 @@ msgid "Unmute"
 msgstr "Atjaunot skaņu"
 
 #: src/actions/actionmanagerimpl.cpp:598
-#, fuzzy, kde-format
-#| msgid "Speak Text"
+#, kde-format
 msgctxt "@action"
 msgid "Speak Text"
 msgstr "Izrunāt tekstu"
 
 #: src/actions/actionmanagerimpl.cpp:603
-#, fuzzy, kde-format
-#| msgid "&Find in Message..."
+#, kde-format
 msgid "&Find in Message…"
-msgstr "&Atrast ziņojumā..."
+msgstr "&Atrast ziņā"
 
 #: src/actions/actionmanagerimpl.cpp:614
 #, kde-format
@@ -1488,17 +1457,15 @@ msgid "Close Tab"
 msgstr "Aizvērt cilni"
 
 #: src/actions/actionmanagerimpl.cpp:627
-#, fuzzy, kde-format
-#| msgid "Activate Tab %1"
+#, kde-format
 msgctxt "@action"
 msgid "Activate Tab %1"
 msgstr "Aktivizēt cilni „%1“"
 
 #: src/actions/actionmanagerimpl.cpp:633
-#, fuzzy, kde-format
-#| msgid "&Save Link As..."
+#, kde-format
 msgid "&Save Link As…"
-msgstr "S&aglabāt saiti kā..."
+msgstr "S&aglabāt saiti kā…"
 
 #: src/actions/actionmanagerimpl.cpp:637
 #, kde-format
@@ -1506,18 +1473,16 @@ msgid "Copy &Link Address"
 msgstr "&Kopēt saites adresi"
 
 #: src/actions/actionmanagerimpl.cpp:640
-#, fuzzy, kde-format
-#| msgid "Copy Image Location"
+#, kde-format
 msgctxt "@action"
 msgid "Copy Image Location"
 msgstr "Kopēt attēla vietu"
 
 #: src/actions/actionmanagerimpl.cpp:647
-#, fuzzy, kde-format
-#| msgid "Save Image On Disk..."
+#, kde-format
 msgctxt "@action"
 msgid "Save Image On Disk…"
-msgstr "Saglabāt attēlu diskā..."
+msgstr "Saglabāt attēlu diskā…"
 
 #: src/actions/actions.cpp:19
 #, kde-format
@@ -1546,10 +1511,9 @@ msgid "Feed not found from %1."
 msgstr "%1 plūsma nav atrasta."
 
 #: src/addfeeddialog.cpp:121
-#, fuzzy, kde-format
-#| msgid "Feed found, downloading..."
+#, kde-format
 msgid "Feed found, downloading…"
-msgstr "Plūsma ir atrasta, lejupielādē..."
+msgstr "Plūsma ir atrasta, lejupielādē…"
 
 #: src/akregator_options.h:20 src/akregator_options.h:28
 #, fuzzy, kde-format
@@ -1883,10 +1847,9 @@ msgstr ""
 "dublējumkopiju.</qt>"
 
 #: src/command/loadfeedlistcommand.cpp:129
-#, fuzzy, kde-format
-#| msgid "Opening Feed List..."
+#, kde-format
 msgid "Opening Feed List…"
-msgstr "Atver plūsmu sarakstu..."
+msgstr "Atver plūsmu sarakstu…"
 
 #: src/command/loadfeedlistcommand.cpp:143
 #, kde-format
@@ -1924,10 +1887,7 @@ msgstr ""
 "dublējumkopiju.</qt>"
 
 #: src/crashwidget/crashwidget.cpp:21
-#, fuzzy, kde-format
-#| msgid ""
-#| "Akregator did not close correctly. Would you like to restore the previous "
-#| "session?"
+#, kde-format
 msgctxt "@label:textbox"
 msgid ""
 "Akregator did not close correctly. Would you like to restore the previous "
@@ -2128,10 +2088,9 @@ msgid "Untitled"
 msgstr "Nenosaukts"
 
 #: src/frame/frame.cpp:140
-#, fuzzy, kde-format
-#| msgid "Loading..."
+#, kde-format
 msgid "Loading…"
-msgstr "Ielāde..."
+msgstr "Ielāde…"
 
 #: src/frame/frame.cpp:156
 #, kde-format
@@ -2200,10 +2159,9 @@ msgid "Networking is not available."
 msgstr "Tīkli nav pieejami."
 
 #: src/mainwidget.cpp:866
-#, fuzzy, kde-format
-#| msgid "Fetching Feeds..."
+#, kde-format
 msgid "Fetching Feeds…"
-msgstr "Ielādē plūsmas..."
+msgstr "Ielādē plūsmas…"
 
 #: src/mainwidget.cpp:1065
 #, kde-format
@@ -2364,8 +2322,7 @@ msgid "Total"
 msgstr "Kopā"
 
 #: src/tabwidget.cpp:91
-#, fuzzy, kde-format
-#| msgid "Close the current tab"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Close the current tab"
 msgstr "Aizvērt pašreizējo cilni"
@@ -2578,16 +2535,14 @@ msgid "Open In External Browser"
 msgstr "Atvērt ārējā pārlūkā"
 
 #: src/widgets/searchbar.cpp:40
-#, fuzzy, kde-format
-#| msgid "Search articles..."
+#, kde-format
 msgid "Search articles…"
-msgstr "Meklēt rakstus..."
+msgstr "Meklēt rakstus…"
 
 #: src/widgets/searchbar.cpp:112
-#, fuzzy, kde-format
-#| msgid "Search articles...<%1>"
+#, kde-format
 msgid "Search articles…<%1>"
-msgstr "Meklēt rakstus...<%1>"
+msgstr "Meklēt rakstus…<%1>"
 
 #: src/widgets/statussearchline.cpp:43
 #, kde-format
