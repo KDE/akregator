@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdepim\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-06 00:39+0000\n"
+"POT-Creation-Date: 2024-06-16 00:39+0000\n"
 "PO-Revision-Date: 2009-09-04 19:26+0000\n"
 "Last-Translator: Vilson Gjeci <vilsongjeci@gmail.com>\n"
 "Language-Team: Albanian <sq@li.org>\n"
@@ -53,62 +53,62 @@ msgstr ""
 msgid "Thank you, The Akregator Team"
 msgstr ""
 
-#: src/formatter/html/5.2/combinedview.html:74
+#: src/formatter/html/combinedview.html:24
 #, fuzzy
 #| msgid "&Mark Feed as Read"
 msgid "Mark as Read"
 msgstr "&Shënoje Burimin si të Lexuar"
 
-#: src/formatter/html/5.2/combinedview.html:77
+#: src/formatter/html/combinedview.html:27
 #, fuzzy
 #| msgid "Mark selected article as unread"
 msgid "Mark as Unread"
 msgstr "Shënoje artikullin e përzgjedhur si të pa lexuar"
 
-#: src/formatter/html/5.2/combinedview.html:81
+#: src/formatter/html/combinedview.html:31
 #, fuzzy
 #| msgid "Remove &Important Mark"
 msgid "Remove Important Status"
 msgstr "Hiqe &Shënimin si të Rëndësishëm"
 
-#: src/formatter/html/5.2/combinedview.html:83
+#: src/formatter/html/combinedview.html:33
 #, fuzzy
 #| msgid "&Mark as Important"
 msgid "Mark as Important"
 msgstr "&Shënoje si të Rëndësishëm"
 
-#: src/formatter/html/5.2/combinedview.html:85
+#: src/formatter/html/combinedview.html:35
 #, fuzzy
 #| msgid "Open Link in External &Browser"
 msgid "Open Link in External Browser"
 msgstr "Hape Lidhjen në Shfletuesin e &Jashtëm"
 
-#: src/formatter/html/5.2/combinedview.html:86
+#: src/formatter/html/combinedview.html:36
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:110
 #, fuzzy, kde-format
 #| msgid "Open in Background Tab"
 msgid "Open In Background Tab"
 msgstr "Hape në Tabelën e Sfondit"
 
-#: src/formatter/html/5.2/combinedview.html:87
+#: src/formatter/html/combinedview.html:37
 #, fuzzy
 #| msgid "Send &Link Address..."
 msgid "Send File Address"
 msgstr "Dërgo &Adresën e Shkurtores..."
 
-#: src/formatter/html/5.2/combinedview.html:88
+#: src/formatter/html/combinedview.html:38
 #, fuzzy
 #| msgid "Send &Link Address..."
 msgid "Send Link Address"
 msgstr "Dërgo &Adresën e Shkurtores..."
 
-#: src/formatter/html/5.2/combinedview.html:89
+#: src/formatter/html/combinedview.html:39
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:96
 #, kde-format
 msgid "Delete Article"
 msgstr "Fshije Artikullin"
 
-#: src/formatter/html/5.2/normalview.html:126
+#: src/formatter/html/normalview.html:19
 msgid ""
 "<b>Note:</b> For security reasons, external reference is blocked (See "
 "configure dialog)."
@@ -356,7 +356,7 @@ msgstr "Tabelat"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_AlwaysShowTabBar)
 #. i18n: ectx: label, entry, group (Browser)
-#: configuration/ui/settings_browser.ui:116 interfaces/akregator.kcfg:202
+#: configuration/ui/settings_browser.ui:116 interfaces/akregator.kcfg:199
 #, kde-format
 msgid "Always show the tab bar"
 msgstr "Shfaq gjithmonë panelin e skedave"
@@ -369,7 +369,7 @@ msgstr "Shfaq butonin e mbylljes në çdo tabelë"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_NewWindowInTab)
 #. i18n: ectx: label, entry, group (Browser)
-#: configuration/ui/settings_browser.ui:130 interfaces/akregator.kcfg:212
+#: configuration/ui/settings_browser.ui:130 interfaces/akregator.kcfg:209
 #, kde-format
 msgid "Open links in new tab instead of in new window"
 msgstr ""
@@ -388,7 +388,7 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_EnableJavascript)
 #. i18n: ectx: label, entry, group (Browser)
-#: configuration/ui/settings_browser.ui:153 interfaces/akregator.kcfg:198
+#: configuration/ui/settings_browser.ui:153 interfaces/akregator.kcfg:195
 #, kde-format
 msgid "Enable Javascript"
 msgstr ""
@@ -629,91 +629,91 @@ msgid "Second (usually horizontal) splitter widget sizes."
 msgstr "Përmasat e dyta (zakonisht horizontale) të widget-ëve ndarës."
 
 #. i18n: ectx: label, entry, group (Archive)
-#: interfaces/akregator.kcfg:100
+#: interfaces/akregator.kcfg:97
 #, kde-format
 msgid "Archive Mode"
 msgstr "Mënyra e Arkivimit"
 
 #. i18n: ectx: label, entry, group (Archive)
-#: interfaces/akregator.kcfg:104
+#: interfaces/akregator.kcfg:101
 #, kde-format
 msgid "Keep All Articles"
 msgstr "Mbaji Të gjithë Artikujt"
 
 #. i18n: ectx: whatsthis, entry, group (Archive)
-#: interfaces/akregator.kcfg:105
+#: interfaces/akregator.kcfg:102
 #, kde-format
 msgid "Save an unlimited number of articles."
 msgstr "Ruaj një numër të pakufizuar artikujsh."
 
 #. i18n: ectx: label, entry, group (Archive)
-#: interfaces/akregator.kcfg:108
+#: interfaces/akregator.kcfg:105
 #, kde-format
 msgid "Limit Number of Articles"
 msgstr "Kufizo Numrin e Artikujve"
 
 #. i18n: ectx: whatsthis, entry, group (Archive)
-#: interfaces/akregator.kcfg:109
+#: interfaces/akregator.kcfg:106
 #, kde-format
 msgid "Limit the number of articles in a feed"
 msgstr "Kufizo numrin e artikujve në një lajm"
 
 #. i18n: ectx: label, entry, group (Archive)
-#: interfaces/akregator.kcfg:112
+#: interfaces/akregator.kcfg:109
 #, kde-format
 msgid "Delete Expired Articles"
 msgstr "Fshiji Artikujt e Skaduar"
 
 #. i18n: ectx: whatsthis, entry, group (Archive)
-#: interfaces/akregator.kcfg:113
+#: interfaces/akregator.kcfg:110
 #, kde-format
 msgid "Delete expired articles"
 msgstr "Fshiji artikujt e skaduar"
 
 #. i18n: ectx: label, entry, group (Archive)
-#: interfaces/akregator.kcfg:116
+#: interfaces/akregator.kcfg:113
 #, kde-format
 msgid "Disable Archiving"
 msgstr "Çaktivizo Arkivimin"
 
 #. i18n: ectx: whatsthis, entry, group (Archive)
-#: interfaces/akregator.kcfg:117
+#: interfaces/akregator.kcfg:114
 #, kde-format
 msgid "Do not save any articles"
 msgstr "Mos ruaj asnjë artikull"
 
 #. i18n: ectx: label, entry, group (Archive)
-#: interfaces/akregator.kcfg:122
+#: interfaces/akregator.kcfg:119
 #, kde-format
 msgid "Expiry Age"
 msgstr "Koha e Skadencës"
 
 #. i18n: ectx: whatsthis, entry, group (Archive)
-#: interfaces/akregator.kcfg:123
+#: interfaces/akregator.kcfg:120
 #, kde-format
 msgid "Default expiry age for articles in days."
 msgstr "Koha e parazgjedhur e skadencës për artikujt në ditë."
 
 #. i18n: ectx: label, entry, group (Archive)
-#: interfaces/akregator.kcfg:127
+#: interfaces/akregator.kcfg:124
 #, kde-format
 msgid "Article Limit"
 msgstr "Kufiri i Artikujve"
 
 #. i18n: ectx: whatsthis, entry, group (Archive)
-#: interfaces/akregator.kcfg:128
+#: interfaces/akregator.kcfg:125
 #, kde-format
 msgid "Number of articles to keep per feed."
 msgstr "Numri i artikujve që do të mbahen për burim."
 
 #. i18n: ectx: label, entry, group (Archive)
-#: interfaces/akregator.kcfg:132
+#: interfaces/akregator.kcfg:129
 #, kde-format
 msgid "Do Not Expire Important Articles"
 msgstr "Mos i Skado Artikujt e Rëndësishëm"
 
 #. i18n: ectx: whatsthis, entry, group (Archive)
-#: interfaces/akregator.kcfg:133
+#: interfaces/akregator.kcfg:130
 #, kde-format
 msgid ""
 "When this option is enabled, articles you marked as important will not be "
@@ -724,25 +724,25 @@ msgstr ""
 "numrin e artikujve."
 
 #. i18n: ectx: label, entry, group (Network)
-#: interfaces/akregator.kcfg:139
+#: interfaces/akregator.kcfg:136
 #, kde-format
 msgid "Concurrent Fetches"
 msgstr "Kërkesat e Tanishme"
 
 #. i18n: ectx: whatsthis, entry, group (Network)
-#: interfaces/akregator.kcfg:140
+#: interfaces/akregator.kcfg:137
 #, kde-format
 msgid "Number of concurrent fetches"
 msgstr "Numri i kërkesave paralele"
 
 #. i18n: ectx: label, entry, group (Network)
-#: interfaces/akregator.kcfg:144
+#: interfaces/akregator.kcfg:141
 #, kde-format
 msgid "Use HTML Cache"
 msgstr "Përdor Bazën HTML"
 
 #. i18n: ectx: whatsthis, entry, group (Network)
-#: interfaces/akregator.kcfg:145
+#: interfaces/akregator.kcfg:142
 #, kde-format
 msgid ""
 "Use the KDE-wide HTML cache settings when downloading feeds, to avoid "
@@ -752,7 +752,7 @@ msgstr ""
 "trafikun e panevojshëm. Çaktivizojeni vetëm kur është e nevojshme."
 
 #. i18n: ectx: whatsthis, entry, group (Network)
-#: interfaces/akregator.kcfg:149
+#: interfaces/akregator.kcfg:146
 #, kde-format
 msgid ""
 "This option allows user to specify custom user-agent string instead of using "
@@ -761,85 +761,85 @@ msgid ""
 msgstr ""
 
 #. i18n: ectx: label, entry, group (General)
-#: interfaces/akregator.kcfg:155
+#: interfaces/akregator.kcfg:152
 #, kde-format
 msgid "Fetch on startup"
 msgstr "Merrni në nisje"
 
 #. i18n: ectx: whatsthis, entry, group (General)
-#: interfaces/akregator.kcfg:156
+#: interfaces/akregator.kcfg:153
 #, kde-format
 msgid "Fetch feedlist on startup."
 msgstr "Merrni listën në nisje."
 
 #. i18n: ectx: label, entry, group (General)
-#: interfaces/akregator.kcfg:160
+#: interfaces/akregator.kcfg:157
 #, kde-format
 msgid "Mark all feeds as read on startup"
 msgstr "Shënojini të gjitha lajmet si të lexuara në nisje"
 
 #. i18n: ectx: whatsthis, entry, group (General)
-#: interfaces/akregator.kcfg:161
+#: interfaces/akregator.kcfg:158
 #, kde-format
 msgid "Mark all feeds as read on startup."
 msgstr "Shënojini të gjitha lajmet si të lexuara në nisje"
 
 #. i18n: ectx: label, entry, group (General)
-#: interfaces/akregator.kcfg:165
+#: interfaces/akregator.kcfg:162
 #, kde-format
 msgid "Use interval fetching"
 msgstr "Përdor kërkimin me intervale"
 
 #. i18n: ectx: whatsthis, entry, group (General)
-#: interfaces/akregator.kcfg:166
+#: interfaces/akregator.kcfg:163
 #, no-c-format, kde-format
 msgid "Fetch all feeds every %1 minutes."
 msgstr "Gjurmo të gjitha burimet çdo %1 minuta."
 
 #. i18n: ectx: label, entry, group (General)
-#: interfaces/akregator.kcfg:170
+#: interfaces/akregator.kcfg:167
 #, kde-format
 msgid "Interval for autofetching"
 msgstr "Intervali për vetëgjurmim"
 
 #. i18n: ectx: whatsthis, entry, group (General)
-#: interfaces/akregator.kcfg:171
+#: interfaces/akregator.kcfg:168
 #, kde-format
 msgid "Interval for autofetching in minutes."
 msgstr "Intervali për vetëgjurmim në minuta."
 
 #. i18n: ectx: label, entry, group (General)
-#: interfaces/akregator.kcfg:175
+#: interfaces/akregator.kcfg:172
 #, kde-format
 msgid "Use notifications"
 msgstr "Përdor njoftimet"
 
 #. i18n: ectx: whatsthis, entry, group (General)
-#: interfaces/akregator.kcfg:176
+#: interfaces/akregator.kcfg:173
 #, kde-format
 msgid "Specifies if the balloon notifications are used or not."
 msgstr "Specifikon nëse njoftimet në formë flluske duhet të përdoren apo jo."
 
 #. i18n: ectx: label, entry, group (General)
-#: interfaces/akregator.kcfg:180
+#: interfaces/akregator.kcfg:177
 #, kde-format
 msgid "Show tray icon"
 msgstr "Shfaq ikonën në shirit"
 
 #. i18n: ectx: whatsthis, entry, group (General)
-#: interfaces/akregator.kcfg:181
+#: interfaces/akregator.kcfg:178
 #, kde-format
 msgid "Specifies if the tray icon is shown or not."
 msgstr "Specifikon nëse ikona në shirit do të shfaqet apo jo."
 
 #. i18n: ectx: label, entry, group (General)
-#: interfaces/akregator.kcfg:185
+#: interfaces/akregator.kcfg:182
 #, kde-format
 msgid "Show Unread In Taskbar"
 msgstr ""
 
 #. i18n: ectx: whatsthis, entry, group (General)
-#: interfaces/akregator.kcfg:186
+#: interfaces/akregator.kcfg:183
 #, fuzzy, kde-format
 #| msgid "Akregator - 1 unread article"
 #| msgid_plural "Akregator - %1 unread articles"
@@ -847,26 +847,26 @@ msgid "Specifies if we show unread article in taskbar."
 msgstr "Akregator - 1 artikull i palexuar"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:203
+#: interfaces/akregator.kcfg:200
 #, kde-format
 msgid "Always show the tab bar, even when only one tab is open"
 msgstr ""
 "Gjithmonë shfaq shiritin e tabelës, edhe kur është hapur vetëm një tabelë"
 
 #. i18n: ectx: label, entry, group (Browser)
-#: interfaces/akregator.kcfg:207
+#: interfaces/akregator.kcfg:204
 #, kde-format
 msgid "Show close buttons on tabs"
 msgstr "Shfaq butonat e mbylljes në tabela"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:208
+#: interfaces/akregator.kcfg:205
 #, kde-format
 msgid "Show close buttons on tabs instead of icons"
 msgstr "Shfaq butonat e mbylljes në tabela në vend të ikonave"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:213
+#: interfaces/akregator.kcfg:210
 #, kde-format
 msgid ""
 "Open a link which would normally open in a new window (external browser) in "
@@ -874,69 +874,75 @@ msgid ""
 msgstr ""
 
 #. i18n: ectx: label, entry, group (Browser)
-#: interfaces/akregator.kcfg:217
+#: interfaces/akregator.kcfg:214
 #, kde-format
 msgid "Use default KDE web browser"
 msgstr "Përdor shfletuesin e parazgjedhur të internetit nga KDE"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:218
+#: interfaces/akregator.kcfg:215
 #, kde-format
 msgid "Use KDE web browser when opening in external browser."
 msgstr ""
 "Përdor shfletuesin e internetit të KDE kur e hap në një shfletues të jashtëm."
 
 #. i18n: ectx: label, entry, group (Browser)
-#: interfaces/akregator.kcfg:222
+#: interfaces/akregator.kcfg:219
 #, kde-format
 msgid "Use this command:"
 msgstr "Përdor këtë komandë:"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:223
+#: interfaces/akregator.kcfg:220
 #, kde-format
 msgid "Use the specified command when opening in external browser."
 msgstr ""
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:227
+#: interfaces/akregator.kcfg:224
 #, no-c-format, kde-format
 msgid "Command to launch external browser. URL will substitute for %u."
 msgstr ""
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:231
+#: interfaces/akregator.kcfg:228
 #, kde-format
 msgid "What the click with left mouse button should do."
 msgstr ""
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:240
+#: interfaces/akregator.kcfg:237
 #, kde-format
 msgid "What the click with middle mouse button should do."
 msgstr ""
 
+#. i18n: ectx: label, entry, group (Browser)
+#: interfaces/akregator.kcfg:246
+#, kde-format
+msgid "Enabled Plasma Activity"
+msgstr ""
+
 #. i18n: ectx: label, entry, group (Advanced)
-#: interfaces/akregator.kcfg:265
+#: interfaces/akregator.kcfg:266
 #, kde-format
 msgid "Archive Backend"
 msgstr "Mbështetje për fundin e Arkivit"
 
 #. i18n: ectx: whatsthis, entry (UseMarkReadDelay), group (Advanced)
-#: interfaces/akregator.kcfg:269
+#: interfaces/akregator.kcfg:270
 #, kde-format
 msgid "Whether to delay before marking an article as read upon selecting it."
 msgstr ""
 
 #. i18n: ectx: whatsthis, entry (MarkReadDelay), group (Advanced)
-#: interfaces/akregator.kcfg:273
+#: interfaces/akregator.kcfg:274
 #, kde-format
 msgid ""
 "Configurable delay between selecting an article and it being marked as read."
 msgstr ""
 
 #. i18n: ectx: whatsthis, entry, group (Advanced)
-#: interfaces/akregator.kcfg:277
+#: interfaces/akregator.kcfg:278
 #, kde-format
 msgid "Resets the quick filter when changing feeds."
 msgstr ""
@@ -2095,60 +2101,60 @@ msgstr "Parametrat e %1"
 msgid "(%1, %2)"
 msgstr "(%1, %2)"
 
-#: src/formatter/grantleeviewformatter.cpp:153
-#: src/formatter/grantleeviewformatter.cpp:204
+#: src/formatter/grantleeviewformatter.cpp:162
+#: src/formatter/grantleeviewformatter.cpp:217
 #, kde-format
 msgid " (no unread articles)"
 msgstr ""
 
-#: src/formatter/grantleeviewformatter.cpp:155
-#: src/formatter/grantleeviewformatter.cpp:206
+#: src/formatter/grantleeviewformatter.cpp:164
+#: src/formatter/grantleeviewformatter.cpp:219
 #, kde-format
 msgid " (1 unread article)"
 msgid_plural " (%1 unread articles)"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/formatter/grantleeviewformatter.cpp:170
+#: src/formatter/grantleeviewformatter.cpp:179
 #, fuzzy, kde-format
 #| msgid "<b>Description:</b> %1<br /><br />"
 msgid "<b>Description:</b> %1<br />"
 msgstr "<b>Përshkrimi:</b> %1<br /><br />"
 
-#: src/formatter/grantleeviewformatter.cpp:177
+#: src/formatter/grantleeviewformatter.cpp:186
 #, fuzzy, kde-format
 #| msgid "<b>Homepage:</b> <a href=\"%1\">%2</a>"
 msgid "<b>Homepage:</b> <a href=\"%1\">%1</a>"
 msgstr "<b>Faqja bazë:</b> <a href=\"%1\">%2</a>"
 
-#: src/formatter/grantleeviewformatter.cpp:184
+#: src/formatter/grantleeviewformatter.cpp:193
 #, fuzzy, kde-format
 #| msgid "<b>Description:</b> %1<br /><br />"
 msgid "<b>Copyright:</b> %1</a>"
 msgstr "<b>Përshkrimi:</b> %1<br /><br />"
 
-#: src/formatter/grantleeviewformatter.cpp:236
+#: src/formatter/grantleeviewformatter.cpp:253
 #, kde-format
 msgid "Date"
 msgstr "Data"
 
-#: src/formatter/grantleeviewformatter.cpp:237
+#: src/formatter/grantleeviewformatter.cpp:254
 #, fuzzy, kde-format
 #| msgid "Comments"
 msgid "Comment"
 msgstr "Komentet"
 
-#: src/formatter/grantleeviewformatter.cpp:238
+#: src/formatter/grantleeviewformatter.cpp:255
 #, kde-format
 msgid "Complete Story"
 msgstr "Historia e Plotë"
 
-#: src/formatter/grantleeviewformatter.cpp:239
+#: src/formatter/grantleeviewformatter.cpp:256
 #, kde-format
 msgid "Author"
 msgstr "Autori"
 
-#: src/formatter/grantleeviewformatter.cpp:240
+#: src/formatter/grantleeviewformatter.cpp:257
 #, kde-format
 msgid "Enclosure"
 msgstr "Mbyllja"

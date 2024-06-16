@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-06 00:39+0000\n"
+"POT-Creation-Date: 2024-06-16 00:39+0000\n"
 "PO-Revision-Date: 2009-02-27 17:34+0530\n"
 "Last-Translator: Ravishankar Shrivastava <raviratlami@aol.in>\n"
 "Language-Team: Hindi <kde-i18n-doc@lists.kde.org>\n"
@@ -53,62 +53,62 @@ msgstr ""
 msgid "Thank you, The Akregator Team"
 msgstr ""
 
-#: src/formatter/html/5.2/combinedview.html:74
+#: src/formatter/html/combinedview.html:24
 #, fuzzy
 #| msgid "&Mark Feed as Read"
 msgid "Mark as Read"
 msgstr "फीड ल पढ़िस चिनहा लगाव (&M)"
 
-#: src/formatter/html/5.2/combinedview.html:77
+#: src/formatter/html/combinedview.html:27
 #, fuzzy
 #| msgid "Mark selected article as unread"
 msgid "Mark as Unread"
 msgstr "चुने गे आलेख मन ल बिन पढ़िस चिनहा लगाव"
 
-#: src/formatter/html/5.2/combinedview.html:81
+#: src/formatter/html/combinedview.html:31
 #, fuzzy
 #| msgid "Remove &Important Mark"
 msgid "Remove Important Status"
 msgstr "महत्वपूर्न चिनहा मेटाव (&I)"
 
-#: src/formatter/html/5.2/combinedview.html:83
+#: src/formatter/html/combinedview.html:33
 #, fuzzy
 #| msgid "&Mark as Important"
 msgid "Mark as Important"
 msgstr "जरूरी के रूप मं चिनहा लगाव (&M)"
 
-#: src/formatter/html/5.2/combinedview.html:85
+#: src/formatter/html/combinedview.html:35
 #, fuzzy
 #| msgid "Open Link in External &Browser"
 msgid "Open Link in External Browser"
 msgstr "संकली बाहिरी ब्राउजर मं खोलव (&B)"
 
-#: src/formatter/html/5.2/combinedview.html:86
+#: src/formatter/html/combinedview.html:36
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:110
 #, fuzzy, kde-format
 #| msgid "Open in Background Tab"
 msgid "Open In Background Tab"
 msgstr "पेज-भूमि टैब मं खोलव"
 
-#: src/formatter/html/5.2/combinedview.html:87
+#: src/formatter/html/combinedview.html:37
 #, fuzzy
 #| msgid "Send &Link Address..."
 msgid "Send File Address"
 msgstr "संकली पता भेजव... (&L)"
 
-#: src/formatter/html/5.2/combinedview.html:88
+#: src/formatter/html/combinedview.html:38
 #, fuzzy
 #| msgid "Send &Link Address..."
 msgid "Send Link Address"
 msgstr "संकली पता भेजव... (&L)"
 
-#: src/formatter/html/5.2/combinedview.html:89
+#: src/formatter/html/combinedview.html:39
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:96
 #, kde-format
 msgid "Delete Article"
 msgstr "आलेख मेटाव"
 
-#: src/formatter/html/5.2/normalview.html:126
+#: src/formatter/html/normalview.html:19
 msgid ""
 "<b>Note:</b> For security reasons, external reference is blocked (See "
 "configure dialog)."
@@ -359,7 +359,7 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_AlwaysShowTabBar)
 #. i18n: ectx: label, entry, group (Browser)
-#: configuration/ui/settings_browser.ui:116 interfaces/akregator.kcfg:202
+#: configuration/ui/settings_browser.ui:116 interfaces/akregator.kcfg:199
 #, kde-format
 msgid "Always show the tab bar"
 msgstr ""
@@ -372,7 +372,7 @@ msgstr "टैब्स मं बन्द बटन देखाव"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_NewWindowInTab)
 #. i18n: ectx: label, entry, group (Browser)
-#: configuration/ui/settings_browser.ui:130 interfaces/akregator.kcfg:212
+#: configuration/ui/settings_browser.ui:130 interfaces/akregator.kcfg:209
 #, kde-format
 msgid "Open links in new tab instead of in new window"
 msgstr ""
@@ -391,7 +391,7 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_EnableJavascript)
 #. i18n: ectx: label, entry, group (Browser)
-#: configuration/ui/settings_browser.ui:153 interfaces/akregator.kcfg:198
+#: configuration/ui/settings_browser.ui:153 interfaces/akregator.kcfg:195
 #, kde-format
 msgid "Enable Javascript"
 msgstr ""
@@ -627,91 +627,91 @@ msgid "Second (usually horizontal) splitter widget sizes."
 msgstr "दुसरा (प्राय: आड़ा) विभाजक विजेट आकार."
 
 #. i18n: ectx: label, entry, group (Archive)
-#: interfaces/akregator.kcfg:100
+#: interfaces/akregator.kcfg:97
 #, kde-format
 msgid "Archive Mode"
 msgstr "अभिलेख मोड"
 
 #. i18n: ectx: label, entry, group (Archive)
-#: interfaces/akregator.kcfg:104
+#: interfaces/akregator.kcfg:101
 #, kde-format
 msgid "Keep All Articles"
 msgstr "सब्बो आलेख मन ल रखे रहें"
 
 #. i18n: ectx: whatsthis, entry, group (Archive)
-#: interfaces/akregator.kcfg:105
+#: interfaces/akregator.kcfg:102
 #, kde-format
 msgid "Save an unlimited number of articles."
 msgstr "आलेख मन के असीमित संख्या सहेजव."
 
 #. i18n: ectx: label, entry, group (Archive)
-#: interfaces/akregator.kcfg:108
+#: interfaces/akregator.kcfg:105
 #, kde-format
 msgid "Limit Number of Articles"
 msgstr "आलेख मन के संख्या सीमित करव"
 
 #. i18n: ectx: whatsthis, entry, group (Archive)
-#: interfaces/akregator.kcfg:109
+#: interfaces/akregator.kcfg:106
 #, kde-format
 msgid "Limit the number of articles in a feed"
 msgstr "फीड मं आलेख मन के संख्या सीमित करव"
 
 #. i18n: ectx: label, entry, group (Archive)
-#: interfaces/akregator.kcfg:112
+#: interfaces/akregator.kcfg:109
 #, kde-format
 msgid "Delete Expired Articles"
 msgstr "कालातीत आलेख मन ल मेटाव"
 
 #. i18n: ectx: whatsthis, entry, group (Archive)
-#: interfaces/akregator.kcfg:113
+#: interfaces/akregator.kcfg:110
 #, kde-format
 msgid "Delete expired articles"
 msgstr "कालातीत आलेख मन ल मेटाव"
 
 #. i18n: ectx: label, entry, group (Archive)
-#: interfaces/akregator.kcfg:116
+#: interfaces/akregator.kcfg:113
 #, kde-format
 msgid "Disable Archiving"
 msgstr "अभिलेखन अक्छम"
 
 #. i18n: ectx: whatsthis, entry, group (Archive)
-#: interfaces/akregator.kcfg:117
+#: interfaces/akregator.kcfg:114
 #, kde-format
 msgid "Do not save any articles"
 msgstr "कोनो आलेख मन ल सहेजव नइ"
 
 #. i18n: ectx: label, entry, group (Archive)
-#: interfaces/akregator.kcfg:122
+#: interfaces/akregator.kcfg:119
 #, kde-format
 msgid "Expiry Age"
 msgstr "कालातीत होए के उम्र"
 
 #. i18n: ectx: whatsthis, entry, group (Archive)
-#: interfaces/akregator.kcfg:123
+#: interfaces/akregator.kcfg:120
 #, kde-format
 msgid "Default expiry age for articles in days."
 msgstr "आलेख मन के कालातीत होए के डिफाल्ट उम्र दिनों में."
 
 #. i18n: ectx: label, entry, group (Archive)
-#: interfaces/akregator.kcfg:127
+#: interfaces/akregator.kcfg:124
 #, kde-format
 msgid "Article Limit"
 msgstr "आलेख सीमा"
 
 #. i18n: ectx: whatsthis, entry, group (Archive)
-#: interfaces/akregator.kcfg:128
+#: interfaces/akregator.kcfg:125
 #, kde-format
 msgid "Number of articles to keep per feed."
 msgstr "प्रति फीड रखे जाय वाले आलेख मन के संख्या."
 
 #. i18n: ectx: label, entry, group (Archive)
-#: interfaces/akregator.kcfg:132
+#: interfaces/akregator.kcfg:129
 #, kde-format
 msgid "Do Not Expire Important Articles"
 msgstr "जरूरी आलेख मन के अवधि नइ बीते देव"
 
 #. i18n: ectx: whatsthis, entry, group (Archive)
-#: interfaces/akregator.kcfg:133
+#: interfaces/akregator.kcfg:130
 #, kde-format
 msgid ""
 "When this option is enabled, articles you marked as important will not be "
@@ -719,25 +719,25 @@ msgid ""
 msgstr ""
 
 #. i18n: ectx: label, entry, group (Network)
-#: interfaces/akregator.kcfg:139
+#: interfaces/akregator.kcfg:136
 #, kde-format
 msgid "Concurrent Fetches"
 msgstr "कान्करंट फेचेस"
 
 #. i18n: ectx: whatsthis, entry, group (Network)
-#: interfaces/akregator.kcfg:140
+#: interfaces/akregator.kcfg:137
 #, kde-format
 msgid "Number of concurrent fetches"
 msgstr "समवर्ती प्राप्ति के संख्या"
 
 #. i18n: ectx: label, entry, group (Network)
-#: interfaces/akregator.kcfg:144
+#: interfaces/akregator.kcfg:141
 #, kde-format
 msgid "Use HTML Cache"
 msgstr "एचटीएमएल कैस उपयोग करव"
 
 #. i18n: ectx: whatsthis, entry, group (Network)
-#: interfaces/akregator.kcfg:145
+#: interfaces/akregator.kcfg:142
 #, kde-format
 msgid ""
 "Use the KDE-wide HTML cache settings when downloading feeds, to avoid "
@@ -745,7 +745,7 @@ msgid ""
 msgstr ""
 
 #. i18n: ectx: whatsthis, entry, group (Network)
-#: interfaces/akregator.kcfg:149
+#: interfaces/akregator.kcfg:146
 #, kde-format
 msgid ""
 "This option allows user to specify custom user-agent string instead of using "
@@ -754,110 +754,110 @@ msgid ""
 msgstr ""
 
 #. i18n: ectx: label, entry, group (General)
-#: interfaces/akregator.kcfg:155
+#: interfaces/akregator.kcfg:152
 #, kde-format
 msgid "Fetch on startup"
 msgstr "सुरू मं प्राप्त करव"
 
 #. i18n: ectx: whatsthis, entry, group (General)
-#: interfaces/akregator.kcfg:156
+#: interfaces/akregator.kcfg:153
 #, kde-format
 msgid "Fetch feedlist on startup."
 msgstr "सुरू मं फीडसूची प्राप्त करव."
 
 #. i18n: ectx: label, entry, group (General)
-#: interfaces/akregator.kcfg:160
+#: interfaces/akregator.kcfg:157
 #, kde-format
 msgid "Mark all feeds as read on startup"
 msgstr "सुरू मं सब्बो फीड्स ल पढ़िस होय चिनहा लगाव."
 
 #. i18n: ectx: whatsthis, entry, group (General)
-#: interfaces/akregator.kcfg:161
+#: interfaces/akregator.kcfg:158
 #, kde-format
 msgid "Mark all feeds as read on startup."
 msgstr "सुरू मं सब्बो फीड्स ल पढ़िस होय चिनहा लगाव."
 
 #. i18n: ectx: label, entry, group (General)
-#: interfaces/akregator.kcfg:165
+#: interfaces/akregator.kcfg:162
 #, kde-format
 msgid "Use interval fetching"
 msgstr "अंतराल से प्राप्त करना उपयोग करव"
 
 #. i18n: ectx: whatsthis, entry, group (General)
-#: interfaces/akregator.kcfg:166
+#: interfaces/akregator.kcfg:163
 #, no-c-format, kde-format
 msgid "Fetch all feeds every %1 minutes."
 msgstr "सब्बो फीड्स ल हर एक %1 मिनट मं लाव."
 
 #. i18n: ectx: label, entry, group (General)
-#: interfaces/akregator.kcfg:170
+#: interfaces/akregator.kcfg:167
 #, kde-format
 msgid "Interval for autofetching"
 msgstr "अपने अपन प्राप्त करे के अंतराल"
 
 #. i18n: ectx: whatsthis, entry, group (General)
-#: interfaces/akregator.kcfg:171
+#: interfaces/akregator.kcfg:168
 #, kde-format
 msgid "Interval for autofetching in minutes."
 msgstr "अपने अपन प्राप्त करे के अंतराल मिनटों में."
 
 #. i18n: ectx: label, entry, group (General)
-#: interfaces/akregator.kcfg:175
+#: interfaces/akregator.kcfg:172
 #, kde-format
 msgid "Use notifications"
 msgstr "सूचना मन ल उपयोग करव"
 
 #. i18n: ectx: whatsthis, entry, group (General)
-#: interfaces/akregator.kcfg:176
+#: interfaces/akregator.kcfg:173
 #, kde-format
 msgid "Specifies if the balloon notifications are used or not."
 msgstr "निरधारित करथे  कि बैलून सूचना मन ल उपयोग के जाय या नइ."
 
 #. i18n: ectx: label, entry, group (General)
-#: interfaces/akregator.kcfg:180
+#: interfaces/akregator.kcfg:177
 #, kde-format
 msgid "Show tray icon"
 msgstr "तस्तरी चिनहा देखाव"
 
 #. i18n: ectx: whatsthis, entry, group (General)
-#: interfaces/akregator.kcfg:181
+#: interfaces/akregator.kcfg:178
 #, kde-format
 msgid "Specifies if the tray icon is shown or not."
 msgstr "निरधारित करथे  कि तस्तरी चिनहा देखाय  जाय या नइ."
 
 #. i18n: ectx: label, entry, group (General)
-#: interfaces/akregator.kcfg:185
+#: interfaces/akregator.kcfg:182
 #, kde-format
 msgid "Show Unread In Taskbar"
 msgstr ""
 
 #. i18n: ectx: whatsthis, entry, group (General)
-#: interfaces/akregator.kcfg:186
+#: interfaces/akregator.kcfg:183
 #, fuzzy, kde-format
 #| msgid " (no unread articles)"
 msgid "Specifies if we show unread article in taskbar."
 msgstr "(बिनपढ़े आलेख नइ)"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:203
+#: interfaces/akregator.kcfg:200
 #, kde-format
 msgid "Always show the tab bar, even when only one tab is open"
 msgstr ""
 
 #. i18n: ectx: label, entry, group (Browser)
-#: interfaces/akregator.kcfg:207
+#: interfaces/akregator.kcfg:204
 #, kde-format
 msgid "Show close buttons on tabs"
 msgstr "टैब्स मं बन्द बटन देखाव"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:208
+#: interfaces/akregator.kcfg:205
 #, kde-format
 msgid "Show close buttons on tabs instead of icons"
 msgstr "चिनहा मन के बदले हर टैब के भीतर बन्द बटन दिखाव"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:213
+#: interfaces/akregator.kcfg:210
 #, kde-format
 msgid ""
 "Open a link which would normally open in a new window (external browser) in "
@@ -865,62 +865,68 @@ msgid ""
 msgstr ""
 
 #. i18n: ectx: label, entry, group (Browser)
-#: interfaces/akregator.kcfg:217
+#: interfaces/akregator.kcfg:214
 #, kde-format
 msgid "Use default KDE web browser"
 msgstr "डिफाल्ट केडीई वेब ब्राउजर के उपयोग करव"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:218
+#: interfaces/akregator.kcfg:215
 #, kde-format
 msgid "Use KDE web browser when opening in external browser."
 msgstr "जब एक्सटर्नल ब्राउजर मं  खोलेजाही तहां केडीई वेब ब्राउजर के उपयोग करव."
 
 #. i18n: ectx: label, entry, group (Browser)
-#: interfaces/akregator.kcfg:222
+#: interfaces/akregator.kcfg:219
 #, kde-format
 msgid "Use this command:"
 msgstr "ये कमांड के उपयोग करव:"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:223
+#: interfaces/akregator.kcfg:220
 #, kde-format
 msgid "Use the specified command when opening in external browser."
 msgstr "जब एक्सटर्नल ब्राउजर के साथ  खोलेजाए तहां निरधारित कमांड के उपयोग करव."
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:227
+#: interfaces/akregator.kcfg:224
 #, fuzzy, no-c-format, kde-format
 #| msgid "Command to launch external browser.  URL will substitute for %u."
 msgid "Command to launch external browser. URL will substitute for %u."
 msgstr "एक्सटर्नल ब्राउजर चालू करे बर कमांड.  यूआरएल %u से प्रतिस्थापित होही."
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:231
+#: interfaces/akregator.kcfg:228
 #, kde-format
 msgid "What the click with left mouse button should do."
 msgstr "डेरी मुसुवा बटन किलिक करे मं का होना चाही."
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:240
+#: interfaces/akregator.kcfg:237
 #, kde-format
 msgid "What the click with middle mouse button should do."
 msgstr "मध्य मुसुवा बटन किलिक करे मं का होना चाही."
 
+#. i18n: ectx: label, entry, group (Browser)
+#: interfaces/akregator.kcfg:246
+#, kde-format
+msgid "Enabled Plasma Activity"
+msgstr ""
+
 #. i18n: ectx: label, entry, group (Advanced)
-#: interfaces/akregator.kcfg:265
+#: interfaces/akregator.kcfg:266
 #, kde-format
 msgid "Archive Backend"
 msgstr "अभिलेखागार बैकएन्ड"
 
 #. i18n: ectx: whatsthis, entry (UseMarkReadDelay), group (Advanced)
-#: interfaces/akregator.kcfg:269
+#: interfaces/akregator.kcfg:270
 #, kde-format
 msgid "Whether to delay before marking an article as read upon selecting it."
 msgstr "जब चुने जाय तहां कोनो आलेख ल पढ़ ले गिस चिनहित करे बर के कुछ देरी करे जाए."
 
 #. i18n: ectx: whatsthis, entry (MarkReadDelay), group (Advanced)
-#: interfaces/akregator.kcfg:273
+#: interfaces/akregator.kcfg:274
 #, kde-format
 msgid ""
 "Configurable delay between selecting an article and it being marked as read."
@@ -928,7 +934,7 @@ msgstr ""
 "कोनो आलेख ल चुने के अउ ओला पढ़ ले चिनहित करे के बीच के देरी के कान्फिगर करे जाय जा सके समय."
 
 #. i18n: ectx: whatsthis, entry, group (Advanced)
-#: interfaces/akregator.kcfg:277
+#: interfaces/akregator.kcfg:278
 #, kde-format
 msgid "Resets the quick filter when changing feeds."
 msgstr ""
@@ -2065,60 +2071,60 @@ msgstr " %1 के गुन"
 msgid "(%1, %2)"
 msgstr "(%1, %2)"
 
-#: src/formatter/grantleeviewformatter.cpp:153
-#: src/formatter/grantleeviewformatter.cpp:204
+#: src/formatter/grantleeviewformatter.cpp:162
+#: src/formatter/grantleeviewformatter.cpp:217
 #, kde-format
 msgid " (no unread articles)"
 msgstr "(बिनपढ़े आलेख नइ)"
 
-#: src/formatter/grantleeviewformatter.cpp:155
-#: src/formatter/grantleeviewformatter.cpp:206
+#: src/formatter/grantleeviewformatter.cpp:164
+#: src/formatter/grantleeviewformatter.cpp:219
 #, kde-format
 msgid " (1 unread article)"
 msgid_plural " (%1 unread articles)"
 msgstr[0] "(1बिनपढ़ा आलेख)"
 msgstr[1] "(%1 बिनपढ़े आलेख)"
 
-#: src/formatter/grantleeviewformatter.cpp:170
+#: src/formatter/grantleeviewformatter.cpp:179
 #, fuzzy, kde-format
 #| msgid "<b>Description:</b> %1<br /><br />"
 msgid "<b>Description:</b> %1<br />"
 msgstr "<b>वर्नन:</b> %1<br /><br />"
 
-#: src/formatter/grantleeviewformatter.cpp:177
+#: src/formatter/grantleeviewformatter.cpp:186
 #, fuzzy, kde-format
 #| msgid "<b>Homepage:</b> <a href=\"%1\">%2</a>"
 msgid "<b>Homepage:</b> <a href=\"%1\">%1</a>"
 msgstr "<b>घर-पेज:</b> <a href=\"%1\">%2</a>"
 
-#: src/formatter/grantleeviewformatter.cpp:184
+#: src/formatter/grantleeviewformatter.cpp:193
 #, fuzzy, kde-format
 #| msgid "<b>Description:</b> %1<br /><br />"
 msgid "<b>Copyright:</b> %1</a>"
 msgstr "<b>वर्नन:</b> %1<br /><br />"
 
-#: src/formatter/grantleeviewformatter.cpp:236
+#: src/formatter/grantleeviewformatter.cpp:253
 #, kde-format
 msgid "Date"
 msgstr "तारीक"
 
-#: src/formatter/grantleeviewformatter.cpp:237
+#: src/formatter/grantleeviewformatter.cpp:254
 #, fuzzy, kde-format
 #| msgid "Comments"
 msgid "Comment"
 msgstr "टिप्पनियाँ"
 
-#: src/formatter/grantleeviewformatter.cpp:238
+#: src/formatter/grantleeviewformatter.cpp:255
 #, kde-format
 msgid "Complete Story"
 msgstr "पूरा कथा"
 
-#: src/formatter/grantleeviewformatter.cpp:239
+#: src/formatter/grantleeviewformatter.cpp:256
 #, kde-format
 msgid "Author"
 msgstr "लेखक"
 
-#: src/formatter/grantleeviewformatter.cpp:240
+#: src/formatter/grantleeviewformatter.cpp:257
 #, kde-format
 msgid "Enclosure"
 msgstr ""

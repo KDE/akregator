@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-06 00:39+0000\n"
+"POT-Creation-Date: 2024-06-16 00:39+0000\n"
 "PO-Revision-Date: 2022-05-04 18:32+0100\n"
 "Last-Translator: Pedro Morais <morais@kde.org>\n"
 "Language-Team: pt <kde-i18n-pt@kde.org>\n"
@@ -72,47 +72,47 @@ msgstr "Esperemos que goste do Akregator."
 msgid "Thank you, The Akregator Team"
 msgstr "Muito obrigado da Equipa do Akregator"
 
-#: src/formatter/html/5.2/combinedview.html:74
+#: src/formatter/html/combinedview.html:24
 msgid "Mark as Read"
 msgstr "Marcar como Lido"
 
-#: src/formatter/html/5.2/combinedview.html:77
+#: src/formatter/html/combinedview.html:27
 msgid "Mark as Unread"
 msgstr "Marcar como Não-Lido"
 
-#: src/formatter/html/5.2/combinedview.html:81
+#: src/formatter/html/combinedview.html:31
 msgid "Remove Important Status"
 msgstr "Remover o Estado de Importante"
 
-#: src/formatter/html/5.2/combinedview.html:83
+#: src/formatter/html/combinedview.html:33
 msgid "Mark as Important"
 msgstr "Marcar como Importante"
 
-#: src/formatter/html/5.2/combinedview.html:85
+#: src/formatter/html/combinedview.html:35
 msgid "Open Link in External Browser"
 msgstr "Abrir a Ligação num Navegador Externo"
 
-#: src/formatter/html/5.2/combinedview.html:86
+#: src/formatter/html/combinedview.html:36
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:110
 #, kde-format
 msgid "Open In Background Tab"
 msgstr "Abrir em Página de Segundo Plano"
 
-#: src/formatter/html/5.2/combinedview.html:87
+#: src/formatter/html/combinedview.html:37
 msgid "Send File Address"
 msgstr "Enviar o Endereço do Ficheiro"
 
-#: src/formatter/html/5.2/combinedview.html:88
+#: src/formatter/html/combinedview.html:38
 msgid "Send Link Address"
 msgstr "Enviar o Endereço da Ligação"
 
-#: src/formatter/html/5.2/combinedview.html:89
+#: src/formatter/html/combinedview.html:39
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:96
 #, kde-format
 msgid "Delete Article"
 msgstr "Apagar o Artigo"
 
-#: src/formatter/html/5.2/normalview.html:126
+#: src/formatter/html/normalview.html:19
 msgid ""
 "<b>Note:</b> For security reasons, external reference is blocked (See "
 "configure dialog)."
@@ -355,7 +355,7 @@ msgstr "Páginas"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_AlwaysShowTabBar)
 #. i18n: ectx: label, entry, group (Browser)
-#: configuration/ui/settings_browser.ui:116 interfaces/akregator.kcfg:202
+#: configuration/ui/settings_browser.ui:116 interfaces/akregator.kcfg:199
 #, kde-format
 msgid "Always show the tab bar"
 msgstr "Mostrar sempre a barra de páginas"
@@ -368,7 +368,7 @@ msgstr "Mostrar o botão de fecho em cada página"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_NewWindowInTab)
 #. i18n: ectx: label, entry, group (Browser)
-#: configuration/ui/settings_browser.ui:130 interfaces/akregator.kcfg:212
+#: configuration/ui/settings_browser.ui:130 interfaces/akregator.kcfg:209
 #, kde-format
 msgid "Open links in new tab instead of in new window"
 msgstr "Abrir as ligações numa página nova em vez de uma janela nova"
@@ -387,7 +387,7 @@ msgstr "Verificar os URL's com a API de Navegação Segura da Google"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_EnableJavascript)
 #. i18n: ectx: label, entry, group (Browser)
-#: configuration/ui/settings_browser.ui:153 interfaces/akregator.kcfg:198
+#: configuration/ui/settings_browser.ui:153 interfaces/akregator.kcfg:195
 #, kde-format
 msgid "Enable Javascript"
 msgstr "Activar o JavaScript"
@@ -617,91 +617,91 @@ msgid "Second (usually horizontal) splitter widget sizes."
 msgstr "Tamanhos do segundo separador (normalmente horizontal)."
 
 #. i18n: ectx: label, entry, group (Archive)
-#: interfaces/akregator.kcfg:100
+#: interfaces/akregator.kcfg:97
 #, kde-format
 msgid "Archive Mode"
 msgstr "Modo de Arquivo"
 
 #. i18n: ectx: label, entry, group (Archive)
-#: interfaces/akregator.kcfg:104
+#: interfaces/akregator.kcfg:101
 #, kde-format
 msgid "Keep All Articles"
 msgstr "Manter Todos os Artigos"
 
 #. i18n: ectx: whatsthis, entry, group (Archive)
-#: interfaces/akregator.kcfg:105
+#: interfaces/akregator.kcfg:102
 #, kde-format
 msgid "Save an unlimited number of articles."
 msgstr "Gravar um número ilimitado de artigos."
 
 #. i18n: ectx: label, entry, group (Archive)
-#: interfaces/akregator.kcfg:108
+#: interfaces/akregator.kcfg:105
 #, kde-format
 msgid "Limit Number of Articles"
 msgstr "Limitar o Número de Artigos"
 
 #. i18n: ectx: whatsthis, entry, group (Archive)
-#: interfaces/akregator.kcfg:109
+#: interfaces/akregator.kcfg:106
 #, kde-format
 msgid "Limit the number of articles in a feed"
 msgstr "Limitar o número de artigos numa fonte"
 
 #. i18n: ectx: label, entry, group (Archive)
-#: interfaces/akregator.kcfg:112
+#: interfaces/akregator.kcfg:109
 #, kde-format
 msgid "Delete Expired Articles"
 msgstr "Apagar os Artigos Expirados"
 
 #. i18n: ectx: whatsthis, entry, group (Archive)
-#: interfaces/akregator.kcfg:113
+#: interfaces/akregator.kcfg:110
 #, kde-format
 msgid "Delete expired articles"
 msgstr "Apagar os artigos expirados"
 
 #. i18n: ectx: label, entry, group (Archive)
-#: interfaces/akregator.kcfg:116
+#: interfaces/akregator.kcfg:113
 #, kde-format
 msgid "Disable Archiving"
 msgstr "Desactivar o Arquivo"
 
 #. i18n: ectx: whatsthis, entry, group (Archive)
-#: interfaces/akregator.kcfg:117
+#: interfaces/akregator.kcfg:114
 #, kde-format
 msgid "Do not save any articles"
 msgstr "Não gravar nenhuns artigos"
 
 #. i18n: ectx: label, entry, group (Archive)
-#: interfaces/akregator.kcfg:122
+#: interfaces/akregator.kcfg:119
 #, kde-format
 msgid "Expiry Age"
 msgstr "Idade de Expiração"
 
 #. i18n: ectx: whatsthis, entry, group (Archive)
-#: interfaces/akregator.kcfg:123
+#: interfaces/akregator.kcfg:120
 #, kde-format
 msgid "Default expiry age for articles in days."
 msgstr "Validade predefinida dos artigos em dias."
 
 #. i18n: ectx: label, entry, group (Archive)
-#: interfaces/akregator.kcfg:127
+#: interfaces/akregator.kcfg:124
 #, kde-format
 msgid "Article Limit"
 msgstr "Limite de Artigos"
 
 #. i18n: ectx: whatsthis, entry, group (Archive)
-#: interfaces/akregator.kcfg:128
+#: interfaces/akregator.kcfg:125
 #, kde-format
 msgid "Number of articles to keep per feed."
 msgstr "Número de artigos a manter por fonte."
 
 #. i18n: ectx: label, entry, group (Archive)
-#: interfaces/akregator.kcfg:132
+#: interfaces/akregator.kcfg:129
 #, kde-format
 msgid "Do Not Expire Important Articles"
 msgstr "Não Expirar os Artigos Importantes"
 
 #. i18n: ectx: whatsthis, entry, group (Archive)
-#: interfaces/akregator.kcfg:133
+#: interfaces/akregator.kcfg:130
 #, kde-format
 msgid ""
 "When this option is enabled, articles you marked as important will not be "
@@ -712,25 +712,25 @@ msgstr ""
 "número de artigos."
 
 #. i18n: ectx: label, entry, group (Network)
-#: interfaces/akregator.kcfg:139
+#: interfaces/akregator.kcfg:136
 #, kde-format
 msgid "Concurrent Fetches"
 msgstr "Transferências Simultâneas"
 
 #. i18n: ectx: whatsthis, entry, group (Network)
-#: interfaces/akregator.kcfg:140
+#: interfaces/akregator.kcfg:137
 #, kde-format
 msgid "Number of concurrent fetches"
 msgstr "Número de transferências simultâneas"
 
 #. i18n: ectx: label, entry, group (Network)
-#: interfaces/akregator.kcfg:144
+#: interfaces/akregator.kcfg:141
 #, kde-format
 msgid "Use HTML Cache"
 msgstr "Utilizar 'cache' de HTML"
 
 #. i18n: ectx: whatsthis, entry, group (Network)
-#: interfaces/akregator.kcfg:145
+#: interfaces/akregator.kcfg:142
 #, kde-format
 msgid ""
 "Use the KDE-wide HTML cache settings when downloading feeds, to avoid "
@@ -740,7 +740,7 @@ msgstr ""
 "evitar tráfego desnecessário. Desactive apenas quando necessário."
 
 #. i18n: ectx: whatsthis, entry, group (Network)
-#: interfaces/akregator.kcfg:149
+#: interfaces/akregator.kcfg:146
 #, kde-format
 msgid ""
 "This option allows user to specify custom user-agent string instead of using "
@@ -753,109 +753,109 @@ msgstr ""
 "no nome."
 
 #. i18n: ectx: label, entry, group (General)
-#: interfaces/akregator.kcfg:155
+#: interfaces/akregator.kcfg:152
 #, kde-format
 msgid "Fetch on startup"
 msgstr "Transferir no arranque"
 
 #. i18n: ectx: whatsthis, entry, group (General)
-#: interfaces/akregator.kcfg:156
+#: interfaces/akregator.kcfg:153
 #, kde-format
 msgid "Fetch feedlist on startup."
 msgstr "Transferir a lista de fontes no arranque."
 
 #. i18n: ectx: label, entry, group (General)
-#: interfaces/akregator.kcfg:160
+#: interfaces/akregator.kcfg:157
 #, kde-format
 msgid "Mark all feeds as read on startup"
 msgstr "Marcar todas as fontes como lidas no arranque"
 
 #. i18n: ectx: whatsthis, entry, group (General)
-#: interfaces/akregator.kcfg:161
+#: interfaces/akregator.kcfg:158
 #, kde-format
 msgid "Mark all feeds as read on startup."
 msgstr "Marcar todas as fontes como lidas no arranque."
 
 #. i18n: ectx: label, entry, group (General)
-#: interfaces/akregator.kcfg:165
+#: interfaces/akregator.kcfg:162
 #, kde-format
 msgid "Use interval fetching"
 msgstr "Utilizar transferência por intervalo"
 
 #. i18n: ectx: whatsthis, entry, group (General)
-#: interfaces/akregator.kcfg:166
+#: interfaces/akregator.kcfg:163
 #, no-c-format, kde-format
 msgid "Fetch all feeds every %1 minutes."
 msgstr "Transferir todas as fontes a cada %1 minutos."
 
 #. i18n: ectx: label, entry, group (General)
-#: interfaces/akregator.kcfg:170
+#: interfaces/akregator.kcfg:167
 #, kde-format
 msgid "Interval for autofetching"
 msgstr "Intervalo para transferência automática"
 
 #. i18n: ectx: whatsthis, entry, group (General)
-#: interfaces/akregator.kcfg:171
+#: interfaces/akregator.kcfg:168
 #, kde-format
 msgid "Interval for autofetching in minutes."
 msgstr "Intervalo para transferência automática em minutos."
 
 #. i18n: ectx: label, entry, group (General)
-#: interfaces/akregator.kcfg:175
+#: interfaces/akregator.kcfg:172
 #, kde-format
 msgid "Use notifications"
 msgstr "Utilizar notificações"
 
 #. i18n: ectx: whatsthis, entry, group (General)
-#: interfaces/akregator.kcfg:176
+#: interfaces/akregator.kcfg:173
 #, kde-format
 msgid "Specifies if the balloon notifications are used or not."
 msgstr "Indica se as notificações por balão são ou não utilizadas."
 
 #. i18n: ectx: label, entry, group (General)
-#: interfaces/akregator.kcfg:180
+#: interfaces/akregator.kcfg:177
 #, kde-format
 msgid "Show tray icon"
 msgstr "Mostrar o ícone na bandeja"
 
 #. i18n: ectx: whatsthis, entry, group (General)
-#: interfaces/akregator.kcfg:181
+#: interfaces/akregator.kcfg:178
 #, kde-format
 msgid "Specifies if the tray icon is shown or not."
 msgstr "Indica se o ícone da bandeja é mostrado ou não."
 
 #. i18n: ectx: label, entry, group (General)
-#: interfaces/akregator.kcfg:185
+#: interfaces/akregator.kcfg:182
 #, kde-format
 msgid "Show Unread In Taskbar"
 msgstr "Mostrar os Não-Lidos na Barra de Tarefas"
 
 #. i18n: ectx: whatsthis, entry, group (General)
-#: interfaces/akregator.kcfg:186
+#: interfaces/akregator.kcfg:183
 #, kde-format
 msgid "Specifies if we show unread article in taskbar."
 msgstr "Indica se mostramos os artigos não-lidos na barra de tarefas."
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:203
+#: interfaces/akregator.kcfg:200
 #, kde-format
 msgid "Always show the tab bar, even when only one tab is open"
 msgstr "Mostrar sempre a barra de páginas, mesmo com apenas uma página aberta"
 
 #. i18n: ectx: label, entry, group (Browser)
-#: interfaces/akregator.kcfg:207
+#: interfaces/akregator.kcfg:204
 #, kde-format
 msgid "Show close buttons on tabs"
 msgstr "Mostrar botões de fecho nas páginas"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:208
+#: interfaces/akregator.kcfg:205
 #, kde-format
 msgid "Show close buttons on tabs instead of icons"
 msgstr "Mostrar botões de fechar nas páginas em vez de ícones"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:213
+#: interfaces/akregator.kcfg:210
 #, kde-format
 msgid ""
 "Open a link which would normally open in a new window (external browser) in "
@@ -865,62 +865,69 @@ msgstr ""
 "externo), numa página nova"
 
 #. i18n: ectx: label, entry, group (Browser)
-#: interfaces/akregator.kcfg:217
+#: interfaces/akregator.kcfg:214
 #, kde-format
 msgid "Use default KDE web browser"
 msgstr "Utilizar o navegador Web predefinido do KDE"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:218
+#: interfaces/akregator.kcfg:215
 #, kde-format
 msgid "Use KDE web browser when opening in external browser."
 msgstr "Utilizar o navegador Web do KDE ao abrir no navegador externo."
 
 #. i18n: ectx: label, entry, group (Browser)
-#: interfaces/akregator.kcfg:222
+#: interfaces/akregator.kcfg:219
 #, kde-format
 msgid "Use this command:"
 msgstr "Usar este comando:"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:223
+#: interfaces/akregator.kcfg:220
 #, kde-format
 msgid "Use the specified command when opening in external browser."
 msgstr "Utilizar o comando indicado ao abrir num navegador externo."
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:227
+#: interfaces/akregator.kcfg:224
 #, no-c-format, kde-format
 msgid "Command to launch external browser. URL will substitute for %u."
 msgstr ""
 "Comando para iniciar o navegador externo. O URL será substituído em %u."
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:231
+#: interfaces/akregator.kcfg:228
 #, kde-format
 msgid "What the click with left mouse button should do."
 msgstr "O que carregar com o botão esquerdo deve fazer."
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:240
+#: interfaces/akregator.kcfg:237
 #, kde-format
 msgid "What the click with middle mouse button should do."
 msgstr "O que carregar com o botão do meio deve fazer."
 
+#. i18n: ectx: label, entry, group (Browser)
+#: interfaces/akregator.kcfg:246
+#, fuzzy, kde-format
+#| msgid "Enable Javascript"
+msgid "Enabled Plasma Activity"
+msgstr "Activar o JavaScript"
+
 #. i18n: ectx: label, entry, group (Advanced)
-#: interfaces/akregator.kcfg:265
+#: interfaces/akregator.kcfg:266
 #, kde-format
 msgid "Archive Backend"
 msgstr "Infra-Estrutura do Arquivo"
 
 #. i18n: ectx: whatsthis, entry (UseMarkReadDelay), group (Advanced)
-#: interfaces/akregator.kcfg:269
+#: interfaces/akregator.kcfg:270
 #, kde-format
 msgid "Whether to delay before marking an article as read upon selecting it."
 msgstr "Se deseja adiar a marcação de um artigo como lido após seleccioná-lo."
 
 #. i18n: ectx: whatsthis, entry (MarkReadDelay), group (Advanced)
-#: interfaces/akregator.kcfg:273
+#: interfaces/akregator.kcfg:274
 #, kde-format
 msgid ""
 "Configurable delay between selecting an article and it being marked as read."
@@ -929,7 +936,7 @@ msgstr ""
 "lido."
 
 #. i18n: ectx: whatsthis, entry, group (Advanced)
-#: interfaces/akregator.kcfg:277
+#: interfaces/akregator.kcfg:278
 #, kde-format
 msgid "Resets the quick filter when changing feeds."
 msgstr "Repõe o filtro rápido ao mudar de fontes."
@@ -2084,56 +2091,56 @@ msgstr "Propriedades de %1"
 msgid "(%1, %2)"
 msgstr "(%1, %2)"
 
-#: src/formatter/grantleeviewformatter.cpp:153
-#: src/formatter/grantleeviewformatter.cpp:204
+#: src/formatter/grantleeviewformatter.cpp:162
+#: src/formatter/grantleeviewformatter.cpp:217
 #, kde-format
 msgid " (no unread articles)"
 msgstr "(nenhum artigo não-lido)"
 
-#: src/formatter/grantleeviewformatter.cpp:155
-#: src/formatter/grantleeviewformatter.cpp:206
+#: src/formatter/grantleeviewformatter.cpp:164
+#: src/formatter/grantleeviewformatter.cpp:219
 #, kde-format
 msgid " (1 unread article)"
 msgid_plural " (%1 unread articles)"
 msgstr[0] " (%1 artigo não-lido)"
 msgstr[1] " (%1 artigos não-lidos)"
 
-#: src/formatter/grantleeviewformatter.cpp:170
+#: src/formatter/grantleeviewformatter.cpp:179
 #, kde-format
 msgid "<b>Description:</b> %1<br />"
 msgstr "<b>Descrição:</b> %1<br/>"
 
-#: src/formatter/grantleeviewformatter.cpp:177
+#: src/formatter/grantleeviewformatter.cpp:186
 #, kde-format
 msgid "<b>Homepage:</b> <a href=\"%1\">%1</a>"
 msgstr "<b>Página Web:</b> <a href=\"%1\">%1</a>"
 
-#: src/formatter/grantleeviewformatter.cpp:184
+#: src/formatter/grantleeviewformatter.cpp:193
 #, kde-format
 msgid "<b>Copyright:</b> %1</a>"
 msgstr "<b>'Copyright':</b> %1</a>"
 
-#: src/formatter/grantleeviewformatter.cpp:236
+#: src/formatter/grantleeviewformatter.cpp:253
 #, kde-format
 msgid "Date"
 msgstr "Data"
 
-#: src/formatter/grantleeviewformatter.cpp:237
+#: src/formatter/grantleeviewformatter.cpp:254
 #, kde-format
 msgid "Comment"
 msgstr "Comentário"
 
-#: src/formatter/grantleeviewformatter.cpp:238
+#: src/formatter/grantleeviewformatter.cpp:255
 #, kde-format
 msgid "Complete Story"
 msgstr "Artigo Completo"
 
-#: src/formatter/grantleeviewformatter.cpp:239
+#: src/formatter/grantleeviewformatter.cpp:256
 #, kde-format
 msgid "Author"
 msgstr "Autoria"
 
-#: src/formatter/grantleeviewformatter.cpp:240
+#: src/formatter/grantleeviewformatter.cpp:257
 #, kde-format
 msgid "Enclosure"
 msgstr "Envolvência"
