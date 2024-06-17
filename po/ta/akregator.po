@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-04-24 02:56+0000\n"
-"PO-Revision-Date: 2024-05-19 16:25+0530\n"
+"PO-Revision-Date: 2024-06-16 19:47+0530\n"
 "Last-Translator: Kishore G <kishore96@gmail.com>\n"
 "Language-Team: Tamil <kde-i18n-doc@kde.org>\n"
 "Language: ta\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 24.02.2\n"
+"X-Generator: Lokalize 24.05.1\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -795,10 +795,9 @@ msgstr "படிக்காதவற்றை பணிப்பட்டை�
 
 #. i18n: ectx: whatsthis, entry, group (General)
 #: interfaces/akregator.kcfg:186
-#, fuzzy, kde-format
-#| msgid " (no unread articles)"
+#, kde-format
 msgid "Specifies if we show unread article in taskbar."
-msgstr " (படிக்காத கட்டுரைகள் இல்லை)"
+msgstr "படிக்காதவற்றின் எண்ணிக்கையை பணிப்பட்டையில் காட்ட வேண்டுமா."
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
 #: interfaces/akregator.kcfg:203
@@ -1326,24 +1325,24 @@ msgid "Go to Bottom of Tree"
 msgstr "கிளையின் நுனிக்கு செல்"
 
 #: src/actions/actionmanagerimpl.cpp:517
-#, fuzzy, kde-format
+#, kde-format
 msgid "Go Left in Tree"
-msgstr "தொடர் அடைவில் இடதுபுறம் செல்"
+msgstr "இடதுபுறத்திலுள்ள கிளைக்கு செல்"
 
 #: src/actions/actionmanagerimpl.cpp:522
-#, fuzzy, kde-format
+#, kde-format
 msgid "Go Right in Tree"
-msgstr "தொடர் அடைவில் வலதுபுறத்தில் செல்"
+msgstr "வலதுபுறலுள்ள கிளைக்கு செல்"
 
 #: src/actions/actionmanagerimpl.cpp:527
-#, fuzzy, kde-format
+#, kde-format
 msgid "Go Up in Tree"
-msgstr "தொடர் அடைவில் மேலே செல்"
+msgstr "கிளையில் மேலே செல்"
 
 #: src/actions/actionmanagerimpl.cpp:532
-#, fuzzy, kde-format
+#, kde-format
 msgid "Go Down in Tree"
-msgstr "தொடர் அடைவில் கீழே செல்"
+msgstr "கிளையில் கீழே செல்"
 
 #: src/actions/actionmanagerimpl.cpp:538
 #, kde-format
@@ -1482,7 +1481,7 @@ msgid "Feeds"
 msgstr "தொகுப்புகள்"
 
 #: src/akregator_part.cpp:89
-#, fuzzy, kde-format
+#, kde-format
 msgid "KDE Dot News"
 msgstr "கே.டீ.யீ. டாட் செய்திகள்"
 
@@ -1497,9 +1496,9 @@ msgid "Planet KDE"
 msgstr "கோள் கேடியி"
 
 #: src/akregator_part.cpp:104
-#, fuzzy, kde-format
+#, kde-format
 msgid "KDE Apps"
-msgstr "KDE Apps"
+msgstr ""
 
 #: src/akregator_part.cpp:110
 #, kde-format
@@ -1532,8 +1531,7 @@ msgid "Could not import the file %1 (no valid OPML)"
 msgstr "%1 எனும் கோப்பை இறக்குமதி செய்ய முடியவில்லை (முறையான OPML இல்லை)"
 
 #: src/akregator_part.cpp:464 src/command/loadfeedlistcommand.cpp:71
-#, fuzzy, kde-format
-#| msgid "OPML Parsing Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "OPML Parsing Error"
 msgstr "OPML இலக்கண பிழை"
@@ -1548,8 +1546,7 @@ msgstr ""
 "எனும் சரிபாருங்கள்."
 
 #: src/akregator_part.cpp:469 src/command/loadfeedlistcommand.cpp:144
-#, fuzzy, kde-format
-#| msgid "Read Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "Read Error"
 msgstr "படிக்கும்போது சிக்கல்"
@@ -1561,8 +1558,7 @@ msgid "Access denied: cannot write to file %1. Please check your permissions."
 msgstr "அனுமதி மறுக்கப்பட்டது: கோப்பு %1க்கு எழுத முடியவில்லை"
 
 #: src/akregator_part.cpp:481
-#, fuzzy, kde-format
-#| msgid "Write Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "Write Error"
 msgstr "எழுதுவதில் சிக்கல்"
@@ -1581,18 +1577,17 @@ msgstr "இறக்கிய அடைவு"
 #: src/articlejobs.cpp:184
 #, kde-format
 msgid "The feed to be listed was already removed."
-msgstr ""
+msgstr "பட்டியலிடவிருந்த தொகுப்பு ஏற்கனவே நீக்கப்பட்டுள்ளது."
 
 #: src/articlelistview.cpp:156 src/subscription/subscriptionlistview.cpp:180
-#, fuzzy, kde-format
-#| msgid "Comments"
+#, kde-format
 msgid "Columns"
-msgstr "குறிப்புகள்"
+msgstr "நெடுவரிகள்"
 
 #: src/articlelistview.cpp:214
 #, kde-format
 msgid "No result found"
-msgstr ""
+msgstr "எதுவும் கண்டுபிடிக்கப்படவில்லை"
 
 #: src/articlelistview.cpp:375
 #, fuzzy, kde-format
