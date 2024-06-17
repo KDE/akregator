@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-06-16 00:39+0000\n"
-"PO-Revision-Date: 2024-06-06 06:43+0200\n"
+"PO-Revision-Date: 2024-06-16 08:31+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
 "Language: sl\n"
@@ -909,10 +909,9 @@ msgstr "Kaj se zgodi ob kliku na srednji gumb miške."
 
 #. i18n: ectx: label, entry, group (Browser)
 #: interfaces/akregator.kcfg:246
-#, fuzzy, kde-format
-#| msgid "Enable Plasma Activities integration"
+#, kde-format
 msgid "Enabled Plasma Activity"
-msgstr "Omogoči integracijo dejavnosti Plasme"
+msgstr "Omogočena dejavnost Plasme"
 
 #. i18n: ectx: label, entry, group (Advanced)
 #: interfaces/akregator.kcfg:266

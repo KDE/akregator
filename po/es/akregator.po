@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-06-16 00:39+0000\n"
-"PO-Revision-Date: 2024-06-06 18:30+0200\n"
+"PO-Revision-Date: 2024-06-16 21:40+0200\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
@@ -911,10 +911,9 @@ msgstr "Qué se debe hacer cuando se pulse el botón central del ratón."
 
 #. i18n: ectx: label, entry, group (Browser)
 #: interfaces/akregator.kcfg:246
-#, fuzzy, kde-format
-#| msgid "Enable Plasma Activities integration"
+#, kde-format
 msgid "Enabled Plasma Activity"
-msgstr "Activar la integración con las actividades de Plasma"
+msgstr "Actividades de Plasma activadas"
 
 #. i18n: ectx: label, entry, group (Advanced)
 #: interfaces/akregator.kcfg:266

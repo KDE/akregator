@@ -1,6 +1,6 @@
 # translation of akregator.po to Swedish
 #
-# Stefan Asserhäll <stefan.asserhall@gmail.com>, 2004, 2005, 2006, 2007, 2008, 2009, 2010.
+# SPDX-FileCopyrightText: 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2024 Stefan Asserhäll <stefan.asserhall@gmail.com>
 # Stefan Asserhall <stefan.asserhall@gmail.com>, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022.
 # Arve Eriksson <031299870@telia.com>, 2011.
 msgid ""
@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-06-16 00:39+0000\n"
-"PO-Revision-Date: 2022-04-26 19:44+0200\n"
-"Last-Translator: Stefan Asserhäll <stefan.asserhall@gmail.com>\n"
+"PO-Revision-Date: 2024-06-16 19:27+0200\n"
+"Last-Translator: Stefan Asserhäll <stefan.asserhall@bredband.net>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 20.08.1\n"
+"X-Generator: Lokalize 23.08.5\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #, kde-format
@@ -468,7 +468,7 @@ msgstr "Hämta kanaler efter:"
 #: configuration/ui/settings_general.ui:157
 #, kde-format
 msgid "Enable Plasma Activities integration"
-msgstr ""
+msgstr "Aktivera integrering med Plasma-aktiviteter"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #: configuration/ui/settings_general.ui:167
@@ -898,10 +898,9 @@ msgstr "Vad ett klick med musens mittenknapp ska göra."
 
 #. i18n: ectx: label, entry, group (Browser)
 #: interfaces/akregator.kcfg:246
-#, fuzzy, kde-format
-#| msgid "Enable Javascript"
+#, kde-format
 msgid "Enabled Plasma Activity"
-msgstr "Aktivera Javascript"
+msgstr "Aktivera Plasma-aktivitet"
 
 #. i18n: ectx: label, entry, group (Advanced)
 #: interfaces/akregator.kcfg:266
@@ -968,8 +967,7 @@ msgid "Copyright © 2004–%1 Akregator authors"
 msgstr "Copyright © 2004–%1 Akregators upphovsmän"
 
 #: src/aboutdata.cpp:27
-#, fuzzy, kde-format
-#| msgid "Laurent Montel"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Laurent Montel"
 msgstr "Laurent Montel"
@@ -980,8 +978,7 @@ msgid "Maintainer"
 msgstr "Underhåll"
 
 #: src/aboutdata.cpp:28
-#, fuzzy, kde-format
-#| msgid "Frank Osterfeld"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Frank Osterfeld"
 msgstr "Frank Osterfeld"
@@ -992,8 +989,7 @@ msgid "Former maintainer"
 msgstr "Tidigare underhåll"
 
 #: src/aboutdata.cpp:29
-#, fuzzy, kde-format
-#| msgid "Teemu Rytilahti"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Teemu Rytilahti"
 msgstr "Teemu Rytilahti"
@@ -1005,29 +1001,25 @@ msgid "Developer"
 msgstr "Utvecklare"
 
 #: src/aboutdata.cpp:30
-#, fuzzy, kde-format
-#| msgid "Sashmit Bhaduri"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Sashmit Bhaduri"
 msgstr "Sashmit Bhaduri"
 
 #: src/aboutdata.cpp:31
-#, fuzzy, kde-format
-#| msgid "Pierre Habouzit"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Pierre Habouzit"
 msgstr "Pierre Habouzit"
 
 #: src/aboutdata.cpp:32
-#, fuzzy, kde-format
-#| msgid "Stanislav Karchebny"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Stanislav Karchebny"
 msgstr "Stanislav Karchebny"
 
 #: src/aboutdata.cpp:33
-#, fuzzy, kde-format
-#| msgid "Gary Cramblitt"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Gary Cramblitt"
 msgstr "Gary Cramblitt"
@@ -1038,22 +1030,19 @@ msgid "Contributor"
 msgstr "Bidragsgivare"
 
 #: src/aboutdata.cpp:34
-#, fuzzy, kde-format
-#| msgid "Stephan Binner"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Stephan Binner"
 msgstr "Stephan Binner"
 
 #: src/aboutdata.cpp:35
-#, fuzzy, kde-format
-#| msgid "Christof Musik"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Christof Musik"
 msgstr "Christof Musik"
 
 #: src/aboutdata.cpp:36
-#, fuzzy, kde-format
-#| msgid "Anne-Marie Mahfouf"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Anne-Marie Mahfouf"
 msgstr "Anne-Marie Mahfouf"
@@ -1064,8 +1053,7 @@ msgid "Handbook"
 msgstr "Handbok"
 
 #: src/aboutdata.cpp:37
-#, fuzzy, kde-format
-#| msgid "Frerich Raabe"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Frerich Raabe"
 msgstr "Frerich Raabe"
@@ -1076,8 +1064,7 @@ msgid "Author of librss"
 msgstr "Upphovsman till librss"
 
 #: src/aboutdata.cpp:38
-#, fuzzy, kde-format
-#| msgid "Eckhart Woerner"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Eckhart Woerner"
 msgstr "Eckhart Woerner"
@@ -1088,8 +1075,7 @@ msgid "Bug tracker management, Usability improvements"
 msgstr "Hantering av felspårning, användbarhetsförbättringar"
 
 #: src/aboutdata.cpp:39
-#, fuzzy, kde-format
-#| msgid "Heinrich Wendel"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Heinrich Wendel"
 msgstr "Heinrich Wendel"
@@ -1100,8 +1086,7 @@ msgid "Tons of bug fixes"
 msgstr "Massor med felrättningar"
 
 #: src/aboutdata.cpp:40
-#, fuzzy, kde-format
-#| msgid "Eike Hein"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Eike Hein"
 msgstr "Eike Hein"
@@ -1112,8 +1097,7 @@ msgid "'Delayed mark as read' feature"
 msgstr "Funktionen 'fördröj markera som läst'"
 
 #: src/aboutdata.cpp:41
-#, fuzzy, kde-format
-#| msgid "Marcel Dierkes"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Marcel Dierkes"
 msgstr "Marcel Dierkes"
@@ -1124,8 +1108,7 @@ msgid "Icons"
 msgstr "Ikoner"
 
 #: src/aboutdata.cpp:42
-#, fuzzy, kde-format
-#| msgid "George Staikos"
+#, kde-format
 msgctxt "@info:credit"
 msgid "George Staikos"
 msgstr "George Staikos"
@@ -1136,8 +1119,7 @@ msgid "Insomnia"
 msgstr "Sömnlös"
 
 #: src/aboutdata.cpp:43
-#, fuzzy, kde-format
-#| msgid "Philipp Droessler"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Philipp Droessler"
 msgstr "Philipp Droessler"
@@ -1158,10 +1140,9 @@ msgid "&Delete Feed"
 msgstr "&Ta bort kanal"
 
 #: src/actions/actionmanagerimpl.cpp:66 src/actions/actionmanagerimpl.cpp:249
-#, fuzzy, kde-format
-#| msgid "&Edit Feed..."
+#, kde-format
 msgid "&Edit Feed…"
-msgstr "&Redigera kanal..."
+msgstr "&Redigera kanal…"
 
 #: src/actions/actionmanagerimpl.cpp:67 src/actions/actionmanagerimpl.cpp:306
 #, kde-format
@@ -1189,22 +1170,19 @@ msgid "&Mark Feeds as Read"
 msgstr "&Markera kanaler som lästa"
 
 #: src/actions/actionmanagerimpl.cpp:191
-#, fuzzy, kde-format
-#| msgid "&Import Feeds..."
+#, kde-format
 msgid "&Import Feeds…"
-msgstr "&Importera kanaler..."
+msgstr "&Importera kanaler…"
 
 #: src/actions/actionmanagerimpl.cpp:195
-#, fuzzy, kde-format
-#| msgid "&Export Feeds..."
+#, kde-format
 msgid "&Export Feeds…"
-msgstr "&Exportera kanaler..."
+msgstr "&Exportera kanaler…"
 
 #: src/actions/actionmanagerimpl.cpp:200
-#, fuzzy, kde-format
-#| msgid "&Configure Akregator..."
+#, kde-format
 msgid "&Configure Akregator…"
-msgstr "A&npassa Akregator..."
+msgstr "A&npassa Akregator…"
 
 #: src/actions/actionmanagerimpl.cpp:219
 #, kde-format
@@ -1217,16 +1195,14 @@ msgid "Reload All Tabs"
 msgstr "Uppdatera alla flikar"
 
 #: src/actions/actionmanagerimpl.cpp:231
-#, fuzzy, kde-format
-#| msgid "Add Feed"
+#, kde-format
 msgid "&Add Feed…"
-msgstr "Lägg till kanal"
+msgstr "Lägg till k&anal…"
 
 #: src/actions/actionmanagerimpl.cpp:237
-#, fuzzy, kde-format
-#| msgid "Ne&w Folder..."
+#, kde-format
 msgid "Ne&w Folder…"
-msgstr "Ny &katalog..."
+msgstr "Ny &katalog…"
 
 #: src/actions/actionmanagerimpl.cpp:262
 #, kde-format
@@ -1290,8 +1266,7 @@ msgid "&Read"
 msgstr "&Läst"
 
 #: src/actions/actionmanagerimpl.cpp:371
-#, fuzzy, kde-format
-#| msgid "Mark selected article as read"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as read"
 msgstr "Markera vald artikel som läst"
@@ -1303,8 +1278,7 @@ msgid "&New"
 msgstr "&Ny"
 
 #: src/actions/actionmanagerimpl.cpp:380
-#, fuzzy, kde-format
-#| msgid "Mark selected article as new"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as new"
 msgstr "Markera vald artikel som ny"
@@ -1316,8 +1290,7 @@ msgid "&Unread"
 msgstr "&Oläst"
 
 #: src/actions/actionmanagerimpl.cpp:387
-#, fuzzy, kde-format
-#| msgid "Mark selected article as unread"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as unread"
 msgstr "Markera vald artikel som oläst"
@@ -1328,8 +1301,7 @@ msgid "&Mark as Important"
 msgstr "Markera som &viktig"
 
 #: src/actions/actionmanagerimpl.cpp:397
-#, fuzzy, kde-format
-#| msgid "Remove &Important Mark"
+#, kde-format
 msgctxt "@action:button"
 msgid "Remove &Important Mark"
 msgstr "Ta bort markering som v&iktig"
@@ -1355,20 +1327,17 @@ msgid "Move Node Right"
 msgstr "Flytta nod åt höger"
 
 #: src/actions/actionmanagerimpl.cpp:422
-#, fuzzy, kde-format
-#| msgid "Send Link Address"
+#, kde-format
 msgid "Send &Link Address…"
-msgstr "Skicka länkadress"
+msgstr "Skicka &länkadress…"
 
 #: src/actions/actionmanagerimpl.cpp:427
-#, fuzzy, kde-format
-#| msgid "Send &File..."
+#, kde-format
 msgid "Send &File…"
-msgstr "Skicka &fil..."
+msgstr "Skicka &fil…"
 
 #: src/actions/actionmanagerimpl.cpp:433
-#, fuzzy, kde-format
-#| msgid "Set Focus to Quick Search"
+#, kde-format
 msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr "Ge fokus till snabbsökning"
@@ -1474,17 +1443,15 @@ msgid "Unmute"
 msgstr "På"
 
 #: src/actions/actionmanagerimpl.cpp:598
-#, fuzzy, kde-format
-#| msgid "Speak Text"
+#, kde-format
 msgctxt "@action"
 msgid "Speak Text"
 msgstr "Läs upp text"
 
 #: src/actions/actionmanagerimpl.cpp:603
-#, fuzzy, kde-format
-#| msgid "&Find in Message..."
+#, kde-format
 msgid "&Find in Message…"
-msgstr "Sö&k i meddelande..."
+msgstr "Sö&k i meddelande…"
 
 #: src/actions/actionmanagerimpl.cpp:614
 #, kde-format
@@ -1492,17 +1459,15 @@ msgid "Close Tab"
 msgstr "Stäng flik"
 
 #: src/actions/actionmanagerimpl.cpp:627
-#, fuzzy, kde-format
-#| msgid "Activate Tab %1"
+#, kde-format
 msgctxt "@action"
 msgid "Activate Tab %1"
 msgstr "Aktivera flik %1"
 
 #: src/actions/actionmanagerimpl.cpp:633
-#, fuzzy, kde-format
-#| msgid "&Save Link As..."
+#, kde-format
 msgid "&Save Link As…"
-msgstr "&Spara länk som..."
+msgstr "&Spara länk som…"
 
 #: src/actions/actionmanagerimpl.cpp:637
 #, kde-format
@@ -1510,18 +1475,16 @@ msgid "Copy &Link Address"
 msgstr "Kopiera &länkadress"
 
 #: src/actions/actionmanagerimpl.cpp:640
-#, fuzzy, kde-format
-#| msgid "Copy Image Location"
+#, kde-format
 msgctxt "@action"
 msgid "Copy Image Location"
 msgstr "Kopiera bildplats"
 
 #: src/actions/actionmanagerimpl.cpp:647
-#, fuzzy, kde-format
-#| msgid "Save Image On Disk..."
+#, kde-format
 msgctxt "@action"
 msgid "Save Image On Disk…"
-msgstr "Spara bild på disk..."
+msgstr "Spara bild på disk…"
 
 #: src/actions/actions.cpp:19
 #, kde-format
@@ -1550,35 +1513,30 @@ msgid "Feed not found from %1."
 msgstr "Kanalen från %1 hittades inte."
 
 #: src/addfeeddialog.cpp:121
-#, fuzzy, kde-format
-#| msgid "Feed found, downloading..."
+#, kde-format
 msgid "Feed found, downloading…"
-msgstr "Kanal hittades, laddar ner..."
+msgstr "Kanal hittades, laddar ner…"
 
 #: src/akregator_options.h:20 src/akregator_options.h:28
-#, fuzzy, kde-format
-#| msgid "Add a feed with the given URL"
+#, kde-format
 msgctxt "@info:shell"
 msgid "Add a feed with the given URL"
 msgstr "Lägg till en kanal med angiven webbadress"
 
 #: src/akregator_options.h:23
-#, fuzzy, kde-format
-#| msgid "When adding feeds, place them in this group"
+#, kde-format
 msgctxt "@info:shell"
 msgid "When adding feeds, place them in this group"
 msgstr "När kanaler läggs till, placera dem i den här gruppen"
 
 #: src/akregator_options.h:25
-#, fuzzy, kde-format
-#| msgid "Hide main window on startup"
+#, kde-format
 msgctxt "@info:shell"
 msgid "Hide main window on startup"
 msgstr "Dölj huvudfönstret vid start"
 
 #: src/akregator_options.h:30
-#, fuzzy, kde-format
-#| msgid "Lists the available options for user feedback"
+#, kde-format
 msgctxt "@info:shell"
 msgid "Lists the available options for user feedback"
 msgstr "Lista tillgängliga alternativ för användaråterkoppling"
@@ -1638,8 +1596,7 @@ msgid "Could not import the file %1 (no valid OPML)"
 msgstr "Kunde inte importera filen %1 (ingen giltig OPML)"
 
 #: src/akregator_part.cpp:464 src/command/loadfeedlistcommand.cpp:71
-#, fuzzy, kde-format
-#| msgid "OPML Parsing Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "OPML Parsing Error"
 msgstr "OPML-tolkningsfel"
@@ -1654,8 +1611,7 @@ msgstr ""
 "för nuvarande användare."
 
 #: src/akregator_part.cpp:469 src/command/loadfeedlistcommand.cpp:144
-#, fuzzy, kde-format
-#| msgid "Read Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "Read Error"
 msgstr "Läsfel"
@@ -1667,8 +1623,7 @@ msgstr ""
 "Åtkomst nekades: Kan inte skriva till filen %1. Kontrollera din behörighet."
 
 #: src/akregator_part.cpp:481
-#, fuzzy, kde-format
-#| msgid "Write Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "Write Error"
 msgstr "Skrivfel"
@@ -1776,8 +1731,7 @@ msgid "Are you sure you want to disable this introduction page?"
 msgstr "Är du säker på att du vill inaktivera introduktionssidan?"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:377
-#, fuzzy, kde-format
-#| msgid "Disable Introduction Page"
+#, kde-format
 msgctxt "@title:window"
 msgid "Disable Introduction Page"
 msgstr "Inaktivera introduktionssida"
@@ -1789,8 +1743,7 @@ msgstr ""
 "Webbplatsen innehåller skadlig programvara, vill du fortsätta att visa den?"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:413
-#, fuzzy, kde-format
-#| msgid "Malware"
+#, kde-format
 msgctxt "@title:window"
 msgid "Malware"
 msgstr "Skadlig programvara"
@@ -1802,8 +1755,7 @@ msgstr "Nätverket fungerar inte."
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:425
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:428
-#, fuzzy, kde-format
-#| msgid "Check Phishing Url"
+#, kde-format
 msgctxt "@title:window"
 msgid "Check Phishing Url"
 msgstr "Kontrollera nätfiskewebbadress"
@@ -1842,8 +1794,7 @@ msgstr ""
 "och underkataloger?</qt>"
 
 #: src/command/deletesubscriptioncommand.cpp:44
-#, fuzzy, kde-format
-#| msgid "Delete Folder"
+#, kde-format
 msgctxt "@title:window"
 msgid "Delete Folder"
 msgstr "Ta bort katalog"
@@ -1859,8 +1810,7 @@ msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
 msgstr "<qt>Är du säker på att du vill ta bort kanalen <b>%1</b>?</qt>"
 
 #: src/command/deletesubscriptioncommand.cpp:68
-#, fuzzy, kde-format
-#| msgid "Delete Feed"
+#, kde-format
 msgctxt "@title:window"
 msgid "Delete Feed"
 msgstr "Ta bort kanal"
@@ -1899,10 +1849,9 @@ msgstr ""
 "säkerhetskopia.</qt>"
 
 #: src/command/loadfeedlistcommand.cpp:129
-#, fuzzy, kde-format
-#| msgid "Opening Feed List..."
+#, kde-format
 msgid "Opening Feed List…"
-msgstr "Öppnar kanallista..."
+msgstr "Öppnar kanallista…"
 
 #: src/command/loadfeedlistcommand.cpp:143
 #, kde-format
@@ -1939,10 +1888,7 @@ msgstr ""
 "säkerhetskopia.</qt>"
 
 #: src/crashwidget/crashwidget.cpp:21
-#, fuzzy, kde-format
-#| msgid ""
-#| "Akregator did not close correctly. Would you like to restore the previous "
-#| "session?"
+#, kde-format
 msgctxt "@label:textbox"
 msgid ""
 "Akregator did not close correctly. Would you like to restore the previous "
@@ -2137,10 +2083,9 @@ msgid "Untitled"
 msgstr "Namnlös"
 
 #: src/frame/frame.cpp:140
-#, fuzzy, kde-format
-#| msgid "Loading..."
+#, kde-format
 msgid "Loading…"
-msgstr "Laddar..."
+msgstr "Laddar…"
 
 #: src/frame/frame.cpp:156
 #, kde-format
@@ -2182,8 +2127,7 @@ msgstr ""
 "lästa?</qt>"
 
 #: src/mainwidget.cpp:778
-#, fuzzy, kde-format
-#| msgid "Mark Feed as Read"
+#, kde-format
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "Markera kanal som läst"
@@ -2204,8 +2148,7 @@ msgstr ""
 "lästa?</qt>"
 
 #: src/mainwidget.cpp:785
-#, fuzzy, kde-format
-#| msgid "Mark Feeds as Read"
+#, kde-format
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "Markera kanaler som lästa"
@@ -2216,10 +2159,9 @@ msgid "Networking is not available."
 msgstr "Nätverksanslutning är inte tillgänglig."
 
 #: src/mainwidget.cpp:866
-#, fuzzy, kde-format
-#| msgid "Fetching Feeds..."
+#, kde-format
 msgid "Fetching Feeds…"
-msgstr "Hämtar kanaler..."
+msgstr "Hämtar kanaler…"
 
 #: src/mainwidget.cpp:1065
 #, kde-format
@@ -2236,8 +2178,7 @@ msgstr[1] ""
 "<qt>Är du säker på att du vill ta bort de %1 markerade artiklarna?</qt>"
 
 #: src/mainwidget.cpp:1075
-#, fuzzy, kde-format
-#| msgid "Delete Article"
+#, kde-format
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "Ta bort artikel"
@@ -2257,8 +2198,7 @@ msgstr ""
 "skriva %1.</qt>"
 
 #: src/mainwindow.cpp:124
-#, fuzzy, kde-format
-#| msgid "Hide menu bar"
+#, kde-format
 msgctxt "@title:window"
 msgid "Hide menu bar"
 msgstr "Dölj menyrad"
@@ -2381,8 +2321,7 @@ msgid "Total"
 msgstr "Totalt"
 
 #: src/tabwidget.cpp:91
-#, fuzzy, kde-format
-#| msgid "Close the current tab"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Close the current tab"
 msgstr "Stäng aktuell flik"
@@ -2594,16 +2533,14 @@ msgid "Open In External Browser"
 msgstr "Öppna i extern webbläsare"
 
 #: src/widgets/searchbar.cpp:40
-#, fuzzy, kde-format
-#| msgid "Search articles..."
+#, kde-format
 msgid "Search articles…"
-msgstr "Sök efter artiklar..."
+msgstr "Sök efter artiklar…"
 
 #: src/widgets/searchbar.cpp:112
-#, fuzzy, kde-format
-#| msgid "Search articles...<%1>"
+#, kde-format
 msgid "Search articles…<%1>"
-msgstr "Sök efter artiklar...<%1>"
+msgstr "Sök efter artiklar…<%1>"
 
 #: src/widgets/statussearchline.cpp:43
 #, kde-format
@@ -2635,10 +2572,9 @@ msgid "Important"
 msgstr "Viktiga"
 
 #: src/widgets/statussearchline.cpp:64
-#, fuzzy, kde-format
-#| msgid "Text Filter"
+#, kde-format
 msgid "Filter"
-msgstr "Textfilter"
+msgstr "Filter"
 
 #~ msgid "&Add Feed..."
 #~ msgstr "&Lägg till kanal..."

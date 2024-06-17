@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-06-16 00:39+0000\n"
-"PO-Revision-Date: 2024-06-07 10:07+0200\n"
+"PO-Revision-Date: 2024-06-16 10:05+0200\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
 "Language: bg\n"
@@ -899,10 +899,9 @@ msgstr "Операция при щракване на средния бутон 
 
 #. i18n: ectx: label, entry, group (Browser)
 #: interfaces/akregator.kcfg:246
-#, fuzzy, kde-format
-#| msgid "Enable Plasma Activities integration"
+#, kde-format
 msgid "Enabled Plasma Activity"
-msgstr "Активиране на интеграция в дейности на Plasma"
+msgstr "Активирана интеграция в дейности на Plasma"
 
 #. i18n: ectx: label, entry, group (Advanced)
 #: interfaces/akregator.kcfg:266
