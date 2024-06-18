@@ -881,10 +881,9 @@ msgstr "鼠标中键点击应该做的事情。"
 
 #. i18n: ectx: label, entry, group (Browser)
 #: interfaces/akregator.kcfg:246
-#, fuzzy, kde-format
-#| msgid "Enable Javascript"
+#, kde-format
 msgid "Enabled Plasma Activity"
-msgstr "启用 Javascript"
+msgstr ""
 
 #. i18n: ectx: label, entry, group (Advanced)
 #: interfaces/akregator.kcfg:266

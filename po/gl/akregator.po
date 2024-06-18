@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-06-16 00:39+0000\n"
-"PO-Revision-Date: 2024-06-08 11:36+0200\n"
+"PO-Revision-Date: 2024-06-17 21:32+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Proxecto Trasno (proxecto@trasno.gal)\n"
 "Language: gl\n"
@@ -901,10 +901,9 @@ msgstr "O que debería ocorrer ao premer co botón central do rato."
 
 #. i18n: ectx: label, entry, group (Browser)
 #: interfaces/akregator.kcfg:246
-#, fuzzy, kde-format
-#| msgid "Enable Plasma Activities integration"
+#, kde-format
 msgid "Enabled Plasma Activity"
-msgstr "Activar a integración coas actividades de Plasma."
+msgstr "Actividade de Plasma activada"
 
 #. i18n: ectx: label, entry, group (Advanced)
 #: interfaces/akregator.kcfg:266
