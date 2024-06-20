@@ -6,7 +6,7 @@ macro(akregator_job_unittest _source)
         TEST_NAME ${_name}
         NAME_PREFIX "akregator-job"
         LINK_LIBRARIES Qt::Test akregatorprivate
-    )
-endmacro ()
+)
+endmacro()
 
 akregator_job_unittest(downloadfeediconjobtest.cpp)

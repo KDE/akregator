@@ -2,7 +2,7 @@
 # SPDX-FileCopyrightText: none
 include_directories(
     ${akregator_SOURCE_DIR}/src
-    )
+)
 
 ########### next target ###############
 add_library(kontact_akregatorplugin MODULE)

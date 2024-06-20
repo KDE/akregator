@@ -9,7 +9,7 @@ include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/urlhandler/
     ${CMAKE_CURRENT_SOURCE_DIR}/actions/
     ${CMAKE_CURRENT_SOURCE_DIR}/frame/
-    )
+)
 
 add_subdirectory(icons)
 
@@ -21,7 +21,7 @@ ecm_qt_declare_logging_category(akregator_common_SRCS HEADER akregator_debug.h I
         DESCRIPTION "akregator (akregator)"
         OLD_CATEGORY_NAMES log_akregator
         EXPORT AKREGATOR
-    )
+)
 
 set(akregator_SRCS main.cpp mainwindow.cpp mainwindow.h ${akregator_common_SRCS})
 
@@ -41,7 +41,7 @@ target_link_libraries(akregator
     akregatorinterfaces
     KPim6::PimCommon
     KF6::Syndication
-    )
+)
 if(TARGET KF6::IconThemes)
     target_link_libraries(akregator KF6::IconThemes)
 endif()
@@ -162,7 +162,7 @@ target_sources(akregatorprivate PRIVATE
     actions/actions.h
     akregator_options.h
 
-    )
+)
 target_include_directories(akregatorprivate PRIVATE storage/metakit/include)
 
 qt_add_resources(akregatorprivate "html"
@@ -174,12 +174,12 @@ qt_add_resources(akregatorprivate "html"
         formatter/html/style.css
 )
 
-if (COMPILE_WITH_UNITY_CMAKE_SUPPORT)
+if(COMPILE_WITH_UNITY_CMAKE_SUPPORT)
     set_target_properties(akregatorprivate PROPERTIES UNITY_BUILD ON)
 endif()
 generate_export_header(akregatorprivate BASE_NAME akregator)
 
-if (TARGET KF6::UserFeedbackWidgets)
+if(TARGET KF6::UserFeedbackWidgets)
     target_link_libraries(akregatorprivate PRIVATE KF6::UserFeedbackWidgets)
 endif()
 
@@ -203,12 +203,12 @@ target_link_libraries(akregatorprivate
     Qt::PrintSupport
     KPim6::WebEngineViewer
     KF6::TextAddonsWidgets
-    )
-if (TARGET KF6::TextEditTextToSpeech)
+)
+if(TARGET KF6::TextEditTextToSpeech)
     target_link_libraries(akregatorprivate
         PRIVATE
         KF6::TextEditTextToSpeech
-    )
+)
 endif()
 
 
@@ -217,7 +217,7 @@ target_include_directories(akregatorprivate PUBLIC "$<BUILD_INTERFACE:${akregato
 set_target_properties(akregatorprivate
     PROPERTIES VERSION ${KDEPIM_LIB_VERSION}
     SOVERSION ${KDEPIM_LIB_SOVERSION}
-    )
+)
 install(TARGETS akregatorprivate ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} LIBRARY NAMELINK_SKIP)
 
 ########### next target ###############
@@ -295,12 +295,12 @@ target_sources(akregatorpart PRIVATE
     akregator_part.h
     mainwidget.h
 
-    )
+)
 
 ki18n_wrap_ui(akregatorpart
     ui/addfeedwidgetbase.ui
     ui/feedpropertieswidgetbase.ui
-    )
+)
 
 generate_export_header(akregatorpart BASE_NAME akregatorpart)
 target_link_libraries(akregatorpart
@@ -324,8 +324,8 @@ target_link_libraries(akregatorpart
     KF6::Completion
     KF6::JobWidgets
     KF6::TextUtils
-    )
-if (COMPILE_WITH_UNITY_CMAKE_SUPPORT)
+)
+if(COMPILE_WITH_UNITY_CMAKE_SUPPORT)
     set_target_properties(akregatorpart PROPERTIES UNITY_BUILD ON)
 endif()
 
@@ -336,7 +336,7 @@ install(TARGETS akregatorpart DESTINATION ${KDE_INSTALL_PLUGINDIR})
 install(PROGRAMS data/org.kde.akregator.desktop DESTINATION ${KDE_INSTALL_APPDIR})
 install(FILES data/org.kde.akregator.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
 install(FILES org.kde.akregator.part.xml DESTINATION ${KDE_INSTALL_DBUSINTERFACEDIR})
-install(FILES data/akregator.notifyrc DESTINATION ${KDE_INSTALL_KNOTIFYRCDIR} )
+install(FILES data/akregator.notifyrc DESTINATION ${KDE_INSTALL_KNOTIFYRCDIR})
 
 if(BUILD_TESTING)
    add_subdirectory(job/autotests)
