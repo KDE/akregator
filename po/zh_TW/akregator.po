@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-16 00:39+0000\n"
+"POT-Creation-Date: 2024-06-21 00:39+0000\n"
 "PO-Revision-Date: 2024-06-20 02:12+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
@@ -54,14 +54,6 @@ msgstr ""
 "關於 Akregator 的更多資訊，請查看 <a href='https://kontact.kde.org/"
 "components/akregator/'>Akregator 網站</a>。如果您不希望再看到此頁面，<a "
 "href='config:/disable_introduction'>請點擊此處</a>。"
-
-#: src/about/introduction_akregator.html:20
-msgid "We hope that you will enjoy Akregator."
-msgstr "我們希望您享受使用 Akregator。"
-
-#: src/about/introduction_akregator.html:21
-msgid "Thank you, The Akregator Team"
-msgstr "感謝您，Akregator 團隊"
 
 #: src/formatter/html/combinedview.html:24
 msgid "Mark as Read"
@@ -2529,6 +2521,12 @@ msgstr "重要文章"
 #, kde-format
 msgid "Filter"
 msgstr "過濾器"
+
+#~ msgid "We hope that you will enjoy Akregator."
+#~ msgstr "我們希望您享受使用 Akregator。"
+
+#~ msgid "Thank you, The Akregator Team"
+#~ msgstr "感謝您，Akregator 團隊"
 
 #~ msgid "&Add Feed..."
 #~ msgstr "新增 feed(&A)..."

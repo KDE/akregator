@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-16 00:39+0000\n"
+"POT-Creation-Date: 2024-06-21 00:39+0000\n"
 "PO-Revision-Date: 2024-06-17 21:32+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Proxecto Trasno (proxecto@trasno.gal)\n"
@@ -53,14 +53,6 @@ msgstr ""
 "kontact.kde.org/components/akregator/'>sitio web de Akregator</a>. Se non "
 "quere volver ver esta páxina, <a href='config:/disable_introduction'>prema "
 "aquí</a>."
-
-#: src/about/introduction_akregator.html:20
-msgid "We hope that you will enjoy Akregator."
-msgstr "Esperamos que goce de Akregator."
-
-#: src/about/introduction_akregator.html:21
-msgid "Thank you, The Akregator Team"
-msgstr "Grazas, Equipo de Akregator"
 
 #: src/formatter/html/combinedview.html:24
 msgid "Mark as Read"
@@ -2576,6 +2568,12 @@ msgstr "Importante"
 #, kde-format
 msgid "Filter"
 msgstr "Filtrar"
+
+#~ msgid "We hope that you will enjoy Akregator."
+#~ msgstr "Esperamos que goce de Akregator."
+
+#~ msgid "Thank you, The Akregator Team"
+#~ msgstr "Grazas, Equipo de Akregator"
 
 #~ msgid "&Add Feed..."
 #~ msgstr "Eng&adir unha fonte…"

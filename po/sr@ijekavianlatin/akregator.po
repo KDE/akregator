@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-16 00:39+0000\n"
+"POT-Creation-Date: 2024-06-21 00:39+0000\n"
 "PO-Revision-Date: 2018-01-06 09:21+0100\n"
 "Last-Translator: Chusslove Illich <caslav.ilic@gmx.net>\n"
 "Language-Team: Serbian <kde-i18n-sr@kde.org>\n"
@@ -57,14 +57,6 @@ msgstr ""
 "Više informacija o korišćenju potražite <a href='http://akregator.kde."
 "org/'>na veb sajtu Akregatora</a>. Ako ne želite više da vidite ovu "
 "stranicu, <a href='config:/disable_introduction'>kliknite ovde</a>."
-
-#: src/about/introduction_akregator.html:20
-msgid "We hope that you will enjoy Akregator."
-msgstr "Nadamo se da ćete uživati uz Akregator."
-
-#: src/about/introduction_akregator.html:21
-msgid "Thank you, The Akregator Team"
-msgstr "Sa zahvalnošću, tim Akregatora"
 
 #: src/formatter/html/combinedview.html:24
 msgid "Mark as Read"
@@ -2709,6 +2701,12 @@ msgstr "Važni"
 #| msgid "Text Filter"
 msgid "Filter"
 msgstr "Filter teksta"
+
+#~ msgid "We hope that you will enjoy Akregator."
+#~ msgstr "Nadamo se da ćete uživati uz Akregator."
+
+#~ msgid "Thank you, The Akregator Team"
+#~ msgstr "Sa zahvalnošću, tim Akregatora"
 
 #~ msgid "&Add Feed..."
 #~ msgstr "&Dodaj dovod..."

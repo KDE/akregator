@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-16 00:39+0000\n"
+"POT-Creation-Date: 2024-06-21 00:39+0000\n"
 "PO-Revision-Date: 2024-06-16 15:30+0200\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
@@ -65,14 +65,6 @@ msgstr ""
 "href='https://kontact.kde.org/components/akregator/'>Akregator website</a>. "
 "Als u deze pagina niet meer wilt zien, <a href='config:/"
 "disable_introduction'>klik hier</a>."
-
-#: src/about/introduction_akregator.html:20
-msgid "We hope that you will enjoy Akregator."
-msgstr "Wij hopen dat u veel plezier beleeft aan Akregator."
-
-#: src/about/introduction_akregator.html:21
-msgid "Thank you, The Akregator Team"
-msgstr "Hartelijk dank, het team van Akregator"
 
 # engelse tekst spreekt van enkelvoud (feed), nl tekst spreekt van meervoud (feeds)
 #: src/formatter/html/combinedview.html:24
@@ -2652,6 +2644,12 @@ msgstr "Belangrijk"
 #, kde-format
 msgid "Filter"
 msgstr "Filter"
+
+#~ msgid "We hope that you will enjoy Akregator."
+#~ msgstr "Wij hopen dat u veel plezier beleeft aan Akregator."
+
+#~ msgid "Thank you, The Akregator Team"
+#~ msgstr "Hartelijk dank, het team van Akregator"
 
 #~ msgid "&Add Feed..."
 #~ msgstr "Feed &toevoegen..."

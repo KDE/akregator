@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-16 00:39+0000\n"
+"POT-Creation-Date: 2024-06-21 00:39+0000\n"
 "PO-Revision-Date: 2023-11-05 21:15+0100\n"
 "Last-Translator: Ferdinand Galko <galko.ferdinand@gmail.com>\n"
 "Language-Team: Slovak <opensuse-translation@opensuse.org>\n"
@@ -53,14 +53,6 @@ msgstr ""
 "kontact.kde.org/components/akregator.html'>webovú stránku Akregatora</a>. Ak "
 "túto stránku už nechcete vidieť, <a href='config:/"
 "disable_introduction'>kliknite sem</a>."
-
-#: src/about/introduction_akregator.html:20
-msgid "We hope that you will enjoy Akregator."
-msgstr "Dúfame, že sa vám Akregator bude páčiť."
-
-#: src/about/introduction_akregator.html:21
-msgid "Thank you, The Akregator Team"
-msgstr "Ďakujeme, tím Akregator"
 
 #: src/formatter/html/combinedview.html:24
 msgid "Mark as Read"
@@ -2632,6 +2624,12 @@ msgstr "Dôležité"
 #, kde-format
 msgid "Filter"
 msgstr "Filter"
+
+#~ msgid "We hope that you will enjoy Akregator."
+#~ msgstr "Dúfame, že sa vám Akregator bude páčiť."
+
+#~ msgid "Thank you, The Akregator Team"
+#~ msgstr "Ďakujeme, tím Akregator"
 
 #~ msgid "&Add Feed..."
 #~ msgstr "Prid&ať kanál..."

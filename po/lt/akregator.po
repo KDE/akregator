@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-16 00:39+0000\n"
+"POT-Creation-Date: 2024-06-21 00:39+0000\n"
 "PO-Revision-Date: 2024-05-24 00:57+0300\n"
 "Last-Translator: Mindaugas Baranauskas <opensuse.lietuviu.kalba@gmail.com>\n"
 "Language-Team: Lithuanian <kde-i18n-lt@kde.org>\n"
@@ -59,14 +59,6 @@ msgstr ""
 "href='https://kontact.kde.org/components/akregator/'>Akregator internetinėje "
 "svetainėje</a>. Jei daugiau nebenorite matyti šio puslapio, <a href='config:/"
 "disable_introduction'>spustelėkite čia</a>."
-
-#: src/about/introduction_akregator.html:20
-msgid "We hope that you will enjoy Akregator."
-msgstr "Tikimės, kad Jums Akregator patiks."
-
-#: src/about/introduction_akregator.html:21
-msgid "Thank you, The Akregator Team"
-msgstr "Ačiū Jums, Akregator komanda"
 
 #: src/formatter/html/combinedview.html:24
 msgid "Mark as Read"
@@ -2614,6 +2606,12 @@ msgstr "Svarbus"
 #, kde-format
 msgid "Filter"
 msgstr "Filtras"
+
+#~ msgid "We hope that you will enjoy Akregator."
+#~ msgstr "Tikimės, kad Jums Akregator patiks."
+
+#~ msgid "Thank you, The Akregator Team"
+#~ msgstr "Ačiū Jums, Akregator komanda"
 
 #~ msgid "&Add Feed..."
 #~ msgstr "&Pridėti kanalą..."

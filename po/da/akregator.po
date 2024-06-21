@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-16 00:39+0000\n"
+"POT-Creation-Date: 2024-06-21 00:39+0000\n"
 "PO-Revision-Date: 2021-09-27 21:09+0200\n"
 "Last-Translator: Martin Schlander <mschlander@opensuse.org>\n"
 "Language-Team: Danish <kde-i18n-doc@kde.org>\n"
@@ -56,14 +56,6 @@ msgstr ""
 "For mere information om brugen af Akregator, se <a href='https://kontact.kde."
 "org/components/akregator.html'>Akregators webside</a>. Hvis du ikke vil se "
 "denne side igen, så <a href='config:/disable_introduction'>klik her</a>."
-
-#: src/about/introduction_akregator.html:20
-msgid "We hope that you will enjoy Akregator."
-msgstr "Vi håber at du vil nyde at bruge Akregator."
-
-#: src/about/introduction_akregator.html:21
-msgid "Thank you, The Akregator Team"
-msgstr "Tak fra Akregrator-holdet"
 
 #: src/formatter/html/combinedview.html:24
 msgid "Mark as Read"
@@ -2640,6 +2632,12 @@ msgstr "Vigtige"
 #| msgid "Text Filter"
 msgid "Filter"
 msgstr "Tekstfilter"
+
+#~ msgid "We hope that you will enjoy Akregator."
+#~ msgstr "Vi håber at du vil nyde at bruge Akregator."
+
+#~ msgid "Thank you, The Akregator Team"
+#~ msgstr "Tak fra Akregrator-holdet"
 
 #~ msgid "&Add Feed..."
 #~ msgstr "&Tilføj feed..."

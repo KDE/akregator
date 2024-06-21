@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-16 00:39+0000\n"
+"POT-Creation-Date: 2024-06-21 00:39+0000\n"
 "PO-Revision-Date: 2024-05-23 15:01+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic\n"
@@ -53,14 +53,6 @@ msgstr ""
 "kontact.kde.org/components/akregator/'>Akregator vefsíðunni</a>. Ef þú vilt "
 "ekki sjá þessa síðu aftur skaltu <a href='config:/"
 "disable_introduction'>smella hér</a>."
-
-#: src/about/introduction_akregator.html:20
-msgid "We hope that you will enjoy Akregator."
-msgstr "Við vonum að þú njótir þess að nota Akregator."
-
-#: src/about/introduction_akregator.html:21
-msgid "Thank you, The Akregator Team"
-msgstr "Kærar þakkir frá Akregator-teyminu"
 
 #: src/formatter/html/combinedview.html:24
 msgid "Mark as Read"
@@ -2578,6 +2570,12 @@ msgstr "Mikilvægar"
 #, kde-format
 msgid "Filter"
 msgstr "Sía"
+
+#~ msgid "We hope that you will enjoy Akregator."
+#~ msgstr "Við vonum að þú njótir þess að nota Akregator."
+
+#~ msgid "Thank you, The Akregator Team"
+#~ msgstr "Kærar þakkir frá Akregator-teyminu"
 
 #~ msgid "&Add Feed..."
 #~ msgstr "&Bæta við straumi..."

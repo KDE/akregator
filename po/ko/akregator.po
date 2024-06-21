@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdepim\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-16 00:39+0000\n"
+"POT-Creation-Date: 2024-06-21 00:39+0000\n"
 "PO-Revision-Date: 2023-10-08 22:22+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -49,14 +49,6 @@ msgstr ""
 "더 많은 정보를 보려면 <a href='https://kontact.kde.org/components/"
 "akregator/'>Akregator 웹사이트</a>를 참조하십시오. 이 페이지를 더 이상 보지 "
 "않으려면 <a href='config:/disable_introduction'>여기</a>를 클릭하십시오."
-
-#: src/about/introduction_akregator.html:20
-msgid "We hope that you will enjoy Akregator."
-msgstr "Akregator를 잘 사용하시기를 기대합니다."
-
-#: src/about/introduction_akregator.html:21
-msgid "Thank you, The Akregator Team"
-msgstr "감사합니다. Akregator 팀"
 
 #: src/formatter/html/combinedview.html:24
 msgid "Mark as Read"
@@ -2582,6 +2574,12 @@ msgstr "중요한 글"
 #, kde-format
 msgid "Filter"
 msgstr "텍스트 필터"
+
+#~ msgid "We hope that you will enjoy Akregator."
+#~ msgstr "Akregator를 잘 사용하시기를 기대합니다."
+
+#~ msgid "Thank you, The Akregator Team"
+#~ msgstr "감사합니다. Akregator 팀"
 
 #~ msgid "&Add Feed..."
 #~ msgstr "피드 추가(&A)..."

@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-16 00:39+0000\n"
+"POT-Creation-Date: 2024-06-21 00:39+0000\n"
 "PO-Revision-Date: 2023-11-22 18:44+0200\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
@@ -61,14 +61,6 @@ msgstr ""
 "Lisätietoa Akregatorin käytöstä löytyy <a href='https://kontact.kde.org/"
 "components/akregator/'>Akregatorin sivustolta</a>. Ellet halua nähdä tätä "
 "sivua enää, <a href='config:/disable_introduction'>napsauta tästä</a>."
-
-#: src/about/introduction_akregator.html:20
-msgid "We hope that you will enjoy Akregator."
-msgstr "Toivomme, että pidät Akregatorista."
-
-#: src/about/introduction_akregator.html:21
-msgid "Thank you, The Akregator Team"
-msgstr "Kiittäen Akregator-kehitysryhmä"
 
 #: src/formatter/html/combinedview.html:24
 msgid "Mark as Read"
@@ -2631,6 +2623,12 @@ msgstr "Tärkeät"
 #, kde-format
 msgid "Filter"
 msgstr "Suodatin"
+
+#~ msgid "We hope that you will enjoy Akregator."
+#~ msgstr "Toivomme, että pidät Akregatorista."
+
+#~ msgid "Thank you, The Akregator Team"
+#~ msgstr "Kiittäen Akregator-kehitysryhmä"
 
 #~ msgid "&Add Feed..."
 #~ msgstr "&Lisää syöte…"

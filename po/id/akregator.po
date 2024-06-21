@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-16 00:39+0000\n"
+"POT-Creation-Date: 2024-06-21 00:39+0000\n"
 "PO-Revision-Date: 2023-01-02 07:22+0700\n"
 "Last-Translator: Wantoyèk <wantoyek@gmail.com>\n"
 "Language-Team: Indonesian <kde-i18n-doc@kde.org>\n"
@@ -50,14 +50,6 @@ msgstr ""
 "href='https://kontact.kde.org/components/akregator/'>situs Akregator</a>. "
 "Jika Anda tidak ingin melihat halaman ini lagi, silakan <a href='config:/"
 "disable_introduction'>klik di sini</a>."
-
-#: src/about/introduction_akregator.html:20
-msgid "We hope that you will enjoy Akregator."
-msgstr "Kami harap Anda menikmati Akregator."
-
-#: src/about/introduction_akregator.html:21
-msgid "Thank you, The Akregator Team"
-msgstr "Terimakasih, Tim Akregator"
 
 #: src/formatter/html/combinedview.html:24
 msgid "Mark as Read"
@@ -2568,6 +2560,12 @@ msgstr "Penting"
 #| msgid "Text Filter"
 msgid "Filter"
 msgstr "Filter Teks"
+
+#~ msgid "We hope that you will enjoy Akregator."
+#~ msgstr "Kami harap Anda menikmati Akregator."
+
+#~ msgid "Thank you, The Akregator Team"
+#~ msgstr "Terimakasih, Tim Akregator"
 
 #~ msgid "&Add Feed..."
 #~ msgstr "&Tambahkan Feed..."

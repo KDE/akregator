@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-16 00:39+0000\n"
+"POT-Creation-Date: 2024-06-21 00:39+0000\n"
 "PO-Revision-Date: 2024-06-16 10:05+0200\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
@@ -50,14 +50,6 @@ msgstr ""
 "href='https://kontact.kde.org/components/akregator.html'> уебсайта на "
 "Akregator </a>. Ако повече не искате да виждате тази страница, <a "
 "href='config:/disable_introduction'> кликнете тук </a>."
-
-#: src/about/introduction_akregator.html:20
-msgid "We hope that you will enjoy Akregator."
-msgstr "Надяваме се, че ще ви хареса Akregator."
-
-#: src/about/introduction_akregator.html:21
-msgid "Thank you, The Akregator Team"
-msgstr "Благодаря, екипът на Akregator"
 
 #: src/formatter/html/combinedview.html:24
 msgid "Mark as Read"
@@ -2580,3 +2572,9 @@ msgstr "Важно"
 #, kde-format
 msgid "Filter"
 msgstr "Филтър"
+
+#~ msgid "We hope that you will enjoy Akregator."
+#~ msgstr "Надяваме се, че ще ви хареса Akregator."
+
+#~ msgid "Thank you, The Akregator Team"
+#~ msgstr "Благодаря, екипът на Akregator"

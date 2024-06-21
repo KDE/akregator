@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: all2.po\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-16 00:39+0000\n"
+"POT-Creation-Date: 2024-06-21 00:39+0000\n"
 "PO-Revision-Date: 2004-09-20 15:44+0200\n"
 "Last-Translator: Thierry Vignaud <tvignaud@mandrakesoft.com>\n"
 "Language-Team: cy <LL@li.org>\n"
@@ -36,14 +36,6 @@ msgid ""
 "kontact.kde.org/components/akregator/'>Akregator website</a>. If you do not "
 "want to see this page anymore, <a href='config:/disable_introduction'>click "
 "here</a>."
-msgstr ""
-
-#: src/about/introduction_akregator.html:20
-msgid "We hope that you will enjoy Akregator."
-msgstr ""
-
-#: src/about/introduction_akregator.html:21
-msgid "Thank you, The Akregator Team"
 msgstr ""
 
 #: src/formatter/html/combinedview.html:24

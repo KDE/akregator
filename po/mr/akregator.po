@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-16 00:39+0000\n"
+"POT-Creation-Date: 2024-06-21 00:39+0000\n"
 "PO-Revision-Date: 2013-03-06 10:12+0530\n"
 "Last-Translator: Chetan Khona <chetan@kompkin.com>\n"
 "Language-Team: Marathi <kde-i18n-doc@kde.org>\n"
@@ -41,14 +41,6 @@ msgid ""
 "kontact.kde.org/components/akregator/'>Akregator website</a>. If you do not "
 "want to see this page anymore, <a href='config:/disable_introduction'>click "
 "here</a>."
-msgstr ""
-
-#: src/about/introduction_akregator.html:20
-msgid "We hope that you will enjoy Akregator."
-msgstr ""
-
-#: src/about/introduction_akregator.html:21
-msgid "Thank you, The Akregator Team"
 msgstr ""
 
 #: src/formatter/html/combinedview.html:24

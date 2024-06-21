@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-16 00:39+0000\n"
+"POT-Creation-Date: 2024-06-21 00:39+0000\n"
 "PO-Revision-Date: 2024-06-16 06:33+0200\n"
 "Last-Translator: Oliver Kellogg <olivermkellogg@gmail.com>\n"
 "Language-Team: Esperanto <kde-i18n-eo@kde.org>\n"
@@ -51,14 +51,6 @@ msgstr ""
 "kontact.kde.org/components/akregator/'>retejon de Akregator</a>. Se vi ne "
 "volas vidi ĉi tiun paĝon plu, <a href='config:/disable_introduction'>klaku "
 "ĉi tie</a>."
-
-#: src/about/introduction_akregator.html:20
-msgid "We hope that you will enjoy Akregator."
-msgstr "Ni esperas, ke vi ĝuos Akregator."
-
-#: src/about/introduction_akregator.html:21
-msgid "Thank you, The Akregator Team"
-msgstr "Dankon, La Akregator Teamo"
 
 #: src/formatter/html/combinedview.html:24
 msgid "Mark as Read"
@@ -2569,3 +2561,9 @@ msgstr "Grava"
 #, kde-format
 msgid "Filter"
 msgstr "Filtrilo"
+
+#~ msgid "We hope that you will enjoy Akregator."
+#~ msgstr "Ni esperas, ke vi ĝuos Akregator."
+
+#~ msgid "Thank you, The Akregator Team"
+#~ msgstr "Dankon, La Akregator Teamo"

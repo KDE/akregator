@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdepim-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-16 00:39+0000\n"
+"POT-Creation-Date: 2024-06-21 00:39+0000\n"
 "PO-Revision-Date: 2024-06-16 10:50+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
@@ -67,14 +67,6 @@ msgstr ""
 "href='https://kontact.kde.org/components/akregator/'>Akregatör web sitesini</"
 "a> ziyaret edin. Bu sayfayı bir daha görmek istemiyorsanız <a href='config:/"
 "disable_introduction'>buraya tıklayın</a>."
-
-#: src/about/introduction_akregator.html:20
-msgid "We hope that you will enjoy Akregator."
-msgstr "Umarız Akregatör’den hoşnut kalırsınız."
-
-#: src/about/introduction_akregator.html:21
-msgid "Thank you, The Akregator Team"
-msgstr "Teşekkürler, Akregatör Takımı"
 
 #: src/formatter/html/combinedview.html:24
 msgid "Mark as Read"
@@ -2590,6 +2582,12 @@ msgstr "Önemli"
 #, kde-format
 msgid "Filter"
 msgstr "Süz"
+
+#~ msgid "We hope that you will enjoy Akregator."
+#~ msgstr "Umarız Akregatör’den hoşnut kalırsınız."
+
+#~ msgid "Thank you, The Akregator Team"
+#~ msgstr "Teşekkürler, Akregatör Takımı"
 
 #~ msgid "&Add Feed..."
 #~ msgstr "Besleme &Ekle…"

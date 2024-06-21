@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-16 00:39+0000\n"
+"POT-Creation-Date: 2024-06-21 00:39+0000\n"
 "PO-Revision-Date: 2023-04-19 00:41+0200\n"
 "Last-Translator: Frederik Schwarzer <schwarzer@kde.org>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
@@ -54,14 +54,6 @@ msgstr ""
 "<a href='https://kontact.kde.org/components/akregator/'>Akregator-Webseite</"
 "a>. Wenn Sie diese Seite nicht wieder angezeigt bekommen möchten, <a "
 "href='config:/disable_introduction'>klicken Sie hier</a>."
-
-#: src/about/introduction_akregator.html:20
-msgid "We hope that you will enjoy Akregator."
-msgstr "Wir hoffen, dass Sie mit Akregator Freude haben."
-
-#: src/about/introduction_akregator.html:21
-msgid "Thank you, The Akregator Team"
-msgstr "Danke, das Akregator-Team"
 
 #: src/formatter/html/combinedview.html:24
 msgid "Mark as Read"
@@ -2664,6 +2656,12 @@ msgstr "Wichtig"
 #| msgid "Text Filter"
 msgid "Filter"
 msgstr "Textfilter"
+
+#~ msgid "We hope that you will enjoy Akregator."
+#~ msgstr "Wir hoffen, dass Sie mit Akregator Freude haben."
+
+#~ msgid "Thank you, The Akregator Team"
+#~ msgstr "Danke, das Akregator-Team"
 
 #~ msgid "&Add Feed..."
 #~ msgstr "Nachrichtenquelle &hinzufügen ..."

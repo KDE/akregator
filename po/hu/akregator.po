@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: KDE 4.3\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-16 00:39+0000\n"
+"POT-Creation-Date: 2024-06-21 00:39+0000\n"
 "PO-Revision-Date: 2024-05-29 09:40+0200\n"
 "Last-Translator: Kristof Kiszel <ulysses@fsf.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -51,14 +51,6 @@ msgstr ""
 "href='https://kontact.kde.org/components/akregator'>Akregator honlapját.</"
 "a>. Ha nem szeretné többet ezt az oldalt látni, <a href='config:/"
 "disable_introduction'>kattintson ide</a>."
-
-#: src/about/introduction_akregator.html:20
-msgid "We hope that you will enjoy Akregator."
-msgstr "Reméljük, hogy élvezni fogja az Akregator használatát."
-
-#: src/about/introduction_akregator.html:21
-msgid "Thank you, The Akregator Team"
-msgstr "Köszönettel, az Akregator fejlesztői"
 
 #: src/formatter/html/combinedview.html:24
 msgid "Mark as Read"
@@ -2584,6 +2576,12 @@ msgstr "Fontos"
 #, kde-format
 msgid "Filter"
 msgstr "Szűrő"
+
+#~ msgid "We hope that you will enjoy Akregator."
+#~ msgstr "Reméljük, hogy élvezni fogja az Akregator használatát."
+
+#~ msgid "Thank you, The Akregator Team"
+#~ msgstr "Köszönettel, az Akregator fejlesztői"
 
 #~ msgid "&Add Feed..."
 #~ msgstr "Csatorna h&ozzáadása…"
