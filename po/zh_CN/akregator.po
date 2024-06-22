@@ -2508,9 +2508,3 @@ msgstr "重要"
 #, kde-format
 msgid "Filter"
 msgstr "过滤器"
-
-#~ msgid "We hope that you will enjoy Akregator."
-#~ msgstr "我们希望您会喜欢 Akregator。"
-
-#~ msgid "Thank you, The Akregator Team"
-#~ msgstr "谢谢，Akregator 团队"

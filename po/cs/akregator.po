@@ -2575,9 +2575,3 @@ msgstr "Důležité"
 #, kde-format
 msgid "Filter"
 msgstr "Filtr"
-
-#~ msgid "We hope that you will enjoy Akregator."
-#~ msgstr "Doufáme, že vás bude práce s Akregatorem bavit."
-
-#~ msgid "Thank you, The Akregator Team"
-#~ msgstr "Děkujeme. Tým Akregatoru"
