@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-04-24 02:56+0000\n"
-"PO-Revision-Date: 2024-05-30 10:50+0200\n"
+"PO-Revision-Date: 2024-06-22 08:50+0200\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
 "Language: pl\n"
@@ -1160,7 +1160,7 @@ msgstr "&Oznacz kanały jako przeczytane"
 #: src/actions/actionmanagerimpl.cpp:191
 #, kde-format
 msgid "&Import Feeds..."
-msgstr "&Importuj kanały RSS..."
+msgstr "Za&importuj kanały RSS..."
 
 #: src/actions/actionmanagerimpl.cpp:195
 #, kde-format
