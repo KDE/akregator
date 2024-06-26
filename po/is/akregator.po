@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-21 00:39+0000\n"
+"POT-Creation-Date: 2024-06-26 00:39+0000\n"
 "PO-Revision-Date: 2024-05-23 15:01+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic\n"
@@ -2198,7 +2198,7 @@ msgctxt "@title:window"
 msgid "Hide menu bar"
 msgstr "Fela valmyndastiku"
 
-#: src/mainwindow.cpp:154
+#: src/mainwindow.cpp:157
 #, kde-format
 msgid ""
 "Could not find the Akregator part; please check your installation.\n"
