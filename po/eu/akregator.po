@@ -1,38 +1,38 @@
 # Translation for akregator.po to Euskara/Basque (eu).
-# Copyright (C) 2005-2023 This file is copyright:
+# Copyright (C) 2005-2024 This file is copyright:
 # This file is distributed under the same license as the akregator package.
-# SPDX-FileCopyrightText: 2023 KDE euskaratzeko proiektuko arduraduna <xalba@ni.eus>
+# SPDX-FileCopyrightText: 2023, 2024 KDE euskaratzeko proiektuko arduraduna <xalba@ni.eus>
 #
 # Translators:
 # Ion Gaztañaga <ion_g_m@hotmail.com>, 2005.
 # Marcos  <marcos@euskalgnu.org>, 2005.
 # Ion Gaztañaga <igaztanaga@gmail.com>, 2005.
 # marcos <marcos@euskalgnu.org>, 2006.
-# Iñigo Salvador Azurmendi <xalba@ni.eus>, 2020, 2021, 2022, 2023.
+# Iñigo Salvador Azurmendi <xalba@ni.eus>, 2020, 2021, 2022, 2023, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-06-26 00:39+0000\n"
-"PO-Revision-Date: 2023-10-03 07:39+0200\n"
+"PO-Revision-Date: 2024-06-29 14:15+0200\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
 "Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 23.08.1\n"
+"X-Generator: Lokalize 24.05.1\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "Ion Gaztañaga, Marcos"
+msgstr "Iñigo Salvador Azurmend,Ion Gaztañaga, Marcos"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "igaztanaga@gmail.com, marcos@euskalgnu.org"
+msgstr "xalba@ni.eus,igaztanaga@gmail.com, marcos@euskalgnu.org"
 
 #: src/about/introduction_akregator.html:18
 msgid ""
@@ -463,7 +463,7 @@ msgstr "Ekarri jarioak hainbestero:"
 #: configuration/ui/settings_general.ui:157
 #, kde-format
 msgid "Enable Plasma Activities integration"
-msgstr ""
+msgstr "Gaitu Plasma jarduerak bateratzea"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #: configuration/ui/settings_general.ui:167
@@ -894,10 +894,9 @@ msgstr "Saguaren erdiko botoiaren klik batek zer egin beharko lukeen."
 
 #. i18n: ectx: label, entry, group (Browser)
 #: interfaces/akregator.kcfg:246
-#, fuzzy, kde-format
-#| msgid "Enable Javascript"
+#, kde-format
 msgid "Enabled Plasma Activity"
-msgstr "Gaitu JavaScript"
+msgstr "Plasma Jarduera gaituta"
 
 #. i18n: ectx: label, entry, group (Advanced)
 #: interfaces/akregator.kcfg:266
@@ -967,8 +966,7 @@ msgid "Copyright © 2004–%1 Akregator authors"
 msgstr "Copyright © 2004–%1 Akregator egileek"
 
 #: src/aboutdata.cpp:27
-#, fuzzy, kde-format
-#| msgid "Laurent Montel"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Laurent Montel"
 msgstr "Laurent Montel"
@@ -979,8 +977,7 @@ msgid "Maintainer"
 msgstr "Mantentzailea"
 
 #: src/aboutdata.cpp:28
-#, fuzzy, kde-format
-#| msgid "Frank Osterfeld"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Frank Osterfeld"
 msgstr "Frank Osterfeld"
@@ -991,8 +988,7 @@ msgid "Former maintainer"
 msgstr "Aurreko mantentzailea"
 
 #: src/aboutdata.cpp:29
-#, fuzzy, kde-format
-#| msgid "Teemu Rytilahti"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Teemu Rytilahti"
 msgstr "Teemu Rytilahti"
@@ -1004,29 +1000,25 @@ msgid "Developer"
 msgstr "Garatzailea"
 
 #: src/aboutdata.cpp:30
-#, fuzzy, kde-format
-#| msgid "Sashmit Bhaduri"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Sashmit Bhaduri"
 msgstr "Sashmit Bhaduri"
 
 #: src/aboutdata.cpp:31
-#, fuzzy, kde-format
-#| msgid "Pierre Habouzit"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Pierre Habouzit"
 msgstr "Pierre Habouzit"
 
 #: src/aboutdata.cpp:32
-#, fuzzy, kde-format
-#| msgid "Stanislav Karchebny"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Stanislav Karchebny"
 msgstr "Stanislav Karchebny"
 
 #: src/aboutdata.cpp:33
-#, fuzzy, kde-format
-#| msgid "Gary Cramblitt"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Gary Cramblitt"
 msgstr "Gary Cramblitt"
@@ -1037,22 +1029,19 @@ msgid "Contributor"
 msgstr "Kolaboratzailea"
 
 #: src/aboutdata.cpp:34
-#, fuzzy, kde-format
-#| msgid "Stephan Binner"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Stephan Binner"
 msgstr "Stephan Binner"
 
 #: src/aboutdata.cpp:35
-#, fuzzy, kde-format
-#| msgid "Christof Musik"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Christof Musik"
 msgstr "Christof Musik"
 
 #: src/aboutdata.cpp:36
-#, fuzzy, kde-format
-#| msgid "Anne-Marie Mahfouf"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Anne-Marie Mahfouf"
 msgstr "Anne-Marie Mahfouf"
@@ -1063,8 +1052,7 @@ msgid "Handbook"
 msgstr "Eskuliburua"
 
 #: src/aboutdata.cpp:37
-#, fuzzy, kde-format
-#| msgid "Frerich Raabe"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Frerich Raabe"
 msgstr "Frerich Raabe"
@@ -1075,8 +1063,7 @@ msgid "Author of librss"
 msgstr "«librss»ren egilea"
 
 #: src/aboutdata.cpp:38
-#, fuzzy, kde-format
-#| msgid "Eckhart Woerner"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Eckhart Woerner"
 msgstr "Eckhart Woerner"
@@ -1087,8 +1074,7 @@ msgid "Bug tracker management, Usability improvements"
 msgstr "Akatsen jarraipenaren kudeaketa, erabilgarritasun hobekuntzak"
 
 #: src/aboutdata.cpp:39
-#, fuzzy, kde-format
-#| msgid "Heinrich Wendel"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Heinrich Wendel"
 msgstr "Heinrich Wendel"
@@ -1099,8 +1085,7 @@ msgid "Tons of bug fixes"
 msgstr "Akats-konponketa mordoa"
 
 #: src/aboutdata.cpp:40
-#, fuzzy, kde-format
-#| msgid "Eike Hein"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Eike Hein"
 msgstr "Eike Hein"
@@ -1111,8 +1096,7 @@ msgid "'Delayed mark as read' feature"
 msgstr "«Irakurritako gisa markatzea atzeratuta» ezaugarria"
 
 #: src/aboutdata.cpp:41
-#, fuzzy, kde-format
-#| msgid "Marcel Dierkes"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Marcel Dierkes"
 msgstr "Marcel Dierkes"
@@ -1123,8 +1107,7 @@ msgid "Icons"
 msgstr "Ikonoak"
 
 #: src/aboutdata.cpp:42
-#, fuzzy, kde-format
-#| msgid "George Staikos"
+#, kde-format
 msgctxt "@info:credit"
 msgid "George Staikos"
 msgstr "George Staikos"
@@ -1135,8 +1118,7 @@ msgid "Insomnia"
 msgstr "Insomnia"
 
 #: src/aboutdata.cpp:43
-#, fuzzy, kde-format
-#| msgid "Philipp Droessler"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Philipp Droessler"
 msgstr "Philipp Droessler"
@@ -1157,8 +1139,7 @@ msgid "&Delete Feed"
 msgstr "E&zabatu jarioa"
 
 #: src/actions/actionmanagerimpl.cpp:66 src/actions/actionmanagerimpl.cpp:249
-#, fuzzy, kde-format
-#| msgid "&Edit Feed..."
+#, kde-format
 msgid "&Edit Feed…"
 msgstr "&Editatu jarioa..."
 
@@ -1188,20 +1169,17 @@ msgid "&Mark Feeds as Read"
 msgstr "&Markatu jarioak irakurritako gisa"
 
 #: src/actions/actionmanagerimpl.cpp:191
-#, fuzzy, kde-format
-#| msgid "&Import Feeds..."
+#, kde-format
 msgid "&Import Feeds…"
 msgstr "&Inportatu jarioak..."
 
 #: src/actions/actionmanagerimpl.cpp:195
-#, fuzzy, kde-format
-#| msgid "&Export Feeds..."
+#, kde-format
 msgid "&Export Feeds…"
 msgstr "&Esportatu jarioak..."
 
 #: src/actions/actionmanagerimpl.cpp:200
-#, fuzzy, kde-format
-#| msgid "&Configure Akregator..."
+#, kde-format
 msgid "&Configure Akregator…"
 msgstr "&Konfiguratu Akregator..."
 
@@ -1216,14 +1194,12 @@ msgid "Reload All Tabs"
 msgstr "Birzamatu fitxa guztiak"
 
 #: src/actions/actionmanagerimpl.cpp:231
-#, fuzzy, kde-format
-#| msgid "Add Feed"
+#, kde-format
 msgid "&Add Feed…"
-msgstr "Gehitu jarioa"
+msgstr "&Gehitu jarioa..."
 
 #: src/actions/actionmanagerimpl.cpp:237
-#, fuzzy, kde-format
-#| msgid "Ne&w Folder..."
+#, kde-format
 msgid "Ne&w Folder…"
 msgstr "Karpeta &berria..."
 
@@ -1286,14 +1262,13 @@ msgstr "&Markatu honela"
 #, kde-format
 msgctxt "as in: mark as read"
 msgid "&Read"
-msgstr "&Irakurritakoa"
+msgstr "&Irakurrita"
 
 #: src/actions/actionmanagerimpl.cpp:371
-#, fuzzy, kde-format
-#| msgid "Mark selected article as read"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as read"
-msgstr "Markatu hautatutako artikulua irakurritako gisa"
+msgstr "Markatu hautatutako artikulua irakurrita gisa"
 
 #: src/actions/actionmanagerimpl.cpp:377
 #, kde-format
@@ -1302,8 +1277,7 @@ msgid "&New"
 msgstr "&Berria"
 
 #: src/actions/actionmanagerimpl.cpp:380
-#, fuzzy, kde-format
-#| msgid "Mark selected article as new"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as new"
 msgstr "Markatu hautatutako artikulua berri gisa"
@@ -1312,26 +1286,24 @@ msgstr "Markatu hautatutako artikulua berri gisa"
 #, kde-format
 msgctxt "as in: mark as unread"
 msgid "&Unread"
-msgstr "Irakurri &gabea"
+msgstr "Irakurri &gabe"
 
 #: src/actions/actionmanagerimpl.cpp:387
-#, fuzzy, kde-format
-#| msgid "Mark selected article as unread"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as unread"
-msgstr "Markatu hautatutako artikulua irakurri gabeko gisa"
+msgstr "Markatu hautatutako artikulua irakurri gabe gisa"
 
 #: src/actions/actionmanagerimpl.cpp:393
 #, kde-format
 msgid "&Mark as Important"
-msgstr "&Markatu «Garrantzizkoa» gisa"
+msgstr "&Markatu Garrantzitsu gisa"
 
 #: src/actions/actionmanagerimpl.cpp:397
-#, fuzzy, kde-format
-#| msgid "Remove &Important Mark"
+#, kde-format
 msgctxt "@action:button"
 msgid "Remove &Important Mark"
-msgstr "Kendu «&Garrantzizkoa» marka"
+msgstr "Kendu &Garrantzitsua marka"
 
 #: src/actions/actionmanagerimpl.cpp:401
 #, kde-format
@@ -1354,20 +1326,17 @@ msgid "Move Node Right"
 msgstr "Mugitu nodoa eskuinera"
 
 #: src/actions/actionmanagerimpl.cpp:422
-#, fuzzy, kde-format
-#| msgid "Send Link Address"
+#, kde-format
 msgid "Send &Link Address…"
-msgstr "Bidali estekaren helbidea"
+msgstr "Bidali es&tekaren helbidea..."
 
 #: src/actions/actionmanagerimpl.cpp:427
-#, fuzzy, kde-format
-#| msgid "Send &File..."
+#, kde-format
 msgid "Send &File…"
 msgstr "Bidali &fitxategia..."
 
 #: src/actions/actionmanagerimpl.cpp:433
-#, fuzzy, kde-format
-#| msgid "Set Focus to Quick Search"
+#, kde-format
 msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr "Ezarri fokua bilaketa bizkorrean"
@@ -1473,15 +1442,13 @@ msgid "Unmute"
 msgstr "Soinua egin"
 
 #: src/actions/actionmanagerimpl.cpp:598
-#, fuzzy, kde-format
-#| msgid "Speak Text"
+#, kde-format
 msgctxt "@action"
 msgid "Speak Text"
 msgstr "Esan testua"
 
 #: src/actions/actionmanagerimpl.cpp:603
-#, fuzzy, kde-format
-#| msgid "&Find in Message..."
+#, kde-format
 msgid "&Find in Message…"
 msgstr "&Bilatu mezuan..."
 
@@ -1491,15 +1458,13 @@ msgid "Close Tab"
 msgstr "Itxi fitxa"
 
 #: src/actions/actionmanagerimpl.cpp:627
-#, fuzzy, kde-format
-#| msgid "Activate Tab %1"
+#, kde-format
 msgctxt "@action"
 msgid "Activate Tab %1"
 msgstr "Aktibatu %1 fitxa"
 
 #: src/actions/actionmanagerimpl.cpp:633
-#, fuzzy, kde-format
-#| msgid "&Save Link As..."
+#, kde-format
 msgid "&Save Link As…"
 msgstr "&Gorde esteka honela..."
 
@@ -1509,15 +1474,13 @@ msgid "Copy &Link Address"
 msgstr "Kopiatu es&tekaren helbidea"
 
 #: src/actions/actionmanagerimpl.cpp:640
-#, fuzzy, kde-format
-#| msgid "Copy Image Location"
+#, kde-format
 msgctxt "@action"
 msgid "Copy Image Location"
 msgstr "Kopiatu irudiaren kokalekua"
 
 #: src/actions/actionmanagerimpl.cpp:647
-#, fuzzy, kde-format
-#| msgid "Save Image On Disk..."
+#, kde-format
 msgctxt "@action"
 msgid "Save Image On Disk…"
 msgstr "Gorde irudia diskoan..."
@@ -1549,38 +1512,34 @@ msgid "Feed not found from %1."
 msgstr "%1(e)ko jarioa ez da aurkitu."
 
 #: src/addfeeddialog.cpp:121
-#, fuzzy, kde-format
-#| msgid "Feed found, downloading..."
+#, kde-format
 msgid "Feed found, downloading…"
 msgstr "Jarioa aurkitu da, zama-jaisten..."
 
 #: src/akregator_options.h:20 src/akregator_options.h:28
-#, fuzzy, kde-format
-#| msgid "Add a feed with the given URL"
+#, kde-format
 msgctxt "@info:shell"
 msgid "Add a feed with the given URL"
-msgstr "Gehitu emandako URLko jarioa"
+msgstr "Gehitu jario bat emandako URLarekin"
 
 #: src/akregator_options.h:23
-#, fuzzy, kde-format
-#| msgid "When adding feeds, place them in this group"
+#, kde-format
 msgctxt "@info:shell"
 msgid "When adding feeds, place them in this group"
 msgstr "Jarioak gehitzean, ipin itzazu talde honetan"
 
 #: src/akregator_options.h:25
-#, fuzzy, kde-format
-#| msgid "Hide main window on startup"
+#, kde-format
 msgctxt "@info:shell"
 msgid "Hide main window on startup"
-msgstr "Ezkutatu leiho nagusia abiaraztean"
+msgstr "Ezkutatu leiho nagusia abiatzerakoan"
 
 #: src/akregator_options.h:30
-#, fuzzy, kde-format
-#| msgid "Lists the available options for user feedback"
+#, kde-format
 msgctxt "@info:shell"
 msgid "Lists the available options for user feedback"
-msgstr "Zerrendatu erabiltzaileen erreakzioetarako aukera erabilgarriak"
+msgstr ""
+"Erabiltzailearen atzera-elikadurarako aukera erabilgarriak zerrendatzen ditu"
 
 #: src/akregator_part.cpp:78
 #, kde-format
@@ -1891,8 +1850,7 @@ msgstr ""
 "babes-kopiarik sortu.</qt>"
 
 #: src/command/loadfeedlistcommand.cpp:129
-#, fuzzy, kde-format
-#| msgid "Opening Feed List..."
+#, kde-format
 msgid "Opening Feed List…"
 msgstr "Jario-zerrenda irekitzen..."
 
@@ -1932,15 +1890,13 @@ msgstr ""
 "babes-kopiarik sortu:</qt>"
 
 #: src/crashwidget/crashwidget.cpp:21
-#, fuzzy, kde-format
-#| msgid ""
-#| "Akregator did not close correctly. Would you like to restore the previous "
-#| "session?"
+#, kde-format
 msgctxt "@label:textbox"
 msgid ""
 "Akregator did not close correctly. Would you like to restore the previous "
 "session?"
-msgstr "Akregator ez da era egokian itxi. Aurreko saioa lehengoratu nahi duzu?"
+msgstr ""
+"Akregator ez da era egokian itxi. Aurreko saioa lehengoratu nahi zenuke?"
 
 #: src/crashwidget/crashwidget.cpp:37
 #, kde-format
@@ -2128,8 +2084,7 @@ msgid "Untitled"
 msgstr "Titulu gabea"
 
 #: src/frame/frame.cpp:140
-#, fuzzy, kde-format
-#| msgid "Loading..."
+#, kde-format
 msgid "Loading…"
 msgstr "Zamatzen..."
 
@@ -2206,8 +2161,7 @@ msgid "Networking is not available."
 msgstr "Sarea ez dago erabilgarri."
 
 #: src/mainwidget.cpp:866
-#, fuzzy, kde-format
-#| msgid "Fetching Feeds..."
+#, kde-format
 msgid "Fetching Feeds…"
 msgstr "Jarioak ekartzen..."
 
@@ -2369,8 +2323,7 @@ msgid "Total"
 msgstr "Guztira"
 
 #: src/tabwidget.cpp:91
-#, fuzzy, kde-format
-#| msgid "Close the current tab"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Close the current tab"
 msgstr "Itxi uneko fitxa"
@@ -2582,14 +2535,12 @@ msgid "Open In External Browser"
 msgstr "Ireki kanpoko arakatzailean"
 
 #: src/widgets/searchbar.cpp:40
-#, fuzzy, kde-format
-#| msgid "Search articles..."
+#, kde-format
 msgid "Search articles…"
 msgstr " Bilatu artikuluak..."
 
 #: src/widgets/searchbar.cpp:112
-#, fuzzy, kde-format
-#| msgid "Search articles...<%1>"
+#, kde-format
 msgid "Search articles…<%1>"
 msgstr "Bilatu artikuluak...<%1>"
 
