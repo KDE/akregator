@@ -245,6 +245,9 @@ target_sources(akregatorpart PRIVATE
     widgets/searchbar.cpp
     widgets/akregatorcentralwidget.cpp
 
+    widgets/statussearchbuttons.h
+    widgets/statussearchbuttons.cpp
+
     subscription/subscriptionlistview.cpp
     subscription/subscriptionlistdelegate.cpp
     subscription/subscriptionlistmodel.cpp
