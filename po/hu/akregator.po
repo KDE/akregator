@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: KDE 4.3\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-26 00:39+0000\n"
+"POT-Creation-Date: 2024-07-04 00:39+0000\n"
 "PO-Revision-Date: 2024-05-29 09:40+0200\n"
 "Last-Translator: Kristof Kiszel <ulysses@fsf.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -2534,12 +2534,16 @@ msgid "Open In External Browser"
 msgstr "Megnyitás külső böngészőben"
 
 #: src/widgets/searchbar.cpp:40
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Search articles…"
+msgctxt "@info:placeholder"
 msgid "Search articles…"
 msgstr "Cikkek keresése…"
 
 #: src/widgets/searchbar.cpp:112
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Search articles…<%1>"
+msgctxt "@info:placeholder"
 msgid "Search articles…<%1>"
 msgstr "Cikkek keresése…<%1>"
 

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-26 00:39+0000\n"
+"POT-Creation-Date: 2024-07-04 00:39+0000\n"
 "PO-Revision-Date: 2013-03-06 10:12+0530\n"
 "Last-Translator: Chetan Khona <chetan@kompkin.com>\n"
 "Language-Team: Marathi <kde-i18n-doc@kde.org>\n"
@@ -2500,12 +2500,14 @@ msgstr ""
 #: src/widgets/searchbar.cpp:40
 #, fuzzy, kde-format
 #| msgid "New articles:"
+msgctxt "@info:placeholder"
 msgid "Search articles…"
 msgstr "नवीन लेख :"
 
 #: src/widgets/searchbar.cpp:112
 #, fuzzy, kde-format
 #| msgid "New articles:"
+msgctxt "@info:placeholder"
 msgid "Search articles…<%1>"
 msgstr "नवीन लेख :"
 

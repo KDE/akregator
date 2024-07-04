@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-26 00:39+0000\n"
+"POT-Creation-Date: 2024-07-04 00:39+0000\n"
 "PO-Revision-Date: 2024-05-28 09:59+0300\n"
 "Last-Translator: Toms Trasuns <toms.trasuns@posteo.net>\n"
 "Language-Team: Latvian <kde-i18n-doc@kde.org>\n"
@@ -2534,12 +2534,16 @@ msgid "Open In External Browser"
 msgstr "Atvērt ārējā pārlūkā"
 
 #: src/widgets/searchbar.cpp:40
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Search articles…"
+msgctxt "@info:placeholder"
 msgid "Search articles…"
 msgstr "Meklēt rakstus…"
 
 #: src/widgets/searchbar.cpp:112
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Search articles…<%1>"
+msgctxt "@info:placeholder"
 msgid "Search articles…<%1>"
 msgstr "Meklēt rakstus…<%1>"
 

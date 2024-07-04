@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-26 00:39+0000\n"
+"POT-Creation-Date: 2024-07-04 00:39+0000\n"
 "PO-Revision-Date: 2024-04-23 19:24\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -2466,12 +2466,15 @@ msgid "Open In External Browser"
 msgstr "在外部浏览器中打开"
 
 #: src/widgets/searchbar.cpp:40
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Unread articles:"
+msgctxt "@info:placeholder"
 msgid "Search articles…"
-msgstr ""
+msgstr "已读文章："
 
 #: src/widgets/searchbar.cpp:112
 #, kde-format
+msgctxt "@info:placeholder"
 msgid "Search articles…<%1>"
 msgstr ""
 

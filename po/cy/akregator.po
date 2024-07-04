@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: all2.po\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-26 00:39+0000\n"
+"POT-Creation-Date: 2024-07-04 00:39+0000\n"
 "PO-Revision-Date: 2004-09-20 15:44+0200\n"
 "Last-Translator: Thierry Vignaud <tvignaud@mandrakesoft.com>\n"
 "Language-Team: cy <LL@li.org>\n"
@@ -2523,11 +2523,13 @@ msgstr ""
 
 #: src/widgets/searchbar.cpp:40
 #, fuzzy, kde-format
+msgctxt "@info:placeholder"
 msgid "Search articles…"
 msgstr "Er&thygl Nesaf Heb ei Darllen "
 
 #: src/widgets/searchbar.cpp:112
 #, fuzzy, kde-format
+msgctxt "@info:placeholder"
 msgid "Search articles…<%1>"
 msgstr "Er&thygl Nesaf Heb ei Darllen "
 

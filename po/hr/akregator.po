@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-26 00:39+0000\n"
+"POT-Creation-Date: 2024-07-04 00:39+0000\n"
 "PO-Revision-Date: 2010-01-24 17:23+0100\n"
 "Last-Translator: Andrej Dundovic <adundovi@gmail.com>\n"
 "Language-Team: Croatian <kde-croatia-list@lists.sourceforge.net>\n"
@@ -2469,11 +2469,13 @@ msgstr ""
 
 #: src/widgets/searchbar.cpp:40
 #, kde-format
+msgctxt "@info:placeholder"
 msgid "Search articles…"
 msgstr ""
 
 #: src/widgets/searchbar.cpp:112
 #, kde-format
+msgctxt "@info:placeholder"
 msgid "Search articles…<%1>"
 msgstr ""
 

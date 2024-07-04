@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdepim\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-26 00:39+0000\n"
+"POT-Creation-Date: 2024-07-04 00:39+0000\n"
 "PO-Revision-Date: 2023-10-08 22:22+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -2532,12 +2532,14 @@ msgstr "외부 브라우저로 열기"
 #: src/widgets/searchbar.cpp:40
 #, fuzzy, kde-format
 #| msgid "Search articles..."
+msgctxt "@info:placeholder"
 msgid "Search articles…"
 msgstr "글 찾기..."
 
 #: src/widgets/searchbar.cpp:112
 #, fuzzy, kde-format
 #| msgid "Search articles...<%1>"
+msgctxt "@info:placeholder"
 msgid "Search articles…<%1>"
 msgstr "글 찾는 중...<%1>"
 

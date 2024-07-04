@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-26 00:39+0000\n"
+"POT-Creation-Date: 2024-07-04 00:39+0000\n"
 "PO-Revision-Date: 2012-07-09 22:08+0800\n"
 "Last-Translator: Lê Hoàng Phương <herophuong93@gmail.com>\n"
 "Language-Team: Vietnamese <kde-i18n-vi@kde.org>\n"
@@ -2611,12 +2611,14 @@ msgstr "Mở trong trình duyệt ngoài"
 #: src/widgets/searchbar.cpp:40
 #, fuzzy, kde-format
 #| msgid "Unread articles:"
+msgctxt "@info:placeholder"
 msgid "Search articles…"
 msgstr "Bài viết chưa đọc:"
 
 #: src/widgets/searchbar.cpp:112
 #, fuzzy, kde-format
 #| msgid "Unread articles:"
+msgctxt "@info:placeholder"
 msgid "Search articles…<%1>"
 msgstr "Bài viết chưa đọc:"
 

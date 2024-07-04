@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-26 00:39+0000\n"
+"POT-Creation-Date: 2024-07-04 00:39+0000\n"
 "PO-Revision-Date: 2020-06-13 19:12+0300\n"
 "Last-Translator: Marek Laane <qiilaq69@gmail.com>\n"
 "Language-Team: Estonian <kde-et@lists.linux.ee>\n"
@@ -2577,12 +2577,14 @@ msgstr "Ava välises veebilehitsejas"
 #: src/widgets/searchbar.cpp:40
 #, fuzzy, kde-format
 #| msgid "Search articles..."
+msgctxt "@info:placeholder"
 msgid "Search articles…"
 msgstr "Otsi artiklitest..."
 
 #: src/widgets/searchbar.cpp:112
 #, fuzzy, kde-format
 #| msgid "Search articles...<%1>"
+msgctxt "@info:placeholder"
 msgid "Search articles…<%1>"
 msgstr "Otsi artiklitest...<%1>"
 

@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdepim-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-26 00:39+0000\n"
+"POT-Creation-Date: 2024-07-04 00:39+0000\n"
 "PO-Revision-Date: 2024-06-16 10:50+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
@@ -2540,12 +2540,16 @@ msgid "Open In External Browser"
 msgstr "Dış Tarayıcıda Aç"
 
 #: src/widgets/searchbar.cpp:40
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Search articles…"
+msgctxt "@info:placeholder"
 msgid "Search articles…"
 msgstr "Yazılarda ara…"
 
 #: src/widgets/searchbar.cpp:112
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Search articles…<%1>"
+msgctxt "@info:placeholder"
 msgid "Search articles…<%1>"
 msgstr "Yazılarda ara…<%1>"
 

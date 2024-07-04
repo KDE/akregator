@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdepim\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-26 00:39+0000\n"
+"POT-Creation-Date: 2024-07-04 00:39+0000\n"
 "PO-Revision-Date: 2014-01-31 18:57+0100\n"
 "Last-Translator: Samir Ribić <megaribi@epn.ba>\n"
 "Language-Team: Bosnian <bs@li.org>\n"
@@ -2641,12 +2641,14 @@ msgstr "Otvori u spoljašnjem pregledaču"
 #: src/widgets/searchbar.cpp:40
 #, fuzzy, kde-format
 #| msgid "Unread articles:"
+msgctxt "@info:placeholder"
 msgid "Search articles…"
 msgstr "Nepročitani članci:"
 
 #: src/widgets/searchbar.cpp:112
 #, fuzzy, kde-format
 #| msgid "Unread articles:"
+msgctxt "@info:placeholder"
 msgid "Search articles…<%1>"
 msgstr "Nepročitani članci:"
 
