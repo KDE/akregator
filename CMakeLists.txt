@@ -131,6 +131,10 @@ endif()
 
 configure_file(config-akregator.h.in ${CMAKE_CURRENT_BINARY_DIR}/config-akregator.h)
 
+if(BUILD_TESTING)
+    add_definitions(-DBUILD_TESTING)
+endif()
+
 add_subdirectory(export)
 add_subdirectory(interfaces)
 add_subdirectory(configuration)
