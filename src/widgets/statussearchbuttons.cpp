@@ -26,39 +26,44 @@ StatusSearchButtons::StatusSearchButtons(QWidget *parent)
     toolButton->setCheckable(true);
     toolButton->setIcon(QIcon::fromTheme(QStringLiteral("system-run")));
     toolButton->setToolTip(i18n("All Articles"));
-    mainLayout->addWidget(toolButton);
+    toolButton->setAutoRaise(true);
+    mainLayout->addWidget(toolButton, 0, Qt::AlignTop);
     mButtonGroup->addButton(toolButton, StatusSearchLine::Status::AllArticles);
 
     // NewArticles
     toolButton = new QToolButton(this);
     toolButton->setCheckable(true);
+    toolButton->setAutoRaise(true);
     toolButton->setIcon(QIcon::fromTheme(QStringLiteral("mail-mark-unread-new")));
     toolButton->setToolTip(i18nc("New articles filter", "New"));
-    mainLayout->addWidget(toolButton);
+    mainLayout->addWidget(toolButton, 0, Qt::AlignTop);
     mButtonGroup->addButton(toolButton, StatusSearchLine::Status::NewArticles);
 
     // Unread
     toolButton = new QToolButton(this);
     toolButton->setCheckable(true);
+    toolButton->setAutoRaise(true);
     toolButton->setIcon(QIcon::fromTheme(QStringLiteral("mail-mark-unread")));
     toolButton->setToolTip(i18nc("Unread articles filter", "Unread"));
-    mainLayout->addWidget(toolButton);
+    mainLayout->addWidget(toolButton, 0, Qt::AlignTop);
     mButtonGroup->addButton(toolButton, StatusSearchLine::Status::UnreadArticles);
 
     // Read
     toolButton = new QToolButton(this);
     toolButton->setCheckable(true);
+    toolButton->setAutoRaise(true);
     toolButton->setIcon(QIcon::fromTheme(QStringLiteral("mail-mark-read")));
     toolButton->setToolTip(i18nc("Read articles filter", "Read"));
-    mainLayout->addWidget(toolButton);
+    mainLayout->addWidget(toolButton, 0, Qt::AlignTop);
     mButtonGroup->addButton(toolButton, StatusSearchLine::Status::ReadArticles);
 
     // Important
     toolButton = new QToolButton(this);
     toolButton->setCheckable(true);
+    toolButton->setAutoRaise(true);
     toolButton->setIcon(QIcon::fromTheme(QStringLiteral("mail-mark-important")));
     toolButton->setToolTip(i18nc("Important articles filter", "Important"));
-    mainLayout->addWidget(toolButton);
+    mainLayout->addWidget(toolButton, 0, Qt::AlignTop);
     mButtonGroup->addButton(toolButton, StatusSearchLine::Status::ImportantArticles);
     connect(mButtonGroup, &QButtonGroup::idClicked, this, [this](int index) {
         Q_EMIT statusChanged(static_cast<StatusSearchLine::Status>(index));
