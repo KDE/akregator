@@ -58,7 +58,7 @@ QString SearchBar::text() const
     return m_searchText;
 }
 
-StatusSearchLine::Status SearchBar::status() const
+StatusSearchButtons::Status SearchBar::status() const
 {
     return m_statusSearchButtons->status();
 }
@@ -80,10 +80,10 @@ void SearchBar::setFocusSearchLine()
 
 void SearchBar::slotClearSearch()
 {
-    if (status() != Akregator::StatusSearchLine::AllArticles || !m_searchLine->text().trimmed().isEmpty()) {
+    if (status() != Akregator::StatusSearchButtons::AllArticles || !m_searchLine->text().trimmed().isEmpty()) {
         m_searchLine->clear();
-        m_statusSearchButtons->setStatus(Akregator::StatusSearchLine::AllArticles);
-        m_statusSearchButtons->setStatus(Akregator::StatusSearchLine::AllArticles);
+        m_statusSearchButtons->setStatus(Akregator::StatusSearchButtons::AllArticles);
+        m_statusSearchButtons->setStatus(Akregator::StatusSearchButtons::AllArticles);
         m_timer.stop();
         slotStopActiveSearch();
     }
@@ -91,8 +91,8 @@ void SearchBar::slotClearSearch()
 
 void SearchBar::slotSetStatus(int status)
 {
-    m_statusSearchButtons->setStatus(static_cast<Akregator::StatusSearchLine::Status>(status));
-    m_statusSearchButtons->setStatus(static_cast<Akregator::StatusSearchLine::Status>(status));
+    m_statusSearchButtons->setStatus(static_cast<Akregator::StatusSearchButtons::Status>(status));
+    m_statusSearchButtons->setStatus(static_cast<Akregator::StatusSearchButtons::Status>(status));
     triggerTimer();
 }
 
@@ -102,7 +102,7 @@ void SearchBar::slotSetText(const QString &text)
     triggerTimer();
 }
 
-void SearchBar::slotStatusChanged(Akregator::StatusSearchLine::Status /*status*/)
+void SearchBar::slotStatusChanged(Akregator::StatusSearchButtons::Status /*status*/)
 {
     triggerTimer();
 }
@@ -149,26 +149,26 @@ void SearchBar::slotActivateSearch()
     }
 
     switch (m_statusSearchButtons->status()) {
-    case StatusSearchLine::AllArticles:
+    case StatusSearchButtons::AllArticles:
         break;
-    case StatusSearchLine::NewArticles: {
+    case StatusSearchButtons::NewArticles: {
         Criterion crit(Criterion::Status, Criterion::Equals, New);
         statusCriteria << crit;
         break;
     }
-    case StatusSearchLine::UnreadArticles: {
+    case StatusSearchButtons::UnreadArticles: {
         Criterion crit1(Criterion::Status, Criterion::Equals, New);
         Criterion crit2(Criterion::Status, Criterion::Equals, Unread);
         statusCriteria << crit1;
         statusCriteria << crit2;
         break;
     }
-    case StatusSearchLine::ReadArticles: {
+    case StatusSearchButtons::ReadArticles: {
         Criterion crit(Criterion::Status, Criterion::Equals, Read);
         statusCriteria << crit;
         break;
     }
-    case StatusSearchLine::ImportantArticles: {
+    case StatusSearchButtons::ImportantArticles: {
         Criterion crit(Criterion::KeepFlag, Criterion::Equals, true);
         statusCriteria << crit;
         break;

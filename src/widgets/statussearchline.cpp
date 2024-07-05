@@ -8,7 +8,6 @@
 #include <QKeyEvent>
 
 using namespace Akregator;
-Q_DECLARE_METATYPE(Akregator::StatusSearchLine::Status)
 StatusSearchLine::StatusSearchLine(QWidget *parent)
     : QLineEdit(parent)
 {

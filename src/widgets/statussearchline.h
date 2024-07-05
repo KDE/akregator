@@ -13,14 +13,6 @@ class StatusSearchLine : public QLineEdit
 {
     Q_OBJECT
 public:
-    enum Status {
-        AllArticles = 0,
-        NewArticles,
-        UnreadArticles,
-        ReadArticles,
-        ImportantArticles,
-    };
-
     explicit StatusSearchLine(QWidget *parent = nullptr);
     ~StatusSearchLine() override;
 

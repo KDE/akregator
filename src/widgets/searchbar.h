@@ -9,7 +9,7 @@
 #pragma once
 
 #include "articlematcher.h"
-#include "widgets/statussearchline.h"
+#include "widgets/statussearchbuttons.h"
 #include <QSharedPointer>
 #include <QTimer>
 #include <QWidget>
@@ -21,7 +21,6 @@ namespace Filters
 {
 class AbstractMatcher;
 }
-class StatusSearchButtons;
 class SearchBar : public QWidget
 {
     Q_OBJECT
@@ -31,7 +30,7 @@ public:
     ~SearchBar() override;
 
     [[nodiscard]] QString text() const;
-    [[nodiscard]] StatusSearchLine::Status status() const;
+    [[nodiscard]] StatusSearchButtons::Status status() const;
 
     void setDelay(int ms);
     [[nodiscard]] int delay() const;
@@ -54,7 +53,7 @@ private:
     void slotSearchStringChanged(const QString &search);
     void slotStopActiveSearch();
     void slotActivateSearch();
-    void slotStatusChanged(Akregator::StatusSearchLine::Status);
+    void slotStatusChanged(Akregator::StatusSearchButtons::Status);
     void triggerTimer();
 
     QString m_searchText;
