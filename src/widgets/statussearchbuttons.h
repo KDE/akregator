@@ -5,12 +5,12 @@
 */
 
 #pragma once
-
+#include "akregatorpart_private_export.h"
 #include <QWidget>
 class QButtonGroup;
 namespace Akregator
 {
-class StatusSearchButtons : public QWidget
+class AKREGATORPART_TESTS_EXPORT StatusSearchButtons : public QWidget
 {
     Q_OBJECT
 public:
