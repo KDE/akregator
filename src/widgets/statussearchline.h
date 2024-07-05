@@ -6,10 +6,10 @@
 
 #pragma once
 
-#include <KLineEdit>
+#include <QLineEdit>
 namespace Akregator
 {
-class StatusSearchLine : public KLineEdit
+class StatusSearchLine : public QLineEdit
 {
     Q_OBJECT
 public:

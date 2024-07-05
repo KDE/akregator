@@ -10,7 +10,7 @@
 using namespace Akregator;
 Q_DECLARE_METATYPE(Akregator::StatusSearchLine::Status)
 StatusSearchLine::StatusSearchLine(QWidget *parent)
-    : KLineEdit(parent)
+    : QLineEdit(parent)
 {
     setProperty("_breeze_borders_sides", QVariant::fromValue(QFlags{Qt::BottomEdge}));
 }
@@ -22,7 +22,7 @@ void StatusSearchLine::keyPressEvent(QKeyEvent *e)
     if (e->key() == Qt::Key_Escape) {
         Q_EMIT forceLostFocus();
     } else {
-        KLineEdit::keyPressEvent(e);
+        QLineEdit::keyPressEvent(e);
     }
 }
 
