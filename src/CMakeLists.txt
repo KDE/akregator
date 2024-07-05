@@ -61,6 +61,10 @@ target_sources(akregatorprivate PRIVATE
     job/downloadarticlejob.cpp
     job/downloadfeediconjob.cpp
 
+
+    widgets/statussearchbuttons.h
+    widgets/statussearchbuttons.cpp
+
     formatter/articleformatter.cpp
     formatter/defaultnormalviewformatter.cpp
     formatter/defaultcombinedviewformatter.cpp
@@ -245,8 +249,6 @@ target_sources(akregatorpart PRIVATE
     widgets/searchbar.cpp
     widgets/akregatorcentralwidget.cpp
 
-    widgets/statussearchbuttons.h
-    widgets/statussearchbuttons.cpp
 
     subscription/subscriptionlistview.cpp
     subscription/subscriptionlistdelegate.cpp
@@ -343,4 +345,5 @@ install(FILES data/akregator.notifyrc DESTINATION ${KDE_INSTALL_KNOTIFYRCDIR})
 
 if(BUILD_TESTING)
    add_subdirectory(job/autotests)
+   add_subdirectory(widgets/autotests)
 endif()

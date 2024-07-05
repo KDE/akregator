@@ -72,7 +72,6 @@ set_package_properties(KF6DocTools PROPERTIES DESCRIPTION
     TYPE OPTIONAL
 )
 
-
 # Find KdepimLibs Package
 find_package(KPim6GrantleeTheme ${LIBGRANTLEETHEME_LIB_VERSION} CONFIG REQUIRED)
 find_package(KPim6KontactInterface ${KONTACTINTERFACE_LIB_VERSION} CONFIG REQUIRED)
@@ -103,6 +102,9 @@ ecm_set_disabled_deprecation_versions(QT 6.7.2
 if(TARGET KF6::UserFeedbackWidgets)
     add_definitions(-DWITH_KUSERFEEDBACK)
 endif()
+if(BUILD_TESTING)
+    add_definitions(-DBUILD_TESTING)
+endif()
 
 option(USE_UNITY_CMAKE_SUPPORT "Use UNITY cmake support (speedup compile time)" OFF)
 
@@ -131,9 +133,7 @@ endif()
 
 configure_file(config-akregator.h.in ${CMAKE_CURRENT_BINARY_DIR}/config-akregator.h)
 
-if(BUILD_TESTING)
-    add_definitions(-DBUILD_TESTING)
-endif()
+
 
 add_subdirectory(export)
 add_subdirectory(interfaces)
