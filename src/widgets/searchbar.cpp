@@ -47,8 +47,6 @@ SearchBar::SearchBar(QWidget *parent)
     connect(m_searchLine, &StatusSearchLine::forceLostFocus, this, &SearchBar::forceLostFocus);
     connect(m_statusSearchButtons, &StatusSearchButtons::statusChanged, this, &SearchBar::slotStatusChanged);
 
-    connect(m_searchLine, &StatusSearchLine::statusChanged, this, &SearchBar::slotStatusChanged);
-
     connect(&m_timer, &QTimer::timeout, this, &SearchBar::slotActivateSearch);
     m_timer.setSingleShot(true);
 }
@@ -62,7 +60,7 @@ QString SearchBar::text() const
 
 StatusSearchLine::Status SearchBar::status() const
 {
-    return m_searchLine->status();
+    return m_statusSearchButtons->status();
 }
 
 void SearchBar::setDelay(int ms)
@@ -84,7 +82,7 @@ void SearchBar::slotClearSearch()
 {
     if (status() != Akregator::StatusSearchLine::AllArticles || !m_searchLine->text().trimmed().isEmpty()) {
         m_searchLine->clear();
-        m_searchLine->setStatus(Akregator::StatusSearchLine::AllArticles);
+        m_statusSearchButtons->setStatus(Akregator::StatusSearchLine::AllArticles);
         m_statusSearchButtons->setStatus(Akregator::StatusSearchLine::AllArticles);
         m_timer.stop();
         slotStopActiveSearch();
@@ -93,7 +91,7 @@ void SearchBar::slotClearSearch()
 
 void SearchBar::slotSetStatus(int status)
 {
-    m_searchLine->setStatus(static_cast<Akregator::StatusSearchLine::Status>(status));
+    m_statusSearchButtons->setStatus(static_cast<Akregator::StatusSearchLine::Status>(status));
     m_statusSearchButtons->setStatus(static_cast<Akregator::StatusSearchLine::Status>(status));
     triggerTimer();
 }
@@ -150,7 +148,7 @@ void SearchBar::slotActivateSearch()
         textCriteria << authCrit;
     }
 
-    switch (m_searchLine->status()) {
+    switch (m_statusSearchButtons->status()) {
     case StatusSearchLine::AllArticles:
         break;
     case StatusSearchLine::NewArticles: {
