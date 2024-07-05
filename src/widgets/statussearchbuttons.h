@@ -6,6 +6,7 @@
 
 #pragma once
 #include "akregatorpart_private_export.h"
+#include "statussearchline.h"
 #include <QWidget>
 class QButtonGroup;
 namespace Akregator
@@ -16,6 +17,11 @@ class AKREGATORPART_TESTS_EXPORT StatusSearchButtons : public QWidget
 public:
     explicit StatusSearchButtons(QWidget *parent = nullptr);
     ~StatusSearchButtons() override;
+
+    void setStatus(StatusSearchLine::Status status);
+
+Q_SIGNALS:
+    void statusChanged(Akregator::StatusSearchLine::Status status);
 
 private:
     QButtonGroup *const mButtonGroup;

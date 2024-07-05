@@ -4,7 +4,6 @@
    SPDX-License-Identifier: GPL-2.0-or-later
 */
 #include "statussearchbuttons.h"
-#include "statussearchline.h"
 #include <KLocalizedString>
 #include <QButtonGroup>
 #include <QHBoxLayout>
@@ -17,6 +16,7 @@ StatusSearchButtons::StatusSearchButtons(QWidget *parent)
     auto mainLayout = new QHBoxLayout(this);
     mainLayout->setObjectName(QStringLiteral("mainLayout"));
     mainLayout->setContentsMargins({});
+    mainLayout->setSpacing(0);
 
     mButtonGroup->setObjectName(QStringLiteral("mButtonGroup"));
     mButtonGroup->setExclusive(true);
@@ -63,5 +63,13 @@ StatusSearchButtons::StatusSearchButtons(QWidget *parent)
 }
 
 StatusSearchButtons::~StatusSearchButtons() = default;
+
+void StatusSearchButtons::setStatus(StatusSearchLine::Status status)
+{
+    auto b = mButtonGroup->button(status);
+    if (b) {
+        b->setChecked(true);
+    }
+}
 
 #include "moc_statussearchbuttons.cpp"
