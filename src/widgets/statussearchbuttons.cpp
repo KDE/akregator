@@ -60,6 +60,9 @@ StatusSearchButtons::StatusSearchButtons(QWidget *parent)
     toolButton->setToolTip(i18nc("Important articles filter", "Important"));
     mainLayout->addWidget(toolButton);
     mButtonGroup->addButton(toolButton, StatusSearchLine::Status::ImportantArticles);
+    connect(mButtonGroup, &QButtonGroup::idClicked, this, [this](int index) {
+        Q_EMIT statusChanged(static_cast<StatusSearchLine::Status>(index));
+    });
 }
 
 StatusSearchButtons::~StatusSearchButtons() = default;
@@ -70,6 +73,11 @@ void StatusSearchButtons::setStatus(StatusSearchLine::Status status)
     if (b) {
         b->setChecked(true);
     }
+}
+
+StatusSearchLine::Status StatusSearchButtons::status() const
+{
+    return static_cast<StatusSearchLine::Status>(mButtonGroup->checkedId());
 }
 
 #include "moc_statussearchbuttons.cpp"

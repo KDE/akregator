@@ -45,6 +45,8 @@ SearchBar::SearchBar(QWidget *parent)
 
     connect(m_searchLine, &KLineEdit::textChanged, this, &SearchBar::slotSearchStringChanged);
     connect(m_searchLine, &StatusSearchLine::forceLostFocus, this, &SearchBar::forceLostFocus);
+    connect(m_statusSearchButtons, &StatusSearchButtons::statusChanged, this, &SearchBar::slotStatusChanged);
+
     connect(m_searchLine, &StatusSearchLine::statusChanged, this, &SearchBar::slotStatusChanged);
 
     connect(&m_timer, &QTimer::timeout, this, &SearchBar::slotActivateSearch);
@@ -126,7 +128,7 @@ void SearchBar::slotSearchStringChanged(const QString &search)
 void SearchBar::slotStopActiveSearch()
 {
     std::vector<QSharedPointer<const AbstractMatcher>> matchers;
-    Settings::setStatusFilter(m_searchLine->status());
+    Settings::setStatusFilter(m_statusSearchButtons->status());
     Settings::setTextFilter(m_searchText);
     m_matchers = matchers;
     Q_EMIT signalSearch(matchers);
@@ -182,7 +184,7 @@ void SearchBar::slotActivateSearch()
     if (!statusCriteria.isEmpty()) {
         matchers.push_back(QSharedPointer<const AbstractMatcher>(new ArticleMatcher(statusCriteria, ArticleMatcher::LogicalOr)));
     }
-    Settings::setStatusFilter(m_searchLine->status());
+    Settings::setStatusFilter(m_statusSearchButtons->status());
     Settings::setTextFilter(m_searchText);
     m_matchers = matchers;
     Q_EMIT signalSearch(matchers);

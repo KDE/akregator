@@ -20,6 +20,8 @@ public:
 
     void setStatus(StatusSearchLine::Status status);
 
+    [[nodiscard]] StatusSearchLine::Status status() const;
+
 Q_SIGNALS:
     void statusChanged(Akregator::StatusSearchLine::Status status);
 
