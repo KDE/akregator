@@ -6,7 +6,6 @@
 
 #pragma once
 #include "akregatorpart_private_export.h"
-#include "statussearchline.h"
 #include <QWidget>
 class QButtonGroup;
 namespace Akregator

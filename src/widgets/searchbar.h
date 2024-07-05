@@ -21,6 +21,7 @@ namespace Filters
 {
 class AbstractMatcher;
 }
+class StatusSearchLine;
 class SearchBar : public QWidget
 {
     Q_OBJECT

@@ -9,6 +9,7 @@
 #include "searchbar.h"
 #include "akregatorconfig.h"
 #include "statussearchbuttons.h"
+#include "statussearchline.h"
 
 #include "article.h"
 #include <TextUtils/ConvertText>
