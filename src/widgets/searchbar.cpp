@@ -8,6 +8,7 @@
 
 #include "searchbar.h"
 #include "akregatorconfig.h"
+#include "statussearchbuttons.h"
 
 #include "article.h"
 #include <TextUtils/ConvertText>
@@ -28,6 +29,7 @@ using namespace Akregator::Filters;
 SearchBar::SearchBar(QWidget *parent)
     : QWidget(parent)
     , m_searchLine(new StatusSearchLine(this))
+    , m_statusSearchButtons(new StatusSearchButtons(this))
 {
     m_delay = 400;
     auto layout = new QHBoxLayout(this);
@@ -39,6 +41,7 @@ SearchBar::SearchBar(QWidget *parent)
     m_searchLine->setClearButtonEnabled(true);
     m_searchLine->setPlaceholderText(i18nc("@info:placeholder", "Search articles…"));
     layout->addWidget(m_searchLine);
+    layout->addWidget(m_statusSearchButtons);
 
     connect(m_searchLine, &KLineEdit::textChanged, this, &SearchBar::slotSearchStringChanged);
     connect(m_searchLine, &StatusSearchLine::forceLostFocus, this, &SearchBar::forceLostFocus);

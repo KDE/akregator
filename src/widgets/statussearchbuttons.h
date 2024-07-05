@@ -7,11 +7,17 @@
 #pragma once
 
 #include <QWidget>
-
+class QButtonGroup;
+namespace Akregator
+{
 class StatusSearchButtons : public QWidget
 {
     Q_OBJECT
 public:
     explicit StatusSearchButtons(QWidget *parent = nullptr);
     ~StatusSearchButtons() override;
+
+private:
+    QButtonGroup *const mButtonGroup;
 };
+}

@@ -21,7 +21,7 @@ namespace Filters
 {
 class AbstractMatcher;
 }
-
+class StatusSearchButtons;
 class SearchBar : public QWidget
 {
     Q_OBJECT
@@ -60,6 +60,7 @@ private:
     QString m_searchText;
     QTimer m_timer;
     StatusSearchLine *const m_searchLine;
+    StatusSearchButtons *const m_statusSearchButtons;
     int m_delay;
     std::vector<QSharedPointer<const Filters::AbstractMatcher>> m_matchers;
 };
