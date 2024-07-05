@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-07-04 00:39+0000\n"
-"PO-Revision-Date: 2024-06-17 21:32+0200\n"
+"PO-Revision-Date: 2024-07-04 14:43+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Proxecto Trasno (proxecto@trasno.gal)\n"
 "Language: gl\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 24.05.0\n"
+"X-Generator: Lokalize 24.05.1\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -2526,15 +2526,13 @@ msgid "Open In External Browser"
 msgstr "Abrir nun navegador externo"
 
 #: src/widgets/searchbar.cpp:40
-#, fuzzy, kde-format
-#| msgid "Search articles…"
+#, kde-format
 msgctxt "@info:placeholder"
 msgid "Search articles…"
 msgstr "Buscar nos artigos…"
 
 #: src/widgets/searchbar.cpp:112
-#, fuzzy, kde-format
-#| msgid "Search articles…<%1>"
+#, kde-format
 msgctxt "@info:placeholder"
 msgid "Search articles…<%1>"
 msgstr "Buscar nos artigos… <%1>"

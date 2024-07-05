@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-07-04 00:39+0000\n"
-"PO-Revision-Date: 2024-06-16 09:27+0300\n"
+"PO-Revision-Date: 2024-07-04 21:30+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian\n"
 "Language: uk\n"
@@ -2568,15 +2568,13 @@ msgid "Open In External Browser"
 msgstr "Відкрити у зовнішньому переглядачі"
 
 #: src/widgets/searchbar.cpp:40
-#, fuzzy, kde-format
-#| msgid "Search articles…"
+#, kde-format
 msgctxt "@info:placeholder"
 msgid "Search articles…"
 msgstr "Шукати статті…"
 
 #: src/widgets/searchbar.cpp:112
-#, fuzzy, kde-format
-#| msgid "Search articles…<%1>"
+#, kde-format
 msgctxt "@info:placeholder"
 msgid "Search articles…<%1>"
 msgstr "Шукати статті…<%1>"
