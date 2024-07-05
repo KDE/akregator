@@ -11,3 +11,5 @@ StatusSearchButtons::StatusSearchButtons(QWidget *parent)
 }
 
 StatusSearchButtons::~StatusSearchButtons() = default;
+
+#include "moc_statussearchbuttons.cpp"
