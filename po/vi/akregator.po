@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-04 00:39+0000\n"
+"POT-Creation-Date: 2024-07-06 00:39+0000\n"
 "PO-Revision-Date: 2012-07-09 22:08+0800\n"
 "Last-Translator: Lê Hoàng Phương <herophuong93@gmail.com>\n"
 "Language-Team: Vietnamese <kde-i18n-vi@kde.org>\n"
@@ -2608,38 +2608,38 @@ msgstr "Chia sẻ bài viết"
 msgid "Open In External Browser"
 msgstr "Mở trong trình duyệt ngoài"
 
-#: src/widgets/searchbar.cpp:40
+#: src/widgets/searchbar.cpp:43
 #, fuzzy, kde-format
 #| msgid "Unread articles:"
 msgctxt "@info:placeholder"
 msgid "Search articles…"
 msgstr "Bài viết chưa đọc:"
 
-#: src/widgets/searchbar.cpp:112
+#: src/widgets/searchbar.cpp:118
 #, fuzzy, kde-format
 #| msgid "Unread articles:"
 msgctxt "@info:placeholder"
 msgid "Search articles…<%1>"
 msgstr "Bài viết chưa đọc:"
 
-#: src/widgets/statussearchline.cpp:43
+#: src/widgets/statussearchbuttons.cpp:29
 #, kde-format
 msgid "All Articles"
 msgstr "Tất cả bài viết"
 
-#: src/widgets/statussearchline.cpp:44
-#, kde-format
-msgctxt "Unread articles filter"
-msgid "Unread"
-msgstr "Chưa đọc"
-
-#: src/widgets/statussearchline.cpp:45
+#: src/widgets/statussearchbuttons.cpp:39
 #, kde-format
 msgctxt "New articles filter"
 msgid "New"
 msgstr "Mới"
 
-#: src/widgets/statussearchline.cpp:46
+#: src/widgets/statussearchbuttons.cpp:48
+#, kde-format
+msgctxt "Unread articles filter"
+msgid "Unread"
+msgstr "Chưa đọc"
+
+#: src/widgets/statussearchbuttons.cpp:57
 #, fuzzy, kde-format
 #| msgctxt "as in: mark as read"
 #| msgid "&Read"
@@ -2647,17 +2647,16 @@ msgctxt "Read articles filter"
 msgid "Read"
 msgstr "Đã đọ&c"
 
-#: src/widgets/statussearchline.cpp:47
+#: src/widgets/statussearchbuttons.cpp:66
 #, kde-format
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "Quan trọng"
 
-#: src/widgets/statussearchline.cpp:64
-#, fuzzy, kde-format
-#| msgid "Text Filter"
-msgid "Filter"
-msgstr "Lọc văn bản"
+#, fuzzy
+#~| msgid "Text Filter"
+#~ msgid "Filter"
+#~ msgstr "Lọc văn bản"
 
 #~ msgid "&Add Feed..."
 #~ msgstr "&Thêm nguồn tin..."

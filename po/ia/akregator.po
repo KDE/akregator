@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-04 00:39+0000\n"
+"POT-Creation-Date: 2024-07-06 00:39+0000\n"
 "PO-Revision-Date: 2024-07-04 11:51+0200\n"
 "Last-Translator: giovanni <g.sora@tiscali.it>\n"
 "Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
@@ -2531,51 +2531,49 @@ msgstr "Invia le pagina Html del articulo"
 msgid "Open In External Browser"
 msgstr "Aperi in navigator externe"
 
-#: src/widgets/searchbar.cpp:40
+#: src/widgets/searchbar.cpp:43
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "Search articles…"
 msgstr "Cerca articulos..."
 
-#: src/widgets/searchbar.cpp:112
+#: src/widgets/searchbar.cpp:118
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "Search articles…<%1>"
 msgstr "Cerca articulos…<%1>"
 
-#: src/widgets/statussearchline.cpp:43
+#: src/widgets/statussearchbuttons.cpp:29
 #, kde-format
 msgid "All Articles"
 msgstr "Omne articulos"
 
-#: src/widgets/statussearchline.cpp:44
-#, kde-format
-msgctxt "Unread articles filter"
-msgid "Unread"
-msgstr "Non legite"
-
-#: src/widgets/statussearchline.cpp:45
+#: src/widgets/statussearchbuttons.cpp:39
 #, kde-format
 msgctxt "New articles filter"
 msgid "New"
 msgstr "Nove "
 
-#: src/widgets/statussearchline.cpp:46
+#: src/widgets/statussearchbuttons.cpp:48
+#, kde-format
+msgctxt "Unread articles filter"
+msgid "Unread"
+msgstr "Non legite"
+
+#: src/widgets/statussearchbuttons.cpp:57
 #, kde-format
 msgctxt "Read articles filter"
 msgid "Read"
 msgstr "Lege"
 
-#: src/widgets/statussearchline.cpp:47
+#: src/widgets/statussearchbuttons.cpp:66
 #, kde-format
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "Importante"
 
-#: src/widgets/statussearchline.cpp:64
-#, kde-format
-msgid "Filter"
-msgstr "Filtro"
+#~ msgid "Filter"
+#~ msgstr "Filtro"
 
 #~ msgid "We hope that you will enjoy Akregator."
 #~ msgstr "Nos spera que tu gaudera de Akregator."

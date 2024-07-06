@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdepim-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-04 00:39+0000\n"
+"POT-Creation-Date: 2024-07-06 00:39+0000\n"
 "PO-Revision-Date: 2024-07-04 13:48+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
@@ -2539,51 +2539,49 @@ msgstr "Yazının Html Sayfasını Gönder"
 msgid "Open In External Browser"
 msgstr "Dış Tarayıcıda Aç"
 
-#: src/widgets/searchbar.cpp:40
+#: src/widgets/searchbar.cpp:43
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "Search articles…"
 msgstr "Yazılarda ara…"
 
-#: src/widgets/searchbar.cpp:112
+#: src/widgets/searchbar.cpp:118
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "Search articles…<%1>"
 msgstr "Yazılarda ara…<%1>"
 
-#: src/widgets/statussearchline.cpp:43
+#: src/widgets/statussearchbuttons.cpp:29
 #, kde-format
 msgid "All Articles"
 msgstr "Tüm Yazılar"
 
-#: src/widgets/statussearchline.cpp:44
-#, kde-format
-msgctxt "Unread articles filter"
-msgid "Unread"
-msgstr "Okunmamış"
-
-#: src/widgets/statussearchline.cpp:45
+#: src/widgets/statussearchbuttons.cpp:39
 #, kde-format
 msgctxt "New articles filter"
 msgid "New"
 msgstr "Yeni"
 
-#: src/widgets/statussearchline.cpp:46
+#: src/widgets/statussearchbuttons.cpp:48
+#, kde-format
+msgctxt "Unread articles filter"
+msgid "Unread"
+msgstr "Okunmamış"
+
+#: src/widgets/statussearchbuttons.cpp:57
 #, kde-format
 msgctxt "Read articles filter"
 msgid "Read"
 msgstr "Okunan"
 
-#: src/widgets/statussearchline.cpp:47
+#: src/widgets/statussearchbuttons.cpp:66
 #, kde-format
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "Önemli"
 
-#: src/widgets/statussearchline.cpp:64
-#, kde-format
-msgid "Filter"
-msgstr "Süz"
+#~ msgid "Filter"
+#~ msgstr "Süz"
 
 #~ msgid "We hope that you will enjoy Akregator."
 #~ msgstr "Umarız Akregatör’den hoşnut kalırsınız."

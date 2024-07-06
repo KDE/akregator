@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-04 00:39+0000\n"
+"POT-Creation-Date: 2024-07-06 00:39+0000\n"
 "PO-Revision-Date: 2020-06-13 19:12+0300\n"
 "Last-Translator: Marek Laane <qiilaq69@gmail.com>\n"
 "Language-Team: Estonian <kde-et@lists.linux.ee>\n"
@@ -2574,38 +2574,38 @@ msgstr "Saada artikli HTML-lehekülg"
 msgid "Open In External Browser"
 msgstr "Ava välises veebilehitsejas"
 
-#: src/widgets/searchbar.cpp:40
+#: src/widgets/searchbar.cpp:43
 #, fuzzy, kde-format
 #| msgid "Search articles..."
 msgctxt "@info:placeholder"
 msgid "Search articles…"
 msgstr "Otsi artiklitest..."
 
-#: src/widgets/searchbar.cpp:112
+#: src/widgets/searchbar.cpp:118
 #, fuzzy, kde-format
 #| msgid "Search articles...<%1>"
 msgctxt "@info:placeholder"
 msgid "Search articles…<%1>"
 msgstr "Otsi artiklitest...<%1>"
 
-#: src/widgets/statussearchline.cpp:43
+#: src/widgets/statussearchbuttons.cpp:29
 #, kde-format
 msgid "All Articles"
 msgstr "Kõik artiklid"
 
-#: src/widgets/statussearchline.cpp:44
-#, kde-format
-msgctxt "Unread articles filter"
-msgid "Unread"
-msgstr "Lugemata"
-
-#: src/widgets/statussearchline.cpp:45
+#: src/widgets/statussearchbuttons.cpp:39
 #, kde-format
 msgctxt "New articles filter"
 msgid "New"
 msgstr "Uus"
 
-#: src/widgets/statussearchline.cpp:46
+#: src/widgets/statussearchbuttons.cpp:48
+#, kde-format
+msgctxt "Unread articles filter"
+msgid "Unread"
+msgstr "Lugemata"
+
+#: src/widgets/statussearchbuttons.cpp:57
 #, fuzzy, kde-format
 #| msgctxt "as in: mark as read"
 #| msgid "&Read"
@@ -2613,17 +2613,16 @@ msgctxt "Read articles filter"
 msgid "Read"
 msgstr "&Loetud"
 
-#: src/widgets/statussearchline.cpp:47
+#: src/widgets/statussearchbuttons.cpp:66
 #, kde-format
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "Tähtis"
 
-#: src/widgets/statussearchline.cpp:64
-#, fuzzy, kde-format
-#| msgid "Text Filter"
-msgid "Filter"
-msgstr "Tekstifilter"
+#, fuzzy
+#~| msgid "Text Filter"
+#~ msgid "Filter"
+#~ msgstr "Tekstifilter"
 
 #~ msgid "We hope that you will enjoy Akregator."
 #~ msgstr "Me loodame, et Akregator pakub sulle naudingut!"

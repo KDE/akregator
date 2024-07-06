@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: all2.po\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-04 00:39+0000\n"
+"POT-Creation-Date: 2024-07-06 00:39+0000\n"
 "PO-Revision-Date: 2004-09-20 15:44+0200\n"
 "Last-Translator: Thierry Vignaud <tvignaud@mandriva.com>\n"
 "Language-Team: br <LL@li.org>\n"
@@ -2559,40 +2559,40 @@ msgstr "Pennad"
 msgid "Open In External Browser"
 msgstr "Digerñ e-barzh ur furcher diavaez"
 
-#: src/widgets/searchbar.cpp:40
+#: src/widgets/searchbar.cpp:43
 #, fuzzy, kde-format
 #| msgid " articles"
 msgctxt "@info:placeholder"
 msgid "Search articles…"
 msgstr " pennadoù"
 
-#: src/widgets/searchbar.cpp:112
+#: src/widgets/searchbar.cpp:118
 #, fuzzy, kde-format
 #| msgid " articles"
 msgctxt "@info:placeholder"
 msgid "Search articles…<%1>"
 msgstr " pennadoù"
 
-#: src/widgets/statussearchline.cpp:43
+#: src/widgets/statussearchbuttons.cpp:29
 #, kde-format
 msgid "All Articles"
 msgstr "An holl bennadoù"
 
-#: src/widgets/statussearchline.cpp:44
-#, fuzzy, kde-format
-#| msgid "Unread"
-msgctxt "Unread articles filter"
-msgid "Unread"
-msgstr "Anlennet"
-
-#: src/widgets/statussearchline.cpp:45
+#: src/widgets/statussearchbuttons.cpp:39
 #, fuzzy, kde-format
 #| msgid "New"
 msgctxt "New articles filter"
 msgid "New"
 msgstr "Nevez"
 
-#: src/widgets/statussearchline.cpp:46
+#: src/widgets/statussearchbuttons.cpp:48
+#, fuzzy, kde-format
+#| msgid "Unread"
+msgctxt "Unread articles filter"
+msgid "Unread"
+msgstr "Anlennet"
+
+#: src/widgets/statussearchbuttons.cpp:57
 #, fuzzy, kde-format
 #| msgctxt "as in: mark as read"
 #| msgid "&Read"
@@ -2600,17 +2600,16 @@ msgctxt "Read articles filter"
 msgid "Read"
 msgstr "&Lenn"
 
-#: src/widgets/statussearchline.cpp:47
+#: src/widgets/statussearchbuttons.cpp:66
 #, fuzzy, kde-format
 #| msgid "Important"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "Pouezus"
 
-#: src/widgets/statussearchline.cpp:64
-#, fuzzy, kde-format
-msgid "Filter"
-msgstr "Goullonderiñ ar sil"
+#, fuzzy
+#~ msgid "Filter"
+#~ msgstr "Goullonderiñ ar sil"
 
 #~ msgid "Send &Link Address..."
 #~ msgstr "Kas chomlec'h al &liamm ..."

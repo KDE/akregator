@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Mimos\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-04 00:39+0000\n"
+"POT-Creation-Date: 2024-07-06 00:39+0000\n"
 "PO-Revision-Date: 2005-10-12 11:13+0800\n"
 "Last-Translator: MIMOS <opensource@mimos.my>\n"
 "Language-Team: Malay <kedidiemas@yahoogroups.com>\n"
@@ -2589,55 +2589,54 @@ msgstr "Artikel"
 msgid "Open In External Browser"
 msgstr "Buka dalam Pelayar Luar"
 
-#: src/widgets/searchbar.cpp:40
+#: src/widgets/searchbar.cpp:43
 #, fuzzy, kde-format
 #| msgid " articles"
 msgctxt "@info:placeholder"
 msgid "Search articles…"
 msgstr "artikel"
 
-#: src/widgets/searchbar.cpp:112
+#: src/widgets/searchbar.cpp:118
 #, fuzzy, kde-format
 #| msgid " articles"
 msgctxt "@info:placeholder"
 msgid "Search articles…<%1>"
 msgstr "artikel"
 
-#: src/widgets/statussearchline.cpp:43
+#: src/widgets/statussearchbuttons.cpp:29
 #, kde-format
 msgid "All Articles"
 msgstr "Semua Artikel"
 
-#: src/widgets/statussearchline.cpp:44
-#, fuzzy, kde-format
-#| msgid "Unread"
-msgctxt "Unread articles filter"
-msgid "Unread"
-msgstr "Belum baca"
-
-#: src/widgets/statussearchline.cpp:45
+#: src/widgets/statussearchbuttons.cpp:39
 #, fuzzy, kde-format
 #| msgid "New"
 msgctxt "New articles filter"
 msgid "New"
 msgstr "Baru"
 
-#: src/widgets/statussearchline.cpp:46
+#: src/widgets/statussearchbuttons.cpp:48
+#, fuzzy, kde-format
+#| msgid "Unread"
+msgctxt "Unread articles filter"
+msgid "Unread"
+msgstr "Belum baca"
+
+#: src/widgets/statussearchbuttons.cpp:57
 #, kde-format
 msgctxt "Read articles filter"
 msgid "Read"
 msgstr ""
 
-#: src/widgets/statussearchline.cpp:47
+#: src/widgets/statussearchbuttons.cpp:66
 #, fuzzy, kde-format
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "Tandakan sebagai &belum baca"
 
-#: src/widgets/statussearchline.cpp:64
-#, fuzzy, kde-format
-msgid "Filter"
-msgstr "Kosongkan penapis"
+#, fuzzy
+#~ msgid "Filter"
+#~ msgstr "Kosongkan penapis"
 
 #~ msgid "&Add Feed..."
 #~ msgstr "&Tambah Suapan..."
