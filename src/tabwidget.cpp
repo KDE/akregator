@@ -16,9 +16,10 @@
 
 #include <QMenu>
 #include <QStyleOption>
+#include <QTabBar>
 
 #include <KLocalizedString>
-#include <QTabBar>
+#include <KStringHandler>
 
 #include "akregatorconfig.h"
 #include "frame.h"
@@ -279,11 +280,8 @@ int TabWidgetPrivate::tabBarWidthForMaxChars(int maxLength)
         if (!f) {
             continue; // frames is out of sync, e.g. because tabInserted wasn't called yet - #185597
         }
-        QString newTitle = f->title();
-        if (newTitle.length() > maxLength) {
-            newTitle = newTitle.left(maxLength - 3) + QLatin1StringView("…");
-        }
 
+        const QString newTitle = KStringHandler::rsqueeze(f->title(), maxLength);
         int lw = fm.boundingRect(newTitle).width();
         int iw = q->tabBar()->tabIcon(i).pixmap(q->tabBar()->style()->pixelMetric(QStyle::PM_SmallIconSize), QIcon::Normal).width() + 4;
 
@@ -355,7 +353,7 @@ void TabWidgetPrivate::setTitle(const QString &title, QWidget *sender)
     QString newTitle = title;
     if (newTitle.length() > newMaxLength) {
         q->setTabToolTip(senderIndex, newTitle);
-        newTitle = newTitle.left(newMaxLength - 3) + QLatin1StringView("…");
+        newTitle = KStringHandler::rsqueeze(newTitle, newMaxLength);
     }
 
     newTitle.replace(QLatin1Char('&'), QStringLiteral("&&"));
@@ -376,7 +374,7 @@ void TabWidgetPrivate::setTitle(const QString &title, QWidget *sender)
 
             if (newTitle.length() > newMaxLength) {
                 q->setTabToolTip(index, newTitle);
-                newTitle = newTitle.left(newMaxLength - 3) + QLatin1StringView("…");
+                newTitle = KStringHandler::rsqueeze(newTitle, newMaxLength);
             }
 
             newTitle.replace(QLatin1Char('&'), QStringLiteral("&&"));
