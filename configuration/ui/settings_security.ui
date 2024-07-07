@@ -14,7 +14,10 @@
    <item>
     <widget class="QCheckBox" name="kcfg_LoadExternalReferences">
      <property name="text">
-      <string>Allow feed to load external references from internet.</string>
+      <string>Allow article preview to load external references</string>
+     </property>
+     <property name="toolTip">
+      <string>Allow the article preview to load external references from the Internet. This may allow websites or third parties to observe the articles that you have viewed.</string>
      </property>
     </widget>
    </item>
