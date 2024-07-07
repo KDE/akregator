@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-06 00:39+0000\n"
+"POT-Creation-Date: 2024-07-07 00:39+0000\n"
 "PO-Revision-Date: 2024-07-04 14:43+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Proxecto Trasno (proxecto@trasno.gal)\n"
@@ -2313,36 +2313,36 @@ msgctxt "Feedlist's column header"
 msgid "Total"
 msgstr "Total"
 
-#: src/tabwidget.cpp:91
+#: src/tabwidget.cpp:92
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Close the current tab"
 msgstr "Pechar a lapela actual."
 
-#: src/tabwidget.cpp:94
+#: src/tabwidget.cpp:95
 #, kde-format
 msgid "Close tab"
 msgstr "Pechar a lapela"
 
-#: src/tabwidget.cpp:117
+#: src/tabwidget.cpp:118
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Detach Tab"
 msgstr "Desprender a lapela"
 
-#: src/tabwidget.cpp:122
+#: src/tabwidget.cpp:123
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Close Tab"
 msgstr "Pechar a lapela"
 
-#: src/tabwidget.cpp:126
+#: src/tabwidget.cpp:127
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Close All Other Tabs"
 msgstr "Pechar as outras lapelas"
 
-#: src/tabwidget.cpp:130
+#: src/tabwidget.cpp:131
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Close All Tabs"

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Mimos\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-06 00:39+0000\n"
+"POT-Creation-Date: 2024-07-07 00:39+0000\n"
 "PO-Revision-Date: 2005-10-12 11:13+0800\n"
 "Last-Translator: MIMOS <opensource@mimos.my>\n"
 "Language-Team: Malay <kedidiemas@yahoogroups.com>\n"
@@ -2367,39 +2367,39 @@ msgctxt "Feedlist's column header"
 msgid "Total"
 msgstr "&Artikel"
 
-#: src/tabwidget.cpp:91
+#: src/tabwidget.cpp:92
 #, fuzzy, kde-format
 #| msgid "Close the current tab"
 msgctxt "@info:tooltip"
 msgid "Close the current tab"
 msgstr "Tutup tab semasa"
 
-#: src/tabwidget.cpp:94
+#: src/tabwidget.cpp:95
 #, fuzzy, kde-format
 msgid "Close tab"
 msgstr "Tutup Tab"
 
-#: src/tabwidget.cpp:117
+#: src/tabwidget.cpp:118
 #, fuzzy, kde-format
 #| msgid "Detach Tab"
 msgctxt "@action:inmenu"
 msgid "Detach Tab"
 msgstr "Pisahkan Tab"
 
-#: src/tabwidget.cpp:122
+#: src/tabwidget.cpp:123
 #, fuzzy, kde-format
 msgctxt "@action:inmenu"
 msgid "Close Tab"
 msgstr "Tutup Tab"
 
-#: src/tabwidget.cpp:126
+#: src/tabwidget.cpp:127
 #, fuzzy, kde-format
 #| msgid "Close the current tab"
 msgctxt "@action:inmenu"
 msgid "Close All Other Tabs"
 msgstr "Tutup tab semasa"
 
-#: src/tabwidget.cpp:130
+#: src/tabwidget.cpp:131
 #, fuzzy, kde-format
 msgctxt "@action:inmenu"
 msgid "Close All Tabs"

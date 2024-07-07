@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-06 00:39+0000\n"
+"POT-Creation-Date: 2024-07-07 00:39+0000\n"
 "PO-Revision-Date: 2013-03-06 10:12+0530\n"
 "Last-Translator: Chetan Khona <chetan@kompkin.com>\n"
 "Language-Team: Marathi <kde-i18n-doc@kde.org>\n"
@@ -2279,39 +2279,39 @@ msgctxt "Feedlist's column header"
 msgid "Total"
 msgstr "एकूण"
 
-#: src/tabwidget.cpp:91
+#: src/tabwidget.cpp:92
 #, fuzzy, kde-format
 #| msgid "Reload All Tabs"
 msgctxt "@info:tooltip"
 msgid "Close the current tab"
 msgstr "सर्व टॅब पुन्हा दाखल करा"
 
-#: src/tabwidget.cpp:94
+#: src/tabwidget.cpp:95
 #, kde-format
 msgid "Close tab"
 msgstr "टॅब बंद करा"
 
-#: src/tabwidget.cpp:117
+#: src/tabwidget.cpp:118
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Detach Tab"
 msgstr ""
 
-#: src/tabwidget.cpp:122
+#: src/tabwidget.cpp:123
 #, fuzzy, kde-format
 #| msgid "Close Tab"
 msgctxt "@action:inmenu"
 msgid "Close Tab"
 msgstr "टॅब बंद करा"
 
-#: src/tabwidget.cpp:126
+#: src/tabwidget.cpp:127
 #, fuzzy, kde-format
 #| msgid "Reload All Tabs"
 msgctxt "@action:inmenu"
 msgid "Close All Other Tabs"
 msgstr "सर्व टॅब पुन्हा दाखल करा"
 
-#: src/tabwidget.cpp:130
+#: src/tabwidget.cpp:131
 #, fuzzy, kde-format
 #| msgid "Close Tab"
 msgctxt "@action:inmenu"

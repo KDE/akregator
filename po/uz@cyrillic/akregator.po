@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-06 00:39+0000\n"
+"POT-Creation-Date: 2024-07-07 00:39+0000\n"
 "PO-Revision-Date: 2006-02-08 21:32+0100\n"
 "Last-Translator: Mashrab Kuvatov <kmashrab@uni-bremen.de>\n"
 "Language-Team: Uzbek <floss-uz-l10n@googlegroups.com>\n"
@@ -2356,41 +2356,41 @@ msgctxt "Feedlist's column header"
 msgid "Total"
 msgstr "&Мақола"
 
-#: src/tabwidget.cpp:91
+#: src/tabwidget.cpp:92
 #, fuzzy, kde-format
 #| msgid "Close the current tab"
 msgctxt "@info:tooltip"
 msgid "Close the current tab"
 msgstr "Жорий табни ёпиш"
 
-#: src/tabwidget.cpp:94
+#: src/tabwidget.cpp:95
 #, fuzzy, kde-format
 #| msgid "&Close Tab"
 msgid "Close tab"
 msgstr "Табни &ёпиш"
 
-#: src/tabwidget.cpp:117
+#: src/tabwidget.cpp:118
 #, fuzzy, kde-format
 #| msgid "Detach Tab"
 msgctxt "@action:inmenu"
 msgid "Detach Tab"
 msgstr "Табни ажратиш"
 
-#: src/tabwidget.cpp:122
+#: src/tabwidget.cpp:123
 #, fuzzy, kde-format
 #| msgid "&Close Tab"
 msgctxt "@action:inmenu"
 msgid "Close Tab"
 msgstr "Табни &ёпиш"
 
-#: src/tabwidget.cpp:126
+#: src/tabwidget.cpp:127
 #, fuzzy, kde-format
 #| msgid "Close the current tab"
 msgctxt "@action:inmenu"
 msgid "Close All Other Tabs"
 msgstr "Жорий табни ёпиш"
 
-#: src/tabwidget.cpp:130
+#: src/tabwidget.cpp:131
 #, fuzzy, kde-format
 #| msgid "&Close Tab"
 msgctxt "@action:inmenu"

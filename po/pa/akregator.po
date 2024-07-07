@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-06 00:39+0000\n"
+"POT-Creation-Date: 2024-07-07 00:39+0000\n"
 "PO-Revision-Date: 2024-02-11 11:46-0600\n"
 "Last-Translator: A S Alam <aalam@punlinux.org>\n"
 "Language-Team: Punjabi <kde-i18n-doc@kde.org>\n"
@@ -2296,41 +2296,41 @@ msgctxt "Feedlist's column header"
 msgid "Total"
 msgstr "ਕੁੱਲ"
 
-#: src/tabwidget.cpp:91
+#: src/tabwidget.cpp:92
 #, fuzzy, kde-format
 #| msgid "Close the current tab"
 msgctxt "@info:tooltip"
 msgid "Close the current tab"
 msgstr "ਮੌਜੂਦਾ ਟੈਬ ਬੰਦ ਕਰੋ"
 
-#: src/tabwidget.cpp:94
+#: src/tabwidget.cpp:95
 #, fuzzy, kde-format
 #| msgid "Close Tab"
 msgid "Close tab"
 msgstr "ਟੈਬ ਬੰਦ ਕਰੋ"
 
-#: src/tabwidget.cpp:117
+#: src/tabwidget.cpp:118
 #, fuzzy, kde-format
 #| msgid "Detach Tab"
 msgctxt "@action:inmenu"
 msgid "Detach Tab"
 msgstr "ਟੈਬ ਵੱਖ"
 
-#: src/tabwidget.cpp:122
+#: src/tabwidget.cpp:123
 #, fuzzy, kde-format
 #| msgid "Close Tab"
 msgctxt "@action:inmenu"
 msgid "Close Tab"
 msgstr "ਟੈਬ ਬੰਦ ਕਰੋ"
 
-#: src/tabwidget.cpp:126
+#: src/tabwidget.cpp:127
 #, fuzzy, kde-format
 #| msgid "Close the current tab"
 msgctxt "@action:inmenu"
 msgid "Close All Other Tabs"
 msgstr "ਮੌਜੂਦਾ ਟੈਬ ਬੰਦ ਕਰੋ"
 
-#: src/tabwidget.cpp:130
+#: src/tabwidget.cpp:131
 #, fuzzy, kde-format
 #| msgid "Close Tab"
 msgctxt "@action:inmenu"
