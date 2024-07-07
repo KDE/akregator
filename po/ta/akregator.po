@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-04-24 02:56+0000\n"
-"PO-Revision-Date: 2024-06-16 19:47+0530\n"
+"PO-Revision-Date: 2024-07-06 21:38+0530\n"
 "Last-Translator: Kishore G <kishore96@gmail.com>\n"
 "Language-Team: Tamil <kde-i18n-doc@kde.org>\n"
 "Language: ta\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 24.05.1\n"
+"X-Generator: Lokalize 24.05.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -1610,43 +1610,40 @@ msgstr ""
 "சொடுக்கு. "
 
 #: src/articlemodel.cpp:74
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Articlelist's column header"
 msgid "Title"
-msgstr "&கட்டுரை"
+msgstr "தலைப்பு"
 
 #: src/articlemodel.cpp:76
-#, fuzzy, kde-format
-#| msgid "Feed"
+#, kde-format
 msgctxt "Articlelist's column header"
 msgid "Feed"
-msgstr "உள்ளீடு"
+msgstr "தொகுப்பு"
 
 #: src/articlemodel.cpp:78
-#, fuzzy, kde-format
-#| msgid "Date"
+#, kde-format
 msgctxt "Articlelist's column header"
 msgid "Date"
 msgstr "தேதி"
 
 #: src/articlemodel.cpp:80
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Articlelist's column header"
 msgid "Author"
-msgstr "librssசின் எழுதியவர்"
+msgstr "இயற்றியவர்"
 
 #: src/articlemodel.cpp:82
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Description"
-msgstr ""
+msgstr "விவரணம்"
 
 #: src/articlemodel.cpp:84
-#, fuzzy, kde-format
-#| msgid "Comments"
+#, kde-format
 msgctxt "Articlelist's column header"
 msgid "Content"
-msgstr "குறிப்புகள்"
+msgstr "உள்ளடக்கம்"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:143
 #, fuzzy, kde-format
