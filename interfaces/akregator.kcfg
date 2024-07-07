@@ -192,7 +192,7 @@
  </group>
  <group name="Browser" >
   <entry key="EnableJavascript" type="Bool">
-   <label>Enable Javascript</label>
+   <label>Enable JavaScript</label>
    <default>true</default>
   </entry>
   <entry key="Always Show Tab Bar" type="Bool">
