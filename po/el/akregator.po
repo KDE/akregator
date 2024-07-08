@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-07 00:39+0000\n"
+"POT-Creation-Date: 2024-07-08 00:39+0000\n"
 "PO-Revision-Date: 2022-12-29 16:56+0200\n"
 "Last-Translator: Stelios <sstavra@gmail.com>\n"
 "Language-Team: Greek <kde-i18n-el@kde.org>\n"
@@ -372,21 +372,22 @@ msgstr "Επαλήθευση των URL με χρήση του Safe Browsing API
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_EnableJavascript)
 #. i18n: ectx: label, entry, group (Browser)
 #: configuration/ui/settings_browser.ui:153 interfaces/akregator.kcfg:195
-#, kde-format
-msgid "Enable Javascript"
+#, fuzzy, kde-format
+#| msgid "Enable Javascript"
+msgid "Enable JavaScript"
 msgstr "Ενεργοποίηση javascript"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #: configuration/ui/settings_browser.ui:163
 #, kde-format
-msgid "Misc"
-msgstr "Διάφορα"
+msgid "Accessibility"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_AccessKeyEnabled)
 #: configuration/ui/settings_browser.ui:169
 #, kde-format
-msgid "Access Key Enabled"
-msgstr "Κλειδί πρόσβασης ενεργό"
+msgid "Enable Access Key activation with Ctrl key"
+msgstr ""
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_3)
 #: configuration/ui/settings_general.ui:30
@@ -495,10 +496,20 @@ msgstr "Χρήση λανθάνουσας μνήμης του &περιηγητ�
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_LoadExternalReferences)
 #: configuration/ui/settings_security.ui:17
-#, kde-format
-msgid "Allow feed to load external references from internet."
+#, fuzzy, kde-format
+#| msgid "Allow feed to load external references from internet."
+msgid "Allow article preview to load external references"
 msgstr ""
 "Να επιτρέπεται στη ροή να φορτώνει εξωτερικές αναφορές από το διαδίκτυο"
+
+#. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_LoadExternalReferences)
+#: configuration/ui/settings_security.ui:20
+#, kde-format
+msgid ""
+"Allow the article preview to load external references from the Internet. "
+"This may allow websites or third parties to observe the articles that you "
+"have viewed."
+msgstr ""
 
 #: export/akregatorstorageexporter.cpp:280
 #, kde-format
@@ -2637,6 +2648,12 @@ msgstr "Αναγνωσμένα"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "Σημαντικά"
+
+#~ msgid "Misc"
+#~ msgstr "Διάφορα"
+
+#~ msgid "Access Key Enabled"
+#~ msgstr "Κλειδί πρόσβασης ενεργό"
 
 #, fuzzy
 #~| msgid "Text Filter"

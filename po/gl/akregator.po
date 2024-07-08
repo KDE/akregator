@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-07 00:39+0000\n"
+"POT-Creation-Date: 2024-07-08 00:39+0000\n"
 "PO-Revision-Date: 2024-07-04 14:43+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Proxecto Trasno (proxecto@trasno.gal)\n"
@@ -371,21 +371,22 @@ msgstr "Verificar os URL usando a API de navegación segura de Google."
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_EnableJavascript)
 #. i18n: ectx: label, entry, group (Browser)
 #: configuration/ui/settings_browser.ui:153 interfaces/akregator.kcfg:195
-#, kde-format
-msgid "Enable Javascript"
+#, fuzzy, kde-format
+#| msgid "Enable Javascript"
+msgid "Enable JavaScript"
 msgstr "Activar JavaScript."
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #: configuration/ui/settings_browser.ui:163
 #, kde-format
-msgid "Misc"
-msgstr "Varios"
+msgid "Accessibility"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_AccessKeyEnabled)
 #: configuration/ui/settings_browser.ui:169
 #, kde-format
-msgid "Access Key Enabled"
-msgstr "Chave de acceso activada."
+msgid "Enable Access Key activation with Ctrl key"
+msgstr ""
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_3)
 #: configuration/ui/settings_general.ui:30
@@ -495,9 +496,19 @@ msgstr "U&sar a caché do navegador (menor tráfico de rede)."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_LoadExternalReferences)
 #: configuration/ui/settings_security.ui:17
-#, kde-format
-msgid "Allow feed to load external references from internet."
+#, fuzzy, kde-format
+#| msgid "Allow feed to load external references from internet."
+msgid "Allow article preview to load external references"
 msgstr "Permitir á fonte cargar referencias externas de Internet."
+
+#. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_LoadExternalReferences)
+#: configuration/ui/settings_security.ui:20
+#, kde-format
+msgid ""
+"Allow the article preview to load external references from the Internet. "
+"This may allow websites or third parties to observe the articles that you "
+"have viewed."
+msgstr ""
 
 #: export/akregatorstorageexporter.cpp:280
 #, kde-format
@@ -2565,6 +2576,12 @@ msgstr "Lido"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "Importante"
+
+#~ msgid "Misc"
+#~ msgstr "Varios"
+
+#~ msgid "Access Key Enabled"
+#~ msgstr "Chave de acceso activada."
 
 #~ msgid "Filter"
 #~ msgstr "Filtrar"

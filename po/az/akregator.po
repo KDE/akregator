@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-07 00:39+0000\n"
+"POT-Creation-Date: 2024-07-08 00:39+0000\n"
 "PO-Revision-Date: 2022-07-03 14:28+0400\n"
 "Last-Translator: Kheyyam <xxmn77@gmail.com>\n"
 "Language-Team: Azerbaijani <kde-i18n-doc@kde.org>\n"
@@ -367,21 +367,22 @@ msgstr "Keçidləri Google'dən Safe Browsing API isifadə edərək doğrulamaq"
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_EnableJavascript)
 #. i18n: ectx: label, entry, group (Browser)
 #: configuration/ui/settings_browser.ui:153 interfaces/akregator.kcfg:195
-#, kde-format
-msgid "Enable Javascript"
+#, fuzzy, kde-format
+#| msgid "Enable Javascript"
+msgid "Enable JavaScript"
 msgstr "JavaScript-i aktivləşdirmək"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #: configuration/ui/settings_browser.ui:163
 #, kde-format
-msgid "Misc"
-msgstr "Əlavə"
+msgid "Accessibility"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_AccessKeyEnabled)
 #: configuration/ui/settings_browser.ui:169
 #, kde-format
-msgid "Access Key Enabled"
-msgstr "Keçidləri klaviaturadan aktiv etmək (Ctrl basaraq)"
+msgid "Enable Access Key activation with Ctrl key"
+msgstr ""
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_3)
 #: configuration/ui/settings_general.ui:30
@@ -490,10 +491,20 @@ msgstr "&Bələdçi keşindən istifadə etmək (az trafik)"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_LoadExternalReferences)
 #: configuration/ui/settings_security.ui:17
-#, kde-format
-msgid "Allow feed to load external references from internet."
+#, fuzzy, kde-format
+#| msgid "Allow feed to load external references from internet."
+msgid "Allow article preview to load external references"
 msgstr ""
 "Xəbər lentlərinə internetdən xarici istinadları yükləməsinə icazə verin."
+
+#. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_LoadExternalReferences)
+#: configuration/ui/settings_security.ui:20
+#, kde-format
+msgid ""
+"Allow the article preview to load external references from the Internet. "
+"This may allow websites or third parties to observe the articles that you "
+"have viewed."
+msgstr ""
 
 #: export/akregatorstorageexporter.cpp:280
 #, kde-format
@@ -2619,6 +2630,12 @@ msgstr "Oxumaq"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "Vacib"
+
+#~ msgid "Misc"
+#~ msgstr "Əlavə"
+
+#~ msgid "Access Key Enabled"
+#~ msgstr "Keçidləri klaviaturadan aktiv etmək (Ctrl basaraq)"
 
 #, fuzzy
 #~| msgid "Text Filter"

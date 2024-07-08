@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdepim\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-07 00:39+0000\n"
+"POT-Creation-Date: 2024-07-08 00:39+0000\n"
 "PO-Revision-Date: 2023-10-08 22:22+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -361,21 +361,22 @@ msgstr "Google 안전 브라우징 API로 URL 검사"
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_EnableJavascript)
 #. i18n: ectx: label, entry, group (Browser)
 #: configuration/ui/settings_browser.ui:153 interfaces/akregator.kcfg:195
-#, kde-format
-msgid "Enable Javascript"
+#, fuzzy, kde-format
+#| msgid "Enable Javascript"
+msgid "Enable JavaScript"
 msgstr "자바스크립트 활성화"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #: configuration/ui/settings_browser.ui:163
 #, kde-format
-msgid "Misc"
-msgstr "기타"
+msgid "Accessibility"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_AccessKeyEnabled)
 #: configuration/ui/settings_browser.ui:169
 #, kde-format
-msgid "Access Key Enabled"
-msgstr "접근 키 사용함"
+msgid "Enable Access Key activation with Ctrl key"
+msgstr ""
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_3)
 #: configuration/ui/settings_general.ui:30
@@ -484,9 +485,19 @@ msgstr "브라우저 캐시 사용(적은 네트워크 사용량)(&B)"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_LoadExternalReferences)
 #: configuration/ui/settings_security.ui:17
-#, kde-format
-msgid "Allow feed to load external references from internet."
+#, fuzzy, kde-format
+#| msgid "Allow feed to load external references from internet."
+msgid "Allow article preview to load external references"
 msgstr "피드 외부 참조를 인터넷에서 부를 수 있도록 허용합니다."
+
+#. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_LoadExternalReferences)
+#: configuration/ui/settings_security.ui:20
+#, kde-format
+msgid ""
+"Allow the article preview to load external references from the Internet. "
+"This may allow websites or third parties to observe the articles that you "
+"have viewed."
+msgstr ""
 
 #: export/akregatorstorageexporter.cpp:280
 #, kde-format
@@ -2571,6 +2582,12 @@ msgstr "읽음"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "중요한 글"
+
+#~ msgid "Misc"
+#~ msgstr "기타"
+
+#~ msgid "Access Key Enabled"
+#~ msgstr "접근 키 사용함"
 
 #~ msgid "Filter"
 #~ msgstr "텍스트 필터"

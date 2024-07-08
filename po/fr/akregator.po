@@ -19,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-07 00:39+0000\n"
-"PO-Revision-Date: 2024-06-20 18:29+0200\n"
+"POT-Creation-Date: 2024-07-08 00:39+0000\n"
+"PO-Revision-Date: 2024-07-05 10:31+0200\n"
 "Last-Translator: Xavier Besnard <xavier.besnard@kde.org>\n"
 "Language-Team: French <French <kde-francophone@kde.org>>\n"
 "Language: fr\n"
@@ -389,23 +389,22 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_EnableJavascript)
 #. i18n: ectx: label, entry, group (Browser)
 #: configuration/ui/settings_browser.ui:153 interfaces/akregator.kcfg:195
-#, kde-format
-msgid "Enable Javascript"
+#, fuzzy, kde-format
+#| msgid "Enable Javascript"
+msgid "Enable JavaScript"
 msgstr "Activer JavaScript"
 
-# | msgctxt "Language"
-# | msgid "Cisco"
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #: configuration/ui/settings_browser.ui:163
 #, kde-format
-msgid "Misc"
-msgstr "Divers"
+msgid "Accessibility"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_AccessKeyEnabled)
 #: configuration/ui/settings_browser.ui:169
 #, kde-format
-msgid "Access Key Enabled"
-msgstr "Clé d'accès activée"
+msgid "Enable Access Key activation with Ctrl key"
+msgstr ""
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_3)
 #: configuration/ui/settings_general.ui:30
@@ -516,11 +515,21 @@ msgstr "Utiliser le cache du &navigateur (trafic réseau plus faible)"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_LoadExternalReferences)
 #: configuration/ui/settings_security.ui:17
-#, kde-format
-msgid "Allow feed to load external references from internet."
+#, fuzzy, kde-format
+#| msgid "Allow feed to load external references from internet."
+msgid "Allow article preview to load external references"
 msgstr ""
 "Permettre à un fil de discussions de charger des références externes à "
 "partir d'Internet."
+
+#. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_LoadExternalReferences)
+#: configuration/ui/settings_security.ui:20
+#, kde-format
+msgid ""
+"Allow the article preview to load external references from the Internet. "
+"This may allow websites or third parties to observe the articles that you "
+"have viewed."
+msgstr ""
 
 #: export/akregatorstorageexporter.cpp:280
 #, kde-format
@@ -2562,15 +2571,13 @@ msgid "Open In External Browser"
 msgstr "Ouvrir dans le navigateur externe"
 
 #: src/widgets/searchbar.cpp:43
-#, fuzzy, kde-format
-#| msgid "Search articles…"
+#, kde-format
 msgctxt "@info:placeholder"
 msgid "Search articles…"
 msgstr "Rechercher des articles..."
 
 #: src/widgets/searchbar.cpp:118
-#, fuzzy, kde-format
-#| msgid "Search articles…<%1>"
+#, kde-format
 msgctxt "@info:placeholder"
 msgid "Search articles…<%1>"
 msgstr "Rechercher des articles...<%1>"
@@ -2603,6 +2610,14 @@ msgstr "Lu"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "Important"
+
+# | msgctxt "Language"
+# | msgid "Cisco"
+#~ msgid "Misc"
+#~ msgstr "Divers"
+
+#~ msgid "Access Key Enabled"
+#~ msgstr "Clé d'accès activée"
 
 #~ msgid "Filter"
 #~ msgstr "Filtre"
