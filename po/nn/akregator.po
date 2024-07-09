@@ -2625,9 +2625,3 @@ msgstr "Lesne"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "Viktige"
-
-#~ msgid "Misc"
-#~ msgstr "Ymse"
-
-#~ msgid "Access Key Enabled"
-#~ msgstr "Slå på tilgangsnøkkel"

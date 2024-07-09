@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-07-08 00:39+0000\n"
-"PO-Revision-Date: 2024-07-05 15:52+0200\n"
+"PO-Revision-Date: 2024-07-08 22:59+0200\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
 "Language: bg\n"
@@ -368,22 +368,21 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_EnableJavascript)
 #. i18n: ectx: label, entry, group (Browser)
 #: configuration/ui/settings_browser.ui:153 interfaces/akregator.kcfg:195
-#, fuzzy, kde-format
-#| msgid "Enable Javascript"
+#, kde-format
 msgid "Enable JavaScript"
-msgstr "Активиране на Javascript"
+msgstr "Активиране на JavaScript"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #: configuration/ui/settings_browser.ui:163
 #, kde-format
 msgid "Accessibility"
-msgstr ""
+msgstr "Достъпност"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_AccessKeyEnabled)
 #: configuration/ui/settings_browser.ui:169
 #, kde-format
 msgid "Enable Access Key activation with Ctrl key"
-msgstr ""
+msgstr "Активиране клавиш за достъп с Ctrl"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_3)
 #: configuration/ui/settings_general.ui:30
@@ -493,8 +492,7 @@ msgstr "Използване на кеш-паметта на &браузъра (
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_LoadExternalReferences)
 #: configuration/ui/settings_security.ui:17
-#, fuzzy, kde-format
-#| msgid "Allow feed to load external references from internet."
+#, kde-format
 msgid "Allow article preview to load external references"
 msgstr "Разрешаване на емисиите да зареждат външни препратки от интернет."
 
@@ -506,6 +504,9 @@ msgid ""
 "This may allow websites or third parties to observe the articles that you "
 "have viewed."
 msgstr ""
+"Разрешете визуализацията на статията да зарежда външни препратки от "
+"Интернет. Това може да позволи на уебсайтове или трети страни да наблюдават "
+"статиите, които сте прегледали."
 
 #: export/akregatorstorageexporter.cpp:280
 #, kde-format

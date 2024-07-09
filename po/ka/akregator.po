@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-07-08 00:39+0000\n"
-"PO-Revision-Date: 2024-07-04 04:56+0200\n"
+"PO-Revision-Date: 2024-07-08 05:39+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -368,8 +368,7 @@ msgstr "ბმულების Google-ის უსაფრთხო ბრ�
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_EnableJavascript)
 #. i18n: ectx: label, entry, group (Browser)
 #: configuration/ui/settings_browser.ui:153 interfaces/akregator.kcfg:195
-#, fuzzy, kde-format
-#| msgid "Enable Javascript"
+#, kde-format
 msgid "Enable JavaScript"
 msgstr "JavaScript-ის ჩართვა"
 
@@ -377,13 +376,13 @@ msgstr "JavaScript-ის ჩართვა"
 #: configuration/ui/settings_browser.ui:163
 #, kde-format
 msgid "Accessibility"
-msgstr ""
+msgstr "წვდომადობა"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_AccessKeyEnabled)
 #: configuration/ui/settings_browser.ui:169
 #, kde-format
 msgid "Enable Access Key activation with Ctrl key"
-msgstr ""
+msgstr "წვდომის ღილაკის Ctri ღილაკით აქტივაციის ჩართვა"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_3)
 #: configuration/ui/settings_general.ui:30
@@ -494,10 +493,9 @@ msgstr "&ბრაუზერის ქეშის გამოყენებ
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_LoadExternalReferences)
 #: configuration/ui/settings_security.ui:17
-#, fuzzy, kde-format
-#| msgid "Allow feed to load external references from internet."
+#, kde-format
 msgid "Allow article preview to load external references"
-msgstr "ლენტისთვის ინტერნეტიდან გარე მიმართვების ჩატვირთვის ნების დართვა."
+msgstr "სტატიისთვის ინტერნეტიდან გარე მიმართვების ჩატვირთვის ნების დართვა"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_LoadExternalReferences)
 #: configuration/ui/settings_security.ui:20
@@ -507,6 +505,9 @@ msgid ""
 "This may allow websites or third parties to observe the articles that you "
 "have viewed."
 msgstr ""
+"სტატიის მინიატურისთვის ინტერნეტიდან გარე მიმართვები ჩატვირთვის უფლების "
+"მიცემა. ამან, შეიძლება, ვებსაიტებსა და მესამე პირებს უფლება მისცეს, ნახოს "
+"სტატია, რომელიც ახლა წაიკითხეთ."
 
 #: export/akregatorstorageexporter.cpp:280
 #, kde-format
