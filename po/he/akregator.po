@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-07-08 00:39+0000\n"
-"PO-Revision-Date: 2024-07-04 06:43+0300\n"
+"PO-Revision-Date: 2024-07-08 15:23+0300\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -375,8 +375,7 @@ msgstr "אימות כתובות באמצעות API הגלישה הבטוחה ש�
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_EnableJavascript)
 #. i18n: ectx: label, entry, group (Browser)
 #: configuration/ui/settings_browser.ui:153 interfaces/akregator.kcfg:195
-#, fuzzy, kde-format
-#| msgid "Enable Javascript"
+#, kde-format
 msgid "Enable JavaScript"
 msgstr "הפעלת JavaScript"
 
@@ -384,13 +383,13 @@ msgstr "הפעלת JavaScript"
 #: configuration/ui/settings_browser.ui:163
 #, kde-format
 msgid "Accessibility"
-msgstr ""
+msgstr "נגישות"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_AccessKeyEnabled)
 #: configuration/ui/settings_browser.ui:169
 #, kde-format
 msgid "Enable Access Key activation with Ctrl key"
-msgstr ""
+msgstr "לאפשר הפעלת אפשרויות נגישות באמצעות המקש Ctrl"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_3)
 #: configuration/ui/settings_general.ui:30
@@ -499,10 +498,9 @@ msgstr "להשתמש במטמון ה&דפדפן (פחות תעבורת רשת)"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_LoadExternalReferences)
 #: configuration/ui/settings_security.ui:17
-#, fuzzy, kde-format
-#| msgid "Allow feed to load external references from internet."
+#, kde-format
 msgid "Allow article preview to load external references"
-msgstr "לאפשר לערוץ לטעון הפניות חיצוניות מהאינטרנט."
+msgstr "לאפשר לתצוגת כתבה מקדימה לטעון הפניות חיצוניות"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_LoadExternalReferences)
 #: configuration/ui/settings_security.ui:20
@@ -512,6 +510,8 @@ msgid ""
 "This may allow websites or third parties to observe the articles that you "
 "have viewed."
 msgstr ""
+"לאפשר לתצוגה מקדימה של כתבה לטעון הפניות חיצוניות מהאינטרנט. יכול להרשות "
+"לאתרים או לגורמי צד־שלישי לעקוב אחר הכתבות שבחרת לקרוא."
 
 #: export/akregatorstorageexporter.cpp:280
 #, kde-format
