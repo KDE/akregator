@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-07-08 00:39+0000\n"
-"PO-Revision-Date: 2024-07-05 15:38+0900\n"
+"PO-Revision-Date: 2024-07-08 17:38+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
 "Language: zh_TW\n"
@@ -365,22 +365,21 @@ msgstr "利用 Google 安全瀏覽 API 驗證連結"
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_EnableJavascript)
 #. i18n: ectx: label, entry, group (Browser)
 #: configuration/ui/settings_browser.ui:153 interfaces/akregator.kcfg:195
-#, fuzzy, kde-format
-#| msgid "Enable Javascript"
+#, kde-format
 msgid "Enable JavaScript"
-msgstr "啟用 Javascript"
+msgstr "啟用 JavaScript"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #: configuration/ui/settings_browser.ui:163
 #, kde-format
 msgid "Accessibility"
-msgstr ""
+msgstr "無障礙輔助"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_AccessKeyEnabled)
 #: configuration/ui/settings_browser.ui:169
 #, kde-format
 msgid "Enable Access Key activation with Ctrl key"
-msgstr ""
+msgstr "開啟 Ctrl 鍵顯示存取按鍵的功能"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_3)
 #: configuration/ui/settings_general.ui:30
@@ -489,10 +488,9 @@ msgstr "使用瀏覽器快取以減少網路流量(&B)"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_LoadExternalReferences)
 #: configuration/ui/settings_security.ui:17
-#, fuzzy, kde-format
-#| msgid "Allow feed to load external references from internet."
+#, kde-format
 msgid "Allow article preview to load external references"
-msgstr "允許訂閱來源載入網路上的外部參照。"
+msgstr "允許文章預覽載入外部參照"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_LoadExternalReferences)
 #: configuration/ui/settings_security.ui:20
@@ -502,6 +500,8 @@ msgid ""
 "This may allow websites or third parties to observe the articles that you "
 "have viewed."
 msgstr ""
+"允許文章預覽從網際網路載入外部參照。這可能讓網站或第三方能觀察您所查看的文"
+"章。"
 
 #: export/akregatorstorageexporter.cpp:280
 #, kde-format
