@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-07-08 00:39+0000\n"
-"PO-Revision-Date: 2024-05-24 00:57+0300\n"
+"PO-Revision-Date: 2024-07-28 15:08+0300\n"
 "Last-Translator: Mindaugas Baranauskas <opensuse.lietuviu.kalba@gmail.com>\n"
 "Language-Team: Lithuanian <kde-i18n-lt@kde.org>\n"
 "Language: lt\n"
@@ -384,22 +384,21 @@ msgstr "URL tikrinti naudojant Google saugaus naršymo API"
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_EnableJavascript)
 #. i18n: ectx: label, entry, group (Browser)
 #: configuration/ui/settings_browser.ui:153 interfaces/akregator.kcfg:195
-#, fuzzy, kde-format
-#| msgid "Enable Javascript"
+#, kde-format
 msgid "Enable JavaScript"
-msgstr "Įgalinti Javascript"
+msgstr "Įjungti Javascript"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #: configuration/ui/settings_browser.ui:163
 #, kde-format
 msgid "Accessibility"
-msgstr ""
+msgstr "Prieinamumas"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_AccessKeyEnabled)
 #: configuration/ui/settings_browser.ui:169
 #, kde-format
 msgid "Enable Access Key activation with Ctrl key"
-msgstr ""
+msgstr "Įjungti prieigos klavišo aktyvinimą naudojant Vald klavišą"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_3)
 #: configuration/ui/settings_general.ui:30
@@ -474,10 +473,9 @@ msgstr "Atsiųsti naujienas kas:"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_PlasmaActivitySupport)
 #: configuration/ui/settings_general.ui:157
-#, fuzzy, kde-format
-#| msgid "Enable Plasma Activities"
+#, kde-format
 msgid "Enable Plasma Activities integration"
-msgstr "Įjungti Plasma veiklas"
+msgstr "Įjungti Plasma veiklų integraciją"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #: configuration/ui/settings_general.ui:167
@@ -511,10 +509,9 @@ msgstr "Naudoti naršyklės krepšį (reikės mažiau tinklo pralaidumo)"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_LoadExternalReferences)
 #: configuration/ui/settings_security.ui:17
-#, fuzzy, kde-format
-#| msgid "Allow feed to load external references from internet."
+#, kde-format
 msgid "Allow article preview to load external references"
-msgstr "Leisti kanalams įkelti iš interneto išorines rodykles."
+msgstr "Leisti straipsnio peržiūrai įkelti išorines nuorodas."
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_LoadExternalReferences)
 #: configuration/ui/settings_security.ui:20
@@ -524,6 +521,9 @@ msgid ""
 "This may allow websites or third parties to observe the articles that you "
 "have viewed."
 msgstr ""
+"Leisti straipsnio peržiūrai įkelti išorines nuorodas iš interneto. Tai gali "
+"leisti internetinėms svetainėms ar trečiosioms šalims matyti jūsų "
+"peržiūrėtus straipsnius."
 
 #: export/akregatorstorageexporter.cpp:280
 #, kde-format
@@ -917,10 +917,9 @@ msgstr "Ką turi daryti vidurinio pelės mygtuko spragtelėjimas."
 
 #. i18n: ectx: label, entry, group (Browser)
 #: interfaces/akregator.kcfg:246
-#, fuzzy, kde-format
-#| msgid "Enable Plasma Activities"
+#, kde-format
 msgid "Enabled Plasma Activity"
-msgstr "Įjungti Plasma veiklas"
+msgstr "Įjungta Plasma veikla"
 
 #. i18n: ectx: label, entry, group (Advanced)
 #: interfaces/akregator.kcfg:266
@@ -1537,29 +1536,25 @@ msgid "Feed found, downloading…"
 msgstr "Kanalas rastas, atsiunčiama…"
 
 #: src/akregator_options.h:20 src/akregator_options.h:28
-#, fuzzy, kde-format
-#| msgid "Add a feed with the given URL"
+#, kde-format
 msgctxt "@info:shell"
 msgid "Add a feed with the given URL"
 msgstr "Pridėti kanalą su nurodytu URL"
 
 #: src/akregator_options.h:23
-#, fuzzy, kde-format
-#| msgid "When adding feeds, place them in this group"
+#, kde-format
 msgctxt "@info:shell"
 msgid "When adding feeds, place them in this group"
 msgstr "Pridedant kanalus, jungti juos prie šitos grupės"
 
 #: src/akregator_options.h:25
-#, fuzzy, kde-format
-#| msgid "Hide main window on startup"
+#, kde-format
 msgctxt "@info:shell"
 msgid "Hide main window on startup"
-msgstr "Paleidus slėpti pagrindinį programos langą"
+msgstr "Paleidus programą slėpti pagrindinį langą"
 
 #: src/akregator_options.h:30
-#, fuzzy, kde-format
-#| msgid "Lists the available options for user feedback"
+#, kde-format
 msgctxt "@info:shell"
 msgid "Lists the available options for user feedback"
 msgstr "Išvardija prieinamas naudotojo grįžtamojo ryšio parinktis"
@@ -1912,26 +1907,23 @@ msgstr ""
 "sukurti atsarginės kopijos.</qt>"
 
 #: src/crashwidget/crashwidget.cpp:21
-#, fuzzy, kde-format
-#| msgid ""
-#| "Akregator did not close correctly. Would you like to restore the previous "
-#| "session?"
+#, kde-format
 msgctxt "@label:textbox"
 msgid ""
 "Akregator did not close correctly. Would you like to restore the previous "
 "session?"
 msgstr ""
-"Akregator tvarkingai neužsidarė. Ar norėtumėte atstatyti ankstesnę sesiją?"
+"Akregator tvarkingai neužsivėrė. Ar norėtumėte atkurti ankstesnį seansą?"
 
 #: src/crashwidget/crashwidget.cpp:37
 #, kde-format
 msgid "Restore Session"
-msgstr "Atstatyti sesiją"
+msgstr "Atkurti seansą"
 
 #: src/crashwidget/crashwidget.cpp:43
 #, kde-format
 msgid "Do Not Restore Session"
-msgstr "Neatstatyti sesijos"
+msgstr "Neatkurti seanso"
 
 #: src/crashwidget/crashwidget.cpp:49
 #, kde-format
@@ -2491,13 +2483,13 @@ msgstr "Ar&chyvas"
 #: src/ui/feedpropertieswidgetbase.ui:206
 #, kde-format
 msgid "&Use default settings"
-msgstr "&Naudoti numatytas nuostatas"
+msgstr "&Naudoti numatytąsias nuostatas"
 
 #. i18n: ectx: property (text), widget (QRadioButton, rb_disableArchiving)
 #: src/ui/feedpropertieswidgetbase.ui:216
 #, kde-format
 msgid "Di&sable archiving"
-msgstr "&Uždrausti archyvavimą"
+msgstr "&Išjungti archyvavimą"
 
 #. i18n: ectx: property (text), widget (QRadioButton, rb_limitArticleNumber)
 #: src/ui/feedpropertieswidgetbase.ui:247
@@ -2575,15 +2567,13 @@ msgid "Open In External Browser"
 msgstr "Atverti išorinėje naršyklėje"
 
 #: src/widgets/searchbar.cpp:43
-#, fuzzy, kde-format
-#| msgid "Search articles…"
+#, kde-format
 msgctxt "@info:placeholder"
 msgid "Search articles…"
 msgstr "Ieškoti straipsnių…"
 
 #: src/widgets/searchbar.cpp:118
-#, fuzzy, kde-format
-#| msgid "Search articles…<%1>"
+#, kde-format
 msgctxt "@info:placeholder"
 msgid "Search articles…<%1>"
 msgstr "Ieškoti straipsnių…<%1>"
