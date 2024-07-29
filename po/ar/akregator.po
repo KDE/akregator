@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-07-08 00:39+0000\n"
-"PO-Revision-Date: 2024-06-26 18:21+0400\n"
+"PO-Revision-Date: 2024-07-28 12:38+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
 "Language: ar\n"
@@ -387,8 +387,7 @@ msgstr "تأكد من العناوين باستخدام غوغل للتصفح ا
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_EnableJavascript)
 #. i18n: ectx: label, entry, group (Browser)
 #: configuration/ui/settings_browser.ui:153 interfaces/akregator.kcfg:195
-#, fuzzy, kde-format
-#| msgid "Enable Javascript"
+#, kde-format
 msgid "Enable JavaScript"
 msgstr "مكن جافاسكربت"
 
@@ -396,13 +395,13 @@ msgstr "مكن جافاسكربت"
 #: configuration/ui/settings_browser.ui:163
 #, kde-format
 msgid "Accessibility"
-msgstr ""
+msgstr "الإتاحة"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_AccessKeyEnabled)
 #: configuration/ui/settings_browser.ui:169
 #, kde-format
 msgid "Enable Access Key activation with Ctrl key"
-msgstr ""
+msgstr "مكن تنشيط مفتاح الوصول باستخدام مفتاح Ctrl"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_3)
 #: configuration/ui/settings_general.ui:30
@@ -511,10 +510,9 @@ msgstr "استخدم &مختزن المتصفح (أقل مرور للشبكة)"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_LoadExternalReferences)
 #: configuration/ui/settings_security.ui:17
-#, fuzzy, kde-format
-#| msgid "Allow feed to load external references from internet."
+#, kde-format
 msgid "Allow article preview to load external references"
-msgstr "اسمح للتلقيم بأن يحمل المصادر الخارجية من الإنترنت"
+msgstr "اسمح لمعاينة المقالة بأن تحمل المصادر الخارجية"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_LoadExternalReferences)
 #: configuration/ui/settings_security.ui:20
@@ -524,6 +522,8 @@ msgid ""
 "This may allow websites or third parties to observe the articles that you "
 "have viewed."
 msgstr ""
+"اسمح لمعاينة المقالة بتحميل المراجع الخارجية من الإنترنت. قد يسمح هذا لمواقع "
+"الويب أو الجهات الخارجية بمراقبة المقالات التي شاهدتها."
 
 #: export/akregatorstorageexporter.cpp:280
 #, kde-format
@@ -2569,15 +2569,13 @@ msgid "Open In External Browser"
 msgstr "افتح في متصفح خارجي"
 
 #: src/widgets/searchbar.cpp:43
-#, fuzzy, kde-format
-#| msgid "Search articles…"
+#, kde-format
 msgctxt "@info:placeholder"
 msgid "Search articles…"
 msgstr "ابحث في المقالات…"
 
 #: src/widgets/searchbar.cpp:118
-#, fuzzy, kde-format
-#| msgid "Search articles…<%1>"
+#, kde-format
 msgctxt "@info:placeholder"
 msgid "Search articles…<%1>"
 msgstr "ابحث في المقالات…<%1>"
