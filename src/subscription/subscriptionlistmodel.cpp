@@ -95,6 +95,8 @@ void FilterSubscriptionProxyModel::setSourceModel(QAbstractItemModel *src)
 
 bool FilterSubscriptionProxyModel::filterAcceptsRow(int source_row, const QModelIndex &source_parent) const
 {
+    // TODO check activities
+
     if (!m_doFilter) {
         return true;
     }
