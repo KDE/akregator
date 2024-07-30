@@ -247,11 +247,9 @@ Q_SIGNALS:
 
 private:
     Akregator::Backend::Storage *storage();
-
-private:
     void setFavicon(const QIcon &icon);
     void loadFavicon(const QString &url, bool downloadFavicon);
-    QList<Article> articles() override;
+    [[nodiscard]] QList<Article> articles() override;
 
     /** loads articles from archive **/
     void loadArticles();
@@ -284,10 +282,10 @@ private:
     void appendArticle(const Article &a);
 
     /** checks whether article @c a is expired (considering custom and global archive mode settings) */
-    bool isExpired(const Article &a) const;
+    [[nodiscard]] bool isExpired(const Article &a) const;
 
     /** returns @c true if either this article uses @c limitArticleAge as custom setting or uses the global default, which is @c limitArticleAge */
-    bool usesExpiryByAge() const;
+    [[nodiscard]] bool usesExpiryByAge() const;
 
     /** executes the actual fetch action */
     void tryFetch();
