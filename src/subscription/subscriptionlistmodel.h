@@ -64,6 +64,7 @@ public:
         IdRole,
         IsOpenRole,
         HasUnreadRole,
+        Activities,
     };
 
     enum Column {

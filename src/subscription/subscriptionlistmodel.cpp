@@ -256,6 +256,9 @@ QVariant SubscriptionListModel::data(const QModelIndex &index, int role) const
     }
     case HasUnreadRole:
         return node->unread() > 0;
+    case Activities:
+        // TODO
+        return {};
     }
 
     return {};
