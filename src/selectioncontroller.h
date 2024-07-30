@@ -20,7 +20,7 @@ class KJob;
 namespace Akregator
 {
 class ArticleListJob;
-class FilterUnreadProxyModel;
+class FilterSubscriptionProxyModel;
 
 class SelectionController : public AbstractSelectionController
 {
@@ -82,7 +82,7 @@ private:
     QPointer<QAbstractItemView> m_feedSelector;
     Akregator::ArticleLister *m_articleLister = nullptr;
     Akregator::SingleArticleDisplay *m_singleDisplay = nullptr;
-    Akregator::FilterUnreadProxyModel *const m_subscriptionModel;
+    Akregator::FilterSubscriptionProxyModel *const m_subscriptionModel;
     QAbstractItemModel *m_currentModel = nullptr;
     Akregator::FolderExpansionHandler *m_folderExpansionHandler = nullptr;
     Akregator::ArticleModel *m_articleModel = nullptr;

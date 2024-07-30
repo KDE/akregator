@@ -66,13 +66,13 @@ SelectionController::SelectionController(QObject *parent)
     : AbstractSelectionController(parent)
     , m_feedList()
     , m_feedSelector()
-    , m_subscriptionModel(new FilterUnreadProxyModel(this))
+    , m_subscriptionModel(new FilterSubscriptionProxyModel(this))
     , m_selectedSubscription()
 {
     m_subscriptionModel->setDoFilter(Settings::hideReadFeeds());
     m_subscriptionModel->setSourceModel(new SubscriptionListModel(QSharedPointer<FeedList>(), this));
 
-    connect(m_subscriptionModel, &FilterUnreadProxyModel::dataChanged, this, &SelectionController::subscriptionDataChanged);
+    connect(m_subscriptionModel, &FilterSubscriptionProxyModel::dataChanged, this, &SelectionController::subscriptionDataChanged);
 }
 
 SelectionController::~SelectionController()
@@ -104,7 +104,7 @@ void SelectionController::setFeedSelector(QAbstractItemView *feedSelector)
     connect(m_feedSelector.data(), &QAbstractItemView::customContextMenuRequested, this, &SelectionController::subscriptionContextMenuRequested);
     connect(m_feedSelector->selectionModel(), &QItemSelectionModel::currentChanged, this, &SelectionController::selectedSubscriptionChanged);
     connect(m_feedSelector.data(), &QAbstractItemView::activated, this, &SelectionController::selectedSubscriptionChanged);
-    connect(m_feedSelector->selectionModel(), &QItemSelectionModel::selectionChanged, m_subscriptionModel, &FilterUnreadProxyModel::selectionChanged);
+    connect(m_feedSelector->selectionModel(), &QItemSelectionModel::selectionChanged, m_subscriptionModel, &FilterSubscriptionProxyModel::selectionChanged);
 }
 
 void SelectionController::setArticleLister(Akregator::ArticleLister *lister)

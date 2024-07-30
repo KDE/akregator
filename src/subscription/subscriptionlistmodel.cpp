@@ -70,30 +70,30 @@ static const TreeNode *nodeForIndex(const QModelIndex &index, const FeedList *fe
 }
 }
 // TODO add activities support here.
-FilterUnreadProxyModel::FilterUnreadProxyModel(QObject *parent)
+FilterSubscriptionProxyModel::FilterSubscriptionProxyModel(QObject *parent)
     : QSortFilterProxyModel(parent)
     , m_selectedHierarchy()
 {
 }
 
-bool FilterUnreadProxyModel::doFilter() const
+bool FilterSubscriptionProxyModel::doFilter() const
 {
     return m_doFilter;
 }
 
-void FilterUnreadProxyModel::setDoFilter(bool v)
+void FilterSubscriptionProxyModel::setDoFilter(bool v)
 {
     m_doFilter = v;
     invalidateFilter();
 }
 
-void FilterUnreadProxyModel::setSourceModel(QAbstractItemModel *src)
+void FilterSubscriptionProxyModel::setSourceModel(QAbstractItemModel *src)
 {
     clearCache();
     QSortFilterProxyModel::setSourceModel(src);
 }
 
-bool FilterUnreadProxyModel::filterAcceptsRow(int source_row, const QModelIndex &source_parent) const
+bool FilterSubscriptionProxyModel::filterAcceptsRow(int source_row, const QModelIndex &source_parent) const
 {
     if (!m_doFilter) {
         return true;
@@ -119,7 +119,7 @@ bool FilterUnreadProxyModel::filterAcceptsRow(int source_row, const QModelIndex 
  * which would occur otherwise (we'd select the last article to read, it would
  * become unread, and disappear from the list without letting us view it).
  **/
-void FilterUnreadProxyModel::selectionChanged(const QItemSelection &selected, const QItemSelection &deselected)
+void FilterSubscriptionProxyModel::selectionChanged(const QItemSelection &selected, const QItemSelection &deselected)
 {
     QModelIndexList desel = mapSelectionToSource(deselected).indexes();
     // calling invalidateFilter causes refiltering at the call point, so we should
@@ -150,7 +150,7 @@ void FilterUnreadProxyModel::selectionChanged(const QItemSelection &selected, co
     }
 }
 
-void FilterUnreadProxyModel::clearCache()
+void FilterSubscriptionProxyModel::clearCache()
 {
     m_selectedHierarchy.clear();
 }

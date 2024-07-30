@@ -26,11 +26,11 @@ class TreeNode;
 /**
  * Filters feeds with unread counts.
  */
-class FilterUnreadProxyModel : public QSortFilterProxyModel
+class FilterSubscriptionProxyModel : public QSortFilterProxyModel
 {
     Q_OBJECT
 public:
-    explicit FilterUnreadProxyModel(QObject *parent = nullptr);
+    explicit FilterSubscriptionProxyModel(QObject *parent = nullptr);
 
     [[nodiscard]] bool doFilter() const;
 
