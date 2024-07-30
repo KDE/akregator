@@ -64,10 +64,10 @@ public:
     /** converts strings to ArchiveMode value
         if parsing fails, it returns ArchiveMode::globalDefault
         */
-    static ArchiveMode stringToArchiveMode(const QString &str);
+    [[nodiscard]] static ArchiveMode stringToArchiveMode(const QString &str);
 
     /** converts ArchiveMode values to corresponding strings */
-    static QString archiveModeToString(ArchiveMode mode);
+    [[nodiscard]] static QString archiveModeToString(ArchiveMode mode);
 
     /** creates a Feed object from a description in OPML format */
     static Feed *fromOPML(const QDomElement &e, Akregator::Backend::Storage *storage);
@@ -171,7 +171,7 @@ public:
     /** returns whether a fetch error has occurred */
     [[nodiscard]] bool fetchErrorOccurred() const;
 
-    Syndication::ErrorCode fetchErrorCode() const;
+    [[nodiscard]] Syndication::ErrorCode fetchErrorCode() const;
 
     /** returns the unread count for this feed */
     [[nodiscard]] int unread() const override;
@@ -302,3 +302,4 @@ private:
     std::unique_ptr<FeedPrivate> const d;
 };
 } // namespace Akregator
+Q_DECLARE_TYPEINFO(Akregator::Feed::ImageInfo, Q_RELOCATABLE_TYPE);
