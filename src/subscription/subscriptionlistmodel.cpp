@@ -105,7 +105,7 @@ bool FilterUnreadProxyModel::filterAcceptsRow(int source_row, const QModelIndex 
         return true;
     }
 
-    QVariant v = idx.data(SubscriptionListModel::HasUnreadRole);
+    const QVariant v = idx.data(SubscriptionListModel::HasUnreadRole);
     if (v.isNull()) {
         return true;
     }
@@ -135,10 +135,10 @@ void FilterUnreadProxyModel::selectionChanged(const QItemSelection &selected, co
 
     clearCache();
 
-    QModelIndexList sel = mapSelectionToSource(selected).indexes();
+    const QModelIndexList sel = mapSelectionToSource(selected).indexes();
     if (!sel.isEmpty()) {
         // XXX add support for multiple selections? this doesn't generally make sense in this case honestly
-        QModelIndex current = sel.at(0);
+        QModelIndex current = sel.constFirst();
         while (current.isValid()) {
             m_selectedHierarchy.insert(current);
             current = current.parent();
@@ -448,9 +448,7 @@ Qt::ItemFlags SubscriptionListModel::flags(const QModelIndex &idx) const
 
 QStringList SubscriptionListModel::mimeTypes() const
 {
-    QStringList types;
-    types << QStringLiteral("text/uri-list") << AKREGATOR_TREENODE_MIMETYPE;
-    return types;
+    return {QStringLiteral("text/uri-list"), AKREGATOR_TREENODE_MIMETYPE};
 }
 
 QMimeData *SubscriptionListModel::mimeData(const QModelIndexList &indexes) const
