@@ -34,12 +34,12 @@ class Akregator::FeedListPrivate
 public:
     FeedListPrivate(Backend::Storage *st, FeedList *qq);
 
-    Akregator::Backend::Storage *storage;
+    Akregator::Backend::Storage *storage = nullptr;
     QList<TreeNode *> flatList;
     Folder *rootNode;
     QHash<uint, TreeNode *> idMap;
-    FeedList::AddNodeVisitor *addNodeVisitor;
-    FeedList::RemoveNodeVisitor *removeNodeVisitor;
+    FeedList::AddNodeVisitor *addNodeVisitor = nullptr;
+    FeedList::RemoveNodeVisitor *removeNodeVisitor = nullptr;
     QHash<QString, QList<Feed *>> urlMap;
     mutable int unreadCache;
 };
@@ -139,7 +139,7 @@ public:
     }
 
 private:
-    FeedList *m_list;
+    FeedList *m_list = nullptr;
 };
 
 FeedListPrivate::FeedListPrivate(Backend::Storage *st, FeedList *qq)
@@ -267,13 +267,13 @@ bool FeedList::readFromOpml(const QDomDocument &doc)
         return false;
     }
 
-    QDomElement body = bodyNode.toElement();
+    const QDomElement body = bodyNode.toElement();
 
-    QDomNode i = body.firstChild();
+    QDomNode firstChildElement = body.firstChild();
 
-    while (!i.isNull()) {
-        parseChildNodes(i, allFeedsFolder());
-        i = i.nextSibling();
+    while (!firstChildElement.isNull()) {
+        parseChildNodes(firstChildElement, allFeedsFolder());
+        firstChildElement = firstChildElement.nextSibling();
     }
 
     for (TreeNode *i = allFeedsFolder()->firstChild(); i && i != allFeedsFolder(); i = i->next()) {
@@ -580,7 +580,7 @@ void FeedListManagementImpl::removeFeed(const QString &url, const QString &catId
 {
     qCDebug(AKREGATOR_LOG) << "Name:" << url.left(20) << "Cat:" << catId;
 
-    uint lastcatid = catId.split(QLatin1Char('/'), Qt::SkipEmptyParts).last().toUInt();
+    const uint lastcatid = catId.split(QLatin1Char('/'), Qt::SkipEmptyParts).last().toUInt();
 
     const auto feeds = m_feedList->feeds();
     for (const Feed *const i : feeds) {
@@ -605,7 +605,7 @@ QString FeedListManagementImpl::getCategoryName(const QString &catId) const
 
     const QStringList list = catId.split(QLatin1Char('/'), Qt::SkipEmptyParts);
     for (int i = 0; i < list.size(); ++i) {
-        int index = list.at(i).toInt();
+        const int index = list.at(i).toInt();
         catname += m_feedList->findByID(index)->title() + QLatin1Char('/');
     }
 

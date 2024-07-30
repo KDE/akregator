@@ -274,7 +274,7 @@ void Feed::recalcUnreadCount()
     QList<Article>::ConstIterator it;
     QList<Article>::ConstIterator en = tarticles.constEnd();
 
-    int oldUnread = d->m_archive->unread();
+    const int oldUnread = d->m_archive->unread();
 
     int unread = 0;
 
@@ -349,7 +349,7 @@ Feed::~Feed()
 
 void Feed::loadFavicon(const QString &url, bool downloadFavicon)
 {
-    QUrl u(url);
+    const QUrl u(url);
     if (u.scheme().isEmpty()) {
         qCWarning(AKREGATOR_LOG) << "Invalid url" << url;
     }
@@ -498,7 +498,7 @@ void Feed::setFaviconLocalPath(const QString &localPath)
 void Feed::setFaviconInfo(const Feed::ImageInfo &info)
 {
     d->m_faviconInfo = info;
-    QUrl u(info.imageUrl);
+    const QUrl u(info.imageUrl);
     if (u.isLocalFile()) {
         setFavicon(QIcon(u.toLocalFile()));
     }
