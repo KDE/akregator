@@ -210,7 +210,7 @@ Article ArticleModel::article(int row) const
 
 QStringList ArticleModel::mimeTypes() const
 {
-    return QStringList() << QStringLiteral("text/uri-list");
+    return {QStringLiteral("text/uri-list")};
 }
 
 QMimeData *ArticleModel::mimeData(const QModelIndexList &indexes) const
