@@ -38,7 +38,6 @@ Kernel::Kernel()
     , mActivitiesManager(new ActivitiesManager())
 #endif
 {
-    m_storage = nullptr;
 #ifdef WITH_KUSERFEEDBACK
     // Initialize
     (void)UserFeedBackManager::self();
