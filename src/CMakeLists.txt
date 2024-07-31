@@ -167,6 +167,15 @@ target_sources(akregatorprivate PRIVATE
     akregator_options.h
 
 )
+
+if(TARGET Plasma::Activities)
+    target_sources(akregatorprivate PRIVATE
+	activities/configureactivitieswidget.cpp
+	activities/configureactivitieswidget.h
+    )
+endif()
+
+
 target_include_directories(akregatorprivate PRIVATE storage/metakit/include)
 
 qt_add_resources(akregatorprivate "html"
@@ -215,7 +224,12 @@ if(TARGET KF6::TextEditTextToSpeech)
 )
 endif()
 
-
+if(TARGET Plasma::Activities)
+    target_link_libraries(akregatorprivate
+        PRIVATE
+        Plasma::Activities
+    )
+endif()
 target_include_directories(akregatorprivate PUBLIC "$<BUILD_INTERFACE:${akregator_SOURCE_DIR}/src;${akregator_BINARY_DIR}/src>")
 
 set_target_properties(akregatorprivate
