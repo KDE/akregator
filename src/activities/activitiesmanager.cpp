@@ -6,13 +6,13 @@
 
 #include "activitiesmanager.h"
 #include "akregator_plasma_activities_debug.h"
-// FIXME #include "akregatorconfig.h"
+#include "akregatorconfig.h"
 #include <PlasmaActivities/Consumer>
 ActivitiesManager::ActivitiesManager(QObject *parent)
     : QObject{parent}
     , mActivitiesConsumer(new KActivities::Consumer(this))
 {
-    // FIXME mEnabled = Settings::self()->plasmaActivities();
+    mEnabled = Akregator::Settings::self()->plasmaActivitySupport();
     connect(mActivitiesConsumer, &KActivities::Consumer::currentActivityChanged, this, [this](const QString &activityId) {
         qCDebug(AKREGATOR_PLASMA_ACTIVITIES_LOG) << " switch to activity " << activityId;
         Q_EMIT activitiesChanged();
