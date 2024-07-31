@@ -5,9 +5,12 @@
 */
 
 #pragma once
+#include "activitiesmanager.h"
 #include <QWidget>
 class QListView;
 class QCheckBox;
+namespace Akregator
+{
 class ConfigureActivitiesWidget : public QWidget
 {
     Q_OBJECT
@@ -15,10 +18,11 @@ public:
     explicit ConfigureActivitiesWidget(QWidget *parent = nullptr);
     ~ConfigureActivitiesWidget() override;
 
-    // [[nodiscard]] AccountManager::ActivitySettings activitiesSettings() const;
-    // void setActivitiesSettings(const AccountManager::ActivitySettings &activitySettings);
+    [[nodiscard]] ActivitiesManager::ActivitySettings activitiesSettings() const;
+    void setActivitiesSettings(const ActivitiesManager::ActivitySettings &activitySettings);
 
 private:
     QListView *const mListView;
     QCheckBox *const mEnableActivitiesSupport;
 };
+}

@@ -17,6 +17,29 @@ class ActivitiesManager : public QObject
 {
     Q_OBJECT
 public:
+    struct ActivitySettings {
+        QStringList activities;
+        bool enabled = false;
+        [[nodiscard]] bool contains(const QString &str) const
+        {
+            return activities.contains(str);
+        }
+
+        void changeActivities(bool added, const QString &currentActivity)
+        {
+            if (added) {
+                if (!activities.contains(currentActivity)) {
+                    activities.append(currentActivity);
+                }
+            } else {
+                if (activities.contains(currentActivity)) {
+                    activities.removeAll(currentActivity);
+                }
+            }
+            enabled = true;
+        }
+    };
+
     explicit ActivitiesManager(QObject *parent = nullptr);
     ~ActivitiesManager() override;
     [[nodiscard]] bool enabled() const;

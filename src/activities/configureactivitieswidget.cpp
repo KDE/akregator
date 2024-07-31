@@ -14,6 +14,7 @@
 #include <QVBoxLayout>
 
 using namespace Qt::Literals::StringLiterals;
+using namespace Akregator;
 namespace
 {
 // Code stolen from plasma-vault
@@ -81,8 +82,7 @@ ConfigureActivitiesWidget::ConfigureActivitiesWidget(QWidget *parent)
 
 ConfigureActivitiesWidget::~ConfigureActivitiesWidget() = default;
 
-/*
-AccountManager::ActivitySettings ConfigureActivitiesWidget::activitiesSettings() const
+ActivitiesManager::ActivitySettings ConfigureActivitiesWidget::activitiesSettings() const
 {
     if (!mEnableActivitiesSupport->isChecked()) {
         return {};
@@ -94,11 +94,11 @@ AccountManager::ActivitySettings ConfigureActivitiesWidget::activitiesSettings()
     for (const auto &selectedIndex : selected) {
         selectedActivities << selectedIndex.data(KActivities::ActivitiesModel::ActivityId).toString();
     }
-    const AccountManager::ActivitySettings activities{selectedActivities, true};
+    const ActivitiesManager::ActivitySettings activities{selectedActivities, true};
     return activities;
 }
 
-void ConfigureActivitiesWidget::setActivitiesSettings(const AccountManager::ActivitySettings &activitySettings)
+void ConfigureActivitiesWidget::setActivitiesSettings(const ActivitiesManager::ActivitySettings &activitySettings)
 {
     auto model = mListView->model();
     auto selection = mListView->selectionModel();
@@ -125,5 +125,5 @@ void ConfigureActivitiesWidget::setActivitiesSettings(const AccountManager::Acti
         }
     }
 }
-*/
+
 #include "moc_configureactivitieswidget.cpp"
