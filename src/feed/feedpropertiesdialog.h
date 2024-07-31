@@ -8,9 +8,9 @@
 
 #pragma once
 
+#include "config-akregator.h"
 #include "feed.h"
 #include "ui_feedpropertieswidgetbase.h"
-
 #include <QDialog>
 
 #include <QWidget>
@@ -31,7 +31,7 @@ public:
         Never,
     };
 
-public Q_SLOTS:
+private:
     void slotUpdateComboBoxActivated(int index);
     void slotUpdateComboBoxLabels(int value);
     void slotUpdateCheckBoxToggled(bool enabled);
@@ -80,7 +80,7 @@ protected:
     void setComment(const QString &comment);
 
 private:
-    FeedPropertiesWidget *widget = nullptr;
+    FeedPropertiesWidget *const mFeedPropertiesWidget;
     Feed *m_feed = nullptr;
     QPushButton *mOkButton = nullptr;
 
