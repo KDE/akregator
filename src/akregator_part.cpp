@@ -425,7 +425,7 @@ void Part::slotSaveFeedList()
 
     KMessageBox::error(m_mainWidget,
                        i18n("Access denied: Cannot save feed list to <b>%1</b>. Please check your permissions.", m_standardFeedList),
-                       i18n("Write Error"));
+                       i18nc("@title:window", "Write Error"));
 }
 
 bool Part::isTrayIconEnabled() const
