@@ -8,6 +8,7 @@
 #include "akregator_plasma_activities_debug.h"
 #include "akregatorconfig.h"
 #include <PlasmaActivities/Consumer>
+using namespace Akregator;
 ActivitiesManager::ActivitiesManager(QObject *parent)
     : QObject{parent}
     , mActivitiesConsumer(new KActivities::Consumer(this))

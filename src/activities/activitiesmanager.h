@@ -11,6 +11,8 @@ namespace KActivities
 {
 class Consumer;
 }
+namespace Akregator
+{
 class ActivitiesManager : public QObject
 {
     Q_OBJECT
@@ -30,3 +32,4 @@ private:
     KActivities::Consumer *const mActivitiesConsumer;
     bool mEnabled = false;
 };
+}
