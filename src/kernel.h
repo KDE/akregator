@@ -10,6 +10,8 @@
 
 #include <QSharedPointer>
 
+#include "config-akregator.h"
+
 #include "akregator_export.h"
 
 namespace Akregator
@@ -22,7 +24,9 @@ class Storage;
 class FeedList;
 class FetchQueue;
 class FrameManager;
-
+#if HAVE_ACTIVITY_SUPPORT
+class ActivitiesManager;
+#endif
 class AKREGATOR_EXPORT Kernel
 {
 public:
@@ -49,5 +53,8 @@ private:
     QSharedPointer<FeedList> m_feedList;
     FetchQueue *const m_fetchQueue;
     FrameManager *const m_frameManager;
+#if HAVE_ACTIVITY_SUPPORT
+    ActivitiesManager *const mActivitiesManager;
+#endif
 };
 } // namespace Akregator

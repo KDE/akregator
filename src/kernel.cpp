@@ -14,6 +14,9 @@
 #ifdef WITH_KUSERFEEDBACK
 #include "userfeedback/userfeedbackmanager.h"
 #endif
+#if HAVE_ACTIVITY_SUPPORT
+#include "activities/activitiesmanager.h"
+#endif
 
 using namespace Akregator;
 
@@ -31,6 +34,9 @@ Kernel *Kernel::self()
 Kernel::Kernel()
     : m_fetchQueue(new FetchQueue())
     , m_frameManager(new FrameManager())
+#if HAVE_ACTIVITY_SUPPORT
+    , mActivitiesManager(new ActivitiesManager())
+#endif
 {
     m_storage = nullptr;
 #ifdef WITH_KUSERFEEDBACK
@@ -43,6 +49,9 @@ Kernel::~Kernel()
 {
     delete m_fetchQueue;
     delete m_frameManager;
+#if HAVE_ACTIVITY_SUPPORT
+    delete mActivitiesManager;
+#endif
 }
 
 Backend::Storage *Kernel::storage()
