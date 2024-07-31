@@ -47,7 +47,7 @@ private:
 
     Backend::Storage *m_storage = nullptr;
     QSharedPointer<FeedList> m_feedList;
-    FetchQueue *m_fetchQueue = nullptr;
-    FrameManager *m_frameManager = nullptr;
+    FetchQueue *const m_fetchQueue;
+    FrameManager *const m_frameManager;
 };
 } // namespace Akregator

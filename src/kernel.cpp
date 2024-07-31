@@ -29,9 +29,9 @@ Kernel *Kernel::self()
 }
 
 Kernel::Kernel()
+    : m_fetchQueue(new FetchQueue())
+    , m_frameManager(new FrameManager())
 {
-    m_fetchQueue = new FetchQueue();
-    m_frameManager = new FrameManager();
     m_storage = nullptr;
 #ifdef WITH_KUSERFEEDBACK
     // Initialize
