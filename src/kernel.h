@@ -34,16 +34,19 @@ public:
 
     ~Kernel();
 
-    Backend::Storage *storage();
+    [[nodiscard]] Backend::Storage *storage();
     void setStorage(Backend::Storage *storage);
 
     [[nodiscard]] QSharedPointer<FeedList> feedList() const;
     void setFeedList(const QSharedPointer<FeedList> &feedList);
 
-    FetchQueue *fetchQueue() const;
+    [[nodiscard]] FetchQueue *fetchQueue() const;
 
-    FrameManager *frameManager() const;
+    [[nodiscard]] FrameManager *frameManager() const;
 
+#if HAVE_ACTIVITY_SUPPORT
+    [[nodiscard]] ActivitiesManager *activitiesManager() const;
+#endif
 private:
     Kernel();
 

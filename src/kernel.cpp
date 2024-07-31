@@ -54,6 +54,13 @@ Kernel::~Kernel()
 #endif
 }
 
+#if HAVE_ACTIVITY_SUPPORT
+ActivitiesManager *Kernel::activitiesManager() const
+{
+    return mActivitiesManager;
+}
+#endif
+
 Backend::Storage *Kernel::storage()
 {
     return m_storage;
