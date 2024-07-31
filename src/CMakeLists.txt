@@ -23,6 +23,13 @@ ecm_qt_declare_logging_category(akregator_common_SRCS HEADER akregator_debug.h I
         EXPORT AKREGATOR
 )
 
+if(TARGET Plasma::Activities)
+    ecm_qt_declare_logging_category(akregator_common_SRCS HEADER akregator_plasma_activities_debug.h IDENTIFIER AKREGATOR_PLASMA_ACTIVITIES_LOG CATEGORY_NAME org.kde.pim.akregator.plasma.activities
+        DESCRIPTION "akregator plasma activities(akregator)"
+        EXPORT AKREGATOR
+    )
+endif()
+
 set(akregator_SRCS main.cpp mainwindow.cpp mainwindow.h ${akregator_common_SRCS})
 
 file(GLOB ICONS_AKREGATOR_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/icons/*-apps-akregator.png")
@@ -172,6 +179,8 @@ if(TARGET Plasma::Activities)
     target_sources(akregatorprivate PRIVATE
 	activities/configureactivitieswidget.cpp
 	activities/configureactivitieswidget.h
+	activities/activitiesmanager.cpp
+	activities/activitiesmanager.h
     )
 endif()
 
