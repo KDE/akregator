@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: KDE 4.3\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-08 00:39+0000\n"
+"POT-Creation-Date: 2024-07-31 00:41+0000\n"
 "PO-Revision-Date: 2024-07-08 14:00+0200\n"
 "Last-Translator: Kristof Kiszel <ulysses@fsf.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -2304,24 +2304,24 @@ msgstr "Nem sikerült beolvasni a csatornafájlt (ismeretlen formátumú)"
 msgid "Could not read feed (invalid feed)"
 msgstr "Nem sikerült beolvasni a csatornafájlt (érvénytelen csatorna)"
 
-#: src/subscription/subscriptionlistmodel.cpp:227
+#: src/subscription/subscriptionlistmodel.cpp:229
 #, kde-format
 msgid "Could not fetch feed: %1"
 msgstr "Nem sikerült letölteni a csatornafájlt: %1"
 
-#: src/subscription/subscriptionlistmodel.cpp:272
+#: src/subscription/subscriptionlistmodel.cpp:277
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Feeds"
 msgstr "Csatornák"
 
-#: src/subscription/subscriptionlistmodel.cpp:274
+#: src/subscription/subscriptionlistmodel.cpp:279
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Unread"
 msgstr "Nem olvasott"
 
-#: src/subscription/subscriptionlistmodel.cpp:276
+#: src/subscription/subscriptionlistmodel.cpp:281
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Total"

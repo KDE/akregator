@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-08 00:39+0000\n"
+"POT-Creation-Date: 2024-07-31 00:41+0000\n"
 "PO-Revision-Date: 2012-07-09 22:08+0800\n"
 "Last-Translator: Lê Hoàng Phương <herophuong93@gmail.com>\n"
 "Language-Team: Vietnamese <kde-i18n-vi@kde.org>\n"
@@ -2365,24 +2365,24 @@ msgstr "Không thể đọc nguồn tin (không rõ định dạng)"
 msgid "Could not read feed (invalid feed)"
 msgstr "Không thể đọc nguồn tin (nguồn tin không hợp lệ)"
 
-#: src/subscription/subscriptionlistmodel.cpp:227
+#: src/subscription/subscriptionlistmodel.cpp:229
 #, kde-format
 msgid "Could not fetch feed: %1"
 msgstr "Không thể lấy tin: %1"
 
-#: src/subscription/subscriptionlistmodel.cpp:272
+#: src/subscription/subscriptionlistmodel.cpp:277
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Feeds"
 msgstr "Nguồn tin"
 
-#: src/subscription/subscriptionlistmodel.cpp:274
+#: src/subscription/subscriptionlistmodel.cpp:279
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Unread"
 msgstr "Chưa đọc"
 
-#: src/subscription/subscriptionlistmodel.cpp:276
+#: src/subscription/subscriptionlistmodel.cpp:281
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Total"

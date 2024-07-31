@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-08 00:39+0000\n"
+"POT-Creation-Date: 2024-07-31 00:41+0000\n"
 "PO-Revision-Date: 2023-11-08 16:19-0300\n"
 "Last-Translator: Luiz Fernando Ranghetti <elchevive@opensuse.org>\n"
 "Language-Team: Brazilian Portuguese <kde-i18n-pt_BR@kde.org>\n"
@@ -2362,24 +2362,24 @@ msgstr "Não foi possível ler a fonte de notícias (formato desconhecido)"
 msgid "Could not read feed (invalid feed)"
 msgstr "Não foi possível ler a fonte de notícias (fonte inválida)"
 
-#: src/subscription/subscriptionlistmodel.cpp:227
+#: src/subscription/subscriptionlistmodel.cpp:229
 #, kde-format
 msgid "Could not fetch feed: %1"
 msgstr "Não foi possível atualizar a fonte de notícias: %1"
 
-#: src/subscription/subscriptionlistmodel.cpp:272
+#: src/subscription/subscriptionlistmodel.cpp:277
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Feeds"
 msgstr "Fontes de notícias"
 
-#: src/subscription/subscriptionlistmodel.cpp:274
+#: src/subscription/subscriptionlistmodel.cpp:279
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Unread"
 msgstr "Não lidos"
 
-#: src/subscription/subscriptionlistmodel.cpp:276
+#: src/subscription/subscriptionlistmodel.cpp:281
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Total"

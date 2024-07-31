@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-08 00:39+0000\n"
+"POT-Creation-Date: 2024-07-31 00:41+0000\n"
 "PO-Revision-Date: 2024-05-28 09:59+0300\n"
 "Last-Translator: Toms Trasuns <toms.trasuns@posteo.net>\n"
 "Language-Team: Latvian <kde-i18n-doc@kde.org>\n"
@@ -2308,24 +2308,24 @@ msgstr "Nevar nolasīt ziņu avotu (nezināms formāts)"
 msgid "Could not read feed (invalid feed)"
 msgstr "Nevar nolasīt ziņu avotu (nederīgs ziņu avots)"
 
-#: src/subscription/subscriptionlistmodel.cpp:227
+#: src/subscription/subscriptionlistmodel.cpp:229
 #, kde-format
 msgid "Could not fetch feed: %1"
 msgstr "Nevar ielādēt plūsmu: %1"
 
-#: src/subscription/subscriptionlistmodel.cpp:272
+#: src/subscription/subscriptionlistmodel.cpp:277
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Feeds"
 msgstr "Plūsmas"
 
-#: src/subscription/subscriptionlistmodel.cpp:274
+#: src/subscription/subscriptionlistmodel.cpp:279
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Unread"
 msgstr "Nelasīti"
 
-#: src/subscription/subscriptionlistmodel.cpp:276
+#: src/subscription/subscriptionlistmodel.cpp:281
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Total"
