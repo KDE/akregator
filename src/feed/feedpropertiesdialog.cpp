@@ -19,6 +19,7 @@
 #include <QDialogButtonBox>
 #include <QPushButton>
 #include <QVBoxLayout>
+#include <kernel.h>
 
 using namespace Akregator;
 // TODO add activities tab
@@ -32,7 +33,11 @@ FeedPropertiesWidget::FeedPropertiesWidget(QWidget *parent, const QString &name)
     setupUi(this);
 
 #if HAVE_ACTIVITY_SUPPORT
-    tabWidget2->addTab(mConfigureActivitiesWidget, i18n("Activities"));
+    if (Kernel::self()->activitiesManager()->enabled()) {
+        tabWidget2->addTab(mConfigureActivitiesWidget, i18n("Activities"));
+    } else {
+        mConfigureActivitiesWidget->hide();
+    }
 #endif
 
     connect(cb_updateInterval, &QCheckBox::toggled, updateSpinBox, &QSpinBox::setEnabled);
@@ -121,7 +126,9 @@ void FeedPropertiesDialog::accept()
     m_feed->setLoadLinkedWebsite(loadLinkedWebsite());
     m_feed->setNotificationMode(true);
     m_feed->setComment(comment());
-
+#if HAVE_ACTIVITY_SUPPORT
+    // TODO
+#endif
     QDialog::accept();
 }
 
@@ -154,6 +161,9 @@ void FeedPropertiesDialog::setFeed(Feed *feed)
     setLoadLinkedWebsite(feed->loadLinkedWebsite());
     setComment(feed->comment());
     slotSetWindowTitle(feedName());
+#if HAVE_ACTIVITY_SUPPORT
+    // TODO
+#endif
 }
 
 QString FeedPropertiesDialog::comment() const
