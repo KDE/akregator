@@ -188,8 +188,10 @@ int FeedPropertiesDialog::fetchInterval() const
         return mFeedPropertiesWidget->updateSpinBox->value();
     case FeedPropertiesWidget::Hours:
         return mFeedPropertiesWidget->updateSpinBox->value() * 60;
-    case FeedPropertiesWidget::Days:
-        return mFeedPropertiesWidget->updateSpinBox->value() * 60 * 24;
+    case FeedPropertiesWidget::Days: {
+        constexpr int value = 60 * 24;
+        return mFeedPropertiesWidget->updateSpinBox->value() * value;
+    }
     case FeedPropertiesWidget::Never:
     default:
         return -1; // never
@@ -292,8 +294,9 @@ void FeedPropertiesDialog::setFetchInterval(int interval)
         return;
     }
 
-    if (interval % (60 * 24) == 0) {
-        mFeedPropertiesWidget->updateSpinBox->setValue(interval / (60 * 24));
+    constexpr int value = 60 * 24;
+    if (interval % (value) == 0) {
+        mFeedPropertiesWidget->updateSpinBox->setValue(interval / (value));
         mFeedPropertiesWidget->updateSpinBox->setEnabled(mFeedPropertiesWidget->cb_updateInterval->isChecked());
         mFeedPropertiesWidget->updateComboBox->setCurrentIndex(FeedPropertiesWidget::Days);
         return;
