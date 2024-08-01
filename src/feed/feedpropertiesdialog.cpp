@@ -7,6 +7,9 @@
 */
 
 #include "feedpropertiesdialog.h"
+#if HAVE_ACTIVITY_SUPPORT
+#include "activities/configureactivitieswidget.h"
+#endif
 #include "akregatorconfig.h"
 
 #include <KLocalizedString>
@@ -21,9 +24,17 @@ using namespace Akregator;
 // TODO add activities tab
 FeedPropertiesWidget::FeedPropertiesWidget(QWidget *parent, const QString &name)
     : QWidget(parent)
+#if HAVE_ACTIVITY_SUPPORT
+    , mConfigureActivitiesWidget(new ConfigureActivitiesWidget(this))
+#endif
 {
     setObjectName(name);
     setupUi(this);
+
+#if HAVE_ACTIVITY_SUPPORT
+    tabWidget2->addTab(mConfigureActivitiesWidget, i18n("Activities"));
+#endif
+
     connect(cb_updateInterval, &QCheckBox::toggled, updateSpinBox, &QSpinBox::setEnabled);
     connect(cb_updateInterval, &QCheckBox::toggled, updateComboBox, &QComboBox::setEnabled);
     connect(cb_updateInterval, &QCheckBox::toggled, updateLabel, &QLabel::setEnabled);

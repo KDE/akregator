@@ -17,6 +17,9 @@
 
 namespace Akregator
 {
+#if HAVE_ACTIVITY_SUPPORT
+class ConfigureActivitiesWidget;
+#endif
 class FeedPropertiesWidget : public QWidget, public Ui::FeedPropertiesWidgetBase
 {
     Q_OBJECT
@@ -35,6 +38,10 @@ private:
     void slotUpdateComboBoxActivated(int index);
     void slotUpdateComboBoxLabels(int value);
     void slotUpdateCheckBoxToggled(bool enabled);
+
+#if HAVE_ACTIVITY_SUPPORT
+    ConfigureActivitiesWidget *const mConfigureActivitiesWidget;
+#endif
 };
 
 class FeedPropertiesDialog : public QDialog

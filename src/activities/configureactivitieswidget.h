@@ -6,12 +6,13 @@
 
 #pragma once
 #include "activitiesmanager.h"
+#include "akregator_export.h"
 #include <QWidget>
 class QListView;
 class QCheckBox;
 namespace Akregator
 {
-class ConfigureActivitiesWidget : public QWidget
+class AKREGATOR_EXPORT ConfigureActivitiesWidget : public QWidget
 {
     Q_OBJECT
 public:
