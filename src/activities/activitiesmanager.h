@@ -6,6 +6,7 @@
 
 #pragma once
 
+#include "akregator_export.h"
 #include <QObject>
 namespace KActivities
 {
@@ -13,7 +14,7 @@ class Consumer;
 }
 namespace Akregator
 {
-class ActivitiesManager : public QObject
+class AKREGATOR_EXPORT ActivitiesManager : public QObject
 {
     Q_OBJECT
 public:
