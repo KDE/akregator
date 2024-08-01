@@ -34,6 +34,10 @@ public:
         Never,
     };
 
+#if HAVE_ACTIVITY_SUPPORT
+    [[nodiscard]] ConfigureActivitiesWidget *configureActivitiesWidget() const;
+#endif
+
 private:
     void slotUpdateComboBoxActivated(int index);
     void slotUpdateComboBoxLabels(int value);

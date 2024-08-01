@@ -64,6 +64,13 @@ void FeedPropertiesWidget::slotUpdateCheckBoxToggled(bool enabled)
     updateSpinBox->setEnabled(enabled && updateComboBox->currentIndex() != Never);
 }
 
+#if HAVE_ACTIVITY_SUPPORT
+ConfigureActivitiesWidget *FeedPropertiesWidget::configureActivitiesWidget() const
+{
+    return mConfigureActivitiesWidget;
+}
+#endif
+
 FeedPropertiesDialog::FeedPropertiesDialog(QWidget *parent, const QString &name)
     : QDialog(parent)
     , mFeedPropertiesWidget(new FeedPropertiesWidget(this))
