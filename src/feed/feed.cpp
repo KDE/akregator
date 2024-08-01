@@ -98,6 +98,7 @@ public:
 
     QIcon m_favicon;
     QStringList m_activities;
+    bool m_activityEnabled = false;
     mutable int m_totalCount;
     void setTotalCountDirty() const;
 };
@@ -472,6 +473,16 @@ QStringList Feed::activities() const
 void Feed::setActivities(const QStringList &lst)
 {
     d->m_activities = lst;
+}
+
+bool Feed::activityEnabled() const
+{
+    return d->m_activityEnabled;
+}
+
+void Feed::setActivityEnabled(bool b)
+{
+    d->m_activityEnabled = b;
 }
 
 void Feed::setXmlUrl(const QString &s)

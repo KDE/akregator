@@ -224,6 +224,9 @@ public:
     [[nodiscard]] QString copyright() const;
     [[nodiscard]] QStringList activities() const;
     void setActivities(const QStringList &lst);
+
+    [[nodiscard]] bool activityEnabled() const;
+    void setActivityEnabled(bool b);
 public Q_SLOTS:
     /** starts fetching */
     void fetch(bool followDiscovery = false);
