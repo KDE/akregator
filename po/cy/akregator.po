@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: all2.po\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-31 00:41+0000\n"
+"POT-Creation-Date: 2024-08-01 00:41+0000\n"
 "PO-Revision-Date: 2004-09-20 15:44+0200\n"
 "Last-Translator: Thierry Vignaud <tvignaud@mandrakesoft.com>\n"
 "Language-Team: cy <LL@li.org>\n"
@@ -1496,6 +1496,21 @@ msgstr ""
 msgid "Open Link in External &Browser"
 msgstr ""
 
+#: src/activities/configureactivitieswidget.cpp:56
+#, kde-format
+msgctxt "@option:check"
+msgid "Limit to the selected activities:"
+msgstr ""
+
+#: src/activities/configureactivitieswidget.cpp:63
+#, kde-format
+msgctxt "@label:textbox"
+msgid ""
+"If you limit this account to activity, it will be shown in Ruqola only when "
+"you are in those activities. Furthermore, when you switch to an activity it "
+"should not be available in, it will automatically be hidden."
+msgstr ""
+
 #: src/addfeeddialog.cpp:49
 #, kde-format
 msgctxt "@title:window"
@@ -1583,8 +1598,9 @@ msgid ""
 "permissions."
 msgstr ""
 
-#: src/akregator_part.cpp:428
+#: src/akregator_part.cpp:428 src/akregator_part.cpp:481
 #, kde-format
+msgctxt "@title:window"
 msgid "Write Error"
 msgstr ""
 
@@ -1616,12 +1632,6 @@ msgstr ""
 #: src/akregator_part.cpp:480
 #, kde-format
 msgid "Access denied: cannot write to file %1. Please check your permissions."
-msgstr ""
-
-#: src/akregator_part.cpp:481
-#, kde-format
-msgctxt "@title:window"
-msgid "Write Error"
 msgstr ""
 
 #: src/akregator_part.cpp:496 src/akregator_part.cpp:505
@@ -1951,7 +1961,7 @@ msgstr "&Erthygl"
 msgid "All Feeds"
 msgstr ""
 
-#: src/feed/feedpropertiesdialog.cpp:45 src/feed/feedpropertiesdialog.cpp:77
+#: src/feed/feedpropertiesdialog.cpp:46 src/feed/feedpropertiesdialog.cpp:77
 #, fuzzy, kde-format
 #| msgid "Minutes"
 msgid "Minute"
@@ -1959,7 +1969,7 @@ msgid_plural "Minutes"
 msgstr[0] "Munudau"
 msgstr[1] "Munudau"
 
-#: src/feed/feedpropertiesdialog.cpp:46 src/feed/feedpropertiesdialog.cpp:78
+#: src/feed/feedpropertiesdialog.cpp:47 src/feed/feedpropertiesdialog.cpp:78
 #, fuzzy, kde-format
 #| msgid "Hours"
 msgid "Hour"
@@ -1967,7 +1977,7 @@ msgid_plural "Hours"
 msgstr[0] "Oriau"
 msgstr[1] "Oriau"
 
-#: src/feed/feedpropertiesdialog.cpp:47 src/feed/feedpropertiesdialog.cpp:79
+#: src/feed/feedpropertiesdialog.cpp:48 src/feed/feedpropertiesdialog.cpp:79
 #, fuzzy, kde-format
 #| msgid "Days"
 msgid "Day"
@@ -1975,7 +1985,7 @@ msgid_plural "Days"
 msgstr[0] "Dydd"
 msgstr[1] "Dydd"
 
-#: src/feed/feedpropertiesdialog.cpp:60 src/feed/feedpropertiesdialog.cpp:112
+#: src/feed/feedpropertiesdialog.cpp:61 src/feed/feedpropertiesdialog.cpp:112
 #, fuzzy, kde-format
 #| msgid "Properties of %1"
 msgctxt "@title:window"

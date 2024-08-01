@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-31 00:41+0000\n"
+"POT-Creation-Date: 2024-08-01 00:41+0000\n"
 "PO-Revision-Date: 2015-02-07 19:02+0100\n"
 "Last-Translator: Bjørn Steensrud <bjornst@skogkatt.homelinux.org>\n"
 "Language-Team: Norwegian Bokmål <l10n-no@lister.huftis.org>\n"
@@ -1528,6 +1528,21 @@ msgstr "Åpne lenke i ny &fane"
 msgid "Open Link in External &Browser"
 msgstr "Åpne lenke i ekstern &nettleser"
 
+#: src/activities/configureactivitieswidget.cpp:56
+#, kde-format
+msgctxt "@option:check"
+msgid "Limit to the selected activities:"
+msgstr ""
+
+#: src/activities/configureactivitieswidget.cpp:63
+#, kde-format
+msgctxt "@label:textbox"
+msgid ""
+"If you limit this account to activity, it will be shown in Ruqola only when "
+"you are in those activities. Furthermore, when you switch to an activity it "
+"should not be available in, it will automatically be hidden."
+msgstr ""
+
 #: src/addfeeddialog.cpp:49
 #, kde-format
 msgctxt "@title:window"
@@ -1621,8 +1636,10 @@ msgstr ""
 "Tilgang nektet: kan ikke lagre kildelista til <b>%1</b>. Sjekk hvilke "
 "tillatelser du har."
 
-#: src/akregator_part.cpp:428
-#, kde-format
+#: src/akregator_part.cpp:428 src/akregator_part.cpp:481
+#, fuzzy, kde-format
+#| msgid "Write Error"
+msgctxt "@title:window"
 msgid "Write Error"
 msgstr "Skrivefeil"
 
@@ -1658,13 +1675,6 @@ msgstr "Lesefeil"
 #, kde-format
 msgid "Access denied: cannot write to file %1. Please check your permissions."
 msgstr "Tilgang nektet: kan ikke skrive til fila %1. Sjekk tillatelsene dine."
-
-#: src/akregator_part.cpp:481
-#, fuzzy, kde-format
-#| msgid "Write Error"
-msgctxt "@title:window"
-msgid "Write Error"
-msgstr "Skrivefeil"
 
 #: src/akregator_part.cpp:496 src/akregator_part.cpp:505
 #, kde-format
@@ -2008,28 +2018,28 @@ msgstr "&Fil"
 msgid "All Feeds"
 msgstr "Alle kilder"
 
-#: src/feed/feedpropertiesdialog.cpp:45 src/feed/feedpropertiesdialog.cpp:77
+#: src/feed/feedpropertiesdialog.cpp:46 src/feed/feedpropertiesdialog.cpp:77
 #, kde-format
 msgid "Minute"
 msgid_plural "Minutes"
 msgstr[0] "Minutt"
 msgstr[1] "Minutter"
 
-#: src/feed/feedpropertiesdialog.cpp:46 src/feed/feedpropertiesdialog.cpp:78
+#: src/feed/feedpropertiesdialog.cpp:47 src/feed/feedpropertiesdialog.cpp:78
 #, kde-format
 msgid "Hour"
 msgid_plural "Hours"
 msgstr[0] "Time"
 msgstr[1] "Timer"
 
-#: src/feed/feedpropertiesdialog.cpp:47 src/feed/feedpropertiesdialog.cpp:79
+#: src/feed/feedpropertiesdialog.cpp:48 src/feed/feedpropertiesdialog.cpp:79
 #, kde-format
 msgid "Day"
 msgid_plural "Days"
 msgstr[0] "Dag"
 msgstr[1] "Dager"
 
-#: src/feed/feedpropertiesdialog.cpp:60 src/feed/feedpropertiesdialog.cpp:112
+#: src/feed/feedpropertiesdialog.cpp:61 src/feed/feedpropertiesdialog.cpp:112
 #, kde-format
 msgctxt "@title:window"
 msgid "Feed Properties"
@@ -2615,3 +2625,6 @@ msgstr ""
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "Viktige"
+
+#~ msgid "Write Error"
+#~ msgstr "Skrivefeil"

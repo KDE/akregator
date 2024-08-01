@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: KDE 4.3\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-31 00:41+0000\n"
+"POT-Creation-Date: 2024-08-01 00:41+0000\n"
 "PO-Revision-Date: 2024-07-08 14:00+0200\n"
 "Last-Translator: Kristof Kiszel <ulysses@fsf.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -1501,6 +1501,21 @@ msgstr "Megnyitás új la&pon"
 msgid "Open Link in External &Browser"
 msgstr "Megnyitás külső bön&gészőben"
 
+#: src/activities/configureactivitieswidget.cpp:56
+#, kde-format
+msgctxt "@option:check"
+msgid "Limit to the selected activities:"
+msgstr ""
+
+#: src/activities/configureactivitieswidget.cpp:63
+#, kde-format
+msgctxt "@label:textbox"
+msgid ""
+"If you limit this account to activity, it will be shown in Ruqola only when "
+"you are in those activities. Furthermore, when you switch to an activity it "
+"should not be available in, it will automatically be hidden."
+msgstr ""
+
 #: src/addfeeddialog.cpp:49
 #, kde-format
 msgctxt "@title:window"
@@ -1590,8 +1605,9 @@ msgstr ""
 "A hozzáférés nem engedélyezett: nem sikerült menteni a csatornalistát ide: "
 "%1. Ellenőrizze a jogosultságokat."
 
-#: src/akregator_part.cpp:428
+#: src/akregator_part.cpp:428 src/akregator_part.cpp:481
 #, kde-format
+msgctxt "@title:window"
 msgid "Write Error"
 msgstr "Írási hiba"
 
@@ -1627,12 +1643,6 @@ msgid "Access denied: cannot write to file %1. Please check your permissions."
 msgstr ""
 "A hozzáférés nem engedélyezett: nem sikerült írni ebbe a fájlba: %1. "
 "Ellenőrizze a jogosultságokat."
-
-#: src/akregator_part.cpp:481
-#, kde-format
-msgctxt "@title:window"
-msgid "Write Error"
-msgstr "Írási hiba"
 
 #: src/akregator_part.cpp:496 src/akregator_part.cpp:505
 #, kde-format
@@ -1973,28 +1983,28 @@ msgstr "&Fájl"
 msgid "All Feeds"
 msgstr "Minden csatorna"
 
-#: src/feed/feedpropertiesdialog.cpp:45 src/feed/feedpropertiesdialog.cpp:77
+#: src/feed/feedpropertiesdialog.cpp:46 src/feed/feedpropertiesdialog.cpp:77
 #, kde-format
 msgid "Minute"
 msgid_plural "Minutes"
 msgstr[0] "Perc"
 msgstr[1] "Perc"
 
-#: src/feed/feedpropertiesdialog.cpp:46 src/feed/feedpropertiesdialog.cpp:78
+#: src/feed/feedpropertiesdialog.cpp:47 src/feed/feedpropertiesdialog.cpp:78
 #, kde-format
 msgid "Hour"
 msgid_plural "Hours"
 msgstr[0] "Óra"
 msgstr[1] "Óra"
 
-#: src/feed/feedpropertiesdialog.cpp:47 src/feed/feedpropertiesdialog.cpp:79
+#: src/feed/feedpropertiesdialog.cpp:48 src/feed/feedpropertiesdialog.cpp:79
 #, kde-format
 msgid "Day"
 msgid_plural "Days"
 msgstr[0] "Nap"
 msgstr[1] "Nap"
 
-#: src/feed/feedpropertiesdialog.cpp:60 src/feed/feedpropertiesdialog.cpp:112
+#: src/feed/feedpropertiesdialog.cpp:61 src/feed/feedpropertiesdialog.cpp:112
 #, kde-format
 msgctxt "@title:window"
 msgid "Feed Properties"
@@ -2579,6 +2589,9 @@ msgstr "Olvasott"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "Fontos"
+
+#~ msgid "Write Error"
+#~ msgstr "Írási hiba"
 
 #~ msgid "Misc"
 #~ msgstr "Vegyes"

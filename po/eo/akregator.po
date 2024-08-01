@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-31 00:41+0000\n"
+"POT-Creation-Date: 2024-08-01 00:41+0000\n"
 "PO-Revision-Date: 2024-07-08 22:51+0200\n"
 "Last-Translator: Oliver Kellogg <olivermkellogg@gmail.com>\n"
 "Language-Team: Esperanto <kde-i18n-eo@kde.org>\n"
@@ -1496,6 +1496,21 @@ msgstr "Malfermi ligilon en nova &langeto"
 msgid "Open Link in External &Browser"
 msgstr "Malfermi ligilon en ekstera &retumilo"
 
+#: src/activities/configureactivitieswidget.cpp:56
+#, kde-format
+msgctxt "@option:check"
+msgid "Limit to the selected activities:"
+msgstr ""
+
+#: src/activities/configureactivitieswidget.cpp:63
+#, kde-format
+msgctxt "@label:textbox"
+msgid ""
+"If you limit this account to activity, it will be shown in Ruqola only when "
+"you are in those activities. Furthermore, when you switch to an activity it "
+"should not be available in, it will automatically be hidden."
+msgstr ""
+
 #: src/addfeeddialog.cpp:49
 #, kde-format
 msgctxt "@title:window"
@@ -1585,10 +1600,11 @@ msgstr ""
 "Aliro malakceptita: Ne povas konservi feedliston al <b>%1</b>. Bonvolu "
 "kontroli viajn permesojn."
 
-#: src/akregator_part.cpp:428
+#: src/akregator_part.cpp:428 src/akregator_part.cpp:481
 #, kde-format
+msgctxt "@title:window"
 msgid "Write Error"
-msgstr "Skriba eraro"
+msgstr "Skriba Eraro"
 
 #: src/akregator_part.cpp:464
 #, kde-format
@@ -1621,12 +1637,6 @@ msgstr "Lega Eraro"
 msgid "Access denied: cannot write to file %1. Please check your permissions."
 msgstr ""
 "Aliro neita: ne eblas skribi al dosiero %1. Bv kontroli viajn permesojn."
-
-#: src/akregator_part.cpp:481
-#, kde-format
-msgctxt "@title:window"
-msgid "Write Error"
-msgstr "Skriba Eraro"
 
 #: src/akregator_part.cpp:496 src/akregator_part.cpp:505
 #, kde-format
@@ -1963,28 +1973,28 @@ msgstr "&Dosiero"
 msgid "All Feeds"
 msgstr "Ĉiuj fluoj"
 
-#: src/feed/feedpropertiesdialog.cpp:45 src/feed/feedpropertiesdialog.cpp:77
+#: src/feed/feedpropertiesdialog.cpp:46 src/feed/feedpropertiesdialog.cpp:77
 #, kde-format
 msgid "Minute"
 msgid_plural "Minutes"
 msgstr[0] "Minuto"
 msgstr[1] "Minutoj"
 
-#: src/feed/feedpropertiesdialog.cpp:46 src/feed/feedpropertiesdialog.cpp:78
+#: src/feed/feedpropertiesdialog.cpp:47 src/feed/feedpropertiesdialog.cpp:78
 #, kde-format
 msgid "Hour"
 msgid_plural "Hours"
 msgstr[0] "Horo"
 msgstr[1] "Horoj"
 
-#: src/feed/feedpropertiesdialog.cpp:47 src/feed/feedpropertiesdialog.cpp:79
+#: src/feed/feedpropertiesdialog.cpp:48 src/feed/feedpropertiesdialog.cpp:79
 #, kde-format
 msgid "Day"
 msgid_plural "Days"
 msgstr[0] "Tago"
 msgstr[1] "Tagoj"
 
-#: src/feed/feedpropertiesdialog.cpp:60 src/feed/feedpropertiesdialog.cpp:112
+#: src/feed/feedpropertiesdialog.cpp:61 src/feed/feedpropertiesdialog.cpp:112
 #, kde-format
 msgctxt "@title:window"
 msgid "Feed Properties"
@@ -2570,6 +2580,9 @@ msgstr "Legita"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "Grava"
+
+#~ msgid "Write Error"
+#~ msgstr "Skriba eraro"
 
 #~ msgid "Misc"
 #~ msgstr "Misc"

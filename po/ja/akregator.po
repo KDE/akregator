@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-31 00:41+0000\n"
+"POT-Creation-Date: 2024-08-01 00:41+0000\n"
 "PO-Revision-Date: 2019-04-21 19:02-0700\n"
 "Last-Translator: Fumiaki Okushi <fumiaki.okushi@gmail.com>\n"
 "Language-Team: Japanese <kde-jp@kde.org>\n"
@@ -1553,6 +1553,21 @@ msgstr "リンクを新しいタブで開く(&T)"
 msgid "Open Link in External &Browser"
 msgstr "リンクを外部ブラウザで開く(&B)"
 
+#: src/activities/configureactivitieswidget.cpp:56
+#, kde-format
+msgctxt "@option:check"
+msgid "Limit to the selected activities:"
+msgstr ""
+
+#: src/activities/configureactivitieswidget.cpp:63
+#, kde-format
+msgctxt "@label:textbox"
+msgid ""
+"If you limit this account to activity, it will be shown in Ruqola only when "
+"you are in those activities. Furthermore, when you switch to an activity it "
+"should not be available in, it will automatically be hidden."
+msgstr ""
+
 #: src/addfeeddialog.cpp:49
 #, fuzzy, kde-format
 #| msgid "Add Feed"
@@ -1647,8 +1662,10 @@ msgstr ""
 "アクセスが拒否されたため、フィードリストを ‘%1’ に保存できません。アクセス許"
 "可があるか確認してください。"
 
-#: src/akregator_part.cpp:428
-#, kde-format
+#: src/akregator_part.cpp:428 src/akregator_part.cpp:481
+#, fuzzy, kde-format
+#| msgid "Write Error"
+msgctxt "@title:window"
 msgid "Write Error"
 msgstr "書き込みエラー"
 
@@ -1686,13 +1703,6 @@ msgid "Access denied: cannot write to file %1. Please check your permissions."
 msgstr ""
 "アクセスが拒否されたため、ファイル ‘%1’ に書き込めません。アクセス許可がある"
 "か確認してください。"
-
-#: src/akregator_part.cpp:481
-#, fuzzy, kde-format
-#| msgid "Write Error"
-msgctxt "@title:window"
-msgid "Write Error"
-msgstr "書き込みエラー"
 
 #: src/akregator_part.cpp:496 src/akregator_part.cpp:505
 #, fuzzy, kde-format
@@ -2039,25 +2049,25 @@ msgstr "ファイル(&F)"
 msgid "All Feeds"
 msgstr "すべてのフィード"
 
-#: src/feed/feedpropertiesdialog.cpp:45 src/feed/feedpropertiesdialog.cpp:77
+#: src/feed/feedpropertiesdialog.cpp:46 src/feed/feedpropertiesdialog.cpp:77
 #, kde-format
 msgid "Minute"
 msgid_plural "Minutes"
 msgstr[0] "分"
 
-#: src/feed/feedpropertiesdialog.cpp:46 src/feed/feedpropertiesdialog.cpp:78
+#: src/feed/feedpropertiesdialog.cpp:47 src/feed/feedpropertiesdialog.cpp:78
 #, kde-format
 msgid "Hour"
 msgid_plural "Hours"
 msgstr[0] "時間"
 
-#: src/feed/feedpropertiesdialog.cpp:47 src/feed/feedpropertiesdialog.cpp:79
+#: src/feed/feedpropertiesdialog.cpp:48 src/feed/feedpropertiesdialog.cpp:79
 #, kde-format
 msgid "Day"
 msgid_plural "Days"
 msgstr[0] "日"
 
-#: src/feed/feedpropertiesdialog.cpp:60 src/feed/feedpropertiesdialog.cpp:112
+#: src/feed/feedpropertiesdialog.cpp:61 src/feed/feedpropertiesdialog.cpp:112
 #, fuzzy, kde-format
 #| msgid "Feed Properties"
 msgctxt "@title:window"
@@ -2665,6 +2675,9 @@ msgstr "既読(&R)|/|$[~setProps ~full '記事を既読としてマーク']"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "重要"
+
+#~ msgid "Write Error"
+#~ msgstr "書き込みエラー"
 
 #, fuzzy
 #~| msgid "Keep Enabled"

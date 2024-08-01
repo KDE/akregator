@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-31 00:41+0000\n"
+"POT-Creation-Date: 2024-08-01 00:41+0000\n"
 "PO-Revision-Date: 2024-07-08 05:39+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
@@ -1498,6 +1498,21 @@ msgstr "ბმულის ახალ ფანჯარაში &გახ�
 msgid "Open Link in External &Browser"
 msgstr "ბმულის გარე &ბრაუზერში გახსნა"
 
+#: src/activities/configureactivitieswidget.cpp:56
+#, kde-format
+msgctxt "@option:check"
+msgid "Limit to the selected activities:"
+msgstr ""
+
+#: src/activities/configureactivitieswidget.cpp:63
+#, kde-format
+msgctxt "@label:textbox"
+msgid ""
+"If you limit this account to activity, it will be shown in Ruqola only when "
+"you are in those activities. Furthermore, when you switch to an activity it "
+"should not be available in, it will automatically be hidden."
+msgstr ""
+
 #: src/addfeeddialog.cpp:49
 #, kde-format
 msgctxt "@title:window"
@@ -1587,8 +1602,9 @@ msgstr ""
 "წვდომა აკრძალულია. ლენტის სიის <b>%1</b>-ზე შენახვა შეუძლებელია. გადაამოწმეთ "
 "თქვენი წვდომები."
 
-#: src/akregator_part.cpp:428
+#: src/akregator_part.cpp:428 src/akregator_part.cpp:481
 #, kde-format
+msgctxt "@title:window"
 msgid "Write Error"
 msgstr "ჩაწერის შეცდომა"
 
@@ -1623,12 +1639,6 @@ msgstr "წაკითხვის შეცდომა"
 msgid "Access denied: cannot write to file %1. Please check your permissions."
 msgstr ""
 "წვდომა აკრძალულია: ფაილში %1 ჩაწერა შეუძლებელია. გადაამოწმეთ თქვენი წვდომები."
-
-#: src/akregator_part.cpp:481
-#, kde-format
-msgctxt "@title:window"
-msgid "Write Error"
-msgstr "ჩაწერის შეცდომა"
 
 #: src/akregator_part.cpp:496 src/akregator_part.cpp:505
 #, kde-format
@@ -1965,28 +1975,28 @@ msgstr "&ფაილი"
 msgid "All Feeds"
 msgstr "ყველა ლენტა"
 
-#: src/feed/feedpropertiesdialog.cpp:45 src/feed/feedpropertiesdialog.cpp:77
+#: src/feed/feedpropertiesdialog.cpp:46 src/feed/feedpropertiesdialog.cpp:77
 #, kde-format
 msgid "Minute"
 msgid_plural "Minutes"
 msgstr[0] "წუთი"
 msgstr[1] "წუთი"
 
-#: src/feed/feedpropertiesdialog.cpp:46 src/feed/feedpropertiesdialog.cpp:78
+#: src/feed/feedpropertiesdialog.cpp:47 src/feed/feedpropertiesdialog.cpp:78
 #, kde-format
 msgid "Hour"
 msgid_plural "Hours"
 msgstr[0] "საათი"
 msgstr[1] "საათი"
 
-#: src/feed/feedpropertiesdialog.cpp:47 src/feed/feedpropertiesdialog.cpp:79
+#: src/feed/feedpropertiesdialog.cpp:48 src/feed/feedpropertiesdialog.cpp:79
 #, kde-format
 msgid "Day"
 msgid_plural "Days"
 msgstr[0] "დღე"
 msgstr[1] "დღე"
 
-#: src/feed/feedpropertiesdialog.cpp:60 src/feed/feedpropertiesdialog.cpp:112
+#: src/feed/feedpropertiesdialog.cpp:61 src/feed/feedpropertiesdialog.cpp:112
 #, kde-format
 msgctxt "@title:window"
 msgid "Feed Properties"
@@ -2573,6 +2583,9 @@ msgstr "წაკითხვა"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "მნიშვნელოვანი"
+
+#~ msgid "Write Error"
+#~ msgstr "ჩაწერის შეცდომა"
 
 #~ msgid "Misc"
 #~ msgstr "სხვანი"

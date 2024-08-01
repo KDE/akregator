@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-31 00:41+0000\n"
+"POT-Creation-Date: 2024-08-01 00:41+0000\n"
 "PO-Revision-Date: 2023-11-22 18:44+0200\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
@@ -1545,6 +1545,21 @@ msgstr "Avaa linkki uuteen &välilehteen"
 msgid "Open Link in External &Browser"
 msgstr "Avaa linkki &ulkoiseen selaimeen"
 
+#: src/activities/configureactivitieswidget.cpp:56
+#, kde-format
+msgctxt "@option:check"
+msgid "Limit to the selected activities:"
+msgstr ""
+
+#: src/activities/configureactivitieswidget.cpp:63
+#, kde-format
+msgctxt "@label:textbox"
+msgid ""
+"If you limit this account to activity, it will be shown in Ruqola only when "
+"you are in those activities. Furthermore, when you switch to an activity it "
+"should not be available in, it will automatically be hidden."
+msgstr ""
+
 #: src/addfeeddialog.cpp:49
 #, kde-format
 msgctxt "@title:window"
@@ -1639,8 +1654,9 @@ msgstr ""
 "Lupa evätty. Ei voitu tallentaa syöteluetteloa kohteeseen <b>%1</b>. "
 "Tarkista oikeutesi."
 
-#: src/akregator_part.cpp:428
+#: src/akregator_part.cpp:428 src/akregator_part.cpp:481
 #, kde-format
+msgctxt "@title:window"
 msgid "Write Error"
 msgstr "Kirjoitusvirhe"
 
@@ -1674,12 +1690,6 @@ msgstr "Lukuvirhe"
 #, kde-format
 msgid "Access denied: cannot write to file %1. Please check your permissions."
 msgstr "Ei voitu kirjoittaa tiedostoon ”%1”. Tarkista käyttöoikeutesi."
-
-#: src/akregator_part.cpp:481
-#, kde-format
-msgctxt "@title:window"
-msgid "Write Error"
-msgstr "Kirjoitusvirhe"
 
 #: src/akregator_part.cpp:496 src/akregator_part.cpp:505
 #, kde-format
@@ -2022,28 +2032,28 @@ msgstr "&Tiedosto"
 msgid "All Feeds"
 msgstr "Kaikki syötteet"
 
-#: src/feed/feedpropertiesdialog.cpp:45 src/feed/feedpropertiesdialog.cpp:77
+#: src/feed/feedpropertiesdialog.cpp:46 src/feed/feedpropertiesdialog.cpp:77
 #, kde-format
 msgid "Minute"
 msgid_plural "Minutes"
 msgstr[0] "Minuutti"
 msgstr[1] "Minuutit"
 
-#: src/feed/feedpropertiesdialog.cpp:46 src/feed/feedpropertiesdialog.cpp:78
+#: src/feed/feedpropertiesdialog.cpp:47 src/feed/feedpropertiesdialog.cpp:78
 #, kde-format
 msgid "Hour"
 msgid_plural "Hours"
 msgstr[0] "Tunti"
 msgstr[1] "Tunnit"
 
-#: src/feed/feedpropertiesdialog.cpp:47 src/feed/feedpropertiesdialog.cpp:79
+#: src/feed/feedpropertiesdialog.cpp:48 src/feed/feedpropertiesdialog.cpp:79
 #, kde-format
 msgid "Day"
 msgid_plural "Days"
 msgstr[0] "Päivä"
 msgstr[1] "Päivät"
 
-#: src/feed/feedpropertiesdialog.cpp:60 src/feed/feedpropertiesdialog.cpp:112
+#: src/feed/feedpropertiesdialog.cpp:61 src/feed/feedpropertiesdialog.cpp:112
 #, kde-format
 msgctxt "@title:window"
 msgid "Feed Properties"
@@ -2631,6 +2641,9 @@ msgstr "Luetut"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "Tärkeät"
+
+#~ msgid "Write Error"
+#~ msgstr "Kirjoitusvirhe"
 
 #~ msgid "Misc"
 #~ msgstr "Sekalaista"

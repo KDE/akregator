@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-31 00:41+0000\n"
+"POT-Creation-Date: 2024-08-01 00:41+0000\n"
 "PO-Revision-Date: 2007-09-07 10:35+0545\n"
 "Last-Translator: Nabin Gautam <nabin@mpp.org.np>\n"
 "Language-Team: Nepali <info@mpp.org.np>\n"
@@ -1554,6 +1554,21 @@ msgstr "लिङ्क नयाँ ट्याबमा खोल्नुह
 msgid "Open Link in External &Browser"
 msgstr "लिङ्क बाह्य ब्राउजरमा खोल्नुहोस्"
 
+#: src/activities/configureactivitieswidget.cpp:56
+#, kde-format
+msgctxt "@option:check"
+msgid "Limit to the selected activities:"
+msgstr ""
+
+#: src/activities/configureactivitieswidget.cpp:63
+#, kde-format
+msgctxt "@label:textbox"
+msgid ""
+"If you limit this account to activity, it will be shown in Ruqola only when "
+"you are in those activities. Furthermore, when you switch to an activity it "
+"should not be available in, it will automatically be hidden."
+msgstr ""
+
 #: src/addfeeddialog.cpp:49
 #, fuzzy, kde-format
 #| msgid "Add Feed"
@@ -1645,8 +1660,10 @@ msgid ""
 "permissions."
 msgstr "पहुँच अस्वीकृत: फिड सूची (%1) बचत गर्न सकिँदैन"
 
-#: src/akregator_part.cpp:428
-#, kde-format
+#: src/akregator_part.cpp:428 src/akregator_part.cpp:481
+#, fuzzy, kde-format
+#| msgid "Write Error"
+msgctxt "@title:window"
 msgid "Write Error"
 msgstr "लेख्दा त्रुटि"
 
@@ -1683,13 +1700,6 @@ msgstr "पढ्दा त्रुटि"
 #| msgid "Access denied: cannot write to file %1"
 msgid "Access denied: cannot write to file %1. Please check your permissions."
 msgstr "पहुँच अस्वीकृत: फाइल %1 मा लेख्न सकिँदैन"
-
-#: src/akregator_part.cpp:481
-#, fuzzy, kde-format
-#| msgid "Write Error"
-msgctxt "@title:window"
-msgid "Write Error"
-msgstr "लेख्दा त्रुटि"
 
 #: src/akregator_part.cpp:496 src/akregator_part.cpp:505
 #, fuzzy, kde-format
@@ -2055,7 +2065,7 @@ msgstr "फाइल"
 msgid "All Feeds"
 msgstr "सबै फिड"
 
-#: src/feed/feedpropertiesdialog.cpp:45 src/feed/feedpropertiesdialog.cpp:77
+#: src/feed/feedpropertiesdialog.cpp:46 src/feed/feedpropertiesdialog.cpp:77
 #, fuzzy, kde-format
 #| msgid "Minutes"
 msgid "Minute"
@@ -2063,7 +2073,7 @@ msgid_plural "Minutes"
 msgstr[0] "मिनेट"
 msgstr[1] "मिनेट"
 
-#: src/feed/feedpropertiesdialog.cpp:46 src/feed/feedpropertiesdialog.cpp:78
+#: src/feed/feedpropertiesdialog.cpp:47 src/feed/feedpropertiesdialog.cpp:78
 #, fuzzy, kde-format
 #| msgid "Hours"
 msgid "Hour"
@@ -2071,7 +2081,7 @@ msgid_plural "Hours"
 msgstr[0] "घण्टा"
 msgstr[1] "घण्टा"
 
-#: src/feed/feedpropertiesdialog.cpp:47 src/feed/feedpropertiesdialog.cpp:79
+#: src/feed/feedpropertiesdialog.cpp:48 src/feed/feedpropertiesdialog.cpp:79
 #, fuzzy, kde-format
 #| msgid "Days"
 msgid "Day"
@@ -2079,7 +2089,7 @@ msgid_plural "Days"
 msgstr[0] "दिन"
 msgstr[1] "दिन"
 
-#: src/feed/feedpropertiesdialog.cpp:60 src/feed/feedpropertiesdialog.cpp:112
+#: src/feed/feedpropertiesdialog.cpp:61 src/feed/feedpropertiesdialog.cpp:112
 #, fuzzy, kde-format
 #| msgid "Feed Properties"
 msgctxt "@title:window"
@@ -2706,6 +2716,9 @@ msgstr "पढ्नुहोस्"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "महत्वपूर्ण"
+
+#~ msgid "Write Error"
+#~ msgstr "लेख्दा त्रुटि"
 
 #, fuzzy
 #~| msgid "Show Quick Filter"

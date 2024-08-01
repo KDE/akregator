@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-31 00:41+0000\n"
+"POT-Creation-Date: 2024-08-01 00:41+0000\n"
 "PO-Revision-Date: 2018-01-06 09:21+0100\n"
 "Last-Translator: Chusslove Illich <caslav.ilic@gmx.net>\n"
 "Language-Team: Serbian <kde-i18n-sr@kde.org>\n"
@@ -1561,6 +1561,21 @@ msgstr "Otvori vezu pod novim &jezičkom"
 msgid "Open Link in External &Browser"
 msgstr "Otvori vezu u spoljašnjem &pregledaču"
 
+#: src/activities/configureactivitieswidget.cpp:56
+#, kde-format
+msgctxt "@option:check"
+msgid "Limit to the selected activities:"
+msgstr ""
+
+#: src/activities/configureactivitieswidget.cpp:63
+#, kde-format
+msgctxt "@label:textbox"
+msgid ""
+"If you limit this account to activity, it will be shown in Ruqola only when "
+"you are in those activities. Furthermore, when you switch to an activity it "
+"should not be available in, it will automatically be hidden."
+msgstr ""
+
 #: src/addfeeddialog.cpp:49
 #, fuzzy, kde-format
 #| msgid "Add Feed"
@@ -1664,8 +1679,10 @@ msgstr ""
 "svoje dozvole."
 
 # >> @title:window
-#: src/akregator_part.cpp:428
-#, kde-format
+#: src/akregator_part.cpp:428 src/akregator_part.cpp:481
+#, fuzzy, kde-format
+#| msgid "Write Error"
+msgctxt "@title:window"
 msgid "Write Error"
 msgstr "Greška pisanja"
 
@@ -1703,14 +1720,6 @@ msgstr "Greška čitanja"
 #, kde-format
 msgid "Access denied: cannot write to file %1. Please check your permissions."
 msgstr "Pristup odbijen: ne mogu da pišem u fajl %1. Proverite svoje dozvole."
-
-# >> @title:window
-#: src/akregator_part.cpp:481
-#, fuzzy, kde-format
-#| msgid "Write Error"
-msgctxt "@title:window"
-msgid "Write Error"
-msgstr "Greška pisanja"
 
 #: src/akregator_part.cpp:496 src/akregator_part.cpp:505
 #, fuzzy, kde-format
@@ -2067,7 +2076,7 @@ msgstr "&Fajl"
 msgid "All Feeds"
 msgstr "Svi dovodi"
 
-#: src/feed/feedpropertiesdialog.cpp:45 src/feed/feedpropertiesdialog.cpp:77
+#: src/feed/feedpropertiesdialog.cpp:46 src/feed/feedpropertiesdialog.cpp:77
 #, kde-format
 msgid "Minute"
 msgid_plural "Minutes"
@@ -2076,7 +2085,7 @@ msgstr[1] "minuta"
 msgstr[2] "minuta"
 msgstr[3] "minut"
 
-#: src/feed/feedpropertiesdialog.cpp:46 src/feed/feedpropertiesdialog.cpp:78
+#: src/feed/feedpropertiesdialog.cpp:47 src/feed/feedpropertiesdialog.cpp:78
 #, kde-format
 msgid "Hour"
 msgid_plural "Hours"
@@ -2085,7 +2094,7 @@ msgstr[1] "sata"
 msgstr[2] "sati"
 msgstr[3] "sat"
 
-#: src/feed/feedpropertiesdialog.cpp:47 src/feed/feedpropertiesdialog.cpp:79
+#: src/feed/feedpropertiesdialog.cpp:48 src/feed/feedpropertiesdialog.cpp:79
 #, kde-format
 msgid "Day"
 msgid_plural "Days"
@@ -2094,7 +2103,7 @@ msgstr[1] "dana"
 msgstr[2] "dana"
 msgstr[3] "dan"
 
-#: src/feed/feedpropertiesdialog.cpp:60 src/feed/feedpropertiesdialog.cpp:112
+#: src/feed/feedpropertiesdialog.cpp:61 src/feed/feedpropertiesdialog.cpp:112
 #, fuzzy, kde-format
 #| msgid "Feed Properties"
 msgctxt "@title:window"
@@ -2706,6 +2715,10 @@ msgstr "&Pročitan"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "Važni"
+
+# >> @title:window
+#~ msgid "Write Error"
+#~ msgstr "Greška pisanja"
 
 #~ msgid "Access Key Enabled"
 #~ msgstr "Pristupni taster uključen"

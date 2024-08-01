@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-31 00:41+0000\n"
+"POT-Creation-Date: 2024-08-01 00:41+0000\n"
 "PO-Revision-Date: 2024-02-10 14:32+0300\n"
 "Last-Translator: Alexander Yavorsky <kekcuha@gmail.com>\n"
 "Language-Team: Russian <kde-russian@lists.kde.ru>\n"
@@ -1554,6 +1554,21 @@ msgstr "Открыть в &новой вкладке"
 msgid "Open Link in External &Browser"
 msgstr "Открыть ссылку во &внешнем браузере"
 
+#: src/activities/configureactivitieswidget.cpp:56
+#, kde-format
+msgctxt "@option:check"
+msgid "Limit to the selected activities:"
+msgstr ""
+
+#: src/activities/configureactivitieswidget.cpp:63
+#, kde-format
+msgctxt "@label:textbox"
+msgid ""
+"If you limit this account to activity, it will be shown in Ruqola only when "
+"you are in those activities. Furthermore, when you switch to an activity it "
+"should not be available in, it will automatically be hidden."
+msgstr ""
+
 #: src/addfeeddialog.cpp:49
 #, kde-format
 msgctxt "@title:window"
@@ -1648,8 +1663,9 @@ msgstr ""
 "Доступ запрещён: не удаётся сохранить список лент новостей <b>%1</b>. "
 "Проверьте права доступа."
 
-#: src/akregator_part.cpp:428
+#: src/akregator_part.cpp:428 src/akregator_part.cpp:481
 #, kde-format
+msgctxt "@title:window"
 msgid "Write Error"
 msgstr "Ошибка записи"
 
@@ -1684,12 +1700,6 @@ msgstr "Ошибка чтения"
 msgid "Access denied: cannot write to file %1. Please check your permissions."
 msgstr ""
 "Доступ запрещён: невозможно сохранить в файл %1. Проверьте права доступа."
-
-#: src/akregator_part.cpp:481
-#, kde-format
-msgctxt "@title:window"
-msgid "Write Error"
-msgstr "Ошибка записи"
 
 #: src/akregator_part.cpp:496 src/akregator_part.cpp:505
 #, kde-format
@@ -2027,7 +2037,7 @@ msgstr "&Файл"
 msgid "All Feeds"
 msgstr "Все ленты"
 
-#: src/feed/feedpropertiesdialog.cpp:45 src/feed/feedpropertiesdialog.cpp:77
+#: src/feed/feedpropertiesdialog.cpp:46 src/feed/feedpropertiesdialog.cpp:77
 #, kde-format
 msgid "Minute"
 msgid_plural "Minutes"
@@ -2036,7 +2046,7 @@ msgstr[1] "Минуты"
 msgstr[2] "Минут"
 msgstr[3] "Минута"
 
-#: src/feed/feedpropertiesdialog.cpp:46 src/feed/feedpropertiesdialog.cpp:78
+#: src/feed/feedpropertiesdialog.cpp:47 src/feed/feedpropertiesdialog.cpp:78
 #, kde-format
 msgid "Hour"
 msgid_plural "Hours"
@@ -2045,7 +2055,7 @@ msgstr[1] "Часа"
 msgstr[2] "Часов"
 msgstr[3] "Час"
 
-#: src/feed/feedpropertiesdialog.cpp:47 src/feed/feedpropertiesdialog.cpp:79
+#: src/feed/feedpropertiesdialog.cpp:48 src/feed/feedpropertiesdialog.cpp:79
 #, kde-format
 msgid "Day"
 msgid_plural "Days"
@@ -2054,7 +2064,7 @@ msgstr[1] "Дня"
 msgstr[2] "Дней"
 msgstr[3] "День"
 
-#: src/feed/feedpropertiesdialog.cpp:60 src/feed/feedpropertiesdialog.cpp:112
+#: src/feed/feedpropertiesdialog.cpp:61 src/feed/feedpropertiesdialog.cpp:112
 #, kde-format
 msgctxt "@title:window"
 msgid "Feed Properties"
@@ -2651,6 +2661,9 @@ msgstr "прочитанные"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "важные"
+
+#~ msgid "Write Error"
+#~ msgstr "Ошибка записи"
 
 #~ msgid "Misc"
 #~ msgstr "Прочее"

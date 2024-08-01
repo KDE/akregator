@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-31 00:41+0000\n"
+"POT-Creation-Date: 2024-08-01 00:41+0000\n"
 "PO-Revision-Date: 2024-07-06 21:38+0530\n"
 "Last-Translator: Kishore G <kishore96@gmail.com>\n"
 "Language-Team: Tamil <kde-i18n-doc@kde.org>\n"
@@ -1476,6 +1476,21 @@ msgstr "புதிய &கீற்றில் இணைப்பைத் �
 msgid "Open Link in External &Browser"
 msgstr "வெளி &உலாவியில் இணைப்பை திற"
 
+#: src/activities/configureactivitieswidget.cpp:56
+#, kde-format
+msgctxt "@option:check"
+msgid "Limit to the selected activities:"
+msgstr ""
+
+#: src/activities/configureactivitieswidget.cpp:63
+#, kde-format
+msgctxt "@label:textbox"
+msgid ""
+"If you limit this account to activity, it will be shown in Ruqola only when "
+"you are in those activities. Furthermore, when you switch to an activity it "
+"should not be available in, it will automatically be hidden."
+msgstr ""
+
 #: src/addfeeddialog.cpp:49
 #, kde-format
 msgctxt "@title:window"
@@ -1566,8 +1581,9 @@ msgstr ""
 "அணுகல் மறுக்கப்பட்டது: தொக்குப்புகளின் பட்டியலை <b>%1</b> எனும் இடத்திற்கு சேமிக்க "
 "முடியவில்லை. உங்கள் அனுமதிகளை சரிபாருங்கள்."
 
-#: src/akregator_part.cpp:428
+#: src/akregator_part.cpp:428 src/akregator_part.cpp:481
 #, kde-format
+msgctxt "@title:window"
 msgid "Write Error"
 msgstr "எழுதுவதில் சிக்கல்"
 
@@ -1602,12 +1618,6 @@ msgstr "படிக்கும்போது சிக்கல்"
 #| msgid "Access denied: cannot write to file %1"
 msgid "Access denied: cannot write to file %1. Please check your permissions."
 msgstr "அனுமதி மறுக்கப்பட்டது: கோப்பு %1க்கு எழுத முடியவில்லை"
-
-#: src/akregator_part.cpp:481
-#, kde-format
-msgctxt "@title:window"
-msgid "Write Error"
-msgstr "எழுதுவதில் சிக்கல்"
 
 #: src/akregator_part.cpp:496 src/akregator_part.cpp:505
 #, fuzzy, kde-format
@@ -1956,7 +1966,7 @@ msgstr "&கட்டுரை"
 msgid "All Feeds"
 msgstr "அனைத்து செலுத்தல்கள்"
 
-#: src/feed/feedpropertiesdialog.cpp:45 src/feed/feedpropertiesdialog.cpp:77
+#: src/feed/feedpropertiesdialog.cpp:46 src/feed/feedpropertiesdialog.cpp:77
 #, fuzzy, kde-format
 #| msgid "Minutes"
 msgid "Minute"
@@ -1964,7 +1974,7 @@ msgid_plural "Minutes"
 msgstr[0] "நிமிடங்கள்"
 msgstr[1] "நிமிடங்கள்"
 
-#: src/feed/feedpropertiesdialog.cpp:46 src/feed/feedpropertiesdialog.cpp:78
+#: src/feed/feedpropertiesdialog.cpp:47 src/feed/feedpropertiesdialog.cpp:78
 #, fuzzy, kde-format
 #| msgid "Hours"
 msgid "Hour"
@@ -1972,7 +1982,7 @@ msgid_plural "Hours"
 msgstr[0] "மணிநேரங்கள்"
 msgstr[1] "மணிநேரங்கள்"
 
-#: src/feed/feedpropertiesdialog.cpp:47 src/feed/feedpropertiesdialog.cpp:79
+#: src/feed/feedpropertiesdialog.cpp:48 src/feed/feedpropertiesdialog.cpp:79
 #, fuzzy, kde-format
 #| msgid "Days"
 msgid "Day"
@@ -1980,7 +1990,7 @@ msgid_plural "Days"
 msgstr[0] "நாட்கள்"
 msgstr[1] "நாட்கள்"
 
-#: src/feed/feedpropertiesdialog.cpp:60 src/feed/feedpropertiesdialog.cpp:112
+#: src/feed/feedpropertiesdialog.cpp:61 src/feed/feedpropertiesdialog.cpp:112
 #, fuzzy, kde-format
 #| msgid "Feed Properties"
 msgctxt "@title:window"
@@ -2586,6 +2596,9 @@ msgstr ""
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "அனைத்தையும் படிக்காததாக மாற்று"
+
+#~ msgid "Write Error"
+#~ msgstr "எழுதுவதில் சிக்கல்"
 
 #~ msgid "Misc"
 #~ msgstr "மற்றவை"

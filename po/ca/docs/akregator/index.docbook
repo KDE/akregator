@@ -635,7 +635,7 @@ say how to start it -->
 > 
 <listitem
 ><para
->Si el nombre d'articles supera el límit escollit, els més antics s'esborraran. Tingueu en compte que els articles marcats seran ignorats en comptar el nombre d'articles: si el límit és de 500, i teniu 510 sense marcar i 50 marcats, l'&akregator; passarà per alt els 50 marcats i només eliminarà els 10 articles més antics sense marcar. Així que en aquest exemple, es mantindran 550 articles.</para>
+>Si el nombre d'articles supera el límit escollit, els més antics se suprimiran. Tingueu en compte que els articles marcats seran ignorats en comptar el nombre d'articles: si el límit és de 500, i teniu 510 sense marcar i 50 marcats, l'&akregator; passarà per alt els 50 marcats i només suprimirà els 10 articles més antics sense marcar. Així que en aquest exemple, es mantindran 550 articles.</para>
 </listitem>
 </varlistentry>
 <varlistentry>
@@ -645,7 +645,7 @@ say how to start it -->
 ></term>
 <listitem
 ><para
->Els articles més antics que el nombre de dies especificat seran eliminats de l'arxiu, llevat que tinguin establerta la marca de mantenir. L'&akregator; comprovarà el venciment dels articles a l'inici i després una vegada per hora, de manera que el seu venciment es pugui retardar.</para
+>Els articles més antics que el nombre de dies especificat se suprimiran de l'arxiu, llevat que tinguin establerta la marca de mantenir. L'&akregator; comprovarà el venciment dels articles a l'inici i després una vegada per hora, de manera que el seu venciment es pugui retardar.</para
 ></listitem>
 </varlistentry>
 <varlistentry>

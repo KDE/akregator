@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Mimos\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-31 00:41+0000\n"
+"POT-Creation-Date: 2024-08-01 00:41+0000\n"
 "PO-Revision-Date: 2005-10-12 11:13+0800\n"
 "Last-Translator: MIMOS <opensource@mimos.my>\n"
 "Language-Team: Malay <kedidiemas@yahoogroups.com>\n"
@@ -1519,6 +1519,21 @@ msgstr "Buka Pautan di dalam &Tab Baru"
 msgid "Open Link in External &Browser"
 msgstr "Buka Pautan di dalam &Pelayar Luar"
 
+#: src/activities/configureactivitieswidget.cpp:56
+#, kde-format
+msgctxt "@option:check"
+msgid "Limit to the selected activities:"
+msgstr ""
+
+#: src/activities/configureactivitieswidget.cpp:63
+#, kde-format
+msgctxt "@label:textbox"
+msgid ""
+"If you limit this account to activity, it will be shown in Ruqola only when "
+"you are in those activities. Furthermore, when you switch to an activity it "
+"should not be available in, it will automatically be hidden."
+msgstr ""
+
 #: src/addfeeddialog.cpp:49
 #, fuzzy, kde-format
 #| msgid "Add Feed"
@@ -1610,8 +1625,9 @@ msgid ""
 "permissions."
 msgstr "Akses ditolak: tidak dapat menyimpan senarai suapan (%1)"
 
-#: src/akregator_part.cpp:428
+#: src/akregator_part.cpp:428 src/akregator_part.cpp:481
 #, fuzzy, kde-format
+msgctxt "@title:window"
 msgid "Write Error"
 msgstr "Ralat menulis"
 
@@ -1648,12 +1664,6 @@ msgstr "Ralat Bacaan"
 #| msgid "Access denied: cannot write to file %1"
 msgid "Access denied: cannot write to file %1. Please check your permissions."
 msgstr "Akses ditolak: tidak dapat menulis ke fail %1"
-
-#: src/akregator_part.cpp:481
-#, fuzzy, kde-format
-msgctxt "@title:window"
-msgid "Write Error"
-msgstr "Ralat menulis"
 
 #: src/akregator_part.cpp:496 src/akregator_part.cpp:505
 #, fuzzy, kde-format
@@ -2009,7 +2019,7 @@ msgstr "&Artikel"
 msgid "All Feeds"
 msgstr "Semua Suapan"
 
-#: src/feed/feedpropertiesdialog.cpp:45 src/feed/feedpropertiesdialog.cpp:77
+#: src/feed/feedpropertiesdialog.cpp:46 src/feed/feedpropertiesdialog.cpp:77
 #, fuzzy, kde-format
 #| msgid "Minutes"
 msgid "Minute"
@@ -2017,7 +2027,7 @@ msgid_plural "Minutes"
 msgstr[0] "Minit"
 msgstr[1] "Minit"
 
-#: src/feed/feedpropertiesdialog.cpp:46 src/feed/feedpropertiesdialog.cpp:78
+#: src/feed/feedpropertiesdialog.cpp:47 src/feed/feedpropertiesdialog.cpp:78
 #, fuzzy, kde-format
 #| msgid "Hours"
 msgid "Hour"
@@ -2025,7 +2035,7 @@ msgid_plural "Hours"
 msgstr[0] "Jam"
 msgstr[1] "Jam"
 
-#: src/feed/feedpropertiesdialog.cpp:47 src/feed/feedpropertiesdialog.cpp:79
+#: src/feed/feedpropertiesdialog.cpp:48 src/feed/feedpropertiesdialog.cpp:79
 #, fuzzy, kde-format
 #| msgid "Days"
 msgid "Day"
@@ -2033,7 +2043,7 @@ msgid_plural "Days"
 msgstr[0] "Hari"
 msgstr[1] "Hari"
 
-#: src/feed/feedpropertiesdialog.cpp:60 src/feed/feedpropertiesdialog.cpp:112
+#: src/feed/feedpropertiesdialog.cpp:61 src/feed/feedpropertiesdialog.cpp:112
 #, fuzzy, kde-format
 #| msgid "Feed Properties"
 msgctxt "@title:window"
@@ -2642,6 +2652,10 @@ msgstr ""
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "Tandakan sebagai &belum baca"
+
+#, fuzzy
+#~ msgid "Write Error"
+#~ msgstr "Ralat menulis"
 
 #, fuzzy
 #~ msgid "Filter"
