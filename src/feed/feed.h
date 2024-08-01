@@ -222,6 +222,8 @@ public:
     void setFaviconLocalPath(const QString &file);
     void setCopyright(const QString &copyright);
     [[nodiscard]] QString copyright() const;
+    [[nodiscard]] QStringList activities() const;
+    void setActivities(const QStringList &lst);
 public Q_SLOTS:
     /** starts fetching */
     void fetch(bool followDiscovery = false);

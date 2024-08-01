@@ -97,6 +97,7 @@ public:
     Feed::ImageInfo m_faviconInfo;
 
     QIcon m_favicon;
+    QStringList m_activities;
     mutable int m_totalCount;
     void setTotalCountDirty() const;
 };
@@ -461,6 +462,16 @@ Feed::ImageInfo Feed::logoInfo() const
 QString Feed::xmlUrl() const
 {
     return d->m_xmlUrl;
+}
+
+QStringList Feed::activities() const
+{
+    return d->m_activities;
+}
+
+void Feed::setActivities(const QStringList &lst)
+{
+    d->m_activities = lst;
 }
 
 void Feed::setXmlUrl(const QString &s)
