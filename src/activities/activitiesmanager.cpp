@@ -13,7 +13,6 @@ ActivitiesManager::ActivitiesManager(QObject *parent)
     : QObject{parent}
     , mActivitiesConsumer(new KActivities::Consumer(this))
 {
-    mEnabled = Akregator::Settings::self()->plasmaActivitySupport();
     connect(mActivitiesConsumer, &KActivities::Consumer::currentActivityChanged, this, [this](const QString &activityId) {
         qCDebug(AKREGATOR_PLASMA_ACTIVITIES_LOG) << " switch to activity " << activityId;
         Q_EMIT activitiesChanged();
@@ -32,12 +31,7 @@ ActivitiesManager::~ActivitiesManager() = default;
 
 bool ActivitiesManager::enabled() const
 {
-    return mEnabled;
-}
-
-void ActivitiesManager::setEnabled(bool newEnabled)
-{
-    mEnabled = newEnabled;
+    return Akregator::Settings::self()->plasmaActivitySupport();
 }
 
 bool ActivitiesManager::isInCurrentActivity(const QStringList &lst) const

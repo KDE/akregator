@@ -44,7 +44,6 @@ public:
     explicit ActivitiesManager(QObject *parent = nullptr);
     ~ActivitiesManager() override;
     [[nodiscard]] bool enabled() const;
-    void setEnabled(bool newEnabled);
 
     [[nodiscard]] bool isInCurrentActivity(const QStringList &lst) const;
 
@@ -54,6 +53,5 @@ Q_SIGNALS:
 
 private:
     KActivities::Consumer *const mActivitiesConsumer;
-    bool mEnabled = false;
 };
 }
