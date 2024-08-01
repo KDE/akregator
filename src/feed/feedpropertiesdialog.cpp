@@ -74,6 +74,16 @@ ConfigureActivitiesWidget *FeedPropertiesWidget::configureActivitiesWidget() con
 {
     return mConfigureActivitiesWidget;
 }
+
+ActivitiesManager::ActivitySettings FeedPropertiesWidget::activitySettings() const
+{
+    return mConfigureActivitiesWidget->activitiesSettings();
+}
+
+void FeedPropertiesWidget::setActivitiesSettings(const ActivitiesManager::ActivitySettings &activitySettings)
+{
+    mConfigureActivitiesWidget->setActivitiesSettings(activitySettings);
+}
 #endif
 
 FeedPropertiesDialog::FeedPropertiesDialog(QWidget *parent, const QString &name)
@@ -127,6 +137,7 @@ void FeedPropertiesDialog::accept()
     m_feed->setNotificationMode(true);
     m_feed->setComment(comment());
 #if HAVE_ACTIVITY_SUPPORT
+    // m_feed->setActivities()
     // TODO
 #endif
     QDialog::accept();
@@ -165,6 +176,18 @@ void FeedPropertiesDialog::setFeed(Feed *feed)
     // TODO
 #endif
 }
+
+#if HAVE_ACTIVITY_SUPPORT
+ActivitiesManager::ActivitySettings FeedPropertiesDialog::activitySettings() const
+{
+    return mFeedPropertiesWidget->activitySettings();
+}
+
+void FeedPropertiesDialog::setActivitiesSettings(const ActivitiesManager::ActivitySettings &activitySettings)
+{
+    mFeedPropertiesWidget->setActivitiesSettings(activitySettings);
+}
+#endif
 
 QString FeedPropertiesDialog::comment() const
 {

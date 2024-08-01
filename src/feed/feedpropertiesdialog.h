@@ -14,6 +14,9 @@
 #include <QDialog>
 
 #include <QWidget>
+#if HAVE_ACTIVITY_SUPPORT
+#include "activities/activitiesmanager.h"
+#endif
 
 namespace Akregator
 {
@@ -36,6 +39,8 @@ public:
 
 #if HAVE_ACTIVITY_SUPPORT
     [[nodiscard]] ConfigureActivitiesWidget *configureActivitiesWidget() const;
+    [[nodiscard]] ActivitiesManager::ActivitySettings activitySettings() const;
+    void setActivitiesSettings(const ActivitiesManager::ActivitySettings &activitySettings);
 #endif
 
 private:
@@ -65,6 +70,11 @@ public Q_SLOTS:
     void accept() override;
 
 protected:
+#if HAVE_ACTIVITY_SUPPORT
+    void setActivitiesSettings(const ActivitiesManager::ActivitySettings &activitySettings);
+    [[nodiscard]] ActivitiesManager::ActivitySettings activitySettings() const;
+#endif
+
     [[nodiscard]] QString comment() const;
     [[nodiscard]] QString feedName() const;
     [[nodiscard]] QString url() const;
