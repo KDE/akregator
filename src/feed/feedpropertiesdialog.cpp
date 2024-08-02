@@ -136,8 +136,8 @@ void FeedPropertiesDialog::accept()
     m_feed->setNotificationMode(true);
     m_feed->setComment(comment());
 #if HAVE_ACTIVITY_SUPPORT
-    // m_feed->setActivities()
-    // TODO
+    m_feed->setActivities(activitySettings().activities);
+    m_feed->setActivityEnabled(activitySettings().enabled);
 #endif
     QDialog::accept();
 }
@@ -172,7 +172,7 @@ void FeedPropertiesDialog::setFeed(Feed *feed)
     setComment(feed->comment());
     slotSetWindowTitle(feedName());
 #if HAVE_ACTIVITY_SUPPORT
-    // TODO
+    setActivitiesSettings({feed->activities(), feed->activityEnabled()});
 #endif
 }
 
