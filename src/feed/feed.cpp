@@ -603,7 +603,9 @@ QDomElement Feed::toOPML(QDomElement parent, QDomDocument document) const
     }
     el.setAttribute(QStringLiteral("maxArticleNumber"), d->m_maxArticleNumber);
 #if HAVE_ACTIVITY_SUPPORT
-    el.setAttribute(QStringLiteral("activityEnabled"), d->m_activityEnabled);
+    if (d->m_activityEnabled) {
+        el.setAttribute(QStringLiteral("activityEnabled"), QStringLiteral("true"));
+    }
     el.setAttribute(QStringLiteral("activities"), d->m_activities.join(QLatin1Char(',')));
 #endif
     el.setAttribute(QStringLiteral("type"), QStringLiteral("rss")); // despite some additional fields, it is still "rss" OPML
