@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-01 00:41+0000\n"
-"PO-Revision-Date: 2024-07-08 07:23+0200\n"
+"POT-Creation-Date: 2024-08-02 00:40+0000\n"
+"PO-Revision-Date: 2024-08-01 06:28+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
 "Language: sl\n"
@@ -1514,7 +1514,7 @@ msgstr "Odpri povezavo v zunanjem &brskalniku"
 #, kde-format
 msgctxt "@option:check"
 msgid "Limit to the selected activities:"
-msgstr ""
+msgstr "Omeji na izbrane dejavnosti:"
 
 #: src/activities/configureactivitieswidget.cpp:63
 #, kde-format
@@ -1524,6 +1524,9 @@ msgid ""
 "you are in those activities. Furthermore, when you switch to an activity it "
 "should not be available in, it will automatically be hidden."
 msgstr ""
+"Če ta račun omejite na dejavnost, bo prikazan v Ruqoli samo, ko ste v teh "
+"dejavnostih. Poleg tega, ko preklopite na dejavnost, v kateri ne bi smela "
+"biti na voljo, bo samodejno skrita."
 
 #: src/addfeeddialog.cpp:49
 #, kde-format
@@ -1990,7 +1993,12 @@ msgstr "Datoteka"
 msgid "All Feeds"
 msgstr "Vsi viri"
 
-#: src/feed/feedpropertiesdialog.cpp:46 src/feed/feedpropertiesdialog.cpp:77
+#: src/feed/feedpropertiesdialog.cpp:37
+#, kde-format
+msgid "Activities"
+msgstr ""
+
+#: src/feed/feedpropertiesdialog.cpp:62 src/feed/feedpropertiesdialog.cpp:110
 #, kde-format
 msgid "Minute"
 msgid_plural "Minutes"
@@ -1999,7 +2007,7 @@ msgstr[1] "Minuta"
 msgstr[2] "Minuti"
 msgstr[3] "Minute"
 
-#: src/feed/feedpropertiesdialog.cpp:47 src/feed/feedpropertiesdialog.cpp:78
+#: src/feed/feedpropertiesdialog.cpp:63 src/feed/feedpropertiesdialog.cpp:111
 #, kde-format
 msgid "Hour"
 msgid_plural "Hours"
@@ -2008,7 +2016,7 @@ msgstr[1] "Ura"
 msgstr[2] "Uri"
 msgstr[3] "Ure"
 
-#: src/feed/feedpropertiesdialog.cpp:48 src/feed/feedpropertiesdialog.cpp:79
+#: src/feed/feedpropertiesdialog.cpp:64 src/feed/feedpropertiesdialog.cpp:112
 #, kde-format
 msgid "Day"
 msgid_plural "Days"
@@ -2017,19 +2025,19 @@ msgstr[1] "Dan"
 msgstr[2] "Dneva"
 msgstr[3] "Dni"
 
-#: src/feed/feedpropertiesdialog.cpp:61 src/feed/feedpropertiesdialog.cpp:112
+#: src/feed/feedpropertiesdialog.cpp:94 src/feed/feedpropertiesdialog.cpp:148
 #, kde-format
 msgctxt "@title:window"
 msgid "Feed Properties"
 msgstr "Lastnosti vira"
 
-#: src/feed/feedpropertiesdialog.cpp:80
+#: src/feed/feedpropertiesdialog.cpp:113
 #, kde-format
 msgctxt "never fetch new articles"
 msgid "Never"
 msgstr "Nikoli"
 
-#: src/feed/feedpropertiesdialog.cpp:81
+#: src/feed/feedpropertiesdialog.cpp:114
 #, kde-format
 msgid " day"
 msgid_plural " days"
@@ -2038,7 +2046,7 @@ msgstr[1] " dneva"
 msgstr[2] " dni"
 msgstr[3] " dni"
 
-#: src/feed/feedpropertiesdialog.cpp:82
+#: src/feed/feedpropertiesdialog.cpp:115
 #, kde-format
 msgid " article"
 msgid_plural " articles"
@@ -2047,7 +2055,7 @@ msgstr[1] " članek"
 msgstr[2] " članka"
 msgstr[3] " članke"
 
-#: src/feed/feedpropertiesdialog.cpp:112
+#: src/feed/feedpropertiesdialog.cpp:148
 #, kde-format
 msgctxt "@title:window"
 msgid "Properties of %1"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-01 00:41+0000\n"
+"POT-Creation-Date: 2024-08-02 00:40+0000\n"
 "PO-Revision-Date: 2024-02-11 11:46-0600\n"
 "Last-Translator: A S Alam <aalam@punlinux.org>\n"
 "Language-Team: Punjabi <kde-i18n-doc@kde.org>\n"
@@ -1964,54 +1964,59 @@ msgstr "ਫਾਇਲ(&F)"
 msgid "All Feeds"
 msgstr "ਸਭ ਫੀਡਾਂ"
 
-#: src/feed/feedpropertiesdialog.cpp:46 src/feed/feedpropertiesdialog.cpp:77
+#: src/feed/feedpropertiesdialog.cpp:37
+#, kde-format
+msgid "Activities"
+msgstr ""
+
+#: src/feed/feedpropertiesdialog.cpp:62 src/feed/feedpropertiesdialog.cpp:110
 #, kde-format
 msgid "Minute"
 msgid_plural "Minutes"
 msgstr[0] "ਮਿੰਟ"
 msgstr[1] "ਮਿੰਟ"
 
-#: src/feed/feedpropertiesdialog.cpp:47 src/feed/feedpropertiesdialog.cpp:78
+#: src/feed/feedpropertiesdialog.cpp:63 src/feed/feedpropertiesdialog.cpp:111
 #, kde-format
 msgid "Hour"
 msgid_plural "Hours"
 msgstr[0] "ਘੰਟਾ"
 msgstr[1] "ਘੰਟੇ"
 
-#: src/feed/feedpropertiesdialog.cpp:48 src/feed/feedpropertiesdialog.cpp:79
+#: src/feed/feedpropertiesdialog.cpp:64 src/feed/feedpropertiesdialog.cpp:112
 #, kde-format
 msgid "Day"
 msgid_plural "Days"
 msgstr[0] "ਦਿਨ"
 msgstr[1] "ਦਿਨ"
 
-#: src/feed/feedpropertiesdialog.cpp:61 src/feed/feedpropertiesdialog.cpp:112
+#: src/feed/feedpropertiesdialog.cpp:94 src/feed/feedpropertiesdialog.cpp:148
 #, kde-format
 msgctxt "@title:window"
 msgid "Feed Properties"
 msgstr "ਫੀਡ ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ"
 
-#: src/feed/feedpropertiesdialog.cpp:80
+#: src/feed/feedpropertiesdialog.cpp:113
 #, kde-format
 msgctxt "never fetch new articles"
 msgid "Never"
 msgstr "ਕਦੇ ਨਹੀਂ"
 
-#: src/feed/feedpropertiesdialog.cpp:81
+#: src/feed/feedpropertiesdialog.cpp:114
 #, kde-format
 msgid " day"
 msgid_plural " days"
 msgstr[0] " ਦਿਨ"
 msgstr[1] " ਦਿਨ"
 
-#: src/feed/feedpropertiesdialog.cpp:82
+#: src/feed/feedpropertiesdialog.cpp:115
 #, kde-format
 msgid " article"
 msgid_plural " articles"
 msgstr[0] " ਲੇਖ"
 msgstr[1] " ਲੇਖ"
 
-#: src/feed/feedpropertiesdialog.cpp:112
+#: src/feed/feedpropertiesdialog.cpp:148
 #, kde-format
 msgctxt "@title:window"
 msgid "Properties of %1"

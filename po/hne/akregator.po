@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-01 00:41+0000\n"
+"POT-Creation-Date: 2024-08-02 00:40+0000\n"
 "PO-Revision-Date: 2009-02-27 17:34+0530\n"
 "Last-Translator: Ravishankar Shrivastava <raviratlami@aol.in>\n"
 "Language-Team: Hindi <kde-i18n-doc@lists.kde.org>\n"
@@ -2016,7 +2016,12 @@ msgstr "फाइल (&F)"
 msgid "All Feeds"
 msgstr "सब्बो फीड्स"
 
-#: src/feed/feedpropertiesdialog.cpp:46 src/feed/feedpropertiesdialog.cpp:77
+#: src/feed/feedpropertiesdialog.cpp:37
+#, kde-format
+msgid "Activities"
+msgstr ""
+
+#: src/feed/feedpropertiesdialog.cpp:62 src/feed/feedpropertiesdialog.cpp:110
 #, fuzzy, kde-format
 #| msgid "Minutes"
 msgid "Minute"
@@ -2024,7 +2029,7 @@ msgid_plural "Minutes"
 msgstr[0] "मिनट्स"
 msgstr[1] "मिनट्स"
 
-#: src/feed/feedpropertiesdialog.cpp:47 src/feed/feedpropertiesdialog.cpp:78
+#: src/feed/feedpropertiesdialog.cpp:63 src/feed/feedpropertiesdialog.cpp:111
 #, fuzzy, kde-format
 #| msgid "Hours"
 msgid "Hour"
@@ -2032,7 +2037,7 @@ msgid_plural "Hours"
 msgstr[0] "घंटे"
 msgstr[1] "घंटे"
 
-#: src/feed/feedpropertiesdialog.cpp:48 src/feed/feedpropertiesdialog.cpp:79
+#: src/feed/feedpropertiesdialog.cpp:64 src/feed/feedpropertiesdialog.cpp:112
 #, fuzzy, kde-format
 #| msgid "Days"
 msgid "Day"
@@ -2040,21 +2045,21 @@ msgid_plural "Days"
 msgstr[0] "दिन"
 msgstr[1] "दिन"
 
-#: src/feed/feedpropertiesdialog.cpp:61 src/feed/feedpropertiesdialog.cpp:112
+#: src/feed/feedpropertiesdialog.cpp:94 src/feed/feedpropertiesdialog.cpp:148
 #, fuzzy, kde-format
 #| msgid "Feed Properties"
 msgctxt "@title:window"
 msgid "Feed Properties"
 msgstr "फीड गुन"
 
-#: src/feed/feedpropertiesdialog.cpp:80
+#: src/feed/feedpropertiesdialog.cpp:113
 #, fuzzy, kde-format
 #| msgid "Never"
 msgctxt "never fetch new articles"
 msgid "Never"
 msgstr "कभू नइ"
 
-#: src/feed/feedpropertiesdialog.cpp:81
+#: src/feed/feedpropertiesdialog.cpp:114
 #, fuzzy, kde-format
 #| msgid "1 day"
 msgid " day"
@@ -2062,7 +2067,7 @@ msgid_plural " days"
 msgstr[0] "1 दिन"
 msgstr[1] "1 दिन"
 
-#: src/feed/feedpropertiesdialog.cpp:82
+#: src/feed/feedpropertiesdialog.cpp:115
 #, fuzzy, kde-format
 #| msgid "1 article"
 msgid " article"
@@ -2070,7 +2075,7 @@ msgid_plural " articles"
 msgstr[0] "1 आलेख"
 msgstr[1] "1 आलेख"
 
-#: src/feed/feedpropertiesdialog.cpp:112
+#: src/feed/feedpropertiesdialog.cpp:148
 #, fuzzy, kde-format
 #| msgid "Properties of %1"
 msgctxt "@title:window"

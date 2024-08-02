@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-01 00:41+0000\n"
+"POT-Creation-Date: 2024-08-02 00:40+0000\n"
 "PO-Revision-Date: 2009-01-18 02:35+0100\n"
 "Last-Translator: Bozidar Proevski <bobibobi@freemail.com.mk>\n"
 "Language-Team: Macedonian <mkde-l10n@lists.sourceforge.net>\n"
@@ -2052,7 +2052,12 @@ msgstr "&Запис"
 msgid "All Feeds"
 msgstr "Сите доводи"
 
-#: src/feed/feedpropertiesdialog.cpp:46 src/feed/feedpropertiesdialog.cpp:77
+#: src/feed/feedpropertiesdialog.cpp:37
+#, kde-format
+msgid "Activities"
+msgstr ""
+
+#: src/feed/feedpropertiesdialog.cpp:62 src/feed/feedpropertiesdialog.cpp:110
 #, fuzzy, kde-format
 #| msgid "Minutes"
 msgid "Minute"
@@ -2061,7 +2066,7 @@ msgstr[0] "Минути"
 msgstr[1] "Минути"
 msgstr[2] "Минути"
 
-#: src/feed/feedpropertiesdialog.cpp:47 src/feed/feedpropertiesdialog.cpp:78
+#: src/feed/feedpropertiesdialog.cpp:63 src/feed/feedpropertiesdialog.cpp:111
 #, fuzzy, kde-format
 #| msgid "Hours"
 msgid "Hour"
@@ -2070,7 +2075,7 @@ msgstr[0] "Часови"
 msgstr[1] "Часови"
 msgstr[2] "Часови"
 
-#: src/feed/feedpropertiesdialog.cpp:48 src/feed/feedpropertiesdialog.cpp:79
+#: src/feed/feedpropertiesdialog.cpp:64 src/feed/feedpropertiesdialog.cpp:112
 #, fuzzy, kde-format
 #| msgid "Days"
 msgid "Day"
@@ -2079,21 +2084,21 @@ msgstr[0] "Денови"
 msgstr[1] "Денови"
 msgstr[2] "Денови"
 
-#: src/feed/feedpropertiesdialog.cpp:61 src/feed/feedpropertiesdialog.cpp:112
+#: src/feed/feedpropertiesdialog.cpp:94 src/feed/feedpropertiesdialog.cpp:148
 #, fuzzy, kde-format
 #| msgid "Feed Properties"
 msgctxt "@title:window"
 msgid "Feed Properties"
 msgstr "Својства на довод"
 
-#: src/feed/feedpropertiesdialog.cpp:80
+#: src/feed/feedpropertiesdialog.cpp:113
 #, fuzzy, kde-format
 #| msgid "Never"
 msgctxt "never fetch new articles"
 msgid "Never"
 msgstr "Никогаш"
 
-#: src/feed/feedpropertiesdialog.cpp:81
+#: src/feed/feedpropertiesdialog.cpp:114
 #, fuzzy, kde-format
 #| msgid "1 day"
 msgid " day"
@@ -2102,7 +2107,7 @@ msgstr[0] "1 ден"
 msgstr[1] "1 ден"
 msgstr[2] "1 ден"
 
-#: src/feed/feedpropertiesdialog.cpp:82
+#: src/feed/feedpropertiesdialog.cpp:115
 #, fuzzy, kde-format
 #| msgid "1 article"
 msgid " article"
@@ -2111,7 +2116,7 @@ msgstr[0] "1 запис"
 msgstr[1] "1 запис"
 msgstr[2] "1 запис"
 
-#: src/feed/feedpropertiesdialog.cpp:112
+#: src/feed/feedpropertiesdialog.cpp:148
 #, fuzzy, kde-format
 #| msgid "Properties of %1"
 msgctxt "@title:window"

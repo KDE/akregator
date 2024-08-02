@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: all2.po\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-01 00:41+0000\n"
+"POT-Creation-Date: 2024-08-02 00:40+0000\n"
 "PO-Revision-Date: 2004-09-20 15:44+0200\n"
 "Last-Translator: Thierry Vignaud <tvignaud@mandrakesoft.com>\n"
 "Language-Team: cy <LL@li.org>\n"
@@ -1961,7 +1961,12 @@ msgstr "&Erthygl"
 msgid "All Feeds"
 msgstr ""
 
-#: src/feed/feedpropertiesdialog.cpp:46 src/feed/feedpropertiesdialog.cpp:77
+#: src/feed/feedpropertiesdialog.cpp:37
+#, kde-format
+msgid "Activities"
+msgstr ""
+
+#: src/feed/feedpropertiesdialog.cpp:62 src/feed/feedpropertiesdialog.cpp:110
 #, fuzzy, kde-format
 #| msgid "Minutes"
 msgid "Minute"
@@ -1969,7 +1974,7 @@ msgid_plural "Minutes"
 msgstr[0] "Munudau"
 msgstr[1] "Munudau"
 
-#: src/feed/feedpropertiesdialog.cpp:47 src/feed/feedpropertiesdialog.cpp:78
+#: src/feed/feedpropertiesdialog.cpp:63 src/feed/feedpropertiesdialog.cpp:111
 #, fuzzy, kde-format
 #| msgid "Hours"
 msgid "Hour"
@@ -1977,7 +1982,7 @@ msgid_plural "Hours"
 msgstr[0] "Oriau"
 msgstr[1] "Oriau"
 
-#: src/feed/feedpropertiesdialog.cpp:48 src/feed/feedpropertiesdialog.cpp:79
+#: src/feed/feedpropertiesdialog.cpp:64 src/feed/feedpropertiesdialog.cpp:112
 #, fuzzy, kde-format
 #| msgid "Days"
 msgid "Day"
@@ -1985,21 +1990,21 @@ msgid_plural "Days"
 msgstr[0] "Dydd"
 msgstr[1] "Dydd"
 
-#: src/feed/feedpropertiesdialog.cpp:61 src/feed/feedpropertiesdialog.cpp:112
+#: src/feed/feedpropertiesdialog.cpp:94 src/feed/feedpropertiesdialog.cpp:148
 #, fuzzy, kde-format
 #| msgid "Properties of %1"
 msgctxt "@title:window"
 msgid "Feed Properties"
 msgstr "Priodweddau %1"
 
-#: src/feed/feedpropertiesdialog.cpp:80
+#: src/feed/feedpropertiesdialog.cpp:113
 #, fuzzy, kde-format
 #| msgid "Never"
 msgctxt "never fetch new articles"
 msgid "Never"
 msgstr "Byth"
 
-#: src/feed/feedpropertiesdialog.cpp:81
+#: src/feed/feedpropertiesdialog.cpp:114
 #, fuzzy, kde-format
 #| msgid " days"
 msgid " day"
@@ -2007,7 +2012,7 @@ msgid_plural " days"
 msgstr[0] "o ddiwrnodau"
 msgstr[1] "o ddiwrnodau"
 
-#: src/feed/feedpropertiesdialog.cpp:82
+#: src/feed/feedpropertiesdialog.cpp:115
 #, fuzzy, kde-format
 #| msgid "Article"
 msgid " article"
@@ -2015,7 +2020,7 @@ msgid_plural " articles"
 msgstr[0] "Erthygl"
 msgstr[1] "Erthygl"
 
-#: src/feed/feedpropertiesdialog.cpp:112
+#: src/feed/feedpropertiesdialog.cpp:148
 #, fuzzy, kde-format
 #| msgid "Properties of %1"
 msgctxt "@title:window"
