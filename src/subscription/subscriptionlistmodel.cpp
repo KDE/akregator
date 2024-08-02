@@ -7,9 +7,12 @@
 */
 
 #include "subscriptionlistmodel.h"
+#include "akregatorconfig.h"
+#include "config-akregator.h"
 #include "feed.h"
 #include "feedlist.h"
 #include "folder.h"
+#include "kernel.h"
 #include "subscriptionlistjobs.h"
 #include "treenode.h"
 
@@ -29,7 +32,9 @@
 #include <QStyle>
 #include <QUrl>
 #include <QVariant>
-
+#if HAVE_ACTIVITY_SUPPORT
+#include "activities/activitiesmanager.h"
+#endif
 using namespace Akregator;
 using namespace Syndication;
 
@@ -95,13 +100,20 @@ void FilterSubscriptionProxyModel::setSourceModel(QAbstractItemModel *src)
 
 bool FilterSubscriptionProxyModel::filterAcceptsRow(int source_row, const QModelIndex &source_parent) const
 {
-    // TODO check activities
+    const QModelIndex idx = sourceModel()->index(source_row, 0, source_parent);
+#if HAVE_ACTIVITY_SUPPORT
+    if (Kernel::self()->activitiesManager()->enabled()) {
+        if (idx.data(SubscriptionListModel::ActivityEnabled).toBool()) {
+            if (!Kernel::self()->activitiesManager()->isInCurrentActivity(idx.data(SubscriptionListModel::Activities).toStringList())) {
+                return false;
+            }
+        }
+    }
+#endif
 
     if (!m_doFilter) {
         return true;
     }
-
-    const QModelIndex idx = sourceModel()->index(source_row, 0, source_parent);
 
     if (m_selectedHierarchy.contains(idx)) {
         return true;
