@@ -23,13 +23,12 @@
 
 using namespace Akregator;
 // TODO add activities tab
-FeedPropertiesWidget::FeedPropertiesWidget(QWidget *parent, const QString &name)
+FeedPropertiesWidget::FeedPropertiesWidget(QWidget *parent)
     : QWidget(parent)
 #if HAVE_ACTIVITY_SUPPORT
     , mConfigureActivitiesWidget(new ConfigureActivitiesWidget(this))
 #endif
 {
-    setObjectName(name);
     setupUi(this);
 
 #if HAVE_ACTIVITY_SUPPORT
