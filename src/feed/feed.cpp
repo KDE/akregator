@@ -728,12 +728,14 @@ bool Feed::isExpired(const Article &a) const
     const QDateTime now = QDateTime::currentDateTime();
     int expiryAge = -1;
     // check whether the feed uses the global default and the default is limitArticleAge
+    constexpr int time = 24 * 3600;
     if (d->m_archiveMode == globalDefault && Settings::archiveMode() == Settings::EnumArchiveMode::limitArticleAge) {
-        expiryAge = Settings::maxArticleAge() * 24 * 3600;
-    } else // otherwise check if this feed has limitArticleAge set
+        expiryAge = Settings::maxArticleAge() * time;
+    } else { // otherwise check if this feed has limitArticleAge set
         if (d->m_archiveMode == limitArticleAge) {
-            expiryAge = d->m_maxArticleAge * 24 * 3600;
+            expiryAge = d->m_maxArticleAge * time;
         }
+    }
 
     return expiryAge != -1 && a.pubDate().secsTo(now) > expiryAge;
 }
