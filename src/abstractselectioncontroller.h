@@ -92,6 +92,7 @@ public:
 public Q_SLOTS:
 
     virtual void settingsChanged() = 0;
+    virtual void activitiesChanged() = 0;
 
     virtual void setFilters(const std::vector<QSharedPointer<const Akregator::Filters::AbstractMatcher>> &) = 0;
 

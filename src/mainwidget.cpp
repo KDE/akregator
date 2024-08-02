@@ -154,11 +154,6 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
 
     connect(Kernel::self()->frameManager(), &FrameManager::signalFrameRemoved, this, &MainWidget::slotFramesChanged);
     connect(Kernel::self()->frameManager(), &FrameManager::signalCompleted, this, &MainWidget::slotFramesChanged);
-#if HAVE_ACTIVITY_SUPPORT
-    connect(Kernel::self()->activitiesManager(), &ActivitiesManager::activitiesChanged, this, [this]() {
-        qDebug() << " activities changed";
-    });
-#endif
 
     connect(PimCommon::NetworkManager::self(), &PimCommon::NetworkManager::networkStatusChanged, this, &MainWidget::slotNetworkStatusChanged);
 
@@ -291,6 +286,12 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
         m_searchBar->slotSetStatus(Settings::statusFilter());
         m_searchBar->slotSetText(Settings::textFilter());
     }
+#if HAVE_ACTIVITY_SUPPORT
+    connect(Kernel::self()->activitiesManager(), &ActivitiesManager::activitiesChanged, this, [this]() {
+        m_selectionController->activitiesChanged();
+        qDebug() << " activities changed";
+    });
+#endif
 }
 
 void MainWidget::slotSettingsChanged()

@@ -61,6 +61,7 @@ public Q_SLOTS:
 
     // impl
     void settingsChanged() override;
+    void activitiesChanged() override;
 
     // impl
     void setFilters(const std::vector<QSharedPointer<const Akregator::Filters::AbstractMatcher>> &) override;

@@ -332,6 +332,11 @@ void SelectionController::settingsChanged()
     m_subscriptionModel->setDoFilter(Settings::hideReadFeeds());
 }
 
+void SelectionController::activitiesChanged()
+{
+    m_subscriptionModel->activitiesChanged();
+}
+
 void SelectionController::setFilters(const std::vector<QSharedPointer<const Filters::AbstractMatcher>> &matchers)
 {
     Q_ASSERT(m_articleLister);

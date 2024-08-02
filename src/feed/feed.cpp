@@ -8,10 +8,10 @@
 */
 
 #include "feed.h"
-
 #include "akregatorconfig.h"
 #include "article.h"
 #include "articlejobs.h"
+#include "config-akregator.h"
 #include "feedretriever.h"
 #include "fetchqueue.h"
 #include "folder.h"
@@ -192,6 +192,12 @@ Akregator::Feed *Feed::fromOPML(const QDomElement &e, Backend::Storage *storage)
         feed->d->m_archive = storage->archiveFor(xmlUrl);
         feed->d->m_totalCount = feed->d->m_archive->totalCount();
     }
+
+#if HAVE_ACTIVITY_SUPPORT
+    feed->setActivityEnabled(e.attribute(QStringLiteral("activityEnabled")) == QLatin1StringView("true"));
+    feed->setActivities(e.attribute(QStringLiteral("activities")).split(QLatin1Char(';')));
+#endif
+
     return feed;
 }
 
@@ -596,6 +602,10 @@ QDomElement Feed::toOPML(QDomElement parent, QDomDocument document) const
         }
     }
     el.setAttribute(QStringLiteral("maxArticleNumber"), d->m_maxArticleNumber);
+#if HAVE_ACTIVITY_SUPPORT
+    el.setAttribute(QStringLiteral("activityEnabled"), d->m_activityEnabled);
+    el.setAttribute(QStringLiteral("activities"), d->m_activities.join(QLatin1Char(',')));
+#endif
     el.setAttribute(QStringLiteral("type"), QStringLiteral("rss")); // despite some additional fields, it is still "rss" OPML
     el.setAttribute(QStringLiteral("version"), QStringLiteral("RSS"));
     parent.appendChild(el);

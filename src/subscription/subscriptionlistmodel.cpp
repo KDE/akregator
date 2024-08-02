@@ -86,6 +86,11 @@ bool FilterSubscriptionProxyModel::doFilter() const
     return m_doFilter;
 }
 
+void FilterSubscriptionProxyModel::activitiesChanged()
+{
+    invalidateFilter();
+}
+
 void FilterSubscriptionProxyModel::setDoFilter(bool v)
 {
     m_doFilter = v;
