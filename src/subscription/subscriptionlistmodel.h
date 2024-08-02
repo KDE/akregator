@@ -65,6 +65,7 @@ public:
         IsOpenRole,
         HasUnreadRole,
         Activities,
+        ActivityEnabled,
     };
 
     enum Column {
