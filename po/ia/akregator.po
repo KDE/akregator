@@ -2277,7 +2277,7 @@ msgstr "Il non trovava nodo o dossier de destination"
 #: src/subscription/subscriptionlistjobs.cpp:71
 #, kde-format
 msgid "Cannot move folder %1 to its own subfolder %2"
-msgstr "Il nonpote mover dossier %1 in su proprie subdossier %2"
+msgstr "Il non pote mover dossier %1 in su proprie subdossier %2"
 
 #: src/subscription/subscriptionlistmodel.cpp:49
 #, kde-format
