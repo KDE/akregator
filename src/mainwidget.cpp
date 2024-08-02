@@ -9,6 +9,8 @@
 */
 
 #include "mainwidget.h"
+#include "config-akregator.h"
+
 #include "abstractselectioncontroller.h"
 #include "actionmanagerimpl.h"
 #include "akregator_part.h"
@@ -66,7 +68,9 @@
 #include <algorithm>
 #include <chrono>
 #include <memory>
-
+#if HAVE_ACTIVITY_SUPPORT
+#include "activities/activitiesmanager.h"
+#endif
 using namespace std::chrono_literals;
 
 using namespace Akregator;
@@ -150,6 +154,11 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
 
     connect(Kernel::self()->frameManager(), &FrameManager::signalFrameRemoved, this, &MainWidget::slotFramesChanged);
     connect(Kernel::self()->frameManager(), &FrameManager::signalCompleted, this, &MainWidget::slotFramesChanged);
+#if HAVE_ACTIVITY_SUPPORT
+    connect(Kernel::self()->activitiesManager(), &ActivitiesManager::activitiesChanged, this, [this]() {
+        qDebug() << " activities changed";
+    });
+#endif
 
     connect(PimCommon::NetworkManager::self(), &PimCommon::NetworkManager::networkStatusChanged, this, &MainWidget::slotNetworkStatusChanged);
 
