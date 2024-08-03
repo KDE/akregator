@@ -748,6 +748,15 @@ void MainWidget::slotFeedModify()
     cmd->setSubscription(m_feedList, node->id());
     cmd->setSubscriptionListView(m_feedListView);
     cmd->start();
+
+#if HAVE_ACTIVITY_SUPPORT
+    if (Kernel::self()->activitiesManager()->enabled()) {
+        connect(cmd, &EditSubscriptionCommand::finished, this, [this]() {
+            qDebug() << " EditSubscriptionCommand finished. Potential activities changed";
+            m_selectionController->activitiesChanged();
+        });
+    }
+#endif
 }
 
 void MainWidget::slotNextUnreadArticle()
