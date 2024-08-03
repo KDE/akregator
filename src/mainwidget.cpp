@@ -70,6 +70,7 @@
 #include <memory>
 #if HAVE_ACTIVITY_SUPPORT
 #include "activities/activitiesmanager.h"
+#include "akregator_plasma_activities_debug.h"
 #endif
 using namespace std::chrono_literals;
 
@@ -289,7 +290,7 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
 #if HAVE_ACTIVITY_SUPPORT
     connect(Kernel::self()->activitiesManager(), &ActivitiesManager::activitiesChanged, this, [this]() {
         m_selectionController->activitiesChanged();
-        qDebug() << " activities changed";
+        qCDebug(AKREGATOR_PLASMA_ACTIVITIES_LOG) << " activities changed";
     });
 #endif
 }
@@ -752,7 +753,7 @@ void MainWidget::slotFeedModify()
 #if HAVE_ACTIVITY_SUPPORT
     if (Kernel::self()->activitiesManager()->enabled()) {
         connect(cmd, &EditSubscriptionCommand::finished, this, [this]() {
-            qDebug() << " EditSubscriptionCommand finished. Potential activities changed";
+            qCDebug(AKREGATOR_PLASMA_ACTIVITIES_LOG) << " EditSubscriptionCommand finished. Potential activities changed";
             m_selectionController->activitiesChanged();
         });
     }
