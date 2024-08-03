@@ -113,7 +113,7 @@ if(USE_UNITY_CMAKE_SUPPORT)
     set(COMPILE_WITH_UNITY_CMAKE_SUPPORT ON)
 endif()
 
-option(OPTION_USE_PLASMA_ACTIVITIES "Activate plasma activities (experimental)" OFF)
+option(OPTION_USE_PLASMA_ACTIVITIES "Activate plasma activities" OFF)
 if(OPTION_USE_PLASMA_ACTIVITIES)
     if(NOT WIN32 AND NOT APPLE)
        set(OPTION_USE_PLASMA_ACTIVITIES true)
@@ -124,6 +124,10 @@ endif()
 if(OPTION_USE_PLASMA_ACTIVITIES)
     if(NOT WIN32 AND NOT APPLE)
        find_package(PlasmaActivities "6.1.0")
+       set_package_properties(PlasmaActivities PROPERTIES DESCRIPTION
+	       "Allow to compile with plasma activities"
+    		TYPE OPTIONAL
+	)
     endif()
 endif()
 
