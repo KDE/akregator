@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-02 00:40+0000\n"
+"POT-Creation-Date: 2024-08-03 00:40+0000\n"
 "PO-Revision-Date: 2023-04-19 00:41+0200\n"
 "Last-Translator: Frederik Schwarzer <schwarzer@kde.org>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
@@ -2055,59 +2055,59 @@ msgstr "&Datei"
 msgid "All Feeds"
 msgstr "Alle Nachrichtenquellen"
 
-#: src/feed/feedpropertiesdialog.cpp:37
+#: src/feed/feedpropertiesdialog.cpp:36
 #, kde-format
 msgid "Activities"
 msgstr ""
 
-#: src/feed/feedpropertiesdialog.cpp:62 src/feed/feedpropertiesdialog.cpp:110
+#: src/feed/feedpropertiesdialog.cpp:61 src/feed/feedpropertiesdialog.cpp:109
 #, kde-format
 msgid "Minute"
 msgid_plural "Minutes"
 msgstr[0] "Minute"
 msgstr[1] "Minuten"
 
-#: src/feed/feedpropertiesdialog.cpp:63 src/feed/feedpropertiesdialog.cpp:111
+#: src/feed/feedpropertiesdialog.cpp:62 src/feed/feedpropertiesdialog.cpp:110
 #, kde-format
 msgid "Hour"
 msgid_plural "Hours"
 msgstr[0] "Stunde"
 msgstr[1] "Stunden"
 
-#: src/feed/feedpropertiesdialog.cpp:64 src/feed/feedpropertiesdialog.cpp:112
+#: src/feed/feedpropertiesdialog.cpp:63 src/feed/feedpropertiesdialog.cpp:111
 #, kde-format
 msgid "Day"
 msgid_plural "Days"
 msgstr[0] "Tag"
 msgstr[1] "Tage"
 
-#: src/feed/feedpropertiesdialog.cpp:94 src/feed/feedpropertiesdialog.cpp:148
+#: src/feed/feedpropertiesdialog.cpp:93 src/feed/feedpropertiesdialog.cpp:147
 #, kde-format
 msgctxt "@title:window"
 msgid "Feed Properties"
 msgstr "Eigenschaften der Nachrichtenquelle"
 
-#: src/feed/feedpropertiesdialog.cpp:113
+#: src/feed/feedpropertiesdialog.cpp:112
 #, kde-format
 msgctxt "never fetch new articles"
 msgid "Never"
 msgstr "Niemals"
 
-#: src/feed/feedpropertiesdialog.cpp:114
+#: src/feed/feedpropertiesdialog.cpp:113
 #, kde-format
 msgid " day"
 msgid_plural " days"
 msgstr[0] " Tag"
 msgstr[1] " Tage"
 
-#: src/feed/feedpropertiesdialog.cpp:115
+#: src/feed/feedpropertiesdialog.cpp:114
 #, kde-format
 msgid " article"
 msgid_plural " articles"
 msgstr[0] " Artikel"
 msgstr[1] " Artikel"
 
-#: src/feed/feedpropertiesdialog.cpp:148
+#: src/feed/feedpropertiesdialog.cpp:147
 #, kde-format
 msgctxt "@title:window"
 msgid "Properties of %1"
@@ -2193,27 +2193,27 @@ msgstr "Ladevorgang abgebrochen"
 msgid "Loading completed"
 msgstr "Ladevorgang abgeschlossen"
 
-#: src/mainwidget.cpp:156
+#: src/mainwidget.cpp:160
 #, kde-format
 msgid "You can view multiple articles in several open tabs."
 msgstr "Es können mehrere Artikel in einzelnen Unterfenstern angezeigt werden."
 
-#: src/mainwidget.cpp:160
+#: src/mainwidget.cpp:164
 #, kde-format
 msgid "Articles list."
 msgstr "Artikelliste."
 
-#: src/mainwidget.cpp:222 src/mainwidget.cpp:647
+#: src/mainwidget.cpp:226 src/mainwidget.cpp:657
 #, kde-format
 msgid "Articles"
 msgstr "Artikel"
 
-#: src/mainwidget.cpp:251
+#: src/mainwidget.cpp:255
 #, kde-format
 msgid "About"
 msgstr "Über"
 
-#: src/mainwidget.cpp:777
+#: src/mainwidget.cpp:787
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all articles in the feed</b> as read?</"
@@ -2222,20 +2222,20 @@ msgstr ""
 "<qt>Möchten Sie <b>alle Artikel in der Nachrichtenquelle</b> als gelesen "
 "markieren?</qt>"
 
-#: src/mainwidget.cpp:778
+#: src/mainwidget.cpp:788
 #, fuzzy, kde-format
 #| msgid "Mark Feed as Read"
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "Nachrichtenquelle als gelesen markieren"
 
-#: src/mainwidget.cpp:781
+#: src/mainwidget.cpp:791
 #, kde-format
 msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
 msgstr ""
 "<qt>Möchten Sie <b>alle Nachrichtenquellen</b> als gelesen markieren?</qt>"
 
-#: src/mainwidget.cpp:783
+#: src/mainwidget.cpp:793
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all feeds in the folder</b> as read?</"
@@ -2244,30 +2244,30 @@ msgstr ""
 "<qt>Möchten Sie <b>alle Nachrichtenquellen in diesem Ordner</b> als gelesen "
 "markieren?</qt>"
 
-#: src/mainwidget.cpp:785
+#: src/mainwidget.cpp:795
 #, fuzzy, kde-format
 #| msgid "Mark Feeds as Read"
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "Nachrichtenquellen als gelesen markieren"
 
-#: src/mainwidget.cpp:849 src/mainwidget.cpp:858 src/mainwidget.cpp:1260
+#: src/mainwidget.cpp:859 src/mainwidget.cpp:868 src/mainwidget.cpp:1270
 #, kde-format
 msgid "Networking is not available."
 msgstr "Es ist keine Netzwerkverbindung verfügbar."
 
-#: src/mainwidget.cpp:866
+#: src/mainwidget.cpp:876
 #, fuzzy, kde-format
 #| msgid "Fetching Feeds..."
 msgid "Fetching Feeds…"
 msgstr "Nachrichten werden abgeholt ..."
 
-#: src/mainwidget.cpp:1065
+#: src/mainwidget.cpp:1075
 #, kde-format
 msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
 msgstr "<qt>Möchten Sie den Artikel <b>%1</b> wirklich löschen?</qt>"
 
-#: src/mainwidget.cpp:1068
+#: src/mainwidget.cpp:1078
 #, kde-format
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
 msgid_plural ""
@@ -2275,14 +2275,14 @@ msgid_plural ""
 msgstr[0] "<qt>Möchten Sie den ausgewählten Artikel wirklich löschen?</qt>"
 msgstr[1] "<qt>Möchten Sie die %1 ausgewählten Artikel wirklich löschen?</qt>"
 
-#: src/mainwidget.cpp:1075
+#: src/mainwidget.cpp:1085
 #, fuzzy, kde-format
 #| msgid "Delete Article"
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "Artikel löschen"
 
-#: src/mainwidget.cpp:1257
+#: src/mainwidget.cpp:1267
 #, kde-format
 msgid "Networking is available now."
 msgstr "Es ist jetzt eine Netzwerkverbindung verfügbar."
@@ -2369,55 +2369,55 @@ msgid "Cannot move folder %1 to its own subfolder %2"
 msgstr ""
 "Ordner %1 kann nicht in seinen eigenen Unterordner %2 verschoben werden."
 
-#: src/subscription/subscriptionlistmodel.cpp:49
+#: src/subscription/subscriptionlistmodel.cpp:54
 #, kde-format
 msgid "Timeout on remote server"
 msgstr "Zeitüberschreitung auf dem entfernten Server"
 
-#: src/subscription/subscriptionlistmodel.cpp:51
+#: src/subscription/subscriptionlistmodel.cpp:56
 #, kde-format
 msgid "Unknown host"
 msgstr "Unbekannter Rechner"
 
-#: src/subscription/subscriptionlistmodel.cpp:53
+#: src/subscription/subscriptionlistmodel.cpp:58
 #, kde-format
 msgid "Feed file not found on remote server"
 msgstr "Nachrichtenquelle wurde auf dem Server nicht gefunden."
 
-#: src/subscription/subscriptionlistmodel.cpp:55
+#: src/subscription/subscriptionlistmodel.cpp:60
 #, kde-format
 msgid "Could not read feed (invalid XML)"
 msgstr "Nachrichtenquelle kann nicht gelesen werden (ungültiges XML)."
 
-#: src/subscription/subscriptionlistmodel.cpp:57
+#: src/subscription/subscriptionlistmodel.cpp:62
 #, kde-format
 msgid "Could not read feed (unknown format)"
 msgstr "Nachrichtenquelle kann nicht gelesen werden (ungültiges Format)."
 
-#: src/subscription/subscriptionlistmodel.cpp:59
+#: src/subscription/subscriptionlistmodel.cpp:64
 #, kde-format
 msgid "Could not read feed (invalid feed)"
 msgstr ""
 "Nachrichtenquelle kann nicht gelesen werden (ungültige Nachrichtenquelle)."
 
-#: src/subscription/subscriptionlistmodel.cpp:229
+#: src/subscription/subscriptionlistmodel.cpp:246
 #, kde-format
 msgid "Could not fetch feed: %1"
 msgstr "Nachrichtenquelle kann nicht abgeholt werden: %1"
 
-#: src/subscription/subscriptionlistmodel.cpp:277
+#: src/subscription/subscriptionlistmodel.cpp:295
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Feeds"
 msgstr "Nachrichtenquellen"
 
-#: src/subscription/subscriptionlistmodel.cpp:279
+#: src/subscription/subscriptionlistmodel.cpp:297
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Unread"
 msgstr "Ungelesen"
 
-#: src/subscription/subscriptionlistmodel.cpp:281
+#: src/subscription/subscriptionlistmodel.cpp:299
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Total"

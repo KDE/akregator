@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-02 00:40+0000\n"
+"POT-Creation-Date: 2024-08-03 00:40+0000\n"
 "PO-Revision-Date: 2012-12-25 13:50+0700\n"
 "Last-Translator: sutha <sutha@khmeros.info>\n"
 "Language-Team: Khmer <support@khmeros>\n"
@@ -2036,55 +2036,55 @@ msgstr "ឯកសារ"
 msgid "All Feeds"
 msgstr "មតិព័ត៌មាន​ទាំងអស់"
 
-#: src/feed/feedpropertiesdialog.cpp:37
+#: src/feed/feedpropertiesdialog.cpp:36
 #, kde-format
 msgid "Activities"
 msgstr ""
 
-#: src/feed/feedpropertiesdialog.cpp:62 src/feed/feedpropertiesdialog.cpp:110
+#: src/feed/feedpropertiesdialog.cpp:61 src/feed/feedpropertiesdialog.cpp:109
 #, kde-format
 msgid "Minute"
 msgid_plural "Minutes"
 msgstr[0] "នាទី"
 
-#: src/feed/feedpropertiesdialog.cpp:63 src/feed/feedpropertiesdialog.cpp:111
+#: src/feed/feedpropertiesdialog.cpp:62 src/feed/feedpropertiesdialog.cpp:110
 #, kde-format
 msgid "Hour"
 msgid_plural "Hours"
 msgstr[0] "ម៉ោង"
 
-#: src/feed/feedpropertiesdialog.cpp:64 src/feed/feedpropertiesdialog.cpp:112
+#: src/feed/feedpropertiesdialog.cpp:63 src/feed/feedpropertiesdialog.cpp:111
 #, kde-format
 msgid "Day"
 msgid_plural "Days"
 msgstr[0] "ថ្ងៃ"
 
-#: src/feed/feedpropertiesdialog.cpp:94 src/feed/feedpropertiesdialog.cpp:148
+#: src/feed/feedpropertiesdialog.cpp:93 src/feed/feedpropertiesdialog.cpp:147
 #, fuzzy, kde-format
 #| msgid "Feed Properties"
 msgctxt "@title:window"
 msgid "Feed Properties"
 msgstr "លក្ខណៈ​សម្បត្តិ​របស់​មតិព័ត៌មាន"
 
-#: src/feed/feedpropertiesdialog.cpp:113
+#: src/feed/feedpropertiesdialog.cpp:112
 #, kde-format
 msgctxt "never fetch new articles"
 msgid "Never"
 msgstr "កុំ"
 
-#: src/feed/feedpropertiesdialog.cpp:114
+#: src/feed/feedpropertiesdialog.cpp:113
 #, kde-format
 msgid " day"
 msgid_plural " days"
 msgstr[0] " ថ្ងៃ"
 
-#: src/feed/feedpropertiesdialog.cpp:115
+#: src/feed/feedpropertiesdialog.cpp:114
 #, kde-format
 msgid " article"
 msgid_plural " articles"
 msgstr[0] " អត្ថបទ"
 
-#: src/feed/feedpropertiesdialog.cpp:148
+#: src/feed/feedpropertiesdialog.cpp:147
 #, fuzzy, kde-format
 #| msgid "Properties of %1"
 msgctxt "@title:window"
@@ -2174,27 +2174,27 @@ msgstr "បាន​បោះបង់​ការ​ផ្ទុក"
 msgid "Loading completed"
 msgstr "ការ​ផ្ទុក​បាន​បញ្ចប់"
 
-#: src/mainwidget.cpp:156
+#: src/mainwidget.cpp:160
 #, kde-format
 msgid "You can view multiple articles in several open tabs."
 msgstr "អ្នក​អាច​មើល​អត្ថបទ​ច្រើន នៅ​ក្នុង​ផ្ទាំង​ច្រើន​ដែល​បើក ។"
 
-#: src/mainwidget.cpp:160
+#: src/mainwidget.cpp:164
 #, kde-format
 msgid "Articles list."
 msgstr "បញ្ជី​អត្ថបទ ។"
 
-#: src/mainwidget.cpp:222 src/mainwidget.cpp:647
+#: src/mainwidget.cpp:226 src/mainwidget.cpp:657
 #, kde-format
 msgid "Articles"
 msgstr "អត្ថបទ"
 
-#: src/mainwidget.cpp:251
+#: src/mainwidget.cpp:255
 #, kde-format
 msgid "About"
 msgstr "អំពី"
 
-#: src/mainwidget.cpp:777
+#: src/mainwidget.cpp:787
 #, fuzzy, kde-format
 #| msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
 msgid ""
@@ -2202,20 +2202,20 @@ msgid ""
 "qt>"
 msgstr "<qt>តើ​អ្នក​ពិត​ជា​ចង់​លុប​មតិ​ព័ត៌មាន <b>%1</b> ឬ ?</qt>"
 
-#: src/mainwidget.cpp:778
+#: src/mainwidget.cpp:788
 #, fuzzy, kde-format
 #| msgid "&Mark Feed as Read"
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "សម្គាល់​មតិ​ព័ត៌មាន​ថា​អាន​រួច"
 
-#: src/mainwidget.cpp:781
+#: src/mainwidget.cpp:791
 #, fuzzy, kde-format
 #| msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
 msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
 msgstr "<qt>តើ​អ្នក​ពិត​ជា​ចង់​លុប​មតិ​ព័ត៌មាន <b>%1</b> ឬ ?</qt>"
 
-#: src/mainwidget.cpp:783
+#: src/mainwidget.cpp:793
 #, fuzzy, kde-format
 #| msgid "<qt>Are you sure you want to delete this feed?</qt>"
 msgid ""
@@ -2223,44 +2223,44 @@ msgid ""
 "qt>"
 msgstr "<qt>តើ​អ្នក​ពិត​ជា​ចង់​លុប​មតិព័ត៌មាន​នេះ​ឬ ?</qt>"
 
-#: src/mainwidget.cpp:785
+#: src/mainwidget.cpp:795
 #, fuzzy, kde-format
 #| msgid "&Mark Feeds as Read"
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "សម្គាល់​មតិ​ព័ត៌មាន​ថា​អាន​រួច"
 
-#: src/mainwidget.cpp:849 src/mainwidget.cpp:858 src/mainwidget.cpp:1260
+#: src/mainwidget.cpp:859 src/mainwidget.cpp:868 src/mainwidget.cpp:1270
 #, kde-format
 msgid "Networking is not available."
 msgstr "មិន​មាន​បណ្ដាញ ។"
 
-#: src/mainwidget.cpp:866
+#: src/mainwidget.cpp:876
 #, fuzzy, kde-format
 #| msgid "Fetching Feeds..."
 msgid "Fetching Feeds…"
 msgstr "កំពុង​ប្រមូល​មតិព័ត៌មាន..."
 
-#: src/mainwidget.cpp:1065
+#: src/mainwidget.cpp:1075
 #, kde-format
 msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
 msgstr "<qt>តើ​អ្នក​ពិត​ជា​ចង់​លុប​អត្ថបទ <b>%1</b> ឬ ?</qt>"
 
-#: src/mainwidget.cpp:1068
+#: src/mainwidget.cpp:1078
 #, kde-format
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
 msgid_plural ""
 "<qt>Are you sure you want to delete the %1 selected articles?</qt>"
 msgstr[0] "<qt>តើ​អ្នក​ពិត​ជា​ចង់​លុប​អត្ថបទ %1 ដែល​បាន​ជ្រើស​ឬ ?</qt>"
 
-#: src/mainwidget.cpp:1075
+#: src/mainwidget.cpp:1085
 #, fuzzy, kde-format
 #| msgid "Delete Article"
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "លុប​អត្ថបទ"
 
-#: src/mainwidget.cpp:1257
+#: src/mainwidget.cpp:1267
 #, kde-format
 msgid "Networking is available now."
 msgstr "ឥឡូវ​មាន​បណ្ដាញ​ហើយ ។"
@@ -2341,54 +2341,54 @@ msgstr "រក​មិន​ឃើញថត​​ថ្នាំង ឬ​ទ�
 msgid "Cannot move folder %1 to its own subfolder %2"
 msgstr "មិន​អាច​ផ្លាស់ទី​ថត %1 ទៅ​កាន់​ថតរង​ផ្ទាល់​របស់​វា %2 បាន​ទេ"
 
-#: src/subscription/subscriptionlistmodel.cpp:49
+#: src/subscription/subscriptionlistmodel.cpp:54
 #, kde-format
 msgid "Timeout on remote server"
 msgstr "អស់ពេល​នៅ​លើ​ម៉ាស៊ីន​បម្រើ​ពី​ចម្ងាយ"
 
-#: src/subscription/subscriptionlistmodel.cpp:51
+#: src/subscription/subscriptionlistmodel.cpp:56
 #, kde-format
 msgid "Unknown host"
 msgstr "មិន​ស្គាល់​ម៉ាស៊ីន"
 
-#: src/subscription/subscriptionlistmodel.cpp:53
+#: src/subscription/subscriptionlistmodel.cpp:58
 #, kde-format
 msgid "Feed file not found on remote server"
 msgstr "រក​មិនឃើញ​ឯកសារ​មតិព័ត៌មាន​នៅ​លើ​ម៉ាស៊ីន​បម្រើ​ពី​ចម្ងាយ"
 
-#: src/subscription/subscriptionlistmodel.cpp:55
+#: src/subscription/subscriptionlistmodel.cpp:60
 #, kde-format
 msgid "Could not read feed (invalid XML)"
 msgstr "មិន​អាច​អាន​មតិ​ព័ត៌មាន (XML មិន​ត្រឹមត្រូវ)"
 
-#: src/subscription/subscriptionlistmodel.cpp:57
+#: src/subscription/subscriptionlistmodel.cpp:62
 #, kde-format
 msgid "Could not read feed (unknown format)"
 msgstr "មិន​អាច​អាន​មតិ​ព័ត៌មាន (មិន​ស្គាល់​ទ្រង់ទ្រាយ)"
 
-#: src/subscription/subscriptionlistmodel.cpp:59
+#: src/subscription/subscriptionlistmodel.cpp:64
 #, kde-format
 msgid "Could not read feed (invalid feed)"
 msgstr "មិន​អាច​អាន​មតិ​ព័ត៌មាន (មតិ​ព័ត៌មាន​មិន​ត្រឹមត្រូវ)"
 
-#: src/subscription/subscriptionlistmodel.cpp:229
+#: src/subscription/subscriptionlistmodel.cpp:246
 #, kde-format
 msgid "Could not fetch feed: %1"
 msgstr "មិន​អាច​ទៅ​យក​មតិព័ត៌មាន ៖ %1"
 
-#: src/subscription/subscriptionlistmodel.cpp:277
+#: src/subscription/subscriptionlistmodel.cpp:295
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Feeds"
 msgstr "មតិព័ត៌មាន"
 
-#: src/subscription/subscriptionlistmodel.cpp:279
+#: src/subscription/subscriptionlistmodel.cpp:297
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Unread"
 msgstr "មិន​ទាន់​អាន"
 
-#: src/subscription/subscriptionlistmodel.cpp:281
+#: src/subscription/subscriptionlistmodel.cpp:299
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Total"

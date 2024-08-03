@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-02 00:40+0000\n"
+"POT-Creation-Date: 2024-08-03 00:40+0000\n"
 "PO-Revision-Date: 2024-05-28 09:59+0300\n"
 "Last-Translator: Toms Trasuns <toms.trasuns@posteo.net>\n"
 "Language-Team: Latvian <kde-i18n-doc@kde.org>\n"
@@ -1984,12 +1984,12 @@ msgstr "&Datne"
 msgid "All Feeds"
 msgstr "Visi ziņu avoti"
 
-#: src/feed/feedpropertiesdialog.cpp:37
+#: src/feed/feedpropertiesdialog.cpp:36
 #, kde-format
 msgid "Activities"
 msgstr ""
 
-#: src/feed/feedpropertiesdialog.cpp:62 src/feed/feedpropertiesdialog.cpp:110
+#: src/feed/feedpropertiesdialog.cpp:61 src/feed/feedpropertiesdialog.cpp:109
 #, kde-format
 msgid "Minute"
 msgid_plural "Minutes"
@@ -1997,7 +1997,7 @@ msgstr[0] "Minūte"
 msgstr[1] "Minūtes"
 msgstr[2] "Minūšu"
 
-#: src/feed/feedpropertiesdialog.cpp:63 src/feed/feedpropertiesdialog.cpp:111
+#: src/feed/feedpropertiesdialog.cpp:62 src/feed/feedpropertiesdialog.cpp:110
 #, kde-format
 msgid "Hour"
 msgid_plural "Hours"
@@ -2005,7 +2005,7 @@ msgstr[0] "Stunda"
 msgstr[1] "Stundas"
 msgstr[2] "Stundu"
 
-#: src/feed/feedpropertiesdialog.cpp:64 src/feed/feedpropertiesdialog.cpp:112
+#: src/feed/feedpropertiesdialog.cpp:63 src/feed/feedpropertiesdialog.cpp:111
 #, kde-format
 msgid "Day"
 msgid_plural "Days"
@@ -2013,19 +2013,19 @@ msgstr[0] "Diena"
 msgstr[1] "Dienas"
 msgstr[2] "Dienu"
 
-#: src/feed/feedpropertiesdialog.cpp:94 src/feed/feedpropertiesdialog.cpp:148
+#: src/feed/feedpropertiesdialog.cpp:93 src/feed/feedpropertiesdialog.cpp:147
 #, kde-format
 msgctxt "@title:window"
 msgid "Feed Properties"
 msgstr "Plūsmas īpašības"
 
-#: src/feed/feedpropertiesdialog.cpp:113
+#: src/feed/feedpropertiesdialog.cpp:112
 #, kde-format
 msgctxt "never fetch new articles"
 msgid "Never"
 msgstr "Nekad"
 
-#: src/feed/feedpropertiesdialog.cpp:114
+#: src/feed/feedpropertiesdialog.cpp:113
 #, kde-format
 msgid " day"
 msgid_plural " days"
@@ -2033,7 +2033,7 @@ msgstr[0] " diena"
 msgstr[1] " dienas"
 msgstr[2] " dienu"
 
-#: src/feed/feedpropertiesdialog.cpp:115
+#: src/feed/feedpropertiesdialog.cpp:114
 #, kde-format
 msgid " article"
 msgid_plural " articles"
@@ -2041,7 +2041,7 @@ msgstr[0] " raksts"
 msgstr[1] " raksti"
 msgstr[2] " rakstu"
 
-#: src/feed/feedpropertiesdialog.cpp:148
+#: src/feed/feedpropertiesdialog.cpp:147
 #, kde-format
 msgctxt "@title:window"
 msgid "Properties of %1"
@@ -2127,73 +2127,73 @@ msgstr "Ielāde atcelta"
 msgid "Loading completed"
 msgstr "Ielāde pabeigta"
 
-#: src/mainwidget.cpp:156
+#: src/mainwidget.cpp:160
 #, kde-format
 msgid "You can view multiple articles in several open tabs."
 msgstr "Varat aplūkot vairākus rakstus vairākās cilnēs."
 
-#: src/mainwidget.cpp:160
+#: src/mainwidget.cpp:164
 #, kde-format
 msgid "Articles list."
 msgstr "Sarakts ar rakstiem."
 
-#: src/mainwidget.cpp:222 src/mainwidget.cpp:647
+#: src/mainwidget.cpp:226 src/mainwidget.cpp:657
 #, kde-format
 msgid "Articles"
 msgstr "Raksti"
 
-#: src/mainwidget.cpp:251
+#: src/mainwidget.cpp:255
 #, kde-format
 msgid "About"
 msgstr "Par"
 
-#: src/mainwidget.cpp:777
+#: src/mainwidget.cpp:787
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all articles in the feed</b> as read?</"
 "qt>"
 msgstr "<qt>Vai tiešām atzīmēt <b>visus rakstus plūsmā </b> kā lasītus?</qt>"
 
-#: src/mainwidget.cpp:778
+#: src/mainwidget.cpp:788
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "Atzīmēt plūsmu kā lasītu"
 
-#: src/mainwidget.cpp:781
+#: src/mainwidget.cpp:791
 #, kde-format
 msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
 msgstr "<qt>Vai tiešām atzīmēt <b>visas plūsmas</b> kā lasītas?</qt>"
 
-#: src/mainwidget.cpp:783
+#: src/mainwidget.cpp:793
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all feeds in the folder</b> as read?</"
 "qt>"
 msgstr "<qt>Vai tiešām atzīmēt <b>visas plūsmas mapē</b> kā lasītas?</qt>"
 
-#: src/mainwidget.cpp:785
+#: src/mainwidget.cpp:795
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "Atzīmēt plūsmas kā lasītas"
 
-#: src/mainwidget.cpp:849 src/mainwidget.cpp:858 src/mainwidget.cpp:1260
+#: src/mainwidget.cpp:859 src/mainwidget.cpp:868 src/mainwidget.cpp:1270
 #, kde-format
 msgid "Networking is not available."
 msgstr "Tīkli nav pieejami."
 
-#: src/mainwidget.cpp:866
+#: src/mainwidget.cpp:876
 #, kde-format
 msgid "Fetching Feeds…"
 msgstr "Ielādē plūsmas…"
 
-#: src/mainwidget.cpp:1065
+#: src/mainwidget.cpp:1075
 #, kde-format
 msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
 msgstr "<qt>Vai tiešām dzēst rakstu <b>%1</b>?</qt>"
 
-#: src/mainwidget.cpp:1068
+#: src/mainwidget.cpp:1078
 #, kde-format
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
 msgid_plural ""
@@ -2202,13 +2202,13 @@ msgstr[0] "<qt>Vai tiešām dzēst %1 atlasīto rakstu?</qt>"
 msgstr[1] "<qt>Vai tiešām dzēst %1 atlasītos rakstus?</qt>"
 msgstr[2] "<qt>Vai tiešām dzēst %1 atlasīto rakstu?</qt>"
 
-#: src/mainwidget.cpp:1075
+#: src/mainwidget.cpp:1085
 #, kde-format
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "Dzēst rakstu"
 
-#: src/mainwidget.cpp:1257
+#: src/mainwidget.cpp:1267
 #, kde-format
 msgid "Networking is available now."
 msgstr "Tīkls tagad ir pieejams."
@@ -2293,54 +2293,54 @@ msgstr "Mezgls vai mērķa mape nav atrasta"
 msgid "Cannot move folder %1 to its own subfolder %2"
 msgstr "Nevar pārvietot mapi „%1“ uz tās apakšmapi „%2“"
 
-#: src/subscription/subscriptionlistmodel.cpp:49
+#: src/subscription/subscriptionlistmodel.cpp:54
 #, kde-format
 msgid "Timeout on remote server"
 msgstr "Noilgums servera pusē"
 
-#: src/subscription/subscriptionlistmodel.cpp:51
+#: src/subscription/subscriptionlistmodel.cpp:56
 #, kde-format
 msgid "Unknown host"
 msgstr "Nezināms resursdators"
 
-#: src/subscription/subscriptionlistmodel.cpp:53
+#: src/subscription/subscriptionlistmodel.cpp:58
 #, kde-format
 msgid "Feed file not found on remote server"
 msgstr "Ziņu avota datne serverī nav atrasts"
 
-#: src/subscription/subscriptionlistmodel.cpp:55
+#: src/subscription/subscriptionlistmodel.cpp:60
 #, kde-format
 msgid "Could not read feed (invalid XML)"
 msgstr "Nevar nolasīt ziņu avotu (XML kļūda)"
 
-#: src/subscription/subscriptionlistmodel.cpp:57
+#: src/subscription/subscriptionlistmodel.cpp:62
 #, kde-format
 msgid "Could not read feed (unknown format)"
 msgstr "Nevar nolasīt ziņu avotu (nezināms formāts)"
 
-#: src/subscription/subscriptionlistmodel.cpp:59
+#: src/subscription/subscriptionlistmodel.cpp:64
 #, kde-format
 msgid "Could not read feed (invalid feed)"
 msgstr "Nevar nolasīt ziņu avotu (nederīgs ziņu avots)"
 
-#: src/subscription/subscriptionlistmodel.cpp:229
+#: src/subscription/subscriptionlistmodel.cpp:246
 #, kde-format
 msgid "Could not fetch feed: %1"
 msgstr "Nevar ielādēt plūsmu: %1"
 
-#: src/subscription/subscriptionlistmodel.cpp:277
+#: src/subscription/subscriptionlistmodel.cpp:295
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Feeds"
 msgstr "Plūsmas"
 
-#: src/subscription/subscriptionlistmodel.cpp:279
+#: src/subscription/subscriptionlistmodel.cpp:297
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Unread"
 msgstr "Nelasīti"
 
-#: src/subscription/subscriptionlistmodel.cpp:281
+#: src/subscription/subscriptionlistmodel.cpp:299
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Total"

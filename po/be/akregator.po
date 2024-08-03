@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-02 00:40+0000\n"
+"POT-Creation-Date: 2024-08-03 00:40+0000\n"
 "PO-Revision-Date: 2008-02-11 23:19+0200\n"
 "Last-Translator: Darafei Praliaskouski <komzpa@gmail.com>\n"
 "Language-Team: Belarusian <i18n@mova.org>\n"
@@ -2080,12 +2080,12 @@ msgstr "&Файл"
 msgid "All Feeds"
 msgstr "Усе стужкі"
 
-#: src/feed/feedpropertiesdialog.cpp:37
+#: src/feed/feedpropertiesdialog.cpp:36
 #, kde-format
 msgid "Activities"
 msgstr ""
 
-#: src/feed/feedpropertiesdialog.cpp:62 src/feed/feedpropertiesdialog.cpp:110
+#: src/feed/feedpropertiesdialog.cpp:61 src/feed/feedpropertiesdialog.cpp:109
 #, fuzzy, kde-format
 #| msgid "Minutes"
 msgid "Minute"
@@ -2094,7 +2094,7 @@ msgstr[0] "Хвілінаў"
 msgstr[1] "Хвілінаў"
 msgstr[2] "Хвілінаў"
 
-#: src/feed/feedpropertiesdialog.cpp:63 src/feed/feedpropertiesdialog.cpp:111
+#: src/feed/feedpropertiesdialog.cpp:62 src/feed/feedpropertiesdialog.cpp:110
 #, fuzzy, kde-format
 #| msgid "Hours"
 msgid "Hour"
@@ -2103,7 +2103,7 @@ msgstr[0] "гадзін"
 msgstr[1] "гадзін"
 msgstr[2] "гадзін"
 
-#: src/feed/feedpropertiesdialog.cpp:64 src/feed/feedpropertiesdialog.cpp:112
+#: src/feed/feedpropertiesdialog.cpp:63 src/feed/feedpropertiesdialog.cpp:111
 #, fuzzy, kde-format
 #| msgid "Days"
 msgid "Day"
@@ -2112,21 +2112,21 @@ msgstr[0] "Дзён"
 msgstr[1] "Дзён"
 msgstr[2] "Дзён"
 
-#: src/feed/feedpropertiesdialog.cpp:94 src/feed/feedpropertiesdialog.cpp:148
+#: src/feed/feedpropertiesdialog.cpp:93 src/feed/feedpropertiesdialog.cpp:147
 #, fuzzy, kde-format
 #| msgid "Feed Properties"
 msgctxt "@title:window"
 msgid "Feed Properties"
 msgstr "Уласцівасці стужкі"
 
-#: src/feed/feedpropertiesdialog.cpp:113
+#: src/feed/feedpropertiesdialog.cpp:112
 #, fuzzy, kde-format
 #| msgid "Never"
 msgctxt "never fetch new articles"
 msgid "Never"
 msgstr "Ніколі"
 
-#: src/feed/feedpropertiesdialog.cpp:114
+#: src/feed/feedpropertiesdialog.cpp:113
 #, fuzzy, kde-format
 #| msgid "1 day"
 msgid " day"
@@ -2135,7 +2135,7 @@ msgstr[0] "1 дзень"
 msgstr[1] "1 дзень"
 msgstr[2] "1 дзень"
 
-#: src/feed/feedpropertiesdialog.cpp:115
+#: src/feed/feedpropertiesdialog.cpp:114
 #, fuzzy, kde-format
 #| msgid "1 article"
 msgid " article"
@@ -2144,7 +2144,7 @@ msgstr[0] "1 артыкул"
 msgstr[1] "1 артыкул"
 msgstr[2] "1 артыкул"
 
-#: src/feed/feedpropertiesdialog.cpp:148
+#: src/feed/feedpropertiesdialog.cpp:147
 #, fuzzy, kde-format
 #| msgid "Properties of %1"
 msgctxt "@title:window"
@@ -2236,27 +2236,27 @@ msgstr "Загрузка спынена"
 msgid "Loading completed"
 msgstr "Загрузка завершана"
 
-#: src/mainwidget.cpp:156
+#: src/mainwidget.cpp:160
 #, kde-format
 msgid "You can view multiple articles in several open tabs."
 msgstr "Вы можаце праглядаць накалькі артыкулаў у розных картках."
 
-#: src/mainwidget.cpp:160
+#: src/mainwidget.cpp:164
 #, kde-format
 msgid "Articles list."
 msgstr "Спіс артыкулаў."
 
-#: src/mainwidget.cpp:222 src/mainwidget.cpp:647
+#: src/mainwidget.cpp:226 src/mainwidget.cpp:657
 #, kde-format
 msgid "Articles"
 msgstr "Артыкулы"
 
-#: src/mainwidget.cpp:251
+#: src/mainwidget.cpp:255
 #, kde-format
 msgid "About"
 msgstr "Пра праграму"
 
-#: src/mainwidget.cpp:777
+#: src/mainwidget.cpp:787
 #, fuzzy, kde-format
 #| msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
 msgid ""
@@ -2264,20 +2264,20 @@ msgid ""
 "qt>"
 msgstr "<qt>Выдаліць стужку навін <b>%1</b>?</qt>"
 
-#: src/mainwidget.cpp:778
+#: src/mainwidget.cpp:788
 #, fuzzy, kde-format
 #| msgid "&Mark Feed as Read"
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "&Памеціць стужку прачытанай"
 
-#: src/mainwidget.cpp:781
+#: src/mainwidget.cpp:791
 #, fuzzy, kde-format
 #| msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
 msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
 msgstr "<qt>Выдаліць стужку навін <b>%1</b>?</qt>"
 
-#: src/mainwidget.cpp:783
+#: src/mainwidget.cpp:793
 #, fuzzy, kde-format
 #| msgid "<qt>Are you sure you want to delete this feed?</qt>"
 msgid ""
@@ -2285,30 +2285,30 @@ msgid ""
 "qt>"
 msgstr "<qt>Выдаліць стужку навін?</qt>"
 
-#: src/mainwidget.cpp:785
+#: src/mainwidget.cpp:795
 #, fuzzy, kde-format
 #| msgid "&Mark Feeds as Read"
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "&Памеціць стужкі прачытанымі"
 
-#: src/mainwidget.cpp:849 src/mainwidget.cpp:858 src/mainwidget.cpp:1260
+#: src/mainwidget.cpp:859 src/mainwidget.cpp:868 src/mainwidget.cpp:1270
 #, kde-format
 msgid "Networking is not available."
 msgstr ""
 
-#: src/mainwidget.cpp:866
+#: src/mainwidget.cpp:876
 #, fuzzy, kde-format
 #| msgid "Fetching Feeds..."
 msgid "Fetching Feeds…"
 msgstr "Сцягваю стужкі..."
 
-#: src/mainwidget.cpp:1065
+#: src/mainwidget.cpp:1075
 #, kde-format
 msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
 msgstr "<qt>Выдаліць артыкул <b>%1</b>?</qt>"
 
-#: src/mainwidget.cpp:1068
+#: src/mainwidget.cpp:1078
 #, fuzzy, kde-format
 #| msgid "<qt>Are you sure you want to delete the %1 selected articles?</qt>"
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
@@ -2321,14 +2321,14 @@ msgstr[1] ""
 msgstr[2] ""
 "<qt>Вы ўпэўнены ў тым, што хочаце выдаліць %1 выбраных артыкулаў?</qt>"
 
-#: src/mainwidget.cpp:1075
+#: src/mainwidget.cpp:1085
 #, fuzzy, kde-format
 #| msgid "Delete Article"
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "Выдаліць артыкул"
 
-#: src/mainwidget.cpp:1257
+#: src/mainwidget.cpp:1267
 #, kde-format
 msgid "Networking is available now."
 msgstr ""
@@ -2410,58 +2410,58 @@ msgstr "Вузел ці тэчка прызначэння не знойдзен�
 msgid "Cannot move folder %1 to its own subfolder %2"
 msgstr ""
 
-#: src/subscription/subscriptionlistmodel.cpp:49
+#: src/subscription/subscriptionlistmodel.cpp:54
 #, kde-format
 msgid "Timeout on remote server"
 msgstr "Перавышэнне тэрміну чакання сервера"
 
-#: src/subscription/subscriptionlistmodel.cpp:51
+#: src/subscription/subscriptionlistmodel.cpp:56
 #, kde-format
 msgid "Unknown host"
 msgstr "Невядомы вузел"
 
-#: src/subscription/subscriptionlistmodel.cpp:53
+#: src/subscription/subscriptionlistmodel.cpp:58
 #, kde-format
 msgid "Feed file not found on remote server"
 msgstr "Стужка не знойдзеная на серверы."
 
-#: src/subscription/subscriptionlistmodel.cpp:55
+#: src/subscription/subscriptionlistmodel.cpp:60
 #, fuzzy, kde-format
 #| msgid "Could not import the file %1 (no valid OPML)"
 msgid "Could not read feed (invalid XML)"
 msgstr "Немагчыма імпартаваць файл %1 (няслушны фармат OPML)"
 
-#: src/subscription/subscriptionlistmodel.cpp:57
+#: src/subscription/subscriptionlistmodel.cpp:62
 #, kde-format
 msgid "Could not read feed (unknown format)"
 msgstr "Немагчыма прачытаць стужку (невядомы фармат)"
 
-#: src/subscription/subscriptionlistmodel.cpp:59
+#: src/subscription/subscriptionlistmodel.cpp:64
 #, fuzzy, kde-format
 #| msgid "Could not import the file %1 (no valid OPML)"
 msgid "Could not read feed (invalid feed)"
 msgstr "Немагчыма імпартаваць файл %1 (няслушны фармат OPML)"
 
-#: src/subscription/subscriptionlistmodel.cpp:229
+#: src/subscription/subscriptionlistmodel.cpp:246
 #, kde-format
 msgid "Could not fetch feed: %1"
 msgstr "Немагчыма сцягнуць стужку: %1"
 
-#: src/subscription/subscriptionlistmodel.cpp:277
+#: src/subscription/subscriptionlistmodel.cpp:295
 #, fuzzy, kde-format
 #| msgid "Feeds"
 msgctxt "Feedlist's column header"
 msgid "Feeds"
 msgstr "Стужкі"
 
-#: src/subscription/subscriptionlistmodel.cpp:279
+#: src/subscription/subscriptionlistmodel.cpp:297
 #, fuzzy, kde-format
 #| msgid "Unread"
 msgctxt "Feedlist's column header"
 msgid "Unread"
 msgstr "Непрачытаны"
 
-#: src/subscription/subscriptionlistmodel.cpp:281
+#: src/subscription/subscriptionlistmodel.cpp:299
 #, fuzzy, kde-format
 #| msgid "Total"
 msgctxt "Feedlist's column header"

@@ -20,8 +20,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdepim-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-02 00:40+0000\n"
-"PO-Revision-Date: 2024-08-01 13:03+0300\n"
+"POT-Creation-Date: 2024-08-03 00:40+0000\n"
+"PO-Revision-Date: 2024-08-02 14:14+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -1997,59 +1997,59 @@ msgstr "&Dosya"
 msgid "All Feeds"
 msgstr "Tüm Beslemeler"
 
-#: src/feed/feedpropertiesdialog.cpp:37
+#: src/feed/feedpropertiesdialog.cpp:36
 #, kde-format
 msgid "Activities"
-msgstr ""
+msgstr "Etkinlikler"
 
-#: src/feed/feedpropertiesdialog.cpp:62 src/feed/feedpropertiesdialog.cpp:110
+#: src/feed/feedpropertiesdialog.cpp:61 src/feed/feedpropertiesdialog.cpp:109
 #, kde-format
 msgid "Minute"
 msgid_plural "Minutes"
 msgstr[0] "Dakika"
 msgstr[1] "Dakika"
 
-#: src/feed/feedpropertiesdialog.cpp:63 src/feed/feedpropertiesdialog.cpp:111
+#: src/feed/feedpropertiesdialog.cpp:62 src/feed/feedpropertiesdialog.cpp:110
 #, kde-format
 msgid "Hour"
 msgid_plural "Hours"
 msgstr[0] "Saat"
 msgstr[1] "Saat"
 
-#: src/feed/feedpropertiesdialog.cpp:64 src/feed/feedpropertiesdialog.cpp:112
+#: src/feed/feedpropertiesdialog.cpp:63 src/feed/feedpropertiesdialog.cpp:111
 #, kde-format
 msgid "Day"
 msgid_plural "Days"
 msgstr[0] "Gün"
 msgstr[1] "Gün"
 
-#: src/feed/feedpropertiesdialog.cpp:94 src/feed/feedpropertiesdialog.cpp:148
+#: src/feed/feedpropertiesdialog.cpp:93 src/feed/feedpropertiesdialog.cpp:147
 #, kde-format
 msgctxt "@title:window"
 msgid "Feed Properties"
 msgstr "Besleme Özellikleri"
 
-#: src/feed/feedpropertiesdialog.cpp:113
+#: src/feed/feedpropertiesdialog.cpp:112
 #, kde-format
 msgctxt "never fetch new articles"
 msgid "Never"
 msgstr "Asla"
 
-#: src/feed/feedpropertiesdialog.cpp:114
+#: src/feed/feedpropertiesdialog.cpp:113
 #, kde-format
 msgid " day"
 msgid_plural " days"
 msgstr[0] " gün"
 msgstr[1] " gün"
 
-#: src/feed/feedpropertiesdialog.cpp:115
+#: src/feed/feedpropertiesdialog.cpp:114
 #, kde-format
 msgid " article"
 msgid_plural " articles"
 msgstr[0] " yazı"
 msgstr[1] " yazı"
 
-#: src/feed/feedpropertiesdialog.cpp:148
+#: src/feed/feedpropertiesdialog.cpp:147
 #, kde-format
 msgctxt "@title:window"
 msgid "Properties of %1"
@@ -2134,27 +2134,27 @@ msgstr "Yükleme iptal edildi"
 msgid "Loading completed"
 msgstr "Yükleme tamamlandı"
 
-#: src/mainwidget.cpp:156
+#: src/mainwidget.cpp:160
 #, kde-format
 msgid "You can view multiple articles in several open tabs."
 msgstr "Birçok açık sekme içinde birden fazla yazıyı okuyabilirsiniz."
 
-#: src/mainwidget.cpp:160
+#: src/mainwidget.cpp:164
 #, kde-format
 msgid "Articles list."
 msgstr "Yazı listesi."
 
-#: src/mainwidget.cpp:222 src/mainwidget.cpp:647
+#: src/mainwidget.cpp:226 src/mainwidget.cpp:657
 #, kde-format
 msgid "Articles"
 msgstr "Yazılar"
 
-#: src/mainwidget.cpp:251
+#: src/mainwidget.cpp:255
 #, kde-format
 msgid "About"
 msgstr "Hakkında"
 
-#: src/mainwidget.cpp:777
+#: src/mainwidget.cpp:787
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all articles in the feed</b> as read?</"
@@ -2163,20 +2163,20 @@ msgstr ""
 "<qt><b>Beslemedeki tüm yazıları</b> okundu olarak imlemek istediğinizden "
 "emin misiniz?</qt>"
 
-#: src/mainwidget.cpp:778
+#: src/mainwidget.cpp:788
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "Beslemeyi Okundu Olarak İmle"
 
-#: src/mainwidget.cpp:781
+#: src/mainwidget.cpp:791
 #, kde-format
 msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
 msgstr ""
 "<qt><b>Tüm beslemeleri</b> okundu olarak imlemek istediğinizden emin misiniz?"
 "</qt>"
 
-#: src/mainwidget.cpp:783
+#: src/mainwidget.cpp:793
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all feeds in the folder</b> as read?</"
@@ -2185,28 +2185,28 @@ msgstr ""
 "<qt><b>Klasördeki tüm beslemeleri</b> okundu olarak imlemek istediğinizden "
 "emin misiniz?</qt>"
 
-#: src/mainwidget.cpp:785
+#: src/mainwidget.cpp:795
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "Beslemeleri Okundu Olarak İmle"
 
-#: src/mainwidget.cpp:849 src/mainwidget.cpp:858 src/mainwidget.cpp:1260
+#: src/mainwidget.cpp:859 src/mainwidget.cpp:868 src/mainwidget.cpp:1270
 #, kde-format
 msgid "Networking is not available."
 msgstr "Ağ iletişimi kullanılabilir değil."
 
-#: src/mainwidget.cpp:866
+#: src/mainwidget.cpp:876
 #, kde-format
 msgid "Fetching Feeds…"
 msgstr "Beslemeler getiriliyor…"
 
-#: src/mainwidget.cpp:1065
+#: src/mainwidget.cpp:1075
 #, kde-format
 msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
 msgstr "<qt><b>%1</b> adlı yazıyı silmek istediğinizden emin misiniz?</qt>"
 
-#: src/mainwidget.cpp:1068
+#: src/mainwidget.cpp:1078
 #, kde-format
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
 msgid_plural ""
@@ -2214,13 +2214,13 @@ msgid_plural ""
 msgstr[0] "<qt>Seçili yazıyı silmek istediğinizden emin misiniz?</qt>"
 msgstr[1] "<qt>Seçili %1 yazıyı silmek istediğinizden emin misiniz?</qt>"
 
-#: src/mainwidget.cpp:1075
+#: src/mainwidget.cpp:1085
 #, kde-format
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "Yazıyı Sil"
 
-#: src/mainwidget.cpp:1257
+#: src/mainwidget.cpp:1267
 #, kde-format
 msgid "Networking is available now."
 msgstr "Ağ iletişimi artık kullanılabilir."
@@ -2304,54 +2304,54 @@ msgstr "Düğüm ya da hedef klasör bulunamadı"
 msgid "Cannot move folder %1 to its own subfolder %2"
 msgstr "%1 klasörü kendi alt klasörü olan %2 klasörüne taşınamaz"
 
-#: src/subscription/subscriptionlistmodel.cpp:49
+#: src/subscription/subscriptionlistmodel.cpp:54
 #, kde-format
 msgid "Timeout on remote server"
 msgstr "Uzak sunucuda zaman aşımı"
 
-#: src/subscription/subscriptionlistmodel.cpp:51
+#: src/subscription/subscriptionlistmodel.cpp:56
 #, kde-format
 msgid "Unknown host"
 msgstr "Bilinmeyen makine"
 
-#: src/subscription/subscriptionlistmodel.cpp:53
+#: src/subscription/subscriptionlistmodel.cpp:58
 #, kde-format
 msgid "Feed file not found on remote server"
 msgstr "Uzak sunucuda dosya bulunamadı"
 
-#: src/subscription/subscriptionlistmodel.cpp:55
+#: src/subscription/subscriptionlistmodel.cpp:60
 #, kde-format
 msgid "Could not read feed (invalid XML)"
 msgstr "Besleme okunamadı (geçersiz XML)"
 
-#: src/subscription/subscriptionlistmodel.cpp:57
+#: src/subscription/subscriptionlistmodel.cpp:62
 #, kde-format
 msgid "Could not read feed (unknown format)"
 msgstr "Besleme okunamadı (bilinmeyen biçim)"
 
-#: src/subscription/subscriptionlistmodel.cpp:59
+#: src/subscription/subscriptionlistmodel.cpp:64
 #, kde-format
 msgid "Could not read feed (invalid feed)"
 msgstr "Besleme okunamadı (geçersiz besleme)"
 
-#: src/subscription/subscriptionlistmodel.cpp:229
+#: src/subscription/subscriptionlistmodel.cpp:246
 #, kde-format
 msgid "Could not fetch feed: %1"
 msgstr "Besleme getirilemedi: %1"
 
-#: src/subscription/subscriptionlistmodel.cpp:277
+#: src/subscription/subscriptionlistmodel.cpp:295
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Feeds"
 msgstr "Beslemeler"
 
-#: src/subscription/subscriptionlistmodel.cpp:279
+#: src/subscription/subscriptionlistmodel.cpp:297
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Unread"
 msgstr "Okunmamış"
 
-#: src/subscription/subscriptionlistmodel.cpp:281
+#: src/subscription/subscriptionlistmodel.cpp:299
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Total"

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-02 00:40+0000\n"
+"POT-Creation-Date: 2024-08-03 00:40+0000\n"
 "PO-Revision-Date: 2018-01-06 09:21+0100\n"
 "Last-Translator: Chusslove Illich <caslav.ilic@gmx.net>\n"
 "Language-Team: Serbian <kde-i18n-sr@kde.org>\n"
@@ -2076,12 +2076,12 @@ msgstr "&Fajl"
 msgid "All Feeds"
 msgstr "Svi dovodi"
 
-#: src/feed/feedpropertiesdialog.cpp:37
+#: src/feed/feedpropertiesdialog.cpp:36
 #, kde-format
 msgid "Activities"
 msgstr ""
 
-#: src/feed/feedpropertiesdialog.cpp:62 src/feed/feedpropertiesdialog.cpp:110
+#: src/feed/feedpropertiesdialog.cpp:61 src/feed/feedpropertiesdialog.cpp:109
 #, kde-format
 msgid "Minute"
 msgid_plural "Minutes"
@@ -2090,7 +2090,7 @@ msgstr[1] "minuta"
 msgstr[2] "minuta"
 msgstr[3] "minut"
 
-#: src/feed/feedpropertiesdialog.cpp:63 src/feed/feedpropertiesdialog.cpp:111
+#: src/feed/feedpropertiesdialog.cpp:62 src/feed/feedpropertiesdialog.cpp:110
 #, kde-format
 msgid "Hour"
 msgid_plural "Hours"
@@ -2099,7 +2099,7 @@ msgstr[1] "sata"
 msgstr[2] "sati"
 msgstr[3] "sat"
 
-#: src/feed/feedpropertiesdialog.cpp:64 src/feed/feedpropertiesdialog.cpp:112
+#: src/feed/feedpropertiesdialog.cpp:63 src/feed/feedpropertiesdialog.cpp:111
 #, kde-format
 msgid "Day"
 msgid_plural "Days"
@@ -2108,7 +2108,7 @@ msgstr[1] "dana"
 msgstr[2] "dana"
 msgstr[3] "dan"
 
-#: src/feed/feedpropertiesdialog.cpp:94 src/feed/feedpropertiesdialog.cpp:148
+#: src/feed/feedpropertiesdialog.cpp:93 src/feed/feedpropertiesdialog.cpp:147
 #, fuzzy, kde-format
 #| msgid "Feed Properties"
 msgctxt "@title:window"
@@ -2116,13 +2116,13 @@ msgid "Feed Properties"
 msgstr "Svojstva dovoda"
 
 # >> @item:inlistbox
-#: src/feed/feedpropertiesdialog.cpp:113
+#: src/feed/feedpropertiesdialog.cpp:112
 #, kde-format
 msgctxt "never fetch new articles"
 msgid "Never"
 msgstr "nikada"
 
-#: src/feed/feedpropertiesdialog.cpp:114
+#: src/feed/feedpropertiesdialog.cpp:113
 #, kde-format
 msgid " day"
 msgid_plural " days"
@@ -2131,7 +2131,7 @@ msgstr[1] " dana"
 msgstr[2] " dana"
 msgstr[3] " dan"
 
-#: src/feed/feedpropertiesdialog.cpp:115
+#: src/feed/feedpropertiesdialog.cpp:114
 #, kde-format
 msgid " article"
 msgid_plural " articles"
@@ -2140,7 +2140,7 @@ msgstr[1] " članka"
 msgstr[2] " članaka"
 msgstr[3] " članak"
 
-#: src/feed/feedpropertiesdialog.cpp:148
+#: src/feed/feedpropertiesdialog.cpp:147
 #, fuzzy, kde-format
 #| msgid "Properties of %1"
 msgctxt "@title:window"
@@ -2231,27 +2231,27 @@ msgstr "Učitavanje otkazano."
 msgid "Loading completed"
 msgstr "Učitavanje dovršeno."
 
-#: src/mainwidget.cpp:156
+#: src/mainwidget.cpp:160
 #, kde-format
 msgid "You can view multiple articles in several open tabs."
 msgstr "Možete pregledati više članaka pod nekoliko otvorenih jezičaka."
 
-#: src/mainwidget.cpp:160
+#: src/mainwidget.cpp:164
 #, kde-format
 msgid "Articles list."
 msgstr "Lista članaka."
 
-#: src/mainwidget.cpp:222 src/mainwidget.cpp:647
+#: src/mainwidget.cpp:226 src/mainwidget.cpp:657
 #, kde-format
 msgid "Articles"
 msgstr "Članci"
 
-#: src/mainwidget.cpp:251
+#: src/mainwidget.cpp:255
 #, kde-format
 msgid "About"
 msgstr "O"
 
-#: src/mainwidget.cpp:777
+#: src/mainwidget.cpp:787
 #, fuzzy, kde-format
 #| msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
 msgid ""
@@ -2259,20 +2259,20 @@ msgid ""
 "qt>"
 msgstr "<qt>Želite li zaista da obrišete dovod <b>%1</b>?</qt>"
 
-#: src/mainwidget.cpp:778
+#: src/mainwidget.cpp:788
 #, fuzzy, kde-format
 #| msgid "&Mark Feed as Read"
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "Označi dovod kao &pročitan"
 
-#: src/mainwidget.cpp:781
+#: src/mainwidget.cpp:791
 #, fuzzy, kde-format
 #| msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
 msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
 msgstr "<qt>Želite li zaista da obrišete dovod <b>%1</b>?</qt>"
 
-#: src/mainwidget.cpp:783
+#: src/mainwidget.cpp:793
 #, fuzzy, kde-format
 #| msgid "<qt>Are you sure you want to delete this feed?</qt>"
 msgid ""
@@ -2280,7 +2280,7 @@ msgid ""
 "qt>"
 msgstr "<qt>Želite li zaista da obrišete ovaj dovod?</qt>"
 
-#: src/mainwidget.cpp:785
+#: src/mainwidget.cpp:795
 #, fuzzy, kde-format
 #| msgid "&Mark Feeds as Read"
 msgctxt "@title:window"
@@ -2288,23 +2288,23 @@ msgid "Mark Feeds as Read"
 msgstr "&Označi dovode kao pročitane"
 
 # rewrite-msgid: /Networking/Network/
-#: src/mainwidget.cpp:849 src/mainwidget.cpp:858 src/mainwidget.cpp:1260
+#: src/mainwidget.cpp:859 src/mainwidget.cpp:868 src/mainwidget.cpp:1270
 #, kde-format
 msgid "Networking is not available."
 msgstr "Mreža nije dostupna."
 
-#: src/mainwidget.cpp:866
+#: src/mainwidget.cpp:876
 #, fuzzy, kde-format
 #| msgid "Fetching Feeds..."
 msgid "Fetching Feeds…"
 msgstr "Očitavam dovode..."
 
-#: src/mainwidget.cpp:1065
+#: src/mainwidget.cpp:1075
 #, kde-format
 msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
 msgstr "<qt>Želite li zaista da obrišete članak <b>%1</b>?</qt>"
 
-#: src/mainwidget.cpp:1068
+#: src/mainwidget.cpp:1078
 #, kde-format
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
 msgid_plural ""
@@ -2314,7 +2314,7 @@ msgstr[1] "<qt>Želite li zaista da obrišete %1 odabrana članka?</qt>"
 msgstr[2] "<qt>Želite li zaista da obrišete %1 odabranih članaka?</qt>"
 msgstr[3] "<qt>Želite li zaista da obrišete odabrani članak?</qt>"
 
-#: src/mainwidget.cpp:1075
+#: src/mainwidget.cpp:1085
 #, fuzzy, kde-format
 #| msgid "Delete Article"
 msgctxt "@title:window"
@@ -2322,7 +2322,7 @@ msgid "Delete Article"
 msgstr "Obriši članak"
 
 # rewrite-msgid: /Networking/Network/
-#: src/mainwidget.cpp:1257
+#: src/mainwidget.cpp:1267
 #, kde-format
 msgid "Networking is available now."
 msgstr "Mreža je sada dostupna."
@@ -2406,54 +2406,54 @@ msgstr "Čvor ili odredišna fascikla nije nađena."
 msgid "Cannot move folder %1 to its own subfolder %2"
 msgstr "Ne mogu da premestim fasciklu %1 u njenu potfasciklu %2."
 
-#: src/subscription/subscriptionlistmodel.cpp:49
+#: src/subscription/subscriptionlistmodel.cpp:54
 #, kde-format
 msgid "Timeout on remote server"
 msgstr "Prekovreme na udaljenom serveru."
 
-#: src/subscription/subscriptionlistmodel.cpp:51
+#: src/subscription/subscriptionlistmodel.cpp:56
 #, kde-format
 msgid "Unknown host"
 msgstr "Nepoznat domaćin."
 
-#: src/subscription/subscriptionlistmodel.cpp:53
+#: src/subscription/subscriptionlistmodel.cpp:58
 #, kde-format
 msgid "Feed file not found on remote server"
 msgstr "Fajl dovoda nije nađen na udaljenom serveru."
 
-#: src/subscription/subscriptionlistmodel.cpp:55
+#: src/subscription/subscriptionlistmodel.cpp:60
 #, kde-format
 msgid "Could not read feed (invalid XML)"
 msgstr "Ne mogu da čitam dovod (loš XML)."
 
-#: src/subscription/subscriptionlistmodel.cpp:57
+#: src/subscription/subscriptionlistmodel.cpp:62
 #, kde-format
 msgid "Could not read feed (unknown format)"
 msgstr "Ne mogu da čitam dovod (nepoznat format)."
 
-#: src/subscription/subscriptionlistmodel.cpp:59
+#: src/subscription/subscriptionlistmodel.cpp:64
 #, kde-format
 msgid "Could not read feed (invalid feed)"
 msgstr "Ne mogu da čitam dovod (loš dovod)."
 
-#: src/subscription/subscriptionlistmodel.cpp:229
+#: src/subscription/subscriptionlistmodel.cpp:246
 #, kde-format
 msgid "Could not fetch feed: %1"
 msgstr "Ne mogu da očitam dovod: %1"
 
-#: src/subscription/subscriptionlistmodel.cpp:277
+#: src/subscription/subscriptionlistmodel.cpp:295
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Feeds"
 msgstr "dovodi"
 
-#: src/subscription/subscriptionlistmodel.cpp:279
+#: src/subscription/subscriptionlistmodel.cpp:297
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Unread"
 msgstr "nepročitano"
 
-#: src/subscription/subscriptionlistmodel.cpp:281
+#: src/subscription/subscriptionlistmodel.cpp:299
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Total"

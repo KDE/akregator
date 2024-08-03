@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-02 00:40+0000\n"
+"POT-Creation-Date: 2024-08-03 00:40+0000\n"
 "PO-Revision-Date: 2009-02-27 17:34+0530\n"
 "Last-Translator: Ravishankar Shrivastava <raviratlami@aol.in>\n"
 "Language-Team: Hindi <kde-i18n-doc@lists.kde.org>\n"
@@ -2016,12 +2016,12 @@ msgstr "फाइल (&F)"
 msgid "All Feeds"
 msgstr "सब्बो फीड्स"
 
-#: src/feed/feedpropertiesdialog.cpp:37
+#: src/feed/feedpropertiesdialog.cpp:36
 #, kde-format
 msgid "Activities"
 msgstr ""
 
-#: src/feed/feedpropertiesdialog.cpp:62 src/feed/feedpropertiesdialog.cpp:110
+#: src/feed/feedpropertiesdialog.cpp:61 src/feed/feedpropertiesdialog.cpp:109
 #, fuzzy, kde-format
 #| msgid "Minutes"
 msgid "Minute"
@@ -2029,7 +2029,7 @@ msgid_plural "Minutes"
 msgstr[0] "मिनट्स"
 msgstr[1] "मिनट्स"
 
-#: src/feed/feedpropertiesdialog.cpp:63 src/feed/feedpropertiesdialog.cpp:111
+#: src/feed/feedpropertiesdialog.cpp:62 src/feed/feedpropertiesdialog.cpp:110
 #, fuzzy, kde-format
 #| msgid "Hours"
 msgid "Hour"
@@ -2037,7 +2037,7 @@ msgid_plural "Hours"
 msgstr[0] "घंटे"
 msgstr[1] "घंटे"
 
-#: src/feed/feedpropertiesdialog.cpp:64 src/feed/feedpropertiesdialog.cpp:112
+#: src/feed/feedpropertiesdialog.cpp:63 src/feed/feedpropertiesdialog.cpp:111
 #, fuzzy, kde-format
 #| msgid "Days"
 msgid "Day"
@@ -2045,21 +2045,21 @@ msgid_plural "Days"
 msgstr[0] "दिन"
 msgstr[1] "दिन"
 
-#: src/feed/feedpropertiesdialog.cpp:94 src/feed/feedpropertiesdialog.cpp:148
+#: src/feed/feedpropertiesdialog.cpp:93 src/feed/feedpropertiesdialog.cpp:147
 #, fuzzy, kde-format
 #| msgid "Feed Properties"
 msgctxt "@title:window"
 msgid "Feed Properties"
 msgstr "फीड गुन"
 
-#: src/feed/feedpropertiesdialog.cpp:113
+#: src/feed/feedpropertiesdialog.cpp:112
 #, fuzzy, kde-format
 #| msgid "Never"
 msgctxt "never fetch new articles"
 msgid "Never"
 msgstr "कभू नइ"
 
-#: src/feed/feedpropertiesdialog.cpp:114
+#: src/feed/feedpropertiesdialog.cpp:113
 #, fuzzy, kde-format
 #| msgid "1 day"
 msgid " day"
@@ -2067,7 +2067,7 @@ msgid_plural " days"
 msgstr[0] "1 दिन"
 msgstr[1] "1 दिन"
 
-#: src/feed/feedpropertiesdialog.cpp:115
+#: src/feed/feedpropertiesdialog.cpp:114
 #, fuzzy, kde-format
 #| msgid "1 article"
 msgid " article"
@@ -2075,7 +2075,7 @@ msgid_plural " articles"
 msgstr[0] "1 आलेख"
 msgstr[1] "1 आलेख"
 
-#: src/feed/feedpropertiesdialog.cpp:148
+#: src/feed/feedpropertiesdialog.cpp:147
 #, fuzzy, kde-format
 #| msgid "Properties of %1"
 msgctxt "@title:window"
@@ -2166,27 +2166,27 @@ msgstr "लोड करना खारिज"
 msgid "Loading completed"
 msgstr "लोड करना पूरा"
 
-#: src/mainwidget.cpp:156
+#: src/mainwidget.cpp:160
 #, kde-format
 msgid "You can view multiple articles in several open tabs."
 msgstr "आप बहुत से आलेख मन ल बहुत अकन खुले टैब मं देख सकथो ."
 
-#: src/mainwidget.cpp:160
+#: src/mainwidget.cpp:164
 #, kde-format
 msgid "Articles list."
 msgstr "आलेख मन के सूची."
 
-#: src/mainwidget.cpp:222 src/mainwidget.cpp:647
+#: src/mainwidget.cpp:226 src/mainwidget.cpp:657
 #, kde-format
 msgid "Articles"
 msgstr "आलेख"
 
-#: src/mainwidget.cpp:251
+#: src/mainwidget.cpp:255
 #, kde-format
 msgid "About"
 msgstr "के बारे में"
 
-#: src/mainwidget.cpp:777
+#: src/mainwidget.cpp:787
 #, fuzzy, kde-format
 #| msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
 msgid ""
@@ -2194,20 +2194,20 @@ msgid ""
 "qt>"
 msgstr "<qt>का आप मन सही मं एखर फीड <b>%1</b> ल मिटाना चाहथो ?</qt>"
 
-#: src/mainwidget.cpp:778
+#: src/mainwidget.cpp:788
 #, fuzzy, kde-format
 #| msgid "&Mark Feed as Read"
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "फीड ल पढ़िस चिनहा लगाव (&M)"
 
-#: src/mainwidget.cpp:781
+#: src/mainwidget.cpp:791
 #, fuzzy, kde-format
 #| msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
 msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
 msgstr "<qt>का आप मन सही मं एखर फीड <b>%1</b> ल मिटाना चाहथो ?</qt>"
 
-#: src/mainwidget.cpp:783
+#: src/mainwidget.cpp:793
 #, fuzzy, kde-format
 #| msgid "<qt>Are you sure you want to delete this feed?</qt>"
 msgid ""
@@ -2215,30 +2215,30 @@ msgid ""
 "qt>"
 msgstr "<qt>का आप मन सही मं एखर फीड ल मिटाना चाहथो ?</qt>"
 
-#: src/mainwidget.cpp:785
+#: src/mainwidget.cpp:795
 #, fuzzy, kde-format
 #| msgid "&Mark Feeds as Read"
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "फीड्स ल पढ़िस होय चिनहा लगाव (&M)"
 
-#: src/mainwidget.cpp:849 src/mainwidget.cpp:858 src/mainwidget.cpp:1260
+#: src/mainwidget.cpp:859 src/mainwidget.cpp:868 src/mainwidget.cpp:1270
 #, kde-format
 msgid "Networking is not available."
 msgstr ""
 
-#: src/mainwidget.cpp:866
+#: src/mainwidget.cpp:876
 #, fuzzy, kde-format
 #| msgid "Fetching Feeds..."
 msgid "Fetching Feeds…"
 msgstr "फीड्स प्राप्त करत हे..."
 
-#: src/mainwidget.cpp:1065
+#: src/mainwidget.cpp:1075
 #, kde-format
 msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
 msgstr "<qt>का आप मन सही मं आलेख <b>%1</b> ल मिटाना चाहथो ?</qt>"
 
-#: src/mainwidget.cpp:1068
+#: src/mainwidget.cpp:1078
 #, fuzzy, kde-format
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
 msgid_plural ""
@@ -2246,14 +2246,14 @@ msgid_plural ""
 msgstr[0] "<qt>का आप मन सही मं ए %1 चुने गे आलेख मन ल मिटाना चाहथो ?</qt>"
 msgstr[1] "<qt>का आप मन सही मं ए %1 चुने गे आलेख मन ल मिटाना चाहथो ?</qt>"
 
-#: src/mainwidget.cpp:1075
+#: src/mainwidget.cpp:1085
 #, fuzzy, kde-format
 #| msgid "Delete Article"
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "आलेख मेटाव"
 
-#: src/mainwidget.cpp:1257
+#: src/mainwidget.cpp:1267
 #, kde-format
 msgid "Networking is available now."
 msgstr ""
@@ -2334,54 +2334,54 @@ msgstr ""
 msgid "Cannot move folder %1 to its own subfolder %2"
 msgstr ""
 
-#: src/subscription/subscriptionlistmodel.cpp:49
+#: src/subscription/subscriptionlistmodel.cpp:54
 #, kde-format
 msgid "Timeout on remote server"
 msgstr ""
 
-#: src/subscription/subscriptionlistmodel.cpp:51
+#: src/subscription/subscriptionlistmodel.cpp:56
 #, kde-format
 msgid "Unknown host"
 msgstr ""
 
-#: src/subscription/subscriptionlistmodel.cpp:53
+#: src/subscription/subscriptionlistmodel.cpp:58
 #, kde-format
 msgid "Feed file not found on remote server"
 msgstr ""
 
-#: src/subscription/subscriptionlistmodel.cpp:55
+#: src/subscription/subscriptionlistmodel.cpp:60
 #, kde-format
 msgid "Could not read feed (invalid XML)"
 msgstr ""
 
-#: src/subscription/subscriptionlistmodel.cpp:57
+#: src/subscription/subscriptionlistmodel.cpp:62
 #, kde-format
 msgid "Could not read feed (unknown format)"
 msgstr ""
 
-#: src/subscription/subscriptionlistmodel.cpp:59
+#: src/subscription/subscriptionlistmodel.cpp:64
 #, kde-format
 msgid "Could not read feed (invalid feed)"
 msgstr ""
 
-#: src/subscription/subscriptionlistmodel.cpp:229
+#: src/subscription/subscriptionlistmodel.cpp:246
 #, kde-format
 msgid "Could not fetch feed: %1"
 msgstr ""
 
-#: src/subscription/subscriptionlistmodel.cpp:277
+#: src/subscription/subscriptionlistmodel.cpp:295
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Feeds"
 msgstr "फीड्स"
 
-#: src/subscription/subscriptionlistmodel.cpp:279
+#: src/subscription/subscriptionlistmodel.cpp:297
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Unread"
 msgstr "बिनपढ़ा"
 
-#: src/subscription/subscriptionlistmodel.cpp:281
+#: src/subscription/subscriptionlistmodel.cpp:299
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Total"
