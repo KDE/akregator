@@ -65,7 +65,6 @@ public:
     ~EditSubscriptionCommandPrivate();
 
     void startEdit();
-    void jobFinished();
 
     QSharedPointer<FeedList> m_list;
     uint m_subscriptionId;
