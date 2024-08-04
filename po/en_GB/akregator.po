@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-03 00:40+0000\n"
-"PO-Revision-Date: 2024-07-05 13:36+0100\n"
+"POT-Creation-Date: 2024-08-04 00:40+0000\n"
+"PO-Revision-Date: 2024-08-03 12:59+0100\n"
 "Last-Translator: Steve Allewell <steve.allewell@gmail.com>\n"
 "Language-Team: British English\n"
 "Language: en_GB\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 24.05.0\n"
+"X-Generator: Lokalize 24.05.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -367,22 +367,21 @@ msgstr "Verify URLs using Google's Safe Browsing API"
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_EnableJavascript)
 #. i18n: ectx: label, entry, group (Browser)
 #: configuration/ui/settings_browser.ui:153 interfaces/akregator.kcfg:195
-#, fuzzy, kde-format
-#| msgid "Enable Javascript"
+#, kde-format
 msgid "Enable JavaScript"
-msgstr "Enable Javascript"
+msgstr "Enable JavaScript"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #: configuration/ui/settings_browser.ui:163
 #, kde-format
 msgid "Accessibility"
-msgstr ""
+msgstr "Accessibility"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_AccessKeyEnabled)
 #: configuration/ui/settings_browser.ui:169
 #, kde-format
 msgid "Enable Access Key activation with Ctrl key"
-msgstr ""
+msgstr "Enable Access Key activation with Ctrl key"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_3)
 #: configuration/ui/settings_general.ui:30
@@ -491,10 +490,9 @@ msgstr "Use the &browser cache (less network traffic)"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_LoadExternalReferences)
 #: configuration/ui/settings_security.ui:17
-#, fuzzy, kde-format
-#| msgid "Allow feed to load external references from internet."
+#, kde-format
 msgid "Allow article preview to load external references"
-msgstr "Allow feed to load external references from internet."
+msgstr "Allow article preview to load external references"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_LoadExternalReferences)
 #: configuration/ui/settings_security.ui:20
@@ -504,6 +502,9 @@ msgid ""
 "This may allow websites or third parties to observe the articles that you "
 "have viewed."
 msgstr ""
+"Allow the article preview to load external references from the Internet. "
+"This may allow websites or third parties to observe the articles that you "
+"have viewed."
 
 #: export/akregatorstorageexporter.cpp:280
 #, kde-format
@@ -1496,7 +1497,7 @@ msgstr "Open Link in External &Browser"
 #, kde-format
 msgctxt "@option:check"
 msgid "Limit to the selected activities:"
-msgstr ""
+msgstr "Limit to the selected activities:"
 
 #: src/activities/configureactivitieswidget.cpp:63
 #, kde-format
@@ -1506,6 +1507,9 @@ msgid ""
 "you are in those activities. Furthermore, when you switch to an activity it "
 "should not be available in, it will automatically be hidden."
 msgstr ""
+"If you limit this account to activity, it will be shown in Ruqola only when "
+"you are in those activities. Furthermore, when you switch to an activity it "
+"should not be available in, it will automatically be hidden."
 
 #: src/addfeeddialog.cpp:49
 #, kde-format
@@ -1973,7 +1977,7 @@ msgstr "All Feeds"
 #: src/feed/feedpropertiesdialog.cpp:36
 #, kde-format
 msgid "Activities"
-msgstr ""
+msgstr "Activities"
 
 #: src/feed/feedpropertiesdialog.cpp:61 src/feed/feedpropertiesdialog.cpp:109
 #, kde-format
@@ -2107,27 +2111,27 @@ msgstr "Loading cancelled"
 msgid "Loading completed"
 msgstr "Loading completed"
 
-#: src/mainwidget.cpp:160
+#: src/mainwidget.cpp:161
 #, kde-format
 msgid "You can view multiple articles in several open tabs."
 msgstr "You can view multiple articles in several open tabs."
 
-#: src/mainwidget.cpp:164
+#: src/mainwidget.cpp:165
 #, kde-format
 msgid "Articles list."
 msgstr "Articles list."
 
-#: src/mainwidget.cpp:226 src/mainwidget.cpp:657
+#: src/mainwidget.cpp:227 src/mainwidget.cpp:658
 #, kde-format
 msgid "Articles"
 msgstr "Articles"
 
-#: src/mainwidget.cpp:255
+#: src/mainwidget.cpp:256
 #, kde-format
 msgid "About"
 msgstr "About"
 
-#: src/mainwidget.cpp:787
+#: src/mainwidget.cpp:797
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all articles in the feed</b> as read?</"
@@ -2136,18 +2140,18 @@ msgstr ""
 "<qt>Are you sure you want to mark <b>all articles in the feed</b> as read?</"
 "qt>"
 
-#: src/mainwidget.cpp:788
+#: src/mainwidget.cpp:798
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "Mark Feed as Read"
 
-#: src/mainwidget.cpp:791
+#: src/mainwidget.cpp:801
 #, kde-format
 msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
 msgstr "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
 
-#: src/mainwidget.cpp:793
+#: src/mainwidget.cpp:803
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all feeds in the folder</b> as read?</"
@@ -2156,28 +2160,28 @@ msgstr ""
 "<qt>Are you sure you want to mark <b>all feeds in the folder</b> as read?</"
 "qt>"
 
-#: src/mainwidget.cpp:795
+#: src/mainwidget.cpp:805
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "Mark Feeds as Read"
 
-#: src/mainwidget.cpp:859 src/mainwidget.cpp:868 src/mainwidget.cpp:1270
+#: src/mainwidget.cpp:869 src/mainwidget.cpp:878 src/mainwidget.cpp:1280
 #, kde-format
 msgid "Networking is not available."
 msgstr "Networking is not available."
 
-#: src/mainwidget.cpp:876
+#: src/mainwidget.cpp:886
 #, kde-format
 msgid "Fetching Feeds…"
 msgstr "Fetching Feeds…"
 
-#: src/mainwidget.cpp:1075
+#: src/mainwidget.cpp:1085
 #, kde-format
 msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
 msgstr "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
 
-#: src/mainwidget.cpp:1078
+#: src/mainwidget.cpp:1088
 #, kde-format
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
 msgid_plural ""
@@ -2185,13 +2189,13 @@ msgid_plural ""
 msgstr[0] "<qt>Are you sure you want to delete the selected article?</qt>"
 msgstr[1] "<qt>Are you sure you want to delete the %1 selected articles?</qt>"
 
-#: src/mainwidget.cpp:1085
+#: src/mainwidget.cpp:1095
 #, kde-format
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "Delete Article"
 
-#: src/mainwidget.cpp:1267
+#: src/mainwidget.cpp:1277
 #, kde-format
 msgid "Networking is available now."
 msgstr "Networking is available now."

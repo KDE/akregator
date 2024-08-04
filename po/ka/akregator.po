@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-03 00:40+0000\n"
+"POT-Creation-Date: 2024-08-04 00:40+0000\n"
 "PO-Revision-Date: 2024-08-02 05:51+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
@@ -2115,27 +2115,27 @@ msgstr "ჩატვირთვა გაუქმდა"
 msgid "Loading completed"
 msgstr "ჩატვირთვა დასრულდა"
 
-#: src/mainwidget.cpp:160
+#: src/mainwidget.cpp:161
 #, kde-format
 msgid "You can view multiple articles in several open tabs."
 msgstr "ჩანართების საშუალებით ბევრი სტატიის ნახვა შეგიძლიათ."
 
-#: src/mainwidget.cpp:164
+#: src/mainwidget.cpp:165
 #, kde-format
 msgid "Articles list."
 msgstr "სტატიების სია."
 
-#: src/mainwidget.cpp:226 src/mainwidget.cpp:657
+#: src/mainwidget.cpp:227 src/mainwidget.cpp:658
 #, kde-format
 msgid "Articles"
 msgstr "სტატიები"
 
-#: src/mainwidget.cpp:255
+#: src/mainwidget.cpp:256
 #, kde-format
 msgid "About"
 msgstr "შესახებ"
 
-#: src/mainwidget.cpp:787
+#: src/mainwidget.cpp:797
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all articles in the feed</b> as read?</"
@@ -2144,20 +2144,20 @@ msgstr ""
 "<qt>დარწმუნებული ბრძანდებით, რომ გნებავთ <b>ამ ლენტაში არსებული ყველა "
 "სტატიის</b> წაკითხულად მონიშვნა?</qt>"
 
-#: src/mainwidget.cpp:788
+#: src/mainwidget.cpp:798
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "ლენტის წაკითხულად მონიშვნა"
 
-#: src/mainwidget.cpp:791
+#: src/mainwidget.cpp:801
 #, kde-format
 msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
 msgstr ""
 "<qt>დარწმუნებული ბრძანდებით, რომ გნებავთ <b>ყველა ლენტის</b> წაკითხულად "
 "მონიშვნა?</qt>"
 
-#: src/mainwidget.cpp:793
+#: src/mainwidget.cpp:803
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all feeds in the folder</b> as read?</"
@@ -2166,28 +2166,28 @@ msgstr ""
 "<qt>დარწმუნებული ბრძანდებით, რომ გნებავთ <b>ამ საქაღალდეში არსებული ყველა "
 "ლენტის</b> წაკითხულად მონიშვნა?</qt>"
 
-#: src/mainwidget.cpp:795
+#: src/mainwidget.cpp:805
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "ლენტების წაკითხულად მონიშვნა"
 
-#: src/mainwidget.cpp:859 src/mainwidget.cpp:868 src/mainwidget.cpp:1270
+#: src/mainwidget.cpp:869 src/mainwidget.cpp:878 src/mainwidget.cpp:1280
 #, kde-format
 msgid "Networking is not available."
 msgstr "ქსელი ხელმიუწვდომელია."
 
-#: src/mainwidget.cpp:876
+#: src/mainwidget.cpp:886
 #, kde-format
 msgid "Fetching Feeds…"
 msgstr "ლენტების გამოთხოვა…"
 
-#: src/mainwidget.cpp:1075
+#: src/mainwidget.cpp:1085
 #, kde-format
 msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
 msgstr "<qt>დარწმუნებული ბრძანდებით, რომ გნებავთ, წაშალოთ <b>%1</b>?</qt>"
 
-#: src/mainwidget.cpp:1078
+#: src/mainwidget.cpp:1088
 #, kde-format
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
 msgid_plural ""
@@ -2195,13 +2195,13 @@ msgid_plural ""
 msgstr[0] "<qt>მართლა გნებავთ მონიშნული სტატიის წაშლა?</qt>"
 msgstr[1] "<qt>მართლა გნებავთ %1 მონიშნული სტატიის წაშლა?</qt>"
 
-#: src/mainwidget.cpp:1085
+#: src/mainwidget.cpp:1095
 #, kde-format
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "სტატიის წაშლა"
 
-#: src/mainwidget.cpp:1267
+#: src/mainwidget.cpp:1277
 #, kde-format
 msgid "Networking is available now."
 msgstr "ქსელი ისევ ხელმისაწვდომია."

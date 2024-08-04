@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdepim\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-03 00:40+0000\n"
+"POT-Creation-Date: 2024-08-04 00:40+0000\n"
 "PO-Revision-Date: 2009-09-04 19:26+0000\n"
 "Last-Translator: Vilson Gjeci <vilsongjeci@gmail.com>\n"
 "Language-Team: Albanian <sq@li.org>\n"
@@ -2195,27 +2195,27 @@ msgstr "Ngarkimi u anullua"
 msgid "Loading completed"
 msgstr "Ngarkimi u kompletua"
 
-#: src/mainwidget.cpp:160
+#: src/mainwidget.cpp:161
 #, kde-format
 msgid "You can view multiple articles in several open tabs."
 msgstr ""
 
-#: src/mainwidget.cpp:164
+#: src/mainwidget.cpp:165
 #, kde-format
 msgid "Articles list."
 msgstr "Lista e artikujve."
 
-#: src/mainwidget.cpp:226 src/mainwidget.cpp:657
+#: src/mainwidget.cpp:227 src/mainwidget.cpp:658
 #, kde-format
 msgid "Articles"
 msgstr "Artikujt"
 
-#: src/mainwidget.cpp:255
+#: src/mainwidget.cpp:256
 #, kde-format
 msgid "About"
 msgstr "Rreth"
 
-#: src/mainwidget.cpp:787
+#: src/mainwidget.cpp:797
 #, fuzzy, kde-format
 #| msgid "Are you sure you want to disable this introduction page?"
 msgid ""
@@ -2223,49 +2223,49 @@ msgid ""
 "qt>"
 msgstr "Jeni të sigurtë që doni ta çaktivizoni faqen hyrëse?"
 
-#: src/mainwidget.cpp:788
+#: src/mainwidget.cpp:798
 #, fuzzy, kde-format
 #| msgid "&Mark Feed as Read"
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "&Shënoje Burimin si të Lexuar"
 
-#: src/mainwidget.cpp:791
+#: src/mainwidget.cpp:801
 #, kde-format
 msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
 msgstr ""
 
-#: src/mainwidget.cpp:793
+#: src/mainwidget.cpp:803
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all feeds in the folder</b> as read?</"
 "qt>"
 msgstr ""
 
-#: src/mainwidget.cpp:795
+#: src/mainwidget.cpp:805
 #, fuzzy, kde-format
 #| msgid "&Mark Feeds as Read"
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "&Shënoji Burimet si të Lexuara"
 
-#: src/mainwidget.cpp:859 src/mainwidget.cpp:868 src/mainwidget.cpp:1270
+#: src/mainwidget.cpp:869 src/mainwidget.cpp:878 src/mainwidget.cpp:1280
 #, kde-format
 msgid "Networking is not available."
 msgstr ""
 
-#: src/mainwidget.cpp:876
+#: src/mainwidget.cpp:886
 #, fuzzy, kde-format
 #| msgid "Fetching Feeds..."
 msgid "Fetching Feeds…"
 msgstr "Duke Kapur Burimet..."
 
-#: src/mainwidget.cpp:1075
+#: src/mainwidget.cpp:1085
 #, kde-format
 msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
 msgstr ""
 
-#: src/mainwidget.cpp:1078
+#: src/mainwidget.cpp:1088
 #, kde-format
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
 msgid_plural ""
@@ -2273,14 +2273,14 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/mainwidget.cpp:1085
+#: src/mainwidget.cpp:1095
 #, fuzzy, kde-format
 #| msgid "Delete Article"
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "Fshije Artikullin"
 
-#: src/mainwidget.cpp:1267
+#: src/mainwidget.cpp:1277
 #, kde-format
 msgid "Networking is available now."
 msgstr ""

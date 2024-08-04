@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-03 00:40+0000\n"
+"POT-Creation-Date: 2024-08-04 00:40+0000\n"
 "PO-Revision-Date: 2024-08-02 09:15+0200\n"
 "Last-Translator: giovanni <g.sora@tiscali.it>\n"
 "Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
@@ -2126,27 +2126,27 @@ msgstr "Operation de cargar cancellate"
 msgid "Loading completed"
 msgstr "Operation de cargar completate"
 
-#: src/mainwidget.cpp:160
+#: src/mainwidget.cpp:161
 #, kde-format
 msgid "You can view multiple articles in several open tabs."
 msgstr "Tu pote vider articulos multiple in plure schedas aperite."
 
-#: src/mainwidget.cpp:164
+#: src/mainwidget.cpp:165
 #, kde-format
 msgid "Articles list."
 msgstr "Lista de articulos."
 
-#: src/mainwidget.cpp:226 src/mainwidget.cpp:657
+#: src/mainwidget.cpp:227 src/mainwidget.cpp:658
 #, kde-format
 msgid "Articles"
 msgstr "Articulos"
 
-#: src/mainwidget.cpp:255
+#: src/mainwidget.cpp:256
 #, kde-format
 msgid "About"
 msgstr "A proposito"
 
-#: src/mainwidget.cpp:787
+#: src/mainwidget.cpp:797
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all articles in the feed</b> as read?</"
@@ -2155,20 +2155,20 @@ msgstr ""
 "<qt>Tu es secur que tu vole marcar <b>omne articulos in le syndication </b> "
 "como legite?</qt>"
 
-#: src/mainwidget.cpp:788
+#: src/mainwidget.cpp:798
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "Marca syndication como legite"
 
-#: src/mainwidget.cpp:791
+#: src/mainwidget.cpp:801
 #, kde-format
 msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
 msgstr ""
 "<qt>Tu es secur que tu vole marcar <b>omne syndicationes </b> como legite?</"
 "qt>"
 
-#: src/mainwidget.cpp:793
+#: src/mainwidget.cpp:803
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all feeds in the folder</b> as read?</"
@@ -2177,28 +2177,28 @@ msgstr ""
 "<qt>Tu es secur que tu vole marcar <b>omne syndicationes  in le dossier</b> "
 "como legite?</qt>"
 
-#: src/mainwidget.cpp:795
+#: src/mainwidget.cpp:805
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "Marca syndicationes como legite"
 
-#: src/mainwidget.cpp:859 src/mainwidget.cpp:868 src/mainwidget.cpp:1270
+#: src/mainwidget.cpp:869 src/mainwidget.cpp:878 src/mainwidget.cpp:1280
 #, kde-format
 msgid "Networking is not available."
 msgstr "Rete non disponibile."
 
-#: src/mainwidget.cpp:876
+#: src/mainwidget.cpp:886
 #, kde-format
 msgid "Fetching Feeds…"
 msgstr "Trovante syndicationes..."
 
-#: src/mainwidget.cpp:1075
+#: src/mainwidget.cpp:1085
 #, kde-format
 msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
 msgstr "<qt>Tu es secur que tu vole deler articulo <b>%1</b>?</qt >"
 
-#: src/mainwidget.cpp:1078
+#: src/mainwidget.cpp:1088
 #, kde-format
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
 msgid_plural ""
@@ -2206,13 +2206,13 @@ msgid_plural ""
 msgstr[0] "<qt>Tu es secur que tu vole deler le articulo seligite? </qt>"
 msgstr[1] "<qt>Tu es secur que tu vole deler le %1 articulos seligite? </qt>"
 
-#: src/mainwidget.cpp:1085
+#: src/mainwidget.cpp:1095
 #, kde-format
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "Dele articulo"
 
-#: src/mainwidget.cpp:1267
+#: src/mainwidget.cpp:1277
 #, kde-format
 msgid "Networking is available now."
 msgstr "rete nunc es disponibile."
