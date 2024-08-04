@@ -14,6 +14,7 @@ Dependencies:
     'pim/messagelib' : '@same'
     'pim/pimcommon' : '@same'
     'libraries/ktextaddons': '@latest-kf6'
+    'plasma/plasma-activities': '@latest-kf6'
 
 Options:
   require-passing-tests-on: [ 'Linux', 'FreeBSD' ]
