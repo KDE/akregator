@@ -323,6 +323,8 @@ target_sources(akregatorpart PRIVATE
     akregator_part.h
     mainwidget.h
 
+    whatsnew/whatsnewtranslations.cpp
+    whatsnew/whatsnewtranslations.h
 )
 
 ki18n_wrap_ui(akregatorpart
