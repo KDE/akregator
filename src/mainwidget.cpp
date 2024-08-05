@@ -42,7 +42,9 @@
 #include "tabwidget.h"
 #include "treenode.h"
 #include "types.h"
+#include "whatsnew/whatsnewtranslations.h"
 #include "widgets/searchbar.h"
+#include <PimCommon/WhatsNewMessageWidget>
 #include <WebEngineViewer/ZoomActionMenu>
 
 #include <KAboutData>
@@ -113,6 +115,19 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
             auto needUpdateVersionWidget = new PimCommon::NeedUpdateVersionWidget(this);
             topLayout->addWidget(needUpdateVersionWidget);
             needUpdateVersionWidget->setObsoleteVersion(status);
+        }
+    }
+
+    WhatsNewTranslations translations;
+    const QString newFeaturesMD5 = translations.newFeaturesMD5();
+    if (!newFeaturesMD5.isEmpty()) {
+        const bool hasNewFeature = (Settings::self()->previousNewFeaturesMD5() != newFeaturesMD5);
+        if (hasNewFeature) {
+            auto whatsNewMessageWidget = new PimCommon::WhatsNewMessageWidget(this);
+            whatsNewMessageWidget->setObjectName(QStringLiteral("whatsNewMessageWidget"));
+            topLayout->addWidget(whatsNewMessageWidget);
+            Settings::self()->setPreviousNewFeaturesMD5(newFeaturesMD5);
+            whatsNewMessageWidget->animatedShow();
         }
     }
 

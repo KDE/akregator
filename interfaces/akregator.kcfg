@@ -189,6 +189,9 @@
   <entry key="Disable Save As Notification" type="Bool" >
      <default>false</default>
   </entry>
+    <entry name="PreviousNewFeaturesMD5" type="String">
+      <default></default>
+    </entry>
  </group>
  <group name="Browser" >
   <entry key="EnableJavascript" type="Bool">
