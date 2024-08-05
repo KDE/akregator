@@ -13,9 +13,7 @@ WhatsNewTranslations::~WhatsNewTranslations() = default;
 // Use by newFeaturesMD5
 QList<KLazyLocalizedString> WhatsNewTranslations::lastNewFeatures() const
 {
-    const QList<KLazyLocalizedString> info{
-        kli18n("Implement Plasma Activity."),
-    };
+    const QList<KLazyLocalizedString> info{kli18n("Implement Plasma Activity."), kli18n("Add new whatsnew widget.")};
     return info;
 }
 
