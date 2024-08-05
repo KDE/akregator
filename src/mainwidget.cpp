@@ -124,6 +124,7 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
         const bool hasNewFeature = (Settings::self()->previousNewFeaturesMD5() != newFeaturesMD5);
         if (hasNewFeature) {
             auto whatsNewMessageWidget = new PimCommon::WhatsNewMessageWidget(this);
+            whatsNewMessageWidget->setWhatsNewInfos(translations.createWhatsNewInfo());
             whatsNewMessageWidget->setObjectName(QStringLiteral("whatsNewMessageWidget"));
             topLayout->addWidget(whatsNewMessageWidget);
             Settings::self()->setPreviousNewFeaturesMD5(newFeaturesMD5);
