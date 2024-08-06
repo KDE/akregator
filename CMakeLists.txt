@@ -50,7 +50,7 @@ set(KONTACTINTERFACE_LIB_VERSION "6.2.40")
 set(LIBGRANTLEETHEME_LIB_VERSION "6.2.40")
 set(LIBKDEPIM_LIB_VERSION "6.2.40")
 set(MESSAGELIB_LIB_VERSION "6.2.40")
-set(PIMCOMMON_LIB_VERSION "6.2.42")
+set(PIMCOMMON_LIB_VERSION "6.2.43")
 
 find_package(Qt6 ${QT_REQUIRED_VERSION} CONFIG REQUIRED Widgets Test WebEngineWidgets PrintSupport)
 # Find KF6 package
@@ -87,7 +87,7 @@ find_package(KF6TextUtils ${KTEXTADDONS_MIN_VERSION} CONFIG REQUIRED)
 find_package(KPim6WebEngineViewer ${MESSAGELIB_LIB_VERSION} CONFIG REQUIRED)
 # Fix plugin support for removing theses dependencies
 find_package(KPim6PimCommon ${PIMCOMMON_LIB_VERSION} CONFIG REQUIRED)
-
+find_package(KPim6PimCommonActivities ${PIMCOMMON_LIB_VERSION} CONFIG)
 
 find_package(KF6UserFeedback ${KF_MIN_VERSION} CONFIG)
 set_package_properties(KF6UserFeedback PROPERTIES DESCRIPTION "User Feedback lib" TYPE OPTIONAL PURPOSE "Allow to send Telemetry Information (optional). It can be disable in apps.")
@@ -113,31 +113,31 @@ if(USE_UNITY_CMAKE_SUPPORT)
     set(COMPILE_WITH_UNITY_CMAKE_SUPPORT ON)
 endif()
 
-option(OPTION_USE_PLASMA_ACTIVITIES "Activate plasma activities" ON)
-if(OPTION_USE_PLASMA_ACTIVITIES)
-    if(NOT WIN32 AND NOT APPLE)
-       set(OPTION_USE_PLASMA_ACTIVITIES true)
-    else()
-       set(OPTION_USE_PLASMA_ACTIVITIES false)
+if(TARGET KPim6::PimCommonActivities)
+    option(OPTION_USE_PLASMA_ACTIVITIES "Activate plasma activities" ON)
+    if(OPTION_USE_PLASMA_ACTIVITIES)
+        if(NOT WIN32 AND NOT APPLE)
+            set(OPTION_USE_PLASMA_ACTIVITIES true)
+        else()
+            set(OPTION_USE_PLASMA_ACTIVITIES false)
+        endif()
     endif()
-endif()
-if(OPTION_USE_PLASMA_ACTIVITIES)
-    if(NOT WIN32 AND NOT APPLE)
-       find_package(PlasmaActivities "6.1.0")
-       set_package_properties(PlasmaActivities PROPERTIES DESCRIPTION
-	       "Allow to compile with plasma activities"
-    		TYPE OPTIONAL
-	)
-    endif()
-endif()
+    if(OPTION_USE_PLASMA_ACTIVITIES)
+        if(NOT WIN32 AND NOT APPLE)
+            find_package(PlasmaActivities "6.1.0")
+            set_package_properties(PlasmaActivities PROPERTIES DESCRIPTION
+                "Allow to compile with plasma activities"
+                TYPE OPTIONAL
+            )
+        endif()
 
-if(TARGET Plasma::Activities)
-    set(HAVE_ACTIVITY_SUPPORT TRUE)
+        if(TARGET Plasma::Activities)
+            set(HAVE_ACTIVITY_SUPPORT TRUE)
+        endif()
+    endif()
 endif()
 
 configure_file(config-akregator.h.in ${CMAKE_CURRENT_BINARY_DIR}/config-akregator.h)
-
-
 
 add_subdirectory(export)
 add_subdirectory(interfaces)

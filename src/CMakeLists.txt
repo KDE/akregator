@@ -175,7 +175,7 @@ target_sources(akregatorprivate PRIVATE
 
 )
 
-if(TARGET Plasma::Activities)
+if(TARGET KPim6::PimCommonActivities)
     target_sources(akregatorprivate PRIVATE
 	activities/configureactivitieswidget.cpp
 	activities/configureactivitieswidget.h
@@ -233,10 +233,10 @@ if(TARGET KF6::TextEditTextToSpeech)
 )
 endif()
 
-if(TARGET Plasma::Activities)
+if(TARGET KPim6::PimCommonActivities)
     target_link_libraries(akregatorprivate
-        PRIVATE
-        Plasma::Activities
+        PUBLIC
+        KPim6::PimCommonActivities
     )
 endif()
 target_include_directories(akregatorprivate PUBLIC "$<BUILD_INTERFACE:${akregator_SOURCE_DIR}/src;${akregator_BINARY_DIR}/src>")
