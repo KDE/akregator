@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-04 00:40+0000\n"
+"POT-Creation-Date: 2024-08-06 00:39+0000\n"
 "PO-Revision-Date: 2023-11-22 18:44+0200\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
@@ -345,7 +345,7 @@ msgstr "Välilehdet"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_AlwaysShowTabBar)
 #. i18n: ectx: label, entry, group (Browser)
-#: configuration/ui/settings_browser.ui:116 interfaces/akregator.kcfg:199
+#: configuration/ui/settings_browser.ui:116 interfaces/akregator.kcfg:202
 #, kde-format
 msgid "Always show the tab bar"
 msgstr "Näytä välilehtipalkki aina"
@@ -358,7 +358,7 @@ msgstr "Näytä sulkemispainike joka välilehdessä"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_NewWindowInTab)
 #. i18n: ectx: label, entry, group (Browser)
-#: configuration/ui/settings_browser.ui:130 interfaces/akregator.kcfg:209
+#: configuration/ui/settings_browser.ui:130 interfaces/akregator.kcfg:212
 #, kde-format
 msgid "Open links in new tab instead of in new window"
 msgstr "Avaa linkit uusiin välilehtiin uusien ikkunoiden sijaan"
@@ -377,7 +377,7 @@ msgstr "Tarkista verkko-osoitteet Googlen turvallisen selauksen APIlla"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_EnableJavascript)
 #. i18n: ectx: label, entry, group (Browser)
-#: configuration/ui/settings_browser.ui:153 interfaces/akregator.kcfg:195
+#: configuration/ui/settings_browser.ui:153 interfaces/akregator.kcfg:198
 #, fuzzy, kde-format
 #| msgid "Enable Javascript"
 msgid "Enable JavaScript"
@@ -838,25 +838,25 @@ msgstr ""
 "Määrittää, näytetäänkö lukematta olevien artikkelien määrä tehtäväpalkissa."
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:200
+#: interfaces/akregator.kcfg:203
 #, kde-format
 msgid "Always show the tab bar, even when only one tab is open"
 msgstr "Näytä välilehtipalkki, vaikka vain yksi välilehti olisi auki"
 
 #. i18n: ectx: label, entry, group (Browser)
-#: interfaces/akregator.kcfg:204
+#: interfaces/akregator.kcfg:207
 #, kde-format
 msgid "Show close buttons on tabs"
 msgstr "Näytä sulkemispainikkeet välilehdissä"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:205
+#: interfaces/akregator.kcfg:208
 #, kde-format
 msgid "Show close buttons on tabs instead of icons"
 msgstr "Näytä sulkemispainike välilehdessä erillisen kuvakkeen sijaan"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:210
+#: interfaces/akregator.kcfg:213
 #, kde-format
 msgid ""
 "Open a link which would normally open in a new window (external browser) in "
@@ -866,68 +866,68 @@ msgstr ""
 "sijaan uuteen välilehteen"
 
 #. i18n: ectx: label, entry, group (Browser)
-#: interfaces/akregator.kcfg:214
+#: interfaces/akregator.kcfg:217
 #, kde-format
 msgid "Use default KDE web browser"
 msgstr "Käytä KDE:n oletusselainta"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:215
+#: interfaces/akregator.kcfg:218
 #, kde-format
 msgid "Use KDE web browser when opening in external browser."
 msgstr "Käytä KDE:n selainta avattaessa artikkeli ulkoiseen selaimeen."
 
 #. i18n: ectx: label, entry, group (Browser)
-#: interfaces/akregator.kcfg:219
+#: interfaces/akregator.kcfg:222
 #, kde-format
 msgid "Use this command:"
 msgstr "Käytä tätä ohjelmaa:"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:220
+#: interfaces/akregator.kcfg:223
 #, kde-format
 msgid "Use the specified command when opening in external browser."
 msgstr "Käytä annettua ohjelmaa avattaessa artikkeli ulkoiseen selaimeen."
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:224
+#: interfaces/akregator.kcfg:227
 #, no-c-format, kde-format
 msgid "Command to launch external browser. URL will substitute for %u."
 msgstr "Ulkoisen selaimen käynnistyskomento. Verkko-osoite merkitään %u."
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:228
+#: interfaces/akregator.kcfg:231
 #, kde-format
 msgid "What the click with left mouse button should do."
 msgstr "Mitä hiiren vasemman painikkeen napsautuksen tulisi tehdä."
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:237
+#: interfaces/akregator.kcfg:240
 #, kde-format
 msgid "What the click with middle mouse button should do."
 msgstr "Mitä hiiren keskipainikkeen tulisi tehdä."
 
 #. i18n: ectx: label, entry, group (Browser)
-#: interfaces/akregator.kcfg:246
+#: interfaces/akregator.kcfg:249
 #, fuzzy, kde-format
 #| msgid "Enable Javascript"
 msgid "Enabled Plasma Activity"
 msgstr "Käytä JavaScriptiä"
 
 #. i18n: ectx: label, entry, group (Advanced)
-#: interfaces/akregator.kcfg:266
+#: interfaces/akregator.kcfg:269
 #, kde-format
 msgid "Archive Backend"
 msgstr "Arkiston taustaosa"
 
 #. i18n: ectx: whatsthis, entry (UseMarkReadDelay), group (Advanced)
-#: interfaces/akregator.kcfg:270
+#: interfaces/akregator.kcfg:273
 #, kde-format
 msgid "Whether to delay before marking an article as read upon selecting it."
 msgstr "Viivästetäänkö artikkelin merkintää luetuksi sen tultua valituksi."
 
 #. i18n: ectx: whatsthis, entry (MarkReadDelay), group (Advanced)
-#: interfaces/akregator.kcfg:274
+#: interfaces/akregator.kcfg:277
 #, kde-format
 msgid ""
 "Configurable delay between selecting an article and it being marked as read."
@@ -936,7 +936,7 @@ msgstr ""
 "merkitsemisen välillä."
 
 #. i18n: ectx: whatsthis, entry, group (Advanced)
-#: interfaces/akregator.kcfg:278
+#: interfaces/akregator.kcfg:281
 #, kde-format
 msgid "Resets the quick filter when changing feeds."
 msgstr "Tyhjää pikasuodatin syötettä vaihdettaessa."
@@ -2170,27 +2170,27 @@ msgstr "Lataus peruttu"
 msgid "Loading completed"
 msgstr "Lataus valmis"
 
-#: src/mainwidget.cpp:161
+#: src/mainwidget.cpp:177
 #, kde-format
 msgid "You can view multiple articles in several open tabs."
 msgstr "Voit lukea useita artikkeleja eri välilehdiltä."
 
-#: src/mainwidget.cpp:165
+#: src/mainwidget.cpp:181
 #, kde-format
 msgid "Articles list."
 msgstr "Artikkeliluettelo."
 
-#: src/mainwidget.cpp:227 src/mainwidget.cpp:658
+#: src/mainwidget.cpp:243 src/mainwidget.cpp:674
 #, kde-format
 msgid "Articles"
 msgstr "Artikkelit"
 
-#: src/mainwidget.cpp:256
+#: src/mainwidget.cpp:272
 #, kde-format
 msgid "About"
 msgstr "Tietoa ohjelmasta"
 
-#: src/mainwidget.cpp:797
+#: src/mainwidget.cpp:813
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all articles in the feed</b> as read?</"
@@ -2199,18 +2199,18 @@ msgstr ""
 "<qt>Haluatko varmasti merkitä <b>syötteen kaikki artikkelit</b> luetuiksi?</"
 "qt>"
 
-#: src/mainwidget.cpp:798
+#: src/mainwidget.cpp:814
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "Merkitse syöte luetuksi"
 
-#: src/mainwidget.cpp:801
+#: src/mainwidget.cpp:817
 #, kde-format
 msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
 msgstr "<qt>Haluatko varmasti merkitä <b>kaikki syötteet</b> luetuiksi?</qt>"
 
-#: src/mainwidget.cpp:803
+#: src/mainwidget.cpp:819
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all feeds in the folder</b> as read?</"
@@ -2218,29 +2218,29 @@ msgid ""
 msgstr ""
 "<qt>Haluatko varmasti merkitä <b>kansion kaikki syötteet</b> luetuiksi?</qt>"
 
-#: src/mainwidget.cpp:805
+#: src/mainwidget.cpp:821
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "Merkitse syötteet luetuiksi"
 
-#: src/mainwidget.cpp:869 src/mainwidget.cpp:878 src/mainwidget.cpp:1280
+#: src/mainwidget.cpp:885 src/mainwidget.cpp:894 src/mainwidget.cpp:1296
 #, kde-format
 msgid "Networking is not available."
 msgstr "Verkkoyhteys ei ole saatavilla."
 
-#: src/mainwidget.cpp:886
+#: src/mainwidget.cpp:902
 #, fuzzy, kde-format
 #| msgid "Fetching Feeds..."
 msgid "Fetching Feeds…"
 msgstr "Päivitetään syötteitä…"
 
-#: src/mainwidget.cpp:1085
+#: src/mainwidget.cpp:1101
 #, kde-format
 msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
 msgstr "<qt>Haluatko varmasti poistaa artikkelin <b>%1</b>?</qt>"
 
-#: src/mainwidget.cpp:1088
+#: src/mainwidget.cpp:1104
 #, kde-format
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
 msgid_plural ""
@@ -2248,13 +2248,13 @@ msgid_plural ""
 msgstr[0] "<qt>Haluatko varmasti poistaa valitun artikkelin?</qt>"
 msgstr[1] "<qt>Haluatko varmasti poistaa valitut %1 artikkelia?</qt>"
 
-#: src/mainwidget.cpp:1095
+#: src/mainwidget.cpp:1111
 #, kde-format
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "Poista artikkeli"
 
-#: src/mainwidget.cpp:1277
+#: src/mainwidget.cpp:1293
 #, kde-format
 msgid "Networking is available now."
 msgstr "Verkkoyhteys on nyt saatavilla."
@@ -2603,6 +2603,16 @@ msgstr "Lähetä artikkelin HTML-sivu"
 #, kde-format
 msgid "Open In External Browser"
 msgstr "Avaa ulkoiseen selaimeen"
+
+#: src/whatsnew/whatsnewtranslations.cpp:16
+#, fuzzy
+#| msgid "Enable Javascript"
+msgid "Implement Plasma Activity."
+msgstr "Käytä JavaScriptiä"
+
+#: src/whatsnew/whatsnewtranslations.cpp:16
+msgid "Add new whatsnew widget."
+msgstr ""
 
 #: src/widgets/searchbar.cpp:43
 #, fuzzy, kde-format

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-04 00:40+0000\n"
+"POT-Creation-Date: 2024-08-06 00:39+0000\n"
 "PO-Revision-Date: 2024-08-02 05:25+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
@@ -349,7 +349,7 @@ msgstr "Zavihki"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_AlwaysShowTabBar)
 #. i18n: ectx: label, entry, group (Browser)
-#: configuration/ui/settings_browser.ui:116 interfaces/akregator.kcfg:199
+#: configuration/ui/settings_browser.ui:116 interfaces/akregator.kcfg:202
 #, kde-format
 msgid "Always show the tab bar"
 msgstr "Vedno pokaži vrstico z zavihki"
@@ -362,7 +362,7 @@ msgstr "Na vsakem zavihku pokaži gumb za zaprtje"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_NewWindowInTab)
 #. i18n: ectx: label, entry, group (Browser)
-#: configuration/ui/settings_browser.ui:130 interfaces/akregator.kcfg:209
+#: configuration/ui/settings_browser.ui:130 interfaces/akregator.kcfg:212
 #, kde-format
 msgid "Open links in new tab instead of in new window"
 msgstr "Odpri povezave v novem zavihku namesto v novem oknu"
@@ -381,7 +381,7 @@ msgstr "Preveri naslove URL s pomočjo API-ja Google Safe Browsing"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_EnableJavascript)
 #. i18n: ectx: label, entry, group (Browser)
-#: configuration/ui/settings_browser.ui:153 interfaces/akregator.kcfg:195
+#: configuration/ui/settings_browser.ui:153 interfaces/akregator.kcfg:198
 #, kde-format
 msgid "Enable JavaScript"
 msgstr "Omogoči JavaScript"
@@ -842,25 +842,25 @@ msgid "Specifies if we show unread article in taskbar."
 msgstr "Določi, ali v opravilni vrstici prikažemo neprebrani članek."
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:200
+#: interfaces/akregator.kcfg:203
 #, kde-format
 msgid "Always show the tab bar, even when only one tab is open"
 msgstr "Vedno pokaži vrstico z zavihki, četudi je odprt le en zavihek"
 
 #. i18n: ectx: label, entry, group (Browser)
-#: interfaces/akregator.kcfg:204
+#: interfaces/akregator.kcfg:207
 #, kde-format
 msgid "Show close buttons on tabs"
 msgstr "Pokaži gumb za zapiranje na zavihkih"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:205
+#: interfaces/akregator.kcfg:208
 #, kde-format
 msgid "Show close buttons on tabs instead of icons"
 msgstr "Pokaži gumb za zapiranje na zavihkih namesto ikon"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:210
+#: interfaces/akregator.kcfg:213
 #, kde-format
 msgid ""
 "Open a link which would normally open in a new window (external browser) in "
@@ -870,61 +870,61 @@ msgstr ""
 "v novem zavihku"
 
 #. i18n: ectx: label, entry, group (Browser)
-#: interfaces/akregator.kcfg:214
+#: interfaces/akregator.kcfg:217
 #, kde-format
 msgid "Use default KDE web browser"
 msgstr "Uporabi privzeti spletni brskalnik v KDE"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:215
+#: interfaces/akregator.kcfg:218
 #, kde-format
 msgid "Use KDE web browser when opening in external browser."
 msgstr "Pri odpiranju v zunanjem brskalniku uporabi KDE-jev spletni brskalnik."
 
 #. i18n: ectx: label, entry, group (Browser)
-#: interfaces/akregator.kcfg:219
+#: interfaces/akregator.kcfg:222
 #, kde-format
 msgid "Use this command:"
 msgstr "Uporabi ta ukaz:"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:220
+#: interfaces/akregator.kcfg:223
 #, kde-format
 msgid "Use the specified command when opening in external browser."
 msgstr "Pri odpiranju v zunanjem spletnem brskalniku uporabi navedeni ukaz."
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:224
+#: interfaces/akregator.kcfg:227
 #, no-c-format, kde-format
 msgid "Command to launch external browser. URL will substitute for %u."
 msgstr "Ukaz za zagon zunanjega brskalnika. %u se zamenja z naslovom URL."
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:228
+#: interfaces/akregator.kcfg:231
 #, kde-format
 msgid "What the click with left mouse button should do."
 msgstr "Kaj se zgodi ob kliku na levi gumb miške."
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:237
+#: interfaces/akregator.kcfg:240
 #, kde-format
 msgid "What the click with middle mouse button should do."
 msgstr "Kaj se zgodi ob kliku na srednji gumb miške."
 
 #. i18n: ectx: label, entry, group (Browser)
-#: interfaces/akregator.kcfg:246
+#: interfaces/akregator.kcfg:249
 #, kde-format
 msgid "Enabled Plasma Activity"
 msgstr "Omogočena dejavnost Plasme"
 
 #. i18n: ectx: label, entry, group (Advanced)
-#: interfaces/akregator.kcfg:266
+#: interfaces/akregator.kcfg:269
 #, kde-format
 msgid "Archive Backend"
 msgstr "Način arhiviranja"
 
 #. i18n: ectx: whatsthis, entry (UseMarkReadDelay), group (Advanced)
-#: interfaces/akregator.kcfg:270
+#: interfaces/akregator.kcfg:273
 #, kde-format
 msgid "Whether to delay before marking an article as read upon selecting it."
 msgstr ""
@@ -932,14 +932,14 @@ msgstr ""
 "prebrano."
 
 #. i18n: ectx: whatsthis, entry (MarkReadDelay), group (Advanced)
-#: interfaces/akregator.kcfg:274
+#: interfaces/akregator.kcfg:277
 #, kde-format
 msgid ""
 "Configurable delay between selecting an article and it being marked as read."
 msgstr "Zakasnitev med izborom članka in spremembo oznake v prebrano."
 
 #. i18n: ectx: whatsthis, entry, group (Advanced)
-#: interfaces/akregator.kcfg:278
+#: interfaces/akregator.kcfg:281
 #, kde-format
 msgid "Resets the quick filter when changing feeds."
 msgstr "Ob preklopu na drug vir se hitro iskanje ponastavi."
@@ -2142,27 +2142,27 @@ msgstr "Nalaganje preklicano"
 msgid "Loading completed"
 msgstr "Nalaganje zaključeno"
 
-#: src/mainwidget.cpp:161
+#: src/mainwidget.cpp:177
 #, kde-format
 msgid "You can view multiple articles in several open tabs."
 msgstr "Več člankov lahko odprete v več zavihkov."
 
-#: src/mainwidget.cpp:165
+#: src/mainwidget.cpp:181
 #, kde-format
 msgid "Articles list."
 msgstr "Seznam člankov."
 
-#: src/mainwidget.cpp:227 src/mainwidget.cpp:658
+#: src/mainwidget.cpp:243 src/mainwidget.cpp:674
 #, kde-format
 msgid "Articles"
 msgstr "Članki"
 
-#: src/mainwidget.cpp:256
+#: src/mainwidget.cpp:272
 #, kde-format
 msgid "About"
 msgstr "O"
 
-#: src/mainwidget.cpp:797
+#: src/mainwidget.cpp:813
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all articles in the feed</b> as read?</"
@@ -2171,19 +2171,19 @@ msgstr ""
 "<qt>Ali ste prepričani, da želite označiti<b>vse članke vira</b> kot "
 "prebrane?</qt>"
 
-#: src/mainwidget.cpp:798
+#: src/mainwidget.cpp:814
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "Označi vir kot prebran"
 
-#: src/mainwidget.cpp:801
+#: src/mainwidget.cpp:817
 #, kde-format
 msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
 msgstr ""
 "<qt>Ali ste prepričani, da želite označiti <b>vse vire</b> kot prebrane?</qt>"
 
-#: src/mainwidget.cpp:803
+#: src/mainwidget.cpp:819
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all feeds in the folder</b> as read?</"
@@ -2192,28 +2192,28 @@ msgstr ""
 "<qt>Ali ste prepričani, da želite označiti <b>vse vire v mapi</b> kot "
 "prebrane?</qt>"
 
-#: src/mainwidget.cpp:805
+#: src/mainwidget.cpp:821
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "Označi vire kot prebrane"
 
-#: src/mainwidget.cpp:869 src/mainwidget.cpp:878 src/mainwidget.cpp:1280
+#: src/mainwidget.cpp:885 src/mainwidget.cpp:894 src/mainwidget.cpp:1296
 #, kde-format
 msgid "Networking is not available."
 msgstr "Omrežje ni na voljo."
 
-#: src/mainwidget.cpp:886
+#: src/mainwidget.cpp:902
 #, kde-format
 msgid "Fetching Feeds…"
 msgstr "Pridobivanje virov…"
 
-#: src/mainwidget.cpp:1085
+#: src/mainwidget.cpp:1101
 #, kde-format
 msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
 msgstr "<qt>Ali ste prepričani, da želite izbrisati članek <b>%1</b>?</qt>"
 
-#: src/mainwidget.cpp:1088
+#: src/mainwidget.cpp:1104
 #, kde-format
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
 msgid_plural ""
@@ -2224,13 +2224,13 @@ msgstr[1] "<qt>Ali ste prepričani, da želite izbrisati %1 izbrani članek?</qt
 msgstr[2] "<qt>Ali ste prepričani, da želite izbrisati %1 izbrana članka?</qt>"
 msgstr[3] "<qt>Ali ste prepričani, da želite izbrisati %1 izbrane članke?</qt>"
 
-#: src/mainwidget.cpp:1095
+#: src/mainwidget.cpp:1111
 #, kde-format
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "Izbriši članek"
 
-#: src/mainwidget.cpp:1277
+#: src/mainwidget.cpp:1293
 #, kde-format
 msgid "Networking is available now."
 msgstr "Omrežje je sedaj na voljo."
@@ -2582,6 +2582,16 @@ msgstr "Pošlji stran članka v HTML"
 #, kde-format
 msgid "Open In External Browser"
 msgstr "Odpri v zunanjem brskalniku"
+
+#: src/whatsnew/whatsnewtranslations.cpp:16
+#, fuzzy
+#| msgid "Enabled Plasma Activity"
+msgid "Implement Plasma Activity."
+msgstr "Omogočena dejavnost Plasme"
+
+#: src/whatsnew/whatsnewtranslations.cpp:16
+msgid "Add new whatsnew widget."
+msgstr ""
 
 #: src/widgets/searchbar.cpp:43
 #, kde-format

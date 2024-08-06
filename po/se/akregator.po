@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-04 00:40+0000\n"
+"POT-Creation-Date: 2024-08-06 00:39+0000\n"
 "PO-Revision-Date: 2010-03-14 01:57+0100\n"
 "Last-Translator: Børre Gaup <boerre@skolelinux.no>\n"
 "Language-Team: Northern Sami <l10n-no@lister.huftis.org>\n"
@@ -326,7 +326,7 @@ msgstr "Gilkorat"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_AlwaysShowTabBar)
 #. i18n: ectx: label, entry, group (Browser)
-#: configuration/ui/settings_browser.ui:116 interfaces/akregator.kcfg:199
+#: configuration/ui/settings_browser.ui:116 interfaces/akregator.kcfg:202
 #, kde-format
 msgid "Always show the tab bar"
 msgstr "Álo čájet gilkorholgga"
@@ -339,7 +339,7 @@ msgstr "Čájet giddenboalu juohke gilkoris"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_NewWindowInTab)
 #. i18n: ectx: label, entry, group (Browser)
-#: configuration/ui/settings_browser.ui:130 interfaces/akregator.kcfg:209
+#: configuration/ui/settings_browser.ui:130 interfaces/akregator.kcfg:212
 #, kde-format
 msgid "Open links in new tab instead of in new window"
 msgstr "Raba liŋkkaid ođđa gilkoris iige ođđa láses"
@@ -358,7 +358,7 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_EnableJavascript)
 #. i18n: ectx: label, entry, group (Browser)
-#: configuration/ui/settings_browser.ui:153 interfaces/akregator.kcfg:195
+#: configuration/ui/settings_browser.ui:153 interfaces/akregator.kcfg:198
 #, kde-format
 msgid "Enable JavaScript"
 msgstr ""
@@ -818,25 +818,25 @@ msgid "Specifies if we show unread article in taskbar."
 msgstr ""
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:200
+#: interfaces/akregator.kcfg:203
 #, kde-format
 msgid "Always show the tab bar, even when only one tab is open"
 msgstr "Álo čájet gilkorholgga, váikko dušše okta gilkor oidno"
 
 #. i18n: ectx: label, entry, group (Browser)
-#: interfaces/akregator.kcfg:204
+#: interfaces/akregator.kcfg:207
 #, kde-format
 msgid "Show close buttons on tabs"
 msgstr "Čájet giddenboalu juohkke gilkoris"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:205
+#: interfaces/akregator.kcfg:208
 #, kde-format
 msgid "Show close buttons on tabs instead of icons"
 msgstr "Čájet giddenboalu gilkoriin, iige govažiid"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:210
+#: interfaces/akregator.kcfg:213
 #, kde-format
 msgid ""
 "Open a link which would normally open in a new window (external browser) in "
@@ -845,68 +845,68 @@ msgstr ""
 "Raba liŋkka ođđa láses (olgguldas fierpmádatloganis) iige ođđa gilkoris"
 
 #. i18n: ectx: label, entry, group (Browser)
-#: interfaces/akregator.kcfg:214
+#: interfaces/akregator.kcfg:217
 #, kde-format
 msgid "Use default KDE web browser"
 msgstr "Geavat KDE standárda fierpmádatlogana"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:215
+#: interfaces/akregator.kcfg:218
 #, kde-format
 msgid "Use KDE web browser when opening in external browser."
 msgstr ""
 "Geavat KDE-fierpmádatlogana go rahpá artihkkala olgguldas fierpmádatloganis."
 
 #. i18n: ectx: label, entry, group (Browser)
-#: interfaces/akregator.kcfg:219
+#: interfaces/akregator.kcfg:222
 #, kde-format
 msgid "Use this command:"
 msgstr "Geavat dán gohččuma:"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:220
+#: interfaces/akregator.kcfg:223
 #, kde-format
 msgid "Use the specified command when opening in external browser."
 msgstr "Geavat meroštuvvon gohččuma go rahpá olgguldas fierpmádatloganis."
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:224
+#: interfaces/akregator.kcfg:227
 #, no-c-format, kde-format
 msgid "Command to launch external browser. URL will substitute for %u."
 msgstr ""
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:228
+#: interfaces/akregator.kcfg:231
 #, kde-format
 msgid "What the click with left mouse button should do."
 msgstr "Mii dáhpáhuvvá go coahkkala gurut sáhpanboalu."
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:237
+#: interfaces/akregator.kcfg:240
 #, kde-format
 msgid "What the click with middle mouse button should do."
 msgstr "Mii dáhpáhuvvá go coahkkala gaskamus sáhpanboalu."
 
 #. i18n: ectx: label, entry, group (Browser)
-#: interfaces/akregator.kcfg:246
+#: interfaces/akregator.kcfg:249
 #, kde-format
 msgid "Enabled Plasma Activity"
 msgstr ""
 
 #. i18n: ectx: label, entry, group (Advanced)
-#: interfaces/akregator.kcfg:266
+#: interfaces/akregator.kcfg:269
 #, kde-format
 msgid "Archive Backend"
 msgstr "Vuorkámohtor"
 
 #. i18n: ectx: whatsthis, entry (UseMarkReadDelay), group (Advanced)
-#: interfaces/akregator.kcfg:270
+#: interfaces/akregator.kcfg:273
 #, kde-format
 msgid "Whether to delay before marking an article as read upon selecting it."
 msgstr "Jus galgá vuordit ovdal go merke artihkkala lohkon go vállje dan."
 
 #. i18n: ectx: whatsthis, entry (MarkReadDelay), group (Advanced)
-#: interfaces/akregator.kcfg:274
+#: interfaces/akregator.kcfg:277
 #, kde-format
 msgid ""
 "Configurable delay between selecting an article and it being marked as read."
@@ -915,7 +915,7 @@ msgstr ""
 "válljejuvvon."
 
 #. i18n: ectx: whatsthis, entry, group (Advanced)
-#: interfaces/akregator.kcfg:278
+#: interfaces/akregator.kcfg:281
 #, kde-format
 msgid "Resets the quick filter when changing feeds."
 msgstr "Sálke filtara go manná eará gáldui."
@@ -2141,76 +2141,76 @@ msgstr "Viežžan gaskkalduvvon"
 msgid "Loading completed"
 msgstr "Viežžan geargan"
 
-#: src/mainwidget.cpp:161
+#: src/mainwidget.cpp:177
 #, kde-format
 msgid "You can view multiple articles in several open tabs."
 msgstr "Sáhtát rahpat máŋga artihkkala sierra gilkoriin."
 
-#: src/mainwidget.cpp:165
+#: src/mainwidget.cpp:181
 #, kde-format
 msgid "Articles list."
 msgstr "Artihkallistu."
 
-#: src/mainwidget.cpp:227 src/mainwidget.cpp:658
+#: src/mainwidget.cpp:243 src/mainwidget.cpp:674
 #, kde-format
 msgid "Articles"
 msgstr "Artihkkalat"
 
-#: src/mainwidget.cpp:256
+#: src/mainwidget.cpp:272
 #, kde-format
 msgid "About"
 msgstr "Dieđut"
 
-#: src/mainwidget.cpp:797
+#: src/mainwidget.cpp:813
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all articles in the feed</b> as read?</"
 "qt>"
 msgstr ""
 
-#: src/mainwidget.cpp:798
+#: src/mainwidget.cpp:814
 #, fuzzy, kde-format
 #| msgid "&Mark Feed as Read"
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "Merke gáldu &lohkon"
 
-#: src/mainwidget.cpp:801
+#: src/mainwidget.cpp:817
 #, kde-format
 msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
 msgstr ""
 
-#: src/mainwidget.cpp:803
+#: src/mainwidget.cpp:819
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all feeds in the folder</b> as read?</"
 "qt>"
 msgstr ""
 
-#: src/mainwidget.cpp:805
+#: src/mainwidget.cpp:821
 #, fuzzy, kde-format
 #| msgid "&Mark Feeds as Read"
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "Merke gálduid &lohkon"
 
-#: src/mainwidget.cpp:869 src/mainwidget.cpp:878 src/mainwidget.cpp:1280
+#: src/mainwidget.cpp:885 src/mainwidget.cpp:894 src/mainwidget.cpp:1296
 #, kde-format
 msgid "Networking is not available."
 msgstr ""
 
-#: src/mainwidget.cpp:886
+#: src/mainwidget.cpp:902
 #, fuzzy, kde-format
 #| msgid "Fetching Feeds..."
 msgid "Fetching Feeds…"
 msgstr "Viežžamin gálduid …"
 
-#: src/mainwidget.cpp:1085
+#: src/mainwidget.cpp:1101
 #, kde-format
 msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
 msgstr "<qt>Háliidatgo duođaid sihkkut artihkkala <b>%1</b>?</qt>"
 
-#: src/mainwidget.cpp:1088
+#: src/mainwidget.cpp:1104
 #, kde-format
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
 msgid_plural ""
@@ -2218,14 +2218,14 @@ msgid_plural ""
 msgstr[0] "<qt>Háliidatgo duođaid sihkkut válljejuvvon artihkkala?</qt>"
 msgstr[1] "<qt>Háliidatgo duođaid sihkkut %1 válljejuvvon artihkkala?</qt>"
 
-#: src/mainwidget.cpp:1095
+#: src/mainwidget.cpp:1111
 #, fuzzy, kde-format
 #| msgid "Delete Article"
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "Sihko artihkkala"
 
-#: src/mainwidget.cpp:1277
+#: src/mainwidget.cpp:1293
 #, kde-format
 msgid "Networking is available now."
 msgstr ""
@@ -2570,6 +2570,14 @@ msgstr ""
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:108
 #, kde-format
 msgid "Open In External Browser"
+msgstr ""
+
+#: src/whatsnew/whatsnewtranslations.cpp:16
+msgid "Implement Plasma Activity."
+msgstr ""
+
+#: src/whatsnew/whatsnewtranslations.cpp:16
+msgid "Add new whatsnew widget."
 msgstr ""
 
 #: src/widgets/searchbar.cpp:43

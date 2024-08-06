@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-04 00:40+0000\n"
+"POT-Creation-Date: 2024-08-06 00:39+0000\n"
 "PO-Revision-Date: 2023-08-24 21:37+0200\n"
 "Last-Translator: Karl Ove Hufthammer <karl@huftis.org>\n"
 "Language-Team: Norwegian Nynorsk <l10n-no@lister.huftis.org>\n"
@@ -332,7 +332,7 @@ msgstr "Faner"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_AlwaysShowTabBar)
 #. i18n: ectx: label, entry, group (Browser)
-#: configuration/ui/settings_browser.ui:116 interfaces/akregator.kcfg:199
+#: configuration/ui/settings_browser.ui:116 interfaces/akregator.kcfg:202
 #, kde-format
 msgid "Always show the tab bar"
 msgstr "Vis alltid fanelinja"
@@ -345,7 +345,7 @@ msgstr "Vis lukkeknapp på fanene"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_NewWindowInTab)
 #. i18n: ectx: label, entry, group (Browser)
-#: configuration/ui/settings_browser.ui:130 interfaces/akregator.kcfg:209
+#: configuration/ui/settings_browser.ui:130 interfaces/akregator.kcfg:212
 #, kde-format
 msgid "Open links in new tab instead of in new window"
 msgstr "Opna lenkjer i faner i staden for vindauge"
@@ -364,7 +364,7 @@ msgstr "Stadfest adresser med Google sitt API for trygg nettlesing "
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_EnableJavascript)
 #. i18n: ectx: label, entry, group (Browser)
-#: configuration/ui/settings_browser.ui:153 interfaces/akregator.kcfg:195
+#: configuration/ui/settings_browser.ui:153 interfaces/akregator.kcfg:198
 #, fuzzy, kde-format
 #| msgid "Enable Javascript"
 msgid "Enable JavaScript"
@@ -823,25 +823,25 @@ msgid "Specifies if we show unread article in taskbar."
 msgstr "Viser ulesne artiklar i oppgåvelinja."
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:200
+#: interfaces/akregator.kcfg:203
 #, kde-format
 msgid "Always show the tab bar, even when only one tab is open"
 msgstr "Vis alltid fanelinja, også når berre éi fane er open"
 
 #. i18n: ectx: label, entry, group (Browser)
-#: interfaces/akregator.kcfg:204
+#: interfaces/akregator.kcfg:207
 #, kde-format
 msgid "Show close buttons on tabs"
 msgstr "Vis lukkeknappar på fanene"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:205
+#: interfaces/akregator.kcfg:208
 #, kde-format
 msgid "Show close buttons on tabs instead of icons"
 msgstr "Vis lukkeknappar i staden for ikon på fanene."
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:210
+#: interfaces/akregator.kcfg:213
 #, kde-format
 msgid ""
 "Open a link which would normally open in a new window (external browser) in "
@@ -851,31 +851,31 @@ msgstr ""
 "i nye faner i staden for"
 
 #. i18n: ectx: label, entry, group (Browser)
-#: interfaces/akregator.kcfg:214
+#: interfaces/akregator.kcfg:217
 #, kde-format
 msgid "Use default KDE web browser"
 msgstr "Bruk standard KDE-nettlesar"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:215
+#: interfaces/akregator.kcfg:218
 #, kde-format
 msgid "Use KDE web browser when opening in external browser."
 msgstr "Bruk KDE-nettlesaren ved opning i ekstern nettlesar."
 
 #. i18n: ectx: label, entry, group (Browser)
-#: interfaces/akregator.kcfg:219
+#: interfaces/akregator.kcfg:222
 #, kde-format
 msgid "Use this command:"
 msgstr "Bruk denne kommandoen:"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:220
+#: interfaces/akregator.kcfg:223
 #, kde-format
 msgid "Use the specified command when opening in external browser."
 msgstr "Bruk vald kommando ved opning i ekstern nettlesar."
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:224
+#: interfaces/akregator.kcfg:227
 #, no-c-format, kde-format
 msgid "Command to launch external browser. URL will substitute for %u."
 msgstr ""
@@ -883,38 +883,38 @@ msgstr ""
 "nettadressa."
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:228
+#: interfaces/akregator.kcfg:231
 #, kde-format
 msgid "What the click with left mouse button should do."
 msgstr "Kva venstreklikking med musa skal gjera."
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:237
+#: interfaces/akregator.kcfg:240
 #, kde-format
 msgid "What the click with middle mouse button should do."
 msgstr "Kva midtklikking med musa skal gjera."
 
 #. i18n: ectx: label, entry, group (Browser)
-#: interfaces/akregator.kcfg:246
+#: interfaces/akregator.kcfg:249
 #, fuzzy, kde-format
 #| msgid "Enable Javascript"
 msgid "Enabled Plasma Activity"
 msgstr "Slå på JavaScript"
 
 #. i18n: ectx: label, entry, group (Advanced)
-#: interfaces/akregator.kcfg:266
+#: interfaces/akregator.kcfg:269
 #, kde-format
 msgid "Archive Backend"
 msgstr "Arkivmotor"
 
 #. i18n: ectx: whatsthis, entry (UseMarkReadDelay), group (Advanced)
-#: interfaces/akregator.kcfg:270
+#: interfaces/akregator.kcfg:273
 #, kde-format
 msgid "Whether to delay before marking an article as read upon selecting it."
 msgstr "Om ein skal venta med å merkja artiklar som lesne."
 
 #. i18n: ectx: whatsthis, entry (MarkReadDelay), group (Advanced)
-#: interfaces/akregator.kcfg:274
+#: interfaces/akregator.kcfg:277
 #, kde-format
 msgid ""
 "Configurable delay between selecting an article and it being marked as read."
@@ -922,7 +922,7 @@ msgstr ""
 "Kor lenge å venta frå artikkelen vert opna til han skal merkjast som lesen."
 
 #. i18n: ectx: whatsthis, entry, group (Advanced)
-#: interfaces/akregator.kcfg:278
+#: interfaces/akregator.kcfg:281
 #, kde-format
 msgid "Resets the quick filter when changing feeds."
 msgstr "Nullstillar snøggsøkfilteret ved byte av felt."
@@ -2163,76 +2163,76 @@ msgstr "Avbroten henting"
 msgid "Loading completed"
 msgstr "Fullført henting"
 
-#: src/mainwidget.cpp:161
+#: src/mainwidget.cpp:177
 #, kde-format
 msgid "You can view multiple articles in several open tabs."
 msgstr "Du kan sjå fleire artiklar i eigne faner."
 
-#: src/mainwidget.cpp:165
+#: src/mainwidget.cpp:181
 #, kde-format
 msgid "Articles list."
 msgstr "Artikkelliste."
 
-#: src/mainwidget.cpp:227 src/mainwidget.cpp:658
+#: src/mainwidget.cpp:243 src/mainwidget.cpp:674
 #, kde-format
 msgid "Articles"
 msgstr "Artiklar"
 
-#: src/mainwidget.cpp:256
+#: src/mainwidget.cpp:272
 #, kde-format
 msgid "About"
 msgstr "Om"
 
-#: src/mainwidget.cpp:797
+#: src/mainwidget.cpp:813
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all articles in the feed</b> as read?</"
 "qt>"
 msgstr ""
 
-#: src/mainwidget.cpp:798
+#: src/mainwidget.cpp:814
 #, fuzzy, kde-format
 #| msgid "Mark Feed as Read"
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "Merk kjelde som lesen"
 
-#: src/mainwidget.cpp:801
+#: src/mainwidget.cpp:817
 #, kde-format
 msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
 msgstr ""
 
-#: src/mainwidget.cpp:803
+#: src/mainwidget.cpp:819
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all feeds in the folder</b> as read?</"
 "qt>"
 msgstr ""
 
-#: src/mainwidget.cpp:805
+#: src/mainwidget.cpp:821
 #, fuzzy, kde-format
 #| msgid "Mark Feeds as Read"
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "Merk kjelder som lesne"
 
-#: src/mainwidget.cpp:869 src/mainwidget.cpp:878 src/mainwidget.cpp:1280
+#: src/mainwidget.cpp:885 src/mainwidget.cpp:894 src/mainwidget.cpp:1296
 #, kde-format
 msgid "Networking is not available."
 msgstr "Nettverket er ikkje tilgjengeleg"
 
-#: src/mainwidget.cpp:886
+#: src/mainwidget.cpp:902
 #, fuzzy, kde-format
 #| msgid "Fetching Feeds..."
 msgid "Fetching Feeds…"
 msgstr "Hentar kjelder …"
 
-#: src/mainwidget.cpp:1085
+#: src/mainwidget.cpp:1101
 #, kde-format
 msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
 msgstr "<qt>Er du sikker på at du vil sletta artikkelen <b>%1</b>?</qt>"
 
-#: src/mainwidget.cpp:1088
+#: src/mainwidget.cpp:1104
 #, kde-format
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
 msgid_plural ""
@@ -2240,14 +2240,14 @@ msgid_plural ""
 msgstr[0] "<qt>Er du sikker på at du vil sletta den valde artikkelen?</qt>"
 msgstr[1] "<qt>Er du sikker på at du vil sletta dei %1 valde artiklane?</qt>"
 
-#: src/mainwidget.cpp:1095
+#: src/mainwidget.cpp:1111
 #, fuzzy, kde-format
 #| msgid "Delete Article"
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "Slett artikkel"
 
-#: src/mainwidget.cpp:1277
+#: src/mainwidget.cpp:1293
 #, kde-format
 msgid "Networking is available now."
 msgstr "Nettverket er no tilgjengeleg"
@@ -2597,6 +2597,16 @@ msgstr "Send HTML-sida til artikkelen"
 #, kde-format
 msgid "Open In External Browser"
 msgstr "Opna i ekstern nettlesar"
+
+#: src/whatsnew/whatsnewtranslations.cpp:16
+#, fuzzy
+#| msgid "Enable Javascript"
+msgid "Implement Plasma Activity."
+msgstr "Slå på JavaScript"
+
+#: src/whatsnew/whatsnewtranslations.cpp:16
+msgid "Add new whatsnew widget."
+msgstr ""
 
 #: src/widgets/searchbar.cpp:43
 #, fuzzy, kde-format

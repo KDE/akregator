@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-04 00:40+0000\n"
-"PO-Revision-Date: 2024-07-08 17:38+0900\n"
+"POT-Creation-Date: 2024-08-06 00:39+0000\n"
+"PO-Revision-Date: 2024-08-06 05:32+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
 "Language: zh_TW\n"
@@ -332,7 +332,7 @@ msgstr "分頁"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_AlwaysShowTabBar)
 #. i18n: ectx: label, entry, group (Browser)
-#: configuration/ui/settings_browser.ui:116 interfaces/akregator.kcfg:199
+#: configuration/ui/settings_browser.ui:116 interfaces/akregator.kcfg:202
 #, kde-format
 msgid "Always show the tab bar"
 msgstr "總是顯示分頁列"
@@ -345,7 +345,7 @@ msgstr "在分頁標籤上顯示關閉按鍵。"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_NewWindowInTab)
 #. i18n: ectx: label, entry, group (Browser)
-#: configuration/ui/settings_browser.ui:130 interfaces/akregator.kcfg:209
+#: configuration/ui/settings_browser.ui:130 interfaces/akregator.kcfg:212
 #, kde-format
 msgid "Open links in new tab instead of in new window"
 msgstr "在新分頁而非新視窗開啟連結"
@@ -364,7 +364,7 @@ msgstr "利用 Google 安全瀏覽 API 驗證連結"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_EnableJavascript)
 #. i18n: ectx: label, entry, group (Browser)
-#: configuration/ui/settings_browser.ui:153 interfaces/akregator.kcfg:195
+#: configuration/ui/settings_browser.ui:153 interfaces/akregator.kcfg:198
 #, kde-format
 msgid "Enable JavaScript"
 msgstr "啟用 JavaScript"
@@ -822,25 +822,25 @@ msgid "Specifies if we show unread article in taskbar."
 msgstr "指定我們是否應該在工作列上顯示未讀文章。"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:200
+#: interfaces/akregator.kcfg:203
 #, kde-format
 msgid "Always show the tab bar, even when only one tab is open"
 msgstr "總是顯示分頁列，即使只開啟了一個分頁"
 
 #. i18n: ectx: label, entry, group (Browser)
-#: interfaces/akregator.kcfg:204
+#: interfaces/akregator.kcfg:207
 #, kde-format
 msgid "Show close buttons on tabs"
 msgstr "在分頁標籤上顯示關閉按鍵"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:205
+#: interfaces/akregator.kcfg:208
 #, kde-format
 msgid "Show close buttons on tabs instead of icons"
 msgstr "在分頁標籤上顯示關閉按鍵，而不是顯示圖示"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:210
+#: interfaces/akregator.kcfg:213
 #, kde-format
 msgid ""
 "Open a link which would normally open in a new window (external browser) in "
@@ -848,74 +848,74 @@ msgid ""
 msgstr "在分頁中開啟連結，而不在外部瀏覽器中開啟"
 
 #. i18n: ectx: label, entry, group (Browser)
-#: interfaces/akregator.kcfg:214
+#: interfaces/akregator.kcfg:217
 #, kde-format
 msgid "Use default KDE web browser"
 msgstr "使用預設的 KDE 網頁瀏覽器"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:215
+#: interfaces/akregator.kcfg:218
 #, kde-format
 msgid "Use KDE web browser when opening in external browser."
 msgstr "在外部瀏覽器開啟時使用 KDE 的網頁瀏覽器。"
 
 #. i18n: ectx: label, entry, group (Browser)
-#: interfaces/akregator.kcfg:219
+#: interfaces/akregator.kcfg:222
 #, kde-format
 msgid "Use this command:"
 msgstr "使用此指令："
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:220
+#: interfaces/akregator.kcfg:223
 #, kde-format
 msgid "Use the specified command when opening in external browser."
 msgstr "在外部瀏覽器開啟時使用指定的指令。"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:224
+#: interfaces/akregator.kcfg:227
 #, no-c-format, kde-format
 msgid "Command to launch external browser. URL will substitute for %u."
 msgstr "啟動外部瀏覽器的指令。%u 會替換為網址。"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:228
+#: interfaces/akregator.kcfg:231
 #, kde-format
 msgid "What the click with left mouse button should do."
 msgstr "點擊滑鼠左鍵時要做什麼事情。"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:237
+#: interfaces/akregator.kcfg:240
 #, kde-format
 msgid "What the click with middle mouse button should do."
 msgstr "點擊滑鼠中鍵時要做什麼事情。"
 
 #. i18n: ectx: label, entry, group (Browser)
-#: interfaces/akregator.kcfg:246
+#: interfaces/akregator.kcfg:249
 #, kde-format
 msgid "Enabled Plasma Activity"
 msgstr "已啟用 Plasma 活動"
 
 #. i18n: ectx: label, entry, group (Advanced)
-#: interfaces/akregator.kcfg:266
+#: interfaces/akregator.kcfg:269
 #, kde-format
 msgid "Archive Backend"
 msgstr "文章收集後端介面"
 
 #. i18n: ectx: whatsthis, entry (UseMarkReadDelay), group (Advanced)
-#: interfaces/akregator.kcfg:270
+#: interfaces/akregator.kcfg:273
 #, kde-format
 msgid "Whether to delay before marking an article as read upon selecting it."
 msgstr "選擇某篇文章時，要過多久以後才標記為已讀。"
 
 #. i18n: ectx: whatsthis, entry (MarkReadDelay), group (Advanced)
-#: interfaces/akregator.kcfg:274
+#: interfaces/akregator.kcfg:277
 #, kde-format
 msgid ""
 "Configurable delay between selecting an article and it being marked as read."
 msgstr "設定在選擇一篇文章到設定該文章為已讀間要延遲多少時間。"
 
 #. i18n: ectx: whatsthis, entry, group (Advanced)
-#: interfaces/akregator.kcfg:278
+#: interfaces/akregator.kcfg:281
 #, kde-format
 msgid "Resets the quick filter when changing feeds."
 msgstr "變更訂閱來源時重設快速過濾器。"
@@ -1490,8 +1490,10 @@ msgstr "在外部瀏覽器中開啟連結(&B)"
 #, kde-format
 msgctxt "@option:check"
 msgid "Limit to the selected activities:"
-msgstr ""
+msgstr "限制於所選活動："
 
+# Obviously this source string was copied from Ruqola but wasn't updated for Akregator.
+# --Kisaragi (20240806T053232+0900)
 #: src/activities/configureactivitieswidget.cpp:63
 #, kde-format
 msgctxt "@label:textbox"
@@ -1500,6 +1502,8 @@ msgid ""
 "you are in those activities. Furthermore, when you switch to an activity it "
 "should not be available in, it will automatically be hidden."
 msgstr ""
+"若限制此帳號於特定活動，則僅當使用者處於該活動中時，帳號才會在 Akregator 中顯"
+"示。此外，當您切換到其他非指定活動時，帳號會自動隱藏。"
 
 #: src/addfeeddialog.cpp:49
 #, kde-format
@@ -1952,7 +1956,7 @@ msgstr "所有的訂閱來源"
 #: src/feed/feedpropertiesdialog.cpp:36
 #, kde-format
 msgid "Activities"
-msgstr ""
+msgstr "活動"
 
 #: src/feed/feedpropertiesdialog.cpp:61 src/feed/feedpropertiesdialog.cpp:109
 #, kde-format
@@ -2080,86 +2084,86 @@ msgstr "載入取消"
 msgid "Loading completed"
 msgstr "載入完成"
 
-#: src/mainwidget.cpp:161
+#: src/mainwidget.cpp:177
 #, kde-format
 msgid "You can view multiple articles in several open tabs."
 msgstr "您可以在數個開啟的分頁中瀏覽多篇文章。"
 
-#: src/mainwidget.cpp:165
+#: src/mainwidget.cpp:181
 #, kde-format
 msgid "Articles list."
 msgstr "文章列表。"
 
-#: src/mainwidget.cpp:227 src/mainwidget.cpp:658
+#: src/mainwidget.cpp:243 src/mainwidget.cpp:674
 #, kde-format
 msgid "Articles"
 msgstr "文章"
 
-#: src/mainwidget.cpp:256
+#: src/mainwidget.cpp:272
 #, kde-format
 msgid "About"
 msgstr "關於"
 
-#: src/mainwidget.cpp:797
+#: src/mainwidget.cpp:813
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all articles in the feed</b> as read?</"
 "qt>"
 msgstr "<qt>您確定要標記<b>訂閱來源中的所有文章</b>為已讀嗎？</qt>"
 
-#: src/mainwidget.cpp:798
+#: src/mainwidget.cpp:814
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "將訂閱來源標為已讀"
 
-#: src/mainwidget.cpp:801
+#: src/mainwidget.cpp:817
 #, kde-format
 msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
 msgstr "<qt>您確定要標記<b>所有訂閱來源</b>為已讀嗎？</qt>"
 
-#: src/mainwidget.cpp:803
+#: src/mainwidget.cpp:819
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all feeds in the folder</b> as read?</"
 "qt>"
 msgstr "<qt>您確定要標記<b>所有這個資料夾裡的訂閱來源</b>為已讀嗎？</qt>"
 
-#: src/mainwidget.cpp:805
+#: src/mainwidget.cpp:821
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "將訂閱來源標記為已讀"
 
-#: src/mainwidget.cpp:869 src/mainwidget.cpp:878 src/mainwidget.cpp:1280
+#: src/mainwidget.cpp:885 src/mainwidget.cpp:894 src/mainwidget.cpp:1296
 #, kde-format
 msgid "Networking is not available."
 msgstr "網路無法使用。"
 
-#: src/mainwidget.cpp:886
+#: src/mainwidget.cpp:902
 #, kde-format
 msgid "Fetching Feeds…"
 msgstr "抓取訂閱來源中…"
 
-#: src/mainwidget.cpp:1085
+#: src/mainwidget.cpp:1101
 #, kde-format
 msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
 msgstr "<qt>您確定要刪除文章 <b>%1</b> 嗎？</qt>"
 
-#: src/mainwidget.cpp:1088
+#: src/mainwidget.cpp:1104
 #, kde-format
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
 msgid_plural ""
 "<qt>Are you sure you want to delete the %1 selected articles?</qt>"
 msgstr[0] "<qt>您確定要刪除這 %1 篇文章嗎？</qt>"
 
-#: src/mainwidget.cpp:1095
+#: src/mainwidget.cpp:1111
 #, kde-format
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "刪除文章"
 
-#: src/mainwidget.cpp:1277
+#: src/mainwidget.cpp:1293
 #, kde-format
 msgid "Networking is available now."
 msgstr "網路現在可以使用。"
@@ -2503,6 +2507,16 @@ msgstr "傳送此文章的 HTML 頁面"
 #, kde-format
 msgid "Open In External Browser"
 msgstr "在外部瀏覽器開啟"
+
+#: src/whatsnew/whatsnewtranslations.cpp:16
+#, fuzzy
+#| msgid "Enabled Plasma Activity"
+msgid "Implement Plasma Activity."
+msgstr "已啟用 Plasma 活動"
+
+#: src/whatsnew/whatsnewtranslations.cpp:16
+msgid "Add new whatsnew widget."
+msgstr ""
 
 #: src/widgets/searchbar.cpp:43
 #, kde-format
