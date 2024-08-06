@@ -177,8 +177,6 @@ target_sources(akregatorprivate PRIVATE
 
 if(TARGET KPim6::PimCommonActivities)
     target_sources(akregatorprivate PRIVATE
-	activities/configureactivitieswidget.cpp
-	activities/configureactivitieswidget.h
 	activities/activitiesmanager.cpp
 	activities/activitiesmanager.h
     )

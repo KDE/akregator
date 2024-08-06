@@ -18,11 +18,14 @@
 #include "activities/activitiesmanager.h"
 #endif
 
+#if HAVE_ACTIVITY_SUPPORT
+namespace PimCommonActivities
+{
+class ConfigureActivitiesWidget;
+}
+#endif
 namespace Akregator
 {
-#if HAVE_ACTIVITY_SUPPORT
-class ConfigureActivitiesWidget;
-#endif
 class FeedPropertiesWidget : public QWidget, public Ui::FeedPropertiesWidgetBase
 {
     Q_OBJECT
@@ -38,7 +41,7 @@ public:
     };
 
 #if HAVE_ACTIVITY_SUPPORT
-    [[nodiscard]] ConfigureActivitiesWidget *configureActivitiesWidget() const;
+    [[nodiscard]] PimCommonActivities::ConfigureActivitiesWidget *configureActivitiesWidget() const;
     [[nodiscard]] ActivitiesManager::ActivitySettings activitySettings() const;
     void setActivitiesSettings(const ActivitiesManager::ActivitySettings &activitySettings);
 #endif
@@ -49,7 +52,7 @@ private:
     void slotUpdateCheckBoxToggled(bool enabled);
 
 #if HAVE_ACTIVITY_SUPPORT
-    ConfigureActivitiesWidget *const mConfigureActivitiesWidget;
+    PimCommonActivities::ConfigureActivitiesWidget *const mConfigureActivitiesWidget;
 #endif
 };
 

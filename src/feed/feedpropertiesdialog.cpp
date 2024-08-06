@@ -8,7 +8,7 @@
 
 #include "feedpropertiesdialog.h"
 #if HAVE_ACTIVITY_SUPPORT
-#include "activities/configureactivitieswidget.h"
+#include <PimCommonActivities/ConfigureActivitiesWidget>
 #endif
 #include "akregatorconfig.h"
 
@@ -22,11 +22,11 @@
 #include <kernel.h>
 
 using namespace Akregator;
-// TODO add activities tab
+
 FeedPropertiesWidget::FeedPropertiesWidget(QWidget *parent)
     : QWidget(parent)
 #if HAVE_ACTIVITY_SUPPORT
-    , mConfigureActivitiesWidget(new ConfigureActivitiesWidget(this))
+    , mConfigureActivitiesWidget(new PimCommonActivities::ConfigureActivitiesWidget(this))
 #endif
 {
     setupUi(this);
@@ -69,7 +69,7 @@ void FeedPropertiesWidget::slotUpdateCheckBoxToggled(bool enabled)
 }
 
 #if HAVE_ACTIVITY_SUPPORT
-ConfigureActivitiesWidget *FeedPropertiesWidget::configureActivitiesWidget() const
+PimCommonActivities::ConfigureActivitiesWidget *FeedPropertiesWidget::configureActivitiesWidget() const
 {
     return mConfigureActivitiesWidget;
 }
