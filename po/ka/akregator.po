@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-06 00:39+0000\n"
-"PO-Revision-Date: 2024-08-02 05:51+0200\n"
+"POT-Creation-Date: 2024-08-07 00:40+0000\n"
+"PO-Revision-Date: 2024-08-06 05:54+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -1498,24 +1498,6 @@ msgstr "ბმულის ახალ ფანჯარაში &გახ�
 msgid "Open Link in External &Browser"
 msgstr "ბმულის გარე &ბრაუზერში გახსნა"
 
-#: src/activities/configureactivitieswidget.cpp:56
-#, kde-format
-msgctxt "@option:check"
-msgid "Limit to the selected activities:"
-msgstr "მონიშნულ ქმედებებზე შეზღუდვა:"
-
-#: src/activities/configureactivitieswidget.cpp:63
-#, kde-format
-msgctxt "@label:textbox"
-msgid ""
-"If you limit this account to activity, it will be shown in Ruqola only when "
-"you are in those activities. Furthermore, when you switch to an activity it "
-"should not be available in, it will automatically be hidden."
-msgstr ""
-"თუ ამ ანგარიშს აქტივობაზე შეზღუდავთ, ის Ruqola-ში, მხოლოდ, მაშინ გამოჩნდება, "
-"რომ იმ აქტივობებში ბრძანდებით. უფრო მეტიც კი, როცა გადაერთვებით აქტივობაზე, "
-"სადაც ის ხელმისაწვდომი არ უნდა იყოს, ის ავტომატურად დაიმალება."
-
 #: src/addfeeddialog.cpp:49
 #, kde-format
 msgctxt "@title:window"
@@ -2552,14 +2534,12 @@ msgid "Open In External Browser"
 msgstr "გარე ბრაუზერში გახსნა"
 
 #: src/whatsnew/whatsnewtranslations.cpp:16
-#, fuzzy
-#| msgid "Enabled Plasma Activity"
 msgid "Implement Plasma Activity."
-msgstr "Plasma-ის აქტივობების ჩართვა"
+msgstr "Plasma-ის აქტივობის განხორციელება."
 
 #: src/whatsnew/whatsnewtranslations.cpp:16
 msgid "Add new whatsnew widget."
-msgstr ""
+msgstr "ახალი სიახლეების ვიჯეტის დამატება."
 
 #: src/widgets/searchbar.cpp:43
 #, kde-format
@@ -2601,6 +2581,21 @@ msgstr "წაკითხვა"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "მნიშვნელოვანი"
+
+#~ msgctxt "@option:check"
+#~ msgid "Limit to the selected activities:"
+#~ msgstr "მონიშნულ ქმედებებზე შეზღუდვა:"
+
+#~ msgctxt "@label:textbox"
+#~ msgid ""
+#~ "If you limit this account to activity, it will be shown in Ruqola only "
+#~ "when you are in those activities. Furthermore, when you switch to an "
+#~ "activity it should not be available in, it will automatically be hidden."
+#~ msgstr ""
+#~ "თუ ამ ანგარიშს აქტივობაზე შეზღუდავთ, ის Ruqola-ში, მხოლოდ, მაშინ "
+#~ "გამოჩნდება, რომ იმ აქტივობებში ბრძანდებით. უფრო მეტიც კი, როცა "
+#~ "გადაერთვებით აქტივობაზე, სადაც ის ხელმისაწვდომი არ უნდა იყოს, ის "
+#~ "ავტომატურად დაიმალება."
 
 #~ msgid "Write Error"
 #~ msgstr "ჩაწერის შეცდომა"

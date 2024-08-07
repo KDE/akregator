@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Mimos\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-06 00:39+0000\n"
+"POT-Creation-Date: 2024-08-07 00:40+0000\n"
 "PO-Revision-Date: 2005-10-12 11:13+0800\n"
 "Last-Translator: MIMOS <opensource@mimos.my>\n"
 "Language-Team: Malay <kedidiemas@yahoogroups.com>\n"
@@ -1518,21 +1518,6 @@ msgstr "Buka Pautan di dalam &Tab Baru"
 #, kde-format
 msgid "Open Link in External &Browser"
 msgstr "Buka Pautan di dalam &Pelayar Luar"
-
-#: src/activities/configureactivitieswidget.cpp:56
-#, kde-format
-msgctxt "@option:check"
-msgid "Limit to the selected activities:"
-msgstr ""
-
-#: src/activities/configureactivitieswidget.cpp:63
-#, kde-format
-msgctxt "@label:textbox"
-msgid ""
-"If you limit this account to activity, it will be shown in Ruqola only when "
-"you are in those activities. Furthermore, when you switch to an activity it "
-"should not be available in, it will automatically be hidden."
-msgstr ""
 
 #: src/addfeeddialog.cpp:49
 #, fuzzy, kde-format

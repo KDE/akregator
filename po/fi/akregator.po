@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-06 00:39+0000\n"
+"POT-Creation-Date: 2024-08-07 00:40+0000\n"
 "PO-Revision-Date: 2023-11-22 18:44+0200\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
@@ -1544,21 +1544,6 @@ msgstr "Avaa linkki uuteen &välilehteen"
 #, kde-format
 msgid "Open Link in External &Browser"
 msgstr "Avaa linkki &ulkoiseen selaimeen"
-
-#: src/activities/configureactivitieswidget.cpp:56
-#, kde-format
-msgctxt "@option:check"
-msgid "Limit to the selected activities:"
-msgstr ""
-
-#: src/activities/configureactivitieswidget.cpp:63
-#, kde-format
-msgctxt "@label:textbox"
-msgid ""
-"If you limit this account to activity, it will be shown in Ruqola only when "
-"you are in those activities. Furthermore, when you switch to an activity it "
-"should not be available in, it will automatically be hidden."
-msgstr ""
 
 #: src/addfeeddialog.cpp:49
 #, kde-format

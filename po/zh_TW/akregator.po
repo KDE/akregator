@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-06 00:39+0000\n"
+"POT-Creation-Date: 2024-08-07 00:40+0000\n"
 "PO-Revision-Date: 2024-08-06 05:32+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
@@ -1486,25 +1486,6 @@ msgstr "在新分頁中開啟連結(&T)"
 msgid "Open Link in External &Browser"
 msgstr "在外部瀏覽器中開啟連結(&B)"
 
-#: src/activities/configureactivitieswidget.cpp:56
-#, kde-format
-msgctxt "@option:check"
-msgid "Limit to the selected activities:"
-msgstr "限制於所選活動："
-
-# Obviously this source string was copied from Ruqola but wasn't updated for Akregator.
-# --Kisaragi (20240806T053232+0900)
-#: src/activities/configureactivitieswidget.cpp:63
-#, kde-format
-msgctxt "@label:textbox"
-msgid ""
-"If you limit this account to activity, it will be shown in Ruqola only when "
-"you are in those activities. Furthermore, when you switch to an activity it "
-"should not be available in, it will automatically be hidden."
-msgstr ""
-"若限制此帳號於特定活動，則僅當使用者處於該活動中時，帳號才會在 Akregator 中顯"
-"示。此外，當您切換到其他非指定活動時，帳號會自動隱藏。"
-
 #: src/addfeeddialog.cpp:49
 #, kde-format
 msgctxt "@title:window"
@@ -2558,6 +2539,21 @@ msgstr "已讀"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "重要文章"
+
+#~ msgctxt "@option:check"
+#~ msgid "Limit to the selected activities:"
+#~ msgstr "限制於所選活動："
+
+# Obviously this source string was copied from Ruqola but wasn't updated for Akregator.
+# --Kisaragi (20240806T053232+0900)
+#~ msgctxt "@label:textbox"
+#~ msgid ""
+#~ "If you limit this account to activity, it will be shown in Ruqola only "
+#~ "when you are in those activities. Furthermore, when you switch to an "
+#~ "activity it should not be available in, it will automatically be hidden."
+#~ msgstr ""
+#~ "若限制此帳號於特定活動，則僅當使用者處於該活動中時，帳號才會在 Akregator "
+#~ "中顯示。此外，當您切換到其他非指定活動時，帳號會自動隱藏。"
 
 #~ msgid "Write Error"
 #~ msgstr "寫入錯誤"

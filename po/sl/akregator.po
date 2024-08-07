@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-06 00:39+0000\n"
-"PO-Revision-Date: 2024-08-02 05:25+0200\n"
+"POT-Creation-Date: 2024-08-07 00:40+0000\n"
+"PO-Revision-Date: 2024-08-06 07:23+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
 "Language: sl\n"
@@ -1510,24 +1510,6 @@ msgstr "Odpri povezavo v novem zavihku"
 msgid "Open Link in External &Browser"
 msgstr "Odpri povezavo v zunanjem &brskalniku"
 
-#: src/activities/configureactivitieswidget.cpp:56
-#, kde-format
-msgctxt "@option:check"
-msgid "Limit to the selected activities:"
-msgstr "Omeji na izbrane dejavnosti:"
-
-#: src/activities/configureactivitieswidget.cpp:63
-#, kde-format
-msgctxt "@label:textbox"
-msgid ""
-"If you limit this account to activity, it will be shown in Ruqola only when "
-"you are in those activities. Furthermore, when you switch to an activity it "
-"should not be available in, it will automatically be hidden."
-msgstr ""
-"Če ta račun omejite na dejavnost, bo prikazan v Ruqoli samo, ko ste v teh "
-"dejavnostih. Poleg tega, ko preklopite na dejavnost, v kateri ne bi smela "
-"biti na voljo, bo samodejno skrita."
-
 #: src/addfeeddialog.cpp:49
 #, kde-format
 msgctxt "@title:window"
@@ -2584,14 +2566,12 @@ msgid "Open In External Browser"
 msgstr "Odpri v zunanjem brskalniku"
 
 #: src/whatsnew/whatsnewtranslations.cpp:16
-#, fuzzy
-#| msgid "Enabled Plasma Activity"
 msgid "Implement Plasma Activity."
-msgstr "Omogočena dejavnost Plasme"
+msgstr "Implementira dejavnost Plasme."
 
 #: src/whatsnew/whatsnewtranslations.cpp:16
 msgid "Add new whatsnew widget."
-msgstr ""
+msgstr "Doda novi gradnik whatsnew."
 
 #: src/widgets/searchbar.cpp:43
 #, kde-format
@@ -2633,6 +2613,20 @@ msgstr "Prebrano"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "Pomembno"
+
+#~ msgctxt "@option:check"
+#~ msgid "Limit to the selected activities:"
+#~ msgstr "Omeji na izbrane dejavnosti:"
+
+#~ msgctxt "@label:textbox"
+#~ msgid ""
+#~ "If you limit this account to activity, it will be shown in Ruqola only "
+#~ "when you are in those activities. Furthermore, when you switch to an "
+#~ "activity it should not be available in, it will automatically be hidden."
+#~ msgstr ""
+#~ "Če ta račun omejite na dejavnost, bo prikazan v Ruqoli samo, ko ste v teh "
+#~ "dejavnostih. Poleg tega, ko preklopite na dejavnost, v kateri ne bi smela "
+#~ "biti na voljo, bo samodejno skrita."
 
 #~ msgid "Write Error"
 #~ msgstr "Napaka pisanja"

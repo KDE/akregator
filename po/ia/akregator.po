@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-06 00:39+0000\n"
+"POT-Creation-Date: 2024-08-07 00:40+0000\n"
 "PO-Revision-Date: 2024-08-02 09:15+0200\n"
 "Last-Translator: giovanni <g.sora@tiscali.it>\n"
 "Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
@@ -1504,24 +1504,6 @@ msgstr "Aperi ligamine in nove &scheda"
 msgid "Open Link in External &Browser"
 msgstr "Aperi ligamine in &Navigator externe"
 
-#: src/activities/configureactivitieswidget.cpp:56
-#, kde-format
-msgctxt "@option:check"
-msgid "Limit to the selected activities:"
-msgstr "Limita al activitates seligite:"
-
-#: src/activities/configureactivitieswidget.cpp:63
-#, kde-format
-msgctxt "@label:textbox"
-msgid ""
-"If you limit this account to activity, it will be shown in Ruqola only when "
-"you are in those activities. Furthermore, when you switch to an activity it "
-"should not be available in, it will automatically be hidden."
-msgstr ""
-"Si tu limita iste conto a activitate, il essera monstrate in Ruqola solmente "
-"quando tu es in ille activitates. In ultra, quando tu passa a un activitate "
-"il non deberea esser disponibile, il essera celate automaticamente."
-
 #: src/addfeeddialog.cpp:49
 #, kde-format
 msgctxt "@title:window"
@@ -2612,6 +2594,21 @@ msgstr "Lege"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "Importante"
+
+#~ msgctxt "@option:check"
+#~ msgid "Limit to the selected activities:"
+#~ msgstr "Limita al activitates seligite:"
+
+#~ msgctxt "@label:textbox"
+#~ msgid ""
+#~ "If you limit this account to activity, it will be shown in Ruqola only "
+#~ "when you are in those activities. Furthermore, when you switch to an "
+#~ "activity it should not be available in, it will automatically be hidden."
+#~ msgstr ""
+#~ "Si tu limita iste conto a activitate, il essera monstrate in Ruqola "
+#~ "solmente quando tu es in ille activitates. In ultra, quando tu passa a un "
+#~ "activitate il non deberea esser disponibile, il essera celate "
+#~ "automaticamente."
 
 #~ msgid "Write Error"
 #~ msgstr "Error de scriptura"

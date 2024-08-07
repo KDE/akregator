@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-06 00:39+0000\n"
+"POT-Creation-Date: 2024-08-07 00:40+0000\n"
 "PO-Revision-Date: 2024-08-03 11:21+0200\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -1516,25 +1516,6 @@ msgstr "O&twórz w nowej karcie"
 msgid "Open Link in External &Browser"
 msgstr "Otwórz odnośnik w zewnętrznej &przeglądarce"
 
-#: src/activities/configureactivitieswidget.cpp:56
-#, kde-format
-msgctxt "@option:check"
-msgid "Limit to the selected activities:"
-msgstr "Ogranicz do wskazanych aktywności:"
-
-#: src/activities/configureactivitieswidget.cpp:63
-#, kde-format
-msgctxt "@label:textbox"
-msgid ""
-"If you limit this account to activity, it will be shown in Ruqola only when "
-"you are in those activities. Furthermore, when you switch to an activity it "
-"should not be available in, it will automatically be hidden."
-msgstr ""
-"Jeśli ograniczysz to konto tylko do pewnej aktywności, to będzie on "
-"pokazywany w Ruqoli tylko gdy będziesz w tych aktywnościach. Ponadto, jeśli "
-"przełączysz się do aktywności, której nie wybrałeś, to sejf zostanie "
-"samoczynnie ukryty."
-
 #: src/addfeeddialog.cpp:49
 #, kde-format
 msgctxt "@title:window"
@@ -2629,6 +2610,21 @@ msgstr "Do przeczytania"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "Ważne"
+
+#~ msgctxt "@option:check"
+#~ msgid "Limit to the selected activities:"
+#~ msgstr "Ogranicz do wskazanych aktywności:"
+
+#~ msgctxt "@label:textbox"
+#~ msgid ""
+#~ "If you limit this account to activity, it will be shown in Ruqola only "
+#~ "when you are in those activities. Furthermore, when you switch to an "
+#~ "activity it should not be available in, it will automatically be hidden."
+#~ msgstr ""
+#~ "Jeśli ograniczysz to konto tylko do pewnej aktywności, to będzie on "
+#~ "pokazywany w Ruqoli tylko gdy będziesz w tych aktywnościach. Ponadto, "
+#~ "jeśli przełączysz się do aktywności, której nie wybrałeś, to sejf "
+#~ "zostanie samoczynnie ukryty."
 
 #~ msgid "Write Error"
 #~ msgstr "Błąd zapisu"

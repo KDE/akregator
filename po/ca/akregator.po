@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-06 00:39+0000\n"
-"PO-Revision-Date: 2024-08-02 12:43+0200\n"
+"POT-Creation-Date: 2024-08-07 00:40+0000\n"
+"PO-Revision-Date: 2024-08-06 13:18+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca\n"
@@ -1507,24 +1507,6 @@ msgstr "Obre l'enllaç en una pestan&ya nova"
 msgid "Open Link in External &Browser"
 msgstr "Obre l'enllaç en un na&vegador extern"
 
-#: src/activities/configureactivitieswidget.cpp:56
-#, kde-format
-msgctxt "@option:check"
-msgid "Limit to the selected activities:"
-msgstr "Limita a les activitats seleccionades:"
-
-#: src/activities/configureactivitieswidget.cpp:63
-#, kde-format
-msgctxt "@label:textbox"
-msgid ""
-"If you limit this account to activity, it will be shown in Ruqola only when "
-"you are in those activities. Furthermore, when you switch to an activity it "
-"should not be available in, it will automatically be hidden."
-msgstr ""
-"Si limiteu aquest compte a activitats, només es mostrarà en el Ruqola quan "
-"esteu en aquestes activitats. D'altra banda, quan canvieu a una activitat "
-"que no hauria d'estar disponible, s'ocultarà automàticament."
-
 #: src/addfeeddialog.cpp:49
 #, kde-format
 msgctxt "@title:window"
@@ -2562,14 +2544,12 @@ msgid "Open In External Browser"
 msgstr "Obre en un navegador extern"
 
 #: src/whatsnew/whatsnewtranslations.cpp:16
-#, fuzzy
-#| msgid "Enabled Plasma Activity"
 msgid "Implement Plasma Activity."
-msgstr "Activitat del Plasma activada"
+msgstr "Implementa les Activitats del Plasma."
 
 #: src/whatsnew/whatsnewtranslations.cpp:16
 msgid "Add new whatsnew widget."
-msgstr ""
+msgstr "Afegeix un giny nou «Què hi ha de nou»."
 
 #: src/widgets/searchbar.cpp:43
 #, kde-format
@@ -2611,6 +2591,20 @@ msgstr "Llegit"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "Important"
+
+#~ msgctxt "@option:check"
+#~ msgid "Limit to the selected activities:"
+#~ msgstr "Limita a les activitats seleccionades:"
+
+#~ msgctxt "@label:textbox"
+#~ msgid ""
+#~ "If you limit this account to activity, it will be shown in Ruqola only "
+#~ "when you are in those activities. Furthermore, when you switch to an "
+#~ "activity it should not be available in, it will automatically be hidden."
+#~ msgstr ""
+#~ "Si limiteu aquest compte a activitats, només es mostrarà en el Ruqola "
+#~ "quan esteu en aquestes activitats. D'altra banda, quan canvieu a una "
+#~ "activitat que no hauria d'estar disponible, s'ocultarà automàticament."
 
 #~ msgid "Write Error"
 #~ msgstr "Error d'escriptura"

@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-06 00:39+0000\n"
-"PO-Revision-Date: 2024-08-03 11:44+0200\n"
+"POT-Creation-Date: 2024-08-07 00:40+0000\n"
+"PO-Revision-Date: 2024-08-06 11:21+0200\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
 "Language: eu\n"
@@ -1507,24 +1507,6 @@ msgstr "Ireki esteka &fitxa berrian"
 msgid "Open Link in External &Browser"
 msgstr "Ireki esteka kanpoko &arakatzailean"
 
-#: src/activities/configureactivitieswidget.cpp:56
-#, kde-format
-msgctxt "@option:check"
-msgid "Limit to the selected activities:"
-msgstr "Mugatu hautatutako jardueretara:"
-
-#: src/activities/configureactivitieswidget.cpp:63
-#, kde-format
-msgctxt "@label:textbox"
-msgid ""
-"If you limit this account to activity, it will be shown in Ruqola only when "
-"you are in those activities. Furthermore, when you switch to an activity it "
-"should not be available in, it will automatically be hidden."
-msgstr ""
-"Kontua hau jarduerara mugatzen baduzu, Ruqolan erakutsiko da, bakarrik, "
-"jarduera horietan zaudenean. Hare gehiago, erabilgarri egon beharko ez "
-"litzatekeen jarduera batera aldatzen zarenean, automatikoki ezkutatuko da."
-
 #: src/addfeeddialog.cpp:49
 #, kde-format
 msgctxt "@title:window"
@@ -2565,14 +2547,12 @@ msgid "Open In External Browser"
 msgstr "Ireki kanpoko arakatzailean"
 
 #: src/whatsnew/whatsnewtranslations.cpp:16
-#, fuzzy
-#| msgid "Enabled Plasma Activity"
 msgid "Implement Plasma Activity."
-msgstr "Plasma Jarduera gaituta"
+msgstr "Plasma Jarduera inplementatu."
 
 #: src/whatsnew/whatsnewtranslations.cpp:16
 msgid "Add new whatsnew widget."
-msgstr ""
+msgstr "Gehitu zerberri trepeta berria."
 
 #: src/widgets/searchbar.cpp:43
 #, kde-format
@@ -2614,6 +2594,20 @@ msgstr "Irakurrita"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "Garrantzizkoak"
+
+#~ msgctxt "@option:check"
+#~ msgid "Limit to the selected activities:"
+#~ msgstr "Mugatu hautatutako jardueretara:"
+
+#~ msgctxt "@label:textbox"
+#~ msgid ""
+#~ "If you limit this account to activity, it will be shown in Ruqola only "
+#~ "when you are in those activities. Furthermore, when you switch to an "
+#~ "activity it should not be available in, it will automatically be hidden."
+#~ msgstr ""
+#~ "Kontua hau jarduerara mugatzen baduzu, Ruqolan erakutsiko da, bakarrik, "
+#~ "jarduera horietan zaudenean. Hare gehiago, erabilgarri egon beharko ez "
+#~ "litzatekeen jarduera batera aldatzen zarenean, automatikoki ezkutatuko da."
 
 #~ msgid "Write Error"
 #~ msgstr "Idazteko errorea"

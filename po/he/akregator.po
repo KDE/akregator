@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-06 00:39+0000\n"
-"PO-Revision-Date: 2024-08-02 07:49+0300\n"
+"POT-Creation-Date: 2024-08-07 00:40+0000\n"
+"PO-Revision-Date: 2024-08-06 09:56+0300\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -1498,23 +1498,6 @@ msgstr "פתיחת קישור ב&לשונית חדשה"
 msgid "Open Link in External &Browser"
 msgstr "פתיחת הקישור בדפדפן &חיצוני"
 
-#: src/activities/configureactivitieswidget.cpp:56
-#, kde-format
-msgctxt "@option:check"
-msgid "Limit to the selected activities:"
-msgstr "הגבלה לפעילויות הנבחרות:"
-
-#: src/activities/configureactivitieswidget.cpp:63
-#, kde-format
-msgctxt "@label:textbox"
-msgid ""
-"If you limit this account to activity, it will be shown in Ruqola only when "
-"you are in those activities. Furthermore, when you switch to an activity it "
-"should not be available in, it will automatically be hidden."
-msgstr ""
-"הגבלת החשבון הזה לפעילות, תגרום לכך שהוא יופיע ב־Ruqola רק בפעילויות האלה. "
-"יתרה מכך, במעבר לפעילות שבה הכספת לא אמורה להיות זמינה, היא תוסתר אוטומטית."
-
 #: src/addfeeddialog.cpp:49
 #, kde-format
 msgctxt "@title:window"
@@ -2548,14 +2531,12 @@ msgid "Open In External Browser"
 msgstr "פתיחה בדפדפן חיצוני"
 
 #: src/whatsnew/whatsnewtranslations.cpp:16
-#, fuzzy
-#| msgid "Enabled Plasma Activity"
 msgid "Implement Plasma Activity."
-msgstr "פעילות פלזמה פעילה"
+msgstr "מימוש פעילות פלזמה."
 
 #: src/whatsnew/whatsnewtranslations.cpp:16
 msgid "Add new whatsnew widget."
-msgstr ""
+msgstr "הוספת וידג׳ט חדש עם מה חדש."
 
 #: src/widgets/searchbar.cpp:43
 #, kde-format
@@ -2597,6 +2578,20 @@ msgstr "נקרא"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "חשוב"
+
+#~ msgctxt "@option:check"
+#~ msgid "Limit to the selected activities:"
+#~ msgstr "הגבלה לפעילויות הנבחרות:"
+
+#~ msgctxt "@label:textbox"
+#~ msgid ""
+#~ "If you limit this account to activity, it will be shown in Ruqola only "
+#~ "when you are in those activities. Furthermore, when you switch to an "
+#~ "activity it should not be available in, it will automatically be hidden."
+#~ msgstr ""
+#~ "הגבלת החשבון הזה לפעילות, תגרום לכך שהוא יופיע ב־Ruqola רק בפעילויות "
+#~ "האלה. יתרה מכך, במעבר לפעילות שבה הכספת לא אמורה להיות זמינה, היא תוסתר "
+#~ "אוטומטית."
 
 #~ msgid "Write Error"
 #~ msgstr "שגיאת כתיבה"

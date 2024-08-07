@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-06 00:39+0000\n"
+"POT-Creation-Date: 2024-08-07 00:40+0000\n"
 "PO-Revision-Date: 2024-08-03 07:26+0200\n"
 "Last-Translator: Oliver Kellogg <olivermkellogg@gmail.com>\n"
 "Language-Team: Esperanto <kde-i18n-eo@kde.org>\n"
@@ -1496,24 +1496,6 @@ msgstr "Malfermi ligilon en nova &langeto"
 msgid "Open Link in External &Browser"
 msgstr "Malfermi ligilon en ekstera &retumilo"
 
-#: src/activities/configureactivitieswidget.cpp:56
-#, kde-format
-msgctxt "@option:check"
-msgid "Limit to the selected activities:"
-msgstr "Limigi al la elektitaj aktivecoj:"
-
-#: src/activities/configureactivitieswidget.cpp:63
-#, kde-format
-msgctxt "@label:textbox"
-msgid ""
-"If you limit this account to activity, it will be shown in Ruqola only when "
-"you are in those activities. Furthermore, when you switch to an activity it "
-"should not be available in, it will automatically be hidden."
-msgstr ""
-"Se vi limigas ĉi tiun konton al aktiveco, ĝi estos montrita en Ruqola nur "
-"kiam vi estas en tiuj aktivecoj. Plue, kiam vi ŝanĝas al aktiveco kiu ne "
-"devus esti disponebla, ĝi aŭtomate estos kaŝita."
-
 #: src/addfeeddialog.cpp:49
 #, kde-format
 msgctxt "@title:window"
@@ -2598,3 +2580,17 @@ msgstr "Legita"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "Grava"
+
+#~ msgctxt "@option:check"
+#~ msgid "Limit to the selected activities:"
+#~ msgstr "Limigi al la elektitaj aktivecoj:"
+
+#~ msgctxt "@label:textbox"
+#~ msgid ""
+#~ "If you limit this account to activity, it will be shown in Ruqola only "
+#~ "when you are in those activities. Furthermore, when you switch to an "
+#~ "activity it should not be available in, it will automatically be hidden."
+#~ msgstr ""
+#~ "Se vi limigas ĉi tiun konton al aktiveco, ĝi estos montrita en Ruqola nur "
+#~ "kiam vi estas en tiuj aktivecoj. Plue, kiam vi ŝanĝas al aktiveco kiu ne "
+#~ "devus esti disponebla, ĝi aŭtomate estos kaŝita."

@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-06 00:39+0000\n"
-"PO-Revision-Date: 2024-08-02 09:18+0300\n"
+"POT-Creation-Date: 2024-08-07 00:40+0000\n"
+"PO-Revision-Date: 2024-08-06 08:47+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -1523,25 +1523,6 @@ msgstr "Відкрити посилання у новій в&кладці"
 msgid "Open Link in External &Browser"
 msgstr "Відкрити посилання в зовнішньому пере&глядачі"
 
-#: src/activities/configureactivitieswidget.cpp:56
-#, kde-format
-msgctxt "@option:check"
-msgid "Limit to the selected activities:"
-msgstr "Обмежити вибраними просторами дій:"
-
-#: src/activities/configureactivitieswidget.cpp:63
-#, kde-format
-msgctxt "@label:textbox"
-msgid ""
-"If you limit this account to activity, it will be shown in Ruqola only when "
-"you are in those activities. Furthermore, when you switch to an activity it "
-"should not be available in, it will automatically be hidden."
-msgstr ""
-"Якщо ви обмежите дію цього облікового запису лише певними просторами дій, "
-"його буде показано лише тоді, коли ви користуєтеся цими просторами дій. Крім "
-"того, якщо ви перемкнетеся на простір дій, з якого обліковий запис є "
-"недоступним, його автоматично буде приховано."
-
 #: src/addfeeddialog.cpp:49
 #, kde-format
 msgctxt "@title:window"
@@ -2599,14 +2580,12 @@ msgid "Open In External Browser"
 msgstr "Відкрити у зовнішньому переглядачі"
 
 #: src/whatsnew/whatsnewtranslations.cpp:16
-#, fuzzy
-#| msgid "Enabled Plasma Activity"
 msgid "Implement Plasma Activity."
-msgstr "Увімкнено простір дій Плазми"
+msgstr "Реалізовано простори дій Плазми."
 
 #: src/whatsnew/whatsnewtranslations.cpp:16
 msgid "Add new whatsnew widget."
-msgstr ""
+msgstr "Додано новий віджет зі списком можливостей нової версії."
 
 #: src/widgets/searchbar.cpp:43
 #, kde-format
@@ -2648,6 +2627,21 @@ msgstr "Прочитані"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "Важливі"
+
+#~ msgctxt "@option:check"
+#~ msgid "Limit to the selected activities:"
+#~ msgstr "Обмежити вибраними просторами дій:"
+
+#~ msgctxt "@label:textbox"
+#~ msgid ""
+#~ "If you limit this account to activity, it will be shown in Ruqola only "
+#~ "when you are in those activities. Furthermore, when you switch to an "
+#~ "activity it should not be available in, it will automatically be hidden."
+#~ msgstr ""
+#~ "Якщо ви обмежите дію цього облікового запису лише певними просторами дій, "
+#~ "його буде показано лише тоді, коли ви користуєтеся цими просторами дій. "
+#~ "Крім того, якщо ви перемкнетеся на простір дій, з якого обліковий запис є "
+#~ "недоступним, його автоматично буде приховано."
 
 #~ msgid "Write Error"
 #~ msgstr "Помилка запису"

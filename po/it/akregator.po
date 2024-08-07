@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-06 00:39+0000\n"
+"POT-Creation-Date: 2024-08-07 00:40+0000\n"
 "PO-Revision-Date: 2024-08-02 14:13+0200\n"
 "Last-Translator: Vincenzo Reale <smart2128vr@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
@@ -1503,24 +1503,6 @@ msgstr "Apri collegamen&to in una nuova scheda"
 msgid "Open Link in External &Browser"
 msgstr "Apri collegamento in un &browser esterno"
 
-#: src/activities/configureactivitieswidget.cpp:56
-#, kde-format
-msgctxt "@option:check"
-msgid "Limit to the selected activities:"
-msgstr "Limita alle attività selezionate:"
-
-#: src/activities/configureactivitieswidget.cpp:63
-#, kde-format
-msgctxt "@label:textbox"
-msgid ""
-"If you limit this account to activity, it will be shown in Ruqola only when "
-"you are in those activities. Furthermore, when you switch to an activity it "
-"should not be available in, it will automatically be hidden."
-msgstr ""
-"Se limiti questo account alle attività, sarà mostrato in Ruqola solo quando "
-"ti trovi in quelle attività. Inoltre, quando passi a un'attività in cui non "
-"dovrebbe essere disponibile, sarà automaticamente nascosto."
-
 #: src/addfeeddialog.cpp:49
 #, kde-format
 msgctxt "@title:window"
@@ -2611,6 +2593,20 @@ msgstr "Letto"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "Importanti"
+
+#~ msgctxt "@option:check"
+#~ msgid "Limit to the selected activities:"
+#~ msgstr "Limita alle attività selezionate:"
+
+#~ msgctxt "@label:textbox"
+#~ msgid ""
+#~ "If you limit this account to activity, it will be shown in Ruqola only "
+#~ "when you are in those activities. Furthermore, when you switch to an "
+#~ "activity it should not be available in, it will automatically be hidden."
+#~ msgstr ""
+#~ "Se limiti questo account alle attività, sarà mostrato in Ruqola solo "
+#~ "quando ti trovi in quelle attività. Inoltre, quando passi a un'attività "
+#~ "in cui non dovrebbe essere disponibile, sarà automaticamente nascosto."
 
 #~ msgid "Write Error"
 #~ msgstr "Errore di scrittura"
