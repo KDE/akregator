@@ -436,6 +436,10 @@ void ActionManagerImpl::initMainWidget(MainWidget *mainWidget)
     coll->addAction(QStringLiteral("focus_to_quickseach"), d->mQuickSearchAction);
     connect(d->mQuickSearchAction, &QAction::triggered, mainWidget, &MainWidget::slotFocusQuickSearch);
 
+    auto showWhatsNewAction = new QAction(QIcon::fromTheme(QStringLiteral("akregator")), i18n("What's new"), this);
+    coll->addAction(QStringLiteral("whatsnew"), showWhatsNewAction);
+    connect(showWhatsNewAction, &QAction::triggered, mainWidget, &MainWidget::slotWhatsNew);
+
     auto manager = new KColorSchemeManager(this);
     coll->addAction(QStringLiteral("colorscheme_menu"), KColorSchemeMenu::createMenu(manager, this));
 

@@ -208,6 +208,8 @@ public Q_SLOTS:
 
     void slotFocusQuickSearch();
 
+    void slotWhatsNew();
+
 protected:
     void sendArticle(bool attach = false);
 

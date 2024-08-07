@@ -67,6 +67,7 @@
 #include <PimCommon/NeedUpdateVersionUtils>
 #include <PimCommon/NeedUpdateVersionWidget>
 #include <PimCommon/NetworkManager>
+#include <PimCommon/WhatsNewDialog>
 #include <algorithm>
 #include <chrono>
 #include <memory>
@@ -1316,6 +1317,14 @@ void MainWidget::slotCurrentFrameChanged(int frameId)
 void MainWidget::slotFocusQuickSearch()
 {
     m_searchBar->setFocusSearchLine();
+}
+
+void MainWidget::slotWhatsNew()
+{
+    WhatsNewTranslations translations;
+    PimCommon::WhatsNewDialog dlg(translations.createWhatsNewInfo(), this);
+    dlg.updateInformations();
+    dlg.exec();
 }
 
 void MainWidget::slotArticleAction(Akregator::ArticleViewerWebEngine::ArticleAction type, const QString &articleId, const QString &feed)
