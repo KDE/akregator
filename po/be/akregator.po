@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-07 00:40+0000\n"
+"POT-Creation-Date: 2024-08-08 00:40+0000\n"
 "PO-Revision-Date: 2008-02-11 23:19+0200\n"
 "Last-Translator: Darafei Praliaskouski <komzpa@gmail.com>\n"
 "Language-Team: Belarusian <i18n@mova.org>\n"
@@ -1296,7 +1296,7 @@ msgstr "Паралельныя загрузкі"
 msgid "Ma&rk All Feeds as Read"
 msgstr "Адзначыць усе стужкі як прачытаныя"
 
-#: src/actions/actionmanagerimpl.cpp:341 src/actions/actionmanagerimpl.cpp:609
+#: src/actions/actionmanagerimpl.cpp:341 src/actions/actionmanagerimpl.cpp:613
 #, kde-format
 msgid "Copy Link Address"
 msgstr "Скапіраваць адрас спасылкі"
@@ -1412,149 +1412,154 @@ msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:465
+#: src/actions/actionmanagerimpl.cpp:439
+#, kde-format
+msgid "What's new"
+msgstr ""
+
+#: src/actions/actionmanagerimpl.cpp:469
 #, kde-format
 msgid "&Previous Article"
 msgstr "&Папярэдні артыкул"
 
-#: src/actions/actionmanagerimpl.cpp:469
+#: src/actions/actionmanagerimpl.cpp:473
 #, kde-format
 msgid "&Next Article"
 msgstr "&Наступны артыкул"
 
-#: src/actions/actionmanagerimpl.cpp:485
+#: src/actions/actionmanagerimpl.cpp:489
 #, kde-format
 msgid "&Previous Feed"
 msgstr "Папярэдняя стужка"
 
-#: src/actions/actionmanagerimpl.cpp:490
+#: src/actions/actionmanagerimpl.cpp:494
 #, kde-format
 msgid "&Next Feed"
 msgstr "&Наступная стужка"
 
-#: src/actions/actionmanagerimpl.cpp:496
+#: src/actions/actionmanagerimpl.cpp:500
 #, kde-format
 msgid "N&ext Unread Feed"
 msgstr "Нас&тупная непрачытаная стужка"
 
-#: src/actions/actionmanagerimpl.cpp:502
+#: src/actions/actionmanagerimpl.cpp:506
 #, kde-format
 msgid "Prev&ious Unread Feed"
 msgstr "Папярэдняя непрачытаная стужка"
 
-#: src/actions/actionmanagerimpl.cpp:507
+#: src/actions/actionmanagerimpl.cpp:511
 #, kde-format
 msgid "Go to Top of Tree"
 msgstr "У пачатак"
 
-#: src/actions/actionmanagerimpl.cpp:512
+#: src/actions/actionmanagerimpl.cpp:516
 #, kde-format
 msgid "Go to Bottom of Tree"
 msgstr "У канец"
 
-#: src/actions/actionmanagerimpl.cpp:517
+#: src/actions/actionmanagerimpl.cpp:521
 #, kde-format
 msgid "Go Left in Tree"
 msgstr "Налева па дрэве"
 
-#: src/actions/actionmanagerimpl.cpp:522
+#: src/actions/actionmanagerimpl.cpp:526
 #, kde-format
 msgid "Go Right in Tree"
 msgstr "Направа па дрэве"
 
-#: src/actions/actionmanagerimpl.cpp:527
+#: src/actions/actionmanagerimpl.cpp:531
 #, kde-format
 msgid "Go Up in Tree"
 msgstr "Уверх па дрэве"
 
-#: src/actions/actionmanagerimpl.cpp:532
+#: src/actions/actionmanagerimpl.cpp:536
 #, kde-format
 msgid "Go Down in Tree"
 msgstr "Уніз па дрэве"
 
-#: src/actions/actionmanagerimpl.cpp:538
+#: src/actions/actionmanagerimpl.cpp:542
 #, fuzzy, kde-format
 #| msgid "N&ext Unread Feed"
 msgid "Hide Read Feeds"
 msgstr "Нас&тупная непрачытаная стужка"
 
-#: src/actions/actionmanagerimpl.cpp:544
+#: src/actions/actionmanagerimpl.cpp:548
 #, kde-format
 msgid "Lock Feeds In Place"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:550
+#: src/actions/actionmanagerimpl.cpp:554
 #, fuzzy, kde-format
 #| msgid " (no unread articles)"
 msgid "Auto-expand folders with unread articles"
 msgstr " (усе артыкулы прачытаныя)"
 
-#: src/actions/actionmanagerimpl.cpp:566
+#: src/actions/actionmanagerimpl.cpp:570
 #, kde-format
 msgid "Select Next Tab"
 msgstr "Перайсці на наступную картку"
 
-#: src/actions/actionmanagerimpl.cpp:571
+#: src/actions/actionmanagerimpl.cpp:575
 #, kde-format
 msgid "Select Previous Tab"
 msgstr "Перайсці на папярэднюю картку"
 
-#: src/actions/actionmanagerimpl.cpp:577
+#: src/actions/actionmanagerimpl.cpp:581
 #, kde-format
 msgid "Detach Tab"
 msgstr "Аддзяліць картку"
 
-#: src/actions/actionmanagerimpl.cpp:591
+#: src/actions/actionmanagerimpl.cpp:595
 #, kde-format
 msgid "Mute"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:595
+#: src/actions/actionmanagerimpl.cpp:599
 #, kde-format
 msgid "Unmute"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:598
+#: src/actions/actionmanagerimpl.cpp:602
 #, kde-format
 msgctxt "@action"
 msgid "Speak Text"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:603
+#: src/actions/actionmanagerimpl.cpp:607
 #, kde-format
 msgid "&Find in Message…"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:614
+#: src/actions/actionmanagerimpl.cpp:618
 #, fuzzy, kde-format
 #| msgid "&Close Tab"
 msgid "Close Tab"
 msgstr "&Закрыць картку"
 
-#: src/actions/actionmanagerimpl.cpp:627
+#: src/actions/actionmanagerimpl.cpp:631
 #, kde-format
 msgctxt "@action"
 msgid "Activate Tab %1"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:633
+#: src/actions/actionmanagerimpl.cpp:637
 #, fuzzy, kde-format
 #| msgid "&Save Link As..."
 msgid "&Save Link As…"
 msgstr "&Запісаць спасылку як..."
 
-#: src/actions/actionmanagerimpl.cpp:637
+#: src/actions/actionmanagerimpl.cpp:641
 #, kde-format
 msgid "Copy &Link Address"
 msgstr "Скапіраваць адрас &спасылкі"
 
-#: src/actions/actionmanagerimpl.cpp:640
+#: src/actions/actionmanagerimpl.cpp:644
 #, kde-format
 msgctxt "@action"
 msgid "Copy Image Location"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:647
+#: src/actions/actionmanagerimpl.cpp:651
 #, kde-format
 msgctxt "@action"
 msgid "Save Image On Disk…"
@@ -2048,8 +2053,14 @@ msgstr "&Артыкул"
 msgid "&Settings"
 msgstr "&Настаўленні"
 
+#. i18n: ectx: Menu (help)
+#: src/data/akregator_part.rc:90
+#, kde-format
+msgid "&Help"
+msgstr ""
+
 #. i18n: ectx: ToolBar (mainToolBar)
-#: src/data/akregator_part.rc:93 src/data/akregator_shell.rc:54
+#: src/data/akregator_part.rc:96 src/data/akregator_shell.rc:54
 #, kde-format
 msgid "Main Toolbar"
 msgstr "Галоўная панель начыння"
@@ -2221,27 +2232,27 @@ msgstr "Загрузка спынена"
 msgid "Loading completed"
 msgstr "Загрузка завершана"
 
-#: src/mainwidget.cpp:177
+#: src/mainwidget.cpp:178
 #, kde-format
 msgid "You can view multiple articles in several open tabs."
 msgstr "Вы можаце праглядаць накалькі артыкулаў у розных картках."
 
-#: src/mainwidget.cpp:181
+#: src/mainwidget.cpp:182
 #, kde-format
 msgid "Articles list."
 msgstr "Спіс артыкулаў."
 
-#: src/mainwidget.cpp:243 src/mainwidget.cpp:674
+#: src/mainwidget.cpp:244 src/mainwidget.cpp:675
 #, kde-format
 msgid "Articles"
 msgstr "Артыкулы"
 
-#: src/mainwidget.cpp:272
+#: src/mainwidget.cpp:273
 #, kde-format
 msgid "About"
 msgstr "Пра праграму"
 
-#: src/mainwidget.cpp:813
+#: src/mainwidget.cpp:814
 #, fuzzy, kde-format
 #| msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
 msgid ""
@@ -2249,20 +2260,20 @@ msgid ""
 "qt>"
 msgstr "<qt>Выдаліць стужку навін <b>%1</b>?</qt>"
 
-#: src/mainwidget.cpp:814
+#: src/mainwidget.cpp:815
 #, fuzzy, kde-format
 #| msgid "&Mark Feed as Read"
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "&Памеціць стужку прачытанай"
 
-#: src/mainwidget.cpp:817
+#: src/mainwidget.cpp:818
 #, fuzzy, kde-format
 #| msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
 msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
 msgstr "<qt>Выдаліць стужку навін <b>%1</b>?</qt>"
 
-#: src/mainwidget.cpp:819
+#: src/mainwidget.cpp:820
 #, fuzzy, kde-format
 #| msgid "<qt>Are you sure you want to delete this feed?</qt>"
 msgid ""
@@ -2270,30 +2281,30 @@ msgid ""
 "qt>"
 msgstr "<qt>Выдаліць стужку навін?</qt>"
 
-#: src/mainwidget.cpp:821
+#: src/mainwidget.cpp:822
 #, fuzzy, kde-format
 #| msgid "&Mark Feeds as Read"
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "&Памеціць стужкі прачытанымі"
 
-#: src/mainwidget.cpp:885 src/mainwidget.cpp:894 src/mainwidget.cpp:1296
+#: src/mainwidget.cpp:886 src/mainwidget.cpp:895 src/mainwidget.cpp:1297
 #, kde-format
 msgid "Networking is not available."
 msgstr ""
 
-#: src/mainwidget.cpp:902
+#: src/mainwidget.cpp:903
 #, fuzzy, kde-format
 #| msgid "Fetching Feeds..."
 msgid "Fetching Feeds…"
 msgstr "Сцягваю стужкі..."
 
-#: src/mainwidget.cpp:1101
+#: src/mainwidget.cpp:1102
 #, kde-format
 msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
 msgstr "<qt>Выдаліць артыкул <b>%1</b>?</qt>"
 
-#: src/mainwidget.cpp:1104
+#: src/mainwidget.cpp:1105
 #, fuzzy, kde-format
 #| msgid "<qt>Are you sure you want to delete the %1 selected articles?</qt>"
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
@@ -2306,14 +2317,14 @@ msgstr[1] ""
 msgstr[2] ""
 "<qt>Вы ўпэўнены ў тым, што хочаце выдаліць %1 выбраных артыкулаў?</qt>"
 
-#: src/mainwidget.cpp:1111
+#: src/mainwidget.cpp:1112
 #, fuzzy, kde-format
 #| msgid "Delete Article"
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "Выдаліць артыкул"
 
-#: src/mainwidget.cpp:1293
+#: src/mainwidget.cpp:1294
 #, kde-format
 msgid "Networking is available now."
 msgstr ""

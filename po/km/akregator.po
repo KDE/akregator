@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-07 00:40+0000\n"
+"POT-Creation-Date: 2024-08-08 00:40+0000\n"
 "PO-Revision-Date: 2012-12-25 13:50+0700\n"
 "Last-Translator: sutha <sutha@khmeros.info>\n"
 "Language-Team: Khmer <support@khmeros>\n"
@@ -1264,7 +1264,7 @@ msgstr "បោះបង់​ការ​ប្រមូល​យក​​មត
 msgid "Ma&rk All Feeds as Read"
 msgstr "សម្គាល់​មតិ​ព័ត៌មាន​ទាំងអស់​ថា​អាន​រួច"
 
-#: src/actions/actionmanagerimpl.cpp:341 src/actions/actionmanagerimpl.cpp:609
+#: src/actions/actionmanagerimpl.cpp:341 src/actions/actionmanagerimpl.cpp:613
 #, kde-format
 msgid "Copy Link Address"
 msgstr "ចម្លង​អាសយដ្ឋាន​តំណ"
@@ -1378,149 +1378,154 @@ msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:465
+#: src/actions/actionmanagerimpl.cpp:439
+#, kde-format
+msgid "What's new"
+msgstr ""
+
+#: src/actions/actionmanagerimpl.cpp:469
 #, kde-format
 msgid "&Previous Article"
 msgstr "អត្ថបទ​មុន"
 
-#: src/actions/actionmanagerimpl.cpp:469
+#: src/actions/actionmanagerimpl.cpp:473
 #, kde-format
 msgid "&Next Article"
 msgstr "អត្ថបទ​បន្ទាប់"
 
-#: src/actions/actionmanagerimpl.cpp:485
+#: src/actions/actionmanagerimpl.cpp:489
 #, kde-format
 msgid "&Previous Feed"
 msgstr "មតិ​ព័ត៌មាន​មុន"
 
-#: src/actions/actionmanagerimpl.cpp:490
+#: src/actions/actionmanagerimpl.cpp:494
 #, kde-format
 msgid "&Next Feed"
 msgstr "មតិ​ព័ត៌មាន​បន្ទាប់"
 
-#: src/actions/actionmanagerimpl.cpp:496
+#: src/actions/actionmanagerimpl.cpp:500
 #, kde-format
 msgid "N&ext Unread Feed"
 msgstr "មតិព័ត៌មាន​មិន​ទាន់​អាន​បន្ទាប់"
 
-#: src/actions/actionmanagerimpl.cpp:502
+#: src/actions/actionmanagerimpl.cpp:506
 #, kde-format
 msgid "Prev&ious Unread Feed"
 msgstr "មតិ​ព័ត៌មាន​មិន​ទាន់​អាន​មុន"
 
-#: src/actions/actionmanagerimpl.cpp:507
+#: src/actions/actionmanagerimpl.cpp:511
 #, kde-format
 msgid "Go to Top of Tree"
 msgstr "ទៅ​ខាង​លើ​មែកធាង"
 
-#: src/actions/actionmanagerimpl.cpp:512
+#: src/actions/actionmanagerimpl.cpp:516
 #, kde-format
 msgid "Go to Bottom of Tree"
 msgstr "ទៅ​ខាង​ក្រោម​មែកធាង"
 
-#: src/actions/actionmanagerimpl.cpp:517
+#: src/actions/actionmanagerimpl.cpp:521
 #, kde-format
 msgid "Go Left in Tree"
 msgstr "ទៅ​ខាង​ឆ្វេង ក្នុងមែកធាង"
 
-#: src/actions/actionmanagerimpl.cpp:522
+#: src/actions/actionmanagerimpl.cpp:526
 #, kde-format
 msgid "Go Right in Tree"
 msgstr "ទៅ​ខាង​ស្ដាំ ក្នុង​មែកធាង"
 
-#: src/actions/actionmanagerimpl.cpp:527
+#: src/actions/actionmanagerimpl.cpp:531
 #, kde-format
 msgid "Go Up in Tree"
 msgstr "ឡើង​លើ ក្នុង​មែកធាង"
 
-#: src/actions/actionmanagerimpl.cpp:532
+#: src/actions/actionmanagerimpl.cpp:536
 #, kde-format
 msgid "Go Down in Tree"
 msgstr "ចុះក្រោម ក្នុង​មែកធាង"
 
-#: src/actions/actionmanagerimpl.cpp:538
+#: src/actions/actionmanagerimpl.cpp:542
 #, fuzzy, kde-format
 #| msgid "N&ext Unread Feed"
 msgid "Hide Read Feeds"
 msgstr "មតិព័ត៌មាន​មិន​ទាន់​អាន​បន្ទាប់"
 
-#: src/actions/actionmanagerimpl.cpp:544
+#: src/actions/actionmanagerimpl.cpp:548
 #, kde-format
 msgid "Lock Feeds In Place"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:550
+#: src/actions/actionmanagerimpl.cpp:554
 #, fuzzy, kde-format
 #| msgid " (no unread articles)"
 msgid "Auto-expand folders with unread articles"
 msgstr " (មិន​មាន​អត្ថបទ​ដែល​មិន​ទាន់​អាន​ឡើយ)"
 
-#: src/actions/actionmanagerimpl.cpp:566
+#: src/actions/actionmanagerimpl.cpp:570
 #, kde-format
 msgid "Select Next Tab"
 msgstr "ជ្រើស​ផ្ទាំង​បន្ទាប់"
 
-#: src/actions/actionmanagerimpl.cpp:571
+#: src/actions/actionmanagerimpl.cpp:575
 #, kde-format
 msgid "Select Previous Tab"
 msgstr "ជ្រើស​ផ្ទាំង​មុន"
 
-#: src/actions/actionmanagerimpl.cpp:577
+#: src/actions/actionmanagerimpl.cpp:581
 #, kde-format
 msgid "Detach Tab"
 msgstr "ផ្ដាច់​ផ្ទាំង"
 
-#: src/actions/actionmanagerimpl.cpp:591
+#: src/actions/actionmanagerimpl.cpp:595
 #, kde-format
 msgid "Mute"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:595
+#: src/actions/actionmanagerimpl.cpp:599
 #, kde-format
 msgid "Unmute"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:598
+#: src/actions/actionmanagerimpl.cpp:602
 #, kde-format
 msgctxt "@action"
 msgid "Speak Text"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:603
+#: src/actions/actionmanagerimpl.cpp:607
 #, kde-format
 msgid "&Find in Message…"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:614
+#: src/actions/actionmanagerimpl.cpp:618
 #, kde-format
 msgid "Close Tab"
 msgstr "បិទ​ផ្ទាំង"
 
-#: src/actions/actionmanagerimpl.cpp:627
+#: src/actions/actionmanagerimpl.cpp:631
 #, fuzzy, kde-format
 #| msgid "Activate Tab %1"
 msgctxt "@action"
 msgid "Activate Tab %1"
 msgstr "ធ្វើ​ឲ្យ​ផ្ទាំង​សកម្ម %1"
 
-#: src/actions/actionmanagerimpl.cpp:633
+#: src/actions/actionmanagerimpl.cpp:637
 #, fuzzy, kde-format
 #| msgid "&Save Link As..."
 msgid "&Save Link As…"
 msgstr "រក្សាទុក​តំណ​ជា..."
 
-#: src/actions/actionmanagerimpl.cpp:637
+#: src/actions/actionmanagerimpl.cpp:641
 #, kde-format
 msgid "Copy &Link Address"
 msgstr "ចម្លង​អាសយដ្ឋាន​តំណ"
 
-#: src/actions/actionmanagerimpl.cpp:640
+#: src/actions/actionmanagerimpl.cpp:644
 #, kde-format
 msgctxt "@action"
 msgid "Copy Image Location"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:647
+#: src/actions/actionmanagerimpl.cpp:651
 #, kde-format
 msgctxt "@action"
 msgid "Save Image On Disk…"
@@ -2004,8 +2009,14 @@ msgstr "អត្ថបទ"
 msgid "&Settings"
 msgstr "ការ​កំណត់"
 
+#. i18n: ectx: Menu (help)
+#: src/data/akregator_part.rc:90
+#, kde-format
+msgid "&Help"
+msgstr ""
+
 #. i18n: ectx: ToolBar (mainToolBar)
-#: src/data/akregator_part.rc:93 src/data/akregator_shell.rc:54
+#: src/data/akregator_part.rc:96 src/data/akregator_shell.rc:54
 #, kde-format
 msgid "Main Toolbar"
 msgstr "របារ​ឧបករណ៍​មេ"
@@ -2159,27 +2170,27 @@ msgstr "បាន​បោះបង់​ការ​ផ្ទុក"
 msgid "Loading completed"
 msgstr "ការ​ផ្ទុក​បាន​បញ្ចប់"
 
-#: src/mainwidget.cpp:177
+#: src/mainwidget.cpp:178
 #, kde-format
 msgid "You can view multiple articles in several open tabs."
 msgstr "អ្នក​អាច​មើល​អត្ថបទ​ច្រើន នៅ​ក្នុង​ផ្ទាំង​ច្រើន​ដែល​បើក ។"
 
-#: src/mainwidget.cpp:181
+#: src/mainwidget.cpp:182
 #, kde-format
 msgid "Articles list."
 msgstr "បញ្ជី​អត្ថបទ ។"
 
-#: src/mainwidget.cpp:243 src/mainwidget.cpp:674
+#: src/mainwidget.cpp:244 src/mainwidget.cpp:675
 #, kde-format
 msgid "Articles"
 msgstr "អត្ថបទ"
 
-#: src/mainwidget.cpp:272
+#: src/mainwidget.cpp:273
 #, kde-format
 msgid "About"
 msgstr "អំពី"
 
-#: src/mainwidget.cpp:813
+#: src/mainwidget.cpp:814
 #, fuzzy, kde-format
 #| msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
 msgid ""
@@ -2187,20 +2198,20 @@ msgid ""
 "qt>"
 msgstr "<qt>តើ​អ្នក​ពិត​ជា​ចង់​លុប​មតិ​ព័ត៌មាន <b>%1</b> ឬ ?</qt>"
 
-#: src/mainwidget.cpp:814
+#: src/mainwidget.cpp:815
 #, fuzzy, kde-format
 #| msgid "&Mark Feed as Read"
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "សម្គាល់​មតិ​ព័ត៌មាន​ថា​អាន​រួច"
 
-#: src/mainwidget.cpp:817
+#: src/mainwidget.cpp:818
 #, fuzzy, kde-format
 #| msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
 msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
 msgstr "<qt>តើ​អ្នក​ពិត​ជា​ចង់​លុប​មតិ​ព័ត៌មាន <b>%1</b> ឬ ?</qt>"
 
-#: src/mainwidget.cpp:819
+#: src/mainwidget.cpp:820
 #, fuzzy, kde-format
 #| msgid "<qt>Are you sure you want to delete this feed?</qt>"
 msgid ""
@@ -2208,44 +2219,44 @@ msgid ""
 "qt>"
 msgstr "<qt>តើ​អ្នក​ពិត​ជា​ចង់​លុប​មតិព័ត៌មាន​នេះ​ឬ ?</qt>"
 
-#: src/mainwidget.cpp:821
+#: src/mainwidget.cpp:822
 #, fuzzy, kde-format
 #| msgid "&Mark Feeds as Read"
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "សម្គាល់​មតិ​ព័ត៌មាន​ថា​អាន​រួច"
 
-#: src/mainwidget.cpp:885 src/mainwidget.cpp:894 src/mainwidget.cpp:1296
+#: src/mainwidget.cpp:886 src/mainwidget.cpp:895 src/mainwidget.cpp:1297
 #, kde-format
 msgid "Networking is not available."
 msgstr "មិន​មាន​បណ្ដាញ ។"
 
-#: src/mainwidget.cpp:902
+#: src/mainwidget.cpp:903
 #, fuzzy, kde-format
 #| msgid "Fetching Feeds..."
 msgid "Fetching Feeds…"
 msgstr "កំពុង​ប្រមូល​មតិព័ត៌មាន..."
 
-#: src/mainwidget.cpp:1101
+#: src/mainwidget.cpp:1102
 #, kde-format
 msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
 msgstr "<qt>តើ​អ្នក​ពិត​ជា​ចង់​លុប​អត្ថបទ <b>%1</b> ឬ ?</qt>"
 
-#: src/mainwidget.cpp:1104
+#: src/mainwidget.cpp:1105
 #, kde-format
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
 msgid_plural ""
 "<qt>Are you sure you want to delete the %1 selected articles?</qt>"
 msgstr[0] "<qt>តើ​អ្នក​ពិត​ជា​ចង់​លុប​អត្ថបទ %1 ដែល​បាន​ជ្រើស​ឬ ?</qt>"
 
-#: src/mainwidget.cpp:1111
+#: src/mainwidget.cpp:1112
 #, fuzzy, kde-format
 #| msgid "Delete Article"
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "លុប​អត្ថបទ"
 
-#: src/mainwidget.cpp:1293
+#: src/mainwidget.cpp:1294
 #, kde-format
 msgid "Networking is available now."
 msgstr "ឥឡូវ​មាន​បណ្ដាញ​ហើយ ។"

@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-07 00:40+0000\n"
+"POT-Creation-Date: 2024-08-08 00:40+0000\n"
 "PO-Revision-Date: 2023-11-22 18:44+0200\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
@@ -1270,7 +1270,7 @@ msgstr "Per&u syötteiden päivitys"
 msgid "Ma&rk All Feeds as Read"
 msgstr "Merkitse &kaikki syötteet luetuiksi"
 
-#: src/actions/actionmanagerimpl.cpp:341 src/actions/actionmanagerimpl.cpp:609
+#: src/actions/actionmanagerimpl.cpp:341 src/actions/actionmanagerimpl.cpp:613
 #, kde-format
 msgid "Copy Link Address"
 msgstr "Kopioi linkin osoite"
@@ -1385,150 +1385,155 @@ msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr "Kohdista pikahakuun"
 
-#: src/actions/actionmanagerimpl.cpp:465
+#: src/actions/actionmanagerimpl.cpp:439
+#, kde-format
+msgid "What's new"
+msgstr ""
+
+#: src/actions/actionmanagerimpl.cpp:469
 #, kde-format
 msgid "&Previous Article"
 msgstr "&Edellinen artikkeli"
 
-#: src/actions/actionmanagerimpl.cpp:469
+#: src/actions/actionmanagerimpl.cpp:473
 #, kde-format
 msgid "&Next Article"
 msgstr "&Seuraava artikkeli"
 
-#: src/actions/actionmanagerimpl.cpp:485
+#: src/actions/actionmanagerimpl.cpp:489
 #, kde-format
 msgid "&Previous Feed"
 msgstr "Ede&llinen syöte"
 
-#: src/actions/actionmanagerimpl.cpp:490
+#: src/actions/actionmanagerimpl.cpp:494
 #, kde-format
 msgid "&Next Feed"
 msgstr "S&euraava syöte"
 
-#: src/actions/actionmanagerimpl.cpp:496
+#: src/actions/actionmanagerimpl.cpp:500
 #, kde-format
 msgid "N&ext Unread Feed"
 msgstr "Seuraa&va lukematon syöte"
 
-#: src/actions/actionmanagerimpl.cpp:502
+#: src/actions/actionmanagerimpl.cpp:506
 #, kde-format
 msgid "Prev&ious Unread Feed"
 msgstr "Edelli&nen lukematon syöte"
 
-#: src/actions/actionmanagerimpl.cpp:507
+#: src/actions/actionmanagerimpl.cpp:511
 #, kde-format
 msgid "Go to Top of Tree"
 msgstr "Siirry puun huipulle"
 
-#: src/actions/actionmanagerimpl.cpp:512
+#: src/actions/actionmanagerimpl.cpp:516
 #, kde-format
 msgid "Go to Bottom of Tree"
 msgstr "Siirry puun juureen"
 
-#: src/actions/actionmanagerimpl.cpp:517
+#: src/actions/actionmanagerimpl.cpp:521
 #, kde-format
 msgid "Go Left in Tree"
 msgstr "Siirry vasemmalle puussa"
 
-#: src/actions/actionmanagerimpl.cpp:522
+#: src/actions/actionmanagerimpl.cpp:526
 #, kde-format
 msgid "Go Right in Tree"
 msgstr "Siirry oikealle puussa"
 
-#: src/actions/actionmanagerimpl.cpp:527
+#: src/actions/actionmanagerimpl.cpp:531
 #, kde-format
 msgid "Go Up in Tree"
 msgstr "Siirry ylemmäs puussa"
 
-#: src/actions/actionmanagerimpl.cpp:532
+#: src/actions/actionmanagerimpl.cpp:536
 #, kde-format
 msgid "Go Down in Tree"
 msgstr "Siirry alemmas puussa"
 
-#: src/actions/actionmanagerimpl.cpp:538
+#: src/actions/actionmanagerimpl.cpp:542
 #, kde-format
 msgid "Hide Read Feeds"
 msgstr "Piilota luetut syötteet"
 
-#: src/actions/actionmanagerimpl.cpp:544
+#: src/actions/actionmanagerimpl.cpp:548
 #, kde-format
 msgid "Lock Feeds In Place"
 msgstr "Lukitse syötteet paikoilleen"
 
-#: src/actions/actionmanagerimpl.cpp:550
+#: src/actions/actionmanagerimpl.cpp:554
 #, kde-format
 msgid "Auto-expand folders with unread articles"
 msgstr "Laajenna automaattisesti kansiot, joissa on artikkeleja lukematta"
 
-#: src/actions/actionmanagerimpl.cpp:566
+#: src/actions/actionmanagerimpl.cpp:570
 #, kde-format
 msgid "Select Next Tab"
 msgstr "Valitse seuraava välilehti"
 
-#: src/actions/actionmanagerimpl.cpp:571
+#: src/actions/actionmanagerimpl.cpp:575
 #, kde-format
 msgid "Select Previous Tab"
 msgstr "Valitse edellinen välilehti"
 
-#: src/actions/actionmanagerimpl.cpp:577
+#: src/actions/actionmanagerimpl.cpp:581
 #, kde-format
 msgid "Detach Tab"
 msgstr "Irrota välilehti"
 
-#: src/actions/actionmanagerimpl.cpp:591
+#: src/actions/actionmanagerimpl.cpp:595
 #, kde-format
 msgid "Mute"
 msgstr "Vaimenna"
 
-#: src/actions/actionmanagerimpl.cpp:595
+#: src/actions/actionmanagerimpl.cpp:599
 #, kde-format
 msgid "Unmute"
 msgstr "Palauta äänet"
 
-#: src/actions/actionmanagerimpl.cpp:598
+#: src/actions/actionmanagerimpl.cpp:602
 #, fuzzy, kde-format
 #| msgid "Speak Text"
 msgctxt "@action"
 msgid "Speak Text"
 msgstr "Puhu teksti"
 
-#: src/actions/actionmanagerimpl.cpp:603
+#: src/actions/actionmanagerimpl.cpp:607
 #, fuzzy, kde-format
 #| msgid "&Find in Message..."
 msgid "&Find in Message…"
 msgstr "&Etsi viestistä…"
 
-#: src/actions/actionmanagerimpl.cpp:614
+#: src/actions/actionmanagerimpl.cpp:618
 #, kde-format
 msgid "Close Tab"
 msgstr "Sulje välilehti"
 
-#: src/actions/actionmanagerimpl.cpp:627
+#: src/actions/actionmanagerimpl.cpp:631
 #, fuzzy, kde-format
 #| msgid "Activate Tab %1"
 msgctxt "@action"
 msgid "Activate Tab %1"
 msgstr "Aktivoi välilehti %1"
 
-#: src/actions/actionmanagerimpl.cpp:633
+#: src/actions/actionmanagerimpl.cpp:637
 #, fuzzy, kde-format
 #| msgid "&Save Link As..."
 msgid "&Save Link As…"
 msgstr "&Tallenna linkki nimellä…"
 
-#: src/actions/actionmanagerimpl.cpp:637
+#: src/actions/actionmanagerimpl.cpp:641
 #, kde-format
 msgid "Copy &Link Address"
 msgstr "Kopioi &linkin osoite"
 
-#: src/actions/actionmanagerimpl.cpp:640
+#: src/actions/actionmanagerimpl.cpp:644
 #, fuzzy, kde-format
 #| msgid "Copy Image Location"
 msgctxt "@action"
 msgid "Copy Image Location"
 msgstr "Kopioi kuvan sijainti"
 
-#: src/actions/actionmanagerimpl.cpp:647
+#: src/actions/actionmanagerimpl.cpp:651
 #, fuzzy, kde-format
 #| msgid "Save Image On Disk..."
 msgctxt "@action"
@@ -2000,8 +2005,14 @@ msgstr "&Artikkeli"
 msgid "&Settings"
 msgstr "A&setukset"
 
+#. i18n: ectx: Menu (help)
+#: src/data/akregator_part.rc:90
+#, kde-format
+msgid "&Help"
+msgstr ""
+
 #. i18n: ectx: ToolBar (mainToolBar)
-#: src/data/akregator_part.rc:93 src/data/akregator_shell.rc:54
+#: src/data/akregator_part.rc:96 src/data/akregator_shell.rc:54
 #, kde-format
 msgid "Main Toolbar"
 msgstr "Työkalurivi"
@@ -2155,27 +2166,27 @@ msgstr "Lataus peruttu"
 msgid "Loading completed"
 msgstr "Lataus valmis"
 
-#: src/mainwidget.cpp:177
+#: src/mainwidget.cpp:178
 #, kde-format
 msgid "You can view multiple articles in several open tabs."
 msgstr "Voit lukea useita artikkeleja eri välilehdiltä."
 
-#: src/mainwidget.cpp:181
+#: src/mainwidget.cpp:182
 #, kde-format
 msgid "Articles list."
 msgstr "Artikkeliluettelo."
 
-#: src/mainwidget.cpp:243 src/mainwidget.cpp:674
+#: src/mainwidget.cpp:244 src/mainwidget.cpp:675
 #, kde-format
 msgid "Articles"
 msgstr "Artikkelit"
 
-#: src/mainwidget.cpp:272
+#: src/mainwidget.cpp:273
 #, kde-format
 msgid "About"
 msgstr "Tietoa ohjelmasta"
 
-#: src/mainwidget.cpp:813
+#: src/mainwidget.cpp:814
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all articles in the feed</b> as read?</"
@@ -2184,18 +2195,18 @@ msgstr ""
 "<qt>Haluatko varmasti merkitä <b>syötteen kaikki artikkelit</b> luetuiksi?</"
 "qt>"
 
-#: src/mainwidget.cpp:814
+#: src/mainwidget.cpp:815
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "Merkitse syöte luetuksi"
 
-#: src/mainwidget.cpp:817
+#: src/mainwidget.cpp:818
 #, kde-format
 msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
 msgstr "<qt>Haluatko varmasti merkitä <b>kaikki syötteet</b> luetuiksi?</qt>"
 
-#: src/mainwidget.cpp:819
+#: src/mainwidget.cpp:820
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all feeds in the folder</b> as read?</"
@@ -2203,29 +2214,29 @@ msgid ""
 msgstr ""
 "<qt>Haluatko varmasti merkitä <b>kansion kaikki syötteet</b> luetuiksi?</qt>"
 
-#: src/mainwidget.cpp:821
+#: src/mainwidget.cpp:822
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "Merkitse syötteet luetuiksi"
 
-#: src/mainwidget.cpp:885 src/mainwidget.cpp:894 src/mainwidget.cpp:1296
+#: src/mainwidget.cpp:886 src/mainwidget.cpp:895 src/mainwidget.cpp:1297
 #, kde-format
 msgid "Networking is not available."
 msgstr "Verkkoyhteys ei ole saatavilla."
 
-#: src/mainwidget.cpp:902
+#: src/mainwidget.cpp:903
 #, fuzzy, kde-format
 #| msgid "Fetching Feeds..."
 msgid "Fetching Feeds…"
 msgstr "Päivitetään syötteitä…"
 
-#: src/mainwidget.cpp:1101
+#: src/mainwidget.cpp:1102
 #, kde-format
 msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
 msgstr "<qt>Haluatko varmasti poistaa artikkelin <b>%1</b>?</qt>"
 
-#: src/mainwidget.cpp:1104
+#: src/mainwidget.cpp:1105
 #, kde-format
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
 msgid_plural ""
@@ -2233,13 +2244,13 @@ msgid_plural ""
 msgstr[0] "<qt>Haluatko varmasti poistaa valitun artikkelin?</qt>"
 msgstr[1] "<qt>Haluatko varmasti poistaa valitut %1 artikkelia?</qt>"
 
-#: src/mainwidget.cpp:1111
+#: src/mainwidget.cpp:1112
 #, kde-format
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "Poista artikkeli"
 
-#: src/mainwidget.cpp:1293
+#: src/mainwidget.cpp:1294
 #, kde-format
 msgid "Networking is available now."
 msgstr "Verkkoyhteys on nyt saatavilla."
