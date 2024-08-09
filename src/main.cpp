@@ -84,7 +84,6 @@ int main(int argc, char **argv)
     Akregator::Application app(argc, &argv);
     KLocalizedString::setApplicationDomain(QByteArrayLiteral("akregator"));
 
-    KCrash::initialize();
 #if HAVE_STYLE_MANAGER
     KStyleManager::initStyle();
 #else // !HAVE_STYLE_MANAGER
@@ -96,6 +95,7 @@ int main(int argc, char **argv)
     app.setDesktopFileName(QStringLiteral("org.kde.akregator"));
     Akregator::AboutData about;
     app.setAboutData(about);
+    KCrash::initialize();
 
     QCommandLineParser *cmdArgs = app.cmdArgs();
     Akregator::akregator_options(cmdArgs);
