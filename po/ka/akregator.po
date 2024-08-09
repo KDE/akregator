@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-08-08 00:40+0000\n"
-"PO-Revision-Date: 2024-08-06 05:54+0200\n"
+"PO-Revision-Date: 2024-08-08 05:57+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -1347,7 +1347,7 @@ msgstr "ფოკუსის სწრაფ ძებნაზე დაყე
 #: src/actions/actionmanagerimpl.cpp:439
 #, kde-format
 msgid "What's new"
-msgstr ""
+msgstr "რა არის ახალი"
 
 #: src/actions/actionmanagerimpl.cpp:469
 #, kde-format
@@ -1952,7 +1952,7 @@ msgstr "&პარამეტრები"
 #: src/data/akregator_part.rc:90
 #, kde-format
 msgid "&Help"
-msgstr ""
+msgstr "&დახმარება"
 
 #. i18n: ectx: ToolBar (mainToolBar)
 #: src/data/akregator_part.rc:96 src/data/akregator_shell.rc:54

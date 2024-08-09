@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-08-08 00:40+0000\n"
-"PO-Revision-Date: 2024-08-06 10:11+0200\n"
+"PO-Revision-Date: 2024-08-08 10:58+0200\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -1406,7 +1406,7 @@ msgstr "Focus instellen op Snel zoeken"
 #: src/actions/actionmanagerimpl.cpp:439
 #, kde-format
 msgid "What's new"
-msgstr ""
+msgstr "Wat is nieuw"
 
 #: src/actions/actionmanagerimpl.cpp:469
 #, kde-format
@@ -2029,7 +2029,7 @@ msgstr "In&stellingen"
 #: src/data/akregator_part.rc:90
 #, kde-format
 msgid "&Help"
-msgstr ""
+msgstr "&Help"
 
 #. i18n: ectx: ToolBar (mainToolBar)
 #: src/data/akregator_part.rc:96 src/data/akregator_shell.rc:54
