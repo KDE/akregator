@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-08-08 00:40+0000\n"
-"PO-Revision-Date: 2024-08-02 14:13+0200\n"
+"PO-Revision-Date: 2024-08-09 02:05+0200\n"
 "Last-Translator: Vincenzo Reale <smart2128vr@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
 "Language: it\n"
@@ -1352,7 +1352,7 @@ msgstr "Imposta il fuoco sulla ricerca veloce"
 #: src/actions/actionmanagerimpl.cpp:439
 #, kde-format
 msgid "What's new"
-msgstr ""
+msgstr "Cosa c'è di nuovo"
 
 #: src/actions/actionmanagerimpl.cpp:469
 #, kde-format
@@ -1962,7 +1962,7 @@ msgstr "&Impostazioni"
 #: src/data/akregator_part.rc:90
 #, kde-format
 msgid "&Help"
-msgstr ""
+msgstr "Ai&uto"
 
 #. i18n: ectx: ToolBar (mainToolBar)
 #: src/data/akregator_part.rc:96 src/data/akregator_shell.rc:54
@@ -2555,14 +2555,12 @@ msgid "Open In External Browser"
 msgstr "Apri in un browser esterno"
 
 #: src/whatsnew/whatsnewtranslations.cpp:16
-#, fuzzy
-#| msgid "Enabled Plasma Activity"
 msgid "Implement Plasma Activity."
-msgstr "Attività di Plasma abilitate"
+msgstr "Attività di Plasma Activity."
 
 #: src/whatsnew/whatsnewtranslations.cpp:16
 msgid "Add new whatsnew widget."
-msgstr ""
+msgstr "Aggiungi un nuovo oggetto Cosa c'è di nuovo."
 
 #: src/widgets/searchbar.cpp:43
 #, kde-format
