@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-08-08 00:40+0000\n"
-"PO-Revision-Date: 2024-07-28 15:08+0300\n"
+"PO-Revision-Date: 2024-08-12 16:08+0300\n"
 "Last-Translator: Mindaugas Baranauskas <opensuse.lietuviu.kalba@gmail.com>\n"
 "Language-Team: Lithuanian <kde-i18n-lt@kde.org>\n"
 "Language: lt\n"
@@ -1363,7 +1363,7 @@ msgstr "Fokusuoti į greitą paiešką"
 #: src/actions/actionmanagerimpl.cpp:439
 #, kde-format
 msgid "What's new"
-msgstr ""
+msgstr "Kas naujo"
 
 #: src/actions/actionmanagerimpl.cpp:469
 #, kde-format
@@ -1970,7 +1970,7 @@ msgstr "&Nuostatos"
 #: src/data/akregator_part.rc:90
 #, kde-format
 msgid "&Help"
-msgstr ""
+msgstr "&Pagalba"
 
 #. i18n: ectx: ToolBar (mainToolBar)
 #: src/data/akregator_part.rc:96 src/data/akregator_shell.rc:54
@@ -1992,7 +1992,7 @@ msgstr "Visi kanalai"
 #: src/feed/feedpropertiesdialog.cpp:36
 #, kde-format
 msgid "Activities"
-msgstr ""
+msgstr "Veiklos"
 
 #: src/feed/feedpropertiesdialog.cpp:61 src/feed/feedpropertiesdialog.cpp:109
 #, kde-format
@@ -2578,14 +2578,12 @@ msgid "Open In External Browser"
 msgstr "Atverti išorinėje naršyklėje"
 
 #: src/whatsnew/whatsnewtranslations.cpp:16
-#, fuzzy
-#| msgid "Enabled Plasma Activity"
 msgid "Implement Plasma Activity."
-msgstr "Įjungta Plasma veikla"
+msgstr "Įgyvendinti Plasma veiklą."
 
 #: src/whatsnew/whatsnewtranslations.cpp:16
 msgid "Add new whatsnew widget."
-msgstr ""
+msgstr "Pridėti naują kas naujo valdiklį."
 
 #: src/widgets/searchbar.cpp:43
 #, kde-format
