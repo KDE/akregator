@@ -8,11 +8,12 @@
 #include "akregator_config_archive.h"
 #include "ui_settings_archive.h"
 #include <KAboutData>
+#include <KLocalization>
 #include <KLocalizedString>
 #include <KPluginFactory>
-
 #include <QButtonGroup>
 #include <QVBoxLayout>
+#include <ki18n_version.h>
 
 using namespace Akregator;
 
@@ -30,8 +31,10 @@ KCMAkregatorArchiveConfig::KCMAkregatorArchiveConfig(QObject *parent, const KPlu
     connect(m_ui.rb_LimitArticleNumber, &QAbstractButton::toggled, m_ui.kcfg_MaxArticleNumber, &QWidget::setEnabled);
     connect(m_ui.rb_LimitArticleAge, &QAbstractButton::toggled, m_ui.kcfg_MaxArticleAge, &QWidget::setEnabled);
 
-    m_ui.kcfg_MaxArticleNumber->setSuffix(ki18ncp("Limit feed archive size to:", " article", " articles"));
-    m_ui.kcfg_MaxArticleAge->setSuffix(ki18ncp("Delete articles older than:", " day", " days"));
+#if KI18N_VERSION > QT_VERSION_CHECK(6, 5, 0)
+    KLocalization::setupSpinBoxFormatString(m_ui.kcfg_MaxArticleNumber, ki18ncp("Limit feed archive size to:", " article", " articles"));
+    KLocalization::setupSpinBoxFormatString(m_ui.kcfg_MaxArticleAge, ki18ncp("Delete articles older than:", " day", " days"));
+#endif
     m_archiveModeGroup = new QButtonGroup(this);
     m_archiveModeGroup->addButton(m_ui.rb_KeepAllArticles, Settings::EnumArchiveMode::keepAllArticles);
     m_archiveModeGroup->addButton(m_ui.rb_LimitArticleNumber, Settings::EnumArchiveMode::limitArticleNumber);

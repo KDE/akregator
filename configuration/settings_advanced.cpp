@@ -8,8 +8,9 @@
 
 #include "settings_advanced.h"
 #include "akregatorconfig.h"
-
+#include <KLocalization>
 #include <KLocalizedString>
+#include <ki18n_version.h>
 
 #include <QPushButton>
 #include <QWidget>
@@ -22,9 +23,10 @@ SettingsAdvanced::SettingsAdvanced(QWidget *parent)
 {
     setupUi(this);
 
-    connect(kcfg_UseMarkReadDelay, &QCheckBox::toggled, kcfg_MarkReadDelay, &KPluralHandlingSpinBox::setEnabled);
-
-    kcfg_MarkReadDelay->setSuffix(ki18ncp("Mark selected article read after", " second", " seconds"));
+    connect(kcfg_UseMarkReadDelay, &QCheckBox::toggled, kcfg_MarkReadDelay, &QSpinBox::setEnabled);
+#if KI18N_VERSION > QT_VERSION_CHECK(6, 5, 0)
+    KLocalization::setupSpinBoxFormatString(kcfg_MarkReadDelay, ki18ncp("Mark selected article read after", " second", " seconds"));
+#endif
 }
 
 #include "moc_settings_advanced.cpp"

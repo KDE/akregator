@@ -15,12 +15,13 @@
 #include <KLocalizedString>
 #include <QComboBox>
 
+#include <KLocalization>
 #include <QCheckBox>
 #include <QDialogButtonBox>
 #include <QPushButton>
 #include <QVBoxLayout>
 #include <kernel.h>
-
+#include <ki18n_version.h>
 using namespace Akregator;
 
 FeedPropertiesWidget::FeedPropertiesWidget(QWidget *parent)
@@ -45,8 +46,8 @@ FeedPropertiesWidget::FeedPropertiesWidget(QWidget *parent)
     connect(cb_updateInterval, &QCheckBox::toggled, this, &FeedPropertiesWidget::slotUpdateCheckBoxToggled);
     connect(updateComboBox, &QComboBox::activated, this, &FeedPropertiesWidget::slotUpdateComboBoxActivated);
     connect(updateSpinBox, &QSpinBox::valueChanged, this, &FeedPropertiesWidget::slotUpdateComboBoxLabels);
-    connect(rb_limitArticleAge, &QRadioButton::toggled, sb_maxArticleAge, &KPluralHandlingSpinBox::setEnabled);
-    connect(rb_limitArticleNumber, &QRadioButton::toggled, sb_maxArticleNumber, &KPluralHandlingSpinBox::setEnabled);
+    connect(rb_limitArticleAge, &QRadioButton::toggled, sb_maxArticleAge, &QSpinBox::setEnabled);
+    connect(rb_limitArticleNumber, &QRadioButton::toggled, sb_maxArticleNumber, &QSpinBox::setEnabled);
 }
 
 FeedPropertiesWidget::~FeedPropertiesWidget() = default;
@@ -110,8 +111,11 @@ FeedPropertiesDialog::FeedPropertiesDialog(QWidget *parent, const QString &name)
     mFeedPropertiesWidget->updateComboBox->insertItem(FeedPropertiesWidget::Hours, i18np("Hour", "Hours", 0));
     mFeedPropertiesWidget->updateComboBox->insertItem(FeedPropertiesWidget::Days, i18np("Day", "Days", 0));
     mFeedPropertiesWidget->updateComboBox->insertItem(FeedPropertiesWidget::Never, i18nc("never fetch new articles", "Never"));
-    mFeedPropertiesWidget->sb_maxArticleAge->setSuffix(ki18np(" day", " days"));
-    mFeedPropertiesWidget->sb_maxArticleNumber->setSuffix(ki18np(" article", " articles"));
+
+#if KI18N_VERSION > QT_VERSION_CHECK(6, 5, 0)
+    KLocalization::setupSpinBoxFormatString(mFeedPropertiesWidget->sb_maxArticleAge, ki18np(" day", " days"));
+    KLocalization::setupSpinBoxFormatString(mFeedPropertiesWidget->sb_maxArticleNumber, ki18np(" article", " articles"));
+#endif
 
     connect(mFeedPropertiesWidget->feedNameEdit, &QLineEdit::textChanged, this, &FeedPropertiesDialog::slotSetWindowTitle);
 }
