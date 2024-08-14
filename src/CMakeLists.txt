@@ -345,7 +345,7 @@ target_link_libraries(akregatorpart
     KPim6::MessageViewer
     KF6::Parts
     KF6::Notifications
-    KF6::TextWidgets
+    
     Qt::WebEngineWidgets
     KPim6::WebEngineViewer
     KF6::KIOGui

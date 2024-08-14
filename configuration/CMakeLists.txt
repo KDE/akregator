@@ -14,7 +14,7 @@ ki18n_wrap_ui(akregator_config_general ui/settings_general.ui)
 
 target_link_libraries(akregator_config_general
     akregatorinterfaces
-    KF6::TextWidgets
+    
     KF6::KCMUtils
     KF6::I18n
 )
@@ -30,7 +30,7 @@ ki18n_wrap_ui(akregator_config_appearance ui/settings_appearance.ui)
 
 target_link_libraries(akregator_config_appearance
     akregatorinterfaces
-    KF6::TextWidgets
+    
     KF6::KCMUtils
     KF6::I18n
 )
@@ -47,7 +47,7 @@ ki18n_wrap_ui(akregator_config_archive ui/settings_archive.ui)
 target_link_libraries(akregator_config_archive
     KF6::KCMUtils
     akregatorinterfaces
-    KF6::TextWidgets
+    
     KF6::I18n
 )
 install(TARGETS akregator_config_archive DESTINATION ${KDE_INSTALL_PLUGINDIR}/pim6/kcms/akregator)
@@ -82,7 +82,7 @@ ki18n_wrap_ui(akregator_config_advanced ui/settings_advancedbase.ui)
 
 target_link_libraries(akregator_config_advanced
     akregatorinterfaces
-    KF6::TextWidgets
+    
     KF6::KCMUtils
     KF6::I18n
 )
@@ -130,7 +130,7 @@ if(TARGET KF6::UserFeedbackWidgets)
 
     target_link_libraries(akregator_config_userfeedback
         akregatorinterfaces
-        KF6::TextWidgets
+        
         KF6::KCMUtils
         KF6::I18n
         KF6::UserFeedbackWidgets
