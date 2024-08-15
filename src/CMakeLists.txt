@@ -175,7 +175,7 @@ target_sources(akregatorprivate PRIVATE
 
 )
 
-if(TARGET KPim6::PimCommonActivities)
+if(HAVE_ACTIVITY_SUPPORT)
     target_sources(akregatorprivate PRIVATE
 	activities/activitiesmanager.cpp
 	activities/activitiesmanager.h
@@ -231,7 +231,7 @@ if(TARGET KF6::TextEditTextToSpeech)
 )
 endif()
 
-if(TARGET KPim6::PimCommonActivities)
+if(TARGET KPim6::PimCommonActivities AND HAVE_ACTIVITY_SUPPORT)
     target_link_libraries(akregatorprivate
         PUBLIC
         KPim6::PimCommonActivities
