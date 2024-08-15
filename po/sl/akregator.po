@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-08 00:40+0000\n"
+"POT-Creation-Date: 2024-08-15 00:39+0000\n"
 "PO-Revision-Date: 2024-08-08 06:53+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
@@ -106,7 +106,7 @@ msgstr ""
 "<b>Opomba:</b> Iz varnostnih razlogov je zunanja referenca blokirana. "
 "(Glejte nastavitve)."
 
-#: configuration/akregator_config_archive.cpp:33
+#: configuration/akregator_config_archive.cpp:35
 #, kde-format
 msgctxt "Limit feed archive size to:"
 msgid " article"
@@ -116,7 +116,7 @@ msgstr[1] " članek"
 msgstr[2] " članka"
 msgstr[3] " članke"
 
-#: configuration/akregator_config_archive.cpp:34
+#: configuration/akregator_config_archive.cpp:36
 #, kde-format
 msgctxt "Delete articles older than:"
 msgid " day"
@@ -126,7 +126,7 @@ msgstr[1] " dneva"
 msgstr[2] " dni"
 msgstr[3] " dni"
 
-#: configuration/akregator_config_general.cpp:33
+#: configuration/akregator_config_general.cpp:35
 #, kde-format
 msgid " minute"
 msgid_plural " minutes"
@@ -140,7 +140,7 @@ msgstr[3] " minute"
 msgid "Webengine Plugins"
 msgstr "Vstavki spletnega pogona"
 
-#: configuration/settings_advanced.cpp:27
+#: configuration/settings_advanced.cpp:28
 #, kde-format
 msgctxt "Mark selected article read after"
 msgid " second"
@@ -1986,12 +1986,12 @@ msgstr "Datoteka"
 msgid "All Feeds"
 msgstr "Vsi viri"
 
-#: src/feed/feedpropertiesdialog.cpp:36
+#: src/feed/feedpropertiesdialog.cpp:37
 #, kde-format
 msgid "Activities"
 msgstr "Dejavnosti"
 
-#: src/feed/feedpropertiesdialog.cpp:61 src/feed/feedpropertiesdialog.cpp:109
+#: src/feed/feedpropertiesdialog.cpp:62 src/feed/feedpropertiesdialog.cpp:110
 #, kde-format
 msgid "Minute"
 msgid_plural "Minutes"
@@ -2000,7 +2000,7 @@ msgstr[1] "Minuta"
 msgstr[2] "Minuti"
 msgstr[3] "Minute"
 
-#: src/feed/feedpropertiesdialog.cpp:62 src/feed/feedpropertiesdialog.cpp:110
+#: src/feed/feedpropertiesdialog.cpp:63 src/feed/feedpropertiesdialog.cpp:111
 #, kde-format
 msgid "Hour"
 msgid_plural "Hours"
@@ -2009,7 +2009,7 @@ msgstr[1] "Ura"
 msgstr[2] "Uri"
 msgstr[3] "Ure"
 
-#: src/feed/feedpropertiesdialog.cpp:63 src/feed/feedpropertiesdialog.cpp:111
+#: src/feed/feedpropertiesdialog.cpp:64 src/feed/feedpropertiesdialog.cpp:112
 #, kde-format
 msgid "Day"
 msgid_plural "Days"
@@ -2018,19 +2018,19 @@ msgstr[1] "Dan"
 msgstr[2] "Dneva"
 msgstr[3] "Dni"
 
-#: src/feed/feedpropertiesdialog.cpp:93 src/feed/feedpropertiesdialog.cpp:147
+#: src/feed/feedpropertiesdialog.cpp:94 src/feed/feedpropertiesdialog.cpp:151
 #, kde-format
 msgctxt "@title:window"
 msgid "Feed Properties"
 msgstr "Lastnosti vira"
 
-#: src/feed/feedpropertiesdialog.cpp:112
+#: src/feed/feedpropertiesdialog.cpp:113
 #, kde-format
 msgctxt "never fetch new articles"
 msgid "Never"
 msgstr "Nikoli"
 
-#: src/feed/feedpropertiesdialog.cpp:113
+#: src/feed/feedpropertiesdialog.cpp:116
 #, kde-format
 msgid " day"
 msgid_plural " days"
@@ -2039,7 +2039,7 @@ msgstr[1] " dneva"
 msgstr[2] " dni"
 msgstr[3] " dni"
 
-#: src/feed/feedpropertiesdialog.cpp:114
+#: src/feed/feedpropertiesdialog.cpp:117
 #, kde-format
 msgid " article"
 msgid_plural " articles"
@@ -2048,7 +2048,7 @@ msgstr[1] " članek"
 msgstr[2] " članka"
 msgstr[3] " članke"
 
-#: src/feed/feedpropertiesdialog.cpp:147
+#: src/feed/feedpropertiesdialog.cpp:151
 #, kde-format
 msgctxt "@title:window"
 msgid "Properties of %1"

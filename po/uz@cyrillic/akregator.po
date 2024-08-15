@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-08 00:40+0000\n"
+"POT-Creation-Date: 2024-08-15 00:39+0000\n"
 "PO-Revision-Date: 2006-02-08 21:32+0100\n"
 "Last-Translator: Mashrab Kuvatov <kmashrab@uni-bremen.de>\n"
 "Language-Team: Uzbek <floss-uz-l10n@googlegroups.com>\n"
@@ -104,7 +104,7 @@ msgid ""
 "configure dialog)."
 msgstr ""
 
-#: configuration/akregator_config_archive.cpp:33
+#: configuration/akregator_config_archive.cpp:35
 #, fuzzy, kde-format
 #| msgid "1 article"
 msgctxt "Limit feed archive size to:"
@@ -112,7 +112,7 @@ msgid " article"
 msgid_plural " articles"
 msgstr[0] "1 мақола"
 
-#: configuration/akregator_config_archive.cpp:34
+#: configuration/akregator_config_archive.cpp:36
 #, fuzzy, kde-format
 #| msgid "1 day"
 msgctxt "Delete articles older than:"
@@ -120,7 +120,7 @@ msgid " day"
 msgid_plural " days"
 msgstr[0] "1 кун"
 
-#: configuration/akregator_config_general.cpp:33
+#: configuration/akregator_config_general.cpp:35
 #, fuzzy, kde-format
 #| msgid "1 minute"
 msgid " minute"
@@ -133,7 +133,7 @@ msgstr[0] "1 дақиқа"
 msgid "Webengine Plugins"
 msgstr "&Мослаш..."
 
-#: configuration/settings_advanced.cpp:27
+#: configuration/settings_advanced.cpp:28
 #, fuzzy, kde-format
 #| msgid " sec"
 msgctxt "Mark selected article read after"
@@ -2012,61 +2012,61 @@ msgstr "&Мақола"
 msgid "All Feeds"
 msgstr "Ҳамма янгиликлар тасмалари"
 
-#: src/feed/feedpropertiesdialog.cpp:36
+#: src/feed/feedpropertiesdialog.cpp:37
 #, kde-format
 msgid "Activities"
 msgstr ""
 
-#: src/feed/feedpropertiesdialog.cpp:61 src/feed/feedpropertiesdialog.cpp:109
+#: src/feed/feedpropertiesdialog.cpp:62 src/feed/feedpropertiesdialog.cpp:110
 #, fuzzy, kde-format
 #| msgid "Minutes"
 msgid "Minute"
 msgid_plural "Minutes"
 msgstr[0] "Дақиқа"
 
-#: src/feed/feedpropertiesdialog.cpp:62 src/feed/feedpropertiesdialog.cpp:110
+#: src/feed/feedpropertiesdialog.cpp:63 src/feed/feedpropertiesdialog.cpp:111
 #, fuzzy, kde-format
 #| msgid "Hours"
 msgid "Hour"
 msgid_plural "Hours"
 msgstr[0] "Соат"
 
-#: src/feed/feedpropertiesdialog.cpp:63 src/feed/feedpropertiesdialog.cpp:111
+#: src/feed/feedpropertiesdialog.cpp:64 src/feed/feedpropertiesdialog.cpp:112
 #, fuzzy, kde-format
 #| msgid "Days"
 msgid "Day"
 msgid_plural "Days"
 msgstr[0] "Кун"
 
-#: src/feed/feedpropertiesdialog.cpp:93 src/feed/feedpropertiesdialog.cpp:147
+#: src/feed/feedpropertiesdialog.cpp:94 src/feed/feedpropertiesdialog.cpp:151
 #, fuzzy, kde-format
 #| msgid "Feed Properties"
 msgctxt "@title:window"
 msgid "Feed Properties"
 msgstr "Янгиликлар тасмасининг хоссалари"
 
-#: src/feed/feedpropertiesdialog.cpp:112
+#: src/feed/feedpropertiesdialog.cpp:113
 #, fuzzy, kde-format
 #| msgid "Never"
 msgctxt "never fetch new articles"
 msgid "Never"
 msgstr "Ҳеч қачон"
 
-#: src/feed/feedpropertiesdialog.cpp:113
+#: src/feed/feedpropertiesdialog.cpp:116
 #, fuzzy, kde-format
 #| msgid "1 day"
 msgid " day"
 msgid_plural " days"
 msgstr[0] "1 кун"
 
-#: src/feed/feedpropertiesdialog.cpp:114
+#: src/feed/feedpropertiesdialog.cpp:117
 #, fuzzy, kde-format
 #| msgid "1 article"
 msgid " article"
 msgid_plural " articles"
 msgstr[0] "1 мақола"
 
-#: src/feed/feedpropertiesdialog.cpp:147
+#: src/feed/feedpropertiesdialog.cpp:151
 #, fuzzy, kde-format
 #| msgid "Properties of %1"
 msgctxt "@title:window"

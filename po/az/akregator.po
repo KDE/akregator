@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-08 00:40+0000\n"
+"POT-Creation-Date: 2024-08-15 00:39+0000\n"
 "PO-Revision-Date: 2022-07-03 14:28+0400\n"
 "Last-Translator: Kheyyam <xxmn77@gmail.com>\n"
 "Language-Team: Azerbaijani <kde-i18n-doc@kde.org>\n"
@@ -99,7 +99,7 @@ msgstr ""
 "<b>Qeyd</b> Təhlükəsizlik səbəbindən xarici istinad əngəlləndi (Tənzimləmə "
 "dialoquna baxın)."
 
-#: configuration/akregator_config_archive.cpp:33
+#: configuration/akregator_config_archive.cpp:35
 #, kde-format
 msgctxt "Limit feed archive size to:"
 msgid " article"
@@ -107,7 +107,7 @@ msgid_plural " articles"
 msgstr[0] " məqalə"
 msgstr[1] " məqalələr"
 
-#: configuration/akregator_config_archive.cpp:34
+#: configuration/akregator_config_archive.cpp:36
 #, kde-format
 msgctxt "Delete articles older than:"
 msgid " day"
@@ -115,7 +115,7 @@ msgid_plural " days"
 msgstr[0] " gün"
 msgstr[1] " günlər"
 
-#: configuration/akregator_config_general.cpp:33
+#: configuration/akregator_config_general.cpp:35
 #, kde-format
 msgid " minute"
 msgid_plural " minutes"
@@ -127,7 +127,7 @@ msgstr[1] " dəqiqələr"
 msgid "Webengine Plugins"
 msgstr "Daxili bələdçi modulu"
 
-#: configuration/settings_advanced.cpp:27
+#: configuration/settings_advanced.cpp:28
 #, kde-format
 msgctxt "Mark selected article read after"
 msgid " second"
@@ -2025,59 +2025,59 @@ msgstr "&Fayl"
 msgid "All Feeds"
 msgstr "Bütün xəbər lentləri"
 
-#: src/feed/feedpropertiesdialog.cpp:36
+#: src/feed/feedpropertiesdialog.cpp:37
 #, kde-format
 msgid "Activities"
 msgstr ""
 
-#: src/feed/feedpropertiesdialog.cpp:61 src/feed/feedpropertiesdialog.cpp:109
+#: src/feed/feedpropertiesdialog.cpp:62 src/feed/feedpropertiesdialog.cpp:110
 #, kde-format
 msgid "Minute"
 msgid_plural "Minutes"
 msgstr[0] "Dəqiqə"
 msgstr[1] "Dəqiqələr"
 
-#: src/feed/feedpropertiesdialog.cpp:62 src/feed/feedpropertiesdialog.cpp:110
+#: src/feed/feedpropertiesdialog.cpp:63 src/feed/feedpropertiesdialog.cpp:111
 #, kde-format
 msgid "Hour"
 msgid_plural "Hours"
 msgstr[0] "Saat"
 msgstr[1] "Saatlar"
 
-#: src/feed/feedpropertiesdialog.cpp:63 src/feed/feedpropertiesdialog.cpp:111
+#: src/feed/feedpropertiesdialog.cpp:64 src/feed/feedpropertiesdialog.cpp:112
 #, kde-format
 msgid "Day"
 msgid_plural "Days"
 msgstr[0] "Gün"
 msgstr[1] "Günlər"
 
-#: src/feed/feedpropertiesdialog.cpp:93 src/feed/feedpropertiesdialog.cpp:147
+#: src/feed/feedpropertiesdialog.cpp:94 src/feed/feedpropertiesdialog.cpp:151
 #, kde-format
 msgctxt "@title:window"
 msgid "Feed Properties"
 msgstr "Xəbər lenti xüsusiyyətləri"
 
-#: src/feed/feedpropertiesdialog.cpp:112
+#: src/feed/feedpropertiesdialog.cpp:113
 #, kde-format
 msgctxt "never fetch new articles"
 msgid "Never"
 msgstr "Heç vaxt"
 
-#: src/feed/feedpropertiesdialog.cpp:113
+#: src/feed/feedpropertiesdialog.cpp:116
 #, kde-format
 msgid " day"
 msgid_plural " days"
 msgstr[0] " gün"
 msgstr[1] " günlər"
 
-#: src/feed/feedpropertiesdialog.cpp:114
+#: src/feed/feedpropertiesdialog.cpp:117
 #, kde-format
 msgid " article"
 msgid_plural " articles"
 msgstr[0] " məqalə"
 msgstr[1] " məqalələr"
 
-#: src/feed/feedpropertiesdialog.cpp:147
+#: src/feed/feedpropertiesdialog.cpp:151
 #, kde-format
 msgctxt "@title:window"
 msgid "Properties of %1"

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-08 00:40+0000\n"
+"POT-Creation-Date: 2024-08-15 00:39+0000\n"
 "PO-Revision-Date: 2024-08-10 12:35+0200\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -106,7 +106,7 @@ msgstr ""
 "<b>Uwaga:</b> Ze względów bezpieczeństwa, zablokowano zewnętrzne odnośniki "
 "(patrz okno ustawień)."
 
-#: configuration/akregator_config_archive.cpp:33
+#: configuration/akregator_config_archive.cpp:35
 #, kde-format
 msgctxt "Limit feed archive size to:"
 msgid " article"
@@ -115,7 +115,7 @@ msgstr[0] " artykuł"
 msgstr[1] " artykuły"
 msgstr[2] " artykułów"
 
-#: configuration/akregator_config_archive.cpp:34
+#: configuration/akregator_config_archive.cpp:36
 #, kde-format
 msgctxt "Delete articles older than:"
 msgid " day"
@@ -124,7 +124,7 @@ msgstr[0] " dzień"
 msgstr[1] " dni"
 msgstr[2] " dni"
 
-#: configuration/akregator_config_general.cpp:33
+#: configuration/akregator_config_general.cpp:35
 #, kde-format
 msgid " minute"
 msgid_plural " minutes"
@@ -137,7 +137,7 @@ msgstr[2] " minut"
 msgid "Webengine Plugins"
 msgstr "Wtyczki silnika sieciowego"
 
-#: configuration/settings_advanced.cpp:27
+#: configuration/settings_advanced.cpp:28
 #, kde-format
 msgctxt "Mark selected article read after"
 msgid " second"
@@ -1991,12 +1991,12 @@ msgstr "&Plik"
 msgid "All Feeds"
 msgstr "Wszystkie kanały"
 
-#: src/feed/feedpropertiesdialog.cpp:36
+#: src/feed/feedpropertiesdialog.cpp:37
 #, kde-format
 msgid "Activities"
 msgstr "Aktywności"
 
-#: src/feed/feedpropertiesdialog.cpp:61 src/feed/feedpropertiesdialog.cpp:109
+#: src/feed/feedpropertiesdialog.cpp:62 src/feed/feedpropertiesdialog.cpp:110
 #, kde-format
 msgid "Minute"
 msgid_plural "Minutes"
@@ -2004,7 +2004,7 @@ msgstr[0] "Minuta"
 msgstr[1] "Minuty"
 msgstr[2] "Minut"
 
-#: src/feed/feedpropertiesdialog.cpp:62 src/feed/feedpropertiesdialog.cpp:110
+#: src/feed/feedpropertiesdialog.cpp:63 src/feed/feedpropertiesdialog.cpp:111
 #, kde-format
 msgid "Hour"
 msgid_plural "Hours"
@@ -2012,7 +2012,7 @@ msgstr[0] "Godzina"
 msgstr[1] "Godziny"
 msgstr[2] "Godzin"
 
-#: src/feed/feedpropertiesdialog.cpp:63 src/feed/feedpropertiesdialog.cpp:111
+#: src/feed/feedpropertiesdialog.cpp:64 src/feed/feedpropertiesdialog.cpp:112
 #, kde-format
 msgid "Day"
 msgid_plural "Days"
@@ -2020,19 +2020,19 @@ msgstr[0] "Dzień"
 msgstr[1] "Dni"
 msgstr[2] "Dni"
 
-#: src/feed/feedpropertiesdialog.cpp:93 src/feed/feedpropertiesdialog.cpp:147
+#: src/feed/feedpropertiesdialog.cpp:94 src/feed/feedpropertiesdialog.cpp:151
 #, kde-format
 msgctxt "@title:window"
 msgid "Feed Properties"
 msgstr "Właściwości pobierania"
 
-#: src/feed/feedpropertiesdialog.cpp:112
+#: src/feed/feedpropertiesdialog.cpp:113
 #, kde-format
 msgctxt "never fetch new articles"
 msgid "Never"
 msgstr "Nigdy"
 
-#: src/feed/feedpropertiesdialog.cpp:113
+#: src/feed/feedpropertiesdialog.cpp:116
 #, kde-format
 msgid " day"
 msgid_plural " days"
@@ -2040,7 +2040,7 @@ msgstr[0] " dzień"
 msgstr[1] " dni"
 msgstr[2] " dni"
 
-#: src/feed/feedpropertiesdialog.cpp:114
+#: src/feed/feedpropertiesdialog.cpp:117
 #, kde-format
 msgid " article"
 msgid_plural " articles"
@@ -2048,7 +2048,7 @@ msgstr[0] " artykuł"
 msgstr[1] " artykuły"
 msgstr[2] " artykułów"
 
-#: src/feed/feedpropertiesdialog.cpp:147
+#: src/feed/feedpropertiesdialog.cpp:151
 #, kde-format
 msgctxt "@title:window"
 msgid "Properties of %1"

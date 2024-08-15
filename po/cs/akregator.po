@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-08 00:40+0000\n"
-"PO-Revision-Date: 2024-07-08 16:50+0200\n"
+"POT-Creation-Date: 2024-08-15 00:39+0000\n"
+"PO-Revision-Date: 2024-08-06 11:19+0200\n"
 "Last-Translator: Vit Pelcak <vit@pelcak.org>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
 "Language: cs\n"
@@ -17,19 +17,21 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Lokalize 24.05.1\n"
+"X-Generator: Lokalize 24.05.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "Lukáš Tinkl, Petr Uzel, Klára Cihlářová, Jakub Friedl, Tomáš Chvátal"
+msgstr ""
+"Lukáš Tinkl, Petr Uzel, Klára Cihlářová, Jakub Friedl, Tomáš Chvátal, Vít "
+"Pelčák"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr ""
 "lukas@kde.org,petr.uzel@centrum.cz,koty@seznam.cz,jfriedl@suse.cz,tomas."
-"chvatal@gmail.com"
+"chvatal@gmail.com,vit@pelcak.org"
 
 #: src/about/introduction_akregator.html:18
 msgid ""
@@ -103,7 +105,7 @@ msgstr ""
 "<b>Poznámka:</b> Z bezpečnostních důvodů je externí odkaz blokován (viz "
 "dialog nastavení)."
 
-#: configuration/akregator_config_archive.cpp:33
+#: configuration/akregator_config_archive.cpp:35
 #, kde-format
 msgctxt "Limit feed archive size to:"
 msgid " article"
@@ -112,7 +114,7 @@ msgstr[0] " článek"
 msgstr[1] " články"
 msgstr[2] " článků"
 
-#: configuration/akregator_config_archive.cpp:34
+#: configuration/akregator_config_archive.cpp:36
 #, kde-format
 msgctxt "Delete articles older than:"
 msgid " day"
@@ -121,7 +123,7 @@ msgstr[0] " den"
 msgstr[1] " dny"
 msgstr[2] " dnů"
 
-#: configuration/akregator_config_general.cpp:33
+#: configuration/akregator_config_general.cpp:35
 #, kde-format
 msgid " minute"
 msgid_plural " minutes"
@@ -134,7 +136,7 @@ msgstr[2] " minut"
 msgid "Webengine Plugins"
 msgstr "Moduly webEngine"
 
-#: configuration/settings_advanced.cpp:27
+#: configuration/settings_advanced.cpp:28
 #, kde-format
 msgctxt "Mark selected article read after"
 msgid " second"
@@ -1349,7 +1351,7 @@ msgstr "Přejít do rychlého vyhledávání"
 #: src/actions/actionmanagerimpl.cpp:439
 #, kde-format
 msgid "What's new"
-msgstr ""
+msgstr "Co je nového"
 
 #: src/actions/actionmanagerimpl.cpp:469
 #, kde-format
@@ -1953,7 +1955,7 @@ msgstr "Na&stavení"
 #: src/data/akregator_part.rc:90
 #, kde-format
 msgid "&Help"
-msgstr ""
+msgstr "Nápo&věda"
 
 #. i18n: ectx: ToolBar (mainToolBar)
 #: src/data/akregator_part.rc:96 src/data/akregator_shell.rc:54
@@ -1972,12 +1974,12 @@ msgstr "&Soubor"
 msgid "All Feeds"
 msgstr "Všechny kanály"
 
-#: src/feed/feedpropertiesdialog.cpp:36
+#: src/feed/feedpropertiesdialog.cpp:37
 #, kde-format
 msgid "Activities"
-msgstr ""
+msgstr "Aktivity"
 
-#: src/feed/feedpropertiesdialog.cpp:61 src/feed/feedpropertiesdialog.cpp:109
+#: src/feed/feedpropertiesdialog.cpp:62 src/feed/feedpropertiesdialog.cpp:110
 #, kde-format
 msgid "Minute"
 msgid_plural "Minutes"
@@ -1985,7 +1987,7 @@ msgstr[0] "Minuta"
 msgstr[1] "Minuty"
 msgstr[2] "Minut"
 
-#: src/feed/feedpropertiesdialog.cpp:62 src/feed/feedpropertiesdialog.cpp:110
+#: src/feed/feedpropertiesdialog.cpp:63 src/feed/feedpropertiesdialog.cpp:111
 #, kde-format
 msgid "Hour"
 msgid_plural "Hours"
@@ -1993,7 +1995,7 @@ msgstr[0] "Hodina"
 msgstr[1] "Hodiny"
 msgstr[2] "Hodin"
 
-#: src/feed/feedpropertiesdialog.cpp:63 src/feed/feedpropertiesdialog.cpp:111
+#: src/feed/feedpropertiesdialog.cpp:64 src/feed/feedpropertiesdialog.cpp:112
 #, kde-format
 msgid "Day"
 msgid_plural "Days"
@@ -2001,19 +2003,19 @@ msgstr[0] "Den"
 msgstr[1] "Dny"
 msgstr[2] "Dnů"
 
-#: src/feed/feedpropertiesdialog.cpp:93 src/feed/feedpropertiesdialog.cpp:147
+#: src/feed/feedpropertiesdialog.cpp:94 src/feed/feedpropertiesdialog.cpp:151
 #, kde-format
 msgctxt "@title:window"
 msgid "Feed Properties"
 msgstr "Vlastnosti kanálu"
 
-#: src/feed/feedpropertiesdialog.cpp:112
+#: src/feed/feedpropertiesdialog.cpp:113
 #, kde-format
 msgctxt "never fetch new articles"
 msgid "Never"
 msgstr "Nikdy"
 
-#: src/feed/feedpropertiesdialog.cpp:113
+#: src/feed/feedpropertiesdialog.cpp:116
 #, kde-format
 msgid " day"
 msgid_plural " days"
@@ -2021,7 +2023,7 @@ msgstr[0] " den"
 msgstr[1] " dny"
 msgstr[2] " dnů"
 
-#: src/feed/feedpropertiesdialog.cpp:114
+#: src/feed/feedpropertiesdialog.cpp:117
 #, kde-format
 msgid " article"
 msgid_plural " articles"
@@ -2029,7 +2031,7 @@ msgstr[0] " článek"
 msgstr[1] " články"
 msgstr[2] " článků"
 
-#: src/feed/feedpropertiesdialog.cpp:147
+#: src/feed/feedpropertiesdialog.cpp:151
 #, kde-format
 msgctxt "@title:window"
 msgid "Properties of %1"
@@ -2553,10 +2555,8 @@ msgid "Open In External Browser"
 msgstr "Otevřít v externím prohlížeči"
 
 #: src/whatsnew/whatsnewtranslations.cpp:16
-#, fuzzy
-#| msgid "Enabled Plasma Activity"
 msgid "Implement Plasma Activity."
-msgstr "Povolená Aktivita Plasma"
+msgstr "Implementována Aktivita Plasma."
 
 #: src/whatsnew/whatsnewtranslations.cpp:16
 msgid "Add new whatsnew widget."
@@ -2602,6 +2602,3 @@ msgstr "Přečteno"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "Důležité"
-
-#~ msgid "Write Error"
-#~ msgstr "Chyba při zápisu"

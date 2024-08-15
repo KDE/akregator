@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-08 00:40+0000\n"
+"POT-Creation-Date: 2024-08-15 00:39+0000\n"
 "PO-Revision-Date: 2024-07-06 21:38+0530\n"
 "Last-Translator: Kishore G <kishore96@gmail.com>\n"
 "Language-Team: Tamil <kde-i18n-doc@kde.org>\n"
@@ -88,7 +88,7 @@ msgstr ""
 "<b>குறிப்பு:</b> பாதுகாப்பு கருதி, வெளி இணைப்புகள் தடுக்கப்பட்டுள்ளன (அமைப்புகளைப் "
 "பாருங்கள்)."
 
-#: configuration/akregator_config_archive.cpp:33
+#: configuration/akregator_config_archive.cpp:35
 #, kde-format
 msgctxt "Limit feed archive size to:"
 msgid " article"
@@ -96,7 +96,7 @@ msgid_plural " articles"
 msgstr[0] " கட்டுரை"
 msgstr[1] " கட்டுரைகள்"
 
-#: configuration/akregator_config_archive.cpp:34
+#: configuration/akregator_config_archive.cpp:36
 #, kde-format
 msgctxt "Delete articles older than:"
 msgid " day"
@@ -104,7 +104,7 @@ msgid_plural " days"
 msgstr[0] " நாள்"
 msgstr[1] " நாட்கள்"
 
-#: configuration/akregator_config_general.cpp:33
+#: configuration/akregator_config_general.cpp:35
 #, kde-format
 msgid " minute"
 msgid_plural " minutes"
@@ -116,7 +116,7 @@ msgstr[1] " நிமிடங்கள்"
 msgid "Webengine Plugins"
 msgstr "Webengine செருகுநிரல்கள்"
 
-#: configuration/settings_advanced.cpp:27
+#: configuration/settings_advanced.cpp:28
 #, kde-format
 msgctxt "Mark selected article read after"
 msgid " second"
@@ -1962,12 +1962,12 @@ msgstr "&கட்டுரை"
 msgid "All Feeds"
 msgstr "அனைத்து செலுத்தல்கள்"
 
-#: src/feed/feedpropertiesdialog.cpp:36
+#: src/feed/feedpropertiesdialog.cpp:37
 #, kde-format
 msgid "Activities"
 msgstr ""
 
-#: src/feed/feedpropertiesdialog.cpp:61 src/feed/feedpropertiesdialog.cpp:109
+#: src/feed/feedpropertiesdialog.cpp:62 src/feed/feedpropertiesdialog.cpp:110
 #, fuzzy, kde-format
 #| msgid "Minutes"
 msgid "Minute"
@@ -1975,7 +1975,7 @@ msgid_plural "Minutes"
 msgstr[0] "நிமிடங்கள்"
 msgstr[1] "நிமிடங்கள்"
 
-#: src/feed/feedpropertiesdialog.cpp:62 src/feed/feedpropertiesdialog.cpp:110
+#: src/feed/feedpropertiesdialog.cpp:63 src/feed/feedpropertiesdialog.cpp:111
 #, fuzzy, kde-format
 #| msgid "Hours"
 msgid "Hour"
@@ -1983,7 +1983,7 @@ msgid_plural "Hours"
 msgstr[0] "மணிநேரங்கள்"
 msgstr[1] "மணிநேரங்கள்"
 
-#: src/feed/feedpropertiesdialog.cpp:63 src/feed/feedpropertiesdialog.cpp:111
+#: src/feed/feedpropertiesdialog.cpp:64 src/feed/feedpropertiesdialog.cpp:112
 #, fuzzy, kde-format
 #| msgid "Days"
 msgid "Day"
@@ -1991,21 +1991,21 @@ msgid_plural "Days"
 msgstr[0] "நாட்கள்"
 msgstr[1] "நாட்கள்"
 
-#: src/feed/feedpropertiesdialog.cpp:93 src/feed/feedpropertiesdialog.cpp:147
+#: src/feed/feedpropertiesdialog.cpp:94 src/feed/feedpropertiesdialog.cpp:151
 #, fuzzy, kde-format
 #| msgid "Feed Properties"
 msgctxt "@title:window"
 msgid "Feed Properties"
 msgstr "பண்புகளின் செலுத்தல்"
 
-#: src/feed/feedpropertiesdialog.cpp:112
+#: src/feed/feedpropertiesdialog.cpp:113
 #, fuzzy, kde-format
 #| msgid "Never"
 msgctxt "never fetch new articles"
 msgid "Never"
 msgstr "ஒருபோதும்"
 
-#: src/feed/feedpropertiesdialog.cpp:113
+#: src/feed/feedpropertiesdialog.cpp:116
 #, fuzzy, kde-format
 #| msgid "1 day"
 msgid " day"
@@ -2013,7 +2013,7 @@ msgid_plural " days"
 msgstr[0] "1 நாள்"
 msgstr[1] "1 நாள்"
 
-#: src/feed/feedpropertiesdialog.cpp:114
+#: src/feed/feedpropertiesdialog.cpp:117
 #, fuzzy, kde-format
 #| msgid "1 article"
 msgid " article"
@@ -2021,7 +2021,7 @@ msgid_plural " articles"
 msgstr[0] "1 கட்டுரை"
 msgstr[1] "1 கட்டுரை"
 
-#: src/feed/feedpropertiesdialog.cpp:147
+#: src/feed/feedpropertiesdialog.cpp:151
 #, fuzzy, kde-format
 msgctxt "@title:window"
 msgid "Properties of %1"
