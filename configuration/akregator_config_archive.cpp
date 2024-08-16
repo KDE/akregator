@@ -32,8 +32,8 @@ KCMAkregatorArchiveConfig::KCMAkregatorArchiveConfig(QObject *parent, const KPlu
     connect(m_ui.rb_LimitArticleAge, &QAbstractButton::toggled, m_ui.kcfg_MaxArticleAge, &QWidget::setEnabled);
 
 #if KI18N_VERSION > QT_VERSION_CHECK(6, 5, 0)
-    KLocalization::setupSpinBoxFormatString(m_ui.kcfg_MaxArticleNumber, ki18ncp("Limit feed archive size to:", " article", " articles"));
-    KLocalization::setupSpinBoxFormatString(m_ui.kcfg_MaxArticleAge, ki18ncp("Delete articles older than:", " day", " days"));
+    KLocalization::setupSpinBoxFormatString(m_ui.kcfg_MaxArticleNumber, ki18ncp("Limit feed archive size to:", "%v article", "%v articles"));
+    KLocalization::setupSpinBoxFormatString(m_ui.kcfg_MaxArticleAge, ki18ncp("Delete articles older than:", "%v day", "%v days"));
 #endif
     m_archiveModeGroup = new QButtonGroup(this);
     m_archiveModeGroup->addButton(m_ui.rb_KeepAllArticles, Settings::EnumArchiveMode::keepAllArticles);
