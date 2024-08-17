@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-15 00:39+0000\n"
+"POT-Creation-Date: 2024-08-17 00:39+0000\n"
 "PO-Revision-Date: 2007-09-07 10:35+0545\n"
 "Last-Translator: Nabin Gautam <nabin@mpp.org.np>\n"
 "Language-Team: Nepali <info@mpp.org.np>\n"
@@ -108,8 +108,8 @@ msgstr ""
 #, fuzzy, kde-format
 #| msgid "1 article"
 msgctxt "Limit feed archive size to:"
-msgid " article"
-msgid_plural " articles"
+msgid "%v article"
+msgid_plural "%v articles"
 msgstr[0] "१ लेख"
 msgstr[1] "१ लेख"
 
@@ -117,8 +117,8 @@ msgstr[1] "१ लेख"
 #, fuzzy, kde-format
 #| msgid "1 day"
 msgctxt "Delete articles older than:"
-msgid " day"
-msgid_plural " days"
+msgid "%v day"
+msgid_plural "%v days"
 msgstr[0] "१ दिन"
 msgstr[1] "१ दिन"
 
@@ -140,8 +140,8 @@ msgstr "समरूपी फेच"
 #, fuzzy, kde-format
 #| msgid " sec"
 msgctxt "Mark selected article read after"
-msgid " second"
-msgid_plural " seconds"
+msgid "%v second"
+msgid_plural "%v seconds"
 msgstr[0] " सेकेन्ड"
 msgstr[1] " सेकेन्ड"
 
@@ -2107,16 +2107,16 @@ msgstr "कहिल्यै पनि"
 #: src/feed/feedpropertiesdialog.cpp:116
 #, fuzzy, kde-format
 #| msgid "1 day"
-msgid " day"
-msgid_plural " days"
+msgid "%v day"
+msgid_plural "%v days"
 msgstr[0] "१ दिन"
 msgstr[1] "१ दिन"
 
 #: src/feed/feedpropertiesdialog.cpp:117
 #, fuzzy, kde-format
 #| msgid "1 article"
-msgid " article"
-msgid_plural " articles"
+msgid "%v article"
+msgid_plural "%v articles"
 msgstr[0] "१ लेख"
 msgstr[1] "१ लेख"
 

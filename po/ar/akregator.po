@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-15 00:39+0000\n"
+"POT-Creation-Date: 2024-08-17 00:39+0000\n"
 "PO-Revision-Date: 2024-08-15 10:55+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
@@ -104,10 +104,13 @@ msgstr ""
 "<b>ملاحظة:</b> لأسباب أمنية المصادر الخارجية محجوبة (انظر حواري الضبط)."
 
 #: configuration/akregator_config_archive.cpp:35
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "Limit feed archive size to:"
+#| msgid " article"
+#| msgid_plural " articles"
 msgctxt "Limit feed archive size to:"
-msgid " article"
-msgid_plural " articles"
+msgid "%v article"
+msgid_plural "%v articles"
 msgstr[0] "لا مقالات"
 msgstr[1] " مقالة واحدة"
 msgstr[2] " مقالتان"
@@ -116,10 +119,13 @@ msgstr[4] " مقالة"
 msgstr[5] " مقالة"
 
 #: configuration/akregator_config_archive.cpp:36
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "Delete articles older than:"
+#| msgid " day"
+#| msgid_plural " days"
 msgctxt "Delete articles older than:"
-msgid " day"
-msgid_plural " days"
+msgid "%v day"
+msgid_plural "%v days"
 msgstr[0] "أقل من يوم"
 msgstr[1] " يوم واحد"
 msgstr[2] " يومان"
@@ -144,10 +150,13 @@ msgid "Webengine Plugins"
 msgstr "ملحقات محرّك الوبّ"
 
 #: configuration/settings_advanced.cpp:28
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "Mark selected article read after"
+#| msgid " second"
+#| msgid_plural " seconds"
 msgctxt "Mark selected article read after"
-msgid " second"
-msgid_plural " seconds"
+msgid "%v second"
+msgid_plural "%v seconds"
 msgstr[0] " أقل من ثانية"
 msgstr[1] " ثانية واحدة"
 msgstr[2] " ثانيتان"
@@ -2030,9 +2039,11 @@ msgid "Never"
 msgstr "مطلقاً"
 
 #: src/feed/feedpropertiesdialog.cpp:116
-#, kde-format
-msgid " day"
-msgid_plural " days"
+#, fuzzy, kde-format
+#| msgid " day"
+#| msgid_plural " days"
+msgid "%v day"
+msgid_plural "%v days"
 msgstr[0] "أقل من يوم"
 msgstr[1] "يوم واحد"
 msgstr[2] "يومان"
@@ -2041,9 +2052,11 @@ msgstr[4] "يوماً"
 msgstr[5] "يوم"
 
 #: src/feed/feedpropertiesdialog.cpp:117
-#, kde-format
-msgid " article"
-msgid_plural " articles"
+#, fuzzy, kde-format
+#| msgid " article"
+#| msgid_plural " articles"
+msgid "%v article"
+msgid_plural "%v articles"
 msgstr[0] "لا مقالات"
 msgstr[1] "مقالة واحدة"
 msgstr[2] "مقالتان"

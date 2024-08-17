@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-15 00:39+0000\n"
+"POT-Creation-Date: 2024-08-17 00:39+0000\n"
 "PO-Revision-Date: 2024-04-23 19:24\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -95,17 +95,23 @@ msgid ""
 msgstr "<b>注意：</b> 出于安全原因，外部引用被禁用(见配置对话框)。"
 
 #: configuration/akregator_config_archive.cpp:35
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "Limit feed archive size to:"
+#| msgid " article"
+#| msgid_plural " articles"
 msgctxt "Limit feed archive size to:"
-msgid " article"
-msgid_plural " articles"
+msgid "%v article"
+msgid_plural "%v articles"
 msgstr[0] " 篇文章"
 
 #: configuration/akregator_config_archive.cpp:36
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "Delete articles older than:"
+#| msgid " day"
+#| msgid_plural " days"
 msgctxt "Delete articles older than:"
-msgid " day"
-msgid_plural " days"
+msgid "%v day"
+msgid_plural "%v days"
 msgstr[0] " 天"
 
 #: configuration/akregator_config_general.cpp:35
@@ -120,10 +126,13 @@ msgid "Webengine Plugins"
 msgstr "Webengine 插件"
 
 #: configuration/settings_advanced.cpp:28
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "Mark selected article read after"
+#| msgid " second"
+#| msgid_plural " seconds"
 msgctxt "Mark selected article read after"
-msgid " second"
-msgid_plural " seconds"
+msgid "%v second"
+msgid_plural "%v seconds"
 msgstr[0] " 秒"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
@@ -1966,15 +1975,19 @@ msgid "Never"
 msgstr "从不"
 
 #: src/feed/feedpropertiesdialog.cpp:116
-#, kde-format
-msgid " day"
-msgid_plural " days"
+#, fuzzy, kde-format
+#| msgid " day"
+#| msgid_plural " days"
+msgid "%v day"
+msgid_plural "%v days"
 msgstr[0] " 天"
 
 #: src/feed/feedpropertiesdialog.cpp:117
-#, kde-format
-msgid " article"
-msgid_plural " articles"
+#, fuzzy, kde-format
+#| msgid " article"
+#| msgid_plural " articles"
+msgid "%v article"
+msgid_plural "%v articles"
 msgstr[0] " 篇文章"
 
 #: src/feed/feedpropertiesdialog.cpp:151

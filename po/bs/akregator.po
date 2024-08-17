@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdepim\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-15 00:39+0000\n"
+"POT-Creation-Date: 2024-08-17 00:39+0000\n"
 "PO-Revision-Date: 2014-01-31 18:57+0100\n"
 "Last-Translator: Samir Ribić <megaribi@epn.ba>\n"
 "Language-Team: Bosnian <bs@li.org>\n"
@@ -110,19 +110,25 @@ msgid ""
 msgstr ""
 
 #: configuration/akregator_config_archive.cpp:35
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "Limit feed archive size to:"
+#| msgid " article"
+#| msgid_plural " articles"
 msgctxt "Limit feed archive size to:"
-msgid " article"
-msgid_plural " articles"
+msgid "%v article"
+msgid_plural "%v articles"
 msgstr[0] " članak"
 msgstr[1] " članka"
 msgstr[2] " članaka"
 
 #: configuration/akregator_config_archive.cpp:36
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "Delete articles older than:"
+#| msgid " day"
+#| msgid_plural " days"
 msgctxt "Delete articles older than:"
-msgid " day"
-msgid_plural " days"
+msgid "%v day"
+msgid_plural "%v days"
 msgstr[0] " dan"
 msgstr[1] " dani"
 msgstr[2] " dana"
@@ -142,10 +148,13 @@ msgid "Webengine Plugins"
 msgstr "Podesi dovode"
 
 #: configuration/settings_advanced.cpp:28
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "Mark selected article read after"
+#| msgid " second"
+#| msgid_plural " seconds"
 msgctxt "Mark selected article read after"
-msgid " second"
-msgid_plural " seconds"
+msgid "%v second"
+msgid_plural "%v seconds"
 msgstr[0] " sekunda"
 msgstr[1] " sekunde"
 msgstr[2] " sekundi"
@@ -2098,17 +2107,21 @@ msgid "Never"
 msgstr "Nikad"
 
 #: src/feed/feedpropertiesdialog.cpp:116
-#, kde-format
-msgid " day"
-msgid_plural " days"
+#, fuzzy, kde-format
+#| msgid " day"
+#| msgid_plural " days"
+msgid "%v day"
+msgid_plural "%v days"
 msgstr[0] " dan"
 msgstr[1] " dani"
 msgstr[2] " dana"
 
 #: src/feed/feedpropertiesdialog.cpp:117
-#, kde-format
-msgid " article"
-msgid_plural " articles"
+#, fuzzy, kde-format
+#| msgid " article"
+#| msgid_plural " articles"
+msgid "%v article"
+msgid_plural "%v articles"
 msgstr[0] " članak"
 msgstr[1] " članka"
 msgstr[2] " članaka"

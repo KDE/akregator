@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-15 00:39+0000\n"
+"POT-Creation-Date: 2024-08-17 00:39+0000\n"
 "PO-Revision-Date: 2024-02-10 14:32+0300\n"
 "Last-Translator: Alexander Yavorsky <kekcuha@gmail.com>\n"
 "Language-Team: Russian <kde-russian@lists.kde.ru>\n"
@@ -116,20 +116,26 @@ msgstr ""
 "(подробнее об этом в диалоге настройки)."
 
 #: configuration/akregator_config_archive.cpp:35
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "Limit feed archive size to:"
+#| msgid " article"
+#| msgid_plural " articles"
 msgctxt "Limit feed archive size to:"
-msgid " article"
-msgid_plural " articles"
+msgid "%v article"
+msgid_plural "%v articles"
 msgstr[0] " статья"
 msgstr[1] " статьи"
 msgstr[2] " статей"
 msgstr[3] " статья"
 
 #: configuration/akregator_config_archive.cpp:36
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "Delete articles older than:"
+#| msgid " day"
+#| msgid_plural " days"
 msgctxt "Delete articles older than:"
-msgid " day"
-msgid_plural " days"
+msgid "%v day"
+msgid_plural "%v days"
 msgstr[0] " день"
 msgstr[1] " дня"
 msgstr[2] " дней"
@@ -150,10 +156,13 @@ msgid "Webengine Plugins"
 msgstr "Модули для встроенного веб-браузера"
 
 #: configuration/settings_advanced.cpp:28
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "Mark selected article read after"
+#| msgid " second"
+#| msgid_plural " seconds"
 msgctxt "Mark selected article read after"
-msgid " second"
-msgid_plural " seconds"
+msgid "%v second"
+msgid_plural "%v seconds"
 msgstr[0] " секунда"
 msgstr[1] " секунды"
 msgstr[2] " секунд"
@@ -2078,18 +2087,22 @@ msgid "Never"
 msgstr "Никогда"
 
 #: src/feed/feedpropertiesdialog.cpp:116
-#, kde-format
-msgid " day"
-msgid_plural " days"
+#, fuzzy, kde-format
+#| msgid " day"
+#| msgid_plural " days"
+msgid "%v day"
+msgid_plural "%v days"
 msgstr[0] " день"
 msgstr[1] " дня"
 msgstr[2] " дней"
 msgstr[3] " день"
 
 #: src/feed/feedpropertiesdialog.cpp:117
-#, kde-format
-msgid " article"
-msgid_plural " articles"
+#, fuzzy, kde-format
+#| msgid " article"
+#| msgid_plural " articles"
+msgid "%v article"
+msgid_plural "%v articles"
 msgstr[0] " статья"
 msgstr[1] " статьи"
 msgstr[2] " статей"
