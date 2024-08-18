@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-08-17 00:39+0000\n"
-"PO-Revision-Date: 2024-08-08 06:30+0200\n"
+"PO-Revision-Date: 2024-08-17 08:21+0200\n"
 "Last-Translator: Stefan Asserhäll <stefan.asserhall@gmail.com>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
 "Language: sv\n"
@@ -101,26 +101,20 @@ msgstr ""
 "inställningsdialogrutan)."
 
 #: configuration/akregator_config_archive.cpp:35
-#, fuzzy, kde-format
-#| msgctxt "Limit feed archive size to:"
-#| msgid " article"
-#| msgid_plural " articles"
+#, kde-format
 msgctxt "Limit feed archive size to:"
 msgid "%v article"
 msgid_plural "%v articles"
-msgstr[0] " artikel"
-msgstr[1] " artiklar"
+msgstr[0] "%v artikel"
+msgstr[1] "%v artiklar"
 
 #: configuration/akregator_config_archive.cpp:36
-#, fuzzy, kde-format
-#| msgctxt "Delete articles older than:"
-#| msgid " day"
-#| msgid_plural " days"
+#, kde-format
 msgctxt "Delete articles older than:"
 msgid "%v day"
 msgid_plural "%v days"
-msgstr[0] " dag"
-msgstr[1] " dagar"
+msgstr[0] "%v dag"
+msgstr[1] "%v dagar"
 
 #: configuration/akregator_config_general.cpp:35
 #, kde-format
@@ -135,15 +129,12 @@ msgid "Webengine Plugins"
 msgstr "Insticksprogram för webbgränssnitt"
 
 #: configuration/settings_advanced.cpp:28
-#, fuzzy, kde-format
-#| msgctxt "Mark selected article read after"
-#| msgid " second"
-#| msgid_plural " seconds"
+#, kde-format
 msgctxt "Mark selected article read after"
 msgid "%v second"
 msgid_plural "%v seconds"
-msgstr[0] " sekund"
-msgstr[1] " sekunder"
+msgstr[0] "%v sekund"
+msgstr[1] "%v sekunder"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: configuration/ui/settings_advancedbase.ui:30
@@ -2023,22 +2014,18 @@ msgid "Never"
 msgstr "Aldrig"
 
 #: src/feed/feedpropertiesdialog.cpp:116
-#, fuzzy, kde-format
-#| msgid " day"
-#| msgid_plural " days"
+#, kde-format
 msgid "%v day"
 msgid_plural "%v days"
-msgstr[0] " dag"
-msgstr[1] " dagar"
+msgstr[0] "%v dag"
+msgstr[1] "%v dagar"
 
 #: src/feed/feedpropertiesdialog.cpp:117
-#, fuzzy, kde-format
-#| msgid " article"
-#| msgid_plural " articles"
+#, kde-format
 msgid "%v article"
 msgid_plural "%v articles"
-msgstr[0] " artikel"
-msgstr[1] " artiklar"
+msgstr[0] "%v artikel"
+msgstr[1] "%v artiklar"
 
 #: src/feed/feedpropertiesdialog.cpp:151
 #, kde-format
