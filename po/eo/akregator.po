@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-08-17 00:39+0000\n"
-"PO-Revision-Date: 2024-08-03 07:26+0200\n"
+"PO-Revision-Date: 2024-08-19 21:47+0200\n"
 "Last-Translator: Oliver Kellogg <olivermkellogg@gmail.com>\n"
 "Language-Team: Esperanto <kde-i18n-eo@kde.org>\n"
 "Language: eo\n"
@@ -101,26 +101,20 @@ msgstr ""
 "agordi dialogon)."
 
 #: configuration/akregator_config_archive.cpp:35
-#, fuzzy, kde-format
-#| msgctxt "Limit feed archive size to:"
-#| msgid " article"
-#| msgid_plural " articles"
+#, kde-format
 msgctxt "Limit feed archive size to:"
 msgid "%v article"
 msgid_plural "%v articles"
-msgstr[0] " artikolo"
-msgstr[1] " artikoloj"
+msgstr[0] "%v artikolo"
+msgstr[1] "%v artikoloj"
 
 #: configuration/akregator_config_archive.cpp:36
-#, fuzzy, kde-format
-#| msgctxt "Delete articles older than:"
-#| msgid " day"
-#| msgid_plural " days"
+#, kde-format
 msgctxt "Delete articles older than:"
 msgid "%v day"
 msgid_plural "%v days"
-msgstr[0] " tago"
-msgstr[1] " tagoj"
+msgstr[0] "%v tago"
+msgstr[1] "%v tagoj"
 
 #: configuration/akregator_config_general.cpp:35
 #, kde-format
@@ -135,15 +129,12 @@ msgid "Webengine Plugins"
 msgstr "Webengine Kromaĵoj"
 
 #: configuration/settings_advanced.cpp:28
-#, fuzzy, kde-format
-#| msgctxt "Mark selected article read after"
-#| msgid " second"
-#| msgid_plural " seconds"
+#, kde-format
 msgctxt "Mark selected article read after"
 msgid "%v second"
 msgid_plural "%v seconds"
-msgstr[0] " sekundo"
-msgstr[1] " sekundoj"
+msgstr[0] "%v sekundo"
+msgstr[1] "%v sekundoj"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: configuration/ui/settings_advancedbase.ui:30
@@ -2017,22 +2008,18 @@ msgid "Never"
 msgstr "Neniam"
 
 #: src/feed/feedpropertiesdialog.cpp:116
-#, fuzzy, kde-format
-#| msgid " day"
-#| msgid_plural " days"
+#, kde-format
 msgid "%v day"
 msgid_plural "%v days"
-msgstr[0] " tago"
-msgstr[1] " tagoj"
+msgstr[0] "%v tago"
+msgstr[1] "%v tagoj"
 
 #: src/feed/feedpropertiesdialog.cpp:117
-#, fuzzy, kde-format
-#| msgid " article"
-#| msgid_plural " articles"
+#, kde-format
 msgid "%v article"
 msgid_plural "%v articles"
-msgstr[0] " artikolo"
-msgstr[1] " artikoloj"
+msgstr[0] "%v artikolo"
+msgstr[1] "%v artikoloj"
 
 #: src/feed/feedpropertiesdialog.cpp:151
 #, kde-format
@@ -2555,14 +2542,12 @@ msgid "Open In External Browser"
 msgstr "Malfermi en Ekstera Foliumilo"
 
 #: src/whatsnew/whatsnewtranslations.cpp:16
-#, fuzzy
-#| msgid "Enabled Plasma Activity"
 msgid "Implement Plasma Activity."
-msgstr "Ebligis Plasma-Aktivecon"
+msgstr "Realigi Plasma-Aktivecon."
 
 #: src/whatsnew/whatsnewtranslations.cpp:16
 msgid "Add new whatsnew widget."
-msgstr ""
+msgstr "Aldoni novan whatsnew-fenestraĵon."
 
 #: src/widgets/searchbar.cpp:43
 #, kde-format
@@ -2604,17 +2589,3 @@ msgstr "Legita"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "Grava"
-
-#~ msgctxt "@option:check"
-#~ msgid "Limit to the selected activities:"
-#~ msgstr "Limigi al la elektitaj aktivecoj:"
-
-#~ msgctxt "@label:textbox"
-#~ msgid ""
-#~ "If you limit this account to activity, it will be shown in Ruqola only "
-#~ "when you are in those activities. Furthermore, when you switch to an "
-#~ "activity it should not be available in, it will automatically be hidden."
-#~ msgstr ""
-#~ "Se vi limigas ĉi tiun konton al aktiveco, ĝi estos montrita en Ruqola nur "
-#~ "kiam vi estas en tiuj aktivecoj. Plue, kiam vi ŝanĝas al aktiveco kiu ne "
-#~ "devus esti disponebla, ĝi aŭtomate estos kaŝita."

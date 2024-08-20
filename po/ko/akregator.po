@@ -1,14 +1,14 @@
 # Korean translation for kdepim
 # Copyright (c) (c) 2006 Canonical Ltd, and Rosetta Contributors 2006
 # This file is distributed under the same license as the kdepim package.
-# Shinjo Park <kde@peremen.name>, 2006, 2007, 2009, 2010, 2011, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023.
+# SPDX-FileCopyrightText: 2006, 2007, 2009, 2010, 2011, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024 Shinjo Park <kde@peremen.name>
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: kdepim\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-08-17 00:39+0000\n"
-"PO-Revision-Date: 2023-10-08 22:22+0200\n"
+"PO-Revision-Date: 2024-08-19 22:04+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
 "Language: ko\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Lokalize 22.12.3\n"
+"X-Generator: Lokalize 23.08.5\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -370,8 +370,7 @@ msgstr "Google 안전 브라우징 API로 URL 검사"
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_EnableJavascript)
 #. i18n: ectx: label, entry, group (Browser)
 #: configuration/ui/settings_browser.ui:153 interfaces/akregator.kcfg:198
-#, fuzzy, kde-format
-#| msgid "Enable Javascript"
+#, kde-format
 msgid "Enable JavaScript"
 msgstr "자바스크립트 활성화"
 
@@ -379,13 +378,13 @@ msgstr "자바스크립트 활성화"
 #: configuration/ui/settings_browser.ui:163
 #, kde-format
 msgid "Accessibility"
-msgstr ""
+msgstr "접근성"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_AccessKeyEnabled)
 #: configuration/ui/settings_browser.ui:169
 #, kde-format
 msgid "Enable Access Key activation with Ctrl key"
-msgstr ""
+msgstr "Ctrl 키를 사용한 액세스 키 사용"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_3)
 #: configuration/ui/settings_general.ui:30
@@ -460,7 +459,7 @@ msgstr "다음 시간마다 피드 가져오기:"
 #: configuration/ui/settings_general.ui:157
 #, kde-format
 msgid "Enable Plasma Activities integration"
-msgstr ""
+msgstr "Plasma 활동 통합 활성화"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #: configuration/ui/settings_general.ui:167
@@ -494,10 +493,9 @@ msgstr "브라우저 캐시 사용(적은 네트워크 사용량)(&B)"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_LoadExternalReferences)
 #: configuration/ui/settings_security.ui:17
-#, fuzzy, kde-format
-#| msgid "Allow feed to load external references from internet."
+#, kde-format
 msgid "Allow article preview to load external references"
-msgstr "피드 외부 참조를 인터넷에서 부를 수 있도록 허용합니다."
+msgstr "글 미리 보기에서 외부 참조 불러오기 허용"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_LoadExternalReferences)
 #: configuration/ui/settings_security.ui:20
@@ -507,6 +505,8 @@ msgid ""
 "This may allow websites or third parties to observe the articles that you "
 "have viewed."
 msgstr ""
+"글 미리 보기에서 인터넷의 외부 참조를 불러올 수 있도록 허용합니다. 웹사이트"
+"나 제3자가 보고 있는 글을 모니터링하는 것을 허용할 수도 있습니다."
 
 #: export/akregatorstorageexporter.cpp:280
 #, kde-format
@@ -896,10 +896,9 @@ msgstr "가운데 마우스 단추를 클릭했을 때 할 동작을 지정합�
 
 #. i18n: ectx: label, entry, group (Browser)
 #: interfaces/akregator.kcfg:249
-#, fuzzy, kde-format
-#| msgid "Enable Javascript"
+#, kde-format
 msgid "Enabled Plasma Activity"
-msgstr "자바스크립트 활성화"
+msgstr "Plasma 활동 활성화됨"
 
 #. i18n: ectx: label, entry, group (Advanced)
 #: interfaces/akregator.kcfg:269
@@ -963,8 +962,7 @@ msgid "Copyright © 2004–%1 Akregator authors"
 msgstr "Copyright © 2004–%1 Akregator authors"
 
 #: src/aboutdata.cpp:27
-#, fuzzy, kde-format
-#| msgid "Laurent Montel"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Laurent Montel"
 msgstr "Laurent Montel"
@@ -975,8 +973,7 @@ msgid "Maintainer"
 msgstr "관리자"
 
 #: src/aboutdata.cpp:28
-#, fuzzy, kde-format
-#| msgid "Frank Osterfeld"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Frank Osterfeld"
 msgstr "Frank Osterfeld"
@@ -987,8 +984,7 @@ msgid "Former maintainer"
 msgstr "이전 관리자"
 
 #: src/aboutdata.cpp:29
-#, fuzzy, kde-format
-#| msgid "Teemu Rytilahti"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Teemu Rytilahti"
 msgstr "Teemu Rytilahti"
@@ -1000,29 +996,25 @@ msgid "Developer"
 msgstr "개발자"
 
 #: src/aboutdata.cpp:30
-#, fuzzy, kde-format
-#| msgid "Sashmit Bhaduri"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Sashmit Bhaduri"
 msgstr "Sashmit Bhaduri"
 
 #: src/aboutdata.cpp:31
-#, fuzzy, kde-format
-#| msgid "Pierre Habouzit"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Pierre Habouzit"
 msgstr "Pierre Habouzit"
 
 #: src/aboutdata.cpp:32
-#, fuzzy, kde-format
-#| msgid "Stanislav Karchebny"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Stanislav Karchebny"
 msgstr "Stanislav Karchebny"
 
 #: src/aboutdata.cpp:33
-#, fuzzy, kde-format
-#| msgid "Gary Cramblitt"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Gary Cramblitt"
 msgstr "Gary Cramblitt"
@@ -1033,22 +1025,19 @@ msgid "Contributor"
 msgstr "기여자"
 
 #: src/aboutdata.cpp:34
-#, fuzzy, kde-format
-#| msgid "Stephan Binner"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Stephan Binner"
 msgstr "Stephan Binner"
 
 #: src/aboutdata.cpp:35
-#, fuzzy, kde-format
-#| msgid "Christof Musik"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Christof Musik"
 msgstr "Christof Musik"
 
 #: src/aboutdata.cpp:36
-#, fuzzy, kde-format
-#| msgid "Anne-Marie Mahfouf"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Anne-Marie Mahfouf"
 msgstr "Anne-Marie Mahfouf"
@@ -1059,8 +1048,7 @@ msgid "Handbook"
 msgstr "도움말"
 
 #: src/aboutdata.cpp:37
-#, fuzzy, kde-format
-#| msgid "Frerich Raabe"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Frerich Raabe"
 msgstr "Frerich Raabe"
@@ -1071,8 +1059,7 @@ msgid "Author of librss"
 msgstr "librss 제작자"
 
 #: src/aboutdata.cpp:38
-#, fuzzy, kde-format
-#| msgid "Eckhart Woerner"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Eckhart Woerner"
 msgstr "Eckhart Woerner"
@@ -1083,8 +1070,7 @@ msgid "Bug tracker management, Usability improvements"
 msgstr "버그 트래커 관리, 사용성 향상"
 
 #: src/aboutdata.cpp:39
-#, fuzzy, kde-format
-#| msgid "Heinrich Wendel"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Heinrich Wendel"
 msgstr "Heinrich Wendel"
@@ -1095,8 +1081,7 @@ msgid "Tons of bug fixes"
 msgstr "다량의 버그 수정"
 
 #: src/aboutdata.cpp:40
-#, fuzzy, kde-format
-#| msgid "Eike Hein"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Eike Hein"
 msgstr "Eike Hein"
@@ -1107,8 +1092,7 @@ msgid "'Delayed mark as read' feature"
 msgstr "'일정 시간 후 읽은 상태로 표시' 기능"
 
 #: src/aboutdata.cpp:41
-#, fuzzy, kde-format
-#| msgid "Marcel Dierkes"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Marcel Dierkes"
 msgstr "Marcel Dierkes"
@@ -1119,8 +1103,7 @@ msgid "Icons"
 msgstr "아이콘"
 
 #: src/aboutdata.cpp:42
-#, fuzzy, kde-format
-#| msgid "George Staikos"
+#, kde-format
 msgctxt "@info:credit"
 msgid "George Staikos"
 msgstr "George Staikos"
@@ -1131,8 +1114,7 @@ msgid "Insomnia"
 msgstr "불면증"
 
 #: src/aboutdata.cpp:43
-#, fuzzy, kde-format
-#| msgid "Philipp Droessler"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Philipp Droessler"
 msgstr "Philipp Droessler"
@@ -1153,10 +1135,9 @@ msgid "&Delete Feed"
 msgstr "피드 삭제(&D)"
 
 #: src/actions/actionmanagerimpl.cpp:66 src/actions/actionmanagerimpl.cpp:249
-#, fuzzy, kde-format
-#| msgid "&Edit Feed..."
+#, kde-format
 msgid "&Edit Feed…"
-msgstr "피드 편집(&E)..."
+msgstr "피드 편집(&E)…"
 
 #: src/actions/actionmanagerimpl.cpp:67 src/actions/actionmanagerimpl.cpp:306
 #, kde-format
@@ -1184,22 +1165,19 @@ msgid "&Mark Feeds as Read"
 msgstr "피드를 읽은 것으로 표시(&M)"
 
 #: src/actions/actionmanagerimpl.cpp:191
-#, fuzzy, kde-format
-#| msgid "&Import Feeds..."
+#, kde-format
 msgid "&Import Feeds…"
-msgstr "피드 가져오기(&I)..."
+msgstr "피드 가져오기(&I)…"
 
 #: src/actions/actionmanagerimpl.cpp:195
-#, fuzzy, kde-format
-#| msgid "&Export Feeds..."
+#, kde-format
 msgid "&Export Feeds…"
-msgstr "피드 내보내기(&E)..."
+msgstr "피드 내보내기(&E)…"
 
 #: src/actions/actionmanagerimpl.cpp:200
-#, fuzzy, kde-format
-#| msgid "&Configure Akregator..."
+#, kde-format
 msgid "&Configure Akregator…"
-msgstr "Akregator 설정(&C)..."
+msgstr "Akregator 설정(&C)…"
 
 #: src/actions/actionmanagerimpl.cpp:219
 #, kde-format
@@ -1212,16 +1190,14 @@ msgid "Reload All Tabs"
 msgstr "모든 탭 새로 고침"
 
 #: src/actions/actionmanagerimpl.cpp:231
-#, fuzzy, kde-format
-#| msgid "Add Feed"
+#, kde-format
 msgid "&Add Feed…"
-msgstr "피드 추가"
+msgstr "피드 추가(&A)…"
 
 #: src/actions/actionmanagerimpl.cpp:237
-#, fuzzy, kde-format
-#| msgid "Ne&w Folder..."
+#, kde-format
 msgid "Ne&w Folder…"
-msgstr "새 폴더(&W)..."
+msgstr "새 폴더(&W)…"
 
 #: src/actions/actionmanagerimpl.cpp:262
 #, kde-format
@@ -1285,8 +1261,7 @@ msgid "&Read"
 msgstr "읽음(&R)"
 
 #: src/actions/actionmanagerimpl.cpp:371
-#, fuzzy, kde-format
-#| msgid "Mark selected article as read"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as read"
 msgstr "선택한 글을 읽은 것으로 표시"
@@ -1298,8 +1273,7 @@ msgid "&New"
 msgstr "새로운 글로(&N)"
 
 #: src/actions/actionmanagerimpl.cpp:380
-#, fuzzy, kde-format
-#| msgid "Mark selected article as new"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as new"
 msgstr "선택한 글을 새로운 것으로 표시"
@@ -1311,8 +1285,7 @@ msgid "&Unread"
 msgstr "읽지 않은 상태로(&U)"
 
 #: src/actions/actionmanagerimpl.cpp:387
-#, fuzzy, kde-format
-#| msgid "Mark selected article as unread"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as unread"
 msgstr "선택한 글을 읽지 않은 것으로 표시"
@@ -1323,11 +1296,10 @@ msgid "&Mark as Important"
 msgstr "중요한 글로 표시(&M)"
 
 #: src/actions/actionmanagerimpl.cpp:397
-#, fuzzy, kde-format
-#| msgid "Remove &Important Mark"
+#, kde-format
 msgctxt "@action:button"
 msgid "Remove &Important Mark"
-msgstr "'중요함' 표시 삭제(&I)"
+msgstr "중요함 표시 삭제(&I)"
 
 #: src/actions/actionmanagerimpl.cpp:401
 #, kde-format
@@ -1350,20 +1322,17 @@ msgid "Move Node Right"
 msgstr "노드 오른쪽으로 이동"
 
 #: src/actions/actionmanagerimpl.cpp:422
-#, fuzzy, kde-format
-#| msgid "Send Link Address"
+#, kde-format
 msgid "Send &Link Address…"
-msgstr "링크 주소 보내기"
+msgstr "링크 주소 보내기(&L)…"
 
 #: src/actions/actionmanagerimpl.cpp:427
-#, fuzzy, kde-format
-#| msgid "Send &File..."
+#, kde-format
 msgid "Send &File…"
-msgstr "파일 보내기(&F)..."
+msgstr "파일 보내기(&F)…"
 
 #: src/actions/actionmanagerimpl.cpp:433
-#, fuzzy, kde-format
-#| msgid "Set Focus to Quick Search"
+#, kde-format
 msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr "빠른 검색에 포커스 맞추기"
@@ -1371,7 +1340,7 @@ msgstr "빠른 검색에 포커스 맞추기"
 #: src/actions/actionmanagerimpl.cpp:439
 #, kde-format
 msgid "What's new"
-msgstr ""
+msgstr "새로운 기능"
 
 #: src/actions/actionmanagerimpl.cpp:469
 #, kde-format
@@ -1474,17 +1443,15 @@ msgid "Unmute"
 msgstr "음소거 해제"
 
 #: src/actions/actionmanagerimpl.cpp:602
-#, fuzzy, kde-format
-#| msgid "Speak Text"
+#, kde-format
 msgctxt "@action"
 msgid "Speak Text"
 msgstr "텍스트 말하기"
 
 #: src/actions/actionmanagerimpl.cpp:607
-#, fuzzy, kde-format
-#| msgid "&Find in Message..."
+#, kde-format
 msgid "&Find in Message…"
-msgstr "메시지에서 찾기(&F)..."
+msgstr "메시지에서 찾기(&F)…"
 
 #: src/actions/actionmanagerimpl.cpp:618
 #, kde-format
@@ -1492,17 +1459,15 @@ msgid "Close Tab"
 msgstr "탭 닫기"
 
 #: src/actions/actionmanagerimpl.cpp:631
-#, fuzzy, kde-format
-#| msgid "Activate Tab %1"
+#, kde-format
 msgctxt "@action"
 msgid "Activate Tab %1"
 msgstr "탭 %1 활성화"
 
 #: src/actions/actionmanagerimpl.cpp:637
-#, fuzzy, kde-format
-#| msgid "&Save Link As..."
+#, kde-format
 msgid "&Save Link As…"
-msgstr "다른 이름으로 링크 저장(&S)..."
+msgstr "다른 이름으로 링크 저장(&S)…"
 
 #: src/actions/actionmanagerimpl.cpp:641
 #, kde-format
@@ -1510,18 +1475,16 @@ msgid "Copy &Link Address"
 msgstr "링크 주소 복사(&L)"
 
 #: src/actions/actionmanagerimpl.cpp:644
-#, fuzzy, kde-format
-#| msgid "Copy Image Location"
+#, kde-format
 msgctxt "@action"
 msgid "Copy Image Location"
 msgstr "그림 주소 복사"
 
 #: src/actions/actionmanagerimpl.cpp:651
-#, fuzzy, kde-format
-#| msgid "Save Image On Disk..."
+#, kde-format
 msgctxt "@action"
 msgid "Save Image On Disk…"
-msgstr "디스크에 그림 저장..."
+msgstr "디스크에 그림 저장…"
 
 #: src/actions/actions.cpp:19
 #, kde-format
@@ -1550,38 +1513,33 @@ msgid "Feed not found from %1."
 msgstr "%1에서 피드를 찾을 수 없습니다."
 
 #: src/addfeeddialog.cpp:121
-#, fuzzy, kde-format
-#| msgid "Feed found, downloading..."
+#, kde-format
 msgid "Feed found, downloading…"
-msgstr "피드 찾았음, 다운로드 중..."
+msgstr "피드 찾았음, 다운로드 중…"
 
 #: src/akregator_options.h:20 src/akregator_options.h:28
-#, fuzzy, kde-format
-#| msgid "Add a feed with the given URL"
+#, kde-format
 msgctxt "@info:shell"
 msgid "Add a feed with the given URL"
 msgstr "주어진 URL에 해당하는 피드 추가"
 
 #: src/akregator_options.h:23
-#, fuzzy, kde-format
-#| msgid "When adding feeds, place them in this group"
+#, kde-format
 msgctxt "@info:shell"
 msgid "When adding feeds, place them in this group"
 msgstr "피드를 추가할 때 지정한 그룹에 추가"
 
 #: src/akregator_options.h:25
-#, fuzzy, kde-format
-#| msgid "Hide main window on startup"
+#, kde-format
 msgctxt "@info:shell"
 msgid "Hide main window on startup"
 msgstr "시작할 때 주 창 숨기기"
 
 #: src/akregator_options.h:30
-#, fuzzy, kde-format
-#| msgid "Lists the available options for user feedback"
+#, kde-format
 msgctxt "@info:shell"
 msgid "Lists the available options for user feedback"
-msgstr "사용자 피드백 옵션을 표시합니다"
+msgstr "사용자 피드백 옵션 표시"
 
 #: src/akregator_part.cpp:78
 #, kde-format
@@ -1876,10 +1834,9 @@ msgstr ""
 "<qt>표준 피드 목록이 손상되었습니다(잘못된 OPML). 백업할 수 없습니다.</qt>"
 
 #: src/command/loadfeedlistcommand.cpp:129
-#, fuzzy, kde-format
-#| msgid "Opening Feed List..."
+#, kde-format
 msgid "Opening Feed List…"
-msgstr "피드 목록 여는 중..."
+msgstr "피드 목록 여는 중…"
 
 #: src/command/loadfeedlistcommand.cpp:143
 #, kde-format
@@ -1915,10 +1872,7 @@ msgstr ""
 "<qt>표준 피드 목록이 손상되었습니다(잘못된 XML). 백업할 수 없습니다.</qt>"
 
 #: src/crashwidget/crashwidget.cpp:21
-#, fuzzy, kde-format
-#| msgid ""
-#| "Akregator did not close correctly. Would you like to restore the previous "
-#| "session?"
+#, kde-format
 msgctxt "@label:textbox"
 msgid ""
 "Akregator did not close correctly. Would you like to restore the previous "
@@ -1980,7 +1934,7 @@ msgstr "설정(&S)"
 #: src/data/akregator_part.rc:90
 #, kde-format
 msgid "&Help"
-msgstr ""
+msgstr "도움말(&H)"
 
 #. i18n: ectx: ToolBar (mainToolBar)
 #: src/data/akregator_part.rc:96 src/data/akregator_shell.rc:54
@@ -2002,7 +1956,7 @@ msgstr "모든 피드"
 #: src/feed/feedpropertiesdialog.cpp:37
 #, kde-format
 msgid "Activities"
-msgstr ""
+msgstr "활동"
 
 #: src/feed/feedpropertiesdialog.cpp:62 src/feed/feedpropertiesdialog.cpp:110
 #, kde-format
@@ -2120,10 +2074,9 @@ msgid "Untitled"
 msgstr "제목 없음"
 
 #: src/frame/frame.cpp:140
-#, fuzzy, kde-format
-#| msgid "Loading..."
+#, kde-format
 msgid "Loading…"
-msgstr "불러오는 중..."
+msgstr "불러오는 중…"
 
 #: src/frame/frame.cpp:156
 #, kde-format
@@ -2192,10 +2145,9 @@ msgid "Networking is not available."
 msgstr "네트워크를 사용할 수 없습니다."
 
 #: src/mainwidget.cpp:903
-#, fuzzy, kde-format
-#| msgid "Fetching Feeds..."
+#, kde-format
 msgid "Fetching Feeds…"
-msgstr "피드 가져오는 중..."
+msgstr "피드 가져오는 중…"
 
 #: src/mainwidget.cpp:1102
 #, kde-format
@@ -2353,8 +2305,7 @@ msgid "Total"
 msgstr "합계"
 
 #: src/tabwidget.cpp:92
-#, fuzzy, kde-format
-#| msgid "Close the current tab"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Close the current tab"
 msgstr "현재 탭 닫기"
@@ -2565,28 +2516,24 @@ msgid "Open In External Browser"
 msgstr "외부 브라우저로 열기"
 
 #: src/whatsnew/whatsnewtranslations.cpp:16
-#, fuzzy
-#| msgid "Enable Javascript"
 msgid "Implement Plasma Activity."
-msgstr "자바스크립트 활성화"
+msgstr "Plasma 활동 구현."
 
 #: src/whatsnew/whatsnewtranslations.cpp:16
 msgid "Add new whatsnew widget."
-msgstr ""
+msgstr "새 새로운 항목 위젯을 추가합니다."
 
 #: src/widgets/searchbar.cpp:43
-#, fuzzy, kde-format
-#| msgid "Search articles..."
+#, kde-format
 msgctxt "@info:placeholder"
 msgid "Search articles…"
-msgstr "글 찾기..."
+msgstr "글 찾기…"
 
 #: src/widgets/searchbar.cpp:118
-#, fuzzy, kde-format
-#| msgid "Search articles...<%1>"
+#, kde-format
 msgctxt "@info:placeholder"
 msgid "Search articles…<%1>"
-msgstr "글 찾는 중...<%1>"
+msgstr "글 찾기…<%1>"
 
 #: src/widgets/statussearchbuttons.cpp:29
 #, kde-format
