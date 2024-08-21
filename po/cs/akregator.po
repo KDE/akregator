@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-08-17 00:39+0000\n"
-"PO-Revision-Date: 2024-08-06 11:19+0200\n"
+"PO-Revision-Date: 2024-08-20 08:39+0200\n"
 "Last-Translator: Vit Pelcak <vit@pelcak.org>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
 "Language: cs\n"
@@ -106,28 +106,22 @@ msgstr ""
 "dialog nastavení)."
 
 #: configuration/akregator_config_archive.cpp:35
-#, fuzzy, kde-format
-#| msgctxt "Limit feed archive size to:"
-#| msgid " article"
-#| msgid_plural " articles"
+#, kde-format
 msgctxt "Limit feed archive size to:"
 msgid "%v article"
 msgid_plural "%v articles"
-msgstr[0] " článek"
-msgstr[1] " články"
-msgstr[2] " článků"
+msgstr[0] "%v článek"
+msgstr[1] "%v články"
+msgstr[2] "%v článků"
 
 #: configuration/akregator_config_archive.cpp:36
-#, fuzzy, kde-format
-#| msgctxt "Delete articles older than:"
-#| msgid " day"
-#| msgid_plural " days"
+#, kde-format
 msgctxt "Delete articles older than:"
 msgid "%v day"
 msgid_plural "%v days"
-msgstr[0] " den"
-msgstr[1] " dny"
-msgstr[2] " dnů"
+msgstr[0] "%v den"
+msgstr[1] "%v dny"
+msgstr[2] "%v dnů"
 
 #: configuration/akregator_config_general.cpp:35
 #, kde-format
@@ -143,16 +137,13 @@ msgid "Webengine Plugins"
 msgstr "Moduly webEngine"
 
 #: configuration/settings_advanced.cpp:28
-#, fuzzy, kde-format
-#| msgctxt "Mark selected article read after"
-#| msgid " second"
-#| msgid_plural " seconds"
+#, kde-format
 msgctxt "Mark selected article read after"
 msgid "%v second"
 msgid_plural "%v seconds"
-msgstr[0] " sekunda"
-msgstr[1] " sekundy"
-msgstr[2] " sekund"
+msgstr[0] "%v sekunda"
+msgstr[1] "%v sekundy"
+msgstr[2] "%v sekund"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: configuration/ui/settings_advancedbase.ui:30
@@ -2025,24 +2016,20 @@ msgid "Never"
 msgstr "Nikdy"
 
 #: src/feed/feedpropertiesdialog.cpp:116
-#, fuzzy, kde-format
-#| msgid " day"
-#| msgid_plural " days"
+#, kde-format
 msgid "%v day"
 msgid_plural "%v days"
-msgstr[0] " den"
-msgstr[1] " dny"
-msgstr[2] " dnů"
+msgstr[0] "%v den"
+msgstr[1] "%v dny"
+msgstr[2] "%v dnů"
 
 #: src/feed/feedpropertiesdialog.cpp:117
-#, fuzzy, kde-format
-#| msgid " article"
-#| msgid_plural " articles"
+#, kde-format
 msgid "%v article"
 msgid_plural "%v articles"
-msgstr[0] " článek"
-msgstr[1] " články"
-msgstr[2] " článků"
+msgstr[0] "%v článek"
+msgstr[1] "%v články"
+msgstr[2] "%v článků"
 
 #: src/feed/feedpropertiesdialog.cpp:151
 #, kde-format
