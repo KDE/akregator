@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-08-17 00:39+0000\n"
-"PO-Revision-Date: 2024-07-09 12:47+0200\n"
+"PO-Revision-Date: 2024-08-18 09:36+0200\n"
 "Last-Translator: Xavier Besnard <xavier.besnard@kde.org>\n"
 "Language-Team: French <French <kde-francophone@kde.org>>\n"
 "Language: fr\n"
@@ -119,26 +119,20 @@ msgstr ""
 "bloquée (Voir la boîte de dialogue de configuration)."
 
 #: configuration/akregator_config_archive.cpp:35
-#, fuzzy, kde-format
-#| msgctxt "Limit feed archive size to:"
-#| msgid " article"
-#| msgid_plural " articles"
+#, kde-format
 msgctxt "Limit feed archive size to:"
 msgid "%v article"
 msgid_plural "%v articles"
-msgstr[0] " article"
-msgstr[1] " articles"
+msgstr[0] "article %v"
+msgstr[1] "%v articles"
 
 #: configuration/akregator_config_archive.cpp:36
-#, fuzzy, kde-format
-#| msgctxt "Delete articles older than:"
-#| msgid " day"
-#| msgid_plural " days"
+#, kde-format
 msgctxt "Delete articles older than:"
 msgid "%v day"
 msgid_plural "%v days"
-msgstr[0] " jour"
-msgstr[1] " jours"
+msgstr[0] "jour %v"
+msgstr[1] "%v jours"
 
 #: configuration/akregator_config_general.cpp:35
 #, kde-format
@@ -153,15 +147,12 @@ msgid "Webengine Plugins"
 msgstr "Modules complémentaires WebEngine"
 
 #: configuration/settings_advanced.cpp:28
-#, fuzzy, kde-format
-#| msgctxt "Mark selected article read after"
-#| msgid " second"
-#| msgid_plural " seconds"
+#, kde-format
 msgctxt "Mark selected article read after"
 msgid "%v second"
 msgid_plural "%v seconds"
-msgstr[0] " seconde"
-msgstr[1] " secondes"
+msgstr[0] "seconde %v"
+msgstr[1] "%v secondes"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: configuration/ui/settings_advancedbase.ui:30
@@ -1388,7 +1379,7 @@ msgstr "Donner la priorité à la recherche rapide"
 #: src/actions/actionmanagerimpl.cpp:439
 #, kde-format
 msgid "What's new"
-msgstr ""
+msgstr "Quoi de neuf"
 
 #: src/actions/actionmanagerimpl.cpp:469
 #, kde-format
@@ -1998,7 +1989,7 @@ msgstr "&Configuration"
 #: src/data/akregator_part.rc:90
 #, kde-format
 msgid "&Help"
-msgstr ""
+msgstr "&Aide"
 
 #. i18n: ectx: ToolBar (mainToolBar)
 #: src/data/akregator_part.rc:96 src/data/akregator_shell.rc:54
@@ -2020,7 +2011,7 @@ msgstr "Tous les flux"
 #: src/feed/feedpropertiesdialog.cpp:37
 #, kde-format
 msgid "Activities"
-msgstr ""
+msgstr "Activités"
 
 #: src/feed/feedpropertiesdialog.cpp:62 src/feed/feedpropertiesdialog.cpp:110
 #, kde-format
@@ -2056,22 +2047,18 @@ msgid "Never"
 msgstr "Jamais"
 
 #: src/feed/feedpropertiesdialog.cpp:116
-#, fuzzy, kde-format
-#| msgid " day"
-#| msgid_plural " days"
+#, kde-format
 msgid "%v day"
 msgid_plural "%v days"
-msgstr[0] " jour"
-msgstr[1] " jours"
+msgstr[0] "jour %v"
+msgstr[1] "%v jours"
 
 #: src/feed/feedpropertiesdialog.cpp:117
-#, fuzzy, kde-format
-#| msgid " article"
-#| msgid_plural " articles"
+#, kde-format
 msgid "%v article"
 msgid_plural "%v articles"
-msgstr[0] " article"
-msgstr[1] " articles"
+msgstr[0] "article %v"
+msgstr[1] "%v articles"
 
 #: src/feed/feedpropertiesdialog.cpp:151
 #, kde-format
@@ -2595,14 +2582,12 @@ msgid "Open In External Browser"
 msgstr "Ouvrir dans le navigateur externe"
 
 #: src/whatsnew/whatsnewtranslations.cpp:16
-#, fuzzy
-#| msgid "Enabled Plasma Activity"
 msgid "Implement Plasma Activity."
-msgstr "Activité de Plasma activée"
+msgstr "Implémenter une activité de Plasma."
 
 #: src/whatsnew/whatsnewtranslations.cpp:16
 msgid "Add new whatsnew widget."
-msgstr ""
+msgstr "Ajouter un nouveau composant graphique « Quoi de neuf »."
 
 #: src/widgets/searchbar.cpp:43
 #, kde-format
