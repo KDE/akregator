@@ -93,9 +93,6 @@ msgstr ""
 
 #: configuration/akregator_config_archive.cpp:35
 #, fuzzy, kde-format
-#| msgctxt "Limit feed archive size to:"
-#| msgid " article"
-#| msgid_plural " articles"
 msgctxt "Limit feed archive size to:"
 msgid "%v article"
 msgid_plural "%v articles"
@@ -104,9 +101,6 @@ msgstr[1] " artihkkala"
 
 #: configuration/akregator_config_archive.cpp:36
 #, fuzzy, kde-format
-#| msgctxt "Delete articles older than:"
-#| msgid " day"
-#| msgid_plural " days"
 msgctxt "Delete articles older than:"
 msgid "%v day"
 msgid_plural "%v days"
@@ -127,9 +121,6 @@ msgstr ""
 
 #: configuration/settings_advanced.cpp:28
 #, fuzzy, kde-format
-#| msgctxt "Mark selected article read after"
-#| msgid " second"
-#| msgid_plural " seconds"
 msgctxt "Mark selected article read after"
 msgid "%v second"
 msgid_plural "%v seconds"
@@ -967,7 +958,6 @@ msgstr ""
 
 #: src/aboutdata.cpp:27
 #, fuzzy, kde-format
-#| msgid "Laurent Montel"
 msgctxt "@info:credit"
 msgid "Laurent Montel"
 msgstr "Laurent Montel"
@@ -979,7 +969,6 @@ msgstr "Máŧasdoalli"
 
 #: src/aboutdata.cpp:28
 #, fuzzy, kde-format
-#| msgid "Frank Osterfeld"
 msgctxt "@info:credit"
 msgid "Frank Osterfeld"
 msgstr "Frank Osterfeld"
@@ -991,7 +980,6 @@ msgstr "Ovddit máŧasdoalli"
 
 #: src/aboutdata.cpp:29
 #, fuzzy, kde-format
-#| msgid "Teemu Rytilahti"
 msgctxt "@info:credit"
 msgid "Teemu Rytilahti"
 msgstr "Teemu Rytilahti"
@@ -1004,28 +992,24 @@ msgstr "Ovdánahtti"
 
 #: src/aboutdata.cpp:30
 #, fuzzy, kde-format
-#| msgid "Sashmit Bhaduri"
 msgctxt "@info:credit"
 msgid "Sashmit Bhaduri"
 msgstr "Sashmit Bhaduri"
 
 #: src/aboutdata.cpp:31
 #, fuzzy, kde-format
-#| msgid "Pierre Habouzit"
 msgctxt "@info:credit"
 msgid "Pierre Habouzit"
 msgstr "Pierre Habouzit"
 
 #: src/aboutdata.cpp:32
 #, fuzzy, kde-format
-#| msgid "Stanislav Karchebny"
 msgctxt "@info:credit"
 msgid "Stanislav Karchebny"
 msgstr "Stanislav Karchebny"
 
 #: src/aboutdata.cpp:33
 #, fuzzy, kde-format
-#| msgid "Gary Cramblitt"
 msgctxt "@info:credit"
 msgid "Gary Cramblitt"
 msgstr "Gary Cramblitt"
@@ -1037,21 +1021,18 @@ msgstr "Veahkki"
 
 #: src/aboutdata.cpp:34
 #, fuzzy, kde-format
-#| msgid "Stephan Binner"
 msgctxt "@info:credit"
 msgid "Stephan Binner"
 msgstr "Stephan Binner"
 
 #: src/aboutdata.cpp:35
 #, fuzzy, kde-format
-#| msgid "Christof Musik"
 msgctxt "@info:credit"
 msgid "Christof Musik"
 msgstr "Christof Musik"
 
 #: src/aboutdata.cpp:36
 #, fuzzy, kde-format
-#| msgid "Anne-Marie Mahfouf"
 msgctxt "@info:credit"
 msgid "Anne-Marie Mahfouf"
 msgstr "Anne-Marie Mahfouf"
@@ -1063,7 +1044,6 @@ msgstr "Giehtagirji"
 
 #: src/aboutdata.cpp:37
 #, fuzzy, kde-format
-#| msgid "Frerich Raabe"
 msgctxt "@info:credit"
 msgid "Frerich Raabe"
 msgstr "Frerich Raabe"
@@ -1075,7 +1055,6 @@ msgstr "librrs čálli"
 
 #: src/aboutdata.cpp:38
 #, fuzzy, kde-format
-#| msgid "Eckhart Woerner"
 msgctxt "@info:credit"
 msgid "Eckhart Woerner"
 msgstr "Eckhart Woerner"
@@ -1087,7 +1066,6 @@ msgstr ""
 
 #: src/aboutdata.cpp:39
 #, fuzzy, kde-format
-#| msgid "Heinrich Wendel"
 msgctxt "@info:credit"
 msgid "Heinrich Wendel"
 msgstr "Heinrich Wendel"
@@ -1099,7 +1077,6 @@ msgstr "Feará makkár divvumat"
 
 #: src/aboutdata.cpp:40
 #, fuzzy, kde-format
-#| msgid "Eike Hein"
 msgctxt "@info:credit"
 msgid "Eike Hein"
 msgstr "Eike Hein"
@@ -1111,7 +1088,6 @@ msgstr "«Maŋiduvvon merke lohkon»-doaibma"
 
 #: src/aboutdata.cpp:41
 #, fuzzy, kde-format
-#| msgid "Marcel Dierkes"
 msgctxt "@info:credit"
 msgid "Marcel Dierkes"
 msgstr "Marcel Dierkes"
@@ -1123,7 +1099,6 @@ msgstr "Govažat"
 
 #: src/aboutdata.cpp:42
 #, fuzzy, kde-format
-#| msgid "George Staikos"
 msgctxt "@info:credit"
 msgid "George Staikos"
 msgstr "George Staikos"
@@ -1135,7 +1110,6 @@ msgstr "Insomnia"
 
 #: src/aboutdata.cpp:43
 #, fuzzy, kde-format
-#| msgid "Philipp Droessler"
 msgctxt "@info:credit"
 msgid "Philipp Droessler"
 msgstr "Philipp Drössler"
@@ -1157,7 +1131,6 @@ msgstr "&Sihko gáldu"
 
 #: src/actions/actionmanagerimpl.cpp:66 src/actions/actionmanagerimpl.cpp:249
 #, fuzzy, kde-format
-#| msgid "&Edit Feed..."
 msgid "&Edit Feed…"
 msgstr "&Doaimmat gáldu …"
 
@@ -1188,19 +1161,16 @@ msgstr "Merke gálduid &lohkon"
 
 #: src/actions/actionmanagerimpl.cpp:191
 #, fuzzy, kde-format
-#| msgid "&Import Feeds..."
 msgid "&Import Feeds…"
 msgstr "&Sisafievrrit gálduid …"
 
 #: src/actions/actionmanagerimpl.cpp:195
 #, fuzzy, kde-format
-#| msgid "&Export Feeds..."
 msgid "&Export Feeds…"
 msgstr "&Olggosfievrrit gálduid …"
 
 #: src/actions/actionmanagerimpl.cpp:200
 #, fuzzy, kde-format
-#| msgid "&Configure Akregator..."
 msgid "&Configure Akregator…"
 msgstr "Heivet &Akregatora …"
 
@@ -1216,13 +1186,11 @@ msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:231
 #, fuzzy, kde-format
-#| msgid "Add Feed"
 msgid "&Add Feed…"
 msgstr "Lasit gáldu"
 
 #: src/actions/actionmanagerimpl.cpp:237
 #, fuzzy, kde-format
-#| msgid "Ne&w Folder..."
 msgid "Ne&w Folder…"
 msgstr "Ođđ&a máhppa …"
 
@@ -1289,7 +1257,6 @@ msgstr "&Loga"
 
 #: src/actions/actionmanagerimpl.cpp:371
 #, fuzzy, kde-format
-#| msgid "Mark selected article as read"
 msgctxt "@info:tooltip"
 msgid "Mark selected article as read"
 msgstr "Merke válljejuvvon artihkkala lohkon"
@@ -1302,7 +1269,6 @@ msgstr "&Ođđa"
 
 #: src/actions/actionmanagerimpl.cpp:380
 #, fuzzy, kde-format
-#| msgid "Mark selected article as new"
 msgctxt "@info:tooltip"
 msgid "Mark selected article as new"
 msgstr "Merke válljejuvvon artihkkala ođašin"
@@ -1315,7 +1281,6 @@ msgstr "&Logakeahtes"
 
 #: src/actions/actionmanagerimpl.cpp:387
 #, fuzzy, kde-format
-#| msgid "Mark selected article as unread"
 msgctxt "@info:tooltip"
 msgid "Mark selected article as unread"
 msgstr "Merke válljejuvvon artihkkala logakeahttán"
@@ -1327,7 +1292,6 @@ msgstr "Merke &dehálažžan"
 
 #: src/actions/actionmanagerimpl.cpp:397
 #, fuzzy, kde-format
-#| msgid "Remove &Important Mark"
 msgctxt "@action:button"
 msgid "Remove &Important Mark"
 msgstr "Váldde eret &dehálašmearkka"
@@ -1354,13 +1318,11 @@ msgstr "Sirdde novdda olgešguvlui"
 
 #: src/actions/actionmanagerimpl.cpp:422
 #, fuzzy, kde-format
-#| msgid "Send &Link Address..."
 msgid "Send &Link Address…"
 msgstr "Sádde &liŋkačujuhusa …"
 
 #: src/actions/actionmanagerimpl.cpp:427
 #, fuzzy, kde-format
-#| msgid "Send &File..."
 msgid "Send &File…"
 msgstr "Sádde &fiilla …"
 
@@ -1477,14 +1439,12 @@ msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:602
 #, fuzzy, kde-format
-#| msgid "Speak Text"
 msgctxt "@action"
 msgid "Speak Text"
 msgstr "Huma teavstta"
 
 #: src/actions/actionmanagerimpl.cpp:607
 #, fuzzy, kde-format
-#| msgid "&Find in Message..."
 msgid "&Find in Message…"
 msgstr "&Oza reivves …"
 
@@ -1495,14 +1455,12 @@ msgstr "Gidde gilkora"
 
 #: src/actions/actionmanagerimpl.cpp:631
 #, fuzzy, kde-format
-#| msgid "Activate Tab %1"
 msgctxt "@action"
 msgid "Activate Tab %1"
 msgstr "Mana %1 gilkorii"
 
 #: src/actions/actionmanagerimpl.cpp:637
 #, fuzzy, kde-format
-#| msgid "&Save Link As..."
 msgid "&Save Link As…"
 msgstr "&Vurke liŋkka nugo …"
 
@@ -1513,7 +1471,6 @@ msgstr "Máŋge &liŋkačujuhusa"
 
 #: src/actions/actionmanagerimpl.cpp:644
 #, fuzzy, kde-format
-#| msgid "Copy Image Location"
 msgctxt "@action"
 msgid "Copy Image Location"
 msgstr "Máŋge govvačujuhusa"
@@ -1552,27 +1509,23 @@ msgstr "Gáldu %1 ii gávdnon."
 
 #: src/addfeeddialog.cpp:121
 #, fuzzy, kde-format
-#| msgid "Feed found, downloading..."
 msgid "Feed found, downloading…"
 msgstr "Gáldu gávdnui, viežžamin …"
 
 #: src/akregator_options.h:20 src/akregator_options.h:28
 #, fuzzy, kde-format
-#| msgid "Add a feed with the given URL"
 msgctxt "@info:shell"
 msgid "Add a feed with the given URL"
 msgstr "Lasit gáldu mas lea dát URL"
 
 #: src/akregator_options.h:23
 #, fuzzy, kde-format
-#| msgid "When adding feeds, place them in this group"
 msgctxt "@info:shell"
 msgid "When adding feeds, place them in this group"
 msgstr "Go lasihat gálduid, bija daid dán jovkui"
 
 #: src/akregator_options.h:25
 #, fuzzy, kde-format
-#| msgid "Hide main window on startup"
 msgctxt "@info:shell"
 msgid "Hide main window on startup"
 msgstr "Čiega váldoláse álggahettiin"
@@ -1628,7 +1581,6 @@ msgstr ""
 
 #: src/akregator_part.cpp:428 src/akregator_part.cpp:481
 #, fuzzy, kde-format
-#| msgid "Write Error"
 msgctxt "@title:window"
 msgid "Write Error"
 msgstr "Čállinmeattáhus"
@@ -1640,7 +1592,6 @@ msgstr "Ii sáhttán sisafievrridit filla %1 (gustohis OPML)"
 
 #: src/akregator_part.cpp:464 src/command/loadfeedlistcommand.cpp:71
 #, fuzzy, kde-format
-#| msgid "OPML Parsing Error"
 msgctxt "@title:window"
 msgid "OPML Parsing Error"
 msgstr "OPML dulkonmeattáhus"
@@ -1656,7 +1607,6 @@ msgstr ""
 
 #: src/akregator_part.cpp:469 src/command/loadfeedlistcommand.cpp:144
 #, fuzzy, kde-format
-#| msgid "Read Error"
 msgctxt "@title:window"
 msgid "Read Error"
 msgstr "Lohkanmeattáhus"
@@ -1766,7 +1716,6 @@ msgstr "Háliidatgo ahte álgosiidu ii šat oidno?"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:377
 #, fuzzy, kde-format
-#| msgid "Disable Introduction Page"
 msgctxt "@title:window"
 msgid "Disable Introduction Page"
 msgstr "Ále čájet álgosiiddu šat"
@@ -1829,7 +1778,6 @@ msgstr ""
 
 #: src/command/deletesubscriptioncommand.cpp:44
 #, fuzzy, kde-format
-#| msgid "Delete Folder"
 msgctxt "@title:window"
 msgid "Delete Folder"
 msgstr "Sihko máhpa"
@@ -1846,7 +1794,6 @@ msgstr "<qt>Háliidatgo duođaid sihkkut <b>%1</b>-gáldu?</qt>"
 
 #: src/command/deletesubscriptioncommand.cpp:68
 #, fuzzy, kde-format
-#| msgid "Delete Feed"
 msgctxt "@title:window"
 msgid "Delete Feed"
 msgstr "Sihko gáldu"
@@ -1884,7 +1831,6 @@ msgstr ""
 
 #: src/command/loadfeedlistcommand.cpp:129
 #, fuzzy, kde-format
-#| msgid "Opening Feed List..."
 msgid "Opening Feed List…"
 msgstr "Rahpamin gáldolisttu …"
 
@@ -1923,9 +1869,6 @@ msgstr ""
 
 #: src/crashwidget/crashwidget.cpp:21
 #, fuzzy, kde-format
-#| msgid ""
-#| "Akregator did not close correctly. Would you like to restore the previous "
-#| "session?"
 msgctxt "@label:textbox"
 msgid ""
 "Akregator did not close correctly. Would you like to restore the previous "
@@ -2048,8 +1991,6 @@ msgstr ""
 
 #: src/feed/feedpropertiesdialog.cpp:116
 #, fuzzy, kde-format
-#| msgid " day"
-#| msgid_plural " days"
 msgid "%v day"
 msgid_plural "%v days"
 msgstr[0] " beaivi"
@@ -2057,8 +1998,6 @@ msgstr[1] " beaivvi"
 
 #: src/feed/feedpropertiesdialog.cpp:117
 #, fuzzy, kde-format
-#| msgid " article"
-#| msgid_plural " articles"
 msgid "%v article"
 msgid_plural "%v articles"
 msgstr[0] " artihkal"
@@ -2136,7 +2075,6 @@ msgstr "Namaheapmi"
 
 #: src/frame/frame.cpp:140
 #, fuzzy, kde-format
-#| msgid "Loading..."
 msgid "Loading…"
 msgstr "Viežžamin …"
 
@@ -2179,7 +2117,6 @@ msgstr ""
 
 #: src/mainwidget.cpp:815
 #, fuzzy, kde-format
-#| msgid "&Mark Feed as Read"
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "Merke gáldu &lohkon"
@@ -2198,7 +2135,6 @@ msgstr ""
 
 #: src/mainwidget.cpp:822
 #, fuzzy, kde-format
-#| msgid "&Mark Feeds as Read"
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "Merke gálduid &lohkon"
@@ -2210,7 +2146,6 @@ msgstr ""
 
 #: src/mainwidget.cpp:903
 #, fuzzy, kde-format
-#| msgid "Fetching Feeds..."
 msgid "Fetching Feeds…"
 msgstr "Viežžamin gálduid …"
 
@@ -2229,7 +2164,6 @@ msgstr[1] "<qt>Háliidatgo duođaid sihkkut %1 válljejuvvon artihkkala?</qt>"
 
 #: src/mainwidget.cpp:1112
 #, fuzzy, kde-format
-#| msgid "Delete Article"
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "Sihko artihkkala"
@@ -2370,7 +2304,6 @@ msgstr "Oktiibuot"
 
 #: src/tabwidget.cpp:92
 #, fuzzy, kde-format
-#| msgid "Close the current tab"
 msgctxt "@info:tooltip"
 msgid "Close the current tab"
 msgstr "Gidde dán gilkora"
@@ -2591,14 +2524,12 @@ msgstr ""
 
 #: src/widgets/searchbar.cpp:43
 #, fuzzy, kde-format
-#| msgid "Unread articles:"
 msgctxt "@info:placeholder"
 msgid "Search articles…"
 msgstr "Logakeahtes artihkkala:"
 
 #: src/widgets/searchbar.cpp:118
 #, fuzzy, kde-format
-#| msgid "Unread articles:"
 msgctxt "@info:placeholder"
 msgid "Search articles…<%1>"
 msgstr "Logakeahtes artihkkala:"
