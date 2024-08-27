@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-08-17 00:39+0000\n"
-"PO-Revision-Date: 2024-05-28 09:59+0300\n"
+"PO-Revision-Date: 2024-08-20 18:37+0300\n"
 "Last-Translator: Toms Trasuns <toms.trasuns@posteo.net>\n"
 "Language-Team: Latvian <kde-i18n-doc@kde.org>\n"
 "Language: lv\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
 "2);\n"
-"X-Generator: Lokalize 24.02.2\n"
+"X-Generator: Lokalize 24.05.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -105,28 +105,22 @@ msgstr ""
 "konfigurācijas lodziņu)."
 
 #: configuration/akregator_config_archive.cpp:35
-#, fuzzy, kde-format
-#| msgctxt "Limit feed archive size to:"
-#| msgid " article"
-#| msgid_plural " articles"
+#, kde-format
 msgctxt "Limit feed archive size to:"
 msgid "%v article"
 msgid_plural "%v articles"
-msgstr[0] " rakstam"
-msgstr[1] " rakstiem"
-msgstr[2] " rakstiem"
+msgstr[0] "%v rakstam"
+msgstr[1] "v% rakstiem"
+msgstr[2] "v% rakstiem"
 
 #: configuration/akregator_config_archive.cpp:36
-#, fuzzy, kde-format
-#| msgctxt "Delete articles older than:"
-#| msgid " day"
-#| msgid_plural " days"
+#, kde-format
 msgctxt "Delete articles older than:"
 msgid "%v day"
 msgid_plural "%v days"
-msgstr[0] " dienu"
-msgstr[1] " dienām"
-msgstr[2] " dienām"
+msgstr[0] "v% dienu"
+msgstr[1] "v% dienām"
+msgstr[2] "v% dienām"
 
 #: configuration/akregator_config_general.cpp:35
 #, kde-format
@@ -142,16 +136,13 @@ msgid "Webengine Plugins"
 msgstr "Tīmekļa dziņa spraudņi"
 
 #: configuration/settings_advanced.cpp:28
-#, fuzzy, kde-format
-#| msgctxt "Mark selected article read after"
-#| msgid " second"
-#| msgid_plural " seconds"
+#, kde-format
 msgctxt "Mark selected article read after"
 msgid "%v second"
 msgid_plural "%v seconds"
-msgstr[0] " sekundes"
-msgstr[1] " sekundēm"
-msgstr[2] " sekundēm"
+msgstr[0] "v% sekundes"
+msgstr[1] "v% sekundēm"
+msgstr[2] "v% sekundēm"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: configuration/ui/settings_advancedbase.ui:30
@@ -385,8 +376,7 @@ msgstr "Pārbaudīt URL, izmantojot „Google“ drošās pārlūkošanas API"
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_EnableJavascript)
 #. i18n: ectx: label, entry, group (Browser)
 #: configuration/ui/settings_browser.ui:153 interfaces/akregator.kcfg:198
-#, fuzzy, kde-format
-#| msgid "Enable Javascript"
+#, kde-format
 msgid "Enable JavaScript"
 msgstr "Ieslēgt „Javascript“"
 
@@ -394,13 +384,13 @@ msgstr "Ieslēgt „Javascript“"
 #: configuration/ui/settings_browser.ui:163
 #, kde-format
 msgid "Accessibility"
-msgstr ""
+msgstr "Pieejamība"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_AccessKeyEnabled)
 #: configuration/ui/settings_browser.ui:169
 #, kde-format
 msgid "Enable Access Key activation with Ctrl key"
-msgstr ""
+msgstr "Ieslēgt pieejas taustiņa aktivizēšanu ar „Ctrl“ taustiņu"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_3)
 #: configuration/ui/settings_general.ui:30
@@ -473,10 +463,9 @@ msgstr "Plūsmu ielādēšanas biežums:"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_PlasmaActivitySupport)
 #: configuration/ui/settings_general.ui:157
-#, fuzzy, kde-format
-#| msgid "Enable Plasma Activities"
+#, kde-format
 msgid "Enable Plasma Activities integration"
-msgstr "Ieslēgt „Plasma“ aktivitātes"
+msgstr "Ieslēgt „Plasma“ aktivitāšu integrāciju"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #: configuration/ui/settings_general.ui:167
@@ -510,10 +499,9 @@ msgstr "Izmantot &pārlūka kešatmiņu (samazina tīkla datplūsmu)"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_LoadExternalReferences)
 #: configuration/ui/settings_security.ui:17
-#, fuzzy, kde-format
-#| msgid "Allow feed to load external references from internet."
+#, kde-format
 msgid "Allow article preview to load external references"
-msgstr "Atļaut plūsmai ielādēt ārējas atsauces no interneta."
+msgstr "Atļaut raksta priekšskatījumam ielādēt ārējas atsauces"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_LoadExternalReferences)
 #: configuration/ui/settings_security.ui:20
@@ -523,6 +511,9 @@ msgid ""
 "This may allow websites or third parties to observe the articles that you "
 "have viewed."
 msgstr ""
+"Atļaut raksta priekšskatījumam ielādēt ārējas atsauces no interneta. Šī "
+"opcija var ļaut tīmekļa vietnēm vai trešām pusēm redzēt, kādus rakstus jūs "
+"apskatāt."
 
 #: export/akregatorstorageexporter.cpp:280
 #, kde-format
@@ -917,8 +908,7 @@ msgstr "Peles vidējās pogas funkcija."
 
 #. i18n: ectx: label, entry, group (Browser)
 #: interfaces/akregator.kcfg:249
-#, fuzzy, kde-format
-#| msgid "Enable Plasma Activities"
+#, kde-format
 msgid "Enabled Plasma Activity"
 msgstr "Ieslēgt „Plasma“ aktivitātes"
 
@@ -1362,7 +1352,7 @@ msgstr "Iestatīt fokusu uz ātro meklēšanu"
 #: src/actions/actionmanagerimpl.cpp:439
 #, kde-format
 msgid "What's new"
-msgstr ""
+msgstr "Kas jauns?"
 
 #: src/actions/actionmanagerimpl.cpp:469
 #, kde-format
@@ -1540,32 +1530,28 @@ msgid "Feed found, downloading…"
 msgstr "Plūsma ir atrasta, lejupielādē…"
 
 #: src/akregator_options.h:20 src/akregator_options.h:28
-#, fuzzy, kde-format
-#| msgid "Add a feed with the given URL"
+#, kde-format
 msgctxt "@info:shell"
 msgid "Add a feed with the given URL"
 msgstr "Pievienot plūsmu ar norādīto URL"
 
 #: src/akregator_options.h:23
-#, fuzzy, kde-format
-#| msgid "When adding feeds, place them in this group"
+#, kde-format
 msgctxt "@info:shell"
 msgid "When adding feeds, place them in this group"
 msgstr "Pievienojot plūsmu, ievietot to šajā grupā"
 
 #: src/akregator_options.h:25
-#, fuzzy, kde-format
-#| msgid "Hide main window on startup"
+#, kde-format
 msgctxt "@info:shell"
 msgid "Hide main window on startup"
-msgstr "Ieslēdzot slēpt galveno logu "
+msgstr "Ieslēdzot slēpt galveno logu"
 
 #: src/akregator_options.h:30
-#, fuzzy, kde-format
-#| msgid "Lists the available options for user feedback"
+#, kde-format
 msgctxt "@info:shell"
 msgid "Lists the available options for user feedback"
-msgstr "Uzskaitīt visas lietotāja atsauksmju pieejamās opcijas"
+msgstr "Uzskaita visas pieejamās lietotāja atsauksmju opcijas"
 
 #: src/akregator_part.cpp:78
 #, kde-format
@@ -1970,7 +1956,7 @@ msgstr "Ie&statījumi"
 #: src/data/akregator_part.rc:90
 #, kde-format
 msgid "&Help"
-msgstr ""
+msgstr "&Palīdzība"
 
 #. i18n: ectx: ToolBar (mainToolBar)
 #: src/data/akregator_part.rc:96 src/data/akregator_shell.rc:54
@@ -1992,7 +1978,7 @@ msgstr "Visi ziņu avoti"
 #: src/feed/feedpropertiesdialog.cpp:37
 #, kde-format
 msgid "Activities"
-msgstr ""
+msgstr "Aktivitātes"
 
 #: src/feed/feedpropertiesdialog.cpp:62 src/feed/feedpropertiesdialog.cpp:110
 #, kde-format
@@ -2031,24 +2017,20 @@ msgid "Never"
 msgstr "Nekad"
 
 #: src/feed/feedpropertiesdialog.cpp:116
-#, fuzzy, kde-format
-#| msgid " day"
-#| msgid_plural " days"
+#, kde-format
 msgid "%v day"
 msgid_plural "%v days"
-msgstr[0] " diena"
-msgstr[1] " dienas"
-msgstr[2] " dienu"
+msgstr[0] "v% diena"
+msgstr[1] "v% dienas"
+msgstr[2] "v% dienu"
 
 #: src/feed/feedpropertiesdialog.cpp:117
-#, fuzzy, kde-format
-#| msgid " article"
-#| msgid_plural " articles"
+#, kde-format
 msgid "%v article"
 msgid_plural "%v articles"
-msgstr[0] " raksts"
-msgstr[1] " raksti"
-msgstr[2] " rakstu"
+msgstr[0] "v% raksts"
+msgstr[1] "v% raksti"
+msgstr[2] "v% rakstu"
 
 #: src/feed/feedpropertiesdialog.cpp:151
 #, kde-format
@@ -2569,25 +2551,21 @@ msgid "Open In External Browser"
 msgstr "Atvērt ārējā pārlūkā"
 
 #: src/whatsnew/whatsnewtranslations.cpp:16
-#, fuzzy
-#| msgid "Enable Plasma Activities"
 msgid "Implement Plasma Activity."
-msgstr "Ieslēgt „Plasma“ aktivitātes"
+msgstr "Ieslēgt „Plasma“ aktivitātes."
 
 #: src/whatsnew/whatsnewtranslations.cpp:16
 msgid "Add new whatsnew widget."
-msgstr ""
+msgstr "Pievienot jaunu „Kas jauns?“ logdaļu."
 
 #: src/widgets/searchbar.cpp:43
-#, fuzzy, kde-format
-#| msgid "Search articles…"
+#, kde-format
 msgctxt "@info:placeholder"
 msgid "Search articles…"
 msgstr "Meklēt rakstus…"
 
 #: src/widgets/searchbar.cpp:118
-#, fuzzy, kde-format
-#| msgid "Search articles…<%1>"
+#, kde-format
 msgctxt "@info:placeholder"
 msgid "Search articles…<%1>"
 msgstr "Meklēt rakstus…<%1>"
