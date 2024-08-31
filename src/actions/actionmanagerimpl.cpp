@@ -13,6 +13,7 @@
 #include "feed.h"
 #include "fetchqueue.h"
 #include "folder.h"
+#include "kcolorscheme_version.h"
 #include "kernel.h"
 #include "mainwidget.h"
 #include "subscriptionlistview.h"
@@ -440,7 +441,11 @@ void ActionManagerImpl::initMainWidget(MainWidget *mainWidget)
     coll->addAction(QStringLiteral("whatsnew"), showWhatsNewAction);
     connect(showWhatsNewAction, &QAction::triggered, mainWidget, &MainWidget::slotWhatsNew);
 
+#if KCOLORSCHEME_VERSION < QT_VERSION_CHECK(6, 6, 0)
     auto manager = new KColorSchemeManager(this);
+#else
+    auto manager = KColorSchemeManager::instance();
+#endif
     coll->addAction(QStringLiteral("colorscheme_menu"), KColorSchemeMenu::createMenu(manager, this));
 
     setArticleActionsEnabled(false);
