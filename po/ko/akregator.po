@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdepim\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-17 00:39+0000\n"
+"POT-Creation-Date: 2024-09-01 00:39+0000\n"
 "PO-Revision-Date: 2024-08-20 21:40+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -267,7 +267,7 @@ msgstr "마우스 왼쪽 단추 클릭:"
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
 #: configuration/ui/settings_browser.ui:28
 #: configuration/ui/settings_browser.ui:54
-#: src/actions/actionmanagerimpl.cpp:324
+#: src/actions/actionmanagerimpl.cpp:325
 #, kde-format
 msgid "Open in Tab"
 msgstr "탭으로 열기"
@@ -276,7 +276,7 @@ msgstr "탭으로 열기"
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
 #: configuration/ui/settings_browser.ui:33
 #: configuration/ui/settings_browser.ui:59
-#: src/actions/actionmanagerimpl.cpp:330
+#: src/actions/actionmanagerimpl.cpp:331
 #, kde-format
 msgid "Open in Background Tab"
 msgstr "배경 탭으로 열기"
@@ -285,7 +285,7 @@ msgstr "배경 탭으로 열기"
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
 #: configuration/ui/settings_browser.ui:38
 #: configuration/ui/settings_browser.ui:64
-#: src/actions/actionmanagerimpl.cpp:336
+#: src/actions/actionmanagerimpl.cpp:337
 #, kde-format
 msgid "Open in External Browser"
 msgstr "외부 브라우저로 열기"
@@ -529,7 +529,7 @@ msgid "Auto-Expand folders with unread articles"
 msgstr "읽지 않은 글이 있는 피드가 있는 폴더 자동으로 확장"
 
 #. i18n: ectx: label, entry, group (View)
-#: interfaces/akregator.kcfg:31 src/actions/actionmanagerimpl.cpp:318
+#: interfaces/akregator.kcfg:31 src/actions/actionmanagerimpl.cpp:319
 #, kde-format
 msgid "Show Quick Filter"
 msgstr "빠른 필터 표시"
@@ -1115,363 +1115,363 @@ msgstr "Philipp Droessler"
 msgid "Gentoo Ebuild"
 msgstr "젠투 이빌드"
 
-#: src/actions/actionmanagerimpl.cpp:64 src/actions/actionmanagerimpl.cpp:287
+#: src/actions/actionmanagerimpl.cpp:65 src/actions/actionmanagerimpl.cpp:288
 #, kde-format
 msgid "&Fetch Feed"
 msgstr "피드 가져오기(&F)"
 
-#: src/actions/actionmanagerimpl.cpp:65 src/actions/actionmanagerimpl.cpp:243
+#: src/actions/actionmanagerimpl.cpp:66 src/actions/actionmanagerimpl.cpp:244
 #, kde-format
 msgid "&Delete Feed"
 msgstr "피드 삭제(&D)"
 
-#: src/actions/actionmanagerimpl.cpp:66 src/actions/actionmanagerimpl.cpp:249
+#: src/actions/actionmanagerimpl.cpp:67 src/actions/actionmanagerimpl.cpp:250
 #, kde-format
 msgid "&Edit Feed…"
 msgstr "피드 편집(&E)…"
 
-#: src/actions/actionmanagerimpl.cpp:67 src/actions/actionmanagerimpl.cpp:306
+#: src/actions/actionmanagerimpl.cpp:68 src/actions/actionmanagerimpl.cpp:307
 #, kde-format
 msgid "&Mark Feed as Read"
 msgstr "피드를 읽은 것으로 표시(&M)"
 
-#: src/actions/actionmanagerimpl.cpp:83
+#: src/actions/actionmanagerimpl.cpp:84
 #, kde-format
 msgid "&Fetch Feeds"
 msgstr "피드 가져오기(&F)"
 
-#: src/actions/actionmanagerimpl.cpp:84
+#: src/actions/actionmanagerimpl.cpp:85
 #, kde-format
 msgid "&Delete Folder"
 msgstr "폴더 삭제(&D)"
 
-#: src/actions/actionmanagerimpl.cpp:85
+#: src/actions/actionmanagerimpl.cpp:86
 #, kde-format
 msgid "&Rename Folder"
 msgstr "폴더 이름 바꾸기(&R)"
 
-#: src/actions/actionmanagerimpl.cpp:86
+#: src/actions/actionmanagerimpl.cpp:87
 #, kde-format
 msgid "&Mark Feeds as Read"
 msgstr "피드를 읽은 것으로 표시(&M)"
 
-#: src/actions/actionmanagerimpl.cpp:191
+#: src/actions/actionmanagerimpl.cpp:192
 #, kde-format
 msgid "&Import Feeds…"
 msgstr "피드 가져오기(&I)…"
 
-#: src/actions/actionmanagerimpl.cpp:195
+#: src/actions/actionmanagerimpl.cpp:196
 #, kde-format
 msgid "&Export Feeds…"
 msgstr "피드 내보내기(&E)…"
 
-#: src/actions/actionmanagerimpl.cpp:200
+#: src/actions/actionmanagerimpl.cpp:201
 #, kde-format
 msgid "&Configure Akregator…"
 msgstr "Akregator 설정(&C)…"
 
-#: src/actions/actionmanagerimpl.cpp:219
+#: src/actions/actionmanagerimpl.cpp:220
 #, kde-format
 msgid "&Open Homepage"
 msgstr "홈페이지 열기(&O)"
 
-#: src/actions/actionmanagerimpl.cpp:225
+#: src/actions/actionmanagerimpl.cpp:226
 #, kde-format
 msgid "Reload All Tabs"
 msgstr "모든 탭 새로 고침"
 
-#: src/actions/actionmanagerimpl.cpp:231
+#: src/actions/actionmanagerimpl.cpp:232
 #, kde-format
 msgid "&Add Feed…"
 msgstr "피드 추가(&A)…"
 
-#: src/actions/actionmanagerimpl.cpp:237
+#: src/actions/actionmanagerimpl.cpp:238
 #, kde-format
 msgid "Ne&w Folder…"
 msgstr "새 폴더(&W)…"
 
-#: src/actions/actionmanagerimpl.cpp:262
+#: src/actions/actionmanagerimpl.cpp:263
 #, kde-format
 msgid "&Normal View"
 msgstr "일반 보기(&N)"
 
-#: src/actions/actionmanagerimpl.cpp:271
+#: src/actions/actionmanagerimpl.cpp:272
 #, kde-format
 msgid "&Widescreen View"
 msgstr "와이드 화면 보기(&W)"
 
-#: src/actions/actionmanagerimpl.cpp:280
+#: src/actions/actionmanagerimpl.cpp:281
 #, kde-format
 msgid "C&ombined View"
 msgstr "혼합된 보기(&O)"
 
-#: src/actions/actionmanagerimpl.cpp:293
+#: src/actions/actionmanagerimpl.cpp:294
 #, kde-format
 msgid "Fe&tch All Feeds"
 msgstr "모든 피드 가져오기(&T)"
 
-#: src/actions/actionmanagerimpl.cpp:299
+#: src/actions/actionmanagerimpl.cpp:300
 #, kde-format
 msgid "C&ancel Feed Fetches"
 msgstr "피드 가져오기 중단하기(&A)"
 
-#: src/actions/actionmanagerimpl.cpp:312
+#: src/actions/actionmanagerimpl.cpp:313
 #, kde-format
 msgid "Ma&rk All Feeds as Read"
 msgstr "모든 피드를 읽은 것으로 표시(&R)"
 
-#: src/actions/actionmanagerimpl.cpp:341 src/actions/actionmanagerimpl.cpp:613
+#: src/actions/actionmanagerimpl.cpp:342 src/actions/actionmanagerimpl.cpp:618
 #, kde-format
 msgid "Copy Link Address"
 msgstr "링크 주소 복사"
 
-#: src/actions/actionmanagerimpl.cpp:346
+#: src/actions/actionmanagerimpl.cpp:347
 #, kde-format
 msgid "Pre&vious Unread Article"
 msgstr "이전 읽지 않은 글(&V)"
 
-#: src/actions/actionmanagerimpl.cpp:352
+#: src/actions/actionmanagerimpl.cpp:353
 #, kde-format
 msgid "Ne&xt Unread Article"
 msgstr "다음 읽지 않은 글(&X)"
 
-#: src/actions/actionmanagerimpl.cpp:360
+#: src/actions/actionmanagerimpl.cpp:361
 #, kde-format
 msgid "&Delete"
 msgstr "삭제(&D)"
 
-#: src/actions/actionmanagerimpl.cpp:365
+#: src/actions/actionmanagerimpl.cpp:366
 #, kde-format
 msgid "&Mark As"
 msgstr "다음으로 표시(&M)"
 
-#: src/actions/actionmanagerimpl.cpp:369
+#: src/actions/actionmanagerimpl.cpp:370
 #, kde-format
 msgctxt "as in: mark as read"
 msgid "&Read"
 msgstr "읽음(&R)"
 
-#: src/actions/actionmanagerimpl.cpp:371
+#: src/actions/actionmanagerimpl.cpp:372
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as read"
 msgstr "선택한 글을 읽은 것으로 표시"
 
-#: src/actions/actionmanagerimpl.cpp:377
+#: src/actions/actionmanagerimpl.cpp:378
 #, kde-format
 msgctxt "as in: mark as new"
 msgid "&New"
 msgstr "새로운 글로(&N)"
 
-#: src/actions/actionmanagerimpl.cpp:380
+#: src/actions/actionmanagerimpl.cpp:381
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as new"
 msgstr "선택한 글을 새로운 것으로 표시"
 
-#: src/actions/actionmanagerimpl.cpp:385
+#: src/actions/actionmanagerimpl.cpp:386
 #, kde-format
 msgctxt "as in: mark as unread"
 msgid "&Unread"
 msgstr "읽지 않은 상태로(&U)"
 
-#: src/actions/actionmanagerimpl.cpp:387
+#: src/actions/actionmanagerimpl.cpp:388
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as unread"
 msgstr "선택한 글을 읽지 않은 것으로 표시"
 
-#: src/actions/actionmanagerimpl.cpp:393
+#: src/actions/actionmanagerimpl.cpp:394
 #, kde-format
 msgid "&Mark as Important"
 msgstr "중요한 글로 표시(&M)"
 
-#: src/actions/actionmanagerimpl.cpp:397
+#: src/actions/actionmanagerimpl.cpp:398
 #, kde-format
 msgctxt "@action:button"
 msgid "Remove &Important Mark"
 msgstr "중요함 표시 삭제(&I)"
 
-#: src/actions/actionmanagerimpl.cpp:401
+#: src/actions/actionmanagerimpl.cpp:402
 #, kde-format
 msgid "Move Node Up"
 msgstr "노드 위로 이동"
 
-#: src/actions/actionmanagerimpl.cpp:406
+#: src/actions/actionmanagerimpl.cpp:407
 #, kde-format
 msgid "Move Node Down"
 msgstr "노드 아래로 이동"
 
-#: src/actions/actionmanagerimpl.cpp:411
+#: src/actions/actionmanagerimpl.cpp:412
 #, kde-format
 msgid "Move Node Left"
 msgstr "노드 왼쪽으로 이동"
 
-#: src/actions/actionmanagerimpl.cpp:416
+#: src/actions/actionmanagerimpl.cpp:417
 #, kde-format
 msgid "Move Node Right"
 msgstr "노드 오른쪽으로 이동"
 
-#: src/actions/actionmanagerimpl.cpp:422
+#: src/actions/actionmanagerimpl.cpp:423
 #, kde-format
 msgid "Send &Link Address…"
 msgstr "링크 주소 보내기(&L)…"
 
-#: src/actions/actionmanagerimpl.cpp:427
+#: src/actions/actionmanagerimpl.cpp:428
 #, kde-format
 msgid "Send &File…"
 msgstr "파일 보내기(&F)…"
 
-#: src/actions/actionmanagerimpl.cpp:433
+#: src/actions/actionmanagerimpl.cpp:434
 #, kde-format
 msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr "빠른 검색에 포커스 맞추기"
 
-#: src/actions/actionmanagerimpl.cpp:439
+#: src/actions/actionmanagerimpl.cpp:440
 #, kde-format
 msgid "What's new"
 msgstr "새로운 기능"
 
-#: src/actions/actionmanagerimpl.cpp:469
+#: src/actions/actionmanagerimpl.cpp:474
 #, kde-format
 msgid "&Previous Article"
 msgstr "이전 글(&P)"
 
-#: src/actions/actionmanagerimpl.cpp:473
+#: src/actions/actionmanagerimpl.cpp:478
 #, kde-format
 msgid "&Next Article"
 msgstr "다음 글(&N)"
 
-#: src/actions/actionmanagerimpl.cpp:489
+#: src/actions/actionmanagerimpl.cpp:494
 #, kde-format
 msgid "&Previous Feed"
 msgstr "이전 피드(&P)"
 
-#: src/actions/actionmanagerimpl.cpp:494
+#: src/actions/actionmanagerimpl.cpp:499
 #, kde-format
 msgid "&Next Feed"
 msgstr "다음 피드(&N)"
 
-#: src/actions/actionmanagerimpl.cpp:500
+#: src/actions/actionmanagerimpl.cpp:505
 #, kde-format
 msgid "N&ext Unread Feed"
 msgstr "다음 읽지 않은 피드(&E)"
 
-#: src/actions/actionmanagerimpl.cpp:506
+#: src/actions/actionmanagerimpl.cpp:511
 #, kde-format
 msgid "Prev&ious Unread Feed"
 msgstr "이전 읽지 않은 피드(&I)"
 
-#: src/actions/actionmanagerimpl.cpp:511
+#: src/actions/actionmanagerimpl.cpp:516
 #, kde-format
 msgid "Go to Top of Tree"
 msgstr "트리의 맨 위로 이동"
 
-#: src/actions/actionmanagerimpl.cpp:516
+#: src/actions/actionmanagerimpl.cpp:521
 #, kde-format
 msgid "Go to Bottom of Tree"
 msgstr "트리의 맨 아래로 이동"
 
-#: src/actions/actionmanagerimpl.cpp:521
+#: src/actions/actionmanagerimpl.cpp:526
 #, kde-format
 msgid "Go Left in Tree"
 msgstr "트리의 왼쪽으로 이동"
 
-#: src/actions/actionmanagerimpl.cpp:526
+#: src/actions/actionmanagerimpl.cpp:531
 #, kde-format
 msgid "Go Right in Tree"
 msgstr "트리의 오른쪽으로 이동"
 
-#: src/actions/actionmanagerimpl.cpp:531
+#: src/actions/actionmanagerimpl.cpp:536
 #, kde-format
 msgid "Go Up in Tree"
 msgstr "트리의 위로 이동"
 
-#: src/actions/actionmanagerimpl.cpp:536
+#: src/actions/actionmanagerimpl.cpp:541
 #, kde-format
 msgid "Go Down in Tree"
 msgstr "트리의 아래로 이동"
 
-#: src/actions/actionmanagerimpl.cpp:542
+#: src/actions/actionmanagerimpl.cpp:547
 #, kde-format
 msgid "Hide Read Feeds"
 msgstr "읽은 피드 숨기기"
 
-#: src/actions/actionmanagerimpl.cpp:548
+#: src/actions/actionmanagerimpl.cpp:553
 #, kde-format
 msgid "Lock Feeds In Place"
 msgstr "피드를 위치에 고정"
 
-#: src/actions/actionmanagerimpl.cpp:554
+#: src/actions/actionmanagerimpl.cpp:559
 #, kde-format
 msgid "Auto-expand folders with unread articles"
 msgstr "읽지 않은 글이 있는 피드가 있는 폴더 자동으로 확장"
 
-#: src/actions/actionmanagerimpl.cpp:570
+#: src/actions/actionmanagerimpl.cpp:575
 #, kde-format
 msgid "Select Next Tab"
 msgstr "다음 탭 선택"
 
-#: src/actions/actionmanagerimpl.cpp:575
+#: src/actions/actionmanagerimpl.cpp:580
 #, kde-format
 msgid "Select Previous Tab"
 msgstr "이전 탭 선택"
 
-#: src/actions/actionmanagerimpl.cpp:581
+#: src/actions/actionmanagerimpl.cpp:586
 #, kde-format
 msgid "Detach Tab"
 msgstr "탭 떼내기"
 
-#: src/actions/actionmanagerimpl.cpp:595
+#: src/actions/actionmanagerimpl.cpp:600
 #, kde-format
 msgid "Mute"
 msgstr "음소거"
 
-#: src/actions/actionmanagerimpl.cpp:599
+#: src/actions/actionmanagerimpl.cpp:604
 #, kde-format
 msgid "Unmute"
 msgstr "음소거 해제"
 
-#: src/actions/actionmanagerimpl.cpp:602
+#: src/actions/actionmanagerimpl.cpp:607
 #, kde-format
 msgctxt "@action"
 msgid "Speak Text"
 msgstr "텍스트 말하기"
 
-#: src/actions/actionmanagerimpl.cpp:607
+#: src/actions/actionmanagerimpl.cpp:612
 #, kde-format
 msgid "&Find in Message…"
 msgstr "메시지에서 찾기(&F)…"
 
-#: src/actions/actionmanagerimpl.cpp:618
+#: src/actions/actionmanagerimpl.cpp:623
 #, kde-format
 msgid "Close Tab"
 msgstr "탭 닫기"
 
-#: src/actions/actionmanagerimpl.cpp:631
+#: src/actions/actionmanagerimpl.cpp:636
 #, kde-format
 msgctxt "@action"
 msgid "Activate Tab %1"
 msgstr "탭 %1 활성화"
 
-#: src/actions/actionmanagerimpl.cpp:637
+#: src/actions/actionmanagerimpl.cpp:642
 #, kde-format
 msgid "&Save Link As…"
 msgstr "다른 이름으로 링크 저장(&S)…"
 
-#: src/actions/actionmanagerimpl.cpp:641
+#: src/actions/actionmanagerimpl.cpp:646
 #, kde-format
 msgid "Copy &Link Address"
 msgstr "링크 주소 복사(&L)"
 
-#: src/actions/actionmanagerimpl.cpp:644
+#: src/actions/actionmanagerimpl.cpp:649
 #, kde-format
 msgctxt "@action"
 msgid "Copy Image Location"
 msgstr "그림 주소 복사"
 
-#: src/actions/actionmanagerimpl.cpp:651
+#: src/actions/actionmanagerimpl.cpp:656
 #, kde-format
 msgctxt "@action"
 msgid "Save Image On Disk…"

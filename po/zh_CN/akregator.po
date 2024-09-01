@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-17 00:39+0000\n"
+"POT-Creation-Date: 2024-09-01 00:39+0000\n"
 "PO-Revision-Date: 2024-04-23 19:24\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -264,7 +264,7 @@ msgstr "鼠标左键点击："
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
 #: configuration/ui/settings_browser.ui:28
 #: configuration/ui/settings_browser.ui:54
-#: src/actions/actionmanagerimpl.cpp:324
+#: src/actions/actionmanagerimpl.cpp:325
 #, kde-format
 msgid "Open in Tab"
 msgstr "在标签页中打开"
@@ -273,7 +273,7 @@ msgstr "在标签页中打开"
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
 #: configuration/ui/settings_browser.ui:33
 #: configuration/ui/settings_browser.ui:59
-#: src/actions/actionmanagerimpl.cpp:330
+#: src/actions/actionmanagerimpl.cpp:331
 #, kde-format
 msgid "Open in Background Tab"
 msgstr "在后台标签页中打开"
@@ -282,7 +282,7 @@ msgstr "在后台标签页中打开"
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
 #: configuration/ui/settings_browser.ui:38
 #: configuration/ui/settings_browser.ui:64
-#: src/actions/actionmanagerimpl.cpp:336
+#: src/actions/actionmanagerimpl.cpp:337
 #, kde-format
 msgid "Open in External Browser"
 msgstr "在外部浏览器中打开"
@@ -524,7 +524,7 @@ msgid "Auto-Expand folders with unread articles"
 msgstr "自动展开包含未读文章的文件夹"
 
 #. i18n: ectx: label, entry, group (View)
-#: interfaces/akregator.kcfg:31 src/actions/actionmanagerimpl.cpp:318
+#: interfaces/akregator.kcfg:31 src/actions/actionmanagerimpl.cpp:319
 #, kde-format
 msgid "Show Quick Filter"
 msgstr "显示快速过滤器"
@@ -1110,363 +1110,363 @@ msgstr "Philipp Droessler"
 msgid "Gentoo Ebuild"
 msgstr "Gentoo Ebuild"
 
-#: src/actions/actionmanagerimpl.cpp:64 src/actions/actionmanagerimpl.cpp:287
+#: src/actions/actionmanagerimpl.cpp:65 src/actions/actionmanagerimpl.cpp:288
 #, kde-format
 msgid "&Fetch Feed"
 msgstr "抓取订阅(&F)"
 
-#: src/actions/actionmanagerimpl.cpp:65 src/actions/actionmanagerimpl.cpp:243
+#: src/actions/actionmanagerimpl.cpp:66 src/actions/actionmanagerimpl.cpp:244
 #, kde-format
 msgid "&Delete Feed"
 msgstr "删除订阅(&D)"
 
-#: src/actions/actionmanagerimpl.cpp:66 src/actions/actionmanagerimpl.cpp:249
+#: src/actions/actionmanagerimpl.cpp:67 src/actions/actionmanagerimpl.cpp:250
 #, kde-format
 msgid "&Edit Feed…"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:67 src/actions/actionmanagerimpl.cpp:306
+#: src/actions/actionmanagerimpl.cpp:68 src/actions/actionmanagerimpl.cpp:307
 #, kde-format
 msgid "&Mark Feed as Read"
 msgstr "将订阅标为已读(&M)"
 
-#: src/actions/actionmanagerimpl.cpp:83
+#: src/actions/actionmanagerimpl.cpp:84
 #, kde-format
 msgid "&Fetch Feeds"
 msgstr "抓取订阅(&F)"
 
-#: src/actions/actionmanagerimpl.cpp:84
+#: src/actions/actionmanagerimpl.cpp:85
 #, kde-format
 msgid "&Delete Folder"
 msgstr "删除文件夹(&D)"
 
-#: src/actions/actionmanagerimpl.cpp:85
+#: src/actions/actionmanagerimpl.cpp:86
 #, kde-format
 msgid "&Rename Folder"
 msgstr "重命名文件夹(&R)"
 
-#: src/actions/actionmanagerimpl.cpp:86
+#: src/actions/actionmanagerimpl.cpp:87
 #, kde-format
 msgid "&Mark Feeds as Read"
 msgstr "将订阅标为已读(&M)"
 
-#: src/actions/actionmanagerimpl.cpp:191
+#: src/actions/actionmanagerimpl.cpp:192
 #, kde-format
 msgid "&Import Feeds…"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:195
+#: src/actions/actionmanagerimpl.cpp:196
 #, kde-format
 msgid "&Export Feeds…"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:200
+#: src/actions/actionmanagerimpl.cpp:201
 #, kde-format
 msgid "&Configure Akregator…"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:219
+#: src/actions/actionmanagerimpl.cpp:220
 #, kde-format
 msgid "&Open Homepage"
 msgstr "打开主页(&O)"
 
-#: src/actions/actionmanagerimpl.cpp:225
+#: src/actions/actionmanagerimpl.cpp:226
 #, kde-format
 msgid "Reload All Tabs"
 msgstr "重新加载全部标签页"
 
-#: src/actions/actionmanagerimpl.cpp:231
+#: src/actions/actionmanagerimpl.cpp:232
 #, kde-format
 msgid "&Add Feed…"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:237
+#: src/actions/actionmanagerimpl.cpp:238
 #, kde-format
 msgid "Ne&w Folder…"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:262
+#: src/actions/actionmanagerimpl.cpp:263
 #, kde-format
 msgid "&Normal View"
 msgstr "普通视图(&N)"
 
-#: src/actions/actionmanagerimpl.cpp:271
+#: src/actions/actionmanagerimpl.cpp:272
 #, kde-format
 msgid "&Widescreen View"
 msgstr "宽屏视图(&W)"
 
-#: src/actions/actionmanagerimpl.cpp:280
+#: src/actions/actionmanagerimpl.cpp:281
 #, kde-format
 msgid "C&ombined View"
 msgstr "组合视图(&O)"
 
-#: src/actions/actionmanagerimpl.cpp:293
+#: src/actions/actionmanagerimpl.cpp:294
 #, kde-format
 msgid "Fe&tch All Feeds"
 msgstr "抓取全部订阅(&T)"
 
-#: src/actions/actionmanagerimpl.cpp:299
+#: src/actions/actionmanagerimpl.cpp:300
 #, kde-format
 msgid "C&ancel Feed Fetches"
 msgstr "取消抓取订阅(&A)"
 
-#: src/actions/actionmanagerimpl.cpp:312
+#: src/actions/actionmanagerimpl.cpp:313
 #, kde-format
 msgid "Ma&rk All Feeds as Read"
 msgstr "将全部订阅标为已读(&R)"
 
-#: src/actions/actionmanagerimpl.cpp:341 src/actions/actionmanagerimpl.cpp:613
+#: src/actions/actionmanagerimpl.cpp:342 src/actions/actionmanagerimpl.cpp:618
 #, kde-format
 msgid "Copy Link Address"
 msgstr "复制链接地址"
 
-#: src/actions/actionmanagerimpl.cpp:346
+#: src/actions/actionmanagerimpl.cpp:347
 #, kde-format
 msgid "Pre&vious Unread Article"
 msgstr "上篇未读文章(&V)"
 
-#: src/actions/actionmanagerimpl.cpp:352
+#: src/actions/actionmanagerimpl.cpp:353
 #, kde-format
 msgid "Ne&xt Unread Article"
 msgstr "下篇未读文章(&X)"
 
-#: src/actions/actionmanagerimpl.cpp:360
+#: src/actions/actionmanagerimpl.cpp:361
 #, kde-format
 msgid "&Delete"
 msgstr "删除(&D)"
 
-#: src/actions/actionmanagerimpl.cpp:365
+#: src/actions/actionmanagerimpl.cpp:366
 #, kde-format
 msgid "&Mark As"
 msgstr "标记为(&M)"
 
-#: src/actions/actionmanagerimpl.cpp:369
+#: src/actions/actionmanagerimpl.cpp:370
 #, kde-format
 msgctxt "as in: mark as read"
 msgid "&Read"
 msgstr "已读(&R)"
 
-#: src/actions/actionmanagerimpl.cpp:371
+#: src/actions/actionmanagerimpl.cpp:372
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as read"
 msgstr "将选中文章标为已读"
 
-#: src/actions/actionmanagerimpl.cpp:377
+#: src/actions/actionmanagerimpl.cpp:378
 #, kde-format
 msgctxt "as in: mark as new"
 msgid "&New"
 msgstr "新建(&N)"
 
-#: src/actions/actionmanagerimpl.cpp:380
+#: src/actions/actionmanagerimpl.cpp:381
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as new"
 msgstr "将选中文章标为新文章"
 
-#: src/actions/actionmanagerimpl.cpp:385
+#: src/actions/actionmanagerimpl.cpp:386
 #, kde-format
 msgctxt "as in: mark as unread"
 msgid "&Unread"
 msgstr "未读文章(&U)"
 
-#: src/actions/actionmanagerimpl.cpp:387
+#: src/actions/actionmanagerimpl.cpp:388
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as unread"
 msgstr "将选中文章标为未读"
 
-#: src/actions/actionmanagerimpl.cpp:393
+#: src/actions/actionmanagerimpl.cpp:394
 #, kde-format
 msgid "&Mark as Important"
 msgstr "标为重要(&M)"
 
-#: src/actions/actionmanagerimpl.cpp:397
+#: src/actions/actionmanagerimpl.cpp:398
 #, kde-format
 msgctxt "@action:button"
 msgid "Remove &Important Mark"
 msgstr "删除重要标记(&I)"
 
-#: src/actions/actionmanagerimpl.cpp:401
+#: src/actions/actionmanagerimpl.cpp:402
 #, kde-format
 msgid "Move Node Up"
 msgstr "节点上移"
 
-#: src/actions/actionmanagerimpl.cpp:406
+#: src/actions/actionmanagerimpl.cpp:407
 #, kde-format
 msgid "Move Node Down"
 msgstr "节点下移"
 
-#: src/actions/actionmanagerimpl.cpp:411
+#: src/actions/actionmanagerimpl.cpp:412
 #, kde-format
 msgid "Move Node Left"
 msgstr "节点左移"
 
-#: src/actions/actionmanagerimpl.cpp:416
+#: src/actions/actionmanagerimpl.cpp:417
 #, kde-format
 msgid "Move Node Right"
 msgstr "节点右移"
 
-#: src/actions/actionmanagerimpl.cpp:422
+#: src/actions/actionmanagerimpl.cpp:423
 #, kde-format
 msgid "Send &Link Address…"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:427
+#: src/actions/actionmanagerimpl.cpp:428
 #, kde-format
 msgid "Send &File…"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:433
+#: src/actions/actionmanagerimpl.cpp:434
 #, kde-format
 msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr "聚焦到快速搜索栏"
 
-#: src/actions/actionmanagerimpl.cpp:439
+#: src/actions/actionmanagerimpl.cpp:440
 #, kde-format
 msgid "What's new"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:469
+#: src/actions/actionmanagerimpl.cpp:474
 #, kde-format
 msgid "&Previous Article"
 msgstr "上篇文章(&P)"
 
-#: src/actions/actionmanagerimpl.cpp:473
+#: src/actions/actionmanagerimpl.cpp:478
 #, kde-format
 msgid "&Next Article"
 msgstr "下篇文章(&N)"
 
-#: src/actions/actionmanagerimpl.cpp:489
+#: src/actions/actionmanagerimpl.cpp:494
 #, kde-format
 msgid "&Previous Feed"
 msgstr "上一个订阅(&P)"
 
-#: src/actions/actionmanagerimpl.cpp:494
+#: src/actions/actionmanagerimpl.cpp:499
 #, kde-format
 msgid "&Next Feed"
 msgstr "下一个订阅(&N)"
 
-#: src/actions/actionmanagerimpl.cpp:500
+#: src/actions/actionmanagerimpl.cpp:505
 #, kde-format
 msgid "N&ext Unread Feed"
 msgstr "下一个未读订阅(&E)"
 
-#: src/actions/actionmanagerimpl.cpp:506
+#: src/actions/actionmanagerimpl.cpp:511
 #, kde-format
 msgid "Prev&ious Unread Feed"
 msgstr "上一个未读订阅(&I)"
 
-#: src/actions/actionmanagerimpl.cpp:511
+#: src/actions/actionmanagerimpl.cpp:516
 #, kde-format
 msgid "Go to Top of Tree"
 msgstr "转到树的顶端"
 
-#: src/actions/actionmanagerimpl.cpp:516
+#: src/actions/actionmanagerimpl.cpp:521
 #, kde-format
 msgid "Go to Bottom of Tree"
 msgstr "转到树的底端"
 
-#: src/actions/actionmanagerimpl.cpp:521
+#: src/actions/actionmanagerimpl.cpp:526
 #, kde-format
 msgid "Go Left in Tree"
 msgstr "在树中向左"
 
-#: src/actions/actionmanagerimpl.cpp:526
+#: src/actions/actionmanagerimpl.cpp:531
 #, kde-format
 msgid "Go Right in Tree"
 msgstr "在树中向右"
 
-#: src/actions/actionmanagerimpl.cpp:531
+#: src/actions/actionmanagerimpl.cpp:536
 #, kde-format
 msgid "Go Up in Tree"
 msgstr "在树中向上"
 
-#: src/actions/actionmanagerimpl.cpp:536
+#: src/actions/actionmanagerimpl.cpp:541
 #, kde-format
 msgid "Go Down in Tree"
 msgstr "在树中向下"
 
-#: src/actions/actionmanagerimpl.cpp:542
+#: src/actions/actionmanagerimpl.cpp:547
 #, kde-format
 msgid "Hide Read Feeds"
 msgstr "隐藏已读的订阅"
 
-#: src/actions/actionmanagerimpl.cpp:548
+#: src/actions/actionmanagerimpl.cpp:553
 #, kde-format
 msgid "Lock Feeds In Place"
 msgstr "在原地固定订阅"
 
-#: src/actions/actionmanagerimpl.cpp:554
+#: src/actions/actionmanagerimpl.cpp:559
 #, kde-format
 msgid "Auto-expand folders with unread articles"
 msgstr "自动展开包含未读文章的文件夹"
 
-#: src/actions/actionmanagerimpl.cpp:570
+#: src/actions/actionmanagerimpl.cpp:575
 #, kde-format
 msgid "Select Next Tab"
 msgstr "选择下一个标签页"
 
-#: src/actions/actionmanagerimpl.cpp:575
+#: src/actions/actionmanagerimpl.cpp:580
 #, kde-format
 msgid "Select Previous Tab"
 msgstr "选择上一个标签页"
 
-#: src/actions/actionmanagerimpl.cpp:581
+#: src/actions/actionmanagerimpl.cpp:586
 #, kde-format
 msgid "Detach Tab"
 msgstr "分离标签页"
 
-#: src/actions/actionmanagerimpl.cpp:595
+#: src/actions/actionmanagerimpl.cpp:600
 #, kde-format
 msgid "Mute"
 msgstr "静音"
 
-#: src/actions/actionmanagerimpl.cpp:599
+#: src/actions/actionmanagerimpl.cpp:604
 #, kde-format
 msgid "Unmute"
 msgstr "取消静音"
 
-#: src/actions/actionmanagerimpl.cpp:602
+#: src/actions/actionmanagerimpl.cpp:607
 #, kde-format
 msgctxt "@action"
 msgid "Speak Text"
 msgstr "朗读文本"
 
-#: src/actions/actionmanagerimpl.cpp:607
+#: src/actions/actionmanagerimpl.cpp:612
 #, kde-format
 msgid "&Find in Message…"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:618
+#: src/actions/actionmanagerimpl.cpp:623
 #, kde-format
 msgid "Close Tab"
 msgstr "关闭标签页"
 
-#: src/actions/actionmanagerimpl.cpp:631
+#: src/actions/actionmanagerimpl.cpp:636
 #, kde-format
 msgctxt "@action"
 msgid "Activate Tab %1"
 msgstr "激活标签页 %1"
 
-#: src/actions/actionmanagerimpl.cpp:637
+#: src/actions/actionmanagerimpl.cpp:642
 #, kde-format
 msgid "&Save Link As…"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:641
+#: src/actions/actionmanagerimpl.cpp:646
 #, kde-format
 msgid "Copy &Link Address"
 msgstr "复制链接地址(&L)"
 
-#: src/actions/actionmanagerimpl.cpp:644
+#: src/actions/actionmanagerimpl.cpp:649
 #, kde-format
 msgctxt "@action"
 msgid "Copy Image Location"
 msgstr "复制图像位置"
 
-#: src/actions/actionmanagerimpl.cpp:651
+#: src/actions/actionmanagerimpl.cpp:656
 #, kde-format
 msgctxt "@action"
 msgid "Save Image On Disk…"

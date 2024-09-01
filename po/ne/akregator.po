@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-17 00:39+0000\n"
+"POT-Creation-Date: 2024-09-01 00:39+0000\n"
 "PO-Revision-Date: 2007-09-07 10:35+0545\n"
 "Last-Translator: Nabin Gautam <nabin@mpp.org.np>\n"
 "Language-Team: Nepali <info@mpp.org.np>\n"
@@ -287,7 +287,7 @@ msgstr "माउसको बायाँ बटन क्लिक:"
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
 #: configuration/ui/settings_browser.ui:28
 #: configuration/ui/settings_browser.ui:54
-#: src/actions/actionmanagerimpl.cpp:324
+#: src/actions/actionmanagerimpl.cpp:325
 #, kde-format
 msgid "Open in Tab"
 msgstr "ट्याबमा खोल्नुहोस्"
@@ -296,7 +296,7 @@ msgstr "ट्याबमा खोल्नुहोस्"
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
 #: configuration/ui/settings_browser.ui:33
 #: configuration/ui/settings_browser.ui:59
-#: src/actions/actionmanagerimpl.cpp:330
+#: src/actions/actionmanagerimpl.cpp:331
 #, kde-format
 msgid "Open in Background Tab"
 msgstr "पृष्ठभूमि ट्याबमा खोल्नुहोस्"
@@ -305,7 +305,7 @@ msgstr "पृष्ठभूमि ट्याबमा खोल्नुह�
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
 #: configuration/ui/settings_browser.ui:38
 #: configuration/ui/settings_browser.ui:64
-#: src/actions/actionmanagerimpl.cpp:336
+#: src/actions/actionmanagerimpl.cpp:337
 #, kde-format
 msgid "Open in External Browser"
 msgstr "बाह्य ब्राउजरमा खोल्नुहोस्"
@@ -557,7 +557,7 @@ msgid "Auto-Expand folders with unread articles"
 msgstr " (नपढिएका लेख छैनन्)"
 
 #. i18n: ectx: label, entry, group (View)
-#: interfaces/akregator.kcfg:31 src/actions/actionmanagerimpl.cpp:318
+#: interfaces/akregator.kcfg:31 src/actions/actionmanagerimpl.cpp:319
 #, kde-format
 msgid "Show Quick Filter"
 msgstr "छिटो फिल्टर देखाउनुहोस्"
@@ -1168,382 +1168,382 @@ msgstr "फिलिप ड्रोयस्लर"
 msgid "Gentoo Ebuild"
 msgstr "गेन्टो इबुल्ड"
 
-#: src/actions/actionmanagerimpl.cpp:64 src/actions/actionmanagerimpl.cpp:287
+#: src/actions/actionmanagerimpl.cpp:65 src/actions/actionmanagerimpl.cpp:288
 #, kde-format
 msgid "&Fetch Feed"
 msgstr "फिड तान्नुहोस्"
 
-#: src/actions/actionmanagerimpl.cpp:65 src/actions/actionmanagerimpl.cpp:243
+#: src/actions/actionmanagerimpl.cpp:66 src/actions/actionmanagerimpl.cpp:244
 #, kde-format
 msgid "&Delete Feed"
 msgstr "फिड मेट्नुहोस्"
 
-#: src/actions/actionmanagerimpl.cpp:66 src/actions/actionmanagerimpl.cpp:249
+#: src/actions/actionmanagerimpl.cpp:67 src/actions/actionmanagerimpl.cpp:250
 #, fuzzy, kde-format
 #| msgid "&Edit Feed..."
 msgid "&Edit Feed…"
 msgstr "फिड सम्पादन गर्नुहोस्..."
 
-#: src/actions/actionmanagerimpl.cpp:67 src/actions/actionmanagerimpl.cpp:306
+#: src/actions/actionmanagerimpl.cpp:68 src/actions/actionmanagerimpl.cpp:307
 #, kde-format
 msgid "&Mark Feed as Read"
 msgstr "पढिएका रूपमा फिडमा चिन्ह लगाउनुहोस्"
 
-#: src/actions/actionmanagerimpl.cpp:83
+#: src/actions/actionmanagerimpl.cpp:84
 #, kde-format
 msgid "&Fetch Feeds"
 msgstr "फिड तान्नुहोस्"
 
-#: src/actions/actionmanagerimpl.cpp:84
+#: src/actions/actionmanagerimpl.cpp:85
 #, kde-format
 msgid "&Delete Folder"
 msgstr "फोल्डर मेट्नुहोस्"
 
-#: src/actions/actionmanagerimpl.cpp:85
+#: src/actions/actionmanagerimpl.cpp:86
 #, kde-format
 msgid "&Rename Folder"
 msgstr "फोल्डरलाई पुन: नामकरण गर्नुहोस्"
 
-#: src/actions/actionmanagerimpl.cpp:86
+#: src/actions/actionmanagerimpl.cpp:87
 #, kde-format
 msgid "&Mark Feeds as Read"
 msgstr "पढिएका रूपमा फिडमा चिन्ह लगाउनुहोस्"
 
-#: src/actions/actionmanagerimpl.cpp:191
+#: src/actions/actionmanagerimpl.cpp:192
 #, fuzzy, kde-format
 #| msgid "&Import Feeds..."
 msgid "&Import Feeds…"
 msgstr "फिड आयात गर्नुहोस्..."
 
-#: src/actions/actionmanagerimpl.cpp:195
+#: src/actions/actionmanagerimpl.cpp:196
 #, fuzzy, kde-format
 #| msgid "&Export Feeds..."
 msgid "&Export Feeds…"
 msgstr "फिड निर्यात गर्नुहोस्..."
 
-#: src/actions/actionmanagerimpl.cpp:200
+#: src/actions/actionmanagerimpl.cpp:201
 #, fuzzy, kde-format
 #| msgid "Configure &Akregator..."
 msgid "&Configure Akregator…"
 msgstr "एक्रिगेटर कन्फिगर गर्नुहोस्..."
 
-#: src/actions/actionmanagerimpl.cpp:219
+#: src/actions/actionmanagerimpl.cpp:220
 #, kde-format
 msgid "&Open Homepage"
 msgstr "गृहपृष्ठ खोल्नुहोस्"
 
-#: src/actions/actionmanagerimpl.cpp:225
+#: src/actions/actionmanagerimpl.cpp:226
 #, kde-format
 msgid "Reload All Tabs"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:231
+#: src/actions/actionmanagerimpl.cpp:232
 #, fuzzy, kde-format
 #| msgid "Add Feed"
 msgid "&Add Feed…"
 msgstr "फिड थप्नुहोस्"
 
-#: src/actions/actionmanagerimpl.cpp:237
+#: src/actions/actionmanagerimpl.cpp:238
 #, fuzzy, kde-format
 #| msgid "Ne&w Folder..."
 msgid "Ne&w Folder…"
 msgstr "नयाँ फोल्डर..."
 
-#: src/actions/actionmanagerimpl.cpp:262
+#: src/actions/actionmanagerimpl.cpp:263
 #, kde-format
 msgid "&Normal View"
 msgstr "सामान्य दृश्य"
 
-#: src/actions/actionmanagerimpl.cpp:271
+#: src/actions/actionmanagerimpl.cpp:272
 #, kde-format
 msgid "&Widescreen View"
 msgstr "ठूलो पर्दा दृश्य"
 
-#: src/actions/actionmanagerimpl.cpp:280
+#: src/actions/actionmanagerimpl.cpp:281
 #, kde-format
 msgid "C&ombined View"
 msgstr "संयोजित दृश्य"
 
-#: src/actions/actionmanagerimpl.cpp:293
+#: src/actions/actionmanagerimpl.cpp:294
 #, kde-format
 msgid "Fe&tch All Feeds"
 msgstr "सबै फिड तान्नुहोस्"
 
-#: src/actions/actionmanagerimpl.cpp:299
+#: src/actions/actionmanagerimpl.cpp:300
 #, fuzzy, kde-format
 #| msgid "Concurrent Fetches"
 msgid "C&ancel Feed Fetches"
 msgstr "समरूपी फेच"
 
-#: src/actions/actionmanagerimpl.cpp:312
+#: src/actions/actionmanagerimpl.cpp:313
 #, kde-format
 msgid "Ma&rk All Feeds as Read"
 msgstr "पढिएका रूपमा सबै फिडमा चिन्ह लगाउनुहोस्"
 
-#: src/actions/actionmanagerimpl.cpp:341 src/actions/actionmanagerimpl.cpp:613
+#: src/actions/actionmanagerimpl.cpp:342 src/actions/actionmanagerimpl.cpp:618
 #, kde-format
 msgid "Copy Link Address"
 msgstr "लिङ्क ठेगाना प्रतिलिपि गर्नुहोस्"
 
-#: src/actions/actionmanagerimpl.cpp:346
+#: src/actions/actionmanagerimpl.cpp:347
 #, kde-format
 msgid "Pre&vious Unread Article"
 msgstr "नपढिएको अघिल्लो लेख"
 
-#: src/actions/actionmanagerimpl.cpp:352
+#: src/actions/actionmanagerimpl.cpp:353
 #, kde-format
 msgid "Ne&xt Unread Article"
 msgstr "नपढिएको पछिल्लो लेख"
 
-#: src/actions/actionmanagerimpl.cpp:360
+#: src/actions/actionmanagerimpl.cpp:361
 #, kde-format
 msgid "&Delete"
 msgstr "मेट्नुहोस्"
 
-#: src/actions/actionmanagerimpl.cpp:365
+#: src/actions/actionmanagerimpl.cpp:366
 #, kde-format
 msgid "&Mark As"
 msgstr "यस अनुरुप चिन्ह लगाउनुहोस्"
 
-#: src/actions/actionmanagerimpl.cpp:369
+#: src/actions/actionmanagerimpl.cpp:370
 #, kde-format
 msgctxt "as in: mark as read"
 msgid "&Read"
 msgstr "पढ्नुहोस्"
 
-#: src/actions/actionmanagerimpl.cpp:371
+#: src/actions/actionmanagerimpl.cpp:372
 #, fuzzy, kde-format
 #| msgid "Mark selected article as read"
 msgctxt "@info:tooltip"
 msgid "Mark selected article as read"
 msgstr "चयन गरिएका लेखलाई पढिएका रूपमा चिन्ह लगाउनुहोस्"
 
-#: src/actions/actionmanagerimpl.cpp:377
+#: src/actions/actionmanagerimpl.cpp:378
 #, fuzzy, kde-format
 #| msgid "&New"
 msgctxt "as in: mark as new"
 msgid "&New"
 msgstr "नयाँ"
 
-#: src/actions/actionmanagerimpl.cpp:380
+#: src/actions/actionmanagerimpl.cpp:381
 #, fuzzy, kde-format
 #| msgid "Mark selected article as new"
 msgctxt "@info:tooltip"
 msgid "Mark selected article as new"
 msgstr "चयन गरिएका लेखलाई नयाँका रूपमा चिन्ह लगाउनुहोस्"
 
-#: src/actions/actionmanagerimpl.cpp:385
+#: src/actions/actionmanagerimpl.cpp:386
 #, fuzzy, kde-format
 #| msgid "&Unread"
 msgctxt "as in: mark as unread"
 msgid "&Unread"
 msgstr "नपढिएको"
 
-#: src/actions/actionmanagerimpl.cpp:387
+#: src/actions/actionmanagerimpl.cpp:388
 #, fuzzy, kde-format
 #| msgid "Mark selected article as unread"
 msgctxt "@info:tooltip"
 msgid "Mark selected article as unread"
 msgstr "चयन गरिएका लेखलाई नपढिएका रूपमा चिन्ह लगाउनुहोस्"
 
-#: src/actions/actionmanagerimpl.cpp:393
+#: src/actions/actionmanagerimpl.cpp:394
 #, kde-format
 msgid "&Mark as Important"
 msgstr "महत्वपूर्णका रूपमा चिन्ह लगाउनुहोस्"
 
-#: src/actions/actionmanagerimpl.cpp:397
+#: src/actions/actionmanagerimpl.cpp:398
 #, fuzzy, kde-format
 #| msgid "Remove &Important Mark"
 msgctxt "@action:button"
 msgid "Remove &Important Mark"
 msgstr "महत्वपूर्ण चिन्ह हटाउनुहोस्"
 
-#: src/actions/actionmanagerimpl.cpp:401
+#: src/actions/actionmanagerimpl.cpp:402
 #, kde-format
 msgid "Move Node Up"
 msgstr "नोड माथि सार्नुहोस्"
 
-#: src/actions/actionmanagerimpl.cpp:406
+#: src/actions/actionmanagerimpl.cpp:407
 #, kde-format
 msgid "Move Node Down"
 msgstr "नोड तल सार्नुहोस्"
 
-#: src/actions/actionmanagerimpl.cpp:411
+#: src/actions/actionmanagerimpl.cpp:412
 #, kde-format
 msgid "Move Node Left"
 msgstr "नोड बायाँ सार्नुहोस्"
 
-#: src/actions/actionmanagerimpl.cpp:416
+#: src/actions/actionmanagerimpl.cpp:417
 #, kde-format
 msgid "Move Node Right"
 msgstr "नोड दायाँ सार्नुहोस्"
 
-#: src/actions/actionmanagerimpl.cpp:422
+#: src/actions/actionmanagerimpl.cpp:423
 #, fuzzy, kde-format
 #| msgid "Send &Link Address..."
 msgid "Send &Link Address…"
 msgstr "लिङ्क ठेगाना पठाउनुहोस्..."
 
-#: src/actions/actionmanagerimpl.cpp:427
+#: src/actions/actionmanagerimpl.cpp:428
 #, fuzzy, kde-format
 #| msgid "Send &File..."
 msgid "Send &File…"
 msgstr "फाइल पठाउनुहोस्..."
 
-#: src/actions/actionmanagerimpl.cpp:433
+#: src/actions/actionmanagerimpl.cpp:434
 #, kde-format
 msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:439
+#: src/actions/actionmanagerimpl.cpp:440
 #, kde-format
 msgid "What's new"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:469
+#: src/actions/actionmanagerimpl.cpp:474
 #, kde-format
 msgid "&Previous Article"
 msgstr "अघिल्लो लेख"
 
-#: src/actions/actionmanagerimpl.cpp:473
+#: src/actions/actionmanagerimpl.cpp:478
 #, kde-format
 msgid "&Next Article"
 msgstr "पछिल्लो लेख"
 
-#: src/actions/actionmanagerimpl.cpp:489
+#: src/actions/actionmanagerimpl.cpp:494
 #, kde-format
 msgid "&Previous Feed"
 msgstr "अघिल्लो फिड"
 
-#: src/actions/actionmanagerimpl.cpp:494
+#: src/actions/actionmanagerimpl.cpp:499
 #, kde-format
 msgid "&Next Feed"
 msgstr "पछिल्लो फिड"
 
-#: src/actions/actionmanagerimpl.cpp:500
+#: src/actions/actionmanagerimpl.cpp:505
 #, kde-format
 msgid "N&ext Unread Feed"
 msgstr "पछिल्लो नपढिएको फिड"
 
-#: src/actions/actionmanagerimpl.cpp:506
+#: src/actions/actionmanagerimpl.cpp:511
 #, kde-format
 msgid "Prev&ious Unread Feed"
 msgstr "अघिल्लो नपढिएको फिड"
 
-#: src/actions/actionmanagerimpl.cpp:511
+#: src/actions/actionmanagerimpl.cpp:516
 #, kde-format
 msgid "Go to Top of Tree"
 msgstr "ट्री को माथि जानुहोस्"
 
-#: src/actions/actionmanagerimpl.cpp:516
+#: src/actions/actionmanagerimpl.cpp:521
 #, kde-format
 msgid "Go to Bottom of Tree"
 msgstr "ट्रीको तल जानुहोस्"
 
-#: src/actions/actionmanagerimpl.cpp:521
+#: src/actions/actionmanagerimpl.cpp:526
 #, kde-format
 msgid "Go Left in Tree"
 msgstr "ट्रीको बायाँ जानुहोस्"
 
-#: src/actions/actionmanagerimpl.cpp:526
+#: src/actions/actionmanagerimpl.cpp:531
 #, kde-format
 msgid "Go Right in Tree"
 msgstr "ट्रीको दायाँ जानुहोस्"
 
-#: src/actions/actionmanagerimpl.cpp:531
+#: src/actions/actionmanagerimpl.cpp:536
 #, kde-format
 msgid "Go Up in Tree"
 msgstr "ट्री को माथि जानुहोस्"
 
-#: src/actions/actionmanagerimpl.cpp:536
+#: src/actions/actionmanagerimpl.cpp:541
 #, kde-format
 msgid "Go Down in Tree"
 msgstr "ट्री को तल जानुहोस्"
 
-#: src/actions/actionmanagerimpl.cpp:542
+#: src/actions/actionmanagerimpl.cpp:547
 #, fuzzy, kde-format
 #| msgid "N&ext Unread Feed"
 msgid "Hide Read Feeds"
 msgstr "पछिल्लो नपढिएको फिड"
 
-#: src/actions/actionmanagerimpl.cpp:548
+#: src/actions/actionmanagerimpl.cpp:553
 #, kde-format
 msgid "Lock Feeds In Place"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:554
+#: src/actions/actionmanagerimpl.cpp:559
 #, fuzzy, kde-format
 #| msgid " (no unread articles)"
 msgid "Auto-expand folders with unread articles"
 msgstr " (नपढिएका लेख छैनन्)"
 
-#: src/actions/actionmanagerimpl.cpp:570
+#: src/actions/actionmanagerimpl.cpp:575
 #, kde-format
 msgid "Select Next Tab"
 msgstr "पछिल्लो ट्याब चयन गर्नुहोस्"
 
-#: src/actions/actionmanagerimpl.cpp:575
+#: src/actions/actionmanagerimpl.cpp:580
 #, kde-format
 msgid "Select Previous Tab"
 msgstr "अघिल्लो ट्याब चयन गर्नुहोस्"
 
-#: src/actions/actionmanagerimpl.cpp:581
+#: src/actions/actionmanagerimpl.cpp:586
 #, kde-format
 msgid "Detach Tab"
 msgstr "ट्याब अलग गर्नुहोस्"
 
-#: src/actions/actionmanagerimpl.cpp:595
+#: src/actions/actionmanagerimpl.cpp:600
 #, kde-format
 msgid "Mute"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:599
+#: src/actions/actionmanagerimpl.cpp:604
 #, kde-format
 msgid "Unmute"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:602
+#: src/actions/actionmanagerimpl.cpp:607
 #, kde-format
 msgctxt "@action"
 msgid "Speak Text"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:607
+#: src/actions/actionmanagerimpl.cpp:612
 #, kde-format
 msgid "&Find in Message…"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:618
+#: src/actions/actionmanagerimpl.cpp:623
 #, fuzzy, kde-format
 #| msgid "&Close Tab"
 msgid "Close Tab"
 msgstr "ट्याब बन्द गर्नुहोस्"
 
-#: src/actions/actionmanagerimpl.cpp:631
+#: src/actions/actionmanagerimpl.cpp:636
 #, kde-format
 msgctxt "@action"
 msgid "Activate Tab %1"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:637
+#: src/actions/actionmanagerimpl.cpp:642
 #, fuzzy, kde-format
 #| msgid "&Save Link As..."
 msgid "&Save Link As…"
 msgstr "लिङ्क यस रूपमा बचत गर्नुहोस्..."
 
-#: src/actions/actionmanagerimpl.cpp:641
+#: src/actions/actionmanagerimpl.cpp:646
 #, kde-format
 msgid "Copy &Link Address"
 msgstr "लिङ्क ठेगाना प्रतिलिपि गर्नुहोस्"
 
-#: src/actions/actionmanagerimpl.cpp:644
+#: src/actions/actionmanagerimpl.cpp:649
 #, kde-format
 msgctxt "@action"
 msgid "Copy Image Location"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:651
+#: src/actions/actionmanagerimpl.cpp:656
 #, kde-format
 msgctxt "@action"
 msgid "Save Image On Disk…"
