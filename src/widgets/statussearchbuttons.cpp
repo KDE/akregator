@@ -16,8 +16,8 @@ StatusSearchButtons::StatusSearchButtons(QWidget *parent)
 {
     auto mainLayout = new QHBoxLayout(this);
     mainLayout->setObjectName(QStringLiteral("mainLayout"));
-    mainLayout->setContentsMargins({});
-    mainLayout->setSpacing(0);
+    mainLayout->setContentsMargins(2, 2, 2, 2);
+    mainLayout->setSpacing(2);
 
     mButtonGroup->setObjectName(QStringLiteral("mButtonGroup"));
     mButtonGroup->setExclusive(true);

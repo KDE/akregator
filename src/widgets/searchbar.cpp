@@ -21,6 +21,7 @@
 #include <QStandardPaths>
 #include <QString>
 #include <chrono>
+#include <qframe.h>
 
 using namespace std::chrono_literals;
 
@@ -36,13 +37,31 @@ SearchBar::SearchBar(QWidget *parent)
     auto layout = new QHBoxLayout(this);
 
     layout->setContentsMargins({});
-    layout->setSpacing(5);
+    layout->setSpacing(0);
     setSizePolicy(QSizePolicy(QSizePolicy::Minimum, QSizePolicy::Fixed));
 
     m_searchLine->setClearButtonEnabled(true);
     m_searchLine->setPlaceholderText(i18nc("@info:placeholder", "Search articles…"));
+
+    auto verticalSeparator = new QFrame(this);
+    verticalSeparator->setFrameStyle(QFrame::VLine);
+    verticalSeparator->setFixedWidth(1);
+
     layout->addWidget(m_searchLine);
-    layout->addWidget(m_statusSearchButtons);
+    layout->addWidget(verticalSeparator);
+
+    auto horizontalSeparator = new QFrame(this);
+    horizontalSeparator->setFrameStyle(QFrame::HLine);
+    horizontalSeparator->setFixedHeight(1);
+
+    auto vbox = new QVBoxLayout;
+    vbox->setContentsMargins({});
+    vbox->setSpacing(0);
+
+    vbox->addWidget(m_statusSearchButtons);
+    vbox->addWidget(horizontalSeparator);
+
+    layout->addLayout(vbox);
 
     connect(m_searchLine, &KLineEdit::textChanged, this, &SearchBar::slotSearchStringChanged);
     connect(m_searchLine, &StatusSearchLine::forceLostFocus, this, &SearchBar::forceLostFocus);
