@@ -14,6 +14,7 @@
 
 #include <KLocalizedString>
 #include <QComboBox>
+#include <QTabBar>
 
 #include <KLocalization>
 #include <QCheckBox>
@@ -32,9 +33,11 @@ FeedPropertiesWidget::FeedPropertiesWidget(QWidget *parent)
 {
     setupUi(this);
 
+    tabWidget->tabBar()->setExpanding(true);
+
 #if HAVE_ACTIVITY_SUPPORT
     if (Kernel::self()->activitiesManager()->enabled()) {
-        tabWidget2->addTab(mConfigureActivitiesWidget, i18n("Activities"));
+        tabWidget->addTab(mConfigureActivitiesWidget, i18n("Activities"));
     } else {
         mConfigureActivitiesWidget->hide();
     }
@@ -93,8 +96,15 @@ FeedPropertiesDialog::FeedPropertiesDialog(QWidget *parent, const QString &name)
     setObjectName(name);
     setWindowTitle(i18nc("@title:window", "Feed Properties"));
     auto mainLayout = new QVBoxLayout(this);
+    mainLayout->setSpacing(0);
+    mainLayout->setContentsMargins({});
 
     auto buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, this);
+    buttonBox->setContentsMargins(style()->pixelMetric(QStyle::PM_LayoutLeftMargin),
+                                  style()->pixelMetric(QStyle::PM_LayoutTopMargin),
+                                  style()->pixelMetric(QStyle::PM_LayoutBottomMargin),
+                                  style()->pixelMetric(QStyle::PM_LayoutRightMargin));
+    buttonBox->setProperty("_breeze_force_frame", true);
     mOkButton = buttonBox->button(QDialogButtonBox::Ok);
     mOkButton->setDefault(true);
     mOkButton->setShortcut(Qt::CTRL | Qt::Key_Return);

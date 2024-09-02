@@ -27,7 +27,7 @@
     <number>6</number>
    </property>
    <item row="0" column="0">
-    <widget class="QTabWidget" name="tabWidget2">
+    <widget class="QTabWidget" name="tabWidget">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
        <horstretch>0</horstretch>
@@ -36,6 +36,9 @@
      </property>
      <property name="currentIndex">
       <number>0</number>
+     </property>
+     <property name="documentMode">
+      <bool>true</bool>
      </property>
      <widget class="QWidget" name="tab1">
       <attribute name="title">
@@ -406,7 +409,7 @@
   <tabstop>rb_disableArchiving</tabstop>
   <tabstop>checkBox_loadWebsite</tabstop>
   <tabstop>checkBox_markRead</tabstop>
-  <tabstop>tabWidget2</tabstop>
+  <tabstop>tabWidget</tabstop>
  </tabstops>
  <resources/>
  <connections/>
