@@ -17,11 +17,11 @@
 #include <KLineEdit>
 #include <KLocalizedString>
 
+#include <QFrame>
 #include <QHBoxLayout>
 #include <QStandardPaths>
 #include <QString>
 #include <chrono>
-#include <qframe.h>
 
 using namespace std::chrono_literals;
 
