@@ -192,6 +192,11 @@
     <entry name="PreviousNewFeaturesMD5" type="String">
       <default></default>
     </entry>
+    <entry key="PlasmaActivitySupport" type="Bool">
+    <label>Enabled Plasma Activity</label>
+    <default>false</default>
+  </entry>
+ 
  </group>
  <group name="Browser" >
   <entry key="EnableJavascript" type="Bool">
@@ -244,10 +249,6 @@
     <choice name="OpenInBackground" />
     <choice name="OpenInExternalBrowser" />
    </choices>
-  </entry>
-    <entry key="PlasmaActivitySupport" type="Bool">
-    <label>Enabled Plasma Activity</label>
-    <default>false</default>
   </entry>
   </group>
 <group name="Columns" >
