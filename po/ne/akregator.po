@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-09-01 00:39+0000\n"
+"POT-Creation-Date: 2024-09-03 00:39+0000\n"
 "PO-Revision-Date: 2007-09-07 10:35+0545\n"
 "Last-Translator: Nabin Gautam <nabin@mpp.org.np>\n"
 "Language-Team: Nepali <info@mpp.org.np>\n"
@@ -253,7 +253,7 @@ msgstr "सङ्ग्रह अक्षम पार्नुहोस्"
 #. i18n: ectx: property (text), widget (QRadioButton, rb_KeepAllArticles)
 #. i18n: ectx: property (text), widget (QRadioButton, rb_keepAllArticles)
 #: configuration/ui/settings_archive.ui:43
-#: src/ui/feedpropertieswidgetbase.ui:332
+#: src/ui/feedpropertieswidgetbase.ui:335
 #, kde-format
 msgid "&Keep all articles"
 msgstr "सबै लेख राख्नुहोस्"
@@ -351,7 +351,7 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_AlwaysShowTabBar)
 #. i18n: ectx: label, entry, group (Browser)
-#: configuration/ui/settings_browser.ui:116 interfaces/akregator.kcfg:202
+#: configuration/ui/settings_browser.ui:116 interfaces/akregator.kcfg:207
 #, kde-format
 msgid "Always show the tab bar"
 msgstr ""
@@ -365,7 +365,7 @@ msgstr "ट्याबमा बन्द गर्ने बटन देख�
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_NewWindowInTab)
 #. i18n: ectx: label, entry, group (Browser)
-#: configuration/ui/settings_browser.ui:130 interfaces/akregator.kcfg:212
+#: configuration/ui/settings_browser.ui:130 interfaces/akregator.kcfg:217
 #, kde-format
 msgid "Open links in new tab instead of in new window"
 msgstr ""
@@ -384,7 +384,7 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_EnableJavascript)
 #. i18n: ectx: label, entry, group (Browser)
-#: configuration/ui/settings_browser.ui:153 interfaces/akregator.kcfg:198
+#: configuration/ui/settings_browser.ui:153 interfaces/akregator.kcfg:203
 #, kde-format
 msgid "Enable JavaScript"
 msgstr ""
@@ -845,26 +845,32 @@ msgstr ""
 msgid "Specifies if we show unread article in taskbar."
 msgstr " (नपढिएका लेख छैनन्)"
 
+#. i18n: ectx: label, entry, group (General)
+#: interfaces/akregator.kcfg:196
+#, kde-format
+msgid "Enabled Plasma Activity"
+msgstr ""
+
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:203
+#: interfaces/akregator.kcfg:208
 #, kde-format
 msgid "Always show the tab bar, even when only one tab is open"
 msgstr ""
 
 #. i18n: ectx: label, entry, group (Browser)
-#: interfaces/akregator.kcfg:207
+#: interfaces/akregator.kcfg:212
 #, kde-format
 msgid "Show close buttons on tabs"
 msgstr "ट्याबमा बन्द गर्ने बटन देखाउछ"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:208
+#: interfaces/akregator.kcfg:213
 #, kde-format
 msgid "Show close buttons on tabs instead of icons"
 msgstr "प्रतिमाका साटोमा ट्याबमा बन्द गर्ने बटन देखाउनुहोस्"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:213
+#: interfaces/akregator.kcfg:218
 #, kde-format
 msgid ""
 "Open a link which would normally open in a new window (external browser) in "
@@ -872,69 +878,63 @@ msgid ""
 msgstr ""
 
 #. i18n: ectx: label, entry, group (Browser)
-#: interfaces/akregator.kcfg:217
+#: interfaces/akregator.kcfg:222
 #, kde-format
 msgid "Use default KDE web browser"
 msgstr "पूर्वनिर्धारित केडीई वेब ब्राउजर प्रयोग गर्नुहोस्"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:218
+#: interfaces/akregator.kcfg:223
 #, kde-format
 msgid "Use KDE web browser when opening in external browser."
 msgstr "बाह्य ब्राउजरमा खोल्दा केडीई वेब ब्राउजर प्रयोग गर्नुहोस् ।"
 
 #. i18n: ectx: label, entry, group (Browser)
-#: interfaces/akregator.kcfg:222
+#: interfaces/akregator.kcfg:227
 #, kde-format
 msgid "Use this command:"
 msgstr "यो आदेश प्रयोग गर्नुहोस्:"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:223
+#: interfaces/akregator.kcfg:228
 #, kde-format
 msgid "Use the specified command when opening in external browser."
 msgstr "बाह्य ब्राउजरमा खोल्दा निर्दिष्ट आदेश प्रयोग गर्नुहोस् ।"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:227
+#: interfaces/akregator.kcfg:232
 #, fuzzy, no-c-format, kde-format
 #| msgid "Command to launch external browser.  URL will substitute for %u."
 msgid "Command to launch external browser. URL will substitute for %u."
 msgstr "बाह्य ब्राउजर सुरुआत गर्न आदेश ।  यूआरएल %u को प्रतिस्थापक हुनेछ ।"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:231
+#: interfaces/akregator.kcfg:236
 #, kde-format
 msgid "What the click with left mouse button should do."
 msgstr "माउस बटनको बायाँ बटनको क्लिकले के गर्नुपर्छ ।"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:240
+#: interfaces/akregator.kcfg:245
 #, kde-format
 msgid "What the click with middle mouse button should do."
 msgstr "माउसको बीचको बटनको क्लिकले के गर्नुपर्छ ।"
 
-#. i18n: ectx: label, entry, group (Browser)
-#: interfaces/akregator.kcfg:249
-#, kde-format
-msgid "Enabled Plasma Activity"
-msgstr ""
-
 #. i18n: ectx: label, entry, group (Advanced)
-#: interfaces/akregator.kcfg:269
+#: interfaces/akregator.kcfg:270
 #, kde-format
 msgid "Archive Backend"
 msgstr "सङ्ग्रह ब्याकइन्ड"
 
 #. i18n: ectx: whatsthis, entry (UseMarkReadDelay), group (Advanced)
-#: interfaces/akregator.kcfg:273
+#: interfaces/akregator.kcfg:274
 #, kde-format
 msgid "Whether to delay before marking an article as read upon selecting it."
 msgstr ""
 "लेखलाई यसमा चयन गरेर पढिए अनुरूप यसमा चिन्ह लगाउनुभन्दा पहिले विलम्ब हुन्छ या हुदैन ।"
 
 #. i18n: ectx: whatsthis, entry (MarkReadDelay), group (Advanced)
-#: interfaces/akregator.kcfg:277
+#: interfaces/akregator.kcfg:278
 #, fuzzy, kde-format
 #| msgid ""
 #| "Configurable delay between selecting and article and it being marked as "
@@ -944,7 +944,7 @@ msgid ""
 msgstr "लेख चयन गर्दा र यसलाई पढिए अनुरूप चिन्ह लगाउने बीचमा कन्फिगरेसनयोग्य विलम्ब ।"
 
 #. i18n: ectx: whatsthis, entry, group (Advanced)
-#: interfaces/akregator.kcfg:281
+#: interfaces/akregator.kcfg:282
 #, kde-format
 msgid "Resets the quick filter when changing feeds."
 msgstr ""
@@ -2061,12 +2061,12 @@ msgstr "फाइल"
 msgid "All Feeds"
 msgstr "सबै फिड"
 
-#: src/feed/feedpropertiesdialog.cpp:37
+#: src/feed/feedpropertiesdialog.cpp:40
 #, kde-format
 msgid "Activities"
 msgstr ""
 
-#: src/feed/feedpropertiesdialog.cpp:62 src/feed/feedpropertiesdialog.cpp:110
+#: src/feed/feedpropertiesdialog.cpp:65 src/feed/feedpropertiesdialog.cpp:120
 #, fuzzy, kde-format
 #| msgid "Minutes"
 msgid "Minute"
@@ -2074,7 +2074,7 @@ msgid_plural "Minutes"
 msgstr[0] "मिनेट"
 msgstr[1] "मिनेट"
 
-#: src/feed/feedpropertiesdialog.cpp:63 src/feed/feedpropertiesdialog.cpp:111
+#: src/feed/feedpropertiesdialog.cpp:66 src/feed/feedpropertiesdialog.cpp:121
 #, fuzzy, kde-format
 #| msgid "Hours"
 msgid "Hour"
@@ -2082,7 +2082,7 @@ msgid_plural "Hours"
 msgstr[0] "घण्टा"
 msgstr[1] "घण्टा"
 
-#: src/feed/feedpropertiesdialog.cpp:64 src/feed/feedpropertiesdialog.cpp:112
+#: src/feed/feedpropertiesdialog.cpp:67 src/feed/feedpropertiesdialog.cpp:122
 #, fuzzy, kde-format
 #| msgid "Days"
 msgid "Day"
@@ -2090,21 +2090,21 @@ msgid_plural "Days"
 msgstr[0] "दिन"
 msgstr[1] "दिन"
 
-#: src/feed/feedpropertiesdialog.cpp:94 src/feed/feedpropertiesdialog.cpp:151
+#: src/feed/feedpropertiesdialog.cpp:97 src/feed/feedpropertiesdialog.cpp:161
 #, fuzzy, kde-format
 #| msgid "Feed Properties"
 msgctxt "@title:window"
 msgid "Feed Properties"
 msgstr "फिड विशेषता"
 
-#: src/feed/feedpropertiesdialog.cpp:113
+#: src/feed/feedpropertiesdialog.cpp:123
 #, fuzzy, kde-format
 #| msgid "Never"
 msgctxt "never fetch new articles"
 msgid "Never"
 msgstr "कहिल्यै पनि"
 
-#: src/feed/feedpropertiesdialog.cpp:116
+#: src/feed/feedpropertiesdialog.cpp:126
 #, fuzzy, kde-format
 #| msgid "1 day"
 msgid "%v day"
@@ -2112,7 +2112,7 @@ msgid_plural "%v days"
 msgstr[0] "१ दिन"
 msgstr[1] "१ दिन"
 
-#: src/feed/feedpropertiesdialog.cpp:117
+#: src/feed/feedpropertiesdialog.cpp:127
 #, fuzzy, kde-format
 #| msgid "1 article"
 msgid "%v article"
@@ -2120,7 +2120,7 @@ msgid_plural "%v articles"
 msgstr[0] "१ लेख"
 msgstr[1] "१ लेख"
 
-#: src/feed/feedpropertiesdialog.cpp:151
+#: src/feed/feedpropertiesdialog.cpp:161
 #, fuzzy, kde-format
 #| msgid "Properties of %1"
 msgctxt "@title:window"
@@ -2520,99 +2520,99 @@ msgid "Feed Properties"
 msgstr "फिड विशेषता"
 
 #. i18n: ectx: attribute (title), widget (QWidget, tab1)
-#: src/ui/feedpropertieswidgetbase.ui:42
+#: src/ui/feedpropertieswidgetbase.ui:45
 #, kde-format
 msgid "&General"
 msgstr "साधारण"
 
 #. i18n: ectx: property (text), widget (QCheckBox, cb_updateInterval)
-#: src/ui/feedpropertieswidgetbase.ui:54
+#: src/ui/feedpropertieswidgetbase.ui:57
 #, kde-format
 msgid "U&se a custom update interval"
 msgstr "अनुकूल अद्यावधिक अन्तराल प्रयोग गर्नुहोस्"
 
 #. i18n: ectx: property (text), widget (QLabel, updateLabel)
-#: src/ui/feedpropertieswidgetbase.ui:88
+#: src/ui/feedpropertieswidgetbase.ui:91
 #, fuzzy, kde-format
 #| msgid "Update &every:"
 msgid "Update ever&y:"
 msgstr "प्रत्येकलाई अद्यावधिक गर्नुहोस्:"
 
 #. i18n: ectx: property (text), widget (QCheckBox, checkBox_useNotification)
-#: src/ui/feedpropertieswidgetbase.ui:117
+#: src/ui/feedpropertieswidgetbase.ui:120
 #, kde-format
 msgid "Notify when new articles arri&ve"
 msgstr "नयाँ लेख आगमनका बेलामा सूचीत गर्नुहोस्"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel3)
-#: src/ui/feedpropertieswidgetbase.ui:132
+#: src/ui/feedpropertieswidgetbase.ui:135
 #, kde-format
 msgid "&URL:"
 msgstr "यूआरएल:"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel2)
-#: src/ui/feedpropertieswidgetbase.ui:142
+#: src/ui/feedpropertieswidgetbase.ui:145
 #, kde-format
 msgid "&Name:"
 msgstr "नाम:"
 
 #. i18n: ectx: property (toolTip), widget (QLineEdit, feedNameEdit)
-#: src/ui/feedpropertieswidgetbase.ui:161
+#: src/ui/feedpropertieswidgetbase.ui:164
 #, kde-format
 msgid "Display name of RSS column"
 msgstr "RSS स्तम्भको नाम प्रदर्शन गर्नुहोस्"
 
 #. i18n: ectx: property (text), widget (QLabel, label)
-#: src/ui/feedpropertieswidgetbase.ui:171
+#: src/ui/feedpropertieswidgetbase.ui:174
 #, fuzzy, kde-format
 #| msgid "Comments"
 msgid "Comment:"
 msgstr "टिप्पणी"
 
 #. i18n: ectx: attribute (title), widget (QWidget, tab2)
-#: src/ui/feedpropertieswidgetbase.ui:194
+#: src/ui/feedpropertieswidgetbase.ui:197
 #, kde-format
 msgid "Ar&chive"
 msgstr "सङ्ग्रह"
 
 #. i18n: ectx: property (text), widget (QRadioButton, rb_globalDefault)
-#: src/ui/feedpropertieswidgetbase.ui:206
+#: src/ui/feedpropertieswidgetbase.ui:209
 #, kde-format
 msgid "&Use default settings"
 msgstr "पूर्वनिर्धारित सेटिङ प्रयोग गर्नुहोस्"
 
 #. i18n: ectx: property (text), widget (QRadioButton, rb_disableArchiving)
-#: src/ui/feedpropertieswidgetbase.ui:216
+#: src/ui/feedpropertieswidgetbase.ui:219
 #, kde-format
 msgid "Di&sable archiving"
 msgstr "सङ्ग्रह अक्षम पार्नुहोस्"
 
 #. i18n: ectx: property (text), widget (QRadioButton, rb_limitArticleNumber)
-#: src/ui/feedpropertieswidgetbase.ui:247
+#: src/ui/feedpropertieswidgetbase.ui:250
 #, kde-format
 msgid "Limit archi&ve to:"
 msgstr "यसमा सङ्ग्रह सिमित गर्नुहोस्:"
 
 #. i18n: ectx: property (text), widget (QRadioButton, rb_limitArticleAge)
-#: src/ui/feedpropertieswidgetbase.ui:277
+#: src/ui/feedpropertieswidgetbase.ui:280
 #, kde-format
 msgid "&Delete articles older than:"
 msgstr "यो भन्दा पूराना लेख मेट्नुहोस्:"
 
 #. i18n: ectx: attribute (title), widget (QWidget, tab3)
-#: src/ui/feedpropertieswidgetbase.ui:340
+#: src/ui/feedpropertieswidgetbase.ui:343
 #, kde-format
 msgid "Adva&nced"
 msgstr "उन्नत"
 
 #. i18n: ectx: property (text), widget (QCheckBox, checkBox_loadWebsite)
-#: src/ui/feedpropertieswidgetbase.ui:373
+#: src/ui/feedpropertieswidgetbase.ui:376
 #, kde-format
 msgid "Load the &full website when reading articles"
 msgstr "लेख पढ्दा पूरै वेब साइट लोड गर्नुहोस्"
 
 #. i18n: ectx: property (text), widget (QCheckBox, checkBox_markRead)
-#: src/ui/feedpropertieswidgetbase.ui:380
+#: src/ui/feedpropertieswidgetbase.ui:383
 #, kde-format
 msgid "Mar&k articles as read when they arrive"
 msgstr "लेख आइपुगेपछि पढेका रूपमा तीनलाई चिन्ह लगाउनुहोस्"
@@ -2678,14 +2678,14 @@ msgstr ""
 msgid "Add new whatsnew widget."
 msgstr ""
 
-#: src/widgets/searchbar.cpp:43
+#: src/widgets/searchbar.cpp:44
 #, fuzzy, kde-format
 #| msgid " articles"
 msgctxt "@info:placeholder"
 msgid "Search articles…"
 msgstr " लेख"
 
-#: src/widgets/searchbar.cpp:118
+#: src/widgets/searchbar.cpp:137
 #, fuzzy, kde-format
 #| msgid " articles"
 msgctxt "@info:placeholder"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-09-01 00:39+0000\n"
+"POT-Creation-Date: 2024-09-03 00:39+0000\n"
 "PO-Revision-Date: 2012-01-12 17:34+0330\n"
 "Last-Translator: Mohammad Reza Mirdamadi <mohi@ubuntu.ir>\n"
 "Language-Team: Farsi (Persian) <>\n"
@@ -252,7 +252,7 @@ msgstr "غیرفعال کردن بایگانی"
 #. i18n: ectx: property (text), widget (QRadioButton, rb_KeepAllArticles)
 #. i18n: ectx: property (text), widget (QRadioButton, rb_keepAllArticles)
 #: configuration/ui/settings_archive.ui:43
-#: src/ui/feedpropertieswidgetbase.ui:332
+#: src/ui/feedpropertieswidgetbase.ui:335
 #, kde-format
 msgid "&Keep all articles"
 msgstr "&نگهداری همه مقالات‌"
@@ -350,7 +350,7 @@ msgstr "&تبها‌"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_AlwaysShowTabBar)
 #. i18n: ectx: label, entry, group (Browser)
-#: configuration/ui/settings_browser.ui:116 interfaces/akregator.kcfg:202
+#: configuration/ui/settings_browser.ui:116 interfaces/akregator.kcfg:207
 #, kde-format
 msgid "Always show the tab bar"
 msgstr ""
@@ -364,7 +364,7 @@ msgstr "نمایش دکمه‌های بسته روی تبها"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_NewWindowInTab)
 #. i18n: ectx: label, entry, group (Browser)
-#: configuration/ui/settings_browser.ui:130 interfaces/akregator.kcfg:212
+#: configuration/ui/settings_browser.ui:130 interfaces/akregator.kcfg:217
 #, kde-format
 msgid "Open links in new tab instead of in new window"
 msgstr ""
@@ -383,7 +383,7 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_EnableJavascript)
 #. i18n: ectx: label, entry, group (Browser)
-#: configuration/ui/settings_browser.ui:153 interfaces/akregator.kcfg:198
+#: configuration/ui/settings_browser.ui:153 interfaces/akregator.kcfg:203
 #, kde-format
 msgid "Enable JavaScript"
 msgstr ""
@@ -847,26 +847,32 @@ msgstr ""
 msgid "Specifies if we show unread article in taskbar."
 msgstr " )بدون مقالات خوانده‌نشده("
 
+#. i18n: ectx: label, entry, group (General)
+#: interfaces/akregator.kcfg:196
+#, kde-format
+msgid "Enabled Plasma Activity"
+msgstr ""
+
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:203
+#: interfaces/akregator.kcfg:208
 #, kde-format
 msgid "Always show the tab bar, even when only one tab is open"
 msgstr ""
 
 #. i18n: ectx: label, entry, group (Browser)
-#: interfaces/akregator.kcfg:207
+#: interfaces/akregator.kcfg:212
 #, kde-format
 msgid "Show close buttons on tabs"
 msgstr "نمایش دکمه‌های بسته روی تبها"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:208
+#: interfaces/akregator.kcfg:213
 #, kde-format
 msgid "Show close buttons on tabs instead of icons"
 msgstr "نمایش دکمه‌های بسته روی تبها به جای شمایلها"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:213
+#: interfaces/akregator.kcfg:218
 #, kde-format
 msgid ""
 "Open a link which would normally open in a new window (external browser) in "
@@ -874,62 +880,56 @@ msgid ""
 msgstr ""
 
 #. i18n: ectx: label, entry, group (Browser)
-#: interfaces/akregator.kcfg:217
+#: interfaces/akregator.kcfg:222
 #, kde-format
 msgid "Use default KDE web browser"
 msgstr "استفاده از مرورگر وب پیش‌فرض KDE"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:218
+#: interfaces/akregator.kcfg:223
 #, kde-format
 msgid "Use KDE web browser when opening in external browser."
 msgstr "استفاده از مرورگر وب KDE هنگام باز کردن در مرورگر خارجی."
 
 #. i18n: ectx: label, entry, group (Browser)
-#: interfaces/akregator.kcfg:222
+#: interfaces/akregator.kcfg:227
 #, kde-format
 msgid "Use this command:"
 msgstr "استفاده از این فرمان:"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:223
+#: interfaces/akregator.kcfg:228
 #, kde-format
 msgid "Use the specified command when opening in external browser."
 msgstr "استفاده از فرمان مشخص هنگام باز کردن در مرورگر خارجی."
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:227
+#: interfaces/akregator.kcfg:232
 #, fuzzy, no-c-format, kde-format
 #| msgid "Command to launch external browser.  URL will substitute for %u."
 msgid "Command to launch external browser. URL will substitute for %u."
 msgstr "فرمان برای راه‌اندازی مرورگر خارجی. نشانی وب جانشین  %u می‌شود."
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:231
+#: interfaces/akregator.kcfg:236
 #, kde-format
 msgid "What the click with left mouse button should do."
 msgstr "آنچه که باید هنگام فشار با دکمه چپ موشی صورت گیرد."
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:240
+#: interfaces/akregator.kcfg:245
 #, kde-format
 msgid "What the click with middle mouse button should do."
 msgstr "آنچه که هنگام فشار با دکمه میانی موشی باید صورت گیرد."
 
-#. i18n: ectx: label, entry, group (Browser)
-#: interfaces/akregator.kcfg:249
-#, kde-format
-msgid "Enabled Plasma Activity"
-msgstr ""
-
 #. i18n: ectx: label, entry, group (Advanced)
-#: interfaces/akregator.kcfg:269
+#: interfaces/akregator.kcfg:270
 #, kde-format
 msgid "Archive Backend"
 msgstr "پشتیبان بایگانی"
 
 #. i18n: ectx: whatsthis, entry (UseMarkReadDelay), group (Advanced)
-#: interfaces/akregator.kcfg:273
+#: interfaces/akregator.kcfg:274
 #, kde-format
 msgid "Whether to delay before marking an article as read upon selecting it."
 msgstr ""
@@ -937,7 +937,7 @@ msgstr ""
 "بیفتد."
 
 #. i18n: ectx: whatsthis, entry (MarkReadDelay), group (Advanced)
-#: interfaces/akregator.kcfg:277
+#: interfaces/akregator.kcfg:278
 #, kde-format
 msgid ""
 "Configurable delay between selecting an article and it being marked as read."
@@ -945,7 +945,7 @@ msgstr ""
 "تأخیر قابل پیکربندی بین برگزیدن و مقاله و نشان‌دار کردن آن به عنوان خوانده‌شده."
 
 #. i18n: ectx: whatsthis, entry, group (Advanced)
-#: interfaces/akregator.kcfg:281
+#: interfaces/akregator.kcfg:282
 #, kde-format
 msgid "Resets the quick filter when changing feeds."
 msgstr ""
@@ -2043,19 +2043,19 @@ msgstr "&پرونده‌"
 msgid "All Feeds"
 msgstr "همه خوراندنها"
 
-#: src/feed/feedpropertiesdialog.cpp:37
+#: src/feed/feedpropertiesdialog.cpp:40
 #, kde-format
 msgid "Activities"
 msgstr ""
 
-#: src/feed/feedpropertiesdialog.cpp:62 src/feed/feedpropertiesdialog.cpp:110
+#: src/feed/feedpropertiesdialog.cpp:65 src/feed/feedpropertiesdialog.cpp:120
 #, fuzzy, kde-format
 msgid "Minute"
 msgid_plural "Minutes"
 msgstr[0] "دقیقه"
 msgstr[1] ""
 
-#: src/feed/feedpropertiesdialog.cpp:63 src/feed/feedpropertiesdialog.cpp:111
+#: src/feed/feedpropertiesdialog.cpp:66 src/feed/feedpropertiesdialog.cpp:121
 #, fuzzy, kde-format
 #| msgid "Hours"
 msgid "Hour"
@@ -2063,35 +2063,35 @@ msgid_plural "Hours"
 msgstr[0] "%1 ساعت"
 msgstr[1] ""
 
-#: src/feed/feedpropertiesdialog.cpp:64 src/feed/feedpropertiesdialog.cpp:112
+#: src/feed/feedpropertiesdialog.cpp:67 src/feed/feedpropertiesdialog.cpp:122
 #, fuzzy, kde-format
 msgid "Day"
 msgid_plural "Days"
 msgstr[0] "روز"
 msgstr[1] ""
 
-#: src/feed/feedpropertiesdialog.cpp:94 src/feed/feedpropertiesdialog.cpp:151
+#: src/feed/feedpropertiesdialog.cpp:97 src/feed/feedpropertiesdialog.cpp:161
 #, fuzzy, kde-format
 #| msgid "Feed Properties"
 msgctxt "@title:window"
 msgid "Feed Properties"
 msgstr "ویژگیهای خوراندن"
 
-#: src/feed/feedpropertiesdialog.cpp:113
+#: src/feed/feedpropertiesdialog.cpp:123
 #, fuzzy, kde-format
 #| msgid "Never"
 msgctxt "never fetch new articles"
 msgid "Never"
 msgstr "هرگز"
 
-#: src/feed/feedpropertiesdialog.cpp:116
+#: src/feed/feedpropertiesdialog.cpp:126
 #, fuzzy, kde-format
 msgid "%v day"
 msgid_plural "%v days"
 msgstr[0] " روز"
 msgstr[1] ""
 
-#: src/feed/feedpropertiesdialog.cpp:117
+#: src/feed/feedpropertiesdialog.cpp:127
 #, fuzzy, kde-format
 #| msgid "1 article"
 msgid "%v article"
@@ -2099,7 +2099,7 @@ msgid_plural "%v articles"
 msgstr[0] "۱ مقاله"
 msgstr[1] ""
 
-#: src/feed/feedpropertiesdialog.cpp:151
+#: src/feed/feedpropertiesdialog.cpp:161
 #, fuzzy, kde-format
 #| msgid "Properties of %1"
 msgctxt "@title:window"
@@ -2499,99 +2499,99 @@ msgid "Feed Properties"
 msgstr "ویژگیهای خوراندن"
 
 #. i18n: ectx: attribute (title), widget (QWidget, tab1)
-#: src/ui/feedpropertieswidgetbase.ui:42
+#: src/ui/feedpropertieswidgetbase.ui:45
 #, kde-format
 msgid "&General"
 msgstr "&عمومی‌"
 
 #. i18n: ectx: property (text), widget (QCheckBox, cb_updateInterval)
-#: src/ui/feedpropertieswidgetbase.ui:54
+#: src/ui/feedpropertieswidgetbase.ui:57
 #, kde-format
 msgid "U&se a custom update interval"
 msgstr "&استفاده از فاصله به‌روزرسانی سفارشی‌"
 
 #. i18n: ectx: property (text), widget (QLabel, updateLabel)
-#: src/ui/feedpropertieswidgetbase.ui:88
+#: src/ui/feedpropertieswidgetbase.ui:91
 #, fuzzy, kde-format
 #| msgid "Update &every:"
 msgid "Update ever&y:"
 msgstr "به‌روزرسانی &هر:‌"
 
 #. i18n: ectx: property (text), widget (QCheckBox, checkBox_useNotification)
-#: src/ui/feedpropertieswidgetbase.ui:117
+#: src/ui/feedpropertieswidgetbase.ui:120
 #, kde-format
 msgid "Notify when new articles arri&ve"
 msgstr "اخطار هنگام &رسیدن مقالات جدید‌"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel3)
-#: src/ui/feedpropertieswidgetbase.ui:132
+#: src/ui/feedpropertieswidgetbase.ui:135
 #, kde-format
 msgid "&URL:"
 msgstr "&نشانی وب:‌"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel2)
-#: src/ui/feedpropertieswidgetbase.ui:142
+#: src/ui/feedpropertieswidgetbase.ui:145
 #, kde-format
 msgid "&Name:"
 msgstr "&نام:‌"
 
 #. i18n: ectx: property (toolTip), widget (QLineEdit, feedNameEdit)
-#: src/ui/feedpropertieswidgetbase.ui:161
+#: src/ui/feedpropertieswidgetbase.ui:164
 #, kde-format
 msgid "Display name of RSS column"
 msgstr "نمایش نام ستون RSS"
 
 #. i18n: ectx: property (text), widget (QLabel, label)
-#: src/ui/feedpropertieswidgetbase.ui:171
+#: src/ui/feedpropertieswidgetbase.ui:174
 #, fuzzy, kde-format
 #| msgid "Comments"
 msgid "Comment:"
 msgstr "توضیحات"
 
 #. i18n: ectx: attribute (title), widget (QWidget, tab2)
-#: src/ui/feedpropertieswidgetbase.ui:194
+#: src/ui/feedpropertieswidgetbase.ui:197
 #, kde-format
 msgid "Ar&chive"
 msgstr "&بایگانی‌"
 
 #. i18n: ectx: property (text), widget (QRadioButton, rb_globalDefault)
-#: src/ui/feedpropertieswidgetbase.ui:206
+#: src/ui/feedpropertieswidgetbase.ui:209
 #, kde-format
 msgid "&Use default settings"
 msgstr "&استفاده از تنظیمات پیش‌فرض‌"
 
 #. i18n: ectx: property (text), widget (QRadioButton, rb_disableArchiving)
-#: src/ui/feedpropertieswidgetbase.ui:216
+#: src/ui/feedpropertieswidgetbase.ui:219
 #, kde-format
 msgid "Di&sable archiving"
 msgstr "&غیرفعال کردن بایگانی‌"
 
 #. i18n: ectx: property (text), widget (QRadioButton, rb_limitArticleNumber)
-#: src/ui/feedpropertieswidgetbase.ui:247
+#: src/ui/feedpropertieswidgetbase.ui:250
 #, kde-format
 msgid "Limit archi&ve to:"
 msgstr "محدود کردن &بایگانی به:‌"
 
 #. i18n: ectx: property (text), widget (QRadioButton, rb_limitArticleAge)
-#: src/ui/feedpropertieswidgetbase.ui:277
+#: src/ui/feedpropertieswidgetbase.ui:280
 #, kde-format
 msgid "&Delete articles older than:"
 msgstr "&حذف مقالات قدیمی‌تر از:‌"
 
 #. i18n: ectx: attribute (title), widget (QWidget, tab3)
-#: src/ui/feedpropertieswidgetbase.ui:340
+#: src/ui/feedpropertieswidgetbase.ui:343
 #, kde-format
 msgid "Adva&nced"
 msgstr "&پیشرفته‌"
 
 #. i18n: ectx: property (text), widget (QCheckBox, checkBox_loadWebsite)
-#: src/ui/feedpropertieswidgetbase.ui:373
+#: src/ui/feedpropertieswidgetbase.ui:376
 #, kde-format
 msgid "Load the &full website when reading articles"
 msgstr "بار کردن وب‌گاه &کامل هنگام خواندن مقالات‌"
 
 #. i18n: ectx: property (text), widget (QCheckBox, checkBox_markRead)
-#: src/ui/feedpropertieswidgetbase.ui:380
+#: src/ui/feedpropertieswidgetbase.ui:383
 #, kde-format
 msgid "Mar&k articles as read when they arrive"
 msgstr "&نشان‌دار کردن مقالات به عنوان خوانده‌شده هنگامی که می‌رسند‌"
@@ -2657,14 +2657,14 @@ msgstr ""
 msgid "Add new whatsnew widget."
 msgstr ""
 
-#: src/widgets/searchbar.cpp:43
+#: src/widgets/searchbar.cpp:44
 #, fuzzy, kde-format
 #| msgid " articles"
 msgctxt "@info:placeholder"
 msgid "Search articles…"
 msgstr " مقاله"
 
-#: src/widgets/searchbar.cpp:118
+#: src/widgets/searchbar.cpp:137
 #, fuzzy, kde-format
 #| msgid " articles"
 msgctxt "@info:placeholder"

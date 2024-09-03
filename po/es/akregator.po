@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-09-01 00:39+0000\n"
+"POT-Creation-Date: 2024-09-03 00:39+0000\n"
 "PO-Revision-Date: 2024-08-18 00:53+0200\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
@@ -251,7 +251,7 @@ msgstr "Desacti&var el archivado"
 #. i18n: ectx: property (text), widget (QRadioButton, rb_KeepAllArticles)
 #. i18n: ectx: property (text), widget (QRadioButton, rb_keepAllArticles)
 #: configuration/ui/settings_archive.ui:43
-#: src/ui/feedpropertieswidgetbase.ui:332
+#: src/ui/feedpropertieswidgetbase.ui:335
 #, kde-format
 msgid "&Keep all articles"
 msgstr "Man&tener todos los artículos"
@@ -345,7 +345,7 @@ msgstr "Pestañas"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_AlwaysShowTabBar)
 #. i18n: ectx: label, entry, group (Browser)
-#: configuration/ui/settings_browser.ui:116 interfaces/akregator.kcfg:202
+#: configuration/ui/settings_browser.ui:116 interfaces/akregator.kcfg:207
 #, kde-format
 msgid "Always show the tab bar"
 msgstr "Mostrar siempre la barra de pestañas"
@@ -358,7 +358,7 @@ msgstr "Mostrar botón de cierre en cada pestaña"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_NewWindowInTab)
 #. i18n: ectx: label, entry, group (Browser)
-#: configuration/ui/settings_browser.ui:130 interfaces/akregator.kcfg:212
+#: configuration/ui/settings_browser.ui:130 interfaces/akregator.kcfg:217
 #, kde-format
 msgid "Open links in new tab instead of in new window"
 msgstr "Abre enlaces en una nueva pestaña en lugar de en una nueva ventana"
@@ -377,7 +377,7 @@ msgstr "Verificar las URL usando la API de navegación segura de Google"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_EnableJavascript)
 #. i18n: ectx: label, entry, group (Browser)
-#: configuration/ui/settings_browser.ui:153 interfaces/akregator.kcfg:198
+#: configuration/ui/settings_browser.ui:153 interfaces/akregator.kcfg:203
 #, kde-format
 msgid "Enable JavaScript"
 msgstr "Activar JavaScript"
@@ -841,27 +841,33 @@ msgstr "Mostrar lo no leído en la barra de tareas"
 msgid "Specifies if we show unread article in taskbar."
 msgstr "Especifica si hay que mostrar lo no leído en la barra de tareas."
 
+#. i18n: ectx: label, entry, group (General)
+#: interfaces/akregator.kcfg:196
+#, kde-format
+msgid "Enabled Plasma Activity"
+msgstr "Actividades de Plasma activadas"
+
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:203
+#: interfaces/akregator.kcfg:208
 #, kde-format
 msgid "Always show the tab bar, even when only one tab is open"
 msgstr ""
 "Mostrar siempre la barra de pestañas, incluso si solo hay una pestaña abierta"
 
 #. i18n: ectx: label, entry, group (Browser)
-#: interfaces/akregator.kcfg:207
+#: interfaces/akregator.kcfg:212
 #, kde-format
 msgid "Show close buttons on tabs"
 msgstr "Mostrar botones de cierre en las pestañas"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:208
+#: interfaces/akregator.kcfg:213
 #, kde-format
 msgid "Show close buttons on tabs instead of icons"
 msgstr "Mostrar botones de cierre en las pestañas en lugar de iconos"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:213
+#: interfaces/akregator.kcfg:218
 #, kde-format
 msgid ""
 "Open a link which would normally open in a new window (external browser) in "
@@ -871,68 +877,62 @@ msgstr ""
 "externo) en una nueva pestaña"
 
 #. i18n: ectx: label, entry, group (Browser)
-#: interfaces/akregator.kcfg:217
+#: interfaces/akregator.kcfg:222
 #, kde-format
 msgid "Use default KDE web browser"
 msgstr "Usar el navegador web predeterminado de KDE"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:218
+#: interfaces/akregator.kcfg:223
 #, kde-format
 msgid "Use KDE web browser when opening in external browser."
 msgstr "Usar el navegador web de KDE cuando abra en un navegador externo."
 
 #. i18n: ectx: label, entry, group (Browser)
-#: interfaces/akregator.kcfg:222
+#: interfaces/akregator.kcfg:227
 #, kde-format
 msgid "Use this command:"
 msgstr "Usar esta orden:"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:223
+#: interfaces/akregator.kcfg:228
 #, kde-format
 msgid "Use the specified command when opening in external browser."
 msgstr "Usa la orden indicada cuando se pide abrir en el navegador externo."
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:227
+#: interfaces/akregator.kcfg:232
 #, no-c-format, kde-format
 msgid "Command to launch external browser. URL will substitute for %u."
 msgstr ""
 "Orden que debe lanzar el navegador externo. La URL se sustituye por %u."
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:231
+#: interfaces/akregator.kcfg:236
 #, kde-format
 msgid "What the click with left mouse button should do."
 msgstr "Qué se debe hacer cuando se pulse el botón izquierdo del ratón."
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:240
+#: interfaces/akregator.kcfg:245
 #, kde-format
 msgid "What the click with middle mouse button should do."
 msgstr "Qué se debe hacer cuando se pulse el botón central del ratón."
 
-#. i18n: ectx: label, entry, group (Browser)
-#: interfaces/akregator.kcfg:249
-#, kde-format
-msgid "Enabled Plasma Activity"
-msgstr "Actividades de Plasma activadas"
-
 #. i18n: ectx: label, entry, group (Advanced)
-#: interfaces/akregator.kcfg:269
+#: interfaces/akregator.kcfg:270
 #, kde-format
 msgid "Archive Backend"
 msgstr "Motor de archivo comprimido"
 
 #. i18n: ectx: whatsthis, entry (UseMarkReadDelay), group (Advanced)
-#: interfaces/akregator.kcfg:273
+#: interfaces/akregator.kcfg:274
 #, kde-format
 msgid "Whether to delay before marking an article as read upon selecting it."
 msgstr "Si esperar antes de marcar un artículo como leído tras seleccionarlo."
 
 #. i18n: ectx: whatsthis, entry (MarkReadDelay), group (Advanced)
-#: interfaces/akregator.kcfg:277
+#: interfaces/akregator.kcfg:278
 #, kde-format
 msgid ""
 "Configurable delay between selecting an article and it being marked as read."
@@ -941,7 +941,7 @@ msgstr ""
 "leído."
 
 #. i18n: ectx: whatsthis, entry, group (Advanced)
-#: interfaces/akregator.kcfg:281
+#: interfaces/akregator.kcfg:282
 #, kde-format
 msgid "Resets the quick filter when changing feeds."
 msgstr "Reiniciar el filtro rápido al cambiar de fuentes."
@@ -1990,59 +1990,59 @@ msgstr "&Archivo"
 msgid "All Feeds"
 msgstr "Todas las fuentes"
 
-#: src/feed/feedpropertiesdialog.cpp:37
+#: src/feed/feedpropertiesdialog.cpp:40
 #, kde-format
 msgid "Activities"
 msgstr "Actividades"
 
-#: src/feed/feedpropertiesdialog.cpp:62 src/feed/feedpropertiesdialog.cpp:110
+#: src/feed/feedpropertiesdialog.cpp:65 src/feed/feedpropertiesdialog.cpp:120
 #, kde-format
 msgid "Minute"
 msgid_plural "Minutes"
 msgstr[0] "Minuto"
 msgstr[1] "Minutos"
 
-#: src/feed/feedpropertiesdialog.cpp:63 src/feed/feedpropertiesdialog.cpp:111
+#: src/feed/feedpropertiesdialog.cpp:66 src/feed/feedpropertiesdialog.cpp:121
 #, kde-format
 msgid "Hour"
 msgid_plural "Hours"
 msgstr[0] "Hora"
 msgstr[1] "Horas"
 
-#: src/feed/feedpropertiesdialog.cpp:64 src/feed/feedpropertiesdialog.cpp:112
+#: src/feed/feedpropertiesdialog.cpp:67 src/feed/feedpropertiesdialog.cpp:122
 #, kde-format
 msgid "Day"
 msgid_plural "Days"
 msgstr[0] "Día"
 msgstr[1] "Días"
 
-#: src/feed/feedpropertiesdialog.cpp:94 src/feed/feedpropertiesdialog.cpp:151
+#: src/feed/feedpropertiesdialog.cpp:97 src/feed/feedpropertiesdialog.cpp:161
 #, kde-format
 msgctxt "@title:window"
 msgid "Feed Properties"
 msgstr "Propiedades de la fuente"
 
-#: src/feed/feedpropertiesdialog.cpp:113
+#: src/feed/feedpropertiesdialog.cpp:123
 #, kde-format
 msgctxt "never fetch new articles"
 msgid "Never"
 msgstr "Nunca"
 
-#: src/feed/feedpropertiesdialog.cpp:116
+#: src/feed/feedpropertiesdialog.cpp:126
 #, kde-format
 msgid "%v day"
 msgid_plural "%v days"
 msgstr[0] "%v día"
 msgstr[1] "%v días"
 
-#: src/feed/feedpropertiesdialog.cpp:117
+#: src/feed/feedpropertiesdialog.cpp:127
 #, kde-format
 msgid "%v article"
 msgid_plural "%v articles"
 msgstr[0] "%v artículo"
 msgstr[1] "%v artículos"
 
-#: src/feed/feedpropertiesdialog.cpp:151
+#: src/feed/feedpropertiesdialog.cpp:161
 #, kde-format
 msgctxt "@title:window"
 msgid "Properties of %1"
@@ -2424,97 +2424,97 @@ msgid "Feed Properties"
 msgstr "Propiedades de la fuente"
 
 #. i18n: ectx: attribute (title), widget (QWidget, tab1)
-#: src/ui/feedpropertieswidgetbase.ui:42
+#: src/ui/feedpropertieswidgetbase.ui:45
 #, kde-format
 msgid "&General"
 msgstr "&General"
 
 #. i18n: ectx: property (text), widget (QCheckBox, cb_updateInterval)
-#: src/ui/feedpropertieswidgetbase.ui:54
+#: src/ui/feedpropertieswidgetbase.ui:57
 #, kde-format
 msgid "U&se a custom update interval"
 msgstr "U&sar un intervalo de actualización personalizado"
 
 #. i18n: ectx: property (text), widget (QLabel, updateLabel)
-#: src/ui/feedpropertieswidgetbase.ui:88
+#: src/ui/feedpropertieswidgetbase.ui:91
 #, kde-format
 msgid "Update ever&y:"
 msgstr "Actual&izar cada:"
 
 #. i18n: ectx: property (text), widget (QCheckBox, checkBox_useNotification)
-#: src/ui/feedpropertieswidgetbase.ui:117
+#: src/ui/feedpropertieswidgetbase.ui:120
 #, kde-format
 msgid "Notify when new articles arri&ve"
 msgstr "Notificar cuando lleguen artículos nue&vos"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel3)
-#: src/ui/feedpropertieswidgetbase.ui:132
+#: src/ui/feedpropertieswidgetbase.ui:135
 #, kde-format
 msgid "&URL:"
 msgstr "&URL:"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel2)
-#: src/ui/feedpropertieswidgetbase.ui:142
+#: src/ui/feedpropertieswidgetbase.ui:145
 #, kde-format
 msgid "&Name:"
 msgstr "&Nombre:"
 
 #. i18n: ectx: property (toolTip), widget (QLineEdit, feedNameEdit)
-#: src/ui/feedpropertieswidgetbase.ui:161
+#: src/ui/feedpropertieswidgetbase.ui:164
 #, kde-format
 msgid "Display name of RSS column"
 msgstr "Nombre que se muestra de la columna RSS"
 
 #. i18n: ectx: property (text), widget (QLabel, label)
-#: src/ui/feedpropertieswidgetbase.ui:171
+#: src/ui/feedpropertieswidgetbase.ui:174
 #, kde-format
 msgid "Comment:"
 msgstr "Comentario:"
 
 #. i18n: ectx: attribute (title), widget (QWidget, tab2)
-#: src/ui/feedpropertieswidgetbase.ui:194
+#: src/ui/feedpropertieswidgetbase.ui:197
 #, kde-format
 msgid "Ar&chive"
 msgstr "Ar&chivo comprimido"
 
 #. i18n: ectx: property (text), widget (QRadioButton, rb_globalDefault)
-#: src/ui/feedpropertieswidgetbase.ui:206
+#: src/ui/feedpropertieswidgetbase.ui:209
 #, kde-format
 msgid "&Use default settings"
 msgstr "&Usar las preferencias predeterminadas"
 
 #. i18n: ectx: property (text), widget (QRadioButton, rb_disableArchiving)
-#: src/ui/feedpropertieswidgetbase.ui:216
+#: src/ui/feedpropertieswidgetbase.ui:219
 #, kde-format
 msgid "Di&sable archiving"
 msgstr "De&sactivar el archivo"
 
 #. i18n: ectx: property (text), widget (QRadioButton, rb_limitArticleNumber)
-#: src/ui/feedpropertieswidgetbase.ui:247
+#: src/ui/feedpropertieswidgetbase.ui:250
 #, kde-format
 msgid "Limit archi&ve to:"
 msgstr "Limitar el archi&vo comprimido a"
 
 #. i18n: ectx: property (text), widget (QRadioButton, rb_limitArticleAge)
-#: src/ui/feedpropertieswidgetbase.ui:277
+#: src/ui/feedpropertieswidgetbase.ui:280
 #, kde-format
 msgid "&Delete articles older than:"
 msgstr "&Borrar los artículos anteriores a"
 
 #. i18n: ectx: attribute (title), widget (QWidget, tab3)
-#: src/ui/feedpropertieswidgetbase.ui:340
+#: src/ui/feedpropertieswidgetbase.ui:343
 #, kde-format
 msgid "Adva&nced"
 msgstr "Ava&nzado"
 
 #. i18n: ectx: property (text), widget (QCheckBox, checkBox_loadWebsite)
-#: src/ui/feedpropertieswidgetbase.ui:373
+#: src/ui/feedpropertieswidgetbase.ui:376
 #, kde-format
 msgid "Load the &full website when reading articles"
 msgstr "Cargar el sitio we&b completo al leer los artículos"
 
 #. i18n: ectx: property (text), widget (QCheckBox, checkBox_markRead)
-#: src/ui/feedpropertieswidgetbase.ui:380
+#: src/ui/feedpropertieswidgetbase.ui:383
 #, kde-format
 msgid "Mar&k articles as read when they arrive"
 msgstr "Mar&car los artículos como leídos cuando lleguen"
@@ -2572,13 +2572,13 @@ msgstr "Implementar las actividades de Plasma."
 msgid "Add new whatsnew widget."
 msgstr "Añadir nuevo widget para las novedades."
 
-#: src/widgets/searchbar.cpp:43
+#: src/widgets/searchbar.cpp:44
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "Search articles…"
 msgstr "Buscar artículos..."
 
-#: src/widgets/searchbar.cpp:118
+#: src/widgets/searchbar.cpp:137
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "Search articles…<%1>"

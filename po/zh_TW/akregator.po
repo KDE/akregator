@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-09-01 00:39+0000\n"
+"POT-Creation-Date: 2024-09-03 00:39+0000\n"
 "PO-Revision-Date: 2024-08-18 00:51+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
@@ -238,7 +238,7 @@ msgstr "關閉文章收集(&B)"
 #. i18n: ectx: property (text), widget (QRadioButton, rb_KeepAllArticles)
 #. i18n: ectx: property (text), widget (QRadioButton, rb_keepAllArticles)
 #: configuration/ui/settings_archive.ui:43
-#: src/ui/feedpropertieswidgetbase.ui:332
+#: src/ui/feedpropertieswidgetbase.ui:335
 #, kde-format
 msgid "&Keep all articles"
 msgstr "保存所有的文章(&K)"
@@ -332,7 +332,7 @@ msgstr "分頁"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_AlwaysShowTabBar)
 #. i18n: ectx: label, entry, group (Browser)
-#: configuration/ui/settings_browser.ui:116 interfaces/akregator.kcfg:202
+#: configuration/ui/settings_browser.ui:116 interfaces/akregator.kcfg:207
 #, kde-format
 msgid "Always show the tab bar"
 msgstr "總是顯示分頁列"
@@ -345,7 +345,7 @@ msgstr "在分頁標籤上顯示關閉按鍵。"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_NewWindowInTab)
 #. i18n: ectx: label, entry, group (Browser)
-#: configuration/ui/settings_browser.ui:130 interfaces/akregator.kcfg:212
+#: configuration/ui/settings_browser.ui:130 interfaces/akregator.kcfg:217
 #, kde-format
 msgid "Open links in new tab instead of in new window"
 msgstr "在新分頁而非新視窗開啟連結"
@@ -364,7 +364,7 @@ msgstr "利用 Google 安全瀏覽 API 驗證連結"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_EnableJavascript)
 #. i18n: ectx: label, entry, group (Browser)
-#: configuration/ui/settings_browser.ui:153 interfaces/akregator.kcfg:198
+#: configuration/ui/settings_browser.ui:153 interfaces/akregator.kcfg:203
 #, kde-format
 msgid "Enable JavaScript"
 msgstr "啟用 JavaScript"
@@ -821,26 +821,32 @@ msgstr "在工作列顯示未讀"
 msgid "Specifies if we show unread article in taskbar."
 msgstr "指定我們是否應該在工作列上顯示未讀文章。"
 
+#. i18n: ectx: label, entry, group (General)
+#: interfaces/akregator.kcfg:196
+#, kde-format
+msgid "Enabled Plasma Activity"
+msgstr "已啟用 Plasma 活動"
+
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:203
+#: interfaces/akregator.kcfg:208
 #, kde-format
 msgid "Always show the tab bar, even when only one tab is open"
 msgstr "總是顯示分頁列，即使只開啟了一個分頁"
 
 #. i18n: ectx: label, entry, group (Browser)
-#: interfaces/akregator.kcfg:207
+#: interfaces/akregator.kcfg:212
 #, kde-format
 msgid "Show close buttons on tabs"
 msgstr "在分頁標籤上顯示關閉按鍵"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:208
+#: interfaces/akregator.kcfg:213
 #, kde-format
 msgid "Show close buttons on tabs instead of icons"
 msgstr "在分頁標籤上顯示關閉按鍵，而不是顯示圖示"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:213
+#: interfaces/akregator.kcfg:218
 #, kde-format
 msgid ""
 "Open a link which would normally open in a new window (external browser) in "
@@ -848,74 +854,68 @@ msgid ""
 msgstr "在分頁中開啟連結，而不在外部瀏覽器中開啟"
 
 #. i18n: ectx: label, entry, group (Browser)
-#: interfaces/akregator.kcfg:217
+#: interfaces/akregator.kcfg:222
 #, kde-format
 msgid "Use default KDE web browser"
 msgstr "使用預設的 KDE 網頁瀏覽器"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:218
+#: interfaces/akregator.kcfg:223
 #, kde-format
 msgid "Use KDE web browser when opening in external browser."
 msgstr "在外部瀏覽器開啟時使用 KDE 的網頁瀏覽器。"
 
 #. i18n: ectx: label, entry, group (Browser)
-#: interfaces/akregator.kcfg:222
+#: interfaces/akregator.kcfg:227
 #, kde-format
 msgid "Use this command:"
 msgstr "使用此指令："
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:223
+#: interfaces/akregator.kcfg:228
 #, kde-format
 msgid "Use the specified command when opening in external browser."
 msgstr "在外部瀏覽器開啟時使用指定的指令。"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:227
+#: interfaces/akregator.kcfg:232
 #, no-c-format, kde-format
 msgid "Command to launch external browser. URL will substitute for %u."
 msgstr "啟動外部瀏覽器的指令。%u 會替換為網址。"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:231
+#: interfaces/akregator.kcfg:236
 #, kde-format
 msgid "What the click with left mouse button should do."
 msgstr "點擊滑鼠左鍵時要做什麼事情。"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
-#: interfaces/akregator.kcfg:240
+#: interfaces/akregator.kcfg:245
 #, kde-format
 msgid "What the click with middle mouse button should do."
 msgstr "點擊滑鼠中鍵時要做什麼事情。"
 
-#. i18n: ectx: label, entry, group (Browser)
-#: interfaces/akregator.kcfg:249
-#, kde-format
-msgid "Enabled Plasma Activity"
-msgstr "已啟用 Plasma 活動"
-
 #. i18n: ectx: label, entry, group (Advanced)
-#: interfaces/akregator.kcfg:269
+#: interfaces/akregator.kcfg:270
 #, kde-format
 msgid "Archive Backend"
 msgstr "文章收集後端介面"
 
 #. i18n: ectx: whatsthis, entry (UseMarkReadDelay), group (Advanced)
-#: interfaces/akregator.kcfg:273
+#: interfaces/akregator.kcfg:274
 #, kde-format
 msgid "Whether to delay before marking an article as read upon selecting it."
 msgstr "選擇某篇文章時，要過多久以後才標記為已讀。"
 
 #. i18n: ectx: whatsthis, entry (MarkReadDelay), group (Advanced)
-#: interfaces/akregator.kcfg:277
+#: interfaces/akregator.kcfg:278
 #, kde-format
 msgid ""
 "Configurable delay between selecting an article and it being marked as read."
 msgstr "設定在選擇一篇文章到設定該文章為已讀間要延遲多少時間。"
 
 #. i18n: ectx: whatsthis, entry, group (Advanced)
-#: interfaces/akregator.kcfg:281
+#: interfaces/akregator.kcfg:282
 #, kde-format
 msgid "Resets the quick filter when changing feeds."
 msgstr "變更訂閱來源時重設快速過濾器。"
@@ -1945,54 +1945,54 @@ msgstr "檔案(&F)"
 msgid "All Feeds"
 msgstr "所有的訂閱來源"
 
-#: src/feed/feedpropertiesdialog.cpp:37
+#: src/feed/feedpropertiesdialog.cpp:40
 #, kde-format
 msgid "Activities"
 msgstr "活動"
 
-#: src/feed/feedpropertiesdialog.cpp:62 src/feed/feedpropertiesdialog.cpp:110
+#: src/feed/feedpropertiesdialog.cpp:65 src/feed/feedpropertiesdialog.cpp:120
 #, kde-format
 msgid "Minute"
 msgid_plural "Minutes"
 msgstr[0] "分鐘"
 
-#: src/feed/feedpropertiesdialog.cpp:63 src/feed/feedpropertiesdialog.cpp:111
+#: src/feed/feedpropertiesdialog.cpp:66 src/feed/feedpropertiesdialog.cpp:121
 #, kde-format
 msgid "Hour"
 msgid_plural "Hours"
 msgstr[0] "小時"
 
-#: src/feed/feedpropertiesdialog.cpp:64 src/feed/feedpropertiesdialog.cpp:112
+#: src/feed/feedpropertiesdialog.cpp:67 src/feed/feedpropertiesdialog.cpp:122
 #, kde-format
 msgid "Day"
 msgid_plural "Days"
 msgstr[0] "天"
 
-#: src/feed/feedpropertiesdialog.cpp:94 src/feed/feedpropertiesdialog.cpp:151
+#: src/feed/feedpropertiesdialog.cpp:97 src/feed/feedpropertiesdialog.cpp:161
 #, kde-format
 msgctxt "@title:window"
 msgid "Feed Properties"
 msgstr "訂閱來源內容"
 
-#: src/feed/feedpropertiesdialog.cpp:113
+#: src/feed/feedpropertiesdialog.cpp:123
 #, kde-format
 msgctxt "never fetch new articles"
 msgid "Never"
 msgstr "永不"
 
-#: src/feed/feedpropertiesdialog.cpp:116
+#: src/feed/feedpropertiesdialog.cpp:126
 #, kde-format
 msgid "%v day"
 msgid_plural "%v days"
 msgstr[0] "%v 天"
 
-#: src/feed/feedpropertiesdialog.cpp:117
+#: src/feed/feedpropertiesdialog.cpp:127
 #, kde-format
 msgid "%v article"
 msgid_plural "%v articles"
 msgstr[0] "%v 篇文章"
 
-#: src/feed/feedpropertiesdialog.cpp:151
+#: src/feed/feedpropertiesdialog.cpp:161
 #, kde-format
 msgctxt "@title:window"
 msgid "Properties of %1"
@@ -2360,97 +2360,97 @@ msgid "Feed Properties"
 msgstr "訂閱來源內容"
 
 #. i18n: ectx: attribute (title), widget (QWidget, tab1)
-#: src/ui/feedpropertieswidgetbase.ui:42
+#: src/ui/feedpropertieswidgetbase.ui:45
 #, kde-format
 msgid "&General"
 msgstr "一般(&G)"
 
 #. i18n: ectx: property (text), widget (QCheckBox, cb_updateInterval)
-#: src/ui/feedpropertieswidgetbase.ui:54
+#: src/ui/feedpropertieswidgetbase.ui:57
 #, kde-format
 msgid "U&se a custom update interval"
 msgstr "自訂更新間隔(&S)"
 
 #. i18n: ectx: property (text), widget (QLabel, updateLabel)
-#: src/ui/feedpropertieswidgetbase.ui:88
+#: src/ui/feedpropertieswidgetbase.ui:91
 #, kde-format
 msgid "Update ever&y:"
 msgstr "更新間隔(&Y)："
 
 #. i18n: ectx: property (text), widget (QCheckBox, checkBox_useNotification)
-#: src/ui/feedpropertieswidgetbase.ui:117
+#: src/ui/feedpropertieswidgetbase.ui:120
 #, kde-format
 msgid "Notify when new articles arri&ve"
 msgstr "當有新文章到達時發出通知(&V)"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel3)
-#: src/ui/feedpropertieswidgetbase.ui:132
+#: src/ui/feedpropertieswidgetbase.ui:135
 #, kde-format
 msgid "&URL:"
 msgstr "網址(&U)："
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel2)
-#: src/ui/feedpropertieswidgetbase.ui:142
+#: src/ui/feedpropertieswidgetbase.ui:145
 #, kde-format
 msgid "&Name:"
 msgstr "名稱(&N)"
 
 #. i18n: ectx: property (toolTip), widget (QLineEdit, feedNameEdit)
-#: src/ui/feedpropertieswidgetbase.ui:161
+#: src/ui/feedpropertieswidgetbase.ui:164
 #, kde-format
 msgid "Display name of RSS column"
 msgstr "顯示 RSS 欄位的名稱"
 
 #. i18n: ectx: property (text), widget (QLabel, label)
-#: src/ui/feedpropertieswidgetbase.ui:171
+#: src/ui/feedpropertieswidgetbase.ui:174
 #, kde-format
 msgid "Comment:"
 msgstr "註解："
 
 #. i18n: ectx: attribute (title), widget (QWidget, tab2)
-#: src/ui/feedpropertieswidgetbase.ui:194
+#: src/ui/feedpropertieswidgetbase.ui:197
 #, kde-format
 msgid "Ar&chive"
 msgstr "文章收集(&C)"
 
 #. i18n: ectx: property (text), widget (QRadioButton, rb_globalDefault)
-#: src/ui/feedpropertieswidgetbase.ui:206
+#: src/ui/feedpropertieswidgetbase.ui:209
 #, kde-format
 msgid "&Use default settings"
 msgstr "使用預設設定(&U)"
 
 #. i18n: ectx: property (text), widget (QRadioButton, rb_disableArchiving)
-#: src/ui/feedpropertieswidgetbase.ui:216
+#: src/ui/feedpropertieswidgetbase.ui:219
 #, kde-format
 msgid "Di&sable archiving"
 msgstr "關閉文章收集"
 
 #. i18n: ectx: property (text), widget (QRadioButton, rb_limitArticleNumber)
-#: src/ui/feedpropertieswidgetbase.ui:247
+#: src/ui/feedpropertieswidgetbase.ui:250
 #, kde-format
 msgid "Limit archi&ve to:"
 msgstr "限制文章收集數量(&V)："
 
 #. i18n: ectx: property (text), widget (QRadioButton, rb_limitArticleAge)
-#: src/ui/feedpropertieswidgetbase.ui:277
+#: src/ui/feedpropertieswidgetbase.ui:280
 #, kde-format
 msgid "&Delete articles older than:"
 msgstr "刪除超過多久的文章(&D)："
 
 #. i18n: ectx: attribute (title), widget (QWidget, tab3)
-#: src/ui/feedpropertieswidgetbase.ui:340
+#: src/ui/feedpropertieswidgetbase.ui:343
 #, kde-format
 msgid "Adva&nced"
 msgstr "進階(&N)"
 
 #. i18n: ectx: property (text), widget (QCheckBox, checkBox_loadWebsite)
-#: src/ui/feedpropertieswidgetbase.ui:373
+#: src/ui/feedpropertieswidgetbase.ui:376
 #, kde-format
 msgid "Load the &full website when reading articles"
 msgstr "讀取文章時載入整個網站(&F)"
 
 #. i18n: ectx: property (text), widget (QCheckBox, checkBox_markRead)
-#: src/ui/feedpropertieswidgetbase.ui:380
+#: src/ui/feedpropertieswidgetbase.ui:383
 #, kde-format
 msgid "Mar&k articles as read when they arrive"
 msgstr "文章到達時標記為已讀(&K)"
@@ -2508,13 +2508,13 @@ msgstr "實作 Plasma 活動。"
 msgid "Add new whatsnew widget."
 msgstr "新增新功能元件。"
 
-#: src/widgets/searchbar.cpp:43
+#: src/widgets/searchbar.cpp:44
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "Search articles…"
 msgstr "搜尋文章…"
 
-#: src/widgets/searchbar.cpp:118
+#: src/widgets/searchbar.cpp:137
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "Search articles…<%1>"
