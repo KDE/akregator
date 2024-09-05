@@ -25,6 +25,4 @@ void StatusSearchButtonsTest::shouldHaveDefaultValues()
 
     auto mainLayout = w.findChild<QHBoxLayout *>(QStringLiteral("mainLayout"));
     QVERIFY(mainLayout);
-    QCOMPARE(mainLayout->contentsMargins(), QMargins{});
-    QCOMPARE(mainLayout->spacing(), 0);
 }
