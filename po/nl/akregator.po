@@ -1663,7 +1663,7 @@ msgstr "Schrijffout"
 #: src/akregator_part.cpp:464
 #, kde-format
 msgid "Could not import the file %1 (no valid OPML)"
-msgstr "Kon het bestand %1 niet importeren (geen geldig OPML-formaat)"
+msgstr "Kon het bestand %1 niet importeren (geen geldige OPML)"
 
 #: src/akregator_part.cpp:464 src/command/loadfeedlistcommand.cpp:71
 #, kde-format
@@ -1696,7 +1696,7 @@ msgstr ""
 #: src/akregator_part.cpp:496 src/akregator_part.cpp:505
 #, kde-format
 msgid "OPML Outlines (%1);;All Files (*)"
-msgstr "OPML-vorm (%1);;Alle bestanden (*)"
+msgstr "OPML indeling (%1);;Alle bestanden (*)"
 
 #: src/akregator_part.cpp:629
 #, kde-format
