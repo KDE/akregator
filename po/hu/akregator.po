@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: KDE 4.3\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-09-03 00:39+0000\n"
-"PO-Revision-Date: 2024-07-08 14:00+0200\n"
+"PO-Revision-Date: 2024-09-09 20:33+0200\n"
 "Last-Translator: Kristof Kiszel <ulysses@fsf.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 24.05.0\n"
+"X-Generator: Lokalize 24.08.0\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -101,26 +101,20 @@ msgstr ""
 "(lásd a beállítóablakot)."
 
 #: configuration/akregator_config_archive.cpp:35
-#, fuzzy, kde-format
-#| msgctxt "Limit feed archive size to:"
-#| msgid " article"
-#| msgid_plural " articles"
+#, kde-format
 msgctxt "Limit feed archive size to:"
 msgid "%v article"
 msgid_plural "%v articles"
-msgstr[0] " hír"
-msgstr[1] " hír"
+msgstr[0] "%v hír"
+msgstr[1] "%v hír"
 
 #: configuration/akregator_config_archive.cpp:36
-#, fuzzy, kde-format
-#| msgctxt "Delete articles older than:"
-#| msgid " day"
-#| msgid_plural " days"
+#, kde-format
 msgctxt "Delete articles older than:"
 msgid "%v day"
 msgid_plural "%v days"
-msgstr[0] " nap"
-msgstr[1] " nap"
+msgstr[0] "%v nap"
+msgstr[1] "%v nap"
 
 #: configuration/akregator_config_general.cpp:35
 #, kde-format
@@ -135,15 +129,12 @@ msgid "Webengine Plugins"
 msgstr "Webengine bővítmények"
 
 #: configuration/settings_advanced.cpp:28
-#, fuzzy, kde-format
-#| msgctxt "Mark selected article read after"
-#| msgid " second"
-#| msgid_plural " seconds"
+#, kde-format
 msgctxt "Mark selected article read after"
 msgid "%v second"
 msgid_plural "%v seconds"
-msgstr[0] " másodperc"
-msgstr[1] " másodperc"
+msgstr[0] "%v másodperc"
+msgstr[1] "%v másodperc"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: configuration/ui/settings_advancedbase.ui:30
@@ -1359,7 +1350,7 @@ msgstr "Fókusz beállítása a gyors keresőre"
 #: src/actions/actionmanagerimpl.cpp:440
 #, kde-format
 msgid "What's new"
-msgstr ""
+msgstr "Újdonságok"
 
 #: src/actions/actionmanagerimpl.cpp:474
 #, kde-format
@@ -1969,7 +1960,7 @@ msgstr "&Beállítások"
 #: src/data/akregator_part.rc:90
 #, kde-format
 msgid "&Help"
-msgstr ""
+msgstr "&Súgó"
 
 #. i18n: ectx: ToolBar (mainToolBar)
 #: src/data/akregator_part.rc:96 src/data/akregator_shell.rc:54
@@ -1991,7 +1982,7 @@ msgstr "Minden csatorna"
 #: src/feed/feedpropertiesdialog.cpp:40
 #, kde-format
 msgid "Activities"
-msgstr ""
+msgstr "Aktivitások"
 
 #: src/feed/feedpropertiesdialog.cpp:65 src/feed/feedpropertiesdialog.cpp:120
 #, kde-format
@@ -2027,22 +2018,18 @@ msgid "Never"
 msgstr "Soha"
 
 #: src/feed/feedpropertiesdialog.cpp:126
-#, fuzzy, kde-format
-#| msgid " day"
-#| msgid_plural " days"
+#, kde-format
 msgid "%v day"
 msgid_plural "%v days"
-msgstr[0] " nap"
-msgstr[1] " nap"
+msgstr[0] "%v nap"
+msgstr[1] "%v nap"
 
 #: src/feed/feedpropertiesdialog.cpp:127
-#, fuzzy, kde-format
-#| msgid " article"
-#| msgid_plural " articles"
+#, kde-format
 msgid "%v article"
 msgid_plural "%v articles"
-msgstr[0] " hír"
-msgstr[1] " hír"
+msgstr[0] "%v hír"
+msgstr[1] "%v hír"
 
 #: src/feed/feedpropertiesdialog.cpp:161
 #, kde-format
@@ -2564,14 +2551,12 @@ msgid "Open In External Browser"
 msgstr "Megnyitás külső böngészőben"
 
 #: src/whatsnew/whatsnewtranslations.cpp:16
-#, fuzzy
-#| msgid "Enabled Plasma Activity"
 msgid "Implement Plasma Activity."
-msgstr "Plasma Aktivitás bekapcsolva"
+msgstr "Plasma Aktivitás megvalósítása."
 
 #: src/whatsnew/whatsnewtranslations.cpp:16
 msgid "Add new whatsnew widget."
-msgstr ""
+msgstr "Új újdonságok elem hozzáadása."
 
 #: src/widgets/searchbar.cpp:44
 #, kde-format
