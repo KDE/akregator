@@ -1,0 +1,10 @@
+version = 1
+SPDX-PackageName = "akregator"
+SPDX-PackageSupplier = "Montel Laurent <montel@kde.org>"
+SPDX-PackageDownloadLocation = "https://invent.kde.org/pim/akregator"
+
+[[annotations]]
+path = ["README", "MAINTAINERS", "AUTHORS"]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "none"
+SPDX-License-Identifier = "CC0-1.0"
