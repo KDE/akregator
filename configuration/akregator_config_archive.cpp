@@ -13,7 +13,6 @@
 #include <KPluginFactory>
 #include <QButtonGroup>
 #include <QVBoxLayout>
-#include <ki18n_version.h>
 
 using namespace Akregator;
 

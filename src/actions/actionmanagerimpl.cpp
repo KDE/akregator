@@ -13,7 +13,6 @@
 #include "feed.h"
 #include "fetchqueue.h"
 #include "folder.h"
-#include "kcolorscheme_version.h"
 #include "kernel.h"
 #include "mainwidget.h"
 #include "subscriptionlistview.h"

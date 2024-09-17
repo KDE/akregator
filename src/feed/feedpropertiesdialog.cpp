@@ -22,7 +22,6 @@
 #include <QPushButton>
 #include <QVBoxLayout>
 #include <kernel.h>
-#include <ki18n_version.h>
 using namespace Akregator;
 
 FeedPropertiesWidget::FeedPropertiesWidget(QWidget *parent)

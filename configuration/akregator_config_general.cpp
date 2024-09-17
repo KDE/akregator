@@ -17,7 +17,6 @@
 
 #include <KLocalization>
 #include <QVBoxLayout>
-#include <ki18n_version.h>
 using namespace Akregator;
 
 K_PLUGIN_CLASS_WITH_JSON(KCMAkregatorGeneralConfig, "akregator_config_general.json")

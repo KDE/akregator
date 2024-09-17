@@ -10,7 +10,6 @@
 #include "akregatorconfig.h"
 #include <KLocalization>
 #include <KLocalizedString>
-#include <ki18n_version.h>
 
 #include <QPushButton>
 #include <QWidget>

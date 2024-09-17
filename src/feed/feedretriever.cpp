@@ -7,7 +7,6 @@
 */
 
 #include "feedretriever.h"
-#include "akregator-version.h"
 #include "akregatorconfig.h"
 
 #include <KIO/StoredTransferJob>
