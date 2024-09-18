@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: all2.po\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-09-03 00:39+0000\n"
+"POT-Creation-Date: 2024-09-18 00:40+0000\n"
 "PO-Revision-Date: 2004-09-20 15:44+0200\n"
 "Last-Translator: Thierry Vignaud <tvignaud@mandriva.com>\n"
 "Language-Team: br <LL@li.org>\n"
@@ -96,7 +96,7 @@ msgid ""
 "configure dialog)."
 msgstr ""
 
-#: configuration/akregator_config_archive.cpp:35
+#: configuration/akregator_config_archive.cpp:34
 #, fuzzy, kde-format
 #| msgid "1 article"
 msgctxt "Limit feed archive size to:"
@@ -105,7 +105,7 @@ msgid_plural "%v articles"
 msgstr[0] "1 pennad"
 msgstr[1] ""
 
-#: configuration/akregator_config_archive.cpp:36
+#: configuration/akregator_config_archive.cpp:35
 #, fuzzy, kde-format
 #| msgid "1 day"
 msgctxt "Delete articles older than:"
@@ -114,7 +114,7 @@ msgid_plural "%v days"
 msgstr[0] "1 deiz"
 msgstr[1] ""
 
-#: configuration/akregator_config_general.cpp:35
+#: configuration/akregator_config_general.cpp:34
 #, fuzzy, kde-format
 #| msgid "1 minute"
 msgid " minute"
@@ -128,7 +128,7 @@ msgstr[1] ""
 msgid "Webengine Plugins"
 msgstr "&Kefluniañ ..."
 
-#: configuration/settings_advanced.cpp:28
+#: configuration/settings_advanced.cpp:27
 #, fuzzy, kde-format
 #| msgid " sec"
 msgctxt "Mark selected article read after"
@@ -278,7 +278,7 @@ msgstr ""
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
 #: configuration/ui/settings_browser.ui:28
 #: configuration/ui/settings_browser.ui:54
-#: src/actions/actionmanagerimpl.cpp:325
+#: src/actions/actionmanagerimpl.cpp:324
 #, kde-format
 msgid "Open in Tab"
 msgstr "Digeriñ en ur vevennig"
@@ -287,7 +287,7 @@ msgstr "Digeriñ en ur vevennig"
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
 #: configuration/ui/settings_browser.ui:33
 #: configuration/ui/settings_browser.ui:59
-#: src/actions/actionmanagerimpl.cpp:331
+#: src/actions/actionmanagerimpl.cpp:330
 #, kde-format
 msgid "Open in Background Tab"
 msgstr "Digerñ e-barzh ur vevennig drekleur"
@@ -296,7 +296,7 @@ msgstr "Digerñ e-barzh ur vevennig drekleur"
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
 #: configuration/ui/settings_browser.ui:38
 #: configuration/ui/settings_browser.ui:64
-#: src/actions/actionmanagerimpl.cpp:337
+#: src/actions/actionmanagerimpl.cpp:336
 #, kde-format
 msgid "Open in External Browser"
 msgstr "Digerñ e-barzh ur furcher diavaez"
@@ -547,7 +547,7 @@ msgid "Auto-Expand folders with unread articles"
 msgstr " (pennad anlennet ebet)"
 
 #. i18n: ectx: label, entry, group (View)
-#: interfaces/akregator.kcfg:31 src/actions/actionmanagerimpl.cpp:319
+#: interfaces/akregator.kcfg:31 src/actions/actionmanagerimpl.cpp:318
 #, kde-format
 msgid "Show Quick Filter"
 msgstr ""
@@ -1137,378 +1137,378 @@ msgstr ""
 msgid "Gentoo Ebuild"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:65 src/actions/actionmanagerimpl.cpp:288
+#: src/actions/actionmanagerimpl.cpp:64 src/actions/actionmanagerimpl.cpp:287
 #, fuzzy, kde-format
 msgid "&Fetch Feed"
 msgstr "&Degas"
 
-#: src/actions/actionmanagerimpl.cpp:66 src/actions/actionmanagerimpl.cpp:244
+#: src/actions/actionmanagerimpl.cpp:65 src/actions/actionmanagerimpl.cpp:243
 #, fuzzy, kde-format
 msgid "&Delete Feed"
 msgstr "&Lemel ar pennad"
 
-#: src/actions/actionmanagerimpl.cpp:67 src/actions/actionmanagerimpl.cpp:250
+#: src/actions/actionmanagerimpl.cpp:66 src/actions/actionmanagerimpl.cpp:249
 #, fuzzy, kde-format
 msgid "&Edit Feed…"
 msgstr "&Aozañ ..."
 
-#: src/actions/actionmanagerimpl.cpp:68 src/actions/actionmanagerimpl.cpp:307
+#: src/actions/actionmanagerimpl.cpp:67 src/actions/actionmanagerimpl.cpp:306
 #, kde-format
 msgid "&Mark Feed as Read"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:84
+#: src/actions/actionmanagerimpl.cpp:83
 #, fuzzy, kde-format
 msgid "&Fetch Feeds"
 msgstr "&Degas"
 
-#: src/actions/actionmanagerimpl.cpp:85
+#: src/actions/actionmanagerimpl.cpp:84
 #, kde-format
 msgid "&Delete Folder"
 msgstr "&Distruj ar renkell"
 
-#: src/actions/actionmanagerimpl.cpp:86
+#: src/actions/actionmanagerimpl.cpp:85
 #, kde-format
 msgid "&Rename Folder"
 msgstr "&Adenvel ar renkell"
 
-#: src/actions/actionmanagerimpl.cpp:87
+#: src/actions/actionmanagerimpl.cpp:86
 #, kde-format
 msgid "&Mark Feeds as Read"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:192
+#: src/actions/actionmanagerimpl.cpp:191
 #, fuzzy, kde-format
 #| msgid "Imported Folder"
 msgid "&Import Feeds…"
 msgstr "Renkell enporzhet"
 
-#: src/actions/actionmanagerimpl.cpp:196
+#: src/actions/actionmanagerimpl.cpp:195
 #, fuzzy, kde-format
 #| msgid "Imported Folder"
 msgid "&Export Feeds…"
 msgstr "Renkell enporzhet"
 
-#: src/actions/actionmanagerimpl.cpp:201
+#: src/actions/actionmanagerimpl.cpp:200
 #, fuzzy, kde-format
 #| msgid "Configure &Akregator..."
 msgid "&Configure Akregator…"
 msgstr "Kefluniañ &Akregator ..."
 
-#: src/actions/actionmanagerimpl.cpp:220
+#: src/actions/actionmanagerimpl.cpp:219
 #, kde-format
 msgid "&Open Homepage"
 msgstr "&Digeriñ ar bajenn Er-Gêr"
 
-#: src/actions/actionmanagerimpl.cpp:226
+#: src/actions/actionmanagerimpl.cpp:225
 #, kde-format
 msgid "Reload All Tabs"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:232
+#: src/actions/actionmanagerimpl.cpp:231
 #, fuzzy, kde-format
 #| msgid "Add Folder"
 msgid "&Add Feed…"
 msgstr "Ouzhpennañ ur renkell"
 
-#: src/actions/actionmanagerimpl.cpp:238
+#: src/actions/actionmanagerimpl.cpp:237
 #, fuzzy, kde-format
 #| msgid "Ne&w Folder..."
 msgid "Ne&w Folder…"
 msgstr "Re&nkell nevez ..."
 
-#: src/actions/actionmanagerimpl.cpp:263
+#: src/actions/actionmanagerimpl.cpp:262
 #, kde-format
 msgid "&Normal View"
 msgstr "Gwell &boas"
 
-#: src/actions/actionmanagerimpl.cpp:272
+#: src/actions/actionmanagerimpl.cpp:271
 #, kde-format
 msgid "&Widescreen View"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:281
+#: src/actions/actionmanagerimpl.cpp:280
 #, kde-format
 msgid "C&ombined View"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:294
+#: src/actions/actionmanagerimpl.cpp:293
 #, kde-format
 msgid "Fe&tch All Feeds"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:300
+#: src/actions/actionmanagerimpl.cpp:299
 #, fuzzy, kde-format
 msgid "C&ancel Feed Fetches"
 msgstr "&Degas"
 
-#: src/actions/actionmanagerimpl.cpp:313
+#: src/actions/actionmanagerimpl.cpp:312
 #, kde-format
 msgid "Ma&rk All Feeds as Read"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:342 src/actions/actionmanagerimpl.cpp:618
+#: src/actions/actionmanagerimpl.cpp:341 src/actions/actionmanagerimpl.cpp:617
 #, kde-format
 msgid "Copy Link Address"
 msgstr "Eilañ chomlec'h al liamm"
 
-#: src/actions/actionmanagerimpl.cpp:347
+#: src/actions/actionmanagerimpl.cpp:346
 #, kde-format
 msgid "Pre&vious Unread Article"
 msgstr "Pennad anlennet diaraog"
 
-#: src/actions/actionmanagerimpl.cpp:353
+#: src/actions/actionmanagerimpl.cpp:352
 #, kde-format
 msgid "Ne&xt Unread Article"
 msgstr "Pennad anlennet a-&heul"
 
-#: src/actions/actionmanagerimpl.cpp:361
+#: src/actions/actionmanagerimpl.cpp:360
 #, kde-format
 msgid "&Delete"
 msgstr "&Distruj"
 
-#: src/actions/actionmanagerimpl.cpp:366
+#: src/actions/actionmanagerimpl.cpp:365
 #, kde-format
 msgid "&Mark As"
 msgstr "&Merkañ evel"
 
-#: src/actions/actionmanagerimpl.cpp:370
+#: src/actions/actionmanagerimpl.cpp:369
 #, kde-format
 msgctxt "as in: mark as read"
 msgid "&Read"
 msgstr "&Lenn"
 
-#: src/actions/actionmanagerimpl.cpp:372
+#: src/actions/actionmanagerimpl.cpp:371
 #, fuzzy, kde-format
 #| msgid "Mark selected article as read"
 msgctxt "@info:tooltip"
 msgid "Mark selected article as read"
 msgstr "Ouzhpennañ ar merk lennet d'ar c'hemennad dibabet"
 
-#: src/actions/actionmanagerimpl.cpp:378
+#: src/actions/actionmanagerimpl.cpp:377
 #, fuzzy, kde-format
 #| msgid "&New"
 msgctxt "as in: mark as new"
 msgid "&New"
 msgstr "&Nevez"
 
-#: src/actions/actionmanagerimpl.cpp:381
+#: src/actions/actionmanagerimpl.cpp:380
 #, fuzzy, kde-format
 #| msgid "Mark selected article as new"
 msgctxt "@info:tooltip"
 msgid "Mark selected article as new"
 msgstr "Ouzhpennañ ar merk nevez d'ar c'hemennad dibabet"
 
-#: src/actions/actionmanagerimpl.cpp:386
+#: src/actions/actionmanagerimpl.cpp:385
 #, fuzzy, kde-format
 #| msgid "&Unread"
 msgctxt "as in: mark as unread"
 msgid "&Unread"
 msgstr "&Anlennet"
 
-#: src/actions/actionmanagerimpl.cpp:388
+#: src/actions/actionmanagerimpl.cpp:387
 #, fuzzy, kde-format
 #| msgid "Mark selected article as unread"
 msgctxt "@info:tooltip"
 msgid "Mark selected article as unread"
 msgstr "Ouzhpennañ ar merk unlennet d'ar c'hemennad dibabet"
 
-#: src/actions/actionmanagerimpl.cpp:394
+#: src/actions/actionmanagerimpl.cpp:393
 #, fuzzy, kde-format
 msgid "&Mark as Important"
 msgstr "Merkañ &anlennet"
 
-#: src/actions/actionmanagerimpl.cpp:398
+#: src/actions/actionmanagerimpl.cpp:397
 #, kde-format
 msgctxt "@action:button"
 msgid "Remove &Important Mark"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:402
+#: src/actions/actionmanagerimpl.cpp:401
 #, kde-format
 msgid "Move Node Up"
 msgstr "Pignit ar skoulm"
 
-#: src/actions/actionmanagerimpl.cpp:407
+#: src/actions/actionmanagerimpl.cpp:406
 #, kde-format
 msgid "Move Node Down"
 msgstr "Diskennit ar skoulm"
 
-#: src/actions/actionmanagerimpl.cpp:412
+#: src/actions/actionmanagerimpl.cpp:411
 #, kde-format
 msgid "Move Node Left"
 msgstr "Fiñval ar skoulm d'a-gleiz"
 
-#: src/actions/actionmanagerimpl.cpp:417
+#: src/actions/actionmanagerimpl.cpp:416
 #, kde-format
 msgid "Move Node Right"
 msgstr "Fiñval ar skoulm d'a-zehou"
 
-#: src/actions/actionmanagerimpl.cpp:423
+#: src/actions/actionmanagerimpl.cpp:422
 #, fuzzy, kde-format
 #| msgid "Send &Link Address..."
 msgid "Send &Link Address…"
 msgstr "Kas chomlec'h al &liamm ..."
 
-#: src/actions/actionmanagerimpl.cpp:428
+#: src/actions/actionmanagerimpl.cpp:427
 #, fuzzy, kde-format
 #| msgid "Send &File..."
 msgid "Send &File…"
 msgstr "Kas ar restr ..."
 
-#: src/actions/actionmanagerimpl.cpp:434
+#: src/actions/actionmanagerimpl.cpp:433
 #, kde-format
 msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:440
+#: src/actions/actionmanagerimpl.cpp:439
 #, kde-format
 msgid "What's new"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:474
+#: src/actions/actionmanagerimpl.cpp:473
 #, kde-format
 msgid "&Previous Article"
 msgstr "Pennad a-&raok"
 
-#: src/actions/actionmanagerimpl.cpp:478
+#: src/actions/actionmanagerimpl.cpp:477
 #, kde-format
 msgid "&Next Article"
 msgstr "Pennad &a heul"
 
-#: src/actions/actionmanagerimpl.cpp:494
+#: src/actions/actionmanagerimpl.cpp:493
 #, kde-format
 msgid "&Previous Feed"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:499
+#: src/actions/actionmanagerimpl.cpp:498
 #, kde-format
 msgid "&Next Feed"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:505
+#: src/actions/actionmanagerimpl.cpp:504
 #, kde-format
 msgid "N&ext Unread Feed"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:511
+#: src/actions/actionmanagerimpl.cpp:510
 #, kde-format
 msgid "Prev&ious Unread Feed"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:516
+#: src/actions/actionmanagerimpl.cpp:515
 #, kde-format
 msgid "Go to Top of Tree"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:521
+#: src/actions/actionmanagerimpl.cpp:520
 #, kde-format
 msgid "Go to Bottom of Tree"
 msgstr "Mont da traoñ ar wezenn"
 
-#: src/actions/actionmanagerimpl.cpp:526
+#: src/actions/actionmanagerimpl.cpp:525
 #, kde-format
 msgid "Go Left in Tree"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:531
+#: src/actions/actionmanagerimpl.cpp:530
 #, kde-format
 msgid "Go Right in Tree"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:536
+#: src/actions/actionmanagerimpl.cpp:535
 #, kde-format
 msgid "Go Up in Tree"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:541
+#: src/actions/actionmanagerimpl.cpp:540
 #, kde-format
 msgid "Go Down in Tree"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:547
+#: src/actions/actionmanagerimpl.cpp:546
 #, kde-format
 msgid "Hide Read Feeds"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:553
+#: src/actions/actionmanagerimpl.cpp:552
 #, kde-format
 msgid "Lock Feeds In Place"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:559
+#: src/actions/actionmanagerimpl.cpp:558
 #, fuzzy, kde-format
 #| msgid " (no unread articles)"
 msgid "Auto-expand folders with unread articles"
 msgstr " (pennad anlennet ebet)"
 
-#: src/actions/actionmanagerimpl.cpp:575
+#: src/actions/actionmanagerimpl.cpp:574
 #, kde-format
 msgid "Select Next Tab"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:580
+#: src/actions/actionmanagerimpl.cpp:579
 #, kde-format
 msgid "Select Previous Tab"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:586
+#: src/actions/actionmanagerimpl.cpp:585
 #, kde-format
 msgid "Detach Tab"
 msgstr "Distagañ ar vevennig"
 
-#: src/actions/actionmanagerimpl.cpp:600
+#: src/actions/actionmanagerimpl.cpp:599
 #, kde-format
 msgid "Mute"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:604
+#: src/actions/actionmanagerimpl.cpp:603
 #, kde-format
 msgid "Unmute"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:607
+#: src/actions/actionmanagerimpl.cpp:606
 #, kde-format
 msgctxt "@action"
 msgid "Speak Text"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:612
+#: src/actions/actionmanagerimpl.cpp:611
 #, kde-format
 msgid "&Find in Message…"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:623
+#: src/actions/actionmanagerimpl.cpp:622
 #, fuzzy, kde-format
 #| msgid "&Close Tab"
 msgid "Close Tab"
 msgstr "&Serriñ ar vevennig"
 
-#: src/actions/actionmanagerimpl.cpp:636
+#: src/actions/actionmanagerimpl.cpp:635
 #, kde-format
 msgctxt "@action"
 msgid "Activate Tab %1"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:642
+#: src/actions/actionmanagerimpl.cpp:641
 #, fuzzy, kde-format
 #| msgid "&Save Link As..."
 msgid "&Save Link As…"
 msgstr "Enrollañ al liamm e ..."
 
-#: src/actions/actionmanagerimpl.cpp:646
+#: src/actions/actionmanagerimpl.cpp:645
 #, kde-format
 msgid "Copy &Link Address"
 msgstr "Eilañ chomlec'h al &liamm"
 
-#: src/actions/actionmanagerimpl.cpp:649
+#: src/actions/actionmanagerimpl.cpp:648
 #, kde-format
 msgctxt "@action"
 msgid "Copy Image Location"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:656
+#: src/actions/actionmanagerimpl.cpp:655
 #, kde-format
 msgctxt "@action"
 msgid "Save Image On Disk…"
@@ -1988,12 +1988,12 @@ msgstr "&Restr"
 msgid "All Feeds"
 msgstr ""
 
-#: src/feed/feedpropertiesdialog.cpp:40
+#: src/feed/feedpropertiesdialog.cpp:39
 #, kde-format
 msgid "Activities"
 msgstr ""
 
-#: src/feed/feedpropertiesdialog.cpp:65 src/feed/feedpropertiesdialog.cpp:120
+#: src/feed/feedpropertiesdialog.cpp:64 src/feed/feedpropertiesdialog.cpp:119
 #, fuzzy, kde-format
 #| msgid "Minutes"
 msgid "Minute"
@@ -2001,7 +2001,7 @@ msgid_plural "Minutes"
 msgstr[0] "Munutoù"
 msgstr[1] ""
 
-#: src/feed/feedpropertiesdialog.cpp:66 src/feed/feedpropertiesdialog.cpp:121
+#: src/feed/feedpropertiesdialog.cpp:65 src/feed/feedpropertiesdialog.cpp:120
 #, fuzzy, kde-format
 #| msgid "Hours"
 msgid "Hour"
@@ -2009,7 +2009,7 @@ msgid_plural "Hours"
 msgstr[0] "Eurioù"
 msgstr[1] ""
 
-#: src/feed/feedpropertiesdialog.cpp:67 src/feed/feedpropertiesdialog.cpp:122
+#: src/feed/feedpropertiesdialog.cpp:66 src/feed/feedpropertiesdialog.cpp:121
 #, fuzzy, kde-format
 #| msgid "Days"
 msgid "Day"
@@ -2017,21 +2017,21 @@ msgid_plural "Days"
 msgstr[0] "Deizioù"
 msgstr[1] ""
 
-#: src/feed/feedpropertiesdialog.cpp:97 src/feed/feedpropertiesdialog.cpp:161
+#: src/feed/feedpropertiesdialog.cpp:96 src/feed/feedpropertiesdialog.cpp:160
 #, fuzzy, kde-format
 #| msgid "Tag Properties"
 msgctxt "@title:window"
 msgid "Feed Properties"
 msgstr "Perzhioù al liketenn"
 
-#: src/feed/feedpropertiesdialog.cpp:123
+#: src/feed/feedpropertiesdialog.cpp:122
 #, fuzzy, kde-format
 #| msgid "Never"
 msgctxt "never fetch new articles"
 msgid "Never"
 msgstr "Gwech ebet"
 
-#: src/feed/feedpropertiesdialog.cpp:126
+#: src/feed/feedpropertiesdialog.cpp:125
 #, fuzzy, kde-format
 #| msgid "1 day"
 msgid "%v day"
@@ -2039,7 +2039,7 @@ msgid_plural "%v days"
 msgstr[0] "1 deiz"
 msgstr[1] ""
 
-#: src/feed/feedpropertiesdialog.cpp:127
+#: src/feed/feedpropertiesdialog.cpp:126
 #, fuzzy, kde-format
 #| msgid "1 article"
 msgid "%v article"
@@ -2047,7 +2047,7 @@ msgid_plural "%v articles"
 msgstr[0] "1 pennad"
 msgstr[1] ""
 
-#: src/feed/feedpropertiesdialog.cpp:161
+#: src/feed/feedpropertiesdialog.cpp:160
 #, fuzzy, kde-format
 #| msgid "Properties of %1"
 msgctxt "@title:window"
