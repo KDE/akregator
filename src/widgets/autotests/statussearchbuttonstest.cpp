@@ -26,3 +26,5 @@ void StatusSearchButtonsTest::shouldHaveDefaultValues()
     auto mainLayout = w.findChild<QHBoxLayout *>(QStringLiteral("mainLayout"));
     QVERIFY(mainLayout);
 }
+
+#include "moc_statussearchbuttonstest.cpp"
