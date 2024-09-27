@@ -2600,21 +2600,3 @@ msgstr "Четене"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "Важно"
-
-#~ msgid "Write Error"
-#~ msgstr "Грешка при запис"
-
-#~ msgid "Misc"
-#~ msgstr "Разни"
-
-#~ msgid "Access Key Enabled"
-#~ msgstr "Активиран ключ за достъп"
-
-#~ msgid "Filter"
-#~ msgstr "Филтър"
-
-#~ msgid "We hope that you will enjoy Akregator."
-#~ msgstr "Надяваме се, че ще ви хареса Akregator."
-
-#~ msgid "Thank you, The Akregator Team"
-#~ msgstr "Благодаря, екипът на Akregator"
