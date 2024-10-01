@@ -36,7 +36,6 @@ using namespace Akregator;
 FilterDeletedProxyModel::FilterDeletedProxyModel(QObject *parent)
     : QSortFilterProxyModel(parent)
 {
-    setDynamicSortFilter(true);
 }
 
 bool FilterDeletedProxyModel::filterAcceptsRow(int source_row, const QModelIndex &source_parent) const
