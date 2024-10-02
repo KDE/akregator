@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-09-18 00:40+0000\n"
+"POT-Creation-Date: 2024-10-02 00:40+0000\n"
 "PO-Revision-Date: 2022-07-03 14:28+0400\n"
 "Last-Translator: Kheyyam <xxmn77@gmail.com>\n"
 "Language-Team: Azerbaijani <kde-i18n-doc@kde.org>\n"
@@ -1698,17 +1698,17 @@ msgstr "İdxal olunmuş qovluq"
 msgid "The feed to be listed was already removed."
 msgstr "Sİyahıya alınacaq lent artıq silindi"
 
-#: src/articlelistview.cpp:156 src/subscription/subscriptionlistview.cpp:180
+#: src/articlelistview.cpp:155 src/subscription/subscriptionlistview.cpp:180
 #, kde-format
 msgid "Columns"
 msgstr "Sütunlar"
 
-#: src/articlelistview.cpp:214
+#: src/articlelistview.cpp:213
 #, kde-format
 msgid "No result found"
 msgstr "Nəticə tapılmadı"
 
-#: src/articlelistview.cpp:375
+#: src/articlelistview.cpp:374
 #, kde-format
 msgid ""
 "<h2>Article list</h2>Here you can browse articles from the currently "
