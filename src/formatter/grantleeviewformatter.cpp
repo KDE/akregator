@@ -95,7 +95,7 @@ QString lighterColor(QString inputColor, int factor)
 
 QString GrantleeViewFormatter::sidebarCss(const Colors &colors) const
 {
-    bool isDark = colors.colorScheme == QStringLiteral("dark");
+    const bool isDark = colors.colorScheme == QLatin1StringView("dark");
 
     QString backgroundColor = isDark ? colors.backgroundColor : QStringLiteral("#fff");
     QString borderColor = isDark ? QStringLiteral("#55595C") : QStringLiteral("#BBBDBE");
