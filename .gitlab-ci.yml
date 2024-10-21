@@ -5,5 +5,6 @@ include:
   - project: sysadmin/ci-utilities
     file:
       - /gitlab-templates/linux-qt6.yml
+      - /gitlab-templates/json-validation.yml
       - /gitlab-templates/freebsd-qt6.yml
       - /gitlab-templates/cppcheck.yml
