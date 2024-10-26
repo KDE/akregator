@@ -30,7 +30,11 @@ Q_SIGNALS:
     void finished();
 
 private:
-    enum State { Begun, Queued, Ended } mState = Ended;
+    enum State {
+        Begun,
+        Queued,
+        Ended
+    } mState = Ended;
 
     QString mHtml;
     QUrl mBaseUrl;

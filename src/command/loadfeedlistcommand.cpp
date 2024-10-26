@@ -60,12 +60,12 @@ void LoadFeedListCommandPrivate::handleDocument(const QDomDocument &doc)
         bool backupCreated;
         const QString backupFile = createBackup(fileName, &backupCreated);
         const QString msg = backupCreated ? i18n(
-                                "<qt>The standard feed list is corrupted (invalid OPML). "
-                                "A backup was created:<p><b>%1</b></p></qt>",
-                                backupFile)
+                                                "<qt>The standard feed list is corrupted (invalid OPML). "
+                                                "A backup was created:<p><b>%1</b></p></qt>",
+                                                backupFile)
                                           : i18n(
-                                              "<qt>The standard feed list is corrupted (invalid OPML). "
-                                              "Could not create a backup.</qt>");
+                                                "<qt>The standard feed list is corrupted (invalid OPML). "
+                                                "Could not create a backup.</qt>");
 
         QPointer<QObject> that(q);
         KMessageBox::error(q->parentWidget(), msg, i18nc("@title:window", "OPML Parsing Error"));
@@ -161,12 +161,12 @@ void LoadFeedListCommandPrivate::doLoad()
             fileName,
             result.errorMessage);
         const QString msg = backupCreated ? i18n(
-                                "<qt>The standard feed list is corrupted (invalid XML). "
-                                "A backup was created:<p><b>%1</b></p></qt>",
-                                backupFile)
+                                                "<qt>The standard feed list is corrupted (invalid XML). "
+                                                "A backup was created:<p><b>%1</b></p></qt>",
+                                                backupFile)
                                           : i18n(
-                                              "<qt>The standard feed list is corrupted (invalid XML). "
-                                              "Could not create a backup.</qt>");
+                                                "<qt>The standard feed list is corrupted (invalid XML). "
+                                                "Could not create a backup.</qt>");
 
         QPointer<QObject> that(q);
 

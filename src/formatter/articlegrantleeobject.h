@@ -30,7 +30,11 @@ public:
     explicit ArticleGrantleeObject(const Article &article, ArticleFormatter::IconOption icon, QObject *parent = nullptr);
     ~ArticleGrantleeObject() override;
 
-    enum ArticleStatus { Unread = 0, Read, New };
+    enum ArticleStatus {
+        Unread = 0,
+        Read,
+        New
+    };
     Q_ENUMS(ArticleStatus)
 
     Akregator::ArticleGrantleeObject::ArticleStatus articleStatus() const;

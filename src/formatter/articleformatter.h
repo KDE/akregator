@@ -20,7 +20,10 @@ class ArticleFormatterPrivate;
 class ArticleFormatter
 {
 public:
-    enum IconOption { NoIcon, ShowIcon };
+    enum IconOption {
+        NoIcon,
+        ShowIcon
+    };
 
     explicit ArticleFormatter();
 

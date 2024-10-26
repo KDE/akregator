@@ -95,7 +95,9 @@ public:
 
     void start() override;
 
-    enum Error { ListingFailed = KJob::UserDefinedError };
+    enum Error {
+        ListingFailed = KJob::UserDefinedError
+    };
 
 private Q_SLOTS:
     void doList();

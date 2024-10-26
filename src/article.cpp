@@ -89,7 +89,13 @@ struct Article::Private : public Shared {
         0000 1000 Read
         0001 0000 Keep
      */
-    enum Status { Deleted = 0x01, Trash = 0x02, New = 0x04, Read = 0x08, Keep = 0x10 };
+    enum Status {
+        Deleted = 0x01,
+        Trash = 0x02,
+        New = 0x04,
+        Read = 0x08,
+        Keep = 0x10
+    };
 
     Feed *feed = nullptr;
     QString guid;

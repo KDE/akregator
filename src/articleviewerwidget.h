@@ -135,7 +135,11 @@ private:
     QList<Article> m_articles;
     QUrl m_link;
     std::vector<QSharedPointer<const Filters::AbstractMatcher>> m_filters;
-    enum ViewMode { NormalView, CombinedView, SummaryView };
+    enum ViewMode {
+        NormalView,
+        CombinedView,
+        SummaryView
+    };
     ViewMode m_viewMode = NormalView;
     Akregator::ArticleHtmlWebEngineWriter *m_articleHtmlWriter = nullptr;
     Akregator::ArticleViewerWebEngineWidgetNg *const m_articleViewerWidgetNg;

@@ -13,7 +13,11 @@ class CrashWidget : public QWidget
 {
     Q_OBJECT
 public:
-    enum CrashAction { RestoreSession = 0, NotRestoreSession, AskMeLater };
+    enum CrashAction {
+        RestoreSession = 0,
+        NotRestoreSession,
+        AskMeLater
+    };
 
     explicit CrashWidget(QWidget *parent = nullptr);
     ~CrashWidget() override;

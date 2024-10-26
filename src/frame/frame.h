@@ -35,7 +35,12 @@ public:
     explicit Frame(QWidget *parent = nullptr);
     ~Frame() override;
 
-    enum State { Idle, Started, Completed, Canceled };
+    enum State {
+        Idle,
+        Started,
+        Completed,
+        Canceled
+    };
 
     virtual qreal zoomFactor() const = 0;
     /**
