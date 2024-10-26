@@ -30,10 +30,7 @@ KCMAkregatorGeneralConfig::KCMAkregatorGeneralConfig(QObject *parent, const KPlu
     auto layout = new QVBoxLayout(widget());
     layout->addWidget(m_widget);
 
-#if KI18N_VERSION > QT_VERSION_CHECK(6, 5, 0)
     KLocalization::setupSpinBoxFormatString(ui.kcfg_AutoFetchInterval, ki18np(" minute", " minutes"));
-#endif
-
     connect(ui.kcfg_UseIntervalFetch, &QAbstractButton::toggled, ui.kcfg_AutoFetchInterval, &QWidget::setEnabled);
     connect(ui.kcfg_UseIntervalFetch, &QAbstractButton::toggled, ui.autoFetchIntervalLabel, &QWidget::setEnabled);
     addConfig(Settings::self(), m_widget);

@@ -23,9 +23,7 @@ SettingsAdvanced::SettingsAdvanced(QWidget *parent)
     setupUi(this);
 
     connect(kcfg_UseMarkReadDelay, &QCheckBox::toggled, kcfg_MarkReadDelay, &QSpinBox::setEnabled);
-#if KI18N_VERSION > QT_VERSION_CHECK(6, 5, 0)
     KLocalization::setupSpinBoxFormatString(kcfg_MarkReadDelay, ki18ncp("Mark selected article read after", "%v second", "%v seconds"));
-#endif
 }
 
 #include "moc_settings_advanced.cpp"

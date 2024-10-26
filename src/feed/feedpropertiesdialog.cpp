@@ -121,10 +121,8 @@ FeedPropertiesDialog::FeedPropertiesDialog(QWidget *parent, const QString &name)
     mFeedPropertiesWidget->updateComboBox->insertItem(FeedPropertiesWidget::Days, i18np("Day", "Days", 0));
     mFeedPropertiesWidget->updateComboBox->insertItem(FeedPropertiesWidget::Never, i18nc("never fetch new articles", "Never"));
 
-#if KI18N_VERSION > QT_VERSION_CHECK(6, 5, 0)
     KLocalization::setupSpinBoxFormatString(mFeedPropertiesWidget->sb_maxArticleAge, ki18np("%v day", "%v days"));
     KLocalization::setupSpinBoxFormatString(mFeedPropertiesWidget->sb_maxArticleNumber, ki18np("%v article", "%v articles"));
-#endif
 
     connect(mFeedPropertiesWidget->feedNameEdit, &QLineEdit::textChanged, this, &FeedPropertiesDialog::slotSetWindowTitle);
 }
