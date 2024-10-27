@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-10-02 00:40+0000\n"
+"POT-Creation-Date: 2024-10-27 00:40+0000\n"
 "PO-Revision-Date: 2024-08-28 17:06+0300\n"
 "Last-Translator: Mindaugas Baranauskas <opensuse.lietuviu.kalba@gmail.com>\n"
 "Language-Team: Lithuanian <kde-i18n-lt@kde.org>\n"
@@ -108,7 +108,7 @@ msgstr ""
 "<b>Pastaba:</b> Saugumo sumetimais, išorinė rodyklė yra užblokuota (Žr. "
 "konfigūracijos dialogą)."
 
-#: configuration/akregator_config_archive.cpp:34
+#: configuration/akregator_config_archive.cpp:33
 #, kde-format
 msgctxt "Limit feed archive size to:"
 msgid "%v article"
@@ -118,7 +118,7 @@ msgstr[1] "%v straipsnių"
 msgstr[2] "%v straipsnių"
 msgstr[3] "%v straipsnio"
 
-#: configuration/akregator_config_archive.cpp:35
+#: configuration/akregator_config_archive.cpp:34
 #, kde-format
 msgctxt "Delete articles older than:"
 msgid "%v day"
@@ -128,7 +128,7 @@ msgstr[1] "%v dienos"
 msgstr[2] "%v dienų"
 msgstr[3] "%v diena"
 
-#: configuration/akregator_config_general.cpp:34
+#: configuration/akregator_config_general.cpp:33
 #, kde-format
 msgid " minute"
 msgid_plural " minutes"
@@ -142,7 +142,7 @@ msgstr[3] " minutę"
 msgid "Webengine Plugins"
 msgstr "Internetinių variklių įskiepiai"
 
-#: configuration/settings_advanced.cpp:27
+#: configuration/settings_advanced.cpp:26
 #, kde-format
 msgctxt "Mark selected article read after"
 msgid "%v second"
@@ -1252,7 +1252,7 @@ msgstr "Nutr&aukti naujienų atsiuntimą"
 msgid "Ma&rk All Feeds as Read"
 msgstr "Žymė&ti visus kanalus skaitytais"
 
-#: src/actions/actionmanagerimpl.cpp:341 src/actions/actionmanagerimpl.cpp:617
+#: src/actions/actionmanagerimpl.cpp:341 src/actions/actionmanagerimpl.cpp:613
 #, kde-format
 msgid "Copy Link Address"
 msgstr "Kopijuoti nuorodos adresą"
@@ -1365,145 +1365,145 @@ msgstr "Fokusuoti į greitą paiešką"
 msgid "What's new"
 msgstr "Kas naujo"
 
-#: src/actions/actionmanagerimpl.cpp:473
+#: src/actions/actionmanagerimpl.cpp:469
 #, kde-format
 msgid "&Previous Article"
 msgstr "&Ankstesnis straipsnis"
 
-#: src/actions/actionmanagerimpl.cpp:477
+#: src/actions/actionmanagerimpl.cpp:473
 #, kde-format
 msgid "&Next Article"
 msgstr "&Kitas straipsnis"
 
-#: src/actions/actionmanagerimpl.cpp:493
+#: src/actions/actionmanagerimpl.cpp:489
 #, kde-format
 msgid "&Previous Feed"
 msgstr "&Ankstesnis kanalas"
 
-#: src/actions/actionmanagerimpl.cpp:498
+#: src/actions/actionmanagerimpl.cpp:494
 #, kde-format
 msgid "&Next Feed"
 msgstr "&Kitas kanalas"
 
-#: src/actions/actionmanagerimpl.cpp:504
+#: src/actions/actionmanagerimpl.cpp:500
 #, kde-format
 msgid "N&ext Unread Feed"
 msgstr "Kitas &neskaitytas kanalas"
 
-#: src/actions/actionmanagerimpl.cpp:510
+#: src/actions/actionmanagerimpl.cpp:506
 #, kde-format
 msgid "Prev&ious Unread Feed"
 msgstr "Ank&stesnis neskaitytas kanalas"
 
-#: src/actions/actionmanagerimpl.cpp:515
+#: src/actions/actionmanagerimpl.cpp:511
 #, kde-format
 msgid "Go to Top of Tree"
 msgstr "Eiti į medžio viršūnę"
 
-#: src/actions/actionmanagerimpl.cpp:520
+#: src/actions/actionmanagerimpl.cpp:516
 #, kde-format
 msgid "Go to Bottom of Tree"
 msgstr "Eiti į medžio apačią"
 
-#: src/actions/actionmanagerimpl.cpp:525
+#: src/actions/actionmanagerimpl.cpp:521
 #, kde-format
 msgid "Go Left in Tree"
 msgstr "Eiti medžiu kairėn"
 
-#: src/actions/actionmanagerimpl.cpp:530
+#: src/actions/actionmanagerimpl.cpp:526
 #, kde-format
 msgid "Go Right in Tree"
 msgstr "Eiti medžiu dešinėn"
 
-#: src/actions/actionmanagerimpl.cpp:535
+#: src/actions/actionmanagerimpl.cpp:531
 #, kde-format
 msgid "Go Up in Tree"
 msgstr "Eiti medžiu aukštyn"
 
-#: src/actions/actionmanagerimpl.cpp:540
+#: src/actions/actionmanagerimpl.cpp:536
 #, kde-format
 msgid "Go Down in Tree"
 msgstr "Eiti medžiu žemyn"
 
-#: src/actions/actionmanagerimpl.cpp:546
+#: src/actions/actionmanagerimpl.cpp:542
 #, kde-format
 msgid "Hide Read Feeds"
 msgstr "Slėpti skaitytus kanalus"
 
-#: src/actions/actionmanagerimpl.cpp:552
+#: src/actions/actionmanagerimpl.cpp:548
 #, kde-format
 msgid "Lock Feeds In Place"
 msgstr "Užrakinti vietoje"
 
-#: src/actions/actionmanagerimpl.cpp:558
+#: src/actions/actionmanagerimpl.cpp:554
 #, kde-format
 msgid "Auto-expand folders with unread articles"
 msgstr "Automatiškai išplėsti aplankus, kuriuose yra neskaitytų straipsnių"
 
-#: src/actions/actionmanagerimpl.cpp:574
+#: src/actions/actionmanagerimpl.cpp:570
 #, kde-format
 msgid "Select Next Tab"
 msgstr "Pažymėti kitą kortelę"
 
-#: src/actions/actionmanagerimpl.cpp:579
+#: src/actions/actionmanagerimpl.cpp:575
 #, kde-format
 msgid "Select Previous Tab"
 msgstr "Pažymėti ankstesnę kortelę"
 
-#: src/actions/actionmanagerimpl.cpp:585
+#: src/actions/actionmanagerimpl.cpp:581
 #, kde-format
 msgid "Detach Tab"
 msgstr "Atkabinti kortelę"
 
-#: src/actions/actionmanagerimpl.cpp:599
+#: src/actions/actionmanagerimpl.cpp:595
 #, kde-format
 msgid "Mute"
 msgstr "Nutildyti"
 
-#: src/actions/actionmanagerimpl.cpp:603
+#: src/actions/actionmanagerimpl.cpp:599
 #, kde-format
 msgid "Unmute"
 msgstr "Įjungti garsą"
 
-#: src/actions/actionmanagerimpl.cpp:606
+#: src/actions/actionmanagerimpl.cpp:602
 #, kde-format
 msgctxt "@action"
 msgid "Speak Text"
 msgstr "Balsu skaityti tekstą"
 
-#: src/actions/actionmanagerimpl.cpp:611
+#: src/actions/actionmanagerimpl.cpp:607
 #, kde-format
 msgid "&Find in Message…"
 msgstr "&Ieškoti pranešime…"
 
-#: src/actions/actionmanagerimpl.cpp:622
+#: src/actions/actionmanagerimpl.cpp:618
 #, kde-format
 msgid "Close Tab"
 msgstr "Užverti kortelę"
 
-#: src/actions/actionmanagerimpl.cpp:635
+#: src/actions/actionmanagerimpl.cpp:631
 #, kde-format
 msgctxt "@action"
 msgid "Activate Tab %1"
 msgstr "Aktyvinti kortelę %1"
 
-#: src/actions/actionmanagerimpl.cpp:641
+#: src/actions/actionmanagerimpl.cpp:637
 #, kde-format
 msgid "&Save Link As…"
 msgstr "Į&rašyti nuorodą kaip…"
 
-#: src/actions/actionmanagerimpl.cpp:645
+#: src/actions/actionmanagerimpl.cpp:641
 #, kde-format
 msgid "Copy &Link Address"
 msgstr "Kopijuoti &nuorodos adresą"
 
-#: src/actions/actionmanagerimpl.cpp:648
+#: src/actions/actionmanagerimpl.cpp:644
 #, kde-format
 msgctxt "@action"
 msgid "Copy Image Location"
 msgstr "Kopijuoti paveikslo vietą"
 
-#: src/actions/actionmanagerimpl.cpp:655
+#: src/actions/actionmanagerimpl.cpp:651
 #, kde-format
 msgctxt "@action"
 msgid "Save Image On Disk…"
@@ -2021,7 +2021,7 @@ msgstr[1] "Dienas"
 msgstr[2] "Dienų"
 msgstr[3] "Dieną"
 
-#: src/feed/feedpropertiesdialog.cpp:96 src/feed/feedpropertiesdialog.cpp:160
+#: src/feed/feedpropertiesdialog.cpp:96 src/feed/feedpropertiesdialog.cpp:158
 #, kde-format
 msgctxt "@title:window"
 msgid "Feed Properties"
@@ -2033,7 +2033,7 @@ msgctxt "never fetch new articles"
 msgid "Never"
 msgstr "Niekada"
 
-#: src/feed/feedpropertiesdialog.cpp:125
+#: src/feed/feedpropertiesdialog.cpp:124
 #, kde-format
 msgid "%v day"
 msgid_plural "%v days"
@@ -2042,7 +2042,7 @@ msgstr[1] "%v dienos"
 msgstr[2] "%v dienų"
 msgstr[3] "%v diena"
 
-#: src/feed/feedpropertiesdialog.cpp:126
+#: src/feed/feedpropertiesdialog.cpp:125
 #, kde-format
 msgid "%v article"
 msgid_plural "%v articles"
@@ -2051,7 +2051,7 @@ msgstr[1] "%v straipsniai"
 msgstr[2] "%v straipsnių"
 msgstr[3] "%v straipsnis"
 
-#: src/feed/feedpropertiesdialog.cpp:160
+#: src/feed/feedpropertiesdialog.cpp:158
 #, kde-format
 msgctxt "@title:window"
 msgid "Properties of %1"

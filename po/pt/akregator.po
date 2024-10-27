@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-10-02 00:40+0000\n"
+"POT-Creation-Date: 2024-10-27 00:40+0000\n"
 "PO-Revision-Date: 2022-05-04 18:32+0100\n"
 "Last-Translator: Pedro Morais <morais@kde.org>\n"
 "Language-Team: pt <kde-i18n-pt@kde.org>\n"
@@ -112,7 +112,7 @@ msgstr ""
 "<b>Nota:</b> Por razões de segurança, a referência externa está bloqueada "
 "(Veja a janela de configuração)."
 
-#: configuration/akregator_config_archive.cpp:34
+#: configuration/akregator_config_archive.cpp:33
 #, fuzzy, kde-format
 #| msgctxt "Limit feed archive size to:"
 #| msgid " article"
@@ -123,7 +123,7 @@ msgid_plural "%v articles"
 msgstr[0] " artigo"
 msgstr[1] " artigos"
 
-#: configuration/akregator_config_archive.cpp:35
+#: configuration/akregator_config_archive.cpp:34
 #, fuzzy, kde-format
 #| msgctxt "Delete articles older than:"
 #| msgid " day"
@@ -134,7 +134,7 @@ msgid_plural "%v days"
 msgstr[0] " dia"
 msgstr[1] " dias"
 
-#: configuration/akregator_config_general.cpp:34
+#: configuration/akregator_config_general.cpp:33
 #, kde-format
 msgid " minute"
 msgid_plural " minutes"
@@ -146,7 +146,7 @@ msgstr[1] " minutos"
 msgid "Webengine Plugins"
 msgstr "'Plugins' do Motor Web"
 
-#: configuration/settings_advanced.cpp:27
+#: configuration/settings_advanced.cpp:26
 #, fuzzy, kde-format
 #| msgctxt "Mark selected article read after"
 #| msgid " second"
@@ -1280,7 +1280,7 @@ msgstr "C&ancelar a Transferência das Fontes"
 msgid "Ma&rk All Feeds as Read"
 msgstr "&Marcar Todas as Fontes como Lidas"
 
-#: src/actions/actionmanagerimpl.cpp:341 src/actions/actionmanagerimpl.cpp:617
+#: src/actions/actionmanagerimpl.cpp:341 src/actions/actionmanagerimpl.cpp:613
 #, kde-format
 msgid "Copy Link Address"
 msgstr "Copiar o Endereço da Ligação"
@@ -1400,150 +1400,150 @@ msgstr "Colocar a Procura Rápida em Primeiro Plano"
 msgid "What's new"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:473
+#: src/actions/actionmanagerimpl.cpp:469
 #, kde-format
 msgid "&Previous Article"
 msgstr "Arti&go Anterior"
 
-#: src/actions/actionmanagerimpl.cpp:477
+#: src/actions/actionmanagerimpl.cpp:473
 #, kde-format
 msgid "&Next Article"
 msgstr "Artigo Segui&nte"
 
-#: src/actions/actionmanagerimpl.cpp:493
+#: src/actions/actionmanagerimpl.cpp:489
 #, kde-format
 msgid "&Previous Feed"
 msgstr "Fonte An&terior"
 
-#: src/actions/actionmanagerimpl.cpp:498
+#: src/actions/actionmanagerimpl.cpp:494
 #, kde-format
 msgid "&Next Feed"
 msgstr "Fonte Segui&nte"
 
-#: src/actions/actionmanagerimpl.cpp:504
+#: src/actions/actionmanagerimpl.cpp:500
 #, kde-format
 msgid "N&ext Unread Feed"
 msgstr "Font&e Não-Lida Seguinte"
 
-#: src/actions/actionmanagerimpl.cpp:510
+#: src/actions/actionmanagerimpl.cpp:506
 #, kde-format
 msgid "Prev&ious Unread Feed"
 msgstr "Fonte Não-L&ida Seguinte"
 
-#: src/actions/actionmanagerimpl.cpp:515
+#: src/actions/actionmanagerimpl.cpp:511
 #, kde-format
 msgid "Go to Top of Tree"
 msgstr "Ir para o Topo da Árvore"
 
-#: src/actions/actionmanagerimpl.cpp:520
+#: src/actions/actionmanagerimpl.cpp:516
 #, kde-format
 msgid "Go to Bottom of Tree"
 msgstr "Ir para o Fundo da Árvore"
 
-#: src/actions/actionmanagerimpl.cpp:525
+#: src/actions/actionmanagerimpl.cpp:521
 #, kde-format
 msgid "Go Left in Tree"
 msgstr "Ir para a Esquerda na Árvore"
 
-#: src/actions/actionmanagerimpl.cpp:530
+#: src/actions/actionmanagerimpl.cpp:526
 #, kde-format
 msgid "Go Right in Tree"
 msgstr "Ir para a Direita na Árvore"
 
-#: src/actions/actionmanagerimpl.cpp:535
+#: src/actions/actionmanagerimpl.cpp:531
 #, kde-format
 msgid "Go Up in Tree"
 msgstr "Subir na Árvore"
 
-#: src/actions/actionmanagerimpl.cpp:540
+#: src/actions/actionmanagerimpl.cpp:536
 #, kde-format
 msgid "Go Down in Tree"
 msgstr "Descer na Árvore"
 
-#: src/actions/actionmanagerimpl.cpp:546
+#: src/actions/actionmanagerimpl.cpp:542
 #, kde-format
 msgid "Hide Read Feeds"
 msgstr "Esconder as Fontes Lidas"
 
-#: src/actions/actionmanagerimpl.cpp:552
+#: src/actions/actionmanagerimpl.cpp:548
 #, kde-format
 msgid "Lock Feeds In Place"
 msgstr "Bloquear a Posição das Fontes"
 
-#: src/actions/actionmanagerimpl.cpp:558
+#: src/actions/actionmanagerimpl.cpp:554
 #, kde-format
 msgid "Auto-expand folders with unread articles"
 msgstr "Auto-expandir as pastas com artigos por ler"
 
-#: src/actions/actionmanagerimpl.cpp:574
+#: src/actions/actionmanagerimpl.cpp:570
 #, kde-format
 msgid "Select Next Tab"
 msgstr "Seleccionar a Página Seguinte"
 
-#: src/actions/actionmanagerimpl.cpp:579
+#: src/actions/actionmanagerimpl.cpp:575
 #, kde-format
 msgid "Select Previous Tab"
 msgstr "Seleccionar a Página Anterior"
 
-#: src/actions/actionmanagerimpl.cpp:585
+#: src/actions/actionmanagerimpl.cpp:581
 #, kde-format
 msgid "Detach Tab"
 msgstr "Desanexar a Página"
 
-#: src/actions/actionmanagerimpl.cpp:599
+#: src/actions/actionmanagerimpl.cpp:595
 #, kde-format
 msgid "Mute"
 msgstr "Silenciar"
 
-#: src/actions/actionmanagerimpl.cpp:603
+#: src/actions/actionmanagerimpl.cpp:599
 #, kde-format
 msgid "Unmute"
 msgstr "Activar o Som"
 
-#: src/actions/actionmanagerimpl.cpp:606
+#: src/actions/actionmanagerimpl.cpp:602
 #, fuzzy, kde-format
 #| msgid "Speak Text"
 msgctxt "@action"
 msgid "Speak Text"
 msgstr "Falar o Texto"
 
-#: src/actions/actionmanagerimpl.cpp:611
+#: src/actions/actionmanagerimpl.cpp:607
 #, fuzzy, kde-format
 #| msgid "&Find in Message..."
 msgid "&Find in Message…"
 msgstr "&Procurar na Mensagem..."
 
-#: src/actions/actionmanagerimpl.cpp:622
+#: src/actions/actionmanagerimpl.cpp:618
 #, kde-format
 msgid "Close Tab"
 msgstr "Fechar a Página"
 
-#: src/actions/actionmanagerimpl.cpp:635
+#: src/actions/actionmanagerimpl.cpp:631
 #, fuzzy, kde-format
 #| msgid "Activate Tab %1"
 msgctxt "@action"
 msgid "Activate Tab %1"
 msgstr "Activar a Página %1"
 
-#: src/actions/actionmanagerimpl.cpp:641
+#: src/actions/actionmanagerimpl.cpp:637
 #, fuzzy, kde-format
 #| msgid "&Save Link As..."
 msgid "&Save Link As…"
 msgstr "Gravar a Ligação &Como..."
 
-#: src/actions/actionmanagerimpl.cpp:645
+#: src/actions/actionmanagerimpl.cpp:641
 #, kde-format
 msgid "Copy &Link Address"
 msgstr "Copiar o Endereço da &Ligação"
 
-#: src/actions/actionmanagerimpl.cpp:648
+#: src/actions/actionmanagerimpl.cpp:644
 #, fuzzy, kde-format
 #| msgid "Copy Image Location"
 msgctxt "@action"
 msgid "Copy Image Location"
 msgstr "Copiar a Localização da Imagem"
 
-#: src/actions/actionmanagerimpl.cpp:655
+#: src/actions/actionmanagerimpl.cpp:651
 #, fuzzy, kde-format
 #| msgid "Save Image On Disk..."
 msgctxt "@action"
@@ -2077,7 +2077,7 @@ msgid_plural "Days"
 msgstr[0] "Dia"
 msgstr[1] "Dias"
 
-#: src/feed/feedpropertiesdialog.cpp:96 src/feed/feedpropertiesdialog.cpp:160
+#: src/feed/feedpropertiesdialog.cpp:96 src/feed/feedpropertiesdialog.cpp:158
 #, kde-format
 msgctxt "@title:window"
 msgid "Feed Properties"
@@ -2089,7 +2089,7 @@ msgctxt "never fetch new articles"
 msgid "Never"
 msgstr "Nunca"
 
-#: src/feed/feedpropertiesdialog.cpp:125
+#: src/feed/feedpropertiesdialog.cpp:124
 #, fuzzy, kde-format
 #| msgid " day"
 #| msgid_plural " days"
@@ -2098,7 +2098,7 @@ msgid_plural "%v days"
 msgstr[0] " dia"
 msgstr[1] " dias"
 
-#: src/feed/feedpropertiesdialog.cpp:126
+#: src/feed/feedpropertiesdialog.cpp:125
 #, fuzzy, kde-format
 #| msgid " article"
 #| msgid_plural " articles"
@@ -2107,7 +2107,7 @@ msgid_plural "%v articles"
 msgstr[0] " artigo"
 msgstr[1] " artigos"
 
-#: src/feed/feedpropertiesdialog.cpp:160
+#: src/feed/feedpropertiesdialog.cpp:158
 #, kde-format
 msgctxt "@title:window"
 msgid "Properties of %1"

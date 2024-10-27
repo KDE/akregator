@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-10-02 00:40+0000\n"
+"POT-Creation-Date: 2024-10-27 00:40+0000\n"
 "PO-Revision-Date: 2012-12-25 13:50+0700\n"
 "Last-Translator: sutha <sutha@khmeros.info>\n"
 "Language-Team: Khmer <support@khmeros>\n"
@@ -105,7 +105,7 @@ msgid ""
 "configure dialog)."
 msgstr ""
 
-#: configuration/akregator_config_archive.cpp:34
+#: configuration/akregator_config_archive.cpp:33
 #, fuzzy, kde-format
 #| msgctxt "Limit feed archive size to:"
 #| msgid " article"
@@ -115,7 +115,7 @@ msgid "%v article"
 msgid_plural "%v articles"
 msgstr[0] " អត្ថបទ"
 
-#: configuration/akregator_config_archive.cpp:35
+#: configuration/akregator_config_archive.cpp:34
 #, fuzzy, kde-format
 #| msgctxt "Delete articles older than:"
 #| msgid " day"
@@ -125,7 +125,7 @@ msgid "%v day"
 msgid_plural "%v days"
 msgstr[0] " ថ្ងៃ"
 
-#: configuration/akregator_config_general.cpp:34
+#: configuration/akregator_config_general.cpp:33
 #, kde-format
 msgid " minute"
 msgid_plural " minutes"
@@ -137,7 +137,7 @@ msgstr[0] " នាទី "
 msgid "Webengine Plugins"
 msgstr "កំណត់​រចនាសម្ព័ន្ធ​មតិព័ត៌មាន"
 
-#: configuration/settings_advanced.cpp:27
+#: configuration/settings_advanced.cpp:26
 #, fuzzy, kde-format
 #| msgctxt "Mark selected article read after"
 #| msgid " second"
@@ -1273,7 +1273,7 @@ msgstr "បោះបង់​ការ​ប្រមូល​យក​​មត
 msgid "Ma&rk All Feeds as Read"
 msgstr "សម្គាល់​មតិ​ព័ត៌មាន​ទាំងអស់​ថា​អាន​រួច"
 
-#: src/actions/actionmanagerimpl.cpp:341 src/actions/actionmanagerimpl.cpp:617
+#: src/actions/actionmanagerimpl.cpp:341 src/actions/actionmanagerimpl.cpp:613
 #, kde-format
 msgid "Copy Link Address"
 msgstr "ចម្លង​អាសយដ្ឋាន​តំណ"
@@ -1392,149 +1392,149 @@ msgstr ""
 msgid "What's new"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:473
+#: src/actions/actionmanagerimpl.cpp:469
 #, kde-format
 msgid "&Previous Article"
 msgstr "អត្ថបទ​មុន"
 
-#: src/actions/actionmanagerimpl.cpp:477
+#: src/actions/actionmanagerimpl.cpp:473
 #, kde-format
 msgid "&Next Article"
 msgstr "អត្ថបទ​បន្ទាប់"
 
-#: src/actions/actionmanagerimpl.cpp:493
+#: src/actions/actionmanagerimpl.cpp:489
 #, kde-format
 msgid "&Previous Feed"
 msgstr "មតិ​ព័ត៌មាន​មុន"
 
-#: src/actions/actionmanagerimpl.cpp:498
+#: src/actions/actionmanagerimpl.cpp:494
 #, kde-format
 msgid "&Next Feed"
 msgstr "មតិ​ព័ត៌មាន​បន្ទាប់"
 
-#: src/actions/actionmanagerimpl.cpp:504
+#: src/actions/actionmanagerimpl.cpp:500
 #, kde-format
 msgid "N&ext Unread Feed"
 msgstr "មតិព័ត៌មាន​មិន​ទាន់​អាន​បន្ទាប់"
 
-#: src/actions/actionmanagerimpl.cpp:510
+#: src/actions/actionmanagerimpl.cpp:506
 #, kde-format
 msgid "Prev&ious Unread Feed"
 msgstr "មតិ​ព័ត៌មាន​មិន​ទាន់​អាន​មុន"
 
-#: src/actions/actionmanagerimpl.cpp:515
+#: src/actions/actionmanagerimpl.cpp:511
 #, kde-format
 msgid "Go to Top of Tree"
 msgstr "ទៅ​ខាង​លើ​មែកធាង"
 
-#: src/actions/actionmanagerimpl.cpp:520
+#: src/actions/actionmanagerimpl.cpp:516
 #, kde-format
 msgid "Go to Bottom of Tree"
 msgstr "ទៅ​ខាង​ក្រោម​មែកធាង"
 
-#: src/actions/actionmanagerimpl.cpp:525
+#: src/actions/actionmanagerimpl.cpp:521
 #, kde-format
 msgid "Go Left in Tree"
 msgstr "ទៅ​ខាង​ឆ្វេង ក្នុងមែកធាង"
 
-#: src/actions/actionmanagerimpl.cpp:530
+#: src/actions/actionmanagerimpl.cpp:526
 #, kde-format
 msgid "Go Right in Tree"
 msgstr "ទៅ​ខាង​ស្ដាំ ក្នុង​មែកធាង"
 
-#: src/actions/actionmanagerimpl.cpp:535
+#: src/actions/actionmanagerimpl.cpp:531
 #, kde-format
 msgid "Go Up in Tree"
 msgstr "ឡើង​លើ ក្នុង​មែកធាង"
 
-#: src/actions/actionmanagerimpl.cpp:540
+#: src/actions/actionmanagerimpl.cpp:536
 #, kde-format
 msgid "Go Down in Tree"
 msgstr "ចុះក្រោម ក្នុង​មែកធាង"
 
-#: src/actions/actionmanagerimpl.cpp:546
+#: src/actions/actionmanagerimpl.cpp:542
 #, fuzzy, kde-format
 #| msgid "N&ext Unread Feed"
 msgid "Hide Read Feeds"
 msgstr "មតិព័ត៌មាន​មិន​ទាន់​អាន​បន្ទាប់"
 
-#: src/actions/actionmanagerimpl.cpp:552
+#: src/actions/actionmanagerimpl.cpp:548
 #, kde-format
 msgid "Lock Feeds In Place"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:558
+#: src/actions/actionmanagerimpl.cpp:554
 #, fuzzy, kde-format
 #| msgid " (no unread articles)"
 msgid "Auto-expand folders with unread articles"
 msgstr " (មិន​មាន​អត្ថបទ​ដែល​មិន​ទាន់​អាន​ឡើយ)"
 
-#: src/actions/actionmanagerimpl.cpp:574
+#: src/actions/actionmanagerimpl.cpp:570
 #, kde-format
 msgid "Select Next Tab"
 msgstr "ជ្រើស​ផ្ទាំង​បន្ទាប់"
 
-#: src/actions/actionmanagerimpl.cpp:579
+#: src/actions/actionmanagerimpl.cpp:575
 #, kde-format
 msgid "Select Previous Tab"
 msgstr "ជ្រើស​ផ្ទាំង​មុន"
 
-#: src/actions/actionmanagerimpl.cpp:585
+#: src/actions/actionmanagerimpl.cpp:581
 #, kde-format
 msgid "Detach Tab"
 msgstr "ផ្ដាច់​ផ្ទាំង"
 
-#: src/actions/actionmanagerimpl.cpp:599
+#: src/actions/actionmanagerimpl.cpp:595
 #, kde-format
 msgid "Mute"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:603
+#: src/actions/actionmanagerimpl.cpp:599
 #, kde-format
 msgid "Unmute"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:606
+#: src/actions/actionmanagerimpl.cpp:602
 #, kde-format
 msgctxt "@action"
 msgid "Speak Text"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:611
+#: src/actions/actionmanagerimpl.cpp:607
 #, kde-format
 msgid "&Find in Message…"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:622
+#: src/actions/actionmanagerimpl.cpp:618
 #, kde-format
 msgid "Close Tab"
 msgstr "បិទ​ផ្ទាំង"
 
-#: src/actions/actionmanagerimpl.cpp:635
+#: src/actions/actionmanagerimpl.cpp:631
 #, fuzzy, kde-format
 #| msgid "Activate Tab %1"
 msgctxt "@action"
 msgid "Activate Tab %1"
 msgstr "ធ្វើ​ឲ្យ​ផ្ទាំង​សកម្ម %1"
 
-#: src/actions/actionmanagerimpl.cpp:641
+#: src/actions/actionmanagerimpl.cpp:637
 #, fuzzy, kde-format
 #| msgid "&Save Link As..."
 msgid "&Save Link As…"
 msgstr "រក្សាទុក​តំណ​ជា..."
 
-#: src/actions/actionmanagerimpl.cpp:645
+#: src/actions/actionmanagerimpl.cpp:641
 #, kde-format
 msgid "Copy &Link Address"
 msgstr "ចម្លង​អាសយដ្ឋាន​តំណ"
 
-#: src/actions/actionmanagerimpl.cpp:648
+#: src/actions/actionmanagerimpl.cpp:644
 #, kde-format
 msgctxt "@action"
 msgid "Copy Image Location"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:655
+#: src/actions/actionmanagerimpl.cpp:651
 #, kde-format
 msgctxt "@action"
 msgid "Save Image On Disk…"
@@ -2064,7 +2064,7 @@ msgid "Day"
 msgid_plural "Days"
 msgstr[0] "ថ្ងៃ"
 
-#: src/feed/feedpropertiesdialog.cpp:96 src/feed/feedpropertiesdialog.cpp:160
+#: src/feed/feedpropertiesdialog.cpp:96 src/feed/feedpropertiesdialog.cpp:158
 #, fuzzy, kde-format
 #| msgid "Feed Properties"
 msgctxt "@title:window"
@@ -2077,7 +2077,7 @@ msgctxt "never fetch new articles"
 msgid "Never"
 msgstr "កុំ"
 
-#: src/feed/feedpropertiesdialog.cpp:125
+#: src/feed/feedpropertiesdialog.cpp:124
 #, fuzzy, kde-format
 #| msgid " day"
 #| msgid_plural " days"
@@ -2085,7 +2085,7 @@ msgid "%v day"
 msgid_plural "%v days"
 msgstr[0] " ថ្ងៃ"
 
-#: src/feed/feedpropertiesdialog.cpp:126
+#: src/feed/feedpropertiesdialog.cpp:125
 #, fuzzy, kde-format
 #| msgid " article"
 #| msgid_plural " articles"
@@ -2093,7 +2093,7 @@ msgid "%v article"
 msgid_plural "%v articles"
 msgstr[0] " អត្ថបទ"
 
-#: src/feed/feedpropertiesdialog.cpp:160
+#: src/feed/feedpropertiesdialog.cpp:158
 #, fuzzy, kde-format
 #| msgid "Properties of %1"
 msgctxt "@title:window"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-10-02 00:40+0000\n"
+"POT-Creation-Date: 2024-10-27 00:40+0000\n"
 "PO-Revision-Date: 2024-07-06 21:38+0530\n"
 "Last-Translator: Kishore G <kishore96@gmail.com>\n"
 "Language-Team: Tamil <kde-i18n-doc@kde.org>\n"
@@ -88,7 +88,7 @@ msgstr ""
 "<b>குறிப்பு:</b> பாதுகாப்பு கருதி, வெளி இணைப்புகள் தடுக்கப்பட்டுள்ளன (அமைப்புகளைப் "
 "பாருங்கள்)."
 
-#: configuration/akregator_config_archive.cpp:34
+#: configuration/akregator_config_archive.cpp:33
 #, fuzzy, kde-format
 #| msgctxt "Limit feed archive size to:"
 #| msgid " article"
@@ -99,7 +99,7 @@ msgid_plural "%v articles"
 msgstr[0] " கட்டுரை"
 msgstr[1] " கட்டுரைகள்"
 
-#: configuration/akregator_config_archive.cpp:35
+#: configuration/akregator_config_archive.cpp:34
 #, fuzzy, kde-format
 #| msgctxt "Delete articles older than:"
 #| msgid " day"
@@ -110,7 +110,7 @@ msgid_plural "%v days"
 msgstr[0] " நாள்"
 msgstr[1] " நாட்கள்"
 
-#: configuration/akregator_config_general.cpp:34
+#: configuration/akregator_config_general.cpp:33
 #, kde-format
 msgid " minute"
 msgid_plural " minutes"
@@ -122,7 +122,7 @@ msgstr[1] " நிமிடங்கள்"
 msgid "Webengine Plugins"
 msgstr "Webengine செருகுநிரல்கள்"
 
-#: configuration/settings_advanced.cpp:27
+#: configuration/settings_advanced.cpp:26
 #, fuzzy, kde-format
 #| msgctxt "Mark selected article read after"
 #| msgid " second"
@@ -1223,7 +1223,7 @@ msgstr "தொகுப்புகளைக் கொணர்வதை &ரத
 msgid "Ma&rk All Feeds as Read"
 msgstr "அனைத்து தொகுப்புக&ளையும் படித்த‍தாக‍க் குறி"
 
-#: src/actions/actionmanagerimpl.cpp:341 src/actions/actionmanagerimpl.cpp:617
+#: src/actions/actionmanagerimpl.cpp:341 src/actions/actionmanagerimpl.cpp:613
 #, kde-format
 msgid "Copy Link Address"
 msgstr "இணைப்பின் முகவரியை நகலெடு"
@@ -1336,145 +1336,145 @@ msgstr "விரை தேடலை குவியப்படுத்து"
 msgid "What's new"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:473
+#: src/actions/actionmanagerimpl.cpp:469
 #, kde-format
 msgid "&Previous Article"
 msgstr "&முந்தைய கட்டுரை"
 
-#: src/actions/actionmanagerimpl.cpp:477
+#: src/actions/actionmanagerimpl.cpp:473
 #, kde-format
 msgid "&Next Article"
 msgstr "&அடுத்த கட்டுரை"
 
-#: src/actions/actionmanagerimpl.cpp:493
+#: src/actions/actionmanagerimpl.cpp:489
 #, kde-format
 msgid "&Previous Feed"
 msgstr "&முந்தைய தொகுப்பு"
 
-#: src/actions/actionmanagerimpl.cpp:498
+#: src/actions/actionmanagerimpl.cpp:494
 #, kde-format
 msgid "&Next Feed"
 msgstr "&அடுத்த தொகுப்பு"
 
-#: src/actions/actionmanagerimpl.cpp:504
+#: src/actions/actionmanagerimpl.cpp:500
 #, kde-format
 msgid "N&ext Unread Feed"
 msgstr "அ&டுத்த படிக்காத தொகுப்பு"
 
-#: src/actions/actionmanagerimpl.cpp:510
+#: src/actions/actionmanagerimpl.cpp:506
 #, kde-format
 msgid "Prev&ious Unread Feed"
 msgstr "மு&ந்தைய படிக்காத தொகுப்பு"
 
-#: src/actions/actionmanagerimpl.cpp:515
+#: src/actions/actionmanagerimpl.cpp:511
 #, kde-format
 msgid "Go to Top of Tree"
 msgstr "கிளையின் உச்சிக்கு செல்"
 
-#: src/actions/actionmanagerimpl.cpp:520
+#: src/actions/actionmanagerimpl.cpp:516
 #, kde-format
 msgid "Go to Bottom of Tree"
 msgstr "கிளையின் நுனிக்கு செல்"
 
-#: src/actions/actionmanagerimpl.cpp:525
+#: src/actions/actionmanagerimpl.cpp:521
 #, kde-format
 msgid "Go Left in Tree"
 msgstr "இடதுபுறத்திலுள்ள கிளைக்கு செல்"
 
-#: src/actions/actionmanagerimpl.cpp:530
+#: src/actions/actionmanagerimpl.cpp:526
 #, kde-format
 msgid "Go Right in Tree"
 msgstr "வலதுபுறலுள்ள கிளைக்கு செல்"
 
-#: src/actions/actionmanagerimpl.cpp:535
+#: src/actions/actionmanagerimpl.cpp:531
 #, kde-format
 msgid "Go Up in Tree"
 msgstr "கிளையில் மேலே செல்"
 
-#: src/actions/actionmanagerimpl.cpp:540
+#: src/actions/actionmanagerimpl.cpp:536
 #, kde-format
 msgid "Go Down in Tree"
 msgstr "கிளையில் கீழே செல்"
 
-#: src/actions/actionmanagerimpl.cpp:546
+#: src/actions/actionmanagerimpl.cpp:542
 #, kde-format
 msgid "Hide Read Feeds"
 msgstr "படித்த தொகுப்புகளை மறை"
 
-#: src/actions/actionmanagerimpl.cpp:552
+#: src/actions/actionmanagerimpl.cpp:548
 #, kde-format
 msgid "Lock Feeds In Place"
 msgstr "தொகுப்புகளின் இருப்பிடத்தை பூட்டு"
 
-#: src/actions/actionmanagerimpl.cpp:558
+#: src/actions/actionmanagerimpl.cpp:554
 #, kde-format
 msgid "Auto-expand folders with unread articles"
 msgstr "படிக்காத கட்டுரைகளை கொண்ட அடைவுகளை தானாக விரிவுபடுத்து"
 
-#: src/actions/actionmanagerimpl.cpp:574
+#: src/actions/actionmanagerimpl.cpp:570
 #, kde-format
 msgid "Select Next Tab"
 msgstr "அடுத்த கீற்றைத் தேர்ந்தெடு"
 
-#: src/actions/actionmanagerimpl.cpp:579
+#: src/actions/actionmanagerimpl.cpp:575
 #, kde-format
 msgid "Select Previous Tab"
 msgstr "முந்தைய கீற்றைத் தேர்ந்தெடு"
 
-#: src/actions/actionmanagerimpl.cpp:585
+#: src/actions/actionmanagerimpl.cpp:581
 #, kde-format
 msgid "Detach Tab"
 msgstr "கீற்றைப் பிரித்தெடு"
 
-#: src/actions/actionmanagerimpl.cpp:599
+#: src/actions/actionmanagerimpl.cpp:595
 #, kde-format
 msgid "Mute"
 msgstr "ஒலியை அடக்கு"
 
-#: src/actions/actionmanagerimpl.cpp:603
+#: src/actions/actionmanagerimpl.cpp:599
 #, kde-format
 msgid "Unmute"
 msgstr "ஒலிமுடக்கத்தை நீக்கு"
 
-#: src/actions/actionmanagerimpl.cpp:606
+#: src/actions/actionmanagerimpl.cpp:602
 #, kde-format
 msgctxt "@action"
 msgid "Speak Text"
 msgstr "உரையைப் பேச்சாக்கு"
 
-#: src/actions/actionmanagerimpl.cpp:611
+#: src/actions/actionmanagerimpl.cpp:607
 #, kde-format
 msgid "&Find in Message…"
 msgstr "செய்தியில் &கண்டுபிடி…"
 
-#: src/actions/actionmanagerimpl.cpp:622
+#: src/actions/actionmanagerimpl.cpp:618
 #, kde-format
 msgid "Close Tab"
 msgstr "கீற்றை மூடு"
 
-#: src/actions/actionmanagerimpl.cpp:635
+#: src/actions/actionmanagerimpl.cpp:631
 #, kde-format
 msgctxt "@action"
 msgid "Activate Tab %1"
 msgstr "கீற்று %1-ஐ செயல்படுத்து"
 
-#: src/actions/actionmanagerimpl.cpp:641
+#: src/actions/actionmanagerimpl.cpp:637
 #, kde-format
 msgid "&Save Link As…"
 msgstr "&இணைப்பை இப்படி சேமி…"
 
-#: src/actions/actionmanagerimpl.cpp:645
+#: src/actions/actionmanagerimpl.cpp:641
 #, kde-format
 msgid "Copy &Link Address"
 msgstr "இ&ணைப்பின் முகவரியை நகலெடு"
 
-#: src/actions/actionmanagerimpl.cpp:648
+#: src/actions/actionmanagerimpl.cpp:644
 #, kde-format
 msgctxt "@action"
 msgid "Copy Image Location"
 msgstr "படத்தின் முகவரியை நகலெடு"
 
-#: src/actions/actionmanagerimpl.cpp:655
+#: src/actions/actionmanagerimpl.cpp:651
 #, kde-format
 msgctxt "@action"
 msgid "Save Image On Disk…"
@@ -2000,7 +2000,7 @@ msgid_plural "Days"
 msgstr[0] "நாட்கள்"
 msgstr[1] "நாட்கள்"
 
-#: src/feed/feedpropertiesdialog.cpp:96 src/feed/feedpropertiesdialog.cpp:160
+#: src/feed/feedpropertiesdialog.cpp:96 src/feed/feedpropertiesdialog.cpp:158
 #, fuzzy, kde-format
 #| msgid "Feed Properties"
 msgctxt "@title:window"
@@ -2014,7 +2014,7 @@ msgctxt "never fetch new articles"
 msgid "Never"
 msgstr "ஒருபோதும்"
 
-#: src/feed/feedpropertiesdialog.cpp:125
+#: src/feed/feedpropertiesdialog.cpp:124
 #, fuzzy, kde-format
 #| msgid "1 day"
 msgid "%v day"
@@ -2022,7 +2022,7 @@ msgid_plural "%v days"
 msgstr[0] "1 நாள்"
 msgstr[1] "1 நாள்"
 
-#: src/feed/feedpropertiesdialog.cpp:126
+#: src/feed/feedpropertiesdialog.cpp:125
 #, fuzzy, kde-format
 #| msgid "1 article"
 msgid "%v article"
@@ -2030,7 +2030,7 @@ msgid_plural "%v articles"
 msgstr[0] "1 கட்டுரை"
 msgstr[1] "1 கட்டுரை"
 
-#: src/feed/feedpropertiesdialog.cpp:160
+#: src/feed/feedpropertiesdialog.cpp:158
 #, fuzzy, kde-format
 msgctxt "@title:window"
 msgid "Properties of %1"
