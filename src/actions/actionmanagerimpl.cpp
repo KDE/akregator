@@ -201,7 +201,7 @@ void ActionManagerImpl::initPart()
     configure->setIcon(QIcon::fromTheme(QStringLiteral("configure")));
     connect(configure, &QAction::triggered, d->part, &Part::showOptions);
 
-    KStandardAction::configureNotifications(d->part, &Part::showNotificationOptions, d->actionCollection); // options_configure_notifications
+    KStandardActions::configureNotifications(d->part, &Part::showNotificationOptions, d->actionCollection); // options_configure_notifications
 }
 
 void ActionManagerImpl::initMainWidget(MainWidget *mainWidget)
@@ -582,13 +582,13 @@ void ActionManagerImpl::initTabWidget(TabWidget *tabWidget)
     connect(action, &QAction::triggered, d->tabWidget, &TabWidget::slotDetachTab);
     coll->setDefaultShortcut(action, QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_B));
 
-    action = KStandardAction::copy(d->tabWidget, &TabWidget::slotCopy, coll);
+    action = KStandardActions::copy(d->tabWidget, &TabWidget::slotCopy, coll);
     coll->addAction(QStringLiteral("viewer_copy"), action);
 
-    action = KStandardAction::print(d->tabWidget, &TabWidget::slotPrint, coll);
+    action = KStandardActions::print(d->tabWidget, &TabWidget::slotPrint, coll);
     coll->addAction(QStringLiteral("viewer_print"), action);
 
-    action = KStandardAction::printPreview(d->tabWidget, &TabWidget::slotPrintPreview, coll);
+    action = KStandardActions::printPreview(d->tabWidget, &TabWidget::slotPrintPreview, coll);
     coll->addAction(QStringLiteral("viewer_printpreview"), action);
 
     action = coll->addAction(QStringLiteral("tab_mute"));

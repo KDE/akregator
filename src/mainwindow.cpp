@@ -26,6 +26,7 @@
 #include <KShortcutsDialog>
 #include <KSqueezedTextLabel>
 #include <KStandardAction>
+#include <KStandardActions>
 #include <KToggleFullScreenAction>
 #include <KToolBar>
 #include <KXMLGUIFactory>
@@ -46,8 +47,8 @@ MainWindow::MainWindow(QWidget *parent)
     // set the shell's ui resource file
     setXMLFile(QStringLiteral("akregator_shell.rc"));
 
-    KStandardAction::keyBindings(this, &MainWindow::optionsConfigureKeys, actionCollection()); // options_configure_keybinding
-    KStandardAction::configureToolbars(this, &MainWindow::optionsConfigureToolbars, actionCollection()); // options_configure_toolbars
+    KStandardActions::keyBindings(this, &MainWindow::optionsConfigureKeys, actionCollection()); // options_configure_keybinding
+    KStandardActions::configureToolbars(this, &MainWindow::optionsConfigureToolbars, actionCollection()); // options_configure_toolbars
 
     toolBar()->show();
     statusBar()->show();
@@ -59,7 +60,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_statusLabel->setFixedHeight(statH);
     statusBar()->addWidget(m_statusLabel, 1);
 
-    KStandardAction::quit(qApp, &QApplication::quit, actionCollection());
+    KStandardActions::quit(qApp, &QApplication::quit, actionCollection());
     mShowMenuBarAction = KStandardAction::showMenubar(this, &MainWindow::slotToggleMenubar, actionCollection());
     mShowMenuBarAction->setChecked(Settings::showMenuBar());
     slotToggleMenubar(true);
