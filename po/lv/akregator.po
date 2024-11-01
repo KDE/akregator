@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-10-27 00:40+0000\n"
+"POT-Creation-Date: 2024-11-01 00:40+0000\n"
 "PO-Revision-Date: 2024-08-20 18:37+0300\n"
 "Last-Translator: Toms Trasuns <toms.trasuns@posteo.net>\n"
 "Language-Team: Latvian <kde-i18n-doc@kde.org>\n"
@@ -2204,7 +2204,7 @@ msgstr "Dzēst rakstu"
 msgid "Networking is available now."
 msgstr "Tīkls tagad ir pieejams."
 
-#: src/mainwindow.cpp:121
+#: src/mainwindow.cpp:122
 #, kde-format
 msgid ""
 "<qt>This will hide the menu bar completely. You can show it again by typing "
@@ -2213,13 +2213,13 @@ msgstr ""
 "<qt>Šī darbība pilnībā paslēps izvēļņu joslu. To varat atkal parādīt, "
 "spiežot „%1“.</qt>"
 
-#: src/mainwindow.cpp:124
+#: src/mainwindow.cpp:125
 #, kde-format
 msgctxt "@title:window"
 msgid "Hide menu bar"
 msgstr "Paslēpt izvēļņu joslu"
 
-#: src/mainwindow.cpp:157
+#: src/mainwindow.cpp:158
 #, kde-format
 msgid ""
 "Could not find the Akregator part; please check your installation.\n"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-10-27 00:40+0000\n"
+"POT-Creation-Date: 2024-11-01 00:40+0000\n"
 "PO-Revision-Date: 2024-02-11 11:46-0600\n"
 "Last-Translator: A S Alam <aalam@punlinux.org>\n"
 "Language-Team: Punjabi <kde-i18n-doc@kde.org>\n"
@@ -2202,20 +2202,20 @@ msgstr "ਲੇਖ ਹਟਾਓ"
 msgid "Networking is available now."
 msgstr ""
 
-#: src/mainwindow.cpp:121
+#: src/mainwindow.cpp:122
 #, kde-format
 msgid ""
 "<qt>This will hide the menu bar completely. You can show it again by typing "
 "%1.</qt>"
 msgstr ""
 
-#: src/mainwindow.cpp:124
+#: src/mainwindow.cpp:125
 #, kde-format
 msgctxt "@title:window"
 msgid "Hide menu bar"
 msgstr ""
 
-#: src/mainwindow.cpp:157
+#: src/mainwindow.cpp:158
 #, kde-format
 msgid ""
 "Could not find the Akregator part; please check your installation.\n"

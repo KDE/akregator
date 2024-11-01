@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-10-27 00:40+0000\n"
+"POT-Creation-Date: 2024-11-01 00:40+0000\n"
 "PO-Revision-Date: 2023-11-05 21:15+0100\n"
 "Last-Translator: Ferdinand Galko <galko.ferdinand@gmail.com>\n"
 "Language-Team: Slovak <opensuse-translation@opensuse.org>\n"
@@ -2269,20 +2269,20 @@ msgstr "Vymazať článok"
 msgid "Networking is available now."
 msgstr "Sieť je teraz dostupná."
 
-#: src/mainwindow.cpp:121
+#: src/mainwindow.cpp:122
 #, kde-format
 msgid ""
 "<qt>This will hide the menu bar completely. You can show it again by typing "
 "%1.</qt>"
 msgstr "<qt>Toto skryje panel menu úplne. Môžete ju zobraziť zadaním %1.</qt>"
 
-#: src/mainwindow.cpp:124
+#: src/mainwindow.cpp:125
 #, kde-format
 msgctxt "@title:window"
 msgid "Hide menu bar"
 msgstr "Skryť panel menu"
 
-#: src/mainwindow.cpp:157
+#: src/mainwindow.cpp:158
 #, kde-format
 msgid ""
 "Could not find the Akregator part; please check your installation.\n"
