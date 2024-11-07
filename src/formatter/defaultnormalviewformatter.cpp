@@ -9,9 +9,7 @@
 #include "article.h"
 #include "feed.h"
 #include "folder.h"
-#include "grantleeviewformatter.h"
 #include "treenode.h"
-#include "treenodevisitor.h"
 
 #include <QPaintDevice>
 #include <QString>
@@ -19,41 +17,6 @@
 using namespace Syndication;
 
 using namespace Akregator;
-
-class DefaultNormalViewFormatter::SummaryVisitor : public TreeNodeVisitor
-{
-public:
-    SummaryVisitor(DefaultNormalViewFormatter *p)
-        : parent(p)
-    {
-    }
-
-    ~SummaryVisitor() override = default;
-
-    bool visitFeed(Feed *node) override
-    {
-        text = parent->mGrantleeViewFormatter->formatFeed(node);
-        return true;
-    }
-
-    bool visitFolder(Folder *node) override
-    {
-        text = parent->mGrantleeViewFormatter->formatFolder(node);
-        return true;
-    }
-
-    QString formatSummary(TreeNode *node)
-    {
-        text.clear();
-        visit(node);
-        return text;
-    }
-
-    QString text;
-
-private:
-    DefaultNormalViewFormatter *const parent;
-};
 
 DefaultNormalViewFormatter::DefaultNormalViewFormatter(QPaintDevice *device)
     : ArticleFormatter()
