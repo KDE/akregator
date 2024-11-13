@@ -15,7 +15,7 @@ class GrantleeViewFormatter;
 class AKREGATOR_EXPORT DefaultNormalViewFormatter : public ArticleFormatter
 {
 public:
-    explicit DefaultNormalViewFormatter(QPaintDevice *device = nullptr);
+    explicit DefaultNormalViewFormatter(QPaintDevice *device);
     ~DefaultNormalViewFormatter() override;
 
     [[nodiscard]] QString formatArticles(const QList<Article> &article, IconOption option) const override;
@@ -23,7 +23,6 @@ public:
     [[nodiscard]] QString formatSummary(TreeNode *node) const override;
 
 private:
-    DefaultNormalViewFormatter() = delete;
     QString m_DefaultThemePath;
     class SummaryVisitor;
     std::unique_ptr<SummaryVisitor> m_summaryVisitor;

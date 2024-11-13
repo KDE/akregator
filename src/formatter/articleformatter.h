@@ -25,7 +25,7 @@ public:
         ShowIcon
     };
 
-    explicit ArticleFormatter();
+    ArticleFormatter();
 
     virtual ~ArticleFormatter();
 

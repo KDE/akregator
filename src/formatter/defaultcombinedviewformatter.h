@@ -15,7 +15,7 @@ class GrantleeViewFormatter;
 class AKREGATOR_EXPORT DefaultCombinedViewFormatter : public ArticleFormatter
 {
 public:
-    explicit DefaultCombinedViewFormatter(QPaintDevice *device = nullptr);
+    explicit DefaultCombinedViewFormatter(QPaintDevice *device);
     ~DefaultCombinedViewFormatter() override;
 
     [[nodiscard]] QString formatArticles(const QList<Article> &articles, IconOption option) const override;
@@ -23,7 +23,6 @@ public:
     [[nodiscard]] QString formatSummary(TreeNode *node) const override;
 
 private:
-    DefaultCombinedViewFormatter() = delete;
     std::unique_ptr<GrantleeViewFormatter> mGrantleeViewFormatter;
 };
 }
