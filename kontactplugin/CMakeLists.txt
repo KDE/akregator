@@ -11,7 +11,7 @@ qt_add_dbus_interfaces(kontact_akregator_PART_SRCS ${akregator_SOURCE_DIR}/src/o
 target_sources(kontact_akregatorplugin PRIVATE akregator_plugin.cpp akregator_plugin.h ${kontact_akregator_PART_SRCS})
 
 
-target_link_libraries(kontact_akregatorplugin KF6::I18n KPim6::KontactInterface)
+target_link_libraries(kontact_akregatorplugin KF6::I18n KPim6::KontactInterface Qt::DBus)
 
 ########### install files ###############
 
