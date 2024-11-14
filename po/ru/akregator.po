@@ -7,7 +7,7 @@
 # Artem Sereda <overmind88@gmail.com>, 2010, 2011.
 # Julia Dronova <juliette.tux@gmail.com>, 2012, 2013.
 # Alexander Lakhin <exclusion@gmail.com>, 2013.
-# Olesya Gerasimenko <gammaray@basealt.ru>, 2018.
+# SPDX-FileCopyrightText: 2018, 2024 Olesya Gerasimenko <gammaray@basealt.ru>
 # Мария Шикунова <translation-team@basealt.ru>, 2021, 2022.
 # SPDX-FileCopyrightText: 2024 Alexander Yavorsky <kekcuha@gmail.com>
 msgid ""
@@ -15,14 +15,14 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-11-01 00:40+0000\n"
-"PO-Revision-Date: 2024-02-10 14:32+0300\n"
-"Last-Translator: Alexander Yavorsky <kekcuha@gmail.com>\n"
-"Language-Team: Russian <kde-russian@lists.kde.ru>\n"
+"PO-Revision-Date: 2024-11-13 14:59+0300\n"
+"Last-Translator: Olesya Gerasimenko <translation-team@basealt.ru>\n"
+"Language-Team: Basealt Translation Team\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 24.01.95\n"
+"X-Generator: Lokalize 23.08.5\n"
 "Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : n"
 "%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Environment: kde\n"
@@ -95,11 +95,11 @@ msgstr "Открыть в фоновой вкладке"
 
 #: src/formatter/html/combinedview.html:37
 msgid "Send File Address"
-msgstr "Отправить HTML-страницу со статьёй"
+msgstr "Отправить адрес файла"
 
 #: src/formatter/html/combinedview.html:38
 msgid "Send Link Address"
-msgstr "Отправить ссылку на статью"
+msgstr "Отправить адрес ссылки"
 
 #: src/formatter/html/combinedview.html:39
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:96
@@ -116,30 +116,24 @@ msgstr ""
 "(подробнее об этом в диалоге настройки)."
 
 #: configuration/akregator_config_archive.cpp:33
-#, fuzzy, kde-format
-#| msgctxt "Limit feed archive size to:"
-#| msgid " article"
-#| msgid_plural " articles"
+#, kde-format
 msgctxt "Limit feed archive size to:"
 msgid "%v article"
 msgid_plural "%v articles"
-msgstr[0] " статья"
-msgstr[1] " статьи"
-msgstr[2] " статей"
-msgstr[3] " статья"
+msgstr[0] "%v статья"
+msgstr[1] "%v статьи"
+msgstr[2] "%v статей"
+msgstr[3] "%v статья"
 
 #: configuration/akregator_config_archive.cpp:34
-#, fuzzy, kde-format
-#| msgctxt "Delete articles older than:"
-#| msgid " day"
-#| msgid_plural " days"
+#, kde-format
 msgctxt "Delete articles older than:"
 msgid "%v day"
 msgid_plural "%v days"
-msgstr[0] " день"
-msgstr[1] " дня"
-msgstr[2] " дней"
-msgstr[3] " день"
+msgstr[0] "%v день"
+msgstr[1] "%v дня"
+msgstr[2] "%v дней"
+msgstr[3] "%v день"
 
 #: configuration/akregator_config_general.cpp:33
 #, kde-format
@@ -156,17 +150,14 @@ msgid "Webengine Plugins"
 msgstr "Модули для встроенного веб-браузера"
 
 #: configuration/settings_advanced.cpp:26
-#, fuzzy, kde-format
-#| msgctxt "Mark selected article read after"
-#| msgid " second"
-#| msgid_plural " seconds"
+#, kde-format
 msgctxt "Mark selected article read after"
 msgid "%v second"
 msgid_plural "%v seconds"
-msgstr[0] " секунда"
-msgstr[1] " секунды"
-msgstr[2] " секунд"
-msgstr[3] " секунда"
+msgstr[0] "%v секунда"
+msgstr[1] "%v секунды"
+msgstr[2] "%v секунд"
+msgstr[3] "%v секунда"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: configuration/ui/settings_advancedbase.ui:30
@@ -400,22 +391,22 @@ msgstr "Проверять ссылки с использованием Safe Bro
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_EnableJavascript)
 #. i18n: ectx: label, entry, group (Browser)
 #: configuration/ui/settings_browser.ui:153 interfaces/akregator.kcfg:203
-#, fuzzy, kde-format
-#| msgid "Enable Javascript"
+#, kde-format
 msgid "Enable JavaScript"
-msgstr "Включить Javascript"
+msgstr "Включить JavaScript"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #: configuration/ui/settings_browser.ui:163
 #, kde-format
 msgid "Accessibility"
-msgstr ""
+msgstr "Специальные возможности"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_AccessKeyEnabled)
 #: configuration/ui/settings_browser.ui:169
 #, kde-format
 msgid "Enable Access Key activation with Ctrl key"
 msgstr ""
+"Включить активацию клавиш специальных возможностей при нажатии клавиши Ctrl"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_3)
 #: configuration/ui/settings_general.ui:30
@@ -490,7 +481,7 @@ msgstr "Проверять обновления каждые:"
 #: configuration/ui/settings_general.ui:157
 #, kde-format
 msgid "Enable Plasma Activities integration"
-msgstr ""
+msgstr "Включить интеграцию комнат Plasma"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #: configuration/ui/settings_general.ui:167
@@ -524,10 +515,9 @@ msgstr "Использовать кэш &браузера (меньше траф
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_LoadExternalReferences)
 #: configuration/ui/settings_security.ui:17
-#, fuzzy, kde-format
-#| msgid "Allow feed to load external references from internet."
+#, kde-format
 msgid "Allow article preview to load external references"
-msgstr "Позволить ленте загружать внешние ссылки из сети"
+msgstr "Разрешить загрузку внешних ссылок при предпросмотре статей"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_LoadExternalReferences)
 #: configuration/ui/settings_security.ui:20
@@ -537,6 +527,9 @@ msgid ""
 "This may allow websites or third parties to observe the articles that you "
 "have viewed."
 msgstr ""
+"Разрешить загрузку внешних ссылок из Интернета при предпросмотре статей. "
+"Если этот флажок установлен, веб-сайтам или третьим лицам может стать "
+"известно, какие статьи были просмотрены."
 
 #: export/akregatorstorageexporter.cpp:280
 #, kde-format
@@ -859,10 +852,9 @@ msgstr "Показывать количество непрочитанных с�
 
 #. i18n: ectx: label, entry, group (General)
 #: interfaces/akregator.kcfg:196
-#, fuzzy, kde-format
-#| msgid "Enable Javascript"
+#, kde-format
 msgid "Enabled Plasma Activity"
-msgstr "Включить Javascript"
+msgstr "Включить комнаты Plasma"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
 #: interfaces/akregator.kcfg:208
@@ -998,8 +990,7 @@ msgid "Copyright © 2004–%1 Akregator authors"
 msgstr "© Разработчики Akregator, 2004-%1"
 
 #: src/aboutdata.cpp:27
-#, fuzzy, kde-format
-#| msgid "Laurent Montel"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Laurent Montel"
 msgstr "Laurent Montel"
@@ -1010,11 +1001,10 @@ msgid "Maintainer"
 msgstr "Сопровождающий"
 
 #: src/aboutdata.cpp:28
-#, fuzzy, kde-format
-#| msgid "Frank Osterfeld"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Frank Osterfeld"
-msgstr "Фрэнк Остерфельд (Frank Osterfeld)"
+msgstr "Frank Osterfeld"
 
 #: src/aboutdata.cpp:28
 #, kde-format
@@ -1022,8 +1012,7 @@ msgid "Former maintainer"
 msgstr "Прежний сопровождающий"
 
 #: src/aboutdata.cpp:29
-#, fuzzy, kde-format
-#| msgid "Teemu Rytilahti"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Teemu Rytilahti"
 msgstr "Teemu Rytilahti"
@@ -1035,29 +1024,25 @@ msgid "Developer"
 msgstr "Разработчик"
 
 #: src/aboutdata.cpp:30
-#, fuzzy, kde-format
-#| msgid "Sashmit Bhaduri"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Sashmit Bhaduri"
 msgstr "Sashmit Bhaduri"
 
 #: src/aboutdata.cpp:31
-#, fuzzy, kde-format
-#| msgid "Pierre Habouzit"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Pierre Habouzit"
 msgstr "Pierre Habouzit"
 
 #: src/aboutdata.cpp:32
-#, fuzzy, kde-format
-#| msgid "Stanislav Karchebny"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Stanislav Karchebny"
-msgstr "Станислав Карчебный"
+msgstr "Stanislav Karchebny"
 
 #: src/aboutdata.cpp:33
-#, fuzzy, kde-format
-#| msgid "Gary Cramblitt"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Gary Cramblitt"
 msgstr "Gary Cramblitt"
@@ -1068,22 +1053,19 @@ msgid "Contributor"
 msgstr "Содействие разработке"
 
 #: src/aboutdata.cpp:34
-#, fuzzy, kde-format
-#| msgid "Stephan Binner"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Stephan Binner"
 msgstr "Stephan Binner"
 
 #: src/aboutdata.cpp:35
-#, fuzzy, kde-format
-#| msgid "Christof Musik"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Christof Musik"
 msgstr "Christof Musik"
 
 #: src/aboutdata.cpp:36
-#, fuzzy, kde-format
-#| msgid "Anne-Marie Mahfouf"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Anne-Marie Mahfouf"
 msgstr "Anne-Marie Mahfouf"
@@ -1094,8 +1076,7 @@ msgid "Handbook"
 msgstr "Написание руководства"
 
 #: src/aboutdata.cpp:37
-#, fuzzy, kde-format
-#| msgid "Frerich Raabe"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Frerich Raabe"
 msgstr "Frerich Raabe"
@@ -1106,8 +1087,7 @@ msgid "Author of librss"
 msgstr "Автор библиотеки librss"
 
 #: src/aboutdata.cpp:38
-#, fuzzy, kde-format
-#| msgid "Eckhart Woerner"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Eckhart Woerner"
 msgstr "Eckhart Woerner"
@@ -1118,8 +1098,7 @@ msgid "Bug tracker management, Usability improvements"
 msgstr "Исправление ошибок, улучшение внешнего вида"
 
 #: src/aboutdata.cpp:39
-#, fuzzy, kde-format
-#| msgid "Heinrich Wendel"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Heinrich Wendel"
 msgstr "Heinrich Wendel"
@@ -1130,8 +1109,7 @@ msgid "Tons of bug fixes"
 msgstr "Исправление множества ошибок"
 
 #: src/aboutdata.cpp:40
-#, fuzzy, kde-format
-#| msgid "Eike Hein"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Eike Hein"
 msgstr "Eike Hein"
@@ -1142,8 +1120,7 @@ msgid "'Delayed mark as read' feature"
 msgstr "Реализация возможности отложенной отметки о прочтении"
 
 #: src/aboutdata.cpp:41
-#, fuzzy, kde-format
-#| msgid "Marcel Dierkes"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Marcel Dierkes"
 msgstr "Marcel Dierkes"
@@ -1154,8 +1131,7 @@ msgid "Icons"
 msgstr "Значки"
 
 #: src/aboutdata.cpp:42
-#, fuzzy, kde-format
-#| msgid "George Staikos"
+#, kde-format
 msgctxt "@info:credit"
 msgid "George Staikos"
 msgstr "George Staikos"
@@ -1166,8 +1142,7 @@ msgid "Insomnia"
 msgstr "Insomnia"
 
 #: src/aboutdata.cpp:43
-#, fuzzy, kde-format
-#| msgid "Philipp Droessler"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Philipp Droessler"
 msgstr "Philipp Droessler"
@@ -1188,10 +1163,9 @@ msgid "&Delete Feed"
 msgstr "&Удалить ленту"
 
 #: src/actions/actionmanagerimpl.cpp:66 src/actions/actionmanagerimpl.cpp:249
-#, fuzzy, kde-format
-#| msgid "&Edit Feed..."
+#, kde-format
 msgid "&Edit Feed…"
-msgstr "&Свойства..."
+msgstr "&Изменить ленту..."
 
 #: src/actions/actionmanagerimpl.cpp:67 src/actions/actionmanagerimpl.cpp:306
 #, kde-format
@@ -1219,22 +1193,19 @@ msgid "&Mark Feeds as Read"
 msgstr "Отметить ленты как &прочитанные"
 
 #: src/actions/actionmanagerimpl.cpp:191
-#, fuzzy, kde-format
-#| msgid "&Import Feeds..."
+#, kde-format
 msgid "&Import Feeds…"
-msgstr "&Импорт списка..."
+msgstr "&Импорт лент…"
 
 #: src/actions/actionmanagerimpl.cpp:195
-#, fuzzy, kde-format
-#| msgid "&Export Feeds..."
+#, kde-format
 msgid "&Export Feeds…"
-msgstr "&Экспорт списка..."
+msgstr "&Экспорт лент…"
 
 #: src/actions/actionmanagerimpl.cpp:200
-#, fuzzy, kde-format
-#| msgid "&Configure Akregator..."
+#, kde-format
 msgid "&Configure Akregator…"
-msgstr "&Настроить Akregator..."
+msgstr "&Настроить Akregator…"
 
 #: src/actions/actionmanagerimpl.cpp:219
 #, kde-format
@@ -1247,16 +1218,14 @@ msgid "Reload All Tabs"
 msgstr "Обновить все вкладки"
 
 #: src/actions/actionmanagerimpl.cpp:231
-#, fuzzy, kde-format
-#| msgid "Add Feed"
+#, kde-format
 msgid "&Add Feed…"
-msgstr "Добавление ленты новостей"
+msgstr "&Добавить ленту…"
 
 #: src/actions/actionmanagerimpl.cpp:237
-#, fuzzy, kde-format
-#| msgid "Ne&w Folder..."
+#, kde-format
 msgid "Ne&w Folder…"
-msgstr "&Создать папку..."
+msgstr "&Создать папку…"
 
 #: src/actions/actionmanagerimpl.cpp:262
 #, kde-format
@@ -1291,7 +1260,7 @@ msgstr "Отметить все &ленты как прочитанные"
 #: src/actions/actionmanagerimpl.cpp:341 src/actions/actionmanagerimpl.cpp:613
 #, kde-format
 msgid "Copy Link Address"
-msgstr "Скопировать ссылку на статью"
+msgstr "Скопировать адрес ссылки"
 
 #: src/actions/actionmanagerimpl.cpp:346
 #, kde-format
@@ -1320,8 +1289,7 @@ msgid "&Read"
 msgstr "&Прочитанная статья"
 
 #: src/actions/actionmanagerimpl.cpp:371
-#, fuzzy, kde-format
-#| msgid "Mark selected article as read"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as read"
 msgstr "Отметить выбранную статью как прочитанную"
@@ -1333,8 +1301,7 @@ msgid "&New"
 msgstr "&Новая статья"
 
 #: src/actions/actionmanagerimpl.cpp:380
-#, fuzzy, kde-format
-#| msgid "Mark selected article as new"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as new"
 msgstr "Отметить выбранную статью как новую"
@@ -1346,8 +1313,7 @@ msgid "&Unread"
 msgstr "Н&епрочитанная статья"
 
 #: src/actions/actionmanagerimpl.cpp:387
-#, fuzzy, kde-format
-#| msgid "Mark selected article as unread"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as unread"
 msgstr "Отметить выбранную статью как непрочитанную"
@@ -1358,8 +1324,7 @@ msgid "&Mark as Important"
 msgstr "Отметить как &важную"
 
 #: src/actions/actionmanagerimpl.cpp:397
-#, fuzzy, kde-format
-#| msgid "Remove &Important Mark"
+#, kde-format
 msgctxt "@action:button"
 msgid "Remove &Important Mark"
 msgstr "Снять отметку о &важности"
@@ -1385,20 +1350,17 @@ msgid "Move Node Right"
 msgstr "Переместить вправо"
 
 #: src/actions/actionmanagerimpl.cpp:422
-#, fuzzy, kde-format
-#| msgid "Send Link Address"
+#, kde-format
 msgid "Send &Link Address…"
-msgstr "Отправить ссылку на статью"
+msgstr "Отправить &адрес ссылки…"
 
 #: src/actions/actionmanagerimpl.cpp:427
-#, fuzzy, kde-format
-#| msgid "Send &File..."
+#, kde-format
 msgid "Send &File…"
-msgstr "Отправить с&татью..."
+msgstr "Отправить &файл…"
 
 #: src/actions/actionmanagerimpl.cpp:433
-#, fuzzy, kde-format
-#| msgid "Set Focus to Quick Search"
+#, kde-format
 msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr "Перевести фокус на поле быстрого поиска"
@@ -1406,7 +1368,7 @@ msgstr "Перевести фокус на поле быстрого поиск�
 #: src/actions/actionmanagerimpl.cpp:439
 #, kde-format
 msgid "What's new"
-msgstr ""
+msgstr "Что нового?"
 
 #: src/actions/actionmanagerimpl.cpp:469
 #, kde-format
@@ -1509,17 +1471,15 @@ msgid "Unmute"
 msgstr "Включить звук"
 
 #: src/actions/actionmanagerimpl.cpp:602
-#, fuzzy, kde-format
-#| msgid "Speak Text"
+#, kde-format
 msgctxt "@action"
 msgid "Speak Text"
 msgstr "Зачитать текст"
 
 #: src/actions/actionmanagerimpl.cpp:607
-#, fuzzy, kde-format
-#| msgid "&Find in Message..."
+#, kde-format
 msgid "&Find in Message…"
-msgstr "&Найти в статье..."
+msgstr "&Найти в сообщении…"
 
 #: src/actions/actionmanagerimpl.cpp:618
 #, kde-format
@@ -1527,17 +1487,15 @@ msgid "Close Tab"
 msgstr "Закрыть вкладку"
 
 #: src/actions/actionmanagerimpl.cpp:631
-#, fuzzy, kde-format
-#| msgid "Activate Tab %1"
+#, kde-format
 msgctxt "@action"
 msgid "Activate Tab %1"
 msgstr "Перейти на вкладку %1"
 
 #: src/actions/actionmanagerimpl.cpp:637
-#, fuzzy, kde-format
-#| msgid "&Save Link As..."
+#, kde-format
 msgid "&Save Link As…"
-msgstr "&Сохранить статью..."
+msgstr "&Сохранить ссылку как…"
 
 #: src/actions/actionmanagerimpl.cpp:641
 #, kde-format
@@ -1545,18 +1503,16 @@ msgid "Copy &Link Address"
 msgstr "&Скопировать адрес ссылки"
 
 #: src/actions/actionmanagerimpl.cpp:644
-#, fuzzy, kde-format
-#| msgid "Copy Image Location"
+#, kde-format
 msgctxt "@action"
 msgid "Copy Image Location"
-msgstr "Копировать ссылку на изображение"
+msgstr "Копировать адрес изображения"
 
 #: src/actions/actionmanagerimpl.cpp:651
-#, fuzzy, kde-format
-#| msgid "Save Image On Disk..."
+#, kde-format
 msgctxt "@action"
 msgid "Save Image On Disk…"
-msgstr "Сохранить изображение на диск..."
+msgstr "Сохранить изображение на диск…"
 
 #: src/actions/actions.cpp:19
 #, kde-format
@@ -1585,35 +1541,30 @@ msgid "Feed not found from %1."
 msgstr "Лента не найдена по адресу %1."
 
 #: src/addfeeddialog.cpp:121
-#, fuzzy, kde-format
-#| msgid "Feed found, downloading..."
+#, kde-format
 msgid "Feed found, downloading…"
-msgstr "Найдена лента новостей, загрузка данных..."
+msgstr "Найдена лента новостей, загрузка данных…"
 
 #: src/akregator_options.h:20 src/akregator_options.h:28
-#, fuzzy, kde-format
-#| msgid "Add a feed with the given URL"
+#, kde-format
 msgctxt "@info:shell"
 msgid "Add a feed with the given URL"
 msgstr "Добавить ленту с указанным URL-адресом"
 
 #: src/akregator_options.h:23
-#, fuzzy, kde-format
-#| msgid "When adding feeds, place them in this group"
+#, kde-format
 msgctxt "@info:shell"
 msgid "When adding feeds, place them in this group"
 msgstr "Помещать добавляемые ленты в эту группу"
 
 #: src/akregator_options.h:25
-#, fuzzy, kde-format
-#| msgid "Hide main window on startup"
+#, kde-format
 msgctxt "@info:shell"
 msgid "Hide main window on startup"
-msgstr "Не показывать основное окно при запуске приложения"
+msgstr "Скрывать главное окно при запуске приложения"
 
 #: src/akregator_options.h:30
-#, fuzzy, kde-format
-#| msgid "Lists the available options for user feedback"
+#, kde-format
 msgctxt "@info:shell"
 msgid "Lists the available options for user feedback"
 msgstr "Показать доступные варианты обратной связи"
@@ -1917,10 +1868,9 @@ msgstr ""
 "<qt>Список лент повреждён (ошибка в OPML). Резервная копия не создана.</qt>"
 
 #: src/command/loadfeedlistcommand.cpp:129
-#, fuzzy, kde-format
-#| msgid "Opening Feed List..."
+#, kde-format
 msgid "Opening Feed List…"
-msgstr "Открытие списка лент новостей..."
+msgstr "Открытие списка лент новостей…"
 
 #: src/command/loadfeedlistcommand.cpp:143
 #, kde-format
@@ -1957,10 +1907,7 @@ msgstr ""
 "<qt>Список лент повреждён (ошибка в XML). Резервная копия не создана.</qt>"
 
 #: src/crashwidget/crashwidget.cpp:21
-#, fuzzy, kde-format
-#| msgid ""
-#| "Akregator did not close correctly. Would you like to restore the previous "
-#| "session?"
+#, kde-format
 msgctxt "@label:textbox"
 msgid ""
 "Akregator did not close correctly. Would you like to restore the previous "
@@ -2023,7 +1970,7 @@ msgstr "&Настройка"
 #: src/data/akregator_part.rc:90
 #, kde-format
 msgid "&Help"
-msgstr ""
+msgstr "&Справка"
 
 #. i18n: ectx: ToolBar (mainToolBar)
 #: src/data/akregator_part.rc:96 src/data/akregator_shell.rc:54
@@ -2045,7 +1992,7 @@ msgstr "Все ленты"
 #: src/feed/feedpropertiesdialog.cpp:39
 #, kde-format
 msgid "Activities"
-msgstr ""
+msgstr "Комнаты"
 
 #: src/feed/feedpropertiesdialog.cpp:64 src/feed/feedpropertiesdialog.cpp:119
 #, kde-format
@@ -2087,26 +2034,22 @@ msgid "Never"
 msgstr "Никогда"
 
 #: src/feed/feedpropertiesdialog.cpp:124
-#, fuzzy, kde-format
-#| msgid " day"
-#| msgid_plural " days"
+#, kde-format
 msgid "%v day"
 msgid_plural "%v days"
-msgstr[0] " день"
-msgstr[1] " дня"
-msgstr[2] " дней"
-msgstr[3] " день"
+msgstr[0] "%v день"
+msgstr[1] "%v дня"
+msgstr[2] "%v дней"
+msgstr[3] "%v день"
 
 #: src/feed/feedpropertiesdialog.cpp:125
-#, fuzzy, kde-format
-#| msgid " article"
-#| msgid_plural " articles"
+#, kde-format
 msgid "%v article"
 msgid_plural "%v articles"
-msgstr[0] " статья"
-msgstr[1] " статьи"
-msgstr[2] " статей"
-msgstr[3] " статья"
+msgstr[0] "%v статья"
+msgstr[1] "%v статьи"
+msgstr[2] "%v статей"
+msgstr[3] "%v статья"
 
 #: src/feed/feedpropertiesdialog.cpp:158
 #, kde-format
@@ -2181,10 +2124,9 @@ msgid "Untitled"
 msgstr "Безымянный"
 
 #: src/frame/frame.cpp:140
-#, fuzzy, kde-format
-#| msgid "Loading..."
+#, kde-format
 msgid "Loading…"
-msgstr "Загрузка..."
+msgstr "Загрузка…"
 
 #: src/frame/frame.cpp:156
 #, kde-format
@@ -2227,7 +2169,7 @@ msgstr "<qt>Отметить <b>все статьи в ленте</b> как п�
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
-msgstr "Отметить ленту как прочитанную"
+msgstr "Отметка ленты как прочитанной"
 
 #: src/mainwidget.cpp:818
 #, kde-format
@@ -2245,7 +2187,7 @@ msgstr "<qt>Отметить <b>все ленты в папке</b> как пр�
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
-msgstr "Отметить ленты как прочитанные"
+msgstr "Отметка лент как прочитанных"
 
 #: src/mainwidget.cpp:886 src/mainwidget.cpp:895 src/mainwidget.cpp:1297
 #, kde-format
@@ -2253,10 +2195,9 @@ msgid "Networking is not available."
 msgstr "Сеть недоступна."
 
 #: src/mainwidget.cpp:903
-#, fuzzy, kde-format
-#| msgid "Fetching Feeds..."
+#, kde-format
 msgid "Fetching Feeds…"
-msgstr "Получение данных из лент новостей..."
+msgstr "Получение данных из лент новостей…"
 
 #: src/mainwidget.cpp:1102
 #, kde-format
@@ -2419,8 +2360,7 @@ msgid "Total"
 msgstr "Всего"
 
 #: src/tabwidget.cpp:92
-#, fuzzy, kde-format
-#| msgid "Close the current tab"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Close the current tab"
 msgstr "Закрыть текущую вкладку"
@@ -2634,25 +2574,21 @@ msgid "Open In External Browser"
 msgstr "Открыть во внешнем браузере"
 
 #: src/whatsnew/whatsnewtranslations.cpp:16
-#, fuzzy
-#| msgid "Enable Javascript"
 msgid "Implement Plasma Activity."
-msgstr "Включить Javascript"
+msgstr "Реализация комнат Plasma."
 
 #: src/whatsnew/whatsnewtranslations.cpp:16
 msgid "Add new whatsnew widget."
-msgstr ""
+msgstr "Добавление нового виджета «Что нового?»."
 
 #: src/widgets/searchbar.cpp:44
-#, fuzzy, kde-format
-#| msgid "Search articles..."
+#, kde-format
 msgctxt "@info:placeholder"
 msgid "Search articles…"
 msgstr "Поиск статей…"
 
 #: src/widgets/searchbar.cpp:137
-#, fuzzy, kde-format
-#| msgid "Search articles...<%1>"
+#, kde-format
 msgctxt "@info:placeholder"
 msgid "Search articles…<%1>"
 msgstr "Поиск статей… <%1>"
