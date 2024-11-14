@@ -5,11 +5,12 @@
 */
 
 #include "akregator_config_userfeedback.h"
+#include "config-akregator.h"
 #include <KAboutData>
 #include <KLocalizedString>
 #include <KPluginFactory>
 #include <QHBoxLayout>
-#ifdef WITH_KUSERFEEDBACK
+#if AKREGATOR_WITH_KUSERFEEDBACK
 #include "userfeedback/userfeedbackmanager.h"
 #include <KUserFeedback/FeedbackConfigWidget>
 #endif

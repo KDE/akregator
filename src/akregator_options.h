@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include "config-akregator.h"
 #include <KLocalizedString>
 #include <QCommandLineParser>
 
@@ -26,7 +27,7 @@ static void akregator_options(QCommandLineParser *parser)
 
     parser->addOptions(options);
     parser->addPositionalArgument(QStringLiteral("url"), i18nc("@info:shell", "Add a feed with the given URL"), QStringLiteral("[url…]"));
-#ifdef WITH_KUSERFEEDBACK
+#if AKREGATOR_WITH_KUSERFEEDBACK
     parser->addOption(QCommandLineOption(QStringLiteral("feedback"), i18nc("@info:shell", "Lists the available options for user feedback")));
 #endif
 }

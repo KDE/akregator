@@ -9,9 +9,10 @@
 #include "aboutdata.h"
 #include "akregator_debug.h"
 #include "akregator_options.h"
+#include "config-akregator.h"
 #include "mainwindow.h"
 #include "trayicon.h"
-#ifdef WITH_KUSERFEEDBACK
+#if AKREGATOR_WITH_KUSERFEEDBACK
 #include "userfeedback/akregatoruserfeedbackprovider.h"
 #endif
 #include <KontactInterface/PimUniqueApplication>
@@ -105,7 +106,7 @@ int main(int argc, char **argv)
     about.processCommandLine(cmdArgs);
     QApplication::setWindowIcon(QIcon::fromTheme(QStringLiteral("akregator")));
 
-#ifdef WITH_KUSERFEEDBACK
+#if AKREGATOR_WITH_KUSERFEEDBACK
     if (cmdArgs->isSet(QStringLiteral("feedback"))) {
         auto userFeedBack = new Akregator::AkregatorUserFeedbackProvider(nullptr);
         QTextStream(stdout) << userFeedBack->describeDataSources() << '\n';

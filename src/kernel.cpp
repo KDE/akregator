@@ -7,11 +7,12 @@
 */
 
 #include "kernel.h"
+#include "config-akregator.h"
 
 #include "feedlist.h"
 #include "fetchqueue.h"
 #include "framemanager.h"
-#ifdef WITH_KUSERFEEDBACK
+#if AKREGATOR_WITH_KUSERFEEDBACK
 #include "userfeedback/userfeedbackmanager.h"
 #endif
 #if HAVE_ACTIVITY_SUPPORT
@@ -38,7 +39,7 @@ Kernel::Kernel()
     , mActivitiesManager(new ActivitiesManager())
 #endif
 {
-#ifdef WITH_KUSERFEEDBACK
+#if AKREGATOR_WITH_KUSERFEEDBACK
     // Initialize
     (void)UserFeedBackManager::self();
 #endif
