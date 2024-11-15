@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-11-01 00:40+0000\n"
+"POT-Creation-Date: 2024-11-15 00:40+0000\n"
 "PO-Revision-Date: 2024-11-09 20:04+0100\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
@@ -1526,25 +1526,25 @@ msgstr "Не са намерени емисии от %1."
 msgid "Feed found, downloading…"
 msgstr "Намерени са емисии, изтегляне…"
 
-#: src/akregator_options.h:20 src/akregator_options.h:28
+#: src/akregator_options.h:21 src/akregator_options.h:29
 #, kde-format
 msgctxt "@info:shell"
 msgid "Add a feed with the given URL"
 msgstr "Добавяне на емисия с дадения URL адрес"
 
-#: src/akregator_options.h:23
+#: src/akregator_options.h:24
 #, kde-format
 msgctxt "@info:shell"
 msgid "When adding feeds, place them in this group"
 msgstr "При добавяне на емисии да се поставят в тази група"
 
-#: src/akregator_options.h:25
+#: src/akregator_options.h:26
 #, kde-format
 msgctxt "@info:shell"
 msgid "Hide main window on startup"
 msgstr "Скриване на главния прозорец при стартиране"
 
-#: src/akregator_options.h:30
+#: src/akregator_options.h:31
 #, kde-format
 msgctxt "@info:shell"
 msgid "Lists the available options for user feedback"

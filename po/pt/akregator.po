@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-11-01 00:40+0000\n"
+"POT-Creation-Date: 2024-11-15 00:40+0000\n"
 "PO-Revision-Date: 2022-05-04 18:32+0100\n"
 "Last-Translator: Pedro Morais <morais@kde.org>\n"
 "Language-Team: pt <kde-i18n-pt@kde.org>\n"
@@ -1582,28 +1582,28 @@ msgstr "A fonte não foi encontrada em %1."
 msgid "Feed found, downloading…"
 msgstr "A fonte foi encontrada, a transferir..."
 
-#: src/akregator_options.h:20 src/akregator_options.h:28
+#: src/akregator_options.h:21 src/akregator_options.h:29
 #, fuzzy, kde-format
 #| msgid "Add a feed with the given URL"
 msgctxt "@info:shell"
 msgid "Add a feed with the given URL"
 msgstr "Adicionar uma fonte com o URL indicado"
 
-#: src/akregator_options.h:23
+#: src/akregator_options.h:24
 #, fuzzy, kde-format
 #| msgid "When adding feeds, place them in this group"
 msgctxt "@info:shell"
 msgid "When adding feeds, place them in this group"
 msgstr "Ao adicionar as fontes, colocá-las neste grupo"
 
-#: src/akregator_options.h:25
+#: src/akregator_options.h:26
 #, fuzzy, kde-format
 #| msgid "Hide main window on startup"
 msgctxt "@info:shell"
 msgid "Hide main window on startup"
 msgstr "Esconder a janela principal no arranque"
 
-#: src/akregator_options.h:30
+#: src/akregator_options.h:31
 #, fuzzy, kde-format
 #| msgid "Lists the available options for user feedback"
 msgctxt "@info:shell"

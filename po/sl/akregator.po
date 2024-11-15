@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-11-01 00:40+0000\n"
+"POT-Creation-Date: 2024-11-15 00:40+0000\n"
 "PO-Revision-Date: 2024-08-17 07:40+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
@@ -1536,25 +1536,25 @@ msgstr "Ni mogoče najti vira %1."
 msgid "Feed found, downloading…"
 msgstr "Najden vir, prejemanje…"
 
-#: src/akregator_options.h:20 src/akregator_options.h:28
+#: src/akregator_options.h:21 src/akregator_options.h:29
 #, kde-format
 msgctxt "@info:shell"
 msgid "Add a feed with the given URL"
 msgstr "Dodaj vir z dano povezavo URL"
 
-#: src/akregator_options.h:23
+#: src/akregator_options.h:24
 #, kde-format
 msgctxt "@info:shell"
 msgid "When adding feeds, place them in this group"
 msgstr "Ko dodajate vire, jih postavite v to skupino"
 
-#: src/akregator_options.h:25
+#: src/akregator_options.h:26
 #, kde-format
 msgctxt "@info:shell"
 msgid "Hide main window on startup"
 msgstr "Skrij glavno okno ob zagonu"
 
-#: src/akregator_options.h:30
+#: src/akregator_options.h:31
 #, kde-format
 msgctxt "@info:shell"
 msgid "Lists the available options for user feedback"

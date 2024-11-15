@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdepim\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-11-01 00:40+0000\n"
+"POT-Creation-Date: 2024-11-15 00:40+0000\n"
 "PO-Revision-Date: 2014-01-31 18:57+0100\n"
 "Last-Translator: Samir Ribić <megaribi@epn.ba>\n"
 "Language-Team: Bosnian <bs@li.org>\n"
@@ -1593,28 +1593,28 @@ msgstr "Dovod nije nađen na %1."
 msgid "Feed found, downloading…"
 msgstr "Dovod je nađen, preuzimam..."
 
-#: src/akregator_options.h:20 src/akregator_options.h:28
+#: src/akregator_options.h:21 src/akregator_options.h:29
 #, fuzzy, kde-format
 #| msgid "Add a feed with the given URL"
 msgctxt "@info:shell"
 msgid "Add a feed with the given URL"
 msgstr "Dodaj dovod sa datim URL-om"
 
-#: src/akregator_options.h:23
+#: src/akregator_options.h:24
 #, fuzzy, kde-format
 #| msgid "When adding feeds, place them in this group"
 msgctxt "@info:shell"
 msgid "When adding feeds, place them in this group"
 msgstr "Prilikom dodavanja dovoda, smjesti ih u ovu grupu"
 
-#: src/akregator_options.h:25
+#: src/akregator_options.h:26
 #, fuzzy, kde-format
 #| msgid "Hide main window on startup"
 msgctxt "@info:shell"
 msgid "Hide main window on startup"
 msgstr "Sakrij glavni prozor pri pokretanju"
 
-#: src/akregator_options.h:30
+#: src/akregator_options.h:31
 #, kde-format
 msgctxt "@info:shell"
 msgid "Lists the available options for user feedback"

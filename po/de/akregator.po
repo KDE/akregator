@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-11-01 00:40+0000\n"
+"POT-Creation-Date: 2024-11-15 00:40+0000\n"
 "PO-Revision-Date: 2023-04-19 00:41+0200\n"
 "Last-Translator: Frederik Schwarzer <schwarzer@kde.org>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
@@ -1588,14 +1588,14 @@ msgstr "Nachrichtenquelle unter %1 nicht gefunden."
 msgid "Feed found, downloading…"
 msgstr "Nachrichtenquelle gefunden, wird geladen ..."
 
-#: src/akregator_options.h:20 src/akregator_options.h:28
+#: src/akregator_options.h:21 src/akregator_options.h:29
 #, fuzzy, kde-format
 #| msgid "Add a feed with the given URL"
 msgctxt "@info:shell"
 msgid "Add a feed with the given URL"
 msgstr "Eine Nachrichtenquelle mit der angegebenen Adresse hinzufügen"
 
-#: src/akregator_options.h:23
+#: src/akregator_options.h:24
 #, fuzzy, kde-format
 #| msgid "When adding feeds, place them in this group"
 msgctxt "@info:shell"
@@ -1604,14 +1604,14 @@ msgstr ""
 "Beim Hinzufügen von Nachrichtenquellen sollen diese in dieser Gruppe "
 "abgelegt werden"
 
-#: src/akregator_options.h:25
+#: src/akregator_options.h:26
 #, fuzzy, kde-format
 #| msgid "Hide main window on startup"
 msgctxt "@info:shell"
 msgid "Hide main window on startup"
 msgstr "Hauptfenster beim Start ausblenden"
 
-#: src/akregator_options.h:30
+#: src/akregator_options.h:31
 #, fuzzy, kde-format
 #| msgid "Lists the available options for user feedback"
 msgctxt "@info:shell"

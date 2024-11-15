@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-11-01 00:40+0000\n"
+"POT-Creation-Date: 2024-11-15 00:40+0000\n"
 "PO-Revision-Date: 2009-01-18 02:35+0100\n"
 "Last-Translator: Bozidar Proevski <bobibobi@freemail.com.mk>\n"
 "Language-Team: Macedonian <mkde-l10n@lists.sourceforge.net>\n"
@@ -1578,25 +1578,25 @@ msgstr "Не е пронајден довод од %1"
 msgid "Feed found, downloading…"
 msgstr "Пронајдов довод, симнувам..."
 
-#: src/akregator_options.h:20 src/akregator_options.h:28
+#: src/akregator_options.h:21 src/akregator_options.h:29
 #, kde-format
 msgctxt "@info:shell"
 msgid "Add a feed with the given URL"
 msgstr ""
 
-#: src/akregator_options.h:23
+#: src/akregator_options.h:24
 #, kde-format
 msgctxt "@info:shell"
 msgid "When adding feeds, place them in this group"
 msgstr ""
 
-#: src/akregator_options.h:25
+#: src/akregator_options.h:26
 #, kde-format
 msgctxt "@info:shell"
 msgid "Hide main window on startup"
 msgstr ""
 
-#: src/akregator_options.h:30
+#: src/akregator_options.h:31
 #, kde-format
 msgctxt "@info:shell"
 msgid "Lists the available options for user feedback"

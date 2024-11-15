@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-11-01 00:40+0000\n"
+"POT-Creation-Date: 2024-11-15 00:40+0000\n"
 "PO-Revision-Date: 2024-07-06 21:38+0530\n"
 "Last-Translator: Kishore G <kishore96@gmail.com>\n"
 "Language-Team: Tamil <kde-i18n-doc@kde.org>\n"
@@ -1511,25 +1511,25 @@ msgstr "%1-இல் தொகுப்பு கண்டுபிடிக்�
 msgid "Feed found, downloading…"
 msgstr "தொகுப்பு கண்டுபிடிக்கப்பட்டு பதிவிறக்கப்படுகிறது…"
 
-#: src/akregator_options.h:20 src/akregator_options.h:28
+#: src/akregator_options.h:21 src/akregator_options.h:29
 #, kde-format
 msgctxt "@info:shell"
 msgid "Add a feed with the given URL"
 msgstr "குறிப்பிட்ட முகவரியிலுள்ள தொகுப்பை சேர்க்கும்"
 
-#: src/akregator_options.h:23
+#: src/akregator_options.h:24
 #, kde-format
 msgctxt "@info:shell"
 msgid "When adding feeds, place them in this group"
 msgstr "தொகுப்புகளை சேர்க்கும்போது இக்குழுவில் அவற்றை சேர்க்கும்"
 
-#: src/akregator_options.h:25
+#: src/akregator_options.h:26
 #, kde-format
 msgctxt "@info:shell"
 msgid "Hide main window on startup"
 msgstr "துவக்கும்போது பிரதான சாளரத்தை காட்டாதே"
 
-#: src/akregator_options.h:30
+#: src/akregator_options.h:31
 #, kde-format
 msgctxt "@info:shell"
 msgid "Lists the available options for user feedback"
