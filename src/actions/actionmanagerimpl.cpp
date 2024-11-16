@@ -39,6 +39,9 @@
 #include <kxmlguifactory.h>
 
 #include <KColorSchemeManager>
+#if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
+#include <PimCommon/VerifyNewVersionWidget>
+#endif
 #include <QWidget>
 
 using namespace Akregator;
@@ -108,6 +111,9 @@ public:
     PimCommon::ShareServiceUrlManager *shareServiceManager = nullptr;
     WebEngineViewer::ZoomActionMenu *zoomActionMenu = nullptr;
     QAction *mQuickSearchAction = nullptr;
+#if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
+    PimCommon::VerifyNewVersionWidget *mVerifyNewVersionWidget = nullptr;
+#endif
 };
 
 void ActionManagerImpl::slotSettingsChanged()
@@ -155,6 +161,10 @@ ActionManagerImpl::ActionManagerImpl(Part *part, QObject *parent)
     d->tagMenu = nullptr;
     d->actionCollection = part->actionCollection();
     d->shareServiceManager = new PimCommon::ShareServiceUrlManager(this);
+#if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
+    d->mVerifyNewVersionWidget = new PimCommon::VerifyNewVersionWidget(this);
+#endif
+
     initPart();
 }
 
@@ -442,6 +452,13 @@ void ActionManagerImpl::initMainWidget(MainWidget *mainWidget)
 
     auto manager = KColorSchemeManager::instance();
     coll->addAction(QStringLiteral("colorscheme_menu"), KColorSchemeMenu::createMenu(manager, this));
+
+#if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
+    d->mVerifyNewVersionWidget->addOsUrlInfo(PimCommon::VerifyNewVersionWidget::OsVersion::Windows,
+                                             QStringLiteral("https://cdn.kde.org/ci-builds/pim/akregator"));
+    auto verifyNewVersionAction = d->mVerifyNewVersionWidget->verifyNewVersionAction();
+    coll->addAction(QStringLiteral("verify_check_version"), verifyNewVersionAction);
+#endif
 
     setArticleActionsEnabled(false);
 }

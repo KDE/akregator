@@ -1,5 +1,5 @@
 <!DOCTYPE gui SYSTEM "kpartgui.dtd">
-<gui name="akregator_part" version="436" translationDomain="akregator">
+<gui name="akregator_part" version="437" translationDomain="akregator">
   <MenuBar>
     <Menu name="file">
       <Action name="file_import"/>
@@ -89,6 +89,8 @@
   <Menu name="help">
    <text>&amp;Help</text>
    <Action name="whatsnew" />
+   <Separator/>
+   <Action name="verify_check_version" />
    <Separator/>
   </Menu>
   </MenuBar>
