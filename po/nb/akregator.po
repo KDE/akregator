@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-11-15 00:40+0000\n"
+"POT-Creation-Date: 2024-11-18 00:40+0000\n"
 "PO-Revision-Date: 2015-02-07 19:02+0100\n"
 "Last-Translator: Bjørn Steensrud <bjornst@skogkatt.homelinux.org>\n"
 "Language-Team: Norwegian Bokmål <l10n-no@lister.huftis.org>\n"
@@ -269,7 +269,7 @@ msgstr "Venstreklikk:"
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
 #: configuration/ui/settings_browser.ui:28
 #: configuration/ui/settings_browser.ui:54
-#: src/actions/actionmanagerimpl.cpp:324
+#: src/actions/actionmanagerimpl.cpp:334
 #, kde-format
 msgid "Open in Tab"
 msgstr "Åpne i fane"
@@ -278,7 +278,7 @@ msgstr "Åpne i fane"
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
 #: configuration/ui/settings_browser.ui:33
 #: configuration/ui/settings_browser.ui:59
-#: src/actions/actionmanagerimpl.cpp:330
+#: src/actions/actionmanagerimpl.cpp:340
 #, kde-format
 msgid "Open in Background Tab"
 msgstr "Åpne i bakgrunnsfane"
@@ -287,7 +287,7 @@ msgstr "Åpne i bakgrunnsfane"
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
 #: configuration/ui/settings_browser.ui:38
 #: configuration/ui/settings_browser.ui:64
-#: src/actions/actionmanagerimpl.cpp:336
+#: src/actions/actionmanagerimpl.cpp:346
 #, kde-format
 msgid "Open in External Browser"
 msgstr "Åpne i ekstern nettleser"
@@ -529,7 +529,7 @@ msgid "Auto-Expand folders with unread articles"
 msgstr ""
 
 #. i18n: ectx: label, entry, group (View)
-#: interfaces/akregator.kcfg:31 src/actions/actionmanagerimpl.cpp:318
+#: interfaces/akregator.kcfg:31 src/actions/actionmanagerimpl.cpp:328
 #, kde-format
 msgid "Show Quick Filter"
 msgstr "Vis hurtigfilter"
@@ -1125,363 +1125,363 @@ msgstr "Philipp Droessler"
 msgid "Gentoo Ebuild"
 msgstr "Gentoo-Ebuild"
 
-#: src/actions/actionmanagerimpl.cpp:64 src/actions/actionmanagerimpl.cpp:287
+#: src/actions/actionmanagerimpl.cpp:67 src/actions/actionmanagerimpl.cpp:297
 #, kde-format
 msgid "&Fetch Feed"
 msgstr "&Hent kilder"
 
-#: src/actions/actionmanagerimpl.cpp:65 src/actions/actionmanagerimpl.cpp:243
+#: src/actions/actionmanagerimpl.cpp:68 src/actions/actionmanagerimpl.cpp:253
 #, kde-format
 msgid "&Delete Feed"
 msgstr "S&lett kilde"
 
-#: src/actions/actionmanagerimpl.cpp:66 src/actions/actionmanagerimpl.cpp:249
+#: src/actions/actionmanagerimpl.cpp:69 src/actions/actionmanagerimpl.cpp:259
 #, fuzzy, kde-format
 msgid "&Edit Feed…"
 msgstr "R&ediger kilde …"
 
-#: src/actions/actionmanagerimpl.cpp:67 src/actions/actionmanagerimpl.cpp:306
+#: src/actions/actionmanagerimpl.cpp:70 src/actions/actionmanagerimpl.cpp:316
 #, kde-format
 msgid "&Mark Feed as Read"
 msgstr "&Marker kilde som lest"
 
-#: src/actions/actionmanagerimpl.cpp:83
+#: src/actions/actionmanagerimpl.cpp:86
 #, kde-format
 msgid "&Fetch Feeds"
 msgstr "&Hent kilder"
 
-#: src/actions/actionmanagerimpl.cpp:84
+#: src/actions/actionmanagerimpl.cpp:87
 #, kde-format
 msgid "&Delete Folder"
 msgstr "&Slett mappe"
 
-#: src/actions/actionmanagerimpl.cpp:85
+#: src/actions/actionmanagerimpl.cpp:88
 #, kde-format
 msgid "&Rename Folder"
 msgstr "&Gi mappa nytt navn"
 
-#: src/actions/actionmanagerimpl.cpp:86
+#: src/actions/actionmanagerimpl.cpp:89
 #, kde-format
 msgid "&Mark Feeds as Read"
 msgstr "&Marker kildene som lest"
 
-#: src/actions/actionmanagerimpl.cpp:191
+#: src/actions/actionmanagerimpl.cpp:201
 #, fuzzy, kde-format
 msgid "&Import Feeds…"
 msgstr "&Importer kilder …"
 
-#: src/actions/actionmanagerimpl.cpp:195
+#: src/actions/actionmanagerimpl.cpp:205
 #, fuzzy, kde-format
 msgid "&Export Feeds…"
 msgstr "&Eksporter kilder …"
 
-#: src/actions/actionmanagerimpl.cpp:200
+#: src/actions/actionmanagerimpl.cpp:210
 #, fuzzy, kde-format
 msgid "&Configure Akregator…"
 msgstr "Oppsett av &Akregator …"
 
-#: src/actions/actionmanagerimpl.cpp:219
+#: src/actions/actionmanagerimpl.cpp:229
 #, kde-format
 msgid "&Open Homepage"
 msgstr "Åpne &hjemmeside"
 
-#: src/actions/actionmanagerimpl.cpp:225
+#: src/actions/actionmanagerimpl.cpp:235
 #, kde-format
 msgid "Reload All Tabs"
 msgstr "Last alle faner på nytt"
 
-#: src/actions/actionmanagerimpl.cpp:231
+#: src/actions/actionmanagerimpl.cpp:241
 #, fuzzy, kde-format
 msgid "&Add Feed…"
 msgstr "Legg til kilde"
 
-#: src/actions/actionmanagerimpl.cpp:237
+#: src/actions/actionmanagerimpl.cpp:247
 #, fuzzy, kde-format
 msgid "Ne&w Folder…"
 msgstr "Ny &mappe …"
 
-#: src/actions/actionmanagerimpl.cpp:262
+#: src/actions/actionmanagerimpl.cpp:272
 #, kde-format
 msgid "&Normal View"
 msgstr "&Normal visning"
 
-#: src/actions/actionmanagerimpl.cpp:271
+#: src/actions/actionmanagerimpl.cpp:281
 #, kde-format
 msgid "&Widescreen View"
 msgstr "Visning på &bredskjerm"
 
-#: src/actions/actionmanagerimpl.cpp:280
+#: src/actions/actionmanagerimpl.cpp:290
 #, kde-format
 msgid "C&ombined View"
 msgstr "&Kombinert visning"
 
-#: src/actions/actionmanagerimpl.cpp:293
+#: src/actions/actionmanagerimpl.cpp:303
 #, kde-format
 msgid "Fe&tch All Feeds"
 msgstr "H&ent alle kilder"
 
-#: src/actions/actionmanagerimpl.cpp:299
+#: src/actions/actionmanagerimpl.cpp:309
 #, kde-format
 msgid "C&ancel Feed Fetches"
 msgstr "&Avbryt hentinger"
 
-#: src/actions/actionmanagerimpl.cpp:312
+#: src/actions/actionmanagerimpl.cpp:322
 #, kde-format
 msgid "Ma&rk All Feeds as Read"
 msgstr "&Marker alle kilder som leste"
 
-#: src/actions/actionmanagerimpl.cpp:341 src/actions/actionmanagerimpl.cpp:613
+#: src/actions/actionmanagerimpl.cpp:351 src/actions/actionmanagerimpl.cpp:630
 #, kde-format
 msgid "Copy Link Address"
 msgstr "Kopier lenkeadresse"
 
-#: src/actions/actionmanagerimpl.cpp:346
+#: src/actions/actionmanagerimpl.cpp:356
 #, kde-format
 msgid "Pre&vious Unread Article"
 msgstr "&Forrige uleste artikkel"
 
-#: src/actions/actionmanagerimpl.cpp:352
+#: src/actions/actionmanagerimpl.cpp:362
 #, kde-format
 msgid "Ne&xt Unread Article"
 msgstr "&Neste uleste artikkel"
 
-#: src/actions/actionmanagerimpl.cpp:360
+#: src/actions/actionmanagerimpl.cpp:370
 #, kde-format
 msgid "&Delete"
 msgstr "&Slett"
 
-#: src/actions/actionmanagerimpl.cpp:365
+#: src/actions/actionmanagerimpl.cpp:375
 #, kde-format
 msgid "&Mark As"
 msgstr "&Merk som"
 
-#: src/actions/actionmanagerimpl.cpp:369
+#: src/actions/actionmanagerimpl.cpp:379
 #, kde-format
 msgctxt "as in: mark as read"
 msgid "&Read"
 msgstr "&Lest"
 
-#: src/actions/actionmanagerimpl.cpp:371
+#: src/actions/actionmanagerimpl.cpp:381
 #, fuzzy, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as read"
 msgstr "Marker den valgte artikkelen som lest"
 
-#: src/actions/actionmanagerimpl.cpp:377
+#: src/actions/actionmanagerimpl.cpp:387
 #, kde-format
 msgctxt "as in: mark as new"
 msgid "&New"
 msgstr "&Ny"
 
-#: src/actions/actionmanagerimpl.cpp:380
+#: src/actions/actionmanagerimpl.cpp:390
 #, fuzzy, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as new"
 msgstr "Marker den valgte artikkelen som ny"
 
-#: src/actions/actionmanagerimpl.cpp:385
+#: src/actions/actionmanagerimpl.cpp:395
 #, kde-format
 msgctxt "as in: mark as unread"
 msgid "&Unread"
 msgstr "&Ulest"
 
-#: src/actions/actionmanagerimpl.cpp:387
+#: src/actions/actionmanagerimpl.cpp:397
 #, fuzzy, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as unread"
 msgstr "Marker den valgte artikkelen som ulest"
 
-#: src/actions/actionmanagerimpl.cpp:393
+#: src/actions/actionmanagerimpl.cpp:403
 #, kde-format
 msgid "&Mark as Important"
 msgstr "&Merk som viktig"
 
-#: src/actions/actionmanagerimpl.cpp:397
+#: src/actions/actionmanagerimpl.cpp:407
 #, fuzzy, kde-format
 msgctxt "@action:button"
 msgid "Remove &Important Mark"
 msgstr "Fjern &viktig-markering"
 
-#: src/actions/actionmanagerimpl.cpp:401
+#: src/actions/actionmanagerimpl.cpp:411
 #, kde-format
 msgid "Move Node Up"
 msgstr "Flytt node opp"
 
-#: src/actions/actionmanagerimpl.cpp:406
+#: src/actions/actionmanagerimpl.cpp:416
 #, kde-format
 msgid "Move Node Down"
 msgstr "Flytt node ned"
 
-#: src/actions/actionmanagerimpl.cpp:411
+#: src/actions/actionmanagerimpl.cpp:421
 #, kde-format
 msgid "Move Node Left"
 msgstr "Flytt node til venstre"
 
-#: src/actions/actionmanagerimpl.cpp:416
+#: src/actions/actionmanagerimpl.cpp:426
 #, kde-format
 msgid "Move Node Right"
 msgstr "Flytt node til høyre"
 
-#: src/actions/actionmanagerimpl.cpp:422
+#: src/actions/actionmanagerimpl.cpp:432
 #, fuzzy, kde-format
 msgid "Send &Link Address…"
 msgstr "Send &lenkeadresse …"
 
-#: src/actions/actionmanagerimpl.cpp:427
+#: src/actions/actionmanagerimpl.cpp:437
 #, fuzzy, kde-format
 msgid "Send &File…"
 msgstr "Send &fil …"
 
-#: src/actions/actionmanagerimpl.cpp:433
+#: src/actions/actionmanagerimpl.cpp:443
 #, fuzzy, kde-format
 msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr "Sett fokus til hurtigsøk"
 
-#: src/actions/actionmanagerimpl.cpp:439
+#: src/actions/actionmanagerimpl.cpp:449
 #, kde-format
 msgid "What's new"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:469
+#: src/actions/actionmanagerimpl.cpp:486
 #, kde-format
 msgid "&Previous Article"
 msgstr "&Forrige artikkel"
 
-#: src/actions/actionmanagerimpl.cpp:473
+#: src/actions/actionmanagerimpl.cpp:490
 #, kde-format
 msgid "&Next Article"
 msgstr "&Neste artikkel"
 
-#: src/actions/actionmanagerimpl.cpp:489
+#: src/actions/actionmanagerimpl.cpp:506
 #, kde-format
 msgid "&Previous Feed"
 msgstr "&Forrige kilde"
 
-#: src/actions/actionmanagerimpl.cpp:494
+#: src/actions/actionmanagerimpl.cpp:511
 #, kde-format
 msgid "&Next Feed"
 msgstr "&Neste kilde"
 
-#: src/actions/actionmanagerimpl.cpp:500
+#: src/actions/actionmanagerimpl.cpp:517
 #, kde-format
 msgid "N&ext Unread Feed"
 msgstr "Nes&te uleste kilde"
 
-#: src/actions/actionmanagerimpl.cpp:506
+#: src/actions/actionmanagerimpl.cpp:523
 #, kde-format
 msgid "Prev&ious Unread Feed"
 msgstr "For&rige uleste kilde"
 
-#: src/actions/actionmanagerimpl.cpp:511
+#: src/actions/actionmanagerimpl.cpp:528
 #, kde-format
 msgid "Go to Top of Tree"
 msgstr "Gå til toppen av treet"
 
-#: src/actions/actionmanagerimpl.cpp:516
+#: src/actions/actionmanagerimpl.cpp:533
 #, kde-format
 msgid "Go to Bottom of Tree"
 msgstr "Gå til bunnen av treet"
 
-#: src/actions/actionmanagerimpl.cpp:521
+#: src/actions/actionmanagerimpl.cpp:538
 #, kde-format
 msgid "Go Left in Tree"
 msgstr "Gå til venstre i treet"
 
-#: src/actions/actionmanagerimpl.cpp:526
+#: src/actions/actionmanagerimpl.cpp:543
 #, kde-format
 msgid "Go Right in Tree"
 msgstr "Gå til høyre i treet"
 
-#: src/actions/actionmanagerimpl.cpp:531
+#: src/actions/actionmanagerimpl.cpp:548
 #, kde-format
 msgid "Go Up in Tree"
 msgstr "Gå et nivå opp i treet"
 
-#: src/actions/actionmanagerimpl.cpp:536
+#: src/actions/actionmanagerimpl.cpp:553
 #, kde-format
 msgid "Go Down in Tree"
 msgstr "Gå et nivå ned i treet"
 
-#: src/actions/actionmanagerimpl.cpp:542
+#: src/actions/actionmanagerimpl.cpp:559
 #, kde-format
 msgid "Hide Read Feeds"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:548
+#: src/actions/actionmanagerimpl.cpp:565
 #, kde-format
 msgid "Lock Feeds In Place"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:554
+#: src/actions/actionmanagerimpl.cpp:571
 #, kde-format
 msgid "Auto-expand folders with unread articles"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:570
+#: src/actions/actionmanagerimpl.cpp:587
 #, kde-format
 msgid "Select Next Tab"
 msgstr "Velg neste fane"
 
-#: src/actions/actionmanagerimpl.cpp:575
+#: src/actions/actionmanagerimpl.cpp:592
 #, kde-format
 msgid "Select Previous Tab"
 msgstr "Velg forrige fane"
 
-#: src/actions/actionmanagerimpl.cpp:581
+#: src/actions/actionmanagerimpl.cpp:598
 #, kde-format
 msgid "Detach Tab"
 msgstr "Løsne fane"
 
-#: src/actions/actionmanagerimpl.cpp:595
+#: src/actions/actionmanagerimpl.cpp:612
 #, kde-format
 msgid "Mute"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:599
+#: src/actions/actionmanagerimpl.cpp:616
 #, kde-format
 msgid "Unmute"
 msgstr "Demp av"
 
-#: src/actions/actionmanagerimpl.cpp:602
+#: src/actions/actionmanagerimpl.cpp:619
 #, fuzzy, kde-format
 msgctxt "@action"
 msgid "Speak Text"
 msgstr "Uttal teksten"
 
-#: src/actions/actionmanagerimpl.cpp:607
+#: src/actions/actionmanagerimpl.cpp:624
 #, fuzzy, kde-format
 msgid "&Find in Message…"
 msgstr "&Finn i melding …"
 
-#: src/actions/actionmanagerimpl.cpp:618
+#: src/actions/actionmanagerimpl.cpp:635
 #, kde-format
 msgid "Close Tab"
 msgstr "Lukk fane"
 
-#: src/actions/actionmanagerimpl.cpp:631
+#: src/actions/actionmanagerimpl.cpp:648
 #, fuzzy, kde-format
 msgctxt "@action"
 msgid "Activate Tab %1"
 msgstr "Ta i bruk fane %1"
 
-#: src/actions/actionmanagerimpl.cpp:637
+#: src/actions/actionmanagerimpl.cpp:654
 #, fuzzy, kde-format
 msgid "&Save Link As…"
 msgstr "&Lagre lenka som …"
 
-#: src/actions/actionmanagerimpl.cpp:641
+#: src/actions/actionmanagerimpl.cpp:658
 #, kde-format
 msgid "Copy &Link Address"
 msgstr "Kopier &lenkeadresse"
 
-#: src/actions/actionmanagerimpl.cpp:644
+#: src/actions/actionmanagerimpl.cpp:661
 #, fuzzy, kde-format
 msgctxt "@action"
 msgid "Copy Image Location"
 msgstr "Kopier bildeadresse"
 
-#: src/actions/actionmanagerimpl.cpp:651
+#: src/actions/actionmanagerimpl.cpp:668
 #, fuzzy, kde-format
 msgctxt "@action"
 msgid "Save Image On Disk…"
@@ -1948,7 +1948,7 @@ msgid "&Help"
 msgstr ""
 
 #. i18n: ectx: ToolBar (mainToolBar)
-#: src/data/akregator_part.rc:96 src/data/akregator_shell.rc:54
+#: src/data/akregator_part.rc:98 src/data/akregator_shell.rc:54
 #, kde-format
 msgid "Main Toolbar"
 msgstr "Hovedverktøylinje"
@@ -2529,10 +2529,16 @@ msgid "Open In External Browser"
 msgstr ""
 
 #: src/whatsnew/whatsnewtranslations.cpp:16
+msgid "Add windows support"
+msgstr ""
+
+#: src/whatsnew/whatsnewtranslations.cpp:25
+#, kde-format
 msgid "Implement Plasma Activity."
 msgstr ""
 
-#: src/whatsnew/whatsnewtranslations.cpp:16
+#: src/whatsnew/whatsnewtranslations.cpp:25
+#, kde-format
 msgid "Add new whatsnew widget."
 msgstr ""
 

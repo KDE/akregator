@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-11-15 00:40+0000\n"
+"POT-Creation-Date: 2024-11-18 00:40+0000\n"
 "PO-Revision-Date: 2008-04-07 23:17+0700\n"
 "Last-Translator: Thanomsub Noppaburana <donga.nb@gmail.com>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
@@ -290,7 +290,7 @@ msgstr ""
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
 #: configuration/ui/settings_browser.ui:28
 #: configuration/ui/settings_browser.ui:54
-#: src/actions/actionmanagerimpl.cpp:324
+#: src/actions/actionmanagerimpl.cpp:334
 #, kde-format
 msgid "Open in Tab"
 msgstr "เปิดในแท็บใหม่"
@@ -299,7 +299,7 @@ msgstr "เปิดในแท็บใหม่"
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
 #: configuration/ui/settings_browser.ui:33
 #: configuration/ui/settings_browser.ui:59
-#: src/actions/actionmanagerimpl.cpp:330
+#: src/actions/actionmanagerimpl.cpp:340
 #, fuzzy, kde-format
 #| msgid "Open in Tab"
 msgid "Open in Background Tab"
@@ -309,7 +309,7 @@ msgstr "เปิดในแท็บใหม่"
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
 #: configuration/ui/settings_browser.ui:38
 #: configuration/ui/settings_browser.ui:64
-#: src/actions/actionmanagerimpl.cpp:336
+#: src/actions/actionmanagerimpl.cpp:346
 #, kde-format
 msgid "Open in External Browser"
 msgstr "เปิดด้วยเบราว์เซอร์ภายนอก"
@@ -564,7 +564,7 @@ msgid "Auto-Expand folders with unread articles"
 msgstr " (ไม่มีบทความที่ยังไม่ได้อ่าน)"
 
 #. i18n: ectx: label, entry, group (View)
-#: interfaces/akregator.kcfg:31 src/actions/actionmanagerimpl.cpp:318
+#: interfaces/akregator.kcfg:31 src/actions/actionmanagerimpl.cpp:328
 #, kde-format
 msgid "Show Quick Filter"
 msgstr "แสดงตัวกรองด่วน"
@@ -1181,382 +1181,382 @@ msgstr "Philipp Droessler"
 msgid "Gentoo Ebuild"
 msgstr "จัดการแพ็คเกจของ Gentoo"
 
-#: src/actions/actionmanagerimpl.cpp:64 src/actions/actionmanagerimpl.cpp:287
+#: src/actions/actionmanagerimpl.cpp:67 src/actions/actionmanagerimpl.cpp:297
 #, kde-format
 msgid "&Fetch Feed"
 msgstr "ดึ&งจากแหล่งป้อน"
 
-#: src/actions/actionmanagerimpl.cpp:65 src/actions/actionmanagerimpl.cpp:243
+#: src/actions/actionmanagerimpl.cpp:68 src/actions/actionmanagerimpl.cpp:253
 #, kde-format
 msgid "&Delete Feed"
 msgstr "&ลบแหล่งป้อน"
 
-#: src/actions/actionmanagerimpl.cpp:66 src/actions/actionmanagerimpl.cpp:249
+#: src/actions/actionmanagerimpl.cpp:69 src/actions/actionmanagerimpl.cpp:259
 #, fuzzy, kde-format
 #| msgid "&Edit Feed..."
 msgid "&Edit Feed…"
 msgstr "แก้ไ&ขแหล่งป้อน..."
 
-#: src/actions/actionmanagerimpl.cpp:67 src/actions/actionmanagerimpl.cpp:306
+#: src/actions/actionmanagerimpl.cpp:70 src/actions/actionmanagerimpl.cpp:316
 #, kde-format
 msgid "&Mark Feed as Read"
 msgstr "&ตั้งสถานะว่าอ่านแล้ว"
 
-#: src/actions/actionmanagerimpl.cpp:83
+#: src/actions/actionmanagerimpl.cpp:86
 #, kde-format
 msgid "&Fetch Feeds"
 msgstr "ดึ&งจากแหล่งป้อน"
 
-#: src/actions/actionmanagerimpl.cpp:84
+#: src/actions/actionmanagerimpl.cpp:87
 #, kde-format
 msgid "&Delete Folder"
 msgstr "&ลบโฟลเดอร์"
 
-#: src/actions/actionmanagerimpl.cpp:85
+#: src/actions/actionmanagerimpl.cpp:88
 #, kde-format
 msgid "&Rename Folder"
 msgstr "เ&ปลี่ยนชื่อโฟลเดอร์"
 
-#: src/actions/actionmanagerimpl.cpp:86
+#: src/actions/actionmanagerimpl.cpp:89
 #, kde-format
 msgid "&Mark Feeds as Read"
 msgstr "&ตั้งสถานะว่าอ่านแล้ว"
 
-#: src/actions/actionmanagerimpl.cpp:191
+#: src/actions/actionmanagerimpl.cpp:201
 #, fuzzy, kde-format
 #| msgid "&Import Feeds..."
 msgid "&Import Feeds…"
 msgstr "&นำเข้าแหล่งป้อน..."
 
-#: src/actions/actionmanagerimpl.cpp:195
+#: src/actions/actionmanagerimpl.cpp:205
 #, fuzzy, kde-format
 #| msgid "&Export Feeds..."
 msgid "&Export Feeds…"
 msgstr "ส่ง&ออกแหล่งป้อน..."
 
-#: src/actions/actionmanagerimpl.cpp:200
+#: src/actions/actionmanagerimpl.cpp:210
 #, fuzzy, kde-format
 #| msgid "Configure &Akregator..."
 msgid "&Configure Akregator…"
 msgstr "ปรับแต่ง &Akregator..."
 
-#: src/actions/actionmanagerimpl.cpp:219
+#: src/actions/actionmanagerimpl.cpp:229
 #, kde-format
 msgid "&Open Homepage"
 msgstr "เปิ&ดหน้าเว็บหลัก"
 
-#: src/actions/actionmanagerimpl.cpp:225
+#: src/actions/actionmanagerimpl.cpp:235
 #, kde-format
 msgid "Reload All Tabs"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:231
+#: src/actions/actionmanagerimpl.cpp:241
 #, fuzzy, kde-format
 #| msgid "Add Feed"
 msgid "&Add Feed…"
 msgstr "เพิ่มแหล่งป้อน"
 
-#: src/actions/actionmanagerimpl.cpp:237
+#: src/actions/actionmanagerimpl.cpp:247
 #, fuzzy, kde-format
 #| msgid "Ne&w Folder..."
 msgid "Ne&w Folder…"
 msgstr "สร้างโ&ฟลเดอร์ใหม่..."
 
-#: src/actions/actionmanagerimpl.cpp:262
+#: src/actions/actionmanagerimpl.cpp:272
 #, kde-format
 msgid "&Normal View"
 msgstr "มุมมอง&ปกติ"
 
-#: src/actions/actionmanagerimpl.cpp:271
+#: src/actions/actionmanagerimpl.cpp:281
 #, kde-format
 msgid "&Widescreen View"
 msgstr "มุมมองแบบ&จอกว้าง"
 
-#: src/actions/actionmanagerimpl.cpp:280
+#: src/actions/actionmanagerimpl.cpp:290
 #, kde-format
 msgid "C&ombined View"
 msgstr "มุมมอง&รวม"
 
-#: src/actions/actionmanagerimpl.cpp:293
+#: src/actions/actionmanagerimpl.cpp:303
 #, kde-format
 msgid "Fe&tch All Feeds"
 msgstr "ดึงจากแ&หล่งป้อนทั้งหมด"
 
-#: src/actions/actionmanagerimpl.cpp:299
+#: src/actions/actionmanagerimpl.cpp:309
 #, fuzzy, kde-format
 #| msgid "&Abort Fetches"
 msgid "C&ancel Feed Fetches"
 msgstr "ย&กเลิกการดึงข้อมูล"
 
-#: src/actions/actionmanagerimpl.cpp:312
+#: src/actions/actionmanagerimpl.cpp:322
 #, kde-format
 msgid "Ma&rk All Feeds as Read"
 msgstr "ตั้ง&สถานะว่าอ่านแล้ว"
 
-#: src/actions/actionmanagerimpl.cpp:341 src/actions/actionmanagerimpl.cpp:613
+#: src/actions/actionmanagerimpl.cpp:351 src/actions/actionmanagerimpl.cpp:630
 #, kde-format
 msgid "Copy Link Address"
 msgstr "คัดลอกที่อยู่ตำแหน่งเชื่อมโยง"
 
-#: src/actions/actionmanagerimpl.cpp:346
+#: src/actions/actionmanagerimpl.cpp:356
 #, kde-format
 msgid "Pre&vious Unread Article"
 msgstr "บทความที่ยังไม่อ่านก่&อนหน้า"
 
-#: src/actions/actionmanagerimpl.cpp:352
+#: src/actions/actionmanagerimpl.cpp:362
 #, kde-format
 msgid "Ne&xt Unread Article"
 msgstr "บทความที่ยังไม่อ่านถัดไ&ป"
 
-#: src/actions/actionmanagerimpl.cpp:360
+#: src/actions/actionmanagerimpl.cpp:370
 #, kde-format
 msgid "&Delete"
 msgstr "&ลบ"
 
-#: src/actions/actionmanagerimpl.cpp:365
+#: src/actions/actionmanagerimpl.cpp:375
 #, kde-format
 msgid "&Mark As"
 msgstr "ตั้งสถา&นะเป็น"
 
-#: src/actions/actionmanagerimpl.cpp:369
+#: src/actions/actionmanagerimpl.cpp:379
 #, kde-format
 msgctxt "as in: mark as read"
 msgid "&Read"
 msgstr "อ่&านแล้ว"
 
-#: src/actions/actionmanagerimpl.cpp:371
+#: src/actions/actionmanagerimpl.cpp:381
 #, fuzzy, kde-format
 #| msgid "Mark selected article as read"
 msgctxt "@info:tooltip"
 msgid "Mark selected article as read"
 msgstr "ตั้งสถานะบทความที่เลือกเป็นอ่านแล้ว"
 
-#: src/actions/actionmanagerimpl.cpp:377
+#: src/actions/actionmanagerimpl.cpp:387
 #, fuzzy, kde-format
 #| msgid "&New"
 msgctxt "as in: mark as new"
 msgid "&New"
 msgstr "บทความใ&หม่"
 
-#: src/actions/actionmanagerimpl.cpp:380
+#: src/actions/actionmanagerimpl.cpp:390
 #, fuzzy, kde-format
 #| msgid "Mark selected article as new"
 msgctxt "@info:tooltip"
 msgid "Mark selected article as new"
 msgstr "ตั้งสถานะบทความที่เลือกเป็นบทความใหม่"
 
-#: src/actions/actionmanagerimpl.cpp:385
+#: src/actions/actionmanagerimpl.cpp:395
 #, fuzzy, kde-format
 #| msgid "&Unread"
 msgctxt "as in: mark as unread"
 msgid "&Unread"
 msgstr "ยั&งไม่อ่าน"
 
-#: src/actions/actionmanagerimpl.cpp:387
+#: src/actions/actionmanagerimpl.cpp:397
 #, fuzzy, kde-format
 #| msgid "Mark selected article as unread"
 msgctxt "@info:tooltip"
 msgid "Mark selected article as unread"
 msgstr "ตั้งสถานะบทความที่เลือกเป็นยังไม่อ่าน"
 
-#: src/actions/actionmanagerimpl.cpp:393
+#: src/actions/actionmanagerimpl.cpp:403
 #, kde-format
 msgid "&Mark as Important"
 msgstr "&ตั้งสถานะว่าสำคัญ"
 
-#: src/actions/actionmanagerimpl.cpp:397
+#: src/actions/actionmanagerimpl.cpp:407
 #, fuzzy, kde-format
 #| msgid "Remove &Important Mark"
 msgctxt "@action:button"
 msgid "Remove &Important Mark"
 msgstr "ลบการตั้งสถานะว่าสำคัญออก"
 
-#: src/actions/actionmanagerimpl.cpp:401
+#: src/actions/actionmanagerimpl.cpp:411
 #, kde-format
 msgid "Move Node Up"
 msgstr "เลื่อนโหนดขึ้น"
 
-#: src/actions/actionmanagerimpl.cpp:406
+#: src/actions/actionmanagerimpl.cpp:416
 #, kde-format
 msgid "Move Node Down"
 msgstr "เลื่อนโหนดลง"
 
-#: src/actions/actionmanagerimpl.cpp:411
+#: src/actions/actionmanagerimpl.cpp:421
 #, kde-format
 msgid "Move Node Left"
 msgstr "เลื่อนโหนดไปทางซ้าย"
 
-#: src/actions/actionmanagerimpl.cpp:416
+#: src/actions/actionmanagerimpl.cpp:426
 #, kde-format
 msgid "Move Node Right"
 msgstr "เลื่อนโหนดไปทางขวา"
 
-#: src/actions/actionmanagerimpl.cpp:422
+#: src/actions/actionmanagerimpl.cpp:432
 #, fuzzy, kde-format
 #| msgid "Send &Link Address..."
 msgid "Send &Link Address…"
 msgstr "ส่งที่อยู่ตำแหน่งเชื่อมโยง..."
 
-#: src/actions/actionmanagerimpl.cpp:427
+#: src/actions/actionmanagerimpl.cpp:437
 #, fuzzy, kde-format
 #| msgid "Send &File..."
 msgid "Send &File…"
 msgstr "ส่งแฟ้&ม..."
 
-#: src/actions/actionmanagerimpl.cpp:433
+#: src/actions/actionmanagerimpl.cpp:443
 #, kde-format
 msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:439
+#: src/actions/actionmanagerimpl.cpp:449
 #, kde-format
 msgid "What's new"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:469
+#: src/actions/actionmanagerimpl.cpp:486
 #, kde-format
 msgid "&Previous Article"
 msgstr "บทความก่&อนหน้า"
 
-#: src/actions/actionmanagerimpl.cpp:473
+#: src/actions/actionmanagerimpl.cpp:490
 #, kde-format
 msgid "&Next Article"
 msgstr "บทความถัด&ไป"
 
-#: src/actions/actionmanagerimpl.cpp:489
+#: src/actions/actionmanagerimpl.cpp:506
 #, kde-format
 msgid "&Previous Feed"
 msgstr "แหล่งป้อนก่&อนหน้า"
 
-#: src/actions/actionmanagerimpl.cpp:494
+#: src/actions/actionmanagerimpl.cpp:511
 #, kde-format
 msgid "&Next Feed"
 msgstr "แหล่งป้อนถัดไ&ป"
 
-#: src/actions/actionmanagerimpl.cpp:500
+#: src/actions/actionmanagerimpl.cpp:517
 #, kde-format
 msgid "N&ext Unread Feed"
 msgstr "แหล่งป้อนที่ยังไม่อ่านถัดไ&ป"
 
-#: src/actions/actionmanagerimpl.cpp:506
+#: src/actions/actionmanagerimpl.cpp:523
 #, kde-format
 msgid "Prev&ious Unread Feed"
 msgstr "แหล่งป้อนที่ยังไม่อ่านก่&อนหน้า"
 
-#: src/actions/actionmanagerimpl.cpp:511
+#: src/actions/actionmanagerimpl.cpp:528
 #, kde-format
 msgid "Go to Top of Tree"
 msgstr "ไปที่ด้านบนสุดของรายการต้นไม้"
 
-#: src/actions/actionmanagerimpl.cpp:516
+#: src/actions/actionmanagerimpl.cpp:533
 #, kde-format
 msgid "Go to Bottom of Tree"
 msgstr "ไปที่ด้านล่างสุดของรายการต้นไม้"
 
-#: src/actions/actionmanagerimpl.cpp:521
+#: src/actions/actionmanagerimpl.cpp:538
 #, kde-format
 msgid "Go Left in Tree"
 msgstr "ไปที่ด้านซ้ายของรายการต้นไม้"
 
-#: src/actions/actionmanagerimpl.cpp:526
+#: src/actions/actionmanagerimpl.cpp:543
 #, kde-format
 msgid "Go Right in Tree"
 msgstr "ไปที่ด้านขวาของรายการต้นไม้"
 
-#: src/actions/actionmanagerimpl.cpp:531
+#: src/actions/actionmanagerimpl.cpp:548
 #, kde-format
 msgid "Go Up in Tree"
 msgstr "ขึ้นไปด้านบนของรายการต้นไม้"
 
-#: src/actions/actionmanagerimpl.cpp:536
+#: src/actions/actionmanagerimpl.cpp:553
 #, kde-format
 msgid "Go Down in Tree"
 msgstr "ลงไปด้านล่างของรายการต้นไม้"
 
-#: src/actions/actionmanagerimpl.cpp:542
+#: src/actions/actionmanagerimpl.cpp:559
 #, fuzzy, kde-format
 #| msgid "N&ext Unread Feed"
 msgid "Hide Read Feeds"
 msgstr "แหล่งป้อนที่ยังไม่อ่านถัดไ&ป"
 
-#: src/actions/actionmanagerimpl.cpp:548
+#: src/actions/actionmanagerimpl.cpp:565
 #, kde-format
 msgid "Lock Feeds In Place"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:554
+#: src/actions/actionmanagerimpl.cpp:571
 #, fuzzy, kde-format
 #| msgid " (no unread articles)"
 msgid "Auto-expand folders with unread articles"
 msgstr " (ไม่มีบทความที่ยังไม่ได้อ่าน)"
 
-#: src/actions/actionmanagerimpl.cpp:570
+#: src/actions/actionmanagerimpl.cpp:587
 #, kde-format
 msgid "Select Next Tab"
 msgstr "เลือกแท็บถัดไป"
 
-#: src/actions/actionmanagerimpl.cpp:575
+#: src/actions/actionmanagerimpl.cpp:592
 #, kde-format
 msgid "Select Previous Tab"
 msgstr "เลือกแท็บก่อนหน้า"
 
-#: src/actions/actionmanagerimpl.cpp:581
+#: src/actions/actionmanagerimpl.cpp:598
 #, kde-format
 msgid "Detach Tab"
 msgstr "ปลดการแนบแท็บ"
 
-#: src/actions/actionmanagerimpl.cpp:595
+#: src/actions/actionmanagerimpl.cpp:612
 #, kde-format
 msgid "Mute"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:599
+#: src/actions/actionmanagerimpl.cpp:616
 #, kde-format
 msgid "Unmute"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:602
+#: src/actions/actionmanagerimpl.cpp:619
 #, kde-format
 msgctxt "@action"
 msgid "Speak Text"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:607
+#: src/actions/actionmanagerimpl.cpp:624
 #, kde-format
 msgid "&Find in Message…"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:618
+#: src/actions/actionmanagerimpl.cpp:635
 #, fuzzy, kde-format
 #| msgid "&Close Tab"
 msgid "Close Tab"
 msgstr "ปิด&แท็บ"
 
-#: src/actions/actionmanagerimpl.cpp:631
+#: src/actions/actionmanagerimpl.cpp:648
 #, kde-format
 msgctxt "@action"
 msgid "Activate Tab %1"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:637
+#: src/actions/actionmanagerimpl.cpp:654
 #, fuzzy, kde-format
 #| msgid "&Save Link As..."
 msgid "&Save Link As…"
 msgstr "บั&นทึกตำแหน่งเชื่อมโยงเป็น..."
 
-#: src/actions/actionmanagerimpl.cpp:641
+#: src/actions/actionmanagerimpl.cpp:658
 #, kde-format
 msgid "Copy &Link Address"
 msgstr "คัด&ลอกที่อยู่ตำแหน่งเชื่อมโยง"
 
-#: src/actions/actionmanagerimpl.cpp:644
+#: src/actions/actionmanagerimpl.cpp:661
 #, kde-format
 msgctxt "@action"
 msgid "Copy Image Location"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:651
+#: src/actions/actionmanagerimpl.cpp:668
 #, kde-format
 msgctxt "@action"
 msgid "Save Image On Disk…"
@@ -2057,7 +2057,7 @@ msgid "&Help"
 msgstr ""
 
 #. i18n: ectx: ToolBar (mainToolBar)
-#: src/data/akregator_part.rc:96 src/data/akregator_shell.rc:54
+#: src/data/akregator_part.rc:98 src/data/akregator_shell.rc:54
 #, kde-format
 msgid "Main Toolbar"
 msgstr "แถบเครื่องมือหลัก"
@@ -2671,10 +2671,16 @@ msgid "Open In External Browser"
 msgstr "เปิดด้วยเบราว์เซอร์ภายนอก"
 
 #: src/whatsnew/whatsnewtranslations.cpp:16
+msgid "Add windows support"
+msgstr ""
+
+#: src/whatsnew/whatsnewtranslations.cpp:25
+#, kde-format
 msgid "Implement Plasma Activity."
 msgstr ""
 
-#: src/whatsnew/whatsnewtranslations.cpp:16
+#: src/whatsnew/whatsnewtranslations.cpp:25
+#, kde-format
 msgid "Add new whatsnew widget."
 msgstr ""
 

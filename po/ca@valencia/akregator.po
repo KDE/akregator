@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-11-15 00:40+0000\n"
+"POT-Creation-Date: 2024-11-18 00:40+0000\n"
 "PO-Revision-Date: 2024-08-17 11:10+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
@@ -281,7 +281,7 @@ msgstr "Clic amb el botó esquerre:"
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
 #: configuration/ui/settings_browser.ui:28
 #: configuration/ui/settings_browser.ui:54
-#: src/actions/actionmanagerimpl.cpp:324
+#: src/actions/actionmanagerimpl.cpp:334
 #, kde-format
 msgid "Open in Tab"
 msgstr "Obri en una pestanya"
@@ -290,7 +290,7 @@ msgstr "Obri en una pestanya"
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
 #: configuration/ui/settings_browser.ui:33
 #: configuration/ui/settings_browser.ui:59
-#: src/actions/actionmanagerimpl.cpp:330
+#: src/actions/actionmanagerimpl.cpp:340
 #, kde-format
 msgid "Open in Background Tab"
 msgstr "Obri en una pestanya de fons"
@@ -299,7 +299,7 @@ msgstr "Obri en una pestanya de fons"
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
 #: configuration/ui/settings_browser.ui:38
 #: configuration/ui/settings_browser.ui:64
-#: src/actions/actionmanagerimpl.cpp:336
+#: src/actions/actionmanagerimpl.cpp:346
 #, kde-format
 msgid "Open in External Browser"
 msgstr "Obri en un navegador extern"
@@ -546,7 +546,7 @@ msgid "Auto-Expand folders with unread articles"
 msgstr "Expandix automàticament les carpetes amb articles sense llegir"
 
 #. i18n: ectx: label, entry, group (View)
-#: interfaces/akregator.kcfg:31 src/actions/actionmanagerimpl.cpp:318
+#: interfaces/akregator.kcfg:31 src/actions/actionmanagerimpl.cpp:328
 #, kde-format
 msgid "Show Quick Filter"
 msgstr "Mostra el filtre ràpid"
@@ -1140,363 +1140,363 @@ msgstr "Philipp Droessler"
 msgid "Gentoo Ebuild"
 msgstr "Ebuild de Gentoo"
 
-#: src/actions/actionmanagerimpl.cpp:64 src/actions/actionmanagerimpl.cpp:287
+#: src/actions/actionmanagerimpl.cpp:67 src/actions/actionmanagerimpl.cpp:297
 #, kde-format
 msgid "&Fetch Feed"
 msgstr "Obtín la &font"
 
-#: src/actions/actionmanagerimpl.cpp:65 src/actions/actionmanagerimpl.cpp:243
+#: src/actions/actionmanagerimpl.cpp:68 src/actions/actionmanagerimpl.cpp:253
 #, kde-format
 msgid "&Delete Feed"
 msgstr "Sup&rimix la font"
 
-#: src/actions/actionmanagerimpl.cpp:66 src/actions/actionmanagerimpl.cpp:249
+#: src/actions/actionmanagerimpl.cpp:69 src/actions/actionmanagerimpl.cpp:259
 #, kde-format
 msgid "&Edit Feed…"
 msgstr "&Edita la font…"
 
-#: src/actions/actionmanagerimpl.cpp:67 src/actions/actionmanagerimpl.cpp:306
+#: src/actions/actionmanagerimpl.cpp:70 src/actions/actionmanagerimpl.cpp:316
 #, kde-format
 msgid "&Mark Feed as Read"
 msgstr "&Marca la font com a llegida"
 
-#: src/actions/actionmanagerimpl.cpp:83
+#: src/actions/actionmanagerimpl.cpp:86
 #, kde-format
 msgid "&Fetch Feeds"
 msgstr "Obtín les &fonts"
 
-#: src/actions/actionmanagerimpl.cpp:84
+#: src/actions/actionmanagerimpl.cpp:87
 #, kde-format
 msgid "&Delete Folder"
 msgstr "Sup&rimix la carpeta"
 
-#: src/actions/actionmanagerimpl.cpp:85
+#: src/actions/actionmanagerimpl.cpp:88
 #, kde-format
 msgid "&Rename Folder"
 msgstr "Ca&nvia el nom de la carpeta"
 
-#: src/actions/actionmanagerimpl.cpp:86
+#: src/actions/actionmanagerimpl.cpp:89
 #, kde-format
 msgid "&Mark Feeds as Read"
 msgstr "&Marca les fonts com a llegides"
 
-#: src/actions/actionmanagerimpl.cpp:191
+#: src/actions/actionmanagerimpl.cpp:201
 #, kde-format
 msgid "&Import Feeds…"
 msgstr "&Importa les fonts…"
 
-#: src/actions/actionmanagerimpl.cpp:195
+#: src/actions/actionmanagerimpl.cpp:205
 #, kde-format
 msgid "&Export Feeds…"
 msgstr "&Exporta les fonts…"
 
-#: src/actions/actionmanagerimpl.cpp:200
+#: src/actions/actionmanagerimpl.cpp:210
 #, kde-format
 msgid "&Configure Akregator…"
 msgstr "&Configura Akregator…"
 
-#: src/actions/actionmanagerimpl.cpp:219
+#: src/actions/actionmanagerimpl.cpp:229
 #, kde-format
 msgid "&Open Homepage"
 msgstr "O&bri la pàgina web"
 
-#: src/actions/actionmanagerimpl.cpp:225
+#: src/actions/actionmanagerimpl.cpp:235
 #, kde-format
 msgid "Reload All Tabs"
 msgstr "Torna a carregar totes les pestanyes"
 
-#: src/actions/actionmanagerimpl.cpp:231
+#: src/actions/actionmanagerimpl.cpp:241
 #, kde-format
 msgid "&Add Feed…"
 msgstr "Afi&g una font…"
 
-#: src/actions/actionmanagerimpl.cpp:237
+#: src/actions/actionmanagerimpl.cpp:247
 #, kde-format
 msgid "Ne&w Folder…"
 msgstr "Carpeta no&va…"
 
-#: src/actions/actionmanagerimpl.cpp:262
+#: src/actions/actionmanagerimpl.cpp:272
 #, kde-format
 msgid "&Normal View"
 msgstr "Visualització &normal"
 
-#: src/actions/actionmanagerimpl.cpp:271
+#: src/actions/actionmanagerimpl.cpp:281
 #, kde-format
 msgid "&Widescreen View"
 msgstr "Visualització de pantalla &ampla"
 
-#: src/actions/actionmanagerimpl.cpp:280
+#: src/actions/actionmanagerimpl.cpp:290
 #, kde-format
 msgid "C&ombined View"
 msgstr "Visualització &combinada"
 
-#: src/actions/actionmanagerimpl.cpp:293
+#: src/actions/actionmanagerimpl.cpp:303
 #, kde-format
 msgid "Fe&tch All Feeds"
 msgstr "Obtín &totes les fonts"
 
-#: src/actions/actionmanagerimpl.cpp:299
+#: src/actions/actionmanagerimpl.cpp:309
 #, kde-format
 msgid "C&ancel Feed Fetches"
 msgstr "C&ancel·la l'obtenció de les fonts"
 
-#: src/actions/actionmanagerimpl.cpp:312
+#: src/actions/actionmanagerimpl.cpp:322
 #, kde-format
 msgid "Ma&rk All Feeds as Read"
 msgstr "Ma&rca totes les fonts com a llegides"
 
-#: src/actions/actionmanagerimpl.cpp:341 src/actions/actionmanagerimpl.cpp:613
+#: src/actions/actionmanagerimpl.cpp:351 src/actions/actionmanagerimpl.cpp:630
 #, kde-format
 msgid "Copy Link Address"
 msgstr "Copia l'adreça de l'enllaç"
 
-#: src/actions/actionmanagerimpl.cpp:346
+#: src/actions/actionmanagerimpl.cpp:356
 #, kde-format
 msgid "Pre&vious Unread Article"
 msgstr "Article pre&vi sense llegir"
 
-#: src/actions/actionmanagerimpl.cpp:352
+#: src/actions/actionmanagerimpl.cpp:362
 #, kde-format
 msgid "Ne&xt Unread Article"
 msgstr "Article se&güent sense llegir"
 
-#: src/actions/actionmanagerimpl.cpp:360
+#: src/actions/actionmanagerimpl.cpp:370
 #, kde-format
 msgid "&Delete"
 msgstr "Sup&rimix"
 
-#: src/actions/actionmanagerimpl.cpp:365
+#: src/actions/actionmanagerimpl.cpp:375
 #, kde-format
 msgid "&Mark As"
 msgstr "&Marca com a"
 
-#: src/actions/actionmanagerimpl.cpp:369
+#: src/actions/actionmanagerimpl.cpp:379
 #, kde-format
 msgctxt "as in: mark as read"
 msgid "&Read"
 msgstr "&Llegit"
 
-#: src/actions/actionmanagerimpl.cpp:371
+#: src/actions/actionmanagerimpl.cpp:381
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as read"
 msgstr "Marca l'article seleccionat com a llegit"
 
-#: src/actions/actionmanagerimpl.cpp:377
+#: src/actions/actionmanagerimpl.cpp:387
 #, kde-format
 msgctxt "as in: mark as new"
 msgid "&New"
 msgstr "&Nou"
 
-#: src/actions/actionmanagerimpl.cpp:380
+#: src/actions/actionmanagerimpl.cpp:390
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as new"
 msgstr "Marca l'article seleccionat com a nou"
 
-#: src/actions/actionmanagerimpl.cpp:385
+#: src/actions/actionmanagerimpl.cpp:395
 #, kde-format
 msgctxt "as in: mark as unread"
 msgid "&Unread"
 msgstr "&Sense llegir"
 
-#: src/actions/actionmanagerimpl.cpp:387
+#: src/actions/actionmanagerimpl.cpp:397
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as unread"
 msgstr "Marca l'article seleccionat com a no llegit"
 
-#: src/actions/actionmanagerimpl.cpp:393
+#: src/actions/actionmanagerimpl.cpp:403
 #, kde-format
 msgid "&Mark as Important"
 msgstr "&Marca com a important"
 
-#: src/actions/actionmanagerimpl.cpp:397
+#: src/actions/actionmanagerimpl.cpp:407
 #, kde-format
 msgctxt "@action:button"
 msgid "Remove &Important Mark"
 msgstr "Elimina la marca d'&important"
 
-#: src/actions/actionmanagerimpl.cpp:401
+#: src/actions/actionmanagerimpl.cpp:411
 #, kde-format
 msgid "Move Node Up"
 msgstr "Puja el node"
 
-#: src/actions/actionmanagerimpl.cpp:406
+#: src/actions/actionmanagerimpl.cpp:416
 #, kde-format
 msgid "Move Node Down"
 msgstr "Baixa el node"
 
-#: src/actions/actionmanagerimpl.cpp:411
+#: src/actions/actionmanagerimpl.cpp:421
 #, kde-format
 msgid "Move Node Left"
 msgstr "Mou el node a l'esquerra"
 
-#: src/actions/actionmanagerimpl.cpp:416
+#: src/actions/actionmanagerimpl.cpp:426
 #, kde-format
 msgid "Move Node Right"
 msgstr "Mou el node a la dreta"
 
-#: src/actions/actionmanagerimpl.cpp:422
+#: src/actions/actionmanagerimpl.cpp:432
 #, kde-format
 msgid "Send &Link Address…"
 msgstr "Envia l'adreça de l'en&llaç…"
 
-#: src/actions/actionmanagerimpl.cpp:427
+#: src/actions/actionmanagerimpl.cpp:437
 #, kde-format
 msgid "Send &File…"
 msgstr "Envia el fi&txer…"
 
-#: src/actions/actionmanagerimpl.cpp:433
+#: src/actions/actionmanagerimpl.cpp:443
 #, kde-format
 msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr "Establix el focus a la busca ràpida"
 
-#: src/actions/actionmanagerimpl.cpp:439
+#: src/actions/actionmanagerimpl.cpp:449
 #, kde-format
 msgid "What's new"
 msgstr "Què hi ha de nou"
 
-#: src/actions/actionmanagerimpl.cpp:469
+#: src/actions/actionmanagerimpl.cpp:486
 #, kde-format
 msgid "&Previous Article"
 msgstr "Article &anterior"
 
-#: src/actions/actionmanagerimpl.cpp:473
+#: src/actions/actionmanagerimpl.cpp:490
 #, kde-format
 msgid "&Next Article"
 msgstr "Article següe&nt"
 
-#: src/actions/actionmanagerimpl.cpp:489
+#: src/actions/actionmanagerimpl.cpp:506
 #, kde-format
 msgid "&Previous Feed"
 msgstr "Font &anterior"
 
-#: src/actions/actionmanagerimpl.cpp:494
+#: src/actions/actionmanagerimpl.cpp:511
 #, kde-format
 msgid "&Next Feed"
 msgstr "Font següe&nt"
 
-#: src/actions/actionmanagerimpl.cpp:500
+#: src/actions/actionmanagerimpl.cpp:517
 #, kde-format
 msgid "N&ext Unread Feed"
 msgstr "Font s&egüent sense llegir"
 
-#: src/actions/actionmanagerimpl.cpp:506
+#: src/actions/actionmanagerimpl.cpp:523
 #, kde-format
 msgid "Prev&ious Unread Feed"
 msgstr "Font anter&ior sense llegir"
 
-#: src/actions/actionmanagerimpl.cpp:511
+#: src/actions/actionmanagerimpl.cpp:528
 #, kde-format
 msgid "Go to Top of Tree"
 msgstr "Ves fins al cim de l'arbre"
 
-#: src/actions/actionmanagerimpl.cpp:516
+#: src/actions/actionmanagerimpl.cpp:533
 #, kde-format
 msgid "Go to Bottom of Tree"
 msgstr "Ves fins al capdavall de l'arbre"
 
-#: src/actions/actionmanagerimpl.cpp:521
+#: src/actions/actionmanagerimpl.cpp:538
 #, kde-format
 msgid "Go Left in Tree"
 msgstr "Ves cap a l'esquerra per l'arbre"
 
-#: src/actions/actionmanagerimpl.cpp:526
+#: src/actions/actionmanagerimpl.cpp:543
 #, kde-format
 msgid "Go Right in Tree"
 msgstr "Ves cap a la dreta per l'arbre"
 
-#: src/actions/actionmanagerimpl.cpp:531
+#: src/actions/actionmanagerimpl.cpp:548
 #, kde-format
 msgid "Go Up in Tree"
 msgstr "Puja per l'arbre"
 
-#: src/actions/actionmanagerimpl.cpp:536
+#: src/actions/actionmanagerimpl.cpp:553
 #, kde-format
 msgid "Go Down in Tree"
 msgstr "Baixa per l'arbre"
 
-#: src/actions/actionmanagerimpl.cpp:542
+#: src/actions/actionmanagerimpl.cpp:559
 #, kde-format
 msgid "Hide Read Feeds"
 msgstr "Oculta les fonts llegides"
 
-#: src/actions/actionmanagerimpl.cpp:548
+#: src/actions/actionmanagerimpl.cpp:565
 #, kde-format
 msgid "Lock Feeds In Place"
 msgstr "Bloqueja les fonts en la posició"
 
-#: src/actions/actionmanagerimpl.cpp:554
+#: src/actions/actionmanagerimpl.cpp:571
 #, kde-format
 msgid "Auto-expand folders with unread articles"
 msgstr "Expandix automàticament les carpetes amb articles sense llegir"
 
-#: src/actions/actionmanagerimpl.cpp:570
+#: src/actions/actionmanagerimpl.cpp:587
 #, kde-format
 msgid "Select Next Tab"
 msgstr "Selecciona la pestanya següent"
 
-#: src/actions/actionmanagerimpl.cpp:575
+#: src/actions/actionmanagerimpl.cpp:592
 #, kde-format
 msgid "Select Previous Tab"
 msgstr "Selecciona la pestanya anterior"
 
-#: src/actions/actionmanagerimpl.cpp:581
+#: src/actions/actionmanagerimpl.cpp:598
 #, kde-format
 msgid "Detach Tab"
 msgstr "Separa la pestanya"
 
-#: src/actions/actionmanagerimpl.cpp:595
+#: src/actions/actionmanagerimpl.cpp:612
 #, kde-format
 msgid "Mute"
 msgstr "Silencia"
 
-#: src/actions/actionmanagerimpl.cpp:599
+#: src/actions/actionmanagerimpl.cpp:616
 #, kde-format
 msgid "Unmute"
 msgstr "Activa el so"
 
-#: src/actions/actionmanagerimpl.cpp:602
+#: src/actions/actionmanagerimpl.cpp:619
 #, kde-format
 msgctxt "@action"
 msgid "Speak Text"
 msgstr "Llig el text"
 
-#: src/actions/actionmanagerimpl.cpp:607
+#: src/actions/actionmanagerimpl.cpp:624
 #, kde-format
 msgid "&Find in Message…"
 msgstr "Bu&sca en el missatge…"
 
-#: src/actions/actionmanagerimpl.cpp:618
+#: src/actions/actionmanagerimpl.cpp:635
 #, kde-format
 msgid "Close Tab"
 msgstr "Tanca la pestanya"
 
-#: src/actions/actionmanagerimpl.cpp:631
+#: src/actions/actionmanagerimpl.cpp:648
 #, kde-format
 msgctxt "@action"
 msgid "Activate Tab %1"
 msgstr "Activa la pestanya %1"
 
-#: src/actions/actionmanagerimpl.cpp:637
+#: src/actions/actionmanagerimpl.cpp:654
 #, kde-format
 msgid "&Save Link As…"
 msgstr "Anomena i gu&arda l'enllaç…"
 
-#: src/actions/actionmanagerimpl.cpp:641
+#: src/actions/actionmanagerimpl.cpp:658
 #, kde-format
 msgid "Copy &Link Address"
 msgstr "Copia l'ad&reça de l'enllaç"
 
-#: src/actions/actionmanagerimpl.cpp:644
+#: src/actions/actionmanagerimpl.cpp:661
 #, kde-format
 msgctxt "@action"
 msgid "Copy Image Location"
 msgstr "Copia la ubicació de la imatge"
 
-#: src/actions/actionmanagerimpl.cpp:651
+#: src/actions/actionmanagerimpl.cpp:668
 #, kde-format
 msgctxt "@action"
 msgid "Save Image On Disk…"
@@ -1967,7 +1967,7 @@ msgid "&Help"
 msgstr "A&juda"
 
 #. i18n: ectx: ToolBar (mainToolBar)
-#: src/data/akregator_part.rc:96 src/data/akregator_shell.rc:54
+#: src/data/akregator_part.rc:98 src/data/akregator_shell.rc:54
 #, kde-format
 msgid "Main Toolbar"
 msgstr "Barra d'eines principal"
@@ -2553,10 +2553,16 @@ msgid "Open In External Browser"
 msgstr "Obri en un navegador extern"
 
 #: src/whatsnew/whatsnewtranslations.cpp:16
+msgid "Add windows support"
+msgstr ""
+
+#: src/whatsnew/whatsnewtranslations.cpp:25
+#, kde-format
 msgid "Implement Plasma Activity."
 msgstr "Implementa les Activitats de Plasma."
 
-#: src/whatsnew/whatsnewtranslations.cpp:16
+#: src/whatsnew/whatsnewtranslations.cpp:25
+#, kde-format
 msgid "Add new whatsnew widget."
 msgstr "Afig un giny nou «Què hi ha de nou»."
 
