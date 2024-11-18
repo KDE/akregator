@@ -20,26 +20,27 @@ using namespace Akregator;
 K_PLUGIN_CLASS_WITH_JSON(KCMAkregatorUserFeedBackConfig, "akregator_config_userfeedback.json")
 KCMAkregatorUserFeedBackConfig::KCMAkregatorUserFeedBackConfig(QObject *parent, const KPluginMetaData &data)
     : KCModule(parent, data)
+    , mUserFeedbackWidget(new KUserFeedback::FeedbackConfigWidget(widget()))
 {
     auto lay = new QHBoxLayout(widget());
     lay->setContentsMargins({});
 
-    mUserFeedbackWidget = new KUserFeedback::FeedbackConfigWidget(widget());
     connect(mUserFeedbackWidget, &KUserFeedback::FeedbackConfigWidget::configurationChanged, this, &KCMAkregatorUserFeedBackConfig::markAsChanged);
 
     lay->addWidget(mUserFeedbackWidget);
-    mUserFeedbackWidget->setFeedbackProvider(Akregator::UserFeedBackManager::self()->userFeedbackProvider());
 }
 
 void KCMAkregatorUserFeedBackConfig::save()
 {
     Akregator::UserFeedBackManager::self()->userFeedbackProvider()->setTelemetryMode(mUserFeedbackWidget->telemetryMode());
     Akregator::UserFeedBackManager::self()->userFeedbackProvider()->setSurveyInterval(mUserFeedbackWidget->surveyInterval());
+    setNeedsSave(false);
 }
 
 void KCMAkregatorUserFeedBackConfig::load()
 {
     mUserFeedbackWidget->setFeedbackProvider(Akregator::UserFeedBackManager::self()->userFeedbackProvider());
+    setNeedsSave(false);
 }
 
 void KCMAkregatorUserFeedBackConfig::defaults()
