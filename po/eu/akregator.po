@@ -14,14 +14,14 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-11-01 00:40+0000\n"
-"PO-Revision-Date: 2024-08-17 09:52+0200\n"
+"PO-Revision-Date: 2024-11-18 23:24+0100\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
 "Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 24.05.2\n"
+"X-Generator: Lokalize 24.08.3\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #, kde-format
@@ -2559,11 +2559,11 @@ msgstr "Ireki kanpoko arakatzailean"
 
 #: src/whatsnew/whatsnewtranslations.cpp:16
 msgid "Implement Plasma Activity."
-msgstr "Plasma Jarduera inplementatu."
+msgstr "Plasma Jarduera inplementatzea."
 
 #: src/whatsnew/whatsnewtranslations.cpp:16
 msgid "Add new whatsnew widget."
-msgstr "Gehitu zerberri trepeta berria."
+msgstr "Zerberri trepeta berria gehitzea."
 
 #: src/widgets/searchbar.cpp:44
 #, kde-format
