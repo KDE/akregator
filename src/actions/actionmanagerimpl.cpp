@@ -455,7 +455,7 @@ void ActionManagerImpl::initMainWidget(MainWidget *mainWidget)
 
 #if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
     d->mVerifyNewVersionWidget->addOsUrlInfo(PimCommon::VerifyNewVersionWidget::OsVersion::Windows,
-                                             QStringLiteral("https://cdn.kde.org/ci-builds/pim/akregator"));
+                                             QStringLiteral("https://cdn.kde.org/ci-builds/pim/akregator/master/windows/"));
     auto verifyNewVersionAction = d->mVerifyNewVersionWidget->verifyNewVersionAction();
     coll->addAction(QStringLiteral("verify_check_version"), verifyNewVersionAction);
 #endif
