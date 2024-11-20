@@ -12,14 +12,14 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-11-18 00:40+0000\n"
-"PO-Revision-Date: 2024-08-17 11:10+0200\n"
+"PO-Revision-Date: 2024-11-18 08:56+0100\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca@valencia\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 24.05.2\n"
+"X-Generator: Lokalize 22.12.3\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Accelerator-Marker: &\n"
 
@@ -2554,7 +2554,7 @@ msgstr "Obri en un navegador extern"
 
 #: src/whatsnew/whatsnewtranslations.cpp:16
 msgid "Add windows support"
-msgstr ""
+msgstr "Afig la implementació de Windows"
 
 #: src/whatsnew/whatsnewtranslations.cpp:25
 #, kde-format

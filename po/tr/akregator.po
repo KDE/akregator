@@ -21,7 +21,7 @@ msgstr ""
 "Project-Id-Version: kdepim-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-11-18 00:40+0000\n"
-"PO-Revision-Date: 2024-10-25 18:17+0300\n"
+"PO-Revision-Date: 2024-11-19 20:26+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -29,7 +29,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 24.08.2\n"
+"X-Generator: Lokalize 25.03.70\n"
 "(http: //www.transifex.com/projects/p/kdepim-k-tr/language/tr/)\n"
 
 #, kde-format
@@ -2564,12 +2564,12 @@ msgstr "Dış Tarayıcıda Aç"
 
 #: src/whatsnew/whatsnewtranslations.cpp:16
 msgid "Add windows support"
-msgstr ""
+msgstr "Windows desteği eklendi."
 
 #: src/whatsnew/whatsnewtranslations.cpp:25
 #, kde-format
 msgid "Implement Plasma Activity."
-msgstr "Plasma Etkinlikler gerçeklendi."
+msgstr "Plasma Etkinlikler desteği gerçeklendi."
 
 #: src/whatsnew/whatsnewtranslations.cpp:25
 #, kde-format

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-11-18 00:40+0000\n"
-"PO-Revision-Date: 2024-08-28 15:38+0200\n"
+"PO-Revision-Date: 2024-11-19 10:40+0100\n"
 "Last-Translator: giovanni <g.sora@tiscali.it>\n"
 "Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
 "Language: ia\n"
@@ -2557,7 +2557,7 @@ msgstr "Aperi in navigator externe"
 
 #: src/whatsnew/whatsnewtranslations.cpp:16
 msgid "Add windows support"
-msgstr ""
+msgstr "Adde supporto de fenestras"
 
 #: src/whatsnew/whatsnewtranslations.cpp:25
 #, kde-format
