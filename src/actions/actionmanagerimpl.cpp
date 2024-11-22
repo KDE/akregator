@@ -10,6 +10,7 @@
 #include "akregator_part.h"
 #include "akregatorconfig.h"
 #include "articlelistview.h"
+#include "config-akregator.h"
 #include "feed.h"
 #include "fetchqueue.h"
 #include "folder.h"
@@ -454,8 +455,12 @@ void ActionManagerImpl::initMainWidget(MainWidget *mainWidget)
     coll->addAction(QStringLiteral("colorscheme_menu"), KColorSchemeMenu::createMenu(manager, this));
 
 #if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
-    d->mVerifyNewVersionWidget->addOsUrlInfo(PimCommon::VerifyNewVersionWidget::OsVersion::Windows,
-                                             QStringLiteral("https://cdn.kde.org/ci-builds/pim/akregator/master/windows/"));
+#if AKREGATOR_STABLE_VERSION
+    const QString url = QStringLiteral("https://cdn.kde.org/ci-builds/pim/akregator/24.12/windows/");
+#else
+    const QString url = QStringLiteral("https://cdn.kde.org/ci-builds/pim/akregator/master/windows/");
+#endif
+    d->mVerifyNewVersionWidget->addOsUrlInfo(PimCommon::VerifyNewVersionWidget::OsVersion::Windows, url);
     auto verifyNewVersionAction = d->mVerifyNewVersionWidget->verifyNewVersionAction();
     coll->addAction(QStringLiteral("verify_check_version"), verifyNewVersionAction);
 #endif
