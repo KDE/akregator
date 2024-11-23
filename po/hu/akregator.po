@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: KDE 4.3\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-11-18 00:40+0000\n"
+"POT-Creation-Date: 2024-11-23 00:40+0000\n"
 "PO-Revision-Date: 2024-11-18 22:16+0100\n"
 "Last-Translator: Kristof Kiszel <ulysses@fsf.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -274,7 +274,7 @@ msgstr "Bal egérgomb:"
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
 #: configuration/ui/settings_browser.ui:28
 #: configuration/ui/settings_browser.ui:54
-#: src/actions/actionmanagerimpl.cpp:334
+#: src/actions/actionmanagerimpl.cpp:335
 #, kde-format
 msgid "Open in Tab"
 msgstr "Megnyitás lapon"
@@ -283,7 +283,7 @@ msgstr "Megnyitás lapon"
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
 #: configuration/ui/settings_browser.ui:33
 #: configuration/ui/settings_browser.ui:59
-#: src/actions/actionmanagerimpl.cpp:340
+#: src/actions/actionmanagerimpl.cpp:341
 #, kde-format
 msgid "Open in Background Tab"
 msgstr "Megnyitás háttérben maradó lapon"
@@ -292,7 +292,7 @@ msgstr "Megnyitás háttérben maradó lapon"
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
 #: configuration/ui/settings_browser.ui:38
 #: configuration/ui/settings_browser.ui:64
-#: src/actions/actionmanagerimpl.cpp:346
+#: src/actions/actionmanagerimpl.cpp:347
 #, kde-format
 msgid "Open in External Browser"
 msgstr "Megnyitás külső böngészőben"
@@ -538,7 +538,7 @@ msgid "Auto-Expand folders with unread articles"
 msgstr "Olvasatlan cikkeket tartalmazó mappák automatikus kibontása"
 
 #. i18n: ectx: label, entry, group (View)
-#: interfaces/akregator.kcfg:31 src/actions/actionmanagerimpl.cpp:328
+#: interfaces/akregator.kcfg:31 src/actions/actionmanagerimpl.cpp:329
 #, kde-format
 msgid "Show Quick Filter"
 msgstr "Gyorsszűrő megjelenítése"
@@ -1134,363 +1134,363 @@ msgstr "Philipp Droessler"
 msgid "Gentoo Ebuild"
 msgstr "Gentoo Ebuild"
 
-#: src/actions/actionmanagerimpl.cpp:67 src/actions/actionmanagerimpl.cpp:297
+#: src/actions/actionmanagerimpl.cpp:68 src/actions/actionmanagerimpl.cpp:298
 #, kde-format
 msgid "&Fetch Feed"
 msgstr "&Letöltés"
 
-#: src/actions/actionmanagerimpl.cpp:68 src/actions/actionmanagerimpl.cpp:253
+#: src/actions/actionmanagerimpl.cpp:69 src/actions/actionmanagerimpl.cpp:254
 #, kde-format
 msgid "&Delete Feed"
 msgstr "&Törlés"
 
-#: src/actions/actionmanagerimpl.cpp:69 src/actions/actionmanagerimpl.cpp:259
+#: src/actions/actionmanagerimpl.cpp:70 src/actions/actionmanagerimpl.cpp:260
 #, kde-format
 msgid "&Edit Feed…"
 msgstr "Mó&dosítás…"
 
-#: src/actions/actionmanagerimpl.cpp:70 src/actions/actionmanagerimpl.cpp:316
+#: src/actions/actionmanagerimpl.cpp:71 src/actions/actionmanagerimpl.cpp:317
 #, kde-format
 msgid "&Mark Feed as Read"
 msgstr "A csatorna megjelölése ol&vasottnak"
 
-#: src/actions/actionmanagerimpl.cpp:86
+#: src/actions/actionmanagerimpl.cpp:87
 #, kde-format
 msgid "&Fetch Feeds"
 msgstr "A csatornák &letöltése"
 
-#: src/actions/actionmanagerimpl.cpp:87
+#: src/actions/actionmanagerimpl.cpp:88
 #, kde-format
 msgid "&Delete Folder"
 msgstr "Mappa &törlése"
 
-#: src/actions/actionmanagerimpl.cpp:88
+#: src/actions/actionmanagerimpl.cpp:89
 #, kde-format
 msgid "&Rename Folder"
 msgstr "Mappa átne&vezése"
 
-#: src/actions/actionmanagerimpl.cpp:89
+#: src/actions/actionmanagerimpl.cpp:90
 #, kde-format
 msgid "&Mark Feeds as Read"
 msgstr "A csatornák megjelölése olv&asottnak"
 
-#: src/actions/actionmanagerimpl.cpp:201
+#: src/actions/actionmanagerimpl.cpp:202
 #, kde-format
 msgid "&Import Feeds…"
 msgstr "Hírcsatornák &importálása…"
 
-#: src/actions/actionmanagerimpl.cpp:205
+#: src/actions/actionmanagerimpl.cpp:206
 #, kde-format
 msgid "&Export Feeds…"
 msgstr "Hírcsatorna e&xportálása…"
 
-#: src/actions/actionmanagerimpl.cpp:210
+#: src/actions/actionmanagerimpl.cpp:211
 #, kde-format
 msgid "&Configure Akregator…"
 msgstr "Beá&llítóablak: Akregator…"
 
-#: src/actions/actionmanagerimpl.cpp:229
+#: src/actions/actionmanagerimpl.cpp:230
 #, kde-format
 msgid "&Open Homepage"
 msgstr "&Honlap…"
 
-#: src/actions/actionmanagerimpl.cpp:235
+#: src/actions/actionmanagerimpl.cpp:236
 #, kde-format
 msgid "Reload All Tabs"
 msgstr "Összes lap újratöltése"
 
-#: src/actions/actionmanagerimpl.cpp:241
+#: src/actions/actionmanagerimpl.cpp:242
 #, kde-format
 msgid "&Add Feed…"
 msgstr "Hírcsatorna hozzá&adása…"
 
-#: src/actions/actionmanagerimpl.cpp:247
+#: src/actions/actionmanagerimpl.cpp:248
 #, kde-format
 msgid "Ne&w Folder…"
 msgstr "Új ma&ppa…"
 
-#: src/actions/actionmanagerimpl.cpp:272
+#: src/actions/actionmanagerimpl.cpp:273
 #, kde-format
 msgid "&Normal View"
 msgstr "N&ormál nézet"
 
-#: src/actions/actionmanagerimpl.cpp:281
+#: src/actions/actionmanagerimpl.cpp:282
 #, kde-format
 msgid "&Widescreen View"
 msgstr "Széles néz&et"
 
-#: src/actions/actionmanagerimpl.cpp:290
+#: src/actions/actionmanagerimpl.cpp:291
 #, kde-format
 msgid "C&ombined View"
 msgstr "Kom&binált nézet"
 
-#: src/actions/actionmanagerimpl.cpp:303
+#: src/actions/actionmanagerimpl.cpp:304
 #, kde-format
 msgid "Fe&tch All Feeds"
 msgstr "Az összes cs&atorna letöltése"
 
-#: src/actions/actionmanagerimpl.cpp:309
+#: src/actions/actionmanagerimpl.cpp:310
 #, kde-format
 msgid "C&ancel Feed Fetches"
 msgstr "Letöltés &megszakítása"
 
-#: src/actions/actionmanagerimpl.cpp:322
+#: src/actions/actionmanagerimpl.cpp:323
 #, kde-format
 msgid "Ma&rk All Feeds as Read"
 msgstr "Az össz&es csatorna megjelölése olvasottnak"
 
-#: src/actions/actionmanagerimpl.cpp:351 src/actions/actionmanagerimpl.cpp:630
+#: src/actions/actionmanagerimpl.cpp:352 src/actions/actionmanagerimpl.cpp:635
 #, kde-format
 msgid "Copy Link Address"
 msgstr "A link címének másolása"
 
-#: src/actions/actionmanagerimpl.cpp:356
+#: src/actions/actionmanagerimpl.cpp:357
 #, kde-format
 msgid "Pre&vious Unread Article"
 msgstr "Előző o&lvasatlan hír"
 
-#: src/actions/actionmanagerimpl.cpp:362
+#: src/actions/actionmanagerimpl.cpp:363
 #, kde-format
 msgid "Ne&xt Unread Article"
 msgstr "Következő &olvasatlan hír"
 
-#: src/actions/actionmanagerimpl.cpp:370
+#: src/actions/actionmanagerimpl.cpp:371
 #, kde-format
 msgid "&Delete"
 msgstr "&Törlés"
 
-#: src/actions/actionmanagerimpl.cpp:375
+#: src/actions/actionmanagerimpl.cpp:376
 #, kde-format
 msgid "&Mark As"
 msgstr "Megjelölés m&int"
 
-#: src/actions/actionmanagerimpl.cpp:379
+#: src/actions/actionmanagerimpl.cpp:380
 #, kde-format
 msgctxt "as in: mark as read"
 msgid "&Read"
 msgstr "&Olvasott"
 
-#: src/actions/actionmanagerimpl.cpp:381
+#: src/actions/actionmanagerimpl.cpp:382
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as read"
 msgstr "A kijelölt hír megjelölése olvasottnak"
 
-#: src/actions/actionmanagerimpl.cpp:387
+#: src/actions/actionmanagerimpl.cpp:388
 #, kde-format
 msgctxt "as in: mark as new"
 msgid "&New"
 msgstr "Ú&j"
 
-#: src/actions/actionmanagerimpl.cpp:390
+#: src/actions/actionmanagerimpl.cpp:391
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as new"
 msgstr "A kijelölt hír megjelölése újnak"
 
-#: src/actions/actionmanagerimpl.cpp:395
+#: src/actions/actionmanagerimpl.cpp:396
 #, kde-format
 msgctxt "as in: mark as unread"
 msgid "&Unread"
 msgstr "&Olvasatlan"
 
-#: src/actions/actionmanagerimpl.cpp:397
+#: src/actions/actionmanagerimpl.cpp:398
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as unread"
 msgstr "A kijelölt hír megjelölése olvasatlannak"
 
-#: src/actions/actionmanagerimpl.cpp:403
+#: src/actions/actionmanagerimpl.cpp:404
 #, kde-format
 msgid "&Mark as Important"
 msgstr "Megjelölés &fontosnak"
 
-#: src/actions/actionmanagerimpl.cpp:407
+#: src/actions/actionmanagerimpl.cpp:408
 #, kde-format
 msgctxt "@action:button"
 msgid "Remove &Important Mark"
 msgstr "Fontos m&egjelölés törlése"
 
-#: src/actions/actionmanagerimpl.cpp:411
+#: src/actions/actionmanagerimpl.cpp:412
 #, kde-format
 msgid "Move Node Up"
 msgstr "Egy csomóponttal feljebb"
 
-#: src/actions/actionmanagerimpl.cpp:416
+#: src/actions/actionmanagerimpl.cpp:417
 #, kde-format
 msgid "Move Node Down"
 msgstr "Egy csomóponttal lejjebb"
 
-#: src/actions/actionmanagerimpl.cpp:421
+#: src/actions/actionmanagerimpl.cpp:422
 #, kde-format
 msgid "Move Node Left"
 msgstr "Egy csomóponttal balra"
 
-#: src/actions/actionmanagerimpl.cpp:426
+#: src/actions/actionmanagerimpl.cpp:427
 #, kde-format
 msgid "Move Node Right"
 msgstr "Egy csomóponttal jobbra"
 
-#: src/actions/actionmanagerimpl.cpp:432
+#: src/actions/actionmanagerimpl.cpp:433
 #, kde-format
 msgid "Send &Link Address…"
 msgstr "Hivat&kozás címének küldése…"
 
-#: src/actions/actionmanagerimpl.cpp:437
+#: src/actions/actionmanagerimpl.cpp:438
 #, kde-format
 msgid "Send &File…"
 msgstr "Fájl kül&dése…"
 
-#: src/actions/actionmanagerimpl.cpp:443
+#: src/actions/actionmanagerimpl.cpp:444
 #, kde-format
 msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr "Fókusz beállítása a gyors keresőre"
 
-#: src/actions/actionmanagerimpl.cpp:449
+#: src/actions/actionmanagerimpl.cpp:450
 #, kde-format
 msgid "What's new"
 msgstr "Újdonságok"
 
-#: src/actions/actionmanagerimpl.cpp:486
+#: src/actions/actionmanagerimpl.cpp:491
 #, kde-format
 msgid "&Previous Article"
 msgstr "&Előző hír"
 
-#: src/actions/actionmanagerimpl.cpp:490
+#: src/actions/actionmanagerimpl.cpp:495
 #, kde-format
 msgid "&Next Article"
 msgstr "&Következő hír"
 
-#: src/actions/actionmanagerimpl.cpp:506
+#: src/actions/actionmanagerimpl.cpp:511
 #, kde-format
 msgid "&Previous Feed"
 msgstr "Előző cs&atorna"
 
-#: src/actions/actionmanagerimpl.cpp:511
+#: src/actions/actionmanagerimpl.cpp:516
 #, kde-format
 msgid "&Next Feed"
 msgstr "Követ&kező csatorna"
 
-#: src/actions/actionmanagerimpl.cpp:517
+#: src/actions/actionmanagerimpl.cpp:522
 #, kde-format
 msgid "N&ext Unread Feed"
 msgstr "Követke&ző olvasatlan csatorna"
 
-#: src/actions/actionmanagerimpl.cpp:523
+#: src/actions/actionmanagerimpl.cpp:528
 #, kde-format
 msgid "Prev&ious Unread Feed"
 msgstr "Előző olvasatlan csat&orna"
 
-#: src/actions/actionmanagerimpl.cpp:528
+#: src/actions/actionmanagerimpl.cpp:533
 #, kde-format
 msgid "Go to Top of Tree"
 msgstr "A fa tetejére ugrás"
 
-#: src/actions/actionmanagerimpl.cpp:533
+#: src/actions/actionmanagerimpl.cpp:538
 #, kde-format
 msgid "Go to Bottom of Tree"
 msgstr "A fa legaljára ugrás"
 
-#: src/actions/actionmanagerimpl.cpp:538
+#: src/actions/actionmanagerimpl.cpp:543
 #, kde-format
 msgid "Go Left in Tree"
 msgstr "Balra lépés a fában"
 
-#: src/actions/actionmanagerimpl.cpp:543
+#: src/actions/actionmanagerimpl.cpp:548
 #, kde-format
 msgid "Go Right in Tree"
 msgstr "Jobbra lépés a fában"
 
-#: src/actions/actionmanagerimpl.cpp:548
+#: src/actions/actionmanagerimpl.cpp:553
 #, kde-format
 msgid "Go Up in Tree"
 msgstr "Felfelé lépés a fájlban"
 
-#: src/actions/actionmanagerimpl.cpp:553
+#: src/actions/actionmanagerimpl.cpp:558
 #, kde-format
 msgid "Go Down in Tree"
 msgstr "Lefelé lépés a fában"
 
-#: src/actions/actionmanagerimpl.cpp:559
+#: src/actions/actionmanagerimpl.cpp:564
 #, kde-format
 msgid "Hide Read Feeds"
 msgstr "Olvasott csatornák elrejtése"
 
-#: src/actions/actionmanagerimpl.cpp:565
+#: src/actions/actionmanagerimpl.cpp:570
 #, kde-format
 msgid "Lock Feeds In Place"
 msgstr "Csatornák rögzítése helyben"
 
-#: src/actions/actionmanagerimpl.cpp:571
+#: src/actions/actionmanagerimpl.cpp:576
 #, kde-format
 msgid "Auto-expand folders with unread articles"
 msgstr "Olvasatlan cikkeket tartalmazó mappák automatikus kibontása"
 
-#: src/actions/actionmanagerimpl.cpp:587
+#: src/actions/actionmanagerimpl.cpp:592
 #, kde-format
 msgid "Select Next Tab"
 msgstr "Következő lap"
 
-#: src/actions/actionmanagerimpl.cpp:592
+#: src/actions/actionmanagerimpl.cpp:597
 #, kde-format
 msgid "Select Previous Tab"
 msgstr "Előző lap"
 
-#: src/actions/actionmanagerimpl.cpp:598
+#: src/actions/actionmanagerimpl.cpp:603
 #, kde-format
 msgid "Detach Tab"
 msgstr "A lap kiemelése önálló ablakba"
 
-#: src/actions/actionmanagerimpl.cpp:612
+#: src/actions/actionmanagerimpl.cpp:617
 #, kde-format
 msgid "Mute"
 msgstr "Némítás"
 
-#: src/actions/actionmanagerimpl.cpp:616
+#: src/actions/actionmanagerimpl.cpp:621
 #, kde-format
 msgid "Unmute"
 msgstr "Visszahangosítás"
 
-#: src/actions/actionmanagerimpl.cpp:619
+#: src/actions/actionmanagerimpl.cpp:624
 #, kde-format
 msgctxt "@action"
 msgid "Speak Text"
 msgstr "Szöveg felolvasása"
 
-#: src/actions/actionmanagerimpl.cpp:624
+#: src/actions/actionmanagerimpl.cpp:629
 #, kde-format
 msgid "&Find in Message…"
 msgstr "&Keresés az üzenetben…"
 
-#: src/actions/actionmanagerimpl.cpp:635
+#: src/actions/actionmanagerimpl.cpp:640
 #, kde-format
 msgid "Close Tab"
 msgstr "Lap bezárása"
 
-#: src/actions/actionmanagerimpl.cpp:648
+#: src/actions/actionmanagerimpl.cpp:653
 #, kde-format
 msgctxt "@action"
 msgid "Activate Tab %1"
 msgstr "Váltás a(z) %1. lapra"
 
-#: src/actions/actionmanagerimpl.cpp:654
+#: src/actions/actionmanagerimpl.cpp:659
 #, kde-format
 msgid "&Save Link As…"
 msgstr "Hivatkozás menté&se másként…"
 
-#: src/actions/actionmanagerimpl.cpp:658
+#: src/actions/actionmanagerimpl.cpp:663
 #, kde-format
 msgid "Copy &Link Address"
 msgstr "A link címének má&solása"
 
-#: src/actions/actionmanagerimpl.cpp:661
+#: src/actions/actionmanagerimpl.cpp:666
 #, kde-format
 msgctxt "@action"
 msgid "Copy Image Location"
 msgstr "Kép helyének másolása"
 
-#: src/actions/actionmanagerimpl.cpp:668
+#: src/actions/actionmanagerimpl.cpp:673
 #, kde-format
 msgctxt "@action"
 msgid "Save Image On Disk…"
