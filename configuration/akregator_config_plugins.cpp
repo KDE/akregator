@@ -23,7 +23,9 @@ KCMAkregatorPluginsConfig::KCMAkregatorPluginsConfig(QObject *parent, const KPlu
     lay->setContentsMargins({});
     mConfigurePluginWidget = new PimCommon::ConfigurePluginsWidget(new AkregatorConfigurePluginListWidget(widget()), widget());
     mConfigurePluginWidget->setObjectName(QLatin1StringView("configurePluginWidget"));
-    connect(mConfigurePluginWidget, &PimCommon::ConfigurePluginsWidget::changed, this, &KCMAkregatorPluginsConfig::slotConfigChanged);
+    connect(mConfigurePluginWidget, &PimCommon::ConfigurePluginsWidget::wasChanged, this, [this](bool state) {
+        setNeedsSave(state);
+    });
     lay->addWidget(mConfigurePluginWidget);
 }
 
