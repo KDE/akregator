@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-11-23 00:40+0000\n"
-"PO-Revision-Date: 2024-07-06 21:38+0530\n"
+"PO-Revision-Date: 2024-11-24 16:32+0530\n"
 "Last-Translator: Kishore G <kishore96@gmail.com>\n"
 "Language-Team: Tamil <kde-i18n-doc@kde.org>\n"
 "Language: ta\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 24.05.2\n"
+"X-Generator: Lokalize 24.08.3\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -89,26 +89,20 @@ msgstr ""
 "பாருங்கள்)."
 
 #: configuration/akregator_config_archive.cpp:33
-#, fuzzy, kde-format
-#| msgctxt "Limit feed archive size to:"
-#| msgid " article"
-#| msgid_plural " articles"
+#, kde-format
 msgctxt "Limit feed archive size to:"
 msgid "%v article"
 msgid_plural "%v articles"
-msgstr[0] " கட்டுரை"
-msgstr[1] " கட்டுரைகள்"
+msgstr[0] "%v கட்டுரை"
+msgstr[1] "%v கட்டுரைகள்"
 
 #: configuration/akregator_config_archive.cpp:34
-#, fuzzy, kde-format
-#| msgctxt "Delete articles older than:"
-#| msgid " day"
-#| msgid_plural " days"
+#, kde-format
 msgctxt "Delete articles older than:"
 msgid "%v day"
 msgid_plural "%v days"
-msgstr[0] " நாள்"
-msgstr[1] " நாட்கள்"
+msgstr[0] "%v நாள்"
+msgstr[1] "%v நாட்கள்"
 
 #: configuration/akregator_config_general.cpp:33
 #, kde-format
@@ -123,15 +117,12 @@ msgid "Webengine Plugins"
 msgstr "Webengine செருகுநிரல்கள்"
 
 #: configuration/settings_advanced.cpp:26
-#, fuzzy, kde-format
-#| msgctxt "Mark selected article read after"
-#| msgid " second"
-#| msgid_plural " seconds"
+#, kde-format
 msgctxt "Mark selected article read after"
 msgid "%v second"
 msgid_plural "%v seconds"
-msgstr[0] " நொடி"
-msgstr[1] " நொடிகள்"
+msgstr[0] "%v நொடி"
+msgstr[1] "%v நொடி"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: configuration/ui/settings_advancedbase.ui:30
@@ -365,8 +356,7 @@ msgstr "கூகுளின் Safe Browsing சேவையின் மூ�
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_EnableJavascript)
 #. i18n: ectx: label, entry, group (Browser)
 #: configuration/ui/settings_browser.ui:153 interfaces/akregator.kcfg:203
-#, fuzzy, kde-format
-#| msgid "Enable Javascript"
+#, kde-format
 msgid "Enable JavaScript"
 msgstr "Javascript-ஐ இயக்கு"
 
