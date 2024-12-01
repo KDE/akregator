@@ -99,14 +99,14 @@ msgstr "<b>注意：</b> 出于安全原因，外部引用被禁用(见配置对
 msgctxt "Limit feed archive size to:"
 msgid "%v article"
 msgid_plural "%v articles"
-msgstr[0] ""
+msgstr[0] "%v 篇文章"
 
 #: configuration/akregator_config_archive.cpp:34
 #, kde-format
 msgctxt "Delete articles older than:"
 msgid "%v day"
 msgid_plural "%v days"
-msgstr[0] ""
+msgstr[0] "%v 天"
 
 #: configuration/akregator_config_general.cpp:33
 #, kde-format
@@ -124,7 +124,7 @@ msgstr "Webengine 插件"
 msgctxt "Mark selected article read after"
 msgid "%v second"
 msgid_plural "%v seconds"
-msgstr[0] ""
+msgstr[0] "%v 秒"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: configuration/ui/settings_advancedbase.ui:30
@@ -360,19 +360,19 @@ msgstr "使用 Google 的安全浏览 API 验证 URL 安全性"
 #: configuration/ui/settings_browser.ui:153 interfaces/akregator.kcfg:203
 #, kde-format
 msgid "Enable JavaScript"
-msgstr ""
+msgstr "启用 JavaScript"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #: configuration/ui/settings_browser.ui:163
 #, kde-format
 msgid "Accessibility"
-msgstr ""
+msgstr "无障碍"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_AccessKeyEnabled)
 #: configuration/ui/settings_browser.ui:169
 #, kde-format
 msgid "Enable Access Key activation with Ctrl key"
-msgstr ""
+msgstr "用 Ctrl 键激活访问键"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_3)
 #: configuration/ui/settings_general.ui:30
@@ -483,7 +483,7 @@ msgstr "使用浏览器缓存 (可减少网络流量消耗) (&B)"
 #: configuration/ui/settings_security.ui:17
 #, kde-format
 msgid "Allow article preview to load external references"
-msgstr ""
+msgstr "允许文章预览加载外部引用"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_LoadExternalReferences)
 #: configuration/ui/settings_security.ui:20
@@ -493,6 +493,8 @@ msgid ""
 "This may allow websites or third parties to observe the articles that you "
 "have viewed."
 msgstr ""
+"允许文章预览从互联网加载外部引用。 这可能会使网站或第三方能够发现您查看过的文"
+"章。"
 
 #: export/akregatorstorageexporter.cpp:280
 #, kde-format
@@ -1123,7 +1125,7 @@ msgstr "删除订阅(&D)"
 #: src/actions/actionmanagerimpl.cpp:70 src/actions/actionmanagerimpl.cpp:260
 #, kde-format
 msgid "&Edit Feed…"
-msgstr ""
+msgstr "编辑订阅(&E)…"
 
 #: src/actions/actionmanagerimpl.cpp:71 src/actions/actionmanagerimpl.cpp:317
 #, kde-format
@@ -1153,17 +1155,17 @@ msgstr "将订阅标为已读(&M)"
 #: src/actions/actionmanagerimpl.cpp:202
 #, kde-format
 msgid "&Import Feeds…"
-msgstr ""
+msgstr "导入订阅(&I)…"
 
 #: src/actions/actionmanagerimpl.cpp:206
 #, kde-format
 msgid "&Export Feeds…"
-msgstr ""
+msgstr "导出订阅(&E)…"
 
 #: src/actions/actionmanagerimpl.cpp:211
 #, kde-format
 msgid "&Configure Akregator…"
-msgstr ""
+msgstr "配置 Akregator(&C)…"
 
 #: src/actions/actionmanagerimpl.cpp:230
 #, kde-format
@@ -1178,12 +1180,12 @@ msgstr "重新加载全部标签页"
 #: src/actions/actionmanagerimpl.cpp:242
 #, kde-format
 msgid "&Add Feed…"
-msgstr ""
+msgstr "添加订阅(&A)…"
 
 #: src/actions/actionmanagerimpl.cpp:248
 #, kde-format
 msgid "Ne&w Folder…"
-msgstr ""
+msgstr "新建文件夹(&W)…"
 
 #: src/actions/actionmanagerimpl.cpp:273
 #, kde-format
@@ -1310,12 +1312,12 @@ msgstr "节点右移"
 #: src/actions/actionmanagerimpl.cpp:433
 #, kde-format
 msgid "Send &Link Address…"
-msgstr ""
+msgstr "发送链接地址(&L)…"
 
 #: src/actions/actionmanagerimpl.cpp:438
 #, kde-format
 msgid "Send &File…"
-msgstr ""
+msgstr "发送文件(&F)…"
 
 #: src/actions/actionmanagerimpl.cpp:444
 #, kde-format
@@ -1326,7 +1328,7 @@ msgstr "聚焦到快速搜索栏"
 #: src/actions/actionmanagerimpl.cpp:450
 #, kde-format
 msgid "What's new"
-msgstr ""
+msgstr "最新变化"
 
 #: src/actions/actionmanagerimpl.cpp:491
 #, kde-format
@@ -1437,7 +1439,7 @@ msgstr "朗读文本"
 #: src/actions/actionmanagerimpl.cpp:629
 #, kde-format
 msgid "&Find in Message…"
-msgstr ""
+msgstr "在消息中查找(&F)…"
 
 #: src/actions/actionmanagerimpl.cpp:640
 #, kde-format
@@ -1453,7 +1455,7 @@ msgstr "激活标签页 %1"
 #: src/actions/actionmanagerimpl.cpp:659
 #, kde-format
 msgid "&Save Link As…"
-msgstr ""
+msgstr "链接另存为(&S)…"
 
 #: src/actions/actionmanagerimpl.cpp:663
 #, kde-format
@@ -1470,7 +1472,7 @@ msgstr "复制图像位置"
 #, kde-format
 msgctxt "@action"
 msgid "Save Image On Disk…"
-msgstr ""
+msgstr "保存图像到磁盘…"
 
 #: src/actions/actions.cpp:19
 #, kde-format
@@ -1501,7 +1503,7 @@ msgstr "%1 未找到订阅。"
 #: src/addfeeddialog.cpp:121
 #, kde-format
 msgid "Feed found, downloading…"
-msgstr ""
+msgstr "找到了订阅，正在下载…"
 
 #: src/akregator_options.h:21 src/akregator_options.h:29
 #, kde-format
@@ -1816,7 +1818,7 @@ msgstr "<qt>标准订阅列表已损坏(无效的 OPML)。无法创建备份。<
 #: src/command/loadfeedlistcommand.cpp:129
 #, kde-format
 msgid "Opening Feed List…"
-msgstr ""
+msgstr "正在打开订阅列表…"
 
 #: src/command/loadfeedlistcommand.cpp:143
 #, kde-format
@@ -1911,7 +1913,7 @@ msgstr "设置(&S)"
 #: src/data/akregator_part.rc:90
 #, kde-format
 msgid "&Help"
-msgstr ""
+msgstr "帮助(&H)"
 
 #. i18n: ectx: ToolBar (mainToolBar)
 #: src/data/akregator_part.rc:98 src/data/akregator_shell.rc:54
@@ -1969,13 +1971,13 @@ msgstr "从不"
 #, kde-format
 msgid "%v day"
 msgid_plural "%v days"
-msgstr[0] ""
+msgstr[0] "%v 天"
 
 #: src/feed/feedpropertiesdialog.cpp:125
 #, kde-format
 msgid "%v article"
 msgid_plural "%v articles"
-msgstr[0] ""
+msgstr[0] "%v 篇文章"
 
 #: src/feed/feedpropertiesdialog.cpp:158
 #, kde-format
@@ -2049,7 +2051,7 @@ msgstr "无标题"
 #: src/frame/frame.cpp:140
 #, kde-format
 msgid "Loading…"
-msgstr ""
+msgstr "正在加载…"
 
 #: src/frame/frame.cpp:156
 #, kde-format
@@ -2120,7 +2122,7 @@ msgstr "网络不可用。"
 #: src/mainwidget.cpp:903
 #, kde-format
 msgid "Fetching Feeds…"
-msgstr ""
+msgstr "正在抓取订阅…"
 
 #: src/mainwidget.cpp:1102
 #, kde-format
@@ -2503,13 +2505,13 @@ msgstr ""
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "Search articles…"
-msgstr ""
+msgstr "搜索文章…"
 
 #: src/widgets/searchbar.cpp:137
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "Search articles…<%1>"
-msgstr ""
+msgstr "搜索文章…<%1>"
 
 #: src/widgets/statussearchbuttons.cpp:29
 #, kde-format
