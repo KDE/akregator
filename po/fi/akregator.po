@@ -5,19 +5,19 @@
 # Author: Lliehu
 # Author: Niklas Laxström
 # Author: Smar
+# SPDX-FileCopyrightText: 2009, 2010, 2011, 2013, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024 Tommi Nieminen <translator@legisign.org>
 # Teemu Rytilahti <teemu.rytilahti@kde-fi.org>, 2004, 2008.
 # Teemu Rytilahti <teemu.rytilahti@d5k.net>, 2005.
 # Teemu Rytilahti <tpr@d5k.net>, 2005.
 # Ilpo Kantonen <ilpo@iki.fi>, 2006.
 # Mikko Piippo <piippo@cc.helsinki.fi>, 2007.
-# Tommi Nieminen <translator@legisign.org>, 2009, 2010, 2011, 2013, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023.
 # Lasse Liehu <lasse.liehu@gmail.com>, 2010, 2011, 2012, 2013, 2014, 2015, 2016.
 msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-11-23 00:40+0000\n"
-"PO-Revision-Date: 2023-11-22 18:44+0200\n"
+"PO-Revision-Date: 2024-10-27 09:10+0200\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
 "Language: fi\n"
@@ -25,19 +25,18 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2012-12-01 22:24:51+0000\n"
-"X-Generator: Lokalize 22.12.3\n"
+"X-Generator: Lokalize 23.08.5\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "Tommi Nieminen,Teemu Rytilahti,Ilpo Kantonen, Mikko Piippo"
+msgstr "Tommi Nieminen, Teemu Rytilahti, Ilpo Kantonen, Mikko Piippo"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr ""
-"translator@legisign.org,teemu.rytilahti@kde-fi.org,ilpo@iki.fi,mikko."
+"translator@legisign.org, teemu.rytilahti@kde-fi.org, ilpo@iki.fi, mikko."
 "piippo@helsinki.fi"
 
 #: src/about/introduction_akregator.html:18
@@ -111,26 +110,20 @@ msgstr ""
 "asetusikkunaa)."
 
 #: configuration/akregator_config_archive.cpp:33
-#, fuzzy, kde-format
-#| msgctxt "Limit feed archive size to:"
-#| msgid " article"
-#| msgid_plural " articles"
+#, kde-format
 msgctxt "Limit feed archive size to:"
 msgid "%v article"
 msgid_plural "%v articles"
-msgstr[0] " artikkeli"
-msgstr[1] " artikkelia"
+msgstr[0] "%v artikkeli"
+msgstr[1] "%v artikkelia"
 
 #: configuration/akregator_config_archive.cpp:34
-#, fuzzy, kde-format
-#| msgctxt "Delete articles older than:"
-#| msgid " day"
-#| msgid_plural " days"
+#, kde-format
 msgctxt "Delete articles older than:"
 msgid "%v day"
 msgid_plural "%v days"
-msgstr[0] " päivä"
-msgstr[1] " päivää"
+msgstr[0] "%v päivä"
+msgstr[1] "%v päivää"
 
 #: configuration/akregator_config_general.cpp:33
 #, kde-format
@@ -145,15 +138,12 @@ msgid "Webengine Plugins"
 msgstr "WebEngine-liitännäiset"
 
 #: configuration/settings_advanced.cpp:26
-#, fuzzy, kde-format
-#| msgctxt "Mark selected article read after"
-#| msgid " second"
-#| msgid_plural " seconds"
+#, kde-format
 msgctxt "Mark selected article read after"
 msgid "%v second"
 msgid_plural "%v seconds"
-msgstr[0] " sekunti"
-msgstr[1] " sekuntia"
+msgstr[0] "%v sekunti"
+msgstr[1] "%v sekuntia"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: configuration/ui/settings_advancedbase.ui:30
@@ -387,8 +377,7 @@ msgstr "Tarkista verkko-osoitteet Googlen turvallisen selauksen APIlla"
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_EnableJavascript)
 #. i18n: ectx: label, entry, group (Browser)
 #: configuration/ui/settings_browser.ui:153 interfaces/akregator.kcfg:203
-#, fuzzy, kde-format
-#| msgid "Enable Javascript"
+#, kde-format
 msgid "Enable JavaScript"
 msgstr "Käytä JavaScriptiä"
 
@@ -396,13 +385,13 @@ msgstr "Käytä JavaScriptiä"
 #: configuration/ui/settings_browser.ui:163
 #, kde-format
 msgid "Accessibility"
-msgstr ""
+msgstr "Esteettömyys"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_AccessKeyEnabled)
 #: configuration/ui/settings_browser.ui:169
 #, kde-format
 msgid "Enable Access Key activation with Ctrl key"
-msgstr ""
+msgstr "Käytä pikanäppäinaktivointia Ctrl-näppäimellä"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_3)
 #: configuration/ui/settings_general.ui:30
@@ -478,7 +467,7 @@ msgstr "Päivitä syötteet:"
 #: configuration/ui/settings_general.ui:157
 #, kde-format
 msgid "Enable Plasma Activities integration"
-msgstr ""
+msgstr "Käytä Plasma-aktiviteettieheytystä"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #: configuration/ui/settings_general.ui:167
@@ -512,10 +501,9 @@ msgstr "Käytä selaimen &välimuistia (vähentää verkkoliikennettä)"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_LoadExternalReferences)
 #: configuration/ui/settings_security.ui:17
-#, fuzzy, kde-format
-#| msgid "Allow feed to load external references from internet."
+#, kde-format
 msgid "Allow article preview to load external references"
-msgstr "Salli syötteen ladata internetistä ulkoiset viittaukset."
+msgstr "Salli syötteen ladata ulkoiset viittaukset internetistä."
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_LoadExternalReferences)
 #: configuration/ui/settings_security.ui:20
@@ -525,6 +513,9 @@ msgid ""
 "This may allow websites or third parties to observe the articles that you "
 "have viewed."
 msgstr ""
+"Salli artikkeliesikatselun ladata ulkoiset viitteet internetistä. Tämä "
+"saattaa aiheuttaa, ettää sivustot ja kolmas osapuoli havaitsevat, mitä olet "
+"lukenut."
 
 #: export/akregatorstorageexporter.cpp:280
 #, kde-format
@@ -848,10 +839,9 @@ msgstr ""
 
 #. i18n: ectx: label, entry, group (General)
 #: interfaces/akregator.kcfg:196
-#, fuzzy, kde-format
-#| msgid "Enable Javascript"
+#, kde-format
 msgid "Enabled Plasma Activity"
-msgstr "Käytä JavaScriptiä"
+msgstr "Plasma-aktiviteetti käytössä"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
 #: interfaces/akregator.kcfg:208
@@ -989,8 +979,7 @@ msgid "Copyright © 2004–%1 Akregator authors"
 msgstr "Tekijänoikeudet © 2004–%1 Akregator-kehittäjät"
 
 #: src/aboutdata.cpp:27
-#, fuzzy, kde-format
-#| msgid "Laurent Montel"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Laurent Montel"
 msgstr "Laurent Montel"
@@ -1001,8 +990,7 @@ msgid "Maintainer"
 msgstr "Ylläpitäjä"
 
 #: src/aboutdata.cpp:28
-#, fuzzy, kde-format
-#| msgid "Frank Osterfeld"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Frank Osterfeld"
 msgstr "Frank Osterfeld"
@@ -1013,8 +1001,7 @@ msgid "Former maintainer"
 msgstr "Aiempi ylläpitäjä"
 
 #: src/aboutdata.cpp:29
-#, fuzzy, kde-format
-#| msgid "Teemu Rytilahti"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Teemu Rytilahti"
 msgstr "Teemu Rytilahti"
@@ -1026,29 +1013,25 @@ msgid "Developer"
 msgstr "Kehittäjä"
 
 #: src/aboutdata.cpp:30
-#, fuzzy, kde-format
-#| msgid "Sashmit Bhaduri"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Sashmit Bhaduri"
 msgstr "Sashmit Bhaduri"
 
 #: src/aboutdata.cpp:31
-#, fuzzy, kde-format
-#| msgid "Pierre Habouzit"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Pierre Habouzit"
 msgstr "Pierre Habouzit"
 
 #: src/aboutdata.cpp:32
-#, fuzzy, kde-format
-#| msgid "Stanislav Karchebny"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Stanislav Karchebny"
 msgstr "Stanislav Karchebny"
 
 #: src/aboutdata.cpp:33
-#, fuzzy, kde-format
-#| msgid "Gary Cramblitt"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Gary Cramblitt"
 msgstr "Gary Cramblitt"
@@ -1059,22 +1042,19 @@ msgid "Contributor"
 msgstr "Avustaja"
 
 #: src/aboutdata.cpp:34
-#, fuzzy, kde-format
-#| msgid "Stephan Binner"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Stephan Binner"
 msgstr "Stephan Binner"
 
 #: src/aboutdata.cpp:35
-#, fuzzy, kde-format
-#| msgid "Christof Musik"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Christof Musik"
 msgstr "Christof Musik"
 
 #: src/aboutdata.cpp:36
-#, fuzzy, kde-format
-#| msgid "Anne-Marie Mahfouf"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Anne-Marie Mahfouf"
 msgstr "Anne-Marie Mahfouf"
@@ -1085,8 +1065,7 @@ msgid "Handbook"
 msgstr "Käsikirja"
 
 #: src/aboutdata.cpp:37
-#, fuzzy, kde-format
-#| msgid "Frerich Raabe"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Frerich Raabe"
 msgstr "Frerich Raabe"
@@ -1097,8 +1076,7 @@ msgid "Author of librss"
 msgstr "librss-kirjaston tekijä"
 
 #: src/aboutdata.cpp:38
-#, fuzzy, kde-format
-#| msgid "Eckhart Woerner"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Eckhart Woerner"
 msgstr "Eckhart Woerner"
@@ -1109,8 +1087,7 @@ msgid "Bug tracker management, Usability improvements"
 msgstr "Vikailmoitusten hoitaminen, parannuksia käytettävyyteen"
 
 #: src/aboutdata.cpp:39
-#, fuzzy, kde-format
-#| msgid "Heinrich Wendel"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Heinrich Wendel"
 msgstr "Heinrich Wendel"
@@ -1121,8 +1098,7 @@ msgid "Tons of bug fixes"
 msgstr "Paljon korjauksia"
 
 #: src/aboutdata.cpp:40
-#, fuzzy, kde-format
-#| msgid "Eike Hein"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Eike Hein"
 msgstr "Eike Hein"
@@ -1133,8 +1109,7 @@ msgid "'Delayed mark as read' feature"
 msgstr "Merkitse viesti luetuksi viipeellä -ominaisuus"
 
 #: src/aboutdata.cpp:41
-#, fuzzy, kde-format
-#| msgid "Marcel Dierkes"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Marcel Dierkes"
 msgstr "Marcel Dierkes"
@@ -1145,8 +1120,7 @@ msgid "Icons"
 msgstr "Kuvakkeet"
 
 #: src/aboutdata.cpp:42
-#, fuzzy, kde-format
-#| msgid "George Staikos"
+#, kde-format
 msgctxt "@info:credit"
 msgid "George Staikos"
 msgstr "George Staikos"
@@ -1157,8 +1131,7 @@ msgid "Insomnia"
 msgstr "Unettomuus"
 
 #: src/aboutdata.cpp:43
-#, fuzzy, kde-format
-#| msgid "Philipp Droessler"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Philipp Droessler"
 msgstr "Philipp Droessler"
@@ -1179,8 +1152,7 @@ msgid "&Delete Feed"
 msgstr "&Poista syöte"
 
 #: src/actions/actionmanagerimpl.cpp:70 src/actions/actionmanagerimpl.cpp:260
-#, fuzzy, kde-format
-#| msgid "&Edit Feed..."
+#, kde-format
 msgid "&Edit Feed…"
 msgstr "&Muokkaa syötettä…"
 
@@ -1210,20 +1182,17 @@ msgid "&Mark Feeds as Read"
 msgstr "&Merkitse syötteet luetuksi"
 
 #: src/actions/actionmanagerimpl.cpp:202
-#, fuzzy, kde-format
-#| msgid "&Import Feeds..."
+#, kde-format
 msgid "&Import Feeds…"
 msgstr "&Tuo syötteitä…"
 
 #: src/actions/actionmanagerimpl.cpp:206
-#, fuzzy, kde-format
-#| msgid "&Export Feeds..."
+#, kde-format
 msgid "&Export Feeds…"
 msgstr "&Vie syötteitä…"
 
 #: src/actions/actionmanagerimpl.cpp:211
-#, fuzzy, kde-format
-#| msgid "&Configure Akregator..."
+#, kde-format
 msgid "&Configure Akregator…"
 msgstr "Akre&gatorin asetukset…"
 
@@ -1238,14 +1207,12 @@ msgid "Reload All Tabs"
 msgstr "Päivitä kaikki välilehdet"
 
 #: src/actions/actionmanagerimpl.cpp:242
-#, fuzzy, kde-format
-#| msgid "Add Feed"
+#, kde-format
 msgid "&Add Feed…"
-msgstr "Lisää syöte"
+msgstr "L&isää syöte…"
 
 #: src/actions/actionmanagerimpl.cpp:248
-#, fuzzy, kde-format
-#| msgid "Ne&w Folder..."
+#, kde-format
 msgid "Ne&w Folder…"
 msgstr "&Uusi kansio…"
 
@@ -1311,8 +1278,7 @@ msgid "&Read"
 msgstr "&Luetuksi"
 
 #: src/actions/actionmanagerimpl.cpp:382
-#, fuzzy, kde-format
-#| msgid "Mark selected article as read"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as read"
 msgstr "Merkitse valittu artikkeli luetuksi"
@@ -1324,8 +1290,7 @@ msgid "&New"
 msgstr "&Uudeksi"
 
 #: src/actions/actionmanagerimpl.cpp:391
-#, fuzzy, kde-format
-#| msgid "Mark selected article as new"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as new"
 msgstr "Merkitse valittu artikkeli uudeksi"
@@ -1337,8 +1302,7 @@ msgid "&Unread"
 msgstr "&Lukemattomaksi"
 
 #: src/actions/actionmanagerimpl.cpp:398
-#, fuzzy, kde-format
-#| msgid "Mark selected article as unread"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as unread"
 msgstr "Merkitse valittu artikkeli lukemattomaksi"
@@ -1349,11 +1313,10 @@ msgid "&Mark as Important"
 msgstr "&Merkitse tärkeäksi"
 
 #: src/actions/actionmanagerimpl.cpp:408
-#, fuzzy, kde-format
-#| msgid "Remove &Important Mark"
+#, kde-format
 msgctxt "@action:button"
 msgid "Remove &Important Mark"
-msgstr "&Poista tärkeän artikkelin merkintä"
+msgstr "&Poista merkintä tärkeäksi"
 
 #: src/actions/actionmanagerimpl.cpp:412
 #, kde-format
@@ -1376,20 +1339,17 @@ msgid "Move Node Right"
 msgstr "Siirrä oikealle"
 
 #: src/actions/actionmanagerimpl.cpp:433
-#, fuzzy, kde-format
-#| msgid "Send Link Address"
+#, kde-format
 msgid "Send &Link Address…"
-msgstr "Lähetä linkin osoite"
+msgstr "Lähetä linkin &osoite…"
 
 #: src/actions/actionmanagerimpl.cpp:438
-#, fuzzy, kde-format
-#| msgid "Send &File..."
+#, kde-format
 msgid "Send &File…"
 msgstr "Lähetä &tiedosto…"
 
 #: src/actions/actionmanagerimpl.cpp:444
-#, fuzzy, kde-format
-#| msgid "Set Focus to Quick Search"
+#, kde-format
 msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr "Kohdista pikahakuun"
@@ -1397,7 +1357,7 @@ msgstr "Kohdista pikahakuun"
 #: src/actions/actionmanagerimpl.cpp:450
 #, kde-format
 msgid "What's new"
-msgstr ""
+msgstr "Mitä uutta"
 
 #: src/actions/actionmanagerimpl.cpp:491
 #, kde-format
@@ -1500,15 +1460,13 @@ msgid "Unmute"
 msgstr "Palauta äänet"
 
 #: src/actions/actionmanagerimpl.cpp:624
-#, fuzzy, kde-format
-#| msgid "Speak Text"
+#, kde-format
 msgctxt "@action"
 msgid "Speak Text"
 msgstr "Puhu teksti"
 
 #: src/actions/actionmanagerimpl.cpp:629
-#, fuzzy, kde-format
-#| msgid "&Find in Message..."
+#, kde-format
 msgid "&Find in Message…"
 msgstr "&Etsi viestistä…"
 
@@ -1518,17 +1476,15 @@ msgid "Close Tab"
 msgstr "Sulje välilehti"
 
 #: src/actions/actionmanagerimpl.cpp:653
-#, fuzzy, kde-format
-#| msgid "Activate Tab %1"
+#, kde-format
 msgctxt "@action"
 msgid "Activate Tab %1"
 msgstr "Aktivoi välilehti %1"
 
 #: src/actions/actionmanagerimpl.cpp:659
-#, fuzzy, kde-format
-#| msgid "&Save Link As..."
+#, kde-format
 msgid "&Save Link As…"
-msgstr "&Tallenna linkki nimellä…"
+msgstr "Ta&llenna linkki nimellä…"
 
 #: src/actions/actionmanagerimpl.cpp:663
 #, kde-format
@@ -1536,15 +1492,13 @@ msgid "Copy &Link Address"
 msgstr "Kopioi &linkin osoite"
 
 #: src/actions/actionmanagerimpl.cpp:666
-#, fuzzy, kde-format
-#| msgid "Copy Image Location"
+#, kde-format
 msgctxt "@action"
 msgid "Copy Image Location"
 msgstr "Kopioi kuvan sijainti"
 
 #: src/actions/actionmanagerimpl.cpp:673
-#, fuzzy, kde-format
-#| msgid "Save Image On Disk..."
+#, kde-format
 msgctxt "@action"
 msgid "Save Image On Disk…"
 msgstr "Tallenna kuva levylle…"
@@ -1576,38 +1530,33 @@ msgid "Feed not found from %1."
 msgstr "Osoitteesta %1 ei löytynyt syötettä."
 
 #: src/addfeeddialog.cpp:121
-#, fuzzy, kde-format
-#| msgid "Feed found, downloading..."
+#, kde-format
 msgid "Feed found, downloading…"
 msgstr "Syöte löytyi, ladataan…"
 
 #: src/akregator_options.h:21 src/akregator_options.h:29
-#, fuzzy, kde-format
-#| msgid "Add a feed with the given URL"
+#, kde-format
 msgctxt "@info:shell"
 msgid "Add a feed with the given URL"
 msgstr "Lisää syöte annetusta osoitteesta"
 
 #: src/akregator_options.h:24
-#, fuzzy, kde-format
-#| msgid "When adding feeds, place them in this group"
+#, kde-format
 msgctxt "@info:shell"
 msgid "When adding feeds, place them in this group"
 msgstr "Sijoita lisättävät syötteet tähän ryhmään"
 
 #: src/akregator_options.h:26
-#, fuzzy, kde-format
-#| msgid "Hide main window on startup"
+#, kde-format
 msgctxt "@info:shell"
 msgid "Hide main window on startup"
 msgstr "Piilota pääikkuna käynnistettäessä"
 
 #: src/akregator_options.h:31
-#, fuzzy, kde-format
-#| msgid "Lists the available options for user feedback"
+#, kde-format
 msgctxt "@info:shell"
 msgid "Lists the available options for user feedback"
-msgstr "Luettelee käyttäjäpalautteeseen käytettävissä olevat valinnat"
+msgstr "Luettelee mahdolliset käyttäjäpalautevalinnat"
 
 #: src/akregator_part.cpp:78
 #, kde-format
@@ -1911,8 +1860,7 @@ msgstr ""
 "Varmuuskopiota ei kyetty luomaan.</qt>"
 
 #: src/command/loadfeedlistcommand.cpp:129
-#, fuzzy, kde-format
-#| msgid "Opening Feed List..."
+#, kde-format
 msgid "Opening Feed List…"
 msgstr "Avataan syöteluetteloa…"
 
@@ -1953,10 +1901,7 @@ msgstr ""
 "Varmuuskopiota ei kyetty luomaan.</qt>"
 
 #: src/crashwidget/crashwidget.cpp:21
-#, fuzzy, kde-format
-#| msgid ""
-#| "Akregator did not close correctly. Would you like to restore the previous "
-#| "session?"
+#, kde-format
 msgctxt "@label:textbox"
 msgid ""
 "Akregator did not close correctly. Would you like to restore the previous "
@@ -2018,7 +1963,7 @@ msgstr "A&setukset"
 #: src/data/akregator_part.rc:90
 #, kde-format
 msgid "&Help"
-msgstr ""
+msgstr "&Ohje"
 
 #. i18n: ectx: ToolBar (mainToolBar)
 #: src/data/akregator_part.rc:98 src/data/akregator_shell.rc:54
@@ -2040,7 +1985,7 @@ msgstr "Kaikki syötteet"
 #: src/feed/feedpropertiesdialog.cpp:39
 #, kde-format
 msgid "Activities"
-msgstr ""
+msgstr "Aktiviteetit"
 
 #: src/feed/feedpropertiesdialog.cpp:64 src/feed/feedpropertiesdialog.cpp:119
 #, kde-format
@@ -2076,22 +2021,18 @@ msgid "Never"
 msgstr "Ei koskaan"
 
 #: src/feed/feedpropertiesdialog.cpp:124
-#, fuzzy, kde-format
-#| msgid " day"
-#| msgid_plural " days"
+#, kde-format
 msgid "%v day"
 msgid_plural "%v days"
-msgstr[0] " päivä"
-msgstr[1] " päivää"
+msgstr[0] "%v päivä"
+msgstr[1] "%v päivää"
 
 #: src/feed/feedpropertiesdialog.cpp:125
-#, fuzzy, kde-format
-#| msgid " article"
-#| msgid_plural " articles"
+#, kde-format
 msgid "%v article"
 msgid_plural "%v articles"
-msgstr[0] " artikkeli"
-msgstr[1] " artikkelia"
+msgstr[0] "%v artikkeli"
+msgstr[1] "%v artikkelia"
 
 #: src/feed/feedpropertiesdialog.cpp:158
 #, kde-format
@@ -2164,8 +2105,7 @@ msgid "Untitled"
 msgstr "Nimetön"
 
 #: src/frame/frame.cpp:140
-#, fuzzy, kde-format
-#| msgid "Loading..."
+#, kde-format
 msgid "Loading…"
 msgstr "Ladataan…"
 
@@ -2239,10 +2179,9 @@ msgid "Networking is not available."
 msgstr "Verkkoyhteys ei ole saatavilla."
 
 #: src/mainwidget.cpp:903
-#, fuzzy, kde-format
-#| msgid "Fetching Feeds..."
+#, kde-format
 msgid "Fetching Feeds…"
-msgstr "Päivitetään syötteitä…"
+msgstr "Noudetaan syötteitä…"
 
 #: src/mainwidget.cpp:1102
 #, kde-format
@@ -2401,8 +2340,7 @@ msgid "Total"
 msgstr "Kaikkiaan"
 
 #: src/tabwidget.cpp:92
-#, fuzzy, kde-format
-#| msgid "Close the current tab"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Close the current tab"
 msgstr "Sulje nykyinen välilehti"
@@ -2618,26 +2556,23 @@ msgid "Add windows support"
 msgstr ""
 
 #: src/whatsnew/whatsnewtranslations.cpp:25
-#, fuzzy, kde-format
-#| msgid "Enable Javascript"
+#, kde-format
 msgid "Implement Plasma Activity."
-msgstr "Käytä JavaScriptiä"
+msgstr "Plasma-aktiviteetin toteutus."
 
 #: src/whatsnew/whatsnewtranslations.cpp:25
 #, kde-format
 msgid "Add new whatsnew widget."
-msgstr ""
+msgstr "Lisää uusi mitäuutta-sovelma."
 
 #: src/widgets/searchbar.cpp:44
-#, fuzzy, kde-format
-#| msgid "Search articles..."
+#, kde-format
 msgctxt "@info:placeholder"
 msgid "Search articles…"
 msgstr "Etsi artikkeleja…"
 
 #: src/widgets/searchbar.cpp:137
-#, fuzzy, kde-format
-#| msgid "Search articles...<%1>"
+#, kde-format
 msgctxt "@info:placeholder"
 msgid "Search articles…<%1>"
 msgstr "Etsi artikkeleja…<%1>"
