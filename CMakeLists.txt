@@ -4,7 +4,7 @@ cmake_minimum_required(VERSION 3.16 FATAL_ERROR)
 set(PIM_VERSION "6.3.40")
 project(akregator VERSION ${PIM_VERSION})
 
-set(KF_MIN_VERSION "6.7.0")
+set(KF_MIN_VERSION "6.8.0")
 set(RELEASE_SERVICE_VERSION "25.03.40")
 set(QT_REQUIRED_VERSION "6.7.0")
 
