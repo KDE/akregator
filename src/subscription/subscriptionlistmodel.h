@@ -122,6 +122,7 @@ private:
 
     QSharedPointer<const FeedList> m_feedList;
     bool m_beganRemoval = false;
+    bool m_beganInsertion = false;
 
     QColor m_errorColor;
 };

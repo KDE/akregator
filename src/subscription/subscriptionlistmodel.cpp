@@ -202,9 +202,14 @@ int SubscriptionListModel::rowCount(const QModelIndex &parent) const
     if (!parent.isValid()) {
         return 1;
     }
-
     const TreeNode *const node = nodeForIndex(parent, m_feedList.data());
-    return node ? node->children().count() : 0;
+
+    int childCount = node ? node->children().count() : 0;
+    if (m_beganInsertion) {
+        childCount--;
+    }
+    Q_ASSERT(childCount >= 0);
+    return childCount;
 }
 
 QVariant SubscriptionListModel::data(const QModelIndex &index, int role) const
@@ -359,11 +364,13 @@ QModelIndex SubscriptionListModel::indexForNode(const TreeNode *node) const
 
 void SubscriptionListModel::subscriptionAdded(TreeNode *subscription)
 {
+    m_beganInsertion = true;
     const Folder *const parent = subscription->parent();
     const int row = parent ? parent->indexOf(subscription) : 0;
     Q_ASSERT(row >= 0);
     beginInsertRows(indexForNode(parent), row, row);
     endInsertRows();
+    m_beganInsertion = false;
 }
 
 void SubscriptionListModel::aboutToRemoveSubscription(TreeNode *subscription)
