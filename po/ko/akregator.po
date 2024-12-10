@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kdepim\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-11-23 00:40+0000\n"
-"PO-Revision-Date: 2024-08-20 21:40+0200\n"
+"PO-Revision-Date: 2024-12-09 22:34+0100\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
 "Language: ko\n"
@@ -2504,7 +2504,7 @@ msgstr "외부 브라우저로 열기"
 
 #: src/whatsnew/whatsnewtranslations.cpp:16
 msgid "Add windows support"
-msgstr ""
+msgstr "Windows 지원 추가"
 
 #: src/whatsnew/whatsnewtranslations.cpp:25
 #, kde-format
