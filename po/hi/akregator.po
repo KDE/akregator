@@ -4,20 +4,21 @@
 #
 # Ravishankar Shrivastava <raviratlami@yahoo.com>, 2008.
 # Raghavendra Kamath <raghu@raghukamath.com>, 2021.
+# SPDX-FileCopyrightText: 2024 kali <skkalwar999@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-11-23 00:40+0000\n"
-"PO-Revision-Date: 2021-06-29 20:38+0530\n"
-"Last-Translator: Raghavendra Kamath <raghu@raghukamath.com>\n"
-"Language-Team: kde-hindi\n"
+"PO-Revision-Date: 2024-12-15 19:32+0530\n"
+"Last-Translator: kali <skkalwar999@gmail.com>\n"
+"Language-Team: Sanskrit <kde-i18n-doc@kde.org>\n"
 "Language: hi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Lokalize 21.04.2\n"
+"X-Generator: Lokalize 24.08.2\n"
 
 #, fuzzy, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -1179,7 +1180,7 @@ msgstr "फीड मिटाएँ (&D)"
 #, fuzzy, kde-format
 #| msgid "&Edit Feed..."
 msgid "&Edit Feed…"
-msgstr "फ़ीड संपादित करें..."
+msgstr "फ़ीड संपादित करें…"
 
 #: src/actions/actionmanagerimpl.cpp:71 src/actions/actionmanagerimpl.cpp:317
 #, kde-format
@@ -1210,19 +1211,19 @@ msgstr "फ़ीड्स को पढ़ा हुआ चिह्नित �
 #, fuzzy, kde-format
 #| msgid "&Import Feeds..."
 msgid "&Import Feeds…"
-msgstr "फ़ीड्स आयात करें... (&I)"
+msgstr "फ़ीड्स आयात करें… (&I)"
 
 #: src/actions/actionmanagerimpl.cpp:206
 #, fuzzy, kde-format
 #| msgid "&Export Feeds..."
 msgid "&Export Feeds…"
-msgstr "फ़ीड्स निर्यात करें... (&E)"
+msgstr "फ़ीड्स निर्यात करें… (&E)"
 
 #: src/actions/actionmanagerimpl.cpp:211
 #, fuzzy, kde-format
 #| msgid "Configure &Akregator..."
 msgid "&Configure Akregator…"
-msgstr "ए-के-रेगेटर कॉन्फ़िगर करें... (&A)"
+msgstr "ए-के-रेगेटर कॉन्फ़िगर करें… (&A)"
 
 #: src/actions/actionmanagerimpl.cpp:230
 #, kde-format
@@ -1244,7 +1245,7 @@ msgstr "फ़ीड जोड़ें"
 #, fuzzy, kde-format
 #| msgid "Ne&w Folder..."
 msgid "Ne&w Folder…"
-msgstr "नया फ़ोल्डर... (&w)"
+msgstr "नया फ़ोल्डर… (&w)"
 
 #: src/actions/actionmanagerimpl.cpp:273
 #, kde-format
@@ -1379,13 +1380,13 @@ msgstr "नोड दाएँ खिसकाएँ"
 #, fuzzy, kde-format
 #| msgid "Send &Link Address..."
 msgid "Send &Link Address…"
-msgstr "लिंक पता भेजें... (&L)"
+msgstr "लिंक पता भेजें… (&L)"
 
 #: src/actions/actionmanagerimpl.cpp:438
 #, fuzzy, kde-format
 #| msgid "Send &File..."
 msgid "Send &File…"
-msgstr "फ़ाइल भेजें... (&F)"
+msgstr "फ़ाइल भेजें… (&F)"
 
 #: src/actions/actionmanagerimpl.cpp:444
 #, kde-format
@@ -1577,7 +1578,7 @@ msgstr "%1 से फीड नहीं मिला."
 #, fuzzy, kde-format
 #| msgid "Feed found, downloading..."
 msgid "Feed found, downloading…"
-msgstr "फ़ीड मिला, डाउनलोड किया जा रहा है..."
+msgstr "फ़ीड मिला, डाउनलोड किया जा रहा है…"
 
 #: src/akregator_options.h:21 src/akregator_options.h:29
 #, kde-format
@@ -1922,7 +1923,7 @@ msgstr ""
 #, fuzzy, kde-format
 #| msgid "Opening Feed List..."
 msgid "Opening Feed List…"
-msgstr "फ़ीड सूची खोली जा रही है..."
+msgstr "फ़ीड सूची खोली जा रही है…"
 
 #: src/command/loadfeedlistcommand.cpp:143
 #, kde-format
@@ -2183,7 +2184,7 @@ msgstr "बिना शीर्षक"
 #, fuzzy, kde-format
 #| msgid "Loading..."
 msgid "Loading…"
-msgstr "लोड किया जा रहा है..."
+msgstr "लोड किया जा रहा है…"
 
 #: src/frame/frame.cpp:156
 #, kde-format
@@ -2260,7 +2261,7 @@ msgstr ""
 #, fuzzy, kde-format
 #| msgid "Fetching Feeds..."
 msgid "Fetching Feeds…"
-msgstr "फ़ीड्स प्राप्त किया जा रहा है..."
+msgstr "फ़ीड्स प्राप्त किया जा रहा है…"
 
 #: src/mainwidget.cpp:1102
 #, kde-format
