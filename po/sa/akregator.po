@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-11-23 00:40+0000\n"
-"PO-Revision-Date: 2024-12-14 01:48+0530\n"
+"PO-Revision-Date: 2024-12-20 21:51+0530\n"
 "Last-Translator: kali <skkalwar999@gmail.com>\n"
 "Language-Team: Sanskrit <kde-i18n-doc@kde.org>\n"
 "Language: sa\n"
@@ -162,13 +162,13 @@ msgstr "लेखसूची रङ्ग"
 #: configuration/ui/settings_appearance.ui:53
 #, kde-format
 msgid "Unread articles:"
-msgstr "अपठितलेखाः : १."
+msgstr "अपठितलेखाः :"
 
 #. i18n: ectx: property (text), widget (QLabel, lbl_newArticles)
 #: configuration/ui/settings_appearance.ui:76
 #, kde-format
 msgid "New articles:"
-msgstr "नवीनलेखाः : १."
+msgstr "नवीनलेखाः :"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_UseCustomColors)
 #: configuration/ui/settings_appearance.ui:98
@@ -186,13 +186,13 @@ msgstr "फ़ॉन्ट आकार"
 #: configuration/ui/settings_appearance.ui:127
 #, kde-format
 msgid "Minimum font size:"
-msgstr "न्यूनतमः फ़ॉन्ट् आकारः : १."
+msgstr "न्यूनतमः फ़ॉन्ट् आकारः :"
 
 #. i18n: ectx: property (text), widget (QLabel, lbl_MediumFontSize)
 #: configuration/ui/settings_appearance.ui:176
 #, kde-format
 msgid "Medium font size:"
-msgstr "मध्यमः फ़ॉन्ट् आकारः : १."
+msgstr "मध्यमः फ़ॉन्ट् आकारः :"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: configuration/ui/settings_appearance.ui:228
@@ -204,25 +204,25 @@ msgstr "फॉन्ट्"
 #: configuration/ui/settings_appearance.ui:234
 #, kde-format
 msgid "Standard font:"
-msgstr "मानक फ़ॉन्ट् : १."
+msgstr "मानक फ़ॉन्ट् :"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel2_2)
 #: configuration/ui/settings_appearance.ui:244
 #, kde-format
 msgid "Fixed font:"
-msgstr "नियत फ़ॉन्ट् : १."
+msgstr "नियत फ़ॉन्ट् :"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel3)
 #: configuration/ui/settings_appearance.ui:254
 #, kde-format
 msgid "Serif font:"
-msgstr "सेरिफ् फॉन्टः : १."
+msgstr "सेरिफ् फॉन्टः :"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel4)
 #: configuration/ui/settings_appearance.ui:264
 #, kde-format
 msgid "Sans serif font:"
-msgstr "Sans serif फ़ॉन्टः : १."
+msgstr "Sans serif फ़ॉन्टः :"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: configuration/ui/settings_archive.ui:30
@@ -299,7 +299,7 @@ msgstr "बाह्य ब्राउजर् मध्ये उद्घा
 #: configuration/ui/settings_browser.ui:46
 #, kde-format
 msgid "Middle mouse click:"
-msgstr "मध्यमूषकस्य क्लिक् : १."
+msgstr "मध्यमूषकस्य क्लिक् :"
 
 #. i18n: ectx: property (title), widget (QGroupBox, externalBrowserGroupBox)
 #: configuration/ui/settings_browser.ui:74
@@ -1761,7 +1761,7 @@ msgstr "Folder योजयतु"
 #: src/command/createfoldercommand.cpp:47
 #, kde-format
 msgid "Folder name:"
-msgstr "पुटस्य नाम : १."
+msgstr "पुटस्य नाम :"
 
 #: src/command/deletesubscriptioncommand.cpp:39
 #, kde-format
@@ -1813,7 +1813,7 @@ msgstr "आयातितं पुटं योजयन्तु"
 #: src/command/importfeedlistcommand.cpp:78
 #, kde-format
 msgid "Imported folder name:"
-msgstr "आयातितपुटस्य नाम : १."
+msgstr "आयातितपुटस्य नाम :"
 
 #: src/command/loadfeedlistcommand.cpp:63
 #, kde-format
@@ -2024,8 +2024,8 @@ msgstr " (अपठितलेखाः नास्ति)"
 #, kde-format
 msgid " (1 unread article)"
 msgid_plural " (%1 unread articles)"
-msgstr[0] " (१ अपठित लेख) २."
-msgstr[1] " (%1 अपठितलेखाः) २."
+msgstr[0] " (१ अपठित लेख)"
+msgstr[1] " (%1 अपठितलेखाः)"
 
 #: src/formatter/grantleeviewformatter.cpp:179
 #, kde-format
