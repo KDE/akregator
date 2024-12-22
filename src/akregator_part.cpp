@@ -85,20 +85,10 @@ static QDomDocument createDefaultFeedList()
     mainFolder.setAttribute(QStringLiteral("text"), QStringLiteral("KDE"));
     body.appendChild(mainFolder);
 
-    QDomElement dot = doc.createElement(QStringLiteral("outline"));
-    dot.setAttribute(QStringLiteral("text"), i18n("KDE Dot News"));
-    dot.setAttribute(QStringLiteral("xmlUrl"), QStringLiteral("https://dot.kde.org/rss.xml"));
-    mainFolder.appendChild(dot);
-
-    QDomElement linuxFeeds = doc.createElement(QStringLiteral("outline"));
-    linuxFeeds.setAttribute(QStringLiteral("text"), i18n("Linux.com"));
-    linuxFeeds.setAttribute(QStringLiteral("xmlUrl"), QStringLiteral("https://www.linux.com/feed/"));
-    mainFolder.appendChild(linuxFeeds);
-
-    QDomElement planetkde = doc.createElement(QStringLiteral("outline"));
-    planetkde.setAttribute(QStringLiteral("text"), i18n("Planet KDE"));
-    planetkde.setAttribute(QStringLiteral("xmlUrl"), QStringLiteral("https://planet.kde.org/global/atom.xml"));
-    mainFolder.appendChild(planetkde);
+    QDomElement planet = doc.createElement(QStringLiteral("outline"));
+    planet.setAttribute(QStringLiteral("text"), i18n("Planet KDE"));
+    planet.setAttribute(QStringLiteral("xmlUrl"), QStringLiteral("https://planet.kde.org/atom.xml"));
+    mainFolder.appendChild(planet);
 
     QDomElement apps = doc.createElement(QStringLiteral("outline"));
     apps.setAttribute(QStringLiteral("text"), i18n("KDE Apps"));
