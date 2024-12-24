@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-11-23 00:40+0000\n"
+"POT-Creation-Date: 2024-12-24 00:40+0000\n"
 "PO-Revision-Date: 2024-11-18 08:56+0100\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
@@ -942,7 +942,7 @@ msgid "Resets the quick filter when changing feeds."
 msgstr "Reinicia el filtre ràpid en canviar les fonts."
 
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
-#: src/akregator_part.cpp:136
+#: src/akregator_part.cpp:126
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:142
 #: src/trayicon.cpp:40 src/trayicon.cpp:41 src/trayicon.cpp:53
 #, kde-format
@@ -1564,35 +1564,25 @@ msgstr "Fonts"
 
 #: src/akregator_part.cpp:89
 #, kde-format
-msgid "KDE Dot News"
-msgstr "KDE Dot News"
-
-#: src/akregator_part.cpp:94
-#, kde-format
-msgid "Linux.com"
-msgstr "Linux.com"
-
-#: src/akregator_part.cpp:99
-#, kde-format
 msgid "Planet KDE"
 msgstr "Planet KDE"
 
-#: src/akregator_part.cpp:104
+#: src/akregator_part.cpp:94
 #, kde-format
 msgid "KDE Apps"
 msgstr "KDE Apps"
 
-#: src/akregator_part.cpp:110
+#: src/akregator_part.cpp:100
 #, kde-format
 msgid "Spanish feeds"
 msgstr "Fonts espanyoles"
 
-#: src/akregator_part.cpp:114
+#: src/akregator_part.cpp:104
 #, kde-format
 msgid "Planet KDE España"
 msgstr "Planet KDE España"
 
-#: src/akregator_part.cpp:427
+#: src/akregator_part.cpp:417
 #, kde-format
 msgid ""
 "Access denied: Cannot save feed list to <b>%1</b>. Please check your "
@@ -1601,24 +1591,24 @@ msgstr ""
 "Accés denegat: No s'ha pogut guardar la llista de fonts <b>%1</b>. Comproveu "
 "els permisos."
 
-#: src/akregator_part.cpp:428 src/akregator_part.cpp:481
+#: src/akregator_part.cpp:418 src/akregator_part.cpp:471
 #, kde-format
 msgctxt "@title:window"
 msgid "Write Error"
 msgstr "S'ha produït un error d'escriptura"
 
-#: src/akregator_part.cpp:464
+#: src/akregator_part.cpp:454
 #, kde-format
 msgid "Could not import the file %1 (no valid OPML)"
 msgstr "No s'ha pogut importar el fitxer %1 (OPML no vàlid)"
 
-#: src/akregator_part.cpp:464 src/command/loadfeedlistcommand.cpp:71
+#: src/akregator_part.cpp:454 src/command/loadfeedlistcommand.cpp:71
 #, kde-format
 msgctxt "@title:window"
 msgid "OPML Parsing Error"
 msgstr "S'ha produït un error en l'anàlisi sintàctica de l'OPML"
 
-#: src/akregator_part.cpp:468
+#: src/akregator_part.cpp:458
 #, kde-format
 msgid ""
 "The file %1 could not be read, check if it exists or if it is readable for "
@@ -1627,25 +1617,25 @@ msgstr ""
 "El fitxer %1 no ha pogut ser llegit, comproveu que existix i que l'usuari "
 "actual el pot llegir."
 
-#: src/akregator_part.cpp:469 src/command/loadfeedlistcommand.cpp:144
+#: src/akregator_part.cpp:459 src/command/loadfeedlistcommand.cpp:144
 #, kde-format
 msgctxt "@title:window"
 msgid "Read Error"
 msgstr "S'ha produït un error de lectura"
 
-#: src/akregator_part.cpp:480
+#: src/akregator_part.cpp:470
 #, kde-format
 msgid "Access denied: cannot write to file %1. Please check your permissions."
 msgstr ""
 "Accés denegat: No s'ha pogut escriure en el fitxer %1. Comproveu els "
 "permisos."
 
-#: src/akregator_part.cpp:496 src/akregator_part.cpp:505
+#: src/akregator_part.cpp:486 src/akregator_part.cpp:495
 #, kde-format
 msgid "OPML Outlines (%1);;All Files (*)"
 msgstr "Esquemes OPML (%1);;Tots els fitxers (*)"
 
-#: src/akregator_part.cpp:629
+#: src/akregator_part.cpp:619
 #, kde-format
 msgid "Imported Folder"
 msgstr "Carpeta importada"
@@ -2317,24 +2307,24 @@ msgstr "No s'ha pogut llegir la font (format desconegut)"
 msgid "Could not read feed (invalid feed)"
 msgstr "No s'ha pogut llegir la font (font no vàlida)"
 
-#: src/subscription/subscriptionlistmodel.cpp:246
+#: src/subscription/subscriptionlistmodel.cpp:251
 #, kde-format
 msgid "Could not fetch feed: %1"
 msgstr "No s'ha pogut recuperar la font: %1"
 
-#: src/subscription/subscriptionlistmodel.cpp:295
+#: src/subscription/subscriptionlistmodel.cpp:300
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Feeds"
 msgstr "Fonts"
 
-#: src/subscription/subscriptionlistmodel.cpp:297
+#: src/subscription/subscriptionlistmodel.cpp:302
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Unread"
 msgstr "Sense llegir"
 
-#: src/subscription/subscriptionlistmodel.cpp:299
+#: src/subscription/subscriptionlistmodel.cpp:304
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Total"
@@ -2606,3 +2596,9 @@ msgstr "Llegit"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "Important"
+
+#~ msgid "KDE Dot News"
+#~ msgstr "KDE Dot News"
+
+#~ msgid "Linux.com"
+#~ msgstr "Linux.com"

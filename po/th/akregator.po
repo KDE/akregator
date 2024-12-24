@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-11-23 00:40+0000\n"
+"POT-Creation-Date: 2024-12-24 00:40+0000\n"
 "PO-Revision-Date: 2008-04-07 23:17+0700\n"
 "Last-Translator: Thanomsub Noppaburana <donga.nb@gmail.com>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
@@ -964,7 +964,7 @@ msgid "Resets the quick filter when changing feeds."
 msgstr ""
 
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
-#: src/akregator_part.cpp:136
+#: src/akregator_part.cpp:126
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:142
 #: src/trayicon.cpp:40 src/trayicon.cpp:41 src/trayicon.cpp:53
 #, kde-format
@@ -1626,36 +1626,26 @@ msgstr "แหล่งป้อน"
 
 #: src/akregator_part.cpp:89
 #, kde-format
-msgid "KDE Dot News"
-msgstr "แหล่งข่าว KDE (KDE Dot News)"
-
-#: src/akregator_part.cpp:94
-#, kde-format
-msgid "Linux.com"
-msgstr ""
-
-#: src/akregator_part.cpp:99
-#, kde-format
 msgid "Planet KDE"
 msgstr "พลาเน็ต KDE"
 
-#: src/akregator_part.cpp:104
+#: src/akregator_part.cpp:94
 #, kde-format
 msgid "KDE Apps"
 msgstr "รวมโปรแกรม KDE (KDE Apps)"
 
-#: src/akregator_part.cpp:110
+#: src/akregator_part.cpp:100
 #, kde-format
 msgid "Spanish feeds"
 msgstr ""
 
-#: src/akregator_part.cpp:114
+#: src/akregator_part.cpp:104
 #, fuzzy, kde-format
 #| msgid "Planet KDE"
 msgid "Planet KDE España"
 msgstr "พลาเน็ต KDE"
 
-#: src/akregator_part.cpp:427
+#: src/akregator_part.cpp:417
 #, fuzzy, kde-format
 #| msgid "Access denied: cannot save feed list (%1)"
 msgid ""
@@ -1663,26 +1653,26 @@ msgid ""
 "permissions."
 msgstr "การเข้าถึงถูกปฎิเสธ: ไม่สามารถบันทึกรายการแหล่งป้อนได้ (%1)"
 
-#: src/akregator_part.cpp:428 src/akregator_part.cpp:481
+#: src/akregator_part.cpp:418 src/akregator_part.cpp:471
 #, fuzzy, kde-format
 #| msgid "Write Error"
 msgctxt "@title:window"
 msgid "Write Error"
 msgstr "เกิดข้อผิดพลาดในการเขียน"
 
-#: src/akregator_part.cpp:464
+#: src/akregator_part.cpp:454
 #, kde-format
 msgid "Could not import the file %1 (no valid OPML)"
 msgstr "ไม่สามารถนำเข้าแฟ้ม %1 ได้ (ไม่มี OPML ที่ถูกต้อง)"
 
-#: src/akregator_part.cpp:464 src/command/loadfeedlistcommand.cpp:71
+#: src/akregator_part.cpp:454 src/command/loadfeedlistcommand.cpp:71
 #, fuzzy, kde-format
 #| msgid "OPML Parsing Error"
 msgctxt "@title:window"
 msgid "OPML Parsing Error"
 msgstr "การวิเคราะห์รูปแบบ OPML เกิดข้อผิดพลาด"
 
-#: src/akregator_part.cpp:468
+#: src/akregator_part.cpp:458
 #, kde-format
 msgid ""
 "The file %1 could not be read, check if it exists or if it is readable for "
@@ -1690,26 +1680,26 @@ msgid ""
 msgstr ""
 "ไม่สามารถอ่านแฟ้ม %1 ได้ โปรดตรวจสอบว่ามีแฟ้มอยู่ หรือแฟ้มนั้นสามารถอ่านได้โดยผู้ใช้ปัจจุบันหรือไม่"
 
-#: src/akregator_part.cpp:469 src/command/loadfeedlistcommand.cpp:144
+#: src/akregator_part.cpp:459 src/command/loadfeedlistcommand.cpp:144
 #, fuzzy, kde-format
 #| msgid "Read Error"
 msgctxt "@title:window"
 msgid "Read Error"
 msgstr "เกิดข้อผิดพลาดในการอ่าน"
 
-#: src/akregator_part.cpp:480
+#: src/akregator_part.cpp:470
 #, fuzzy, kde-format
 #| msgid "Access denied: cannot write to file %1"
 msgid "Access denied: cannot write to file %1. Please check your permissions."
 msgstr "การเข้าถึงถูกปฏิเสธ: ไม่สามารถเขียนแฟ้ม %1 ได้"
 
-#: src/akregator_part.cpp:496 src/akregator_part.cpp:505
+#: src/akregator_part.cpp:486 src/akregator_part.cpp:495
 #, fuzzy, kde-format
 #| msgid "OPML Outlines (*.opml, *.xml)"
 msgid "OPML Outlines (%1);;All Files (*)"
 msgstr "รูปแบบ OPML (*.opml, *.xml)"
 
-#: src/akregator_part.cpp:629
+#: src/akregator_part.cpp:619
 #, kde-format
 msgid "Imported Folder"
 msgstr "โฟลเดอร์ที่นำเข้ามา"
@@ -2414,26 +2404,26 @@ msgstr "ไม่สามารถอ่านแหล่งป้อนได
 msgid "Could not read feed (invalid feed)"
 msgstr "ไม่สามารถอ่านแหล่งป้อนได้ (แหล่งป้อนไม่ถูกต้อง)"
 
-#: src/subscription/subscriptionlistmodel.cpp:246
+#: src/subscription/subscriptionlistmodel.cpp:251
 #, kde-format
 msgid "Could not fetch feed: %1"
 msgstr "ไม่สามารถอ่านแหล่งป้อนได้: %1"
 
-#: src/subscription/subscriptionlistmodel.cpp:295
+#: src/subscription/subscriptionlistmodel.cpp:300
 #, fuzzy, kde-format
 #| msgid "Feeds"
 msgctxt "Feedlist's column header"
 msgid "Feeds"
 msgstr "แหล่งป้อน"
 
-#: src/subscription/subscriptionlistmodel.cpp:297
+#: src/subscription/subscriptionlistmodel.cpp:302
 #, fuzzy, kde-format
 #| msgid "Unread"
 msgctxt "Feedlist's column header"
 msgid "Unread"
 msgstr "ยังไม่อ่าน"
 
-#: src/subscription/subscriptionlistmodel.cpp:299
+#: src/subscription/subscriptionlistmodel.cpp:304
 #, fuzzy, kde-format
 #| msgid "Total"
 msgctxt "Feedlist's column header"
@@ -2731,6 +2721,9 @@ msgstr "อ่&านแล้ว"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "บทความสำคัญ"
+
+#~ msgid "KDE Dot News"
+#~ msgstr "แหล่งข่าว KDE (KDE Dot News)"
 
 #~ msgid "Write Error"
 #~ msgstr "เกิดข้อผิดพลาดในการเขียน"

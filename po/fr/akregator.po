@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-11-23 00:40+0000\n"
+"POT-Creation-Date: 2024-12-24 00:40+0000\n"
 "PO-Revision-Date: 2024-11-19 08:24+0100\n"
 "Last-Translator: Xavier Besnard <xavier.besnard@kde.org>\n"
 "Language-Team: French <French <kde-francophone@kde.org>>\n"
@@ -965,7 +965,7 @@ msgid "Resets the quick filter when changing feeds."
 msgstr "Efface la recherche rapide au changement de flux."
 
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
-#: src/akregator_part.cpp:136
+#: src/akregator_part.cpp:126
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:142
 #: src/trayicon.cpp:40 src/trayicon.cpp:41 src/trayicon.cpp:53
 #, kde-format
@@ -1587,35 +1587,25 @@ msgstr "Flux"
 
 #: src/akregator_part.cpp:89
 #, kde-format
-msgid "KDE Dot News"
-msgstr "Nouvelles de « KDE Dot »"
-
-#: src/akregator_part.cpp:94
-#, kde-format
-msgid "Linux.com"
-msgstr "Linux.com"
-
-#: src/akregator_part.cpp:99
-#, kde-format
 msgid "Planet KDE"
 msgstr "Planète KDE"
 
-#: src/akregator_part.cpp:104
+#: src/akregator_part.cpp:94
 #, kde-format
 msgid "KDE Apps"
 msgstr "Applications de KDE"
 
-#: src/akregator_part.cpp:110
+#: src/akregator_part.cpp:100
 #, kde-format
 msgid "Spanish feeds"
 msgstr "Flux espagnols"
 
-#: src/akregator_part.cpp:114
+#: src/akregator_part.cpp:104
 #, kde-format
 msgid "Planet KDE España"
 msgstr "Planète KDE Espagne"
 
-#: src/akregator_part.cpp:427
+#: src/akregator_part.cpp:417
 #, kde-format
 msgid ""
 "Access denied: Cannot save feed list to <b>%1</b>. Please check your "
@@ -1624,24 +1614,24 @@ msgstr ""
 "Accès refusé : impossible d'enregistrer la liste de flux dans <b>%1</b>. "
 "Veuillez vérifier vos droits d'accès."
 
-#: src/akregator_part.cpp:428 src/akregator_part.cpp:481
+#: src/akregator_part.cpp:418 src/akregator_part.cpp:471
 #, kde-format
 msgctxt "@title:window"
 msgid "Write Error"
 msgstr "Erreur en écriture"
 
-#: src/akregator_part.cpp:464
+#: src/akregator_part.cpp:454
 #, kde-format
 msgid "Could not import the file %1 (no valid OPML)"
 msgstr "Impossible d'importer le fichier « %1 » (aucun « OPML » valable)"
 
-#: src/akregator_part.cpp:464 src/command/loadfeedlistcommand.cpp:71
+#: src/akregator_part.cpp:454 src/command/loadfeedlistcommand.cpp:71
 #, kde-format
 msgctxt "@title:window"
 msgid "OPML Parsing Error"
 msgstr "Erreur d'analyse « OPML »"
 
-#: src/akregator_part.cpp:468
+#: src/akregator_part.cpp:458
 #, kde-format
 msgid ""
 "The file %1 could not be read, check if it exists or if it is readable for "
@@ -1650,25 +1640,25 @@ msgstr ""
 "Impossible de lire le fichier « %1 ». Veuillez vérifier qu'il existe et que "
 "l'utilisateur actuel peut le lire."
 
-#: src/akregator_part.cpp:469 src/command/loadfeedlistcommand.cpp:144
+#: src/akregator_part.cpp:459 src/command/loadfeedlistcommand.cpp:144
 #, kde-format
 msgctxt "@title:window"
 msgid "Read Error"
 msgstr "Erreur en lecture"
 
-#: src/akregator_part.cpp:480
+#: src/akregator_part.cpp:470
 #, kde-format
 msgid "Access denied: cannot write to file %1. Please check your permissions."
 msgstr ""
 "Accès refusé : impossible d'écrire dans le fichier « %1 ». Veuillez vérifier "
 "vos droits d'accès."
 
-#: src/akregator_part.cpp:496 src/akregator_part.cpp:505
+#: src/akregator_part.cpp:486 src/akregator_part.cpp:495
 #, kde-format
 msgid "OPML Outlines (%1);;All Files (*)"
 msgstr "Structures « OPML » (%1);;Tous les fichiers (*)"
 
-#: src/akregator_part.cpp:629
+#: src/akregator_part.cpp:619
 #, kde-format
 msgid "Imported Folder"
 msgstr "Dossier importé"
@@ -2346,24 +2336,24 @@ msgstr "Impossible de lire un flux (format inconnu)"
 msgid "Could not read feed (invalid feed)"
 msgstr "Impossible de lire un flux (flux non valable)"
 
-#: src/subscription/subscriptionlistmodel.cpp:246
+#: src/subscription/subscriptionlistmodel.cpp:251
 #, kde-format
 msgid "Could not fetch feed: %1"
 msgstr "Impossible de télécharger un flux : %1"
 
-#: src/subscription/subscriptionlistmodel.cpp:295
+#: src/subscription/subscriptionlistmodel.cpp:300
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Feeds"
 msgstr "Flux"
 
-#: src/subscription/subscriptionlistmodel.cpp:297
+#: src/subscription/subscriptionlistmodel.cpp:302
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Unread"
 msgstr "Non lu"
 
-#: src/subscription/subscriptionlistmodel.cpp:299
+#: src/subscription/subscriptionlistmodel.cpp:304
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Total"
@@ -2635,6 +2625,12 @@ msgstr "Lu"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "Important"
+
+#~ msgid "KDE Dot News"
+#~ msgstr "Nouvelles de « KDE Dot »"
+
+#~ msgid "Linux.com"
+#~ msgstr "Linux.com"
 
 #~ msgid "Write Error"
 #~ msgstr "Problème d'écriture"

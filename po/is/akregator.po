@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-11-23 00:40+0000\n"
+"POT-Creation-Date: 2024-12-24 00:40+0000\n"
 "PO-Revision-Date: 2024-06-28 11:26+0000\n"
 "Last-Translator: Gummi <gudmundure@gmail.com>\n"
 "Language-Team: Icelandic <kde-i18n-doc@kde.org>\n"
@@ -941,7 +941,7 @@ msgid "Resets the quick filter when changing feeds."
 msgstr "Hreinsar flýtisíuna þegar skipt er á milli strauma."
 
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
-#: src/akregator_part.cpp:136
+#: src/akregator_part.cpp:126
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:142
 #: src/trayicon.cpp:40 src/trayicon.cpp:41 src/trayicon.cpp:53
 #, kde-format
@@ -1563,35 +1563,25 @@ msgstr "Straumar"
 
 #: src/akregator_part.cpp:89
 #, kde-format
-msgid "KDE Dot News"
-msgstr "KDE Dot News"
-
-#: src/akregator_part.cpp:94
-#, kde-format
-msgid "Linux.com"
-msgstr "Linux.com"
-
-#: src/akregator_part.cpp:99
-#, kde-format
 msgid "Planet KDE"
 msgstr "Planet KDE"
 
-#: src/akregator_part.cpp:104
+#: src/akregator_part.cpp:94
 #, kde-format
 msgid "KDE Apps"
 msgstr "KDE forrit"
 
-#: src/akregator_part.cpp:110
+#: src/akregator_part.cpp:100
 #, kde-format
 msgid "Spanish feeds"
 msgstr "Straumar á spænsku"
 
-#: src/akregator_part.cpp:114
+#: src/akregator_part.cpp:104
 #, kde-format
 msgid "Planet KDE España"
 msgstr "Planet KDE España"
 
-#: src/akregator_part.cpp:427
+#: src/akregator_part.cpp:417
 #, kde-format
 msgid ""
 "Access denied: Cannot save feed list to <b>%1</b>. Please check your "
@@ -1600,24 +1590,24 @@ msgstr ""
 "Aðgangi hafnað: Get ekki vistað lista í <b>%1</b>. Athugaðu hvort þú sért "
 "með aðgangsheimild."
 
-#: src/akregator_part.cpp:428 src/akregator_part.cpp:481
+#: src/akregator_part.cpp:418 src/akregator_part.cpp:471
 #, kde-format
 msgctxt "@title:window"
 msgid "Write Error"
 msgstr "Skrifvilla"
 
-#: src/akregator_part.cpp:464
+#: src/akregator_part.cpp:454
 #, kde-format
 msgid "Could not import the file %1 (no valid OPML)"
 msgstr "Gat ekki flutt inn skrána %1 (ekkert gilt OPML)"
 
-#: src/akregator_part.cpp:464 src/command/loadfeedlistcommand.cpp:71
+#: src/akregator_part.cpp:454 src/command/loadfeedlistcommand.cpp:71
 #, kde-format
 msgctxt "@title:window"
 msgid "OPML Parsing Error"
 msgstr "OPML-þáttunarvilla"
 
-#: src/akregator_part.cpp:468
+#: src/akregator_part.cpp:458
 #, kde-format
 msgid ""
 "The file %1 could not be read, check if it exists or if it is readable for "
@@ -1626,25 +1616,25 @@ msgstr ""
 "Ekki tókst að lesa skrána %1. Athugaðu hvort hún sé til og hvort núverandi "
 "notandi geti lesið hana."
 
-#: src/akregator_part.cpp:469 src/command/loadfeedlistcommand.cpp:144
+#: src/akregator_part.cpp:459 src/command/loadfeedlistcommand.cpp:144
 #, kde-format
 msgctxt "@title:window"
 msgid "Read Error"
 msgstr "Lesvilla"
 
-#: src/akregator_part.cpp:480
+#: src/akregator_part.cpp:470
 #, kde-format
 msgid "Access denied: cannot write to file %1. Please check your permissions."
 msgstr ""
 "Aðgangi hafnað: get ekki skrifað í skrána %1. Athugaðu hvort þú sért með "
 "aðgangsheimild."
 
-#: src/akregator_part.cpp:496 src/akregator_part.cpp:505
+#: src/akregator_part.cpp:486 src/akregator_part.cpp:495
 #, kde-format
 msgid "OPML Outlines (%1);;All Files (*)"
 msgstr "OPML efnisskipanir (%1);;Allar skrár (*)"
 
-#: src/akregator_part.cpp:629
+#: src/akregator_part.cpp:619
 #, kde-format
 msgid "Imported Folder"
 msgstr "Innflutt mappa"
@@ -2318,24 +2308,24 @@ msgstr "Gat ekki lesið straum (ógilt snið)"
 msgid "Could not read feed (invalid feed)"
 msgstr "Gat ekki lesið straum (ógildur straumur)"
 
-#: src/subscription/subscriptionlistmodel.cpp:246
+#: src/subscription/subscriptionlistmodel.cpp:251
 #, kde-format
 msgid "Could not fetch feed: %1"
 msgstr "Gat ekki sótt straum: %1"
 
-#: src/subscription/subscriptionlistmodel.cpp:295
+#: src/subscription/subscriptionlistmodel.cpp:300
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Feeds"
 msgstr "Straumar"
 
-#: src/subscription/subscriptionlistmodel.cpp:297
+#: src/subscription/subscriptionlistmodel.cpp:302
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Unread"
 msgstr "Ólesið"
 
-#: src/subscription/subscriptionlistmodel.cpp:299
+#: src/subscription/subscriptionlistmodel.cpp:304
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Total"
@@ -2610,6 +2600,12 @@ msgstr "Lesnar"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "Mikilvægar"
+
+#~ msgid "KDE Dot News"
+#~ msgstr "KDE Dot News"
+
+#~ msgid "Linux.com"
+#~ msgstr "Linux.com"
 
 #~ msgid "Write Error"
 #~ msgstr "Skrifvilla"

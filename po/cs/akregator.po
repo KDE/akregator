@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-11-23 00:40+0000\n"
+"POT-Creation-Date: 2024-12-24 00:40+0000\n"
 "PO-Revision-Date: 2024-08-20 08:39+0200\n"
 "Last-Translator: Vit Pelcak <vit@pelcak.org>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
@@ -937,7 +937,7 @@ msgid "Resets the quick filter when changing feeds."
 msgstr "Resetuje rychlý filtr při změně kanálu"
 
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
-#: src/akregator_part.cpp:136
+#: src/akregator_part.cpp:126
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:142
 #: src/trayicon.cpp:40 src/trayicon.cpp:41 src/trayicon.cpp:53
 #, kde-format
@@ -1559,35 +1559,25 @@ msgstr "Kanály"
 
 #: src/akregator_part.cpp:89
 #, kde-format
-msgid "KDE Dot News"
-msgstr "KDE Dot novinky"
-
-#: src/akregator_part.cpp:94
-#, kde-format
-msgid "Linux.com"
-msgstr "Linux.com"
-
-#: src/akregator_part.cpp:99
-#, kde-format
 msgid "Planet KDE"
 msgstr "Planeta KDE"
 
-#: src/akregator_part.cpp:104
+#: src/akregator_part.cpp:94
 #, kde-format
 msgid "KDE Apps"
 msgstr "KDE aplikace"
 
-#: src/akregator_part.cpp:110
+#: src/akregator_part.cpp:100
 #, kde-format
 msgid "Spanish feeds"
 msgstr "Španělské kanály"
 
-#: src/akregator_part.cpp:114
+#: src/akregator_part.cpp:104
 #, kde-format
 msgid "Planet KDE España"
 msgstr "Planeta KDE Španělsko"
 
-#: src/akregator_part.cpp:427
+#: src/akregator_part.cpp:417
 #, kde-format
 msgid ""
 "Access denied: Cannot save feed list to <b>%1</b>. Please check your "
@@ -1596,24 +1586,24 @@ msgstr ""
 "Přístup odmítnut: nelze uložit seznam kanálů <b>(%1)</b>. Prosím "
 "zkontrolujte svá oprávnění."
 
-#: src/akregator_part.cpp:428 src/akregator_part.cpp:481
+#: src/akregator_part.cpp:418 src/akregator_part.cpp:471
 #, kde-format
 msgctxt "@title:window"
 msgid "Write Error"
 msgstr "Chyba při zápisu"
 
-#: src/akregator_part.cpp:464
+#: src/akregator_part.cpp:454
 #, kde-format
 msgid "Could not import the file %1 (no valid OPML)"
 msgstr "Nelze importovat soubor %1 (neplatné OPML)"
 
-#: src/akregator_part.cpp:464 src/command/loadfeedlistcommand.cpp:71
+#: src/akregator_part.cpp:454 src/command/loadfeedlistcommand.cpp:71
 #, kde-format
 msgctxt "@title:window"
 msgid "OPML Parsing Error"
 msgstr "Chyba v analýze OPML"
 
-#: src/akregator_part.cpp:468
+#: src/akregator_part.cpp:458
 #, kde-format
 msgid ""
 "The file %1 could not be read, check if it exists or if it is readable for "
@@ -1622,25 +1612,25 @@ msgstr ""
 "Soubor %1 není možné číst. Zkontrolujte prosím, zda existuje a současný "
 "uživatel jej může číst."
 
-#: src/akregator_part.cpp:469 src/command/loadfeedlistcommand.cpp:144
+#: src/akregator_part.cpp:459 src/command/loadfeedlistcommand.cpp:144
 #, kde-format
 msgctxt "@title:window"
 msgid "Read Error"
 msgstr "Chyba při čtení"
 
-#: src/akregator_part.cpp:480
+#: src/akregator_part.cpp:470
 #, kde-format
 msgid "Access denied: cannot write to file %1. Please check your permissions."
 msgstr ""
 "Přístup odmítnut: nelze zapisovat do souboru %1. Prosím zkontrolujte "
 "oprávnění."
 
-#: src/akregator_part.cpp:496 src/akregator_part.cpp:505
+#: src/akregator_part.cpp:486 src/akregator_part.cpp:495
 #, kde-format
 msgid "OPML Outlines (%1);;All Files (*)"
 msgstr "Osnovy OPML (*%1);;Všechny soubory (*)"
 
-#: src/akregator_part.cpp:629
+#: src/akregator_part.cpp:619
 #, kde-format
 msgid "Imported Folder"
 msgstr "Importovaná složka"
@@ -2318,24 +2308,24 @@ msgstr "Nelze přečíst kanál (neznámý formát)"
 msgid "Could not read feed (invalid feed)"
 msgstr "Nelze přečíst kanál (neplatný kanál)"
 
-#: src/subscription/subscriptionlistmodel.cpp:246
+#: src/subscription/subscriptionlistmodel.cpp:251
 #, kde-format
 msgid "Could not fetch feed: %1"
 msgstr "Nelze stáhnout kanál: %1"
 
-#: src/subscription/subscriptionlistmodel.cpp:295
+#: src/subscription/subscriptionlistmodel.cpp:300
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Feeds"
 msgstr "Kanály"
 
-#: src/subscription/subscriptionlistmodel.cpp:297
+#: src/subscription/subscriptionlistmodel.cpp:302
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Unread"
 msgstr "Nepřečtené"
 
-#: src/subscription/subscriptionlistmodel.cpp:299
+#: src/subscription/subscriptionlistmodel.cpp:304
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Total"
@@ -2608,3 +2598,9 @@ msgstr "Přečteno"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "Důležité"
+
+#~ msgid "KDE Dot News"
+#~ msgstr "KDE Dot novinky"
+
+#~ msgid "Linux.com"
+#~ msgstr "Linux.com"

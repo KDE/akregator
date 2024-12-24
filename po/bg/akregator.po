@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-11-23 00:40+0000\n"
+"POT-Creation-Date: 2024-12-24 00:40+0000\n"
 "PO-Revision-Date: 2024-11-19 18:28+0100\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
@@ -933,7 +933,7 @@ msgid "Resets the quick filter when changing feeds."
 msgstr "Нулира бързия филтър при смяна на емисии."
 
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
-#: src/akregator_part.cpp:136
+#: src/akregator_part.cpp:126
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:142
 #: src/trayicon.cpp:40 src/trayicon.cpp:41 src/trayicon.cpp:53
 #, kde-format
@@ -1557,35 +1557,25 @@ msgstr "Емисии"
 
 #: src/akregator_part.cpp:89
 #, kde-format
-msgid "KDE Dot News"
-msgstr "Новини на KDE"
-
-#: src/akregator_part.cpp:94
-#, kde-format
-msgid "Linux.com"
-msgstr "Linux.com"
-
-#: src/akregator_part.cpp:99
-#, kde-format
 msgid "Planet KDE"
 msgstr "Planet KDE"
 
-#: src/akregator_part.cpp:104
+#: src/akregator_part.cpp:94
 #, kde-format
 msgid "KDE Apps"
 msgstr "KDE Apps"
 
-#: src/akregator_part.cpp:110
+#: src/akregator_part.cpp:100
 #, kde-format
 msgid "Spanish feeds"
 msgstr "Испански емисии"
 
-#: src/akregator_part.cpp:114
+#: src/akregator_part.cpp:104
 #, kde-format
 msgid "Planet KDE España"
 msgstr "Planet KDE España"
 
-#: src/akregator_part.cpp:427
+#: src/akregator_part.cpp:417
 #, kde-format
 msgid ""
 "Access denied: Cannot save feed list to <b>%1</b>. Please check your "
@@ -1594,24 +1584,24 @@ msgstr ""
 "Достъпът е отказан: Не може да се запази списък с емисии в <b> %1 </b>. "
 "Моля, проверете вашите разрешения."
 
-#: src/akregator_part.cpp:428 src/akregator_part.cpp:481
+#: src/akregator_part.cpp:418 src/akregator_part.cpp:471
 #, kde-format
 msgctxt "@title:window"
 msgid "Write Error"
 msgstr "Грешка при запис"
 
-#: src/akregator_part.cpp:464
+#: src/akregator_part.cpp:454
 #, kde-format
 msgid "Could not import the file %1 (no valid OPML)"
 msgstr "Грешка при импортиране на файла %1 (невалиден OPML)"
 
-#: src/akregator_part.cpp:464 src/command/loadfeedlistcommand.cpp:71
+#: src/akregator_part.cpp:454 src/command/loadfeedlistcommand.cpp:71
 #, kde-format
 msgctxt "@title:window"
 msgid "OPML Parsing Error"
 msgstr "Грешка при анализ на OPML"
 
-#: src/akregator_part.cpp:468
+#: src/akregator_part.cpp:458
 #, kde-format
 msgid ""
 "The file %1 could not be read, check if it exists or if it is readable for "
@@ -1620,25 +1610,25 @@ msgstr ""
 "Грешка при четене от файла %1. Моля, проверете дали файлът съществува и дали "
 "имате права за четене от файла."
 
-#: src/akregator_part.cpp:469 src/command/loadfeedlistcommand.cpp:144
+#: src/akregator_part.cpp:459 src/command/loadfeedlistcommand.cpp:144
 #, kde-format
 msgctxt "@title:window"
 msgid "Read Error"
 msgstr "Грешка при четене"
 
-#: src/akregator_part.cpp:480
+#: src/akregator_part.cpp:470
 #, kde-format
 msgid "Access denied: cannot write to file %1. Please check your permissions."
 msgstr ""
 "Достъпът е отказан: не може да пише във файл %1. Моля, проверете вашите "
 "разрешения."
 
-#: src/akregator_part.cpp:496 src/akregator_part.cpp:505
+#: src/akregator_part.cpp:486 src/akregator_part.cpp:495
 #, kde-format
 msgid "OPML Outlines (%1);;All Files (*)"
 msgstr "OPML очертания (%1) ;; Всички файлове (*)"
 
-#: src/akregator_part.cpp:629
+#: src/akregator_part.cpp:619
 #, kde-format
 msgid "Imported Folder"
 msgstr "Импортирана папка"
@@ -2317,24 +2307,24 @@ msgstr "Емисията не може да бъде прочетена (неи�
 msgid "Could not read feed (invalid feed)"
 msgstr "Емисията не може да бъде прочетена (невалидна емисия)"
 
-#: src/subscription/subscriptionlistmodel.cpp:246
+#: src/subscription/subscriptionlistmodel.cpp:251
 #, kde-format
 msgid "Could not fetch feed: %1"
 msgstr "Невъзможно изтегляне от емисия: %1"
 
-#: src/subscription/subscriptionlistmodel.cpp:295
+#: src/subscription/subscriptionlistmodel.cpp:300
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Feeds"
 msgstr "Емисии"
 
-#: src/subscription/subscriptionlistmodel.cpp:297
+#: src/subscription/subscriptionlistmodel.cpp:302
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Unread"
 msgstr "Непрочетено"
 
-#: src/subscription/subscriptionlistmodel.cpp:299
+#: src/subscription/subscriptionlistmodel.cpp:304
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Total"
@@ -2606,3 +2596,9 @@ msgstr "Четене"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "Важно"
+
+#~ msgid "KDE Dot News"
+#~ msgstr "Новини на KDE"
+
+#~ msgid "Linux.com"
+#~ msgstr "Linux.com"
