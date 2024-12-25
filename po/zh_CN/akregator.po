@@ -2531,9 +2531,3 @@ msgstr "已读"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "重要"
-
-#~ msgid "KDE Dot News"
-#~ msgstr "KDE Dot 新闻"
-
-#~ msgid "Linux.com"
-#~ msgstr "Linux.com"
