@@ -32,8 +32,8 @@ SearchBar::SearchBar(QWidget *parent)
     : QWidget(parent)
     , m_searchLine(new StatusSearchLine(this))
     , m_statusSearchButtons(new StatusSearchButtons(this))
+    , m_delay(400)
 {
-    m_delay = 400;
     auto layout = new QHBoxLayout(this);
 
     layout->setContentsMargins({});
@@ -81,16 +81,6 @@ QString SearchBar::text() const
 StatusSearchButtons::Status SearchBar::status() const
 {
     return m_statusSearchButtons->status();
-}
-
-void SearchBar::setDelay(int ms)
-{
-    m_delay = ms;
-}
-
-int SearchBar::delay() const
-{
-    return m_delay;
 }
 
 void SearchBar::setFocusSearchLine()
