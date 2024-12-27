@@ -44,7 +44,7 @@ public:
 ImportFeedListCommandPrivate::ImportFeedListCommandPrivate(ImportFeedListCommand *qq)
     : q(qq)
     , targetList()
-    , rootFolderOption(ImportFeedListCommand::Ask)
+    , rootFolderOption(ImportFeedListCommand::RootFolderOption::Ask)
     , importedRootFolderName(i18n("Imported Feeds"))
 {
 }
@@ -72,7 +72,7 @@ void ImportFeedListCommandPrivate::doImport()
 
     bool ok = false;
 
-    if (rootFolderOption == ImportFeedListCommand::Ask) {
+    if (rootFolderOption == ImportFeedListCommand::RootFolderOption::Ask) {
         importedRootFolderName = QInputDialog::getText(q->parentWidget(),
                                                        i18n("Add Imported Folder"),
                                                        i18n("Imported folder name:"),
@@ -90,7 +90,7 @@ void ImportFeedListCommandPrivate::doImport()
 
     Folder *folder = target->allFeedsFolder();
 
-    if (rootFolderOption != ImportFeedListCommand::None) {
+    if (rootFolderOption != ImportFeedListCommand::RootFolderOption::None) {
         folder = new Folder(importedRootFolderName);
         target->allFeedsFolder()->appendChild(folder);
     }

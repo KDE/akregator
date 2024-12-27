@@ -30,7 +30,7 @@ public:
 
     void setTargetList(const QWeakPointer<FeedList> &feedList);
 
-    enum RootFolderOption {
+    enum class RootFolderOption : uint8_t {
         None,
         Auto,
         Ask,
