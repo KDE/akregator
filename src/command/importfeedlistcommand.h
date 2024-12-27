@@ -44,8 +44,6 @@ public:
 private:
     void doStart() override;
     void doAbort() override;
-
-private:
     friend class ImportFeedListCommandPrivate;
     std::unique_ptr<ImportFeedListCommandPrivate> const d;
 };

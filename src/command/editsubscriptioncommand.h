@@ -37,8 +37,6 @@ public:
 private:
     void doStart() override;
     void doAbort() override;
-
-private:
     friend class EditSubscriptionCommandPrivate;
     std::unique_ptr<EditSubscriptionCommandPrivate> const d;
 };

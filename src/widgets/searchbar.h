@@ -33,22 +33,17 @@ public:
     [[nodiscard]] QString text() const;
     [[nodiscard]] StatusSearchButtons::Status status() const;
 
-    void setDelay(int ms);
-    [[nodiscard]] int delay() const;
-
     void setFocusSearchLine();
     [[nodiscard]] std::vector<QSharedPointer<const Filters::AbstractMatcher>> matchers() const;
     void updateQuickSearchLineText(const QString &searchLine);
+    void slotClearSearch();
+    void slotSetStatus(int status);
+    void slotSetText(const QString &text);
 
 Q_SIGNALS:
     /** emitted when the text and status filters were updated. Params are textfilter, statusfilter */
     void signalSearch(const std::vector<QSharedPointer<const Akregator::Filters::AbstractMatcher>> &);
     void forceLostFocus();
-
-public Q_SLOTS:
-    void slotClearSearch();
-    void slotSetStatus(int status);
-    void slotSetText(const QString &text);
 
 private:
     void slotSearchStringChanged(const QString &search);
@@ -61,7 +56,7 @@ private:
     QTimer m_timer;
     StatusSearchLine *const m_searchLine;
     StatusSearchButtons *const m_statusSearchButtons;
-    int m_delay;
+    const int m_delay;
     std::vector<QSharedPointer<const Filters::AbstractMatcher>> m_matchers;
 };
 } // namespace Akregator

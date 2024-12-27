@@ -36,8 +36,6 @@ public:
 private:
     void doStart() override;
     void doAbort() override;
-
-private:
     friend class CreateFeedCommandPrivate;
     std::unique_ptr<CreateFeedCommandPrivate> const d;
 };

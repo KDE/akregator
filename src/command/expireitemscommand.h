@@ -37,8 +37,6 @@ public:
 private:
     void doStart() override;
     void doAbort() override;
-
-private:
     friend class ExpireItemsCommandPrivate;
     std::unique_ptr<ExpireItemsCommandPrivate> const d;
 };

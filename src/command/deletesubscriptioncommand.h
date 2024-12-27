@@ -35,7 +35,6 @@ private:
     void doStart() override;
     void doAbort() override;
 
-private:
     friend class DeleteSubscriptionCommandPrivate;
     std::unique_ptr<DeleteSubscriptionCommandPrivate> const d;
 };
