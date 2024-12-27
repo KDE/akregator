@@ -8,8 +8,6 @@
 #pragma once
 
 #include <KCModule>
-#include <QVariant>
-
 class QButtonGroup;
 
 class KCMAkregatorArchiveConfig : public KCModule

@@ -6,7 +6,6 @@
 
 #pragma once
 #include <KCModule>
-#include <QVariant>
 
 namespace Akregator
 {

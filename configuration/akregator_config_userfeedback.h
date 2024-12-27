@@ -7,7 +7,6 @@
 #pragma once
 #include <KCModule>
 
-#include <QVariant>
 namespace KUserFeedback
 {
 class FeedbackConfigWidget;
