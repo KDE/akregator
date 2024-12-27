@@ -6,6 +6,7 @@
 */
 
 #include "akregator_config_archive.h"
+#include "akregatorconfig.h"
 #include "ui_settings_archive.h"
 #include <KAboutData>
 #include <KLocalization>
@@ -21,6 +22,7 @@ K_PLUGIN_CLASS_WITH_JSON(KCMAkregatorArchiveConfig, "akregator_config_archive.js
 KCMAkregatorArchiveConfig::KCMAkregatorArchiveConfig(QObject *parent, const KPluginMetaData &data)
     : KCModule(parent, data)
     , m_widget(new QWidget(widget()))
+    , m_archiveModeGroup(new QButtonGroup(this))
 {
     Ui::SettingsArchive m_ui;
     m_ui.setupUi(m_widget);
@@ -32,7 +34,6 @@ KCMAkregatorArchiveConfig::KCMAkregatorArchiveConfig(QObject *parent, const KPlu
 
     KLocalization::setupSpinBoxFormatString(m_ui.kcfg_MaxArticleNumber, ki18ncp("Limit feed archive size to:", "%v article", "%v articles"));
     KLocalization::setupSpinBoxFormatString(m_ui.kcfg_MaxArticleAge, ki18ncp("Delete articles older than:", "%v day", "%v days"));
-    m_archiveModeGroup = new QButtonGroup(this);
     m_archiveModeGroup->addButton(m_ui.rb_KeepAllArticles, Settings::EnumArchiveMode::keepAllArticles);
     m_archiveModeGroup->addButton(m_ui.rb_LimitArticleNumber, Settings::EnumArchiveMode::limitArticleNumber);
     m_archiveModeGroup->addButton(m_ui.rb_LimitArticleAge, Settings::EnumArchiveMode::limitArticleAge);

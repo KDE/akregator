@@ -10,8 +10,6 @@
 #include <KCModule>
 #include <QVariant>
 
-#include "akregatorconfig.h"
-
 class QButtonGroup;
 
 class KCMAkregatorArchiveConfig : public KCModule
@@ -29,5 +27,5 @@ public:
 
 private:
     QWidget *const m_widget;
-    QButtonGroup *m_archiveModeGroup = nullptr;
+    QButtonGroup *const m_archiveModeGroup;
 };
