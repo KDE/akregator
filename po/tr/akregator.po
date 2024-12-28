@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdepim-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-12-24 00:40+0000\n"
+"POT-Creation-Date: 2024-12-28 00:42+0000\n"
 "PO-Revision-Date: 2024-11-19 20:26+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
@@ -116,7 +116,7 @@ msgstr ""
 "<b>Not:</b> Güvenlik nedenlerinden dolayı, dış başvuru engellendi "
 "(Yapılandırma penceresine bakın)."
 
-#: configuration/akregator_config_archive.cpp:33
+#: configuration/akregator_config_archive.cpp:35
 #, kde-format
 msgctxt "Limit feed archive size to:"
 msgid "%v article"
@@ -124,7 +124,7 @@ msgid_plural "%v articles"
 msgstr[0] "%v yazı"
 msgstr[1] "%v yazı"
 
-#: configuration/akregator_config_archive.cpp:34
+#: configuration/akregator_config_archive.cpp:36
 #, kde-format
 msgctxt "Delete articles older than:"
 msgid "%v day"
@@ -2572,7 +2572,7 @@ msgctxt "@info:placeholder"
 msgid "Search articles…"
 msgstr "Yazılarda ara…"
 
-#: src/widgets/searchbar.cpp:137
+#: src/widgets/searchbar.cpp:127
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "Search articles…<%1>"

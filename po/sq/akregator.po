@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdepim\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-12-24 00:40+0000\n"
+"POT-Creation-Date: 2024-12-28 00:42+0000\n"
 "PO-Revision-Date: 2009-09-04 19:26+0000\n"
 "Last-Translator: Vilson Gjeci <vilsongjeci@gmail.com>\n"
 "Language-Team: Albanian <sq@li.org>\n"
@@ -106,7 +106,7 @@ msgid ""
 "configure dialog)."
 msgstr ""
 
-#: configuration/akregator_config_archive.cpp:33
+#: configuration/akregator_config_archive.cpp:35
 #, fuzzy, kde-format
 #| msgid "New articles:"
 msgctxt "Limit feed archive size to:"
@@ -115,7 +115,7 @@ msgid_plural "%v articles"
 msgstr[0] "Artikujt e rinj:"
 msgstr[1] "Artikujt e rinj:"
 
-#: configuration/akregator_config_archive.cpp:34
+#: configuration/akregator_config_archive.cpp:36
 #, kde-format
 msgctxt "Delete articles older than:"
 msgid "%v day"
@@ -2652,7 +2652,7 @@ msgctxt "@info:placeholder"
 msgid "Search articles…"
 msgstr "Artikujt e palexuar:"
 
-#: src/widgets/searchbar.cpp:137
+#: src/widgets/searchbar.cpp:127
 #, fuzzy, kde-format
 #| msgid "Unread articles:"
 msgctxt "@info:placeholder"

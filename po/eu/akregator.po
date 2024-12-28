@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-12-24 00:40+0000\n"
+"POT-Creation-Date: 2024-12-28 00:42+0000\n"
 "PO-Revision-Date: 2024-11-18 23:24+0100\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
@@ -106,7 +106,7 @@ msgstr ""
 "<b>Oharra:</b> Segurtasun arrazoiengatik, kanpoko erreferentzia blokeatu "
 "egiten da (begiratu konfiguratzeko elkarrizketa-koadroa)."
 
-#: configuration/akregator_config_archive.cpp:33
+#: configuration/akregator_config_archive.cpp:35
 #, kde-format
 msgctxt "Limit feed archive size to:"
 msgid "%v article"
@@ -114,7 +114,7 @@ msgid_plural "%v articles"
 msgstr[0] "artikulu %v"
 msgstr[1] "%v artikulu"
 
-#: configuration/akregator_config_archive.cpp:34
+#: configuration/akregator_config_archive.cpp:36
 #, kde-format
 msgctxt "Delete articles older than:"
 msgid "%v day"
@@ -2567,7 +2567,7 @@ msgctxt "@info:placeholder"
 msgid "Search articles…"
 msgstr "Bilatu artikuluak..."
 
-#: src/widgets/searchbar.cpp:137
+#: src/widgets/searchbar.cpp:127
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "Search articles…<%1>"

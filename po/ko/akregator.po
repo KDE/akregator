@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdepim\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-12-24 00:40+0000\n"
+"POT-Creation-Date: 2024-12-28 00:42+0000\n"
 "PO-Revision-Date: 2024-12-09 22:34+0100\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -97,14 +97,14 @@ msgid ""
 msgstr ""
 "<b>메모:</b> 보안상의 이유로 외부 참조를 차단했습니다(설정 대화 상자 참조)."
 
-#: configuration/akregator_config_archive.cpp:33
+#: configuration/akregator_config_archive.cpp:35
 #, kde-format
 msgctxt "Limit feed archive size to:"
 msgid "%v article"
 msgid_plural "%v articles"
 msgstr[0] "글 %v개"
 
-#: configuration/akregator_config_archive.cpp:34
+#: configuration/akregator_config_archive.cpp:36
 #, kde-format
 msgctxt "Delete articles older than:"
 msgid "%v day"
@@ -2512,7 +2512,7 @@ msgctxt "@info:placeholder"
 msgid "Search articles…"
 msgstr "글 찾기…"
 
-#: src/widgets/searchbar.cpp:137
+#: src/widgets/searchbar.cpp:127
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "Search articles…<%1>"

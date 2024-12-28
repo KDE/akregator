@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-12-24 00:40+0000\n"
+"POT-Creation-Date: 2024-12-28 00:42+0000\n"
 "PO-Revision-Date: 2024-11-19 10:40+0100\n"
 "Last-Translator: giovanni <g.sora@tiscali.it>\n"
 "Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
@@ -100,7 +100,7 @@ msgstr ""
 "<b>Nota:</b> Per rationes de securitate, referentia externe es blocate "
 "(Vider dialogo de configurar)."
 
-#: configuration/akregator_config_archive.cpp:33
+#: configuration/akregator_config_archive.cpp:35
 #, kde-format
 msgctxt "Limit feed archive size to:"
 msgid "%v article"
@@ -108,7 +108,7 @@ msgid_plural "%v articles"
 msgstr[0] "%v  articulo"
 msgstr[1] "%v  articulos"
 
-#: configuration/akregator_config_archive.cpp:34
+#: configuration/akregator_config_archive.cpp:36
 #, kde-format
 msgctxt "Delete articles older than:"
 msgid "%v day"
@@ -2565,7 +2565,7 @@ msgctxt "@info:placeholder"
 msgid "Search articles…"
 msgstr "Cerca articulos..."
 
-#: src/widgets/searchbar.cpp:137
+#: src/widgets/searchbar.cpp:127
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "Search articles…<%1>"

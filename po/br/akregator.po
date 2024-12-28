@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: all2.po\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-12-24 00:40+0000\n"
+"POT-Creation-Date: 2024-12-28 00:42+0000\n"
 "PO-Revision-Date: 2004-09-20 15:44+0200\n"
 "Last-Translator: Thierry Vignaud <tvignaud@mandriva.com>\n"
 "Language-Team: br <LL@li.org>\n"
@@ -96,7 +96,7 @@ msgid ""
 "configure dialog)."
 msgstr ""
 
-#: configuration/akregator_config_archive.cpp:33
+#: configuration/akregator_config_archive.cpp:35
 #, fuzzy, kde-format
 #| msgid "1 article"
 msgctxt "Limit feed archive size to:"
@@ -105,7 +105,7 @@ msgid_plural "%v articles"
 msgstr[0] "1 pennad"
 msgstr[1] ""
 
-#: configuration/akregator_config_archive.cpp:34
+#: configuration/akregator_config_archive.cpp:36
 #, fuzzy, kde-format
 #| msgid "1 day"
 msgctxt "Delete articles older than:"
@@ -2590,7 +2590,7 @@ msgctxt "@info:placeholder"
 msgid "Search articles…"
 msgstr " pennadoù"
 
-#: src/widgets/searchbar.cpp:137
+#: src/widgets/searchbar.cpp:127
 #, fuzzy, kde-format
 #| msgid " articles"
 msgctxt "@info:placeholder"

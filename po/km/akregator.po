@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-12-24 00:40+0000\n"
+"POT-Creation-Date: 2024-12-28 00:42+0000\n"
 "PO-Revision-Date: 2012-12-25 13:50+0700\n"
 "Last-Translator: sutha <sutha@khmeros.info>\n"
 "Language-Team: Khmer <support@khmeros>\n"
@@ -105,7 +105,7 @@ msgid ""
 "configure dialog)."
 msgstr ""
 
-#: configuration/akregator_config_archive.cpp:33
+#: configuration/akregator_config_archive.cpp:35
 #, fuzzy, kde-format
 #| msgctxt "Limit feed archive size to:"
 #| msgid " article"
@@ -115,7 +115,7 @@ msgid "%v article"
 msgid_plural "%v articles"
 msgstr[0] " អត្ថបទ"
 
-#: configuration/akregator_config_archive.cpp:34
+#: configuration/akregator_config_archive.cpp:36
 #, fuzzy, kde-format
 #| msgctxt "Delete articles older than:"
 #| msgid " day"
@@ -2641,7 +2641,7 @@ msgctxt "@info:placeholder"
 msgid "Search articles…"
 msgstr "អត្ថបទ​មិនទាន់​អាន ៖"
 
-#: src/widgets/searchbar.cpp:137
+#: src/widgets/searchbar.cpp:127
 #, fuzzy, kde-format
 #| msgid "Unread articles:"
 msgctxt "@info:placeholder"
