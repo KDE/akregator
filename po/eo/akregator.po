@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-11-01 00:40+0000\n"
-"PO-Revision-Date: 2024-08-19 21:47+0200\n"
+"PO-Revision-Date: 2024-12-28 17:41+0100\n"
 "Last-Translator: Oliver Kellogg <olivermkellogg@gmail.com>\n"
 "Language-Team: Esperanto <kde-i18n-eo@kde.org>\n"
 "Language: eo\n"
@@ -90,7 +90,7 @@ msgstr "Sendi ligilan adreson"
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:96
 #, kde-format
 msgid "Delete Article"
-msgstr "Forviŝi artikolon"
+msgstr "Forigi Artikolon"
 
 #: src/formatter/html/normalview.html:19
 msgid ""
@@ -1345,7 +1345,7 @@ msgstr "Meti Fokuson al Rapida Serĉo"
 #: src/actions/actionmanagerimpl.cpp:439
 #, kde-format
 msgid "What's new"
-msgstr ""
+msgstr "Kio estas nova"
 
 #: src/actions/actionmanagerimpl.cpp:469
 #, kde-format
@@ -1950,7 +1950,7 @@ msgstr "&Agordoj"
 #: src/data/akregator_part.rc:90
 #, kde-format
 msgid "&Help"
-msgstr ""
+msgstr "&Helpo"
 
 #. i18n: ectx: ToolBar (mainToolBar)
 #: src/data/akregator_part.rc:96 src/data/akregator_shell.rc:54
