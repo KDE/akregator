@@ -2560,6 +2560,3 @@ msgstr ""
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "Dehálaš"
-
-#~ msgid "KDE Dot News"
-#~ msgstr "KDE Dot ođđasat"
