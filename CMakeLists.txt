@@ -105,7 +105,7 @@ if(OPTION_DISABLE_HARDENED_OPTIMIZATION)
    string(REPLACE "-fhardened" "" CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
 endif()
 ecm_set_disabled_deprecation_versions(QT 6.8.1
-     KF 6.9.0
+     KF 6.10.0
 )
 if(TARGET KF6::UserFeedbackWidgets)
     set(AKREGATOR_WITH_KUSERFEEDBACK true)
