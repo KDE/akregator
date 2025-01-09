@@ -104,7 +104,7 @@ public:
     }
 
 private:
-    FeedList *m_list = nullptr;
+    FeedList *const m_list;
     bool m_preserveID = false;
 };
 
