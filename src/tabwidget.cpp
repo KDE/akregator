@@ -393,7 +393,7 @@ void TabWidget::slotDetachTab(int index)
     if (frame && frame->url().isValid() && frame->isRemovable()) {
         OpenUrlRequest request;
         request.setUrl(frame->url());
-        request.setOptions(OpenUrlRequest::ExternalBrowser);
+        request.setOptions(OpenUrlRequest::Options::ExternalBrowser);
         Q_EMIT signalOpenUrlRequest(request);
         slotCloseRequest(index);
     }

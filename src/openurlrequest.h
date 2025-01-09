@@ -21,7 +21,7 @@ public:
      * Akregator-specific options specifying how a link should be handled.
      * TODO: check what can be done by overriding KURLArgs flags.
      */
-    enum Options {
+    enum class Options : uint8_t {
         None = 0, /**< no explicit options, use default */
         NewTab, /**< open in new tab */
         ExternalBrowser /**< open in external browser */

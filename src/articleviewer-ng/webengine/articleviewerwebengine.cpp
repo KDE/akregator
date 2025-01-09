@@ -460,11 +460,11 @@ void ArticleViewerWebEngine::openSafeUrl(const QUrl &url)
     if (mLastButtonClicked == LeftButton) {
         switch (Settings::lMBBehaviour()) {
         case Settings::EnumLMBBehaviour::OpenInExternalBrowser:
-            req.setOptions(OpenUrlRequest::ExternalBrowser);
+            req.setOptions(OpenUrlRequest::Options::ExternalBrowser);
             break;
         case Settings::EnumLMBBehaviour::OpenInBackground:
             req.setOpenInBackground(true);
-            req.setOptions(OpenUrlRequest::NewTab);
+            req.setOptions(OpenUrlRequest::Options::NewTab);
             break;
         default:
             break;
@@ -472,11 +472,11 @@ void ArticleViewerWebEngine::openSafeUrl(const QUrl &url)
     } else if (mLastButtonClicked == MiddleButton) {
         switch (Settings::mMBBehaviour()) {
         case Settings::EnumMMBBehaviour::OpenInExternalBrowser:
-            req.setOptions(OpenUrlRequest::ExternalBrowser);
+            req.setOptions(OpenUrlRequest::Options::ExternalBrowser);
             break;
         case Settings::EnumMMBBehaviour::OpenInBackground:
             req.setOpenInBackground(true);
-            req.setOptions(OpenUrlRequest::NewTab);
+            req.setOptions(OpenUrlRequest::Options::NewTab);
             break;
         default:
             break;
@@ -488,14 +488,14 @@ void ArticleViewerWebEngine::openSafeUrl(const QUrl &url)
 void ArticleViewerWebEngine::slotOpenLinkInForegroundTab()
 {
     OpenUrlRequest req(mCurrentUrl);
-    req.setOptions(OpenUrlRequest::NewTab);
+    req.setOptions(OpenUrlRequest::Options::NewTab);
     Q_EMIT signalOpenUrlRequest(req);
 }
 
 void ArticleViewerWebEngine::slotOpenLinkInBackgroundTab()
 {
     OpenUrlRequest req(mCurrentUrl);
-    req.setOptions(OpenUrlRequest::NewTab);
+    req.setOptions(OpenUrlRequest::Options::NewTab);
     req.setOpenInBackground(true);
     Q_EMIT signalOpenUrlRequest(req);
 }
@@ -503,7 +503,7 @@ void ArticleViewerWebEngine::slotOpenLinkInBackgroundTab()
 void ArticleViewerWebEngine::slotOpenLinkInBrowser()
 {
     OpenUrlRequest req(mCurrentUrl);
-    req.setOptions(OpenUrlRequest::ExternalBrowser);
+    req.setOptions(OpenUrlRequest::Options::ExternalBrowser);
     Q_EMIT signalOpenUrlRequest(req);
 }
 

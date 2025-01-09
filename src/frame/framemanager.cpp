@@ -180,7 +180,7 @@ void FrameManager::slotSetStatusText(Frame *frame, const QString &statusText)
 
 void FrameManager::openUrl(OpenUrlRequest &request)
 {
-    if (request.options() == OpenUrlRequest::NewTab || (m_currentFrame->id() == 0)) {
+    if (request.options() == OpenUrlRequest::Options::NewTab || (m_currentFrame->id() == 0)) {
         int newFrameId = -1;
         Q_EMIT signalRequestNewFrame(newFrameId);
         request.setFrameId(newFrameId);
@@ -224,14 +224,14 @@ void FrameManager::slotOpenUrlRequest(OpenUrlRequest &request, bool useOpenInBac
 {
     qCDebug(AKREGATOR_LOG) << "FrameManager::slotOpenUrlRequest():" << request.debugInfo();
 
-    if (request.options() == OpenUrlRequest::ExternalBrowser) {
+    if (request.options() == OpenUrlRequest::Options::ExternalBrowser) {
         openInExternalBrowser(request);
         return;
     }
 
     if (useOpenInBackgroundSetting) {
         // Honour user's preference for foreground/background tabs
-        if (request.options() == OpenUrlRequest::NewTab) {
+        if (request.options() == OpenUrlRequest::Options::NewTab) {
             request.setOpenInBackground(Settings::lMBBehaviour() == Settings::EnumLMBBehaviour::OpenInBackground);
         }
     }

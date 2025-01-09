@@ -966,14 +966,14 @@ void MainWidget::slotMouseButtonPressed(int button, const QUrl &url)
 
     switch (Settings::mMBBehaviour()) {
     case Settings::EnumMMBBehaviour::OpenInExternalBrowser:
-        req.setOptions(OpenUrlRequest::ExternalBrowser);
+        req.setOptions(OpenUrlRequest::Options::ExternalBrowser);
         break;
     case Settings::EnumMMBBehaviour::OpenInBackground:
-        req.setOptions(OpenUrlRequest::NewTab);
+        req.setOptions(OpenUrlRequest::Options::NewTab);
         req.setOpenInBackground(true);
         break;
     default:
-        req.setOptions(OpenUrlRequest::NewTab);
+        req.setOptions(OpenUrlRequest::Options::NewTab);
         req.setOpenInBackground(false);
     }
 
@@ -992,7 +992,7 @@ void MainWidget::slotOpenHomepage()
 
     if (url.isValid()) {
         OpenUrlRequest req(url);
-        req.setOptions(OpenUrlRequest::ExternalBrowser);
+        req.setOptions(OpenUrlRequest::Options::ExternalBrowser);
         Kernel::self()->frameManager()->slotOpenUrlRequest(req);
     }
 }
@@ -1010,7 +1010,7 @@ void MainWidget::slotOpenArticleInBrowser(const Akregator::Article &article)
 {
     if (!article.isNull() && article.link().isValid()) {
         OpenUrlRequest req(article.link());
-        req.setOptions(OpenUrlRequest::ExternalBrowser);
+        req.setOptions(OpenUrlRequest::Options::ExternalBrowser);
         Kernel::self()->frameManager()->slotOpenUrlRequest(req);
     }
 }
@@ -1026,7 +1026,7 @@ void MainWidget::openSelectedArticles(bool openInBackground)
         }
 
         OpenUrlRequest req(url);
-        req.setOptions(OpenUrlRequest::NewTab);
+        req.setOptions(OpenUrlRequest::Options::NewTab);
         if (openInBackground) {
             req.setOpenInBackground(true);
             Kernel::self()->frameManager()->slotOpenUrlRequest(req, false /*don't use settings for open in background*/);
@@ -1368,7 +1368,7 @@ void MainWidget::slotArticleAction(Akregator::ArticleViewerWebEngine::ArticleAct
         const QUrl url = article.link();
         if (url.isValid()) {
             OpenUrlRequest req(url);
-            req.setOptions(OpenUrlRequest::NewTab);
+            req.setOptions(OpenUrlRequest::Options::NewTab);
             req.setOpenInBackground(true);
             Kernel::self()->frameManager()->slotOpenUrlRequest(req, false /*don't use settings for open in background*/);
         }

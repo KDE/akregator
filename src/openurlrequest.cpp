@@ -12,7 +12,7 @@ using namespace Akregator;
 
 OpenUrlRequest::OpenUrlRequest(const QUrl &url)
     : m_url(url)
-    , m_options(None)
+    , m_options(OpenUrlRequest::Options::None)
 {
 }
 
@@ -58,10 +58,7 @@ void OpenUrlRequest::setOptions(OpenUrlRequest::Options options)
 
 QString OpenUrlRequest::debugInfo() const
 {
-    return QStringLiteral("url=%1 options=%2")
-        .arg(m_url.url())
-
-        .arg(m_options);
+    return QStringLiteral("url=%1 options=%2").arg(m_url.url()).arg(QString::number(static_cast<int>(m_options)));
 }
 
 bool OpenUrlRequest::wasHandled() const

@@ -53,7 +53,7 @@ private:
 class AKREGATORPART_EXPORT ArticleMatcher : public AbstractMatcher
 {
 public:
-    enum Association {
+    enum Association : uint8_t {
         None,
         LogicalAnd,
         LogicalOr,
