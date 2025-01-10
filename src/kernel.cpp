@@ -7,7 +7,6 @@
 */
 
 #include "kernel.h"
-#include "config-akregator.h"
 
 #include "feedlist.h"
 #include "fetchqueue.h"
