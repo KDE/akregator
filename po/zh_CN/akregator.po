@@ -447,7 +447,7 @@ msgstr "订阅抓取间隔："
 #: configuration/ui/settings_general.ui:157
 #, kde-format
 msgid "Enable Plasma Activities integration"
-msgstr ""
+msgstr "启用 Plasma 活动集成"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #: configuration/ui/settings_general.ui:167
@@ -818,7 +818,7 @@ msgstr "指定是否在任务栏中显示未读文章。"
 #: interfaces/akregator.kcfg:196
 #, kde-format
 msgid "Enabled Plasma Activity"
-msgstr ""
+msgstr "启用 Plasma 活动"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
 #: interfaces/akregator.kcfg:208
@@ -1935,7 +1935,7 @@ msgstr "全部订阅"
 #: src/feed/feedpropertiesdialog.cpp:39
 #, kde-format
 msgid "Activities"
-msgstr ""
+msgstr "活动"
 
 #: src/feed/feedpropertiesdialog.cpp:64 src/feed/feedpropertiesdialog.cpp:119
 #, kde-format
@@ -2489,11 +2489,11 @@ msgstr "在外部浏览器中打开"
 
 #: src/whatsnew/whatsnewtranslations.cpp:16
 msgid "Implement Plasma Activity."
-msgstr ""
+msgstr "实现 Plasma 活动。"
 
 #: src/whatsnew/whatsnewtranslations.cpp:16
 msgid "Add new whatsnew widget."
-msgstr ""
+msgstr "添加新的 “whatsnew” 小部件。"
 
 #: src/widgets/searchbar.cpp:44
 #, kde-format
