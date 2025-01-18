@@ -663,14 +663,13 @@ void ActionManagerImpl::initTabWidget(TabWidget *tabWidget)
     action->setText(i18n("Copy &Link Address"));
     connect(action, &QAction::triggered, d->tabWidget, &TabWidget::slotCopyLinkAddress);
 
-    action = new QAction(i18nc("@action", "Copy Image Location"), this);
+    action = new QAction(i18nc("@action", "Copy Image URL"), this);
     action->setIcon(QIcon::fromTheme(QStringLiteral("view-media-visualization")));
     coll->addAction(QStringLiteral("copy_image_location"), action);
     coll->setShortcutsConfigurable(action, false);
     connect(action, &QAction::triggered, d->tabWidget, &TabWidget::slotCopyImageLocation);
 
-    // save Image On Disk
-    action = new QAction(i18nc("@action", "Save Image On Disk…"), this);
+    action = new QAction(i18nc("@action", "Save Image…"), this);
     coll->addAction(QStringLiteral("saveas_imageurl"), action);
     coll->setShortcutsConfigurable(action, false);
     connect(action, &QAction::triggered, d->tabWidget, &TabWidget::slotSaveImageOnDisk);
