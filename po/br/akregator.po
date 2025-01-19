@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: all2.po\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-12-28 00:42+0000\n"
+"POT-Creation-Date: 2025-01-19 00:41+0000\n"
 "PO-Revision-Date: 2004-09-20 15:44+0200\n"
 "Last-Translator: Thierry Vignaud <tvignaud@mandriva.com>\n"
 "Language-Team: br <LL@li.org>\n"
@@ -1505,13 +1505,13 @@ msgstr "Eilañ chomlec'h al &liamm"
 #: src/actions/actionmanagerimpl.cpp:666
 #, kde-format
 msgctxt "@action"
-msgid "Copy Image Location"
+msgid "Copy Image URL"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:673
+#: src/actions/actionmanagerimpl.cpp:672
 #, kde-format
 msgctxt "@action"
-msgid "Save Image On Disk…"
+msgid "Save Image…"
 msgstr ""
 
 #: src/actions/actions.cpp:19

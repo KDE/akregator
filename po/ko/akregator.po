@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdepim\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-12-28 00:42+0000\n"
+"POT-Creation-Date: 2025-01-19 00:41+0000\n"
 "PO-Revision-Date: 2024-12-09 22:34+0100\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -1466,15 +1466,19 @@ msgid "Copy &Link Address"
 msgstr "링크 주소 복사(&L)"
 
 #: src/actions/actionmanagerimpl.cpp:666
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "@action"
+#| msgid "Copy Image Location"
 msgctxt "@action"
-msgid "Copy Image Location"
+msgid "Copy Image URL"
 msgstr "그림 주소 복사"
 
-#: src/actions/actionmanagerimpl.cpp:673
-#, kde-format
+#: src/actions/actionmanagerimpl.cpp:672
+#, fuzzy, kde-format
+#| msgctxt "@action"
+#| msgid "Save Image On Disk…"
 msgctxt "@action"
-msgid "Save Image On Disk…"
+msgid "Save Image…"
 msgstr "디스크에 그림 저장…"
 
 #: src/actions/actions.cpp:19

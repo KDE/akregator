@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-12-28 00:42+0000\n"
+"POT-Creation-Date: 2025-01-19 00:41+0000\n"
 "PO-Revision-Date: 2008-04-07 23:17+0700\n"
 "Last-Translator: Thanomsub Noppaburana <donga.nb@gmail.com>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
@@ -1553,13 +1553,13 @@ msgstr "คัด&ลอกที่อยู่ตำแหน่งเชื�
 #: src/actions/actionmanagerimpl.cpp:666
 #, kde-format
 msgctxt "@action"
-msgid "Copy Image Location"
+msgid "Copy Image URL"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:673
+#: src/actions/actionmanagerimpl.cpp:672
 #, kde-format
 msgctxt "@action"
-msgid "Save Image On Disk…"
+msgid "Save Image…"
 msgstr ""
 
 #: src/actions/actions.cpp:19

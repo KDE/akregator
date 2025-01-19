@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-12-28 00:42+0000\n"
+"POT-Creation-Date: 2025-01-19 00:41+0000\n"
 "PO-Revision-Date: 2024-11-19 10:40+0100\n"
 "Last-Translator: giovanni <g.sora@tiscali.it>\n"
 "Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
@@ -1488,15 +1488,19 @@ msgid "Copy &Link Address"
 msgstr "Copia adresse de &ligamine"
 
 #: src/actions/actionmanagerimpl.cpp:666
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "@action"
+#| msgid "Copy Image Location"
 msgctxt "@action"
-msgid "Copy Image Location"
+msgid "Copy Image URL"
 msgstr "Copia location del imagine"
 
-#: src/actions/actionmanagerimpl.cpp:673
-#, kde-format
+#: src/actions/actionmanagerimpl.cpp:672
+#, fuzzy, kde-format
+#| msgctxt "@action"
+#| msgid "Save Image On Disk…"
 msgctxt "@action"
-msgid "Save Image On Disk…"
+msgid "Save Image…"
 msgstr "Salveguarda Imagine sur disco..."
 
 #: src/actions/actions.cpp:19

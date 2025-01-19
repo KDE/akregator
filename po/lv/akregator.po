@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-12-28 00:42+0000\n"
+"POT-Creation-Date: 2025-01-19 00:41+0000\n"
 "PO-Revision-Date: 2024-08-20 18:37+0300\n"
 "Last-Translator: Toms Trasuns <toms.trasuns@posteo.net>\n"
 "Language-Team: Latvian <kde-i18n-doc@kde.org>\n"
@@ -1487,15 +1487,19 @@ msgid "Copy &Link Address"
 msgstr "&Kopēt saites adresi"
 
 #: src/actions/actionmanagerimpl.cpp:666
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "@action"
+#| msgid "Copy Image Location"
 msgctxt "@action"
-msgid "Copy Image Location"
+msgid "Copy Image URL"
 msgstr "Kopēt attēla vietu"
 
-#: src/actions/actionmanagerimpl.cpp:673
-#, kde-format
+#: src/actions/actionmanagerimpl.cpp:672
+#, fuzzy, kde-format
+#| msgctxt "@action"
+#| msgid "Save Image On Disk…"
 msgctxt "@action"
-msgid "Save Image On Disk…"
+msgid "Save Image…"
 msgstr "Saglabāt attēlu diskā…"
 
 #: src/actions/actions.cpp:19

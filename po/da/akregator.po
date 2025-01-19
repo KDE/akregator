@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-12-28 00:42+0000\n"
+"POT-Creation-Date: 2025-01-19 00:41+0000\n"
 "PO-Revision-Date: 2021-09-27 21:09+0200\n"
 "Last-Translator: Martin Schlander <mschlander@opensuse.org>\n"
 "Language-Team: Danish <kde-i18n-doc@kde.org>\n"
@@ -1535,14 +1535,14 @@ msgstr "Kopiér &linkadresse"
 #, fuzzy, kde-format
 #| msgid "Copy Image Location"
 msgctxt "@action"
-msgid "Copy Image Location"
+msgid "Copy Image URL"
 msgstr "Kopiér billedplacering"
 
-#: src/actions/actionmanagerimpl.cpp:673
+#: src/actions/actionmanagerimpl.cpp:672
 #, fuzzy, kde-format
 #| msgid "Save Image On Disk..."
 msgctxt "@action"
-msgid "Save Image On Disk…"
+msgid "Save Image…"
 msgstr "Gem billede på disken..."
 
 #: src/actions/actions.cpp:19
