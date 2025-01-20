@@ -140,6 +140,7 @@
   <summary xml:lang="tr">Beslemelerinizi takip edin</summary>
   <summary xml:lang="uk">Стежте за вашими стрічками новин</summary>
   <summary xml:lang="x-test">xxKeep up with your feedsxx</summary>
+  <summary xml:lang="zh-CN">跟上您的订阅</summary>
   <summary xml:lang="zh-TW">跟上您的訂閱來源的更新</summary>
   <url type="homepage">https://kontact.kde.org/components/akregator/</url>
   <url type="bugtracker">https://bugs.kde.org/enter_bug.cgi?format=guided&amp;product=akregator</url>
