@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Translators:
-# SPDX-FileCopyrightText: 2022, 2023, 2024 Emir SARI <emir_sari@icloud.com>
+# SPDX-FileCopyrightText: 2022, 2023, 2024, 2025 Emir SARI <emir_sari@icloud.com>
 # Bülent Bolat <bbolat@yildiz.edu.tr>, 2004.
 # Engin Çağatay <engincagatay@yahoo.com>, 2005.
 # Görkem Çetin <gorkem@kde.org>, 2004.
@@ -21,7 +21,7 @@ msgstr ""
 "Project-Id-Version: kdepim-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-01-19 00:41+0000\n"
-"PO-Revision-Date: 2024-11-19 20:26+0300\n"
+"PO-Revision-Date: 2025-01-19 13:32+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -1497,20 +1497,16 @@ msgid "Copy &Link Address"
 msgstr "&Bağlantı Adresini Kopyala"
 
 #: src/actions/actionmanagerimpl.cpp:666
-#, fuzzy, kde-format
-#| msgctxt "@action"
-#| msgid "Copy Image Location"
+#, kde-format
 msgctxt "@action"
 msgid "Copy Image URL"
-msgstr "Görsel Konumunu Kopyala"
+msgstr "Görsel URL’sini Kopyala"
 
 #: src/actions/actionmanagerimpl.cpp:672
-#, fuzzy, kde-format
-#| msgctxt "@action"
-#| msgid "Save Image On Disk…"
+#, kde-format
 msgctxt "@action"
 msgid "Save Image…"
-msgstr "Görseli Diske Kaydet…"
+msgstr "Görseli Kaydet…"
 
 #: src/actions/actions.cpp:19
 #, kde-format

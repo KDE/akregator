@@ -6,15 +6,15 @@
 # Ivan Petrouchtchak <fr.ivan@ukrainian-orthodox.org>, 2004, 2005, 2006, 2007, 2008.
 # Eugene Onischenko <oneugene@ukr.net>, 2005.
 # Andriy Rysin <rysin@kde.org>, 2006.
-# Yuri Chornoivan <yurchor@ukr.net>, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024.
+# Yuri Chornoivan <yurchor@ukr.net>, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-01-19 00:41+0000\n"
-"PO-Revision-Date: 2024-11-18 08:46+0200\n"
-"Last-Translator: Fracture dept <yurchor@ukr.net>\n"
-"Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
+"PO-Revision-Date: 2025-01-19 16:20+0200\n"
+"Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
+"Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1507,20 +1507,16 @@ msgid "Copy &Link Address"
 msgstr "Скопіювати адресу по&силання"
 
 #: src/actions/actionmanagerimpl.cpp:666
-#, fuzzy, kde-format
-#| msgctxt "@action"
-#| msgid "Copy Image Location"
+#, kde-format
 msgctxt "@action"
 msgid "Copy Image URL"
 msgstr "Копіювати адресу зображення"
 
 #: src/actions/actionmanagerimpl.cpp:672
-#, fuzzy, kde-format
-#| msgctxt "@action"
-#| msgid "Save Image On Disk…"
+#, kde-format
 msgctxt "@action"
 msgid "Save Image…"
-msgstr "Зберегти зображення на диску…"
+msgstr "Зберегти зображення…"
 
 #: src/actions/actions.cpp:19
 #, kde-format

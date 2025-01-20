@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-01-19 00:41+0000\n"
-"PO-Revision-Date: 2024-11-18 04:01+0100\n"
+"PO-Revision-Date: 2025-01-19 03:10+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -1482,20 +1482,16 @@ msgid "Copy &Link Address"
 msgstr "&ბმულის მისამართის კოპირება"
 
 #: src/actions/actionmanagerimpl.cpp:666
-#, fuzzy, kde-format
-#| msgctxt "@action"
-#| msgid "Copy Image Location"
+#, kde-format
 msgctxt "@action"
 msgid "Copy Image URL"
-msgstr "გამოსახულების მდებარეობის კოპირება"
+msgstr "სურათის URL-ის კოპირება"
 
 #: src/actions/actionmanagerimpl.cpp:672
-#, fuzzy, kde-format
-#| msgctxt "@action"
-#| msgid "Save Image On Disk…"
+#, kde-format
 msgctxt "@action"
 msgid "Save Image…"
-msgstr "გამოსახულების დისკზე შენახვა…"
+msgstr "გამოსახულების შენახვა…"
 
 #: src/actions/actions.cpp:19
 #, kde-format
