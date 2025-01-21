@@ -1,10 +1,10 @@
 # translation of akregator.po to
 # Language AR translations for PACKAGE package.
-# SPDX-FileCopyrightText: 2021, 2022, 2023, 2024 Zayed Al-Saidi <zayed.alsaidi@gmail.com>
-# Automatically generated, 2007.
+# SPDX-FileCopyrightText: 2021, 2022, 2023, 2024, 2025 Zayed Al-Saidi <zayed.alsaidi@gmail.com>
 # Youssef Chahibi <chahibi@gmail.com>, 2007.
 # Abdalrahim G. Fakhouri <abdilra7eem@yahoo.com>, 2014.
 # Zayed Al-Saidi <zayed.alsaidi@gmail.com>, 2024.
+# Automatically generated, 2007.
 msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
