@@ -1,10 +1,10 @@
-# SPDX-FileCopyrightText: 2021, 2022, 2023, 2024 Kishore G <kishore96@gmail.com>
+# SPDX-FileCopyrightText: 2021, 2022, 2023, 2024, 2025 Kishore G <kishore96@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-01-19 00:41+0000\n"
-"PO-Revision-Date: 2024-11-24 16:32+0530\n"
+"PO-Revision-Date: 2025-01-26 18:35+0530\n"
 "Last-Translator: Kishore G <kishore96@gmail.com>\n"
 "Language-Team: Tamil <kde-i18n-doc@kde.org>\n"
 "Language: ta\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 24.08.3\n"
+"X-Generator: Lokalize 24.12.1\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -364,7 +364,7 @@ msgstr "Javascript-ஐ இயக்கு"
 #: configuration/ui/settings_browser.ui:163
 #, kde-format
 msgid "Accessibility"
-msgstr ""
+msgstr "அணுகல்தன்மை"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_AccessKeyEnabled)
 #: configuration/ui/settings_browser.ui:169
@@ -479,10 +479,9 @@ msgstr "உலாவியின் தற்காலிக நினைவி�
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_LoadExternalReferences)
 #: configuration/ui/settings_security.ui:17
-#, fuzzy, kde-format
-#| msgid "Allow feed to load external references from internet."
+#, kde-format
 msgid "Allow article preview to load external references"
-msgstr "இணையத்திலிருந்து வெளி இணைப்புகளை தொகுப்புகளில் ஏற்ற விடு."
+msgstr "வெளி இணைப்புகளை முன்னோட்டத்தில் ஏற்ற விடு"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_LoadExternalReferences)
 #: configuration/ui/settings_security.ui:20
@@ -1324,7 +1323,7 @@ msgstr "விரை தேடலை குவியப்படுத்து"
 #: src/actions/actionmanagerimpl.cpp:450
 #, kde-format
 msgid "What's new"
-msgstr ""
+msgstr "புதியவை"
 
 #: src/actions/actionmanagerimpl.cpp:491
 #, kde-format
@@ -1459,20 +1458,16 @@ msgid "Copy &Link Address"
 msgstr "இ&ணைப்பின் முகவரியை நகலெடு"
 
 #: src/actions/actionmanagerimpl.cpp:666
-#, fuzzy, kde-format
-#| msgctxt "@action"
-#| msgid "Copy Image Location"
+#, kde-format
 msgctxt "@action"
 msgid "Copy Image URL"
 msgstr "படத்தின் முகவரியை நகலெடு"
 
 #: src/actions/actionmanagerimpl.cpp:672
-#, fuzzy, kde-format
-#| msgctxt "@action"
-#| msgid "Save Image On Disk…"
+#, kde-format
 msgctxt "@action"
 msgid "Save Image…"
-msgstr "படத்தை வட்டில் சேமி…"
+msgstr "படத்தை சேமி…"
 
 #: src/actions/actions.cpp:19
 #, kde-format
@@ -1597,10 +1592,10 @@ msgid "Read Error"
 msgstr "படிக்கும்போது சிக்கல்"
 
 #: src/akregator_part.cpp:470
-#, fuzzy, kde-format
-#| msgid "Access denied: cannot write to file %1"
+#, kde-format
 msgid "Access denied: cannot write to file %1. Please check your permissions."
-msgstr "அனுமதி மறுக்கப்பட்டது: கோப்பு %1க்கு எழுத முடியவில்லை"
+msgstr ""
+"அனுமதி மறுக்கப்பட்டது: கோப்பு %1க்கு எழுத முடியவில்லை. அனுமதிகளை சரிபார்க்கவும்."
 
 #: src/akregator_part.cpp:486 src/akregator_part.cpp:495
 #, fuzzy, kde-format
@@ -1691,48 +1686,47 @@ msgid "Akregator is a KDE news feed reader."
 msgstr "ஒரு கேடியி பீஃட் "
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:184
-#, fuzzy, kde-format
-#| msgid "&Save Link As..."
+#, kde-format
 msgctxt "@title:window"
 msgid "Save As"
-msgstr "&இணைப்பை இப்படியாகச் சேமி..."
+msgstr "வேறு பெயரில் சேமி"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:373
-#, fuzzy, kde-format
+#, kde-format
 msgid "Disable"
-msgstr "காப்பகத்தை செயல் நீக்கு"
+msgstr "முடக்கு"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:374
 #, kde-format
 msgid "Keep Enabled"
-msgstr ""
+msgstr "இயக்கத்திலேயே வைத்திரு"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:376
-#, fuzzy, kde-format
+#, kde-format
 msgid "Are you sure you want to disable this introduction page?"
-msgstr "<qt>நீங்கள் கண்டிப்பாக இந்த ஃபீட்டை நீக்க விரும்புகிறீர்களா</qt>"
+msgstr "இந்த அறிமுகப் பக்கத்தை உறுதியாக முடக்க வேண்டுமா?"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:377
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@title:window"
 msgid "Disable Introduction Page"
-msgstr "பின்காப்பகத்தை தடை நீக்கு"
+msgstr "அறிமுகப்பக்கத்தை முடக்கு"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:412
 #, kde-format
 msgid "This web site is a malware, do you want to continue to show it?"
-msgstr ""
+msgstr "இந்த இணையதளம் ஏமாற்றுவதாக இருக்கலாம். இதை உறுதியாக காட்ட வேண்டுமா?"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:413
 #, kde-format
 msgctxt "@title:window"
 msgid "Malware"
-msgstr ""
+msgstr "தீங்குநிரல்"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:425
 #, kde-format
 msgid "The network is broken."
-msgstr ""
+msgstr "பிணையத்தில் இணைந்திருக்கவில்லை."
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:425
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:428
