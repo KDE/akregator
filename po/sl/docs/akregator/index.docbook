@@ -218,7 +218,7 @@ say how to start it -->
 >Pojdite v meni <guimenu
 >Vir</guimenu
 > in izberite <guimenuitem
->Dodaj vir ...</guimenuitem
+>Dodaj vir...</guimenuitem
 > ali uporabite privzeto bližnjico na tipkovnici (<keycap
 >Ins</keycap
 >). Prikaže se naslednje pogovorno okno z vnosno vrstico <guilabel
@@ -317,7 +317,7 @@ say how to start it -->
 </para>
 <para
 >Preklopite na &akregator;, izberite <guimenuitem
->Dodaj vir ...</guimenuitem
+>Dodaj vir...</guimenuitem
 > in <guilabel
 >URL vira</guilabel
 > se izpolni z naslovom povezave. </para>
@@ -346,7 +346,7 @@ say how to start it -->
 ><guimenu
 >Vir</guimenu
 > <guimenuitem
->Nova mapa ...</guimenuitem
+>Nova mapa...</guimenuitem
 ></menuchoice
 >. V vrstico za urejanje vnesite <userinput
 >Novice</userinput
@@ -1502,7 +1502,7 @@ say how to start it -->
 > <guimenu
 >Vir</guimenu
 > <guimenuitem
->Dodaj vir ...</guimenuitem
+>Dodaj vir...</guimenuitem
 > </menuchoice
 ></term>
 <listitem
@@ -1524,7 +1524,7 @@ say how to start it -->
 > <guimenu
 >Vir</guimenu
 > <guimenuitem
->Nova mapa ...</guimenuitem
+>Nova mapa...</guimenuitem
 > </menuchoice
 ></term>
 <listitem
