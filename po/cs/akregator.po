@@ -1486,20 +1486,16 @@ msgid "Copy &Link Address"
 msgstr "Ko&pírovat adresu odkazu"
 
 #: src/actions/actionmanagerimpl.cpp:666
-#, fuzzy, kde-format
-#| msgctxt "@action"
-#| msgid "Copy Image Location"
+#, kde-format
 msgctxt "@action"
 msgid "Copy Image URL"
-msgstr "Kopírovat umístění obrázku"
+msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:672
-#, fuzzy, kde-format
-#| msgctxt "@action"
-#| msgid "Save Image On Disk…"
+#, kde-format
 msgctxt "@action"
 msgid "Save Image…"
-msgstr "Uložit obrázek na disk…"
+msgstr ""
 
 #: src/actions/actions.cpp:19
 #, kde-format
@@ -2602,9 +2598,3 @@ msgstr "Přečteno"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "Důležité"
-
-#~ msgid "KDE Dot News"
-#~ msgstr "KDE Dot novinky"
-
-#~ msgid "Linux.com"
-#~ msgstr "Linux.com"
