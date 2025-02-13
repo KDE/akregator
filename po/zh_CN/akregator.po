@@ -1125,7 +1125,7 @@ msgstr "删除订阅(&D)"
 #: src/actions/actionmanagerimpl.cpp:70 src/actions/actionmanagerimpl.cpp:260
 #, kde-format
 msgid "&Edit Feed…"
-msgstr "编辑订阅(&E)…"
+msgstr "编辑订阅...(&E)"
 
 #: src/actions/actionmanagerimpl.cpp:71 src/actions/actionmanagerimpl.cpp:317
 #, kde-format
@@ -1155,17 +1155,17 @@ msgstr "将订阅标为已读(&M)"
 #: src/actions/actionmanagerimpl.cpp:202
 #, kde-format
 msgid "&Import Feeds…"
-msgstr "导入订阅(&I)…"
+msgstr "导入订阅...(&I)"
 
 #: src/actions/actionmanagerimpl.cpp:206
 #, kde-format
 msgid "&Export Feeds…"
-msgstr "导出订阅(&E)…"
+msgstr "导出订阅...(&E)"
 
 #: src/actions/actionmanagerimpl.cpp:211
 #, kde-format
 msgid "&Configure Akregator…"
-msgstr "配置 Akregator(&C)…"
+msgstr "配置 Akregator...(&C)"
 
 #: src/actions/actionmanagerimpl.cpp:230
 #, kde-format
@@ -1180,12 +1180,12 @@ msgstr "重新加载全部标签页"
 #: src/actions/actionmanagerimpl.cpp:242
 #, kde-format
 msgid "&Add Feed…"
-msgstr "添加订阅(&A)…"
+msgstr "添加订阅...(&A)"
 
 #: src/actions/actionmanagerimpl.cpp:248
 #, kde-format
 msgid "Ne&w Folder…"
-msgstr "新建文件夹(&W)…"
+msgstr "新建文件夹...(&W)"
 
 #: src/actions/actionmanagerimpl.cpp:273
 #, kde-format
@@ -1312,12 +1312,12 @@ msgstr "节点右移"
 #: src/actions/actionmanagerimpl.cpp:433
 #, kde-format
 msgid "Send &Link Address…"
-msgstr "发送链接地址(&L)…"
+msgstr "发送链接地址...(&L)"
 
 #: src/actions/actionmanagerimpl.cpp:438
 #, kde-format
 msgid "Send &File…"
-msgstr "发送文件(&F)…"
+msgstr "发送文件...(&F)"
 
 #: src/actions/actionmanagerimpl.cpp:444
 #, kde-format
@@ -1439,7 +1439,7 @@ msgstr "朗读文本"
 #: src/actions/actionmanagerimpl.cpp:629
 #, kde-format
 msgid "&Find in Message…"
-msgstr "在消息中查找(&F)…"
+msgstr "在消息中查找...(&F)"
 
 #: src/actions/actionmanagerimpl.cpp:640
 #, kde-format
@@ -1455,7 +1455,7 @@ msgstr "激活标签页 %1"
 #: src/actions/actionmanagerimpl.cpp:659
 #, kde-format
 msgid "&Save Link As…"
-msgstr "链接另存为(&S)…"
+msgstr "链接另存为...(&S)"
 
 #: src/actions/actionmanagerimpl.cpp:663
 #, kde-format
@@ -1466,13 +1466,13 @@ msgstr "复制链接地址(&L)"
 #, kde-format
 msgctxt "@action"
 msgid "Copy Image URL"
-msgstr ""
+msgstr "复制图像 URL"
 
 #: src/actions/actionmanagerimpl.cpp:672
 #, kde-format
 msgctxt "@action"
 msgid "Save Image…"
-msgstr ""
+msgstr "保存图像..."
 
 #: src/actions/actions.cpp:19
 #, kde-format
@@ -1808,7 +1808,7 @@ msgstr "<qt>标准订阅列表已损坏(无效的 OPML)。无法创建备份。<
 #: src/command/loadfeedlistcommand.cpp:129
 #, kde-format
 msgid "Opening Feed List…"
-msgstr "正在打开订阅列表…"
+msgstr "正在打开订阅列表..."
 
 #: src/command/loadfeedlistcommand.cpp:143
 #, kde-format
@@ -2041,7 +2041,7 @@ msgstr "无标题"
 #: src/frame/frame.cpp:140
 #, kde-format
 msgid "Loading…"
-msgstr "正在加载…"
+msgstr "正在加载..."
 
 #: src/frame/frame.cpp:156
 #, kde-format
@@ -2112,7 +2112,7 @@ msgstr "网络不可用。"
 #: src/mainwidget.cpp:903
 #, kde-format
 msgid "Fetching Feeds…"
-msgstr "正在抓取订阅…"
+msgstr "正在抓取订阅..."
 
 #: src/mainwidget.cpp:1102
 #, kde-format
@@ -2484,7 +2484,7 @@ msgstr "添加窗口支持"
 #: src/whatsnew/whatsnewtranslations.cpp:25
 #, kde-format
 msgid "Implement Plasma Activity."
-msgstr "实现 Plasma 活动。"
+msgstr "实现 Plasma Activity。"
 
 #: src/whatsnew/whatsnewtranslations.cpp:25
 #, kde-format
@@ -2495,13 +2495,13 @@ msgstr "添加新的 “whatsnew” 小部件。"
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "Search articles…"
-msgstr "搜索文章…"
+msgstr "搜索文章..."
 
 #: src/widgets/searchbar.cpp:127
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "Search articles…<%1>"
-msgstr "搜索文章…<%1>"
+msgstr "搜索文章...<%1>"
 
 #: src/widgets/statussearchbuttons.cpp:29
 #, kde-format
