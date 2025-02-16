@@ -1594,7 +1594,7 @@ msgstr ""
 #, kde-format
 msgctxt "@title:window"
 msgid "Write Error"
-msgstr "S'ha produït un error d'escriptura"
+msgstr "S'ha produït un error mentre s'escrivia"
 
 #: src/akregator_part.cpp:454
 #, kde-format
