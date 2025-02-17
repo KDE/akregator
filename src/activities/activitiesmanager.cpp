@@ -14,9 +14,4 @@ ActivitiesManager::ActivitiesManager(QObject *parent)
 
 ActivitiesManager::~ActivitiesManager() = default;
 
-bool ActivitiesManager::enabled() const
-{
-    return Akregator::Settings::self()->plasmaActivitySupport();
-}
-
 #include "moc_activitiesmanager.cpp"

@@ -17,6 +17,5 @@ class AKREGATOR_EXPORT ActivitiesManager : public PimCommonActivities::Activitie
 public:
     explicit ActivitiesManager(QObject *parent = nullptr);
     ~ActivitiesManager() override;
-    [[nodiscard]] bool enabled() const override;
 };
 }

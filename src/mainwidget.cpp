@@ -305,6 +305,7 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
         m_searchBar->slotSetText(Settings::textFilter());
     }
 #if HAVE_ACTIVITY_SUPPORT
+    Kernel::self()->activitiesManager()->setEnabled(Akregator::Settings::self()->plasmaActivitySupport());
     connect(Kernel::self()->activitiesManager(), &ActivitiesManager::activitiesChanged, this, [this]() {
         m_selectionController->activitiesChanged();
         qCDebug(AKREGATOR_PLASMA_ACTIVITIES_LOG) << " activities changed";
