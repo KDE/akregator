@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Translators:
-# SPDX-FileCopyrightText: 2022, 2023, 2024 Emir SARI <emir_sari@icloud.com>
+# SPDX-FileCopyrightText: 2022, 2023, 2024, 2025 Emir SARI <emir_sari@icloud.com>
 # Bülent Bolat <bbolat@yildiz.edu.tr>, 2004.
 # Engin Çağatay <engincagatay@yahoo.com>, 2005.
 # Görkem Çetin <gorkem@kde.org>, 2004.
@@ -21,7 +21,7 @@ msgstr ""
 "Project-Id-Version: kdepim-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-11-01 00:40+0000\n"
-"PO-Revision-Date: 2024-11-19 20:26+0300\n"
+"PO-Revision-Date: 2025-02-17 18:17+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -367,7 +367,7 @@ msgstr "Her sekme için bir kapatma düğmesi göster"
 #: configuration/ui/settings_browser.ui:130 interfaces/akregator.kcfg:217
 #, kde-format
 msgid "Open links in new tab instead of in new window"
-msgstr "Bağlantıları pencere yerine sekmede aç"
+msgstr "Bağlantıları yeni bir pencere yerine yeni sekmede aç"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: configuration/ui/settings_browser.ui:140
