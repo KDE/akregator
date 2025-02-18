@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-01-19 00:41+0000\n"
+"POT-Creation-Date: 2025-02-18 00:41+0000\n"
 "PO-Revision-Date: 2021-09-27 21:09+0200\n"
 "Last-Translator: Martin Schlander <mschlander@opensuse.org>\n"
 "Language-Team: Danish <kde-i18n-doc@kde.org>\n"
@@ -2184,7 +2184,7 @@ msgstr "Du kan se flere artikler i adskillige åbne faneblade."
 msgid "Articles list."
 msgstr "Artikelliste."
 
-#: src/mainwidget.cpp:244 src/mainwidget.cpp:675
+#: src/mainwidget.cpp:244 src/mainwidget.cpp:676
 #, kde-format
 msgid "Articles"
 msgstr "Artikler"
@@ -2194,7 +2194,7 @@ msgstr "Artikler"
 msgid "About"
 msgstr "Om"
 
-#: src/mainwidget.cpp:814
+#: src/mainwidget.cpp:815
 #, fuzzy, kde-format
 #| msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
 msgid ""
@@ -2202,20 +2202,20 @@ msgid ""
 "qt>"
 msgstr "<qt>Vil du virkelig slette feedet <b>%1</b>?</qt>"
 
-#: src/mainwidget.cpp:815
+#: src/mainwidget.cpp:816
 #, fuzzy, kde-format
 #| msgid "&Mark Feed as Read"
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "&Markér feed som læst"
 
-#: src/mainwidget.cpp:818
+#: src/mainwidget.cpp:819
 #, fuzzy, kde-format
 #| msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
 msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
 msgstr "<qt>Vil du virkelig slette feedet <b>%1</b>?</qt>"
 
-#: src/mainwidget.cpp:820
+#: src/mainwidget.cpp:821
 #, fuzzy, kde-format
 #| msgid "<qt>Are you sure you want to delete this feed?</qt>"
 msgid ""
@@ -2223,30 +2223,30 @@ msgid ""
 "qt>"
 msgstr "<qt>Vil du virkelig slette dette feed?</qt>"
 
-#: src/mainwidget.cpp:822
+#: src/mainwidget.cpp:823
 #, fuzzy, kde-format
 #| msgid "&Mark Feeds as Read"
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "&Markér feeds som læste"
 
-#: src/mainwidget.cpp:886 src/mainwidget.cpp:895 src/mainwidget.cpp:1297
+#: src/mainwidget.cpp:887 src/mainwidget.cpp:896 src/mainwidget.cpp:1298
 #, kde-format
 msgid "Networking is not available."
 msgstr "Netværk er ikke tilgængeligt."
 
-#: src/mainwidget.cpp:903
+#: src/mainwidget.cpp:904
 #, fuzzy, kde-format
 #| msgid "Fetching Feeds..."
 msgid "Fetching Feeds…"
 msgstr "Henter feeds..."
 
-#: src/mainwidget.cpp:1102
+#: src/mainwidget.cpp:1103
 #, kde-format
 msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
 msgstr "<qt>Vil du virkelig slette artiklen <b>%1</b>?</qt>"
 
-#: src/mainwidget.cpp:1105
+#: src/mainwidget.cpp:1106
 #, kde-format
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
 msgid_plural ""
@@ -2254,14 +2254,14 @@ msgid_plural ""
 msgstr[0] "<qt>Vil du virkelig slette den markerede artikel?</qt>"
 msgstr[1] "<qt>Vil du virkelig slette de %1 markerede artikler?</qt>"
 
-#: src/mainwidget.cpp:1112
+#: src/mainwidget.cpp:1113
 #, fuzzy, kde-format
 #| msgid "Delete Article"
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "Slet artikel"
 
-#: src/mainwidget.cpp:1294
+#: src/mainwidget.cpp:1295
 #, kde-format
 msgid "Networking is available now."
 msgstr "Netværk er tilgængeligt nu."

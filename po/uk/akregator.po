@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-01-19 00:41+0000\n"
+"POT-Creation-Date: 2025-02-18 00:41+0000\n"
 "PO-Revision-Date: 2025-01-19 16:20+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
@@ -2149,7 +2149,7 @@ msgstr "Можна переглядати декілька статей у рі�
 msgid "Articles list."
 msgstr "Список статей."
 
-#: src/mainwidget.cpp:244 src/mainwidget.cpp:675
+#: src/mainwidget.cpp:244 src/mainwidget.cpp:676
 #, kde-format
 msgid "Articles"
 msgstr "Статті"
@@ -2159,7 +2159,7 @@ msgstr "Статті"
 msgid "About"
 msgstr "Про"
 
-#: src/mainwidget.cpp:814
+#: src/mainwidget.cpp:815
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all articles in the feed</b> as read?</"
@@ -2168,19 +2168,19 @@ msgstr ""
 "<qt>Ви впевнені, що хочете позначити <b>усі статті у подачі</b> як прочитані?"
 "</qt>"
 
-#: src/mainwidget.cpp:815
+#: src/mainwidget.cpp:816
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "Позначення подачі як прочитаної"
 
-#: src/mainwidget.cpp:818
+#: src/mainwidget.cpp:819
 #, kde-format
 msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
 msgstr ""
 "<qt>Ви впевнені, що хочете позначити <b>усі подачі</b> як прочитані?</qt>"
 
-#: src/mainwidget.cpp:820
+#: src/mainwidget.cpp:821
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all feeds in the folder</b> as read?</"
@@ -2189,28 +2189,28 @@ msgstr ""
 "<qt>Ви впевнені, що хочете позначити <b>усі подачі у теці</b> як прочитані?</"
 "qt>"
 
-#: src/mainwidget.cpp:822
+#: src/mainwidget.cpp:823
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "Позначення подач як прочитаних"
 
-#: src/mainwidget.cpp:886 src/mainwidget.cpp:895 src/mainwidget.cpp:1297
+#: src/mainwidget.cpp:887 src/mainwidget.cpp:896 src/mainwidget.cpp:1298
 #, kde-format
 msgid "Networking is not available."
 msgstr "Мережа недоступна."
 
-#: src/mainwidget.cpp:903
+#: src/mainwidget.cpp:904
 #, kde-format
 msgid "Fetching Feeds…"
 msgstr "Отримання подач…"
 
-#: src/mainwidget.cpp:1102
+#: src/mainwidget.cpp:1103
 #, kde-format
 msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
 msgstr "<qt>Ви впевнені, що хочете вилучити статтю <b>%1</b>?</qt>"
 
-#: src/mainwidget.cpp:1105
+#: src/mainwidget.cpp:1106
 #, kde-format
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
 msgid_plural ""
@@ -2220,13 +2220,13 @@ msgstr[1] "<qt>Ви впевнені, що хочете вилучити %1 ви
 msgstr[2] "<qt>Ви впевнені, що хочете вилучити %1 вибраних статей?</qt>"
 msgstr[3] "<qt>Ви впевнені, що хочете вилучити %1 вибрану статтю?</qt>"
 
-#: src/mainwidget.cpp:1112
+#: src/mainwidget.cpp:1113
 #, kde-format
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "Вилучення статті"
 
-#: src/mainwidget.cpp:1294
+#: src/mainwidget.cpp:1295
 #, kde-format
 msgid "Networking is available now."
 msgstr "Доступ до мережі відкрито."

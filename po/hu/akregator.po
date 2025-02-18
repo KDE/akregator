@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: KDE 4.3\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-01-19 00:41+0000\n"
+"POT-Creation-Date: 2025-02-18 00:41+0000\n"
 "PO-Revision-Date: 2025-02-03 21:16+0100\n"
 "Last-Translator: Kristof Kiszel <ulysses@fsf.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -2116,7 +2116,7 @@ msgstr "Egyszerre több hír is olvasható külön lapokon."
 msgid "Articles list."
 msgstr "Hírlista."
 
-#: src/mainwidget.cpp:244 src/mainwidget.cpp:675
+#: src/mainwidget.cpp:244 src/mainwidget.cpp:676
 #, kde-format
 msgid "Articles"
 msgstr "Hírek"
@@ -2126,7 +2126,7 @@ msgstr "Hírek"
 msgid "About"
 msgstr "Névjegy"
 
-#: src/mainwidget.cpp:814
+#: src/mainwidget.cpp:815
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all articles in the feed</b> as read?</"
@@ -2135,19 +2135,19 @@ msgstr ""
 "<qt>Biztosan szeretné megjelölni <b>az össes cikket a csatornán</b> "
 "olvasottnak?</qt>"
 
-#: src/mainwidget.cpp:815
+#: src/mainwidget.cpp:816
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "Csatorna megjelölése olvasottnak"
 
-#: src/mainwidget.cpp:818
+#: src/mainwidget.cpp:819
 #, kde-format
 msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
 msgstr ""
 "<qt>Biztosan szeretné megjelölni <b>az össes csatornát</b> olvasottnak?</qt>"
 
-#: src/mainwidget.cpp:820
+#: src/mainwidget.cpp:821
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all feeds in the folder</b> as read?</"
@@ -2156,28 +2156,28 @@ msgstr ""
 "<qt>Biztosan szeretné megjelölni <b>az össes csatornát a mappában</b> "
 "olvasottnak?</qt>"
 
-#: src/mainwidget.cpp:822
+#: src/mainwidget.cpp:823
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "Csatornák megjelölése olvasottnak"
 
-#: src/mainwidget.cpp:886 src/mainwidget.cpp:895 src/mainwidget.cpp:1297
+#: src/mainwidget.cpp:887 src/mainwidget.cpp:896 src/mainwidget.cpp:1298
 #, kde-format
 msgid "Networking is not available."
 msgstr "A hálózat nem érhető el."
 
-#: src/mainwidget.cpp:903
+#: src/mainwidget.cpp:904
 #, kde-format
 msgid "Fetching Feeds…"
 msgstr "Csatornák letöltése…"
 
-#: src/mainwidget.cpp:1102
+#: src/mainwidget.cpp:1103
 #, kde-format
 msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
 msgstr "<qt>Biztosan törölni szeretné ezt a hírt: <b>%1</b>?</qt>"
 
-#: src/mainwidget.cpp:1105
+#: src/mainwidget.cpp:1106
 #, kde-format
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
 msgid_plural ""
@@ -2185,13 +2185,13 @@ msgid_plural ""
 msgstr[0] "<qt>Biztosan törölni szeretné a kijelölt hírt?</qt>"
 msgstr[1] "<qt>Biztosan törölni szeretné a kijelölt %1 hírt?</qt>"
 
-#: src/mainwidget.cpp:1112
+#: src/mainwidget.cpp:1113
 #, kde-format
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "Törlés"
 
-#: src/mainwidget.cpp:1294
+#: src/mainwidget.cpp:1295
 #, kde-format
 msgid "Networking is available now."
 msgstr "A hálózat most már elérhető."

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-01-19 00:41+0000\n"
+"POT-Creation-Date: 2025-02-18 00:41+0000\n"
 "PO-Revision-Date: 2008-04-07 23:17+0700\n"
 "Last-Translator: Thanomsub Noppaburana <donga.nb@gmail.com>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
@@ -2217,7 +2217,7 @@ msgstr "คุณสามารถดูบทความหลาย ๆ บ�
 msgid "Articles list."
 msgstr "รายการบทความ"
 
-#: src/mainwidget.cpp:244 src/mainwidget.cpp:675
+#: src/mainwidget.cpp:244 src/mainwidget.cpp:676
 #, kde-format
 msgid "Articles"
 msgstr "บทความ"
@@ -2227,7 +2227,7 @@ msgstr "บทความ"
 msgid "About"
 msgstr "เกี่ยวกับ"
 
-#: src/mainwidget.cpp:814
+#: src/mainwidget.cpp:815
 #, fuzzy, kde-format
 #| msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
 msgid ""
@@ -2235,20 +2235,20 @@ msgid ""
 "qt>"
 msgstr "<qt>คุณแน่ใจหรือว่าต้องการจะลบแหล่งป้อน <b>%1</b> นี้ ?</qt>"
 
-#: src/mainwidget.cpp:815
+#: src/mainwidget.cpp:816
 #, fuzzy, kde-format
 #| msgid "&Mark Feed as Read"
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "&ตั้งสถานะว่าอ่านแล้ว"
 
-#: src/mainwidget.cpp:818
+#: src/mainwidget.cpp:819
 #, fuzzy, kde-format
 #| msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
 msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
 msgstr "<qt>คุณแน่ใจหรือว่าต้องการจะลบแหล่งป้อน <b>%1</b> นี้ ?</qt>"
 
-#: src/mainwidget.cpp:820
+#: src/mainwidget.cpp:821
 #, fuzzy, kde-format
 #| msgid "<qt>Are you sure you want to delete this feed?</qt>"
 msgid ""
@@ -2256,30 +2256,30 @@ msgid ""
 "qt>"
 msgstr "<qt>คุณแน่ใจหรือว่าต้องการจะลบแหล่งป้อนนี้ ?</qt>"
 
-#: src/mainwidget.cpp:822
+#: src/mainwidget.cpp:823
 #, fuzzy, kde-format
 #| msgid "&Mark Feeds as Read"
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "&ตั้งสถานะว่าอ่านแล้ว"
 
-#: src/mainwidget.cpp:886 src/mainwidget.cpp:895 src/mainwidget.cpp:1297
+#: src/mainwidget.cpp:887 src/mainwidget.cpp:896 src/mainwidget.cpp:1298
 #, kde-format
 msgid "Networking is not available."
 msgstr ""
 
-#: src/mainwidget.cpp:903
+#: src/mainwidget.cpp:904
 #, fuzzy, kde-format
 #| msgid "Fetching Feeds..."
 msgid "Fetching Feeds…"
 msgstr "กำลังทำการดึงข้อมูลจากแหล่งป้อน..."
 
-#: src/mainwidget.cpp:1102
+#: src/mainwidget.cpp:1103
 #, kde-format
 msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
 msgstr "<qt>คุณแน่ใจหรือว่าต้องการจะลบบทความ <b>%1</b> นี้ ?</qt>"
 
-#: src/mainwidget.cpp:1105
+#: src/mainwidget.cpp:1106
 #, fuzzy, kde-format
 #| msgid "<qt>Are you sure you want to delete the %1 selected articles?</qt>"
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
@@ -2287,14 +2287,14 @@ msgid_plural ""
 "<qt>Are you sure you want to delete the %1 selected articles?</qt>"
 msgstr[0] "<qt>คุณแน่ใจหรือว่า ต้องการจะลบบทความที่เลือกไว้จำนวน %1 บทความนี้ ?</qt>"
 
-#: src/mainwidget.cpp:1112
+#: src/mainwidget.cpp:1113
 #, fuzzy, kde-format
 #| msgid "Delete Article"
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "ลบบทความ"
 
-#: src/mainwidget.cpp:1294
+#: src/mainwidget.cpp:1295
 #, kde-format
 msgid "Networking is available now."
 msgstr ""

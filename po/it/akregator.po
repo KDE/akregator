@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-01-19 00:41+0000\n"
+"POT-Creation-Date: 2025-02-18 00:41+0000\n"
 "PO-Revision-Date: 2025-01-20 03:38+0100\n"
 "Last-Translator: Vincenzo Reale <smart2128vr@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
@@ -2117,7 +2117,7 @@ msgstr "Puoi avere più articoli aperti in diverse schede."
 msgid "Articles list."
 msgstr "Lista degli articoli."
 
-#: src/mainwidget.cpp:244 src/mainwidget.cpp:675
+#: src/mainwidget.cpp:244 src/mainwidget.cpp:676
 #, kde-format
 msgid "Articles"
 msgstr "Articoli"
@@ -2128,7 +2128,7 @@ msgstr "Articoli"
 msgid "About"
 msgstr "Informazioni"
 
-#: src/mainwidget.cpp:814
+#: src/mainwidget.cpp:815
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all articles in the feed</b> as read?</"
@@ -2137,18 +2137,18 @@ msgstr ""
 "<qt>Sei sicuro di voler marcare <b>tutti gli articoli della fonte</b> come "
 "letti?</qt>"
 
-#: src/mainwidget.cpp:815
+#: src/mainwidget.cpp:816
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "Marca la fonte come letta"
 
-#: src/mainwidget.cpp:818
+#: src/mainwidget.cpp:819
 #, kde-format
 msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
 msgstr "<qt>Sei sicuro di voler marcare <b>tutte le fonti</b> come lette?</qt>"
 
-#: src/mainwidget.cpp:820
+#: src/mainwidget.cpp:821
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all feeds in the folder</b> as read?</"
@@ -2157,29 +2157,29 @@ msgstr ""
 "<qt>Sei sicuro di voler marcare <b>tutte le fonti in questa cartella</b> "
 "come lette?</qt>"
 
-#: src/mainwidget.cpp:822
+#: src/mainwidget.cpp:823
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "Marca le fonti come lette"
 
-#: src/mainwidget.cpp:886 src/mainwidget.cpp:895 src/mainwidget.cpp:1297
+#: src/mainwidget.cpp:887 src/mainwidget.cpp:896 src/mainwidget.cpp:1298
 #, kde-format
 msgid "Networking is not available."
 msgstr "La rete non è disponibile"
 
-#: src/mainwidget.cpp:903
+#: src/mainwidget.cpp:904
 #, kde-format
 msgid "Fetching Feeds…"
 msgstr "Scaricamento fonti…"
 
-#: src/mainwidget.cpp:1102
+#: src/mainwidget.cpp:1103
 #, kde-format
 msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
 msgstr "<qt>Vuoi veramente eliminare l'articolo <b>%1</b>?</qt>"
 
 # XXX i 5 articoli.... gli otto articoli...
-#: src/mainwidget.cpp:1105
+#: src/mainwidget.cpp:1106
 #, kde-format
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
 msgid_plural ""
@@ -2187,13 +2187,13 @@ msgid_plural ""
 msgstr[0] "<qt>Vuoi veramente eliminare l'articolo selezionato?</qt>"
 msgstr[1] "<qt>Vuoi veramente eliminare i %1 articoli selezionati?</qt>"
 
-#: src/mainwidget.cpp:1112
+#: src/mainwidget.cpp:1113
 #, kde-format
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "Elimina articolo"
 
-#: src/mainwidget.cpp:1294
+#: src/mainwidget.cpp:1295
 #, kde-format
 msgid "Networking is available now."
 msgstr "La rete è ora disponibile."

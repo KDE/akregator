@@ -20,8 +20,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdepim-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-01-19 00:41+0000\n"
-"PO-Revision-Date: 2025-01-19 13:32+0300\n"
+"POT-Creation-Date: 2025-02-18 00:41+0000\n"
+"PO-Revision-Date: 2025-02-17 18:17+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -367,7 +367,7 @@ msgstr "Her sekme için bir kapatma düğmesi göster"
 #: configuration/ui/settings_browser.ui:130 interfaces/akregator.kcfg:217
 #, kde-format
 msgid "Open links in new tab instead of in new window"
-msgstr "Bağlantıları pencere yerine sekmede aç"
+msgstr "Bağlantıları yeni bir pencere yerine yeni sekmede aç"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: configuration/ui/settings_browser.ui:140
@@ -2127,7 +2127,7 @@ msgstr "Birçok açık sekme içinde birden fazla yazıyı okuyabilirsiniz."
 msgid "Articles list."
 msgstr "Yazı listesi."
 
-#: src/mainwidget.cpp:244 src/mainwidget.cpp:675
+#: src/mainwidget.cpp:244 src/mainwidget.cpp:676
 #, kde-format
 msgid "Articles"
 msgstr "Yazılar"
@@ -2137,7 +2137,7 @@ msgstr "Yazılar"
 msgid "About"
 msgstr "Hakkında"
 
-#: src/mainwidget.cpp:814
+#: src/mainwidget.cpp:815
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all articles in the feed</b> as read?</"
@@ -2146,20 +2146,20 @@ msgstr ""
 "<qt><b>Beslemedeki tüm yazıları</b> okundu olarak imlemek istediğinizden "
 "emin misiniz?</qt>"
 
-#: src/mainwidget.cpp:815
+#: src/mainwidget.cpp:816
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "Beslemeyi Okundu Olarak İmle"
 
-#: src/mainwidget.cpp:818
+#: src/mainwidget.cpp:819
 #, kde-format
 msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
 msgstr ""
 "<qt><b>Tüm beslemeleri</b> okundu olarak imlemek istediğinizden emin misiniz?"
 "</qt>"
 
-#: src/mainwidget.cpp:820
+#: src/mainwidget.cpp:821
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all feeds in the folder</b> as read?</"
@@ -2168,28 +2168,28 @@ msgstr ""
 "<qt><b>Klasördeki tüm beslemeleri</b> okundu olarak imlemek istediğinizden "
 "emin misiniz?</qt>"
 
-#: src/mainwidget.cpp:822
+#: src/mainwidget.cpp:823
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "Beslemeleri Okundu Olarak İmle"
 
-#: src/mainwidget.cpp:886 src/mainwidget.cpp:895 src/mainwidget.cpp:1297
+#: src/mainwidget.cpp:887 src/mainwidget.cpp:896 src/mainwidget.cpp:1298
 #, kde-format
 msgid "Networking is not available."
 msgstr "Ağ iletişimi kullanılabilir değil."
 
-#: src/mainwidget.cpp:903
+#: src/mainwidget.cpp:904
 #, kde-format
 msgid "Fetching Feeds…"
 msgstr "Beslemeler getiriliyor…"
 
-#: src/mainwidget.cpp:1102
+#: src/mainwidget.cpp:1103
 #, kde-format
 msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
 msgstr "<qt><b>%1</b> adlı yazıyı silmek istediğinizden emin misiniz?</qt>"
 
-#: src/mainwidget.cpp:1105
+#: src/mainwidget.cpp:1106
 #, kde-format
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
 msgid_plural ""
@@ -2197,13 +2197,13 @@ msgid_plural ""
 msgstr[0] "<qt>Seçili yazıyı silmek istediğinizden emin misiniz?</qt>"
 msgstr[1] "<qt>Seçili %1 yazıyı silmek istediğinizden emin misiniz?</qt>"
 
-#: src/mainwidget.cpp:1112
+#: src/mainwidget.cpp:1113
 #, kde-format
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "Yazıyı Sil"
 
-#: src/mainwidget.cpp:1294
+#: src/mainwidget.cpp:1295
 #, kde-format
 msgid "Networking is available now."
 msgstr "Ağ iletişimi artık kullanılabilir."

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-01-19 00:41+0000\n"
+"POT-Creation-Date: 2025-02-18 00:41+0000\n"
 "PO-Revision-Date: 2025-01-25 12:47+0100\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -2134,7 +2134,7 @@ msgstr "Możesz przeglądać wiele artykułów w oddzielnych otwartych kartach."
 msgid "Articles list."
 msgstr "Lista artykułów."
 
-#: src/mainwidget.cpp:244 src/mainwidget.cpp:675
+#: src/mainwidget.cpp:244 src/mainwidget.cpp:676
 #, kde-format
 msgid "Articles"
 msgstr "Artykuły"
@@ -2144,7 +2144,7 @@ msgstr "Artykuły"
 msgid "About"
 msgstr "O ..."
 
-#: src/mainwidget.cpp:814
+#: src/mainwidget.cpp:815
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all articles in the feed</b> as read?</"
@@ -2153,18 +2153,18 @@ msgstr ""
 "<qt>Czy na pewno oznaczyć <b>wszystkie artykuły na tym kanale</b> jako "
 "przeczytane?</qt>"
 
-#: src/mainwidget.cpp:815
+#: src/mainwidget.cpp:816
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "Oznacz kanał jako przeczytany"
 
-#: src/mainwidget.cpp:818
+#: src/mainwidget.cpp:819
 #, kde-format
 msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
 msgstr "<qt>Czy na pewno oznaczyć <b>wszystkie artykuły</b> przeczytane?</qt>"
 
-#: src/mainwidget.cpp:820
+#: src/mainwidget.cpp:821
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all feeds in the folder</b> as read?</"
@@ -2173,28 +2173,28 @@ msgstr ""
 "<qt>Czy na pewno oznaczyć <b>wszystkie artykuły w tym katalogu</b> jako "
 "przeczytane?</qt>"
 
-#: src/mainwidget.cpp:822
+#: src/mainwidget.cpp:823
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "Oznacz kanały jako przeczytane"
 
-#: src/mainwidget.cpp:886 src/mainwidget.cpp:895 src/mainwidget.cpp:1297
+#: src/mainwidget.cpp:887 src/mainwidget.cpp:896 src/mainwidget.cpp:1298
 #, kde-format
 msgid "Networking is not available."
 msgstr "Sieć jest niedostępna."
 
-#: src/mainwidget.cpp:903
+#: src/mainwidget.cpp:904
 #, kde-format
 msgid "Fetching Feeds…"
 msgstr "Pobieranie kanałów…"
 
-#: src/mainwidget.cpp:1102
+#: src/mainwidget.cpp:1103
 #, kde-format
 msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
 msgstr "<qt>Czy jesteś pewny, że chcesz usunąć artykuł <b>%1</b>?</qt>"
 
-#: src/mainwidget.cpp:1105
+#: src/mainwidget.cpp:1106
 #, kde-format
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
 msgid_plural ""
@@ -2203,13 +2203,13 @@ msgstr[0] "<qt>Czy na pewno chcesz usunąć wybrany artykuł?</qt>"
 msgstr[1] "<qt>Czy na pewno chcesz usunąć %1 wybrane artykuły?</qt>"
 msgstr[2] "<qt>Czy na pewno chcesz usunąć %1 wybranych artykułów?</qt>"
 
-#: src/mainwidget.cpp:1112
+#: src/mainwidget.cpp:1113
 #, kde-format
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "Usuń artykuł"
 
-#: src/mainwidget.cpp:1294
+#: src/mainwidget.cpp:1295
 #, kde-format
 msgid "Networking is available now."
 msgstr "Sieć jest teraz dostępna."

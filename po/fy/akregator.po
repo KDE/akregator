@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-01-19 00:41+0000\n"
+"POT-Creation-Date: 2025-02-18 00:41+0000\n"
 "PO-Revision-Date: 2007-06-12 03:54+0200\n"
 "Last-Translator: Rinse de Vries <rinsedevries@kde.nl>\n"
 "Language-Team: Nederlands <kde-i18n-nl@kde.org>\n"
@@ -2288,7 +2288,7 @@ msgstr "Jo kinne meardere artikels besjen yn ferskate iepen tabblêden."
 msgid "Articles list."
 msgstr "List mei artikels."
 
-#: src/mainwidget.cpp:244 src/mainwidget.cpp:675
+#: src/mainwidget.cpp:244 src/mainwidget.cpp:676
 #, kde-format
 msgid "Articles"
 msgstr "Artikels"
@@ -2298,7 +2298,7 @@ msgstr "Artikels"
 msgid "About"
 msgstr ""
 
-#: src/mainwidget.cpp:814
+#: src/mainwidget.cpp:815
 #, fuzzy, kde-format
 #| msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
 msgid ""
@@ -2307,21 +2307,21 @@ msgid ""
 msgstr "<qt>Wolle jo de feed <b>%1</b> weismite?</qt>"
 
 # engelse tekst spreekt van enkelvoud (feed), nl tekst spreekt van meervoud (feeds)
-#: src/mainwidget.cpp:815
+#: src/mainwidget.cpp:816
 #, fuzzy, kde-format
 #| msgid "&Mark Feed as Read"
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "Feed als lêzen &markearje"
 
-#: src/mainwidget.cpp:818
+#: src/mainwidget.cpp:819
 #, fuzzy, kde-format
 #| msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
 msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
 msgstr "<qt>Wolle jo de feed <b>%1</b> weismite?</qt>"
 
 #
-#: src/mainwidget.cpp:820
+#: src/mainwidget.cpp:821
 #, fuzzy, kde-format
 #| msgid "<qt>Are you sure you want to delete this feed?</qt>"
 msgid ""
@@ -2330,31 +2330,31 @@ msgid ""
 msgstr "<qt>Wolle jo dizze feed weismite?</qt>"
 
 # engelse tekst spreekt van enkelvoud (feed), nl tekst spreekt van meervoud (feeds)
-#: src/mainwidget.cpp:822
+#: src/mainwidget.cpp:823
 #, fuzzy, kde-format
 #| msgid "&Mark Feeds as Read"
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "Feeds as lêzen &markearje"
 
-#: src/mainwidget.cpp:886 src/mainwidget.cpp:895 src/mainwidget.cpp:1297
+#: src/mainwidget.cpp:887 src/mainwidget.cpp:896 src/mainwidget.cpp:1298
 #, kde-format
 msgid "Networking is not available."
 msgstr ""
 
-#: src/mainwidget.cpp:903
+#: src/mainwidget.cpp:904
 #, fuzzy, kde-format
 #| msgid "Fetching Feeds..."
 msgid "Fetching Feeds…"
 msgstr "Feeds wurde ymportearre..."
 
-#: src/mainwidget.cpp:1102
+#: src/mainwidget.cpp:1103
 #, kde-format
 msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
 msgstr "<qt>Wolle jo it artikel <b>%1</b> weismite?</qt>"
 
 #
-#: src/mainwidget.cpp:1105
+#: src/mainwidget.cpp:1106
 #, fuzzy, kde-format
 #| msgid "<qt>Are you sure you want to delete the selected article?</qt>"
 #| msgid_plural ""
@@ -2366,14 +2366,14 @@ msgstr[0] "<qt>Wolle jo it selektearre artikel weismite?</qt>"
 msgstr[1] "<qt>Wolle jo it selektearre artikel weismite?</qt>"
 
 # Ik haw oant no ta weismite foar delete brûkt. Is dat konsekwint mei oare oersettings?
-#: src/mainwidget.cpp:1112
+#: src/mainwidget.cpp:1113
 #, fuzzy, kde-format
 #| msgid "Delete Article"
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "Artikel weismite"
 
-#: src/mainwidget.cpp:1294
+#: src/mainwidget.cpp:1295
 #, kde-format
 msgid "Networking is available now."
 msgstr ""

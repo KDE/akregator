@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-01-19 00:41+0000\n"
+"POT-Creation-Date: 2025-02-18 00:41+0000\n"
 "PO-Revision-Date: 2024-12-25 19:35+0530\n"
 "Last-Translator: kali <shreekantkalwar@gmail.com>\n"
 "Language-Team: Sanskrit <kde-i18n-doc@kde.org>\n"
@@ -2091,7 +2091,7 @@ msgstr "अनेकेषु मुक्तट्याब्सु बहु�
 msgid "Articles list."
 msgstr "लेखसूची।"
 
-#: src/mainwidget.cpp:244 src/mainwidget.cpp:675
+#: src/mainwidget.cpp:244 src/mainwidget.cpp:676
 #, kde-format
 msgid "Articles"
 msgstr "लेख"
@@ -2101,7 +2101,7 @@ msgstr "लेख"
 msgid "About"
 msgstr "विषये"
 
-#: src/mainwidget.cpp:814
+#: src/mainwidget.cpp:815
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all articles in the feed</b> as read?</"
@@ -2109,19 +2109,19 @@ msgid ""
 msgstr ""
 "<qt>किं भवान् निश्चयेन <b>फीड् मध्ये सर्वान् लेखान्</b> पठितरूपेण चिह्नितुम् इच्छति?</qt>"
 
-#: src/mainwidget.cpp:815
+#: src/mainwidget.cpp:816
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "फीड् इत्येतत् पठितम् इति चिह्नं कुर्वन्तु"
 
-#: src/mainwidget.cpp:818
+#: src/mainwidget.cpp:819
 #, kde-format
 msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
 msgstr ""
 "<qt>किं भवन्तः निश्चयेन <b>सर्वाणि फीड्-पत्राणि</b> पठितानि इति चिह्नितुम् इच्छन्ति?</qt>"
 
-#: src/mainwidget.cpp:820
+#: src/mainwidget.cpp:821
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all feeds in the folder</b> as read?</"
@@ -2130,28 +2130,28 @@ msgstr ""
 "<qt>किं भवान् निश्चितः यत् भवान् <b>पुटे सर्वाणि फीड्-आणि</b> पठितरूपेण चिह्नितुम् इच्छति?</"
 "qt>"
 
-#: src/mainwidget.cpp:822
+#: src/mainwidget.cpp:823
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "Read इति फीड्स् इति चिह्नं कुर्वन्तु"
 
-#: src/mainwidget.cpp:886 src/mainwidget.cpp:895 src/mainwidget.cpp:1297
+#: src/mainwidget.cpp:887 src/mainwidget.cpp:896 src/mainwidget.cpp:1298
 #, kde-format
 msgid "Networking is not available."
 msgstr "संजालीकरणं न प्राप्यते।"
 
-#: src/mainwidget.cpp:903
+#: src/mainwidget.cpp:904
 #, kde-format
 msgid "Fetching Feeds…"
 msgstr "फीड्स् आनयन्…"
 
-#: src/mainwidget.cpp:1102
+#: src/mainwidget.cpp:1103
 #, kde-format
 msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
 msgstr "<qt>किं भवान् निश्चितः यत् भवान् <b>%1</b> लेखं विलोपयितुम् इच्छति ?</qt>"
 
-#: src/mainwidget.cpp:1105
+#: src/mainwidget.cpp:1106
 #, kde-format
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
 msgid_plural ""
@@ -2159,13 +2159,13 @@ msgid_plural ""
 msgstr[0] "<qt>किं भवान् निश्चयेन चयनितं लेखं विलोपयितुम् इच्छति?</qt>"
 msgstr[1] "<qt>किं भवान् निश्चयेन %1 चयनितलेखान् विलोपयितुम् इच्छति?</qt>"
 
-#: src/mainwidget.cpp:1112
+#: src/mainwidget.cpp:1113
 #, kde-format
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "लेखं विलोपयतु"
 
-#: src/mainwidget.cpp:1294
+#: src/mainwidget.cpp:1295
 #, kde-format
 msgid "Networking is available now."
 msgstr "अधुना संजालीकरणं उपलभ्यते।"
