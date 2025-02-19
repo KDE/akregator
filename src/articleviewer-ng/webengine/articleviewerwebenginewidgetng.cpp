@@ -129,7 +129,6 @@ void ArticleViewerWebEngineWidgetNg::slotPrint()
 
 void ArticleViewerWebEngineWidgetNg::slotPrintPreview()
 {
-    qDebug() << " print preview ";
     auto printMessage = new MessageViewer::PrintMessage(this);
     printMessage->setParentWidget(this);
     printMessage->setView(mArticleViewerNg);
