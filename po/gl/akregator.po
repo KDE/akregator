@@ -341,7 +341,7 @@ msgstr "Lapelas"
 #: configuration/ui/settings_browser.ui:116 interfaces/akregator.kcfg:207
 #, kde-format
 msgid "Always show the tab bar"
-msgstr "Amosar sempre a barra de lapelas."
+msgstr "Amosar sempre a barra de separadores."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_CloseButtonOnTabs)
 #: configuration/ui/settings_browser.ui:123
@@ -844,7 +844,7 @@ msgstr "Actividade de Plasma activada"
 #, kde-format
 msgid "Always show the tab bar, even when only one tab is open"
 msgstr ""
-"Amosar sempre a barra de lapelas, mesmo cando só haxa unha lapela aberta."
+"Amosar sempre a barra de separadores, mesmo cando só haxa unha lapela aberta."
 
 #. i18n: ectx: label, entry, group (Browser)
 #: interfaces/akregator.kcfg:212
