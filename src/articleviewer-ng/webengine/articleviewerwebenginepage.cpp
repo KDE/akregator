@@ -33,11 +33,7 @@ ArticleViewerWebEnginePage::ArticleViewerWebEnginePage(QObject *parent)
     settings()->setAttribute(QWebEngineSettings::XSSAuditingEnabled, false);
     settings()->setAttribute(QWebEngineSettings::NavigateOnDropEnabled, false);
 
-#if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)
     connect(this, &QWebEnginePage::permissionRequested, this, &ArticleViewerWebEnginePage::slotFeaturePermissionRequested);
-#else
-    connect(this, &QWebEnginePage::featurePermissionRequested, this, &ArticleViewerWebEnginePage::slotFeaturePermissionRequested);
-#endif
     connect(this, &QWebEnginePage::loadProgress, this, &ArticleViewerWebEnginePage::onLoadProgress);
 }
 
@@ -56,18 +52,10 @@ bool ArticleViewerWebEnginePage::acceptNavigationRequest(const QUrl &url, Naviga
     return true;
 }
 
-#if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)
 void ArticleViewerWebEnginePage::slotFeaturePermissionRequested(QWebEnginePermission feature)
-#else
-void ArticleViewerWebEnginePage::slotFeaturePermissionRequested(const QUrl &url, QWebEnginePage::Feature feature)
-#endif
 {
-#if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)
     // Denied all permissions.
     feature.deny();
-#else
-    setFeaturePermission(url, feature, QWebEnginePage::PermissionDeniedByUser);
-#endif
 }
 
 void ArticleViewerWebEnginePage::onLoadProgress()
