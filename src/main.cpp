@@ -39,6 +39,27 @@ public:
 
     int activate(const QStringList &args, const QString &workingDir) override;
 
+    bool eventFilter(QObject *obj, QEvent *ev) override
+    {
+        // The QWindow of the the Akregator::MainWindow has been observed
+        // to be destroyed and recreated (asynchronously) during initialisation
+        // of the article viewer.  If this is detected, then ensure that the
+        // KStatusNotifierItem is informed.
+        if (ev->type() == QEvent::WinIdChange && obj == mMainWindow) {
+            setTrayIconAssociatedWindow();
+        }
+        return (false);
+    }
+
+    void setTrayIconAssociatedWindow()
+    {
+        // The 'associatedWindow' test below will be true if the window has been
+        // destroyed, because KStatusNotifierItem stores it as a QPointer.
+        if (Akregator::TrayIcon::getInstance() && !Akregator::TrayIcon::getInstance()->associatedWindow()) {
+            Akregator::TrayIcon::getInstance()->setAssociatedWindow(mMainWindow->windowHandle());
+        }
+    }
+
 private:
     Akregator::MainWindow *mMainWindow = nullptr;
 };
@@ -58,14 +79,16 @@ int Application::activate(const QStringList &args, const QString &workingDir)
             if (!parser->isSet(QStringLiteral("hide-mainwindow"))) {
                 mMainWindow->show();
             }
-            if (Akregator::TrayIcon::getInstance() && !Akregator::TrayIcon::getInstance()->associatedWindow()) {
-                Akregator::TrayIcon::getInstance()->setAssociatedWindow(mMainWindow->windowHandle());
-            }
+
+            setTrayIconAssociatedWindow();
+            installEventFilter(this);
+
             akr.call(QStringLiteral("openStandardFeedList"));
         }
 
         akr.call(QStringLiteral("handleCommandLine"), args);
     }
+
     return PimUniqueApplication::activate(args, workingDir);
 }
 } // namespace Akregator
@@ -100,6 +123,7 @@ int main(int argc, char **argv)
         return 0;
     }
 #endif
+
     if (!Akregator::Application::start(args)) {
         qCWarning(AKREGATOR_LOG) << "akregator is already running, exiting.";
         exit(0);
