@@ -5,7 +5,7 @@
 # Author: Lliehu
 # Author: Niklas Laxström
 # Author: Smar
-# SPDX-FileCopyrightText: 2009, 2010, 2011, 2013, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024 Tommi Nieminen <translator@legisign.org>
+# SPDX-FileCopyrightText: 2009, 2010, 2011, 2013, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025 Tommi Nieminen <translator@legisign.org>
 # Teemu Rytilahti <teemu.rytilahti@kde-fi.org>, 2004, 2008.
 # Teemu Rytilahti <teemu.rytilahti@d5k.net>, 2005.
 # Teemu Rytilahti <tpr@d5k.net>, 2005.
@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-02-18 00:41+0000\n"
-"PO-Revision-Date: 2024-12-09 21:01+0200\n"
+"PO-Revision-Date: 2025-02-17 20:14+0200\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
 "Language: fi\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 22.12.3\n"
+"X-Generator: Lokalize 23.08.5\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -1493,20 +1493,16 @@ msgid "Copy &Link Address"
 msgstr "Kopioi &linkin osoite"
 
 #: src/actions/actionmanagerimpl.cpp:666
-#, fuzzy, kde-format
-#| msgctxt "@action"
-#| msgid "Copy Image Location"
+#, kde-format
 msgctxt "@action"
 msgid "Copy Image URL"
-msgstr "Kopioi kuvan sijainti"
+msgstr "Kopioi kuvan verkko-osoite"
 
 #: src/actions/actionmanagerimpl.cpp:672
-#, fuzzy, kde-format
-#| msgctxt "@action"
-#| msgid "Save Image On Disk…"
+#, kde-format
 msgctxt "@action"
 msgid "Save Image…"
-msgstr "Tallenna kuva levylle…"
+msgstr "Tallenna kuva…"
 
 #: src/actions/actions.cpp:19
 #, kde-format
