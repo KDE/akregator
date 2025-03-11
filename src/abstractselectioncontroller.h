@@ -23,7 +23,6 @@ namespace Akregator
 class ArticleModel;
 class FeedList;
 class FolderExpansionHandler;
-class SubscriptionListModel;
 class TreeNode;
 
 namespace Filters
