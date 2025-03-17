@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-02-18 00:41+0000\n"
-"PO-Revision-Date: 2025-01-26 18:35+0530\n"
+"PO-Revision-Date: 2025-03-16 15:40+0530\n"
 "Last-Translator: Kishore G <kishore96@gmail.com>\n"
 "Language-Team: Tamil <kde-i18n-doc@kde.org>\n"
 "Language: ta\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 24.12.1\n"
+"X-Generator: Lokalize 24.12.3\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -1893,7 +1893,7 @@ msgstr ""
 #: src/data/akregator_part.rc:14 src/data/akregator_shell.rc:11
 #, kde-format
 msgid "&Edit"
-msgstr ""
+msgstr "திருத்து"
 
 #. i18n: ectx: Menu (view)
 #: src/data/akregator_part.rc:22 src/data/akregator_shell.rc:16
@@ -1909,10 +1909,9 @@ msgstr "&செல்"
 
 #. i18n: ectx: Menu (feed)
 #: src/data/akregator_part.rc:50 src/data/akregator_shell.rc:29
-#, fuzzy, kde-format
-#| msgid "Feed"
+#, kde-format
 msgid "Fee&d"
-msgstr "உள்ளீடு"
+msgstr "தொகுப்பு"
 
 #. i18n: ectx: Menu (article)
 #: src/data/akregator_part.rc:63 src/data/akregator_shell.rc:34
@@ -1922,9 +1921,9 @@ msgstr "&கட்டுரை"
 
 #. i18n: ectx: Menu (settings)
 #: src/data/akregator_part.rc:80 src/data/akregator_shell.rc:39
-#, fuzzy, kde-format
+#, kde-format
 msgid "&Settings"
-msgstr "செலுத்தலை நீக்கு"
+msgstr "அமைப்புகள்"
 
 #. i18n: ectx: Menu (help)
 #: src/data/akregator_part.rc:90
@@ -1940,9 +1939,9 @@ msgstr "பிரதான கருவிப்பட்டை"
 
 #. i18n: ectx: Menu (file)
 #: src/data/akregator_shell.rc:4
-#, fuzzy, kde-format
+#, kde-format
 msgid "&File"
-msgstr "&கட்டுரை"
+msgstr "கோப்பு"
 
 #: src/feed/feedlist.cpp:160
 #, kde-format
@@ -2027,23 +2026,21 @@ msgstr " (படிக்காத கட்டுரைகள் இல்ல�
 
 #: src/formatter/grantleeviewformatter.cpp:164
 #: src/formatter/grantleeviewformatter.cpp:219
-#, fuzzy, kde-format
+#, kde-format
 msgid " (1 unread article)"
 msgid_plural " (%1 unread articles)"
-msgstr[0] "(%1 படிக்காத கட்டுரைகள்)"
-msgstr[1] ""
+msgstr[0] " (1 படிக்காத கட்டுரை)"
+msgstr[1] " (%1 படிக்காத கட்டுரைகள்)"
 
 #: src/formatter/grantleeviewformatter.cpp:179
-#, fuzzy, kde-format
-#| msgid "<b>Description:</b> %1<br><br>"
+#, kde-format
 msgid "<b>Description:</b> %1<br />"
-msgstr "<b>விவரம்:</b> %1<br><br>"
+msgstr "<b>விவரணம்:</b> %1<br><br>"
 
 #: src/formatter/grantleeviewformatter.cpp:186
-#, fuzzy, kde-format
-#| msgid "<b>Homepage:</b> <a href=\"%1\">%2</a>"
+#, kde-format
 msgid "<b>Homepage:</b> <a href=\"%1\">%1</a>"
-msgstr "<b>ஆரம்ப பக்கம்:</b> <a href=\"%1\">%2</a>"
+msgstr "<b>முகப்புப்பக்கம்:</b> <a href=\"%1\">%1</a>"
 
 #: src/formatter/grantleeviewformatter.cpp:193
 #, fuzzy, kde-format
@@ -2145,10 +2142,10 @@ msgid ""
 msgstr "<qt>நீங்கள் கண்டிப்பாக இந்த ஃபீட்டை நீக்க விரும்புகிறீர்களா</qt>"
 
 #: src/mainwidget.cpp:823
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
-msgstr "&செலுத்தப்பட்ட அனைத்தையும் படித்ததாக மாற்று"
+msgstr "அனைத்து தொகுப்புகளையும் படித்ததாகக் குறிப்பது"
 
 #: src/mainwidget.cpp:887 src/mainwidget.cpp:896 src/mainwidget.cpp:1298
 #, kde-format
@@ -2300,18 +2297,16 @@ msgid "Could not fetch feed: %1"
 msgstr ""
 
 #: src/subscription/subscriptionlistmodel.cpp:300
-#, fuzzy, kde-format
-#| msgid "Feeds"
+#, kde-format
 msgctxt "Feedlist's column header"
 msgid "Feeds"
-msgstr "செலுத்தல்கள்"
+msgstr "தொகுப்புகள்"
 
 #: src/subscription/subscriptionlistmodel.cpp:302
-#, fuzzy, kde-format
-#| msgid "Unread"
+#, kde-format
 msgctxt "Feedlist's column header"
 msgid "Unread"
-msgstr "படிக்காத"
+msgstr "படிக்காதவை"
 
 #: src/subscription/subscriptionlistmodel.cpp:304
 #, fuzzy, kde-format
@@ -2358,17 +2353,16 @@ msgid "Close All Tabs"
 msgstr "பட்டியை முடு"
 
 #: src/trayicon.cpp:54
-#, fuzzy, kde-format
-#| msgid " (no unread articles)"
+#, kde-format
 msgid "There are no unread articles"
-msgstr " (படிக்காத கட்டுரைகள் இல்லை)"
+msgstr "படிக்காத கட்டுரைகள் இல்லை"
 
 #: src/trayicon.cpp:54
-#, fuzzy, kde-format
+#, kde-format
 msgid "1 unread article"
 msgid_plural "%1 unread articles"
-msgstr[0] "(%1 படிக்காத கட்டுரைகள்)"
-msgstr[1] ""
+msgstr[0] "1 படிக்காத கட்டுரை"
+msgstr[1] "%1 படிக்காத கட்டுரைகள்"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, Akregator::AddFeedWidgetBase)
 #: src/ui/addfeedwidgetbase.ui:14
@@ -2451,9 +2445,9 @@ msgstr "காப்பகம்"
 
 #. i18n: ectx: property (text), widget (QRadioButton, rb_globalDefault)
 #: src/ui/feedpropertieswidgetbase.ui:209
-#, fuzzy, kde-format
+#, kde-format
 msgid "&Use default settings"
-msgstr "முன்னிருப்பு அமைப்புகளை பயன்படுத்து"
+msgstr "இயல்பிருப்பு அமைப்புகளைப் பயன்படுத்து"
 
 #. i18n: ectx: property (text), widget (QRadioButton, rb_disableArchiving)
 #: src/ui/feedpropertieswidgetbase.ui:219
@@ -2513,9 +2507,9 @@ msgid "Mark Article as Read"
 msgstr "செலுத்தப்பட்ட அனைத்தையும் படித்ததாக மாற்று"
 
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:100
-#, fuzzy, kde-format
+#, kde-format
 msgid "Mark Article as Unread"
-msgstr "செலுத்தப்பட்ட அனைத்தையும் படித்ததாக மாற்று"
+msgstr "கட்டுரையைப் படிக்காத‍தாக‍ குறி"
 
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:102
 #, kde-format
@@ -2556,15 +2550,13 @@ msgid "Add new whatsnew widget."
 msgstr ""
 
 #: src/widgets/searchbar.cpp:44
-#, fuzzy, kde-format
-#| msgid "Search articles…"
+#, kde-format
 msgctxt "@info:placeholder"
 msgid "Search articles…"
 msgstr "கட்டுரைகளில் தேடு…"
 
 #: src/widgets/searchbar.cpp:127
-#, fuzzy, kde-format
-#| msgid "Search articles…<%1>"
+#, kde-format
 msgctxt "@info:placeholder"
 msgid "Search articles…<%1>"
 msgstr "கட்டுரைகளில் தேடு…<%1>"
@@ -2575,30 +2567,28 @@ msgid "All Articles"
 msgstr "அனைத்து கட்டுரைகள்"
 
 #: src/widgets/statussearchbuttons.cpp:39
-#, fuzzy, kde-format
-#| msgid "New"
+#, kde-format
 msgctxt "New articles filter"
 msgid "New"
-msgstr "புதிய"
+msgstr "புதியவை"
 
 #: src/widgets/statussearchbuttons.cpp:48
-#, fuzzy, kde-format
-#| msgid "Unread"
+#, kde-format
 msgctxt "Unread articles filter"
 msgid "Unread"
-msgstr "படிக்காத"
+msgstr "படிக்காத‍து"
 
 #: src/widgets/statussearchbuttons.cpp:57
 #, kde-format
 msgctxt "Read articles filter"
 msgid "Read"
-msgstr ""
+msgstr "படித்தவை"
 
 #: src/widgets/statussearchbuttons.cpp:66
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Important articles filter"
 msgid "Important"
-msgstr "அனைத்தையும் படிக்காததாக மாற்று"
+msgstr "முக்கியமானவை"
 
 #~ msgid "KDE Dot News"
 #~ msgstr "கே.டீ.யீ. டாட் செய்திகள்"
