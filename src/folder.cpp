@@ -348,7 +348,7 @@ void Folder::slotAddToFetchQueue(FetchQueue *queue, bool intervalFetchOnly)
             if (i->fetchInterval() != -1) {
                 i->slotAddToFetchQueue(queue, intervalFetchOnly);
             } else {
-                qCDebug(AKREGATOR_LOG) << " excluded feeds: " << i->description();
+                // qCDebug(AKREGATOR_LOG) << " excluded feeds: " << i->description();
             }
         } else {
             i->slotAddToFetchQueue(queue, intervalFetchOnly);
