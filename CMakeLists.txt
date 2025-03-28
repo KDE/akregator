@@ -1,14 +1,14 @@
 # SPDX-License-Identifier: CC0-1.0
 # SPDX-FileCopyrightText: none
 cmake_minimum_required(VERSION 3.16 FATAL_ERROR)
-set(PIM_VERSION "6.3.90")
+set(PIM_VERSION "6.4.0")
 project(akregator VERSION ${PIM_VERSION})
 
 # Update it for each release
 set(AKREGATOR_RELEASE_VERSION_DATE "25.04.17") # yy.MM.dd
 
 set(KF_MIN_VERSION "6.9.0")
-set(RELEASE_SERVICE_VERSION "25.03.90")
+set(RELEASE_SERVICE_VERSION "25.04.0")
 set(QT_REQUIRED_VERSION "6.7.0")
 
 # Use true if stable version => we will check specific version
@@ -41,7 +41,7 @@ include(ECMFeatureSummary)
 set(KTEXTADDONS_MIN_VERSION "1.5.4")
 
 # Do NOT add quote
-set(KDEPIM_DEV_VERSION rc)
+set(KDEPIM_DEV_VERSION)
 
 # add an extra space
 if(DEFINED KDEPIM_DEV_VERSION)
