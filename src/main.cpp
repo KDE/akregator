@@ -11,6 +11,7 @@
 #include "akregator_options.h"
 #include "config-akregator.h"
 #include "mainwindow.h"
+#include "systemsignalhandlers.h"
 #include "trayicon.h"
 #if AKREGATOR_WITH_KUSERFEEDBACK
 #include "userfeedback/akregatoruserfeedbackprovider.h"
@@ -137,5 +138,8 @@ int main(int argc, char **argv)
         }
     }
 
+#ifdef USE_SYSTEM_SIGNAL_HANDLERS
+    SystemSignalHandlers::RegisterTerminationSignalHandlers();
+#endif
     return app.exec();
 }
