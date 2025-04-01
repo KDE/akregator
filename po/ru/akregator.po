@@ -7,7 +7,7 @@
 # Artem Sereda <overmind88@gmail.com>, 2010, 2011.
 # Julia Dronova <juliette.tux@gmail.com>, 2012, 2013.
 # Alexander Lakhin <exclusion@gmail.com>, 2013.
-# SPDX-FileCopyrightText: 2018, 2024 Olesya Gerasimenko <gammaray@basealt.ru>
+# SPDX-FileCopyrightText: 2018, 2024, 2025 Olesya Gerasimenko <gammaray@basealt.ru>
 # Мария Шикунова <translation-team@basealt.ru>, 2021, 2022.
 # SPDX-FileCopyrightText: 2024 Alexander Yavorsky <kekcuha@gmail.com>
 msgid ""
@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-02-18 00:41+0000\n"
-"PO-Revision-Date: 2024-11-13 14:59+0300\n"
+"PO-Revision-Date: 2025-03-31 14:56+0300\n"
 "Last-Translator: Olesya Gerasimenko <translation-team@basealt.ru>\n"
 "Language-Team: Basealt Translation Team\n"
 "Language: ru\n"
@@ -1503,20 +1503,16 @@ msgid "Copy &Link Address"
 msgstr "&Скопировать адрес ссылки"
 
 #: src/actions/actionmanagerimpl.cpp:666
-#, fuzzy, kde-format
-#| msgctxt "@action"
-#| msgid "Copy Image Location"
+#, kde-format
 msgctxt "@action"
 msgid "Copy Image URL"
-msgstr "Копировать адрес изображения"
+msgstr "Скопировать URL-адрес изображения"
 
 #: src/actions/actionmanagerimpl.cpp:672
-#, fuzzy, kde-format
-#| msgctxt "@action"
-#| msgid "Save Image On Disk…"
+#, kde-format
 msgctxt "@action"
 msgid "Save Image…"
-msgstr "Сохранить изображение на диск…"
+msgstr "Сохранить изображение…"
 
 #: src/actions/actions.cpp:19
 #, kde-format
@@ -2569,7 +2565,7 @@ msgstr "Открыть во внешнем браузере"
 
 #: src/whatsnew/whatsnewtranslations.cpp:16
 msgid "Add windows support"
-msgstr ""
+msgstr "Добавление поддержки Windows."
 
 #: src/whatsnew/whatsnewtranslations.cpp:25
 #, kde-format
