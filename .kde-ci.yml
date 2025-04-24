@@ -21,3 +21,4 @@ Dependencies:
 
 Options:
  require-passing-tests-on: ['@all']
+ tests-run-in-parallel: True
