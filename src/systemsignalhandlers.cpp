@@ -10,7 +10,7 @@
 #ifdef USE_SYSTEM_SIGNAL_HANDLERS
 
 #include <QCoreApplication>
-#include <signal.h>
+#include <csignal>
 
 static void GracefulQuit(int)
 {
