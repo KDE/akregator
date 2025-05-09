@@ -1,14 +1,14 @@
 # SPDX-License-Identifier: CC0-1.0
 # SPDX-FileCopyrightText: none
 cmake_minimum_required(VERSION 3.16 FATAL_ERROR)
-set(PIM_VERSION "6.4.1")
+set(PIM_VERSION "6.4.2")
 project(akregator VERSION ${PIM_VERSION})
 
 # Update it for each release
-set(AKREGATOR_RELEASE_VERSION_DATE "25.05.05") # yy.MM.dd
+set(AKREGATOR_RELEASE_VERSION_DATE "25.06.02") # yy.MM.dd
 
 set(KF_MIN_VERSION "6.9.0")
-set(RELEASE_SERVICE_VERSION "25.04.1")
+set(RELEASE_SERVICE_VERSION "25.04.2")
 set(QT_REQUIRED_VERSION "6.7.0")
 
 # Use true if stable version => we will check specific version
