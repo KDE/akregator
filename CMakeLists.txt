@@ -101,7 +101,7 @@ set_package_properties(KF6UserFeedback PROPERTIES DESCRIPTION "User Feedback lib
 include_directories(${akregator_SOURCE_DIR} ${akregator_BINARY_DIR})
 add_definitions(-DTRANSLATION_DOMAIN=\"akregator\")
 add_definitions(-DQT_NO_CONTEXTLESS_CONNECT)
-ecm_set_disabled_deprecation_versions(QT 6.9.0
+ecm_set_disabled_deprecation_versions(QT 6.10.0
      KF 6.13.0
 )
 if(TARGET KF6::UserFeedbackWidgets)
