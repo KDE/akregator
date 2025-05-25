@@ -56,7 +56,7 @@ msgstr ""
 "Per a més informació quant a l'ús d'Akregator, aneu fins al <a href='https://"
 "kontact.kde.org/components/akregator/'>lloc web d'Akregator</a>. Si no voleu "
 "tornar a veure esta pàgina mai més, <a href='config:/"
-"disable_introduction'>feu clic ací</a>."
+"disable_introduction'>cliqueu ací</a>."
 
 #: src/formatter/html/combinedview.html:24
 msgid "Mark as Read"
