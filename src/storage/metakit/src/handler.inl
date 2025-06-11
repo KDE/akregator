@@ -62,7 +62,7 @@ d4_inline int c4_HandlerSeq::NumRows() const
 
   return _numRows;
 }
-  
+
 d4_inline int c4_HandlerSeq::NumHandlers() const
 {
   return _handlers.GetSize();
@@ -71,7 +71,7 @@ d4_inline int c4_HandlerSeq::NumHandlers() const
 d4_inline c4_Handler& c4_HandlerSeq::NthHandler(int index_) const
 {
   d4_assert(_handlers.GetAt(index_) != 0);
-  
+
   return *(c4_Handler*) _handlers.GetAt(index_);
 }
 

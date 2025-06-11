@@ -309,7 +309,7 @@ t4_i32 c4_Allocator::ReduceFrags(int goal_, int sHi_, int sLo_)
 {
     // drastic fail-safe measure: remove small gaps if vec gets too long
     // this will cause some lost free space but avoids array overflow
-    // the lost space will most probably be re-used after the next commit
+    // the lost space will most probably be reused after the next commit
 
     int limit = GetSize() - 2;
     t4_i32 loss = 0;

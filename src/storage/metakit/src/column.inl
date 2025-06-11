@@ -59,7 +59,7 @@ d4_inline const t4_byte* c4_Column::LoadNow(t4_i32 offset_)
     offset_ += _slack;
 
   auto* ptr = (t4_byte*) _segments.GetAt(fSegIndex(offset_));
-  return ptr + fSegRest(offset_); 
+  return ptr + fSegRest(offset_);
 }
 
 /////////////////////////////////////////////////////////////////////////////

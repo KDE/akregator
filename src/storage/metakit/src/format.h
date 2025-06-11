@@ -17,4 +17,3 @@ extern int f4_ClearFormat(char);
 extern int f4_CompareFormat(char, const c4_Bytes &, const c4_Bytes &);
 
 /////////////////////////////////////////////////////////////////////////////
-

@@ -6,6 +6,6 @@ macro(akregator_widgets_unittest _source)
         TEST_NAME ${_name}
         NAME_PREFIX "akregator-widgets"
         LINK_LIBRARIES Qt::Test akregatorprivate Qt::Widgets
-)
+    )
 endmacro()
 akregator_widgets_unittest(statussearchbuttonstest.cpp)

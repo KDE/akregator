@@ -449,7 +449,7 @@ void c4_HandlerSeq::ExchangeEntries(int srcPos_, c4_HandlerSeq &dst_, int
             }
 #endif
             // 10-4-2002: Need to use copies in case either item points into
-            // memory that could move, or if access re-uses a shared buffer.
+            // memory that could move, or if access reuses a shared buffer.
             // The special cases are sufficiently tricky that it's NOT being
             // optimized for now (temp bufs, mmap ptrs, c4_Bytes buffering).
 

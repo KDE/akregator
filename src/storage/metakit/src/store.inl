@@ -10,7 +10,7 @@
 
 d4_inline c4_Notifier::c4_Notifier (c4_Sequence* origin_)
   : _origin (origin_), _chain (nullptr), _next (nullptr),
-    _type (kNone), _index (0), _propId (0), _count (0), 
+    _type (kNone), _index (0), _propId (0), _count (0),
     _cursor (nullptr), _bytes (nullptr)
 {
   d4_assert(_origin != 0);

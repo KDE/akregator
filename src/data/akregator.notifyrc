@@ -74,7 +74,7 @@ Comment[zh_TW]=Akregator
 Name=Feed added
 Name[af]=Stroom bygevoeg
 Name[ar]=أُضيفت تغذية
-Name[az]=Lent əlavə edildi 
+Name[az]=Lent əlavə edildi
 Name[bg]=Добавена е емисия
 Name[bs]=Dovod dodan
 Name[ca]=Font afegida
@@ -333,4 +333,3 @@ Comment[x-test]=xxNew articles were fetchedxx
 Comment[zh_CN]=获取了新文章
 Comment[zh_TW]=已取得新文章
 Action=Popup
-

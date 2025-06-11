@@ -50,7 +50,7 @@ c4_Bytes::c4_Bytes(const void *buf_, int len_, bool copy_) : _size(len_)
     , _copy
         (copy_)
 {
-    _contents = (t4_byte *)buf_; // moved out of intializers for DEC CXX 5.7
+    _contents = (t4_byte *)buf_; // moved out of initializers for DEC CXX 5.7
     if (_copy) {
         _MakeCopy();
     }
@@ -60,7 +60,7 @@ c4_Bytes::c4_Bytes(const void *buf_, int len_, bool copy_) : _size(len_)
 c4_Bytes::c4_Bytes(const c4_Bytes &src_) : _size(src_._size)
     , _copy(src_._copy)
 {
-    _contents = src_._contents; // moved out of intializers for DEC CXX 5.7
+    _contents = src_._contents; // moved out of initializers for DEC CXX 5.7
     if (_copy || _contents == src_._buffer) {
         _MakeCopy();
     }

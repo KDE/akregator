@@ -20,4 +20,3 @@ extern c4_CustomViewer *f4_CreateIndexed(c4_Sequence &, c4_Sequence &, const
                                          c4_View &, bool = false);
 
 /////////////////////////////////////////////////////////////////////////////
-

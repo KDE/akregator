@@ -18,4 +18,3 @@ extern c4_Sequence *f4_CreateSort(c4_Sequence &, c4_Sequence * = nullptr);
 extern c4_Sequence *f4_CreateProject(c4_Sequence &, c4_Sequence &, bool, c4_Sequence * = nullptr);
 
 /////////////////////////////////////////////////////////////////////////////
-

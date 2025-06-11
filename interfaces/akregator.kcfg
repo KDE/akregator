@@ -196,7 +196,7 @@
     <label>Enabled Plasma Activity</label>
     <default>false</default>
   </entry>
- 
+
  </group>
  <group name="Browser" >
   <entry key="EnableJavascript" type="Bool">

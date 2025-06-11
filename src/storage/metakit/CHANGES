@@ -18,7 +18,7 @@
     This is a potentially serious bug (though all data can still be
     recovered if dealt with right away).  When an I/O error occurs
     under specific circumstances in the commit, the resulting file
-    may be left in an improper state.  Full details are desribed in
+    may be left in an improper state.  Full details are described in
     http://www.equi4.com/pipermail/metakit/2005-November/002144.html
 
 2005-11-16    Ranlib called too early
@@ -34,7 +34,7 @@
 
     Added logic to disable mmap calls on some HP-UX versions.
     Plus other tweaks for the Tcl build.  Mods by Matt Newman.
-    
+
 2005-10-01    The HP-UX fix did not work on macosx.
 
     Made the 2005-09-06 change below conditional on __hpux, so that
@@ -152,7 +152,7 @@
 
     Fixed configure.in + Makefile.in to support static builds again.
     The Tcl static target is now Mk4tcl.a i.s.o. libmk4tcl.a (ouch).
-    
+
     For Tcl and Python, the following now works on my Linux box:
     	../unix/conficure --with-tcl=/usr/include --with-tcl=/usr
     More elaborate params are also supported, see "configure --help".
@@ -174,7 +174,7 @@
 2004-03-09    Added new build files for Mk4tcl
 
     Added the TEA configure system to tcl/, so that Mk4tcl can now also
-    be built with that approach.  This supercedes the current Mk4tcl
+    be built with that approach.  This supersedes the current Mk4tcl
     code in unix/Makefile.in, which will probably be dropped soon.
 
 2004-03-08    Added DESTDIR to makefile
@@ -191,7 +191,7 @@
 
     Added a new win/msvc70/ directory with all MSVC 7.0 project files.
     With thanks to David Van Maren for sharing his work on this.
-    
+
     Also added David McNab's info on how to build Mk4py with older
     versions of Python.  See python/README-dmn for details.
 
@@ -246,7 +246,7 @@
 
 2004-01-18    Fixed rare but very serious subview resizing bug
 
-    Fixed rare but serious file damaging bug, when resizing a comitted
+    Fixed rare but serious file damaging bug, when resizing a committed
     subview to empty, committing, and then resizing back to containing
     data.  Added new s48 test to force this bug to the surface.
 
@@ -259,7 +259,7 @@
     "myview[name:A]", the release code would crash on a null pointer
     dereference at some point.  Changed so the code now treats any type
     it does not know about as "I" (works a bit better than using "S").
-   
+
     The debug build still hits an assertion, as before.  Added s47 test.
 
 2004-01-03    Fixed typo in PyView.cpp
@@ -272,7 +272,7 @@
     interface (not in Mk4tcl), which returns a view, instead of a list
     of integers.  In the case of 1 row, optimization was done wrongly,
     omitting the sort as well as the remapping.  Fixed.
-    
+
     Oomk needs to be patched to work around this (don't sort if n=1).
 
 2003-12-13    Tweak to avoid two unisgned/signed compiler warnings
@@ -307,7 +307,7 @@
 
 2003-10-10    Added c22 test
 
-    Added test to make sure groubpy/select bug is not present in the C++
+    Added test to make sure groupby/select bug is not present in the C++
     core (bts #75 reports the bug found for Mk4tcl/Mk4too).
 
 2003-10-01    Fixed bugs in Tcl test suite
@@ -315,7 +315,7 @@
     The tests in tcl/test/ were incorrectly closing non-test datafiles,
     such as the "exe" one open while tclkit runs, and needed when a
     slave is created which needs to re-run init.tcl etc from VFS.
-    
+
 2003-09-30    Python 2.3.1 & cleanup
 
     Tweaked PWONumber.h and PyRowRef.cpp and MSVC6 project so it can
@@ -534,7 +534,7 @@
 
 2003-01-17    Add synonym for mk4tcl "info" command
 
-   To avoid a name clash, "$view info" can now also be written as 
+   To avoid a name clash, "$view info" can now also be written as
    "$view properties" (or an abbreviation of that).
 
 2003-01-16    Allow access to root view in Mk4tcl
@@ -570,7 +570,7 @@
 2002-12-23    Tweak for Borland builder 5 & 6
 
    Changed #ifdef line 22 in univ.cpp (fix by S. Cusack).
-   
+
 2002-12-09    Fixed bug in selection view change propagation
 
    Fixed a bug when a row is inserted in a view on which a selection
@@ -595,7 +595,7 @@
 
    Small changes to the source code to avoid errors from the MWCW 8.x
    compilers.  Omit stricmp and strdup with CW version >= 8.
-   
+
 2002-11-04    Fixed typo in Makefile
 
    This prevented Mk4py from getting installed (thanks F. Majid).
@@ -613,7 +613,7 @@
    done directly from a mmap'ed file (this can hang a process, hard).
 
    Added a "mktcl" subproject to msevc3, to build "Mk4tcl.dll".
-   
+
 2002-10-27    Added multi-thread support for Unix
 
    Added changes to support same appartment-threading model on Unix as
@@ -633,7 +633,7 @@
 2002-10-16    Added "dup" subcommand to Mk4tcl OO
 
    There was no way to duplicate a view in the mk4tcl OO interface.
-   Needed to properly deal with re-use / ref counts - added "dup".
+   Needed to properly deal with reuse / ref counts - added "dup".
 
 2002-10-11    Cast widened in Mk4tcl, support q4_TINY def for Mk4tcl
 
@@ -735,7 +735,7 @@
    (or smaller if there are over 1000 rows).
 
    The bug is forced by new (frightfully short) test cases s44 + s45.
-   Fixed by performing a slightly less agressive optimization in the
+   Fixed by performing a slightly less aggressive optimization in the
    c4_FormatB::Commit (which is also shared with strings, type 'S').
 
    Removed a "--exclude" from diff, which is not portable enough.
@@ -748,7 +748,7 @@
 
    Various bug fixes, fixed a number of platform issues.
 
-2002-04-28    Fix small-int re-use view bug
+2002-04-28    Fix small-int reuse view bug
 
    A nasty bug was reported by VPI which caused upper bytes to be
    truncated from int values.  The problem appears when storing ints of
@@ -772,7 +772,7 @@
    deletes were done, and can cause incorrect data to be copied.  It is
    relatively hard to reproduce (the test dataset was 12 Mb), but the
    change explains things fully and is in fact very small.
-   
+
 2002-04-02    Fix bug in debug code
 
    In remap.cpp line 531, a debug assertion was moved in the wrong way.
@@ -791,7 +791,7 @@
 
 2002-03-31    ##############################################    MK 2.4.4
 
-   Various bug fixes and (blocked view) performance enhacements.
+   Various bug fixes and (blocked view) performance enhancements.
 
 2002-03-28    More blocked optimizations, IRIX tweaks
 
@@ -847,7 +847,7 @@
    works.  This is not the case in commit-extend mode, where a load will
    read th state as it was before extending - it cannot know there is
    more.
-  
+
    Added test s40 to verify this case.  Also reorged a few more files
    (tbasics and tstore4 split into 2 each).
 
@@ -1081,7 +1081,7 @@
    the commit.  Fixed, and added test s37 to catch this case.
 
    Don't strip symbols from installed static libs (whoops!).
-   
+
 2001-10-31    Fixed Mk4py error flag clear on delete
 
    When deleting rows, a slice was constructed from a PWOSequence, which
@@ -1170,7 +1170,7 @@
     - row.__index__ returns current position in view
     - view.setsize(n) added, extends/truncates number of rows
     - generalized makerow to allow any sequence, not just lists
-    
+
     Changed PyRowRef to inc/dec the reference it has to the underlying
     view.  Should prevent dangling pointer problems, such as deleting a
     storage while rows are still in use.  This adds a little overhead.
@@ -1180,7 +1180,7 @@
 2001-06-12    Close DB filedesc on exec
 
     Added an fcntl call to fileio.cpp, so that on Unix database file
-    decriptors are closed on exec (relevant when doing "exec ... &").
+    descriptors are closed on exec (relevant when doing "exec ... &").
 
 2001-05-30    Fixed mem-leak in Mk4tcl
 
@@ -1188,7 +1188,7 @@
 
 2001-05-28    Security fix in Tclkit
 
-    See end of the tcl/kit/README file for deatils.
+    See end of the tcl/kit/README file for details.
 
 2001-03-30    Fixed long-standing commit bug
 
@@ -1278,7 +1278,7 @@
     repository is up to date again.
 
     Mk4py: improved number conversion and error handling.
-    
+
 2000-11-03    ##############################################    MK 2.3.3
 
     First final release candidate
@@ -1313,7 +1313,7 @@
 
     Source code tweaks to avoid DEC CXX 5.7 compiler errors.  Add
     no-inherit flags for Win32 to not leak file handles.
-    
+
 2000-08-27    Allow derived row deletes in Mk4py
 
     Added code to PyView.cpp to handle deletes (and slice deletes) in
@@ -1342,7 +1342,7 @@
 
     This bug *only* applies to bytes properties in pre-2.0 data files.
     Conversion of 2.0x files is unaffected.
-    
+
 2000-07-25    Fixed new self-referential views
 
     The new recursive / self-referential view definition style has been
@@ -1355,7 +1355,7 @@
 
     Solved a very long-standing bug in restructuring, which caused
     incorrect (non-zero, small) default values when a c4_DoubleProp was
-    added to a view which already had rows.  
+    added to a view which already had rows.
 
 2000-07-18    Added remapwith and pair to Mk4py
 
@@ -1424,7 +1424,7 @@
 2000-06-16    Improved modifiable custom viewers
 
     The Pair and Slice viewers now support set/insert/remove, while
-    RemapWith/Concat/Rename support setting values.  
+    RemapWith/Concat/Rename support setting values.
 
 2000-06-15    Many changes to the Tcl code, hashing
 
@@ -1783,7 +1783,7 @@
 
     Yet more fixes in comparisons, this is all one problem, caused by
     changes in caching for ints, floats, and doubles.  Added B24 test.
-    These (last?) problems occured in custom / compound views.
+    These (last?) problems occurred in custom / compound views.
 
 1999-11-08  MK 1.9f     Fixed sort comparisons
 
@@ -1826,7 +1826,7 @@
     to a view of which the underlying storage object goes away will end
     up with the same number of rows as before, but no properties at all.
 
-    Fixed a problem which would have occured when properties are being
+    Fixed a problem which would have occurred when properties are being
     "restructured away" and then committed.  The solution is to check
     for this and delete all such properties at commit time.
 

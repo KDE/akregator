@@ -7,7 +7,7 @@
 
 /////////////////////////////////////////////////////////////////////////////
 // Reordered inlines so they are always defined before their first use
- 
+
 d4_inline c4_Cursor c4_RowRef::operator& () const
 {
   return _cursor;
@@ -124,7 +124,7 @@ d4_inline int c4_View::NumProperties() const
 }
 
 /** Find the index of a property, given its id
- * @param propId_ Unique id associated to a specific propoerty
+ * @param propId_ Unique id associated to a specific property
  * @return The index of the property, or -1 of it was not found
  */
 d4_inline int c4_View::FindProperty(int propId_)
@@ -188,7 +188,7 @@ d4_inline bool operator<= (const c4_View& a_, const c4_View& b_)
 
     /// True if first view is greater or equal to second view
 d4_inline bool operator>= (const c4_View& a_, const c4_View& b_)
-{                     
+{
   return !(a_ < b_);
 }
 
@@ -297,7 +297,7 @@ d4_inline bool operator<= (c4_Cursor a_, c4_Cursor b_)
 }
 
 d4_inline bool operator>= (c4_Cursor a_, c4_Cursor b_)
-{                     
+{
   return !(a_ < b_);
 }
 
@@ -313,7 +313,7 @@ d4_inline c4_RowRef c4_RowRef::operator= (const c4_RowRef& rowRef_)
 {
   if (_cursor != rowRef_._cursor)
     _cursor._seq->SetAt(_cursor._index, &rowRef_);
-  
+
   return *this;
 }
 
@@ -325,7 +325,7 @@ d4_inline c4_View c4_RowRef::Container() const
 d4_inline bool operator== (const c4_RowRef& a_, const c4_RowRef& b_)
 {
   return (&a_)._seq->Compare((&a_)._index, &b_) == 0;
-}               
+}
 
 d4_inline bool operator!= (const c4_RowRef& a_, const c4_RowRef& b_)
 {
@@ -336,7 +336,7 @@ d4_inline bool operator< (const c4_RowRef& a_, const c4_RowRef& b_)
 {
       // 25-5-1998: don't exchange a and b, this comparison is -not- symmetric
   return (&a_)._seq->Compare((&a_)._index, &b_) < 0;
-}               
+}
 
 d4_inline bool operator> (const c4_RowRef& a_, const c4_RowRef& b_)
 {
@@ -350,7 +350,7 @@ d4_inline bool operator<= (const c4_RowRef& a_, const c4_RowRef& b_)
 }
 
 d4_inline bool operator>= (const c4_RowRef& a_, const c4_RowRef& b_)
-{                     
+{
   return !(a_ < b_);
 }
 
@@ -360,15 +360,15 @@ d4_inline bool operator>= (const c4_RowRef& a_, const c4_RowRef& b_)
     /// Construct an empty binary object
 d4_inline c4_Bytes::c4_Bytes ()
     : _size (0), _copy (false)
-{ 
-  _contents = nullptr; // moved out of intializers for DEC CXX 5.7
+{
+  _contents = nullptr; // moved out of initializers for DEC CXX 5.7
 }
 
     /// Construct an object with contents, no copy
 d4_inline c4_Bytes::c4_Bytes (const void* buf_, int len_)
     : _size (len_), _copy (false)
 {
-  _contents = (t4_byte*) buf_; // moved out of intializers for DEC CXX 5.7
+  _contents = (t4_byte*) buf_; // moved out of initializers for DEC CXX 5.7
 }
 
 /// Returns a pointer to the contents.
@@ -400,7 +400,7 @@ d4_inline c4_Bytes::~c4_Bytes ()
 {
   _LoseCopy();
 }
-    
+
 /////////////////////////////////////////////////////////////////////////////
 // c4_Reference
 
@@ -519,7 +519,7 @@ d4_inline char c4_Property::Type() const
 /////////////////////////////////////////////////////////////////////////////
 // c4_IntProp
 
-d4_inline c4_IntProp::c4_IntProp (const char* name_) 
+d4_inline c4_IntProp::c4_IntProp (const char* name_)
     : c4_Property ('I', name_)
 {
 }
@@ -548,18 +548,18 @@ d4_inline c4_Row c4_IntProp::AsRow(t4_i32 value_) const
   operator() (row) = value_;
   return row;
 }
-    
+
 d4_inline c4_Row c4_IntProp::operator[] (t4_i32 value_) const
 {
   return AsRow(value_);
 }
-    
+
 /////////////////////////////////////////////////////////////////////////////
 #if !defined(q4_TINY)
 /////////////////////////////////////////////////////////////////////////////
 // c4_LongProp
 
-d4_inline c4_LongProp::c4_LongProp (const char* name_) 
+d4_inline c4_LongProp::c4_LongProp (const char* name_)
     : c4_Property ('L', name_)
 {
 }
@@ -588,16 +588,16 @@ d4_inline c4_Row c4_LongProp::AsRow(t4_i64 value_) const
   operator() (row) = value_;
   return row;
 }
-    
+
 d4_inline c4_Row c4_LongProp::operator[] (t4_i64 value_) const
 {
   return AsRow(value_);
 }
-    
+
 /////////////////////////////////////////////////////////////////////////////
 // c4_FloatProp
 
-d4_inline c4_FloatProp::c4_FloatProp (const char* name_) 
+d4_inline c4_FloatProp::c4_FloatProp (const char* name_)
     : c4_Property ('F', name_)
 {
 }
@@ -626,16 +626,16 @@ d4_inline c4_Row c4_FloatProp::AsRow(double value_) const
   operator() (row) = value_;
   return row;
 }
-    
+
 d4_inline c4_Row c4_FloatProp::operator[] (double value_) const
 {
   return AsRow(value_);
 }
-    
+
 /////////////////////////////////////////////////////////////////////////////
 // c4_DoubleProp
 
-d4_inline c4_DoubleProp::c4_DoubleProp (const char* name_) 
+d4_inline c4_DoubleProp::c4_DoubleProp (const char* name_)
     : c4_Property ('D', name_)
 {
 }
@@ -664,22 +664,22 @@ d4_inline c4_Row c4_DoubleProp::AsRow(double value_) const
   operator() (row) = value_;
   return row;
 }
-    
+
 d4_inline c4_Row c4_DoubleProp::operator[] (double value_) const
 {
   return AsRow(value_);
 }
-    
+
 /////////////////////////////////////////////////////////////////////////////
 #endif // !q4_TINY
 /////////////////////////////////////////////////////////////////////////////
 // c4_BytesProp
 
-d4_inline c4_BytesProp::c4_BytesProp (const char* name_) 
+d4_inline c4_BytesProp::c4_BytesProp (const char* name_)
     : c4_Property ('B', name_)
 {
 }
-    
+
 d4_inline c4_BytesProp::~c4_BytesProp ()
 = default;
 
@@ -704,20 +704,20 @@ d4_inline c4_Row c4_BytesProp::AsRow(const c4_Bytes& value_) const
   operator() (row) = value_;
   return row;
 }
-    
+
 d4_inline c4_Row c4_BytesProp::operator[] (const c4_Bytes& value_) const
 {
   return AsRow(value_);
 }
-    
+
 /////////////////////////////////////////////////////////////////////////////
 // c4_StringProp
 
-d4_inline c4_StringProp::c4_StringProp (const char* name_) 
+d4_inline c4_StringProp::c4_StringProp (const char* name_)
     : c4_Property ('S', name_)
 {
 }
-    
+
 d4_inline c4_StringProp::~c4_StringProp ()
 = default;
 
@@ -742,12 +742,12 @@ d4_inline c4_Row c4_StringProp::AsRow(const char* value_) const
   operator() (row) = value_;
   return row;
 }
-    
+
 d4_inline c4_Row c4_StringProp::operator[] (const char* value_) const
 {
   return AsRow(value_);
 }
-    
+
 /////////////////////////////////////////////////////////////////////////////
 // c4_ViewProp
 
@@ -755,7 +755,7 @@ d4_inline c4_ViewProp::c4_ViewProp (const char* name_)
     : c4_Property ('V', name_)
 {
 }
-    
+
 d4_inline c4_ViewProp::~c4_ViewProp ()
 = default;
 
@@ -780,19 +780,19 @@ d4_inline c4_Row c4_ViewProp::AsRow(const c4_View& value_) const
   operator() (row) = value_;
   return row;
 }
-    
+
 d4_inline c4_Row c4_ViewProp::operator[] (const c4_View& value_) const
 {
   return AsRow(value_);
 }
-    
+
 /////////////////////////////////////////////////////////////////////////////
 // c4_Strategy
 
     /// True if we can do I/O with this object
 d4_inline bool c4_Strategy::IsValid() const
-{ 
-  return false; 
+{
+  return false;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -821,7 +821,7 @@ d4_inline c4_Dependencies* c4_Sequence::GetDependencies() const
 
 /////////////////////////////////////////////////////////////////////////////
 // Reordered inlines so they are always used after their definition
- 
+
 /// Dereferences this cursor to "almost" a row.
 d4_inline c4_RowRef c4_Cursor::operator* () const
 {
@@ -850,7 +850,7 @@ d4_inline c4_RowRef c4_View::operator[] (
 {
   return GetAt(index_);
 }
-    
+
 /** Element access, shorthand for GetAt
  * @return A reference to the specified row in the view.
  * This reference can be used on either side of the assignment operator.

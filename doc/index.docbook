@@ -14,13 +14,13 @@
 <author>
 <firstname>Frank</firstname>
 <surname>Osterfeld</surname>
-<affiliation><address><email>frank.osterfeld@kdemail.net</email>  
+<affiliation><address><email>frank.osterfeld@kdemail.net</email>
 </address></affiliation>
 </author>
 <author>
 <firstname>Anne-Marie</firstname>
 <surname>Mahfouf</surname>
-<affiliation><address>&Anne-Marie.Mahfouf.mail; 
+<affiliation><address>&Anne-Marie.Mahfouf.mail;
 </address></affiliation>
 </author>
 
@@ -229,11 +229,11 @@ On pages with this <quote>RSS</quote> or this icon<inlinemediaobject>
 </mediaobject>
 </screenshot>
 </para>
-<para>Switch to &akregator;, select <guimenuitem>Add Feed...</guimenuitem> and the 
+<para>Switch to &akregator;, select <guimenuitem>Add Feed...</guimenuitem> and the
 <guilabel>Feed URL</guilabel> is filled out with the link address.
 </para>
 
-<para>All feeds added using this procedures appear under <guilabel>Imported Feeds</guilabel> folder 
+<para>All feeds added using this procedures appear under <guilabel>Imported Feeds</guilabel> folder
 in the feed list, and from there you can use your mouse to drag it to a different folder.
 </para>
 </sect1>
@@ -385,7 +385,7 @@ start.</para>
 <varlistentry>
 <term><guilabel>Use the browser cache (less network traffic)</guilabel></term>
 <listitem><para>When enabled, the &kde;-wide browser cache settings are used when
-updating feeds. You can configure the &kde;-wide browser cache 
+updating feeds. You can configure the &kde;-wide browser cache
 in &konqueror;'s configuration dialog.</para>
 <note><para>You should leave this option enabled whenever possible. Disabling
 this option leads to increased network traffic. The traffic caused by
@@ -442,7 +442,7 @@ tab.</para>
 </listitem>
 </varlistentry>
 <varlistentry>
-<term><guilabel>Limit feed archive size to:</guilabel></term> 
+<term><guilabel>Limit feed archive size to:</guilabel></term>
 <listitem><para>If the number of articles exceeds the chosen limit, the oldest
 articles are deleted. Note that flagged articles are ignored when counting the
 number of articles: if your limit is 500, and you have 510 unflagged and 50
@@ -628,7 +628,7 @@ close tabs.</para>
 </varlistentry>
 <varlistentry>
 <term><guilabel>Open links in new tab instead of in new window</guilabel></term>
-<listitem><para>If checked, &akregator; will open a link which would normally open in a new window (external browser) in 
+<listitem><para>If checked, &akregator; will open a link which would normally open in a new window (external browser) in
 a new tab instead.</para>
 </listitem>
 </varlistentry>
@@ -741,7 +741,7 @@ article as read after a specified number of seconds.</para>
 <guimenu>File</guimenu>
 <guimenuitem>Import Feeds</guimenuitem>
 </menuchoice></term>
-<listitem><para><action>Open</action> the import feeds dialog to load <quote>OPML Outlines</quote> 
+<listitem><para><action>Open</action> the import feeds dialog to load <quote>OPML Outlines</quote>
 with feed subscriptions.
 </para></listitem>
 </varlistentry>
@@ -805,11 +805,11 @@ the Properties dialog</para></listitem>
 <varlistentry>
 <term><menuchoice><shortcut><keycombo
 action="simul">&Ctrl;&Shift;<keycap>1</keycap></keycombo></shortcut>
-<guimenu>View</guimenu><guimenuitem>Normal View</guimenuitem></menuchoice>, 
+<guimenu>View</guimenu><guimenuitem>Normal View</guimenuitem></menuchoice>,
 <menuchoice><shortcut><keycombo
 action="simul">&Ctrl;&Shift;<keycap>2</keycap></keycombo></shortcut>
 <guimenu>View</guimenu><guimenuitem>Widescreen View</guimenuitem>
-</menuchoice> and 
+</menuchoice> and
 <menuchoice><shortcut><keycombo
 action="simul">&Ctrl;&Shift;<keycap>3</keycap></keycombo></shortcut>
 <guimenu>View</guimenu><guimenuitem>Combined View</guimenuitem>
@@ -1016,8 +1016,8 @@ tab within &akregator;</para></listitem>
 <guimenuitem>Open in Background Tab</guimenuitem>
 </menuchoice></term>
 <listitem><para><action>Load</action> the current article in
-into a new tab, but not automatically activate that tab. 
-That is useful to browse a feed, open all interesting articles into background 
+into a new tab, but not automatically activate that tab.
+That is useful to browse a feed, open all interesting articles into background
 tabs and later read them all.
 </para></listitem>
 </varlistentry>
@@ -1047,8 +1047,8 @@ important</para></listitem>
 <guimenuitem>Mark as</guimenuitem>
 </menuchoice></term>
 <listitem><para><action>Mark</action> the current article as
-Read <keycombo action="simul">&Ctrl;<keycap>E</keycap></keycombo>, 
-New <keycombo action="simul">&Ctrl;<keycap>N</keycap></keycombo> or 
+Read <keycombo action="simul">&Ctrl;<keycap>E</keycap></keycombo>,
+New <keycombo action="simul">&Ctrl;<keycap>N</keycap></keycombo> or
 Unread <keycombo action="simul">&Ctrl;<keycap>U</keycap></keycombo></para></listitem>
 </varlistentry>
 <varlistentry>
@@ -1084,7 +1084,7 @@ action="simul">&Ctrl;<keycap>S</keycap></keycombo></shortcut>
 <guimenu>Article</guimenu>
 <guimenuitem>Share Article</guimenuitem>
 </menuchoice></term>
-<listitem><para>Use this action you to share news 
+<listitem><para>Use this action you to share news
  with your friends using the microblog services identi.ca and twitter.
 </para></listitem>
 </varlistentry>
@@ -1121,7 +1121,7 @@ menu items, for more information read the sections about the <ulink url="help:/f
 of the &kde; Fundamentals.
 </para>
 
-<para>Many actions provided in the menu are also available in the context menus of the feed list, 
+<para>Many actions provided in the menu are also available in the context menus of the feed list,
 the article list and the article viewer.
 </para>
 
@@ -1142,7 +1142,7 @@ Program copyright 2004-2010 Akregator authors
 </para>
 
 <para>
-Documentation copyright 2006 
+Documentation copyright 2006
 Frank Osterfeld <email>frank.osterfeld@kdemail.net</email>
 </para>
 

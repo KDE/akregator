@@ -9,7 +9,7 @@
 // c4_String
 
 #if defined(q4_MFC)                      // Microsoft Foundation Classes
-    
+
 #elif defined(q4_STD)                    // STL and standard strings
 
 /// Construct empty string
@@ -61,20 +61,20 @@ d4_inline char c4_String::operator[] (int i) const
 {
     return at(i);
 }
-    
+
 d4_inline c4_String operator+ (const c4_String& a_, const c4_String& b_)
 {
-    return (d4_std::string) a_ + (d4_std::string) b_; 
+    return (d4_std::string) a_ + (d4_std::string) b_;
 }
 
 d4_inline c4_String operator+ (const c4_String& a_, const char* b_)
 {
-    return (d4_std::string) a_ + (d4_std::string) b_; 
+    return (d4_std::string) a_ + (d4_std::string) b_;
 }
 
 d4_inline c4_String operator+ (const char* a_, const c4_String& b_)
 {
-    return (d4_std::string) a_ + (d4_std::string) b_; 
+    return (d4_std::string) a_ + (d4_std::string) b_;
 }
 
 d4_inline const c4_String& c4_String::operator+= (const c4_String& s_)
@@ -117,7 +117,7 @@ d4_inline c4_String c4_String::Right(int nCount_) const
         nCount_ = length();
     return substr(length() - nCount_, nCount_);
 }
-                
+
 d4_inline int c4_String::Compare(const char* str_) const
 {
     return compare(str_);
@@ -167,7 +167,7 @@ d4_inline bool operator!= (const c4_String& a_, const c4_String& b_)
 {
     return (d4_std::string) a_ != (d4_std::string) b_;
 }
-    
+
 d4_inline bool operator== (const c4_String& a_, const char* b_)
 {
     return (d4_std::string) a_ == (d4_std::string) b_;
@@ -237,7 +237,7 @@ d4_inline char c4_String::operator[] (int i) const
 {
     return Data()[i];
 }
-    
+
 d4_inline int c4_String::GetLength() const
 {
     return _value[1] != 255 ? _value[1] : FullLength();

@@ -24,7 +24,7 @@
     <text>&amp;Go</text>
     <Merge/>
   </Menu>
-  
+
   <Menu noMerge="1" name="feed">
     <text>Fee&amp;d</text>
     <Merge/>
@@ -34,7 +34,7 @@
   <text>&amp;Article</text>
     <Merge/>
   </Menu>
-  
+
   <Menu noMerge="1" name="settings" >
    <text>&amp;Settings</text>
    <Merge name="StandardToolBarMenuHandler" />

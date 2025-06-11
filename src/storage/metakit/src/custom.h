@@ -57,4 +57,3 @@ extern c4_CustomViewer *f4_CustJoin(c4_Sequence &, const c4_View &, const
                                     c4_View &, bool);
 
 /////////////////////////////////////////////////////////////////////////////
-

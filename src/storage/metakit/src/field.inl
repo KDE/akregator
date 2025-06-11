@@ -24,12 +24,12 @@ d4_inline const c4_String& c4_Field::Name() const
 {
   return _name;
 }
-  
+
 d4_inline char c4_Field::OrigType() const
 {
   return _type;
 }
-  
+
 d4_inline char c4_Field::Type() const
 {
   return _type == 'M' ? 'B' : _type;

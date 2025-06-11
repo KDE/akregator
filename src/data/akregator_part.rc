@@ -96,7 +96,7 @@
   </MenuBar>
 
   <ToolBar noMerge="1" name="mainToolBar" fullWidth="true"><text>Main Toolbar</text>
-    <Action name="feed_add"/>    
+    <Action name="feed_add"/>
     <Action name="feed_fetch"/>
     <Action name="feed_fetch_all"/>
     <Action name="feed_stop"/>

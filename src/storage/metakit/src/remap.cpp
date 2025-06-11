@@ -109,11 +109,11 @@ public:
 };
 
 /////////////////////////////////////////////////////////////////////////////
-// The following contains code derived froms Python's dictionaries, hence:
+// The following contains code derived forms Python's dictionaries, hence:
 //  SPDX-FileCopyrightText: 1991-1995 Stichting Mathematisch Centrum Amsterdam,
 //  The Netherlands.
 // Reduced and turned into a fast C++ class by Christian Tismer, hence:
-//  SPDX-FileCopyrightText: 1999 Christian Tismer. 
+//  SPDX-FileCopyrightText: 1999 Christian Tismer.
 // Vectorized and reorganized further by Jean-Claude Wippler.
 /////////////////////////////////////////////////////////////////////////////
 
@@ -308,7 +308,7 @@ int c4_HashViewer::LookDict(t4_i32 hash_, c4_Cursor cursor_) const
         if (incr > mask) {
             incr ^= poly;
         }
-        /* This will implicitely clear the highest bit */
+        /* This will implicitly clear the highest bit */
     }
 
     return freeslot != -1 ? freeslot : i;
