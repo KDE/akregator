@@ -20,8 +20,7 @@
 > <affiliation
 ><address
 ><email
->frank.osterfeld@kdemail.net</email
->  
+>frank.osterfeld@kdemail.net</email>
 </address
 ></affiliation>
 </author>
@@ -635,8 +634,7 @@ say how to start it -->
 <term
 ><guilabel
 >Limiter la taille de l'archivage de flux à : </guilabel
-></term
-> 
+></term>
 <listitem
 ><para
 >Si le nombre d'articles est plus grand que la limite choisie, les articles les plus anciens seront supprimés. Remarquez que les articles marqués seront ignorés lors du compte du nombre d'articles : si votre limite est 500, et que vous avez 510 articles non marqués et 50 marqués, &akregator; va ignorer les 50 articles marqués et va seulement supprimer les 10 articles non marqués les plus anciens. Donc dans cet exemple, 550 articles seraient conservés.</para>
@@ -1820,7 +1818,7 @@ action="simul"
 ></term>
 <listitem
 ><para
->Use this action you to share news 
+>Use this action you to share news
  with your friends using the microblog services identi.ca and twitter.
 </para
 ></listitem>
