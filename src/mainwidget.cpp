@@ -124,7 +124,7 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
     if (!newFeaturesMD5.isEmpty()) {
         const bool hasNewFeature = (Settings::self()->previousNewFeaturesMD5() != newFeaturesMD5);
         if (hasNewFeature) {
-            auto whatsNewMessageWidget = new PimCommon::WhatsNewMessageWidget(this);
+            auto whatsNewMessageWidget = new PimCommon::WhatsNewMessageWidget(this, i18n("Akregator"));
             whatsNewMessageWidget->setWhatsNewInfos(translations.createWhatsNewInfo());
             whatsNewMessageWidget->setObjectName(QStringLiteral("whatsNewMessageWidget"));
             topLayout->addWidget(whatsNewMessageWidget);
@@ -1323,7 +1323,7 @@ void MainWidget::slotFocusQuickSearch()
 void MainWidget::slotWhatsNew()
 {
     WhatsNewTranslations translations;
-    PimCommon::WhatsNewDialog dlg(translations.createWhatsNewInfo(), this);
+    PimCommon::WhatsNewDialog dlg(translations.createWhatsNewInfo(), this, i18n("Akregator"));
     dlg.updateInformations();
     dlg.exec();
 }
