@@ -20,8 +20,7 @@
 > <affiliation
 ><address
 ><email
->frank.osterfeld@kdemail.net</email
->  
+>frank.osterfeld@kdemail.net</email>
 </address
 ></affiliation>
 </author>
@@ -661,8 +660,7 @@ say how to start it -->
 <term
 ><guilabel
 >Limita la dimensione della fonte a:</guilabel
-></term
-> 
+></term>
 <listitem
 ><para
 >Se il numero degli articoli eccede il limite scelto, gli articoli più vecchi vengono eliminati. Nota che gli articoli segnalati come importanti sono ignorati durante il conteggio degli articoli: se il limite è 500, ed hai 510 articoli non segnalati e 50 articoli segnalati, &akregator; ignorerà i 50 articoli segnalati e cancellerà solo i 10 articoli più vecchi che non hai segnalato. Quindi, in questo esempio, 550 articoli saranno conservati.</para>
@@ -1846,7 +1844,7 @@ action="simul"
 ></term>
 <listitem
 ><para
->Use this action you to share news 
+>Use this action you to share news
  with your friends using the microblog services identi.ca and twitter.
 </para
 ></listitem>
