@@ -2596,9 +2596,3 @@ msgstr "Четене"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "Важно"
-
-#~ msgid "KDE Dot News"
-#~ msgstr "Новини на KDE"
-
-#~ msgid "Linux.com"
-#~ msgstr "Linux.com"
