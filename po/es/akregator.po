@@ -1,13 +1,13 @@
-# Translation of akregator to Spanish
+# Spanish translations for akregator.po package.
+# Copyright (C) 2004-2025 This file is copyright:
+# This file is distributed under the same license as the akregator package.
 #
-# SPDX-FileCopyrightText: 2004, 2005, 2006, 2007 Juan Manuel Garcia Molina <juanma@superiodico.net>
-# SPDX-FileCopyrightText: 2006, 2007 Juan Manuel García Molina <juanma@superiodico.net>
+# SPDX-FileCopyrightText: 2004, 2005, 2006, 2007 Juan Manuel García Molina <juanma@superiodico.net>
 # SPDX-FileCopyrightText: 2006 Pablo de Vicente <pablo.devicente@gmail.com>
 # SPDX-FileCopyrightText: 2007 Enrique Matias Sanchez (aka Quique) <cronopios@gmail.com>
 # SPDX-FileCopyrightText: 2007, 2008 Jaime Robles <jaime@kde.org>
 # SPDX-FileCopyrightText: 2008, 2009 Franco Mariluis <fmariluis@gmail.com>
 # SPDX-FileCopyrightText: 2009 Dario Andres Rodriguez <andresbajotierra@gmail.com>
-# SPDX-FileCopyrightText: 2009 Dario Andres Rodriguez <andrebajotierra@gmail.com>
 # SPDX-FileCopyrightText: 2009, 2010, 2019, 2020, 2021, 2022, 2023, 2024, 2025 Eloy Cuadra <ecuadra@eloihr.net>
 # SPDX-FileCopyrightText: 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019 Javier Viñal <fjvinal@gmail.com>
 msgid ""
@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-02-18 00:41+0000\n"
-"PO-Revision-Date: 2025-01-19 17:46+0100\n"
+"PO-Revision-Date: 2025-06-29 14:00+0100\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
@@ -955,7 +955,7 @@ msgstr "Akregator"
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "New Feed..."
-msgstr "Nueva fuente..."
+msgstr "Nueva fuente…"
 
 #: kontactplugin/akregator_plugin.cpp:32
 #, kde-format
@@ -1155,7 +1155,7 @@ msgstr "&Borrar fuente"
 #: src/actions/actionmanagerimpl.cpp:70 src/actions/actionmanagerimpl.cpp:260
 #, kde-format
 msgid "&Edit Feed…"
-msgstr "&Editar fuente..."
+msgstr "&Editar fuente…"
 
 #: src/actions/actionmanagerimpl.cpp:71 src/actions/actionmanagerimpl.cpp:317
 #, kde-format
@@ -1185,17 +1185,17 @@ msgstr "&Marcar fuentes como leídas"
 #: src/actions/actionmanagerimpl.cpp:202
 #, kde-format
 msgid "&Import Feeds…"
-msgstr "&Importar fuentes..."
+msgstr "&Importar fuentes…"
 
 #: src/actions/actionmanagerimpl.cpp:206
 #, kde-format
 msgid "&Export Feeds…"
-msgstr "&Exportar fuentes..."
+msgstr "&Exportar fuentes…"
 
 #: src/actions/actionmanagerimpl.cpp:211
 #, kde-format
 msgid "&Configure Akregator…"
-msgstr "&Configurar Akregator..."
+msgstr "&Configurar Akregator…"
 
 #: src/actions/actionmanagerimpl.cpp:230
 #, kde-format
@@ -1210,12 +1210,12 @@ msgstr "Volver a cargar todas las pestañas"
 #: src/actions/actionmanagerimpl.cpp:242
 #, kde-format
 msgid "&Add Feed…"
-msgstr "&Añadir fuente..."
+msgstr "&Añadir fuente…"
 
 #: src/actions/actionmanagerimpl.cpp:248
 #, kde-format
 msgid "Ne&w Folder…"
-msgstr "Nue&va carpeta..."
+msgstr "Nue&va carpeta…"
 
 #: src/actions/actionmanagerimpl.cpp:273
 #, kde-format
@@ -1342,12 +1342,12 @@ msgstr "Mover el nodo a la derecha"
 #: src/actions/actionmanagerimpl.cpp:433
 #, kde-format
 msgid "Send &Link Address…"
-msgstr "En&viar dirección del enlace..."
+msgstr "En&viar dirección del enlace…"
 
 #: src/actions/actionmanagerimpl.cpp:438
 #, kde-format
 msgid "Send &File…"
-msgstr "Enviar &archivo..."
+msgstr "Enviar &archivo…"
 
 #: src/actions/actionmanagerimpl.cpp:444
 #, kde-format
@@ -1469,7 +1469,7 @@ msgstr "Leer texto"
 #: src/actions/actionmanagerimpl.cpp:629
 #, kde-format
 msgid "&Find in Message…"
-msgstr "&Buscar en el mensaje..."
+msgstr "&Buscar en el mensaje…"
 
 #: src/actions/actionmanagerimpl.cpp:640
 #, kde-format
@@ -1485,7 +1485,7 @@ msgstr "Activar pestaña %1"
 #: src/actions/actionmanagerimpl.cpp:659
 #, kde-format
 msgid "&Save Link As…"
-msgstr "Guardar en&lace como..."
+msgstr "Guardar en&lace como…"
 
 #: src/actions/actionmanagerimpl.cpp:663
 #, kde-format
@@ -1502,7 +1502,7 @@ msgstr "Copiar URL de imagen"
 #, kde-format
 msgctxt "@action"
 msgid "Save Image…"
-msgstr "Guardar imagen..."
+msgstr "Guardar imagen…"
 
 #: src/actions/actions.cpp:19
 #, kde-format
@@ -1533,7 +1533,7 @@ msgstr "Fuente no encontrada en %1."
 #: src/addfeeddialog.cpp:121
 #, kde-format
 msgid "Feed found, downloading…"
-msgstr "Fuente encontrada. Descargando..."
+msgstr "Fuente encontrada. Descargando…"
 
 #: src/akregator_options.h:21 src/akregator_options.h:29
 #, kde-format
@@ -1855,7 +1855,7 @@ msgstr ""
 #: src/command/loadfeedlistcommand.cpp:129
 #, kde-format
 msgid "Opening Feed List…"
-msgstr "Abriendo la lista de fuentes..."
+msgstr "Abriendo la lista de fuentes…"
 
 #: src/command/loadfeedlistcommand.cpp:143
 #, kde-format
@@ -2102,7 +2102,7 @@ msgstr "Sin título"
 #: src/frame/frame.cpp:140
 #, kde-format
 msgid "Loading…"
-msgstr "Cargando..."
+msgstr "Cargando…"
 
 #: src/frame/frame.cpp:156
 #, kde-format
@@ -2178,7 +2178,7 @@ msgstr "La red no está disponible."
 #: src/mainwidget.cpp:904
 #, kde-format
 msgid "Fetching Feeds…"
-msgstr "Obteniendo fuentes..."
+msgstr "Obteniendo fuentes…"
 
 #: src/mainwidget.cpp:1103
 #, kde-format
@@ -2569,13 +2569,13 @@ msgstr "Añadir nuevo widget para las novedades."
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "Search articles…"
-msgstr "Buscar artículos..."
+msgstr "Buscar artículos…"
 
 #: src/widgets/searchbar.cpp:127
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "Search articles…<%1>"
-msgstr "Buscar artículos...<%1>"
+msgstr "Buscar artículos…<%1>"
 
 #: src/widgets/statussearchbuttons.cpp:29
 #, kde-format
@@ -2605,146 +2605,3 @@ msgstr "Leídos"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "Importantes"
-
-#~ msgid "KDE Dot News"
-#~ msgstr "KDE Dot News"
-
-#~ msgid "Linux.com"
-#~ msgstr "Linux.com"
-
-#~ msgctxt "@option:check"
-#~ msgid "Limit to the selected activities:"
-#~ msgstr "Limitar a las actividades seleccionadas:"
-
-#~ msgctxt "@label:textbox"
-#~ msgid ""
-#~ "If you limit this account to activity, it will be shown in Ruqola only "
-#~ "when you are in those activities. Furthermore, when you switch to an "
-#~ "activity it should not be available in, it will automatically be hidden."
-#~ msgstr ""
-#~ "Si limita esta cuenta a actividades, se mostrará en Ruqola solo cuando "
-#~ "esté en dichas actividades. Además, cuando cambie a una actividad en la "
-#~ "que no deba estar disponible, se ocultará automáticamente."
-
-#~ msgid "Write Error"
-#~ msgstr "Error de escritura"
-
-#~ msgid "Misc"
-#~ msgstr "Misc."
-
-#~ msgid "Access Key Enabled"
-#~ msgstr "Clave de acceso activada"
-
-#~ msgid "Filter"
-#~ msgstr "Filtro"
-
-#~ msgid "We hope that you will enjoy Akregator."
-#~ msgstr "Esperamos que disfrute de Akregator."
-
-#~ msgid "Thank you, The Akregator Team"
-#~ msgstr "Gracias, el equipo de Akregator"
-
-#~ msgid "&Add Feed..."
-#~ msgstr "&Añadir fuente..."
-
-#~ msgid "Send &Link Address..."
-#~ msgstr "Enviar la dirección del en&lace..."
-
-#~ msgctxt "@title:window"
-#~ msgid "Print Document"
-#~ msgstr "Imprimir documento"
-
-#~ msgid "Advanced Feed Reader Settings"
-#~ msgstr "Configuración avanzada del lector de fuentes"
-
-#~ msgid "(c), 2004 - 2008 Frank Osterfeld"
-#~ msgstr "© 2004 - 2008 Frank Osterfeld"
-
-#~ msgid "Configure Feed Reader Appearance"
-#~ msgstr "Configurar la apariencia del lector de fuentes"
-
-#~ msgid "Configure Feed Reader Archive"
-#~ msgstr "Configurar el archivo comprimido del lector de fuentes"
-
-#~ msgid "Configure Feed Reader Browser"
-#~ msgstr "Configurar el navegador de lector de fuentes"
-
-#~ msgid "Configure Feeds"
-#~ msgstr "Configurar fuentes"
-
-#~ msgid "Configure Plugins"
-#~ msgstr "Configurar complementos"
-
-#~ msgid "(c), 2016-2021 Laurent Montel"
-#~ msgstr "© 2016-2021 Laurent Montel"
-
-#~ msgid "(c), 2021 Laurent Montel"
-#~ msgstr "© 2021 Laurent Montel"
-
-#~ msgid "Configure User Feedback"
-#~ msgstr "Configurar los comentarios del usuario"
-
-#~ msgid "(c), 2020-2021 Laurent Montel"
-#~ msgstr "© 2020-2021 Laurent Montel"
-
-#~ msgid "Archive"
-#~ msgstr "Archivo comprimido"
-
-#~ msgid "Archive backend:"
-#~ msgstr "Motor de archivo comprimido:"
-
-#~ msgid "&Configure..."
-#~ msgstr "&Configurar..."
-
-#~ msgid "Metakit"
-#~ msgstr "Metakit"
-
-#~ msgid "Unable to load storage backend plugin \"%1\". No feeds are archived."
-#~ msgstr ""
-#~ "No se puede cargar el complemento del motor de almacenamiento «%1». No se "
-#~ "ha archivado ninguna fuente."
-
-#~ msgid "Plugin error"
-#~ msgstr "Error del complemento"
-
-#~ msgid "No Archive"
-#~ msgstr "Sin archivo comprimido"
-
-#~ msgctxt "Name of the plugin"
-#~ msgid "Name"
-#~ msgstr "Nombre"
-
-#~ msgctxt "Library name"
-#~ msgid "Library"
-#~ msgstr "Biblioteca"
-
-#~ msgctxt "Plugin authors"
-#~ msgid "Authors"
-#~ msgstr "Autores"
-
-#~ msgctxt "Plugin authors' emaila addresses"
-#~ msgid "Email"
-#~ msgstr "Correo"
-
-#~ msgctxt "Plugin version"
-#~ msgid "Version"
-#~ msgstr "Versión"
-
-#~ msgctxt "Framework version plugin requires"
-#~ msgid "Framework Version"
-#~ msgstr "Versión de la infraestructura"
-
-#~ msgid "Plugin Information"
-#~ msgstr "Información del complemento"
-
-#~ msgid "Brazilian Portuguese feeds"
-#~ msgstr "Fuentes de portugués de Brasil"
-
-#~ msgid "Planet KDE Brazilian Portuguese"
-#~ msgstr "Planeta KDE portugués de Brasil"
-
-#~ msgid "Share"
-#~ msgstr "Compartir"
-
-#~ msgid "Zoom:"
-#~ msgstr "Zum:"
