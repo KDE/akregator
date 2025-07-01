@@ -23,7 +23,4 @@ target_link_libraries(
 
 ########### install files ###############
 
-install(
-    TARGETS kontact_akregatorplugin
-    DESTINATION ${KDE_INSTALL_PLUGINDIR}/pim6/kontact
-)
+install(TARGETS kontact_akregatorplugin DESTINATION ${KDE_INSTALL_PLUGINDIR}/pim6/kontact)

@@ -32,9 +32,18 @@ if(TARGET KF6::UserFeedbackWidgets)
     target_link_libraries(akregatorinterfaces KF6::UserFeedbackWidgets)
 endif()
 
-target_link_libraries(akregatorinterfaces KF6::ConfigGui Qt::Widgets)
+target_link_libraries(
+    akregatorinterfaces
+    KF6::ConfigGui
+    Qt::Widgets
+)
 if(COMPILE_WITH_UNITY_CMAKE_SUPPORT)
-    set_target_properties(akregatorinterfaces PROPERTIES UNITY_BUILD ON)
+    set_target_properties(
+        akregatorinterfaces
+        PROPERTIES
+            UNITY_BUILD
+                ON
+    )
 endif()
 target_include_directories(
     akregatorinterfaces
@@ -44,11 +53,18 @@ target_include_directories(
 
 set_target_properties(
     akregatorinterfaces
-    PROPERTIES VERSION ${KDEPIM_LIB_VERSION} SOVERSION ${KDEPIM_LIB_SOVERSION}
+    PROPERTIES
+        VERSION
+            ${KDEPIM_LIB_VERSION}
+        SOVERSION
+            ${KDEPIM_LIB_SOVERSION}
 )
 
 install(
-    TARGETS akregatorinterfaces ${KDE_INSTALL_TARGETS_DEFAULT_ARGS}
-    LIBRARY NAMELINK_SKIP
+    TARGETS
+        akregatorinterfaces
+        ${KDE_INSTALL_TARGETS_DEFAULT_ARGS}
+    LIBRARY
+        NAMELINK_SKIP
 )
 install(FILES akregator.kcfg DESTINATION ${KDE_INSTALL_KCFGDIR})

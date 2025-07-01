@@ -1,10 +1,6 @@
 # SPDX-License-Identifier: CC0-1.0
 # SPDX-FileCopyrightText: none
-configure_file(
-    akregator-version.h.in
-    ${CMAKE_CURRENT_BINARY_DIR}/akregator-version.h
-    @ONLY
-)
+configure_file(akregator-version.h.in ${CMAKE_CURRENT_BINARY_DIR}/akregator-version.h @ONLY)
 include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/command/
     ${CMAKE_CURRENT_SOURCE_DIR}/formatter/
@@ -42,10 +38,7 @@ set(akregator_SRCS
     ${akregator_common_SRCS}
 )
 
-file(
-    GLOB ICONS_AKREGATOR_SRCS
-    "${CMAKE_CURRENT_SOURCE_DIR}/icons/*-apps-akregator.png"
-)
+file(GLOB ICONS_AKREGATOR_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/icons/*-apps-akregator.png")
 ecm_add_app_icon(akregator_SRCS ICONS ${ICONS_AKREGATOR_SRCS})
 
 add_executable(akregator ${akregator_SRCS})
@@ -66,7 +59,11 @@ target_link_libraries(
 if(TARGET KF6::IconThemes)
     target_link_libraries(akregator KF6::IconThemes)
 endif()
-install(TARGETS akregator ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
+install(
+    TARGETS
+        akregator
+        ${KDE_INSTALL_TARGETS_DEFAULT_ARGS}
+)
 
 ########### next target ###############
 
@@ -180,7 +177,9 @@ target_sources(
 if(HAVE_ACTIVITY_SUPPORT)
     target_sources(
         akregatorprivate
-        PRIVATE activities/activitiesmanager.cpp activities/activitiesmanager.h
+        PRIVATE
+            activities/activitiesmanager.cpp
+            activities/activitiesmanager.h
     )
 endif()
 
@@ -196,7 +195,12 @@ qt_add_resources(akregatorprivate "html"
 )
 
 if(COMPILE_WITH_UNITY_CMAKE_SUPPORT)
-    set_target_properties(akregatorprivate PROPERTIES UNITY_BUILD ON)
+    set_target_properties(
+        akregatorprivate
+        PROPERTIES
+            UNITY_BUILD
+                ON
+    )
 endif()
 generate_export_header(akregatorprivate BASE_NAME akregator)
 
@@ -240,11 +244,18 @@ target_include_directories(
 
 set_target_properties(
     akregatorprivate
-    PROPERTIES VERSION ${KDEPIM_LIB_VERSION} SOVERSION ${KDEPIM_LIB_SOVERSION}
+    PROPERTIES
+        VERSION
+            ${KDEPIM_LIB_VERSION}
+        SOVERSION
+            ${KDEPIM_LIB_SOVERSION}
 )
 install(
-    TARGETS akregatorprivate ${KDE_INSTALL_TARGETS_DEFAULT_ARGS}
-    LIBRARY NAMELINK_SKIP
+    TARGETS
+        akregatorprivate
+        ${KDE_INSTALL_TARGETS_DEFAULT_ARGS}
+    LIBRARY
+        NAMELINK_SKIP
 )
 
 ########### next target ###############
@@ -344,25 +355,21 @@ target_link_libraries(
     KF6::TextUtils
 )
 if(COMPILE_WITH_UNITY_CMAKE_SUPPORT)
-    set_target_properties(akregatorpart PROPERTIES UNITY_BUILD ON)
+    set_target_properties(
+        akregatorpart
+        PROPERTIES
+            UNITY_BUILD
+                ON
+    )
 endif()
 
 install(TARGETS akregatorpart DESTINATION ${KDE_INSTALL_PLUGINDIR})
 
 ########### install files ###############
 
-install(
-    PROGRAMS data/org.kde.akregator.desktop
-    DESTINATION ${KDE_INSTALL_APPDIR}
-)
-install(
-    FILES data/org.kde.akregator.appdata.xml
-    DESTINATION ${KDE_INSTALL_METAINFODIR}
-)
-install(
-    FILES org.kde.akregator.part.xml
-    DESTINATION ${KDE_INSTALL_DBUSINTERFACEDIR}
-)
+install(PROGRAMS data/org.kde.akregator.desktop DESTINATION ${KDE_INSTALL_APPDIR})
+install(FILES data/org.kde.akregator.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
+install(FILES org.kde.akregator.part.xml DESTINATION ${KDE_INSTALL_DBUSINTERFACEDIR})
 install(FILES data/akregator.notifyrc DESTINATION ${KDE_INSTALL_KNOTIFYRCDIR})
 
 if(BUILD_TESTING)

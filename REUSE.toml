@@ -6,7 +6,7 @@ SPDX-PackageSupplier = "Montel Laurent <montel@kde.org>"
 SPDX-PackageDownloadLocation = "https://invent.kde.org/pim/akregator"
 
 [[annotations]]
-path = ["README", "MAINTAINERS", "AUTHORS", "REUSE.toml"]
+path = ["README", "MAINTAINERS", "AUTHORS", "REUSE.toml", ".gersemirc"]
 precedence = "aggregate"
 SPDX-FileCopyrightText = "none"
 SPDX-License-Identifier = "CC0-1.0"
