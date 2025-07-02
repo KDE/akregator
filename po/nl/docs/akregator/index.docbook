@@ -20,8 +20,7 @@
 > <affiliation
 ><address
 ><email
->frank.osterfeld@kdemail.net</email
->  
+>frank.osterfeld@kdemail.net</email>
 </address
 ></affiliation>
 </author>
@@ -635,8 +634,7 @@ say how to start it -->
 <term
 ><guilabel
 >Grootte van feedarchief beperken tot:</guilabel
-></term
-> 
+></term>
 <listitem
 ><para
 >Als het aantal artikelen de gekozen limiet te boven gaat worden de oudste artikelen verwijderd. Merk op dat gemarkeerde artikelen genegeerd worden bij het aantal artikelen: als uw limiet 500 is en u hebt 510 niet gemarkeerde en 50 gemarkeerde artikelen, dan zal &akregator; de 50 gemarkeerden negeren en alleen de 10 oudste niet gemarkeerde artikelen verwijderen. Dus in dit voorbeeld blijven er 550 bewaard.</para>
@@ -1820,7 +1818,7 @@ action="simul"
 ></term>
 <listitem
 ><para
->Use this action you to share news 
+>Use this action you to share news
  with your friends using the microblog services identi.ca and twitter.
 </para
 ></listitem>
