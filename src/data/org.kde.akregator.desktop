@@ -196,3 +196,4 @@ Comment[zh_TW]=KDE 新聞 Feed 閱讀器
 Categories=Qt;KDE;Network;News;Feed;
 SingleMainWindow=true
 Version=1.5
+Keywords=rss;
