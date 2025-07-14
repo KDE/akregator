@@ -230,7 +230,7 @@ msgstr "Sans serif ფონტი:"
 #: configuration/ui/settings_archive.ui:30
 #, kde-format
 msgid "Default Archive Settings"
-msgstr "ნაგულისხმები არქივის მორგება"
+msgstr "ნაგულისხმევი არქივის მორგება"
 
 #. i18n: ectx: property (text), widget (QRadioButton, rb_DisableArchiving)
 #: configuration/ui/settings_archive.ui:36
@@ -325,7 +325,7 @@ msgstr "ამ &ბრძანების გამოყენება:"
 #: configuration/ui/settings_browser.ui:97
 #, kde-format
 msgid "Use default web &browser"
-msgstr "&ნაგულისხმები ბრაუზერის გამოყენება"
+msgstr "&ნაგულისხმევი ბრაუზერის გამოყენება"
 
 #. i18n: ectx: property (title), widget (QGroupBox, tabsGroupBox)
 #: configuration/ui/settings_browser.ui:110
@@ -741,7 +741,7 @@ msgid ""
 "the default one. This is here because some proxies may interrupt the "
 "connection because of having \"gator\" in the name."
 msgstr ""
-"ეს პარამეტრი საშუალებას აძლევს მომხმარებელს, ნაგულისხმების მაგიერ სხვა user-"
+"ეს პარამეტრი საშუალებას აძლევს მომხმარებელს, ნაგულისხმევის მაგიერ სხვა user-"
 "agent-ის სტრიქონი გამოიყენოს. ეს პარამეტრი არსებობს იმიტომ, რომ ზოგიერთ "
 "პროქსის შეუძლია კავშირი სახელში \"gator\"-ის შემცველობის გამო გაგიწყვიტოთ."
 
@@ -868,7 +868,7 @@ msgstr ""
 #: interfaces/akregator.kcfg:222
 #, kde-format
 msgid "Use default KDE web browser"
-msgstr "KDE-ის ნაგულისხმები ბრაუზერის გამოყენება"
+msgstr "KDE-ის ნაგულისხმევი ბრაუზერის გამოყენება"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
 #: interfaces/akregator.kcfg:223
@@ -2452,7 +2452,7 @@ msgstr "&არქივი"
 #: src/ui/feedpropertieswidgetbase.ui:209
 #, kde-format
 msgid "&Use default settings"
-msgstr "ნაგულისხმები პარამეტრების &გამოყენება"
+msgstr "ნაგულისხმევი პარამეტრების &გამოყენება"
 
 #. i18n: ectx: property (text), widget (QRadioButton, rb_disableArchiving)
 #: src/ui/feedpropertieswidgetbase.ui:219
