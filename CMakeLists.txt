@@ -12,7 +12,7 @@ set(RELEASE_SERVICE_VERSION "25.07.90")
 set(QT_REQUIRED_VERSION "6.8.0")
 
 # Use true if stable version => we will check specific version
-set(AKREGATOR_STABLE_VERSION false)
+set(AKREGATOR_STABLE_VERSION true)
 
 find_package(ECM ${KF_MIN_VERSION} CONFIG REQUIRED)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
