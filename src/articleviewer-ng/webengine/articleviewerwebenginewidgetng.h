@@ -49,7 +49,6 @@ public Q_SLOTS:
     void slotPrintPreview();
 
 private:
-    void initializeActions(KActionCollection *ac);
     void initializeLayout(KActionCollection *ac);
     WebEngineViewer::FindBarWebEngineView *mFindBarWebView = nullptr;
     ArticleViewerWebEngine *mArticleViewerNg = nullptr;
