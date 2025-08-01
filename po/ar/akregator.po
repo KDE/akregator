@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-06-21 00:43+0000\n"
-"PO-Revision-Date: 2025-01-20 18:46+0400\n"
+"PO-Revision-Date: 2025-07-31 18:15+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
 "Language: ar\n"
@@ -2114,7 +2114,7 @@ msgstr "المغلف"
 #: src/frame/frame.cpp:20
 #, kde-format
 msgid "Untitled"
-msgstr "بدون عنوان"
+msgstr "دون عنوان"
 
 #: src/frame/frame.cpp:140
 #, kde-format
