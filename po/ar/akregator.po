@@ -1202,7 +1202,7 @@ msgstr "ا&ضبط أكريغاتور…"
 #: src/actions/actionmanagerimpl.cpp:230
 #, kde-format
 msgid "&Open Homepage"
-msgstr "ا&فتح الصفحة الرئيسية"
+msgstr "ا&فتح الصفحة الرئيسة"
 
 #: src/actions/actionmanagerimpl.cpp:236
 #, kde-format
