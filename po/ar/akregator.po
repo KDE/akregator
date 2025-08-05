@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-06-21 00:43+0000\n"
-"PO-Revision-Date: 2025-07-31 18:15+0400\n"
+"PO-Revision-Date: 2025-08-04 15:11+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
 "Language: ar\n"
@@ -171,7 +171,7 @@ msgstr "&علّم المقالة المحدّدة مقروءة بعد"
 #: configuration/ui/settings_advancedbase.ui:73
 #, kde-format
 msgid "Reset search bar when changing feeds"
-msgstr "أعد ضبط شريط البحث عند تغير التلقيمات."
+msgstr "صفّر شريط البحث عند تغير التلقيمات."
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_3)
 #: configuration/ui/settings_appearance.ui:30
@@ -249,7 +249,7 @@ msgstr "خط Sans serif:"
 #: configuration/ui/settings_archive.ui:30
 #, kde-format
 msgid "Default Archive Settings"
-msgstr "خصائص الأرشيف الافتراضية"
+msgstr "إعدادات الأرشيف المبدئية"
 
 #. i18n: ectx: property (text), widget (QRadioButton, rb_DisableArchiving)
 #: configuration/ui/settings_archive.ui:36
@@ -440,7 +440,7 @@ msgstr "اقفل التلقيمات في مكانها"
 #: configuration/ui/settings_general.ui:64 interfaces/akregator.kcfg:27
 #, kde-format
 msgid "Auto-expand folders containing unread articles"
-msgstr "وسع آليا المجلدات التي تحوي على مقالات غير مقروءة"
+msgstr "وسع آليّا المجلدات التي تحوي على مقالات غير مقروءة"
 
 #. i18n: ectx: property (whatsThis), widget (QCheckBox, kcfg_UseNotifications)
 #: configuration/ui/settings_general.ui:74
@@ -552,7 +552,7 @@ msgstr "اقفل على التلقيمات في مكانها"
 #: interfaces/akregator.kcfg:26
 #, kde-format
 msgid "Auto-Expand folders with unread articles"
-msgstr "وسع آليا المجلدات ذات مقالات غير مقروءة"
+msgstr "وسع آليّا المجلدات ذات مقالات غير مقروءة"
 
 #. i18n: ectx: label, entry, group (View)
 #: interfaces/akregator.kcfg:31 src/actions/actionmanagerimpl.cpp:329
@@ -690,7 +690,7 @@ msgstr "عمر الانتهاء"
 #: interfaces/akregator.kcfg:120
 #, kde-format
 msgid "Default expiry age for articles in days."
-msgstr "عمر الاتتهاء الافتراضي للمقالات بالأيام."
+msgstr "عمر الاتتهاء المبدئي للمقالات بالأيام."
 
 #. i18n: ectx: label, entry, group (Archive)
 #: interfaces/akregator.kcfg:124
@@ -717,7 +717,7 @@ msgid ""
 "When this option is enabled, articles you marked as important will not be "
 "removed when limit the archive size by either age or number of the articles."
 msgstr ""
-"عندما يُفعّل هذا الخيار فإن المقالات التي تُعلم مهمة لن تُزال عندما يصل حجم "
+"عندما يُمكّن هذا الخيار فإن المقالات التي تُعلم مهمة لن تُزال عندما يصل حجم "
 "الأرشيف حده إما بسبب العمر أو عدد المقالات."
 
 #. i18n: ectx: label, entry, group (Network)
@@ -757,7 +757,7 @@ msgid ""
 "connection because of having \"gator\" in the name."
 msgstr ""
 "يسمح هذا الخيار للمستخدم بأن يحدد نص معرف العميل بدلا عن استخدام التعريف "
-"الافتراضي ، بسب أن بعض الوكلاء قد يقاطع الاتصال بسبب وجود كلمة \"gator\" في "
+"المبدئي ، بسب أن بعض الوكلاء قد يقاطع الاتصال بسبب وجود كلمة \"gator\" في "
 "تعريف العميل."
 
 #. i18n: ectx: label, entry, group (General)
@@ -800,25 +800,25 @@ msgstr "اجلب كل التلقيمات كل %1 دقيقة."
 #: interfaces/akregator.kcfg:167
 #, kde-format
 msgid "Interval for autofetching"
-msgstr "فترة الجلب التلقائي"
+msgstr "فترة الجلب الآليّ"
 
 #. i18n: ectx: whatsthis, entry, group (General)
 #: interfaces/akregator.kcfg:168
 #, kde-format
 msgid "Interval for autofetching in minutes."
-msgstr "فترة الجلب التلقائي بالدقيقة."
+msgstr "فترة الجلب الآليّ بالدقيقة."
 
 #. i18n: ectx: label, entry, group (General)
 #: interfaces/akregator.kcfg:172
 #, kde-format
 msgid "Use notifications"
-msgstr "استخدم التنبيهات"
+msgstr "استخدم الإشعارات"
 
 #. i18n: ectx: whatsthis, entry, group (General)
 #: interfaces/akregator.kcfg:173
 #, kde-format
 msgid "Specifies if the balloon notifications are used or not."
-msgstr "يحدد إذا ما كان سيسمح باستخدام التنبيهات أم لا."
+msgstr "يحدد إذا ما كان سيسمح باستخدام الإشعارات أم لا."
 
 #. i18n: ectx: label, entry, group (General)
 #: interfaces/akregator.kcfg:177
@@ -881,7 +881,7 @@ msgstr ""
 #: interfaces/akregator.kcfg:222
 #, kde-format
 msgid "Use default KDE web browser"
-msgstr "استخدم متصفح وب كِيدِي الافتراضي"
+msgstr "استخدم متصفح وب كِيدِي المبدئي"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
 #: interfaces/akregator.kcfg:223
@@ -942,7 +942,7 @@ msgstr "مهلة قابلة للضبط بين تحديد المقالة وتعل
 #: interfaces/akregator.kcfg:282
 #, kde-format
 msgid "Resets the quick filter when changing feeds."
-msgstr "أعد ضبط المرشح السريع عند تغير التلقيمات."
+msgstr "صفّر المرشح السريع عند تغير التلقيمات."
 
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
 #: src/akregator_part.cpp:126
@@ -1435,7 +1435,7 @@ msgstr "اقفل التلقيمات في مكانها"
 #: src/actions/actionmanagerimpl.cpp:576
 #, kde-format
 msgid "Auto-expand folders with unread articles"
-msgstr "وسع آليا المجلدات ذات مقالات غير مقروءة"
+msgstr "وسع آليّا المجلدات ذات مقالات غير مقروءة"
 
 #: src/actions/actionmanagerimpl.cpp:592
 #, kde-format
@@ -2487,7 +2487,7 @@ msgstr "الأ&رشيف"
 #: src/ui/feedpropertieswidgetbase.ui:209
 #, kde-format
 msgid "&Use default settings"
-msgstr "ا&ستخدم الإعدادات الافتراضية"
+msgstr "ا&ستخدم الإعدادات المبدئية"
 
 #. i18n: ectx: property (text), widget (QRadioButton, rb_disableArchiving)
 #: src/ui/feedpropertieswidgetbase.ui:219
