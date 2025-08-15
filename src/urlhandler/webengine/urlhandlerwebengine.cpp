@@ -55,9 +55,9 @@ bool MailToURLHandlerWebEngine::handleContextMenuRequest(const QUrl &url, const 
 {
     if (url.scheme() == QLatin1StringView("mailto")) {
         auto menu = new QMenu();
-        QAction *copy = menu->addAction(QIcon::fromTheme(QStringLiteral("edit-copy")), i18n("&Copy Email Address"));
+        const QAction *copy = menu->addAction(QIcon::fromTheme(QStringLiteral("edit-copy")), i18n("&Copy Email Address"));
 
-        QAction *a = menu->exec(p);
+        const QAction *a = menu->exec(p);
         if (a == copy) {
             const QString fullEmail = KEmailAddress::decodeMailtoUrl(url);
             if (!fullEmail.isEmpty()) {

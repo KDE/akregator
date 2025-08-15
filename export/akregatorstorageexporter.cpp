@@ -199,7 +199,7 @@ void writeAuthor(const QString &name, const QString &uri, const QString &email, 
         return;
     }
 
-    const QString atomNS = Syndication::Atom::atom1Namespace();
+    // const QString atomNS = Syndication::Atom::atom1Namespace();
     Elements::instance.author.writeStartElement(writer);
     Elements::instance.name.write(name, writer);
     Elements::instance.uri.write(uri, writer);

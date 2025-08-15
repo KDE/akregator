@@ -50,7 +50,7 @@ using namespace Akregator;
 class ActionManagerImpl::NodeSelectVisitor : public TreeNodeVisitor
 {
 public:
-    NodeSelectVisitor(ActionManagerImpl *manager)
+    explicit NodeSelectVisitor(ActionManagerImpl *manager)
         : m_manager(manager)
     {
     }

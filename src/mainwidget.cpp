@@ -1063,9 +1063,8 @@ void MainWidget::slotCopyLinkAddress()
         return;
     }
 
-    QString link;
     if (article.link().isValid()) {
-        link = article.link().url();
+        const QString link = article.link().url();
         QClipboard *cb = QApplication::clipboard();
         cb->setText(link, QClipboard::Clipboard);
         // don't set url to selection as it's a no-no according to a fd.o spec
