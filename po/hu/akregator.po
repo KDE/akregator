@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: KDE 4.3\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-06-21 00:43+0000\n"
+"POT-Creation-Date: 2025-08-16 00:43+0000\n"
 "PO-Revision-Date: 2025-02-03 21:16+0100\n"
 "Last-Translator: Kristof Kiszel <ulysses@fsf.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -938,7 +938,7 @@ msgstr "Alapállapotba hozza a gyorsszűrőt csatornaváltáskor."
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
 #: src/akregator_part.cpp:126
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:142
-#: src/mainwidget.cpp:127 src/mainwidget.cpp:1326 src/trayicon.cpp:40
+#: src/mainwidget.cpp:127 src/mainwidget.cpp:1325 src/trayicon.cpp:40
 #: src/trayicon.cpp:41 src/trayicon.cpp:53
 #, kde-format
 msgid "Akregator"
@@ -2163,7 +2163,7 @@ msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "Csatornák megjelölése olvasottnak"
 
-#: src/mainwidget.cpp:887 src/mainwidget.cpp:896 src/mainwidget.cpp:1298
+#: src/mainwidget.cpp:887 src/mainwidget.cpp:896 src/mainwidget.cpp:1297
 #, kde-format
 msgid "Networking is not available."
 msgstr "A hálózat nem érhető el."
@@ -2173,12 +2173,12 @@ msgstr "A hálózat nem érhető el."
 msgid "Fetching Feeds…"
 msgstr "Csatornák letöltése…"
 
-#: src/mainwidget.cpp:1103
+#: src/mainwidget.cpp:1102
 #, kde-format
 msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
 msgstr "<qt>Biztosan törölni szeretné ezt a hírt: <b>%1</b>?</qt>"
 
-#: src/mainwidget.cpp:1106
+#: src/mainwidget.cpp:1105
 #, kde-format
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
 msgid_plural ""
@@ -2186,13 +2186,13 @@ msgid_plural ""
 msgstr[0] "<qt>Biztosan törölni szeretné a kijelölt hírt?</qt>"
 msgstr[1] "<qt>Biztosan törölni szeretné a kijelölt %1 hírt?</qt>"
 
-#: src/mainwidget.cpp:1113
+#: src/mainwidget.cpp:1112
 #, kde-format
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "Törlés"
 
-#: src/mainwidget.cpp:1295
+#: src/mainwidget.cpp:1294
 #, kde-format
 msgid "Networking is available now."
 msgstr "A hálózat most már elérhető."

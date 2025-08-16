@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-06-21 00:43+0000\n"
+"POT-Creation-Date: 2025-08-16 00:43+0000\n"
 "PO-Revision-Date: 2023-08-24 21:37+0200\n"
 "Last-Translator: Karl Ove Hufthammer <karl@huftis.org>\n"
 "Language-Team: Norwegian Nynorsk <l10n-no@lister.huftis.org>\n"
@@ -928,7 +928,7 @@ msgstr "Nullstillar snøggsøkfilteret ved byte av felt."
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
 #: src/akregator_part.cpp:126
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:142
-#: src/mainwidget.cpp:127 src/mainwidget.cpp:1326 src/trayicon.cpp:40
+#: src/mainwidget.cpp:127 src/mainwidget.cpp:1325 src/trayicon.cpp:40
 #: src/trayicon.cpp:41 src/trayicon.cpp:53
 #, kde-format
 msgid "Akregator"
@@ -2145,7 +2145,7 @@ msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "Merk kjelder som lesne"
 
-#: src/mainwidget.cpp:887 src/mainwidget.cpp:896 src/mainwidget.cpp:1298
+#: src/mainwidget.cpp:887 src/mainwidget.cpp:896 src/mainwidget.cpp:1297
 #, kde-format
 msgid "Networking is not available."
 msgstr "Nettverket er ikkje tilgjengeleg"
@@ -2155,12 +2155,12 @@ msgstr "Nettverket er ikkje tilgjengeleg"
 msgid "Fetching Feeds…"
 msgstr "Hentar kjelder …"
 
-#: src/mainwidget.cpp:1103
+#: src/mainwidget.cpp:1102
 #, kde-format
 msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
 msgstr "<qt>Er du sikker på at du vil sletta artikkelen <b>%1</b>?</qt>"
 
-#: src/mainwidget.cpp:1106
+#: src/mainwidget.cpp:1105
 #, kde-format
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
 msgid_plural ""
@@ -2168,13 +2168,13 @@ msgid_plural ""
 msgstr[0] "<qt>Er du sikker på at du vil sletta den valde artikkelen?</qt>"
 msgstr[1] "<qt>Er du sikker på at du vil sletta dei %1 valde artiklane?</qt>"
 
-#: src/mainwidget.cpp:1113
+#: src/mainwidget.cpp:1112
 #, fuzzy, kde-format
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "Slett artikkel"
 
-#: src/mainwidget.cpp:1295
+#: src/mainwidget.cpp:1294
 #, kde-format
 msgid "Networking is available now."
 msgstr "Nettverket er no tilgjengeleg"

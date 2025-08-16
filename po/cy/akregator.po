@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: all2.po\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-06-21 00:43+0000\n"
+"POT-Creation-Date: 2025-08-16 00:43+0000\n"
 "PO-Revision-Date: 2004-09-20 15:44+0200\n"
 "Last-Translator: Thierry Vignaud <tvignaud@mandrakesoft.com>\n"
 "Language-Team: cy <LL@li.org>\n"
@@ -921,7 +921,7 @@ msgstr ""
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
 #: src/akregator_part.cpp:126
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:142
-#: src/mainwidget.cpp:127 src/mainwidget.cpp:1326 src/trayicon.cpp:40
+#: src/mainwidget.cpp:127 src/mainwidget.cpp:1325 src/trayicon.cpp:40
 #: src/trayicon.cpp:41 src/trayicon.cpp:53
 #, kde-format
 msgid "Akregator"
@@ -2148,7 +2148,7 @@ msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "Erthygl &Nesaf"
 
-#: src/mainwidget.cpp:887 src/mainwidget.cpp:896 src/mainwidget.cpp:1298
+#: src/mainwidget.cpp:887 src/mainwidget.cpp:896 src/mainwidget.cpp:1297
 #, kde-format
 msgid "Networking is not available."
 msgstr ""
@@ -2158,12 +2158,12 @@ msgstr ""
 msgid "Fetching Feeds…"
 msgstr "&Nôl"
 
-#: src/mainwidget.cpp:1103
+#: src/mainwidget.cpp:1102
 #, kde-format
 msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
 msgstr ""
 
-#: src/mainwidget.cpp:1106
+#: src/mainwidget.cpp:1105
 #, kde-format
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
 msgid_plural ""
@@ -2171,14 +2171,14 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/mainwidget.cpp:1113
+#: src/mainwidget.cpp:1112
 #, fuzzy, kde-format
 #| msgid "Delete Article"
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "Dileu Erthygl"
 
-#: src/mainwidget.cpp:1295
+#: src/mainwidget.cpp:1294
 #, kde-format
 msgid "Networking is available now."
 msgstr ""

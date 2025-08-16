@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-06-21 00:43+0000\n"
+"POT-Creation-Date: 2025-08-16 00:43+0000\n"
 "PO-Revision-Date: 2025-01-20 12:14+0100\n"
 "Last-Translator: giovanni <g.sora@tiscali.it>\n"
 "Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
@@ -940,7 +940,7 @@ msgstr "Il refixa le filtro rapide quando on modifica syndicationes."
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
 #: src/akregator_part.cpp:126
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:142
-#: src/mainwidget.cpp:127 src/mainwidget.cpp:1326 src/trayicon.cpp:40
+#: src/mainwidget.cpp:127 src/mainwidget.cpp:1325 src/trayicon.cpp:40
 #: src/trayicon.cpp:41 src/trayicon.cpp:53
 #, kde-format
 msgid "Akregator"
@@ -2167,7 +2167,7 @@ msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "Marca syndicationes como legite"
 
-#: src/mainwidget.cpp:887 src/mainwidget.cpp:896 src/mainwidget.cpp:1298
+#: src/mainwidget.cpp:887 src/mainwidget.cpp:896 src/mainwidget.cpp:1297
 #, kde-format
 msgid "Networking is not available."
 msgstr "Rete non disponibile."
@@ -2177,12 +2177,12 @@ msgstr "Rete non disponibile."
 msgid "Fetching Feeds…"
 msgstr "Trovante syndicationes..."
 
-#: src/mainwidget.cpp:1103
+#: src/mainwidget.cpp:1102
 #, kde-format
 msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
 msgstr "<qt>Tu es secur que tu vole deler articulo <b>%1</b>?</qt >"
 
-#: src/mainwidget.cpp:1106
+#: src/mainwidget.cpp:1105
 #, kde-format
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
 msgid_plural ""
@@ -2190,13 +2190,13 @@ msgid_plural ""
 msgstr[0] "<qt>Tu es secur que tu vole deler le articulo seligite? </qt>"
 msgstr[1] "<qt>Tu es secur que tu vole deler le %1 articulos seligite? </qt>"
 
-#: src/mainwidget.cpp:1113
+#: src/mainwidget.cpp:1112
 #, kde-format
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "Dele articulo"
 
-#: src/mainwidget.cpp:1295
+#: src/mainwidget.cpp:1294
 #, kde-format
 msgid "Networking is available now."
 msgstr "rete nunc es disponibile."

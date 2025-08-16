@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-06-21 00:43+0000\n"
+"POT-Creation-Date: 2025-08-16 00:43+0000\n"
 "PO-Revision-Date: 2009-01-18 02:35+0100\n"
 "Last-Translator: Bozidar Proevski <bobibobi@freemail.com.mk>\n"
 "Language-Team: Macedonian <mkde-l10n@lists.sourceforge.net>\n"
@@ -963,7 +963,7 @@ msgstr ""
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
 #: src/akregator_part.cpp:126
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:142
-#: src/mainwidget.cpp:127 src/mainwidget.cpp:1326 src/trayicon.cpp:40
+#: src/mainwidget.cpp:127 src/mainwidget.cpp:1325 src/trayicon.cpp:40
 #: src/trayicon.cpp:41 src/trayicon.cpp:53
 #, kde-format
 msgid "Akregator"
@@ -2251,7 +2251,7 @@ msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "&Маркирај го доводот како прочитан"
 
-#: src/mainwidget.cpp:887 src/mainwidget.cpp:896 src/mainwidget.cpp:1298
+#: src/mainwidget.cpp:887 src/mainwidget.cpp:896 src/mainwidget.cpp:1297
 #, kde-format
 msgid "Networking is not available."
 msgstr ""
@@ -2262,13 +2262,13 @@ msgstr ""
 msgid "Fetching Feeds…"
 msgstr "доводи..."
 
-#: src/mainwidget.cpp:1103
+#: src/mainwidget.cpp:1102
 #, kde-format
 msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
 msgstr ""
 "<qt>Дали сте сигурни деа сакате да го избришете записот <b>%1</b>?</qt>"
 
-#: src/mainwidget.cpp:1106
+#: src/mainwidget.cpp:1105
 #, fuzzy, kde-format
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
 msgid_plural ""
@@ -2277,14 +2277,14 @@ msgstr[0] "<qt>Дали сте сигурни дека сакате да го и
 msgstr[1] "<qt>Дали сте сигурни дека сакате да го избришете овој довод?</qt>"
 msgstr[2] "<qt>Дали сте сигурни дека сакате да го избришете овој довод?</qt>"
 
-#: src/mainwidget.cpp:1113
+#: src/mainwidget.cpp:1112
 #, fuzzy, kde-format
 #| msgid "Delete Article"
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "Избришани написи4"
 
-#: src/mainwidget.cpp:1295
+#: src/mainwidget.cpp:1294
 #, kde-format
 msgid "Networking is available now."
 msgstr ""

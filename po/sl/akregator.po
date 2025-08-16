@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-06-21 00:43+0000\n"
+"POT-Creation-Date: 2025-08-16 00:43+0000\n"
 "PO-Revision-Date: 2025-01-19 06:22+0100\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
@@ -947,7 +947,7 @@ msgstr "Ob preklopu na drug vir se hitro iskanje ponastavi."
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
 #: src/akregator_part.cpp:126
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:142
-#: src/mainwidget.cpp:127 src/mainwidget.cpp:1326 src/trayicon.cpp:40
+#: src/mainwidget.cpp:127 src/mainwidget.cpp:1325 src/trayicon.cpp:40
 #: src/trayicon.cpp:41 src/trayicon.cpp:53
 #, kde-format
 msgid "Akregator"
@@ -2182,7 +2182,7 @@ msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "Označi vire kot prebrane"
 
-#: src/mainwidget.cpp:887 src/mainwidget.cpp:896 src/mainwidget.cpp:1298
+#: src/mainwidget.cpp:887 src/mainwidget.cpp:896 src/mainwidget.cpp:1297
 #, kde-format
 msgid "Networking is not available."
 msgstr "Omrežje ni na voljo."
@@ -2192,12 +2192,12 @@ msgstr "Omrežje ni na voljo."
 msgid "Fetching Feeds…"
 msgstr "Pridobivanje virov…"
 
-#: src/mainwidget.cpp:1103
+#: src/mainwidget.cpp:1102
 #, kde-format
 msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
 msgstr "<qt>Ali ste prepričani, da želite izbrisati članek <b>%1</b>?</qt>"
 
-#: src/mainwidget.cpp:1106
+#: src/mainwidget.cpp:1105
 #, kde-format
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
 msgid_plural ""
@@ -2208,13 +2208,13 @@ msgstr[1] "<qt>Ali ste prepričani, da želite izbrisati %1 izbrani članek?</qt
 msgstr[2] "<qt>Ali ste prepričani, da želite izbrisati %1 izbrana članka?</qt>"
 msgstr[3] "<qt>Ali ste prepričani, da želite izbrisati %1 izbrane članke?</qt>"
 
-#: src/mainwidget.cpp:1113
+#: src/mainwidget.cpp:1112
 #, kde-format
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "Izbriši članek"
 
-#: src/mainwidget.cpp:1295
+#: src/mainwidget.cpp:1294
 #, kde-format
 msgid "Networking is available now."
 msgstr "Omrežje je sedaj na voljo."
