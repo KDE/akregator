@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-06-21 00:43+0000\n"
-"PO-Revision-Date: 2025-08-04 15:11+0400\n"
+"PO-Revision-Date: 2025-08-20 21:57+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
 "Language: ar\n"
@@ -506,7 +506,7 @@ msgstr "الشبكة"
 #: configuration/ui/settings_general.ui:196
 #, kde-format
 msgid "Use the &browser cache (less network traffic)"
-msgstr "استخدم &مختزن المتصفح (أقل مرور للشبكة)"
+msgstr "استخدم &خبيئة المتصفح (أقل استهلاك للشبكة)"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_LoadExternalReferences)
 #: configuration/ui/settings_security.ui:17
@@ -736,7 +736,7 @@ msgstr "عدد عمليات الجلب المتوازية"
 #: interfaces/akregator.kcfg:141
 #, kde-format
 msgid "Use HTML Cache"
-msgstr "استعمل مختزن HTML"
+msgstr "استعمل خبيئة HTML"
 
 #. i18n: ectx: whatsthis, entry, group (Network)
 #: interfaces/akregator.kcfg:142
@@ -745,7 +745,7 @@ msgid ""
 "Use the KDE-wide HTML cache settings when downloading feeds, to avoid "
 "unnecessary traffic. Disable only when necessary."
 msgstr ""
-"استعمل إعدادات كِيدِي لمختزن HTML عند تنزيل التلقيمات لتفادي التنزيل غير "
+"استعمل إعدادات كِيدِي لخبيئة HTML عند تنزيل التلقيمات لتفادي التنزيل غير "
 "الضروري. عطّله فقط عند الضرورة."
 
 #. i18n: ectx: whatsthis, entry, group (Network)
@@ -2304,7 +2304,7 @@ msgstr "لا يمكن نقل المجلد %1 إلى مجلده الفرعي %2"
 #: src/subscription/subscriptionlistmodel.cpp:54
 #, kde-format
 msgid "Timeout on remote server"
-msgstr "انتهت المهلة على الخادوم البعيد"
+msgstr "انتهت المهلة على الخادم البعيد"
 
 #: src/subscription/subscriptionlistmodel.cpp:56
 #, kde-format
@@ -2314,7 +2314,7 @@ msgstr "مضيف مجهول"
 #: src/subscription/subscriptionlistmodel.cpp:58
 #, kde-format
 msgid "Feed file not found on remote server"
-msgstr "ملف التلقيم غير موجود على الخادوم البعيد"
+msgstr "ملف التلقيم غير موجود على الخادم البعيد"
 
 #: src/subscription/subscriptionlistmodel.cpp:60
 #, kde-format
