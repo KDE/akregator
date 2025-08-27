@@ -155,7 +155,7 @@ void ArticleViewerWebEngine::paintAboutScreen(const QString &templateName, const
     GrantleeTheme::ThemeManager manager(QStringLiteral("splashPage"), QStringLiteral("splash.theme"), nullptr, QStringLiteral("messageviewer/about/"));
     GrantleeTheme::Theme theme = manager.theme(QStringLiteral("default"));
     if (theme.isValid()) {
-        setHtml(theme.render(templateName, data, QByteArrayLiteral("akregator")), QUrl::fromLocalFile(theme.absolutePath() + QLatin1Char('/')));
+        setHtml(theme.render(templateName, data, QByteArrayLiteral("akregator")), QUrl::fromLocalFile(theme.absolutePath() + u'/'));
     } else {
         qCDebug(AKREGATOR_LOG) << "Theme error: failed to find splash theme";
     }

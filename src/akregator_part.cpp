@@ -394,7 +394,7 @@ void Part::slotSaveFeedList()
 
     // the first time we overwrite the feed list, we create a backup
     if (!m_backedUpList) {
-        const QString backup = m_standardFeedList + QLatin1Char('~');
+        const QString backup = m_standardFeedList + u'~';
         if (QFile::exists(backup)) {
             QFile::remove(backup);
         }

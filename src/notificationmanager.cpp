@@ -50,7 +50,7 @@ void NotificationManager::slotNotifyFeeds(const QStringList &feeds)
         QString message;
         QStringList::ConstIterator end = feeds.constEnd();
         for (QStringList::ConstIterator it = feeds.constBegin(); it != end; ++it) {
-            message += *it + QLatin1Char('\n');
+            message += *it + u'\n';
         }
         KNotification::event(QStringLiteral("FeedAdded"), i18n("Feeds added:\n %1", message), QPixmap(), KNotification::CloseOnTimeout, m_componantName);
     }

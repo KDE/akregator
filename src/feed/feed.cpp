@@ -195,7 +195,7 @@ Akregator::Feed *Feed::fromOPML(const QDomElement &e, Backend::Storage *storage)
 
 #if HAVE_ACTIVITY_SUPPORT
     feed->setActivityEnabled(e.attribute(QStringLiteral("activityEnabled")) == QLatin1StringView("true"));
-    feed->setActivities(e.attribute(QStringLiteral("activities")).split(QLatin1Char(';')));
+    feed->setActivities(e.attribute(QStringLiteral("activities")).split(u';'));
 #endif
 
     return feed;
@@ -606,7 +606,7 @@ QDomElement Feed::toOPML(QDomElement parent, QDomDocument document) const
     if (d->m_activityEnabled) {
         el.setAttribute(QStringLiteral("activityEnabled"), QStringLiteral("true"));
     }
-    el.setAttribute(QStringLiteral("activities"), d->m_activities.join(QLatin1Char(',')));
+    el.setAttribute(QStringLiteral("activities"), d->m_activities.join(u','));
 #endif
     el.setAttribute(QStringLiteral("type"), QStringLiteral("rss")); // despite some additional fields, it is still "rss" OPML
     el.setAttribute(QStringLiteral("version"), QStringLiteral("RSS"));

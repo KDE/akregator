@@ -506,7 +506,7 @@ static QString path_of_folder(const Folder *fol)
     QString path;
     const Folder *i = fol;
     while (i) {
-        path = QString::number(i->id()) + QLatin1Char('/') + path;
+        path = QString::number(i->id()) + u'/' + path;
         i = i->parent();
     }
     return path;
@@ -531,7 +531,7 @@ QStringList FeedListManagementImpl::feeds(const QString &catId) const
         return {};
     }
 
-    const uint lastcatid = catId.split(QLatin1Char('/'), Qt::SkipEmptyParts).last().toUInt();
+    const uint lastcatid = catId.split(u'/', Qt::SkipEmptyParts).last().toUInt();
 
     QSet<QString> urls;
     const auto feeds = m_feedList->feeds();
@@ -550,7 +550,7 @@ void FeedListManagementImpl::addFeed(const QString &url, const QString &catId)
     }
 
     qCDebug(AKREGATOR_LOG) << "Name:" << url.left(20) << "Cat:" << catId;
-    const uint folder_id = catId.split(QLatin1Char('/'), Qt::SkipEmptyParts).last().toUInt();
+    const uint folder_id = catId.split(u'/', Qt::SkipEmptyParts).last().toUInt();
 
     // Get the folder
     Folder *m_folder = nullptr;
@@ -580,7 +580,7 @@ void FeedListManagementImpl::removeFeed(const QString &url, const QString &catId
 {
     qCDebug(AKREGATOR_LOG) << "Name:" << url.left(20) << "Cat:" << catId;
 
-    const uint lastcatid = catId.split(QLatin1Char('/'), Qt::SkipEmptyParts).last().toUInt();
+    const uint lastcatid = catId.split(u'/', Qt::SkipEmptyParts).last().toUInt();
 
     const auto feeds = m_feedList->feeds();
     for (const Feed *const i : feeds) {
@@ -603,10 +603,10 @@ QString FeedListManagementImpl::getCategoryName(const QString &catId) const
         return catname;
     }
 
-    const QStringList list = catId.split(QLatin1Char('/'), Qt::SkipEmptyParts);
+    const QStringList list = catId.split(u'/', Qt::SkipEmptyParts);
     for (int i = 0; i < list.size(); ++i) {
         const int index = list.at(i).toInt();
-        catname += m_feedList->findByID(index)->title() + QLatin1Char('/');
+        catname += m_feedList->findByID(index)->title() + u'/';
     }
 
     return catname;

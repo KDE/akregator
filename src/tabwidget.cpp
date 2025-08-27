@@ -356,7 +356,7 @@ void TabWidgetPrivate::setTitle(const QString &title, QWidget *sender)
         newTitle = KStringHandler::rsqueeze(newTitle, newMaxLength);
     }
 
-    newTitle.replace(QLatin1Char('&'), QStringLiteral("&&"));
+    newTitle.replace(u'&', QStringLiteral("&&"));
 
     if (q->tabText(senderIndex) != newTitle) {
         q->setTabText(senderIndex, newTitle);
@@ -377,7 +377,7 @@ void TabWidgetPrivate::setTitle(const QString &title, QWidget *sender)
                 newTitle = KStringHandler::rsqueeze(newTitle, newMaxLength);
             }
 
-            newTitle.replace(QLatin1Char('&'), QStringLiteral("&&"));
+            newTitle.replace(u'&', QStringLiteral("&&"));
             if (newTitle != q->tabText(index)) {
                 q->setTabText(index, newTitle);
             }

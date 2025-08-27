@@ -35,7 +35,7 @@ QString buildTitle(const QString &description)
         return {};
     }
 
-    int i = s.indexOf(QLatin1Char('>'), 500); /*avoid processing too much */
+    int i = s.indexOf(u'>', 500); /*avoid processing too much */
     if (i != -1) {
         s = s.left(i + 1);
     }
@@ -57,7 +57,7 @@ QString buildTitle(const QString &description)
         } else if (tagName.startsWith(QLatin1StringView("br"), Qt::CaseInsensitive)) {
             toReplace = rmatch.captured(1);
             repStart = rmatch.capturedStart(1);
-            replaceWith = QLatin1Char(' ');
+            replaceWith = u' ';
         } else {
             // Any other tag, <i>text</i> ... etc
             toReplace = rmatch.captured(1); // strip just tag

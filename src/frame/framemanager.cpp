@@ -208,7 +208,7 @@ void FrameManager::openInExternalBrowser(const OpenUrlRequest &request)
 
     if (!Settings::externalBrowserUseKdeDefault()) {
         QHash<QChar, QString> map;
-        map.insert(QLatin1Char('u'), url.url());
+        map.insert(u'u', url.url());
         const QString cmd = KMacroExpander::expandMacrosShellQuote(Settings::externalBrowserCustomCommand(), map);
         const QStringList args = KShell::splitArgs(cmd);
         if (!args.isEmpty()) {
@@ -248,8 +248,8 @@ void FrameManager::saveProperties(KConfigGroup &config)
         // No need to save the main frame
         Frame *currentFrame = i.value();
         if (currentFrame && qobject_cast<WebEngineFrame *>(currentFrame)) {
-            const QString newPrefix = QLatin1Char('T') + QString::number(i.key());
-            if (currentFrame->saveConfig(config, newPrefix + QLatin1Char('_'))) {
+            const QString newPrefix = u'T' + QString::number(i.key());
+            if (currentFrame->saveConfig(config, newPrefix + u'_')) {
                 strlst.append(newPrefix);
                 if (currentFrame == m_currentFrame) {
                     config.writeEntry(QStringLiteral("CurrentTab"), newPrefix);

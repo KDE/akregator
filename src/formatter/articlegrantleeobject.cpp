@@ -100,7 +100,7 @@ QString ArticleGrantleeObject::actionToken() const
     if (mArticle.feed()) {
         query.addQueryItem(QStringLiteral("feed"), mArticle.feed()->xmlUrl());
     }
-    return QLatin1Char('?') + query.toString(QUrl::FullyEncoded);
+    return u'?' + query.toString(QUrl::FullyEncoded);
 }
 
 bool ArticleGrantleeObject::important() const

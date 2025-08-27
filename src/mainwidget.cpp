@@ -1246,7 +1246,7 @@ void MainWidget::readProperties(const KConfigGroup &config)
     int currentFrameId = -1;
     for (const QString &framePrefix : childList) {
         auto const frame = new WebEngineFrame(m_actionManager->actionCollection(), m_tabWidget);
-        frame->loadConfig(config, framePrefix + QLatin1Char('_'));
+        frame->loadConfig(config, framePrefix + u'_');
 
         connectFrame(frame);
         Kernel::self()->frameManager()->slotAddFrame(frame);
