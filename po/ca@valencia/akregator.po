@@ -434,8 +434,7 @@ msgstr "Expandix automàticament les carpetes amb articles sense llegir"
 #: configuration/ui/settings_general.ui:74
 #, kde-format
 msgid "Select this if you want to get notified when there are new articles."
-msgstr ""
-"Seleccioneu açò si voleu que se vos notifique quan hi haja articles nous."
+msgstr "Trieu açò si voleu que se vos notifique quan hi haja articles nous."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_UseNotifications)
 #: configuration/ui/settings_general.ui:77
@@ -1436,12 +1435,12 @@ msgstr "Expandix automàticament les carpetes amb articles sense llegir"
 #: src/actions/actionmanagerimpl.cpp:592
 #, kde-format
 msgid "Select Next Tab"
-msgstr "Selecciona la pestanya següent"
+msgstr "Tria la pestanya següent"
 
 #: src/actions/actionmanagerimpl.cpp:597
 #, kde-format
 msgid "Select Previous Tab"
-msgstr "Selecciona la pestanya anterior"
+msgstr "Tria la pestanya anterior"
 
 #: src/actions/actionmanagerimpl.cpp:603
 #, kde-format
