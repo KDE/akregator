@@ -38,7 +38,6 @@
         "Description[sv]": "Anpassa insticksprogram",
         "Description[tr]": "Eklentileri Yapılandır",
         "Description[uk]": "Налаштовування додатків",
-        "Description[x-test]": "xxConfigure Pluginsxx",
         "Description[zh_CN]": "配置插件",
         "Description[zh_TW]": "設定外掛程式",
         "Icon": "preferences-plugin",
@@ -112,7 +111,6 @@
         "Name[uz@cyrillic]": "Плагинлар",
         "Name[uz]": "Plaginlar",
         "Name[wa]": "Tchôkes-divins",
-        "Name[x-test]": "xxPluginsxx",
         "Name[zh_CN]": "插件",
         "Name[zh_TW]": "外掛程式",
         "ServiceTypes": [
