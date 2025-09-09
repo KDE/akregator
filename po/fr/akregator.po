@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-08-16 00:43+0000\n"
+"POT-Creation-Date: 2025-09-09 00:56+0000\n"
 "PO-Revision-Date: 2025-01-20 10:27+0100\n"
 "Last-Translator: Xavier Besnard <xavier.besnard@kde.org>\n"
 "Language-Team: French <French <kde-francophone@kde.org>>\n"
@@ -967,7 +967,7 @@ msgstr "Efface la recherche rapide au changement de flux."
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
 #: src/akregator_part.cpp:126
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:142
-#: src/mainwidget.cpp:127 src/mainwidget.cpp:1325 src/trayicon.cpp:40
+#: src/mainwidget.cpp:129 src/mainwidget.cpp:1330 src/trayicon.cpp:40
 #: src/trayicon.cpp:41 src/trayicon.cpp:53
 #, kde-format
 msgid "Akregator"
@@ -2136,27 +2136,27 @@ msgstr "Chargement annulé"
 msgid "Loading completed"
 msgstr "Chargement terminé"
 
-#: src/mainwidget.cpp:178
+#: src/mainwidget.cpp:183
 #, kde-format
 msgid "You can view multiple articles in several open tabs."
 msgstr "Vous pouvez voir plusieurs articles dans plusieurs onglets ouverts."
 
-#: src/mainwidget.cpp:182
+#: src/mainwidget.cpp:187
 #, kde-format
 msgid "Articles list."
 msgstr "Liste des articles."
 
-#: src/mainwidget.cpp:244 src/mainwidget.cpp:676
+#: src/mainwidget.cpp:249 src/mainwidget.cpp:681
 #, kde-format
 msgid "Articles"
 msgstr "Articles"
 
-#: src/mainwidget.cpp:273
+#: src/mainwidget.cpp:278
 #, kde-format
 msgid "About"
 msgstr "À propos"
 
-#: src/mainwidget.cpp:815
+#: src/mainwidget.cpp:820
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all articles in the feed</b> as read?</"
@@ -2165,19 +2165,19 @@ msgstr ""
 "<qt>Voulez-vous vraiment marquer <b>tous les articles du flux</b> comme "
 "lus ? </qt>"
 
-#: src/mainwidget.cpp:816
+#: src/mainwidget.cpp:821
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "Marquer un flux comme lu"
 
-#: src/mainwidget.cpp:819
+#: src/mainwidget.cpp:824
 #, kde-format
 msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
 msgstr ""
 "<qt>Voulez-vous vraiment marquer <b>tous les flux</b> comme lus ? </qt>"
 
-#: src/mainwidget.cpp:821
+#: src/mainwidget.cpp:826
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all feeds in the folder</b> as read?</"
@@ -2186,28 +2186,28 @@ msgstr ""
 "<qt>Voulez-vous vraiment marquer <b>tous les flux du dossier</b> comme lus ? "
 "</qt>"
 
-#: src/mainwidget.cpp:823
+#: src/mainwidget.cpp:828
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "Marquer les flux comme lus"
 
-#: src/mainwidget.cpp:887 src/mainwidget.cpp:896 src/mainwidget.cpp:1297
+#: src/mainwidget.cpp:892 src/mainwidget.cpp:901 src/mainwidget.cpp:1302
 #, kde-format
 msgid "Networking is not available."
 msgstr "Le réseau n'est pas disponible."
 
-#: src/mainwidget.cpp:904
+#: src/mainwidget.cpp:909
 #, kde-format
 msgid "Fetching Feeds…"
 msgstr "Téléchargement de flux..."
 
-#: src/mainwidget.cpp:1102
+#: src/mainwidget.cpp:1107
 #, kde-format
 msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
 msgstr "<qt>Voulez-vous vraiment supprimer l'article <b>%1</b> ?</qt>"
 
-#: src/mainwidget.cpp:1105
+#: src/mainwidget.cpp:1110
 #, kde-format
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
 msgid_plural ""
@@ -2216,13 +2216,13 @@ msgstr[0] "<qt>Voulez-vous vraiment supprimer l'article sélectionné ?</qt>"
 msgstr[1] ""
 "<qt>Voulez-vous vraiment supprimer les %1 articles sélectionnés ?</qt>"
 
-#: src/mainwidget.cpp:1112
+#: src/mainwidget.cpp:1117
 #, kde-format
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "Supprimer un article"
 
-#: src/mainwidget.cpp:1294
+#: src/mainwidget.cpp:1299
 #, kde-format
 msgid "Networking is available now."
 msgstr "Le réseau est maintenant disponible."

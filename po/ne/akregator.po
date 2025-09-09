@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-08-16 00:43+0000\n"
+"POT-Creation-Date: 2025-09-09 00:56+0000\n"
 "PO-Revision-Date: 2007-09-07 10:35+0545\n"
 "Last-Translator: Nabin Gautam <nabin@mpp.org.np>\n"
 "Language-Team: Nepali <info@mpp.org.np>\n"
@@ -952,7 +952,7 @@ msgstr ""
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
 #: src/akregator_part.cpp:126
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:142
-#: src/mainwidget.cpp:127 src/mainwidget.cpp:1325 src/trayicon.cpp:40
+#: src/mainwidget.cpp:129 src/mainwidget.cpp:1330 src/trayicon.cpp:40
 #: src/trayicon.cpp:41 src/trayicon.cpp:53
 #, kde-format
 msgid "Akregator"
@@ -2202,27 +2202,27 @@ msgstr "लोडिङ रद्द गरियो"
 msgid "Loading completed"
 msgstr "लोडिङ समाप्त"
 
-#: src/mainwidget.cpp:178
+#: src/mainwidget.cpp:183
 #, kde-format
 msgid "You can view multiple articles in several open tabs."
 msgstr "तपाईँले विभिन्न खुला ट्याबमा बहुविध लेख हेर्न सक्नुहुन्छ ।"
 
-#: src/mainwidget.cpp:182
+#: src/mainwidget.cpp:187
 #, kde-format
 msgid "Articles list."
 msgstr "लेख सूची ।"
 
-#: src/mainwidget.cpp:244 src/mainwidget.cpp:676
+#: src/mainwidget.cpp:249 src/mainwidget.cpp:681
 #, kde-format
 msgid "Articles"
 msgstr "लेख"
 
-#: src/mainwidget.cpp:273
+#: src/mainwidget.cpp:278
 #, kde-format
 msgid "About"
 msgstr "बारेमा"
 
-#: src/mainwidget.cpp:815
+#: src/mainwidget.cpp:820
 #, fuzzy, kde-format
 #| msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
 msgid ""
@@ -2230,20 +2230,20 @@ msgid ""
 "qt>"
 msgstr "<qt>तपाईँ फिड <b>%1</b> मेटाउने चाहानामा निश्चित हुनुहुन्छ ?</qt>"
 
-#: src/mainwidget.cpp:816
+#: src/mainwidget.cpp:821
 #, fuzzy, kde-format
 #| msgid "&Mark Feed as Read"
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "पढिएका रूपमा फिडमा चिन्ह लगाउनुहोस्"
 
-#: src/mainwidget.cpp:819
+#: src/mainwidget.cpp:824
 #, fuzzy, kde-format
 #| msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
 msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
 msgstr "<qt>तपाईँ फिड <b>%1</b> मेटाउने चाहानामा निश्चित हुनुहुन्छ ?</qt>"
 
-#: src/mainwidget.cpp:821
+#: src/mainwidget.cpp:826
 #, fuzzy, kde-format
 #| msgid "<qt>Are you sure you want to delete this feed?</qt>"
 msgid ""
@@ -2251,30 +2251,30 @@ msgid ""
 "qt>"
 msgstr "<qt>तपाईँ यो फिड मेट्ने चाहानामा निश्चिन्त हुनुहुन्छ ?</qt>"
 
-#: src/mainwidget.cpp:823
+#: src/mainwidget.cpp:828
 #, fuzzy, kde-format
 #| msgid "&Mark Feeds as Read"
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "पढिएका रूपमा फिडमा चिन्ह लगाउनुहोस्"
 
-#: src/mainwidget.cpp:887 src/mainwidget.cpp:896 src/mainwidget.cpp:1297
+#: src/mainwidget.cpp:892 src/mainwidget.cpp:901 src/mainwidget.cpp:1302
 #, kde-format
 msgid "Networking is not available."
 msgstr ""
 
-#: src/mainwidget.cpp:904
+#: src/mainwidget.cpp:909
 #, fuzzy, kde-format
 #| msgid "Fetching Feeds..."
 msgid "Fetching Feeds…"
 msgstr "फिड तान्दैछ..."
 
-#: src/mainwidget.cpp:1102
+#: src/mainwidget.cpp:1107
 #, kde-format
 msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
 msgstr "<qt>तपाईँ लेख <b>%1</b> मेट्न निश्चित हुनुहुन्छ ?</qt>"
 
-#: src/mainwidget.cpp:1105
+#: src/mainwidget.cpp:1110
 #, fuzzy, kde-format
 #| msgid "<qt>Are you sure you want to delete the %1 selected articles?</qt>"
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
@@ -2283,14 +2283,14 @@ msgid_plural ""
 msgstr[0] "<qt>तपाईँ चयन गरिएका %1 लेख मेट्न निश्चित हुनुहुन्छ ?</qt>"
 msgstr[1] "<qt>तपाईँ चयन गरिएका %1 लेख मेट्न निश्चित हुनुहुन्छ ?</qt>"
 
-#: src/mainwidget.cpp:1112
+#: src/mainwidget.cpp:1117
 #, fuzzy, kde-format
 #| msgid "Delete Article"
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "लेख मेट्नुहोस्"
 
-#: src/mainwidget.cpp:1294
+#: src/mainwidget.cpp:1299
 #, kde-format
 msgid "Networking is available now."
 msgstr ""
