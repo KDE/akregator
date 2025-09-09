@@ -38,7 +38,6 @@
         "Description[sv]": "Anpassa kanalarkivet",
         "Description[tr]": "Besleme Arşivini Yapılandır",
         "Description[uk]": "Налаштування архіву подач",
-        "Description[x-test]": "xxConfigure Feed Archivexx",
         "Description[zh_CN]": "配置 Feed 存档",
         "Description[zh_TW]": "設定訂閱來源文章收集",
         "Icon": "utilities-file-archiver",
@@ -101,7 +100,6 @@
         "Name[ug]": "ئارخىپلاش",
         "Name[uk]": "Архів",
         "Name[wa]": "Årtchive",
-        "Name[x-test]": "xxArchivexx",
         "Name[zh_CN]": "归档",
         "Name[zh_TW]": "文章收集",
         "ServiceTypes": [

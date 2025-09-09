@@ -38,7 +38,6 @@
         "Description[sv]": "Anpassa intern webbläsningskomponent",
         "Description[tr]": "İç Tarayıcı Bileşenini Yapılandır",
         "Description[uk]": "Налаштування вбудованого компонента переглядача",
-        "Description[x-test]": "xxConfigure Internal Browser Componentxx",
         "Description[zh_CN]": "配置内部浏览器组件",
         "Description[zh_TW]": "設定內部瀏覽器組件",
         "Icon": "konqueror",
@@ -102,7 +101,6 @@
         "Name[ug]": "توركۆرگۈ",
         "Name[uk]": "Переглядач",
         "Name[wa]": "Betchteu",
-        "Name[x-test]": "xxBrowserxx",
         "Name[zh_CN]": "浏览器",
         "Name[zh_TW]": "瀏覽器",
         "ServiceTypes": [

@@ -38,7 +38,6 @@
         "Description[sv]": "Akregator-insticksprogram",
         "Description[tr]": "Akregatör Eklentisi",
         "Description[uk]": "Додаток до Akregator",
-        "Description[x-test]": "xxAkregator Pluginxx",
         "Description[zh_CN]": "Akregator 插件",
         "Description[zh_TW]": "Akregator 外掛程式",
         "EnabledByDefault": true,
@@ -111,7 +110,6 @@
         "Name[uz@cyrillic]": "Янгиликлар тасмалари",
         "Name[uz]": "Yangiliklar tasmalari",
         "Name[wa]": "Floûs",
-        "Name[x-test]": "xxFeedsxx",
         "Name[zh_CN]": "订阅",
         "Name[zh_TW]": "訂閱來源",
         "Version": "1.0b2"
