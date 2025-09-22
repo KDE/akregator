@@ -20,8 +20,7 @@
 > <affiliation
 ><address
 ><email
->frank.osterfeld@kdemail.net</email
->  
+>frank.osterfeld@kdemail.net</email>
 </address
 ></affiliation>
 </author>
@@ -260,7 +259,7 @@ say how to start it -->
 >Vaya al menú <guimenu
 >Fuente</guimenu
 > y escoja <guimenuitem
->Añadir fuente...</guimenuitem
+>Añadir fuente…</guimenuitem
 > o use el atajo de teclado predeterminado (<keycap
 >Insert</keycap
 >). El siguiente diálogo aparecerá, con la etiqueta <guilabel
@@ -361,7 +360,7 @@ say how to start it -->
 </para>
 <para
 >Cambie a &akregator;, seleccione <guimenuitem
->Añadir fuente...</guimenuitem
+>Añadir fuente…</guimenuitem
 > y la <guilabel
 >URL de la fuente</guilabel
 > se rellena en la dirección del enlace. </para>
@@ -390,7 +389,7 @@ say how to start it -->
 ><guimenu
 >Fuente</guimenu
 > <guimenuitem
->Nueva carpeta...</guimenuitem
+>Nueva carpeta…</guimenuitem
 ></menuchoice
 >. Introduzca <userinput
 >Noticias</userinput
@@ -449,7 +448,7 @@ say how to start it -->
 > <guimenu
 >Preferencias</guimenu
 ><guimenuitem
->Configurar &akregator;...</guimenuitem
+>Configurar &akregator;…</guimenuitem
 > </menuchoice
 ></para>
 <sect1 id="general-tab">
@@ -693,8 +692,7 @@ say how to start it -->
 <term
 ><guilabel
 >Limitar el tamaño de archivo comprimido de la fuente a:</guilabel
-></term
-> 
+></term>
 <listitem
 ><para
 >Si el número de artículos supera el límite elegido, los artículos más antiguos serán borrados. Note que los artículos señalados serán ignorados al contar el número de artículos: si su límite es 500 y tiene 510 artículos sin señalar y 50 señalados, &akregator; se ignorarán los 50 y solamente se eliminarán los 10 artículos más antiguos no señalados. En este ejemplo, se conservarán 550 artículos.</para>
@@ -1223,7 +1221,7 @@ say how to start it -->
 > <guimenu
 >Editar</guimenu
 > <guimenuitem
->Editar fuente...</guimenuitem
+>Editar fuente…</guimenuitem
 > </menuchoice
 ></term>
 <listitem
@@ -1546,7 +1544,7 @@ say how to start it -->
 > <guimenu
 >Fuente</guimenu
 > <guimenuitem
->Añadir fuente...</guimenuitem
+>Añadir fuente…</guimenuitem
 > </menuchoice
 ></term>
 <listitem
@@ -1568,7 +1566,7 @@ say how to start it -->
 > <guimenu
 >Fuente</guimenu
 > <guimenuitem
->Nueva carpeta...</guimenuitem
+>Nueva carpeta…</guimenuitem
 > </menuchoice
 ></term>
 <listitem
@@ -1833,7 +1831,7 @@ say how to start it -->
 ><guimenu
 >Artículo</guimenu
 > <guimenuitem
->Enviar dirección de enlace...</guimenuitem
+>Enviar dirección de enlace…</guimenuitem
 > </menuchoice
 ></term>
 <listitem
@@ -1849,7 +1847,7 @@ say how to start it -->
 ><guimenu
 >Artículo</guimenu
 > <guimenuitem
->Enviar archivo...</guimenuitem
+>Enviar archivo…</guimenuitem
 > </menuchoice
 ></term>
 <listitem
@@ -1878,7 +1876,7 @@ action="simul"
 ></term>
 <listitem
 ><para
->Use this action you to share news 
+>Use this action you to share news
  with your friends using the microblog services identi.ca and twitter.
 </para
 ></listitem>
