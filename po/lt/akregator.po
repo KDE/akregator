@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-09-09 00:56+0000\n"
-"PO-Revision-Date: 2025-01-24 01:26+0200\n"
+"PO-Revision-Date: 2025-09-27 12:02+0300\n"
 "Last-Translator: Mindaugas Baranauskas <opensuse.lietuviu.kalba@gmail.com>\n"
 "Language-Team: Lithuanian <kde-i18n-lt@kde.org>\n"
 "Language: lt\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : n%10>=2 && (n%100<10 || n"
 "%100>=20) ? 1 : n%10==0 || (n%100>10 && n%100<20) ? 2 : 3);\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.6\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -162,7 +162,7 @@ msgstr "Straipsnių sąrašas"
 #: configuration/ui/settings_advancedbase.ui:38
 #, kde-format
 msgid "Mar&k selected article read after"
-msgstr "Žymėti &nurodytą straipsnį skaitytu po"
+msgstr "Žymėti &nurodytą straipsnį kaip skaitytą po"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ResetQuickFilterOnNodeChange)
 #: configuration/ui/settings_advancedbase.ui:73
@@ -931,7 +931,7 @@ msgstr "Archyvavimo įrankis"
 #: interfaces/akregator.kcfg:274
 #, kde-format
 msgid "Whether to delay before marking an article as read upon selecting it."
-msgstr "Ar palaukti, prieš žymint parinktą straipsnį skaitytu."
+msgstr "Ar palaukti, prieš žymint parinktą straipsnį kaip skaitytą."
 
 #. i18n: ectx: whatsthis, entry (MarkReadDelay), group (Advanced)
 #: interfaces/akregator.kcfg:278
@@ -1166,7 +1166,7 @@ msgstr "&Taisyti kanalą…"
 #: src/actions/actionmanagerimpl.cpp:71 src/actions/actionmanagerimpl.cpp:317
 #, kde-format
 msgid "&Mark Feed as Read"
-msgstr "Žy&mėti kanalą skaitytu"
+msgstr "Žy&mėti kanalą kaip skaitytą"
 
 #: src/actions/actionmanagerimpl.cpp:87
 #, kde-format
@@ -1186,7 +1186,7 @@ msgstr "Pe&rvadinti aplanką"
 #: src/actions/actionmanagerimpl.cpp:90
 #, kde-format
 msgid "&Mark Feeds as Read"
-msgstr "Žy&mėti kanalą skaitytu"
+msgstr "Žy&mėti kanalus kaip skaitytus"
 
 #: src/actions/actionmanagerimpl.cpp:202
 #, kde-format
@@ -1282,7 +1282,7 @@ msgstr "Ž&ymėti kaip"
 #, kde-format
 msgctxt "as in: mark as read"
 msgid "&Read"
-msgstr "&Skaitytu"
+msgstr "&Skaitytą"
 
 #: src/actions/actionmanagerimpl.cpp:382
 #, kde-format
@@ -1294,7 +1294,7 @@ msgstr "Žymėti pasirinktą straipsnį kaip skaitytą"
 #, kde-format
 msgctxt "as in: mark as new"
 msgid "&New"
-msgstr "&Nauju"
+msgstr "&Naują"
 
 #: src/actions/actionmanagerimpl.cpp:391
 #, kde-format
@@ -1306,7 +1306,7 @@ msgstr "Žymėti pasirinktą straipsnį kaip naują"
 #, kde-format
 msgctxt "as in: mark as unread"
 msgid "&Unread"
-msgstr "N&eskaitytu"
+msgstr "N&eskaitytą"
 
 #: src/actions/actionmanagerimpl.cpp:398
 #, kde-format
@@ -1317,7 +1317,7 @@ msgstr "Žymėti pasirinktą straipsnį kaip neskaitytą"
 #: src/actions/actionmanagerimpl.cpp:404
 #, kde-format
 msgid "&Mark as Important"
-msgstr "Žymėti s&varbiu"
+msgstr "Žymėti kaip s&varbų"
 
 #: src/actions/actionmanagerimpl.cpp:408
 #, kde-format
@@ -2097,7 +2097,7 @@ msgstr "Komentaras"
 #: src/formatter/grantleeviewformatter.cpp:255
 #, kde-format
 msgid "Complete Story"
-msgstr "Pilnas pasakojimas"
+msgstr "Visas pasakojimas"
 
 #: src/formatter/grantleeviewformatter.cpp:256
 #, kde-format
@@ -2521,7 +2521,7 @@ msgstr "Skaitant straipsnį atsiųsti visą svetainę"
 #: src/ui/feedpropertieswidgetbase.ui:383
 #, kde-format
 msgid "Mar&k articles as read when they arrive"
-msgstr "Straipsniui atėjus iš &karto žymėti jį skaitytu"
+msgstr "Straipsniui atėjus iš &karto žymėti jį kaip skaitytą"
 
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:40
 #, kde-format
