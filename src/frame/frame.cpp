@@ -144,9 +144,7 @@ void Frame::slotSetStarted()
 
 void Frame::slotStop()
 {
-    if (m_loading) {
-        m_loading = false;
-    }
+    m_loading = false;
 }
 
 void Frame::slotSetCanceled(const QString &s)

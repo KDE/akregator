@@ -23,7 +23,7 @@ using namespace Akregator;
 class DefaultNormalViewFormatter::SummaryVisitor : public TreeNodeVisitor
 {
 public:
-    SummaryVisitor(DefaultNormalViewFormatter *p)
+    explicit SummaryVisitor(DefaultNormalViewFormatter *p)
         : parent(p)
     {
     }

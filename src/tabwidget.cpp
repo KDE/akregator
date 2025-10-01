@@ -132,7 +132,7 @@ void TabWidget::slotTabContextMenuRequest(const QPoint &pos)
     allTab->setEnabled(countTab);
     allTab->setIcon(QIcon::fromTheme(QStringLiteral("tab-close")));
 
-    QAction *action = menu.exec(mapToGlobal(pos));
+    const QAction *action = menu.exec(mapToGlobal(pos));
 
     if (action == allOther) { // Close all other tabs
         slotCloseAllTabExcept(indexBar);
