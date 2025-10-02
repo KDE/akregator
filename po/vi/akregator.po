@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-09-09 00:56+0000\n"
+"POT-Creation-Date: 2025-10-02 00:43+0000\n"
 "PO-Revision-Date: 2012-07-09 22:08+0800\n"
 "Last-Translator: Lê Hoàng Phương <herophuong93@gmail.com>\n"
 "Language-Team: Vietnamese <kde-i18n-vi@kde.org>\n"
@@ -2172,12 +2172,12 @@ msgstr "Chưa đặt tên"
 msgid "Loading…"
 msgstr "Đang tải..."
 
-#: src/frame/frame.cpp:156
+#: src/frame/frame.cpp:154
 #, kde-format
 msgid "Loading canceled"
 msgstr "Đã huỷ tải"
 
-#: src/frame/frame.cpp:168
+#: src/frame/frame.cpp:166
 #, kde-format
 msgid "Loading completed"
 msgstr "Tải hoàn tất"

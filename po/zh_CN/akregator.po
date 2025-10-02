@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-09-09 00:56+0000\n"
+"POT-Creation-Date: 2025-10-02 00:43+0000\n"
 "PO-Revision-Date: 2024-04-23 19:24\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -2044,12 +2044,12 @@ msgstr "无标题"
 msgid "Loading…"
 msgstr "正在加载..."
 
-#: src/frame/frame.cpp:156
+#: src/frame/frame.cpp:154
 #, kde-format
 msgid "Loading canceled"
 msgstr "加载已取消"
 
-#: src/frame/frame.cpp:168
+#: src/frame/frame.cpp:166
 #, kde-format
 msgid "Loading completed"
 msgstr "加载已完成"

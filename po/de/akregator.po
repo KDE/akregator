@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-09-09 00:56+0000\n"
+"POT-Creation-Date: 2025-10-02 00:43+0000\n"
 "PO-Revision-Date: 2023-04-19 00:41+0200\n"
 "Last-Translator: Frederik Schwarzer <schwarzer@kde.org>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
@@ -2183,12 +2183,12 @@ msgstr "Unbenannt"
 msgid "Loading…"
 msgstr "Wird geladen ..."
 
-#: src/frame/frame.cpp:156
+#: src/frame/frame.cpp:154
 #, kde-format
 msgid "Loading canceled"
 msgstr "Ladevorgang abgebrochen"
 
-#: src/frame/frame.cpp:168
+#: src/frame/frame.cpp:166
 #, kde-format
 msgid "Loading completed"
 msgstr "Ladevorgang abgeschlossen"

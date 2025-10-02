@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-09-09 00:56+0000\n"
+"POT-Creation-Date: 2025-10-02 00:43+0000\n"
 "PO-Revision-Date: 2009-02-27 17:34+0530\n"
 "Last-Translator: Ravishankar Shrivastava <raviratlami@aol.in>\n"
 "Language-Team: Hindi <kde-i18n-doc@lists.kde.org>\n"
@@ -2143,12 +2143,12 @@ msgstr "बिना सीर्सक"
 msgid "Loading…"
 msgstr "लोड करत हे..."
 
-#: src/frame/frame.cpp:156
+#: src/frame/frame.cpp:154
 #, kde-format
 msgid "Loading canceled"
 msgstr "लोड करना खारिज"
 
-#: src/frame/frame.cpp:168
+#: src/frame/frame.cpp:166
 #, kde-format
 msgid "Loading completed"
 msgstr "लोड करना पूरा"
