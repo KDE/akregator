@@ -20,8 +20,7 @@
 > <affiliation
 ><address
 ><email
->frank.osterfeld@kdemail.net</email
->  
+>frank.osterfeld@kdemail.net</email>
 </address
 ></affiliation>
 </author>
@@ -645,8 +644,7 @@ say how to start it -->
 <term
 ><guilabel
 >Обмежити розмір архіву до:</guilabel
-></term
-> 
+></term>
 <listitem
 ><para
 >Якщо кількість статей перевищить вказане обмеження, найстаріші статті буде вилучено. Зауважте, що під час підрахунку кількості статей статті з прапорцями буде проігноровано: якщо ви встановили обмеження у 500 статей, і ви маєте 510 статей без прапорців і 50 статей з прапорцями, &akregator; проігнорує 50 статей з прапорцями і вилучить лише 10 найдавніших статей без прапорців. Отже, в такому випадку, буде збережено 550 статей.</para>
@@ -1826,7 +1824,7 @@ action="simul"
 ></term>
 <listitem
 ><para
->Use this action you to share news 
+>Use this action you to share news
  with your friends using the microblog services identi.ca and twitter.
 </para
 ></listitem>
