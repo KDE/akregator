@@ -144,6 +144,11 @@ add_definitions(-DQT_NO_CONTEXTLESS_CONNECT)
 ecm_set_disabled_deprecation_versions(QT 6.10.0
      KF 6.18.0
 )
+
+if(${KF6TextAddonsWidgets_VERSION} VERSION_GREATER_EQUAL 1.8.45)
+    set(HAVE_TEXTUTILS_HAS_WHATSNEW_SUPPORT TRUE)
+endif()
+
 if(TARGET KF6::UserFeedbackWidgets)
     set(AKREGATOR_WITH_KUSERFEEDBACK true)
 endif()
