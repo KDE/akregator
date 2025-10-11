@@ -64,6 +64,7 @@
 #include <QVBoxLayout>
 
 #include "webengine/webengineframe.h"
+#include <PimCommon/NetworkManager>
 #if HAVE_TEXTUTILS_HAS_WHATSNEW_SUPPORT
 #include <TextAddonsWidgets/NeedUpdateVersionUtils>
 #include <TextAddonsWidgets/NeedUpdateVersionWidget>
@@ -72,8 +73,8 @@
 #else
 #include <PimCommon/NeedUpdateVersionUtils>
 #include <PimCommon/NeedUpdateVersionWidget>
-#include <PimCommon/NetworkManager>
 #include <PimCommon/WhatsNewDialog>
+#include <PimCommon/WhatsNewMessageWidget>
 #endif
 #include <algorithm>
 #include <chrono>

@@ -353,6 +353,7 @@ target_link_libraries(
     KF6::Completion
     KF6::JobWidgets
     KF6::TextUtils
+    KF6::TextAddonsWidgets
 )
 if(COMPILE_WITH_UNITY_CMAKE_SUPPORT)
     set_target_properties(

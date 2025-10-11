@@ -145,7 +145,7 @@ ecm_set_disabled_deprecation_versions(QT 6.10.0
      KF 6.18.0
 )
 
-if(${KF6TextAddonsWidgets_VERSION} VERSION_GREATER_EQUAL 1.8.45)
+if(${KF6TextAddonsWidgets_VERSION} VERSION_GREATER_EQUAL 1.8.44)
     set(HAVE_TEXTUTILS_HAS_WHATSNEW_SUPPORT TRUE)
 endif()
 
