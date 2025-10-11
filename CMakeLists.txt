@@ -54,7 +54,7 @@ include(ECMAddAppIcon)
 include(ECMQtDeclareLoggingCategory)
 include(ECMDeprecationSettings)
 include(ECMFeatureSummary)
-set(KTEXTADDONS_MIN_VERSION "1.7.1")
+set(KTEXTADDONS_MIN_VERSION "1.8.0")
 set(CMAKE_CXX_SCAN_FOR_MODULES OFF)
 # Do NOT add quote
 set(KDEPIM_DEV_VERSION alpha)
