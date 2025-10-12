@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Mimos\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-10-02 00:43+0000\n"
+"POT-Creation-Date: 2025-10-12 00:43+0000\n"
 "PO-Revision-Date: 2005-10-12 11:13+0800\n"
 "Last-Translator: MIMOS <opensource@mimos.my>\n"
 "Language-Team: Malay <kedidiemas@yahoogroups.com>\n"
@@ -278,7 +278,7 @@ msgstr "Klik Tetikus Kiri:"
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
 #: configuration/ui/settings_browser.ui:28
 #: configuration/ui/settings_browser.ui:54
-#: src/actions/actionmanagerimpl.cpp:335
+#: src/actions/actionmanagerimpl.cpp:347
 #, kde-format
 msgid "Open in Tab"
 msgstr "Buka dalam Tab"
@@ -287,7 +287,7 @@ msgstr "Buka dalam Tab"
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
 #: configuration/ui/settings_browser.ui:33
 #: configuration/ui/settings_browser.ui:59
-#: src/actions/actionmanagerimpl.cpp:341
+#: src/actions/actionmanagerimpl.cpp:353
 #, kde-format
 msgid "Open in Background Tab"
 msgstr "Buka dalam Tab Latar Belakang"
@@ -296,7 +296,7 @@ msgstr "Buka dalam Tab Latar Belakang"
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
 #: configuration/ui/settings_browser.ui:38
 #: configuration/ui/settings_browser.ui:64
-#: src/actions/actionmanagerimpl.cpp:347
+#: src/actions/actionmanagerimpl.cpp:359
 #, kde-format
 msgid "Open in External Browser"
 msgstr "Buka dalam Pelayar Luar"
@@ -548,7 +548,7 @@ msgid "Auto-Expand folders with unread articles"
 msgstr " (tiada artikel belum baca)"
 
 #. i18n: ectx: label, entry, group (View)
-#: interfaces/akregator.kcfg:31 src/actions/actionmanagerimpl.cpp:329
+#: interfaces/akregator.kcfg:31 src/actions/actionmanagerimpl.cpp:341
 #, kde-format
 msgid "Show Quick Filter"
 msgstr "Tayangkan Penapis Pantas"
@@ -936,8 +936,9 @@ msgstr ""
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
 #: src/akregator_part.cpp:126
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:142
-#: src/mainwidget.cpp:129 src/mainwidget.cpp:1330 src/trayicon.cpp:40
-#: src/trayicon.cpp:41 src/trayicon.cpp:53
+#: src/mainwidget.cpp:150 src/mainwidget.cpp:153 src/mainwidget.cpp:1356
+#: src/mainwidget.cpp:1358 src/trayicon.cpp:40 src/trayicon.cpp:41
+#: src/trayicon.cpp:53
 #, kde-format
 msgid "Akregator"
 msgstr "Akregator"
@@ -1138,378 +1139,378 @@ msgstr ""
 msgid "Gentoo Ebuild"
 msgstr "Gentoo Ebuild"
 
-#: src/actions/actionmanagerimpl.cpp:68 src/actions/actionmanagerimpl.cpp:298
+#: src/actions/actionmanagerimpl.cpp:72 src/actions/actionmanagerimpl.cpp:310
 #, kde-format
 msgid "&Fetch Feed"
 msgstr "&Kutip Suapan"
 
-#: src/actions/actionmanagerimpl.cpp:69 src/actions/actionmanagerimpl.cpp:254
+#: src/actions/actionmanagerimpl.cpp:73 src/actions/actionmanagerimpl.cpp:266
 #, kde-format
 msgid "&Delete Feed"
 msgstr "&Hapuskan Suapan"
 
-#: src/actions/actionmanagerimpl.cpp:70 src/actions/actionmanagerimpl.cpp:260
+#: src/actions/actionmanagerimpl.cpp:74 src/actions/actionmanagerimpl.cpp:272
 #, fuzzy, kde-format
 #| msgid "&Edit Feed..."
 msgid "&Edit Feed…"
 msgstr "&Edit Suapan..."
 
-#: src/actions/actionmanagerimpl.cpp:71 src/actions/actionmanagerimpl.cpp:317
+#: src/actions/actionmanagerimpl.cpp:75 src/actions/actionmanagerimpl.cpp:329
 #, kde-format
 msgid "&Mark Feed as Read"
 msgstr "&Tandakan Suapan Sebagai Sudah Baca"
 
-#: src/actions/actionmanagerimpl.cpp:87
+#: src/actions/actionmanagerimpl.cpp:91
 #, fuzzy, kde-format
 msgid "&Fetch Feeds"
 msgstr "&Kutip Suapan"
 
-#: src/actions/actionmanagerimpl.cpp:88
+#: src/actions/actionmanagerimpl.cpp:92
 #, fuzzy, kde-format
 msgid "&Delete Folder"
 msgstr "Hapuskan Folder"
 
-#: src/actions/actionmanagerimpl.cpp:89
+#: src/actions/actionmanagerimpl.cpp:93
 #, fuzzy, kde-format
 msgid "&Rename Folder"
 msgstr "Hapuskan Folder"
 
-#: src/actions/actionmanagerimpl.cpp:90
+#: src/actions/actionmanagerimpl.cpp:94
 #, fuzzy, kde-format
 msgid "&Mark Feeds as Read"
 msgstr "&Tandakan Suapan Sebagai Sudah Baca"
 
-#: src/actions/actionmanagerimpl.cpp:202
+#: src/actions/actionmanagerimpl.cpp:214
 #, fuzzy, kde-format
 #| msgid "&Import Feeds..."
 msgid "&Import Feeds…"
 msgstr "Suapan &Import..."
 
-#: src/actions/actionmanagerimpl.cpp:206
+#: src/actions/actionmanagerimpl.cpp:218
 #, fuzzy, kde-format
 #| msgid "&Export Feeds..."
 msgid "&Export Feeds…"
 msgstr "Suapan &Eksport..."
 
-#: src/actions/actionmanagerimpl.cpp:211
+#: src/actions/actionmanagerimpl.cpp:223
 #, fuzzy, kde-format
 #| msgid "Configure &Akregator..."
 msgid "&Configure Akregator…"
 msgstr "Konfigurkan &Akregator..."
 
-#: src/actions/actionmanagerimpl.cpp:230
+#: src/actions/actionmanagerimpl.cpp:242
 #, kde-format
 msgid "&Open Homepage"
 msgstr "&Buka Laman Utama"
 
-#: src/actions/actionmanagerimpl.cpp:236
+#: src/actions/actionmanagerimpl.cpp:248
 #, kde-format
 msgid "Reload All Tabs"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:242
+#: src/actions/actionmanagerimpl.cpp:254
 #, fuzzy, kde-format
 #| msgid "Add Feed"
 msgid "&Add Feed…"
 msgstr "Tambah Suapan"
 
-#: src/actions/actionmanagerimpl.cpp:248
+#: src/actions/actionmanagerimpl.cpp:260
 #, fuzzy, kde-format
 #| msgid "Ne&w Folder..."
 msgid "Ne&w Folder…"
 msgstr "Folder &Baru..."
 
-#: src/actions/actionmanagerimpl.cpp:273
+#: src/actions/actionmanagerimpl.cpp:285
 #, kde-format
 msgid "&Normal View"
 msgstr "Paparan &Normal"
 
-#: src/actions/actionmanagerimpl.cpp:282
+#: src/actions/actionmanagerimpl.cpp:294
 #, kde-format
 msgid "&Widescreen View"
 msgstr "Paparan Skrin &Lebar"
 
-#: src/actions/actionmanagerimpl.cpp:291
+#: src/actions/actionmanagerimpl.cpp:303
 #, kde-format
 msgid "C&ombined View"
 msgstr "Paparan &Gabungan"
 
-#: src/actions/actionmanagerimpl.cpp:304
+#: src/actions/actionmanagerimpl.cpp:316
 #, kde-format
 msgid "Fe&tch All Feeds"
 msgstr "Ku&tip Semua Suapan"
 
-#: src/actions/actionmanagerimpl.cpp:310
+#: src/actions/actionmanagerimpl.cpp:322
 #, fuzzy, kde-format
 #| msgid "Concurrent Fetches"
 msgid "C&ancel Feed Fetches"
 msgstr "Kutipan Selaras."
 
-#: src/actions/actionmanagerimpl.cpp:323
+#: src/actions/actionmanagerimpl.cpp:335
 #, kde-format
 msgid "Ma&rk All Feeds as Read"
 msgstr "Tanda&kan Semua sSuapan Sebagai Sudah baca"
 
-#: src/actions/actionmanagerimpl.cpp:352 src/actions/actionmanagerimpl.cpp:635
+#: src/actions/actionmanagerimpl.cpp:364 src/actions/actionmanagerimpl.cpp:651
 #, kde-format
 msgid "Copy Link Address"
 msgstr "Salin Alamat Pautan"
 
-#: src/actions/actionmanagerimpl.cpp:357
+#: src/actions/actionmanagerimpl.cpp:369
 #, kde-format
 msgid "Pre&vious Unread Article"
 msgstr "Artikel Belum Baca &Sebelumnya"
 
-#: src/actions/actionmanagerimpl.cpp:363
+#: src/actions/actionmanagerimpl.cpp:375
 #, kde-format
 msgid "Ne&xt Unread Article"
 msgstr "Artikel Belum Baca &Seterusnya"
 
-#: src/actions/actionmanagerimpl.cpp:371
+#: src/actions/actionmanagerimpl.cpp:383
 #, fuzzy, kde-format
 msgid "&Delete"
 msgstr "&Hapuskan Suapan"
 
-#: src/actions/actionmanagerimpl.cpp:376
+#: src/actions/actionmanagerimpl.cpp:388
 #, fuzzy, kde-format
 msgid "&Mark As"
 msgstr "&Tandakan"
 
-#: src/actions/actionmanagerimpl.cpp:380
+#: src/actions/actionmanagerimpl.cpp:392
 #, kde-format
 msgctxt "as in: mark as read"
 msgid "&Read"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:382
+#: src/actions/actionmanagerimpl.cpp:394
 #, fuzzy, kde-format
 #| msgid "Mark selected article as read"
 msgctxt "@info:tooltip"
 msgid "Mark selected article as read"
 msgstr "Tandakan artikel yang dipilih sebagai sudah baca"
 
-#: src/actions/actionmanagerimpl.cpp:388
+#: src/actions/actionmanagerimpl.cpp:400
 #, fuzzy, kde-format
 msgctxt "as in: mark as new"
 msgid "&New"
 msgstr "Baru"
 
-#: src/actions/actionmanagerimpl.cpp:391
+#: src/actions/actionmanagerimpl.cpp:403
 #, fuzzy, kde-format
 #| msgid "Mark selected article as new"
 msgctxt "@info:tooltip"
 msgid "Mark selected article as new"
 msgstr "Tandakan artikel dipilih sebagai baru"
 
-#: src/actions/actionmanagerimpl.cpp:396
+#: src/actions/actionmanagerimpl.cpp:408
 #, fuzzy, kde-format
 msgctxt "as in: mark as unread"
 msgid "&Unread"
 msgstr "Belum baca"
 
-#: src/actions/actionmanagerimpl.cpp:398
+#: src/actions/actionmanagerimpl.cpp:410
 #, fuzzy, kde-format
 #| msgid "Mark selected article as unread"
 msgctxt "@info:tooltip"
 msgid "Mark selected article as unread"
 msgstr "Tandakan artikel yang dipilih sebagai belum baca"
 
-#: src/actions/actionmanagerimpl.cpp:404
+#: src/actions/actionmanagerimpl.cpp:416
 #, fuzzy, kde-format
 msgid "&Mark as Important"
 msgstr "Tandakan sebagai &belum baca"
 
-#: src/actions/actionmanagerimpl.cpp:408
+#: src/actions/actionmanagerimpl.cpp:420
 #, kde-format
 msgctxt "@action:button"
 msgid "Remove &Important Mark"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:412
+#: src/actions/actionmanagerimpl.cpp:424
 #, kde-format
 msgid "Move Node Up"
 msgstr "Alih Nod ke Atas"
 
-#: src/actions/actionmanagerimpl.cpp:417
+#: src/actions/actionmanagerimpl.cpp:429
 #, kde-format
 msgid "Move Node Down"
 msgstr "Alih Nod ke Bawah"
 
-#: src/actions/actionmanagerimpl.cpp:422
+#: src/actions/actionmanagerimpl.cpp:434
 #, kde-format
 msgid "Move Node Left"
 msgstr "Alih Nod ke Kiri"
 
-#: src/actions/actionmanagerimpl.cpp:427
+#: src/actions/actionmanagerimpl.cpp:439
 #, kde-format
 msgid "Move Node Right"
 msgstr "Alihkan Nod ke Kanan"
 
-#: src/actions/actionmanagerimpl.cpp:433
+#: src/actions/actionmanagerimpl.cpp:445
 #, fuzzy, kde-format
 #| msgid "Send &Link Address..."
 msgid "Send &Link Address…"
 msgstr "Alamat Hantar &Pautan..."
 
-#: src/actions/actionmanagerimpl.cpp:438
+#: src/actions/actionmanagerimpl.cpp:450
 #, fuzzy, kde-format
 #| msgid "Send &File..."
 msgid "Send &File…"
 msgstr "Hantar &Fail..."
 
-#: src/actions/actionmanagerimpl.cpp:444
+#: src/actions/actionmanagerimpl.cpp:456
 #, kde-format
 msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:450
+#: src/actions/actionmanagerimpl.cpp:462
 #, kde-format
 msgid "What's new"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:491
+#: src/actions/actionmanagerimpl.cpp:507
 #, kde-format
 msgid "&Previous Article"
 msgstr "Artikel &Sebelumnya"
 
-#: src/actions/actionmanagerimpl.cpp:495
+#: src/actions/actionmanagerimpl.cpp:511
 #, kde-format
 msgid "&Next Article"
 msgstr "&Artikel Seterusnya"
 
-#: src/actions/actionmanagerimpl.cpp:511
+#: src/actions/actionmanagerimpl.cpp:527
 #, kde-format
 msgid "&Previous Feed"
 msgstr "Suapan &Sebelumnnya"
 
-#: src/actions/actionmanagerimpl.cpp:516
+#: src/actions/actionmanagerimpl.cpp:532
 #, kde-format
 msgid "&Next Feed"
 msgstr "Suapan &Seterusnya"
 
-#: src/actions/actionmanagerimpl.cpp:522
+#: src/actions/actionmanagerimpl.cpp:538
 #, kde-format
 msgid "N&ext Unread Feed"
 msgstr "Suapan Belum Baca &Seterusnya"
 
-#: src/actions/actionmanagerimpl.cpp:528
+#: src/actions/actionmanagerimpl.cpp:544
 #, kde-format
 msgid "Prev&ious Unread Feed"
 msgstr "Suapan Belum Baca &Sebelumnya"
 
-#: src/actions/actionmanagerimpl.cpp:533
+#: src/actions/actionmanagerimpl.cpp:549
 #, kde-format
 msgid "Go to Top of Tree"
 msgstr "Pergi ke Puncak Pepohon"
 
-#: src/actions/actionmanagerimpl.cpp:538
+#: src/actions/actionmanagerimpl.cpp:554
 #, kde-format
 msgid "Go to Bottom of Tree"
 msgstr "Pergi ke Bahagian Bawah Pepohon"
 
-#: src/actions/actionmanagerimpl.cpp:543
+#: src/actions/actionmanagerimpl.cpp:559
 #, kde-format
 msgid "Go Left in Tree"
 msgstr "Pergi ke Kiri dalam Pepohon"
 
-#: src/actions/actionmanagerimpl.cpp:548
+#: src/actions/actionmanagerimpl.cpp:564
 #, kde-format
 msgid "Go Right in Tree"
 msgstr "Pergi ke Kanan dalam Pepohon"
 
-#: src/actions/actionmanagerimpl.cpp:553
+#: src/actions/actionmanagerimpl.cpp:569
 #, kde-format
 msgid "Go Up in Tree"
 msgstr "Pergi ke Atas dalam Pepohon"
 
-#: src/actions/actionmanagerimpl.cpp:558
+#: src/actions/actionmanagerimpl.cpp:574
 #, kde-format
 msgid "Go Down in Tree"
 msgstr "Pergi ke Bawah dalam Pepohon"
 
-#: src/actions/actionmanagerimpl.cpp:564
+#: src/actions/actionmanagerimpl.cpp:580
 #, fuzzy, kde-format
 #| msgid "N&ext Unread Feed"
 msgid "Hide Read Feeds"
 msgstr "Suapan Belum Baca &Seterusnya"
 
-#: src/actions/actionmanagerimpl.cpp:570
+#: src/actions/actionmanagerimpl.cpp:586
 #, kde-format
 msgid "Lock Feeds In Place"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:576
+#: src/actions/actionmanagerimpl.cpp:592
 #, fuzzy, kde-format
 #| msgid " (no unread articles)"
 msgid "Auto-expand folders with unread articles"
 msgstr " (tiada artikel belum baca)"
 
-#: src/actions/actionmanagerimpl.cpp:592
+#: src/actions/actionmanagerimpl.cpp:608
 #, kde-format
 msgid "Select Next Tab"
 msgstr "Pilih Tab Seterusnya"
 
-#: src/actions/actionmanagerimpl.cpp:597
+#: src/actions/actionmanagerimpl.cpp:613
 #, kde-format
 msgid "Select Previous Tab"
 msgstr "Pilih Tab Sebelumnya"
 
-#: src/actions/actionmanagerimpl.cpp:603
+#: src/actions/actionmanagerimpl.cpp:619
 #, kde-format
 msgid "Detach Tab"
 msgstr "Pisahkan Tab"
 
-#: src/actions/actionmanagerimpl.cpp:617
+#: src/actions/actionmanagerimpl.cpp:633
 #, kde-format
 msgid "Mute"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:621
+#: src/actions/actionmanagerimpl.cpp:637
 #, kde-format
 msgid "Unmute"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:624
+#: src/actions/actionmanagerimpl.cpp:640
 #, kde-format
 msgctxt "@action"
 msgid "Speak Text"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:629
+#: src/actions/actionmanagerimpl.cpp:645
 #, kde-format
 msgid "&Find in Message…"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:640
+#: src/actions/actionmanagerimpl.cpp:656
 #, fuzzy, kde-format
 msgid "Close Tab"
 msgstr "Tutup Tab"
 
-#: src/actions/actionmanagerimpl.cpp:653
+#: src/actions/actionmanagerimpl.cpp:669
 #, kde-format
 msgctxt "@action"
 msgid "Activate Tab %1"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:659
+#: src/actions/actionmanagerimpl.cpp:675
 #, fuzzy, kde-format
 #| msgid "&Save Link As..."
 msgid "&Save Link As…"
 msgstr "&Simpan Pautan Sebagai..."
 
-#: src/actions/actionmanagerimpl.cpp:663
+#: src/actions/actionmanagerimpl.cpp:679
 #, kde-format
 msgid "Copy &Link Address"
 msgstr "Salin Alamat &Pautan"
 
-#: src/actions/actionmanagerimpl.cpp:666
+#: src/actions/actionmanagerimpl.cpp:682
 #, kde-format
 msgctxt "@action"
 msgid "Copy Image URL"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:672
+#: src/actions/actionmanagerimpl.cpp:688
 #, kde-format
 msgctxt "@action"
 msgid "Save Image…"
@@ -2155,46 +2156,46 @@ msgstr "Muatan dibatalkan"
 msgid "Loading completed"
 msgstr "Muatan selesai"
 
-#: src/mainwidget.cpp:183
+#: src/mainwidget.cpp:208
 #, kde-format
 msgid "You can view multiple articles in several open tabs."
 msgstr "Anda boleh paparkan berbilang artikel dalam beberapa tab terbuka."
 
-#: src/mainwidget.cpp:187
+#: src/mainwidget.cpp:212
 #, kde-format
 msgid "Articles list."
 msgstr "Senarai artikel."
 
-#: src/mainwidget.cpp:249 src/mainwidget.cpp:681
+#: src/mainwidget.cpp:274 src/mainwidget.cpp:706
 #, kde-format
 msgid "Articles"
 msgstr "Artikel"
 
-#: src/mainwidget.cpp:278
+#: src/mainwidget.cpp:303
 #, kde-format
 msgid "About"
 msgstr ""
 
-#: src/mainwidget.cpp:820
+#: src/mainwidget.cpp:845
 #, fuzzy, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all articles in the feed</b> as read?</"
 "qt>"
 msgstr "<qt>Anda pasti ingin menghapuskan suapan<br><b>%1</b>?</qt>"
 
-#: src/mainwidget.cpp:821
+#: src/mainwidget.cpp:846
 #, fuzzy, kde-format
 #| msgid "&Mark Feed as Read"
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "&Tandakan Suapan Sebagai Sudah Baca"
 
-#: src/mainwidget.cpp:824
+#: src/mainwidget.cpp:849
 #, fuzzy, kde-format
 msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
 msgstr "<qt>Anda pasti ingin menghapuskan suapan<br><b>%1</b>?</qt>"
 
-#: src/mainwidget.cpp:826
+#: src/mainwidget.cpp:851
 #, fuzzy, kde-format
 #| msgid "<qt>Are you sure you want to delete this feed?</qt>"
 msgid ""
@@ -2202,29 +2203,29 @@ msgid ""
 "qt>"
 msgstr "<qt>Anda pasti ingin menghapuskan suapan ini?</qt>"
 
-#: src/mainwidget.cpp:828
+#: src/mainwidget.cpp:853
 #, fuzzy, kde-format
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "&Tandakan Suapan Sebagai Sudah Baca"
 
-#: src/mainwidget.cpp:892 src/mainwidget.cpp:901 src/mainwidget.cpp:1302
+#: src/mainwidget.cpp:917 src/mainwidget.cpp:926 src/mainwidget.cpp:1327
 #, kde-format
 msgid "Networking is not available."
 msgstr ""
 
-#: src/mainwidget.cpp:909
+#: src/mainwidget.cpp:934
 #, fuzzy, kde-format
 #| msgid "Fetching Feeds..."
 msgid "Fetching Feeds…"
 msgstr "Mengutip Suapan..."
 
-#: src/mainwidget.cpp:1107
+#: src/mainwidget.cpp:1132
 #, kde-format
 msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
 msgstr "<qt>Anda pasti ingin menghapuskan artikel <b>%1</b>?</qt>"
 
-#: src/mainwidget.cpp:1110
+#: src/mainwidget.cpp:1135
 #, fuzzy, kde-format
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
 msgid_plural ""
@@ -2232,14 +2233,14 @@ msgid_plural ""
 msgstr[0] "<qt>Anda pasti ingin menghapuskan %2 artikel yang dipilih?</qt>"
 msgstr[1] "<qt>Anda pasti ingin menghapuskan %2 artikel yang dipilih?</qt>"
 
-#: src/mainwidget.cpp:1117
+#: src/mainwidget.cpp:1142
 #, fuzzy, kde-format
 #| msgid "Delete Article"
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "Hapuskan Artikel"
 
-#: src/mainwidget.cpp:1299
+#: src/mainwidget.cpp:1324
 #, kde-format
 msgid "Networking is available now."
 msgstr ""
@@ -2604,12 +2605,12 @@ msgstr "Buka dalam Pelayar Luar"
 msgid "Add windows support"
 msgstr ""
 
-#: src/whatsnew/whatsnewtranslations.cpp:25
+#: src/whatsnew/whatsnewtranslations.cpp:36
 #, kde-format
 msgid "Implement Plasma Activity."
 msgstr ""
 
-#: src/whatsnew/whatsnewtranslations.cpp:25
+#: src/whatsnew/whatsnewtranslations.cpp:36
 #, kde-format
 msgid "Add new whatsnew widget."
 msgstr ""

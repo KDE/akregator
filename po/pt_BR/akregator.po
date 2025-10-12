@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-10-02 00:43+0000\n"
+"POT-Creation-Date: 2025-10-12 00:43+0000\n"
 "PO-Revision-Date: 2025-02-27 20:30-0300\n"
 "Last-Translator: Guilherme Marçal Silva <guimarcalsilva@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <kde-i18n-pt_BR@kde.org>\n"
@@ -287,7 +287,7 @@ msgstr "Clique do botão esquerdo do mouse:"
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
 #: configuration/ui/settings_browser.ui:28
 #: configuration/ui/settings_browser.ui:54
-#: src/actions/actionmanagerimpl.cpp:335
+#: src/actions/actionmanagerimpl.cpp:347
 #, kde-format
 msgid "Open in Tab"
 msgstr "Abrir em nova aba"
@@ -296,7 +296,7 @@ msgstr "Abrir em nova aba"
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
 #: configuration/ui/settings_browser.ui:33
 #: configuration/ui/settings_browser.ui:59
-#: src/actions/actionmanagerimpl.cpp:341
+#: src/actions/actionmanagerimpl.cpp:353
 #, kde-format
 msgid "Open in Background Tab"
 msgstr "Abrir em aba no plano de fundo"
@@ -305,7 +305,7 @@ msgstr "Abrir em aba no plano de fundo"
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
 #: configuration/ui/settings_browser.ui:38
 #: configuration/ui/settings_browser.ui:64
-#: src/actions/actionmanagerimpl.cpp:347
+#: src/actions/actionmanagerimpl.cpp:359
 #, kde-format
 msgid "Open in External Browser"
 msgstr "Abrir em um navegador externo"
@@ -551,7 +551,7 @@ msgid "Auto-Expand folders with unread articles"
 msgstr "Expandir automaticamente as pastas com artigos não lidos"
 
 #. i18n: ectx: label, entry, group (View)
-#: interfaces/akregator.kcfg:31 src/actions/actionmanagerimpl.cpp:329
+#: interfaces/akregator.kcfg:31 src/actions/actionmanagerimpl.cpp:341
 #, kde-format
 msgid "Show Quick Filter"
 msgstr "Mostrar filtro rápido"
@@ -949,8 +949,9 @@ msgstr "Restaura o filtro rápido ao mudar de fontes de notícias."
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
 #: src/akregator_part.cpp:126
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:142
-#: src/mainwidget.cpp:129 src/mainwidget.cpp:1330 src/trayicon.cpp:40
-#: src/trayicon.cpp:41 src/trayicon.cpp:53
+#: src/mainwidget.cpp:150 src/mainwidget.cpp:153 src/mainwidget.cpp:1356
+#: src/mainwidget.cpp:1358 src/trayicon.cpp:40 src/trayicon.cpp:41
+#: src/trayicon.cpp:53
 #, kde-format
 msgid "Akregator"
 msgstr "Akregator"
@@ -1148,363 +1149,363 @@ msgstr "Philipp Droessler"
 msgid "Gentoo Ebuild"
 msgstr "Ebuild para o Gentoo"
 
-#: src/actions/actionmanagerimpl.cpp:68 src/actions/actionmanagerimpl.cpp:298
+#: src/actions/actionmanagerimpl.cpp:72 src/actions/actionmanagerimpl.cpp:310
 #, kde-format
 msgid "&Fetch Feed"
 msgstr "&Atualizar fonte de notícias"
 
-#: src/actions/actionmanagerimpl.cpp:69 src/actions/actionmanagerimpl.cpp:254
+#: src/actions/actionmanagerimpl.cpp:73 src/actions/actionmanagerimpl.cpp:266
 #, kde-format
 msgid "&Delete Feed"
 msgstr "&Excluir fonte de notícias"
 
-#: src/actions/actionmanagerimpl.cpp:70 src/actions/actionmanagerimpl.cpp:260
+#: src/actions/actionmanagerimpl.cpp:74 src/actions/actionmanagerimpl.cpp:272
 #, kde-format
 msgid "&Edit Feed…"
 msgstr "&Editar fonte de notícias..."
 
-#: src/actions/actionmanagerimpl.cpp:71 src/actions/actionmanagerimpl.cpp:317
+#: src/actions/actionmanagerimpl.cpp:75 src/actions/actionmanagerimpl.cpp:329
 #, kde-format
 msgid "&Mark Feed as Read"
 msgstr "Ma&rcar fonte de notícias como lida"
 
-#: src/actions/actionmanagerimpl.cpp:87
+#: src/actions/actionmanagerimpl.cpp:91
 #, kde-format
 msgid "&Fetch Feeds"
 msgstr "&Atualizar fontes de notícias"
 
-#: src/actions/actionmanagerimpl.cpp:88
+#: src/actions/actionmanagerimpl.cpp:92
 #, kde-format
 msgid "&Delete Folder"
 msgstr "&Excluir pasta"
 
-#: src/actions/actionmanagerimpl.cpp:89
+#: src/actions/actionmanagerimpl.cpp:93
 #, kde-format
 msgid "&Rename Folder"
 msgstr "&Renomear pasta"
 
-#: src/actions/actionmanagerimpl.cpp:90
+#: src/actions/actionmanagerimpl.cpp:94
 #, kde-format
 msgid "&Mark Feeds as Read"
 msgstr "Ma&rcar fontes de notícias como lidas"
 
-#: src/actions/actionmanagerimpl.cpp:202
+#: src/actions/actionmanagerimpl.cpp:214
 #, kde-format
 msgid "&Import Feeds…"
 msgstr "&Importar fontes de notícias..."
 
-#: src/actions/actionmanagerimpl.cpp:206
+#: src/actions/actionmanagerimpl.cpp:218
 #, kde-format
 msgid "&Export Feeds…"
 msgstr "&Exportar fontes de notícias..."
 
-#: src/actions/actionmanagerimpl.cpp:211
+#: src/actions/actionmanagerimpl.cpp:223
 #, kde-format
 msgid "&Configure Akregator…"
 msgstr "&Configurar Akregator..."
 
-#: src/actions/actionmanagerimpl.cpp:230
+#: src/actions/actionmanagerimpl.cpp:242
 #, kde-format
 msgid "&Open Homepage"
 msgstr "&Abrir página na Internet"
 
-#: src/actions/actionmanagerimpl.cpp:236
+#: src/actions/actionmanagerimpl.cpp:248
 #, kde-format
 msgid "Reload All Tabs"
 msgstr "Recarregar todas as abas"
 
-#: src/actions/actionmanagerimpl.cpp:242
+#: src/actions/actionmanagerimpl.cpp:254
 #, kde-format
 msgid "&Add Feed…"
 msgstr "&Adicionar fonte de notícias"
 
-#: src/actions/actionmanagerimpl.cpp:248
+#: src/actions/actionmanagerimpl.cpp:260
 #, kde-format
 msgid "Ne&w Folder…"
 msgstr "No&va pasta..."
 
-#: src/actions/actionmanagerimpl.cpp:273
+#: src/actions/actionmanagerimpl.cpp:285
 #, kde-format
 msgid "&Normal View"
 msgstr "Exibição &normal"
 
-#: src/actions/actionmanagerimpl.cpp:282
+#: src/actions/actionmanagerimpl.cpp:294
 #, kde-format
 msgid "&Widescreen View"
 msgstr "Exibição &lateral"
 
-#: src/actions/actionmanagerimpl.cpp:291
+#: src/actions/actionmanagerimpl.cpp:303
 #, kde-format
 msgid "C&ombined View"
 msgstr "Exibição c&ombinada"
 
-#: src/actions/actionmanagerimpl.cpp:304
+#: src/actions/actionmanagerimpl.cpp:316
 #, kde-format
 msgid "Fe&tch All Feeds"
 msgstr "A&tualizar todas as fontes de notícias"
 
-#: src/actions/actionmanagerimpl.cpp:310
+#: src/actions/actionmanagerimpl.cpp:322
 #, kde-format
 msgid "C&ancel Feed Fetches"
 msgstr "C&ancelar atualização das fontes de notícias"
 
-#: src/actions/actionmanagerimpl.cpp:323
+#: src/actions/actionmanagerimpl.cpp:335
 #, kde-format
 msgid "Ma&rk All Feeds as Read"
 msgstr "Ma&rcar todas as fontes de notícias como lidas"
 
-#: src/actions/actionmanagerimpl.cpp:352 src/actions/actionmanagerimpl.cpp:635
+#: src/actions/actionmanagerimpl.cpp:364 src/actions/actionmanagerimpl.cpp:651
 #, kde-format
 msgid "Copy Link Address"
 msgstr "Copiar endereço do link"
 
-#: src/actions/actionmanagerimpl.cpp:357
+#: src/actions/actionmanagerimpl.cpp:369
 #, kde-format
 msgid "Pre&vious Unread Article"
 msgstr "A&rtigo anterior não lido"
 
-#: src/actions/actionmanagerimpl.cpp:363
+#: src/actions/actionmanagerimpl.cpp:375
 #, kde-format
 msgid "Ne&xt Unread Article"
 msgstr "Pró&ximo artigo não lido"
 
-#: src/actions/actionmanagerimpl.cpp:371
+#: src/actions/actionmanagerimpl.cpp:383
 #, kde-format
 msgid "&Delete"
 msgstr "&Excluir"
 
-#: src/actions/actionmanagerimpl.cpp:376
+#: src/actions/actionmanagerimpl.cpp:388
 #, kde-format
 msgid "&Mark As"
 msgstr "Mar&car como"
 
-#: src/actions/actionmanagerimpl.cpp:380
+#: src/actions/actionmanagerimpl.cpp:392
 #, kde-format
 msgctxt "as in: mark as read"
 msgid "&Read"
 msgstr "&Lido"
 
-#: src/actions/actionmanagerimpl.cpp:382
+#: src/actions/actionmanagerimpl.cpp:394
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as read"
 msgstr "Marca o artigo selecionado como lido"
 
-#: src/actions/actionmanagerimpl.cpp:388
+#: src/actions/actionmanagerimpl.cpp:400
 #, kde-format
 msgctxt "as in: mark as new"
 msgid "&New"
 msgstr "&Novo"
 
-#: src/actions/actionmanagerimpl.cpp:391
+#: src/actions/actionmanagerimpl.cpp:403
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as new"
 msgstr "Marca o artigo selecionado como novo"
 
-#: src/actions/actionmanagerimpl.cpp:396
+#: src/actions/actionmanagerimpl.cpp:408
 #, kde-format
 msgctxt "as in: mark as unread"
 msgid "&Unread"
 msgstr "&Não lido"
 
-#: src/actions/actionmanagerimpl.cpp:398
+#: src/actions/actionmanagerimpl.cpp:410
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as unread"
 msgstr "Marcar o artigo selecionado como não lido"
 
-#: src/actions/actionmanagerimpl.cpp:404
+#: src/actions/actionmanagerimpl.cpp:416
 #, kde-format
 msgid "&Mark as Important"
 msgstr "&Marcar como importante"
 
-#: src/actions/actionmanagerimpl.cpp:408
+#: src/actions/actionmanagerimpl.cpp:420
 #, kde-format
 msgctxt "@action:button"
 msgid "Remove &Important Mark"
 msgstr "Remover marca de &importante"
 
-#: src/actions/actionmanagerimpl.cpp:412
+#: src/actions/actionmanagerimpl.cpp:424
 #, kde-format
 msgid "Move Node Up"
 msgstr "Mover o nó para cima"
 
-#: src/actions/actionmanagerimpl.cpp:417
+#: src/actions/actionmanagerimpl.cpp:429
 #, kde-format
 msgid "Move Node Down"
 msgstr "Mover o nó para baixo"
 
-#: src/actions/actionmanagerimpl.cpp:422
+#: src/actions/actionmanagerimpl.cpp:434
 #, kde-format
 msgid "Move Node Left"
 msgstr "Mover o nó para a esquerda"
 
-#: src/actions/actionmanagerimpl.cpp:427
+#: src/actions/actionmanagerimpl.cpp:439
 #, kde-format
 msgid "Move Node Right"
 msgstr "Mover o nó para a direita"
 
-#: src/actions/actionmanagerimpl.cpp:433
+#: src/actions/actionmanagerimpl.cpp:445
 #, kde-format
 msgid "Send &Link Address…"
 msgstr "Enviar endereço do &link..."
 
-#: src/actions/actionmanagerimpl.cpp:438
+#: src/actions/actionmanagerimpl.cpp:450
 #, kde-format
 msgid "Send &File…"
 msgstr "Enviar &arquivo..."
 
-#: src/actions/actionmanagerimpl.cpp:444
+#: src/actions/actionmanagerimpl.cpp:456
 #, kde-format
 msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr "Focalizar a pesquisa rápida"
 
-#: src/actions/actionmanagerimpl.cpp:450
+#: src/actions/actionmanagerimpl.cpp:462
 #, kde-format
 msgid "What's new"
 msgstr "O que há de novo"
 
-#: src/actions/actionmanagerimpl.cpp:491
+#: src/actions/actionmanagerimpl.cpp:507
 #, kde-format
 msgid "&Previous Article"
 msgstr "Artigo a&nterior"
 
-#: src/actions/actionmanagerimpl.cpp:495
+#: src/actions/actionmanagerimpl.cpp:511
 #, kde-format
 msgid "&Next Article"
 msgstr "&Próximo artigo"
 
-#: src/actions/actionmanagerimpl.cpp:511
+#: src/actions/actionmanagerimpl.cpp:527
 #, kde-format
 msgid "&Previous Feed"
 msgstr "&Fonte de notícias anterior"
 
-#: src/actions/actionmanagerimpl.cpp:516
+#: src/actions/actionmanagerimpl.cpp:532
 #, kde-format
 msgid "&Next Feed"
 msgstr "Próxima fon&te de notícias"
 
-#: src/actions/actionmanagerimpl.cpp:522
+#: src/actions/actionmanagerimpl.cpp:538
 #, kde-format
 msgid "N&ext Unread Feed"
 msgstr "Próxima font&e de notícias não lida"
 
-#: src/actions/actionmanagerimpl.cpp:528
+#: src/actions/actionmanagerimpl.cpp:544
 #, kde-format
 msgid "Prev&ious Unread Feed"
 msgstr "Fonte de notícias não lida anter&ior"
 
-#: src/actions/actionmanagerimpl.cpp:533
+#: src/actions/actionmanagerimpl.cpp:549
 #, kde-format
 msgid "Go to Top of Tree"
 msgstr "Ir para o topo da árvore"
 
-#: src/actions/actionmanagerimpl.cpp:538
+#: src/actions/actionmanagerimpl.cpp:554
 #, kde-format
 msgid "Go to Bottom of Tree"
 msgstr "Ir para a base da árvore"
 
-#: src/actions/actionmanagerimpl.cpp:543
+#: src/actions/actionmanagerimpl.cpp:559
 #, kde-format
 msgid "Go Left in Tree"
 msgstr "Ir para a esquerda na árvore"
 
-#: src/actions/actionmanagerimpl.cpp:548
+#: src/actions/actionmanagerimpl.cpp:564
 #, kde-format
 msgid "Go Right in Tree"
 msgstr "Ir para a direita na árvore"
 
-#: src/actions/actionmanagerimpl.cpp:553
+#: src/actions/actionmanagerimpl.cpp:569
 #, kde-format
 msgid "Go Up in Tree"
 msgstr "Subir na árvore"
 
-#: src/actions/actionmanagerimpl.cpp:558
+#: src/actions/actionmanagerimpl.cpp:574
 #, kde-format
 msgid "Go Down in Tree"
 msgstr "Descer na árvore"
 
-#: src/actions/actionmanagerimpl.cpp:564
+#: src/actions/actionmanagerimpl.cpp:580
 #, kde-format
 msgid "Hide Read Feeds"
 msgstr "Ocultar as fontes de notícias lidas"
 
-#: src/actions/actionmanagerimpl.cpp:570
+#: src/actions/actionmanagerimpl.cpp:586
 #, kde-format
 msgid "Lock Feeds In Place"
 msgstr "Bloquear as fontes de notícias no lugar"
 
-#: src/actions/actionmanagerimpl.cpp:576
+#: src/actions/actionmanagerimpl.cpp:592
 #, kde-format
 msgid "Auto-expand folders with unread articles"
 msgstr "Expandir automaticamente as pastas com artigos não lidos"
 
-#: src/actions/actionmanagerimpl.cpp:592
+#: src/actions/actionmanagerimpl.cpp:608
 #, kde-format
 msgid "Select Next Tab"
 msgstr "Selecionar a próxima aba"
 
-#: src/actions/actionmanagerimpl.cpp:597
+#: src/actions/actionmanagerimpl.cpp:613
 #, kde-format
 msgid "Select Previous Tab"
 msgstr "Selecionar a aba anterior"
 
-#: src/actions/actionmanagerimpl.cpp:603
+#: src/actions/actionmanagerimpl.cpp:619
 #, kde-format
 msgid "Detach Tab"
 msgstr "Desanexar aba"
 
-#: src/actions/actionmanagerimpl.cpp:617
+#: src/actions/actionmanagerimpl.cpp:633
 #, kde-format
 msgid "Mute"
 msgstr "Sem áudio"
 
-#: src/actions/actionmanagerimpl.cpp:621
+#: src/actions/actionmanagerimpl.cpp:637
 #, kde-format
 msgid "Unmute"
 msgstr "Ativar o som"
 
-#: src/actions/actionmanagerimpl.cpp:624
+#: src/actions/actionmanagerimpl.cpp:640
 #, kde-format
 msgctxt "@action"
 msgid "Speak Text"
 msgstr "Falar o texto"
 
-#: src/actions/actionmanagerimpl.cpp:629
+#: src/actions/actionmanagerimpl.cpp:645
 #, kde-format
 msgid "&Find in Message…"
 msgstr "Locali&zar na mensagem..."
 
-#: src/actions/actionmanagerimpl.cpp:640
+#: src/actions/actionmanagerimpl.cpp:656
 #, kde-format
 msgid "Close Tab"
 msgstr "Fechar aba"
 
-#: src/actions/actionmanagerimpl.cpp:653
+#: src/actions/actionmanagerimpl.cpp:669
 #, kde-format
 msgctxt "@action"
 msgid "Activate Tab %1"
 msgstr "Ativar a aba %1"
 
-#: src/actions/actionmanagerimpl.cpp:659
+#: src/actions/actionmanagerimpl.cpp:675
 #, kde-format
 msgid "&Save Link As…"
 msgstr "&Salvar link como..."
 
-#: src/actions/actionmanagerimpl.cpp:663
+#: src/actions/actionmanagerimpl.cpp:679
 #, kde-format
 msgid "Copy &Link Address"
 msgstr "&Copiar endereço do link"
 
-#: src/actions/actionmanagerimpl.cpp:666
+#: src/actions/actionmanagerimpl.cpp:682
 #, kde-format
 msgctxt "@action"
 msgid "Copy Image URL"
 msgstr "Copiar URL da imagem"
 
-#: src/actions/actionmanagerimpl.cpp:672
+#: src/actions/actionmanagerimpl.cpp:688
 #, kde-format
 msgctxt "@action"
 msgid "Save Image…"
@@ -2120,27 +2121,27 @@ msgstr "O carregamento foi cancelado"
 msgid "Loading completed"
 msgstr "O carregamento foi concluído"
 
-#: src/mainwidget.cpp:183
+#: src/mainwidget.cpp:208
 #, kde-format
 msgid "You can view multiple articles in several open tabs."
 msgstr "Você pode visualizar múltiplos artigos usando várias abas abertas."
 
-#: src/mainwidget.cpp:187
+#: src/mainwidget.cpp:212
 #, kde-format
 msgid "Articles list."
 msgstr "Lista de artigos."
 
-#: src/mainwidget.cpp:249 src/mainwidget.cpp:681
+#: src/mainwidget.cpp:274 src/mainwidget.cpp:706
 #, kde-format
 msgid "Articles"
 msgstr "Artigos"
 
-#: src/mainwidget.cpp:278
+#: src/mainwidget.cpp:303
 #, kde-format
 msgid "About"
 msgstr "Sobre"
 
-#: src/mainwidget.cpp:820
+#: src/mainwidget.cpp:845
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all articles in the feed</b> as read?</"
@@ -2149,20 +2150,20 @@ msgstr ""
 "<qt>Tem certeza que deseja marcar <b>todos os artigos na fonte de notícia</"
 "b> como lida?</qt>"
 
-#: src/mainwidget.cpp:821
+#: src/mainwidget.cpp:846
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "Marcar fonte de notícias como lida"
 
-#: src/mainwidget.cpp:824
+#: src/mainwidget.cpp:849
 #, kde-format
 msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
 msgstr ""
 "<qt>Tem certeza que deseja marcar <b>todas as fontes de notícias</b> como "
 "lida?</qt>"
 
-#: src/mainwidget.cpp:826
+#: src/mainwidget.cpp:851
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all feeds in the folder</b> as read?</"
@@ -2171,28 +2172,28 @@ msgstr ""
 "<qt>Tem certeza que deseja marcar <b>todas as fontes de notícias na pasta</"
 "b> como lida?</qt>"
 
-#: src/mainwidget.cpp:828
+#: src/mainwidget.cpp:853
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "Marcar fontes de notícias como lidas"
 
-#: src/mainwidget.cpp:892 src/mainwidget.cpp:901 src/mainwidget.cpp:1302
+#: src/mainwidget.cpp:917 src/mainwidget.cpp:926 src/mainwidget.cpp:1327
 #, kde-format
 msgid "Networking is not available."
 msgstr "A rede não está disponível."
 
-#: src/mainwidget.cpp:909
+#: src/mainwidget.cpp:934
 #, kde-format
 msgid "Fetching Feeds…"
 msgstr "Atualizando as fontes de notícias..."
 
-#: src/mainwidget.cpp:1107
+#: src/mainwidget.cpp:1132
 #, kde-format
 msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
 msgstr "<qt>Deseja excluir o artigo <b>%1</b>?</qt>"
 
-#: src/mainwidget.cpp:1110
+#: src/mainwidget.cpp:1135
 #, kde-format
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
 msgid_plural ""
@@ -2200,13 +2201,13 @@ msgid_plural ""
 msgstr[0] "<qt>Deseja excluir o artigo selecionado?</qt>"
 msgstr[1] "<qt>Deseja excluir os %1 artigos selecionados?</qt>"
 
-#: src/mainwidget.cpp:1117
+#: src/mainwidget.cpp:1142
 #, kde-format
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "Excluir artigo"
 
-#: src/mainwidget.cpp:1299
+#: src/mainwidget.cpp:1324
 #, kde-format
 msgid "Networking is available now."
 msgstr "A rede está agora disponível."
@@ -2559,12 +2560,12 @@ msgstr "Abrir em um navegador externo"
 msgid "Add windows support"
 msgstr "Adicionar suporte a janelas"
 
-#: src/whatsnew/whatsnewtranslations.cpp:25
+#: src/whatsnew/whatsnewtranslations.cpp:36
 #, kde-format
 msgid "Implement Plasma Activity."
 msgstr "Implementar atividades do plasma."
 
-#: src/whatsnew/whatsnewtranslations.cpp:25
+#: src/whatsnew/whatsnewtranslations.cpp:36
 #, kde-format
 msgid "Add new whatsnew widget."
 msgstr "Adicionar novo widget 'whatsnew'."

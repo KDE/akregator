@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-10-02 00:43+0000\n"
+"POT-Creation-Date: 2025-10-12 00:43+0000\n"
 "PO-Revision-Date: 2025-01-19 16:20+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
@@ -287,7 +287,7 @@ msgstr "Клацання лівою кнопкою миші:"
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
 #: configuration/ui/settings_browser.ui:28
 #: configuration/ui/settings_browser.ui:54
-#: src/actions/actionmanagerimpl.cpp:335
+#: src/actions/actionmanagerimpl.cpp:347
 #, kde-format
 msgid "Open in Tab"
 msgstr "Відкрити у вкладці"
@@ -296,7 +296,7 @@ msgstr "Відкрити у вкладці"
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
 #: configuration/ui/settings_browser.ui:33
 #: configuration/ui/settings_browser.ui:59
-#: src/actions/actionmanagerimpl.cpp:341
+#: src/actions/actionmanagerimpl.cpp:353
 #, kde-format
 msgid "Open in Background Tab"
 msgstr "Відкрити у фоновій вкладці"
@@ -305,7 +305,7 @@ msgstr "Відкрити у фоновій вкладці"
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
 #: configuration/ui/settings_browser.ui:38
 #: configuration/ui/settings_browser.ui:64
-#: src/actions/actionmanagerimpl.cpp:347
+#: src/actions/actionmanagerimpl.cpp:359
 #, kde-format
 msgid "Open in External Browser"
 msgstr "Відкрити у зовнішньому навігаторі"
@@ -552,7 +552,7 @@ msgid "Auto-Expand folders with unread articles"
 msgstr "Автоматичне розгортання тек із непрочитаними статтями"
 
 #. i18n: ectx: label, entry, group (View)
-#: interfaces/akregator.kcfg:31 src/actions/actionmanagerimpl.cpp:329
+#: interfaces/akregator.kcfg:31 src/actions/actionmanagerimpl.cpp:341
 #, kde-format
 msgid "Show Quick Filter"
 msgstr "Показати швидкий фільтр"
@@ -956,8 +956,9 @@ msgstr "Скидати вміст швидкого фільтрування пі
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
 #: src/akregator_part.cpp:126
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:142
-#: src/mainwidget.cpp:129 src/mainwidget.cpp:1330 src/trayicon.cpp:40
-#: src/trayicon.cpp:41 src/trayicon.cpp:53
+#: src/mainwidget.cpp:150 src/mainwidget.cpp:153 src/mainwidget.cpp:1356
+#: src/mainwidget.cpp:1358 src/trayicon.cpp:40 src/trayicon.cpp:41
+#: src/trayicon.cpp:53
 #, kde-format
 msgid "Akregator"
 msgstr "Akregator"
@@ -1157,363 +1158,363 @@ msgstr "Philipp Droessler"
 msgid "Gentoo Ebuild"
 msgstr "Gentoo Ebuild"
 
-#: src/actions/actionmanagerimpl.cpp:68 src/actions/actionmanagerimpl.cpp:298
+#: src/actions/actionmanagerimpl.cpp:72 src/actions/actionmanagerimpl.cpp:310
 #, kde-format
 msgid "&Fetch Feed"
 msgstr "&Отримати подачу"
 
-#: src/actions/actionmanagerimpl.cpp:69 src/actions/actionmanagerimpl.cpp:254
+#: src/actions/actionmanagerimpl.cpp:73 src/actions/actionmanagerimpl.cpp:266
 #, kde-format
 msgid "&Delete Feed"
 msgstr "&Вилучити подачу"
 
-#: src/actions/actionmanagerimpl.cpp:70 src/actions/actionmanagerimpl.cpp:260
+#: src/actions/actionmanagerimpl.cpp:74 src/actions/actionmanagerimpl.cpp:272
 #, kde-format
 msgid "&Edit Feed…"
 msgstr "&Редагувати подачу…"
 
-#: src/actions/actionmanagerimpl.cpp:71 src/actions/actionmanagerimpl.cpp:317
+#: src/actions/actionmanagerimpl.cpp:75 src/actions/actionmanagerimpl.cpp:329
 #, kde-format
 msgid "&Mark Feed as Read"
 msgstr "По&значити подачу як прочитану"
 
-#: src/actions/actionmanagerimpl.cpp:87
+#: src/actions/actionmanagerimpl.cpp:91
 #, kde-format
 msgid "&Fetch Feeds"
 msgstr "&Отримати подачу"
 
-#: src/actions/actionmanagerimpl.cpp:88
+#: src/actions/actionmanagerimpl.cpp:92
 #, kde-format
 msgid "&Delete Folder"
 msgstr "&Вилучити теку"
 
-#: src/actions/actionmanagerimpl.cpp:89
+#: src/actions/actionmanagerimpl.cpp:93
 #, kde-format
 msgid "&Rename Folder"
 msgstr "Пере&йменувати теку"
 
-#: src/actions/actionmanagerimpl.cpp:90
+#: src/actions/actionmanagerimpl.cpp:94
 #, kde-format
 msgid "&Mark Feeds as Read"
 msgstr "По&значити подачі як прочитані"
 
-#: src/actions/actionmanagerimpl.cpp:202
+#: src/actions/actionmanagerimpl.cpp:214
 #, kde-format
 msgid "&Import Feeds…"
 msgstr "&Імпортувати подачі…"
 
-#: src/actions/actionmanagerimpl.cpp:206
+#: src/actions/actionmanagerimpl.cpp:218
 #, kde-format
 msgid "&Export Feeds…"
 msgstr "&Експортувати подачі…"
 
-#: src/actions/actionmanagerimpl.cpp:211
+#: src/actions/actionmanagerimpl.cpp:223
 #, kde-format
 msgid "&Configure Akregator…"
 msgstr "&Налаштувати Akregator…"
 
-#: src/actions/actionmanagerimpl.cpp:230
+#: src/actions/actionmanagerimpl.cpp:242
 #, kde-format
 msgid "&Open Homepage"
 msgstr "&Відкрити домашню сторінку"
 
-#: src/actions/actionmanagerimpl.cpp:236
+#: src/actions/actionmanagerimpl.cpp:248
 #, kde-format
 msgid "Reload All Tabs"
 msgstr "Перезавантажити всі вкладки"
 
-#: src/actions/actionmanagerimpl.cpp:242
+#: src/actions/actionmanagerimpl.cpp:254
 #, kde-format
 msgid "&Add Feed…"
 msgstr "&Додати подачу…"
 
-#: src/actions/actionmanagerimpl.cpp:248
+#: src/actions/actionmanagerimpl.cpp:260
 #, kde-format
 msgid "Ne&w Folder…"
 msgstr "С&творити теку…"
 
-#: src/actions/actionmanagerimpl.cpp:273
+#: src/actions/actionmanagerimpl.cpp:285
 #, kde-format
 msgid "&Normal View"
 msgstr "&Звичайний вигляд"
 
-#: src/actions/actionmanagerimpl.cpp:282
+#: src/actions/actionmanagerimpl.cpp:294
 #, kde-format
 msgid "&Widescreen View"
 msgstr "&Широкоекранний вигляд"
 
-#: src/actions/actionmanagerimpl.cpp:291
+#: src/actions/actionmanagerimpl.cpp:303
 #, kde-format
 msgid "C&ombined View"
 msgstr "&Суміщений вигляд"
 
-#: src/actions/actionmanagerimpl.cpp:304
+#: src/actions/actionmanagerimpl.cpp:316
 #, kde-format
 msgid "Fe&tch All Feeds"
 msgstr "Отр&имати всі подачі"
 
-#: src/actions/actionmanagerimpl.cpp:310
+#: src/actions/actionmanagerimpl.cpp:322
 #, kde-format
 msgid "C&ancel Feed Fetches"
 msgstr "С&касувати отримання подач"
 
-#: src/actions/actionmanagerimpl.cpp:323
+#: src/actions/actionmanagerimpl.cpp:335
 #, kde-format
 msgid "Ma&rk All Feeds as Read"
 msgstr "По&значити всі подачі як прочитані"
 
-#: src/actions/actionmanagerimpl.cpp:352 src/actions/actionmanagerimpl.cpp:635
+#: src/actions/actionmanagerimpl.cpp:364 src/actions/actionmanagerimpl.cpp:651
 #, kde-format
 msgid "Copy Link Address"
 msgstr "Скопіювати адресу посилання"
 
-#: src/actions/actionmanagerimpl.cpp:357
+#: src/actions/actionmanagerimpl.cpp:369
 #, kde-format
 msgid "Pre&vious Unread Article"
 msgstr "Попере&дня непрочитана стаття"
 
-#: src/actions/actionmanagerimpl.cpp:363
+#: src/actions/actionmanagerimpl.cpp:375
 #, kde-format
 msgid "Ne&xt Unread Article"
 msgstr "Наст&упна непрочитана стаття"
 
-#: src/actions/actionmanagerimpl.cpp:371
+#: src/actions/actionmanagerimpl.cpp:383
 #, kde-format
 msgid "&Delete"
 msgstr "&Вилучити"
 
-#: src/actions/actionmanagerimpl.cpp:376
+#: src/actions/actionmanagerimpl.cpp:388
 #, kde-format
 msgid "&Mark As"
 msgstr "&Позначити як"
 
-#: src/actions/actionmanagerimpl.cpp:380
+#: src/actions/actionmanagerimpl.cpp:392
 #, kde-format
 msgctxt "as in: mark as read"
 msgid "&Read"
 msgstr "&Прочитане"
 
-#: src/actions/actionmanagerimpl.cpp:382
+#: src/actions/actionmanagerimpl.cpp:394
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as read"
 msgstr "Позначити вибрані статті як прочитані"
 
-#: src/actions/actionmanagerimpl.cpp:388
+#: src/actions/actionmanagerimpl.cpp:400
 #, kde-format
 msgctxt "as in: mark as new"
 msgid "&New"
 msgstr "&Нове"
 
-#: src/actions/actionmanagerimpl.cpp:391
+#: src/actions/actionmanagerimpl.cpp:403
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as new"
 msgstr "Позначити вибрану статтю як нову"
 
-#: src/actions/actionmanagerimpl.cpp:396
+#: src/actions/actionmanagerimpl.cpp:408
 #, kde-format
 msgctxt "as in: mark as unread"
 msgid "&Unread"
 msgstr "Непр&очитане"
 
-#: src/actions/actionmanagerimpl.cpp:398
+#: src/actions/actionmanagerimpl.cpp:410
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as unread"
 msgstr "Позначити вибрану статтю як непрочитану"
 
-#: src/actions/actionmanagerimpl.cpp:404
+#: src/actions/actionmanagerimpl.cpp:416
 #, kde-format
 msgid "&Mark as Important"
 msgstr "&Позначити як важливе"
 
-#: src/actions/actionmanagerimpl.cpp:408
+#: src/actions/actionmanagerimpl.cpp:420
 #, kde-format
 msgctxt "@action:button"
 msgid "Remove &Important Mark"
 msgstr "Вилучити позначення &важливості"
 
-#: src/actions/actionmanagerimpl.cpp:412
+#: src/actions/actionmanagerimpl.cpp:424
 #, kde-format
 msgid "Move Node Up"
 msgstr "Пересунути вгору"
 
-#: src/actions/actionmanagerimpl.cpp:417
+#: src/actions/actionmanagerimpl.cpp:429
 #, kde-format
 msgid "Move Node Down"
 msgstr "Пересунути вниз"
 
-#: src/actions/actionmanagerimpl.cpp:422
+#: src/actions/actionmanagerimpl.cpp:434
 #, kde-format
 msgid "Move Node Left"
 msgstr "Пересунути ліворуч"
 
-#: src/actions/actionmanagerimpl.cpp:427
+#: src/actions/actionmanagerimpl.cpp:439
 #, kde-format
 msgid "Move Node Right"
 msgstr "Пересунути праворуч"
 
-#: src/actions/actionmanagerimpl.cpp:433
+#: src/actions/actionmanagerimpl.cpp:445
 #, kde-format
 msgid "Send &Link Address…"
 msgstr "Надіслати адресу п&осилання…"
 
-#: src/actions/actionmanagerimpl.cpp:438
+#: src/actions/actionmanagerimpl.cpp:450
 #, kde-format
 msgid "Send &File…"
 msgstr "Надіслати &файл…"
 
-#: src/actions/actionmanagerimpl.cpp:444
+#: src/actions/actionmanagerimpl.cpp:456
 #, kde-format
 msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr "Перевести фокус на швидкий пошук"
 
-#: src/actions/actionmanagerimpl.cpp:450
+#: src/actions/actionmanagerimpl.cpp:462
 #, kde-format
 msgid "What's new"
 msgstr "Що нового?"
 
-#: src/actions/actionmanagerimpl.cpp:491
+#: src/actions/actionmanagerimpl.cpp:507
 #, kde-format
 msgid "&Previous Article"
 msgstr "&Попередня стаття"
 
-#: src/actions/actionmanagerimpl.cpp:495
+#: src/actions/actionmanagerimpl.cpp:511
 #, kde-format
 msgid "&Next Article"
 msgstr "&Наступна стаття"
 
-#: src/actions/actionmanagerimpl.cpp:511
+#: src/actions/actionmanagerimpl.cpp:527
 #, kde-format
 msgid "&Previous Feed"
 msgstr "&Попередня подача"
 
-#: src/actions/actionmanagerimpl.cpp:516
+#: src/actions/actionmanagerimpl.cpp:532
 #, kde-format
 msgid "&Next Feed"
 msgstr "&Наступна подача"
 
-#: src/actions/actionmanagerimpl.cpp:522
+#: src/actions/actionmanagerimpl.cpp:538
 #, kde-format
 msgid "N&ext Unread Feed"
 msgstr "Н&аступна непрочитана подача"
 
-#: src/actions/actionmanagerimpl.cpp:528
+#: src/actions/actionmanagerimpl.cpp:544
 #, kde-format
 msgid "Prev&ious Unread Feed"
 msgstr "Попе&редня непрочитана подача"
 
-#: src/actions/actionmanagerimpl.cpp:533
+#: src/actions/actionmanagerimpl.cpp:549
 #, kde-format
 msgid "Go to Top of Tree"
 msgstr "До верхівки дерева"
 
-#: src/actions/actionmanagerimpl.cpp:538
+#: src/actions/actionmanagerimpl.cpp:554
 #, kde-format
 msgid "Go to Bottom of Tree"
 msgstr "До самого низу дерева"
 
-#: src/actions/actionmanagerimpl.cpp:543
+#: src/actions/actionmanagerimpl.cpp:559
 #, kde-format
 msgid "Go Left in Tree"
 msgstr "Ліворуч по дереві"
 
-#: src/actions/actionmanagerimpl.cpp:548
+#: src/actions/actionmanagerimpl.cpp:564
 #, kde-format
 msgid "Go Right in Tree"
 msgstr "Праворуч по дереві"
 
-#: src/actions/actionmanagerimpl.cpp:553
+#: src/actions/actionmanagerimpl.cpp:569
 #, kde-format
 msgid "Go Up in Tree"
 msgstr "Вверх по дереві"
 
-#: src/actions/actionmanagerimpl.cpp:558
+#: src/actions/actionmanagerimpl.cpp:574
 #, kde-format
 msgid "Go Down in Tree"
 msgstr "Вниз по дереві"
 
-#: src/actions/actionmanagerimpl.cpp:564
+#: src/actions/actionmanagerimpl.cpp:580
 #, kde-format
 msgid "Hide Read Feeds"
 msgstr "Приховати прочитані подачі"
 
-#: src/actions/actionmanagerimpl.cpp:570
+#: src/actions/actionmanagerimpl.cpp:586
 #, kde-format
 msgid "Lock Feeds In Place"
 msgstr "Зафіксувати подачі на місці"
 
-#: src/actions/actionmanagerimpl.cpp:576
+#: src/actions/actionmanagerimpl.cpp:592
 #, kde-format
 msgid "Auto-expand folders with unread articles"
 msgstr "Автоматичне розгортання тек із непрочитаними статтями"
 
-#: src/actions/actionmanagerimpl.cpp:592
+#: src/actions/actionmanagerimpl.cpp:608
 #, kde-format
 msgid "Select Next Tab"
 msgstr "Вибрати наступну вкладку"
 
-#: src/actions/actionmanagerimpl.cpp:597
+#: src/actions/actionmanagerimpl.cpp:613
 #, kde-format
 msgid "Select Previous Tab"
 msgstr "Вибрати попередню вкладку"
 
-#: src/actions/actionmanagerimpl.cpp:603
+#: src/actions/actionmanagerimpl.cpp:619
 #, kde-format
 msgid "Detach Tab"
 msgstr "Відокремити вкладку"
 
-#: src/actions/actionmanagerimpl.cpp:617
+#: src/actions/actionmanagerimpl.cpp:633
 #, kde-format
 msgid "Mute"
 msgstr "Вимкнути звук"
 
-#: src/actions/actionmanagerimpl.cpp:621
+#: src/actions/actionmanagerimpl.cpp:637
 #, kde-format
 msgid "Unmute"
 msgstr "Увімкнути звук"
 
-#: src/actions/actionmanagerimpl.cpp:624
+#: src/actions/actionmanagerimpl.cpp:640
 #, kde-format
 msgctxt "@action"
 msgid "Speak Text"
 msgstr "Декламувати текст"
 
-#: src/actions/actionmanagerimpl.cpp:629
+#: src/actions/actionmanagerimpl.cpp:645
 #, kde-format
 msgid "&Find in Message…"
 msgstr "&Знайти у повідомленні…"
 
-#: src/actions/actionmanagerimpl.cpp:640
+#: src/actions/actionmanagerimpl.cpp:656
 #, kde-format
 msgid "Close Tab"
 msgstr "Закрити вкладку"
 
-#: src/actions/actionmanagerimpl.cpp:653
+#: src/actions/actionmanagerimpl.cpp:669
 #, kde-format
 msgctxt "@action"
 msgid "Activate Tab %1"
 msgstr "Активувати вкладку %1"
 
-#: src/actions/actionmanagerimpl.cpp:659
+#: src/actions/actionmanagerimpl.cpp:675
 #, kde-format
 msgid "&Save Link As…"
 msgstr "&Зберегти посилання як…"
 
-#: src/actions/actionmanagerimpl.cpp:663
+#: src/actions/actionmanagerimpl.cpp:679
 #, kde-format
 msgid "Copy &Link Address"
 msgstr "Скопіювати адресу по&силання"
 
-#: src/actions/actionmanagerimpl.cpp:666
+#: src/actions/actionmanagerimpl.cpp:682
 #, kde-format
 msgctxt "@action"
 msgid "Copy Image URL"
 msgstr "Копіювати адресу зображення"
 
-#: src/actions/actionmanagerimpl.cpp:672
+#: src/actions/actionmanagerimpl.cpp:688
 #, kde-format
 msgctxt "@action"
 msgid "Save Image…"
@@ -2140,27 +2141,27 @@ msgstr "Завантаження перервано"
 msgid "Loading completed"
 msgstr "Завантаження завершено"
 
-#: src/mainwidget.cpp:183
+#: src/mainwidget.cpp:208
 #, kde-format
 msgid "You can view multiple articles in several open tabs."
 msgstr "Можна переглядати декілька статей у різних відкритих вкладках."
 
-#: src/mainwidget.cpp:187
+#: src/mainwidget.cpp:212
 #, kde-format
 msgid "Articles list."
 msgstr "Список статей."
 
-#: src/mainwidget.cpp:249 src/mainwidget.cpp:681
+#: src/mainwidget.cpp:274 src/mainwidget.cpp:706
 #, kde-format
 msgid "Articles"
 msgstr "Статті"
 
-#: src/mainwidget.cpp:278
+#: src/mainwidget.cpp:303
 #, kde-format
 msgid "About"
 msgstr "Про"
 
-#: src/mainwidget.cpp:820
+#: src/mainwidget.cpp:845
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all articles in the feed</b> as read?</"
@@ -2169,19 +2170,19 @@ msgstr ""
 "<qt>Ви впевнені, що хочете позначити <b>усі статті у подачі</b> як прочитані?"
 "</qt>"
 
-#: src/mainwidget.cpp:821
+#: src/mainwidget.cpp:846
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "Позначення подачі як прочитаної"
 
-#: src/mainwidget.cpp:824
+#: src/mainwidget.cpp:849
 #, kde-format
 msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
 msgstr ""
 "<qt>Ви впевнені, що хочете позначити <b>усі подачі</b> як прочитані?</qt>"
 
-#: src/mainwidget.cpp:826
+#: src/mainwidget.cpp:851
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all feeds in the folder</b> as read?</"
@@ -2190,28 +2191,28 @@ msgstr ""
 "<qt>Ви впевнені, що хочете позначити <b>усі подачі у теці</b> як прочитані?</"
 "qt>"
 
-#: src/mainwidget.cpp:828
+#: src/mainwidget.cpp:853
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "Позначення подач як прочитаних"
 
-#: src/mainwidget.cpp:892 src/mainwidget.cpp:901 src/mainwidget.cpp:1302
+#: src/mainwidget.cpp:917 src/mainwidget.cpp:926 src/mainwidget.cpp:1327
 #, kde-format
 msgid "Networking is not available."
 msgstr "Мережа недоступна."
 
-#: src/mainwidget.cpp:909
+#: src/mainwidget.cpp:934
 #, kde-format
 msgid "Fetching Feeds…"
 msgstr "Отримання подач…"
 
-#: src/mainwidget.cpp:1107
+#: src/mainwidget.cpp:1132
 #, kde-format
 msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
 msgstr "<qt>Ви впевнені, що хочете вилучити статтю <b>%1</b>?</qt>"
 
-#: src/mainwidget.cpp:1110
+#: src/mainwidget.cpp:1135
 #, kde-format
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
 msgid_plural ""
@@ -2221,13 +2222,13 @@ msgstr[1] "<qt>Ви впевнені, що хочете вилучити %1 ви
 msgstr[2] "<qt>Ви впевнені, що хочете вилучити %1 вибраних статей?</qt>"
 msgstr[3] "<qt>Ви впевнені, що хочете вилучити %1 вибрану статтю?</qt>"
 
-#: src/mainwidget.cpp:1117
+#: src/mainwidget.cpp:1142
 #, kde-format
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "Вилучення статті"
 
-#: src/mainwidget.cpp:1299
+#: src/mainwidget.cpp:1324
 #, kde-format
 msgid "Networking is available now."
 msgstr "Доступ до мережі відкрито."
@@ -2585,12 +2586,12 @@ msgstr "Відкрити у зовнішньому переглядачі"
 msgid "Add windows support"
 msgstr "Додано підтримку Windows"
 
-#: src/whatsnew/whatsnewtranslations.cpp:25
+#: src/whatsnew/whatsnewtranslations.cpp:36
 #, kde-format
 msgid "Implement Plasma Activity."
 msgstr "Реалізовано простори дій Плазми."
 
-#: src/whatsnew/whatsnewtranslations.cpp:25
+#: src/whatsnew/whatsnewtranslations.cpp:36
 #, kde-format
 msgid "Add new whatsnew widget."
 msgstr "Додано новий віджет зі списком можливостей нової версії."
