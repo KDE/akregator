@@ -44,7 +44,6 @@
 #include "types.h"
 #include "whatsnew/whatsnewtranslations.h"
 #include "widgets/searchbar.h"
-#include <PimCommon/WhatsNewMessageWidget>
 #include <WebEngineViewer/ZoomActionMenu>
 
 #include <KAboutData>
