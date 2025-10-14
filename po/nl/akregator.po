@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-10-12 00:43+0000\n"
+"POT-Creation-Date: 2025-10-14 00:42+0000\n"
 "PO-Revision-Date: 2025-01-19 16:08+0100\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
@@ -981,8 +981,8 @@ msgstr "Reset de snelfilter wanneer er gewisseld wordt tussen feeds."
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
 #: src/akregator_part.cpp:126
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:142
-#: src/mainwidget.cpp:150 src/mainwidget.cpp:153 src/mainwidget.cpp:1356
-#: src/mainwidget.cpp:1358 src/trayicon.cpp:40 src/trayicon.cpp:41
+#: src/mainwidget.cpp:149 src/mainwidget.cpp:152 src/mainwidget.cpp:1355
+#: src/mainwidget.cpp:1357 src/trayicon.cpp:40 src/trayicon.cpp:41
 #: src/trayicon.cpp:53
 #, kde-format
 msgid "Akregator"
@@ -2179,27 +2179,27 @@ msgstr "Laden geannuleerd"
 msgid "Loading completed"
 msgstr "Laden voltooid"
 
-#: src/mainwidget.cpp:208
+#: src/mainwidget.cpp:207
 #, kde-format
 msgid "You can view multiple articles in several open tabs."
 msgstr "U kunt meerdere artikelen bekijken in diverse open tabbladen."
 
-#: src/mainwidget.cpp:212
+#: src/mainwidget.cpp:211
 #, kde-format
 msgid "Articles list."
 msgstr "Artikelenlijst."
 
-#: src/mainwidget.cpp:274 src/mainwidget.cpp:706
+#: src/mainwidget.cpp:273 src/mainwidget.cpp:705
 #, kde-format
 msgid "Articles"
 msgstr "Artikelen"
 
-#: src/mainwidget.cpp:303
+#: src/mainwidget.cpp:302
 #, kde-format
 msgid "About"
 msgstr "Over"
 
-#: src/mainwidget.cpp:845
+#: src/mainwidget.cpp:844
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all articles in the feed</b> as read?</"
@@ -2207,18 +2207,18 @@ msgid ""
 msgstr "<qt>Wilt u <b>alle artikelen in de feed</b> als gelezen markeren?</qt>"
 
 # engelse tekst spreekt van enkelvoud (feed), nl tekst spreekt van meervoud (feeds)
-#: src/mainwidget.cpp:846
+#: src/mainwidget.cpp:845
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "Feed als gelezen markeren"
 
-#: src/mainwidget.cpp:849
+#: src/mainwidget.cpp:848
 #, kde-format
 msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
 msgstr "<qt>Wilt u <b> alle feeds</b> als gelezen markeren?</qt>"
 
-#: src/mainwidget.cpp:851
+#: src/mainwidget.cpp:850
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all feeds in the folder</b> as read?</"
@@ -2226,28 +2226,28 @@ msgid ""
 msgstr "<qt>Wilt u <b>alle feeds in de map</b> als gelezen markeren?</qt>"
 
 # engelse tekst spreekt van enkelvoud (feed), nl tekst spreekt van meervoud (feeds)
-#: src/mainwidget.cpp:853
+#: src/mainwidget.cpp:852
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "Feeds als gelezen markeren"
 
-#: src/mainwidget.cpp:917 src/mainwidget.cpp:926 src/mainwidget.cpp:1327
+#: src/mainwidget.cpp:916 src/mainwidget.cpp:925 src/mainwidget.cpp:1326
 #, kde-format
 msgid "Networking is not available."
 msgstr "Netwerken is niet beschikbaar."
 
-#: src/mainwidget.cpp:934
+#: src/mainwidget.cpp:933
 #, kde-format
 msgid "Fetching Feeds…"
 msgstr "Feeds ophalen…"
 
-#: src/mainwidget.cpp:1132
+#: src/mainwidget.cpp:1131
 #, kde-format
 msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
 msgstr "<qt>Wilt u het artikel <b>%1</b> verwijderen?</qt>"
 
-#: src/mainwidget.cpp:1135
+#: src/mainwidget.cpp:1134
 #, kde-format
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
 msgid_plural ""
@@ -2255,13 +2255,13 @@ msgid_plural ""
 msgstr[0] "<qt>Wilt u echt het geselecteerde artikel verwijderen?</qt>"
 msgstr[1] "<qt>Wilt u echt de %1 geselecteerde artikelen verwijderen?</qt>"
 
-#: src/mainwidget.cpp:1142
+#: src/mainwidget.cpp:1141
 #, kde-format
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "Artikel verwijderen"
 
-#: src/mainwidget.cpp:1324
+#: src/mainwidget.cpp:1323
 #, kde-format
 msgid "Networking is available now."
 msgstr "Netwerken is nu beschikbaar."

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-10-12 00:43+0000\n"
+"POT-Creation-Date: 2025-10-14 00:42+0000\n"
 "PO-Revision-Date: 2018-01-06 09:21+0100\n"
 "Last-Translator: Chusslove Illich <caslav.ilic@gmx.net>\n"
 "Language-Team: Serbian <kde-i18n-sr@kde.org>\n"
@@ -966,8 +966,8 @@ msgstr "Ресетује брзи филтер при мењању довода.
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
 #: src/akregator_part.cpp:126
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:142
-#: src/mainwidget.cpp:150 src/mainwidget.cpp:153 src/mainwidget.cpp:1356
-#: src/mainwidget.cpp:1358 src/trayicon.cpp:40 src/trayicon.cpp:41
+#: src/mainwidget.cpp:149 src/mainwidget.cpp:152 src/mainwidget.cpp:1355
+#: src/mainwidget.cpp:1357 src/trayicon.cpp:40 src/trayicon.cpp:41
 #: src/trayicon.cpp:53
 #, kde-format
 msgid "Akregator"
@@ -2226,27 +2226,27 @@ msgstr "Учитавање отказано."
 msgid "Loading completed"
 msgstr "Учитавање довршено."
 
-#: src/mainwidget.cpp:208
+#: src/mainwidget.cpp:207
 #, kde-format
 msgid "You can view multiple articles in several open tabs."
 msgstr "Можете прегледати више чланака под неколико отворених језичака."
 
-#: src/mainwidget.cpp:212
+#: src/mainwidget.cpp:211
 #, kde-format
 msgid "Articles list."
 msgstr "Листа чланака."
 
-#: src/mainwidget.cpp:274 src/mainwidget.cpp:706
+#: src/mainwidget.cpp:273 src/mainwidget.cpp:705
 #, kde-format
 msgid "Articles"
 msgstr "Чланци"
 
-#: src/mainwidget.cpp:303
+#: src/mainwidget.cpp:302
 #, kde-format
 msgid "About"
 msgstr "О"
 
-#: src/mainwidget.cpp:845
+#: src/mainwidget.cpp:844
 #, fuzzy, kde-format
 #| msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
 msgid ""
@@ -2254,20 +2254,20 @@ msgid ""
 "qt>"
 msgstr "<qt>Желите ли заиста да обришете довод <b>%1</b>?</qt>"
 
-#: src/mainwidget.cpp:846
+#: src/mainwidget.cpp:845
 #, fuzzy, kde-format
 #| msgid "&Mark Feed as Read"
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "Означи довод као &прочитан"
 
-#: src/mainwidget.cpp:849
+#: src/mainwidget.cpp:848
 #, fuzzy, kde-format
 #| msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
 msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
 msgstr "<qt>Желите ли заиста да обришете довод <b>%1</b>?</qt>"
 
-#: src/mainwidget.cpp:851
+#: src/mainwidget.cpp:850
 #, fuzzy, kde-format
 #| msgid "<qt>Are you sure you want to delete this feed?</qt>"
 msgid ""
@@ -2275,7 +2275,7 @@ msgid ""
 "qt>"
 msgstr "<qt>Желите ли заиста да обришете овај довод?</qt>"
 
-#: src/mainwidget.cpp:853
+#: src/mainwidget.cpp:852
 #, fuzzy, kde-format
 #| msgid "&Mark Feeds as Read"
 msgctxt "@title:window"
@@ -2283,23 +2283,23 @@ msgid "Mark Feeds as Read"
 msgstr "&Означи доводе као прочитане"
 
 # rewrite-msgid: /Networking/Network/
-#: src/mainwidget.cpp:917 src/mainwidget.cpp:926 src/mainwidget.cpp:1327
+#: src/mainwidget.cpp:916 src/mainwidget.cpp:925 src/mainwidget.cpp:1326
 #, kde-format
 msgid "Networking is not available."
 msgstr "Мрежа није доступна."
 
-#: src/mainwidget.cpp:934
+#: src/mainwidget.cpp:933
 #, fuzzy, kde-format
 #| msgid "Fetching Feeds..."
 msgid "Fetching Feeds…"
 msgstr "Очитавам доводе..."
 
-#: src/mainwidget.cpp:1132
+#: src/mainwidget.cpp:1131
 #, kde-format
 msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
 msgstr "<qt>Желите ли заиста да обришете чланак <b>%1</b>?</qt>"
 
-#: src/mainwidget.cpp:1135
+#: src/mainwidget.cpp:1134
 #, kde-format
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
 msgid_plural ""
@@ -2309,7 +2309,7 @@ msgstr[1] "<qt>Желите ли заиста да обришете %1 одаб�
 msgstr[2] "<qt>Желите ли заиста да обришете %1 одабраних чланака?</qt>"
 msgstr[3] "<qt>Желите ли заиста да обришете одабрани чланак?</qt>"
 
-#: src/mainwidget.cpp:1142
+#: src/mainwidget.cpp:1141
 #, fuzzy, kde-format
 #| msgid "Delete Article"
 msgctxt "@title:window"
@@ -2317,7 +2317,7 @@ msgid "Delete Article"
 msgstr "Обриши чланак"
 
 # rewrite-msgid: /Networking/Network/
-#: src/mainwidget.cpp:1324
+#: src/mainwidget.cpp:1323
 #, kde-format
 msgid "Networking is available now."
 msgstr "Мрежа је сада доступна."

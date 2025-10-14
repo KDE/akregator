@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-10-12 00:43+0000\n"
+"POT-Creation-Date: 2025-10-14 00:42+0000\n"
 "PO-Revision-Date: 2025-09-27 12:02+0300\n"
 "Last-Translator: Mindaugas Baranauskas <opensuse.lietuviu.kalba@gmail.com>\n"
 "Language-Team: Lithuanian <kde-i18n-lt@kde.org>\n"
@@ -951,8 +951,8 @@ msgstr "Išvalo greitą filtrą keičiant kanalą."
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
 #: src/akregator_part.cpp:126
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:142
-#: src/mainwidget.cpp:150 src/mainwidget.cpp:153 src/mainwidget.cpp:1356
-#: src/mainwidget.cpp:1358 src/trayicon.cpp:40 src/trayicon.cpp:41
+#: src/mainwidget.cpp:149 src/mainwidget.cpp:152 src/mainwidget.cpp:1355
+#: src/mainwidget.cpp:1357 src/trayicon.cpp:40 src/trayicon.cpp:41
 #: src/trayicon.cpp:53
 #, kde-format
 msgid "Akregator"
@@ -2130,27 +2130,27 @@ msgstr "Įkėlimas atšauktas"
 msgid "Loading completed"
 msgstr "Įkėlimas užbaigtas"
 
-#: src/mainwidget.cpp:208
+#: src/mainwidget.cpp:207
 #, kde-format
 msgid "You can view multiple articles in several open tabs."
 msgstr "Galite peržiūrėti kelis straipsnius keliose atvertose kortelėse."
 
-#: src/mainwidget.cpp:212
+#: src/mainwidget.cpp:211
 #, kde-format
 msgid "Articles list."
 msgstr "Straipsnių sąrašas."
 
-#: src/mainwidget.cpp:274 src/mainwidget.cpp:706
+#: src/mainwidget.cpp:273 src/mainwidget.cpp:705
 #, kde-format
 msgid "Articles"
 msgstr "Straipsniai"
 
-#: src/mainwidget.cpp:303
+#: src/mainwidget.cpp:302
 #, kde-format
 msgid "About"
 msgstr "Apie"
 
-#: src/mainwidget.cpp:845
+#: src/mainwidget.cpp:844
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all articles in the feed</b> as read?</"
@@ -2159,18 +2159,18 @@ msgstr ""
 "<qt>Ar tikrai norite žymėti <b>visus kanale esančius straipnsius</b> kaip "
 "skaitytus?</qt>"
 
-#: src/mainwidget.cpp:846
+#: src/mainwidget.cpp:845
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "Žymėti kanalą kaip skaitytą"
 
-#: src/mainwidget.cpp:849
+#: src/mainwidget.cpp:848
 #, kde-format
 msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
 msgstr "<qt>Ar tikrai norite žymėti <b>visus kanalus</b> kaip skaitytus?</qt>"
 
-#: src/mainwidget.cpp:851
+#: src/mainwidget.cpp:850
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all feeds in the folder</b> as read?</"
@@ -2179,28 +2179,28 @@ msgstr ""
 "<qt>Ar tikrai norite žymėti <b>visus aplanke esančius kanalus</b> kaip "
 "skaitytus?</qt>"
 
-#: src/mainwidget.cpp:853
+#: src/mainwidget.cpp:852
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "Žymėti sklaidos kanalus kaip skaitytus"
 
-#: src/mainwidget.cpp:917 src/mainwidget.cpp:926 src/mainwidget.cpp:1327
+#: src/mainwidget.cpp:916 src/mainwidget.cpp:925 src/mainwidget.cpp:1326
 #, kde-format
 msgid "Networking is not available."
 msgstr "Tinklas nepasiekiamas."
 
-#: src/mainwidget.cpp:934
+#: src/mainwidget.cpp:933
 #, kde-format
 msgid "Fetching Feeds…"
 msgstr "Atsiunčiami kanalai…"
 
-#: src/mainwidget.cpp:1132
+#: src/mainwidget.cpp:1131
 #, kde-format
 msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
 msgstr "<qt>Ar tikrai norite ištrinti straipsnį <b>%1</b>?</qt>"
 
-#: src/mainwidget.cpp:1135
+#: src/mainwidget.cpp:1134
 #, kde-format
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
 msgid_plural ""
@@ -2210,13 +2210,13 @@ msgstr[1] "<qt>Ar tikrai norite ištrinti %1 dabartinius straipsnius?</qt>"
 msgstr[2] "<qt>Ar tikrai norite ištrinti %1 dabartinių straipsnių?</qt>"
 msgstr[3] "<qt>Ar tikrai norite ištrinti %1 dabartinį straipsnį?</qt>"
 
-#: src/mainwidget.cpp:1142
+#: src/mainwidget.cpp:1141
 #, kde-format
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "Ištrinti straipsnį"
 
-#: src/mainwidget.cpp:1324
+#: src/mainwidget.cpp:1323
 #, kde-format
 msgid "Networking is available now."
 msgstr "Tinklas dabar yra pasiekiamas."

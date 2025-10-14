@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: all2.po\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-10-12 00:43+0000\n"
+"POT-Creation-Date: 2025-10-14 00:42+0000\n"
 "PO-Revision-Date: 2004-09-20 15:44+0200\n"
 "Last-Translator: Thierry Vignaud <tvignaud@mandrakesoft.com>\n"
 "Language-Team: cy <LL@li.org>\n"
@@ -921,8 +921,8 @@ msgstr ""
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
 #: src/akregator_part.cpp:126
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:142
-#: src/mainwidget.cpp:150 src/mainwidget.cpp:153 src/mainwidget.cpp:1356
-#: src/mainwidget.cpp:1358 src/trayicon.cpp:40 src/trayicon.cpp:41
+#: src/mainwidget.cpp:149 src/mainwidget.cpp:152 src/mainwidget.cpp:1355
+#: src/mainwidget.cpp:1357 src/trayicon.cpp:40 src/trayicon.cpp:41
 #: src/trayicon.cpp:53
 #, kde-format
 msgid "Akregator"
@@ -2096,75 +2096,75 @@ msgstr ""
 msgid "Loading completed"
 msgstr ""
 
-#: src/mainwidget.cpp:208
+#: src/mainwidget.cpp:207
 #, kde-format
 msgid "You can view multiple articles in several open tabs."
 msgstr ""
 
-#: src/mainwidget.cpp:212
+#: src/mainwidget.cpp:211
 #, kde-format
 msgid "Articles list."
 msgstr ""
 
-#: src/mainwidget.cpp:274 src/mainwidget.cpp:706
+#: src/mainwidget.cpp:273 src/mainwidget.cpp:705
 #, kde-format
 msgid "Articles"
 msgstr "Erhyglau"
 
-#: src/mainwidget.cpp:303
+#: src/mainwidget.cpp:302
 #, kde-format
 msgid "About"
 msgstr ""
 
-#: src/mainwidget.cpp:845
+#: src/mainwidget.cpp:844
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all articles in the feed</b> as read?</"
 "qt>"
 msgstr ""
 
-#: src/mainwidget.cpp:846
+#: src/mainwidget.cpp:845
 #, fuzzy, kde-format
 #| msgid "&Next Article"
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "Erthygl &Nesaf"
 
-#: src/mainwidget.cpp:849
+#: src/mainwidget.cpp:848
 #, kde-format
 msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
 msgstr ""
 
-#: src/mainwidget.cpp:851
+#: src/mainwidget.cpp:850
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all feeds in the folder</b> as read?</"
 "qt>"
 msgstr ""
 
-#: src/mainwidget.cpp:853
+#: src/mainwidget.cpp:852
 #, fuzzy, kde-format
 #| msgid "&Next Article"
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "Erthygl &Nesaf"
 
-#: src/mainwidget.cpp:917 src/mainwidget.cpp:926 src/mainwidget.cpp:1327
+#: src/mainwidget.cpp:916 src/mainwidget.cpp:925 src/mainwidget.cpp:1326
 #, kde-format
 msgid "Networking is not available."
 msgstr ""
 
-#: src/mainwidget.cpp:934
+#: src/mainwidget.cpp:933
 #, fuzzy, kde-format
 msgid "Fetching Feeds…"
 msgstr "&Nôl"
 
-#: src/mainwidget.cpp:1132
+#: src/mainwidget.cpp:1131
 #, kde-format
 msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
 msgstr ""
 
-#: src/mainwidget.cpp:1135
+#: src/mainwidget.cpp:1134
 #, kde-format
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
 msgid_plural ""
@@ -2172,14 +2172,14 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/mainwidget.cpp:1142
+#: src/mainwidget.cpp:1141
 #, fuzzy, kde-format
 #| msgid "Delete Article"
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "Dileu Erthygl"
 
-#: src/mainwidget.cpp:1324
+#: src/mainwidget.cpp:1323
 #, kde-format
 msgid "Networking is available now."
 msgstr ""
