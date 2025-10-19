@@ -71,8 +71,15 @@ void SortColorizeProxyModel::setFilters(const std::vector<QSharedPointer<const F
     if (m_matchers == matchers) {
         return;
     }
+#if QT_VERSION >= QT_VERSION_CHECK(6, 10, 0)
+    beginFilterChange();
+#endif
     m_matchers = matchers;
+#if QT_VERSION >= QT_VERSION_CHECK(6, 10, 0)
+    endFilterChange(QSortFilterProxyModel::Direction::Rows);
+#else
     invalidateFilter();
+#endif
 }
 
 QVariant SortColorizeProxyModel::data(const QModelIndex &idx, int role) const

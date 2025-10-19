@@ -88,13 +88,27 @@ bool FilterSubscriptionProxyModel::doFilter() const
 
 void FilterSubscriptionProxyModel::activitiesChanged()
 {
+#if QT_VERSION >= QT_VERSION_CHECK(6, 10, 0)
+    beginFilterChange();
+#endif
+#if QT_VERSION >= QT_VERSION_CHECK(6, 10, 0)
+    endFilterChange(QSortFilterProxyModel::Direction::Rows);
+#else
     invalidateFilter();
+#endif
 }
 
 void FilterSubscriptionProxyModel::setDoFilter(bool v)
 {
+#if QT_VERSION >= QT_VERSION_CHECK(6, 10, 0)
+    beginFilterChange();
+#endif
     m_doFilter = v;
+#if QT_VERSION >= QT_VERSION_CHECK(6, 10, 0)
+    endFilterChange(QSortFilterProxyModel::Direction::Rows);
+#else
     invalidateFilter();
+#endif
 }
 
 void FilterSubscriptionProxyModel::setSourceModel(QAbstractItemModel *src)
@@ -165,7 +179,12 @@ void FilterSubscriptionProxyModel::selectionChanged(const QItemSelection &select
     }
 
     if (doInvalidate && doFilter()) {
+#if QT_VERSION >= QT_VERSION_CHECK(6, 10, 0)
+        beginFilterChange();
+        endFilterChange(QSortFilterProxyModel::Direction::Rows);
+#else
         invalidateFilter();
+#endif
     }
 }
 
