@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-10-14 00:42+0000\n"
+"POT-Creation-Date: 2025-10-20 00:43+0000\n"
 "PO-Revision-Date: 2025-01-21 20:18+0100\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
@@ -1641,17 +1641,17 @@ msgid "The feed to be listed was already removed."
 msgstr ""
 "Емисията, която трябва да бъде включена в списъка, вече беше премахната."
 
-#: src/articlelistview.cpp:155 src/subscription/subscriptionlistview.cpp:180
+#: src/articlelistview.cpp:162 src/subscription/subscriptionlistview.cpp:180
 #, kde-format
 msgid "Columns"
 msgstr "Колони"
 
-#: src/articlelistview.cpp:213
+#: src/articlelistview.cpp:220
 #, kde-format
 msgid "No result found"
 msgstr "Няма намерен резултат"
 
-#: src/articlelistview.cpp:374
+#: src/articlelistview.cpp:381
 #, kde-format
 msgid ""
 "<h2>Article list</h2>Here you can browse articles from the currently "
@@ -2309,24 +2309,24 @@ msgstr "Емисията не може да бъде прочетена (неи�
 msgid "Could not read feed (invalid feed)"
 msgstr "Емисията не може да бъде прочетена (невалидна емисия)"
 
-#: src/subscription/subscriptionlistmodel.cpp:251
+#: src/subscription/subscriptionlistmodel.cpp:270
 #, kde-format
 msgid "Could not fetch feed: %1"
 msgstr "Невъзможно изтегляне от емисия: %1"
 
-#: src/subscription/subscriptionlistmodel.cpp:300
+#: src/subscription/subscriptionlistmodel.cpp:319
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Feeds"
 msgstr "Емисии"
 
-#: src/subscription/subscriptionlistmodel.cpp:302
+#: src/subscription/subscriptionlistmodel.cpp:321
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Unread"
 msgstr "Непрочетено"
 
-#: src/subscription/subscriptionlistmodel.cpp:304
+#: src/subscription/subscriptionlistmodel.cpp:323
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Total"

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-10-14 00:42+0000\n"
+"POT-Creation-Date: 2025-10-20 00:43+0000\n"
 "PO-Revision-Date: 2018-01-06 09:21+0100\n"
 "Last-Translator: Chusslove Illich <caslav.ilic@gmx.net>\n"
 "Language-Team: Serbian <kde-i18n-sr@kde.org>\n"
@@ -1724,17 +1724,17 @@ msgid "The feed to be listed was already removed."
 msgstr "Довод који треба излистати већ је уклоњен."
 
 # >> @title:window
-#: src/articlelistview.cpp:155 src/subscription/subscriptionlistview.cpp:180
+#: src/articlelistview.cpp:162 src/subscription/subscriptionlistview.cpp:180
 #, kde-format
 msgid "Columns"
 msgstr "Колоне"
 
-#: src/articlelistview.cpp:213
+#: src/articlelistview.cpp:220
 #, kde-format
 msgid "No result found"
 msgstr ""
 
-#: src/articlelistview.cpp:374
+#: src/articlelistview.cpp:381
 #, kde-format
 msgid ""
 "<h2>Article list</h2>Here you can browse articles from the currently "
@@ -2431,24 +2431,24 @@ msgstr "Не могу да читам довод (непознат формат)
 msgid "Could not read feed (invalid feed)"
 msgstr "Не могу да читам довод (лош довод)."
 
-#: src/subscription/subscriptionlistmodel.cpp:251
+#: src/subscription/subscriptionlistmodel.cpp:270
 #, kde-format
 msgid "Could not fetch feed: %1"
 msgstr "Не могу да очитам довод: %1"
 
-#: src/subscription/subscriptionlistmodel.cpp:300
+#: src/subscription/subscriptionlistmodel.cpp:319
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Feeds"
 msgstr "доводи"
 
-#: src/subscription/subscriptionlistmodel.cpp:302
+#: src/subscription/subscriptionlistmodel.cpp:321
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Unread"
 msgstr "непрочитано"
 
-#: src/subscription/subscriptionlistmodel.cpp:304
+#: src/subscription/subscriptionlistmodel.cpp:323
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Total"

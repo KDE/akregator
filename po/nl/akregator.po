@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-10-14 00:42+0000\n"
+"POT-Creation-Date: 2025-10-20 00:43+0000\n"
 "PO-Revision-Date: 2025-01-19 16:08+0100\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
@@ -1700,12 +1700,12 @@ msgstr "Geïmporteerde map"
 msgid "The feed to be listed was already removed."
 msgstr "De te tonen feed was al verwijderd."
 
-#: src/articlelistview.cpp:155 src/subscription/subscriptionlistview.cpp:180
+#: src/articlelistview.cpp:162 src/subscription/subscriptionlistview.cpp:180
 #, kde-format
 msgid "Columns"
 msgstr "Kolommen"
 
-#: src/articlelistview.cpp:213
+#: src/articlelistview.cpp:220
 #, kde-format
 msgid "No result found"
 msgstr "Geen resultaat gevonden"
@@ -1714,7 +1714,7 @@ msgstr "Geen resultaat gevonden"
 # zou tussen enkele aanhalingstekens kunnen? ===> 'te bewaren' artikelen
 # \" toegevoegd ik naam aan dat ook hier \\ staat voor volgende teken letterlijk nemen? net als in shellscripts?
 # tekst letterlijk vertaald. dan kom ik qua regels ook uit.
-#: src/articlelistview.cpp:374
+#: src/articlelistview.cpp:381
 #, kde-format
 msgid ""
 "<h2>Article list</h2>Here you can browse articles from the currently "
@@ -2375,24 +2375,24 @@ msgstr "Kon feed niet lezen (onbekend formaat)"
 msgid "Could not read feed (invalid feed)"
 msgstr "Kon feed niet lezen (ongeldige feed)"
 
-#: src/subscription/subscriptionlistmodel.cpp:251
+#: src/subscription/subscriptionlistmodel.cpp:270
 #, kde-format
 msgid "Could not fetch feed: %1"
 msgstr "Kon feed %1 niet ophalen"
 
-#: src/subscription/subscriptionlistmodel.cpp:300
+#: src/subscription/subscriptionlistmodel.cpp:319
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Feeds"
 msgstr "Feeds"
 
-#: src/subscription/subscriptionlistmodel.cpp:302
+#: src/subscription/subscriptionlistmodel.cpp:321
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Unread"
 msgstr "Ongelezen"
 
-#: src/subscription/subscriptionlistmodel.cpp:304
+#: src/subscription/subscriptionlistmodel.cpp:323
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Total"
