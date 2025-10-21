@@ -1,15 +1,14 @@
 # Traducerea akregator.po în Română
 # Copyright (C) YEAR This_file_is_part_of_KDE
-# This file is distributed under the same license as the PACKAGE package.
-# Sergiu Bivol <sergiu@cip.md>, 2008.
-# Sergiu Bivol <sergiu@cip.md>, 2008, 2009, 2012.
+# This file is distributed under the same license as the Akregator package.
+# SPDX-FileCopyrightText: 2008, 2009, 2012, 2025 Sergiu Bivol <sergiu@cip.md>
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-10-20 00:43+0000\n"
-"PO-Revision-Date: 2012-12-11 09:10+0200\n"
+"PO-Revision-Date: 2025-10-20 10:47+0100\n"
 "Last-Translator: Sergiu Bivol <sergiu@cip.md>\n"
 "Language-Team: Romanian <kde-i18n-ro@kde.org>\n"
 "Language: ro\n"
@@ -18,6 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2;\n"
+"X-Generator: Lokalize 25.08.1\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -46,53 +46,38 @@ msgid ""
 msgstr ""
 
 #: src/formatter/html/combinedview.html:24
-#, fuzzy
-#| msgid "&Mark Feed as Read"
 msgid "Mark as Read"
-msgstr "&Marchează fluxul ca citit"
+msgstr "Marchează ca citit"
 
 #: src/formatter/html/combinedview.html:27
-#, fuzzy
-#| msgid "Mark selected article as unread"
 msgid "Mark as Unread"
-msgstr "Marchează articolul ales ca necitit"
+msgstr "Marchează ca necitit"
 
 #: src/formatter/html/combinedview.html:31
-#, fuzzy
-#| msgid "Remove &Important Mark"
 msgid "Remove Important Status"
-msgstr "Elimină semnul &important"
+msgstr "Elimină starea de important"
 
 #: src/formatter/html/combinedview.html:33
-#, fuzzy
-#| msgid "&Mark as Important"
 msgid "Mark as Important"
-msgstr "&Marchează ca important"
+msgstr "Marchează ca important"
 
 #: src/formatter/html/combinedview.html:35
-#, fuzzy
-#| msgid "Open Link in External &Browser"
 msgid "Open Link in External Browser"
-msgstr "Deschide le&gătura în navigator extern"
+msgstr "Deschide legătura în navigator extern"
 
 #: src/formatter/html/combinedview.html:36
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:110
-#, fuzzy, kde-format
-#| msgid "Open in Background Tab"
+#, kde-format
 msgid "Open In Background Tab"
 msgstr "Deschide în filă din fundal"
 
 #: src/formatter/html/combinedview.html:37
-#, fuzzy
-#| msgid "Send &Link Address..."
 msgid "Send File Address"
-msgstr "Trimite adresa &legăturii..."
+msgstr "Trimite adresa fișierului"
 
 #: src/formatter/html/combinedview.html:38
-#, fuzzy
-#| msgid "Send &Link Address..."
 msgid "Send Link Address"
-msgstr "Trimite adresa &legăturii..."
+msgstr "Trimite adresa legăturii"
 
 #: src/formatter/html/combinedview.html:39
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:96
@@ -105,6 +90,8 @@ msgid ""
 "<b>Note:</b> For security reasons, external reference is blocked (See "
 "configure dialog)."
 msgstr ""
+"<b>Notă:</b> Din motive de securitate, referința externă e blocată (vedeți "
+"dialogul de configurări)."
 
 #: configuration/akregator_config_archive.cpp:35
 #, fuzzy, kde-format
@@ -1933,10 +1920,7 @@ msgid ""
 msgstr ""
 
 #: src/crashwidget/crashwidget.cpp:21
-#, fuzzy, kde-format
-#| msgid ""
-#| "Akregator did not close correctly. Would you like to restore the previous "
-#| "session?"
+#, kde-format
 msgctxt "@label:textbox"
 msgid ""
 "Akregator did not close correctly. Would you like to restore the previous "
@@ -1950,14 +1934,12 @@ msgid "Restore Session"
 msgstr "Restabilesc sesiunea"
 
 #: src/crashwidget/crashwidget.cpp:43
-#, fuzzy, kde-format
-#| msgid "Restore Session"
+#, kde-format
 msgid "Do Not Restore Session"
-msgstr "Restabilesc sesiunea"
+msgstr "Nu restabili sesiunea"
 
 #: src/crashwidget/crashwidget.cpp:49
-#, fuzzy, kde-format
-#| msgid "Ask Me Later"
+#, kde-format
 msgid "Ask me later"
 msgstr "Întreabă-mă mai târziu"
 
@@ -1977,7 +1959,7 @@ msgstr "&Vizualizare"
 #: src/data/akregator_part.rc:37 src/data/akregator_shell.rc:24
 #, kde-format
 msgid "&Go"
-msgstr "&Mergi la"
+msgstr "Mer&gi"
 
 #. i18n: ectx: Menu (feed)
 #: src/data/akregator_part.rc:50 src/data/akregator_shell.rc:29
@@ -2001,7 +1983,7 @@ msgstr "&Configurări"
 #: src/data/akregator_part.rc:90
 #, kde-format
 msgid "&Help"
-msgstr ""
+msgstr "&Ajutor"
 
 #. i18n: ectx: ToolBar (mainToolBar)
 #: src/data/akregator_part.rc:98 src/data/akregator_shell.rc:54
@@ -2023,7 +2005,7 @@ msgstr "Toate fluxurile"
 #: src/feed/feedpropertiesdialog.cpp:39
 #, kde-format
 msgid "Activities"
-msgstr ""
+msgstr "Activități"
 
 #: src/feed/feedpropertiesdialog.cpp:64 src/feed/feedpropertiesdialog.cpp:119
 #, kde-format
@@ -2050,8 +2032,7 @@ msgstr[1] "zile"
 msgstr[2] "de zile"
 
 #: src/feed/feedpropertiesdialog.cpp:96 src/feed/feedpropertiesdialog.cpp:158
-#, fuzzy, kde-format
-#| msgid "Feed Properties"
+#, kde-format
 msgctxt "@title:window"
 msgid "Feed Properties"
 msgstr "Proprietăți flux"
@@ -2063,31 +2044,26 @@ msgid "Never"
 msgstr "Niciodată"
 
 #: src/feed/feedpropertiesdialog.cpp:124
-#, fuzzy, kde-format
-#| msgid " day"
-#| msgid_plural " days"
+#, kde-format
 msgid "%v day"
 msgid_plural "%v days"
-msgstr[0] " zi"
-msgstr[1] " zile"
-msgstr[2] " de zile"
+msgstr[0] "%v zi"
+msgstr[1] "%v zile"
+msgstr[2] "%v de zile"
 
 #: src/feed/feedpropertiesdialog.cpp:125
-#, fuzzy, kde-format
-#| msgid " article"
-#| msgid_plural " articles"
+#, kde-format
 msgid "%v article"
 msgid_plural "%v articles"
-msgstr[0] " articol"
-msgstr[1] " articole"
-msgstr[2] " de articole"
+msgstr[0] "%v articol"
+msgstr[1] "%v articole"
+msgstr[2] "%v de articole"
 
 #: src/feed/feedpropertiesdialog.cpp:158
-#, fuzzy, kde-format
-#| msgid "Properties of %1"
+#, kde-format
 msgctxt "@title:window"
 msgid "Properties of %1"
-msgstr "Proprietățile %1"
+msgstr "Proprietăți pentru %1"
 
 #: src/formatter/articleformatter.cpp:36
 #, kde-format
@@ -2110,22 +2086,19 @@ msgstr[1] " (%1 articole necitite)"
 msgstr[2] " (%1 de articole necitite)"
 
 #: src/formatter/grantleeviewformatter.cpp:179
-#, fuzzy, kde-format
-#| msgid "<b>Description:</b> %1<br /><br />"
+#, kde-format
 msgid "<b>Description:</b> %1<br />"
-msgstr "<b>Descriere:</b> %1<br /><br />"
+msgstr "<b>Descriere:</b> %1<br />"
 
 #: src/formatter/grantleeviewformatter.cpp:186
-#, fuzzy, kde-format
-#| msgid "<b>Homepage:</b> <a href=\"%1\">%2</a>"
+#, kde-format
 msgid "<b>Homepage:</b> <a href=\"%1\">%1</a>"
-msgstr "<b>Pagină web:</b> <a href=\"%1\">%2</a>"
+msgstr "<b>Pagină web:</b> <a href=\"%1\">%1</a>"
 
 #: src/formatter/grantleeviewformatter.cpp:193
-#, fuzzy, kde-format
-#| msgid "<b>Description:</b> %1<br /><br />"
+#, kde-format
 msgid "<b>Copyright:</b> %1</a>"
-msgstr "<b>Descriere:</b> %1<br /><br />"
+msgstr "<b>Drept de autor:</b> %1</a>"
 
 #: src/formatter/grantleeviewformatter.cpp:253
 #, kde-format
@@ -2133,10 +2106,9 @@ msgid "Date"
 msgstr "Dată"
 
 #: src/formatter/grantleeviewformatter.cpp:254
-#, fuzzy, kde-format
-#| msgid "Comments"
+#, kde-format
 msgid "Comment"
-msgstr "Comentarii"
+msgstr "Comentariu"
 
 #: src/formatter/grantleeviewformatter.cpp:255
 #, kde-format
@@ -2159,10 +2131,9 @@ msgid "Untitled"
 msgstr "Fără titlu"
 
 #: src/frame/frame.cpp:140
-#, fuzzy, kde-format
-#| msgid "Loading..."
+#, kde-format
 msgid "Loading…"
-msgstr "Se încarcă..."
+msgstr "Se încarcă…"
 
 #: src/frame/frame.cpp:154
 #, kde-format
@@ -2195,40 +2166,37 @@ msgid "About"
 msgstr "Despre"
 
 #: src/mainwidget.cpp:844
-#, fuzzy, kde-format
-#| msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
+#, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all articles in the feed</b> as read?</"
 "qt>"
-msgstr "<qt>Sigur ștergeți fluxul <b>%1</b>?</qt>"
+msgstr ""
+"<qt>Sigur doriți să marcați <b>toate articolele din flux</b> ca citite?</qt>"
 
 #: src/mainwidget.cpp:845
-#, fuzzy, kde-format
-#| msgid "&Mark Feed as Read"
+#, kde-format
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
-msgstr "&Marchează fluxul ca citit"
+msgstr "Marchează fluxul ca citit"
 
 #: src/mainwidget.cpp:848
-#, fuzzy, kde-format
-#| msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
+#, kde-format
 msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
-msgstr "<qt>Sigur ștergeți fluxul <b>%1</b>?</qt>"
+msgstr "<qt>Sigur doriți să marcați <b>toate fluxurile</b> ca citite?</qt>"
 
 #: src/mainwidget.cpp:850
-#, fuzzy, kde-format
-#| msgid "<qt>Are you sure you want to delete this feed?</qt>"
+#, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all feeds in the folder</b> as read?</"
 "qt>"
-msgstr "<qt>Sigur ștergeți acest flux?</qt>"
+msgstr ""
+"<qt>Sigur doriți să marcați <b>toate fluxurile din dosar</b> ca citite?</qt>"
 
 #: src/mainwidget.cpp:852
-#, fuzzy, kde-format
-#| msgid "&Mark Feeds as Read"
+#, kde-format
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
-msgstr "&Marchează fluxurile ca citite"
+msgstr "Marchează fluxurile ca citite"
 
 #: src/mainwidget.cpp:916 src/mainwidget.cpp:925 src/mainwidget.cpp:1326
 #, kde-format
@@ -2236,10 +2204,9 @@ msgid "Networking is not available."
 msgstr "Rețeaua nu e disponibilă."
 
 #: src/mainwidget.cpp:933
-#, fuzzy, kde-format
-#| msgid "Fetching Feeds..."
+#, kde-format
 msgid "Fetching Feeds…"
-msgstr "Se preiau fluxuri..."
+msgstr "Se preiau fluxuri…"
 
 #: src/mainwidget.cpp:1131
 #, kde-format
@@ -2256,8 +2223,7 @@ msgstr[1] "<qt>Sigur ștergeți cele %1 articole alese?</qt>"
 msgstr[2] "<qt>Sigur ștergeți cele %1 de articole alese?</qt>"
 
 #: src/mainwidget.cpp:1141
-#, fuzzy, kde-format
-#| msgid "Delete Article"
+#, kde-format
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "Șterge articolul"
@@ -2273,12 +2239,14 @@ msgid ""
 "<qt>This will hide the menu bar completely. You can show it again by typing "
 "%1.</qt>"
 msgstr ""
+"<qt>Aceasta va ascunde complet bara meniului. O puteți afișa din nou tastând "
+"%1.</qt>"
 
 #: src/mainwindow.cpp:125
 #, kde-format
 msgctxt "@title:window"
 msgid "Hide menu bar"
-msgstr ""
+msgstr "Ascunde bara meniului"
 
 #: src/mainwindow.cpp:158
 #, kde-format
@@ -2286,6 +2254,8 @@ msgid ""
 "Could not find the Akregator part; please check your installation.\n"
 "%1"
 msgstr ""
+"Componenta Akregator nu a fost găsită; verificați-vă instalarea.\n"
+"%1"
 
 #: src/notificationmanager.cpp:48
 #, kde-format
@@ -2309,9 +2279,9 @@ msgstr ""
 #, kde-format
 msgid "<i>and 1 other</i>"
 msgid_plural "<i>and %1 others</i>"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "<i>și încă unul</i>"
+msgstr[1] "<i>și încă %1</i>"
+msgstr[2] "<i>și încă %1</i>"
 
 #: src/progressmanager.cpp:127
 #, kde-format
@@ -2341,7 +2311,7 @@ msgstr "Nodul sau dosarul de destinație nu a fost găsit"
 #: src/subscription/subscriptionlistjobs.cpp:71
 #, kde-format
 msgid "Cannot move folder %1 to its own subfolder %2"
-msgstr ""
+msgstr "Dosarul %1 nu poate fi mutat în propriul subdosar %2"
 
 #: src/subscription/subscriptionlistmodel.cpp:54
 #, kde-format
@@ -2397,8 +2367,7 @@ msgid "Total"
 msgstr "Total"
 
 #: src/tabwidget.cpp:92
-#, fuzzy, kde-format
-#| msgid "Close the current tab"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Close the current tab"
 msgstr "Închide fila curentă"
@@ -2409,38 +2378,33 @@ msgid "Close tab"
 msgstr "Închide fila"
 
 #: src/tabwidget.cpp:118
-#, fuzzy, kde-format
-#| msgid "Detach Tab"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Detach Tab"
 msgstr "Detașează fila"
 
 #: src/tabwidget.cpp:123
-#, fuzzy, kde-format
-#| msgid "Close Tab"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Close Tab"
 msgstr "Închide fila"
 
 #: src/tabwidget.cpp:127
-#, fuzzy, kde-format
-#| msgid "Close the current tab"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Close All Other Tabs"
-msgstr "Închide fila curentă"
+msgstr "Închide toate celelalte file"
 
 #: src/tabwidget.cpp:131
-#, fuzzy, kde-format
-#| msgid "Close Tab"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Close All Tabs"
-msgstr "Închide fila"
+msgstr "Închide toate filele"
 
 #: src/trayicon.cpp:54
-#, fuzzy, kde-format
-#| msgid " (no unread articles)"
+#, kde-format
 msgid "There are no unread articles"
-msgstr " (niciun articol necitit)"
+msgstr "Nu sunt articole necitite"
 
 #: src/trayicon.cpp:54
 #, kde-format
@@ -2488,10 +2452,9 @@ msgstr "Utilizează interval de actualizare per&sonalizat"
 
 #. i18n: ectx: property (text), widget (QLabel, updateLabel)
 #: src/ui/feedpropertieswidgetbase.ui:91
-#, fuzzy, kde-format
-#| msgid "Update &every:"
+#, kde-format
 msgid "Update ever&y:"
-msgstr "Actualizar&e la fiecare:"
+msgstr "Act&ualizare la fiecare:"
 
 #. i18n: ectx: property (text), widget (QCheckBox, checkBox_useNotification)
 #: src/ui/feedpropertieswidgetbase.ui:120
@@ -2519,10 +2482,9 @@ msgstr "Afișează denumirea coloanei RSS"
 
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: src/ui/feedpropertieswidgetbase.ui:174
-#, fuzzy, kde-format
-#| msgid "Comments"
+#, kde-format
 msgid "Comment:"
-msgstr "Comentarii"
+msgstr "Comentariu:"
 
 #. i18n: ectx: attribute (title), widget (QWidget, tab2)
 #: src/ui/feedpropertieswidgetbase.ui:197
@@ -2573,85 +2535,75 @@ msgid "Mar&k articles as read when they arrive"
 msgstr "Marc&hează articolele ca citite la sosirea acestora"
 
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:40
-#, fuzzy, kde-format
-#| msgid "Disable Introduction Page"
+#, kde-format
 msgid "Disable Introduction"
-msgstr "Dezactivează pagina introductivă"
+msgstr "Dezactivează introducerea"
 
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:58
-#, fuzzy, kde-format
-#| msgid "Copy Link Address"
+#, kde-format
 msgid "&Copy Email Address"
-msgstr "Copiază adresa legăturii"
+msgstr "&Copiază adresa de e-mail"
 
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:67
 #, kde-format
 msgid "Address copied to clipboard."
-msgstr ""
+msgstr "Adresă copiată în clipboard."
 
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:98
-#, fuzzy, kde-format
-#| msgid "Ma&rk All Feeds as Read"
+#, kde-format
 msgid "Mark Article as Read"
-msgstr "Ma&rchează toate fluxurile ca citite"
+msgstr "Marchează articolul ca citit"
 
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:100
-#, fuzzy, kde-format
-#| msgid "Mark selected article as unread"
+#, kde-format
 msgid "Mark Article as Unread"
-msgstr "Marchează articolul ales ca necitit"
+msgstr "Marchează articolul ca necitit"
 
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:102
-#, fuzzy, kde-format
-#| msgid "Remove &Important Mark"
+#, kde-format
 msgid "Change Important Flag"
-msgstr "Elimină semnul &important"
+msgstr "Schimbă fanionul important"
 
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:104
-#, fuzzy, kde-format
-#| msgid "Share Article"
+#, kde-format
 msgid "Send the URL of the article"
-msgstr "Partajează articolul"
+msgstr "Trimite URL-ul articolului"
 
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:106
-#, fuzzy, kde-format
-#| msgid "Share Article"
+#, kde-format
 msgid "Send the Html Page of Article"
-msgstr "Partajează articolul"
+msgstr "Trimite pagina HTML a articolului"
 
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:108
-#, fuzzy, kde-format
-#| msgid "Open in External Browser"
+#, kde-format
 msgid "Open In External Browser"
 msgstr "Deschide în navigator extern"
 
 #: src/whatsnew/whatsnewtranslations.cpp:16
 msgid "Add windows support"
-msgstr ""
+msgstr "Adăugat suport pentru Windows"
 
 #: src/whatsnew/whatsnewtranslations.cpp:36
 #, kde-format
 msgid "Implement Plasma Activity."
-msgstr ""
+msgstr "Implementat activități Plasma."
 
 #: src/whatsnew/whatsnewtranslations.cpp:36
 #, kde-format
 msgid "Add new whatsnew widget."
-msgstr ""
+msgstr "Adăugat control grafic cu noutăți."
 
 #: src/widgets/searchbar.cpp:44
-#, fuzzy, kde-format
-#| msgid " articles"
+#, kde-format
 msgctxt "@info:placeholder"
 msgid "Search articles…"
-msgstr " articole"
+msgstr "Caută articole…"
 
 #: src/widgets/searchbar.cpp:127
-#, fuzzy, kde-format
-#| msgid " articles"
+#, kde-format
 msgctxt "@info:placeholder"
 msgid "Search articles…<%1>"
-msgstr " articole"
+msgstr "Caută articole…<%1>"
 
 #: src/widgets/statussearchbuttons.cpp:29
 #, kde-format
@@ -2671,12 +2623,10 @@ msgid "Unread"
 msgstr "Necitite"
 
 #: src/widgets/statussearchbuttons.cpp:57
-#, fuzzy, kde-format
-#| msgctxt "as in: mark as read"
-#| msgid "&Read"
+#, kde-format
 msgctxt "Read articles filter"
 msgid "Read"
-msgstr "&Citit"
+msgstr "Citite"
 
 #: src/widgets/statussearchbuttons.cpp:66
 #, kde-format
