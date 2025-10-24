@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-10-20 00:43+0000\n"
-"PO-Revision-Date: 2025-04-06 15:10+0000\n"
+"PO-Revision-Date: 2025-10-23 07:48+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic\n"
 "Language: is\n"
@@ -505,6 +505,9 @@ msgid ""
 "This may allow websites or third parties to observe the articles that you "
 "have viewed."
 msgstr ""
+"Leyfa forskoðun greina að hlaða inn ytri tilvísunum af internetinu. Þetta "
+"gæti gert vefsvæðum eða utanaðkomandi aðilum kleift að sjá hvaða greinar þú "
+"hefur verið að skoða."
 
 #: export/akregatorstorageexporter.cpp:280
 #, kde-format
