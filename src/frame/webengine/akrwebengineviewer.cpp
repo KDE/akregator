@@ -6,6 +6,7 @@
 
 #include "akrwebengineviewer.h"
 #include "articleviewer-ng/webengine/articleviewerwebenginepage.h"
+#include "config-akregator.h"
 
 #include "actionmanager.h"
 #include "actions.h"
@@ -139,7 +140,7 @@ void AkrWebEngineViewer::slotWebHitFinished(const WebEngineViewer::WebHitTestRes
     }
     popup.addSeparator();
     popup.addAction(ActionManager::getInstance()->action(QStringLiteral("find_in_messages")));
-#ifdef HAVE_KTEXTADDONS_TEXT_TO_SPEECH_SUPPORT
+#if HAVE_KTEXTADDONS_TEXT_TO_SPEECH_SUPPORT
     popup.addSeparator();
     popup.addAction(ActionManager::getInstance()->action(QStringLiteral("speak_text")));
 #endif

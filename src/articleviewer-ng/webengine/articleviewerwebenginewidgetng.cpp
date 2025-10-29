@@ -13,7 +13,7 @@
 #include <MessageViewer/PrintMessage>
 #include <MessageViewer/ViewerPluginToolManager>
 #include <QVBoxLayout>
-#ifdef HAVE_KTEXTADDONS_TEXT_TO_SPEECH_SUPPORT
+#if HAVE_KTEXTADDONS_TEXT_TO_SPEECH_SUPPORT
 #include <TextEditTextToSpeech/TextToSpeechContainerWidget>
 #endif
 #include <TextAddonsWidgets/SlideContainer>
@@ -44,7 +44,7 @@ InvokeWrapper<Arg, R, C> invoke(R *receiver, void (C::*memberFun)(Arg))
 ArticleViewerWebEngineWidgetNg::ArticleViewerWebEngineWidgetNg(ArticleViewerWebEngine *customViewer, KActionCollection *ac, QWidget *parent)
     : QWidget(parent)
     , mArticleViewerNg(customViewer)
-#ifdef HAVE_KTEXTADDONS_TEXT_TO_SPEECH_SUPPORT
+#if HAVE_KTEXTADDONS_TEXT_TO_SPEECH_SUPPORT
     , mTextToSpeechWidget(new TextEditTextToSpeech::TextToSpeechContainerWidget(this))
 #endif
     , mSliderContainer(new TextAddonsWidgets::SlideContainer(this))
@@ -64,7 +64,7 @@ void ArticleViewerWebEngineWidgetNg::initializeLayout(KActionCollection *ac)
     auto layout = new QVBoxLayout(this);
     layout->setContentsMargins({});
     layout->setSpacing(0);
-#ifdef HAVE_KTEXTADDONS_TEXT_TO_SPEECH_SUPPORT
+#if HAVE_KTEXTADDONS_TEXT_TO_SPEECH_SUPPORT
     mTextToSpeechWidget->setObjectName(QLatin1StringView("texttospeechwidget"));
     layout->addWidget(mTextToSpeechWidget);
 #endif
@@ -108,9 +108,13 @@ void ArticleViewerWebEngineWidgetNg::slotFind()
 
 void ArticleViewerWebEngineWidgetNg::slotSpeakText()
 {
-#ifdef HAVE_KTEXTADDONS_TEXT_TO_SPEECH_SUPPORT
+#if HAVE_KTEXTADDONS_TEXT_TO_SPEECH_SUPPORT
     const QString text = mArticleViewerNg->selectedText();
+#if HAVE_TEXTTOSPEECH_ENQQUEUE_SUPPORT
+    mTextToSpeechWidget->enqueue(text);
+#else
     mTextToSpeechWidget->say(text);
+#endif
 #endif
 }
 

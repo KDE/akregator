@@ -10,6 +10,7 @@
 #include "akregator_debug.h"
 #include "akregatorconfig.h"
 #include "articleviewerwebenginepage.h"
+#include "config-akregator.h"
 #include "webengine/urlhandlerwebenginemanager.h"
 #include <WebEngineViewer/InterceptorManager>
 #include <WebEngineViewer/WebEngineAccessKey>
@@ -304,7 +305,7 @@ void ArticleViewerWebEngine::slotWebHitFinished(const WebEngineViewer::WebHitTes
     popup.addAction(ActionManager::getInstance()->action(QStringLiteral("tab_unmute")));
     popup.addSeparator();
     popup.addAction(ActionManager::getInstance()->action(QStringLiteral("find_in_messages")));
-#ifdef HAVE_KTEXTADDONS_TEXT_TO_SPEECH_SUPPORT
+#if HAVE_KTEXTADDONS_TEXT_TO_SPEECH_SUPPORT
     popup.addSeparator();
     popup.addAction(ActionManager::getInstance()->action(QStringLiteral("speak_text")));
 #endif

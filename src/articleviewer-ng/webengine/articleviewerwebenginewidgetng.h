@@ -8,6 +8,7 @@
 
 #include "akregator_export.h"
 #include "articleviewerwebengine.h"
+#include "config-akregator.h"
 
 #include <QWidget>
 class KActionCollection;
@@ -16,7 +17,7 @@ namespace TextAddonsWidgets
 {
 class SlideContainer;
 }
-#ifdef HAVE_KTEXTADDONS_TEXT_TO_SPEECH_SUPPORT
+#if HAVE_KTEXTADDONS_TEXT_TO_SPEECH_SUPPORT
 namespace TextEditTextToSpeech
 {
 class TextToSpeechContainerWidget;
@@ -52,7 +53,7 @@ private:
     void initializeLayout(KActionCollection *ac);
     WebEngineViewer::FindBarWebEngineView *mFindBarWebView = nullptr;
     ArticleViewerWebEngine *mArticleViewerNg = nullptr;
-#ifdef HAVE_KTEXTADDONS_TEXT_TO_SPEECH_SUPPORT
+#if HAVE_KTEXTADDONS_TEXT_TO_SPEECH_SUPPORT
     TextEditTextToSpeech::TextToSpeechContainerWidget *const mTextToSpeechWidget;
 #endif
     TextAddonsWidgets::SlideContainer *const mSliderContainer;
