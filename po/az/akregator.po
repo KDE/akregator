@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-10-20 00:43+0000\n"
+"POT-Creation-Date: 2025-10-30 00:43+0000\n"
 "PO-Revision-Date: 2022-07-03 14:28+0400\n"
 "Last-Translator: Kheyyam <xxmn77@gmail.com>\n"
 "Language-Team: Azerbaijani <kde-i18n-doc@kde.org>\n"
@@ -943,7 +943,7 @@ msgstr "Başqa lentə keçdikdə sürətli süzgəcləməni sıfırlamaq."
 
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
 #: src/akregator_part.cpp:126
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:142
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:143
 #: src/mainwidget.cpp:149 src/mainwidget.cpp:152 src/mainwidget.cpp:1355
 #: src/mainwidget.cpp:1357 src/trayicon.cpp:40 src/trayicon.cpp:41
 #: src/trayicon.cpp:53
@@ -1751,66 +1751,66 @@ msgctxt "Articlelist's column header"
 msgid "Content"
 msgstr "Tərkibi"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:143
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:144
 #, kde-format
 msgid "Akregator is a KDE news feed reader."
 msgstr "Akregator KDE xəbər lenti oxuma tətbiqidir"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:184
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:185
 #, kde-format
 msgctxt "@title:window"
 msgid "Save As"
 msgstr "Belə saxlayın"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:373
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:374
 #, kde-format
 msgid "Disable"
 msgstr "Söndürmək"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:374
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:375
 #, kde-format
 msgid "Keep Enabled"
 msgstr "Aktiv saxlamaq"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:376
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:377
 #, kde-format
 msgid "Are you sure you want to disable this introduction page?"
 msgstr "Bu giriş səhifəsini söndürmək istədiyinizə əminsiniz?"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:377
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:378
 #, fuzzy, kde-format
 #| msgid "Disable Introduction Page"
 msgctxt "@title:window"
 msgid "Disable Introduction Page"
 msgstr "Giriş səhiəsini söndürmək"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:412
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:413
 #, kde-format
 msgid "This web site is a malware, do you want to continue to show it?"
 msgstr ""
 "Veb səhifəsində zərərli proqram var, göstərməyə davam etmək istəyirsiniz?"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:413
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:414
 #, fuzzy, kde-format
 #| msgid "Malware"
 msgctxt "@title:window"
 msgid "Malware"
 msgstr "Malware"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:425
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:426
 #, kde-format
 msgid "The network is broken."
 msgstr "Şəbəkə əlaqəsi kəsildi"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:425
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:428
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:426
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:429
 #, fuzzy, kde-format
 #| msgid "Check Phishing Url"
 msgctxt "@title:window"
 msgid "Check Phishing Url"
 msgstr "Səhifənin təhlükəsizliyini yoxlayın"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:428
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:429
 #, kde-format
 msgid "The url %1 is not valid."
 msgstr "%1 url etibarlı deyil."

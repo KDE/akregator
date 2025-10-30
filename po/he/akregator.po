@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-10-20 00:43+0000\n"
+"POT-Creation-Date: 2025-10-30 00:43+0000\n"
 "PO-Revision-Date: 2025-10-05 11:55+0300\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
@@ -934,7 +934,7 @@ msgstr "מאפס את המסנן המהיר בעת מעבר בין ערוצים.
 
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
 #: src/akregator_part.cpp:126
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:142
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:143
 #: src/mainwidget.cpp:149 src/mainwidget.cpp:152 src/mainwidget.cpp:1355
 #: src/mainwidget.cpp:1357 src/trayicon.cpp:40 src/trayicon.cpp:41
 #: src/trayicon.cpp:53
@@ -1694,62 +1694,62 @@ msgctxt "Articlelist's column header"
 msgid "Content"
 msgstr "תוכן"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:143
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:144
 #, kde-format
 msgid "Akregator is a KDE news feed reader."
 msgstr "Akregator הוא קורא ערוצי חדשות של KDE."
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:184
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:185
 #, kde-format
 msgctxt "@title:window"
 msgid "Save As"
 msgstr "שמירה בשם"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:373
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:374
 #, kde-format
 msgid "Disable"
 msgstr "השבתה"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:374
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:375
 #, kde-format
 msgid "Keep Enabled"
 msgstr "להשאיר פעיל"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:376
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:377
 #, kde-format
 msgid "Are you sure you want to disable this introduction page?"
 msgstr "לבטל את עמוד ההקדמה הזה?"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:377
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:378
 #, kde-format
 msgctxt "@title:window"
 msgid "Disable Introduction Page"
 msgstr "השבתת עמוד קבלת פנים"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:412
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:413
 #, kde-format
 msgid "This web site is a malware, do you want to continue to show it?"
 msgstr "זה אתר זדוני, להמשיך להציג אותו?"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:413
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:414
 #, kde-format
 msgctxt "@title:window"
 msgid "Malware"
 msgstr "זדון"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:425
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:426
 #, kde-format
 msgid "The network is broken."
 msgstr "הרשת לא עובדת."
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:425
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:428
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:426
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:429
 #, kde-format
 msgctxt "@title:window"
 msgid "Check Phishing Url"
 msgstr "בדיקת כתובת דיוג"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:428
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:429
 #, kde-format
 msgid "The url %1 is not valid."
 msgstr "הכתובת %1 שגויה."
