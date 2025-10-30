@@ -110,7 +110,7 @@ void ArticleViewerWebEngineWidgetNg::slotSpeakText()
 {
 #if HAVE_KTEXTADDONS_TEXT_TO_SPEECH_SUPPORT
     const QString text = mArticleViewerNg->selectedText();
-#if HAVE_TEXTTOSPEECH_ENQQUEUE_SUPPORT
+#if HAVE_TEXTTOSPEECH_ENQUEUE_SUPPORT
     mTextToSpeechWidget->enqueue(text);
 #else
     mTextToSpeechWidget->say(text);
