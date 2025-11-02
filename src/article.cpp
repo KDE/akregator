@@ -245,14 +245,12 @@ Article::Private::Private(const ItemPtr &article, Feed *feed_, Backend::FeedStor
     }
 #if 0 // We need additionalProperties for Bug 366487
     qDebug() << "article " << article->additionalProperties().count();
-    QMapIterator<QString, QDomElement> i(article->additionalProperties());
-    while (i.hasNext()) {
-        i.next();
+    for (const auto &[key, value] : article->additionalProperties().asKeyValueRange()) {
         QString str;
         QTextStream s(&str, QIODevice::WriteOnly);
-        i.value().save(s, 2);
+        value.save(s, 2);
 
-        qDebug() << i.key() << ": " << str;
+        qDebug() << key << ": " << str;
     }
 #endif
 }
