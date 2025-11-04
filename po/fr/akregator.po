@@ -116,7 +116,7 @@ msgid ""
 "configure dialog)."
 msgstr ""
 "<b>Remarque :</b> Pour des raisons de sécurité, la référence externe est "
-"bloquée (Voir la boîte de dialogue de configuration)."
+"bloquée (Voir la boite de dialogue de configuration)."
 
 #: configuration/akregator_config_archive.cpp:35
 #, kde-format
@@ -416,7 +416,7 @@ msgstr "Global"
 #: configuration/ui/settings_general.ui:36
 #, kde-format
 msgid "Show tra&y icon"
-msgstr "Afficher l'icône dans la boîte à &miniatures"
+msgstr "Afficher l'icône dans la boite à &miniatures"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ShowUnreadInTaskbar)
 #: configuration/ui/settings_general.ui:43
@@ -767,10 +767,10 @@ msgid ""
 "the default one. This is here because some proxies may interrupt the "
 "connection because of having \"gator\" in the name."
 msgstr ""
-"Cette option permet à l'utilisateur de modifier la chaîne d'identification "
+"Cette option permet à l'utilisateur de modifier la chaine d'identification "
 "du navigateur plutôt que d'utiliser celle envoyée par défaut. Ceci est "
 "particulièrement utile avec certains serveurs mandataires rompant la "
-"connexion lorsqu'il détectent « gator » dans cette chaîne."
+"connexion lorsqu'il détectent « gator » dans cette chaine."
 
 #. i18n: ectx: label, entry, group (General)
 #: interfaces/akregator.kcfg:152
@@ -836,13 +836,13 @@ msgstr "Définit si les notifications en infobulles sont utilisées ou non."
 #: interfaces/akregator.kcfg:177
 #, kde-format
 msgid "Show tray icon"
-msgstr "Afficher l'icône dans la boîte à miniatures"
+msgstr "Afficher l'icône dans la boite à miniatures"
 
 #. i18n: ectx: whatsthis, entry, group (General)
 #: interfaces/akregator.kcfg:178
 #, kde-format
 msgid "Specifies if the tray icon is shown or not."
-msgstr "Définit si l'icône est affichée dans la boîte à miniatures ou non."
+msgstr "Définit si l'icône est affichée dans la boite à miniatures ou non."
 
 #. i18n: ectx: label, entry, group (General)
 #: interfaces/akregator.kcfg:182
