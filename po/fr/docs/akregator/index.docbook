@@ -208,7 +208,7 @@ say how to start it -->
 >Ajoutez un flux...</guimenuitem
 > ou utilisez le raccourci clavier par défaut (<keycap
 >Ins.</keycap
->). La boîte de dialogue suivante apparaît, avec un champ intitulé <guilabel
+>). La boite de dialogue suivante apparait, avec un champ intitulé <guilabel
 >URL du flux :</guilabel
 > <screenshot>
 <screeninfo
@@ -239,17 +239,17 @@ say how to start it -->
 ></listitem>
 <listitem
 ><para
->La boîte de dialogue des propriétés du flux apparaît et vous pouvez modifier les options par défaut. Lorsque vous êtes satisfait des options de configuration du flux, cliquez à nouveau sur <guibutton
+>La boite de dialogue des propriétés du flux apparait et vous pouvez modifier les options par défaut. Lorsque vous êtes satisfait des options de configuration du flux, cliquez à nouveau sur <guibutton
 >Ok</guibutton
 >. <screenshot>
 <screeninfo
->La boîte de dialogue des propriétés du flux</screeninfo>
+>La boite de dialogue des propriétés du flux</screeninfo>
 <mediaobject>
 <imageobject
 ><imagedata fileref="add-feed2.png" format="PNG"/></imageobject>
 <textobject
 ><phrase
->La boîte de dialogue des propriétés du flux</phrase
+>La boite de dialogue des propriétés du flux</phrase
 ></textobject>
 </mediaobject>
 </screenshot>
@@ -339,13 +339,13 @@ say how to start it -->
 >Ok</guibutton
 >. <screenshot>
 <screeninfo
->La boîte de dialogue Ajouter un dossier</screeninfo>
+>La boite de dialogue Ajouter un dossier</screeninfo>
 <mediaobject>
 <imageobject
 ><imagedata fileref="add-folder.png" format="PNG"/></imageobject>
 <textobject
 ><phrase
->La boîte de dialogue Ajouter un dossier</phrase
+>La boite de dialogue Ajouter un dossier</phrase
 ></textobject>
 </mediaobject>
 </screenshot>
@@ -386,7 +386,7 @@ say how to start it -->
 <title
 >Configuration de &akregator;</title>
 <para
->La plupart des options de &akregator; sont définies dans la boîte de dialogue de configuration de &akregator;. La boîte de dialogue de configuration se trouve dans le menu dans <menuchoice
+>La plupart des options de &akregator; sont définies dans la boite de dialogue de configuration de &akregator;. La boite de dialogue de configuration se trouve dans le menu dans <menuchoice
 > <guimenu
 >Configuration</guimenu
 ><guimenuitem
@@ -423,11 +423,11 @@ say how to start it -->
 <varlistentry>
 <term
 ><guilabel
->Afficher l'icône de la boîte à miniatures</guilabel
+>Afficher l'icône de la boite à miniatures</guilabel
 ></term>
 <listitem
 ><para
->Affiche l'icône de &akregator; dans la boîte à miniatures.</para>
+>Affiche l'icône de &akregator; dans la boite à miniatures.</para>
 </listitem>
 </varlistentry>
 <varlistentry>
@@ -477,7 +477,7 @@ say how to start it -->
 ></term>
 <listitem
 ><para
->Définit les notifications globales pour tous les flux. Cette option va annuler la valeur de notification individuelle pour chaque flux. Lorsque cette option est choisie, &akregator; va vous avertir lorsque de nouveaux articles sont arrivés pour tout flux. Si vous désirez être averti pour seulement certains flux mais pas tous, laissez cette option non cochée et utilisez l'option de notification pour chaque flux spécifique en ouvrant la boîte de dialogue de propriétés individuelle à chaque flux.</para>
+>Définit les notifications globales pour tous les flux. Cette option va annuler la valeur de notification individuelle pour chaque flux. Lorsque cette option est choisie, &akregator; va vous avertir lorsque de nouveaux articles sont arrivés pour tout flux. Si vous désirez être averti pour seulement certains flux mais pas tous, laissez cette option non cochée et utilisez l'option de notification pour chaque flux spécifique en ouvrant la boite de dialogue de propriétés individuelle à chaque flux.</para>
 </listitem>
 </varlistentry>
 <varlistentry>
@@ -554,7 +554,7 @@ say how to start it -->
 ></term>
 <listitem
 ><para
->Lorsque cette option est cochée, les options du cache du navigateur de &kde; sont utilisées lorsque les flux sont actualisés. Vous pouvez configurer le cache du navigateur de &kde; dans la boîte de dialogue de configuration de &konqueror;.</para>
+>Lorsque cette option est cochée, les options du cache du navigateur de &kde; sont utilisées lorsque les flux sont actualisés. Vous pouvez configurer le cache du navigateur de &kde; dans la boite de dialogue de configuration de &konqueror;.</para>
 <note
 ><para
 >Vous devriez laisser cette option activée chaque fois que possible. Désactiver cette option engendre un trafic plus important sur le réseau. Le trafic causé par les agrégateurs qui n'utilisent pas de cache augmente le coût pour les fournisseurs et peut diminuer le nombre de flux offerts dans le futur.</para
@@ -597,7 +597,7 @@ say how to start it -->
 <title
 >Archive</title>
 <para
->Archiver des articles signifie enregistrer les liens des articles. Ici, vous pouvez limiter le nombre des articles enregistrés et configurer la méthode utilisée pour l'archivage. Ces options sont globales, utilisées pour tous les flux dans &akregator;. Si vous voulez utiliser une option personnelle pour un flux, vous pouvez la paramétrer dans la boîte de dialogue de propriétés du flux dans l'onglet Archiver.</para>
+>Archiver des articles signifie enregistrer les liens des articles. Ici, vous pouvez limiter le nombre des articles enregistrés et configurer la méthode utilisée pour l'archivage. Ces options sont globales, utilisées pour tous les flux dans &akregator;. Si vous voulez utiliser une option personnelle pour un flux, vous pouvez la paramétrer dans la boite de dialogue de propriétés du flux dans l'onglet Archiver.</para>
 <screenshot>
 <screeninfo
 >L'onglet Archive</screeninfo>
@@ -915,7 +915,7 @@ say how to start it -->
 ></term>
 <listitem
 ><para
->Si cette option est cochée, le bouton de fermeture apparaît lorsque vous passez la souris sur le côté gauche du titre de l'onglet pour vous permettre de fermer les onglets facilement.</para>
+>Si cette option est cochée, le bouton de fermeture apparait lorsque vous passez la souris sur le côté gauche du titre de l'onglet pour vous permettre de fermer les onglets facilement.</para>
 </listitem>
 </varlistentry>
 <varlistentry>
@@ -1097,7 +1097,7 @@ say how to start it -->
 ><para
 ><action
 >Ouvrir</action
-> la boîte de dialogue des flux importés pour importer les <quote
+> la boite de dialogue des flux importés pour importer les <quote
 >en-tête « OPML »</quote
 > avec les abonnements aux flux. </para
 ></listitem>
@@ -1116,7 +1116,7 @@ say how to start it -->
 ><para
 ><action
 >Ouvrir</action
-> l'enregistrement comme une boîte de dialogue et exporter vos flux et votre structure de dossier dans un fichier au format <filename class="extension"
+> l'enregistrement comme une boite de dialogue et exporter vos flux et votre structure de dossier dans un fichier au format <filename class="extension"
 >.opml</filename
 >.</para
 ></listitem>
@@ -1170,7 +1170,7 @@ say how to start it -->
 ><para
 ><action
 >Modifie</action
-> le flux actif en changeant ses propriétés dans la boîte de dialogue de propriétés du flux</para
+> le flux actif en changeant ses propriétés dans la boite de dialogue de propriétés du flux</para
 ></listitem>
 </varlistentry>
 <varlistentry>
@@ -1493,7 +1493,7 @@ say how to start it -->
 ><para
 ><action
 >Ouvre</action
-> la boîte de dialogue d'ajout de flux</para
+> la boite de dialogue d'ajout de flux</para
 ></listitem>
 </varlistentry>
 <varlistentry>
@@ -1515,7 +1515,7 @@ say how to start it -->
 ><para
 ><action
 >Ouvre</action
-> la boîte de dialogue d'ajout de dossier</para
+> la boite de dialogue d'ajout de dossier</para
 ></listitem>
 </varlistentry>
 <varlistentry>
