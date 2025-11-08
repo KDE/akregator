@@ -64,17 +64,10 @@
 
 #include "webengine/webengineframe.h"
 #include <PimCommon/NetworkManager>
-#if HAVE_TEXTUTILS_HAS_WHATSNEW_SUPPORT
 #include <TextAddonsWidgets/NeedUpdateVersionUtils>
 #include <TextAddonsWidgets/NeedUpdateVersionWidget>
 #include <TextAddonsWidgets/WhatsNewDialog>
 #include <TextAddonsWidgets/WhatsNewMessageWidget>
-#else
-#include <PimCommon/NeedUpdateVersionUtils>
-#include <PimCommon/NeedUpdateVersionWidget>
-#include <PimCommon/WhatsNewDialog>
-#include <PimCommon/WhatsNewMessageWidget>
-#endif
 #include <algorithm>
 #include <chrono>
 #include <memory>
@@ -117,7 +110,6 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
     auto topLayout = new QVBoxLayout(this);
     topLayout->setContentsMargins({});
     topLayout->setSpacing(0);
-#if HAVE_TEXTUTILS_HAS_WHATSNEW_SUPPORT
     if (TextAddonsWidgets::NeedUpdateVersionUtils::checkVersion()) {
         const auto status =
             TextAddonsWidgets::NeedUpdateVersionUtils::obsoleteVersionStatus(QLatin1String(AKREGATOR_RELEASE_VERSION_DATE), QDate::currentDate());
@@ -127,16 +119,6 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
             needUpdateVersionWidget->setObsoleteVersion(status);
         }
     }
-#else
-    if (PimCommon::NeedUpdateVersionUtils::checkVersion()) {
-        const auto status = PimCommon::NeedUpdateVersionUtils::obsoleteVersionStatus(QLatin1String(AKREGATOR_RELEASE_VERSION_DATE), QDate::currentDate());
-        if (status != PimCommon::NeedUpdateVersionUtils::ObsoleteVersion::NotObsoleteYet) {
-            auto needUpdateVersionWidget = new PimCommon::NeedUpdateVersionWidget(this);
-            topLayout->addWidget(needUpdateVersionWidget);
-            needUpdateVersionWidget->setObsoleteVersion(status);
-        }
-    }
-#endif
 
     WhatsNewTranslations translations;
     const QString newFeaturesMD5 = translations.newFeaturesMD5();
@@ -145,13 +127,8 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
         if (!previousNewFeaturesMD5.isEmpty()) {
             const bool hasNewFeature = (previousNewFeaturesMD5 != newFeaturesMD5);
             if (hasNewFeature) {
-#if HAVE_TEXTUTILS_HAS_WHATSNEW_SUPPORT
                 auto whatsNewMessageWidget = new TextAddonsWidgets::WhatsNewMessageWidget(this, i18n("Akregator"));
                 whatsNewMessageWidget->setWhatsNewInfos(translations.createWhatsNewInfo());
-#else
-                auto whatsNewMessageWidget = new PimCommon::WhatsNewMessageWidget(this, i18n("Akregator"));
-                whatsNewMessageWidget->setWhatsNewInfos(translations.createWhatsNewInfo());
-#endif
                 whatsNewMessageWidget->setObjectName(QStringLiteral("whatsNewMessageWidget"));
                 topLayout->addWidget(whatsNewMessageWidget);
                 Settings::self()->setPreviousNewFeaturesMD5(newFeaturesMD5);
@@ -1351,11 +1328,7 @@ void MainWidget::slotFocusQuickSearch()
 void MainWidget::slotWhatsNew()
 {
     WhatsNewTranslations translations;
-#if HAVE_TEXTUTILS_HAS_WHATSNEW_SUPPORT
     TextAddonsWidgets::WhatsNewDialog dlg(translations.createWhatsNewInfo(), this, i18n("Akregator"));
-#else
-    PimCommon::WhatsNewDialog dlg(translations.createWhatsNewInfo(), this, i18n("Akregator"));
-#endif
     dlg.updateInformations();
     dlg.exec();
 }

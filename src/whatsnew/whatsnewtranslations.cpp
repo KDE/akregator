@@ -16,34 +16,18 @@ QList<KLazyLocalizedString> WhatsNewTranslations::lastNewFeatures() const
     const QList<KLazyLocalizedString> info{kli18n("Add windows support")};
     return info;
 }
-#if HAVE_TEXTUTILS_HAS_WHATSNEW_SUPPORT
 QList<TextAddonsWidgets::WhatsNewInfo> WhatsNewTranslations::createWhatsNewInfo() const
-#else
-QList<PimCommon::WhatsNewInfo> WhatsNewTranslations::createWhatsNewInfo() const
-#endif
 {
-#if HAVE_TEXTUTILS_HAS_WHATSNEW_SUPPORT
     QList<TextAddonsWidgets::WhatsNewInfo> listInfo;
-#else
-    QList<PimCommon::WhatsNewInfo> listInfo;
-#endif
     {
-#if HAVE_TEXTUTILS_HAS_WHATSNEW_SUPPORT
         TextAddonsWidgets::WhatsNewInfo info;
-#else
-        PimCommon::WhatsNewInfo info;
-#endif
         const QStringList lst{i18n("Implement Plasma Activity."), i18n("Add new whatsnew widget.")};
         info.setNewFeatures(lst);
         info.setVersion(QStringLiteral("6.3.0"));
         listInfo.append(std::move(info));
     }
     {
-#if HAVE_TEXTUTILS_HAS_WHATSNEW_SUPPORT
         TextAddonsWidgets::WhatsNewInfo info;
-#else
-        PimCommon::WhatsNewInfo info;
-#endif
         QStringList lst;
         for (const KLazyLocalizedString &l : lastNewFeatures()) {
             lst += l.toString();

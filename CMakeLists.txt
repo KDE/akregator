@@ -54,7 +54,7 @@ include(ECMAddAppIcon)
 include(ECMQtDeclareLoggingCategory)
 include(ECMDeprecationSettings)
 include(ECMFeatureSummary)
-set(KTEXTADDONS_MIN_VERSION "1.8.0")
+set(KTEXTADDONS_MIN_VERSION "1.8.44")
 set(CMAKE_CXX_SCAN_FOR_MODULES OFF)
 # Do NOT add quote
 set(KDEPIM_DEV_VERSION alpha)
@@ -147,10 +147,6 @@ add_definitions(-DQT_NO_CONTEXTLESS_CONNECT)
 ecm_set_disabled_deprecation_versions(QT 6.10.0
      KF 6.20.0
 )
-
-if(${KF6TextAddonsWidgets_VERSION} VERSION_GREATER_EQUAL 1.8.44)
-    set(HAVE_TEXTUTILS_HAS_WHATSNEW_SUPPORT TRUE)
-endif()
 
 if(TARGET KF6::UserFeedbackWidgets)
     set(AKREGATOR_WITH_KUSERFEEDBACK true)

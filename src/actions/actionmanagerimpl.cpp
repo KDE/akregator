@@ -41,11 +41,7 @@
 
 #include <KColorSchemeManager>
 #if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
-#if HAVE_TEXTUTILS_HAS_WHATSNEW_SUPPORT
 #include <TextAddonsWidgets/VerifyNewVersionWidget>
-#else
-#include <PimCommon/VerifyNewVersionWidget>
-#endif
 #endif
 #include <QWidget>
 
@@ -117,11 +113,7 @@ public:
     WebEngineViewer::ZoomActionMenu *zoomActionMenu = nullptr;
     QAction *mQuickSearchAction = nullptr;
 #if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
-#if HAVE_TEXTUTILS_HAS_WHATSNEW_SUPPORT
     TextAddonsWidgets::VerifyNewVersionWidget *mVerifyNewVersionWidget = nullptr;
-#else
-    PimCommon::VerifyNewVersionWidget *mVerifyNewVersionWidget = nullptr;
-#endif
 #endif
 };
 
@@ -171,11 +163,7 @@ ActionManagerImpl::ActionManagerImpl(Part *part, QObject *parent)
     d->actionCollection = part->actionCollection();
     d->shareServiceManager = new PimCommon::ShareServiceUrlManager(this);
 #if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
-#if HAVE_TEXTUTILS_HAS_WHATSNEW_SUPPORT
     d->mVerifyNewVersionWidget = new TextAddonsWidgets::VerifyNewVersionWidget(this);
-#else
-    d->mVerifyNewVersionWidget = new PimCommon::VerifyNewVersionWidget(this);
-#endif
 #endif
 
     initPart();
@@ -472,11 +460,7 @@ void ActionManagerImpl::initMainWidget(MainWidget *mainWidget)
 #else
     const QString url = QStringLiteral("https://cdn.kde.org/ci-builds/pim/akregator/master/windows/");
 #endif
-#if HAVE_TEXTUTILS_HAS_WHATSNEW_SUPPORT
     d->mVerifyNewVersionWidget->addOsUrlInfo(TextAddonsWidgets::VerifyNewVersionWidget::OsVersion::Windows, url);
-#else
-    d->mVerifyNewVersionWidget->addOsUrlInfo(PimCommon::VerifyNewVersionWidget::OsVersion::Windows, url);
-#endif
     auto verifyNewVersionAction = d->mVerifyNewVersionWidget->verifyNewVersionAction();
     coll->addAction(QStringLiteral("verify_check_version"), verifyNewVersionAction);
 #endif
