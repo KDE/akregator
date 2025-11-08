@@ -5,7 +5,7 @@ set(PIM_VERSION "6.6.40")
 project(akregator VERSION ${PIM_VERSION})
 
 # Update it for each release
-set(AKREGATOR_RELEASE_VERSION_DATE "25.11.10") # yy.MM.dd
+set(AKREGATOR_RELEASE_VERSION_DATE "26.03.10") # yy.MM.dd
 
 set(KF_MIN_VERSION "6.18.0")
 set(RELEASE_SERVICE_VERSION "26.03.40")
