@@ -7,9 +7,9 @@ project(akregator VERSION ${PIM_VERSION})
 # Update it for each release
 set(AKREGATOR_RELEASE_VERSION_DATE "26.03.10") # yy.MM.dd
 
-set(KF_MIN_VERSION "6.18.0")
+set(KF_MIN_VERSION "6.19.0")
 set(RELEASE_SERVICE_VERSION "26.03.40")
-set(QT_REQUIRED_VERSION "6.8.0")
+set(QT_REQUIRED_VERSION "6.9.0")
 
 # Use true if stable version => we will check specific version
 set(AKREGATOR_STABLE_VERSION false)
