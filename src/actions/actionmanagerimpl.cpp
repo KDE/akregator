@@ -468,7 +468,7 @@ void ActionManagerImpl::initMainWidget(MainWidget *mainWidget)
 
 #if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
 #if AKREGATOR_STABLE_VERSION
-    const QString url = QStringLiteral("https://cdn.kde.org/ci-builds/pim/akregator/25.08/windows/");
+    const QString url = QStringLiteral("https://cdn.kde.org/ci-builds/pim/akregator/25.12/windows/");
 #else
     const QString url = QStringLiteral("https://cdn.kde.org/ci-builds/pim/akregator/master/windows/");
 #endif
