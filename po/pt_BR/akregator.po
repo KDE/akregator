@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-10-30 00:43+0000\n"
-"PO-Revision-Date: 2025-02-27 20:30-0300\n"
+"PO-Revision-Date: 2025-11-08 21:16-0300\n"
 "Last-Translator: Guilherme Marçal Silva <guimarcalsilva@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <kde-i18n-pt_BR@kde.org>\n"
 "Language: pt_BR\n"
@@ -24,7 +24,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 24.12.2\n"
+"X-Generator: Lokalize 25.08.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -1162,7 +1162,7 @@ msgstr "&Excluir fonte de notícias"
 #: src/actions/actionmanagerimpl.cpp:74 src/actions/actionmanagerimpl.cpp:272
 #, kde-format
 msgid "&Edit Feed…"
-msgstr "&Editar fonte de notícias..."
+msgstr "&Editar fonte de notícias…"
 
 #: src/actions/actionmanagerimpl.cpp:75 src/actions/actionmanagerimpl.cpp:329
 #, kde-format
@@ -1192,17 +1192,17 @@ msgstr "Ma&rcar fontes de notícias como lidas"
 #: src/actions/actionmanagerimpl.cpp:214
 #, kde-format
 msgid "&Import Feeds…"
-msgstr "&Importar fontes de notícias..."
+msgstr "&Importar fontes de notícias…"
 
 #: src/actions/actionmanagerimpl.cpp:218
 #, kde-format
 msgid "&Export Feeds…"
-msgstr "&Exportar fontes de notícias..."
+msgstr "&Exportar fontes de notícias…"
 
 #: src/actions/actionmanagerimpl.cpp:223
 #, kde-format
 msgid "&Configure Akregator…"
-msgstr "&Configurar Akregator..."
+msgstr "&Configurar Akregator…"
 
 #: src/actions/actionmanagerimpl.cpp:242
 #, kde-format
@@ -1222,7 +1222,7 @@ msgstr "&Adicionar fonte de notícias"
 #: src/actions/actionmanagerimpl.cpp:260
 #, kde-format
 msgid "Ne&w Folder…"
-msgstr "No&va pasta..."
+msgstr "No&va pasta…"
 
 #: src/actions/actionmanagerimpl.cpp:285
 #, kde-format
@@ -1349,12 +1349,12 @@ msgstr "Mover o nó para a direita"
 #: src/actions/actionmanagerimpl.cpp:445
 #, kde-format
 msgid "Send &Link Address…"
-msgstr "Enviar endereço do &link..."
+msgstr "Enviar endereço do &link…"
 
 #: src/actions/actionmanagerimpl.cpp:450
 #, kde-format
 msgid "Send &File…"
-msgstr "Enviar &arquivo..."
+msgstr "Enviar &arquivo…"
 
 #: src/actions/actionmanagerimpl.cpp:456
 #, kde-format
@@ -1476,7 +1476,7 @@ msgstr "Falar o texto"
 #: src/actions/actionmanagerimpl.cpp:645
 #, kde-format
 msgid "&Find in Message…"
-msgstr "Locali&zar na mensagem..."
+msgstr "Locali&zar na mensagem…"
 
 #: src/actions/actionmanagerimpl.cpp:656
 #, kde-format
@@ -1492,7 +1492,7 @@ msgstr "Ativar a aba %1"
 #: src/actions/actionmanagerimpl.cpp:675
 #, kde-format
 msgid "&Save Link As…"
-msgstr "&Salvar link como..."
+msgstr "&Salvar link como…"
 
 #: src/actions/actionmanagerimpl.cpp:679
 #, kde-format
@@ -1509,7 +1509,7 @@ msgstr "Copiar URL da imagem"
 #, kde-format
 msgctxt "@action"
 msgid "Save Image…"
-msgstr "Salvar imagem..."
+msgstr "Salvar imagem…"
 
 #: src/actions/actions.cpp:19
 #, kde-format
@@ -1540,7 +1540,7 @@ msgstr "Fonte de notícias não encontrada em %1."
 #: src/addfeeddialog.cpp:121
 #, kde-format
 msgid "Feed found, downloading…"
-msgstr "Fonte de notícias encontrada, transferindo..."
+msgstr "Fonte de notícias encontrada, transferindo…"
 
 #: src/akregator_options.h:21 src/akregator_options.h:29
 #, kde-format
@@ -1863,7 +1863,7 @@ msgstr ""
 #: src/command/loadfeedlistcommand.cpp:129
 #, kde-format
 msgid "Opening Feed List…"
-msgstr "Abrindo a lista de fontes de notícias..."
+msgstr "Abrindo a lista de fontes de notícias…"
 
 #: src/command/loadfeedlistcommand.cpp:143
 #, kde-format
@@ -2109,7 +2109,7 @@ msgstr "Sem título"
 #: src/frame/frame.cpp:140
 #, kde-format
 msgid "Loading…"
-msgstr "Carregando..."
+msgstr "Carregando…"
 
 #: src/frame/frame.cpp:154
 #, kde-format
@@ -2186,7 +2186,7 @@ msgstr "A rede não está disponível."
 #: src/mainwidget.cpp:933
 #, kde-format
 msgid "Fetching Feeds…"
-msgstr "Atualizando as fontes de notícias..."
+msgstr "Atualizando as fontes de notícias…"
 
 #: src/mainwidget.cpp:1131
 #, kde-format
@@ -2574,13 +2574,13 @@ msgstr "Adicionar novo widget 'whatsnew'."
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "Search articles…"
-msgstr "Procurar artigos..."
+msgstr "Procurar artigos…"
 
 #: src/widgets/searchbar.cpp:127
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "Search articles…<%1>"
-msgstr "Procurar artigos...<%1>"
+msgstr "Procurar artigos…<%1>"
 
 #: src/widgets/statussearchbuttons.cpp:29
 #, kde-format
