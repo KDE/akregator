@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-10-30 00:43+0000\n"
+"POT-Creation-Date: 2025-11-09 00:43+0000\n"
 "PO-Revision-Date: 2025-04-06 17:45+0300\n"
 "Last-Translator: Toms Trasuns <toms.trasuns@posteo.net>\n"
 "Language-Team: Latvian <kde-i18n-doc@kde.org>\n"
@@ -282,7 +282,7 @@ msgstr "Peles kreisās pogas funkcija:"
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
 #: configuration/ui/settings_browser.ui:28
 #: configuration/ui/settings_browser.ui:54
-#: src/actions/actionmanagerimpl.cpp:347
+#: src/actions/actionmanagerimpl.cpp:335
 #, kde-format
 msgid "Open in Tab"
 msgstr "Atvērt cilnē"
@@ -291,7 +291,7 @@ msgstr "Atvērt cilnē"
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
 #: configuration/ui/settings_browser.ui:33
 #: configuration/ui/settings_browser.ui:59
-#: src/actions/actionmanagerimpl.cpp:353
+#: src/actions/actionmanagerimpl.cpp:341
 #, kde-format
 msgid "Open in Background Tab"
 msgstr "Atvērt fona cilnē"
@@ -300,7 +300,7 @@ msgstr "Atvērt fona cilnē"
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
 #: configuration/ui/settings_browser.ui:38
 #: configuration/ui/settings_browser.ui:64
-#: src/actions/actionmanagerimpl.cpp:359
+#: src/actions/actionmanagerimpl.cpp:347
 #, kde-format
 msgid "Open in External Browser"
 msgstr "Atvērt ārējā pārlūkā"
@@ -545,7 +545,7 @@ msgid "Auto-Expand folders with unread articles"
 msgstr "Automātiski izvērst mapes ar nelasītiem rakstiem"
 
 #. i18n: ectx: label, entry, group (View)
-#: interfaces/akregator.kcfg:31 src/actions/actionmanagerimpl.cpp:341
+#: interfaces/akregator.kcfg:31 src/actions/actionmanagerimpl.cpp:329
 #, kde-format
 msgid "Show Quick Filter"
 msgstr "Parādīt ātro filtru"
@@ -940,9 +940,8 @@ msgstr "Mainot plūsmu, atiestata ātro filtru."
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
 #: src/akregator_part.cpp:126
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:143
-#: src/mainwidget.cpp:149 src/mainwidget.cpp:152 src/mainwidget.cpp:1355
-#: src/mainwidget.cpp:1357 src/trayicon.cpp:40 src/trayicon.cpp:41
-#: src/trayicon.cpp:53
+#: src/mainwidget.cpp:130 src/mainwidget.cpp:1331 src/trayicon.cpp:40
+#: src/trayicon.cpp:41 src/trayicon.cpp:53
 #, kde-format
 msgid "Akregator"
 msgstr "Akregator"
@@ -1138,363 +1137,363 @@ msgstr "Philipp Droessler"
 msgid "Gentoo Ebuild"
 msgstr "„Ebuild“ datne priekš „Gentoo“"
 
-#: src/actions/actionmanagerimpl.cpp:72 src/actions/actionmanagerimpl.cpp:310
+#: src/actions/actionmanagerimpl.cpp:68 src/actions/actionmanagerimpl.cpp:298
 #, kde-format
 msgid "&Fetch Feed"
 msgstr "&Ielādēt plūsmu"
 
-#: src/actions/actionmanagerimpl.cpp:73 src/actions/actionmanagerimpl.cpp:266
+#: src/actions/actionmanagerimpl.cpp:69 src/actions/actionmanagerimpl.cpp:254
 #, kde-format
 msgid "&Delete Feed"
 msgstr "&Dzēst plūsmu"
 
-#: src/actions/actionmanagerimpl.cpp:74 src/actions/actionmanagerimpl.cpp:272
+#: src/actions/actionmanagerimpl.cpp:70 src/actions/actionmanagerimpl.cpp:260
 #, kde-format
 msgid "&Edit Feed…"
 msgstr "&Rediģēt plūsmu…"
 
-#: src/actions/actionmanagerimpl.cpp:75 src/actions/actionmanagerimpl.cpp:329
+#: src/actions/actionmanagerimpl.cpp:71 src/actions/actionmanagerimpl.cpp:317
 #, kde-format
 msgid "&Mark Feed as Read"
 msgstr "Atzī&mēt plūsmu kā lasītu"
 
-#: src/actions/actionmanagerimpl.cpp:91
+#: src/actions/actionmanagerimpl.cpp:87
 #, kde-format
 msgid "&Fetch Feeds"
 msgstr "&Ielādēt plūsmas"
 
-#: src/actions/actionmanagerimpl.cpp:92
+#: src/actions/actionmanagerimpl.cpp:88
 #, kde-format
 msgid "&Delete Folder"
 msgstr "&Dzēst mapi"
 
-#: src/actions/actionmanagerimpl.cpp:93
+#: src/actions/actionmanagerimpl.cpp:89
 #, kde-format
 msgid "&Rename Folder"
 msgstr "Pā&rdēvēt mapi"
 
-#: src/actions/actionmanagerimpl.cpp:94
+#: src/actions/actionmanagerimpl.cpp:90
 #, kde-format
 msgid "&Mark Feeds as Read"
 msgstr "Atzī&mēt plūsmas kā lasītas"
 
-#: src/actions/actionmanagerimpl.cpp:214
+#: src/actions/actionmanagerimpl.cpp:202
 #, kde-format
 msgid "&Import Feeds…"
 msgstr "I&mportēt plūsmas…"
 
-#: src/actions/actionmanagerimpl.cpp:218
+#: src/actions/actionmanagerimpl.cpp:206
 #, kde-format
 msgid "&Export Feeds…"
 msgstr "&Eksportēt plūsmas…"
 
-#: src/actions/actionmanagerimpl.cpp:223
+#: src/actions/actionmanagerimpl.cpp:211
 #, kde-format
 msgid "&Configure Akregator…"
 msgstr "Konfigurēt „&Akregator“…"
 
-#: src/actions/actionmanagerimpl.cpp:242
+#: src/actions/actionmanagerimpl.cpp:230
 #, kde-format
 msgid "&Open Homepage"
 msgstr "&Atvērt mājaslapu"
 
-#: src/actions/actionmanagerimpl.cpp:248
+#: src/actions/actionmanagerimpl.cpp:236
 #, kde-format
 msgid "Reload All Tabs"
 msgstr "Pārlādēt visas cilnes"
 
-#: src/actions/actionmanagerimpl.cpp:254
+#: src/actions/actionmanagerimpl.cpp:242
 #, kde-format
 msgid "&Add Feed…"
 msgstr "&Pievienot plūsmu…"
 
-#: src/actions/actionmanagerimpl.cpp:260
+#: src/actions/actionmanagerimpl.cpp:248
 #, kde-format
 msgid "Ne&w Folder…"
 msgstr "&Jauna mape…"
 
-#: src/actions/actionmanagerimpl.cpp:285
+#: src/actions/actionmanagerimpl.cpp:273
 #, kde-format
 msgid "&Normal View"
 msgstr "&Parastais skats"
 
-#: src/actions/actionmanagerimpl.cpp:294
+#: src/actions/actionmanagerimpl.cpp:282
 #, kde-format
 msgid "&Widescreen View"
 msgstr "Plat&ekrāna skats"
 
-#: src/actions/actionmanagerimpl.cpp:303
+#: src/actions/actionmanagerimpl.cpp:291
 #, kde-format
 msgid "C&ombined View"
 msgstr "K&ombinētais skats"
 
-#: src/actions/actionmanagerimpl.cpp:316
+#: src/actions/actionmanagerimpl.cpp:304
 #, kde-format
 msgid "Fe&tch All Feeds"
 msgstr "Ielādē&t visas plūsmas"
 
-#: src/actions/actionmanagerimpl.cpp:322
+#: src/actions/actionmanagerimpl.cpp:310
 #, kde-format
 msgid "C&ancel Feed Fetches"
 msgstr "&Atcelt plūsmu ielādi"
 
-#: src/actions/actionmanagerimpl.cpp:335
+#: src/actions/actionmanagerimpl.cpp:323
 #, kde-format
 msgid "Ma&rk All Feeds as Read"
 msgstr "A&tzīmēt visas plūsmas kā lasītas"
 
-#: src/actions/actionmanagerimpl.cpp:364 src/actions/actionmanagerimpl.cpp:651
+#: src/actions/actionmanagerimpl.cpp:352 src/actions/actionmanagerimpl.cpp:635
 #, kde-format
 msgid "Copy Link Address"
 msgstr "Kopēt saites adresi"
 
-#: src/actions/actionmanagerimpl.cpp:369
+#: src/actions/actionmanagerimpl.cpp:357
 #, kde-format
 msgid "Pre&vious Unread Article"
 msgstr "&Iepriekšējais nelasītais raksts"
 
-#: src/actions/actionmanagerimpl.cpp:375
+#: src/actions/actionmanagerimpl.cpp:363
 #, kde-format
 msgid "Ne&xt Unread Article"
 msgstr "&Nākamais nelasītais raksts"
 
-#: src/actions/actionmanagerimpl.cpp:383
+#: src/actions/actionmanagerimpl.cpp:371
 #, kde-format
 msgid "&Delete"
 msgstr "&Dzēst"
 
-#: src/actions/actionmanagerimpl.cpp:388
+#: src/actions/actionmanagerimpl.cpp:376
 #, kde-format
 msgid "&Mark As"
 msgstr "&Atzīmēt kā"
 
-#: src/actions/actionmanagerimpl.cpp:392
+#: src/actions/actionmanagerimpl.cpp:380
 #, kde-format
 msgctxt "as in: mark as read"
 msgid "&Read"
 msgstr "&Lasītu"
 
-#: src/actions/actionmanagerimpl.cpp:394
+#: src/actions/actionmanagerimpl.cpp:382
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as read"
 msgstr "Atzīmēt atlasīto rakstu kā lasītu"
 
-#: src/actions/actionmanagerimpl.cpp:400
+#: src/actions/actionmanagerimpl.cpp:388
 #, kde-format
 msgctxt "as in: mark as new"
 msgid "&New"
 msgstr "Jau&nu"
 
-#: src/actions/actionmanagerimpl.cpp:403
+#: src/actions/actionmanagerimpl.cpp:391
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as new"
 msgstr "Atzīmēt atlasīto rakstu kā jaunu"
 
-#: src/actions/actionmanagerimpl.cpp:408
+#: src/actions/actionmanagerimpl.cpp:396
 #, kde-format
 msgctxt "as in: mark as unread"
 msgid "&Unread"
 msgstr "&Nelasītu"
 
-#: src/actions/actionmanagerimpl.cpp:410
+#: src/actions/actionmanagerimpl.cpp:398
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as unread"
 msgstr "Atzīmēt atlasīto rakstu kā nelasītu"
 
-#: src/actions/actionmanagerimpl.cpp:416
+#: src/actions/actionmanagerimpl.cpp:404
 #, kde-format
 msgid "&Mark as Important"
 msgstr "Atzī&mēt kā svarīgu"
 
-#: src/actions/actionmanagerimpl.cpp:420
+#: src/actions/actionmanagerimpl.cpp:408
 #, kde-format
 msgctxt "@action:button"
 msgid "Remove &Important Mark"
 msgstr "Noņemt svarīguma atzīm&i"
 
-#: src/actions/actionmanagerimpl.cpp:424
+#: src/actions/actionmanagerimpl.cpp:412
 #, kde-format
 msgid "Move Node Up"
 msgstr "Pārvietot mezglu augšup"
 
-#: src/actions/actionmanagerimpl.cpp:429
+#: src/actions/actionmanagerimpl.cpp:417
 #, kde-format
 msgid "Move Node Down"
 msgstr "Pārvietot mezglu lejup"
 
-#: src/actions/actionmanagerimpl.cpp:434
+#: src/actions/actionmanagerimpl.cpp:422
 #, kde-format
 msgid "Move Node Left"
 msgstr "Pārvietot mezglu pa kreisi"
 
-#: src/actions/actionmanagerimpl.cpp:439
+#: src/actions/actionmanagerimpl.cpp:427
 #, kde-format
 msgid "Move Node Right"
 msgstr "Pārvietot mezglu pa labi"
 
-#: src/actions/actionmanagerimpl.cpp:445
+#: src/actions/actionmanagerimpl.cpp:433
 #, kde-format
 msgid "Send &Link Address…"
 msgstr "Nosūtīt &saites adresi…"
 
-#: src/actions/actionmanagerimpl.cpp:450
+#: src/actions/actionmanagerimpl.cpp:438
 #, kde-format
 msgid "Send &File…"
 msgstr "Sūtīt &datni…"
 
-#: src/actions/actionmanagerimpl.cpp:456
+#: src/actions/actionmanagerimpl.cpp:444
 #, kde-format
 msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr "Iestatīt fokusu uz ātro meklēšanu"
 
-#: src/actions/actionmanagerimpl.cpp:462
+#: src/actions/actionmanagerimpl.cpp:450
 #, kde-format
 msgid "What's new"
 msgstr "Kas jauns?"
 
-#: src/actions/actionmanagerimpl.cpp:507
+#: src/actions/actionmanagerimpl.cpp:491
 #, kde-format
 msgid "&Previous Article"
 msgstr "Ie&priekšējais raksts"
 
-#: src/actions/actionmanagerimpl.cpp:511
+#: src/actions/actionmanagerimpl.cpp:495
 #, kde-format
 msgid "&Next Article"
 msgstr "&Nākamais raksts"
 
-#: src/actions/actionmanagerimpl.cpp:527
+#: src/actions/actionmanagerimpl.cpp:511
 #, kde-format
 msgid "&Previous Feed"
 msgstr "Ieprie&kšējā plūsma"
 
-#: src/actions/actionmanagerimpl.cpp:532
+#: src/actions/actionmanagerimpl.cpp:516
 #, kde-format
 msgid "&Next Feed"
 msgstr "&Nākamā plūsma"
 
-#: src/actions/actionmanagerimpl.cpp:538
+#: src/actions/actionmanagerimpl.cpp:522
 #, kde-format
 msgid "N&ext Unread Feed"
 msgstr "Nākamā n&elasītā plūsma"
 
-#: src/actions/actionmanagerimpl.cpp:544
+#: src/actions/actionmanagerimpl.cpp:528
 #, kde-format
 msgid "Prev&ious Unread Feed"
 msgstr "Iepr&iekšējā neizlasītā plūsma"
 
-#: src/actions/actionmanagerimpl.cpp:549
+#: src/actions/actionmanagerimpl.cpp:533
 #, kde-format
 msgid "Go to Top of Tree"
 msgstr "Doties uz koka augšpusi"
 
-#: src/actions/actionmanagerimpl.cpp:554
+#: src/actions/actionmanagerimpl.cpp:538
 #, kde-format
 msgid "Go to Bottom of Tree"
 msgstr "Doties uz koka lejpusi"
 
-#: src/actions/actionmanagerimpl.cpp:559
+#: src/actions/actionmanagerimpl.cpp:543
 #, kde-format
 msgid "Go Left in Tree"
 msgstr "Pārvietoties kokā pa kreisi"
 
-#: src/actions/actionmanagerimpl.cpp:564
+#: src/actions/actionmanagerimpl.cpp:548
 #, kde-format
 msgid "Go Right in Tree"
 msgstr "Pārvietoties kokā pa labi"
 
-#: src/actions/actionmanagerimpl.cpp:569
+#: src/actions/actionmanagerimpl.cpp:553
 #, kde-format
 msgid "Go Up in Tree"
 msgstr "Pārvietoties kokā augšup"
 
-#: src/actions/actionmanagerimpl.cpp:574
+#: src/actions/actionmanagerimpl.cpp:558
 #, kde-format
 msgid "Go Down in Tree"
 msgstr "Pārvietoties kokā lejup"
 
-#: src/actions/actionmanagerimpl.cpp:580
+#: src/actions/actionmanagerimpl.cpp:564
 #, kde-format
 msgid "Hide Read Feeds"
 msgstr "Nākamā n&elasītā plūsma"
 
-#: src/actions/actionmanagerimpl.cpp:586
+#: src/actions/actionmanagerimpl.cpp:570
 #, kde-format
 msgid "Lock Feeds In Place"
 msgstr "Slēgt plūsmu novietojumu"
 
-#: src/actions/actionmanagerimpl.cpp:592
+#: src/actions/actionmanagerimpl.cpp:576
 #, kde-format
 msgid "Auto-expand folders with unread articles"
 msgstr "Automātiski izvērst mapes ar nelasītiem rakstiem"
 
-#: src/actions/actionmanagerimpl.cpp:608
+#: src/actions/actionmanagerimpl.cpp:592
 #, kde-format
 msgid "Select Next Tab"
 msgstr "Atlasīt nākamo cilni"
 
-#: src/actions/actionmanagerimpl.cpp:613
+#: src/actions/actionmanagerimpl.cpp:597
 #, kde-format
 msgid "Select Previous Tab"
 msgstr "Atlasīt iepriekšējo cilni"
 
-#: src/actions/actionmanagerimpl.cpp:619
+#: src/actions/actionmanagerimpl.cpp:603
 #, kde-format
 msgid "Detach Tab"
 msgstr "Atdalīt cilni"
 
-#: src/actions/actionmanagerimpl.cpp:633
+#: src/actions/actionmanagerimpl.cpp:617
 #, kde-format
 msgid "Mute"
 msgstr "Apklusināt"
 
-#: src/actions/actionmanagerimpl.cpp:637
+#: src/actions/actionmanagerimpl.cpp:621
 #, kde-format
 msgid "Unmute"
 msgstr "Atjaunot skaņu"
 
-#: src/actions/actionmanagerimpl.cpp:640
+#: src/actions/actionmanagerimpl.cpp:624
 #, kde-format
 msgctxt "@action"
 msgid "Speak Text"
 msgstr "Izrunāt tekstu"
 
-#: src/actions/actionmanagerimpl.cpp:645
+#: src/actions/actionmanagerimpl.cpp:629
 #, kde-format
 msgid "&Find in Message…"
 msgstr "&Atrast ziņā"
 
-#: src/actions/actionmanagerimpl.cpp:656
+#: src/actions/actionmanagerimpl.cpp:640
 #, kde-format
 msgid "Close Tab"
 msgstr "Aizvērt cilni"
 
-#: src/actions/actionmanagerimpl.cpp:669
+#: src/actions/actionmanagerimpl.cpp:653
 #, kde-format
 msgctxt "@action"
 msgid "Activate Tab %1"
 msgstr "Aktivizēt cilni „%1“"
 
-#: src/actions/actionmanagerimpl.cpp:675
+#: src/actions/actionmanagerimpl.cpp:659
 #, kde-format
 msgid "&Save Link As…"
 msgstr "S&aglabāt saiti kā…"
 
-#: src/actions/actionmanagerimpl.cpp:679
+#: src/actions/actionmanagerimpl.cpp:663
 #, kde-format
 msgid "Copy &Link Address"
 msgstr "&Kopēt saites adresi"
 
-#: src/actions/actionmanagerimpl.cpp:682
+#: src/actions/actionmanagerimpl.cpp:666
 #, kde-format
 msgctxt "@action"
 msgid "Copy Image URL"
 msgstr "Kopēt attēla URL"
 
-#: src/actions/actionmanagerimpl.cpp:688
+#: src/actions/actionmanagerimpl.cpp:672
 #, kde-format
 msgctxt "@action"
 msgid "Save Image…"
@@ -2110,73 +2109,73 @@ msgstr "Ielāde atcelta"
 msgid "Loading completed"
 msgstr "Ielāde pabeigta"
 
-#: src/mainwidget.cpp:207
+#: src/mainwidget.cpp:184
 #, kde-format
 msgid "You can view multiple articles in several open tabs."
 msgstr "Varat aplūkot vairākus rakstus vairākās cilnēs."
 
-#: src/mainwidget.cpp:211
+#: src/mainwidget.cpp:188
 #, kde-format
 msgid "Articles list."
 msgstr "Sarakts ar rakstiem."
 
-#: src/mainwidget.cpp:273 src/mainwidget.cpp:705
+#: src/mainwidget.cpp:250 src/mainwidget.cpp:682
 #, kde-format
 msgid "Articles"
 msgstr "Raksti"
 
-#: src/mainwidget.cpp:302
+#: src/mainwidget.cpp:279
 #, kde-format
 msgid "About"
 msgstr "Par"
 
-#: src/mainwidget.cpp:844
+#: src/mainwidget.cpp:821
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all articles in the feed</b> as read?</"
 "qt>"
 msgstr "<qt>Vai tiešām atzīmēt <b>visus rakstus plūsmā </b> kā lasītus?</qt>"
 
-#: src/mainwidget.cpp:845
+#: src/mainwidget.cpp:822
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "Atzīmēt plūsmu kā lasītu"
 
-#: src/mainwidget.cpp:848
+#: src/mainwidget.cpp:825
 #, kde-format
 msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
 msgstr "<qt>Vai tiešām atzīmēt <b>visas plūsmas</b> kā lasītas?</qt>"
 
-#: src/mainwidget.cpp:850
+#: src/mainwidget.cpp:827
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all feeds in the folder</b> as read?</"
 "qt>"
 msgstr "<qt>Vai tiešām atzīmēt <b>visas plūsmas mapē</b> kā lasītas?</qt>"
 
-#: src/mainwidget.cpp:852
+#: src/mainwidget.cpp:829
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "Atzīmēt plūsmas kā lasītas"
 
-#: src/mainwidget.cpp:916 src/mainwidget.cpp:925 src/mainwidget.cpp:1326
+#: src/mainwidget.cpp:893 src/mainwidget.cpp:902 src/mainwidget.cpp:1303
 #, kde-format
 msgid "Networking is not available."
 msgstr "Tīkli nav pieejami."
 
-#: src/mainwidget.cpp:933
+#: src/mainwidget.cpp:910
 #, kde-format
 msgid "Fetching Feeds…"
 msgstr "Ielādē plūsmas…"
 
-#: src/mainwidget.cpp:1131
+#: src/mainwidget.cpp:1108
 #, kde-format
 msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
 msgstr "<qt>Vai tiešām dzēst rakstu <b>%1</b>?</qt>"
 
-#: src/mainwidget.cpp:1134
+#: src/mainwidget.cpp:1111
 #, kde-format
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
 msgid_plural ""
@@ -2185,13 +2184,13 @@ msgstr[0] "<qt>Vai tiešām dzēst %1 atlasīto rakstu?</qt>"
 msgstr[1] "<qt>Vai tiešām dzēst %1 atlasītos rakstus?</qt>"
 msgstr[2] "<qt>Vai tiešām dzēst %1 atlasīto rakstu?</qt>"
 
-#: src/mainwidget.cpp:1141
+#: src/mainwidget.cpp:1118
 #, kde-format
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "Dzēst rakstu"
 
-#: src/mainwidget.cpp:1323
+#: src/mainwidget.cpp:1300
 #, kde-format
 msgid "Networking is available now."
 msgstr "Tīkls tagad ir pieejams."
@@ -2546,12 +2545,12 @@ msgstr "Atvērt ārējā pārlūkā"
 msgid "Add windows support"
 msgstr "Pievienots „Windows“ atbalsts"
 
-#: src/whatsnew/whatsnewtranslations.cpp:36
+#: src/whatsnew/whatsnewtranslations.cpp:24
 #, kde-format
 msgid "Implement Plasma Activity."
 msgstr "Ieslēgt „Plasma“ aktivitātes."
 
-#: src/whatsnew/whatsnewtranslations.cpp:36
+#: src/whatsnew/whatsnewtranslations.cpp:24
 #, kde-format
 msgid "Add new whatsnew widget."
 msgstr "Pievienot jaunu „Kas jauns?“ logdaļu."
