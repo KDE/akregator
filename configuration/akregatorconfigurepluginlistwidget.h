@@ -6,9 +6,9 @@
 
 #pragma once
 
-#include <PimCommon/ConfigurePluginsListWidget>
+#include <TextAddonsWidgets/ConfigurePluginsWidget>
 
-class AkregatorConfigurePluginListWidget : public PimCommon::ConfigurePluginsListWidget
+class AkregatorConfigurePluginListWidget : public TextAddonsWidgets::ConfigurePluginsWidget
 {
     Q_OBJECT
 public:

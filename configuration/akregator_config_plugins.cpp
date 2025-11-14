@@ -10,7 +10,6 @@
 #include <KAboutData>
 #include <KLocalizedString>
 #include <KPluginFactory>
-#include <PimCommon/ConfigurePluginsListWidget>
 #include <PimCommon/ConfigurePluginsWidget>
 #include <QHBoxLayout>
 using namespace Akregator;

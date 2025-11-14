@@ -54,7 +54,7 @@ include(ECMAddAppIcon)
 include(ECMQtDeclareLoggingCategory)
 include(ECMDeprecationSettings)
 include(ECMFeatureSummary)
-set(KTEXTADDONS_MIN_VERSION "1.8.44")
+set(KTEXTADDONS_MIN_VERSION "1.8.64")
 set(CMAKE_CXX_SCAN_FOR_MODULES OFF)
 # Do NOT add quote
 set(KDEPIM_DEV_VERSION alpha)
@@ -72,7 +72,7 @@ set(KONTACTINTERFACE_LIB_VERSION "6.6.40")
 set(LIBGRANTLEETHEME_LIB_VERSION "6.6.40")
 set(LIBKDEPIM_LIB_VERSION "6.6.40")
 set(MESSAGELIB_LIB_VERSION "6.6.40")
-set(PIMCOMMON_LIB_VERSION "6.6.40")
+set(PIMCOMMON_LIB_VERSION "6.6.41")
 
 find_package(
     Qt6

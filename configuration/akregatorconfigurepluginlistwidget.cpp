@@ -7,6 +7,7 @@
 #include "akregatorconfigurepluginlistwidget.h"
 #include "kcm_config_plugins_debug.h"
 #include <KLocalizedString>
+#include <PimCommon/PluginUtil>
 #include <WebEngineViewer/NetworkPluginUrlInterceptor>
 #include <WebEngineViewer/NetworkUrlInterceptorPluginManager>
 namespace
@@ -18,18 +19,19 @@ QString networkUrlInterceptorGroupName()
 }
 
 AkregatorConfigurePluginListWidget::AkregatorConfigurePluginListWidget(QWidget *parent)
-    : PimCommon::ConfigurePluginsListWidget(parent)
+    : TextAddonsWidgets::ConfigurePluginsWidget(parent)
 {
-    connect(this, &ConfigurePluginsListWidget::configureClicked, this, &AkregatorConfigurePluginListWidget::slotConfigureClicked);
+    connect(this, &TextAddonsWidgets::ConfigurePluginsWidget::configureClicked, this, &AkregatorConfigurePluginListWidget::slotConfigureClicked);
 }
 
 AkregatorConfigurePluginListWidget::~AkregatorConfigurePluginListWidget() = default;
 
 void AkregatorConfigurePluginListWidget::save()
 {
-    PimCommon::ConfigurePluginsListWidget::savePlugins(WebEngineViewer::NetworkUrlInterceptorPluginManager::self()->configGroupName(),
-                                                       WebEngineViewer::NetworkUrlInterceptorPluginManager::self()->configPrefixSettingKey(),
-                                                       mPluginWebEngineItems);
+    TextAddonsWidgets::ConfigurePluginsWidget::savePlugins(WebEngineViewer::NetworkUrlInterceptorPluginManager::self()->configGroupName(),
+                                                           WebEngineViewer::NetworkUrlInterceptorPluginManager::self()->configPrefixSettingKey(),
+                                                           mPluginWebEngineItems,
+                                                           PimCommon::PluginUtil::pluginConfigFile());
 }
 
 void AkregatorConfigurePluginListWidget::doLoadFromGlobalSettings()
@@ -45,15 +47,17 @@ void AkregatorConfigurePluginListWidget::doResetToDefaultsOther()
 
 void AkregatorConfigurePluginListWidget::initialize()
 {
-    mListWidget->clear();
+    mTreePluginWidget->clear();
     // Load webengineplugin
-    PimCommon::ConfigurePluginsListWidget::fillTopItems(WebEngineViewer::NetworkUrlInterceptorPluginManager::self()->pluginsDataList(),
-                                                        i18n("Webengine Plugins"),
-                                                        WebEngineViewer::NetworkUrlInterceptorPluginManager::self()->configGroupName(),
-                                                        WebEngineViewer::NetworkUrlInterceptorPluginManager::self()->configPrefixSettingKey(),
-                                                        mPluginWebEngineItems,
-                                                        networkUrlInterceptorGroupName());
-    mListWidget->expandAll();
+    TextAddonsWidgets::ConfigurePluginsWidget::fillTopItems(WebEngineViewer::NetworkUrlInterceptorPluginManager::self()->pluginsDataList(),
+                                                            i18n("Webengine Plugins"),
+                                                            WebEngineViewer::NetworkUrlInterceptorPluginManager::self()->configGroupName(),
+                                                            WebEngineViewer::NetworkUrlInterceptorPluginManager::self()->configPrefixSettingKey(),
+                                                            mPluginWebEngineItems,
+                                                            networkUrlInterceptorGroupName(),
+                                                            true,
+                                                            PimCommon::PluginUtil::pluginConfigFile());
+    mTreePluginWidget->expandAll();
 }
 
 void AkregatorConfigurePluginListWidget::slotConfigureClicked(const QString &configureGroupName, const QString &identifier)
