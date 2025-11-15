@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-09 00:43+0000\n"
+"POT-Creation-Date: 2025-11-15 00:42+0000\n"
 "PO-Revision-Date: 2022-07-03 14:28+0400\n"
 "Last-Translator: Kheyyam <xxmn77@gmail.com>\n"
 "Language-Team: Azerbaijani <kde-i18n-doc@kde.org>\n"
@@ -128,7 +128,7 @@ msgid_plural " minutes"
 msgstr[0] " dəqiqə"
 msgstr[1] " dəqiqələr"
 
-#: configuration/akregatorconfigurepluginlistwidget.cpp:51
+#: configuration/akregatorconfigurepluginlistwidget.cpp:53
 #, kde-format
 msgid "Webengine Plugins"
 msgstr "Daxili bələdçi modulu"

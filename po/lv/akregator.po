@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-09 00:43+0000\n"
+"POT-Creation-Date: 2025-11-15 00:42+0000\n"
 "PO-Revision-Date: 2025-04-06 17:45+0300\n"
 "Last-Translator: Toms Trasuns <toms.trasuns@posteo.net>\n"
 "Language-Team: Latvian <kde-i18n-doc@kde.org>\n"
@@ -130,7 +130,7 @@ msgstr[0] " minūte"
 msgstr[1] " minūtes"
 msgstr[2] " minūšu"
 
-#: configuration/akregatorconfigurepluginlistwidget.cpp:51
+#: configuration/akregatorconfigurepluginlistwidget.cpp:53
 #, kde-format
 msgid "Webengine Plugins"
 msgstr "Tīmekļa dziņa spraudņi"

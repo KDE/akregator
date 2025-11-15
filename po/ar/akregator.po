@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-09 00:43+0000\n"
+"POT-Creation-Date: 2025-11-15 00:42+0000\n"
 "PO-Revision-Date: 2025-08-20 21:57+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
@@ -138,7 +138,7 @@ msgstr[3] " دقائق"
 msgstr[4] " دقيقة"
 msgstr[5] " دقيقة"
 
-#: configuration/akregatorconfigurepluginlistwidget.cpp:51
+#: configuration/akregatorconfigurepluginlistwidget.cpp:53
 #, kde-format
 msgid "Webengine Plugins"
 msgstr "ملحقات محرّك الوبّ"

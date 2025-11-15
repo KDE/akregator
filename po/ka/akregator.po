@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-09 00:43+0000\n"
+"POT-Creation-Date: 2025-11-15 00:42+0000\n"
 "PO-Revision-Date: 2025-01-19 03:10+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
@@ -123,7 +123,7 @@ msgid_plural " minutes"
 msgstr[0] " წუთი"
 msgstr[1] " წუთი"
 
-#: configuration/akregatorconfigurepluginlistwidget.cpp:51
+#: configuration/akregatorconfigurepluginlistwidget.cpp:53
 #, kde-format
 msgid "Webengine Plugins"
 msgstr "Webengine -ის დამატებები"
