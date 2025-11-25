@@ -35,7 +35,7 @@ public:
         Read,
         New
     };
-    Q_ENUMS(ArticleStatus)
+    Q_ENUM(ArticleStatus)
 
     Akregator::ArticleGrantleeObject::ArticleStatus articleStatus() const;
 
