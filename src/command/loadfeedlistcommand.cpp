@@ -79,7 +79,7 @@ void LoadFeedListCommandPrivate::handleDocument(const QDomDocument &doc)
 
 QString LoadFeedListCommandPrivate::createBackup(const QString &path, bool *ok)
 {
-    const QString backup = path + QLatin1StringView("-backup.") + QString::number(QDateTime::currentDateTimeUtc().toSecsSinceEpoch());
+    const QString backup = path + QLatin1StringView("-backup.") + QString::number(QDateTime::currentSecsSinceEpoch());
 
     const bool copied = QFile::copy(path, backup);
     if (ok) {

@@ -58,7 +58,7 @@ void OpenUrlRequest::setOptions(OpenUrlRequest::Options options)
 
 QString OpenUrlRequest::debugInfo() const
 {
-    return QStringLiteral("url=%1 options=%2").arg(m_url.url()).arg(QString::number(static_cast<int>(m_options)));
+    return QStringLiteral("url=%1 options=%2").arg(m_url.url(), QString::number(static_cast<int>(m_options)));
 }
 
 bool OpenUrlRequest::wasHandled() const
