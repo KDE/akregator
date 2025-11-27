@@ -67,7 +67,7 @@ QString buildTitle(const QString &description)
         offset = repStart + replaceWith.length();
     }
     if (s.length() > 90) {
-        s = s.left(90) + QLatin1StringView("…");
+        s = s.left(90) + QStringLiteral("…");
     }
     return s.simplified();
 }

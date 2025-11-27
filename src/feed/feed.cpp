@@ -640,7 +640,7 @@ void Feed::slotAddToFetchQueue(FetchQueue *queue, bool intervalFetchOnly)
 
         const uint lastFetch = d->m_archive->lastFetch().toSecsSinceEpoch();
 
-        const uint now = QDateTime::currentDateTimeUtc().toSecsSinceEpoch();
+        const uint now = QDateTime::currentSecsSinceEpoch();
 
         if (interval > 0 && (now - lastFetch) >= static_cast<uint>(interval)) {
             queue->addFeed(this);

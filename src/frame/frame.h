@@ -98,7 +98,7 @@ public Q_SLOTS:
     void slotSetStarted();
     void slotSetCanceled(const QString &);
     void slotSetCompleted();
-    void slotSetState(State);
+    void slotSetState(Akregator::Frame::State);
     void slotSetProgress(int);
     void slotSetCaption(const QString &);
     void slotSetTitle(const QString &);
