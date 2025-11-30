@@ -46,7 +46,7 @@
 #include <QWidget>
 
 using namespace Akregator;
-
+using namespace Qt::Literals::StringLiterals;
 class ActionManagerImpl::NodeSelectVisitor : public TreeNodeVisitor
 {
 public:
@@ -455,14 +455,15 @@ void ActionManagerImpl::initMainWidget(MainWidget *mainWidget)
     coll->addAction(QStringLiteral("colorscheme_menu"), KColorSchemeMenu::createMenu(manager, this));
 
 #if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
-#if AKREGATOR_STABLE_VERSION
-    const QString url = QStringLiteral("https://cdn.kde.org/ci-builds/pim/akregator/26.04/windows/");
-#else
-    const QString url = QStringLiteral("https://cdn.kde.org/ci-builds/pim/akregator/master/windows/");
+    const QString defaultUrlPath = QStringLiteral("https://origin.cdn.kde.org/ci-builds/pim/akregator/");
+    const QString stableBranch = u"26.04"_s;
+    bool stableVersion = false;
+#if SIEVEEDITOR_STABLE_VERSION
+    stableVersion = true;
 #endif
-    d->mVerifyNewVersionWidget->addOsUrlInfo(TextAddonsWidgets::VerifyNewVersionWidget::OsVersion::Windows, url);
+    d->mVerifyNewVersionWidget->generateUrlInfo(stableBranch, defaultUrlPath, stableVersion);
     auto verifyNewVersionAction = d->mVerifyNewVersionWidget->verifyNewVersionAction();
-    coll->addAction(QStringLiteral("verify_check_version"), verifyNewVersionAction);
+    coll->addAction(u"verify_check_version"_s, verifyNewVersionAction);
 #endif
 
     setArticleActionsEnabled(false);
