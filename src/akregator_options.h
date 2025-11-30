@@ -22,7 +22,7 @@ static void akregator_options(QCommandLineParser *parser)
                                   QStringLiteral("url"))
             << QCommandLineOption(QStringList() << QStringLiteral("g") << QStringLiteral("group"),
                                   i18nc("@info:shell", "When adding feeds, place them in this group"),
-                                  QStringLiteral("groupname")) //     "Imported"
+                                  i18n("Group Name")) //     "Imported"
             << QCommandLineOption(QStringLiteral("hide-mainwindow"), i18nc("@info:shell", "Hide main window on startup"));
 
     parser->addOptions(options);
