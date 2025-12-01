@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:52+0000\n"
+"POT-Creation-Date: 2025-12-01 00:43+0000\n"
 "PO-Revision-Date: 2014-07-03 09:47+0200\n"
 "Last-Translator: Sönke Dibbern <s_dibbern@web.de>\n"
 "Language-Team: Low Saxon <kde-i18n-nds@kde.org>\n"
@@ -1284,7 +1284,7 @@ msgstr "A&fropen vun Strööm afbreken"
 msgid "Ma&rk All Feeds as Read"
 msgstr "All Strööm as l&eest markeren"
 
-#: src/actions/actionmanagerimpl.cpp:352 src/actions/actionmanagerimpl.cpp:635
+#: src/actions/actionmanagerimpl.cpp:352 src/actions/actionmanagerimpl.cpp:636
 #, kde-format
 msgid "Copy Link Address"
 msgstr "Linkadress koperen"
@@ -1403,149 +1403,149 @@ msgstr ""
 msgid "What's new"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:491
+#: src/actions/actionmanagerimpl.cpp:492
 #, kde-format
 msgid "&Previous Article"
 msgstr "&Verleden Naricht"
 
-#: src/actions/actionmanagerimpl.cpp:495
+#: src/actions/actionmanagerimpl.cpp:496
 #, kde-format
 msgid "&Next Article"
 msgstr "&Nakamen Naricht"
 
-#: src/actions/actionmanagerimpl.cpp:511
+#: src/actions/actionmanagerimpl.cpp:512
 #, kde-format
 msgid "&Previous Feed"
 msgstr "&Verleden Stroom"
 
-#: src/actions/actionmanagerimpl.cpp:516
+#: src/actions/actionmanagerimpl.cpp:517
 #, kde-format
 msgid "&Next Feed"
 msgstr "&Nakamen Stroom"
 
-#: src/actions/actionmanagerimpl.cpp:522
+#: src/actions/actionmanagerimpl.cpp:523
 #, kde-format
 msgid "N&ext Unread Feed"
 msgstr "N&akamen nich leesten Stroom"
 
-#: src/actions/actionmanagerimpl.cpp:528
+#: src/actions/actionmanagerimpl.cpp:529
 #, kde-format
 msgid "Prev&ious Unread Feed"
 msgstr "V&erleden nich leesten Stroom"
 
-#: src/actions/actionmanagerimpl.cpp:533
+#: src/actions/actionmanagerimpl.cpp:534
 #, kde-format
 msgid "Go to Top of Tree"
 msgstr "Heel na baven in'n Boom gahn"
 
-#: src/actions/actionmanagerimpl.cpp:538
+#: src/actions/actionmanagerimpl.cpp:539
 #, kde-format
 msgid "Go to Bottom of Tree"
 msgstr "Heel na nerrn in'n Boom gahn"
 
-#: src/actions/actionmanagerimpl.cpp:543
+#: src/actions/actionmanagerimpl.cpp:544
 #, kde-format
 msgid "Go Left in Tree"
 msgstr "Na links in'n Boom gahn"
 
-#: src/actions/actionmanagerimpl.cpp:548
+#: src/actions/actionmanagerimpl.cpp:549
 #, kde-format
 msgid "Go Right in Tree"
 msgstr "Na rechts in'n Boom gahn"
 
-#: src/actions/actionmanagerimpl.cpp:553
+#: src/actions/actionmanagerimpl.cpp:554
 #, kde-format
 msgid "Go Up in Tree"
 msgstr "Na baven in'n Boom gahn"
 
-#: src/actions/actionmanagerimpl.cpp:558
+#: src/actions/actionmanagerimpl.cpp:559
 #, kde-format
 msgid "Go Down in Tree"
 msgstr "Na nerrn in'n Boom gahn"
 
-#: src/actions/actionmanagerimpl.cpp:564
+#: src/actions/actionmanagerimpl.cpp:565
 #, fuzzy, kde-format
 #| msgid "N&ext Unread Feed"
 msgid "Hide Read Feeds"
 msgstr "N&akamen nich leesten Stroom"
 
-#: src/actions/actionmanagerimpl.cpp:570
+#: src/actions/actionmanagerimpl.cpp:571
 #, kde-format
 msgid "Lock Feeds In Place"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:576
+#: src/actions/actionmanagerimpl.cpp:577
 #, fuzzy, kde-format
 #| msgid "There are no unread articles"
 msgid "Auto-expand folders with unread articles"
 msgstr "Dat gifft keen nich leest Narichten"
 
-#: src/actions/actionmanagerimpl.cpp:592
+#: src/actions/actionmanagerimpl.cpp:593
 #, kde-format
 msgid "Select Next Tab"
 msgstr "Nakamen Paneel utsöken"
 
-#: src/actions/actionmanagerimpl.cpp:597
+#: src/actions/actionmanagerimpl.cpp:598
 #, kde-format
 msgid "Select Previous Tab"
 msgstr "Verleden Paneel utsöken"
 
-#: src/actions/actionmanagerimpl.cpp:603
+#: src/actions/actionmanagerimpl.cpp:604
 #, kde-format
 msgid "Detach Tab"
 msgstr "Paneel aflösen"
 
-#: src/actions/actionmanagerimpl.cpp:617
+#: src/actions/actionmanagerimpl.cpp:618
 #, kde-format
 msgid "Mute"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:621
+#: src/actions/actionmanagerimpl.cpp:622
 #, kde-format
 msgid "Unmute"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:624
+#: src/actions/actionmanagerimpl.cpp:625
 #, kde-format
 msgctxt "@action"
 msgid "Speak Text"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:629
+#: src/actions/actionmanagerimpl.cpp:630
 #, kde-format
 msgid "&Find in Message…"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:640
+#: src/actions/actionmanagerimpl.cpp:641
 #, kde-format
 msgid "Close Tab"
 msgstr "Paneel tomaken"
 
-#: src/actions/actionmanagerimpl.cpp:653
+#: src/actions/actionmanagerimpl.cpp:654
 #, fuzzy, kde-format
 #| msgid "Activate Tab %1"
 msgctxt "@action"
 msgid "Activate Tab %1"
 msgstr "Paneel %1 anmaken"
 
-#: src/actions/actionmanagerimpl.cpp:659
+#: src/actions/actionmanagerimpl.cpp:660
 #, fuzzy, kde-format
 #| msgid "&Save Link As..."
 msgid "&Save Link As…"
 msgstr "Link &sekern as..."
 
-#: src/actions/actionmanagerimpl.cpp:663
+#: src/actions/actionmanagerimpl.cpp:664
 #, kde-format
 msgid "Copy &Link Address"
 msgstr "&Linkadress koperen"
 
-#: src/actions/actionmanagerimpl.cpp:666
+#: src/actions/actionmanagerimpl.cpp:667
 #, kde-format
 msgctxt "@action"
 msgid "Copy Image URL"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:672
+#: src/actions/actionmanagerimpl.cpp:673
 #, kde-format
 msgctxt "@action"
 msgid "Save Image…"
@@ -1597,6 +1597,11 @@ msgstr "En Stroom mit de angeven Adress tofögen"
 msgctxt "@info:shell"
 msgid "When adding feeds, place them in this group"
 msgstr "Toföögt Strööm binnen dissen Koppel platzeren"
+
+#: src/akregator_options.h:25
+#, kde-format
+msgid "Group Name"
+msgstr ""
 
 #: src/akregator_options.h:26
 #, fuzzy, kde-format

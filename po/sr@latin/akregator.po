@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:52+0000\n"
+"POT-Creation-Date: 2025-12-01 00:43+0000\n"
 "PO-Revision-Date: 2018-01-06 09:21+0100\n"
 "Last-Translator: Chusslove Illich <caslav.ilic@gmx.net>\n"
 "Language-Team: Serbian <kde-i18n-sr@kde.org>\n"
@@ -1296,7 +1296,7 @@ msgstr "O&tkaži očitavanja dovoda"
 msgid "Ma&rk All Feeds as Read"
 msgstr "Oz&nači sve dovode kao pročitane"
 
-#: src/actions/actionmanagerimpl.cpp:352 src/actions/actionmanagerimpl.cpp:635
+#: src/actions/actionmanagerimpl.cpp:352 src/actions/actionmanagerimpl.cpp:636
 #, kde-format
 msgid "Copy Link Address"
 msgstr "Kopiraj adresu veze"
@@ -1416,150 +1416,150 @@ msgstr "Fokusiraj brzu pretragu"
 msgid "What's new"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:491
+#: src/actions/actionmanagerimpl.cpp:492
 #, kde-format
 msgid "&Previous Article"
 msgstr "&Prethodni članak"
 
-#: src/actions/actionmanagerimpl.cpp:495
+#: src/actions/actionmanagerimpl.cpp:496
 #, kde-format
 msgid "&Next Article"
 msgstr "&Sledeći članak"
 
-#: src/actions/actionmanagerimpl.cpp:511
+#: src/actions/actionmanagerimpl.cpp:512
 #, kde-format
 msgid "&Previous Feed"
 msgstr "&Prethodni dovod"
 
-#: src/actions/actionmanagerimpl.cpp:516
+#: src/actions/actionmanagerimpl.cpp:517
 #, kde-format
 msgid "&Next Feed"
 msgstr "&Sledeći dovod"
 
-#: src/actions/actionmanagerimpl.cpp:522
+#: src/actions/actionmanagerimpl.cpp:523
 #, kde-format
 msgid "N&ext Unread Feed"
 msgstr "S&ledeći nepročitan dovod"
 
-#: src/actions/actionmanagerimpl.cpp:528
+#: src/actions/actionmanagerimpl.cpp:529
 #, kde-format
 msgid "Prev&ious Unread Feed"
 msgstr "Pre&thodni nepročitan dovod"
 
-#: src/actions/actionmanagerimpl.cpp:533
+#: src/actions/actionmanagerimpl.cpp:534
 #, kde-format
 msgid "Go to Top of Tree"
 msgstr "Idi na vrh stabla"
 
-#: src/actions/actionmanagerimpl.cpp:538
+#: src/actions/actionmanagerimpl.cpp:539
 #, kde-format
 msgid "Go to Bottom of Tree"
 msgstr "Idi na dno stabla"
 
-#: src/actions/actionmanagerimpl.cpp:543
+#: src/actions/actionmanagerimpl.cpp:544
 #, kde-format
 msgid "Go Left in Tree"
 msgstr "Idi levo u stablu"
 
-#: src/actions/actionmanagerimpl.cpp:548
+#: src/actions/actionmanagerimpl.cpp:549
 #, kde-format
 msgid "Go Right in Tree"
 msgstr "Idi desno u stablu"
 
-#: src/actions/actionmanagerimpl.cpp:553
+#: src/actions/actionmanagerimpl.cpp:554
 #, kde-format
 msgid "Go Up in Tree"
 msgstr "Idi gore u stablu"
 
-#: src/actions/actionmanagerimpl.cpp:558
+#: src/actions/actionmanagerimpl.cpp:559
 #, kde-format
 msgid "Go Down in Tree"
 msgstr "Idi dole u stablu"
 
-#: src/actions/actionmanagerimpl.cpp:564
+#: src/actions/actionmanagerimpl.cpp:565
 #, kde-format
 msgid "Hide Read Feeds"
 msgstr "Sakrij pročitane dovode"
 
-#: src/actions/actionmanagerimpl.cpp:570
+#: src/actions/actionmanagerimpl.cpp:571
 #, kde-format
 msgid "Lock Feeds In Place"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:576
+#: src/actions/actionmanagerimpl.cpp:577
 #, kde-format
 msgid "Auto-expand folders with unread articles"
 msgstr "Automatski raširi fascikle sa nepročitanim člancima"
 
-#: src/actions/actionmanagerimpl.cpp:592
+#: src/actions/actionmanagerimpl.cpp:593
 #, kde-format
 msgid "Select Next Tab"
 msgstr "Odaberi sledeći jezičak"
 
-#: src/actions/actionmanagerimpl.cpp:597
+#: src/actions/actionmanagerimpl.cpp:598
 #, kde-format
 msgid "Select Previous Tab"
 msgstr "Odaberi prethodni jezičak"
 
-#: src/actions/actionmanagerimpl.cpp:603
+#: src/actions/actionmanagerimpl.cpp:604
 #, kde-format
 msgid "Detach Tab"
 msgstr "Otkači jezičak"
 
-#: src/actions/actionmanagerimpl.cpp:617
+#: src/actions/actionmanagerimpl.cpp:618
 #, kde-format
 msgid "Mute"
 msgstr "Utišaj"
 
-#: src/actions/actionmanagerimpl.cpp:621
+#: src/actions/actionmanagerimpl.cpp:622
 #, kde-format
 msgid "Unmute"
 msgstr "Vrati zvuk"
 
-#: src/actions/actionmanagerimpl.cpp:624
+#: src/actions/actionmanagerimpl.cpp:625
 #, fuzzy, kde-format
 #| msgid "Speak Text"
 msgctxt "@action"
 msgid "Speak Text"
 msgstr "Izgovori tekst"
 
-#: src/actions/actionmanagerimpl.cpp:629
+#: src/actions/actionmanagerimpl.cpp:630
 #, fuzzy, kde-format
 #| msgid "&Find in Message..."
 msgid "&Find in Message…"
 msgstr "&Pronađi u poruci..."
 
-#: src/actions/actionmanagerimpl.cpp:640
+#: src/actions/actionmanagerimpl.cpp:641
 #, kde-format
 msgid "Close Tab"
 msgstr "Zatvori jezičak"
 
-#: src/actions/actionmanagerimpl.cpp:653
+#: src/actions/actionmanagerimpl.cpp:654
 #, fuzzy, kde-format
 #| msgid "Activate Tab %1"
 msgctxt "@action"
 msgid "Activate Tab %1"
 msgstr "Aktiviraj jezičak %1"
 
-#: src/actions/actionmanagerimpl.cpp:659
+#: src/actions/actionmanagerimpl.cpp:660
 #, fuzzy, kde-format
 #| msgid "&Save Link As..."
 msgid "&Save Link As…"
 msgstr "&Sačuvaj vezu kao..."
 
-#: src/actions/actionmanagerimpl.cpp:663
+#: src/actions/actionmanagerimpl.cpp:664
 #, kde-format
 msgid "Copy &Link Address"
 msgstr "Kopiraj &adresu veze"
 
-#: src/actions/actionmanagerimpl.cpp:666
+#: src/actions/actionmanagerimpl.cpp:667
 #, fuzzy, kde-format
 #| msgid "Copy Image Location"
 msgctxt "@action"
 msgid "Copy Image URL"
 msgstr "Kopiraj lokaciju slike"
 
-#: src/actions/actionmanagerimpl.cpp:672
+#: src/actions/actionmanagerimpl.cpp:673
 #, fuzzy, kde-format
 #| msgid "Save Image On Disk..."
 msgctxt "@action"
@@ -1614,6 +1614,11 @@ msgstr "Dodaj dovod sa datim URL‑om"
 msgctxt "@info:shell"
 msgid "When adding feeds, place them in this group"
 msgstr "Stavljaj dodate dovode u ovu grupu"
+
+#: src/akregator_options.h:25
+#, kde-format
+msgid "Group Name"
+msgstr ""
 
 #: src/akregator_options.h:26
 #, fuzzy, kde-format

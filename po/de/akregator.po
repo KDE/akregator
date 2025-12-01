@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:52+0000\n"
+"POT-Creation-Date: 2025-12-01 00:43+0000\n"
 "PO-Revision-Date: 2025-11-22 13:59+0100\n"
 "Last-Translator: Alois Spitzbart <spitz234@hotmail.com>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
@@ -1256,7 +1256,7 @@ msgstr "Abholen von Nachrichten ab&brechen"
 msgid "Ma&rk All Feeds as Read"
 msgstr "Alle Nachrichtenquellen als gelesen &markieren"
 
-#: src/actions/actionmanagerimpl.cpp:352 src/actions/actionmanagerimpl.cpp:635
+#: src/actions/actionmanagerimpl.cpp:352 src/actions/actionmanagerimpl.cpp:636
 #, kde-format
 msgid "Copy Link Address"
 msgstr "Verknüpfungsadresse kopieren"
@@ -1369,145 +1369,145 @@ msgstr "Fokus auf die Schnellsuche legen"
 msgid "What's new"
 msgstr "Neuigkeiten"
 
-#: src/actions/actionmanagerimpl.cpp:491
+#: src/actions/actionmanagerimpl.cpp:492
 #, kde-format
 msgid "&Previous Article"
 msgstr "&Vorheriger Artikel"
 
-#: src/actions/actionmanagerimpl.cpp:495
+#: src/actions/actionmanagerimpl.cpp:496
 #, kde-format
 msgid "&Next Article"
 msgstr "&Nächster Artikel"
 
-#: src/actions/actionmanagerimpl.cpp:511
+#: src/actions/actionmanagerimpl.cpp:512
 #, kde-format
 msgid "&Previous Feed"
 msgstr "V&orherige Nachrichtenquelle"
 
-#: src/actions/actionmanagerimpl.cpp:516
+#: src/actions/actionmanagerimpl.cpp:517
 #, kde-format
 msgid "&Next Feed"
 msgstr "Nä&chste Nachrichtenquelle"
 
-#: src/actions/actionmanagerimpl.cpp:522
+#: src/actions/actionmanagerimpl.cpp:523
 #, kde-format
 msgid "N&ext Unread Feed"
 msgstr "Nächste &ungelesene Nachrichtenquelle"
 
-#: src/actions/actionmanagerimpl.cpp:528
+#: src/actions/actionmanagerimpl.cpp:529
 #, kde-format
 msgid "Prev&ious Unread Feed"
 msgstr "Vorherige un&gelesene Nachrichtenquelle"
 
-#: src/actions/actionmanagerimpl.cpp:533
+#: src/actions/actionmanagerimpl.cpp:534
 #, kde-format
 msgid "Go to Top of Tree"
 msgstr "Zum ersten Element im Baum gehen"
 
-#: src/actions/actionmanagerimpl.cpp:538
+#: src/actions/actionmanagerimpl.cpp:539
 #, kde-format
 msgid "Go to Bottom of Tree"
 msgstr "Zum letzten Element im Baum gehen"
 
-#: src/actions/actionmanagerimpl.cpp:543
+#: src/actions/actionmanagerimpl.cpp:544
 #, kde-format
 msgid "Go Left in Tree"
 msgstr "Im Baum nach links gehen"
 
-#: src/actions/actionmanagerimpl.cpp:548
+#: src/actions/actionmanagerimpl.cpp:549
 #, kde-format
 msgid "Go Right in Tree"
 msgstr "Im Baum nach rechts gehen"
 
-#: src/actions/actionmanagerimpl.cpp:553
+#: src/actions/actionmanagerimpl.cpp:554
 #, kde-format
 msgid "Go Up in Tree"
 msgstr "Im Baum nach oben gehen"
 
-#: src/actions/actionmanagerimpl.cpp:558
+#: src/actions/actionmanagerimpl.cpp:559
 #, kde-format
 msgid "Go Down in Tree"
 msgstr "Im Baum nach unten gehen"
 
-#: src/actions/actionmanagerimpl.cpp:564
+#: src/actions/actionmanagerimpl.cpp:565
 #, kde-format
 msgid "Hide Read Feeds"
 msgstr "Gelesene Nachrichtenquellen ausblenden"
 
-#: src/actions/actionmanagerimpl.cpp:570
+#: src/actions/actionmanagerimpl.cpp:571
 #, kde-format
 msgid "Lock Feeds In Place"
 msgstr "Position von Nachrichtenquellen sperren"
 
-#: src/actions/actionmanagerimpl.cpp:576
+#: src/actions/actionmanagerimpl.cpp:577
 #, kde-format
 msgid "Auto-expand folders with unread articles"
 msgstr "Ordner mit ungelesenen Artikeln automatisch ausklappen"
 
-#: src/actions/actionmanagerimpl.cpp:592
+#: src/actions/actionmanagerimpl.cpp:593
 #, kde-format
 msgid "Select Next Tab"
 msgstr "Nächstes Unterfenster auswählen"
 
-#: src/actions/actionmanagerimpl.cpp:597
+#: src/actions/actionmanagerimpl.cpp:598
 #, kde-format
 msgid "Select Previous Tab"
 msgstr "Vorheriges Unterfenster auswählen"
 
-#: src/actions/actionmanagerimpl.cpp:603
+#: src/actions/actionmanagerimpl.cpp:604
 #, kde-format
 msgid "Detach Tab"
 msgstr "Unterfenster verselbständigen"
 
-#: src/actions/actionmanagerimpl.cpp:617
+#: src/actions/actionmanagerimpl.cpp:618
 #, kde-format
 msgid "Mute"
 msgstr "Stummschalten"
 
-#: src/actions/actionmanagerimpl.cpp:621
+#: src/actions/actionmanagerimpl.cpp:622
 #, kde-format
 msgid "Unmute"
 msgstr "Aktivieren"
 
-#: src/actions/actionmanagerimpl.cpp:624
+#: src/actions/actionmanagerimpl.cpp:625
 #, kde-format
 msgctxt "@action"
 msgid "Speak Text"
 msgstr "Text vorlesen"
 
-#: src/actions/actionmanagerimpl.cpp:629
+#: src/actions/actionmanagerimpl.cpp:630
 #, kde-format
 msgid "&Find in Message…"
 msgstr "In Na&chricht suchen …"
 
-#: src/actions/actionmanagerimpl.cpp:640
+#: src/actions/actionmanagerimpl.cpp:641
 #, kde-format
 msgid "Close Tab"
 msgstr "Unterfenster schließen"
 
-#: src/actions/actionmanagerimpl.cpp:653
+#: src/actions/actionmanagerimpl.cpp:654
 #, kde-format
 msgctxt "@action"
 msgid "Activate Tab %1"
 msgstr "Unterfenster %1 aktivieren"
 
-#: src/actions/actionmanagerimpl.cpp:659
+#: src/actions/actionmanagerimpl.cpp:660
 #, kde-format
 msgid "&Save Link As…"
 msgstr "Verknüpfungsadresse speichern &unter …"
 
-#: src/actions/actionmanagerimpl.cpp:663
+#: src/actions/actionmanagerimpl.cpp:664
 #, kde-format
 msgid "Copy &Link Address"
 msgstr "Verknüpfungsadresse &kopieren"
 
-#: src/actions/actionmanagerimpl.cpp:666
+#: src/actions/actionmanagerimpl.cpp:667
 #, kde-format
 msgctxt "@action"
 msgid "Copy Image URL"
 msgstr "Bildadresse kopieren"
 
-#: src/actions/actionmanagerimpl.cpp:672
+#: src/actions/actionmanagerimpl.cpp:673
 #, kde-format
 msgctxt "@action"
 msgid "Save Image…"
@@ -1557,6 +1557,11 @@ msgid "When adding feeds, place them in this group"
 msgstr ""
 "Beim Hinzufügen von Nachrichtenquellen sollen diese in dieser Gruppe "
 "abgelegt werden"
+
+#: src/akregator_options.h:25
+#, kde-format
+msgid "Group Name"
+msgstr ""
 
 #: src/akregator_options.h:26
 #, kde-format

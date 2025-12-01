@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:52+0000\n"
+"POT-Creation-Date: 2025-12-01 00:43+0000\n"
 "PO-Revision-Date: 2025-01-24 22:23+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
@@ -1225,7 +1225,7 @@ msgstr "取消訂閱來源抓取(&A)"
 msgid "Ma&rk All Feeds as Read"
 msgstr "將所有的訂閱來源標示為已讀(&R)"
 
-#: src/actions/actionmanagerimpl.cpp:352 src/actions/actionmanagerimpl.cpp:635
+#: src/actions/actionmanagerimpl.cpp:352 src/actions/actionmanagerimpl.cpp:636
 #, kde-format
 msgid "Copy Link Address"
 msgstr "複製連結位址"
@@ -1338,145 +1338,145 @@ msgstr "設定焦點到快速搜尋"
 msgid "What's new"
 msgstr "新功能"
 
-#: src/actions/actionmanagerimpl.cpp:491
+#: src/actions/actionmanagerimpl.cpp:492
 #, kde-format
 msgid "&Previous Article"
 msgstr "前一篇文章(&P)"
 
-#: src/actions/actionmanagerimpl.cpp:495
+#: src/actions/actionmanagerimpl.cpp:496
 #, kde-format
 msgid "&Next Article"
 msgstr "下一篇文章(&N)"
 
-#: src/actions/actionmanagerimpl.cpp:511
+#: src/actions/actionmanagerimpl.cpp:512
 #, kde-format
 msgid "&Previous Feed"
 msgstr "前一個訂閱來源(&P)"
 
-#: src/actions/actionmanagerimpl.cpp:516
+#: src/actions/actionmanagerimpl.cpp:517
 #, kde-format
 msgid "&Next Feed"
 msgstr "下一個訂閱來源(&N)"
 
-#: src/actions/actionmanagerimpl.cpp:522
+#: src/actions/actionmanagerimpl.cpp:523
 #, kde-format
 msgid "N&ext Unread Feed"
 msgstr "下一個未讀訂閱來源(&E)"
 
-#: src/actions/actionmanagerimpl.cpp:528
+#: src/actions/actionmanagerimpl.cpp:529
 #, kde-format
 msgid "Prev&ious Unread Feed"
 msgstr "前一個未讀訂閱來源(&I)"
 
-#: src/actions/actionmanagerimpl.cpp:533
+#: src/actions/actionmanagerimpl.cpp:534
 #, kde-format
 msgid "Go to Top of Tree"
 msgstr "到樹狀圖頂端"
 
-#: src/actions/actionmanagerimpl.cpp:538
+#: src/actions/actionmanagerimpl.cpp:539
 #, kde-format
 msgid "Go to Bottom of Tree"
 msgstr "到樹狀圖底部"
 
-#: src/actions/actionmanagerimpl.cpp:543
+#: src/actions/actionmanagerimpl.cpp:544
 #, kde-format
 msgid "Go Left in Tree"
 msgstr "到樹狀圖左側"
 
-#: src/actions/actionmanagerimpl.cpp:548
+#: src/actions/actionmanagerimpl.cpp:549
 #, kde-format
 msgid "Go Right in Tree"
 msgstr "到樹狀圖右側"
 
-#: src/actions/actionmanagerimpl.cpp:553
+#: src/actions/actionmanagerimpl.cpp:554
 #, kde-format
 msgid "Go Up in Tree"
 msgstr "到樹狀圖上方"
 
-#: src/actions/actionmanagerimpl.cpp:558
+#: src/actions/actionmanagerimpl.cpp:559
 #, kde-format
 msgid "Go Down in Tree"
 msgstr "到樹狀圖下方"
 
-#: src/actions/actionmanagerimpl.cpp:564
+#: src/actions/actionmanagerimpl.cpp:565
 #, kde-format
 msgid "Hide Read Feeds"
 msgstr "隱藏已閱讀的訂閱來源"
 
-#: src/actions/actionmanagerimpl.cpp:570
+#: src/actions/actionmanagerimpl.cpp:571
 #, kde-format
 msgid "Lock Feeds In Place"
 msgstr "原地鎖定訂閱來源"
 
-#: src/actions/actionmanagerimpl.cpp:576
+#: src/actions/actionmanagerimpl.cpp:577
 #, kde-format
 msgid "Auto-expand folders with unread articles"
 msgstr "自動展開有未閱讀文章的資料夾"
 
-#: src/actions/actionmanagerimpl.cpp:592
+#: src/actions/actionmanagerimpl.cpp:593
 #, kde-format
 msgid "Select Next Tab"
 msgstr "選擇下一個分頁"
 
-#: src/actions/actionmanagerimpl.cpp:597
+#: src/actions/actionmanagerimpl.cpp:598
 #, kde-format
 msgid "Select Previous Tab"
 msgstr "選擇前一個分頁"
 
-#: src/actions/actionmanagerimpl.cpp:603
+#: src/actions/actionmanagerimpl.cpp:604
 #, kde-format
 msgid "Detach Tab"
 msgstr "分離分頁"
 
-#: src/actions/actionmanagerimpl.cpp:617
+#: src/actions/actionmanagerimpl.cpp:618
 #, kde-format
 msgid "Mute"
 msgstr "靜音"
 
-#: src/actions/actionmanagerimpl.cpp:621
+#: src/actions/actionmanagerimpl.cpp:622
 #, kde-format
 msgid "Unmute"
 msgstr "解除靜音"
 
-#: src/actions/actionmanagerimpl.cpp:624
+#: src/actions/actionmanagerimpl.cpp:625
 #, kde-format
 msgctxt "@action"
 msgid "Speak Text"
 msgstr "唸出文字"
 
-#: src/actions/actionmanagerimpl.cpp:629
+#: src/actions/actionmanagerimpl.cpp:630
 #, kde-format
 msgid "&Find in Message…"
 msgstr "在訊息中尋找(&F)…"
 
-#: src/actions/actionmanagerimpl.cpp:640
+#: src/actions/actionmanagerimpl.cpp:641
 #, kde-format
 msgid "Close Tab"
 msgstr "關閉分頁"
 
-#: src/actions/actionmanagerimpl.cpp:653
+#: src/actions/actionmanagerimpl.cpp:654
 #, kde-format
 msgctxt "@action"
 msgid "Activate Tab %1"
 msgstr "跳到分頁 %1"
 
-#: src/actions/actionmanagerimpl.cpp:659
+#: src/actions/actionmanagerimpl.cpp:660
 #, kde-format
 msgid "&Save Link As…"
 msgstr "另存連結(&S)…"
 
-#: src/actions/actionmanagerimpl.cpp:663
+#: src/actions/actionmanagerimpl.cpp:664
 #, kde-format
 msgid "Copy &Link Address"
 msgstr "複製連結位址(&L)"
 
-#: src/actions/actionmanagerimpl.cpp:666
+#: src/actions/actionmanagerimpl.cpp:667
 #, kde-format
 msgctxt "@action"
 msgid "Copy Image URL"
 msgstr "複製圖片網址"
 
-#: src/actions/actionmanagerimpl.cpp:672
+#: src/actions/actionmanagerimpl.cpp:673
 #, kde-format
 msgctxt "@action"
 msgid "Save Image…"
@@ -1524,6 +1524,11 @@ msgstr "使用指定的網址新增訂閱來源"
 msgctxt "@info:shell"
 msgid "When adding feeds, place them in this group"
 msgstr "新增訂閱來源時，將它們放在此群組"
+
+#: src/akregator_options.h:25
+#, kde-format
+msgid "Group Name"
+msgstr ""
 
 #: src/akregator_options.h:26
 #, kde-format

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:52+0000\n"
+"POT-Creation-Date: 2025-12-01 00:43+0000\n"
 "PO-Revision-Date: 2025-03-16 15:40+0530\n"
 "Last-Translator: Kishore G <kishore96@gmail.com>\n"
 "Language-Team: Tamil <kde-i18n-doc@kde.org>\n"
@@ -1213,7 +1213,7 @@ msgstr "தொகுப்புகளைக் கொணர்வதை &ரத
 msgid "Ma&rk All Feeds as Read"
 msgstr "அனைத்து தொகுப்புக&ளையும் படித்த‍தாக‍க் குறி"
 
-#: src/actions/actionmanagerimpl.cpp:352 src/actions/actionmanagerimpl.cpp:635
+#: src/actions/actionmanagerimpl.cpp:352 src/actions/actionmanagerimpl.cpp:636
 #, kde-format
 msgid "Copy Link Address"
 msgstr "இணைப்பின் முகவரியை நகலெடு"
@@ -1326,145 +1326,145 @@ msgstr "விரை தேடலை குவியப்படுத்து"
 msgid "What's new"
 msgstr "புதியவை"
 
-#: src/actions/actionmanagerimpl.cpp:491
+#: src/actions/actionmanagerimpl.cpp:492
 #, kde-format
 msgid "&Previous Article"
 msgstr "&முந்தைய கட்டுரை"
 
-#: src/actions/actionmanagerimpl.cpp:495
+#: src/actions/actionmanagerimpl.cpp:496
 #, kde-format
 msgid "&Next Article"
 msgstr "&அடுத்த கட்டுரை"
 
-#: src/actions/actionmanagerimpl.cpp:511
+#: src/actions/actionmanagerimpl.cpp:512
 #, kde-format
 msgid "&Previous Feed"
 msgstr "&முந்தைய தொகுப்பு"
 
-#: src/actions/actionmanagerimpl.cpp:516
+#: src/actions/actionmanagerimpl.cpp:517
 #, kde-format
 msgid "&Next Feed"
 msgstr "&அடுத்த தொகுப்பு"
 
-#: src/actions/actionmanagerimpl.cpp:522
+#: src/actions/actionmanagerimpl.cpp:523
 #, kde-format
 msgid "N&ext Unread Feed"
 msgstr "அ&டுத்த படிக்காத தொகுப்பு"
 
-#: src/actions/actionmanagerimpl.cpp:528
+#: src/actions/actionmanagerimpl.cpp:529
 #, kde-format
 msgid "Prev&ious Unread Feed"
 msgstr "மு&ந்தைய படிக்காத தொகுப்பு"
 
-#: src/actions/actionmanagerimpl.cpp:533
+#: src/actions/actionmanagerimpl.cpp:534
 #, kde-format
 msgid "Go to Top of Tree"
 msgstr "கிளையின் உச்சிக்கு செல்"
 
-#: src/actions/actionmanagerimpl.cpp:538
+#: src/actions/actionmanagerimpl.cpp:539
 #, kde-format
 msgid "Go to Bottom of Tree"
 msgstr "கிளையின் நுனிக்கு செல்"
 
-#: src/actions/actionmanagerimpl.cpp:543
+#: src/actions/actionmanagerimpl.cpp:544
 #, kde-format
 msgid "Go Left in Tree"
 msgstr "இடதுபுறத்திலுள்ள கிளைக்கு செல்"
 
-#: src/actions/actionmanagerimpl.cpp:548
+#: src/actions/actionmanagerimpl.cpp:549
 #, kde-format
 msgid "Go Right in Tree"
 msgstr "வலதுபுறலுள்ள கிளைக்கு செல்"
 
-#: src/actions/actionmanagerimpl.cpp:553
+#: src/actions/actionmanagerimpl.cpp:554
 #, kde-format
 msgid "Go Up in Tree"
 msgstr "கிளையில் மேலே செல்"
 
-#: src/actions/actionmanagerimpl.cpp:558
+#: src/actions/actionmanagerimpl.cpp:559
 #, kde-format
 msgid "Go Down in Tree"
 msgstr "கிளையில் கீழே செல்"
 
-#: src/actions/actionmanagerimpl.cpp:564
+#: src/actions/actionmanagerimpl.cpp:565
 #, kde-format
 msgid "Hide Read Feeds"
 msgstr "படித்த தொகுப்புகளை மறை"
 
-#: src/actions/actionmanagerimpl.cpp:570
+#: src/actions/actionmanagerimpl.cpp:571
 #, kde-format
 msgid "Lock Feeds In Place"
 msgstr "தொகுப்புகளின் இருப்பிடத்தை பூட்டு"
 
-#: src/actions/actionmanagerimpl.cpp:576
+#: src/actions/actionmanagerimpl.cpp:577
 #, kde-format
 msgid "Auto-expand folders with unread articles"
 msgstr "படிக்காத கட்டுரைகளை கொண்ட அடைவுகளை தானாக விரிவுபடுத்து"
 
-#: src/actions/actionmanagerimpl.cpp:592
+#: src/actions/actionmanagerimpl.cpp:593
 #, kde-format
 msgid "Select Next Tab"
 msgstr "அடுத்த கீற்றைத் தேர்ந்தெடு"
 
-#: src/actions/actionmanagerimpl.cpp:597
+#: src/actions/actionmanagerimpl.cpp:598
 #, kde-format
 msgid "Select Previous Tab"
 msgstr "முந்தைய கீற்றைத் தேர்ந்தெடு"
 
-#: src/actions/actionmanagerimpl.cpp:603
+#: src/actions/actionmanagerimpl.cpp:604
 #, kde-format
 msgid "Detach Tab"
 msgstr "கீற்றைப் பிரித்தெடு"
 
-#: src/actions/actionmanagerimpl.cpp:617
+#: src/actions/actionmanagerimpl.cpp:618
 #, kde-format
 msgid "Mute"
 msgstr "ஒலியை அடக்கு"
 
-#: src/actions/actionmanagerimpl.cpp:621
+#: src/actions/actionmanagerimpl.cpp:622
 #, kde-format
 msgid "Unmute"
 msgstr "ஒலிமுடக்கத்தை நீக்கு"
 
-#: src/actions/actionmanagerimpl.cpp:624
+#: src/actions/actionmanagerimpl.cpp:625
 #, kde-format
 msgctxt "@action"
 msgid "Speak Text"
 msgstr "உரையைப் பேச்சாக்கு"
 
-#: src/actions/actionmanagerimpl.cpp:629
+#: src/actions/actionmanagerimpl.cpp:630
 #, kde-format
 msgid "&Find in Message…"
 msgstr "செய்தியில் &கண்டுபிடி…"
 
-#: src/actions/actionmanagerimpl.cpp:640
+#: src/actions/actionmanagerimpl.cpp:641
 #, kde-format
 msgid "Close Tab"
 msgstr "கீற்றை மூடு"
 
-#: src/actions/actionmanagerimpl.cpp:653
+#: src/actions/actionmanagerimpl.cpp:654
 #, kde-format
 msgctxt "@action"
 msgid "Activate Tab %1"
 msgstr "கீற்று %1-ஐ செயல்படுத்து"
 
-#: src/actions/actionmanagerimpl.cpp:659
+#: src/actions/actionmanagerimpl.cpp:660
 #, kde-format
 msgid "&Save Link As…"
 msgstr "&இணைப்பை இப்படி சேமி…"
 
-#: src/actions/actionmanagerimpl.cpp:663
+#: src/actions/actionmanagerimpl.cpp:664
 #, kde-format
 msgid "Copy &Link Address"
 msgstr "இ&ணைப்பின் முகவரியை நகலெடு"
 
-#: src/actions/actionmanagerimpl.cpp:666
+#: src/actions/actionmanagerimpl.cpp:667
 #, kde-format
 msgctxt "@action"
 msgid "Copy Image URL"
 msgstr "படத்தின் முகவரியை நகலெடு"
 
-#: src/actions/actionmanagerimpl.cpp:672
+#: src/actions/actionmanagerimpl.cpp:673
 #, kde-format
 msgctxt "@action"
 msgid "Save Image…"
@@ -1512,6 +1512,11 @@ msgstr "குறிப்பிட்ட முகவரியிலுள்�
 msgctxt "@info:shell"
 msgid "When adding feeds, place them in this group"
 msgstr "தொகுப்புகளை சேர்க்கும்போது இக்குழுவில் அவற்றை சேர்க்கும்"
+
+#: src/akregator_options.h:25
+#, kde-format
+msgid "Group Name"
+msgstr ""
 
 #: src/akregator_options.h:26
 #, kde-format
