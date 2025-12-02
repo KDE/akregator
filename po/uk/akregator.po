@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-12-01 00:43+0000\n"
-"PO-Revision-Date: 2025-01-19 16:20+0200\n"
+"PO-Revision-Date: 2025-12-01 14:54+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -1565,7 +1565,7 @@ msgstr "Після додавання подач, пересувати їх до
 #: src/akregator_options.h:25
 #, kde-format
 msgid "Group Name"
-msgstr ""
+msgstr "Назва групи"
 
 #: src/akregator_options.h:26
 #, kde-format

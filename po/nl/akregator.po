@@ -16,14 +16,14 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-12-01 00:43+0000\n"
-"PO-Revision-Date: 2025-01-19 16:08+0100\n"
+"PO-Revision-Date: 2025-12-01 18:13+0100\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 24.12.1\n"
+"X-Generator: Lokalize 25.08.3\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 # mezelf toegevoegd
@@ -1600,7 +1600,7 @@ msgstr "Bij toevoegen van feeds, plaats ze in deze groep"
 #: src/akregator_options.h:25
 #, kde-format
 msgid "Group Name"
-msgstr ""
+msgstr "Groepsnaam"
 
 #: src/akregator_options.h:26
 #, kde-format
