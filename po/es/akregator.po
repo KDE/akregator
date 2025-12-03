@@ -15,14 +15,14 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-12-01 00:43+0000\n"
-"PO-Revision-Date: 2025-06-29 13:45+0100\n"
+"PO-Revision-Date: 2025-12-02 01:33+0100\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 24.12.1\n"
+"X-Generator: Lokalize 25.08.3\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #, kde-format
@@ -1551,7 +1551,7 @@ msgstr "Al añadir fuentes, colocarlas en este grupo"
 #: src/akregator_options.h:25
 #, kde-format
 msgid "Group Name"
-msgstr ""
+msgstr "Nombre del grupo"
 
 #: src/akregator_options.h:26
 #, kde-format
