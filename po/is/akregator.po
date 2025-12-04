@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-12-01 00:43+0000\n"
-"PO-Revision-Date: 2025-10-23 07:48+0000\n"
+"PO-Revision-Date: 2025-12-03 17:51+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic\n"
 "Language: is\n"
@@ -1540,7 +1540,7 @@ msgstr "Þegar straumum er bætt við á að setja þá í þennan hóp"
 #: src/akregator_options.h:25
 #, kde-format
 msgid "Group Name"
-msgstr ""
+msgstr "Heiti hóps"
 
 #: src/akregator_options.h:26
 #, kde-format

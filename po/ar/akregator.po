@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-12-01 00:43+0000\n"
-"PO-Revision-Date: 2025-08-20 21:57+0400\n"
+"PO-Revision-Date: 2025-12-03 16:46+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
 "Language: ar\n"
@@ -1552,7 +1552,7 @@ msgstr "عندما تضيف تلقيمات، ضعها في هذه المجموع
 #: src/akregator_options.h:25
 #, kde-format
 msgid "Group Name"
-msgstr ""
+msgstr "اسم المجموعة"
 
 #: src/akregator_options.h:26
 #, kde-format
