@@ -142,7 +142,7 @@ include_directories(
 add_definitions(-DTRANSLATION_DOMAIN=\"akregator\")
 add_definitions(-DQT_NO_CONTEXTLESS_CONNECT)
 ecm_set_disabled_deprecation_versions(QT 6.10.0
-     KF 6.20.0
+     KF 6.21.0
 )
 
 if(TARGET KF6::UserFeedbackWidgets)
