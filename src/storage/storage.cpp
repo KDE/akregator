@@ -116,14 +116,14 @@ Akregator::Backend::Storage::~Storage()
 bool Akregator::Backend::Storage::open(bool autoCommit)
 {
     QString filePath = d->archivePath + QLatin1StringView("/archiveindex.mk4");
-    d->storage = new c4_Storage(filePath.toLocal8Bit().constData(), true);
+    d->storage = new c4_Storage(filePath.toLocal8Bit().constData(), static_cast<int>(true));
     d->archiveView = d->storage->GetAs("archive[url:S,unread:I,totalCount:I,lastFetch:I]");
     c4_View hash = d->storage->GetAs("archiveHash[_H:I,_R:I]");
     d->archiveView = d->archiveView.Hash(hash, 1); // hash on url
     d->autoCommit = autoCommit;
 
     filePath = d->archivePath + QLatin1StringView("/feedlistbackup.mk4");
-    d->feedListStorage = new c4_Storage(filePath.toLocal8Bit().constData(), true);
+    d->feedListStorage = new c4_Storage(filePath.toLocal8Bit().constData(), static_cast<int>(true));
     d->feedListView = d->feedListStorage->GetAs("archive[feedList:S,tagSet:S]");
     return true;
 }
