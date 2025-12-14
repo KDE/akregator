@@ -73,10 +73,10 @@ private:
 };
 
 EditSubscriptionCommandPrivate::EditSubscriptionCommandPrivate(EditSubscriptionCommand *qq)
-    : q(qq)
-    , m_list()
+    : m_list()
     , m_subscriptionId(0)
     , m_subscriptionListView(nullptr)
+    , q(qq)
 {
 }
 
