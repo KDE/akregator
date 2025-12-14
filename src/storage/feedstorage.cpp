@@ -96,7 +96,7 @@ FeedStorage::FeedStorage(const QString &url, Storage *main)
         url2 = url.left(200) + QString::number(::calcHash(url), 16);
     }
 
-    qDebug() << url2;
+    // qDebug() << url2;
     QString t = url2;
     const QString filePath = main->archivePath() + QLatin1Char('/') + t.replace(QLatin1Char('/'), QLatin1Char('_')).replace(QLatin1Char(':'), u'_');
     d->storage = new c4_Storage(QString(filePath + QLatin1StringView(".mk4")).toLocal8Bit().constData(), static_cast<int>(true));
