@@ -68,7 +68,7 @@ public Q_SLOTS:
     void slotFetchError();
 
 private:
-    Feed *m_feed = nullptr;
+    Feed *const m_feed;
     KPIM::ProgressItem *m_progressItem = nullptr;
 };
 } // namespace Akregator

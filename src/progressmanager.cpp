@@ -91,8 +91,8 @@ void ProgressManager::slotNodeDestroyed(TreeNode *node)
 }
 
 ProgressItemHandler::ProgressItemHandler(Feed *feed)
+    : m_feed(feed)
 {
-    m_feed = feed;
     m_progressItem = nullptr;
 
     connect(feed, &Feed::fetchStarted, this, &ProgressItemHandler::slotFetchStarted);
