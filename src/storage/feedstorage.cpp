@@ -177,7 +177,7 @@ void FeedStorage::setLastFetch(const QDateTime &lastFetch)
 QStringList FeedStorage::articles() const
 {
     QStringList list;
-    int size = d->archiveView.GetSize();
+    const int size = d->archiveView.GetSize();
     list.reserve(size);
     for (int i = 0; i < size; ++i) { // fill with guids
         list += QString::fromLatin1(QByteArray(d->pguid(d->archiveView.GetAt(i))));
@@ -210,7 +210,7 @@ int FeedStorage::findArticle(const QString &guid) const
 
 void FeedStorage::deleteArticle(const QString &guid)
 {
-    int findidx = findArticle(guid);
+    const int findidx = findArticle(guid);
     if (findidx != -1) {
         setTotalCount(totalCount() - 1);
         d->archiveView.RemoveAt(findidx);
@@ -220,25 +220,25 @@ void FeedStorage::deleteArticle(const QString &guid)
 
 bool FeedStorage::guidIsHash(const QString &guid) const
 {
-    int findidx = findArticle(guid);
+    const int findidx = findArticle(guid);
     return findidx != -1 ? d->pguidIsHash(d->archiveView.GetAt(findidx)) : false;
 }
 
 bool FeedStorage::guidIsPermaLink(const QString &guid) const
 {
-    int findidx = findArticle(guid);
+    const int findidx = findArticle(guid);
     return findidx != -1 ? d->pguidIsPermaLink(d->archiveView.GetAt(findidx)) : false;
 }
 
 uint FeedStorage::hash(const QString &guid) const
 {
-    int findidx = findArticle(guid);
+    const int findidx = findArticle(guid);
     return findidx != -1 ? d->phash(d->archiveView.GetAt(findidx)) : 0;
 }
 
 void FeedStorage::setDeleted(const QString &guid)
 {
-    int findidx = findArticle(guid);
+    const int findidx = findArticle(guid);
     if (findidx == -1) {
         return;
     }
@@ -265,19 +265,19 @@ QString FeedStorage::link(const QString &guid) const
 
 QDateTime FeedStorage::pubDate(const QString &guid) const
 {
-    int findidx = findArticle(guid);
+    const int findidx = findArticle(guid);
     return findidx != -1 ? QDateTime::fromSecsSinceEpoch(d->ppubDate(d->archiveView.GetAt(findidx))) : QDateTime();
 }
 
 int FeedStorage::status(const QString &guid) const
 {
-    int findidx = findArticle(guid);
+    const int findidx = findArticle(guid);
     return findidx != -1 ? d->pstatus(d->archiveView.GetAt(findidx)) : 0;
 }
 
 void FeedStorage::setStatus(const QString &guid, int status)
 {
-    int findidx = findArticle(guid);
+    const int findidx = findArticle(guid);
     if (findidx == -1) {
         return;
     }
@@ -290,7 +290,7 @@ void FeedStorage::setStatus(const QString &guid, int status)
 
 void FeedStorage::article(const QString &guid, uint &hash, QString &title, int &status, QDateTime &pubDate) const
 {
-    int idx = findArticle(guid);
+    const int idx = findArticle(guid);
     if (idx != -1) {
         auto view = d->archiveView.GetAt(idx);
         hash = d->phash(view);
@@ -302,25 +302,25 @@ void FeedStorage::article(const QString &guid, uint &hash, QString &title, int &
 
 QString FeedStorage::title(const QString &guid) const
 {
-    int findidx = findArticle(guid);
+    const int findidx = findArticle(guid);
     return findidx != -1 ? QString::fromUtf8(QByteArray(d->ptitle(d->archiveView.GetAt(findidx)))) : QLatin1StringView("");
 }
 
 QString FeedStorage::description(const QString &guid) const
 {
-    int findidx = findArticle(guid);
+    const int findidx = findArticle(guid);
     return findidx != -1 ? QString::fromUtf8(QByteArray(d->pdescription(d->archiveView.GetAt(findidx)))) : QLatin1StringView("");
 }
 
 QString FeedStorage::content(const QString &guid) const
 {
-    int findidx = findArticle(guid);
+    const int findidx = findArticle(guid);
     return findidx != -1 ? QString::fromUtf8(QByteArray(d->pcontent(d->archiveView.GetAt(findidx)))) : QLatin1StringView("");
 }
 
 void FeedStorage::setPubDate(const QString &guid, const QDateTime &pubdate)
 {
-    int findidx = findArticle(guid);
+    const int findidx = findArticle(guid);
     if (findidx == -1) {
         return;
     }
@@ -333,7 +333,7 @@ void FeedStorage::setPubDate(const QString &guid, const QDateTime &pubdate)
 
 void FeedStorage::setGuidIsHash(const QString &guid, bool isHash)
 {
-    int findidx = findArticle(guid);
+    const int findidx = findArticle(guid);
     if (findidx == -1) {
         return;
     }
@@ -346,7 +346,7 @@ void FeedStorage::setGuidIsHash(const QString &guid, bool isHash)
 
 void FeedStorage::setLink(const QString &guid, const QString &link)
 {
-    int findidx = findArticle(guid);
+    const int findidx = findArticle(guid);
     if (findidx == -1) {
         return;
     }
@@ -359,7 +359,7 @@ void FeedStorage::setLink(const QString &guid, const QString &link)
 
 void FeedStorage::setHash(const QString &guid, uint hash)
 {
-    int findidx = findArticle(guid);
+    const int findidx = findArticle(guid);
     if (findidx == -1) {
         return;
     }
@@ -372,7 +372,7 @@ void FeedStorage::setHash(const QString &guid, uint hash)
 
 void FeedStorage::setTitle(const QString &guid, const QString &title)
 {
-    int findidx = findArticle(guid);
+    const int findidx = findArticle(guid);
     if (findidx == -1) {
         return;
     }
@@ -385,7 +385,7 @@ void FeedStorage::setTitle(const QString &guid, const QString &title)
 
 void FeedStorage::setDescription(const QString &guid, const QString &description)
 {
-    int findidx = findArticle(guid);
+    const int findidx = findArticle(guid);
     if (findidx == -1) {
         return;
     }
@@ -398,7 +398,7 @@ void FeedStorage::setDescription(const QString &guid, const QString &description
 
 void FeedStorage::setContent(const QString &guid, const QString &content)
 {
-    int findidx = findArticle(guid);
+    const int findidx = findArticle(guid);
     if (findidx == -1) {
         return;
     }
@@ -411,7 +411,7 @@ void FeedStorage::setContent(const QString &guid, const QString &content)
 
 void FeedStorage::setAuthorName(const QString &guid, const QString &author)
 {
-    int findidx = findArticle(guid);
+    const int findidx = findArticle(guid);
     if (findidx == -1) {
         return;
     }
@@ -424,7 +424,7 @@ void FeedStorage::setAuthorName(const QString &guid, const QString &author)
 
 void FeedStorage::setAuthorUri(const QString &guid, const QString &author)
 {
-    int findidx = findArticle(guid);
+    const int findidx = findArticle(guid);
     if (findidx == -1) {
         return;
     }
@@ -437,7 +437,7 @@ void FeedStorage::setAuthorUri(const QString &guid, const QString &author)
 
 void FeedStorage::setAuthorEMail(const QString &guid, const QString &author)
 {
-    int findidx = findArticle(guid);
+    const int findidx = findArticle(guid);
     if (findidx == -1) {
         return;
     }
@@ -450,25 +450,25 @@ void FeedStorage::setAuthorEMail(const QString &guid, const QString &author)
 
 QString FeedStorage::authorName(const QString &guid) const
 {
-    int findidx = findArticle(guid);
+    const int findidx = findArticle(guid);
     return findidx != -1 ? QString::fromUtf8(QByteArray(d->pauthorName(d->archiveView.GetAt(findidx)))) : QString();
 }
 
 QString FeedStorage::authorUri(const QString &guid) const
 {
-    int findidx = findArticle(guid);
+    const int findidx = findArticle(guid);
     return findidx != -1 ? QString::fromUtf8(QByteArray(d->pauthorUri(d->archiveView.GetAt(findidx)))) : QString();
 }
 
 QString FeedStorage::authorEMail(const QString &guid) const
 {
-    int findidx = findArticle(guid);
+    const int findidx = findArticle(guid);
     return findidx != -1 ? QString::fromUtf8(QByteArray(d->pauthorEMail(d->archiveView.GetAt(findidx)))) : QString();
 }
 
 void FeedStorage::setGuidIsPermaLink(const QString &guid, bool isPermaLink)
 {
-    int findidx = findArticle(guid);
+    const int findidx = findArticle(guid);
     if (findidx == -1) {
         return;
     }
@@ -481,7 +481,7 @@ void FeedStorage::setGuidIsPermaLink(const QString &guid, bool isPermaLink)
 
 void FeedStorage::setEnclosure(const QString &guid, const QString &url, const QString &type, int length)
 {
-    int findidx = findArticle(guid);
+    const int findidx = findArticle(guid);
     if (findidx == -1) {
         return;
     }
@@ -498,7 +498,7 @@ void FeedStorage::setEnclosure(const QString &guid, const QString &url, const QS
 
 void FeedStorage::removeEnclosure(const QString &guid)
 {
-    int findidx = findArticle(guid);
+    const int findidx = findArticle(guid);
     if (findidx == -1) {
         return;
     }
@@ -515,7 +515,7 @@ void FeedStorage::removeEnclosure(const QString &guid)
 
 void FeedStorage::enclosure(const QString &guid, bool &hasEnclosure, QString &url, QString &type, int &length) const
 {
-    int findidx = findArticle(guid);
+    const int findidx = findArticle(guid);
     if (findidx == -1) {
         hasEnclosure = false;
         url.clear();
