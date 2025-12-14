@@ -44,8 +44,8 @@ public:
     explicit ActionManagerImpl(Part *part, QObject *parent = nullptr);
     ~ActionManagerImpl() override;
 
-    QAction *action(const QString &name) override;
-    QWidget *container(const QString &name) override;
+    [[nodiscard]] QAction *action(const QString &name) override;
+    [[nodiscard]] QWidget *container(const QString &name) override;
 
     void initMainWidget(MainWidget *mainWidget);
     void initArticleListView(ArticleListView *articleList);
@@ -54,8 +54,8 @@ public:
 
     void setArticleActionsEnabled(bool enabled) override;
     void setTrayIcon(TrayIcon *trayIcon);
-    KActionCollection *actionCollection() const;
-    WebEngineViewer::ZoomActionMenu *zoomActionMenu() const override;
+    [[nodiscard]] KActionCollection *actionCollection() const;
+    [[nodiscard]] WebEngineViewer::ZoomActionMenu *zoomActionMenu() const override;
     [[nodiscard]] QString quickSearchLineText() const;
 
 public Q_SLOTS:

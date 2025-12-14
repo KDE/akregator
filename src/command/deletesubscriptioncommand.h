@@ -28,7 +28,7 @@ public:
 
     void setSubscription(const QWeakPointer<FeedList> &feedList, uint subId);
 
-    uint subscriptionId() const;
+    [[nodiscard]] uint subscriptionId() const;
     QWeakPointer<FeedList> feedList() const;
 
 private:

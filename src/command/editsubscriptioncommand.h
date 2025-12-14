@@ -28,7 +28,7 @@ public:
     ~EditSubscriptionCommand() override;
 
     void setSubscription(const QSharedPointer<FeedList> &feedList, uint subId);
-    uint subscriptionId() const;
+    [[nodiscard]] uint subscriptionId() const;
     QSharedPointer<FeedList> feedList() const;
 
     SubscriptionListView *subscriptionListView() const;

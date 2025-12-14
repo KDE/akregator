@@ -36,7 +36,7 @@ public:
     [[nodiscard]] QSize sizeHint() const override;
 
     void setUrl(const QString &t);
-    Feed *feed() const;
+    [[nodiscard]] Feed *feed() const;
 
 public Q_SLOTS:
     void accept() override;
