@@ -1328,9 +1328,10 @@ void MainWidget::slotFocusQuickSearch()
 void MainWidget::slotWhatsNew()
 {
     WhatsNewTranslations translations;
-    TextAddonsWidgets::WhatsNewDialog dlg(translations.createWhatsNewInfo(), this, i18n("Akregator"));
-    dlg.updateInformations();
-    dlg.exec();
+    QPointer<TextAddonsWidgets::WhatsNewDialog> dlg = new TextAddonsWidgets::WhatsNewDialog(translations.createWhatsNewInfo(), this, i18n("Akregator"));
+    dlg->updateInformations();
+    dlg->exec();
+    delete dlg;
 }
 
 void MainWidget::slotArticleAction(Akregator::ArticleViewerWebEngine::ArticleAction type, const QString &articleId, const QString &feed)
