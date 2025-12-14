@@ -58,8 +58,6 @@ EditNodePropertiesVisitor::EditNodePropertiesVisitor(SubscriptionListView *subsc
 
 class Akregator::EditSubscriptionCommandPrivate
 {
-    EditSubscriptionCommand *const q;
-
 public:
     explicit EditSubscriptionCommandPrivate(EditSubscriptionCommand *qq);
     ~EditSubscriptionCommandPrivate();
@@ -69,6 +67,9 @@ public:
     QSharedPointer<FeedList> m_list;
     uint m_subscriptionId;
     SubscriptionListView *m_subscriptionListView = nullptr;
+
+private:
+    EditSubscriptionCommand *const q;
 };
 
 EditSubscriptionCommandPrivate::EditSubscriptionCommandPrivate(EditSubscriptionCommand *qq)
