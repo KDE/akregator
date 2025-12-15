@@ -61,7 +61,6 @@ public:
         }
     }
 
-private:
     Akregator::MainWindow *mMainWindow = nullptr;
 };
 
@@ -131,11 +130,13 @@ int main(int argc, char **argv)
     }
     // see if we are starting with session management
     if (app.isSessionRestored()) {
-        auto mainWindow = new Akregator::MainWindow();
-        mainWindow->loadPart();
+        Q_ASSERT(!app.mMainWindow);
+        app.mMainWindow = new Akregator::MainWindow();
+        app.mMainWindow->loadPart();
         if (KMainWindow::canBeRestored(1)) {
-            mainWindow->restore(1, false);
+            app.mMainWindow->restore(1, false);
         }
+        app.setTrayIconAssociatedWindow();
     }
 
 #ifdef USE_SYSTEM_SIGNAL_HANDLERS
