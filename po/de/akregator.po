@@ -7,20 +7,21 @@
 # SPDX-FileCopyrightText: 2010, 2011, 2012, 2013, 2016, 2018, 2020, 2022, 2023 Frederik Schwarzer <schwarzer@kde.org>
 # SPDX-FileCopyrightText: 2010 Panagiotis Papadopoulos <pano_90@gmx.net>
 # SPDX-FileCopyrightText: 2025 Alois Spitzbart <spitz234@hotmail.com>
+# SPDX-FileCopyrightText: 2025 Alexander Becker <alex-at-kde-l10n-de@freenet.de>
 msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-11-17 14:40+0000\n"
-"PO-Revision-Date: 2025-11-22 13:59+0100\n"
-"Last-Translator: Alois Spitzbart <spitz234@hotmail.com>\n"
+"PO-Revision-Date: 2025-12-21 23:26+0100\n"
+"Last-Translator: Alexander Becker <alex-at-kde-l10n-de@freenet.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 25.08.2\n"
+"X-Generator: Lokalize 25.12.0\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -962,7 +963,7 @@ msgstr "Akregator"
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "New Feed..."
-msgstr "Neue Nachrichtenquelle ..."
+msgstr "Neue Nachrichtenquelle …"
 
 #: kontactplugin/akregator_plugin.cpp:32
 #, kde-format
@@ -986,7 +987,7 @@ msgstr "Ein Nachrichtensammler für KDE"
 #: src/aboutdata.cpp:23
 #, kde-format
 msgid "Copyright © 2004–%1 Akregator authors"
-msgstr "Copyright © 2004–%1 Akregator-Autoren"
+msgstr "© 2004–%1 Akregator-Autoren"
 
 #: src/aboutdata.cpp:27
 #, kde-format
@@ -1165,7 +1166,7 @@ msgstr "Nachrichtenquelle &löschen"
 #: src/actions/actionmanagerimpl.cpp:74 src/actions/actionmanagerimpl.cpp:272
 #, kde-format
 msgid "&Edit Feed…"
-msgstr "Nachrichtenquelle &bearbeiten …"
+msgstr "Nachrichtenquelle &bearbeiten …"
 
 #: src/actions/actionmanagerimpl.cpp:75 src/actions/actionmanagerimpl.cpp:329
 #, kde-format
@@ -1195,17 +1196,17 @@ msgstr "Nachrichtenquelle als &gelesen markieren"
 #: src/actions/actionmanagerimpl.cpp:214
 #, kde-format
 msgid "&Import Feeds…"
-msgstr "Nachrichtenquellen &importieren …"
+msgstr "Nachrichtenquellen &importieren …"
 
 #: src/actions/actionmanagerimpl.cpp:218
 #, kde-format
 msgid "&Export Feeds…"
-msgstr "Nachrichtenquellen &exportieren …"
+msgstr "Nachrichtenquellen &exportieren …"
 
 #: src/actions/actionmanagerimpl.cpp:223
 #, kde-format
 msgid "&Configure Akregator…"
-msgstr "Akregator ein&richten …"
+msgstr "Akregator ein&richten …"
 
 #: src/actions/actionmanagerimpl.cpp:242
 #, kde-format
@@ -1220,12 +1221,12 @@ msgstr "Alle Unterfenster neu laden"
 #: src/actions/actionmanagerimpl.cpp:254
 #, kde-format
 msgid "&Add Feed…"
-msgstr "Nachrichtenquelle &hinzufügen …"
+msgstr "Nachrichtenquelle &hinzufügen …"
 
 #: src/actions/actionmanagerimpl.cpp:260
 #, kde-format
 msgid "Ne&w Folder…"
-msgstr "&Neuer Ordner …"
+msgstr "&Neuer Ordner …"
 
 #: src/actions/actionmanagerimpl.cpp:285
 #, kde-format
@@ -1352,12 +1353,12 @@ msgstr "Knoten nach rechts verschieben"
 #: src/actions/actionmanagerimpl.cpp:445
 #, kde-format
 msgid "Send &Link Address…"
-msgstr "&Verknüpfungsadresse senden …"
+msgstr "&Verknüpfungsadresse senden …"
 
 #: src/actions/actionmanagerimpl.cpp:450
 #, kde-format
 msgid "Send &File…"
-msgstr "&Datei senden …"
+msgstr "&Datei senden …"
 
 #: src/actions/actionmanagerimpl.cpp:456
 #, kde-format
@@ -1479,7 +1480,7 @@ msgstr "Text vorlesen"
 #: src/actions/actionmanagerimpl.cpp:645
 #, kde-format
 msgid "&Find in Message…"
-msgstr "In Na&chricht suchen …"
+msgstr "In Na&chricht suchen …"
 
 #: src/actions/actionmanagerimpl.cpp:656
 #, kde-format
@@ -1495,7 +1496,7 @@ msgstr "Unterfenster %1 aktivieren"
 #: src/actions/actionmanagerimpl.cpp:675
 #, kde-format
 msgid "&Save Link As…"
-msgstr "Verknüpfungsadresse speichern &unter …"
+msgstr "Verknüpfungsadresse speichern &unter …"
 
 #: src/actions/actionmanagerimpl.cpp:679
 #, kde-format
@@ -1512,7 +1513,7 @@ msgstr "Bildadresse kopieren"
 #, kde-format
 msgctxt "@action"
 msgid "Save Image…"
-msgstr "Bild speichern …"
+msgstr "Bild speichern …"
 
 #: src/actions/actions.cpp:19
 #, kde-format
@@ -1543,7 +1544,7 @@ msgstr "Nachrichtenquelle unter %1 nicht gefunden."
 #: src/addfeeddialog.cpp:121
 #, kde-format
 msgid "Feed found, downloading…"
-msgstr "Nachrichtenquelle gefunden, wird geladen …"
+msgstr "Nachrichtenquelle gefunden, wird heruntergeladen …"
 
 #: src/akregator_options.h:21 src/akregator_options.h:29
 #, kde-format
@@ -1868,7 +1869,7 @@ msgstr ""
 #: src/command/loadfeedlistcommand.cpp:129
 #, kde-format
 msgid "Opening Feed List…"
-msgstr "Liste der Nachrichtenquellen wird geöffnet …"
+msgstr "Liste der Nachrichtenquellen wird geöffnet …"
 
 #: src/command/loadfeedlistcommand.cpp:143
 #, kde-format
@@ -2116,7 +2117,7 @@ msgstr "Unbenannt"
 #: src/frame/frame.cpp:140
 #, kde-format
 msgid "Loading…"
-msgstr "Wird geladen …"
+msgstr "Wird geladen …"
 
 #: src/frame/frame.cpp:154
 #, kde-format
@@ -2190,10 +2191,9 @@ msgid "Networking is not available."
 msgstr "Es ist keine Netzwerkverbindung verfügbar."
 
 #: src/mainwidget.cpp:933
-#, fuzzy, kde-format
-#| msgid "Fetching Feeds..."
+#, kde-format
 msgid "Fetching Feeds…"
-msgstr "Nachrichten werden abgeholt ..."
+msgstr "Nachrichten werden abgeholt …"
 
 #: src/mainwidget.cpp:1131
 #, kde-format
@@ -2584,13 +2584,13 @@ msgstr "Neues Miniprogramm mit Neuerungen hinzugefügt."
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "Search articles…"
-msgstr "Artikel durchsuchen …"
+msgstr "Artikel durchsuchen …"
 
 #: src/widgets/searchbar.cpp:127
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "Search articles…<%1>"
-msgstr "Artikel durchsuchen …<%1>"
+msgstr "Artikel durchsuchen …<%1>"
 
 #: src/widgets/statussearchbuttons.cpp:29
 #, kde-format
