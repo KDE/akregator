@@ -3,7 +3,7 @@
 
   SPDX-FileCopyrightText: 2004 Sashmit Bhaduri <smt@vfemail.net>
 
-  SPDX-License-Identifier: GPL-2.0-or-later WITH Qt-Commercial-exception-1.0
+  SPDX-License-Identifier: GPL-2.0-or-later WITH LicenseRef-Qt-Commercial-exception-1.0
 
   This program is distributed in the hope that it will be useful,
   but WITHOUT ANY WARRANTY; without even the implied warranty of
