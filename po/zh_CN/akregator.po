@@ -1521,7 +1521,7 @@ msgstr "在添加订阅时将其放入此分组"
 #: src/akregator_options.h:25
 #, kde-format
 msgid "Group Name"
-msgstr ""
+msgstr "分组名称"
 
 #: src/akregator_options.h:26
 #, kde-format
