@@ -79,7 +79,7 @@ void NotificationManager::doNotify()
 
             // starting a new feed
             feedTitle = currentFeedTitle;
-            message += QStringLiteral("<p><b>%1:</b></p>").arg(feedTitle);
+            message += QStringLiteral("<p><b>%1: </b></p>").arg(feedTitle);
         }
         // check not exceeding maxNewArticlesShown per feed
         if (entriesCount <= maxNewArticlesShown) {
