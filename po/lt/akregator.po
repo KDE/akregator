@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-12-01 00:43+0000\n"
-"PO-Revision-Date: 2025-12-20 21:23+0200\n"
+"PO-Revision-Date: 2026-02-17 01:37+0200\n"
 "Last-Translator: Mindaugas Baranauskas <opensuse.lietuviu.kalba@gmail.com>\n"
 "Language-Team: Lithuanian <kde-i18n-lt@kde.org>\n"
 "Language: lt\n"
@@ -511,7 +511,7 @@ msgstr "Naudoti naršyklės krepšį (reikės mažiau tinklo pralaidumo)"
 #: configuration/ui/settings_security.ui:17
 #, kde-format
 msgid "Allow article preview to load external references"
-msgstr "Leisti straipsnio peržiūrai įkelti išorines nuorodas."
+msgstr "Leisti straipsnio peržiūrai įkelti išorines nuorodas"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_LoadExternalReferences)
 #: configuration/ui/settings_security.ui:20
