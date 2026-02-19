@@ -244,6 +244,8 @@
         <p xml:lang="nl">Deze uitgave brengt Akgregator naar Qt6 en wijzigt het ontwerp van de toepassing een beetje.</p>
         <p xml:lang="pt-BR">Esta versão porta o Akgregator para Qt6 e faz alguns ajustes no design do aplicativo.</p>
         <p xml:lang="ru">В этом выпуске Akregator перенесён на Qt6 и слегка изменён дизайн приложения.</p>
+        <p xml:lang="sl">Ta izdaja prenaša Akgregator na Qt6 in nekoliko spreminja obliko aplikacije.</p>
+        <p xml:lang="uk">У цьому випуску Akgregator портовано на Qt6, а також дещо скориговано дизайн програми.</p>
       </description>
     </release>
     <release version="5.24.5" date="2024-02-15"/>
