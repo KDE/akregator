@@ -966,7 +966,6 @@ void Feed::setArticleDeleted(Article &a)
 
 void Feed::setArticleChanged(Article &a, int oldStatus, bool process)
 {
-    Q_UNUSED(process)
     int newStatus = a.status();
     if (oldStatus != -1) {
         if (oldStatus == Read && newStatus != Read) {
@@ -976,7 +975,9 @@ void Feed::setArticleChanged(Article &a, int oldStatus, bool process)
         }
     }
     d->m_updatedArticlesNotify.append(a);
-    articlesModified();
+    if (process) {
+        articlesModified();
+    }
 }
 
 int Feed::totalCount() const

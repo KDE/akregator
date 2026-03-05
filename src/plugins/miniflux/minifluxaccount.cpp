@@ -34,9 +34,10 @@ MinifluxAccount::MinifluxAccount(const QString &name,
     , m_client(new MinifluxClient(serverUrl, apiToken, this))
     , m_statusSync(new MinifluxStatusSync(m_client, this))
 {
+    static constexpr int msPerMinute = 60 * 1000;
     const int intervalMinutes = Settings::autoFetchInterval();
     if (intervalMinutes > 0) {
-        m_pollTimer.setInterval(intervalMinutes * 60 * 1000);
+        m_pollTimer.setInterval(intervalMinutes * msPerMinute);
         m_pollTimer.setSingleShot(false);
         connect(&m_pollTimer, &QTimer::timeout, this, &MinifluxAccount::onPollTimer);
     }
@@ -66,9 +67,7 @@ void MinifluxAccount::initialize()
     // status changes made before the initial sync job finishes are still captured.
     watchExistingFeeds(m_rootFolder);
 
-    auto *job = new MinifluxSyncJob(m_client, this);
-    connect(job, &KJob::finished, this, &MinifluxAccount::onSyncJobFinished);
-    job->start();
+    startSyncJob();
 }
 
 void MinifluxAccount::watchExistingFeeds(Folder *folder)
@@ -125,6 +124,11 @@ void MinifluxAccount::removeFromConfig()
 }
 
 void MinifluxAccount::onPollTimer()
+{
+    startSyncJob();
+}
+
+void MinifluxAccount::startSyncJob()
 {
     auto *job = new MinifluxSyncJob(m_client, this);
     connect(job, &KJob::finished, this, &MinifluxAccount::onSyncJobFinished);
@@ -183,3 +187,5 @@ void MinifluxAccount::populateFeedTree(const QList<MinifluxCategory> &categories
         }
     }
 }
+
+#include "moc_minifluxaccount.cpp"

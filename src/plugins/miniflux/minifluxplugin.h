@@ -6,6 +6,7 @@
 #pragma once
 
 #include "accountplugin.h"
+#include <QPointer>
 
 namespace Akregator
 {
@@ -30,7 +31,7 @@ private:
     void loadSavedAccounts();
 
     FeedList *m_feedList = nullptr;
-    QList<MinifluxAccount *> m_accounts;
+    QList<QPointer<MinifluxAccount>> m_accounts;
 };
 
 } // namespace Akregator

@@ -3,6 +3,14 @@
 
 add_library(akregator_miniflux_plugin MODULE)
 
+ecm_qt_declare_logging_category(akregator_miniflux_plugin
+    HEADER miniflux_debug.h
+    IDENTIFIER MINIFLUX_LOG
+    CATEGORY_NAME org.kde.pim.akregator.miniflux
+    DESCRIPTION "akregator miniflux plugin (akregator)"
+    EXPORT AKREGATOR
+)
+
 target_sources(
     akregator_miniflux_plugin
     PRIVATE
@@ -38,6 +46,7 @@ target_link_libraries(
         KF6::CoreAddons
         KF6::I18n
         KF6::ConfigGui
+        KF6::WidgetsAddons
         Qt::Network
         Qt::Xml
         Qt::Widgets

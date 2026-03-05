@@ -73,10 +73,10 @@ void MinifluxPlugin::onAccountDeleted(MinifluxAccount *account)
 
 void MinifluxPlugin::loadSavedAccounts()
 {
-    KConfigGroup group = KSharedConfig::openConfig()->group(QStringLiteral("MinifluxAccounts"));
+    const KConfigGroup group = KSharedConfig::openConfig()->group(QStringLiteral("MinifluxAccounts"));
     const QStringList accounts = group.readEntry("accounts", QStringList());
     for (const QString &accountName : accounts) {
-        KConfigGroup accountGroup = KSharedConfig::openConfig()->group(QStringLiteral("MinifluxAccount-") + accountName);
+        const KConfigGroup accountGroup = KSharedConfig::openConfig()->group(QStringLiteral("MinifluxAccount-") + accountName);
         const QUrl serverUrl(accountGroup.readEntry("serverUrl"));
         const QString apiToken = accountGroup.readEntry("apiToken");
         if (!serverUrl.isValid() || apiToken.isEmpty()) {

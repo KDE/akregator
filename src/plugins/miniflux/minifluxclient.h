@@ -70,7 +70,7 @@ private:
     QNetworkReply *makePut(const QString &path, const QByteArray &body);
     void setAuthHeader(QNetworkRequest &request) const;
 
-    QNetworkAccessManager *m_nam;
+    QNetworkAccessManager *m_nam = nullptr;
     QUrl m_serverUrl;
     QString m_apiToken;
 };

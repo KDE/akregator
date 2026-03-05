@@ -31,8 +31,8 @@ protected:
     void tryFetch() override;
 
 private:
-    int m_minifluxFeedId;
-    MinifluxClient *m_client; // not owned
+    int m_minifluxFeedId = 0;
+    MinifluxClient *m_client = nullptr; // not owned
 };
 
 } // namespace Akregator

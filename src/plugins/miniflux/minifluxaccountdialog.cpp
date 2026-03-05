@@ -8,8 +8,9 @@
 #include "ui_minifluxaccountdialog.h"
 
 #include <KLocalizedString>
+#include <KMessageBox>
 #include <QDialogButtonBox>
-#include <QMessageBox>
+#include <QPointer>
 #include <QPushButton>
 
 using namespace Akregator;
@@ -19,7 +20,7 @@ MinifluxAccountDialog::MinifluxAccountDialog(QWidget *parent)
     , ui(new Ui::MinifluxAccountDialog)
 {
     ui->setupUi(this);
-    setWindowTitle(i18n("Add Miniflux Account"));
+    setWindowTitle(i18nc("@title:window", "Add Miniflux Account"));
     connect(ui->testButton, &QPushButton::clicked, this, &MinifluxAccountDialog::slotTestConnection);
     connect(ui->buttonBox, &QDialogButtonBox::accepted, this, &QDialog::accept);
     connect(ui->buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
@@ -50,19 +51,23 @@ void MinifluxAccountDialog::slotTestConnection()
     const QUrl url = serverUrl();
     const QString token = apiToken();
     if (!url.isValid() || token.isEmpty()) {
-        QMessageBox::warning(this, i18n("Invalid Input"), i18n("Please enter a valid server URL and API token."));
+        KMessageBox::error(this, i18n("Please enter a valid server URL and API token."), i18nc("@title:window", "Invalid Input"));
         return;
     }
     ui->testButton->setEnabled(false);
     auto *client = new MinifluxClient(url, token, this);
-    connect(client, &MinifluxClient::credentialsVerified, this, [this, client](bool ok, const QString &error) {
+    connect(client, &MinifluxClient::credentialsVerified, this, [this, client = QPointer<MinifluxClient>(client)](bool ok, const QString &error) {
         ui->testButton->setEnabled(true);
-        client->deleteLater();
+        if (client) {
+            client->deleteLater();
+        }
         if (ok) {
-            QMessageBox::information(this, i18n("Connection Successful"), i18n("Successfully connected to the Miniflux server."));
+            KMessageBox::information(this, i18n("Successfully connected to the Miniflux server."), i18nc("@title:window", "Connection Successful"));
         } else {
-            QMessageBox::warning(this, i18n("Connection Failed"), i18n("Failed to connect: %1", error));
+            KMessageBox::error(this, i18n("Failed to connect: %1", error), i18nc("@title:window", "Connection Failed"));
         }
     });
     client->verifyCredentials();
 }
+
+#include "moc_minifluxaccountdialog.cpp"

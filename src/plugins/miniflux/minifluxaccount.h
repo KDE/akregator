@@ -59,15 +59,16 @@ private:
     void populateFeedTree(const QList<MinifluxCategory> &categories, const QList<MinifluxFeedData> &feeds);
     void watchExistingFeeds(Folder *folder);
     void removeFromConfig();
+    void startSyncJob();
     [[nodiscard]] QString folderTitle() const;
 
     QString m_accountName;
     QUrl m_serverUrl;
     QString m_apiToken;
-    FeedList *m_feedList;
-    Backend::Storage *m_storage;
-    MinifluxClient *m_client;
-    MinifluxStatusSync *m_statusSync;
+    FeedList *m_feedList = nullptr;
+    Backend::Storage *m_storage = nullptr;
+    MinifluxClient *m_client = nullptr;
+    MinifluxStatusSync *m_statusSync = nullptr;
     Folder *m_rootFolder = nullptr;
     QTimer m_pollTimer;
 };

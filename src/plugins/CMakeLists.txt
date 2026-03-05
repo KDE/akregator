@@ -2,6 +2,14 @@
 # SPDX-FileCopyrightText: none
 add_library(akregatorplugins STATIC)
 
+ecm_qt_declare_logging_category(akregatorplugins
+    HEADER akregator_plugin_debug.h
+    IDENTIFIER AKREGATOR_PLUGIN_LOG
+    CATEGORY_NAME org.kde.pim.akregator.plugins
+    DESCRIPTION "akregator plugins (akregator)"
+    EXPORT AKREGATOR
+)
+
 target_sources(
     akregatorplugins
     PRIVATE

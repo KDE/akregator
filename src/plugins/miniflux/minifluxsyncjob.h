@@ -35,7 +35,7 @@ private Q_SLOTS:
     void onNetworkError(const QString &message);
 
 private:
-    MinifluxClient *m_client;
+    MinifluxClient *m_client = nullptr;
     QList<MinifluxCategory> m_categories;
     QList<MinifluxFeedData> m_feeds;
     bool m_categoriesDone = false;

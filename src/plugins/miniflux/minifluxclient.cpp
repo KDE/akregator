@@ -5,15 +5,13 @@
 */
 #include "minifluxclient.h"
 
+#include "miniflux_debug.h"
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
-#include <QLoggingCategory>
 #include <QNetworkReply>
 #include <QNetworkRequest>
 #include <QUrlQuery>
-
-Q_DECLARE_LOGGING_CATEGORY(MINIFLUX_LOG)
 
 using namespace Akregator;
 
@@ -247,3 +245,5 @@ void MinifluxClient::refreshFeed(int feedId)
         Q_EMIT feedRefreshed(reply->error() == QNetworkReply::NoError);
     });
 }
+
+#include "moc_minifluxclient.cpp"

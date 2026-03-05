@@ -36,3 +36,5 @@ void MinifluxFeed::tryFetch()
 {
     startFeedLoader(new MinifluxRetriever(m_client, m_minifluxFeedId, title()));
 }
+
+#include "moc_minifluxfeed.cpp"

@@ -13,3 +13,5 @@ AccountPlugin::AccountPlugin(QObject *parent)
 }
 
 AccountPlugin::~AccountPlugin() = default;
+
+#include "moc_accountplugin.cpp"

@@ -59,3 +59,5 @@ QList<MinifluxFeedData> MinifluxSyncJob::feeds() const
 {
     return m_feeds;
 }
+
+#include "moc_minifluxsyncjob.cpp"

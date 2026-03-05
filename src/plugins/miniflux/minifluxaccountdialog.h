@@ -32,7 +32,7 @@ private Q_SLOTS:
     void slotTestConnection();
 
 private:
-    Ui::MinifluxAccountDialog *ui;
+    Ui::MinifluxAccountDialog *const ui;
 };
 
 } // namespace Akregator

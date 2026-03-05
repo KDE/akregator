@@ -9,9 +9,7 @@
 #include <KPluginFactory>
 #include <KPluginMetaData>
 
-#include <QLoggingCategory>
-
-static const QLoggingCategory AKREGATOR_PLUGIN_LOG("org.kde.pim.akregator");
+#include "akregator_plugin_debug.h"
 
 using namespace Akregator;
 

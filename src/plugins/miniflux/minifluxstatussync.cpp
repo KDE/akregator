@@ -10,10 +10,8 @@
 #include "feed.h"
 #include "types.h"
 
-#include <QLoggingCategory>
+#include "miniflux_debug.h"
 #include <QUrl>
-
-Q_LOGGING_CATEGORY(MINIFLUX_LOG, "org.kde.pim.akregator.miniflux", QtDebugMsg)
 
 using namespace Akregator;
 
@@ -99,3 +97,5 @@ qint64 MinifluxStatusSync::entryIdFromGuid(const QString &guid)
     const qint64 id = url.path().mid(1).toLongLong(&ok); // remove leading '/'
     return ok ? id : -1;
 }
+
+#include "moc_minifluxstatussync.cpp"
