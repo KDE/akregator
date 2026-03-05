@@ -23,6 +23,7 @@
 #include "loadfeedlistcommand.h"
 #include "mainwidget.h"
 #include "notificationmanager.h"
+#include "plugins/pluginmanager.h"
 #include "storage/storage.h"
 #include "trayicon.h"
 #include "widgets/akregatorcentralwidget.h"
@@ -139,6 +140,8 @@ Part::Part(QWidget *parentWidget, QObject *parent, const KPluginMetaData &data, 
     m_storage->open(true);
 
     Kernel::self()->setStorage(m_storage);
+
+    Kernel::self()->pluginManager()->instantiatePlugins();
 
     m_actionManager = new ActionManagerImpl(this);
     ActionManager::setInstance(m_actionManager);
@@ -366,6 +369,7 @@ void Part::feedListLoaded(const QSharedPointer<FeedList> &list)
     }
 
     if (m_standardListLoaded) {
+        Kernel::self()->pluginManager()->initializePlugins(list.data());
         QTimer::singleShot(0, this, &Part::flushAddFeedRequests);
     }
 

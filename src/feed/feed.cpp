@@ -358,6 +358,11 @@ void Feed::loadFavicon(const QString &url, bool downloadFavicon)
     const QUrl u(url);
     if (u.scheme().isEmpty()) {
         qCWarning(AKREGATOR_LOG) << "Invalid url" << url;
+        return;
+    }
+    const QString scheme = u.scheme();
+    if (scheme != QLatin1StringView("http") && scheme != QLatin1StringView("https") && !u.isLocalFile()) {
+        return;
     }
     if (u.isLocalFile()) {
         setFaviconLocalPath(u.toLocalFile());
@@ -789,9 +794,22 @@ void Feed::slotAbortFetch()
 void Feed::tryFetch()
 {
     d->m_fetchErrorCode = Syndication::Success;
+    startFeedLoader(new FeedRetriever());
+}
 
+void Feed::startFeedLoader(Syndication::DataRetriever *retriever)
+{
     d->m_loader = Syndication::Loader::create(this, SLOT(fetchCompleted(Syndication::Loader *, Syndication::FeedPtr, Syndication::ErrorCode)));
-    d->m_loader->loadFrom(QUrl(d->m_xmlUrl), new FeedRetriever());
+    d->m_loader->loadFrom(QUrl(d->m_xmlUrl), retriever);
+}
+
+void Feed::loadFromStorage()
+{
+    if (!d->m_archive && d->m_storage) {
+        d->m_archive = d->m_storage->archiveFor(xmlUrl());
+        d->m_totalCount = d->m_archive->totalCount();
+    }
+    loadArticles();
 }
 
 void Feed::fetchCompleted(Syndication::Loader *l, Syndication::FeedPtr doc, Syndication::ErrorCode status)
@@ -948,6 +966,7 @@ void Feed::setArticleDeleted(Article &a)
 
 void Feed::setArticleChanged(Article &a, int oldStatus, bool process)
 {
+    Q_UNUSED(process)
     int newStatus = a.status();
     if (oldStatus != -1) {
         if (oldStatus == Read && newStatus != Read) {
@@ -957,9 +976,7 @@ void Feed::setArticleChanged(Article &a, int oldStatus, bool process)
         }
     }
     d->m_updatedArticlesNotify.append(a);
-    if (process) {
-        articlesModified();
-    }
+    articlesModified();
 }
 
 int Feed::totalCount() const

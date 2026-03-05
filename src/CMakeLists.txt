@@ -12,6 +12,7 @@ include_directories(
 )
 
 add_subdirectory(icons)
+add_subdirectory(plugins)
 
 ########### next target ###############
 
@@ -239,6 +240,7 @@ endif()
 target_link_libraries(
     akregatorprivate
     PRIVATE
+        akregatorplugins
         KF6::I18n
         KF6::Parts
         KF6::Notifications
@@ -383,6 +385,7 @@ target_link_libraries(
     akregatorpart
     akregatorinterfaces
     akregatorprivate
+    akregatorplugins
     KF6::I18n
     KF6::KCMUtils
     KF6::NotifyConfig

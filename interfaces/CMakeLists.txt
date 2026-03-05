@@ -6,6 +6,8 @@ add_library(akregatorinterfaces)
 target_sources(
     akregatorinterfaces
     PRIVATE
+        accountplugin.cpp
+        accountplugin.h
         command.cpp
         feedlistmanagementinterface.cpp
         command.h
@@ -35,6 +37,7 @@ endif()
 target_link_libraries(
     akregatorinterfaces
     KF6::ConfigGui
+    KF6::CoreAddons
     Qt::Widgets
 )
 if(COMPILE_WITH_UNITY_CMAKE_SUPPORT)

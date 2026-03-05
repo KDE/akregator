@@ -7,6 +7,7 @@
 */
 
 #include "actionmanagerimpl.h"
+#include "accountplugin.h"
 #include "akregator_part.h"
 #include "akregatorconfig.h"
 #include "articlelistview.h"
@@ -16,6 +17,7 @@
 #include "folder.h"
 #include "kernel.h"
 #include "mainwidget.h"
+#include "pluginmanager.h"
 #include "subscriptionlistview.h"
 #include "tabwidget.h"
 #include "trayicon.h"
@@ -206,6 +208,14 @@ void ActionManagerImpl::initPart()
     action->setText(i18n("&Export Feeds…"));
     action->setIcon(QIcon::fromTheme(u"document-export"_s));
     connect(action, &QAction::triggered, d->part, &Part::fileExport);
+
+    const auto plugins = Kernel::self()->pluginManager()->accountPlugins();
+    for (AccountPlugin *plugin : plugins) {
+        QAction *pluginAction = d->actionCollection->addAction(QStringLiteral("add_account_") + plugin->name().toLower());
+        pluginAction->setText(i18nc("@action", "Add %1 Account…", plugin->name()));
+        pluginAction->setIcon(QIcon::fromTheme(QStringLiteral("list-add")));
+        connect(pluginAction, &QAction::triggered, plugin, &AccountPlugin::addAccount);
+    }
 
     QAction *configure = d->actionCollection->addAction(u"options_configure"_s);
     configure->setText(i18n("&Configure Akregator…"));

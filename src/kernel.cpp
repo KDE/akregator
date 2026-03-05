@@ -11,6 +11,7 @@
 #include "feedlist.h"
 #include "fetchqueue.h"
 #include "framemanager.h"
+#include "plugins/pluginmanager.h"
 #if AKREGATOR_WITH_KUSERFEEDBACK
 #include "userfeedback/userfeedbackmanager.h"
 #endif
@@ -34,6 +35,7 @@ Kernel *Kernel::self()
 Kernel::Kernel()
     : m_fetchQueue(new FetchQueue())
     , m_frameManager(new FrameManager())
+    , m_pluginManager(new PluginManager())
 #if HAVE_ACTIVITY_SUPPORT
     , mActivitiesManager(new ActivitiesManager())
 #endif
@@ -48,6 +50,7 @@ Kernel::~Kernel()
 {
     delete m_fetchQueue;
     delete m_frameManager;
+    delete m_pluginManager;
 #if HAVE_ACTIVITY_SUPPORT
     delete mActivitiesManager;
 #endif
@@ -88,4 +91,9 @@ FetchQueue *Kernel::fetchQueue() const
 FrameManager *Kernel::frameManager() const
 {
     return m_frameManager;
+}
+
+PluginManager *Kernel::pluginManager() const
+{
+    return m_pluginManager;
 }

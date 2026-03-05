@@ -24,6 +24,7 @@ class Storage;
 class FeedList;
 class FetchQueue;
 class FrameManager;
+class PluginManager;
 #if HAVE_ACTIVITY_SUPPORT
 class ActivitiesManager;
 #endif
@@ -44,6 +45,8 @@ public:
 
     [[nodiscard]] FrameManager *frameManager() const;
 
+    [[nodiscard]] PluginManager *pluginManager() const;
+
 #if HAVE_ACTIVITY_SUPPORT
     [[nodiscard]] ActivitiesManager *activitiesManager() const;
 #endif
@@ -56,6 +59,7 @@ private:
     QSharedPointer<FeedList> m_feedList;
     FetchQueue *const m_fetchQueue;
     FrameManager *const m_frameManager;
+    PluginManager *const m_pluginManager;
 #if HAVE_ACTIVITY_SUPPORT
     ActivitiesManager *const mActivitiesManager;
 #endif

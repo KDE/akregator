@@ -1,0 +1,19 @@
+{
+    "KPlugin": {
+        "Authors": [
+            {
+                "Email": "blagovest@petrovs.info",
+                "Name": "Blagovest Petrov"
+            }
+        ],
+        "Description": "Sync feeds from a Miniflux server",
+        "License": "GPL",
+        "MimeTypes": [],
+        "Name": "Miniflux",
+        "ServiceTypes": [
+            "Akregator/AccountPlugin"
+        ],
+        "Version": "1.0",
+        "Website": ""
+    }
+}

@@ -292,16 +292,22 @@ private:
     /** returns @c true if either this article uses @c limitArticleAge as custom setting or uses the global default, which is @c limitArticleAge */
     [[nodiscard]] bool usesExpiryByAge() const;
 
+protected:
     /** executes the actual fetch action */
-    void tryFetch();
+    virtual void tryFetch();
 
-    void markAsFetchedNow();
+    /** starts the syndication loader with the given retriever */
+    void startFeedLoader(Syndication::DataRetriever *retriever);
 
-private Q_SLOTS:
+    /** loads articles from storage archive (for subclasses that need to restore state) */
+    void loadFromStorage();
 
+protected Q_SLOTS:
     void fetchCompleted(Syndication::Loader *loader, Syndication::FeedPtr doc, Syndication::ErrorCode errorCode);
 
 private:
+    void markAsFetchedNow();
+
     std::unique_ptr<FeedPrivate> const d;
 };
 } // namespace Akregator

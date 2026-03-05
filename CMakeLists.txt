@@ -169,6 +169,21 @@ find_package(KPim6WebEngineViewer ${MESSAGELIB_LIB_VERSION} CONFIG REQUIRED)
 find_package(KPim6PimCommon ${PIMCOMMON_LIB_VERSION} CONFIG REQUIRED)
 find_package(KPim6PimCommonActivities ${PIMCOMMON_LIB_VERSION} CONFIG)
 
+find_package(KF6Wallet ${KF_MIN_VERSION} CONFIG)
+set_package_properties(
+    KF6Wallet
+    PROPERTIES
+        DESCRIPTION
+            "KDE Wallet Framework"
+        TYPE
+            OPTIONAL
+        PURPOSE
+            "Used for secure credential storage in account plugins"
+)
+if(TARGET KF6::Wallet)
+    set(HAVE_KWALLET TRUE)
+endif()
+
 find_package(KF6UserFeedback ${KF_MIN_VERSION} CONFIG)
 set_package_properties(
     KF6UserFeedback

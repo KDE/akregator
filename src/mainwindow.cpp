@@ -267,6 +267,9 @@ void MainWindow::slotQuit()
 
 void MainWindow::slotOnShutdown()
 {
+    if (m_part) {
+        guiFactory()->removeClient(m_part);
+    }
     delete m_part;
 }
 
@@ -276,6 +279,9 @@ bool MainWindow::queryClose()
         return true;
     }
     if (!TrayIcon::getInstance()) {
+        if (m_part) {
+            guiFactory()->removeClient(m_part);
+        }
         delete m_part; // delete that here instead of dtor to ensure nested khtmlparts are deleted before singleton objects like KHTMLPageCache
         return true;
     }
