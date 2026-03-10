@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Translators:
-# SPDX-FileCopyrightText: 2022, 2023, 2024, 2025 Emir SARI <emir_sari@icloud.com>
+# SPDX-FileCopyrightText: 2022, 2023, 2024, 2025, 2026 Emir SARI <emir_sari@icloud.com>
 # Bülent Bolat <bbolat@yildiz.edu.tr>, 2004.
 # Engin Çağatay <engincagatay@yahoo.com>, 2005.
 # Görkem Çetin <gorkem@kde.org>, 2004.
@@ -21,15 +21,15 @@ msgstr ""
 "Project-Id-Version: kdepim-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-12-01 00:43+0000\n"
-"PO-Revision-Date: 2025-12-01 10:53+0300\n"
-"Last-Translator: Emir SARI <emir_sari@îcloud.com>\n"
+"PO-Revision-Date: 2026-03-09 21:28+0300\n"
+"Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 25.08.2\n"
+"X-Generator: Lokalize 25.12.2\n"
 "(http: //www.transifex.com/projects/p/kdepim-k-tr/language/tr/)\n"
 
 #, kde-format
@@ -51,7 +51,7 @@ msgid ""
 "checking all your favorite web sites manually for updates, Akregator "
 "collects the content for you."
 msgstr ""
-"Özet akışı okuyucuları, haber, bloglar ve çevrimiçi sitelerdeki diğer "
+"Özet akışı okuyucuları, haber, bloglar ve çevrim içi sitelerdeki diğer "
 "içerikler de dahil olmak üzere farklı içerik türlerine göz atmak için uygun "
 "bir yol sağlar. En sevdiğiniz web sitelerini güncellemeler için elle "
 "denetlemek yerine, Akregatör sizin için içeriği toplar."
