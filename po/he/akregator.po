@@ -2,13 +2,13 @@
 #
 # Diego Iastrubni <elcuco@kde.org>, 2005, 2006, 2012.
 # Elkana Bardugo <ttv200@gmail.com>, 2017. #zanata
-# SPDX-FileCopyrightText: 2023, 2024, 2025 Yaron Shahrabani <sh.yaron@gmail.com>
+# SPDX-FileCopyrightText: 2023, 2024, 2025, 2026 Yaron Shahrabani <sh.yaron@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-12-01 00:43+0000\n"
-"PO-Revision-Date: 2025-12-01 09:30+0200\n"
+"PO-Revision-Date: 2026-03-20 08:13+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 && "
 "n % 10 == 0) ? 2 : 3));\n"
-"X-Generator: Lokalize 25.08.3\n"
+"X-Generator: Lokalize 25.12.3\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -1601,7 +1601,7 @@ msgstr "אי אפשר לייבא את הקובץ %1 (אין OPML תקין)"
 #, kde-format
 msgctxt "@title:window"
 msgid "OPML Parsing Error"
-msgstr "שגיאת פענוח OPML"
+msgstr "שגיאת פיענוח OPML"
 
 #: src/akregator_part.cpp:458
 #, kde-format
@@ -1849,12 +1849,12 @@ msgstr "<qt>לא ניתן לפתוח את רשימת הערוצים (%1) לקר�
 #, kde-format
 msgctxt "error message window caption"
 msgid "XML Parsing Error"
-msgstr "שגיאת פענוח XML"
+msgstr "שגיאת פיענוח XML"
 
 #: src/command/loadfeedlistcommand.cpp:157
 #, kde-kuit-format
 msgid "<qt><p>XML parsing error in line %1, column %2 of %3:</p><p>%4</p></qt>"
-msgstr "<qt><p>שגיאת פענוח XML בשורה %1, עמודה %2 מתוך %3:</p><p>%4</p></qt>"
+msgstr "<qt><p>שגיאת פיענוח XML בשורה %1, עמודה %2 מתוך %3:</p><p>%4</p></qt>"
 
 #: src/command/loadfeedlistcommand.cpp:164
 #, kde-format
