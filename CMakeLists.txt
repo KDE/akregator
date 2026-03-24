@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: CC0-1.0
 # SPDX-FileCopyrightText: none
-cmake_minimum_required(VERSION 3.27)
+cmake_minimum_required(VERSION 3.29)
 set(PIM_VERSION "6.7.40")
 project(akregator VERSION ${PIM_VERSION})
 
