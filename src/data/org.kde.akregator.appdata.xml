@@ -136,6 +136,7 @@
   <summary xml:lang="pt-BR">Acompanhe seus feeds</summary>
   <summary xml:lang="ru">Оставайтесь в курсе событий с помощью ваших лент новостей</summary>
   <summary xml:lang="sa">भवतः फीड्स् इत्यस्य तालमेलं स्थापयन्तु</summary>
+  <summary xml:lang="sk">Sledujte svoje kanály</summary>
   <summary xml:lang="sl">Bodite na tekočem s svojimi viri</summary>
   <summary xml:lang="sv">Håll dig uppdaterad med dina kanaler</summary>
   <summary xml:lang="tr">Beslemelerinizi takip edin</summary>
@@ -255,6 +256,7 @@
         <p xml:lang="pl">To wydanie przenosi Akregatora na Qt6 oraz nieznacznie poprawia projekt aplikacji.</p>
         <p xml:lang="pt-BR">Esta versão porta o Akgregator para Qt6 e faz alguns ajustes no design do aplicativo.</p>
         <p xml:lang="ru">В этом выпуске Akregator перенесён на Qt6 и слегка изменён дизайн приложения.</p>
+        <p xml:lang="sk">Toto vydanie portuje Akregator na Qt6 a trochu upravuje dizajn aplikácie.</p>
         <p xml:lang="sl">Ta izdaja prenaša Akgregator na Qt6 in nekoliko spreminja obliko aplikacije.</p>
         <p xml:lang="tr">Bu yayım, Akregatör’ü Qt6’ya aktarır ve uygulamanın tasarımını biraz değiştirir.</p>
         <p xml:lang="uk">У цьому випуску Akgregator портовано на Qt6, а також дещо скориговано дизайн програми.</p>
