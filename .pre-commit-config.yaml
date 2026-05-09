@@ -21,7 +21,7 @@ repos:
     - id: destroyed-symlinks
     - id: check-executables-have-shebangs
  - repo: https://github.com/pre-commit/mirrors-clang-format
-   rev: v21.1.2
+   rev: v22.1.5
    hooks:
     - id: clang-format
     # force using this project's configuration rather
@@ -30,14 +30,14 @@ repos:
       exclude: ^(src/storage/)
  - repo: https://github.com/astral-sh/ruff-pre-commit
   # Ruff version.
-   rev: v0.14.0
+   rev: v0.15.12
    hooks:
     # Run the linter.
     - id: ruff
     # Run the formatter.
     - id: ruff-format
  - repo: https://github.com/codespell-project/codespell
-   rev: v2.4.1
+   rev: v2.4.2
    hooks:
     - id: codespell
       exclude: (textemoticons/core/data/emoji.json|textgrammarcheck/grammalecte/autotests/data/result1.json|texttranslator/translator/plugins/bergamot/autotests/data/modellanguages/models.json|textgrammarcheck/languagetool/autotests/data/test2.json|textautocorrection/core/autotests/data/custom-fr-ref.xml|textgrammarcheck/common/autotests/grammarresultutiltest.cpp|textautocorrection/core/autotests/data/custom-fr.xml)
@@ -46,12 +46,12 @@ repos:
    hooks:
     - id: gersemi
  - repo: https://github.com/DavidAnson/markdownlint-cli2
-   rev: v0.18.1
+   rev: v0.22.1
    hooks:
     - id: markdownlint-cli2
       files: \.(md|mdown|markdown)$
  - repo: https://github.com/scop/pre-commit-shfmt
-   rev: v3.12.0-2
+   rev: v3.13.1-1
    hooks:
     - id: shfmt
  - repo: https://github.com/shellcheck-py/shellcheck-py
