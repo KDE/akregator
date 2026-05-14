@@ -1359,8 +1359,9 @@ void MainWidget::slotArticleAction(Akregator::ArticleViewerWebEngine::ArticleAct
         job->start();
         break;
     }
-    case ArticleViewerWebEngine::SendUrlArticle: {
-    case ArticleViewerWebEngine::SendFileArticle:
+    case ArticleViewerWebEngine::SendUrlArticle:
+        [[fallthrough]];
+    case ArticleViewerWebEngine::SendFileArticle: {
         const Article article = m_feedList->findArticle(feed, articleId);
         const QByteArray text = article.link().toDisplayString().toLatin1();
         const QString title = Akregator::Utils::convertHtmlTags(article.title());
