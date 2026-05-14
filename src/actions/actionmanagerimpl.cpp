@@ -501,9 +501,8 @@ void ActionManagerImpl::initSubscriptionListView(SubscriptionListView *subscript
 {
     if (d->subscriptionListView) {
         return;
-    } else {
-        d->subscriptionListView = subscriptionListView;
     }
+    d->subscriptionListView = subscriptionListView;
 
     KActionCollection *coll = actionCollection();
 
@@ -582,9 +581,8 @@ void ActionManagerImpl::initTabWidget(TabWidget *tabWidget)
 {
     if (d->tabWidget) {
         return;
-    } else {
-        d->tabWidget = tabWidget;
     }
+    d->tabWidget = tabWidget;
 
     KActionCollection *coll = actionCollection();
 
