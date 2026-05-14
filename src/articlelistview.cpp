@@ -475,7 +475,8 @@ void ArticleListView::slotNextUnreadArticle()
     if (rowCount == 0) {
         return;
     }
-    const int startRow = qMin(rowCount - 1, (currentIndex().isValid() ? currentIndex().row() + 1 : 0));
+    Q_EMIT userActionTakingPlace();
+    const int startRow = currentIndex().isValid() ? ((currentIndex().row() + 1) % rowCount) : 0;
 
     int i = startRow;
     bool foundUnread = false;
@@ -512,7 +513,8 @@ void ArticleListView::slotPreviousUnreadArticle()
     if (rowCount == 0) {
         return;
     }
-    const int startRow = qMax(0, (currentIndex().isValid() ? currentIndex().row() : rowCount) - 1);
+    Q_EMIT userActionTakingPlace();
+    const int startRow = currentIndex().isValid() ? ((currentIndex().row() + rowCount - 1) % rowCount) : (rowCount - 1);
 
     int i = startRow;
     bool foundUnread = false;
