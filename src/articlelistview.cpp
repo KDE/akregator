@@ -474,6 +474,9 @@ void ArticleListView::slotNextUnreadArticle()
     }
 
     const int rowCount = model()->rowCount();
+    if (rowCount == 0) {
+        return;
+    }
     const int startRow = qMin(rowCount - 1, (currentIndex().isValid() ? currentIndex().row() + 1 : 0));
 
     int i = startRow;
@@ -508,6 +511,9 @@ void ArticleListView::slotPreviousUnreadArticle()
     }
 
     const int rowCount = model()->rowCount();
+    if (rowCount == 0) {
+        return;
+    }
     const int startRow = qMax(0, (currentIndex().isValid() ? currentIndex().row() : rowCount) - 1);
 
     int i = startRow;
