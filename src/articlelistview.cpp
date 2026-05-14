@@ -239,7 +239,7 @@ void ArticleListView::saveHeaderSettings()
 
 void ArticleListView::loadHeaderSettings()
 {
-    KConfigGroup conf(Settings::self()->config(), QStringLiteral("General"));
+    const KConfigGroup conf(Settings::self()->config(), QStringLiteral("General"));
     m_feedHeaderState = QByteArray::fromBase64(conf.readEntry("ArticleListFeedHeaders").toLatin1());
     m_groupHeaderState = QByteArray::fromBase64(conf.readEntry("ArticleListGroupHeaders").toLatin1());
 }
