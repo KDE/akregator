@@ -46,7 +46,7 @@ static QList<Akregator::Article> articlesForIndexes(const QModelIndexList &index
         if (a.isNull()) {
             continue;
         }
-        articles.append(articleForIndex(i, feedList));
+        articles.append(a);
     }
 
     return articles;
