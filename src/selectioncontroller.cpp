@@ -256,7 +256,7 @@ void SelectionController::subscriptionDataChanged(const QModelIndex &topLeft, co
         QModelIndex idx = m_subscriptionModel->index(row, 0, parent);
         QVariant v = m_subscriptionModel->data(idx, SubscriptionListModel::HasUnreadRole);
         if (!v.toBool()) {
-            return;
+            continue;
         }
         tv->setExpanded(idx, true);
     }
