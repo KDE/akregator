@@ -137,8 +137,6 @@ void ArticleListView::setArticleModel(ArticleModel *model)
     proxy2->setSortRole(ArticleModel::SortRole);
     proxy2->setSourceModel(m_proxy);
 
-    connect(model, &QAbstractItemModel::rowsInserted, m_proxy.data(), &QSortFilterProxyModel::invalidate);
-
     auto const columnsProxy = new FilterColumnsProxyModel(model);
     columnsProxy->setSortRole(ArticleModel::SortRole);
     columnsProxy->setColumnEnabled(ArticleModel::ItemTitleColumn);
