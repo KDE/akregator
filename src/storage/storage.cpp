@@ -34,8 +34,8 @@ public:
     {
     }
 
-    c4_Storage *storage;
-    Akregator::Backend::Storage *q;
+    c4_Storage *storage = nullptr;
+    Akregator::Backend::Storage *q = nullptr;
     c4_View archiveView;
     bool autoCommit = false;
     bool modified = false;
@@ -45,7 +45,7 @@ public:
     c4_IntProp punread, ptotalCount, plastFetch;
     QString archivePath;
 
-    c4_Storage *feedListStorage;
+    c4_Storage *feedListStorage = nullptr;
     c4_View feedListView;
 
     Akregator::Backend::FeedStorage *createFeedStorage(const QString &url);

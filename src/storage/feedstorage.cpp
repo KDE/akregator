@@ -72,12 +72,12 @@ public:
     }
 
     QString url;
-    c4_Storage *storage;
-    Storage *mainStorage;
+    c4_Storage *storage = nullptr;
+    Storage *mainStorage = nullptr;
     c4_View archiveView;
 
-    bool autoCommit;
-    bool modified;
+    bool autoCommit = false;
+    bool modified = false;
     c4_StringProp pguid, ptitle, pdescription, pcontent, plink, pcommentsLink, ptag, pEnclosureType, pEnclosureUrl, pcatTerm, pcatScheme, pcatName, pauthorName,
         pauthorUri, pauthorEMail;
     c4_IntProp phash, pguidIsHash, pguidIsPermaLink, pcomments, pstatus, ppubDate, pHasEnclosure, pEnclosureLength;
