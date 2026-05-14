@@ -231,7 +231,7 @@ void ArticleMatcher::writeConfig(KConfigGroup *config) const
 
     config->writeEntry(QStringLiteral("matcherCriteriaCount"), m_criteria.count());
 
-    QString criterionGroupPrefix = config->name() + QLatin1StringView("_Criterion");
+    const QString criterionGroupPrefix = config->name() + QLatin1StringView("_Criterion");
 
     const int criteriaSize(m_criteria.size());
     for (int index = 0; index < criteriaSize; ++index) {

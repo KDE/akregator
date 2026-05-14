@@ -512,9 +512,10 @@ void Part::fetchFeedUrl(const QString &s)
 
 void Part::addFeedsToGroup(const QStringList &urls, const QString &group)
 {
-    AddFeedRequest req;
-    req.group = group;
-    req.urls = urls;
+    const AddFeedRequest req{
+        .urls = urls,
+        .group = group,
+    };
     m_requests.append(req);
     if (m_standardListLoaded) {
         flushAddFeedRequests();
@@ -694,8 +695,8 @@ void Part::autoReadProperties()
     if (qGuiApp->isSessionRestored()) {
         return;
     }
-    KConfig config(QStringLiteral("autosaved"), KConfig::SimpleConfig, QStandardPaths::AppDataLocation);
-    KConfigGroup configGroup(&config, QStringLiteral("Part"));
+    const KConfig config(QStringLiteral("autosaved"), KConfig::SimpleConfig, QStandardPaths::AppDataLocation);
+    const KConfigGroup configGroup(&config, QStringLiteral("Part"));
 
     readProperties(configGroup);
 }
