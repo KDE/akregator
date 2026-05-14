@@ -185,7 +185,7 @@ void Akregator::SubscriptionListView::showHeaderMenu(const QPoint &pos)
         if (SubscriptionListModel::TitleColumn == i) {
             continue;
         }
-        QString col = model()->headerData(i, Qt::Horizontal, Qt::DisplayRole).toString();
+        const QString col = model()->headerData(i, Qt::Horizontal, Qt::DisplayRole).toString();
         QAction *act = menu->addAction(col);
         act->setCheckable(true);
         act->setChecked(!header()->isSectionHidden(i));
