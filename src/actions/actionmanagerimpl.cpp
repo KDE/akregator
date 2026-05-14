@@ -484,9 +484,8 @@ void ActionManagerImpl::initArticleListView(ArticleListView *articleList)
 {
     if (d->articleList) {
         return;
-    } else {
-        d->articleList = articleList;
     }
+    d->articleList = articleList;
 
     QAction *action = actionCollection()->addAction(QStringLiteral("go_previous_article"));
     action->setText(i18n("&Previous Article"));
