@@ -469,6 +469,10 @@ void MainWidget::setFeedList(const QSharedPointer<FeedList> &list)
     }
     const QSharedPointer<FeedList> oldList = m_feedList;
 
+    if (oldList) {
+        oldList->disconnect(this);
+    }
+
     m_feedList = list;
     if (m_feedList) {
         connect(m_feedList.data(), &FeedList::unreadCountChanged, this, &MainWidget::slotSetTotalUnread);
@@ -480,10 +484,6 @@ void MainWidget::setFeedList(const QSharedPointer<FeedList> &list)
     Kernel::self()->setFeedList(m_feedList);
     ProgressManager::self()->setFeedList(m_feedList);
     m_selectionController->setFeedList(m_feedList);
-
-    if (oldList) {
-        oldList->disconnect(this);
-    }
 
     slotDeleteExpiredArticles();
 }
