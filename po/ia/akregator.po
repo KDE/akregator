@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-12-01 00:43+0000\n"
+"POT-Creation-Date: 2026-05-15 00:45+0000\n"
 "PO-Revision-Date: 2025-12-29 16:43+0100\n"
 "Last-Translator: giovanni <g.sora@tiscali.it>\n"
 "Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
@@ -1243,7 +1243,7 @@ msgstr "C&ancella syndicationes trovate"
 msgid "Ma&rk All Feeds as Read"
 msgstr "Ma&rca omne syndicationes como legite"
 
-#: src/actions/actionmanagerimpl.cpp:352 src/actions/actionmanagerimpl.cpp:636
+#: src/actions/actionmanagerimpl.cpp:352 src/actions/actionmanagerimpl.cpp:633
 #, kde-format
 msgid "Copy Link Address"
 msgstr "Copia adresse de ligamine"
@@ -1356,145 +1356,145 @@ msgstr "Fixa foco a Cerca rapide"
 msgid "What's new"
 msgstr "Que es de novo"
 
-#: src/actions/actionmanagerimpl.cpp:492
+#: src/actions/actionmanagerimpl.cpp:491
 #, kde-format
 msgid "&Previous Article"
 msgstr "&Previe articulo"
 
-#: src/actions/actionmanagerimpl.cpp:496
+#: src/actions/actionmanagerimpl.cpp:495
 #, kde-format
 msgid "&Next Article"
 msgstr "Pro&xime articulo"
 
-#: src/actions/actionmanagerimpl.cpp:512
+#: src/actions/actionmanagerimpl.cpp:510
 #, kde-format
 msgid "&Previous Feed"
 msgstr "&Previe syndication"
 
-#: src/actions/actionmanagerimpl.cpp:517
+#: src/actions/actionmanagerimpl.cpp:515
 #, kde-format
 msgid "&Next Feed"
 msgstr "Pro&xime syndication"
 
-#: src/actions/actionmanagerimpl.cpp:523
+#: src/actions/actionmanagerimpl.cpp:521
 #, kde-format
 msgid "N&ext Unread Feed"
 msgstr "Proxim&e syndication non legite"
 
-#: src/actions/actionmanagerimpl.cpp:529
+#: src/actions/actionmanagerimpl.cpp:527
 #, kde-format
 msgid "Prev&ious Unread Feed"
 msgstr "Prev&ie syndication non legite"
 
-#: src/actions/actionmanagerimpl.cpp:534
+#: src/actions/actionmanagerimpl.cpp:532
 #, kde-format
 msgid "Go to Top of Tree"
 msgstr "Vade a culmine de arbore"
 
-#: src/actions/actionmanagerimpl.cpp:539
+#: src/actions/actionmanagerimpl.cpp:537
 #, kde-format
 msgid "Go to Bottom of Tree"
 msgstr "Vade a fundo de arbore"
 
-#: src/actions/actionmanagerimpl.cpp:544
+#: src/actions/actionmanagerimpl.cpp:542
 #, kde-format
 msgid "Go Left in Tree"
 msgstr "Vade a sinistre de arbore"
 
-#: src/actions/actionmanagerimpl.cpp:549
+#: src/actions/actionmanagerimpl.cpp:547
 #, kde-format
 msgid "Go Right in Tree"
 msgstr "Vade a dextere de arbore"
 
-#: src/actions/actionmanagerimpl.cpp:554
+#: src/actions/actionmanagerimpl.cpp:552
 #, kde-format
 msgid "Go Up in Tree"
 msgstr "Vade in alto in arbore"
 
-#: src/actions/actionmanagerimpl.cpp:559
+#: src/actions/actionmanagerimpl.cpp:557
 #, kde-format
 msgid "Go Down in Tree"
 msgstr "vade in basso in arbore"
 
-#: src/actions/actionmanagerimpl.cpp:565
+#: src/actions/actionmanagerimpl.cpp:563
 #, kde-format
 msgid "Hide Read Feeds"
 msgstr "Cela syndicationes  legite"
 
-#: src/actions/actionmanagerimpl.cpp:571
+#: src/actions/actionmanagerimpl.cpp:569
 #, kde-format
 msgid "Lock Feeds In Place"
 msgstr "Bloca syndicationes in posto"
 
-#: src/actions/actionmanagerimpl.cpp:577
+#: src/actions/actionmanagerimpl.cpp:575
 #, kde-format
 msgid "Auto-expand folders with unread articles"
 msgstr "Auto-expande dossieres con articulos non legite"
 
-#: src/actions/actionmanagerimpl.cpp:593
+#: src/actions/actionmanagerimpl.cpp:590
 #, kde-format
 msgid "Select Next Tab"
 msgstr "Selige proxime scheda"
 
-#: src/actions/actionmanagerimpl.cpp:598
+#: src/actions/actionmanagerimpl.cpp:595
 #, kde-format
 msgid "Select Previous Tab"
 msgstr "Selige previe scheda"
 
-#: src/actions/actionmanagerimpl.cpp:604
+#: src/actions/actionmanagerimpl.cpp:601
 #, kde-format
 msgid "Detach Tab"
 msgstr "Distacca scheda"
 
-#: src/actions/actionmanagerimpl.cpp:618
+#: src/actions/actionmanagerimpl.cpp:615
 #, kde-format
 msgid "Mute"
 msgstr "Mute"
 
-#: src/actions/actionmanagerimpl.cpp:622
+#: src/actions/actionmanagerimpl.cpp:619
 #, kde-format
 msgid "Unmute"
 msgstr "Non silente"
 
-#: src/actions/actionmanagerimpl.cpp:625
+#: src/actions/actionmanagerimpl.cpp:622
 #, kde-format
 msgctxt "@action"
 msgid "Speak Text"
 msgstr "Pronuncia texto"
 
-#: src/actions/actionmanagerimpl.cpp:630
+#: src/actions/actionmanagerimpl.cpp:627
 #, kde-format
 msgid "&Find in Message…"
 msgstr "&Trova in message..."
 
-#: src/actions/actionmanagerimpl.cpp:641
+#: src/actions/actionmanagerimpl.cpp:638
 #, kde-format
 msgid "Close Tab"
 msgstr "Claude scheda"
 
-#: src/actions/actionmanagerimpl.cpp:654
+#: src/actions/actionmanagerimpl.cpp:651
 #, kde-format
 msgctxt "@action"
 msgid "Activate Tab %1"
 msgstr "Activa Scheda %1"
 
-#: src/actions/actionmanagerimpl.cpp:660
+#: src/actions/actionmanagerimpl.cpp:657
 #, kde-format
 msgid "&Save Link As…"
 msgstr "&Salveguarda Ligamine como ..."
 
-#: src/actions/actionmanagerimpl.cpp:664
+#: src/actions/actionmanagerimpl.cpp:661
 #, kde-format
 msgid "Copy &Link Address"
 msgstr "Copia adresse de &ligamine"
 
-#: src/actions/actionmanagerimpl.cpp:667
+#: src/actions/actionmanagerimpl.cpp:664
 #, kde-format
 msgctxt "@action"
 msgid "Copy Image URL"
 msgstr "Copia URL de imagine"
 
-#: src/actions/actionmanagerimpl.cpp:673
+#: src/actions/actionmanagerimpl.cpp:670
 #, kde-format
 msgctxt "@action"
 msgid "Save Image…"
@@ -1638,7 +1638,7 @@ msgstr ""
 msgid "OPML Outlines (%1);;All Files (*)"
 msgstr "Contornos de OPML (%1);;Omne Files(*)"
 
-#: src/akregator_part.cpp:619
+#: src/akregator_part.cpp:620
 #, kde-format
 msgid "Imported Folder"
 msgstr "Dossier importate"
@@ -1648,17 +1648,17 @@ msgstr "Dossier importate"
 msgid "The feed to be listed was already removed."
 msgstr "Le syndication que on debeva listar ja ha essite removite."
 
-#: src/articlelistview.cpp:162 src/subscription/subscriptionlistview.cpp:180
+#: src/articlelistview.cpp:160 src/subscription/subscriptionlistview.cpp:180
 #, kde-format
 msgid "Columns"
 msgstr "Columnas"
 
-#: src/articlelistview.cpp:220
+#: src/articlelistview.cpp:218
 #, kde-format
 msgid "No result found"
 msgstr "Necun exito trovate"
 
-#: src/articlelistview.cpp:381
+#: src/articlelistview.cpp:379
 #, kde-format
 msgid ""
 "<h2>Article list</h2>Here you can browse articles from the currently "

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-12-01 00:43+0000\n"
+"POT-Creation-Date: 2026-05-15 00:45+0000\n"
 "PO-Revision-Date: 2010-03-14 01:57+0100\n"
 "Last-Translator: Børre Gaup <boerre@skolelinux.no>\n"
 "Language-Team: Northern Sami <l10n-no@lister.huftis.org>\n"
@@ -1225,7 +1225,7 @@ msgstr "Bisset gálduid viežžama"
 msgid "Ma&rk All Feeds as Read"
 msgstr "Merke buot gáldu &lohkon"
 
-#: src/actions/actionmanagerimpl.cpp:352 src/actions/actionmanagerimpl.cpp:636
+#: src/actions/actionmanagerimpl.cpp:352 src/actions/actionmanagerimpl.cpp:633
 #, kde-format
 msgid "Copy Link Address"
 msgstr "Máŋge liŋkačujuhusa"
@@ -1338,145 +1338,145 @@ msgstr ""
 msgid "What's new"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:492
+#: src/actions/actionmanagerimpl.cpp:491
 #, kde-format
 msgid "&Previous Article"
 msgstr "&Ovddit artihkal"
 
-#: src/actions/actionmanagerimpl.cpp:496
+#: src/actions/actionmanagerimpl.cpp:495
 #, kde-format
 msgid "&Next Article"
 msgstr "&Boahtte artihkal"
 
-#: src/actions/actionmanagerimpl.cpp:512
+#: src/actions/actionmanagerimpl.cpp:510
 #, kde-format
 msgid "&Previous Feed"
 msgstr "&Mannan gáldu"
 
-#: src/actions/actionmanagerimpl.cpp:517
+#: src/actions/actionmanagerimpl.cpp:515
 #, kde-format
 msgid "&Next Feed"
 msgstr "&Boahtte gáldu"
 
-#: src/actions/actionmanagerimpl.cpp:523
+#: src/actions/actionmanagerimpl.cpp:521
 #, kde-format
 msgid "N&ext Unread Feed"
 msgstr "Boahtte logakeahtes &gáldu"
 
-#: src/actions/actionmanagerimpl.cpp:529
+#: src/actions/actionmanagerimpl.cpp:527
 #, kde-format
 msgid "Prev&ious Unread Feed"
 msgstr "Ovddit &logakeahtes gáldu"
 
-#: src/actions/actionmanagerimpl.cpp:534
+#: src/actions/actionmanagerimpl.cpp:532
 #, kde-format
 msgid "Go to Top of Tree"
 msgstr "Mana muorrageahčái"
 
-#: src/actions/actionmanagerimpl.cpp:539
+#: src/actions/actionmanagerimpl.cpp:537
 #, kde-format
 msgid "Go to Bottom of Tree"
 msgstr "Mana muorraruohttasii"
 
-#: src/actions/actionmanagerimpl.cpp:544
+#: src/actions/actionmanagerimpl.cpp:542
 #, kde-format
 msgid "Go Left in Tree"
 msgstr "Mana gurutguvlui muoras"
 
-#: src/actions/actionmanagerimpl.cpp:549
+#: src/actions/actionmanagerimpl.cpp:547
 #, kde-format
 msgid "Go Right in Tree"
 msgstr "Mana olgešguvlui muoras"
 
-#: src/actions/actionmanagerimpl.cpp:554
+#: src/actions/actionmanagerimpl.cpp:552
 #, kde-format
 msgid "Go Up in Tree"
 msgstr "Goarkŋu muora"
 
-#: src/actions/actionmanagerimpl.cpp:559
+#: src/actions/actionmanagerimpl.cpp:557
 #, kde-format
 msgid "Go Down in Tree"
 msgstr "Njieja muoras"
 
-#: src/actions/actionmanagerimpl.cpp:565
+#: src/actions/actionmanagerimpl.cpp:563
 #, kde-format
 msgid "Hide Read Feeds"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:571
+#: src/actions/actionmanagerimpl.cpp:569
 #, kde-format
 msgid "Lock Feeds In Place"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:577
+#: src/actions/actionmanagerimpl.cpp:575
 #, kde-format
 msgid "Auto-expand folders with unread articles"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:593
+#: src/actions/actionmanagerimpl.cpp:590
 #, kde-format
 msgid "Select Next Tab"
 msgstr "Vállje boahtte gilkora"
 
-#: src/actions/actionmanagerimpl.cpp:598
+#: src/actions/actionmanagerimpl.cpp:595
 #, kde-format
 msgid "Select Previous Tab"
 msgstr "Vállje ovddit gilkora"
 
-#: src/actions/actionmanagerimpl.cpp:604
+#: src/actions/actionmanagerimpl.cpp:601
 #, kde-format
 msgid "Detach Tab"
 msgstr "Galgga gilkora"
 
-#: src/actions/actionmanagerimpl.cpp:618
+#: src/actions/actionmanagerimpl.cpp:615
 #, kde-format
 msgid "Mute"
 msgstr "Jaskkodahte"
 
-#: src/actions/actionmanagerimpl.cpp:622
+#: src/actions/actionmanagerimpl.cpp:619
 #, kde-format
 msgid "Unmute"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:625
+#: src/actions/actionmanagerimpl.cpp:622
 #, fuzzy, kde-format
 msgctxt "@action"
 msgid "Speak Text"
 msgstr "Huma teavstta"
 
-#: src/actions/actionmanagerimpl.cpp:630
+#: src/actions/actionmanagerimpl.cpp:627
 #, fuzzy, kde-format
 msgid "&Find in Message…"
 msgstr "&Oza reivves …"
 
-#: src/actions/actionmanagerimpl.cpp:641
+#: src/actions/actionmanagerimpl.cpp:638
 #, kde-format
 msgid "Close Tab"
 msgstr "Gidde gilkora"
 
-#: src/actions/actionmanagerimpl.cpp:654
+#: src/actions/actionmanagerimpl.cpp:651
 #, fuzzy, kde-format
 msgctxt "@action"
 msgid "Activate Tab %1"
 msgstr "Mana %1 gilkorii"
 
-#: src/actions/actionmanagerimpl.cpp:660
+#: src/actions/actionmanagerimpl.cpp:657
 #, fuzzy, kde-format
 msgid "&Save Link As…"
 msgstr "&Vurke liŋkka nugo …"
 
-#: src/actions/actionmanagerimpl.cpp:664
+#: src/actions/actionmanagerimpl.cpp:661
 #, kde-format
 msgid "Copy &Link Address"
 msgstr "Máŋge &liŋkačujuhusa"
 
-#: src/actions/actionmanagerimpl.cpp:667
+#: src/actions/actionmanagerimpl.cpp:664
 #, fuzzy, kde-format
 msgctxt "@action"
 msgid "Copy Image URL"
 msgstr "Máŋge govvačujuhusa"
 
-#: src/actions/actionmanagerimpl.cpp:673
+#: src/actions/actionmanagerimpl.cpp:670
 #, kde-format
 msgctxt "@action"
 msgid "Save Image…"
@@ -1617,7 +1617,7 @@ msgstr "Ii sáhte čállit %1-fiilii. Dárkkis beassanvuoigatvuođaid."
 msgid "OPML Outlines (%1);;All Files (*)"
 msgstr ""
 
-#: src/akregator_part.cpp:619
+#: src/akregator_part.cpp:620
 #, kde-format
 msgid "Imported Folder"
 msgstr "Sisafievrriduvvon máhppa"
@@ -1627,17 +1627,17 @@ msgstr "Sisafievrriduvvon máhppa"
 msgid "The feed to be listed was already removed."
 msgstr "Gáldu maid áiggui čájehit leat váldon eret."
 
-#: src/articlelistview.cpp:162 src/subscription/subscriptionlistview.cpp:180
+#: src/articlelistview.cpp:160 src/subscription/subscriptionlistview.cpp:180
 #, kde-format
 msgid "Columns"
 msgstr "Čuolddat"
 
-#: src/articlelistview.cpp:220
+#: src/articlelistview.cpp:218
 #, kde-format
 msgid "No result found"
 msgstr ""
 
-#: src/articlelistview.cpp:381
+#: src/articlelistview.cpp:379
 #, kde-format
 msgid ""
 "<h2>Article list</h2>Here you can browse articles from the currently "

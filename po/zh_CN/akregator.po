@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-12-01 00:43+0000\n"
+"POT-Creation-Date: 2026-05-15 00:45+0000\n"
 "PO-Revision-Date: 2024-04-23 19:24\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -1218,7 +1218,7 @@ msgstr "取消抓取订阅(&A)"
 msgid "Ma&rk All Feeds as Read"
 msgstr "将全部订阅标为已读(&R)"
 
-#: src/actions/actionmanagerimpl.cpp:352 src/actions/actionmanagerimpl.cpp:636
+#: src/actions/actionmanagerimpl.cpp:352 src/actions/actionmanagerimpl.cpp:633
 #, kde-format
 msgid "Copy Link Address"
 msgstr "复制链接地址"
@@ -1331,145 +1331,145 @@ msgstr "聚焦到快速搜索栏"
 msgid "What's new"
 msgstr "最新变化"
 
-#: src/actions/actionmanagerimpl.cpp:492
+#: src/actions/actionmanagerimpl.cpp:491
 #, kde-format
 msgid "&Previous Article"
 msgstr "上篇文章(&P)"
 
-#: src/actions/actionmanagerimpl.cpp:496
+#: src/actions/actionmanagerimpl.cpp:495
 #, kde-format
 msgid "&Next Article"
 msgstr "下篇文章(&N)"
 
-#: src/actions/actionmanagerimpl.cpp:512
+#: src/actions/actionmanagerimpl.cpp:510
 #, kde-format
 msgid "&Previous Feed"
 msgstr "上一个订阅(&P)"
 
-#: src/actions/actionmanagerimpl.cpp:517
+#: src/actions/actionmanagerimpl.cpp:515
 #, kde-format
 msgid "&Next Feed"
 msgstr "下一个订阅(&N)"
 
-#: src/actions/actionmanagerimpl.cpp:523
+#: src/actions/actionmanagerimpl.cpp:521
 #, kde-format
 msgid "N&ext Unread Feed"
 msgstr "下一个未读订阅(&E)"
 
-#: src/actions/actionmanagerimpl.cpp:529
+#: src/actions/actionmanagerimpl.cpp:527
 #, kde-format
 msgid "Prev&ious Unread Feed"
 msgstr "上一个未读订阅(&I)"
 
-#: src/actions/actionmanagerimpl.cpp:534
+#: src/actions/actionmanagerimpl.cpp:532
 #, kde-format
 msgid "Go to Top of Tree"
 msgstr "转到树的顶端"
 
-#: src/actions/actionmanagerimpl.cpp:539
+#: src/actions/actionmanagerimpl.cpp:537
 #, kde-format
 msgid "Go to Bottom of Tree"
 msgstr "转到树的底端"
 
-#: src/actions/actionmanagerimpl.cpp:544
+#: src/actions/actionmanagerimpl.cpp:542
 #, kde-format
 msgid "Go Left in Tree"
 msgstr "在树中向左"
 
-#: src/actions/actionmanagerimpl.cpp:549
+#: src/actions/actionmanagerimpl.cpp:547
 #, kde-format
 msgid "Go Right in Tree"
 msgstr "在树中向右"
 
-#: src/actions/actionmanagerimpl.cpp:554
+#: src/actions/actionmanagerimpl.cpp:552
 #, kde-format
 msgid "Go Up in Tree"
 msgstr "在树中向上"
 
-#: src/actions/actionmanagerimpl.cpp:559
+#: src/actions/actionmanagerimpl.cpp:557
 #, kde-format
 msgid "Go Down in Tree"
 msgstr "在树中向下"
 
-#: src/actions/actionmanagerimpl.cpp:565
+#: src/actions/actionmanagerimpl.cpp:563
 #, kde-format
 msgid "Hide Read Feeds"
 msgstr "隐藏已读的订阅"
 
-#: src/actions/actionmanagerimpl.cpp:571
+#: src/actions/actionmanagerimpl.cpp:569
 #, kde-format
 msgid "Lock Feeds In Place"
 msgstr "在原地固定订阅"
 
-#: src/actions/actionmanagerimpl.cpp:577
+#: src/actions/actionmanagerimpl.cpp:575
 #, kde-format
 msgid "Auto-expand folders with unread articles"
 msgstr "自动展开包含未读文章的文件夹"
 
-#: src/actions/actionmanagerimpl.cpp:593
+#: src/actions/actionmanagerimpl.cpp:590
 #, kde-format
 msgid "Select Next Tab"
 msgstr "选择下一个标签页"
 
-#: src/actions/actionmanagerimpl.cpp:598
+#: src/actions/actionmanagerimpl.cpp:595
 #, kde-format
 msgid "Select Previous Tab"
 msgstr "选择上一个标签页"
 
-#: src/actions/actionmanagerimpl.cpp:604
+#: src/actions/actionmanagerimpl.cpp:601
 #, kde-format
 msgid "Detach Tab"
 msgstr "分离标签页"
 
-#: src/actions/actionmanagerimpl.cpp:618
+#: src/actions/actionmanagerimpl.cpp:615
 #, kde-format
 msgid "Mute"
 msgstr "静音"
 
-#: src/actions/actionmanagerimpl.cpp:622
+#: src/actions/actionmanagerimpl.cpp:619
 #, kde-format
 msgid "Unmute"
 msgstr "取消静音"
 
-#: src/actions/actionmanagerimpl.cpp:625
+#: src/actions/actionmanagerimpl.cpp:622
 #, kde-format
 msgctxt "@action"
 msgid "Speak Text"
 msgstr "朗读文本"
 
-#: src/actions/actionmanagerimpl.cpp:630
+#: src/actions/actionmanagerimpl.cpp:627
 #, kde-format
 msgid "&Find in Message…"
 msgstr "在消息中查找...(&F)"
 
-#: src/actions/actionmanagerimpl.cpp:641
+#: src/actions/actionmanagerimpl.cpp:638
 #, kde-format
 msgid "Close Tab"
 msgstr "关闭标签页"
 
-#: src/actions/actionmanagerimpl.cpp:654
+#: src/actions/actionmanagerimpl.cpp:651
 #, kde-format
 msgctxt "@action"
 msgid "Activate Tab %1"
 msgstr "激活标签页 %1"
 
-#: src/actions/actionmanagerimpl.cpp:660
+#: src/actions/actionmanagerimpl.cpp:657
 #, kde-format
 msgid "&Save Link As…"
 msgstr "链接另存为...(&S)"
 
-#: src/actions/actionmanagerimpl.cpp:664
+#: src/actions/actionmanagerimpl.cpp:661
 #, kde-format
 msgid "Copy &Link Address"
 msgstr "复制链接地址(&L)"
 
-#: src/actions/actionmanagerimpl.cpp:667
+#: src/actions/actionmanagerimpl.cpp:664
 #, kde-format
 msgctxt "@action"
 msgid "Copy Image URL"
 msgstr "复制图像 URL"
 
-#: src/actions/actionmanagerimpl.cpp:673
+#: src/actions/actionmanagerimpl.cpp:670
 #, kde-format
 msgctxt "@action"
 msgid "Save Image…"
@@ -1607,7 +1607,7 @@ msgstr "访问被禁止：无法写入文件 %1。请检查您的权限。"
 msgid "OPML Outlines (%1);;All Files (*)"
 msgstr "OPML 大纲 (%1);;所有文件 (*)"
 
-#: src/akregator_part.cpp:619
+#: src/akregator_part.cpp:620
 #, kde-format
 msgid "Imported Folder"
 msgstr "导入的文件夹"
@@ -1617,17 +1617,17 @@ msgstr "导入的文件夹"
 msgid "The feed to be listed was already removed."
 msgstr "列出的订阅已被删除。"
 
-#: src/articlelistview.cpp:162 src/subscription/subscriptionlistview.cpp:180
+#: src/articlelistview.cpp:160 src/subscription/subscriptionlistview.cpp:180
 #, kde-format
 msgid "Columns"
 msgstr "栏"
 
-#: src/articlelistview.cpp:220
+#: src/articlelistview.cpp:218
 #, kde-format
 msgid "No result found"
 msgstr "未找到结果"
 
-#: src/articlelistview.cpp:381
+#: src/articlelistview.cpp:379
 #, kde-format
 msgid ""
 "<h2>Article list</h2>Here you can browse articles from the currently "

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-12-01 00:43+0000\n"
+"POT-Creation-Date: 2026-05-15 00:45+0000\n"
 "PO-Revision-Date: 2007-06-12 03:54+0200\n"
 "Last-Translator: Rinse de Vries <rinsedevries@kde.nl>\n"
 "Language-Team: Nederlands <kde-i18n-nl@kde.org>\n"
@@ -1327,7 +1327,7 @@ msgstr "Tagelyk ophelje"
 msgid "Ma&rk All Feeds as Read"
 msgstr "Alle feeds as lêzen ma&rkearje"
 
-#: src/actions/actionmanagerimpl.cpp:352 src/actions/actionmanagerimpl.cpp:636
+#: src/actions/actionmanagerimpl.cpp:352 src/actions/actionmanagerimpl.cpp:633
 #, kde-format
 msgid "Copy Link Address"
 msgstr "Keppelingadres kopiearje"
@@ -1453,151 +1453,151 @@ msgstr ""
 msgid "What's new"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:492
+#: src/actions/actionmanagerimpl.cpp:491
 #, kde-format
 msgid "&Previous Article"
 msgstr "&Foarich artikel"
 
-#: src/actions/actionmanagerimpl.cpp:496
+#: src/actions/actionmanagerimpl.cpp:495
 #, kde-format
 msgid "&Next Article"
 msgstr "F&olgjend artikel"
 
-#: src/actions/actionmanagerimpl.cpp:512
+#: src/actions/actionmanagerimpl.cpp:510
 #, kde-format
 msgid "&Previous Feed"
 msgstr "Foarige fee&d"
 
-#: src/actions/actionmanagerimpl.cpp:517
+#: src/actions/actionmanagerimpl.cpp:515
 #, kde-format
 msgid "&Next Feed"
 msgstr "Folgje&nde feed"
 
-#: src/actions/actionmanagerimpl.cpp:523
+#: src/actions/actionmanagerimpl.cpp:521
 #, kde-format
 msgid "N&ext Unread Feed"
 msgstr "Folg&jende net-lêzen feed"
 
-#: src/actions/actionmanagerimpl.cpp:529
+#: src/actions/actionmanagerimpl.cpp:527
 #, kde-format
 msgid "Prev&ious Unread Feed"
 msgstr "Foar&ige net-lêzen feed"
 
-#: src/actions/actionmanagerimpl.cpp:534
+#: src/actions/actionmanagerimpl.cpp:532
 #, kde-format
 msgid "Go to Top of Tree"
 msgstr "Nei boppekant fan beamstruktuer"
 
-#: src/actions/actionmanagerimpl.cpp:539
+#: src/actions/actionmanagerimpl.cpp:537
 #, kde-format
 msgid "Go to Bottom of Tree"
 msgstr "Nei ûnderkant fan beamstruktuer"
 
-#: src/actions/actionmanagerimpl.cpp:544
+#: src/actions/actionmanagerimpl.cpp:542
 #, kde-format
 msgid "Go Left in Tree"
 msgstr "Nei lofts yn beamstruktuer"
 
-#: src/actions/actionmanagerimpl.cpp:549
+#: src/actions/actionmanagerimpl.cpp:547
 #, kde-format
 msgid "Go Right in Tree"
 msgstr "Nei rjochts yn beamstruktuer"
 
-#: src/actions/actionmanagerimpl.cpp:554
+#: src/actions/actionmanagerimpl.cpp:552
 #, kde-format
 msgid "Go Up in Tree"
 msgstr "Omheech yn beamstruktuer"
 
-#: src/actions/actionmanagerimpl.cpp:559
+#: src/actions/actionmanagerimpl.cpp:557
 #, kde-format
 msgid "Go Down in Tree"
 msgstr "Nei ûnderen ta yn beamstruktuer"
 
-#: src/actions/actionmanagerimpl.cpp:565
+#: src/actions/actionmanagerimpl.cpp:563
 #, fuzzy, kde-format
 #| msgid "N&ext Unread Feed"
 msgid "Hide Read Feeds"
 msgstr "Folg&jende net-lêzen feed"
 
-#: src/actions/actionmanagerimpl.cpp:571
+#: src/actions/actionmanagerimpl.cpp:569
 #, kde-format
 msgid "Lock Feeds In Place"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:577
+#: src/actions/actionmanagerimpl.cpp:575
 #, fuzzy, kde-format
 #| msgid " (no unread articles)"
 msgid "Auto-expand folders with unread articles"
 msgstr " (gjin net-lêzen berjochten)"
 
-#: src/actions/actionmanagerimpl.cpp:593
+#: src/actions/actionmanagerimpl.cpp:590
 #, kde-format
 msgid "Select Next Tab"
 msgstr "Folgjende tabblêd selektearje"
 
-#: src/actions/actionmanagerimpl.cpp:598
+#: src/actions/actionmanagerimpl.cpp:595
 #, kde-format
 msgid "Select Previous Tab"
 msgstr "Foarige tabblêd selektearje"
 
 #
-#: src/actions/actionmanagerimpl.cpp:604
+#: src/actions/actionmanagerimpl.cpp:601
 #, kde-format
 msgid "Detach Tab"
 msgstr "Tabblêd losmeitsje"
 
-#: src/actions/actionmanagerimpl.cpp:618
+#: src/actions/actionmanagerimpl.cpp:615
 #, kde-format
 msgid "Mute"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:622
+#: src/actions/actionmanagerimpl.cpp:619
 #, kde-format
 msgid "Unmute"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:625
+#: src/actions/actionmanagerimpl.cpp:622
 #, kde-format
 msgctxt "@action"
 msgid "Speak Text"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:630
+#: src/actions/actionmanagerimpl.cpp:627
 #, kde-format
 msgid "&Find in Message…"
 msgstr ""
 
 #
-#: src/actions/actionmanagerimpl.cpp:641
+#: src/actions/actionmanagerimpl.cpp:638
 #, fuzzy, kde-format
 #| msgid "&Close Tab"
 msgid "Close Tab"
 msgstr "Tabblêd sl&ute"
 
-#: src/actions/actionmanagerimpl.cpp:654
+#: src/actions/actionmanagerimpl.cpp:651
 #, kde-format
 msgctxt "@action"
 msgid "Activate Tab %1"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:660
+#: src/actions/actionmanagerimpl.cpp:657
 #, fuzzy, kde-format
 #| msgid "&Save Link As..."
 msgid "&Save Link As…"
 msgstr "Keppeling op&slaan as..."
 
-#: src/actions/actionmanagerimpl.cpp:664
+#: src/actions/actionmanagerimpl.cpp:661
 #, kde-format
 msgid "Copy &Link Address"
 msgstr "Keppe&lingsadres kopiearje"
 
-#: src/actions/actionmanagerimpl.cpp:667
+#: src/actions/actionmanagerimpl.cpp:664
 #, kde-format
 msgctxt "@action"
 msgid "Copy Image URL"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:673
+#: src/actions/actionmanagerimpl.cpp:670
 #, kde-format
 msgctxt "@action"
 msgid "Save Image…"
@@ -1749,7 +1749,7 @@ msgstr "Tagong wegere: kin net opslaan yn triem %1"
 msgid "OPML Outlines (%1);;All Files (*)"
 msgstr "OPML-formaat (*.opml, *.xml)"
 
-#: src/akregator_part.cpp:619
+#: src/akregator_part.cpp:620
 #, kde-format
 msgid "Imported Folder"
 msgstr "Ymportearre map"
@@ -1759,19 +1759,19 @@ msgstr "Ymportearre map"
 msgid "The feed to be listed was already removed."
 msgstr ""
 
-#: src/articlelistview.cpp:162 src/subscription/subscriptionlistview.cpp:180
+#: src/articlelistview.cpp:160 src/subscription/subscriptionlistview.cpp:180
 #, fuzzy, kde-format
 #| msgid "Comments"
 msgid "Columns"
 msgstr "Kommentaar"
 
-#: src/articlelistview.cpp:220
+#: src/articlelistview.cpp:218
 #, kde-format
 msgid "No result found"
 msgstr ""
 
 # browser stean litte of ferfryskje?
-#: src/articlelistview.cpp:381
+#: src/articlelistview.cpp:379
 #, fuzzy, kde-format
 #| msgid ""
 #| "<h2>Article list</h2>Here you can browse articles from the currently "
