@@ -27,9 +27,11 @@
 #include <KLocalizedString>
 #include <KMessageBox>
 #include <MessageViewer/ViewerPluginToolManager>
+#include <QAction>
 #include <QApplication>
 #include <QClipboard>
 #include <QFileDialog>
+#include <QIcon>
 #include <QMenu>
 #include <QMouseEvent>
 #include <QPrinter>
@@ -171,9 +173,12 @@ void ArticleViewerWebEngine::slotServiceUrlSelected(PimCommon::ShareServiceUrlMa
     mShareServiceManager->openUrl(url);
 }
 
-void ArticleViewerWebEngine::slotSaveLinkAs()
+void ArticleViewerWebEngine::saveUrl(const QUrl &sourceUrl)
 {
-    QUrl url(mCurrentUrl);
+    QUrl url(sourceUrl);
+    if (url.isEmpty()) {
+        return;
+    }
     if (url.fileName().isEmpty()) {
         url = url.adjusted(QUrl::StripTrailingSlash);
         url.setPath(url.path() + QLatin1StringView("/index.html"));
@@ -200,32 +205,22 @@ void ArticleViewerWebEngine::slotSaveLinkAs()
     });
 }
 
-void ArticleViewerWebEngine::slotSaveImageOnDiskInFrame()
-{
-    slotSaveLinkAs();
-}
-
-void ArticleViewerWebEngine::slotCopyImageLocationInFrame()
-{
-    slotCopyLinkAddress();
-}
-
 void ArticleViewerWebEngine::slotMute(bool mute)
 {
     page()->setAudioMuted(mute);
 }
 
-void ArticleViewerWebEngine::slotCopyLinkAddress()
+void ArticleViewerWebEngine::copyUrlToClipboard(const QUrl &url)
 {
-    if (mCurrentUrl.isEmpty()) {
+    if (url.isEmpty()) {
         return;
     }
     QClipboard *cb = QApplication::clipboard();
-    cb->setText(mCurrentUrl.toString(), QClipboard::Clipboard);
+    cb->setText(url.toString(), QClipboard::Clipboard);
     // don't set url to selection as it's a no-no according to a fd.o spec
     // which spec? Nobody seems to care (tested Firefox (3.5.10) Konqueror,and KMail (4.2.3)), so I re-enable the following line unless someone gives
     // a good reason to remove it again (bug 183022) --Frank
-    cb->setText(mCurrentUrl.toString(), QClipboard::Selection);
+    cb->setText(url.toString(), QClipboard::Selection);
 }
 
 void ArticleViewerWebEngine::contextMenuEvent(QContextMenuEvent *e)
@@ -277,13 +272,26 @@ void ArticleViewerWebEngine::slotWebHitFinished(const WebEngineViewer::WebHitTes
                 popup.addAction(act);
             }
             popup.addSeparator();
-            popup.addAction(mActionCollection->action(QStringLiteral("savelinkas")));
-            popup.addAction(mActionCollection->action(QStringLiteral("copylinkaddress")));
+            QAction *saveLinkAsAction = popup.addAction(i18n("&Save Link As…"));
+            connect(saveLinkAsAction, &QAction::triggered, this, [this, url = mCurrentUrl]() {
+                saveUrl(url);
+            });
+            QAction *copyLinkAddressAction = popup.addAction(QIcon::fromTheme(QStringLiteral("edit-copy")), i18n("Copy &Link Address"));
+            connect(copyLinkAddressAction, &QAction::triggered, this, [this, url = mCurrentUrl]() {
+                copyUrlToClipboard(url);
+            });
         }
-        if (!result.imageUrl().isEmpty()) {
+        const QUrl imageUrl = result.imageUrl();
+        if (!imageUrl.isEmpty()) {
             popup.addSeparator();
-            popup.addAction(mActionCollection->action(QStringLiteral("copy_image_location")));
-            popup.addAction(mActionCollection->action(QStringLiteral("saveas_imageurl")));
+            QAction *copyImageUrlAction = popup.addAction(QIcon::fromTheme(QStringLiteral("view-media-visualization")), i18nc("@action", "Copy Image URL"));
+            connect(copyImageUrlAction, &QAction::triggered, this, [this, imageUrl]() {
+                copyUrlToClipboard(imageUrl);
+            });
+            QAction *saveImageAction = popup.addAction(i18nc("@action", "Save Image…"));
+            connect(saveImageAction, &QAction::triggered, this, [this, imageUrl]() {
+                saveUrl(imageUrl);
+            });
         }
         popup.addSeparator();
         popup.addActions(viewerPluginActionList(MessageViewer::ViewerPluginInterface::NeedUrl));

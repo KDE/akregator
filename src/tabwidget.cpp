@@ -14,6 +14,8 @@
 #include <QStyle>
 #include <QToolButton>
 
+#include <QApplication>
+#include <QClipboard>
 #include <QMenu>
 #include <QStyleOption>
 #include <QTabBar>
@@ -118,6 +120,18 @@ void TabWidget::slotTabContextMenuRequest(const QPoint &pos)
     QAction *detachTab = menu.addAction(i18nc("@action:inmenu", "Detach Tab"));
     detachTab->setEnabled((indexBar != 0) && countTab);
     detachTab->setIcon(QIcon::fromTheme(QStringLiteral("tab-detach")));
+
+    QAction *reloadTab = nullptr;
+    QAction *copyUrl = nullptr;
+    Frame *frame = d->frames.value(widget(indexBar));
+    if (frame && frame->url().isValid()) {
+        reloadTab = menu.addAction(i18nc("@action:inmenu", "Reload Tab"));
+        reloadTab->setIcon(QIcon::fromTheme(QStringLiteral("view-refresh")));
+
+        copyUrl = menu.addAction(i18nc("@action:inmenu", "Copy Tab Address"));
+        copyUrl->setIcon(QIcon::fromTheme(QStringLiteral("edit-copy")));
+    }
+
     menu.addSeparator();
 
     QAction *closeTab = menu.addAction(i18nc("@action:inmenu", "Close Tab"));
@@ -134,7 +148,11 @@ void TabWidget::slotTabContextMenuRequest(const QPoint &pos)
 
     const QAction *action = menu.exec(mapToGlobal(pos));
 
-    if (action == allOther) { // Close all other tabs
+    if (action && action == copyUrl) {
+        copyTabAddress(frame);
+    } else if (action && action == reloadTab) {
+        frame->slotReload();
+    } else if (action == allOther) { // Close all other tabs
         slotCloseAllTabExcept(indexBar);
     } else if (action == closeTab) {
         slotCloseRequest(indexBar);
@@ -409,14 +427,23 @@ void TabWidget::slotFindTextInHtml()
     Q_EMIT signalFindTextInFrame(d->currentFrame()->id());
 }
 
-void TabWidget::slotCopyLinkAddress()
+void TabWidget::slotCopyTabAddress()
 {
-    Q_EMIT signalCopyLinkAsInFrame(d->currentFrame()->id());
+    copyTabAddress(d->currentFrame());
 }
 
-void TabWidget::slotSaveLinkAs()
+void TabWidget::copyTabAddress(Frame *frame)
 {
-    Q_EMIT signalSaveLinkAsInFrame(d->currentFrame()->id());
+    if (!frame) {
+        return;
+    }
+    const QUrl url = frame->url();
+    if (!url.isValid()) {
+        return;
+    }
+    QClipboard *cb = QApplication::clipboard();
+    cb->setText(url.toString(), QClipboard::Clipboard);
+    cb->setText(url.toString(), QClipboard::Selection);
 }
 
 void TabWidget::slotPrintPreview()
@@ -434,11 +461,6 @@ void TabWidget::slotCopy()
     Q_EMIT signalCopyInFrame(d->currentFrame()->id());
 }
 
-void TabWidget::slotSaveImageOnDisk()
-{
-    Q_EMIT signalSaveImageOnDisk(d->currentFrame()->id());
-}
-
 void TabWidget::slotUnMute()
 {
     Q_EMIT signalMute(d->currentFrame()->id(), false);
@@ -447,11 +469,6 @@ void TabWidget::slotUnMute()
 void TabWidget::slotMute()
 {
     Q_EMIT signalMute(d->currentFrame()->id(), true);
-}
-
-void TabWidget::slotCopyImageLocation()
-{
-    Q_EMIT signalCopyImageLocation(d->currentFrame()->id());
 }
 
 void TabWidget::slotCloseTab()
@@ -471,6 +488,15 @@ void TabWidget::slotReloadAllTabs()
     for (Frame *frame : std::as_const(d->frames)) {
         frame->slotReload();
     }
+}
+
+void TabWidget::slotReloadTab()
+{
+    Frame *frame = d->currentFrame();
+    if (!frame) {
+        return;
+    }
+    frame->slotReload();
 }
 
 void TabWidget::slotCloseRequest(int index)

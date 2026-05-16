@@ -84,10 +84,6 @@ private:
 
 public Q_SLOTS:
     void slotCopy();
-    void slotSaveLinkAs();
-    void slotCopyLinkAddress();
-    void slotSaveImageOnDiskInFrame();
-    void slotCopyImageLocationInFrame();
     void slotMute(bool mute);
 Q_SIGNALS:
     void signalOpenUrlRequest(Akregator::OpenUrlRequest &);
@@ -102,12 +98,14 @@ Q_SIGNALS:
 protected:
     void resizeEvent(QResizeEvent *e) override;
 
+    void copyUrlToClipboard(const QUrl &url);
     virtual void displayContextMenu(const QPoint &pos);
     void forwardKeyReleaseEvent(QKeyEvent *e) override;
     void forwardKeyPressEvent(QKeyEvent *e) override;
     void forwardWheelEvent(QWheelEvent *e) override;
     void forwardMouseReleaseEvent(QMouseEvent *event) override;
     void contextMenuEvent(QContextMenuEvent *e) override;
+    void saveUrl(const QUrl &url);
 
 private Q_SLOTS:
     void slotServiceUrlSelected(PimCommon::ShareServiceUrlManager::ServiceType type);

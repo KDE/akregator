@@ -1,5 +1,5 @@
 <!DOCTYPE gui SYSTEM "kpartgui.dtd">
-<gui name="akregator_part" version="437" translationDomain="akregator">
+<gui name="akregator_part" version="439" translationDomain="akregator">
   <MenuBar>
     <Menu name="file">
       <Action name="file_import"/>
@@ -190,7 +190,8 @@
 
   <Menu name="tab_popup">
     <Action name="tab_detach"/>
-    <Action name="tab_copylinkaddress"/>
+    <Action name="tab_reload"/>
+    <Action name="tab_copyurl"/>
     <Separator/>
     <Action name="tab_remove"/>
   </Menu>

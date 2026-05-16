@@ -86,44 +86,12 @@ qreal MainFrame::zoomFactor() const
     return mArticleViewer->zoomFactor();
 }
 
-void MainFrame::slotSaveLinkAsInFrame(int frameId)
-{
-    if (frameId != 0) {
-        return;
-    }
-    mArticleViewer->articleViewerWidgetNg()->articleViewerNg()->slotSaveLinkAs();
-}
-
-void MainFrame::slotCopyLinkAsInFrame(int frameId)
-{
-    if (frameId != 0) {
-        return;
-    }
-    mArticleViewer->articleViewerWidgetNg()->articleViewerNg()->slotCopyLinkAddress();
-}
-
-void MainFrame::slotSaveImageOnDiskInFrame(int frameId)
-{
-    if (frameId != 0) {
-        return;
-    }
-    mArticleViewer->articleViewerWidgetNg()->articleViewerNg()->slotSaveImageOnDiskInFrame();
-}
-
 void MainFrame::slotMute(int frameId, bool mute)
 {
     if (frameId != 0) {
         return;
     }
     mArticleViewer->articleViewerWidgetNg()->articleViewerNg()->slotMute(mute);
-}
-
-void MainFrame::slotCopyImageLocationInFrame(int frameId)
-{
-    if (frameId != 0) {
-        return;
-    }
-    mArticleViewer->articleViewerWidgetNg()->articleViewerNg()->slotCopyImageLocationInFrame();
 }
 
 #include "moc_mainframe.cpp"

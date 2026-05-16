@@ -256,10 +256,6 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
     connect(m_tabWidget, &TabWidget::signalPrintPreviewInFrame, m_mainFrame, &MainFrame::slotPrintPreviewInFrame);
     connect(m_tabWidget, &TabWidget::signalFindTextInFrame, m_mainFrame, &MainFrame::slotFindTextInFrame);
     connect(m_tabWidget, &TabWidget::signalTextToSpeechInFrame, m_mainFrame, &MainFrame::slotTextToSpeechInFrame);
-    connect(m_tabWidget, &TabWidget::signalSaveLinkAsInFrame, m_mainFrame, &MainFrame::slotSaveLinkAsInFrame);
-    connect(m_tabWidget, &TabWidget::signalCopyLinkAsInFrame, m_mainFrame, &MainFrame::slotCopyLinkAsInFrame);
-    connect(m_tabWidget, &TabWidget::signalCopyImageLocation, m_mainFrame, &MainFrame::slotCopyImageLocationInFrame);
-    connect(m_tabWidget, &TabWidget::signalSaveImageOnDisk, m_mainFrame, &MainFrame::slotSaveImageOnDiskInFrame);
     connect(m_tabWidget, &TabWidget::signalMute, m_mainFrame, &MainFrame::slotMute);
 
     Kernel::self()->frameManager()->slotAddFrame(m_mainFrame);
@@ -379,10 +375,6 @@ void MainWidget::connectFrame(Akregator::WebEngineFrame *frame)
     connect(m_tabWidget, &TabWidget::signalPrintPreviewInFrame, frame, &WebEngineFrame::slotPrintPreviewInFrame);
     connect(m_tabWidget, &TabWidget::signalFindTextInFrame, frame, &WebEngineFrame::slotFindTextInFrame);
     connect(m_tabWidget, &TabWidget::signalTextToSpeechInFrame, frame, &WebEngineFrame::slotTextToSpeechInFrame);
-    connect(m_tabWidget, &TabWidget::signalSaveLinkAsInFrame, frame, &WebEngineFrame::slotSaveLinkAsInFrame);
-    connect(m_tabWidget, &TabWidget::signalCopyLinkAsInFrame, frame, &WebEngineFrame::slotCopyLinkAsInFrame);
-    connect(m_tabWidget, &TabWidget::signalCopyImageLocation, frame, &WebEngineFrame::slotCopyImageLocationInFrame);
-    connect(m_tabWidget, &TabWidget::signalSaveImageOnDisk, frame, &WebEngineFrame::slotSaveImageOnDiskInFrame);
     connect(m_tabWidget, &TabWidget::signalMute, frame, &WebEngineFrame::slotMute);
 
     connect(frame, &WebEngineFrame::showStatusBarMessage, this, &MainWidget::slotShowStatusBarMessage);

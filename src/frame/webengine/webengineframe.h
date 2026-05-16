@@ -38,10 +38,6 @@ public Q_SLOTS:
     void slotPrintPreviewInFrame(int frameId);
     void slotFindTextInFrame(int frameId);
     void slotTextToSpeechInFrame(int frameId);
-    void slotSaveLinkAsInFrame(int frameId);
-    void slotCopyLinkAsInFrame(int frameId);
-    void slotSaveImageOnDiskInFrame(int frameId);
-    void slotCopyImageLocationInFrame(int frameId);
     void slotMute(int frameId, bool mute);
 
 Q_SIGNALS:

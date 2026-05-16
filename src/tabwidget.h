@@ -43,17 +43,15 @@ public Q_SLOTS:
     void slotRemoveFrame(int frameId);
     void slotSelectFrame(int frameId);
     void slotReloadAllTabs();
+    void slotReloadTab();
     void slotActivateTab();
     void slotDetachTab(int index);
-    void slotCopyLinkAddress();
+    void slotCopyTabAddress();
     void slotCloseTab();
     void slotPrint();
     void slotPrintPreview();
     void slotFindTextInHtml();
     void slotTextToSpeech();
-    void slotSaveLinkAs();
-    void slotCopyImageLocation();
-    void slotSaveImageOnDisk();
     void slotUnMute();
     void slotMute();
 Q_SIGNALS:
@@ -66,10 +64,6 @@ Q_SIGNALS:
     void signalPrintPreviewInFrame(int currentFrame);
     void signalTextToSpeechInFrame(int currentFrame);
     void signalFindTextInFrame(int currentFrame);
-    void signalSaveLinkAsInFrame(int currentFrame);
-    void signalCopyLinkAsInFrame(int currentFrame);
-    void signalCopyImageLocation(int currentFrame);
-    void signalSaveImageOnDisk(int currentFrame);
     void signalMute(int currentFrame, bool);
 
 private:
@@ -84,6 +78,7 @@ private Q_SLOTS:
     void slotCloseAllTabExcept(int index);
 
 private:
+    void copyTabAddress(Akregator::Frame *frame);
     void closeAllTabExcept(int index = -1);
 
 private:

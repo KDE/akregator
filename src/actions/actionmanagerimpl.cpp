@@ -349,7 +349,7 @@ void ActionManagerImpl::initMainWidget(MainWidget *mainWidget)
     coll->setDefaultShortcut(action, QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_Return));
 
     action = coll->addAction(QStringLiteral("article_copy_link_address"));
-    action->setText(i18n("Copy Link Address"));
+    action->setText(i18nc("@action", "Copy Article Link Address"));
     connect(action, &QAction::triggered, d->mainWidget, &MainWidget::slotCopyLinkAddress);
 
     action = coll->addAction(QStringLiteral("go_prev_unread_article"));
@@ -629,9 +629,15 @@ void ActionManagerImpl::initTabWidget(TabWidget *tabWidget)
     connect(action, &QAction::triggered, d->tabWidget, &TabWidget::slotFindTextInHtml);
     coll->setDefaultShortcut(action, KStandardShortcut::find().first());
 
-    action = coll->addAction(QStringLiteral("tab_copylinkaddress"));
-    action->setText(i18n("Copy Link Address"));
-    connect(action, &QAction::triggered, d->tabWidget, &TabWidget::slotCopyLinkAddress);
+    action = coll->addAction(QStringLiteral("tab_reload"));
+    action->setIcon(QIcon::fromTheme(QStringLiteral("view-refresh")));
+    action->setText(i18nc("@action", "Reload Tab"));
+    connect(action, &QAction::triggered, d->tabWidget, &TabWidget::slotReloadTab);
+
+    action = coll->addAction(QStringLiteral("tab_copyurl"));
+    action->setIcon(QIcon::fromTheme(QStringLiteral("edit-copy")));
+    action->setText(i18nc("@action", "Copy Tab Address"));
+    connect(action, &QAction::triggered, d->tabWidget, &TabWidget::slotCopyTabAddress);
 
     action = coll->addAction(QStringLiteral("tab_remove"));
     action->setIcon(QIcon::fromTheme(QStringLiteral("tab-close")));
@@ -653,24 +659,6 @@ void ActionManagerImpl::initTabWidget(TabWidget *tabWidget)
         coll->setDefaultShortcut(action, QKeySequence(QStringLiteral("Alt+%1").arg(i)));
         connect(action, &QAction::triggered, d->tabWidget, &TabWidget::slotActivateTab);
     }
-    action = coll->addAction(QStringLiteral("savelinkas"));
-    action->setText(i18n("&Save Link As…"));
-    connect(action, &QAction::triggered, d->tabWidget, &TabWidget::slotSaveLinkAs);
-
-    action = coll->addAction(QStringLiteral("copylinkaddress"));
-    action->setText(i18n("Copy &Link Address"));
-    connect(action, &QAction::triggered, d->tabWidget, &TabWidget::slotCopyLinkAddress);
-
-    action = new QAction(i18nc("@action", "Copy Image URL"), this);
-    action->setIcon(QIcon::fromTheme(QStringLiteral("view-media-visualization")));
-    coll->addAction(QStringLiteral("copy_image_location"), action);
-    coll->setShortcutsConfigurable(action, false);
-    connect(action, &QAction::triggered, d->tabWidget, &TabWidget::slotCopyImageLocation);
-
-    action = new QAction(i18nc("@action", "Save Image…"), this);
-    coll->addAction(QStringLiteral("saveas_imageurl"), action);
-    coll->setShortcutsConfigurable(action, false);
-    connect(action, &QAction::triggered, d->tabWidget, &TabWidget::slotSaveImageOnDisk);
 }
 
 QWidget *ActionManagerImpl::container(const QString &name)

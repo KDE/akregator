@@ -31,16 +31,12 @@ public:
     [[nodiscard]] qreal zoomFactor() const override;
 
 public Q_SLOTS:
-    void slotCopyLinkAsInFrame(int frameId);
-    void slotSaveLinkAsInFrame(int frameId);
     void slotZoomChangeInFrame(int frameId, qreal value);
     void slotCopyInFrame(int frameId);
     void slotPrintInFrame(int frameId);
     void slotPrintPreviewInFrame(int frameId);
     void slotTextToSpeechInFrame(int frameId);
     void slotFindTextInFrame(int frameId);
-    void slotCopyImageLocationInFrame(int frameId);
-    void slotSaveImageOnDiskInFrame(int frameId);
     void slotMute(int frameId, bool mute);
 
 private:

@@ -16,7 +16,10 @@
 #include <KActionCollection>
 #include <KActionMenu>
 #include <KIO/KUriFilterSearchProviderActions>
+#include <KLocalizedString>
+#include <QAction>
 #include <QContextMenuEvent>
+#include <QIcon>
 #include <QMenu>
 #include <QWebEngineHistory>
 #include <QWebEngineSettings>
@@ -89,6 +92,7 @@ void AkrWebEngineViewer::slotWebHitFinished(const WebEngineViewer::WebHitTestRes
     popup.addAction(pageAction(QWebEnginePage::Stop));
     popup.addSeparator();
     popup.addAction(pageAction(QWebEnginePage::Reload));
+    popup.addAction(mActionCollection->action(QStringLiteral("tab_copyurl")));
     popup.addSeparator();
 
     const bool noContentSelected = selectedText().isEmpty();
@@ -105,13 +109,26 @@ void AkrWebEngineViewer::slotWebHitFinished(const WebEngineViewer::WebHitTestRes
                 popup.addAction(act);
             }
             popup.addSeparator();
-            popup.addAction(mActionCollection->action(QStringLiteral("savelinkas")));
-            popup.addAction(mActionCollection->action(QStringLiteral("copylinkaddress")));
+            QAction *saveLinkAsAction = popup.addAction(i18n("&Save Link As…"));
+            connect(saveLinkAsAction, &QAction::triggered, this, [this, url = mCurrentUrl]() {
+                saveUrl(url);
+            });
+            QAction *copyLinkAddressAction = popup.addAction(QIcon::fromTheme(QStringLiteral("edit-copy")), i18n("Copy &Link Address"));
+            connect(copyLinkAddressAction, &QAction::triggered, this, [this, url = mCurrentUrl]() {
+                copyUrlToClipboard(url);
+            });
         }
-        if (!result.imageUrl().isEmpty()) {
+        const QUrl imageUrl = result.imageUrl();
+        if (!imageUrl.isEmpty()) {
             popup.addSeparator();
-            popup.addAction(mActionCollection->action(QStringLiteral("copy_image_location")));
-            popup.addAction(mActionCollection->action(QStringLiteral("saveas_imageurl")));
+            QAction *copyImageUrlAction = popup.addAction(QIcon::fromTheme(QStringLiteral("view-media-visualization")), i18nc("@action", "Copy Image URL"));
+            connect(copyImageUrlAction, &QAction::triggered, this, [this, imageUrl]() {
+                copyUrlToClipboard(imageUrl);
+            });
+            QAction *saveImageAction = popup.addAction(i18nc("@action", "Save Image…"));
+            connect(saveImageAction, &QAction::triggered, this, [this, imageUrl]() {
+                saveUrl(imageUrl);
+            });
         }
         popup.addSeparator();
         popup.addActions(viewerPluginActionList(MessageViewer::ViewerPluginInterface::NeedUrl));

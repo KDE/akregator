@@ -177,38 +177,6 @@ qreal WebEngineFrame::zoomFactor() const
     return mArticleViewerWidgetNg->articleViewerNg()->zoomFactor();
 }
 
-void WebEngineFrame::slotSaveLinkAsInFrame(int frameId)
-{
-    if (frameId != id()) {
-        return;
-    }
-    mArticleViewerWidgetNg->articleViewerNg()->slotSaveLinkAs();
-}
-
-void WebEngineFrame::slotCopyLinkAsInFrame(int frameId)
-{
-    if (frameId != id()) {
-        return;
-    }
-    mArticleViewerWidgetNg->articleViewerNg()->slotCopyLinkAddress();
-}
-
-void WebEngineFrame::slotSaveImageOnDiskInFrame(int frameId)
-{
-    if (frameId != id()) {
-        return;
-    }
-    mArticleViewerWidgetNg->articleViewerNg()->slotSaveImageOnDiskInFrame();
-}
-
-void WebEngineFrame::slotCopyImageLocationInFrame(int frameId)
-{
-    if (frameId != id()) {
-        return;
-    }
-    mArticleViewerWidgetNg->articleViewerNg()->slotCopyImageLocationInFrame();
-}
-
 void WebEngineFrame::slotMute(int frameId, bool mute)
 {
     if (frameId != id()) {
