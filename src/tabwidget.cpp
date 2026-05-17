@@ -66,7 +66,9 @@ void TabWidgetPrivate::updateTabBarVisibility()
         q->tabBar()->show();
     }
     if (q->count() >= 1 && Settings::closeButtonOnTabs()) {
-        q->tabBar()->tabButton(0, QTabBar::RightSide)->hide();
+        if (auto *btn = q->tabBar()->tabButton(0, QTabBar::RightSide)) {
+            btn->hide();
+        }
     }
 }
 
@@ -419,12 +421,16 @@ void TabWidget::slotDetachTab(int index)
 
 void TabWidget::slotTextToSpeech()
 {
-    Q_EMIT signalTextToSpeechInFrame(d->currentFrame()->id());
+    if (Frame *frame = d->currentFrame()) {
+        Q_EMIT signalTextToSpeechInFrame(frame->id());
+    }
 }
 
 void TabWidget::slotFindTextInHtml()
 {
-    Q_EMIT signalFindTextInFrame(d->currentFrame()->id());
+    if (Frame *frame = d->currentFrame()) {
+        Q_EMIT signalFindTextInFrame(frame->id());
+    }
 }
 
 void TabWidget::slotCopyTabAddress()
@@ -448,27 +454,37 @@ void TabWidget::copyTabAddress(Frame *frame)
 
 void TabWidget::slotPrintPreview()
 {
-    Q_EMIT signalPrintPreviewInFrame(d->currentFrame()->id());
+    if (Frame *frame = d->currentFrame()) {
+        Q_EMIT signalPrintPreviewInFrame(frame->id());
+    }
 }
 
 void TabWidget::slotPrint()
 {
-    Q_EMIT signalPrintInFrame(d->currentFrame()->id());
+    if (Frame *frame = d->currentFrame()) {
+        Q_EMIT signalPrintInFrame(frame->id());
+    }
 }
 
 void TabWidget::slotCopy()
 {
-    Q_EMIT signalCopyInFrame(d->currentFrame()->id());
+    if (Frame *frame = d->currentFrame()) {
+        Q_EMIT signalCopyInFrame(frame->id());
+    }
 }
 
 void TabWidget::slotUnMute()
 {
-    Q_EMIT signalMute(d->currentFrame()->id(), false);
+    if (Frame *frame = d->currentFrame()) {
+        Q_EMIT signalMute(frame->id(), false);
+    }
 }
 
 void TabWidget::slotMute()
 {
-    Q_EMIT signalMute(d->currentFrame()->id(), true);
+    if (Frame *frame = d->currentFrame()) {
+        Q_EMIT signalMute(frame->id(), true);
+    }
 }
 
 void TabWidget::slotCloseTab()
