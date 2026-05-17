@@ -248,22 +248,22 @@ void Folder::removeChild(TreeNode *node)
 
 TreeNode *Folder::firstChild()
 {
-    return m_children.isEmpty() ? nullptr : children().constFirst();
+    return m_children.isEmpty() ? nullptr : m_children.constFirst();
 }
 
 const TreeNode *Folder::firstChild() const
 {
-    return m_children.isEmpty() ? nullptr : children().constFirst();
+    return m_children.isEmpty() ? nullptr : m_children.constFirst();
 }
 
 TreeNode *Folder::lastChild()
 {
-    return m_children.isEmpty() ? nullptr : children().constLast();
+    return m_children.isEmpty() ? nullptr : m_children.constLast();
 }
 
 const TreeNode *Folder::lastChild() const
 {
-    return m_children.isEmpty() ? nullptr : children().constLast();
+    return m_children.isEmpty() ? nullptr : m_children.constLast();
 }
 
 bool Folder::isOpen() const
