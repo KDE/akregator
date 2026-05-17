@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-15 00:45+0000\n"
+"POT-Creation-Date: 2026-05-17 00:44+0000\n"
 "PO-Revision-Date: 2025-10-20 10:47+0100\n"
 "Last-Translator: Sergiu Bivol <sergiu@cip.md>\n"
 "Language-Team: Romanian <kde-i18n-ro@kde.org>\n"
@@ -945,8 +945,8 @@ msgstr "Curăță filtrul rapid la schimbarea fluxului."
 
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
 #: src/akregator_part.cpp:126
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:143
-#: src/mainwidget.cpp:130 src/mainwidget.cpp:1331 src/trayicon.cpp:40
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:145
+#: src/mainwidget.cpp:130 src/mainwidget.cpp:1323 src/trayicon.cpp:40
 #: src/trayicon.cpp:41 src/trayicon.cpp:53
 #, kde-format
 msgid "Akregator"
@@ -1273,9 +1273,11 @@ msgstr "&Anulează preluările de fluxuri"
 msgid "Ma&rk All Feeds as Read"
 msgstr "Ma&rchează toate fluxurile ca citite"
 
-#: src/actions/actionmanagerimpl.cpp:352 src/actions/actionmanagerimpl.cpp:633
-#, kde-format
-msgid "Copy Link Address"
+#: src/actions/actionmanagerimpl.cpp:352
+#, fuzzy, kde-format
+#| msgid "Copy Link Address"
+msgctxt "@action"
+msgid "Copy Article Link Address"
 msgstr "Copiază adresa legăturii"
 
 #: src/actions/actionmanagerimpl.cpp:357
@@ -1505,40 +1507,31 @@ msgstr ""
 msgid "&Find in Message…"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:638
+#: src/actions/actionmanagerimpl.cpp:634
+#, fuzzy, kde-format
+#| msgid "Reload All Tabs"
+msgctxt "@action"
+msgid "Reload Tab"
+msgstr "Reîncarcă toate filele"
+
+#: src/actions/actionmanagerimpl.cpp:639
+#, fuzzy, kde-format
+#| msgid "&Copy Email Address"
+msgctxt "@action"
+msgid "Copy Tab Address"
+msgstr "&Copiază adresa de e-mail"
+
+#: src/actions/actionmanagerimpl.cpp:644
 #, kde-format
 msgid "Close Tab"
 msgstr "Închide fila"
 
-#: src/actions/actionmanagerimpl.cpp:651
+#: src/actions/actionmanagerimpl.cpp:657
 #, fuzzy, kde-format
 #| msgid "Activate Tab %1"
 msgctxt "@action"
 msgid "Activate Tab %1"
 msgstr "Activează fila %1"
-
-#: src/actions/actionmanagerimpl.cpp:657
-#, fuzzy, kde-format
-#| msgid "&Save Link As..."
-msgid "&Save Link As…"
-msgstr "&Salvează legătura ca..."
-
-#: src/actions/actionmanagerimpl.cpp:661
-#, kde-format
-msgid "Copy &Link Address"
-msgstr "Copiază adresa &legăturii"
-
-#: src/actions/actionmanagerimpl.cpp:664
-#, kde-format
-msgctxt "@action"
-msgid "Copy Image URL"
-msgstr ""
-
-#: src/actions/actionmanagerimpl.cpp:670
-#, kde-format
-msgctxt "@action"
-msgid "Save Image…"
-msgstr ""
 
 #: src/actions/actions.cpp:19
 #, kde-format
@@ -1746,65 +1739,92 @@ msgctxt "Articlelist's column header"
 msgid "Content"
 msgstr "Conținut"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:144
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:146
 #, fuzzy, kde-format
 #| msgid "A KDE news feed reader."
 msgid "Akregator is a KDE news feed reader."
 msgstr "Un cititor de fluxuri pentru KDE."
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:185
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:190
 #, fuzzy, kde-format
 #| msgid "&Save Link As..."
 msgctxt "@title:window"
 msgid "Save As"
 msgstr "&Salvează legătura ca..."
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:374
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:275
+#: src/frame/webengine/akrwebengineviewer.cpp:112
+#, fuzzy, kde-format
+#| msgid "&Save Link As..."
+msgid "&Save Link As…"
+msgstr "&Salvează legătura ca..."
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:279
+#: src/frame/webengine/akrwebengineviewer.cpp:116
+#, kde-format
+msgid "Copy &Link Address"
+msgstr "Copiază adresa &legăturii"
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:287
+#: src/frame/webengine/akrwebengineviewer.cpp:124
+#, kde-format
+msgctxt "@action"
+msgid "Copy Image URL"
+msgstr ""
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:291
+#: src/frame/webengine/akrwebengineviewer.cpp:128
+#, kde-format
+msgctxt "@action"
+msgid "Save Image…"
+msgstr ""
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:382
 #, kde-format
 msgid "Disable"
 msgstr "Dezactivează"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:375
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:383
 #, kde-format
 msgid "Keep Enabled"
 msgstr "Păstrează activat"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:377
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:385
 #, kde-format
 msgid "Are you sure you want to disable this introduction page?"
 msgstr "Sigur dezactivați această pagină introductivă?"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:378
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:386
 #, fuzzy, kde-format
 #| msgid "Disable Introduction Page"
 msgctxt "@title:window"
 msgid "Disable Introduction Page"
 msgstr "Dezactivează pagina introductivă"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:413
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:421
 #, kde-format
 msgid "This web site is a malware, do you want to continue to show it?"
 msgstr ""
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:414
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:422
 #, kde-format
 msgctxt "@title:window"
 msgid "Malware"
 msgstr ""
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:426
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:434
 #, kde-format
 msgid "The network is broken."
 msgstr ""
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:426
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:429
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:434
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:437
 #, kde-format
 msgctxt "@title:window"
 msgid "Check Phishing Url"
 msgstr ""
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:429
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:437
 #, kde-format
 msgid "The url %1 is not valid."
 msgstr ""
@@ -2159,17 +2179,17 @@ msgstr "Puteți vedea mai multe articole în câteva file deschise."
 msgid "Articles list."
 msgstr "Lista articolelor."
 
-#: src/mainwidget.cpp:250 src/mainwidget.cpp:682
+#: src/mainwidget.cpp:250 src/mainwidget.cpp:674
 #, kde-format
 msgid "Articles"
 msgstr "Articole"
 
-#: src/mainwidget.cpp:279
+#: src/mainwidget.cpp:275
 #, kde-format
 msgid "About"
 msgstr "Despre"
 
-#: src/mainwidget.cpp:821
+#: src/mainwidget.cpp:813
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all articles in the feed</b> as read?</"
@@ -2177,18 +2197,18 @@ msgid ""
 msgstr ""
 "<qt>Sigur doriți să marcați <b>toate articolele din flux</b> ca citite?</qt>"
 
-#: src/mainwidget.cpp:822
+#: src/mainwidget.cpp:814
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "Marchează fluxul ca citit"
 
-#: src/mainwidget.cpp:825
+#: src/mainwidget.cpp:817
 #, kde-format
 msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
 msgstr "<qt>Sigur doriți să marcați <b>toate fluxurile</b> ca citite?</qt>"
 
-#: src/mainwidget.cpp:827
+#: src/mainwidget.cpp:819
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all feeds in the folder</b> as read?</"
@@ -2196,28 +2216,28 @@ msgid ""
 msgstr ""
 "<qt>Sigur doriți să marcați <b>toate fluxurile din dosar</b> ca citite?</qt>"
 
-#: src/mainwidget.cpp:829
+#: src/mainwidget.cpp:821
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "Marchează fluxurile ca citite"
 
-#: src/mainwidget.cpp:893 src/mainwidget.cpp:902 src/mainwidget.cpp:1303
+#: src/mainwidget.cpp:885 src/mainwidget.cpp:894 src/mainwidget.cpp:1295
 #, kde-format
 msgid "Networking is not available."
 msgstr "Rețeaua nu e disponibilă."
 
-#: src/mainwidget.cpp:910
+#: src/mainwidget.cpp:902
 #, kde-format
 msgid "Fetching Feeds…"
 msgstr "Se preiau fluxuri…"
 
-#: src/mainwidget.cpp:1108
+#: src/mainwidget.cpp:1100
 #, kde-format
 msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
 msgstr "<qt>Sigur ștergeți articolul <b>%1</b>?</qt>"
 
-#: src/mainwidget.cpp:1111
+#: src/mainwidget.cpp:1103
 #, kde-format
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
 msgid_plural ""
@@ -2226,13 +2246,13 @@ msgstr[0] "<qt>Sigur ștergeți articolul ales?</qt>"
 msgstr[1] "<qt>Sigur ștergeți cele %1 articole alese?</qt>"
 msgstr[2] "<qt>Sigur ștergeți cele %1 de articole alese?</qt>"
 
-#: src/mainwidget.cpp:1118
+#: src/mainwidget.cpp:1110
 #, kde-format
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "Șterge articolul"
 
-#: src/mainwidget.cpp:1300
+#: src/mainwidget.cpp:1292
 #, kde-format
 msgid "Networking is available now."
 msgstr "Rețeaua e disponibilă acum."
@@ -2370,36 +2390,50 @@ msgctxt "Feedlist's column header"
 msgid "Total"
 msgstr "Total"
 
-#: src/tabwidget.cpp:92
+#: src/tabwidget.cpp:94
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Close the current tab"
 msgstr "Închide fila curentă"
 
-#: src/tabwidget.cpp:95
+#: src/tabwidget.cpp:97
 #, kde-format
 msgid "Close tab"
 msgstr "Închide fila"
 
-#: src/tabwidget.cpp:118
+#: src/tabwidget.cpp:120
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Detach Tab"
 msgstr "Detașează fila"
 
-#: src/tabwidget.cpp:123
+#: src/tabwidget.cpp:128
+#, fuzzy, kde-format
+#| msgid "Reload All Tabs"
+msgctxt "@action:inmenu"
+msgid "Reload Tab"
+msgstr "Reîncarcă toate filele"
+
+#: src/tabwidget.cpp:131
+#, fuzzy, kde-format
+#| msgid "&Copy Email Address"
+msgctxt "@action:inmenu"
+msgid "Copy Tab Address"
+msgstr "&Copiază adresa de e-mail"
+
+#: src/tabwidget.cpp:137
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Close Tab"
 msgstr "Închide fila"
 
-#: src/tabwidget.cpp:127
+#: src/tabwidget.cpp:141
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Close All Other Tabs"
 msgstr "Închide toate celelalte file"
 
-#: src/tabwidget.cpp:131
+#: src/tabwidget.cpp:145
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Close All Tabs"

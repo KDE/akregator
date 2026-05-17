@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-15 00:45+0000\n"
+"POT-Creation-Date: 2026-05-17 00:44+0000\n"
 "PO-Revision-Date: 2025-12-02 01:33+0100\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
@@ -945,8 +945,8 @@ msgstr "Reiniciar el filtro rápido al cambiar de fuentes."
 
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
 #: src/akregator_part.cpp:126
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:143
-#: src/mainwidget.cpp:130 src/mainwidget.cpp:1331 src/trayicon.cpp:40
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:145
+#: src/mainwidget.cpp:130 src/mainwidget.cpp:1323 src/trayicon.cpp:40
 #: src/trayicon.cpp:41 src/trayicon.cpp:53
 #, kde-format
 msgid "Akregator"
@@ -1248,9 +1248,11 @@ msgstr "C&ancelar consulta de fuentes"
 msgid "Ma&rk All Feeds as Read"
 msgstr "Ma&rcar todas las fuentes como leídas"
 
-#: src/actions/actionmanagerimpl.cpp:352 src/actions/actionmanagerimpl.cpp:633
-#, kde-format
-msgid "Copy Link Address"
+#: src/actions/actionmanagerimpl.cpp:352
+#, fuzzy, kde-format
+#| msgid "Copy Link Address"
+msgctxt "@action"
+msgid "Copy Article Link Address"
 msgstr "Copiar la dirección del enlace"
 
 #: src/actions/actionmanagerimpl.cpp:357
@@ -1472,38 +1474,30 @@ msgstr "Leer texto"
 msgid "&Find in Message…"
 msgstr "&Buscar en el mensaje…"
 
-#: src/actions/actionmanagerimpl.cpp:638
+#: src/actions/actionmanagerimpl.cpp:634
+#, fuzzy, kde-format
+#| msgid "Reload All Tabs"
+msgctxt "@action"
+msgid "Reload Tab"
+msgstr "Volver a cargar todas las pestañas"
+
+#: src/actions/actionmanagerimpl.cpp:639
+#, fuzzy, kde-format
+#| msgid "&Copy Email Address"
+msgctxt "@action"
+msgid "Copy Tab Address"
+msgstr "&Copiar dirección del correo"
+
+#: src/actions/actionmanagerimpl.cpp:644
 #, kde-format
 msgid "Close Tab"
 msgstr "Cerrar pestaña"
 
-#: src/actions/actionmanagerimpl.cpp:651
+#: src/actions/actionmanagerimpl.cpp:657
 #, kde-format
 msgctxt "@action"
 msgid "Activate Tab %1"
 msgstr "Activar pestaña %1"
-
-#: src/actions/actionmanagerimpl.cpp:657
-#, kde-format
-msgid "&Save Link As…"
-msgstr "Guardar en&lace como…"
-
-#: src/actions/actionmanagerimpl.cpp:661
-#, kde-format
-msgid "Copy &Link Address"
-msgstr "Copiar la dirección del en&lace"
-
-#: src/actions/actionmanagerimpl.cpp:664
-#, kde-format
-msgctxt "@action"
-msgid "Copy Image URL"
-msgstr "Copiar URL de imagen"
-
-#: src/actions/actionmanagerimpl.cpp:670
-#, kde-format
-msgctxt "@action"
-msgid "Save Image…"
-msgstr "Guardar imagen…"
 
 #: src/actions/actions.cpp:19
 #, kde-format
@@ -1714,63 +1708,89 @@ msgctxt "Articlelist's column header"
 msgid "Content"
 msgstr "Contenido"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:144
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:146
 #, kde-format
 msgid "Akregator is a KDE news feed reader."
 msgstr "Akregator es un lector de fuentes de noticias para KDE."
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:185
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:190
 #, kde-format
 msgctxt "@title:window"
 msgid "Save As"
 msgstr "Guardar como"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:374
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:275
+#: src/frame/webengine/akrwebengineviewer.cpp:112
+#, kde-format
+msgid "&Save Link As…"
+msgstr "Guardar en&lace como…"
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:279
+#: src/frame/webengine/akrwebengineviewer.cpp:116
+#, kde-format
+msgid "Copy &Link Address"
+msgstr "Copiar la dirección del en&lace"
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:287
+#: src/frame/webengine/akrwebengineviewer.cpp:124
+#, kde-format
+msgctxt "@action"
+msgid "Copy Image URL"
+msgstr "Copiar URL de imagen"
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:291
+#: src/frame/webengine/akrwebengineviewer.cpp:128
+#, kde-format
+msgctxt "@action"
+msgid "Save Image…"
+msgstr "Guardar imagen…"
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:382
 #, kde-format
 msgid "Disable"
 msgstr "Desactivar"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:375
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:383
 #, kde-format
 msgid "Keep Enabled"
 msgstr "Mantener activado"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:377
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:385
 #, kde-format
 msgid "Are you sure you want to disable this introduction page?"
 msgstr "¿Está seguro de que desea desactivar esta página de introducción?"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:378
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:386
 #, kde-format
 msgctxt "@title:window"
 msgid "Disable Introduction Page"
 msgstr "Desactivar la página de introducción"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:413
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:421
 #, kde-format
 msgid "This web site is a malware, do you want to continue to show it?"
 msgstr ""
 "Este sitio web contiene programas maliciosos. ¿Quiere continuar mostrándolo?"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:414
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:422
 #, kde-format
 msgctxt "@title:window"
 msgid "Malware"
 msgstr "Programas maliciosos"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:426
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:434
 #, kde-format
 msgid "The network is broken."
 msgstr "La red está caída."
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:426
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:429
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:434
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:437
 #, kde-format
 msgctxt "@title:window"
 msgid "Check Phishing Url"
 msgstr "Comprobar URL engañosa"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:429
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:437
 #, kde-format
 msgid "The url %1 is not valid."
 msgstr "La URL %1 no es válida."
@@ -2130,17 +2150,17 @@ msgstr "Puede ver varios artículos en varias pestañas abiertas."
 msgid "Articles list."
 msgstr "Lista de artículos."
 
-#: src/mainwidget.cpp:250 src/mainwidget.cpp:682
+#: src/mainwidget.cpp:250 src/mainwidget.cpp:674
 #, kde-format
 msgid "Articles"
 msgstr "Artículos"
 
-#: src/mainwidget.cpp:279
+#: src/mainwidget.cpp:275
 #, kde-format
 msgid "About"
 msgstr "Acerca de"
 
-#: src/mainwidget.cpp:821
+#: src/mainwidget.cpp:813
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all articles in the feed</b> as read?</"
@@ -2149,19 +2169,19 @@ msgstr ""
 "<qt>¿Seguro que quiere marcar <b>todos los artículos de la fuente</b> como "
 "leídos?</qt>"
 
-#: src/mainwidget.cpp:822
+#: src/mainwidget.cpp:814
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "Marcar fuente como leída"
 
-#: src/mainwidget.cpp:825
+#: src/mainwidget.cpp:817
 #, kde-format
 msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
 msgstr ""
 "<qt>¿Seguro que quiere marcar <b>todas las fuentes</b> como leídas?</qt>"
 
-#: src/mainwidget.cpp:827
+#: src/mainwidget.cpp:819
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all feeds in the folder</b> as read?</"
@@ -2170,28 +2190,28 @@ msgstr ""
 "<qt>¿Seguro que quiere marcar <b>todas las fuentes de la carpeta</b> como "
 "leídas?</qt>"
 
-#: src/mainwidget.cpp:829
+#: src/mainwidget.cpp:821
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "Marcar fuentes como leídas"
 
-#: src/mainwidget.cpp:893 src/mainwidget.cpp:902 src/mainwidget.cpp:1303
+#: src/mainwidget.cpp:885 src/mainwidget.cpp:894 src/mainwidget.cpp:1295
 #, kde-format
 msgid "Networking is not available."
 msgstr "La red no está disponible."
 
-#: src/mainwidget.cpp:910
+#: src/mainwidget.cpp:902
 #, kde-format
 msgid "Fetching Feeds…"
 msgstr "Obteniendo fuentes…"
 
-#: src/mainwidget.cpp:1108
+#: src/mainwidget.cpp:1100
 #, kde-format
 msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
 msgstr "<qt>¿Está seguro de que quiere borrar el artículo <b>%1</b>?</qt>"
 
-#: src/mainwidget.cpp:1111
+#: src/mainwidget.cpp:1103
 #, kde-format
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
 msgid_plural ""
@@ -2201,13 +2221,13 @@ msgstr[0] ""
 msgstr[1] ""
 "<qt>¿Está seguro de que quiere borrar los %1 artículos seleccionados?</qt>"
 
-#: src/mainwidget.cpp:1118
+#: src/mainwidget.cpp:1110
 #, kde-format
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "Borrar artículo"
 
-#: src/mainwidget.cpp:1300
+#: src/mainwidget.cpp:1292
 #, kde-format
 msgid "Networking is available now."
 msgstr "La red está disponible ahora."
@@ -2345,36 +2365,50 @@ msgctxt "Feedlist's column header"
 msgid "Total"
 msgstr "Total"
 
-#: src/tabwidget.cpp:92
+#: src/tabwidget.cpp:94
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Close the current tab"
 msgstr "Cierra la pestaña actual"
 
-#: src/tabwidget.cpp:95
+#: src/tabwidget.cpp:97
 #, kde-format
 msgid "Close tab"
 msgstr "Cerrar pestaña"
 
-#: src/tabwidget.cpp:118
+#: src/tabwidget.cpp:120
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Detach Tab"
 msgstr "Desprender pestaña"
 
-#: src/tabwidget.cpp:123
+#: src/tabwidget.cpp:128
+#, fuzzy, kde-format
+#| msgid "Reload All Tabs"
+msgctxt "@action:inmenu"
+msgid "Reload Tab"
+msgstr "Volver a cargar todas las pestañas"
+
+#: src/tabwidget.cpp:131
+#, fuzzy, kde-format
+#| msgid "&Copy Email Address"
+msgctxt "@action:inmenu"
+msgid "Copy Tab Address"
+msgstr "&Copiar dirección del correo"
+
+#: src/tabwidget.cpp:137
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Close Tab"
 msgstr "Cerrar pestaña"
 
-#: src/tabwidget.cpp:127
+#: src/tabwidget.cpp:141
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Close All Other Tabs"
 msgstr "Cerrar todas las demás pestañas"
 
-#: src/tabwidget.cpp:131
+#: src/tabwidget.cpp:145
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Close All Tabs"

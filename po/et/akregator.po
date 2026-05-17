@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-15 00:45+0000\n"
+"POT-Creation-Date: 2026-05-17 00:44+0000\n"
 "PO-Revision-Date: 2020-06-13 19:12+0300\n"
 "Last-Translator: Marek Laane <qiilaq69@gmail.com>\n"
 "Language-Team: Estonian <kde-et@lists.linux.ee>\n"
@@ -939,8 +939,8 @@ msgstr "Kiirfiltri lähtestamine voogude muutmisel."
 
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
 #: src/akregator_part.cpp:126
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:143
-#: src/mainwidget.cpp:130 src/mainwidget.cpp:1331 src/trayicon.cpp:40
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:145
+#: src/mainwidget.cpp:130 src/mainwidget.cpp:1323 src/trayicon.cpp:40
 #: src/trayicon.cpp:41 src/trayicon.cpp:53
 #, kde-format
 msgid "Akregator"
@@ -1266,9 +1266,11 @@ msgstr "K&atkesta voogude tõmbamine"
 msgid "Ma&rk All Feeds as Read"
 msgstr "Mä&rgi kõik uudistevood loetuks"
 
-#: src/actions/actionmanagerimpl.cpp:352 src/actions/actionmanagerimpl.cpp:633
-#, kde-format
-msgid "Copy Link Address"
+#: src/actions/actionmanagerimpl.cpp:352
+#, fuzzy, kde-format
+#| msgid "Copy Link Address"
+msgctxt "@action"
+msgid "Copy Article Link Address"
 msgstr "Kopeeri viida aadress"
 
 #: src/actions/actionmanagerimpl.cpp:357
@@ -1499,42 +1501,31 @@ msgstr "Loe tekst ette"
 msgid "&Find in Message…"
 msgstr "&Otsi kirjast..."
 
-#: src/actions/actionmanagerimpl.cpp:638
+#: src/actions/actionmanagerimpl.cpp:634
+#, fuzzy, kde-format
+#| msgid "Reload All Tabs"
+msgctxt "@action"
+msgid "Reload Tab"
+msgstr "Laadi kõik kaardid uuesti"
+
+#: src/actions/actionmanagerimpl.cpp:639
+#, fuzzy, kde-format
+#| msgid "&Copy Email Address"
+msgctxt "@action"
+msgid "Copy Tab Address"
+msgstr "&Kopeeri e-posti aadress"
+
+#: src/actions/actionmanagerimpl.cpp:644
 #, kde-format
 msgid "Close Tab"
 msgstr "Sulge kaart"
 
-#: src/actions/actionmanagerimpl.cpp:651
+#: src/actions/actionmanagerimpl.cpp:657
 #, fuzzy, kde-format
 #| msgid "Activate Tab %1"
 msgctxt "@action"
 msgid "Activate Tab %1"
 msgstr "Aktiveeri kaart %1"
-
-#: src/actions/actionmanagerimpl.cpp:657
-#, fuzzy, kde-format
-#| msgid "&Save Link As..."
-msgid "&Save Link As…"
-msgstr "&Salvesta viit kui..."
-
-#: src/actions/actionmanagerimpl.cpp:661
-#, kde-format
-msgid "Copy &Link Address"
-msgstr "&Kopeeri viida aadress"
-
-#: src/actions/actionmanagerimpl.cpp:664
-#, fuzzy, kde-format
-#| msgid "Copy Image Location"
-msgctxt "@action"
-msgid "Copy Image URL"
-msgstr "Kopeeri pildi asukoht"
-
-#: src/actions/actionmanagerimpl.cpp:670
-#, fuzzy, kde-format
-#| msgid "Save Image On Disk..."
-msgctxt "@action"
-msgid "Save Image…"
-msgstr "Salvesta pilt kettale..."
 
 #: src/actions/actions.cpp:19
 #, kde-format
@@ -1752,66 +1743,95 @@ msgctxt "Articlelist's column header"
 msgid "Content"
 msgstr "Sisu"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:144
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:146
 #, kde-format
 msgid "Akregator is a KDE news feed reader."
 msgstr "Akregator on KDE uudistevoogude rakendus."
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:185
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:190
 #, fuzzy, kde-format
 #| msgid "Save As"
 msgctxt "@title:window"
 msgid "Save As"
 msgstr "Salvesta kui"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:374
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:275
+#: src/frame/webengine/akrwebengineviewer.cpp:112
+#, fuzzy, kde-format
+#| msgid "&Save Link As..."
+msgid "&Save Link As…"
+msgstr "&Salvesta viit kui..."
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:279
+#: src/frame/webengine/akrwebengineviewer.cpp:116
+#, kde-format
+msgid "Copy &Link Address"
+msgstr "&Kopeeri viida aadress"
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:287
+#: src/frame/webengine/akrwebengineviewer.cpp:124
+#, fuzzy, kde-format
+#| msgid "Copy Image Location"
+msgctxt "@action"
+msgid "Copy Image URL"
+msgstr "Kopeeri pildi asukoht"
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:291
+#: src/frame/webengine/akrwebengineviewer.cpp:128
+#, fuzzy, kde-format
+#| msgid "Save Image On Disk..."
+msgctxt "@action"
+msgid "Save Image…"
+msgstr "Salvesta pilt kettale..."
+
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:382
 #, kde-format
 msgid "Disable"
 msgstr "Keela"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:375
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:383
 #, kde-format
 msgid "Keep Enabled"
 msgstr "Ära keela"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:377
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:385
 #, kde-format
 msgid "Are you sure you want to disable this introduction page?"
 msgstr "Kas tõesti keelata sissejuhatav lehekülg?"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:378
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:386
 #, fuzzy, kde-format
 #| msgid "Disable Introduction Page"
 msgctxt "@title:window"
 msgid "Disable Introduction Page"
 msgstr "Sissejuhatuse keelamine"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:413
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:421
 #, kde-format
 msgid "This web site is a malware, do you want to continue to show it?"
 msgstr "See veebilehekülg sisaldab kahjurvara, kas tõesti seda näidata?"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:414
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:422
 #, fuzzy, kde-format
 #| msgid "Malware"
 msgctxt "@title:window"
 msgid "Malware"
 msgstr "Kahjurvara"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:426
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:434
 #, kde-format
 msgid "The network is broken."
 msgstr "Võrk on katki."
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:426
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:429
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:434
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:437
 #, fuzzy, kde-format
 #| msgid "Check Phishing Url"
 msgctxt "@title:window"
 msgid "Check Phishing Url"
 msgstr "URL-i õngitsemise kontroll"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:429
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:437
 #, kde-format
 msgid "The url %1 is not valid."
 msgstr "URL %1 ei ole kehtiv."
@@ -2179,17 +2199,17 @@ msgstr "Korraga võib erinevaid artikleid vaadata mitut kaarti kasutades."
 msgid "Articles list."
 msgstr "Artiklite nimekiri."
 
-#: src/mainwidget.cpp:250 src/mainwidget.cpp:682
+#: src/mainwidget.cpp:250 src/mainwidget.cpp:674
 #, kde-format
 msgid "Articles"
 msgstr "Artiklid"
 
-#: src/mainwidget.cpp:279
+#: src/mainwidget.cpp:275
 #, kde-format
 msgid "About"
 msgstr "Info"
 
-#: src/mainwidget.cpp:821
+#: src/mainwidget.cpp:813
 #, fuzzy, kde-format
 #| msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
 msgid ""
@@ -2197,20 +2217,20 @@ msgid ""
 "qt>"
 msgstr "<qt>Kas tõesti kustutada uudistevoog <b>%1</b>?</qt>"
 
-#: src/mainwidget.cpp:822
+#: src/mainwidget.cpp:814
 #, fuzzy, kde-format
 #| msgid "&Mark Feed as Read"
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "&Märgi uudistevoog loetuks"
 
-#: src/mainwidget.cpp:825
+#: src/mainwidget.cpp:817
 #, fuzzy, kde-format
 #| msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
 msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
 msgstr "<qt>Kas tõesti kustutada uudistevoog <b>%1</b>?</qt>"
 
-#: src/mainwidget.cpp:827
+#: src/mainwidget.cpp:819
 #, fuzzy, kde-format
 #| msgid "<qt>Are you sure you want to delete this feed?</qt>"
 msgid ""
@@ -2218,30 +2238,30 @@ msgid ""
 "qt>"
 msgstr "<qt>Kas tõesti kustutada see uudistevoog?</qt>"
 
-#: src/mainwidget.cpp:829
+#: src/mainwidget.cpp:821
 #, fuzzy, kde-format
 #| msgid "&Mark Feeds as Read"
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "&Märgi uudistevood loetuks"
 
-#: src/mainwidget.cpp:893 src/mainwidget.cpp:902 src/mainwidget.cpp:1303
+#: src/mainwidget.cpp:885 src/mainwidget.cpp:894 src/mainwidget.cpp:1295
 #, kde-format
 msgid "Networking is not available."
 msgstr "Võrguühendus puudub."
 
-#: src/mainwidget.cpp:910
+#: src/mainwidget.cpp:902
 #, fuzzy, kde-format
 #| msgid "Fetching Feeds..."
 msgid "Fetching Feeds…"
 msgstr "Uudistevoogude tõmbamine..."
 
-#: src/mainwidget.cpp:1108
+#: src/mainwidget.cpp:1100
 #, kde-format
 msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
 msgstr "<qt>Kas tõesti kustutada artikkel <b>%1</b>?</qt>"
 
-#: src/mainwidget.cpp:1111
+#: src/mainwidget.cpp:1103
 #, kde-format
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
 msgid_plural ""
@@ -2249,14 +2269,14 @@ msgid_plural ""
 msgstr[0] "<qt>Kas tõesti kustutada valitud artikkel?</qt>"
 msgstr[1] "<qt>Kas tõesti kustutada %1 valitud artiklit?</qt>"
 
-#: src/mainwidget.cpp:1118
+#: src/mainwidget.cpp:1110
 #, fuzzy, kde-format
 #| msgid "Delete Article"
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "Artikli kustutamine"
 
-#: src/mainwidget.cpp:1300
+#: src/mainwidget.cpp:1292
 #, kde-format
 msgid "Networking is available now."
 msgstr "Võrguühendus on nüüd olemas."
@@ -2391,37 +2411,51 @@ msgctxt "Feedlist's column header"
 msgid "Total"
 msgstr "Kokku"
 
-#: src/tabwidget.cpp:92
+#: src/tabwidget.cpp:94
 #, fuzzy, kde-format
 #| msgid "Close the current tab"
 msgctxt "@info:tooltip"
 msgid "Close the current tab"
 msgstr "Sulge aktiivne kaart"
 
-#: src/tabwidget.cpp:95
+#: src/tabwidget.cpp:97
 #, kde-format
 msgid "Close tab"
 msgstr "Sulge kaart"
 
-#: src/tabwidget.cpp:118
+#: src/tabwidget.cpp:120
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Detach Tab"
 msgstr "Haagi kaart lahti"
 
-#: src/tabwidget.cpp:123
+#: src/tabwidget.cpp:128
+#, fuzzy, kde-format
+#| msgid "Reload All Tabs"
+msgctxt "@action:inmenu"
+msgid "Reload Tab"
+msgstr "Laadi kõik kaardid uuesti"
+
+#: src/tabwidget.cpp:131
+#, fuzzy, kde-format
+#| msgid "&Copy Email Address"
+msgctxt "@action:inmenu"
+msgid "Copy Tab Address"
+msgstr "&Kopeeri e-posti aadress"
+
+#: src/tabwidget.cpp:137
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Close Tab"
 msgstr "Sulge kaart"
 
-#: src/tabwidget.cpp:127
+#: src/tabwidget.cpp:141
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Close All Other Tabs"
 msgstr "Sulge kõik teised kaardid"
 
-#: src/tabwidget.cpp:131
+#: src/tabwidget.cpp:145
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Close All Tabs"
