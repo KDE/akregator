@@ -230,8 +230,12 @@ void SelectionController::articleHeadersAvailable(KJob *job)
     m_articleLister->setScrollBarPositions(node->listViewScrollBarPositions());
 }
 
-void SelectionController::subscriptionDataChanged(const QModelIndex &topLeft, const QModelIndex &bottomRight)
+void SelectionController::subscriptionDataChanged(const QModelIndex &topLeft, const QModelIndex &bottomRight, const QList<int> &roles)
 {
+    if (!roles.isEmpty() && !roles.contains(SubscriptionListModel::HasUnreadRole)) {
+        return;
+    }
+
     if (!Settings::autoExpandFolders()) {
         return;
     }
