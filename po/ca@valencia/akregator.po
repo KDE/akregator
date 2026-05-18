@@ -452,7 +452,7 @@ msgstr "Desactiva la notificació de finalització de «Anomena i guarda»"
 #: configuration/ui/settings_general.ui:91
 #, kde-format
 msgid "&Use interval fetching"
-msgstr "Utilit&za un interval d'obtenció"
+msgstr "&Utilitza un interval d'obtenció"
 
 #. i18n: ectx: property (text), widget (QLabel, autoFetchIntervalLabel)
 #: configuration/ui/settings_general.ui:119
@@ -2463,7 +2463,7 @@ msgstr "Ar&xivat"
 #: src/ui/feedpropertieswidgetbase.ui:209
 #, kde-format
 msgid "&Use default settings"
-msgstr "Utilit&za els paràmetres predeterminats"
+msgstr "&Utilitza els paràmetres predeterminats"
 
 #. i18n: ectx: property (text), widget (QRadioButton, rb_disableArchiving)
 #: src/ui/feedpropertieswidgetbase.ui:219
