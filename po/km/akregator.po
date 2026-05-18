@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-17 00:44+0000\n"
+"POT-Creation-Date: 2026-05-18 00:45+0000\n"
 "PO-Revision-Date: 2012-12-25 13:50+0700\n"
 "Last-Translator: sutha <sutha@khmeros.info>\n"
 "Language-Team: Khmer <support@khmeros>\n"
@@ -2419,54 +2419,54 @@ msgctxt "Feedlist's column header"
 msgid "Total"
 msgstr "សរុប"
 
-#: src/tabwidget.cpp:94
+#: src/tabwidget.cpp:96
 #, fuzzy, kde-format
 #| msgid "Close the current tab"
 msgctxt "@info:tooltip"
 msgid "Close the current tab"
 msgstr "បិទ​ផ្ទាំង​បច្ចុប្បន្ន"
 
-#: src/tabwidget.cpp:97
+#: src/tabwidget.cpp:99
 #, kde-format
 msgid "Close tab"
 msgstr "បិទ​ផ្ទាំង"
 
-#: src/tabwidget.cpp:120
+#: src/tabwidget.cpp:122
 #, fuzzy, kde-format
 #| msgid "Detach Tab"
 msgctxt "@action:inmenu"
 msgid "Detach Tab"
 msgstr "ផ្ដាច់​ផ្ទាំង"
 
-#: src/tabwidget.cpp:128
+#: src/tabwidget.cpp:130
 #, fuzzy, kde-format
 #| msgid "Reload All Tabs"
 msgctxt "@action:inmenu"
 msgid "Reload Tab"
 msgstr "ផ្ទុក​ផ្ទាំង​ទាំងអស់​ឡើងវិញ"
 
-#: src/tabwidget.cpp:131
+#: src/tabwidget.cpp:133
 #, fuzzy, kde-format
 #| msgid "Copy Link Address"
 msgctxt "@action:inmenu"
 msgid "Copy Tab Address"
 msgstr "ចម្លង​អាសយដ្ឋាន​តំណ"
 
-#: src/tabwidget.cpp:137
+#: src/tabwidget.cpp:139
 #, fuzzy, kde-format
 #| msgid "Close Tab"
 msgctxt "@action:inmenu"
 msgid "Close Tab"
 msgstr "បិទ​ផ្ទាំង"
 
-#: src/tabwidget.cpp:141
+#: src/tabwidget.cpp:143
 #, fuzzy, kde-format
 #| msgid "Close the current tab"
 msgctxt "@action:inmenu"
 msgid "Close All Other Tabs"
 msgstr "បិទ​ផ្ទាំង​បច្ចុប្បន្ន"
 
-#: src/tabwidget.cpp:145
+#: src/tabwidget.cpp:147
 #, fuzzy, kde-format
 #| msgid "Close Tab"
 msgctxt "@action:inmenu"

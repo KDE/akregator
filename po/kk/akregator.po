@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-17 00:44+0000\n"
+"POT-Creation-Date: 2026-05-18 00:45+0000\n"
 "PO-Revision-Date: 2013-10-29 04:19+0600\n"
 "Last-Translator: Sairan Kikkarin <sairan@computer.org>\n"
 "Language-Team: Kazakh <kde-i18n-doc@kde.org>\n"
@@ -2422,54 +2422,54 @@ msgctxt "Feedlist's column header"
 msgid "Total"
 msgstr "Жалпы"
 
-#: src/tabwidget.cpp:94
+#: src/tabwidget.cpp:96
 #, fuzzy, kde-format
 #| msgid "Close the current tab"
 msgctxt "@info:tooltip"
 msgid "Close the current tab"
 msgstr "Назардағы қойындыны жабу"
 
-#: src/tabwidget.cpp:97
+#: src/tabwidget.cpp:99
 #, kde-format
 msgid "Close tab"
 msgstr "Қойындыны жабу"
 
-#: src/tabwidget.cpp:120
+#: src/tabwidget.cpp:122
 #, fuzzy, kde-format
 #| msgid "Detach Tab"
 msgctxt "@action:inmenu"
 msgid "Detach Tab"
 msgstr "Қойындыны бөліп алу"
 
-#: src/tabwidget.cpp:128
+#: src/tabwidget.cpp:130
 #, fuzzy, kde-format
 #| msgid "Reload All Tabs"
 msgctxt "@action:inmenu"
 msgid "Reload Tab"
 msgstr "Бүкіл қойындыларды жаңарту"
 
-#: src/tabwidget.cpp:131
+#: src/tabwidget.cpp:133
 #, fuzzy, kde-format
 #| msgid "Copy Link Address"
 msgctxt "@action:inmenu"
 msgid "Copy Tab Address"
 msgstr "Сілтеме адресін көшіріп алу"
 
-#: src/tabwidget.cpp:137
+#: src/tabwidget.cpp:139
 #, fuzzy, kde-format
 #| msgid "Close Tab"
 msgctxt "@action:inmenu"
 msgid "Close Tab"
 msgstr "Қойындыны жабу"
 
-#: src/tabwidget.cpp:141
+#: src/tabwidget.cpp:143
 #, fuzzy, kde-format
 #| msgid "Close the current tab"
 msgctxt "@action:inmenu"
 msgid "Close All Other Tabs"
 msgstr "Назардағы қойындыны жабу"
 
-#: src/tabwidget.cpp:145
+#: src/tabwidget.cpp:147
 #, fuzzy, kde-format
 #| msgid "Close Tab"
 msgctxt "@action:inmenu"

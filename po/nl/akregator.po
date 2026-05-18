@@ -9,21 +9,21 @@
 # Rinse de Vries <RinseDeVries@home.nl>, 2005.
 # Antoon Tolboom <atolboo@casema.nl>, 2008.
 # Antoon Tolboom <atolboo@telfort.nl>, 2008.
-# SPDX-FileCopyrightText: 2009, 2023, 2024, 2025 Freek de Kruijf <f.de.kruijf@hetnet.nl>
+# SPDX-FileCopyrightText: 2009, 2023-2026 Freek de Kruijf <f.de.kruijf@hetnet.nl>
 # Freek de Kruijf <freekdekruijf@kde.nl>, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-17 00:44+0000\n"
-"PO-Revision-Date: 2025-12-01 18:13+0100\n"
+"POT-Creation-Date: 2026-05-18 00:45+0000\n"
+"PO-Revision-Date: 2026-05-17 17:07+0200\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 25.08.3\n"
+"X-Generator: Lokalize 26.04.1\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 # mezelf toegevoegd
@@ -32,7 +32,7 @@ msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
 msgstr ""
 "Rinse de Vries,Wilbert Berendsen,Bram Schoenmakers,Marout Yasuo Borms,Freek "
-"de Kruijf - t/m 2025"
+"de Kruijf - t/m 2026"
 
 # mezelf toegevoegd
 #, kde-format
@@ -1294,11 +1294,10 @@ msgid "Ma&rk All Feeds as Read"
 msgstr "Alle feeds als gelezen ma&rkeren"
 
 #: src/actions/actionmanagerimpl.cpp:352
-#, fuzzy, kde-format
-#| msgid "Copy Link Address"
+#, kde-format
 msgctxt "@action"
 msgid "Copy Article Link Address"
-msgstr "Koppelingadres kopiëren"
+msgstr "Koppelingsadres van artikel kopiëren"
 
 #: src/actions/actionmanagerimpl.cpp:357
 #, kde-format
@@ -1524,18 +1523,16 @@ msgid "&Find in Message…"
 msgstr "&Zoeken in bericht…"
 
 #: src/actions/actionmanagerimpl.cpp:634
-#, fuzzy, kde-format
-#| msgid "Reload All Tabs"
+#, kde-format
 msgctxt "@action"
 msgid "Reload Tab"
-msgstr "Alle Tabs Vernieuwen"
+msgstr "Tabblad herladen"
 
 #: src/actions/actionmanagerimpl.cpp:639
-#, fuzzy, kde-format
-#| msgid "&Copy Email Address"
+#, kde-format
 msgctxt "@action"
 msgid "Copy Tab Address"
-msgstr "E-mailadres &kopiëren"
+msgstr "Tabbladadres kopiëren"
 
 #: src/actions/actionmanagerimpl.cpp:644
 #, kde-format
@@ -2422,50 +2419,48 @@ msgctxt "Feedlist's column header"
 msgid "Total"
 msgstr "Totaal"
 
-#: src/tabwidget.cpp:94
+#: src/tabwidget.cpp:96
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Close the current tab"
 msgstr "Het huidige tabblad sluiten"
 
-#: src/tabwidget.cpp:97
+#: src/tabwidget.cpp:99
 #, kde-format
 msgid "Close tab"
 msgstr "Tabblad sluiten"
 
-#: src/tabwidget.cpp:120
+#: src/tabwidget.cpp:122
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Detach Tab"
 msgstr "Tabblad losmaken"
 
-#: src/tabwidget.cpp:128
-#, fuzzy, kde-format
-#| msgid "Reload All Tabs"
+#: src/tabwidget.cpp:130
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Reload Tab"
-msgstr "Alle Tabs Vernieuwen"
+msgstr "Tabblad herladen"
 
-#: src/tabwidget.cpp:131
-#, fuzzy, kde-format
-#| msgid "&Copy Email Address"
+#: src/tabwidget.cpp:133
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Copy Tab Address"
-msgstr "E-mailadres &kopiëren"
+msgstr "Tabbladadres kopiëren"
 
-#: src/tabwidget.cpp:137
+#: src/tabwidget.cpp:139
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Close Tab"
 msgstr "Tabblad sluiten"
 
-#: src/tabwidget.cpp:141
+#: src/tabwidget.cpp:143
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Close All Other Tabs"
 msgstr "Alle andere tabbladen sluiten"
 
-#: src/tabwidget.cpp:145
+#: src/tabwidget.cpp:147
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Close All Tabs"

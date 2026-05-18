@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-17 00:44+0000\n"
+"POT-Creation-Date: 2026-05-18 00:45+0000\n"
 "PO-Revision-Date: 2023-08-24 21:37+0200\n"
 "Last-Translator: Karl Ove Hufthammer <karl@huftis.org>\n"
 "Language-Team: Norwegian Nynorsk <l10n-no@lister.huftis.org>\n"
@@ -2336,50 +2336,50 @@ msgctxt "Feedlist's column header"
 msgid "Total"
 msgstr "Totalt"
 
-#: src/tabwidget.cpp:94
+#: src/tabwidget.cpp:96
 #, fuzzy, kde-format
 msgctxt "@info:tooltip"
 msgid "Close the current tab"
 msgstr "Lukk fane"
 
-#: src/tabwidget.cpp:97
+#: src/tabwidget.cpp:99
 #, kde-format
 msgid "Close tab"
 msgstr "Lukk fane"
 
-#: src/tabwidget.cpp:120
+#: src/tabwidget.cpp:122
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Detach Tab"
 msgstr "Kopla frå fane"
 
-#: src/tabwidget.cpp:128
+#: src/tabwidget.cpp:130
 #, fuzzy, kde-format
 #| msgid "Reload All Tabs"
 msgctxt "@action:inmenu"
 msgid "Reload Tab"
 msgstr "Last alle faner på nytt"
 
-#: src/tabwidget.cpp:131
+#: src/tabwidget.cpp:133
 #, fuzzy, kde-format
 #| msgid "&Copy Email Address"
 msgctxt "@action:inmenu"
 msgid "Copy Tab Address"
 msgstr "&Kopier e-postadresse"
 
-#: src/tabwidget.cpp:137
+#: src/tabwidget.cpp:139
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Close Tab"
 msgstr "Lukk fane"
 
-#: src/tabwidget.cpp:141
+#: src/tabwidget.cpp:143
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Close All Other Tabs"
 msgstr "Lukk andre faner"
 
-#: src/tabwidget.cpp:145
+#: src/tabwidget.cpp:147
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Close All Tabs"

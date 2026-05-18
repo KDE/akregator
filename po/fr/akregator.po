@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-17 00:44+0000\n"
+"POT-Creation-Date: 2026-05-18 00:45+0000\n"
 "PO-Revision-Date: 2026-04-04 19:45+0200\n"
 "Last-Translator: Xavier Besnard <xavier.besnard@kde.org>\n"
 "Language-Team: fr\n"
@@ -2385,50 +2385,50 @@ msgctxt "Feedlist's column header"
 msgid "Total"
 msgstr "Total"
 
-#: src/tabwidget.cpp:94
+#: src/tabwidget.cpp:96
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Close the current tab"
 msgstr "Fermer l'onglet courant"
 
-#: src/tabwidget.cpp:97
+#: src/tabwidget.cpp:99
 #, kde-format
 msgid "Close tab"
 msgstr "Fermer un onglet"
 
-#: src/tabwidget.cpp:120
+#: src/tabwidget.cpp:122
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Detach Tab"
 msgstr "Détacher un onglet"
 
-#: src/tabwidget.cpp:128
+#: src/tabwidget.cpp:130
 #, fuzzy, kde-format
 #| msgid "Reload All Tabs"
 msgctxt "@action:inmenu"
 msgid "Reload Tab"
 msgstr "Recharger tous les onglets"
 
-#: src/tabwidget.cpp:131
+#: src/tabwidget.cpp:133
 #, fuzzy, kde-format
 #| msgid "&Copy Email Address"
 msgctxt "@action:inmenu"
 msgid "Copy Tab Address"
 msgstr "&Copier l'adresse de courrier électronique"
 
-#: src/tabwidget.cpp:137
+#: src/tabwidget.cpp:139
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Close Tab"
 msgstr "Fermer l'onglet"
 
-#: src/tabwidget.cpp:141
+#: src/tabwidget.cpp:143
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Close All Other Tabs"
 msgstr "Fermer tous les autres onglets"
 
-#: src/tabwidget.cpp:145
+#: src/tabwidget.cpp:147
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Close All Tabs"

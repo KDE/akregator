@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-17 00:44+0000\n"
+"POT-Creation-Date: 2026-05-18 00:45+0000\n"
 "PO-Revision-Date: 2024-09-19 13:48+0300\n"
 "Last-Translator: Antonis Geralis <capoiosct@gmail.com>\n"
 "Language-Team: Greek <kde-i18n-el@kde.org>\n"
@@ -2368,50 +2368,50 @@ msgctxt "Feedlist's column header"
 msgid "Total"
 msgstr "Σύνολο"
 
-#: src/tabwidget.cpp:94
+#: src/tabwidget.cpp:96
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Close the current tab"
 msgstr "Κλείσιμο της τρέχουσας καρτέλας"
 
-#: src/tabwidget.cpp:97
+#: src/tabwidget.cpp:99
 #, kde-format
 msgid "Close tab"
 msgstr "Κλείσιμο καρτέλας"
 
-#: src/tabwidget.cpp:120
+#: src/tabwidget.cpp:122
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Detach Tab"
 msgstr "Αποκόλληση καρτέλας"
 
-#: src/tabwidget.cpp:128
+#: src/tabwidget.cpp:130
 #, fuzzy, kde-format
 #| msgid "Reload All Tabs"
 msgctxt "@action:inmenu"
 msgid "Reload Tab"
 msgstr "Επαναφόρτωση όλων των καρτελών"
 
-#: src/tabwidget.cpp:131
+#: src/tabwidget.cpp:133
 #, fuzzy, kde-format
 #| msgid "&Copy Email Address"
 msgctxt "@action:inmenu"
 msgid "Copy Tab Address"
 msgstr "&Αντιγραφή διεύθυνσης αλληλογραφίας"
 
-#: src/tabwidget.cpp:137
+#: src/tabwidget.cpp:139
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Close Tab"
 msgstr "Κλείσιμο καρτέλας"
 
-#: src/tabwidget.cpp:141
+#: src/tabwidget.cpp:143
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Close All Other Tabs"
 msgstr "Κλείσιμο όλων των άλλων καρτελών"
 
-#: src/tabwidget.cpp:145
+#: src/tabwidget.cpp:147
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Close All Tabs"

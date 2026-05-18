@@ -8,15 +8,15 @@
 # André Marcelo Alvarenga <alvarenga@kde.org>, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2018, 2019, 2020.
 # Fernando Boaglio <boaglio@kde.org>, 2008.
 # Luiz Fernando Ranghetti <elchevive@opensuse.org>, 2009, 2010, 2015, 2019, 2020, 2021, 2022, 2023.
-# SPDX-FileCopyrightText: 2012, 2025 Marcus Gama <marcus.gama@gmail.com>
+# SPDX-FileCopyrightText: 2012, 2025-2026 Marcus Gama <marcus.gama@gmail.com>
 # SPDX-FileCopyrightText: 2024, 2025 Geraldo Simiao <geraldosimiao@fedoraproject.org>
 # SPDX-FileCopyrightText: 2025 Guilherme Marçal Silva <guimarcalsilva@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-17 00:44+0000\n"
-"PO-Revision-Date: 2025-12-01 08:27-0300\n"
+"POT-Creation-Date: 2026-05-18 00:45+0000\n"
+"PO-Revision-Date: 2026-05-17 07:46-0300\n"
 "Last-Translator: Marcus Gama <marcus.gama@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <kde-i18n-pt_BR@kde.org>\n"
 "Language: pt_BR\n"
@@ -24,7 +24,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 25.08.3\n"
+"X-Generator: Lokalize 26.04.1\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -1254,11 +1254,10 @@ msgid "Ma&rk All Feeds as Read"
 msgstr "Ma&rcar todas as fontes de notícias como lidas"
 
 #: src/actions/actionmanagerimpl.cpp:352
-#, fuzzy, kde-format
-#| msgid "Copy Link Address"
+#, kde-format
 msgctxt "@action"
 msgid "Copy Article Link Address"
-msgstr "Copiar endereço do link"
+msgstr "Copiar endereço do link do artigo"
 
 #: src/actions/actionmanagerimpl.cpp:357
 #, kde-format
@@ -1480,18 +1479,16 @@ msgid "&Find in Message…"
 msgstr "Locali&zar na mensagem…"
 
 #: src/actions/actionmanagerimpl.cpp:634
-#, fuzzy, kde-format
-#| msgid "Reload All Tabs"
+#, kde-format
 msgctxt "@action"
 msgid "Reload Tab"
-msgstr "Recarregar todas as abas"
+msgstr "Recarregar aba"
 
 #: src/actions/actionmanagerimpl.cpp:639
-#, fuzzy, kde-format
-#| msgid "&Copy Email Address"
+#, kde-format
 msgctxt "@action"
 msgid "Copy Tab Address"
-msgstr "&Copiar endereço de e-mail"
+msgstr "Copiar endereço da aba"
 
 #: src/actions/actionmanagerimpl.cpp:644
 #, kde-format
@@ -1562,7 +1559,7 @@ msgstr "Ocultar a janela principal na inicialização"
 #, kde-format
 msgctxt "@info:shell"
 msgid "Lists the available options for user feedback"
-msgstr "Lista as opções disponíveis para os comentários dos usuários"
+msgstr "Lista as opções disponíveis para o feedback do usuário"
 
 #: src/akregator_part.cpp:78
 #, kde-format
@@ -2368,50 +2365,48 @@ msgctxt "Feedlist's column header"
 msgid "Total"
 msgstr "Total"
 
-#: src/tabwidget.cpp:94
+#: src/tabwidget.cpp:96
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Close the current tab"
 msgstr "Fechar a aba atual"
 
-#: src/tabwidget.cpp:97
+#: src/tabwidget.cpp:99
 #, kde-format
 msgid "Close tab"
 msgstr "Fechar aba"
 
-#: src/tabwidget.cpp:120
+#: src/tabwidget.cpp:122
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Detach Tab"
 msgstr "Desanexar aba"
 
-#: src/tabwidget.cpp:128
-#, fuzzy, kde-format
-#| msgid "Reload All Tabs"
+#: src/tabwidget.cpp:130
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Reload Tab"
-msgstr "Recarregar todas as abas"
+msgstr "Recarregar aba"
 
-#: src/tabwidget.cpp:131
-#, fuzzy, kde-format
-#| msgid "&Copy Email Address"
+#: src/tabwidget.cpp:133
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Copy Tab Address"
-msgstr "&Copiar endereço de e-mail"
+msgstr "Copiar endereço da aba"
 
-#: src/tabwidget.cpp:137
+#: src/tabwidget.cpp:139
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Close Tab"
 msgstr "Fechar aba"
 
-#: src/tabwidget.cpp:141
+#: src/tabwidget.cpp:143
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Close All Other Tabs"
 msgstr "Fechar todas as outras abas"
 
-#: src/tabwidget.cpp:145
+#: src/tabwidget.cpp:147
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Close All Tabs"

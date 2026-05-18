@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-17 00:44+0000\n"
-"PO-Revision-Date: 2025-12-01 06:07+0100\n"
+"POT-Creation-Date: 2026-05-18 00:45+0000\n"
+"PO-Revision-Date: 2026-05-17 06:51+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.8\n"
+"X-Generator: Poedit 3.9\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -1238,11 +1238,10 @@ msgid "Ma&rk All Feeds as Read"
 msgstr "&ყველა ლენტის წაკითხულად მონიშვნა"
 
 #: src/actions/actionmanagerimpl.cpp:352
-#, fuzzy, kde-format
-#| msgid "Copy Link Address"
+#, kde-format
 msgctxt "@action"
 msgid "Copy Article Link Address"
-msgstr "ბმულის მისამართის კოპირება"
+msgstr "სტატიის ბმულის მისამართის კოპირება"
 
 #: src/actions/actionmanagerimpl.cpp:357
 #, kde-format
@@ -1464,18 +1463,16 @@ msgid "&Find in Message…"
 msgstr "&შეტყობინებაში ძებნა…"
 
 #: src/actions/actionmanagerimpl.cpp:634
-#, fuzzy, kde-format
-#| msgid "Reload All Tabs"
+#, kde-format
 msgctxt "@action"
 msgid "Reload Tab"
-msgstr "&ყველა ჩანართის თავიდან ჩატვირთვა"
+msgstr "ჩანართის თავიდან ჩატვირთვა"
 
 #: src/actions/actionmanagerimpl.cpp:639
-#, fuzzy, kde-format
-#| msgid "&Copy Email Address"
+#, kde-format
 msgctxt "@action"
 msgid "Copy Tab Address"
-msgstr "ელფოსტის მისამართის &კოპირება"
+msgstr "ჩანართის მისამართის კოპირება"
 
 #: src/actions/actionmanagerimpl.cpp:644
 #, kde-format
@@ -2348,50 +2345,48 @@ msgctxt "Feedlist's column header"
 msgid "Total"
 msgstr "ჯამში"
 
-#: src/tabwidget.cpp:94
+#: src/tabwidget.cpp:96
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Close the current tab"
 msgstr "მიმდინარე ჩანართის დახურვა"
 
-#: src/tabwidget.cpp:97
+#: src/tabwidget.cpp:99
 #, kde-format
 msgid "Close tab"
 msgstr "ჩანართის დახურვა"
 
-#: src/tabwidget.cpp:120
+#: src/tabwidget.cpp:122
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Detach Tab"
 msgstr "ჩანართის მოხსნა"
 
-#: src/tabwidget.cpp:128
-#, fuzzy, kde-format
-#| msgid "Reload All Tabs"
+#: src/tabwidget.cpp:130
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Reload Tab"
-msgstr "&ყველა ჩანართის თავიდან ჩატვირთვა"
+msgstr "ჩანართის თავიდან ჩატვირთვა"
 
-#: src/tabwidget.cpp:131
-#, fuzzy, kde-format
-#| msgid "&Copy Email Address"
+#: src/tabwidget.cpp:133
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Copy Tab Address"
-msgstr "ელფოსტის მისამართის &კოპირება"
+msgstr "ჩანართის მისამართის კოპირება"
 
-#: src/tabwidget.cpp:137
+#: src/tabwidget.cpp:139
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Close Tab"
 msgstr "ჩანართის დახურვა"
 
-#: src/tabwidget.cpp:141
+#: src/tabwidget.cpp:143
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Close All Other Tabs"
 msgstr "ყველა სხვა ჩანართის დახურვა"
 
-#: src/tabwidget.cpp:145
+#: src/tabwidget.cpp:147
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Close All Tabs"

@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Translators:
-# SPDX-FileCopyrightText: 2022, 2023, 2024, 2025, 2026 Emir SARI <emir_sari@icloud.com>
+# SPDX-FileCopyrightText: 2022-2026 Emir SARI <emir_sari@icloud.com>
 # Bülent Bolat <bbolat@yildiz.edu.tr>, 2004.
 # Engin Çağatay <engincagatay@yahoo.com>, 2005.
 # Görkem Çetin <gorkem@kde.org>, 2004.
@@ -20,8 +20,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdepim-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-17 00:44+0000\n"
-"PO-Revision-Date: 2026-05-02 19:50+0300\n"
+"POT-Creation-Date: 2026-05-18 00:45+0000\n"
+"PO-Revision-Date: 2026-05-17 13:50+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -29,13 +29,13 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 25.12.3\n"
+"X-Generator: Lokalize 26.04.0\n"
 "(http: //www.transifex.com/projects/p/kdepim-k-tr/language/tr/)\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "Serdar SOYTETİR, Bülent Bolat, Engin Çağatay, Volkan GEZER, Emir SARI"
+msgstr "Serdar SOYTETİR, Bülent BOLAT, Engin ÇAĞATAY, Volkan GEZER, Emir SARI"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
@@ -1253,11 +1253,10 @@ msgid "Ma&rk All Feeds as Read"
 msgstr "&Tüm Beslemeleri Okundu Olarak İmle"
 
 #: src/actions/actionmanagerimpl.cpp:352
-#, fuzzy, kde-format
-#| msgid "Copy Link Address"
+#, kde-format
 msgctxt "@action"
 msgid "Copy Article Link Address"
-msgstr "Bağlantı Adresini Kopyala"
+msgstr "Yazı Bağlantısını Kopyala"
 
 #: src/actions/actionmanagerimpl.cpp:357
 #, kde-format
@@ -1479,23 +1478,21 @@ msgid "&Find in Message…"
 msgstr "İletide &Bul…"
 
 #: src/actions/actionmanagerimpl.cpp:634
-#, fuzzy, kde-format
-#| msgid "Reload All Tabs"
+#, kde-format
 msgctxt "@action"
 msgid "Reload Tab"
-msgstr "Tüm Sekmeleri Yeniden Yükle"
+msgstr "Sekmeyi Yeniden Yükle"
 
 #: src/actions/actionmanagerimpl.cpp:639
-#, fuzzy, kde-format
-#| msgid "&Copy Email Address"
+#, kde-format
 msgctxt "@action"
 msgid "Copy Tab Address"
-msgstr "E-posta Adresini Ko&pyala"
+msgstr "Sekme Adresini Kopyala"
 
 #: src/actions/actionmanagerimpl.cpp:644
 #, kde-format
 msgid "Close Tab"
-msgstr "Se&kmeyi Kapat"
+msgstr "Sekmeyi Kapat"
 
 #: src/actions/actionmanagerimpl.cpp:657
 #, kde-format
@@ -2366,50 +2363,48 @@ msgctxt "Feedlist's column header"
 msgid "Total"
 msgstr "Toplam"
 
-#: src/tabwidget.cpp:94
+#: src/tabwidget.cpp:96
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Close the current tab"
 msgstr "Geçerli sekmeyi kapat"
 
-#: src/tabwidget.cpp:97
+#: src/tabwidget.cpp:99
 #, kde-format
 msgid "Close tab"
 msgstr "Sekmeyi Kapat"
 
-#: src/tabwidget.cpp:120
+#: src/tabwidget.cpp:122
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Detach Tab"
 msgstr "Sekmeyi Ayır"
 
-#: src/tabwidget.cpp:128
-#, fuzzy, kde-format
-#| msgid "Reload All Tabs"
+#: src/tabwidget.cpp:130
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Reload Tab"
-msgstr "Tüm Sekmeleri Yeniden Yükle"
+msgstr "Sekmeyi Yeniden Yükle"
 
-#: src/tabwidget.cpp:131
-#, fuzzy, kde-format
-#| msgid "&Copy Email Address"
+#: src/tabwidget.cpp:133
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Copy Tab Address"
-msgstr "E-posta Adresini Ko&pyala"
+msgstr "Sekme Adresini Kopyala"
 
-#: src/tabwidget.cpp:137
+#: src/tabwidget.cpp:139
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Close Tab"
 msgstr "Sekmeyi Kapat"
 
-#: src/tabwidget.cpp:141
+#: src/tabwidget.cpp:143
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Close All Other Tabs"
 msgstr "Diğer Sekmelerin Tümünü Kapat"
 
-#: src/tabwidget.cpp:145
+#: src/tabwidget.cpp:147
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Close All Tabs"

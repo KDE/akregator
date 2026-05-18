@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-17 00:44+0000\n"
+"POT-Creation-Date: 2026-05-18 00:45+0000\n"
 "PO-Revision-Date: 2014-07-03 09:47+0200\n"
 "Last-Translator: Sönke Dibbern <s_dibbern@web.de>\n"
 "Language-Team: Low Saxon <kde-i18n-nds@kde.org>\n"
@@ -2442,54 +2442,54 @@ msgctxt "Feedlist's column header"
 msgid "Total"
 msgstr "Tosamen"
 
-#: src/tabwidget.cpp:94
+#: src/tabwidget.cpp:96
 #, fuzzy, kde-format
 #| msgid "Close the current tab"
 msgctxt "@info:tooltip"
 msgid "Close the current tab"
 msgstr "Aktuell Tab tomaken"
 
-#: src/tabwidget.cpp:97
+#: src/tabwidget.cpp:99
 #, kde-format
 msgid "Close tab"
 msgstr "Paneel tomaken"
 
-#: src/tabwidget.cpp:120
+#: src/tabwidget.cpp:122
 #, fuzzy, kde-format
 #| msgid "Detach Tab"
 msgctxt "@action:inmenu"
 msgid "Detach Tab"
 msgstr "Paneel aflösen"
 
-#: src/tabwidget.cpp:128
+#: src/tabwidget.cpp:130
 #, fuzzy, kde-format
 #| msgid "Reload All Tabs"
 msgctxt "@action:inmenu"
 msgid "Reload Tab"
 msgstr "All Paneels nieg laden"
 
-#: src/tabwidget.cpp:131
+#: src/tabwidget.cpp:133
 #, fuzzy, kde-format
 #| msgid "Copy Link Address"
 msgctxt "@action:inmenu"
 msgid "Copy Tab Address"
 msgstr "Linkadress koperen"
 
-#: src/tabwidget.cpp:137
+#: src/tabwidget.cpp:139
 #, fuzzy, kde-format
 #| msgid "Close Tab"
 msgctxt "@action:inmenu"
 msgid "Close Tab"
 msgstr "Paneel tomaken"
 
-#: src/tabwidget.cpp:141
+#: src/tabwidget.cpp:143
 #, fuzzy, kde-format
 #| msgid "Close the current tab"
 msgctxt "@action:inmenu"
 msgid "Close All Other Tabs"
 msgstr "Aktuell Tab tomaken"
 
-#: src/tabwidget.cpp:145
+#: src/tabwidget.cpp:147
 #, fuzzy, kde-format
 #| msgid "Close Tab"
 msgctxt "@action:inmenu"
