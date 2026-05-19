@@ -6,13 +6,13 @@
 # Ivan Petrouchtchak <fr.ivan@ukrainian-orthodox.org>, 2004, 2005, 2006, 2007, 2008.
 # Eugene Onischenko <oneugene@ukr.net>, 2005.
 # Andriy Rysin <rysin@kde.org>, 2006.
-# Yuri Chornoivan <yurchor@ukr.net>, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025.
+# Yuri Chornoivan <yurchor@ukr.net>, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-05-18 00:45+0000\n"
-"PO-Revision-Date: 2025-12-01 14:54+0200\n"
+"PO-Revision-Date: 2026-05-17 12:07+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -1263,11 +1263,10 @@ msgid "Ma&rk All Feeds as Read"
 msgstr "По&значити всі подачі як прочитані"
 
 #: src/actions/actionmanagerimpl.cpp:352
-#, fuzzy, kde-format
-#| msgid "Copy Link Address"
+#, kde-format
 msgctxt "@action"
 msgid "Copy Article Link Address"
-msgstr "Скопіювати адресу посилання"
+msgstr "Скопіювати адресу посилання на статтю"
 
 #: src/actions/actionmanagerimpl.cpp:357
 #, kde-format
@@ -1489,18 +1488,16 @@ msgid "&Find in Message…"
 msgstr "&Знайти у повідомленні…"
 
 #: src/actions/actionmanagerimpl.cpp:634
-#, fuzzy, kde-format
-#| msgid "Reload All Tabs"
+#, kde-format
 msgctxt "@action"
 msgid "Reload Tab"
-msgstr "Перезавантажити всі вкладки"
+msgstr "Перезавантажити вкладку"
 
 #: src/actions/actionmanagerimpl.cpp:639
-#, fuzzy, kde-format
-#| msgid "&Copy Email Address"
+#, kde-format
 msgctxt "@action"
 msgid "Copy Tab Address"
-msgstr "С&копіювати адресу ел. пошти"
+msgstr "Скопіювати адресу вкладки"
 
 #: src/actions/actionmanagerimpl.cpp:644
 #, kde-format
@@ -2410,18 +2407,16 @@ msgid "Detach Tab"
 msgstr "Відокремити вкладку"
 
 #: src/tabwidget.cpp:130
-#, fuzzy, kde-format
-#| msgid "Reload All Tabs"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Reload Tab"
-msgstr "Перезавантажити всі вкладки"
+msgstr "Перезавантажити вкладку"
 
 #: src/tabwidget.cpp:133
-#, fuzzy, kde-format
-#| msgid "&Copy Email Address"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Copy Tab Address"
-msgstr "С&копіювати адресу ел. пошти"
+msgstr "Скопіювати адресу вкладки"
 
 #: src/tabwidget.cpp:139
 #, kde-format
