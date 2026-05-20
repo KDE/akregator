@@ -2,13 +2,13 @@
 #
 # Diego Iastrubni <elcuco@kde.org>, 2005, 2006, 2012.
 # Elkana Bardugo <ttv200@gmail.com>, 2017. #zanata
-# SPDX-FileCopyrightText: 2023, 2024, 2025, 2026 Yaron Shahrabani <sh.yaron@gmail.com>
+# SPDX-FileCopyrightText: 2023-2026 Yaron Shahrabani <sh.yaron@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-05-18 00:45+0000\n"
-"PO-Revision-Date: 2026-03-20 08:13+0200\n"
+"PO-Revision-Date: 2026-05-19 08:37+0300\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 && "
 "n % 10 == 0) ? 2 : 3));\n"
-"X-Generator: Lokalize 25.12.3\n"
+"X-Generator: Lokalize 26.04.0\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -1238,11 +1238,10 @@ msgid "Ma&rk All Feeds as Read"
 msgstr "סי&מון כל הערוצים כנקראו"
 
 #: src/actions/actionmanagerimpl.cpp:352
-#, fuzzy, kde-format
-#| msgid "Copy Link Address"
+#, kde-format
 msgctxt "@action"
 msgid "Copy Article Link Address"
-msgstr "העתקת כתובת הקישור"
+msgstr "העתקת כתובת הקישור לכתבה"
 
 #: src/actions/actionmanagerimpl.cpp:357
 #, kde-format
@@ -1464,18 +1463,16 @@ msgid "&Find in Message…"
 msgstr "&איתור בהודעה…"
 
 #: src/actions/actionmanagerimpl.cpp:634
-#, fuzzy, kde-format
-#| msgid "Reload All Tabs"
+#, kde-format
 msgctxt "@action"
 msgid "Reload Tab"
-msgstr "ריענון כל הלשוניות"
+msgstr "ריענון הלשונית"
 
 #: src/actions/actionmanagerimpl.cpp:639
-#, fuzzy, kde-format
-#| msgid "&Copy Email Address"
+#, kde-format
 msgctxt "@action"
 msgid "Copy Tab Address"
-msgstr "העתקת כתובת &דוא״ל"
+msgstr "העתקת כתובת הלשונית"
 
 #: src/actions/actionmanagerimpl.cpp:644
 #, kde-format
@@ -2361,18 +2358,16 @@ msgid "Detach Tab"
 msgstr "ניתוק לשונית"
 
 #: src/tabwidget.cpp:130
-#, fuzzy, kde-format
-#| msgid "Reload All Tabs"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Reload Tab"
-msgstr "ריענון כל הלשוניות"
+msgstr "ריענון הלשונית"
 
 #: src/tabwidget.cpp:133
-#, fuzzy, kde-format
-#| msgid "&Copy Email Address"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Copy Tab Address"
-msgstr "העתקת כתובת &דוא״ל"
+msgstr "העתקת כתובת הלשונית"
 
 #: src/tabwidget.cpp:139
 #, kde-format

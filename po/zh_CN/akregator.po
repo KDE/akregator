@@ -1219,11 +1219,10 @@ msgid "Ma&rk All Feeds as Read"
 msgstr "将全部订阅标为已读(&R)"
 
 #: src/actions/actionmanagerimpl.cpp:352
-#, fuzzy, kde-format
-#| msgid "Copy Link Address"
+#, kde-format
 msgctxt "@action"
 msgid "Copy Article Link Address"
-msgstr "复制链接地址"
+msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:357
 #, kde-format
@@ -1445,18 +1444,16 @@ msgid "&Find in Message…"
 msgstr "在消息中查找...(&F)"
 
 #: src/actions/actionmanagerimpl.cpp:634
-#, fuzzy, kde-format
-#| msgid "Reload All Tabs"
+#, kde-format
 msgctxt "@action"
 msgid "Reload Tab"
-msgstr "重新加载全部标签页"
+msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:639
-#, fuzzy, kde-format
-#| msgid "&Copy Email Address"
+#, kde-format
 msgctxt "@action"
 msgid "Copy Tab Address"
-msgstr "复制电子邮件地址(&C)"
+msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:644
 #, kde-format
@@ -2310,18 +2307,16 @@ msgid "Detach Tab"
 msgstr "分离标签页"
 
 #: src/tabwidget.cpp:130
-#, fuzzy, kde-format
-#| msgid "Reload All Tabs"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Reload Tab"
-msgstr "重新加载全部标签页"
+msgstr ""
 
 #: src/tabwidget.cpp:133
-#, fuzzy, kde-format
-#| msgid "&Copy Email Address"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Copy Tab Address"
-msgstr "复制电子邮件地址(&C)"
+msgstr ""
 
 #: src/tabwidget.cpp:139
 #, kde-format
