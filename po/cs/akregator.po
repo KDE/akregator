@@ -10,15 +10,15 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-12-01 00:43+0000\n"
-"PO-Revision-Date: 2026-02-03 15:35+0100\n"
-"Last-Translator:  Vít Pelčák <vit@pelcak.org>\n"
+"PO-Revision-Date: 2026-05-21 23:53+0200\n"
+"Last-Translator: Libor Filípek <libor.filipek@gmail.com>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Lokalize 26.04.1\n"
+"X-Generator: Poedit 3.8\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -938,7 +938,7 @@ msgstr ""
 #: interfaces/akregator.kcfg:282
 #, kde-format
 msgid "Resets the quick filter when changing feeds."
-msgstr "Resetuje rychlý filtr při změně kanálu"
+msgstr "Resetuje rychlý filtr při změně kanálu."
 
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
 #: src/akregator_part.cpp:126
@@ -1763,7 +1763,7 @@ msgstr "Síť je přerušena."
 #, kde-format
 msgctxt "@title:window"
 msgid "Check Phishing Url"
-msgstr "Zkontrolovat URL Phishing "
+msgstr "Zkontrolovat URL Phishing"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:429
 #, kde-format
@@ -2572,7 +2572,7 @@ msgstr "Přidat nový widget „Co je nového“."
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "Search articles…"
-msgstr "Hledat články..."
+msgstr "Hledat články…"
 
 #: src/widgets/searchbar.cpp:127
 #, kde-format
