@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-05-18 00:45+0000\n"
-"PO-Revision-Date: 2026-02-17 01:37+0200\n"
+"PO-Revision-Date: 2026-05-21 16:28+0300\n"
 "Last-Translator: Mindaugas Baranauskas <opensuse.lietuviu.kalba@gmail.com>\n"
 "Language-Team: Lithuanian <kde-i18n-lt@kde.org>\n"
 "Language: lt\n"
@@ -1254,11 +1254,10 @@ msgid "Ma&rk All Feeds as Read"
 msgstr "Žymė&ti visus kanalus skaitytais"
 
 #: src/actions/actionmanagerimpl.cpp:352
-#, fuzzy, kde-format
-#| msgid "Copy Link Address"
+#, kde-format
 msgctxt "@action"
 msgid "Copy Article Link Address"
-msgstr "Kopijuoti nuorodos adresą"
+msgstr "Kopijuoti straipsnio nuorodos adresą"
 
 #: src/actions/actionmanagerimpl.cpp:357
 #, kde-format
@@ -1480,18 +1479,16 @@ msgid "&Find in Message…"
 msgstr "&Ieškoti pranešime…"
 
 #: src/actions/actionmanagerimpl.cpp:634
-#, fuzzy, kde-format
-#| msgid "Reload All Tabs"
+#, kde-format
 msgctxt "@action"
 msgid "Reload Tab"
-msgstr "Iš naujo įkelti visas korteles"
+msgstr "Įkelti kortelę iš naujo"
 
 #: src/actions/actionmanagerimpl.cpp:639
-#, fuzzy, kde-format
-#| msgid "&Copy Email Address"
+#, kde-format
 msgctxt "@action"
 msgid "Copy Tab Address"
-msgstr "&Kopijuoti el. pašto adresą"
+msgstr "Kopijuoti kortelės adresą"
 
 #: src/actions/actionmanagerimpl.cpp:644
 #, kde-format
@@ -2397,18 +2394,16 @@ msgid "Detach Tab"
 msgstr "Atkabinti kortelę"
 
 #: src/tabwidget.cpp:130
-#, fuzzy, kde-format
-#| msgid "Reload All Tabs"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Reload Tab"
-msgstr "Iš naujo įkelti visas korteles"
+msgstr "Įkelti kortelę iš naujo"
 
 #: src/tabwidget.cpp:133
-#, fuzzy, kde-format
-#| msgid "&Copy Email Address"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Copy Tab Address"
-msgstr "&Kopijuoti el. pašto adresą"
+msgstr "Kopijuoti kortelės adresą"
 
 #: src/tabwidget.cpp:139
 #, kde-format
