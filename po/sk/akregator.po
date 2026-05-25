@@ -1243,11 +1243,10 @@ msgid "Ma&rk All Feeds as Read"
 msgstr "Označiť všetky kanály ako p&rečítané"
 
 #: src/actions/actionmanagerimpl.cpp:352
-#, fuzzy, kde-format
-#| msgid "Copy Link Address"
+#, kde-format
 msgctxt "@action"
 msgid "Copy Article Link Address"
-msgstr "Kopírovať adresu odkazu"
+msgstr "Kopírovať adresu odkazu článku"
 
 #: src/actions/actionmanagerimpl.cpp:357
 #, kde-format
@@ -1469,18 +1468,16 @@ msgid "&Find in Message…"
 msgstr "&Nájsť v správe..."
 
 #: src/actions/actionmanagerimpl.cpp:634
-#, fuzzy, kde-format
-#| msgid "Reload All Tabs"
+#, kde-format
 msgctxt "@action"
 msgid "Reload Tab"
-msgstr "Obnoviť všetky karty"
+msgstr "Obnoviť kartu"
 
 #: src/actions/actionmanagerimpl.cpp:639
-#, fuzzy, kde-format
-#| msgid "&Copy Email Address"
+#, kde-format
 msgctxt "@action"
 msgid "Copy Tab Address"
-msgstr "&Kopírovať e-mailovú adresu"
+msgstr "Kopírovať adresu karty"
 
 #: src/actions/actionmanagerimpl.cpp:644
 #, kde-format
@@ -2376,18 +2373,16 @@ msgid "Detach Tab"
 msgstr "Odpojiť kartu"
 
 #: src/tabwidget.cpp:130
-#, fuzzy, kde-format
-#| msgid "Reload All Tabs"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Reload Tab"
-msgstr "Obnoviť všetky karty"
+msgstr "Obnoviť kartu"
 
 #: src/tabwidget.cpp:133
-#, fuzzy, kde-format
-#| msgid "&Copy Email Address"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Copy Tab Address"
-msgstr "&Kopírovať e-mailovú adresu"
+msgstr "Kopírovať adresu karty"
 
 #: src/tabwidget.cpp:139
 #, kde-format
