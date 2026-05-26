@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kdepim\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-05-18 00:45+0000\n"
-"PO-Revision-Date: 2026-04-26 22:53+0200\n"
+"PO-Revision-Date: 2026-05-25 18:22+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
 "Language: ko\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Lokalize 25.08.1\n"
+"X-Generator: Lokalize 25.12.3\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -1222,11 +1222,10 @@ msgid "Ma&rk All Feeds as Read"
 msgstr "모든 피드를 읽은 것으로 표시(&R)"
 
 #: src/actions/actionmanagerimpl.cpp:352
-#, fuzzy, kde-format
-#| msgid "Copy Link Address"
+#, kde-format
 msgctxt "@action"
 msgid "Copy Article Link Address"
-msgstr "링크 주소 복사"
+msgstr "글 링크 주소 복사"
 
 #: src/actions/actionmanagerimpl.cpp:357
 #, kde-format
@@ -1448,18 +1447,16 @@ msgid "&Find in Message…"
 msgstr "메시지에서 찾기(&F)…"
 
 #: src/actions/actionmanagerimpl.cpp:634
-#, fuzzy, kde-format
-#| msgid "Reload All Tabs"
+#, kde-format
 msgctxt "@action"
 msgid "Reload Tab"
-msgstr "모든 탭 새로 고침"
+msgstr "탭 새로 고침"
 
 #: src/actions/actionmanagerimpl.cpp:639
-#, fuzzy, kde-format
-#| msgid "&Copy Email Address"
+#, kde-format
 msgctxt "@action"
 msgid "Copy Tab Address"
-msgstr "이메일 주소 복사(&C)"
+msgstr "탭 주소 복사"
 
 #: src/actions/actionmanagerimpl.cpp:644
 #, kde-format
@@ -2325,18 +2322,16 @@ msgid "Detach Tab"
 msgstr "탭 떼내기"
 
 #: src/tabwidget.cpp:130
-#, fuzzy, kde-format
-#| msgid "Reload All Tabs"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Reload Tab"
-msgstr "모든 탭 새로 고침"
+msgstr "탭 새로 고침"
 
 #: src/tabwidget.cpp:133
-#, fuzzy, kde-format
-#| msgid "&Copy Email Address"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Copy Tab Address"
-msgstr "이메일 주소 복사(&C)"
+msgstr "탭 주소 복사"
 
 #: src/tabwidget.cpp:139
 #, kde-format
