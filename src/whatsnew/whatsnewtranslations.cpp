@@ -28,12 +28,19 @@ QList<TextAddonsWidgets::WhatsNewInfo> WhatsNewTranslations::createWhatsNewInfo(
     }
     {
         TextAddonsWidgets::WhatsNewInfo info;
+        const QStringList lst{i18n("Add windows support.")};
+        info.setNewFeatures(lst);
+        info.setVersion(QStringLiteral("6.4.0"));
+        listInfo.append(std::move(info));
+    }
+    {
+        TextAddonsWidgets::WhatsNewInfo info;
         QStringList lst;
         for (const KLazyLocalizedString &l : lastNewFeatures()) {
             lst += l.toString();
         }
         info.setNewFeatures(lst);
-        info.setVersion(QStringLiteral("6.4.0"));
+        info.setVersion(QStringLiteral("6.8.0"));
         listInfo.append(std::move(info));
     }
     return listInfo;
