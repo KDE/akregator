@@ -174,6 +174,17 @@ set_package_properties(
             "Allow to send Telemetry Information (optional). It can be disable in apps."
 )
 
+if(
+    ${KF6CoreAddons_VERSION}
+        VERSION_GREATER_EQUAL
+        6.26.0
+    AND ${KF6TextAddonsWidgets_VERSION}
+        VERSION_GREATER_EQUAL
+        2.0.67
+)
+    set(HAVE_WHATSNEWSNGSUPPORT TRUE)
+endif()
+
 include_directories(
     ${akregator_SOURCE_DIR}
     ${akregator_BINARY_DIR}
