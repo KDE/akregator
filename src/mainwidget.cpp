@@ -66,8 +66,15 @@
 #include <PimCommon/NetworkManager>
 #include <TextAddonsWidgets/NeedUpdateVersionUtils>
 #include <TextAddonsWidgets/NeedUpdateVersionWidget>
+
+#if HAVE_WHATSNEWSNGSUPPORT
+#include <TextAddonsWidgets/WhatsNewMessageNgWidget>
+#include <TextAddonsWidgets/WhatsNewNgDialog>
+#else
 #include <TextAddonsWidgets/WhatsNewDialog>
 #include <TextAddonsWidgets/WhatsNewMessageWidget>
+#endif
+
 #include <algorithm>
 #include <chrono>
 #include <memory>
@@ -76,7 +83,7 @@
 #include "akregator_plasma_activities_debug.h"
 #endif
 using namespace std::chrono_literals;
-
+using namespace Qt::Literals::StringLiterals;
 using namespace Akregator;
 
 MainWidget::~MainWidget()
@@ -120,19 +127,35 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
         }
     }
 
+    QString newFeaturesMD5;
+#if HAVE_WHATSNEWSNGSUPPORT
+    const KAboutData aboutData = KAboutData::fromAppStreamForApplication();
+    if (!aboutData.releases().isEmpty()) {
+        newFeaturesMD5 = aboutData.releases().constFirst().untranslatedDescription();
+    }
+#else
     WhatsNewTranslations translations;
-    const QString newFeaturesMD5 = translations.newFeaturesMD5();
+    newFeaturesMD5 = translations.newFeaturesMD5();
+#endif
     if (!newFeaturesMD5.isEmpty()) {
         const QString previousNewFeaturesMD5 = Settings::self()->previousNewFeaturesMD5();
         if (!previousNewFeaturesMD5.isEmpty()) {
             const bool hasNewFeature = (previousNewFeaturesMD5 != newFeaturesMD5);
             if (hasNewFeature) {
+#if HAVE_WHATSNEWSNGSUPPORT
+                auto whatsNewMessageWidget = new TextAddonsWidgets::WhatsNewMessageNgWidget(u"org.kde.akregator"_s, i18n("Akregator"), this);
+                whatsNewMessageWidget->setObjectName(u"whatsNewMessageWidget"_s);
+                topLayout->addWidget(whatsNewMessageWidget);
+                Settings::self()->setPreviousNewFeaturesMD5(newFeaturesMD5);
+                whatsNewMessageWidget->animatedShow();
+#else
                 auto whatsNewMessageWidget = new TextAddonsWidgets::WhatsNewMessageWidget(this, i18n("Akregator"));
                 whatsNewMessageWidget->setWhatsNewInfos(translations.createWhatsNewInfo());
                 whatsNewMessageWidget->setObjectName(QStringLiteral("whatsNewMessageWidget"));
                 topLayout->addWidget(whatsNewMessageWidget);
                 Settings::self()->setPreviousNewFeaturesMD5(newFeaturesMD5);
                 whatsNewMessageWidget->animatedShow();
+#endif
             }
         } else {
             Settings::self()->setPreviousNewFeaturesMD5(newFeaturesMD5);
@@ -1319,11 +1342,16 @@ void MainWidget::slotFocusQuickSearch()
 
 void MainWidget::slotWhatsNew()
 {
+#if HAVE_WHATSNEWSNGSUPPORT
+    TextAddonsWidgets::WhatsNewNgDialog dlg(u"org.kde.akregator"_s, i18n("Akregator"), this);
+    dlg.exec();
+#else
     WhatsNewTranslations translations;
     QPointer<TextAddonsWidgets::WhatsNewDialog> dlg = new TextAddonsWidgets::WhatsNewDialog(translations.createWhatsNewInfo(), this, i18n("Akregator"));
     dlg->updateInformations();
     dlg->exec();
     delete dlg;
+#endif
 }
 
 void MainWidget::slotArticleAction(Akregator::ArticleViewerWebEngine::ArticleAction type, const QString &articleId, const QString &feed)
