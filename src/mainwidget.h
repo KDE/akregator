@@ -9,11 +9,14 @@
 */
 
 #pragma once
+#include "config-akregator.h"
 
 #include "akregatorpart_export.h"
 #include "articleviewer-ng/webengine/articleviewerwebenginewidgetng.h"
 #include "feed.h"
-
+#if HAVE_WHATSNEWSNGSUPPORT
+#include <KAboutData>
+#endif
 #include <QUrl>
 
 #include <QPointer>
@@ -281,5 +284,8 @@ private:
 
     QWidget *m_articleWidget = nullptr;
     QList<QPointer<Akregator::DownloadArticleJob>> mListDownloadArticleJobs;
+#if HAVE_WHATSNEWSNGSUPPORT
+    QList<KAboutRelease> mReleasesInfo;
+#endif
 };
 } // namespace Akregator

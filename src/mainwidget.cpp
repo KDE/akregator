@@ -130,8 +130,9 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
     QString newFeaturesMD5;
 #if HAVE_WHATSNEWSNGSUPPORT
     const KAboutData aboutData = KAboutData::fromAppStreamForApplication();
-    if (!aboutData.releases().isEmpty()) {
-        newFeaturesMD5 = aboutData.releases().constFirst().untranslatedDescription();
+    mReleasesInfo = aboutData.releases();
+    if (!mReleasesInfo.isEmpty()) {
+        newFeaturesMD5 = mReleasesInfo.constFirst().untranslatedDescription();
     }
 #else
     WhatsNewTranslations translations;
@@ -143,7 +144,8 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
             const bool hasNewFeature = (previousNewFeaturesMD5 != newFeaturesMD5);
             if (hasNewFeature) {
 #if HAVE_WHATSNEWSNGSUPPORT
-                auto whatsNewMessageWidget = new TextAddonsWidgets::WhatsNewMessageNgWidget(u"org.kde.akregator"_s, i18n("Akregator"), this);
+                auto whatsNewMessageWidget = new TextAddonsWidgets::WhatsNewMessageNgWidget(i18n("Akregator"), this);
+                whatsNewMessageWidget->setReleases(mReleasesInfo);
                 whatsNewMessageWidget->setObjectName(u"whatsNewMessageWidget"_s);
                 topLayout->addWidget(whatsNewMessageWidget);
                 Settings::self()->setPreviousNewFeaturesMD5(newFeaturesMD5);
@@ -1343,7 +1345,8 @@ void MainWidget::slotFocusQuickSearch()
 void MainWidget::slotWhatsNew()
 {
 #if HAVE_WHATSNEWSNGSUPPORT
-    TextAddonsWidgets::WhatsNewNgDialog dlg(u"org.kde.akregator"_s, i18n("Akregator"), this);
+    TextAddonsWidgets::WhatsNewNgDialog dlg(i18n("Akregator"), this);
+    dlg.setReleases(mReleasesInfo);
     dlg.exec();
 #else
     WhatsNewTranslations translations;
