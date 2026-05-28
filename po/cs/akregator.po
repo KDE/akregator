@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-18 00:45+0000\n"
+"POT-Creation-Date: 2026-05-28 00:44+0000\n"
 "PO-Revision-Date: 2026-05-21 23:53+0200\n"
 "Last-Translator: Libor Filípek <libor.filipek@gmail.com>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
@@ -943,8 +943,9 @@ msgstr "Resetuje rychlý filtr při změně kanálu."
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
 #: src/akregator_part.cpp:126
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:145
-#: src/mainwidget.cpp:130 src/mainwidget.cpp:1323 src/trayicon.cpp:40
-#: src/trayicon.cpp:41 src/trayicon.cpp:53
+#: src/mainwidget.cpp:147 src/mainwidget.cpp:154 src/mainwidget.cpp:1348
+#: src/mainwidget.cpp:1353 src/trayicon.cpp:40 src/trayicon.cpp:41
+#: src/trayicon.cpp:53
 #, kde-format
 msgid "Akregator"
 msgstr "Akregator"
@@ -2134,27 +2135,27 @@ msgstr "Načítání zrušeno"
 msgid "Loading completed"
 msgstr "Načítání dokončeno"
 
-#: src/mainwidget.cpp:184
+#: src/mainwidget.cpp:209
 #, kde-format
 msgid "You can view multiple articles in several open tabs."
 msgstr "Lze prohlížet více článku v otevřených kartách."
 
-#: src/mainwidget.cpp:188
+#: src/mainwidget.cpp:213
 #, kde-format
 msgid "Articles list."
 msgstr "Seznam článků."
 
-#: src/mainwidget.cpp:250 src/mainwidget.cpp:674
+#: src/mainwidget.cpp:275 src/mainwidget.cpp:699
 #, kde-format
 msgid "Articles"
 msgstr "Články"
 
-#: src/mainwidget.cpp:275
+#: src/mainwidget.cpp:300
 #, kde-format
 msgid "About"
 msgstr "O aplikaci"
 
-#: src/mainwidget.cpp:813
+#: src/mainwidget.cpp:838
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all articles in the feed</b> as read?</"
@@ -2163,19 +2164,19 @@ msgstr ""
 "<qt>Opravdu si přejete označit <b>všechny články v kanále</b> jako přečtené?"
 "</qt>"
 
-#: src/mainwidget.cpp:814
+#: src/mainwidget.cpp:839
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "Označit kanál jako přečtený"
 
-#: src/mainwidget.cpp:817
+#: src/mainwidget.cpp:842
 #, kde-format
 msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
 msgstr ""
 "<qt>Opravdu si přejete označit <b>všechny kanály</b> jako přečtené?</qt>"
 
-#: src/mainwidget.cpp:819
+#: src/mainwidget.cpp:844
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all feeds in the folder</b> as read?</"
@@ -2184,28 +2185,28 @@ msgstr ""
 "<qt>Opravdu si přejete označit <b>všechny kanály ve složce</b> jako přečtené?"
 "</qt>"
 
-#: src/mainwidget.cpp:821
+#: src/mainwidget.cpp:846
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "Označit kanály jako přečtené"
 
-#: src/mainwidget.cpp:885 src/mainwidget.cpp:894 src/mainwidget.cpp:1295
+#: src/mainwidget.cpp:910 src/mainwidget.cpp:919 src/mainwidget.cpp:1320
 #, kde-format
 msgid "Networking is not available."
 msgstr "Síť je nedostupná."
 
-#: src/mainwidget.cpp:902
+#: src/mainwidget.cpp:927
 #, kde-format
 msgid "Fetching Feeds…"
 msgstr "Probíhá stahování kanálů…"
 
-#: src/mainwidget.cpp:1100
+#: src/mainwidget.cpp:1125
 #, kde-format
 msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
 msgstr "<qt>Opravdu si přejete smazat článek<b>%1</b>?</qt>"
 
-#: src/mainwidget.cpp:1103
+#: src/mainwidget.cpp:1128
 #, kde-format
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
 msgid_plural ""
@@ -2214,13 +2215,13 @@ msgstr[0] "<qt>Opravdu si přejete smazat vybraný článek?</qt>"
 msgstr[1] "<qt>Opravdu si přejete smazat %1 vybrané články?</qt>"
 msgstr[2] "<qt>Opravdu si přejete smazat %1 vybraných článků?</qt>"
 
-#: src/mainwidget.cpp:1110
+#: src/mainwidget.cpp:1135
 #, kde-format
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "Smazat článek"
 
-#: src/mainwidget.cpp:1292
+#: src/mainwidget.cpp:1317
 #, kde-format
 msgid "Networking is available now."
 msgstr "Síť je nyní dostupná."
@@ -2596,6 +2597,12 @@ msgstr "Implementována Aktivita Plasma."
 #, kde-format
 msgid "Add new whatsnew widget."
 msgstr "Přidat nový widget „Co je nového“."
+
+#: src/whatsnew/whatsnewtranslations.cpp:31
+#, fuzzy, kde-format
+#| msgid "Add windows support"
+msgid "Add windows support."
+msgstr "Přidat podporu oken"
 
 #: src/widgets/searchbar.cpp:44
 #, kde-format

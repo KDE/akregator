@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-18 00:45+0000\n"
+"POT-Creation-Date: 2026-05-28 00:44+0000\n"
 "PO-Revision-Date: 2024-12-25 19:35+0530\n"
 "Last-Translator: kali <shreekantkalwar@gmail.com>\n"
 "Language-Team: Sanskrit <kde-i18n-doc@kde.org>\n"
@@ -927,8 +927,9 @@ msgstr "फीड् परिवर्तनं कुर्वन् द्र
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
 #: src/akregator_part.cpp:126
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:145
-#: src/mainwidget.cpp:130 src/mainwidget.cpp:1323 src/trayicon.cpp:40
-#: src/trayicon.cpp:41 src/trayicon.cpp:53
+#: src/mainwidget.cpp:147 src/mainwidget.cpp:154 src/mainwidget.cpp:1348
+#: src/mainwidget.cpp:1353 src/trayicon.cpp:40 src/trayicon.cpp:41
+#: src/trayicon.cpp:53
 #, kde-format
 msgid "Akregator"
 msgstr "समुच्चयकारः"
@@ -2107,27 +2108,27 @@ msgstr "लोडिंग् रद्दम्"
 msgid "Loading completed"
 msgstr "लोडिंग् सम्पन्नम्"
 
-#: src/mainwidget.cpp:184
+#: src/mainwidget.cpp:209
 #, kde-format
 msgid "You can view multiple articles in several open tabs."
 msgstr "अनेकेषु मुक्तट्याब्सु बहुविधलेखान् द्रष्टुं शक्नुवन्ति ।"
 
-#: src/mainwidget.cpp:188
+#: src/mainwidget.cpp:213
 #, kde-format
 msgid "Articles list."
 msgstr "लेखसूची।"
 
-#: src/mainwidget.cpp:250 src/mainwidget.cpp:674
+#: src/mainwidget.cpp:275 src/mainwidget.cpp:699
 #, kde-format
 msgid "Articles"
 msgstr "लेख"
 
-#: src/mainwidget.cpp:275
+#: src/mainwidget.cpp:300
 #, kde-format
 msgid "About"
 msgstr "विषये"
 
-#: src/mainwidget.cpp:813
+#: src/mainwidget.cpp:838
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all articles in the feed</b> as read?</"
@@ -2135,19 +2136,19 @@ msgid ""
 msgstr ""
 "<qt>किं भवान् निश्चयेन <b>फीड् मध्ये सर्वान् लेखान्</b> पठितरूपेण चिह्नितुम् इच्छति?</qt>"
 
-#: src/mainwidget.cpp:814
+#: src/mainwidget.cpp:839
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "फीड् इत्येतत् पठितम् इति चिह्नं कुर्वन्तु"
 
-#: src/mainwidget.cpp:817
+#: src/mainwidget.cpp:842
 #, kde-format
 msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
 msgstr ""
 "<qt>किं भवन्तः निश्चयेन <b>सर्वाणि फीड्-पत्राणि</b> पठितानि इति चिह्नितुम् इच्छन्ति?</qt>"
 
-#: src/mainwidget.cpp:819
+#: src/mainwidget.cpp:844
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all feeds in the folder</b> as read?</"
@@ -2156,28 +2157,28 @@ msgstr ""
 "<qt>किं भवान् निश्चितः यत् भवान् <b>पुटे सर्वाणि फीड्-आणि</b> पठितरूपेण चिह्नितुम् इच्छति?</"
 "qt>"
 
-#: src/mainwidget.cpp:821
+#: src/mainwidget.cpp:846
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "Read इति फीड्स् इति चिह्नं कुर्वन्तु"
 
-#: src/mainwidget.cpp:885 src/mainwidget.cpp:894 src/mainwidget.cpp:1295
+#: src/mainwidget.cpp:910 src/mainwidget.cpp:919 src/mainwidget.cpp:1320
 #, kde-format
 msgid "Networking is not available."
 msgstr "संजालीकरणं न प्राप्यते।"
 
-#: src/mainwidget.cpp:902
+#: src/mainwidget.cpp:927
 #, kde-format
 msgid "Fetching Feeds…"
 msgstr "फीड्स् आनयन्…"
 
-#: src/mainwidget.cpp:1100
+#: src/mainwidget.cpp:1125
 #, kde-format
 msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
 msgstr "<qt>किं भवान् निश्चितः यत् भवान् <b>%1</b> लेखं विलोपयितुम् इच्छति ?</qt>"
 
-#: src/mainwidget.cpp:1103
+#: src/mainwidget.cpp:1128
 #, kde-format
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
 msgid_plural ""
@@ -2185,13 +2186,13 @@ msgid_plural ""
 msgstr[0] "<qt>किं भवान् निश्चयेन चयनितं लेखं विलोपयितुम् इच्छति?</qt>"
 msgstr[1] "<qt>किं भवान् निश्चयेन %1 चयनितलेखान् विलोपयितुम् इच्छति?</qt>"
 
-#: src/mainwidget.cpp:1110
+#: src/mainwidget.cpp:1135
 #, kde-format
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "लेखं विलोपयतु"
 
-#: src/mainwidget.cpp:1292
+#: src/mainwidget.cpp:1317
 #, kde-format
 msgid "Networking is available now."
 msgstr "अधुना संजालीकरणं उपलभ्यते।"
@@ -2566,6 +2567,12 @@ msgstr "प्लाज्मा क्रियाकलापं कार्�
 #, kde-format
 msgid "Add new whatsnew widget."
 msgstr "नूतनं whatsnew विजेट् योजयन्तु।"
+
+#: src/whatsnew/whatsnewtranslations.cpp:31
+#, fuzzy, kde-format
+#| msgid "Add windows support"
+msgid "Add windows support."
+msgstr "विण्डोस् समर्थनं योजयन्तु"
 
 #: src/widgets/searchbar.cpp:44
 #, kde-format

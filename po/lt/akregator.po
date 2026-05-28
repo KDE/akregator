@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-18 00:45+0000\n"
+"POT-Creation-Date: 2026-05-28 00:44+0000\n"
 "PO-Revision-Date: 2026-05-21 16:28+0300\n"
 "Last-Translator: Mindaugas Baranauskas <opensuse.lietuviu.kalba@gmail.com>\n"
 "Language-Team: Lithuanian <kde-i18n-lt@kde.org>\n"
@@ -951,8 +951,9 @@ msgstr "Išvalo greitą filtrą keičiant kanalą."
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
 #: src/akregator_part.cpp:126
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:145
-#: src/mainwidget.cpp:130 src/mainwidget.cpp:1323 src/trayicon.cpp:40
-#: src/trayicon.cpp:41 src/trayicon.cpp:53
+#: src/mainwidget.cpp:147 src/mainwidget.cpp:154 src/mainwidget.cpp:1348
+#: src/mainwidget.cpp:1353 src/trayicon.cpp:40 src/trayicon.cpp:41
+#: src/trayicon.cpp:53
 #, kde-format
 msgid "Akregator"
 msgstr "Akregator"
@@ -2151,27 +2152,27 @@ msgstr "Įkėlimas atšauktas"
 msgid "Loading completed"
 msgstr "Įkėlimas užbaigtas"
 
-#: src/mainwidget.cpp:184
+#: src/mainwidget.cpp:209
 #, kde-format
 msgid "You can view multiple articles in several open tabs."
 msgstr "Galite peržiūrėti kelis straipsnius keliose atvertose kortelėse."
 
-#: src/mainwidget.cpp:188
+#: src/mainwidget.cpp:213
 #, kde-format
 msgid "Articles list."
 msgstr "Straipsnių sąrašas."
 
-#: src/mainwidget.cpp:250 src/mainwidget.cpp:674
+#: src/mainwidget.cpp:275 src/mainwidget.cpp:699
 #, kde-format
 msgid "Articles"
 msgstr "Straipsniai"
 
-#: src/mainwidget.cpp:275
+#: src/mainwidget.cpp:300
 #, kde-format
 msgid "About"
 msgstr "Apie"
 
-#: src/mainwidget.cpp:813
+#: src/mainwidget.cpp:838
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all articles in the feed</b> as read?</"
@@ -2180,18 +2181,18 @@ msgstr ""
 "<qt>Ar tikrai norite žymėti <b>visus kanale esančius straipnsius</b> kaip "
 "skaitytus?</qt>"
 
-#: src/mainwidget.cpp:814
+#: src/mainwidget.cpp:839
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "Žymėti kanalą kaip skaitytą"
 
-#: src/mainwidget.cpp:817
+#: src/mainwidget.cpp:842
 #, kde-format
 msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
 msgstr "<qt>Ar tikrai norite žymėti <b>visus kanalus</b> kaip skaitytus?</qt>"
 
-#: src/mainwidget.cpp:819
+#: src/mainwidget.cpp:844
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all feeds in the folder</b> as read?</"
@@ -2200,28 +2201,28 @@ msgstr ""
 "<qt>Ar tikrai norite žymėti <b>visus aplanke esančius kanalus</b> kaip "
 "skaitytus?</qt>"
 
-#: src/mainwidget.cpp:821
+#: src/mainwidget.cpp:846
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "Žymėti sklaidos kanalus kaip skaitytus"
 
-#: src/mainwidget.cpp:885 src/mainwidget.cpp:894 src/mainwidget.cpp:1295
+#: src/mainwidget.cpp:910 src/mainwidget.cpp:919 src/mainwidget.cpp:1320
 #, kde-format
 msgid "Networking is not available."
 msgstr "Tinklas nepasiekiamas."
 
-#: src/mainwidget.cpp:902
+#: src/mainwidget.cpp:927
 #, kde-format
 msgid "Fetching Feeds…"
 msgstr "Atsiunčiami kanalai…"
 
-#: src/mainwidget.cpp:1100
+#: src/mainwidget.cpp:1125
 #, kde-format
 msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
 msgstr "<qt>Ar tikrai norite ištrinti straipsnį <b>%1</b>?</qt>"
 
-#: src/mainwidget.cpp:1103
+#: src/mainwidget.cpp:1128
 #, kde-format
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
 msgid_plural ""
@@ -2231,13 +2232,13 @@ msgstr[1] "<qt>Ar tikrai norite ištrinti %1 dabartinius straipsnius?</qt>"
 msgstr[2] "<qt>Ar tikrai norite ištrinti %1 dabartinių straipsnių?</qt>"
 msgstr[3] "<qt>Ar tikrai norite ištrinti %1 dabartinį straipsnį?</qt>"
 
-#: src/mainwidget.cpp:1110
+#: src/mainwidget.cpp:1135
 #, kde-format
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "Ištrinti straipsnį"
 
-#: src/mainwidget.cpp:1292
+#: src/mainwidget.cpp:1317
 #, kde-format
 msgid "Networking is available now."
 msgstr "Tinklas dabar yra pasiekiamas."
@@ -2615,6 +2616,12 @@ msgstr "Įgyvendinti Plasma veiklą."
 #, kde-format
 msgid "Add new whatsnew widget."
 msgstr "Pridėti naują kas naujo valdiklį."
+
+#: src/whatsnew/whatsnewtranslations.cpp:31
+#, fuzzy, kde-format
+#| msgid "Add windows support"
+msgid "Add windows support."
+msgstr "Pridėti „Windows“ palaikymą"
 
 #: src/widgets/searchbar.cpp:44
 #, kde-format

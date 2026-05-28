@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-18 00:45+0000\n"
+"POT-Creation-Date: 2026-05-28 00:44+0000\n"
 "PO-Revision-Date: 2023-08-24 21:37+0200\n"
 "Last-Translator: Karl Ove Hufthammer <karl@huftis.org>\n"
 "Language-Team: Norwegian Nynorsk <l10n-no@lister.huftis.org>\n"
@@ -928,8 +928,9 @@ msgstr "Nullstillar snøggsøkfilteret ved byte av felt."
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
 #: src/akregator_part.cpp:126
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:145
-#: src/mainwidget.cpp:130 src/mainwidget.cpp:1323 src/trayicon.cpp:40
-#: src/trayicon.cpp:41 src/trayicon.cpp:53
+#: src/mainwidget.cpp:147 src/mainwidget.cpp:154 src/mainwidget.cpp:1348
+#: src/mainwidget.cpp:1353 src/trayicon.cpp:40 src/trayicon.cpp:41
+#: src/trayicon.cpp:53
 #, kde-format
 msgid "Akregator"
 msgstr "Akregator"
@@ -2119,73 +2120,73 @@ msgstr "Avbroten henting"
 msgid "Loading completed"
 msgstr "Fullført henting"
 
-#: src/mainwidget.cpp:184
+#: src/mainwidget.cpp:209
 #, kde-format
 msgid "You can view multiple articles in several open tabs."
 msgstr "Du kan sjå fleire artiklar i eigne faner."
 
-#: src/mainwidget.cpp:188
+#: src/mainwidget.cpp:213
 #, kde-format
 msgid "Articles list."
 msgstr "Artikkelliste."
 
-#: src/mainwidget.cpp:250 src/mainwidget.cpp:674
+#: src/mainwidget.cpp:275 src/mainwidget.cpp:699
 #, kde-format
 msgid "Articles"
 msgstr "Artiklar"
 
-#: src/mainwidget.cpp:275
+#: src/mainwidget.cpp:300
 #, kde-format
 msgid "About"
 msgstr "Om"
 
-#: src/mainwidget.cpp:813
+#: src/mainwidget.cpp:838
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all articles in the feed</b> as read?</"
 "qt>"
 msgstr ""
 
-#: src/mainwidget.cpp:814
+#: src/mainwidget.cpp:839
 #, fuzzy, kde-format
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "Merk kjelde som lesen"
 
-#: src/mainwidget.cpp:817
+#: src/mainwidget.cpp:842
 #, kde-format
 msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
 msgstr ""
 
-#: src/mainwidget.cpp:819
+#: src/mainwidget.cpp:844
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all feeds in the folder</b> as read?</"
 "qt>"
 msgstr ""
 
-#: src/mainwidget.cpp:821
+#: src/mainwidget.cpp:846
 #, fuzzy, kde-format
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "Merk kjelder som lesne"
 
-#: src/mainwidget.cpp:885 src/mainwidget.cpp:894 src/mainwidget.cpp:1295
+#: src/mainwidget.cpp:910 src/mainwidget.cpp:919 src/mainwidget.cpp:1320
 #, kde-format
 msgid "Networking is not available."
 msgstr "Nettverket er ikkje tilgjengeleg"
 
-#: src/mainwidget.cpp:902
+#: src/mainwidget.cpp:927
 #, fuzzy, kde-format
 msgid "Fetching Feeds…"
 msgstr "Hentar kjelder …"
 
-#: src/mainwidget.cpp:1100
+#: src/mainwidget.cpp:1125
 #, kde-format
 msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
 msgstr "<qt>Er du sikker på at du vil sletta artikkelen <b>%1</b>?</qt>"
 
-#: src/mainwidget.cpp:1103
+#: src/mainwidget.cpp:1128
 #, kde-format
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
 msgid_plural ""
@@ -2193,13 +2194,13 @@ msgid_plural ""
 msgstr[0] "<qt>Er du sikker på at du vil sletta den valde artikkelen?</qt>"
 msgstr[1] "<qt>Er du sikker på at du vil sletta dei %1 valde artiklane?</qt>"
 
-#: src/mainwidget.cpp:1110
+#: src/mainwidget.cpp:1135
 #, fuzzy, kde-format
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "Slett artikkel"
 
-#: src/mainwidget.cpp:1292
+#: src/mainwidget.cpp:1317
 #, kde-format
 msgid "Networking is available now."
 msgstr "Nettverket er no tilgjengeleg"
@@ -2574,6 +2575,11 @@ msgstr "Slå på JavaScript"
 #: src/whatsnew/whatsnewtranslations.cpp:24
 #, kde-format
 msgid "Add new whatsnew widget."
+msgstr ""
+
+#: src/whatsnew/whatsnewtranslations.cpp:31
+#, kde-format
+msgid "Add windows support."
 msgstr ""
 
 #: src/widgets/searchbar.cpp:44
