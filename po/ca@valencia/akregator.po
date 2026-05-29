@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-05-28 00:44+0000\n"
-"PO-Revision-Date: 2026-05-17 11:15+0200\n"
+"PO-Revision-Date: 2026-05-28 09:11+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca@valencia\n"
@@ -2591,10 +2591,9 @@ msgid "Add new whatsnew widget."
 msgstr "Afig un giny nou «Què hi ha de nou»."
 
 #: src/whatsnew/whatsnewtranslations.cpp:31
-#, fuzzy, kde-format
-#| msgid "Add windows support"
+#, kde-format
 msgid "Add windows support."
-msgstr "Afig la implementació de Windows"
+msgstr "Afig la implementació de Windows."
 
 #: src/widgets/searchbar.cpp:44
 #, kde-format

@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-05-28 00:44+0000\n"
-"PO-Revision-Date: 2026-05-17 07:01+0200\n"
+"PO-Revision-Date: 2026-05-28 06:45+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
 "Language: sl\n"
@@ -2617,10 +2617,9 @@ msgid "Add new whatsnew widget."
 msgstr "Doda novi gradnik whatsnew."
 
 #: src/whatsnew/whatsnewtranslations.cpp:31
-#, fuzzy, kde-format
-#| msgid "Add windows support"
+#, kde-format
 msgid "Add windows support."
-msgstr "Dodaj podporo za okna"
+msgstr "Dodaj podporo za okna."
 
 #: src/widgets/searchbar.cpp:44
 #, kde-format

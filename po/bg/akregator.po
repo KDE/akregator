@@ -1,13 +1,13 @@
 # Copyright (C) 2023 This file is copyright:
 # This file is distributed under the same license as the akregator package.
 #
-# SPDX-FileCopyrightText: 2022, 2023, 2024, 2025 Mincho Kondarev <mkondarev@yahoo.de>
+# SPDX-FileCopyrightText: 2022-2026 Mincho Kondarev <mkondarev@yahoo.de>
 msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-05-28 00:44+0000\n"
-"PO-Revision-Date: 2025-12-04 17:28+0100\n"
+"PO-Revision-Date: 2026-05-28 22:48+0200\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
 "Language: bg\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 25.07.70\n"
+"X-Generator: Lokalize 26.04.1\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -1241,8 +1241,7 @@ msgid "Ma&rk All Feeds as Read"
 msgstr "М&аркиране на всички емисии като прочетени"
 
 #: src/actions/actionmanagerimpl.cpp:352
-#, fuzzy, kde-format
-#| msgid "Copy Link Address"
+#, kde-format
 msgctxt "@action"
 msgid "Copy Article Link Address"
 msgstr "Копиране на адреса на връзката"
@@ -1467,18 +1466,16 @@ msgid "&Find in Message…"
 msgstr "Тър&сене в съобщение…"
 
 #: src/actions/actionmanagerimpl.cpp:634
-#, fuzzy, kde-format
-#| msgid "Reload All Tabs"
+#, kde-format
 msgctxt "@action"
 msgid "Reload Tab"
-msgstr "Презареждане на всички раздели"
+msgstr "Презареждане на раздел"
 
 #: src/actions/actionmanagerimpl.cpp:639
-#, fuzzy, kde-format
-#| msgid "&Copy Email Address"
+#, kde-format
 msgctxt "@action"
 msgid "Copy Tab Address"
-msgstr "&Копиране на имейл адрес"
+msgstr "Копиране на адрес на раздел"
 
 #: src/actions/actionmanagerimpl.cpp:644
 #, kde-format
@@ -2375,18 +2372,16 @@ msgid "Detach Tab"
 msgstr "Отделяне на раздел"
 
 #: src/tabwidget.cpp:130
-#, fuzzy, kde-format
-#| msgid "Reload All Tabs"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Reload Tab"
-msgstr "Презареждане на всички раздели"
+msgstr "Презареждане на раздел"
 
 #: src/tabwidget.cpp:133
-#, fuzzy, kde-format
-#| msgid "&Copy Email Address"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Copy Tab Address"
-msgstr "&Копиране на имейл адрес"
+msgstr "Копиране на адрес на раздел"
 
 #: src/tabwidget.cpp:139
 #, kde-format
@@ -2598,8 +2593,7 @@ msgid "Add new whatsnew widget."
 msgstr "Добавяне на нов уиджет \"Какво ново\"."
 
 #: src/whatsnew/whatsnewtranslations.cpp:31
-#, fuzzy, kde-format
-#| msgid "Add windows support"
+#, kde-format
 msgid "Add windows support."
 msgstr "Добавяне на поддръжка на прозорци"
 
