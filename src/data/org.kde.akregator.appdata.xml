@@ -223,6 +223,18 @@
       <description>
         <ul>
           <li>Add windows support.</li>
+          <li xml:lang="bg">Добавяне на поддръжка на прозорци</li>
+          <li xml:lang="ca">Afegeix la implementació del Windows.</li>
+          <li xml:lang="ca-valencia">Afig la implementació de Windows.</li>
+          <li xml:lang="cs">Přidána podpora oken.</li>
+          <li xml:lang="es">Se ha añadido compatibilidad con Windows.</li>
+          <li xml:lang="he">הוספת תמיכה בחלונות.</li>
+          <li xml:lang="ka">დაემატა Windows-ის მხარდაჭერა.</li>
+          <li xml:lang="nl">Ondersteuning voor windows toevoegen.</li>
+          <li xml:lang="pt-BR">Adicionado suporte a janelas.</li>
+          <li xml:lang="sl">Dodaj podporo za okna.</li>
+          <li xml:lang="tr">Windows desteği eklendi.</li>
+          <li xml:lang="uk">Додано підтримку Windows.</li>
         </ul>
       </description>
     </release>
@@ -233,7 +245,31 @@
       <description>
         <ul>
           <li>Implement Plasma Activity.</li>
+          <li xml:lang="bg">Активирана интеграция в дейности на Plasma</li>
+          <li xml:lang="ca">Implementa les Activitats del Plasma.</li>
+          <li xml:lang="ca-valencia">Implementa les Activitats de Plasma.</li>
+          <li xml:lang="cs">Implementována Aktivita Plasma.</li>
+          <li xml:lang="es">Implementar actividades de Plasma.</li>
+          <li xml:lang="he">מימוש פעילות פלזמה.</li>
+          <li xml:lang="ka">განხორციელდა Plasma-ის აქტივობის მხარდაჭერა.</li>
+          <li xml:lang="nl">Activiteit van Plasma implementeren.</li>
+          <li xml:lang="pt-BR">Implementado as atividades do plasma.</li>
+          <li xml:lang="sl">Izvedi dejavnosti Plasme.</li>
+          <li xml:lang="tr">Plasma Etkinlikler desteği gerçeklendi.</li>
+          <li xml:lang="uk">Реалізовано простори дій Плазми.</li>
           <li>Add new whatsnew widget.</li>
+          <li xml:lang="bg">Добавяне на нов уиджет "Какво ново".</li>
+          <li xml:lang="ca">Afegeix un giny nou «Què hi ha de nou».</li>
+          <li xml:lang="ca-valencia">Afig un giny nou «Què hi ha de nou».</li>
+          <li xml:lang="cs">Přidat nový widget „Co je nového“.</li>
+          <li xml:lang="es">Añadir nuevo elemento de novedades.</li>
+          <li xml:lang="he">הוספת וידג׳ט חדש בשם מה חדש.</li>
+          <li xml:lang="ka">დაემატა ახალი სიახლეების ვიჯეტი.</li>
+          <li xml:lang="nl">Nieuw widget Wat-is-nieuw toevoegen.</li>
+          <li xml:lang="pt-BR">Adicionado novo elemento 'O que há de novo?'.</li>
+          <li xml:lang="sl">Doda nov gradnik za novice.</li>
+          <li xml:lang="tr">“Neler Yeni” araç takımı eklendi.</li>
+          <li xml:lang="uk">Додано новий віджет зі списком можливостей нової версії.</li>
         </ul>
       </description>
     </release>
@@ -253,7 +289,7 @@
         <p xml:lang="ar">هذه النسخة تنقل أكريغاتور إلى Qt6 وتعدل قليلاً تصميم التطبيق.</p>
         <p xml:lang="bg">Тази версия портира Akgregator към Qt6 и променя леко дизайна на приложението.</p>
         <p xml:lang="ca">Aquesta versió adapta l'Akgregator a les Qt6 i ajusta una mica el disseny de l'aplicació.</p>
-        <p xml:lang="ca-valencia">Esta versió adapta l'Akgregator a les Qt6 i ajusta una mica el disseny de l'aplicació.</p>
+        <p xml:lang="ca-valencia">Esta versió adapta Akregator a les Qt6 i ajusta una mica el disseny de l'aplicació.</p>
         <p xml:lang="cs">V tomto vydání byl Akregátor portován na Qt6 a bylo proveden pár úprav v návrhu aplikace.</p>
         <p xml:lang="de">Diese Version portiert Akregator zu Qt6 und passt das Aussehen der Anwendung ein wenig an.</p>
         <p xml:lang="es">Esta versión adapta Akregator a Qt6 y ajusta un poco el diseño de la aplicación.</p>
