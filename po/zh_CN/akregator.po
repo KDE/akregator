@@ -2528,10 +2528,9 @@ msgid "Add new whatsnew widget."
 msgstr "添加新的 “whatsnew” 小部件。"
 
 #: src/whatsnew/whatsnewtranslations.cpp:31
-#, fuzzy, kde-format
-#| msgid "Add windows support"
+#, kde-format
 msgid "Add windows support."
-msgstr "添加窗口支持"
+msgstr ""
 
 #: src/widgets/searchbar.cpp:44
 #, kde-format

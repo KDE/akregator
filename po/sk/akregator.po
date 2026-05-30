@@ -2596,10 +2596,9 @@ msgid "Add new whatsnew widget."
 msgstr "Pridať nový widget Čo je nové."
 
 #: src/whatsnew/whatsnewtranslations.cpp:31
-#, fuzzy, kde-format
-#| msgid "Add windows support"
+#, kde-format
 msgid "Add windows support."
-msgstr "Pridať podporu pre Windows"
+msgstr "Pridať podporu pre Windows."
 
 #: src/widgets/searchbar.cpp:44
 #, kde-format

@@ -1,6 +1,6 @@
 # translation of akregator.po to Italian
 #
-# SPDX-FileCopyrightText: 2020, 2021, 2022, 2023, 2024, 2025 Vincenzo Reale <smart2128vr@gmail.com>
+# SPDX-FileCopyrightText: 2020-2026 Vincenzo Reale <smart2128vr@gmail.com>
 # Luciano Montanaro <mikelima@cirulla.net>, 2004, 2005, 2006, 2007, 2008, 2010, 2011, 2012, 2015, 2016, 2017, 2019.
 # Federico Zenith <federico.zenith@member.fsf.org>, 2009.
 # SPDX-FileCopyrightText: 2024 Paolo Zamponi <feus73@gmail.com>
@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-05-28 00:44+0000\n"
-"PO-Revision-Date: 2025-12-01 15:39+0100\n"
+"PO-Revision-Date: 2026-05-28 18:08+0200\n"
 "Last-Translator: Vincenzo Reale <smart2128vr@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
 "Language: it\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 25.08.3\n"
+"X-Generator: Lokalize 26.04.1\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -1243,11 +1243,10 @@ msgid "Ma&rk All Feeds as Read"
 msgstr "Segna tutte le fonti come lette"
 
 #: src/actions/actionmanagerimpl.cpp:352
-#, fuzzy, kde-format
-#| msgid "Copy Link Address"
+#, kde-format
 msgctxt "@action"
 msgid "Copy Article Link Address"
-msgstr "Copia l'indirizzo del collegamento"
+msgstr "Copia l'indirizzo del collegamento dell'articolo"
 
 #: src/actions/actionmanagerimpl.cpp:357
 #, kde-format
@@ -1469,18 +1468,16 @@ msgid "&Find in Message…"
 msgstr "&Trova nel messaggio…"
 
 #: src/actions/actionmanagerimpl.cpp:634
-#, fuzzy, kde-format
-#| msgid "Reload All Tabs"
+#, kde-format
 msgctxt "@action"
 msgid "Reload Tab"
-msgstr "Ricarica tutte le schede"
+msgstr "Ricarica la scheda"
 
 #: src/actions/actionmanagerimpl.cpp:639
-#, fuzzy, kde-format
-#| msgid "&Copy Email Address"
+#, kde-format
 msgctxt "@action"
 msgid "Copy Tab Address"
-msgstr "&Copia l'indirizzo di posta elettronica"
+msgstr "Copia l'indirizzo della scheda"
 
 #: src/actions/actionmanagerimpl.cpp:644
 #, kde-format
@@ -2376,18 +2373,16 @@ msgid "Detach Tab"
 msgstr "Stacca scheda"
 
 #: src/tabwidget.cpp:130
-#, fuzzy, kde-format
-#| msgid "Reload All Tabs"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Reload Tab"
-msgstr "Ricarica tutte le schede"
+msgstr "Ricarica la scheda"
 
 #: src/tabwidget.cpp:133
-#, fuzzy, kde-format
-#| msgid "&Copy Email Address"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Copy Tab Address"
-msgstr "&Copia l'indirizzo di posta elettronica"
+msgstr "Copia l'indirizzo della scheda"
 
 #: src/tabwidget.cpp:139
 #, kde-format
@@ -2599,10 +2594,9 @@ msgid "Add new whatsnew widget."
 msgstr "Aggiunge un nuovo oggetto Cosa c'è di nuovo."
 
 #: src/whatsnew/whatsnewtranslations.cpp:31
-#, fuzzy, kde-format
-#| msgid "Add windows support"
+#, kde-format
 msgid "Add windows support."
-msgstr "Aggiunge il supporto di Windows"
+msgstr "Aggiunge il supporto per Windows"
 
 #: src/widgets/searchbar.cpp:44
 #, kde-format
