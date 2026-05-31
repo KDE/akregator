@@ -230,9 +230,11 @@
           <li xml:lang="cs">Přidána podpora oken.</li>
           <li xml:lang="es">Se ha añadido compatibilidad con Windows.</li>
           <li xml:lang="he">הוספת תמיכה בחלונות.</li>
+          <li xml:lang="it">Aggiunto il supporto a Windows.</li>
           <li xml:lang="ka">დაემატა Windows-ის მხარდაჭერა.</li>
           <li xml:lang="nl">Ondersteuning voor windows toevoegen.</li>
           <li xml:lang="pt-BR">Adicionado suporte a janelas.</li>
+          <li xml:lang="sk">Pridať podporu pre Windows.</li>
           <li xml:lang="sl">Dodaj podporo za okna.</li>
           <li xml:lang="tr">Windows desteği eklendi.</li>
           <li xml:lang="uk">Додано підтримку Windows.</li>
@@ -252,9 +254,11 @@
           <li xml:lang="cs">Implementována Aktivita Plasma.</li>
           <li xml:lang="es">Implementar actividades de Plasma.</li>
           <li xml:lang="he">מימוש פעילות פלזמה.</li>
+          <li xml:lang="it">Implementate le attività di Plasma.</li>
           <li xml:lang="ka">განხორციელდა Plasma-ის აქტივობის მხარდაჭერა.</li>
           <li xml:lang="nl">Activiteit van Plasma implementeren.</li>
           <li xml:lang="pt-BR">Implementado as atividades do plasma.</li>
+          <li xml:lang="sk">Implementovať aktivitu Plasma.</li>
           <li xml:lang="sl">Izvedi dejavnosti Plasme.</li>
           <li xml:lang="tr">Plasma Etkinlikler desteği gerçeklendi.</li>
           <li xml:lang="uk">Реалізовано простори дій Плазми.</li>
@@ -265,10 +269,12 @@
           <li xml:lang="cs">Přidat nový widget „Co je nového“.</li>
           <li xml:lang="es">Añadir nuevo elemento de novedades.</li>
           <li xml:lang="he">הוספת וידג׳ט חדש בשם מה חדש.</li>
+          <li xml:lang="it">Aggiunto un nuovo oggetto Cosa c'è di nuovo.</li>
           <li xml:lang="ka">დაემატა ახალი სიახლეების ვიჯეტი.</li>
           <li xml:lang="nl">Nieuw widget Wat-is-nieuw toevoegen.</li>
           <li xml:lang="pt-BR">Adicionado novo elemento 'O que há de novo?'.</li>
-          <li xml:lang="sl">Doda nov gradnik za novice.</li>
+          <li xml:lang="sk">Pridať nový widget Čo je nové.</li>
+          <li xml:lang="sl">Doda nov gradnik kaj je novega.</li>
           <li xml:lang="tr">“Neler Yeni” araç takımı eklendi.</li>
           <li xml:lang="uk">Додано новий віджет зі списком можливостей нової версії.</li>
         </ul>
