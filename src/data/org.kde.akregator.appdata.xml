@@ -229,6 +229,7 @@
           <li xml:lang="ca-valencia">Afig la implementació de Windows.</li>
           <li xml:lang="cs">Přidána podpora oken.</li>
           <li xml:lang="es">Se ha añadido compatibilidad con Windows.</li>
+          <li xml:lang="fr">Ajouter la prise en charge de Windows.</li>
           <li xml:lang="he">הוספת תמיכה בחלונות.</li>
           <li xml:lang="it">Aggiunto il supporto a Windows.</li>
           <li xml:lang="ka">დაემატა Windows-ის მხარდაჭერა.</li>
@@ -253,6 +254,7 @@
           <li xml:lang="ca-valencia">Implementa les Activitats de Plasma.</li>
           <li xml:lang="cs">Implementována Aktivita Plasma.</li>
           <li xml:lang="es">Implementar actividades de Plasma.</li>
+          <li xml:lang="fr">Implémenter l'activité de Plasma.</li>
           <li xml:lang="he">מימוש פעילות פלזמה.</li>
           <li xml:lang="it">Implementate le attività di Plasma.</li>
           <li xml:lang="ka">განხორციელდა Plasma-ის აქტივობის მხარდაჭერა.</li>
@@ -268,6 +270,7 @@
           <li xml:lang="ca-valencia">Afig un giny nou «Què hi ha de nou».</li>
           <li xml:lang="cs">Přidat nový widget „Co je nového“.</li>
           <li xml:lang="es">Añadir nuevo elemento de novedades.</li>
+          <li xml:lang="fr">Ajouter un nouveau composant graphique « Quoi de neuf ».</li>
           <li xml:lang="he">הוספת וידג׳ט חדש בשם מה חדש.</li>
           <li xml:lang="it">Aggiunto un nuovo oggetto Cosa c'è di nuovo.</li>
           <li xml:lang="ka">დაემატა ახალი სიახლეების ვიჯეტი.</li>
