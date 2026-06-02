@@ -149,6 +149,7 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
                 whatsNewMessageWidget->setObjectName(u"whatsNewMessageWidget"_s);
                 topLayout->addWidget(whatsNewMessageWidget);
                 Settings::self()->setPreviousNewFeaturesMD5(newFeaturesMD5);
+                Settings::self()->save();
                 whatsNewMessageWidget->animatedShow();
 #else
                 auto whatsNewMessageWidget = new TextAddonsWidgets::WhatsNewMessageWidget(this, i18n("Akregator"));
@@ -156,11 +157,13 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
                 whatsNewMessageWidget->setObjectName(QStringLiteral("whatsNewMessageWidget"));
                 topLayout->addWidget(whatsNewMessageWidget);
                 Settings::self()->setPreviousNewFeaturesMD5(newFeaturesMD5);
+                Settings::self()->save();
                 whatsNewMessageWidget->animatedShow();
 #endif
             }
         } else {
             Settings::self()->setPreviousNewFeaturesMD5(newFeaturesMD5);
+            Settings::self()->save();
         }
     }
 
