@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-28 00:44+0000\n"
+"POT-Creation-Date: 2026-06-03 01:03+0000\n"
 "PO-Revision-Date: 2026-05-28 08:38+0300\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
@@ -935,8 +935,8 @@ msgstr "מאפס את המסנן המהיר בעת מעבר בין ערוצים.
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
 #: src/akregator_part.cpp:126
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:145
-#: src/mainwidget.cpp:147 src/mainwidget.cpp:154 src/mainwidget.cpp:1348
-#: src/mainwidget.cpp:1353 src/trayicon.cpp:40 src/trayicon.cpp:41
+#: src/mainwidget.cpp:147 src/mainwidget.cpp:155 src/mainwidget.cpp:1351
+#: src/mainwidget.cpp:1356 src/trayicon.cpp:40 src/trayicon.cpp:41
 #: src/trayicon.cpp:53
 #, kde-format
 msgid "Akregator"
@@ -2120,73 +2120,73 @@ msgstr "הטעינה בוטלה"
 msgid "Loading completed"
 msgstr "הטעינה הסתיימה"
 
-#: src/mainwidget.cpp:209
+#: src/mainwidget.cpp:212
 #, kde-format
 msgid "You can view multiple articles in several open tabs."
 msgstr "אפשר לצפות בכתבות רבות במגוון לשוניות."
 
-#: src/mainwidget.cpp:213
+#: src/mainwidget.cpp:216
 #, kde-format
 msgid "Articles list."
 msgstr "רשימת כתבות."
 
-#: src/mainwidget.cpp:275 src/mainwidget.cpp:699
+#: src/mainwidget.cpp:278 src/mainwidget.cpp:702
 #, kde-format
 msgid "Articles"
 msgstr "כתבות"
 
-#: src/mainwidget.cpp:300
+#: src/mainwidget.cpp:303
 #, kde-format
 msgid "About"
 msgstr "על אודות"
 
-#: src/mainwidget.cpp:838
+#: src/mainwidget.cpp:841
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all articles in the feed</b> as read?</"
 "qt>"
 msgstr "<qt>לסמן את <b>כל הכתבות בערוץ</b> כנקראו?</qt>"
 
-#: src/mainwidget.cpp:839
+#: src/mainwidget.cpp:842
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "סימון ערוץ כנקרא"
 
-#: src/mainwidget.cpp:842
+#: src/mainwidget.cpp:845
 #, kde-format
 msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
 msgstr "<qt>לסמן את <b>כל הערוצים</b> כנקראו?</qt>"
 
-#: src/mainwidget.cpp:844
+#: src/mainwidget.cpp:847
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all feeds in the folder</b> as read?</"
 "qt>"
 msgstr "<qt>לסמן את <b>כל הערוצים בתיקייה</b> כנקראו?</qt>"
 
-#: src/mainwidget.cpp:846
+#: src/mainwidget.cpp:849
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "סימון ערוצים כנקראו"
 
-#: src/mainwidget.cpp:910 src/mainwidget.cpp:919 src/mainwidget.cpp:1320
+#: src/mainwidget.cpp:913 src/mainwidget.cpp:922 src/mainwidget.cpp:1323
 #, kde-format
 msgid "Networking is not available."
 msgstr "התקשורת לא זמינה."
 
-#: src/mainwidget.cpp:927
+#: src/mainwidget.cpp:930
 #, kde-format
 msgid "Fetching Feeds…"
 msgstr "ערוצים מתעדכנים…"
 
-#: src/mainwidget.cpp:1125
+#: src/mainwidget.cpp:1128
 #, kde-format
 msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
 msgstr "<qt>למחוק את הכתבה <b>%1</b>?</qt>"
 
-#: src/mainwidget.cpp:1128
+#: src/mainwidget.cpp:1131
 #, kde-format
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
 msgid_plural ""
@@ -2196,13 +2196,13 @@ msgstr[1] "<qt>למחוק את שתי הכתבות הנבחרות?</qt>"
 msgstr[2] "<qt>למחוק את %1 הכתבות הנבחרות?</qt>"
 msgstr[3] "<qt>למחוק את %1 הכתבות הנבחרות?</qt>"
 
-#: src/mainwidget.cpp:1135
+#: src/mainwidget.cpp:1138
 #, kde-format
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "מחיקת כתבה"
 
-#: src/mainwidget.cpp:1317
+#: src/mainwidget.cpp:1320
 #, kde-format
 msgid "Networking is available now."
 msgstr "התקשורת זמינה כעת."

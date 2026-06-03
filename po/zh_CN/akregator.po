@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-28 00:44+0000\n"
+"POT-Creation-Date: 2026-06-03 01:03+0000\n"
 "PO-Revision-Date: 2024-04-23 19:24\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -916,8 +916,8 @@ msgstr "更改订阅时重置快速过滤器。"
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
 #: src/akregator_part.cpp:126
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:145
-#: src/mainwidget.cpp:147 src/mainwidget.cpp:154 src/mainwidget.cpp:1348
-#: src/mainwidget.cpp:1353 src/trayicon.cpp:40 src/trayicon.cpp:41
+#: src/mainwidget.cpp:147 src/mainwidget.cpp:155 src/mainwidget.cpp:1351
+#: src/mainwidget.cpp:1356 src/trayicon.cpp:40 src/trayicon.cpp:41
 #: src/trayicon.cpp:53
 #, kde-format
 msgid "Akregator"
@@ -2077,86 +2077,86 @@ msgstr "加载已取消"
 msgid "Loading completed"
 msgstr "加载已完成"
 
-#: src/mainwidget.cpp:209
+#: src/mainwidget.cpp:212
 #, kde-format
 msgid "You can view multiple articles in several open tabs."
 msgstr "您可以在多个打开的标签页中查看多篇文章。"
 
-#: src/mainwidget.cpp:213
+#: src/mainwidget.cpp:216
 #, kde-format
 msgid "Articles list."
 msgstr "文章列表。"
 
-#: src/mainwidget.cpp:275 src/mainwidget.cpp:699
+#: src/mainwidget.cpp:278 src/mainwidget.cpp:702
 #, kde-format
 msgid "Articles"
 msgstr "文章"
 
-#: src/mainwidget.cpp:300
+#: src/mainwidget.cpp:303
 #, kde-format
 msgid "About"
 msgstr "关于"
 
-#: src/mainwidget.cpp:838
+#: src/mainwidget.cpp:841
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all articles in the feed</b> as read?</"
 "qt>"
 msgstr "<qt>你确定你想要将该订阅中的<b>所有文章</b>标记为已读？</qt>"
 
-#: src/mainwidget.cpp:839
+#: src/mainwidget.cpp:842
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "将订阅标为已读"
 
-#: src/mainwidget.cpp:842
+#: src/mainwidget.cpp:845
 #, kde-format
 msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
 msgstr "<qt>你确定你想要将<b>所有订阅</b>标记为已读？</qt>"
 
-#: src/mainwidget.cpp:844
+#: src/mainwidget.cpp:847
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all feeds in the folder</b> as read?</"
 "qt>"
 msgstr "<qt>你确定你想要将<b>该文件夹中的所有订阅</b>标记为已读？</qt>"
 
-#: src/mainwidget.cpp:846
+#: src/mainwidget.cpp:849
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "将订阅标为已读"
 
-#: src/mainwidget.cpp:910 src/mainwidget.cpp:919 src/mainwidget.cpp:1320
+#: src/mainwidget.cpp:913 src/mainwidget.cpp:922 src/mainwidget.cpp:1323
 #, kde-format
 msgid "Networking is not available."
 msgstr "网络不可用。"
 
-#: src/mainwidget.cpp:927
+#: src/mainwidget.cpp:930
 #, kde-format
 msgid "Fetching Feeds…"
 msgstr "正在抓取订阅..."
 
-#: src/mainwidget.cpp:1125
+#: src/mainwidget.cpp:1128
 #, kde-format
 msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
 msgstr "<qt>您确定要删除文章 <b>%1</b> 吗？</qt>"
 
-#: src/mainwidget.cpp:1128
+#: src/mainwidget.cpp:1131
 #, kde-format
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
 msgid_plural ""
 "<qt>Are you sure you want to delete the %1 selected articles?</qt>"
 msgstr[0] "<qt>您确定要删除这 %1 篇文章吗？</qt>"
 
-#: src/mainwidget.cpp:1135
+#: src/mainwidget.cpp:1138
 #, kde-format
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "删除文章"
 
-#: src/mainwidget.cpp:1317
+#: src/mainwidget.cpp:1320
 #, kde-format
 msgid "Networking is available now."
 msgstr "网络现在可用。"
