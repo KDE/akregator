@@ -234,6 +234,7 @@
           <li xml:lang="he">הוספת תמיכה בחלונות.</li>
           <li xml:lang="it">Aggiunto il supporto a Windows.</li>
           <li xml:lang="ka">დაემატა Windows-ის მხარდაჭერა.</li>
+          <li xml:lang="lt">Pridėtas „Windows“ palaikymas.</li>
           <li xml:lang="nl">Ondersteuning voor windows toevoegen.</li>
           <li xml:lang="pt-BR">Adicionado suporte a janelas.</li>
           <li xml:lang="sk">Pridať podporu pre Windows.</li>
@@ -259,6 +260,7 @@
           <li xml:lang="he">מימוש פעילות פלזמה.</li>
           <li xml:lang="it">Implementate le attività di Plasma.</li>
           <li xml:lang="ka">განხორციელდა Plasma-ის აქტივობის მხარდაჭერა.</li>
+          <li xml:lang="lt">Įgyvendintas Plasma veiklų palaikymas.</li>
           <li xml:lang="nl">Activiteit van Plasma implementeren.</li>
           <li xml:lang="pt-BR">Implementado as atividades do plasma.</li>
           <li xml:lang="sk">Implementovať aktivitu Plasma.</li>
@@ -275,6 +277,7 @@
           <li xml:lang="he">הוספת וידג׳ט חדש בשם מה חדש.</li>
           <li xml:lang="it">Aggiunto un nuovo oggetto Cosa c'è di nuovo.</li>
           <li xml:lang="ka">დაემატა ახალი სიახლეების ვიჯეტი.</li>
+          <li xml:lang="lt">Pridėtas naujas „Kas naujo“ valdiklis.</li>
           <li xml:lang="nl">Nieuw widget Wat-is-nieuw toevoegen.</li>
           <li xml:lang="pt-BR">Adicionado novo elemento 'O que há de novo?'.</li>
           <li xml:lang="sk">Pridať nový widget Čo je nové.</li>
