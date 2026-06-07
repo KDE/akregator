@@ -225,6 +225,7 @@
       <description>
         <ul>
           <li>Add windows support.</li>
+          <li xml:lang="ar">أضاف دعم ويندوز.</li>
           <li xml:lang="bg">Добавяне на поддръжка на прозорци</li>
           <li xml:lang="ca">Afegeix la implementació del Windows.</li>
           <li xml:lang="ca-valencia">Afig la implementació de Windows.</li>
@@ -251,6 +252,7 @@
       <description>
         <ul>
           <li>Implement Plasma Activity.</li>
+          <li xml:lang="ar">تكامل مع أنشطة بلازما</li>
           <li xml:lang="bg">Активирана интеграция в дейности на Plasma</li>
           <li xml:lang="ca">Implementa les Activitats del Plasma.</li>
           <li xml:lang="ca-valencia">Implementa les Activitats de Plasma.</li>
@@ -268,6 +270,7 @@
           <li xml:lang="tr">Plasma Etkinlikler desteği gerçeklendi.</li>
           <li xml:lang="uk">Реалізовано простори дій Плазми.</li>
           <li>Add new whatsnew widget.</li>
+          <li xml:lang="ar">أضف منبثقة ما الجديد جديدة</li>
           <li xml:lang="bg">Добавяне на нов уиджет "Какво ново".</li>
           <li xml:lang="ca">Afegeix un giny nou «Què hi ha de nou».</li>
           <li xml:lang="ca-valencia">Afig un giny nou «Què hi ha de nou».</li>
