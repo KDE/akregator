@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kdepim\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-06-03 01:03+0000\n"
-"PO-Revision-Date: 2026-05-25 18:22+0200\n"
+"PO-Revision-Date: 2026-06-06 11:42+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
 "Language: ko\n"
@@ -2543,10 +2543,9 @@ msgid "Add new whatsnew widget."
 msgstr "새 새로운 항목 위젯을 추가합니다."
 
 #: src/whatsnew/whatsnewtranslations.cpp:31
-#, fuzzy, kde-format
-#| msgid "Add windows support"
+#, kde-format
 msgid "Add windows support."
-msgstr "Windows 지원 추가"
+msgstr "Windows 지원 추가."
 
 #: src/widgets/searchbar.cpp:44
 #, kde-format
