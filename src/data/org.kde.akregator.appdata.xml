@@ -243,6 +243,7 @@
           <li xml:lang="sl">Dodaj podporo za okna.</li>
           <li xml:lang="tr">Windows desteği eklendi.</li>
           <li xml:lang="uk">Додано підтримку Windows.</li>
+          <li xml:lang="zh-TW">新增 Windows 支援。</li>
         </ul>
       </description>
     </release>
@@ -271,6 +272,7 @@
           <li xml:lang="sl">Izvedi dejavnosti Plasme.</li>
           <li xml:lang="tr">Plasma Etkinlikler desteği gerçeklendi.</li>
           <li xml:lang="uk">Реалізовано простори дій Плазми.</li>
+          <li xml:lang="zh-TW">實作 Plasma 活動。</li>
           <li>Add new whatsnew widget.</li>
           <li xml:lang="ar">أضف منبثقة ما الجديد جديدة</li>
           <li xml:lang="bg">Добавяне на нов уиджет "Какво ново".</li>
@@ -290,6 +292,7 @@
           <li xml:lang="sl">Doda nov gradnik kaj je novega.</li>
           <li xml:lang="tr">“Neler Yeni” araç takımı eklendi.</li>
           <li xml:lang="uk">Додано новий віджет зі списком можливостей нової версії.</li>
+          <li xml:lang="zh-TW">新增新功能元件。</li>
         </ul>
       </description>
     </release>
