@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-06-03 01:03+0000\n"
-"PO-Revision-Date: 2026-05-18 11:58+0200\n"
+"PO-Revision-Date: 2026-06-24 17:32+0200\n"
 "Last-Translator: giovanni <g.sora@tiscali.it>\n"
 "Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
 "Language: ia\n"
@@ -2596,10 +2596,9 @@ msgid "Add new whatsnew widget."
 msgstr "Un nove widget de cosa es nove."
 
 #: src/whatsnew/whatsnewtranslations.cpp:31
-#, fuzzy, kde-format
-#| msgid "Add windows support"
+#, kde-format
 msgid "Add windows support."
-msgstr "Adde supporto de fenestras"
+msgstr "Adde supporto de fenestras."
 
 #: src/widgets/searchbar.cpp:44
 #, kde-format
