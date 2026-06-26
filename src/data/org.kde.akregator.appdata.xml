@@ -233,6 +233,7 @@
           <li xml:lang="es">Se ha añadido compatibilidad con Windows.</li>
           <li xml:lang="fr">Ajouter la prise en charge de Windows.</li>
           <li xml:lang="he">הוספת תמיכה בחלונות.</li>
+          <li xml:lang="ia">Adde supporto de fenestras.</li>
           <li xml:lang="it">Aggiunto il supporto a Windows.</li>
           <li xml:lang="ka">დაემატა Windows-ის მხარდაჭერა.</li>
           <li xml:lang="ko">Windows 지원 추가.</li>
@@ -262,6 +263,7 @@
           <li xml:lang="es">Implementar actividades de Plasma.</li>
           <li xml:lang="fr">Implémenter l'activité de Plasma.</li>
           <li xml:lang="he">מימוש פעילות פלזמה.</li>
+          <li xml:lang="ia">Actua  Activitate de Plasma.</li>
           <li xml:lang="it">Implementate le attività di Plasma.</li>
           <li xml:lang="ka">განხორციელდა Plasma-ის აქტივობის მხარდაჭერა.</li>
           <li xml:lang="ko">Plasma 활동 구현.</li>
@@ -282,6 +284,7 @@
           <li xml:lang="es">Añadir nuevo elemento de novedades.</li>
           <li xml:lang="fr">Ajouter un nouveau composant graphique « Quoi de neuf ».</li>
           <li xml:lang="he">הוספת וידג׳ט חדש בשם מה חדש.</li>
+          <li xml:lang="ia">Un nove widget de cosa es nove.</li>
           <li xml:lang="it">Aggiunto un nuovo oggetto Cosa c'è di nuovo.</li>
           <li xml:lang="ka">დაემატა ახალი სიახლეების ვიჯეტი.</li>
           <li xml:lang="ko">새 새로운 항목 위젯을 추가했습니다.</li>
@@ -321,7 +324,7 @@
         <p xml:lang="fr">Cette version apporte le portage de Akgregator sous Qt6 et ajuste un peu la conception graphique de l'application.</p>
         <p xml:lang="he">המהדורה הזאת מסבה את Akregator ל־Qt6 ומשפרת במעט את העיצוב של היישום.</p>
         <p xml:lang="hu">Ez az Akregator első Qt 6-os kiadása, amely kissé módosítja az alkalmazás megjelenését is.</p>
-        <p xml:lang="ia">Iste version porta Akregator a Qt6 e pincia un pauc le designo del app.</p>
+        <p xml:lang="ia">Iste version porta Akregator a Qt6 e pincia un pauco le designo del app.</p>
         <p xml:lang="is">Þessi útgáfa yfirfærir Akgregator í Qt6 og breytir örlítið hönnun forritsins.</p>
         <p xml:lang="it">Questo rilascio converte Akregator a Qt6 e modifica leggermente l'aspetto dell'applicazione.</p>
         <p xml:lang="ka">ეს გამოშვება გადაიტანს Akgregator-ს Qt6-ზე და აპის დიზაინი ოდნავ შეიცვალა.</p>
