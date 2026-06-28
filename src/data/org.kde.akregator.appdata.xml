@@ -240,6 +240,7 @@
           <li xml:lang="lt">Pridėtas „Windows“ palaikymas.</li>
           <li xml:lang="nl">Ondersteuning voor windows toevoegen.</li>
           <li xml:lang="pt-BR">Adicionado suporte a janelas.</li>
+          <li xml:lang="ru">Добавлена поддержка Windows;</li>
           <li xml:lang="sk">Pridať podporu pre Windows.</li>
           <li xml:lang="sl">Dodaj podporo za okna.</li>
           <li xml:lang="tr">Windows desteği eklendi.</li>
@@ -270,6 +271,7 @@
           <li xml:lang="lt">Įgyvendintas Plasma veiklų palaikymas.</li>
           <li xml:lang="nl">Activiteit van Plasma implementeren.</li>
           <li xml:lang="pt-BR">Implementado as atividades do plasma.</li>
+          <li xml:lang="ru">Реализованы комнаты Plasma;</li>
           <li xml:lang="sk">Implementovať aktivitu Plasma.</li>
           <li xml:lang="sl">Izvedi dejavnosti Plasme.</li>
           <li xml:lang="tr">Plasma Etkinlikler desteği gerçeklendi.</li>
@@ -291,6 +293,7 @@
           <li xml:lang="lt">Pridėtas naujas „Kas naujo“ valdiklis.</li>
           <li xml:lang="nl">Nieuw widget Wat-is-nieuw toevoegen.</li>
           <li xml:lang="pt-BR">Adicionado novo elemento 'O que há de novo?'.</li>
+          <li xml:lang="ru">Добавлен новый виджет «Что нового?»;</li>
           <li xml:lang="sk">Pridať nový widget Čo je nové.</li>
           <li xml:lang="sl">Doda nov gradnik kaj je novega.</li>
           <li xml:lang="tr">“Neler Yeni” araç takımı eklendi.</li>
