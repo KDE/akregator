@@ -7,7 +7,7 @@ project(akregator VERSION ${PIM_VERSION})
 # Update it for each release
 set(AKREGATOR_RELEASE_VERSION_DATE "26.07.10") # yy.MM.dd
 
-set(KF_MIN_VERSION "6.25.0")
+set(KF_MIN_VERSION "6.26.0")
 set(RELEASE_SERVICE_VERSION "26.11.40")
 set(QT_REQUIRED_VERSION "6.9.0")
 
@@ -172,17 +172,6 @@ set_package_properties(
         PURPOSE
             "Allow to send Telemetry Information (optional). It can be disable in apps."
 )
-
-if(
-    ${KF6CoreAddons_VERSION}
-        VERSION_GREATER_EQUAL
-        6.26.0
-    AND ${KF6TextAddonsWidgets_VERSION}
-        VERSION_GREATER_EQUAL
-        2.0.68
-)
-    set(HAVE_WHATSNEWSNGSUPPORT TRUE)
-endif()
 
 include_directories(
     ${akregator_SOURCE_DIR}

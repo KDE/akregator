@@ -42,7 +42,6 @@
 #include "tabwidget.h"
 #include "treenode.h"
 #include "types.h"
-#include "whatsnew/whatsnewtranslations.h"
 #include "widgets/searchbar.h"
 #include <WebEngineViewer/ZoomActionMenu>
 
@@ -67,13 +66,8 @@
 #include <TextAddonsWidgets/NeedUpdateVersionUtils>
 #include <TextAddonsWidgets/NeedUpdateVersionWidget>
 
-#if HAVE_WHATSNEWSNGSUPPORT
 #include <TextAddonsWidgets/WhatsNewMessageNgWidget>
 #include <TextAddonsWidgets/WhatsNewNgDialog>
-#else
-#include <TextAddonsWidgets/WhatsNewDialog>
-#include <TextAddonsWidgets/WhatsNewMessageWidget>
-#endif
 
 #include <algorithm>
 #include <chrono>
@@ -128,22 +122,16 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
     }
 
     QString newFeaturesMD5;
-#if HAVE_WHATSNEWSNGSUPPORT
     const KAboutData aboutData = KAboutData::fromAppStreamForApplication();
     mReleasesInfo = aboutData.releases();
     if (!mReleasesInfo.isEmpty()) {
         newFeaturesMD5 = mReleasesInfo.constFirst().untranslatedDescription();
     }
-#else
-    WhatsNewTranslations translations;
-    newFeaturesMD5 = translations.newFeaturesMD5();
-#endif
     if (!newFeaturesMD5.isEmpty()) {
         const QString previousNewFeaturesMD5 = Settings::self()->previousNewFeaturesMD5();
         if (!previousNewFeaturesMD5.isEmpty()) {
             const bool hasNewFeature = (previousNewFeaturesMD5 != newFeaturesMD5);
             if (hasNewFeature) {
-#if HAVE_WHATSNEWSNGSUPPORT
                 auto whatsNewMessageWidget = new TextAddonsWidgets::WhatsNewMessageNgWidget(i18n("Akregator"), this);
                 whatsNewMessageWidget->setReleases(mReleasesInfo);
                 whatsNewMessageWidget->setObjectName(u"whatsNewMessageWidget"_s);
@@ -151,15 +139,6 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
                 Settings::self()->setPreviousNewFeaturesMD5(newFeaturesMD5);
                 Settings::self()->save();
                 whatsNewMessageWidget->animatedShow();
-#else
-                auto whatsNewMessageWidget = new TextAddonsWidgets::WhatsNewMessageWidget(this, i18n("Akregator"));
-                whatsNewMessageWidget->setWhatsNewInfos(translations.createWhatsNewInfo());
-                whatsNewMessageWidget->setObjectName(QStringLiteral("whatsNewMessageWidget"));
-                topLayout->addWidget(whatsNewMessageWidget);
-                Settings::self()->setPreviousNewFeaturesMD5(newFeaturesMD5);
-                Settings::self()->save();
-                whatsNewMessageWidget->animatedShow();
-#endif
             }
         } else {
             Settings::self()->setPreviousNewFeaturesMD5(newFeaturesMD5);
@@ -1347,17 +1326,9 @@ void MainWidget::slotFocusQuickSearch()
 
 void MainWidget::slotWhatsNew()
 {
-#if HAVE_WHATSNEWSNGSUPPORT
     TextAddonsWidgets::WhatsNewNgDialog dlg(i18n("Akregator"), this);
     dlg.setReleases(mReleasesInfo);
     dlg.exec();
-#else
-    WhatsNewTranslations translations;
-    QPointer<TextAddonsWidgets::WhatsNewDialog> dlg = new TextAddonsWidgets::WhatsNewDialog(translations.createWhatsNewInfo(), this, i18n("Akregator"));
-    dlg->updateInformations();
-    dlg->exec();
-    delete dlg;
-#endif
 }
 
 void MainWidget::slotArticleAction(Akregator::ArticleViewerWebEngine::ArticleAction type, const QString &articleId, const QString &feed)

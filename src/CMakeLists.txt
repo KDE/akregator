@@ -322,8 +322,6 @@ target_sources(
         progressmanager.h
         akregator_part.h
         mainwidget.h
-        whatsnew/whatsnewtranslations.cpp
-        whatsnew/whatsnewtranslations.h
 )
 
 ki18n_wrap_ui(akregatorpart
