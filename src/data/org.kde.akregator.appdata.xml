@@ -244,6 +244,7 @@
           <li xml:lang="ru">Добавлена поддержка Windows;</li>
           <li xml:lang="sk">Pridať podporu pre Windows.</li>
           <li xml:lang="sl">Dodaj podporo za okna.</li>
+          <li xml:lang="sv">Tillägg av fönsterstöd.</li>
           <li xml:lang="tr">Windows desteği eklendi.</li>
           <li xml:lang="uk">Додано підтримку Windows.</li>
           <li xml:lang="zh-TW">新增 Windows 支援。</li>
@@ -275,6 +276,7 @@
           <li xml:lang="ru">Реализованы комнаты Plasma;</li>
           <li xml:lang="sk">Implementovať aktivitu Plasma.</li>
           <li xml:lang="sl">Izvedi dejavnosti Plasme.</li>
+          <li xml:lang="sv">Implementera Plasma-aktivitet.</li>
           <li xml:lang="tr">Plasma Etkinlikler desteği gerçeklendi.</li>
           <li xml:lang="uk">Реалізовано простори дій Плазми.</li>
           <li xml:lang="zh-TW">實作 Plasma 活動。</li>
@@ -297,6 +299,7 @@
           <li xml:lang="ru">Добавлен новый виджет «Что нового?»;</li>
           <li xml:lang="sk">Pridať nový widget Čo je nové.</li>
           <li xml:lang="sl">Doda nov gradnik kaj je novega.</li>
+          <li xml:lang="sv">Lägg till ny vad-är-nytt grafisk komponent.</li>
           <li xml:lang="tr">“Neler Yeni” araç takımı eklendi.</li>
           <li xml:lang="uk">Додано новий віджет зі списком можливостей нової версії.</li>
           <li xml:lang="zh-TW">新增新功能元件。</li>
@@ -340,6 +343,7 @@
         <p xml:lang="ru">В этом выпуске Akregator перенесён на Qt6 и слегка изменён дизайн приложения.</p>
         <p xml:lang="sk">Toto vydanie portuje Akregator na Qt6 a trochu upravuje dizajn aplikácie.</p>
         <p xml:lang="sl">Ta izdaja prenaša Akgregator na Qt6 in nekoliko spreminja obliko aplikacije.</p>
+        <p xml:lang="sv">Utgåvan konverterar Akgregator till Qt6 och finjusterar programmets konstruktion något</p>
         <p xml:lang="tr">Bu yayım, Akregatör’ü Qt6’ya aktarır ve uygulamanın tasarımını biraz değiştirir.</p>
         <p xml:lang="uk">У цьому випуску Akgregator портовано на Qt6, а також дещо скориговано дизайн програми.</p>
         <p xml:lang="zh-CN">这个版本将 Akgregator 移植到 Qt6 并稍微调整了应用程序的设计。</p>
