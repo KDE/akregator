@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-06-03 01:03+0000\n"
+"POT-Creation-Date: 2026-07-07 00:43+0000\n"
 "PO-Revision-Date: 2025-12-06 10:38+0100\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
@@ -942,9 +942,8 @@ msgstr "Jarioak aldatzean iragazki bizkorra berrezartzen du."
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
 #: src/akregator_part.cpp:126
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:145
-#: src/mainwidget.cpp:147 src/mainwidget.cpp:155 src/mainwidget.cpp:1351
-#: src/mainwidget.cpp:1356 src/trayicon.cpp:40 src/trayicon.cpp:41
-#: src/trayicon.cpp:53
+#: src/mainwidget.cpp:135 src/mainwidget.cpp:1329 src/trayicon.cpp:40
+#: src/trayicon.cpp:41 src/trayicon.cpp:53
 #, kde-format
 msgid "Akregator"
 msgstr "Akregator"
@@ -2138,27 +2137,27 @@ msgstr "Zamatzea ezeztatuta"
 msgid "Loading completed"
 msgstr "Zamatzea burututa"
 
-#: src/mainwidget.cpp:212
+#: src/mainwidget.cpp:191
 #, kde-format
 msgid "You can view multiple articles in several open tabs."
 msgstr "Artikulu anizkoitzak ikus ditzakezu irekitako hainbat fitxetan."
 
-#: src/mainwidget.cpp:216
+#: src/mainwidget.cpp:195
 #, kde-format
 msgid "Articles list."
 msgstr "Artikuluen zerrenda."
 
-#: src/mainwidget.cpp:278 src/mainwidget.cpp:702
+#: src/mainwidget.cpp:257 src/mainwidget.cpp:681
 #, kde-format
 msgid "Articles"
 msgstr "Artikuluak"
 
-#: src/mainwidget.cpp:303
+#: src/mainwidget.cpp:282
 #, kde-format
 msgid "About"
 msgstr "Honi buruz"
 
-#: src/mainwidget.cpp:841
+#: src/mainwidget.cpp:820
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all articles in the feed</b> as read?</"
@@ -2167,20 +2166,20 @@ msgstr ""
 "<qt>Ziur zaude <b>jarioko artikulu guztiak</b> irakurritako gisa markatu "
 "nahi dituzula?</qt>"
 
-#: src/mainwidget.cpp:842
+#: src/mainwidget.cpp:821
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "Markatu jarioa irakurritako gisa"
 
-#: src/mainwidget.cpp:845
+#: src/mainwidget.cpp:824
 #, kde-format
 msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
 msgstr ""
 "<qt>Ziur zaude <b>jario guztiak</b> irakurritako gisa markatu nahi dituzula?"
 "</qt>"
 
-#: src/mainwidget.cpp:847
+#: src/mainwidget.cpp:826
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all feeds in the folder</b> as read?</"
@@ -2189,28 +2188,28 @@ msgstr ""
 "<qt>Ziur zaude <b>karpetako jario guztiak</b> irakurritako gisa markatu nahi "
 "dituzula?</qt>"
 
-#: src/mainwidget.cpp:849
+#: src/mainwidget.cpp:828
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "Markatu jarioak irakurritako gisa"
 
-#: src/mainwidget.cpp:913 src/mainwidget.cpp:922 src/mainwidget.cpp:1323
+#: src/mainwidget.cpp:892 src/mainwidget.cpp:901 src/mainwidget.cpp:1302
 #, kde-format
 msgid "Networking is not available."
 msgstr "Sarea ez dago erabilgarri."
 
-#: src/mainwidget.cpp:930
+#: src/mainwidget.cpp:909
 #, kde-format
 msgid "Fetching Feeds…"
 msgstr "Jarioak ekartzen…"
 
-#: src/mainwidget.cpp:1128
+#: src/mainwidget.cpp:1107
 #, kde-format
 msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
 msgstr "<qt>Ziur zaude <b>%1</b> artikulua ezabatu nahi duzula?</qt>"
 
-#: src/mainwidget.cpp:1131
+#: src/mainwidget.cpp:1110
 #, kde-format
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
 msgid_plural ""
@@ -2219,13 +2218,13 @@ msgstr[0] "<qt>Ziur zaude hautatutako artikulua ezabatu nahi duzula?</qt>"
 msgstr[1] ""
 "<qt>Ziur zaude hautatutako %1 artikuluak ezabatu nahi dituzula?</qt>"
 
-#: src/mainwidget.cpp:1138
+#: src/mainwidget.cpp:1117
 #, kde-format
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "Ezabatu artikulua"
 
-#: src/mainwidget.cpp:1320
+#: src/mainwidget.cpp:1299
 #, kde-format
 msgid "Networking is available now."
 msgstr "Sarea, orain, erabilgarri dago."
@@ -2588,26 +2587,6 @@ msgstr "Bidali artikuluaren HTML orria"
 msgid "Open In External Browser"
 msgstr "Ireki kanpoko arakatzailean"
 
-#: src/whatsnew/whatsnewtranslations.cpp:16
-msgid "Add windows support"
-msgstr "Windows-erako euskarria gehitzea"
-
-#: src/whatsnew/whatsnewtranslations.cpp:24
-#, kde-format
-msgid "Implement Plasma Activity."
-msgstr "Plasma Jarduera inplementatzea."
-
-#: src/whatsnew/whatsnewtranslations.cpp:24
-#, kde-format
-msgid "Add new whatsnew widget."
-msgstr "Zerberri trepeta berria gehitzea."
-
-#: src/whatsnew/whatsnewtranslations.cpp:31
-#, fuzzy, kde-format
-#| msgid "Add windows support"
-msgid "Add windows support."
-msgstr "Windows-erako euskarria gehitzea"
-
 #: src/widgets/searchbar.cpp:44
 #, kde-format
 msgctxt "@info:placeholder"
@@ -2648,6 +2627,20 @@ msgstr "Irakurrita"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "Garrantzizkoak"
+
+#~ msgid "Add windows support"
+#~ msgstr "Windows-erako euskarria gehitzea"
+
+#~ msgid "Implement Plasma Activity."
+#~ msgstr "Plasma Jarduera inplementatzea."
+
+#~ msgid "Add new whatsnew widget."
+#~ msgstr "Zerberri trepeta berria gehitzea."
+
+#, fuzzy
+#~| msgid "Add windows support"
+#~ msgid "Add windows support."
+#~ msgstr "Windows-erako euskarria gehitzea"
 
 #~ msgid "KDE Dot News"
 #~ msgstr "KDE Dot News"

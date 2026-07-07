@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-06-03 01:03+0000\n"
+"POT-Creation-Date: 2026-07-07 00:43+0000\n"
 "PO-Revision-Date: 2026-06-26 20:57+0200\n"
 "Last-Translator: Alexander Yavorskiy <kekcuha@gmail.com>\n"
 "Language-Team: Russian <kde-russian@lists.kde.ru>\n"
@@ -956,9 +956,8 @@ msgstr "Сбросить фильтр при переходе на другую 
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
 #: src/akregator_part.cpp:126
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:145
-#: src/mainwidget.cpp:147 src/mainwidget.cpp:155 src/mainwidget.cpp:1351
-#: src/mainwidget.cpp:1356 src/trayicon.cpp:40 src/trayicon.cpp:41
-#: src/trayicon.cpp:53
+#: src/mainwidget.cpp:135 src/mainwidget.cpp:1329 src/trayicon.cpp:40
+#: src/trayicon.cpp:41 src/trayicon.cpp:53
 #, kde-format
 msgid "Akregator"
 msgstr "Akregator"
@@ -2152,73 +2151,73 @@ msgstr "Загрузка прервана"
 msgid "Loading completed"
 msgstr "Загрузка завершена"
 
-#: src/mainwidget.cpp:212
+#: src/mainwidget.cpp:191
 #, kde-format
 msgid "You can view multiple articles in several open tabs."
 msgstr "Можно читать несколько статей на разных вкладках."
 
-#: src/mainwidget.cpp:216
+#: src/mainwidget.cpp:195
 #, kde-format
 msgid "Articles list."
 msgstr "Список статей."
 
-#: src/mainwidget.cpp:278 src/mainwidget.cpp:702
+#: src/mainwidget.cpp:257 src/mainwidget.cpp:681
 #, kde-format
 msgid "Articles"
 msgstr "Статьи"
 
-#: src/mainwidget.cpp:303
+#: src/mainwidget.cpp:282
 #, kde-format
 msgid "About"
 msgstr "О модуле"
 
-#: src/mainwidget.cpp:841
+#: src/mainwidget.cpp:820
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all articles in the feed</b> as read?</"
 "qt>"
 msgstr "<qt>Отметить <b>все статьи в ленте</b> как прочитанные?</qt>"
 
-#: src/mainwidget.cpp:842
+#: src/mainwidget.cpp:821
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "Отметка ленты как прочитанной"
 
-#: src/mainwidget.cpp:845
+#: src/mainwidget.cpp:824
 #, kde-format
 msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
 msgstr "<qt>Отметить <b>все ленты</b> как прочитанные?</qt>"
 
-#: src/mainwidget.cpp:847
+#: src/mainwidget.cpp:826
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all feeds in the folder</b> as read?</"
 "qt>"
 msgstr "<qt>Отметить <b>все ленты в папке</b> как прочитанные?</qt>"
 
-#: src/mainwidget.cpp:849
+#: src/mainwidget.cpp:828
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "Отметка лент как прочитанных"
 
-#: src/mainwidget.cpp:913 src/mainwidget.cpp:922 src/mainwidget.cpp:1323
+#: src/mainwidget.cpp:892 src/mainwidget.cpp:901 src/mainwidget.cpp:1302
 #, kde-format
 msgid "Networking is not available."
 msgstr "Сеть недоступна."
 
-#: src/mainwidget.cpp:930
+#: src/mainwidget.cpp:909
 #, kde-format
 msgid "Fetching Feeds…"
 msgstr "Получение данных из лент новостей…"
 
-#: src/mainwidget.cpp:1128
+#: src/mainwidget.cpp:1107
 #, kde-format
 msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
 msgstr "<qt>Удалить статью <b>%1</b>?</qt>"
 
-#: src/mainwidget.cpp:1131
+#: src/mainwidget.cpp:1110
 #, kde-format
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
 msgid_plural ""
@@ -2228,13 +2227,13 @@ msgstr[1] "<qt>Удалить %1 выбранные статьи?</qt>"
 msgstr[2] "<qt>Удалить %1 выбранных статей?</qt>"
 msgstr[3] "<qt>Удалить выбранную статью?</qt>"
 
-#: src/mainwidget.cpp:1138
+#: src/mainwidget.cpp:1117
 #, kde-format
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "Удаление статьи"
 
-#: src/mainwidget.cpp:1320
+#: src/mainwidget.cpp:1299
 #, kde-format
 msgid "Networking is available now."
 msgstr "Сеть теперь доступна."
@@ -2599,25 +2598,6 @@ msgstr "Отправить HTML-страницу со статьёй"
 msgid "Open In External Browser"
 msgstr "Открыть во внешнем браузере"
 
-#: src/whatsnew/whatsnewtranslations.cpp:16
-msgid "Add windows support"
-msgstr "Добавление поддержки Windows."
-
-#: src/whatsnew/whatsnewtranslations.cpp:24
-#, kde-format
-msgid "Implement Plasma Activity."
-msgstr "Реализация комнат Plasma."
-
-#: src/whatsnew/whatsnewtranslations.cpp:24
-#, kde-format
-msgid "Add new whatsnew widget."
-msgstr "Добавление нового виджета «Что нового?»."
-
-#: src/whatsnew/whatsnewtranslations.cpp:31
-#, kde-format
-msgid "Add windows support."
-msgstr "Добавление поддержки Windows."
-
 #: src/widgets/searchbar.cpp:44
 #, kde-format
 msgctxt "@info:placeholder"
@@ -2658,6 +2638,18 @@ msgstr "прочитанные"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "важные"
+
+#~ msgid "Add windows support"
+#~ msgstr "Добавление поддержки Windows."
+
+#~ msgid "Implement Plasma Activity."
+#~ msgstr "Реализация комнат Plasma."
+
+#~ msgid "Add new whatsnew widget."
+#~ msgstr "Добавление нового виджета «Что нового?»."
+
+#~ msgid "Add windows support."
+#~ msgstr "Добавление поддержки Windows."
 
 #~ msgid "KDE Dot News"
 #~ msgstr "Новости KDE"

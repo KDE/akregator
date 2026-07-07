@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-06-03 01:03+0000\n"
+"POT-Creation-Date: 2026-07-07 00:43+0000\n"
 "PO-Revision-Date: 2022-07-03 14:28+0400\n"
 "Last-Translator: Kheyyam <xxmn77@gmail.com>\n"
 "Language-Team: Azerbaijani <kde-i18n-doc@kde.org>\n"
@@ -944,9 +944,8 @@ msgstr "Başqa lentə keçdikdə sürətli süzgəcləməni sıfırlamaq."
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
 #: src/akregator_part.cpp:126
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:145
-#: src/mainwidget.cpp:147 src/mainwidget.cpp:155 src/mainwidget.cpp:1351
-#: src/mainwidget.cpp:1356 src/trayicon.cpp:40 src/trayicon.cpp:41
-#: src/trayicon.cpp:53
+#: src/mainwidget.cpp:135 src/mainwidget.cpp:1329 src/trayicon.cpp:40
+#: src/trayicon.cpp:41 src/trayicon.cpp:53
 #, kde-format
 msgid "Akregator"
 msgstr "Akregator"
@@ -2193,27 +2192,27 @@ msgstr "Yüklənmə ləğv edildi"
 msgid "Loading completed"
 msgstr "Yüklənmə başa çatdı"
 
-#: src/mainwidget.cpp:212
+#: src/mainwidget.cpp:191
 #, kde-format
 msgid "You can view multiple articles in several open tabs."
 msgstr "Çoxsaylı məqalələrə bir neçə vərəqdə baxa bilərsiniz."
 
-#: src/mainwidget.cpp:216
+#: src/mainwidget.cpp:195
 #, kde-format
 msgid "Articles list."
 msgstr "Məqalələr siyahısı."
 
-#: src/mainwidget.cpp:278 src/mainwidget.cpp:702
+#: src/mainwidget.cpp:257 src/mainwidget.cpp:681
 #, kde-format
 msgid "Articles"
 msgstr "Məqalələr"
 
-#: src/mainwidget.cpp:303
+#: src/mainwidget.cpp:282
 #, kde-format
 msgid "About"
 msgstr "Haqqında"
 
-#: src/mainwidget.cpp:841
+#: src/mainwidget.cpp:820
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all articles in the feed</b> as read?</"
@@ -2222,19 +2221,19 @@ msgstr ""
 "<qt> <b>Xəbər lentindəki bütün məqalələri</b> oxunmuş kimi işarələmək "
 "istəyirsiniz?</qt>"
 
-#: src/mainwidget.cpp:842
+#: src/mainwidget.cpp:821
 #, fuzzy, kde-format
 #| msgid "Mark Feed as Read"
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "Xəbərləri oxunmuş kimi işarələyin"
 
-#: src/mainwidget.cpp:845
+#: src/mainwidget.cpp:824
 #, kde-format
 msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
 msgstr "<qt> <b>Bütün xəbərləri</b>oxunmuş kimi işarələmək istəyirsiniz?</qt>"
 
-#: src/mainwidget.cpp:847
+#: src/mainwidget.cpp:826
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all feeds in the folder</b> as read?</"
@@ -2243,30 +2242,30 @@ msgstr ""
 "<qt><b>Qovluqdakı bütün xəbərləri</b>oxunmuş kimi işarələmək istəyirsiniz?</"
 "qt>"
 
-#: src/mainwidget.cpp:849
+#: src/mainwidget.cpp:828
 #, fuzzy, kde-format
 #| msgid "Mark Feeds as Read"
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "Xəbəri oxunmuş kimi işarələyin"
 
-#: src/mainwidget.cpp:913 src/mainwidget.cpp:922 src/mainwidget.cpp:1323
+#: src/mainwidget.cpp:892 src/mainwidget.cpp:901 src/mainwidget.cpp:1302
 #, kde-format
 msgid "Networking is not available."
 msgstr "İnternet bağlantısı yoxdur."
 
-#: src/mainwidget.cpp:930
+#: src/mainwidget.cpp:909
 #, fuzzy, kde-format
 #| msgid "Fetching Feeds..."
 msgid "Fetching Feeds…"
 msgstr "Lentlər yenilənir..."
 
-#: src/mainwidget.cpp:1128
+#: src/mainwidget.cpp:1107
 #, kde-format
 msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
 msgstr "<qt><b>%1</b> məqaləni silmək istədiyinizə əminsiniz?</qt>"
 
-#: src/mainwidget.cpp:1131
+#: src/mainwidget.cpp:1110
 #, kde-format
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
 msgid_plural ""
@@ -2274,14 +2273,14 @@ msgid_plural ""
 msgstr[0] "<qt>Seçilmiş məqaləni silmək istədiyinizə əminsiniz?</qt>"
 msgstr[1] "<qt>Seçilmiş %1 məqaləni silmək istədiyinizə əminsiniz?</qt>"
 
-#: src/mainwidget.cpp:1138
+#: src/mainwidget.cpp:1117
 #, fuzzy, kde-format
 #| msgid "Delete Article"
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "Məqaləni silmək"
 
-#: src/mainwidget.cpp:1320
+#: src/mainwidget.cpp:1299
 #, kde-format
 msgid "Networking is available now."
 msgstr "İnternet şəbəkəsinə qoşuldu."
@@ -2643,26 +2642,6 @@ msgstr "Məqalənin HTML səhifəsini göndərmək"
 msgid "Open In External Browser"
 msgstr "Xarici bələdçidə açmaq"
 
-#: src/whatsnew/whatsnewtranslations.cpp:16
-msgid "Add windows support"
-msgstr ""
-
-#: src/whatsnew/whatsnewtranslations.cpp:24
-#, fuzzy, kde-format
-#| msgid "Enable Javascript"
-msgid "Implement Plasma Activity."
-msgstr "JavaScript-i aktivləşdirmək"
-
-#: src/whatsnew/whatsnewtranslations.cpp:24
-#, kde-format
-msgid "Add new whatsnew widget."
-msgstr ""
-
-#: src/whatsnew/whatsnewtranslations.cpp:31
-#, kde-format
-msgid "Add windows support."
-msgstr ""
-
 #: src/widgets/searchbar.cpp:44
 #, fuzzy, kde-format
 #| msgid "Search articles..."
@@ -2705,6 +2684,11 @@ msgstr "Oxumaq"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "Vacib"
+
+#, fuzzy
+#~| msgid "Enable Javascript"
+#~ msgid "Implement Plasma Activity."
+#~ msgstr "JavaScript-i aktivləşdirmək"
 
 #~ msgid "KDE Dot News"
 #~ msgstr "KDE Dot xəbərləri"

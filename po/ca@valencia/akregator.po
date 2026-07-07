@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-06-03 01:03+0000\n"
+"POT-Creation-Date: 2026-07-07 00:43+0000\n"
 "PO-Revision-Date: 2026-05-28 09:11+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
@@ -942,9 +942,8 @@ msgstr "Reinicia el filtre ràpid en canviar les fonts."
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
 #: src/akregator_part.cpp:126
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:145
-#: src/mainwidget.cpp:147 src/mainwidget.cpp:155 src/mainwidget.cpp:1351
-#: src/mainwidget.cpp:1356 src/trayicon.cpp:40 src/trayicon.cpp:41
-#: src/trayicon.cpp:53
+#: src/mainwidget.cpp:135 src/mainwidget.cpp:1329 src/trayicon.cpp:40
+#: src/trayicon.cpp:41 src/trayicon.cpp:53
 #, kde-format
 msgid "Akregator"
 msgstr "Akregator"
@@ -2132,27 +2131,27 @@ msgstr "Càrrega cancel·lada"
 msgid "Loading completed"
 msgstr "Càrrega completada"
 
-#: src/mainwidget.cpp:212
+#: src/mainwidget.cpp:191
 #, kde-format
 msgid "You can view multiple articles in several open tabs."
 msgstr "Podeu veure múltiples articles en diverses pestanyes obertes."
 
-#: src/mainwidget.cpp:216
+#: src/mainwidget.cpp:195
 #, kde-format
 msgid "Articles list."
 msgstr "Llista d'articles."
 
-#: src/mainwidget.cpp:278 src/mainwidget.cpp:702
+#: src/mainwidget.cpp:257 src/mainwidget.cpp:681
 #, kde-format
 msgid "Articles"
 msgstr "Articles"
 
-#: src/mainwidget.cpp:303
+#: src/mainwidget.cpp:282
 #, kde-format
 msgid "About"
 msgstr "Quant a"
 
-#: src/mainwidget.cpp:841
+#: src/mainwidget.cpp:820
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all articles in the feed</b> as read?</"
@@ -2161,18 +2160,18 @@ msgstr ""
 "<qt>Segur que voleu marcar <b>tots els articles de la font</b> com a llegits?"
 "</qt>"
 
-#: src/mainwidget.cpp:842
+#: src/mainwidget.cpp:821
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "Marca la font com a llegida"
 
-#: src/mainwidget.cpp:845
+#: src/mainwidget.cpp:824
 #, kde-format
 msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
 msgstr "<qt>Segur que voleu marcar <b>totes les fonts</b> com a llegides?</qt>"
 
-#: src/mainwidget.cpp:847
+#: src/mainwidget.cpp:826
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all feeds in the folder</b> as read?</"
@@ -2180,28 +2179,28 @@ msgid ""
 msgstr ""
 "<qt>Segur que voleu <b>totes les fonts en la carpeta</b> com a llegides?</qt>"
 
-#: src/mainwidget.cpp:849
+#: src/mainwidget.cpp:828
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "Marca les fonts com a llegides"
 
-#: src/mainwidget.cpp:913 src/mainwidget.cpp:922 src/mainwidget.cpp:1323
+#: src/mainwidget.cpp:892 src/mainwidget.cpp:901 src/mainwidget.cpp:1302
 #, kde-format
 msgid "Networking is not available."
 msgstr "La xarxa no està disponible."
 
-#: src/mainwidget.cpp:930
+#: src/mainwidget.cpp:909
 #, kde-format
 msgid "Fetching Feeds…"
 msgstr "S'estan obtenint les fonts…"
 
-#: src/mainwidget.cpp:1128
+#: src/mainwidget.cpp:1107
 #, kde-format
 msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
 msgstr "<qt>Segur que voleu suprimir l'article <b>%1</b>?</qt>"
 
-#: src/mainwidget.cpp:1131
+#: src/mainwidget.cpp:1110
 #, kde-format
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
 msgid_plural ""
@@ -2209,13 +2208,13 @@ msgid_plural ""
 msgstr[0] "<qt>Segur que voleu suprimir l'article seleccionat?</qt>"
 msgstr[1] "<qt>Segur que voleu suprimir els %1 articles seleccionats?</qt>"
 
-#: src/mainwidget.cpp:1138
+#: src/mainwidget.cpp:1117
 #, kde-format
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "Suprimiu l'article"
 
-#: src/mainwidget.cpp:1320
+#: src/mainwidget.cpp:1299
 #, kde-format
 msgid "Networking is available now."
 msgstr "La xarxa ara està disponible."
@@ -2576,25 +2575,6 @@ msgstr "Envia la pàgina HTML de l'article"
 msgid "Open In External Browser"
 msgstr "Obri en un navegador extern"
 
-#: src/whatsnew/whatsnewtranslations.cpp:16
-msgid "Add windows support"
-msgstr "Afig la implementació de Windows"
-
-#: src/whatsnew/whatsnewtranslations.cpp:24
-#, kde-format
-msgid "Implement Plasma Activity."
-msgstr "Implementa les Activitats de Plasma."
-
-#: src/whatsnew/whatsnewtranslations.cpp:24
-#, kde-format
-msgid "Add new whatsnew widget."
-msgstr "Afig un giny nou «Què hi ha de nou»."
-
-#: src/whatsnew/whatsnewtranslations.cpp:31
-#, kde-format
-msgid "Add windows support."
-msgstr "Afig la implementació de Windows."
-
 #: src/widgets/searchbar.cpp:44
 #, kde-format
 msgctxt "@info:placeholder"
@@ -2635,3 +2615,15 @@ msgstr "Llegit"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "Important"
+
+#~ msgid "Add windows support"
+#~ msgstr "Afig la implementació de Windows"
+
+#~ msgid "Implement Plasma Activity."
+#~ msgstr "Implementa les Activitats de Plasma."
+
+#~ msgid "Add new whatsnew widget."
+#~ msgstr "Afig un giny nou «Què hi ha de nou»."
+
+#~ msgid "Add windows support."
+#~ msgstr "Afig la implementació de Windows."

@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-06-03 01:03+0000\n"
+"POT-Creation-Date: 2026-07-07 00:43+0000\n"
 "PO-Revision-Date: 2026-05-29 11:14+0200\n"
 "Last-Translator: Xavier Besnard <xavier.besnard@kde.org>\n"
 "Language-Team: fr\n"
@@ -967,9 +967,8 @@ msgstr "Efface la recherche rapide au changement de flux."
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
 #: src/akregator_part.cpp:126
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:145
-#: src/mainwidget.cpp:147 src/mainwidget.cpp:155 src/mainwidget.cpp:1351
-#: src/mainwidget.cpp:1356 src/trayicon.cpp:40 src/trayicon.cpp:41
-#: src/trayicon.cpp:53
+#: src/mainwidget.cpp:135 src/mainwidget.cpp:1329 src/trayicon.cpp:40
+#: src/trayicon.cpp:41 src/trayicon.cpp:53
 #, kde-format
 msgid "Akregator"
 msgstr "Akregator"
@@ -2159,27 +2158,27 @@ msgstr "Chargement annulé"
 msgid "Loading completed"
 msgstr "Chargement terminé"
 
-#: src/mainwidget.cpp:212
+#: src/mainwidget.cpp:191
 #, kde-format
 msgid "You can view multiple articles in several open tabs."
 msgstr "Vous pouvez voir plusieurs articles dans plusieurs onglets ouverts."
 
-#: src/mainwidget.cpp:216
+#: src/mainwidget.cpp:195
 #, kde-format
 msgid "Articles list."
 msgstr "Liste des articles."
 
-#: src/mainwidget.cpp:278 src/mainwidget.cpp:702
+#: src/mainwidget.cpp:257 src/mainwidget.cpp:681
 #, kde-format
 msgid "Articles"
 msgstr "Articles"
 
-#: src/mainwidget.cpp:303
+#: src/mainwidget.cpp:282
 #, kde-format
 msgid "About"
 msgstr "À propos"
 
-#: src/mainwidget.cpp:841
+#: src/mainwidget.cpp:820
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all articles in the feed</b> as read?</"
@@ -2188,19 +2187,19 @@ msgstr ""
 "<qt>Voulez-vous vraiment marquer <b>tous les articles du flux</b> comme "
 "lus ? </qt>"
 
-#: src/mainwidget.cpp:842
+#: src/mainwidget.cpp:821
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "Marquer un flux comme lu"
 
-#: src/mainwidget.cpp:845
+#: src/mainwidget.cpp:824
 #, kde-format
 msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
 msgstr ""
 "<qt>Voulez-vous vraiment marquer <b>tous les flux</b> comme lus ? </qt>"
 
-#: src/mainwidget.cpp:847
+#: src/mainwidget.cpp:826
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all feeds in the folder</b> as read?</"
@@ -2209,28 +2208,28 @@ msgstr ""
 "<qt>Voulez-vous vraiment marquer <b>tous les flux du dossier</b> comme lus ? "
 "</qt>"
 
-#: src/mainwidget.cpp:849
+#: src/mainwidget.cpp:828
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "Marquer les flux comme lus"
 
-#: src/mainwidget.cpp:913 src/mainwidget.cpp:922 src/mainwidget.cpp:1323
+#: src/mainwidget.cpp:892 src/mainwidget.cpp:901 src/mainwidget.cpp:1302
 #, kde-format
 msgid "Networking is not available."
 msgstr "Le réseau n'est pas disponible."
 
-#: src/mainwidget.cpp:930
+#: src/mainwidget.cpp:909
 #, kde-format
 msgid "Fetching Feeds…"
 msgstr "Téléchargement de flux..."
 
-#: src/mainwidget.cpp:1128
+#: src/mainwidget.cpp:1107
 #, kde-format
 msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
 msgstr "<qt>Voulez-vous vraiment supprimer l'article <b>%1</b> ?</qt>"
 
-#: src/mainwidget.cpp:1131
+#: src/mainwidget.cpp:1110
 #, kde-format
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
 msgid_plural ""
@@ -2239,13 +2238,13 @@ msgstr[0] "<qt>Voulez-vous vraiment supprimer l'article sélectionné ?</qt>"
 msgstr[1] ""
 "<qt>Voulez-vous vraiment supprimer les %1 articles sélectionnés ?</qt>"
 
-#: src/mainwidget.cpp:1138
+#: src/mainwidget.cpp:1117
 #, kde-format
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "Supprimer un article"
 
-#: src/mainwidget.cpp:1320
+#: src/mainwidget.cpp:1299
 #, kde-format
 msgid "Networking is available now."
 msgstr "Le réseau est maintenant disponible."
@@ -2607,25 +2606,6 @@ msgstr "Envoyer la page HTML de l'article"
 msgid "Open In External Browser"
 msgstr "Ouvrir dans le navigateur externe"
 
-#: src/whatsnew/whatsnewtranslations.cpp:16
-msgid "Add windows support"
-msgstr "Ajouter la prise en charge de Windows "
-
-#: src/whatsnew/whatsnewtranslations.cpp:24
-#, kde-format
-msgid "Implement Plasma Activity."
-msgstr "Implémenter une activité de Plasma."
-
-#: src/whatsnew/whatsnewtranslations.cpp:24
-#, kde-format
-msgid "Add new whatsnew widget."
-msgstr "Ajouter un nouveau composant graphique « Quoi de neuf »."
-
-#: src/whatsnew/whatsnewtranslations.cpp:31
-#, kde-format
-msgid "Add windows support."
-msgstr "Ajouter la prise en charge de Windows."
-
 #: src/widgets/searchbar.cpp:44
 #, kde-format
 msgctxt "@info:placeholder"
@@ -2666,6 +2646,18 @@ msgstr "Lu"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "Important"
+
+#~ msgid "Add windows support"
+#~ msgstr "Ajouter la prise en charge de Windows "
+
+#~ msgid "Implement Plasma Activity."
+#~ msgstr "Implémenter une activité de Plasma."
+
+#~ msgid "Add new whatsnew widget."
+#~ msgstr "Ajouter un nouveau composant graphique « Quoi de neuf »."
+
+#~ msgid "Add windows support."
+#~ msgstr "Ajouter la prise en charge de Windows."
 
 #~ msgid "KDE Dot News"
 #~ msgstr "Nouvelles de « KDE Dot »"
