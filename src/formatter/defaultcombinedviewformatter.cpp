@@ -16,7 +16,7 @@ using namespace Akregator;
 DefaultCombinedViewFormatter::DefaultCombinedViewFormatter(QPaintDevice *device)
     : ArticleFormatter()
 {
-    mGrantleeViewFormatter = std::make_unique<GrantleeViewFormatter>(QStringLiteral(":/formatter/html/combinedview.html"), device->logicalDpiY());
+    mGrantleeViewFormatter = std::make_unique<GrantleeViewFormatter>(QStringLiteral("formatter/html/combinedview.html"), device->logicalDpiY());
 }
 
 DefaultCombinedViewFormatter::~DefaultCombinedViewFormatter() = default;

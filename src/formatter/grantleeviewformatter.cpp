@@ -14,7 +14,7 @@
 #include "feed.h"
 #include "folder.h"
 #include <GrantleeTheme/GrantleeKi18nLocalizer>
-#include <GrantleeTheme/QtResourceTemplateLoader>
+#include <KTextTemplate/FileSystemTemplateLoader>
 #include <QApplication>
 #include <QCoreApplication>
 #include <QFile>
@@ -23,6 +23,7 @@
 #include <QVariantHash>
 #include <QVariantList>
 
+using namespace Qt::Literals;
 using namespace Akregator;
 
 GrantleeViewFormatter::GrantleeViewFormatter(const QString &htmlFileName, int deviceDpiY)
@@ -31,7 +32,9 @@ GrantleeViewFormatter::GrantleeViewFormatter(const QString &htmlFileName, int de
     , mDeviceDpiY(deviceDpiY)
 {
     mEngine.localizer()->setApplicationDomain("akregator");
-    mEngine.addTemplateLoader(QSharedPointer<GrantleeTheme::QtResourceTemplateLoader>::create());
+    auto loader = QSharedPointer<KTextTemplate::FileSystemTemplateLoader>::create();
+    loader->setTemplateDirs({u":/"_s});
+    mEngine.addTemplateLoader(loader);
 }
 
 GrantleeViewFormatter::~GrantleeViewFormatter() = default;
@@ -150,7 +153,7 @@ QString GrantleeViewFormatter::sidebarCss(const Colors &colors) const
 
 QString GrantleeViewFormatter::formatFeed(Akregator::Feed *feed)
 {
-    mTemplate = mEngine.loadByName(QStringLiteral(":/formatter/html/defaultnormalvisitfeed.html"));
+    mTemplate = mEngine.loadByName(QStringLiteral("formatter/html/defaultnormalvisitfeed.html"));
     if (mTemplate->error()) {
         return mTemplate->errorString();
     }
@@ -204,7 +207,7 @@ QString GrantleeViewFormatter::formatFeed(Akregator::Feed *feed)
 
 QString GrantleeViewFormatter::formatFolder(Akregator::Folder *node)
 {
-    mTemplate = mEngine.loadByName(QStringLiteral(":/formatter/html/defaultnormalvisitfolder.html"));
+    mTemplate = mEngine.loadByName(QStringLiteral("formatter/html/defaultnormalvisitfolder.html"));
     if (mTemplate->error()) {
         return mTemplate->errorString();
     }
@@ -229,7 +232,7 @@ QString GrantleeViewFormatter::formatFolder(Akregator::Folder *node)
 
 QString GrantleeViewFormatter::formatArticles(const QList<Article> &article, ArticleFormatter::IconOption icon)
 {
-    mTemplate = mEngine.loadByName(QStringLiteral(":/formatter/html/normalview.html"));
+    mTemplate = mEngine.loadByName(QStringLiteral("formatter/html/normalview.html"));
     if (mTemplate->error()) {
         return mTemplate->errorString();
     }

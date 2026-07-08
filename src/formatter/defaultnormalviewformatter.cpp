@@ -58,7 +58,7 @@ private:
 DefaultNormalViewFormatter::DefaultNormalViewFormatter(QPaintDevice *device)
     : ArticleFormatter()
     , m_summaryVisitor(std::make_unique<SummaryVisitor>(this))
-    , mGrantleeViewFormatter(std::make_unique<GrantleeViewFormatter>(QStringLiteral(":/formatter/html/normalview.html"), device->logicalDpiY()))
+    , mGrantleeViewFormatter(std::make_unique<GrantleeViewFormatter>(QStringLiteral("formatter/html/normalview.html"), device->logicalDpiY()))
 {
 }
 
