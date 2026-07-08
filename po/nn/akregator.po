@@ -2602,7 +2602,3 @@ msgstr "Lesne"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "Viktige"
-
-#, fuzzy
-#~ msgid "Implement Plasma Activity."
-#~ msgstr "Slå på JavaScript"
