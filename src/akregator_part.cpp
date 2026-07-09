@@ -25,7 +25,6 @@
 #include "notificationmanager.h"
 #include "storage/storage.h"
 #include "trayicon.h"
-#include "unityservicemanager.h"
 #include "widgets/akregatorcentralwidget.h"
 #include <KConfig>
 #include <KIO/FileCopyJob>
@@ -153,9 +152,8 @@ Part::Part(QWidget *parentWidget, QObject *parent, const KPluginMetaData &data, 
     setWidget(mCentralWidget);
 
     // Initialize instance.
-    (void)UnityServiceManager::instance();
     if (Settings::showUnreadInTaskbar()) {
-        connect(m_mainWidget.data(), &MainWidget::signalUnreadCountChanged, UnityServiceManager::instance(), &UnityServiceManager::slotSetUnread);
+        connect(m_mainWidget.data(), &MainWidget::signalUnreadCountChanged, qGuiApp, &QGuiApplication::setBadgeNumber);
     }
 
     if (Settings::showTrayIcon() && !TrayIcon::getInstance()) {
@@ -228,11 +226,11 @@ void Part::initializeTrayIcon()
 void Part::slotSettingsChanged()
 {
     if (Settings::showUnreadInTaskbar()) {
-        connect(m_mainWidget.data(), &MainWidget::signalUnreadCountChanged, UnityServiceManager::instance(), &UnityServiceManager::slotSetUnread);
+        connect(m_mainWidget.data(), &MainWidget::signalUnreadCountChanged, qGuiApp, &QGuiApplication::setBadgeNumber);
         m_mainWidget->slotSetTotalUnread();
     } else {
-        disconnect(m_mainWidget.data(), &MainWidget::signalUnreadCountChanged, UnityServiceManager::instance(), &UnityServiceManager::slotSetUnread);
-        UnityServiceManager::instance()->slotSetUnread(0);
+        disconnect(m_mainWidget.data(), &MainWidget::signalUnreadCountChanged, qGuiApp, &QGuiApplication::setBadgeNumber);
+        qGuiApp->setBadgeNumber(0);
     }
 
     NotificationManager::self()->setWidget(isTrayIconEnabled() ? m_mainWidget->window() : nullptr, componentName());

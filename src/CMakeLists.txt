@@ -97,7 +97,6 @@ target_sources(
         articleviewerwidget.cpp
         aboutdata.cpp
         trayicon.cpp
-        unityservicemanager.cpp
         article.cpp
         feed/feed.cpp
         feed/feedlist.cpp
@@ -155,7 +154,6 @@ target_sources(
         articleviewerwidget.h
         aboutdata.h
         trayicon.h
-        unityservicemanager.h
         feed/feed.h
         feed/feedlist.h
         feed/feedretriever.h
