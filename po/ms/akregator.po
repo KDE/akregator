@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Mimos\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-07-07 00:43+0000\n"
+"POT-Creation-Date: 2026-07-10 00:45+0000\n"
 "PO-Revision-Date: 2005-10-12 11:13+0800\n"
 "Last-Translator: MIMOS <opensource@mimos.my>\n"
 "Language-Team: Malay <kedidiemas@yahoogroups.com>\n"
@@ -2100,60 +2100,60 @@ msgstr "Ciri Suapan"
 msgid "(%1, %2)"
 msgstr ""
 
-#: src/formatter/grantleeviewformatter.cpp:162
-#: src/formatter/grantleeviewformatter.cpp:217
+#: src/formatter/grantleeviewformatter.cpp:165
+#: src/formatter/grantleeviewformatter.cpp:220
 #, kde-format
 msgid " (no unread articles)"
 msgstr " (tiada artikel belum baca)"
 
-#: src/formatter/grantleeviewformatter.cpp:164
-#: src/formatter/grantleeviewformatter.cpp:219
+#: src/formatter/grantleeviewformatter.cpp:167
+#: src/formatter/grantleeviewformatter.cpp:222
 #, fuzzy, kde-format
 msgid " (1 unread article)"
 msgid_plural " (%1 unread articles)"
 msgstr[0] "_n:  (1 artikel belum baca)"
 msgstr[1] " (%1 artikel belum baca)"
 
-#: src/formatter/grantleeviewformatter.cpp:179
+#: src/formatter/grantleeviewformatter.cpp:182
 #, fuzzy, kde-format
 #| msgid "<b>Description:</b> %1<br><br>"
 msgid "<b>Description:</b> %1<br />"
 msgstr "<b>Huraian:</b> %1<br><br>"
 
-#: src/formatter/grantleeviewformatter.cpp:186
+#: src/formatter/grantleeviewformatter.cpp:189
 #, fuzzy, kde-format
 #| msgid "<b>Homepage:</b> <a href=\"%1\">%2</a>"
 msgid "<b>Homepage:</b> <a href=\"%1\">%1</a>"
 msgstr "<b>Laman Utama:</b> <a href=\"%1\">%2</a>"
 
-#: src/formatter/grantleeviewformatter.cpp:193
+#: src/formatter/grantleeviewformatter.cpp:196
 #, fuzzy, kde-format
 #| msgid "<b>Description:</b> %1<br><br>"
 msgid "<b>Copyright:</b> %1</a>"
 msgstr "<b>Huraian:</b> %1<br><br>"
 
-#: src/formatter/grantleeviewformatter.cpp:253
+#: src/formatter/grantleeviewformatter.cpp:256
 #, kde-format
 msgid "Date"
 msgstr "Tarikh"
 
-#: src/formatter/grantleeviewformatter.cpp:254
+#: src/formatter/grantleeviewformatter.cpp:257
 #, fuzzy, kde-format
 #| msgid "Comments"
 msgid "Comment"
 msgstr "Komen"
 
-#: src/formatter/grantleeviewformatter.cpp:255
+#: src/formatter/grantleeviewformatter.cpp:258
 #, kde-format
 msgid "Complete Story"
 msgstr "Cerita Lengkap"
 
-#: src/formatter/grantleeviewformatter.cpp:256
+#: src/formatter/grantleeviewformatter.cpp:259
 #, fuzzy, kde-format
 msgid "Author"
 msgstr "Penulis"
 
-#: src/formatter/grantleeviewformatter.cpp:257
+#: src/formatter/grantleeviewformatter.cpp:260
 #, kde-format
 msgid "Enclosure"
 msgstr ""

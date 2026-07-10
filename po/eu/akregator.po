@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-07-07 00:43+0000\n"
+"POT-Creation-Date: 2026-07-10 00:45+0000\n"
 "PO-Revision-Date: 2025-12-06 10:38+0100\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
@@ -2063,56 +2063,56 @@ msgstr "%1(r)en propietateak"
 msgid "(%1, %2)"
 msgstr "(%1, %2)"
 
-#: src/formatter/grantleeviewformatter.cpp:162
-#: src/formatter/grantleeviewformatter.cpp:217
+#: src/formatter/grantleeviewformatter.cpp:165
+#: src/formatter/grantleeviewformatter.cpp:220
 #, kde-format
 msgid " (no unread articles)"
 msgstr " (ez dago irakurri gabeko artikulurik)"
 
-#: src/formatter/grantleeviewformatter.cpp:164
-#: src/formatter/grantleeviewformatter.cpp:219
+#: src/formatter/grantleeviewformatter.cpp:167
+#: src/formatter/grantleeviewformatter.cpp:222
 #, kde-format
 msgid " (1 unread article)"
 msgid_plural " (%1 unread articles)"
 msgstr[0] " (irakurri gabeko artikulu 1)"
 msgstr[1] " (irakurri gabeko %1 artikulu)"
 
-#: src/formatter/grantleeviewformatter.cpp:179
+#: src/formatter/grantleeviewformatter.cpp:182
 #, kde-format
 msgid "<b>Description:</b> %1<br />"
 msgstr "<b>Deskribapena:</b> %1<br />"
 
-#: src/formatter/grantleeviewformatter.cpp:186
+#: src/formatter/grantleeviewformatter.cpp:189
 #, kde-format
 msgid "<b>Homepage:</b> <a href=\"%1\">%1</a>"
 msgstr "<b>Orri nagusia:</b> <a href=\"%1\">%1</a>"
 
-#: src/formatter/grantleeviewformatter.cpp:193
+#: src/formatter/grantleeviewformatter.cpp:196
 #, kde-format
 msgid "<b>Copyright:</b> %1</a>"
 msgstr "<b>Copyright:</b> %1</a>"
 
-#: src/formatter/grantleeviewformatter.cpp:253
+#: src/formatter/grantleeviewformatter.cpp:256
 #, kde-format
 msgid "Date"
 msgstr "Data"
 
-#: src/formatter/grantleeviewformatter.cpp:254
+#: src/formatter/grantleeviewformatter.cpp:257
 #, kde-format
 msgid "Comment"
 msgstr "Iruzkina"
 
-#: src/formatter/grantleeviewformatter.cpp:255
+#: src/formatter/grantleeviewformatter.cpp:258
 #, kde-format
 msgid "Complete Story"
 msgstr "Kontu osoa"
 
-#: src/formatter/grantleeviewformatter.cpp:256
+#: src/formatter/grantleeviewformatter.cpp:259
 #, kde-format
 msgid "Author"
 msgstr "Egilea"
 
-#: src/formatter/grantleeviewformatter.cpp:257
+#: src/formatter/grantleeviewformatter.cpp:260
 #, kde-format
 msgid "Enclosure"
 msgstr "Eranskina"

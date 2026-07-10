@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: all2.po\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-07-07 00:43+0000\n"
+"POT-Creation-Date: 2026-07-10 00:45+0000\n"
 "PO-Revision-Date: 2004-09-20 15:44+0200\n"
 "Last-Translator: Thierry Vignaud <tvignaud@mandriva.com>\n"
 "Language-Team: br <LL@li.org>\n"
@@ -2075,60 +2075,60 @@ msgstr "&Perzhioù evit %1"
 msgid "(%1, %2)"
 msgstr ""
 
-#: src/formatter/grantleeviewformatter.cpp:162
-#: src/formatter/grantleeviewformatter.cpp:217
+#: src/formatter/grantleeviewformatter.cpp:165
+#: src/formatter/grantleeviewformatter.cpp:220
 #, kde-format
 msgid " (no unread articles)"
 msgstr " (pennad anlennet ebet)"
 
-#: src/formatter/grantleeviewformatter.cpp:164
-#: src/formatter/grantleeviewformatter.cpp:219
+#: src/formatter/grantleeviewformatter.cpp:167
+#: src/formatter/grantleeviewformatter.cpp:222
 #, fuzzy, kde-format
 msgid " (1 unread article)"
 msgid_plural " (%1 unread articles)"
 msgstr[0] " (%1 pennad anlennet)"
 msgstr[1] ""
 
-#: src/formatter/grantleeviewformatter.cpp:179
+#: src/formatter/grantleeviewformatter.cpp:182
 #, fuzzy, kde-format
 #| msgid "<b>Description:</b> %1<br><br>"
 msgid "<b>Description:</b> %1<br />"
 msgstr "<b>Deskrivadur :</b> %1<br><br>"
 
-#: src/formatter/grantleeviewformatter.cpp:186
+#: src/formatter/grantleeviewformatter.cpp:189
 #, fuzzy, kde-format
 #| msgid "<b>Homepage:</b> <a href=\"%1\">%2</a>"
 msgid "<b>Homepage:</b> <a href=\"%1\">%1</a>"
 msgstr "<b>Pajenn Er-Gêr :</b> <a href=\"%1\">%2</a>"
 
-#: src/formatter/grantleeviewformatter.cpp:193
+#: src/formatter/grantleeviewformatter.cpp:196
 #, fuzzy, kde-format
 #| msgid "<b>Description:</b> %1<br><br>"
 msgid "<b>Copyright:</b> %1</a>"
 msgstr "<b>Deskrivadur :</b> %1<br><br>"
 
-#: src/formatter/grantleeviewformatter.cpp:253
+#: src/formatter/grantleeviewformatter.cpp:256
 #, kde-format
 msgid "Date"
 msgstr "Deiziad"
 
-#: src/formatter/grantleeviewformatter.cpp:254
+#: src/formatter/grantleeviewformatter.cpp:257
 #, fuzzy, kde-format
 #| msgid "Comments"
 msgid "Comment"
 msgstr "Askelennoù"
 
-#: src/formatter/grantleeviewformatter.cpp:255
+#: src/formatter/grantleeviewformatter.cpp:258
 #, kde-format
 msgid "Complete Story"
 msgstr ""
 
-#: src/formatter/grantleeviewformatter.cpp:256
+#: src/formatter/grantleeviewformatter.cpp:259
 #, kde-format
 msgid "Author"
 msgstr "Oberour"
 
-#: src/formatter/grantleeviewformatter.cpp:257
+#: src/formatter/grantleeviewformatter.cpp:260
 #, kde-format
 msgid "Enclosure"
 msgstr ""
