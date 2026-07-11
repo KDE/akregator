@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-07-10 00:45+0000\n"
+"POT-Creation-Date: 2026-07-11 00:44+0000\n"
 "PO-Revision-Date: 2019-04-21 19:02-0700\n"
 "Last-Translator: Fumiaki Okushi <fumiaki.okushi@gmail.com>\n"
 "Language-Team: Japanese <kde-jp@kde.org>\n"
@@ -959,7 +959,7 @@ msgid "Resets the quick filter when changing feeds."
 msgstr "フィードを変更したときにクイックフィルタをリセットします。"
 
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
-#: src/akregator_part.cpp:126
+#: src/akregator_part.cpp:125
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:145
 #: src/mainwidget.cpp:135 src/mainwidget.cpp:1329 src/trayicon.cpp:40
 #: src/trayicon.cpp:41 src/trayicon.cpp:53
@@ -1616,32 +1616,32 @@ msgctxt "@info:shell"
 msgid "Lists the available options for user feedback"
 msgstr ""
 
-#: src/akregator_part.cpp:78
+#: src/akregator_part.cpp:77
 #, kde-format
 msgid "Feeds"
 msgstr "フィード"
 
-#: src/akregator_part.cpp:89
+#: src/akregator_part.cpp:88
 #, kde-format
 msgid "Planet KDE"
 msgstr "Planet KDE"
 
-#: src/akregator_part.cpp:94
+#: src/akregator_part.cpp:93
 #, kde-format
 msgid "KDE Apps"
 msgstr "KDE Apps"
 
-#: src/akregator_part.cpp:100
+#: src/akregator_part.cpp:99
 #, kde-format
 msgid "Spanish feeds"
 msgstr ""
 
-#: src/akregator_part.cpp:104
+#: src/akregator_part.cpp:103
 #, kde-format
 msgid "Planet KDE España"
 msgstr "Planet KDE España"
 
-#: src/akregator_part.cpp:417
+#: src/akregator_part.cpp:415
 #, kde-format
 msgid ""
 "Access denied: Cannot save feed list to <b>%1</b>. Please check your "
@@ -1650,26 +1650,26 @@ msgstr ""
 "アクセスが拒否されたため、フィードリストを ‘%1’ に保存できません。アクセス許"
 "可があるか確認してください。"
 
-#: src/akregator_part.cpp:418 src/akregator_part.cpp:471
+#: src/akregator_part.cpp:416 src/akregator_part.cpp:469
 #, fuzzy, kde-format
 #| msgid "Write Error"
 msgctxt "@title:window"
 msgid "Write Error"
 msgstr "書き込みエラー"
 
-#: src/akregator_part.cpp:454
+#: src/akregator_part.cpp:452
 #, kde-format
 msgid "Could not import the file %1 (no valid OPML)"
 msgstr "ファイル ‘%1’ をインポートできませんでした (有効な OPML がありません)"
 
-#: src/akregator_part.cpp:454 src/command/loadfeedlistcommand.cpp:71
+#: src/akregator_part.cpp:452 src/command/loadfeedlistcommand.cpp:71
 #, fuzzy, kde-format
 #| msgid "OPML Parsing Error"
 msgctxt "@title:window"
 msgid "OPML Parsing Error"
 msgstr "OPML 解析エラー"
 
-#: src/akregator_part.cpp:458
+#: src/akregator_part.cpp:456
 #, kde-format
 msgid ""
 "The file %1 could not be read, check if it exists or if it is readable for "
@@ -1678,27 +1678,27 @@ msgstr ""
 "ファイル ‘%1’ を読めませんでした。存在するかどうか、現在のユーザが読み取り可"
 "能か確認してください。"
 
-#: src/akregator_part.cpp:459 src/command/loadfeedlistcommand.cpp:144
+#: src/akregator_part.cpp:457 src/command/loadfeedlistcommand.cpp:144
 #, fuzzy, kde-format
 #| msgid "Read Error"
 msgctxt "@title:window"
 msgid "Read Error"
 msgstr "読み取りエラー"
 
-#: src/akregator_part.cpp:470
+#: src/akregator_part.cpp:468
 #, kde-format
 msgid "Access denied: cannot write to file %1. Please check your permissions."
 msgstr ""
 "アクセスが拒否されたため、ファイル ‘%1’ に書き込めません。アクセス許可がある"
 "か確認してください。"
 
-#: src/akregator_part.cpp:486 src/akregator_part.cpp:495
+#: src/akregator_part.cpp:484 src/akregator_part.cpp:493
 #, fuzzy, kde-format
 #| msgid "OPML Outlines (*.opml, *.xml)"
 msgid "OPML Outlines (%1);;All Files (*)"
 msgstr "OPML アウトライン (*.opml, *.xml)"
 
-#: src/akregator_part.cpp:620
+#: src/akregator_part.cpp:618
 #, kde-format
 msgid "Imported Folder"
 msgstr "インポートしたフォルダ"

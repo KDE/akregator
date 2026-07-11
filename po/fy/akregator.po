@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-07-10 00:45+0000\n"
+"POT-Creation-Date: 2026-07-11 00:44+0000\n"
 "PO-Revision-Date: 2007-06-12 03:54+0200\n"
 "Last-Translator: Rinse de Vries <rinsedevries@kde.nl>\n"
 "Language-Team: Nederlands <kde-i18n-nl@kde.org>\n"
@@ -1002,7 +1002,7 @@ msgid "Resets the quick filter when changing feeds."
 msgstr "Werstelt de snelsiker at der fan feed feroare wurdt."
 
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
-#: src/akregator_part.cpp:126
+#: src/akregator_part.cpp:125
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:145
 #: src/mainwidget.cpp:135 src/mainwidget.cpp:1329 src/trayicon.cpp:40
 #: src/trayicon.cpp:41 src/trayicon.cpp:53
@@ -1662,34 +1662,34 @@ msgctxt "@info:shell"
 msgid "Lists the available options for user feedback"
 msgstr ""
 
-#: src/akregator_part.cpp:78
+#: src/akregator_part.cpp:77
 #, kde-format
 msgid "Feeds"
 msgstr "Feeds"
 
-#: src/akregator_part.cpp:89
+#: src/akregator_part.cpp:88
 #, kde-format
 msgid "Planet KDE"
 msgstr "Planet KDE"
 
-#: src/akregator_part.cpp:94
+#: src/akregator_part.cpp:93
 #, kde-format
 msgid "KDE Apps"
 msgstr "KDE Apps"
 
-#: src/akregator_part.cpp:100
+#: src/akregator_part.cpp:99
 #, kde-format
 msgid "Spanish feeds"
 msgstr ""
 
-#: src/akregator_part.cpp:104
+#: src/akregator_part.cpp:103
 #, fuzzy, kde-format
 #| msgid "Planet KDE"
 msgid "Planet KDE España"
 msgstr "Planet KDE"
 
 # inconsequent: eerst streken we over een feed lijst, nu over lijst met feeds
-#: src/akregator_part.cpp:417
+#: src/akregator_part.cpp:415
 #, fuzzy, kde-format
 #| msgid "Access denied: cannot save feed list (%1)"
 msgid ""
@@ -1697,26 +1697,26 @@ msgid ""
 "permissions."
 msgstr "Tagong wegere: feedlijst (%1) koe net opslein wurde"
 
-#: src/akregator_part.cpp:418 src/akregator_part.cpp:471
+#: src/akregator_part.cpp:416 src/akregator_part.cpp:469
 #, fuzzy, kde-format
 #| msgid "Write Error"
 msgctxt "@title:window"
 msgid "Write Error"
 msgstr "Skriuwflater"
 
-#: src/akregator_part.cpp:454
+#: src/akregator_part.cpp:452
 #, kde-format
 msgid "Could not import the file %1 (no valid OPML)"
 msgstr "Koe de triem %1 net ymportearje (gjin jildich OPML-formaat)"
 
-#: src/akregator_part.cpp:454 src/command/loadfeedlistcommand.cpp:71
+#: src/akregator_part.cpp:452 src/command/loadfeedlistcommand.cpp:71
 #, fuzzy, kde-format
 #| msgid "OPML Parsing Error"
 msgctxt "@title:window"
 msgid "OPML Parsing Error"
 msgstr "OPML-ûntleedfout"
 
-#: src/akregator_part.cpp:458
+#: src/akregator_part.cpp:456
 #, kde-format
 msgid ""
 "The file %1 could not be read, check if it exists or if it is readable for "
@@ -1725,26 +1725,26 @@ msgstr ""
 "De triem %1 koe net lêzen wurde. Kontrolearje oft it bestiet en oft it "
 "lêsber is foar de brûker fan no."
 
-#: src/akregator_part.cpp:459 src/command/loadfeedlistcommand.cpp:144
+#: src/akregator_part.cpp:457 src/command/loadfeedlistcommand.cpp:144
 #, fuzzy, kde-format
 #| msgid "Read Error"
 msgctxt "@title:window"
 msgid "Read Error"
 msgstr "Lêsfout"
 
-#: src/akregator_part.cpp:470
+#: src/akregator_part.cpp:468
 #, fuzzy, kde-format
 #| msgid "Access denied: cannot write to file %1"
 msgid "Access denied: cannot write to file %1. Please check your permissions."
 msgstr "Tagong wegere: kin net opslaan yn triem %1"
 
-#: src/akregator_part.cpp:486 src/akregator_part.cpp:495
+#: src/akregator_part.cpp:484 src/akregator_part.cpp:493
 #, fuzzy, kde-format
 #| msgid "OPML Outlines (*.opml, *.xml)"
 msgid "OPML Outlines (%1);;All Files (*)"
 msgstr "OPML-formaat (*.opml, *.xml)"
 
-#: src/akregator_part.cpp:620
+#: src/akregator_part.cpp:618
 #, kde-format
 msgid "Imported Folder"
 msgstr "Ymportearre map"

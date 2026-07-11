@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-07-10 00:45+0000\n"
+"POT-Creation-Date: 2026-07-11 00:44+0000\n"
 "PO-Revision-Date: 2026-05-28 06:45+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
@@ -945,7 +945,7 @@ msgid "Resets the quick filter when changing feeds."
 msgstr "Ob preklopu na drug vir se hitro iskanje ponastavi."
 
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
-#: src/akregator_part.cpp:126
+#: src/akregator_part.cpp:125
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:145
 #: src/mainwidget.cpp:135 src/mainwidget.cpp:1329 src/trayicon.cpp:40
 #: src/trayicon.cpp:41 src/trayicon.cpp:53
@@ -1557,32 +1557,32 @@ msgctxt "@info:shell"
 msgid "Lists the available options for user feedback"
 msgstr "Prikaži seznam razpoložljivih možnosti za povratni odziv uporabnikov"
 
-#: src/akregator_part.cpp:78
+#: src/akregator_part.cpp:77
 #, kde-format
 msgid "Feeds"
 msgstr "Viri"
 
-#: src/akregator_part.cpp:89
+#: src/akregator_part.cpp:88
 #, kde-format
 msgid "Planet KDE"
 msgstr "Planet KDE"
 
-#: src/akregator_part.cpp:94
+#: src/akregator_part.cpp:93
 #, kde-format
 msgid "KDE Apps"
 msgstr "KDE Apps"
 
-#: src/akregator_part.cpp:100
+#: src/akregator_part.cpp:99
 #, kde-format
 msgid "Spanish feeds"
 msgstr "Španski viri"
 
-#: src/akregator_part.cpp:104
+#: src/akregator_part.cpp:103
 #, kde-format
 msgid "Planet KDE España"
 msgstr "Planet KDE España"
 
-#: src/akregator_part.cpp:417
+#: src/akregator_part.cpp:415
 #, kde-format
 msgid ""
 "Access denied: Cannot save feed list to <b>%1</b>. Please check your "
@@ -1591,24 +1591,24 @@ msgstr ""
 "Dostop zavrnjen: seznama virov ni mogoče shraniti v <b>%1</b>. Preverite "
 "svoja dovoljenja."
 
-#: src/akregator_part.cpp:418 src/akregator_part.cpp:471
+#: src/akregator_part.cpp:416 src/akregator_part.cpp:469
 #, kde-format
 msgctxt "@title:window"
 msgid "Write Error"
 msgstr "Napaka pisanja"
 
-#: src/akregator_part.cpp:454
+#: src/akregator_part.cpp:452
 #, kde-format
 msgid "Could not import the file %1 (no valid OPML)"
 msgstr "Ni bilo mogoče uvoziti datoteke %1 (neveljaven OPML)"
 
-#: src/akregator_part.cpp:454 src/command/loadfeedlistcommand.cpp:71
+#: src/akregator_part.cpp:452 src/command/loadfeedlistcommand.cpp:71
 #, kde-format
 msgctxt "@title:window"
 msgid "OPML Parsing Error"
 msgstr "Napaka med razčlenjevanjem OPML"
 
-#: src/akregator_part.cpp:458
+#: src/akregator_part.cpp:456
 #, kde-format
 msgid ""
 "The file %1 could not be read, check if it exists or if it is readable for "
@@ -1617,24 +1617,24 @@ msgstr ""
 "Ni bilo mogoče prebrati datoteke %1. Preverite, ali obstaja, oziroma ali je "
 "berljiva za trenutnega uporabnika."
 
-#: src/akregator_part.cpp:459 src/command/loadfeedlistcommand.cpp:144
+#: src/akregator_part.cpp:457 src/command/loadfeedlistcommand.cpp:144
 #, kde-format
 msgctxt "@title:window"
 msgid "Read Error"
 msgstr "Napaka branja"
 
-#: src/akregator_part.cpp:470
+#: src/akregator_part.cpp:468
 #, kde-format
 msgid "Access denied: cannot write to file %1. Please check your permissions."
 msgstr ""
 "Dostop zavrnjen: v datoteko %1 ni mogoče pisati. Preverite svoja dovoljenja."
 
-#: src/akregator_part.cpp:486 src/akregator_part.cpp:495
+#: src/akregator_part.cpp:484 src/akregator_part.cpp:493
 #, kde-format
 msgid "OPML Outlines (%1);;All Files (*)"
 msgstr "Izvlečki OPML (%1);;Vse datoteke (*)"
 
-#: src/akregator_part.cpp:620
+#: src/akregator_part.cpp:618
 #, kde-format
 msgid "Imported Folder"
 msgstr "Uvožena mapa"

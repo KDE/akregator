@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-07-10 00:45+0000\n"
+"POT-Creation-Date: 2026-07-11 00:44+0000\n"
 "PO-Revision-Date: 2026-06-07 16:09+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
@@ -921,7 +921,7 @@ msgid "Resets the quick filter when changing feeds."
 msgstr "變更訂閱來源時重設快速過濾器。"
 
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
-#: src/akregator_part.cpp:126
+#: src/akregator_part.cpp:125
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:145
 #: src/mainwidget.cpp:135 src/mainwidget.cpp:1329 src/trayicon.cpp:40
 #: src/trayicon.cpp:41 src/trayicon.cpp:53
@@ -1533,56 +1533,56 @@ msgctxt "@info:shell"
 msgid "Lists the available options for user feedback"
 msgstr "列出可用的使用者回饋選項"
 
-#: src/akregator_part.cpp:78
+#: src/akregator_part.cpp:77
 #, kde-format
 msgid "Feeds"
 msgstr "訂閱來源"
 
-#: src/akregator_part.cpp:89
+#: src/akregator_part.cpp:88
 #, kde-format
 msgid "Planet KDE"
 msgstr "Planet KDE"
 
-#: src/akregator_part.cpp:94
+#: src/akregator_part.cpp:93
 #, kde-format
 msgid "KDE Apps"
 msgstr "KDE Apps"
 
-#: src/akregator_part.cpp:100
+#: src/akregator_part.cpp:99
 #, kde-format
 msgid "Spanish feeds"
 msgstr "西班牙文的訂閱來源"
 
-#: src/akregator_part.cpp:104
+#: src/akregator_part.cpp:103
 #, kde-format
 msgid "Planet KDE España"
 msgstr "Planet KDE España"
 
-#: src/akregator_part.cpp:417
+#: src/akregator_part.cpp:415
 #, kde-format
 msgid ""
 "Access denied: Cannot save feed list to <b>%1</b>. Please check your "
 "permissions."
 msgstr "存取被拒：無法儲存訂閱來源列表到 <b>%1</b>。請檢查您的權限。"
 
-#: src/akregator_part.cpp:418 src/akregator_part.cpp:471
+#: src/akregator_part.cpp:416 src/akregator_part.cpp:469
 #, kde-format
 msgctxt "@title:window"
 msgid "Write Error"
 msgstr "寫入錯誤"
 
-#: src/akregator_part.cpp:454
+#: src/akregator_part.cpp:452
 #, kde-format
 msgid "Could not import the file %1 (no valid OPML)"
 msgstr "無法匯入檔案 %1（沒有有效的 OPML）"
 
-#: src/akregator_part.cpp:454 src/command/loadfeedlistcommand.cpp:71
+#: src/akregator_part.cpp:452 src/command/loadfeedlistcommand.cpp:71
 #, kde-format
 msgctxt "@title:window"
 msgid "OPML Parsing Error"
 msgstr "OPML 剖析錯誤"
 
-#: src/akregator_part.cpp:458
+#: src/akregator_part.cpp:456
 #, kde-format
 msgid ""
 "The file %1 could not be read, check if it exists or if it is readable for "
@@ -1590,23 +1590,23 @@ msgid ""
 msgstr ""
 "無法讀取檔案 %1，請檢查該檔是否存在，或是該檔是否能被現在的使用者讀取。"
 
-#: src/akregator_part.cpp:459 src/command/loadfeedlistcommand.cpp:144
+#: src/akregator_part.cpp:457 src/command/loadfeedlistcommand.cpp:144
 #, kde-format
 msgctxt "@title:window"
 msgid "Read Error"
 msgstr "讀取錯誤"
 
-#: src/akregator_part.cpp:470
+#: src/akregator_part.cpp:468
 #, kde-format
 msgid "Access denied: cannot write to file %1. Please check your permissions."
 msgstr "存取被拒：無法寫入檔案 %1。請檢查您的權限。"
 
-#: src/akregator_part.cpp:486 src/akregator_part.cpp:495
+#: src/akregator_part.cpp:484 src/akregator_part.cpp:493
 #, kde-format
 msgid "OPML Outlines (%1);;All Files (*)"
 msgstr "OPML 大綱 (%1);; 所有檔案 (*)"
 
-#: src/akregator_part.cpp:620
+#: src/akregator_part.cpp:618
 #, kde-format
 msgid "Imported Folder"
 msgstr "匯入的資料夾"

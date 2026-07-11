@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-07-10 00:45+0000\n"
+"POT-Creation-Date: 2026-07-11 00:44+0000\n"
 "PO-Revision-Date: 2010-03-14 01:57+0100\n"
 "Last-Translator: Børre Gaup <boerre@skolelinux.no>\n"
 "Language-Team: Northern Sami <l10n-no@nuug.no>\n"
@@ -921,7 +921,7 @@ msgid "Resets the quick filter when changing feeds."
 msgstr "Sálke filtara go manná eará gáldui."
 
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
-#: src/akregator_part.cpp:126
+#: src/akregator_part.cpp:125
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:145
 #: src/mainwidget.cpp:135 src/mainwidget.cpp:1329 src/trayicon.cpp:40
 #: src/trayicon.cpp:41 src/trayicon.cpp:53
@@ -1536,32 +1536,32 @@ msgctxt "@info:shell"
 msgid "Lists the available options for user feedback"
 msgstr ""
 
-#: src/akregator_part.cpp:78
+#: src/akregator_part.cpp:77
 #, kde-format
 msgid "Feeds"
 msgstr "Gáldut"
 
-#: src/akregator_part.cpp:89
+#: src/akregator_part.cpp:88
 #, kde-format
 msgid "Planet KDE"
 msgstr "Planet KDE"
 
-#: src/akregator_part.cpp:94
+#: src/akregator_part.cpp:93
 #, kde-format
 msgid "KDE Apps"
 msgstr "KDE Prográmmat"
 
-#: src/akregator_part.cpp:100
+#: src/akregator_part.cpp:99
 #, kde-format
 msgid "Spanish feeds"
 msgstr ""
 
-#: src/akregator_part.cpp:104
+#: src/akregator_part.cpp:103
 #, kde-format
 msgid "Planet KDE España"
 msgstr ""
 
-#: src/akregator_part.cpp:417
+#: src/akregator_part.cpp:415
 #, kde-format
 msgid ""
 "Access denied: Cannot save feed list to <b>%1</b>. Please check your "
@@ -1569,24 +1569,24 @@ msgid ""
 msgstr ""
 "Ii sáhte vurket gáldolisttu <b>%1:i</b>. Dárkkis beassanvuoigatvuođaid."
 
-#: src/akregator_part.cpp:418 src/akregator_part.cpp:471
+#: src/akregator_part.cpp:416 src/akregator_part.cpp:469
 #, fuzzy, kde-format
 msgctxt "@title:window"
 msgid "Write Error"
 msgstr "Čállinmeattáhus"
 
-#: src/akregator_part.cpp:454
+#: src/akregator_part.cpp:452
 #, kde-format
 msgid "Could not import the file %1 (no valid OPML)"
 msgstr "Ii sáhttán sisafievrridit filla %1 (gustohis OPML)"
 
-#: src/akregator_part.cpp:454 src/command/loadfeedlistcommand.cpp:71
+#: src/akregator_part.cpp:452 src/command/loadfeedlistcommand.cpp:71
 #, fuzzy, kde-format
 msgctxt "@title:window"
 msgid "OPML Parsing Error"
 msgstr "OPML dulkonmeattáhus"
 
-#: src/akregator_part.cpp:458
+#: src/akregator_part.cpp:456
 #, kde-format
 msgid ""
 "The file %1 could not be read, check if it exists or if it is readable for "
@@ -1595,23 +1595,23 @@ msgstr ""
 "Ii sáhttán lohkat fiilla %1. Dárkkis jus dat gávdno dahje lea logahahtti "
 "dálá geavaheaddjái."
 
-#: src/akregator_part.cpp:459 src/command/loadfeedlistcommand.cpp:144
+#: src/akregator_part.cpp:457 src/command/loadfeedlistcommand.cpp:144
 #, fuzzy, kde-format
 msgctxt "@title:window"
 msgid "Read Error"
 msgstr "Lohkanmeattáhus"
 
-#: src/akregator_part.cpp:470
+#: src/akregator_part.cpp:468
 #, kde-format
 msgid "Access denied: cannot write to file %1. Please check your permissions."
 msgstr "Ii sáhte čállit %1-fiilii. Dárkkis beassanvuoigatvuođaid."
 
-#: src/akregator_part.cpp:486 src/akregator_part.cpp:495
+#: src/akregator_part.cpp:484 src/akregator_part.cpp:493
 #, kde-format
 msgid "OPML Outlines (%1);;All Files (*)"
 msgstr ""
 
-#: src/akregator_part.cpp:620
+#: src/akregator_part.cpp:618
 #, kde-format
 msgid "Imported Folder"
 msgstr "Sisafievrriduvvon máhppa"
