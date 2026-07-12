@@ -20,8 +20,7 @@
 >  <affiliation
 ><address
 ><email
->frank.osterfeld@kdemail.net</email
->  
+>frank.osterfeld@kdemail.net</email>
 </address
 ></affiliation>
 </author>
@@ -649,8 +648,7 @@ say how to start it -->
 <term
 ><guilabel
 >Archivgröße begrenzen auf:</guilabel
-></term
-> 
+></term>
 <listitem
 ><para
 >Falls die Anzahl der Artikel das eingestellte Limit überschreitet, werden die überzähligen Artikel gelöscht. Bitte beachten Sie, dass markierte Artikel bei der Anzahl ignoriert werden, falls Sie also das Limit auf 500 Artikel gesetzt haben, 510 unmarkierte und 50 markierte Artikel, werden nur 10 Artikel gelöscht.</para>
@@ -1836,7 +1834,7 @@ action="simul"
 ></term>
 <listitem
 ><para
->Use this action you to share news 
+>Use this action you to share news
  with your friends using the microblog services identi.ca and twitter.
 </para
 ></listitem>
