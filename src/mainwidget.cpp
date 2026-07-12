@@ -122,7 +122,7 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
     }
 
     QString newFeaturesMD5;
-    const KAboutData aboutData = KAboutData::fromAppStreamForApplication();
+    const KAboutData aboutData = KAboutData::fromAppStreamId(u"org.kde.akregator"_s);
     mReleasesInfo = aboutData.releases();
     if (!mReleasesInfo.isEmpty()) {
         newFeaturesMD5 = mReleasesInfo.constFirst().untranslatedDescription();
