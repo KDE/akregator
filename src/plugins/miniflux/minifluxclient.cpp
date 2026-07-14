@@ -142,6 +142,9 @@ void MinifluxClient::fetchEntriesForFeed(int feedId, const QString &status, int 
     QUrlQuery query;
     query.addQueryItem(QStringLiteral("status"), status);
     query.addQueryItem(QStringLiteral("limit"), QString::number(limit));
+    // Newest first, so that a capped fetch keeps the most recent entries.
+    query.addQueryItem(QStringLiteral("order"), QStringLiteral("published_at"));
+    query.addQueryItem(QStringLiteral("direction"), QStringLiteral("desc"));
     if (offset > 0) {
         query.addQueryItem(QStringLiteral("offset"), QString::number(offset));
     }

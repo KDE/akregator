@@ -36,7 +36,7 @@ public:
     /** GET /v1/feeds */
     void fetchFeeds();
 
-    /** GET /v1/feeds/{feedId}/entries?status=unread&limit=N&offset=N
+    /** GET /v1/feeds/{feedId}/entries?status=unread&limit=N&offset=N, newest first.
      *  Emits entriesFetched() on success and entriesFetchError() on failure. */
     void fetchEntriesForFeed(int feedId, const QString &status = QStringLiteral("unread"), int offset = 0, int limit = 1000);
 

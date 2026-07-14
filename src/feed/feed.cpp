@@ -806,10 +806,12 @@ void Feed::startFeedLoader(Syndication::DataRetriever *retriever)
 void Feed::loadFromStorage()
 {
     if (!d->m_archive && d->m_storage) {
+        // Attach the archive without loading the articles: unread/total counts
+        // come from the archive, and the articles themselves are loaded lazily
+        // on selection or before the first fetch, like fromOPML() does.
         d->m_archive = d->m_storage->archiveFor(xmlUrl());
         d->m_totalCount = d->m_archive->totalCount();
     }
-    loadArticles();
 }
 
 void Feed::fetchCompleted(Syndication::Loader *l, Syndication::FeedPtr doc, Syndication::ErrorCode status)

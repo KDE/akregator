@@ -9,6 +9,17 @@
 
 using namespace Akregator;
 
+namespace
+{
+/** Upper bound for the number of entries imported per feed and fetch. Entries
+ *  are fetched newest-first, so a capped fetch keeps the most recent ones.
+ *  Importing articles into the Metakit archive is O(n²) in the number of
+ *  articles per feed (every field write does a linear scan for the guid), so
+ *  unbounded imports of feeds with many thousands of unread entries would
+ *  freeze the UI for minutes. */
+constexpr qsizetype MaxEntriesPerFeed = 1000;
+}
+
 MinifluxRetriever::MinifluxRetriever(MinifluxClient *client, int feedId, const QString &feedTitle)
     : Syndication::DataRetriever()
     , m_client(client)
@@ -51,7 +62,7 @@ void MinifluxRetriever::onEntriesFetched(int feedId, const QList<MinifluxEntry> 
     }
     m_allEntries.append(entries);
 
-    if (!entries.isEmpty() && m_allEntries.size() < total) {
+    if (!entries.isEmpty() && m_allEntries.size() < total && m_allEntries.size() < MaxEntriesPerFeed) {
         // More pages to fetch
         fetchPage(m_allEntries.size());
         return;
