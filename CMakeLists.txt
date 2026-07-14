@@ -169,6 +169,19 @@ find_package(KPim6WebEngineViewer ${MESSAGELIB_LIB_VERSION} CONFIG REQUIRED)
 find_package(KPim6PimCommon ${PIMCOMMON_LIB_VERSION} CONFIG REQUIRED)
 find_package(KPim6PimCommonActivities ${PIMCOMMON_LIB_VERSION} CONFIG)
 
+set(QT6KEYCHAIN_LIB_VERSION "0.15.0")
+find_package(Qt6Keychain ${QT6KEYCHAIN_LIB_VERSION} CONFIG REQUIRED)
+set_package_properties(
+    Qt6Keychain
+    PROPERTIES
+        DESCRIPTION
+            "Provides support for secure credentials storage"
+        URL
+            "https://github.com/frankosterfeld/qtkeychain"
+        TYPE
+            REQUIRED
+)
+
 find_package(KF6UserFeedback ${KF_MIN_VERSION} CONFIG)
 set_package_properties(
     KF6UserFeedback

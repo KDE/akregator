@@ -8,6 +8,7 @@
 #include "akregatorinterfaces_export.h"
 #include <KPluginFactory>
 #include <QObject>
+#include <QStringList>
 
 namespace Akregator
 {
@@ -30,6 +31,17 @@ public:
 
     /** Called when the user triggers "Add Account" for this plugin type. */
     virtual void addAccount() = 0;
+
+    /** Names of the currently configured accounts of this plugin. */
+    [[nodiscard]] virtual QStringList accountNames() const;
+
+    /** Open the settings dialog for the given account.
+     *  The default implementation does nothing. */
+    virtual void configureAccount(const QString &accountName);
+
+    /** Remove the given account: its folder in the feed tree, its configuration
+     *  and its stored credentials. The default implementation does nothing. */
+    virtual void removeAccount(const QString &accountName);
 
     /** Display name for this plugin type (e.g. "Miniflux") */
     [[nodiscard]] virtual QString name() const = 0;

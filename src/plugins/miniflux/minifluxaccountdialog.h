@@ -24,6 +24,10 @@ public:
     explicit MinifluxAccountDialog(QWidget *parent = nullptr);
     ~MinifluxAccountDialog() override;
 
+    /** Prefill the fields for editing an existing account. The account name
+     *  becomes read-only, as it is used as the config and wallet key. */
+    void setEditMode(const QString &accountName, const QUrl &serverUrl, const QString &apiToken);
+
     [[nodiscard]] QString accountName() const;
     [[nodiscard]] QUrl serverUrl() const;
     [[nodiscard]] QString apiToken() const;

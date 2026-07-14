@@ -1,0 +1,12 @@
+{
+    "KPlugin": {
+        "Description": "Configure Online Accounts",
+        "Icon": "user-identity",
+        "Name": "Accounts",
+        "ServiceTypes": [
+            "KCModule"
+        ]
+    },
+    "X-DocPath": "akregator/configuration.html",
+    "X-KDE-Weight": 150
+}

@@ -7,6 +7,7 @@
 
 #include "accountplugin.h"
 #include <QPointer>
+#include <QUrl>
 
 namespace Akregator
 {
@@ -22,13 +23,22 @@ public:
 
     void initialize(FeedList *feedList) override;
     void addAccount() override;
+    [[nodiscard]] QStringList accountNames() const override;
+    void configureAccount(const QString &accountName) override;
+    void removeAccount(const QString &accountName) override;
     [[nodiscard]] QString name() const override;
 
 private Q_SLOTS:
     void onAccountDeleted(MinifluxAccount *account);
+    void onFeedListDestroyed();
 
 private:
     void loadSavedAccounts();
+    void createAccount(const QString &accountName, const QUrl &serverUrl, const QString &apiToken);
+    void editAccount(MinifluxAccount *account);
+    [[nodiscard]] MinifluxAccount *findAccount(const QString &accountName) const;
+    void storeApiToken(const QString &accountName, const QString &apiToken);
+    void deleteApiToken(const QString &accountName);
 
     FeedList *m_feedList = nullptr;
     QList<QPointer<MinifluxAccount>> m_accounts;

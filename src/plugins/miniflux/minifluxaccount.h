@@ -44,6 +44,15 @@ public:
     void initialize();
 
     [[nodiscard]] QString accountName() const;
+    [[nodiscard]] QUrl serverUrl() const;
+    [[nodiscard]] QString apiToken() const;
+
+    /** Update the server connection settings of a live account and resync. */
+    void setCredentials(const QUrl &serverUrl, const QString &apiToken);
+
+    /** Remove the account folder from the feed tree, which also removes the
+     *  account from the configuration and emits accountDeleted(). */
+    void removeFromTree();
 
 Q_SIGNALS:
     void syncFinished();

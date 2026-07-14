@@ -60,6 +60,7 @@ target_link_libraries(
         Qt::Xml
         Qt::Widgets
         KF6::Syndication
+        qt6keychain
 )
 
 install(TARGETS akregator_miniflux_plugin DESTINATION ${KDE_INSTALL_PLUGINDIR}/pim6/akregator/accountplugins)

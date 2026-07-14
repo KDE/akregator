@@ -28,6 +28,45 @@ install(TARGETS akregator_config_general DESTINATION ${KDE_INSTALL_PLUGINDIR}/pi
 
 ########### next target ###############
 
+add_library(akregator_config_accounts MODULE)
+
+# Place the module in the namespaced subdirectory inside the build tree so that
+# the config dialog finds it when running uninstalled from build-*/bin.
+set_target_properties(
+    akregator_config_accounts
+    PROPERTIES
+        LIBRARY_OUTPUT_DIRECTORY
+            "${CMAKE_BINARY_DIR}/bin/pim6/kcms/akregator"
+)
+
+target_sources(
+    akregator_config_accounts
+    PRIVATE
+        akregator_config_accounts.cpp
+        akregator_config_accounts.h
+)
+
+target_include_directories(
+    akregator_config_accounts
+    PRIVATE
+        ${akregator_SOURCE_DIR}/src
+        ${akregator_BINARY_DIR}/src
+)
+
+target_link_libraries(
+    akregator_config_accounts
+    akregatorinterfaces
+    akregatorprivate
+    akregatorplugins
+    KF6::KCMUtils
+    KF6::I18n
+    KF6::WidgetsAddons
+)
+
+install(TARGETS akregator_config_accounts DESTINATION ${KDE_INSTALL_PLUGINDIR}/pim6/kcms/akregator)
+
+########### next target ###############
+
 add_library(akregator_config_appearance MODULE)
 target_sources(
     akregator_config_appearance

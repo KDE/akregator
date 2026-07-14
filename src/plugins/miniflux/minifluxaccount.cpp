@@ -129,6 +129,36 @@ QString MinifluxAccount::accountName() const
     return m_accountName;
 }
 
+QUrl MinifluxAccount::serverUrl() const
+{
+    return m_serverUrl;
+}
+
+QString MinifluxAccount::apiToken() const
+{
+    return m_apiToken;
+}
+
+void MinifluxAccount::setCredentials(const QUrl &serverUrl, const QString &apiToken)
+{
+    m_serverUrl = serverUrl;
+    m_apiToken = apiToken;
+    m_client->setCredentials(serverUrl, apiToken);
+    startSyncJob();
+}
+
+void MinifluxAccount::removeFromTree()
+{
+    if (m_rootFolder) {
+        // Deleting the folder routes through Folder::removeChild(), which
+        // triggers onChildRemoved(): config + wallet cleanup and accountDeleted.
+        delete m_rootFolder;
+    } else {
+        removeFromConfig();
+        Q_EMIT accountDeleted(this);
+    }
+}
+
 void MinifluxAccount::onSyncJobFinished(KJob *job)
 {
     if (job->error()) {

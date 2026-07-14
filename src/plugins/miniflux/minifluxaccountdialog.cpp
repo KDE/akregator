@@ -31,6 +31,15 @@ MinifluxAccountDialog::~MinifluxAccountDialog()
     delete ui;
 }
 
+void MinifluxAccountDialog::setEditMode(const QString &accountName, const QUrl &serverUrl, const QString &apiToken)
+{
+    setWindowTitle(i18nc("@title:window", "Miniflux Account Settings"));
+    ui->accountNameEdit->setText(accountName);
+    ui->accountNameEdit->setReadOnly(true);
+    ui->serverUrlEdit->setText(serverUrl.toString());
+    ui->apiTokenEdit->setText(apiToken);
+}
+
 QString MinifluxAccountDialog::accountName() const
 {
     return ui->accountNameEdit->text().trimmed();

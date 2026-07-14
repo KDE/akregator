@@ -14,4 +14,19 @@ AccountPlugin::AccountPlugin(QObject *parent)
 
 AccountPlugin::~AccountPlugin() = default;
 
+QStringList AccountPlugin::accountNames() const
+{
+    return {};
+}
+
+void AccountPlugin::configureAccount(const QString &accountName)
+{
+    Q_UNUSED(accountName)
+}
+
+void AccountPlugin::removeAccount(const QString &accountName)
+{
+    Q_UNUSED(accountName)
+}
+
 #include "moc_accountplugin.cpp"
