@@ -240,7 +240,6 @@ void ArticleViewerWebEngine::slotCopy()
 
 void ArticleViewerWebEngine::slotLoadFinished()
 {
-    restoreCurrentPosition();
     unsetCursor();
 }
 
@@ -395,11 +394,6 @@ void ArticleViewerWebEngine::disableIntroduction()
 void ArticleViewerWebEngine::setArticleAction(ArticleViewerWebEngine::ArticleAction type, const QString &articleId, const QString &feed)
 {
     Q_EMIT articleAction(type, articleId, feed);
-}
-
-void ArticleViewerWebEngine::restoreCurrentPosition()
-{
-    mPageEngine->runJavaScript(WebEngineViewer::WebEngineScript::scrollToRelativePosition(0), WebEngineViewer::WebEngineManageScript::scriptWordId());
 }
 
 void ArticleViewerWebEngine::forwardMouseReleaseEvent(QMouseEvent *event)
