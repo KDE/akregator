@@ -7,6 +7,7 @@
 #include "akregatorconfig.h"
 #include "feedlist.h"
 #include "folder.h"
+#include "miniflux_debug.h"
 #include "minifluxclient.h"
 #include "minifluxfeed.h"
 #include "minifluxstatussync.h"
@@ -47,6 +48,9 @@ MinifluxAccount::~MinifluxAccount() = default;
 
 void MinifluxAccount::initialize()
 {
+    if (!m_feedList) {
+        return;
+    }
     if (!m_rootFolder) {
         // Reuse an existing folder left over from a previous session (loaded from OPML)
         const auto children = m_feedList->allFeedsFolder()->children();
@@ -60,14 +64,53 @@ void MinifluxAccount::initialize()
             m_rootFolder = new Folder(folderTitle());
             m_feedList->allFeedsFolder()->appendChild(m_rootFolder);
         }
+        // Deleting a node always routes through Folder::removeChild(), even from the
+        // node's own destructor, so signalChildRemoved alone cannot distinguish the
+        // user deleting the account folder from the tree teardown on shutdown.
+        // FeedList emits signalDestroyed() before destroying its folders, so
+        // onFeedListDestroyed() detaches first and the shutdown cascade never
+        // reaches onChildRemoved().
+        connect(m_feedList->allFeedsFolder(), &Folder::signalChildRemoved, this, &MinifluxAccount::onChildRemoved);
+        connect(m_feedList, &FeedList::signalDestroyed, this, &MinifluxAccount::onFeedListDestroyed);
         connect(m_rootFolder, &QObject::destroyed, this, &MinifluxAccount::onRootFolderDeleted);
     }
 
     // Watch any feeds already in the tree (plain Feed objects from OPML) so that
     // status changes made before the initial sync job finishes are still captured.
     watchExistingFeeds(m_rootFolder);
-
     startSyncJob();
+}
+
+void MinifluxAccount::onChildRemoved(Folder * /*parent*/, TreeNode *node)
+{
+    if (node != m_rootFolder) {
+        return;
+    }
+    // The user deleted the account folder from the feed tree: forget the account.
+    detachFromFeedList();
+    removeFromConfig();
+    Q_EMIT accountDeleted(this);
+}
+
+void MinifluxAccount::onFeedListDestroyed()
+{
+    detachFromFeedList();
+    m_feedList = nullptr;
+}
+
+void MinifluxAccount::detachFromFeedList()
+{
+    m_pollTimer.stop();
+    if (m_feedList) {
+        disconnect(m_feedList, nullptr, this, nullptr);
+        if (Folder *allFeeds = m_feedList->allFeedsFolder()) {
+            disconnect(allFeeds, nullptr, this, nullptr);
+        }
+    }
+    if (m_rootFolder) {
+        disconnect(m_rootFolder, nullptr, this, nullptr);
+        m_rootFolder = nullptr;
+    }
 }
 
 void MinifluxAccount::watchExistingFeeds(Folder *folder)
@@ -89,10 +132,17 @@ QString MinifluxAccount::accountName() const
 void MinifluxAccount::onSyncJobFinished(KJob *job)
 {
     if (job->error()) {
+        qCWarning(MINIFLUX_LOG) << "Miniflux sync failed for account" << m_accountName << ":" << job->errorText();
         Q_EMIT syncError(job->errorText());
         return;
     }
+    if (!m_rootFolder) {
+        // The account folder was deleted while the sync was in flight.
+        return;
+    }
     auto *syncJob = qobject_cast<MinifluxSyncJob *>(job);
+    qCDebug(MINIFLUX_LOG) << "Miniflux sync succeeded for account" << m_accountName << "- categories:" << syncJob->categories().size()
+                          << "feeds:" << syncJob->feeds().size();
     populateFeedTree(syncJob->categories(), syncJob->feeds());
     if (m_pollTimer.interval() > 0) {
         m_pollTimer.start();
@@ -102,10 +152,10 @@ void MinifluxAccount::onSyncJobFinished(KJob *job)
 
 void MinifluxAccount::onRootFolderDeleted()
 {
+    // Safety net for folder destruction that did not route through
+    // onChildRemoved()/onFeedListDestroyed(); in-memory cleanup only.
     m_rootFolder = nullptr;
     m_pollTimer.stop();
-    removeFromConfig();
-    Q_EMIT accountDeleted(this);
 }
 
 QString MinifluxAccount::folderTitle() const
@@ -130,6 +180,9 @@ void MinifluxAccount::onPollTimer()
 
 void MinifluxAccount::startSyncJob()
 {
+    if (!m_rootFolder) {
+        return;
+    }
     auto *job = new MinifluxSyncJob(m_client, this);
     connect(job, &KJob::finished, this, &MinifluxAccount::onSyncJobFinished);
     job->start();

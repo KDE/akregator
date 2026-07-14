@@ -36,8 +36,9 @@ public:
     /** GET /v1/feeds */
     void fetchFeeds();
 
-    /** GET /v1/feeds/{feedId}/entries?status=unread */
-    void fetchEntriesForFeed(int feedId, const QString &status = QStringLiteral("unread"));
+    /** GET /v1/feeds/{feedId}/entries?status=unread&limit=N&offset=N
+     *  Emits entriesFetched() on success and entriesFetchError() on failure. */
+    void fetchEntriesForFeed(int feedId, const QString &status = QStringLiteral("unread"), int offset = 0, int limit = 1000);
 
     /** GET /v1/entries?status=unread&limit=100&offset=N (paginated) */
     void fetchAllEntries(const QString &status = QStringLiteral("unread"), int offset = 0, qint64 sinceId = 0);
@@ -59,6 +60,9 @@ Q_SIGNALS:
     void categoriesFetched(const QList<MinifluxCategory> &categories);
     void feedsFetched(const QList<MinifluxFeedData> &feeds);
     void entriesFetched(int feedId, const QList<MinifluxEntry> &entries, int total);
+    /** Emitted instead of networkError() when fetchEntriesForFeed() fails, so that
+     *  concurrent per-feed fetches on the shared client do not abort each other. */
+    void entriesFetchError(int feedId, const QString &message);
     void allEntriesFetched(const QList<MinifluxEntry> &entries, int total, int offset);
     void entriesStatusUpdated(bool ok);
     void bookmarkToggled(bool ok);

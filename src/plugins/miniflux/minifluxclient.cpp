@@ -137,15 +137,19 @@ static MinifluxEntry parseEntry(const QJsonObject &obj)
     return entry;
 }
 
-void MinifluxClient::fetchEntriesForFeed(int feedId, const QString &status)
+void MinifluxClient::fetchEntriesForFeed(int feedId, const QString &status, int offset, int limit)
 {
     QUrlQuery query;
     query.addQueryItem(QStringLiteral("status"), status);
+    query.addQueryItem(QStringLiteral("limit"), QString::number(limit));
+    if (offset > 0) {
+        query.addQueryItem(QStringLiteral("offset"), QString::number(offset));
+    }
     auto *reply = makeGet(QStringLiteral("/v1/feeds/%1/entries").arg(feedId), query);
     connect(reply, &QNetworkReply::finished, this, [this, reply, feedId]() {
         reply->deleteLater();
         if (reply->error() != QNetworkReply::NoError) {
-            Q_EMIT networkError(reply->errorString());
+            Q_EMIT entriesFetchError(feedId, reply->errorString());
             return;
         }
         const QJsonObject root = QJsonDocument::fromJson(reply->readAll()).object();

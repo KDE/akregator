@@ -3,6 +3,15 @@
 
 add_library(akregator_miniflux_plugin MODULE)
 
+# Place the plugin in the namespaced subdirectory inside the build tree so that
+# KPluginMetaData::findPlugins() locates it when running uninstalled from build-*/bin.
+set_target_properties(
+    akregator_miniflux_plugin
+    PROPERTIES
+        LIBRARY_OUTPUT_DIRECTORY
+            "${CMAKE_BINARY_DIR}/bin/pim6/akregator/accountplugins"
+)
+
 ecm_qt_declare_logging_category(akregator_miniflux_plugin
     HEADER miniflux_debug.h
     IDENTIFIER MINIFLUX_LOG
@@ -52,9 +61,5 @@ target_link_libraries(
         Qt::Widgets
         KF6::Syndication
 )
-
-if(TARGET KF6::Wallet)
-    target_link_libraries(akregator_miniflux_plugin PRIVATE KF6::Wallet)
-endif()
 
 install(TARGETS akregator_miniflux_plugin DESTINATION ${KDE_INSTALL_PLUGINDIR}/pim6/akregator/accountplugins)

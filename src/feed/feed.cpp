@@ -793,12 +793,12 @@ void Feed::slotAbortFetch()
 
 void Feed::tryFetch()
 {
-    d->m_fetchErrorCode = Syndication::Success;
     startFeedLoader(new FeedRetriever());
 }
 
 void Feed::startFeedLoader(Syndication::DataRetriever *retriever)
 {
+    d->m_fetchErrorCode = Syndication::Success;
     d->m_loader = Syndication::Loader::create(this, SLOT(fetchCompleted(Syndication::Loader *, Syndication::FeedPtr, Syndication::ErrorCode)));
     d->m_loader->loadFrom(QUrl(d->m_xmlUrl), retriever);
 }

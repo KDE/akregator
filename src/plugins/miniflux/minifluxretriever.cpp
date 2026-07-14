@@ -25,13 +25,13 @@ void MinifluxRetriever::retrieveData(const QUrl & /*url*/)
         return;
     }
     connect(m_client, &MinifluxClient::entriesFetched, this, &MinifluxRetriever::onEntriesFetched);
-    connect(m_client, &MinifluxClient::networkError, this, [this](const QString & /*message*/) {
-        disconnect(m_client, &MinifluxClient::entriesFetched, this, &MinifluxRetriever::onEntriesFetched);
-        disconnect(m_client, &MinifluxClient::networkError, this, nullptr);
-        m_errorCode = 1;
-        Q_EMIT dataRetrieved({}, false);
-    });
-    m_client->fetchEntriesForFeed(m_feedId);
+    connect(m_client, &MinifluxClient::entriesFetchError, this, &MinifluxRetriever::onEntriesFetchError);
+    fetchPage(0);
+}
+
+void MinifluxRetriever::fetchPage(int offset)
+{
+    m_client->fetchEntriesForFeed(m_feedId, QStringLiteral("unread"), offset);
 }
 
 int MinifluxRetriever::errorCode() const
@@ -44,15 +44,34 @@ void MinifluxRetriever::abort()
     m_aborted = true;
 }
 
-void MinifluxRetriever::onEntriesFetched(int feedId, const QList<MinifluxEntry> &entries, int /*total*/)
+void MinifluxRetriever::onEntriesFetched(int feedId, const QList<MinifluxEntry> &entries, int total)
+{
+    if (feedId != m_feedId || m_aborted) {
+        return;
+    }
+    m_allEntries.append(entries);
+
+    if (!entries.isEmpty() && m_allEntries.size() < total) {
+        // More pages to fetch
+        fetchPage(m_allEntries.size());
+        return;
+    }
+
+    disconnect(m_client, &MinifluxClient::entriesFetched, this, &MinifluxRetriever::onEntriesFetched);
+    disconnect(m_client, &MinifluxClient::entriesFetchError, this, &MinifluxRetriever::onEntriesFetchError);
+    const QByteArray xml = entriesToRss(m_feedTitle, QString(), m_allEntries);
+    Q_EMIT dataRetrieved(xml, true);
+}
+
+void MinifluxRetriever::onEntriesFetchError(int feedId, const QString & /*message*/)
 {
     if (feedId != m_feedId || m_aborted) {
         return;
     }
     disconnect(m_client, &MinifluxClient::entriesFetched, this, &MinifluxRetriever::onEntriesFetched);
-    disconnect(m_client, &MinifluxClient::networkError, this, nullptr);
-    const QByteArray xml = entriesToRss(m_feedTitle, QString(), entries);
-    Q_EMIT dataRetrieved(xml, true);
+    disconnect(m_client, &MinifluxClient::entriesFetchError, this, &MinifluxRetriever::onEntriesFetchError);
+    m_errorCode = 1;
+    Q_EMIT dataRetrieved({}, false);
 }
 
 QByteArray MinifluxRetriever::entriesToRss(const QString &feedTitle, const QString &feedUrl, const QList<MinifluxEntry> &entries)
@@ -91,3 +110,5 @@ QByteArray MinifluxRetriever::entriesToRss(const QString &feedTitle, const QStri
 
     return doc.toByteArray();
 }
+
+#include "moc_minifluxretriever.cpp"

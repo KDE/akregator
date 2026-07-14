@@ -30,6 +30,7 @@ void MinifluxSyncJob::onCategoriesFetched(const QList<MinifluxCategory> &categor
     m_categories = categories;
     m_categoriesDone = true;
     if (m_feedsDone) {
+        disconnect(m_client, nullptr, this, nullptr);
         emitResult();
     }
 }
@@ -39,12 +40,16 @@ void MinifluxSyncJob::onFeedsFetched(const QList<MinifluxFeedData> &feeds)
     m_feeds = feeds;
     m_feedsDone = true;
     if (m_categoriesDone) {
+        disconnect(m_client, nullptr, this, nullptr);
         emitResult();
     }
 }
 
 void MinifluxSyncJob::onNetworkError(const QString &message)
 {
+    // Disconnect so that a second error (both requests failing) or signals for
+    // other consumers of the shared client cannot trigger emitResult() twice.
+    disconnect(m_client, nullptr, this, nullptr);
     setError(KJob::UserDefinedError);
     setErrorText(message);
     emitResult();

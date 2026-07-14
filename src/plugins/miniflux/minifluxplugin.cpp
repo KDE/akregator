@@ -4,11 +4,11 @@
     SPDX-License-Identifier: GPL-2.0-or-later WITH Qt-Commercial-exception-1.0
 */
 #include "minifluxplugin.h"
+#include "miniflux_debug.h"
 #include "minifluxaccount.h"
 #include "minifluxaccountdialog.h"
 
 #include "kernel.h"
-#include "storage/storage.h"
 
 #include <KConfig>
 #include <KConfigGroup>
@@ -31,6 +31,13 @@ MinifluxPlugin::~MinifluxPlugin() = default;
 void MinifluxPlugin::initialize(FeedList *feedList)
 {
     m_feedList = feedList;
+    // The part (and with it the feed list) can be destroyed and recreated while
+    // the plugin survives in the Kernel singleton (e.g. inside Kontact); drop
+    // accounts belonging to the previous feed list before reloading.
+    for (const QPointer<MinifluxAccount> &account : std::as_const(m_accounts)) {
+        delete account;
+    }
+    m_accounts.clear();
     loadSavedAccounts();
 }
 
@@ -41,6 +48,10 @@ QString MinifluxPlugin::name() const
 
 void MinifluxPlugin::addAccount()
 {
+    if (!m_feedList) {
+        qCWarning(MINIFLUX_LOG) << "Cannot add a Miniflux account before the feed list is loaded";
+        return;
+    }
     auto *dialog = new MinifluxAccountDialog(nullptr);
     if (dialog->exec() == QDialog::Accepted) {
         const QString accountName = dialog->accountName();
@@ -54,7 +65,7 @@ void MinifluxPlugin::addAccount()
         group.writeEntry("accounts", accounts);
         KConfigGroup accountGroup = KSharedConfig::openConfig()->group(QStringLiteral("MinifluxAccount-") + accountName);
         accountGroup.writeEntry("serverUrl", serverUrl.toString());
-        accountGroup.writeEntry("apiToken", apiToken); // TODO: use KWallet if HAVE_KWALLET
+        accountGroup.writeEntry("apiToken", apiToken); // TODO: store the API token in KWallet
         KSharedConfig::openConfig()->sync();
 
         auto *account = new MinifluxAccount(accountName, serverUrl, apiToken, m_feedList, Kernel::self()->storage(), this);
@@ -75,6 +86,7 @@ void MinifluxPlugin::loadSavedAccounts()
 {
     const KConfigGroup group = KSharedConfig::openConfig()->group(QStringLiteral("MinifluxAccounts"));
     const QStringList accounts = group.readEntry("accounts", QStringList());
+    qCDebug(MINIFLUX_LOG) << "Loading saved Miniflux accounts:" << accounts;
     for (const QString &accountName : accounts) {
         const KConfigGroup accountGroup = KSharedConfig::openConfig()->group(QStringLiteral("MinifluxAccount-") + accountName);
         const QUrl serverUrl(accountGroup.readEntry("serverUrl"));

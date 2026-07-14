@@ -22,6 +22,11 @@ PluginManager::~PluginManager() = default;
 
 void PluginManager::instantiatePlugins()
 {
+    if (!m_accountPlugins.isEmpty()) {
+        // Already instantiated: the part was recreated (e.g. inside Kontact)
+        // while the Kernel singleton kept this manager alive.
+        return;
+    }
     const auto plugins = KPluginMetaData::findPlugins(QStringLiteral("pim6/akregator/accountplugins"));
     for (const auto &meta : plugins) {
         auto result = KPluginFactory::instantiatePlugin<AccountPlugin>(meta, this);

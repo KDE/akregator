@@ -17,6 +17,7 @@ MinifluxFeed::MinifluxFeed(int minifluxFeedId, const QString &feedTitle, Miniflu
 {
     setTitle(feedTitle);
     setXmlUrl(QStringLiteral("miniflux://feed/%1").arg(minifluxFeedId));
+    loadFromStorage();
 }
 
 MinifluxFeed::~MinifluxFeed() = default;

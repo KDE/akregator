@@ -17,6 +17,7 @@ class FeedList;
 class Folder;
 class MinifluxClient;
 class MinifluxStatusSync;
+class TreeNode;
 
 namespace Backend
 {
@@ -54,12 +55,15 @@ private Q_SLOTS:
     void onSyncJobFinished(KJob *job);
     void onPollTimer();
     void onRootFolderDeleted();
+    void onChildRemoved(Akregator::Folder *parent, Akregator::TreeNode *node);
+    void onFeedListDestroyed();
 
 private:
     void populateFeedTree(const QList<MinifluxCategory> &categories, const QList<MinifluxFeedData> &feeds);
     void watchExistingFeeds(Folder *folder);
     void removeFromConfig();
     void startSyncJob();
+    void detachFromFeedList();
     [[nodiscard]] QString folderTitle() const;
 
     QString m_accountName;

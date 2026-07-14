@@ -32,13 +32,16 @@ public:
 
 private Q_SLOTS:
     void onEntriesFetched(int feedId, const QList<MinifluxEntry> &entries, int total);
+    void onEntriesFetchError(int feedId, const QString &message);
 
 private:
+    void fetchPage(int offset);
     static QByteArray entriesToRss(const QString &feedTitle, const QString &feedUrl, const QList<MinifluxEntry> &entries);
 
-    MinifluxClient *m_client;
-    int m_feedId;
+    MinifluxClient *m_client = nullptr;
+    int m_feedId = 0;
     QString m_feedTitle;
+    QList<MinifluxEntry> m_allEntries;
     int m_errorCode = 0;
     bool m_aborted = false;
 };
