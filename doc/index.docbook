@@ -23,6 +23,12 @@
 <affiliation><address>&Anne-Marie.Mahfouf.mail;
 </address></affiliation>
 </author>
+<author>
+<firstname>Blagovest</firstname>
+<surname>Petrov</surname>
+<affiliation><address><email>blagovest@petrovs.info</email>
+</address></affiliation>
+</author>
 
 <!-- TRANS:ROLES_OF_TRANSLATORS -->
 </authorgroup>
@@ -37,8 +43,8 @@
 
 <legalnotice>&FDLNotice;</legalnotice>
 
-<date>2021-03-31</date>
-<releaseinfo>Applications 21.08</releaseinfo>
+<date>2026-07-15</date>
+<releaseinfo>Applications 26.12</releaseinfo>
 
 <!-- Abstract about this handbook -->
 
@@ -286,6 +292,84 @@ lacks many features fully-fledged web browsers offer.</para></note>
 </sect1>
 </chapter>
 
+<chapter id="online-accounts">
+<title>Online Accounts</title>
+
+<para>Besides subscribing to individual feeds, &akregator; can connect to an
+online feed reader service and mirror its subscriptions. Currently one account
+type is supported: <ulink url="https://miniflux.app/">Miniflux</ulink>, a
+self-hosted feed reader. When an account is set up, &akregator; creates a
+folder named <quote><replaceable>account name</replaceable> (Miniflux)</quote>
+that mirrors the categories and feeds of the server. Articles are fetched
+through the service's <acronym>API</acronym> instead of downloading the feeds
+directly, and the read status is synchronized in both directions.</para>
+
+<sect1 id="adding-online-account">
+<title>Adding an Online Account</title>
+
+<para>Select <menuchoice><guimenu>File</guimenu><guimenuitem>Add Online
+Account...</guimenuitem></menuchoice> to open the account wizard. On the first
+page, choose the account type. The second page holds the settings of the
+selected type. For a Miniflux account these are:</para>
+
+<variablelist>
+<varlistentry>
+<term><guilabel>Account Name:</guilabel></term>
+<listitem><para>A name of your choice. It is used for the account's folder in
+the feed list and cannot be changed later.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>Server URL:</guilabel></term>
+<listitem><para>The address of your Miniflux server, for example
+<userinput>https://miniflux.example.com</userinput>.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><guilabel>API Token:</guilabel></term>
+<listitem><para>An <acronym>API</acronym> token for your Miniflux user. You can
+create one in the Miniflux web interface under
+<menuchoice><guimenu>Settings</guimenu><guimenuitem>API Keys</guimenuitem></menuchoice>.
+&akregator; stores the token in the system wallet, not in a plain text
+file.</para></listitem>
+</varlistentry>
+</variablelist>
+
+<para>Use the <guibutton>Test Connection</guibutton> button to verify the
+server address and the token before finishing the wizard. After the wizard is
+finished, &akregator; fetches the categories and feeds from the server and
+starts importing the unread articles.</para>
+</sect1>
+
+<sect1 id="online-account-sync">
+<title>How Synchronization Works</title>
+
+<para>The feeds of an online account refresh at the interval configured in the
+<link linkend="general-tab">General</link> settings, fetching unread articles
+from the server. To keep the user interface responsive, each refresh imports
+at most the 1000 newest unread articles per feed.</para>
+
+<para>When you mark an article as read or unread, the change is sent back to
+the server after a short delay, so that reading several articles in a row
+results in a single request. Marking an article as
+<quote>Important</quote> toggles the star (bookmark) of the article on the
+server.</para>
+</sect1>
+
+<sect1 id="managing-online-accounts">
+<title>Managing Accounts</title>
+
+<para>Online accounts are managed on the <link linkend="accounts-tab">Accounts</link>
+page of the configuration dialog, where accounts can be added, modified and
+removed. For an existing account the server address and the
+<acronym>API</acronym> token can be changed; the change takes effect
+immediately and triggers a new synchronization.</para>
+
+<para>Removing an account deletes its folder from the feed list, its
+configuration and its stored credentials. The account and the articles on the
+server are not affected. Deleting the account's folder directly from the feed
+list has the same effect.</para>
+</sect1>
+</chapter>
+
 <chapter id="configuration">
 <title>Configuring &akregator;</title>
 <para>Most of &akregator;'s options are listed in the &akregator; configuration
@@ -397,6 +481,29 @@ aggregators not using caching increases the costs for providers and may decrease
 </varlistentry>
 </variablelist>
 
+</sect1>
+
+<sect1 id="accounts-tab">
+<title>Accounts</title>
+<para>The Accounts page lists the configured <link linkend="online-accounts">online
+accounts</link> with their type.</para>
+<variablelist>
+<varlistentry>
+<term><guibutton>Add...</guibutton></term>
+<listitem><para>Opens the <link linkend="adding-online-account">Add Online Account</link>
+wizard.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><guibutton>Modify...</guibutton></term>
+<listitem><para>Opens the settings of the selected account to change the server
+address or the <acronym>API</acronym> token.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><guibutton>Remove</guibutton></term>
+<listitem><para>Removes the selected account, including its folder in the feed
+list and its stored credentials. The server is not affected.</para></listitem>
+</varlistentry>
+</variablelist>
 </sect1>
 
 <sect1 id="adblock-tab">
@@ -753,6 +860,16 @@ with feed subscriptions.
 </menuchoice></term>
 <listitem><para><action>Open</action> the save as dialog and export your feeds and folder structure
 as <filename class="extension">.opml</filename> file.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><menuchoice>
+<guimenu>File</guimenu>
+<guimenuitem>Add Online Account...</guimenuitem>
+</menuchoice></term>
+<listitem><para><action>Open</action> the <link linkend="adding-online-account">Add Online
+Account</link> wizard to connect &akregator; to an online feed reader service such as
+Miniflux.</para></listitem>
 </varlistentry>
 
 <varlistentry>
