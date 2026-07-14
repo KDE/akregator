@@ -13,6 +13,8 @@ ecm_qt_declare_logging_category(akregatorplugins
 target_sources(
     akregatorplugins
     PRIVATE
+        addaccountwizard.h
+        addaccountwizard.cpp
         pluginmanager.h
         pluginmanager.cpp
 )
@@ -21,6 +23,9 @@ target_link_libraries(
     akregatorplugins
     akregatorinterfaces
     KF6::CoreAddons
+    KF6::I18n
+    KF6::WidgetsAddons
+    Qt::Widgets
 )
 
 target_include_directories(akregatorplugins PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>")

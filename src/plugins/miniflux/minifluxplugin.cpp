@@ -8,12 +8,14 @@
 #include "miniflux_debug.h"
 #include "minifluxaccount.h"
 #include "minifluxaccountdialog.h"
+#include "minifluxaccountwidget.h"
 
 #include "kernel.h"
 
 #include <KConfig>
 #include <KConfigGroup>
 #include <KLocalizedString>
+#include <KMessageBox>
 #include <KPluginFactory>
 #include <KSharedConfig>
 #include <qt6keychain/keychain.h>
@@ -72,31 +74,34 @@ QString MinifluxPlugin::name() const
     return i18n("Miniflux");
 }
 
-void MinifluxPlugin::addAccount()
+AccountEditWidget *MinifluxPlugin::createAccountEditWidget(QWidget *parent)
+{
+    return new MinifluxAccountWidget(this, parent);
+}
+
+bool MinifluxPlugin::createAccountFromWizard(const QString &accountName, const QUrl &serverUrl, const QString &apiToken)
 {
     if (!m_feedList) {
         qCWarning(MINIFLUX_LOG) << "Cannot add a Miniflux account before the feed list is loaded";
-        return;
+        return false;
     }
-    auto *dialog = new MinifluxAccountDialog(nullptr);
-    if (dialog->exec() == QDialog::Accepted) {
-        const QString accountName = dialog->accountName();
-        const QUrl serverUrl = dialog->serverUrl();
-        const QString apiToken = dialog->apiToken();
-
-        // The server URL goes to the config file, the API token to the wallet.
-        KConfigGroup group = KSharedConfig::openConfig()->group(QStringLiteral("MinifluxAccounts"));
-        QStringList accounts = group.readEntry("accounts", QStringList());
-        accounts.append(accountName);
-        group.writeEntry("accounts", accounts);
-        KConfigGroup accountGroup = accountConfigGroup(accountName);
-        accountGroup.writeEntry("serverUrl", serverUrl.toString());
-        KSharedConfig::openConfig()->sync();
-        storeApiToken(accountName, apiToken);
-
-        createAccount(accountName, serverUrl, apiToken);
+    KConfigGroup group = KSharedConfig::openConfig()->group(QStringLiteral("MinifluxAccounts"));
+    QStringList accounts = group.readEntry("accounts", QStringList());
+    if (accounts.contains(accountName)) {
+        KMessageBox::error(nullptr, i18n("An account named \"%1\" already exists.", accountName), i18nc("@title:window", "Add Online Account"));
+        return false;
     }
-    dialog->deleteLater();
+
+    // The server URL goes to the config file, the API token to the wallet.
+    accounts.append(accountName);
+    group.writeEntry("accounts", accounts);
+    KConfigGroup accountGroup = accountConfigGroup(accountName);
+    accountGroup.writeEntry("serverUrl", serverUrl.toString());
+    KSharedConfig::openConfig()->sync();
+    storeApiToken(accountName, apiToken);
+
+    createAccount(accountName, serverUrl, apiToken);
+    return true;
 }
 
 QStringList MinifluxPlugin::accountNames() const

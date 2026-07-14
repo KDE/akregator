@@ -42,9 +42,9 @@ target_sources(
         minifluxplugin.cpp
         minifluxaccountdialog.h
         minifluxaccountdialog.cpp
+        minifluxaccountwidget.h
+        minifluxaccountwidget.cpp
 )
-
-ki18n_wrap_ui(akregator_miniflux_plugin minifluxaccountdialog.ui)
 
 target_link_libraries(
     akregator_miniflux_plugin

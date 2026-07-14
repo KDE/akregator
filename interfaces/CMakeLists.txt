@@ -6,6 +6,8 @@ add_library(akregatorinterfaces)
 target_sources(
     akregatorinterfaces
     PRIVATE
+        accounteditwidget.cpp
+        accounteditwidget.h
         accountplugin.cpp
         accountplugin.h
         command.cpp

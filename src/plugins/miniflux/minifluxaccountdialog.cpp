@@ -4,79 +4,57 @@
     SPDX-License-Identifier: GPL-2.0-or-later WITH Qt-Commercial-exception-1.0
 */
 #include "minifluxaccountdialog.h"
-#include "minifluxclient.h"
-#include "ui_minifluxaccountdialog.h"
+#include "minifluxaccountwidget.h"
 
 #include <KLocalizedString>
-#include <KMessageBox>
 #include <QDialogButtonBox>
-#include <QPointer>
 #include <QPushButton>
+#include <QVBoxLayout>
 
 using namespace Akregator;
 
 MinifluxAccountDialog::MinifluxAccountDialog(QWidget *parent)
     : QDialog(parent)
-    , ui(new Ui::MinifluxAccountDialog)
+    , m_widget(new MinifluxAccountWidget(nullptr, this))
 {
-    ui->setupUi(this);
-    setWindowTitle(i18nc("@title:window", "Add Miniflux Account"));
-    connect(ui->testButton, &QPushButton::clicked, this, &MinifluxAccountDialog::slotTestConnection);
-    connect(ui->buttonBox, &QDialogButtonBox::accepted, this, &QDialog::accept);
-    connect(ui->buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
+    setWindowTitle(i18nc("@title:window", "Miniflux Account Settings"));
+    auto mainLayout = new QVBoxLayout(this);
+    mainLayout->addWidget(m_widget);
+    auto buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, this);
+    mainLayout->addWidget(buttonBox);
+    connect(buttonBox, &QDialogButtonBox::accepted, this, &QDialog::accept);
+    connect(buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
+
+    QPushButton *okButton = buttonBox->button(QDialogButtonBox::Ok);
+    okButton->setEnabled(m_widget->isValid());
+    connect(m_widget, &AccountEditWidget::validityChanged, this, [this, okButton]() {
+        okButton->setEnabled(m_widget->isValid());
+    });
 }
 
-MinifluxAccountDialog::~MinifluxAccountDialog()
-{
-    delete ui;
-}
+MinifluxAccountDialog::~MinifluxAccountDialog() = default;
 
 void MinifluxAccountDialog::setEditMode(const QString &accountName, const QUrl &serverUrl, const QString &apiToken)
 {
-    setWindowTitle(i18nc("@title:window", "Miniflux Account Settings"));
-    ui->accountNameEdit->setText(accountName);
-    ui->accountNameEdit->setReadOnly(true);
-    ui->serverUrlEdit->setText(serverUrl.toString());
-    ui->apiTokenEdit->setText(apiToken);
+    m_widget->setAccountName(accountName);
+    m_widget->setAccountNameReadOnly(true);
+    m_widget->setServerUrl(serverUrl);
+    m_widget->setApiToken(apiToken);
 }
 
 QString MinifluxAccountDialog::accountName() const
 {
-    return ui->accountNameEdit->text().trimmed();
+    return m_widget->accountName();
 }
 
 QUrl MinifluxAccountDialog::serverUrl() const
 {
-    return QUrl(ui->serverUrlEdit->text().trimmed());
+    return m_widget->serverUrl();
 }
 
 QString MinifluxAccountDialog::apiToken() const
 {
-    return ui->apiTokenEdit->text().trimmed();
-}
-
-void MinifluxAccountDialog::slotTestConnection()
-{
-    const QUrl url = serverUrl();
-    const QString token = apiToken();
-    if (!url.isValid() || token.isEmpty()) {
-        KMessageBox::error(this, i18n("Please enter a valid server URL and API token."), i18nc("@title:window", "Invalid Input"));
-        return;
-    }
-    ui->testButton->setEnabled(false);
-    auto *client = new MinifluxClient(url, token, this);
-    connect(client, &MinifluxClient::credentialsVerified, this, [this, client = QPointer<MinifluxClient>(client)](bool ok, const QString &error) {
-        ui->testButton->setEnabled(true);
-        if (client) {
-            client->deleteLater();
-        }
-        if (ok) {
-            KMessageBox::information(this, i18n("Successfully connected to the Miniflux server."), i18nc("@title:window", "Connection Successful"));
-        } else {
-            KMessageBox::error(this, i18n("Failed to connect: %1", error), i18nc("@title:window", "Connection Failed"));
-        }
-    });
-    client->verifyCredentials();
+    return m_widget->apiToken();
 }
 
 #include "moc_minifluxaccountdialog.cpp"

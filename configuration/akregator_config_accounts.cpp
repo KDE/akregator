@@ -5,6 +5,7 @@
 */
 #include "akregator_config_accounts.h"
 #include "accountplugin.h"
+#include "addaccountwizard.h"
 #include "kernel.h"
 #include "pluginmanager.h"
 
@@ -14,7 +15,6 @@
 #include <KStandardGuiItem>
 
 #include <QHBoxLayout>
-#include <QInputDialog>
 #include <QPushButton>
 #include <QTreeWidget>
 #include <QVBoxLayout>
@@ -106,22 +106,8 @@ void KCMAkregatorAccountsConfig::slotAddAccount()
     if (plugins.isEmpty()) {
         return;
     }
-    QStringList types;
-    types.reserve(plugins.size());
-    for (AccountPlugin *plugin : plugins) {
-        types.append(plugin->name());
-    }
-    bool ok = false;
-    const QString type = QInputDialog::getItem(widget(), i18nc("@title:window", "Add Account"), i18nc("@label:listbox", "Account type:"), types, 0, false, &ok);
-    if (!ok || type.isEmpty()) {
-        return;
-    }
-    for (AccountPlugin *plugin : plugins) {
-        if (plugin->name() == type) {
-            plugin->addAccount();
-            break;
-        }
-    }
+    AddAccountWizard wizard(plugins, widget());
+    wizard.exec();
     fillAccountsList();
 }
 

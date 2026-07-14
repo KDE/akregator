@@ -22,11 +22,15 @@ public:
     ~MinifluxPlugin() override;
 
     void initialize(FeedList *feedList) override;
-    void addAccount() override;
+    [[nodiscard]] AccountEditWidget *createAccountEditWidget(QWidget *parent) override;
     [[nodiscard]] QStringList accountNames() const override;
     void configureAccount(const QString &accountName) override;
     void removeAccount(const QString &accountName) override;
     [[nodiscard]] QString name() const override;
+
+    /** Called by MinifluxAccountWidget::apply(): persists and creates the new
+     *  account. @return false if the input is rejected (e.g. duplicate name). */
+    bool createAccountFromWizard(const QString &accountName, const QUrl &serverUrl, const QString &apiToken);
 
 private Q_SLOTS:
     void onAccountDeleted(MinifluxAccount *account);

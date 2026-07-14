@@ -8,15 +8,11 @@
 #include <QDialog>
 #include <QUrl>
 
-namespace Ui
-{
-class MinifluxAccountDialog;
-}
-
 namespace Akregator
 {
-class MinifluxClient;
+class MinifluxAccountWidget;
 
+/** Dialog for editing an existing Miniflux account (wraps MinifluxAccountWidget). */
 class MinifluxAccountDialog : public QDialog
 {
     Q_OBJECT
@@ -32,11 +28,8 @@ public:
     [[nodiscard]] QUrl serverUrl() const;
     [[nodiscard]] QString apiToken() const;
 
-private Q_SLOTS:
-    void slotTestConnection();
-
 private:
-    Ui::MinifluxAccountDialog *const ui;
+    MinifluxAccountWidget *const m_widget;
 };
 
 } // namespace Akregator

@@ -1,12 +1,12 @@
 <!DOCTYPE gui SYSTEM "kpartgui.dtd">
-<gui name="akregator_part" version="440" translationDomain="akregator">
+<gui name="akregator_part" version="441" translationDomain="akregator">
   <MenuBar>
     <Menu name="file">
       <Action name="file_import"/>
       <Action name="file_export"/>
       <Action name="file_getfromweb"/>
       <Separator/>
-      <Action name="add_account_miniflux"/>
+      <Action name="add_online_account"/>
       <Separator/>
       <Action name="file_print"/>
       <Separator/>

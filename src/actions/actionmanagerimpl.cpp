@@ -8,6 +8,7 @@
 
 #include "actionmanagerimpl.h"
 #include "accountplugin.h"
+#include "addaccountwizard.h"
 #include "akregator_part.h"
 #include "akregatorconfig.h"
 #include "articlelistview.h"
@@ -209,12 +210,14 @@ void ActionManagerImpl::initPart()
     action->setIcon(QIcon::fromTheme(u"document-export"_s));
     connect(action, &QAction::triggered, d->part, &Part::fileExport);
 
-    const auto plugins = Kernel::self()->pluginManager()->accountPlugins();
-    for (AccountPlugin *plugin : plugins) {
-        QAction *pluginAction = d->actionCollection->addAction(QStringLiteral("add_account_") + plugin->name().toLower());
-        pluginAction->setText(i18nc("@action", "Add %1 Account…", plugin->name()));
-        pluginAction->setIcon(QIcon::fromTheme(QStringLiteral("list-add")));
-        connect(pluginAction, &QAction::triggered, plugin, &AccountPlugin::addAccount);
+    if (!Kernel::self()->pluginManager()->accountPlugins().isEmpty()) {
+        QAction *addAccountAction = d->actionCollection->addAction(u"add_online_account"_s);
+        addAccountAction->setText(i18nc("@action", "Add Online Account…"));
+        addAccountAction->setIcon(QIcon::fromTheme(u"list-add"_s));
+        connect(addAccountAction, &QAction::triggered, d->part, []() {
+            AddAccountWizard wizard(Kernel::self()->pluginManager()->accountPlugins());
+            wizard.exec();
+        });
     }
 
     QAction *configure = d->actionCollection->addAction(u"options_configure"_s);

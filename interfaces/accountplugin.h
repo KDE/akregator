@@ -12,6 +12,7 @@
 
 namespace Akregator
 {
+class AccountEditWidget;
 class Folder;
 class FeedList;
 
@@ -29,8 +30,9 @@ public:
     /** Called by PluginManager after the plugin is loaded. feedList is the global feed list. */
     virtual void initialize(FeedList *feedList) = 0;
 
-    /** Called when the user triggers "Add Account" for this plugin type. */
-    virtual void addAccount() = 0;
+    /** Create the configuration form for a new account of this type. It is
+     *  embedded into the "Add Online Account" wizard, which takes ownership. */
+    [[nodiscard]] virtual AccountEditWidget *createAccountEditWidget(QWidget *parent) = 0;
 
     /** Names of the currently configured accounts of this plugin. */
     [[nodiscard]] virtual QStringList accountNames() const;
