@@ -58,7 +58,6 @@ public:
 
     void disableIntroduction();
     void setArticleAction(ArticleViewerWebEngine::ArticleAction type, const QString &articleId, const QString &feed);
-    void restoreCurrentPosition();
 
     void createViewerPluginToolManager(KActionCollection *ac, QWidget *parent);
 
