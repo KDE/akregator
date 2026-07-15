@@ -42,10 +42,9 @@ KConfigGroup accountConfigGroup(const QString &accountName)
 }
 }
 
-MinifluxPlugin::MinifluxPlugin(QObject *parent, const QVariantList &args)
+MinifluxPlugin::MinifluxPlugin(QObject *parent, [[maybe_unused]] const QVariantList &args)
     : AccountPlugin(parent)
 {
-    Q_UNUSED(args)
 }
 
 MinifluxPlugin::~MinifluxPlugin() = default;
@@ -145,7 +144,7 @@ void MinifluxPlugin::removeAccount(const QString &accountName)
 void MinifluxPlugin::editAccount(MinifluxAccount *account)
 {
     const QString accountName = account->accountName();
-    auto *dialog = new MinifluxAccountDialog(nullptr);
+    auto dialog = new MinifluxAccountDialog(nullptr);
     dialog->setEditMode(accountName, account->serverUrl(), account->apiToken());
     if (dialog->exec() == QDialog::Accepted) {
         const QUrl serverUrl = dialog->serverUrl();
@@ -174,7 +173,7 @@ void MinifluxPlugin::createAccount(const QString &accountName, const QUrl &serve
         // The feed list went away while the wallet was being read.
         return;
     }
-    auto *account = new MinifluxAccount(accountName, serverUrl, apiToken, m_feedList, Kernel::self()->storage(), this);
+    auto account = new MinifluxAccount(accountName, serverUrl, apiToken, m_feedList, Kernel::self()->storage(), this);
     connect(account, &MinifluxAccount::accountDeleted, this, &MinifluxPlugin::onAccountDeleted);
     m_accounts.append(account);
     account->initialize();
@@ -191,7 +190,7 @@ void MinifluxPlugin::loadSavedAccounts()
             continue;
         }
         // The API token is read asynchronously from the wallet.
-        auto *job = new QKeychain::ReadPasswordJob(keychainServiceName(), this);
+        auto job = new QKeychain::ReadPasswordJob(keychainServiceName(), this);
         job->setKey(keychainKey(accountName));
         connect(job, &QKeychain::Job::finished, this, [this, accountName, serverUrl](QKeychain::Job *baseJob) {
             QString apiToken = static_cast<QKeychain::ReadPasswordJob *>(baseJob)->textData();
@@ -214,7 +213,7 @@ void MinifluxPlugin::loadSavedAccounts()
 
 void MinifluxPlugin::storeApiToken(const QString &accountName, const QString &apiToken)
 {
-    auto *job = new QKeychain::WritePasswordJob(keychainServiceName(), this);
+    auto job = new QKeychain::WritePasswordJob(keychainServiceName(), this);
     job->setKey(keychainKey(accountName));
     job->setTextData(apiToken);
     connect(job, &QKeychain::Job::finished, this, [accountName, apiToken](QKeychain::Job *baseJob) {
@@ -234,7 +233,7 @@ void MinifluxPlugin::storeApiToken(const QString &accountName, const QString &ap
 
 void MinifluxPlugin::deleteApiToken(const QString &accountName)
 {
-    auto *job = new QKeychain::DeletePasswordJob(keychainServiceName(), this);
+    auto job = new QKeychain::DeletePasswordJob(keychainServiceName(), this);
     job->setKey(keychainKey(accountName));
     job->start();
 }

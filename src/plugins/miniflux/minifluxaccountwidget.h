@@ -46,10 +46,10 @@ private Q_SLOTS:
 
 private:
     MinifluxPlugin *const m_plugin;
-    QLineEdit *m_accountNameEdit = nullptr;
-    QLineEdit *m_serverUrlEdit = nullptr;
-    QLineEdit *m_apiTokenEdit = nullptr;
-    QPushButton *m_testButton = nullptr;
+    QLineEdit *const m_accountNameEdit;
+    QLineEdit *const m_serverUrlEdit;
+    QLineEdit *const m_apiTokenEdit;
+    QPushButton *const m_testButton;
 };
 
 } // namespace Akregator

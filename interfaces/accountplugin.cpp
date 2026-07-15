@@ -19,14 +19,12 @@ QStringList AccountPlugin::accountNames() const
     return {};
 }
 
-void AccountPlugin::configureAccount(const QString &accountName)
+void AccountPlugin::configureAccount([[maybe_unused]] const QString &accountName)
 {
-    Q_UNUSED(accountName)
 }
 
-void AccountPlugin::removeAccount(const QString &accountName)
+void AccountPlugin::removeAccount([[maybe_unused]] const QString &accountName)
 {
-    Q_UNUSED(accountName)
 }
 
 #include "moc_accountplugin.cpp"

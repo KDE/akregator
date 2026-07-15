@@ -306,7 +306,7 @@ protected Q_SLOTS:
     void fetchCompleted(Syndication::Loader *loader, Syndication::FeedPtr doc, Syndication::ErrorCode errorCode);
 
 private:
-    void markAsFetchedNow();
+    AKREGATOR_NO_EXPORT void markAsFetchedNow();
 
     std::unique_ptr<FeedPrivate> const d;
 };

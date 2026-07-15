@@ -35,8 +35,8 @@ private:
     const QList<AccountPlugin *> m_plugins;
     AccountPlugin *m_currentPlugin = nullptr;
     AccountEditWidget *m_editWidget = nullptr;
-    QListWidget *m_typeList = nullptr;
-    QWidget *m_settingsContainer = nullptr;
+    QListWidget *const m_typeList;
+    QWidget *const m_settingsContainer;
     KPageWidgetItem *m_typePage = nullptr;
     KPageWidgetItem *m_settingsPage = nullptr;
 };

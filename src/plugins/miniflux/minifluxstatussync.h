@@ -41,7 +41,7 @@ private Q_SLOTS:
 private:
     static qint64 entryIdFromGuid(const QString &guid);
 
-    MinifluxClient *m_client;
+    MinifluxClient *m_client = nullptr;
     QTimer m_debounceTimer;
     QSet<qint64> m_pendingRead;
     QSet<qint64> m_pendingUnread;

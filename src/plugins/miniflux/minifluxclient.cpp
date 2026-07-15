@@ -60,7 +60,7 @@ QNetworkReply *MinifluxClient::makePut(const QString &path, const QByteArray &bo
 
 void MinifluxClient::verifyCredentials()
 {
-    auto *reply = makeGet(QStringLiteral("/v1/me"));
+    auto reply = makeGet(QStringLiteral("/v1/me"));
     connect(reply, &QNetworkReply::finished, this, [this, reply]() {
         reply->deleteLater();
         if (reply->error() != QNetworkReply::NoError) {
@@ -74,7 +74,7 @@ void MinifluxClient::verifyCredentials()
 
 void MinifluxClient::fetchCategories()
 {
-    auto *reply = makeGet(QStringLiteral("/v1/categories"));
+    auto reply = makeGet(QStringLiteral("/v1/categories"));
     connect(reply, &QNetworkReply::finished, this, [this, reply]() {
         reply->deleteLater();
         if (reply->error() != QNetworkReply::NoError) {
@@ -97,7 +97,7 @@ void MinifluxClient::fetchCategories()
 
 void MinifluxClient::fetchFeeds()
 {
-    auto *reply = makeGet(QStringLiteral("/v1/feeds"));
+    auto reply = makeGet(QStringLiteral("/v1/feeds"));
     connect(reply, &QNetworkReply::finished, this, [this, reply]() {
         reply->deleteLater();
         if (reply->error() != QNetworkReply::NoError) {
@@ -148,7 +148,7 @@ void MinifluxClient::fetchEntriesForFeed(int feedId, const QString &status, int 
     if (offset > 0) {
         query.addQueryItem(QStringLiteral("offset"), QString::number(offset));
     }
-    auto *reply = makeGet(QStringLiteral("/v1/feeds/%1/entries").arg(feedId), query);
+    auto reply = makeGet(QStringLiteral("/v1/feeds/%1/entries").arg(feedId), query);
     connect(reply, &QNetworkReply::finished, this, [this, reply, feedId]() {
         reply->deleteLater();
         if (reply->error() != QNetworkReply::NoError) {
@@ -178,7 +178,7 @@ void MinifluxClient::fetchAllEntries(const QString &status, int offset, qint64 s
     if (sinceId > 0) {
         query.addQueryItem(QStringLiteral("after_entry_id"), QString::number(sinceId));
     }
-    auto *reply = makeGet(QStringLiteral("/v1/entries"), query);
+    auto reply = makeGet(QStringLiteral("/v1/entries"), query);
     connect(reply, &QNetworkReply::finished, this, [this, reply, offset]() {
         reply->deleteLater();
         if (reply->error() != QNetworkReply::NoError) {
@@ -208,7 +208,7 @@ void MinifluxClient::markEntriesRead(const QList<qint64> &entryIds)
     body[QStringLiteral("status")] = QStringLiteral("read");
     const QByteArray payload = QJsonDocument(body).toJson(QJsonDocument::Compact);
     qCDebug(MINIFLUX_LOG) << "MinifluxClient::markEntriesRead: PUT /v1/entries" << payload;
-    auto *reply = makePut(QStringLiteral("/v1/entries"), payload);
+    auto reply = makePut(QStringLiteral("/v1/entries"), payload);
     connect(reply, &QNetworkReply::finished, this, [this, reply]() {
         reply->deleteLater();
         const bool ok = reply->error() == QNetworkReply::NoError;
@@ -228,7 +228,7 @@ void MinifluxClient::markEntriesUnread(const QList<qint64> &entryIds)
     QJsonObject body;
     body[QStringLiteral("entry_ids")] = ids;
     body[QStringLiteral("status")] = QStringLiteral("unread");
-    auto *reply = makePut(QStringLiteral("/v1/entries"), QJsonDocument(body).toJson(QJsonDocument::Compact));
+    auto reply = makePut(QStringLiteral("/v1/entries"), QJsonDocument(body).toJson(QJsonDocument::Compact));
     connect(reply, &QNetworkReply::finished, this, [this, reply]() {
         reply->deleteLater();
         Q_EMIT entriesStatusUpdated(reply->error() == QNetworkReply::NoError);
@@ -237,7 +237,7 @@ void MinifluxClient::markEntriesUnread(const QList<qint64> &entryIds)
 
 void MinifluxClient::toggleBookmark(qint64 entryId)
 {
-    auto *reply = makePut(QStringLiteral("/v1/entries/%1/bookmark").arg(entryId), {});
+    auto reply = makePut(QStringLiteral("/v1/entries/%1/bookmark").arg(entryId), {});
     connect(reply, &QNetworkReply::finished, this, [this, reply]() {
         reply->deleteLater();
         Q_EMIT bookmarkToggled(reply->error() == QNetworkReply::NoError);
@@ -246,7 +246,7 @@ void MinifluxClient::toggleBookmark(qint64 entryId)
 
 void MinifluxClient::refreshFeed(int feedId)
 {
-    auto *reply = makePut(QStringLiteral("/v1/feeds/%1/refresh").arg(feedId), {});
+    auto reply = makePut(QStringLiteral("/v1/feeds/%1/refresh").arg(feedId), {});
     connect(reply, &QNetworkReply::finished, this, [this, reply]() {
         reply->deleteLater();
         Q_EMIT feedRefreshed(reply->error() == QNetworkReply::NoError);

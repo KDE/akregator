@@ -20,23 +20,23 @@ using namespace Akregator;
 MinifluxAccountWidget::MinifluxAccountWidget(MinifluxPlugin *plugin, QWidget *parent)
     : AccountEditWidget(parent)
     , m_plugin(plugin)
+    , m_accountNameEdit(new QLineEdit(this))
+    , m_serverUrlEdit(new QLineEdit(this))
+    , m_apiTokenEdit(new QLineEdit(this))
+    , m_testButton(new QPushButton(i18nc("@action:button", "Test Connection"), this))
 {
     auto mainLayout = new QVBoxLayout(this);
     mainLayout->setContentsMargins({});
 
     auto formLayout = new QFormLayout;
-    m_accountNameEdit = new QLineEdit(this);
     m_accountNameEdit->setPlaceholderText(i18n("My Miniflux"));
     formLayout->addRow(i18n("Account Name:"), m_accountNameEdit);
-    m_serverUrlEdit = new QLineEdit(this);
     m_serverUrlEdit->setPlaceholderText(QStringLiteral("https://miniflux.example.com"));
     formLayout->addRow(i18n("Server URL:"), m_serverUrlEdit);
-    m_apiTokenEdit = new QLineEdit(this);
     m_apiTokenEdit->setEchoMode(QLineEdit::Password);
     formLayout->addRow(i18n("API Token:"), m_apiTokenEdit);
     mainLayout->addLayout(formLayout);
 
-    m_testButton = new QPushButton(i18nc("@action:button", "Test Connection"), this);
     mainLayout->addWidget(m_testButton);
     mainLayout->addStretch();
 
@@ -102,7 +102,7 @@ void MinifluxAccountWidget::slotTestConnection()
         return;
     }
     m_testButton->setEnabled(false);
-    auto *client = new MinifluxClient(url, token, this);
+    auto client = new MinifluxClient(url, token, this);
     connect(client, &MinifluxClient::credentialsVerified, this, [this, client = QPointer<MinifluxClient>(client)](bool ok, const QString &error) {
         m_testButton->setEnabled(true);
         if (client) {

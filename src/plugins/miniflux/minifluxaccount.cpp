@@ -55,7 +55,7 @@ void MinifluxAccount::initialize()
         // Reuse an existing folder left over from a previous session (loaded from OPML)
         const auto children = m_feedList->allFeedsFolder()->children();
         for (TreeNode *child : children) {
-            if (auto *f = qobject_cast<Folder *>(child); f && f->title() == folderTitle()) {
+            if (auto f = qobject_cast<Folder *>(child); f && f->title() == folderTitle()) {
                 m_rootFolder = f;
                 break;
             }
@@ -116,9 +116,9 @@ void MinifluxAccount::detachFromFeedList()
 void MinifluxAccount::watchExistingFeeds(Folder *folder)
 {
     for (TreeNode *child : folder->children()) {
-        if (auto *f = qobject_cast<Feed *>(child)) {
+        if (auto f = qobject_cast<Feed *>(child)) {
             m_statusSync->watchFeed(f);
-        } else if (auto *sub = qobject_cast<Folder *>(child)) {
+        } else if (auto sub = qobject_cast<Folder *>(child)) {
             watchExistingFeeds(sub);
         }
     }
@@ -170,7 +170,7 @@ void MinifluxAccount::onSyncJobFinished(KJob *job)
         // The account folder was deleted while the sync was in flight.
         return;
     }
-    auto *syncJob = qobject_cast<MinifluxSyncJob *>(job);
+    auto syncJob = qobject_cast<MinifluxSyncJob *>(job);
     qCDebug(MINIFLUX_LOG) << "Miniflux sync succeeded for account" << m_accountName << "- categories:" << syncJob->categories().size()
                           << "feeds:" << syncJob->feeds().size();
     populateFeedTree(syncJob->categories(), syncJob->feeds());
@@ -213,7 +213,7 @@ void MinifluxAccount::startSyncJob()
     if (!m_rootFolder) {
         return;
     }
-    auto *job = new MinifluxSyncJob(m_client, this);
+    auto job = new MinifluxSyncJob(m_client, this);
     connect(job, &KJob::finished, this, &MinifluxAccount::onSyncJobFinished);
     job->start();
 }
@@ -226,7 +226,7 @@ void MinifluxAccount::populateFeedTree(const QList<MinifluxCategory> &categories
         Folder *catFolder = nullptr;
         const auto children = m_rootFolder->children();
         for (TreeNode *child : children) {
-            if (auto *f = qobject_cast<Folder *>(child)) {
+            if (auto f = qobject_cast<Folder *>(child)) {
                 if (f->title() == cat.title) {
                     catFolder = f;
                     break;
@@ -248,13 +248,13 @@ void MinifluxAccount::populateFeedTree(const QList<MinifluxCategory> &categories
         const QString expectedUrl = QStringLiteral("miniflux://feed/%1").arg(mfFeed.id);
         const auto children = parentFolder->children();
         for (TreeNode *child : children) {
-            if (auto *mf = qobject_cast<MinifluxFeed *>(child)) {
+            if (auto mf = qobject_cast<MinifluxFeed *>(child)) {
                 if (mf->minifluxFeedId() == mfFeed.id) {
                     exists = true;
                     m_statusSync->watchFeed(mf); // re-watch in case of reconnect
                     break;
                 }
-            } else if (auto *f = qobject_cast<Feed *>(child); f && f->xmlUrl() == expectedUrl) {
+            } else if (auto f = qobject_cast<Feed *>(child); f && f->xmlUrl() == expectedUrl) {
                 // Stale plain Feed left over from OPML — replace with a proper MinifluxFeed
                 m_statusSync->unwatchFeed(f);
                 parentFolder->removeChild(f);
@@ -263,7 +263,7 @@ void MinifluxAccount::populateFeedTree(const QList<MinifluxCategory> &categories
             }
         }
         if (!exists) {
-            auto *feed = new MinifluxFeed(mfFeed.id, mfFeed.title, m_client, m_storage);
+            auto feed = new MinifluxFeed(mfFeed.id, mfFeed.title, m_client, m_storage);
             feed->setHtmlUrl(mfFeed.siteUrl);
             parentFolder->appendChild(feed);
             m_statusSync->watchFeed(feed);

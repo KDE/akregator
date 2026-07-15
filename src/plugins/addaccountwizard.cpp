@@ -16,16 +16,16 @@ using namespace Akregator;
 AddAccountWizard::AddAccountWizard(const QList<AccountPlugin *> &plugins, QWidget *parent)
     : KAssistantDialog(parent)
     , m_plugins(plugins)
+    , m_typeList(new QListWidget(this))
+    , m_settingsContainer(new QWidget(this))
 {
     setWindowTitle(i18nc("@title:window", "Add Online Account"));
 
-    m_typeList = new QListWidget(this);
     for (AccountPlugin *plugin : plugins) {
         m_typeList->addItem(plugin->name());
     }
     m_typePage = addPage(m_typeList, i18nc("@title:tab, wizard page for selecting the account type", "Account Type"));
 
-    m_settingsContainer = new QWidget(this);
     auto containerLayout = new QVBoxLayout(m_settingsContainer);
     containerLayout->setContentsMargins({});
     m_settingsPage = addPage(m_settingsContainer, i18nc("@title:tab, wizard page with the account settings", "Account Settings"));
