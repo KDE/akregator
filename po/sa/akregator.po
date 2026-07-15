@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-07-11 00:44+0000\n"
+"POT-Creation-Date: 2026-07-15 00:45+0000\n"
 "PO-Revision-Date: 2024-12-25 19:35+0530\n"
 "Last-Translator: kali <shreekantkalwar@gmail.com>\n"
 "Language-Team: Sanskrit <kde-i18n-doc@kde.org>\n"
@@ -1694,19 +1694,19 @@ msgctxt "@title:window"
 msgid "Save As"
 msgstr "यथा रक्षतु"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:275
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:274
 #: src/frame/webengine/akrwebengineviewer.cpp:112
 #, kde-format
 msgid "&Save Link As…"
 msgstr "&लिङ्कं रक्षन्तु यथा…"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:279
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:278
 #: src/frame/webengine/akrwebengineviewer.cpp:116
 #, kde-format
 msgid "Copy &Link Address"
 msgstr "प्रतिलिपि &लिङ्क पता"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:287
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:286
 #: src/frame/webengine/akrwebengineviewer.cpp:124
 #, fuzzy, kde-format
 #| msgctxt "@action"
@@ -1715,7 +1715,7 @@ msgctxt "@action"
 msgid "Copy Image URL"
 msgstr "प्रतिलिपि चित्रस्थानम्"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:291
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:290
 #: src/frame/webengine/akrwebengineviewer.cpp:128
 #, fuzzy, kde-format
 #| msgctxt "@action"
@@ -1724,51 +1724,51 @@ msgctxt "@action"
 msgid "Save Image…"
 msgstr "चित्रं डिस्कमध्ये रक्षन्तु…"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:382
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:381
 #, kde-format
 msgid "Disable"
 msgstr "अक्षम"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:383
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:382
 #, kde-format
 msgid "Keep Enabled"
 msgstr "सक्षमं कुर्वन्तु"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:385
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:384
 #, kde-format
 msgid "Are you sure you want to disable this introduction page?"
 msgstr "किं भवान् निश्चयेन एतत् परिचयपृष्ठं निष्क्रियं कर्तुम् इच्छति?"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:386
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:385
 #, kde-format
 msgctxt "@title:window"
 msgid "Disable Introduction Page"
 msgstr "परिचय पृष्ठ अक्षम करें"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:421
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:415
 #, kde-format
 msgid "This web site is a malware, do you want to continue to show it?"
 msgstr "इदं जालस्थलं दुर्गन्धयुक्तं भवति, किं भवन्तः एतत् निरन्तरं दर्शयितुम् इच्छन्ति?"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:422
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:416
 #, kde-format
 msgctxt "@title:window"
 msgid "Malware"
 msgstr "मालवेयर"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:434
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:428
 #, kde-format
 msgid "The network is broken."
 msgstr "जालं भग्नम् अस्ति।"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:434
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:437
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:428
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:431
 #, kde-format
 msgctxt "@title:window"
 msgid "Check Phishing Url"
 msgstr "Fishing Url चेक करें"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:437
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:431
 #, kde-format
 msgid "The url %1 is not valid."
 msgstr "%1 इत्यस्य url वैधं नास्ति ।"

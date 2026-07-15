@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-07-11 00:44+0000\n"
+"POT-Creation-Date: 2026-07-15 00:45+0000\n"
 "PO-Revision-Date: 2022-07-03 14:28+0400\n"
 "Last-Translator: Kheyyam <xxmn77@gmail.com>\n"
 "Language-Team: Azerbaijani <kde-i18n-doc@kde.org>\n"
@@ -1757,20 +1757,20 @@ msgctxt "@title:window"
 msgid "Save As"
 msgstr "Belə saxlayın"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:275
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:274
 #: src/frame/webengine/akrwebengineviewer.cpp:112
 #, fuzzy, kde-format
 #| msgid "&Save Link As..."
 msgid "&Save Link As…"
 msgstr "Keçidi belə &saxlamaq..."
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:279
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:278
 #: src/frame/webengine/akrwebengineviewer.cpp:116
 #, kde-format
 msgid "Copy &Link Address"
 msgstr "Keçid ünvanını kopya&lamaq"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:287
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:286
 #: src/frame/webengine/akrwebengineviewer.cpp:124
 #, fuzzy, kde-format
 #| msgid "Copy Image Location"
@@ -1778,7 +1778,7 @@ msgctxt "@action"
 msgid "Copy Image URL"
 msgstr "Şəklin yerini kopyalamaq"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:291
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:290
 #: src/frame/webengine/akrwebengineviewer.cpp:128
 #, fuzzy, kde-format
 #| msgid "Save Image On Disk..."
@@ -1786,55 +1786,55 @@ msgctxt "@action"
 msgid "Save Image…"
 msgstr "Şəkili diskdə saxlamaq..."
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:382
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:381
 #, kde-format
 msgid "Disable"
 msgstr "Söndürmək"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:383
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:382
 #, kde-format
 msgid "Keep Enabled"
 msgstr "Aktiv saxlamaq"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:385
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:384
 #, kde-format
 msgid "Are you sure you want to disable this introduction page?"
 msgstr "Bu giriş səhifəsini söndürmək istədiyinizə əminsiniz?"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:386
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:385
 #, fuzzy, kde-format
 #| msgid "Disable Introduction Page"
 msgctxt "@title:window"
 msgid "Disable Introduction Page"
 msgstr "Giriş səhiəsini söndürmək"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:421
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:415
 #, kde-format
 msgid "This web site is a malware, do you want to continue to show it?"
 msgstr ""
 "Veb səhifəsində zərərli proqram var, göstərməyə davam etmək istəyirsiniz?"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:422
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:416
 #, fuzzy, kde-format
 #| msgid "Malware"
 msgctxt "@title:window"
 msgid "Malware"
 msgstr "Malware"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:434
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:428
 #, kde-format
 msgid "The network is broken."
 msgstr "Şəbəkə əlaqəsi kəsildi"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:434
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:437
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:428
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:431
 #, fuzzy, kde-format
 #| msgid "Check Phishing Url"
 msgctxt "@title:window"
 msgid "Check Phishing Url"
 msgstr "Səhifənin təhlükəsizliyini yoxlayın"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:437
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:431
 #, kde-format
 msgid "The url %1 is not valid."
 msgstr "%1 url etibarlı deyil."
