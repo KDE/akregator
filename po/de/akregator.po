@@ -440,7 +440,7 @@ msgstr ""
 #: configuration/ui/settings_general.ui:77
 #, kde-format
 msgid "Use &notifications for all feeds"
-msgstr "&Benachrichtigungen für alle Nachrichtenquellen benutzen"
+msgstr "&Benachrichtigungen für alle Nachrichtenquellen verwenden"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_DisableSaveAsNotification)
 #: configuration/ui/settings_general.ui:84
@@ -884,19 +884,19 @@ msgstr "Voreingestellten KDE-Browser verwenden"
 #: interfaces/akregator.kcfg:223
 #, kde-format
 msgid "Use KDE web browser when opening in external browser."
-msgstr "Den KDE-Webbrowser zum Öffnen in externem Browser benutzen."
+msgstr "Den KDE-Webbrowser zum Öffnen in externem Browser verwenden."
 
 #. i18n: ectx: label, entry, group (Browser)
 #: interfaces/akregator.kcfg:227
 #, kde-format
 msgid "Use this command:"
-msgstr "Diesen Befehl benutzen:"
+msgstr "Diesen Befehl verwenden:"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
 #: interfaces/akregator.kcfg:228
 #, kde-format
 msgid "Use the specified command when opening in external browser."
-msgstr "Den angegebenen Befehl zum Öffnen in externem Browser benutzen."
+msgstr "Den angegebenen Befehl zum Öffnen in externem Browser verwenden."
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
 #: interfaces/akregator.kcfg:232
