@@ -174,7 +174,7 @@ say how to start it -->
 <para
 >Das Hauptfenster besteht aus der Nachrichtenquellenliste, der Artikelliste und der Artikeldarstellung. </para>
 <para
->Die Nachrichtenquellenliste befindet sich auf der linken Seite. In der Baumansicht können die Nachrichtenquellen angewählt werden. Eine Nachrichtenquelle stellt eine Sammlung von Artikeln dar, z. B. die neuesten Nachrichten einer Internetseite oder die aktuellsten Einträge eines Blogs. Die Standardeinstellung beinhaltet die zum &kde;-Projekt gehörigen Nachrichtenquellen, aber es können selbstverständlich noch andere Nachrichtenquellen hinzugefügt oder die entfernt werden, die nicht von Interesse sind. </para>
+>Die Nachrichtenquellenliste befindet sich auf der linken Seite. In der Baumansicht können die Nachrichtenquellen angewählt werden. Eine Nachrichtenquelle stellt eine Sammlung von Artikeln dar, z. B. die neuesten Nachrichten einer Internetseite oder die aktuellsten Einträge eines Blogs. Die Standardeinstellung beinhaltet die zum &kde;-Projekt gehörigen Nachrichtenquellen, aber es können selbstverständlich noch andere Nachrichtenquellen hinzugefügt oder die entfernt werden, die nicht von Interesse sind. </para>
 <para
 >In der oberen rechten Hälfte des Hauptfensters befindet sich die Artikelliste. Die Artikelliste beinhaltet alle Artikel der aktuell angewählten Nachrichtenquelle (Falls die Liste keine Artikel enthält, müssen diese erst abgeholt werden). Die Liste zeigt die Überschriften und das Veröffentlichungsdatum der Artikel. In der Standardeinstellung befindet sich der neuste Artikel ganz oben. <screenshot>
 <screeninfo
@@ -209,7 +209,7 @@ say how to start it -->
 <title
 >Hinzufügen einer Nachrichtenquelle</title>
 <para
->&akregator; bietet Ihnen standardmäßig mehrere Standardnachrichtenquellen, die mit dem &kde;-Projekt zu tun haben, aber höchstwahrscheinlich wollen Sie ihre eigenen Nachrichtenquellen hinzufügen. Gute Kandidaten hierfür stellen die von Ihnen häufig besuchten Internetseiten dar.</para>
+>&akregator; bietet Ihnen standardmäßig mehrere Standardnachrichtenquellen, die mit dem &kde;-Projekt zu tun haben, aber höchstwahrscheinlich möchten Sie ihre eigenen Nachrichtenquellen hinzufügen. Gute Kandidaten hierfür stellen die von Ihnen häufig besuchten Internetseiten dar.</para>
 
 <itemizedlist>
 <listitem
@@ -218,7 +218,7 @@ say how to start it -->
 >Nachrichtenquelle</guimenu
 > und wählen Sie <guimenuitem
 >Nachrichtenquelle hinzufügen ...</guimenuitem
->, oder benutzen Sie das jeweilige Tastaturkürzel (<keycap
+>, oder verwenden Sie das jeweilige Tastaturkürzel (<keycap
 >Einfg</keycap
 >). Das folgende Fenster mit einem <guilabel
 >Adresse der Nachrichtenquelle:</guilabel
@@ -388,7 +388,7 @@ say how to start it -->
 <title
 >Browsernutzung innerhalb von &akregator;</title>
 <para
->Wenn Sie Artikel aus einer Nachrichtenquelle lesen, kann es oft passieren, dass Sie direkt die betreffende Webseite aufrufen möchten, da manche Artikel nur aus der Überschrift ohne Textkörper bestehen. In diesem Fall benötigen Sie einen Internetbrowser, um den gesamten Inhalt darstellen zu können. Manchmal kann es auch passieren, dass Sie z. B. einen Blog-Eintrag kommentieren wollen, wozu Sie auch einen Internetbrowser benötigen. Für solche und ähnliche Fälle beinhaltet &akregator; einen vereinfachten Internetbrowser. Immer wenn Sie auf eine Verknüpfung klicken, wird diese als neue Karteikarte durch den integrierten Internetbrowser dargestellt:</para>
+>Wenn Sie Artikel aus einer Nachrichtenquelle lesen, kann es oft passieren, dass Sie direkt die betreffende Webseite aufrufen möchten, da manche Artikel nur aus der Überschrift ohne Textkörper bestehen. In diesem Fall benötigen Sie einen Internetbrowser, um den gesamten Inhalt darstellen zu können. Manchmal kann es auch passieren, dass Sie z. B. einen Blog-Eintrag kommentieren möchten, wozu Sie auch einen Internetbrowser benötigen. Für solche und ähnliche Fälle beinhaltet &akregator; einen vereinfachten Internetbrowser. Immer wenn Sie auf eine Verknüpfung klicken, wird diese als neue Karteikarte durch den integrierten Internetbrowser dargestellt:</para>
 <note
 ><para
 >Bitte bedenken Sie, dass der in &akregator; integrierte Internetbrowser nicht als Ersatz für Ihren Standardbrowser gedacht ist. Er ist nur zum Lesen, Kommentieren oder dem schnellen Folgen von Verknüpfungen geeignet. Er ist nicht als genereller Internetbrowser gedacht. Der integrierte Browser verfügt längst nicht über alle Möglichkeiten eines normalen Browsers.</para
@@ -487,11 +487,11 @@ say how to start it -->
 <varlistentry>
 <term
 ><guilabel
->Benachrichtigungen für alle Nachrichtenquellen benutzen</guilabel
+>Benachrichtigungen für alle Nachrichtenquellen verwenden</guilabel
 ></term>
 <listitem
 ><para
->Einschalten von globalen Benachrichtigungen für alle Nachrichtenquellen. Diese Option überschreibt die individuell für jede Nachrichtenquelle ausgegebenen Benachrichtigungen.  Falls diese Option in &akregator; eingeschaltet ist, werden Sie über alle neuen Nachrichten benachrichtigt. Falls Sie nur die Benachrichtigungen für einige Nachrichtenquellen aktivieren wollen, sollten Sie diese Option nicht nutzen, sondern es sollten individuelle Benachrichtigungen für jede Nachrichtenquelle aktiviert werden.</para>
+>Einschalten von globalen Benachrichtigungen für alle Nachrichtenquellen. Diese Option überschreibt die individuell für jede Nachrichtenquelle ausgegebenen Benachrichtigungen.  Falls diese Option in &akregator; eingeschaltet ist, werden Sie über alle neuen Nachrichten benachrichtigt. Falls Sie nur die Benachrichtigungen für einige Nachrichtenquellen aktivieren möchten, sollten Sie diese Option nicht nutzen, sondern es sollten individuelle Benachrichtigungen für jede Nachrichtenquelle aktiviert werden.</para>
 </listitem>
 </varlistentry>
 <varlistentry>
@@ -807,7 +807,7 @@ say how to start it -->
 ></term>
 <listitem
 ><para
->Falls der Artikel serifenlose Schriftarten benutzt, wird er mit der als mittleren Schriftart dargestellten Schrift dargestellt.</para>
+>Falls der Artikel serifenlose Schriftarten verwendet, wird er mit der als mittleren Schriftart dargestellten Schrift dargestellt.</para>
 </listitem>
 </varlistentry>
 </variablelist>
@@ -893,7 +893,7 @@ say how to start it -->
 <varlistentry>
 <term
 ><guilabel
->Diesen Befehl benutzen:</guilabel
+>Diesen Befehl verwenden:</guilabel
 ></term>
 <listitem
 ><para
@@ -965,7 +965,7 @@ say how to start it -->
 ><para
 >Mit dieser Einstellung wird die Programmierschnittstelle zu <ulink url="https://safebrowsing.google.com/"
 >Google Safe Browsing</ulink
-> benutzt, um &URL;s mit der immer aktuellen List unsicherer Web-Resourcen von Google zu überprüfen.Beispiele für unsichere Web-Ressourcen sind Social-Engineering-Seiten (Phishing- und betrügerische Seiten) und Seiten, die Malware oder unerwünschte Software enthalten.</para>
+> verwendet, um &URL;s mit der immer aktuellen List unsicherer Web-Resourcen von Google zu überprüfen.Beispiele für unsichere Web-Ressourcen sind Social-Engineering-Seiten (Phishing- und betrügerische Seiten) und Seiten, die Malware oder unerwünschte Software enthalten.</para>
 </listitem>
 </varlistentry>
 <varlistentry>
@@ -1013,7 +1013,7 @@ say how to start it -->
 <title
 >Erweitert</title>
 <para
->Der Karteireiter Erweitert ermöglicht die Einstellung fortgeschrittener Funktionen, sollte aber auch nur benutzt werden, wenn Sie wissen, was sie tun.</para>
+>Der Karteireiter Erweitert ermöglicht die Einstellung fortgeschrittener Funktionen, sollte aber auch nur verwendet werden, wenn Sie wissen, was sie tun.</para>
 <screenshot>
 <screeninfo
 >Die Karteikarte Erweitert</screeninfo>
@@ -1688,7 +1688,7 @@ say how to start it -->
 ><para
 ><action
 >Lädt</action
-> den aktuellen Artikel in einem neuen Unterfenster, aber dieses Unterfenster wird nicht automatisch aktiviert. Diese Funktionen können Sie benutzen, um eine Nachrichtenquelle durchzusehen, alle interessanten Artikel in Unterfenstern im Hintergrund zu öffnen und diese Artikel dann später zu lesen. </para
+> den aktuellen Artikel in einem neuen Unterfenster, aber dieses Unterfenster wird nicht automatisch aktiviert. Diese Funktionen können Sie verwenden, um eine Nachrichtenquelle durchzusehen, alle interessanten Artikel in Unterfenstern im Hintergrund zu öffnen und diese Artikel dann später zu lesen. </para
 ></listitem>
 </varlistentry>
 <varlistentry>
