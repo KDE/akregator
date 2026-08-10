@@ -241,6 +241,7 @@
           <li xml:lang="ko">Windows 지원 추가.</li>
           <li xml:lang="lt">Pridėtas „Windows“ palaikymas.</li>
           <li xml:lang="nl">Ondersteuning voor windows toevoegen.</li>
+          <li xml:lang="pl">Dodano obsługę okien.</li>
           <li xml:lang="pt-BR">Adicionado suporte a janelas.</li>
           <li xml:lang="ru">Добавлена поддержка Windows;</li>
           <li xml:lang="sk">Pridať podporu pre Windows.</li>
@@ -274,6 +275,7 @@
           <li xml:lang="ko">Plasma 활동 구현.</li>
           <li xml:lang="lt">Įgyvendintas Plasma veiklų palaikymas.</li>
           <li xml:lang="nl">Activiteit van Plasma implementeren.</li>
+          <li xml:lang="pl">Dodano Aktywności Plazmy.</li>
           <li xml:lang="pt-BR">Implementado as atividades do plasma.</li>
           <li xml:lang="ru">Реализованы комнаты Plasma;</li>
           <li xml:lang="sk">Implementovať aktivitu Plasma.</li>
@@ -298,6 +300,7 @@
           <li xml:lang="ko">새 새로운 항목 위젯을 추가했습니다.</li>
           <li xml:lang="lt">Pridėtas naujas „Kas naujo“ valdiklis.</li>
           <li xml:lang="nl">Nieuw widget Wat-is-nieuw toevoegen.</li>
+          <li xml:lang="pl">Dodano nowy element interfejsu "co nowego".</li>
           <li xml:lang="pt-BR">Adicionado novo elemento 'O que há de novo?'.</li>
           <li xml:lang="ru">Добавлен новый виджет «Что нового?»;</li>
           <li xml:lang="sk">Pridať nový widget Čo je nové.</li>
