@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-07-15 02:38+0000\n"
-"PO-Revision-Date: 2026-06-05 11:49+0400\n"
+"PO-Revision-Date: 2026-08-10 17:51+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
 "Language: ar\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
-"X-Generator: Lokalize 23.08.5\n"
+"X-Generator: Lokalize 25.12.3\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -420,7 +420,7 @@ msgstr "أظهر أيقونة ال&صينية"
 #: configuration/ui/settings_general.ui:43
 #, kde-format
 msgid "Show unread articles in Taskbar"
-msgstr "أعرض المقالات غير المقروءة في شريط المهام"
+msgstr "اعرض المقالات غير المقروءة في شريط المهام"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_HideReadFeeds)
 #. i18n: ectx: label, entry, group (View)
@@ -836,7 +836,7 @@ msgstr "يحدد إذا ما كان سيسمح بعرض أيقونة الصين�
 #: interfaces/akregator.kcfg:182
 #, kde-format
 msgid "Show Unread In Taskbar"
-msgstr "أعرض غير المقروءة في شريط المهام"
+msgstr "اعرض غير المقروءة في شريط المهام"
 
 #. i18n: ectx: whatsthis, entry, group (General)
 #: interfaces/akregator.kcfg:183
@@ -1589,8 +1589,7 @@ msgid ""
 "Access denied: Cannot save feed list to <b>%1</b>. Please check your "
 "permissions."
 msgstr ""
-"رُفض الوصول: لا يمكن حفظ قائمة التلقيمات في <b>%1</b>. الرجاء تأكد من "
-"صلاحياتك."
+"رُفض الوصول: لا يمكن حفظ قائمة التلقيمات في <b>%1</b>. الرجاء تأكد من أذونك."
 
 #: src/akregator_part.cpp:418 src/akregator_part.cpp:471
 #, kde-format
@@ -1627,7 +1626,7 @@ msgstr "خطأ قراءة"
 #: src/akregator_part.cpp:470
 #, kde-format
 msgid "Access denied: cannot write to file %1. Please check your permissions."
-msgstr "رُفض الوصول: لا يمكن الكتابة للملف %1. تأكد من صلاحياتك."
+msgstr "رُفض الوصول: لا يمكن الكتابة للملف %1. تأكد من أذونك."
 
 #: src/akregator_part.cpp:486 src/akregator_part.cpp:495
 #, kde-format
