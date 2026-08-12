@@ -41,7 +41,7 @@ msgid ""
 "collects the content for you."
 msgstr ""
 "توفر قارئات التغذيات طريقة مناسبة لتصفح أنواع مختلفة من المحتوى، بما في ذلك "
-"الأخبار والمدونات والمحتويات الأخرى من المواقع عبر الإنترنت. بدلاً من التحقق "
+"الأخبار والمدونات والمحتويات الأخرى من المواقع عبر الإنترنت. بدلًا من التحقق "
 "من جميع مواقع الويب المفضلة لديك يدويًا للحصول على التحديثات، يجمع أكريغاتور "
 "المحتوى لك."
 
@@ -54,7 +54,7 @@ msgid ""
 msgstr ""
 "لمزيد من المعلومات حول اكريغاتور زر  <a href='https://kontact.kde.org/"
 "components/akregator/'>موقع اكريغاتور</a>. إذا لم ترغب برؤية هذه هذه الصفحة "
-"مجدداً <a href='config:/disable_introduction'>انقر هنا</a>."
+"مجددًا <a href='config:/disable_introduction'>انقر هنا</a>."
 
 #: src/formatter/html/combinedview.html:24
 msgid "Mark as Read"
@@ -124,7 +124,7 @@ msgstr[0] "أقل من يوم"
 msgstr[1] "يوم واحد"
 msgstr[2] "يومان"
 msgstr[3] "%v أيام"
-msgstr[4] "%v يوماً"
+msgstr[4] "%v يومًا"
 msgstr[5] "%v يوم"
 
 #: configuration/akregator_config_general.cpp:33
@@ -875,7 +875,7 @@ msgid ""
 "Open a link which would normally open in a new window (external browser) in "
 "a new tab instead"
 msgstr ""
-"افتح رابطاً يفترض أن يفتح نافذة في الوضع الاعتيادي (متصفح خارجي) في لسان جديد"
+"افتح رابطًا يفترض أن يفتح نافذة في الوضع الاعتيادي (متصفح خارجي) في لسان جديد"
 
 #. i18n: ectx: label, entry, group (Browser)
 #: interfaces/akregator.kcfg:222
@@ -963,13 +963,13 @@ msgstr "تلقيم جديد..."
 #, kde-format
 msgctxt "@info:status"
 msgid "Create a new feed"
-msgstr "أنشئ تلقيماً جديدًا"
+msgstr "أنشئ تلقيمًا جديدًا"
 
 #: kontactplugin/akregator_plugin.cpp:33
 #, kde-format
 msgctxt "@info:whatsthis"
 msgid "You will be presented with a dialog where you can add a new feed."
-msgstr "ستعرض عليك حواري بحيث تستطيع أن تضيف تلقيما جديداً"
+msgstr "ستعرض عليك حواري بحيث تستطيع أن تضيف تلقيما جديدًا"
 
 #: src/aboutdata.cpp:21
 #, kde-format
@@ -2026,7 +2026,7 @@ msgstr[0] "أقل من يوم"
 msgstr[1] "يوم واحد"
 msgstr[2] "يومان"
 msgstr[3] "أيام"
-msgstr[4] "يوماً"
+msgstr[4] "يومًا"
 msgstr[5] "يوم"
 
 #: src/feed/feedpropertiesdialog.cpp:96 src/feed/feedpropertiesdialog.cpp:158
@@ -2039,7 +2039,7 @@ msgstr "خصائص التلقيم"
 #, kde-format
 msgctxt "never fetch new articles"
 msgid "Never"
-msgstr "مطلقاً"
+msgstr "مطلقًا"
 
 #: src/feed/feedpropertiesdialog.cpp:124
 #, kde-format
@@ -2049,7 +2049,7 @@ msgstr[0] "أقل من يوم"
 msgstr[1] "يوم واحد"
 msgstr[2] "يومان"
 msgstr[3] "%v أيام"
-msgstr[4] "%v يوماً"
+msgstr[4] "%v يومًا"
 msgstr[5] "%v يوم"
 
 #: src/feed/feedpropertiesdialog.cpp:125
