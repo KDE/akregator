@@ -2617,15 +2617,3 @@ msgstr "Четене"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "Важно"
-
-#~ msgid "Add windows support"
-#~ msgstr "Добавяне на поддръжка на прозорци"
-
-#~ msgid "Implement Plasma Activity."
-#~ msgstr "Активирана интеграция в дейности на Plasma"
-
-#~ msgid "Add new whatsnew widget."
-#~ msgstr "Добавяне на нов уиджет \"Какво ново\"."
-
-#~ msgid "Add windows support."
-#~ msgstr "Добавяне на поддръжка на прозорци"
