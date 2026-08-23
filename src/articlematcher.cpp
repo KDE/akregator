@@ -117,7 +117,7 @@ void Criterion::readConfig(KConfigGroup *config)
 {
     m_subject = stringToSubject(config->readEntry(QStringLiteral("subject"), QString()));
     m_predicate = stringToPredicate(config->readEntry(QStringLiteral("predicate"), QString()));
-    QMetaType type = QMetaType::fromName(config->readEntry(QStringLiteral("objType"), QString()).toLatin1().constData());
+    QMetaType type = QMetaType::fromName(config->readEntry(QStringLiteral("objectType"), QString()).toLatin1().constData());
 
     if (QMetaType::Type(type.id()) != QMetaType::UnknownType) {
         m_object = config->readEntry(QStringLiteral("objectValue"), QVariant(type));
