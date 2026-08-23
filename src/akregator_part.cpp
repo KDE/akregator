@@ -241,6 +241,9 @@ void Part::slotSettingsChanged()
             m_mainWidget->slotSetTotalUnread();
         }
     } else {
+        if (!TrayIcon::getInstance()) {
+            return;
+        }
         TrayIcon::getInstance()->disconnect();
         delete TrayIcon::getInstance();
         TrayIcon::setInstance(nullptr);
