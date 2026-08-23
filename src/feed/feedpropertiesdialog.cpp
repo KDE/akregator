@@ -101,8 +101,8 @@ FeedPropertiesDialog::FeedPropertiesDialog(QWidget *parent, const QString &name)
     auto buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, this);
     buttonBox->setContentsMargins(style()->pixelMetric(QStyle::PM_LayoutLeftMargin),
                                   style()->pixelMetric(QStyle::PM_LayoutTopMargin),
-                                  style()->pixelMetric(QStyle::PM_LayoutBottomMargin),
-                                  style()->pixelMetric(QStyle::PM_LayoutRightMargin));
+                                  style()->pixelMetric(QStyle::PM_LayoutRightMargin),
+                                  style()->pixelMetric(QStyle::PM_LayoutBottomMargin));
     buttonBox->setProperty("_breeze_force_frame", true);
     mOkButton = buttonBox->button(QDialogButtonBox::Ok);
     mOkButton->setDefault(true);
