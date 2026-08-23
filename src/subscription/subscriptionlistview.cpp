@@ -370,7 +370,7 @@ void SubscriptionListView::slotItemDown()
     }
     Q_EMIT userActionTakingPlace();
     const QModelIndex current = currentIndex();
-    if (current.row() >= model()->rowCount(current.parent())) {
+    if (current.row() + 1 >= model()->rowCount(current.parent())) {
         return;
     }
     setCurrentIndex(current.sibling(current.row() + 1, current.column()));
