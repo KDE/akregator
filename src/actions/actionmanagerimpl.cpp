@@ -596,12 +596,6 @@ void ActionManagerImpl::initTabWidget(TabWidget *tabWidget)
     connect(action, &QAction::triggered, d->tabWidget, &TabWidget::slotPreviousTab);
     coll->setDefaultShortcut(action, QKeySequence(Qt::Key_Comma | Qt::CTRL));
 
-    action = coll->addAction(QStringLiteral("tab_detach"));
-    action->setIcon(QIcon::fromTheme(QStringLiteral("tab-detach")));
-    action->setText(i18n("Detach Tab"));
-    connect(action, &QAction::triggered, d->tabWidget, &TabWidget::slotDetachTab);
-    coll->setDefaultShortcut(action, QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_B));
-
     action = KStandardActions::copy(d->tabWidget, &TabWidget::slotCopy, coll);
     coll->addAction(QStringLiteral("viewer_copy"), action);
 
@@ -628,11 +622,6 @@ void ActionManagerImpl::initTabWidget(TabWidget *tabWidget)
     coll->addAction(QStringLiteral("find_in_messages"), action);
     connect(action, &QAction::triggered, d->tabWidget, &TabWidget::slotFindTextInHtml);
     coll->setDefaultShortcut(action, KStandardShortcut::find().first());
-
-    action = coll->addAction(QStringLiteral("tab_reload"));
-    action->setIcon(QIcon::fromTheme(QStringLiteral("view-refresh")));
-    action->setText(i18nc("@action", "Reload Tab"));
-    connect(action, &QAction::triggered, d->tabWidget, &TabWidget::slotReloadTab);
 
     action = coll->addAction(QStringLiteral("tab_copyurl"));
     action->setIcon(QIcon::fromTheme(QStringLiteral("edit-copy")));
