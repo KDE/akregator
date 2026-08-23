@@ -26,7 +26,8 @@ static uint calcHash(const QString &str)
     if (str.isNull()) { // handle null string as "", prevents crash
         return calcHash(QLatin1StringView(""));
     }
-    const char *s = str.toLatin1().constData();
+    const QByteArray ba = str.toLatin1();
+    const char *s = ba.constData();
     uint hash = 5381;
     int c;
     while ((c = *s++)) {
