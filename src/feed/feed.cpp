@@ -606,7 +606,7 @@ QDomElement Feed::toOPML(QDomElement parent, QDomDocument document) const
     if (d->m_activityEnabled) {
         el.setAttribute(QStringLiteral("activityEnabled"), QStringLiteral("true"));
     }
-    el.setAttribute(QStringLiteral("activities"), d->m_activities.join(u','));
+    el.setAttribute(QStringLiteral("activities"), d->m_activities.join(u';'));
 #endif
     el.setAttribute(QStringLiteral("type"), QStringLiteral("rss")); // despite some additional fields, it is still "rss" OPML
     el.setAttribute(QStringLiteral("version"), QStringLiteral("RSS"));
