@@ -11,7 +11,7 @@
 #include <KLocalizedString>
 
 using namespace Akregator;
-
+using namespace Qt::Literals::StringLiterals;
 TrayIcon *TrayIcon::m_instance = nullptr;
 
 TrayIcon *TrayIcon::getInstance()
@@ -38,7 +38,7 @@ TrayIcon::TrayIcon(QObject *parent)
     : KStatusNotifierItem(parent)
 {
     setToolTipTitle(i18n("Akregator"));
-    setToolTipIconByName(i18n("Akregator"));
+    setToolTipIconByName(u"akregator"_s);
     setIconByName(QStringLiteral("akregator-symbolic"));
 }
 
