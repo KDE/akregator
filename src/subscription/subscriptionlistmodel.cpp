@@ -207,6 +207,7 @@ SubscriptionListModel::SubscriptionListModel(const QSharedPointer<const FeedList
     connect(m_feedList.data(), &FeedList::fetchStarted, this, &SubscriptionListModel::fetchStarted);
     connect(m_feedList.data(), &FeedList::fetched, this, &SubscriptionListModel::fetched);
     connect(m_feedList.data(), &FeedList::fetchAborted, this, &SubscriptionListModel::fetchAborted);
+    connect(m_feedList.data(), &FeedList::fetchError, this, &SubscriptionListModel::fetchError);
 
     m_errorColor = KColorScheme(QPalette::Normal, KColorScheme::View).foreground(KColorScheme::NegativeText).color();
 }
