@@ -71,6 +71,7 @@ void DownloadArticleJob::slotUrlSaveResult(KJob *job)
         } else {
             qCWarning(AKREGATOR_LOG) << "There is no GUI delegate set for a kjob, and it failed with error:" << job->errorString();
         }
+        deleteLater();
     } else {
         sendAttachment();
         deleteLater();
