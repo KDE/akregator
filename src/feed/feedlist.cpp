@@ -369,12 +369,12 @@ QDomDocument FeedList::toOpml() const
 
 const TreeNode *FeedList::findByID(uint id) const
 {
-    return d->idMap[id];
+    return d->idMap.value(id);
 }
 
 TreeNode *FeedList::findByID(uint id)
 {
-    return d->idMap[id];
+    return d->idMap.value(id);
 }
 
 QList<const TreeNode *> FeedList::findByTitle(const QString &title) const
