@@ -94,7 +94,6 @@ void SearchBar::slotClearSearch()
     if (status() != Akregator::StatusSearchButtons::AllArticles || !m_searchLine->text().trimmed().isEmpty()) {
         m_searchLine->clear();
         m_statusSearchButtons->setStatus(Akregator::StatusSearchButtons::AllArticles);
-        m_statusSearchButtons->setStatus(Akregator::StatusSearchButtons::AllArticles);
         m_timer.stop();
         slotStopActiveSearch();
     }
@@ -102,7 +101,6 @@ void SearchBar::slotClearSearch()
 
 void SearchBar::slotSetStatus(int status)
 {
-    m_statusSearchButtons->setStatus(static_cast<Akregator::StatusSearchButtons::Status>(status));
     m_statusSearchButtons->setStatus(static_cast<Akregator::StatusSearchButtons::Status>(status));
     triggerTimer();
 }
