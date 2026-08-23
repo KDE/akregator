@@ -7,7 +7,6 @@
 */
 
 #include "articleformatter.h"
-#include "akregatorconfig.h"
 #include "article.h"
 #include "utils.h"
 
@@ -34,7 +33,7 @@ QString ArticleFormatter::formatEnclosure(const Enclosure &enclosure)
     if (!type.isEmpty() && length > 0) {
         KFormat format;
         inf = i18n("(%1, %2)", type, format.formatByteSize(length));
-    } else if (!type.isNull()) {
+    } else if (!type.isEmpty()) {
         inf = type;
     } else if (length > 0) {
         KFormat format;
