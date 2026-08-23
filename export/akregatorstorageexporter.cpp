@@ -76,9 +76,8 @@ public:
 
     void write(const QVariant &value, QXmlStreamWriter &writer, TextMode mode = PlainText) const
     {
-        const QVariant qv(value);
-        Q_ASSERT(qv.canConvert<QString>());
-        const QString str = qv.toString();
+        Q_ASSERT(value.canConvert<QString>());
+        const QString str = value.toString();
         if (str.isEmpty()) {
             return;
         }
