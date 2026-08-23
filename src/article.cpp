@@ -350,7 +350,7 @@ bool Article::operator>(const Article &other) const
 
 bool Article::operator>=(const Article &other) const
 {
-    return pubDate() > other.pubDate() || *this == other;
+    return pubDate() < other.pubDate() || *this == other;
 }
 
 bool Article::operator==(const Article &other) const
