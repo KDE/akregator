@@ -30,6 +30,7 @@
 #include <QScrollBar>
 
 #include <cassert>
+#include <utility>
 
 using namespace Akregator;
 
@@ -224,11 +225,11 @@ void ArticleListView::paintEvent(QPaintEvent *event)
 void ArticleListView::saveHeaderSettings()
 {
     if (model()) {
-        const QByteArray state = header()->saveState();
+        QByteArray state = header()->saveState();
         if (m_columnMode == FeedMode) {
-            m_feedHeaderState = state;
+            m_feedHeaderState = std::move(state);
         } else {
-            m_groupHeaderState = state;
+            m_groupHeaderState = std::move(state);
         }
     }
 
@@ -414,11 +415,11 @@ void ArticleListView::setModel(QAbstractItemModel *m)
 
     QAbstractItemModel *const oldModel = model();
     if (oldModel) {
-        const QByteArray state = header()->saveState();
+        QByteArray state = header()->saveState();
         if (groupMode) {
-            m_groupHeaderState = state;
+            m_groupHeaderState = std::move(state);
         } else {
-            m_feedHeaderState = state;
+            m_feedHeaderState = std::move(state);
         }
     }
 

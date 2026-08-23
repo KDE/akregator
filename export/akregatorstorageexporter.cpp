@@ -23,6 +23,7 @@
 #include <QUrl>
 
 #include <iostream>
+#include <utility>
 
 #include <KPluginFactory>
 #include <cassert>
@@ -53,9 +54,9 @@ enum Status {
 class Element
 {
 public:
-    Element(const QString &ns_, const QString &name_)
-        : ns(ns_)
-        , name(name_)
+    Element(QString ns_, QString name_)
+        : ns(std::move(ns_))
+        , name(std::move(name_))
         , qualifiedName(ns + QLatin1Char(':') + name)
     {
     }

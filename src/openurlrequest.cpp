@@ -10,8 +10,8 @@
 
 using namespace Akregator;
 
-OpenUrlRequest::OpenUrlRequest(const QUrl &url)
-    : m_url(url)
+OpenUrlRequest::OpenUrlRequest(QUrl url)
+    : m_url(std::move(url))
     , m_options(OpenUrlRequest::Options::None)
 {
 }

@@ -23,6 +23,7 @@
 
 #include <QUrl>
 #include <cassert>
+#include <utility>
 
 using namespace Syndication;
 
@@ -77,7 +78,7 @@ namespace Akregator
 {
 struct Article::Private : public Shared {
     Private();
-    Private(const QString &guid, Feed *feed, Backend::FeedStorage *archive);
+    Private(QString guid, Feed *feed, Backend::FeedStorage *archive);
     Private(const ItemPtr &article, Feed *feed, Backend::FeedStorage *archive);
 
     /** The status of the article is stored in an int, the bits having the
@@ -112,9 +113,9 @@ namespace
 class EnclosureImpl : public Enclosure
 {
 public:
-    EnclosureImpl(const QString &url, const QString &type, uint length)
-        : m_url(url)
-        , m_type(type)
+    EnclosureImpl(QString url, QString type, uint length)
+        : m_url(std::move(url))
+        , m_type(std::move(type))
         , m_length(length)
     {
     }
@@ -166,9 +167,9 @@ Article::Private::Private()
 {
 }
 
-Article::Private::Private(const QString &guid_, Feed *feed_, Backend::FeedStorage *archive_)
+Article::Private::Private(QString guid_, Feed *feed_, Backend::FeedStorage *archive_)
     : feed(feed_)
-    , guid(guid_)
+    , guid(std::move(guid_))
     , archive(archive_)
 {
     archive->article(guid, hash, title, status, pubDate);
@@ -434,15 +435,15 @@ QString Article::authorUri() const
 
 QString Article::authorShort() const
 {
-    const QString name = authorName();
+    QString name = authorName();
     if (!name.isEmpty()) {
         return name;
     }
-    const QString email = authorEMail();
+    QString email = authorEMail();
     if (!email.isEmpty()) {
         return email;
     }
-    const QString uri = authorUri();
+    QString uri = authorUri();
     if (!uri.isEmpty()) {
         return uri;
     }
@@ -451,7 +452,7 @@ QString Article::authorShort() const
 
 QString Article::authorAsHtml() const
 {
-    const QString name = authorName();
+    QString name = authorName();
     const QString email = authorEMail();
 
     if (!email.isEmpty()) {
@@ -546,7 +547,7 @@ QSharedPointer<const Enclosure> Article::enclosure() const
         bool hasEnc;
         d->archive->enclosure(d->guid, hasEnc, url, type, length);
         if (hasEnc) {
-            d->enclosure.reset(new EnclosureImpl(url, type, static_cast<uint>(length)));
+            d->enclosure.reset(new EnclosureImpl(std::move(url), std::move(type), static_cast<uint>(length)));
         } else {
             d->enclosure.reset(new EnclosureImpl(QString(), QString(), 0));
         }

@@ -12,6 +12,7 @@
 #include <QList>
 #include <QString>
 #include <QVariant>
+#include <utility>
 
 class KConfigGroup;
 
@@ -60,7 +61,7 @@ public:
     };
 
     ArticleMatcher();
-    ArticleMatcher(const QList<Criterion> &criteria, Association assoc);
+    ArticleMatcher(QList<Criterion> criteria, Association assoc);
 
     ~ArticleMatcher() override;
 
@@ -111,7 +112,7 @@ public:
     static Predicate stringToPredicate(const QString &predStr);
 
     Criterion();
-    Criterion(Subject subject, Predicate predicate, const QVariant &object);
+    Criterion(Subject subject, Predicate predicate, QVariant object);
     virtual ~Criterion() = default;
 
     bool satisfiedBy(const Article &article) const;

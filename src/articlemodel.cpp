@@ -26,6 +26,7 @@
 #include <QLocale>
 #include <cassert>
 #include <cmath>
+#include <utility>
 
 using namespace Akregator;
 
@@ -35,7 +36,7 @@ static QString stripHtml(const QString &html)
 {
     QString str(html);
     // TODO: preserve some formatting, such as line breaks
-    str = Akregator::Utils::stripTags(str); // remove tags
+    str = Akregator::Utils::stripTags(std::move(str)); // remove tags
     str = Syndication::resolveEntities(str);
     return str.simplified();
 }

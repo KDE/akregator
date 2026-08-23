@@ -57,6 +57,7 @@
 #include <QFontDatabase>
 #include <QStandardPaths>
 #include <memory>
+#include <utility>
 
 namespace
 {
@@ -510,11 +511,11 @@ void Part::fetchFeedUrl(const QString &s)
 
 void Part::addFeedsToGroup(const QStringList &urls, const QString &group)
 {
-    const AddFeedRequest req{
+    AddFeedRequest req{
         .urls = urls,
         .group = group,
     };
-    m_requests.append(req);
+    m_requests.append(std::move(req));
     if (m_standardListLoaded) {
         flushAddFeedRequests();
     }
@@ -638,7 +639,7 @@ bool Part::handleCommandLine(const QStringList &args)
                 }
             }
 
-            feedsToAdd.append(url);
+            feedsToAdd.append(std::move(url));
         }
     }
 

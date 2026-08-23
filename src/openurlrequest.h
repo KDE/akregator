@@ -10,6 +10,8 @@
 
 #include <QUrl>
 
+#include <utility>
+
 #include "akregator_export.h"
 
 namespace Akregator
@@ -27,7 +29,7 @@ public:
         ExternalBrowser /**< open in external browser */
     };
 
-    explicit OpenUrlRequest(const QUrl &url = QUrl());
+    explicit OpenUrlRequest(QUrl url = QUrl());
 
     /**
      * the Id of the frame that sent the request */

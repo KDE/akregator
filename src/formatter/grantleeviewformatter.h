@@ -20,7 +20,7 @@ class Folder;
 class GrantleeViewFormatter
 {
 public:
-    explicit GrantleeViewFormatter(const QString &htmlFileName, int deviceDpiY);
+    explicit GrantleeViewFormatter(QString htmlFileName, int deviceDpiY);
     ~GrantleeViewFormatter();
 
     [[nodiscard]] QString formatArticles(const QList<Article> &article, ArticleFormatter::IconOption icon);

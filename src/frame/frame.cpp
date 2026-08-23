@@ -13,6 +13,8 @@
 
 #include <Libkdepim/ProgressManager>
 
+#include <utility>
+
 using namespace Akregator;
 Frame::Frame(QWidget *parent)
     : QWidget(parent)
@@ -46,7 +48,7 @@ void Frame::slotSetCaption(const QString &s)
 void Frame::slotSetStatusText(const QString &s)
 {
     m_statusText = s;
-    m_statusText = Utils::stripTags(m_statusText);
+    m_statusText = Utils::stripTags(std::move(m_statusText));
     Q_EMIT signalStatusText(this, m_statusText);
 }
 

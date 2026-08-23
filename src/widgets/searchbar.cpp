@@ -22,6 +22,7 @@
 #include <QStandardPaths>
 #include <QString>
 #include <chrono>
+#include <utility>
 
 using namespace std::chrono_literals;
 
@@ -138,8 +139,8 @@ void SearchBar::slotStopActiveSearch()
     std::vector<QSharedPointer<const AbstractMatcher>> matchers;
     Settings::setStatusFilter(m_statusSearchButtons->status());
     Settings::setTextFilter(m_searchText);
-    m_matchers = matchers;
-    Q_EMIT signalSearch(matchers);
+    m_matchers = std::move(matchers);
+    Q_EMIT signalSearch(m_matchers);
 }
 
 void SearchBar::slotActivateSearch()
@@ -187,15 +188,15 @@ void SearchBar::slotActivateSearch()
 
     std::vector<QSharedPointer<const AbstractMatcher>> matchers;
     if (!textCriteria.isEmpty()) {
-        matchers.push_back(QSharedPointer<const AbstractMatcher>(new ArticleMatcher(textCriteria, ArticleMatcher::LogicalOr)));
+        matchers.push_back(QSharedPointer<const AbstractMatcher>(new ArticleMatcher(std::move(textCriteria), ArticleMatcher::LogicalOr)));
     }
     if (!statusCriteria.isEmpty()) {
-        matchers.push_back(QSharedPointer<const AbstractMatcher>(new ArticleMatcher(statusCriteria, ArticleMatcher::LogicalOr)));
+        matchers.push_back(QSharedPointer<const AbstractMatcher>(new ArticleMatcher(std::move(statusCriteria), ArticleMatcher::LogicalOr)));
     }
     Settings::setStatusFilter(m_statusSearchButtons->status());
     Settings::setTextFilter(m_searchText);
-    m_matchers = matchers;
-    Q_EMIT signalSearch(matchers);
+    m_matchers = std::move(matchers);
+    Q_EMIT signalSearch(m_matchers);
 }
 
 void Akregator::SearchBar::triggerTimer()

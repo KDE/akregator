@@ -95,10 +95,10 @@ Criterion::Predicate Criterion::stringToPredicate(const QString &predStr)
 
 Criterion::Criterion() = default;
 
-Criterion::Criterion(Subject subject, Predicate predicate, const QVariant &object)
+Criterion::Criterion(Subject subject, Predicate predicate, QVariant object)
     : m_subject(subject)
     , m_predicate(predicate)
-    , m_object(object)
+    , m_object(std::move(object))
 {
 }
 
@@ -206,8 +206,8 @@ ArticleMatcher::ArticleMatcher()
 
 ArticleMatcher::~ArticleMatcher() = default;
 
-ArticleMatcher::ArticleMatcher(const QList<Criterion> &criteria, Association assoc)
-    : m_criteria(criteria)
+ArticleMatcher::ArticleMatcher(QList<Criterion> criteria, Association assoc)
+    : m_criteria(std::move(criteria))
     , m_association(assoc)
 {
 }

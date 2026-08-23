@@ -22,12 +22,13 @@
 #include <QPalette>
 #include <QVariantHash>
 #include <QVariantList>
+#include <utility>
 
 using namespace Qt::Literals;
 using namespace Akregator;
 
-GrantleeViewFormatter::GrantleeViewFormatter(const QString &htmlFileName, int deviceDpiY)
-    : mHtmlArticleFileName(htmlFileName)
+GrantleeViewFormatter::GrantleeViewFormatter(QString htmlFileName, int deviceDpiY)
+    : mHtmlArticleFileName(std::move(htmlFileName))
     , mDirectionString(QApplication::isRightToLeft() ? QStringLiteral("rtl") : QStringLiteral("ltr"))
     , mDeviceDpiY(deviceDpiY)
 {
