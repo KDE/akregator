@@ -95,6 +95,7 @@ ArticleViewerWebEngine::ArticleViewerWebEngine(KActionCollection *ac, QWidget *p
     connect(blockTracking, &WebEngineViewer::BlockTrackingUrlInterceptor::trackingFound, this, &ArticleViewerWebEngine::trackingFound);
     mNetworkAccessManager->addInterceptor(blockTracking);
     mBlockExternalReference = new WebEngineViewer::BlockExternalResourcesUrlInterceptor(this);
+    mNetworkAccessManager->addInterceptor(mBlockExternalReference);
     // TODO connect(mBlockExternalReference, &WebEngineViewer::BlockExternalResourcesUrlInterceptor::formSubmittedForbidden, this,
     // &MailWebEngineView::urlBlocked);
 #endif
