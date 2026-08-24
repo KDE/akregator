@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-07-15 00:45+0000\n"
+"POT-Creation-Date: 2026-08-24 00:45+0000\n"
 "PO-Revision-Date: 2026-05-28 11:38+0200\n"
 "Last-Translator: Libor Filípek <libor.filipek@gmail.com>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
@@ -941,10 +941,10 @@ msgid "Resets the quick filter when changing feeds."
 msgstr "Resetuje rychlý filtr při změně kanálu."
 
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
-#: src/akregator_part.cpp:125
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:145
+#: src/akregator_part.cpp:126
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:146
 #: src/mainwidget.cpp:135 src/mainwidget.cpp:1329 src/trayicon.cpp:40
-#: src/trayicon.cpp:41 src/trayicon.cpp:53
+#: src/trayicon.cpp:53
 #, kde-format
 msgid "Akregator"
 msgstr "Akregator"
@@ -1444,50 +1444,39 @@ msgstr "Vybrat následující kartu"
 msgid "Select Previous Tab"
 msgstr "Vybrat předchozí kartu"
 
-#: src/actions/actionmanagerimpl.cpp:601
-#, kde-format
-msgid "Detach Tab"
-msgstr "Vytrhnout kartu"
-
-#: src/actions/actionmanagerimpl.cpp:615
+#: src/actions/actionmanagerimpl.cpp:609
 #, kde-format
 msgid "Mute"
 msgstr "Ztlumit"
 
-#: src/actions/actionmanagerimpl.cpp:619
+#: src/actions/actionmanagerimpl.cpp:613
 #, kde-format
 msgid "Unmute"
 msgstr "Povolit zvuk"
 
-#: src/actions/actionmanagerimpl.cpp:622
+#: src/actions/actionmanagerimpl.cpp:616
 #, kde-format
 msgctxt "@action"
 msgid "Speak Text"
 msgstr "Přečíst text"
 
-#: src/actions/actionmanagerimpl.cpp:627
+#: src/actions/actionmanagerimpl.cpp:621
 #, kde-format
 msgid "&Find in Message…"
 msgstr "Hle&dat ve zprávě…"
 
-#: src/actions/actionmanagerimpl.cpp:634
-#, kde-format
-msgctxt "@action"
-msgid "Reload Tab"
-msgstr "Znovu načíst kartu"
-
-#: src/actions/actionmanagerimpl.cpp:639
+#: src/actions/actionmanagerimpl.cpp:628
 #, kde-format
 msgctxt "@action"
 msgid "Copy Tab Address"
 msgstr "Zkopírovat adresu karty"
 
-#: src/actions/actionmanagerimpl.cpp:644
+#: src/actions/actionmanagerimpl.cpp:633
 #, kde-format
 msgid "Close Tab"
 msgstr "Zavřít kartu"
 
-#: src/actions/actionmanagerimpl.cpp:657
+#: src/actions/actionmanagerimpl.cpp:646
 #, kde-format
 msgctxt "@action"
 msgid "Activate Tab %1"
@@ -1553,32 +1542,32 @@ msgctxt "@info:shell"
 msgid "Lists the available options for user feedback"
 msgstr "Seznam dostupných voleb pro uživatelskou zpětnou vazbu"
 
-#: src/akregator_part.cpp:77
+#: src/akregator_part.cpp:78
 #, kde-format
 msgid "Feeds"
 msgstr "Kanály"
 
-#: src/akregator_part.cpp:88
+#: src/akregator_part.cpp:89
 #, kde-format
 msgid "Planet KDE"
 msgstr "Planeta KDE"
 
-#: src/akregator_part.cpp:93
+#: src/akregator_part.cpp:94
 #, kde-format
 msgid "KDE Apps"
 msgstr "KDE aplikace"
 
-#: src/akregator_part.cpp:99
+#: src/akregator_part.cpp:100
 #, kde-format
 msgid "Spanish feeds"
 msgstr "Španělské kanály"
 
-#: src/akregator_part.cpp:103
+#: src/akregator_part.cpp:104
 #, kde-format
 msgid "Planet KDE España"
 msgstr "Planeta KDE Španělsko"
 
-#: src/akregator_part.cpp:415
+#: src/akregator_part.cpp:419
 #, kde-format
 msgid ""
 "Access denied: Cannot save feed list to <b>%1</b>. Please check your "
@@ -1587,24 +1576,24 @@ msgstr ""
 "Přístup odmítnut: nelze uložit seznam kanálů <b>(%1)</b>. Prosím "
 "zkontrolujte svá oprávnění."
 
-#: src/akregator_part.cpp:416 src/akregator_part.cpp:469
+#: src/akregator_part.cpp:420 src/akregator_part.cpp:473
 #, kde-format
 msgctxt "@title:window"
 msgid "Write Error"
 msgstr "Chyba při zápisu"
 
-#: src/akregator_part.cpp:452
+#: src/akregator_part.cpp:456
 #, kde-format
 msgid "Could not import the file %1 (no valid OPML)"
 msgstr "Nelze importovat soubor %1 (neplatné OPML)"
 
-#: src/akregator_part.cpp:452 src/command/loadfeedlistcommand.cpp:71
+#: src/akregator_part.cpp:456 src/command/loadfeedlistcommand.cpp:71
 #, kde-format
 msgctxt "@title:window"
 msgid "OPML Parsing Error"
 msgstr "Chyba v analýze OPML"
 
-#: src/akregator_part.cpp:456
+#: src/akregator_part.cpp:460
 #, kde-format
 msgid ""
 "The file %1 could not be read, check if it exists or if it is readable for "
@@ -1613,25 +1602,25 @@ msgstr ""
 "Soubor %1 není možné číst. Zkontrolujte prosím, zda existuje a současný "
 "uživatel jej může číst."
 
-#: src/akregator_part.cpp:457 src/command/loadfeedlistcommand.cpp:144
+#: src/akregator_part.cpp:461 src/command/loadfeedlistcommand.cpp:144
 #, kde-format
 msgctxt "@title:window"
 msgid "Read Error"
 msgstr "Chyba při čtení"
 
-#: src/akregator_part.cpp:468
+#: src/akregator_part.cpp:472
 #, kde-format
 msgid "Access denied: cannot write to file %1. Please check your permissions."
 msgstr ""
 "Přístup odmítnut: nelze zapisovat do souboru %1. Prosím zkontrolujte "
 "oprávnění."
 
-#: src/akregator_part.cpp:484 src/akregator_part.cpp:493
+#: src/akregator_part.cpp:488 src/akregator_part.cpp:497
 #, kde-format
 msgid "OPML Outlines (%1);;All Files (*)"
 msgstr "Osnovy OPML (*%1);;Všechny soubory (*)"
 
-#: src/akregator_part.cpp:618
+#: src/akregator_part.cpp:622
 #, kde-format
 msgid "Imported Folder"
 msgstr "Importovaná složka"
@@ -1641,17 +1630,17 @@ msgstr "Importovaná složka"
 msgid "The feed to be listed was already removed."
 msgstr "Kanál k vypsání byl již smazán."
 
-#: src/articlelistview.cpp:160 src/subscription/subscriptionlistview.cpp:180
+#: src/articlelistview.cpp:161 src/subscription/subscriptionlistview.cpp:180
 #, kde-format
 msgid "Columns"
 msgstr "Sloupce"
 
-#: src/articlelistview.cpp:218
+#: src/articlelistview.cpp:219
 #, kde-format
 msgid "No result found"
 msgstr "Nebyl nalezen žádný výsledek"
 
-#: src/articlelistview.cpp:379
+#: src/articlelistview.cpp:380
 #, kde-format
 msgid ""
 "<h2>Article list</h2>Here you can browse articles from the currently "
@@ -1665,124 +1654,124 @@ msgstr ""
 "důležité\") nebo je smazat pomocí nabídky na pravém tlačítku myši. Stránku "
 "článku lze zobrazit v interní kartě nebo okně externího prohlížeče."
 
-#: src/articlemodel.cpp:74
+#: src/articlemodel.cpp:75
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Title"
 msgstr "Název"
 
-#: src/articlemodel.cpp:76
+#: src/articlemodel.cpp:77
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Feed"
 msgstr "Kanál"
 
-#: src/articlemodel.cpp:78
+#: src/articlemodel.cpp:79
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Date"
 msgstr "Datum"
 
-#: src/articlemodel.cpp:80
+#: src/articlemodel.cpp:81
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Author"
 msgstr "Autor"
 
-#: src/articlemodel.cpp:82
+#: src/articlemodel.cpp:83
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Description"
 msgstr "Popis"
 
-#: src/articlemodel.cpp:84
+#: src/articlemodel.cpp:85
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Content"
 msgstr "Obsah"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:146
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:147
 #, kde-format
 msgid "Akregator is a KDE news feed reader."
 msgstr "Akregator je čtečka kanálů novinek pro KDE."
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:190
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:191
 #, kde-format
 msgctxt "@title:window"
 msgid "Save As"
 msgstr "Uložit jako"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:274
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:275
 #: src/frame/webengine/akrwebengineviewer.cpp:112
 #, kde-format
 msgid "&Save Link As…"
 msgstr "Uložit odkaz j&ako…"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:278
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:279
 #: src/frame/webengine/akrwebengineviewer.cpp:116
 #, kde-format
 msgid "Copy &Link Address"
 msgstr "Ko&pírovat adresu odkazu"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:286
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:287
 #: src/frame/webengine/akrwebengineviewer.cpp:124
 #, kde-format
 msgctxt "@action"
 msgid "Copy Image URL"
 msgstr "Kopírovat URL obrázku"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:290
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:291
 #: src/frame/webengine/akrwebengineviewer.cpp:128
 #, kde-format
 msgctxt "@action"
 msgid "Save Image…"
 msgstr "Uložit obrázek…"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:381
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:382
 #, kde-format
 msgid "Disable"
 msgstr "Zakázat"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:382
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:383
 #, kde-format
 msgid "Keep Enabled"
 msgstr "Nechat povolené"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:384
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:385
 #, kde-format
 msgid "Are you sure you want to disable this introduction page?"
 msgstr "Opravdu si přejete zakázat úvodní stránku?"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:385
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:386
 #, kde-format
 msgctxt "@title:window"
 msgid "Disable Introduction Page"
 msgstr "Zakázat úvodní stránku"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:415
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:416
 #, kde-format
 msgid "This web site is a malware, do you want to continue to show it?"
 msgstr "Tato webová stránka je malware, chcete pokračovat s jejím zobrazením?"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:416
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:417
 #, kde-format
 msgctxt "@title:window"
 msgid "Malware"
 msgstr "Malware"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:428
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:429
 #, kde-format
 msgid "The network is broken."
 msgstr "Síť je přerušena."
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:428
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:431
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:429
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:432
 #, kde-format
 msgctxt "@title:window"
 msgid "Check Phishing Url"
 msgstr "Zkontrolovat URL Phishing"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:431
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:432
 #, kde-format
 msgid "The url %1 is not valid."
 msgstr "URL %1 je neplatná."
@@ -2054,19 +2043,19 @@ msgctxt "@title:window"
 msgid "Properties of %1"
 msgstr "Vlastnosti %1"
 
-#: src/formatter/articleformatter.cpp:36
+#: src/formatter/articleformatter.cpp:35
 #, kde-format
 msgid "(%1, %2)"
 msgstr "(%1, %2)"
 
-#: src/formatter/grantleeviewformatter.cpp:165
-#: src/formatter/grantleeviewformatter.cpp:220
+#: src/formatter/grantleeviewformatter.cpp:166
+#: src/formatter/grantleeviewformatter.cpp:221
 #, kde-format
 msgid " (no unread articles)"
 msgstr " (žádné nepřečtené články)"
 
-#: src/formatter/grantleeviewformatter.cpp:167
-#: src/formatter/grantleeviewformatter.cpp:222
+#: src/formatter/grantleeviewformatter.cpp:168
+#: src/formatter/grantleeviewformatter.cpp:223
 #, kde-format
 msgid " (1 unread article)"
 msgid_plural " (%1 unread articles)"
@@ -2074,62 +2063,62 @@ msgstr[0] " (1 nepřečtený článek)"
 msgstr[1] " (%1 nepřečtené články)"
 msgstr[2] " (%1 nepřečtených článků)"
 
-#: src/formatter/grantleeviewformatter.cpp:182
+#: src/formatter/grantleeviewformatter.cpp:183
 #, kde-format
 msgid "<b>Description:</b> %1<br />"
 msgstr "<b>Popis:</b> %1<br />"
 
-#: src/formatter/grantleeviewformatter.cpp:189
+#: src/formatter/grantleeviewformatter.cpp:190
 #, kde-format
 msgid "<b>Homepage:</b> <a href=\"%1\">%1</a>"
 msgstr "<b>Domovská stránka:</b> <a href=\"%1\">%1</a>"
 
-#: src/formatter/grantleeviewformatter.cpp:196
+#: src/formatter/grantleeviewformatter.cpp:197
 #, kde-format
 msgid "<b>Copyright:</b> %1</a>"
 msgstr "<b>Autorská práva:</b> %1</a>"
 
-#: src/formatter/grantleeviewformatter.cpp:256
+#: src/formatter/grantleeviewformatter.cpp:257
 #, kde-format
 msgid "Date"
 msgstr "Datum"
 
-#: src/formatter/grantleeviewformatter.cpp:257
+#: src/formatter/grantleeviewformatter.cpp:258
 #, kde-format
 msgid "Comment"
 msgstr "Komentář"
 
-#: src/formatter/grantleeviewformatter.cpp:258
+#: src/formatter/grantleeviewformatter.cpp:259
 #, kde-format
 msgid "Complete Story"
 msgstr "Celý článek"
 
-#: src/formatter/grantleeviewformatter.cpp:259
+#: src/formatter/grantleeviewformatter.cpp:260
 #, kde-format
 msgid "Author"
 msgstr "Autor"
 
-#: src/formatter/grantleeviewformatter.cpp:260
+#: src/formatter/grantleeviewformatter.cpp:261
 #, kde-format
 msgid "Enclosure"
 msgstr "Příloha"
 
-#: src/frame/frame.cpp:20
+#: src/frame/frame.cpp:22
 #, kde-format
 msgid "Untitled"
 msgstr "Beze jména"
 
-#: src/frame/frame.cpp:140
+#: src/frame/frame.cpp:142
 #, kde-format
 msgid "Loading…"
 msgstr "Probíhá načítání…"
 
-#: src/frame/frame.cpp:154
+#: src/frame/frame.cpp:156
 #, kde-format
 msgid "Loading canceled"
 msgstr "Načítání zrušeno"
 
-#: src/frame/frame.cpp:166
+#: src/frame/frame.cpp:168
 #, kde-format
 msgid "Loading completed"
 msgstr "Načítání dokončeno"
@@ -2335,24 +2324,24 @@ msgstr "Nelze přečíst kanál (neznámý formát)"
 msgid "Could not read feed (invalid feed)"
 msgstr "Nelze přečíst kanál (neplatný kanál)"
 
-#: src/subscription/subscriptionlistmodel.cpp:270
+#: src/subscription/subscriptionlistmodel.cpp:271
 #, kde-format
 msgid "Could not fetch feed: %1"
 msgstr "Nelze stáhnout kanál: %1"
 
-#: src/subscription/subscriptionlistmodel.cpp:319
+#: src/subscription/subscriptionlistmodel.cpp:320
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Feeds"
 msgstr "Kanály"
 
-#: src/subscription/subscriptionlistmodel.cpp:321
+#: src/subscription/subscriptionlistmodel.cpp:322
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Unread"
 msgstr "Nepřečtené"
 
-#: src/subscription/subscriptionlistmodel.cpp:323
+#: src/subscription/subscriptionlistmodel.cpp:324
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Total"
@@ -2583,13 +2572,13 @@ msgstr "Ponechat HTML soubor článku"
 msgid "Open In External Browser"
 msgstr "Otevřít v externím prohlížeči"
 
-#: src/widgets/searchbar.cpp:44
+#: src/widgets/searchbar.cpp:45
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "Search articles…"
 msgstr "Hledat články…"
 
-#: src/widgets/searchbar.cpp:127
+#: src/widgets/searchbar.cpp:126
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "Search articles…<%1>"
@@ -2623,6 +2612,13 @@ msgstr "Přečteno"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "Důležité"
+
+#~ msgid "Detach Tab"
+#~ msgstr "Vytrhnout kartu"
+
+#~ msgctxt "@action"
+#~ msgid "Reload Tab"
+#~ msgstr "Znovu načíst kartu"
 
 #~ msgid "Add windows support"
 #~ msgstr "Přidat podporu oken"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-07-15 00:45+0000\n"
+"POT-Creation-Date: 2026-08-24 00:45+0000\n"
 "PO-Revision-Date: 2012-12-25 13:50+0700\n"
 "Last-Translator: sutha <sutha@khmeros.info>\n"
 "Language-Team: Khmer <support@khmeros>\n"
@@ -945,10 +945,10 @@ msgid "Resets the quick filter when changing feeds."
 msgstr "កំណត់​តម្រង​រហ័ស​ នៅពេលផ្លាស់ប្ដូរ​មតិព័ត៌មាន ។"
 
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
-#: src/akregator_part.cpp:125
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:145
+#: src/akregator_part.cpp:126
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:146
 #: src/mainwidget.cpp:135 src/mainwidget.cpp:1329 src/trayicon.cpp:40
-#: src/trayicon.cpp:41 src/trayicon.cpp:53
+#: src/trayicon.cpp:53
 #, kde-format
 msgid "Akregator"
 msgstr "Akregator"
@@ -1482,52 +1482,40 @@ msgstr "ជ្រើស​ផ្ទាំង​បន្ទាប់"
 msgid "Select Previous Tab"
 msgstr "ជ្រើស​ផ្ទាំង​មុន"
 
-#: src/actions/actionmanagerimpl.cpp:601
-#, kde-format
-msgid "Detach Tab"
-msgstr "ផ្ដាច់​ផ្ទាំង"
-
-#: src/actions/actionmanagerimpl.cpp:615
+#: src/actions/actionmanagerimpl.cpp:609
 #, kde-format
 msgid "Mute"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:619
+#: src/actions/actionmanagerimpl.cpp:613
 #, kde-format
 msgid "Unmute"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:622
+#: src/actions/actionmanagerimpl.cpp:616
 #, kde-format
 msgctxt "@action"
 msgid "Speak Text"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:627
+#: src/actions/actionmanagerimpl.cpp:621
 #, kde-format
 msgid "&Find in Message…"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:634
-#, fuzzy, kde-format
-#| msgid "Reload All Tabs"
-msgctxt "@action"
-msgid "Reload Tab"
-msgstr "ផ្ទុក​ផ្ទាំង​ទាំងអស់​ឡើងវិញ"
-
-#: src/actions/actionmanagerimpl.cpp:639
+#: src/actions/actionmanagerimpl.cpp:628
 #, fuzzy, kde-format
 #| msgid "Copy Link Address"
 msgctxt "@action"
 msgid "Copy Tab Address"
 msgstr "ចម្លង​អាសយដ្ឋាន​តំណ"
 
-#: src/actions/actionmanagerimpl.cpp:644
+#: src/actions/actionmanagerimpl.cpp:633
 #, kde-format
 msgid "Close Tab"
 msgstr "បិទ​ផ្ទាំង"
 
-#: src/actions/actionmanagerimpl.cpp:657
+#: src/actions/actionmanagerimpl.cpp:646
 #, fuzzy, kde-format
 #| msgid "Activate Tab %1"
 msgctxt "@action"
@@ -1599,32 +1587,32 @@ msgctxt "@info:shell"
 msgid "Lists the available options for user feedback"
 msgstr ""
 
-#: src/akregator_part.cpp:77
+#: src/akregator_part.cpp:78
 #, kde-format
 msgid "Feeds"
 msgstr "មតិព័ត៌មាន"
 
-#: src/akregator_part.cpp:88
+#: src/akregator_part.cpp:89
 #, kde-format
 msgid "Planet KDE"
 msgstr "ពិភព KDE"
 
-#: src/akregator_part.cpp:93
+#: src/akregator_part.cpp:94
 #, kde-format
 msgid "KDE Apps"
 msgstr "កម្មវិធី KDE"
 
-#: src/akregator_part.cpp:99
+#: src/akregator_part.cpp:100
 #, kde-format
 msgid "Spanish feeds"
 msgstr "មតិ​ព័ត៌មាន​អេស្ប៉ាញ"
 
-#: src/akregator_part.cpp:103
+#: src/akregator_part.cpp:104
 #, kde-format
 msgid "Planet KDE España"
 msgstr "ពិភព KDE España"
 
-#: src/akregator_part.cpp:415
+#: src/akregator_part.cpp:419
 #, kde-format
 msgid ""
 "Access denied: Cannot save feed list to <b>%1</b>. Please check your "
@@ -1633,26 +1621,26 @@ msgstr ""
 "ការ​ចូលដំណើរការ​ត្រូវ​បាន​បដិសេធ ៖ មិន​អាច​រក្សាទុក​បញ្ជី​មតិព័ត៌មាន​ទៅ​កាន់ <b>%1</b> បាន​ទេ ។ សូម​ពិនិត្យ​"
 "មើល​សិទ្ធិ​របស់​អ្នក ។"
 
-#: src/akregator_part.cpp:416 src/akregator_part.cpp:469
+#: src/akregator_part.cpp:420 src/akregator_part.cpp:473
 #, fuzzy, kde-format
 #| msgid "Write Error"
 msgctxt "@title:window"
 msgid "Write Error"
 msgstr "កំហុស​សរសេរ"
 
-#: src/akregator_part.cpp:452
+#: src/akregator_part.cpp:456
 #, kde-format
 msgid "Could not import the file %1 (no valid OPML)"
 msgstr "មិន​អាច​នាំចូល​ឯកសារ %1 បាន​ឡើយ (មិន​មាន OPML ត្រឹមត្រូវ)"
 
-#: src/akregator_part.cpp:452 src/command/loadfeedlistcommand.cpp:71
+#: src/akregator_part.cpp:456 src/command/loadfeedlistcommand.cpp:71
 #, fuzzy, kde-format
 #| msgid "OPML Parsing Error"
 msgctxt "@title:window"
 msgid "OPML Parsing Error"
 msgstr "កំហុស​ក្នុង​ការ​ញែក OPML"
 
-#: src/akregator_part.cpp:456
+#: src/akregator_part.cpp:460
 #, kde-format
 msgid ""
 "The file %1 could not be read, check if it exists or if it is readable for "
@@ -1661,26 +1649,26 @@ msgstr ""
 "មិន​អាច​អាន​ឯកសារ %1 បាន​ឡើយ ។ សូម​ពិនិត្យមើល​ថា​តើ​មាន​វា​ឬ​ទេ ហើយ​អ្នក​ប្រើ​បច្ចុប្បន្ន​អាច​អាន​វា​បាន​ឬ​"
 "អត់ ។"
 
-#: src/akregator_part.cpp:457 src/command/loadfeedlistcommand.cpp:144
+#: src/akregator_part.cpp:461 src/command/loadfeedlistcommand.cpp:144
 #, fuzzy, kde-format
 #| msgid "Read Error"
 msgctxt "@title:window"
 msgid "Read Error"
 msgstr "កំហុស​អាន"
 
-#: src/akregator_part.cpp:468
+#: src/akregator_part.cpp:472
 #, kde-format
 msgid "Access denied: cannot write to file %1. Please check your permissions."
 msgstr ""
 "ការ​ចូលដំណើរការ​ត្រូវ​បាន​បដិសេធ ៖ មិន​អាច​សរសេរ​ទៅ​ឯកសារ %1 បាន​ឡើយ ។ សូម​ពិនិត្យ​មើល​សិទ្ធិ​របស់​អ្នក ។"
 
-#: src/akregator_part.cpp:484 src/akregator_part.cpp:493
+#: src/akregator_part.cpp:488 src/akregator_part.cpp:497
 #, fuzzy, kde-format
 #| msgid "OPML Outlines (*.opml, *.xml)"
 msgid "OPML Outlines (%1);;All Files (*)"
 msgstr "គ្រោង OPML (*.opml, *.xml)"
 
-#: src/akregator_part.cpp:618
+#: src/akregator_part.cpp:622
 #, kde-format
 msgid "Imported Folder"
 msgstr "ថត​ដែល​បាន​នាំចូល"
@@ -1690,17 +1678,17 @@ msgstr "ថត​ដែល​បាន​នាំចូល"
 msgid "The feed to be listed was already removed."
 msgstr "មតិ​ព័ត៌មាន​ដែល​ត្រូវបាន​រាយ​គឺ​ត្រូវបាន​យកចេញ​ហើយ ។"
 
-#: src/articlelistview.cpp:160 src/subscription/subscriptionlistview.cpp:180
+#: src/articlelistview.cpp:161 src/subscription/subscriptionlistview.cpp:180
 #, kde-format
 msgid "Columns"
 msgstr "ជួរឈរ"
 
-#: src/articlelistview.cpp:218
+#: src/articlelistview.cpp:219
 #, kde-format
 msgid "No result found"
 msgstr ""
 
-#: src/articlelistview.cpp:379
+#: src/articlelistview.cpp:380
 #, fuzzy, kde-format
 #| msgid ""
 #| "<h2>Article list</h2>Here you can browse articles from the currently "
@@ -1720,128 +1708,128 @@ msgstr ""
 "ចុច​កណ្ដុរ​ស្ដាំ ។ ដើម្បី​មើល​ទំព័រ​បណ្ដាញ​របស់​អត្ថបទ អ្នក​អាច​បើក​អត្ថបទ​នៅ​ក្នុង​ផ្ទាំង ឬ ក្នុង​បង្អួច​កម្មវិធី​"
 "រុករក​ខាង​ក្រៅ ។"
 
-#: src/articlemodel.cpp:74
+#: src/articlemodel.cpp:75
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Title"
 msgstr "ចំណង​ជើង"
 
-#: src/articlemodel.cpp:76
+#: src/articlemodel.cpp:77
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Feed"
 msgstr "មតិព័ត៌មាន"
 
-#: src/articlemodel.cpp:78
+#: src/articlemodel.cpp:79
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Date"
 msgstr "កាលបរិច្ឆេទ"
 
-#: src/articlemodel.cpp:80
+#: src/articlemodel.cpp:81
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Author"
 msgstr "អ្នក​និពន្ធ"
 
-#: src/articlemodel.cpp:82
+#: src/articlemodel.cpp:83
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Description"
 msgstr "សេចក្ដីពិពណ៌នា"
 
-#: src/articlemodel.cpp:84
+#: src/articlemodel.cpp:85
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Content"
 msgstr "មាតិកា"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:146
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:147
 #, fuzzy, kde-format
 #| msgid "A KDE news feed reader."
 msgid "Akregator is a KDE news feed reader."
 msgstr "កម្មវិធី​អាន​មតិ​ព័ត៌មាន​របស់ KDE ។"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:190
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:191
 #, fuzzy, kde-format
 #| msgid "&Save Link As..."
 msgctxt "@title:window"
 msgid "Save As"
 msgstr "រក្សាទុក​តំណ​ជា..."
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:274
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:275
 #: src/frame/webengine/akrwebengineviewer.cpp:112
 #, fuzzy, kde-format
 #| msgid "&Save Link As..."
 msgid "&Save Link As…"
 msgstr "រក្សាទុក​តំណ​ជា..."
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:278
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:279
 #: src/frame/webengine/akrwebengineviewer.cpp:116
 #, kde-format
 msgid "Copy &Link Address"
 msgstr "ចម្លង​អាសយដ្ឋាន​តំណ"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:286
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:287
 #: src/frame/webengine/akrwebengineviewer.cpp:124
 #, kde-format
 msgctxt "@action"
 msgid "Copy Image URL"
 msgstr ""
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:290
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:291
 #: src/frame/webengine/akrwebengineviewer.cpp:128
 #, kde-format
 msgctxt "@action"
 msgid "Save Image…"
 msgstr ""
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:381
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:382
 #, kde-format
 msgid "Disable"
 msgstr "បិទ"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:382
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:383
 #, kde-format
 msgid "Keep Enabled"
 msgstr "បើកជា​និច្ច"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:384
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:385
 #, kde-format
 msgid "Are you sure you want to disable this introduction page?"
 msgstr "តើ​អ្នក​ប្រាកដ​ជា​ចង់​បិទ​ទំព័រ​ណែនាំ​នេះ​ដែរ​ឬទេ ?"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:385
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:386
 #, fuzzy, kde-format
 #| msgid "Disable Introduction Page"
 msgctxt "@title:window"
 msgid "Disable Introduction Page"
 msgstr "បិទ​ទំព័រ​ណែនាំ"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:415
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:416
 #, kde-format
 msgid "This web site is a malware, do you want to continue to show it?"
 msgstr ""
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:416
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:417
 #, kde-format
 msgctxt "@title:window"
 msgid "Malware"
 msgstr ""
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:428
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:429
 #, kde-format
 msgid "The network is broken."
 msgstr ""
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:428
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:431
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:429
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:432
 #, kde-format
 msgctxt "@title:window"
 msgid "Check Phishing Url"
 msgstr ""
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:431
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:432
 #, kde-format
 msgid "The url %1 is not valid."
 msgstr ""
@@ -2116,85 +2104,85 @@ msgctxt "@title:window"
 msgid "Properties of %1"
 msgstr "លក្ខណៈ​សម្បត្តិ​របស់ %1"
 
-#: src/formatter/articleformatter.cpp:36
+#: src/formatter/articleformatter.cpp:35
 #, kde-format
 msgid "(%1, %2)"
 msgstr "(%1, %2)"
 
-#: src/formatter/grantleeviewformatter.cpp:165
-#: src/formatter/grantleeviewformatter.cpp:220
+#: src/formatter/grantleeviewformatter.cpp:166
+#: src/formatter/grantleeviewformatter.cpp:221
 #, kde-format
 msgid " (no unread articles)"
 msgstr " (មិន​មាន​អត្ថបទ​ដែល​មិន​ទាន់​អាន​ឡើយ)"
 
-#: src/formatter/grantleeviewformatter.cpp:167
-#: src/formatter/grantleeviewformatter.cpp:222
+#: src/formatter/grantleeviewformatter.cpp:168
+#: src/formatter/grantleeviewformatter.cpp:223
 #, kde-format
 msgid " (1 unread article)"
 msgid_plural " (%1 unread articles)"
 msgstr[0] " (មិនបាន​អាន​អត្ថបទ %1)"
 
-#: src/formatter/grantleeviewformatter.cpp:182
+#: src/formatter/grantleeviewformatter.cpp:183
 #, fuzzy, kde-format
 #| msgid "<b>Description:</b> %1<br /><br />"
 msgid "<b>Description:</b> %1<br />"
 msgstr "<b>សេចក្ដី​​ពិពណ៌នា ៖</b> %1<br /><br />"
 
-#: src/formatter/grantleeviewformatter.cpp:189
+#: src/formatter/grantleeviewformatter.cpp:190
 #, fuzzy, kde-format
 #| msgid "<b>Homepage:</b> <a href=\"%1\">%2</a>"
 msgid "<b>Homepage:</b> <a href=\"%1\">%1</a>"
 msgstr "<b>គេហទំព័រ ៖</b> <a href=\"%1\">%2</a>"
 
-#: src/formatter/grantleeviewformatter.cpp:196
+#: src/formatter/grantleeviewformatter.cpp:197
 #, fuzzy, kde-format
 #| msgid "<b>Description:</b> %1<br /><br />"
 msgid "<b>Copyright:</b> %1</a>"
 msgstr "<b>សេចក្ដី​​ពិពណ៌នា ៖</b> %1<br /><br />"
 
-#: src/formatter/grantleeviewformatter.cpp:256
+#: src/formatter/grantleeviewformatter.cpp:257
 #, kde-format
 msgid "Date"
 msgstr "កាលបរិច្ឆេទ"
 
-#: src/formatter/grantleeviewformatter.cpp:257
+#: src/formatter/grantleeviewformatter.cpp:258
 #, fuzzy, kde-format
 #| msgid "Comments"
 msgid "Comment"
 msgstr "មតិយោបល់"
 
-#: src/formatter/grantleeviewformatter.cpp:258
+#: src/formatter/grantleeviewformatter.cpp:259
 #, kde-format
 msgid "Complete Story"
 msgstr "ខ្លឹមសារ​ទាំងស្រុង"
 
-#: src/formatter/grantleeviewformatter.cpp:259
+#: src/formatter/grantleeviewformatter.cpp:260
 #, kde-format
 msgid "Author"
 msgstr "អ្នក​និពន្ធ"
 
-#: src/formatter/grantleeviewformatter.cpp:260
+#: src/formatter/grantleeviewformatter.cpp:261
 #, kde-format
 msgid "Enclosure"
 msgstr "អ្វី​ៗ​ភ្ជាប់​ជាមួយ​សំបុត្រ"
 
-#: src/frame/frame.cpp:20
+#: src/frame/frame.cpp:22
 #, kde-format
 msgid "Untitled"
 msgstr "គ្មាន​ចំណងជើង​"
 
-#: src/frame/frame.cpp:140
+#: src/frame/frame.cpp:142
 #, fuzzy, kde-format
 #| msgid "Loading..."
 msgid "Loading…"
 msgstr "កំពុង​ផ្ទុក..."
 
-#: src/frame/frame.cpp:154
+#: src/frame/frame.cpp:156
 #, kde-format
 msgid "Loading canceled"
 msgstr "បាន​បោះបង់​ការ​ផ្ទុក"
 
-#: src/frame/frame.cpp:166
+#: src/frame/frame.cpp:168
 #, kde-format
 msgid "Loading completed"
 msgstr "ការ​ផ្ទុក​បាន​បញ្ចប់"
@@ -2396,24 +2384,24 @@ msgstr "មិន​អាច​អាន​មតិ​ព័ត៌មាន (�
 msgid "Could not read feed (invalid feed)"
 msgstr "មិន​អាច​អាន​មតិ​ព័ត៌មាន (មតិ​ព័ត៌មាន​មិន​ត្រឹមត្រូវ)"
 
-#: src/subscription/subscriptionlistmodel.cpp:270
+#: src/subscription/subscriptionlistmodel.cpp:271
 #, kde-format
 msgid "Could not fetch feed: %1"
 msgstr "មិន​អាច​ទៅ​យក​មតិព័ត៌មាន ៖ %1"
 
-#: src/subscription/subscriptionlistmodel.cpp:319
+#: src/subscription/subscriptionlistmodel.cpp:320
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Feeds"
 msgstr "មតិព័ត៌មាន"
 
-#: src/subscription/subscriptionlistmodel.cpp:321
+#: src/subscription/subscriptionlistmodel.cpp:322
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Unread"
 msgstr "មិន​ទាន់​អាន"
 
-#: src/subscription/subscriptionlistmodel.cpp:323
+#: src/subscription/subscriptionlistmodel.cpp:324
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Total"
@@ -2660,14 +2648,14 @@ msgstr "ចែករំលែក​អត្ថបទ"
 msgid "Open In External Browser"
 msgstr "បើក​ក្នុង​កម្មវិធី​រុករក​ខាង​ក្រៅ"
 
-#: src/widgets/searchbar.cpp:44
+#: src/widgets/searchbar.cpp:45
 #, fuzzy, kde-format
 #| msgid "Unread articles:"
 msgctxt "@info:placeholder"
 msgid "Search articles…"
 msgstr "អត្ថបទ​មិនទាន់​អាន ៖"
 
-#: src/widgets/searchbar.cpp:127
+#: src/widgets/searchbar.cpp:126
 #, fuzzy, kde-format
 #| msgid "Unread articles:"
 msgctxt "@info:placeholder"
@@ -2704,6 +2692,15 @@ msgstr "អាន​រួច"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "សំខាន់"
+
+#~ msgid "Detach Tab"
+#~ msgstr "ផ្ដាច់​ផ្ទាំង"
+
+#, fuzzy
+#~| msgid "Reload All Tabs"
+#~ msgctxt "@action"
+#~ msgid "Reload Tab"
+#~ msgstr "ផ្ទុក​ផ្ទាំង​ទាំងអស់​ឡើងវិញ"
 
 #~ msgid "KDE Dot News"
 #~ msgstr "KDE.news"

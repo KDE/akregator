@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-07-15 00:45+0000\n"
+"POT-Creation-Date: 2026-08-24 00:45+0000\n"
 "PO-Revision-Date: 2026-05-28 08:38+0300\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
@@ -933,10 +933,10 @@ msgid "Resets the quick filter when changing feeds."
 msgstr "מאפס את המסנן המהיר בעת מעבר בין ערוצים."
 
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
-#: src/akregator_part.cpp:125
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:145
+#: src/akregator_part.cpp:126
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:146
 #: src/mainwidget.cpp:135 src/mainwidget.cpp:1329 src/trayicon.cpp:40
-#: src/trayicon.cpp:41 src/trayicon.cpp:53
+#: src/trayicon.cpp:53
 #, kde-format
 msgid "Akregator"
 msgstr "Akregator"
@@ -1436,50 +1436,39 @@ msgstr "בחירת הלשונית הבאה"
 msgid "Select Previous Tab"
 msgstr "בחירת הלשונית הקודמת"
 
-#: src/actions/actionmanagerimpl.cpp:601
-#, kde-format
-msgid "Detach Tab"
-msgstr "ניתוק לשונית"
-
-#: src/actions/actionmanagerimpl.cpp:615
+#: src/actions/actionmanagerimpl.cpp:609
 #, kde-format
 msgid "Mute"
 msgstr "השתקה"
 
-#: src/actions/actionmanagerimpl.cpp:619
+#: src/actions/actionmanagerimpl.cpp:613
 #, kde-format
 msgid "Unmute"
 msgstr "ביטול השתקה"
 
-#: src/actions/actionmanagerimpl.cpp:622
+#: src/actions/actionmanagerimpl.cpp:616
 #, kde-format
 msgctxt "@action"
 msgid "Speak Text"
 msgstr "הקראת טקסט"
 
-#: src/actions/actionmanagerimpl.cpp:627
+#: src/actions/actionmanagerimpl.cpp:621
 #, kde-format
 msgid "&Find in Message…"
 msgstr "&איתור בהודעה…"
 
-#: src/actions/actionmanagerimpl.cpp:634
-#, kde-format
-msgctxt "@action"
-msgid "Reload Tab"
-msgstr "ריענון הלשונית"
-
-#: src/actions/actionmanagerimpl.cpp:639
+#: src/actions/actionmanagerimpl.cpp:628
 #, kde-format
 msgctxt "@action"
 msgid "Copy Tab Address"
 msgstr "העתקת כתובת הלשונית"
 
-#: src/actions/actionmanagerimpl.cpp:644
+#: src/actions/actionmanagerimpl.cpp:633
 #, kde-format
 msgid "Close Tab"
 msgstr "סגירת לשונית"
 
-#: src/actions/actionmanagerimpl.cpp:657
+#: src/actions/actionmanagerimpl.cpp:646
 #, kde-format
 msgctxt "@action"
 msgid "Activate Tab %1"
@@ -1545,56 +1534,56 @@ msgctxt "@info:shell"
 msgid "Lists the available options for user feedback"
 msgstr "הצגת האפשרויות הזמינות למשוב משתמש"
 
-#: src/akregator_part.cpp:77
+#: src/akregator_part.cpp:78
 #, kde-format
 msgid "Feeds"
 msgstr "ערוצים"
 
-#: src/akregator_part.cpp:88
+#: src/akregator_part.cpp:89
 #, kde-format
 msgid "Planet KDE"
 msgstr "פלנטת KDE"
 
-#: src/akregator_part.cpp:93
+#: src/akregator_part.cpp:94
 #, kde-format
 msgid "KDE Apps"
 msgstr "יישומי KDE"
 
-#: src/akregator_part.cpp:99
+#: src/akregator_part.cpp:100
 #, kde-format
 msgid "Spanish feeds"
 msgstr "ערוצים בספרדית"
 
-#: src/akregator_part.cpp:103
+#: src/akregator_part.cpp:104
 #, kde-format
 msgid "Planet KDE España"
 msgstr "פלנטת KDE הספרדית"
 
-#: src/akregator_part.cpp:415
+#: src/akregator_part.cpp:419
 #, kde-format
 msgid ""
 "Access denied: Cannot save feed list to <b>%1</b>. Please check your "
 "permissions."
 msgstr "גישה נדחתה: לא יכול לשמור את רשימת הערוצים (%1)"
 
-#: src/akregator_part.cpp:416 src/akregator_part.cpp:469
+#: src/akregator_part.cpp:420 src/akregator_part.cpp:473
 #, kde-format
 msgctxt "@title:window"
 msgid "Write Error"
 msgstr "שגיאת כתיבה"
 
-#: src/akregator_part.cpp:452
+#: src/akregator_part.cpp:456
 #, kde-format
 msgid "Could not import the file %1 (no valid OPML)"
 msgstr "אי אפשר לייבא את הקובץ %1 (אין OPML תקין)"
 
-#: src/akregator_part.cpp:452 src/command/loadfeedlistcommand.cpp:71
+#: src/akregator_part.cpp:456 src/command/loadfeedlistcommand.cpp:71
 #, kde-format
 msgctxt "@title:window"
 msgid "OPML Parsing Error"
 msgstr "שגיאת פיענוח OPML"
 
-#: src/akregator_part.cpp:456
+#: src/akregator_part.cpp:460
 #, kde-format
 msgid ""
 "The file %1 could not be read, check if it exists or if it is readable for "
@@ -1603,23 +1592,23 @@ msgstr ""
 "אי אפשר לקרוא את הקובץ %1, נא לבדוק אם הוא קיים או ניתן לקריאה על ידי המשתמש "
 "הנוכחי."
 
-#: src/akregator_part.cpp:457 src/command/loadfeedlistcommand.cpp:144
+#: src/akregator_part.cpp:461 src/command/loadfeedlistcommand.cpp:144
 #, kde-format
 msgctxt "@title:window"
 msgid "Read Error"
 msgstr "שגיאת קריאה"
 
-#: src/akregator_part.cpp:468
+#: src/akregator_part.cpp:472
 #, kde-format
 msgid "Access denied: cannot write to file %1. Please check your permissions."
 msgstr "הגישה נדחתה: לא ניתן לכתוב לקובץ %1. נא לבדוק את ההרשאות שלך."
 
-#: src/akregator_part.cpp:484 src/akregator_part.cpp:493
+#: src/akregator_part.cpp:488 src/akregator_part.cpp:497
 #, kde-format
 msgid "OPML Outlines (%1);;All Files (*)"
 msgstr "מתארי OPML‏ (%1);;כל הקבצים (*)"
 
-#: src/akregator_part.cpp:618
+#: src/akregator_part.cpp:622
 #, kde-format
 msgid "Imported Folder"
 msgstr "תיקייה מיובאת"
@@ -1629,17 +1618,17 @@ msgstr "תיקייה מיובאת"
 msgid "The feed to be listed was already removed."
 msgstr "הערוץ להצגה כבר הוסר."
 
-#: src/articlelistview.cpp:160 src/subscription/subscriptionlistview.cpp:180
+#: src/articlelistview.cpp:161 src/subscription/subscriptionlistview.cpp:180
 #, kde-format
 msgid "Columns"
 msgstr "עמודות"
 
-#: src/articlelistview.cpp:218
+#: src/articlelistview.cpp:219
 #, kde-format
 msgid "No result found"
 msgstr "לא נמצאו תוצאות"
 
-#: src/articlelistview.cpp:379
+#: src/articlelistview.cpp:380
 #, kde-format
 msgid ""
 "<h2>Article list</h2>Here you can browse articles from the currently "
@@ -1653,124 +1642,124 @@ msgstr ""
 "לתצוגה של אתר האינטרנט של הכתבה, ניתן לפתוח את הכתבה בלשונית פנימית או "
 "בדפדפן חיצוני."
 
-#: src/articlemodel.cpp:74
+#: src/articlemodel.cpp:75
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Title"
 msgstr "כותרת"
 
-#: src/articlemodel.cpp:76
+#: src/articlemodel.cpp:77
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Feed"
 msgstr "ערוץ"
 
-#: src/articlemodel.cpp:78
+#: src/articlemodel.cpp:79
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Date"
 msgstr "תאריך"
 
-#: src/articlemodel.cpp:80
+#: src/articlemodel.cpp:81
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Author"
 msgstr "יוצר"
 
-#: src/articlemodel.cpp:82
+#: src/articlemodel.cpp:83
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Description"
 msgstr "תיאור"
 
-#: src/articlemodel.cpp:84
+#: src/articlemodel.cpp:85
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Content"
 msgstr "תוכן"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:146
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:147
 #, kde-format
 msgid "Akregator is a KDE news feed reader."
 msgstr "Akregator הוא קורא ערוצי חדשות של KDE."
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:190
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:191
 #, kde-format
 msgctxt "@title:window"
 msgid "Save As"
 msgstr "שמירה בשם"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:274
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:275
 #: src/frame/webengine/akrwebengineviewer.cpp:112
 #, kde-format
 msgid "&Save Link As…"
 msgstr "&שמירת קישור בתור…"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:278
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:279
 #: src/frame/webengine/akrwebengineviewer.cpp:116
 #, kde-format
 msgid "Copy &Link Address"
 msgstr "העתקת כתובת ה&קישור"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:286
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:287
 #: src/frame/webengine/akrwebengineviewer.cpp:124
 #, kde-format
 msgctxt "@action"
 msgid "Copy Image URL"
 msgstr "העתקת כתובת התמונה"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:290
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:291
 #: src/frame/webengine/akrwebengineviewer.cpp:128
 #, kde-format
 msgctxt "@action"
 msgid "Save Image…"
 msgstr "שמירת תמונה…"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:381
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:382
 #, kde-format
 msgid "Disable"
 msgstr "השבתה"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:382
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:383
 #, kde-format
 msgid "Keep Enabled"
 msgstr "להשאיר פעיל"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:384
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:385
 #, kde-format
 msgid "Are you sure you want to disable this introduction page?"
 msgstr "לבטל את עמוד ההקדמה הזה?"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:385
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:386
 #, kde-format
 msgctxt "@title:window"
 msgid "Disable Introduction Page"
 msgstr "השבתת עמוד קבלת פנים"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:415
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:416
 #, kde-format
 msgid "This web site is a malware, do you want to continue to show it?"
 msgstr "זה אתר זדוני, להמשיך להציג אותו?"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:416
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:417
 #, kde-format
 msgctxt "@title:window"
 msgid "Malware"
 msgstr "זדון"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:428
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:429
 #, kde-format
 msgid "The network is broken."
 msgstr "הרשת לא עובדת."
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:428
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:431
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:429
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:432
 #, kde-format
 msgctxt "@title:window"
 msgid "Check Phishing Url"
 msgstr "בדיקת כתובת דיוג"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:431
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:432
 #, kde-format
 msgid "The url %1 is not valid."
 msgstr "הכתובת %1 שגויה."
@@ -2038,19 +2027,19 @@ msgctxt "@title:window"
 msgid "Properties of %1"
 msgstr "מאפייני %1"
 
-#: src/formatter/articleformatter.cpp:36
+#: src/formatter/articleformatter.cpp:35
 #, kde-format
 msgid "(%1, %2)"
 msgstr "(%1, %2)"
 
-#: src/formatter/grantleeviewformatter.cpp:165
-#: src/formatter/grantleeviewformatter.cpp:220
+#: src/formatter/grantleeviewformatter.cpp:166
+#: src/formatter/grantleeviewformatter.cpp:221
 #, kde-format
 msgid " (no unread articles)"
 msgstr " (אין כתבות שלא נקראו)"
 
-#: src/formatter/grantleeviewformatter.cpp:167
-#: src/formatter/grantleeviewformatter.cpp:222
+#: src/formatter/grantleeviewformatter.cpp:168
+#: src/formatter/grantleeviewformatter.cpp:223
 #, kde-format
 msgid " (1 unread article)"
 msgid_plural " (%1 unread articles)"
@@ -2059,62 +2048,62 @@ msgstr[1] " (שתי כתבות שלא נקראו)"
 msgstr[2] " (%1 כתבות שלא נקראו)"
 msgstr[3] " (%1 כתבות שלא נקראו)"
 
-#: src/formatter/grantleeviewformatter.cpp:182
+#: src/formatter/grantleeviewformatter.cpp:183
 #, kde-format
 msgid "<b>Description:</b> %1<br />"
 msgstr "<b>תיאור:</b> %1<br />"
 
-#: src/formatter/grantleeviewformatter.cpp:189
+#: src/formatter/grantleeviewformatter.cpp:190
 #, kde-format
 msgid "<b>Homepage:</b> <a href=\"%1\">%1</a>"
 msgstr "<b>דף הבית:</b> <a href=\"%1\">%1</a>"
 
-#: src/formatter/grantleeviewformatter.cpp:196
+#: src/formatter/grantleeviewformatter.cpp:197
 #, kde-format
 msgid "<b>Copyright:</b> %1</a>"
 msgstr "<b>זכויות יוצרים:</b> %1</a>"
 
-#: src/formatter/grantleeviewformatter.cpp:256
+#: src/formatter/grantleeviewformatter.cpp:257
 #, kde-format
 msgid "Date"
 msgstr "תאריך"
 
-#: src/formatter/grantleeviewformatter.cpp:257
+#: src/formatter/grantleeviewformatter.cpp:258
 #, kde-format
 msgid "Comment"
 msgstr "הערה"
 
-#: src/formatter/grantleeviewformatter.cpp:258
+#: src/formatter/grantleeviewformatter.cpp:259
 #, kde-format
 msgid "Complete Story"
 msgstr "הסיפור המלא"
 
-#: src/formatter/grantleeviewformatter.cpp:259
+#: src/formatter/grantleeviewformatter.cpp:260
 #, kde-format
 msgid "Author"
 msgstr "כותב"
 
-#: src/formatter/grantleeviewformatter.cpp:260
+#: src/formatter/grantleeviewformatter.cpp:261
 #, kde-format
 msgid "Enclosure"
 msgstr "מעטפת"
 
-#: src/frame/frame.cpp:20
+#: src/frame/frame.cpp:22
 #, kde-format
 msgid "Untitled"
 msgstr "ללא כותרת"
 
-#: src/frame/frame.cpp:140
+#: src/frame/frame.cpp:142
 #, kde-format
 msgid "Loading…"
 msgstr "בטעינה…"
 
-#: src/frame/frame.cpp:154
+#: src/frame/frame.cpp:156
 #, kde-format
 msgid "Loading canceled"
 msgstr "הטעינה בוטלה"
 
-#: src/frame/frame.cpp:166
+#: src/frame/frame.cpp:168
 #, kde-format
 msgid "Loading completed"
 msgstr "הטעינה הסתיימה"
@@ -2317,24 +2306,24 @@ msgstr "לא ניתן לקרוא את הערוץ (תסדיר זר)"
 msgid "Could not read feed (invalid feed)"
 msgstr "לא ניתן לקרוא את הערוץ (ערוץ שגוי)"
 
-#: src/subscription/subscriptionlistmodel.cpp:270
+#: src/subscription/subscriptionlistmodel.cpp:271
 #, kde-format
 msgid "Could not fetch feed: %1"
 msgstr "לא ניתן למשוך ערוץ: %1"
 
-#: src/subscription/subscriptionlistmodel.cpp:319
+#: src/subscription/subscriptionlistmodel.cpp:320
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Feeds"
 msgstr "ערוצים"
 
-#: src/subscription/subscriptionlistmodel.cpp:321
+#: src/subscription/subscriptionlistmodel.cpp:322
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Unread"
 msgstr "לא נקרא"
 
-#: src/subscription/subscriptionlistmodel.cpp:323
+#: src/subscription/subscriptionlistmodel.cpp:324
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Total"
@@ -2566,13 +2555,13 @@ msgstr "שליחת דף ה־HTML של הכתבה"
 msgid "Open In External Browser"
 msgstr "פתיחה בדפדפן חיצוני"
 
-#: src/widgets/searchbar.cpp:44
+#: src/widgets/searchbar.cpp:45
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "Search articles…"
 msgstr "חיפוש כתבות…"
 
-#: src/widgets/searchbar.cpp:127
+#: src/widgets/searchbar.cpp:126
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "Search articles…<%1>"
@@ -2606,6 +2595,13 @@ msgstr "נקרא"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "חשוב"
+
+#~ msgid "Detach Tab"
+#~ msgstr "ניתוק לשונית"
+
+#~ msgctxt "@action"
+#~ msgid "Reload Tab"
+#~ msgstr "ריענון הלשונית"
 
 #~ msgid "Add windows support"
 #~ msgstr "הוספת תמיכה בחלונות"

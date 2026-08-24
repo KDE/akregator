@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-07-15 00:45+0000\n"
+"POT-Creation-Date: 2026-08-24 00:45+0000\n"
 "PO-Revision-Date: 2026-02-01 19:03+0530\n"
 "Last-Translator: Kishore G <kishore96@gmail.com>\n"
 "Language-Team: Tamil <kde-l10n-ta@kde.org>\n"
@@ -909,10 +909,10 @@ msgid "Resets the quick filter when changing feeds."
 msgstr ""
 
 #: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
-#: src/akregator_part.cpp:125
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:145
+#: src/akregator_part.cpp:126
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:146
 #: src/mainwidget.cpp:135 src/mainwidget.cpp:1329 src/trayicon.cpp:40
-#: src/trayicon.cpp:41 src/trayicon.cpp:53
+#: src/trayicon.cpp:53
 #, kde-format
 msgid "Akregator"
 msgstr "அக்றிகேட்டர்"
@@ -1413,52 +1413,40 @@ msgstr "அடுத்த கீற்றைத் தேர்ந்தெட�
 msgid "Select Previous Tab"
 msgstr "முந்தைய கீற்றைத் தேர்ந்தெடு"
 
-#: src/actions/actionmanagerimpl.cpp:601
-#, kde-format
-msgid "Detach Tab"
-msgstr "கீற்றைப் பிரித்தெடு"
-
-#: src/actions/actionmanagerimpl.cpp:615
+#: src/actions/actionmanagerimpl.cpp:609
 #, kde-format
 msgid "Mute"
 msgstr "ஒலியை அடக்கு"
 
-#: src/actions/actionmanagerimpl.cpp:619
+#: src/actions/actionmanagerimpl.cpp:613
 #, kde-format
 msgid "Unmute"
 msgstr "ஒலிமுடக்கத்தை நீக்கு"
 
-#: src/actions/actionmanagerimpl.cpp:622
+#: src/actions/actionmanagerimpl.cpp:616
 #, kde-format
 msgctxt "@action"
 msgid "Speak Text"
 msgstr "உரையைப் பேச்சாக்கு"
 
-#: src/actions/actionmanagerimpl.cpp:627
+#: src/actions/actionmanagerimpl.cpp:621
 #, kde-format
 msgid "&Find in Message…"
 msgstr "செய்தியில் &கண்டுபிடி…"
 
-#: src/actions/actionmanagerimpl.cpp:634
-#, fuzzy, kde-format
-#| msgid "Reload All Tabs"
-msgctxt "@action"
-msgid "Reload Tab"
-msgstr "அனைத்து கீற்றுகளையும் மீளேற்று"
-
-#: src/actions/actionmanagerimpl.cpp:639
+#: src/actions/actionmanagerimpl.cpp:628
 #, fuzzy, kde-format
 #| msgid "Copy Link Address"
 msgctxt "@action"
 msgid "Copy Tab Address"
 msgstr "இணைப்பு முகவரியை நகல் எடு"
 
-#: src/actions/actionmanagerimpl.cpp:644
+#: src/actions/actionmanagerimpl.cpp:633
 #, kde-format
 msgid "Close Tab"
 msgstr "கீற்றை மூடு"
 
-#: src/actions/actionmanagerimpl.cpp:657
+#: src/actions/actionmanagerimpl.cpp:646
 #, kde-format
 msgctxt "@action"
 msgid "Activate Tab %1"
@@ -1524,33 +1512,33 @@ msgctxt "@info:shell"
 msgid "Lists the available options for user feedback"
 msgstr "பயனர் பின்னூட்டத்துக்கு உள்ள விருப்பத்தேர்வுகளை பட்டியலிடும்"
 
-#: src/akregator_part.cpp:77
+#: src/akregator_part.cpp:78
 #, kde-format
 msgid "Feeds"
 msgstr "தொகுப்புகள்"
 
-#: src/akregator_part.cpp:88
+#: src/akregator_part.cpp:89
 #, fuzzy, kde-format
 msgid "Planet KDE"
 msgstr "கோள் கேடியி"
 
-#: src/akregator_part.cpp:93
+#: src/akregator_part.cpp:94
 #, kde-format
 msgid "KDE Apps"
 msgstr ""
 
-#: src/akregator_part.cpp:99
+#: src/akregator_part.cpp:100
 #, kde-format
 msgid "Spanish feeds"
 msgstr ""
 
-#: src/akregator_part.cpp:103
+#: src/akregator_part.cpp:104
 #, fuzzy, kde-format
 #| msgid "Planet KDE"
 msgid "Planet KDE España"
 msgstr "கோள் கேடியி"
 
-#: src/akregator_part.cpp:415
+#: src/akregator_part.cpp:419
 #, kde-format
 msgid ""
 "Access denied: Cannot save feed list to <b>%1</b>. Please check your "
@@ -1559,24 +1547,24 @@ msgstr ""
 "அணுகல் மறுக்கப்பட்டது: தொக்குப்புகளின் பட்டியலை <b>%1</b> எனும் இடத்திற்கு சேமிக்க "
 "முடியவில்லை. உங்கள் அனுமதிகளை சரிபாருங்கள்."
 
-#: src/akregator_part.cpp:416 src/akregator_part.cpp:469
+#: src/akregator_part.cpp:420 src/akregator_part.cpp:473
 #, kde-format
 msgctxt "@title:window"
 msgid "Write Error"
 msgstr "எழுதுவதில் சிக்கல்"
 
-#: src/akregator_part.cpp:452
+#: src/akregator_part.cpp:456
 #, kde-format
 msgid "Could not import the file %1 (no valid OPML)"
 msgstr "%1 எனும் கோப்பை இறக்குமதி செய்ய முடியவில்லை (முறையான OPML இல்லை)"
 
-#: src/akregator_part.cpp:452 src/command/loadfeedlistcommand.cpp:71
+#: src/akregator_part.cpp:456 src/command/loadfeedlistcommand.cpp:71
 #, kde-format
 msgctxt "@title:window"
 msgid "OPML Parsing Error"
 msgstr "OPML இலக்கண பிழை"
 
-#: src/akregator_part.cpp:456
+#: src/akregator_part.cpp:460
 #, kde-format
 msgid ""
 "The file %1 could not be read, check if it exists or if it is readable for "
@@ -1585,25 +1573,25 @@ msgstr ""
 "%1 எனும் கோப்பை படிக்க முடியவில்லை. அது உள்ளதா எனும் தற்போதைய பயனரால் படிக்கக்கூடியதா "
 "எனும் சரிபாருங்கள்."
 
-#: src/akregator_part.cpp:457 src/command/loadfeedlistcommand.cpp:144
+#: src/akregator_part.cpp:461 src/command/loadfeedlistcommand.cpp:144
 #, kde-format
 msgctxt "@title:window"
 msgid "Read Error"
 msgstr "படிக்கும்போது சிக்கல்"
 
-#: src/akregator_part.cpp:468
+#: src/akregator_part.cpp:472
 #, kde-format
 msgid "Access denied: cannot write to file %1. Please check your permissions."
 msgstr ""
 "அனுமதி மறுக்கப்பட்டது: கோப்பு %1க்கு எழுத முடியவில்லை. அனுமதிகளை சரிபார்க்கவும்."
 
-#: src/akregator_part.cpp:484 src/akregator_part.cpp:493
+#: src/akregator_part.cpp:488 src/akregator_part.cpp:497
 #, fuzzy, kde-format
 #| msgid "OPML Outlines (*.opml, *.xml)"
 msgid "OPML Outlines (%1);;All Files (*)"
 msgstr "OPML வெளிக்கோடுகள் (*.opml, *.xml)"
 
-#: src/akregator_part.cpp:618
+#: src/akregator_part.cpp:622
 #, kde-format
 msgid "Imported Folder"
 msgstr "இறக்கிய அடைவு"
@@ -1613,17 +1601,17 @@ msgstr "இறக்கிய அடைவு"
 msgid "The feed to be listed was already removed."
 msgstr "பட்டியலிடவிருந்த தொகுப்பு ஏற்கனவே நீக்கப்பட்டுள்ளது."
 
-#: src/articlelistview.cpp:160 src/subscription/subscriptionlistview.cpp:180
+#: src/articlelistview.cpp:161 src/subscription/subscriptionlistview.cpp:180
 #, kde-format
 msgid "Columns"
 msgstr "நெடுவரிகள்"
 
-#: src/articlelistview.cpp:218
+#: src/articlelistview.cpp:219
 #, kde-format
 msgid "No result found"
 msgstr "எதுவும் கண்டுபிடிக்கப்படவில்லை"
 
-#: src/articlelistview.cpp:379
+#: src/articlelistview.cpp:380
 #, fuzzy, kde-format
 #| msgid ""
 #| "<h2>Article list</h2>Here you can browse articles from the currently "
@@ -1643,125 +1631,125 @@ msgstr ""
 "இன்னொரு பட்டியில் அல்லது வெளி உலாவியில் சாளரத்தை பயன்படுத்தலாம் பட்டியலில் வலது-"
 "சொடுக்கு. "
 
-#: src/articlemodel.cpp:74
+#: src/articlemodel.cpp:75
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Title"
 msgstr "தலைப்பு"
 
-#: src/articlemodel.cpp:76
+#: src/articlemodel.cpp:77
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Feed"
 msgstr "தொகுப்பு"
 
-#: src/articlemodel.cpp:78
+#: src/articlemodel.cpp:79
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Date"
 msgstr "தேதி"
 
-#: src/articlemodel.cpp:80
+#: src/articlemodel.cpp:81
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Author"
 msgstr "இயற்றியவர்"
 
-#: src/articlemodel.cpp:82
+#: src/articlemodel.cpp:83
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Description"
 msgstr "விவரணம்"
 
-#: src/articlemodel.cpp:84
+#: src/articlemodel.cpp:85
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Content"
 msgstr "உள்ளடக்கம்"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:146
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:147
 #, fuzzy, kde-format
 #| msgid "A KDE Feed Aggregator"
 msgid "Akregator is a KDE news feed reader."
 msgstr "ஒரு கேடியி பீஃட் "
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:190
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:191
 #, kde-format
 msgctxt "@title:window"
 msgid "Save As"
 msgstr "வேறு பெயரில் சேமி"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:274
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:275
 #: src/frame/webengine/akrwebengineviewer.cpp:112
 #, kde-format
 msgid "&Save Link As…"
 msgstr "&இணைப்பை இப்படி சேமி…"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:278
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:279
 #: src/frame/webengine/akrwebengineviewer.cpp:116
 #, kde-format
 msgid "Copy &Link Address"
 msgstr "இ&ணைப்பின் முகவரியை நகலெடு"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:286
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:287
 #: src/frame/webengine/akrwebengineviewer.cpp:124
 #, kde-format
 msgctxt "@action"
 msgid "Copy Image URL"
 msgstr "படத்தின் முகவரியை நகலெடு"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:290
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:291
 #: src/frame/webengine/akrwebengineviewer.cpp:128
 #, kde-format
 msgctxt "@action"
 msgid "Save Image…"
 msgstr "படத்தை சேமி…"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:381
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:382
 #, kde-format
 msgid "Disable"
 msgstr "முடக்கு"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:382
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:383
 #, kde-format
 msgid "Keep Enabled"
 msgstr "இயக்கத்திலேயே வைத்திரு"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:384
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:385
 #, kde-format
 msgid "Are you sure you want to disable this introduction page?"
 msgstr "இந்த அறிமுகப் பக்கத்தை உறுதியாக முடக்க வேண்டுமா?"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:385
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:386
 #, kde-format
 msgctxt "@title:window"
 msgid "Disable Introduction Page"
 msgstr "அறிமுகப்பக்கத்தை முடக்கு"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:415
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:416
 #, kde-format
 msgid "This web site is a malware, do you want to continue to show it?"
 msgstr "இந்த இணையதளம் ஏமாற்றுவதாக இருக்கலாம். இதை உறுதியாக காட்ட வேண்டுமா?"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:416
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:417
 #, kde-format
 msgctxt "@title:window"
 msgid "Malware"
 msgstr "தீங்குநிரல்"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:428
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:429
 #, kde-format
 msgid "The network is broken."
 msgstr "பிணையத்தில் இணைந்திருக்கவில்லை."
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:428
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:431
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:429
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:432
 #, kde-format
 msgctxt "@title:window"
 msgid "Check Phishing Url"
 msgstr ""
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:431
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:432
 #, kde-format
 msgid "The url %1 is not valid."
 msgstr ""
@@ -2039,82 +2027,82 @@ msgctxt "@title:window"
 msgid "Properties of %1"
 msgstr "பண்புகளின் செலுத்தல்"
 
-#: src/formatter/articleformatter.cpp:36
+#: src/formatter/articleformatter.cpp:35
 #, kde-format
 msgid "(%1, %2)"
 msgstr ""
 
-#: src/formatter/grantleeviewformatter.cpp:165
-#: src/formatter/grantleeviewformatter.cpp:220
+#: src/formatter/grantleeviewformatter.cpp:166
+#: src/formatter/grantleeviewformatter.cpp:221
 #, kde-format
 msgid " (no unread articles)"
 msgstr " (படிக்காத கட்டுரைகள் இல்லை)"
 
-#: src/formatter/grantleeviewformatter.cpp:167
-#: src/formatter/grantleeviewformatter.cpp:222
+#: src/formatter/grantleeviewformatter.cpp:168
+#: src/formatter/grantleeviewformatter.cpp:223
 #, kde-format
 msgid " (1 unread article)"
 msgid_plural " (%1 unread articles)"
 msgstr[0] " (1 படிக்காத கட்டுரை)"
 msgstr[1] " (%1 படிக்காத கட்டுரைகள்)"
 
-#: src/formatter/grantleeviewformatter.cpp:182
+#: src/formatter/grantleeviewformatter.cpp:183
 #, kde-format
 msgid "<b>Description:</b> %1<br />"
 msgstr "<b>விவரணம்:</b> %1<br />"
 
-#: src/formatter/grantleeviewformatter.cpp:189
+#: src/formatter/grantleeviewformatter.cpp:190
 #, kde-format
 msgid "<b>Homepage:</b> <a href=\"%1\">%1</a>"
 msgstr "<b>முகப்புப்பக்கம்:</b> <a href=\"%1\">%1</a>"
 
-#: src/formatter/grantleeviewformatter.cpp:196
+#: src/formatter/grantleeviewformatter.cpp:197
 #, kde-format
 msgid "<b>Copyright:</b> %1</a>"
 msgstr "<b>பதிப்புரிமை:</b> %1</a>"
 
-#: src/formatter/grantleeviewformatter.cpp:256
+#: src/formatter/grantleeviewformatter.cpp:257
 #, kde-format
 msgid "Date"
 msgstr "தேதி"
 
-#: src/formatter/grantleeviewformatter.cpp:257
+#: src/formatter/grantleeviewformatter.cpp:258
 #, fuzzy, kde-format
 #| msgid "Comments"
 msgid "Comment"
 msgstr "குறிப்புகள்"
 
-#: src/formatter/grantleeviewformatter.cpp:258
+#: src/formatter/grantleeviewformatter.cpp:259
 #, kde-format
 msgid "Complete Story"
 msgstr "முழுக்கதை"
 
-#: src/formatter/grantleeviewformatter.cpp:259
+#: src/formatter/grantleeviewformatter.cpp:260
 #, fuzzy, kde-format
 msgid "Author"
 msgstr "librssசின் எழுதியவர்"
 
-#: src/formatter/grantleeviewformatter.cpp:260
+#: src/formatter/grantleeviewformatter.cpp:261
 #, kde-format
 msgid "Enclosure"
 msgstr ""
 
-#: src/frame/frame.cpp:20
+#: src/frame/frame.cpp:22
 #, kde-format
 msgid "Untitled"
 msgstr "தலைப்பில்லாதது"
 
-#: src/frame/frame.cpp:140
+#: src/frame/frame.cpp:142
 #, kde-format
 msgid "Loading…"
 msgstr "ஏற்றுகிறது…"
 
-#: src/frame/frame.cpp:154
+#: src/frame/frame.cpp:156
 #, kde-format
 msgid "Loading canceled"
 msgstr "ஏற்றுவது ரத்து செய்யப்பட்டது"
 
-#: src/frame/frame.cpp:166
+#: src/frame/frame.cpp:168
 #, kde-format
 msgid "Loading completed"
 msgstr "ஏற்றுவது முடிந்தது"
@@ -2316,24 +2304,24 @@ msgstr ""
 msgid "Could not read feed (invalid feed)"
 msgstr ""
 
-#: src/subscription/subscriptionlistmodel.cpp:270
+#: src/subscription/subscriptionlistmodel.cpp:271
 #, kde-format
 msgid "Could not fetch feed: %1"
 msgstr ""
 
-#: src/subscription/subscriptionlistmodel.cpp:319
+#: src/subscription/subscriptionlistmodel.cpp:320
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Feeds"
 msgstr "தொகுப்புகள்"
 
-#: src/subscription/subscriptionlistmodel.cpp:321
+#: src/subscription/subscriptionlistmodel.cpp:322
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Unread"
 msgstr "படிக்காதவை"
 
-#: src/subscription/subscriptionlistmodel.cpp:323
+#: src/subscription/subscriptionlistmodel.cpp:324
 #, fuzzy, kde-format
 msgctxt "Feedlist's column header"
 msgid "Total"
@@ -2573,13 +2561,13 @@ msgstr "கட்டுரை"
 msgid "Open In External Browser"
 msgstr "வெளி உலாவியில் இணைப்பை திற"
 
-#: src/widgets/searchbar.cpp:44
+#: src/widgets/searchbar.cpp:45
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "Search articles…"
 msgstr "கட்டுரைகளில் தேடு…"
 
-#: src/widgets/searchbar.cpp:127
+#: src/widgets/searchbar.cpp:126
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "Search articles…<%1>"
@@ -2613,6 +2601,15 @@ msgstr "படித்தவை"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "முக்கியமானவை"
+
+#~ msgid "Detach Tab"
+#~ msgstr "கீற்றைப் பிரித்தெடு"
+
+#, fuzzy
+#~| msgid "Reload All Tabs"
+#~ msgctxt "@action"
+#~ msgid "Reload Tab"
+#~ msgstr "அனைத்து கீற்றுகளையும் மீளேற்று"
 
 #, fuzzy
 #~| msgid "Enable Plasma Activities"
