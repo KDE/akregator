@@ -2541,6 +2541,3 @@ msgstr "已读"
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "重要"
-
-#~ msgid "Detach Tab"
-#~ msgstr "分离标签页"

@@ -2586,12 +2586,3 @@ msgstr ""
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "Viktige"
-
-#~ msgid "Detach Tab"
-#~ msgstr "Løsne fane"
-
-#, fuzzy
-#~| msgid "Reload All Tabs"
-#~ msgctxt "@action"
-#~ msgid "Reload Tab"
-#~ msgstr "Last alle faner på nytt"

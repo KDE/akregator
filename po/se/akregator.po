@@ -2574,12 +2574,3 @@ msgstr ""
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "Dehálaš"
-
-#~ msgid "Detach Tab"
-#~ msgstr "Galgga gilkora"
-
-#, fuzzy
-#~| msgid "Close Tab"
-#~ msgctxt "@action"
-#~ msgid "Reload Tab"
-#~ msgstr "Gidde gilkora"
