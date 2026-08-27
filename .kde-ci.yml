@@ -4,10 +4,10 @@
 Dependencies:
  - 'on': ['Linux', 'FreeBSD', 'Windows']
    'require':
-    'frameworks/extra-cmake-modules': '@latest-kf6'
-    'frameworks/kcodecs': '@latest-kf6'
-    'frameworks/kstatusnotifieritem': '@latest-kf6'
-    'frameworks/kuserfeedback': '@latest-kf6'
+    'frameworks/extra-cmake-modules': 'Frameworks/6.24'
+    'frameworks/kcodecs': 'Frameworks/6.24'
+    'frameworks/kstatusnotifieritem': 'Frameworks/6.24'
+    'frameworks/kuserfeedback': 'Frameworks/6.24'
     'pim/grantleetheme': '@same'
     'pim/kontactinterface': '@same'
     'pim/libkdepim': '@same'
