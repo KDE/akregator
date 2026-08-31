@@ -13,6 +13,8 @@
 #include <QUrl>
 #include <QUrlQuery>
 
+using namespace Qt::Literals::StringLiterals;
+
 using namespace Akregator;
 
 ArticleGrantleeObject::ArticleGrantleeObject(const Article &article, ArticleFormatter::IconOption iconOption, QObject *parent)
@@ -96,9 +98,9 @@ QString ArticleGrantleeObject::imageFeed() const
 QString ArticleGrantleeObject::actionToken() const
 {
     QUrlQuery query;
-    query.addQueryItem(QStringLiteral("id"), mArticle.guid());
+    query.addQueryItem(u"id"_s, mArticle.guid());
     if (mArticle.feed()) {
-        query.addQueryItem(QStringLiteral("feed"), mArticle.feed()->xmlUrl());
+        query.addQueryItem(u"feed"_s, mArticle.feed()->xmlUrl());
     }
     return u'?' + query.toString(QUrl::FullyEncoded);
 }

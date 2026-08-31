@@ -14,6 +14,8 @@
 #include <KNotification>
 #include <QTimer>
 
+using namespace Qt::Literals::StringLiterals;
+
 using namespace Akregator;
 NotificationManager::NotificationManager(QObject *parent)
     : QObject(parent)
@@ -45,20 +47,20 @@ void NotificationManager::slotNotifyFeeds(const QStringList &feeds)
 {
     const int feedsCount(feeds.count());
     if (feedsCount == 1) {
-        KNotification::event(QStringLiteral("FeedAdded"), i18n("Feed added:\n %1", feeds[0]), QPixmap(), KNotification::CloseOnTimeout, m_componantName);
+        KNotification::event(u"FeedAdded"_s, i18n("Feed added:\n %1", feeds[0]), QPixmap(), KNotification::CloseOnTimeout, m_componantName);
     } else if (feedsCount > 1) {
         QString message;
         QStringList::ConstIterator end = feeds.constEnd();
         for (QStringList::ConstIterator it = feeds.constBegin(); it != end; ++it) {
             message += *it + u'\n';
         }
-        KNotification::event(QStringLiteral("FeedAdded"), i18n("Feeds added:\n %1", message), QPixmap(), KNotification::CloseOnTimeout, m_componantName);
+        KNotification::event(u"FeedAdded"_s, i18n("Feeds added:\n %1", message), QPixmap(), KNotification::CloseOnTimeout, m_componantName);
     }
 }
 
 void NotificationManager::doNotify()
 {
-    QString message = QStringLiteral("<html><body>");
+    QString message = u"<html><body>"_s;
     QString feedTitle;
     int entriesCount = 1;
     const int maxNewArticlesShown = 2;
@@ -66,7 +68,7 @@ void NotificationManager::doNotify()
     // adding information about how many new articles
     auto feedClosure = [&entriesCount, &message]() {
         if ((entriesCount - maxNewArticlesShown) > 1) {
-            message += i18np("<i>and 1 other</i>", "<i>and %1 others</i>", entriesCount - maxNewArticlesShown - 1) + QLatin1StringView("<br>");
+            message += i18np("<i>and 1 other</i>", "<i>and %1 others</i>", entriesCount - maxNewArticlesShown - 1) + "<br>"_L1;
         }
     };
 
@@ -79,17 +81,17 @@ void NotificationManager::doNotify()
 
             // starting a new feed
             feedTitle = currentFeedTitle;
-            message += QStringLiteral("<p><b>%1:</b></p>").arg(feedTitle);
+            message += u"<p><b>%1:</b></p>"_s.arg(feedTitle);
         }
         // check not exceeding maxNewArticlesShown per feed
         if (entriesCount <= maxNewArticlesShown) {
-            message += i.title() + QLatin1StringView("<br>");
+            message += i.title() + "<br>"_L1;
         }
         entriesCount++;
     }
     feedClosure();
-    message += QLatin1StringView("</body></html>");
-    KNotification::event(QStringLiteral("NewArticles"), message, QPixmap(), KNotification::CloseOnTimeout, m_componantName);
+    message += "</body></html>"_L1;
+    KNotification::event(u"NewArticles"_s, message, QPixmap(), KNotification::CloseOnTimeout, m_componantName);
 
     m_articles.clear();
     m_running = false;

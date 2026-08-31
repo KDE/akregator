@@ -10,11 +10,13 @@
 #include <PimCommon/PluginUtil>
 #include <WebEngineViewer/NetworkPluginUrlInterceptor>
 #include <WebEngineViewer/NetworkUrlInterceptorPluginManager>
+
+using namespace Qt::Literals::StringLiterals;
 namespace
 {
 QString networkUrlInterceptorGroupName()
 {
-    return QStringLiteral("networkurlinterceptorgroupname");
+    return u"networkurlinterceptorgroupname"_s;
 }
 }
 

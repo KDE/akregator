@@ -23,6 +23,8 @@
 #include <QMenu>
 #include <QTreeView>
 #include <memory>
+
+using namespace Qt::Literals::StringLiterals;
 using namespace Akregator;
 
 namespace
@@ -305,7 +307,7 @@ void SelectionController::subscriptionContextMenuRequested(const QPoint &point)
         return;
     }
 
-    QWidget *w = ActionManager::getInstance()->container(node->isGroup() ? QStringLiteral("feedgroup_popup") : QStringLiteral("feeds_popup"));
+    QWidget *w = ActionManager::getInstance()->container(node->isGroup() ? u"feedgroup_popup"_s : u"feeds_popup"_s);
     auto popup = qobject_cast<QMenu *>(w);
     if (popup) {
         const QPoint globalPos = m_feedSelector->viewport()->mapToGlobal(point);

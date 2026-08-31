@@ -28,6 +28,8 @@
 #include <cmath>
 #include <utility>
 
+using namespace Qt::Literals::StringLiterals;
+
 using namespace Akregator;
 
 // like Syndication::htmlToPlainText, but without linebreaks
@@ -211,7 +213,7 @@ Article ArticleModel::article(int row) const
 
 QStringList ArticleModel::mimeTypes() const
 {
-    return {QStringLiteral("text/uri-list")};
+    return {u"text/uri-list"_s};
 }
 
 QMimeData *ArticleModel::mimeData(const QModelIndexList &indexes) const

@@ -20,6 +20,8 @@
 #include <QPointer>
 #include <QTimer>
 
+using namespace Qt::Literals::StringLiterals;
+
 using namespace Akregator;
 
 namespace
@@ -44,7 +46,7 @@ public:
                                                i18nc("@title:window", "Delete Folder"),
                                                KStandardGuiItem::del(),
                                                KStandardGuiItem::cancel(),
-                                               QStringLiteral("Disable delete folder confirmation"))
+                                               u"Disable delete folder confirmation"_s)
             != KMessageBox::Continue) {
             return true;
         }
@@ -68,7 +70,7 @@ public:
                                                i18nc("@title:window", "Delete Feed"),
                                                KStandardGuiItem::del(),
                                                KStandardGuiItem::cancel(),
-                                               QStringLiteral("Disable delete feed confirmation"))
+                                               u"Disable delete feed confirmation"_s)
             != KMessageBox::Continue) {
             return true;
         }

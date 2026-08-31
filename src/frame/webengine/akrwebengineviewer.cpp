@@ -29,6 +29,8 @@
 #include <WebEngineViewer/WebHitTest>
 #include <WebEngineViewer/WebHitTestResult>
 
+using namespace Qt::Literals::StringLiterals;
+
 using namespace Akregator;
 
 AkrWebEngineViewer::AkrWebEngineViewer(KActionCollection *ac, QWidget *parent)
@@ -92,7 +94,7 @@ void AkrWebEngineViewer::slotWebHitFinished(const WebEngineViewer::WebHitTestRes
     popup.addAction(pageAction(QWebEnginePage::Stop));
     popup.addSeparator();
     popup.addAction(pageAction(QWebEnginePage::Reload));
-    popup.addAction(mActionCollection->action(QStringLiteral("tab_copyurl")));
+    popup.addAction(mActionCollection->action(u"tab_copyurl"_s));
     popup.addSeparator();
 
     const bool noContentSelected = selectedText().isEmpty();
@@ -113,7 +115,7 @@ void AkrWebEngineViewer::slotWebHitFinished(const WebEngineViewer::WebHitTestRes
             connect(saveLinkAsAction, &QAction::triggered, this, [this, url = mCurrentUrl]() {
                 saveUrl(url);
             });
-            QAction *copyLinkAddressAction = popup.addAction(QIcon::fromTheme(QStringLiteral("edit-copy")), i18n("Copy &Link Address"));
+            QAction *copyLinkAddressAction = popup.addAction(QIcon::fromTheme(u"edit-copy"_s), i18n("Copy &Link Address"));
             connect(copyLinkAddressAction, &QAction::triggered, this, [this, url = mCurrentUrl]() {
                 copyUrlToClipboard(url);
             });
@@ -121,7 +123,7 @@ void AkrWebEngineViewer::slotWebHitFinished(const WebEngineViewer::WebHitTestRes
         const QUrl imageUrl = result.imageUrl();
         if (!imageUrl.isEmpty()) {
             popup.addSeparator();
-            QAction *copyImageUrlAction = popup.addAction(QIcon::fromTheme(QStringLiteral("view-media-visualization")), i18nc("@action", "Copy Image URL"));
+            QAction *copyImageUrlAction = popup.addAction(QIcon::fromTheme(u"view-media-visualization"_s), i18nc("@action", "Copy Image URL"));
             connect(copyImageUrlAction, &QAction::triggered, this, [this, imageUrl]() {
                 copyUrlToClipboard(imageUrl);
             });
@@ -135,7 +137,7 @@ void AkrWebEngineViewer::slotWebHitFinished(const WebEngineViewer::WebHitTestRes
         popup.addSeparator();
         popup.addAction(mShareServiceManager->menu());
     } else {
-        popup.addAction(ActionManager::getInstance()->action(QStringLiteral("viewer_copy")));
+        popup.addAction(ActionManager::getInstance()->action(u"viewer_copy"_s));
         popup.addSeparator();
         mWebShortcutMenuManager->setSelectedText(page()->selectedText());
         mWebShortcutMenuManager->addWebShortcutsToMenu(&popup);
@@ -143,23 +145,23 @@ void AkrWebEngineViewer::slotWebHitFinished(const WebEngineViewer::WebHitTestRes
         popup.addActions(viewerPluginActionList(MessageViewer::ViewerPluginInterface::NeedSelection));
     }
     popup.addSeparator();
-    popup.addAction(ActionManager::getInstance()->action(QStringLiteral("viewer_print")));
-    popup.addAction(ActionManager::getInstance()->action(QStringLiteral("viewer_printpreview")));
+    popup.addAction(ActionManager::getInstance()->action(u"viewer_print"_s));
+    popup.addAction(ActionManager::getInstance()->action(u"viewer_printpreview"_s));
     popup.addSeparator();
     popup.addAction(pageAction(QWebEnginePage::SavePage));
     popup.addSeparator();
-    popup.addAction(ActionManager::getInstance()->action(QStringLiteral("tab_mute")));
-    popup.addAction(ActionManager::getInstance()->action(QStringLiteral("tab_unmute")));
+    popup.addAction(ActionManager::getInstance()->action(u"tab_mute"_s));
+    popup.addAction(ActionManager::getInstance()->action(u"tab_unmute"_s));
     const QList<QAction *> interceptorUrlActions = mNetworkAccessManager->interceptorUrlActions(result);
     if (!interceptorUrlActions.isEmpty()) {
         popup.addSeparator();
         popup.addActions(interceptorUrlActions);
     }
     popup.addSeparator();
-    popup.addAction(ActionManager::getInstance()->action(QStringLiteral("find_in_messages")));
+    popup.addAction(ActionManager::getInstance()->action(u"find_in_messages"_s));
 #if HAVE_KTEXTADDONS_TEXT_TO_SPEECH_SUPPORT
     popup.addSeparator();
-    popup.addAction(ActionManager::getInstance()->action(QStringLiteral("speak_text")));
+    popup.addAction(ActionManager::getInstance()->action(u"speak_text"_s));
 #endif
     popup.exec(mapToGlobal(result.pos()));
 }

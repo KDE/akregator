@@ -49,6 +49,8 @@
 
 #include <KIO/KUriFilterSearchProviderActions>
 
+using namespace Qt::Literals::StringLiterals;
+
 using namespace Akregator;
 
 class AkregatorRequestInterceptor : public QWebEngineUrlRequestInterceptor
@@ -142,22 +144,22 @@ void ArticleViewerWebEngine::slotWebPageMutedOrAudibleChanged()
 QVariantHash ArticleViewerWebEngine::introductionData() const
 {
     return {
-        {QStringLiteral("icon"), QStringLiteral("akregator")},
-        {QStringLiteral("name"), i18n("Akregator")},
-        {QStringLiteral("subtitle"), i18n("Akregator is a KDE news feed reader.")},
-        {QStringLiteral("version"), KAboutData::applicationData().version()},
+        {u"icon"_s, u"akregator"_s},
+        {u"name"_s, i18n("Akregator")},
+        {u"subtitle"_s, i18n("Akregator is a KDE news feed reader.")},
+        {u"version"_s, KAboutData::applicationData().version()},
     };
 }
 
 void ArticleViewerWebEngine::showAboutPage()
 {
-    paintAboutScreen(QStringLiteral(":/about/introduction_akregator.html"), introductionData());
+    paintAboutScreen(u":/about/introduction_akregator.html"_s, introductionData());
 }
 
 void ArticleViewerWebEngine::paintAboutScreen(const QString &templateName, const QVariantHash &data)
 {
-    GrantleeTheme::ThemeManager manager(QStringLiteral("splashPage"), QStringLiteral("splash.theme"), nullptr, QStringLiteral("messageviewer/about/"));
-    GrantleeTheme::Theme theme = manager.theme(QStringLiteral("default"));
+    GrantleeTheme::ThemeManager manager(u"splashPage"_s, u"splash.theme"_s, nullptr, u"messageviewer/about/"_s);
+    GrantleeTheme::Theme theme = manager.theme(u"default"_s);
     if (theme.isValid()) {
         setHtml(theme.render(templateName, data, QByteArrayLiteral("akregator")), QUrl::fromLocalFile(theme.absolutePath() + u'/'));
     } else {
@@ -182,7 +184,7 @@ void ArticleViewerWebEngine::saveUrl(const QUrl &sourceUrl)
     }
     if (url.fileName().isEmpty()) {
         url = url.adjusted(QUrl::StripTrailingSlash);
-        url.setPath(url.path() + QLatin1StringView("/index.html"));
+        url.setPath(url.path() + "/index.html"_L1);
     }
 
     auto dlg = new QFileDialog(this);
@@ -195,8 +197,8 @@ void ArticleViewerWebEngine::saveUrl(const QUrl &sourceUrl)
     connect(dlg, &QFileDialog::urlSelected, this, [this, url](const QUrl &destURL) {
         if (destURL.isValid()) {
             KIO::FileCopyJob *job = KIO::file_copy(url, destURL, -1, KIO::Overwrite);
-            job->addMetaData(QStringLiteral("MaxCacheSize"), QStringLiteral("0")); // Don't store in http cache.
-            job->addMetaData(QStringLiteral("cache"), QStringLiteral("cache")); // Use entry from cache if available.
+            job->addMetaData(u"MaxCacheSize"_s, u"0"_s); // Don't store in http cache.
+            job->addMetaData(u"cache"_s, u"cache"_s); // Use entry from cache if available.
             KJobWidgets::setWindow(job, this);
             if (Settings::self()->disableSaveAsNotification()) {
                 job->setFinishedNotificationHidden(true);
@@ -276,7 +278,7 @@ void ArticleViewerWebEngine::slotWebHitFinished(const WebEngineViewer::WebHitTes
             connect(saveLinkAsAction, &QAction::triggered, this, [this, url = mCurrentUrl]() {
                 saveUrl(url);
             });
-            QAction *copyLinkAddressAction = popup.addAction(QIcon::fromTheme(QStringLiteral("edit-copy")), i18n("Copy &Link Address"));
+            QAction *copyLinkAddressAction = popup.addAction(QIcon::fromTheme(u"edit-copy"_s), i18n("Copy &Link Address"));
             connect(copyLinkAddressAction, &QAction::triggered, this, [this, url = mCurrentUrl]() {
                 copyUrlToClipboard(url);
             });
@@ -284,7 +286,7 @@ void ArticleViewerWebEngine::slotWebHitFinished(const WebEngineViewer::WebHitTes
         const QUrl imageUrl = result.imageUrl();
         if (!imageUrl.isEmpty()) {
             popup.addSeparator();
-            QAction *copyImageUrlAction = popup.addAction(QIcon::fromTheme(QStringLiteral("view-media-visualization")), i18nc("@action", "Copy Image URL"));
+            QAction *copyImageUrlAction = popup.addAction(QIcon::fromTheme(u"view-media-visualization"_s), i18nc("@action", "Copy Image URL"));
             connect(copyImageUrlAction, &QAction::triggered, this, [this, imageUrl]() {
                 copyUrlToClipboard(imageUrl);
             });
@@ -298,7 +300,7 @@ void ArticleViewerWebEngine::slotWebHitFinished(const WebEngineViewer::WebHitTes
         popup.addSeparator();
         popup.addAction(mShareServiceManager->menu());
     } else {
-        popup.addAction(ActionManager::getInstance()->action(QStringLiteral("viewer_copy")));
+        popup.addAction(ActionManager::getInstance()->action(u"viewer_copy"_s));
         popup.addSeparator();
         mWebShortcutMenuManager->setSelectedText(page()->selectedText());
         mWebShortcutMenuManager->addWebShortcutsToMenu(&popup);
@@ -306,16 +308,16 @@ void ArticleViewerWebEngine::slotWebHitFinished(const WebEngineViewer::WebHitTes
         popup.addActions(viewerPluginActionList(MessageViewer::ViewerPluginInterface::NeedSelection));
     }
     popup.addSeparator();
-    popup.addAction(ActionManager::getInstance()->action(QStringLiteral("viewer_print")));
-    popup.addAction(ActionManager::getInstance()->action(QStringLiteral("viewer_printpreview")));
+    popup.addAction(ActionManager::getInstance()->action(u"viewer_print"_s));
+    popup.addAction(ActionManager::getInstance()->action(u"viewer_printpreview"_s));
     popup.addSeparator();
-    popup.addAction(ActionManager::getInstance()->action(QStringLiteral("tab_mute")));
-    popup.addAction(ActionManager::getInstance()->action(QStringLiteral("tab_unmute")));
+    popup.addAction(ActionManager::getInstance()->action(u"tab_mute"_s));
+    popup.addAction(ActionManager::getInstance()->action(u"tab_unmute"_s));
     popup.addSeparator();
-    popup.addAction(ActionManager::getInstance()->action(QStringLiteral("find_in_messages")));
+    popup.addAction(ActionManager::getInstance()->action(u"find_in_messages"_s));
 #if HAVE_KTEXTADDONS_TEXT_TO_SPEECH_SUPPORT
     popup.addSeparator();
-    popup.addAction(ActionManager::getInstance()->action(QStringLiteral("speak_text")));
+    popup.addAction(ActionManager::getInstance()->action(u"speak_text"_s));
 #endif
     popup.exec(mapToGlobal(result.pos()));
 }
@@ -515,8 +517,8 @@ void ArticleViewerWebEngine::createViewerPluginToolManager(KActionCollection *ac
 {
     mViewerPluginToolManager = new MessageViewer::ViewerPluginToolManager(parent, this);
     mViewerPluginToolManager->setActionCollection(ac);
-    mViewerPluginToolManager->setPluginName(QStringLiteral("akregator"));
-    mViewerPluginToolManager->setPluginDirectory(QStringLiteral("akregator/viewerplugin"));
+    mViewerPluginToolManager->setPluginName(u"akregator"_s);
+    mViewerPluginToolManager->setPluginDirectory(u"akregator/viewerplugin"_s);
     if (!mViewerPluginToolManager->initializePluginList()) {
         qCWarning(AKREGATOR_LOG) << " Impossible to initialize plugins";
     }

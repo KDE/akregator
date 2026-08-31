@@ -39,7 +39,7 @@ TrayIcon::TrayIcon(QObject *parent)
 {
     setToolTipTitle(i18n("Akregator"));
     setToolTipIconByName(u"akregator"_s);
-    setIconByName(QStringLiteral("akregator-symbolic"));
+    setIconByName(u"akregator-symbolic"_s);
 }
 
 TrayIcon::~TrayIcon() = default;
@@ -49,7 +49,7 @@ void TrayIcon::slotSetUnread(int unread)
     if (mEnabled && m_unread != unread) {
         m_unread = unread;
 
-        setToolTip(QStringLiteral("akregator"),
+        setToolTip(u"akregator"_s,
                    i18n("Akregator"),
                    unread == 0 ? i18n("There are no unread articles") : i18np("1 unread article", "%1 unread articles", unread));
         setStatus(unread > 0 ? KStatusNotifierItem::Active : KStatusNotifierItem::Passive);

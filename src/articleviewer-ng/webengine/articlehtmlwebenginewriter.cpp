@@ -8,11 +8,13 @@
 #include "akregator_debug.h"
 #include "articleviewerwebengine.h"
 
+using namespace Qt::Literals::StringLiterals;
+
 using namespace Akregator;
 
 ArticleHtmlWebEngineWriter::ArticleHtmlWebEngineWriter(ArticleViewerWebEngine *view, QObject *parent)
     : QObject(parent)
-    , mBaseUrl(QStringLiteral("file:///"))
+    , mBaseUrl(u"file:///"_s)
     , mWebView(view)
 {
 }
@@ -27,7 +29,7 @@ void ArticleHtmlWebEngineWriter::begin()
     }
     // clear the widget:
     mWebView->setUpdatesEnabled(false);
-    mWebView->load(QUrl(QStringLiteral("about:blank")));
+    mWebView->load(QUrl(u"about:blank"_s));
     mState = Begun;
 }
 

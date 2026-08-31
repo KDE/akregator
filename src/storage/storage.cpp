@@ -20,6 +20,8 @@
 #include <QStandardPaths>
 #include <chrono>
 
+using namespace Qt::Literals::StringLiterals;
+
 using namespace std::chrono_literals;
 
 class Akregator::Backend::Storage::StoragePrivate
@@ -103,7 +105,7 @@ QString Akregator::Backend::Storage::archivePath() const
 
 QString Akregator::Backend::Storage::defaultArchivePath()
 {
-    const QString ret = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QStringLiteral("/akregator/Archive");
+    const QString ret = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + u"/akregator/Archive"_s;
     QDir().mkpath(ret);
     return ret;
 }
@@ -115,14 +117,14 @@ Akregator::Backend::Storage::~Storage()
 
 bool Akregator::Backend::Storage::open(bool autoCommit)
 {
-    QString filePath = d->archivePath + QLatin1StringView("/archiveindex.mk4");
+    QString filePath = d->archivePath + "/archiveindex.mk4"_L1;
     d->storage = new c4_Storage(filePath.toLocal8Bit().constData(), static_cast<int>(true));
     d->archiveView = d->storage->GetAs("archive[url:S,unread:I,totalCount:I,lastFetch:I]");
     c4_View hash = d->storage->GetAs("archiveHash[_H:I,_R:I]");
     d->archiveView = d->archiveView.Hash(hash, 1); // hash on url
     d->autoCommit = autoCommit;
 
-    filePath = d->archivePath + QLatin1StringView("/feedlistbackup.mk4");
+    filePath = d->archivePath + "/feedlistbackup.mk4"_L1;
     d->feedListStorage = new c4_Storage(filePath.toLocal8Bit().constData(), static_cast<int>(true));
     d->feedListView = d->feedListStorage->GetAs("archive[feedList:S,tagSet:S]");
     return true;

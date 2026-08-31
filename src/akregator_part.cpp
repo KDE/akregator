@@ -59,50 +59,52 @@
 #include <memory>
 #include <utility>
 
+using namespace Qt::Literals::StringLiterals;
+
 namespace
 {
 static QDomDocument createDefaultFeedList()
 {
     QDomDocument doc;
-    QDomProcessingInstruction z = doc.createProcessingInstruction(QStringLiteral("xml"), QStringLiteral("version=\"1.0\" encoding=\"UTF-8\""));
+    QDomProcessingInstruction z = doc.createProcessingInstruction(u"xml"_s, u"version=\"1.0\" encoding=\"UTF-8\""_s);
     doc.appendChild(z);
 
-    QDomElement root = doc.createElement(QStringLiteral("opml"));
-    root.setAttribute(QStringLiteral("version"), QStringLiteral("1.0"));
+    QDomElement root = doc.createElement(u"opml"_s);
+    root.setAttribute(u"version"_s, u"1.0"_s);
     doc.appendChild(root);
 
-    QDomElement head = doc.createElement(QStringLiteral("head"));
+    QDomElement head = doc.createElement(u"head"_s);
     root.appendChild(head);
 
-    QDomElement text = doc.createElement(QStringLiteral("text"));
+    QDomElement text = doc.createElement(u"text"_s);
     text.appendChild(doc.createTextNode(i18n("Feeds")));
     head.appendChild(text);
 
-    QDomElement body = doc.createElement(QStringLiteral("body"));
+    QDomElement body = doc.createElement(u"body"_s);
     root.appendChild(body);
 
-    QDomElement mainFolder = doc.createElement(QStringLiteral("outline"));
-    mainFolder.setAttribute(QStringLiteral("text"), QStringLiteral("KDE"));
+    QDomElement mainFolder = doc.createElement(u"outline"_s);
+    mainFolder.setAttribute(u"text"_s, u"KDE"_s);
     body.appendChild(mainFolder);
 
-    QDomElement planet = doc.createElement(QStringLiteral("outline"));
-    planet.setAttribute(QStringLiteral("text"), i18n("Planet KDE"));
-    planet.setAttribute(QStringLiteral("xmlUrl"), QStringLiteral("https://planet.kde.org/atom.xml"));
+    QDomElement planet = doc.createElement(u"outline"_s);
+    planet.setAttribute(u"text"_s, i18n("Planet KDE"));
+    planet.setAttribute(u"xmlUrl"_s, u"https://planet.kde.org/atom.xml"_s);
     mainFolder.appendChild(planet);
 
-    QDomElement apps = doc.createElement(QStringLiteral("outline"));
-    apps.setAttribute(QStringLiteral("text"), i18n("KDE Apps"));
-    apps.setAttribute(QStringLiteral("xmlUrl"), QStringLiteral("https://store.kde.org/content.rdf"));
+    QDomElement apps = doc.createElement(u"outline"_s);
+    apps.setAttribute(u"text"_s, i18n("KDE Apps"));
+    apps.setAttribute(u"xmlUrl"_s, u"https://store.kde.org/content.rdf"_s);
     mainFolder.appendChild(apps);
 
     // spanish feed(s)
-    QDomElement spanishFolder = doc.createElement(QStringLiteral("outline"));
-    spanishFolder.setAttribute(QStringLiteral("text"), i18n("Spanish feeds"));
+    QDomElement spanishFolder = doc.createElement(u"outline"_s);
+    spanishFolder.setAttribute(u"text"_s, i18n("Spanish feeds"));
     mainFolder.appendChild(spanishFolder);
 
-    QDomElement spanishKde = doc.createElement(QStringLiteral("outline"));
-    spanishKde.setAttribute(QStringLiteral("text"), i18n("Planet KDE España"));
-    spanishKde.setAttribute(QStringLiteral("xmlUrl"), QStringLiteral("https://planet.kde-espana.org/atom.xml"));
+    QDomElement spanishKde = doc.createElement(u"outline"_s);
+    spanishKde.setAttribute(u"text"_s, i18n("Planet KDE España"));
+    spanishKde.setAttribute(u"xmlUrl"_s, u"https://planet.kde-espana.org/atom.xml"_s);
     spanishFolder.appendChild(spanishKde);
 
     return doc;
@@ -123,15 +125,15 @@ Part::Part(QWidget *parentWidget, QObject *parent, const KPluginMetaData &data, 
     Part::config();
     initFonts();
 
-    setComponentName(QStringLiteral("akregator"), i18n("Akregator"));
-    setXMLFile(QStringLiteral("akregator_part.rc"), true);
+    setComponentName(u"akregator"_s, i18n("Akregator"));
+    setXMLFile(u"akregator_part.rc"_s, true);
 
     new PartAdaptor(this);
-    QDBusConnection::sessionBus().registerObject(QStringLiteral("/Akregator"), this);
+    QDBusConnection::sessionBus().registerObject(u"/Akregator"_s, this);
 
-    const QString path = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QStringLiteral("/akregator/data/");
+    const QString path = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + u"/akregator/data/"_s;
     QDir().mkpath(path);
-    m_standardFeedList = path + QStringLiteral("/feeds.opml");
+    m_standardFeedList = path + u"/feeds.opml"_s;
 
     m_storage = new Backend::Storage;
     m_storage->open(true);
@@ -143,7 +145,7 @@ Part::Part(QWidget *parentWidget, QObject *parent, const KPluginMetaData &data, 
 
     mCentralWidget = new Akregator::AkregatorCentralWidget(parentWidget);
     connect(mCentralWidget, &AkregatorCentralWidget::restoreSession, this, &Part::slotRestoreSession);
-    m_mainWidget = new Akregator::MainWidget(this, parentWidget, m_actionManager, QStringLiteral("akregator_view"));
+    m_mainWidget = new Akregator::MainWidget(this, parentWidget, m_actionManager, u"akregator_view"_s);
     mCentralWidget->setMainWidget(m_mainWidget);
 
     connect(Kernel::self()->frameManager(), &FrameManager::signalCaptionChanged, this, &Part::setWindowCaption);
@@ -181,7 +183,7 @@ KSharedConfig::Ptr Part::config()
 {
     assert(mySelf);
     if (!mySelf->mConfig) {
-        mySelf->mConfig = KSharedConfig::openConfig(QStringLiteral("akregatorrc"));
+        mySelf->mConfig = KSharedConfig::openConfig(u"akregatorrc"_s);
     }
     return mySelf->mConfig;
 }
@@ -256,7 +258,7 @@ void Part::slotSettingsChanged()
                             Settings::serifFont(),
                             Settings::standardFont(),
                             Settings::standardFont(),
-                            QStringLiteral("0")};
+                            u"0"_s};
     Settings::setFonts(fonts);
 
     if (Settings::minimumFontSize() > Settings::mediumFontSize()) {
@@ -485,7 +487,7 @@ void Part::exportFile(const QUrl &url)
 
 void Part::fileImport()
 {
-    const QString filters = i18n("OPML Outlines (%1);;All Files (*)", QStringLiteral("*.opml *.xml"));
+    const QString filters = i18n("OPML Outlines (%1);;All Files (*)", u"*.opml *.xml"_s);
     const QUrl url = QFileDialog::getOpenFileUrl(m_mainWidget, QString(), QUrl(), filters);
     if (!url.isEmpty()) {
         importFile(url);
@@ -494,7 +496,7 @@ void Part::fileImport()
 
 void Part::fileExport()
 {
-    const QString filters = i18n("OPML Outlines (%1);;All Files (*)", QStringLiteral("*.opml *.xml"));
+    const QString filters = i18n("OPML Outlines (%1);;All Files (*)", u"*.opml *.xml"_s);
     const QUrl url = QFileDialog::getSaveFileUrl(m_mainWidget, QString(), QUrl(), filters);
 
     if (!url.isEmpty()) {
@@ -545,7 +547,7 @@ void Part::showOptions()
         if (TrayIcon::getInstance()) {
             connect(m_dialog, &KCMultiDialog::configCommitted, TrayIcon::getInstance(), &TrayIcon::settingsChanged);
         }
-        const QList<KPluginMetaData> availablePlugins = KPluginMetaData::findPlugins(QStringLiteral("pim6/kcms/akregator"));
+        const QList<KPluginMetaData> availablePlugins = KPluginMetaData::findPlugins(u"pim6/kcms/akregator"_s);
         for (const KPluginMetaData &metaData : availablePlugins) {
             m_dialog->addModule(metaData);
         }
@@ -563,7 +565,7 @@ void Part::initFonts()
         fonts.append(QFontDatabase::systemFont(QFontDatabase::FixedFont).family());
         fonts.append(QFontDatabase::systemFont(QFontDatabase::GeneralFont).family());
         fonts.append(QFontDatabase::systemFont(QFontDatabase::GeneralFont).family());
-        fonts.append(QStringLiteral("0"));
+        fonts.append(u"0"_s);
     }
     Settings::setFonts(fonts);
     if (Settings::standardFont().isEmpty()) {
@@ -581,10 +583,10 @@ void Part::initFonts()
 
     // TODO add CursiveFont, FantasyFont
 
-    KConfigGroup conf(Settings::self()->config(), QStringLiteral("HTML Settings"));
+    KConfigGroup conf(Settings::self()->config(), u"HTML Settings"_s);
 
-    KConfig _konq(QStringLiteral("konquerorrc"), KConfig::NoGlobals);
-    KConfigGroup konq(&_konq, QStringLiteral("HTML Settings"));
+    KConfig _konq(u"konquerorrc"_s, KConfig::NoGlobals);
+    KConfigGroup konq(&_konq, u"HTML Settings"_s);
 
     if (!conf.hasKey("MinimumFontSize")) {
         int minfs;
@@ -619,9 +621,9 @@ bool Part::handleCommandLine(const QStringList &args)
     akregator_options(&parser);
     parser.process(args);
 
-    const QString addFeedGroup = parser.isSet(QStringLiteral("group")) ? parser.value(QStringLiteral("group")) : i18n("Imported Folder");
+    const QString addFeedGroup = parser.isSet(u"group"_s) ? parser.value(u"group"_s) : i18n("Imported Folder");
 
-    QStringList feedsToAdd = parser.values(QStringLiteral("addfeed"));
+    QStringList feedsToAdd = parser.values(u"addfeed"_s);
 
     if (feedsToAdd.isEmpty() && !parser.positionalArguments().isEmpty()) {
         const auto positionalArguments = parser.positionalArguments();
@@ -630,7 +632,7 @@ bool Part::handleCommandLine(const QStringList &args)
             if (tempUrl.isLocalFile()) {
                 const QString tempLocalFile = tempUrl.toLocalFile();
                 if (tempLocalFile.startsWith(QDir::tempPath())) {
-                    const QString path = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QStringLiteral("/akregator/data/");
+                    const QString path = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + u"/akregator/data/"_s;
                     QDir().mkpath(path);
                     QFile f(tempLocalFile);
                     const QString newRssFileName = path + QFileInfo(f).fileName();
@@ -657,8 +659,8 @@ void Part::clearCrashProperties()
     if (!m_doCrashSave) {
         return;
     }
-    KConfig config(QStringLiteral("crashed"), KConfig::SimpleConfig, QStandardPaths::AppDataLocation);
-    KConfigGroup configGroup(&config, QStringLiteral("Part"));
+    KConfig config(u"crashed"_s, KConfig::SimpleConfig, QStandardPaths::AppDataLocation);
+    KConfigGroup configGroup(&config, u"Part"_s);
     configGroup.writeEntry("crashed", false);
 }
 
@@ -667,8 +669,8 @@ void Part::saveCrashProperties()
     if (!m_doCrashSave) {
         return;
     }
-    KConfig config(QStringLiteral("crashed"), KConfig::SimpleConfig, QStandardPaths::AppDataLocation);
-    KConfigGroup configGroup(&config, QStringLiteral("Part"));
+    KConfig config(u"crashed"_s, KConfig::SimpleConfig, QStandardPaths::AppDataLocation);
+    KConfigGroup configGroup(&config, u"Part"_s);
     configGroup.deleteGroup();
 
     configGroup.writeEntry("crashed", true);
@@ -683,8 +685,8 @@ void Part::slotAutoSave()
 
 void Part::autoSaveProperties()
 {
-    KConfig config(QStringLiteral("autosaved"), KConfig::SimpleConfig, QStandardPaths::AppDataLocation);
-    KConfigGroup configGroup(&config, QStringLiteral("Part"));
+    KConfig config(u"autosaved"_s, KConfig::SimpleConfig, QStandardPaths::AppDataLocation);
+    KConfigGroup configGroup(&config, u"Part"_s);
     configGroup.deleteGroup();
 
     saveProperties(configGroup);
@@ -697,8 +699,8 @@ void Part::autoReadProperties()
     if (qGuiApp->isSessionRestored()) {
         return;
     }
-    const KConfig config(QStringLiteral("autosaved"), KConfig::SimpleConfig, QStandardPaths::AppDataLocation);
-    const KConfigGroup configGroup(&config, QStringLiteral("Part"));
+    const KConfig config(u"autosaved"_s, KConfig::SimpleConfig, QStandardPaths::AppDataLocation);
+    const KConfigGroup configGroup(&config, u"Part"_s);
 
     readProperties(configGroup);
 }
@@ -707,8 +709,8 @@ void Part::slotRestoreSession(Akregator::CrashWidget::CrashAction type)
 {
     switch (type) {
     case Akregator::CrashWidget::RestoreSession: {
-        KConfig config(QStringLiteral("crashed"), KConfig::SimpleConfig, QStandardPaths::AppDataLocation);
-        KConfigGroup configGroup(&config, QStringLiteral("Part"));
+        KConfig config(u"crashed"_s, KConfig::SimpleConfig, QStandardPaths::AppDataLocation);
+        KConfigGroup configGroup(&config, u"Part"_s);
         readProperties(configGroup);
         clearCrashProperties();
         break;

@@ -15,6 +15,8 @@
 
 #include <QVBoxLayout>
 
+using namespace Qt::Literals::StringLiterals;
+
 using namespace Akregator;
 
 K_PLUGIN_CLASS_WITH_JSON(KCMAkregatorAppearanceConfig, "akregator_config_appearance.json")
@@ -40,10 +42,10 @@ KCMAkregatorAppearanceConfig::KCMAkregatorAppearanceConfig(QObject *parent, cons
     connect(m_ui.kcfg_MinimumFontSize, &QSpinBox::valueChanged, m_ui.slider_minimumFontSize, &QSlider::setValue);
     connect(m_ui.kcfg_MediumFontSize, &QSpinBox::valueChanged, m_ui.slider_mediumFontSize, &QSlider::setValue);
 
-    m_ui.slider_minimumFontSize->setDisabled(Settings::self()->isImmutable(QStringLiteral("MinimumFontSize")));
-    m_ui.slider_mediumFontSize->setDisabled(Settings::self()->isImmutable(QStringLiteral("MediumFontSize")));
-    m_ui.lbl_MinimumFontSize->setDisabled(Settings::self()->isImmutable(QStringLiteral("MinimumFontSize")));
-    m_ui.lbl_MediumFontSize->setDisabled(Settings::self()->isImmutable(QStringLiteral("MediumFontSize")));
+    m_ui.slider_minimumFontSize->setDisabled(Settings::self()->isImmutable(u"MinimumFontSize"_s));
+    m_ui.slider_mediumFontSize->setDisabled(Settings::self()->isImmutable(u"MediumFontSize"_s));
+    m_ui.lbl_MinimumFontSize->setDisabled(Settings::self()->isImmutable(u"MinimumFontSize"_s));
+    m_ui.lbl_MediumFontSize->setDisabled(Settings::self()->isImmutable(u"MediumFontSize"_s));
 
     addConfig(Settings::self(), m_widget);
 }

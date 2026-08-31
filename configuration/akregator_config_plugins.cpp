@@ -12,6 +12,8 @@
 #include <KPluginFactory>
 #include <PimCommon/ConfigurePluginsWidget>
 #include <QHBoxLayout>
+
+using namespace Qt::Literals::StringLiterals;
 using namespace Akregator;
 
 K_PLUGIN_CLASS_WITH_JSON(KCMAkregatorPluginsConfig, "akregator_config_plugins.json")
@@ -21,7 +23,7 @@ KCMAkregatorPluginsConfig::KCMAkregatorPluginsConfig(QObject *parent, const KPlu
     auto lay = new QHBoxLayout(widget());
     lay->setContentsMargins({});
     mConfigurePluginWidget = new PimCommon::ConfigurePluginsWidget(new AkregatorConfigurePluginListWidget(widget()), widget());
-    mConfigurePluginWidget->setObjectName(QLatin1StringView("configurePluginWidget"));
+    mConfigurePluginWidget->setObjectName("configurePluginWidget"_L1);
     connect(mConfigurePluginWidget, &PimCommon::ConfigurePluginsWidget::wasChanged, this, [this](bool state) {
         setNeedsSave(state);
     });

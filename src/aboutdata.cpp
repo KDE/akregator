@@ -12,35 +12,37 @@
 
 #include <KLocalizedString>
 
+using namespace Qt::Literals::StringLiterals;
+
 using namespace Akregator;
 
 AboutData::AboutData()
-    : KAboutData(QStringLiteral("akregator"),
+    : KAboutData(u"akregator"_s,
                  i18n("Akregator"),
                  QStringLiteral(AKREGATOR_VERSION),
                  i18n("A KDE Feed Reader"),
                  KAboutLicense::GPL,
-                 i18n("Copyright © 2004–%1 Akregator authors", QStringLiteral("2026")),
+                 i18n("Copyright © 2004–%1 Akregator authors", u"2026"_s),
                  QString(),
-                 QStringLiteral("https://userbase.kde.org/Akregator"))
+                 u"https://userbase.kde.org/Akregator"_s)
 {
-    addAuthor(i18nc("@info:credit", "Laurent Montel"), i18n("Maintainer"), QStringLiteral("montel@kde.org"));
-    addAuthor(i18nc("@info:credit", "Frank Osterfeld"), i18n("Former maintainer"), QStringLiteral("osterfeld@kde.org"));
-    addAuthor(i18nc("@info:credit", "Teemu Rytilahti"), i18n("Developer"), QStringLiteral("tpr@d5k.net"));
-    addAuthor(i18nc("@info:credit", "Sashmit Bhaduri"), i18n("Developer"), QStringLiteral("sashmit@vfemail.net"));
-    addAuthor(i18nc("@info:credit", "Pierre Habouzit"), i18n("Developer"), QStringLiteral("pierre.habouzit@m4x.org"));
-    addAuthor(i18nc("@info:credit", "Stanislav Karchebny"), i18n("Developer"), QStringLiteral("Stanislav.Karchebny@kdemail.net"));
-    addAuthor(i18nc("@info:credit", "Gary Cramblitt"), i18n("Contributor"), QStringLiteral("garycramblitt@comcast.net"));
-    addAuthor(i18nc("@info:credit", "Stephan Binner"), i18n("Contributor"), QStringLiteral("binner@kde.org"));
-    addAuthor(i18nc("@info:credit", "Christof Musik"), i18n("Contributor"), QStringLiteral("christof@freenet.de"));
-    addCredit(i18nc("@info:credit", "Anne-Marie Mahfouf"), i18n("Handbook"), QStringLiteral("annma@kde.org"));
-    addCredit(i18nc("@info:credit", "Frerich Raabe"), i18n("Author of librss"), QStringLiteral("raabe@kde.org"));
-    addCredit(i18nc("@info:credit", "Eckhart Woerner"), i18n("Bug tracker management, Usability improvements"), QStringLiteral("kde@ewsoftware.de"));
-    addCredit(i18nc("@info:credit", "Heinrich Wendel"), i18n("Tons of bug fixes"), QStringLiteral("h_wendel@cojobo.net"));
-    addCredit(i18nc("@info:credit", "Eike Hein"), i18n("'Delayed mark as read' feature"), QStringLiteral("sho@eikehein.com"));
-    addCredit(i18nc("@info:credit", "Marcel Dierkes"), i18n("Icons"), QStringLiteral("marcel.dierkes@gmx.de"));
-    addCredit(i18nc("@info:credit", "George Staikos"), i18n("Insomnia"), QStringLiteral("staikos@kde.org"));
-    addCredit(i18nc("@info:credit", "Philipp Droessler"), i18n("Gentoo Ebuild"), QStringLiteral("kingmob@albert-unser.net"));
+    addAuthor(i18nc("@info:credit", "Laurent Montel"), i18n("Maintainer"), u"montel@kde.org"_s);
+    addAuthor(i18nc("@info:credit", "Frank Osterfeld"), i18n("Former maintainer"), u"osterfeld@kde.org"_s);
+    addAuthor(i18nc("@info:credit", "Teemu Rytilahti"), i18n("Developer"), u"tpr@d5k.net"_s);
+    addAuthor(i18nc("@info:credit", "Sashmit Bhaduri"), i18n("Developer"), u"sashmit@vfemail.net"_s);
+    addAuthor(i18nc("@info:credit", "Pierre Habouzit"), i18n("Developer"), u"pierre.habouzit@m4x.org"_s);
+    addAuthor(i18nc("@info:credit", "Stanislav Karchebny"), i18n("Developer"), u"Stanislav.Karchebny@kdemail.net"_s);
+    addAuthor(i18nc("@info:credit", "Gary Cramblitt"), i18n("Contributor"), u"garycramblitt@comcast.net"_s);
+    addAuthor(i18nc("@info:credit", "Stephan Binner"), i18n("Contributor"), u"binner@kde.org"_s);
+    addAuthor(i18nc("@info:credit", "Christof Musik"), i18n("Contributor"), u"christof@freenet.de"_s);
+    addCredit(i18nc("@info:credit", "Anne-Marie Mahfouf"), i18n("Handbook"), u"annma@kde.org"_s);
+    addCredit(i18nc("@info:credit", "Frerich Raabe"), i18n("Author of librss"), u"raabe@kde.org"_s);
+    addCredit(i18nc("@info:credit", "Eckhart Woerner"), i18n("Bug tracker management, Usability improvements"), u"kde@ewsoftware.de"_s);
+    addCredit(i18nc("@info:credit", "Heinrich Wendel"), i18n("Tons of bug fixes"), u"h_wendel@cojobo.net"_s);
+    addCredit(i18nc("@info:credit", "Eike Hein"), i18n("'Delayed mark as read' feature"), u"sho@eikehein.com"_s);
+    addCredit(i18nc("@info:credit", "Marcel Dierkes"), i18n("Icons"), u"marcel.dierkes@gmx.de"_s);
+    addCredit(i18nc("@info:credit", "George Staikos"), i18n("Insomnia"), u"staikos@kde.org"_s);
+    addCredit(i18nc("@info:credit", "Philipp Droessler"), i18n("Gentoo Ebuild"), u"kingmob@albert-unser.net"_s);
 }
 
 AboutData::~AboutData() = default;

@@ -16,6 +16,8 @@
 #include <QPaintDevice>
 #include <QString>
 
+using namespace Qt::Literals::StringLiterals;
+
 using namespace Syndication;
 
 using namespace Akregator;
@@ -58,7 +60,7 @@ private:
 DefaultNormalViewFormatter::DefaultNormalViewFormatter(QPaintDevice *device)
     : ArticleFormatter()
     , m_summaryVisitor(std::make_unique<SummaryVisitor>(this))
-    , mGrantleeViewFormatter(std::make_unique<GrantleeViewFormatter>(QStringLiteral("formatter/html/normalview.html"), device->logicalDpiY()))
+    , mGrantleeViewFormatter(std::make_unique<GrantleeViewFormatter>(u"formatter/html/normalview.html"_s, device->logicalDpiY()))
 {
 }
 

@@ -9,6 +9,8 @@
 #include <QButtonGroup>
 #include <QHBoxLayout>
 #include <QTest>
+
+using namespace Qt::Literals::StringLiterals;
 QTEST_MAIN(StatusSearchButtonsTest)
 StatusSearchButtonsTest::StatusSearchButtonsTest(QObject *parent)
     : QObject{parent}
@@ -19,11 +21,11 @@ void StatusSearchButtonsTest::shouldHaveDefaultValues()
 {
     Akregator::StatusSearchButtons w;
 
-    auto mButtonGroup = w.findChild<QButtonGroup *>(QStringLiteral("mButtonGroup"));
+    auto mButtonGroup = w.findChild<QButtonGroup *>(u"mButtonGroup"_s);
     QVERIFY(mButtonGroup);
     QVERIFY(mButtonGroup->exclusive());
 
-    auto mainLayout = w.findChild<QHBoxLayout *>(QStringLiteral("mainLayout"));
+    auto mainLayout = w.findChild<QHBoxLayout *>(u"mainLayout"_s);
     QVERIFY(mainLayout);
 }
 

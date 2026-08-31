@@ -14,16 +14,18 @@
 
 #include <QAction>
 
+using namespace Qt::Literals::StringLiterals;
+
 QAction *Akregator::createOpenLinkInNewTabAction(const QUrl &url, QObject *parent)
 {
-    auto action = new QAction(QIcon::fromTheme(QStringLiteral("tab-new")), i18n("Open Link in New &Tab"), parent);
+    auto action = new QAction(QIcon::fromTheme(u"tab-new"_s), i18n("Open Link in New &Tab"), parent);
     action->setData(url);
     return action;
 }
 
 QAction *Akregator::createOpenLinkInExternalBrowserAction(const QUrl &url, QObject *parent)
 {
-    auto action = new QAction(QIcon::fromTheme(QStringLiteral("window-new")), i18n("Open Link in External &Browser"), parent);
+    auto action = new QAction(QIcon::fromTheme(u"window-new"_s), i18n("Open Link in External &Browser"), parent);
     action->setData(url);
     return action;
 }

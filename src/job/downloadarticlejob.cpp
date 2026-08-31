@@ -13,6 +13,8 @@
 #include <QTemporaryFile>
 #include <QUrlQuery>
 
+using namespace Qt::Literals::StringLiterals;
+
 using namespace Akregator;
 
 DownloadArticleJob::DownloadArticleJob(QObject *parent)
@@ -86,11 +88,11 @@ void DownloadArticleJob::setTitle(const QString &title)
 void DownloadArticleJob::sendAttachment()
 {
     QUrlQuery query;
-    query.addQueryItem(QStringLiteral("subject"), mTitle);
-    query.addQueryItem(QStringLiteral("body"), mText);
-    query.addQueryItem(QStringLiteral("attach"), mTemporaryFile->fileName());
+    query.addQueryItem(u"subject"_s, mTitle);
+    query.addQueryItem(u"body"_s, mText);
+    query.addQueryItem(u"attach"_s, mTemporaryFile->fileName());
     QUrl url;
-    url.setScheme(QStringLiteral("mailto"));
+    url.setScheme(u"mailto"_s);
     url.setQuery(query);
     QDesktopServices::openUrl(url);
     deleteLater();

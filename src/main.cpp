@@ -26,6 +26,8 @@
 
 #include <KStyleManager>
 
+using namespace Qt::Literals::StringLiterals;
+
 namespace Akregator
 {
 class Application : public KontactInterface::PimUniqueApplication
@@ -67,7 +69,7 @@ public:
 int Application::activate(const QStringList &args, const QString &workingDir)
 {
     if (!isSessionRestored()) {
-        QDBusInterface akr(QStringLiteral("org.kde.akregator"), QStringLiteral("/Akregator"), QStringLiteral("org.kde.akregator.part"));
+        QDBusInterface akr(u"org.kde.akregator"_s, u"/Akregator"_s, u"org.kde.akregator.part"_s);
 
         QCommandLineParser *parser = cmdArgs();
         parser->process(args);
@@ -76,17 +78,17 @@ int Application::activate(const QStringList &args, const QString &workingDir)
             mMainWindow = new Akregator::MainWindow();
             mMainWindow->loadPart();
             mMainWindow->setupProgressWidgets();
-            if (!parser->isSet(QStringLiteral("hide-mainwindow"))) {
+            if (!parser->isSet(u"hide-mainwindow"_s)) {
                 mMainWindow->show();
             }
 
             setTrayIconAssociatedWindow();
             installEventFilter(this);
 
-            akr.call(QStringLiteral("openStandardFeedList"));
+            akr.call(u"openStandardFeedList"_s);
         }
 
-        akr.call(QStringLiteral("handleCommandLine"), args);
+        akr.call(u"handleCommandLine"_s, args);
     }
 
     return PimUniqueApplication::activate(args, workingDir);
@@ -102,7 +104,7 @@ int main(int argc, char **argv)
 
     KStyleManager::initStyle();
 
-    app.setDesktopFileName(QStringLiteral("org.kde.akregator"));
+    app.setDesktopFileName(u"org.kde.akregator"_s);
     Akregator::AboutData about;
     app.setAboutData(about);
     KCrash::initialize();
@@ -113,10 +115,10 @@ int main(int argc, char **argv)
     const QStringList args = QCoreApplication::arguments();
     cmdArgs->process(args);
     about.processCommandLine(cmdArgs);
-    QApplication::setWindowIcon(QIcon::fromTheme(QStringLiteral("akregator")));
+    QApplication::setWindowIcon(QIcon::fromTheme(u"akregator"_s));
 
 #if AKREGATOR_WITH_KUSERFEEDBACK
-    if (cmdArgs->isSet(QStringLiteral("feedback"))) {
+    if (cmdArgs->isSet(u"feedback"_s)) {
         auto userFeedBack = new Akregator::AkregatorUserFeedbackProvider(nullptr);
         QTextStream(stdout) << userFeedBack->describeDataSources() << '\n';
         delete userFeedBack;

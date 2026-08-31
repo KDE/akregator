@@ -37,6 +37,8 @@
 
 #include <QStandardPaths>
 
+using namespace Qt::Literals::StringLiterals;
+
 using Syndication::ItemPtr;
 using namespace Akregator;
 
@@ -107,66 +109,66 @@ QString Feed::archiveModeToString(ArchiveMode mode)
 {
     switch (mode) {
     case keepAllArticles:
-        return QStringLiteral("keepAllArticles");
+        return u"keepAllArticles"_s;
     case disableArchiving:
-        return QStringLiteral("disableArchiving");
+        return u"disableArchiving"_s;
     case limitArticleNumber:
-        return QStringLiteral("limitArticleNumber");
+        return u"limitArticleNumber"_s;
     case limitArticleAge:
-        return QStringLiteral("limitArticleAge");
+        return u"limitArticleAge"_s;
     default:
         break;
     }
-    return QStringLiteral("globalDefault");
+    return u"globalDefault"_s;
 }
 
 Akregator::Feed *Feed::fromOPML(const QDomElement &e, Backend::Storage *storage)
 {
-    if (!e.hasAttribute(QStringLiteral("xmlUrl")) && !e.hasAttribute(QStringLiteral("xmlurl")) && !e.hasAttribute(QStringLiteral("xmlURL"))) {
+    if (!e.hasAttribute(u"xmlUrl"_s) && !e.hasAttribute(u"xmlurl"_s) && !e.hasAttribute(u"xmlURL"_s)) {
         return nullptr;
     }
 
-    const QString title = e.hasAttribute(QStringLiteral("text")) ? e.attribute(QStringLiteral("text")) : e.attribute(QStringLiteral("title"));
+    const QString title = e.hasAttribute(u"text"_s) ? e.attribute(u"text"_s) : e.attribute(u"title"_s);
 
-    QString xmlUrl = e.hasAttribute(QStringLiteral("xmlUrl")) ? e.attribute(QStringLiteral("xmlUrl")) : e.attribute(QStringLiteral("xmlurl"));
+    QString xmlUrl = e.hasAttribute(u"xmlUrl"_s) ? e.attribute(u"xmlUrl"_s) : e.attribute(u"xmlurl"_s);
     if (xmlUrl.isEmpty()) {
-        xmlUrl = e.attribute(QStringLiteral("xmlURL"));
+        xmlUrl = e.attribute(u"xmlURL"_s);
     }
 
-    bool useCustomFetchInterval = e.attribute(QStringLiteral("useCustomFetchInterval")) == QLatin1StringView("true");
+    bool useCustomFetchInterval = e.attribute(u"useCustomFetchInterval"_s) == "true"_L1;
 
-    const QString htmlUrl = e.attribute(QStringLiteral("htmlUrl"));
-    const QString description = e.attribute(QStringLiteral("description"));
-    const QString copyright = e.attribute(QStringLiteral("copyright"));
-    const int fetchInterval = e.attribute(QStringLiteral("fetchInterval")).toInt();
-    const Feed::ArchiveMode archiveMode = stringToArchiveMode(e.attribute(QStringLiteral("archiveMode")));
-    const int maxArticleAge = e.attribute(QStringLiteral("maxArticleAge")).toUInt();
-    const int maxArticleNumber = e.attribute(QStringLiteral("maxArticleNumber")).toUInt();
-    const bool markImmediatelyAsRead = e.attribute(QStringLiteral("markImmediatelyAsRead")) == QLatin1StringView("true");
-    const bool useNotification = e.attribute(QStringLiteral("useNotification")) == QLatin1StringView("true");
-    const bool loadLinkedWebsite = e.attribute(QStringLiteral("loadLinkedWebsite")) == QLatin1StringView("true");
-    const QString comment = e.attribute(QStringLiteral("comment"));
-    const QString faviconUrl = e.attribute(QStringLiteral("faviconUrl"));
+    const QString htmlUrl = e.attribute(u"htmlUrl"_s);
+    const QString description = e.attribute(u"description"_s);
+    const QString copyright = e.attribute(u"copyright"_s);
+    const int fetchInterval = e.attribute(u"fetchInterval"_s).toInt();
+    const Feed::ArchiveMode archiveMode = stringToArchiveMode(e.attribute(u"archiveMode"_s));
+    const int maxArticleAge = e.attribute(u"maxArticleAge"_s).toUInt();
+    const int maxArticleNumber = e.attribute(u"maxArticleNumber"_s).toUInt();
+    const bool markImmediatelyAsRead = e.attribute(u"markImmediatelyAsRead"_s) == "true"_L1;
+    const bool useNotification = e.attribute(u"useNotification"_s) == "true"_L1;
+    const bool loadLinkedWebsite = e.attribute(u"loadLinkedWebsite"_s) == "true"_L1;
+    const QString comment = e.attribute(u"comment"_s);
+    const QString faviconUrl = e.attribute(u"faviconUrl"_s);
     Feed::ImageInfo faviconInfo;
     faviconInfo.imageUrl = faviconUrl;
-    if (e.hasAttribute(QStringLiteral("faviconWidth"))) {
-        faviconInfo.width = e.attribute(QStringLiteral("faviconWidth")).toInt();
+    if (e.hasAttribute(u"faviconWidth"_s)) {
+        faviconInfo.width = e.attribute(u"faviconWidth"_s).toInt();
     }
-    if (e.hasAttribute(QStringLiteral("faviconHeight"))) {
-        faviconInfo.height = e.attribute(QStringLiteral("faviconHeight")).toInt();
+    if (e.hasAttribute(u"faviconHeight"_s)) {
+        faviconInfo.height = e.attribute(u"faviconHeight"_s).toInt();
     }
 
     Feed::ImageInfo logoInfo;
-    const QString logoUrl = e.attribute(QStringLiteral("logoUrl"));
+    const QString logoUrl = e.attribute(u"logoUrl"_s);
     logoInfo.imageUrl = logoUrl;
-    if (e.hasAttribute(QStringLiteral("logoWidth"))) {
-        logoInfo.width = e.attribute(QStringLiteral("logoWidth")).toInt();
+    if (e.hasAttribute(u"logoWidth"_s)) {
+        logoInfo.width = e.attribute(u"logoWidth"_s).toInt();
     }
-    if (e.hasAttribute(QStringLiteral("logoHeight"))) {
-        logoInfo.height = e.attribute(QStringLiteral("logoHeight")).toInt();
+    if (e.hasAttribute(u"logoHeight"_s)) {
+        logoInfo.height = e.attribute(u"logoHeight"_s).toInt();
     }
 
-    const uint id = e.attribute(QStringLiteral("id")).toUInt();
+    const uint id = e.attribute(u"id"_s).toUInt();
 
     Feed *const feed = new Feed(storage);
     feed->setTitle(title);
@@ -194,8 +196,8 @@ Akregator::Feed *Feed::fromOPML(const QDomElement &e, Backend::Storage *storage)
     }
 
 #if HAVE_ACTIVITY_SUPPORT
-    feed->setActivityEnabled(e.attribute(QStringLiteral("activityEnabled")) == QLatin1StringView("true"));
-    feed->setActivities(e.attribute(QStringLiteral("activities")).split(u';'));
+    feed->setActivityEnabled(e.attribute(u"activityEnabled"_s) == "true"_L1);
+    feed->setActivities(e.attribute(u"activities"_s).split(u';'));
 #endif
 
     return feed;
@@ -300,15 +302,15 @@ void Feed::recalcUnreadCount()
 
 Feed::ArchiveMode Feed::stringToArchiveMode(const QString &str)
 {
-    if (str == QLatin1StringView("globalDefault")) {
+    if (str == "globalDefault"_L1) {
         return globalDefault;
-    } else if (str == QLatin1StringView("keepAllArticles")) {
+    } else if (str == "keepAllArticles"_L1) {
         return keepAllArticles;
-    } else if (str == QLatin1StringView("disableArchiving")) {
+    } else if (str == "disableArchiving"_L1) {
         return disableArchiving;
-    } else if (str == QLatin1StringView("limitArticleNumber")) {
+    } else if (str == "limitArticleNumber"_L1) {
         return limitArticleNumber;
-    } else if (str == QLatin1StringView("limitArticleAge")) {
+    } else if (str == "limitArticleAge"_L1) {
         return limitArticleAge;
     }
 
@@ -559,57 +561,57 @@ bool Feed::isArticlesLoaded() const
 
 QDomElement Feed::toOPML(QDomElement parent, QDomDocument document) const
 {
-    QDomElement el = document.createElement(QStringLiteral("outline"));
-    el.setAttribute(QStringLiteral("text"), title());
-    el.setAttribute(QStringLiteral("title"), title());
-    el.setAttribute(QStringLiteral("xmlUrl"), d->m_xmlUrl);
-    el.setAttribute(QStringLiteral("htmlUrl"), d->m_htmlUrl);
-    el.setAttribute(QStringLiteral("id"), QString::number(id()));
-    el.setAttribute(QStringLiteral("description"), d->m_description);
-    el.setAttribute(QStringLiteral("useCustomFetchInterval"), (useCustomFetchInterval() ? QStringLiteral("true") : QStringLiteral("false")));
-    el.setAttribute(QStringLiteral("fetchInterval"), QString::number(fetchInterval()));
-    el.setAttribute(QStringLiteral("archiveMode"), archiveModeToString(d->m_archiveMode));
-    el.setAttribute(QStringLiteral("maxArticleAge"), d->m_maxArticleAge);
-    el.setAttribute(QStringLiteral("comment"), d->m_comment);
-    el.setAttribute(QStringLiteral("maxArticleNumber"), d->m_maxArticleNumber);
-    el.setAttribute(QStringLiteral("copyright"), d->m_copyright);
+    QDomElement el = document.createElement(u"outline"_s);
+    el.setAttribute(u"text"_s, title());
+    el.setAttribute(u"title"_s, title());
+    el.setAttribute(u"xmlUrl"_s, d->m_xmlUrl);
+    el.setAttribute(u"htmlUrl"_s, d->m_htmlUrl);
+    el.setAttribute(u"id"_s, QString::number(id()));
+    el.setAttribute(u"description"_s, d->m_description);
+    el.setAttribute(u"useCustomFetchInterval"_s, (useCustomFetchInterval() ? u"true"_s : u"false"_s));
+    el.setAttribute(u"fetchInterval"_s, QString::number(fetchInterval()));
+    el.setAttribute(u"archiveMode"_s, archiveModeToString(d->m_archiveMode));
+    el.setAttribute(u"maxArticleAge"_s, d->m_maxArticleAge);
+    el.setAttribute(u"comment"_s, d->m_comment);
+    el.setAttribute(u"maxArticleNumber"_s, d->m_maxArticleNumber);
+    el.setAttribute(u"copyright"_s, d->m_copyright);
 
     if (d->m_markImmediatelyAsRead) {
-        el.setAttribute(QStringLiteral("markImmediatelyAsRead"), QStringLiteral("true"));
+        el.setAttribute(u"markImmediatelyAsRead"_s, u"true"_s);
     }
     if (d->m_useNotification) {
-        el.setAttribute(QStringLiteral("useNotification"), QStringLiteral("true"));
+        el.setAttribute(u"useNotification"_s, u"true"_s);
     }
     if (d->m_loadLinkedWebsite) {
-        el.setAttribute(QStringLiteral("loadLinkedWebsite"), QStringLiteral("true"));
+        el.setAttribute(u"loadLinkedWebsite"_s, u"true"_s);
     }
     if (!d->m_faviconInfo.imageUrl.isEmpty()) {
-        el.setAttribute(QStringLiteral("faviconUrl"), d->m_faviconInfo.imageUrl);
+        el.setAttribute(u"faviconUrl"_s, d->m_faviconInfo.imageUrl);
         if (d->m_faviconInfo.width != -1) {
-            el.setAttribute(QStringLiteral("faviconWidth"), d->m_faviconInfo.width);
+            el.setAttribute(u"faviconWidth"_s, d->m_faviconInfo.width);
         }
         if (d->m_faviconInfo.height != -1) {
-            el.setAttribute(QStringLiteral("faviconHeight"), d->m_faviconInfo.height);
+            el.setAttribute(u"faviconHeight"_s, d->m_faviconInfo.height);
         }
     }
     if (!d->m_logoInfo.imageUrl.isEmpty()) {
-        el.setAttribute(QStringLiteral("logoUrl"), d->m_logoInfo.imageUrl);
+        el.setAttribute(u"logoUrl"_s, d->m_logoInfo.imageUrl);
         if (d->m_logoInfo.width != -1) {
-            el.setAttribute(QStringLiteral("logoWidth"), d->m_logoInfo.width);
+            el.setAttribute(u"logoWidth"_s, d->m_logoInfo.width);
         }
         if (d->m_logoInfo.height != -1) {
-            el.setAttribute(QStringLiteral("logoHeight"), d->m_logoInfo.height);
+            el.setAttribute(u"logoHeight"_s, d->m_logoInfo.height);
         }
     }
-    el.setAttribute(QStringLiteral("maxArticleNumber"), d->m_maxArticleNumber);
+    el.setAttribute(u"maxArticleNumber"_s, d->m_maxArticleNumber);
 #if HAVE_ACTIVITY_SUPPORT
     if (d->m_activityEnabled) {
-        el.setAttribute(QStringLiteral("activityEnabled"), QStringLiteral("true"));
+        el.setAttribute(u"activityEnabled"_s, u"true"_s);
     }
-    el.setAttribute(QStringLiteral("activities"), d->m_activities.join(u';'));
+    el.setAttribute(u"activities"_s, d->m_activities.join(u';'));
 #endif
-    el.setAttribute(QStringLiteral("type"), QStringLiteral("rss")); // despite some additional fields, it is still "rss" OPML
-    el.setAttribute(QStringLiteral("version"), QStringLiteral("RSS"));
+    el.setAttribute(u"type"_s, u"rss"_s); // despite some additional fields, it is still "rss" OPML
+    el.setAttribute(u"version"_s, u"RSS"_s);
     parent.appendChild(el);
     return el;
 }
@@ -860,10 +862,10 @@ void Feed::markAsFetchedNow()
 QIcon Feed::icon() const
 {
     if (fetchErrorOccurred()) {
-        return QIcon::fromTheme(QStringLiteral("dialog-error"));
+        return QIcon::fromTheme(u"dialog-error"_s);
     }
 
-    return !d->m_favicon.isNull() ? d->m_favicon : QIcon::fromTheme(QStringLiteral("text-html"));
+    return !d->m_favicon.isNull() ? d->m_favicon : QIcon::fromTheme(u"text-html"_s);
 }
 
 void Feed::deleteExpiredArticles(ArticleDeleteJob *deleteJob)

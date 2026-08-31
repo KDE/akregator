@@ -19,6 +19,8 @@
 #include <QDesktopServices>
 #include <QStringList>
 
+using namespace Qt::Literals::StringLiterals;
+
 using namespace Akregator;
 
 FrameManager::FrameManager(QObject *parent)
@@ -252,12 +254,12 @@ void FrameManager::saveProperties(KConfigGroup &config)
             if (currentFrame->saveConfig(config, newPrefix + u'_')) {
                 strlst.append(newPrefix);
                 if (currentFrame == m_currentFrame) {
-                    config.writeEntry(QStringLiteral("CurrentTab"), newPrefix);
+                    config.writeEntry(u"CurrentTab"_s, newPrefix);
                 }
             }
         }
     }
-    config.writeEntry(QStringLiteral("Children"), strlst);
+    config.writeEntry(u"Children"_s, strlst);
 }
 
 #include "moc_framemanager.cpp"

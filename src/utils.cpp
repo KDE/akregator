@@ -10,6 +10,8 @@
 #include <QRegularExpression>
 #include <QTextDocument>
 
+using namespace Qt::Literals::StringLiterals;
+
 using namespace Akregator;
 QString Utils::convertHtmlTags(const QString &title)
 {
@@ -20,7 +22,7 @@ QString Utils::convertHtmlTags(const QString &title)
 
 QString Utils::stripTags(QString str)
 {
-    return str.remove(QRegularExpression(QStringLiteral("<[^>]*>")));
+    return str.remove(QRegularExpression(u"<[^>]*>"_s));
 }
 
 uint Utils::calcHash(const QString &str)

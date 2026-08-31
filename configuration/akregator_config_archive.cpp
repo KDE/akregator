@@ -15,6 +15,8 @@
 #include <QButtonGroup>
 #include <QVBoxLayout>
 
+using namespace Qt::Literals::StringLiterals;
+
 using namespace Akregator;
 
 K_PLUGIN_CLASS_WITH_JSON(KCMAkregatorArchiveConfig, "akregator_config_archive.json")
@@ -61,7 +63,7 @@ void KCMAkregatorArchiveConfig::setArchiveMode(int mode)
     if (b) {
         b->setChecked(true);
     } else {
-        qWarning() << QStringLiteral("No button for %1 registered, ignoring call").arg(mode);
+        qWarning() << u"No button for %1 registered, ignoring call"_s.arg(mode);
     }
 }
 

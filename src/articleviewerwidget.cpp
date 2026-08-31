@@ -31,6 +31,8 @@
 
 #include "defaultcombinedviewformatter.h"
 
+using namespace Qt::Literals::StringLiterals;
+
 using namespace Akregator;
 using namespace Akregator::Filters;
 
@@ -77,7 +79,7 @@ void ArticleViewerWidget::slotCopy()
 
 void ArticleViewerWidget::slotSelectionChanged()
 {
-    ActionManager::getInstance()->action(QStringLiteral("viewer_copy"))->setEnabled(!m_articleViewerWidgetNg->articleViewerNg()->selectedText().isEmpty());
+    ActionManager::getInstance()->action(u"viewer_copy"_s)->setEnabled(!m_articleViewerWidgetNg->articleViewerNg()->selectedText().isEmpty());
 }
 
 void ArticleViewerWidget::slotPrint()

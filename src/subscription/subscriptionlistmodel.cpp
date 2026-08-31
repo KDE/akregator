@@ -34,11 +34,13 @@
 #include <QVariant>
 #if HAVE_ACTIVITY_SUPPORT
 #include "activities/activitiesmanager.h"
+
+using namespace Qt::Literals::StringLiterals;
 #endif
 using namespace Akregator;
 using namespace Syndication;
 
-#define AKREGATOR_TREENODE_MIMETYPE QStringLiteral("akregator/treenode-id")
+#define AKREGATOR_TREENODE_MIMETYPE u"akregator/treenode-id"_s
 
 namespace
 {
@@ -498,7 +500,7 @@ Qt::ItemFlags SubscriptionListModel::flags(const QModelIndex &idx) const
 
 QStringList SubscriptionListModel::mimeTypes() const
 {
-    return {QStringLiteral("text/uri-list"), AKREGATOR_TREENODE_MIMETYPE};
+    return {u"text/uri-list"_s, AKREGATOR_TREENODE_MIMETYPE};
 }
 
 QMimeData *SubscriptionListModel::mimeData(const QModelIndexList &indexes) const

@@ -24,6 +24,8 @@
 
 #include <cassert>
 
+using namespace Qt::Literals::StringLiterals;
+
 using namespace Akregator;
 using namespace Akregator::Backend;
 
@@ -79,7 +81,7 @@ void LoadFeedListCommandPrivate::handleDocument(const QDomDocument &doc)
 
 QString LoadFeedListCommandPrivate::createBackup(const QString &path, bool *ok)
 {
-    const QString backup = path + QLatin1StringView("-backup.") + QString::number(QDateTime::currentSecsSinceEpoch());
+    const QString backup = path + "-backup."_L1 + QString::number(QDateTime::currentSecsSinceEpoch());
 
     const bool copied = QFile::copy(path, backup);
     if (ok) {

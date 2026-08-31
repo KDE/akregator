@@ -12,6 +12,8 @@
 
 #include <QVBoxLayout>
 
+using namespace Qt::Literals::StringLiterals;
+
 using namespace Akregator;
 
 WebEngineFrame::WebEngineFrame(KActionCollection *ac, QWidget *parent)
@@ -96,8 +98,8 @@ bool WebEngineFrame::openUrl(const OpenUrlRequest &request)
 
 void WebEngineFrame::loadConfig(const KConfigGroup &config, const QString &prefix)
 {
-    const QString url = config.readEntry(QStringLiteral("url").prepend(prefix), QString());
-    const qreal zf = config.readEntry(QStringLiteral("zoom").prepend(prefix), 1.0);
+    const QString url = config.readEntry(u"url"_s.prepend(prefix), QString());
+    const qreal zf = config.readEntry(u"zoom"_s.prepend(prefix), 1.0);
     mArticleViewerWidgetNg->articleViewerNg()->setZoomFactor(zf);
     loadUrl(QUrl(url));
 }
@@ -105,9 +107,9 @@ void WebEngineFrame::loadConfig(const KConfigGroup &config, const QString &prefi
 bool WebEngineFrame::saveConfig(KConfigGroup &config, const QString &prefix)
 {
     const QString urlPath(url().url());
-    if (urlPath != QLatin1StringView("about:blank")) {
-        config.writeEntry(QStringLiteral("url").prepend(prefix), urlPath);
-        config.writeEntry(QStringLiteral("zoom").prepend(prefix), zoomFactor());
+    if (urlPath != "about:blank"_L1) {
+        config.writeEntry(u"url"_s.prepend(prefix), urlPath);
+        config.writeEntry(u"zoom"_s.prepend(prefix), zoomFactor());
         return true;
     } else {
         return false;

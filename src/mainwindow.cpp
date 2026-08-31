@@ -37,6 +37,8 @@
 #include <QTimer>
 #include <QToolButton>
 
+using namespace Qt::Literals::StringLiterals;
+
 using namespace Akregator;
 
 MainWindow::MainWindow(QWidget *parent)
@@ -45,7 +47,7 @@ MainWindow::MainWindow(QWidget *parent)
     , m_statusLabel(new KSqueezedTextLabel(this))
 {
     // set the shell's ui resource file
-    setXMLFile(QStringLiteral("akregator_shell.rc"));
+    setXMLFile(u"akregator_shell.rc"_s);
 
     KStandardActions::keyBindings(this, &MainWindow::optionsConfigureKeys, actionCollection()); // options_configure_keybinding
     KStandardActions::configureToolbars(this, &MainWindow::optionsConfigureToolbars, actionCollection()); // options_configure_toolbars
@@ -123,7 +125,7 @@ void MainWindow::slotToggleMenubar(bool dontShowWarning)
                                               " You can show it again by typing %1.</qt>",
                                               accel),
                                          i18nc("@title:window", "Hide menu bar"),
-                                         QStringLiteral("HideMenuBarWarning"));
+                                         u"HideMenuBarWarning"_s);
             }
             menuBar()->hide();
         }
@@ -150,7 +152,7 @@ bool MainWindow::loadPart()
     // this routine will find and load our Part.  it finds the Part by
     // name which is a bad idea usually.. but it's alright in this
     // case since our Part is made for this Shell
-    const KPluginMetaData md(QStringLiteral("akregatorpart"));
+    const KPluginMetaData md(u"akregatorpart"_s);
     const auto result = KPluginFactory::instantiatePlugin<KParts::Part>(md, this);
     if (result) {
         m_part = static_cast<Akregator::Part *>(result.plugin);
@@ -159,7 +161,7 @@ bool MainWindow::loadPart()
         return false;
     }
 
-    m_part->setObjectName(QLatin1StringView("akregator_part"));
+    m_part->setObjectName("akregator_part"_L1);
     setCentralWidget(m_part->widget());
 
     connect(m_part.data(), &Part::setWindowCaption, this, qOverload<const QString &>(&KMainWindow::setCaption));

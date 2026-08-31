@@ -6,13 +6,14 @@
 
 #include "grantleeutil.h"
 #include "feed.h"
+
+using namespace Qt::Literals::StringLiterals;
 QString Akregator::GrantleeUtil::imageFeed(const Feed *feed)
 {
     if (feed->logoInfo().height != -1 && feed->logoInfo().width != -1) {
-        return QStringLiteral("<a href=\"%1\"><img class=\"headimage\" src=\"%2\" height=\"%3\" width=\"%4\"></a>\n")
-            .arg(feed->htmlUrl(), feed->logoInfo().imageUrl)
+        return u"<a href=\"%1\"><img class=\"headimage\" src=\"%2\" height=\"%3\" width=\"%4\"></a>\n"_s.arg(feed->htmlUrl(), feed->logoInfo().imageUrl)
             .arg(feed->logoInfo().height)
             .arg(feed->logoInfo().width);
     }
-    return QStringLiteral("<a href=\"%1\"><img class=\"headimage\" src=\"%2\"></a>\n").arg(feed->htmlUrl(), feed->logoInfo().imageUrl);
+    return u"<a href=\"%1\"><img class=\"headimage\" src=\"%2\"></a>\n"_s.arg(feed->htmlUrl(), feed->logoInfo().imageUrl);
 }

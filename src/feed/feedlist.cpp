@@ -26,6 +26,8 @@
 #include <QSet>
 #include <qdom.h>
 
+using namespace Qt::Literals::StringLiterals;
+
 using namespace Akregator;
 class Akregator::FeedListPrivate
 {
@@ -220,7 +222,7 @@ void FeedList::parseChildNodes(QDomNode &node, Folder *parent)
     if (!e.isNull()) {
         // QString title = e.hasAttribute("text") ? e.attribute("text") : e.attribute("title");
 
-        if (e.hasAttribute(QStringLiteral("xmlUrl")) || e.hasAttribute(QStringLiteral("xmlurl")) || e.hasAttribute(QStringLiteral("xmlURL"))) {
+        if (e.hasAttribute(u"xmlUrl"_s) || e.hasAttribute(u"xmlurl"_s) || e.hasAttribute(u"xmlURL"_s)) {
             Feed *feed = Feed::fromOPML(e, d->storage);
             if (feed) {
                 if (!d->urlMap[feed->xmlUrl()].contains(feed)) {
@@ -253,12 +255,12 @@ bool FeedList::readFromOpml(const QDomDocument &doc)
     QElapsedTimer spent;
     spent.start();
 
-    if (root.tagName().toLower() != QLatin1StringView("opml")) {
+    if (root.tagName().toLower() != "opml"_L1) {
         return false;
     }
     QDomNode bodyNode = root.firstChild();
 
-    while (!bodyNode.isNull() && bodyNode.toElement().tagName().toLower() != QLatin1StringView("body")) {
+    while (!bodyNode.isNull() && bodyNode.toElement().tagName().toLower() != "body"_L1) {
         bodyNode = bodyNode.nextSibling();
     }
 
@@ -344,19 +346,19 @@ void FeedList::append(FeedList *list, Folder *parent, TreeNode *after)
 QDomDocument FeedList::toOpml() const
 {
     QDomDocument doc;
-    doc.appendChild(doc.createProcessingInstruction(QStringLiteral("xml"), QStringLiteral("version=\"1.0\" encoding=\"UTF-8\"")));
+    doc.appendChild(doc.createProcessingInstruction(u"xml"_s, u"version=\"1.0\" encoding=\"UTF-8\""_s));
 
-    QDomElement root = doc.createElement(QStringLiteral("opml"));
-    root.setAttribute(QStringLiteral("version"), QStringLiteral("1.0"));
+    QDomElement root = doc.createElement(u"opml"_s);
+    root.setAttribute(u"version"_s, u"1.0"_s);
     doc.appendChild(root);
 
-    QDomElement head = doc.createElement(QStringLiteral("head"));
+    QDomElement head = doc.createElement(u"head"_s);
     root.appendChild(head);
 
-    QDomElement ti = doc.createElement(QStringLiteral("text"));
+    QDomElement ti = doc.createElement(u"text"_s);
     head.appendChild(ti);
 
-    QDomElement body = doc.createElement(QStringLiteral("body"));
+    QDomElement body = doc.createElement(u"body"_s);
     root.appendChild(body);
 
     const auto children = allFeedsFolder()->children();

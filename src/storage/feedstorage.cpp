@@ -19,12 +19,14 @@
 #include <QDebug>
 #include <QStandardPaths>
 
+using namespace Qt::Literals::StringLiterals;
+
 namespace
 {
 static uint calcHash(const QString &str)
 {
     if (str.isNull()) { // handle null string as "", prevents crash
-        return calcHash(QLatin1StringView(""));
+        return calcHash(""_L1);
     }
     const QByteArray ba = str.toLatin1();
     const char *s = ba.constData();
@@ -99,8 +101,8 @@ FeedStorage::FeedStorage(const QString &url, Storage *main)
 
     // qDebug() << url2;
     QString t = url2;
-    const QString filePath = main->archivePath() + QLatin1Char('/') + t.replace(QLatin1Char('/'), QLatin1Char('_')).replace(QLatin1Char(':'), u'_');
-    d->storage = new c4_Storage(QString(filePath + QLatin1StringView(".mk4")).toLocal8Bit().constData(), static_cast<int>(true));
+    const QString filePath = main->archivePath() + u'/' + t.replace(u'/', u'_').replace(u':', u'_');
+    d->storage = new c4_Storage(QString(filePath + ".mk4"_L1).toLocal8Bit().constData(), static_cast<int>(true));
 
     d->archiveView = d->storage->GetAs(
         "articles[guid:S,title:S,hash:I,guidIsHash:I,guidIsPermaLink:I,description:S,link:S,comments:I,commentsLink:S,status:I,pubDate:I,tags[tag:S],"
@@ -261,7 +263,7 @@ void FeedStorage::setDeleted(const QString &guid)
 QString FeedStorage::link(const QString &guid) const
 {
     int findidx = findArticle(guid);
-    return findidx != -1 ? QString::fromUtf8(QByteArray(d->plink(d->archiveView.GetAt(findidx)))) : QLatin1StringView("");
+    return findidx != -1 ? QString::fromUtf8(QByteArray(d->plink(d->archiveView.GetAt(findidx)))) : ""_L1;
 }
 
 QDateTime FeedStorage::pubDate(const QString &guid) const
@@ -304,19 +306,19 @@ void FeedStorage::article(const QString &guid, uint &hash, QString &title, int &
 QString FeedStorage::title(const QString &guid) const
 {
     const int findidx = findArticle(guid);
-    return findidx != -1 ? QString::fromUtf8(QByteArray(d->ptitle(d->archiveView.GetAt(findidx)))) : QLatin1StringView("");
+    return findidx != -1 ? QString::fromUtf8(QByteArray(d->ptitle(d->archiveView.GetAt(findidx)))) : ""_L1;
 }
 
 QString FeedStorage::description(const QString &guid) const
 {
     const int findidx = findArticle(guid);
-    return findidx != -1 ? QString::fromUtf8(QByteArray(d->pdescription(d->archiveView.GetAt(findidx)))) : QLatin1StringView("");
+    return findidx != -1 ? QString::fromUtf8(QByteArray(d->pdescription(d->archiveView.GetAt(findidx)))) : ""_L1;
 }
 
 QString FeedStorage::content(const QString &guid) const
 {
     const int findidx = findArticle(guid);
-    return findidx != -1 ? QString::fromUtf8(QByteArray(d->pcontent(d->archiveView.GetAt(findidx)))) : QLatin1StringView("");
+    return findidx != -1 ? QString::fromUtf8(QByteArray(d->pcontent(d->archiveView.GetAt(findidx)))) : ""_L1;
 }
 
 void FeedStorage::setPubDate(const QString &guid, const QDateTime &pubdate)

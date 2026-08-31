@@ -19,15 +19,17 @@
 #include <QIcon>
 #include <QStandardPaths>
 
+using namespace Qt::Literals::StringLiterals;
+
 EXPORT_KONTACT_PLUGIN_WITH_JSON(AkregatorPlugin, "akregatorplugin.json")
 
 AkregatorPlugin::AkregatorPlugin(KontactInterface::Core *core, const KPluginMetaData &data, const QVariantList &)
     : KontactInterface::Plugin(core, core, data, "akregator")
 {
-    setComponentName(QStringLiteral("akregator"), i18n("Akregator"));
+    setComponentName(u"akregator"_s, i18n("Akregator"));
 
-    auto action = new QAction(QIcon::fromTheme(QStringLiteral("bookmark-new")), i18nc("@action:inmenu", "New Feed..."), this);
-    actionCollection()->addAction(QStringLiteral("feed_new"), action);
+    auto action = new QAction(QIcon::fromTheme(u"bookmark-new"_s), i18nc("@action:inmenu", "New Feed..."), this);
+    actionCollection()->addAction(u"feed_new"_s, action);
     actionCollection()->setDefaultShortcut(action, QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_F));
     setHelpText(action, i18nc("@info:status", "Create a new feed"));
     action->setWhatsThis(i18nc("@info:whatsthis", "You will be presented with a dialog where you can add a new feed."));
@@ -54,7 +56,7 @@ void AkregatorPlugin::setHelpText(QAction *action, const QString &text)
 
 QStringList AkregatorPlugin::invisibleToolbarActions() const
 {
-    return QStringList() << QStringLiteral("feed_add");
+    return QStringList() << u"feed_add"_s;
 }
 
 bool AkregatorPlugin::isRunningStandalone() const
@@ -78,7 +80,7 @@ KParts::Part *AkregatorPlugin::createPart()
         return nullptr;
     }
 
-    m_interface = new OrgKdeAkregatorPartInterface(QStringLiteral("org.kde.akregator"), QStringLiteral("/Akregator"), QDBusConnection::sessionBus());
+    m_interface = new OrgKdeAkregatorPartInterface(u"org.kde.akregator"_s, u"/Akregator"_s, QDBusConnection::sessionBus());
     m_interface->openStandardFeedList();
 
     return part;
@@ -89,7 +91,7 @@ void AkregatorPlugin::addFeed()
     // Ensure part is loaded
     (void)part();
 
-    org::kde::akregator::part akregator(QStringLiteral("org.kde.akregator"), QStringLiteral("/Akregator"), QDBusConnection::sessionBus());
+    org::kde::akregator::part akregator(u"org.kde.akregator"_s, u"/Akregator"_s, QDBusConnection::sessionBus());
     akregator.addFeed();
 }
 
@@ -119,7 +121,7 @@ int AkregatorUniqueAppHandler::activate(const QStringList &args, const QString &
     // Ensure part is loaded
     (void)plugin()->part();
 
-    org::kde::akregator::part akregator(QStringLiteral("org.kde.akregator"), QStringLiteral("/Akregator"), QDBusConnection::sessionBus());
+    org::kde::akregator::part akregator(u"org.kde.akregator"_s, u"/Akregator"_s, QDBusConnection::sessionBus());
     akregator.openStandardFeedList();
     akregator.handleCommandLine(args);
 

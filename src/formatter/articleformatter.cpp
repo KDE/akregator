@@ -13,6 +13,8 @@
 #include <KFormat>
 #include <KLocalizedString>
 
+using namespace Qt::Literals::StringLiterals;
+
 using namespace Syndication;
 using namespace Akregator;
 
@@ -39,6 +41,6 @@ QString ArticleFormatter::formatEnclosure(const Enclosure &enclosure)
         KFormat format;
         inf = format.formatByteSize(length);
     }
-    const QString str = QStringLiteral("<a href=\"%1\">%2</a> %3").arg(enclosure.url(), title, inf);
+    const QString str = u"<a href=\"%1\">%2</a> %3"_s.arg(enclosure.url(), title, inf);
     return str;
 }

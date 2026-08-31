@@ -11,12 +11,14 @@
 
 #include <QPaintDevice>
 #include <QString>
+
+using namespace Qt::Literals::StringLiterals;
 using namespace Akregator;
 
 DefaultCombinedViewFormatter::DefaultCombinedViewFormatter(QPaintDevice *device)
     : ArticleFormatter()
 {
-    mGrantleeViewFormatter = std::make_unique<GrantleeViewFormatter>(QStringLiteral("formatter/html/combinedview.html"), device->logicalDpiY());
+    mGrantleeViewFormatter = std::make_unique<GrantleeViewFormatter>(u"formatter/html/combinedview.html"_s, device->logicalDpiY());
 }
 
 DefaultCombinedViewFormatter::~DefaultCombinedViewFormatter() = default;

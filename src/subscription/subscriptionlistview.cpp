@@ -21,6 +21,8 @@
 #include <KLocalizedString>
 #include <QMenu>
 
+using namespace Qt::Literals::StringLiterals;
+
 using namespace Akregator;
 
 static QModelIndex prevIndex(const QModelIndex &idx)
@@ -211,13 +213,13 @@ void Akregator::SubscriptionListView::saveHeaderSettings()
     if (model()) {
         m_headerState = header()->saveState();
     }
-    KConfigGroup conf(Settings::self()->config(), QStringLiteral("General"));
+    KConfigGroup conf(Settings::self()->config(), u"General"_s);
     conf.writeEntry("SubscriptionListHeaders", m_headerState.toBase64());
 }
 
 void Akregator::SubscriptionListView::loadHeaderSettings()
 {
-    const KConfigGroup conf(Settings::self()->config(), QStringLiteral("General"));
+    const KConfigGroup conf(Settings::self()->config(), u"General"_s);
     m_headerState = QByteArray::fromBase64(conf.readEntry("SubscriptionListHeaders").toLatin1());
     restoreHeaderState();
 }

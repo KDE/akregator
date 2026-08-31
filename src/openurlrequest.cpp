@@ -8,6 +8,8 @@
 
 #include "openurlrequest.h"
 
+using namespace Qt::Literals::StringLiterals;
+
 using namespace Akregator;
 
 OpenUrlRequest::OpenUrlRequest(QUrl url)
@@ -58,7 +60,7 @@ void OpenUrlRequest::setOptions(OpenUrlRequest::Options options)
 
 QString OpenUrlRequest::debugInfo() const
 {
-    return QStringLiteral("url=%1 options=%2").arg(m_url.url(), QString::number(static_cast<int>(m_options)));
+    return u"url=%1 options=%2"_s.arg(m_url.url(), QString::number(static_cast<int>(m_options)));
 }
 
 bool OpenUrlRequest::wasHandled() const

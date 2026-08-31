@@ -32,6 +32,8 @@
 #include <cassert>
 #include <utility>
 
+using namespace Qt::Literals::StringLiterals;
+
 using namespace Akregator;
 
 FilterDeletedProxyModel::FilterDeletedProxyModel(QObject *parent)
@@ -46,7 +48,7 @@ bool FilterDeletedProxyModel::filterAcceptsRow(int source_row, const QModelIndex
 
 SortColorizeProxyModel::SortColorizeProxyModel(QObject *parent)
     : QSortFilterProxyModel(parent)
-    , m_keepFlagIcon(QIcon::fromTheme(QStringLiteral("mail-mark-important")))
+    , m_keepFlagIcon(QIcon::fromTheme(u"mail-mark-important"_s))
 {
     m_unreadColor = KColorScheme(QPalette::Normal, KColorScheme::View).foreground(KColorScheme::PositiveText).color();
     m_newColor = KColorScheme(QPalette::Normal, KColorScheme::View).foreground(KColorScheme::NegativeText).color();
@@ -233,14 +235,14 @@ void ArticleListView::saveHeaderSettings()
         }
     }
 
-    KConfigGroup conf(Settings::self()->config(), QStringLiteral("General"));
+    KConfigGroup conf(Settings::self()->config(), u"General"_s);
     conf.writeEntry("ArticleListFeedHeaders", m_feedHeaderState.toBase64());
     conf.writeEntry("ArticleListGroupHeaders", m_groupHeaderState.toBase64());
 }
 
 void ArticleListView::loadHeaderSettings()
 {
-    const KConfigGroup conf(Settings::self()->config(), QStringLiteral("General"));
+    const KConfigGroup conf(Settings::self()->config(), u"General"_s);
     m_feedHeaderState = QByteArray::fromBase64(conf.readEntry("ArticleListFeedHeaders").toLatin1());
     m_groupHeaderState = QByteArray::fromBase64(conf.readEntry("ArticleListGroupHeaders").toLatin1());
 }
@@ -302,7 +304,7 @@ static int maxDateColumnWidth(const QFontMetrics &fm)
     int width = 0;
     QDateTime date(QDate::currentDate(), QTime(23, 59));
     for (int x = 0; x < 10; ++x, date = date.addDays(-1)) {
-        QString txt = QLatin1Char(' ') + QLocale().toString(date, QLocale::ShortFormat) + u' ';
+        QString txt = u' ' + QLocale().toString(date, QLocale::ShortFormat) + u' ';
         width = qMax(width, fm.boundingRect(txt).width());
     }
     return width;
@@ -402,7 +404,7 @@ void ArticleListView::mousePressEvent(QMouseEvent *ev)
 
 void ArticleListView::contextMenuEvent(QContextMenuEvent *event)
 {
-    QWidget *w = ActionManager::getInstance()->container(QStringLiteral("article_popup"));
+    QWidget *w = ActionManager::getInstance()->container(u"article_popup"_s);
     auto popup = qobject_cast<QMenu *>(w);
     if (popup) {
         popup->exec(event->globalPos());

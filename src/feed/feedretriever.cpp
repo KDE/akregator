@@ -13,6 +13,8 @@
 
 #include <QUrl>
 
+using namespace Qt::Literals::StringLiterals;
+
 using namespace Akregator;
 
 FeedRetriever::FeedRetriever()
@@ -22,16 +24,16 @@ FeedRetriever::FeedRetriever()
 
 void FeedRetriever::retrieveData(const QUrl &url)
 {
-    QString userAgent = QStringLiteral("Akregator/%1; syndication").arg(QStringLiteral(AKREGATOR_VERSION));
+    QString userAgent = u"Akregator/%1; syndication"_s.arg(QStringLiteral(AKREGATOR_VERSION));
     if (!Settings::customUserAgent().isEmpty()) {
         userAgent = Settings::customUserAgent();
     }
     bool useCache = Settings::useHTMLCache();
 
     auto job = KIO::storedGet(url, KIO::NoReload, KIO::HideProgressInfo);
-    job->addMetaData(QStringLiteral("UserAgent"), userAgent);
-    job->addMetaData(QStringLiteral("accept"), QStringLiteral("application/rss+xml;q=0.9, application/atom+xml;q=0.9, text/*;q=0.8, */*;q=0.7"));
-    job->addMetaData(QStringLiteral("cache"), useCache ? QStringLiteral("refresh") : QStringLiteral("reload"));
+    job->addMetaData(u"UserAgent"_s, userAgent);
+    job->addMetaData(u"accept"_s, u"application/rss+xml;q=0.9, application/atom+xml;q=0.9, text/*;q=0.8, */*;q=0.7"_s);
+    job->addMetaData(u"cache"_s, useCache ? u"refresh"_s : u"reload"_s);
     connect(job, &KJob::result, this, &FeedRetriever::getFinished);
     mJob = job;
     mJob->start();

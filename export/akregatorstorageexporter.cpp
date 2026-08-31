@@ -28,6 +28,8 @@
 #include <KPluginFactory>
 #include <cassert>
 
+using namespace Qt::Literals::StringLiterals;
+
 using namespace Akregator;
 using namespace Akregator::Backend;
 
@@ -35,7 +37,7 @@ namespace
 {
 static QString akregatorNamespace()
 {
-    return QStringLiteral("http://akregator.kde.org/StorageExporter#");
+    return u"http://akregator.kde.org/StorageExporter#"_s;
 }
 
 enum TextMode {
@@ -57,7 +59,7 @@ public:
     Element(QString ns_, QString name_)
         : ns(std::move(ns_))
         , name(std::move(name_))
-        , qualifiedName(ns + QLatin1Char(':') + name)
+        , qualifiedName(ns + u':' + name)
     {
     }
 
@@ -88,7 +90,7 @@ public:
             writer.writeStartElement(ns, name);
         }
         if (mode == Html) {
-            writer.writeAttribute(QStringLiteral("type"), QStringLiteral("html"));
+            writer.writeAttribute(u"type"_s, u"html"_s);
         }
         writer.writeCharacters(str);
         writer.writeEndElement();
@@ -100,31 +102,31 @@ struct Elements {
         : atomNS(Syndication::Atom::atom1Namespace())
         , akregatorNS(akregatorNamespace())
         , commentNS(Syndication::commentApiNamespace())
-        , title(atomNS, QStringLiteral("title"))
-        , summary(atomNS, QStringLiteral("summary"))
-        , content(atomNS, QStringLiteral("content"))
-        , link(atomNS, QStringLiteral("link"))
-        , language(atomNS, QStringLiteral("language"))
-        , feed(atomNS, QStringLiteral("feed"))
-        , guid(atomNS, QStringLiteral("id"))
-        , published(atomNS, QStringLiteral("published"))
-        , updated(atomNS, QStringLiteral("updated"))
-        , commentsCount(Syndication::slashNamespace(), QStringLiteral("comments"))
-        , commentsFeed(commentNS, QStringLiteral("commentRss"))
-        , commentPostUri(commentNS, QStringLiteral("comment"))
-        , commentsLink(akregatorNS, QStringLiteral("commentsLink"))
-        , hash(akregatorNS, QStringLiteral("hash"))
-        , guidIsHash(akregatorNS, QStringLiteral("idIsHash"))
-        , name(atomNS, QStringLiteral("name"))
-        , uri(atomNS, QStringLiteral("uri"))
-        , email(atomNS, QStringLiteral("email"))
-        , author(atomNS, QStringLiteral("author"))
-        , category(atomNS, QStringLiteral("category"))
-        , entry(atomNS, QStringLiteral("entry"))
-        , itemProperties(akregatorNS, QStringLiteral("itemProperties"))
-        , readStatus(akregatorNS, QStringLiteral("readStatus"))
-        , deleted(akregatorNS, QStringLiteral("deleted"))
-        , important(akregatorNS, QStringLiteral("important"))
+        , title(atomNS, u"title"_s)
+        , summary(atomNS, u"summary"_s)
+        , content(atomNS, u"content"_s)
+        , link(atomNS, u"link"_s)
+        , language(atomNS, u"language"_s)
+        , feed(atomNS, u"feed"_s)
+        , guid(atomNS, u"id"_s)
+        , published(atomNS, u"published"_s)
+        , updated(atomNS, u"updated"_s)
+        , commentsCount(Syndication::slashNamespace(), u"comments"_s)
+        , commentsFeed(commentNS, u"commentRss"_s)
+        , commentPostUri(commentNS, u"comment"_s)
+        , commentsLink(akregatorNS, u"commentsLink"_s)
+        , hash(akregatorNS, u"hash"_s)
+        , guidIsHash(akregatorNS, u"idIsHash"_s)
+        , name(atomNS, u"name"_s)
+        , uri(atomNS, u"uri"_s)
+        , email(atomNS, u"email"_s)
+        , author(atomNS, u"author"_s)
+        , category(atomNS, u"category"_s)
+        , entry(atomNS, u"entry"_s)
+        , itemProperties(akregatorNS, u"itemProperties"_s)
+        , readStatus(akregatorNS, u"readStatus"_s)
+        , deleted(akregatorNS, u"deleted"_s)
+        , important(akregatorNS, u"important"_s)
     {
     }
 
@@ -173,11 +175,11 @@ void writeAttributeIfNotEmpty(const QString &element, const QVariant &value, QXm
 void writeEnclosure(const QString &url, const QString &type, int length, QXmlStreamWriter &writer)
 {
     Elements::instance.link.writeStartElement(writer);
-    writer.writeAttribute(QStringLiteral("rel"), QStringLiteral("enclosure"));
-    writeAttributeIfNotEmpty(QStringLiteral("href"), url, writer);
-    writeAttributeIfNotEmpty(QStringLiteral("type"), type, writer);
+    writer.writeAttribute(u"rel"_s, u"enclosure"_s);
+    writeAttributeIfNotEmpty(u"href"_s, url, writer);
+    writeAttributeIfNotEmpty(u"type"_s, type, writer);
     if (length > 0) {
-        writer.writeAttribute(QStringLiteral("length"), QString::number(length));
+        writer.writeAttribute(u"length"_s, QString::number(length));
     }
     writer.writeEndElement();
 }
@@ -188,8 +190,8 @@ void writeLink(const QString &url, QXmlStreamWriter &writer)
         return;
     }
     Elements::instance.link.writeStartElement(writer);
-    writer.writeAttribute(QStringLiteral("rel"), QStringLiteral("alternate"));
-    writeAttributeIfNotEmpty(QStringLiteral("href"), url, writer);
+    writer.writeAttribute(u"rel"_s, u"alternate"_s);
+    writeAttributeIfNotEmpty(u"href"_s, url, writer);
     writer.writeEndElement();
 }
 
@@ -223,7 +225,7 @@ static void writeItem(FeedStorage *storage, const QString &guid, QXmlStreamWrite
     Elements::instance.itemProperties.writeStartElement(writer);
 
     if (status & Deleted) {
-        Elements::instance.deleted.write(QStringLiteral("true"), writer);
+        Elements::instance.deleted.write(u"true"_s, writer);
         writer.writeEndElement(); // </itemProperties>
         writer.writeEndElement(); // </item>
         return;
@@ -231,15 +233,15 @@ static void writeItem(FeedStorage *storage, const QString &guid, QXmlStreamWrite
 
     Elements::instance.hash.write(QString::number(storage->hash(guid)), writer);
     if (storage->guidIsHash(guid)) {
-        Elements::instance.guidIsHash.write(QStringLiteral("true"), writer);
+        Elements::instance.guidIsHash.write(u"true"_s, writer);
     }
     if (status & New) {
-        Elements::instance.readStatus.write(QStringLiteral("new"), writer);
+        Elements::instance.readStatus.write(u"new"_s, writer);
     } else if ((status & Read) == 0) {
-        Elements::instance.readStatus.write(QStringLiteral("unread"), writer);
+        Elements::instance.readStatus.write(u"unread"_s, writer);
     }
     if (status & Keep) {
-        Elements::instance.important.write(QStringLiteral("true"), writer);
+        Elements::instance.important.write(u"true"_s, writer);
     }
     writer.writeEndElement(); // </itemProperties>
 
@@ -273,9 +275,9 @@ static void serialize(FeedStorage *storage, const QString &url, QIODevice *devic
     Elements::instance.feed.writeStartElement(writer);
 
     writer.writeDefaultNamespace(Syndication::Atom::atom1Namespace());
-    writer.writeNamespace(Syndication::commentApiNamespace(), QStringLiteral("comment"));
-    writer.writeNamespace(akregatorNamespace(), QStringLiteral("akregator"));
-    writer.writeNamespace(Syndication::itunesNamespace(), QStringLiteral("itunes"));
+    writer.writeNamespace(Syndication::commentApiNamespace(), u"comment"_s);
+    writer.writeNamespace(akregatorNamespace(), u"akregator"_s);
+    writer.writeNamespace(Syndication::itunesNamespace(), u"itunes"_s);
 
     Elements::instance.title.write(i18n("Akregator Export for %1", url), writer, Html);
 

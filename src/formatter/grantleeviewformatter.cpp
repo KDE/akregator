@@ -24,12 +24,14 @@
 #include <QVariantList>
 #include <utility>
 
+using namespace Qt::Literals::StringLiterals;
+
 using namespace Qt::Literals;
 using namespace Akregator;
 
 GrantleeViewFormatter::GrantleeViewFormatter(QString htmlFileName, int deviceDpiY)
     : mHtmlArticleFileName(std::move(htmlFileName))
-    , mDirectionString(QApplication::isRightToLeft() ? QStringLiteral("rtl") : QStringLiteral("ltr"))
+    , mDirectionString(QApplication::isRightToLeft() ? u"rtl"_s : u"ltr"_s)
     , mDeviceDpiY(deviceDpiY)
 {
     mEngine.localizer()->setApplicationDomain("akregator");
@@ -52,21 +54,21 @@ void GrantleeViewFormatter::addStandardObject(QVariantHash &grantleeObject) cons
 
     // Ideally we should use <link href=""> in the html but this doesn't
     // work because the html is loaded via data:/ and can't access qrc.
-    QFile cssFile(QStringLiteral(":/formatter/html/style.css"));
+    QFile cssFile(u":/formatter/html/style.css"_s);
     if (!cssFile.open(QIODeviceBase::ReadOnly)) {
         Q_ASSERT(false);
     }
 
-    grantleeObject.insert(QStringLiteral("applicationDir"), mDirectionString);
-    grantleeObject.insert(QStringLiteral("standardFamilyFont"), Settings::standardFont());
-    grantleeObject.insert(QStringLiteral("sansSerifFont"), Settings::sansSerifFont());
-    grantleeObject.insert(QStringLiteral("serifFont"), Settings::serifFont());
-    grantleeObject.insert(QStringLiteral("mediumFontSize"), Settings::mediumFontSize());
-    grantleeObject.insert(QStringLiteral("smallFontSize"), Settings::minimumFontSize());
-    grantleeObject.insert(QStringLiteral("sidebarCss"), sidebarCss(appColor));
-    grantleeObject.insert(QStringLiteral("css"), cssFile.readAll());
-    grantleeObject.insert(QStringLiteral("colorScheme"), appColor.colorScheme);
-    grantleeObject.insert(QStringLiteral("backgroundColor"), appColor.backgroundColor);
+    grantleeObject.insert(u"applicationDir"_s, mDirectionString);
+    grantleeObject.insert(u"standardFamilyFont"_s, Settings::standardFont());
+    grantleeObject.insert(u"sansSerifFont"_s, Settings::sansSerifFont());
+    grantleeObject.insert(u"serifFont"_s, Settings::serifFont());
+    grantleeObject.insert(u"mediumFontSize"_s, Settings::mediumFontSize());
+    grantleeObject.insert(u"smallFontSize"_s, Settings::minimumFontSize());
+    grantleeObject.insert(u"sidebarCss"_s, sidebarCss(appColor));
+    grantleeObject.insert(u"css"_s, cssFile.readAll());
+    grantleeObject.insert(u"colorScheme"_s, appColor.colorScheme);
+    grantleeObject.insert(u"backgroundColor"_s, appColor.backgroundColor);
 }
 
 Colors GrantleeViewFormatter::getAppColor() const
@@ -82,9 +84,9 @@ Colors GrantleeViewFormatter::getAppColor() const
 
     // dark or light mode
     if (windowColor.value() < windowTextColor.value()) {
-        values.colorScheme = QStringLiteral("dark");
+        values.colorScheme = u"dark"_s;
     } else {
-        values.colorScheme = QStringLiteral("light");
+        values.colorScheme = u"light"_s;
     }
 
     return values;
@@ -99,68 +101,66 @@ QString lighterColor(const QString &inputColor, int factor)
 
 QString GrantleeViewFormatter::sidebarCss(const Colors &colors) const
 {
-    const bool isDark = colors.colorScheme == QLatin1StringView("dark");
+    const bool isDark = colors.colorScheme == "dark"_L1;
 
-    QString backgroundColor = isDark ? colors.backgroundColor : QStringLiteral("#fff");
-    QString borderColor = isDark ? QStringLiteral("#55595C") : QStringLiteral("#BBBDBE");
+    QString backgroundColor = isDark ? colors.backgroundColor : u"#fff"_s;
+    QString borderColor = isDark ? u"#55595C"_s : u"#BBBDBE"_s;
 
     // use background color for scrollbar on dark themes to adapt better to color schemes
     QString lighterBackgroundColor = lighterColor(colors.backgroundColor, 200);
-    QString thumbColor = isDark ? lighterBackgroundColor : QStringLiteral("#CACCCC");
-    QString thumbHoverColor = isDark ? QStringLiteral("#346D8E") : QStringLiteral("#90C7E4");
+    QString thumbColor = isDark ? lighterBackgroundColor : u"#CACCCC"_s;
+    QString thumbHoverColor = isDark ? u"#346D8E"_s : u"#90C7E4"_s;
 
-    return QStringLiteral(
-               "html::-webkit-scrollbar {\n"
-               "  /* we'll add padding as \"border\" in the thumb*/\n"
-               "    height: 20px;\n"
-               "    width: 20px;\n"
-               "    background: %1;\n"
-               "    border-left: 1px solid %2;\n"
-               "    padding-left: 1px;\n"
-               "}\n\n"
+    return u"html::-webkit-scrollbar {\n"
+           "  /* we'll add padding as \"border\" in the thumb*/\n"
+           "    height: 20px;\n"
+           "    width: 20px;\n"
+           "    background: %1;\n"
+           "    border-left: 1px solid %2;\n"
+           "    padding-left: 1px;\n"
+           "}\n\n"
 
-               "html::-webkit-scrollbar-track {\n"
-               "    border-radius: 20px;\n"
-               "    width: 6px !important;\n"
-               "    box-sizing: content-box;\n"
-               "}\n\n"
+           "html::-webkit-scrollbar-track {\n"
+           "    border-radius: 20px;\n"
+           "    width: 6px !important;\n"
+           "    box-sizing: content-box;\n"
+           "}\n\n"
 
-               "html::-webkit-scrollbar-thumb {\n"
-               "    background-color: %3;\n"
-               "    border: 6px solid transparent;\n"
-               "    border-radius: 20px;\n"
-               "    background-clip: content-box;\n"
-               "    width: 8px !important; /* 20px scrollbar - 2 * 6px border */\n"
-               "    box-sizing: content-box;\n"
-               "    min-height: 30px;\n"
-               "}\n\n"
+           "html::-webkit-scrollbar-thumb {\n"
+           "    background-color: %3;\n"
+           "    border: 6px solid transparent;\n"
+           "    border-radius: 20px;\n"
+           "    background-clip: content-box;\n"
+           "    width: 8px !important; /* 20px scrollbar - 2 * 6px border */\n"
+           "    box-sizing: content-box;\n"
+           "    min-height: 30px;\n"
+           "}\n\n"
 
-               "html::-webkit-scrollbar-thumb:window-inactive {\n"
-               "   background-color: %3; /* when window is inactive it's gray */\n"
-               "}\n\n"
+           "html::-webkit-scrollbar-thumb:window-inactive {\n"
+           "   background-color: %3; /* when window is inactive it's gray */\n"
+           "}\n\n"
 
-               "html::-webkit-scrollbar-thumb:hover {\n"
-               "    background-color: %4; /* hovered is a lighter blue */\n"
-               "}\n\n"
+           "html::-webkit-scrollbar-thumb:hover {\n"
+           "    background-color: %4; /* hovered is a lighter blue */\n"
+           "}\n\n"
 
-               "html::-webkit-scrollbar-corner {\n"
-               "    background-color: white;\n"
-               "}\n\n")
-        .arg(backgroundColor)
-        .arg(borderColor)
-        .arg(thumbColor)
-        .arg(thumbHoverColor);
+           "html::-webkit-scrollbar-corner {\n"
+           "    background-color: white;\n"
+           "}\n\n"_s.arg(backgroundColor)
+               .arg(borderColor)
+               .arg(thumbColor)
+               .arg(thumbHoverColor);
 }
 
 QString GrantleeViewFormatter::formatFeed(Akregator::Feed *feed)
 {
-    mTemplate = mEngine.loadByName(QStringLiteral("formatter/html/defaultnormalvisitfeed.html"));
+    mTemplate = mEngine.loadByName(u"formatter/html/defaultnormalvisitfeed.html"_s);
     if (mTemplate->error()) {
         return mTemplate->errorString();
     }
     QVariantHash feedObject;
     addStandardObject(feedObject);
-    feedObject.insert(QStringLiteral("strippedTitle"), Utils::stripTags(feed->title()));
+    feedObject.insert(u"strippedTitle"_s, Utils::stripTags(feed->title()));
     QString numberOfArticle;
     if (feed->unread() == 0) {
         numberOfArticle = i18n(" (no unread articles)");
@@ -168,35 +168,35 @@ QString GrantleeViewFormatter::formatFeed(Akregator::Feed *feed)
         numberOfArticle = i18np(" (1 unread article)", " (%1 unread articles)", feed->unread());
     }
 
-    feedObject.insert(QStringLiteral("feedCount"), numberOfArticle);
+    feedObject.insert(u"feedCount"_s, numberOfArticle);
 
     QString feedImage;
     if (!feed->logoInfo().imageUrl.isEmpty()) { // image
         feedImage = GrantleeUtil::imageFeed(feed);
     } else {
-        feedImage = QStringLiteral("<div class=\"body\">");
+        feedImage = u"<div class=\"body\">"_s;
     }
-    feedObject.insert(QStringLiteral("feedImage"), feedImage);
+    feedObject.insert(u"feedImage"_s, feedImage);
 
     if (!feed->description().isEmpty()) {
-        QString feedDescription = QStringLiteral("<div dir=\"%1\">").arg(mDirectionString);
+        QString feedDescription = u"<div dir=\"%1\">"_s.arg(mDirectionString);
         feedDescription += i18n("<b>Description:</b> %1<br />", feed->description());
-        feedDescription += QStringLiteral("</div>"); // /description
-        feedObject.insert(QStringLiteral("feedDescription"), feedDescription);
+        feedDescription += u"</div>"_s; // /description
+        feedObject.insert(u"feedDescription"_s, feedDescription);
     }
 
     if (!feed->htmlUrl().isEmpty()) {
-        QString feedHomePage = QStringLiteral("<div dir=\"%1\">").arg(mDirectionString);
+        QString feedHomePage = u"<div dir=\"%1\">"_s.arg(mDirectionString);
         feedHomePage += i18n("<b>Homepage:</b> <a href=\"%1\">%1</a>", feed->htmlUrl());
-        feedHomePage += QStringLiteral("</div>"); // / link
-        feedObject.insert(QStringLiteral("feedHomePage"), feedHomePage);
+        feedHomePage += u"</div>"_s; // / link
+        feedObject.insert(u"feedHomePage"_s, feedHomePage);
     }
 
     if (!feed->copyright().isEmpty()) {
-        QString feedCopyright = QStringLiteral("<div dir=\"%1\">").arg(mDirectionString);
+        QString feedCopyright = u"<div dir=\"%1\">"_s.arg(mDirectionString);
         feedCopyright += i18n("<b>Copyright:</b> %1</a>", feed->copyright());
-        feedCopyright += QStringLiteral("</div>");
-        feedObject.insert(QStringLiteral("feedCopyright"), feedCopyright);
+        feedCopyright += u"</div>"_s;
+        feedObject.insert(u"feedCopyright"_s, feedCopyright);
     }
 
     KTextTemplate::Context context(feedObject);
@@ -208,14 +208,14 @@ QString GrantleeViewFormatter::formatFeed(Akregator::Feed *feed)
 
 QString GrantleeViewFormatter::formatFolder(Akregator::Folder *node)
 {
-    mTemplate = mEngine.loadByName(QStringLiteral("formatter/html/defaultnormalvisitfolder.html"));
+    mTemplate = mEngine.loadByName(u"formatter/html/defaultnormalvisitfolder.html"_s);
     if (mTemplate->error()) {
         return mTemplate->errorString();
     }
     QVariantHash folderObject;
     addStandardObject(folderObject);
 
-    folderObject.insert(QStringLiteral("nodeTitle"), node->title());
+    folderObject.insert(u"nodeTitle"_s, node->title());
     QString numberOfArticle;
     if (node->unread() == 0) {
         numberOfArticle = i18n(" (no unread articles)");
@@ -223,7 +223,7 @@ QString GrantleeViewFormatter::formatFolder(Akregator::Folder *node)
         numberOfArticle = i18np(" (1 unread article)", " (%1 unread articles)", node->unread());
     }
 
-    folderObject.insert(QStringLiteral("nodeCount"), numberOfArticle);
+    folderObject.insert(u"nodeCount"_s, numberOfArticle);
     KTextTemplate::Context context(folderObject);
     context.setLocalizer(mEngine.localizer());
 
@@ -233,7 +233,7 @@ QString GrantleeViewFormatter::formatFolder(Akregator::Folder *node)
 
 QString GrantleeViewFormatter::formatArticles(const QList<Article> &article, ArticleFormatter::IconOption icon)
 {
-    mTemplate = mEngine.loadByName(QStringLiteral("formatter/html/normalview.html"));
+    mTemplate = mEngine.loadByName(u"formatter/html/normalview.html"_s);
     if (mTemplate->error()) {
         return mTemplate->errorString();
     }
@@ -250,15 +250,15 @@ QString GrantleeViewFormatter::formatArticles(const QList<Article> &article, Art
         articlesList << QVariant::fromValue(static_cast<QObject *>(articleObj));
         lstObj.append(articleObj);
     }
-    articleObject.insert(QStringLiteral("articles"), articlesList);
+    articleObject.insert(u"articles"_s, articlesList);
 
     addStandardObject(articleObject);
-    articleObject.insert(QStringLiteral("loadExternalReference"), Settings::loadExternalReferences());
-    articleObject.insert(QStringLiteral("dateI18n"), i18n("Date"));
-    articleObject.insert(QStringLiteral("commentI18n"), i18n("Comment"));
-    articleObject.insert(QStringLiteral("completeStoryI18n"), i18n("Complete Story"));
-    articleObject.insert(QStringLiteral("authorI18n"), i18n("Author"));
-    articleObject.insert(QStringLiteral("enclosureI18n"), i18n("Enclosure"));
+    articleObject.insert(u"loadExternalReference"_s, Settings::loadExternalReferences());
+    articleObject.insert(u"dateI18n"_s, i18n("Date"));
+    articleObject.insert(u"commentI18n"_s, i18n("Comment"));
+    articleObject.insert(u"completeStoryI18n"_s, i18n("Complete Story"));
+    articleObject.insert(u"authorI18n"_s, i18n("Author"));
+    articleObject.insert(u"enclosureI18n"_s, i18n("Enclosure"));
 
     KTextTemplate::Context context(articleObject);
     context.setLocalizer(mEngine.localizer());

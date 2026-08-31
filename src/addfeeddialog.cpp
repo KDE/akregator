@@ -18,12 +18,14 @@
 #include <QUrl>
 #include <QVBoxLayout>
 
+using namespace Qt::Literals::StringLiterals;
+
 using namespace Akregator;
 AddFeedWidget::AddFeedWidget(QWidget *parent)
     : QWidget(parent)
 {
     setupUi(this);
-    pixmapLabel1->setPixmap(QIcon::fromTheme(QStringLiteral("applications-internet")).pixmap(style()->pixelMetric(QStyle::PM_MessageBoxIconSize)));
+    pixmapLabel1->setPixmap(QIcon::fromTheme(u"applications-internet"_s).pixmap(style()->pixelMetric(QStyle::PM_MessageBoxIconSize)));
     statusLabel->setText(QString());
 }
 
@@ -81,17 +83,17 @@ void AddFeedDialog::accept()
     m_feed = new Feed(Kernel::self()->storage());
 
     // HACK: make weird wordpress links ("feed:http://foobar/rss") work
-    if (mFeedUrl.startsWith(QLatin1StringView("feed:http"))) {
+    if (mFeedUrl.startsWith("feed:http"_L1)) {
         mFeedUrl = mFeedUrl.right(mFeedUrl.length() - 5);
     }
 
-    if (!mFeedUrl.contains(QLatin1StringView(":/"))) {
-        mFeedUrl.prepend(QLatin1StringView("https://"));
+    if (!mFeedUrl.contains(":/"_L1)) {
+        mFeedUrl.prepend("https://"_L1);
     }
 
     QUrl asUrl(mFeedUrl);
-    if (asUrl.scheme() == QLatin1StringView("feed")) {
-        asUrl.setScheme(QStringLiteral("https"));
+    if (asUrl.scheme() == "feed"_L1) {
+        asUrl.setScheme(u"https"_s);
         mFeedUrl = asUrl.url();
     }
     m_feed->setXmlUrl(mFeedUrl);

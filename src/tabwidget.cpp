@@ -27,6 +27,8 @@
 #include "frame.h"
 #include "openurlrequest.h"
 
+using namespace Qt::Literals::StringLiterals;
+
 using namespace Akregator;
 
 class Akregator::TabWidgetPrivate
@@ -90,7 +92,7 @@ TabWidget::TabWidget(QWidget *parent)
     d->tabsClose = new QToolButton(this);
     connect(d->tabsClose, &QToolButton::clicked, this, &TabWidget::slotRemoveCurrentFrame);
 
-    d->tabsClose->setIcon(QIcon::fromTheme(QStringLiteral("tab-close")));
+    d->tabsClose->setIcon(QIcon::fromTheme(u"tab-close"_s));
     d->tabsClose->setEnabled(false);
     d->tabsClose->adjustSize();
     d->tabsClose->setToolTip(i18nc("@info:tooltip", "Close the current tab"));
@@ -121,32 +123,32 @@ void TabWidget::slotTabContextMenuRequest(const QPoint &pos)
     const int countTab = (count() > 1);
     QAction *detachTab = menu.addAction(i18nc("@action:inmenu", "Detach Tab"));
     detachTab->setEnabled((indexBar != 0) && countTab);
-    detachTab->setIcon(QIcon::fromTheme(QStringLiteral("tab-detach")));
+    detachTab->setIcon(QIcon::fromTheme(u"tab-detach"_s));
 
     QAction *reloadTab = nullptr;
     QAction *copyUrl = nullptr;
     Frame *frame = d->frames.value(widget(indexBar));
     if (frame && frame->url().isValid()) {
         reloadTab = menu.addAction(i18nc("@action:inmenu", "Reload Tab"));
-        reloadTab->setIcon(QIcon::fromTheme(QStringLiteral("view-refresh")));
+        reloadTab->setIcon(QIcon::fromTheme(u"view-refresh"_s));
 
         copyUrl = menu.addAction(i18nc("@action:inmenu", "Copy Tab Address"));
-        copyUrl->setIcon(QIcon::fromTheme(QStringLiteral("edit-copy")));
+        copyUrl->setIcon(QIcon::fromTheme(u"edit-copy"_s));
     }
 
     menu.addSeparator();
 
     QAction *closeTab = menu.addAction(i18nc("@action:inmenu", "Close Tab"));
     closeTab->setEnabled((indexBar != 0) && countTab);
-    closeTab->setIcon(QIcon::fromTheme(QStringLiteral("tab-close")));
+    closeTab->setIcon(QIcon::fromTheme(u"tab-close"_s));
 
     QAction *allOther = menu.addAction(i18nc("@action:inmenu", "Close All Other Tabs"));
     allOther->setEnabled(countTab);
-    allOther->setIcon(QIcon::fromTheme(QStringLiteral("tab-close-other")));
+    allOther->setIcon(QIcon::fromTheme(u"tab-close-other"_s));
 
     QAction *allTab = menu.addAction(i18nc("@action:inmenu", "Close All Tabs"));
     allTab->setEnabled(countTab);
-    allTab->setIcon(QIcon::fromTheme(QStringLiteral("tab-close")));
+    allTab->setIcon(QIcon::fromTheme(u"tab-close"_s));
 
     const QAction *action = menu.exec(mapToGlobal(pos));
 
@@ -323,7 +325,7 @@ void TabWidget::slotWebPageMutedOrAudibleChanged(Akregator::Frame *frame, bool i
         return;
     }
     if (isAudioMuted) {
-        setTabIcon(idx, QIcon::fromTheme(QStringLiteral("audio-volume-muted")));
+        setTabIcon(idx, QIcon::fromTheme(u"audio-volume-muted"_s));
     } else {
         setTabIcon(idx, frame->icon());
     }
@@ -376,7 +378,7 @@ void TabWidgetPrivate::setTitle(const QString &title, QWidget *sender)
         newTitle = KStringHandler::rsqueeze(newTitle, newMaxLength);
     }
 
-    newTitle.replace(u'&', QStringLiteral("&&"));
+    newTitle.replace(u'&', u"&&"_s);
 
     if (q->tabText(senderIndex) != newTitle) {
         q->setTabText(senderIndex, newTitle);
@@ -397,7 +399,7 @@ void TabWidgetPrivate::setTitle(const QString &title, QWidget *sender)
                 newTitle = KStringHandler::rsqueeze(newTitle, newMaxLength);
             }
 
-            newTitle.replace(u'&', QStringLiteral("&&"));
+            newTitle.replace(u'&', u"&&"_s);
             if (newTitle != q->tabText(index)) {
                 q->setTabText(index, newTitle);
             }

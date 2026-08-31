@@ -11,6 +11,8 @@
 
 #include "akregatorconfig.h"
 
+using namespace Qt::Literals::StringLiterals;
+
 using namespace Akregator;
 
 ArticleViewerWebEnginePage::ArticleViewerWebEnginePage(QObject *parent)
@@ -42,7 +44,7 @@ ArticleViewerWebEnginePage::~ArticleViewerWebEnginePage() = default;
 bool ArticleViewerWebEnginePage::acceptNavigationRequest(const QUrl &url, NavigationType type, bool isMainFrame)
 {
     Q_UNUSED(type)
-    if (url.scheme() == QLatin1StringView("data")) {
+    if (url.scheme() == "data"_L1) {
         return true;
     }
     if (isMainFrame && type == NavigationTypeLinkClicked) {

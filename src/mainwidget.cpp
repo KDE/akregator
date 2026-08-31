@@ -156,7 +156,7 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
     connect(Kernel::self()->fetchQueue(), &FetchQueue::signalStopped, this, &MainWidget::slotFetchingStopped);
 
     m_feedListView = new SubscriptionListView(m_horizontalSplitter);
-    m_feedListView->setObjectName(QLatin1StringView("feedtree"));
+    m_feedListView->setObjectName("feedtree"_L1);
     m_actionManager->initSubscriptionListView(m_feedListView);
 
     connect(m_feedListView, &SubscriptionListView::userActionTakingPlace, this, &MainWidget::ensureArticleTabVisible);
@@ -191,7 +191,7 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
     m_tabWidget->setWhatsThis(i18n("You can view multiple articles in several open tabs."));
 
     m_mainTab = new QWidget(this);
-    m_mainTab->setObjectName(QLatin1StringView("Article Tab"));
+    m_mainTab->setObjectName("Article Tab"_L1);
     m_mainTab->setWhatsThis(i18n("Articles list."));
 
     auto mainTabLayout = new QVBoxLayout(m_mainTab);
@@ -203,7 +203,7 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
     }
     connect(m_searchBar, &SearchBar::forceLostFocus, this, &MainWidget::slotSetFocusToViewer);
     m_articleSplitter = new QSplitter(Qt::Vertical, m_mainTab);
-    m_articleSplitter->setObjectName(QLatin1StringView("panner2"));
+    m_articleSplitter->setObjectName("panner2"_L1);
     m_articleSplitter->setChildrenCollapsible(false);
 
     m_articleWidget = new QWidget(m_articleSplitter);
@@ -443,10 +443,10 @@ void MainWidget::sendArticle(const QByteArray &text, const QString &title, bool 
         download->start();
     } else {
         QUrlQuery query;
-        query.addQueryItem(QStringLiteral("subject"), title);
-        query.addQueryItem(QStringLiteral("body"), QString::fromUtf8(text));
+        query.addQueryItem(u"subject"_s, title);
+        query.addQueryItem(u"body"_s, QString::fromUtf8(text));
         QUrl url;
-        url.setScheme(QStringLiteral("mailto"));
+        url.setScheme(u"mailto"_s);
         url.setQuery(query);
         QDesktopServices::openUrl(url);
     }
@@ -832,7 +832,7 @@ bool MainWidget::confirmMarkFeedAsRead(bool isSingleFeed, bool isGroup)
                                            caption,
                                            KStandardGuiItem::cont(),
                                            KStandardGuiItem::cancel(),
-                                           QStringLiteral("Disable Mark Feed As Read Confirmation"))
+                                           u"Disable Mark Feed As Read Confirmation"_s)
         != KMessageBox::Continue) {
         return false;
     }
@@ -905,14 +905,14 @@ void MainWidget::slotFetchAllFeeds()
 void MainWidget::slotFetchingStarted()
 {
     m_mainFrame->slotSetState(Frame::Started);
-    m_actionManager->action(QStringLiteral("feed_stop"))->setEnabled(true);
+    m_actionManager->action(u"feed_stop"_s)->setEnabled(true);
     m_mainFrame->slotSetStatusText(i18n("Fetching Feeds…"));
 }
 
 void MainWidget::slotFetchingStopped()
 {
     m_mainFrame->slotSetState(Frame::Completed);
-    m_actionManager->action(QStringLiteral("feed_stop"))->setEnabled(false);
+    m_actionManager->action(u"feed_stop"_s)->setEnabled(false);
     m_mainFrame->slotSetStatusText(QString());
 }
 
@@ -929,7 +929,7 @@ void MainWidget::slotArticleSelected(const Akregator::Article &article)
     QList<Article> articles = m_selectionController->selectedArticles();
     Q_EMIT signalArticlesSelected(articles);
 
-    auto const maai = qobject_cast<KToggleAction *>(m_actionManager->action(QStringLiteral("article_set_status_important")));
+    auto const maai = qobject_cast<KToggleAction *>(m_actionManager->action(u"article_set_status_important"_s));
     Q_ASSERT(maai);
     maai->setChecked(article.keep());
 
@@ -1117,7 +1117,7 @@ void MainWidget::slotArticleDelete()
                                            i18nc("@title:window", "Delete Article"),
                                            KStandardGuiItem::del(),
                                            KStandardGuiItem::cancel(),
-                                           QStringLiteral("Disable delete article confirmation"))
+                                           u"Disable delete article confirmation"_s)
         != KMessageBox::Continue) {
         return;
     }
@@ -1247,7 +1247,7 @@ void MainWidget::readProperties(const KConfigGroup &config)
     }
     const QString currentTabName = config.readEntry("CurrentTab");
     // Reopen tabs
-    const QStringList childList = config.readEntry(QStringLiteral("Children"), QStringList());
+    const QStringList childList = config.readEntry(u"Children"_s, QStringList());
     int currentFrameId = -1;
     for (const QString &framePrefix : childList) {
         auto const frame = new WebEngineFrame(m_actionManager->actionCollection(), m_tabWidget);

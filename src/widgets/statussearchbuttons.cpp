@@ -8,6 +8,8 @@
 #include <QButtonGroup>
 #include <QHBoxLayout>
 #include <QToolButton>
+
+using namespace Qt::Literals::StringLiterals;
 using namespace Akregator;
 Q_DECLARE_METATYPE(Akregator::StatusSearchButtons::Status)
 StatusSearchButtons::StatusSearchButtons(QWidget *parent)
@@ -15,17 +17,17 @@ StatusSearchButtons::StatusSearchButtons(QWidget *parent)
     , mButtonGroup(new QButtonGroup(this))
 {
     auto mainLayout = new QHBoxLayout(this);
-    mainLayout->setObjectName(QStringLiteral("mainLayout"));
+    mainLayout->setObjectName(u"mainLayout"_s);
     mainLayout->setContentsMargins(2, 2, 2, 2);
     mainLayout->setSpacing(2);
 
-    mButtonGroup->setObjectName(QStringLiteral("mButtonGroup"));
+    mButtonGroup->setObjectName(u"mButtonGroup"_s);
     mButtonGroup->setExclusive(true);
 
     // All
     auto toolButton = new QToolButton(this);
     toolButton->setCheckable(true);
-    toolButton->setIcon(QIcon::fromTheme(QStringLiteral("system-run")));
+    toolButton->setIcon(QIcon::fromTheme(u"system-run"_s));
     toolButton->setToolTip(i18n("All Articles"));
     toolButton->setAutoRaise(true);
     mainLayout->addWidget(toolButton, 0, Qt::AlignTop);
@@ -35,7 +37,7 @@ StatusSearchButtons::StatusSearchButtons(QWidget *parent)
     toolButton = new QToolButton(this);
     toolButton->setCheckable(true);
     toolButton->setAutoRaise(true);
-    toolButton->setIcon(QIcon::fromTheme(QStringLiteral("mail-mark-unread-new")));
+    toolButton->setIcon(QIcon::fromTheme(u"mail-mark-unread-new"_s));
     toolButton->setToolTip(i18nc("New articles filter", "New"));
     mainLayout->addWidget(toolButton, 0, Qt::AlignTop);
     mButtonGroup->addButton(toolButton, StatusSearchButtons::Status::NewArticles);
@@ -44,7 +46,7 @@ StatusSearchButtons::StatusSearchButtons(QWidget *parent)
     toolButton = new QToolButton(this);
     toolButton->setCheckable(true);
     toolButton->setAutoRaise(true);
-    toolButton->setIcon(QIcon::fromTheme(QStringLiteral("mail-mark-unread")));
+    toolButton->setIcon(QIcon::fromTheme(u"mail-mark-unread"_s));
     toolButton->setToolTip(i18nc("Unread articles filter", "Unread"));
     mainLayout->addWidget(toolButton, 0, Qt::AlignTop);
     mButtonGroup->addButton(toolButton, StatusSearchButtons::Status::UnreadArticles);
@@ -53,7 +55,7 @@ StatusSearchButtons::StatusSearchButtons(QWidget *parent)
     toolButton = new QToolButton(this);
     toolButton->setCheckable(true);
     toolButton->setAutoRaise(true);
-    toolButton->setIcon(QIcon::fromTheme(QStringLiteral("mail-mark-read")));
+    toolButton->setIcon(QIcon::fromTheme(u"mail-mark-read"_s));
     toolButton->setToolTip(i18nc("Read articles filter", "Read"));
     mainLayout->addWidget(toolButton, 0, Qt::AlignTop);
     mButtonGroup->addButton(toolButton, StatusSearchButtons::Status::ReadArticles);
@@ -62,7 +64,7 @@ StatusSearchButtons::StatusSearchButtons(QWidget *parent)
     toolButton = new QToolButton(this);
     toolButton->setCheckable(true);
     toolButton->setAutoRaise(true);
-    toolButton->setIcon(QIcon::fromTheme(QStringLiteral("mail-mark-important")));
+    toolButton->setIcon(QIcon::fromTheme(u"mail-mark-important"_s));
     toolButton->setToolTip(i18nc("Important articles filter", "Important"));
     mainLayout->addWidget(toolButton, 0, Qt::AlignTop);
     mButtonGroup->addButton(toolButton, StatusSearchButtons::Status::ImportantArticles);

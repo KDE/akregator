@@ -20,6 +20,8 @@
 #include "akregator_debug.h"
 #include <QIcon>
 
+using namespace Qt::Literals::StringLiterals;
+
 using namespace Akregator;
 
 // efficient alternative so we don't convert first to a temporary QList then to QList
@@ -46,9 +48,9 @@ bool Folder::accept(TreeNodeVisitor *visitor)
 
 Folder *Folder::fromOPML(const QDomElement &e)
 {
-    auto fg = new Folder(e.hasAttribute(QStringLiteral("text")) ? e.attribute(QStringLiteral("text")) : e.attribute(QStringLiteral("title")));
-    fg->setOpen(e.attribute(QStringLiteral("isOpen")) == QLatin1StringView("true"));
-    fg->setId(e.attribute(QStringLiteral("id")).toUInt());
+    auto fg = new Folder(e.hasAttribute(u"text"_s) ? e.attribute(u"text"_s) : e.attribute(u"title"_s));
+    fg->setOpen(e.attribute(u"isOpen"_s) == "true"_L1);
+    fg->setId(e.attribute(u"id"_s).toUInt());
     return fg;
 }
 
@@ -79,11 +81,11 @@ QList<Article> Folder::articles()
 
 QDomElement Folder::toOPML(QDomElement parent, QDomDocument document) const
 {
-    QDomElement el = document.createElement(QStringLiteral("outline"));
-    el.setAttribute(QStringLiteral("text"), title());
+    QDomElement el = document.createElement(u"outline"_s);
+    el.setAttribute(u"text"_s, title());
     parent.appendChild(el);
-    el.setAttribute(QStringLiteral("isOpen"), m_open ? QStringLiteral("true") : QStringLiteral("false"));
-    el.setAttribute(QStringLiteral("id"), QString::number(id()));
+    el.setAttribute(u"isOpen"_s, m_open ? u"true"_s : u"false"_s);
+    el.setAttribute(u"id"_s, QString::number(id()));
 
     const auto children = m_children;
     for (const Akregator::TreeNode *i : children) {
@@ -178,7 +180,7 @@ void Folder::insertChild(TreeNode *node, TreeNode *after)
 
 QIcon Folder::icon() const
 {
-    return QIcon::fromTheme(QStringLiteral("folder"));
+    return QIcon::fromTheme(u"folder"_s);
 }
 
 void Folder::insertChild(int index, TreeNode *node)

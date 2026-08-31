@@ -10,6 +10,8 @@
 #include <QPushButton>
 #include <QVBoxLayout>
 
+using namespace Qt::Literals::StringLiterals;
+
 using namespace Akregator;
 
 CrashWidget::CrashWidget(QWidget *parent)
@@ -19,7 +21,7 @@ CrashWidget::CrashWidget(QWidget *parent)
 
     auto labelLayout = new QHBoxLayout;
     auto label = new QLabel(i18nc("@label:textbox", "Akregator did not close correctly. Would you like to restore the previous session?"), this);
-    label->setObjectName(QLatin1StringView("restoresessionlabel"));
+    label->setObjectName("restoresessionlabel"_L1);
     label->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     QFont font = label->font();
     font.setBold(true);
@@ -34,20 +36,20 @@ CrashWidget::CrashWidget(QWidget *parent)
     vbox->addLayout(buttonLayout);
     buttonLayout->addStretch(0);
 
-    auto restoreSessionButton = new QPushButton(QIcon::fromTheme(QStringLiteral("window-new")), i18n("Restore Session"), this);
-    restoreSessionButton->setObjectName(QLatin1StringView("restoresessionbutton"));
+    auto restoreSessionButton = new QPushButton(QIcon::fromTheme(u"window-new"_s), i18n("Restore Session"), this);
+    restoreSessionButton->setObjectName("restoresessionbutton"_L1);
     restoreSessionButton->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     buttonLayout->addWidget(restoreSessionButton);
     connect(restoreSessionButton, &QPushButton::clicked, this, &CrashWidget::slotRestoreSession);
 
-    auto dontRestoreSessionButton = new QPushButton(QIcon::fromTheme(QStringLiteral("dialog-close")), i18n("Do Not Restore Session"), this);
+    auto dontRestoreSessionButton = new QPushButton(QIcon::fromTheme(u"dialog-close"_s), i18n("Do Not Restore Session"), this);
     dontRestoreSessionButton->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-    dontRestoreSessionButton->setObjectName(QLatin1StringView("dontrestoresessionbutton"));
+    dontRestoreSessionButton->setObjectName("dontrestoresessionbutton"_L1);
     buttonLayout->addWidget(dontRestoreSessionButton);
     connect(dontRestoreSessionButton, &QPushButton::clicked, this, &CrashWidget::slotDontRestoreSession);
 
-    auto askMeLaterButton = new QPushButton(QIcon::fromTheme(QStringLiteral("chronometer")), i18n("Ask me later"), this);
-    askMeLaterButton->setObjectName(QLatin1StringView("askmelaterbutton"));
+    auto askMeLaterButton = new QPushButton(QIcon::fromTheme(u"chronometer"_s), i18n("Ask me later"), this);
+    askMeLaterButton->setObjectName("askmelaterbutton"_L1);
     buttonLayout->addWidget(askMeLaterButton);
     connect(askMeLaterButton, &QPushButton::clicked, this, &CrashWidget::slotAskMeLater);
     askMeLaterButton->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);

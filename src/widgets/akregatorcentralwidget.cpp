@@ -12,6 +12,8 @@
 
 #include <QStandardPaths>
 
+using namespace Qt::Literals::StringLiterals;
+
 using namespace Akregator;
 
 AkregatorCentralWidget::AkregatorCentralWidget(QWidget *parent)
@@ -26,8 +28,8 @@ Akregator::AkregatorCentralWidget::~AkregatorCentralWidget() = default;
 
 bool AkregatorCentralWidget::previousSessionCrashed() const
 {
-    const KConfig config(QStringLiteral("crashed"), KConfig::SimpleConfig, QStandardPaths::AppDataLocation);
-    const KConfigGroup configGroup(&config, QStringLiteral("Part"));
+    const KConfig config(u"crashed"_s, KConfig::SimpleConfig, QStandardPaths::AppDataLocation);
+    const KConfigGroup configGroup(&config, u"Part"_s);
 
     if (!configGroup.readEntry("crashed", false)) {
         return false;

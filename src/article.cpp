@@ -25,6 +25,8 @@
 #include <cassert>
 #include <utility>
 
+using namespace Qt::Literals::StringLiterals;
+
 using namespace Syndication;
 
 namespace
@@ -40,7 +42,7 @@ QString buildTitle(const QString &description)
     if (i != -1) {
         s = s.left(i + 1);
     }
-    const QRegularExpression rx(QStringLiteral("(<([^\\s>]*)(?:[^>]*)>)[^<]*"));
+    const QRegularExpression rx(u"(<([^\\s>]*)(?:[^>]*)>)[^<]*"_s);
     int offset = 0;
     QRegularExpressionMatch rmatch;
     // We get the opening tag (e.g. <i>) in one iteration and then the closing
@@ -50,12 +52,12 @@ QString buildTitle(const QString &description)
         QString toReplace;
         QString replaceWith;
         int repStart = 0;
-        if (tagName.compare(QLatin1StringView("script"), Qt::CaseInsensitive) == 0) {
+        if (tagName.compare("script"_L1, Qt::CaseInsensitive) == 0) {
             // E.g.: <script foo="bar">some js here</script>
             // strip tag AND tag contents
             toReplace = rmatch.captured(0);
             repStart = rmatch.capturedStart(0);
-        } else if (tagName.startsWith(QLatin1StringView("br"), Qt::CaseInsensitive)) {
+        } else if (tagName.startsWith("br"_L1, Qt::CaseInsensitive)) {
             toReplace = rmatch.captured(1);
             repStart = rmatch.capturedStart(1);
             replaceWith = u' ';
@@ -68,7 +70,7 @@ QString buildTitle(const QString &description)
         offset = repStart + replaceWith.length();
     }
     if (s.length() > 90) {
-        s = s.left(90) + QStringLiteral("…");
+        s = s.left(90) + u"…"_s;
     }
     return s.simplified();
 }
@@ -205,7 +207,7 @@ Article::Private::Private(const ItemPtr &article, Feed *feed_, Backend::FeedStor
         archive->setDescription(guid, article->description());
         archive->setLink(guid, article->link());
         archive->setGuidIsPermaLink(guid, false);
-        archive->setGuidIsHash(guid, guid.startsWith(QLatin1StringView("hash:")));
+        archive->setGuidIsHash(guid, guid.startsWith("hash:"_L1));
         const time_t datePublished = article->datePublished();
         if (datePublished > 0) {
             pubDate = QDateTime::fromSecsSinceEpoch(datePublished);
@@ -457,23 +459,23 @@ QString Article::authorAsHtml() const
 
     if (!email.isEmpty()) {
         if (!name.isEmpty()) {
-            return QStringLiteral("<a href=\"mailto:%1\">%2</a>").arg(email, name);
+            return u"<a href=\"mailto:%1\">%2</a>"_s.arg(email, name);
         } else {
-            return QStringLiteral("<a href=\"mailto:%1\">%1</a>").arg(email);
+            return u"<a href=\"mailto:%1\">%1</a>"_s.arg(email);
         }
     }
 
     const QString uri = authorUri();
     if (!name.isEmpty()) {
         if (!uri.isEmpty()) {
-            return QStringLiteral("<a href=\"%1\">%2</a>").arg(uri, name);
+            return u"<a href=\"%1\">%2</a>"_s.arg(uri, name);
         } else {
             return name;
         }
     }
 
     if (!uri.isEmpty()) {
-        return QStringLiteral("<a href=\"%1\">%1</a>").arg(uri);
+        return u"<a href=\"%1\">%1</a>"_s.arg(uri);
     }
     return {};
 }
