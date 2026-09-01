@@ -303,20 +303,20 @@ FeedList::~FeedList()
 
 const Akregator::Feed *FeedList::findByURL(const QString &feedURL) const
 {
-    if (!d->urlMap.contains(feedURL)) {
+    const auto it = d->urlMap.constFind(feedURL);
+    if (it == d->urlMap.constEnd()) {
         return nullptr;
     }
-    const QList<Feed *> &v = d->urlMap[feedURL];
-    return !v.isEmpty() ? v.front() : nullptr;
+    return !it->isEmpty() ? it->front() : nullptr;
 }
 
 Akregator::Feed *FeedList::findByURL(const QString &feedURL)
 {
-    if (!d->urlMap.contains(feedURL)) {
+    const auto it = d->urlMap.constFind(feedURL);
+    if (it == d->urlMap.constEnd()) {
         return nullptr;
     }
-    const QList<Akregator::Feed *> &v = d->urlMap[feedURL];
-    return !v.isEmpty() ? v.front() : nullptr;
+    return !it->isEmpty() ? it->front() : nullptr;
 }
 
 const Article FeedList::findArticle(const QString &feedURL, const QString &guid) const
