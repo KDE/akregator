@@ -158,19 +158,19 @@ bool Criterion::satisfiedBy(const Article &article) const
     bool satisfied = false;
 
     const auto predicateType = static_cast<Predicate>(m_predicate & ~Negation);
-    QString subjectType = QLatin1StringView(concreteSubject.typeName());
 
     switch (predicateType) {
     case Contains:
         satisfied = TextUtils::ConvertText::normalize(concreteSubject.toString()).indexOf(m_object.toString(), 0, Qt::CaseInsensitive) != -1;
         break;
-    case Equals:
+    case Equals: {
+        const QString subjectType = QLatin1StringView(concreteSubject.typeName());
         if (subjectType == "int"_L1) {
             satisfied = concreteSubject.toInt() == m_object.toInt();
         } else {
             satisfied = TextUtils::ConvertText::normalize(concreteSubject.toString()) == m_object.toString();
         }
-        break;
+    } break;
     case Matches:
         satisfied = TextUtils::ConvertText::normalize(concreteSubject.toString()).contains(QRegularExpression(m_object.toString()));
         break;
