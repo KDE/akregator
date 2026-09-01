@@ -28,7 +28,7 @@ public:
     [[nodiscard]] QString formatFeed(Akregator::Feed *feed);
 
 private:
-    Colors getAppColor() const;
+    [[nodiscard]] Colors getAppColor() const;
     void addStandardObject(QVariantHash &grantleeObject) const;
     [[nodiscard]] QString sidebarCss(const Colors &colors) const;
     [[nodiscard]] int pointsToPixel(int pointSize) const;
