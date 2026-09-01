@@ -34,11 +34,10 @@
 #include <QVariant>
 #if HAVE_ACTIVITY_SUPPORT
 #include "activities/activitiesmanager.h"
-
-using namespace Qt::Literals::StringLiterals;
 #endif
 using namespace Akregator;
 using namespace Syndication;
+using namespace Qt::Literals::StringLiterals;
 
 #define AKREGATOR_TREENODE_MIMETYPE u"akregator/treenode-id"_s
 
