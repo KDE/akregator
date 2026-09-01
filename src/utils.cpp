@@ -22,7 +22,8 @@ QString Utils::convertHtmlTags(const QString &title)
 
 QString Utils::stripTags(QString str)
 {
-    return str.remove(QRegularExpression(u"<[^>]*>"_s));
+    static const QRegularExpression reg(u"<[^>]*>"_s);
+    return str.remove(reg);
 }
 
 uint Utils::calcHash(const QString &str)

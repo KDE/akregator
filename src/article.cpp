@@ -42,7 +42,7 @@ QString buildTitle(const QString &description)
     if (i != -1) {
         s = s.left(i + 1);
     }
-    const QRegularExpression rx(u"(<([^\\s>]*)(?:[^>]*)>)[^<]*"_s);
+    static const QRegularExpression rx(u"(<([^\\s>]*)(?:[^>]*)>)[^<]*"_s);
     int offset = 0;
     QRegularExpressionMatch rmatch;
     // We get the opening tag (e.g. <i>) in one iteration and then the closing
