@@ -129,7 +129,7 @@ private:
     void setArticleActionsEnabled(bool enabled);
 
 private:
-    void generalPaletteChanged();
+    void invalidateCssCache();
     QString m_currentText;
     QPointer<TreeNode> m_node;
     QPointer<ArticleListJob> m_listJob;

@@ -340,7 +340,7 @@ void ArticleViewerWidget::keyPressEvent(QKeyEvent *e)
 
 void ArticleViewerWidget::updateAfterConfigChanged()
 {
-    generalPaletteChanged();
+    invalidateCssCache();
     switch (m_viewMode) {
     case NormalView:
         if (!m_article.isNull()) {
@@ -390,12 +390,12 @@ Akregator::ArticleViewerWebEngineWidgetNg *ArticleViewerWidget::articleViewerWid
 bool ArticleViewerWidget::event(QEvent *ev)
 {
     if (ev->type() == QEvent::ApplicationPaletteChange) {
-        generalPaletteChanged();
+        invalidateCssCache();
     }
     return QWidget::event(ev);
 }
 
-void ArticleViewerWidget::generalPaletteChanged()
+void ArticleViewerWidget::invalidateCssCache()
 {
     normalViewFormatter()->updateCss();
     combinedViewFormatter()->updateCss();
