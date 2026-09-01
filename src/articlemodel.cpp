@@ -107,8 +107,10 @@ QVariant ArticleModel::data(const QModelIndex &index, int role) const
     // no break
     case Qt::DisplayRole:
         switch (index.column()) {
-        case FeedTitleColumn:
-            return article.feed() ? article.feed()->title() : QVariant();
+        case FeedTitleColumn: {
+            const auto articleFeed = article.feed();
+            return articleFeed ? articleFeed->title() : QVariant();
+        }
         case DateColumn:
             return QLocale().toString(article.pubDate(), QLocale::ShortFormat);
         case ItemTitleColumn:
@@ -124,8 +126,10 @@ QVariant ArticleModel::data(const QModelIndex &index, int role) const
     case ItemIdRole:
     case GuidRole:
         return article.guid();
-    case FeedIdRole:
-        return article.feed() ? article.feed()->xmlUrl() : QVariant();
+    case FeedIdRole: {
+        const auto articleFeed = article.feed();
+        return articleFeed ? articleFeed->xmlUrl() : QVariant();
+    }
     case StatusRole:
         return article.status();
     case IsImportantRole:

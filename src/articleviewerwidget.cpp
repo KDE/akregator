@@ -223,7 +223,7 @@ void ArticleViewerWidget::slotUpdateCombinedView()
             continue;
         }
 
-        auto func = [i](const QSharedPointer<const Filters::AbstractMatcher> &matcher) -> bool {
+        auto func = [&i](const QSharedPointer<const Filters::AbstractMatcher> &matcher) -> bool {
             return !matcher->matches(i);
         };
         if (std::find_if(m_filters.cbegin(), filterEnd, func) != filterEnd) {
