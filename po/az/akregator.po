@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-08-24 00:45+0000\n"
+"POT-Creation-Date: 2026-09-01 00:46+0000\n"
 "PO-Revision-Date: 2022-07-03 14:28+0400\n"
 "Last-Translator: Kheyyam <xxmn77@gmail.com>\n"
 "Language-Team: Azerbaijani <kde-i18n-doc@kde.org>\n"
@@ -72,7 +72,7 @@ msgid "Open Link in External Browser"
 msgstr "Keçidi xarici bələdçidə açmaq"
 
 #: src/formatter/html/combinedview.html:36
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:110
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:112
 #, kde-format
 msgid "Open In Background Tab"
 msgstr "Arxa plandakı vərəqdə açmaq"
@@ -86,7 +86,7 @@ msgid "Send Link Address"
 msgstr "Keçid ünvanını göndərmək"
 
 #: src/formatter/html/combinedview.html:39
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:96
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:98
 #, kde-format
 msgid "Delete Article"
 msgstr "Məqaləni silmək"
@@ -99,7 +99,7 @@ msgstr ""
 "<b>Qeyd</b> Təhlükəsizlik səbəbindən xarici istinad əngəlləndi (Tənzimləmə "
 "dialoquna baxın)."
 
-#: configuration/akregator_config_archive.cpp:35
+#: configuration/akregator_config_archive.cpp:37
 #, fuzzy, kde-format
 #| msgctxt "Limit feed archive size to:"
 #| msgid " article"
@@ -110,7 +110,7 @@ msgid_plural "%v articles"
 msgstr[0] " məqalə"
 msgstr[1] " məqalələr"
 
-#: configuration/akregator_config_archive.cpp:36
+#: configuration/akregator_config_archive.cpp:38
 #, fuzzy, kde-format
 #| msgctxt "Delete articles older than:"
 #| msgid " day"
@@ -128,7 +128,7 @@ msgid_plural " minutes"
 msgstr[0] " dəqiqə"
 msgstr[1] " dəqiqələr"
 
-#: configuration/akregatorconfigurepluginlistwidget.cpp:53
+#: configuration/akregatorconfigurepluginlistwidget.cpp:55
 #, kde-format
 msgid "Webengine Plugins"
 msgstr "Daxili bələdçi modulu"
@@ -515,7 +515,7 @@ msgid ""
 "have viewed."
 msgstr ""
 
-#: export/akregatorstorageexporter.cpp:280
+#: export/akregatorstorageexporter.cpp:282
 #, kde-format
 msgid "Akregator Export for %1"
 msgstr "%1 üçün Akregator'dan İxrac"
@@ -941,219 +941,219 @@ msgstr ""
 msgid "Resets the quick filter when changing feeds."
 msgstr "Başqa lentə keçdikdə sürətli süzgəcləməni sıfırlamaq."
 
-#: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
-#: src/akregator_part.cpp:126
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:146
+#: kontactplugin/akregator_plugin.cpp:29 src/aboutdata.cpp:21
+#: src/akregator_part.cpp:128
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:148
 #: src/mainwidget.cpp:135 src/mainwidget.cpp:1329 src/trayicon.cpp:40
 #: src/trayicon.cpp:53
 #, kde-format
 msgid "Akregator"
 msgstr "Akregator"
 
-#: kontactplugin/akregator_plugin.cpp:29
+#: kontactplugin/akregator_plugin.cpp:31
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "New Feed..."
 msgstr "Yeni xəbər lenti"
 
-#: kontactplugin/akregator_plugin.cpp:32
+#: kontactplugin/akregator_plugin.cpp:34
 #, kde-format
 msgctxt "@info:status"
 msgid "Create a new feed"
 msgstr "Yeni xəbər lenti yaratmaq"
 
-#: kontactplugin/akregator_plugin.cpp:33
+#: kontactplugin/akregator_plugin.cpp:35
 #, kde-format
 msgctxt "@info:whatsthis"
 msgid "You will be presented with a dialog where you can add a new feed."
 msgstr "Sizə yeni xəbər lenti yarada biləcəyiniz dialoq təqdim olunacaq."
 
-#: src/aboutdata.cpp:21
+#: src/aboutdata.cpp:23
 #, kde-format
 msgid "A KDE Feed Reader"
 msgstr "KDE xəbər lenti oxuma tətbiqi"
 
-#: src/aboutdata.cpp:23
+#: src/aboutdata.cpp:25
 #, kde-format
 msgid "Copyright © 2004–%1 Akregator authors"
 msgstr "Müəllif Hüquqları © 2004–%1 Akregator müəllifləri"
 
-#: src/aboutdata.cpp:27
+#: src/aboutdata.cpp:29
 #, fuzzy, kde-format
 #| msgid "Laurent Montel"
 msgctxt "@info:credit"
 msgid "Laurent Montel"
 msgstr "Laurent Montel"
 
-#: src/aboutdata.cpp:27
+#: src/aboutdata.cpp:29
 #, kde-format
 msgid "Maintainer"
 msgstr "Müşayətçi"
 
-#: src/aboutdata.cpp:28
+#: src/aboutdata.cpp:30
 #, fuzzy, kde-format
 #| msgid "Frank Osterfeld"
 msgctxt "@info:credit"
 msgid "Frank Osterfeld"
 msgstr "Frank Osterfeld"
 
-#: src/aboutdata.cpp:28
+#: src/aboutdata.cpp:30
 #, kde-format
 msgid "Former maintainer"
 msgstr "Əvvəlki Himayəçi"
 
-#: src/aboutdata.cpp:29
+#: src/aboutdata.cpp:31
 #, fuzzy, kde-format
 #| msgid "Teemu Rytilahti"
 msgctxt "@info:credit"
 msgid "Teemu Rytilahti"
 msgstr "Teemu Rytilahti"
 
-#: src/aboutdata.cpp:29 src/aboutdata.cpp:30 src/aboutdata.cpp:31
-#: src/aboutdata.cpp:32
+#: src/aboutdata.cpp:31 src/aboutdata.cpp:32 src/aboutdata.cpp:33
+#: src/aboutdata.cpp:34
 #, kde-format
 msgid "Developer"
 msgstr "Tərtibatçı"
 
-#: src/aboutdata.cpp:30
+#: src/aboutdata.cpp:32
 #, fuzzy, kde-format
 #| msgid "Sashmit Bhaduri"
 msgctxt "@info:credit"
 msgid "Sashmit Bhaduri"
 msgstr "Sashmit Bhaduri"
 
-#: src/aboutdata.cpp:31
+#: src/aboutdata.cpp:33
 #, fuzzy, kde-format
 #| msgid "Pierre Habouzit"
 msgctxt "@info:credit"
 msgid "Pierre Habouzit"
 msgstr "Pierre Habouzit"
 
-#: src/aboutdata.cpp:32
+#: src/aboutdata.cpp:34
 #, fuzzy, kde-format
 #| msgid "Stanislav Karchebny"
 msgctxt "@info:credit"
 msgid "Stanislav Karchebny"
 msgstr "Stanislav Karchebny"
 
-#: src/aboutdata.cpp:33
+#: src/aboutdata.cpp:35
 #, fuzzy, kde-format
 #| msgid "Gary Cramblitt"
 msgctxt "@info:credit"
 msgid "Gary Cramblitt"
 msgstr "Gary Cramblitt"
 
-#: src/aboutdata.cpp:33 src/aboutdata.cpp:34 src/aboutdata.cpp:35
+#: src/aboutdata.cpp:35 src/aboutdata.cpp:36 src/aboutdata.cpp:37
 #, kde-format
 msgid "Contributor"
 msgstr "Bu işə töhvə verənlər"
 
-#: src/aboutdata.cpp:34
+#: src/aboutdata.cpp:36
 #, fuzzy, kde-format
 #| msgid "Stephan Binner"
 msgctxt "@info:credit"
 msgid "Stephan Binner"
 msgstr "Stephan Binner"
 
-#: src/aboutdata.cpp:35
+#: src/aboutdata.cpp:37
 #, fuzzy, kde-format
 #| msgid "Christof Musik"
 msgctxt "@info:credit"
 msgid "Christof Musik"
 msgstr "Christof Musik"
 
-#: src/aboutdata.cpp:36
+#: src/aboutdata.cpp:38
 #, fuzzy, kde-format
 #| msgid "Anne-Marie Mahfouf"
 msgctxt "@info:credit"
 msgid "Anne-Marie Mahfouf"
 msgstr "Anne-Marie Mahfouf"
 
-#: src/aboutdata.cpp:36
+#: src/aboutdata.cpp:38
 #, kde-format
 msgid "Handbook"
 msgstr "İstifadəçi Təlimatı"
 
-#: src/aboutdata.cpp:37
+#: src/aboutdata.cpp:39
 #, fuzzy, kde-format
 #| msgid "Frerich Raabe"
 msgctxt "@info:credit"
 msgid "Frerich Raabe"
 msgstr "Frerich Raabe"
 
-#: src/aboutdata.cpp:37
+#: src/aboutdata.cpp:39
 #, kde-format
 msgid "Author of librss"
 msgstr "Librss müəlifi"
 
-#: src/aboutdata.cpp:38
+#: src/aboutdata.cpp:40
 #, fuzzy, kde-format
 #| msgid "Eckhart Woerner"
 msgctxt "@info:credit"
 msgid "Eckhart Woerner"
 msgstr "Eckhart Woerner"
 
-#: src/aboutdata.cpp:38
+#: src/aboutdata.cpp:40
 #, kde-format
 msgid "Bug tracker management, Usability improvements"
 msgstr "Xəta sazlama idarəsi, faydalı təkmilləşdirmələr"
 
-#: src/aboutdata.cpp:39
+#: src/aboutdata.cpp:41
 #, fuzzy, kde-format
 #| msgid "Heinrich Wendel"
 msgctxt "@info:credit"
 msgid "Heinrich Wendel"
 msgstr "Heinrich Wendel"
 
-#: src/aboutdata.cpp:39
+#: src/aboutdata.cpp:41
 #, kde-format
 msgid "Tons of bug fixes"
 msgstr "Çoxlu xəta düzəlişləri"
 
-#: src/aboutdata.cpp:40
+#: src/aboutdata.cpp:42
 #, fuzzy, kde-format
 #| msgid "Eike Hein"
 msgctxt "@info:credit"
 msgid "Eike Hein"
 msgstr "Eike Hein"
 
-#: src/aboutdata.cpp:40
+#: src/aboutdata.cpp:42
 #, kde-format
 msgid "'Delayed mark as read' feature"
 msgstr "\"Oxunmuş kimi işarələnmısi gecikməsi\" imkanları"
 
-#: src/aboutdata.cpp:41
+#: src/aboutdata.cpp:43
 #, fuzzy, kde-format
 #| msgid "Marcel Dierkes"
 msgctxt "@info:credit"
 msgid "Marcel Dierkes"
 msgstr "Marcel Dierkes"
 
-#: src/aboutdata.cpp:41
+#: src/aboutdata.cpp:43
 #, kde-format
 msgid "Icons"
 msgstr "Nişanlar"
 
-#: src/aboutdata.cpp:42
+#: src/aboutdata.cpp:44
 #, fuzzy, kde-format
 #| msgid "George Staikos"
 msgctxt "@info:credit"
 msgid "George Staikos"
 msgstr "George Staikos"
 
-#: src/aboutdata.cpp:42
+#: src/aboutdata.cpp:44
 #, kde-format
 msgid "Insomnia"
 msgstr "Yuxusuz qalanlar"
 
-#: src/aboutdata.cpp:43
+#: src/aboutdata.cpp:45
 #, fuzzy, kde-format
 #| msgid "Philipp Droessler"
 msgctxt "@info:credit"
 msgid "Philipp Droessler"
 msgstr "Philipp Droessler"
 
-#: src/aboutdata.cpp:43
+#: src/aboutdata.cpp:45
 #, kde-format
 msgid "Gentoo Ebuild"
 msgstr "Gentoo Ebuild"
@@ -1518,39 +1518,39 @@ msgctxt "@action"
 msgid "Activate Tab %1"
 msgstr "%1 Vərəqi aktiv etmək"
 
-#: src/actions/actions.cpp:19
+#: src/actions/actions.cpp:21
 #, kde-format
 msgid "Open Link in New &Tab"
 msgstr "Keçidi yeni &vərəqdə açmaq"
 
-#: src/actions/actions.cpp:26
+#: src/actions/actions.cpp:28
 #, kde-format
 msgid "Open Link in External &Browser"
 msgstr "Keçidi xarici &bələdçidə açmaq"
 
-#: src/addfeeddialog.cpp:49
+#: src/addfeeddialog.cpp:51
 #, kde-format
 msgctxt "@title:window"
 msgid "Add Feed"
 msgstr "Lent əlavə etmək"
 
-#: src/addfeeddialog.cpp:99
+#: src/addfeeddialog.cpp:101
 #, kde-format
 msgid "Downloading %1"
 msgstr "%1 yüklənir"
 
-#: src/addfeeddialog.cpp:115
+#: src/addfeeddialog.cpp:117
 #, kde-format
 msgid "Feed not found from %1."
 msgstr "%1 ünvanından xəbər lenti tapılmadı."
 
-#: src/addfeeddialog.cpp:121
+#: src/addfeeddialog.cpp:123
 #, fuzzy, kde-format
 #| msgid "Feed found, downloading..."
 msgid "Feed found, downloading…"
 msgstr "Xəbər lent tapıldı, endirilir..."
 
-#: src/akregator_options.h:21 src/akregator_options.h:29
+#: src/akregator_options.h:22 src/akregator_options.h:29
 #, fuzzy, kde-format
 #| msgid "Add a feed with the given URL"
 msgctxt "@info:shell"
@@ -1583,32 +1583,32 @@ msgctxt "@info:shell"
 msgid "Lists the available options for user feedback"
 msgstr "İstifadəçi rəyi üçün mövcud seçimlərin siyahısı"
 
-#: src/akregator_part.cpp:78
+#: src/akregator_part.cpp:80
 #, kde-format
 msgid "Feeds"
 msgstr "Xəbər lentləri"
 
-#: src/akregator_part.cpp:89
+#: src/akregator_part.cpp:91
 #, kde-format
 msgid "Planet KDE"
 msgstr "Planet KDE"
 
-#: src/akregator_part.cpp:94
+#: src/akregator_part.cpp:96
 #, kde-format
 msgid "KDE Apps"
 msgstr "KDE Tətbiqləri"
 
-#: src/akregator_part.cpp:100
+#: src/akregator_part.cpp:102
 #, kde-format
 msgid "Spanish feeds"
 msgstr "İspanca xəbərləri"
 
-#: src/akregator_part.cpp:104
+#: src/akregator_part.cpp:106
 #, kde-format
 msgid "Planet KDE España"
 msgstr "Planet KDE España"
 
-#: src/akregator_part.cpp:419
+#: src/akregator_part.cpp:421
 #, kde-format
 msgid ""
 "Access denied: Cannot save feed list to <b>%1</b>. Please check your "
@@ -1617,26 +1617,26 @@ msgstr ""
 "Girişə icazə verilmir. Xəbər lenti siyahısını <b>%1</b> ünvanında saxlamaq "
 "olmur. Lütfən icazənizi yoxlayın."
 
-#: src/akregator_part.cpp:420 src/akregator_part.cpp:473
+#: src/akregator_part.cpp:422 src/akregator_part.cpp:475
 #, fuzzy, kde-format
 #| msgid "Write Error"
 msgctxt "@title:window"
 msgid "Write Error"
 msgstr "Yazılma xətası"
 
-#: src/akregator_part.cpp:456
+#: src/akregator_part.cpp:458
 #, kde-format
 msgid "Could not import the file %1 (no valid OPML)"
 msgstr "%1 faylı idxal edilə bilmir (düzgün OPML yoxdur)"
 
-#: src/akregator_part.cpp:456 src/command/loadfeedlistcommand.cpp:71
+#: src/akregator_part.cpp:458 src/command/loadfeedlistcommand.cpp:73
 #, fuzzy, kde-format
 #| msgid "OPML Parsing Error"
 msgctxt "@title:window"
 msgid "OPML Parsing Error"
 msgstr "OPML analizi xətası"
 
-#: src/akregator_part.cpp:460
+#: src/akregator_part.cpp:462
 #, kde-format
 msgid ""
 "The file %1 could not be read, check if it exists or if it is readable for "
@@ -1645,25 +1645,25 @@ msgstr ""
 "%1 faylı oxuna bilmir, onun mövcud olduğunu və ya istifadəçi üçün oxunabilən "
 "olsub olmadığını yoxlayın."
 
-#: src/akregator_part.cpp:461 src/command/loadfeedlistcommand.cpp:144
+#: src/akregator_part.cpp:463 src/command/loadfeedlistcommand.cpp:146
 #, fuzzy, kde-format
 #| msgid "Read Error"
 msgctxt "@title:window"
 msgid "Read Error"
 msgstr "Oxuma xətası"
 
-#: src/akregator_part.cpp:472
+#: src/akregator_part.cpp:474
 #, kde-format
 msgid "Access denied: cannot write to file %1. Please check your permissions."
 msgstr ""
 "Girişə icazə verilmədi, %1 faylı oxuna bilmədi. Lütfən icazənizi yoxlayın."
 
-#: src/akregator_part.cpp:488 src/akregator_part.cpp:497
+#: src/akregator_part.cpp:490 src/akregator_part.cpp:499
 #, kde-format
 msgid "OPML Outlines (%1);;All Files (*)"
 msgstr "OPML Xülasəsi (%1);;Bütün fayllar (*)"
 
-#: src/akregator_part.cpp:622
+#: src/akregator_part.cpp:624
 #, kde-format
 msgid "Imported Folder"
 msgstr "İdxal olunmuş qovluq"
@@ -1673,17 +1673,17 @@ msgstr "İdxal olunmuş qovluq"
 msgid "The feed to be listed was already removed."
 msgstr "Sİyahıya alınacaq lent artıq silindi"
 
-#: src/articlelistview.cpp:161 src/subscription/subscriptionlistview.cpp:180
+#: src/articlelistview.cpp:163 src/subscription/subscriptionlistview.cpp:182
 #, kde-format
 msgid "Columns"
 msgstr "Sütunlar"
 
-#: src/articlelistview.cpp:219
+#: src/articlelistview.cpp:221
 #, kde-format
 msgid "No result found"
 msgstr "Nəticə tapılmadı"
 
-#: src/articlelistview.cpp:380
+#: src/articlelistview.cpp:382
 #, kde-format
 msgid ""
 "<h2>Article list</h2>Here you can browse articles from the currently "
@@ -1698,131 +1698,131 @@ msgstr ""
 "edərək məqalələri idarə edə bilərsiniz. Məqalənin veb səhifəsinə baxmaq üçün "
 "onu yeni vərəqdə və ya xarici bələdçi pəncərəsində aça bilərsiniz."
 
-#: src/articlemodel.cpp:75
+#: src/articlemodel.cpp:77
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Title"
 msgstr "Başlıq"
 
-#: src/articlemodel.cpp:77
+#: src/articlemodel.cpp:79
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Feed"
 msgstr "Xəbər lenti"
 
-#: src/articlemodel.cpp:79
+#: src/articlemodel.cpp:81
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Date"
 msgstr "Tarix"
 
-#: src/articlemodel.cpp:81
+#: src/articlemodel.cpp:83
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Author"
 msgstr "Müəllif"
 
-#: src/articlemodel.cpp:83
+#: src/articlemodel.cpp:85
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Description"
 msgstr "Təsviri"
 
-#: src/articlemodel.cpp:85
+#: src/articlemodel.cpp:87
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Content"
 msgstr "Tərkibi"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:147
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:149
 #, kde-format
 msgid "Akregator is a KDE news feed reader."
 msgstr "Akregator KDE xəbər lenti oxuma tətbiqidir"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:191
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:193
 #, kde-format
 msgctxt "@title:window"
 msgid "Save As"
 msgstr "Belə saxlayın"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:275
-#: src/frame/webengine/akrwebengineviewer.cpp:112
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:277
+#: src/frame/webengine/akrwebengineviewer.cpp:114
 #, fuzzy, kde-format
 #| msgid "&Save Link As..."
 msgid "&Save Link As…"
 msgstr "Keçidi belə &saxlamaq..."
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:279
-#: src/frame/webengine/akrwebengineviewer.cpp:116
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:281
+#: src/frame/webengine/akrwebengineviewer.cpp:118
 #, kde-format
 msgid "Copy &Link Address"
 msgstr "Keçid ünvanını kopya&lamaq"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:287
-#: src/frame/webengine/akrwebengineviewer.cpp:124
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:289
+#: src/frame/webengine/akrwebengineviewer.cpp:126
 #, fuzzy, kde-format
 #| msgid "Copy Image Location"
 msgctxt "@action"
 msgid "Copy Image URL"
 msgstr "Şəklin yerini kopyalamaq"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:291
-#: src/frame/webengine/akrwebengineviewer.cpp:128
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:293
+#: src/frame/webengine/akrwebengineviewer.cpp:130
 #, fuzzy, kde-format
 #| msgid "Save Image On Disk..."
 msgctxt "@action"
 msgid "Save Image…"
 msgstr "Şəkili diskdə saxlamaq..."
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:382
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:384
 #, kde-format
 msgid "Disable"
 msgstr "Söndürmək"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:383
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:385
 #, kde-format
 msgid "Keep Enabled"
 msgstr "Aktiv saxlamaq"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:385
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:387
 #, kde-format
 msgid "Are you sure you want to disable this introduction page?"
 msgstr "Bu giriş səhifəsini söndürmək istədiyinizə əminsiniz?"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:386
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:388
 #, fuzzy, kde-format
 #| msgid "Disable Introduction Page"
 msgctxt "@title:window"
 msgid "Disable Introduction Page"
 msgstr "Giriş səhiəsini söndürmək"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:416
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:418
 #, kde-format
 msgid "This web site is a malware, do you want to continue to show it?"
 msgstr ""
 "Veb səhifəsində zərərli proqram var, göstərməyə davam etmək istəyirsiniz?"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:417
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:419
 #, fuzzy, kde-format
 #| msgid "Malware"
 msgctxt "@title:window"
 msgid "Malware"
 msgstr "Malware"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:429
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:431
 #, kde-format
 msgid "The network is broken."
 msgstr "Şəbəkə əlaqəsi kəsildi"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:429
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:432
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:431
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:434
 #, fuzzy, kde-format
 #| msgid "Check Phishing Url"
 msgctxt "@title:window"
 msgid "Check Phishing Url"
 msgstr "Səhifənin təhlükəsizliyini yoxlayın"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:432
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:434
 #, kde-format
 msgid "The url %1 is not valid."
 msgstr "%1 url etibarlı deyil."
@@ -1837,7 +1837,7 @@ msgstr "Qovluq əlavə etmək"
 msgid "Folder name:"
 msgstr "Qovluğun adı:"
 
-#: src/command/deletesubscriptioncommand.cpp:39
+#: src/command/deletesubscriptioncommand.cpp:41
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to delete this folder and its feeds and subfolders?"
@@ -1846,7 +1846,7 @@ msgstr ""
 "<qt>Bu qovluğu tərkibındəki xəbər lentləri və alt qovluqları ilə birgə "
 "silmək istədiyinizə əminsiniz?</qt>"
 
-#: src/command/deletesubscriptioncommand.cpp:40
+#: src/command/deletesubscriptioncommand.cpp:42
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to delete folder <b>%1</b> and its feeds and "
@@ -1855,24 +1855,24 @@ msgstr ""
 "<qt><b>%1</b> qovluğunu tərkibındəki xəbər lentləri və alt qovluqları ilə "
 "birgə silmək istədiyinizə əminsiniz?</qt>"
 
-#: src/command/deletesubscriptioncommand.cpp:44
+#: src/command/deletesubscriptioncommand.cpp:46
 #, fuzzy, kde-format
 #| msgid "Delete Folder"
 msgctxt "@title:window"
 msgid "Delete Folder"
 msgstr "Qovluğu silmək"
 
-#: src/command/deletesubscriptioncommand.cpp:61
+#: src/command/deletesubscriptioncommand.cpp:63
 #, kde-format
 msgid "<qt>Are you sure you want to delete this feed?</qt>"
 msgstr "<qt>Bu xəbər lentini silmək istədiyinizə əminsiniz?</qt>"
 
-#: src/command/deletesubscriptioncommand.cpp:63
+#: src/command/deletesubscriptioncommand.cpp:65
 #, kde-format
 msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
 msgstr "<qt><b>%1</b> lentini silmək istədiyinizə əminsiniz?</qt>"
 
-#: src/command/deletesubscriptioncommand.cpp:68
+#: src/command/deletesubscriptioncommand.cpp:70
 #, fuzzy, kde-format
 #| msgid "Delete Feed"
 msgctxt "@title:window"
@@ -1894,7 +1894,7 @@ msgstr "İdxal edilmiş qovluq əlavə etmək"
 msgid "Imported folder name:"
 msgstr "İdxal edilmiş qovluq adı:"
 
-#: src/command/loadfeedlistcommand.cpp:63
+#: src/command/loadfeedlistcommand.cpp:65
 #, kde-format
 msgid ""
 "<qt>The standard feed list is corrupted (invalid OPML). A backup was created:"
@@ -1903,7 +1903,7 @@ msgstr ""
 "<qt>Standart lentlər siyahısı zədələnib (səhv OPML). Ehtiyyat nüsxə "
 "yaradıldı:<p><b>%1</b></p></qt>"
 
-#: src/command/loadfeedlistcommand.cpp:67
+#: src/command/loadfeedlistcommand.cpp:69
 #, kde-format
 msgid ""
 "<qt>The standard feed list is corrupted (invalid OPML). Could not create a "
@@ -1912,29 +1912,29 @@ msgstr ""
 "<qt>Standart lentlərsiyahısı zədələnib (səhv OPML). Ehtiyyat nüsxə yaradıla "
 "bilmədi.</qt>"
 
-#: src/command/loadfeedlistcommand.cpp:129
+#: src/command/loadfeedlistcommand.cpp:131
 #, fuzzy, kde-format
 #| msgid "Opening Feed List..."
 msgid "Opening Feed List…"
 msgstr "Lentlər siyahısı açılır..."
 
-#: src/command/loadfeedlistcommand.cpp:143
+#: src/command/loadfeedlistcommand.cpp:145
 #, kde-format
 msgid "<qt>Could not open feed list (%1) for reading.</qt>"
 msgstr "<qt>Oxumaq üçün lentlər siyahısı (%1) açıla bilmədi.</qt>"
 
-#: src/command/loadfeedlistcommand.cpp:155
+#: src/command/loadfeedlistcommand.cpp:157
 #, kde-format
 msgctxt "error message window caption"
 msgid "XML Parsing Error"
 msgstr "XML təhlil xətası"
 
-#: src/command/loadfeedlistcommand.cpp:157
+#: src/command/loadfeedlistcommand.cpp:159
 #, kde-kuit-format
 msgid "<qt><p>XML parsing error in line %1, column %2 of %3:</p><p>%4</p></qt>"
 msgstr "<qt><p>XML analizi xətası, sətir %1, sütun %2/%3:</p><p>%4</p></qt>"
 
-#: src/command/loadfeedlistcommand.cpp:164
+#: src/command/loadfeedlistcommand.cpp:166
 #, kde-format
 msgid ""
 "<qt>The standard feed list is corrupted (invalid XML). A backup was created:"
@@ -1943,7 +1943,7 @@ msgstr ""
 "<qt>Standart lentlər siyahısı zədələnib (səhv XML) Ehtiyyat nüsxə yaradıldı:"
 "<p><b>%1</b></p></qt>"
 
-#: src/command/loadfeedlistcommand.cpp:168
+#: src/command/loadfeedlistcommand.cpp:170
 #, kde-format
 msgid ""
 "<qt>The standard feed list is corrupted (invalid XML). Could not create a "
@@ -1952,7 +1952,7 @@ msgstr ""
 "<qt>Standart lentlərsiyahısı zədələnib (səhv XML) Ehtiyyat nüsxə yaradıla "
 "bilmədi.</qt>"
 
-#: src/crashwidget/crashwidget.cpp:21
+#: src/crashwidget/crashwidget.cpp:23
 #, fuzzy, kde-format
 #| msgid ""
 #| "Akregator did not close correctly. Would you like to restore the previous "
@@ -1964,17 +1964,17 @@ msgid ""
 msgstr ""
 "Akregator düzgün bağlanmadı. Əvvəlki sessiyanı bərpa etmək istəyirsiniz?"
 
-#: src/crashwidget/crashwidget.cpp:37
+#: src/crashwidget/crashwidget.cpp:39
 #, kde-format
 msgid "Restore Session"
 msgstr "Sesiyanı bərpa etmək"
 
-#: src/crashwidget/crashwidget.cpp:43
+#: src/crashwidget/crashwidget.cpp:45
 #, kde-format
 msgid "Do Not Restore Session"
 msgstr "Sesiyanı bərpa etməmək"
 
-#: src/crashwidget/crashwidget.cpp:49
+#: src/crashwidget/crashwidget.cpp:51
 #, kde-format
 msgid "Ask me later"
 msgstr "Sonra soruşmaq"
@@ -2033,7 +2033,7 @@ msgstr "Əsas Alətlər Paneli"
 msgid "&File"
 msgstr "&Fayl"
 
-#: src/feed/feedlist.cpp:160
+#: src/feed/feedlist.cpp:162
 #, kde-format
 msgid "All Feeds"
 msgstr "Bütün xəbər lentləri"
@@ -2100,7 +2100,7 @@ msgctxt "@title:window"
 msgid "Properties of %1"
 msgstr "%1 xüsusiyyətləri"
 
-#: src/formatter/articleformatter.cpp:35
+#: src/formatter/articleformatter.cpp:37
 #, kde-format
 msgid "(%1, %2)"
 msgstr "(%1, %2)"
@@ -2273,7 +2273,7 @@ msgstr "Məqaləni silmək"
 msgid "Networking is available now."
 msgstr "İnternet şəbəkəsinə qoşuldu."
 
-#: src/mainwindow.cpp:122
+#: src/mainwindow.cpp:124
 #, kde-format
 msgid ""
 "<qt>This will hide the menu bar completely. You can show it again by typing "
@@ -2282,14 +2282,14 @@ msgstr ""
 "<qt>Bu menyu panelini tamamilə gizlədəcək. Siz %1 yazmaqla onu yenidən "
 "göstərə bilərsiniz.</qt>"
 
-#: src/mainwindow.cpp:125
+#: src/mainwindow.cpp:127
 #, fuzzy, kde-format
 #| msgid "Hide menu bar"
 msgctxt "@title:window"
 msgid "Hide menu bar"
 msgstr "Menyu panelini gizlədin"
 
-#: src/mainwindow.cpp:158
+#: src/mainwindow.cpp:160
 #, kde-format
 msgid ""
 "Could not find the Akregator part; please check your installation.\n"
@@ -2297,7 +2297,7 @@ msgid ""
 msgstr ""
 "Akregator tərkib hissəsi tapılmadı, düzgün quraşdırıldığını yoxlayın.%1"
 
-#: src/notificationmanager.cpp:48
+#: src/notificationmanager.cpp:50
 #, kde-format
 msgid ""
 "Feed added:\n"
@@ -2306,14 +2306,14 @@ msgstr ""
 "Lent əlavə edildi:\n"
 " %1"
 
-#: src/notificationmanager.cpp:55
+#: src/notificationmanager.cpp:57
 #, kde-format
 msgid ""
 "Feeds added:\n"
 " %1"
 msgstr "Lentlər əlavə edildi: %1"
 
-#: src/notificationmanager.cpp:69
+#: src/notificationmanager.cpp:71
 #, kde-format
 msgid "<i>and 1 other</i>"
 msgid_plural "<i>and %1 others</i>"
@@ -2350,104 +2350,104 @@ msgstr "Qovşaq və ya təyinat qovluğu tapılmadı"
 msgid "Cannot move folder %1 to its own subfolder %2"
 msgstr "%1 qovluğu onun %2 alt qovluöuna köçürülmədi"
 
-#: src/subscription/subscriptionlistmodel.cpp:54
+#: src/subscription/subscriptionlistmodel.cpp:56
 #, kde-format
 msgid "Timeout on remote server"
 msgstr "Uzaq serverdə boşdayanma"
 
-#: src/subscription/subscriptionlistmodel.cpp:56
+#: src/subscription/subscriptionlistmodel.cpp:58
 #, kde-format
 msgid "Unknown host"
 msgstr "Naməlum Host"
 
-#: src/subscription/subscriptionlistmodel.cpp:58
+#: src/subscription/subscriptionlistmodel.cpp:60
 #, kde-format
 msgid "Feed file not found on remote server"
 msgstr "Xəbər kanalı uzaq serverdə tapılmadı"
 
-#: src/subscription/subscriptionlistmodel.cpp:60
+#: src/subscription/subscriptionlistmodel.cpp:62
 #, kde-format
 msgid "Could not read feed (invalid XML)"
 msgstr "Lent oxuna bilmədi (səhv XML)"
 
-#: src/subscription/subscriptionlistmodel.cpp:62
+#: src/subscription/subscriptionlistmodel.cpp:64
 #, kde-format
 msgid "Could not read feed (unknown format)"
 msgstr "Lent oxuna bilmədi (naməlum format)"
 
-#: src/subscription/subscriptionlistmodel.cpp:64
+#: src/subscription/subscriptionlistmodel.cpp:66
 #, kde-format
 msgid "Could not read feed (invalid feed)"
 msgstr "Lent oxuna bilmədi (naməlum xəbər lenti)"
 
-#: src/subscription/subscriptionlistmodel.cpp:271
+#: src/subscription/subscriptionlistmodel.cpp:273
 #, kde-format
 msgid "Could not fetch feed: %1"
 msgstr "Xəbər lenti yenilənə bilmədi: %1"
 
-#: src/subscription/subscriptionlistmodel.cpp:320
+#: src/subscription/subscriptionlistmodel.cpp:322
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Feeds"
 msgstr "Xəbər lentləri"
 
-#: src/subscription/subscriptionlistmodel.cpp:322
+#: src/subscription/subscriptionlistmodel.cpp:324
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Unread"
 msgstr "Oxunmamış"
 
-#: src/subscription/subscriptionlistmodel.cpp:324
+#: src/subscription/subscriptionlistmodel.cpp:326
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Total"
 msgstr "Ümumi"
 
-#: src/tabwidget.cpp:96
+#: src/tabwidget.cpp:98
 #, fuzzy, kde-format
 #| msgid "Close the current tab"
 msgctxt "@info:tooltip"
 msgid "Close the current tab"
 msgstr "Cari vərəqi bağlamaq"
 
-#: src/tabwidget.cpp:99
+#: src/tabwidget.cpp:101
 #, kde-format
 msgid "Close tab"
 msgstr "Vərəqi bağlamaq"
 
-#: src/tabwidget.cpp:122
+#: src/tabwidget.cpp:124
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Detach Tab"
 msgstr "Vərəqi ayırmaq"
 
-#: src/tabwidget.cpp:130
+#: src/tabwidget.cpp:132
 #, fuzzy, kde-format
 #| msgid "Reload All Tabs"
 msgctxt "@action:inmenu"
 msgid "Reload Tab"
 msgstr "Bütün vərəqləri yenidən yükləmək"
 
-#: src/tabwidget.cpp:133
+#: src/tabwidget.cpp:135
 #, fuzzy, kde-format
 #| msgid "&Copy Email Address"
 msgctxt "@action:inmenu"
 msgid "Copy Tab Address"
 msgstr "&E-Poçt Ünvanını Kopyalamaq"
 
-#: src/tabwidget.cpp:139
+#: src/tabwidget.cpp:141
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Close Tab"
 msgstr "Vərəqi bağlamaq"
 
-#: src/tabwidget.cpp:143
+#: src/tabwidget.cpp:145
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Close All Other Tabs"
 msgstr "Bütün başqa vərəqləri bağlamaq"
 
-#: src/tabwidget.cpp:147
+#: src/tabwidget.cpp:149
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Close All Tabs"
@@ -2585,47 +2585,47 @@ msgstr "Məqalələr oxunan zaman bü&töv veb səhifəni yükləmək"
 msgid "Mar&k articles as read when they arrive"
 msgstr "Məqalələr alındığı zaman onları oxunmuş &kimi işarələmək"
 
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:40
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:42
 #, kde-format
 msgid "Disable Introduction"
 msgstr "Girişi söndürmək"
 
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:58
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:60
 #, kde-format
 msgid "&Copy Email Address"
 msgstr "&E-Poçt Ünvanını Kopyalamaq"
 
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:67
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:69
 #, kde-format
 msgid "Address copied to clipboard."
 msgstr "Ünvan mübadilə yaddaşına kopyalandı."
 
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:98
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:100
 #, kde-format
 msgid "Mark Article as Read"
 msgstr "Məqalni oxunmuş kimi işarələmək"
 
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:100
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:102
 #, kde-format
 msgid "Mark Article as Unread"
 msgstr "Məqaləni oxunmamış kimi işarələmək"
 
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:102
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:104
 #, kde-format
 msgid "Change Important Flag"
 msgstr "Vaciblik işarəsini dəyişmək"
 
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:104
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:106
 #, kde-format
 msgid "Send the URL of the article"
 msgstr "Məqalənin URLnu göndərmək"
 
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:106
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:108
 #, kde-format
 msgid "Send the Html Page of Article"
 msgstr "Məqalənin HTML səhifəsini göndərmək"
 
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:108
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:110
 #, kde-format
 msgid "Open In External Browser"
 msgstr "Xarici bələdçidə açmaq"
@@ -2644,30 +2644,30 @@ msgctxt "@info:placeholder"
 msgid "Search articles…<%1>"
 msgstr "Məqalələr axtarmaq...<%1>"
 
-#: src/widgets/statussearchbuttons.cpp:29
+#: src/widgets/statussearchbuttons.cpp:31
 #, kde-format
 msgid "All Articles"
 msgstr "Bütün məqalələr"
 
-#: src/widgets/statussearchbuttons.cpp:39
+#: src/widgets/statussearchbuttons.cpp:41
 #, kde-format
 msgctxt "New articles filter"
 msgid "New"
 msgstr "Yeni"
 
-#: src/widgets/statussearchbuttons.cpp:48
+#: src/widgets/statussearchbuttons.cpp:50
 #, kde-format
 msgctxt "Unread articles filter"
 msgid "Unread"
 msgstr "Oxunmamış"
 
-#: src/widgets/statussearchbuttons.cpp:57
+#: src/widgets/statussearchbuttons.cpp:59
 #, kde-format
 msgctxt "Read articles filter"
 msgid "Read"
 msgstr "Oxumaq"
 
-#: src/widgets/statussearchbuttons.cpp:66
+#: src/widgets/statussearchbuttons.cpp:68
 #, kde-format
 msgctxt "Important articles filter"
 msgid "Important"

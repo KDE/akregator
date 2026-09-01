@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-08-24 00:45+0000\n"
+"POT-Creation-Date: 2026-09-01 00:46+0000\n"
 "PO-Revision-Date: 2024-12-25 19:35+0530\n"
 "Last-Translator: kali <shreekantkalwar@gmail.com>\n"
 "Language-Team: Sanskrit <kde-i18n-doc@kde.org>\n"
@@ -73,7 +73,7 @@ msgid "Open Link in External Browser"
 msgstr "External Browser मध्ये Link उद्घाटयन्तु"
 
 #: src/formatter/html/combinedview.html:36
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:110
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:112
 #, kde-format
 msgid "Open In Background Tab"
 msgstr "पृष्ठभूमि ट्याब् मध्ये उद्घाटयन्तु"
@@ -87,7 +87,7 @@ msgid "Send Link Address"
 msgstr "Link Address प्रेषयतु"
 
 #: src/formatter/html/combinedview.html:39
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:96
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:98
 #, kde-format
 msgid "Delete Article"
 msgstr "लेखं विलोपयतु"
@@ -98,7 +98,7 @@ msgid ""
 "configure dialog)."
 msgstr "<b>टिप्पणी:</b> सुरक्षाकारणात् बाह्यसन्दर्भः अवरुद्धः अस्ति (विन्यस्तसंवादं पश्यन्तु) ।"
 
-#: configuration/akregator_config_archive.cpp:35
+#: configuration/akregator_config_archive.cpp:37
 #, kde-format
 msgctxt "Limit feed archive size to:"
 msgid "%v article"
@@ -106,7 +106,7 @@ msgid_plural "%v articles"
 msgstr[0] "%v लेखः"
 msgstr[1] "%v लेखाः"
 
-#: configuration/akregator_config_archive.cpp:36
+#: configuration/akregator_config_archive.cpp:38
 #, kde-format
 msgctxt "Delete articles older than:"
 msgid "%v day"
@@ -121,7 +121,7 @@ msgid_plural " minutes"
 msgstr[0] " क्षणं"
 msgstr[1] " पन्चनिमेषः"
 
-#: configuration/akregatorconfigurepluginlistwidget.cpp:53
+#: configuration/akregatorconfigurepluginlistwidget.cpp:55
 #, kde-format
 msgid "Webengine Plugins"
 msgstr "वेबिंगिन प्लगिन्स्"
@@ -504,7 +504,7 @@ msgstr ""
 "लेखपूर्वावलोकनं अन्तर्जालतः बाह्यसन्दर्भान् लोड् कर्तुं अनुमन्यताम् । एतेन भवता दृष्टानि लेखानि "
 "जालपुटानि तृतीयपक्षे वा अवलोकयितुं शक्यन्ते ।"
 
-#: export/akregatorstorageexporter.cpp:280
+#: export/akregatorstorageexporter.cpp:282
 #, kde-format
 msgid "Akregator Export for %1"
 msgstr "%1 कृते Akregator निर्यातयन्तु"
@@ -924,202 +924,202 @@ msgstr "लेखस्य चयनस्य पठितत्वेन चि
 msgid "Resets the quick filter when changing feeds."
 msgstr "फीड् परिवर्तनं कुर्वन् द्रुत-छिद्रकं पुनः सेट् करोति ।"
 
-#: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
-#: src/akregator_part.cpp:126
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:146
+#: kontactplugin/akregator_plugin.cpp:29 src/aboutdata.cpp:21
+#: src/akregator_part.cpp:128
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:148
 #: src/mainwidget.cpp:135 src/mainwidget.cpp:1329 src/trayicon.cpp:40
 #: src/trayicon.cpp:53
 #, kde-format
 msgid "Akregator"
 msgstr "समुच्चयकारः"
 
-#: kontactplugin/akregator_plugin.cpp:29
+#: kontactplugin/akregator_plugin.cpp:31
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "New Feed..."
 msgstr "नवीन फीड..."
 
-#: kontactplugin/akregator_plugin.cpp:32
+#: kontactplugin/akregator_plugin.cpp:34
 #, kde-format
 msgctxt "@info:status"
 msgid "Create a new feed"
 msgstr "नूतनं फीड् रचयन्तु"
 
-#: kontactplugin/akregator_plugin.cpp:33
+#: kontactplugin/akregator_plugin.cpp:35
 #, kde-format
 msgctxt "@info:whatsthis"
 msgid "You will be presented with a dialog where you can add a new feed."
 msgstr "भवन्तः एकं संवादं प्रस्तुतं भविष्यन्ति यत्र भवन्तः नूतनं फीड् योजयितुं शक्नुवन्ति ।"
 
-#: src/aboutdata.cpp:21
+#: src/aboutdata.cpp:23
 #, kde-format
 msgid "A KDE Feed Reader"
 msgstr "तथा KDE Feed Reader इति"
 
-#: src/aboutdata.cpp:23
+#: src/aboutdata.cpp:25
 #, kde-format
 msgid "Copyright © 2004–%1 Akregator authors"
 msgstr "प्रतिलिपि अधिकार © 2004–%1 अक्रेगेटर लेखक"
 
-#: src/aboutdata.cpp:27
+#: src/aboutdata.cpp:29
 #, kde-format
 msgctxt "@info:credit"
 msgid "Laurent Montel"
 msgstr "लॉरेण्ट् मोंटेल्"
 
-#: src/aboutdata.cpp:27
+#: src/aboutdata.cpp:29
 #, kde-format
 msgid "Maintainer"
 msgstr "परिपालकः"
 
-#: src/aboutdata.cpp:28
+#: src/aboutdata.cpp:30
 #, kde-format
 msgctxt "@info:credit"
 msgid "Frank Osterfeld"
 msgstr "फ्रैंक ओस्टरफेल्ड्"
 
-#: src/aboutdata.cpp:28
+#: src/aboutdata.cpp:30
 #, kde-format
 msgid "Former maintainer"
 msgstr "पूर्व परिपालक"
 
-#: src/aboutdata.cpp:29
+#: src/aboutdata.cpp:31
 #, kde-format
 msgctxt "@info:credit"
 msgid "Teemu Rytilahti"
 msgstr "तीमु र्यतिलहति"
 
-#: src/aboutdata.cpp:29 src/aboutdata.cpp:30 src/aboutdata.cpp:31
-#: src/aboutdata.cpp:32
+#: src/aboutdata.cpp:31 src/aboutdata.cpp:32 src/aboutdata.cpp:33
+#: src/aboutdata.cpp:34
 #, kde-format
 msgid "Developer"
 msgstr "विकासकः"
 
-#: src/aboutdata.cpp:30
+#: src/aboutdata.cpp:32
 #, kde-format
 msgctxt "@info:credit"
 msgid "Sashmit Bhaduri"
 msgstr "साश्मित भदुरी"
 
-#: src/aboutdata.cpp:31
+#: src/aboutdata.cpp:33
 #, kde-format
 msgctxt "@info:credit"
 msgid "Pierre Habouzit"
 msgstr "पियरे हबौजित्"
 
-#: src/aboutdata.cpp:32
+#: src/aboutdata.cpp:34
 #, kde-format
 msgctxt "@info:credit"
 msgid "Stanislav Karchebny"
 msgstr "स्तानिस्लाव कर्चेबनी"
 
-#: src/aboutdata.cpp:33
+#: src/aboutdata.cpp:35
 #, kde-format
 msgctxt "@info:credit"
 msgid "Gary Cramblitt"
 msgstr "गैरी क्रैम्ब्लिट्"
 
-#: src/aboutdata.cpp:33 src/aboutdata.cpp:34 src/aboutdata.cpp:35
+#: src/aboutdata.cpp:35 src/aboutdata.cpp:36 src/aboutdata.cpp:37
 #, kde-format
 msgid "Contributor"
 msgstr "योगदानकर्ता"
 
-#: src/aboutdata.cpp:34
+#: src/aboutdata.cpp:36
 #, kde-format
 msgctxt "@info:credit"
 msgid "Stephan Binner"
 msgstr "स्टीफन बिनर"
 
-#: src/aboutdata.cpp:35
+#: src/aboutdata.cpp:37
 #, kde-format
 msgctxt "@info:credit"
 msgid "Christof Musik"
 msgstr "क्रिस्टोफ संगीत"
 
-#: src/aboutdata.cpp:36
+#: src/aboutdata.cpp:38
 #, kde-format
 msgctxt "@info:credit"
 msgid "Anne-Marie Mahfouf"
 msgstr "एन्ने-मैरी महफूफ"
 
-#: src/aboutdata.cpp:36
+#: src/aboutdata.cpp:38
 #, kde-format
 msgid "Handbook"
 msgstr "हस्तपुस्तिका"
 
-#: src/aboutdata.cpp:37
+#: src/aboutdata.cpp:39
 #, kde-format
 msgctxt "@info:credit"
 msgid "Frerich Raabe"
 msgstr "फ्रेरिच राबे"
 
-#: src/aboutdata.cpp:37
+#: src/aboutdata.cpp:39
 #, kde-format
 msgid "Author of librss"
 msgstr "librss के लेखक"
 
-#: src/aboutdata.cpp:38
+#: src/aboutdata.cpp:40
 #, kde-format
 msgctxt "@info:credit"
 msgid "Eckhart Woerner"
 msgstr "एक्हार्ट वोर्नर"
 
-#: src/aboutdata.cpp:38
+#: src/aboutdata.cpp:40
 #, kde-format
 msgid "Bug tracker management, Usability improvements"
 msgstr "बग ट्रैकर प्रबन्धन, उपयोगिता सुधार"
 
-#: src/aboutdata.cpp:39
+#: src/aboutdata.cpp:41
 #, kde-format
 msgctxt "@info:credit"
 msgid "Heinrich Wendel"
 msgstr "हेनरिच वेण्डेल"
 
-#: src/aboutdata.cpp:39
+#: src/aboutdata.cpp:41
 #, kde-format
 msgid "Tons of bug fixes"
 msgstr "टन दोषनिवारणम्"
 
-#: src/aboutdata.cpp:40
+#: src/aboutdata.cpp:42
 #, kde-format
 msgctxt "@info:credit"
 msgid "Eike Hein"
 msgstr "ऐके हेन"
 
-#: src/aboutdata.cpp:40
+#: src/aboutdata.cpp:42
 #, kde-format
 msgid "'Delayed mark as read' feature"
 msgstr "'पठितरूपेण विलम्बितम् चिह्नम्' इति विशेषता"
 
-#: src/aboutdata.cpp:41
+#: src/aboutdata.cpp:43
 #, kde-format
 msgctxt "@info:credit"
 msgid "Marcel Dierkes"
 msgstr "मार्सेल् डायर्केस्"
 
-#: src/aboutdata.cpp:41
+#: src/aboutdata.cpp:43
 #, kde-format
 msgid "Icons"
 msgstr "चिह्नानि"
 
-#: src/aboutdata.cpp:42
+#: src/aboutdata.cpp:44
 #, kde-format
 msgctxt "@info:credit"
 msgid "George Staikos"
 msgstr "जार्ज स्टैइकोस"
 
-#: src/aboutdata.cpp:42
+#: src/aboutdata.cpp:44
 #, kde-format
 msgid "Insomnia"
 msgstr "अनिद्रा"
 
-#: src/aboutdata.cpp:43
+#: src/aboutdata.cpp:45
 #, kde-format
 msgctxt "@info:credit"
 msgid "Philipp Droessler"
 msgstr "फिलिप् ड्रोस्लर"
 
-#: src/aboutdata.cpp:43
+#: src/aboutdata.cpp:45
 #, kde-format
 msgid "Gentoo Ebuild"
 msgstr "गेन्टू एबिल्ड"
@@ -1468,38 +1468,38 @@ msgctxt "@action"
 msgid "Activate Tab %1"
 msgstr "ट्याब् %1 सक्रियं कुर्वन्तु"
 
-#: src/actions/actions.cpp:19
+#: src/actions/actions.cpp:21
 #, kde-format
 msgid "Open Link in New &Tab"
 msgstr "New &Tab इत्यत्र Link उद्घाटयन्तु"
 
-#: src/actions/actions.cpp:26
+#: src/actions/actions.cpp:28
 #, kde-format
 msgid "Open Link in External &Browser"
 msgstr "External &Browser इत्यत्र Link उद्घाटयन्तु"
 
-#: src/addfeeddialog.cpp:49
+#: src/addfeeddialog.cpp:51
 #, kde-format
 msgctxt "@title:window"
 msgid "Add Feed"
 msgstr "फीड् योजयतु"
 
-#: src/addfeeddialog.cpp:99
+#: src/addfeeddialog.cpp:101
 #, kde-format
 msgid "Downloading %1"
 msgstr "%1 डाउनलोड् करणम्"
 
-#: src/addfeeddialog.cpp:115
+#: src/addfeeddialog.cpp:117
 #, kde-format
 msgid "Feed not found from %1."
 msgstr "%1 तः फीड् न प्राप्तम् ।"
 
-#: src/addfeeddialog.cpp:121
+#: src/addfeeddialog.cpp:123
 #, kde-format
 msgid "Feed found, downloading…"
 msgstr "फीड् प्राप्तम्, डाउनलोड् कृत्वा…"
 
-#: src/akregator_options.h:21 src/akregator_options.h:29
+#: src/akregator_options.h:22 src/akregator_options.h:29
 #, kde-format
 msgctxt "@info:shell"
 msgid "Add a feed with the given URL"
@@ -1528,32 +1528,32 @@ msgctxt "@info:shell"
 msgid "Lists the available options for user feedback"
 msgstr "उपयोक्तृप्रतिक्रियायाः कृते उपलब्धविकल्पान् सूचीबद्धं करोति"
 
-#: src/akregator_part.cpp:78
+#: src/akregator_part.cpp:80
 #, kde-format
 msgid "Feeds"
 msgstr "पोषयति"
 
-#: src/akregator_part.cpp:89
+#: src/akregator_part.cpp:91
 #, kde-format
 msgid "Planet KDE"
 msgstr "ग्रह केडीई"
 
-#: src/akregator_part.cpp:94
+#: src/akregator_part.cpp:96
 #, kde-format
 msgid "KDE Apps"
 msgstr "केडीई एप्स"
 
-#: src/akregator_part.cpp:100
+#: src/akregator_part.cpp:102
 #, kde-format
 msgid "Spanish feeds"
 msgstr "स्पेनिश फीड्स"
 
-#: src/akregator_part.cpp:104
+#: src/akregator_part.cpp:106
 #, kde-format
 msgid "Planet KDE España"
 msgstr "ग्रह KDE España"
 
-#: src/akregator_part.cpp:419
+#: src/akregator_part.cpp:421
 #, kde-format
 msgid ""
 "Access denied: Cannot save feed list to <b>%1</b>. Please check your "
@@ -1561,47 +1561,47 @@ msgid ""
 msgstr ""
 "अभिगमनं अङ्गीकृतम्: फीड् सूचीं <b>%1</b> मध्ये रक्षितुं न शक्यते । कृपया स्वस्य अनुमतिः पश्यन्तु।"
 
-#: src/akregator_part.cpp:420 src/akregator_part.cpp:473
+#: src/akregator_part.cpp:422 src/akregator_part.cpp:475
 #, kde-format
 msgctxt "@title:window"
 msgid "Write Error"
 msgstr "लेखन त्रुटिः"
 
-#: src/akregator_part.cpp:456
+#: src/akregator_part.cpp:458
 #, kde-format
 msgid "Could not import the file %1 (no valid OPML)"
 msgstr "%1 सञ्चिकां आयातयितुं न शक्यते (वैधं OPML नास्ति) ।"
 
-#: src/akregator_part.cpp:456 src/command/loadfeedlistcommand.cpp:71
+#: src/akregator_part.cpp:458 src/command/loadfeedlistcommand.cpp:73
 #, kde-format
 msgctxt "@title:window"
 msgid "OPML Parsing Error"
 msgstr "OPML पार्सिंग त्रुटि"
 
-#: src/akregator_part.cpp:460
+#: src/akregator_part.cpp:462
 #, kde-format
 msgid ""
 "The file %1 could not be read, check if it exists or if it is readable for "
 "the current user."
 msgstr "%1 सञ्चिका पठितुं न शक्यते, अस्ति वा वर्तमानप्रयोक्तुः कृते पठनीया वा इति पश्यन्तु ।"
 
-#: src/akregator_part.cpp:461 src/command/loadfeedlistcommand.cpp:144
+#: src/akregator_part.cpp:463 src/command/loadfeedlistcommand.cpp:146
 #, kde-format
 msgctxt "@title:window"
 msgid "Read Error"
 msgstr "पठन्तु त्रुटिः"
 
-#: src/akregator_part.cpp:472
+#: src/akregator_part.cpp:474
 #, kde-format
 msgid "Access denied: cannot write to file %1. Please check your permissions."
 msgstr "अभिगमनं अङ्गीकृतम्: %1 सञ्चिकायां लिखितुं न शक्नोति। कृपया स्वस्य अनुमतिः पश्यन्तु।"
 
-#: src/akregator_part.cpp:488 src/akregator_part.cpp:497
+#: src/akregator_part.cpp:490 src/akregator_part.cpp:499
 #, kde-format
 msgid "OPML Outlines (%1);;All Files (*)"
 msgstr "OPML रूपरेखा (%1);;सर्वसञ्चिकाः (*)"
 
-#: src/akregator_part.cpp:622
+#: src/akregator_part.cpp:624
 #, kde-format
 msgid "Imported Folder"
 msgstr "आयातितं पुटम्"
@@ -1611,17 +1611,17 @@ msgstr "आयातितं पुटम्"
 msgid "The feed to be listed was already removed."
 msgstr "सूचीकृत्यः फीड् पूर्वमेव निष्कासितः आसीत् ।"
 
-#: src/articlelistview.cpp:161 src/subscription/subscriptionlistview.cpp:180
+#: src/articlelistview.cpp:163 src/subscription/subscriptionlistview.cpp:182
 #, kde-format
 msgid "Columns"
 msgstr "स्तम्भाः"
 
-#: src/articlelistview.cpp:219
+#: src/articlelistview.cpp:221
 #, kde-format
 msgid "No result found"
 msgstr "न परिणामः प्राप्तः"
 
-#: src/articlelistview.cpp:380
+#: src/articlelistview.cpp:382
 #, kde-format
 msgid ""
 "<h2>Article list</h2>Here you can browse articles from the currently "
@@ -1635,67 +1635,67 @@ msgstr ""
 "अथवा तान् विलोपयितुं, दक्षिणमूषकबटनमेनू उपयुज्य । लेखस्य जालपुटं द्रष्टुं भवान् लेखं आन्तरिकरूपेण "
 "ट्याब् मध्ये अथवा बाह्यब्राउजरविण्डो मध्ये उद्घाटयितुं शक्नोति ।"
 
-#: src/articlemodel.cpp:75
+#: src/articlemodel.cpp:77
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Title"
 msgstr "शीर्षक"
 
-#: src/articlemodel.cpp:77
+#: src/articlemodel.cpp:79
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Feed"
 msgstr "पूरयतु"
 
-#: src/articlemodel.cpp:79
+#: src/articlemodel.cpp:81
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Date"
 msgstr "दिनाङ्कः"
 
-#: src/articlemodel.cpp:81
+#: src/articlemodel.cpp:83
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Author"
 msgstr "लेखकः"
 
-#: src/articlemodel.cpp:83
+#: src/articlemodel.cpp:85
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Description"
 msgstr "वर्णनम्‌"
 
-#: src/articlemodel.cpp:85
+#: src/articlemodel.cpp:87
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Content"
 msgstr "विषयः"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:147
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:149
 #, kde-format
 msgid "Akregator is a KDE news feed reader."
 msgstr "अक्रेगेटर् इति केडीई-वार्ता-फीड्-पाठकः अस्ति ।"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:191
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:193
 #, kde-format
 msgctxt "@title:window"
 msgid "Save As"
 msgstr "यथा रक्षतु"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:275
-#: src/frame/webengine/akrwebengineviewer.cpp:112
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:277
+#: src/frame/webengine/akrwebengineviewer.cpp:114
 #, kde-format
 msgid "&Save Link As…"
 msgstr "&लिङ्कं रक्षन्तु यथा…"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:279
-#: src/frame/webengine/akrwebengineviewer.cpp:116
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:281
+#: src/frame/webengine/akrwebengineviewer.cpp:118
 #, kde-format
 msgid "Copy &Link Address"
 msgstr "प्रतिलिपि &लिङ्क पता"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:287
-#: src/frame/webengine/akrwebengineviewer.cpp:124
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:289
+#: src/frame/webengine/akrwebengineviewer.cpp:126
 #, fuzzy, kde-format
 #| msgctxt "@action"
 #| msgid "Copy Image Location"
@@ -1703,8 +1703,8 @@ msgctxt "@action"
 msgid "Copy Image URL"
 msgstr "प्रतिलिपि चित्रस्थानम्"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:291
-#: src/frame/webengine/akrwebengineviewer.cpp:128
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:293
+#: src/frame/webengine/akrwebengineviewer.cpp:130
 #, fuzzy, kde-format
 #| msgctxt "@action"
 #| msgid "Save Image On Disk…"
@@ -1712,51 +1712,51 @@ msgctxt "@action"
 msgid "Save Image…"
 msgstr "चित्रं डिस्कमध्ये रक्षन्तु…"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:382
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:384
 #, kde-format
 msgid "Disable"
 msgstr "अक्षम"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:383
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:385
 #, kde-format
 msgid "Keep Enabled"
 msgstr "सक्षमं कुर्वन्तु"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:385
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:387
 #, kde-format
 msgid "Are you sure you want to disable this introduction page?"
 msgstr "किं भवान् निश्चयेन एतत् परिचयपृष्ठं निष्क्रियं कर्तुम् इच्छति?"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:386
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:388
 #, kde-format
 msgctxt "@title:window"
 msgid "Disable Introduction Page"
 msgstr "परिचय पृष्ठ अक्षम करें"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:416
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:418
 #, kde-format
 msgid "This web site is a malware, do you want to continue to show it?"
 msgstr "इदं जालस्थलं दुर्गन्धयुक्तं भवति, किं भवन्तः एतत् निरन्तरं दर्शयितुम् इच्छन्ति?"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:417
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:419
 #, kde-format
 msgctxt "@title:window"
 msgid "Malware"
 msgstr "मालवेयर"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:429
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:431
 #, kde-format
 msgid "The network is broken."
 msgstr "जालं भग्नम् अस्ति।"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:429
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:432
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:431
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:434
 #, kde-format
 msgctxt "@title:window"
 msgid "Check Phishing Url"
 msgstr "Fishing Url चेक करें"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:432
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:434
 #, kde-format
 msgid "The url %1 is not valid."
 msgstr "%1 इत्यस्य url वैधं नास्ति ।"
@@ -1771,14 +1771,14 @@ msgstr "Folder योजयतु"
 msgid "Folder name:"
 msgstr "पुटस्य नाम :"
 
-#: src/command/deletesubscriptioncommand.cpp:39
+#: src/command/deletesubscriptioncommand.cpp:41
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to delete this folder and its feeds and subfolders?"
 "</qt>"
 msgstr "<qt>किं भवान् निश्चयेन एतत् पुटं तस्य फीड्स् उपपुटं च विलोपयितुम् इच्छति?</qt>"
 
-#: src/command/deletesubscriptioncommand.cpp:40
+#: src/command/deletesubscriptioncommand.cpp:42
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to delete folder <b>%1</b> and its feeds and "
@@ -1786,23 +1786,23 @@ msgid ""
 msgstr ""
 "<qt>किं भवान् निश्चितः यत् भवान् <b>%1</b> पुटं तस्य फीड् उपपुटं च विलोपयितुम् इच्छति?</qt>"
 
-#: src/command/deletesubscriptioncommand.cpp:44
+#: src/command/deletesubscriptioncommand.cpp:46
 #, kde-format
 msgctxt "@title:window"
 msgid "Delete Folder"
 msgstr "पुटं विलोपयन्तु"
 
-#: src/command/deletesubscriptioncommand.cpp:61
+#: src/command/deletesubscriptioncommand.cpp:63
 #, kde-format
 msgid "<qt>Are you sure you want to delete this feed?</qt>"
 msgstr "<qt>किं भवान् निश्चयेन एतत् फीड् विलोपयितुम् इच्छति?</qt>"
 
-#: src/command/deletesubscriptioncommand.cpp:63
+#: src/command/deletesubscriptioncommand.cpp:65
 #, kde-format
 msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
 msgstr "<qt>किं भवान् निश्चयेन फीड् <b>%1</b> विलोपयितुम् इच्छति ?</qt>"
 
-#: src/command/deletesubscriptioncommand.cpp:68
+#: src/command/deletesubscriptioncommand.cpp:70
 #, kde-format
 msgctxt "@title:window"
 msgid "Delete Feed"
@@ -1823,7 +1823,7 @@ msgstr "आयातितं पुटं योजयन्तु"
 msgid "Imported folder name:"
 msgstr "आयातितपुटस्य नाम :"
 
-#: src/command/loadfeedlistcommand.cpp:63
+#: src/command/loadfeedlistcommand.cpp:65
 #, kde-format
 msgid ""
 "<qt>The standard feed list is corrupted (invalid OPML). A backup was created:"
@@ -1832,35 +1832,35 @@ msgstr ""
 "<qt>मानकफीड्सूची दूषिता अस्ति (अवैध OPML) । एकं बैकअपं निर्मितम् आसीत् :<p> <b>%1</b></"
 "p></qt>"
 
-#: src/command/loadfeedlistcommand.cpp:67
+#: src/command/loadfeedlistcommand.cpp:69
 #, kde-format
 msgid ""
 "<qt>The standard feed list is corrupted (invalid OPML). Could not create a "
 "backup.</qt>"
 msgstr "<qt>मानकफीड्सूची दूषिता अस्ति (अवैध OPML) । बैकअप निर्मातुं न शक्तवान् ।</qt>"
 
-#: src/command/loadfeedlistcommand.cpp:129
+#: src/command/loadfeedlistcommand.cpp:131
 #, kde-format
 msgid "Opening Feed List…"
 msgstr "फीड् सूचीं उद्घाटयन्…"
 
-#: src/command/loadfeedlistcommand.cpp:143
+#: src/command/loadfeedlistcommand.cpp:145
 #, kde-format
 msgid "<qt>Could not open feed list (%1) for reading.</qt>"
 msgstr "<qt>पठनाय फीड् सूची (%1) उद्घाटयितुं न शक्तम् ।</qt>"
 
-#: src/command/loadfeedlistcommand.cpp:155
+#: src/command/loadfeedlistcommand.cpp:157
 #, kde-format
 msgctxt "error message window caption"
 msgid "XML Parsing Error"
 msgstr "XML पार्सिंग त्रुटि"
 
-#: src/command/loadfeedlistcommand.cpp:157
+#: src/command/loadfeedlistcommand.cpp:159
 #, kde-kuit-format
 msgid "<qt><p>XML parsing error in line %1, column %2 of %3:</p><p>%4</p></qt>"
 msgstr "<qt><p>%1 पङ्क्तौ, %3 इत्यस्य %2 स्तम्भे XML विश्लेषणदोषः:</p><p> %4</p></qt>"
 
-#: src/command/loadfeedlistcommand.cpp:164
+#: src/command/loadfeedlistcommand.cpp:166
 #, kde-format
 msgid ""
 "<qt>The standard feed list is corrupted (invalid XML). A backup was created:"
@@ -1869,14 +1869,14 @@ msgstr ""
 "<qt>मानकफीड्सूची दूषिता अस्ति (अमान्य XML) । एकं बैकअपं निर्मितम् आसीत् :<p> <b>%1</b></"
 "p></qt>"
 
-#: src/command/loadfeedlistcommand.cpp:168
+#: src/command/loadfeedlistcommand.cpp:170
 #, kde-format
 msgid ""
 "<qt>The standard feed list is corrupted (invalid XML). Could not create a "
 "backup.</qt>"
 msgstr "<qt>मानकफीड्सूची दूषिता अस्ति (अवैध XML) । बैकअप निर्मातुं न शक्तवान् ।</qt>"
 
-#: src/crashwidget/crashwidget.cpp:21
+#: src/crashwidget/crashwidget.cpp:23
 #, kde-format
 msgctxt "@label:textbox"
 msgid ""
@@ -1884,17 +1884,17 @@ msgid ""
 "session?"
 msgstr "अक्रेगेटर् सम्यक् न बन्दः अभवत् । पूर्वसत्रं पुनः स्थापयितुम् इच्छति वा ?"
 
-#: src/crashwidget/crashwidget.cpp:37
+#: src/crashwidget/crashwidget.cpp:39
 #, kde-format
 msgid "Restore Session"
 msgstr "सत्रं पुनर्स्थापयन्तु"
 
-#: src/crashwidget/crashwidget.cpp:43
+#: src/crashwidget/crashwidget.cpp:45
 #, kde-format
 msgid "Do Not Restore Session"
 msgstr "सत्रं पुनः न स्थापयन्तु"
 
-#: src/crashwidget/crashwidget.cpp:49
+#: src/crashwidget/crashwidget.cpp:51
 #, kde-format
 msgid "Ask me later"
 msgstr "पश्चात् मां पृच्छतु"
@@ -1953,7 +1953,7 @@ msgstr "मुख्य साधनपट्टी"
 msgid "&File"
 msgstr "&संचिका"
 
-#: src/feed/feedlist.cpp:160
+#: src/feed/feedlist.cpp:162
 #, kde-format
 msgid "All Feeds"
 msgstr "सर्वे फीड्स्"
@@ -2016,7 +2016,7 @@ msgctxt "@title:window"
 msgid "Properties of %1"
 msgstr "%1 इत्यस्य गुणाः"
 
-#: src/formatter/articleformatter.cpp:35
+#: src/formatter/articleformatter.cpp:37
 #, kde-format
 msgid "(%1, %2)"
 msgstr "(%1, %2) "
@@ -2184,7 +2184,7 @@ msgstr "लेखं विलोपयतु"
 msgid "Networking is available now."
 msgstr "अधुना संजालीकरणं उपलभ्यते।"
 
-#: src/mainwindow.cpp:122
+#: src/mainwindow.cpp:124
 #, kde-format
 msgid ""
 "<qt>This will hide the menu bar completely. You can show it again by typing "
@@ -2192,13 +2192,13 @@ msgid ""
 msgstr ""
 "<qt>एतेन मेनू-पट्टिका पूर्णतया गोप्यते । %1.</qt> इति टङ्कयित्वा पुनः दर्शयितुं शक्नुवन्ति"
 
-#: src/mainwindow.cpp:125
+#: src/mainwindow.cpp:127
 #, kde-format
 msgctxt "@title:window"
 msgid "Hide menu bar"
 msgstr "मेनू-पट्टिकां गोपयन्तु"
 
-#: src/mainwindow.cpp:158
+#: src/mainwindow.cpp:160
 #, kde-format
 msgid ""
 "Could not find the Akregator part; please check your installation.\n"
@@ -2207,7 +2207,7 @@ msgstr ""
 "अक्रेगेटर् भागं न प्राप्नोत्; कृपया स्वस्य संस्थापनं पश्यन्तु।\n"
 "%1"
 
-#: src/notificationmanager.cpp:48
+#: src/notificationmanager.cpp:50
 #, kde-format
 msgid ""
 "Feed added:\n"
@@ -2216,7 +2216,7 @@ msgstr ""
 "फीड् योजितम् : १.\n"
 " %1"
 
-#: src/notificationmanager.cpp:55
+#: src/notificationmanager.cpp:57
 #, kde-format
 msgid ""
 "Feeds added:\n"
@@ -2225,7 +2225,7 @@ msgstr ""
 "फीड्स् योजिताः : १.\n"
 " %1"
 
-#: src/notificationmanager.cpp:69
+#: src/notificationmanager.cpp:71
 #, kde-format
 msgid "<i>and 1 other</i>"
 msgid_plural "<i>and %1 others</i>"
@@ -2262,103 +2262,103 @@ msgstr "नोड् अथवा गन्तव्यपुटं न प्�
 msgid "Cannot move folder %1 to its own subfolder %2"
 msgstr "%1 पुटं स्वस्य उपपुटं %2 प्रति स्थानान्तरयितुं न शक्यते"
 
-#: src/subscription/subscriptionlistmodel.cpp:54
+#: src/subscription/subscriptionlistmodel.cpp:56
 #, kde-format
 msgid "Timeout on remote server"
 msgstr "दूरस्थसर्वरस्य समयसमाप्तिः"
 
-#: src/subscription/subscriptionlistmodel.cpp:56
+#: src/subscription/subscriptionlistmodel.cpp:58
 #, kde-format
 msgid "Unknown host"
 msgstr "अज्ञात यजमान"
 
-#: src/subscription/subscriptionlistmodel.cpp:58
+#: src/subscription/subscriptionlistmodel.cpp:60
 #, kde-format
 msgid "Feed file not found on remote server"
 msgstr "दूरस्थसर्वरस्य उपरि फीड् सञ्चिका न प्राप्यते"
 
-#: src/subscription/subscriptionlistmodel.cpp:60
+#: src/subscription/subscriptionlistmodel.cpp:62
 #, kde-format
 msgid "Could not read feed (invalid XML)"
 msgstr "फीड् पठितुं न शक्तवान् (अमान्यः XML)"
 
-#: src/subscription/subscriptionlistmodel.cpp:62
+#: src/subscription/subscriptionlistmodel.cpp:64
 #, kde-format
 msgid "Could not read feed (unknown format)"
 msgstr "फीड् पठितुं न शक्तवान् (अज्ञातं प्रारूपम्)"
 
-#: src/subscription/subscriptionlistmodel.cpp:64
+#: src/subscription/subscriptionlistmodel.cpp:66
 #, kde-format
 msgid "Could not read feed (invalid feed)"
 msgstr "फीड् (अवैध फीड्) पठितुं न शक्तवान् ।"
 
-#: src/subscription/subscriptionlistmodel.cpp:271
+#: src/subscription/subscriptionlistmodel.cpp:273
 #, kde-format
 msgid "Could not fetch feed: %1"
 msgstr "फीड् आनेतुं न शक्तवान्: %1"
 
-#: src/subscription/subscriptionlistmodel.cpp:320
+#: src/subscription/subscriptionlistmodel.cpp:322
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Feeds"
 msgstr "पोषयति"
 
-#: src/subscription/subscriptionlistmodel.cpp:322
+#: src/subscription/subscriptionlistmodel.cpp:324
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Unread"
 msgstr "अपठित"
 
-#: src/subscription/subscriptionlistmodel.cpp:324
+#: src/subscription/subscriptionlistmodel.cpp:326
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Total"
 msgstr "कुल"
 
-#: src/tabwidget.cpp:96
+#: src/tabwidget.cpp:98
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Close the current tab"
 msgstr "वर्तमान ट्याब् पिधाय"
 
-#: src/tabwidget.cpp:99
+#: src/tabwidget.cpp:101
 #, kde-format
 msgid "Close tab"
 msgstr "ट्याब् बन्दं कुर्वन्तु"
 
-#: src/tabwidget.cpp:122
+#: src/tabwidget.cpp:124
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Detach Tab"
 msgstr "ट्याब् विच्छेदं कुर्वन्तु"
 
-#: src/tabwidget.cpp:130
+#: src/tabwidget.cpp:132
 #, fuzzy, kde-format
 #| msgid "Reload All Tabs"
 msgctxt "@action:inmenu"
 msgid "Reload Tab"
 msgstr "सर्वाणि ट्याब्स् पुनः लोड् कुर्वन्तु"
 
-#: src/tabwidget.cpp:133
+#: src/tabwidget.cpp:135
 #, fuzzy, kde-format
 #| msgid "&Copy Email Address"
 msgctxt "@action:inmenu"
 msgid "Copy Tab Address"
 msgstr "&ईमेल पता प्रतिलिपि कुर्वन्तु"
 
-#: src/tabwidget.cpp:139
+#: src/tabwidget.cpp:141
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Close Tab"
 msgstr "ट्याब् बन्दं कुर्वन्तु"
 
-#: src/tabwidget.cpp:143
+#: src/tabwidget.cpp:145
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Close All Other Tabs"
 msgstr "अन्ये सर्वे ट्याब्स् बन्दं कुर्वन्तु"
 
-#: src/tabwidget.cpp:147
+#: src/tabwidget.cpp:149
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Close All Tabs"
@@ -2496,47 +2496,47 @@ msgstr "लेखाः पठन्ते सति &full वेबसाइट
 msgid "Mar&k articles as read when they arrive"
 msgstr "आगमनसमये यथा पठ्यन्ते तथा Mar&k लेखाः"
 
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:40
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:42
 #, kde-format
 msgid "Disable Introduction"
 msgstr "परिचयं अक्षमं कुर्वन्तु"
 
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:58
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:60
 #, kde-format
 msgid "&Copy Email Address"
 msgstr "&ईमेल पता प्रतिलिपि कुर्वन्तु"
 
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:67
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:69
 #, kde-format
 msgid "Address copied to clipboard."
 msgstr "पता क्लिप्बोर्ड् प्रति प्रतिलिखितम्।"
 
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:98
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:100
 #, kde-format
 msgid "Mark Article as Read"
 msgstr "लेखं पठितम् इति चिह्नं कुर्वन्तु"
 
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:100
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:102
 #, kde-format
 msgid "Mark Article as Unread"
 msgstr "लेखं अपठितम् इति चिह्नितव्यम्"
 
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:102
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:104
 #, kde-format
 msgid "Change Important Flag"
 msgstr "महत्त्वपूर्णं ध्वजं परिवर्तयन्तु"
 
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:104
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:106
 #, kde-format
 msgid "Send the URL of the article"
 msgstr "लेखस्य URL प्रेषयन्तु"
 
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:106
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:108
 #, kde-format
 msgid "Send the Html Page of Article"
 msgstr "लेखस्य Html पृष्ठं प्रेषयन्तु"
 
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:108
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:110
 #, kde-format
 msgid "Open In External Browser"
 msgstr "Open In External Browser इति"
@@ -2553,30 +2553,30 @@ msgctxt "@info:placeholder"
 msgid "Search articles…<%1>"
 msgstr "लेखान् अन्वेष्टुम्…<%1>"
 
-#: src/widgets/statussearchbuttons.cpp:29
+#: src/widgets/statussearchbuttons.cpp:31
 #, kde-format
 msgid "All Articles"
 msgstr "सर्वे लेखाः"
 
-#: src/widgets/statussearchbuttons.cpp:39
+#: src/widgets/statussearchbuttons.cpp:41
 #, kde-format
 msgctxt "New articles filter"
 msgid "New"
 msgstr "नूतनम्‌"
 
-#: src/widgets/statussearchbuttons.cpp:48
+#: src/widgets/statussearchbuttons.cpp:50
 #, kde-format
 msgctxt "Unread articles filter"
 msgid "Unread"
 msgstr "अपठित"
 
-#: src/widgets/statussearchbuttons.cpp:57
+#: src/widgets/statussearchbuttons.cpp:59
 #, kde-format
 msgctxt "Read articles filter"
 msgid "Read"
 msgstr "पठतु"
 
-#: src/widgets/statussearchbuttons.cpp:66
+#: src/widgets/statussearchbuttons.cpp:68
 #, kde-format
 msgctxt "Important articles filter"
 msgid "Important"

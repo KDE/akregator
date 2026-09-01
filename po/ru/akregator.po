@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-08-24 00:45+0000\n"
+"POT-Creation-Date: 2026-09-01 00:46+0000\n"
 "PO-Revision-Date: 2026-06-26 20:57+0200\n"
 "Last-Translator: Alexander Yavorskiy <kekcuha@gmail.com>\n"
 "Language-Team: Russian <kde-russian@lists.kde.ru>\n"
@@ -88,7 +88,7 @@ msgid "Open Link in External Browser"
 msgstr "Открыть ссылку во внешнем браузере"
 
 #: src/formatter/html/combinedview.html:36
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:110
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:112
 #, kde-format
 msgid "Open In Background Tab"
 msgstr "Открыть в фоновой вкладке"
@@ -102,7 +102,7 @@ msgid "Send Link Address"
 msgstr "Отправить адрес ссылки"
 
 #: src/formatter/html/combinedview.html:39
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:96
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:98
 #, kde-format
 msgid "Delete Article"
 msgstr "Удалить статью"
@@ -115,7 +115,7 @@ msgstr ""
 "<b>Примечание:</b> по соображениям безопасности внешняя ссылка заблокирована "
 "(подробнее об этом в диалоге настройки)."
 
-#: configuration/akregator_config_archive.cpp:35
+#: configuration/akregator_config_archive.cpp:37
 #, kde-format
 msgctxt "Limit feed archive size to:"
 msgid "%v article"
@@ -125,7 +125,7 @@ msgstr[1] "%v статьи"
 msgstr[2] "%v статей"
 msgstr[3] "%v статья"
 
-#: configuration/akregator_config_archive.cpp:36
+#: configuration/akregator_config_archive.cpp:38
 #, kde-format
 msgctxt "Delete articles older than:"
 msgid "%v day"
@@ -144,7 +144,7 @@ msgstr[1] " минуты"
 msgstr[2] " минут"
 msgstr[3] " минута"
 
-#: configuration/akregatorconfigurepluginlistwidget.cpp:53
+#: configuration/akregatorconfigurepluginlistwidget.cpp:55
 #, kde-format
 msgid "Webengine Plugins"
 msgstr "Модули для встроенного веб-браузера"
@@ -531,7 +531,7 @@ msgstr ""
 "Если этот флажок установлен, веб-сайтам или третьим лицам может стать "
 "известно, какие статьи были просмотрены."
 
-#: export/akregatorstorageexporter.cpp:280
+#: export/akregatorstorageexporter.cpp:282
 #, kde-format
 msgid "Akregator Export for %1"
 msgstr "Экспортировано в %1 из Akregator"
@@ -953,202 +953,202 @@ msgstr "Задержка между просмотром статьи и отм�
 msgid "Resets the quick filter when changing feeds."
 msgstr "Сбросить фильтр при переходе на другую ленту."
 
-#: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
-#: src/akregator_part.cpp:126
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:146
+#: kontactplugin/akregator_plugin.cpp:29 src/aboutdata.cpp:21
+#: src/akregator_part.cpp:128
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:148
 #: src/mainwidget.cpp:135 src/mainwidget.cpp:1329 src/trayicon.cpp:40
 #: src/trayicon.cpp:53
 #, kde-format
 msgid "Akregator"
 msgstr "Akregator"
 
-#: kontactplugin/akregator_plugin.cpp:29
+#: kontactplugin/akregator_plugin.cpp:31
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "New Feed..."
 msgstr "Добавить ленту новостей..."
 
-#: kontactplugin/akregator_plugin.cpp:32
+#: kontactplugin/akregator_plugin.cpp:34
 #, kde-format
 msgctxt "@info:status"
 msgid "Create a new feed"
 msgstr "Добавить новую ленту новостей"
 
-#: kontactplugin/akregator_plugin.cpp:33
+#: kontactplugin/akregator_plugin.cpp:35
 #, kde-format
 msgctxt "@info:whatsthis"
 msgid "You will be presented with a dialog where you can add a new feed."
 msgstr "Будет открыто диалоговое окно для добавления новой ленты новостей."
 
-#: src/aboutdata.cpp:21
+#: src/aboutdata.cpp:23
 #, kde-format
 msgid "A KDE Feed Reader"
 msgstr "Чтение лент новостей для KDE"
 
-#: src/aboutdata.cpp:23
+#: src/aboutdata.cpp:25
 #, kde-format
 msgid "Copyright © 2004–%1 Akregator authors"
 msgstr "© Разработчики Akregator, 2004-%1"
 
-#: src/aboutdata.cpp:27
+#: src/aboutdata.cpp:29
 #, kde-format
 msgctxt "@info:credit"
 msgid "Laurent Montel"
 msgstr "Laurent Montel"
 
-#: src/aboutdata.cpp:27
+#: src/aboutdata.cpp:29
 #, kde-format
 msgid "Maintainer"
 msgstr "Сопровождающий"
 
-#: src/aboutdata.cpp:28
+#: src/aboutdata.cpp:30
 #, kde-format
 msgctxt "@info:credit"
 msgid "Frank Osterfeld"
 msgstr "Frank Osterfeld"
 
-#: src/aboutdata.cpp:28
+#: src/aboutdata.cpp:30
 #, kde-format
 msgid "Former maintainer"
 msgstr "Прежний сопровождающий"
 
-#: src/aboutdata.cpp:29
+#: src/aboutdata.cpp:31
 #, kde-format
 msgctxt "@info:credit"
 msgid "Teemu Rytilahti"
 msgstr "Teemu Rytilahti"
 
-#: src/aboutdata.cpp:29 src/aboutdata.cpp:30 src/aboutdata.cpp:31
-#: src/aboutdata.cpp:32
+#: src/aboutdata.cpp:31 src/aboutdata.cpp:32 src/aboutdata.cpp:33
+#: src/aboutdata.cpp:34
 #, kde-format
 msgid "Developer"
 msgstr "Разработчик"
 
-#: src/aboutdata.cpp:30
+#: src/aboutdata.cpp:32
 #, kde-format
 msgctxt "@info:credit"
 msgid "Sashmit Bhaduri"
 msgstr "Sashmit Bhaduri"
 
-#: src/aboutdata.cpp:31
+#: src/aboutdata.cpp:33
 #, kde-format
 msgctxt "@info:credit"
 msgid "Pierre Habouzit"
 msgstr "Pierre Habouzit"
 
-#: src/aboutdata.cpp:32
+#: src/aboutdata.cpp:34
 #, kde-format
 msgctxt "@info:credit"
 msgid "Stanislav Karchebny"
 msgstr "Stanislav Karchebny"
 
-#: src/aboutdata.cpp:33
+#: src/aboutdata.cpp:35
 #, kde-format
 msgctxt "@info:credit"
 msgid "Gary Cramblitt"
 msgstr "Gary Cramblitt"
 
-#: src/aboutdata.cpp:33 src/aboutdata.cpp:34 src/aboutdata.cpp:35
+#: src/aboutdata.cpp:35 src/aboutdata.cpp:36 src/aboutdata.cpp:37
 #, kde-format
 msgid "Contributor"
 msgstr "Содействие разработке"
 
-#: src/aboutdata.cpp:34
+#: src/aboutdata.cpp:36
 #, kde-format
 msgctxt "@info:credit"
 msgid "Stephan Binner"
 msgstr "Stephan Binner"
 
-#: src/aboutdata.cpp:35
+#: src/aboutdata.cpp:37
 #, kde-format
 msgctxt "@info:credit"
 msgid "Christof Musik"
 msgstr "Christof Musik"
 
-#: src/aboutdata.cpp:36
+#: src/aboutdata.cpp:38
 #, kde-format
 msgctxt "@info:credit"
 msgid "Anne-Marie Mahfouf"
 msgstr "Anne-Marie Mahfouf"
 
-#: src/aboutdata.cpp:36
+#: src/aboutdata.cpp:38
 #, kde-format
 msgid "Handbook"
 msgstr "Написание руководства"
 
-#: src/aboutdata.cpp:37
+#: src/aboutdata.cpp:39
 #, kde-format
 msgctxt "@info:credit"
 msgid "Frerich Raabe"
 msgstr "Frerich Raabe"
 
-#: src/aboutdata.cpp:37
+#: src/aboutdata.cpp:39
 #, kde-format
 msgid "Author of librss"
 msgstr "Автор библиотеки librss"
 
-#: src/aboutdata.cpp:38
+#: src/aboutdata.cpp:40
 #, kde-format
 msgctxt "@info:credit"
 msgid "Eckhart Woerner"
 msgstr "Eckhart Woerner"
 
-#: src/aboutdata.cpp:38
+#: src/aboutdata.cpp:40
 #, kde-format
 msgid "Bug tracker management, Usability improvements"
 msgstr "Исправление ошибок, улучшение внешнего вида"
 
-#: src/aboutdata.cpp:39
+#: src/aboutdata.cpp:41
 #, kde-format
 msgctxt "@info:credit"
 msgid "Heinrich Wendel"
 msgstr "Heinrich Wendel"
 
-#: src/aboutdata.cpp:39
+#: src/aboutdata.cpp:41
 #, kde-format
 msgid "Tons of bug fixes"
 msgstr "Исправление множества ошибок"
 
-#: src/aboutdata.cpp:40
+#: src/aboutdata.cpp:42
 #, kde-format
 msgctxt "@info:credit"
 msgid "Eike Hein"
 msgstr "Eike Hein"
 
-#: src/aboutdata.cpp:40
+#: src/aboutdata.cpp:42
 #, kde-format
 msgid "'Delayed mark as read' feature"
 msgstr "Реализация возможности отложенной отметки о прочтении"
 
-#: src/aboutdata.cpp:41
+#: src/aboutdata.cpp:43
 #, kde-format
 msgctxt "@info:credit"
 msgid "Marcel Dierkes"
 msgstr "Marcel Dierkes"
 
-#: src/aboutdata.cpp:41
+#: src/aboutdata.cpp:43
 #, kde-format
 msgid "Icons"
 msgstr "Значки"
 
-#: src/aboutdata.cpp:42
+#: src/aboutdata.cpp:44
 #, kde-format
 msgctxt "@info:credit"
 msgid "George Staikos"
 msgstr "George Staikos"
 
-#: src/aboutdata.cpp:42
+#: src/aboutdata.cpp:44
 #, kde-format
 msgid "Insomnia"
 msgstr "Insomnia"
 
-#: src/aboutdata.cpp:43
+#: src/aboutdata.cpp:45
 #, kde-format
 msgctxt "@info:credit"
 msgid "Philipp Droessler"
 msgstr "Philipp Droessler"
 
-#: src/aboutdata.cpp:43
+#: src/aboutdata.cpp:45
 #, kde-format
 msgid "Gentoo Ebuild"
 msgstr "Gentoo Ebuild"
@@ -1495,38 +1495,38 @@ msgctxt "@action"
 msgid "Activate Tab %1"
 msgstr "Перейти на вкладку %1"
 
-#: src/actions/actions.cpp:19
+#: src/actions/actions.cpp:21
 #, kde-format
 msgid "Open Link in New &Tab"
 msgstr "Открыть в &новой вкладке"
 
-#: src/actions/actions.cpp:26
+#: src/actions/actions.cpp:28
 #, kde-format
 msgid "Open Link in External &Browser"
 msgstr "Открыть ссылку во &внешнем браузере"
 
-#: src/addfeeddialog.cpp:49
+#: src/addfeeddialog.cpp:51
 #, kde-format
 msgctxt "@title:window"
 msgid "Add Feed"
 msgstr "Добавление ленты новостей"
 
-#: src/addfeeddialog.cpp:99
+#: src/addfeeddialog.cpp:101
 #, kde-format
 msgid "Downloading %1"
 msgstr "Загрузка %1"
 
-#: src/addfeeddialog.cpp:115
+#: src/addfeeddialog.cpp:117
 #, kde-format
 msgid "Feed not found from %1."
 msgstr "Лента не найдена по адресу %1."
 
-#: src/addfeeddialog.cpp:121
+#: src/addfeeddialog.cpp:123
 #, kde-format
 msgid "Feed found, downloading…"
 msgstr "Найдена лента новостей, загрузка данных…"
 
-#: src/akregator_options.h:21 src/akregator_options.h:29
+#: src/akregator_options.h:22 src/akregator_options.h:29
 #, kde-format
 msgctxt "@info:shell"
 msgid "Add a feed with the given URL"
@@ -1555,32 +1555,32 @@ msgctxt "@info:shell"
 msgid "Lists the available options for user feedback"
 msgstr "Показать доступные варианты обратной связи"
 
-#: src/akregator_part.cpp:78
+#: src/akregator_part.cpp:80
 #, kde-format
 msgid "Feeds"
 msgstr "Ленты"
 
-#: src/akregator_part.cpp:89
+#: src/akregator_part.cpp:91
 #, kde-format
 msgid "Planet KDE"
 msgstr "Планета KDE"
 
-#: src/akregator_part.cpp:94
+#: src/akregator_part.cpp:96
 #, kde-format
 msgid "KDE Apps"
 msgstr "Приложения KDE"
 
-#: src/akregator_part.cpp:100
+#: src/akregator_part.cpp:102
 #, kde-format
 msgid "Spanish feeds"
 msgstr "Испанские ленты новостей"
 
-#: src/akregator_part.cpp:104
+#: src/akregator_part.cpp:106
 #, kde-format
 msgid "Planet KDE España"
 msgstr "Планета KDE Испания"
 
-#: src/akregator_part.cpp:419
+#: src/akregator_part.cpp:421
 #, kde-format
 msgid ""
 "Access denied: Cannot save feed list to <b>%1</b>. Please check your "
@@ -1589,24 +1589,24 @@ msgstr ""
 "Доступ запрещён: не удаётся сохранить список лент новостей <b>%1</b>. "
 "Проверьте права доступа."
 
-#: src/akregator_part.cpp:420 src/akregator_part.cpp:473
+#: src/akregator_part.cpp:422 src/akregator_part.cpp:475
 #, kde-format
 msgctxt "@title:window"
 msgid "Write Error"
 msgstr "Ошибка записи"
 
-#: src/akregator_part.cpp:456
+#: src/akregator_part.cpp:458
 #, kde-format
 msgid "Could not import the file %1 (no valid OPML)"
 msgstr "Невозможно импортировать файл %1 (неверный формат OPML)"
 
-#: src/akregator_part.cpp:456 src/command/loadfeedlistcommand.cpp:71
+#: src/akregator_part.cpp:458 src/command/loadfeedlistcommand.cpp:73
 #, kde-format
 msgctxt "@title:window"
 msgid "OPML Parsing Error"
 msgstr "Ошибка обработки OPML"
 
-#: src/akregator_part.cpp:460
+#: src/akregator_part.cpp:462
 #, kde-format
 msgid ""
 "The file %1 could not be read, check if it exists or if it is readable for "
@@ -1615,24 +1615,24 @@ msgstr ""
 "Невозможно открыть файл %1. Проверьте, существует ли этот файл и доступен ли "
 "он для чтения."
 
-#: src/akregator_part.cpp:461 src/command/loadfeedlistcommand.cpp:144
+#: src/akregator_part.cpp:463 src/command/loadfeedlistcommand.cpp:146
 #, kde-format
 msgctxt "@title:window"
 msgid "Read Error"
 msgstr "Ошибка чтения"
 
-#: src/akregator_part.cpp:472
+#: src/akregator_part.cpp:474
 #, kde-format
 msgid "Access denied: cannot write to file %1. Please check your permissions."
 msgstr ""
 "Доступ запрещён: невозможно сохранить в файл %1. Проверьте права доступа."
 
-#: src/akregator_part.cpp:488 src/akregator_part.cpp:497
+#: src/akregator_part.cpp:490 src/akregator_part.cpp:499
 #, kde-format
 msgid "OPML Outlines (%1);;All Files (*)"
 msgstr "Ленты OPML (%1);;Все файлы (*)"
 
-#: src/akregator_part.cpp:622
+#: src/akregator_part.cpp:624
 #, kde-format
 msgid "Imported Folder"
 msgstr "Импортировано"
@@ -1642,17 +1642,17 @@ msgstr "Импортировано"
 msgid "The feed to be listed was already removed."
 msgstr "Невозможно получить список статей ленты, потому что она была удалена."
 
-#: src/articlelistview.cpp:161 src/subscription/subscriptionlistview.cpp:180
+#: src/articlelistview.cpp:163 src/subscription/subscriptionlistview.cpp:182
 #, kde-format
 msgid "Columns"
 msgstr "Столбцы"
 
-#: src/articlelistview.cpp:219
+#: src/articlelistview.cpp:221
 #, kde-format
 msgid "No result found"
 msgstr "Ничего не найдено"
 
-#: src/articlelistview.cpp:380
+#: src/articlelistview.cpp:382
 #, kde-format
 msgid ""
 "<h2>Article list</h2>Here you can browse articles from the currently "
@@ -1667,124 +1667,124 @@ msgstr ""
 "вызываемое правой кнопкой мыши. Просмотреть веб-страницу статьи можно на "
 "отдельной вкладке или в браузере."
 
-#: src/articlemodel.cpp:75
+#: src/articlemodel.cpp:77
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Title"
 msgstr "Заголовок"
 
-#: src/articlemodel.cpp:77
+#: src/articlemodel.cpp:79
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Feed"
 msgstr "Лента"
 
-#: src/articlemodel.cpp:79
+#: src/articlemodel.cpp:81
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Date"
 msgstr "Дата"
 
-#: src/articlemodel.cpp:81
+#: src/articlemodel.cpp:83
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Author"
 msgstr "Автор"
 
-#: src/articlemodel.cpp:83
+#: src/articlemodel.cpp:85
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Description"
 msgstr "Описание"
 
-#: src/articlemodel.cpp:85
+#: src/articlemodel.cpp:87
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Content"
 msgstr "Содержимое"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:147
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:149
 #, kde-format
 msgid "Akregator is a KDE news feed reader."
 msgstr "Akregator — это программа чтения лент новостей от KDE."
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:191
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:193
 #, kde-format
 msgctxt "@title:window"
 msgid "Save As"
 msgstr "Сохранение в указанном формате"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:275
-#: src/frame/webengine/akrwebengineviewer.cpp:112
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:277
+#: src/frame/webengine/akrwebengineviewer.cpp:114
 #, kde-format
 msgid "&Save Link As…"
 msgstr "&Сохранить ссылку как…"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:279
-#: src/frame/webengine/akrwebengineviewer.cpp:116
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:281
+#: src/frame/webengine/akrwebengineviewer.cpp:118
 #, kde-format
 msgid "Copy &Link Address"
 msgstr "&Скопировать адрес ссылки"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:287
-#: src/frame/webengine/akrwebengineviewer.cpp:124
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:289
+#: src/frame/webengine/akrwebengineviewer.cpp:126
 #, kde-format
 msgctxt "@action"
 msgid "Copy Image URL"
 msgstr "Скопировать URL-адрес изображения"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:291
-#: src/frame/webengine/akrwebengineviewer.cpp:128
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:293
+#: src/frame/webengine/akrwebengineviewer.cpp:130
 #, kde-format
 msgctxt "@action"
 msgid "Save Image…"
 msgstr "Сохранить изображение…"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:382
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:384
 #, kde-format
 msgid "Disable"
 msgstr "Отключить"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:383
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:385
 #, kde-format
 msgid "Keep Enabled"
 msgstr "Оставить"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:385
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:387
 #, kde-format
 msgid "Are you sure you want to disable this introduction page?"
 msgstr "Отключить показ заставки?"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:386
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:388
 #, kde-format
 msgctxt "@title:window"
 msgid "Disable Introduction Page"
 msgstr "Показ заставки"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:416
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:418
 #, kde-format
 msgid "This web site is a malware, do you want to continue to show it?"
 msgstr "Этот веб-сайт вредоносный, продолжить?"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:417
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:419
 #, kde-format
 msgctxt "@title:window"
 msgid "Malware"
 msgstr "Вредоносный сайт"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:429
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:431
 #, kde-format
 msgid "The network is broken."
 msgstr "Нет подключения к сети."
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:429
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:432
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:431
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:434
 #, kde-format
 msgctxt "@title:window"
 msgid "Check Phishing Url"
 msgstr "Проверка фишинговых ссылок"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:432
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:434
 #, kde-format
 msgid "The url %1 is not valid."
 msgstr "Некорректная ссылка %1."
@@ -1799,14 +1799,14 @@ msgstr "Добавить папку"
 msgid "Folder name:"
 msgstr "Имя папки:"
 
-#: src/command/deletesubscriptioncommand.cpp:39
+#: src/command/deletesubscriptioncommand.cpp:41
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to delete this folder and its feeds and subfolders?"
 "</qt>"
 msgstr "<qt>Удалить папку со всеми вложенными папками и лентами новостей?</qt>"
 
-#: src/command/deletesubscriptioncommand.cpp:40
+#: src/command/deletesubscriptioncommand.cpp:42
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to delete folder <b>%1</b> and its feeds and "
@@ -1815,23 +1815,23 @@ msgstr ""
 "<qt>Удалить папку <b>%1</b> со всеми вложенными папками и лентами новостей?</"
 "qt>"
 
-#: src/command/deletesubscriptioncommand.cpp:44
+#: src/command/deletesubscriptioncommand.cpp:46
 #, kde-format
 msgctxt "@title:window"
 msgid "Delete Folder"
 msgstr "Удаление папки"
 
-#: src/command/deletesubscriptioncommand.cpp:61
+#: src/command/deletesubscriptioncommand.cpp:63
 #, kde-format
 msgid "<qt>Are you sure you want to delete this feed?</qt>"
 msgstr "<qt>Удалить ленту новостей?</qt>"
 
-#: src/command/deletesubscriptioncommand.cpp:63
+#: src/command/deletesubscriptioncommand.cpp:65
 #, kde-format
 msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
 msgstr "<qt>Удалить ленту новостей <b>%1</b>?</qt>"
 
-#: src/command/deletesubscriptioncommand.cpp:68
+#: src/command/deletesubscriptioncommand.cpp:70
 #, kde-format
 msgctxt "@title:window"
 msgid "Delete Feed"
@@ -1852,7 +1852,7 @@ msgstr "Добавить папку для импортированных лен
 msgid "Imported folder name:"
 msgstr "Имя папки для импорта:"
 
-#: src/command/loadfeedlistcommand.cpp:63
+#: src/command/loadfeedlistcommand.cpp:65
 #, kde-format
 msgid ""
 "<qt>The standard feed list is corrupted (invalid OPML). A backup was created:"
@@ -1861,7 +1861,7 @@ msgstr ""
 "<qt>Список лент повреждён (ошибка в OPML). Создана резервная копия:<p><b>%1</"
 "b></p></qt>"
 
-#: src/command/loadfeedlistcommand.cpp:67
+#: src/command/loadfeedlistcommand.cpp:69
 #, kde-format
 msgid ""
 "<qt>The standard feed list is corrupted (invalid OPML). Could not create a "
@@ -1869,29 +1869,29 @@ msgid ""
 msgstr ""
 "<qt>Список лент повреждён (ошибка в OPML). Резервная копия не создана.</qt>"
 
-#: src/command/loadfeedlistcommand.cpp:129
+#: src/command/loadfeedlistcommand.cpp:131
 #, kde-format
 msgid "Opening Feed List…"
 msgstr "Открытие списка лент новостей…"
 
-#: src/command/loadfeedlistcommand.cpp:143
+#: src/command/loadfeedlistcommand.cpp:145
 #, kde-format
 msgid "<qt>Could not open feed list (%1) for reading.</qt>"
 msgstr "<qt>Не удалось открыть список лент (%1) для чтения.</qt>"
 
-#: src/command/loadfeedlistcommand.cpp:155
+#: src/command/loadfeedlistcommand.cpp:157
 #, kde-format
 msgctxt "error message window caption"
 msgid "XML Parsing Error"
 msgstr "Ошибка обработки XML"
 
-#: src/command/loadfeedlistcommand.cpp:157
+#: src/command/loadfeedlistcommand.cpp:159
 #, kde-kuit-format
 msgid "<qt><p>XML parsing error in line %1, column %2 of %3:</p><p>%4</p></qt>"
 msgstr ""
 "<qt><p>Ошибка обработки XML в строке %1, позиция %2 из %3:</p><p>%4</p></qt>"
 
-#: src/command/loadfeedlistcommand.cpp:164
+#: src/command/loadfeedlistcommand.cpp:166
 #, kde-format
 msgid ""
 "<qt>The standard feed list is corrupted (invalid XML). A backup was created:"
@@ -1900,7 +1900,7 @@ msgstr ""
 "<qt>Список лент повреждён (ошибка в XML). Создана резервная копия:<p><b>%1</"
 "b></p></qt>"
 
-#: src/command/loadfeedlistcommand.cpp:168
+#: src/command/loadfeedlistcommand.cpp:170
 #, kde-format
 msgid ""
 "<qt>The standard feed list is corrupted (invalid XML). Could not create a "
@@ -1908,7 +1908,7 @@ msgid ""
 msgstr ""
 "<qt>Список лент повреждён (ошибка в XML). Резервная копия не создана.</qt>"
 
-#: src/crashwidget/crashwidget.cpp:21
+#: src/crashwidget/crashwidget.cpp:23
 #, kde-format
 msgctxt "@label:textbox"
 msgid ""
@@ -1917,17 +1917,17 @@ msgid ""
 msgstr ""
 "Работа Akregator была завершена некорректно. Восстановить предыдущий сеанс?"
 
-#: src/crashwidget/crashwidget.cpp:37
+#: src/crashwidget/crashwidget.cpp:39
 #, kde-format
 msgid "Restore Session"
 msgstr "Восстановить сеанс"
 
-#: src/crashwidget/crashwidget.cpp:43
+#: src/crashwidget/crashwidget.cpp:45
 #, kde-format
 msgid "Do Not Restore Session"
 msgstr "Не восстанавливать сеанс"
 
-#: src/crashwidget/crashwidget.cpp:49
+#: src/crashwidget/crashwidget.cpp:51
 #, kde-format
 msgid "Ask me later"
 msgstr "Спросить позже"
@@ -1986,7 +1986,7 @@ msgstr "Основная панель инструментов"
 msgid "&File"
 msgstr "&Файл"
 
-#: src/feed/feedlist.cpp:160
+#: src/feed/feedlist.cpp:162
 #, kde-format
 msgid "All Feeds"
 msgstr "Все ленты"
@@ -2059,7 +2059,7 @@ msgctxt "@title:window"
 msgid "Properties of %1"
 msgstr "Свойства %1"
 
-#: src/formatter/articleformatter.cpp:35
+#: src/formatter/articleformatter.cpp:37
 #, kde-format
 msgid "(%1, %2)"
 msgstr "(%1, %2)"
@@ -2227,7 +2227,7 @@ msgstr "Удаление статьи"
 msgid "Networking is available now."
 msgstr "Сеть теперь доступна."
 
-#: src/mainwindow.cpp:122
+#: src/mainwindow.cpp:124
 #, kde-format
 msgid ""
 "<qt>This will hide the menu bar completely. You can show it again by typing "
@@ -2236,13 +2236,13 @@ msgstr ""
 "<qt>Это действие полностью скроет меню. Чтобы снова вывести его, нажмите %1."
 "</qt>"
 
-#: src/mainwindow.cpp:125
+#: src/mainwindow.cpp:127
 #, kde-format
 msgctxt "@title:window"
 msgid "Hide menu bar"
 msgstr "Скрытие строки меню"
 
-#: src/mainwindow.cpp:158
+#: src/mainwindow.cpp:160
 #, kde-format
 msgid ""
 "Could not find the Akregator part; please check your installation.\n"
@@ -2251,7 +2251,7 @@ msgstr ""
 "Не найден компонент Akregator. Проверьте правильность установки.\n"
 "%1"
 
-#: src/notificationmanager.cpp:48
+#: src/notificationmanager.cpp:50
 #, kde-format
 msgid ""
 "Feed added:\n"
@@ -2260,7 +2260,7 @@ msgstr ""
 "Добавлена лента:\n"
 " %1"
 
-#: src/notificationmanager.cpp:55
+#: src/notificationmanager.cpp:57
 #, kde-format
 msgid ""
 "Feeds added:\n"
@@ -2269,7 +2269,7 @@ msgstr ""
 "Добавлены ленты:\n"
 " %1"
 
-#: src/notificationmanager.cpp:69
+#: src/notificationmanager.cpp:71
 #, kde-format
 msgid "<i>and 1 other</i>"
 msgid_plural "<i>and %1 others</i>"
@@ -2308,101 +2308,101 @@ msgstr "Узел или целевая папка не найдены"
 msgid "Cannot move folder %1 to its own subfolder %2"
 msgstr "Невозможно переместить папку %1 во вложенную папку %2"
 
-#: src/subscription/subscriptionlistmodel.cpp:54
+#: src/subscription/subscriptionlistmodel.cpp:56
 #, kde-format
 msgid "Timeout on remote server"
 msgstr "Истекло время ожидания ответа от сервера"
 
-#: src/subscription/subscriptionlistmodel.cpp:56
+#: src/subscription/subscriptionlistmodel.cpp:58
 #, kde-format
 msgid "Unknown host"
 msgstr "Неизвестный узел"
 
-#: src/subscription/subscriptionlistmodel.cpp:58
+#: src/subscription/subscriptionlistmodel.cpp:60
 #, kde-format
 msgid "Feed file not found on remote server"
 msgstr "Лента не найдена на сервере"
 
-#: src/subscription/subscriptionlistmodel.cpp:60
+#: src/subscription/subscriptionlistmodel.cpp:62
 #, kde-format
 msgid "Could not read feed (invalid XML)"
 msgstr "Невозможно прочитать ленту (ошибка в формате XML)"
 
-#: src/subscription/subscriptionlistmodel.cpp:62
+#: src/subscription/subscriptionlistmodel.cpp:64
 #, kde-format
 msgid "Could not read feed (unknown format)"
 msgstr "Невозможно прочитать ленту (неизвестный формат)"
 
-#: src/subscription/subscriptionlistmodel.cpp:64
+#: src/subscription/subscriptionlistmodel.cpp:66
 #, kde-format
 msgid "Could not read feed (invalid feed)"
 msgstr "Не удаётся прочитать ленту (неправильный формат ленты)"
 
-#: src/subscription/subscriptionlistmodel.cpp:271
+#: src/subscription/subscriptionlistmodel.cpp:273
 #, kde-format
 msgid "Could not fetch feed: %1"
 msgstr "Не удаётся получить ленту: %1"
 
-#: src/subscription/subscriptionlistmodel.cpp:320
+#: src/subscription/subscriptionlistmodel.cpp:322
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Feeds"
 msgstr "Ленты"
 
-#: src/subscription/subscriptionlistmodel.cpp:322
+#: src/subscription/subscriptionlistmodel.cpp:324
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Unread"
 msgstr "Непрочитанные"
 
-#: src/subscription/subscriptionlistmodel.cpp:324
+#: src/subscription/subscriptionlistmodel.cpp:326
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Total"
 msgstr "Всего"
 
-#: src/tabwidget.cpp:96
+#: src/tabwidget.cpp:98
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Close the current tab"
 msgstr "Закрыть текущую вкладку"
 
-#: src/tabwidget.cpp:99
+#: src/tabwidget.cpp:101
 #, kde-format
 msgid "Close tab"
 msgstr "Закрыть вкладку"
 
-#: src/tabwidget.cpp:122
+#: src/tabwidget.cpp:124
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Detach Tab"
 msgstr "Отделить вкладку"
 
-#: src/tabwidget.cpp:130
+#: src/tabwidget.cpp:132
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Reload Tab"
 msgstr "Обновить вкладку"
 
-#: src/tabwidget.cpp:133
+#: src/tabwidget.cpp:135
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Copy Tab Address"
 msgstr "Копировать адрес вкладки"
 
-#: src/tabwidget.cpp:139
+#: src/tabwidget.cpp:141
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Close Tab"
 msgstr "Закрыть вкладку"
 
-#: src/tabwidget.cpp:143
+#: src/tabwidget.cpp:145
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Close All Other Tabs"
 msgstr "Закрыть другие вкладки"
 
-#: src/tabwidget.cpp:147
+#: src/tabwidget.cpp:149
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Close All Tabs"
@@ -2542,47 +2542,47 @@ msgstr "&Загружать при просмотре статью целико�
 msgid "Mar&k articles as read when they arrive"
 msgstr "Отметить &все новые статьи как прочитанные"
 
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:40
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:42
 #, kde-format
 msgid "Disable Introduction"
 msgstr "Отключить показ заставки"
 
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:58
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:60
 #, kde-format
 msgid "&Copy Email Address"
 msgstr "Копировать &адрес электронной почты"
 
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:67
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:69
 #, kde-format
 msgid "Address copied to clipboard."
 msgstr "Адрес скопирован в буфер обмена."
 
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:98
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:100
 #, kde-format
 msgid "Mark Article as Read"
 msgstr "Отметить статью как прочитанную"
 
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:100
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:102
 #, kde-format
 msgid "Mark Article as Unread"
 msgstr "Отметить статью как непрочитанную"
 
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:102
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:104
 #, kde-format
 msgid "Change Important Flag"
 msgstr "Изменить отметку о важности"
 
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:104
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:106
 #, kde-format
 msgid "Send the URL of the article"
 msgstr "Отправить ссылку на статью"
 
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:106
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:108
 #, kde-format
 msgid "Send the Html Page of Article"
 msgstr "Отправить HTML-страницу со статьёй"
 
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:108
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:110
 #, kde-format
 msgid "Open In External Browser"
 msgstr "Открыть во внешнем браузере"
@@ -2599,30 +2599,30 @@ msgctxt "@info:placeholder"
 msgid "Search articles…<%1>"
 msgstr "Поиск статей… <%1>"
 
-#: src/widgets/statussearchbuttons.cpp:29
+#: src/widgets/statussearchbuttons.cpp:31
 #, kde-format
 msgid "All Articles"
 msgstr "все"
 
-#: src/widgets/statussearchbuttons.cpp:39
+#: src/widgets/statussearchbuttons.cpp:41
 #, kde-format
 msgctxt "New articles filter"
 msgid "New"
 msgstr "новые"
 
-#: src/widgets/statussearchbuttons.cpp:48
+#: src/widgets/statussearchbuttons.cpp:50
 #, kde-format
 msgctxt "Unread articles filter"
 msgid "Unread"
 msgstr "непрочитанные"
 
-#: src/widgets/statussearchbuttons.cpp:57
+#: src/widgets/statussearchbuttons.cpp:59
 #, kde-format
 msgctxt "Read articles filter"
 msgid "Read"
 msgstr "прочитанные"
 
-#: src/widgets/statussearchbuttons.cpp:66
+#: src/widgets/statussearchbuttons.cpp:68
 #, kde-format
 msgctxt "Important articles filter"
 msgid "Important"

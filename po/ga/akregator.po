@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdepim/akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-08-24 00:45+0000\n"
+"POT-Creation-Date: 2026-09-01 00:46+0000\n"
 "PO-Revision-Date: 2004-12-11 20:53-0500\n"
 "Last-Translator: Kevin Scannell <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -64,7 +64,7 @@ msgid "Open Link in External Browser"
 msgstr ""
 
 #: src/formatter/html/combinedview.html:36
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:110
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:112
 #, kde-format
 msgid "Open In Background Tab"
 msgstr ""
@@ -78,7 +78,7 @@ msgid "Send Link Address"
 msgstr ""
 
 #: src/formatter/html/combinedview.html:39
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:96
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:98
 #, kde-format
 msgid "Delete Article"
 msgstr "Scrios Alt"
@@ -89,7 +89,7 @@ msgid ""
 "configure dialog)."
 msgstr ""
 
-#: configuration/akregator_config_archive.cpp:35
+#: configuration/akregator_config_archive.cpp:37
 #, kde-format
 msgctxt "Limit feed archive size to:"
 msgid "%v article"
@@ -97,7 +97,7 @@ msgid_plural "%v articles"
 msgstr[0] ""
 msgstr[1] ""
 
-#: configuration/akregator_config_archive.cpp:36
+#: configuration/akregator_config_archive.cpp:38
 #, kde-format
 msgctxt "Delete articles older than:"
 msgid "%v day"
@@ -115,7 +115,7 @@ msgstr[2] " noiméad"
 msgstr[3] " noiméad"
 msgstr[4] " noiméad"
 
-#: configuration/akregatorconfigurepluginlistwidget.cpp:53
+#: configuration/akregatorconfigurepluginlistwidget.cpp:55
 #, kde-format
 msgid "Webengine Plugins"
 msgstr ""
@@ -496,7 +496,7 @@ msgid ""
 "have viewed."
 msgstr ""
 
-#: export/akregatorstorageexporter.cpp:280
+#: export/akregatorstorageexporter.cpp:282
 #, kde-format
 msgid "Akregator Export for %1"
 msgstr ""
@@ -907,202 +907,202 @@ msgstr ""
 msgid "Resets the quick filter when changing feeds."
 msgstr ""
 
-#: kontactplugin/akregator_plugin.cpp:27 src/aboutdata.cpp:19
-#: src/akregator_part.cpp:126
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:146
+#: kontactplugin/akregator_plugin.cpp:29 src/aboutdata.cpp:21
+#: src/akregator_part.cpp:128
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:148
 #: src/mainwidget.cpp:135 src/mainwidget.cpp:1329 src/trayicon.cpp:40
 #: src/trayicon.cpp:53
 #, kde-format
 msgid "Akregator"
 msgstr "Akregator"
 
-#: kontactplugin/akregator_plugin.cpp:29
+#: kontactplugin/akregator_plugin.cpp:31
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "New Feed..."
 msgstr ""
 
-#: kontactplugin/akregator_plugin.cpp:32
+#: kontactplugin/akregator_plugin.cpp:34
 #, kde-format
 msgctxt "@info:status"
 msgid "Create a new feed"
 msgstr ""
 
-#: kontactplugin/akregator_plugin.cpp:33
+#: kontactplugin/akregator_plugin.cpp:35
 #, kde-format
 msgctxt "@info:whatsthis"
 msgid "You will be presented with a dialog where you can add a new feed."
 msgstr ""
 
-#: src/aboutdata.cpp:21
+#: src/aboutdata.cpp:23
 #, kde-format
 msgid "A KDE Feed Reader"
 msgstr "Léitheoir Fothaí KDE"
 
-#: src/aboutdata.cpp:23
+#: src/aboutdata.cpp:25
 #, kde-format
 msgid "Copyright © 2004–%1 Akregator authors"
-msgstr ""
-
-#: src/aboutdata.cpp:27
-#, kde-format
-msgctxt "@info:credit"
-msgid "Laurent Montel"
-msgstr ""
-
-#: src/aboutdata.cpp:27
-#, kde-format
-msgid "Maintainer"
-msgstr "Cothaitheoir"
-
-#: src/aboutdata.cpp:28
-#, kde-format
-msgctxt "@info:credit"
-msgid "Frank Osterfeld"
-msgstr ""
-
-#: src/aboutdata.cpp:28
-#, kde-format
-msgid "Former maintainer"
 msgstr ""
 
 #: src/aboutdata.cpp:29
 #, kde-format
 msgctxt "@info:credit"
-msgid "Teemu Rytilahti"
+msgid "Laurent Montel"
 msgstr ""
 
-#: src/aboutdata.cpp:29 src/aboutdata.cpp:30 src/aboutdata.cpp:31
-#: src/aboutdata.cpp:32
+#: src/aboutdata.cpp:29
 #, kde-format
-msgid "Developer"
-msgstr "Forbróir"
+msgid "Maintainer"
+msgstr "Cothaitheoir"
 
 #: src/aboutdata.cpp:30
 #, kde-format
 msgctxt "@info:credit"
-msgid "Sashmit Bhaduri"
+msgid "Frank Osterfeld"
+msgstr ""
+
+#: src/aboutdata.cpp:30
+#, kde-format
+msgid "Former maintainer"
 msgstr ""
 
 #: src/aboutdata.cpp:31
 #, kde-format
 msgctxt "@info:credit"
-msgid "Pierre Habouzit"
+msgid "Teemu Rytilahti"
 msgstr ""
+
+#: src/aboutdata.cpp:31 src/aboutdata.cpp:32 src/aboutdata.cpp:33
+#: src/aboutdata.cpp:34
+#, kde-format
+msgid "Developer"
+msgstr "Forbróir"
 
 #: src/aboutdata.cpp:32
 #, kde-format
 msgctxt "@info:credit"
-msgid "Stanislav Karchebny"
+msgid "Sashmit Bhaduri"
 msgstr ""
 
 #: src/aboutdata.cpp:33
 #, kde-format
 msgctxt "@info:credit"
-msgid "Gary Cramblitt"
+msgid "Pierre Habouzit"
 msgstr ""
-
-#: src/aboutdata.cpp:33 src/aboutdata.cpp:34 src/aboutdata.cpp:35
-#, kde-format
-msgid "Contributor"
-msgstr "Cuiditheoir"
 
 #: src/aboutdata.cpp:34
 #, kde-format
 msgctxt "@info:credit"
-msgid "Stephan Binner"
+msgid "Stanislav Karchebny"
 msgstr ""
 
 #: src/aboutdata.cpp:35
 #, kde-format
 msgctxt "@info:credit"
+msgid "Gary Cramblitt"
+msgstr ""
+
+#: src/aboutdata.cpp:35 src/aboutdata.cpp:36 src/aboutdata.cpp:37
+#, kde-format
+msgid "Contributor"
+msgstr "Cuiditheoir"
+
+#: src/aboutdata.cpp:36
+#, kde-format
+msgctxt "@info:credit"
+msgid "Stephan Binner"
+msgstr ""
+
+#: src/aboutdata.cpp:37
+#, kde-format
+msgctxt "@info:credit"
 msgid "Christof Musik"
 msgstr ""
 
-#: src/aboutdata.cpp:36
+#: src/aboutdata.cpp:38
 #, kde-format
 msgctxt "@info:credit"
 msgid "Anne-Marie Mahfouf"
 msgstr ""
 
-#: src/aboutdata.cpp:36
+#: src/aboutdata.cpp:38
 #, kde-format
 msgid "Handbook"
 msgstr "Lámhleabhar"
 
-#: src/aboutdata.cpp:37
+#: src/aboutdata.cpp:39
 #, kde-format
 msgctxt "@info:credit"
 msgid "Frerich Raabe"
 msgstr ""
 
-#: src/aboutdata.cpp:37
+#: src/aboutdata.cpp:39
 #, kde-format
 msgid "Author of librss"
 msgstr "Údar librss"
 
-#: src/aboutdata.cpp:38
+#: src/aboutdata.cpp:40
 #, kde-format
 msgctxt "@info:credit"
 msgid "Eckhart Woerner"
 msgstr ""
 
-#: src/aboutdata.cpp:38
+#: src/aboutdata.cpp:40
 #, kde-format
 msgid "Bug tracker management, Usability improvements"
 msgstr ""
 
-#: src/aboutdata.cpp:39
+#: src/aboutdata.cpp:41
 #, kde-format
 msgctxt "@info:credit"
 msgid "Heinrich Wendel"
 msgstr ""
 
-#: src/aboutdata.cpp:39
+#: src/aboutdata.cpp:41
 #, kde-format
 msgid "Tons of bug fixes"
 msgstr "Go leor ceartúchán"
 
-#: src/aboutdata.cpp:40
+#: src/aboutdata.cpp:42
 #, kde-format
 msgctxt "@info:credit"
 msgid "Eike Hein"
 msgstr ""
 
-#: src/aboutdata.cpp:40
+#: src/aboutdata.cpp:42
 #, kde-format
 msgid "'Delayed mark as read' feature"
 msgstr ""
 
-#: src/aboutdata.cpp:41
+#: src/aboutdata.cpp:43
 #, kde-format
 msgctxt "@info:credit"
 msgid "Marcel Dierkes"
 msgstr ""
 
-#: src/aboutdata.cpp:41
+#: src/aboutdata.cpp:43
 #, kde-format
 msgid "Icons"
 msgstr "Deilbhíní"
 
-#: src/aboutdata.cpp:42
+#: src/aboutdata.cpp:44
 #, kde-format
 msgctxt "@info:credit"
 msgid "George Staikos"
 msgstr ""
 
-#: src/aboutdata.cpp:42
+#: src/aboutdata.cpp:44
 #, kde-format
 msgid "Insomnia"
 msgstr "Neamhchodladh"
 
-#: src/aboutdata.cpp:43
+#: src/aboutdata.cpp:45
 #, kde-format
 msgctxt "@info:credit"
 msgid "Philipp Droessler"
 msgstr ""
 
-#: src/aboutdata.cpp:43
+#: src/aboutdata.cpp:45
 #, kde-format
 msgid "Gentoo Ebuild"
 msgstr "Ebuild Gentoo"
@@ -1451,38 +1451,38 @@ msgctxt "@action"
 msgid "Activate Tab %1"
 msgstr ""
 
-#: src/actions/actions.cpp:19
+#: src/actions/actions.cpp:21
 #, kde-format
 msgid "Open Link in New &Tab"
 msgstr "Oscail an Nasc i g&Cluaisín Nua"
 
-#: src/actions/actions.cpp:26
+#: src/actions/actions.cpp:28
 #, kde-format
 msgid "Open Link in External &Browser"
 msgstr "Oscail an Nasc i m&Brabhsálaí Seachtrach"
 
-#: src/addfeeddialog.cpp:49
+#: src/addfeeddialog.cpp:51
 #, kde-format
 msgctxt "@title:window"
 msgid "Add Feed"
 msgstr ""
 
-#: src/addfeeddialog.cpp:99
+#: src/addfeeddialog.cpp:101
 #, kde-format
 msgid "Downloading %1"
 msgstr "%1 á íosluchtú"
 
-#: src/addfeeddialog.cpp:115
+#: src/addfeeddialog.cpp:117
 #, kde-format
 msgid "Feed not found from %1."
 msgstr "Fotha gan aimsiú ó %1."
 
-#: src/addfeeddialog.cpp:121
+#: src/addfeeddialog.cpp:123
 #, kde-format
 msgid "Feed found, downloading…"
 msgstr ""
 
-#: src/akregator_options.h:21 src/akregator_options.h:29
+#: src/akregator_options.h:22 src/akregator_options.h:29
 #, kde-format
 msgctxt "@info:shell"
 msgid "Add a feed with the given URL"
@@ -1511,79 +1511,79 @@ msgctxt "@info:shell"
 msgid "Lists the available options for user feedback"
 msgstr ""
 
-#: src/akregator_part.cpp:78
+#: src/akregator_part.cpp:80
 #, kde-format
 msgid "Feeds"
 msgstr "Fothaí"
 
-#: src/akregator_part.cpp:89
+#: src/akregator_part.cpp:91
 #, kde-format
 msgid "Planet KDE"
 msgstr "Planet KDE"
 
-#: src/akregator_part.cpp:94
+#: src/akregator_part.cpp:96
 #, kde-format
 msgid "KDE Apps"
 msgstr "Feidhmchláir KDE"
 
-#: src/akregator_part.cpp:100
+#: src/akregator_part.cpp:102
 #, kde-format
 msgid "Spanish feeds"
 msgstr ""
 
-#: src/akregator_part.cpp:104
+#: src/akregator_part.cpp:106
 #, kde-format
 msgid "Planet KDE España"
 msgstr "Planet KDE España"
 
-#: src/akregator_part.cpp:419
+#: src/akregator_part.cpp:421
 #, kde-format
 msgid ""
 "Access denied: Cannot save feed list to <b>%1</b>. Please check your "
 "permissions."
 msgstr ""
 
-#: src/akregator_part.cpp:420 src/akregator_part.cpp:473
+#: src/akregator_part.cpp:422 src/akregator_part.cpp:475
 #, kde-format
 msgctxt "@title:window"
 msgid "Write Error"
 msgstr ""
 
-#: src/akregator_part.cpp:456
+#: src/akregator_part.cpp:458
 #, kde-format
 msgid "Could not import the file %1 (no valid OPML)"
 msgstr "Níorbh fhéidir comhad %1 a iompórtáil (gan OPML bailí)"
 
-#: src/akregator_part.cpp:456 src/command/loadfeedlistcommand.cpp:71
+#: src/akregator_part.cpp:458 src/command/loadfeedlistcommand.cpp:73
 #, kde-format
 msgctxt "@title:window"
 msgid "OPML Parsing Error"
 msgstr ""
 
-#: src/akregator_part.cpp:460
+#: src/akregator_part.cpp:462
 #, kde-format
 msgid ""
 "The file %1 could not be read, check if it exists or if it is readable for "
 "the current user."
 msgstr ""
 
-#: src/akregator_part.cpp:461 src/command/loadfeedlistcommand.cpp:144
+#: src/akregator_part.cpp:463 src/command/loadfeedlistcommand.cpp:146
 #, kde-format
 msgctxt "@title:window"
 msgid "Read Error"
 msgstr ""
 
-#: src/akregator_part.cpp:472
+#: src/akregator_part.cpp:474
 #, kde-format
 msgid "Access denied: cannot write to file %1. Please check your permissions."
 msgstr ""
 
-#: src/akregator_part.cpp:488 src/akregator_part.cpp:497
+#: src/akregator_part.cpp:490 src/akregator_part.cpp:499
 #, kde-format
 msgid "OPML Outlines (%1);;All Files (*)"
 msgstr ""
 
-#: src/akregator_part.cpp:622
+#: src/akregator_part.cpp:624
 #, kde-format
 msgid "Imported Folder"
 msgstr "Fillteán Iompórtáilte"
@@ -1593,17 +1593,17 @@ msgstr "Fillteán Iompórtáilte"
 msgid "The feed to be listed was already removed."
 msgstr ""
 
-#: src/articlelistview.cpp:161 src/subscription/subscriptionlistview.cpp:180
+#: src/articlelistview.cpp:163 src/subscription/subscriptionlistview.cpp:182
 #, kde-format
 msgid "Columns"
 msgstr "Colúin"
 
-#: src/articlelistview.cpp:219
+#: src/articlelistview.cpp:221
 #, kde-format
 msgid "No result found"
 msgstr ""
 
-#: src/articlelistview.cpp:380
+#: src/articlelistview.cpp:382
 #, kde-format
 msgid ""
 "<h2>Article list</h2>Here you can browse articles from the currently "
@@ -1613,125 +1613,125 @@ msgid ""
 "a tab or in an external browser window."
 msgstr ""
 
-#: src/articlemodel.cpp:75
+#: src/articlemodel.cpp:77
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Title"
 msgstr "Teideal"
 
-#: src/articlemodel.cpp:77
+#: src/articlemodel.cpp:79
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Feed"
 msgstr "Fotha"
 
-#: src/articlemodel.cpp:79
+#: src/articlemodel.cpp:81
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Date"
 msgstr "Dáta"
 
-#: src/articlemodel.cpp:81
+#: src/articlemodel.cpp:83
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Author"
 msgstr "Údar"
 
-#: src/articlemodel.cpp:83
+#: src/articlemodel.cpp:85
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Description"
 msgstr "Cur Síos"
 
-#: src/articlemodel.cpp:85
+#: src/articlemodel.cpp:87
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Content"
 msgstr "Inneachar"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:147
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:149
 #, kde-format
 msgid "Akregator is a KDE news feed reader."
 msgstr ""
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:191
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:193
 #, kde-format
 msgctxt "@title:window"
 msgid "Save As"
 msgstr ""
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:275
-#: src/frame/webengine/akrwebengineviewer.cpp:112
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:277
+#: src/frame/webengine/akrwebengineviewer.cpp:114
 #, kde-format
 msgid "&Save Link As…"
 msgstr ""
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:279
-#: src/frame/webengine/akrwebengineviewer.cpp:116
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:281
+#: src/frame/webengine/akrwebengineviewer.cpp:118
 #, kde-format
 msgid "Copy &Link Address"
 msgstr "Cóipeáil Seo&ladh an Naisc"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:287
-#: src/frame/webengine/akrwebengineviewer.cpp:124
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:289
+#: src/frame/webengine/akrwebengineviewer.cpp:126
 #, kde-format
 msgctxt "@action"
 msgid "Copy Image URL"
 msgstr ""
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:291
-#: src/frame/webengine/akrwebengineviewer.cpp:128
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:293
+#: src/frame/webengine/akrwebengineviewer.cpp:130
 #, kde-format
 msgctxt "@action"
 msgid "Save Image…"
 msgstr ""
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:382
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:384
 #, kde-format
 msgid "Disable"
 msgstr "Díchumasaigh"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:383
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:385
 #, kde-format
 msgid "Keep Enabled"
 msgstr ""
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:385
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:387
 #, kde-format
 msgid "Are you sure you want to disable this introduction page?"
 msgstr ""
 "An bhfuil tú cinnte gur mian leat an leathanach brollaigh seo a dhíchumasú?"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:386
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:388
 #, kde-format
 msgctxt "@title:window"
 msgid "Disable Introduction Page"
 msgstr ""
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:416
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:418
 #, kde-format
 msgid "This web site is a malware, do you want to continue to show it?"
 msgstr ""
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:417
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:419
 #, kde-format
 msgctxt "@title:window"
 msgid "Malware"
 msgstr ""
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:429
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:431
 #, kde-format
 msgid "The network is broken."
 msgstr ""
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:429
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:432
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:431
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:434
 #, kde-format
 msgctxt "@title:window"
 msgid "Check Phishing Url"
 msgstr ""
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:432
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:434
 #, kde-format
 msgid "The url %1 is not valid."
 msgstr ""
@@ -1746,38 +1746,38 @@ msgstr "Cuir Fillteán Leis"
 msgid "Folder name:"
 msgstr "Ainm an fhillteáin:"
 
-#: src/command/deletesubscriptioncommand.cpp:39
+#: src/command/deletesubscriptioncommand.cpp:41
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to delete this folder and its feeds and subfolders?"
 "</qt>"
 msgstr ""
 
-#: src/command/deletesubscriptioncommand.cpp:40
+#: src/command/deletesubscriptioncommand.cpp:42
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to delete folder <b>%1</b> and its feeds and "
 "subfolders?</qt>"
 msgstr ""
 
-#: src/command/deletesubscriptioncommand.cpp:44
+#: src/command/deletesubscriptioncommand.cpp:46
 #, kde-format
 msgctxt "@title:window"
 msgid "Delete Folder"
 msgstr ""
 
-#: src/command/deletesubscriptioncommand.cpp:61
+#: src/command/deletesubscriptioncommand.cpp:63
 #, kde-format
 msgid "<qt>Are you sure you want to delete this feed?</qt>"
 msgstr "<qt>An bhfuil tú cinnte gur mian leat an fotha seo a scriosadh?</qt>"
 
-#: src/command/deletesubscriptioncommand.cpp:63
+#: src/command/deletesubscriptioncommand.cpp:65
 #, kde-format
 msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
 msgstr ""
 "<qt>An bhfuil tú cinnte gur mian leat fotha <b>%1</b> a scriosadh?</qt>"
 
-#: src/command/deletesubscriptioncommand.cpp:68
+#: src/command/deletesubscriptioncommand.cpp:70
 #, kde-format
 msgctxt "@title:window"
 msgid "Delete Feed"
@@ -1798,7 +1798,7 @@ msgstr "Cuir Fillteán Iompórtáilte Leis"
 msgid "Imported folder name:"
 msgstr "Ainm an fhillteáin iompórtáilte:"
 
-#: src/command/loadfeedlistcommand.cpp:63
+#: src/command/loadfeedlistcommand.cpp:65
 #, kde-format
 msgid ""
 "<qt>The standard feed list is corrupted (invalid OPML). A backup was created:"
@@ -1807,7 +1807,7 @@ msgstr ""
 "<qt>Is truaillithe é an liosta caighdeánach d'fhothaí (OPML neamhbhailí). "
 "Cruthaíodh cúltaca:<p><b>%1</b></p></qt>"
 
-#: src/command/loadfeedlistcommand.cpp:67
+#: src/command/loadfeedlistcommand.cpp:69
 #, kde-format
 msgid ""
 "<qt>The standard feed list is corrupted (invalid OPML). Could not create a "
@@ -1816,28 +1816,28 @@ msgstr ""
 "<qt>Tá an liosta caighdeánach d'fhothaí truaillithe (OPML neamhbhailí). "
 "Níorbh fhéidir cúltaca a chruthú.</qt>"
 
-#: src/command/loadfeedlistcommand.cpp:129
+#: src/command/loadfeedlistcommand.cpp:131
 #, kde-format
 msgid "Opening Feed List…"
 msgstr ""
 
-#: src/command/loadfeedlistcommand.cpp:143
+#: src/command/loadfeedlistcommand.cpp:145
 #, kde-format
 msgid "<qt>Could not open feed list (%1) for reading.</qt>"
 msgstr ""
 
-#: src/command/loadfeedlistcommand.cpp:155
+#: src/command/loadfeedlistcommand.cpp:157
 #, kde-format
 msgctxt "error message window caption"
 msgid "XML Parsing Error"
 msgstr "Earráid Parsála XML"
 
-#: src/command/loadfeedlistcommand.cpp:157
+#: src/command/loadfeedlistcommand.cpp:159
 #, kde-kuit-format
 msgid "<qt><p>XML parsing error in line %1, column %2 of %3:</p><p>%4</p></qt>"
 msgstr ""
 
-#: src/command/loadfeedlistcommand.cpp:164
+#: src/command/loadfeedlistcommand.cpp:166
 #, kde-format
 msgid ""
 "<qt>The standard feed list is corrupted (invalid XML). A backup was created:"
@@ -1846,7 +1846,7 @@ msgstr ""
 "<qt>Is truaillithe é an liosta caighdeánach d'fhothaí (XML neamhbhailí). "
 "Cruthaíodh cúltaca:<p><b>%1</b></p></qt>"
 
-#: src/command/loadfeedlistcommand.cpp:168
+#: src/command/loadfeedlistcommand.cpp:170
 #, kde-format
 msgid ""
 "<qt>The standard feed list is corrupted (invalid XML). Could not create a "
@@ -1855,7 +1855,7 @@ msgstr ""
 "<qt>Tá an liosta caighdeánach d'fhothaí truaillithe (XML neamhbhailí). "
 "Níorbh fhéidir cúltaca a chruthú.</qt>"
 
-#: src/crashwidget/crashwidget.cpp:21
+#: src/crashwidget/crashwidget.cpp:23
 #, kde-format
 msgctxt "@label:textbox"
 msgid ""
@@ -1863,17 +1863,17 @@ msgid ""
 "session?"
 msgstr ""
 
-#: src/crashwidget/crashwidget.cpp:37
+#: src/crashwidget/crashwidget.cpp:39
 #, kde-format
 msgid "Restore Session"
 msgstr "Athchóirigh an Seisiún"
 
-#: src/crashwidget/crashwidget.cpp:43
+#: src/crashwidget/crashwidget.cpp:45
 #, kde-format
 msgid "Do Not Restore Session"
 msgstr ""
 
-#: src/crashwidget/crashwidget.cpp:49
+#: src/crashwidget/crashwidget.cpp:51
 #, kde-format
 msgid "Ask me later"
 msgstr ""
@@ -1932,7 +1932,7 @@ msgstr "Príomhbharra Uirlisí"
 msgid "&File"
 msgstr "&Comhad"
 
-#: src/feed/feedlist.cpp:160
+#: src/feed/feedlist.cpp:162
 #, kde-format
 msgid "All Feeds"
 msgstr "Gach Fotha"
@@ -2004,7 +2004,7 @@ msgctxt "@title:window"
 msgid "Properties of %1"
 msgstr ""
 
-#: src/formatter/articleformatter.cpp:35
+#: src/formatter/articleformatter.cpp:37
 #, kde-format
 msgid "(%1, %2)"
 msgstr "(%1, %2)"
@@ -2180,41 +2180,41 @@ msgstr ""
 msgid "Networking is available now."
 msgstr ""
 
-#: src/mainwindow.cpp:122
+#: src/mainwindow.cpp:124
 #, kde-format
 msgid ""
 "<qt>This will hide the menu bar completely. You can show it again by typing "
 "%1.</qt>"
 msgstr ""
 
-#: src/mainwindow.cpp:125
+#: src/mainwindow.cpp:127
 #, kde-format
 msgctxt "@title:window"
 msgid "Hide menu bar"
 msgstr ""
 
-#: src/mainwindow.cpp:158
+#: src/mainwindow.cpp:160
 #, kde-format
 msgid ""
 "Could not find the Akregator part; please check your installation.\n"
 "%1"
 msgstr ""
 
-#: src/notificationmanager.cpp:48
+#: src/notificationmanager.cpp:50
 #, kde-format
 msgid ""
 "Feed added:\n"
 " %1"
 msgstr ""
 
-#: src/notificationmanager.cpp:55
+#: src/notificationmanager.cpp:57
 #, kde-format
 msgid ""
 "Feeds added:\n"
 " %1"
 msgstr ""
 
-#: src/notificationmanager.cpp:69
+#: src/notificationmanager.cpp:71
 #, kde-format
 msgid "<i>and 1 other</i>"
 msgid_plural "<i>and %1 others</i>"
@@ -2251,103 +2251,103 @@ msgstr ""
 msgid "Cannot move folder %1 to its own subfolder %2"
 msgstr ""
 
-#: src/subscription/subscriptionlistmodel.cpp:54
+#: src/subscription/subscriptionlistmodel.cpp:56
 #, kde-format
 msgid "Timeout on remote server"
 msgstr ""
 
-#: src/subscription/subscriptionlistmodel.cpp:56
+#: src/subscription/subscriptionlistmodel.cpp:58
 #, kde-format
 msgid "Unknown host"
 msgstr "Óstríomhaire anaithnid"
 
-#: src/subscription/subscriptionlistmodel.cpp:58
+#: src/subscription/subscriptionlistmodel.cpp:60
 #, kde-format
 msgid "Feed file not found on remote server"
 msgstr ""
 
-#: src/subscription/subscriptionlistmodel.cpp:60
+#: src/subscription/subscriptionlistmodel.cpp:62
 #, kde-format
 msgid "Could not read feed (invalid XML)"
 msgstr "Níorbh fhéidir an fotha a léamh (XML neamhbhailí)"
 
-#: src/subscription/subscriptionlistmodel.cpp:62
+#: src/subscription/subscriptionlistmodel.cpp:64
 #, kde-format
 msgid "Could not read feed (unknown format)"
 msgstr "Níorbh fhéidir an fotha a léamh (formáid anaithnid)"
 
-#: src/subscription/subscriptionlistmodel.cpp:64
+#: src/subscription/subscriptionlistmodel.cpp:66
 #, kde-format
 msgid "Could not read feed (invalid feed)"
 msgstr "Níorbh fhéidir an fotha a léamh (fotha neamhbhailí)"
 
-#: src/subscription/subscriptionlistmodel.cpp:271
+#: src/subscription/subscriptionlistmodel.cpp:273
 #, kde-format
 msgid "Could not fetch feed: %1"
 msgstr ""
 
-#: src/subscription/subscriptionlistmodel.cpp:320
+#: src/subscription/subscriptionlistmodel.cpp:322
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Feeds"
 msgstr "Fothaí"
 
-#: src/subscription/subscriptionlistmodel.cpp:322
+#: src/subscription/subscriptionlistmodel.cpp:324
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Unread"
 msgstr "Gan léamh"
 
-#: src/subscription/subscriptionlistmodel.cpp:324
+#: src/subscription/subscriptionlistmodel.cpp:326
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Total"
 msgstr "Iomlán"
 
-#: src/tabwidget.cpp:96
+#: src/tabwidget.cpp:98
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Close the current tab"
 msgstr ""
 
-#: src/tabwidget.cpp:99
+#: src/tabwidget.cpp:101
 #, kde-format
 msgid "Close tab"
 msgstr "Dún an cluaisín"
 
-#: src/tabwidget.cpp:122
+#: src/tabwidget.cpp:124
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Detach Tab"
 msgstr ""
 
-#: src/tabwidget.cpp:130
+#: src/tabwidget.cpp:132
 #, fuzzy, kde-format
 #| msgid "Close Tab"
 msgctxt "@action:inmenu"
 msgid "Reload Tab"
 msgstr "Dún an Cluaisín"
 
-#: src/tabwidget.cpp:133
+#: src/tabwidget.cpp:135
 #, fuzzy, kde-format
 #| msgid "Copy Link Address"
 msgctxt "@action:inmenu"
 msgid "Copy Tab Address"
 msgstr "Cóipeáil Seoladh an Naisc"
 
-#: src/tabwidget.cpp:139
+#: src/tabwidget.cpp:141
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Close Tab"
 msgstr ""
 
-#: src/tabwidget.cpp:143
+#: src/tabwidget.cpp:145
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Close All Other Tabs"
 msgstr ""
 
-#: src/tabwidget.cpp:147
+#: src/tabwidget.cpp:149
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Close All Tabs"
@@ -2488,47 +2488,47 @@ msgstr "Luchtaigh an suíomh Gréasáin ina &iomláine agus ailt á léamh"
 msgid "Mar&k articles as read when they arrive"
 msgstr ""
 
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:40
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:42
 #, kde-format
 msgid "Disable Introduction"
 msgstr ""
 
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:58
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:60
 #, kde-format
 msgid "&Copy Email Address"
 msgstr ""
 
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:67
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:69
 #, kde-format
 msgid "Address copied to clipboard."
 msgstr ""
 
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:98
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:100
 #, kde-format
 msgid "Mark Article as Read"
 msgstr ""
 
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:100
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:102
 #, kde-format
 msgid "Mark Article as Unread"
 msgstr ""
 
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:102
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:104
 #, kde-format
 msgid "Change Important Flag"
 msgstr ""
 
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:104
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:106
 #, kde-format
 msgid "Send the URL of the article"
 msgstr ""
 
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:106
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:108
 #, kde-format
 msgid "Send the Html Page of Article"
 msgstr ""
 
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:108
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:110
 #, kde-format
 msgid "Open In External Browser"
 msgstr ""
@@ -2545,30 +2545,30 @@ msgctxt "@info:placeholder"
 msgid "Search articles…<%1>"
 msgstr ""
 
-#: src/widgets/statussearchbuttons.cpp:29
+#: src/widgets/statussearchbuttons.cpp:31
 #, kde-format
 msgid "All Articles"
 msgstr "Gach Alt"
 
-#: src/widgets/statussearchbuttons.cpp:39
+#: src/widgets/statussearchbuttons.cpp:41
 #, kde-format
 msgctxt "New articles filter"
 msgid "New"
 msgstr "Nua"
 
-#: src/widgets/statussearchbuttons.cpp:48
+#: src/widgets/statussearchbuttons.cpp:50
 #, kde-format
 msgctxt "Unread articles filter"
 msgid "Unread"
 msgstr "Gan léamh"
 
-#: src/widgets/statussearchbuttons.cpp:57
+#: src/widgets/statussearchbuttons.cpp:59
 #, kde-format
 msgctxt "Read articles filter"
 msgid "Read"
 msgstr ""
 
-#: src/widgets/statussearchbuttons.cpp:66
+#: src/widgets/statussearchbuttons.cpp:68
 #, kde-format
 msgctxt "Important articles filter"
 msgid "Important"
