@@ -284,10 +284,10 @@ private:
     void appendArticles(const Syndication::FeedPtr &feed);
 
     /** appends article @c a to the article list */
-    void appendArticle(const Article &a);
+    void appendArticle(const Article &a, const QDateTime &now);
 
     /** checks whether article @c a is expired (considering custom and global archive mode settings) */
-    [[nodiscard]] bool isExpired(const Article &a) const;
+    [[nodiscard]] bool isExpired(const Article &a, const QDateTime &now) const;
 
     /** returns @c true if either this article uses @c limitArticleAge as custom setting or uses the global default, which is @c limitArticleAge */
     [[nodiscard]] bool usesExpiryByAge() const;

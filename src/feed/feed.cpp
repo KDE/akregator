@@ -672,13 +672,14 @@ void Feed::appendArticles(const Syndication::FeedPtr &feed)
     int nudge = 0;
 
     QList<Article> deletedArticles = d->m_deletedArticles;
+    const QDateTime now = QDateTime::currentDateTime();
 
     for (; it != en; ++it) {
         if (!d->articles.contains((*it)->id())) { // article not in list
             Article mya(*it, this);
             mya.offsetPubDate(nudge);
             nudge--;
-            appendArticle(mya);
+            appendArticle(mya, now);
             d->m_addedArticlesNotify.append(mya);
 
             if (!mya.isDeleted() && !markImmediatelyAsRead()) {
@@ -700,7 +701,7 @@ void Feed::appendArticles(const Syndication::FeedPtr &feed)
                 old.setStatus(Read);
 
                 d->articles.remove(old.guid());
-                appendArticle(mya);
+                appendArticle(mya, now);
 
                 mya.setStatus(oldstatus);
 
@@ -737,9 +738,8 @@ bool Feed::usesExpiryByAge() const
     return (d->m_archiveMode == globalDefault && Settings::archiveMode() == Settings::EnumArchiveMode::limitArticleAge) || d->m_archiveMode == limitArticleAge;
 }
 
-bool Feed::isExpired(const Article &a) const
+bool Feed::isExpired(const Article &a, const QDateTime &now) const
 {
-    const QDateTime now = QDateTime::currentDateTime();
     int expiryAge = -1;
     // check whether the feed uses the global default and the default is limitArticleAge
     constexpr int time = 24 * 3600;
@@ -754,9 +754,9 @@ bool Feed::isExpired(const Article &a) const
     return expiryAge != -1 && a.pubDate().secsTo(now) > expiryAge;
 }
 
-void Feed::appendArticle(const Article &a)
+void Feed::appendArticle(const Article &a, const QDateTime &now)
 {
-    if ((a.keep() && Settings::doNotExpireImportantArticles()) || (!usesExpiryByAge() || !isExpired(a))) { // if not expired
+    if ((a.keep() && Settings::doNotExpireImportantArticles()) || (!usesExpiryByAge() || !isExpired(a, now))) { // if not expired
         if (!d->articles.contains(a.guid())) {
             d->articles[a.guid()] = a;
             if (!a.isDeleted() && a.status() != Read) {
@@ -879,9 +879,10 @@ void Feed::deleteExpiredArticles(ArticleDeleteJob *deleteJob)
     Akregator::ArticleIdList toDelete;
     const QString feedUrl = xmlUrl();
     const bool useKeep = Settings::doNotExpireImportantArticles();
+    const QDateTime now = QDateTime::currentDateTime();
 
     for (const Article &i : std::as_const(d->articles)) {
-        if ((!useKeep || !i.keep()) && isExpired(i)) {
+        if ((!useKeep || !i.keep()) && isExpired(i, now)) {
             const ArticleId aid = {feedUrl, i.guid()};
             toDelete.append(aid);
         }
