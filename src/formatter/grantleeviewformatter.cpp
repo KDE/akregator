@@ -5,6 +5,7 @@
 */
 
 #include "grantleeviewformatter.h"
+#include "akregator_debug.h"
 #include "akregatorconfig.h"
 #include "articlegrantleeobject.h"
 #include "grantleeutil.h"
@@ -50,12 +51,13 @@ int GrantleeViewFormatter::pointsToPixel(int pointSize) const
 void GrantleeViewFormatter::addStandardObject(QVariantHash &grantleeObject) const
 {
     // get color scheme and window background color
-    Colors appColor = getAppColor();
+    const Colors appColor = getAppColor();
 
     // Ideally we should use <link href=""> in the html but this doesn't
     // work because the html is loaded via data:/ and can't access qrc.
     QFile cssFile(u":/formatter/html/style.css"_s);
     if (!cssFile.open(QIODeviceBase::ReadOnly)) {
+        qCWarning(AKREGATOR_LOG) << "Impossible to read:" << cssFile.fileName();
         Q_ASSERT(false);
     }
 
