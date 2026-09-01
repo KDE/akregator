@@ -48,8 +48,11 @@ int GrantleeViewFormatter::pointsToPixel(int pointSize) const
     return (pointSize * mDeviceDpiY + 36) / 72;
 }
 
-void GrantleeViewFormatter::addStandardObject(QVariantHash &grantleeObject) const
+QVariantHash GrantleeViewFormatter::addStandardObject()
 {
+    if (!mDefaultCssObject.empty()) {
+        return mDefaultCssObject;
+    }
     // get color scheme and window background color
     const Colors appColor = getAppColor();
 
@@ -61,16 +64,17 @@ void GrantleeViewFormatter::addStandardObject(QVariantHash &grantleeObject) cons
         Q_ASSERT(false);
     }
 
-    grantleeObject.insert(u"applicationDir"_s, mDirectionString);
-    grantleeObject.insert(u"standardFamilyFont"_s, Settings::standardFont());
-    grantleeObject.insert(u"sansSerifFont"_s, Settings::sansSerifFont());
-    grantleeObject.insert(u"serifFont"_s, Settings::serifFont());
-    grantleeObject.insert(u"mediumFontSize"_s, Settings::mediumFontSize());
-    grantleeObject.insert(u"smallFontSize"_s, Settings::minimumFontSize());
-    grantleeObject.insert(u"sidebarCss"_s, sidebarCss(appColor));
-    grantleeObject.insert(u"css"_s, cssFile.readAll());
-    grantleeObject.insert(u"colorScheme"_s, appColor.colorScheme);
-    grantleeObject.insert(u"backgroundColor"_s, appColor.backgroundColor);
+    mDefaultCssObject.insert(u"applicationDir"_s, mDirectionString);
+    mDefaultCssObject.insert(u"standardFamilyFont"_s, Settings::standardFont());
+    mDefaultCssObject.insert(u"sansSerifFont"_s, Settings::sansSerifFont());
+    mDefaultCssObject.insert(u"serifFont"_s, Settings::serifFont());
+    mDefaultCssObject.insert(u"mediumFontSize"_s, Settings::mediumFontSize());
+    mDefaultCssObject.insert(u"smallFontSize"_s, Settings::minimumFontSize());
+    mDefaultCssObject.insert(u"sidebarCss"_s, sidebarCss(appColor));
+    mDefaultCssObject.insert(u"css"_s, cssFile.readAll());
+    mDefaultCssObject.insert(u"colorScheme"_s, appColor.colorScheme);
+    mDefaultCssObject.insert(u"backgroundColor"_s, appColor.backgroundColor);
+    return mDefaultCssObject;
 }
 
 Colors GrantleeViewFormatter::getAppColor() const
@@ -160,8 +164,7 @@ QString GrantleeViewFormatter::formatFeed(Akregator::Feed *feed)
     if (mTemplate->error()) {
         return mTemplate->errorString();
     }
-    QVariantHash feedObject;
-    addStandardObject(feedObject);
+    QVariantHash feedObject = addStandardObject();
     feedObject.insert(u"strippedTitle"_s, Utils::stripTags(feed->title()));
     QString numberOfArticle;
     if (feed->unread() == 0) {
@@ -208,14 +211,18 @@ QString GrantleeViewFormatter::formatFeed(Akregator::Feed *feed)
     return contentHtml;
 }
 
+void GrantleeViewFormatter::updateCss()
+{
+    mDefaultCssObject.clear();
+}
+
 QString GrantleeViewFormatter::formatFolder(Akregator::Folder *node)
 {
     mTemplate = mEngine.loadByName(u"formatter/html/defaultnormalvisitfolder.html"_s);
     if (mTemplate->error()) {
         return mTemplate->errorString();
     }
-    QVariantHash folderObject;
-    addStandardObject(folderObject);
+    QVariantHash folderObject = addStandardObject();
 
     folderObject.insert(u"nodeTitle"_s, node->title());
     QString numberOfArticle;
@@ -240,7 +247,7 @@ QString GrantleeViewFormatter::formatArticles(const QList<Article> &article, Art
         return mTemplate->errorString();
     }
 
-    QVariantHash articleObject;
+    QVariantHash articleObject = addStandardObject();
 
     QVariantList articlesList;
     const int nbArticles(article.count());
@@ -254,7 +261,6 @@ QString GrantleeViewFormatter::formatArticles(const QList<Article> &article, Art
     }
     articleObject.insert(u"articles"_s, articlesList);
 
-    addStandardObject(articleObject);
     articleObject.insert(u"loadExternalReference"_s, Settings::loadExternalReferences());
     articleObject.insert(u"dateI18n"_s, i18n("Date"));
     articleObject.insert(u"commentI18n"_s, i18n("Comment"));

@@ -27,9 +27,11 @@ public:
     [[nodiscard]] QString formatFolder(Akregator::Folder *node);
     [[nodiscard]] QString formatFeed(Akregator::Feed *feed);
 
+    void updateCss();
+
 private:
     [[nodiscard]] Colors getAppColor() const;
-    void addStandardObject(QVariantHash &grantleeObject) const;
+    [[nodiscard]] QVariantHash addStandardObject();
     [[nodiscard]] QString sidebarCss(const Colors &colors) const;
     [[nodiscard]] int pointsToPixel(int pointSize) const;
     const QString mHtmlArticleFileName;
@@ -37,5 +39,6 @@ private:
     GrantleeTheme::Engine mEngine;
     KTextTemplate::Template mTemplate;
     const int mDeviceDpiY;
+    QVariantHash mDefaultCssObject;
 };
 }

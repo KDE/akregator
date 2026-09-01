@@ -22,6 +22,8 @@ public:
 
     [[nodiscard]] QString formatSummary(TreeNode *node) const override;
 
+    void updateCss() override;
+
 private:
     QString m_DefaultThemePath;
     class SummaryVisitor;

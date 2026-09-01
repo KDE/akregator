@@ -71,6 +71,11 @@ QString DefaultNormalViewFormatter::formatSummary(TreeNode *node) const
     return m_summaryVisitor->formatSummary(node);
 }
 
+void DefaultNormalViewFormatter::updateCss()
+{
+    mGrantleeViewFormatter->updateCss();
+}
+
 QString DefaultNormalViewFormatter::formatArticles(const QList<Article> &articles, IconOption icon) const
 {
     if (articles.count() != 1) {

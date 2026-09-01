@@ -35,6 +35,8 @@ public:
 
     static QString formatEnclosure(const Syndication::Enclosure &enclosure);
 
+    virtual void updateCss() = 0;
+
 private:
     Q_DISABLE_COPY(ArticleFormatter)
 };

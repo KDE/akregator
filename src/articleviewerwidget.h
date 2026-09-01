@@ -95,6 +95,7 @@ Q_SIGNALS:
 
 protected: // methods
     bool openUrl(const QUrl &url);
+    [[nodiscard]] bool event(QEvent *ev) override;
 
 protected Q_SLOTS:
     void slotSelectionChanged();
@@ -128,6 +129,7 @@ private:
     void setArticleActionsEnabled(bool enabled);
 
 private:
+    void generalPaletteChanged();
     QString m_currentText;
     QPointer<TreeNode> m_node;
     QPointer<ArticleListJob> m_listJob;
