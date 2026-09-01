@@ -1054,7 +1054,7 @@ void Feed::enforceLimitArticleNumber()
     int c = 0;
     const bool useKeep = Settings::doNotExpireImportantArticles();
 
-    for (Article i : std::as_const(articles)) {
+    for (Article &i : articles) {
         if (c < limit) {
             if (!i.isDeleted() && (!useKeep || !i.keep())) {
                 ++c;

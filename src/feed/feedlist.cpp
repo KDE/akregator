@@ -179,6 +179,7 @@ QList<const Akregator::Feed *> FeedList::feeds() const
 {
     QList<const Akregator::Feed *> constList;
     const auto rootNodeFeeds = d->rootNode->feeds();
+    constList.reserve(rootNodeFeeds.count());
     for (const Akregator::Feed *const i : rootNodeFeeds) {
         constList.append(i);
     }
@@ -194,6 +195,7 @@ QList<const Folder *> FeedList::folders() const
 {
     QList<const Folder *> constList;
     const auto nodeFolders = d->rootNode->folders();
+    constList.reserve(nodeFolders.count());
     for (const Folder *const i : nodeFolders) {
         constList.append(i);
     }
