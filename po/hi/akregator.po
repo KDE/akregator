@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-09-01 00:46+0000\n"
+"POT-Creation-Date: 2026-09-02 00:44+0000\n"
 "PO-Revision-Date: 2024-12-15 19:32+0530\n"
 "Last-Translator: kali <skkalwar999@gmail.com>\n"
 "Language-Team: Sanskrit <kde-i18n-doc@kde.org>\n"
@@ -2121,60 +2121,60 @@ msgstr " %1 के गुण"
 msgid "(%1, %2)"
 msgstr ""
 
-#: src/formatter/grantleeviewformatter.cpp:166
-#: src/formatter/grantleeviewformatter.cpp:221
+#: src/formatter/grantleeviewformatter.cpp:171
+#: src/formatter/grantleeviewformatter.cpp:230
 #, kde-format
 msgid " (no unread articles)"
 msgstr "(बिनपढ़े आलेख नहीं)"
 
-#: src/formatter/grantleeviewformatter.cpp:168
-#: src/formatter/grantleeviewformatter.cpp:223
+#: src/formatter/grantleeviewformatter.cpp:173
+#: src/formatter/grantleeviewformatter.cpp:232
 #, kde-format
 msgid " (1 unread article)"
 msgid_plural " (%1 unread articles)"
 msgstr[0] "(1बिनपढ़ा आलेख)"
 msgstr[1] "(%1 बिनपढ़े आलेख)"
 
-#: src/formatter/grantleeviewformatter.cpp:183
+#: src/formatter/grantleeviewformatter.cpp:188
 #, fuzzy, kde-format
 #| msgid "<b>Description:</b> %1<br /><br />"
 msgid "<b>Description:</b> %1<br />"
 msgstr "<b>वर्णन:</b> %1<br /><br />"
 
-#: src/formatter/grantleeviewformatter.cpp:190
+#: src/formatter/grantleeviewformatter.cpp:195
 #, fuzzy, kde-format
 #| msgid "<b>Homepage:</b> <a href=\"%1\">%2</a>"
 msgid "<b>Homepage:</b> <a href=\"%1\">%1</a>"
 msgstr "<b>घर-पृष्ठ:</b> <a href=\"%1\">%2</a>"
 
-#: src/formatter/grantleeviewformatter.cpp:197
+#: src/formatter/grantleeviewformatter.cpp:202
 #, fuzzy, kde-format
 #| msgid "<b>Description:</b> %1<br /><br />"
 msgid "<b>Copyright:</b> %1</a>"
 msgstr "<b>वर्णन:</b> %1<br /><br />"
 
-#: src/formatter/grantleeviewformatter.cpp:257
+#: src/formatter/grantleeviewformatter.cpp:265
 #, kde-format
 msgid "Date"
 msgstr "तारीख़"
 
-#: src/formatter/grantleeviewformatter.cpp:258
+#: src/formatter/grantleeviewformatter.cpp:266
 #, fuzzy, kde-format
 #| msgid "Comments"
 msgid "Comment"
 msgstr "टिप्पणियाँ"
 
-#: src/formatter/grantleeviewformatter.cpp:259
+#: src/formatter/grantleeviewformatter.cpp:267
 #, kde-format
 msgid "Complete Story"
 msgstr "संपूर्ण कथा"
 
-#: src/formatter/grantleeviewformatter.cpp:260
+#: src/formatter/grantleeviewformatter.cpp:268
 #, kde-format
 msgid "Author"
 msgstr "लेखक"
 
-#: src/formatter/grantleeviewformatter.cpp:261
+#: src/formatter/grantleeviewformatter.cpp:269
 #, kde-format
 msgid "Enclosure"
 msgstr ""
@@ -2369,59 +2369,59 @@ msgstr ""
 msgid "Cannot move folder %1 to its own subfolder %2"
 msgstr ""
 
-#: src/subscription/subscriptionlistmodel.cpp:56
+#: src/subscription/subscriptionlistmodel.cpp:55
 #, kde-format
 msgid "Timeout on remote server"
 msgstr ""
 
-#: src/subscription/subscriptionlistmodel.cpp:58
+#: src/subscription/subscriptionlistmodel.cpp:57
 #, kde-format
 msgid "Unknown host"
 msgstr ""
 
-#: src/subscription/subscriptionlistmodel.cpp:60
+#: src/subscription/subscriptionlistmodel.cpp:59
 #, fuzzy, kde-format
 #| msgid "Feed not found from %1."
 msgid "Feed file not found on remote server"
 msgstr "%1 से फीड नहीं मिला."
 
-#: src/subscription/subscriptionlistmodel.cpp:62
+#: src/subscription/subscriptionlistmodel.cpp:61
 #, fuzzy, kde-format
 #| msgid "Could not import the file %1 (no valid OPML)"
 msgid "Could not read feed (invalid XML)"
 msgstr "फ़ाइल %1 आयात नहीं किया जा सका (कोई वैध ओपीएमएल नहीं)"
 
-#: src/subscription/subscriptionlistmodel.cpp:64
+#: src/subscription/subscriptionlistmodel.cpp:63
 #, kde-format
 msgid "Could not read feed (unknown format)"
 msgstr ""
 
-#: src/subscription/subscriptionlistmodel.cpp:66
+#: src/subscription/subscriptionlistmodel.cpp:65
 #, fuzzy, kde-format
 #| msgid "Could not import the file %1 (no valid OPML)"
 msgid "Could not read feed (invalid feed)"
 msgstr "फ़ाइल %1 आयात नहीं किया जा सका (कोई वैध ओपीएमएल नहीं)"
 
-#: src/subscription/subscriptionlistmodel.cpp:273
+#: src/subscription/subscriptionlistmodel.cpp:272
 #, kde-format
 msgid "Could not fetch feed: %1"
 msgstr ""
 
-#: src/subscription/subscriptionlistmodel.cpp:322
+#: src/subscription/subscriptionlistmodel.cpp:321
 #, fuzzy, kde-format
 #| msgid "Feeds"
 msgctxt "Feedlist's column header"
 msgid "Feeds"
 msgstr "फ़ीड्स"
 
-#: src/subscription/subscriptionlistmodel.cpp:324
+#: src/subscription/subscriptionlistmodel.cpp:323
 #, fuzzy, kde-format
 #| msgid "Unread"
 msgctxt "Feedlist's column header"
 msgid "Unread"
 msgstr "बिनपढ़ा"
 
-#: src/subscription/subscriptionlistmodel.cpp:326
+#: src/subscription/subscriptionlistmodel.cpp:325
 #, fuzzy, kde-format
 #| msgid "Total"
 msgctxt "Feedlist's column header"

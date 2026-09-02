@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-09-01 00:46+0000\n"
+"POT-Creation-Date: 2026-09-02 00:44+0000\n"
 "PO-Revision-Date: 2012-12-25 13:50+0700\n"
 "Last-Translator: sutha <sutha@khmeros.info>\n"
 "Language-Team: Khmer <support@khmeros>\n"
@@ -2109,59 +2109,59 @@ msgstr "លក្ខណៈ​សម្បត្តិ​របស់ %1"
 msgid "(%1, %2)"
 msgstr "(%1, %2)"
 
-#: src/formatter/grantleeviewformatter.cpp:166
-#: src/formatter/grantleeviewformatter.cpp:221
+#: src/formatter/grantleeviewformatter.cpp:171
+#: src/formatter/grantleeviewformatter.cpp:230
 #, kde-format
 msgid " (no unread articles)"
 msgstr " (មិន​មាន​អត្ថបទ​ដែល​មិន​ទាន់​អាន​ឡើយ)"
 
-#: src/formatter/grantleeviewformatter.cpp:168
-#: src/formatter/grantleeviewformatter.cpp:223
+#: src/formatter/grantleeviewformatter.cpp:173
+#: src/formatter/grantleeviewformatter.cpp:232
 #, kde-format
 msgid " (1 unread article)"
 msgid_plural " (%1 unread articles)"
 msgstr[0] " (មិនបាន​អាន​អត្ថបទ %1)"
 
-#: src/formatter/grantleeviewformatter.cpp:183
+#: src/formatter/grantleeviewformatter.cpp:188
 #, fuzzy, kde-format
 #| msgid "<b>Description:</b> %1<br /><br />"
 msgid "<b>Description:</b> %1<br />"
 msgstr "<b>សេចក្ដី​​ពិពណ៌នា ៖</b> %1<br /><br />"
 
-#: src/formatter/grantleeviewformatter.cpp:190
+#: src/formatter/grantleeviewformatter.cpp:195
 #, fuzzy, kde-format
 #| msgid "<b>Homepage:</b> <a href=\"%1\">%2</a>"
 msgid "<b>Homepage:</b> <a href=\"%1\">%1</a>"
 msgstr "<b>គេហទំព័រ ៖</b> <a href=\"%1\">%2</a>"
 
-#: src/formatter/grantleeviewformatter.cpp:197
+#: src/formatter/grantleeviewformatter.cpp:202
 #, fuzzy, kde-format
 #| msgid "<b>Description:</b> %1<br /><br />"
 msgid "<b>Copyright:</b> %1</a>"
 msgstr "<b>សេចក្ដី​​ពិពណ៌នា ៖</b> %1<br /><br />"
 
-#: src/formatter/grantleeviewformatter.cpp:257
+#: src/formatter/grantleeviewformatter.cpp:265
 #, kde-format
 msgid "Date"
 msgstr "កាលបរិច្ឆេទ"
 
-#: src/formatter/grantleeviewformatter.cpp:258
+#: src/formatter/grantleeviewformatter.cpp:266
 #, fuzzy, kde-format
 #| msgid "Comments"
 msgid "Comment"
 msgstr "មតិយោបល់"
 
-#: src/formatter/grantleeviewformatter.cpp:259
+#: src/formatter/grantleeviewformatter.cpp:267
 #, kde-format
 msgid "Complete Story"
 msgstr "ខ្លឹមសារ​ទាំងស្រុង"
 
-#: src/formatter/grantleeviewformatter.cpp:260
+#: src/formatter/grantleeviewformatter.cpp:268
 #, kde-format
 msgid "Author"
 msgstr "អ្នក​និពន្ធ"
 
-#: src/formatter/grantleeviewformatter.cpp:261
+#: src/formatter/grantleeviewformatter.cpp:269
 #, kde-format
 msgid "Enclosure"
 msgstr "អ្វី​ៗ​ភ្ជាប់​ជាមួយ​សំបុត្រ"
@@ -2354,54 +2354,54 @@ msgstr "រក​មិន​ឃើញថត​​ថ្នាំង ឬ​ទ�
 msgid "Cannot move folder %1 to its own subfolder %2"
 msgstr "មិន​អាច​ផ្លាស់ទី​ថត %1 ទៅ​កាន់​ថតរង​ផ្ទាល់​របស់​វា %2 បាន​ទេ"
 
-#: src/subscription/subscriptionlistmodel.cpp:56
+#: src/subscription/subscriptionlistmodel.cpp:55
 #, kde-format
 msgid "Timeout on remote server"
 msgstr "អស់ពេល​នៅ​លើ​ម៉ាស៊ីន​បម្រើ​ពី​ចម្ងាយ"
 
-#: src/subscription/subscriptionlistmodel.cpp:58
+#: src/subscription/subscriptionlistmodel.cpp:57
 #, kde-format
 msgid "Unknown host"
 msgstr "មិន​ស្គាល់​ម៉ាស៊ីន"
 
-#: src/subscription/subscriptionlistmodel.cpp:60
+#: src/subscription/subscriptionlistmodel.cpp:59
 #, kde-format
 msgid "Feed file not found on remote server"
 msgstr "រក​មិនឃើញ​ឯកសារ​មតិព័ត៌មាន​នៅ​លើ​ម៉ាស៊ីន​បម្រើ​ពី​ចម្ងាយ"
 
-#: src/subscription/subscriptionlistmodel.cpp:62
+#: src/subscription/subscriptionlistmodel.cpp:61
 #, kde-format
 msgid "Could not read feed (invalid XML)"
 msgstr "មិន​អាច​អាន​មតិ​ព័ត៌មាន (XML មិន​ត្រឹមត្រូវ)"
 
-#: src/subscription/subscriptionlistmodel.cpp:64
+#: src/subscription/subscriptionlistmodel.cpp:63
 #, kde-format
 msgid "Could not read feed (unknown format)"
 msgstr "មិន​អាច​អាន​មតិ​ព័ត៌មាន (មិន​ស្គាល់​ទ្រង់ទ្រាយ)"
 
-#: src/subscription/subscriptionlistmodel.cpp:66
+#: src/subscription/subscriptionlistmodel.cpp:65
 #, kde-format
 msgid "Could not read feed (invalid feed)"
 msgstr "មិន​អាច​អាន​មតិ​ព័ត៌មាន (មតិ​ព័ត៌មាន​មិន​ត្រឹមត្រូវ)"
 
-#: src/subscription/subscriptionlistmodel.cpp:273
+#: src/subscription/subscriptionlistmodel.cpp:272
 #, kde-format
 msgid "Could not fetch feed: %1"
 msgstr "មិន​អាច​ទៅ​យក​មតិព័ត៌មាន ៖ %1"
 
-#: src/subscription/subscriptionlistmodel.cpp:322
+#: src/subscription/subscriptionlistmodel.cpp:321
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Feeds"
 msgstr "មតិព័ត៌មាន"
 
-#: src/subscription/subscriptionlistmodel.cpp:324
+#: src/subscription/subscriptionlistmodel.cpp:323
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Unread"
 msgstr "មិន​ទាន់​អាន"
 
-#: src/subscription/subscriptionlistmodel.cpp:326
+#: src/subscription/subscriptionlistmodel.cpp:325
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Total"

@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-09-01 00:46+0000\n"
+"POT-Creation-Date: 2026-09-02 00:44+0000\n"
 "PO-Revision-Date: 2026-05-28 06:22-0300\n"
 "Last-Translator: Marcus Gama <marcus.gama@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <kde-i18n-pt_BR@kde.org>\n"
@@ -2057,56 +2057,56 @@ msgstr "Propriedades de %1"
 msgid "(%1, %2)"
 msgstr "(%1, %2)"
 
-#: src/formatter/grantleeviewformatter.cpp:166
-#: src/formatter/grantleeviewformatter.cpp:221
+#: src/formatter/grantleeviewformatter.cpp:171
+#: src/formatter/grantleeviewformatter.cpp:230
 #, kde-format
 msgid " (no unread articles)"
 msgstr " (nenhum artigo não lido)"
 
-#: src/formatter/grantleeviewformatter.cpp:168
-#: src/formatter/grantleeviewformatter.cpp:223
+#: src/formatter/grantleeviewformatter.cpp:173
+#: src/formatter/grantleeviewformatter.cpp:232
 #, kde-format
 msgid " (1 unread article)"
 msgid_plural " (%1 unread articles)"
 msgstr[0] " (1 artigo não lido)"
 msgstr[1] " (%1 artigos não lidos)"
 
-#: src/formatter/grantleeviewformatter.cpp:183
+#: src/formatter/grantleeviewformatter.cpp:188
 #, kde-format
 msgid "<b>Description:</b> %1<br />"
 msgstr "<b>Descrição:</b> %1<br />"
 
-#: src/formatter/grantleeviewformatter.cpp:190
+#: src/formatter/grantleeviewformatter.cpp:195
 #, kde-format
 msgid "<b>Homepage:</b> <a href=\"%1\">%1</a>"
 msgstr "<b>Página na Internet:</b> <a href=\"%1\">%1</a>"
 
-#: src/formatter/grantleeviewformatter.cpp:197
+#: src/formatter/grantleeviewformatter.cpp:202
 #, kde-format
 msgid "<b>Copyright:</b> %1</a>"
 msgstr "<b>Copyright:</b> %1</a>"
 
-#: src/formatter/grantleeviewformatter.cpp:257
+#: src/formatter/grantleeviewformatter.cpp:265
 #, kde-format
 msgid "Date"
 msgstr "Data"
 
-#: src/formatter/grantleeviewformatter.cpp:258
+#: src/formatter/grantleeviewformatter.cpp:266
 #, kde-format
 msgid "Comment"
 msgstr "Comentário"
 
-#: src/formatter/grantleeviewformatter.cpp:259
+#: src/formatter/grantleeviewformatter.cpp:267
 #, kde-format
 msgid "Complete Story"
 msgstr "Notícia completa"
 
-#: src/formatter/grantleeviewformatter.cpp:260
+#: src/formatter/grantleeviewformatter.cpp:268
 #, kde-format
 msgid "Author"
 msgstr "Autor"
 
-#: src/formatter/grantleeviewformatter.cpp:261
+#: src/formatter/grantleeviewformatter.cpp:269
 #, kde-format
 msgid "Enclosure"
 msgstr "Anexo"
@@ -2301,54 +2301,54 @@ msgstr "Não foi encontrado o nó ou a pasta de destino"
 msgid "Cannot move folder %1 to its own subfolder %2"
 msgstr "Não foi possível mover a pasta %1 para a própria subpasta %2"
 
-#: src/subscription/subscriptionlistmodel.cpp:56
+#: src/subscription/subscriptionlistmodel.cpp:55
 #, kde-format
 msgid "Timeout on remote server"
 msgstr "Tempo esgotado no servidor remoto"
 
-#: src/subscription/subscriptionlistmodel.cpp:58
+#: src/subscription/subscriptionlistmodel.cpp:57
 #, kde-format
 msgid "Unknown host"
 msgstr "Máquina desconhecida"
 
-#: src/subscription/subscriptionlistmodel.cpp:60
+#: src/subscription/subscriptionlistmodel.cpp:59
 #, kde-format
 msgid "Feed file not found on remote server"
 msgstr "Arquivo de fonte de notícias não encontrado no servidor remoto"
 
-#: src/subscription/subscriptionlistmodel.cpp:62
+#: src/subscription/subscriptionlistmodel.cpp:61
 #, kde-format
 msgid "Could not read feed (invalid XML)"
 msgstr "Não foi possível ler a fonte de notícias (XML inválido)"
 
-#: src/subscription/subscriptionlistmodel.cpp:64
+#: src/subscription/subscriptionlistmodel.cpp:63
 #, kde-format
 msgid "Could not read feed (unknown format)"
 msgstr "Não foi possível ler a fonte de notícias (formato desconhecido)"
 
-#: src/subscription/subscriptionlistmodel.cpp:66
+#: src/subscription/subscriptionlistmodel.cpp:65
 #, kde-format
 msgid "Could not read feed (invalid feed)"
 msgstr "Não foi possível ler a fonte de notícias (fonte inválida)"
 
-#: src/subscription/subscriptionlistmodel.cpp:273
+#: src/subscription/subscriptionlistmodel.cpp:272
 #, kde-format
 msgid "Could not fetch feed: %1"
 msgstr "Não foi possível atualizar a fonte de notícias: %1"
 
-#: src/subscription/subscriptionlistmodel.cpp:322
+#: src/subscription/subscriptionlistmodel.cpp:321
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Feeds"
 msgstr "Fontes de notícias"
 
-#: src/subscription/subscriptionlistmodel.cpp:324
+#: src/subscription/subscriptionlistmodel.cpp:323
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Unread"
 msgstr "Não lidos"
 
-#: src/subscription/subscriptionlistmodel.cpp:326
+#: src/subscription/subscriptionlistmodel.cpp:325
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Total"
