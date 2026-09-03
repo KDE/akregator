@@ -1,6 +1,12 @@
 # SPDX-License-Identifier: CC0-1.0
 # SPDX-FileCopyrightText: none
 add_library(akregatorplugins STATIC)
+set_target_properties(
+    akregatorplugins
+    PROPERTIES
+        POSITION_INDEPENDENT_CODE
+            ON
+)
 
 ecm_qt_declare_logging_category(akregatorplugins
     HEADER akregator_plugin_debug.h
