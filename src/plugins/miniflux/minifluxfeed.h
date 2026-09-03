@@ -32,7 +32,7 @@ protected:
 
 private:
     int m_minifluxFeedId = 0;
-    MinifluxClient *m_client = nullptr; // not owned
+    MinifluxClient *const m_client; // not owned
 };
 
 } // namespace Akregator

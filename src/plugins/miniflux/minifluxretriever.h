@@ -38,7 +38,7 @@ private:
     void fetchPage(int offset);
     static QByteArray entriesToRss(const QString &feedTitle, const QString &feedUrl, const QList<MinifluxEntry> &entries);
 
-    MinifluxClient *m_client = nullptr;
+    MinifluxClient *const m_client;
     int m_feedId = 0;
     QString m_feedTitle;
     QList<MinifluxEntry> m_allEntries;
