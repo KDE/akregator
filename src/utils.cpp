@@ -28,6 +28,6 @@ QString Utils::stripTags(QString str)
 
 uint Utils::calcHash(const QString &str)
 {
-    const QByteArray array = str.toLatin1();
+    const QByteArray array = str.toUtf8();
     return qChecksum(QByteArray(array.constData(), array.size()));
 }
