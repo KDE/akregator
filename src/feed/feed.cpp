@@ -280,16 +280,12 @@ void Feed::loadArticles()
 
 void Feed::recalcUnreadCount()
 {
-    QList<Article> tarticles = articles();
-    QList<Article>::ConstIterator it;
-    QList<Article>::ConstIterator en = tarticles.constEnd();
-
     const int oldUnread = d->m_archive->unread();
 
     int unread = 0;
 
-    for (it = tarticles.constBegin(); it != en; ++it) {
-        if (!(*it).isDeleted() && (*it).status() != Read) {
+    for (const Article &art : std::as_const(d->articles)) {
+        if (!art.isDeleted() && art.status() != Read) {
             ++unread;
         }
     }
