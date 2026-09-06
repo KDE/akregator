@@ -9,8 +9,6 @@
 
 #include "articleviewer-ng/webengine/articleviewerwebengine.h"
 
-using std::remove;
-
 using namespace Akregator;
 
 URLHandlerWebEngineManager *URLHandlerWebEngineManager::self = nullptr;
@@ -45,7 +43,7 @@ void URLHandlerWebEngineManager::registerHandler(const URLHandlerWebEngine *hand
 void URLHandlerWebEngineManager::unregisterHandler(const URLHandlerWebEngine *handler)
 {
     // don't delete them, only remove them from the list!
-    mHandlers.erase(remove(mHandlers.begin(), mHandlers.end(), handler), mHandlers.end());
+    mHandlers.erase(std::remove(mHandlers.begin(), mHandlers.end(), handler), mHandlers.end());
 }
 
 bool URLHandlerWebEngineManager::handleClick(const QUrl &url, ArticleViewerWebEngine *w) const
