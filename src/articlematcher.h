@@ -12,7 +12,6 @@
 #include <QList>
 #include <QString>
 #include <QVariant>
-#include <utility>
 
 class KConfigGroup;
 

@@ -98,7 +98,7 @@ Colors GrantleeViewFormatter::getAppColor() const
     return values;
 }
 
-QString lighterColor(const QString &inputColor, int factor)
+static QString lighterColor(const QString &inputColor, int factor)
 {
     QColor color(inputColor);
     color = color.lighter(factor);

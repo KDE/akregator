@@ -10,8 +10,6 @@
 
 #include <QUrl>
 
-#include <utility>
-
 #include "akregator_export.h"
 
 namespace Akregator
