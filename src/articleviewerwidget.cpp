@@ -133,6 +133,7 @@ void ArticleViewerWidget::endWriting()
 
 void ArticleViewerWidget::slotShowSummary(TreeNode *node)
 {
+    const bool needsReconnect = (node != m_node) || (m_viewMode != SummaryView);
     m_viewMode = SummaryView;
 
     if (!node) {
@@ -140,7 +141,7 @@ void ArticleViewerWidget::slotShowSummary(TreeNode *node)
         return;
     }
 
-    if (node != m_node) {
+    if (needsReconnect) {
         disconnectFromNode(m_node);
         connectToNode(node);
         m_node = node;
@@ -278,17 +279,21 @@ void ArticleViewerWidget::slotClear()
 
 void ArticleViewerWidget::showNode(TreeNode *node)
 {
+    const bool needsReconnect = (node != m_node) || (m_viewMode != CombinedView);
     m_viewMode = CombinedView;
-
-    if (node != m_node) {
-        disconnectFromNode(m_node);
+    if (!node) {
+        slotClear();
+        return;
     }
 
-    connectToNode(node);
+    if (needsReconnect) {
+        disconnectFromNode(m_node);
+        connectToNode(node);
+        m_node = node;
+    }
 
     m_articles.clear();
     m_article = Article();
-    m_node = node;
 
     delete m_listJob;
 
