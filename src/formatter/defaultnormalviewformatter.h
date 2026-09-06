@@ -25,7 +25,6 @@ public:
     void updateCss() override;
 
 private:
-    QString m_DefaultThemePath;
     class SummaryVisitor;
     std::unique_ptr<SummaryVisitor> m_summaryVisitor;
     std::unique_ptr<GrantleeViewFormatter> mGrantleeViewFormatter;

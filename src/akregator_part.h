@@ -163,8 +163,6 @@ private: // methods
 private: // attributes
     void initializeTrayIcon();
 
-    class ApplyFiltersInterceptor;
-    ApplyFiltersInterceptor *m_applyFiltersInterceptor = nullptr;
     QString m_standardFeedList;
     bool m_standardListLoaded = false;
     bool m_shuttingDown = false;

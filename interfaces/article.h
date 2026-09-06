@@ -109,10 +109,6 @@ public:
 
     QDateTime pubDate() const;
 
-    QUrl commentsLink() const;
-
-    int comments() const;
-
     QString authorName() const;
     QString authorUri() const;
     QString authorEMail() const;

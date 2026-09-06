@@ -84,7 +84,6 @@ private:
     Akregator::ArticleLister *m_articleLister = nullptr;
     Akregator::SingleArticleDisplay *m_singleDisplay = nullptr;
     Akregator::FilterSubscriptionProxyModel *const m_subscriptionModel;
-    QAbstractItemModel *m_currentModel = nullptr;
     Akregator::FolderExpansionHandler *m_folderExpansionHandler = nullptr;
     Akregator::ArticleModel *m_articleModel = nullptr;
     QPointer<TreeNode> m_selectedSubscription;

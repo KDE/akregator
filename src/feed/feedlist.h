@@ -84,12 +84,6 @@ public:
     [[nodiscard]] QList<const TreeNode *> findByTitle(const QString &title) const;
     [[nodiscard]] QList<TreeNode *> findByTitle(const QString &title);
 
-    /** returns the title of the feed list (as used in the OPML document) */
-    [[nodiscard]] QString title() const;
-
-    /** sets the title of the feed list */
-    void setTitle(const QString &name);
-
     /**
      * returns all feeds in this list
      */
