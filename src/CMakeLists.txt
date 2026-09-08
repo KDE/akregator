@@ -69,6 +69,25 @@ install(
 
 add_library(akregatorprivate)
 
+# precompiled headers support
+if(ENABLE_PCH)
+    target_precompile_headers(
+        akregatorprivate
+        PRIVATE
+            <QObject>
+            <QString>
+            <QStringList>
+            <QUrl>
+            <QList>
+            <QTimer>
+            <QPointer>
+            <QSharedPointer>
+            <QDateTime>
+            <KLocalizedString>
+            <memory>
+    )
+endif()
+
 target_sources(
     akregatorprivate
     PRIVATE
@@ -183,6 +202,17 @@ endif()
 
 target_include_directories(akregatorprivate PRIVATE storage/metakit/include)
 
+# metakit is third party legacy code, it doesn't benefit from the Qt/KF precompiled headers
+if(ENABLE_PCH)
+    file(GLOB akregator_metakit_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/storage/metakit/src/*.cpp")
+    set_source_files_properties(
+        ${akregator_metakit_SRCS}
+        PROPERTIES
+            SKIP_PRECOMPILE_HEADERS
+                ON
+    )
+endif()
+
 qt_add_resources(akregatorprivate "html"
     FILES
         formatter/html/combinedview.html
@@ -258,6 +288,27 @@ install(
 
 ########### next target ###############
 add_library(akregatorpart MODULE)
+
+# precompiled headers support
+if(ENABLE_PCH)
+    target_precompile_headers(
+        akregatorpart
+        PRIVATE
+            <QObject>
+            <QString>
+            <QStringList>
+            <QUrl>
+            <QList>
+            <QWidget>
+            <QAction>
+            <QIcon>
+            <QMenu>
+            <QVBoxLayout>
+            <KLocalizedString>
+            <memory>
+    )
+endif()
+
 set(akregator_adaptator_SRCS)
 qt_add_dbus_adaptor(akregator_adaptator_SRCS org.kde.akregator.part.xml akregator_part.h Akregator::Part)
 
