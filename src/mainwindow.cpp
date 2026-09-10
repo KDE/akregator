@@ -107,6 +107,8 @@ void MainWindow::slotFullScreen(bool t)
     } else {
         QWidget *w = mb->cornerWidget(Qt::TopRightCorner);
         if (w) {
+            mb->setCornerWidget(nullptr, Qt::TopRightCorner);
+            w->hide();
             w->deleteLater();
         }
     }
