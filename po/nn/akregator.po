@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-09-02 00:44+0000\n"
+"POT-Creation-Date: 2026-09-11 00:46+0000\n"
 "PO-Revision-Date: 2023-08-24 21:37+0200\n"
 "Last-Translator: Karl Ove Hufthammer <karl@huftis.org>\n"
 "Language-Team: Norwegian Nynorsk <l10n-no@nuug.no>\n"
@@ -2192,7 +2192,7 @@ msgstr "Slett artikkel"
 msgid "Networking is available now."
 msgstr "Nettverket er no tilgjengeleg"
 
-#: src/mainwindow.cpp:124
+#: src/mainwindow.cpp:126
 #, kde-format
 msgid ""
 "<qt>This will hide the menu bar completely. You can show it again by typing "
@@ -2201,13 +2201,13 @@ msgstr ""
 "<qt>Dette vil gøyma menylinja heilt. Du kan visa ho att ved å trykkja %1.</"
 "qt>"
 
-#: src/mainwindow.cpp:127
+#: src/mainwindow.cpp:129
 #, fuzzy, kde-format
 msgctxt "@title:window"
 msgid "Hide menu bar"
 msgstr "Gøym menylinja"
 
-#: src/mainwindow.cpp:160
+#: src/mainwindow.cpp:162
 #, kde-format
 msgid ""
 "Could not find the Akregator part; please check your installation.\n"

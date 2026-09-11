@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-09-02 00:44+0000\n"
+"POT-Creation-Date: 2026-09-11 00:46+0000\n"
 "PO-Revision-Date: 2024-04-23 19:24\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -2149,20 +2149,20 @@ msgstr "删除文章"
 msgid "Networking is available now."
 msgstr "网络现在可用。"
 
-#: src/mainwindow.cpp:124
+#: src/mainwindow.cpp:126
 #, kde-format
 msgid ""
 "<qt>This will hide the menu bar completely. You can show it again by typing "
 "%1.</qt>"
 msgstr "<qt>这将完全隐藏菜单栏。按 %1 可以重新显示。</qt>"
 
-#: src/mainwindow.cpp:127
+#: src/mainwindow.cpp:129
 #, kde-format
 msgctxt "@title:window"
 msgid "Hide menu bar"
 msgstr "隐藏菜单栏"
 
-#: src/mainwindow.cpp:160
+#: src/mainwindow.cpp:162
 #, kde-format
 msgid ""
 "Could not find the Akregator part; please check your installation.\n"

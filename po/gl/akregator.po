@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-09-02 00:44+0000\n"
+"POT-Creation-Date: 2026-09-11 00:46+0000\n"
 "PO-Revision-Date: 2025-01-25 11:55+0100\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Proxecto Trasno (proxecto@trasno.gal)\n"
@@ -2210,7 +2210,7 @@ msgstr "Eliminar o artigo"
 msgid "Networking is available now."
 msgstr "A rede está dispoñíbel agora."
 
-#: src/mainwindow.cpp:124
+#: src/mainwindow.cpp:126
 #, kde-format
 msgid ""
 "<qt>This will hide the menu bar completely. You can show it again by typing "
@@ -2218,13 +2218,13 @@ msgid ""
 msgstr ""
 "<qt>Isto agocha a barra de menú. Para amosala de novo, escriba %1.</qt>"
 
-#: src/mainwindow.cpp:127
+#: src/mainwindow.cpp:129
 #, kde-format
 msgctxt "@title:window"
 msgid "Hide menu bar"
 msgstr "Agochar a barra de menú"
 
-#: src/mainwindow.cpp:160
+#: src/mainwindow.cpp:162
 #, kde-format
 msgid ""
 "Could not find the Akregator part; please check your installation.\n"
