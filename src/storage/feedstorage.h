@@ -68,9 +68,6 @@ public:
     [[nodiscard]] QString authorUri(const QString &guid) const;
     [[nodiscard]] QString authorEMail(const QString &guid) const;
 
-    void setCategories(const QString &, const QStringList &categories);
-    [[nodiscard]] QStringList categories(const QString &guid) const;
-
     void close();
     void commit();
     void rollback();

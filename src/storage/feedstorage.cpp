@@ -533,15 +533,5 @@ void FeedStorage::enclosure(const QString &guid, bool &hasEnclosure, QString &ur
     length = d->pEnclosureLength(row);
 }
 
-void FeedStorage::setCategories(const QString &, const QStringList &categories)
-{
-    // TODO
-}
-
-QStringList FeedStorage::categories(const QString &guid) const
-{
-    // TODO
-    return {};
-}
 } // namespace Backend
 } // namespace Akregator
