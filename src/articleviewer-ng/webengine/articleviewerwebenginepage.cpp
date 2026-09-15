@@ -54,7 +54,7 @@ bool ArticleViewerWebEnginePage::acceptNavigationRequest(const QUrl &url, Naviga
     return true;
 }
 
-void ArticleViewerWebEnginePage::slotFeaturePermissionRequested(QWebEnginePermission feature)
+void ArticleViewerWebEnginePage::slotFeaturePermissionRequested(const QWebEnginePermission &feature)
 {
     // Denied all permissions.
     feature.deny();

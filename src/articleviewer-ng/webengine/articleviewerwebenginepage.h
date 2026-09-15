@@ -20,7 +20,7 @@ protected:
     bool acceptNavigationRequest(const QUrl &url, NavigationType type, bool isMainFrame) override;
 
 private:
-    void slotFeaturePermissionRequested(QWebEnginePermission feature);
+    void slotFeaturePermissionRequested(const QWebEnginePermission &feature);
     void onLoadProgress();
 };
 }
