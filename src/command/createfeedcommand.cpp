@@ -116,6 +116,8 @@ void CreateFeedCommandPrivate::doCreate()
         if (m_parentFolder) {
             m_parentFolder->insertChild(feed, m_after);
             m_subscriptionListView->ensureNodeVisible(feed);
+        } else {
+            delete feed;
         }
     }
 
