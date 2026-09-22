@@ -26,7 +26,6 @@ MinifluxAccountWidget::MinifluxAccountWidget(MinifluxPlugin *plugin, QWidget *pa
     , m_testButton(new QPushButton(i18nc("@action:button", "Test Connection"), this))
 {
     auto mainLayout = new QVBoxLayout(this);
-    mainLayout->setContentsMargins({});
 
     auto formLayout = new QFormLayout;
     m_accountNameEdit->setPlaceholderText(i18n("My Miniflux"));

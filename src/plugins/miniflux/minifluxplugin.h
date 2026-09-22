@@ -32,11 +32,9 @@ public:
      *  account. @return false if the input is rejected (e.g. duplicate name). */
     bool createAccountFromWizard(const QString &accountName, const QUrl &serverUrl, const QString &apiToken);
 
-private Q_SLOTS:
+private:
     void onAccountDeleted(MinifluxAccount *account);
     void onFeedListDestroyed();
-
-private:
     void loadSavedAccounts();
     void createAccount(const QString &accountName, const QUrl &serverUrl, const QString &apiToken);
     void editAccount(MinifluxAccount *account);

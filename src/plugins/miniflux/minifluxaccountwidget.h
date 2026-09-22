@@ -41,10 +41,9 @@ public:
     void setServerUrl(const QUrl &serverUrl);
     void setApiToken(const QString &apiToken);
 
-private Q_SLOTS:
+private:
     void slotTestConnection();
 
-private:
     MinifluxPlugin *const m_plugin;
     QLineEdit *const m_accountNameEdit;
     QLineEdit *const m_serverUrlEdit;

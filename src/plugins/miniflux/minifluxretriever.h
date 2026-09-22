@@ -30,11 +30,9 @@ public:
     [[nodiscard]] int errorCode() const override;
     void abort() override;
 
-private Q_SLOTS:
+private:
     void onEntriesFetched(int feedId, const QList<MinifluxEntry> &entries, int total);
     void onEntriesFetchError(int feedId, const QString &message);
-
-private:
     void fetchPage(int offset);
     static QByteArray entriesToRss(const QString &feedTitle, const QString &feedUrl, const QList<MinifluxEntry> &entries);
 

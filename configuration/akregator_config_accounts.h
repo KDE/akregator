@@ -27,13 +27,11 @@ public:
 
     void load() override;
 
-private Q_SLOTS:
+private:
     void slotAddAccount();
     void slotModifyAccount();
     void slotRemoveAccount();
     void slotSelectionChanged();
-
-private:
     void fillAccountsList();
     [[nodiscard]] AccountPlugin *selectedPlugin() const;
 

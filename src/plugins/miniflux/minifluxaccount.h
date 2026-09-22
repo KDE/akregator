@@ -60,14 +60,12 @@ Q_SIGNALS:
     /** Emitted when the user deletes the account's root folder from the tree. */
     void accountDeleted(MinifluxAccount *account);
 
-private Q_SLOTS:
+private:
     void onSyncJobFinished(KJob *job);
     void onPollTimer();
     void onRootFolderDeleted();
     void onChildRemoved(Akregator::Folder *parent, Akregator::TreeNode *node);
     void onFeedListDestroyed();
-
-private:
     void populateFeedTree(const QList<MinifluxCategory> &categories, const QList<MinifluxFeedData> &feeds);
     void watchExistingFeeds(Folder *folder);
     void removeFromConfig();

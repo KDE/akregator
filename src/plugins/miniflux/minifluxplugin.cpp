@@ -106,6 +106,7 @@ bool MinifluxPlugin::createAccountFromWizard(const QString &accountName, const Q
 QStringList MinifluxPlugin::accountNames() const
 {
     QStringList names;
+    names.reserve(m_accounts.count());
     for (const QPointer<MinifluxAccount> &account : std::as_const(m_accounts)) {
         if (account) {
             names.append(account->accountName());

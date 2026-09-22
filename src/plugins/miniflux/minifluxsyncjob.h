@@ -29,12 +29,11 @@ public:
     [[nodiscard]] QList<MinifluxCategory> categories() const;
     [[nodiscard]] QList<MinifluxFeedData> feeds() const;
 
-private Q_SLOTS:
+private:
     void onCategoriesFetched(const QList<MinifluxCategory> &categories);
     void onFeedsFetched(const QList<MinifluxFeedData> &feeds);
     void onNetworkError(const QString &message);
 
-private:
     MinifluxClient *const m_client;
     QList<MinifluxCategory> m_categories;
     QList<MinifluxFeedData> m_feeds;

@@ -34,11 +34,9 @@ public:
     /** Stop watching this feed. */
     void unwatchFeed(Feed *feed);
 
-private Q_SLOTS:
+private:
     void onArticlesUpdated(Akregator::TreeNode *node, const QList<Akregator::Article> &articles);
     void flushPendingChanges();
-
-private:
     static qint64 entryIdFromGuid(const QString &guid);
 
     MinifluxClient *const m_client;

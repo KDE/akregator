@@ -84,7 +84,7 @@ void MinifluxClient::fetchCategories()
         const QJsonArray arr = QJsonDocument::fromJson(reply->readAll()).array();
         QList<MinifluxCategory> categories;
         categories.reserve(arr.size());
-        for (const QJsonValue &v : arr) {
+        for (const auto &v : arr) {
             const QJsonObject obj = v.toObject();
             MinifluxCategory cat;
             cat.id = obj.value(QLatin1StringView("id")).toInt();
@@ -107,7 +107,7 @@ void MinifluxClient::fetchFeeds()
         const QJsonArray arr = QJsonDocument::fromJson(reply->readAll()).array();
         QList<MinifluxFeedData> feeds;
         feeds.reserve(arr.size());
-        for (const QJsonValue &v : arr) {
+        for (const auto &v : arr) {
             const QJsonObject obj = v.toObject();
             MinifluxFeedData feed;
             feed.id = obj.value(QLatin1StringView("id")).toInt();
@@ -160,7 +160,7 @@ void MinifluxClient::fetchEntriesForFeed(int feedId, const QString &status, int 
         const QJsonArray arr = root.value(QLatin1StringView("entries")).toArray();
         QList<MinifluxEntry> entries;
         entries.reserve(arr.size());
-        for (const QJsonValue &v : arr) {
+        for (const auto &v : arr) {
             entries.append(parseEntry(v.toObject()));
         }
         Q_EMIT entriesFetched(feedId, entries, total);
@@ -190,7 +190,7 @@ void MinifluxClient::fetchAllEntries(const QString &status, int offset, qint64 s
         const QJsonArray arr = root.value(QLatin1StringView("entries")).toArray();
         QList<MinifluxEntry> entries;
         entries.reserve(arr.size());
-        for (const QJsonValue &v : arr) {
+        for (const auto &v : arr) {
             entries.append(parseEntry(v.toObject()));
         }
         Q_EMIT allEntriesFetched(entries, total, offset);
