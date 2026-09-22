@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-09-11 00:46+0000\n"
+"POT-Creation-Date: 2026-09-22 16:01+0000\n"
 "PO-Revision-Date: 2026-09-02 15:28+0200\n"
 "Last-Translator: giovanni <g.sora@tiscali.it>\n"
 "Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
@@ -1776,12 +1776,12 @@ msgstr "Verifica URL de Phishing"
 msgid "The url %1 is not valid."
 msgstr "Leurl%1 non es valide."
 
-#: src/command/createfoldercommand.cpp:47
+#: src/command/createfoldercommand.cpp:49
 #, kde-format
 msgid "Add Folder"
 msgstr "Adde Dossier"
 
-#: src/command/createfoldercommand.cpp:47
+#: src/command/createfoldercommand.cpp:49
 #, kde-format
 msgid "Folder name:"
 msgstr "Nomine de dossier:"

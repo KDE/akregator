@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-09-11 00:46+0000\n"
+"POT-Creation-Date: 2026-09-22 16:01+0000\n"
 "PO-Revision-Date: 2018-01-06 09:21+0100\n"
 "Last-Translator: Chusslove Illich <caslav.ilic@gmx.net>\n"
 "Language-Team: Serbian <kde-i18n-sr@kde.org>\n"
@@ -1863,12 +1863,12 @@ msgid "The url %1 is not valid."
 msgstr "УРЛ %1 није добар."
 
 # >> @title:window
-#: src/command/createfoldercommand.cpp:47
+#: src/command/createfoldercommand.cpp:49
 #, kde-format
 msgid "Add Folder"
 msgstr "Додавање фасцикле"
 
-#: src/command/createfoldercommand.cpp:47
+#: src/command/createfoldercommand.cpp:49
 #, kde-format
 msgid "Folder name:"
 msgstr "Име фасцикле:"

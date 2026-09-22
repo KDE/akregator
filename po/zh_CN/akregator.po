@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-09-11 00:46+0000\n"
+"POT-Creation-Date: 2026-09-22 16:01+0000\n"
 "PO-Revision-Date: 2024-04-23 19:24\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -1742,12 +1742,12 @@ msgstr "检查钓鱼链接"
 msgid "The url %1 is not valid."
 msgstr "链接 %1 无效。"
 
-#: src/command/createfoldercommand.cpp:47
+#: src/command/createfoldercommand.cpp:49
 #, kde-format
 msgid "Add Folder"
 msgstr "添加文件夹"
 
-#: src/command/createfoldercommand.cpp:47
+#: src/command/createfoldercommand.cpp:49
 #, kde-format
 msgid "Folder name:"
 msgstr "文件夹名称："

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: KDE 4.3\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-09-11 00:46+0000\n"
+"POT-Creation-Date: 2026-09-22 16:01+0000\n"
 "PO-Revision-Date: 2026-06-11 22:34+0200\n"
 "Last-Translator: Kristof Kiszel <ulysses@fsf.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -1775,12 +1775,12 @@ msgstr "Adathalász URL ellenőrzése"
 msgid "The url %1 is not valid."
 msgstr "A(z) %1 URL-cím érvénytelen."
 
-#: src/command/createfoldercommand.cpp:47
+#: src/command/createfoldercommand.cpp:49
 #, kde-format
 msgid "Add Folder"
 msgstr "Mappa hozzáadása"
 
-#: src/command/createfoldercommand.cpp:47
+#: src/command/createfoldercommand.cpp:49
 #, kde-format
 msgid "Folder name:"
 msgstr "Mappanév:"

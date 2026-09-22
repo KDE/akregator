@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-09-11 00:46+0000\n"
+"POT-Creation-Date: 2026-09-22 16:01+0000\n"
 "PO-Revision-Date: 2025-01-25 11:55+0100\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Proxecto Trasno (proxecto@trasno.gal)\n"
@@ -1778,12 +1778,12 @@ msgstr "Comprobar o URL de estafa"
 msgid "The url %1 is not valid."
 msgstr "O URL %1 non é válido."
 
-#: src/command/createfoldercommand.cpp:47
+#: src/command/createfoldercommand.cpp:49
 #, kde-format
 msgid "Add Folder"
 msgstr "Engadir un cartafol"
 
-#: src/command/createfoldercommand.cpp:47
+#: src/command/createfoldercommand.cpp:49
 #, kde-format
 msgid "Folder name:"
 msgstr "Nome do cartafol:"
