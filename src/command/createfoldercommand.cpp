@@ -41,8 +41,10 @@ CreateFolderCommandPrivate::CreateFolderCommandPrivate(CreateFolderCommand *qq)
 
 void CreateFolderCommandPrivate::doCreate()
 {
-    Q_ASSERT(m_rootFolder);
-    Q_ASSERT(m_subscriptionListView);
+    if (!m_rootFolder || !m_subscriptionListView) {
+        q->done();
+        return;
+    }
     bool ok;
     const QString name = QInputDialog::getText(q->parentWidget(), i18n("Add Folder"), i18n("Folder name:"), QLineEdit::Normal, QString(), &ok);
     if (!ok || name.trimmed().isEmpty()) {
