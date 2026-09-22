@@ -59,7 +59,7 @@ void LoadFeedListCommandPrivate::handleDocument(const QDomDocument &doc)
 {
     QSharedPointer<FeedList> feedList(new FeedList(storage));
     if (!feedList->readFromOpml(doc)) {
-        bool backupCreated;
+        bool backupCreated = false;
         const QString backupFile = createBackup(fileName, &backupCreated);
         const QString msg = backupCreated ? i18n(
                                                 "<qt>The standard feed list is corrupted (invalid OPML). "
