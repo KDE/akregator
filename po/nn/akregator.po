@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-09-11 00:46+0000\n"
+"POT-Creation-Date: 2026-09-22 16:01+0000\n"
 "PO-Revision-Date: 2023-08-24 21:37+0200\n"
 "Last-Translator: Karl Ove Hufthammer <karl@huftis.org>\n"
 "Language-Team: Norwegian Nynorsk <l10n-no@nuug.no>\n"
@@ -1232,7 +1232,6 @@ msgstr "&Merk alle kjelder som lesne"
 
 #: src/actions/actionmanagerimpl.cpp:352
 #, fuzzy, kde-format
-#| msgid "Copy Link Address"
 msgctxt "@action"
 msgid "Copy Article Link Address"
 msgstr "Kopier lenkjeadresse"
@@ -1453,7 +1452,6 @@ msgstr "&Finn i melding …"
 
 #: src/actions/actionmanagerimpl.cpp:628
 #, fuzzy, kde-format
-#| msgid "&Copy Email Address"
 msgctxt "@action"
 msgid "Copy Tab Address"
 msgstr "&Kopier e-postadresse"
@@ -1764,12 +1762,12 @@ msgstr "Sjekk adresse etter nettsvindel"
 msgid "The url %1 is not valid."
 msgstr "Adressa %1 er ugyldig."
 
-#: src/command/createfoldercommand.cpp:47
+#: src/command/createfoldercommand.cpp:49
 #, kde-format
 msgid "Add Folder"
 msgstr "Legg til mappe"
 
-#: src/command/createfoldercommand.cpp:47
+#: src/command/createfoldercommand.cpp:49
 #, kde-format
 msgid "Folder name:"
 msgstr "Mappenamn:"
@@ -2343,14 +2341,12 @@ msgstr "Kopla frå fane"
 
 #: src/tabwidget.cpp:132
 #, fuzzy, kde-format
-#| msgid "Reload All Tabs"
 msgctxt "@action:inmenu"
 msgid "Reload Tab"
 msgstr "Last alle faner på nytt"
 
 #: src/tabwidget.cpp:135
 #, fuzzy, kde-format
-#| msgid "&Copy Email Address"
 msgctxt "@action:inmenu"
 msgid "Copy Tab Address"
 msgstr "&Kopier e-postadresse"

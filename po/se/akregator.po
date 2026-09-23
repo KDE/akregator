@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-09-11 00:46+0000\n"
+"POT-Creation-Date: 2026-09-22 16:01+0000\n"
 "PO-Revision-Date: 2010-03-14 01:57+0100\n"
 "Last-Translator: Børre Gaup <boerre@skolelinux.no>\n"
 "Language-Team: Northern Sami <l10n-no@nuug.no>\n"
@@ -1227,7 +1227,6 @@ msgstr "Merke buot gáldu &lohkon"
 
 #: src/actions/actionmanagerimpl.cpp:352
 #, fuzzy, kde-format
-#| msgid "Copy Link Address"
 msgctxt "@action"
 msgid "Copy Article Link Address"
 msgstr "Máŋge liŋkačujuhusa"
@@ -1448,7 +1447,6 @@ msgstr "&Oza reivves …"
 
 #: src/actions/actionmanagerimpl.cpp:628
 #, fuzzy, kde-format
-#| msgid "&Copy Email Address"
 msgctxt "@action"
 msgid "Copy Tab Address"
 msgstr "&Máŋge e-boastačujuhusa"
@@ -1752,12 +1750,12 @@ msgstr ""
 msgid "The url %1 is not valid."
 msgstr ""
 
-#: src/command/createfoldercommand.cpp:47
+#: src/command/createfoldercommand.cpp:49
 #, kde-format
 msgid "Add Folder"
 msgstr "Lasit máhpa"
 
-#: src/command/createfoldercommand.cpp:47
+#: src/command/createfoldercommand.cpp:49
 #, kde-format
 msgid "Folder name:"
 msgstr "Máhppanamma:"
@@ -2325,14 +2323,12 @@ msgstr ""
 
 #: src/tabwidget.cpp:132
 #, fuzzy, kde-format
-#| msgid "Close Tab"
 msgctxt "@action:inmenu"
 msgid "Reload Tab"
 msgstr "Gidde gilkora"
 
 #: src/tabwidget.cpp:135
 #, fuzzy, kde-format
-#| msgid "&Copy Email Address"
 msgctxt "@action:inmenu"
 msgid "Copy Tab Address"
 msgstr "&Máŋge e-boastačujuhusa"
