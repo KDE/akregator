@@ -35,12 +35,14 @@ MinifluxAccount::MinifluxAccount(const QString &name,
     , m_client(new MinifluxClient(serverUrl, apiToken, this))
     , m_statusSync(new MinifluxStatusSync(m_client, this))
 {
-    static constexpr int msPerMinute = 60 * 1000;
-    const int intervalMinutes = Settings::autoFetchInterval();
-    if (intervalMinutes > 0) {
-        m_pollTimer.setInterval(intervalMinutes * msPerMinute);
-        m_pollTimer.setSingleShot(false);
-        connect(&m_pollTimer, &QTimer::timeout, this, &MinifluxAccount::onPollTimer);
+    if (Settings::useIntervalFetch()) {
+        static constexpr int msPerMinute = 60 * 1000;
+        const int intervalMinutes = Settings::autoFetchInterval();
+        if (intervalMinutes > 0) {
+            m_pollTimer.setInterval(intervalMinutes * msPerMinute);
+            m_pollTimer.setSingleShot(false);
+            connect(&m_pollTimer, &QTimer::timeout, this, &MinifluxAccount::onPollTimer);
+        }
     }
 }
 
