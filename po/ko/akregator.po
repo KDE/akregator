@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdepim\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-09-22 16:01+0000\n"
+"POT-Creation-Date: 2026-09-25 00:46+0000\n"
 "PO-Revision-Date: 2026-06-06 11:42+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -96,6 +96,54 @@ msgid ""
 "configure dialog)."
 msgstr ""
 "<b>메모:</b> 보안상의 이유로 외부 참조를 차단했습니다(설정 대화 상자 참조)."
+
+#: configuration/akregator_config_accounts.cpp:39
+#, kde-format
+msgctxt "@title:column"
+msgid "Account"
+msgstr ""
+
+#: configuration/akregator_config_accounts.cpp:39
+#, fuzzy, kde-format
+#| msgid "Type"
+msgctxt "@title:column"
+msgid "Type"
+msgstr "종류"
+
+#: configuration/akregator_config_accounts.cpp:45
+#, kde-format
+msgctxt "@action:button"
+msgid "Add…"
+msgstr ""
+
+#: configuration/akregator_config_accounts.cpp:46
+#, fuzzy, kde-format
+#| msgid "Modify..."
+msgctxt "@action:button"
+msgid "Modify…"
+msgstr "수정..."
+
+#: configuration/akregator_config_accounts.cpp:47
+#, fuzzy, kde-format
+#| msgid "Remove"
+msgctxt "@action:button"
+msgid "Remove"
+msgstr "삭제"
+
+#: configuration/akregator_config_accounts.cpp:134
+#, kde-format
+msgid ""
+"Do you really want to remove the account \"%1\"?\n"
+"This removes the account's folder from the feed tree and deletes its stored "
+"credentials; the server is not affected."
+msgstr ""
+
+#: configuration/akregator_config_accounts.cpp:138
+#, fuzzy, kde-format
+#| msgid "Remove nothing"
+msgctxt "@title:window"
+msgid "Remove Account"
+msgstr "아무것도 지우지 않기"
 
 #: configuration/akregator_config_archive.cpp:37
 #, kde-format
@@ -267,7 +315,7 @@ msgstr "마우스 왼쪽 단추 클릭:"
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
 #: configuration/ui/settings_browser.ui:28
 #: configuration/ui/settings_browser.ui:54
-#: src/actions/actionmanagerimpl.cpp:335
+#: src/actions/actionmanagerimpl.cpp:348
 #, kde-format
 msgid "Open in Tab"
 msgstr "탭으로 열기"
@@ -276,7 +324,7 @@ msgstr "탭으로 열기"
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
 #: configuration/ui/settings_browser.ui:33
 #: configuration/ui/settings_browser.ui:59
-#: src/actions/actionmanagerimpl.cpp:341
+#: src/actions/actionmanagerimpl.cpp:354
 #, kde-format
 msgid "Open in Background Tab"
 msgstr "배경 탭으로 열기"
@@ -285,7 +333,7 @@ msgstr "배경 탭으로 열기"
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
 #: configuration/ui/settings_browser.ui:38
 #: configuration/ui/settings_browser.ui:64
-#: src/actions/actionmanagerimpl.cpp:347
+#: src/actions/actionmanagerimpl.cpp:360
 #, kde-format
 msgid "Open in External Browser"
 msgstr "외부 브라우저로 열기"
@@ -529,7 +577,7 @@ msgid "Auto-Expand folders with unread articles"
 msgstr "읽지 않은 글이 있는 피드가 있는 폴더 자동으로 확장"
 
 #. i18n: ectx: label, entry, group (View)
-#: interfaces/akregator.kcfg:31 src/actions/actionmanagerimpl.cpp:329
+#: interfaces/akregator.kcfg:31 src/actions/actionmanagerimpl.cpp:342
 #, kde-format
 msgid "Show Quick Filter"
 msgstr "빠른 필터 표시"
@@ -917,7 +965,7 @@ msgid "Resets the quick filter when changing feeds."
 msgstr "피드를 바꿀 때 빠른 필터를 초기화합니다."
 
 #: kontactplugin/akregator_plugin.cpp:29 src/aboutdata.cpp:21
-#: src/akregator_part.cpp:128
+#: src/akregator_part.cpp:129
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:148
 #: src/mainwidget.cpp:135 src/mainwidget.cpp:1329 src/trayicon.cpp:40
 #: src/trayicon.cpp:53
@@ -1116,343 +1164,350 @@ msgstr "Philipp Droessler"
 msgid "Gentoo Ebuild"
 msgstr "젠투 이빌드"
 
-#: src/actions/actionmanagerimpl.cpp:68 src/actions/actionmanagerimpl.cpp:298
+#: src/actions/actionmanagerimpl.cpp:71 src/actions/actionmanagerimpl.cpp:311
 #, kde-format
 msgid "&Fetch Feed"
 msgstr "피드 가져오기(&F)"
 
-#: src/actions/actionmanagerimpl.cpp:69 src/actions/actionmanagerimpl.cpp:254
+#: src/actions/actionmanagerimpl.cpp:72 src/actions/actionmanagerimpl.cpp:267
 #, kde-format
 msgid "&Delete Feed"
 msgstr "피드 삭제(&D)"
 
-#: src/actions/actionmanagerimpl.cpp:70 src/actions/actionmanagerimpl.cpp:260
+#: src/actions/actionmanagerimpl.cpp:73 src/actions/actionmanagerimpl.cpp:273
 #, kde-format
 msgid "&Edit Feed…"
 msgstr "피드 편집(&E)…"
 
-#: src/actions/actionmanagerimpl.cpp:71 src/actions/actionmanagerimpl.cpp:317
+#: src/actions/actionmanagerimpl.cpp:74 src/actions/actionmanagerimpl.cpp:330
 #, kde-format
 msgid "&Mark Feed as Read"
 msgstr "피드를 읽은 것으로 표시(&M)"
 
-#: src/actions/actionmanagerimpl.cpp:87
+#: src/actions/actionmanagerimpl.cpp:90
 #, kde-format
 msgid "&Fetch Feeds"
 msgstr "피드 가져오기(&F)"
 
-#: src/actions/actionmanagerimpl.cpp:88
+#: src/actions/actionmanagerimpl.cpp:91
 #, kde-format
 msgid "&Delete Folder"
 msgstr "폴더 삭제(&D)"
 
-#: src/actions/actionmanagerimpl.cpp:89
+#: src/actions/actionmanagerimpl.cpp:92
 #, kde-format
 msgid "&Rename Folder"
 msgstr "폴더 이름 바꾸기(&R)"
 
-#: src/actions/actionmanagerimpl.cpp:90
+#: src/actions/actionmanagerimpl.cpp:93
 #, kde-format
 msgid "&Mark Feeds as Read"
 msgstr "피드를 읽은 것으로 표시(&M)"
 
-#: src/actions/actionmanagerimpl.cpp:202
+#: src/actions/actionmanagerimpl.cpp:205
 #, kde-format
 msgid "&Import Feeds…"
 msgstr "피드 가져오기(&I)…"
 
-#: src/actions/actionmanagerimpl.cpp:206
+#: src/actions/actionmanagerimpl.cpp:209
 #, kde-format
 msgid "&Export Feeds…"
 msgstr "피드 내보내기(&E)…"
 
-#: src/actions/actionmanagerimpl.cpp:211
+#: src/actions/actionmanagerimpl.cpp:215
+#, fuzzy, kde-format
+#| msgid "Modify Online Reader Account"
+msgctxt "@action"
+msgid "Add Online Account…"
+msgstr "온라인 리더 계정 수정"
+
+#: src/actions/actionmanagerimpl.cpp:224
 #, kde-format
 msgid "&Configure Akregator…"
 msgstr "Akregator 설정(&C)…"
 
-#: src/actions/actionmanagerimpl.cpp:230
+#: src/actions/actionmanagerimpl.cpp:243
 #, kde-format
 msgid "&Open Homepage"
 msgstr "홈페이지 열기(&O)"
 
-#: src/actions/actionmanagerimpl.cpp:236
+#: src/actions/actionmanagerimpl.cpp:249
 #, kde-format
 msgid "Reload All Tabs"
 msgstr "모든 탭 새로 고침"
 
-#: src/actions/actionmanagerimpl.cpp:242
+#: src/actions/actionmanagerimpl.cpp:255
 #, kde-format
 msgid "&Add Feed…"
 msgstr "피드 추가(&A)…"
 
-#: src/actions/actionmanagerimpl.cpp:248
+#: src/actions/actionmanagerimpl.cpp:261
 #, kde-format
 msgid "Ne&w Folder…"
 msgstr "새 폴더(&W)…"
 
-#: src/actions/actionmanagerimpl.cpp:273
+#: src/actions/actionmanagerimpl.cpp:286
 #, kde-format
 msgid "&Normal View"
 msgstr "일반 보기(&N)"
 
-#: src/actions/actionmanagerimpl.cpp:282
+#: src/actions/actionmanagerimpl.cpp:295
 #, kde-format
 msgid "&Widescreen View"
 msgstr "와이드 화면 보기(&W)"
 
-#: src/actions/actionmanagerimpl.cpp:291
+#: src/actions/actionmanagerimpl.cpp:304
 #, kde-format
 msgid "C&ombined View"
 msgstr "혼합된 보기(&O)"
 
-#: src/actions/actionmanagerimpl.cpp:304
+#: src/actions/actionmanagerimpl.cpp:317
 #, kde-format
 msgid "Fe&tch All Feeds"
 msgstr "모든 피드 가져오기(&T)"
 
-#: src/actions/actionmanagerimpl.cpp:310
+#: src/actions/actionmanagerimpl.cpp:323
 #, kde-format
 msgid "C&ancel Feed Fetches"
 msgstr "피드 가져오기 중단하기(&A)"
 
-#: src/actions/actionmanagerimpl.cpp:323
+#: src/actions/actionmanagerimpl.cpp:336
 #, kde-format
 msgid "Ma&rk All Feeds as Read"
 msgstr "모든 피드를 읽은 것으로 표시(&R)"
 
-#: src/actions/actionmanagerimpl.cpp:352
+#: src/actions/actionmanagerimpl.cpp:365
 #, kde-format
 msgctxt "@action"
 msgid "Copy Article Link Address"
 msgstr "글 링크 주소 복사"
 
-#: src/actions/actionmanagerimpl.cpp:357
+#: src/actions/actionmanagerimpl.cpp:370
 #, kde-format
 msgid "Pre&vious Unread Article"
 msgstr "이전 읽지 않은 글(&V)"
 
-#: src/actions/actionmanagerimpl.cpp:363
+#: src/actions/actionmanagerimpl.cpp:376
 #, kde-format
 msgid "Ne&xt Unread Article"
 msgstr "다음 읽지 않은 글(&X)"
 
-#: src/actions/actionmanagerimpl.cpp:371
+#: src/actions/actionmanagerimpl.cpp:384
 #, kde-format
 msgid "&Delete"
 msgstr "삭제(&D)"
 
-#: src/actions/actionmanagerimpl.cpp:376
+#: src/actions/actionmanagerimpl.cpp:389
 #, kde-format
 msgid "&Mark As"
 msgstr "다음으로 표시(&M)"
 
-#: src/actions/actionmanagerimpl.cpp:380
+#: src/actions/actionmanagerimpl.cpp:393
 #, kde-format
 msgctxt "as in: mark as read"
 msgid "&Read"
 msgstr "읽음(&R)"
 
-#: src/actions/actionmanagerimpl.cpp:382
+#: src/actions/actionmanagerimpl.cpp:395
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as read"
 msgstr "선택한 글을 읽은 것으로 표시"
 
-#: src/actions/actionmanagerimpl.cpp:388
+#: src/actions/actionmanagerimpl.cpp:401
 #, kde-format
 msgctxt "as in: mark as new"
 msgid "&New"
 msgstr "새로운 글로(&N)"
 
-#: src/actions/actionmanagerimpl.cpp:391
+#: src/actions/actionmanagerimpl.cpp:404
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as new"
 msgstr "선택한 글을 새로운 것으로 표시"
 
-#: src/actions/actionmanagerimpl.cpp:396
+#: src/actions/actionmanagerimpl.cpp:409
 #, kde-format
 msgctxt "as in: mark as unread"
 msgid "&Unread"
 msgstr "읽지 않은 상태로(&U)"
 
-#: src/actions/actionmanagerimpl.cpp:398
+#: src/actions/actionmanagerimpl.cpp:411
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as unread"
 msgstr "선택한 글을 읽지 않은 것으로 표시"
 
-#: src/actions/actionmanagerimpl.cpp:404
+#: src/actions/actionmanagerimpl.cpp:417
 #, kde-format
 msgid "&Mark as Important"
 msgstr "중요한 글로 표시(&M)"
 
-#: src/actions/actionmanagerimpl.cpp:408
+#: src/actions/actionmanagerimpl.cpp:421
 #, kde-format
 msgctxt "@action:button"
 msgid "Remove &Important Mark"
 msgstr "중요함 표시 삭제(&I)"
 
-#: src/actions/actionmanagerimpl.cpp:412
+#: src/actions/actionmanagerimpl.cpp:425
 #, kde-format
 msgid "Move Node Up"
 msgstr "노드 위로 이동"
 
-#: src/actions/actionmanagerimpl.cpp:417
+#: src/actions/actionmanagerimpl.cpp:430
 #, kde-format
 msgid "Move Node Down"
 msgstr "노드 아래로 이동"
 
-#: src/actions/actionmanagerimpl.cpp:422
+#: src/actions/actionmanagerimpl.cpp:435
 #, kde-format
 msgid "Move Node Left"
 msgstr "노드 왼쪽으로 이동"
 
-#: src/actions/actionmanagerimpl.cpp:427
+#: src/actions/actionmanagerimpl.cpp:440
 #, kde-format
 msgid "Move Node Right"
 msgstr "노드 오른쪽으로 이동"
 
-#: src/actions/actionmanagerimpl.cpp:433
+#: src/actions/actionmanagerimpl.cpp:446
 #, kde-format
 msgid "Send &Link Address…"
 msgstr "링크 주소 보내기(&L)…"
 
-#: src/actions/actionmanagerimpl.cpp:438
+#: src/actions/actionmanagerimpl.cpp:451
 #, kde-format
 msgid "Send &File…"
 msgstr "파일 보내기(&F)…"
 
-#: src/actions/actionmanagerimpl.cpp:444
+#: src/actions/actionmanagerimpl.cpp:457
 #, kde-format
 msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr "빠른 검색에 포커스 맞추기"
 
-#: src/actions/actionmanagerimpl.cpp:450
+#: src/actions/actionmanagerimpl.cpp:463
 #, kde-format
 msgid "What's new"
 msgstr "새로운 기능"
 
-#: src/actions/actionmanagerimpl.cpp:491
+#: src/actions/actionmanagerimpl.cpp:504
 #, kde-format
 msgid "&Previous Article"
 msgstr "이전 글(&P)"
 
-#: src/actions/actionmanagerimpl.cpp:495
+#: src/actions/actionmanagerimpl.cpp:508
 #, kde-format
 msgid "&Next Article"
 msgstr "다음 글(&N)"
 
-#: src/actions/actionmanagerimpl.cpp:510
+#: src/actions/actionmanagerimpl.cpp:523
 #, kde-format
 msgid "&Previous Feed"
 msgstr "이전 피드(&P)"
 
-#: src/actions/actionmanagerimpl.cpp:515
+#: src/actions/actionmanagerimpl.cpp:528
 #, kde-format
 msgid "&Next Feed"
 msgstr "다음 피드(&N)"
 
-#: src/actions/actionmanagerimpl.cpp:521
+#: src/actions/actionmanagerimpl.cpp:534
 #, kde-format
 msgid "N&ext Unread Feed"
 msgstr "다음 읽지 않은 피드(&E)"
 
-#: src/actions/actionmanagerimpl.cpp:527
+#: src/actions/actionmanagerimpl.cpp:540
 #, kde-format
 msgid "Prev&ious Unread Feed"
 msgstr "이전 읽지 않은 피드(&I)"
 
-#: src/actions/actionmanagerimpl.cpp:532
+#: src/actions/actionmanagerimpl.cpp:545
 #, kde-format
 msgid "Go to Top of Tree"
 msgstr "트리의 맨 위로 이동"
 
-#: src/actions/actionmanagerimpl.cpp:537
+#: src/actions/actionmanagerimpl.cpp:550
 #, kde-format
 msgid "Go to Bottom of Tree"
 msgstr "트리의 맨 아래로 이동"
 
-#: src/actions/actionmanagerimpl.cpp:542
+#: src/actions/actionmanagerimpl.cpp:555
 #, kde-format
 msgid "Go Left in Tree"
 msgstr "트리의 왼쪽으로 이동"
 
-#: src/actions/actionmanagerimpl.cpp:547
+#: src/actions/actionmanagerimpl.cpp:560
 #, kde-format
 msgid "Go Right in Tree"
 msgstr "트리의 오른쪽으로 이동"
 
-#: src/actions/actionmanagerimpl.cpp:552
+#: src/actions/actionmanagerimpl.cpp:565
 #, kde-format
 msgid "Go Up in Tree"
 msgstr "트리의 위로 이동"
 
-#: src/actions/actionmanagerimpl.cpp:557
+#: src/actions/actionmanagerimpl.cpp:570
 #, kde-format
 msgid "Go Down in Tree"
 msgstr "트리의 아래로 이동"
 
-#: src/actions/actionmanagerimpl.cpp:563
+#: src/actions/actionmanagerimpl.cpp:576
 #, kde-format
 msgid "Hide Read Feeds"
 msgstr "읽은 피드 숨기기"
 
-#: src/actions/actionmanagerimpl.cpp:569
+#: src/actions/actionmanagerimpl.cpp:582
 #, kde-format
 msgid "Lock Feeds In Place"
 msgstr "피드를 위치에 고정"
 
-#: src/actions/actionmanagerimpl.cpp:575
+#: src/actions/actionmanagerimpl.cpp:588
 #, kde-format
 msgid "Auto-expand folders with unread articles"
 msgstr "읽지 않은 글이 있는 피드가 있는 폴더 자동으로 확장"
 
-#: src/actions/actionmanagerimpl.cpp:590
+#: src/actions/actionmanagerimpl.cpp:603
 #, kde-format
 msgid "Select Next Tab"
 msgstr "다음 탭 선택"
 
-#: src/actions/actionmanagerimpl.cpp:595
+#: src/actions/actionmanagerimpl.cpp:608
 #, kde-format
 msgid "Select Previous Tab"
 msgstr "이전 탭 선택"
 
-#: src/actions/actionmanagerimpl.cpp:609
+#: src/actions/actionmanagerimpl.cpp:622
 #, kde-format
 msgid "Mute"
 msgstr "음소거"
 
-#: src/actions/actionmanagerimpl.cpp:613
+#: src/actions/actionmanagerimpl.cpp:626
 #, kde-format
 msgid "Unmute"
 msgstr "음소거 해제"
 
-#: src/actions/actionmanagerimpl.cpp:616
+#: src/actions/actionmanagerimpl.cpp:629
 #, kde-format
 msgctxt "@action"
 msgid "Speak Text"
 msgstr "텍스트 말하기"
 
-#: src/actions/actionmanagerimpl.cpp:621
+#: src/actions/actionmanagerimpl.cpp:634
 #, kde-format
 msgid "&Find in Message…"
 msgstr "메시지에서 찾기(&F)…"
 
-#: src/actions/actionmanagerimpl.cpp:628
+#: src/actions/actionmanagerimpl.cpp:641
 #, kde-format
 msgctxt "@action"
 msgid "Copy Tab Address"
 msgstr "탭 주소 복사"
 
-#: src/actions/actionmanagerimpl.cpp:633
+#: src/actions/actionmanagerimpl.cpp:646
 #, kde-format
 msgid "Close Tab"
 msgstr "탭 닫기"
 
-#: src/actions/actionmanagerimpl.cpp:646
+#: src/actions/actionmanagerimpl.cpp:659
 #, kde-format
 msgctxt "@action"
 msgid "Activate Tab %1"
@@ -1518,32 +1573,32 @@ msgctxt "@info:shell"
 msgid "Lists the available options for user feedback"
 msgstr "사용자 피드백 옵션 표시"
 
-#: src/akregator_part.cpp:80
+#: src/akregator_part.cpp:81
 #, kde-format
 msgid "Feeds"
 msgstr "피드"
 
-#: src/akregator_part.cpp:91
+#: src/akregator_part.cpp:92
 #, kde-format
 msgid "Planet KDE"
 msgstr "플래닛 KDE"
 
-#: src/akregator_part.cpp:96
+#: src/akregator_part.cpp:97
 #, kde-format
 msgid "KDE Apps"
 msgstr "KDE Apps"
 
-#: src/akregator_part.cpp:102
+#: src/akregator_part.cpp:103
 #, kde-format
 msgid "Spanish feeds"
 msgstr "스페인어 피드"
 
-#: src/akregator_part.cpp:106
+#: src/akregator_part.cpp:107
 #, kde-format
 msgid "Planet KDE España"
 msgstr "플래닛 KDE España"
 
-#: src/akregator_part.cpp:421
+#: src/akregator_part.cpp:425
 #, kde-format
 msgid ""
 "Access denied: Cannot save feed list to <b>%1</b>. Please check your "
@@ -1551,24 +1606,24 @@ msgid ""
 msgstr ""
 "접근 거부됨: 피드 목록을 <b>%1</b>에 저장할 수 없습니다. 권한을 확인하십시오."
 
-#: src/akregator_part.cpp:422 src/akregator_part.cpp:475
+#: src/akregator_part.cpp:426 src/akregator_part.cpp:479
 #, kde-format
 msgctxt "@title:window"
 msgid "Write Error"
 msgstr "쓰기 오류"
 
-#: src/akregator_part.cpp:458
+#: src/akregator_part.cpp:462
 #, kde-format
 msgid "Could not import the file %1 (no valid OPML)"
 msgstr "%1 파일에서 가져올 수 없음(잘못된 OPML)"
 
-#: src/akregator_part.cpp:458 src/command/loadfeedlistcommand.cpp:73
+#: src/akregator_part.cpp:462 src/command/loadfeedlistcommand.cpp:73
 #, kde-format
 msgctxt "@title:window"
 msgid "OPML Parsing Error"
 msgstr "OPML 해석 오류"
 
-#: src/akregator_part.cpp:462
+#: src/akregator_part.cpp:466
 #, kde-format
 msgid ""
 "The file %1 could not be read, check if it exists or if it is readable for "
@@ -1577,23 +1632,23 @@ msgstr ""
 "%1 파일을 읽을 수 없습니다. 파일이 존재하는지, 그리고 읽기 권한이 있는지 확인"
 "하십시오."
 
-#: src/akregator_part.cpp:463 src/command/loadfeedlistcommand.cpp:146
+#: src/akregator_part.cpp:467 src/command/loadfeedlistcommand.cpp:146
 #, kde-format
 msgctxt "@title:window"
 msgid "Read Error"
 msgstr "읽기 오류"
 
-#: src/akregator_part.cpp:474
+#: src/akregator_part.cpp:478
 #, kde-format
 msgid "Access denied: cannot write to file %1. Please check your permissions."
 msgstr "접근 거부됨: %1 파일에 쓸 수 없습니다. 권한을 확인하십시오."
 
-#: src/akregator_part.cpp:490 src/akregator_part.cpp:499
+#: src/akregator_part.cpp:494 src/akregator_part.cpp:503
 #, kde-format
 msgid "OPML Outlines (%1);;All Files (*)"
 msgstr "OPML 개요 (%1);;모든 파일 (*)"
 
-#: src/akregator_part.cpp:624
+#: src/akregator_part.cpp:628
 #, kde-format
 msgid "Imported Folder"
 msgstr "가져온 폴더"
@@ -1888,49 +1943,49 @@ msgid "Ask me later"
 msgstr "나중에 묻기"
 
 #. i18n: ectx: Menu (edit)
-#: src/data/akregator_part.rc:14 src/data/akregator_shell.rc:11
+#: src/data/akregator_part.rc:16 src/data/akregator_shell.rc:11
 #, kde-format
 msgid "&Edit"
 msgstr "편집(&E)"
 
 #. i18n: ectx: Menu (view)
-#: src/data/akregator_part.rc:22 src/data/akregator_shell.rc:16
+#: src/data/akregator_part.rc:24 src/data/akregator_shell.rc:16
 #, kde-format
 msgid "&View"
 msgstr "보기(&V)"
 
 #. i18n: ectx: Menu (go)
-#: src/data/akregator_part.rc:37 src/data/akregator_shell.rc:24
+#: src/data/akregator_part.rc:39 src/data/akregator_shell.rc:24
 #, kde-format
 msgid "&Go"
 msgstr "이동(&G)"
 
 #. i18n: ectx: Menu (feed)
-#: src/data/akregator_part.rc:50 src/data/akregator_shell.rc:29
+#: src/data/akregator_part.rc:52 src/data/akregator_shell.rc:29
 #, kde-format
 msgid "Fee&d"
 msgstr "피드(&D)"
 
 #. i18n: ectx: Menu (article)
-#: src/data/akregator_part.rc:63 src/data/akregator_shell.rc:34
+#: src/data/akregator_part.rc:65 src/data/akregator_shell.rc:34
 #, kde-format
 msgid "&Article"
 msgstr "글(&A)"
 
 #. i18n: ectx: Menu (settings)
-#: src/data/akregator_part.rc:80 src/data/akregator_shell.rc:39
+#: src/data/akregator_part.rc:82 src/data/akregator_shell.rc:39
 #, kde-format
 msgid "&Settings"
 msgstr "설정(&S)"
 
 #. i18n: ectx: Menu (help)
-#: src/data/akregator_part.rc:90
+#: src/data/akregator_part.rc:92
 #, kde-format
 msgid "&Help"
 msgstr "도움말(&H)"
 
 #. i18n: ectx: ToolBar (mainToolBar)
-#: src/data/akregator_part.rc:98 src/data/akregator_shell.rc:54
+#: src/data/akregator_part.rc:100 src/data/akregator_shell.rc:54
 #, kde-format
 msgid "Main Toolbar"
 msgstr "주 도구 모음"
@@ -2209,6 +2264,104 @@ msgstr ""
 msgid "<i>and 1 other</i>"
 msgid_plural "<i>and %1 others</i>"
 msgstr[0] "<i>그리고 %1개 더</i>"
+
+#: src/plugins/addaccountwizard.cpp:22
+#: src/plugins/miniflux/minifluxplugin.cpp:90
+#, fuzzy, kde-format
+#| msgid "Modify Online Reader Account"
+msgctxt "@title:window"
+msgid "Add Online Account"
+msgstr "온라인 리더 계정 수정"
+
+#: src/plugins/addaccountwizard.cpp:27
+#, kde-format
+msgctxt "@title:tab, wizard page for selecting the account type"
+msgid "Account Type"
+msgstr ""
+
+#: src/plugins/addaccountwizard.cpp:31
+#, fuzzy, kde-format
+#| msgid "Bar Settings"
+msgctxt "@title:tab, wizard page with the account settings"
+msgid "Account Settings"
+msgstr "Bar 설정"
+
+#: src/plugins/miniflux/minifluxaccountdialog.cpp:20
+#, kde-format
+msgctxt "@title:window"
+msgid "Miniflux Account Settings"
+msgstr ""
+
+#: src/plugins/miniflux/minifluxaccountwidget.cpp:26
+#, kde-format
+msgctxt "@action:button"
+msgid "Test Connection"
+msgstr ""
+
+#: src/plugins/miniflux/minifluxaccountwidget.cpp:31
+#, kde-format
+msgid "My Miniflux"
+msgstr ""
+
+#: src/plugins/miniflux/minifluxaccountwidget.cpp:32
+#, fuzzy, kde-format
+#| msgid "Group Name"
+msgid "Account Name:"
+msgstr "그룹 이름"
+
+#: src/plugins/miniflux/minifluxaccountwidget.cpp:34
+#, fuzzy, kde-format
+#| msgid "Service URL:"
+msgid "Server URL:"
+msgstr "서비스 URL:"
+
+#: src/plugins/miniflux/minifluxaccountwidget.cpp:36
+#, kde-format
+msgid "API Token:"
+msgstr ""
+
+#: src/plugins/miniflux/minifluxaccountwidget.cpp:100
+#, kde-format
+msgid "Please enter a valid server URL and API token."
+msgstr ""
+
+#: src/plugins/miniflux/minifluxaccountwidget.cpp:100
+#, kde-format
+msgctxt "@title:window"
+msgid "Invalid Input"
+msgstr ""
+
+#: src/plugins/miniflux/minifluxaccountwidget.cpp:111
+#, kde-format
+msgid "Successfully connected to the Miniflux server."
+msgstr ""
+
+#: src/plugins/miniflux/minifluxaccountwidget.cpp:111
+#, kde-format
+msgctxt "@title:window"
+msgid "Connection Successful"
+msgstr ""
+
+#: src/plugins/miniflux/minifluxaccountwidget.cpp:113
+#, kde-format
+msgid "Failed to connect: %1"
+msgstr ""
+
+#: src/plugins/miniflux/minifluxaccountwidget.cpp:113
+#, kde-format
+msgctxt "@title:window"
+msgid "Connection Failed"
+msgstr ""
+
+#: src/plugins/miniflux/minifluxplugin.cpp:73
+#, kde-format
+msgid "Miniflux"
+msgstr ""
+
+#: src/plugins/miniflux/minifluxplugin.cpp:90
+#, kde-format
+msgid "An account named \"%1\" already exists."
+msgstr ""
 
 #: src/progressmanager.cpp:127
 #, kde-format
@@ -2919,9 +3072,6 @@ msgstr "중요한 글"
 #~ msgid "Manage..."
 #~ msgstr "관리..."
 
-#~ msgid "Bar Settings"
-#~ msgstr "Bar 설정"
-
 #~ msgid "Bar!"
 #~ msgstr "Bar!"
 
@@ -2929,9 +3079,6 @@ msgstr "중요한 글"
 #~ "Some categories and feeds have been marked for removal. Do you want to "
 #~ "delete them?"
 #~ msgstr "몇몇 분류와 필드가 삭제하기로 선택되어 있습니다. 삭제하시겠습니까?"
-
-#~ msgid "Remove nothing"
-#~ msgstr "아무것도 지우지 않기"
 
 #~ msgid "Remove only categories"
 #~ msgstr "분류만 지우기"
@@ -2947,9 +3094,6 @@ msgstr "중요한 글"
 
 #~ msgid "Online Reader Configuration"
 #~ msgstr "온라인 리더 설정"
-
-#~ msgid "Modify Online Reader Account"
-#~ msgstr "온라인 리더 계정 수정"
 
 #~ msgid "Google Reader"
 #~ msgstr "Google 리더"
@@ -2978,20 +3122,11 @@ msgstr "중요한 글"
 #~ msgid "Online reader accounts:"
 #~ msgstr "온라인 리더 계정:"
 
-#~ msgid "Type"
-#~ msgstr "종류"
-
 #~ msgid "Description"
 #~ msgstr "설명"
 
 #~ msgid "Add..."
 #~ msgstr "추가(&A)..."
-
-#~ msgid "Modify..."
-#~ msgstr "수정..."
-
-#~ msgid "Remove"
-#~ msgstr "삭제"
 
 #~ msgid "Delete feeds:"
 #~ msgstr "피드 삭제:"
@@ -3017,9 +3152,6 @@ msgstr "중요한 글"
 #~ msgctxt "login identify for blog account"
 #~ msgid "Username:"
 #~ msgstr "사용자 이름:"
-
-#~ msgid "Service URL:"
-#~ msgstr "서비스 URL:"
 
 #~ msgid "Please, configure the share service before using it."
 #~ msgstr "공유 서비스를 사용하려면 설정하십시오."

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-09-22 16:01+0000\n"
+"POT-Creation-Date: 2026-09-25 00:46+0000\n"
 "PO-Revision-Date: 2021-09-27 21:09+0200\n"
 "Last-Translator: Martin Schlander <mschlander@opensuse.org>\n"
 "Language-Team: Danish <kde-i18n-doc@kde.org>\n"
@@ -104,6 +104,54 @@ msgid ""
 msgstr ""
 "<b>Bemærk:</b> Af sikkerhedsmæssige årsager blokeres en ekstern reference "
 "(se indstillingsdialogen)."
+
+#: configuration/akregator_config_accounts.cpp:39
+#, kde-format
+msgctxt "@title:column"
+msgid "Account"
+msgstr ""
+
+#: configuration/akregator_config_accounts.cpp:39
+#, fuzzy, kde-format
+#| msgid "Type"
+msgctxt "@title:column"
+msgid "Type"
+msgstr "Type"
+
+#: configuration/akregator_config_accounts.cpp:45
+#, kde-format
+msgctxt "@action:button"
+msgid "Add…"
+msgstr ""
+
+#: configuration/akregator_config_accounts.cpp:46
+#, fuzzy, kde-format
+#| msgid "Modify..."
+msgctxt "@action:button"
+msgid "Modify…"
+msgstr "Ændr..."
+
+#: configuration/akregator_config_accounts.cpp:47
+#, fuzzy, kde-format
+#| msgid "Remove"
+msgctxt "@action:button"
+msgid "Remove"
+msgstr "Fjern"
+
+#: configuration/akregator_config_accounts.cpp:134
+#, kde-format
+msgid ""
+"Do you really want to remove the account \"%1\"?\n"
+"This removes the account's folder from the feed tree and deletes its stored "
+"credentials; the server is not affected."
+msgstr ""
+
+#: configuration/akregator_config_accounts.cpp:138
+#, fuzzy, kde-format
+#| msgid "Remove nothing"
+msgctxt "@title:window"
+msgid "Remove Account"
+msgstr "Fjern intet"
 
 #: configuration/akregator_config_archive.cpp:37
 #, fuzzy, kde-format
@@ -288,7 +336,7 @@ msgstr "Venstreklik med mus:"
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
 #: configuration/ui/settings_browser.ui:28
 #: configuration/ui/settings_browser.ui:54
-#: src/actions/actionmanagerimpl.cpp:335
+#: src/actions/actionmanagerimpl.cpp:348
 #, kde-format
 msgid "Open in Tab"
 msgstr "Åbn i faneblad"
@@ -297,7 +345,7 @@ msgstr "Åbn i faneblad"
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
 #: configuration/ui/settings_browser.ui:33
 #: configuration/ui/settings_browser.ui:59
-#: src/actions/actionmanagerimpl.cpp:341
+#: src/actions/actionmanagerimpl.cpp:354
 #, kde-format
 msgid "Open in Background Tab"
 msgstr "Åbn i faneblad i baggrunden"
@@ -306,7 +354,7 @@ msgstr "Åbn i faneblad i baggrunden"
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
 #: configuration/ui/settings_browser.ui:38
 #: configuration/ui/settings_browser.ui:64
-#: src/actions/actionmanagerimpl.cpp:347
+#: src/actions/actionmanagerimpl.cpp:360
 #, kde-format
 msgid "Open in External Browser"
 msgstr "Åbn i ekstern browser"
@@ -550,7 +598,7 @@ msgid "Auto-Expand folders with unread articles"
 msgstr "Fold automatisk mapper ud som indeholder ulæste artikler"
 
 #. i18n: ectx: label, entry, group (View)
-#: interfaces/akregator.kcfg:31 src/actions/actionmanagerimpl.cpp:329
+#: interfaces/akregator.kcfg:31 src/actions/actionmanagerimpl.cpp:342
 #, kde-format
 msgid "Show Quick Filter"
 msgstr "Vis hurtigfilter"
@@ -947,7 +995,7 @@ msgid "Resets the quick filter when changing feeds."
 msgstr "Nulstiller hurtigfilteret ved skift af feed."
 
 #: kontactplugin/akregator_plugin.cpp:29 src/aboutdata.cpp:21
-#: src/akregator_part.cpp:128
+#: src/akregator_part.cpp:129
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:148
 #: src/mainwidget.cpp:135 src/mainwidget.cpp:1329 src/trayicon.cpp:40
 #: src/trayicon.cpp:53
@@ -1165,360 +1213,367 @@ msgstr "Philipp Droessler"
 msgid "Gentoo Ebuild"
 msgstr "Gentoo-Ebuild"
 
-#: src/actions/actionmanagerimpl.cpp:68 src/actions/actionmanagerimpl.cpp:298
+#: src/actions/actionmanagerimpl.cpp:71 src/actions/actionmanagerimpl.cpp:311
 #, kde-format
 msgid "&Fetch Feed"
 msgstr "&Hent feed"
 
-#: src/actions/actionmanagerimpl.cpp:69 src/actions/actionmanagerimpl.cpp:254
+#: src/actions/actionmanagerimpl.cpp:72 src/actions/actionmanagerimpl.cpp:267
 #, kde-format
 msgid "&Delete Feed"
 msgstr "S&let feed"
 
-#: src/actions/actionmanagerimpl.cpp:70 src/actions/actionmanagerimpl.cpp:260
+#: src/actions/actionmanagerimpl.cpp:73 src/actions/actionmanagerimpl.cpp:273
 #, fuzzy, kde-format
 #| msgid "&Edit Feed..."
 msgid "&Edit Feed…"
 msgstr "R&edigér feed..."
 
-#: src/actions/actionmanagerimpl.cpp:71 src/actions/actionmanagerimpl.cpp:317
+#: src/actions/actionmanagerimpl.cpp:74 src/actions/actionmanagerimpl.cpp:330
 #, kde-format
 msgid "&Mark Feed as Read"
 msgstr "&Markér feed som læst"
 
-#: src/actions/actionmanagerimpl.cpp:87
+#: src/actions/actionmanagerimpl.cpp:90
 #, kde-format
 msgid "&Fetch Feeds"
 msgstr "&Hent feeds"
 
-#: src/actions/actionmanagerimpl.cpp:88
+#: src/actions/actionmanagerimpl.cpp:91
 #, kde-format
 msgid "&Delete Folder"
 msgstr "S&let mappe"
 
-#: src/actions/actionmanagerimpl.cpp:89
+#: src/actions/actionmanagerimpl.cpp:92
 #, kde-format
 msgid "&Rename Folder"
 msgstr "&Omdøb mappe"
 
-#: src/actions/actionmanagerimpl.cpp:90
+#: src/actions/actionmanagerimpl.cpp:93
 #, kde-format
 msgid "&Mark Feeds as Read"
 msgstr "&Markér feeds som læste"
 
-#: src/actions/actionmanagerimpl.cpp:202
+#: src/actions/actionmanagerimpl.cpp:205
 #, fuzzy, kde-format
 #| msgid "&Import Feeds..."
 msgid "&Import Feeds…"
 msgstr "&Importér feeds..."
 
-#: src/actions/actionmanagerimpl.cpp:206
+#: src/actions/actionmanagerimpl.cpp:209
 #, fuzzy, kde-format
 #| msgid "&Export Feeds..."
 msgid "&Export Feeds…"
 msgstr "&Eksportér feeds..."
 
-#: src/actions/actionmanagerimpl.cpp:211
+#: src/actions/actionmanagerimpl.cpp:215
+#, fuzzy, kde-format
+#| msgid "Modify Online Reader Account"
+msgctxt "@action"
+msgid "Add Online Account…"
+msgstr "Ændr online læser-konto"
+
+#: src/actions/actionmanagerimpl.cpp:224
 #, fuzzy, kde-format
 #| msgid "&Configure Akregator..."
 msgid "&Configure Akregator…"
 msgstr "Indstil &Akregator..."
 
-#: src/actions/actionmanagerimpl.cpp:230
+#: src/actions/actionmanagerimpl.cpp:243
 #, kde-format
 msgid "&Open Homepage"
 msgstr "Å&bn hjemmeside"
 
-#: src/actions/actionmanagerimpl.cpp:236
+#: src/actions/actionmanagerimpl.cpp:249
 #, kde-format
 msgid "Reload All Tabs"
 msgstr "Genindlæs alle faneblade"
 
-#: src/actions/actionmanagerimpl.cpp:242
+#: src/actions/actionmanagerimpl.cpp:255
 #, fuzzy, kde-format
 #| msgid "Add Feed"
 msgid "&Add Feed…"
 msgstr "Tilføj feed"
 
-#: src/actions/actionmanagerimpl.cpp:248
+#: src/actions/actionmanagerimpl.cpp:261
 #, fuzzy, kde-format
 #| msgid "Ne&w Folder..."
 msgid "Ne&w Folder…"
 msgstr "Ny &mappe..."
 
-#: src/actions/actionmanagerimpl.cpp:273
+#: src/actions/actionmanagerimpl.cpp:286
 #, kde-format
 msgid "&Normal View"
 msgstr "&Normal visning"
 
-#: src/actions/actionmanagerimpl.cpp:282
+#: src/actions/actionmanagerimpl.cpp:295
 #, kde-format
 msgid "&Widescreen View"
 msgstr "Visning på &bredskærm"
 
-#: src/actions/actionmanagerimpl.cpp:291
+#: src/actions/actionmanagerimpl.cpp:304
 #, kde-format
 msgid "C&ombined View"
 msgstr "&Kombineret visning"
 
-#: src/actions/actionmanagerimpl.cpp:304
+#: src/actions/actionmanagerimpl.cpp:317
 #, kde-format
 msgid "Fe&tch All Feeds"
 msgstr "H&ent alle feeds"
 
-#: src/actions/actionmanagerimpl.cpp:310
+#: src/actions/actionmanagerimpl.cpp:323
 #, kde-format
 msgid "C&ancel Feed Fetches"
 msgstr "A&nnullér feed-hentninger"
 
-#: src/actions/actionmanagerimpl.cpp:323
+#: src/actions/actionmanagerimpl.cpp:336
 #, kde-format
 msgid "Ma&rk All Feeds as Read"
 msgstr "&Markér alle feeds som læste"
 
-#: src/actions/actionmanagerimpl.cpp:352
+#: src/actions/actionmanagerimpl.cpp:365
 #, fuzzy, kde-format
 #| msgid "Copy Link Address"
 msgctxt "@action"
 msgid "Copy Article Link Address"
 msgstr "Kopiér linkadresse"
 
-#: src/actions/actionmanagerimpl.cpp:357
+#: src/actions/actionmanagerimpl.cpp:370
 #, kde-format
 msgid "Pre&vious Unread Article"
 msgstr "&Forrige ulæste artikel"
 
-#: src/actions/actionmanagerimpl.cpp:363
+#: src/actions/actionmanagerimpl.cpp:376
 #, kde-format
 msgid "Ne&xt Unread Article"
 msgstr "&Næste ulæste artikel"
 
-#: src/actions/actionmanagerimpl.cpp:371
+#: src/actions/actionmanagerimpl.cpp:384
 #, kde-format
 msgid "&Delete"
 msgstr "&Slet"
 
-#: src/actions/actionmanagerimpl.cpp:376
+#: src/actions/actionmanagerimpl.cpp:389
 #, kde-format
 msgid "&Mark As"
 msgstr "&Markér som"
 
-#: src/actions/actionmanagerimpl.cpp:380
+#: src/actions/actionmanagerimpl.cpp:393
 #, kde-format
 msgctxt "as in: mark as read"
 msgid "&Read"
 msgstr "&Læst"
 
-#: src/actions/actionmanagerimpl.cpp:382
+#: src/actions/actionmanagerimpl.cpp:395
 #, fuzzy, kde-format
 #| msgid "Mark selected article as read"
 msgctxt "@info:tooltip"
 msgid "Mark selected article as read"
 msgstr "Markér den valgte artikel som læst"
 
-#: src/actions/actionmanagerimpl.cpp:388
+#: src/actions/actionmanagerimpl.cpp:401
 #, kde-format
 msgctxt "as in: mark as new"
 msgid "&New"
 msgstr "&Ny"
 
-#: src/actions/actionmanagerimpl.cpp:391
+#: src/actions/actionmanagerimpl.cpp:404
 #, fuzzy, kde-format
 #| msgid "Mark selected article as new"
 msgctxt "@info:tooltip"
 msgid "Mark selected article as new"
 msgstr "Markér den valgte artikel som ny"
 
-#: src/actions/actionmanagerimpl.cpp:396
+#: src/actions/actionmanagerimpl.cpp:409
 #, kde-format
 msgctxt "as in: mark as unread"
 msgid "&Unread"
 msgstr "&Ulæst"
 
-#: src/actions/actionmanagerimpl.cpp:398
+#: src/actions/actionmanagerimpl.cpp:411
 #, fuzzy, kde-format
 #| msgid "Mark selected article as unread"
 msgctxt "@info:tooltip"
 msgid "Mark selected article as unread"
 msgstr "Markér den valgte artikel som ulæst"
 
-#: src/actions/actionmanagerimpl.cpp:404
+#: src/actions/actionmanagerimpl.cpp:417
 #, kde-format
 msgid "&Mark as Important"
 msgstr "&Markér som vigtig"
 
-#: src/actions/actionmanagerimpl.cpp:408
+#: src/actions/actionmanagerimpl.cpp:421
 #, fuzzy, kde-format
 #| msgid "Remove &Important Mark"
 msgctxt "@action:button"
 msgid "Remove &Important Mark"
 msgstr "Fjern markering som v&igtig"
 
-#: src/actions/actionmanagerimpl.cpp:412
+#: src/actions/actionmanagerimpl.cpp:425
 #, kde-format
 msgid "Move Node Up"
 msgstr "Flyt knude op"
 
-#: src/actions/actionmanagerimpl.cpp:417
+#: src/actions/actionmanagerimpl.cpp:430
 #, kde-format
 msgid "Move Node Down"
 msgstr "Flyt knude ned"
 
-#: src/actions/actionmanagerimpl.cpp:422
+#: src/actions/actionmanagerimpl.cpp:435
 #, kde-format
 msgid "Move Node Left"
 msgstr "Flyt knude til venstre"
 
-#: src/actions/actionmanagerimpl.cpp:427
+#: src/actions/actionmanagerimpl.cpp:440
 #, kde-format
 msgid "Move Node Right"
 msgstr "Flyt knude til højre"
 
-#: src/actions/actionmanagerimpl.cpp:433
+#: src/actions/actionmanagerimpl.cpp:446
 #, fuzzy, kde-format
 #| msgid "Send Link Address"
 msgid "Send &Link Address…"
 msgstr "Send linkadresse"
 
-#: src/actions/actionmanagerimpl.cpp:438
+#: src/actions/actionmanagerimpl.cpp:451
 #, fuzzy, kde-format
 #| msgid "Send &File..."
 msgid "Send &File…"
 msgstr "Send &fil..."
 
-#: src/actions/actionmanagerimpl.cpp:444
+#: src/actions/actionmanagerimpl.cpp:457
 #, fuzzy, kde-format
 #| msgid "Set Focus to Quick Search"
 msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr "Giv hurtigsøgning fokus"
 
-#: src/actions/actionmanagerimpl.cpp:450
+#: src/actions/actionmanagerimpl.cpp:463
 #, kde-format
 msgid "What's new"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:491
+#: src/actions/actionmanagerimpl.cpp:504
 #, kde-format
 msgid "&Previous Article"
 msgstr "&Forrige artikel"
 
-#: src/actions/actionmanagerimpl.cpp:495
+#: src/actions/actionmanagerimpl.cpp:508
 #, kde-format
 msgid "&Next Article"
 msgstr "&Næste artikel"
 
-#: src/actions/actionmanagerimpl.cpp:510
+#: src/actions/actionmanagerimpl.cpp:523
 #, kde-format
 msgid "&Previous Feed"
 msgstr "&Forrige feed"
 
-#: src/actions/actionmanagerimpl.cpp:515
+#: src/actions/actionmanagerimpl.cpp:528
 #, kde-format
 msgid "&Next Feed"
 msgstr "&Næste feed"
 
-#: src/actions/actionmanagerimpl.cpp:521
+#: src/actions/actionmanagerimpl.cpp:534
 #, kde-format
 msgid "N&ext Unread Feed"
 msgstr "Næs&te ulæste feed"
 
-#: src/actions/actionmanagerimpl.cpp:527
+#: src/actions/actionmanagerimpl.cpp:540
 #, kde-format
 msgid "Prev&ious Unread Feed"
 msgstr "For&rige ulæste feed"
 
-#: src/actions/actionmanagerimpl.cpp:532
+#: src/actions/actionmanagerimpl.cpp:545
 #, kde-format
 msgid "Go to Top of Tree"
 msgstr "Gå til toppen af træ"
 
-#: src/actions/actionmanagerimpl.cpp:537
+#: src/actions/actionmanagerimpl.cpp:550
 #, kde-format
 msgid "Go to Bottom of Tree"
 msgstr "Gå til bunden af træ"
 
-#: src/actions/actionmanagerimpl.cpp:542
+#: src/actions/actionmanagerimpl.cpp:555
 #, kde-format
 msgid "Go Left in Tree"
 msgstr "Gå til venstre i træ"
 
-#: src/actions/actionmanagerimpl.cpp:547
+#: src/actions/actionmanagerimpl.cpp:560
 #, kde-format
 msgid "Go Right in Tree"
 msgstr "Gå til højre i træ"
 
-#: src/actions/actionmanagerimpl.cpp:552
+#: src/actions/actionmanagerimpl.cpp:565
 #, kde-format
 msgid "Go Up in Tree"
 msgstr "Gå opad i træ"
 
-#: src/actions/actionmanagerimpl.cpp:557
+#: src/actions/actionmanagerimpl.cpp:570
 #, kde-format
 msgid "Go Down in Tree"
 msgstr "Gå nedad i træ"
 
-#: src/actions/actionmanagerimpl.cpp:563
+#: src/actions/actionmanagerimpl.cpp:576
 #, kde-format
 msgid "Hide Read Feeds"
 msgstr "Skjul læste feeds"
 
-#: src/actions/actionmanagerimpl.cpp:569
+#: src/actions/actionmanagerimpl.cpp:582
 #, kde-format
 msgid "Lock Feeds In Place"
 msgstr "Lås feeds fast"
 
-#: src/actions/actionmanagerimpl.cpp:575
+#: src/actions/actionmanagerimpl.cpp:588
 #, kde-format
 msgid "Auto-expand folders with unread articles"
 msgstr "Fold automatisk mapper ud med ulæste artikler"
 
-#: src/actions/actionmanagerimpl.cpp:590
+#: src/actions/actionmanagerimpl.cpp:603
 #, kde-format
 msgid "Select Next Tab"
 msgstr "Vælg næste faneblad"
 
-#: src/actions/actionmanagerimpl.cpp:595
+#: src/actions/actionmanagerimpl.cpp:608
 #, kde-format
 msgid "Select Previous Tab"
 msgstr "Vælg foregående faneblad"
 
-#: src/actions/actionmanagerimpl.cpp:609
+#: src/actions/actionmanagerimpl.cpp:622
 #, kde-format
 msgid "Mute"
 msgstr "Lydløs"
 
-#: src/actions/actionmanagerimpl.cpp:613
+#: src/actions/actionmanagerimpl.cpp:626
 #, kde-format
 msgid "Unmute"
 msgstr "Lydløs fra"
 
-#: src/actions/actionmanagerimpl.cpp:616
+#: src/actions/actionmanagerimpl.cpp:629
 #, fuzzy, kde-format
 #| msgid "Speak Text"
 msgctxt "@action"
 msgid "Speak Text"
 msgstr "Læs tekst op"
 
-#: src/actions/actionmanagerimpl.cpp:621
+#: src/actions/actionmanagerimpl.cpp:634
 #, fuzzy, kde-format
 #| msgid "&Find in Message..."
 msgid "&Find in Message…"
 msgstr "&Find i brevet..."
 
-#: src/actions/actionmanagerimpl.cpp:628
+#: src/actions/actionmanagerimpl.cpp:641
 #, fuzzy, kde-format
 #| msgid "&Copy Email Address"
 msgctxt "@action"
 msgid "Copy Tab Address"
 msgstr "&Kopiér e-mailadresse"
 
-#: src/actions/actionmanagerimpl.cpp:633
+#: src/actions/actionmanagerimpl.cpp:646
 #, kde-format
 msgid "Close Tab"
 msgstr "Luk faneblad"
 
-#: src/actions/actionmanagerimpl.cpp:646
+#: src/actions/actionmanagerimpl.cpp:659
 #, fuzzy, kde-format
 #| msgid "Activate Tab %1"
 msgctxt "@action"
@@ -1590,32 +1645,32 @@ msgctxt "@info:shell"
 msgid "Lists the available options for user feedback"
 msgstr "Oplister de tilgængelige indstillinger for brugerfeedback"
 
-#: src/akregator_part.cpp:80
+#: src/akregator_part.cpp:81
 #, kde-format
 msgid "Feeds"
 msgstr "Feeds"
 
-#: src/akregator_part.cpp:91
+#: src/akregator_part.cpp:92
 #, kde-format
 msgid "Planet KDE"
 msgstr "Planet KDE"
 
-#: src/akregator_part.cpp:96
+#: src/akregator_part.cpp:97
 #, kde-format
 msgid "KDE Apps"
 msgstr "KDE Apps"
 
-#: src/akregator_part.cpp:102
+#: src/akregator_part.cpp:103
 #, kde-format
 msgid "Spanish feeds"
 msgstr "Spanske feeds"
 
-#: src/akregator_part.cpp:106
+#: src/akregator_part.cpp:107
 #, kde-format
 msgid "Planet KDE España"
 msgstr "Planet KDE España"
 
-#: src/akregator_part.cpp:421
+#: src/akregator_part.cpp:425
 #, kde-format
 msgid ""
 "Access denied: Cannot save feed list to <b>%1</b>. Please check your "
@@ -1624,26 +1679,26 @@ msgstr ""
 "Adgang nægtet: Kan ikke gemme feed-listen til <b>%1</b>. Kontrollér dine "
 "rettigheder."
 
-#: src/akregator_part.cpp:422 src/akregator_part.cpp:475
+#: src/akregator_part.cpp:426 src/akregator_part.cpp:479
 #, fuzzy, kde-format
 #| msgid "Write Error"
 msgctxt "@title:window"
 msgid "Write Error"
 msgstr "Skrivefejl"
 
-#: src/akregator_part.cpp:458
+#: src/akregator_part.cpp:462
 #, kde-format
 msgid "Could not import the file %1 (no valid OPML)"
 msgstr "Kunne ikke importere filen %1 (ingen gyldig OPML)"
 
-#: src/akregator_part.cpp:458 src/command/loadfeedlistcommand.cpp:73
+#: src/akregator_part.cpp:462 src/command/loadfeedlistcommand.cpp:73
 #, fuzzy, kde-format
 #| msgid "OPML Parsing Error"
 msgctxt "@title:window"
 msgid "OPML Parsing Error"
 msgstr "OPML-tolkningsfejl"
 
-#: src/akregator_part.cpp:462
+#: src/akregator_part.cpp:466
 #, kde-format
 msgid ""
 "The file %1 could not be read, check if it exists or if it is readable for "
@@ -1652,25 +1707,25 @@ msgstr ""
 "Filen %1 kunne ikke læses. Kontrollér om den findes og om den er læsbar for "
 "nuværende bruger."
 
-#: src/akregator_part.cpp:463 src/command/loadfeedlistcommand.cpp:146
+#: src/akregator_part.cpp:467 src/command/loadfeedlistcommand.cpp:146
 #, fuzzy, kde-format
 #| msgid "Read Error"
 msgctxt "@title:window"
 msgid "Read Error"
 msgstr "Læsefejl"
 
-#: src/akregator_part.cpp:474
+#: src/akregator_part.cpp:478
 #, kde-format
 msgid "Access denied: cannot write to file %1. Please check your permissions."
 msgstr ""
 "Adgang nægtet: kan ikke skrive til filen %1. Kontrollér dine rettigheder."
 
-#: src/akregator_part.cpp:490 src/akregator_part.cpp:499
+#: src/akregator_part.cpp:494 src/akregator_part.cpp:503
 #, kde-format
 msgid "OPML Outlines (%1);;All Files (*)"
 msgstr "OPML-omrids (%1);;Alle filer (*)"
 
-#: src/akregator_part.cpp:624
+#: src/akregator_part.cpp:628
 #, kde-format
 msgid "Imported Folder"
 msgstr "Importeret mappe"
@@ -1987,49 +2042,49 @@ msgid "Ask me later"
 msgstr "Spørg mig senere"
 
 #. i18n: ectx: Menu (edit)
-#: src/data/akregator_part.rc:14 src/data/akregator_shell.rc:11
+#: src/data/akregator_part.rc:16 src/data/akregator_shell.rc:11
 #, kde-format
 msgid "&Edit"
 msgstr "&Redigér"
 
 #. i18n: ectx: Menu (view)
-#: src/data/akregator_part.rc:22 src/data/akregator_shell.rc:16
+#: src/data/akregator_part.rc:24 src/data/akregator_shell.rc:16
 #, kde-format
 msgid "&View"
 msgstr "&Vis"
 
 #. i18n: ectx: Menu (go)
-#: src/data/akregator_part.rc:37 src/data/akregator_shell.rc:24
+#: src/data/akregator_part.rc:39 src/data/akregator_shell.rc:24
 #, kde-format
 msgid "&Go"
 msgstr "&Gå"
 
 #. i18n: ectx: Menu (feed)
-#: src/data/akregator_part.rc:50 src/data/akregator_shell.rc:29
+#: src/data/akregator_part.rc:52 src/data/akregator_shell.rc:29
 #, kde-format
 msgid "Fee&d"
 msgstr "Fee&d"
 
 #. i18n: ectx: Menu (article)
-#: src/data/akregator_part.rc:63 src/data/akregator_shell.rc:34
+#: src/data/akregator_part.rc:65 src/data/akregator_shell.rc:34
 #, kde-format
 msgid "&Article"
 msgstr "&Artikel"
 
 #. i18n: ectx: Menu (settings)
-#: src/data/akregator_part.rc:80 src/data/akregator_shell.rc:39
+#: src/data/akregator_part.rc:82 src/data/akregator_shell.rc:39
 #, kde-format
 msgid "&Settings"
 msgstr "&Indstillinger"
 
 #. i18n: ectx: Menu (help)
-#: src/data/akregator_part.rc:90
+#: src/data/akregator_part.rc:92
 #, kde-format
 msgid "&Help"
 msgstr ""
 
 #. i18n: ectx: ToolBar (mainToolBar)
-#: src/data/akregator_part.rc:98 src/data/akregator_shell.rc:54
+#: src/data/akregator_part.rc:100 src/data/akregator_shell.rc:54
 #, kde-format
 msgid "Main Toolbar"
 msgstr "Hovedværktøjslinje"
@@ -2326,6 +2381,103 @@ msgid "<i>and 1 other</i>"
 msgid_plural "<i>and %1 others</i>"
 msgstr[0] "<i>og 1 anden</i>"
 msgstr[1] "<i>og %1 andre</i>"
+
+#: src/plugins/addaccountwizard.cpp:22
+#: src/plugins/miniflux/minifluxplugin.cpp:90
+#, fuzzy, kde-format
+#| msgid "Modify Online Reader Account"
+msgctxt "@title:window"
+msgid "Add Online Account"
+msgstr "Ændr online læser-konto"
+
+#: src/plugins/addaccountwizard.cpp:27
+#, kde-format
+msgctxt "@title:tab, wizard page for selecting the account type"
+msgid "Account Type"
+msgstr ""
+
+#: src/plugins/addaccountwizard.cpp:31
+#, fuzzy, kde-format
+#| msgid "Bar Settings"
+msgctxt "@title:tab, wizard page with the account settings"
+msgid "Account Settings"
+msgstr "Bar-indstillinger"
+
+#: src/plugins/miniflux/minifluxaccountdialog.cpp:20
+#, kde-format
+msgctxt "@title:window"
+msgid "Miniflux Account Settings"
+msgstr ""
+
+#: src/plugins/miniflux/minifluxaccountwidget.cpp:26
+#, kde-format
+msgctxt "@action:button"
+msgid "Test Connection"
+msgstr ""
+
+#: src/plugins/miniflux/minifluxaccountwidget.cpp:31
+#, kde-format
+msgid "My Miniflux"
+msgstr ""
+
+#: src/plugins/miniflux/minifluxaccountwidget.cpp:32
+#, kde-format
+msgid "Account Name:"
+msgstr ""
+
+#: src/plugins/miniflux/minifluxaccountwidget.cpp:34
+#, fuzzy, kde-format
+#| msgid "Service URL:"
+msgid "Server URL:"
+msgstr "URL til tjeneste:"
+
+#: src/plugins/miniflux/minifluxaccountwidget.cpp:36
+#, kde-format
+msgid "API Token:"
+msgstr ""
+
+#: src/plugins/miniflux/minifluxaccountwidget.cpp:100
+#, kde-format
+msgid "Please enter a valid server URL and API token."
+msgstr ""
+
+#: src/plugins/miniflux/minifluxaccountwidget.cpp:100
+#, kde-format
+msgctxt "@title:window"
+msgid "Invalid Input"
+msgstr ""
+
+#: src/plugins/miniflux/minifluxaccountwidget.cpp:111
+#, kde-format
+msgid "Successfully connected to the Miniflux server."
+msgstr ""
+
+#: src/plugins/miniflux/minifluxaccountwidget.cpp:111
+#, kde-format
+msgctxt "@title:window"
+msgid "Connection Successful"
+msgstr ""
+
+#: src/plugins/miniflux/minifluxaccountwidget.cpp:113
+#, kde-format
+msgid "Failed to connect: %1"
+msgstr ""
+
+#: src/plugins/miniflux/minifluxaccountwidget.cpp:113
+#, kde-format
+msgctxt "@title:window"
+msgid "Connection Failed"
+msgstr ""
+
+#: src/plugins/miniflux/minifluxplugin.cpp:73
+#, kde-format
+msgid "Miniflux"
+msgstr ""
+
+#: src/plugins/miniflux/minifluxplugin.cpp:90
+#, kde-format
+msgid "An account named \"%1\" already exists."
+msgstr ""
 
 #: src/progressmanager.cpp:127
 #, kde-format
@@ -3041,9 +3193,6 @@ msgstr "Vigtige"
 #~ msgid "Manage..."
 #~ msgstr "Håndtér..."
 
-#~ msgid "Bar Settings"
-#~ msgstr "Bar-indstillinger"
-
 #~ msgid "Bar!"
 #~ msgstr "Bar!"
 
@@ -3053,9 +3202,6 @@ msgstr "Vigtige"
 #~ msgstr ""
 #~ "Nogle kategorier og feeds er blevet markeret til fjernelse. Vil du slette "
 #~ "dem?"
-
-#~ msgid "Remove nothing"
-#~ msgstr "Fjern intet"
 
 #~ msgid "Remove only categories"
 #~ msgstr "Fjern kun kategorier"
@@ -3071,9 +3217,6 @@ msgstr "Vigtige"
 
 #~ msgid "Online Reader Configuration"
 #~ msgstr "Indstilling af online læser"
-
-#~ msgid "Modify Online Reader Account"
-#~ msgstr "Ændr online læser-konto"
 
 #~ msgid "Google Reader"
 #~ msgstr "Google Reader"
@@ -3102,20 +3245,11 @@ msgstr "Vigtige"
 #~ msgid "Online reader accounts:"
 #~ msgstr "Online læser-konti:"
 
-#~ msgid "Type"
-#~ msgstr "Type"
-
 #~ msgid "Description"
 #~ msgstr "Beskrivelse"
 
 #~ msgid "Add..."
 #~ msgstr "Tilføj..."
-
-#~ msgid "Modify..."
-#~ msgstr "Ændr..."
-
-#~ msgid "Remove"
-#~ msgstr "Fjern"
 
 #~ msgid "Delete feeds:"
 #~ msgstr "Slet feeds:"
@@ -3141,9 +3275,6 @@ msgstr "Vigtige"
 #~ msgctxt "login identify for blog account"
 #~ msgid "Username:"
 #~ msgstr "Brugernavn:"
-
-#~ msgid "Service URL:"
-#~ msgstr "URL til tjeneste:"
 
 #~ msgid "Please, configure the share service before using it."
 #~ msgstr "Indstil delingstjenesten før du bruger den."
