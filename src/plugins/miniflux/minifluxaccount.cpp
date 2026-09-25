@@ -163,6 +163,9 @@ void MinifluxAccount::removeFromTree()
 
 void MinifluxAccount::onSyncJobFinished(KJob *job)
 {
+    if (m_rootFolder && m_pollTimer.interval() > 0) {
+        m_pollTimer.start();
+    }
     if (job->error()) {
         qCWarning(MINIFLUX_LOG) << "Miniflux sync failed for account" << m_accountName << ":" << job->errorText();
         Q_EMIT syncError(job->errorText());
@@ -176,9 +179,6 @@ void MinifluxAccount::onSyncJobFinished(KJob *job)
     qCDebug(MINIFLUX_LOG) << "Miniflux sync succeeded for account" << m_accountName << "- categories:" << syncJob->categories().size()
                           << "feeds:" << syncJob->feeds().size();
     populateFeedTree(syncJob->categories(), syncJob->feeds());
-    if (m_pollTimer.interval() > 0) {
-        m_pollTimer.start();
-    }
     Q_EMIT syncFinished();
 }
 
