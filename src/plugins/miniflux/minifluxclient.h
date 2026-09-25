@@ -6,11 +6,12 @@
 #pragma once
 
 #include "minifluxdata.h"
-#include <QNetworkAccessManager>
 #include <QObject>
 #include <QUrl>
 #include <QUrlQuery>
-
+class QNetworkAccessManager;
+class QNetworkReply;
+class QNetworkRequest;
 namespace Akregator
 {
 
