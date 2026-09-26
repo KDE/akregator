@@ -16,15 +16,15 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-09-25 00:46+0000\n"
-"PO-Revision-Date: 2026-05-28 06:22-0300\n"
+"PO-Revision-Date: 2026-09-25 06:12-0300\n"
 "Last-Translator: Marcus Gama <marcus.gama@gmail.com>\n"
-"Language-Team: Brazilian Portuguese <kde-i18n-pt_BR@kde.org>\n"
+"Language-Team: Portuguese <kde-i18n-pt_BR@kde.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 26.04.1\n"
+"X-Generator: Lokalize 26.08.1\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -117,31 +117,31 @@ msgstr ""
 #, kde-format
 msgctxt "@title:column"
 msgid "Account"
-msgstr ""
+msgstr "Conta"
 
 #: configuration/akregator_config_accounts.cpp:39
 #, kde-format
 msgctxt "@title:column"
 msgid "Type"
-msgstr ""
+msgstr "Tipo"
 
 #: configuration/akregator_config_accounts.cpp:45
 #, kde-format
 msgctxt "@action:button"
 msgid "Add…"
-msgstr ""
+msgstr "Adicionar…"
 
 #: configuration/akregator_config_accounts.cpp:46
 #, kde-format
 msgctxt "@action:button"
 msgid "Modify…"
-msgstr ""
+msgstr "Modificar…"
 
 #: configuration/akregator_config_accounts.cpp:47
 #, kde-format
 msgctxt "@action:button"
 msgid "Remove"
-msgstr ""
+msgstr "Remover"
 
 #: configuration/akregator_config_accounts.cpp:134
 #, kde-format
@@ -150,12 +150,15 @@ msgid ""
 "This removes the account's folder from the feed tree and deletes its stored "
 "credentials; the server is not affected."
 msgstr ""
+"Você realmente deseja remover a conta \"%1\"?\n"
+"Isso remove a pasta da conta da árvore de fontes de notícias e exclui as "
+"credenciais armazenadas; o servidor não é afetado."
 
 #: configuration/akregator_config_accounts.cpp:138
 #, kde-format
 msgctxt "@title:window"
 msgid "Remove Account"
-msgstr ""
+msgstr "Remover conta"
 
 #: configuration/akregator_config_archive.cpp:37
 #, kde-format
@@ -1246,7 +1249,7 @@ msgstr "&Exportar fontes de notícias…"
 #, kde-format
 msgctxt "@action"
 msgid "Add Online Account…"
-msgstr ""
+msgstr "Adicionar conta online…"
 
 #: src/actions/actionmanagerimpl.cpp:224
 #, kde-format
@@ -2326,97 +2329,94 @@ msgstr[1] "<i>e %1 outras</i>"
 #, kde-format
 msgctxt "@title:window"
 msgid "Add Online Account"
-msgstr ""
+msgstr "Adicionar conta online"
 
 #: src/plugins/addaccountwizard.cpp:27
 #, kde-format
 msgctxt "@title:tab, wizard page for selecting the account type"
 msgid "Account Type"
-msgstr ""
+msgstr "Tipo de conta"
 
 #: src/plugins/addaccountwizard.cpp:31
-#, fuzzy, kde-format
-#| msgid "&Settings"
+#, kde-format
 msgctxt "@title:tab, wizard page with the account settings"
 msgid "Account Settings"
-msgstr "&Configurações"
+msgstr "Configurações da conta"
 
 #: src/plugins/miniflux/minifluxaccountdialog.cpp:20
 #, kde-format
 msgctxt "@title:window"
 msgid "Miniflux Account Settings"
-msgstr ""
+msgstr "Configurações da conta Miniflux"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:26
 #, kde-format
 msgctxt "@action:button"
 msgid "Test Connection"
-msgstr ""
+msgstr "Testar conexão"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:31
 #, kde-format
 msgid "My Miniflux"
-msgstr ""
+msgstr "Meu Miniflux"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:32
-#, fuzzy, kde-format
-#| msgid "Group Name"
+#, kde-format
 msgid "Account Name:"
-msgstr "Nome do grupo"
+msgstr "Nome da conta:"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:34
-#, fuzzy, kde-format
-#| msgid "Feed &URL:"
+#, kde-format
 msgid "Server URL:"
-msgstr "&URL da fonte de notícias:"
+msgstr "URL do servidor:"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:36
 #, kde-format
 msgid "API Token:"
-msgstr ""
+msgstr "Token da API:"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:100
 #, kde-format
 msgid "Please enter a valid server URL and API token."
-msgstr ""
+msgstr "Por favor, insira uma URL de servidor e um token de API válidos."
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:100
 #, kde-format
 msgctxt "@title:window"
 msgid "Invalid Input"
-msgstr ""
+msgstr "Entrada inválida"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:111
 #, kde-format
 msgid "Successfully connected to the Miniflux server."
-msgstr ""
+msgstr "Conectado com sucesso ao servidor Miniflux."
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:111
 #, kde-format
 msgctxt "@title:window"
 msgid "Connection Successful"
-msgstr ""
+msgstr "Conexão bem sucedida"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:113
 #, kde-format
 msgid "Failed to connect: %1"
-msgstr ""
+msgstr "Falhou ao conectar: %1"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:113
 #, kde-format
 msgctxt "@title:window"
 msgid "Connection Failed"
-msgstr ""
+msgstr "Falha na conexão"
 
 #: src/plugins/miniflux/minifluxplugin.cpp:73
 #, kde-format
 msgid "Miniflux"
-msgstr ""
+msgstr "Miniflux"
 
 #: src/plugins/miniflux/minifluxplugin.cpp:90
 #, kde-format
 msgid "An account named \"%1\" already exists."
-msgstr ""
+msgstr "Já existe uma conta chamada \"%1\"."
 
 #: src/progressmanager.cpp:127
 #, kde-format

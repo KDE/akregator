@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-09-25 00:46+0000\n"
-"PO-Revision-Date: 2026-05-28 09:11+0200\n"
+"PO-Revision-Date: 2026-09-25 13:26+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca\n"
@@ -110,31 +110,31 @@ msgstr ""
 #, kde-format
 msgctxt "@title:column"
 msgid "Account"
-msgstr ""
+msgstr "Compte"
 
 #: configuration/akregator_config_accounts.cpp:39
 #, kde-format
 msgctxt "@title:column"
 msgid "Type"
-msgstr ""
+msgstr "Tipus"
 
 #: configuration/akregator_config_accounts.cpp:45
 #, kde-format
 msgctxt "@action:button"
 msgid "Add…"
-msgstr ""
+msgstr "Afegeix…"
 
 #: configuration/akregator_config_accounts.cpp:46
 #, kde-format
 msgctxt "@action:button"
 msgid "Modify…"
-msgstr ""
+msgstr "Modifica…"
 
 #: configuration/akregator_config_accounts.cpp:47
 #, kde-format
 msgctxt "@action:button"
 msgid "Remove"
-msgstr ""
+msgstr "Elimina"
 
 #: configuration/akregator_config_accounts.cpp:134
 #, kde-format
@@ -143,12 +143,15 @@ msgid ""
 "This removes the account's folder from the feed tree and deletes its stored "
 "credentials; the server is not affected."
 msgstr ""
+"Segur que voleu suprimir el compte «%1»?\n"
+"Això eliminarà la carpeta del compte de l'arbre de fonts i suprimirà les "
+"seves credencials emmagatzemades; el servidor no es veu afectat."
 
 #: configuration/akregator_config_accounts.cpp:138
 #, kde-format
 msgctxt "@title:window"
 msgid "Remove Account"
-msgstr ""
+msgstr "Elimina el compte"
 
 #: configuration/akregator_config_archive.cpp:37
 #, kde-format
@@ -1238,7 +1241,7 @@ msgstr "&Exporta les fonts…"
 #, kde-format
 msgctxt "@action"
 msgid "Add Online Account…"
-msgstr ""
+msgstr "Afegeix un compte en línia…"
 
 #: src/actions/actionmanagerimpl.cpp:224
 #, kde-format
@@ -2315,97 +2318,94 @@ msgstr[1] "<i>i %1 altres</i>"
 #, kde-format
 msgctxt "@title:window"
 msgid "Add Online Account"
-msgstr ""
+msgstr "Afegeix un compte en línia"
 
 #: src/plugins/addaccountwizard.cpp:27
 #, kde-format
 msgctxt "@title:tab, wizard page for selecting the account type"
 msgid "Account Type"
-msgstr ""
+msgstr "Tipus de compte"
 
 #: src/plugins/addaccountwizard.cpp:31
-#, fuzzy, kde-format
-#| msgid "&Settings"
+#, kde-format
 msgctxt "@title:tab, wizard page with the account settings"
 msgid "Account Settings"
-msgstr "A&rranjament"
+msgstr "Configuració del compte"
 
 #: src/plugins/miniflux/minifluxaccountdialog.cpp:20
 #, kde-format
 msgctxt "@title:window"
 msgid "Miniflux Account Settings"
-msgstr ""
+msgstr "Configuració del compte Miniflux"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:26
 #, kde-format
 msgctxt "@action:button"
 msgid "Test Connection"
-msgstr ""
+msgstr "Prova de connexió"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:31
 #, kde-format
 msgid "My Miniflux"
-msgstr ""
+msgstr "El meu Miniflux"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:32
-#, fuzzy, kde-format
-#| msgid "Group Name"
+#, kde-format
 msgid "Account Name:"
-msgstr "Nom del grup"
+msgstr "Nom del compte:"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:34
-#, fuzzy, kde-format
-#| msgid "Feed &URL:"
+#, kde-format
 msgid "Server URL:"
-msgstr "&URL de la font:"
+msgstr "URL del servidor:"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:36
 #, kde-format
 msgid "API Token:"
-msgstr ""
+msgstr "Testimoni de l'API:"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:100
 #, kde-format
 msgid "Please enter a valid server URL and API token."
-msgstr ""
+msgstr "Introduïu un URL i un testimoni d'API vàlid."
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:100
 #, kde-format
 msgctxt "@title:window"
 msgid "Invalid Input"
-msgstr ""
+msgstr "Entrada no vàlida"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:111
 #, kde-format
 msgid "Successfully connected to the Miniflux server."
-msgstr ""
+msgstr "S'ha connectat correctament amb el servidor Miniflux."
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:111
 #, kde-format
 msgctxt "@title:window"
 msgid "Connection Successful"
-msgstr ""
+msgstr "La connexió ha estat correcta"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:113
 #, kde-format
 msgid "Failed to connect: %1"
-msgstr ""
+msgstr "Ha fallat en connectar: %1"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:113
 #, kde-format
 msgctxt "@title:window"
 msgid "Connection Failed"
-msgstr ""
+msgstr "Ha fallat la connexió"
 
 #: src/plugins/miniflux/minifluxplugin.cpp:73
 #, kde-format
 msgid "Miniflux"
-msgstr ""
+msgstr "Miniflux"
 
 #: src/plugins/miniflux/minifluxplugin.cpp:90
 #, kde-format
 msgid "An account named \"%1\" already exists."
-msgstr ""
+msgstr "Ja existeix un compte anomenat «%1»."
 
 #: src/progressmanager.cpp:127
 #, kde-format

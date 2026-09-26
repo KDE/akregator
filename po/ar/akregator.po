@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-09-25 00:46+0000\n"
-"PO-Revision-Date: 2026-08-10 17:51+0400\n"
+"PO-Revision-Date: 2026-09-25 16:49+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
 "Language: ar\n"
@@ -107,11 +107,10 @@ msgstr ""
 #, kde-format
 msgctxt "@title:column"
 msgid "Account"
-msgstr ""
+msgstr "الحساب"
 
 #: configuration/akregator_config_accounts.cpp:39
-#, fuzzy, kde-format
-#| msgid "Type"
+#, kde-format
 msgctxt "@title:column"
 msgid "Type"
 msgstr "النوع"
@@ -120,18 +119,16 @@ msgstr "النوع"
 #, kde-format
 msgctxt "@action:button"
 msgid "Add…"
-msgstr ""
+msgstr "أضف…"
 
 #: configuration/akregator_config_accounts.cpp:46
-#, fuzzy, kde-format
-#| msgid "Modify..."
+#, kde-format
 msgctxt "@action:button"
 msgid "Modify…"
-msgstr "عدّل..."
+msgstr "عدّل…"
 
 #: configuration/akregator_config_accounts.cpp:47
-#, fuzzy, kde-format
-#| msgid "Remove"
+#, kde-format
 msgctxt "@action:button"
 msgid "Remove"
 msgstr "أزل"
@@ -145,11 +142,10 @@ msgid ""
 msgstr ""
 
 #: configuration/akregator_config_accounts.cpp:138
-#, fuzzy, kde-format
-#| msgid "Remove nothing"
+#, kde-format
 msgctxt "@title:window"
 msgid "Remove Account"
-msgstr "لا تحذف شيئًا"
+msgstr "أزل الحساب"
 
 #: configuration/akregator_config_archive.cpp:37
 #, kde-format
@@ -2348,14 +2344,13 @@ msgstr "عدّل حساب قارئ الإنترنت"
 #, kde-format
 msgctxt "@title:tab, wizard page for selecting the account type"
 msgid "Account Type"
-msgstr ""
+msgstr "نوع الحساب"
 
 #: src/plugins/addaccountwizard.cpp:31
-#, fuzzy, kde-format
-#| msgid "Bar Settings"
+#, kde-format
 msgctxt "@title:tab, wizard page with the account settings"
 msgid "Account Settings"
-msgstr "إعدادات الشريط"
+msgstr "إعدادات الحساب"
 
 #: src/plugins/miniflux/minifluxaccountdialog.cpp:20
 #, kde-format
@@ -2367,7 +2362,7 @@ msgstr ""
 #, kde-format
 msgctxt "@action:button"
 msgid "Test Connection"
-msgstr ""
+msgstr "اختبر الاتّصال"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:31
 #, kde-format
@@ -2375,21 +2370,19 @@ msgid "My Miniflux"
 msgstr ""
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:32
-#, fuzzy, kde-format
-#| msgid "Group Name"
+#, kde-format
 msgid "Account Name:"
-msgstr "اسم المجموعة"
+msgstr "اسم الحساب:"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:34
-#, fuzzy, kde-format
-#| msgid "Service URL:"
+#, kde-format
 msgid "Server URL:"
-msgstr "مسار التلقيم:"
+msgstr "مسار الخادم:"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:36
 #, kde-format
 msgid "API Token:"
-msgstr ""
+msgstr "رمز API:"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:100
 #, kde-format
@@ -2400,7 +2393,7 @@ msgstr ""
 #, kde-format
 msgctxt "@title:window"
 msgid "Invalid Input"
-msgstr ""
+msgstr "مدخل غير صالح"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:111
 #, kde-format
@@ -2411,18 +2404,18 @@ msgstr ""
 #, kde-format
 msgctxt "@title:window"
 msgid "Connection Successful"
-msgstr ""
+msgstr "الاتصال ناجح"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:113
 #, kde-format
 msgid "Failed to connect: %1"
-msgstr ""
+msgstr "أخفق في الاتصال: %1"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:113
 #, kde-format
 msgctxt "@title:window"
 msgid "Connection Failed"
-msgstr ""
+msgstr "فشل الاتّصال"
 
 #: src/plugins/miniflux/minifluxplugin.cpp:73
 #, kde-format

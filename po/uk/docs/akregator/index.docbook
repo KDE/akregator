@@ -20,8 +20,7 @@
 > <affiliation
 ><address
 ><email
->frank.osterfeld@kdemail.net</email
->  
+>frank.osterfeld@kdemail.net</email>
 </address
 ></affiliation>
 </author>
@@ -33,6 +32,18 @@
 > <affiliation
 ><address
 >&Anne-Marie.Mahfouf.mail; </address
+></affiliation>
+</author>
+<author
+><firstname
+>Благовєст</firstname
+> <surname
+>Пєтров</surname
+> <affiliation
+><address
+><email
+>blagovest@petrovs.info</email>
+</address
 ></affiliation>
 </author>
 
@@ -69,9 +80,9 @@
 >&FDLNotice;</legalnotice>
 
 <date
->31 березня 2021 року</date>
+>15 липня 2026 року</date>
 <releaseinfo
->Програми 21.08</releaseinfo>
+>Програми 26.12</releaseinfo>
 
 <!-- Abstract about this handbook -->
 
@@ -393,6 +404,106 @@ say how to start it -->
 </sect1>
 </chapter>
 
+<chapter id="online-accounts">
+<title
+>Облікові записи в інтернеті</title>
+
+<para
+>Окрім підписки на окремі подачі новин, &akregator; може встановлювати з'єднання із інтернет-службою для читання подач і дублювати наявні там підписки. У поточній версії передбачено підтримку одного типу облікового запису — <ulink url="https://miniflux.app/"
+>Miniflux</ulink
+> — служби для читання подач, яку можна розгорнути на власному сервері. Після налаштовування облікового запису &akregator; створює теку з назвою <quote
+><replaceable
+>назва облікового запису</replaceable
+> (Miniflux)</quote
+>, у які буде показано структуру категорій і подач із сервера. Отримання статей відбувається за допомогою служби програмного інтерфейсу (замість безпосереднього отримання даних подач), а стан прочитання синхронізується в обох напрямках.</para>
+
+<sect1 id="adding-online-account">
+<title
+>Додавання облікового запису інтернету</title>
+
+<para
+>Виберіть пункт меню <menuchoice
+><guimenu
+>Файл</guimenu
+><guimenuitem
+>Додати обліковий запис інтернету...</guimenuitem
+></menuchoice
+>, щоб відкрити майстер налаштовування облікового запису. На першій сторінці виберіть тип облікового запису. На другій сторінці містяться параметри для вибраного типу. Для облікового запису Miniflux це:</para>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Назва облікового запису:</guilabel
+></term>
+<listitem
+><para
+>Вибрана вами назва. Її буде використано для теки облікового запису у списку подач, її не може бути змінено пізніше.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Адреса сервера:</guilabel
+></term>
+<listitem
+><para
+>Адреса вашого сервера Miniflux; приклад: <userinput
+>https://miniflux.example.com</userinput
+>.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Жетон API:</guilabel
+></term>
+<listitem
+><para
+>Жетон програмного інтерфейсу для вашого користувача Miniflux. Ви можете створити жетон у вебінтерфейсі Miniflux за допомогою пункту меню <menuchoice
+><guimenu
+>Параметри</guimenu
+><guimenuitem
+>Ключі до програмного інтерфейсу</guimenuitem
+></menuchoice
+>. &akregator; зберігає жетон у загальносистемній торбинці, а не у простому текстовому файлі.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+<para
+>Скористайтеся кнопкою <guibutton
+>Перевірити з’єднання</guibutton
+>, щоб перевірити адресу сервера та жетон, перш ніж завершити роботу майстра. Після завершення роботи майстра &akregator; отримає категорії та подачі з сервера і розпочне імпортування непрочитаних статей.</para>
+</sect1>
+
+<sect1 id="online-account-sync">
+<title
+>Як працює синхронізація?</title>
+
+<para
+>Подачі облікового запису в інтернеті оновлюються з інтервалом, визначеним у параметрах на вкладці <link linkend="general-tab"
+>Загальне</link
+>, отримуючи непрочитані статті із сервера. Щоб забезпечити швидку реакцію інтерфейсу, під час кожного оновлення буде імпортовано не більше 1000 найновіших непрочитаних статей для кожної подачі.</para>
+
+<para
+>Коли ви позначаєте статтю як прочитану або непрочитану, відомості про цю зміну надсилається на сервер із невеликою затримкою, завдяки чому читання кількох статей поспіль призводить до виконання лише одного запиту. Позначення статті як «Важливої» змінює стан зірочки (закладки) для цієї статті на сервері.</para>
+</sect1>
+
+<sect1 id="managing-online-accounts">
+<title
+>Керування обліковими записами</title>
+
+<para
+>Керування обліковими записами здійснюється на вкладці <link linkend="accounts-tab"
+>Облікові записи</link
+> вікна параметрів, де облікові записи можна додавати, змінювати та вилучати. Для наявного облікового запису можна змінити адресу сервера та жетон програмного інтерфейсу; зміни набувають чинності миттєво та ініціюють нову синхронізацію.</para>
+
+<para
+>Вилучення облікового запису призводить до вилучення його теки зі списку подач, а також його налаштувань та збережених облікових даних. Сам обліковий запис і статті на сервері залишаються без змін. Вилучення теки облікового запису безпосередньо зі списку подач має такий самий результат.</para>
+</sect1>
+</chapter>
+
 <chapter id="configuration">
 <title
 >Як налаштувати &akregator;</title>
@@ -579,6 +690,49 @@ say how to start it -->
 
 </sect1>
 
+<sect1 id="accounts-tab">
+<title
+>Облікові записи</title>
+<para
+>На сторінці облікових записів буде наведено список налаштованих <link linkend="online-accounts"
+>облікових записів інтернету</link
+> із зазначенням типу.</para>
+<variablelist>
+<varlistentry>
+<term
+><guibutton
+>Додати…</guibutton
+></term>
+<listitem
+><para
+>Відкриває майстер <link linkend="adding-online-account"
+>Додавання облікового запису інтернету</link
+>.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guibutton
+>Змінити…</guibutton
+></term>
+<listitem
+><para
+>Відкриває вікно параметрів позначеного облікового запису для внесення змін до адреси сервера або жетона програмного інтерфейсу.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guibutton
+>Вилучити</guibutton
+></term>
+<listitem
+><para
+>Вилучає позначений обліковий запис, зокрема його теку в списку подач і збережені облікові дані. Це не стосується даних на сервері.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</sect1>
+
 <sect1 id="adblock-tab">
 <title
 >Перехоплення адрес</title>
@@ -645,8 +799,7 @@ say how to start it -->
 <term
 ><guilabel
 >Обмежити розмір архіву до:</guilabel
-></term
-> 
+></term>
 <listitem
 ><para
 >Якщо кількість статей перевищить вказане обмеження, найстаріші статті буде вилучено. Зауважте, що під час підрахунку кількості статей статті з прапорцями буде проігноровано: якщо ви встановили обмеження у 500 статей, і ви маєте 510 статей без прапорців і 50 статей з прапорцями, &akregator; проігнорує 50 статей з прапорцями і вилучить лише 10 найдавніших статей без прапорців. Отже, в такому випадку, буде збережено 550 статей.</para>
@@ -1129,6 +1282,25 @@ say how to start it -->
 > діалогове вікно збереження з новою назвою та експортувати ваші записи подач та структуру тек у форматі файла <filename class="extension"
 >.opml</filename
 >.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Файл</guimenu
+> <guimenuitem
+>Додати обліковий запис у мережі...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Відкрити</action
+> майстер <link linkend="adding-online-account"
+>Додавання облікового запису інтернету</link
+>, щоб встановити з'єднання &akregator; із інтернет-службою для читання подач новин, наприклад Miniflux.</para
 ></listitem>
 </varlistentry>
 
@@ -1826,7 +1998,7 @@ action="simul"
 ></term>
 <listitem
 ><para
->Use this action you to share news 
+>Use this action you to share news
  with your friends using the microblog services identi.ca and twitter.
 </para
 ></listitem>

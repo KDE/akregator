@@ -34,6 +34,18 @@
 >&Anne-Marie.Mahfouf.mail; </address
 ></affiliation>
 </author>
+<author
+><firstname
+>Blagovest</firstname
+> <surname
+>Petrov</surname
+> <affiliation
+><address
+><email
+>blagovest@petrovs.info</email>
+</address
+></affiliation>
+</author>
 
 &traductor.Antoni.Bella; 
 </authorgroup>
@@ -54,9 +66,9 @@
 >&FDLNotice;</legalnotice>
 
 <date
->31 de març de 2021</date>
+>15 de juliol de 2026</date>
 <releaseinfo
->Aplicacions 21.08</releaseinfo>
+>Aplicacions 26.12</releaseinfo>
 
 <!-- Abstract about this handbook -->
 
@@ -378,6 +390,110 @@ say how to start it -->
 </sect1>
 </chapter>
 
+<chapter id="online-accounts">
+<title
+>Comptes en línia</title>
+
+<para
+>A més de subscriure's a fonts individuals, l'&akregator; pot connectar-se a un servei de lectura de fonts en línia i reflectir les seves subscripcions. Actualment s'admet un tipus de compte: <ulink url="https://miniflux.app/"
+>Miniflux</ulink
+>, un lector de fonts auto allotjat. Quan es configura un compte, l'&akregator; crea una carpeta anomenada «<replaceable
+>nom de compte</replaceable
+> (Miniflux)» que reflecteix les categories i les fonts del servidor. Els articles s'obtenen mitjançant l'<acronym
+>API</acronym
+> del servei en lloc de descarregar les fonts directament, i l'estat de lectura se sincronitza en ambdues direccions.</para>
+
+<sect1 id="adding-online-account">
+<title
+>Afegir un compte en línia</title>
+
+<para
+>Seleccioneu <menuchoice
+><guimenu
+>Fitxer</guimenu
+><guimenuitem
+>Afegeix un compte en línia...</guimenuitem
+></menuchoice
+> per obrir l'assistent de comptes. A la primera pàgina, trieu el tipus de compte. La segona pàgina conté la configuració del tipus seleccionat. Per a un compte Miniflux són aquests:</para>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Nom del compte:</guilabel
+></term>
+<listitem
+><para
+>Un nom de la vostra elecció. S'utilitza per a la carpeta del compte a la llista de fonts i no es pot canviar més tard.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>URL del servidor:</guilabel
+></term>
+<listitem
+><para
+>L'adreça del vostre servidor Miniflux, per exemple <userinput
+>https://miniflux.exemple.com</userinput
+>.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Testimoni de l'API:</guilabel
+></term>
+<listitem
+><para
+>Un testimoni de l'<acronym
+>API</acronym
+> per al vostre usuari del Miniflux. Podeu crear-ne un a la interfície web del Miniflux mitjançant <menuchoice
+><guimenu
+>Configuració</guimenu
+><guimenuitem
+>Claus de l'API</guimenuitem
+></menuchoice
+>. L'&akregator; emmagatzema el testimoni a la cartera del sistema, no en un fitxer de text net.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+<para
+>Utilitzeu el botó <guibutton
+>Prova de connexió</guibutton
+> per verificar l'adreça del servidor i el testimoni abans d'acabar l'assistent. Un cop finalitzat l'assistent, l'&akregator; recupera les categories i les fonts del servidor i comença a importar els articles no llegits.</para>
+</sect1>
+
+<sect1 id="online-account-sync">
+<title
+>Com funciona la sincronització</title>
+
+<para
+>Les fonts d'un compte en línia s'actualitzen a l'interval definit a la configuració <link linkend="general-tab"
+>General</link
+>, obtenint articles sense llegir del servidor. Per mantenir la interfície d'usuari més fluïda, cada actualització importa com a màxim els 1000 articles sense llegir més nous per canal.</para>
+
+<para
+>Quan marqueu un article com a llegit o no llegit, el canvi s'envia de nou al servidor després d'un retard breu, de manera que llegir diversos articles seguits dona com a resultat una sola sol·licitud. Marcant un article com a «Important» commuta l'estrella (punt) de l'article al servidor.</para>
+</sect1>
+
+<sect1 id="managing-online-accounts">
+<title
+>Gestió de comptes</title>
+
+<para
+>Els comptes en línia es gestionen a la pàgina <link linkend="accounts-tab"
+>Comptes</link
+> del diàleg de configuració, on els comptes es poden afegir, modificar i eliminar. Per a un compte existent, es pot canviar l'adreça del servidor i el testimoni de l'<acronym
+>API</acronym
+>; el canvi té efecte immediatament i activa una sincronització nova.</para>
+
+<para
+>Eliminar un compte elimina la seva carpeta de la llista de fonts, la seva configuració i les seves credencials emmagatzemades. El compte i els articles del servidor no es veuen afectats. Suprimir la carpeta del compte directament de la llista de fonts té el mateix efecte.</para>
+</sect1>
+</chapter>
+
 <chapter id="configuration">
 <title
 >Configurar l'&akregator;</title>
@@ -562,6 +678,51 @@ say how to start it -->
 </varlistentry>
 </variablelist>
 
+</sect1>
+
+<sect1 id="accounts-tab">
+<title
+>Comptes</title>
+<para
+>La pàgina Comptes llista els <link linkend="online-accounts"
+>comptes en línia</link
+> configurats amb el seu tipus.</para>
+<variablelist>
+<varlistentry>
+<term
+><guibutton
+>Afegeix...</guibutton
+></term>
+<listitem
+><para
+>Obre l'assistent <link linkend="adding-online-account"
+>Afegeix un compte en línia</link
+>.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guibutton
+>Modifica...</guibutton
+></term>
+<listitem
+><para
+>Obre la configuració del compte seleccionat per a canviar l'adreça del servidor o el testimoni de l'<acronym
+>API</acronym
+>.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guibutton
+>Elimina</guibutton
+></term>
+<listitem
+><para
+>Elimina el compte seleccionat, incloent-hi la seva carpeta a la llista de fonts i les seves credencials emmagatzemades. El servidor no està afectat.</para
+></listitem>
+</varlistentry>
+</variablelist>
 </sect1>
 
 <sect1 id="adblock-tab">
@@ -1113,6 +1274,25 @@ say how to start it -->
 > el diàleg desa com a i exporta les vostres fonts i estructura de carpetes com a un fitxer <filename class="extension"
 >.opml</filename
 >.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Fitxer</guimenu
+> <guimenuitem
+>Afegeix un compte en línia...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Obre</action
+> l'assistent <link linkend="adding-online-account"
+>Afegeix un compte en línia</link
+> per connectar l'&akregator; a un servei de lector de fonts en línia com el Miniflux.</para
 ></listitem>
 </varlistentry>
 

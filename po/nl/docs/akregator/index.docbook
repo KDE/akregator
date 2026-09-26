@@ -34,6 +34,18 @@
 >&Anne-Marie.Mahfouf.mail; </address
 ></affiliation>
 </author>
+<author
+><firstname
+>Blagovest</firstname
+> <surname
+>Petrov</surname
+> <affiliation
+><address
+><email
+>blagovest@petrovs.info</email>
+</address
+></affiliation>
+</author>
 
 &Freek.de.Kruijf; 
 </authorgroup>
@@ -54,9 +66,9 @@
 >&FDLNotice;</legalnotice>
 
 <date
->2021-03-31</date>
+>2026-07-15</date>
 <releaseinfo
->Applications 21.08</releaseinfo>
+>Applications 26.12</releaseinfo>
 
 <!-- Abstract about this handbook -->
 
@@ -382,6 +394,114 @@ say how to start it -->
 </sect1>
 </chapter>
 
+<chapter id="online-accounts">
+<title
+>Online accounts</title>
+
+<para
+>Naast het abonneren op individuele feeds kan &akregator; verbinding maken met een online feedreader-dienst en de bijbehorende abonnementen spiegelen. Momenteel wordt één type account ondersteund: <ulink url="https://miniflux.app/"
+>Miniflux</ulink
+>, een zelf-gehoste feedreader. Wanneer een account wordt ingesteld, maakt &akregator; een map aan met de naam <quote
+><replaceable
+>accountnaam</replaceable
+> (Miniflux)</quote
+> die de categorieën en feeds van de server spiegelt. Artikelen worden opgehaald via de <acronym
+>API</acronym
+> van de dienst in plaats van dat de feeds rechtstreeks worden gedownload, en de leesstatus wordt in beide richtingen gesynchroniseerd.</para>
+
+<sect1 id="adding-online-account">
+<title
+>Een online account toevoegen</title>
+
+<para
+>Selecteer <menuchoice
+><guimenu
+>Bestand</guimenu
+><guimenuitem
+>Online account toevoegen...</guimenuitem
+></menuchoice
+> om de accountassistent te openen. Kies op de eerste pagina het accounttype. De tweede pagina bevat de instellingen voor het geselecteerde type. Voor een Miniflux-account zijn dit:</para>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Accountnaam:</guilabel
+></term>
+<listitem
+><para
+>Een naam naar keuze. Deze wordt gebruikt voor de accountmap in de feedlijst en kan later niet meer worden gewijzigd.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Server-URL:</guilabel
+></term>
+<listitem
+><para
+>Het adres van uw Miniflux-server, bijvoorbeeld <userinput
+>https://miniflux.example.com</userinput
+>.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>API-token:</guilabel
+></term>
+<listitem
+><para
+>Een <acronym
+>API</acronym
+>-token voor uw Miniflux-gebruiker. U kunt er een aanmaken in de webinterface van Miniflux via <menuchoice
+><guimenu
+>Instellingen</guimenu
+><guimenuitem
+>API-sleutels</guimenuitem
+></menuchoice
+>. &akregator; slaat het token op in de systeem-portefeuille, niet in een tekstbestand.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+<para
+>Gebruik de knop <guibutton
+>Verbinding testen</guibutton
+> om het serveradres en het token te controleren voordat u de assistent voltooit. Nadat de assistent is voltooid, haalt &akregator; de categorieën en feeds van de server op en begint met het importeren van de ongelezen artikelen.</para>
+</sect1>
+
+<sect1 id="online-account-sync">
+<title
+>Hoe synchronisatie werkt</title>
+
+<para
+>De feeds van een online account worden ververst met het interval dat is ingesteld in de <link linkend="general-tab"
+>Algemene</link
+> instellingen, waarbij ongelezen artikelen van de server worden opgehaald. Om de gebruikersinterface responsief te houden, worden bij elke verversing maximaal de 1000 nieuwste ongelezen artikelen per feed geïmporteerd.</para>
+
+<para
+>Wanneer u een artikel als gelezen of ongelezen markeert, wordt de wijziging na een korte vertraging naar de server verzonden, zodat het achter elkaar lezen van meerdere artikelen resulteert in slechts één verzoek. Het markeren van een artikel als <quote
+>Belangrijk</quote
+> schakelt de ster (bladwijzer) van het artikel op de server in of uit.</para>
+</sect1>
+
+<sect1 id="managing-online-accounts">
+<title
+>Accounts beheren</title>
+
+<para
+>Online accounts worden beheerd op het tabblad <link linkend="accounts-tab"
+>Accounts</link
+> van het configuratievenster; hier kunnen accounts worden toegevoegd, gewijzigd en verwijderd. Bij een bestaand account kunnen het serveradres en het <acronym
+>API</acronym
+>-token worden gewijzigd; de wijziging wordt direct van kracht en start een nieuwe synchronisatie.</para>
+
+<para
+>Bij het verwijderen van een account worden de bijbehorende map in de feedlijst, de configuratie en de opgeslagen inloggegevens gewist. Het account en de artikelen op de server blijven onaangetast. Het direct verwijderen van de map van het account uit de feedlijst heeft hetzelfde effect.</para>
+</sect1>
+</chapter>
+
 <chapter id="configuration">
 <title
 >&akregator; instellen</title>
@@ -566,6 +686,51 @@ say how to start it -->
 </varlistentry>
 </variablelist>
 
+</sect1>
+
+<sect1 id="accounts-tab">
+<title
+>Accounts</title>
+<para
+>De pagina Accounts toont de geconfigureerde <link linkend="online-accounts"
+>online accounts</link
+> en hun type.</para>
+<variablelist>
+<varlistentry>
+<term
+><guibutton
+>Toevoegen...</guibutton
+></term>
+<listitem
+><para
+>Opent de assistent <link linkend="adding-online-account"
+>Online account toevoegen</link
+></para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guibutton
+>Wijzigen...</guibutton
+></term>
+<listitem
+><para
+>Opent de instellingen van het geselecteerde account om het serveradres of het <acronym
+>API</acronym
+>-token te wijzigen.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guibutton
+>Verwijderen</guibutton
+></term>
+<listitem
+><para
+>Verwijdert het geselecteerde account, inclusief de bijbehorende map in de feedlijst en de opgeslagen inloggegevens. De server blijft ongemoeid.</para
+></listitem>
+</varlistentry>
+</variablelist>
 </sect1>
 
 <sect1 id="adblock-tab">
@@ -1119,6 +1284,25 @@ say how to start it -->
 > het opslaan als dialoog en exporteer uw feeds en mapstructuur als <filename class="extension"
 >.opml</filename
 > bestanden.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Bestand</guimenu
+> <guimenuitem
+>Online-account toevoegen...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Open</action
+> de assistent <link linkend="adding-online-account"
+>Online account toevoegen</link
+> om &akregator; te verbinden met een online feedreader-dienst, zoals Miniflux.</para
 ></listitem>
 </varlistentry>
 
