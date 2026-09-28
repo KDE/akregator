@@ -67,7 +67,7 @@ bool AkregatorPlugin::isRunningStandalone() const
 OrgKdeAkregatorPartInterface *AkregatorPlugin::interface()
 {
     if (!m_interface) {
-        part();
+        std::ignore = part();
     }
     Q_ASSERT(m_interface);
     return m_interface;
