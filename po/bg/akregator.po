@@ -100,48 +100,51 @@ msgstr ""
 "блокирана (вижте диалоговия прозорец за конфигуриране)."
 
 #: configuration/akregator_config_accounts.cpp:39
-#, kde-format
+#, fuzzy, kde-format
 msgctxt "@title:column"
 msgid "Account"
-msgstr ""
+msgstr "Акаунт"
 
 #: configuration/akregator_config_accounts.cpp:39
-#, kde-format
+#, fuzzy, kde-format
 msgctxt "@title:column"
 msgid "Type"
-msgstr ""
+msgstr "Тип"
 
 #: configuration/akregator_config_accounts.cpp:45
-#, kde-format
+#, fuzzy, kde-format
 msgctxt "@action:button"
 msgid "Add…"
-msgstr ""
+msgstr "Добавяне…"
 
 #: configuration/akregator_config_accounts.cpp:46
-#, kde-format
+#, fuzzy, kde-format
 msgctxt "@action:button"
 msgid "Modify…"
-msgstr ""
+msgstr "Редакция…"
 
 #: configuration/akregator_config_accounts.cpp:47
-#, kde-format
+#, fuzzy, kde-format
 msgctxt "@action:button"
 msgid "Remove"
-msgstr ""
+msgstr "Премахване"
 
 #: configuration/akregator_config_accounts.cpp:134
-#, kde-format
+#, fuzzy, kde-format
 msgid ""
 "Do you really want to remove the account \"%1\"?\n"
 "This removes the account's folder from the feed tree and deletes its stored "
 "credentials; the server is not affected."
 msgstr ""
+"Наистина ли искате да премахнете акаунта „%1“?\n"
+"Това премахва папката на акаунта от дървото с канали и изтрива съхранените "
+"данни за достъп; сървърът не се засяга."
 
 #: configuration/akregator_config_accounts.cpp:138
-#, kde-format
+#, fuzzy, kde-format
 msgctxt "@title:window"
 msgid "Remove Account"
-msgstr ""
+msgstr "Премахване на акаунт"
 
 #: configuration/akregator_config_archive.cpp:37
 #, kde-format
@@ -1229,10 +1232,10 @@ msgid "&Export Feeds…"
 msgstr "&Експортиране на емисии…"
 
 #: src/actions/actionmanagerimpl.cpp:215
-#, kde-format
+#, fuzzy, kde-format
 msgctxt "@action"
 msgid "Add Online Account…"
-msgstr ""
+msgstr "Добавяне на онлайн акаунт…"
 
 #: src/actions/actionmanagerimpl.cpp:224
 #, kde-format
@@ -2311,100 +2314,100 @@ msgstr[1] "<i> и още %1 други </i>"
 
 #: src/plugins/addaccountwizard.cpp:22
 #: src/plugins/miniflux/minifluxplugin.cpp:90
-#, kde-format
+#, fuzzy, kde-format
 msgctxt "@title:window"
 msgid "Add Online Account"
-msgstr ""
+msgstr "Добавяне на онлайн акаунт"
 
 #: src/plugins/addaccountwizard.cpp:27
-#, kde-format
+#, fuzzy, kde-format
 msgctxt "@title:tab, wizard page for selecting the account type"
 msgid "Account Type"
-msgstr ""
+msgstr "Тип акаунт"
 
 #: src/plugins/addaccountwizard.cpp:31
 #, fuzzy, kde-format
 #| msgid "&Settings"
 msgctxt "@title:tab, wizard page with the account settings"
 msgid "Account Settings"
-msgstr "&Настройки"
+msgstr "Настройки на акаунта"
 
 #: src/plugins/miniflux/minifluxaccountdialog.cpp:20
-#, kde-format
+#, fuzzy, kde-format
 msgctxt "@title:window"
 msgid "Miniflux Account Settings"
-msgstr ""
+msgstr "Настройки на акаунт в Miniflux"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:26
-#, kde-format
+#, fuzzy, kde-format
 msgctxt "@action:button"
 msgid "Test Connection"
-msgstr ""
+msgstr "Тест на връзката"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:31
-#, kde-format
+#, fuzzy, kde-format
 msgid "My Miniflux"
-msgstr ""
+msgstr "Моят Miniflux"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:32
 #, fuzzy, kde-format
 #| msgid "Group Name"
 msgid "Account Name:"
-msgstr "Име на група"
+msgstr "Име на акаунт:"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:34
 #, fuzzy, kde-format
 #| msgid "Feed &URL:"
 msgid "Server URL:"
-msgstr "&Адрес:"
+msgstr "URL на сървъра:"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:36
-#, kde-format
+#, fuzzy, kde-format
 msgid "API Token:"
-msgstr ""
+msgstr "API токен:"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:100
-#, kde-format
+#, fuzzy, kde-format
 msgid "Please enter a valid server URL and API token."
-msgstr ""
+msgstr "Моля, въведете валиден URL адрес на сървъра и API токен."
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:100
-#, kde-format
+#, fuzzy, kde-format
 msgctxt "@title:window"
 msgid "Invalid Input"
-msgstr ""
+msgstr "Невалиден вход"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:111
-#, kde-format
+#, fuzzy, kde-format
 msgid "Successfully connected to the Miniflux server."
-msgstr ""
+msgstr "Успешно свързване със сървъра на Miniflux."
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:111
-#, kde-format
+#, fuzzy, kde-format
 msgctxt "@title:window"
 msgid "Connection Successful"
-msgstr ""
+msgstr "Успешна връзка"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:113
-#, kde-format
+#, fuzzy, kde-format
 msgid "Failed to connect: %1"
-msgstr ""
+msgstr "Грешка при свързване: %1"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:113
-#, kde-format
+#, fuzzy, kde-format
 msgctxt "@title:window"
 msgid "Connection Failed"
-msgstr ""
+msgstr "Грешка при свързване"
 
 #: src/plugins/miniflux/minifluxplugin.cpp:73
-#, kde-format
+#, fuzzy, kde-format
 msgid "Miniflux"
-msgstr ""
+msgstr "Miniflux"
 
 #: src/plugins/miniflux/minifluxplugin.cpp:90
-#, kde-format
+#, fuzzy, kde-format
 msgid "An account named \"%1\" already exists."
-msgstr ""
+msgstr "Акаунт с име „%1“ вече съществува."
 
 #: src/progressmanager.cpp:127
 #, kde-format

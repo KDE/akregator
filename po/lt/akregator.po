@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-09-25 00:46+0000\n"
-"PO-Revision-Date: 2026-06-02 13:19+0300\n"
+"PO-Revision-Date: 2026-09-27 20:48+0300\n"
 "Last-Translator: Mindaugas Baranauskas <opensuse.lietuviu.kalba@gmail.com>\n"
 "Language-Team: Lithuanian <kde-i18n-lt@kde.org>\n"
 "Language: lt\n"
@@ -112,11 +112,10 @@ msgstr ""
 #, kde-format
 msgctxt "@title:column"
 msgid "Account"
-msgstr ""
+msgstr "Paskyra"
 
 #: configuration/akregator_config_accounts.cpp:39
-#, fuzzy, kde-format
-#| msgid "Type"
+#, kde-format
 msgctxt "@title:column"
 msgid "Type"
 msgstr "Tipas"
@@ -125,21 +124,19 @@ msgstr "Tipas"
 #, kde-format
 msgctxt "@action:button"
 msgid "Add…"
-msgstr ""
+msgstr "Pridėti…"
 
 #: configuration/akregator_config_accounts.cpp:46
-#, fuzzy, kde-format
-#| msgid "Modify..."
+#, kde-format
 msgctxt "@action:button"
 msgid "Modify…"
-msgstr "Keisti..."
+msgstr "Modifikuoti…"
 
 #: configuration/akregator_config_accounts.cpp:47
-#, fuzzy, kde-format
-#| msgid "Remove"
+#, kde-format
 msgctxt "@action:button"
 msgid "Remove"
-msgstr "Pašalinti"
+msgstr "Šalinti"
 
 #: configuration/akregator_config_accounts.cpp:134
 #, kde-format
@@ -148,13 +145,15 @@ msgid ""
 "This removes the account's folder from the feed tree and deletes its stored "
 "credentials; the server is not affected."
 msgstr ""
+"Ar tikrai norite pašalinti paskyrą „%1“?\n"
+"Tai pašalina paskyros aplanką iš kanalų medžio ir ištrina saugomus jos "
+"prisijungimo duomenis; serveris niekaip nepaveikiamas."
 
 #: configuration/akregator_config_accounts.cpp:138
-#, fuzzy, kde-format
-#| msgid "Remove nothing"
+#, kde-format
 msgctxt "@title:window"
 msgid "Remove Account"
-msgstr "Nieko netrinti"
+msgstr "Šalinti paskyrą"
 
 #: configuration/akregator_config_archive.cpp:37
 #, kde-format
@@ -1247,11 +1246,10 @@ msgid "&Export Feeds…"
 msgstr "&Eksportuoti kanalus…"
 
 #: src/actions/actionmanagerimpl.cpp:215
-#, fuzzy, kde-format
-#| msgid "Modify Online Reader Account"
+#, kde-format
 msgctxt "@action"
 msgid "Add Online Account…"
-msgstr "Koreguoti tinklinę skaitytojo paskyrą"
+msgstr "Pridėti internetinę paskyrą…"
 
 #: src/actions/actionmanagerimpl.cpp:224
 #, kde-format
@@ -2339,101 +2337,97 @@ msgstr[3] "<i>ir %1 kitas</i>"
 
 #: src/plugins/addaccountwizard.cpp:22
 #: src/plugins/miniflux/minifluxplugin.cpp:90
-#, fuzzy, kde-format
-#| msgid "Modify Online Reader Account"
+#, kde-format
 msgctxt "@title:window"
 msgid "Add Online Account"
-msgstr "Koreguoti tinklinę skaitytojo paskyrą"
+msgstr "Pridėti internetinę paskyrą"
 
 #: src/plugins/addaccountwizard.cpp:27
 #, kde-format
 msgctxt "@title:tab, wizard page for selecting the account type"
 msgid "Account Type"
-msgstr ""
+msgstr "Paskyros tipas"
 
 #: src/plugins/addaccountwizard.cpp:31
-#, fuzzy, kde-format
-#| msgid "Bar Settings"
+#, kde-format
 msgctxt "@title:tab, wizard page with the account settings"
 msgid "Account Settings"
-msgstr "Juostos nuostatos"
+msgstr "Paskyros nuostatos"
 
 #: src/plugins/miniflux/minifluxaccountdialog.cpp:20
 #, kde-format
 msgctxt "@title:window"
 msgid "Miniflux Account Settings"
-msgstr ""
+msgstr "Miniflux paskyros nuostatos"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:26
 #, kde-format
 msgctxt "@action:button"
 msgid "Test Connection"
-msgstr ""
+msgstr "Išbandyti ryšį"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:31
 #, kde-format
 msgid "My Miniflux"
-msgstr ""
+msgstr "Mano Miniflux"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:32
-#, fuzzy, kde-format
-#| msgid "Group Name"
+#, kde-format
 msgid "Account Name:"
-msgstr "Grupės pavadinimas"
+msgstr "Paskyros pavadinimas:"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:34
-#, fuzzy, kde-format
-#| msgid "Service URL:"
+#, kde-format
 msgid "Server URL:"
-msgstr "Paslaugos URL:"
+msgstr "Serverio URL:"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:36
 #, kde-format
 msgid "API Token:"
-msgstr ""
+msgstr "API prieigos raktas:"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:100
 #, kde-format
 msgid "Please enter a valid server URL and API token."
-msgstr ""
+msgstr "Įveskite tinkamą serverio URL adresą ir API prieigos raktą."
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:100
 #, kde-format
 msgctxt "@title:window"
 msgid "Invalid Input"
-msgstr ""
+msgstr "Neteisinga įvestis"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:111
 #, kde-format
 msgid "Successfully connected to the Miniflux server."
-msgstr ""
+msgstr "Sėkmingai prisijungta prie Miniflux serverio."
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:111
 #, kde-format
 msgctxt "@title:window"
 msgid "Connection Successful"
-msgstr ""
+msgstr "Ryšys sėkmingas"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:113
 #, kde-format
 msgid "Failed to connect: %1"
-msgstr ""
+msgstr "Nepavyko prisijungti: %1"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:113
 #, kde-format
 msgctxt "@title:window"
 msgid "Connection Failed"
-msgstr ""
+msgstr "Ryšys patyrė nesėkmę"
 
 #: src/plugins/miniflux/minifluxplugin.cpp:73
 #, kde-format
 msgid "Miniflux"
-msgstr ""
+msgstr "Miniflux"
 
 #: src/plugins/miniflux/minifluxplugin.cpp:90
 #, kde-format
 msgid "An account named \"%1\" already exists."
-msgstr ""
+msgstr "Paskyra, pavadinimu „%1“, jau yra."
 
 #: src/progressmanager.cpp:127
 #, kde-format
