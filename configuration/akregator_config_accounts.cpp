@@ -42,7 +42,7 @@ KCMAkregatorAccountsConfig::KCMAkregatorAccountsConfig(QObject *parent, const KP
     mainLayout->addWidget(m_accountsList);
 
     auto buttonLayout = new QVBoxLayout;
-    m_addButton = new QPushButton(QIcon::fromTheme(QStringLiteral("list-add")), i18nc("@action:button", "Add…"), widget());
+    m_addButton = new QPushButton(QIcon::fromTheme(QStringLiteral("list-add")), i18nc("@action:button Add account", "Add…"), widget());
     m_modifyButton = new QPushButton(QIcon::fromTheme(QStringLiteral("document-edit")), i18nc("@action:button", "Modify…"), widget());
     m_removeButton = new QPushButton(QIcon::fromTheme(QStringLiteral("list-remove")), i18nc("@action:button", "Remove"), widget());
     buttonLayout->addWidget(m_addButton);

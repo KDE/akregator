@@ -28,7 +28,7 @@ MinifluxAccountWidget::MinifluxAccountWidget(MinifluxPlugin *plugin, QWidget *pa
     auto mainLayout = new QVBoxLayout(this);
 
     auto formLayout = new QFormLayout;
-    m_accountNameEdit->setPlaceholderText(i18n("My Miniflux"));
+    m_accountNameEdit->setPlaceholderText(i18nc("@info:placeholder", "My Miniflux"));
     formLayout->addRow(i18n("Account Name:"), m_accountNameEdit);
     m_serverUrlEdit->setPlaceholderText(QStringLiteral("https://miniflux.example.com"));
     formLayout->addRow(i18n("Server URL:"), m_serverUrlEdit);
