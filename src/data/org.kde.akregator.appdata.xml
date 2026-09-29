@@ -214,7 +214,7 @@
     <release version="6.8.40" type="snapshot">
       <description>
         <ul>
-          <li>Miniflux is now supported. See the new "Add Online Account" option in the File menu to open the Minflux account wizard.</li>
+          <li>Miniflux is now supported. See the new "Add Online Account" option in the File menu to open the Miniflux account wizard.</li>
         </ul>
       </description>
     </release>
