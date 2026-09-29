@@ -20,8 +20,7 @@
 > <affiliation
 ><address
 ><email
->frank.osterfeld@kdemail.net</email
->  
+>frank.osterfeld@kdemail.net</email>
 </address
 ></affiliation>
 </author>
@@ -33,6 +32,18 @@
 > <affiliation
 ><address
 >&Anne-Marie.Mahfouf.mail; </address
+></affiliation>
+</author>
+<author
+><firstname
+>Blagovest</firstname
+> <surname
+>Petrov</surname
+> <affiliation
+><address
+><email
+>blagovest@petrovs.info</email>
+</address
 ></affiliation>
 </author>
 
@@ -97,9 +108,9 @@
 >&FDLNotice;</legalnotice>
 
 <date
->31 марта 2021 г.</date>
+>15 июля 2026 г.</date>
 <releaseinfo
->Приложения KDE 21.08</releaseinfo>
+>Приложения KDE 26.12</releaseinfo>
 
 <!-- Abstract about this handbook -->
 
@@ -421,6 +432,112 @@ say how to start it -->
 </sect1>
 </chapter>
 
+<chapter id="online-accounts">
+<title
+>Сетевые учётные записи</title>
+
+<para
+>Помимо подписки на отдельные ленты, &akregator; может подключаться к сетевой службе чтения лент и повторять её подписки. Сейчас поддерживается один тип учётной записи — <ulink url="https://miniflux.app/"
+>Miniflux</ulink
+>, программа чтения лент, которую пользователь размещает на собственном сервере. После настройки учётной записи &akregator; создаёт папку <quote
+><replaceable
+>имя учётной записи</replaceable
+> (Miniflux)</quote
+>, в которой повторяются категории и ленты сервера. Статьи загружаются не напрямую из лент, а через <acronym
+>API</acronym
+> службы; отметки о прочтении синхронизируются в обе стороны.</para>
+
+<sect1 id="adding-online-account">
+<title
+>Добавление сетевой учётной записи</title>
+
+<para
+>Чтобы открыть мастер добавления учётной записи, выберите пункт меню <menuchoice
+><guimenu
+>Файл</guimenu
+><guimenuitem
+>Добавить сетевую учётную запись…</guimenuitem
+></menuchoice
+>. На первой странице выберите тип учётной записи, на второй — задайте параметры выбранного типа. Для учётной записи Miniflux это следующие параметры:</para>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Учётная запись:</guilabel
+></term>
+<listitem
+><para
+>Произвольное имя. Оно используется как имя папки учётной записи в списке лент и впоследствии не может быть изменено.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Адрес сервера:</guilabel
+></term>
+<listitem
+><para
+>Адрес сервера Miniflux, например, <userinput
+>https://miniflux.example.com</userinput
+>.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Ключ API:</guilabel
+></term>
+<listitem
+><para
+>Ключ <acronym
+>API</acronym
+> пользователя Miniflux. Его можно создать в веб-интерфейсе Miniflux в разделе <menuchoice
+><guimenu
+>Settings</guimenu
+><guimenuitem
+>API Keys</guimenuitem
+></menuchoice
+>. &akregator; хранит ключ в системном бумажнике, а не в обычном текстовом файле.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+<para
+>Прежде чем завершить работу мастера, проверьте адрес сервера и ключ с помощью кнопки <guibutton
+>Проверить подключение</guibutton
+>. После завершения работы мастера &akregator; получает с сервера категории и ленты и начинает импорт непрочитанных статей.</para>
+</sect1>
+
+<sect1 id="online-account-sync">
+<title
+>Как работает синхронизация</title>
+
+<para
+>Ленты сетевой учётной записи обновляются с интервалом, заданным на странице параметров <link linkend="general-tab"
+>Главное</link
+>; при обновлении с сервера загружаются непрочитанные статьи. Чтобы интерфейс не терял отзывчивость, за одно обновление из каждой ленты импортируется не более 1000 самых новых непрочитанных статей.</para>
+
+<para
+>Отметка статьи как прочитанной или непрочитанной передаётся на сервер с небольшой задержкой, поэтому чтение нескольких статей подряд приводит к одному запросу. Отметка статьи как важной ставит или снимает у статьи на сервере звёздочку (закладку).</para>
+</sect1>
+
+<sect1 id="managing-online-accounts">
+<title
+>Управление учётными записями</title>
+
+<para
+>Сетевые учётные записи добавляются, изменяются и удаляются на странице <link linkend="accounts-tab"
+>Учётные записи</link
+> диалога настройки. У существующей учётной записи можно изменить адрес сервера и ключ <acronym
+>API</acronym
+>; изменение вступает в силу сразу и запускает новую синхронизацию.</para>
+
+<para
+>При удалении учётной записи удаляются её папка в списке лент, её параметры и сохранённые учётные данные. Учётная запись и статьи на сервере при этом не затрагиваются. Удаление папки учётной записи прямо из списка лент приводит к тому же результату.</para>
+</sect1>
+</chapter>
+
 <chapter id="configuration">
 <title
 >Настройка &akregator;</title>
@@ -607,6 +724,51 @@ say how to start it -->
 
 </sect1>
 
+<sect1 id="accounts-tab">
+<title
+>Учётные записи</title>
+<para
+>На странице «Учётные записи» перечислены настроенные <link linkend="online-accounts"
+>сетевые учётные записи</link
+> с указанием их типа.</para>
+<variablelist>
+<varlistentry>
+<term
+><guibutton
+>Добавить…</guibutton
+></term>
+<listitem
+><para
+>Открывает мастер <link linkend="adding-online-account"
+>добавления сетевой учётной записи</link
+>.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guibutton
+>Изменить…</guibutton
+></term>
+<listitem
+><para
+>Открывает параметры выбранной учётной записи, где можно изменить адрес сервера или ключ <acronym
+>API</acronym
+>.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guibutton
+>Удалить</guibutton
+></term>
+<listitem
+><para
+>Удаляет выбранную учётную запись вместе с её папкой в списке лент и сохранёнными учётными данными. Сервер при этом не затрагивается.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</sect1>
+
 <sect1 id="adblock-tab">
 <title
 >Перехватчик URL-адресов</title>
@@ -673,8 +835,7 @@ say how to start it -->
 <term
 ><guilabel
 >Ограничить хранение</guilabel
-></term
-> 
+></term>
 <listitem
 ><para
 >Когда число статей превысит выбранный лимит, наиболее старые из них будут удаляться. Обратите внимание, что при подсчёте количества статей не учитываются те из них, которые были отмечены. Допустим, был установлен лимит в 500 статей, имеется 510 неотмеченных и 50 отмеченных статей. &akregator; будет игнорировать эти 50 статей и удалит 10 из неотмеченных. Так, в данном примере останется 550 статей.</para>
@@ -1155,6 +1316,25 @@ say how to start it -->
 >Открывает диалог для сохранения и экспорта лент и структуры папок в качестве файла формата <filename class="extension"
 >.opml</filename
 >.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Файл</guimenu
+> <guimenuitem
+>Добавить сетевую учётную запись…</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Открывает</action
+> мастер <link linkend="adding-online-account"
+>добавления сетевой учётной записи</link
+>, чтобы подключить &akregator; к сетевой службе чтения лент, например, Miniflux.</para
 ></listitem>
 </varlistentry>
 
@@ -1800,7 +1980,7 @@ action="simul"
 ></term>
 <listitem
 ><para
->Use this action you to share news 
+>Use this action you to share news
  with your friends using the microblog services identi.ca and twitter.
 </para
 ></listitem>
