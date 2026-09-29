@@ -87,7 +87,7 @@ bool MinifluxPlugin::createAccountFromWizard(const QString &accountName, const Q
     KConfigGroup group = KSharedConfig::openConfig()->group(QStringLiteral("MinifluxAccounts"));
     QStringList accounts = group.readEntry("accounts", QStringList());
     if (accounts.contains(accountName)) {
-        KMessageBox::error(nullptr, i18n("An account named \"%1\" already exists.", accountName), i18nc("@title:window", "Add Online Account"));
+        KMessageBox::error(nullptr, i18n("An account named “%1” already exists.", accountName), i18nc("@title:window", "Add Online Account"));
         return false;
     }
 

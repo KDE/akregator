@@ -131,8 +131,8 @@ void KCMAkregatorAccountsConfig::slotRemoveAccount()
     }
     const QString accountName = item->data(0, AccountNameRole).toString();
     const int answer = KMessageBox::warningContinueCancel(widget(),
-                                                          i18n("Do you really want to remove the account \"%1\"?\n"
-                                                               "This removes the account's folder from the feed tree and deletes its stored "
+                                                          i18n("Do you really want to remove the account “%1”?\n"
+                                                               "This removes the account’s folder from the feed tree and deletes its stored "
                                                                "credentials; the server is not affected.",
                                                                accountName),
                                                           i18nc("@title:window", "Remove Account"),

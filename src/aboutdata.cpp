@@ -39,7 +39,7 @@ AboutData::AboutData()
     addCredit(i18nc("@info:credit", "Frerich Raabe"), i18n("Author of librss"), u"raabe@kde.org"_s);
     addCredit(i18nc("@info:credit", "Eckhart Woerner"), i18n("Bug tracker management, Usability improvements"), u"kde@ewsoftware.de"_s);
     addCredit(i18nc("@info:credit", "Heinrich Wendel"), i18n("Tons of bug fixes"), u"h_wendel@cojobo.net"_s);
-    addCredit(i18nc("@info:credit", "Eike Hein"), i18n("'Delayed mark as read' feature"), u"sho@eikehein.com"_s);
+    addCredit(i18nc("@info:credit", "Eike Hein"), i18n("‘Delayed mark as read’ feature"), u"sho@eikehein.com"_s);
     addCredit(i18nc("@info:credit", "Marcel Dierkes"), i18n("Icons"), u"marcel.dierkes@gmx.de"_s);
     addCredit(i18nc("@info:credit", "George Staikos"), i18n("Insomnia"), u"staikos@kde.org"_s);
     addCredit(i18nc("@info:credit", "Philipp Droessler"), i18n("Gentoo Ebuild"), u"kingmob@albert-unser.net"_s);

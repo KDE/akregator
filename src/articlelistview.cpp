@@ -381,7 +381,7 @@ ArticleListView::ArticleListView(QWidget *parent)
     setWhatsThis(
         i18n("<h2>Article list</h2>"
              "Here you can browse articles from the currently selected feed. "
-             "You can also manage articles, as marking them as persistent (\"Mark as Important\") or delete them, using the right mouse button menu. "
+             "You can also manage articles, as marking them as persistent (“Mark as Important”) or delete them, using the right mouse button menu. "
              "To view the web page of the article, you can open the article internally in a tab or in an external browser window."));
 
     // connect exactly once

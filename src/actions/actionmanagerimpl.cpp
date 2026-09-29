@@ -460,7 +460,7 @@ void ActionManagerImpl::initMainWidget(MainWidget *mainWidget)
     coll->addAction(u"focus_to_quickseach"_s, d->mQuickSearchAction);
     connect(d->mQuickSearchAction, &QAction::triggered, mainWidget, &MainWidget::slotFocusQuickSearch);
 
-    auto showWhatsNewAction = new QAction(QIcon::fromTheme(u"akregator"_s), i18n("What's new"), this);
+    auto showWhatsNewAction = new QAction(QIcon::fromTheme(u"akregator"_s), i18n("What’s new"), this);
     coll->addAction(u"whatsnew"_s, showWhatsNewAction);
     connect(showWhatsNewAction, &QAction::triggered, mainWidget, &MainWidget::slotWhatsNew);
 
