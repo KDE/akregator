@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-09-25 00:46+0000\n"
-"PO-Revision-Date: 2026-05-28 08:38+0300\n"
+"POT-Creation-Date: 2026-09-30 00:46+0000\n"
+"PO-Revision-Date: 2026-09-27 09:45+0300\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 && "
 "n % 10 == 0) ? 2 : 3));\n"
-"X-Generator: Lokalize 26.04.1\n"
+"X-Generator: Lokalize 26.08.0\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -103,45 +103,54 @@ msgstr ""
 #, kde-format
 msgctxt "@title:column"
 msgid "Account"
-msgstr ""
+msgstr "חשבון"
 
 #: configuration/akregator_config_accounts.cpp:39
 #, kde-format
 msgctxt "@title:column"
 msgid "Type"
-msgstr ""
+msgstr "סוג"
 
 #: configuration/akregator_config_accounts.cpp:45
-#, kde-format
-msgctxt "@action:button"
+#, fuzzy, kde-format
+#| msgctxt "@action:button"
+#| msgid "Add…"
+msgctxt "@action:button Add account"
 msgid "Add…"
-msgstr ""
+msgstr "הוספה…"
 
 #: configuration/akregator_config_accounts.cpp:46
 #, kde-format
 msgctxt "@action:button"
 msgid "Modify…"
-msgstr ""
+msgstr "שינוי…"
 
 #: configuration/akregator_config_accounts.cpp:47
 #, kde-format
 msgctxt "@action:button"
 msgid "Remove"
-msgstr ""
+msgstr "הסרה"
 
 #: configuration/akregator_config_accounts.cpp:134
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "Do you really want to remove the account \"%1\"?\n"
+#| "This removes the account's folder from the feed tree and deletes its "
+#| "stored credentials; the server is not affected."
 msgid ""
-"Do you really want to remove the account \"%1\"?\n"
-"This removes the account's folder from the feed tree and deletes its stored "
+"Do you really want to remove the account “%1”?\n"
+"This removes the account’s folder from the feed tree and deletes its stored "
 "credentials; the server is not affected."
 msgstr ""
+"להסיר את החשבון „%1”?\n"
+"הפעולה הזאת תסיר את תיקיית החשבון מעץ הערוצים ותמחק את פרטי הגישה השמורים "
+"שלו, השרת לא יושפע מזה."
 
 #: configuration/akregator_config_accounts.cpp:138
 #, kde-format
 msgctxt "@title:window"
 msgid "Remove Account"
-msgstr ""
+msgstr "הסרת חשבון"
 
 #: configuration/akregator_config_archive.cpp:37
 #, kde-format
@@ -412,8 +421,9 @@ msgstr "אבטחה"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_CheckPhishingUrl)
 #: configuration/ui/settings_browser.ui:146
-#, kde-format
-msgid "Verify URLs using Google's Safe Browsing API"
+#, fuzzy, kde-format
+#| msgid "Verify URLs using Google's Safe Browsing API"
+msgid "Verify URLs using Google’s Safe Browsing API"
 msgstr "אימות כתובות באמצעות API הגלישה הבטוחה של Google"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_EnableJavascript)
@@ -782,11 +792,15 @@ msgstr ""
 
 #. i18n: ectx: whatsthis, entry, group (Network)
 #: interfaces/akregator.kcfg:146
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "This option allows user to specify custom user-agent string instead of "
+#| "using the default one. This is here because some proxies may interrupt "
+#| "the connection because of having \"gator\" in the name."
 msgid ""
 "This option allows user to specify custom user-agent string instead of using "
 "the default one. This is here because some proxies may interrupt the "
-"connection because of having \"gator\" in the name."
+"connection because of having “gator” in the name."
 msgstr ""
 "אפשר זו מאפשרת להגדיר מחרוזת user-agent (סוכן משתמש) במקום להשתמש במחרוזת "
 "ברירת המחדל. זה כאן כיוון שחלק משרתי התיווך יכולים להפריע לחיבור כי יש בשם "
@@ -1139,8 +1153,9 @@ msgid "Eike Hein"
 msgstr "אייק היין"
 
 #: src/aboutdata.cpp:42
-#, kde-format
-msgid "'Delayed mark as read' feature"
+#, fuzzy, kde-format
+#| msgid "'Delayed mark as read' feature"
+msgid "‘Delayed mark as read’ feature"
 msgstr "אפשרות חדשה של ‚השהיית סימון כנקרא’"
 
 #: src/aboutdata.cpp:43
@@ -1230,7 +1245,7 @@ msgstr "יי&צוא ערוצים…"
 #, kde-format
 msgctxt "@action"
 msgid "Add Online Account…"
-msgstr ""
+msgstr "הוספת חשבון מקוון…"
 
 #: src/actions/actionmanagerimpl.cpp:224
 #, kde-format
@@ -1397,8 +1412,9 @@ msgid "Set Focus to Quick Search"
 msgstr "הגדרת המיקוד לחיפוש המהיר"
 
 #: src/actions/actionmanagerimpl.cpp:463
-#, kde-format
-msgid "What's new"
+#, fuzzy, kde-format
+#| msgid "What's new"
+msgid "What’s new"
 msgstr "מה חדש"
 
 #: src/actions/actionmanagerimpl.cpp:504
@@ -1679,13 +1695,19 @@ msgid "No result found"
 msgstr "לא נמצאו תוצאות"
 
 #: src/articlelistview.cpp:382
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "<h2>Article list</h2>Here you can browse articles from the currently "
+#| "selected feed. You can also manage articles, as marking them as "
+#| "persistent (\"Mark as Important\") or delete them, using the right mouse "
+#| "button menu. To view the web page of the article, you can open the "
+#| "article internally in a tab or in an external browser window."
 msgid ""
 "<h2>Article list</h2>Here you can browse articles from the currently "
 "selected feed. You can also manage articles, as marking them as persistent "
-"(\"Mark as Important\") or delete them, using the right mouse button menu. "
-"To view the web page of the article, you can open the article internally in "
-"a tab or in an external browser window."
+"(“Mark as Important”) or delete them, using the right mouse button menu. To "
+"view the web page of the article, you can open the article internally in a "
+"tab or in an external browser window."
 msgstr ""
 "<h2>רשימת כתבות</h2> כאן ניתן לעיין בכתבות מהערוץ הנבחר. ניתן גם לנהל כתבות, "
 "לסמן אותן בתור קבועות („שמירת כתבה”) או למחוק אותן דרך תפריט העכבר הימני. "
@@ -2301,97 +2323,97 @@ msgstr[3] "<i>ועוד %1</i>"
 #, kde-format
 msgctxt "@title:window"
 msgid "Add Online Account"
-msgstr ""
+msgstr "הוספת חשבון מקוון"
 
 #: src/plugins/addaccountwizard.cpp:27
 #, kde-format
 msgctxt "@title:tab, wizard page for selecting the account type"
 msgid "Account Type"
-msgstr ""
+msgstr "סוג חשבון"
 
 #: src/plugins/addaccountwizard.cpp:31
-#, fuzzy, kde-format
-#| msgid "&Settings"
+#, kde-format
 msgctxt "@title:tab, wizard page with the account settings"
 msgid "Account Settings"
-msgstr "ה&גדרות"
+msgstr "הגדרות חשבון"
 
 #: src/plugins/miniflux/minifluxaccountdialog.cpp:20
 #, kde-format
 msgctxt "@title:window"
 msgid "Miniflux Account Settings"
-msgstr ""
+msgstr "הגדרות חשבון Miniflux"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:26
 #, kde-format
 msgctxt "@action:button"
 msgid "Test Connection"
-msgstr ""
+msgstr "בדיקת חיבור"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:31
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "My Miniflux"
+msgctxt "@info:placeholder"
 msgid "My Miniflux"
-msgstr ""
+msgstr "ה־Miniflux שלי"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:32
-#, fuzzy, kde-format
-#| msgid "Group Name"
+#, kde-format
 msgid "Account Name:"
-msgstr "שם הקבוצה"
+msgstr "שם חשבון:"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:34
-#, fuzzy, kde-format
-#| msgid "Feed &URL:"
+#, kde-format
 msgid "Server URL:"
-msgstr "&כתובת הערוץ:"
+msgstr "כתובת שרת:"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:36
 #, kde-format
 msgid "API Token:"
-msgstr ""
+msgstr "אסימון API:"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:100
 #, kde-format
 msgid "Please enter a valid server URL and API token."
-msgstr ""
+msgstr "נא למלא כתובת שרת ואסימון API תקפים."
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:100
 #, kde-format
 msgctxt "@title:window"
 msgid "Invalid Input"
-msgstr ""
+msgstr "קלט שגוי"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:111
 #, kde-format
 msgid "Successfully connected to the Miniflux server."
-msgstr ""
+msgstr "ההתחברות לשרת ה־Miniflux הצליחה."
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:111
 #, kde-format
 msgctxt "@title:window"
 msgid "Connection Successful"
-msgstr ""
+msgstr "החיבור הצליח"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:113
 #, kde-format
 msgid "Failed to connect: %1"
-msgstr ""
+msgstr "החיבור נכשל: %1"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:113
 #, kde-format
 msgctxt "@title:window"
 msgid "Connection Failed"
-msgstr ""
+msgstr "החיבור נכשל"
 
 #: src/plugins/miniflux/minifluxplugin.cpp:73
 #, kde-format
 msgid "Miniflux"
-msgstr ""
+msgstr "Miniflux"
 
 #: src/plugins/miniflux/minifluxplugin.cpp:90
-#, kde-format
-msgid "An account named \"%1\" already exists."
-msgstr ""
+#, fuzzy, kde-format
+#| msgid "An account named \"%1\" already exists."
+msgid "An account named “%1” already exists."
+msgstr "כבר קיים חשבון בשם „%1”."
 
 #: src/progressmanager.cpp:127
 #, kde-format

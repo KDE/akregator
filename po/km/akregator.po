@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-09-25 00:46+0000\n"
+"POT-Creation-Date: 2026-09-30 00:46+0000\n"
 "PO-Revision-Date: 2012-12-25 13:50+0700\n"
 "Last-Translator: sutha <sutha@khmeros.info>\n"
 "Language-Team: Khmer <support@khmeros>\n"
@@ -120,7 +120,7 @@ msgstr "ប្រភេទ"
 
 #: configuration/akregator_config_accounts.cpp:45
 #, kde-format
-msgctxt "@action:button"
+msgctxt "@action:button Add account"
 msgid "Add…"
 msgstr ""
 
@@ -141,8 +141,8 @@ msgstr "យកចេញ"
 #: configuration/akregator_config_accounts.cpp:134
 #, kde-format
 msgid ""
-"Do you really want to remove the account \"%1\"?\n"
-"This removes the account's folder from the feed tree and deletes its stored "
+"Do you really want to remove the account “%1”?\n"
+"This removes the account’s folder from the feed tree and deletes its stored "
 "credentials; the server is not affected."
 msgstr ""
 
@@ -425,7 +425,7 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_CheckPhishingUrl)
 #: configuration/ui/settings_browser.ui:146
 #, kde-format
-msgid "Verify URLs using Google's Safe Browsing API"
+msgid "Verify URLs using Google’s Safe Browsing API"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_EnableJavascript)
@@ -797,11 +797,15 @@ msgstr ""
 
 #. i18n: ectx: whatsthis, entry, group (Network)
 #: interfaces/akregator.kcfg:146
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "This option allows user to specify custom user-agent string instead of "
+#| "using the default one. This is here because some proxies may interrupt "
+#| "the connection because of having \"gator\" in the name."
 msgid ""
 "This option allows user to specify custom user-agent string instead of using "
 "the default one. This is here because some proxies may interrupt the "
-"connection because of having \"gator\" in the name."
+"connection because of having “gator” in the name."
 msgstr ""
 "ជម្រើស​​នេះ​អនុញ្ញាត​ឲ្យ​អ្នក​ប្រើ​បញ្ជាក់​ខ្សែអក្សរ​ភ្នាក់ងារ​អ្នក​ប្រើ​ផ្ទាល់ខ្លួន ជំនួស​ឲ្យ​ការ​ប្រើ​ខ្សែអក្សរ​លំនាំ​"
 "ដើម ។ វា​នៅ​ទីនេះ ពីព្រោះ​ប្រូកស៊ី​មួយ​ចំនួន​អាច​ផ្អាក​ការ​តភ្ជាប់​ ដោយ​សារ​តែ \"gator\" នៅ​ក្នុង​ឈ្មោះ ។"
@@ -1171,8 +1175,9 @@ msgid "Eike Hein"
 msgstr "Eike Hein"
 
 #: src/aboutdata.cpp:42
-#, kde-format
-msgid "'Delayed mark as read' feature"
+#, fuzzy, kde-format
+#| msgid "'Delayed mark as read' feature"
+msgid "‘Delayed mark as read’ feature"
 msgstr "លក្ខណៈ​ពិសេស 'ពន្យារពេល​មុន​នឹង​សម្គាល់​ថា​អាន​រួច'"
 
 #: src/aboutdata.cpp:43
@@ -1447,7 +1452,7 @@ msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:463
 #, kde-format
-msgid "What's new"
+msgid "What’s new"
 msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:504
@@ -1754,9 +1759,9 @@ msgstr ""
 msgid ""
 "<h2>Article list</h2>Here you can browse articles from the currently "
 "selected feed. You can also manage articles, as marking them as persistent "
-"(\"Mark as Important\") or delete them, using the right mouse button menu. "
-"To view the web page of the article, you can open the article internally in "
-"a tab or in an external browser window."
+"(“Mark as Important”) or delete them, using the right mouse button menu. To "
+"view the web page of the article, you can open the article internally in a "
+"tab or in an external browser window."
 msgstr ""
 "<h2>បញ្ជី​អត្ថបទ</h2>នៅ​ទីនេះ អ្នក​អាច​រុករក​អត្ថបទ​ពី​មតិព័ត៌មាន​ដែល​បាន​ជ្រើស​បច្ចុប្បន្ន ។ អ្នក​ក៏​អាច​"
 "រៀបចំ​អត្ថបទ​ផង​ដែរ ដូចជា​សម្គាល់​ពួក​វា​រហូត (\"រក្សា​អត្ថបទ\") ឬ លុប​ពួក​វា ដោយ​ប្រើ​ម៉ឺនុយ​លេចឡើង ពេល​"
@@ -2414,6 +2419,7 @@ msgstr ""
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:31
 #, kde-format
+msgctxt "@info:placeholder"
 msgid "My Miniflux"
 msgstr ""
 
@@ -2473,7 +2479,7 @@ msgstr ""
 
 #: src/plugins/miniflux/minifluxplugin.cpp:90
 #, kde-format
-msgid "An account named \"%1\" already exists."
+msgid "An account named “%1” already exists."
 msgstr ""
 
 #: src/progressmanager.cpp:127

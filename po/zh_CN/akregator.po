@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-09-25 00:46+0000\n"
+"POT-Creation-Date: 2026-09-30 00:46+0000\n"
 "PO-Revision-Date: 2024-04-23 19:24\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -108,7 +108,7 @@ msgstr ""
 
 #: configuration/akregator_config_accounts.cpp:45
 #, kde-format
-msgctxt "@action:button"
+msgctxt "@action:button Add account"
 msgid "Add…"
 msgstr ""
 
@@ -127,8 +127,8 @@ msgstr ""
 #: configuration/akregator_config_accounts.cpp:134
 #, kde-format
 msgid ""
-"Do you really want to remove the account \"%1\"?\n"
-"This removes the account's folder from the feed tree and deletes its stored "
+"Do you really want to remove the account “%1”?\n"
+"This removes the account’s folder from the feed tree and deletes its stored "
 "credentials; the server is not affected."
 msgstr ""
 
@@ -395,8 +395,9 @@ msgstr "证券"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_CheckPhishingUrl)
 #: configuration/ui/settings_browser.ui:146
-#, kde-format
-msgid "Verify URLs using Google's Safe Browsing API"
+#, fuzzy, kde-format
+#| msgid "Verify URLs using Google's Safe Browsing API"
+msgid "Verify URLs using Google’s Safe Browsing API"
 msgstr "使用 Google 的安全浏览 API 验证 URL 安全性"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_EnableJavascript)
@@ -765,11 +766,15 @@ msgstr ""
 
 #. i18n: ectx: whatsthis, entry, group (Network)
 #: interfaces/akregator.kcfg:146
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "This option allows user to specify custom user-agent string instead of "
+#| "using the default one. This is here because some proxies may interrupt "
+#| "the connection because of having \"gator\" in the name."
 msgid ""
 "This option allows user to specify custom user-agent string instead of using "
 "the default one. This is here because some proxies may interrupt the "
-"connection because of having \"gator\" in the name."
+"connection because of having “gator” in the name."
 msgstr ""
 "此选项允许用户指定自定义的用户代理字符串代替默认值。之所以这里要有这个是因为"
 "有些代理可能会由于名称中含有“特殊关键字”而中断连接。"
@@ -1120,8 +1125,9 @@ msgid "Eike Hein"
 msgstr "Eike Hein"
 
 #: src/aboutdata.cpp:42
-#, kde-format
-msgid "'Delayed mark as read' feature"
+#, fuzzy, kde-format
+#| msgid "'Delayed mark as read' feature"
+msgid "‘Delayed mark as read’ feature"
 msgstr "“延迟标为已读”特性"
 
 #: src/aboutdata.cpp:43
@@ -1378,8 +1384,9 @@ msgid "Set Focus to Quick Search"
 msgstr "聚焦到快速搜索栏"
 
 #: src/actions/actionmanagerimpl.cpp:463
-#, kde-format
-msgid "What's new"
+#, fuzzy, kde-format
+#| msgid "What's new"
+msgid "What’s new"
 msgstr "最新变化"
 
 #: src/actions/actionmanagerimpl.cpp:504
@@ -1658,13 +1665,19 @@ msgid "No result found"
 msgstr "未找到结果"
 
 #: src/articlelistview.cpp:382
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "<h2>Article list</h2>Here you can browse articles from the currently "
+#| "selected feed. You can also manage articles, as marking them as "
+#| "persistent (\"Mark as Important\") or delete them, using the right mouse "
+#| "button menu. To view the web page of the article, you can open the "
+#| "article internally in a tab or in an external browser window."
 msgid ""
 "<h2>Article list</h2>Here you can browse articles from the currently "
 "selected feed. You can also manage articles, as marking them as persistent "
-"(\"Mark as Important\") or delete them, using the right mouse button menu. "
-"To view the web page of the article, you can open the article internally in "
-"a tab or in an external browser window."
+"(“Mark as Important”) or delete them, using the right mouse button menu. To "
+"view the web page of the article, you can open the article internally in a "
+"tab or in an external browser window."
 msgstr ""
 "<h2>文章列表</h2>您可在此浏览目前所选订阅的文章。您还可以使用鼠标右键菜单管理"
 "文章，将其设置为永久 (标记为重要) 或删除文章。要查看文章所属网页，您可以在内"
@@ -2279,6 +2292,7 @@ msgstr ""
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:31
 #, kde-format
+msgctxt "@info:placeholder"
 msgid "My Miniflux"
 msgstr ""
 
@@ -2339,7 +2353,7 @@ msgstr ""
 
 #: src/plugins/miniflux/minifluxplugin.cpp:90
 #, kde-format
-msgid "An account named \"%1\" already exists."
+msgid "An account named “%1” already exists."
 msgstr ""
 
 #: src/progressmanager.cpp:127

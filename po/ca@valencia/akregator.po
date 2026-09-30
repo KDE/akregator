@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-09-25 00:46+0000\n"
+"POT-Creation-Date: 2026-09-30 00:46+0000\n"
 "PO-Revision-Date: 2026-05-28 09:11+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
@@ -120,7 +120,7 @@ msgstr ""
 
 #: configuration/akregator_config_accounts.cpp:45
 #, kde-format
-msgctxt "@action:button"
+msgctxt "@action:button Add account"
 msgid "Add…"
 msgstr ""
 
@@ -139,8 +139,8 @@ msgstr ""
 #: configuration/akregator_config_accounts.cpp:134
 #, kde-format
 msgid ""
-"Do you really want to remove the account \"%1\"?\n"
-"This removes the account's folder from the feed tree and deletes its stored "
+"Do you really want to remove the account “%1”?\n"
+"This removes the account’s folder from the feed tree and deletes its stored "
 "credentials; the server is not affected."
 msgstr ""
 
@@ -411,8 +411,9 @@ msgstr "Seguretat"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_CheckPhishingUrl)
 #: configuration/ui/settings_browser.ui:146
-#, kde-format
-msgid "Verify URLs using Google's Safe Browsing API"
+#, fuzzy, kde-format
+#| msgid "Verify URLs using Google's Safe Browsing API"
+msgid "Verify URLs using Google’s Safe Browsing API"
 msgstr "Verifica els URL utilitzant l'API de navegació segura de Google"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_EnableJavascript)
@@ -783,11 +784,15 @@ msgstr ""
 
 #. i18n: ectx: whatsthis, entry, group (Network)
 #: interfaces/akregator.kcfg:146
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "This option allows user to specify custom user-agent string instead of "
+#| "using the default one. This is here because some proxies may interrupt "
+#| "the connection because of having \"gator\" in the name."
 msgid ""
 "This option allows user to specify custom user-agent string instead of using "
 "the default one. This is here because some proxies may interrupt the "
-"connection because of having \"gator\" in the name."
+"connection because of having “gator” in the name."
 msgstr ""
 "Esta opció permet definir un agent d'usuari personalitzat en lloc "
 "d'utilitzar el predeterminat. Açò és ací perquè alguns servidors "
@@ -1146,8 +1151,9 @@ msgid "Eike Hein"
 msgstr "Eike Hein"
 
 #: src/aboutdata.cpp:42
-#, kde-format
-msgid "'Delayed mark as read' feature"
+#, fuzzy, kde-format
+#| msgid "'Delayed mark as read' feature"
+msgid "‘Delayed mark as read’ feature"
 msgstr "Característica «ajorna la marca com a llegit»"
 
 #: src/aboutdata.cpp:43
@@ -1404,8 +1410,9 @@ msgid "Set Focus to Quick Search"
 msgstr "Establix el focus a la busca ràpida"
 
 #: src/actions/actionmanagerimpl.cpp:463
-#, kde-format
-msgid "What's new"
+#, fuzzy, kde-format
+#| msgid "What's new"
+msgid "What’s new"
 msgstr "Què hi ha de nou"
 
 #: src/actions/actionmanagerimpl.cpp:504
@@ -1690,13 +1697,19 @@ msgid "No result found"
 msgstr "No s'ha trobat cap resultat"
 
 #: src/articlelistview.cpp:382
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "<h2>Article list</h2>Here you can browse articles from the currently "
+#| "selected feed. You can also manage articles, as marking them as "
+#| "persistent (\"Mark as Important\") or delete them, using the right mouse "
+#| "button menu. To view the web page of the article, you can open the "
+#| "article internally in a tab or in an external browser window."
 msgid ""
 "<h2>Article list</h2>Here you can browse articles from the currently "
 "selected feed. You can also manage articles, as marking them as persistent "
-"(\"Mark as Important\") or delete them, using the right mouse button menu. "
-"To view the web page of the article, you can open the article internally in "
-"a tab or in an external browser window."
+"(“Mark as Important”) or delete them, using the right mouse button menu. To "
+"view the web page of the article, you can open the article internally in a "
+"tab or in an external browser window."
 msgstr ""
 "<h2>Llista d'articles</h2>Ací podeu navegar pels articles de la font "
 "seleccionada. Podeu gestionar els articles, marcar-los com a persistents "
@@ -2341,6 +2354,7 @@ msgstr ""
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:31
 #, kde-format
+msgctxt "@info:placeholder"
 msgid "My Miniflux"
 msgstr ""
 
@@ -2401,7 +2415,7 @@ msgstr ""
 
 #: src/plugins/miniflux/minifluxplugin.cpp:90
 #, kde-format
-msgid "An account named \"%1\" already exists."
+msgid "An account named “%1” already exists."
 msgstr ""
 
 #: src/progressmanager.cpp:127

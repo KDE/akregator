@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-09-25 00:46+0000\n"
+"POT-Creation-Date: 2026-09-30 00:46+0000\n"
 "PO-Revision-Date: 2022-07-03 14:28+0400\n"
 "Last-Translator: Kheyyam <xxmn77@gmail.com>\n"
 "Language-Team: Azerbaijani <kde-i18n-doc@kde.org>\n"
@@ -113,7 +113,7 @@ msgstr ""
 
 #: configuration/akregator_config_accounts.cpp:45
 #, kde-format
-msgctxt "@action:button"
+msgctxt "@action:button Add account"
 msgid "Add…"
 msgstr ""
 
@@ -132,8 +132,8 @@ msgstr ""
 #: configuration/akregator_config_accounts.cpp:134
 #, kde-format
 msgid ""
-"Do you really want to remove the account \"%1\"?\n"
-"This removes the account's folder from the feed tree and deletes its stored "
+"Do you really want to remove the account “%1”?\n"
+"This removes the account’s folder from the feed tree and deletes its stored "
 "credentials; the server is not affected."
 msgstr ""
 
@@ -413,8 +413,9 @@ msgstr "Təhlükəsizlik"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_CheckPhishingUrl)
 #: configuration/ui/settings_browser.ui:146
-#, kde-format
-msgid "Verify URLs using Google's Safe Browsing API"
+#, fuzzy, kde-format
+#| msgid "Verify URLs using Google's Safe Browsing API"
+msgid "Verify URLs using Google’s Safe Browsing API"
 msgstr "Keçidləri Google'dən Safe Browsing API isifadə edərək doğrulamaq"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_EnableJavascript)
@@ -784,11 +785,15 @@ msgstr ""
 
 #. i18n: ectx: whatsthis, entry, group (Network)
 #: interfaces/akregator.kcfg:146
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "This option allows user to specify custom user-agent string instead of "
+#| "using the default one. This is here because some proxies may interrupt "
+#| "the connection because of having \"gator\" in the name."
 msgid ""
 "This option allows user to specify custom user-agent string instead of using "
 "the default one. This is here because some proxies may interrupt the "
-"connection because of having \"gator\" in the name."
+"connection because of having “gator” in the name."
 msgstr ""
 "Bu seçim, istifadəçiyə standart bələdçi identifikatorunu göstərilən başqa "
 "biri ilə əvəz etməyə imkan verir. Bu bəzən, bəzi proksi serverlərin istifadə "
@@ -1162,8 +1167,9 @@ msgid "Eike Hein"
 msgstr "Eike Hein"
 
 #: src/aboutdata.cpp:42
-#, kde-format
-msgid "'Delayed mark as read' feature"
+#, fuzzy, kde-format
+#| msgid "'Delayed mark as read' feature"
+msgid "‘Delayed mark as read’ feature"
 msgstr "\"Oxunmuş kimi işarələnmısi gecikməsi\" imkanları"
 
 #: src/aboutdata.cpp:43
@@ -1438,7 +1444,7 @@ msgstr "Cəld axtarışı diqqətdə saxlamaq"
 
 #: src/actions/actionmanagerimpl.cpp:463
 #, kde-format
-msgid "What's new"
+msgid "What’s new"
 msgstr ""
 
 #: src/actions/actionmanagerimpl.cpp:504
@@ -1734,13 +1740,19 @@ msgid "No result found"
 msgstr "Nəticə tapılmadı"
 
 #: src/articlelistview.cpp:382
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "<h2>Article list</h2>Here you can browse articles from the currently "
+#| "selected feed. You can also manage articles, as marking them as "
+#| "persistent (\"Mark as Important\") or delete them, using the right mouse "
+#| "button menu. To view the web page of the article, you can open the "
+#| "article internally in a tab or in an external browser window."
 msgid ""
 "<h2>Article list</h2>Here you can browse articles from the currently "
 "selected feed. You can also manage articles, as marking them as persistent "
-"(\"Mark as Important\") or delete them, using the right mouse button menu. "
-"To view the web page of the article, you can open the article internally in "
-"a tab or in an external browser window."
+"(“Mark as Important”) or delete them, using the right mouse button menu. To "
+"view the web page of the article, you can open the article internally in a "
+"tab or in an external browser window."
 msgstr ""
 "<h2>Məqalə siyahısı</h2> Buray hazırda seçilmiş lentlərdən məqalələrə baxa "
 "bilərsiniz. Siz həmçinin siçanın sol süyməsi münyusundan, vacibliyinə görə "
@@ -2404,6 +2416,7 @@ msgstr ""
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:31
 #, kde-format
+msgctxt "@info:placeholder"
 msgid "My Miniflux"
 msgstr ""
 
@@ -2463,7 +2476,7 @@ msgstr ""
 
 #: src/plugins/miniflux/minifluxplugin.cpp:90
 #, kde-format
-msgid "An account named \"%1\" already exists."
+msgid "An account named “%1” already exists."
 msgstr ""
 
 #: src/progressmanager.cpp:127

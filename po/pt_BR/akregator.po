@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-09-25 00:46+0000\n"
+"POT-Creation-Date: 2026-09-30 00:46+0000\n"
 "PO-Revision-Date: 2026-09-25 06:12-0300\n"
 "Last-Translator: Marcus Gama <marcus.gama@gmail.com>\n"
 "Language-Team: Portuguese <kde-i18n-pt_BR@kde.org>\n"
@@ -126,8 +126,10 @@ msgid "Type"
 msgstr "Tipo"
 
 #: configuration/akregator_config_accounts.cpp:45
-#, kde-format
-msgctxt "@action:button"
+#, fuzzy, kde-format
+#| msgctxt "@action:button"
+#| msgid "Add…"
+msgctxt "@action:button Add account"
 msgid "Add…"
 msgstr "Adicionar…"
 
@@ -144,10 +146,14 @@ msgid "Remove"
 msgstr "Remover"
 
 #: configuration/akregator_config_accounts.cpp:134
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "Do you really want to remove the account \"%1\"?\n"
+#| "This removes the account's folder from the feed tree and deletes its "
+#| "stored credentials; the server is not affected."
 msgid ""
-"Do you really want to remove the account \"%1\"?\n"
-"This removes the account's folder from the feed tree and deletes its stored "
+"Do you really want to remove the account “%1”?\n"
+"This removes the account’s folder from the feed tree and deletes its stored "
 "credentials; the server is not affected."
 msgstr ""
 "Você realmente deseja remover a conta \"%1\"?\n"
@@ -421,8 +427,9 @@ msgstr "Segurança"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_CheckPhishingUrl)
 #: configuration/ui/settings_browser.ui:146
-#, kde-format
-msgid "Verify URLs using Google's Safe Browsing API"
+#, fuzzy, kde-format
+#| msgid "Verify URLs using Google's Safe Browsing API"
+msgid "Verify URLs using Google’s Safe Browsing API"
 msgstr "Verificar as URLs usando a API de Navegação Segura da Google"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_EnableJavascript)
@@ -795,11 +802,15 @@ msgstr ""
 
 #. i18n: ectx: whatsthis, entry, group (Network)
 #: interfaces/akregator.kcfg:146
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "This option allows user to specify custom user-agent string instead of "
+#| "using the default one. This is here because some proxies may interrupt "
+#| "the connection because of having \"gator\" in the name."
 msgid ""
 "This option allows user to specify custom user-agent string instead of using "
 "the default one. This is here because some proxies may interrupt the "
-"connection because of having \"gator\" in the name."
+"connection because of having “gator” in the name."
 msgstr ""
 "Esta opção permite ao usuário especificar uma string do agente do usuário, "
 "em vez de usar o padrão. Isto poderá acontecer porque alguns proxies poderão "
@@ -1158,8 +1169,9 @@ msgid "Eike Hein"
 msgstr "Eike Hein"
 
 #: src/aboutdata.cpp:42
-#, kde-format
-msgid "'Delayed mark as read' feature"
+#, fuzzy, kde-format
+#| msgid "'Delayed mark as read' feature"
+msgid "‘Delayed mark as read’ feature"
 msgstr "Recurso de 'Marcação como lida adiada'"
 
 #: src/aboutdata.cpp:43
@@ -1416,8 +1428,9 @@ msgid "Set Focus to Quick Search"
 msgstr "Focalizar a pesquisa rápida"
 
 #: src/actions/actionmanagerimpl.cpp:463
-#, kde-format
-msgid "What's new"
+#, fuzzy, kde-format
+#| msgid "What's new"
+msgid "What’s new"
 msgstr "O que há de novo"
 
 #: src/actions/actionmanagerimpl.cpp:504
@@ -1702,13 +1715,19 @@ msgid "No result found"
 msgstr "Nenhum resultado encontrado"
 
 #: src/articlelistview.cpp:382
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "<h2>Article list</h2>Here you can browse articles from the currently "
+#| "selected feed. You can also manage articles, as marking them as "
+#| "persistent (\"Mark as Important\") or delete them, using the right mouse "
+#| "button menu. To view the web page of the article, you can open the "
+#| "article internally in a tab or in an external browser window."
 msgid ""
 "<h2>Article list</h2>Here you can browse articles from the currently "
 "selected feed. You can also manage articles, as marking them as persistent "
-"(\"Mark as Important\") or delete them, using the right mouse button menu. "
-"To view the web page of the article, you can open the article internally in "
-"a tab or in an external browser window."
+"(“Mark as Important”) or delete them, using the right mouse button menu. To "
+"view the web page of the article, you can open the article internally in a "
+"tab or in an external browser window."
 msgstr ""
 "<h2>Lista de artigos</h2>Aqui você pode ler artigos a partir da fonte "
 "selecionada. Você pode também marcar artigos como persistentes (\"Marcar "
@@ -2356,7 +2375,9 @@ msgid "Test Connection"
 msgstr "Testar conexão"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:31
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "My Miniflux"
+msgctxt "@info:placeholder"
 msgid "My Miniflux"
 msgstr "Meu Miniflux"
 
@@ -2414,8 +2435,9 @@ msgid "Miniflux"
 msgstr "Miniflux"
 
 #: src/plugins/miniflux/minifluxplugin.cpp:90
-#, kde-format
-msgid "An account named \"%1\" already exists."
+#, fuzzy, kde-format
+#| msgid "An account named \"%1\" already exists."
+msgid "An account named “%1” already exists."
 msgstr "Já existe uma conta chamada \"%1\"."
 
 #: src/progressmanager.cpp:127
