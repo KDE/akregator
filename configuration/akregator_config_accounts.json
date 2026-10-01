@@ -19,6 +19,7 @@
         "Description[sv]": "Anpassa nätkonton",
         "Description[tr]": "Çevrim içi hesapları yapılandırın",
         "Description[uk]": "Налаштовування облікових записів інтернету",
+        "Description[zh_TW]": "設定線上帳號",
         "Icon": "user-identity",
         "Name": "Accounts",
         "Name[af]": "Rekeninge",

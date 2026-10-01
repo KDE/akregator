@@ -21,7 +21,8 @@
                 "Name[sl]": "Blagovest Petrov",
                 "Name[sv]": "Blagovest Petrov",
                 "Name[tr]": "Blagovest Petrov",
-                "Name[uk]": "Благовєст Пєтров"
+                "Name[uk]": "Благовєст Пєтров",
+                "Name[zh_TW]": "Blagovest Petrov"
             }
         ],
         "Description": "Sync feeds from a Miniflux server",
@@ -43,6 +44,7 @@
         "Description[sv]": "Synkronisera kanaler från en Miniflux-server",
         "Description[tr]": "Miniflux sunucusundan beslemeleri eşzamanlayın",
         "Description[uk]": "Синхронізувати подачі з сервера Miniflux",
+        "Description[zh_TW]": "從 Miniflux 伺服器同步訂閱來源",
         "License": "GPL",
         "MimeTypes": [],
         "Name": "Miniflux",
@@ -64,6 +66,7 @@
         "Name[sv]": "Miniflux",
         "Name[tr]": "Miniflux",
         "Name[uk]": "Miniflux",
+        "Name[zh_TW]": "Miniflux",
         "ServiceTypes": [
             "Akregator/AccountPlugin"
         ],
