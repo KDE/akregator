@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-09-30 00:46+0000\n"
-"PO-Revision-Date: 2026-09-25 17:59+0200\n"
+"PO-Revision-Date: 2026-09-30 13:25+0200\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -130,9 +130,7 @@ msgid "Type"
 msgstr "Type"
 
 #: configuration/akregator_config_accounts.cpp:45
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Add…"
+#, kde-format
 msgctxt "@action:button Add account"
 msgid "Add…"
 msgstr "Toevoegen…"
@@ -150,11 +148,7 @@ msgid "Remove"
 msgstr "Verwijderen"
 
 #: configuration/akregator_config_accounts.cpp:134
-#, fuzzy, kde-format
-#| msgid ""
-#| "Do you really want to remove the account \"%1\"?\n"
-#| "This removes the account's folder from the feed tree and deletes its "
-#| "stored credentials; the server is not affected."
+#, kde-format
 msgid ""
 "Do you really want to remove the account “%1”?\n"
 "This removes the account’s folder from the feed tree and deletes its stored "
@@ -441,8 +435,7 @@ msgstr "Beveiliging"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_CheckPhishingUrl)
 #: configuration/ui/settings_browser.ui:146
-#, fuzzy, kde-format
-#| msgid "Verify URLs using Google's Safe Browsing API"
+#, kde-format
 msgid "Verify URLs using Google’s Safe Browsing API"
 msgstr "URL's verifiëren met Safe Browsing API van Google"
 
@@ -817,11 +810,7 @@ msgstr ""
 
 #. i18n: ectx: whatsthis, entry, group (Network)
 #: interfaces/akregator.kcfg:146
-#, fuzzy, kde-format
-#| msgid ""
-#| "This option allows user to specify custom user-agent string instead of "
-#| "using the default one. This is here because some proxies may interrupt "
-#| "the connection because of having \"gator\" in the name."
+#, kde-format
 msgid ""
 "This option allows user to specify custom user-agent string instead of using "
 "the default one. This is here because some proxies may interrupt the "
@@ -1206,10 +1195,9 @@ msgid "Eike Hein"
 msgstr "Eike Hein"
 
 #: src/aboutdata.cpp:42
-#, fuzzy, kde-format
-#| msgid "'Delayed mark as read' feature"
+#, kde-format
 msgid "‘Delayed mark as read’ feature"
-msgstr "Mogelijkheid voor vertraging om artikel als gelezen te markeren"
+msgstr "Mogelijkheid 'Vertraagd als gelezen markeren'"
 
 #: src/aboutdata.cpp:43
 #, kde-format
@@ -1471,8 +1459,7 @@ msgid "Set Focus to Quick Search"
 msgstr "Focus instellen op Snel zoeken"
 
 #: src/actions/actionmanagerimpl.cpp:463
-#, fuzzy, kde-format
-#| msgid "What's new"
+#, kde-format
 msgid "What’s new"
 msgstr "Wat is nieuw"
 
@@ -1764,13 +1751,7 @@ msgstr "Geen resultaat gevonden"
 # \" toegevoegd ik naam aan dat ook hier \\ staat voor volgende teken letterlijk nemen? net als in shellscripts?
 # tekst letterlijk vertaald. dan kom ik qua regels ook uit.
 #: src/articlelistview.cpp:382
-#, fuzzy, kde-format
-#| msgid ""
-#| "<h2>Article list</h2>Here you can browse articles from the currently "
-#| "selected feed. You can also manage articles, as marking them as "
-#| "persistent (\"Mark as Important\") or delete them, using the right mouse "
-#| "button menu. To view the web page of the article, you can open the "
-#| "article internally in a tab or in an external browser window."
+#, kde-format
 msgid ""
 "<h2>Article list</h2>Here you can browse articles from the currently "
 "selected feed. You can also manage articles, as marking them as persistent "
@@ -2428,8 +2409,7 @@ msgid "Test Connection"
 msgstr "Verbinding testen"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:31
-#, fuzzy, kde-format
-#| msgid "My Miniflux"
+#, kde-format
 msgctxt "@info:placeholder"
 msgid "My Miniflux"
 msgstr "Mijn Miniflux"
@@ -2489,8 +2469,7 @@ msgid "Miniflux"
 msgstr "Miniflux"
 
 #: src/plugins/miniflux/minifluxplugin.cpp:90
-#, fuzzy, kde-format
-#| msgid "An account named \"%1\" already exists."
+#, kde-format
 msgid "An account named “%1” already exists."
 msgstr "Een account genaamd \"%1\" bestaat al."
 

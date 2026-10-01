@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-09-30 00:46+0000\n"
-"PO-Revision-Date: 2026-09-25 06:04+0200\n"
+"PO-Revision-Date: 2026-09-30 09:21+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -113,9 +113,7 @@ msgid "Type"
 msgstr "ტიპი"
 
 #: configuration/akregator_config_accounts.cpp:45
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Add…"
+#, kde-format
 msgctxt "@action:button Add account"
 msgid "Add…"
 msgstr "დამატება…"
@@ -133,11 +131,7 @@ msgid "Remove"
 msgstr "წაშლა"
 
 #: configuration/akregator_config_accounts.cpp:134
-#, fuzzy, kde-format
-#| msgid ""
-#| "Do you really want to remove the account \"%1\"?\n"
-#| "This removes the account's folder from the feed tree and deletes its "
-#| "stored credentials; the server is not affected."
+#, kde-format
 msgid ""
 "Do you really want to remove the account “%1”?\n"
 "This removes the account’s folder from the feed tree and deletes its stored "
@@ -414,10 +408,9 @@ msgstr "უსაფრთხოება"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_CheckPhishingUrl)
 #: configuration/ui/settings_browser.ui:146
-#, fuzzy, kde-format
-#| msgid "Verify URLs using Google's Safe Browsing API"
+#, kde-format
 msgid "Verify URLs using Google’s Safe Browsing API"
-msgstr "ბმულების Google-ის უსაფრთხო ბრაუზინგის API-ის საშუალებით გადამოწება"
+msgstr "ბმულების Google-ის უსაფრთხო ბრაუზინგის API-ის საშუალებით გადამოწმება"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_EnableJavascript)
 #. i18n: ectx: label, entry, group (Browser)
@@ -789,11 +782,7 @@ msgstr ""
 
 #. i18n: ectx: whatsthis, entry, group (Network)
 #: interfaces/akregator.kcfg:146
-#, fuzzy, kde-format
-#| msgid ""
-#| "This option allows user to specify custom user-agent string instead of "
-#| "using the default one. This is here because some proxies may interrupt "
-#| "the connection because of having \"gator\" in the name."
+#, kde-format
 msgid ""
 "This option allows user to specify custom user-agent string instead of using "
 "the default one. This is here because some proxies may interrupt the "
@@ -1153,10 +1142,9 @@ msgid "Eike Hein"
 msgstr "აიკე ჰაინი"
 
 #: src/aboutdata.cpp:42
-#, fuzzy, kde-format
-#| msgid "'Delayed mark as read' feature"
+#, kde-format
 msgid "‘Delayed mark as read’ feature"
-msgstr "ფუნქცია 'დაყოვნებული წაკითხულად მონიშვნა"
+msgstr "ფუნქცია 'დაყოვნებული წაკითხულად მონიშვნა'"
 
 #: src/aboutdata.cpp:43
 #, kde-format
@@ -1412,8 +1400,7 @@ msgid "Set Focus to Quick Search"
 msgstr "ფოკუსის სწრაფ ძებნაზე დაყენება"
 
 #: src/actions/actionmanagerimpl.cpp:463
-#, fuzzy, kde-format
-#| msgid "What's new"
+#, kde-format
 msgid "What’s new"
 msgstr "რა არის ახალი"
 
@@ -1698,13 +1685,7 @@ msgid "No result found"
 msgstr "შედეგი ვერ მოიძებნა"
 
 #: src/articlelistview.cpp:382
-#, fuzzy, kde-format
-#| msgid ""
-#| "<h2>Article list</h2>Here you can browse articles from the currently "
-#| "selected feed. You can also manage articles, as marking them as "
-#| "persistent (\"Mark as Important\") or delete them, using the right mouse "
-#| "button menu. To view the web page of the article, you can open the "
-#| "article internally in a tab or in an external browser window."
+#, kde-format
 msgid ""
 "<h2>Article list</h2>Here you can browse articles from the currently "
 "selected feed. You can also manage articles, as marking them as persistent "
@@ -1712,10 +1693,10 @@ msgid ""
 "view the web page of the article, you can open the article internally in a "
 "tab or in an external browser window."
 msgstr ""
-"<h2>სტატიების სია</h2>აქ შეგიძლიათ ამჟამად მონიშნული ლენტის სტატიები იხილოთ. "
-"ასევე შეგიძლიათ მართოთ ისინი მათი მუდმივად გადაკეთების საშუალებით ან წაშალოთ "
-"ისინი, კონტექსტური მენიუდან. სტატიის ვებგვერდის სანახავად შეგიძლიათ სტატია "
-"შიდა ჩანართში, ან ბრაუზერის გარე ფანჯარაში გახსნათ."
+"<h2>სტატიების სია</h2>აქ შეგიძლიათ, ამჟამად მონიშნული ლენტის სტატიები "
+"იხილოთ. ასევე შეგიძლიათ მართოთ ისინი მათი მუდმივად გადაკეთების საშუალებით ან "
+"წაშალოთ ისინი, კონტექსტური მენიუდან. სტატიის ვებგვერდის სანახავად შეგიძლიათ "
+"სტატია შიდა ჩანართში, ან ბრაუზერის გარე ფანჯარაში გახსნათ."
 
 #: src/articlemodel.cpp:77
 #, kde-format
@@ -2354,8 +2335,7 @@ msgid "Test Connection"
 msgstr "კავშირის შემოწმება"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:31
-#, fuzzy, kde-format
-#| msgid "My Miniflux"
+#, kde-format
 msgctxt "@info:placeholder"
 msgid "My Miniflux"
 msgstr "ჩემი Miniflux"
@@ -2414,8 +2394,7 @@ msgid "Miniflux"
 msgstr "Miniflux"
 
 #: src/plugins/miniflux/minifluxplugin.cpp:90
-#, fuzzy, kde-format
-#| msgid "An account named \"%1\" already exists."
+#, kde-format
 msgid "An account named “%1” already exists."
 msgstr "ანგარიში სახელით \"%1\" უკვე არსებობს."
 

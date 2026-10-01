@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-09-30 00:46+0000\n"
-"PO-Revision-Date: 2026-09-25 16:49+0400\n"
+"PO-Revision-Date: 2026-09-30 19:12+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
 "Language: ar\n"
@@ -116,9 +116,7 @@ msgid "Type"
 msgstr "النوع"
 
 #: configuration/akregator_config_accounts.cpp:45
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Add…"
+#, kde-format
 msgctxt "@action:button Add account"
 msgid "Add…"
 msgstr "أضف…"
@@ -142,6 +140,9 @@ msgid ""
 "This removes the account’s folder from the feed tree and deletes its stored "
 "credentials; the server is not affected."
 msgstr ""
+"أتريد حقًا إزالة الحساب ”%1“؟\n"
+"سيؤدي ذلك إلى إزالة مجلد الحساب من شجرة التغذيات وحذف بيانات الاعتماد "
+"المخزنة الخاصة به؛ ولن يتأثر الخادم بذلك."
 
 #: configuration/akregator_config_accounts.cpp:138
 #, kde-format
@@ -426,8 +427,7 @@ msgstr "الأمن"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_CheckPhishingUrl)
 #: configuration/ui/settings_browser.ui:146
-#, fuzzy, kde-format
-#| msgid "Verify URLs using Google's Safe Browsing API"
+#, kde-format
 msgid "Verify URLs using Google’s Safe Browsing API"
 msgstr "تأكد من العناوين باستخدام غوغل للتصفح الآمن"
 
@@ -797,19 +797,15 @@ msgstr ""
 
 #. i18n: ectx: whatsthis, entry, group (Network)
 #: interfaces/akregator.kcfg:146
-#, fuzzy, kde-format
-#| msgid ""
-#| "This option allows user to specify custom user-agent string instead of "
-#| "using the default one. This is here because some proxies may interrupt "
-#| "the connection because of having \"gator\" in the name."
+#, kde-format
 msgid ""
 "This option allows user to specify custom user-agent string instead of using "
 "the default one. This is here because some proxies may interrupt the "
 "connection because of having “gator” in the name."
 msgstr ""
 "يسمح هذا الخيار للمستخدم بأن يحدد نص معرف العميل بدلا عن استخدام التعريف "
-"المبدئي، بسب أن بعض الوكلاء قد يقاطع الاتصال بسبب وجود كلمة \"gator\" في "
-"تعريف العميل."
+"المبدئي، بسب أن بعض الوكلاء قد يقاطع الاتصال بسبب وجود كلمة “gator” في تعريف "
+"العميل."
 
 #. i18n: ectx: label, entry, group (General)
 #: interfaces/akregator.kcfg:152
@@ -1158,8 +1154,7 @@ msgid "Eike Hein"
 msgstr "إيكي هين"
 
 #: src/aboutdata.cpp:42
-#, fuzzy, kde-format
-#| msgid "'Delayed mark as read' feature"
+#, kde-format
 msgid "‘Delayed mark as read’ feature"
 msgstr "ميزة 'علّمها مقروءة بعد مدة'"
 
@@ -1247,11 +1242,10 @@ msgid "&Export Feeds…"
 msgstr "&صدّر التلقيمات…"
 
 #: src/actions/actionmanagerimpl.cpp:215
-#, fuzzy, kde-format
-#| msgid "Modify Online Reader Account"
+#, kde-format
 msgctxt "@action"
 msgid "Add Online Account…"
-msgstr "عدّل حساب قارئ الإنترنت"
+msgstr "أضف حسابًا على الإنترنت…"
 
 #: src/actions/actionmanagerimpl.cpp:224
 #, kde-format
@@ -1418,8 +1412,7 @@ msgid "Set Focus to Quick Search"
 msgstr "اضبط التّركيز على البحث السّريع"
 
 #: src/actions/actionmanagerimpl.cpp:463
-#, fuzzy, kde-format
-#| msgid "What's new"
+#, kde-format
 msgid "What’s new"
 msgstr "ما الجديد"
 
@@ -1702,13 +1695,7 @@ msgid "No result found"
 msgstr "لا نتائج"
 
 #: src/articlelistview.cpp:382
-#, fuzzy, kde-format
-#| msgid ""
-#| "<h2>Article list</h2>Here you can browse articles from the currently "
-#| "selected feed. You can also manage articles, as marking them as "
-#| "persistent (\"Mark as Important\") or delete them, using the right mouse "
-#| "button menu. To view the web page of the article, you can open the "
-#| "article internally in a tab or in an external browser window."
+#, kde-format
 msgid ""
 "<h2>Article list</h2>Here you can browse articles from the currently "
 "selected feed. You can also manage articles, as marking them as persistent "
@@ -2349,11 +2336,10 @@ msgstr[5] "<i>و %1 أخرى</i>"
 
 #: src/plugins/addaccountwizard.cpp:22
 #: src/plugins/miniflux/minifluxplugin.cpp:90
-#, fuzzy, kde-format
-#| msgid "Modify Online Reader Account"
+#, kde-format
 msgctxt "@title:window"
 msgid "Add Online Account"
-msgstr "عدّل حساب قارئ الإنترنت"
+msgstr "أضف حسابًا على الإنترنت"
 
 #: src/plugins/addaccountwizard.cpp:27
 #, kde-format
@@ -2371,7 +2357,7 @@ msgstr "إعدادات الحساب"
 #, kde-format
 msgctxt "@title:window"
 msgid "Miniflux Account Settings"
-msgstr ""
+msgstr "إعدادات حساب Miniflux"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:26
 #, kde-format
@@ -2383,7 +2369,7 @@ msgstr "اختبر الاتّصال"
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "My Miniflux"
-msgstr ""
+msgstr "Miniflux الخاص بي"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:32
 #, kde-format
@@ -2403,7 +2389,7 @@ msgstr "رمز API:"
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:100
 #, kde-format
 msgid "Please enter a valid server URL and API token."
-msgstr ""
+msgstr "الرجاء إدخال عنوان URL صالح للخادم ورماز API."
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:100
 #, kde-format
@@ -2414,7 +2400,7 @@ msgstr "مدخل غير صالح"
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:111
 #, kde-format
 msgid "Successfully connected to the Miniflux server."
-msgstr ""
+msgstr "اتصل بخادم Miniflux بنجاح."
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:111
 #, kde-format
@@ -2436,12 +2422,12 @@ msgstr "فشل الاتّصال"
 #: src/plugins/miniflux/minifluxplugin.cpp:73
 #, kde-format
 msgid "Miniflux"
-msgstr ""
+msgstr "Miniflux"
 
 #: src/plugins/miniflux/minifluxplugin.cpp:90
 #, kde-format
 msgid "An account named “%1” already exists."
-msgstr ""
+msgstr "يوجد حساب باسم ”%1“ بالفعل."
 
 #: src/progressmanager.cpp:127
 #, kde-format

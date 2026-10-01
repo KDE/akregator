@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-09-30 00:46+0000\n"
-"PO-Revision-Date: 2026-09-27 12:24+0200\n"
+"PO-Revision-Date: 2026-09-30 21:09+0200\n"
 "Last-Translator: Stefan Asserhäll <stefan.asserhall@gmail.com>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
 "Language: sv\n"
@@ -113,9 +113,7 @@ msgid "Type"
 msgstr "Typ"
 
 #: configuration/akregator_config_accounts.cpp:45
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Add…"
+#, kde-format
 msgctxt "@action:button Add account"
 msgid "Add…"
 msgstr "Lägg till…"
@@ -133,17 +131,13 @@ msgid "Remove"
 msgstr "Ta bort"
 
 #: configuration/akregator_config_accounts.cpp:134
-#, fuzzy, kde-format
-#| msgid ""
-#| "Do you really want to remove the account \"%1\"?\n"
-#| "This removes the account's folder from the feed tree and deletes its "
-#| "stored credentials; the server is not affected."
+#, kde-format
 msgid ""
 "Do you really want to remove the account “%1”?\n"
 "This removes the account’s folder from the feed tree and deletes its stored "
 "credentials; the server is not affected."
 msgstr ""
-"Vill du verkligen ta bort kontot \"%1\"?\n"
+"Vill du verkligen ta bort kontot “%1”?\n"
 "Det tar bort kontots katalog från kanalträdet och tar bort den lagrade "
 "behörighetsinformationen. Servern påverkas inte."
 
@@ -414,8 +408,7 @@ msgstr "Säkerhet"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_CheckPhishingUrl)
 #: configuration/ui/settings_browser.ui:146
-#, fuzzy, kde-format
-#| msgid "Verify URLs using Google's Safe Browsing API"
+#, kde-format
 msgid "Verify URLs using Google’s Safe Browsing API"
 msgstr ""
 "Verifiera webbadresser med Googles programmeringsgränssnitt för säker "
@@ -790,11 +783,7 @@ msgstr ""
 
 #. i18n: ectx: whatsthis, entry, group (Network)
 #: interfaces/akregator.kcfg:146
-#, fuzzy, kde-format
-#| msgid ""
-#| "This option allows user to specify custom user-agent string instead of "
-#| "using the default one. This is here because some proxies may interrupt "
-#| "the connection because of having \"gator\" in the name."
+#, kde-format
 msgid ""
 "This option allows user to specify custom user-agent string instead of using "
 "the default one. This is here because some proxies may interrupt the "
@@ -802,7 +791,7 @@ msgid ""
 msgstr ""
 "Alternativet låter användare ange en egen användar-agentsträng istället för "
 "att använda den förvalda. Det finns här eftersom vissa typer av proxy kan "
-"avbryta anslutningen därför att namnet innehåller \"gator\"."
+"avbryta anslutningen därför att namnet innehåller “gator”."
 
 #. i18n: ectx: label, entry, group (General)
 #: interfaces/akregator.kcfg:152
@@ -1155,10 +1144,9 @@ msgid "Eike Hein"
 msgstr "Eike Hein"
 
 #: src/aboutdata.cpp:42
-#, fuzzy, kde-format
-#| msgid "'Delayed mark as read' feature"
+#, kde-format
 msgid "‘Delayed mark as read’ feature"
-msgstr "Funktionen 'fördröj markera som läst'"
+msgstr "Funktionen ‘fördröj markera som läst’"
 
 #: src/aboutdata.cpp:43
 #, kde-format
@@ -1414,8 +1402,7 @@ msgid "Set Focus to Quick Search"
 msgstr "Ge fokus till snabbsökning"
 
 #: src/actions/actionmanagerimpl.cpp:463
-#, fuzzy, kde-format
-#| msgid "What's new"
+#, kde-format
 msgid "What’s new"
 msgstr "Vad är nytt"
 
@@ -1700,13 +1687,7 @@ msgid "No result found"
 msgstr "Inget resultat hittades"
 
 #: src/articlelistview.cpp:382
-#, fuzzy, kde-format
-#| msgid ""
-#| "<h2>Article list</h2>Here you can browse articles from the currently "
-#| "selected feed. You can also manage articles, as marking them as "
-#| "persistent (\"Mark as Important\") or delete them, using the right mouse "
-#| "button menu. To view the web page of the article, you can open the "
-#| "article internally in a tab or in an external browser window."
+#, kde-format
 msgid ""
 "<h2>Article list</h2>Here you can browse articles from the currently "
 "selected feed. You can also manage articles, as marking them as persistent "
@@ -1716,8 +1697,8 @@ msgid ""
 msgstr ""
 "<h2>Artikellista</h2>Här kan du bläddra bland artiklar från kanalen som för "
 "närvarande är vald. Du kan också hantera artiklar, som att markera dem som "
-"bestående (\"Markera som viktig\") eller ta bort dem, med menyn som visas "
-"med höger musknapp. För att titta på artikelns webbsida, kan du öppna den "
+"bestående (“Markera som viktig”) eller ta bort dem, med menyn som visas med "
+"höger musknapp. För att titta på artikelns webbsida, kan du öppna den "
 "internt under en flik eller i ett externt webbläsarfönster."
 
 #: src/articlemodel.cpp:77
@@ -2358,8 +2339,7 @@ msgid "Test Connection"
 msgstr "Testa anslutning"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:31
-#, fuzzy, kde-format
-#| msgid "My Miniflux"
+#, kde-format
 msgctxt "@info:placeholder"
 msgid "My Miniflux"
 msgstr "Min Miniflux"
@@ -2418,10 +2398,9 @@ msgid "Miniflux"
 msgstr "Miniflux"
 
 #: src/plugins/miniflux/minifluxplugin.cpp:90
-#, fuzzy, kde-format
-#| msgid "An account named \"%1\" already exists."
+#, kde-format
 msgid "An account named “%1” already exists."
-msgstr "Ett konto med namnet \"%1\" finns redan."
+msgstr "Ett konto med namnet “%1” finns redan."
 
 #: src/progressmanager.cpp:127
 #, kde-format
