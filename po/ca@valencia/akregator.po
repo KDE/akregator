@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-09-30 00:46+0000\n"
-"PO-Revision-Date: 2026-05-28 09:11+0200\n"
+"PO-Revision-Date: 2026-09-30 09:02+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca@valencia\n"
@@ -110,31 +110,31 @@ msgstr ""
 #, kde-format
 msgctxt "@title:column"
 msgid "Account"
-msgstr ""
+msgstr "Compte"
 
 #: configuration/akregator_config_accounts.cpp:39
 #, kde-format
 msgctxt "@title:column"
 msgid "Type"
-msgstr ""
+msgstr "Tipus"
 
 #: configuration/akregator_config_accounts.cpp:45
 #, kde-format
 msgctxt "@action:button Add account"
 msgid "Add…"
-msgstr ""
+msgstr "Afig…"
 
 #: configuration/akregator_config_accounts.cpp:46
 #, kde-format
 msgctxt "@action:button"
 msgid "Modify…"
-msgstr ""
+msgstr "Modifica…"
 
 #: configuration/akregator_config_accounts.cpp:47
 #, kde-format
 msgctxt "@action:button"
 msgid "Remove"
-msgstr ""
+msgstr "Elimina"
 
 #: configuration/akregator_config_accounts.cpp:134
 #, kde-format
@@ -143,12 +143,15 @@ msgid ""
 "This removes the account’s folder from the feed tree and deletes its stored "
 "credentials; the server is not affected."
 msgstr ""
+"Segur que voleu suprimir el compte «%1»?\n"
+"Eliminarà la carpeta del compte de l'arbre de fonts i suprimirà les seues "
+"credencials emmagatzemades; el servidor no es veu afectat."
 
 #: configuration/akregator_config_accounts.cpp:138
 #, kde-format
 msgctxt "@title:window"
 msgid "Remove Account"
-msgstr ""
+msgstr "Elimina el compte"
 
 #: configuration/akregator_config_archive.cpp:37
 #, kde-format
@@ -411,8 +414,7 @@ msgstr "Seguretat"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_CheckPhishingUrl)
 #: configuration/ui/settings_browser.ui:146
-#, fuzzy, kde-format
-#| msgid "Verify URLs using Google's Safe Browsing API"
+#, kde-format
 msgid "Verify URLs using Google’s Safe Browsing API"
 msgstr "Verifica els URL utilitzant l'API de navegació segura de Google"
 
@@ -784,11 +786,7 @@ msgstr ""
 
 #. i18n: ectx: whatsthis, entry, group (Network)
 #: interfaces/akregator.kcfg:146
-#, fuzzy, kde-format
-#| msgid ""
-#| "This option allows user to specify custom user-agent string instead of "
-#| "using the default one. This is here because some proxies may interrupt "
-#| "the connection because of having \"gator\" in the name."
+#, kde-format
 msgid ""
 "This option allows user to specify custom user-agent string instead of using "
 "the default one. This is here because some proxies may interrupt the "
@@ -1151,8 +1149,7 @@ msgid "Eike Hein"
 msgstr "Eike Hein"
 
 #: src/aboutdata.cpp:42
-#, fuzzy, kde-format
-#| msgid "'Delayed mark as read' feature"
+#, kde-format
 msgid "‘Delayed mark as read’ feature"
 msgstr "Característica «ajorna la marca com a llegit»"
 
@@ -1243,7 +1240,7 @@ msgstr "&Exporta les fonts…"
 #, kde-format
 msgctxt "@action"
 msgid "Add Online Account…"
-msgstr ""
+msgstr "Afig un compte en línia…"
 
 #: src/actions/actionmanagerimpl.cpp:224
 #, kde-format
@@ -1410,8 +1407,7 @@ msgid "Set Focus to Quick Search"
 msgstr "Establix el focus a la busca ràpida"
 
 #: src/actions/actionmanagerimpl.cpp:463
-#, fuzzy, kde-format
-#| msgid "What's new"
+#, kde-format
 msgid "What’s new"
 msgstr "Què hi ha de nou"
 
@@ -1697,13 +1693,7 @@ msgid "No result found"
 msgstr "No s'ha trobat cap resultat"
 
 #: src/articlelistview.cpp:382
-#, fuzzy, kde-format
-#| msgid ""
-#| "<h2>Article list</h2>Here you can browse articles from the currently "
-#| "selected feed. You can also manage articles, as marking them as "
-#| "persistent (\"Mark as Important\") or delete them, using the right mouse "
-#| "button menu. To view the web page of the article, you can open the "
-#| "article internally in a tab or in an external browser window."
+#, kde-format
 msgid ""
 "<h2>Article list</h2>Here you can browse articles from the currently "
 "selected feed. You can also manage articles, as marking them as persistent "
@@ -2325,98 +2315,95 @@ msgstr[1] "<i>i %1 altres</i>"
 #, kde-format
 msgctxt "@title:window"
 msgid "Add Online Account"
-msgstr ""
+msgstr "Afig un compte en línia"
 
 #: src/plugins/addaccountwizard.cpp:27
 #, kde-format
 msgctxt "@title:tab, wizard page for selecting the account type"
 msgid "Account Type"
-msgstr ""
+msgstr "Tipus de compte"
 
 #: src/plugins/addaccountwizard.cpp:31
-#, fuzzy, kde-format
-#| msgid "&Settings"
+#, kde-format
 msgctxt "@title:tab, wizard page with the account settings"
 msgid "Account Settings"
-msgstr "Con&figuració"
+msgstr "Configureu el compte"
 
 #: src/plugins/miniflux/minifluxaccountdialog.cpp:20
 #, kde-format
 msgctxt "@title:window"
 msgid "Miniflux Account Settings"
-msgstr ""
+msgstr "Configureu el compte Miniflux"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:26
 #, kde-format
 msgctxt "@action:button"
 msgid "Test Connection"
-msgstr ""
+msgstr "Prova de connexió"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:31
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "My Miniflux"
-msgstr ""
+msgstr "El meu Miniflux"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:32
-#, fuzzy, kde-format
-#| msgid "Group Name"
+#, kde-format
 msgid "Account Name:"
-msgstr "Nom del grup"
+msgstr "Nom del compte:"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:34
-#, fuzzy, kde-format
-#| msgid "Feed &URL:"
+#, kde-format
 msgid "Server URL:"
-msgstr "&URL de la font:"
+msgstr "URL del servidor:"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:36
 #, kde-format
 msgid "API Token:"
-msgstr ""
+msgstr "Testimoni de l'API:"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:100
 #, kde-format
 msgid "Please enter a valid server URL and API token."
-msgstr ""
+msgstr "Introduïu un URL i un testimoni d'API vàlid."
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:100
 #, kde-format
 msgctxt "@title:window"
 msgid "Invalid Input"
-msgstr ""
+msgstr "Entrada no vàlida"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:111
 #, kde-format
 msgid "Successfully connected to the Miniflux server."
-msgstr ""
+msgstr "S'ha connectat correctament amb el servidor Miniflux."
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:111
 #, kde-format
 msgctxt "@title:window"
 msgid "Connection Successful"
-msgstr ""
+msgstr "La connexió ha sigut correcta"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:113
 #, kde-format
 msgid "Failed to connect: %1"
-msgstr ""
+msgstr "Ha fallat mentre es connectava: %1"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:113
 #, kde-format
 msgctxt "@title:window"
 msgid "Connection Failed"
-msgstr ""
+msgstr "No s'ha pogut connectar"
 
 #: src/plugins/miniflux/minifluxplugin.cpp:73
 #, kde-format
 msgid "Miniflux"
-msgstr ""
+msgstr "Miniflux"
 
 #: src/plugins/miniflux/minifluxplugin.cpp:90
 #, kde-format
 msgid "An account named “%1” already exists."
-msgstr ""
+msgstr "Ja existix un compte anomenat «%1»."
 
 #: src/progressmanager.cpp:127
 #, kde-format
