@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-07-15 02:38+0000\n"
-"PO-Revision-Date: 2026-06-02 13:19+0300\n"
+"PO-Revision-Date: 2026-10-01 13:52+0300\n"
 "Last-Translator: Mindaugas Baranauskas <opensuse.lietuviu.kalba@gmail.com>\n"
 "Language-Team: Lithuanian <kde-i18n-lt@kde.org>\n"
 "Language: lt\n"
@@ -62,11 +62,11 @@ msgstr ""
 
 #: src/formatter/html/combinedview.html:24
 msgid "Mark as Read"
-msgstr "Pažymėti kaip skaitytą"
+msgstr "Žymėti kaip skaitytą"
 
 #: src/formatter/html/combinedview.html:27
 msgid "Mark as Unread"
-msgstr "Pažymėti kaip neskaitytą"
+msgstr "Žymėti kaip neskaitytą"
 
 #: src/formatter/html/combinedview.html:31
 msgid "Remove Important Status"
@@ -74,7 +74,7 @@ msgstr "Naikinti žymę „Svarbus“"
 
 #: src/formatter/html/combinedview.html:33
 msgid "Mark as Important"
-msgstr "Žymėti svarbiu"
+msgstr "Žymėti kaip svarbų"
 
 #: src/formatter/html/combinedview.html:35
 msgid "Open Link in External Browser"
@@ -162,7 +162,7 @@ msgstr "Straipsnių sąrašas"
 #: configuration/ui/settings_advancedbase.ui:38
 #, kde-format
 msgid "Mar&k selected article read after"
-msgstr "Žymėti &nurodytą straipsnį kaip skaitytą po"
+msgstr "Žymėti &pasirinktą straipsnį kaip skaitytą po"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ResetQuickFilterOnNodeChange)
 #: configuration/ui/settings_advancedbase.ui:73
@@ -487,7 +487,7 @@ msgstr "Paleidimas"
 #: configuration/ui/settings_general.ui:173
 #, kde-format
 msgid "Mark &all feeds as read on startup"
-msgstr "Žymė&ti visus kanalus skaitytais įjungimo metu"
+msgstr "Paleidimo metu žymė&ti visus kanalus kaip skaitytus"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_FetchOnStartup)
 #: configuration/ui/settings_general.ui:180
@@ -777,13 +777,13 @@ msgstr "Atsiųsti naujienų sąrašą paleidus programą."
 #: interfaces/akregator.kcfg:157
 #, kde-format
 msgid "Mark all feeds as read on startup"
-msgstr "Įsijungiant žymė&ti visus kanalus skaitytais"
+msgstr "Paleidimo metu žymėti visus kanalus kaip skaitytus"
 
 #. i18n: ectx: whatsthis, entry, group (General)
 #: interfaces/akregator.kcfg:158
 #, kde-format
 msgid "Mark all feeds as read on startup."
-msgstr "Įsijungiant žymė&ti visus kanalus skaitytais."
+msgstr "Paleidimo metu žymėti visus kanalus kaip skaitytus."
 
 #. i18n: ectx: label, entry, group (General)
 #: interfaces/akregator.kcfg:162
@@ -931,7 +931,7 @@ msgstr "Archyvavimo įrankis"
 #: interfaces/akregator.kcfg:274
 #, kde-format
 msgid "Whether to delay before marking an article as read upon selecting it."
-msgstr "Ar palaukti, prieš žymint parinktą straipsnį kaip skaitytą."
+msgstr "Ar pasirinkus straipsnį palaukti, prieš žymint jį kaip skaitytą."
 
 #. i18n: ectx: whatsthis, entry (MarkReadDelay), group (Advanced)
 #: interfaces/akregator.kcfg:278
@@ -939,7 +939,7 @@ msgstr "Ar palaukti, prieš žymint parinktą straipsnį kaip skaitytą."
 msgid ""
 "Configurable delay between selecting an article and it being marked as read."
 msgstr ""
-"Konfigūruojamas uždelsimas tarp straipsnio pažymėjimo ir jo paskelbimo "
+"Konfigūruojama delsa tarp straipsnio pasirinkimo ir jo žymėjimo kaip "
 "skaitytu."
 
 #. i18n: ectx: whatsthis, entry, group (Advanced)
@@ -1252,7 +1252,7 @@ msgstr "Nutr&aukti naujienų atsiuntimą"
 #: src/actions/actionmanagerimpl.cpp:323
 #, kde-format
 msgid "Ma&rk All Feeds as Read"
-msgstr "Žymė&ti visus kanalus skaitytais"
+msgstr "Žymė&ti visus kanalus kaip skaitytus"
 
 #: src/actions/actionmanagerimpl.cpp:352
 #, kde-format
@@ -2178,7 +2178,7 @@ msgid ""
 "<qt>Are you sure you want to mark <b>all articles in the feed</b> as read?</"
 "qt>"
 msgstr ""
-"<qt>Ar tikrai norite žymėti <b>visus kanale esančius straipnsius</b> kaip "
+"<qt>Ar tikrai norite žymėti <b>visus kanale esančius straipsnius</b> kaip "
 "skaitytus?</qt>"
 
 #: src/mainwidget.cpp:842
@@ -2576,12 +2576,12 @@ msgstr "Adresas nukopijuotas į iškarpinę."
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:98
 #, kde-format
 msgid "Mark Article as Read"
-msgstr "Pažymėti straipsnį kaip skaitytą"
+msgstr "Žymėti straipsnį kaip skaitytą"
 
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:100
 #, kde-format
 msgid "Mark Article as Unread"
-msgstr "Pažymėti straipsnį kaip neskaitytą"
+msgstr "Žymėti straipsnį kaip neskaitytą"
 
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:102
 #, kde-format
