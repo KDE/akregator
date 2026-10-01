@@ -215,6 +215,19 @@
       <description>
         <ul>
           <li>Miniflux is now supported. See the new "Add Online Account" option in the File menu to open the Miniflux account wizard.</li>
+          <li xml:lang="ar">أصبح برنامج Miniflux متاحًا الآن. انظر الخيار الجديد «أضف حساب عبر الإنترنت» في قائمة ملف لفتح معالج حساب Miniflux.</li>
+          <li xml:lang="ca">Ara s'admet el Miniflux. Vegeu l'opció nova «Afegeix un compte en línia» al menú Fitxer per a obrir l'assistent de comptes del Miniflux.</li>
+          <li xml:lang="cs">Nyní je podporován Miniflux. V nabídce Soubor najdete novou možnost "Přidat online účet", pomocí které můžete spustit průvodce nastavením účtu Miniflux.</li>
+          <li xml:lang="es">Se ha implementado la compatibilidad con Miniflux. Consulte la nueva opción «Añadir cuenta en línea» del menú «Archivo» para abrir el asistente de cuentas Miniflux.</li>
+          <li xml:lang="ka">ახლა მხარდაჭერილია Miniflux. Miniflux-ის ანგარიშის ოსტატის გასახსნელად იხილეთ ახალი 'ონლაინანგარიშის დამატების' პარამეტრი ფაილის მენიუში.</li>
+          <li xml:lang="nl">Miniflux wordt nu ondersteund. Gebruik de nieuwe optie "Online account toevoegen" in het menu Bestand om de assistent voor Miniflux-accounts te openen.</li>
+          <li xml:lang="pt-BR">O Miniflux agora é suportado. Veja a nova opção "Adicionar conta online" no menu Arquivo para abrir o assistente de conta do Miniflux.</li>
+          <li xml:lang="ru">Добавлена поддержка Miniflux. Чтобы открыть мастер настройки учётной записи Miniflux, выберите в меню «Файл» новый пункт «Добавить сетевую учётную запись…».</li>
+          <li xml:lang="sl">Miniflux je zdaj podprt. Oglejte novo možnost »Dodaj spletni račun« v meniju Datoteka za odpiranje čarovnika za račun Minflux.</li>
+          <li xml:lang="sv">Miniflux stöds nu. Se det nya alternativet "Lägg till nätkonto" i menyn Arkiv för att öppna Miniflux kontoguide.</li>
+          <li xml:lang="tr">Miniflux artık destekleniyor. Miniflux hesap sihirbazını açmak için Dosya menüsündeki “Çevrim İçi Hesap Ekle” seçeneğini kullanın.</li>
+          <li xml:lang="uk">У новій версії передбачено підтримку Miniflux. Див. новий пункт «Додати обліковий запис у мережі» у меню «Файл», щоб відкрити майстер облікових записів Miniflux.</li>
+          <li xml:lang="zh-TW">支援 Miniflux。用檔案選單裡新的「新增線上帳號」選項來開啟 Miniflux 帳號精靈。</li>
         </ul>
       </description>
     </release>
