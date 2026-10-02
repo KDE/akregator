@@ -217,9 +217,13 @@
           <li>Miniflux is now supported. See the new "Add Online Account" option in the File menu to open the Miniflux account wizard.</li>
           <li xml:lang="ar">أصبح برنامج Miniflux متاحًا الآن. انظر الخيار الجديد «أضف حساب عبر الإنترنت» في قائمة ملف لفتح معالج حساب Miniflux.</li>
           <li xml:lang="ca">Ara s'admet el Miniflux. Vegeu l'opció nova «Afegeix un compte en línia» al menú Fitxer per a obrir l'assistent de comptes del Miniflux.</li>
+          <li xml:lang="ca-valencia">Ara s'admet el Miniflux. Vegeu l'opció nova «Afig un compte en línia» en el menú Fitxer per a obrir l'assistent de comptes del Miniflux.</li>
           <li xml:lang="cs">Nyní je podporován Miniflux. V nabídce Soubor najdete novou možnost "Přidat online účet", pomocí které můžete spustit průvodce nastavením účtu Miniflux.</li>
           <li xml:lang="es">Se ha implementado la compatibilidad con Miniflux. Consulte la nueva opción «Añadir cuenta en línea» del menú «Archivo» para abrir el asistente de cuentas Miniflux.</li>
+          <li xml:lang="fr">Miniflux est désormais pris en charge. Consultez la nouvelle option « Ajouter un compte en ligne » dans le menu Fichier pour ouvrir l'assistant de compte Minflux.</li>
+          <li xml:lang="he">מעתה יש תמיכה ב־Miniflux. מופיע תחת האפשרות „הוספת חשבון מקוון” בתפריט קובץ כדי לפתוח את אשף חשבונות ה־Miniflux.</li>
           <li xml:lang="ka">ახლა მხარდაჭერილია Miniflux. Miniflux-ის ანგარიშის ოსტატის გასახსნელად იხილეთ ახალი 'ონლაინანგარიშის დამატების' პარამეტრი ფაილის მენიუში.</li>
+          <li xml:lang="lt">Dabar yra palaikoma Miniflux. Žiūrėkite Failo meniu naują parinktį „Pridėti internetinę paskyrą“ norėdami atverti Miniflux paskyros vediklį.</li>
           <li xml:lang="nl">Miniflux wordt nu ondersteund. Gebruik de nieuwe optie "Online account toevoegen" in het menu Bestand om de assistent voor Miniflux-accounts te openen.</li>
           <li xml:lang="pt-BR">O Miniflux agora é suportado. Veja a nova opção "Adicionar conta online" no menu Arquivo para abrir o assistente de conta do Miniflux.</li>
           <li xml:lang="ru">Добавлена поддержка Miniflux. Чтобы открыть мастер настройки учётной записи Miniflux, выберите в меню «Файл» новый пункт «Добавить сетевую учётную запись…».</li>
