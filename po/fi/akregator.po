@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-07-15 02:38+0000\n"
-"PO-Revision-Date: 2026-03-11 15:34+0200\n"
+"PO-Revision-Date: 2026-09-12 17:57+0300\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
 "Language: fi\n"
@@ -1250,11 +1250,10 @@ msgid "Ma&rk All Feeds as Read"
 msgstr "Merkitse &kaikki syötteet luetuiksi"
 
 #: src/actions/actionmanagerimpl.cpp:352
-#, fuzzy, kde-format
-#| msgid "Copy Link Address"
+#, kde-format
 msgctxt "@action"
 msgid "Copy Article Link Address"
-msgstr "Kopioi linkin osoite"
+msgstr "Kopioi artikkelin linkin osoite"
 
 #: src/actions/actionmanagerimpl.cpp:357
 #, kde-format
@@ -1476,18 +1475,16 @@ msgid "&Find in Message…"
 msgstr "&Etsi viestistä…"
 
 #: src/actions/actionmanagerimpl.cpp:634
-#, fuzzy, kde-format
-#| msgid "Reload All Tabs"
+#, kde-format
 msgctxt "@action"
 msgid "Reload Tab"
-msgstr "Päivitä kaikki välilehdet"
+msgstr "Virkistä välilehti"
 
 #: src/actions/actionmanagerimpl.cpp:639
-#, fuzzy, kde-format
-#| msgid "&Copy Email Address"
+#, kde-format
 msgctxt "@action"
 msgid "Copy Tab Address"
-msgstr "&Kopioi sähköpostiosoite"
+msgstr "Kopioi välilehden osoite"
 
 #: src/actions/actionmanagerimpl.cpp:644
 #, kde-format
@@ -2375,18 +2372,16 @@ msgid "Detach Tab"
 msgstr "Irrota välilehti"
 
 #: src/tabwidget.cpp:130
-#, fuzzy, kde-format
-#| msgid "Reload All Tabs"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Reload Tab"
-msgstr "Päivitä kaikki välilehdet"
+msgstr "Virkistä välilehti"
 
 #: src/tabwidget.cpp:133
-#, fuzzy, kde-format
-#| msgid "&Copy Email Address"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Copy Tab Address"
-msgstr "&Kopioi sähköpostiosoite"
+msgstr "Kopioi välilehden osoite"
 
 #: src/tabwidget.cpp:139
 #, kde-format
@@ -2598,10 +2593,9 @@ msgid "Add new whatsnew widget."
 msgstr "Lisää uusi mitäuutta-sovelma."
 
 #: src/whatsnew/whatsnewtranslations.cpp:31
-#, fuzzy, kde-format
-#| msgid "Add windows support"
+#, kde-format
 msgid "Add windows support."
-msgstr "Lisää Windows-tuki"
+msgstr "Lisätty Windows-tuki."
 
 #: src/widgets/searchbar.cpp:44
 #, kde-format
