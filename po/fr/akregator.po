@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-09-30 00:46+0000\n"
-"PO-Revision-Date: 2026-09-26 08:46+0200\n"
+"PO-Revision-Date: 2026-10-01 15:26+0200\n"
 "Last-Translator: Xavier Besnard <xavier.besnard@kde.org>\n"
 "Language-Team: fr\n"
 "Language: fr\n"
@@ -131,9 +131,7 @@ msgid "Type"
 msgstr "Type"
 
 #: configuration/akregator_config_accounts.cpp:45
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Add…"
+#, kde-format
 msgctxt "@action:button Add account"
 msgid "Add…"
 msgstr "Ajouter..."
@@ -151,20 +149,15 @@ msgid "Remove"
 msgstr "Supprimer"
 
 #: configuration/akregator_config_accounts.cpp:134
-#, fuzzy, kde-format
-#| msgid ""
-#| "Do you really want to remove the account \"%1\"?\n"
-#| "This removes the account's folder from the feed tree and deletes its "
-#| "stored credentials; the server is not affected."
+#, kde-format
 msgid ""
 "Do you really want to remove the account “%1”?\n"
 "This removes the account’s folder from the feed tree and deletes its stored "
 "credentials; the server is not affected."
 msgstr ""
 "Voulez-vous vraiment supprimer le compte « %1 »?\n"
-"Cela supprime le dossier du compte de l'arborescence des flux et supprime "
-"ses informations d'identification enregistrées. Le serveur n'est pas "
-"concerné."
+"Ceci supprimera le dossier du compte de l'arborescence des flux et leurs "
+"informations d'identification enregistrées. Le serveur n'est pas concerné."
 
 #: configuration/akregator_config_accounts.cpp:138
 #, kde-format
@@ -434,12 +427,9 @@ msgstr "Sécurité"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_CheckPhishingUrl)
 #: configuration/ui/settings_browser.ui:146
-#, fuzzy, kde-format
-#| msgid "Verify URLs using Google's Safe Browsing API"
+#, kde-format
 msgid "Verify URLs using Google’s Safe Browsing API"
-msgstr ""
-"Vérifier les URL grâce à l'API « SafeBrowsing » de Google pour la navigation "
-"sécurisée » "
+msgstr "Vérifier les URL grâce à l'API « SafeBrowsing » de Google"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_EnableJavascript)
 #. i18n: ectx: label, entry, group (Browser)
@@ -816,11 +806,7 @@ msgstr ""
 
 #. i18n: ectx: whatsthis, entry, group (Network)
 #: interfaces/akregator.kcfg:146
-#, fuzzy, kde-format
-#| msgid ""
-#| "This option allows user to specify custom user-agent string instead of "
-#| "using the default one. This is here because some proxies may interrupt "
-#| "the connection because of having \"gator\" in the name."
+#, kde-format
 msgid ""
 "This option allows user to specify custom user-agent string instead of using "
 "the default one. This is here because some proxies may interrupt the "
@@ -828,8 +814,8 @@ msgid ""
 msgstr ""
 "Cette option permet à l'utilisateur de modifier la chaine d'identification "
 "du navigateur plutôt que d'utiliser celle envoyée par défaut. Ceci est "
-"particulièrement utile avec certains serveurs mandataires rompant la "
-"connexion lorsqu'il détectent « gator » dans cette chaine."
+"particulièrement utile car certains serveurs mandataires pourraient fermer "
+"la connexion lorsqu'il détectent « gator » dans cette chaine."
 
 #. i18n: ectx: label, entry, group (General)
 #: interfaces/akregator.kcfg:152
@@ -1186,8 +1172,7 @@ msgid "Eike Hein"
 msgstr "Eike Hein"
 
 #: src/aboutdata.cpp:42
-#, fuzzy, kde-format
-#| msgid "'Delayed mark as read' feature"
+#, kde-format
 msgid "‘Delayed mark as read’ feature"
 msgstr "Fonction « Marquer à lire ultérieurement »"
 
@@ -1445,8 +1430,7 @@ msgid "Set Focus to Quick Search"
 msgstr "Donner la priorité à la recherche rapide"
 
 #: src/actions/actionmanagerimpl.cpp:463
-#, fuzzy, kde-format
-#| msgid "What's new"
+#, kde-format
 msgid "What’s new"
 msgstr "Quoi de neuf"
 
@@ -1732,13 +1716,7 @@ msgid "No result found"
 msgstr "Aucun résultat trouvé"
 
 #: src/articlelistview.cpp:382
-#, fuzzy, kde-format
-#| msgid ""
-#| "<h2>Article list</h2>Here you can browse articles from the currently "
-#| "selected feed. You can also manage articles, as marking them as "
-#| "persistent (\"Mark as Important\") or delete them, using the right mouse "
-#| "button menu. To view the web page of the article, you can open the "
-#| "article internally in a tab or in an external browser window."
+#, kde-format
 msgid ""
 "<h2>Article list</h2>Here you can browse articles from the currently "
 "selected feed. You can also manage articles, as marking them as persistent "
@@ -1748,10 +1726,10 @@ msgid ""
 msgstr ""
 "<h2>Liste des articles</h2>Vous pouvez naviguer ici parmi les articles du "
 "flux sélectionné. Vous pouvez également gérer les articles en utilisant le "
-"menu du clic droit, par exemple en les marquant comme persistants (« Marquer "
-"comme important ») ou en les supprimant. Pour consulter la page d'un "
-"article, vous pouvez l'ouvrir en interne dans un onglet ou dans le "
-"navigateur externe."
+"menu à partir d'un clic droit, pour les marquer comme persistants (« Marquer "
+"comme important ») ou en les supprimer. Pour consulter la page Internet d'un "
+"article, vous pouvez l'ouvrir en interne dans un onglet ou dans la fenêtre "
+"d'un navigateur externe."
 
 #: src/articlemodel.cpp:77
 #, kde-format
@@ -2393,8 +2371,7 @@ msgid "Test Connection"
 msgstr "Tester la connexion"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:31
-#, fuzzy, kde-format
-#| msgid "My Miniflux"
+#, kde-format
 msgctxt "@info:placeholder"
 msgid "My Miniflux"
 msgstr "Mon Miniflux"
@@ -2453,8 +2430,7 @@ msgid "Miniflux"
 msgstr "Miniflux"
 
 #: src/plugins/miniflux/minifluxplugin.cpp:90
-#, fuzzy, kde-format
-#| msgid "An account named \"%1\" already exists."
+#, kde-format
 msgid "An account named “%1” already exists."
 msgstr "Un compte nommé « %1 » existe déjà."
 
