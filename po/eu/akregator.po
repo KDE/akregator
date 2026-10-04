@@ -1,7 +1,7 @@
 # Translation for akregator.po to Euskara/Basque (eu).
 # Copyright (C) 2005-2026 This file is copyright:
 # This file is distributed under the same license as the akregator package.
-# SPDX-FileCopyrightText: 2023-2026 KDE euskaratzeko proiektuaren arduraduna <xalba@ni.eus>
+# SPDX-FileCopyrightText: 2023-2026 KDE euskaratzeko proiektuko arduraduna <xalba@ni.eus>
 #
 # Translators:
 # Ion Gaztañaga <ion_g_m@hotmail.com>, 2005.
