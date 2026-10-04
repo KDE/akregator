@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kdepim\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-09-30 00:46+0000\n"
-"PO-Revision-Date: 2026-09-29 00:45+0200\n"
+"PO-Revision-Date: 2026-10-03 22:33+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
 "Language: ko\n"
@@ -110,9 +110,7 @@ msgid "Type"
 msgstr "종류"
 
 #: configuration/akregator_config_accounts.cpp:45
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Add…"
+#, kde-format
 msgctxt "@action:button Add account"
 msgid "Add…"
 msgstr "추가…"
@@ -130,17 +128,13 @@ msgid "Remove"
 msgstr "삭제"
 
 #: configuration/akregator_config_accounts.cpp:134
-#, fuzzy, kde-format
-#| msgid ""
-#| "Do you really want to remove the account \"%1\"?\n"
-#| "This removes the account's folder from the feed tree and deletes its "
-#| "stored credentials; the server is not affected."
+#, kde-format
 msgid ""
 "Do you really want to remove the account “%1”?\n"
 "This removes the account’s folder from the feed tree and deletes its stored "
 "credentials; the server is not affected."
 msgstr ""
-"\"%1\" 계정을 삭제하시겠습니까?\n"
+"“%1” 계정을 삭제하시겠습니까?\n"
 "피드 트리에서 계정 폴더를 삭제하며 저장된 자격 증명을 삭제합니다. 서버에는 영"
 "향을 주지 않습니다."
 
@@ -407,8 +401,7 @@ msgstr "보안"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_CheckPhishingUrl)
 #: configuration/ui/settings_browser.ui:146
-#, fuzzy, kde-format
-#| msgid "Verify URLs using Google's Safe Browsing API"
+#, kde-format
 msgid "Verify URLs using Google’s Safe Browsing API"
 msgstr "Google 안전 브라우징 API로 URL 검사"
 
@@ -778,18 +771,14 @@ msgstr ""
 
 #. i18n: ectx: whatsthis, entry, group (Network)
 #: interfaces/akregator.kcfg:146
-#, fuzzy, kde-format
-#| msgid ""
-#| "This option allows user to specify custom user-agent string instead of "
-#| "using the default one. This is here because some proxies may interrupt "
-#| "the connection because of having \"gator\" in the name."
+#, kde-format
 msgid ""
 "This option allows user to specify custom user-agent string instead of using "
 "the default one. This is here because some proxies may interrupt the "
 "connection because of having “gator” in the name."
 msgstr ""
 "이 옵션을 사용하면 사용자 에이전트 문자열을 바꿀 수 있습니다. 일부 프록시 서"
-"버에서 사용자 에이전트에 \"gator\"가 들어있을 때 연결을 거부할 수도 있습니다."
+"버에서 사용자 에이전트에 “gator”가 들어있을 때 연결을 거부할 수도 있습니다."
 
 #. i18n: ectx: label, entry, group (General)
 #: interfaces/akregator.kcfg:152
@@ -1137,10 +1126,9 @@ msgid "Eike Hein"
 msgstr "Eike Hein"
 
 #: src/aboutdata.cpp:42
-#, fuzzy, kde-format
-#| msgid "'Delayed mark as read' feature"
+#, kde-format
 msgid "‘Delayed mark as read’ feature"
-msgstr "'일정 시간 후 읽은 상태로 표시' 기능"
+msgstr "‘일정 시간 후 읽은 상태로 표시’ 기능"
 
 #: src/aboutdata.cpp:43
 #, kde-format
@@ -1396,8 +1384,7 @@ msgid "Set Focus to Quick Search"
 msgstr "빠른 검색에 포커스 맞추기"
 
 #: src/actions/actionmanagerimpl.cpp:463
-#, fuzzy, kde-format
-#| msgid "What's new"
+#, kde-format
 msgid "What’s new"
 msgstr "새로운 기능"
 
@@ -1680,13 +1667,7 @@ msgid "No result found"
 msgstr "결과 없음"
 
 #: src/articlelistview.cpp:382
-#, fuzzy, kde-format
-#| msgid ""
-#| "<h2>Article list</h2>Here you can browse articles from the currently "
-#| "selected feed. You can also manage articles, as marking them as "
-#| "persistent (\"Mark as Important\") or delete them, using the right mouse "
-#| "button menu. To view the web page of the article, you can open the "
-#| "article internally in a tab or in an external browser window."
+#, kde-format
 msgid ""
 "<h2>Article list</h2>Here you can browse articles from the currently "
 "selected feed. You can also manage articles, as marking them as persistent "
@@ -1695,7 +1676,7 @@ msgid ""
 "tab or in an external browser window."
 msgstr ""
 "<h2>글 목록</h2>이 곳에서 현재 선택된 피드의 글을 관리할 수 있습니다. 팝업 메"
-"뉴를 통해 글을 영구히 보존하거나(\"중요한 것으로 표시\") 지울 수 있습니다. 글"
+"뉴를 통해 글을 영구히 보존하거나(“중요한 것으로 표시”) 지울 수 있습니다. 글"
 "의 웹 페이지를 보려면 내장 탭으로 실행하거나 외부 창으로 실행할 수 있습니다."
 
 #: src/articlemodel.cpp:77
@@ -2314,8 +2295,7 @@ msgid "Test Connection"
 msgstr "연결 시험"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:31
-#, fuzzy, kde-format
-#| msgid "My Miniflux"
+#, kde-format
 msgctxt "@info:placeholder"
 msgid "My Miniflux"
 msgstr "내 Miniflux"
@@ -2374,10 +2354,9 @@ msgid "Miniflux"
 msgstr "Miniflux"
 
 #: src/plugins/miniflux/minifluxplugin.cpp:90
-#, fuzzy, kde-format
-#| msgid "An account named \"%1\" already exists."
+#, kde-format
 msgid "An account named “%1” already exists."
-msgstr "이름이 \"%1\"인 계정이 이미 존재합니다."
+msgstr "이름이 “%1”인 계정이 이미 존재합니다."
 
 #: src/progressmanager.cpp:127
 #, kde-format
