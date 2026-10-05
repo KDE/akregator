@@ -175,7 +175,7 @@ msgstr "Отметить выбранную статью как прочитан
 #: configuration/ui/settings_advancedbase.ui:73
 #, kde-format
 msgid "Reset search bar when changing feeds"
-msgstr "Сбросить условия фильтра при переходе на другую ленту"
+msgstr "Сбрасывать условия фильтра при переходе на другую ленту"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_3)
 #: configuration/ui/settings_appearance.ui:30
@@ -279,13 +279,13 @@ msgstr "Огр&аничить хранение:"
 #: configuration/ui/settings_archive.ui:100
 #, kde-format
 msgid "Delete articles older than: "
-msgstr "Удалять статьи через: "
+msgstr "Удалять статьи старше: "
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_DoNotExpireImportantArticles)
 #: configuration/ui/settings_archive.ui:138
 #, kde-format
 msgid "Do not expire important articles"
-msgstr "Не помечать важные статьи как устаревшие"
+msgstr "Не удалять важные статьи"
 
 #. i18n: ectx: property (text), widget (QLabel, LMBlabel)
 #: configuration/ui/settings_browser.ui:20
@@ -342,7 +342,7 @@ msgstr "firefox %u"
 #: configuration/ui/settings_browser.ui:90
 #, kde-format
 msgid "Use &this command:"
-msgstr "Использовать &другую программу:"
+msgstr "Использовать &эту команду:"
 
 #. i18n: ectx: property (text), widget (QRadioButton, kcfg_ExternalBrowserUseKdeDefault)
 #: configuration/ui/settings_browser.ui:97
@@ -438,7 +438,7 @@ msgstr "Скрывать ленты, в которых нет непрочита
 #: configuration/ui/settings_general.ui:57
 #, kde-format
 msgid "Lock feeds in place"
-msgstr "Зафиксировать ленты"
+msgstr "Фиксировать ленты"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_AutoExpandFolders)
 #. i18n: ectx: whatsthis, entry, group (View)
@@ -463,7 +463,7 @@ msgstr "Использовать &уведомления для всех лен�
 #: configuration/ui/settings_general.ui:84
 #, kde-format
 msgid "Disable save as finished notification"
-msgstr "Отключить сохранение как завершённого уведомления"
+msgstr "Отключить уведомление о завершении сохранения"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_UseIntervalFetch)
 #: configuration/ui/settings_general.ui:91
@@ -487,13 +487,13 @@ msgstr "Включить интеграцию комнат Plasma"
 #: configuration/ui/settings_general.ui:167
 #, kde-format
 msgid "Startup"
-msgstr "При запуске программы"
+msgstr "При запуске"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_MarkAllFeedsReadOnStartup)
 #: configuration/ui/settings_general.ui:173
 #, kde-format
 msgid "Mark &all feeds as read on startup"
-msgstr "Отметить все новости как &прочитанные при запуске"
+msgstr "Отмечать все ленты как &прочитанные при запуске"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_FetchOnStartup)
 #: configuration/ui/settings_general.ui:180
@@ -534,7 +534,7 @@ msgstr ""
 #: export/akregatorstorageexporter.cpp:280
 #, kde-format
 msgid "Akregator Export for %1"
-msgstr "Экспортировано в %1 из Akregator"
+msgstr "Экспорт из Akregator для %1"
 
 #. i18n: ectx: whatsthis, entry, group (View)
 #: interfaces/akregator.kcfg:10
@@ -576,13 +576,13 @@ msgstr "Панель фильтра"
 #: interfaces/akregator.kcfg:36
 #, kde-format
 msgid "Status Filter"
-msgstr "Фильтр по статусу"
+msgstr "Фильтр по состоянию"
 
 #. i18n: ectx: whatsthis, entry, group (View)
 #: interfaces/akregator.kcfg:37
 #, kde-format
 msgid "Stores the last status filter setting"
-msgstr "Сохранять выбранный статус для поиска"
+msgstr "Хранит последнее значение фильтра состояния"
 
 #. i18n: ectx: label, entry, group (View)
 #: interfaces/akregator.kcfg:41
@@ -594,7 +594,7 @@ msgstr "Фильтр текста"
 #: interfaces/akregator.kcfg:42
 #, kde-format
 msgid "Stores the last search line text"
-msgstr "Сохранять выбранный текст для поиска"
+msgstr "Хранит последний текст строки поиска"
 
 #. i18n: ectx: label, entry, group (View)
 #: interfaces/akregator.kcfg:45
@@ -630,7 +630,7 @@ msgstr "Размеры для второго разделителя"
 #: interfaces/akregator.kcfg:56
 #, kde-format
 msgid "Second (usually horizontal) splitter widget sizes."
-msgstr "Размер первого (обычно горизонтального) разделителя."
+msgstr "Размер второго (обычно горизонтального) разделителя."
 
 #. i18n: ectx: label, entry, group (Archive)
 #: interfaces/akregator.kcfg:97
@@ -666,13 +666,13 @@ msgstr "Сохранять указанное количество статей"
 #: interfaces/akregator.kcfg:109
 #, kde-format
 msgid "Delete Expired Articles"
-msgstr "Удалить устаревшие статьи"
+msgstr "Удалять устаревшие статьи"
 
 #. i18n: ectx: whatsthis, entry, group (Archive)
 #: interfaces/akregator.kcfg:110
 #, kde-format
 msgid "Delete expired articles"
-msgstr "Удалить устаревшие статьи"
+msgstr "Удалять устаревшие статьи"
 
 #. i18n: ectx: label, entry, group (Archive)
 #: interfaces/akregator.kcfg:113
@@ -723,8 +723,8 @@ msgid ""
 "When this option is enabled, articles you marked as important will not be "
 "removed when limit the archive size by either age or number of the articles."
 msgstr ""
-"При включении этой опции статьи, отмеченные как важные, не будут удалены, "
-"даже если они попадают под условия устаревших статей."
+"При включении этого параметра статьи, отмеченные как важные, не будут "
+"удаляться при ограничении архива по возрасту или количеству статей."
 
 #. i18n: ectx: label, entry, group (Network)
 #: interfaces/akregator.kcfg:136
@@ -752,7 +752,7 @@ msgid ""
 "unnecessary traffic. Disable only when necessary."
 msgstr ""
 "Использовать глобальные параметры кэша KDE при загрузке статей для "
-"уменьшения трафика. Отключайте эту опцию только в случае необходимости."
+"уменьшения трафика. Отключайте этот параметр только в случае необходимости."
 
 #. i18n: ectx: whatsthis, entry, group (Network)
 #: interfaces/akregator.kcfg:146
@@ -782,13 +782,13 @@ msgstr "Опрашивать ленты новостей при запуске."
 #: interfaces/akregator.kcfg:157
 #, kde-format
 msgid "Mark all feeds as read on startup"
-msgstr "Отметить все новости как прочитанные при запуске"
+msgstr "Отмечать все ленты как прочитанные при запуске"
 
 #. i18n: ectx: whatsthis, entry, group (General)
 #: interfaces/akregator.kcfg:158
 #, kde-format
 msgid "Mark all feeds as read on startup."
-msgstr "Отметить все новости как прочитанные при запуске."
+msgstr "Отмечать все ленты как прочитанные при запуске."
 
 #. i18n: ectx: label, entry, group (General)
 #: interfaces/akregator.kcfg:162
@@ -888,7 +888,7 @@ msgstr ""
 #: interfaces/akregator.kcfg:222
 #, kde-format
 msgid "Use default KDE web browser"
-msgstr "Браузер KDE по умолчанию"
+msgstr "Использовать браузер KDE по умолчанию"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
 #: interfaces/akregator.kcfg:223
@@ -900,7 +900,7 @@ msgstr "Использовать браузер KDE для открытия «в
 #: interfaces/akregator.kcfg:227
 #, kde-format
 msgid "Use this command:"
-msgstr "Использовать другую программу:"
+msgstr "Использовать эту команду:"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
 #: interfaces/akregator.kcfg:228
@@ -932,7 +932,7 @@ msgstr "Что делать при щелчке средней кнопкой м
 #: interfaces/akregator.kcfg:270
 #, kde-format
 msgid "Archive Backend"
-msgstr "Архивариус"
+msgstr "Механизм архива"
 
 #. i18n: ectx: whatsthis, entry (UseMarkReadDelay), group (Advanced)
 #: interfaces/akregator.kcfg:274
@@ -989,7 +989,7 @@ msgstr "Чтение лент новостей для KDE"
 #: src/aboutdata.cpp:23
 #, kde-format
 msgid "Copyright © 2004–%1 Akregator authors"
-msgstr "© Разработчики Akregator, 2004-%1"
+msgstr "© Разработчики Akregator, 2004–%1"
 
 #: src/aboutdata.cpp:27
 #, kde-format
@@ -1097,7 +1097,8 @@ msgstr "Eckhart Woerner"
 #: src/aboutdata.cpp:38
 #, kde-format
 msgid "Bug tracker management, Usability improvements"
-msgstr "Исправление ошибок, улучшение внешнего вида"
+msgstr ""
+"Работа с системой отслеживания ошибок, улучшение удобства использования"
 
 #: src/aboutdata.cpp:39
 #, kde-format
@@ -1167,7 +1168,7 @@ msgstr "&Удалить ленту"
 #: src/actions/actionmanagerimpl.cpp:70 src/actions/actionmanagerimpl.cpp:260
 #, kde-format
 msgid "&Edit Feed…"
-msgstr "&Изменить ленту..."
+msgstr "&Изменить ленту…"
 
 #: src/actions/actionmanagerimpl.cpp:71 src/actions/actionmanagerimpl.cpp:317
 #, kde-format
@@ -1263,7 +1264,7 @@ msgstr "Отметить все &ленты как прочитанные"
 #, kde-format
 msgctxt "@action"
 msgid "Copy Article Link Address"
-msgstr "Скопировать адрес ссылки"
+msgstr "Скопировать адрес ссылки на статью"
 
 #: src/actions/actionmanagerimpl.cpp:357
 #, kde-format
@@ -1647,7 +1648,7 @@ msgstr "Ленты OPML (%1);;Все файлы (*)"
 #: src/akregator_part.cpp:620
 #, kde-format
 msgid "Imported Folder"
-msgstr "Импортировано"
+msgstr "Импортированная папка"
 
 #: src/articlejobs.cpp:184
 #, kde-format
@@ -1718,13 +1719,13 @@ msgstr "Содержимое"
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:146
 #, kde-format
 msgid "Akregator is a KDE news feed reader."
-msgstr "Akregator — это программа чтения лент новостей от KDE."
+msgstr "Akregator — это приложение чтения лент новостей от KDE."
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:190
 #, kde-format
 msgctxt "@title:window"
 msgid "Save As"
-msgstr "Сохранение в указанном формате"
+msgstr "Сохранение"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:274
 #: src/frame/webengine/akrwebengineviewer.cpp:112
@@ -1765,18 +1766,18 @@ msgstr "Оставить"
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:384
 #, kde-format
 msgid "Are you sure you want to disable this introduction page?"
-msgstr "Отключить показ заставки?"
+msgstr "Отключить показ вводной страницы?"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:385
 #, kde-format
 msgctxt "@title:window"
 msgid "Disable Introduction Page"
-msgstr "Показ заставки"
+msgstr "Отключение вводной страницы"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:415
 #, kde-format
 msgid "This web site is a malware, do you want to continue to show it?"
-msgstr "Этот веб-сайт вредоносный, продолжить?"
+msgstr "Этот веб-сайт вредоносный. Всё равно показать его?"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:416
 #, kde-format
@@ -1966,7 +1967,7 @@ msgstr "Пере&ход"
 #: src/data/akregator_part.rc:50 src/data/akregator_shell.rc:29
 #, kde-format
 msgid "Fee&d"
-msgstr "Лента"
+msgstr "Лент&а"
 
 #. i18n: ectx: Menu (article)
 #: src/data/akregator_part.rc:63 src/data/akregator_shell.rc:34
@@ -2462,13 +2463,13 @@ msgstr "Свойства ленты новостей"
 #: src/ui/feedpropertieswidgetbase.ui:45
 #, kde-format
 msgid "&General"
-msgstr "&Главное"
+msgstr "&Общие"
 
 #. i18n: ectx: property (text), widget (QCheckBox, cb_updateInterval)
 #: src/ui/feedpropertieswidgetbase.ui:57
 #, kde-format
 msgid "U&se a custom update interval"
-msgstr "Задать другой &интервал обновления"
+msgstr "Задать &другой интервал обновления"
 
 #. i18n: ectx: property (text), widget (QLabel, updateLabel)
 #: src/ui/feedpropertieswidgetbase.ui:91
@@ -2480,7 +2481,7 @@ msgstr "&Интервал обновления:"
 #: src/ui/feedpropertieswidgetbase.ui:120
 #, kde-format
 msgid "Notify when new articles arri&ve"
-msgstr "&Уведомление о новых статьях"
+msgstr "&Уведомлять о новых статьях"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel3)
 #: src/ui/feedpropertieswidgetbase.ui:135
@@ -2534,7 +2535,7 @@ msgstr "&Ограничить хранение:"
 #: src/ui/feedpropertieswidgetbase.ui:280
 #, kde-format
 msgid "&Delete articles older than:"
-msgstr "&Удалять статьи через:"
+msgstr "&Удалять статьи старше:"
 
 #. i18n: ectx: attribute (title), widget (QWidget, tab3)
 #: src/ui/feedpropertieswidgetbase.ui:343
@@ -2552,12 +2553,12 @@ msgstr "&Загружать при просмотре статью целико�
 #: src/ui/feedpropertieswidgetbase.ui:383
 #, kde-format
 msgid "Mar&k articles as read when they arrive"
-msgstr "Отметить &все новые статьи как прочитанные"
+msgstr "Отмечать &все новые статьи как прочитанные"
 
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:40
 #, kde-format
 msgid "Disable Introduction"
-msgstr "Отключить показ заставки"
+msgstr "Отключить показ вводной страницы"
 
 #: src/urlhandler/webengine/urlhandlerwebengine.cpp:58
 #, kde-format
