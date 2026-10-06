@@ -1,13 +1,14 @@
 # Translation of akregator.po into Serbian.
 # Radomir Trifunovic <trifunovic@openmailbox.org>, 2016.
 # Chusslove Illich <caslav.ilic@gmx.net>, 2016, 2017, 2018.
+# Nemanja Hiršl <nemhirsl@gmail.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-07-15 02:38+0000\n"
-"PO-Revision-Date: 2018-01-06 09:21+0100\n"
-"Last-Translator: Chusslove Illich <caslav.ilic@gmx.net>\n"
+"PO-Revision-Date: 2026-10-05 12:49+0200\n"
+"Last-Translator: Nemanja Hiršl <nemhirsl@gmail.com>\n"
 "Language-Team: Serbian <kde-i18n-sr@kde.org>\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
@@ -23,12 +24,12 @@ msgstr ""
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "Радомир Трифуновић"
+msgstr "Радомир Трифуновић,Немања Хиршл"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "trifunovic@openmailbox.org"
+msgstr "trifunovic@openmailbox.org,nemhirsl@gmail.com"
 
 # rewrite-msgid: /online sites/sites/
 #: src/about/introduction_akregator.html:18
@@ -43,20 +44,16 @@ msgstr ""
 "своје омиљене сајтове ручно, Акрегатор прикупља садржај уместо вас."
 
 #: src/about/introduction_akregator.html:19
-#, fuzzy
-#| msgid ""
-#| "For more information about using Akregator, check the <a href='http://"
-#| "akregator.kde.org/'>Akregator website</a>. If you do not want to see this "
-#| "page anymore, <a href='config:/disable_introduction'>click here</a>."
 msgid ""
 "For more information about using Akregator, check the <a href='https://"
 "kontact.kde.org/components/akregator/'>Akregator website</a>. If you do not "
 "want to see this page anymore, <a href='config:/disable_introduction'>click "
 "here</a>."
 msgstr ""
-"Више информација о коришћењу потражите <a href='http://akregator.kde."
-"org/'>на веб сајту Акрегатора</a>. Ако не желите више да видите ову "
-"страницу, <a href='config:/disable_introduction'>кликните овде</a>."
+"Више информација о коришћењу потражите <a href='https://kontact.kde.org/"
+"components/akregator/'>на веб сајту Акрегатора</a>. Ако не желите више да "
+"видите ову страницу, <a href='config:/disable_introduction'>кликните овде</"
+"a>."
 
 #: src/formatter/html/combinedview.html:24
 msgid "Mark as Read"
@@ -103,32 +100,28 @@ msgid ""
 "<b>Note:</b> For security reasons, external reference is blocked (See "
 "configure dialog)."
 msgstr ""
+"<b>Напомена:</b> Из безбедносних разлога, спољашње везе су блокиране "
+"(погледајте дијалог за подешавање)."
 
 #: configuration/akregator_config_archive.cpp:35
-#, fuzzy, kde-format
-#| msgctxt "Limit feed archive size to:"
-#| msgid " article"
-#| msgid_plural " articles"
+#, kde-format
 msgctxt "Limit feed archive size to:"
 msgid "%v article"
 msgid_plural "%v articles"
-msgstr[0] " чланак"
-msgstr[1] " чланка"
-msgstr[2] " чланака"
-msgstr[3] " чланак"
+msgstr[0] "%v чланак"
+msgstr[1] "%v чланка"
+msgstr[2] "%v чланака"
+msgstr[3] "%v чланак"
 
 #: configuration/akregator_config_archive.cpp:36
-#, fuzzy, kde-format
-#| msgctxt "Delete articles older than:"
-#| msgid " day"
-#| msgid_plural " days"
+#, kde-format
 msgctxt "Delete articles older than:"
 msgid "%v day"
 msgid_plural "%v days"
-msgstr[0] " дан"
-msgstr[1] " дана"
-msgstr[2] " дана"
-msgstr[3] " дан"
+msgstr[0] "%v дана"
+msgstr[1] "%v дана"
+msgstr[2] "%v дана"
+msgstr[3] "%v дана"
 
 #: configuration/akregator_config_general.cpp:33
 #, kde-format
@@ -145,17 +138,14 @@ msgid "Webengine Plugins"
 msgstr "Прикључци КуТ‑вебенџина"
 
 #: configuration/settings_advanced.cpp:26
-#, fuzzy, kde-format
-#| msgctxt "Mark selected article read after"
-#| msgid " second"
-#| msgid_plural " seconds"
+#, kde-format
 msgctxt "Mark selected article read after"
 msgid "%v second"
 msgid_plural "%v seconds"
-msgstr[0] " секунда"
-msgstr[1] " секунде"
-msgstr[2] " секунди"
-msgstr[3] " секунда"
+msgstr[0] "%v секунде"
+msgstr[1] "%v секунде"
+msgstr[2] "%v секунди"
+msgstr[3] "%v секунде"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: configuration/ui/settings_advancedbase.ui:30
@@ -167,7 +157,7 @@ msgstr "Листа чланака"
 #: configuration/ui/settings_advancedbase.ui:38
 #, kde-format
 msgid "Mar&k selected article read after"
-msgstr "Означ&и одабрани чланак за касније читање"
+msgstr "Означ&и изабрани чланак као прочитан после"
 
 # rewrite-msgid: /search bar/search/
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ResetQuickFilterOnNodeChange)
@@ -344,10 +334,9 @@ msgstr "firefox %u"
 
 #. i18n: ectx: property (text), widget (QRadioButton, kcfg_ExternalBrowserUseCustomCommand)
 #: configuration/ui/settings_browser.ui:90
-#, fuzzy, kde-format
-#| msgid "Use this command:"
+#, kde-format
 msgid "Use &this command:"
-msgstr "Користи наредбу:"
+msgstr "Користи &наредбу:"
 
 #. i18n: ectx: property (text), widget (QRadioButton, kcfg_ExternalBrowserUseKdeDefault)
 #: configuration/ui/settings_browser.ui:97
@@ -385,7 +374,7 @@ msgstr "Отвори везе под новим језичком уместо у
 #: configuration/ui/settings_browser.ui:140
 #, kde-format
 msgid "Security"
-msgstr ""
+msgstr "Безбедност"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_CheckPhishingUrl)
 #: configuration/ui/settings_browser.ui:146
@@ -398,19 +387,19 @@ msgstr "Оверавај УРЛ‑ове Гугловим АПИ‑јем без
 #: configuration/ui/settings_browser.ui:153 interfaces/akregator.kcfg:203
 #, kde-format
 msgid "Enable JavaScript"
-msgstr ""
+msgstr "Укључи јаваскрипт"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #: configuration/ui/settings_browser.ui:163
 #, kde-format
 msgid "Accessibility"
-msgstr ""
+msgstr "Приступачност"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_AccessKeyEnabled)
 #: configuration/ui/settings_browser.ui:169
 #, kde-format
 msgid "Enable Access Key activation with Ctrl key"
-msgstr ""
+msgstr "Укључи приступне тастере тастером Ctrl"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_3)
 #: configuration/ui/settings_general.ui:30
@@ -427,10 +416,9 @@ msgstr "Прикажи касет&ну иконицу"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ShowUnreadInTaskbar)
 #: configuration/ui/settings_general.ui:43
-#, fuzzy, kde-format
-#| msgid " (no unread articles)"
+#, kde-format
 msgid "Show unread articles in Taskbar"
-msgstr " (без непрочитаних чланака)"
+msgstr "Прикажи непрочитане чланке на траци задатака"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_HideReadFeeds)
 #. i18n: ectx: label, entry, group (View)
@@ -443,7 +431,7 @@ msgstr "Сакриј доводе без непрочитаних чланака
 #: configuration/ui/settings_general.ui:57
 #, kde-format
 msgid "Lock feeds in place"
-msgstr ""
+msgstr "Закључај доводе на месту"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_AutoExpandFolders)
 #. i18n: ectx: whatsthis, entry, group (View)
@@ -468,7 +456,7 @@ msgstr "Користи &обавештења за све доводе"
 #: configuration/ui/settings_general.ui:84
 #, kde-format
 msgid "Disable save as finished notification"
-msgstr ""
+msgstr "Искључи обавештење о завршеном уписивању"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_UseIntervalFetch)
 #: configuration/ui/settings_general.ui:91
@@ -486,7 +474,7 @@ msgstr "Очитавај доводе сваких:"
 #: configuration/ui/settings_general.ui:157
 #, kde-format
 msgid "Enable Plasma Activities integration"
-msgstr ""
+msgstr "Укључи уклапање са плазма активностима"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #: configuration/ui/settings_general.ui:167
@@ -522,7 +510,7 @@ msgstr "Користи &кеш прегледача (мање мрежног с�
 #: configuration/ui/settings_security.ui:17
 #, kde-format
 msgid "Allow article preview to load external references"
-msgstr ""
+msgstr "Дозволи прегледу чланка да учитава спољашње везе"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_LoadExternalReferences)
 #: configuration/ui/settings_security.ui:20
@@ -532,6 +520,9 @@ msgid ""
 "This may allow websites or third parties to observe the articles that you "
 "have viewed."
 msgstr ""
+"Дозволи прегледу чланка да учитава спољашње везе са Интернета. Ово може "
+"омогућити веб сајтовима или трећим странама да прате које сте чланке "
+"погледали."
 
 #: export/akregatorstorageexporter.cpp:280
 #, kde-format
@@ -548,13 +539,13 @@ msgstr "Сакрива доводе без непрочитаних чланак
 #: interfaces/akregator.kcfg:21
 #, kde-format
 msgid "Prevent feeds from being moved in the list"
-msgstr ""
+msgstr "Спречи померање довода у списку"
 
 #. i18n: ectx: whatsthis, entry, group (View)
 #: interfaces/akregator.kcfg:22
 #, kde-format
 msgid "Locks feeds where they are"
-msgstr ""
+msgstr "Закључава доводе на њиховом месту"
 
 #. i18n: ectx: label, entry, group (View)
 #: interfaces/akregator.kcfg:26
@@ -853,20 +844,19 @@ msgstr "Одређује да ли се приказује касетна ико
 #: interfaces/akregator.kcfg:182
 #, kde-format
 msgid "Show Unread In Taskbar"
-msgstr ""
+msgstr "Прикажи непрочитане на траци задатака"
 
 #. i18n: ectx: whatsthis, entry, group (General)
 #: interfaces/akregator.kcfg:183
-#, fuzzy, kde-format
-#| msgid "Hides feeds with no unread articles"
+#, kde-format
 msgid "Specifies if we show unread article in taskbar."
-msgstr "Сакрива доводе без непрочитаних чланака"
+msgstr "Одређује да ли се на траци задатака приказују непрочитани чланци."
 
 #. i18n: ectx: label, entry, group (General)
 #: interfaces/akregator.kcfg:196
 #, kde-format
 msgid "Enabled Plasma Activity"
-msgstr ""
+msgstr "Укључена плазма активност"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
 #: interfaces/akregator.kcfg:208
@@ -924,7 +914,7 @@ msgstr "Користи одређену наредбу када се отвар�
 #: interfaces/akregator.kcfg:232
 #, no-c-format, kde-format
 msgid "Command to launch external browser. URL will substitute for %u."
-msgstr "Наредба за покретање спољашњег прегледача. %u ће бити замењено УРЛ‑а."
+msgstr "Наредба за покретање спољашњег прегледача. %u ће бити замењено УРЛ‑ом."
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
 #: interfaces/akregator.kcfg:236
@@ -997,14 +987,12 @@ msgid "A KDE Feed Reader"
 msgstr "КДЕ‑ов читач довода"
 
 #: src/aboutdata.cpp:23
-#, fuzzy, kde-format
-#| msgid "Copyright © 2004–2018 Akregator authors"
+#, kde-format
 msgid "Copyright © 2004–%1 Akregator authors"
-msgstr "© 2004–2018, аутори Акрегатора"
+msgstr "© 2004–%1, аутори Акрегатора"
 
 #: src/aboutdata.cpp:27
-#, fuzzy, kde-format
-#| msgid "Laurent Montel"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Laurent Montel"
 msgstr "Лорен Монтел"
@@ -1015,8 +1003,7 @@ msgid "Maintainer"
 msgstr "Одржавалац"
 
 #: src/aboutdata.cpp:28
-#, fuzzy, kde-format
-#| msgid "Frank Osterfeld"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Frank Osterfeld"
 msgstr "Франк Остерфелд"
@@ -1027,8 +1014,7 @@ msgid "Former maintainer"
 msgstr "Бивши одржавалац"
 
 #: src/aboutdata.cpp:29
-#, fuzzy, kde-format
-#| msgid "Teemu Rytilahti"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Teemu Rytilahti"
 msgstr "Тему Ритилахти"
@@ -1040,29 +1026,25 @@ msgid "Developer"
 msgstr "Програмер"
 
 #: src/aboutdata.cpp:30
-#, fuzzy, kde-format
-#| msgid "Sashmit Bhaduri"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Sashmit Bhaduri"
 msgstr "Сашмит Бадури"
 
 #: src/aboutdata.cpp:31
-#, fuzzy, kde-format
-#| msgid "Pierre Habouzit"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Pierre Habouzit"
 msgstr "Пјер Хабузит"
 
 #: src/aboutdata.cpp:32
-#, fuzzy, kde-format
-#| msgid "Stanislav Karchebny"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Stanislav Karchebny"
 msgstr "Станислав Карчебњи"
 
 #: src/aboutdata.cpp:33
-#, fuzzy, kde-format
-#| msgid "Gary Cramblitt"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Gary Cramblitt"
 msgstr "Гари Крамблит"
@@ -1073,22 +1055,19 @@ msgid "Contributor"
 msgstr "Доприносилац"
 
 #: src/aboutdata.cpp:34
-#, fuzzy, kde-format
-#| msgid "Stephan Binner"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Stephan Binner"
 msgstr "Штефан Бинер"
 
 #: src/aboutdata.cpp:35
-#, fuzzy, kde-format
-#| msgid "Christof Musik"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Christof Musik"
 msgstr "Кристоф Музик"
 
 #: src/aboutdata.cpp:36
-#, fuzzy, kde-format
-#| msgid "Anne-Marie Mahfouf"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Anne-Marie Mahfouf"
 msgstr "Ан Мари Мафу"
@@ -1099,8 +1078,7 @@ msgid "Handbook"
 msgstr "Приручник"
 
 #: src/aboutdata.cpp:37
-#, fuzzy, kde-format
-#| msgid "Frerich Raabe"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Frerich Raabe"
 msgstr "Фрерих Рабе"
@@ -1111,8 +1089,7 @@ msgid "Author of librss"
 msgstr "Аутор ЛибРСС‑а"
 
 #: src/aboutdata.cpp:38
-#, fuzzy, kde-format
-#| msgid "Eckhart Woerner"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Eckhart Woerner"
 msgstr "Екхарт Вернер"
@@ -1123,8 +1100,7 @@ msgid "Bug tracker management, Usability improvements"
 msgstr "Управљање пратиоцем грешака, побољшања употребљивости"
 
 #: src/aboutdata.cpp:39
-#, fuzzy, kde-format
-#| msgid "Heinrich Wendel"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Heinrich Wendel"
 msgstr "Хајнрих Вендел"
@@ -1135,8 +1111,7 @@ msgid "Tons of bug fixes"
 msgstr "Многобројне исправке грешака"
 
 #: src/aboutdata.cpp:40
-#, fuzzy, kde-format
-#| msgid "Eike Hein"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Eike Hein"
 msgstr "Ајке Хајн"
@@ -1147,8 +1122,7 @@ msgid "'Delayed mark as read' feature"
 msgstr "Могућност кашњења при означавању прочитаним"
 
 #: src/aboutdata.cpp:41
-#, fuzzy, kde-format
-#| msgid "Marcel Dierkes"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Marcel Dierkes"
 msgstr "Марсел Диркес"
@@ -1159,8 +1133,7 @@ msgid "Icons"
 msgstr "Иконице"
 
 #: src/aboutdata.cpp:42
-#, fuzzy, kde-format
-#| msgid "George Staikos"
+#, kde-format
 msgctxt "@info:credit"
 msgid "George Staikos"
 msgstr "Џорџ Стајкос"
@@ -1172,8 +1145,7 @@ msgid "Insomnia"
 msgstr "Несаница"
 
 #: src/aboutdata.cpp:43
-#, fuzzy, kde-format
-#| msgid "Philipp Droessler"
+#, kde-format
 msgctxt "@info:credit"
 msgid "Philipp Droessler"
 msgstr "Филип Дреслер"
@@ -1194,10 +1166,9 @@ msgid "&Delete Feed"
 msgstr "О&бриши довод"
 
 #: src/actions/actionmanagerimpl.cpp:70 src/actions/actionmanagerimpl.cpp:260
-#, fuzzy, kde-format
-#| msgid "&Edit Feed..."
+#, kde-format
 msgid "&Edit Feed…"
-msgstr "&Уреди довод..."
+msgstr "&Уреди довод…"
 
 #: src/actions/actionmanagerimpl.cpp:71 src/actions/actionmanagerimpl.cpp:317
 #, kde-format
@@ -1225,22 +1196,19 @@ msgid "&Mark Feeds as Read"
 msgstr "&Означи доводе као прочитане"
 
 #: src/actions/actionmanagerimpl.cpp:202
-#, fuzzy, kde-format
-#| msgid "&Import Feeds..."
+#, kde-format
 msgid "&Import Feeds…"
-msgstr "&Увези доводе..."
+msgstr "&Увези доводе…"
 
 #: src/actions/actionmanagerimpl.cpp:206
-#, fuzzy, kde-format
-#| msgid "&Export Feeds..."
+#, kde-format
 msgid "&Export Feeds…"
-msgstr "&Извези доводе..."
+msgstr "&Извези доводе…"
 
 #: src/actions/actionmanagerimpl.cpp:211
-#, fuzzy, kde-format
-#| msgid "&Configure Akregator..."
+#, kde-format
 msgid "&Configure Akregator…"
-msgstr "&Подеси Акрегатор..."
+msgstr "&Подеси Акрегатор…"
 
 #: src/actions/actionmanagerimpl.cpp:230
 #, kde-format
@@ -1253,16 +1221,14 @@ msgid "Reload All Tabs"
 msgstr "Поново учитај све језичке"
 
 #: src/actions/actionmanagerimpl.cpp:242
-#, fuzzy, kde-format
-#| msgid "Add Feed"
+#, kde-format
 msgid "&Add Feed…"
-msgstr "Додавање довода"
+msgstr "&Додај довод…"
 
 #: src/actions/actionmanagerimpl.cpp:248
-#, fuzzy, kde-format
-#| msgid "Ne&w Folder..."
+#, kde-format
 msgid "Ne&w Folder…"
-msgstr "Но&ва фасцикла..."
+msgstr "Но&ва фасцикла…"
 
 #: src/actions/actionmanagerimpl.cpp:273
 #, kde-format
@@ -1295,11 +1261,10 @@ msgid "Ma&rk All Feeds as Read"
 msgstr "Оз&начи све доводе као прочитане"
 
 #: src/actions/actionmanagerimpl.cpp:352
-#, fuzzy, kde-format
-#| msgid "Copy Link Address"
+#, kde-format
 msgctxt "@action"
 msgid "Copy Article Link Address"
-msgstr "Копирај адресу везе"
+msgstr "Копирај адресу везе чланка"
 
 #: src/actions/actionmanagerimpl.cpp:357
 #, kde-format
@@ -1309,7 +1274,7 @@ msgstr "Прет&ходни непрочитан чланак"
 #: src/actions/actionmanagerimpl.cpp:363
 #, kde-format
 msgid "Ne&xt Unread Article"
-msgstr "Сл&едећи непрочитан чланак"
+msgstr "Сле&дећи непрочитан чланак"
 
 #: src/actions/actionmanagerimpl.cpp:371
 #, kde-format
@@ -1328,11 +1293,10 @@ msgid "&Read"
 msgstr "&Прочитан"
 
 #: src/actions/actionmanagerimpl.cpp:382
-#, fuzzy, kde-format
-#| msgid "Mark selected article as read"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as read"
-msgstr "Означи одабрани чланак као прочитан"
+msgstr "Означи изабрани чланак као прочитан"
 
 #: src/actions/actionmanagerimpl.cpp:388
 #, kde-format
@@ -1341,11 +1305,10 @@ msgid "&New"
 msgstr "&Нови"
 
 #: src/actions/actionmanagerimpl.cpp:391
-#, fuzzy, kde-format
-#| msgid "Mark selected article as new"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as new"
-msgstr "Означи означени чланак као нови"
+msgstr "Означи изабрани чланак као нови"
 
 #: src/actions/actionmanagerimpl.cpp:396
 #, kde-format
@@ -1354,11 +1317,10 @@ msgid "&Unread"
 msgstr "&Непрочитан"
 
 #: src/actions/actionmanagerimpl.cpp:398
-#, fuzzy, kde-format
-#| msgid "Mark selected article as unread"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as unread"
-msgstr "Означи одабрани чланак као непрочитан"
+msgstr "Означи изабрани чланак као непрочитан"
 
 #: src/actions/actionmanagerimpl.cpp:404
 #, kde-format
@@ -1366,11 +1328,10 @@ msgid "&Mark as Important"
 msgstr "&Означи као важан"
 
 #: src/actions/actionmanagerimpl.cpp:408
-#, fuzzy, kde-format
-#| msgid "Remove &Important Mark"
+#, kde-format
 msgctxt "@action:button"
 msgid "Remove &Important Mark"
-msgstr "Уклони ознаку &важности"
+msgstr "&Уклони ознаку важности"
 
 #: src/actions/actionmanagerimpl.cpp:412
 #, kde-format
@@ -1393,20 +1354,17 @@ msgid "Move Node Right"
 msgstr "Помери чвор удесно"
 
 #: src/actions/actionmanagerimpl.cpp:433
-#, fuzzy, kde-format
-#| msgid "Send Link Address"
+#, kde-format
 msgid "Send &Link Address…"
-msgstr "Пошаљи адресу везе..."
+msgstr "Пошаљи адресу &везе…"
 
 #: src/actions/actionmanagerimpl.cpp:438
-#, fuzzy, kde-format
-#| msgid "Send &File..."
+#, kde-format
 msgid "Send &File…"
-msgstr "Пошаљи &фајл..."
+msgstr "Пошаљи &фајл…"
 
 #: src/actions/actionmanagerimpl.cpp:444
-#, fuzzy, kde-format
-#| msgid "Set Focus to Quick Search"
+#, kde-format
 msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr "Фокусирај брзу претрагу"
@@ -1414,7 +1372,7 @@ msgstr "Фокусирај брзу претрагу"
 #: src/actions/actionmanagerimpl.cpp:450
 #, kde-format
 msgid "What's new"
-msgstr ""
+msgstr "Шта је ново"
 
 #: src/actions/actionmanagerimpl.cpp:491
 #, kde-format
@@ -1484,7 +1442,7 @@ msgstr "Сакриј прочитане доводе"
 #: src/actions/actionmanagerimpl.cpp:569
 #, kde-format
 msgid "Lock Feeds In Place"
-msgstr ""
+msgstr "Закључај доводе на месту"
 
 #: src/actions/actionmanagerimpl.cpp:575
 #, kde-format
@@ -1517,31 +1475,27 @@ msgid "Unmute"
 msgstr "Врати звук"
 
 #: src/actions/actionmanagerimpl.cpp:622
-#, fuzzy, kde-format
-#| msgid "Speak Text"
+#, kde-format
 msgctxt "@action"
 msgid "Speak Text"
 msgstr "Изговори текст"
 
 #: src/actions/actionmanagerimpl.cpp:627
-#, fuzzy, kde-format
-#| msgid "&Find in Message..."
+#, kde-format
 msgid "&Find in Message…"
-msgstr "&Пронађи у поруци..."
+msgstr "&Нађи у поруци…"
 
 #: src/actions/actionmanagerimpl.cpp:634
-#, fuzzy, kde-format
-#| msgid "Reload All Tabs"
+#, kde-format
 msgctxt "@action"
 msgid "Reload Tab"
-msgstr "Поново учитај све језичке"
+msgstr "Поново учитај језичак"
 
 #: src/actions/actionmanagerimpl.cpp:639
-#, fuzzy, kde-format
-#| msgid "&Copy Email Address"
+#, kde-format
 msgctxt "@action"
 msgid "Copy Tab Address"
-msgstr "&Копирај адресу е‑поште"
+msgstr "Копирај адресу језичка"
 
 #: src/actions/actionmanagerimpl.cpp:644
 #, kde-format
@@ -1549,8 +1503,7 @@ msgid "Close Tab"
 msgstr "Затвори језичак"
 
 #: src/actions/actionmanagerimpl.cpp:657
-#, fuzzy, kde-format
-#| msgid "Activate Tab %1"
+#, kde-format
 msgctxt "@action"
 msgid "Activate Tab %1"
 msgstr "Активирај језичак %1"
@@ -1566,8 +1519,7 @@ msgid "Open Link in External &Browser"
 msgstr "Отвори везу у спољашњем &прегледачу"
 
 #: src/addfeeddialog.cpp:49
-#, fuzzy, kde-format
-#| msgid "Add Feed"
+#, kde-format
 msgctxt "@title:window"
 msgid "Add Feed"
 msgstr "Додавање довода"
@@ -1585,21 +1537,18 @@ msgid "Feed not found from %1."
 msgstr "Довод није пронађен на %1."
 
 #: src/addfeeddialog.cpp:121
-#, fuzzy, kde-format
-#| msgid "Feed found, downloading..."
+#, kde-format
 msgid "Feed found, downloading…"
-msgstr "Довод пронађен, преузимам..."
+msgstr "Довод нађен, преузимам…"
 
 #: src/akregator_options.h:21 src/akregator_options.h:29
-#, fuzzy, kde-format
-#| msgid "Add a feed with the given URL"
+#, kde-format
 msgctxt "@info:shell"
 msgid "Add a feed with the given URL"
 msgstr "Додај довод са датим УРЛ‑ом"
 
 #: src/akregator_options.h:24
-#, fuzzy, kde-format
-#| msgid "When adding feeds, place them in this group"
+#, kde-format
 msgctxt "@info:shell"
 msgid "When adding feeds, place them in this group"
 msgstr "Стављај додате доводе у ову групу"
@@ -1607,11 +1556,10 @@ msgstr "Стављај додате доводе у ову групу"
 #: src/akregator_options.h:25
 #, kde-format
 msgid "Group Name"
-msgstr ""
+msgstr "име групе"
 
 #: src/akregator_options.h:26
-#, fuzzy, kde-format
-#| msgid "Hide main window on startup"
+#, kde-format
 msgctxt "@info:shell"
 msgid "Hide main window on startup"
 msgstr "Сакриј главни прозор на покретању"
@@ -1620,7 +1568,7 @@ msgstr "Сакриј главни прозор на покретању"
 #, kde-format
 msgctxt "@info:shell"
 msgid "Lists the available options for user feedback"
-msgstr ""
+msgstr "Наброји доступне опције повратних информација корисника"
 
 #: src/akregator_part.cpp:78
 #, kde-format
@@ -1662,8 +1610,7 @@ msgstr ""
 
 # >> @title:window
 #: src/akregator_part.cpp:418 src/akregator_part.cpp:471
-#, fuzzy, kde-format
-#| msgid "Write Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "Write Error"
 msgstr "Грешка писања"
@@ -1675,8 +1622,7 @@ msgstr "Не могу да увезем фајл %1 (лош ОПМЛ)."
 
 # >> @title:window
 #: src/akregator_part.cpp:454 src/command/loadfeedlistcommand.cpp:71
-#, fuzzy, kde-format
-#| msgid "OPML Parsing Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "OPML Parsing Error"
 msgstr "Грешка у рашчлањивању ОПМЛ‑а"
@@ -1692,8 +1638,7 @@ msgstr ""
 
 # >> @title:window
 #: src/akregator_part.cpp:459 src/command/loadfeedlistcommand.cpp:144
-#, fuzzy, kde-format
-#| msgid "Read Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "Read Error"
 msgstr "Грешка читања"
@@ -1704,10 +1649,9 @@ msgid "Access denied: cannot write to file %1. Please check your permissions."
 msgstr "Приступ одбијен: не могу да пишем у фајл %1. Проверите своје дозволе."
 
 #: src/akregator_part.cpp:486 src/akregator_part.cpp:495
-#, fuzzy, kde-format
-#| msgid "OPML Outlines (*.opml *.xml);;All Files (*)"
+#, kde-format
 msgid "OPML Outlines (%1);;All Files (*)"
-msgstr "ОПМЛ прегледи (*.opml *.xml);;сви фајлови (*)"
+msgstr "ОПМЛ прегледи (%1);;сви фајлови (*)"
 
 #: src/akregator_part.cpp:620
 #, kde-format
@@ -1728,7 +1672,7 @@ msgstr "Колоне"
 #: src/articlelistview.cpp:218
 #, kde-format
 msgid "No result found"
-msgstr ""
+msgstr "Нема резултата"
 
 #: src/articlelistview.cpp:379
 #, kde-format
@@ -1786,18 +1730,16 @@ msgid "Akregator is a KDE news feed reader."
 msgstr "Акрегатор је КДЕ‑ов читач довода вести."
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:190
-#, fuzzy, kde-format
-#| msgid "&Save Link As..."
+#, kde-format
 msgctxt "@title:window"
 msgid "Save As"
-msgstr "&Сачувај везу као..."
+msgstr "Уписивање као"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:274
 #: src/frame/webengine/akrwebengineviewer.cpp:112
-#, fuzzy, kde-format
-#| msgid "&Save Link As..."
+#, kde-format
 msgid "&Save Link As…"
-msgstr "&Сачувај везу као..."
+msgstr "&Сачувај везу као…"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:278
 #: src/frame/webengine/akrwebengineviewer.cpp:116
@@ -1807,19 +1749,17 @@ msgstr "Копирај &адресу везе"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:286
 #: src/frame/webengine/akrwebengineviewer.cpp:124
-#, fuzzy, kde-format
-#| msgid "Copy Image Location"
+#, kde-format
 msgctxt "@action"
 msgid "Copy Image URL"
-msgstr "Копирај локацију слике"
+msgstr "Копирај УРЛ слике"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:290
 #: src/frame/webengine/akrwebengineviewer.cpp:128
-#, fuzzy, kde-format
-#| msgid "Save Image On Disk..."
+#, kde-format
 msgctxt "@action"
 msgid "Save Image…"
-msgstr "Сачувај слику на диск..."
+msgstr "Сачувај слику…"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:381
 #, kde-format
@@ -1838,8 +1778,7 @@ msgstr "Желите ли заиста да искључите ову уводн
 
 # >> @title:window
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:385
-#, fuzzy, kde-format
-#| msgid "Disable Introduction Page"
+#, kde-format
 msgctxt "@title:window"
 msgid "Disable Introduction Page"
 msgstr "Искључивање уводне странице"
@@ -1850,8 +1789,7 @@ msgid "This web site is a malware, do you want to continue to show it?"
 msgstr "Овај сајт садржи малвер, желите ли заиста да га посетите?"
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:416
-#, fuzzy, kde-format
-#| msgid "Malware"
+#, kde-format
 msgctxt "@title:window"
 msgid "Malware"
 msgstr "Малвер"
@@ -1864,8 +1802,7 @@ msgstr "Мрежа је покварена."
 # >> @title:window
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:428
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:431
-#, fuzzy, kde-format
-#| msgid "Check Phishing Url"
+#, kde-format
 msgctxt "@title:window"
 msgid "Check Phishing Url"
 msgstr "Провера УРЛ‑а против преваре"
@@ -1906,8 +1843,7 @@ msgstr ""
 
 # >> @title:window
 #: src/command/deletesubscriptioncommand.cpp:44
-#, fuzzy, kde-format
-#| msgid "Delete Folder"
+#, kde-format
 msgctxt "@title:window"
 msgid "Delete Folder"
 msgstr "Брисање фасцикле"
@@ -1924,8 +1860,7 @@ msgstr "<qt>Желите ли заиста да обришете довод <b>%
 
 # >> @title:window
 #: src/command/deletesubscriptioncommand.cpp:68
-#, fuzzy, kde-format
-#| msgid "Delete Feed"
+#, kde-format
 msgctxt "@title:window"
 msgid "Delete Feed"
 msgstr "Брисање довода"
@@ -1965,10 +1900,9 @@ msgstr ""
 "резерву.</qt>"
 
 #: src/command/loadfeedlistcommand.cpp:129
-#, fuzzy, kde-format
-#| msgid "Opening Feed List..."
+#, kde-format
 msgid "Opening Feed List…"
-msgstr "Отварам листу довода..."
+msgstr "Отварам листу довода…"
 
 #: src/command/loadfeedlistcommand.cpp:143
 #, kde-format
@@ -2007,10 +1941,7 @@ msgstr ""
 "резерву.</qt>"
 
 #: src/crashwidget/crashwidget.cpp:21
-#, fuzzy, kde-format
-#| msgid ""
-#| "Akregator did not close correctly. Would you like to restore the previous "
-#| "session?"
+#, kde-format
 msgctxt "@label:textbox"
 msgid ""
 "Akregator did not close correctly. Would you like to restore the previous "
@@ -2073,7 +2004,7 @@ msgstr "&Подешавање"
 #: src/data/akregator_part.rc:90
 #, kde-format
 msgid "&Help"
-msgstr ""
+msgstr "По&моћ"
 
 #. i18n: ectx: ToolBar (mainToolBar)
 #: src/data/akregator_part.rc:98 src/data/akregator_shell.rc:54
@@ -2095,7 +2026,7 @@ msgstr "Сви доводи"
 #: src/feed/feedpropertiesdialog.cpp:39
 #, kde-format
 msgid "Activities"
-msgstr ""
+msgstr "Активности"
 
 #: src/feed/feedpropertiesdialog.cpp:64 src/feed/feedpropertiesdialog.cpp:119
 #, kde-format
@@ -2125,8 +2056,7 @@ msgstr[2] "дана"
 msgstr[3] "дан"
 
 #: src/feed/feedpropertiesdialog.cpp:96 src/feed/feedpropertiesdialog.cpp:158
-#, fuzzy, kde-format
-#| msgid "Feed Properties"
+#, kde-format
 msgctxt "@title:window"
 msgid "Feed Properties"
 msgstr "Својства довода"
@@ -2139,30 +2069,25 @@ msgid "Never"
 msgstr "никада"
 
 #: src/feed/feedpropertiesdialog.cpp:124
-#, fuzzy, kde-format
-#| msgid " day"
-#| msgid_plural " days"
+#, kde-format
 msgid "%v day"
 msgid_plural "%v days"
-msgstr[0] " дан"
-msgstr[1] " дана"
-msgstr[2] " дана"
-msgstr[3] " дан"
+msgstr[0] "%v дана"
+msgstr[1] "%v дана"
+msgstr[2] "%v дана"
+msgstr[3] "%v дана"
 
 #: src/feed/feedpropertiesdialog.cpp:125
-#, fuzzy, kde-format
-#| msgid " article"
-#| msgid_plural " articles"
+#, kde-format
 msgid "%v article"
 msgid_plural "%v articles"
-msgstr[0] " чланак"
-msgstr[1] " чланка"
-msgstr[2] " чланака"
-msgstr[3] " чланак"
+msgstr[0] "%v чланак"
+msgstr[1] "%v чланка"
+msgstr[2] "%v чланака"
+msgstr[3] "%v чланак"
 
 #: src/feed/feedpropertiesdialog.cpp:158
-#, fuzzy, kde-format
-#| msgid "Properties of %1"
+#, kde-format
 msgctxt "@title:window"
 msgid "Properties of %1"
 msgstr "Својства — %1"
@@ -2194,16 +2119,14 @@ msgid "<b>Description:</b> %1<br />"
 msgstr "<b>Опис:</b> %1<br />"
 
 #: src/formatter/grantleeviewformatter.cpp:186
-#, fuzzy, kde-format
-#| msgid "<b>Homepage:</b> <a href=\"%1\">%2</a>"
+#, kde-format
 msgid "<b>Homepage:</b> <a href=\"%1\">%1</a>"
-msgstr "<b>Домаћа страница:</b> <a href=\"%1\">%2</a>"
+msgstr "<b>Домаћа страница:</b> <a href=\"%1\">%1</a>"
 
 #: src/formatter/grantleeviewformatter.cpp:193
-#, fuzzy, kde-format
-#| msgid "<b>Description:</b> %1<br />"
+#, kde-format
 msgid "<b>Copyright:</b> %1</a>"
-msgstr "<b>Опис:</b> %1<br />"
+msgstr "<b>Ауторска права:</b> %1</a>"
 
 #: src/formatter/grantleeviewformatter.cpp:253
 #, kde-format
@@ -2236,10 +2159,9 @@ msgid "Untitled"
 msgstr "Без наслова"
 
 #: src/frame/frame.cpp:140
-#, fuzzy, kde-format
-#| msgid "Loading..."
+#, kde-format
 msgid "Loading…"
-msgstr "Учитавам..."
+msgstr "Учитавам…"
 
 #: src/frame/frame.cpp:154
 #, kde-format
@@ -2272,40 +2194,39 @@ msgid "About"
 msgstr "О"
 
 #: src/mainwidget.cpp:841
-#, fuzzy, kde-format
-#| msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
+#, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all articles in the feed</b> as read?</"
 "qt>"
-msgstr "<qt>Желите ли заиста да обришете довод <b>%1</b>?</qt>"
+msgstr ""
+"<qt>Желите ли заиста да означите <b>све чланке у доводу</b> као прочитане?</"
+"qt>"
 
 #: src/mainwidget.cpp:842
-#, fuzzy, kde-format
-#| msgid "&Mark Feed as Read"
+#, kde-format
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
-msgstr "Означи довод као &прочитан"
+msgstr "Означавање довода као прочитаног"
 
 #: src/mainwidget.cpp:845
-#, fuzzy, kde-format
-#| msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
+#, kde-format
 msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
-msgstr "<qt>Желите ли заиста да обришете довод <b>%1</b>?</qt>"
+msgstr "<qt>Желите ли заиста да означите <b>све доводе</b> као прочитане?</qt>"
 
 #: src/mainwidget.cpp:847
-#, fuzzy, kde-format
-#| msgid "<qt>Are you sure you want to delete this feed?</qt>"
+#, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all feeds in the folder</b> as read?</"
 "qt>"
-msgstr "<qt>Желите ли заиста да обришете овај довод?</qt>"
+msgstr ""
+"<qt>Желите ли заиста да означите <b>све доводе у фасцикли</b> као прочитане?"
+"</qt>"
 
 #: src/mainwidget.cpp:849
-#, fuzzy, kde-format
-#| msgid "&Mark Feeds as Read"
+#, kde-format
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
-msgstr "&Означи доводе као прочитане"
+msgstr "Означавање довода као прочитаних"
 
 # rewrite-msgid: /Networking/Network/
 #: src/mainwidget.cpp:913 src/mainwidget.cpp:922 src/mainwidget.cpp:1323
@@ -2314,10 +2235,9 @@ msgid "Networking is not available."
 msgstr "Мрежа није доступна."
 
 #: src/mainwidget.cpp:930
-#, fuzzy, kde-format
-#| msgid "Fetching Feeds..."
+#, kde-format
 msgid "Fetching Feeds…"
-msgstr "Очитавам доводе..."
+msgstr "Очитавам доводе…"
 
 #: src/mainwidget.cpp:1128
 #, kde-format
@@ -2335,11 +2255,10 @@ msgstr[2] "<qt>Желите ли заиста да обришете %1 одаб�
 msgstr[3] "<qt>Желите ли заиста да обришете одабрани чланак?</qt>"
 
 #: src/mainwidget.cpp:1138
-#, fuzzy, kde-format
-#| msgid "Delete Article"
+#, kde-format
 msgctxt "@title:window"
 msgid "Delete Article"
-msgstr "Обриши чланак"
+msgstr "Брисање чланка"
 
 # rewrite-msgid: /Networking/Network/
 #: src/mainwidget.cpp:1320
@@ -2353,12 +2272,14 @@ msgid ""
 "<qt>This will hide the menu bar completely. You can show it again by typing "
 "%1.</qt>"
 msgstr ""
+"<qt>Ово ће потпуно сакрити траку менија. Можете је поново приказати "
+"притиском на %1.</qt>"
 
 #: src/mainwindow.cpp:125
 #, kde-format
 msgctxt "@title:window"
 msgid "Hide menu bar"
-msgstr ""
+msgstr "Сакривање траке менија"
 
 #: src/mainwindow.cpp:158
 #, kde-format
@@ -2480,11 +2401,10 @@ msgid "Total"
 msgstr "укупно"
 
 #: src/tabwidget.cpp:96
-#, fuzzy, kde-format
-#| msgid "Close the current tab"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Close the current tab"
-msgstr "Затвори тренутни језичак"
+msgstr "Затвори текући језичак"
 
 #: src/tabwidget.cpp:99
 #, kde-format
@@ -2498,18 +2418,16 @@ msgid "Detach Tab"
 msgstr "Откачи језичак"
 
 #: src/tabwidget.cpp:130
-#, fuzzy, kde-format
-#| msgid "Reload All Tabs"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Reload Tab"
-msgstr "Поново учитај све језичке"
+msgstr "Поново учитај језичак"
 
 #: src/tabwidget.cpp:133
-#, fuzzy, kde-format
-#| msgid "&Copy Email Address"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Copy Tab Address"
-msgstr "&Копирај адресу е‑поште"
+msgstr "Копирај адресу језичка"
 
 #: src/tabwidget.cpp:139
 #, kde-format
@@ -2611,10 +2529,9 @@ msgstr "Прикажи име РСС колоне"
 
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: src/ui/feedpropertieswidgetbase.ui:174
-#, fuzzy, kde-format
-#| msgid "Comment"
+#, kde-format
 msgid "Comment:"
-msgstr "Коментар"
+msgstr "Коментар:"
 
 #. i18n: ectx: attribute (title), widget (QWidget, tab2)
 #: src/ui/feedpropertieswidgetbase.ui:197
@@ -2712,36 +2629,34 @@ msgstr "Отвори у спољашњем прегледачу"
 
 #: src/whatsnew/whatsnewtranslations.cpp:16
 msgid "Add windows support"
-msgstr ""
+msgstr "Додата подршка за Виндоуз"
 
 #: src/whatsnew/whatsnewtranslations.cpp:24
 #, kde-format
 msgid "Implement Plasma Activity."
-msgstr ""
+msgstr "Уведена подршка за плазма активности."
 
 #: src/whatsnew/whatsnewtranslations.cpp:24
 #, kde-format
 msgid "Add new whatsnew widget."
-msgstr ""
+msgstr "Додат нови виџет „Шта је ново“."
 
 #: src/whatsnew/whatsnewtranslations.cpp:31
 #, kde-format
 msgid "Add windows support."
-msgstr ""
+msgstr "Додата подршка за Виндоуз."
 
 #: src/widgets/searchbar.cpp:44
-#, fuzzy, kde-format
-#| msgid "Search articles..."
+#, kde-format
 msgctxt "@info:placeholder"
 msgid "Search articles…"
-msgstr "Претражи чланке..."
+msgstr "Тражи чланке…"
 
 #: src/widgets/searchbar.cpp:127
-#, fuzzy, kde-format
-#| msgid "Search articles...<%1>"
+#, kde-format
 msgctxt "@info:placeholder"
 msgid "Search articles…<%1>"
-msgstr "Претражи чланке...<%1>"
+msgstr "Тражи чланке…<%1>"
 
 #: src/widgets/statussearchbuttons.cpp:29
 #, kde-format
@@ -2761,155 +2676,13 @@ msgid "Unread"
 msgstr "Непрочитани"
 
 #: src/widgets/statussearchbuttons.cpp:57
-#, fuzzy, kde-format
-#| msgctxt "as in: mark as read"
-#| msgid "&Read"
+#, kde-format
 msgctxt "Read articles filter"
 msgid "Read"
-msgstr "&Прочитан"
+msgstr "Прочитани"
 
 #: src/widgets/statussearchbuttons.cpp:66
 #, kde-format
 msgctxt "Important articles filter"
 msgid "Important"
 msgstr "Важни"
-
-# >> @item
-#~ msgid "KDE Dot News"
-#~ msgstr "Вести са КДЕ‑дота"
-
-# >> @item
-#~ msgid "Linux.com"
-#~ msgstr "Линукс.ком"
-
-# >> @title:window
-#~ msgid "Write Error"
-#~ msgstr "Грешка писања"
-
-#~ msgid "Access Key Enabled"
-#~ msgstr "Приступни тастер укључен"
-
-#, fuzzy
-#~| msgid "Text Filter"
-#~ msgid "Filter"
-#~ msgstr "Филтер текста"
-
-#~ msgid "We hope that you will enjoy Akregator."
-#~ msgstr "Надамо се да ћете уживати уз Акрегатор."
-
-#~ msgid "Thank you, The Akregator Team"
-#~ msgstr "Са захвалношћу, тим Акрегатора"
-
-#~ msgid "&Add Feed..."
-#~ msgstr "&Додај довод..."
-
-#~ msgid "Send &Link Address..."
-#~ msgstr "Пошаљи &адресу везе..."
-
-# >> @title
-#~ msgid "Advanced Feed Reader Settings"
-#~ msgstr "Напредне поставке читача довода"
-
-#~ msgid "(c), 2004 - 2008 Frank Osterfeld"
-#~ msgstr "© 2004–2008, Франк Остерфелд"
-
-# >> @title
-#~ msgid "Configure Feed Reader Appearance"
-#~ msgstr "Подешавање изгледа читача довода"
-
-# >> @title
-#~ msgid "Configure Feed Reader Archive"
-#~ msgstr "Подешавање архиве читача довода"
-
-# >> @title
-#~ msgid "Configure Feed Reader Browser"
-#~ msgstr "Подешавање прегледача читача довода"
-
-# >> @title
-#~ msgid "Configure Feeds"
-#~ msgstr "Подешавање довода"
-
-# >> @title
-#~ msgid "Configure Plugins"
-#~ msgstr "Подешавање прикључака"
-
-#, fuzzy
-#~| msgid "(c), 2016-2017 Laurent Montel"
-#~ msgid "(c), 2016-2020 Laurent Montel"
-#~ msgstr "© 2016–2017, Лорен Монтел"
-
-# >> @title
-#, fuzzy
-#~| msgid "Configure Feeds"
-#~ msgid "Configure User Feedback"
-#~ msgstr "Подешавање довода"
-
-#, fuzzy
-#~| msgid "(c), 2016-2017 Laurent Montel"
-#~ msgid "(c), 2020 Laurent Montel"
-#~ msgstr "© 2016–2017, Лорен Монтел"
-
-#~ msgid "Archive"
-#~ msgstr "Архива"
-
-#~ msgid "Archive backend:"
-#~ msgstr "Позадина архиве:"
-
-#~ msgid "&Configure..."
-#~ msgstr "&Подеси..."
-
-#~ msgid "Metakit"
-#~ msgstr "Метакит"
-
-#~ msgid "Unable to load storage backend plugin \"%1\". No feeds are archived."
-#~ msgstr ""
-#~ "Не могу да учитам прикључак складишне позадине „%1“. Ниједан довод није "
-#~ "архивиран."
-
-# >> @title:window
-#~ msgid "Plugin error"
-#~ msgstr "Грешка прикључка"
-
-# >> @title:window
-#, fuzzy
-#~| msgid "Print Document"
-#~ msgctxt "@title:window"
-#~ msgid "Print Document"
-#~ msgstr "Штампање документа"
-
-#~ msgid "No Archive"
-#~ msgstr "Нема архиве"
-
-# >> @header:row
-#~ msgctxt "Name of the plugin"
-#~ msgid "Name"
-#~ msgstr "Име"
-
-# >> @header:row
-#~ msgctxt "Library name"
-#~ msgid "Library"
-#~ msgstr "Библиотека"
-
-# >> @header:row
-#~ msgctxt "Plugin authors"
-#~ msgid "Authors"
-#~ msgstr "Аутори"
-
-# >> @header:row
-#~ msgctxt "Plugin authors' emaila addresses"
-#~ msgid "Email"
-#~ msgstr "Е‑пошта"
-
-# >> @header:row
-#~ msgctxt "Plugin version"
-#~ msgid "Version"
-#~ msgstr "Издање"
-
-# >> @header:row
-#~ msgctxt "Framework version plugin requires"
-#~ msgid "Framework Version"
-#~ msgstr "Издање оквира"
-
-# >> @title:window
-#~ msgid "Plugin Information"
-#~ msgstr "Подаци о прикључку"
