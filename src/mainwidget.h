@@ -12,7 +12,7 @@
 #include "config-akregator.h"
 
 #include "akregatorpart_export.h"
-#include "articleviewer-ng/webengine/articleviewerwebenginewidgetng.h"
+#include "articleviewer-ng/webengine/articleviewerwebengine.h"
 #include "feed.h"
 #include <KAboutData>
 #include <QUrl>

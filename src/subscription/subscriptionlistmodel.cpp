@@ -7,7 +7,6 @@
 */
 
 #include "subscriptionlistmodel.h"
-#include "akregatorconfig.h"
 #include "config-akregator.h"
 #include "feed.h"
 #include "feedlist.h"

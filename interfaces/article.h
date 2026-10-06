@@ -10,7 +10,6 @@
 #pragma once
 
 #include "akregator_export.h"
-#include "types.h"
 
 #include <QSharedPointer>
 #include <Syndication/Person>

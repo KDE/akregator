@@ -14,10 +14,10 @@
 #include "fetchqueue.h"
 #include "treenodevisitor.h"
 
+#include <QHash>
 #include <QList>
 #include <qdom.h>
 
-#include "akregator_debug.h"
 #include <QIcon>
 
 using namespace Qt::Literals::StringLiterals;

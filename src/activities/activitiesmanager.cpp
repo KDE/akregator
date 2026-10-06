@@ -5,7 +5,6 @@
 */
 
 #include "activitiesmanager.h"
-#include "akregatorconfig.h"
 using namespace Akregator;
 ActivitiesManager::ActivitiesManager(QObject *parent)
     : PimCommonActivities::ActivitiesBaseManager{parent}

@@ -5,7 +5,6 @@
 */
 
 #include "defaultnormalviewformatter.h"
-#include "akregatorconfig.h"
 #include "article.h"
 #include "feed.h"
 #include "folder.h"

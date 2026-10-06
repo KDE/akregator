@@ -5,7 +5,6 @@
 */
 
 #include "articleviewerwebenginewidgetng.h"
-#include "akregator_debug.h"
 #include <KActionCollection>
 #include <KIO/JobUiDelegateFactory>
 #include <KIO/OpenUrlJob>

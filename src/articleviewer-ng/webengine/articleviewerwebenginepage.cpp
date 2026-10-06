@@ -9,8 +9,6 @@
 #include <QWebEngineSettings>
 #include <WebEngineViewer/ZoomActionMenu>
 
-#include "akregatorconfig.h"
-
 using namespace Qt::Literals::StringLiterals;
 
 using namespace Akregator;

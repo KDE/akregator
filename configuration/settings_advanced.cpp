@@ -7,7 +7,6 @@
 */
 
 #include "settings_advanced.h"
-#include "akregatorconfig.h"
 #include <KLocalization>
 #include <KLocalizedString>
 

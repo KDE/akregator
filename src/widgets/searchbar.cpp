@@ -12,6 +12,7 @@
 #include "statussearchline.h"
 
 #include "article.h"
+#include "types.h"
 #include <TextUtils/ConvertText>
 
 #include <KLineEdit>

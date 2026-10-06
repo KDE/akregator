@@ -11,11 +11,9 @@
 
 #include "actionmanager.h"
 #include "akregator_debug.h"
-#include "akregatorconfig.h"
 #include "articleformatter.h"
 #include "articlejobs.h"
 #include "feed.h"
-#include "openurlrequest.h"
 #include "treenode.h"
 
 #include <KActionCollection>

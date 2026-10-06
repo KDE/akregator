@@ -17,6 +17,7 @@
 #include "akregatorconfig.h"
 #include "articlejobs.h"
 #include "articlelistview.h"
+#include "articleviewer-ng/webengine/articleviewerwebenginewidgetng.h"
 #include "articleviewerwidget.h"
 #include "createfeedcommand.h"
 #include "createfoldercommand.h"
@@ -71,7 +72,6 @@
 
 #include <algorithm>
 #include <chrono>
-#include <memory>
 #if HAVE_ACTIVITY_SUPPORT
 #include "activities/activitiesmanager.h"
 #include "akregator_plasma_activities_debug.h"

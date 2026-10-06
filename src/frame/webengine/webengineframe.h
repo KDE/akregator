@@ -6,7 +6,6 @@
 
 #pragma once
 
-#include "akregatorpart_export.h"
 #include "frame.h"
 
 class KActionCollection;

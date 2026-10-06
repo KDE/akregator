@@ -12,6 +12,7 @@
 #include "shared.h"
 #include "storage/feedstorage.h"
 #include "storage/storage.h"
+#include "types.h"
 #include "utils.h"
 
 #include <Syndication/Syndication>
@@ -19,8 +20,6 @@
 #include <QDateTime>
 #include <QList>
 #include <QRegularExpression>
-#include <qdom.h>
-
 #include <QUrl>
 #include <cassert>
 #include <utility>

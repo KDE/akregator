@@ -7,13 +7,13 @@
 */
 #include "articlemodel.h"
 
-#include "akregatorconfig.h"
 #include "articlematcher.h"
 #include "feed.h"
 #include "utils.h"
 
 #include <Syndication/Tools>
 
+#include <QDateTime>
 #include <QList>
 #include <QMimeData>
 #include <QString>
@@ -25,7 +25,6 @@
 
 #include <QLocale>
 #include <cassert>
-#include <cmath>
 #include <utility>
 
 using namespace Qt::Literals::StringLiterals;
