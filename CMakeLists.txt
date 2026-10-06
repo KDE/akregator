@@ -4,6 +4,14 @@ cmake_minimum_required(VERSION 3.29)
 set(PIM_VERSION "6.8.40")
 project(akregator VERSION ${PIM_VERSION})
 
+option(USE_MOLD_LINKER "Use the mold linker when available (much faster link times)" ON)
+if(USE_MOLD_LINKER AND NOT DEFINED CMAKE_LINKER_TYPE)
+    find_program(MOLD_EXECUTABLE mold)
+    if(MOLD_EXECUTABLE)
+        set(CMAKE_LINKER_TYPE MOLD)
+    endif()
+endif()
+
 # Update it for each release
 set(AKREGATOR_RELEASE_VERSION_DATE "26.07.10") # yy.MM.dd
 
