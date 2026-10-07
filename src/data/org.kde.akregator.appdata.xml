@@ -100,6 +100,10 @@
     <p xml:lang="sa">अक्रेगेटर् इति वार्ता-फीड्-पाठकः अस्ति । एतत् भवन्तं जालपुटस्य उपयोगेन अद्यतनस्य मैन्युअल् रूपेण जाँचस्य आवश्यकतां विना वार्तास्थलानि, ब्लोग्स्, अन्येषां RSS/Atom-सक्षमजालस्थलानां च अनुसरणं कर्तुं समर्थं करोति । अक्रेगेटर् इत्यस्य उपयोगः सुलभः अपि च शतशः वार्तास्रोताः सुविधापूर्वकं पठितुं शक्तिशालिनः अपि भवितुं विनिर्मितः अस्ति । एतत् द्रुतं अन्वेषणं, उन्नतं संग्रहणकार्यक्षमता, सुलभवार्तापठनाय आन्तरिकब्राउजर् च सह आगच्छति ।</p>
     <p xml:lang="sk">Akregator je program na čítanie správ. Umožňuje vám sledovať spravodajské weby, blogy a iné webové stránky s podporou RSS/Atom bez potreby ručnej kontroly aktualizácií pomocou webového prehliadača. Akregator je navrhnutý tak, aby sa dal ľahko používať a aby bol dostatočne výkonný na pohodlné čítanie stoviek spravodajských zdrojov. Je dodávaný s rýchlym vyhľadávaním, pokročilými funkciami archivácie a interným prehliadačom pre ľahké čítanie správ.</p>
     <p xml:lang="sl">Akregator je bralnik novic. Omogoča vam spremljanje novic, spletnih mest, blogovin drugih spletnih mest, ki podpirajo RSS/Atom, ne da bi bilo treba ročno preverjatiposodobitve s pomočjo spletnega brskalnika. Akregator je zasnovan tako, da je enostaven za uporaboin da bo dovolj močan, da lahko priročno bere na stotine virov novic. Omogoča s hitro iskanje, napredne funkcije arhiviranja in internibrskalnik za enostavno branje novic.</p>
+    <p xml:lang="sr">Акрегатор је читач довода вести. Омогућава вам да пратите вести, блогове и друге веб сајтове опремљене РСС‑а/атома, без потребе да ручно проверавате допуне преко веб прегледача. Акрегатор је пројектован да истовремено буде лак за употребу и довољно моћан за једноставно праћење великог броја извора вести. Долази са брзом претрагом, напредним архивирањем и интерним прегледачем за лако читање вести.</p>
+    <p xml:lang="sr-Latn">Akregator je čitač dovoda vesti. Omogućava vam da pratite vesti, blogove i druge veb sajtove opremljene RSS‑a/Atoma, bez potrebe da ručno proveravate dopune preko veb pregledača. Akregator je projektovan da istovremeno bude lak za upotrebu i dovoljno moćan za jednostavno praćenje velikog broja izvora vesti. Dolazi sa brzom pretragom, naprednim arhiviranjem i internim pregledačem za lako čitanje vesti.</p>
+    <p xml:lang="sr-ijekavian">Акрегатор је читач довода вијести. Омогућава вам да пратите вијести, блогове и друге веб сајтове опремљене РСС‑а/атома, без потребе да ручно провјеравате допуне преко веб прегледача. Акрегатор је пројектован да истовремено буде лак за употребу и довољно моћан за једноставно праћење великог броја извора вијести. Долази са брзом претрагом, напредним архивирањем и интерним прегледачем за лако читање вијести.</p>
+    <p xml:lang="sr-ijekavianlatin">Akregator je čitač dovoda vijesti. Omogućava vam da pratite vijesti, blogove i druge veb sajtove opremljene RSS‑a/Atoma, bez potrebe da ručno provjeravate dopune preko veb pregledača. Akregator je projektovan da istovremeno bude lak za upotrebu i dovoljno moćan za jednostavno praćenje velikog broja izvora vijesti. Dolazi sa brzom pretragom, naprednim arhiviranjem i internim pregledačem za lako čitanje vijesti.</p>
     <p xml:lang="sv">Akregator är en nyhetskanalläsare. Den gör det möjligt att följa nyhetsplatser, bloggar och andra webbplatser som hanterar RSS/Atom utan att manuellt behöva leta efter uppdateringar med en webbläsare. Akregator är konstruerad för att både vara lätt att använda och kraftfull nog för att bekvämt läsa hundratals nyhetskällor. Den levereras med snabb sökning, avancerad arkiveringsfunktionalitet och en intern webbläsare för att enkelt kunna läsa nyheter.</p>
     <p xml:lang="tr">Akregatör, bir haber beslemesi okuyucusudur. Haber sitelerini, blogları ve diğer RSS/Atom beslemelerinin etkin olduğu web sitelerini web tarayıcısı ile elle güncellemeler için denetlemenize gerek kalmadan takip etmenize olanak sağlar. Akregatör hem kullanımı kolay hem yüzlerce haber kaynağını kolay şekilde okuyabileceğiniz kadar güçlü olması için tasarlanmıştır. Haber kaynaklarını eklemek için Konqueror tümleştirmesi ile ve kolay haber okuma için dahili bir tarayıcı ile gelir.</p>
     <p xml:lang="uk">Akregator — програма для отримання подач новин. За її допомогою ви можете стежити за сайтами новин, блогами та іншими сайтами з даними RSS/Atom без потреби у перевірці вручну оновлень за допомогою програми для перегляду інтернету. Akregator розроблено простим у користуванні та достатньо потужним для зручного читання сотень джерел новин. У програмі передбачено швидкий пошук, розширені можливості із архівування та вбудований переглядач для полегшення читання новин.</p>
@@ -138,6 +142,10 @@
   <summary xml:lang="sa">भवतः फीड्स् इत्यस्य तालमेलं स्थापयन्तु</summary>
   <summary xml:lang="sk">Sledujte svoje kanály</summary>
   <summary xml:lang="sl">Bodite na tekočem s svojimi viri</summary>
+  <summary xml:lang="sr">Пратите своје доводе</summary>
+  <summary xml:lang="sr-Latn">Pratite svoje dovode</summary>
+  <summary xml:lang="sr-ijekavian">Пратите своје доводе</summary>
+  <summary xml:lang="sr-ijekavianlatin">Pratite svoje dovode</summary>
   <summary xml:lang="sv">Håll dig uppdaterad med dina kanaler</summary>
   <summary xml:lang="tr">Beslemelerinizi takip edin</summary>
   <summary xml:lang="ug">مەنبەلەرنى يېڭى پېتى تۇتىدۇ</summary>
@@ -198,6 +206,10 @@
       <caption xml:lang="sa">अक्रेगेटर् इत्यनेन सह Kontact इत्यत्र फीड् पठनम्</caption>
       <caption xml:lang="sk">Čítanie informačných kanálov v Kontact s Akregator</caption>
       <caption xml:lang="sl">Branje virov v Kontaktu z Akregatorjem</caption>
+      <caption xml:lang="sr">Читање довода у Контакту помоћу Акрегатора</caption>
+      <caption xml:lang="sr-Latn">Čitanje dovoda u Kontactu pomoću Akregatora</caption>
+      <caption xml:lang="sr-ijekavian">Читање довода у Контакту помоћу Акрегатора</caption>
+      <caption xml:lang="sr-ijekavianlatin">Čitanje dovoda u Kontactu pomoću Akregatora</caption>
       <caption xml:lang="sv">Läsa kanaler i Kontact med Akregator</caption>
       <caption xml:lang="tr">Akregatör ile Kontak’ta beslemeleri okuma</caption>
       <caption xml:lang="uk">Читання подач у Kontact за допомогою Akregator</caption>
@@ -231,6 +243,10 @@
           <li xml:lang="pt-BR">O Miniflux agora é suportado. Veja a nova opção "Adicionar conta online" no menu Arquivo para abrir o assistente de conta do Miniflux.</li>
           <li xml:lang="ru">Добавлена поддержка Miniflux. Чтобы открыть мастер настройки учётной записи Miniflux, выберите в меню «Файл» новый пункт «Добавить сетевую учётную запись…».</li>
           <li xml:lang="sl">Miniflux je zdaj podprt. Oglejte novo možnost »Dodaj spletni račun« v meniju Datoteka za odpiranje čarovnika za račun Minflux.</li>
+          <li xml:lang="sr">Miniflux је сада подржан. Погледајте нову опцију „Додај налог на вези“ у менију „Фајл“ да бисте отворили чаробњак за Miniflux налог.</li>
+          <li xml:lang="sr-Latn">Miniflux je sada podržan. Pogledajte novu opciju „Dodaj nalog na vezi“ u meniju „Fajl“ da biste otvorili čarobnjak za Miniflux nalog.</li>
+          <li xml:lang="sr-ijekavian">Miniflux је сада подржан. Погледајте нову опцију „Додај налог на вези“ у менију „Фајл“ да бисте отворили чаробњак за Miniflux налог.</li>
+          <li xml:lang="sr-ijekavianlatin">Miniflux je sada podržan. Pogledajte novu opciju „Dodaj nalog na vezi“ u meniju „Fajl“ da biste otvorili čarobnjak za Miniflux nalog.</li>
           <li xml:lang="sv">Miniflux stöds nu. Se det nya alternativet "Lägg till nätkonto" i menyn Arkiv för att öppna Miniflux kontoguide.</li>
           <li xml:lang="tr">Miniflux artık destekleniyor. Miniflux hesap sihirbazını açmak için Dosya menüsündeki “Çevrim İçi Hesap Ekle” seçeneğini kullanın.</li>
           <li xml:lang="uk">У новій версії передбачено підтримку Miniflux. Див. новий пункт «Додати обліковий запис у мережі» у меню «Файл», щоб відкрити майстер облікових записів Miniflux.</li>
@@ -283,6 +299,10 @@
           <li xml:lang="ru">Добавлена поддержка Windows;</li>
           <li xml:lang="sk">Pridať podporu pre Windows.</li>
           <li xml:lang="sl">Dodaj podporo za okna.</li>
+          <li xml:lang="sr">Додата подршка за Виндоуз.</li>
+          <li xml:lang="sr-Latn">Dodata podrška za Windows.</li>
+          <li xml:lang="sr-ijekavian">Додата подршка за Виндоуз.</li>
+          <li xml:lang="sr-ijekavianlatin">Dodata podrška za Windows.</li>
           <li xml:lang="sv">Tillägg av fönsterstöd.</li>
           <li xml:lang="tr">Windows desteği eklendi.</li>
           <li xml:lang="uk">Додано підтримку Windows.</li>
@@ -320,6 +340,10 @@
           <li xml:lang="ru">Реализованы комнаты Plasma;</li>
           <li xml:lang="sk">Implementovať aktivitu Plasma.</li>
           <li xml:lang="sl">Izvedi dejavnosti Plasme.</li>
+          <li xml:lang="sr">Уведена подршка за плазма активности.</li>
+          <li xml:lang="sr-Latn">Uvedena podrška za plasma aktivnosti.</li>
+          <li xml:lang="sr-ijekavian">Уведена подршка за плазма активности.</li>
+          <li xml:lang="sr-ijekavianlatin">Uvedena podrška za plasma aktivnosti.</li>
           <li xml:lang="sv">Implementera Plasma-aktivitet.</li>
           <li xml:lang="tr">Plasma Etkinlikler desteği gerçeklendi.</li>
           <li xml:lang="uk">Реалізовано простори дій Плазми.</li>
@@ -348,6 +372,10 @@
           <li xml:lang="ru">Добавлен новый виджет «Что нового?»;</li>
           <li xml:lang="sk">Pridať nový widget Čo je nové.</li>
           <li xml:lang="sl">Doda nov gradnik kaj je novega.</li>
+          <li xml:lang="sr">Додат нови виџет „Шта је ново“.</li>
+          <li xml:lang="sr-Latn">Dodat novi vidžet „Šta je novo“.</li>
+          <li xml:lang="sr-ijekavian">Додат нови виџет „Шта је ново“.</li>
+          <li xml:lang="sr-ijekavianlatin">Dodat novi vidžet „Šta je novo“.</li>
           <li xml:lang="sv">Lägg till ny vad-är-nytt grafisk komponent.</li>
           <li xml:lang="tr">“Neler Yeni” araç takımı eklendi.</li>
           <li xml:lang="ug">يېڭىلىق ئەپچە قوشىدۇ.</li>
@@ -394,6 +422,10 @@
         <p xml:lang="ru">В этом выпуске Akregator перенесён на Qt6 и слегка изменён дизайн приложения.</p>
         <p xml:lang="sk">Toto vydanie portuje Akregator na Qt6 a trochu upravuje dizajn aplikácie.</p>
         <p xml:lang="sl">Ta izdaja prenaša Akgregator na Qt6 in nekoliko spreminja obliko aplikacije.</p>
+        <p xml:lang="sr">Ово издање преноси Акрегатор на КуТ6 и мало дотерује изглед програма.</p>
+        <p xml:lang="sr-Latn">Ovo izdanje prenosi Akregator na Qt6 i malo doteruje izgled programa.</p>
+        <p xml:lang="sr-ijekavian">Ово издање преноси Акрегатор на КуТ6 и мало дотјерује изглед програма.</p>
+        <p xml:lang="sr-ijekavianlatin">Ovo izdanje prenosi Akregator na Qt6 i malo dotjeruje izgled programa.</p>
         <p xml:lang="sv">Utgåvan konverterar Akgregator till Qt6 och finjusterar programmets konstruktion något</p>
         <p xml:lang="tr">Bu yayım, Akregatör’ü Qt6’ya aktarır ve uygulamanın tasarımını biraz değiştirir.</p>
         <p xml:lang="uk">У цьому випуску Akgregator портовано на Qt6, а також дещо скориговано дизайн програми.</p>
