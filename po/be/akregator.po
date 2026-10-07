@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-09-30 00:46+0000\n"
+"POT-Creation-Date: 2026-10-07 00:49+0000\n"
 "PO-Revision-Date: 2008-02-11 23:19+0200\n"
 "Last-Translator: Darafei Praliaskouski <komzpa@gmail.com>\n"
 "Language-Team: Belarusian <i18n@mova.org>\n"
@@ -195,7 +195,7 @@ msgstr[2] "1 хвіліна"
 msgid "Webengine Plugins"
 msgstr "Паралельныя загрузкі"
 
-#: configuration/settings_advanced.cpp:26
+#: configuration/settings_advanced.cpp:25
 #, fuzzy, kde-format
 #| msgid " sec"
 msgctxt "Mark selected article read after"
@@ -1783,42 +1783,42 @@ msgstr ""
 "меню. Вы можаце праглядзець вэб-старонку артыкула на асобнай картцы або ў "
 "браўзэры."
 
-#: src/articlemodel.cpp:77
+#: src/articlemodel.cpp:76
 #, fuzzy, kde-format
 #| msgid "Title"
 msgctxt "Articlelist's column header"
 msgid "Title"
 msgstr "Назва"
 
-#: src/articlemodel.cpp:79
+#: src/articlemodel.cpp:78
 #, fuzzy, kde-format
 #| msgid "Feed"
 msgctxt "Articlelist's column header"
 msgid "Feed"
 msgstr "Стужка"
 
-#: src/articlemodel.cpp:81
+#: src/articlemodel.cpp:80
 #, fuzzy, kde-format
 #| msgid "Date"
 msgctxt "Articlelist's column header"
 msgid "Date"
 msgstr "Дата"
 
-#: src/articlemodel.cpp:83
+#: src/articlemodel.cpp:82
 #, fuzzy, kde-format
 #| msgid "Author"
 msgctxt "Articlelist's column header"
 msgid "Author"
 msgstr "Аўтар"
 
-#: src/articlemodel.cpp:85
+#: src/articlemodel.cpp:84
 #, fuzzy, kde-format
 #| msgid "Description"
 msgctxt "Articlelist's column header"
 msgid "Description"
 msgstr "Апісанне"
 
-#: src/articlemodel.cpp:87
+#: src/articlemodel.cpp:86
 #, fuzzy, kde-format
 #| msgid "Content"
 msgctxt "Articlelist's column header"
@@ -2559,58 +2559,58 @@ msgstr "Вузел ці тэчка прызначэння не знойдзен�
 msgid "Cannot move folder %1 to its own subfolder %2"
 msgstr ""
 
-#: src/subscription/subscriptionlistmodel.cpp:55
+#: src/subscription/subscriptionlistmodel.cpp:54
 #, kde-format
 msgid "Timeout on remote server"
 msgstr "Перавышэнне тэрміну чакання сервера"
 
-#: src/subscription/subscriptionlistmodel.cpp:57
+#: src/subscription/subscriptionlistmodel.cpp:56
 #, kde-format
 msgid "Unknown host"
 msgstr "Невядомы вузел"
 
-#: src/subscription/subscriptionlistmodel.cpp:59
+#: src/subscription/subscriptionlistmodel.cpp:58
 #, kde-format
 msgid "Feed file not found on remote server"
 msgstr "Стужка не знойдзеная на серверы."
 
-#: src/subscription/subscriptionlistmodel.cpp:61
+#: src/subscription/subscriptionlistmodel.cpp:60
 #, fuzzy, kde-format
 #| msgid "Could not import the file %1 (no valid OPML)"
 msgid "Could not read feed (invalid XML)"
 msgstr "Немагчыма імпартаваць файл %1 (няслушны фармат OPML)"
 
-#: src/subscription/subscriptionlistmodel.cpp:63
+#: src/subscription/subscriptionlistmodel.cpp:62
 #, kde-format
 msgid "Could not read feed (unknown format)"
 msgstr "Немагчыма прачытаць стужку (невядомы фармат)"
 
-#: src/subscription/subscriptionlistmodel.cpp:65
+#: src/subscription/subscriptionlistmodel.cpp:64
 #, fuzzy, kde-format
 #| msgid "Could not import the file %1 (no valid OPML)"
 msgid "Could not read feed (invalid feed)"
 msgstr "Немагчыма імпартаваць файл %1 (няслушны фармат OPML)"
 
-#: src/subscription/subscriptionlistmodel.cpp:272
+#: src/subscription/subscriptionlistmodel.cpp:271
 #, kde-format
 msgid "Could not fetch feed: %1"
 msgstr "Немагчыма сцягнуць стужку: %1"
 
-#: src/subscription/subscriptionlistmodel.cpp:321
+#: src/subscription/subscriptionlistmodel.cpp:320
 #, fuzzy, kde-format
 #| msgid "Feeds"
 msgctxt "Feedlist's column header"
 msgid "Feeds"
 msgstr "Стужкі"
 
-#: src/subscription/subscriptionlistmodel.cpp:323
+#: src/subscription/subscriptionlistmodel.cpp:322
 #, fuzzy, kde-format
 #| msgid "Unread"
 msgctxt "Feedlist's column header"
 msgid "Unread"
 msgstr "Непрачытаны"
 
-#: src/subscription/subscriptionlistmodel.cpp:325
+#: src/subscription/subscriptionlistmodel.cpp:324
 #, fuzzy, kde-format
 #| msgid "Total"
 msgctxt "Feedlist's column header"
@@ -2863,14 +2863,14 @@ msgstr "Артыкул"
 msgid "Open In External Browser"
 msgstr "Адкрыць у знешнім браўзэры"
 
-#: src/widgets/searchbar.cpp:45
+#: src/widgets/searchbar.cpp:46
 #, fuzzy, kde-format
 #| msgid " articles"
 msgctxt "@info:placeholder"
 msgid "Search articles…"
 msgstr " артыкулаў"
 
-#: src/widgets/searchbar.cpp:126
+#: src/widgets/searchbar.cpp:127
 #, fuzzy, kde-format
 #| msgid " articles"
 msgctxt "@info:placeholder"

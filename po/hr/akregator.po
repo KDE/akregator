@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-09-30 00:46+0000\n"
+"POT-Creation-Date: 2026-10-07 00:49+0000\n"
 "PO-Revision-Date: 2010-01-24 17:23+0100\n"
 "Last-Translator: Andrej Dundovic <adundovi@gmail.com>\n"
 "Language-Team: Croatian <kde-croatia-list@lists.sourceforge.net>\n"
@@ -166,7 +166,7 @@ msgstr[1] ""
 msgid "Webengine Plugins"
 msgstr ""
 
-#: configuration/settings_advanced.cpp:26
+#: configuration/settings_advanced.cpp:25
 #, kde-format
 msgctxt "Mark selected article read after"
 msgid "%v second"
@@ -1665,37 +1665,37 @@ msgid ""
 "tab or in an external browser window."
 msgstr ""
 
-#: src/articlemodel.cpp:77
+#: src/articlemodel.cpp:76
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Title"
 msgstr ""
 
-#: src/articlemodel.cpp:79
+#: src/articlemodel.cpp:78
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Feed"
 msgstr ""
 
-#: src/articlemodel.cpp:81
+#: src/articlemodel.cpp:80
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Date"
 msgstr ""
 
-#: src/articlemodel.cpp:83
+#: src/articlemodel.cpp:82
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Author"
 msgstr ""
 
-#: src/articlemodel.cpp:85
+#: src/articlemodel.cpp:84
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Description"
 msgstr ""
 
-#: src/articlemodel.cpp:87
+#: src/articlemodel.cpp:86
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Content"
@@ -2370,54 +2370,54 @@ msgstr ""
 msgid "Cannot move folder %1 to its own subfolder %2"
 msgstr ""
 
-#: src/subscription/subscriptionlistmodel.cpp:55
+#: src/subscription/subscriptionlistmodel.cpp:54
 #, kde-format
 msgid "Timeout on remote server"
 msgstr ""
 
-#: src/subscription/subscriptionlistmodel.cpp:57
+#: src/subscription/subscriptionlistmodel.cpp:56
 #, kde-format
 msgid "Unknown host"
 msgstr ""
 
-#: src/subscription/subscriptionlistmodel.cpp:59
+#: src/subscription/subscriptionlistmodel.cpp:58
 #, kde-format
 msgid "Feed file not found on remote server"
 msgstr ""
 
-#: src/subscription/subscriptionlistmodel.cpp:61
+#: src/subscription/subscriptionlistmodel.cpp:60
 #, kde-format
 msgid "Could not read feed (invalid XML)"
 msgstr ""
 
-#: src/subscription/subscriptionlistmodel.cpp:63
+#: src/subscription/subscriptionlistmodel.cpp:62
 #, kde-format
 msgid "Could not read feed (unknown format)"
 msgstr ""
 
-#: src/subscription/subscriptionlistmodel.cpp:65
+#: src/subscription/subscriptionlistmodel.cpp:64
 #, kde-format
 msgid "Could not read feed (invalid feed)"
 msgstr ""
 
-#: src/subscription/subscriptionlistmodel.cpp:272
+#: src/subscription/subscriptionlistmodel.cpp:271
 #, kde-format
 msgid "Could not fetch feed: %1"
 msgstr ""
 
-#: src/subscription/subscriptionlistmodel.cpp:321
+#: src/subscription/subscriptionlistmodel.cpp:320
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Feeds"
 msgstr ""
 
-#: src/subscription/subscriptionlistmodel.cpp:323
+#: src/subscription/subscriptionlistmodel.cpp:322
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Unread"
 msgstr ""
 
-#: src/subscription/subscriptionlistmodel.cpp:325
+#: src/subscription/subscriptionlistmodel.cpp:324
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Total"
@@ -2648,13 +2648,13 @@ msgstr ""
 msgid "Open In External Browser"
 msgstr ""
 
-#: src/widgets/searchbar.cpp:45
+#: src/widgets/searchbar.cpp:46
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "Search articles…"
 msgstr ""
 
-#: src/widgets/searchbar.cpp:126
+#: src/widgets/searchbar.cpp:127
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "Search articles…<%1>"

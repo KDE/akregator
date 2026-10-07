@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-09-30 00:46+0000\n"
+"POT-Creation-Date: 2026-10-07 00:49+0000\n"
 "PO-Revision-Date: 2025-04-06 17:45+0300\n"
 "Last-Translator: Toms Trasuns <toms.trasuns@posteo.net>\n"
 "Language-Team: Latvian <kde-i18n-doc@kde.org>\n"
@@ -183,7 +183,7 @@ msgstr[2] " minūšu"
 msgid "Webengine Plugins"
 msgstr "Tīmekļa dziņa spraudņi"
 
-#: configuration/settings_advanced.cpp:26
+#: configuration/settings_advanced.cpp:25
 #, kde-format
 msgctxt "Mark selected article read after"
 msgid "%v second"
@@ -1721,37 +1721,37 @@ msgstr ""
 "pastāvīgi rādāmus („Atzīmēt kā svarīgus“) vai dzēst tos. Rakstu tīmekļa "
 "vietnes varat atvērt atsevišķā cilnē vai ārējā interneta pārlūkprogrammā."
 
-#: src/articlemodel.cpp:77
+#: src/articlemodel.cpp:76
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Title"
 msgstr "Virsraksts"
 
-#: src/articlemodel.cpp:79
+#: src/articlemodel.cpp:78
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Feed"
 msgstr "Plūsma"
 
-#: src/articlemodel.cpp:81
+#: src/articlemodel.cpp:80
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Date"
 msgstr "Datums"
 
-#: src/articlemodel.cpp:83
+#: src/articlemodel.cpp:82
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Author"
 msgstr "Autors"
 
-#: src/articlemodel.cpp:85
+#: src/articlemodel.cpp:84
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Description"
 msgstr "Apraksts"
 
-#: src/articlemodel.cpp:87
+#: src/articlemodel.cpp:86
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Content"
@@ -2454,54 +2454,54 @@ msgstr "Mezgls vai mērķa mape nav atrasta"
 msgid "Cannot move folder %1 to its own subfolder %2"
 msgstr "Nevar pārvietot mapi „%1“ uz tās apakšmapi „%2“"
 
-#: src/subscription/subscriptionlistmodel.cpp:55
+#: src/subscription/subscriptionlistmodel.cpp:54
 #, kde-format
 msgid "Timeout on remote server"
 msgstr "Noilgums servera pusē"
 
-#: src/subscription/subscriptionlistmodel.cpp:57
+#: src/subscription/subscriptionlistmodel.cpp:56
 #, kde-format
 msgid "Unknown host"
 msgstr "Nezināms resursdators"
 
-#: src/subscription/subscriptionlistmodel.cpp:59
+#: src/subscription/subscriptionlistmodel.cpp:58
 #, kde-format
 msgid "Feed file not found on remote server"
 msgstr "Ziņu avota datne serverī nav atrasts"
 
-#: src/subscription/subscriptionlistmodel.cpp:61
+#: src/subscription/subscriptionlistmodel.cpp:60
 #, kde-format
 msgid "Could not read feed (invalid XML)"
 msgstr "Nevar nolasīt ziņu avotu (XML kļūda)"
 
-#: src/subscription/subscriptionlistmodel.cpp:63
+#: src/subscription/subscriptionlistmodel.cpp:62
 #, kde-format
 msgid "Could not read feed (unknown format)"
 msgstr "Nevar nolasīt ziņu avotu (nezināms formāts)"
 
-#: src/subscription/subscriptionlistmodel.cpp:65
+#: src/subscription/subscriptionlistmodel.cpp:64
 #, kde-format
 msgid "Could not read feed (invalid feed)"
 msgstr "Nevar nolasīt ziņu avotu (nederīgs ziņu avots)"
 
-#: src/subscription/subscriptionlistmodel.cpp:272
+#: src/subscription/subscriptionlistmodel.cpp:271
 #, kde-format
 msgid "Could not fetch feed: %1"
 msgstr "Nevar ielādēt plūsmu: %1"
 
-#: src/subscription/subscriptionlistmodel.cpp:321
+#: src/subscription/subscriptionlistmodel.cpp:320
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Feeds"
 msgstr "Plūsmas"
 
-#: src/subscription/subscriptionlistmodel.cpp:323
+#: src/subscription/subscriptionlistmodel.cpp:322
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Unread"
 msgstr "Nelasīti"
 
-#: src/subscription/subscriptionlistmodel.cpp:325
+#: src/subscription/subscriptionlistmodel.cpp:324
 #, kde-format
 msgctxt "Feedlist's column header"
 msgid "Total"
@@ -2734,13 +2734,13 @@ msgstr "Nosūtīt raksta HTML lapu"
 msgid "Open In External Browser"
 msgstr "Atvērt ārējā pārlūkā"
 
-#: src/widgets/searchbar.cpp:45
+#: src/widgets/searchbar.cpp:46
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "Search articles…"
 msgstr "Meklēt rakstus…"
 
-#: src/widgets/searchbar.cpp:126
+#: src/widgets/searchbar.cpp:127
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "Search articles…<%1>"

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-09-30 00:46+0000\n"
+"POT-Creation-Date: 2026-10-07 00:49+0000\n"
 "PO-Revision-Date: 2007-09-07 10:35+0545\n"
 "Last-Translator: Nabin Gautam <nabin@mpp.org.np>\n"
 "Language-Team: Nepali <info@mpp.org.np>\n"
@@ -181,7 +181,7 @@ msgstr[1] "१ मिनेट"
 msgid "Webengine Plugins"
 msgstr "समरूपी फेच"
 
-#: configuration/settings_advanced.cpp:26
+#: configuration/settings_advanced.cpp:25
 #, fuzzy, kde-format
 #| msgid " sec"
 msgctxt "Mark selected article read after"
@@ -1767,41 +1767,41 @@ msgstr ""
 "प्रबन्ध गर्न पनि सक्नुहुन्छ । लेखको वेब पृष्ठ हेर्न, तपाईँले लेख आन्तरिक रूपमा ट्याबमा वा बाह्य "
 "ब्राउजर सञ्झ्यालमा खोल्न सक्नुहुन्छ ।"
 
-#: src/articlemodel.cpp:77
+#: src/articlemodel.cpp:76
 #, fuzzy, kde-format
 #| msgid "Untitled"
 msgctxt "Articlelist's column header"
 msgid "Title"
 msgstr "शीर्षक बिहिन"
 
-#: src/articlemodel.cpp:79
+#: src/articlemodel.cpp:78
 #, fuzzy, kde-format
 #| msgid "Feed"
 msgctxt "Articlelist's column header"
 msgid "Feed"
 msgstr "फिड"
 
-#: src/articlemodel.cpp:81
+#: src/articlemodel.cpp:80
 #, fuzzy, kde-format
 #| msgid "Date"
 msgctxt "Articlelist's column header"
 msgid "Date"
 msgstr "मिति"
 
-#: src/articlemodel.cpp:83
+#: src/articlemodel.cpp:82
 #, fuzzy, kde-format
 #| msgid "Author"
 msgctxt "Articlelist's column header"
 msgid "Author"
 msgstr "लेखक"
 
-#: src/articlemodel.cpp:85
+#: src/articlemodel.cpp:84
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Description"
 msgstr ""
 
-#: src/articlemodel.cpp:87
+#: src/articlemodel.cpp:86
 #, fuzzy, kde-format
 #| msgid "Comments"
 msgctxt "Articlelist's column header"
@@ -2533,59 +2533,59 @@ msgstr ""
 msgid "Cannot move folder %1 to its own subfolder %2"
 msgstr ""
 
-#: src/subscription/subscriptionlistmodel.cpp:55
+#: src/subscription/subscriptionlistmodel.cpp:54
 #, kde-format
 msgid "Timeout on remote server"
 msgstr ""
 
-#: src/subscription/subscriptionlistmodel.cpp:57
+#: src/subscription/subscriptionlistmodel.cpp:56
 #, kde-format
 msgid "Unknown host"
 msgstr ""
 
-#: src/subscription/subscriptionlistmodel.cpp:59
+#: src/subscription/subscriptionlistmodel.cpp:58
 #, fuzzy, kde-format
 #| msgid "Feed not found from %1."
 msgid "Feed file not found on remote server"
 msgstr "%1 बाट फिड फेला पार्न सकेन ।"
 
-#: src/subscription/subscriptionlistmodel.cpp:61
+#: src/subscription/subscriptionlistmodel.cpp:60
 #, fuzzy, kde-format
 #| msgid "Could not import the file %1 (no valid OPML)"
 msgid "Could not read feed (invalid XML)"
 msgstr "फाइल %1 आयात गर्न सकेन (OPML वैध छैन)"
 
-#: src/subscription/subscriptionlistmodel.cpp:63
+#: src/subscription/subscriptionlistmodel.cpp:62
 #, kde-format
 msgid "Could not read feed (unknown format)"
 msgstr ""
 
-#: src/subscription/subscriptionlistmodel.cpp:65
+#: src/subscription/subscriptionlistmodel.cpp:64
 #, fuzzy, kde-format
 #| msgid "Could not import the file %1 (no valid OPML)"
 msgid "Could not read feed (invalid feed)"
 msgstr "फाइल %1 आयात गर्न सकेन (OPML वैध छैन)"
 
-#: src/subscription/subscriptionlistmodel.cpp:272
+#: src/subscription/subscriptionlistmodel.cpp:271
 #, kde-format
 msgid "Could not fetch feed: %1"
 msgstr ""
 
-#: src/subscription/subscriptionlistmodel.cpp:321
+#: src/subscription/subscriptionlistmodel.cpp:320
 #, fuzzy, kde-format
 #| msgid "Feeds"
 msgctxt "Feedlist's column header"
 msgid "Feeds"
 msgstr "फिड"
 
-#: src/subscription/subscriptionlistmodel.cpp:323
+#: src/subscription/subscriptionlistmodel.cpp:322
 #, fuzzy, kde-format
 #| msgid "Unread"
 msgctxt "Feedlist's column header"
 msgid "Unread"
 msgstr "नपढिएको"
 
-#: src/subscription/subscriptionlistmodel.cpp:325
+#: src/subscription/subscriptionlistmodel.cpp:324
 #, fuzzy, kde-format
 #| msgid "Total"
 msgctxt "Feedlist's column header"
@@ -2837,14 +2837,14 @@ msgstr "लेख"
 msgid "Open In External Browser"
 msgstr "बाह्य ब्राउजरमा खोल्नुहोस्"
 
-#: src/widgets/searchbar.cpp:45
+#: src/widgets/searchbar.cpp:46
 #, fuzzy, kde-format
 #| msgid " articles"
 msgctxt "@info:placeholder"
 msgid "Search articles…"
 msgstr " लेख"
 
-#: src/widgets/searchbar.cpp:126
+#: src/widgets/searchbar.cpp:127
 #, fuzzy, kde-format
 #| msgid " articles"
 msgctxt "@info:placeholder"

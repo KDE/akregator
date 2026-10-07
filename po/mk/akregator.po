@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-09-30 00:46+0000\n"
+"POT-Creation-Date: 2026-10-07 00:49+0000\n"
 "PO-Revision-Date: 2009-01-18 02:35+0100\n"
 "Last-Translator: Bozidar Proevski <bobibobi@freemail.com.mk>\n"
 "Language-Team: Macedonian <mkde-l10n@lists.sourceforge.net>\n"
@@ -187,7 +187,7 @@ msgstr[2] "1 минута"
 msgid "Webengine Plugins"
 msgstr "Истовремени преземања"
 
-#: configuration/settings_advanced.cpp:26
+#: configuration/settings_advanced.cpp:25
 #, fuzzy, kde-format
 #| msgid " sec"
 msgctxt "Mark selected article read after"
@@ -1764,39 +1764,39 @@ msgstr ""
 "на глувчето. За да ја видете веб страната на написот може да го отворите "
 "написот внатрешно во ливче или на надворешен прозорец од прелистувачот."
 
-#: src/articlemodel.cpp:77
+#: src/articlemodel.cpp:76
 #, fuzzy, kde-format
 msgctxt "Articlelist's column header"
 msgid "Title"
 msgstr "&Запис"
 
-#: src/articlemodel.cpp:79
+#: src/articlemodel.cpp:78
 #, fuzzy, kde-format
 #| msgid "Feed"
 msgctxt "Articlelist's column header"
 msgid "Feed"
 msgstr "Довод"
 
-#: src/articlemodel.cpp:81
+#: src/articlemodel.cpp:80
 #, fuzzy, kde-format
 #| msgid "Date"
 msgctxt "Articlelist's column header"
 msgid "Date"
 msgstr "Датум"
 
-#: src/articlemodel.cpp:83
+#: src/articlemodel.cpp:82
 #, fuzzy, kde-format
 msgctxt "Articlelist's column header"
 msgid "Author"
 msgstr "Автори"
 
-#: src/articlemodel.cpp:85
+#: src/articlemodel.cpp:84
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Description"
 msgstr ""
 
-#: src/articlemodel.cpp:87
+#: src/articlemodel.cpp:86
 #, fuzzy, kde-format
 #| msgid "Comments"
 msgctxt "Articlelist's column header"
@@ -2529,59 +2529,59 @@ msgstr ""
 msgid "Cannot move folder %1 to its own subfolder %2"
 msgstr ""
 
-#: src/subscription/subscriptionlistmodel.cpp:55
+#: src/subscription/subscriptionlistmodel.cpp:54
 #, kde-format
 msgid "Timeout on remote server"
 msgstr ""
 
-#: src/subscription/subscriptionlistmodel.cpp:57
+#: src/subscription/subscriptionlistmodel.cpp:56
 #, kde-format
 msgid "Unknown host"
 msgstr ""
 
-#: src/subscription/subscriptionlistmodel.cpp:59
+#: src/subscription/subscriptionlistmodel.cpp:58
 #, fuzzy, kde-format
 #| msgid "Feed not found from %1."
 msgid "Feed file not found on remote server"
 msgstr "Не е пронајден довод од %1"
 
-#: src/subscription/subscriptionlistmodel.cpp:61
+#: src/subscription/subscriptionlistmodel.cpp:60
 #, fuzzy, kde-format
 #| msgid "Could not import the file %1 (no valid OPML)"
 msgid "Could not read feed (invalid XML)"
 msgstr "Не можам да ја вметнам датотеката: %1 (невалиден OPML)"
 
-#: src/subscription/subscriptionlistmodel.cpp:63
+#: src/subscription/subscriptionlistmodel.cpp:62
 #, kde-format
 msgid "Could not read feed (unknown format)"
 msgstr ""
 
-#: src/subscription/subscriptionlistmodel.cpp:65
+#: src/subscription/subscriptionlistmodel.cpp:64
 #, fuzzy, kde-format
 #| msgid "Could not import the file %1 (no valid OPML)"
 msgid "Could not read feed (invalid feed)"
 msgstr "Не можам да ја вметнам датотеката: %1 (невалиден OPML)"
 
-#: src/subscription/subscriptionlistmodel.cpp:272
+#: src/subscription/subscriptionlistmodel.cpp:271
 #, kde-format
 msgid "Could not fetch feed: %1"
 msgstr ""
 
-#: src/subscription/subscriptionlistmodel.cpp:321
+#: src/subscription/subscriptionlistmodel.cpp:320
 #, fuzzy, kde-format
 #| msgid "Feeds"
 msgctxt "Feedlist's column header"
 msgid "Feeds"
 msgstr "Доводи"
 
-#: src/subscription/subscriptionlistmodel.cpp:323
+#: src/subscription/subscriptionlistmodel.cpp:322
 #, fuzzy, kde-format
 #| msgid "Unread"
 msgctxt "Feedlist's column header"
 msgid "Unread"
 msgstr "Непрочитани"
 
-#: src/subscription/subscriptionlistmodel.cpp:325
+#: src/subscription/subscriptionlistmodel.cpp:324
 #, fuzzy, kde-format
 msgctxt "Feedlist's column header"
 msgid "Total"
@@ -2830,14 +2830,14 @@ msgstr "&Нареден запис"
 msgid "Open In External Browser"
 msgstr "Отвори во надворешен прелистувач"
 
-#: src/widgets/searchbar.cpp:45
+#: src/widgets/searchbar.cpp:46
 #, fuzzy, kde-format
 #| msgid " articles"
 msgctxt "@info:placeholder"
 msgid "Search articles…"
 msgstr " написи"
 
-#: src/widgets/searchbar.cpp:126
+#: src/widgets/searchbar.cpp:127
 #, fuzzy, kde-format
 #| msgid " articles"
 msgctxt "@info:placeholder"

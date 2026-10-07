@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-09-30 00:46+0000\n"
+"POT-Creation-Date: 2026-10-07 00:49+0000\n"
 "PO-Revision-Date: 2008-04-07 23:17+0700\n"
 "Last-Translator: Thanomsub Noppaburana <donga.nb@gmail.com>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
@@ -178,7 +178,7 @@ msgstr[0] "นาที"
 msgid "Webengine Plugins"
 msgstr "ปรับแต่ง &Akregator..."
 
-#: configuration/settings_advanced.cpp:26
+#: configuration/settings_advanced.cpp:25
 #, kde-format
 msgctxt "Mark selected article read after"
 msgid "%v second"
@@ -1778,42 +1778,42 @@ msgstr ""
 "โดยใช้เมนูจากการคลิกเมาส์ปุ่มขวาได้อีกด้วย ส่วนการเรียกดูหน้าเว็บของบทความนั้น "
 "คุณจะสามารถเปิดบทความด้วยแท็บภายในโปรแกรม หรือจะใช้เว็บเบราว์เซอร์ภายนอกก็ได้"
 
-#: src/articlemodel.cpp:77
+#: src/articlemodel.cpp:76
 #, fuzzy, kde-format
 #| msgid "Title"
 msgctxt "Articlelist's column header"
 msgid "Title"
 msgstr "ชื่อเรื่อง"
 
-#: src/articlemodel.cpp:79
+#: src/articlemodel.cpp:78
 #, fuzzy, kde-format
 #| msgid "Feed"
 msgctxt "Articlelist's column header"
 msgid "Feed"
 msgstr "แหล่งป้อน"
 
-#: src/articlemodel.cpp:81
+#: src/articlemodel.cpp:80
 #, fuzzy, kde-format
 #| msgid "Date"
 msgctxt "Articlelist's column header"
 msgid "Date"
 msgstr "วันที่"
 
-#: src/articlemodel.cpp:83
+#: src/articlemodel.cpp:82
 #, fuzzy, kde-format
 #| msgid "Author"
 msgctxt "Articlelist's column header"
 msgid "Author"
 msgstr "ผู้เขียน"
 
-#: src/articlemodel.cpp:85
+#: src/articlemodel.cpp:84
 #, fuzzy, kde-format
 #| msgid "Description"
 msgctxt "Articlelist's column header"
 msgid "Description"
 msgstr "คำอธิบาย"
 
-#: src/articlemodel.cpp:87
+#: src/articlemodel.cpp:86
 #, fuzzy, kde-format
 #| msgid "Content"
 msgctxt "Articlelist's column header"
@@ -2537,56 +2537,56 @@ msgstr "ไม่พบโหนดหรือโฟลเดอร์ปลา
 msgid "Cannot move folder %1 to its own subfolder %2"
 msgstr "ไม่สามารถย้ายโฟลเดอร์ %1 ไปยังโฟลเดอร์ย่อย %2 ของตัวมันเองได้"
 
-#: src/subscription/subscriptionlistmodel.cpp:55
+#: src/subscription/subscriptionlistmodel.cpp:54
 #, kde-format
 msgid "Timeout on remote server"
 msgstr "หมดเวลาบนเครื่องเซิร์ฟเวอร์ปลายทาง"
 
-#: src/subscription/subscriptionlistmodel.cpp:57
+#: src/subscription/subscriptionlistmodel.cpp:56
 #, kde-format
 msgid "Unknown host"
 msgstr "ไม่รู้จักโฮสต์ปลายทาง"
 
-#: src/subscription/subscriptionlistmodel.cpp:59
+#: src/subscription/subscriptionlistmodel.cpp:58
 #, kde-format
 msgid "Feed file not found on remote server"
 msgstr "ไม่พบแฟ้มแหล่งป้อนบนเซิร์ฟเวอร์ปลายทาง"
 
-#: src/subscription/subscriptionlistmodel.cpp:61
+#: src/subscription/subscriptionlistmodel.cpp:60
 #, kde-format
 msgid "Could not read feed (invalid XML)"
 msgstr "ไม่สามารถอ่านแหล่งป้อนได้ (ไวยากรณ์ XML ไม่ถูกต้อง)"
 
-#: src/subscription/subscriptionlistmodel.cpp:63
+#: src/subscription/subscriptionlistmodel.cpp:62
 #, kde-format
 msgid "Could not read feed (unknown format)"
 msgstr "ไม่สามารถอ่านแหล่งป้อนได้ (ไม่รู้จักรูปแบบ)"
 
-#: src/subscription/subscriptionlistmodel.cpp:65
+#: src/subscription/subscriptionlistmodel.cpp:64
 #, kde-format
 msgid "Could not read feed (invalid feed)"
 msgstr "ไม่สามารถอ่านแหล่งป้อนได้ (แหล่งป้อนไม่ถูกต้อง)"
 
-#: src/subscription/subscriptionlistmodel.cpp:272
+#: src/subscription/subscriptionlistmodel.cpp:271
 #, kde-format
 msgid "Could not fetch feed: %1"
 msgstr "ไม่สามารถอ่านแหล่งป้อนได้: %1"
 
-#: src/subscription/subscriptionlistmodel.cpp:321
+#: src/subscription/subscriptionlistmodel.cpp:320
 #, fuzzy, kde-format
 #| msgid "Feeds"
 msgctxt "Feedlist's column header"
 msgid "Feeds"
 msgstr "แหล่งป้อน"
 
-#: src/subscription/subscriptionlistmodel.cpp:323
+#: src/subscription/subscriptionlistmodel.cpp:322
 #, fuzzy, kde-format
 #| msgid "Unread"
 msgctxt "Feedlist's column header"
 msgid "Unread"
 msgstr "ยังไม่อ่าน"
 
-#: src/subscription/subscriptionlistmodel.cpp:325
+#: src/subscription/subscriptionlistmodel.cpp:324
 #, fuzzy, kde-format
 #| msgid "Total"
 msgctxt "Feedlist's column header"
@@ -2837,14 +2837,14 @@ msgstr "บทความ"
 msgid "Open In External Browser"
 msgstr "เปิดด้วยเบราว์เซอร์ภายนอก"
 
-#: src/widgets/searchbar.cpp:45
+#: src/widgets/searchbar.cpp:46
 #, fuzzy, kde-format
 #| msgid " articles"
 msgctxt "@info:placeholder"
 msgid "Search articles…"
 msgstr " บทความ"
 
-#: src/widgets/searchbar.cpp:126
+#: src/widgets/searchbar.cpp:127
 #, fuzzy, kde-format
 #| msgid " articles"
 msgctxt "@info:placeholder"
