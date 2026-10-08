@@ -13,7 +13,7 @@ Dependencies:
     'pim/libkdepim': '@same'
     'pim/messagelib': '@same'
     'pim/pimcommon': '@same'
-    'libraries/ktextaddons': '@latest-kf6'
+    'libraries/ktextaddons': '1.9'
 
  - 'on': ['Linux', 'FreeBSD']
    'require':
