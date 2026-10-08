@@ -17,7 +17,7 @@ Dependencies:
 
  - 'on': ['Linux', 'FreeBSD']
    'require':
-    'plasma/plasma-activities': '@latest-kf6'
+    'plasma/plasma-activities': 'Plasma/6.6'
 
 Options:
  require-passing-tests-on: ['@all']
