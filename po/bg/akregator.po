@@ -416,8 +416,7 @@ msgstr "Сигурност"
 #, fuzzy, kde-format
 #| msgid "Verify URLs using Google's Safe Browsing API"
 msgid "Verify URLs using Google’s Safe Browsing API"
-msgstr ""
-"Проверка на URL адресите с помощта на API за безопасно сърфиране на Google"
+msgstr "Проверка на URL адреси чрез Google Safe Browsing API"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_EnableJavascript)
 #. i18n: ectx: label, entry, group (Browser)
@@ -798,9 +797,10 @@ msgid ""
 "the default one. This is here because some proxies may interrupt the "
 "connection because of having “gator” in the name."
 msgstr ""
-"Опцията ви позволява да посочите потребителски низ вместо този по "
-"подразбиране. Това е направено заради някои проксита, които може да "
-"прекъснат връзката, защото в името има \"gator\"."
+"Тази опция позволява на потребителя да зададе персонализиран низ за "
+"потребителски агент (user-agent) вместо използването на стандартния. Това е "
+"добавено, тъй като някои прокси сървъри могат да прекъснат връзката, ако в "
+"името присъства „gator“."
 
 #. i18n: ectx: label, entry, group (General)
 #: interfaces/akregator.kcfg:152
@@ -1158,7 +1158,7 @@ msgstr "Eike Hein"
 #, fuzzy, kde-format
 #| msgid "'Delayed mark as read' feature"
 msgid "‘Delayed mark as read’ feature"
-msgstr "Функция \"Отложено маркиране като прочетено\""
+msgstr "Функция за „Закъсняло маркиране като прочетено“"
 
 #: src/aboutdata.cpp:43
 #, kde-format
@@ -1716,11 +1716,12 @@ msgid ""
 "view the web page of the article, you can open the article internally in a "
 "tab or in an external browser window."
 msgstr ""
-"<h2> Списък със статии </h2> Тук можете да разглеждате статии от избраната в "
-"момента емисия. Можете също така да управлявате статии, като ги маркирате "
-"като постоянни (\" Маркиране като важни \") или да ги изтривате, като "
-"използвате десния бутон на мишката, за да видите уеб страницата на статията, "
-"можете да я отворите вътре в раздел или във външен прозорец на браузъра."
+"<h2>Списък със статии</h2>Тук можете да разглеждате статии от текущо "
+"избрания фийд. Можете също така да управлявате статиите, като например да ги "
+"маркирате като постоянни („Маркиране като важни“) или да ги изтриете, "
+"използвайки менюто с десния бутон на мишката. За преглед на уеб страницата "
+"на статията можете да отворите статията вътрешно в нов раздел или във външен "
+"браузър."
 
 #: src/articlemodel.cpp:76
 #, kde-format

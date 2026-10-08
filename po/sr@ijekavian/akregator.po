@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-10-07 00:49+0000\n"
-"PO-Revision-Date: 2026-10-05 12:49+0200\n"
+"PO-Revision-Date: 2026-10-07 11:45+0200\n"
 "Last-Translator: Nemanja Hiršl <nemhirsl@gmail.com>\n"
 "Language-Team: Serbian <kde-i18n-sr@kde.org>\n"
 "Language: sr@ijekavian\n"
@@ -528,7 +528,7 @@ msgstr "Укључи уклапање са плазма активностима
 #: configuration/ui/settings_general.ui:167
 #, kde-format
 msgid "Startup"
-msgstr "Покрени"
+msgstr "Покретање"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_MarkAllFeedsReadOnStartup)
 #: configuration/ui/settings_general.ui:173
@@ -540,7 +540,7 @@ msgstr "Означи &све доводе као прочитане на пок�
 #: configuration/ui/settings_general.ui:180
 #, kde-format
 msgid "Fetch all fee&ds on startup"
-msgstr "Очитај све дов&оде на покретању"
+msgstr "Очитај све &доводе на покретању"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: configuration/ui/settings_general.ui:190
@@ -2689,7 +2689,7 @@ msgstr "&Користи подразумијеване поставке"
 #: src/ui/feedpropertieswidgetbase.ui:219
 #, kde-format
 msgid "Di&sable archiving"
-msgstr "Ис&кључи архивирање"
+msgstr "Искључи &архивирање"
 
 #. i18n: ectx: property (text), widget (QRadioButton, rb_limitArticleNumber)
 #: src/ui/feedpropertieswidgetbase.ui:250
@@ -2701,7 +2701,7 @@ msgstr "Ограничи архи&ву на:"
 #: src/ui/feedpropertieswidgetbase.ui:280
 #, kde-format
 msgid "&Delete articles older than:"
-msgstr "&Обриши чланке старије од:"
+msgstr "Обриши &чланке старије од:"
 
 #. i18n: ectx: attribute (title), widget (QWidget, tab3)
 #: src/ui/feedpropertieswidgetbase.ui:343
