@@ -34,6 +34,18 @@
 >&Anne-Marie.Mahfouf.mail; </address
 ></affiliation>
 </author>
+<author
+><firstname
+>Blagovest</firstname
+> <surname
+>Petrov</surname
+> <affiliation
+><address
+><email
+>blagovest@petrovs.info</email>
+</address
+></affiliation>
+</author>
 
 <othercredit role="translator"
 ><firstname
@@ -110,9 +122,9 @@
 >&FDLNotice;</legalnotice>
 
 <date
->2021-03-31</date>
+>2026-07-15</date>
 <releaseinfo
->Aplicaciones 21.08</releaseinfo>
+>Aplicaciones 26.12</releaseinfo>
 
 <!-- Abstract about this handbook -->
 
@@ -440,6 +452,110 @@ say how to start it -->
 </sect1>
 </chapter>
 
+<chapter id="online-accounts">
+<title
+>Cuentas en línea</title>
+
+<para
+>Además de suscribirse a fuentes individuales, &akregator; puede conectarse a un servicio de lectura de fuentes en línea y replicar sus suscripciones. En la actualidad solo existe compatibilidad con un único tipo de cuenta: <ulink url="https://miniflux.app/"
+>Miniflux</ulink
+>, un lector de fuentes autoalojado. Tras configurar una cuenta, &akregator; crea una carpeta con el nombre «<replaceable
+>nombre de la cuenta</replaceable
+> (Miniflux)» que replica las categorías y las fuentes del servidor. Los artículos de obtienen a través de las <acronym
+>API</acronym
+> de los servicios en lugar de descargar las fuentes directamente y el estado de lectura se sincroniza en ambas direcciones.</para>
+
+<sect1 id="adding-online-account">
+<title
+>Añadir una cuenta en línea</title>
+
+<para
+>Seleccione <menuchoice
+><guimenu
+>Archivo</guimenu
+><guimenuitem
+>Añadir cuenta en línea…</guimenuitem
+></menuchoice
+> para abrir el asistente de cuentas. En la primera página, escoja el tipo de cuenta. La segunda página contiene las preferencias del tipo seleccionado. Para una cuenta de Miniflux son:</para>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Nombre de la cuenta:</guilabel
+></term>
+<listitem
+><para
+>Un nombre de su elección. Se usa para la carpeta de la cuenta en la lista de fuentes y no se puede cambiar posteriormente.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>URL del servidor:</guilabel
+></term>
+<listitem
+><para
+>La dirección del servidor Miniflux. Por ejemplo <userinput
+>https://miniflux.ejemplo.com</userinput
+>.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Token de la API:</guilabel
+></term>
+<listitem
+><para
+>Un token de <acronym
+>API</acronym
+> para su usuario de Miniflux. Puede crear uno en la interfaz web de Miniflux en <menuchoice
+><guimenu
+>Preferencias</guimenu
+><guimenuitem
+>Claves API</guimenuitem
+></menuchoice
+>. &akregator; guarda el token en la cartera del sistema.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+<para
+>Use el botón <guibutton
+>Probar conexión</guibutton
+> para verificar la dirección del servidor y el token antes de salir del asistente. Tras finalizar el asistente, &akregator; obtiene las categorías y las fuentes del servidor y empieza a importar los artículos que no haya leído.</para>
+</sect1>
+
+<sect1 id="online-account-sync">
+<title
+>Funcionamiento de la sincronización</title>
+
+<para
+>Las fuentes de una cuenta en línea se actualizan con el intervalo de tiempo indicado en la página <link linkend="general-tab"
+>General</link
+> de las preferencias, obteniendo los artículos sin leer del servidor. Para mantener la capacidad de respuesta de la interfaz de usuario, cada actualización importa como máximo los 1000 artículos sin leer más recientes de cada fuente.</para>
+
+<para
+>Cuando se marca un artículo como leído o sin leer, el cambio se envía de vuelta al servidor tras una breve demora, por lo que la lectura de varios artículos seguidos se realiza en una única petición. Al marcar un artículo como «Importante», se conmuta la estrella (marcador) del artículo en el servidor.</para>
+</sect1>
+
+<sect1 id="managing-online-accounts">
+<title
+>Gestión de cuentas</title>
+
+<para
+>Las cuentas en línea se gestionan en la página <link linkend="accounts-tab"
+>Cuentas</link
+> del diálogo de configuración, donde puede añadir, modificar y eliminar cuentas. Para las cuentas existentes, puede cambiar la dirección del servidor y el token de <acronym
+>API</acronym
+>; el cambio tiene efecto de forma inmediata y desencadena una nueva sincronización.</para>
+
+<para
+>Al eliminar una cuenta se borra su carpeta de la lista de fuentes, su configuración y sus credenciales guardadas. La cuenta y los artículos del servidor no se ven afectados. El borrado de la carpeta de la cuenta directamente en la lista de fuentes tiene el mismo efecto.</para>
+</sect1>
+</chapter>
+
 <chapter id="configuration">
 <title
 >Configurando &akregator;</title>
@@ -624,6 +740,51 @@ say how to start it -->
 </varlistentry>
 </variablelist>
 
+</sect1>
+
+<sect1 id="accounts-tab">
+<title
+>Cuentas</title>
+<para
+>La página «Cuentas» muestra las <link linkend="online-accounts"
+>cuentas en línea</link
+> configuradas con su tipo.</para>
+<variablelist>
+<varlistentry>
+<term
+><guibutton
+>Añadir…</guibutton
+></term>
+<listitem
+><para
+>Abre el asistente <link linkend="adding-online-account"
+>Añadir cuenta en línea</link
+>.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guibutton
+>Modificar…</guibutton
+></term>
+<listitem
+><para
+>Abre los ajustes de la cuenta seleccionada para cambiar la dirección del servidor o el token de <acronym
+>API</acronym
+>.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guibutton
+>Eliminar</guibutton
+></term>
+<listitem
+><para
+>Elimina la cuenta seleccionada, incluyendo su carpeta de la lista de fuentes y sus credenciales guardadas. El servidor no se ve afectado.</para
+></listitem>
+</varlistentry>
+</variablelist>
 </sect1>
 
 <sect1 id="adblock-tab">
@@ -1177,6 +1338,25 @@ say how to start it -->
 > el diálogo guardar y exporte sus fuentes y estructura de carpetas como un archivo <filename class="extension"
 >.opml</filename
 >.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Archivo</guimenu
+> <guimenuitem
+>Añadir cuenta en línea…</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Abrir</action
+> el asistente <link linkend="adding-online-account"
+>Añadir cuenta en línea</link
+> para conectar &akregator; a un servicio de lectura de fuentes en línea, como Miniflux.</para
 ></listitem>
 </varlistentry>
 
