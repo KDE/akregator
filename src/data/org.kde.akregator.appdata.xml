@@ -228,6 +228,7 @@
         <ul>
           <li>Miniflux is now supported. See the new "Add Online Account" option in the File menu to open the Miniflux account wizard.</li>
           <li xml:lang="ar">أصبح برنامج Miniflux متاحًا الآن. انظر الخيار الجديد «أضف حساب عبر الإنترنت» في قائمة ملف لفتح معالج حساب Miniflux.</li>
+          <li xml:lang="bg">Вече се поддържа Miniflux. Вижте новата опция „Добавяне на онлайн акаунт“ в менюто „Файл“, за да отворите помощника за акаунти на Miniflux.</li>
           <li xml:lang="ca">Ara s'admet el Miniflux. Vegeu l'opció nova «Afegeix un compte en línia» al menú Fitxer per a obrir l'assistent de comptes del Miniflux.</li>
           <li xml:lang="ca-valencia">Ara s'admet el Miniflux. Vegeu l'opció nova «Afig un compte en línia» en el menú Fitxer per a obrir l'assistent de comptes del Miniflux.</li>
           <li xml:lang="cs">Nyní je podporován Miniflux. V nabídce Soubor najdete novou možnost "Přidat online účet", pomocí které můžete spustit průvodce nastavením účtu Miniflux.</li>
