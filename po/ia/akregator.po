@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-10-07 00:49+0000\n"
-"PO-Revision-Date: 2026-09-02 15:28+0200\n"
+"PO-Revision-Date: 2026-10-09 15:18+0200\n"
 "Last-Translator: giovanni <g.sora@tiscali.it>\n"
 "Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
 "Language: ia\n"
@@ -104,11 +104,10 @@ msgstr ""
 #, kde-format
 msgctxt "@title:column"
 msgid "Account"
-msgstr ""
+msgstr "Conto"
 
 #: configuration/akregator_config_accounts.cpp:39
-#, fuzzy, kde-format
-#| msgid "Type"
+#, kde-format
 msgctxt "@title:column"
 msgid "Type"
 msgstr "Typo"
@@ -117,18 +116,16 @@ msgstr "Typo"
 #, kde-format
 msgctxt "@action:button Add account"
 msgid "Add…"
-msgstr ""
+msgstr "Adde…"
 
 #: configuration/akregator_config_accounts.cpp:46
-#, fuzzy, kde-format
-#| msgid "Modify..."
+#, kde-format
 msgctxt "@action:button"
 msgid "Modify…"
 msgstr "Modifica..."
 
 #: configuration/akregator_config_accounts.cpp:47
-#, fuzzy, kde-format
-#| msgid "Remove"
+#, kde-format
 msgctxt "@action:button"
 msgid "Remove"
 msgstr "Remove"
@@ -140,13 +137,15 @@ msgid ""
 "This removes the account’s folder from the feed tree and deletes its stored "
 "credentials; the server is not affected."
 msgstr ""
+"Vole tu vermente remover le conto “%1”?\n"
+"Isto remove le dossier del conto del arbore de fluxos (syndicationes)  e "
+"dele su credentiales immagazinate; le servitor non es affectate."
 
 #: configuration/akregator_config_accounts.cpp:138
-#, fuzzy, kde-format
-#| msgid "Remove nothing"
+#, kde-format
 msgctxt "@title:window"
 msgid "Remove Account"
-msgstr "Remove nihil"
+msgstr "Remove conto"
 
 #: configuration/akregator_config_archive.cpp:37
 #, kde-format
@@ -409,8 +408,7 @@ msgstr "Securitate"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_CheckPhishingUrl)
 #: configuration/ui/settings_browser.ui:146
-#, fuzzy, kde-format
-#| msgid "Verify URLs using Google's Safe Browsing API"
+#, kde-format
 msgid "Verify URLs using Google’s Safe Browsing API"
 msgstr ""
 "Verifica URLs usante  Google's Safe Browsing API (API NAvigation secure de "
@@ -786,11 +784,7 @@ msgstr ""
 
 #. i18n: ectx: whatsthis, entry, group (Network)
 #: interfaces/akregator.kcfg:146
-#, fuzzy, kde-format
-#| msgid ""
-#| "This option allows user to specify custom user-agent string instead of "
-#| "using the default one. This is here because some proxies may interrupt "
-#| "the connection because of having \"gator\" in the name."
+#, kde-format
 msgid ""
 "This option allows user to specify custom user-agent string instead of using "
 "the default one. This is here because some proxies may interrupt the "
@@ -798,7 +792,7 @@ msgid ""
 msgstr ""
 "Iste option permitte le usator de specificar un catena personalisate de "
 "usator-agente in loco de usar lo predefinite. Isto es hic proque alcun "
-"proxies pote interrumper le connexion per haber \"gator\" in le nomine."
+"proxies pote interrumper le connexion per haber “gator” in le nomine."
 
 #. i18n: ectx: label, entry, group (General)
 #: interfaces/akregator.kcfg:152
@@ -1154,8 +1148,7 @@ msgid "Eike Hein"
 msgstr "Eike Hein"
 
 #: src/aboutdata.cpp:42
-#, fuzzy, kde-format
-#| msgid "'Delayed mark as read' feature"
+#, kde-format
 msgid "‘Delayed mark as read’ feature"
 msgstr "Characteristica de 'Marca retardate como legite'"
 
@@ -1243,11 +1236,10 @@ msgid "&Export Feeds…"
 msgstr "&Exporta syndicationes..."
 
 #: src/actions/actionmanagerimpl.cpp:215
-#, fuzzy, kde-format
-#| msgid "Modify Online Reader Account"
+#, kde-format
 msgctxt "@action"
 msgid "Add Online Account…"
-msgstr "Modifica conto de lector in linea"
+msgstr "Adde conto in linea…"
 
 #: src/actions/actionmanagerimpl.cpp:224
 #, kde-format
@@ -1414,8 +1406,7 @@ msgid "Set Focus to Quick Search"
 msgstr "Fixa foco a Cerca rapide"
 
 #: src/actions/actionmanagerimpl.cpp:463
-#, fuzzy, kde-format
-#| msgid "What's new"
+#, kde-format
 msgid "What’s new"
 msgstr "Que es de novo"
 
@@ -1701,13 +1692,7 @@ msgid "No result found"
 msgstr "Necun exito trovate"
 
 #: src/articlelistview.cpp:382
-#, fuzzy, kde-format
-#| msgid ""
-#| "<h2>Article list</h2>Here you can browse articles from the currently "
-#| "selected feed. You can also manage articles, as marking them as "
-#| "persistent (\"Mark as Important\") or delete them, using the right mouse "
-#| "button menu. To view the web page of the article, you can open the "
-#| "article internally in a tab or in an external browser window."
+#, kde-format
 msgid ""
 "<h2>Article list</h2>Here you can browse articles from the currently "
 "selected feed. You can also manage articles, as marking them as persistent "
@@ -2332,102 +2317,98 @@ msgstr[1] "e %1 alteres"
 
 #: src/plugins/addaccountwizard.cpp:22
 #: src/plugins/miniflux/minifluxplugin.cpp:90
-#, fuzzy, kde-format
-#| msgid "Modify Online Reader Account"
+#, kde-format
 msgctxt "@title:window"
 msgid "Add Online Account"
-msgstr "Modifica conto de lector in linea"
+msgstr "Adde conto in linea"
 
 #: src/plugins/addaccountwizard.cpp:27
 #, kde-format
 msgctxt "@title:tab, wizard page for selecting the account type"
 msgid "Account Type"
-msgstr ""
+msgstr "Typo de conto"
 
 #: src/plugins/addaccountwizard.cpp:31
-#, fuzzy, kde-format
-#| msgid "Bar Settings"
+#, kde-format
 msgctxt "@title:tab, wizard page with the account settings"
 msgid "Account Settings"
-msgstr "Preferentias de barra"
+msgstr "Preferentias de conto"
 
 #: src/plugins/miniflux/minifluxaccountdialog.cpp:20
 #, kde-format
 msgctxt "@title:window"
 msgid "Miniflux Account Settings"
-msgstr ""
+msgstr "Preferentias de conto de Miniflux"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:26
 #, kde-format
 msgctxt "@action:button"
 msgid "Test Connection"
-msgstr ""
+msgstr "Essaya connexion"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:31
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "My Miniflux"
-msgstr ""
+msgstr "Mi Miniflux"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:32
-#, fuzzy, kde-format
-#| msgid "Group Name"
+#, kde-format
 msgid "Account Name:"
-msgstr "Nomine de gruppo"
+msgstr "Nomine de conto:"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:34
-#, fuzzy, kde-format
-#| msgid "Service URL:"
+#, kde-format
 msgid "Server URL:"
-msgstr "URL de servicio:"
+msgstr "URL de servitor:"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:36
 #, kde-format
 msgid "API Token:"
-msgstr ""
+msgstr "Token (indicio) de API:"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:100
 #, kde-format
 msgid "Please enter a valid server URL and API token."
-msgstr ""
+msgstr "Per favor inserta un URL de servitor valide e un indicio de API."
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:100
 #, kde-format
 msgctxt "@title:window"
 msgid "Invalid Input"
-msgstr ""
+msgstr "Entrata invalide."
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:111
 #, kde-format
 msgid "Successfully connected to the Miniflux server."
-msgstr ""
+msgstr "Connectite con successo al servitor de Miniflux."
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:111
 #, kde-format
 msgctxt "@title:window"
 msgid "Connection Successful"
-msgstr ""
+msgstr "Connexion successose"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:113
 #, kde-format
 msgid "Failed to connect: %1"
-msgstr ""
+msgstr "Falleva a connecter: %1"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:113
 #, kde-format
 msgctxt "@title:window"
 msgid "Connection Failed"
-msgstr ""
+msgstr "Connexion fallite"
 
 #: src/plugins/miniflux/minifluxplugin.cpp:73
 #, kde-format
 msgid "Miniflux"
-msgstr ""
+msgstr "Miniflux"
 
 #: src/plugins/miniflux/minifluxplugin.cpp:90
 #, kde-format
 msgid "An account named “%1” already exists."
-msgstr ""
+msgstr "Un conto nominate “%1” ja existe."
 
 #: src/progressmanager.cpp:127
 #, kde-format
