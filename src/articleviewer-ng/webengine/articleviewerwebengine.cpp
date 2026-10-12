@@ -100,7 +100,7 @@ ArticleViewerWebEngine::ArticleViewerWebEngine(KActionCollection *ac, QWidget *p
     connect(this, &ArticleViewerWebEngine::showContextMenu, this, &ArticleViewerWebEngine::slotShowContextMenu);
 
     setFocusPolicy(Qt::WheelFocus);
-    connect(mPageEngine, &ArticleViewerWebEnginePage::urlClicked, this, &ArticleViewerWebEngine::slotLinkClicked);
+    connect(mPageEngine, &ArticleViewerWebEnginePage::urlClicked, this, &ArticleViewerWebEngine::slotLinkClicked, Qt::QueuedConnection);
 
     mWebEngineViewAccessKey = new WebEngineViewer::WebEngineAccessKey(this, this);
     mWebEngineViewAccessKey->setActionCollection(mActionCollection);
