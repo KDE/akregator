@@ -122,10 +122,7 @@ public:
     [[nodiscard]] Subject subject() const;
     [[nodiscard]] Predicate predicate() const;
     QVariant object() const;
-    bool operator==(const Criterion &other) const
-    {
-        return m_subject == other.m_subject && m_predicate == other.m_predicate && m_object == other.m_object;
-    }
+    bool operator==(const Criterion &other) const = default;
 
 private:
     Subject m_subject;
