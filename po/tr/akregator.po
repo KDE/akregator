@@ -21,7 +21,7 @@ msgstr ""
 "Project-Id-Version: kdepim-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-10-07 00:49+0000\n"
-"PO-Revision-Date: 2026-09-30 10:09+0300\n"
+"PO-Revision-Date: 2026-10-12 10:31+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -54,7 +54,7 @@ msgstr ""
 "Özet akışı okuyucuları, haber, bloglar ve çevrim içi sitelerdeki diğer "
 "içerikler de dahil olmak üzere farklı içerik türlerine göz atmak için uygun "
 "bir yol sağlar. En sevdiğiniz web sitelerini güncellemeler için elle "
-"denetlemek yerine, Akregatör sizin için içeriği toplar."
+"denetlemek yerine, Akregator sizin için içeriği toplar."
 
 #: src/about/introduction_akregator.html:19
 msgid ""
@@ -63,8 +63,8 @@ msgid ""
 "want to see this page anymore, <a href='config:/disable_introduction'>click "
 "here</a>."
 msgstr ""
-"Akregatör kullanımı üzerine daha fazla bilgi almak istiyorsanız <a "
-"href='https://kontact.kde.org/components/akregator/'>Akregatör web sitesini</"
+"Akregator kullanımı üzerine daha fazla bilgi almak istiyorsanız <a "
+"href='https://kontact.kde.org/components/akregator/'>Akregator web sitesini</"
 "a> ziyaret edin. Bu sayfayı bir daha görmek istemiyorsanız <a href='config:/"
 "disable_introduction'>buraya tıklayın</a>."
 
@@ -573,7 +573,7 @@ msgstr ""
 #: export/akregatorstorageexporter.cpp:282
 #, kde-format
 msgid "Akregator Export for %1"
-msgstr "%1 için Akregatör Dışa Aktarımı"
+msgstr "%1 için Akregator Dışa Aktarımı"
 
 #. i18n: ectx: whatsthis, entry, group (View)
 #: interfaces/akregator.kcfg:10
@@ -1001,7 +1001,7 @@ msgstr "Beslemeler değiştirilirken tez süzgeci sıfırlar."
 #: src/trayicon.cpp:53
 #, kde-format
 msgid "Akregator"
-msgstr "Akregatör"
+msgstr "Akregator"
 
 #: kontactplugin/akregator_plugin.cpp:31
 #, kde-format
@@ -1029,7 +1029,7 @@ msgstr "Bir KDE Besleme Okuyucusu"
 #: src/aboutdata.cpp:25
 #, kde-format
 msgid "Copyright © 2004–%1 Akregator authors"
-msgstr "Telif hakkı © 2004–%1 Akregatör yazarları"
+msgstr "© 2004–%1 Akregator yazarları"
 
 #: src/aboutdata.cpp:29
 #, kde-format
@@ -1253,7 +1253,7 @@ msgstr "Çevrim İçi Hesap Ekle…"
 #: src/actions/actionmanagerimpl.cpp:224
 #, kde-format
 msgid "&Configure Akregator…"
-msgstr "Akregatör Uygulamasını &Yapılandır…"
+msgstr "Akregator Uygulamasını &Yapılandır…"
 
 #: src/actions/actionmanagerimpl.cpp:243
 #, kde-format
@@ -1752,7 +1752,7 @@ msgstr "İçerik"
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:149
 #, kde-format
 msgid "Akregator is a KDE news feed reader."
-msgstr "Akregatör, bir haber beslemesi okuyucudur."
+msgstr "Akregator, bir haber beslemesi okuyucusudur."
 
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:193
 #, kde-format
@@ -1968,7 +1968,7 @@ msgid ""
 "Akregator did not close correctly. Would you like to restore the previous "
 "session?"
 msgstr ""
-"Akregatör önceki kullanımda düzgün kapanmadı. Oturumun geri yüklenmesini "
+"Akregator önceki kullanımda düzgün kapanmadı. Oturumun geri yüklenmesini "
 "ister misiniz?"
 
 #: src/crashwidget/crashwidget.cpp:39
@@ -2294,7 +2294,7 @@ msgid ""
 "Could not find the Akregator part; please check your installation.\n"
 "%1"
 msgstr ""
-"Bir Akregatör parçası bulunamadı, lütfen kurulumunuzu denetleyin..\n"
+"Bir Akregator parçası bulunamadı, lütfen kurulumunuzu denetleyin..\n"
 "%1"
 
 #: src/notificationmanager.cpp:50
