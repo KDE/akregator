@@ -146,8 +146,9 @@ void FeedPropertiesDialog::accept()
     m_feed->setNotificationMode(true);
     m_feed->setComment(comment());
 #if HAVE_ACTIVITY_SUPPORT
-    m_feed->setActivities(activitySettings().activities);
-    m_feed->setActivityEnabled(activitySettings().enabled);
+    const auto s = activitySettings();
+    m_feed->setActivities(s.activities);
+    m_feed->setActivityEnabled(s.enabled);
 #endif
     QDialog::accept();
 }
