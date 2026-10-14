@@ -73,13 +73,13 @@ ArticleViewerWebEngine::ArticleViewerWebEngine(KActionCollection *ac, QWidget *p
     : WebEngineViewer::WebEngineView(parent)
     , mActionCollection(ac)
 {
-#ifndef HAVE_BLOCK_SUPPORT
+#if !HAVE_BLOCK_SUPPORT
     mNetworkAccessManager = new WebEngineViewer::InterceptorManager(this, ac, this);
 #endif
     mPageEngine = new ArticleViewerWebEnginePage(this);
     QWebEngineProfile *profile = mPageEngine->profile();
     profile->setPersistentCookiesPolicy(QWebEngineProfile::ForcePersistentCookies);
-#ifndef HAVE_BLOCK_SUPPORT
+#if !HAVE_BLOCK_SUPPORT
     // Needed to workaround crash in webengine, see https://bugreports.qt.io/browse/QTBUG-72260
     auto webEngineUrlInterceptor = new AkregatorRequestInterceptor();
     connect(profile, &QObject::destroyed, webEngineUrlInterceptor, &AkregatorRequestInterceptor::deleteLater);
@@ -87,7 +87,7 @@ ArticleViewerWebEngine::ArticleViewerWebEngine(KActionCollection *ac, QWidget *p
 #endif
     setPage(mPageEngine);
 
-#ifdef HAVE_BLOCK_SUPPORT
+#if HAVE_BLOCK_SUPPORT
     mNetworkAccessManager = new WebEngineViewer::InterceptorManager(this, ac, this);
     mExternalReference = new WebEngineViewer::LoadExternalReferencesUrlInterceptor(this);
     mExternalReference->setAllowExternalContent(Settings::self()->loadExternalReferences());
