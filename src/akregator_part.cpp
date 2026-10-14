@@ -229,7 +229,7 @@ void Part::initializeTrayIcon()
 void Part::slotSettingsChanged()
 {
     if (Settings::showUnreadInTaskbar()) {
-        connect(m_mainWidget.data(), &MainWidget::signalUnreadCountChanged, qGuiApp, &QGuiApplication::setBadgeNumber);
+        connect(m_mainWidget.data(), &MainWidget::signalUnreadCountChanged, qGuiApp, &QGuiApplication::setBadgeNumber, Qt::UniqueConnection);
         m_mainWidget->slotSetTotalUnread();
     } else {
         disconnect(m_mainWidget.data(), &MainWidget::signalUnreadCountChanged, qGuiApp, &QGuiApplication::setBadgeNumber);
