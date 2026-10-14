@@ -124,8 +124,8 @@ public:
     bool operator==(const Criterion &other) const = default;
 
 private:
-    Subject m_subject;
-    Predicate m_predicate;
+    Subject m_subject = Description;
+    Predicate m_predicate = Contains;
     QVariant m_object;
 };
 } // namespace Filters
