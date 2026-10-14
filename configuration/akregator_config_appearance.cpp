@@ -8,8 +8,6 @@
 #include "akregator_config_appearance.h"
 #include "akregatorconfig.h"
 
-#include <KAboutData>
-#include <KLocalizedString>
 #include <KPluginFactory>
 #include <QAbstractSlider>
 

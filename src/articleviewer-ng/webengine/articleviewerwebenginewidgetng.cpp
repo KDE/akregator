@@ -5,12 +5,7 @@
 */
 
 #include "articleviewerwebenginewidgetng.h"
-#include <KActionCollection>
-#include <KIO/JobUiDelegateFactory>
-#include <KIO/OpenUrlJob>
-#include <KLocalizedString>
 #include <MessageViewer/PrintMessage>
-#include <MessageViewer/ViewerPluginToolManager>
 #include <QVBoxLayout>
 #if HAVE_KTEXTADDONS_TEXT_TO_SPEECH_SUPPORT
 #include <TextEditTextToSpeech/TextToSpeechContainerWidget>
@@ -19,8 +14,6 @@
 
 #include <WebEngineViewer/FindBarWebEngineView>
 #include <WebEngineViewer/TrackingWarningWidget>
-
-#include <QApplication>
 
 using namespace Qt::Literals::StringLiterals;
 

@@ -15,7 +15,6 @@
 #include "akregator_export.h"
 
 class QIcon;
-class QString;
 class KConfigGroup;
 
 namespace Akregator

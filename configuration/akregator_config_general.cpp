@@ -11,7 +11,6 @@
 
 #include "ui_settings_general.h"
 
-#include <KAboutData>
 #include <KLocalizedString>
 #include <KPluginFactory>
 

@@ -23,11 +23,6 @@
 
 #include <KontactInterface/UniqueAppHandler>
 
-namespace KontactInterface
-{
-class Plugin;
-}
-
 class OrgKdeAkregatorPartInterface;
 
 class AkregatorUniqueAppHandler : public KontactInterface::UniqueAppHandler

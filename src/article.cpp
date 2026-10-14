@@ -21,7 +21,6 @@
 #include <QList>
 #include <QRegularExpression>
 #include <QUrl>
-#include <cassert>
 #include <utility>
 
 using namespace Qt::Literals::StringLiterals;

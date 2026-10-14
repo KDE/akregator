@@ -8,7 +8,6 @@
 
 #include "editsubscriptioncommand.h"
 
-#include "feed.h"
 #include "feedlist.h"
 #include "feedpropertiesdialog.h"
 #include "folder.h"

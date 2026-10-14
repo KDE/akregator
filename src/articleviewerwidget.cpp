@@ -16,8 +16,6 @@
 #include "feed.h"
 #include "treenode.h"
 
-#include <KActionCollection>
-
 #include <QElapsedTimer>
 
 #include "articleviewer-ng/webengine/articlehtmlwebenginewriter.h"

@@ -14,12 +14,10 @@
 #include "webengine/urlhandlerwebenginemanager.h"
 #include <WebEngineViewer/InterceptorManager>
 #include <WebEngineViewer/WebEngineAccessKey>
-#include <WebEngineViewer/WebEngineManageScript>
 #include <WebEngineViewer/ZoomActionMenu>
 
 #include <GrantleeTheme/GrantleeThemeManager>
 #include <KAboutData>
-#include <KActionCollection>
 #include <KGuiItem>
 #include <KIO/FileCopyJob>
 #include <KJobUiDelegate>
@@ -34,14 +32,12 @@
 #include <QIcon>
 #include <QMenu>
 #include <QMouseEvent>
-#include <QPrinter>
 #include <QWebEngineProfile>
 #include <QWebEngineUrlRequestInterceptor>
 
 #include <WebEngineViewer/BlockExternalResourcesUrlInterceptor>
 #include <WebEngineViewer/BlockTrackingUrlInterceptor>
 #include <WebEngineViewer/LoadExternalReferencesUrlInterceptor>
-#include <WebEngineViewer/WebEngineScript>
 #include <WebEngineViewer/WebHitTest>
 #include <WebEngineViewer/WebHitTestResult>
 

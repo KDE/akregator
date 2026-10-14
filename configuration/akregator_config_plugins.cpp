@@ -6,8 +6,6 @@
 
 #include "akregator_config_plugins.h"
 #include "akregatorconfigurepluginlistwidget.h"
-#include <KAboutData>
-#include <KLocalizedString>
 #include <KPluginFactory>
 #include <PimCommon/ConfigurePluginsWidget>
 #include <QHBoxLayout>

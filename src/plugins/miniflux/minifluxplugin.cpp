@@ -12,7 +12,6 @@
 
 #include "kernel.h"
 
-#include <KConfig>
 #include <KConfigGroup>
 #include <KLocalizedString>
 #include <KMessageBox>

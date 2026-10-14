@@ -12,8 +12,6 @@
 
 #include <memory>
 
-class QString;
-
 namespace Akregator
 {
 class Frame;

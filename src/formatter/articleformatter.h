@@ -15,7 +15,6 @@ namespace Akregator
 {
 class Article;
 class TreeNode;
-class ArticleFormatterPrivate;
 
 class ArticleFormatter
 {

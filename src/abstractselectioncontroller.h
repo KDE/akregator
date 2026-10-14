@@ -25,11 +25,6 @@ class FeedList;
 class FolderExpansionHandler;
 class TreeNode;
 
-namespace Filters
-{
-class AbstractMatcher;
-}
-
 class ArticleLister
 {
 public:

@@ -12,13 +12,9 @@
 #include "akregator_export.h"
 
 #include <QSharedPointer>
-#include <Syndication/Person>
 
 class QDateTime;
 class QString;
-
-template<class T>
-class QList;
 
 using uint = unsigned int;
 

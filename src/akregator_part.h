@@ -31,12 +31,9 @@ class Storage;
 }
 class Article;
 class ActionManagerImpl;
-class Feed;
 class FeedList;
 class LoadFeedListCommand;
 class MainWidget;
-class Part;
-class TrayIcon;
 class AkregatorCentralWidget;
 
 /**

@@ -10,11 +10,6 @@
 #include <KLocalization>
 #include <KLocalizedString>
 
-#include <QPushButton>
-#include <QWidget>
-
-#include <cassert>
-
 using namespace Akregator;
 SettingsAdvanced::SettingsAdvanced(QWidget *parent)
     : QWidget(parent)

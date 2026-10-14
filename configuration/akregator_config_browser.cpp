@@ -10,8 +10,6 @@
 
 #include "ui_settings_browser.h"
 
-#include <KAboutData>
-#include <KLocalizedString>
 #include <KPluginFactory>
 
 #include <QVBoxLayout>

@@ -20,7 +20,6 @@ class QTimer;
 namespace Akregator
 {
 class Part;
-class MainWindow;
 
 /**
  * This is the application "Shell".  It has a menubar, toolbar, and

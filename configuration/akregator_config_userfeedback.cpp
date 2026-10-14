@@ -6,8 +6,6 @@
 
 #include "akregator_config_userfeedback.h"
 #include "config-akregator.h"
-#include <KAboutData>
-#include <KLocalizedString>
 #include <KPluginFactory>
 #include <QHBoxLayout>
 #if AKREGATOR_WITH_KUSERFEEDBACK

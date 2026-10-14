@@ -11,7 +11,6 @@
 #include "articlejobs.h"
 
 #include "feed.h"
-#include "fetchqueue.h"
 #include "treenodevisitor.h"
 
 #include <QHash>

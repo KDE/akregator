@@ -7,7 +7,6 @@
 #include "defaultcombinedviewformatter.h"
 #include "article.h"
 #include "grantleeviewformatter.h"
-#include "treenode.h"
 
 #include <QPaintDevice>
 #include <QString>

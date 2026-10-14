@@ -21,7 +21,6 @@
 #include "storage/storage.h"
 #include "treenodevisitor.h"
 #include "types.h"
-#include "utils.h"
 
 #include "akregator_debug.h"
 
@@ -34,8 +33,6 @@
 #include <QList>
 #include <QRandomGenerator>
 #include <QTimer>
-
-#include <QStandardPaths>
 
 using namespace Qt::Literals::StringLiterals;
 

@@ -17,7 +17,6 @@
 #include <KLocalizedString>
 #include <QAction>
 #include <QIcon>
-#include <QStandardPaths>
 
 using namespace Qt::Literals::StringLiterals;
 

@@ -22,8 +22,6 @@ class QDomDocument;
 class QDomNode;
 template<class T>
 class QList;
-template<class K, class T>
-class QHash;
 class QString;
 
 class KJob;

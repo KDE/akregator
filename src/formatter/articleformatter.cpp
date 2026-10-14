@@ -7,8 +7,6 @@
 */
 
 #include "articleformatter.h"
-#include "article.h"
-#include "utils.h"
 
 #include <KFormat>
 #include <KLocalizedString>

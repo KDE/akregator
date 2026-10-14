@@ -25,9 +25,6 @@
 #include <iostream>
 #include <utility>
 
-#include <KPluginFactory>
-#include <cassert>
-
 using namespace Qt::Literals::StringLiterals;
 
 using namespace Akregator;

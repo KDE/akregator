@@ -49,7 +49,6 @@
 #include <KAboutData>
 #include <KLocalizedString>
 #include <KMessageBox>
-#include <KShell>
 
 #include <KToggleAction>
 

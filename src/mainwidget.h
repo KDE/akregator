@@ -22,7 +22,6 @@
 
 #include <QSharedPointer>
 
-class KConfig;
 class KConfigGroup;
 
 class QDomDocument;

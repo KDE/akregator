@@ -9,11 +9,7 @@
 
 #include "abstractselectioncontroller.h"
 
-#include <QAbstractItemModel>
 #include <QPointer>
-
-class QModelIndex;
-class QPoint;
 
 class KJob;
 

@@ -6,14 +6,14 @@
 #pragma once
 
 #include "akregatorinterfaces_export.h"
-#include <KPluginFactory>
 #include <QObject>
 #include <QStringList>
+
+class QWidget;
 
 namespace Akregator
 {
 class AccountEditWidget;
-class Folder;
 class FeedList;
 
 /**

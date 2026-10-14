@@ -10,16 +10,8 @@
 
 #include "ui_settings_advancedbase.h"
 
-class QString;
-class QWidget;
-
 namespace Akregator
 {
-namespace Backend
-{
-class StorageFactory;
-}
-
 class SettingsAdvanced : public QWidget, public Ui::SettingsAdvancedBase
 {
     Q_OBJECT

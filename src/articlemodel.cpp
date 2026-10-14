@@ -24,7 +24,6 @@
 #include <memory>
 
 #include <QLocale>
-#include <cassert>
 #include <utility>
 
 using namespace Qt::Literals::StringLiterals;

@@ -7,8 +7,6 @@
 #include "urlhandlerwebenginemanager.h"
 #include "urlhandlerwebengine.h"
 
-#include "articleviewer-ng/webengine/articleviewerwebengine.h"
-
 using namespace Akregator;
 
 URLHandlerWebEngineManager *URLHandlerWebEngineManager::self = nullptr;

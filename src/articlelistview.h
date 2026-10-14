@@ -19,17 +19,9 @@
 #include <QUrl>
 
 class QContextMenuEvent;
-template<class T>
-class QList;
 
 namespace Akregator
 {
-class Article;
-
-namespace Filters
-{
-}
-
 class AKREGATORPART_EXPORT FilterDeletedProxyModel : public QSortFilterProxyModel
 {
     Q_OBJECT

@@ -10,8 +10,6 @@
 
 #include "settings_advanced.h"
 
-#include <KAboutData>
-#include <KLocalizedString>
 #include <KPluginFactory>
 
 #include <QVBoxLayout>

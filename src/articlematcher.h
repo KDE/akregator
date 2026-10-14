@@ -21,7 +21,6 @@ class Article;
 
 namespace Filters
 {
-class AbstractMatcher;
 class Criterion;
 
 /** Abstract base class for matchers, a matcher just takes an article and checks whether the article matches some criterion or not.

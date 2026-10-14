@@ -8,7 +8,6 @@
 
 #pragma once
 
-#include <QList>
 #include <QSortFilterProxyModel>
 
 namespace Akregator

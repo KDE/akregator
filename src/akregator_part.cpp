@@ -10,8 +10,6 @@
 #include "akregator_part.h"
 #include "akregator_debug.h"
 
-#include <MessageViewer/MessageViewerSettings>
-
 #include "aboutdata.h"
 #include "actionmanagerimpl.h"
 #include "akregator_options.h"
@@ -42,7 +40,6 @@
 #include <QSaveFile>
 #include <QTemporaryFile>
 #include <QWebEngineSettings>
-#include <kxmlguifactory.h>
 
 #include "partadaptor.h"
 #include <QApplication>

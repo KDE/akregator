@@ -7,8 +7,6 @@
 #include "akregator_config_security.h"
 #include "akregatorconfig.h"
 #include "ui_settings_security.h"
-#include <KAboutData>
-#include <KLocalizedString>
 #include <KPluginFactory>
 #include <QHBoxLayout>
 using namespace Akregator;

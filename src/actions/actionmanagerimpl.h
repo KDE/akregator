@@ -13,15 +13,7 @@
 
 #include <memory>
 
-class QAction;
 class KActionCollection;
-
-class QWidget;
-
-namespace WebEngineViewer
-{
-class ZoomActionMenu;
-}
 
 namespace Akregator
 {

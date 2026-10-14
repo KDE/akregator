@@ -22,8 +22,6 @@
 #include <QPointer>
 #include <QTimer>
 
-#include <cassert>
-
 using namespace Qt::Literals::StringLiterals;
 
 using namespace Akregator;

@@ -7,7 +7,6 @@
 */
 
 #include "actionmanagerimpl.h"
-#include "accountplugin.h"
 #include "addaccountwizard.h"
 #include "akregator_part.h"
 #include "akregatorconfig.h"

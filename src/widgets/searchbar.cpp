@@ -8,10 +8,8 @@
 
 #include "searchbar.h"
 #include "akregatorconfig.h"
-#include "statussearchbuttons.h"
 #include "statussearchline.h"
 
-#include "article.h"
 #include "types.h"
 #include <TextUtils/ConvertText>
 
@@ -20,8 +18,6 @@
 
 #include <QFrame>
 #include <QHBoxLayout>
-#include <QStandardPaths>
-#include <QString>
 #include <chrono>
 #include <utility>
 

@@ -18,9 +18,6 @@ class KJob;
 class QDomDocument;
 class QDomElement;
 class QIcon;
-class QString;
-template<class T>
-class QList;
 
 namespace Akregator
 {

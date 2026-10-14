@@ -22,8 +22,6 @@
 
 #include <QSharedPointer>
 
-#include <cassert>
-
 using namespace Akregator;
 
 class Akregator::ImportFeedListCommandPrivate

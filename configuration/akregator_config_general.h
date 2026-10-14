@@ -8,8 +8,6 @@
 #pragma once
 #include <KCModule>
 
-class QWidget;
-
 class KCMAkregatorGeneralConfig : public KCModule
 {
     Q_OBJECT

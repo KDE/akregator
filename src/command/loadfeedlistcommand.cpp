@@ -19,10 +19,7 @@
 #include <QFileInfo>
 #include <QPointer>
 #include <QRandomGenerator>
-#include <QString>
 #include <QTimer>
-
-#include <cassert>
 
 using namespace Qt::Literals::StringLiterals;
 

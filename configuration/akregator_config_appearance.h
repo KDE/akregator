@@ -10,10 +10,6 @@
 #include "ui_settings_appearance.h"
 #include <KCModule>
 
-#include <QVariant>
-
-class QWidget;
-
 class KCMAkregatorAppearanceConfig : public KCModule
 {
     Q_OBJECT

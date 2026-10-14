@@ -24,11 +24,6 @@ class BlockExternalResourcesUrlInterceptor;
 namespace MessageViewer
 {
 class ViewerPluginToolManager;
-class ViewerPluginInterface;
-}
-namespace PimCommon
-{
-class ShareServiceUrlManager;
 }
 namespace KIO
 {

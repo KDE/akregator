@@ -19,7 +19,6 @@
 #include <memory>
 
 class QDomElement;
-class QString;
 
 namespace Akregator
 {

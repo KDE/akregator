@@ -10,7 +10,6 @@
 
 #include "akregatorinterfaces_export.h"
 
-class QString;
 #include <QStringList>
 
 namespace Akregator

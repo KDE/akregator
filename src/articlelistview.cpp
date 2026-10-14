@@ -29,7 +29,6 @@
 #include <QPalette>
 #include <QScrollBar>
 
-#include <cassert>
 #include <utility>
 
 using namespace Qt::Literals::StringLiterals;

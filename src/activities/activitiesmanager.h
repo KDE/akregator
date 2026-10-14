@@ -8,7 +8,6 @@
 
 #include "akregator_export.h"
 #include <PimCommonActivities/ActivitiesBaseManager>
-#include <QObject>
 namespace Akregator
 {
 class AKREGATOR_EXPORT ActivitiesManager : public PimCommonActivities::ActivitiesBaseManager

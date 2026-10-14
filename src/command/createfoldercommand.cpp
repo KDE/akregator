@@ -16,8 +16,6 @@
 
 #include <QTimer>
 
-#include <cassert>
-
 using namespace Akregator;
 
 class Akregator::CreateFolderCommandPrivate
