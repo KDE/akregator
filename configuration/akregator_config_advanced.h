@@ -20,9 +20,6 @@ class KCMAkregatorAdvancedConfig : public KCModule
 public:
     explicit KCMAkregatorAdvancedConfig(QObject *parent, const KPluginMetaData &data);
 
-    void load() override;
-    void save() override;
-
 private:
     Akregator::SettingsAdvanced *const m_widget;
 };

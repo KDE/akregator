@@ -29,16 +29,6 @@ KCMAkregatorAdvancedConfig::KCMAkregatorAdvancedConfig(QObject *parent, const KP
     addConfig(Settings::self(), m_widget);
 }
 
-void KCMAkregatorAdvancedConfig::load()
-{
-    KCModule::load();
-}
-
-void KCMAkregatorAdvancedConfig::save()
-{
-    KCModule::save();
-}
-
 #include "akregator_config_advanced.moc"
 
 #include "moc_akregator_config_advanced.cpp"
