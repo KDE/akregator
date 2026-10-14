@@ -41,7 +41,6 @@ ArticleViewerWebEnginePage::~ArticleViewerWebEnginePage() = default;
 
 bool ArticleViewerWebEnginePage::acceptNavigationRequest(const QUrl &url, NavigationType type, bool isMainFrame)
 {
-    Q_UNUSED(type)
     if (url.scheme() == "data"_L1) {
         return true;
     }
