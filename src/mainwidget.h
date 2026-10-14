@@ -250,7 +250,7 @@ private:
     /** opens current article in new tab, background/foreground depends on settings TODO: use selected instead of current? */
     void openSelectedArticles(bool openInBackground);
 
-    AbstractSelectionController *m_selectionController;
+    AbstractSelectionController *m_selectionController = nullptr;
     QSharedPointer<FeedList> m_feedList;
 
     SubscriptionListView *m_feedListView = nullptr;
