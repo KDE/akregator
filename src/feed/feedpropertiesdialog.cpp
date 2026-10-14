@@ -109,7 +109,6 @@ FeedPropertiesDialog::FeedPropertiesDialog(QWidget *parent, const QString &name)
     mOkButton->setShortcut(Qt::CTRL | Qt::Key_Return);
     connect(buttonBox, &QDialogButtonBox::accepted, this, &FeedPropertiesDialog::accept);
     connect(buttonBox, &QDialogButtonBox::rejected, this, &FeedPropertiesDialog::reject);
-    buttonBox->button(QDialogButtonBox::Ok)->setDefault(true);
     setModal(true);
 
     mainLayout->addWidget(mFeedPropertiesWidget);
