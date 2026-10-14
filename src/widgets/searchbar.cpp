@@ -65,7 +65,7 @@ SearchBar::SearchBar(QWidget *parent)
 
     layout->addLayout(vbox);
 
-    connect(m_searchLine, &KLineEdit::textChanged, this, &SearchBar::slotSearchStringChanged);
+    connect(m_searchLine, &QLineEdit::textChanged, this, &SearchBar::slotSearchStringChanged);
     connect(m_searchLine, &StatusSearchLine::forceLostFocus, this, &SearchBar::forceLostFocus);
     connect(m_statusSearchButtons, &StatusSearchButtons::statusChanged, this, &SearchBar::slotStatusChanged);
 
