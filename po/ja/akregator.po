@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-10-07 00:49+0000\n"
+"POT-Creation-Date: 2026-10-15 00:46+0000\n"
 "PO-Revision-Date: 2019-04-21 19:02-0700\n"
 "Last-Translator: Fumiaki Okushi <fumiaki.okushi@gmail.com>\n"
 "Language-Team: Japanese <kde-jp@kde.org>\n"
@@ -152,7 +152,7 @@ msgctxt "@title:window"
 msgid "Remove Account"
 msgstr ""
 
-#: configuration/akregator_config_archive.cpp:37
+#: configuration/akregator_config_archive.cpp:36
 #, fuzzy, kde-format
 #| msgctxt "Limit feed archive size to:"
 #| msgid " article"
@@ -162,7 +162,7 @@ msgid "%v article"
 msgid_plural "%v articles"
 msgstr[0] " 件"
 
-#: configuration/akregator_config_archive.cpp:38
+#: configuration/akregator_config_archive.cpp:37
 #, fuzzy, kde-format
 #| msgctxt "Delete articles older than:"
 #| msgid " day"
@@ -172,7 +172,7 @@ msgid "%v day"
 msgid_plural "%v days"
 msgstr[0] " 日"
 
-#: configuration/akregator_config_general.cpp:33
+#: configuration/akregator_config_general.cpp:32
 #, kde-format
 msgid " minute"
 msgid_plural " minutes"
@@ -184,7 +184,7 @@ msgstr[0] " 分"
 msgid "Webengine Plugins"
 msgstr "フィードの全般設定"
 
-#: configuration/settings_advanced.cpp:25
+#: configuration/settings_advanced.cpp:20
 #, fuzzy, kde-format
 #| msgctxt "Mark selected article read after"
 #| msgid " second"
@@ -339,7 +339,7 @@ msgstr "マウスの左ボタンをクリック:"
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
 #: configuration/ui/settings_browser.ui:28
 #: configuration/ui/settings_browser.ui:54
-#: src/actions/actionmanagerimpl.cpp:348
+#: src/actions/actionmanagerimpl.cpp:347
 #, kde-format
 msgid "Open in Tab"
 msgstr "タブで開く"
@@ -348,7 +348,7 @@ msgstr "タブで開く"
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
 #: configuration/ui/settings_browser.ui:33
 #: configuration/ui/settings_browser.ui:59
-#: src/actions/actionmanagerimpl.cpp:354
+#: src/actions/actionmanagerimpl.cpp:353
 #, kde-format
 msgid "Open in Background Tab"
 msgstr "背面タブで開く"
@@ -357,7 +357,7 @@ msgstr "背面タブで開く"
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
 #: configuration/ui/settings_browser.ui:38
 #: configuration/ui/settings_browser.ui:64
-#: src/actions/actionmanagerimpl.cpp:360
+#: src/actions/actionmanagerimpl.cpp:359
 #, kde-format
 msgid "Open in External Browser"
 msgstr "外部ブラウザで開く"
@@ -580,7 +580,7 @@ msgid ""
 "have viewed."
 msgstr ""
 
-#: export/akregatorstorageexporter.cpp:282
+#: export/akregatorstorageexporter.cpp:279
 #, kde-format
 msgid "Akregator Export for %1"
 msgstr ""
@@ -613,7 +613,7 @@ msgstr "未読の記事はありません"
 
 # ACCELERATOR added by translator
 #. i18n: ectx: label, entry, group (View)
-#: interfaces/akregator.kcfg:31 src/actions/actionmanagerimpl.cpp:342
+#: interfaces/akregator.kcfg:31 src/actions/actionmanagerimpl.cpp:341
 #, kde-format
 msgid "Show Quick Filter"
 msgstr "クイックフィルタを表示(&Q)"
@@ -1002,29 +1002,29 @@ msgstr "記事を選択してから既読としてマークするまでの遅延
 msgid "Resets the quick filter when changing feeds."
 msgstr "フィードを変更したときにクイックフィルタをリセットします。"
 
-#: kontactplugin/akregator_plugin.cpp:29 src/aboutdata.cpp:21
-#: src/akregator_part.cpp:129
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:148
-#: src/mainwidget.cpp:135 src/mainwidget.cpp:1329 src/trayicon.cpp:40
+#: kontactplugin/akregator_plugin.cpp:28 src/aboutdata.cpp:21
+#: src/akregator_part.cpp:126
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:144
+#: src/mainwidget.cpp:134 src/mainwidget.cpp:1328 src/trayicon.cpp:40
 #: src/trayicon.cpp:53
 #, kde-format
 msgid "Akregator"
 msgstr "Akregator"
 
-#: kontactplugin/akregator_plugin.cpp:31
+#: kontactplugin/akregator_plugin.cpp:30
 #, fuzzy, kde-format
 #| msgid "&Add Feed..."
 msgctxt "@action:inmenu"
 msgid "New Feed..."
 msgstr "フィードを追加(&A)..."
 
-#: kontactplugin/akregator_plugin.cpp:34
+#: kontactplugin/akregator_plugin.cpp:33
 #, kde-format
 msgctxt "@info:status"
 msgid "Create a new feed"
 msgstr ""
 
-#: kontactplugin/akregator_plugin.cpp:35
+#: kontactplugin/akregator_plugin.cpp:34
 #, kde-format
 msgctxt "@info:whatsthis"
 msgid "You will be presented with a dialog where you can add a new feed."
@@ -1222,184 +1222,184 @@ msgstr "Philipp Droessler"
 msgid "Gentoo Ebuild"
 msgstr "Gentoo Ebuild"
 
-#: src/actions/actionmanagerimpl.cpp:71 src/actions/actionmanagerimpl.cpp:311
+#: src/actions/actionmanagerimpl.cpp:70 src/actions/actionmanagerimpl.cpp:310
 #, kde-format
 msgid "&Fetch Feed"
 msgstr "フィードを取得(&F)|/|$[~setProps ~label '取得']"
 
-#: src/actions/actionmanagerimpl.cpp:72 src/actions/actionmanagerimpl.cpp:267
+#: src/actions/actionmanagerimpl.cpp:71 src/actions/actionmanagerimpl.cpp:266
 #, kde-format
 msgid "&Delete Feed"
 msgstr "フィードを削除(&D)"
 
-#: src/actions/actionmanagerimpl.cpp:73 src/actions/actionmanagerimpl.cpp:273
+#: src/actions/actionmanagerimpl.cpp:72 src/actions/actionmanagerimpl.cpp:272
 #, fuzzy, kde-format
 #| msgid "&Edit Feed..."
 msgid "&Edit Feed…"
 msgstr "フィードを編集(&E)..."
 
-#: src/actions/actionmanagerimpl.cpp:74 src/actions/actionmanagerimpl.cpp:330
+#: src/actions/actionmanagerimpl.cpp:73 src/actions/actionmanagerimpl.cpp:329
 #, kde-format
 msgid "&Mark Feed as Read"
 msgstr "フィードを既読としてマーク(&M)"
 
-#: src/actions/actionmanagerimpl.cpp:90
+#: src/actions/actionmanagerimpl.cpp:89
 #, kde-format
 msgid "&Fetch Feeds"
 msgstr "フィードを取得(&F)|/|$[~setProps ~label '取得']"
 
-#: src/actions/actionmanagerimpl.cpp:91
+#: src/actions/actionmanagerimpl.cpp:90
 #, kde-format
 msgid "&Delete Folder"
 msgstr "フォルダを削除(&D)"
 
-#: src/actions/actionmanagerimpl.cpp:92
+#: src/actions/actionmanagerimpl.cpp:91
 #, kde-format
 msgid "&Rename Folder"
 msgstr "フォルダ名を変更(&R)"
 
-#: src/actions/actionmanagerimpl.cpp:93
+#: src/actions/actionmanagerimpl.cpp:92
 #, kde-format
 msgid "&Mark Feeds as Read"
 msgstr "フィードを既読としてマーク(&M)"
 
-#: src/actions/actionmanagerimpl.cpp:205
+#: src/actions/actionmanagerimpl.cpp:204
 #, fuzzy, kde-format
 #| msgid "&Import Feeds..."
 msgid "&Import Feeds…"
 msgstr "フィードをインポート(&I)..."
 
-#: src/actions/actionmanagerimpl.cpp:209
+#: src/actions/actionmanagerimpl.cpp:208
 #, fuzzy, kde-format
 #| msgid "&Export Feeds..."
 msgid "&Export Feeds…"
 msgstr "フィードをエクスポート(&E)..."
 
-#: src/actions/actionmanagerimpl.cpp:215
+#: src/actions/actionmanagerimpl.cpp:214
 #, kde-format
 msgctxt "@action"
 msgid "Add Online Account…"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:224
+#: src/actions/actionmanagerimpl.cpp:223
 #, fuzzy, kde-format
 #| msgid "&Configure Akregator..."
 msgid "&Configure Akregator…"
 msgstr "Akregator を設定(&C)..."
 
-#: src/actions/actionmanagerimpl.cpp:243
+#: src/actions/actionmanagerimpl.cpp:242
 #, kde-format
 msgid "&Open Homepage"
 msgstr "ホームページを開く(&O)"
 
-#: src/actions/actionmanagerimpl.cpp:249
+#: src/actions/actionmanagerimpl.cpp:248
 #, kde-format
 msgid "Reload All Tabs"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:255
+#: src/actions/actionmanagerimpl.cpp:254
 #, fuzzy, kde-format
 #| msgid "Add Feed"
 msgid "&Add Feed…"
 msgstr "フィードを追加"
 
-#: src/actions/actionmanagerimpl.cpp:261
+#: src/actions/actionmanagerimpl.cpp:260
 #, fuzzy, kde-format
 #| msgid "Ne&w Folder..."
 msgid "Ne&w Folder…"
 msgstr "新しいフォルダ(&W)..."
 
-#: src/actions/actionmanagerimpl.cpp:286
+#: src/actions/actionmanagerimpl.cpp:285
 #, kde-format
 msgid "&Normal View"
 msgstr "標準表示(&N)"
 
-#: src/actions/actionmanagerimpl.cpp:295
+#: src/actions/actionmanagerimpl.cpp:294
 #, kde-format
 msgid "&Widescreen View"
 msgstr "ワイド画面表示(&W)"
 
-#: src/actions/actionmanagerimpl.cpp:304
+#: src/actions/actionmanagerimpl.cpp:303
 #, kde-format
 msgid "C&ombined View"
 msgstr "結合表示(&O)"
 
-#: src/actions/actionmanagerimpl.cpp:317
+#: src/actions/actionmanagerimpl.cpp:316
 #, kde-format
 msgid "Fe&tch All Feeds"
 msgstr "すべてのフィードを取得(&T)|/|$[~setProps ~label 'すべて取得']"
 
 # ACCELERATOR changed by translator
-#: src/actions/actionmanagerimpl.cpp:323
+#: src/actions/actionmanagerimpl.cpp:322
 #, kde-format
 msgid "C&ancel Feed Fetches"
 msgstr "フィードの取得をキャンセル(&C)"
 
-#: src/actions/actionmanagerimpl.cpp:336
+#: src/actions/actionmanagerimpl.cpp:335
 #, kde-format
 msgid "Ma&rk All Feeds as Read"
 msgstr "すべてのフィードを既読としてマーク(&R)"
 
-#: src/actions/actionmanagerimpl.cpp:365
+#: src/actions/actionmanagerimpl.cpp:364
 #, fuzzy, kde-format
 #| msgid "Copy Link Address"
 msgctxt "@action"
 msgid "Copy Article Link Address"
 msgstr "リンクアドレスをコピー"
 
-#: src/actions/actionmanagerimpl.cpp:370
+#: src/actions/actionmanagerimpl.cpp:369
 #, kde-format
 msgid "Pre&vious Unread Article"
 msgstr "前の未読記事(&V)"
 
-#: src/actions/actionmanagerimpl.cpp:376
+#: src/actions/actionmanagerimpl.cpp:375
 #, kde-format
 msgid "Ne&xt Unread Article"
 msgstr "次の未読記事(&X)"
 
-#: src/actions/actionmanagerimpl.cpp:384
+#: src/actions/actionmanagerimpl.cpp:383
 #, kde-format
 msgid "&Delete"
 msgstr "削除(&D)"
 
-#: src/actions/actionmanagerimpl.cpp:389
+#: src/actions/actionmanagerimpl.cpp:388
 #, kde-format
 msgid "&Mark As"
 msgstr "記事をマーク(&M)"
 
-#: src/actions/actionmanagerimpl.cpp:393
+#: src/actions/actionmanagerimpl.cpp:392
 #, kde-format
 msgctxt "as in: mark as read"
 msgid "&Read"
 msgstr "既読(&R)|/|$[~setProps ~full '記事を既読としてマーク']"
 
-#: src/actions/actionmanagerimpl.cpp:395
+#: src/actions/actionmanagerimpl.cpp:394
 #, fuzzy, kde-format
 #| msgid "Mark selected article as read"
 msgctxt "@info:tooltip"
 msgid "Mark selected article as read"
 msgstr "選択した記事を未読としてマーク"
 
-#: src/actions/actionmanagerimpl.cpp:401
+#: src/actions/actionmanagerimpl.cpp:400
 #, kde-format
 msgctxt "as in: mark as new"
 msgid "&New"
 msgstr "新着(&N)|/|$[~setProps ~full '記事を新着としてマーク']"
 
-#: src/actions/actionmanagerimpl.cpp:404
+#: src/actions/actionmanagerimpl.cpp:403
 #, fuzzy, kde-format
 #| msgid "Mark selected article as new"
 msgctxt "@info:tooltip"
 msgid "Mark selected article as new"
 msgstr "選択した記事を新着としてマーク"
 
-#: src/actions/actionmanagerimpl.cpp:409
+#: src/actions/actionmanagerimpl.cpp:408
 #, kde-format
 msgctxt "as in: mark as unread"
 msgid "&Unread"
 msgstr "未読(&U)|/|$[~setProps ~full '記事を未読としてマーク']"
 
-#: src/actions/actionmanagerimpl.cpp:411
+#: src/actions/actionmanagerimpl.cpp:410
 #, fuzzy, kde-format
 #| msgid "Mark selected article as unread"
 msgctxt "@info:tooltip"
@@ -1407,184 +1407,184 @@ msgid "Mark selected article as unread"
 msgstr "選択した記事を未読としてマーク"
 
 # ACCELERATOR changed by translator
-#: src/actions/actionmanagerimpl.cpp:417
+#: src/actions/actionmanagerimpl.cpp:416
 #, kde-format
 msgid "&Mark as Important"
 msgstr "重要としてマーク(&I)"
 
-#: src/actions/actionmanagerimpl.cpp:421
+#: src/actions/actionmanagerimpl.cpp:420
 #, fuzzy, kde-format
 #| msgid "Remove &Important Mark"
 msgctxt "@action:button"
 msgid "Remove &Important Mark"
 msgstr "重要マークを削除(&I)"
 
-#: src/actions/actionmanagerimpl.cpp:425
+#: src/actions/actionmanagerimpl.cpp:424
 #, kde-format
 msgid "Move Node Up"
 msgstr "ノードを上に移動"
 
-#: src/actions/actionmanagerimpl.cpp:430
+#: src/actions/actionmanagerimpl.cpp:429
 #, kde-format
 msgid "Move Node Down"
 msgstr "ノードを下に移動"
 
-#: src/actions/actionmanagerimpl.cpp:435
+#: src/actions/actionmanagerimpl.cpp:434
 #, kde-format
 msgid "Move Node Left"
 msgstr "ノードを左に移動"
 
-#: src/actions/actionmanagerimpl.cpp:440
+#: src/actions/actionmanagerimpl.cpp:439
 #, kde-format
 msgid "Move Node Right"
 msgstr "ノードを右に移動"
 
-#: src/actions/actionmanagerimpl.cpp:446
+#: src/actions/actionmanagerimpl.cpp:445
 #, fuzzy, kde-format
 #| msgid "Send &Link Address..."
 msgid "Send &Link Address…"
 msgstr "リンクアドレスを送信(&L)..."
 
-#: src/actions/actionmanagerimpl.cpp:451
+#: src/actions/actionmanagerimpl.cpp:450
 #, fuzzy, kde-format
 #| msgid "Send &File..."
 msgid "Send &File…"
 msgstr "ファイルを送信(&F)..."
 
-#: src/actions/actionmanagerimpl.cpp:457
+#: src/actions/actionmanagerimpl.cpp:456
 #, kde-format
 msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:463
+#: src/actions/actionmanagerimpl.cpp:462
 #, kde-format
 msgid "What’s new"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:504
+#: src/actions/actionmanagerimpl.cpp:503
 #, kde-format
 msgid "&Previous Article"
 msgstr "前の記事(&P)"
 
-#: src/actions/actionmanagerimpl.cpp:508
+#: src/actions/actionmanagerimpl.cpp:507
 #, kde-format
 msgid "&Next Article"
 msgstr "次の記事(&N)"
 
 # ACCELERATOR changed by translator
-#: src/actions/actionmanagerimpl.cpp:523
+#: src/actions/actionmanagerimpl.cpp:522
 #, kde-format
 msgid "&Previous Feed"
 msgstr "前のフィード(&R)"
 
 # ACCELERATOR changed by translator
-#: src/actions/actionmanagerimpl.cpp:528
+#: src/actions/actionmanagerimpl.cpp:527
 #, kde-format
 msgid "&Next Feed"
 msgstr "次のフィード(&F)"
 
-#: src/actions/actionmanagerimpl.cpp:534
+#: src/actions/actionmanagerimpl.cpp:533
 #, kde-format
 msgid "N&ext Unread Feed"
 msgstr "次の未読フィード(&E)"
 
-#: src/actions/actionmanagerimpl.cpp:540
+#: src/actions/actionmanagerimpl.cpp:539
 #, kde-format
 msgid "Prev&ious Unread Feed"
 msgstr "前の未読フィード(&I)"
 
-#: src/actions/actionmanagerimpl.cpp:545
+#: src/actions/actionmanagerimpl.cpp:544
 #, kde-format
 msgid "Go to Top of Tree"
 msgstr "ツリーの一番上に移動"
 
-#: src/actions/actionmanagerimpl.cpp:550
+#: src/actions/actionmanagerimpl.cpp:549
 #, kde-format
 msgid "Go to Bottom of Tree"
 msgstr "ツリーの一番下に移動"
 
-#: src/actions/actionmanagerimpl.cpp:555
+#: src/actions/actionmanagerimpl.cpp:554
 #, kde-format
 msgid "Go Left in Tree"
 msgstr "ツリーの左に移動"
 
-#: src/actions/actionmanagerimpl.cpp:560
+#: src/actions/actionmanagerimpl.cpp:559
 #, kde-format
 msgid "Go Right in Tree"
 msgstr "ツリーの右に移動"
 
-#: src/actions/actionmanagerimpl.cpp:565
+#: src/actions/actionmanagerimpl.cpp:564
 #, kde-format
 msgid "Go Up in Tree"
 msgstr "ツリーの上に移動"
 
-#: src/actions/actionmanagerimpl.cpp:570
+#: src/actions/actionmanagerimpl.cpp:569
 #, kde-format
 msgid "Go Down in Tree"
 msgstr "ツリーの下に移動"
 
-#: src/actions/actionmanagerimpl.cpp:576
+#: src/actions/actionmanagerimpl.cpp:575
 #, fuzzy, kde-format
 #| msgid "N&ext Unread Feed"
 msgid "Hide Read Feeds"
 msgstr "次の未読フィード(&E)"
 
-#: src/actions/actionmanagerimpl.cpp:582
+#: src/actions/actionmanagerimpl.cpp:581
 #, kde-format
 msgid "Lock Feeds In Place"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:588
+#: src/actions/actionmanagerimpl.cpp:587
 #, fuzzy, kde-format
 #| msgid "There are no unread articles"
 msgid "Auto-expand folders with unread articles"
 msgstr "未読の記事はありません"
 
-#: src/actions/actionmanagerimpl.cpp:603
+#: src/actions/actionmanagerimpl.cpp:602
 #, kde-format
 msgid "Select Next Tab"
 msgstr "次のタブを選択"
 
-#: src/actions/actionmanagerimpl.cpp:608
+#: src/actions/actionmanagerimpl.cpp:607
 #, kde-format
 msgid "Select Previous Tab"
 msgstr "前のタブを選択"
 
-#: src/actions/actionmanagerimpl.cpp:622
+#: src/actions/actionmanagerimpl.cpp:621
 #, kde-format
 msgid "Mute"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:626
+#: src/actions/actionmanagerimpl.cpp:625
 #, kde-format
 msgid "Unmute"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:629
+#: src/actions/actionmanagerimpl.cpp:628
 #, kde-format
 msgctxt "@action"
 msgid "Speak Text"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:634
+#: src/actions/actionmanagerimpl.cpp:633
 #, kde-format
 msgid "&Find in Message…"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:641
+#: src/actions/actionmanagerimpl.cpp:640
 #, fuzzy, kde-format
 #| msgid "Copy Link Address"
 msgctxt "@action"
 msgid "Copy Tab Address"
 msgstr "リンクアドレスをコピー"
 
-#: src/actions/actionmanagerimpl.cpp:646
+#: src/actions/actionmanagerimpl.cpp:645
 #, kde-format
 msgid "Close Tab"
 msgstr "タブを閉じる"
 
-#: src/actions/actionmanagerimpl.cpp:659
+#: src/actions/actionmanagerimpl.cpp:658
 #, kde-format
 msgctxt "@action"
 msgid "Activate Tab %1"
@@ -1655,32 +1655,32 @@ msgctxt "@info:shell"
 msgid "Lists the available options for user feedback"
 msgstr ""
 
-#: src/akregator_part.cpp:81
+#: src/akregator_part.cpp:78
 #, kde-format
 msgid "Feeds"
 msgstr "フィード"
 
-#: src/akregator_part.cpp:92
+#: src/akregator_part.cpp:89
 #, kde-format
 msgid "Planet KDE"
 msgstr "Planet KDE"
 
-#: src/akregator_part.cpp:97
+#: src/akregator_part.cpp:94
 #, kde-format
 msgid "KDE Apps"
 msgstr "KDE Apps"
 
-#: src/akregator_part.cpp:103
+#: src/akregator_part.cpp:100
 #, kde-format
 msgid "Spanish feeds"
 msgstr ""
 
-#: src/akregator_part.cpp:107
+#: src/akregator_part.cpp:104
 #, kde-format
 msgid "Planet KDE España"
 msgstr "Planet KDE España"
 
-#: src/akregator_part.cpp:425
+#: src/akregator_part.cpp:422
 #, kde-format
 msgid ""
 "Access denied: Cannot save feed list to <b>%1</b>. Please check your "
@@ -1689,26 +1689,26 @@ msgstr ""
 "アクセスが拒否されたため、フィードリストを ‘%1’ に保存できません。アクセス許"
 "可があるか確認してください。"
 
-#: src/akregator_part.cpp:426 src/akregator_part.cpp:479
+#: src/akregator_part.cpp:423 src/akregator_part.cpp:476
 #, fuzzy, kde-format
 #| msgid "Write Error"
 msgctxt "@title:window"
 msgid "Write Error"
 msgstr "書き込みエラー"
 
-#: src/akregator_part.cpp:462
+#: src/akregator_part.cpp:459
 #, kde-format
 msgid "Could not import the file %1 (no valid OPML)"
 msgstr "ファイル ‘%1’ をインポートできませんでした (有効な OPML がありません)"
 
-#: src/akregator_part.cpp:462 src/command/loadfeedlistcommand.cpp:73
+#: src/akregator_part.cpp:459 src/command/loadfeedlistcommand.cpp:70
 #, fuzzy, kde-format
 #| msgid "OPML Parsing Error"
 msgctxt "@title:window"
 msgid "OPML Parsing Error"
 msgstr "OPML 解析エラー"
 
-#: src/akregator_part.cpp:466
+#: src/akregator_part.cpp:463
 #, kde-format
 msgid ""
 "The file %1 could not be read, check if it exists or if it is readable for "
@@ -1717,47 +1717,47 @@ msgstr ""
 "ファイル ‘%1’ を読めませんでした。存在するかどうか、現在のユーザが読み取り可"
 "能か確認してください。"
 
-#: src/akregator_part.cpp:467 src/command/loadfeedlistcommand.cpp:146
+#: src/akregator_part.cpp:464 src/command/loadfeedlistcommand.cpp:143
 #, fuzzy, kde-format
 #| msgid "Read Error"
 msgctxt "@title:window"
 msgid "Read Error"
 msgstr "読み取りエラー"
 
-#: src/akregator_part.cpp:478
+#: src/akregator_part.cpp:475
 #, kde-format
 msgid "Access denied: cannot write to file %1. Please check your permissions."
 msgstr ""
 "アクセスが拒否されたため、ファイル ‘%1’ に書き込めません。アクセス許可がある"
 "か確認してください。"
 
-#: src/akregator_part.cpp:494 src/akregator_part.cpp:503
+#: src/akregator_part.cpp:491 src/akregator_part.cpp:500
 #, fuzzy, kde-format
 #| msgid "OPML Outlines (*.opml, *.xml)"
 msgid "OPML Outlines (%1);;All Files (*)"
 msgstr "OPML アウトライン (*.opml, *.xml)"
 
-#: src/akregator_part.cpp:628
+#: src/akregator_part.cpp:625
 #, kde-format
 msgid "Imported Folder"
 msgstr "インポートしたフォルダ"
 
-#: src/articlejobs.cpp:184
+#: src/articlejobs.cpp:183
 #, kde-format
 msgid "The feed to be listed was already removed."
 msgstr "一覧を表示するフィードは既に削除されています。"
 
-#: src/articlelistview.cpp:163 src/subscription/subscriptionlistview.cpp:182
+#: src/articlelistview.cpp:162 src/subscription/subscriptionlistview.cpp:182
 #, kde-format
 msgid "Columns"
 msgstr "カラム"
 
-#: src/articlelistview.cpp:221
+#: src/articlelistview.cpp:220
 #, kde-format
 msgid "No result found"
 msgstr ""
 
-#: src/articlelistview.cpp:382
+#: src/articlelistview.cpp:381
 #, fuzzy, kde-format
 #| msgid ""
 #| "<h2>Article list</h2>Here you can browse articles from the currently "
@@ -1777,138 +1777,138 @@ msgstr ""
 "す。記事のウェブページはタブまたは外部ブラウザのウィンドウで開くことができま"
 "す。"
 
-#: src/articlemodel.cpp:76
+#: src/articlemodel.cpp:75
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Title"
 msgstr "タイトル"
 
-#: src/articlemodel.cpp:78
+#: src/articlemodel.cpp:77
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Feed"
 msgstr "フィード"
 
-#: src/articlemodel.cpp:80
+#: src/articlemodel.cpp:79
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Date"
 msgstr "日付"
 
-#: src/articlemodel.cpp:82
+#: src/articlemodel.cpp:81
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Author"
 msgstr "作者"
 
-#: src/articlemodel.cpp:84
+#: src/articlemodel.cpp:83
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Description"
 msgstr "説明"
 
-#: src/articlemodel.cpp:86
+#: src/articlemodel.cpp:85
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Content"
 msgstr "コンテンツ"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:149
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:145
 #, fuzzy, kde-format
 #| msgid "A KDE news feed reader."
 msgid "Akregator is a KDE news feed reader."
 msgstr "KDE のニュースフィードリーダー"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:193
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:189
 #, fuzzy, kde-format
 #| msgid "&Save Link As..."
 msgctxt "@title:window"
 msgid "Save As"
 msgstr "名前を付けてリンクを保存(&S)..."
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:277
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:273
 #: src/frame/webengine/akrwebengineviewer.cpp:114
 #, fuzzy, kde-format
 #| msgid "&Save Link As..."
 msgid "&Save Link As…"
 msgstr "名前を付けてリンクを保存(&S)..."
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:281
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:277
 #: src/frame/webengine/akrwebengineviewer.cpp:118
 #, kde-format
 msgid "Copy &Link Address"
 msgstr "リンクアドレスをコピー(&L)"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:289
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:285
 #: src/frame/webengine/akrwebengineviewer.cpp:126
 #, kde-format
 msgctxt "@action"
 msgid "Copy Image URL"
 msgstr ""
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:293
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:289
 #: src/frame/webengine/akrwebengineviewer.cpp:130
 #, kde-format
 msgctxt "@action"
 msgid "Save Image…"
 msgstr ""
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:384
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:380
 #, kde-format
 msgid "Disable"
 msgstr "無効にする"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:385
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:381
 #, kde-format
 msgid "Keep Enabled"
 msgstr "有効にしておく"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:387
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:383
 #, kde-format
 msgid "Are you sure you want to disable this introduction page?"
 msgstr "本当にこの開始ページを無効にしますか？"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:388
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:384
 #, fuzzy, kde-format
 #| msgid "Disable Introduction Page"
 msgctxt "@title:window"
 msgid "Disable Introduction Page"
 msgstr "開始ページを無効にしますか？"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:418
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:414
 #, kde-format
 msgid "This web site is a malware, do you want to continue to show it?"
 msgstr ""
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:419
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:415
 #, kde-format
 msgctxt "@title:window"
 msgid "Malware"
 msgstr ""
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:431
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:427
 #, kde-format
 msgid "The network is broken."
 msgstr ""
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:431
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:434
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:427
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:430
 #, kde-format
 msgctxt "@title:window"
 msgid "Check Phishing Url"
 msgstr ""
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:434
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:430
 #, kde-format
 msgid "The url %1 is not valid."
 msgstr ""
 
-#: src/command/createfoldercommand.cpp:49
+#: src/command/createfoldercommand.cpp:47
 #, kde-format
 msgid "Add Folder"
 msgstr "フォルダを追加"
 
-#: src/command/createfoldercommand.cpp:49
+#: src/command/createfoldercommand.cpp:47
 #, kde-format
 msgid "Folder name:"
 msgstr "フォルダ名:"
@@ -1955,22 +1955,22 @@ msgctxt "@title:window"
 msgid "Delete Feed"
 msgstr "フィードを削除"
 
-#: src/command/importfeedlistcommand.cpp:48
+#: src/command/importfeedlistcommand.cpp:46
 #, kde-format
 msgid "Imported Feeds"
 msgstr "フィードをインポート"
 
-#: src/command/importfeedlistcommand.cpp:77
+#: src/command/importfeedlistcommand.cpp:75
 #, kde-format
 msgid "Add Imported Folder"
 msgstr "インポートしたフォルダを追加"
 
-#: src/command/importfeedlistcommand.cpp:78
+#: src/command/importfeedlistcommand.cpp:76
 #, kde-format
 msgid "Imported folder name:"
 msgstr "インポートしたフォルダ名:"
 
-#: src/command/loadfeedlistcommand.cpp:65
+#: src/command/loadfeedlistcommand.cpp:62
 #, kde-format
 msgid ""
 "<qt>The standard feed list is corrupted (invalid OPML). A backup was created:"
@@ -1979,7 +1979,7 @@ msgstr ""
 "<qt><p>標準のフィードリストは壊れています (無効な OPML)。以下にバックアップを"
 "作成しました:</p><p><b>%1</b></p></qt>"
 
-#: src/command/loadfeedlistcommand.cpp:69
+#: src/command/loadfeedlistcommand.cpp:66
 #, kde-format
 msgid ""
 "<qt>The standard feed list is corrupted (invalid OPML). Could not create a "
@@ -1988,29 +1988,29 @@ msgstr ""
 "<qt>標準のフィードリストは壊れています (無効な OPML)。バックアップは作成でき"
 "ませんでした。</qt>"
 
-#: src/command/loadfeedlistcommand.cpp:131
+#: src/command/loadfeedlistcommand.cpp:128
 #, fuzzy, kde-format
 #| msgid "Opening Feed List..."
 msgid "Opening Feed List…"
 msgstr "フィードリストを開く..."
 
-#: src/command/loadfeedlistcommand.cpp:145
+#: src/command/loadfeedlistcommand.cpp:142
 #, kde-format
 msgid "<qt>Could not open feed list (%1) for reading.</qt>"
 msgstr "<qt>フィードリスト (%1) を読み取りのために開けませんでした。</qt>"
 
-#: src/command/loadfeedlistcommand.cpp:157
+#: src/command/loadfeedlistcommand.cpp:154
 #, kde-format
 msgctxt "error message window caption"
 msgid "XML Parsing Error"
 msgstr "XML 解析エラー"
 
-#: src/command/loadfeedlistcommand.cpp:159
+#: src/command/loadfeedlistcommand.cpp:156
 #, kde-kuit-format
 msgid "<qt><p>XML parsing error in line %1, column %2 of %3:</p><p>%4</p></qt>"
 msgstr "<qt><p>%3 の %1 行目 %2 列で解析エラー:</p><p>%4</p></qt>"
 
-#: src/command/loadfeedlistcommand.cpp:166
+#: src/command/loadfeedlistcommand.cpp:163
 #, kde-format
 msgid ""
 "<qt>The standard feed list is corrupted (invalid XML). A backup was created:"
@@ -2019,7 +2019,7 @@ msgstr ""
 "<qt><p>標準のフィードリストは壊れています (無効な XML)。以下にバックアップを"
 "作成しました:</p><p><b>%1</b></p></qt>"
 
-#: src/command/loadfeedlistcommand.cpp:170
+#: src/command/loadfeedlistcommand.cpp:167
 #, kde-format
 msgid ""
 "<qt>The standard feed list is corrupted (invalid XML). Could not create a "
@@ -2110,7 +2110,7 @@ msgstr "メインツールバー"
 msgid "&File"
 msgstr "ファイル(&F)"
 
-#: src/feed/feedlist.cpp:162
+#: src/feed/feedlist.cpp:161
 #, kde-format
 msgid "All Feeds"
 msgstr "すべてのフィード"
@@ -2120,19 +2120,19 @@ msgstr "すべてのフィード"
 msgid "Activities"
 msgstr ""
 
-#: src/feed/feedpropertiesdialog.cpp:64 src/feed/feedpropertiesdialog.cpp:119
+#: src/feed/feedpropertiesdialog.cpp:64 src/feed/feedpropertiesdialog.cpp:118
 #, kde-format
 msgid "Minute"
 msgid_plural "Minutes"
 msgstr[0] "分"
 
-#: src/feed/feedpropertiesdialog.cpp:65 src/feed/feedpropertiesdialog.cpp:120
+#: src/feed/feedpropertiesdialog.cpp:65 src/feed/feedpropertiesdialog.cpp:119
 #, kde-format
 msgid "Hour"
 msgid_plural "Hours"
 msgstr[0] "時間"
 
-#: src/feed/feedpropertiesdialog.cpp:66 src/feed/feedpropertiesdialog.cpp:121
+#: src/feed/feedpropertiesdialog.cpp:66 src/feed/feedpropertiesdialog.cpp:120
 #, kde-format
 msgid "Day"
 msgid_plural "Days"
@@ -2145,13 +2145,13 @@ msgctxt "@title:window"
 msgid "Feed Properties"
 msgstr "フィードのプロパティ"
 
-#: src/feed/feedpropertiesdialog.cpp:122
+#: src/feed/feedpropertiesdialog.cpp:121
 #, kde-format
 msgctxt "never fetch new articles"
 msgid "Never"
 msgstr "しない"
 
-#: src/feed/feedpropertiesdialog.cpp:124
+#: src/feed/feedpropertiesdialog.cpp:123
 #, fuzzy, kde-format
 #| msgid " day"
 #| msgid_plural " days"
@@ -2159,7 +2159,7 @@ msgid "%v day"
 msgid_plural "%v days"
 msgstr[0] " 日"
 
-#: src/feed/feedpropertiesdialog.cpp:125
+#: src/feed/feedpropertiesdialog.cpp:124
 #, fuzzy, kde-format
 #| msgid " article"
 #| msgid_plural " articles"
@@ -2174,7 +2174,7 @@ msgctxt "@title:window"
 msgid "Properties of %1"
 msgstr "%1 のプロパティ"
 
-#: src/formatter/articleformatter.cpp:37
+#: src/formatter/articleformatter.cpp:35
 #, kde-format
 msgid "(%1, %2)"
 msgstr "(%1, %2)"
@@ -2210,7 +2210,7 @@ msgstr "<i></i>ホームページ: <a href=\"%1\">%2</a>"
 #: src/formatter/grantleeviewformatter.cpp:202
 #, fuzzy, kde-format
 #| msgid "<b>Description:</b> %1<br /><br />"
-msgid "<b>Copyright:</b> %1</a>"
+msgid "<b>Copyright:</b> %1"
 msgstr "<i></i>説明: %1<br /><br />"
 
 #: src/formatter/grantleeviewformatter.cpp:265
@@ -2260,27 +2260,27 @@ msgstr "読み込みがキャンセルされました"
 msgid "Loading completed"
 msgstr "読み込み完了"
 
-#: src/mainwidget.cpp:191
+#: src/mainwidget.cpp:190
 #, kde-format
 msgid "You can view multiple articles in several open tabs."
 msgstr "複数のタブに記事を表示させることができます。"
 
-#: src/mainwidget.cpp:195
+#: src/mainwidget.cpp:194
 #, kde-format
 msgid "Articles list."
 msgstr "記事リスト"
 
-#: src/mainwidget.cpp:257 src/mainwidget.cpp:681
+#: src/mainwidget.cpp:256 src/mainwidget.cpp:680
 #, kde-format
 msgid "Articles"
 msgstr "記事"
 
-#: src/mainwidget.cpp:282
+#: src/mainwidget.cpp:281
 #, kde-format
 msgid "About"
 msgstr "情報"
 
-#: src/mainwidget.cpp:820
+#: src/mainwidget.cpp:819
 #, fuzzy, kde-format
 #| msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
 msgid ""
@@ -2288,20 +2288,20 @@ msgid ""
 "qt>"
 msgstr "<qt>本当にフィード “%1” を削除しますか？</qt>"
 
-#: src/mainwidget.cpp:821
+#: src/mainwidget.cpp:820
 #, fuzzy, kde-format
 #| msgid "&Mark Feed as Read"
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "フィードを既読としてマーク(&M)"
 
-#: src/mainwidget.cpp:824
+#: src/mainwidget.cpp:823
 #, fuzzy, kde-format
 #| msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
 msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
 msgstr "<qt>本当にフィード “%1” を削除しますか？</qt>"
 
-#: src/mainwidget.cpp:826
+#: src/mainwidget.cpp:825
 #, fuzzy, kde-format
 #| msgid "<qt>Are you sure you want to delete this feed?</qt>"
 msgid ""
@@ -2309,44 +2309,44 @@ msgid ""
 "qt>"
 msgstr "<qt>本当にこのフィードを削除しますか？</qt>"
 
-#: src/mainwidget.cpp:828
+#: src/mainwidget.cpp:827
 #, fuzzy, kde-format
 #| msgid "&Mark Feeds as Read"
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "フィードを既読としてマーク(&M)"
 
-#: src/mainwidget.cpp:892 src/mainwidget.cpp:901 src/mainwidget.cpp:1302
+#: src/mainwidget.cpp:891 src/mainwidget.cpp:900 src/mainwidget.cpp:1301
 #, kde-format
 msgid "Networking is not available."
 msgstr ""
 
-#: src/mainwidget.cpp:909
+#: src/mainwidget.cpp:908
 #, fuzzy, kde-format
 #| msgid "Fetching Feeds..."
 msgid "Fetching Feeds…"
 msgstr "フィードを取得中..."
 
-#: src/mainwidget.cpp:1107
+#: src/mainwidget.cpp:1106
 #, kde-format
 msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
 msgstr "<qt>本当に記事 “%1” を削除しますか？</qt>"
 
-#: src/mainwidget.cpp:1110
+#: src/mainwidget.cpp:1109
 #, kde-format
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
 msgid_plural ""
 "<qt>Are you sure you want to delete the %1 selected articles?</qt>"
 msgstr[0] "<qt>本当に選択した %1 件の記事を削除しますか？</qt>"
 
-#: src/mainwidget.cpp:1117
+#: src/mainwidget.cpp:1116
 #, fuzzy, kde-format
 #| msgid "Delete Article"
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "記事を削除"
 
-#: src/mainwidget.cpp:1299
+#: src/mainwidget.cpp:1298
 #, kde-format
 msgid "Networking is available now."
 msgstr ""
@@ -2398,7 +2398,7 @@ msgid_plural "<i>and %1 others</i>"
 msgstr[0] ""
 
 #: src/plugins/addaccountwizard.cpp:22
-#: src/plugins/miniflux/minifluxplugin.cpp:90
+#: src/plugins/miniflux/minifluxplugin.cpp:89
 #, kde-format
 msgctxt "@title:window"
 msgid "Add Online Account"
@@ -2484,12 +2484,12 @@ msgctxt "@title:window"
 msgid "Connection Failed"
 msgstr ""
 
-#: src/plugins/miniflux/minifluxplugin.cpp:73
+#: src/plugins/miniflux/minifluxplugin.cpp:72
 #, kde-format
 msgid "Miniflux"
 msgstr ""
 
-#: src/plugins/miniflux/minifluxplugin.cpp:90
+#: src/plugins/miniflux/minifluxplugin.cpp:89
 #, kde-format
 msgid "An account named “%1” already exists."
 msgstr ""
@@ -2817,14 +2817,14 @@ msgstr "すべての記事を保持する"
 msgid "Open In External Browser"
 msgstr "外部ブラウザで開く"
 
-#: src/widgets/searchbar.cpp:46
+#: src/widgets/searchbar.cpp:42
 #, fuzzy, kde-format
 #| msgid "Unread articles:"
 msgctxt "@info:placeholder"
 msgid "Search articles…"
 msgstr "未読記事:"
 
-#: src/widgets/searchbar.cpp:127
+#: src/widgets/searchbar.cpp:123
 #, fuzzy, kde-format
 #| msgid "Unread articles:"
 msgctxt "@info:placeholder"
