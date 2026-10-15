@@ -114,7 +114,7 @@ QVariant SortColorizeProxyModel::data(const QModelIndex &idx, int role) const
 
 namespace
 {
-static bool isRead(const QModelIndex &idx)
+bool isRead(const QModelIndex &idx)
 {
     if (!idx.isValid()) {
         return false;

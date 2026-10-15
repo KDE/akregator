@@ -42,12 +42,12 @@ using namespace Qt::Literals::StringLiterals;
 
 namespace
 {
-static uint nodeIdForIndex(const QModelIndex &idx)
+uint nodeIdForIndex(const QModelIndex &idx)
 {
     return idx.isValid() ? idx.internalId() : 0;
 }
 
-static QString errorCodeToString(Syndication::ErrorCode err)
+QString errorCodeToString(Syndication::ErrorCode err)
 {
     switch (err) {
     case Timeout:
@@ -69,7 +69,7 @@ static QString errorCodeToString(Syndication::ErrorCode err)
     }
 }
 
-static const TreeNode *nodeForIndex(const QModelIndex &index, const FeedList *feedList)
+const TreeNode *nodeForIndex(const QModelIndex &index, const FeedList *feedList)
 {
     return (!index.isValid() || !feedList) ? nullptr : feedList->findByID(index.internalId());
 }

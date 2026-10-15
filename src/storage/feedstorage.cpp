@@ -23,7 +23,7 @@ using namespace Qt::Literals::StringLiterals;
 
 namespace
 {
-static uint calcHash(const QString &str)
+uint calcHash(const QString &str)
 {
     if (str.isNull()) { // handle null string as "", prevents crash
         return calcHash(""_L1);

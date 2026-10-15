@@ -61,7 +61,7 @@ using namespace Qt::Literals::StringLiterals;
 
 namespace
 {
-static QDomDocument createDefaultFeedList()
+QDomDocument createDefaultFeedList()
 {
     QDomDocument doc;
     QDomProcessingInstruction z = doc.createProcessingInstruction(u"xml"_s, u"version=\"1.0\" encoding=\"UTF-8\""_s);

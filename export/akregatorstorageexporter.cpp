@@ -32,7 +32,7 @@ using namespace Akregator::Backend;
 
 namespace
 {
-static QString akregatorNamespace()
+QString akregatorNamespace()
 {
     return u"http://akregator.kde.org/StorageExporter#"_s;
 }
@@ -206,7 +206,7 @@ void writeAuthor(const QString &name, const QString &uri, const QString &email, 
     writer.writeEndElement(); // </author>
 }
 
-static void writeItem(FeedStorage *storage, const QString &guid, QXmlStreamWriter &writer)
+void writeItem(FeedStorage *storage, const QString &guid, QXmlStreamWriter &writer)
 {
     Elements::instance.entry.writeStartElement(writer);
     Elements::instance.guid.write(guid, writer);
@@ -260,7 +260,7 @@ static void writeItem(FeedStorage *storage, const QString &guid, QXmlStreamWrite
     writer.writeEndElement(); // </item>
 }
 
-static void serialize(FeedStorage *storage, const QString &url, QIODevice *device)
+void serialize(FeedStorage *storage, const QString &url, QIODevice *device)
 {
     Q_ASSERT(storage);
     Q_ASSERT(device);
@@ -286,12 +286,12 @@ static void serialize(FeedStorage *storage, const QString &url, QIODevice *devic
     writer.writeEndDocument();
 }
 
-static void serialize(Storage *storage, const QString &url, QIODevice *device)
+void serialize(Storage *storage, const QString &url, QIODevice *device)
 {
     serialize(storage->archiveFor(url), url, device);
 }
 
-static void printUsage()
+void printUsage()
 {
     std::cout << "akregatorstorageexporter [--base64] url" << std::endl;
 }

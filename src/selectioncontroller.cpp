@@ -29,7 +29,7 @@ using namespace Akregator;
 
 namespace
 {
-static Akregator::Article articleForIndex(const QModelIndex &index, FeedList *feedList)
+Akregator::Article articleForIndex(const QModelIndex &index, FeedList *feedList)
 {
     if (!index.isValid()) {
         return {};
@@ -40,7 +40,7 @@ static Akregator::Article articleForIndex(const QModelIndex &index, FeedList *fe
     return feedList->findArticle(feedId, guid);
 }
 
-static QList<Akregator::Article> articlesForIndexes(const QModelIndexList &indexes, FeedList *feedList)
+QList<Akregator::Article> articlesForIndexes(const QModelIndexList &indexes, FeedList *feedList)
 {
     QList<Akregator::Article> articles;
     for (const QModelIndex &i : indexes) {
@@ -54,7 +54,7 @@ static QList<Akregator::Article> articlesForIndexes(const QModelIndexList &index
     return articles;
 }
 
-static Akregator::TreeNode *subscriptionForIndex(const QModelIndex &index, Akregator::FeedList *feedList)
+Akregator::TreeNode *subscriptionForIndex(const QModelIndex &index, Akregator::FeedList *feedList)
 {
     if (!index.isValid()) {
         return nullptr;
