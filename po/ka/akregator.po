@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-10-15 00:46+0000\n"
-"PO-Revision-Date: 2026-09-30 09:21+0200\n"
+"PO-Revision-Date: 2026-10-15 04:36+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.9\n"
+"X-Generator: Poedit 3.10\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -2114,10 +2114,9 @@ msgid "<b>Homepage:</b> <a href=\"%1\">%1</a>"
 msgstr "<b>საწყისი გვერდი:</b> <a href=\"%1\">%1</a>"
 
 #: src/formatter/grantleeviewformatter.cpp:202
-#, fuzzy, kde-format
-#| msgid "<b>Copyright:</b> %1</a>"
+#, kde-format
 msgid "<b>Copyright:</b> %1"
-msgstr "<b>საავტორო უფლებები:</b> %1</a>"
+msgstr "<b>საავტორო უფლებები:</b> %1"
 
 #: src/formatter/grantleeviewformatter.cpp:265
 #, kde-format
