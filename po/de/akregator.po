@@ -9,20 +9,21 @@
 # SPDX-FileCopyrightText: 2025 Alexander Becker <alex-at-kde-l10n-de@freenet.de>
 # SPDX-FileCopyrightText: 2025 Alois Spitzbart <spitz234@hotmail.com>
 # SPDX-FileCopyrightText: 2026 Philipp Kiemle <l10n.daphipz@fastmail.de>
+# SPDX-FileCopyrightText: 2026 Ewald Müller <EMuede@netscape.net>
 msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-07-15 02:38+0000\n"
-"PO-Revision-Date: 2026-09-29 20:32+0200\n"
-"Last-Translator: Philipp Kiemle <l10n.daphipz@fastmail.de>\n"
+"PO-Revision-Date: 2026-10-15 23:14+0200\n"
+"Last-Translator: Ewald Müller <EMuede@netscape.net>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 26.08.1\n"
+"X-Generator: Lokalize 26.04.3\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -42,7 +43,7 @@ msgid ""
 "collects the content for you."
 msgstr ""
 "Nachrichtensammler bieten die Möglichkeit, verschiedene Arten von Inhalten "
-"wie Nachrichten, Blogs oder andere Online-Quellen, bequem zu lesen. Anstatt "
+"wie Nachrichten, Blogs oder andere Online-Quellen bequem zu lesen. Anstatt "
 "Ihre Lieblingsseiten manuell auf Neuigkeiten zu überprüfen, sammelt "
 "Akregator diese Inhalte für Sie."
 
@@ -369,7 +370,7 @@ msgstr "Sicherheit"
 #: configuration/ui/settings_browser.ui:146
 #, kde-format
 msgid "Verify URLs using Google's Safe Browsing API"
-msgstr "Überprüfen von URLs mit der API von Google's Safe Browsing"
+msgstr "Überprüfen von URLs mit der „Safe-Browsing“-API von Google"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_EnableJavascript)
 #. i18n: ectx: label, entry, group (Browser)
@@ -748,7 +749,7 @@ msgid ""
 "the default one. This is here because some proxies may interrupt the "
 "connection because of having \"gator\" in the name."
 msgstr ""
-"Diese Funktion ermöglicht es dem Benutzer, eine eigene Browser-Kennung "
+"Diese Option ermöglicht es dem Benutzer, eine eigene Browser-Kennung "
 "anstelle der voreingestellten zu übermitteln. Dies ist manchmal nötig, weil "
 "bestimmte Proxies die Verbindung unterbrechen könnten, wenn die Zeichenfolge "
 "„gator“ in der Kennung vorkommt."
