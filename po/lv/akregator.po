@@ -6,13 +6,13 @@
 # Maris Nartiss <maris.kde@gmail.com>, 2009.
 # Viesturs Zariņš <viesturs.zarins@mii.lu.lv>, 2009.
 # Einars Sprugis <einars8@gmail.com>, 2012.
-# SPDX-FileCopyrightText: 2024, 2025 Toms Trasūns <toms.trasuns@posteo.net>
+# SPDX-FileCopyrightText: 2024-2026 Toms Trasūns <toms.trasuns@posteo.net>
 msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-10-15 00:46+0000\n"
-"PO-Revision-Date: 2025-04-06 17:45+0300\n"
+"PO-Revision-Date: 2026-10-16 14:02+0300\n"
 "Last-Translator: Toms Trasuns <toms.trasuns@posteo.net>\n"
 "Language-Team: Latvian <kde-i18n-doc@kde.org>\n"
 "Language: lv\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
 "2);\n"
-"X-Generator: Lokalize 24.12.3\n"
+"X-Generator: Lokalize 26.08.1\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -108,11 +108,10 @@ msgstr ""
 #, kde-format
 msgctxt "@title:column"
 msgid "Account"
-msgstr ""
+msgstr "Konts"
 
 #: configuration/akregator_config_accounts.cpp:39
-#, fuzzy, kde-format
-#| msgid "Type"
+#, kde-format
 msgctxt "@title:column"
 msgid "Type"
 msgstr "Tips"
@@ -121,18 +120,16 @@ msgstr "Tips"
 #, kde-format
 msgctxt "@action:button Add account"
 msgid "Add…"
-msgstr ""
+msgstr "Pievienot…"
 
 #: configuration/akregator_config_accounts.cpp:46
-#, fuzzy, kde-format
-#| msgid "Modify..."
+#, kde-format
 msgctxt "@action:button"
 msgid "Modify…"
-msgstr "Labot..."
+msgstr "Rediģēt..."
 
 #: configuration/akregator_config_accounts.cpp:47
-#, fuzzy, kde-format
-#| msgid "Remove"
+#, kde-format
 msgctxt "@action:button"
 msgid "Remove"
 msgstr "Noņemt"
@@ -144,13 +141,15 @@ msgid ""
 "This removes the account’s folder from the feed tree and deletes its stored "
 "credentials; the server is not affected."
 msgstr ""
+"Vai tiešām vēlaties noņemt kontu „%1“?\n"
+"Šī darbība no plūsmas izņems kontu mapi un dzēsīs visus tajā saglabātos "
+"ierakstīšanās datus. Serveris netiks ietekmēts."
 
 #: configuration/akregator_config_accounts.cpp:138
-#, fuzzy, kde-format
-#| msgid "Remove nothing"
+#, kde-format
 msgctxt "@title:window"
 msgid "Remove Account"
-msgstr "Neko nenoņemt"
+msgstr "Noņemt kontu"
 
 #: configuration/akregator_config_archive.cpp:36
 #, kde-format
@@ -286,7 +285,7 @@ msgstr "Bezserifa fonts:"
 #: configuration/ui/settings_archive.ui:30
 #, kde-format
 msgid "Default Archive Settings"
-msgstr "Noklusētie arhīva iestatījumi"
+msgstr "Noklusējuma arhīva iestatījumi"
 
 #. i18n: ectx: property (text), widget (QRadioButton, rb_DisableArchiving)
 #: configuration/ui/settings_archive.ui:36
@@ -381,7 +380,7 @@ msgstr "Izmantot šo &komandu:"
 #: configuration/ui/settings_browser.ui:97
 #, kde-format
 msgid "Use default web &browser"
-msgstr "Izmantot noklusēto &pārlūku"
+msgstr "Izmantot noklusējuma &pārlūku"
 
 #. i18n: ectx: property (title), widget (QGroupBox, tabsGroupBox)
 #: configuration/ui/settings_browser.ui:110
@@ -417,10 +416,9 @@ msgstr "Drošība"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_CheckPhishingUrl)
 #: configuration/ui/settings_browser.ui:146
-#, fuzzy, kde-format
-#| msgid "Verify URLs using Google's Safe Browsing API"
+#, kde-format
 msgid "Verify URLs using Google’s Safe Browsing API"
-msgstr "Pārbaudīt URL, izmantojot „Google“ drošās pārlūkošanas API"
+msgstr "Pārbaudīt URL adreses, izmantojot „Google“ drošās pārlūkošanas API"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_EnableJavascript)
 #. i18n: ectx: label, entry, group (Browser)
@@ -729,7 +727,7 @@ msgstr "Rakstu vecuma ierobežojums"
 #: interfaces/akregator.kcfg:120
 #, kde-format
 msgid "Default expiry age for articles in days."
-msgstr "Noklusētais rakstu vecuma ierobežojums (dienās)."
+msgstr "Noklusējuma rakstu vecuma ierobežojums (dienās)."
 
 #. i18n: ectx: label, entry, group (Archive)
 #: interfaces/akregator.kcfg:124
@@ -790,19 +788,15 @@ msgstr ""
 
 #. i18n: ectx: whatsthis, entry, group (Network)
 #: interfaces/akregator.kcfg:146
-#, fuzzy, kde-format
-#| msgid ""
-#| "This option allows user to specify custom user-agent string instead of "
-#| "using the default one. This is here because some proxies may interrupt "
-#| "the connection because of having \"gator\" in the name."
+#, kde-format
 msgid ""
 "This option allows user to specify custom user-agent string instead of using "
 "the default one. This is here because some proxies may interrupt the "
 "connection because of having “gator” in the name."
 msgstr ""
-"Šī opcija ļauj norādīt lietotāja aģentu noklusētā iestatījuma vietā, kas var "
-"noderēt, ja starpniekserveris pārtrauc savienojumu frāzes „gator“ dēļ "
-"lietotāja aģenta virknē."
+"Šī opcija ļauj lietotājam norādīt pielāgotu lietotāja aģentu noklusējuma "
+"iestatījuma vietā, kas var noderēt, ja starpniekserveris pārtrauc "
+"savienojumu frāzes „gator“ dēļ lietotāja aģenta virknē."
 
 #. i18n: ectx: label, entry, group (General)
 #: interfaces/akregator.kcfg:152
@@ -926,7 +920,7 @@ msgstr ""
 #: interfaces/akregator.kcfg:222
 #, kde-format
 msgid "Use default KDE web browser"
-msgstr "Izmantot noklusēto KDE tīmekļa pārlūku"
+msgstr "Izmantot noklusējuma KDE tīmekļa pārlūku"
 
 #. i18n: ectx: whatsthis, entry, group (Browser)
 #: interfaces/akregator.kcfg:223
@@ -1153,8 +1147,7 @@ msgid "Eike Hein"
 msgstr "Eike Hein"
 
 #: src/aboutdata.cpp:42
-#, fuzzy, kde-format
-#| msgid "'Delayed mark as read' feature"
+#, kde-format
 msgid "‘Delayed mark as read’ feature"
 msgstr "„Aizkavēta atzīmēšana, ka lasīts“ funkcija"
 
@@ -1242,11 +1235,10 @@ msgid "&Export Feeds…"
 msgstr "&Eksportēt plūsmas…"
 
 #: src/actions/actionmanagerimpl.cpp:214
-#, fuzzy, kde-format
-#| msgid "Modify Online Reader Account"
+#, kde-format
 msgctxt "@action"
 msgid "Add Online Account…"
-msgstr "Labot tiešsaistes lasītāja kontu"
+msgstr "Pievienot tiešsaistes konu…"
 
 #: src/actions/actionmanagerimpl.cpp:223
 #, kde-format
@@ -1304,11 +1296,10 @@ msgid "Ma&rk All Feeds as Read"
 msgstr "A&tzīmēt visas plūsmas kā lasītas"
 
 #: src/actions/actionmanagerimpl.cpp:364
-#, fuzzy, kde-format
-#| msgid "Copy Link Address"
+#, kde-format
 msgctxt "@action"
 msgid "Copy Article Link Address"
-msgstr "Kopēt saites adresi"
+msgstr "Kopēt raksta saites adresi"
 
 #: src/actions/actionmanagerimpl.cpp:369
 #, kde-format
@@ -1414,8 +1405,7 @@ msgid "Set Focus to Quick Search"
 msgstr "Iestatīt fokusu uz ātro meklēšanu"
 
 #: src/actions/actionmanagerimpl.cpp:462
-#, fuzzy, kde-format
-#| msgid "What's new"
+#, kde-format
 msgid "What’s new"
 msgstr "Kas jauns?"
 
@@ -1526,11 +1516,10 @@ msgid "&Find in Message…"
 msgstr "&Atrast ziņā"
 
 #: src/actions/actionmanagerimpl.cpp:640
-#, fuzzy, kde-format
-#| msgid "&Copy Email Address"
+#, kde-format
 msgctxt "@action"
 msgid "Copy Tab Address"
-msgstr "&Kopēt e-pasta adresi"
+msgstr "Kopēt cilnes adresi"
 
 #: src/actions/actionmanagerimpl.cpp:645
 #, kde-format
@@ -1589,7 +1578,7 @@ msgstr "Pievienojot plūsmu, ievietot to šajā grupā"
 #: src/akregator_options.h:25
 #, kde-format
 msgid "Group Name"
-msgstr ""
+msgstr "Grupas nosaukums"
 
 #: src/akregator_options.h:26
 #, kde-format
@@ -1702,13 +1691,7 @@ msgid "No result found"
 msgstr "Nekas nav atrasts"
 
 #: src/articlelistview.cpp:381
-#, fuzzy, kde-format
-#| msgid ""
-#| "<h2>Article list</h2>Here you can browse articles from the currently "
-#| "selected feed. You can also manage articles, as marking them as "
-#| "persistent (\"Mark as Important\") or delete them, using the right mouse "
-#| "button menu. To view the web page of the article, you can open the "
-#| "article internally in a tab or in an external browser window."
+#, kde-format
 msgid ""
 "<h2>Article list</h2>Here you can browse articles from the currently "
 "selected feed. You can also manage articles, as marking them as persistent "
@@ -1716,7 +1699,7 @@ msgid ""
 "view the web page of the article, you can open the article internally in a "
 "tab or in an external browser window."
 msgstr ""
-"<h2>Rakstu saraksts</h2>Varat pārlūkot un organizēt rakstus no izvēlētās "
+"<h2>Rakstu saraksts</h2>Varat pārlūkot un kārtot rakstus no atlasītās "
 "plūsmas. Ar peles labās pogas izvēlnes palīdzību varat atzīmēt rakstus kā "
 "pastāvīgi rādāmus („Atzīmēt kā svarīgus“) vai dzēst tos. Rakstu tīmekļa "
 "vietnes varat atvērt atsevišķā cilnē vai ārējā interneta pārlūkprogrammā."
@@ -2141,10 +2124,9 @@ msgid "<b>Homepage:</b> <a href=\"%1\">%1</a>"
 msgstr "<b>Mājaslapa:</b> <a href=\"%1\">%1</a>"
 
 #: src/formatter/grantleeviewformatter.cpp:202
-#, fuzzy, kde-format
-#| msgid "<b>Copyright:</b> %1</a>"
+#, kde-format
 msgid "<b>Copyright:</b> %1"
-msgstr "<b>Autortiesības:</b> %1</a>"
+msgstr "<b>Autortiesības:</b> %1"
 
 #: src/formatter/grantleeviewformatter.cpp:265
 #, kde-format
@@ -2329,101 +2311,98 @@ msgstr[2] "<i>un vēl %1</i>"
 
 #: src/plugins/addaccountwizard.cpp:22
 #: src/plugins/miniflux/minifluxplugin.cpp:89
-#, fuzzy, kde-format
-#| msgid "Modify Online Reader Account"
+#, kde-format
 msgctxt "@title:window"
 msgid "Add Online Account"
-msgstr "Labot tiešsaistes lasītāja kontu"
+msgstr "Pievienot tiešsaistes kontu"
 
 #: src/plugins/addaccountwizard.cpp:27
 #, kde-format
 msgctxt "@title:tab, wizard page for selecting the account type"
 msgid "Account Type"
-msgstr ""
+msgstr "Konta tips"
 
 #: src/plugins/addaccountwizard.cpp:31
-#, fuzzy, kde-format
-#| msgid "Bar Settings"
+#, kde-format
 msgctxt "@title:tab, wizard page with the account settings"
 msgid "Account Settings"
-msgstr "Joslas iestatījumi"
+msgstr "Konta iestatījumi"
 
 #: src/plugins/miniflux/minifluxaccountdialog.cpp:20
 #, kde-format
 msgctxt "@title:window"
 msgid "Miniflux Account Settings"
-msgstr ""
+msgstr "„Miniflux“ konta iestatījumi"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:26
 #, kde-format
 msgctxt "@action:button"
 msgid "Test Connection"
-msgstr ""
+msgstr "Pārbaudīt savienojumu"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:31
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "My Miniflux"
-msgstr ""
+msgstr "Mans „Miniflux“"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:32
 #, kde-format
 msgid "Account Name:"
-msgstr ""
+msgstr "Konta nosaukums:"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:34
-#, fuzzy, kde-format
-#| msgid "Service URL:"
+#, kde-format
 msgid "Server URL:"
-msgstr "Pakalpojuma URL:"
+msgstr "Servera URL:"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:36
 #, kde-format
 msgid "API Token:"
-msgstr ""
+msgstr "API žetons:"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:100
 #, kde-format
 msgid "Please enter a valid server URL and API token."
-msgstr ""
+msgstr "Norādiet derīgu servera URL un API žetonu."
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:100
 #, kde-format
 msgctxt "@title:window"
 msgid "Invalid Input"
-msgstr ""
+msgstr "Nederīga ievade"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:111
 #, kde-format
 msgid "Successfully connected to the Miniflux server."
-msgstr ""
+msgstr "Veiksmīgi sazinājās ar „Miniflux“ serveri."
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:111
 #, kde-format
 msgctxt "@title:window"
 msgid "Connection Successful"
-msgstr ""
+msgstr "Savienojums izdevās"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:113
 #, kde-format
 msgid "Failed to connect: %1"
-msgstr ""
+msgstr "Savienoties neizdevās: %1"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:113
 #, kde-format
 msgctxt "@title:window"
 msgid "Connection Failed"
-msgstr ""
+msgstr "Savienojums neizdevās"
 
 #: src/plugins/miniflux/minifluxplugin.cpp:72
 #, kde-format
 msgid "Miniflux"
-msgstr ""
+msgstr "Miniflux"
 
 #: src/plugins/miniflux/minifluxplugin.cpp:89
 #, kde-format
 msgid "An account named “%1” already exists."
-msgstr ""
+msgstr "Jau pastāv konts ar nosaukumu „%1“."
 
 #: src/progressmanager.cpp:127
 #, kde-format
@@ -2526,18 +2505,16 @@ msgid "Detach Tab"
 msgstr "Atdalīt cilni"
 
 #: src/tabwidget.cpp:132
-#, fuzzy, kde-format
-#| msgid "Reload All Tabs"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Reload Tab"
-msgstr "Pārlādēt visas cilnes"
+msgstr "Pārlādēt cilni"
 
 #: src/tabwidget.cpp:135
-#, fuzzy, kde-format
-#| msgid "&Copy Email Address"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Copy Tab Address"
-msgstr "&Kopēt e-pasta adresi"
+msgstr "Kopēt cilnes adresi"
 
 #: src/tabwidget.cpp:141
 #, kde-format
@@ -2652,7 +2629,7 @@ msgstr "&Arhīvs"
 #: src/ui/feedpropertieswidgetbase.ui:209
 #, kde-format
 msgid "&Use default settings"
-msgstr "Izmantot nokl&usētos iestatījumus"
+msgstr "Izmantot nokl&usējuma iestatījumus"
 
 #. i18n: ectx: property (text), widget (QRadioButton, rb_disableArchiving)
 #: src/ui/feedpropertieswidgetbase.ui:219

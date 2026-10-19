@@ -9,20 +9,21 @@
 # SPDX-FileCopyrightText: 2025 Alexander Becker <alex-at-kde-l10n-de@freenet.de>
 # SPDX-FileCopyrightText: 2025 Alois Spitzbart <spitz234@hotmail.com>
 # SPDX-FileCopyrightText: 2026 Philipp Kiemle <l10n.daphipz@fastmail.de>
+# SPDX-FileCopyrightText: 2026 Ewald Müller <EMuede@netscape.net>
 msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-10-15 00:46+0000\n"
-"PO-Revision-Date: 2026-09-29 20:32+0200\n"
-"Last-Translator: Philipp Kiemle <l10n.daphipz@fastmail.de>\n"
+"PO-Revision-Date: 2026-10-15 23:14+0200\n"
+"Last-Translator: Ewald Müller <EMuede@netscape.net>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 26.08.1\n"
+"X-Generator: Lokalize 26.04.3\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -42,7 +43,7 @@ msgid ""
 "collects the content for you."
 msgstr ""
 "Nachrichtensammler bieten die Möglichkeit, verschiedene Arten von Inhalten "
-"wie Nachrichten, Blogs oder andere Online-Quellen, bequem zu lesen. Anstatt "
+"wie Nachrichten, Blogs oder andere Online-Quellen bequem zu lesen. Anstatt "
 "Ihre Lieblingsseiten manuell auf Neuigkeiten zu überprüfen, sammelt "
 "Akregator diese Inhalte für Sie."
 
@@ -122,7 +123,7 @@ msgstr "Typ"
 #, kde-format
 msgctxt "@action:button Add account"
 msgid "Add…"
-msgstr ""
+msgstr "Hinzufügen …"
 
 #: configuration/akregator_config_accounts.cpp:46
 #, kde-format
@@ -143,6 +144,9 @@ msgid ""
 "This removes the account’s folder from the feed tree and deletes its stored "
 "credentials; the server is not affected."
 msgstr ""
+"Möchten Sie das Konto „%1“ wirklich entfernen?\n"
+"Das entfernt den Konto-Ordner aus den Nachrichtenquellen und löscht die "
+"gespeicherten Zugangsdaten. Der Server ist davon nicht betroffen."
 
 #: configuration/akregator_config_accounts.cpp:138
 #, kde-format
@@ -411,10 +415,9 @@ msgstr "Sicherheit"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_CheckPhishingUrl)
 #: configuration/ui/settings_browser.ui:146
-#, fuzzy, kde-format
-#| msgid "Verify URLs using Google's Safe Browsing API"
+#, kde-format
 msgid "Verify URLs using Google’s Safe Browsing API"
-msgstr "Überprüfen von URLs mit der API von Google's Safe Browsing"
+msgstr "Überprüfen von URLs mit der „Safe-Browsing“-API von Google"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_EnableJavascript)
 #. i18n: ectx: label, entry, group (Browser)
@@ -787,17 +790,13 @@ msgstr ""
 
 #. i18n: ectx: whatsthis, entry, group (Network)
 #: interfaces/akregator.kcfg:146
-#, fuzzy, kde-format
-#| msgid ""
-#| "This option allows user to specify custom user-agent string instead of "
-#| "using the default one. This is here because some proxies may interrupt "
-#| "the connection because of having \"gator\" in the name."
+#, kde-format
 msgid ""
 "This option allows user to specify custom user-agent string instead of using "
 "the default one. This is here because some proxies may interrupt the "
 "connection because of having “gator” in the name."
 msgstr ""
-"Diese Funktion ermöglicht es dem Benutzer, eine eigene Browser-Kennung "
+"Diese Option ermöglicht es dem Benutzer, eine eigene Browser-Kennung "
 "anstelle der voreingestellten zu übermitteln. Dies ist manchmal nötig, weil "
 "bestimmte Proxies die Verbindung unterbrechen könnten, wenn die Zeichenfolge "
 "„gator“ in der Kennung vorkommt."
@@ -1165,10 +1164,9 @@ msgid "Eike Hein"
 msgstr "Eike Hein"
 
 #: src/aboutdata.cpp:42
-#, fuzzy, kde-format
-#| msgid "'Delayed mark as read' feature"
+#, kde-format
 msgid "‘Delayed mark as read’ feature"
-msgstr "Funktion für verzögertes „Als gelesen markieren“"
+msgstr "Funktion für „Verzögert als gelesen markieren“"
 
 #: src/aboutdata.cpp:43
 #, kde-format
@@ -1424,8 +1422,7 @@ msgid "Set Focus to Quick Search"
 msgstr "Fokus auf die Schnellsuche legen"
 
 #: src/actions/actionmanagerimpl.cpp:462
-#, fuzzy, kde-format
-#| msgid "What's new"
+#, kde-format
 msgid "What’s new"
 msgstr "Neuigkeiten"
 
@@ -1713,13 +1710,7 @@ msgid "No result found"
 msgstr "Kein Ergebnis gefunden"
 
 #: src/articlelistview.cpp:381
-#, fuzzy, kde-format
-#| msgid ""
-#| "<h2>Article list</h2>Here you can browse articles from the currently "
-#| "selected feed. You can also manage articles, as marking them as "
-#| "persistent (\"Mark as Important\") or delete them, using the right mouse "
-#| "button menu. To view the web page of the article, you can open the "
-#| "article internally in a tab or in an external browser window."
+#, kde-format
 msgid ""
 "<h2>Article list</h2>Here you can browse articles from the currently "
 "selected feed. You can also manage articles, as marking them as persistent "
@@ -1728,10 +1719,10 @@ msgid ""
 "tab or in an external browser window."
 msgstr ""
 "<h2>Artikelliste</h2>Hier können Sie die Artikel der aktuellen "
-"Nachrichtenquelle durchsehen und verwalten. Klicken Sie mit der rechten "
-"Maustaste, um Artikel als wichtig („Als wichtig markieren“) zu markieren "
-"oder zu löschen. Den Artikel können Sie in einem internen Unterfenster oder "
-"einem externen Browser-Fenster lesen."
+"Nachrichtenquelle durchsehen. Sie können diese verwalten, indem Sie darauf "
+"mit der rechten Maustaste klicken, um die Artikel als dauerhaft zu markieren "
+"(„Als wichtig markieren“) oder sie zu löschen. Den Artikel können Sie in "
+"einem internen Unterfenster oder einem externen Browser-Fenster lesen."
 
 #: src/articlemodel.cpp:75
 #, kde-format
@@ -2379,7 +2370,7 @@ msgstr "Verbindung überprüfen"
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "My Miniflux"
-msgstr ""
+msgstr "Mein Miniflux"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:32
 #, kde-format
@@ -2437,7 +2428,7 @@ msgstr "Miniflux"
 #: src/plugins/miniflux/minifluxplugin.cpp:89
 #, kde-format
 msgid "An account named “%1” already exists."
-msgstr ""
+msgstr "Ein Konto namens „%1“ existiert bereits."
 
 #: src/progressmanager.cpp:127
 #, kde-format
