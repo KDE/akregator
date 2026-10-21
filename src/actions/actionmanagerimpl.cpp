@@ -633,7 +633,7 @@ void ActionManagerImpl::initTabWidget(TabWidget *tabWidget)
     action = new QAction(QIcon::fromTheme(u"edit-find"_s), i18n("&Find in Message…"), this);
     coll->addAction(u"find_in_messages"_s, action);
     connect(action, &QAction::triggered, d->tabWidget, &TabWidget::slotFindTextInHtml);
-    coll->setDefaultShortcut(action, KStandardShortcut::find().first());
+    coll->setDefaultShortcuts(action, KStandardShortcut::find());
 
     action = coll->addAction(u"tab_copyurl"_s);
     action->setIcon(QIcon::fromTheme(u"edit-copy"_s));
