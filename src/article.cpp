@@ -219,10 +219,11 @@ Article::Private::Private(const ItemPtr &article, Feed *feed_, Backend::FeedStor
             archive->setAuthorEMail(guid, firstAuthor->email());
         }
     } else {
-        // always update comments count, as it's not used for hash calculation
-        if (hash != archive->hash(guid)) { // article is in archive, was it modified?
+        // load the stored values, otherwise title and pubDate stay empty when the article is unchanged
+        uint storedHash = 0;
+        archive->article(guid, storedHash, title, status, pubDate);
+        if (hash != storedHash) { // article is in archive, was it modified?
             // if yes, update
-            pubDate = archive->pubDate(guid);
             archive->setHash(guid, hash);
             title = article->title();
             if (title.isEmpty()) {
