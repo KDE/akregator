@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-10-15 00:46+0000\n"
-"PO-Revision-Date: 2026-09-30 18:07+0200\n"
+"PO-Revision-Date: 2026-10-15 14:05+0200\n"
 "Last-Translator: Vincenzo Reale <smart2128vr@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
 "Language: it\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 26.08.1\n"
+"X-Generator: Lokalize 26.08.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -2123,10 +2123,9 @@ msgid "<b>Homepage:</b> <a href=\"%1\">%1</a>"
 msgstr "<b>Pagina principale:</b> <a href=\"%1\">%1</a>"
 
 #: src/formatter/grantleeviewformatter.cpp:202
-#, fuzzy, kde-format
-#| msgid "<b>Copyright:</b> %1</a>"
+#, kde-format
 msgid "<b>Copyright:</b> %1"
-msgstr "<b>Copyright:</b> %1</a>"
+msgstr "<b>Copyright:</b> %1"
 
 #: src/formatter/grantleeviewformatter.cpp:265
 #, kde-format
