@@ -6,6 +6,7 @@
 #include "minifluxclient.h"
 
 #include "miniflux_debug.h"
+#include <KLocalizedString>
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
@@ -68,7 +69,7 @@ void MinifluxClient::verifyCredentials()
             return;
         }
         const int statusCode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
-        Q_EMIT credentialsVerified(statusCode == 200, statusCode == 200 ? QString() : QStringLiteral("HTTP %1").arg(statusCode));
+        Q_EMIT credentialsVerified(statusCode == 200, statusCode == 200 ? QString() : i18n("HTTP error %1", statusCode));
     });
 }
 
