@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-10-15 00:46+0000\n"
+"POT-Creation-Date: 2026-10-27 01:00+0000\n"
 "PO-Revision-Date: 2007-09-07 10:35+0545\n"
 "Last-Translator: Nabin Gautam <nabin@mpp.org.np>\n"
 "Language-Team: Nepali <info@mpp.org.np>\n"
@@ -2491,6 +2491,11 @@ msgstr ""
 #, kde-format
 msgctxt "@title:window"
 msgid "Connection Failed"
+msgstr ""
+
+#: src/plugins/miniflux/minifluxclient.cpp:72
+#, kde-format
+msgid "HTTP error %1"
 msgstr ""
 
 #: src/plugins/miniflux/minifluxplugin.cpp:72

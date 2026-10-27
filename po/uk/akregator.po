@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-10-15 00:46+0000\n"
+"POT-Creation-Date: 2026-10-27 01:00+0000\n"
 "PO-Revision-Date: 2026-10-15 17:58+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
@@ -2434,6 +2434,11 @@ msgstr "Не вдалося встановити з'єднання: %1"
 msgctxt "@title:window"
 msgid "Connection Failed"
 msgstr "Невдала спроба з'єднання"
+
+#: src/plugins/miniflux/minifluxclient.cpp:72
+#, kde-format
+msgid "HTTP error %1"
+msgstr ""
 
 #: src/plugins/miniflux/minifluxplugin.cpp:72
 #, kde-format

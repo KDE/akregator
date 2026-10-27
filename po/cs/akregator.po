@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-10-15 00:46+0000\n"
+"POT-Creation-Date: 2026-10-27 01:00+0000\n"
 "PO-Revision-Date: 2026-10-15 23:21+0200\n"
 "Last-Translator: Libor Filípek <libor.filipek@gmail.com>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
@@ -2402,6 +2402,11 @@ msgstr "Nepodařilo se navázat připojení: %1"
 msgctxt "@title:window"
 msgid "Connection Failed"
 msgstr "Připojení selhalo"
+
+#: src/plugins/miniflux/minifluxclient.cpp:72
+#, kde-format
+msgid "HTTP error %1"
+msgstr ""
 
 #: src/plugins/miniflux/minifluxplugin.cpp:72
 #, kde-format
