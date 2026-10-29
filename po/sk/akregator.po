@@ -2402,7 +2402,7 @@ msgstr "Pripojenie zlyhalo"
 #: src/plugins/miniflux/minifluxclient.cpp:72
 #, kde-format
 msgid "HTTP error %1"
-msgstr ""
+msgstr "Chyba HTTP %1"
 
 #: src/plugins/miniflux/minifluxplugin.cpp:72
 #, kde-format
