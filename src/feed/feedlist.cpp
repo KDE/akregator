@@ -534,7 +534,7 @@ QStringList FeedListManagementImpl::feeds(const QString &catId) const
         return {};
     }
 
-    const uint lastcatid = catId.split(u'/', Qt::SkipEmptyParts).last().toUInt();
+    const uint lastcatid = QStringView(catId).split(u'/', Qt::SkipEmptyParts).last().toUInt();
 
     QSet<QString> urls;
     const auto feeds = m_feedList->feeds();
@@ -553,7 +553,7 @@ void FeedListManagementImpl::addFeed(const QString &url, const QString &catId)
     }
 
     qCDebug(AKREGATOR_LOG) << "Name:" << url.left(20) << "Cat:" << catId;
-    const uint folder_id = catId.split(u'/', Qt::SkipEmptyParts).last().toUInt();
+    const uint folder_id = QStringView(catId).split(u'/', Qt::SkipEmptyParts).last().toUInt();
 
     // Get the folder
     Folder *m_folder = nullptr;
@@ -583,7 +583,7 @@ void FeedListManagementImpl::removeFeed(const QString &url, const QString &catId
 {
     qCDebug(AKREGATOR_LOG) << "Name:" << url.left(20) << "Cat:" << catId;
 
-    const uint lastcatid = catId.split(u'/', Qt::SkipEmptyParts).last().toUInt();
+    const uint lastcatid = QStringView(catId).split(u'/', Qt::SkipEmptyParts).last().toUInt();
 
     const auto feeds = m_feedList->feeds();
     for (const Feed *const i : feeds) {

@@ -186,21 +186,21 @@ QString GrantleeViewFormatter::formatFeed(Akregator::Feed *feed)
     if (!feed->description().isEmpty()) {
         QString feedDescription = u"<div dir=\"%1\">"_s.arg(mDirectionString);
         feedDescription += i18n("<b>Description:</b> %1<br />", feed->description());
-        feedDescription += u"</div>"_s; // /description
+        feedDescription += u"</div>"; // /description
         feedObject.insert(u"feedDescription"_s, feedDescription);
     }
 
     if (!feed->htmlUrl().isEmpty()) {
         QString feedHomePage = u"<div dir=\"%1\">"_s.arg(mDirectionString);
         feedHomePage += i18n("<b>Homepage:</b> <a href=\"%1\">%1</a>", feed->htmlUrl());
-        feedHomePage += u"</div>"_s; // / link
+        feedHomePage += u"</div>"; // / link
         feedObject.insert(u"feedHomePage"_s, feedHomePage);
     }
 
     if (!feed->copyright().isEmpty()) {
         QString feedCopyright = u"<div dir=\"%1\">"_s.arg(mDirectionString);
         feedCopyright += i18n("<b>Copyright:</b> %1", feed->copyright());
-        feedCopyright += u"</div>"_s;
+        feedCopyright += u"</div>";
         feedObject.insert(u"feedCopyright"_s, feedCopyright);
     }
 

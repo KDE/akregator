@@ -94,7 +94,7 @@ qint64 MinifluxStatusSync::entryIdFromGuid(const QString &guid)
         return -1;
     }
     bool ok = false;
-    const qint64 id = url.path().mid(1).toLongLong(&ok); // remove leading '/'
+    const qint64 id = QStringView(url.path()).mid(1).toLongLong(&ok); // remove leading '/'
     return ok ? id : -1;
 }
 
