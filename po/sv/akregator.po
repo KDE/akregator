@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-10-27 01:00+0000\n"
-"PO-Revision-Date: 2026-09-30 21:09+0200\n"
+"PO-Revision-Date: 2026-10-31 20:33+0100\n"
 "Last-Translator: Stefan Asserhäll <stefan.asserhall@gmail.com>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
 "Language: sv\n"
@@ -2118,10 +2118,9 @@ msgid "<b>Homepage:</b> <a href=\"%1\">%1</a>"
 msgstr "<b>Homepage:</b> <a href=\"%1\">%1</a>"
 
 #: src/formatter/grantleeviewformatter.cpp:202
-#, fuzzy, kde-format
-#| msgid "<b>Copyright:</b> %1</a>"
+#, kde-format
 msgid "<b>Copyright:</b> %1"
-msgstr "<b>Copyright:</b> %1</a>"
+msgstr "<b>Copyright:</b> %1"
 
 #: src/formatter/grantleeviewformatter.cpp:265
 #, kde-format
@@ -2396,7 +2395,7 @@ msgstr "Anslutning misslyckades"
 #: src/plugins/miniflux/minifluxclient.cpp:72
 #, kde-format
 msgid "HTTP error %1"
-msgstr ""
+msgstr "HTTP-fel %1"
 
 #: src/plugins/miniflux/minifluxplugin.cpp:72
 #, kde-format
