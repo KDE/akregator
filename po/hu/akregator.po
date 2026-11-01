@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: KDE 4.3\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-07-15 02:38+0000\n"
-"PO-Revision-Date: 2026-06-11 22:34+0200\n"
+"PO-Revision-Date: 2026-10-31 22:41+0100\n"
 "Last-Translator: Kristof Kiszel <ulysses@fsf.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 26.04.2\n"
+"X-Generator: Lokalize 26.08.1\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -1242,11 +1242,10 @@ msgid "Ma&rk All Feeds as Read"
 msgstr "Az össz&es csatorna megjelölése olvasottnak"
 
 #: src/actions/actionmanagerimpl.cpp:352
-#, fuzzy, kde-format
-#| msgid "Copy Link Address"
+#, kde-format
 msgctxt "@action"
 msgid "Copy Article Link Address"
-msgstr "A link címének másolása"
+msgstr "Cikk hivatkozása címének másolása"
 
 #: src/actions/actionmanagerimpl.cpp:357
 #, kde-format
@@ -1468,18 +1467,16 @@ msgid "&Find in Message…"
 msgstr "&Keresés az üzenetben…"
 
 #: src/actions/actionmanagerimpl.cpp:634
-#, fuzzy, kde-format
-#| msgid "Reload All Tabs"
+#, kde-format
 msgctxt "@action"
 msgid "Reload Tab"
-msgstr "Összes lap újratöltése"
+msgstr "Lap újratöltése"
 
 #: src/actions/actionmanagerimpl.cpp:639
-#, fuzzy, kde-format
-#| msgid "&Copy Email Address"
+#, kde-format
 msgctxt "@action"
 msgid "Copy Tab Address"
-msgstr "&E-mail cím másolása"
+msgstr "Lap címének másolása"
 
 #: src/actions/actionmanagerimpl.cpp:644
 #, kde-format
@@ -2373,18 +2370,16 @@ msgid "Detach Tab"
 msgstr "Lap leválasztása"
 
 #: src/tabwidget.cpp:130
-#, fuzzy, kde-format
-#| msgid "Reload All Tabs"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Reload Tab"
-msgstr "Összes lap újratöltése"
+msgstr "Lap újratöltése"
 
 #: src/tabwidget.cpp:133
-#, fuzzy, kde-format
-#| msgid "&Copy Email Address"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Copy Tab Address"
-msgstr "&E-mail cím másolása"
+msgstr "Lap címének másolása"
 
 #: src/tabwidget.cpp:139
 #, kde-format
@@ -2596,10 +2591,9 @@ msgid "Add new whatsnew widget."
 msgstr "Új újdonságok elem hozzáadása."
 
 #: src/whatsnew/whatsnewtranslations.cpp:31
-#, fuzzy, kde-format
-#| msgid "Add windows support"
+#, kde-format
 msgid "Add windows support."
-msgstr "Windows támogatás hozzáadása"
+msgstr "Windows támogatás hozzáadása."
 
 #: src/widgets/searchbar.cpp:44
 #, kde-format
