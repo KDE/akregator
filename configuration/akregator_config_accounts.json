@@ -91,6 +91,7 @@
         "Name[uz@cyrillic]": "Ҳисоблар",
         "Name[uz]": "Hisoblar",
         "Name[wa]": "Contes",
+        "Name[zh_TW]": "帳號",
         "ServiceTypes": [
             "KCModule"
         ]
