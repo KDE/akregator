@@ -50,6 +50,7 @@ repos:
    hooks:
     - id: markdownlint-cli2
       files: \.(md|mdown|markdown)$
+      language_version: lts
  - repo: https://github.com/scop/pre-commit-shfmt
    rev: v3.13.1-1
    hooks:
