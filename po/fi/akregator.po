@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-10-27 01:00+0000\n"
-"PO-Revision-Date: 2026-09-12 17:57+0300\n"
+"PO-Revision-Date: 2026-10-05 11:42+0300\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
 "Language: fi\n"
@@ -114,11 +114,10 @@ msgstr ""
 #, kde-format
 msgctxt "@title:column"
 msgid "Account"
-msgstr ""
+msgstr "Tili"
 
 #: configuration/akregator_config_accounts.cpp:39
-#, fuzzy, kde-format
-#| msgid "Type"
+#, kde-format
 msgctxt "@title:column"
 msgid "Type"
 msgstr "Tyyppi"
@@ -127,18 +126,16 @@ msgstr "Tyyppi"
 #, kde-format
 msgctxt "@action:button Add account"
 msgid "Add…"
-msgstr ""
+msgstr "Lisää…"
 
 #: configuration/akregator_config_accounts.cpp:46
-#, fuzzy, kde-format
-#| msgid "Modify..."
+#, kde-format
 msgctxt "@action:button"
 msgid "Modify…"
 msgstr "Muuta…"
 
 #: configuration/akregator_config_accounts.cpp:47
-#, fuzzy, kde-format
-#| msgid "Remove"
+#, kde-format
 msgctxt "@action:button"
 msgid "Remove"
 msgstr "Poista"
@@ -150,13 +147,15 @@ msgid ""
 "This removes the account’s folder from the feed tree and deletes its stored "
 "credentials; the server is not affected."
 msgstr ""
+"Haluatko varmasti poistaa tilin ”%1”?\n"
+"Tämä poistaa tilin syötepuun kansion kaikkine tallennettuine "
+"todennustietoineen; palvelimeen sillä ei ole vaikutusta."
 
 #: configuration/akregator_config_accounts.cpp:138
-#, fuzzy, kde-format
-#| msgid "Remove nothing"
+#, kde-format
 msgctxt "@title:window"
 msgid "Remove Account"
-msgstr "Älä poista mitään"
+msgstr "Poista tili"
 
 #: configuration/akregator_config_archive.cpp:36
 #, kde-format
@@ -419,8 +418,7 @@ msgstr "Turvallisuus"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_CheckPhishingUrl)
 #: configuration/ui/settings_browser.ui:146
-#, fuzzy, kde-format
-#| msgid "Verify URLs using Google's Safe Browsing API"
+#, kde-format
 msgid "Verify URLs using Google’s Safe Browsing API"
 msgstr "Tarkista verkko-osoitteet Googlen turvallisen selauksen APIlla"
 
@@ -792,19 +790,15 @@ msgstr ""
 
 #. i18n: ectx: whatsthis, entry, group (Network)
 #: interfaces/akregator.kcfg:146
-#, fuzzy, kde-format
-#| msgid ""
-#| "This option allows user to specify custom user-agent string instead of "
-#| "using the default one. This is here because some proxies may interrupt "
-#| "the connection because of having \"gator\" in the name."
+#, kde-format
 msgid ""
 "This option allows user to specify custom user-agent string instead of using "
 "the default one. This is here because some proxies may interrupt the "
 "connection because of having “gator” in the name."
 msgstr ""
-"Tämä sallii käyttäjän määrittää oman käyttöagenttijonon oletusarvon sijaan. "
-"Näin siksi, että jotkin välityspalvelimet voivat keskeyttää yhteyden, jos "
-"nimen osana on ”gator”."
+"Tämä antaa käyttäjän määrittää oletusarvon sijaan oman käyttäjäagenttijonon, "
+"koska jotkin välityspalvelimet voivat keskeyttää yhteyden, jos nimessä on "
+"”gator”."
 
 #. i18n: ectx: label, entry, group (General)
 #: interfaces/akregator.kcfg:152
@@ -1159,8 +1153,7 @@ msgid "Eike Hein"
 msgstr "Eike Hein"
 
 #: src/aboutdata.cpp:42
-#, fuzzy, kde-format
-#| msgid "'Delayed mark as read' feature"
+#, kde-format
 msgid "‘Delayed mark as read’ feature"
 msgstr "Merkitse viesti luetuksi viipeellä -ominaisuus"
 
@@ -1248,11 +1241,10 @@ msgid "&Export Feeds…"
 msgstr "&Vie syötteitä…"
 
 #: src/actions/actionmanagerimpl.cpp:214
-#, fuzzy, kde-format
-#| msgid "Modify Online Reader Account"
+#, kde-format
 msgctxt "@action"
 msgid "Add Online Account…"
-msgstr "Muuta verkkolukijan tiliä"
+msgstr "Lisää verkkotili…"
 
 #: src/actions/actionmanagerimpl.cpp:223
 #, kde-format
@@ -1419,8 +1411,7 @@ msgid "Set Focus to Quick Search"
 msgstr "Kohdista pikahakuun"
 
 #: src/actions/actionmanagerimpl.cpp:462
-#, fuzzy, kde-format
-#| msgid "What's new"
+#, kde-format
 msgid "What’s new"
 msgstr "Mitä uutta"
 
@@ -1704,13 +1695,7 @@ msgid "No result found"
 msgstr "Tuloksia ei löytynyt"
 
 #: src/articlelistview.cpp:381
-#, fuzzy, kde-format
-#| msgid ""
-#| "<h2>Article list</h2>Here you can browse articles from the currently "
-#| "selected feed. You can also manage articles, as marking them as "
-#| "persistent (\"Mark as Important\") or delete them, using the right mouse "
-#| "button menu. To view the web page of the article, you can open the "
-#| "article internally in a tab or in an external browser window."
+#, kde-format
 msgid ""
 "<h2>Article list</h2>Here you can browse articles from the currently "
 "selected feed. You can also manage articles, as marking them as persistent "
@@ -1718,11 +1703,11 @@ msgid ""
 "view the web page of the article, you can open the article internally in a "
 "tab or in an external browser window."
 msgstr ""
-"<h2>Artikkeliluettelo</h2>Tässä voit selata valitun syötteen artikkeleja. "
-"Artikkeleja voit ylläpitää merkitsemällä ne pysyviksi (”Merkitse tärkeäksi”) "
-"tai poistaa ne käyttämällä hiiren oikealla painikkeella avautuvaa valikkoa. "
-"Artikkelin verkkosivua voi katsoa avaamalla sen sisäisesti välilehteen tai "
-"ulkoisesti selainikkunaan."
+"<h2>Artikkeliluettelo</h2>Tässä voi selata valitun syötteen artikkeleja. "
+"Artikkeleja voi hallinnoida merkitsemällä ne pysyviksi (”Merkitse "
+"tärkeäksi”) tai poistamalla ne hiiren oikealla painikkeella avautuvasta "
+"valikosta. Artikkelin verkkosivua voi katsoa avaamalla sen sisäisesti "
+"välilehteen tai ulkoisesti selainikkunaan."
 
 #: src/articlemodel.cpp:75
 #, kde-format
@@ -2330,93 +2315,88 @@ msgstr[1] "<i>ja %1 muuta</i>"
 
 #: src/plugins/addaccountwizard.cpp:22
 #: src/plugins/miniflux/minifluxplugin.cpp:89
-#, fuzzy, kde-format
-#| msgid "Modify Online Reader Account"
+#, kde-format
 msgctxt "@title:window"
 msgid "Add Online Account"
-msgstr "Muuta verkkolukijan tiliä"
+msgstr "Lisää verkkotili"
 
 #: src/plugins/addaccountwizard.cpp:27
 #, kde-format
 msgctxt "@title:tab, wizard page for selecting the account type"
 msgid "Account Type"
-msgstr ""
+msgstr "Tilin tyyppi"
 
-# Seuraan KDE:n viron kääntäjien esimerkkiä (”riba”), joskin käyttäen tarkoituksella poikkeavaa tyyliä. Barin merkitys tässä on sanojen foo, bar, baz, foobar merkitys. Tämä ei näy käyttäjälle.
 #: src/plugins/addaccountwizard.cpp:31
-#, fuzzy, kde-format
-#| msgid "Bar Settings"
+#, kde-format
 msgctxt "@title:tab, wizard page with the account settings"
 msgid "Account Settings"
-msgstr "Ripan säädöt"
+msgstr "Tiliasetukset"
 
 #: src/plugins/miniflux/minifluxaccountdialog.cpp:20
 #, kde-format
 msgctxt "@title:window"
 msgid "Miniflux Account Settings"
-msgstr ""
+msgstr "Miniflux-tilin asetukset"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:26
 #, kde-format
 msgctxt "@action:button"
 msgid "Test Connection"
-msgstr ""
+msgstr "Kokeile yhteyttä"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:31
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "My Miniflux"
-msgstr ""
+msgstr "Oma Miniflux"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:32
-#, fuzzy, kde-format
-#| msgid "Group Name"
+#, kde-format
 msgid "Account Name:"
-msgstr "Ryhmän nimi"
+msgstr "Tilin nimi:"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:34
-#, fuzzy, kde-format
-#| msgid "Service URL:"
+#, kde-format
 msgid "Server URL:"
-msgstr "Palvelun verkko-osoite:"
+msgstr "Palvelimen verkko-osoite:"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:36
 #, kde-format
 msgid "API Token:"
-msgstr ""
+msgstr "API-merkki:"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:100
 #, kde-format
 msgid "Please enter a valid server URL and API token."
-msgstr ""
+msgstr "Anna kelvollinen palvelinosoite ja API-merkki."
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:100
 #, kde-format
 msgctxt "@title:window"
 msgid "Invalid Input"
-msgstr ""
+msgstr "Virheellinen syöte"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:111
 #, kde-format
 msgid "Successfully connected to the Miniflux server."
-msgstr ""
+msgstr "Yhdistäminen Miniflux-palvelimeen onnistui."
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:111
 #, kde-format
 msgctxt "@title:window"
 msgid "Connection Successful"
-msgstr ""
+msgstr "Yhdistäminen onnistui"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:113
 #, kde-format
 msgid "Failed to connect: %1"
-msgstr ""
+msgstr "Yhdistäminen epäonnistui: %1"
 
 #: src/plugins/miniflux/minifluxaccountwidget.cpp:113
 #, kde-format
 msgctxt "@title:window"
 msgid "Connection Failed"
-msgstr ""
+msgstr "Yhdistäminen epäonnistui"
 
 #: src/plugins/miniflux/minifluxclient.cpp:72
 #, kde-format
@@ -2426,12 +2406,12 @@ msgstr ""
 #: src/plugins/miniflux/minifluxplugin.cpp:72
 #, kde-format
 msgid "Miniflux"
-msgstr ""
+msgstr "Miniflux"
 
 #: src/plugins/miniflux/minifluxplugin.cpp:89
 #, kde-format
 msgid "An account named “%1” already exists."
-msgstr ""
+msgstr "Tili nimeltä ”%1” on jo olemassa."
 
 #: src/progressmanager.cpp:127
 #, kde-format
