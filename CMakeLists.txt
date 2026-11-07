@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: CC0-1.0
 # SPDX-FileCopyrightText: none
 cmake_minimum_required(VERSION 3.29)
-set(PIM_VERSION "6.8.40")
+set(PIM_VERSION "6.8.80")
 project(akregator VERSION ${PIM_VERSION})
 
 option(USE_MOLD_LINKER "Use the mold linker when available (much faster link times)" ON)
@@ -13,10 +13,10 @@ if(USE_MOLD_LINKER AND NOT DEFINED CMAKE_LINKER_TYPE)
 endif()
 
 # Update it for each release
-set(AKREGATOR_RELEASE_VERSION_DATE "26.07.10") # yy.MM.dd
+set(AKREGATOR_RELEASE_VERSION_DATE "26.11.12") # yy.MM.dd
 
 set(KF_MIN_VERSION "6.30.0")
-set(RELEASE_SERVICE_VERSION "26.11.40")
+set(RELEASE_SERVICE_VERSION "26.11.80")
 set(QT_REQUIRED_VERSION "6.9.0")
 
 # Use true if stable version => we will check specific version
@@ -103,7 +103,7 @@ include(ECMDeprecationSettings)
 include(ECMFeatureSummary)
 set(KTEXTADDONS_MIN_VERSION "2.2.0")
 # Do NOT add quote
-set(KDEPIM_DEV_VERSION alpha)
+set(KDEPIM_DEV_VERSION beta1)
 
 # add an extra space
 if(DEFINED KDEPIM_DEV_VERSION)
