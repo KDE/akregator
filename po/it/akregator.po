@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-10-27 01:00+0000\n"
-"PO-Revision-Date: 2026-10-15 14:05+0200\n"
+"PO-Revision-Date: 2026-10-28 14:27+0100\n"
 "Last-Translator: Vincenzo Reale <smart2128vr@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
 "Language: it\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 26.08.2\n"
+"X-Generator: Poedit 3.10\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -1237,7 +1237,7 @@ msgstr "&Esporta fonti…"
 #, kde-format
 msgctxt "@action"
 msgid "Add Online Account…"
-msgstr "Aggiungi account in linea..."
+msgstr "Aggiungi account in linea…"
 
 #: src/actions/actionmanagerimpl.cpp:223
 #, kde-format
@@ -2231,7 +2231,7 @@ msgstr "Marca le fonti come lette"
 #: src/mainwidget.cpp:891 src/mainwidget.cpp:900 src/mainwidget.cpp:1301
 #, kde-format
 msgid "Networking is not available."
-msgstr "La rete non è disponibile"
+msgstr "La rete non è disponibile."
 
 #: src/mainwidget.cpp:908
 #, kde-format
@@ -2400,7 +2400,7 @@ msgstr "Connessione non riuscita"
 #: src/plugins/miniflux/minifluxclient.cpp:72
 #, kde-format
 msgid "HTTP error %1"
-msgstr ""
+msgstr "Errore HTTP %1"
 
 #: src/plugins/miniflux/minifluxplugin.cpp:72
 #, kde-format
@@ -2552,7 +2552,7 @@ msgstr "Non ci sono articoli non letti"
 #, kde-format
 msgid "1 unread article"
 msgid_plural "%1 unread articles"
-msgstr[0] " 1 articolo non letto"
+msgstr[0] "1 articolo non letto"
 msgstr[1] "%1 articoli non letti"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, Akregator::AddFeedWidgetBase)
@@ -2724,7 +2724,7 @@ msgstr "Apri in un browser esterno"
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "Search articles…"
-msgstr "Cerca gli articoli..."
+msgstr "Cerca gli articoli…"
 
 #: src/widgets/searchbar.cpp:123
 #, kde-format
