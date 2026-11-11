@@ -5,13 +5,10 @@
 */
 
 #include "akregator_config_userfeedback.h"
-#include "config-akregator.h"
-#include <KPluginFactory>
-#include <QHBoxLayout>
-#if AKREGATOR_WITH_KUSERFEEDBACK
 #include "userfeedback/userfeedbackmanager.h"
+#include <KPluginFactory>
 #include <KUserFeedback/FeedbackConfigWidget>
-#endif
+#include <QHBoxLayout>
 
 using namespace Akregator;
 

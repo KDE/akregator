@@ -103,11 +103,9 @@ void MinifluxAccountWidget::slotTestConnection()
     }
     m_testButton->setEnabled(false);
     auto client = new MinifluxClient(url, token, this);
-    connect(client, &MinifluxClient::credentialsVerified, this, [this, client = QPointer<MinifluxClient>(client)](bool ok, const QString &error) {
+    connect(client, &MinifluxClient::credentialsVerified, this, [this, client](bool ok, const QString &error) {
         m_testButton->setEnabled(true);
-        if (client) {
-            client->deleteLater();
-        }
+        client->deleteLater();
         if (ok) {
             KMessageBox::information(this, i18n("Successfully connected to the Miniflux server."), i18nc("@title:window", "Connection Successful"));
         } else {

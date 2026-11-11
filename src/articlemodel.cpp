@@ -14,8 +14,10 @@
 #include <Syndication/Tools>
 
 #include <QDateTime>
+#include <QHash>
 #include <QList>
 #include <QMimeData>
+#include <QSet>
 #include <QString>
 
 #include <KLocalizedString>
@@ -184,9 +186,16 @@ void ArticleModel::articlesUpdated(Akregator::TreeNode *, const QList<Article> &
     const int numberOfArticles(m_articles.count());
     if (numberOfArticles > 0) {
         rmin = numberOfArticles - 1;
-        // might want to avoid indexOf() in case of performance problems
+        // Map guid -> first row (same semantics as indexOf()) to avoid a linear search per article
+        QHash<QString, int> rowByGuid;
+        if (l.size() > 1) {
+            rowByGuid.reserve(numberOfArticles);
+            for (int row = numberOfArticles - 1; row >= 0; --row) {
+                rowByGuid.insert(m_articles.at(row).guid(), row);
+            }
+        }
         for (const Article &i : l) {
-            const int row = m_articles.indexOf(i);
+            const int row = l.size() > 1 ? rowByGuid.value(i.guid(), -1) : m_articles.indexOf(i);
             // TODO: figure out how why the Article might not be found in
             // TODO: the articles list because we should need this conditional.
             if (row >= 0) {
@@ -222,13 +231,13 @@ QMimeData *ArticleModel::mimeData(const QModelIndexList &indexes) const
 {
     std::unique_ptr<QMimeData> md(new QMimeData);
     QList<QUrl> urls;
-    QList<int> seenArticles;
+    QSet<int> seenArticles;
     for (const QModelIndex &i : indexes) {
         const int rowIndex = i.row();
         if (seenArticles.contains(rowIndex)) {
             continue;
         }
-        seenArticles.append(rowIndex);
+        seenArticles.insert(rowIndex);
         const QUrl url = i.data(ArticleModel::LinkRole).toUrl();
         if (url.isValid()) {
             urls.push_back(url);

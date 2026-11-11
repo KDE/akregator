@@ -171,10 +171,9 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
 
     connect(m_tabWidget, &TabWidget::signalRemoveFrameRequest, Kernel::self()->frameManager(), &FrameManager::slotRemoveFrame);
 
-    connect(m_tabWidget,
-            SIGNAL(signalOpenUrlRequest(Akregator::OpenUrlRequest &)),
-            Kernel::self()->frameManager(),
-            SLOT(slotOpenUrlRequest(Akregator::OpenUrlRequest &)));
+    connect(m_tabWidget, &TabWidget::signalOpenUrlRequest, Kernel::self()->frameManager(), [](Akregator::OpenUrlRequest &request) {
+        Kernel::self()->frameManager()->slotOpenUrlRequest(request);
+    });
 
     connect(Kernel::self()->frameManager(), &FrameManager::signalFrameAdded, m_tabWidget, &TabWidget::slotAddFrame);
 
@@ -247,10 +246,9 @@ MainWidget::MainWidget(Part *part, QWidget *parent, ActionManagerImpl *actionMan
     setFocusProxy(m_articleViewer);
 
     connect(m_articleViewer, &ArticleViewerWidget::showStatusBarMessage, this, &MainWidget::slotShowStatusBarMessage);
-    connect(m_articleViewer,
-            SIGNAL(signalOpenUrlRequest(Akregator::OpenUrlRequest &)),
-            Kernel::self()->frameManager(),
-            SLOT(slotOpenUrlRequest(Akregator::OpenUrlRequest &)));
+    connect(m_articleViewer, &ArticleViewerWidget::signalOpenUrlRequest, Kernel::self()->frameManager(), [](Akregator::OpenUrlRequest &request) {
+        Kernel::self()->frameManager()->slotOpenUrlRequest(request);
+    });
     connect(m_searchBar, &SearchBar::signalSearch, m_articleViewer, &ArticleViewerWidget::setFilters);
     mainTabLayout->addWidget(m_articleSplitter);
 
@@ -710,17 +708,18 @@ void MainWidget::slotNodeSelected(TreeNode *node)
 void MainWidget::slotFeedAdd()
 {
     Folder *group = nullptr;
-    if (!m_selectionController->selectedSubscription()) {
+    TreeNode *const selected = m_selectionController->selectedSubscription();
+    if (!selected) {
         group = m_feedList->allFeedsFolder();
     } else {
-        if (m_selectionController->selectedSubscription()->isGroup()) {
-            group = static_cast<Folder *>(m_selectionController->selectedSubscription());
+        if (selected->isGroup()) {
+            group = static_cast<Folder *>(selected);
         } else {
-            group = m_selectionController->selectedSubscription()->parent();
+            group = selected->parent();
         }
     }
 
-    TreeNode *const lastChild = !group->children().isEmpty() ? group->children().constLast() : nullptr;
+    TreeNode *const lastChild = group->lastChild();
 
     addFeed(QString(), lastChild, group, false);
 }
@@ -884,11 +883,12 @@ void MainWidget::slotDoIntervalFetches()
 
 void MainWidget::slotFetchCurrentFeed()
 {
-    if (!m_selectionController->selectedSubscription()) {
+    TreeNode *const selected = m_selectionController->selectedSubscription();
+    if (!selected) {
         return;
     }
     if (isNetworkAvailable()) {
-        m_selectionController->selectedSubscription()->slotAddToFetchQueue(Kernel::self()->fetchQueue());
+        selected->slotAddToFetchQueue(Kernel::self()->fetchQueue());
     } else {
         m_mainFrame->slotSetStatusText(i18n("Networking is not available."));
     }
@@ -927,7 +927,7 @@ void MainWidget::slotArticleSelected(const Akregator::Article &article)
 
     Q_ASSERT(article.isNull() || article.feed());
 
-    QList<Article> articles = m_selectionController->selectedArticles();
+    const QList<Article> articles = m_selectionController->selectedArticles();
     Q_EMIT signalArticlesSelected(articles);
 
     auto const maai = qobject_cast<KToggleAction *>(m_actionManager->action(u"article_set_status_important"_s));
@@ -935,7 +935,7 @@ void MainWidget::slotArticleSelected(const Akregator::Article &article)
     maai->setChecked(article.keep());
 
     m_articleViewer->showArticle(article);
-    if (m_selectionController->selectedArticles().isEmpty()) {
+    if (articles.isEmpty()) {
         m_articleListView->setCurrentIndex(m_selectionController->currentArticleIndex());
     }
 
@@ -1272,7 +1272,7 @@ void MainWidget::saveProperties(KConfigGroup &config)
     if (searchStr.isEmpty()) {
         config.deleteEntry("searchLine");
     } else {
-        config.writeEntry("searchLine", m_searchBar->text());
+        config.writeEntry("searchLine", searchStr);
     }
     config.writeEntry("searchCombo", static_cast<int>(m_searchBar->status()));
 

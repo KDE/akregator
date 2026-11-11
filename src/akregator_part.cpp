@@ -484,9 +484,11 @@ void Part::exportFile(const QUrl &url)
     } else {
         auto job = KIO::storedPut(m_mainWidget->feedListToOPML().toString().toUtf8(), url, -1);
         KJobWidgets::setWindow(job, m_mainWidget);
-        if (!job->exec()) {
-            KMessageBox::error(m_mainWidget, job->errorString());
-        }
+        connect(job, &KJob::result, this, [this](KJob *putJob) {
+            if (putJob->error()) {
+                KMessageBox::error(m_mainWidget, putJob->errorString());
+            }
+        });
     }
 }
 

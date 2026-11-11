@@ -63,15 +63,6 @@ bool AkregatorPlugin::isRunningStandalone() const
     return mUniqueAppWatcher->isRunningStandalone();
 }
 
-OrgKdeAkregatorPartInterface *AkregatorPlugin::interface()
-{
-    if (!m_interface) {
-        std::ignore = part();
-    }
-    Q_ASSERT(m_interface);
-    return m_interface;
-}
-
 KParts::Part *AkregatorPlugin::createPart()
 {
     KParts::Part *part = loadPart();

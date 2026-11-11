@@ -243,11 +243,6 @@ void SelectionController::subscriptionDataChanged(const QModelIndex &topLeft, co
         return;
     }
 
-    if (!m_subscriptionModel) {
-        qCCritical(AKREGATOR_LOG) << "m_subscriptionModel is NULL";
-        return;
-    }
-
     // need access to setExpanded
     auto tv = qobject_cast<QTreeView *>(m_feedSelector);
     if (!tv) {

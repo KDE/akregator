@@ -10,6 +10,7 @@
 
 #include "akregatorpart_export.h"
 #include <QList>
+#include <QRegularExpression>
 #include <QString>
 #include <QVariant>
 
@@ -127,6 +128,7 @@ private:
     Subject m_subject = Description;
     Predicate m_predicate = Contains;
     QVariant m_object;
+    QRegularExpression m_regularExpression;
 };
 } // namespace Filters
 } // namespace Akregator

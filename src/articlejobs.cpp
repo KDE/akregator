@@ -15,9 +15,8 @@
 #include "akregator_debug.h"
 #include <KLocalizedString>
 
+#include <QSet>
 #include <QTimer>
-
-#include <vector>
 
 #include <chrono>
 
@@ -54,7 +53,7 @@ void ArticleDeleteJob::doStart()
         emitResult();
         return;
     }
-    std::vector<Feed *> feeds;
+    QSet<Feed *> feeds;
 
     for (const ArticleId &id : std::as_const(m_ids)) {
         Article article = m_feedList->findArticle(id.feedUrl, id.guid);
@@ -63,7 +62,7 @@ void ArticleDeleteJob::doStart()
         }
 
         if (Feed *const feed = m_feedList->findByURL(id.feedUrl)) {
-            feeds.push_back(feed);
+            feeds.insert(feed);
             feed->setNotificationMode(false);
         }
         article.setDeleted();
@@ -105,7 +104,7 @@ void ArticleModifyJob::doStart()
         emitResult();
         return;
     }
-    std::vector<Feed *> feeds;
+    QSet<Feed *> feeds;
 
     for (auto it = m_keepFlags.cbegin(), end = m_keepFlags.cend(); it != end; ++it) {
         const ArticleId &id = it.key();
@@ -114,7 +113,7 @@ void ArticleModifyJob::doStart()
             continue;
         }
         feed->setNotificationMode(false);
-        feeds.push_back(feed);
+        feeds.insert(feed);
         Article article = feed->findArticle(id.guid);
         if (!article.isNull()) {
             article.setKeep(it.value());
@@ -128,7 +127,7 @@ void ArticleModifyJob::doStart()
             continue;
         }
         feed->setNotificationMode(false);
-        feeds.push_back(feed);
+        feeds.insert(feed);
         Article article = feed->findArticle(id.guid);
         if (!article.isNull()) {
             article.setStatus(it.value());
@@ -153,11 +152,11 @@ bool CompositeJob::addSubjob(KJob *job)
 
 void CompositeJob::start()
 {
-    if (subjobs().isEmpty()) {
+    const auto jobs = subjobs();
+    if (jobs.isEmpty()) {
         emitResult();
         return;
     }
-    const auto jobs = subjobs();
     for (KJob *const i : jobs) {
         i->start();
     }

@@ -53,8 +53,6 @@ public:
 private:
     Kernel();
 
-    static Kernel *m_self;
-
     Backend::Storage *m_storage = nullptr;
     QSharedPointer<FeedList> m_feedList;
     FetchQueue *const m_fetchQueue;

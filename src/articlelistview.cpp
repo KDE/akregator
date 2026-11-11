@@ -60,8 +60,9 @@ bool SortColorizeProxyModel::filterAcceptsRow(int source_row, const QModelIndex 
         return false;
     }
 
-    for (ulong i = 0, total = m_matchers.size(); i < total; ++i) {
-        if (!static_cast<ArticleModel *>(sourceModel())->rowMatches(source_row, m_matchers[i])) {
+    const auto articleModel = static_cast<ArticleModel *>(sourceModel());
+    for (const auto &matcher : m_matchers) {
+        if (!articleModel->rowMatches(source_row, matcher)) {
             return false;
         }
     }

@@ -7,6 +7,7 @@
 #include "articlegrantleeobject.h"
 #include "feed.h"
 #include "grantleeutil.h"
+#include "types.h"
 #include "utils.h"
 #include <QDateTime>
 #include <QLocale>

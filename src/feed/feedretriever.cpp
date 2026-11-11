@@ -24,11 +24,9 @@ FeedRetriever::FeedRetriever()
 
 void FeedRetriever::retrieveData(const QUrl &url)
 {
-    QString userAgent = u"Akregator/%1; syndication"_s.arg(QStringLiteral(AKREGATOR_VERSION));
-    if (!Settings::customUserAgent().isEmpty()) {
-        userAgent = Settings::customUserAgent();
-    }
-    bool useCache = Settings::useHTMLCache();
+    const QString customUserAgent = Settings::customUserAgent();
+    const QString userAgent = customUserAgent.isEmpty() ? u"Akregator/%1; syndication"_s.arg(QStringLiteral(AKREGATOR_VERSION)) : customUserAgent;
+    const bool useCache = Settings::useHTMLCache();
 
     auto job = KIO::storedGet(url, KIO::NoReload, KIO::HideProgressInfo);
     job->addMetaData(u"UserAgent"_s, userAgent);

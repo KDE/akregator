@@ -67,17 +67,16 @@ void DownloadArticleJob::setArticleUrl(const QUrl &articleUrl)
 void DownloadArticleJob::slotUrlSaveResult(KJob *job)
 {
     if (job->error()) {
-        auto kiojob = dynamic_cast<KIO::Job *>(job);
+        auto kiojob = qobject_cast<KIO::Job *>(job);
         if (kiojob && kiojob->uiDelegate()) {
             kiojob->uiDelegate()->showErrorMessage();
         } else {
             qCWarning(AKREGATOR_LOG) << "There is no GUI delegate set for a kjob, and it failed with error:" << job->errorString();
         }
-        deleteLater();
     } else {
         sendAttachment();
-        deleteLater();
     }
+    deleteLater();
 }
 
 void DownloadArticleJob::setTitle(const QString &title)
@@ -95,7 +94,6 @@ void DownloadArticleJob::sendAttachment()
     url.setScheme(u"mailto"_s);
     url.setQuery(query);
     QDesktopServices::openUrl(url);
-    deleteLater();
 }
 
 void DownloadArticleJob::setText(const QString &text)

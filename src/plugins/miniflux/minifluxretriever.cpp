@@ -88,7 +88,7 @@ void MinifluxRetriever::onEntriesFetchError(int feedId, const QString & /*messag
     Q_EMIT dataRetrieved({}, false);
 }
 
-QByteArray MinifluxRetriever::entriesToRss(const QString &feedTitle, const QString &feedUrl, const QList<MinifluxEntry> &entries)
+QByteArray MinifluxRetriever::entriesToRss(const QString &feedTitle, const QList<MinifluxEntry> &entries)
 {
     QDomDocument doc;
     doc.appendChild(doc.createProcessingInstruction(QStringLiteral("xml"), QStringLiteral("version=\"1.0\" encoding=\"UTF-8\"")));
@@ -107,7 +107,7 @@ QByteArray MinifluxRetriever::entriesToRss(const QString &feedTitle, const QStri
     };
 
     addElement(channel, QStringLiteral("title"), feedTitle);
-    addElement(channel, QStringLiteral("link"), feedUrl);
+    addElement(channel, QStringLiteral("link"), QString());
 
     for (const MinifluxEntry &entry : entries) {
         QDomElement item = doc.createElement(QStringLiteral("item"));

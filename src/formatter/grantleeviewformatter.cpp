@@ -31,23 +31,18 @@ using namespace Qt::Literals::StringLiterals;
 using namespace Qt::Literals;
 using namespace Akregator;
 
-GrantleeViewFormatter::GrantleeViewFormatter(QString htmlFileName, int deviceDpiY)
+GrantleeViewFormatter::GrantleeViewFormatter(QString htmlFileName, int /*deviceDpiY*/)
     : mHtmlArticleFileName(std::move(htmlFileName))
     , mDirectionString(QGuiApplication::isRightToLeft() ? u"rtl"_s : u"ltr"_s)
-    , mDeviceDpiY(deviceDpiY)
 {
     mEngine.localizer()->setApplicationDomain("akregator");
     auto loader = QSharedPointer<KTextTemplate::FileSystemTemplateLoader>::create();
     loader->setTemplateDirs({u":/"_s});
-    mEngine.addTemplateLoader(loader);
+    // templates are loaded from qrc and never change: keep the compiled ones
+    mEngine.addTemplateLoader(QSharedPointer<KTextTemplate::CachingLoaderDecorator>::create(loader));
 }
 
 GrantleeViewFormatter::~GrantleeViewFormatter() = default;
-
-int GrantleeViewFormatter::pointsToPixel(int pointSize) const
-{
-    return (pointSize * mDeviceDpiY + 36) / 72;
-}
 
 QVariantHash GrantleeViewFormatter::addStandardObject()
 {
@@ -153,10 +148,7 @@ QString GrantleeViewFormatter::sidebarCss(const Colors &colors) const
 
            "html::-webkit-scrollbar-corner {\n"
            "    background-color: white;\n"
-           "}\n\n"_s.arg(backgroundColor)
-               .arg(borderColor)
-               .arg(thumbColor)
-               .arg(thumbHoverColor);
+           "}\n\n"_s.arg(backgroundColor, borderColor, thumbColor, thumbHoverColor);
 }
 
 QString GrantleeViewFormatter::formatFeed(Akregator::Feed *feed)

@@ -85,16 +85,13 @@ void ProgressManager::slotNodeDestroyed(TreeNode *node)
 {
     Feed *feed = qobject_cast<Feed *>(node);
     if (feed) {
-        delete m_handlers[feed];
-        m_handlers.remove(feed);
+        delete m_handlers.take(feed);
     }
 }
 
 ProgressItemHandler::ProgressItemHandler(Feed *feed)
     : m_feed(feed)
 {
-    m_progressItem = nullptr;
-
     connect(feed, &Feed::fetchStarted, this, &ProgressItemHandler::slotFetchStarted);
     connect(feed, &Feed::fetched, this, &ProgressItemHandler::slotFetchCompleted);
     connect(feed, &Feed::fetchError, this, &ProgressItemHandler::slotFetchError);

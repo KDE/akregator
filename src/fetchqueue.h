@@ -11,6 +11,7 @@
 
 #include "akregator_export.h"
 #include <QObject>
+#include <QSet>
 
 namespace Akregator
 {
@@ -61,5 +62,6 @@ protected Q_SLOTS:
 private:
     QList<Feed *> m_queuedFeeds;
     QList<Feed *> m_fetchingFeeds;
+    QSet<Feed *> m_feeds; // feeds either queued or being fetched, for fast lookup
 };
 } // namespace Akregator

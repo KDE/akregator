@@ -291,11 +291,13 @@ void TabWidget::slotRemoveFrame(int frameId)
 // copied wholesale from KonqFrameTabs
 int TabWidgetPrivate::tabBarWidthForMaxChars(int maxLength)
 {
-    int hframe;
+    QTabBar *const tabBar = q->tabBar();
+    QStyle *const style = tabBar->style();
     QStyleOption o;
-    hframe = q->tabBar()->style()->pixelMetric(QStyle::PM_TabBarTabHSpace, &o, q);
+    const int hframe = style->pixelMetric(QStyle::PM_TabBarTabHSpace, &o, q);
+    const int smallIconSize = style->pixelMetric(QStyle::PM_SmallIconSize);
 
-    QFontMetrics fm = q->tabBar()->fontMetrics();
+    const QFontMetrics fm = tabBar->fontMetrics();
     int x = 0;
     for (int i = 0; i < q->count(); ++i) {
         Frame *f = frames.value(q->widget(i));
@@ -304,10 +306,10 @@ int TabWidgetPrivate::tabBarWidthForMaxChars(int maxLength)
         }
 
         const QString newTitle = KStringHandler::rsqueeze(f->title(), maxLength);
-        int lw = fm.boundingRect(newTitle).width();
-        int iw = q->tabBar()->tabIcon(i).pixmap(q->tabBar()->style()->pixelMetric(QStyle::PM_SmallIconSize), QIcon::Normal).width() + 4;
+        const int lw = fm.boundingRect(newTitle).width();
+        const int iw = tabBar->tabIcon(i).pixmap(smallIconSize, QIcon::Normal).width() + 4;
 
-        x += (q->tabBar()->style()->sizeFromContents(QStyle::CT_TabBarTab, &o, QSize(lw + hframe + iw, 0), q)).width();
+        x += (style->sizeFromContents(QStyle::CT_TabBarTab, &o, QSize(lw + hframe + iw, 0), q)).width();
     }
     return x;
 }
@@ -391,17 +393,16 @@ void TabWidgetPrivate::setTitle(const QString &title, QWidget *sender)
                 continue; // frames is out of sync, e.g. because tabInserted wasn't called yet - #185597
             }
             newTitle = f->title();
-            int index = q->indexOf(q->widget(i));
-            q->setTabToolTip(index, QString());
+            q->setTabToolTip(i, QString());
 
             if (newTitle.length() > newMaxLength) {
-                q->setTabToolTip(index, newTitle);
+                q->setTabToolTip(i, newTitle);
                 newTitle = KStringHandler::rsqueeze(newTitle, newMaxLength);
             }
 
             newTitle.replace(u'&', u"&&"_s);
-            if (newTitle != q->tabText(index)) {
-                q->setTabText(index, newTitle);
+            if (newTitle != q->tabText(i)) {
+                q->setTabText(i, newTitle);
             }
         }
         currentMaxLength = newMaxLength;
@@ -520,8 +521,8 @@ void TabWidget::slotReloadTab()
 void TabWidget::slotCloseRequest(int index)
 {
     QWidget *w = widget(index);
-    if (d->frames.value(w)) {
-        Q_EMIT signalRemoveFrameRequest(d->frames.value(w)->id());
+    if (Frame *f = d->frames.value(w)) {
+        Q_EMIT signalRemoveFrameRequest(f->id());
     }
 }
 

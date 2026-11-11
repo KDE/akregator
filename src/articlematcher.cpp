@@ -101,6 +101,7 @@ Criterion::Criterion(Subject subject, Predicate predicate, QVariant object)
     : m_subject(subject)
     , m_predicate(predicate)
     , m_object(std::move(object))
+    , m_regularExpression(m_object.toString())
 {
 }
 
@@ -124,6 +125,7 @@ void Criterion::readConfig(KConfigGroup *config)
     if (QMetaType::Type(type.id()) != QMetaType::UnknownType) {
         m_object = config->readEntry(u"objectValue"_s, QVariant(type));
     }
+    m_regularExpression = QRegularExpression(m_object.toString());
 }
 
 bool Criterion::satisfiedBy(const Article &article) const
@@ -164,15 +166,14 @@ bool Criterion::satisfiedBy(const Article &article) const
         satisfied = TextUtils::ConvertText::normalize(concreteSubject.toString()).indexOf(m_object.toString(), 0, Qt::CaseInsensitive) != -1;
         break;
     case Equals: {
-        const QString subjectType = QLatin1StringView(concreteSubject.typeName());
-        if (subjectType == "int"_L1) {
+        if (concreteSubject.typeId() == QMetaType::Int) {
             satisfied = concreteSubject.toInt() == m_object.toInt();
         } else {
             satisfied = TextUtils::ConvertText::normalize(concreteSubject.toString()) == m_object.toString();
         }
     } break;
     case Matches:
-        satisfied = TextUtils::ConvertText::normalize(concreteSubject.toString()).contains(QRegularExpression(m_object.toString()));
+        satisfied = TextUtils::ConvertText::normalize(concreteSubject.toString()).contains(m_regularExpression);
         break;
     default:
         qCDebug(AKREGATOR_LOG) << "Internal inconsistency; predicateType should never be Negation";
@@ -261,8 +262,7 @@ void ArticleMatcher::readConfig(KConfigGroup *config)
 
 bool ArticleMatcher::operator==(const AbstractMatcher &other) const
 {
-    auto ptr = const_cast<AbstractMatcher *>(&other);
-    auto o = dynamic_cast<ArticleMatcher *>(ptr);
+    const auto o = dynamic_cast<const ArticleMatcher *>(&other);
     if (!o) {
         return false;
     } else {

@@ -13,7 +13,6 @@
 #include "subscriptionlistmodel.h"
 
 #include <QHeaderView>
-#include <QPointer>
 #include <QQueue>
 #include <QStack>
 

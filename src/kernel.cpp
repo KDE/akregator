@@ -21,15 +21,10 @@
 
 using namespace Akregator;
 
-Kernel *Kernel::m_self = nullptr;
-
 Kernel *Kernel::self()
 {
     static Kernel self;
-    if (!m_self) {
-        m_self = &self;
-    }
-    return m_self;
+    return &self;
 }
 
 Kernel::Kernel()

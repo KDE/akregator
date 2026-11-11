@@ -188,8 +188,7 @@ void FrameManager::openUrl(OpenUrlRequest &request)
     } else {
         request.setFrameId(m_currentFrame->id());
     }
-    if (m_frames.contains(request.frameId())) {
-        Frame *frame = m_frames.value(request.frameId());
+    if (Frame *frame = m_frames.value(request.frameId())) {
         if (frame->openUrl(request)) {
             request.setWasHandled(true);
         }

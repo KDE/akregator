@@ -34,16 +34,15 @@ KCMAkregatorAppearanceConfig::KCMAkregatorAppearanceConfig(QObject *parent, cons
     connect(m_ui.slider_minimumFontSize, &QAbstractSlider::valueChanged, m_ui.kcfg_MinimumFontSize, &QSpinBox::setValue);
     connect(m_ui.slider_mediumFontSize, &QAbstractSlider::valueChanged, m_ui.kcfg_MediumFontSize, &QSpinBox::setValue);
 
-    connect(m_ui.slider_minimumFontSize, &QAbstractSlider::sliderMoved, m_ui.kcfg_MinimumFontSize, &QSpinBox::setValue);
-    connect(m_ui.slider_mediumFontSize, &QAbstractSlider::sliderMoved, m_ui.kcfg_MediumFontSize, &QSpinBox::setValue);
-
     connect(m_ui.kcfg_MinimumFontSize, &QSpinBox::valueChanged, m_ui.slider_minimumFontSize, &QSlider::setValue);
     connect(m_ui.kcfg_MediumFontSize, &QSpinBox::valueChanged, m_ui.slider_mediumFontSize, &QSlider::setValue);
 
-    m_ui.slider_minimumFontSize->setDisabled(Settings::self()->isImmutable(u"MinimumFontSize"_s));
-    m_ui.slider_mediumFontSize->setDisabled(Settings::self()->isImmutable(u"MediumFontSize"_s));
-    m_ui.lbl_MinimumFontSize->setDisabled(Settings::self()->isImmutable(u"MinimumFontSize"_s));
-    m_ui.lbl_MediumFontSize->setDisabled(Settings::self()->isImmutable(u"MediumFontSize"_s));
+    const bool minimumFontSizeImmutable = Settings::self()->isImmutable(u"MinimumFontSize"_s);
+    const bool mediumFontSizeImmutable = Settings::self()->isImmutable(u"MediumFontSize"_s);
+    m_ui.slider_minimumFontSize->setDisabled(minimumFontSizeImmutable);
+    m_ui.slider_mediumFontSize->setDisabled(mediumFontSizeImmutable);
+    m_ui.lbl_MinimumFontSize->setDisabled(minimumFontSizeImmutable);
+    m_ui.lbl_MediumFontSize->setDisabled(mediumFontSizeImmutable);
 
     addConfig(Settings::self(), m_widget);
 }

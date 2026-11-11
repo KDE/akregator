@@ -597,7 +597,6 @@ QDomElement Feed::toOPML(QDomElement parent, QDomDocument document) const
             el.setAttribute(u"logoHeight"_s, d->m_logoInfo.height);
         }
     }
-    el.setAttribute(u"maxArticleNumber"_s, d->m_maxArticleNumber);
 #if HAVE_ACTIVITY_SUPPORT
     if (d->m_activityEnabled) {
         el.setAttribute(u"activityEnabled"_s, u"true"_s);
@@ -614,8 +613,9 @@ KJob *Feed::createMarkAsReadJob()
 {
     auto job = new ArticleModifyJob;
     const auto arts = articles();
+    const QString url = xmlUrl();
     for (const Article &i : arts) {
-        const ArticleId aid = {xmlUrl(), i.guid()};
+        const ArticleId aid = {url, i.guid()};
         job->setStatus(aid, Read);
     }
     return job;
@@ -659,18 +659,17 @@ void Feed::appendArticles(const Syndication::FeedPtr &feed)
     bool changed = false;
     const bool notify = useNotification() || Settings::useNotifications();
 
-    QList<ItemPtr> items = feed->items();
-    QList<ItemPtr>::ConstIterator it = items.constBegin();
-    QList<ItemPtr>::ConstIterator en = items.constEnd();
+    const QList<ItemPtr> items = feed->items();
 
     int nudge = 0;
 
     QList<Article> deletedArticles = d->m_deletedArticles;
     const QDateTime now = QDateTime::currentDateTime();
 
-    for (; it != en; ++it) {
-        if (!d->articles.contains((*it)->id())) { // article not in list
-            Article mya(*it, this);
+    for (const ItemPtr &item : items) {
+        const auto oldIt = d->articles.constFind(item->id());
+        if (oldIt == d->articles.constEnd()) { // article not in list
+            Article mya(item, this);
             mya.offsetPubDate(nudge);
             nudge--;
             appendArticle(mya, now);
@@ -687,8 +686,8 @@ void Feed::appendArticles(const Syndication::FeedPtr &feed)
             changed = true;
         } else { // article is in list
             // if the article's guid is no hash but an ID, we have to check if the article was updated. That's done by comparing the hash values.
-            Article old = d->articles[(*it)->id()];
-            Article mya(*it, this);
+            Article old = *oldIt;
+            Article mya(item, this);
             if (!mya.guidIsHash() && mya.hash() != old.hash() && !old.isDeleted()) {
                 mya.setKeep(old.keep());
                 int oldstatus = old.status();
@@ -832,19 +831,19 @@ void Feed::fetchCompleted(Syndication::Loader *l, Syndication::FeedPtr doc, Synd
 
     loadArticles(); // TODO: make me fly: make this delayed
 
-    if (!doc->icon().isNull() && !doc->icon()->url().isEmpty()) {
-        loadFavicon(doc->icon()->url(), false);
-        d->m_faviconInfo.width = doc->icon()->width();
-        d->m_faviconInfo.height = doc->icon()->height();
+    if (const auto icon = doc->icon(); !icon.isNull() && !icon->url().isEmpty()) {
+        loadFavicon(icon->url(), false);
+        d->m_faviconInfo.width = icon->width();
+        d->m_faviconInfo.height = icon->height();
     } else {
         loadFavicon(xmlUrl(), true);
     }
     d->m_fetchErrorCode = Syndication::Success;
 
-    if (!doc->image().isNull()) {
-        d->m_logoInfo.imageUrl = doc->image()->url();
-        d->m_logoInfo.width = doc->image()->width();
-        d->m_logoInfo.height = doc->image()->height();
+    if (const auto image = doc->image(); !image.isNull()) {
+        d->m_logoInfo.imageUrl = image->url();
+        d->m_logoInfo.width = image->width();
+        d->m_logoInfo.height = image->height();
     }
 
     if (title().isEmpty()) {
@@ -1058,7 +1057,7 @@ void Feed::enforceLimitArticleNumber()
         return;
     }
 
-    QList<Article> articles = valuesToVector(d->articles);
+    QList<Article> articles = d->articles.values();
     std::sort(articles.begin(), articles.end());
 
     int c = 0;

@@ -51,7 +51,6 @@ public:
         return 475;
     }
 
-    OrgKdeAkregatorPartInterface *interface();
     [[nodiscard]] QStringList invisibleToolbarActions() const override;
 
     bool isRunningStandalone() const override;

@@ -134,7 +134,7 @@ public:
 
     [[nodiscard]] QString title() const override
     {
-        return m_title;
+        return {};
     }
 
     [[nodiscard]] uint length() const override
@@ -155,7 +155,6 @@ public:
 private:
     const QString m_url;
     const QString m_type;
-    const QString m_title; // TODO undefined.
     const uint m_length;
 };
 }
@@ -186,11 +185,13 @@ Article::Private::Private(const ItemPtr &article, Feed *feed_, Backend::FeedStor
     Q_ASSERT(archive);
     const QList<PersonPtr> authorList = article->authors();
 
-    QString author;
-
     const PersonPtr firstAuthor = !authorList.isEmpty() ? authorList.first() : PersonPtr();
 
-    hash = Utils::calcHash(article->title() + article->description() + article->content() + article->link() + author);
+    const QString articleTitle = article->title();
+    const QString articleDescription = article->description();
+    const QString articleContent = article->content();
+    const QString articleLink = article->link();
+    hash = Utils::calcHash(articleTitle + articleDescription + articleContent + articleLink);
 
     guid = article->id();
 
@@ -198,14 +199,14 @@ Article::Private::Private(const ItemPtr &article, Feed *feed_, Backend::FeedStor
         archive->addEntry(guid);
 
         archive->setHash(guid, hash);
-        title = article->title();
+        title = articleTitle;
         if (title.isEmpty()) {
-            title = buildTitle(article->description());
+            title = buildTitle(articleDescription);
         }
         archive->setTitle(guid, title);
-        archive->setContent(guid, article->content());
-        archive->setDescription(guid, article->description());
-        archive->setLink(guid, article->link());
+        archive->setContent(guid, articleContent);
+        archive->setDescription(guid, articleDescription);
+        archive->setLink(guid, articleLink);
         archive->setGuidIsPermaLink(guid, false);
         archive->setGuidIsHash(guid, guid.startsWith("hash:"_L1));
         const time_t datePublished = article->datePublished();
@@ -227,14 +228,14 @@ Article::Private::Private(const ItemPtr &article, Feed *feed_, Backend::FeedStor
         if (hash != storedHash) { // article is in archive, was it modified?
             // if yes, update
             archive->setHash(guid, hash);
-            title = article->title();
+            title = articleTitle;
             if (title.isEmpty()) {
-                title = buildTitle(article->description());
+                title = buildTitle(articleDescription);
             }
             archive->setTitle(guid, title);
-            archive->setDescription(guid, article->description());
-            archive->setContent(guid, article->content());
-            archive->setLink(guid, article->link());
+            archive->setDescription(guid, articleDescription);
+            archive->setContent(guid, articleContent);
+            archive->setLink(guid, articleLink);
             if (firstAuthor) {
                 archive->setAuthorName(guid, firstAuthor->name());
                 archive->setAuthorUri(guid, firstAuthor->uri());

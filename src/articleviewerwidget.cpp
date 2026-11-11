@@ -249,18 +249,27 @@ void ArticleViewerWidget::slotArticlesUpdated(TreeNode * /*node*/, const QList<A
 void ArticleViewerWidget::slotArticlesAdded(TreeNode * /*node*/, const QList<Article> &list)
 {
     if (m_viewMode == CombinedView) {
-        // TODO sort list, then merge
+        // m_articles is already sorted: sort the new articles, then merge
+        const auto oldSize = m_articles.size();
         m_articles << list;
-        std::sort(m_articles.begin(), m_articles.end());
+        const auto middle = m_articles.begin() + oldSize;
+        std::sort(middle, m_articles.end());
+        std::inplace_merge(m_articles.begin(), middle, m_articles.end());
         slotUpdateCombinedView();
     }
 }
 
 void ArticleViewerWidget::slotArticlesRemoved(TreeNode * /*node*/, const QList<Article> &list)
 {
-    Q_UNUSED(list)
-
     if (m_viewMode == CombinedView) {
+        QSet<QString> removedGuids;
+        removedGuids.reserve(list.size());
+        for (const Article &article : list) {
+            removedGuids.insert(article.guid());
+        }
+        m_articles.removeIf([&removedGuids](const Article &article) {
+            return removedGuids.contains(article.guid());
+        });
         slotUpdateCombinedView();
     }
 }

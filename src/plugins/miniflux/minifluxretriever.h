@@ -35,7 +35,7 @@ private:
     void onEntriesFetched(int feedId, const QList<MinifluxEntry> &entries, int total);
     void onEntriesFetchError(int feedId, const QString &message);
     void fetchPage(int offset);
-    static QByteArray entriesToRss(const QString &feedTitle, const QString &feedUrl, const QList<MinifluxEntry> &entries);
+    static QByteArray entriesToRss(const QString &feedTitle, const QList<MinifluxEntry> &entries);
 
     MinifluxClient *const m_client;
     int m_feedId = 0;

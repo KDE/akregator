@@ -62,13 +62,8 @@ TreeNode *TreeNode::nextSibling()
 
 const TreeNode *TreeNode::nextSibling() const
 {
-    if (!m_parent) {
-        return nullptr;
-    }
-    const QList<const TreeNode *> children = parent()->children();
-    const int idx = children.indexOf(this);
-
-    return (idx + 1 < children.size()) ? children.at(idx + 1) : nullptr;
+    // The non-const overload shares the parent's child list instead of building a copy
+    return const_cast<TreeNode *>(this)->nextSibling();
 }
 
 TreeNode *TreeNode::prevSibling()
@@ -84,12 +79,8 @@ TreeNode *TreeNode::prevSibling()
 
 const TreeNode *TreeNode::prevSibling() const
 {
-    if (!m_parent) {
-        return nullptr;
-    }
-    const QList<const TreeNode *> children = parent()->children();
-    const int idx = children.indexOf(this);
-    return (idx > 0) ? children.at(idx - 1) : nullptr;
+    // The non-const overload shares the parent's child list instead of building a copy
+    return const_cast<TreeNode *>(this)->prevSibling();
 }
 
 const Folder *TreeNode::parent() const

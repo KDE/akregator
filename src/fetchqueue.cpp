@@ -36,13 +36,15 @@ void FetchQueue::slotAbort()
         disconnectFromFeed(i);
     }
     m_queuedFeeds.clear();
+    m_feeds.clear();
 
     Q_EMIT signalStopped();
 }
 
 void FetchQueue::addFeed(Feed *f)
 {
-    if (!m_queuedFeeds.contains(f) && !m_fetchingFeeds.contains(f)) {
+    if (!m_feeds.contains(f)) {
+        m_feeds.insert(f);
         connectToFeed(f);
         m_queuedFeeds.append(f);
         fetchNextFeed();
@@ -55,8 +57,7 @@ void FetchQueue::fetchNextFeed()
         if (m_fetchingFeeds.isEmpty() && m_queuedFeeds.count() == 1) {
             Q_EMIT signalStarted();
         }
-        Feed *f = *(m_queuedFeeds.begin());
-        m_queuedFeeds.pop_front();
+        Feed *f = m_queuedFeeds.takeFirst();
         m_fetchingFeeds.append(f);
         f->fetch(false);
     }
@@ -89,6 +90,7 @@ void FetchQueue::feedDone(Feed *f)
 {
     disconnectFromFeed(f);
     m_fetchingFeeds.removeAll(f);
+    m_feeds.remove(f);
     if (isEmpty()) {
         Q_EMIT signalStopped();
     } else {
@@ -116,6 +118,7 @@ void FetchQueue::slotNodeDestroyed(TreeNode *node)
 
     m_fetchingFeeds.removeAll(feed);
     m_queuedFeeds.removeAll(feed);
+    m_feeds.remove(feed);
 }
 
 #include "moc_fetchqueue.cpp"

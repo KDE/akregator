@@ -102,13 +102,12 @@ class ActionManagerImpl::ActionManagerImplPrivate
 {
 public:
     [[nodiscard]] QString quickSearchLineText() const;
-    NodeSelectVisitor *nodeSelectVisitor = nullptr;
+    std::unique_ptr<NodeSelectVisitor> nodeSelectVisitor;
     ArticleListView *articleList = nullptr;
     SubscriptionListView *subscriptionListView = nullptr;
     MainWidget *mainWidget = nullptr;
     Part *part = nullptr;
     TrayIcon *trayIcon = nullptr;
-    KActionMenu *tagMenu = nullptr;
     KActionCollection *actionCollection = nullptr;
     TabWidget *tabWidget = nullptr;
     PimCommon::ShareServiceUrlManager *shareServiceManager = nullptr;
@@ -154,14 +153,8 @@ ActionManagerImpl::ActionManagerImpl(Part *part, QObject *parent)
     : ActionManager(parent)
     , d(new ActionManagerImplPrivate)
 {
-    d->nodeSelectVisitor = new NodeSelectVisitor(this);
+    d->nodeSelectVisitor = std::make_unique<NodeSelectVisitor>(this);
     d->part = part;
-    d->subscriptionListView = nullptr;
-    d->articleList = nullptr;
-    d->trayIcon = nullptr;
-    d->mainWidget = nullptr;
-    d->tabWidget = nullptr;
-    d->tagMenu = nullptr;
     d->actionCollection = part->actionCollection();
     d->shareServiceManager = new PimCommon::ShareServiceUrlManager(this);
 #if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
@@ -171,10 +164,7 @@ ActionManagerImpl::ActionManagerImpl(Part *part, QObject *parent)
     initPart();
 }
 
-ActionManagerImpl::~ActionManagerImpl()
-{
-    delete d->nodeSelectVisitor;
-}
+ActionManagerImpl::~ActionManagerImpl() = default;
 
 void ActionManagerImpl::setTrayIcon(TrayIcon *trayIcon)
 {
