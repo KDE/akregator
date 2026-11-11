@@ -34,6 +34,18 @@
 >&Anne-Marie.Mahfouf.mail; </address
 ></affiliation>
 </author>
+<author
+><firstname
+>Blagovest</firstname
+> <surname
+>Petrov</surname
+> <affiliation
+><address
+><email
+>blagovest@petrovs.info</email>
+</address
+></affiliation>
+</author>
 
 <othercredit role="translator"
 ><firstname
@@ -80,9 +92,9 @@
 >&FDLNotice;</legalnotice>
 
 <date
->2021-03-31</date>
+>15/07/2026</date>
 <releaseinfo
->Aplicativos 21.08</releaseinfo>
+>Aplicativos 26.12</releaseinfo>
 
 <!-- Abstract about this handbook -->
 
@@ -408,6 +420,114 @@ say how to start it -->
 </sect1>
 </chapter>
 
+<chapter id="online-accounts">
+<title
+>Contas online</title>
+
+<para
+>Além de assinar fontes de notícias individuais, o &akregator; pode conectar-se a um serviço de leitura de fontes de notícias online e espelhar suas assinaturas. Atualmente, há suporte para um tipo de conta: o <ulink url="https://miniflux.app/"
+>Miniflux</ulink
+>, um leitor de fontes de notícias auto-hospedado. Ao configurar uma conta, o &akregator; cria uma pasta chamada <quote
+><replaceable
+>nome da conta</replaceable
+> (Miniflux)</quote
+> que espelha as categorias e as fontes de notícias do servidor. Os artigos são obtidos por meio da <acronym
+>API</acronym
+> do serviço, em vez de baixar as fontes diretamente, e o status de leitura é sincronizado em ambas as direções.</para>
+
+<sect1 id="adding-online-account">
+<title
+>Adicionando uma conta online</title>
+
+<para
+>Selecione <menuchoice
+><guimenu
+>Arquivo</guimenu
+><guimenuitem
+>Adicionar conta online...</guimenuitem
+></menuchoice
+> para abrir o assistente de contas. Na primeira página, escolha o tipo de conta. A segunda página contém as configurações do tipo selecionado. Para uma conta Miniflux, elas são:</para>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Nome da conta:</guilabel
+></term>
+<listitem
+><para
+>Um nome de sua escolha. Ele é usado para a pasta da conta na lista de fontes de notícias e não pode ser alterado posteriormente.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>URL do servidor:</guilabel
+></term>
+<listitem
+><para
+>O endereço do seu servidor Miniflux, por exemplo <userinput
+>https://miniflux.exemplo.com</userinput
+>.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Token da API:</guilabel
+></term>
+<listitem
+><para
+>Um token de <acronym
+>API</acronym
+> para o seu usuário do Miniflux. Você pode criar um na interface web do Miniflux, em <menuchoice
+><guimenu
+>Configurações</guimenu
+><guimenuitem
+>Chaves de API</guimenuitem
+></menuchoice
+>. O &akregator; armazena o token na carteira do sistema, e não em um arquivo de texto simples.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+<para
+>Use o botão <guibutton
+>Testar conexão</guibutton
+> para verificar o endereço do servidor e o token antes de concluir o assistente. Após a conclusão do assistente, o &akregator; busca as categorias e as fontes de notícias do servidor e começa a importar os artigos não lidos.</para>
+</sect1>
+
+<sect1 id="online-account-sync">
+<title
+>Como a sincronização funciona</title>
+
+<para
+>As fontes de notícias de uma conta online são atualizadas no intervalo configurado nas definições <link linkend="general-tab"
+>Geral</link
+>, buscando artigos não lidos no servidor. Para manter a interface do usuário responsiva, cada atualização importa, no máximo, os 1000 artigos não lidos mais recentes por fonte.</para>
+
+<para
+>Ao marcar um artigo como lido ou não lido, a alteração é enviada ao servidor após um breve intervalo, de modo que a leitura de vários artigos em sequência resulte em uma única solicitação. Marcar um artigo como <quote
+>Importante</quote
+> alterna o estado da estrela (marcador) do artigo no servidor.</para>
+</sect1>
+
+<sect1 id="managing-online-accounts">
+<title
+>Gerenciando contas</title>
+
+<para
+>As contas online são gerenciadas na página <link linkend="accounts-tab"
+>Contas</link
+> da janela de configuração, onde é possível adicionar, modificar e remover contas. Para uma conta existente, o endereço do servidor e o token da <acronym
+>API</acronym
+> podem ser alterados; a alteração entra em vigor imediatamente e inicia uma nova sincronização.</para>
+
+<para
+>Remover uma conta exclui sua pasta da lista de fontes de notícias, bem como sua configuração e as credenciais armazenadas. A conta e os artigos no servidor não são afetados. Excluir a pasta da conta diretamente da lista de fontes de notícias tem o mesmo efeito.</para>
+</sect1>
+</chapter>
+
 <chapter id="configuration">
 <title
 >Configurar o &akregator;</title>
@@ -592,6 +712,51 @@ say how to start it -->
 </varlistentry>
 </variablelist>
 
+</sect1>
+
+<sect1 id="accounts-tab">
+<title
+>Contas</title>
+<para
+>A página Contas lista as <link linkend="online-accounts"
+>contas online</link
+> configuradas, juntamente com seus tipos.</para>
+<variablelist>
+<varlistentry>
+<term
+><guibutton
+>Adicionar...</guibutton
+></term>
+<listitem
+><para
+>Abre o assistente <link linkend="adding-online-account"
+>Adicionar conta online</link
+>.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guibutton
+>Modificar...</guibutton
+></term>
+<listitem
+><para
+>Abre as configurações da conta selecionada para alterar o endereço do servidor ou o token de <acronym
+>API</acronym
+>.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guibutton
+>Remover</guibutton
+></term>
+<listitem
+><para
+>Remove a conta selecionada, incluindo sua pasta na lista de fontes de notícias e suas credenciais armazenadas. O servidor não é afetado.</para
+></listitem>
+</varlistentry>
+</variablelist>
 </sect1>
 
 <sect1 id="adblock-tab">
@@ -1145,6 +1310,25 @@ say how to start it -->
 > a caixa de diálogo de gravação e exporte as suas fontes e estruturas de pastas como um arquivo <filename class="extension"
 >.opml</filename
 >.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Arquivo</guimenu
+> <guimenuitem
+>Adicionar conta online...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Abre</action
+> o assistente <link linkend="adding-online-account"
+>Adicionar conta online</link
+> para conectar o &akregator; a um serviço de leitura de fontes de notícias online, como o Miniflux.</para
 ></listitem>
 </varlistentry>
 
