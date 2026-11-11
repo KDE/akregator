@@ -27,11 +27,6 @@ KCMAkregatorPluginsConfig::KCMAkregatorPluginsConfig(QObject *parent, const KPlu
     lay->addWidget(mConfigurePluginWidget);
 }
 
-void KCMAkregatorPluginsConfig::slotConfigChanged()
-{
-    markAsChanged();
-}
-
 void KCMAkregatorPluginsConfig::save()
 {
     mConfigurePluginWidget->save();
