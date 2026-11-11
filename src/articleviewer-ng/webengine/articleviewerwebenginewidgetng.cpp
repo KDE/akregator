@@ -5,6 +5,7 @@
 */
 
 #include "articleviewerwebenginewidgetng.h"
+#include "articleviewerwebengine.h"
 #include <MessageViewer/PrintMessage>
 #include <QVBoxLayout>
 #if HAVE_KTEXTADDONS_TEXT_TO_SPEECH_SUPPORT

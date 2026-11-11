@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include "kparts/mainwindow.h"
+#include <KParts/MainWindow>
 
 #include <QPointer>
 

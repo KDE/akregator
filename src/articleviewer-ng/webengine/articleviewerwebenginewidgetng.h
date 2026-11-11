@@ -7,7 +7,6 @@
 #pragma once
 
 #include "akregator_export.h"
-#include "articleviewerwebengine.h"
 #include "config-akregator.h"
 
 #include <QWidget>
@@ -32,6 +31,7 @@ class TrackingWarningWidget;
 
 namespace Akregator
 {
+class ArticleViewerWebEngine;
 class AKREGATOR_EXPORT ArticleViewerWebEngineWidgetNg : public QWidget
 {
     Q_OBJECT

@@ -17,6 +17,7 @@
 #include <KMessageBox>
 #include <KPluginFactory>
 #include <KSharedConfig>
+#include <QUrl>
 #include <qt6keychain/keychain.h>
 
 using namespace Akregator;

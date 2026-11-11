@@ -11,7 +11,6 @@
 #include "feed.h"
 #include "feedlist.h"
 #include "folder.h"
-#include "kernel.h"
 #include "subscriptionlistjobs.h"
 #include "treenode.h"
 
@@ -33,6 +32,7 @@
 #include <QVariant>
 #if HAVE_ACTIVITY_SUPPORT
 #include "activities/activitiesmanager.h"
+#include "kernel.h"
 #endif
 using namespace Akregator;
 using namespace Syndication;

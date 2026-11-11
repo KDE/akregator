@@ -12,13 +12,19 @@
 #include "akregator_export.h"
 #include "treenode.h"
 
-#include <Syndication/Syndication>
-
-#include <QIcon>
+#include <Syndication/Feed>
+#include <Syndication/Global>
 
 #include <memory>
 
 class QDomElement;
+class QIcon;
+
+namespace Syndication
+{
+class DataRetriever;
+class Loader;
+}
 
 namespace Akregator
 {

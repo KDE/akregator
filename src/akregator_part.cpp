@@ -43,12 +43,16 @@
 
 #include "partadaptor.h"
 #include <QApplication>
+#include <QDBusConnection>
+#include <QDir>
 #include <QDomDocument>
 #include <QFile>
+#include <QFileInfo>
 #include <QObject>
 #include <QStringList>
 #include <QTextStream>
 #include <QTimer>
+#include <QUrl>
 #include <QWebEngineProfile>
 #include <QWidget>
 
@@ -181,7 +185,7 @@ Part::Part(QWidget *parentWidget, QObject *parent, const KPluginMetaData &data, 
 
 KSharedConfig::Ptr Part::config()
 {
-    assert(mySelf);
+    Q_ASSERT(mySelf);
     if (!mySelf->mConfig) {
         mySelf->mConfig = KSharedConfig::openConfig(u"akregatorrc"_s);
     }

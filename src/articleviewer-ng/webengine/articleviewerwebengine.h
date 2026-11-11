@@ -9,7 +9,7 @@
 #include "openurlrequest.h"
 #include <MessageViewer/ViewerPluginInterface>
 #include <PimCommon/ShareServiceUrlManager>
-#include <WebEngineViewer/CheckPhishingUrlJob>
+#include <WebEngineViewer/CheckPhishingUrlUtil>
 #include <WebEngineViewer/WebEngineView>
 
 class KActionCollection;

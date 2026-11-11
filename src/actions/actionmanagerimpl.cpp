@@ -32,7 +32,7 @@
 #include <KColorSchemeMenu>
 #include <KGuiItem>
 #include <KLocalizedString>
-#include <KStandardAction>
+#include <KStandardActions>
 #include <KStandardShortcut>
 #include <KToggleAction>
 #include <QAction>

@@ -12,8 +12,8 @@
 #include "config-akregator.h"
 
 #include "akregatorpart_export.h"
+#include "article.h"
 #include "articleviewer-ng/webengine/articleviewerwebengine.h"
-#include "feed.h"
 #include <KAboutData>
 #include <QUrl>
 
@@ -26,6 +26,7 @@ class KConfigGroup;
 
 class QDomDocument;
 class QSplitter;
+class QTimer;
 
 namespace Akregator
 {
@@ -42,6 +43,7 @@ class Part;
 class SearchBar;
 class SubscriptionListView;
 class TabWidget;
+class TreeNode;
 class MainFrame;
 class DownloadArticleJob;
 /**

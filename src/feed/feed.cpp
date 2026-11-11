@@ -26,10 +26,17 @@
 
 #include <QUrl>
 
+#include <Syndication/DataRetriever>
+#include <Syndication/Image>
+#include <Syndication/Item>
+#include <Syndication/Loader>
+#include <Syndication/Tools>
+
 #include <QDateTime>
 #include <QDomDocument>
 #include <QDomElement>
 #include <QHash>
+#include <QIcon>
 #include <QList>
 #include <QRandomGenerator>
 #include <QTimer>

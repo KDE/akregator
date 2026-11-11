@@ -15,14 +15,17 @@
 #include "trayicon.h"
 #if AKREGATOR_WITH_KUSERFEEDBACK
 #include "userfeedback/akregatoruserfeedbackprovider.h"
+#include <QTextStream>
 #endif
 #include <KontactInterface/PimUniqueApplication>
 
 #include <KCrash>
+#include <KLocalizedString>
 
 #include <QDBusInterface>
 
 #include <KIconTheme>
+#include <QIcon>
 
 #include <KStyleManager>
 

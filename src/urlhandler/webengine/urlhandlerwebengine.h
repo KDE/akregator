@@ -6,9 +6,11 @@
 
 #pragma once
 
-#include <QPoint>
 #include <QString>
-#include <QUrl>
+
+class QPoint;
+class QUrl;
+
 namespace Akregator
 {
 class ArticleViewerWebEngine;

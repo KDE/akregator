@@ -12,10 +12,9 @@
 #include <QIcon>
 #include <QWidget>
 
-#include <KConfigGroup>
-
 #include "akregator_export.h"
 
+class KConfigGroup;
 class QUrl;
 
 namespace KPIM

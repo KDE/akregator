@@ -8,12 +8,12 @@
 
 #include "searchbar.h"
 #include "akregatorconfig.h"
+#include "articlematcher.h"
 #include "statussearchline.h"
 
 #include "types.h"
 #include <TextUtils/ConvertText>
 
-#include <KLineEdit>
 #include <KLocalizedString>
 
 #include <QFrame>

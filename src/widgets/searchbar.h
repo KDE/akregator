@@ -8,7 +8,6 @@
 
 #pragma once
 
-#include "articlematcher.h"
 #include "widgets/statussearchbuttons.h"
 #include <QSharedPointer>
 #include <QTimer>

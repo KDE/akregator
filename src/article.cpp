@@ -15,7 +15,9 @@
 #include "types.h"
 #include "utils.h"
 
-#include <Syndication/Syndication>
+#include <Syndication/Enclosure>
+#include <Syndication/Item>
+#include <Syndication/Person>
 
 #include <QDateTime>
 #include <QList>

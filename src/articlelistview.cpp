@@ -25,6 +25,7 @@
 #include <QApplication>
 #include <QContextMenuEvent>
 #include <QHeaderView>
+#include <QMouseEvent>
 #include <QPainter>
 #include <QPalette>
 #include <QScrollBar>

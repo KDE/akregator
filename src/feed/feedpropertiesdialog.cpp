@@ -8,6 +8,7 @@
 
 #include "feedpropertiesdialog.h"
 #if HAVE_ACTIVITY_SUPPORT
+#include "kernel.h"
 #include <PimCommonActivities/ConfigureActivitiesWidget>
 #endif
 #include "akregatorconfig.h"
@@ -20,8 +21,8 @@
 #include <QCheckBox>
 #include <QDialogButtonBox>
 #include <QPushButton>
+#include <QStyle>
 #include <QVBoxLayout>
-#include <kernel.h>
 using namespace Akregator;
 
 FeedPropertiesWidget::FeedPropertiesWidget(QWidget *parent)

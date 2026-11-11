@@ -8,6 +8,9 @@
 
 #include "akregator_export.h"
 #include "articleformatter.h"
+
+#include <memory>
+
 class QPaintDevice;
 namespace Akregator
 {

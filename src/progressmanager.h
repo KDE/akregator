@@ -8,7 +8,6 @@
 
 #pragma once
 
-#include "feedlist.h"
 #include <QHash>
 #include <QObject>
 #include <QSharedPointer>
@@ -21,6 +20,7 @@ class ProgressItem;
 namespace Akregator
 {
 class Feed;
+class FeedList;
 class ProgressItemHandler;
 class TreeNode;
 

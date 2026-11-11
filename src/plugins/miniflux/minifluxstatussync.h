@@ -5,13 +5,13 @@
 */
 #pragma once
 
-#include "article.h"
 #include <QObject>
 #include <QSet>
 #include <QTimer>
 
 namespace Akregator
 {
+class Article;
 class Feed;
 class MinifluxClient;
 class TreeNode;

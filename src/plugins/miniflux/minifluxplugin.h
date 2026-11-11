@@ -7,7 +7,8 @@
 
 #include "accountplugin.h"
 #include <QPointer>
-#include <QUrl>
+
+class QUrl;
 
 namespace Akregator
 {

@@ -6,7 +6,6 @@
 
 #pragma once
 
-#include "article.h"
 #include "articleformatter.h"
 #include <GrantleeTheme/GrantleeThemeEngine>
 
@@ -16,6 +15,8 @@ struct Colors {
     QString colorScheme;
     QString backgroundColor;
 };
+class Article;
+class Feed;
 class Folder;
 class GrantleeViewFormatter
 {

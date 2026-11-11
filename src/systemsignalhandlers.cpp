@@ -11,6 +11,7 @@
 
 #include <QCoreApplication>
 #include <csignal>
+#include <vector>
 
 static void GracefulQuit(int)
 {

@@ -6,6 +6,8 @@
 
 #include "crashwidget.h"
 #include <KLocalizedString>
+#include <QFont>
+#include <QIcon>
 #include <QLabel>
 #include <QPushButton>
 #include <QVBoxLayout>

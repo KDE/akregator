@@ -8,9 +8,10 @@
 
 #pragma once
 
-#include <QAction>
 #include <QByteArray>
 #include <QTreeView>
+
+class QAction;
 
 namespace Akregator
 {

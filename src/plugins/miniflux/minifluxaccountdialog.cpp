@@ -9,6 +9,7 @@
 #include <KLocalizedString>
 #include <QDialogButtonBox>
 #include <QPushButton>
+#include <QUrl>
 #include <QVBoxLayout>
 
 using namespace Akregator;

@@ -13,6 +13,7 @@
 #include <KLocalizedString>
 #include <KMessageBox>
 #include <QDialogButtonBox>
+#include <QIcon>
 #include <QPushButton>
 #include <QStyle>
 #include <QUrl>

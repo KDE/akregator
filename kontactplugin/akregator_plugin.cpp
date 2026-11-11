@@ -18,6 +18,8 @@
 #include <QAction>
 #include <QIcon>
 
+#include <tuple>
+
 using namespace Qt::Literals::StringLiterals;
 
 EXPORT_KONTACT_PLUGIN_WITH_JSON(AkregatorPlugin, "akregatorplugin.json")

@@ -12,8 +12,6 @@
 #include <KSharedConfig>
 #include <QList>
 #include <QPointer>
-
-#include <QUrl>
 #include <kparts/part.h>
 
 #include "crashwidget/crashwidget.h"
@@ -22,6 +20,7 @@ class KConfigGroup;
 class KCMultiDialog;
 
 class QTimer;
+class QUrl;
 
 namespace Akregator
 {

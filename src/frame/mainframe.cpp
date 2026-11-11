@@ -5,6 +5,7 @@
 */
 
 #include "mainframe.h"
+#include "articleviewer-ng/webengine/articleviewerwebengine.h"
 #include "articleviewer-ng/webengine/articleviewerwebenginewidgetng.h"
 #include "articleviewerwidget.h"
 

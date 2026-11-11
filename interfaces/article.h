@@ -13,6 +13,8 @@
 
 #include <QSharedPointer>
 
+#include <utility>
+
 class QDateTime;
 class QString;
 

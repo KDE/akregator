@@ -11,6 +11,8 @@
 #include "abstractselectioncontroller.h"
 #include "akregatorpart_export.h"
 
+#include <QColor>
+#include <QIcon>
 #include <QPointer>
 #include <QSortFilterProxyModel>
 #include <QTreeView>

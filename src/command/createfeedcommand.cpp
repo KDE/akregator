@@ -18,6 +18,7 @@
 
 #include <QUrl>
 
+#include <QApplication>
 #include <QClipboard>
 #include <QPointer>
 #include <QTimer>

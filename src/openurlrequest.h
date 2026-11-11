@@ -12,6 +12,8 @@
 
 #include "akregator_export.h"
 
+#include <cstdint>
+
 namespace Akregator
 {
 class AKREGATOR_EXPORT OpenUrlRequest

@@ -6,8 +6,10 @@
 
 #include "webengineframe.h"
 #include "akrwebengineviewer.h"
+#include "articleviewer-ng/webengine/articleviewerwebengine.h"
 #include "articleviewer-ng/webengine/articleviewerwebenginewidgetng.h"
 
+#include <KConfigGroup>
 #include <KIO/FavIconRequestJob>
 
 #include <QVBoxLayout>

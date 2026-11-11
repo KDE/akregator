@@ -13,7 +13,9 @@
 #include <QApplication>
 #include <QClipboard>
 #include <QDesktopServices>
+#include <QIcon>
 #include <QMenu>
+#include <QUrl>
 #include <QUrlQuery>
 
 using namespace Qt::Literals::StringLiterals;

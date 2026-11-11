@@ -8,6 +8,7 @@
 
 #include "progressmanager.h"
 #include "feed.h"
+#include "feedlist.h"
 #include "treenode.h"
 
 #include <KLocalizedString>

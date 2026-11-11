@@ -13,6 +13,7 @@
 #include <QLineEdit>
 #include <QPointer>
 #include <QPushButton>
+#include <QUrl>
 #include <QVBoxLayout>
 
 using namespace Akregator;

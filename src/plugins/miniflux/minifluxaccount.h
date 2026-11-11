@@ -6,10 +6,11 @@
 #pragma once
 
 #include "minifluxdata.h"
-#include <KJob>
 #include <QObject>
 #include <QTimer>
 #include <QUrl>
+
+class KJob;
 
 namespace Akregator
 {

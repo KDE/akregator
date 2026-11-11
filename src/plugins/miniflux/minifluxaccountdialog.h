@@ -6,7 +6,8 @@
 #pragma once
 
 #include <QDialog>
-#include <QUrl>
+
+class QUrl;
 
 namespace Akregator
 {

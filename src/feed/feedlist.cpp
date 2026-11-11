@@ -19,11 +19,12 @@
 #include <KLocalizedString>
 #include <limits>
 
+#include <QDomDocument>
+#include <QDomElement>
 #include <QElapsedTimer>
 #include <QHash>
 #include <QRandomGenerator>
 #include <QSet>
-#include <qdom.h>
 
 using namespace Qt::Literals::StringLiterals;
 

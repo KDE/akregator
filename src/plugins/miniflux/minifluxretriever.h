@@ -5,11 +5,12 @@
 */
 #pragma once
 
-#include "minifluxclient.h"
+#include "minifluxdata.h"
 #include <Syndication/DataRetriever>
 
 namespace Akregator
 {
+class MinifluxClient;
 
 /**
  * Syndication::DataRetriever that fetches articles from the Miniflux API

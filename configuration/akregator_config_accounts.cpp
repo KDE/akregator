@@ -15,6 +15,7 @@
 #include <KStandardGuiItem>
 
 #include <QHBoxLayout>
+#include <QIcon>
 #include <QPushButton>
 #include <QTreeWidget>
 #include <QVBoxLayout>

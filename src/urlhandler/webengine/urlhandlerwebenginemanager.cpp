@@ -41,7 +41,7 @@ void URLHandlerWebEngineManager::registerHandler(const URLHandlerWebEngine *hand
 void URLHandlerWebEngineManager::unregisterHandler(const URLHandlerWebEngine *handler)
 {
     // don't delete them, only remove them from the list!
-    mHandlers.erase(std::remove(mHandlers.begin(), mHandlers.end(), handler), mHandlers.end());
+    mHandlers.removeAll(handler);
 }
 
 bool URLHandlerWebEngineManager::handleClick(const QUrl &url, ArticleViewerWebEngine *w) const

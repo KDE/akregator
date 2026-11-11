@@ -16,7 +16,7 @@
 #include <PimCommon/BroadcastStatus>
 
 #include <KActionCollection>
-#include <KConfig>
+#include <KConfigGroup>
 #include <KEditToolBar>
 #include <KLocalizedString>
 #include <KMessageBox>

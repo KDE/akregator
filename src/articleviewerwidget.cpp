@@ -24,6 +24,7 @@
 #include "defaultnormalviewformatter.h"
 #include <QGridLayout>
 #include <QKeyEvent>
+#include <algorithm>
 
 #include "defaultcombinedviewformatter.h"
 

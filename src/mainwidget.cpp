@@ -28,6 +28,7 @@
 #include "utils.h"
 #include <PimCommon/BroadcastStatus>
 
+#include "feed.h"
 #include "feedlist.h"
 #include "fetchqueue.h"
 #include "folder.h"
@@ -47,6 +48,7 @@
 #include <WebEngineViewer/ZoomActionMenu>
 
 #include <KAboutData>
+#include <KConfigGroup>
 #include <KLocalizedString>
 #include <KMessageBox>
 

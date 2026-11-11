@@ -10,6 +10,9 @@
 #include <QList>
 #include <QObject>
 
+class QPoint;
+class QUrl;
+
 namespace Akregator
 {
 class URLHandlerWebEngine;

@@ -13,9 +13,10 @@
 #include "feed.h"
 #include "treenodevisitor.h"
 
+#include <QDomDocument>
+#include <QDomElement>
 #include <QHash>
 #include <QList>
-#include <qdom.h>
 
 #include <QIcon>
 

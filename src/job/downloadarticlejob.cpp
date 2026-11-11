@@ -7,7 +7,7 @@
 #include "downloadarticlejob.h"
 #include "akregator_debug.h"
 #include <KIO/FileCopyJob>
-#include <KIO/JobUiDelegate>
+#include <KJobUiDelegate>
 #include <MimeTreeParser/AttachmentTemporaryFilesDirs>
 #include <QDesktopServices>
 #include <QTemporaryFile>

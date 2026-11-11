@@ -7,6 +7,7 @@
 #include "grantleeviewformatter.h"
 #include "akregator_debug.h"
 #include "akregatorconfig.h"
+#include "article.h"
 #include "articlegrantleeobject.h"
 #include "grantleeutil.h"
 #include "utils.h"
@@ -16,7 +17,6 @@
 #include "folder.h"
 #include <GrantleeTheme/GrantleeKi18nLocalizer>
 #include <KTextTemplate/FileSystemTemplateLoader>
-#include <QApplication>
 #include <QCoreApplication>
 #include <QFile>
 #include <QGuiApplication>
@@ -32,7 +32,7 @@ using namespace Akregator;
 
 GrantleeViewFormatter::GrantleeViewFormatter(QString htmlFileName, int deviceDpiY)
     : mHtmlArticleFileName(std::move(htmlFileName))
-    , mDirectionString(QApplication::isRightToLeft() ? u"rtl"_s : u"ltr"_s)
+    , mDirectionString(QGuiApplication::isRightToLeft() ? u"rtl"_s : u"ltr"_s)
     , mDeviceDpiY(deviceDpiY)
 {
     mEngine.localizer()->setApplicationDomain("akregator");

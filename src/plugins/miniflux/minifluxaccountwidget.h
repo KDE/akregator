@@ -6,10 +6,10 @@
 #pragma once
 
 #include "accounteditwidget.h"
-#include <QUrl>
 
 class QLineEdit;
 class QPushButton;
+class QUrl;
 
 namespace Akregator
 {

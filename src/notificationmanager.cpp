@@ -12,6 +12,7 @@
 #include <KAboutData>
 #include <KLocalizedString>
 #include <KNotification>
+#include <QPixmap>
 #include <QTimer>
 
 using namespace Qt::Literals::StringLiterals;

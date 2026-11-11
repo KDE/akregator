@@ -13,6 +13,7 @@
 #include <QList>
 #include <QMap>
 #include <QPointer>
+#include <QSharedPointer>
 #include <QString>
 
 #include "akregator_export.h"
