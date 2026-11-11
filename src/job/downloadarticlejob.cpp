@@ -50,7 +50,11 @@ void DownloadArticleJob::start()
         return;
     }
     mTemporaryFile = new QTemporaryFile(this);
-    mTemporaryFile->open();
+    if (!mTemporaryFile->open()) {
+        qCWarning(AKREGATOR_LOG) << "Impossible to open temporary file";
+        deleteLater();
+        return;
+    }
     mTemporaryFile->setAutoRemove(false);
     mAttachmentTemporaryFile = new MimeTreeParser::AttachmentTemporaryFilesDirs;
 
