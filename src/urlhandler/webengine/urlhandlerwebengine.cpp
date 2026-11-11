@@ -58,10 +58,10 @@ QString MailToURLHandlerWebEngine::statusBarMessage(const QUrl &url, ArticleView
 bool MailToURLHandlerWebEngine::handleContextMenuRequest(const QUrl &url, const QPoint &p, ArticleViewerWebEngine *) const
 {
     if (url.scheme() == "mailto"_L1) {
-        auto menu = new QMenu();
-        const QAction *copy = menu->addAction(QIcon::fromTheme(u"edit-copy"_s), i18n("&Copy Email Address"));
+        QMenu menu;
+        const QAction *copy = menu.addAction(QIcon::fromTheme(u"edit-copy"_s), i18n("&Copy Email Address"));
 
-        const QAction *a = menu->exec(p);
+        const QAction *a = menu.exec(p);
         if (a == copy) {
             const QString fullEmail = KEmailAddress::decodeMailtoUrl(url);
             if (!fullEmail.isEmpty()) {
@@ -71,7 +71,6 @@ bool MailToURLHandlerWebEngine::handleContextMenuRequest(const QUrl &url, const 
                 PimCommon::BroadcastStatus::instance()->setStatusMsg(i18n("Address copied to clipboard."));
             }
         }
-        delete menu;
 
         return true;
     }

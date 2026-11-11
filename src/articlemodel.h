@@ -78,9 +78,6 @@ public Q_SLOTS:
     void clear();
 
 private:
-    ArticleModel(const ArticleModel &);
-    ArticleModel &operator=(const ArticleModel &);
-
     QList<Article> m_articles;
     QList<QString> m_titleCache;
 };

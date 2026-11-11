@@ -8,6 +8,8 @@
 
 #include <QDomDocument>
 
+#include <utility>
+
 using namespace Akregator;
 
 namespace
@@ -71,7 +73,7 @@ void MinifluxRetriever::onEntriesFetched(int feedId, const QList<MinifluxEntry> 
 
     disconnect(m_client, &MinifluxClient::entriesFetched, this, &MinifluxRetriever::onEntriesFetched);
     disconnect(m_client, &MinifluxClient::entriesFetchError, this, &MinifluxRetriever::onEntriesFetchError);
-    const QByteArray xml = entriesToRss(m_feedTitle, QString(), m_allEntries);
+    const QByteArray xml = entriesToRss(m_feedTitle, std::exchange(m_allEntries, {}));
     Q_EMIT dataRetrieved(xml, true);
 }
 

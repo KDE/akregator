@@ -114,9 +114,7 @@ void MinifluxClient::fetchFeeds()
             feed.id = obj.value(QLatin1StringView("id")).toInt();
             feed.categoryId = obj.value(QLatin1StringView("category")).toObject().value(QLatin1StringView("id")).toInt();
             feed.title = obj.value(QLatin1StringView("title")).toString();
-            feed.feedUrl = obj.value(QLatin1StringView("feed_url")).toString();
             feed.siteUrl = obj.value(QLatin1StringView("site_url")).toString();
-            feed.unreadCount = obj.value(QLatin1StringView("unread_count")).toInt();
             feeds.append(feed);
         }
         Q_EMIT feedsFetched(feeds);
@@ -126,15 +124,13 @@ void MinifluxClient::fetchFeeds()
 static MinifluxEntry parseEntry(const QJsonObject &obj)
 {
     MinifluxEntry entry;
-    entry.id = obj.value(QLatin1StringView("id")).toVariant().toLongLong();
+    entry.id = obj.value(QLatin1StringView("id")).toInteger();
     entry.feedId = obj.value(QLatin1StringView("feed_id")).toInt();
     entry.title = obj.value(QLatin1StringView("title")).toString();
     entry.url = obj.value(QLatin1StringView("url")).toString();
     entry.author = obj.value(QLatin1StringView("author")).toString();
     entry.content = obj.value(QLatin1StringView("content")).toString();
     entry.publishedAt = QDateTime::fromString(obj.value(QLatin1StringView("published_at")).toString(), Qt::ISODate);
-    entry.status = obj.value(QLatin1StringView("status")).toString();
-    entry.starred = obj.value(QLatin1StringView("starred")).toBool();
     return entry;
 }
 
@@ -168,36 +164,6 @@ void MinifluxClient::fetchEntriesForFeed(int feedId, const QString &status, int 
     });
 }
 
-void MinifluxClient::fetchAllEntries(const QString &status, int offset, qint64 sinceId)
-{
-    QUrlQuery query;
-    query.addQueryItem(QStringLiteral("status"), status);
-    query.addQueryItem(QStringLiteral("limit"), QStringLiteral("100"));
-    if (offset > 0) {
-        query.addQueryItem(QStringLiteral("offset"), QString::number(offset));
-    }
-    if (sinceId > 0) {
-        query.addQueryItem(QStringLiteral("after_entry_id"), QString::number(sinceId));
-    }
-    auto reply = makeGet(QStringLiteral("/v1/entries"), query);
-    connect(reply, &QNetworkReply::finished, this, [this, reply, offset]() {
-        reply->deleteLater();
-        if (reply->error() != QNetworkReply::NoError) {
-            Q_EMIT networkError(reply->errorString());
-            return;
-        }
-        const QJsonObject root = QJsonDocument::fromJson(reply->readAll()).object();
-        const int total = root.value(QLatin1StringView("total")).toInt();
-        const QJsonArray arr = root.value(QLatin1StringView("entries")).toArray();
-        QList<MinifluxEntry> entries;
-        entries.reserve(arr.size());
-        for (const auto &v : arr) {
-            entries.append(parseEntry(v.toObject()));
-        }
-        Q_EMIT allEntriesFetched(entries, total, offset);
-    });
-}
-
 void MinifluxClient::markEntriesRead(const QList<qint64> &entryIds)
 {
     QJsonArray ids;
@@ -210,13 +176,11 @@ void MinifluxClient::markEntriesRead(const QList<qint64> &entryIds)
     const QByteArray payload = QJsonDocument(body).toJson(QJsonDocument::Compact);
     qCDebug(MINIFLUX_LOG) << "MinifluxClient::markEntriesRead: PUT /v1/entries" << payload;
     auto reply = makePut(QStringLiteral("/v1/entries"), payload);
-    connect(reply, &QNetworkReply::finished, this, [this, reply]() {
+    connect(reply, &QNetworkReply::finished, this, [reply]() {
         reply->deleteLater();
-        const bool ok = reply->error() == QNetworkReply::NoError;
-        if (!ok) {
+        if (reply->error() != QNetworkReply::NoError) {
             qCWarning(MINIFLUX_LOG) << "MinifluxClient::markEntriesRead failed:" << reply->errorString();
         }
-        Q_EMIT entriesStatusUpdated(ok);
     });
 }
 
@@ -230,28 +194,13 @@ void MinifluxClient::markEntriesUnread(const QList<qint64> &entryIds)
     body[QStringLiteral("entry_ids")] = ids;
     body[QStringLiteral("status")] = QStringLiteral("unread");
     auto reply = makePut(QStringLiteral("/v1/entries"), QJsonDocument(body).toJson(QJsonDocument::Compact));
-    connect(reply, &QNetworkReply::finished, this, [this, reply]() {
-        reply->deleteLater();
-        Q_EMIT entriesStatusUpdated(reply->error() == QNetworkReply::NoError);
-    });
+    connect(reply, &QNetworkReply::finished, reply, &QObject::deleteLater);
 }
 
 void MinifluxClient::toggleBookmark(qint64 entryId)
 {
     auto reply = makePut(QStringLiteral("/v1/entries/%1/bookmark").arg(entryId), {});
-    connect(reply, &QNetworkReply::finished, this, [this, reply]() {
-        reply->deleteLater();
-        Q_EMIT bookmarkToggled(reply->error() == QNetworkReply::NoError);
-    });
-}
-
-void MinifluxClient::refreshFeed(int feedId)
-{
-    auto reply = makePut(QStringLiteral("/v1/feeds/%1/refresh").arg(feedId), {});
-    connect(reply, &QNetworkReply::finished, this, [this, reply]() {
-        reply->deleteLater();
-        Q_EMIT feedRefreshed(reply->error() == QNetworkReply::NoError);
-    });
+    connect(reply, &QNetworkReply::finished, reply, &QObject::deleteLater);
 }
 
 #include "moc_minifluxclient.cpp"

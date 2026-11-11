@@ -564,12 +564,14 @@ void Part::showOptions()
 
 void Part::initFonts()
 {
+    const QFont generalFont = QFontDatabase::systemFont(QFontDatabase::GeneralFont);
     QStringList fonts = Settings::fonts();
     if (fonts.isEmpty()) {
-        fonts.append(QFontDatabase::systemFont(QFontDatabase::GeneralFont).family());
+        const QString generalFontFamily = generalFont.family();
+        fonts.append(generalFontFamily);
         fonts.append(QFontDatabase::systemFont(QFontDatabase::FixedFont).family());
-        fonts.append(QFontDatabase::systemFont(QFontDatabase::GeneralFont).family());
-        fonts.append(QFontDatabase::systemFont(QFontDatabase::GeneralFont).family());
+        fonts.append(generalFontFamily);
+        fonts.append(generalFontFamily);
         fonts.append(u"0"_s);
     }
     Settings::setFonts(fonts);
@@ -598,7 +600,7 @@ void Part::initFonts()
         if (konq.hasKey("MinimumFontSize")) {
             minfs = konq.readEntry("MinimumFontSize", 8);
         } else {
-            minfs = std::max(QFontDatabase::systemFont(QFontDatabase::GeneralFont).pointSize() - 2, 4);
+            minfs = std::max(generalFont.pointSize() - 2, 4);
         }
         Settings::setMinimumFontSize(minfs);
     }
@@ -608,16 +610,17 @@ void Part::initFonts()
         if (konq.hasKey("MediumFontSize")) {
             medfs = konq.readEntry("MediumFontSize", 12);
         } else {
-            medfs = QFontDatabase::systemFont(QFontDatabase::GeneralFont).pointSize();
+            medfs = generalFont.pointSize();
         }
         Settings::setMediumFontSize(medfs);
     }
-    QWebEngineProfile::defaultProfile()->settings()->setFontFamily(QWebEngineSettings::StandardFont, Settings::standardFont());
-    QWebEngineProfile::defaultProfile()->settings()->setFontFamily(QWebEngineSettings::FixedFont, Settings::fixedFont());
-    QWebEngineProfile::defaultProfile()->settings()->setFontFamily(QWebEngineSettings::SerifFont, Settings::serifFont());
-    QWebEngineProfile::defaultProfile()->settings()->setFontFamily(QWebEngineSettings::SansSerifFont, Settings::sansSerifFont());
-    QWebEngineProfile::defaultProfile()->settings()->setFontSize(QWebEngineSettings::MinimumFontSize, Settings::minimumFontSize());
-    QWebEngineProfile::defaultProfile()->settings()->setFontSize(QWebEngineSettings::DefaultFontSize, Settings::mediumFontSize());
+    QWebEngineSettings *webEngineSettings = QWebEngineProfile::defaultProfile()->settings();
+    webEngineSettings->setFontFamily(QWebEngineSettings::StandardFont, Settings::standardFont());
+    webEngineSettings->setFontFamily(QWebEngineSettings::FixedFont, Settings::fixedFont());
+    webEngineSettings->setFontFamily(QWebEngineSettings::SerifFont, Settings::serifFont());
+    webEngineSettings->setFontFamily(QWebEngineSettings::SansSerifFont, Settings::sansSerifFont());
+    webEngineSettings->setFontSize(QWebEngineSettings::MinimumFontSize, Settings::minimumFontSize());
+    webEngineSettings->setFontSize(QWebEngineSettings::DefaultFontSize, Settings::mediumFontSize());
 }
 
 bool Part::handleCommandLine(const QStringList &args)
@@ -630,8 +633,8 @@ bool Part::handleCommandLine(const QStringList &args)
 
     QStringList feedsToAdd = parser.values(u"addfeed"_s);
 
-    if (feedsToAdd.isEmpty() && !parser.positionalArguments().isEmpty()) {
-        const auto positionalArguments = parser.positionalArguments();
+    const QStringList positionalArguments = parser.positionalArguments();
+    if (feedsToAdd.isEmpty() && !positionalArguments.isEmpty()) {
         for (QString url : positionalArguments) {
             const QUrl tempUrl = QUrl::fromUserInput(url);
             if (tempUrl.isLocalFile()) {

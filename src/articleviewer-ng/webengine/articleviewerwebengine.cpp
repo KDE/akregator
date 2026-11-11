@@ -256,6 +256,7 @@ void ArticleViewerWebEngine::slotWebHitFinished(const WebEngineViewer::WebHitTes
     }
 
     QMenu popup(this);
+    ActionManager *actionManager = ActionManager::getInstance();
     const bool noContentSelected = selectedText().isEmpty();
     if (noContentSelected) {
         if (!mCurrentUrl.isEmpty()) {
@@ -296,7 +297,7 @@ void ArticleViewerWebEngine::slotWebHitFinished(const WebEngineViewer::WebHitTes
         popup.addSeparator();
         popup.addAction(mShareServiceManager->menu());
     } else {
-        popup.addAction(ActionManager::getInstance()->action(u"viewer_copy"_s));
+        popup.addAction(actionManager->action(u"viewer_copy"_s));
         popup.addSeparator();
         mWebShortcutMenuManager->setSelectedText(page()->selectedText());
         mWebShortcutMenuManager->addWebShortcutsToMenu(&popup);
@@ -304,16 +305,16 @@ void ArticleViewerWebEngine::slotWebHitFinished(const WebEngineViewer::WebHitTes
         popup.addActions(viewerPluginActionList(MessageViewer::ViewerPluginInterface::NeedSelection));
     }
     popup.addSeparator();
-    popup.addAction(ActionManager::getInstance()->action(u"viewer_print"_s));
-    popup.addAction(ActionManager::getInstance()->action(u"viewer_printpreview"_s));
+    popup.addAction(actionManager->action(u"viewer_print"_s));
+    popup.addAction(actionManager->action(u"viewer_printpreview"_s));
     popup.addSeparator();
-    popup.addAction(ActionManager::getInstance()->action(u"tab_mute"_s));
-    popup.addAction(ActionManager::getInstance()->action(u"tab_unmute"_s));
+    popup.addAction(actionManager->action(u"tab_mute"_s));
+    popup.addAction(actionManager->action(u"tab_unmute"_s));
     popup.addSeparator();
-    popup.addAction(ActionManager::getInstance()->action(u"find_in_messages"_s));
+    popup.addAction(actionManager->action(u"find_in_messages"_s));
 #if HAVE_KTEXTADDONS_TEXT_TO_SPEECH_SUPPORT
     popup.addSeparator();
-    popup.addAction(ActionManager::getInstance()->action(u"speak_text"_s));
+    popup.addAction(actionManager->action(u"speak_text"_s));
 #endif
     popup.exec(mapToGlobal(result.pos()));
 }
@@ -358,10 +359,11 @@ void ArticleViewerWebEngine::forwardWheelEvent(QWheelEvent *e)
     if (QApplication::keyboardModifiers() & Qt::ControlModifier) {
         const int numDegrees = e->angleDelta().y() / 8;
         const int numSteps = numDegrees / 15;
-        const qreal factor = ActionManager::getInstance()->zoomActionMenu()->zoomFactor() + numSteps * 10;
+        WebEngineViewer::ZoomActionMenu *zoomActionMenu = ActionManager::getInstance()->zoomActionMenu();
+        const qreal factor = zoomActionMenu->zoomFactor() + numSteps * 10;
         if (factor >= 10 && factor <= 300) {
-            ActionManager::getInstance()->zoomActionMenu()->setZoomFactor(factor);
-            ActionManager::getInstance()->zoomActionMenu()->setWebViewerZoomFactor(factor / 100.0);
+            zoomActionMenu->setZoomFactor(factor);
+            zoomActionMenu->setWebViewerZoomFactor(factor / 100.0);
         }
         e->accept();
     }

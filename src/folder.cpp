@@ -87,8 +87,7 @@ QDomElement Folder::toOPML(QDomElement parent, QDomDocument document) const
     el.setAttribute(u"isOpen"_s, m_open ? u"true"_s : u"false"_s);
     el.setAttribute(u"id"_s, QString::number(id()));
 
-    const auto children = m_children;
-    for (const Akregator::TreeNode *i : children) {
+    for (const Akregator::TreeNode *i : std::as_const(m_children)) {
         el.appendChild(i->toOPML(el, document));
     }
     return el;
@@ -164,7 +163,7 @@ QList<Folder *> Folder::folders()
 
 int Folder::indexOf(const TreeNode *node) const
 {
-    return children().indexOf(node);
+    return m_children.indexOf(const_cast<TreeNode *>(node));
 }
 
 void Folder::insertChild(TreeNode *node, TreeNode *after)
@@ -285,9 +284,9 @@ int Folder::unread() const
 
 int Folder::totalCount() const
 {
+    // each child returns the accumulated count of its own subtree
     int total = 0;
-    const auto f = feeds();
-    for (const Feed *const i : f) {
+    for (const TreeNode *i : std::as_const(m_children)) {
         total += i->totalCount();
     }
     return total;
@@ -295,9 +294,9 @@ int Folder::totalCount() const
 
 void Folder::updateUnreadCount() const
 {
+    // each child returns the (cached) accumulated count of its own subtree
     int unread = 0;
-    const auto f = feeds();
-    for (const Feed *const i : f) {
+    for (const TreeNode *i : std::as_const(m_children)) {
         unread += i->unread();
     }
     m_unread = unread;

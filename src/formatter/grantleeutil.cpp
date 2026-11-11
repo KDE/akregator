@@ -10,10 +10,12 @@
 using namespace Qt::Literals::StringLiterals;
 QString Akregator::GrantleeUtil::imageFeed(const Feed *feed)
 {
-    if (feed->logoInfo().height != -1 && feed->logoInfo().width != -1) {
-        return u"<a href=\"%1\"><img class=\"headimage\" src=\"%2\" height=\"%3\" width=\"%4\"></a>\n"_s.arg(feed->htmlUrl(), feed->logoInfo().imageUrl)
-            .arg(feed->logoInfo().height)
-            .arg(feed->logoInfo().width);
+    const Feed::ImageInfo info = feed->logoInfo();
+    if (info.height != -1 && info.width != -1) {
+        return u"<a href=\"%1\"><img class=\"headimage\" src=\"%2\" height=\"%3\" width=\"%4\"></a>\n"_s.arg(feed->htmlUrl(),
+                                                                                                             info.imageUrl,
+                                                                                                             QString::number(info.height),
+                                                                                                             QString::number(info.width));
     }
-    return u"<a href=\"%1\"><img class=\"headimage\" src=\"%2\"></a>\n"_s.arg(feed->htmlUrl(), feed->logoInfo().imageUrl);
+    return u"<a href=\"%1\"><img class=\"headimage\" src=\"%2\"></a>\n"_s.arg(feed->htmlUrl(), info.imageUrl);
 }

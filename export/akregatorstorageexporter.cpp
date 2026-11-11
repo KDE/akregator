@@ -16,7 +16,6 @@
 #include <QDateTime>
 #include <QFile>
 #include <QIODevice>
-#include <QVariant>
 #include <QXmlStreamWriter>
 
 #include <QDebug>
@@ -73,10 +72,8 @@ public:
         }
     }
 
-    void write(const QVariant &value, QXmlStreamWriter &writer, TextMode mode = PlainText) const
+    void write(const QString &str, QXmlStreamWriter &writer, TextMode mode = PlainText) const
     {
-        Q_ASSERT(value.canConvert<QString>());
-        const QString str = value.toString();
         if (str.isEmpty()) {
             return;
         }
@@ -160,9 +157,8 @@ struct Elements {
 
 const Elements Elements::instance;
 
-void writeAttributeIfNotEmpty(const QString &element, const QVariant &value, QXmlStreamWriter &writer)
+void writeAttributeIfNotEmpty(const QString &element, const QString &text, QXmlStreamWriter &writer)
 {
-    const QString text = value.toString();
     if (text.isEmpty()) {
         return;
     }

@@ -30,7 +30,6 @@ SearchBar::SearchBar(QWidget *parent)
     : QWidget(parent)
     , m_searchLine(new StatusSearchLine(this))
     , m_statusSearchButtons(new StatusSearchButtons(this))
-    , m_delay(400)
 {
     auto layout = new QHBoxLayout(this);
 
@@ -131,10 +130,9 @@ void SearchBar::slotSearchStringChanged(const QString &search)
 
 void SearchBar::slotStopActiveSearch()
 {
-    std::vector<QSharedPointer<const AbstractMatcher>> matchers;
     Settings::setStatusFilter(m_statusSearchButtons->status());
     Settings::setTextFilter(m_searchText);
-    m_matchers = std::move(matchers);
+    m_matchers.clear();
     Q_EMIT signalSearch(m_matchers);
 }
 

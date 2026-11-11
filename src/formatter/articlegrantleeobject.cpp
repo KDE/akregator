@@ -28,9 +28,10 @@ ArticleGrantleeObject::~ArticleGrantleeObject() = default;
 
 ArticleGrantleeObject::ArticleStatus ArticleGrantleeObject::articleStatus() const
 {
-    if (mArticle.status() == ArticleStatus::Read) {
+    const int status = mArticle.status();
+    if (status == Akregator::Read) {
         return ArticleGrantleeObject::Read;
-    } else if (mArticle.status() == ArticleStatus::Unread) {
+    } else if (status == Akregator::Unread) {
         return ArticleGrantleeObject::Unread;
     } else {
         return ArticleGrantleeObject::New;
@@ -59,8 +60,8 @@ QString ArticleGrantleeObject::articleLinkUrl() const
 
 QString ArticleGrantleeObject::articlePubDate() const
 {
-    if (mArticle.pubDate().isValid()) {
-        return QLocale().toString(mArticle.pubDate(), QLocale::ShortFormat);
+    if (const QDateTime pubDate = mArticle.pubDate(); pubDate.isValid()) {
+        return QLocale().toString(pubDate, QLocale::ShortFormat);
     }
     return {};
 }
@@ -73,24 +74,26 @@ QString ArticleGrantleeObject::enclosure() const
 
 QString ArticleGrantleeObject::articleCompleteStoryLink() const
 {
-    QString link;
-    if (mArticle.link().isValid() || (mArticle.guidIsPermaLink() && QUrl(mArticle.guid()).isValid())) {
-        // in case link isn't valid, fall back to the guid permaLink.
-        if (mArticle.link().isValid()) {
-            link = mArticle.link().url();
-        } else {
-            link = mArticle.guid();
+    const QUrl link = mArticle.link();
+    if (link.isValid()) {
+        return link.url();
+    }
+    // in case link isn't valid, fall back to the guid permaLink.
+    if (mArticle.guidIsPermaLink()) {
+        if (const QString guid = mArticle.guid(); QUrl(guid).isValid()) {
+            return guid;
         }
     }
-    return link;
+    return {};
 }
 
 QString ArticleGrantleeObject::imageFeed() const
 {
     QString text;
-    if (mArticleFormatOption == ArticleFormatter::ShowIcon && mArticle.feed() && !mArticle.feed()->logoInfo().imageUrl.isEmpty()) {
-        const Feed *feed = mArticle.feed();
-        text += GrantleeUtil::imageFeed(feed);
+    if (mArticleFormatOption == ArticleFormatter::ShowIcon) {
+        if (const Feed *feed = mArticle.feed(); feed && !feed->logoInfo().imageUrl.isEmpty()) {
+            text += GrantleeUtil::imageFeed(feed);
+        }
     }
     return text;
 }

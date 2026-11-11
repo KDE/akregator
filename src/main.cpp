@@ -122,9 +122,8 @@ int main(int argc, char **argv)
 
 #if AKREGATOR_WITH_KUSERFEEDBACK
     if (cmdArgs->isSet(u"feedback"_s)) {
-        auto userFeedBack = new Akregator::AkregatorUserFeedbackProvider(nullptr);
-        QTextStream(stdout) << userFeedBack->describeDataSources() << '\n';
-        delete userFeedBack;
+        const Akregator::AkregatorUserFeedbackProvider userFeedBack(nullptr);
+        QTextStream(stdout) << userFeedBack.describeDataSources() << '\n';
         return 0;
     }
 #endif

@@ -178,10 +178,10 @@ void Akregator::SubscriptionListView::showHeaderMenu(const QPoint &pos)
         return;
     }
 
-    QPointer<QMenu> menu = new QMenu(this);
+    auto menu = new QMenu(this);
     menu->setTitle(i18n("Columns"));
     menu->setAttribute(Qt::WA_DeleteOnClose);
-    connect(menu.data(), &QMenu::triggered, this, &SubscriptionListView::headerMenuItemTriggered);
+    connect(menu, &QMenu::triggered, this, &SubscriptionListView::headerMenuItemTriggered);
 
     for (int i = 0; i < model()->columnCount(); ++i) {
         if (SubscriptionListModel::TitleColumn == i) {

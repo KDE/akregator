@@ -16,6 +16,7 @@
 #include <KConfigGroup>
 #include <KJob>
 #include <KSharedConfig>
+#include <QHash>
 
 using namespace Qt::Literals::StringLiterals;
 using namespace Akregator;
@@ -55,15 +56,16 @@ void MinifluxAccount::initialize()
     }
     if (!m_rootFolder) {
         // Reuse an existing folder left over from a previous session (loaded from OPML)
+        const QString title = folderTitle();
         const auto children = m_feedList->allFeedsFolder()->children();
         for (TreeNode *child : children) {
-            if (auto f = qobject_cast<Folder *>(child); f && f->title() == folderTitle()) {
+            if (auto f = qobject_cast<Folder *>(child); f && f->title() == title) {
                 m_rootFolder = f;
                 break;
             }
         }
         if (!m_rootFolder) {
-            m_rootFolder = new Folder(folderTitle());
+            m_rootFolder = new Folder(title);
             m_feedList->allFeedsFolder()->appendChild(m_rootFolder);
         }
         // Deleting a node always routes through Folder::removeChild(), even from the
@@ -117,7 +119,8 @@ void MinifluxAccount::detachFromFeedList()
 
 void MinifluxAccount::watchExistingFeeds(Folder *folder)
 {
-    for (TreeNode *child : folder->children()) {
+    const auto children = folder->children();
+    for (TreeNode *child : children) {
         if (auto f = qobject_cast<Feed *>(child)) {
             m_statusSync->watchFeed(f);
         } else if (auto sub = qobject_cast<Folder *>(child)) {
@@ -222,22 +225,23 @@ void MinifluxAccount::startSyncJob()
 
 void MinifluxAccount::populateFeedTree(const QList<MinifluxCategory> &categories, const QList<MinifluxFeedData> &feeds)
 {
-    // Map category ID -> Folder
-    QMap<int, Folder *> categoryFolders;
-    for (const MinifluxCategory &cat : categories) {
-        Folder *catFolder = nullptr;
-        const auto children = m_rootFolder->children();
-        for (TreeNode *child : children) {
-            if (auto f = qobject_cast<Folder *>(child)) {
-                if (f->title() == cat.title) {
-                    catFolder = f;
-                    break;
-                }
-            }
+    // Map existing folder title -> Folder (first match wins)
+    QHash<QString, Folder *> foldersByTitle;
+    const auto rootChildren = m_rootFolder->children();
+    for (TreeNode *child : rootChildren) {
+        if (auto f = qobject_cast<Folder *>(child)) {
+            foldersByTitle.tryEmplace(f->title(), f);
         }
+    }
+
+    // Map category ID -> Folder
+    QHash<int, Folder *> categoryFolders;
+    for (const MinifluxCategory &cat : categories) {
+        Folder *catFolder = foldersByTitle.value(cat.title);
         if (!catFolder) {
             catFolder = new Folder(cat.title);
             m_rootFolder->appendChild(catFolder);
+            foldersByTitle.insert(cat.title, catFolder);
         }
         categoryFolders[cat.id] = catFolder;
     }

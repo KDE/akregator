@@ -55,7 +55,6 @@ private:
     QTimer m_timer;
     StatusSearchLine *const m_searchLine;
     StatusSearchButtons *const m_statusSearchButtons;
-    const int m_delay;
     std::vector<QSharedPointer<const Filters::AbstractMatcher>> m_matchers;
 };
 } // namespace Akregator

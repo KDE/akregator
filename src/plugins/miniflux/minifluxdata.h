@@ -21,9 +21,7 @@ struct MinifluxFeedData {
     int id = 0;
     int categoryId = 0;
     QString title;
-    QString feedUrl;
     QString siteUrl;
-    int unreadCount = 0;
 };
 
 struct MinifluxEntry {
@@ -34,8 +32,6 @@ struct MinifluxEntry {
     QString author;
     QString content;
     QDateTime publishedAt;
-    QString status; // "read" or "unread"
-    bool starred = false;
 };
 
 } // namespace Akregator

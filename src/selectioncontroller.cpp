@@ -43,6 +43,7 @@ Akregator::Article articleForIndex(const QModelIndex &index, FeedList *feedList)
 QList<Akregator::Article> articlesForIndexes(const QModelIndexList &indexes, FeedList *feedList)
 {
     QList<Akregator::Article> articles;
+    articles.reserve(indexes.size());
     for (const QModelIndex &i : indexes) {
         const Article a = articleForIndex(i, feedList);
         if (a.isNull()) {

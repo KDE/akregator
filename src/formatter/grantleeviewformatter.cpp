@@ -16,6 +16,7 @@
 #include "feed.h"
 #include "folder.h"
 #include <GrantleeTheme/GrantleeKi18nLocalizer>
+#include <KTextTemplate/CachingLoaderDecorator>
 #include <KTextTemplate/FileSystemTemplateLoader>
 #include <QCoreApplication>
 #include <QFile>
@@ -167,10 +168,10 @@ QString GrantleeViewFormatter::formatFeed(Akregator::Feed *feed)
     QVariantHash feedObject = addStandardObject();
     feedObject.insert(u"strippedTitle"_s, Utils::stripTags(feed->title()));
     QString numberOfArticle;
-    if (feed->unread() == 0) {
+    if (const int unread = feed->unread(); unread == 0) {
         numberOfArticle = i18n(" (no unread articles)");
     } else {
-        numberOfArticle = i18np(" (1 unread article)", " (%1 unread articles)", feed->unread());
+        numberOfArticle = i18np(" (1 unread article)", " (%1 unread articles)", unread);
     }
 
     feedObject.insert(u"feedCount"_s, numberOfArticle);
@@ -226,10 +227,10 @@ QString GrantleeViewFormatter::formatFolder(Akregator::Folder *node)
 
     folderObject.insert(u"nodeTitle"_s, node->title());
     QString numberOfArticle;
-    if (node->unread() == 0) {
+    if (const int unread = node->unread(); unread == 0) {
         numberOfArticle = i18n(" (no unread articles)");
     } else {
-        numberOfArticle = i18np(" (1 unread article)", " (%1 unread articles)", node->unread());
+        numberOfArticle = i18np(" (1 unread article)", " (%1 unread articles)", unread);
     }
 
     folderObject.insert(u"nodeCount"_s, numberOfArticle);

@@ -30,8 +30,9 @@ AkregatorConfigurePluginListWidget::~AkregatorConfigurePluginListWidget() = defa
 
 void AkregatorConfigurePluginListWidget::save()
 {
-    TextAddonsWidgets::ConfigurePluginsWidget::savePlugins(WebEngineViewer::NetworkUrlInterceptorPluginManager::self()->configGroupName(),
-                                                           WebEngineViewer::NetworkUrlInterceptorPluginManager::self()->configPrefixSettingKey(),
+    const auto mgr = WebEngineViewer::NetworkUrlInterceptorPluginManager::self();
+    TextAddonsWidgets::ConfigurePluginsWidget::savePlugins(mgr->configGroupName(),
+                                                           mgr->configPrefixSettingKey(),
                                                            mPluginWebEngineItems,
                                                            PimCommon::PluginUtil::pluginConfigFile());
 }
@@ -51,10 +52,11 @@ void AkregatorConfigurePluginListWidget::initialize()
 {
     mTreePluginWidget->clear();
     // Load webengineplugin
-    TextAddonsWidgets::ConfigurePluginsWidget::fillTopItems(WebEngineViewer::NetworkUrlInterceptorPluginManager::self()->pluginsDataList(),
+    const auto mgr = WebEngineViewer::NetworkUrlInterceptorPluginManager::self();
+    TextAddonsWidgets::ConfigurePluginsWidget::fillTopItems(mgr->pluginsDataList(),
                                                             i18n("Webengine Plugins"),
-                                                            WebEngineViewer::NetworkUrlInterceptorPluginManager::self()->configGroupName(),
-                                                            WebEngineViewer::NetworkUrlInterceptorPluginManager::self()->configPrefixSettingKey(),
+                                                            mgr->configGroupName(),
+                                                            mgr->configPrefixSettingKey(),
                                                             mPluginWebEngineItems,
                                                             networkUrlInterceptorGroupName(),
                                                             true,

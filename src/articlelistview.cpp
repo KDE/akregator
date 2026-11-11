@@ -303,8 +303,9 @@ static int maxDateColumnWidth(const QFontMetrics &fm)
 {
     int width = 0;
     QDateTime date(QDate::currentDate(), QTime(23, 59));
+    const QLocale locale;
     for (int x = 0; x < 10; ++x, date = date.addDays(-1)) {
-        QString txt = u' ' + QLocale().toString(date, QLocale::ShortFormat) + u' ';
+        const QString txt = u' ' + locale.toString(date, QLocale::ShortFormat) + u' ';
         width = qMax(width, fm.boundingRect(txt).width());
     }
     return width;
@@ -312,7 +313,7 @@ static int maxDateColumnWidth(const QFontMetrics &fm)
 
 void ArticleListView::restoreHeaderState()
 {
-    QByteArray state = m_columnMode == GroupMode ? m_groupHeaderState : m_feedHeaderState;
+    const QByteArray &state = m_columnMode == GroupMode ? m_groupHeaderState : m_feedHeaderState;
     header()->restoreState(state);
     if (state.isEmpty()) {
         // No state, set a default config:

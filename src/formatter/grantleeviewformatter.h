@@ -34,12 +34,10 @@ private:
     [[nodiscard]] Colors getAppColor() const;
     [[nodiscard]] QVariantHash addStandardObject();
     [[nodiscard]] QString sidebarCss(const Colors &colors) const;
-    [[nodiscard]] int pointsToPixel(int pointSize) const;
     const QString mHtmlArticleFileName;
     const QString mDirectionString;
     GrantleeTheme::Engine mEngine;
     KTextTemplate::Template mTemplate;
-    const int mDeviceDpiY;
     QVariantHash mDefaultCssObject;
 };
 }

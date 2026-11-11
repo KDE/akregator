@@ -77,8 +77,7 @@ void ProgressManager::slotNodeRemoved(TreeNode *node)
     Feed *feed = qobject_cast<Feed *>(node);
     if (feed) {
         feed->disconnect(this);
-        delete m_handlers[feed];
-        m_handlers.remove(feed);
+        delete m_handlers.take(feed);
     }
 }
 

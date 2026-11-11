@@ -50,11 +50,7 @@ void NotificationManager::slotNotifyFeeds(const QStringList &feeds)
     if (feedsCount == 1) {
         KNotification::event(u"FeedAdded"_s, i18n("Feed added:\n %1", feeds[0]), QPixmap(), KNotification::CloseOnTimeout, m_componantName);
     } else if (feedsCount > 1) {
-        QString message;
-        QStringList::ConstIterator end = feeds.constEnd();
-        for (QStringList::ConstIterator it = feeds.constBegin(); it != end; ++it) {
-            message += *it + u'\n';
-        }
+        const QString message = feeds.join(u'\n') + u'\n';
         KNotification::event(u"FeedAdded"_s, i18n("Feeds added:\n %1", message), QPixmap(), KNotification::CloseOnTimeout, m_componantName);
     }
 }

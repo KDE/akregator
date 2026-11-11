@@ -11,7 +11,6 @@
 
 using namespace Qt::Literals::StringLiterals;
 using namespace Akregator;
-Q_DECLARE_METATYPE(Akregator::StatusSearchButtons::Status)
 StatusSearchButtons::StatusSearchButtons(QWidget *parent)
     : QWidget{parent}
     , mButtonGroup(new QButtonGroup(this))

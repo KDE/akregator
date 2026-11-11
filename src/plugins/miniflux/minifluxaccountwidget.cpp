@@ -11,7 +11,6 @@
 #include <KMessageBox>
 #include <QFormLayout>
 #include <QLineEdit>
-#include <QPointer>
 #include <QPushButton>
 #include <QUrl>
 #include <QVBoxLayout>
@@ -50,7 +49,8 @@ MinifluxAccountWidget::~MinifluxAccountWidget() = default;
 
 bool MinifluxAccountWidget::isValid() const
 {
-    return !accountName().isEmpty() && serverUrl().isValid() && !serverUrl().scheme().isEmpty() && !apiToken().isEmpty();
+    const QUrl url = serverUrl();
+    return !accountName().isEmpty() && url.isValid() && !url.scheme().isEmpty() && !apiToken().isEmpty();
 }
 
 bool MinifluxAccountWidget::apply()
