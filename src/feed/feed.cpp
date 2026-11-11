@@ -46,17 +46,6 @@ using namespace Qt::Literals::StringLiterals;
 using Syndication::ItemPtr;
 using namespace Akregator;
 
-template<typename Key, typename Value, template<typename, typename> class Container>
-QList<Value> valuesToVector(const Container<Key, Value> &container)
-{
-    QList<Value> values;
-    values.reserve(container.size());
-    for (const Value &value : container) {
-        values << value;
-    }
-    return values;
-}
-
 class Akregator::FeedPrivate
 {
     Akregator::Feed *const q;
@@ -250,7 +239,7 @@ QList<Article> Feed::articles()
     if (!d->m_articlesLoaded) {
         loadArticles();
     }
-    return valuesToVector(d->articles);
+    return d->articles.values();
 }
 
 Backend::Storage *Feed::storage()
