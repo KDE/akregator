@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-10-27 01:00+0000\n"
+"POT-Creation-Date: 2026-11-12 01:02+0000\n"
 "PO-Revision-Date: 2026-10-27 16:20+0100\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
@@ -79,7 +79,7 @@ msgid "Open Link in External Browser"
 msgstr "Odpri povezavo v zunanjem brskalniku"
 
 #: src/formatter/html/combinedview.html:36
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:112
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:113
 #, kde-format
 msgid "Open In Background Tab"
 msgstr "Odpri v zavihku v ozadju"
@@ -93,7 +93,7 @@ msgid "Send Link Address"
 msgstr "Pošlji naslov povezave"
 
 #: src/formatter/html/combinedview.html:39
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:98
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:99
 #, kde-format
 msgid "Delete Article"
 msgstr "Izbriši članek"
@@ -106,37 +106,37 @@ msgstr ""
 "<b>Opomba:</b> Iz varnostnih razlogov je zunanja referenca blokirana. "
 "(Glejte nastavitve)."
 
-#: configuration/akregator_config_accounts.cpp:39
+#: configuration/akregator_config_accounts.cpp:40
 #, kde-format
 msgctxt "@title:column"
 msgid "Account"
 msgstr "Račun"
 
-#: configuration/akregator_config_accounts.cpp:39
+#: configuration/akregator_config_accounts.cpp:40
 #, kde-format
 msgctxt "@title:column"
 msgid "Type"
 msgstr "Vrsta"
 
-#: configuration/akregator_config_accounts.cpp:45
+#: configuration/akregator_config_accounts.cpp:46
 #, kde-format
 msgctxt "@action:button Add account"
 msgid "Add…"
 msgstr "Dodaj…"
 
-#: configuration/akregator_config_accounts.cpp:46
+#: configuration/akregator_config_accounts.cpp:47
 #, kde-format
 msgctxt "@action:button"
 msgid "Modify…"
 msgstr "Spremeni…"
 
-#: configuration/akregator_config_accounts.cpp:47
+#: configuration/akregator_config_accounts.cpp:48
 #, kde-format
 msgctxt "@action:button"
 msgid "Remove"
 msgstr "Odstrani"
 
-#: configuration/akregator_config_accounts.cpp:134
+#: configuration/akregator_config_accounts.cpp:135
 #, kde-format
 msgid ""
 "Do you really want to remove the account “%1”?\n"
@@ -147,13 +147,13 @@ msgstr ""
 "S tem se mapa računa odstrani iz drevesa virov in izbrišejo shranjene "
 "poverilnice; strežnik ostane nespremenjen."
 
-#: configuration/akregator_config_accounts.cpp:138
+#: configuration/akregator_config_accounts.cpp:139
 #, kde-format
 msgctxt "@title:window"
 msgid "Remove Account"
 msgstr "Odstrani račun"
 
-#: configuration/akregator_config_archive.cpp:36
+#: configuration/akregator_config_archive.cpp:37
 #, kde-format
 msgctxt "Limit feed archive size to:"
 msgid "%v article"
@@ -163,7 +163,7 @@ msgstr[1] "%v članek"
 msgstr[2] "%v članka"
 msgstr[3] "%v članke"
 
-#: configuration/akregator_config_archive.cpp:37
+#: configuration/akregator_config_archive.cpp:38
 #, kde-format
 msgctxt "Delete articles older than:"
 msgid "%v day"
@@ -182,7 +182,7 @@ msgstr[1] " minuta"
 msgstr[2] " minuti"
 msgstr[3] " minute"
 
-#: configuration/akregatorconfigurepluginlistwidget.cpp:55
+#: configuration/akregatorconfigurepluginlistwidget.cpp:57
 #, kde-format
 msgid "Webengine Plugins"
 msgstr "Vstavki spletnega pogona"
@@ -335,7 +335,7 @@ msgstr "Levi miškin klik:"
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
 #: configuration/ui/settings_browser.ui:28
 #: configuration/ui/settings_browser.ui:54
-#: src/actions/actionmanagerimpl.cpp:347
+#: src/actions/actionmanagerimpl.cpp:337
 #, kde-format
 msgid "Open in Tab"
 msgstr "Odpri v zavihku"
@@ -344,7 +344,7 @@ msgstr "Odpri v zavihku"
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
 #: configuration/ui/settings_browser.ui:33
 #: configuration/ui/settings_browser.ui:59
-#: src/actions/actionmanagerimpl.cpp:353
+#: src/actions/actionmanagerimpl.cpp:343
 #, kde-format
 msgid "Open in Background Tab"
 msgstr "Odpri v zavihku v ozadju"
@@ -353,7 +353,7 @@ msgstr "Odpri v zavihku v ozadju"
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
 #: configuration/ui/settings_browser.ui:38
 #: configuration/ui/settings_browser.ui:64
-#: src/actions/actionmanagerimpl.cpp:359
+#: src/actions/actionmanagerimpl.cpp:349
 #, kde-format
 msgid "Open in External Browser"
 msgstr "Odpri v zunanjem brskalniku"
@@ -568,7 +568,7 @@ msgstr ""
 "lahko spletnim mestom ali tretjim osebam omogoči opazovanje člankov, ki ste "
 "si jih ogledali."
 
-#: export/akregatorstorageexporter.cpp:279
+#: export/akregatorstorageexporter.cpp:275
 #, kde-format
 msgid "Akregator Export for %1"
 msgstr "Izvoz iz Akregatorja za %1"
@@ -598,7 +598,7 @@ msgid "Auto-Expand folders with unread articles"
 msgstr "Samodejno razširi mape, ki vsebujejo neprebrane članke"
 
 #. i18n: ectx: label, entry, group (View)
-#: interfaces/akregator.kcfg:31 src/actions/actionmanagerimpl.cpp:341
+#: interfaces/akregator.kcfg:31 src/actions/actionmanagerimpl.cpp:331
 #, kde-format
 msgid "Show Quick Filter"
 msgstr "Prikaži hitri filter"
@@ -992,9 +992,9 @@ msgid "Resets the quick filter when changing feeds."
 msgstr "Ob preklopu na drug vir se hitro iskanje ponastavi."
 
 #: kontactplugin/akregator_plugin.cpp:28 src/aboutdata.cpp:21
-#: src/akregator_part.cpp:126
+#: src/akregator_part.cpp:130
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:144
-#: src/mainwidget.cpp:134 src/mainwidget.cpp:1328 src/trayicon.cpp:40
+#: src/mainwidget.cpp:136 src/mainwidget.cpp:1330 src/trayicon.cpp:40
 #: src/trayicon.cpp:53
 #, kde-format
 msgid "Akregator"
@@ -1191,22 +1191,22 @@ msgstr "Philipp Droessler"
 msgid "Gentoo Ebuild"
 msgstr "Ebuild za Gentoo"
 
-#: src/actions/actionmanagerimpl.cpp:70 src/actions/actionmanagerimpl.cpp:310
+#: src/actions/actionmanagerimpl.cpp:70 src/actions/actionmanagerimpl.cpp:300
 #, kde-format
 msgid "&Fetch Feed"
 msgstr "Pridobi vir"
 
-#: src/actions/actionmanagerimpl.cpp:71 src/actions/actionmanagerimpl.cpp:266
+#: src/actions/actionmanagerimpl.cpp:71 src/actions/actionmanagerimpl.cpp:256
 #, kde-format
 msgid "&Delete Feed"
 msgstr "Izbriši vir"
 
-#: src/actions/actionmanagerimpl.cpp:72 src/actions/actionmanagerimpl.cpp:272
+#: src/actions/actionmanagerimpl.cpp:72 src/actions/actionmanagerimpl.cpp:262
 #, kde-format
 msgid "&Edit Feed…"
 msgstr "Ur&edi vir…"
 
-#: src/actions/actionmanagerimpl.cpp:73 src/actions/actionmanagerimpl.cpp:329
+#: src/actions/actionmanagerimpl.cpp:73 src/actions/actionmanagerimpl.cpp:319
 #, kde-format
 msgid "&Mark Feed as Read"
 msgstr "Označi vir kot prebran"
@@ -1231,309 +1231,309 @@ msgstr "P&reimenuj mapo"
 msgid "&Mark Feeds as Read"
 msgstr "Označi vire kot prebrane"
 
-#: src/actions/actionmanagerimpl.cpp:204
+#: src/actions/actionmanagerimpl.cpp:194
 #, kde-format
 msgid "&Import Feeds…"
 msgstr "Uvoz&i vire…"
 
-#: src/actions/actionmanagerimpl.cpp:208
+#: src/actions/actionmanagerimpl.cpp:198
 #, kde-format
 msgid "&Export Feeds…"
 msgstr "Izvozi vir&e…"
 
-#: src/actions/actionmanagerimpl.cpp:214
+#: src/actions/actionmanagerimpl.cpp:204
 #, kde-format
 msgctxt "@action"
 msgid "Add Online Account…"
 msgstr "Dodaj spletni račun…"
 
-#: src/actions/actionmanagerimpl.cpp:223
+#: src/actions/actionmanagerimpl.cpp:213
 #, kde-format
 msgid "&Configure Akregator…"
 msgstr "Konfiguriraj Akregator…"
 
-#: src/actions/actionmanagerimpl.cpp:242
+#: src/actions/actionmanagerimpl.cpp:232
 #, kde-format
 msgid "&Open Homepage"
 msgstr "&Odpri domačo stran"
 
-#: src/actions/actionmanagerimpl.cpp:248
+#: src/actions/actionmanagerimpl.cpp:238
 #, kde-format
 msgid "Reload All Tabs"
 msgstr "Znova naloži vse zavihke"
 
-#: src/actions/actionmanagerimpl.cpp:254
+#: src/actions/actionmanagerimpl.cpp:244
 #, kde-format
 msgid "&Add Feed…"
 msgstr "Dod&aj vir…"
 
-#: src/actions/actionmanagerimpl.cpp:260
+#: src/actions/actionmanagerimpl.cpp:250
 #, kde-format
 msgid "Ne&w Folder…"
 msgstr "Nova mapa…"
 
-#: src/actions/actionmanagerimpl.cpp:285
+#: src/actions/actionmanagerimpl.cpp:275
 #, kde-format
 msgid "&Normal View"
 msgstr "Običajni pogled"
 
-#: src/actions/actionmanagerimpl.cpp:294
+#: src/actions/actionmanagerimpl.cpp:284
 #, kde-format
 msgid "&Widescreen View"
 msgstr "Širokozaslonski pogled"
 
-#: src/actions/actionmanagerimpl.cpp:303
+#: src/actions/actionmanagerimpl.cpp:293
 #, kde-format
 msgid "C&ombined View"
 msgstr "Združen pogled"
 
-#: src/actions/actionmanagerimpl.cpp:316
+#: src/actions/actionmanagerimpl.cpp:306
 #, kde-format
 msgid "Fe&tch All Feeds"
 msgstr "Pridobi vse vire"
 
-#: src/actions/actionmanagerimpl.cpp:322
+#: src/actions/actionmanagerimpl.cpp:312
 #, kde-format
 msgid "C&ancel Feed Fetches"
 msgstr "Prekliči pridobivanje virov"
 
-#: src/actions/actionmanagerimpl.cpp:335
+#: src/actions/actionmanagerimpl.cpp:325
 #, kde-format
 msgid "Ma&rk All Feeds as Read"
 msgstr "Označi vse kot prebrano"
 
-#: src/actions/actionmanagerimpl.cpp:364
+#: src/actions/actionmanagerimpl.cpp:354
 #, kde-format
 msgctxt "@action"
 msgid "Copy Article Link Address"
 msgstr "Kopiraj naslov povezave članka"
 
-#: src/actions/actionmanagerimpl.cpp:369
+#: src/actions/actionmanagerimpl.cpp:359
 #, kde-format
 msgid "Pre&vious Unread Article"
 msgstr "Predhodni neprebrani članek"
 
-#: src/actions/actionmanagerimpl.cpp:375
+#: src/actions/actionmanagerimpl.cpp:365
 #, kde-format
 msgid "Ne&xt Unread Article"
 msgstr "Naslednji neprebrani članek"
 
-#: src/actions/actionmanagerimpl.cpp:383
+#: src/actions/actionmanagerimpl.cpp:373
 #, kde-format
 msgid "&Delete"
 msgstr "Izbriši"
 
-#: src/actions/actionmanagerimpl.cpp:388
+#: src/actions/actionmanagerimpl.cpp:378
 #, kde-format
 msgid "&Mark As"
 msgstr "Označi kot"
 
-#: src/actions/actionmanagerimpl.cpp:392
+#: src/actions/actionmanagerimpl.cpp:382
 #, kde-format
 msgctxt "as in: mark as read"
 msgid "&Read"
 msgstr "P&rebrano"
 
-#: src/actions/actionmanagerimpl.cpp:394
+#: src/actions/actionmanagerimpl.cpp:384
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as read"
 msgstr "Označi izbrani članek kot prebran"
 
-#: src/actions/actionmanagerimpl.cpp:400
+#: src/actions/actionmanagerimpl.cpp:390
 #, kde-format
 msgctxt "as in: mark as new"
 msgid "&New"
 msgstr "&Novo"
 
-#: src/actions/actionmanagerimpl.cpp:403
+#: src/actions/actionmanagerimpl.cpp:393
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as new"
 msgstr "Označi izbrani članek kot novi"
 
-#: src/actions/actionmanagerimpl.cpp:408
+#: src/actions/actionmanagerimpl.cpp:398
 #, kde-format
 msgctxt "as in: mark as unread"
 msgid "&Unread"
 msgstr "Neprebrano"
 
-#: src/actions/actionmanagerimpl.cpp:410
+#: src/actions/actionmanagerimpl.cpp:400
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as unread"
 msgstr "Označi izbrani članek kot neprebrani"
 
-#: src/actions/actionmanagerimpl.cpp:416
+#: src/actions/actionmanagerimpl.cpp:406
 #, kde-format
 msgid "&Mark as Important"
 msgstr "Označi kot pomembno"
 
-#: src/actions/actionmanagerimpl.cpp:420
+#: src/actions/actionmanagerimpl.cpp:410
 #, kde-format
 msgctxt "@action:button"
 msgid "Remove &Important Mark"
 msgstr "Odstran&i pomembno oznako"
 
-#: src/actions/actionmanagerimpl.cpp:424
+#: src/actions/actionmanagerimpl.cpp:414
 #, kde-format
 msgid "Move Node Up"
 msgstr "Premakni vozlišče gor"
 
-#: src/actions/actionmanagerimpl.cpp:429
+#: src/actions/actionmanagerimpl.cpp:419
 #, kde-format
 msgid "Move Node Down"
 msgstr "Premakni vozlišče dol"
 
-#: src/actions/actionmanagerimpl.cpp:434
+#: src/actions/actionmanagerimpl.cpp:424
 #, kde-format
 msgid "Move Node Left"
 msgstr "Premakni vozlišče levo"
 
-#: src/actions/actionmanagerimpl.cpp:439
+#: src/actions/actionmanagerimpl.cpp:429
 #, kde-format
 msgid "Move Node Right"
 msgstr "Premakni vozlišče desno"
 
-#: src/actions/actionmanagerimpl.cpp:445
+#: src/actions/actionmanagerimpl.cpp:435
 #, kde-format
 msgid "Send &Link Address…"
 msgstr "Pošlji naslov povezave…"
 
-#: src/actions/actionmanagerimpl.cpp:450
+#: src/actions/actionmanagerimpl.cpp:440
 #, kde-format
 msgid "Send &File…"
 msgstr "Pošlji datoteko…"
 
-#: src/actions/actionmanagerimpl.cpp:456
+#: src/actions/actionmanagerimpl.cpp:446
 #, kde-format
 msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr "Postavi žarišče na hitro iskanje"
 
-#: src/actions/actionmanagerimpl.cpp:462
+#: src/actions/actionmanagerimpl.cpp:452
 #, kde-format
 msgid "What’s new"
 msgstr "Kaj je novega"
 
-#: src/actions/actionmanagerimpl.cpp:503
+#: src/actions/actionmanagerimpl.cpp:493
 #, kde-format
 msgid "&Previous Article"
 msgstr "&Predhodni članek"
 
-#: src/actions/actionmanagerimpl.cpp:507
+#: src/actions/actionmanagerimpl.cpp:497
 #, kde-format
 msgid "&Next Article"
 msgstr "&Naslednji članek"
 
-#: src/actions/actionmanagerimpl.cpp:522
+#: src/actions/actionmanagerimpl.cpp:512
 #, kde-format
 msgid "&Previous Feed"
 msgstr "&Predhodni vir"
 
-#: src/actions/actionmanagerimpl.cpp:527
+#: src/actions/actionmanagerimpl.cpp:517
 #, kde-format
 msgid "&Next Feed"
 msgstr "&Naslednji vir"
 
-#: src/actions/actionmanagerimpl.cpp:533
+#: src/actions/actionmanagerimpl.cpp:523
 #, kde-format
 msgid "N&ext Unread Feed"
 msgstr "Nasl&ednji neprebrani vir"
 
-#: src/actions/actionmanagerimpl.cpp:539
+#: src/actions/actionmanagerimpl.cpp:529
 #, kde-format
 msgid "Prev&ious Unread Feed"
 msgstr "Predhodn&i neprebrani vir"
 
-#: src/actions/actionmanagerimpl.cpp:544
+#: src/actions/actionmanagerimpl.cpp:534
 #, kde-format
 msgid "Go to Top of Tree"
 msgstr "Na vrh drevesa"
 
-#: src/actions/actionmanagerimpl.cpp:549
+#: src/actions/actionmanagerimpl.cpp:539
 #, kde-format
 msgid "Go to Bottom of Tree"
 msgstr "Na dno drevesa"
 
-#: src/actions/actionmanagerimpl.cpp:554
+#: src/actions/actionmanagerimpl.cpp:544
 #, kde-format
 msgid "Go Left in Tree"
 msgstr "Levo po drevesu"
 
-#: src/actions/actionmanagerimpl.cpp:559
+#: src/actions/actionmanagerimpl.cpp:549
 #, kde-format
 msgid "Go Right in Tree"
 msgstr "Desno po drevesu"
 
-#: src/actions/actionmanagerimpl.cpp:564
+#: src/actions/actionmanagerimpl.cpp:554
 #, kde-format
 msgid "Go Up in Tree"
 msgstr "Gor po drevesu"
 
-#: src/actions/actionmanagerimpl.cpp:569
+#: src/actions/actionmanagerimpl.cpp:559
 #, kde-format
 msgid "Go Down in Tree"
 msgstr "Dol po drevesu"
 
-#: src/actions/actionmanagerimpl.cpp:575
+#: src/actions/actionmanagerimpl.cpp:565
 #, kde-format
 msgid "Hide Read Feeds"
 msgstr "Skrij prebrane vire"
 
-#: src/actions/actionmanagerimpl.cpp:581
+#: src/actions/actionmanagerimpl.cpp:571
 #, kde-format
 msgid "Lock Feeds In Place"
 msgstr "Zakleni vire na mesta"
 
-#: src/actions/actionmanagerimpl.cpp:587
+#: src/actions/actionmanagerimpl.cpp:577
 #, kde-format
 msgid "Auto-expand folders with unread articles"
 msgstr "Samodejno razširi mape, ki vsebujejo neprebrane članke"
 
-#: src/actions/actionmanagerimpl.cpp:602
+#: src/actions/actionmanagerimpl.cpp:592
 #, kde-format
 msgid "Select Next Tab"
 msgstr "Izberi naslednji zavihek"
 
-#: src/actions/actionmanagerimpl.cpp:607
+#: src/actions/actionmanagerimpl.cpp:597
 #, kde-format
 msgid "Select Previous Tab"
 msgstr "Izberi predhodni zavihek"
 
-#: src/actions/actionmanagerimpl.cpp:621
+#: src/actions/actionmanagerimpl.cpp:611
 #, kde-format
 msgid "Mute"
 msgstr "Utišaj"
 
-#: src/actions/actionmanagerimpl.cpp:625
+#: src/actions/actionmanagerimpl.cpp:615
 #, kde-format
 msgid "Unmute"
 msgstr "Prekliči utišanje"
 
-#: src/actions/actionmanagerimpl.cpp:628
+#: src/actions/actionmanagerimpl.cpp:618
 #, kde-format
 msgctxt "@action"
 msgid "Speak Text"
 msgstr "Izgovori besedilo"
 
-#: src/actions/actionmanagerimpl.cpp:633
+#: src/actions/actionmanagerimpl.cpp:623
 #, kde-format
 msgid "&Find in Message…"
 msgstr "Najdi v sporočilu…"
 
-#: src/actions/actionmanagerimpl.cpp:640
+#: src/actions/actionmanagerimpl.cpp:630
 #, kde-format
 msgctxt "@action"
 msgid "Copy Tab Address"
 msgstr "Kopiraj naslov zavihka"
 
-#: src/actions/actionmanagerimpl.cpp:645
+#: src/actions/actionmanagerimpl.cpp:635
 #, kde-format
 msgid "Close Tab"
 msgstr "Zapri zavihek"
 
-#: src/actions/actionmanagerimpl.cpp:658
+#: src/actions/actionmanagerimpl.cpp:648
 #, kde-format
 msgctxt "@action"
 msgid "Activate Tab %1"
@@ -1549,23 +1549,23 @@ msgstr "Odpri povezavo v novem zavihku"
 msgid "Open Link in External &Browser"
 msgstr "Odpri povezavo v zunanjem &brskalniku"
 
-#: src/addfeeddialog.cpp:51
+#: src/addfeeddialog.cpp:52
 #, kde-format
 msgctxt "@title:window"
 msgid "Add Feed"
 msgstr "Dodaj vir"
 
-#: src/addfeeddialog.cpp:101
+#: src/addfeeddialog.cpp:102
 #, kde-format
 msgid "Downloading %1"
 msgstr "Prejemanje %1"
 
-#: src/addfeeddialog.cpp:117
+#: src/addfeeddialog.cpp:118
 #, kde-format
 msgid "Feed not found from %1."
 msgstr "Ni mogoče najti vira %1."
 
-#: src/addfeeddialog.cpp:123
+#: src/addfeeddialog.cpp:124
 #, kde-format
 msgid "Feed found, downloading…"
 msgstr "Najden vir, prejemanje…"
@@ -1599,32 +1599,32 @@ msgctxt "@info:shell"
 msgid "Lists the available options for user feedback"
 msgstr "Prikaži seznam razpoložljivih možnosti za povratni odziv uporabnikov"
 
-#: src/akregator_part.cpp:78
+#: src/akregator_part.cpp:82
 #, kde-format
 msgid "Feeds"
 msgstr "Viri"
 
-#: src/akregator_part.cpp:89
+#: src/akregator_part.cpp:93
 #, kde-format
 msgid "Planet KDE"
 msgstr "Planet KDE"
 
-#: src/akregator_part.cpp:94
+#: src/akregator_part.cpp:98
 #, kde-format
 msgid "KDE Apps"
 msgstr "KDE Apps"
 
-#: src/akregator_part.cpp:100
+#: src/akregator_part.cpp:104
 #, kde-format
 msgid "Spanish feeds"
 msgstr "Španski viri"
 
-#: src/akregator_part.cpp:104
+#: src/akregator_part.cpp:108
 #, kde-format
 msgid "Planet KDE España"
 msgstr "Planet KDE España"
 
-#: src/akregator_part.cpp:422
+#: src/akregator_part.cpp:426
 #, kde-format
 msgid ""
 "Access denied: Cannot save feed list to <b>%1</b>. Please check your "
@@ -1633,24 +1633,24 @@ msgstr ""
 "Dostop zavrnjen: seznama virov ni mogoče shraniti v <b>%1</b>. Preverite "
 "svoja dovoljenja."
 
-#: src/akregator_part.cpp:423 src/akregator_part.cpp:476
+#: src/akregator_part.cpp:427 src/akregator_part.cpp:480
 #, kde-format
 msgctxt "@title:window"
 msgid "Write Error"
 msgstr "Napaka pisanja"
 
-#: src/akregator_part.cpp:459
+#: src/akregator_part.cpp:463
 #, kde-format
 msgid "Could not import the file %1 (no valid OPML)"
 msgstr "Ni bilo mogoče uvoziti datoteke %1 (neveljaven OPML)"
 
-#: src/akregator_part.cpp:459 src/command/loadfeedlistcommand.cpp:70
+#: src/akregator_part.cpp:463 src/command/loadfeedlistcommand.cpp:70
 #, kde-format
 msgctxt "@title:window"
 msgid "OPML Parsing Error"
 msgstr "Napaka med razčlenjevanjem OPML"
 
-#: src/akregator_part.cpp:463
+#: src/akregator_part.cpp:467
 #, kde-format
 msgid ""
 "The file %1 could not be read, check if it exists or if it is readable for "
@@ -1659,44 +1659,44 @@ msgstr ""
 "Ni bilo mogoče prebrati datoteke %1. Preverite, ali obstaja, oziroma ali je "
 "berljiva za trenutnega uporabnika."
 
-#: src/akregator_part.cpp:464 src/command/loadfeedlistcommand.cpp:143
+#: src/akregator_part.cpp:468 src/command/loadfeedlistcommand.cpp:143
 #, kde-format
 msgctxt "@title:window"
 msgid "Read Error"
 msgstr "Napaka branja"
 
-#: src/akregator_part.cpp:475
+#: src/akregator_part.cpp:479
 #, kde-format
 msgid "Access denied: cannot write to file %1. Please check your permissions."
 msgstr ""
 "Dostop zavrnjen: v datoteko %1 ni mogoče pisati. Preverite svoja dovoljenja."
 
-#: src/akregator_part.cpp:491 src/akregator_part.cpp:500
+#: src/akregator_part.cpp:497 src/akregator_part.cpp:506
 #, kde-format
 msgid "OPML Outlines (%1);;All Files (*)"
 msgstr "Izvlečki OPML (%1);;Vse datoteke (*)"
 
-#: src/akregator_part.cpp:625
+#: src/akregator_part.cpp:634
 #, kde-format
 msgid "Imported Folder"
 msgstr "Uvožena mapa"
 
-#: src/articlejobs.cpp:183
+#: src/articlejobs.cpp:182
 #, kde-format
 msgid "The feed to be listed was already removed."
 msgstr "Vir, ki naj bi bil izpisan, je že bil odstranjen."
 
-#: src/articlelistview.cpp:162 src/subscription/subscriptionlistview.cpp:182
+#: src/articlelistview.cpp:164 src/subscription/subscriptionlistview.cpp:181
 #, kde-format
 msgid "Columns"
 msgstr "Stolpci"
 
-#: src/articlelistview.cpp:220
+#: src/articlelistview.cpp:222
 #, kde-format
 msgid "No result found"
 msgstr "Ni najdenih rezultatov"
 
-#: src/articlelistview.cpp:381
+#: src/articlelistview.cpp:384
 #, kde-format
 msgid ""
 "<h2>Article list</h2>Here you can browse articles from the currently "
@@ -1711,37 +1711,37 @@ msgstr ""
 "Domačo stran članka si lahko ogledate v zavihku znotraj programa ali pa v "
 "zunanjem oknu brskalnika."
 
-#: src/articlemodel.cpp:75
+#: src/articlemodel.cpp:77
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Title"
 msgstr "Naslov"
 
-#: src/articlemodel.cpp:77
+#: src/articlemodel.cpp:79
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Feed"
 msgstr "Vir"
 
-#: src/articlemodel.cpp:79
+#: src/articlemodel.cpp:81
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Date"
 msgstr "Datum"
 
-#: src/articlemodel.cpp:81
+#: src/articlemodel.cpp:83
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Author"
 msgstr "Avtor"
 
-#: src/articlemodel.cpp:83
+#: src/articlemodel.cpp:85
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Description"
 msgstr "Opis"
 
-#: src/articlemodel.cpp:85
+#: src/articlemodel.cpp:87
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Content"
@@ -1758,79 +1758,79 @@ msgctxt "@title:window"
 msgid "Save As"
 msgstr "Shrani kot"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:273
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:274
 #: src/frame/webengine/akrwebengineviewer.cpp:114
 #, kde-format
 msgid "&Save Link As…"
 msgstr "&Shrani povezavo kot…"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:277
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:278
 #: src/frame/webengine/akrwebengineviewer.cpp:118
 #, kde-format
 msgid "Copy &Link Address"
 msgstr "Kopiraj nas&lov povezave"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:285
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:286
 #: src/frame/webengine/akrwebengineviewer.cpp:126
 #, kde-format
 msgctxt "@action"
 msgid "Copy Image URL"
 msgstr "Kopiraj URL slike"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:289
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:290
 #: src/frame/webengine/akrwebengineviewer.cpp:130
 #, kde-format
 msgctxt "@action"
 msgid "Save Image…"
 msgstr "Shrani sliko…"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:380
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:382
 #, kde-format
 msgid "Disable"
 msgstr "Onemogoči"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:381
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:383
 #, kde-format
 msgid "Keep Enabled"
 msgstr "Ohrani omogočeno"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:383
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:385
 #, kde-format
 msgid "Are you sure you want to disable this introduction page?"
 msgstr "Ali ste prepričani, da želite onemogočiti uvodno sporočilo?"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:384
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:386
 #, kde-format
 msgctxt "@title:window"
 msgid "Disable Introduction Page"
 msgstr "Onemogoči uvodno stran"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:414
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:416
 #, kde-format
 msgid "This web site is a malware, do you want to continue to show it?"
 msgstr ""
 "To spletišče vsebuje zlonamerno programsko opremo. Ali ga želite vseeno "
 "pokazati?"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:415
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:417
 #, kde-format
 msgctxt "@title:window"
 msgid "Malware"
 msgstr "Zlonamerna programska oprema"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:427
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:429
 #, kde-format
 msgid "The network is broken."
 msgstr "Omrežje ni vzpostavljeno."
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:427
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:430
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:429
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:432
 #, kde-format
 msgctxt "@title:window"
 msgid "Check Phishing Url"
 msgstr "Preveri URL za ribarjenjem"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:430
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:432
 #, kde-format
 msgid "The url %1 is not valid."
 msgstr "Naslov URL %1 ni veljaven."
@@ -1959,7 +1959,7 @@ msgstr ""
 "<qt>Običajni seznam virov je pokvarjen (neveljaven XML). Varnostne kopije ni "
 "bilo mogoče ustvariti.</qt>"
 
-#: src/crashwidget/crashwidget.cpp:23
+#: src/crashwidget/crashwidget.cpp:25
 #, kde-format
 msgctxt "@label:textbox"
 msgid ""
@@ -1967,17 +1967,17 @@ msgid ""
 "session?"
 msgstr "Akregator se ni zaprl pravilno. Ali želite obnoviti prejšnjo sejo?"
 
-#: src/crashwidget/crashwidget.cpp:39
+#: src/crashwidget/crashwidget.cpp:41
 #, kde-format
 msgid "Restore Session"
 msgstr "Obnovi sejo"
 
-#: src/crashwidget/crashwidget.cpp:45
+#: src/crashwidget/crashwidget.cpp:47
 #, kde-format
 msgid "Do Not Restore Session"
 msgstr "Ne obnovi seje"
 
-#: src/crashwidget/crashwidget.cpp:51
+#: src/crashwidget/crashwidget.cpp:53
 #, kde-format
 msgid "Ask me later"
 msgstr "Vprašaj kasneje"
@@ -2036,17 +2036,17 @@ msgstr "Glavna orodna vrstica"
 msgid "&File"
 msgstr "Datoteka"
 
-#: src/feed/feedlist.cpp:161
+#: src/feed/feedlist.cpp:162
 #, kde-format
 msgid "All Feeds"
 msgstr "Vsi viri"
 
-#: src/feed/feedpropertiesdialog.cpp:39
+#: src/feed/feedpropertiesdialog.cpp:40
 #, kde-format
 msgid "Activities"
 msgstr "Dejavnosti"
 
-#: src/feed/feedpropertiesdialog.cpp:64 src/feed/feedpropertiesdialog.cpp:118
+#: src/feed/feedpropertiesdialog.cpp:65 src/feed/feedpropertiesdialog.cpp:119
 #, kde-format
 msgid "Minute"
 msgid_plural "Minutes"
@@ -2055,7 +2055,7 @@ msgstr[1] "Minuta"
 msgstr[2] "Minuti"
 msgstr[3] "Minute"
 
-#: src/feed/feedpropertiesdialog.cpp:65 src/feed/feedpropertiesdialog.cpp:119
+#: src/feed/feedpropertiesdialog.cpp:66 src/feed/feedpropertiesdialog.cpp:120
 #, kde-format
 msgid "Hour"
 msgid_plural "Hours"
@@ -2064,7 +2064,7 @@ msgstr[1] "Ura"
 msgstr[2] "Uri"
 msgstr[3] "Ure"
 
-#: src/feed/feedpropertiesdialog.cpp:66 src/feed/feedpropertiesdialog.cpp:120
+#: src/feed/feedpropertiesdialog.cpp:67 src/feed/feedpropertiesdialog.cpp:121
 #, kde-format
 msgid "Day"
 msgid_plural "Days"
@@ -2073,19 +2073,19 @@ msgstr[1] "Dan"
 msgstr[2] "Dneva"
 msgstr[3] "Dni"
 
-#: src/feed/feedpropertiesdialog.cpp:96 src/feed/feedpropertiesdialog.cpp:158
+#: src/feed/feedpropertiesdialog.cpp:97 src/feed/feedpropertiesdialog.cpp:159
 #, kde-format
 msgctxt "@title:window"
 msgid "Feed Properties"
 msgstr "Lastnosti vira"
 
-#: src/feed/feedpropertiesdialog.cpp:121
+#: src/feed/feedpropertiesdialog.cpp:122
 #, kde-format
 msgctxt "never fetch new articles"
 msgid "Never"
 msgstr "Nikoli"
 
-#: src/feed/feedpropertiesdialog.cpp:123
+#: src/feed/feedpropertiesdialog.cpp:124
 #, kde-format
 msgid "%v day"
 msgid_plural "%v days"
@@ -2094,7 +2094,7 @@ msgstr[1] "%v dneva"
 msgstr[2] "%v dni"
 msgstr[3] "%v dni"
 
-#: src/feed/feedpropertiesdialog.cpp:124
+#: src/feed/feedpropertiesdialog.cpp:125
 #, kde-format
 msgid "%v article"
 msgid_plural "%v articles"
@@ -2103,7 +2103,7 @@ msgstr[1] "%v članek"
 msgstr[2] "%v članka"
 msgstr[3] "%v članke"
 
-#: src/feed/feedpropertiesdialog.cpp:158
+#: src/feed/feedpropertiesdialog.cpp:159
 #, kde-format
 msgctxt "@title:window"
 msgid "Properties of %1"
@@ -2114,14 +2114,14 @@ msgstr "Lastnosti %1"
 msgid "(%1, %2)"
 msgstr "(%1, %2)"
 
-#: src/formatter/grantleeviewformatter.cpp:171
-#: src/formatter/grantleeviewformatter.cpp:230
+#: src/formatter/grantleeviewformatter.cpp:164
+#: src/formatter/grantleeviewformatter.cpp:223
 #, kde-format
 msgid " (no unread articles)"
 msgstr " (ni neprebranih člankov)"
 
-#: src/formatter/grantleeviewformatter.cpp:173
-#: src/formatter/grantleeviewformatter.cpp:232
+#: src/formatter/grantleeviewformatter.cpp:166
+#: src/formatter/grantleeviewformatter.cpp:225
 #, kde-format
 msgid " (1 unread article)"
 msgid_plural " (%1 unread articles)"
@@ -2130,42 +2130,42 @@ msgstr[1] " (%1 neprebran članek)"
 msgstr[2] " (%1 neprebrana članka)"
 msgstr[3] " (%1 neprebrani članki)"
 
-#: src/formatter/grantleeviewformatter.cpp:188
+#: src/formatter/grantleeviewformatter.cpp:181
 #, kde-format
 msgid "<b>Description:</b> %1<br />"
 msgstr "<b>Opis:</b> %1<br />"
 
-#: src/formatter/grantleeviewformatter.cpp:195
+#: src/formatter/grantleeviewformatter.cpp:188
 #, kde-format
 msgid "<b>Homepage:</b> <a href=\"%1\">%1</a>"
 msgstr "<b>Domača stran:</b> <a href=\"%1\">%1</a>"
 
-#: src/formatter/grantleeviewformatter.cpp:202
+#: src/formatter/grantleeviewformatter.cpp:195
 #, kde-format
 msgid "<b>Copyright:</b> %1"
 msgstr "<b>Copyright:</b> %1"
 
-#: src/formatter/grantleeviewformatter.cpp:265
+#: src/formatter/grantleeviewformatter.cpp:258
 #, kde-format
 msgid "Date"
 msgstr "Datum"
 
-#: src/formatter/grantleeviewformatter.cpp:266
+#: src/formatter/grantleeviewformatter.cpp:259
 #, kde-format
 msgid "Comment"
 msgstr "Opomba"
 
-#: src/formatter/grantleeviewformatter.cpp:267
+#: src/formatter/grantleeviewformatter.cpp:260
 #, kde-format
 msgid "Complete Story"
 msgstr "Celotna zgodba"
 
-#: src/formatter/grantleeviewformatter.cpp:268
+#: src/formatter/grantleeviewformatter.cpp:261
 #, kde-format
 msgid "Author"
 msgstr "Avtor"
 
-#: src/formatter/grantleeviewformatter.cpp:269
+#: src/formatter/grantleeviewformatter.cpp:262
 #, kde-format
 msgid "Enclosure"
 msgstr "Priloga"
@@ -2190,12 +2190,12 @@ msgstr "Nalaganje preklicano"
 msgid "Loading completed"
 msgstr "Nalaganje zaključeno"
 
-#: src/mainwidget.cpp:190
+#: src/mainwidget.cpp:191
 #, kde-format
 msgid "You can view multiple articles in several open tabs."
 msgstr "Več člankov lahko odprete v več zavihkov."
 
-#: src/mainwidget.cpp:194
+#: src/mainwidget.cpp:195
 #, kde-format
 msgid "Articles list."
 msgstr "Seznam člankov."
@@ -2210,7 +2210,7 @@ msgstr "Članki"
 msgid "About"
 msgstr "O"
 
-#: src/mainwidget.cpp:819
+#: src/mainwidget.cpp:820
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all articles in the feed</b> as read?</"
@@ -2219,19 +2219,19 @@ msgstr ""
 "<qt>Ali ste prepričani, da želite označiti<b>vse članke vira</b> kot "
 "prebrane?</qt>"
 
-#: src/mainwidget.cpp:820
+#: src/mainwidget.cpp:821
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "Označi vir kot prebran"
 
-#: src/mainwidget.cpp:823
+#: src/mainwidget.cpp:824
 #, kde-format
 msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
 msgstr ""
 "<qt>Ali ste prepričani, da želite označiti <b>vse vire</b> kot prebrane?</qt>"
 
-#: src/mainwidget.cpp:825
+#: src/mainwidget.cpp:826
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all feeds in the folder</b> as read?</"
@@ -2240,28 +2240,28 @@ msgstr ""
 "<qt>Ali ste prepričani, da želite označiti <b>vse vire v mapi</b> kot "
 "prebrane?</qt>"
 
-#: src/mainwidget.cpp:827
+#: src/mainwidget.cpp:828
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "Označi vire kot prebrane"
 
-#: src/mainwidget.cpp:891 src/mainwidget.cpp:900 src/mainwidget.cpp:1301
+#: src/mainwidget.cpp:893 src/mainwidget.cpp:902 src/mainwidget.cpp:1303
 #, kde-format
 msgid "Networking is not available."
 msgstr "Omrežje ni na voljo."
 
-#: src/mainwidget.cpp:908
+#: src/mainwidget.cpp:910
 #, kde-format
 msgid "Fetching Feeds…"
 msgstr "Pridobivanje virov…"
 
-#: src/mainwidget.cpp:1106
+#: src/mainwidget.cpp:1108
 #, kde-format
 msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
 msgstr "<qt>Ali ste prepričani, da želite izbrisati članek <b>%1</b>?</qt>"
 
-#: src/mainwidget.cpp:1109
+#: src/mainwidget.cpp:1111
 #, kde-format
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
 msgid_plural ""
@@ -2272,13 +2272,13 @@ msgstr[1] "<qt>Ali ste prepričani, da želite izbrisati %1 izbrani članek?</qt
 msgstr[2] "<qt>Ali ste prepričani, da želite izbrisati %1 izbrana članka?</qt>"
 msgstr[3] "<qt>Ali ste prepričani, da želite izbrisati %1 izbrane članke?</qt>"
 
-#: src/mainwidget.cpp:1116
+#: src/mainwidget.cpp:1118
 #, kde-format
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "Izbriši članek"
 
-#: src/mainwidget.cpp:1298
+#: src/mainwidget.cpp:1300
 #, kde-format
 msgid "Networking is available now."
 msgstr "Omrežje je sedaj na voljo."
@@ -2307,7 +2307,7 @@ msgstr ""
 "Ni bilo mogoče najti sestavnega dela Akregatorja. Preverite namestitev.\n"
 "%1"
 
-#: src/notificationmanager.cpp:50
+#: src/notificationmanager.cpp:51
 #, kde-format
 msgid ""
 "Feed added:\n"
@@ -2316,7 +2316,7 @@ msgstr ""
 "Dodali ste vir:\n"
 "%1"
 
-#: src/notificationmanager.cpp:57
+#: src/notificationmanager.cpp:54
 #, kde-format
 msgid ""
 "Feeds added:\n"
@@ -2325,7 +2325,7 @@ msgstr ""
 "Dodali ste vire:\n"
 "%1"
 
-#: src/notificationmanager.cpp:71
+#: src/notificationmanager.cpp:68
 #, kde-format
 msgid "<i>and 1 other</i>"
 msgid_plural "<i>and %1 others</i>"
@@ -2335,7 +2335,7 @@ msgstr[2] "<i>in %1 druga</i>"
 msgstr[3] "<i>in %1 drugi</i>"
 
 #: src/plugins/addaccountwizard.cpp:22
-#: src/plugins/miniflux/minifluxplugin.cpp:89
+#: src/plugins/miniflux/minifluxplugin.cpp:90
 #, kde-format
 msgctxt "@title:window"
 msgid "Add Online Account"
@@ -2353,7 +2353,7 @@ msgctxt "@title:tab, wizard page with the account settings"
 msgid "Account Settings"
 msgstr "Nastavitve računa"
 
-#: src/plugins/miniflux/minifluxaccountdialog.cpp:20
+#: src/plugins/miniflux/minifluxaccountdialog.cpp:21
 #, kde-format
 msgctxt "@title:window"
 msgid "Miniflux Account Settings"
@@ -2386,34 +2386,34 @@ msgstr "URL strežnika:"
 msgid "API Token:"
 msgstr "Žeton API:"
 
-#: src/plugins/miniflux/minifluxaccountwidget.cpp:100
+#: src/plugins/miniflux/minifluxaccountwidget.cpp:101
 #, kde-format
 msgid "Please enter a valid server URL and API token."
 msgstr "Vnesite veljaven URL strežnika in žeton API."
 
-#: src/plugins/miniflux/minifluxaccountwidget.cpp:100
+#: src/plugins/miniflux/minifluxaccountwidget.cpp:101
 #, kde-format
 msgctxt "@title:window"
 msgid "Invalid Input"
 msgstr "Neveljaven vhod"
 
-#: src/plugins/miniflux/minifluxaccountwidget.cpp:111
+#: src/plugins/miniflux/minifluxaccountwidget.cpp:110
 #, kde-format
 msgid "Successfully connected to the Miniflux server."
 msgstr "Uspešna povezava s strežnikom Miniflux."
 
-#: src/plugins/miniflux/minifluxaccountwidget.cpp:111
+#: src/plugins/miniflux/minifluxaccountwidget.cpp:110
 #, kde-format
 msgctxt "@title:window"
 msgid "Connection Successful"
 msgstr "Povezava uspešna"
 
-#: src/plugins/miniflux/minifluxaccountwidget.cpp:113
+#: src/plugins/miniflux/minifluxaccountwidget.cpp:112
 #, kde-format
 msgid "Failed to connect: %1"
 msgstr "Povezava ni uspela: %1"
 
-#: src/plugins/miniflux/minifluxaccountwidget.cpp:113
+#: src/plugins/miniflux/minifluxaccountwidget.cpp:112
 #, kde-format
 msgctxt "@title:window"
 msgid "Connection Failed"
@@ -2424,27 +2424,27 @@ msgstr "Povezava ni uspela"
 msgid "HTTP error %1"
 msgstr "HTTP napaka %1"
 
-#: src/plugins/miniflux/minifluxplugin.cpp:72
+#: src/plugins/miniflux/minifluxplugin.cpp:73
 #, kde-format
 msgid "Miniflux"
 msgstr "Miniflux"
 
-#: src/plugins/miniflux/minifluxplugin.cpp:89
+#: src/plugins/miniflux/minifluxplugin.cpp:90
 #, kde-format
 msgid "An account named “%1” already exists."
 msgstr "Račun z imenom \"%1\" že obstaja."
 
-#: src/progressmanager.cpp:127
+#: src/progressmanager.cpp:124
 #, kde-format
 msgid "Fetch completed"
 msgstr "Pridobivanje zaključeno"
 
-#: src/progressmanager.cpp:136
+#: src/progressmanager.cpp:133
 #, kde-format
 msgid "Fetch error"
 msgstr "Napaka med pridobivanjem"
 
-#: src/progressmanager.cpp:145
+#: src/progressmanager.cpp:142
 #, kde-format
 msgid "Fetch aborted"
 msgstr "Pridobivanje prekinjeno"
@@ -2698,87 +2698,87 @@ msgstr "Pri branju člankov naloži celotno spletno stran"
 msgid "Mar&k articles as read when they arrive"
 msgstr "Ob prihodu člankov jih označi kot prebrane"
 
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:42
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:44
 #, kde-format
 msgid "Disable Introduction"
 msgstr "Onemogoči uvodno sporočilo"
 
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:60
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:62
 #, kde-format
 msgid "&Copy Email Address"
 msgstr "Kopiraj e-poštni naslov"
 
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:69
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:71
 #, kde-format
 msgid "Address copied to clipboard."
 msgstr "Naslov kopiran na odložišče."
 
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:100
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:101
 #, kde-format
 msgid "Mark Article as Read"
 msgstr "Označi članek kot prebran"
 
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:102
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:103
 #, kde-format
 msgid "Mark Article as Unread"
 msgstr "Označi članek kot neprebran"
 
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:104
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:105
 #, kde-format
 msgid "Change Important Flag"
 msgstr "Spremeni oznako pomembno"
 
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:106
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:107
 #, kde-format
 msgid "Send the URL of the article"
 msgstr "Pošlji naslov URL članka"
 
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:108
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:109
 #, kde-format
 msgid "Send the Html Page of Article"
 msgstr "Pošlji stran članka v HTML"
 
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:110
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:111
 #, kde-format
 msgid "Open In External Browser"
 msgstr "Odpri v zunanjem brskalniku"
 
-#: src/widgets/searchbar.cpp:42
+#: src/widgets/searchbar.cpp:41
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "Search articles…"
 msgstr "Išči članke…"
 
-#: src/widgets/searchbar.cpp:123
+#: src/widgets/searchbar.cpp:122
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "Search articles…<%1>"
 msgstr "Išči članke…<%1>"
 
-#: src/widgets/statussearchbuttons.cpp:31
+#: src/widgets/statussearchbuttons.cpp:30
 #, kde-format
 msgid "All Articles"
 msgstr "Vsi članki"
 
-#: src/widgets/statussearchbuttons.cpp:41
+#: src/widgets/statussearchbuttons.cpp:40
 #, kde-format
 msgctxt "New articles filter"
 msgid "New"
 msgstr "Novo"
 
-#: src/widgets/statussearchbuttons.cpp:50
+#: src/widgets/statussearchbuttons.cpp:49
 #, kde-format
 msgctxt "Unread articles filter"
 msgid "Unread"
 msgstr "Neprebrano"
 
-#: src/widgets/statussearchbuttons.cpp:59
+#: src/widgets/statussearchbuttons.cpp:58
 #, kde-format
 msgctxt "Read articles filter"
 msgid "Read"
 msgstr "Prebrano"
 
-#: src/widgets/statussearchbuttons.cpp:68
+#: src/widgets/statussearchbuttons.cpp:67
 #, kde-format
 msgctxt "Important articles filter"
 msgid "Important"

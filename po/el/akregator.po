@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-10-27 01:00+0000\n"
+"POT-Creation-Date: 2026-11-12 01:02+0000\n"
 "PO-Revision-Date: 2024-09-19 13:48+0300\n"
 "Last-Translator: Antonis Geralis <capoiosct@gmail.com>\n"
 "Language-Team: Greek <kde-i18n-el@kde.org>\n"
@@ -79,7 +79,7 @@ msgid "Open Link in External Browser"
 msgstr "Άνοιγμα συνδέσμου σε εξωτερικό περιηγητή"
 
 #: src/formatter/html/combinedview.html:36
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:112
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:113
 #, kde-format
 msgid "Open In Background Tab"
 msgstr "Άνοιγμα σε καρτέλα στο παρασκήνιο"
@@ -93,7 +93,7 @@ msgid "Send Link Address"
 msgstr "Αποστολή διεύθυνσης συνδέσμου"
 
 #: src/formatter/html/combinedview.html:39
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:98
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:99
 #, kde-format
 msgid "Delete Article"
 msgstr "Διαγραφή άρθρου"
@@ -106,40 +106,40 @@ msgstr ""
 "<b>Σημείωση:</b> Για λόγους ασφαλείας, η εξωτερική αναφορά έχει εμποδιστεί "
 "(Δείτε τον διάλογο διαμόρφωσης)."
 
-#: configuration/akregator_config_accounts.cpp:39
+#: configuration/akregator_config_accounts.cpp:40
 #, kde-format
 msgctxt "@title:column"
 msgid "Account"
 msgstr ""
 
-#: configuration/akregator_config_accounts.cpp:39
+#: configuration/akregator_config_accounts.cpp:40
 #, fuzzy, kde-format
 #| msgid "Type"
 msgctxt "@title:column"
 msgid "Type"
 msgstr "Τύπος"
 
-#: configuration/akregator_config_accounts.cpp:45
+#: configuration/akregator_config_accounts.cpp:46
 #, kde-format
 msgctxt "@action:button Add account"
 msgid "Add…"
 msgstr ""
 
-#: configuration/akregator_config_accounts.cpp:46
+#: configuration/akregator_config_accounts.cpp:47
 #, fuzzy, kde-format
 #| msgid "Modify..."
 msgctxt "@action:button"
 msgid "Modify…"
 msgstr "Τροποποίηση..."
 
-#: configuration/akregator_config_accounts.cpp:47
+#: configuration/akregator_config_accounts.cpp:48
 #, fuzzy, kde-format
 #| msgid "Remove"
 msgctxt "@action:button"
 msgid "Remove"
 msgstr "Αφαίρεση"
 
-#: configuration/akregator_config_accounts.cpp:134
+#: configuration/akregator_config_accounts.cpp:135
 #, kde-format
 msgid ""
 "Do you really want to remove the account “%1”?\n"
@@ -147,14 +147,14 @@ msgid ""
 "credentials; the server is not affected."
 msgstr ""
 
-#: configuration/akregator_config_accounts.cpp:138
+#: configuration/akregator_config_accounts.cpp:139
 #, fuzzy, kde-format
 #| msgid "Remove nothing"
 msgctxt "@title:window"
 msgid "Remove Account"
 msgstr "Καμία αφαίρεση"
 
-#: configuration/akregator_config_archive.cpp:36
+#: configuration/akregator_config_archive.cpp:37
 #, kde-format
 msgctxt "Limit feed archive size to:"
 msgid "%v article"
@@ -162,7 +162,7 @@ msgid_plural "%v articles"
 msgstr[0] "%v άρθρο"
 msgstr[1] "%v άρθρα"
 
-#: configuration/akregator_config_archive.cpp:37
+#: configuration/akregator_config_archive.cpp:38
 #, kde-format
 msgctxt "Delete articles older than:"
 msgid "%v day"
@@ -177,7 +177,7 @@ msgid_plural " minutes"
 msgstr[0] " λεπτό"
 msgstr[1] " λεπτά"
 
-#: configuration/akregatorconfigurepluginlistwidget.cpp:55
+#: configuration/akregatorconfigurepluginlistwidget.cpp:57
 #, kde-format
 msgid "Webengine Plugins"
 msgstr "Πρόσθετα μηχανής ιστού"
@@ -328,7 +328,7 @@ msgstr "Αριστερό κλικ του ποντικιού:"
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
 #: configuration/ui/settings_browser.ui:28
 #: configuration/ui/settings_browser.ui:54
-#: src/actions/actionmanagerimpl.cpp:347
+#: src/actions/actionmanagerimpl.cpp:337
 #, kde-format
 msgid "Open in Tab"
 msgstr "Άνοιγμα σε καρτέλα"
@@ -337,7 +337,7 @@ msgstr "Άνοιγμα σε καρτέλα"
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
 #: configuration/ui/settings_browser.ui:33
 #: configuration/ui/settings_browser.ui:59
-#: src/actions/actionmanagerimpl.cpp:353
+#: src/actions/actionmanagerimpl.cpp:343
 #, kde-format
 msgid "Open in Background Tab"
 msgstr "Άνοιγμα σε καρτέλα στο παρασκήνιο"
@@ -346,7 +346,7 @@ msgstr "Άνοιγμα σε καρτέλα στο παρασκήνιο"
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
 #: configuration/ui/settings_browser.ui:38
 #: configuration/ui/settings_browser.ui:64
-#: src/actions/actionmanagerimpl.cpp:359
+#: src/actions/actionmanagerimpl.cpp:349
 #, kde-format
 msgid "Open in External Browser"
 msgstr "Άνοιγμα σε εξωτερικό περιηγητή"
@@ -563,7 +563,7 @@ msgstr ""
 "το Διαδίκτυο. Αυτό μπορεί να επιτρέψει σε ιστοτόπους ή τρίτους να "
 "παρατηρήσουν τα άρθρα που έχετε δει."
 
-#: export/akregatorstorageexporter.cpp:279
+#: export/akregatorstorageexporter.cpp:275
 #, kde-format
 msgid "Akregator Export for %1"
 msgstr "Akregator εξαγωγή για %1"
@@ -593,7 +593,7 @@ msgid "Auto-Expand folders with unread articles"
 msgstr "Αυτόματη επέκταση φακέλων με μη αναγνωσμένα άρθρα"
 
 #. i18n: ectx: label, entry, group (View)
-#: interfaces/akregator.kcfg:31 src/actions/actionmanagerimpl.cpp:341
+#: interfaces/akregator.kcfg:31 src/actions/actionmanagerimpl.cpp:331
 #, kde-format
 msgid "Show Quick Filter"
 msgstr "Εμφάνιση γρήγορου φίλτρου"
@@ -998,9 +998,9 @@ msgid "Resets the quick filter when changing feeds."
 msgstr "Μηδενισμός του γρήγορου φίλτρου όταν γίνεται αλλαγή ροής."
 
 #: kontactplugin/akregator_plugin.cpp:28 src/aboutdata.cpp:21
-#: src/akregator_part.cpp:126
+#: src/akregator_part.cpp:130
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:144
-#: src/mainwidget.cpp:134 src/mainwidget.cpp:1328 src/trayicon.cpp:40
+#: src/mainwidget.cpp:136 src/mainwidget.cpp:1330 src/trayicon.cpp:40
 #: src/trayicon.cpp:53
 #, kde-format
 msgid "Akregator"
@@ -1198,22 +1198,22 @@ msgstr "Philipp Droessler"
 msgid "Gentoo Ebuild"
 msgstr "Ebuild για το Gentoo"
 
-#: src/actions/actionmanagerimpl.cpp:70 src/actions/actionmanagerimpl.cpp:310
+#: src/actions/actionmanagerimpl.cpp:70 src/actions/actionmanagerimpl.cpp:300
 #, kde-format
 msgid "&Fetch Feed"
 msgstr "&Ανάκτηση ροής"
 
-#: src/actions/actionmanagerimpl.cpp:71 src/actions/actionmanagerimpl.cpp:266
+#: src/actions/actionmanagerimpl.cpp:71 src/actions/actionmanagerimpl.cpp:256
 #, kde-format
 msgid "&Delete Feed"
 msgstr "&Διαγραφή ροής"
 
-#: src/actions/actionmanagerimpl.cpp:72 src/actions/actionmanagerimpl.cpp:272
+#: src/actions/actionmanagerimpl.cpp:72 src/actions/actionmanagerimpl.cpp:262
 #, kde-format
 msgid "&Edit Feed…"
 msgstr "Ε&πεξεργασία ροής..."
 
-#: src/actions/actionmanagerimpl.cpp:73 src/actions/actionmanagerimpl.cpp:329
+#: src/actions/actionmanagerimpl.cpp:73 src/actions/actionmanagerimpl.cpp:319
 #, kde-format
 msgid "&Mark Feed as Read"
 msgstr "Ση&μείωση ροής ως αναγνωσμένη"
@@ -1238,313 +1238,313 @@ msgstr "&Μετονομασία φακέλου"
 msgid "&Mark Feeds as Read"
 msgstr "&Επισήμανση ροών ως αναγνωσμένες"
 
-#: src/actions/actionmanagerimpl.cpp:204
+#: src/actions/actionmanagerimpl.cpp:194
 #, kde-format
 msgid "&Import Feeds…"
 msgstr "&Εισαγωγή ροών..."
 
-#: src/actions/actionmanagerimpl.cpp:208
+#: src/actions/actionmanagerimpl.cpp:198
 #, kde-format
 msgid "&Export Feeds…"
 msgstr "Ε&ξαγωγή ροών..."
 
-#: src/actions/actionmanagerimpl.cpp:214
+#: src/actions/actionmanagerimpl.cpp:204
 #, fuzzy, kde-format
 #| msgid "Modify Online Reader Account"
 msgctxt "@action"
 msgid "Add Online Account…"
 msgstr "Τροποποίηση διαδικτυακού λογαριασμού αναγνώστη."
 
-#: src/actions/actionmanagerimpl.cpp:223
+#: src/actions/actionmanagerimpl.cpp:213
 #, kde-format
 msgid "&Configure Akregator…"
 msgstr "&Διαμόρφωση του Akregator…"
 
-#: src/actions/actionmanagerimpl.cpp:242
+#: src/actions/actionmanagerimpl.cpp:232
 #, kde-format
 msgid "&Open Homepage"
 msgstr "Ά&νοιγμα αρχικής σελίδας"
 
-#: src/actions/actionmanagerimpl.cpp:248
+#: src/actions/actionmanagerimpl.cpp:238
 #, kde-format
 msgid "Reload All Tabs"
 msgstr "Επαναφόρτωση όλων των καρτελών"
 
-#: src/actions/actionmanagerimpl.cpp:254
+#: src/actions/actionmanagerimpl.cpp:244
 #, kde-format
 msgid "&Add Feed…"
 msgstr "&Προσθήκη ροής…"
 
-#: src/actions/actionmanagerimpl.cpp:260
+#: src/actions/actionmanagerimpl.cpp:250
 #, kde-format
 msgid "Ne&w Folder…"
 msgstr "&Νέος φάκελος..."
 
-#: src/actions/actionmanagerimpl.cpp:285
+#: src/actions/actionmanagerimpl.cpp:275
 #, kde-format
 msgid "&Normal View"
 msgstr "&Κανονική προβολή"
 
-#: src/actions/actionmanagerimpl.cpp:294
+#: src/actions/actionmanagerimpl.cpp:284
 #, kde-format
 msgid "&Widescreen View"
 msgstr "&Ευρεία προβολή"
 
-#: src/actions/actionmanagerimpl.cpp:303
+#: src/actions/actionmanagerimpl.cpp:293
 #, kde-format
 msgid "C&ombined View"
 msgstr "&Συνδυασμένη προβολή"
 
-#: src/actions/actionmanagerimpl.cpp:316
+#: src/actions/actionmanagerimpl.cpp:306
 #, kde-format
 msgid "Fe&tch All Feeds"
 msgstr "Α&νάκτηση όλων των ροών"
 
-#: src/actions/actionmanagerimpl.cpp:322
+#: src/actions/actionmanagerimpl.cpp:312
 #, kde-format
 msgid "C&ancel Feed Fetches"
 msgstr "Ακύρωση ανάκτησης ροών"
 
-#: src/actions/actionmanagerimpl.cpp:335
+#: src/actions/actionmanagerimpl.cpp:325
 #, kde-format
 msgid "Ma&rk All Feeds as Read"
 msgstr "Επι&σήμανση όλων των ροών ως αναγνωσμένες"
 
-#: src/actions/actionmanagerimpl.cpp:364
+#: src/actions/actionmanagerimpl.cpp:354
 #, fuzzy, kde-format
 #| msgid "Copy Link Address"
 msgctxt "@action"
 msgid "Copy Article Link Address"
 msgstr "Αντιγραφή διεύθυνσης συνδέσμου"
 
-#: src/actions/actionmanagerimpl.cpp:369
+#: src/actions/actionmanagerimpl.cpp:359
 #, kde-format
 msgid "Pre&vious Unread Article"
 msgstr "Προηγ&ούμενο αδιάβαστο άρθρο"
 
-#: src/actions/actionmanagerimpl.cpp:375
+#: src/actions/actionmanagerimpl.cpp:365
 #, kde-format
 msgid "Ne&xt Unread Article"
 msgstr "Επό&μενο αδιάβαστο άρθρο"
 
-#: src/actions/actionmanagerimpl.cpp:383
+#: src/actions/actionmanagerimpl.cpp:373
 #, kde-format
 msgid "&Delete"
 msgstr "&Διαγραφή"
 
-#: src/actions/actionmanagerimpl.cpp:388
+#: src/actions/actionmanagerimpl.cpp:378
 #, kde-format
 msgid "&Mark As"
 msgstr "&Σημείωση ως"
 
-#: src/actions/actionmanagerimpl.cpp:392
+#: src/actions/actionmanagerimpl.cpp:382
 #, kde-format
 msgctxt "as in: mark as read"
 msgid "&Read"
 msgstr "&Αναγνωσμένο"
 
-#: src/actions/actionmanagerimpl.cpp:394
+#: src/actions/actionmanagerimpl.cpp:384
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as read"
 msgstr "Επισήμανση επιλεγμένου άρθρου ως αναγνωσμένου"
 
-#: src/actions/actionmanagerimpl.cpp:400
+#: src/actions/actionmanagerimpl.cpp:390
 #, kde-format
 msgctxt "as in: mark as new"
 msgid "&New"
 msgstr "&Νέο"
 
-#: src/actions/actionmanagerimpl.cpp:403
+#: src/actions/actionmanagerimpl.cpp:393
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as new"
 msgstr "Επισήμανση επιλεγμένου άρθρου ως νέου"
 
-#: src/actions/actionmanagerimpl.cpp:408
+#: src/actions/actionmanagerimpl.cpp:398
 #, kde-format
 msgctxt "as in: mark as unread"
 msgid "&Unread"
 msgstr "&Αδιάβαστο"
 
-#: src/actions/actionmanagerimpl.cpp:410
+#: src/actions/actionmanagerimpl.cpp:400
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Mark selected article as unread"
 msgstr "Επισήμανση επιλεγμένου άρθρου ως αδιάβαστο"
 
-#: src/actions/actionmanagerimpl.cpp:416
+#: src/actions/actionmanagerimpl.cpp:406
 #, kde-format
 msgid "&Mark as Important"
 msgstr "&Επισήμανση ως σημαντικό"
 
-#: src/actions/actionmanagerimpl.cpp:420
+#: src/actions/actionmanagerimpl.cpp:410
 #, kde-format
 msgctxt "@action:button"
 msgid "Remove &Important Mark"
 msgstr "Αφαίρεση &επισήμανσης σημαντικού"
 
-#: src/actions/actionmanagerimpl.cpp:424
+#: src/actions/actionmanagerimpl.cpp:414
 #, kde-format
 msgid "Move Node Up"
 msgstr "Μετακίνηση κόμβου πάνω"
 
-#: src/actions/actionmanagerimpl.cpp:429
+#: src/actions/actionmanagerimpl.cpp:419
 #, kde-format
 msgid "Move Node Down"
 msgstr "Μετακίνηση κόμβου κάτω"
 
-#: src/actions/actionmanagerimpl.cpp:434
+#: src/actions/actionmanagerimpl.cpp:424
 #, kde-format
 msgid "Move Node Left"
 msgstr "Μετακίνηση κόμβου αριστερά"
 
-#: src/actions/actionmanagerimpl.cpp:439
+#: src/actions/actionmanagerimpl.cpp:429
 #, kde-format
 msgid "Move Node Right"
 msgstr "Μετακίνηση κόμβου δεξιά"
 
-#: src/actions/actionmanagerimpl.cpp:445
+#: src/actions/actionmanagerimpl.cpp:435
 #, kde-format
 msgid "Send &Link Address…"
 msgstr "Αποστολή &διεύθυνση σύνδεσμου…"
 
-#: src/actions/actionmanagerimpl.cpp:450
+#: src/actions/actionmanagerimpl.cpp:440
 #, kde-format
 msgid "Send &File…"
 msgstr "Αποστολή &αρχείου…"
 
-#: src/actions/actionmanagerimpl.cpp:456
+#: src/actions/actionmanagerimpl.cpp:446
 #, kde-format
 msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr "Ρύθμιση εστίασης στη γρήγορη αναζήτηση"
 
-#: src/actions/actionmanagerimpl.cpp:462
+#: src/actions/actionmanagerimpl.cpp:452
 #, fuzzy, kde-format
 #| msgid "What's new"
 msgid "What’s new"
 msgstr "Τι νέο υπάρχει"
 
-#: src/actions/actionmanagerimpl.cpp:503
+#: src/actions/actionmanagerimpl.cpp:493
 #, kde-format
 msgid "&Previous Article"
 msgstr "&Προηγούμενο άρθρο"
 
-#: src/actions/actionmanagerimpl.cpp:507
+#: src/actions/actionmanagerimpl.cpp:497
 #, kde-format
 msgid "&Next Article"
 msgstr "&Επόμενο άρθρο"
 
-#: src/actions/actionmanagerimpl.cpp:522
+#: src/actions/actionmanagerimpl.cpp:512
 #, kde-format
 msgid "&Previous Feed"
 msgstr "&Προηγούμενη ροή"
 
-#: src/actions/actionmanagerimpl.cpp:527
+#: src/actions/actionmanagerimpl.cpp:517
 #, kde-format
 msgid "&Next Feed"
 msgstr "&Επόμενη ροή"
 
-#: src/actions/actionmanagerimpl.cpp:533
+#: src/actions/actionmanagerimpl.cpp:523
 #, kde-format
 msgid "N&ext Unread Feed"
 msgstr "Επόμε&νη αδιάβαστη ροή"
 
-#: src/actions/actionmanagerimpl.cpp:539
+#: src/actions/actionmanagerimpl.cpp:529
 #, kde-format
 msgid "Prev&ious Unread Feed"
 msgstr "Προη&γούμενη αδιάβαστη ροή"
 
-#: src/actions/actionmanagerimpl.cpp:544
+#: src/actions/actionmanagerimpl.cpp:534
 #, kde-format
 msgid "Go to Top of Tree"
 msgstr "Μετάβαση στη κορυφή του δέντρου"
 
-#: src/actions/actionmanagerimpl.cpp:549
+#: src/actions/actionmanagerimpl.cpp:539
 #, kde-format
 msgid "Go to Bottom of Tree"
 msgstr "Μετάβαση στη βάση του δέντρου"
 
-#: src/actions/actionmanagerimpl.cpp:554
+#: src/actions/actionmanagerimpl.cpp:544
 #, kde-format
 msgid "Go Left in Tree"
 msgstr "Μετάβαση αριστερά στο δέντρο"
 
-#: src/actions/actionmanagerimpl.cpp:559
+#: src/actions/actionmanagerimpl.cpp:549
 #, kde-format
 msgid "Go Right in Tree"
 msgstr "Μετάβαση δεξιά στο δέντρο"
 
-#: src/actions/actionmanagerimpl.cpp:564
+#: src/actions/actionmanagerimpl.cpp:554
 #, kde-format
 msgid "Go Up in Tree"
 msgstr "Μετάβαση πάνω στο δέντρο"
 
-#: src/actions/actionmanagerimpl.cpp:569
+#: src/actions/actionmanagerimpl.cpp:559
 #, kde-format
 msgid "Go Down in Tree"
 msgstr "Μετάβαση κάτω στο δέντρο"
 
-#: src/actions/actionmanagerimpl.cpp:575
+#: src/actions/actionmanagerimpl.cpp:565
 #, kde-format
 msgid "Hide Read Feeds"
 msgstr "Απόκρυψη ροών ανάγνωσης"
 
-#: src/actions/actionmanagerimpl.cpp:581
+#: src/actions/actionmanagerimpl.cpp:571
 #, kde-format
 msgid "Lock Feeds In Place"
 msgstr "Κλείδωμα ροών στην τρέχουσα θέση"
 
-#: src/actions/actionmanagerimpl.cpp:587
+#: src/actions/actionmanagerimpl.cpp:577
 #, kde-format
 msgid "Auto-expand folders with unread articles"
 msgstr "Αυτόματη επέκταση φακέλων με μη αναγνωσμένα άρθρα"
 
-#: src/actions/actionmanagerimpl.cpp:602
+#: src/actions/actionmanagerimpl.cpp:592
 #, kde-format
 msgid "Select Next Tab"
 msgstr "Επιλογή επόμενης καρτέλας"
 
-#: src/actions/actionmanagerimpl.cpp:607
+#: src/actions/actionmanagerimpl.cpp:597
 #, kde-format
 msgid "Select Previous Tab"
 msgstr "Επιλογή προηγούμενης καρτέλας"
 
-#: src/actions/actionmanagerimpl.cpp:621
+#: src/actions/actionmanagerimpl.cpp:611
 #, kde-format
 msgid "Mute"
 msgstr "Σίγαση"
 
-#: src/actions/actionmanagerimpl.cpp:625
+#: src/actions/actionmanagerimpl.cpp:615
 #, kde-format
 msgid "Unmute"
 msgstr "Αποσίγαση"
 
-#: src/actions/actionmanagerimpl.cpp:628
+#: src/actions/actionmanagerimpl.cpp:618
 #, kde-format
 msgctxt "@action"
 msgid "Speak Text"
 msgstr "Ομιλία κειμένου"
 
-#: src/actions/actionmanagerimpl.cpp:633
+#: src/actions/actionmanagerimpl.cpp:623
 #, kde-format
 msgid "&Find in Message…"
 msgstr "&Εύρεση σε μήνυμα..."
 
-#: src/actions/actionmanagerimpl.cpp:640
+#: src/actions/actionmanagerimpl.cpp:630
 #, fuzzy, kde-format
 #| msgid "&Copy Email Address"
 msgctxt "@action"
 msgid "Copy Tab Address"
 msgstr "&Αντιγραφή διεύθυνσης αλληλογραφίας"
 
-#: src/actions/actionmanagerimpl.cpp:645
+#: src/actions/actionmanagerimpl.cpp:635
 #, kde-format
 msgid "Close Tab"
 msgstr "Κλείσιμο καρτέλας"
 
-#: src/actions/actionmanagerimpl.cpp:658
+#: src/actions/actionmanagerimpl.cpp:648
 #, kde-format
 msgctxt "@action"
 msgid "Activate Tab %1"
@@ -1560,23 +1560,23 @@ msgstr "Άνοιγμα συνδέσμου σε νέα &καρτέλα"
 msgid "Open Link in External &Browser"
 msgstr "Άνοιγμα συνδέσμου σε εξωτερικό &περιηγητή"
 
-#: src/addfeeddialog.cpp:51
+#: src/addfeeddialog.cpp:52
 #, kde-format
 msgctxt "@title:window"
 msgid "Add Feed"
 msgstr "Προσθήκη ροής"
 
-#: src/addfeeddialog.cpp:101
+#: src/addfeeddialog.cpp:102
 #, kde-format
 msgid "Downloading %1"
 msgstr "Λήψη του %1"
 
-#: src/addfeeddialog.cpp:117
+#: src/addfeeddialog.cpp:118
 #, kde-format
 msgid "Feed not found from %1."
 msgstr "Δε βρέθηκε ροή στο %1."
 
-#: src/addfeeddialog.cpp:123
+#: src/addfeeddialog.cpp:124
 #, kde-format
 msgid "Feed found, downloading…"
 msgstr "Βρέθηκε ροή, γίνεται λήψη…"
@@ -1610,32 +1610,32 @@ msgctxt "@info:shell"
 msgid "Lists the available options for user feedback"
 msgstr "Απαριθμεί τις διαθέσιμες επιλογές για τα σχόλια του χρήστη"
 
-#: src/akregator_part.cpp:78
+#: src/akregator_part.cpp:82
 #, kde-format
 msgid "Feeds"
 msgstr "Ροές"
 
-#: src/akregator_part.cpp:89
+#: src/akregator_part.cpp:93
 #, kde-format
 msgid "Planet KDE"
 msgstr "Planet KDE"
 
-#: src/akregator_part.cpp:94
+#: src/akregator_part.cpp:98
 #, kde-format
 msgid "KDE Apps"
 msgstr "Εφαρμογές KDE"
 
-#: src/akregator_part.cpp:100
+#: src/akregator_part.cpp:104
 #, kde-format
 msgid "Spanish feeds"
 msgstr "Spanish feeds"
 
-#: src/akregator_part.cpp:104
+#: src/akregator_part.cpp:108
 #, kde-format
 msgid "Planet KDE España"
 msgstr "Planet KDE España"
 
-#: src/akregator_part.cpp:422
+#: src/akregator_part.cpp:426
 #, kde-format
 msgid ""
 "Access denied: Cannot save feed list to <b>%1</b>. Please check your "
@@ -1644,24 +1644,24 @@ msgstr ""
 "Άρνηση πρόσβασης: αδυναμία αποθήκευσης λίστας ροής <b>%1</b>.Παρακαλώ "
 "ελέγξτε τα δικαιώματά σας."
 
-#: src/akregator_part.cpp:423 src/akregator_part.cpp:476
+#: src/akregator_part.cpp:427 src/akregator_part.cpp:480
 #, kde-format
 msgctxt "@title:window"
 msgid "Write Error"
 msgstr "Σφάλμα εγγραφής"
 
-#: src/akregator_part.cpp:459
+#: src/akregator_part.cpp:463
 #, kde-format
 msgid "Could not import the file %1 (no valid OPML)"
 msgstr "Αδυναμία εισαγωγής του αρχείου %1 (μη έγκυρο OPML)"
 
-#: src/akregator_part.cpp:459 src/command/loadfeedlistcommand.cpp:70
+#: src/akregator_part.cpp:463 src/command/loadfeedlistcommand.cpp:70
 #, kde-format
 msgctxt "@title:window"
 msgid "OPML Parsing Error"
 msgstr "Σφάλμα ανάλυσης OPML"
 
-#: src/akregator_part.cpp:463
+#: src/akregator_part.cpp:467
 #, kde-format
 msgid ""
 "The file %1 could not be read, check if it exists or if it is readable for "
@@ -1670,45 +1670,45 @@ msgstr ""
 "Το αρχείο %1 δεν μπορεί να αναγνωσθεί, ελέγξτε αν υπάρχει και αν είναι "
 "αναγνώσιμο από τον τρέχοντα χρήστη."
 
-#: src/akregator_part.cpp:464 src/command/loadfeedlistcommand.cpp:143
+#: src/akregator_part.cpp:468 src/command/loadfeedlistcommand.cpp:143
 #, kde-format
 msgctxt "@title:window"
 msgid "Read Error"
 msgstr "Σφάλμα ανάγνωσης"
 
-#: src/akregator_part.cpp:475
+#: src/akregator_part.cpp:479
 #, kde-format
 msgid "Access denied: cannot write to file %1. Please check your permissions."
 msgstr ""
 "Άρνηση πρόσβασης: αδυναμία εγγραφής στο αρχείο %1. Παρακαλώ ελέγξτε τα "
 "δικαιώματά σας."
 
-#: src/akregator_part.cpp:491 src/akregator_part.cpp:500
+#: src/akregator_part.cpp:497 src/akregator_part.cpp:506
 #, kde-format
 msgid "OPML Outlines (%1);;All Files (*)"
 msgstr "Περιγραφές OPML (%1);;Όλα τα αρχεία (*)"
 
-#: src/akregator_part.cpp:625
+#: src/akregator_part.cpp:634
 #, kde-format
 msgid "Imported Folder"
 msgstr "Εισηγμένος φάκελος"
 
-#: src/articlejobs.cpp:183
+#: src/articlejobs.cpp:182
 #, kde-format
 msgid "The feed to be listed was already removed."
 msgstr "Η ροή που θα εμφανιζόταν έχει ήδη αφαιρεθεί."
 
-#: src/articlelistview.cpp:162 src/subscription/subscriptionlistview.cpp:182
+#: src/articlelistview.cpp:164 src/subscription/subscriptionlistview.cpp:181
 #, kde-format
 msgid "Columns"
 msgstr "Στήλες"
 
-#: src/articlelistview.cpp:220
+#: src/articlelistview.cpp:222
 #, kde-format
 msgid "No result found"
 msgstr "Δε βρέθηκε αποτέλεσμα"
 
-#: src/articlelistview.cpp:381
+#: src/articlelistview.cpp:384
 #, fuzzy, kde-format
 #| msgid ""
 #| "<h2>Article list</h2>Here you can browse articles from the currently "
@@ -1730,37 +1730,37 @@ msgstr ""
 "μπορείτε να ανοίξετε το άρθρο εσωτερικά σε μια καρτέλα ή σε ένα εξωτερικό "
 "παράθυρο περιηγητή."
 
-#: src/articlemodel.cpp:75
+#: src/articlemodel.cpp:77
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Title"
 msgstr "Τίτλος"
 
-#: src/articlemodel.cpp:77
+#: src/articlemodel.cpp:79
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Feed"
 msgstr "Ροή"
 
-#: src/articlemodel.cpp:79
+#: src/articlemodel.cpp:81
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Date"
 msgstr "Ημερομηνία"
 
-#: src/articlemodel.cpp:81
+#: src/articlemodel.cpp:83
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Author"
 msgstr "Συγγραφέας"
 
-#: src/articlemodel.cpp:83
+#: src/articlemodel.cpp:85
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Description"
 msgstr "Περιγραφή"
 
-#: src/articlemodel.cpp:85
+#: src/articlemodel.cpp:87
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Content"
@@ -1777,19 +1777,19 @@ msgctxt "@title:window"
 msgid "Save As"
 msgstr "Αποθήκευση ως"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:273
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:274
 #: src/frame/webengine/akrwebengineviewer.cpp:114
 #, kde-format
 msgid "&Save Link As…"
 msgstr "Αποθήκευση συν&δέσμου ως..."
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:277
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:278
 #: src/frame/webengine/akrwebengineviewer.cpp:118
 #, kde-format
 msgid "Copy &Link Address"
 msgstr "Αντιγραφή &διεύθυνσης συνδέσμου"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:285
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:286
 #: src/frame/webengine/akrwebengineviewer.cpp:126
 #, fuzzy, kde-format
 #| msgctxt "@action"
@@ -1798,7 +1798,7 @@ msgctxt "@action"
 msgid "Copy Image URL"
 msgstr "Αντιγραφή τοποθεσίας εικόνας"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:289
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:290
 #: src/frame/webengine/akrwebengineviewer.cpp:130
 #, fuzzy, kde-format
 #| msgctxt "@action"
@@ -1807,51 +1807,51 @@ msgctxt "@action"
 msgid "Save Image…"
 msgstr "Αποθήκευση εικόνας στο δίσκο..."
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:380
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:382
 #, kde-format
 msgid "Disable"
 msgstr "Απενεργοποίηση"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:381
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:383
 #, kde-format
 msgid "Keep Enabled"
 msgstr "Διατήρηση ενεργό"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:383
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:385
 #, kde-format
 msgid "Are you sure you want to disable this introduction page?"
 msgstr "Επιθυμείτε σίγουρα την απενεργοποίηση της εισαγωγικής σελίδας;"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:384
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:386
 #, kde-format
 msgctxt "@title:window"
 msgid "Disable Introduction Page"
 msgstr "Απενεργοποίηση εισαγωγικής σελίδας"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:414
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:416
 #, kde-format
 msgid "This web site is a malware, do you want to continue to show it?"
 msgstr "Αυτός ο ιστότοπος είναι κακόβουλος, θέλετε να συνεχίσετε;"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:415
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:417
 #, kde-format
 msgctxt "@title:window"
 msgid "Malware"
 msgstr "Κακόβουλο"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:427
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:429
 #, kde-format
 msgid "The network is broken."
 msgstr "Δεν υπάρχει δίκτυο."
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:427
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:430
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:429
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:432
 #, kde-format
 msgctxt "@title:window"
 msgid "Check Phishing Url"
 msgstr "Έλεγχος για Url-δόλωμα"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:430
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:432
 #, kde-format
 msgid "The url %1 is not valid."
 msgstr "Το url %1 δεν είναι έγκυρο."
@@ -1979,7 +1979,7 @@ msgstr ""
 "<qt>Η τυπική λίστα ροής είναι κατεστραμμένη (μη έγκυρη XML). Αδύνατη η "
 "δημιουργία ενός εφεδρικού αντιγράφου.</qt>"
 
-#: src/crashwidget/crashwidget.cpp:23
+#: src/crashwidget/crashwidget.cpp:25
 #, kde-format
 msgctxt "@label:textbox"
 msgid ""
@@ -1989,17 +1989,17 @@ msgstr ""
 "Το Akregator δεν έκλεισε σωστά. Θα θέλατε να επαναφέρετε την προηγούμενη "
 "συνεδρία;"
 
-#: src/crashwidget/crashwidget.cpp:39
+#: src/crashwidget/crashwidget.cpp:41
 #, kde-format
 msgid "Restore Session"
 msgstr "Επαναφορά συνεδρίας"
 
-#: src/crashwidget/crashwidget.cpp:45
+#: src/crashwidget/crashwidget.cpp:47
 #, kde-format
 msgid "Do Not Restore Session"
 msgstr "Να μη γίνει επαναφορά συνεδρίας"
 
-#: src/crashwidget/crashwidget.cpp:51
+#: src/crashwidget/crashwidget.cpp:53
 #, kde-format
 msgid "Ask me later"
 msgstr "Ερώτηση αργότερα"
@@ -2058,64 +2058,64 @@ msgstr "Κύρια γραμμή εργαλείων"
 msgid "&File"
 msgstr "&Αρχείο"
 
-#: src/feed/feedlist.cpp:161
+#: src/feed/feedlist.cpp:162
 #, kde-format
 msgid "All Feeds"
 msgstr "Όλες οι ροές"
 
-#: src/feed/feedpropertiesdialog.cpp:39
+#: src/feed/feedpropertiesdialog.cpp:40
 #, kde-format
 msgid "Activities"
 msgstr "Δραστηριότητες"
 
-#: src/feed/feedpropertiesdialog.cpp:64 src/feed/feedpropertiesdialog.cpp:118
+#: src/feed/feedpropertiesdialog.cpp:65 src/feed/feedpropertiesdialog.cpp:119
 #, kde-format
 msgid "Minute"
 msgid_plural "Minutes"
 msgstr[0] "Λεπτό"
 msgstr[1] "Λεπτά"
 
-#: src/feed/feedpropertiesdialog.cpp:65 src/feed/feedpropertiesdialog.cpp:119
+#: src/feed/feedpropertiesdialog.cpp:66 src/feed/feedpropertiesdialog.cpp:120
 #, kde-format
 msgid "Hour"
 msgid_plural "Hours"
 msgstr[0] "Ώρα"
 msgstr[1] "Ώρες"
 
-#: src/feed/feedpropertiesdialog.cpp:66 src/feed/feedpropertiesdialog.cpp:120
+#: src/feed/feedpropertiesdialog.cpp:67 src/feed/feedpropertiesdialog.cpp:121
 #, kde-format
 msgid "Day"
 msgid_plural "Days"
 msgstr[0] "Ημέρα"
 msgstr[1] "Ημέρες"
 
-#: src/feed/feedpropertiesdialog.cpp:96 src/feed/feedpropertiesdialog.cpp:158
+#: src/feed/feedpropertiesdialog.cpp:97 src/feed/feedpropertiesdialog.cpp:159
 #, kde-format
 msgctxt "@title:window"
 msgid "Feed Properties"
 msgstr "Ιδιότητες ροής"
 
-#: src/feed/feedpropertiesdialog.cpp:121
+#: src/feed/feedpropertiesdialog.cpp:122
 #, kde-format
 msgctxt "never fetch new articles"
 msgid "Never"
 msgstr "Ποτέ"
 
-#: src/feed/feedpropertiesdialog.cpp:123
+#: src/feed/feedpropertiesdialog.cpp:124
 #, kde-format
 msgid "%v day"
 msgid_plural "%v days"
 msgstr[0] "%v ημέρα"
 msgstr[1] "%v ημέρες"
 
-#: src/feed/feedpropertiesdialog.cpp:124
+#: src/feed/feedpropertiesdialog.cpp:125
 #, kde-format
 msgid "%v article"
 msgid_plural "%v articles"
 msgstr[0] "%v άρθρο"
 msgstr[1] "%v άρθρα"
 
-#: src/feed/feedpropertiesdialog.cpp:158
+#: src/feed/feedpropertiesdialog.cpp:159
 #, kde-format
 msgctxt "@title:window"
 msgid "Properties of %1"
@@ -2126,57 +2126,57 @@ msgstr "Ιδιότητες του %1"
 msgid "(%1, %2)"
 msgstr "(%1, %2)"
 
-#: src/formatter/grantleeviewformatter.cpp:171
-#: src/formatter/grantleeviewformatter.cpp:230
+#: src/formatter/grantleeviewformatter.cpp:164
+#: src/formatter/grantleeviewformatter.cpp:223
 #, kde-format
 msgid " (no unread articles)"
 msgstr " (χωρίς αδιάβαστα άρθρα)"
 
-#: src/formatter/grantleeviewformatter.cpp:173
-#: src/formatter/grantleeviewformatter.cpp:232
+#: src/formatter/grantleeviewformatter.cpp:166
+#: src/formatter/grantleeviewformatter.cpp:225
 #, kde-format
 msgid " (1 unread article)"
 msgid_plural " (%1 unread articles)"
 msgstr[0] " (1 μη αναγνωσμένο άρθρο)"
 msgstr[1] " (%1 μη αναγνωσμένα άρθρα)"
 
-#: src/formatter/grantleeviewformatter.cpp:188
+#: src/formatter/grantleeviewformatter.cpp:181
 #, kde-format
 msgid "<b>Description:</b> %1<br />"
 msgstr "<b>Περιγραφή:</b> %1<br />"
 
-#: src/formatter/grantleeviewformatter.cpp:195
+#: src/formatter/grantleeviewformatter.cpp:188
 #, kde-format
 msgid "<b>Homepage:</b> <a href=\"%1\">%1</a>"
 msgstr "<b>Προσωπική σελίδα:</b> <a href=\"%1\">%1</a>"
 
-#: src/formatter/grantleeviewformatter.cpp:202
+#: src/formatter/grantleeviewformatter.cpp:195
 #, fuzzy, kde-format
 #| msgid "<b>Copyright:</b> %1</a>"
 msgid "<b>Copyright:</b> %1"
 msgstr "<b>Copyright:</b> %1</a>"
 
-#: src/formatter/grantleeviewformatter.cpp:265
+#: src/formatter/grantleeviewformatter.cpp:258
 #, kde-format
 msgid "Date"
 msgstr "Ημερομηνία"
 
-#: src/formatter/grantleeviewformatter.cpp:266
+#: src/formatter/grantleeviewformatter.cpp:259
 #, kde-format
 msgid "Comment"
 msgstr "Σχόλιο"
 
-#: src/formatter/grantleeviewformatter.cpp:267
+#: src/formatter/grantleeviewformatter.cpp:260
 #, kde-format
 msgid "Complete Story"
 msgstr "Πλήρης είδηση"
 
-#: src/formatter/grantleeviewformatter.cpp:268
+#: src/formatter/grantleeviewformatter.cpp:261
 #, kde-format
 msgid "Author"
 msgstr "Συγγραφέας"
 
-#: src/formatter/grantleeviewformatter.cpp:269
+#: src/formatter/grantleeviewformatter.cpp:262
 #, kde-format
 msgid "Enclosure"
 msgstr "Εσώκλειστο έγγραφο"
@@ -2201,13 +2201,13 @@ msgstr "Η φόρτωση ακυρώθηκε"
 msgid "Loading completed"
 msgstr "Η φόρτωση ολοκληρώθηκε"
 
-#: src/mainwidget.cpp:190
+#: src/mainwidget.cpp:191
 #, kde-format
 msgid "You can view multiple articles in several open tabs."
 msgstr ""
 "Μπορείτε να προβάλετε πολλαπλά άρθρα σε διαφορετικές ανοικτές καρτέλες."
 
-#: src/mainwidget.cpp:194
+#: src/mainwidget.cpp:195
 #, kde-format
 msgid "Articles list."
 msgstr "Λίστα άρθρων."
@@ -2222,7 +2222,7 @@ msgstr "Άρθρα"
 msgid "About"
 msgstr "Σχετικά"
 
-#: src/mainwidget.cpp:819
+#: src/mainwidget.cpp:820
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all articles in the feed</b> as read?</"
@@ -2231,20 +2231,20 @@ msgstr ""
 "<qt>Είστε βέβαιοι ότι θέλετε να σημειώσετε <b>όλα τα άρθρα της ροής</b> ως "
 "αναγνωσμένα;</qt>"
 
-#: src/mainwidget.cpp:820
+#: src/mainwidget.cpp:821
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "Επισήμανση ροής ως αναγνωσμένη"
 
-#: src/mainwidget.cpp:823
+#: src/mainwidget.cpp:824
 #, kde-format
 msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
 msgstr ""
 "<qt>Είστε βέβαιοι ότι θέλετε να σημειώσετε <b>όλες τις ροές</b> ως "
 "αναγνωσμένες;</qt>"
 
-#: src/mainwidget.cpp:825
+#: src/mainwidget.cpp:826
 #, kde-format
 msgid ""
 "<qt>Are you sure you want to mark <b>all feeds in the folder</b> as read?</"
@@ -2253,28 +2253,28 @@ msgstr ""
 "<qt>Είστε βέβαιοι ότι θέλετε να σημειώσετε <b>όλες τις ροές στο φάκελο</b> "
 "ως αναγνωσμένες;</qt>"
 
-#: src/mainwidget.cpp:827
+#: src/mainwidget.cpp:828
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "Επισήμανση ροών ως αναγνωσμένες"
 
-#: src/mainwidget.cpp:891 src/mainwidget.cpp:900 src/mainwidget.cpp:1301
+#: src/mainwidget.cpp:893 src/mainwidget.cpp:902 src/mainwidget.cpp:1303
 #, kde-format
 msgid "Networking is not available."
 msgstr "Το δίκτυο δεν είναι διαθέσιμο."
 
-#: src/mainwidget.cpp:908
+#: src/mainwidget.cpp:910
 #, kde-format
 msgid "Fetching Feeds…"
 msgstr "Ανάκτηση ροών..."
 
-#: src/mainwidget.cpp:1106
+#: src/mainwidget.cpp:1108
 #, kde-format
 msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
 msgstr "<qt>Επιθυμείτε σίγουρα τη διαγραφή του άρθρου <b>%1</b>;</qt>"
 
-#: src/mainwidget.cpp:1109
+#: src/mainwidget.cpp:1111
 #, kde-format
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
 msgid_plural ""
@@ -2282,13 +2282,13 @@ msgid_plural ""
 msgstr[0] "<qt>Επιθυμείτε σίγουρα τη διαγραφή του επιλεγμένου άρθρου;</qt>"
 msgstr[1] "<qt>Επιθυμείτε σίγουρα τη διαγραφή των %1 επιλεγμένων άρθρων;</qt>"
 
-#: src/mainwidget.cpp:1116
+#: src/mainwidget.cpp:1118
 #, kde-format
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "Διαγραφή άρθρου"
 
-#: src/mainwidget.cpp:1298
+#: src/mainwidget.cpp:1300
 #, kde-format
 msgid "Networking is available now."
 msgstr "Το δίκτυο είναι πλέον διαθέσιμο."
@@ -2317,7 +2317,7 @@ msgstr ""
 "Αδυναμία εύρεσης του τμήματος Akregator. Ελέγξτε την εγκατάστασή σας.\n"
 "%1"
 
-#: src/notificationmanager.cpp:50
+#: src/notificationmanager.cpp:51
 #, kde-format
 msgid ""
 "Feed added:\n"
@@ -2326,7 +2326,7 @@ msgstr ""
 "Προστέθηκε η ροή:\n"
 " %1"
 
-#: src/notificationmanager.cpp:57
+#: src/notificationmanager.cpp:54
 #, kde-format
 msgid ""
 "Feeds added:\n"
@@ -2335,7 +2335,7 @@ msgstr ""
 "Προστέθηκαν ροές:\n"
 " %1"
 
-#: src/notificationmanager.cpp:71
+#: src/notificationmanager.cpp:68
 #, kde-format
 msgid "<i>and 1 other</i>"
 msgid_plural "<i>and %1 others</i>"
@@ -2343,7 +2343,7 @@ msgstr[0] "<i>και άλλο 1</i>"
 msgstr[1] "<i>και άλλα %1</i>"
 
 #: src/plugins/addaccountwizard.cpp:22
-#: src/plugins/miniflux/minifluxplugin.cpp:89
+#: src/plugins/miniflux/minifluxplugin.cpp:90
 #, fuzzy, kde-format
 #| msgid "Modify Online Reader Account"
 msgctxt "@title:window"
@@ -2363,7 +2363,7 @@ msgctxt "@title:tab, wizard page with the account settings"
 msgid "Account Settings"
 msgstr "Ρυθμίσεις γραμμής"
 
-#: src/plugins/miniflux/minifluxaccountdialog.cpp:20
+#: src/plugins/miniflux/minifluxaccountdialog.cpp:21
 #, kde-format
 msgctxt "@title:window"
 msgid "Miniflux Account Settings"
@@ -2397,34 +2397,34 @@ msgstr "URL υπηρεσίας:"
 msgid "API Token:"
 msgstr ""
 
-#: src/plugins/miniflux/minifluxaccountwidget.cpp:100
+#: src/plugins/miniflux/minifluxaccountwidget.cpp:101
 #, kde-format
 msgid "Please enter a valid server URL and API token."
 msgstr ""
 
-#: src/plugins/miniflux/minifluxaccountwidget.cpp:100
+#: src/plugins/miniflux/minifluxaccountwidget.cpp:101
 #, kde-format
 msgctxt "@title:window"
 msgid "Invalid Input"
 msgstr ""
 
-#: src/plugins/miniflux/minifluxaccountwidget.cpp:111
+#: src/plugins/miniflux/minifluxaccountwidget.cpp:110
 #, kde-format
 msgid "Successfully connected to the Miniflux server."
 msgstr ""
 
-#: src/plugins/miniflux/minifluxaccountwidget.cpp:111
+#: src/plugins/miniflux/minifluxaccountwidget.cpp:110
 #, kde-format
 msgctxt "@title:window"
 msgid "Connection Successful"
 msgstr ""
 
-#: src/plugins/miniflux/minifluxaccountwidget.cpp:113
+#: src/plugins/miniflux/minifluxaccountwidget.cpp:112
 #, kde-format
 msgid "Failed to connect: %1"
 msgstr ""
 
-#: src/plugins/miniflux/minifluxaccountwidget.cpp:113
+#: src/plugins/miniflux/minifluxaccountwidget.cpp:112
 #, kde-format
 msgctxt "@title:window"
 msgid "Connection Failed"
@@ -2435,27 +2435,27 @@ msgstr ""
 msgid "HTTP error %1"
 msgstr ""
 
-#: src/plugins/miniflux/minifluxplugin.cpp:72
+#: src/plugins/miniflux/minifluxplugin.cpp:73
 #, kde-format
 msgid "Miniflux"
 msgstr ""
 
-#: src/plugins/miniflux/minifluxplugin.cpp:89
+#: src/plugins/miniflux/minifluxplugin.cpp:90
 #, kde-format
 msgid "An account named “%1” already exists."
 msgstr ""
 
-#: src/progressmanager.cpp:127
+#: src/progressmanager.cpp:124
 #, kde-format
 msgid "Fetch completed"
 msgstr "Η ανάκτηση ολοκληρώθηκε"
 
-#: src/progressmanager.cpp:136
+#: src/progressmanager.cpp:133
 #, kde-format
 msgid "Fetch error"
 msgstr "Σφάλμα ανάκτησης"
 
-#: src/progressmanager.cpp:145
+#: src/progressmanager.cpp:142
 #, kde-format
 msgid "Fetch aborted"
 msgstr "Εγκατάλειψη ανάκτησης"
@@ -2709,87 +2709,87 @@ msgstr "Φόρτωση της π&λήρους ιστοσελίδας κατά τ
 msgid "Mar&k articles as read when they arrive"
 msgstr "Ση&μείωση άρθρων ως αναγνωσμένα κατά την άφιξή τους"
 
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:42
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:44
 #, kde-format
 msgid "Disable Introduction"
 msgstr "Απενεργοποίηση εισαγωγής"
 
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:60
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:62
 #, kde-format
 msgid "&Copy Email Address"
 msgstr "&Αντιγραφή διεύθυνσης αλληλογραφίας"
 
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:69
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:71
 #, kde-format
 msgid "Address copied to clipboard."
 msgstr "Η διεύθυνση αντιγράφτηκε στο πρόχειρο."
 
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:100
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:101
 #, kde-format
 msgid "Mark Article as Read"
 msgstr "Επισήμανση άρθρου ως αναγνωσμένο"
 
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:102
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:103
 #, kde-format
 msgid "Mark Article as Unread"
 msgstr "Επισήμανση άρθρου ως αδιάβαστο"
 
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:104
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:105
 #, kde-format
 msgid "Change Important Flag"
 msgstr "Αλλαγή της σήμανσης σημαντικού"
 
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:106
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:107
 #, kde-format
 msgid "Send the URL of the article"
 msgstr "Αποστολή του URL του άρθρου"
 
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:108
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:109
 #, kde-format
 msgid "Send the Html Page of Article"
 msgstr "Αποστολή της html σελίδας του άρθρου"
 
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:110
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:111
 #, kde-format
 msgid "Open In External Browser"
 msgstr "Άνοιγμα σε εξωτερικό περιηγητή"
 
-#: src/widgets/searchbar.cpp:42
+#: src/widgets/searchbar.cpp:41
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "Search articles…"
 msgstr "Αναζήτηση άρθρων..."
 
-#: src/widgets/searchbar.cpp:123
+#: src/widgets/searchbar.cpp:122
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "Search articles…<%1>"
 msgstr "Αναζήτηση άρθρων...<%1>"
 
-#: src/widgets/statussearchbuttons.cpp:31
+#: src/widgets/statussearchbuttons.cpp:30
 #, kde-format
 msgid "All Articles"
 msgstr "Όλα τα άρθρα"
 
-#: src/widgets/statussearchbuttons.cpp:41
+#: src/widgets/statussearchbuttons.cpp:40
 #, kde-format
 msgctxt "New articles filter"
 msgid "New"
 msgstr "Νέα"
 
-#: src/widgets/statussearchbuttons.cpp:50
+#: src/widgets/statussearchbuttons.cpp:49
 #, kde-format
 msgctxt "Unread articles filter"
 msgid "Unread"
 msgstr "Μη αναγνωσμένα"
 
-#: src/widgets/statussearchbuttons.cpp:59
+#: src/widgets/statussearchbuttons.cpp:58
 #, kde-format
 msgctxt "Read articles filter"
 msgid "Read"
 msgstr "Αναγνωσμένα"
 
-#: src/widgets/statussearchbuttons.cpp:68
+#: src/widgets/statussearchbuttons.cpp:67
 #, kde-format
 msgctxt "Important articles filter"
 msgid "Important"

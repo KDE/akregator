@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: akregator\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-10-27 01:00+0000\n"
+"POT-Creation-Date: 2026-11-12 01:02+0000\n"
 "PO-Revision-Date: 2013-10-29 04:19+0600\n"
 "Last-Translator: Sairan Kikkarin <sairan@computer.org>\n"
 "Language-Team: Kazakh <kde-i18n-doc@kde.org>\n"
@@ -76,7 +76,7 @@ msgid "Open Link in External Browser"
 msgstr "Сыртқы &шолғышта ашу"
 
 #: src/formatter/html/combinedview.html:36
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:112
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:113
 #, fuzzy, kde-format
 #| msgid "Open in Background Tab"
 msgid "Open In Background Tab"
@@ -95,7 +95,7 @@ msgid "Send Link Address"
 msgstr "&Сілтеме адресін жіберу..."
 
 #: src/formatter/html/combinedview.html:39
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:98
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:99
 #, kde-format
 msgid "Delete Article"
 msgstr "Мақаланы өшіру"
@@ -106,40 +106,40 @@ msgid ""
 "configure dialog)."
 msgstr ""
 
-#: configuration/akregator_config_accounts.cpp:39
+#: configuration/akregator_config_accounts.cpp:40
 #, kde-format
 msgctxt "@title:column"
 msgid "Account"
 msgstr ""
 
-#: configuration/akregator_config_accounts.cpp:39
+#: configuration/akregator_config_accounts.cpp:40
 #, fuzzy, kde-format
 #| msgid "Type"
 msgctxt "@title:column"
 msgid "Type"
 msgstr "Түрі"
 
-#: configuration/akregator_config_accounts.cpp:45
+#: configuration/akregator_config_accounts.cpp:46
 #, kde-format
 msgctxt "@action:button Add account"
 msgid "Add…"
 msgstr ""
 
-#: configuration/akregator_config_accounts.cpp:46
+#: configuration/akregator_config_accounts.cpp:47
 #, fuzzy, kde-format
 #| msgid "Modify..."
 msgctxt "@action:button"
 msgid "Modify…"
 msgstr "Өзгерту..."
 
-#: configuration/akregator_config_accounts.cpp:47
+#: configuration/akregator_config_accounts.cpp:48
 #, fuzzy, kde-format
 #| msgid "Remove"
 msgctxt "@action:button"
 msgid "Remove"
 msgstr "Өшіру"
 
-#: configuration/akregator_config_accounts.cpp:134
+#: configuration/akregator_config_accounts.cpp:135
 #, kde-format
 msgid ""
 "Do you really want to remove the account “%1”?\n"
@@ -147,14 +147,14 @@ msgid ""
 "credentials; the server is not affected."
 msgstr ""
 
-#: configuration/akregator_config_accounts.cpp:138
+#: configuration/akregator_config_accounts.cpp:139
 #, fuzzy, kde-format
 #| msgid "Remove nothing"
 msgctxt "@title:window"
 msgid "Remove Account"
 msgstr "Енштеңе өшірмеу"
 
-#: configuration/akregator_config_archive.cpp:36
+#: configuration/akregator_config_archive.cpp:37
 #, fuzzy, kde-format
 #| msgctxt "Limit feed archive size to:"
 #| msgid " article"
@@ -164,7 +164,7 @@ msgid "%v article"
 msgid_plural "%v articles"
 msgstr[0] " мақала"
 
-#: configuration/akregator_config_archive.cpp:37
+#: configuration/akregator_config_archive.cpp:38
 #, fuzzy, kde-format
 #| msgctxt "Delete articles older than:"
 #| msgid " day"
@@ -180,7 +180,7 @@ msgid " minute"
 msgid_plural " minutes"
 msgstr[0] " минут сайын"
 
-#: configuration/akregatorconfigurepluginlistwidget.cpp:55
+#: configuration/akregatorconfigurepluginlistwidget.cpp:57
 #, fuzzy, kde-format
 #| msgid "Configure Feeds"
 msgid "Webengine Plugins"
@@ -336,7 +336,7 @@ msgstr "Сол жақ батырмасымен:"
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
 #: configuration/ui/settings_browser.ui:28
 #: configuration/ui/settings_browser.ui:54
-#: src/actions/actionmanagerimpl.cpp:347
+#: src/actions/actionmanagerimpl.cpp:337
 #, kde-format
 msgid "Open in Tab"
 msgstr "Қойындысында ашу"
@@ -345,7 +345,7 @@ msgstr "Қойындысында ашу"
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
 #: configuration/ui/settings_browser.ui:33
 #: configuration/ui/settings_browser.ui:59
-#: src/actions/actionmanagerimpl.cpp:353
+#: src/actions/actionmanagerimpl.cpp:343
 #, kde-format
 msgid "Open in Background Tab"
 msgstr "Аядағы қойындысында ашу"
@@ -354,7 +354,7 @@ msgstr "Аядағы қойындысында ашу"
 #. i18n: ectx: property (text), item, widget (QComboBox, kcfg_MMBBehaviour)
 #: configuration/ui/settings_browser.ui:38
 #: configuration/ui/settings_browser.ui:64
-#: src/actions/actionmanagerimpl.cpp:359
+#: src/actions/actionmanagerimpl.cpp:349
 #, kde-format
 msgid "Open in External Browser"
 msgstr "Сыртқы шолғышта ашу"
@@ -571,7 +571,7 @@ msgid ""
 "have viewed."
 msgstr ""
 
-#: export/akregatorstorageexporter.cpp:279
+#: export/akregatorstorageexporter.cpp:275
 #, kde-format
 msgid "Akregator Export for %1"
 msgstr ""
@@ -603,7 +603,7 @@ msgid "Auto-Expand folders with unread articles"
 msgstr "Оқылмаған мақала жоқ"
 
 #. i18n: ectx: label, entry, group (View)
-#: interfaces/akregator.kcfg:31 src/actions/actionmanagerimpl.cpp:341
+#: interfaces/akregator.kcfg:31 src/actions/actionmanagerimpl.cpp:331
 #, kde-format
 msgid "Show Quick Filter"
 msgstr "Жедел сүзгіні көрсету"
@@ -1000,9 +1000,9 @@ msgid "Resets the quick filter when changing feeds."
 msgstr "Ақпарларды ауыстырғанда жедел сүзгі ысырылсын"
 
 #: kontactplugin/akregator_plugin.cpp:28 src/aboutdata.cpp:21
-#: src/akregator_part.cpp:126
+#: src/akregator_part.cpp:130
 #: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:144
-#: src/mainwidget.cpp:134 src/mainwidget.cpp:1328 src/trayicon.cpp:40
+#: src/mainwidget.cpp:136 src/mainwidget.cpp:1330 src/trayicon.cpp:40
 #: src/trayicon.cpp:53
 #, kde-format
 msgid "Akregator"
@@ -1219,23 +1219,23 @@ msgstr "Philipp Droessler"
 msgid "Gentoo Ebuild"
 msgstr "Gentoo Ebuild"
 
-#: src/actions/actionmanagerimpl.cpp:70 src/actions/actionmanagerimpl.cpp:310
+#: src/actions/actionmanagerimpl.cpp:70 src/actions/actionmanagerimpl.cpp:300
 #, kde-format
 msgid "&Fetch Feed"
 msgstr "Ақпарды қ&абылдау"
 
-#: src/actions/actionmanagerimpl.cpp:71 src/actions/actionmanagerimpl.cpp:266
+#: src/actions/actionmanagerimpl.cpp:71 src/actions/actionmanagerimpl.cpp:256
 #, kde-format
 msgid "&Delete Feed"
 msgstr "Ақпарды ө&шіру"
 
-#: src/actions/actionmanagerimpl.cpp:72 src/actions/actionmanagerimpl.cpp:272
+#: src/actions/actionmanagerimpl.cpp:72 src/actions/actionmanagerimpl.cpp:262
 #, fuzzy, kde-format
 #| msgid "&Edit Feed..."
 msgid "&Edit Feed…"
 msgstr "Ақпарды өң&деу..."
 
-#: src/actions/actionmanagerimpl.cpp:73 src/actions/actionmanagerimpl.cpp:329
+#: src/actions/actionmanagerimpl.cpp:73 src/actions/actionmanagerimpl.cpp:319
 #, kde-format
 msgid "&Mark Feed as Read"
 msgstr "Ақпарды оқылған д&еу"
@@ -1260,325 +1260,325 @@ msgstr "Қапшықты қайта &атау"
 msgid "&Mark Feeds as Read"
 msgstr "Ақпарларды оқылған д&еу"
 
-#: src/actions/actionmanagerimpl.cpp:204
+#: src/actions/actionmanagerimpl.cpp:194
 #, fuzzy, kde-format
 #| msgid "&Import Feeds..."
 msgid "&Import Feeds…"
 msgstr "Ақпарларды &импорттау..."
 
-#: src/actions/actionmanagerimpl.cpp:208
+#: src/actions/actionmanagerimpl.cpp:198
 #, fuzzy, kde-format
 #| msgid "&Export Feeds..."
 msgid "&Export Feeds…"
 msgstr "Ақпарларды &экспорттау..."
 
-#: src/actions/actionmanagerimpl.cpp:214
+#: src/actions/actionmanagerimpl.cpp:204
 #, fuzzy, kde-format
 #| msgid "Modify Online Reader Account"
 msgctxt "@action"
 msgid "Add Online Account…"
 msgstr "Онлайн оқу құралының тіркелгісін өзгерту"
 
-#: src/actions/actionmanagerimpl.cpp:223
+#: src/actions/actionmanagerimpl.cpp:213
 #, fuzzy, kde-format
 #| msgid "&Configure Akregator..."
 msgid "&Configure Akregator…"
 msgstr "&Akregator-ды баптау..."
 
-#: src/actions/actionmanagerimpl.cpp:242
+#: src/actions/actionmanagerimpl.cpp:232
 #, kde-format
 msgid "&Open Homepage"
 msgstr "Мекен парақшасын &ашу"
 
-#: src/actions/actionmanagerimpl.cpp:248
+#: src/actions/actionmanagerimpl.cpp:238
 #, kde-format
 msgid "Reload All Tabs"
 msgstr "Бүкіл қойындыларды жаңарту"
 
-#: src/actions/actionmanagerimpl.cpp:254
+#: src/actions/actionmanagerimpl.cpp:244
 #, fuzzy, kde-format
 #| msgid "Add Feed"
 msgid "&Add Feed…"
 msgstr "Ақпарды қосу"
 
-#: src/actions/actionmanagerimpl.cpp:260
+#: src/actions/actionmanagerimpl.cpp:250
 #, fuzzy, kde-format
 #| msgid "Ne&w Folder..."
 msgid "Ne&w Folder…"
 msgstr "Жаңа қ&апшық..."
 
-#: src/actions/actionmanagerimpl.cpp:285
+#: src/actions/actionmanagerimpl.cpp:275
 #, kde-format
 msgid "&Normal View"
 msgstr "&Кәдімгі"
 
-#: src/actions/actionmanagerimpl.cpp:294
+#: src/actions/actionmanagerimpl.cpp:284
 #, kde-format
 msgid "&Widescreen View"
 msgstr "К&ең экранды"
 
-#: src/actions/actionmanagerimpl.cpp:303
+#: src/actions/actionmanagerimpl.cpp:293
 #, kde-format
 msgid "C&ombined View"
 msgstr "Кұра&ма"
 
-#: src/actions/actionmanagerimpl.cpp:316
+#: src/actions/actionmanagerimpl.cpp:306
 #, kde-format
 msgid "Fe&tch All Feeds"
 msgstr "Ба&рлық ақпарларды қабылдау"
 
-#: src/actions/actionmanagerimpl.cpp:322
+#: src/actions/actionmanagerimpl.cpp:312
 #, kde-format
 msgid "C&ancel Feed Fetches"
 msgstr "Қабылдау барыстарын үз&у"
 
-#: src/actions/actionmanagerimpl.cpp:335
+#: src/actions/actionmanagerimpl.cpp:325
 #, kde-format
 msgid "Ma&rk All Feeds as Read"
 msgstr "Барлық ақпарларды оқылған д&еу"
 
-#: src/actions/actionmanagerimpl.cpp:364
+#: src/actions/actionmanagerimpl.cpp:354
 #, fuzzy, kde-format
 #| msgid "Copy Link Address"
 msgctxt "@action"
 msgid "Copy Article Link Address"
 msgstr "Сілтеме адресін көшіріп алу"
 
-#: src/actions/actionmanagerimpl.cpp:369
+#: src/actions/actionmanagerimpl.cpp:359
 #, kde-format
 msgid "Pre&vious Unread Article"
 msgstr "Кел&есі оқылмаған мақала"
 
-#: src/actions/actionmanagerimpl.cpp:375
+#: src/actions/actionmanagerimpl.cpp:365
 #, kde-format
 msgid "Ne&xt Unread Article"
 msgstr "Алд&ыңғы оқылмаған мақала"
 
-#: src/actions/actionmanagerimpl.cpp:383
+#: src/actions/actionmanagerimpl.cpp:373
 #, kde-format
 msgid "&Delete"
 msgstr "Ө&шіру"
 
-#: src/actions/actionmanagerimpl.cpp:388
+#: src/actions/actionmanagerimpl.cpp:378
 #, kde-format
 msgid "&Mark As"
 msgstr "Қоятын &белгісі"
 
-#: src/actions/actionmanagerimpl.cpp:392
+#: src/actions/actionmanagerimpl.cpp:382
 #, kde-format
 msgctxt "as in: mark as read"
 msgid "&Read"
 msgstr "Оқ&ылған"
 
-#: src/actions/actionmanagerimpl.cpp:394
+#: src/actions/actionmanagerimpl.cpp:384
 #, fuzzy, kde-format
 #| msgid "Mark selected article as read"
 msgctxt "@info:tooltip"
 msgid "Mark selected article as read"
 msgstr "Таңдалған мақаланы оқылған деп белгілеу"
 
-#: src/actions/actionmanagerimpl.cpp:400
+#: src/actions/actionmanagerimpl.cpp:390
 #, kde-format
 msgctxt "as in: mark as new"
 msgid "&New"
 msgstr "&Жаңа"
 
-#: src/actions/actionmanagerimpl.cpp:403
+#: src/actions/actionmanagerimpl.cpp:393
 #, fuzzy, kde-format
 #| msgid "Mark selected article as new"
 msgctxt "@info:tooltip"
 msgid "Mark selected article as new"
 msgstr "Таңдалған мақаланы жаңа деп белгілеу"
 
-#: src/actions/actionmanagerimpl.cpp:408
+#: src/actions/actionmanagerimpl.cpp:398
 #, kde-format
 msgctxt "as in: mark as unread"
 msgid "&Unread"
 msgstr "Оқыл&маған"
 
-#: src/actions/actionmanagerimpl.cpp:410
+#: src/actions/actionmanagerimpl.cpp:400
 #, fuzzy, kde-format
 #| msgid "Mark selected article as unread"
 msgctxt "@info:tooltip"
 msgid "Mark selected article as unread"
 msgstr "Таңдалған мақаланы оқылмаған деп белгілеу"
 
-#: src/actions/actionmanagerimpl.cpp:416
+#: src/actions/actionmanagerimpl.cpp:406
 #, kde-format
 msgid "&Mark as Important"
 msgstr "Маңызды деп б&елгілеу"
 
-#: src/actions/actionmanagerimpl.cpp:420
+#: src/actions/actionmanagerimpl.cpp:410
 #, fuzzy, kde-format
 #| msgid "Remove &Important Mark"
 msgctxt "@action:button"
 msgid "Remove &Important Mark"
 msgstr "&Маңыздық белгісін жою"
 
-#: src/actions/actionmanagerimpl.cpp:424
+#: src/actions/actionmanagerimpl.cpp:414
 #, kde-format
 msgid "Move Node Up"
 msgstr "Жоғарлату"
 
-#: src/actions/actionmanagerimpl.cpp:429
+#: src/actions/actionmanagerimpl.cpp:419
 #, kde-format
 msgid "Move Node Down"
 msgstr "Төмендету"
 
-#: src/actions/actionmanagerimpl.cpp:434
+#: src/actions/actionmanagerimpl.cpp:424
 #, kde-format
 msgid "Move Node Left"
 msgstr "Солға жылжыту"
 
-#: src/actions/actionmanagerimpl.cpp:439
+#: src/actions/actionmanagerimpl.cpp:429
 #, kde-format
 msgid "Move Node Right"
 msgstr "Оңға жылжыту"
 
-#: src/actions/actionmanagerimpl.cpp:445
+#: src/actions/actionmanagerimpl.cpp:435
 #, fuzzy, kde-format
 #| msgid "Send &Link Address..."
 msgid "Send &Link Address…"
 msgstr "&Сілтеме адресін жіберу..."
 
-#: src/actions/actionmanagerimpl.cpp:450
+#: src/actions/actionmanagerimpl.cpp:440
 #, fuzzy, kde-format
 #| msgid "Send &File..."
 msgid "Send &File…"
 msgstr "&Файлды жіберу..."
 
-#: src/actions/actionmanagerimpl.cpp:456
+#: src/actions/actionmanagerimpl.cpp:446
 #, kde-format
 msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:462
+#: src/actions/actionmanagerimpl.cpp:452
 #, kde-format
 msgid "What’s new"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:503
+#: src/actions/actionmanagerimpl.cpp:493
 #, kde-format
 msgid "&Previous Article"
 msgstr "&Алдыңғы мақала"
 
-#: src/actions/actionmanagerimpl.cpp:507
+#: src/actions/actionmanagerimpl.cpp:497
 #, kde-format
 msgid "&Next Article"
 msgstr "&Келесі мақала"
 
-#: src/actions/actionmanagerimpl.cpp:522
+#: src/actions/actionmanagerimpl.cpp:512
 #, kde-format
 msgid "&Previous Feed"
 msgstr "&Алдыңғы ақпар"
 
-#: src/actions/actionmanagerimpl.cpp:527
+#: src/actions/actionmanagerimpl.cpp:517
 #, kde-format
 msgid "&Next Feed"
 msgstr "&Келесі ақпар"
 
-#: src/actions/actionmanagerimpl.cpp:533
+#: src/actions/actionmanagerimpl.cpp:523
 #, kde-format
 msgid "N&ext Unread Feed"
 msgstr "К&елесі оқылмаған ақпар"
 
-#: src/actions/actionmanagerimpl.cpp:539
+#: src/actions/actionmanagerimpl.cpp:529
 #, kde-format
 msgid "Prev&ious Unread Feed"
 msgstr "Келесі &оқылмаған ақпар"
 
-#: src/actions/actionmanagerimpl.cpp:544
+#: src/actions/actionmanagerimpl.cpp:534
 #, kde-format
 msgid "Go to Top of Tree"
 msgstr "Бұтақтың түбіне"
 
-#: src/actions/actionmanagerimpl.cpp:549
+#: src/actions/actionmanagerimpl.cpp:539
 #, kde-format
 msgid "Go to Bottom of Tree"
 msgstr "Бұтақтың басына"
 
-#: src/actions/actionmanagerimpl.cpp:554
+#: src/actions/actionmanagerimpl.cpp:544
 #, kde-format
 msgid "Go Left in Tree"
 msgstr "Бұтақтың сол жағына"
 
-#: src/actions/actionmanagerimpl.cpp:559
+#: src/actions/actionmanagerimpl.cpp:549
 #, kde-format
 msgid "Go Right in Tree"
 msgstr "Бұтақтың оң жағына"
 
-#: src/actions/actionmanagerimpl.cpp:564
+#: src/actions/actionmanagerimpl.cpp:554
 #, kde-format
 msgid "Go Up in Tree"
 msgstr "Бұтақта жоғарлау"
 
-#: src/actions/actionmanagerimpl.cpp:569
+#: src/actions/actionmanagerimpl.cpp:559
 #, kde-format
 msgid "Go Down in Tree"
 msgstr "Бұтақта төмендеу"
 
-#: src/actions/actionmanagerimpl.cpp:575
+#: src/actions/actionmanagerimpl.cpp:565
 #, fuzzy, kde-format
 #| msgid "N&ext Unread Feed"
 msgid "Hide Read Feeds"
 msgstr "К&елесі оқылмаған ақпар"
 
-#: src/actions/actionmanagerimpl.cpp:581
+#: src/actions/actionmanagerimpl.cpp:571
 #, kde-format
 msgid "Lock Feeds In Place"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:587
+#: src/actions/actionmanagerimpl.cpp:577
 #, fuzzy, kde-format
 #| msgid "There are no unread articles"
 msgid "Auto-expand folders with unread articles"
 msgstr "Оқылмаған мақала жоқ"
 
-#: src/actions/actionmanagerimpl.cpp:602
+#: src/actions/actionmanagerimpl.cpp:592
 #, kde-format
 msgid "Select Next Tab"
 msgstr "Келесі қойындысына ауысу"
 
-#: src/actions/actionmanagerimpl.cpp:607
+#: src/actions/actionmanagerimpl.cpp:597
 #, kde-format
 msgid "Select Previous Tab"
 msgstr "Алдыңғы қойындысына ауысу"
 
-#: src/actions/actionmanagerimpl.cpp:621
+#: src/actions/actionmanagerimpl.cpp:611
 #, kde-format
 msgid "Mute"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:625
+#: src/actions/actionmanagerimpl.cpp:615
 #, kde-format
 msgid "Unmute"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:628
+#: src/actions/actionmanagerimpl.cpp:618
 #, kde-format
 msgctxt "@action"
 msgid "Speak Text"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:633
+#: src/actions/actionmanagerimpl.cpp:623
 #, kde-format
 msgid "&Find in Message…"
 msgstr ""
 
-#: src/actions/actionmanagerimpl.cpp:640
+#: src/actions/actionmanagerimpl.cpp:630
 #, fuzzy, kde-format
 #| msgid "Copy Link Address"
 msgctxt "@action"
 msgid "Copy Tab Address"
 msgstr "Сілтеме адресін көшіріп алу"
 
-#: src/actions/actionmanagerimpl.cpp:645
+#: src/actions/actionmanagerimpl.cpp:635
 #, kde-format
 msgid "Close Tab"
 msgstr "Қойындыны жабу"
 
-#: src/actions/actionmanagerimpl.cpp:658
+#: src/actions/actionmanagerimpl.cpp:648
 #, fuzzy, kde-format
 #| msgid "Activate Tab %1"
 msgctxt "@action"
@@ -1595,24 +1595,24 @@ msgstr "Жаңа қ&ойындысында ашу"
 msgid "Open Link in External &Browser"
 msgstr "Сыртқы &шолғышта ашу"
 
-#: src/addfeeddialog.cpp:51
+#: src/addfeeddialog.cpp:52
 #, fuzzy, kde-format
 #| msgid "Add Feed"
 msgctxt "@title:window"
 msgid "Add Feed"
 msgstr "Ақпарды қосу"
 
-#: src/addfeeddialog.cpp:101
+#: src/addfeeddialog.cpp:102
 #, kde-format
 msgid "Downloading %1"
 msgstr "%1 деген жүктелуде"
 
-#: src/addfeeddialog.cpp:117
+#: src/addfeeddialog.cpp:118
 #, kde-format
 msgid "Feed not found from %1."
 msgstr "%1 дегенде ақпар табылған жоқ."
 
-#: src/addfeeddialog.cpp:123
+#: src/addfeeddialog.cpp:124
 #, fuzzy, kde-format
 #| msgid "Feed found, downloading..."
 msgid "Feed found, downloading…"
@@ -1650,32 +1650,32 @@ msgctxt "@info:shell"
 msgid "Lists the available options for user feedback"
 msgstr ""
 
-#: src/akregator_part.cpp:78
+#: src/akregator_part.cpp:82
 #, kde-format
 msgid "Feeds"
 msgstr "Ақпарларды"
 
-#: src/akregator_part.cpp:89
+#: src/akregator_part.cpp:93
 #, kde-format
 msgid "Planet KDE"
 msgstr "KDE ғаламы"
 
-#: src/akregator_part.cpp:94
+#: src/akregator_part.cpp:98
 #, kde-format
 msgid "KDE Apps"
 msgstr "KDE қолданбалары"
 
-#: src/akregator_part.cpp:100
+#: src/akregator_part.cpp:104
 #, kde-format
 msgid "Spanish feeds"
 msgstr "Испанша ақпар"
 
-#: src/akregator_part.cpp:104
+#: src/akregator_part.cpp:108
 #, kde-format
 msgid "Planet KDE España"
 msgstr "KDE ғаламы España"
 
-#: src/akregator_part.cpp:422
+#: src/akregator_part.cpp:426
 #, kde-format
 msgid ""
 "Access denied: Cannot save feed list to <b>%1</b>. Please check your "
@@ -1684,26 +1684,26 @@ msgstr ""
 "Қатынау рұқсаты жоқ: ақпар тізімі <b>%1</b> дегенге сақталмады. "
 "Рұқсаттарыңызды түгелдеңіз."
 
-#: src/akregator_part.cpp:423 src/akregator_part.cpp:476
+#: src/akregator_part.cpp:427 src/akregator_part.cpp:480
 #, fuzzy, kde-format
 #| msgid "Write Error"
 msgctxt "@title:window"
 msgid "Write Error"
 msgstr "Жазу қатесі"
 
-#: src/akregator_part.cpp:459
+#: src/akregator_part.cpp:463
 #, kde-format
 msgid "Could not import the file %1 (no valid OPML)"
 msgstr "%1 файл импорт етілмеді (OPML қатесі)"
 
-#: src/akregator_part.cpp:459 src/command/loadfeedlistcommand.cpp:70
+#: src/akregator_part.cpp:463 src/command/loadfeedlistcommand.cpp:70
 #, fuzzy, kde-format
 #| msgid "OPML Parsing Error"
 msgctxt "@title:window"
 msgid "OPML Parsing Error"
 msgstr "OPML талдау қатесі"
 
-#: src/akregator_part.cpp:463
+#: src/akregator_part.cpp:467
 #, kde-format
 msgid ""
 "The file %1 could not be read, check if it exists or if it is readable for "
@@ -1712,45 +1712,45 @@ msgstr ""
 "%1 файлы оқылмады, ол бар ма, жоқ па, бар болса осы пайдаланушыға оқу "
 "рұқсаты берілген бе, тексеріңіз."
 
-#: src/akregator_part.cpp:464 src/command/loadfeedlistcommand.cpp:143
+#: src/akregator_part.cpp:468 src/command/loadfeedlistcommand.cpp:143
 #, fuzzy, kde-format
 #| msgid "Read Error"
 msgctxt "@title:window"
 msgid "Read Error"
 msgstr "Оқу қатесі"
 
-#: src/akregator_part.cpp:475
+#: src/akregator_part.cpp:479
 #, kde-format
 msgid "Access denied: cannot write to file %1. Please check your permissions."
 msgstr "Қатынау рұқсаты жоқ: %1 файлы жазылмады. Рұқсаттарыңызды түгелдеңіз."
 
-#: src/akregator_part.cpp:491 src/akregator_part.cpp:500
+#: src/akregator_part.cpp:497 src/akregator_part.cpp:506
 #, fuzzy, kde-format
 #| msgid "OPML Outlines (*.opml, *.xml)"
 msgid "OPML Outlines (%1);;All Files (*)"
 msgstr "OPML Outlines (*.opml, *.xml)"
 
-#: src/akregator_part.cpp:625
+#: src/akregator_part.cpp:634
 #, kde-format
 msgid "Imported Folder"
 msgstr "Импортталған қапшық"
 
-#: src/articlejobs.cpp:183
+#: src/articlejobs.cpp:182
 #, kde-format
 msgid "The feed to be listed was already removed."
 msgstr "Тізімдейтін ақпар өшірілген екен"
 
-#: src/articlelistview.cpp:162 src/subscription/subscriptionlistview.cpp:182
+#: src/articlelistview.cpp:164 src/subscription/subscriptionlistview.cpp:181
 #, kde-format
 msgid "Columns"
 msgstr "Бағандар"
 
-#: src/articlelistview.cpp:220
+#: src/articlelistview.cpp:222
 #, kde-format
 msgid "No result found"
 msgstr ""
 
-#: src/articlelistview.cpp:381
+#: src/articlelistview.cpp:384
 #, fuzzy, kde-format
 #| msgid ""
 #| "<h2>Article list</h2>Here you can browse articles from the currently "
@@ -1771,37 +1771,37 @@ msgstr ""
 "өшіруге болады. Мақаланың веб парағын қойындысында немесе сыртқы шолғышта "
 "ашып қарай аласыз."
 
-#: src/articlemodel.cpp:75
+#: src/articlemodel.cpp:77
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Title"
 msgstr "Атауы"
 
-#: src/articlemodel.cpp:77
+#: src/articlemodel.cpp:79
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Feed"
 msgstr "Ақпар"
 
-#: src/articlemodel.cpp:79
+#: src/articlemodel.cpp:81
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Date"
 msgstr "Күні"
 
-#: src/articlemodel.cpp:81
+#: src/articlemodel.cpp:83
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Author"
 msgstr "Авторы"
 
-#: src/articlemodel.cpp:83
+#: src/articlemodel.cpp:85
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Description"
 msgstr "Сипаттамасы"
 
-#: src/articlemodel.cpp:85
+#: src/articlemodel.cpp:87
 #, kde-format
 msgctxt "Articlelist's column header"
 msgid "Content"
@@ -1820,79 +1820,79 @@ msgctxt "@title:window"
 msgid "Save As"
 msgstr "Сілтемені былай &сақтау..."
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:273
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:274
 #: src/frame/webengine/akrwebengineviewer.cpp:114
 #, fuzzy, kde-format
 #| msgid "&Save Link As..."
 msgid "&Save Link As…"
 msgstr "Сілтемені былай &сақтау..."
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:277
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:278
 #: src/frame/webengine/akrwebengineviewer.cpp:118
 #, kde-format
 msgid "Copy &Link Address"
 msgstr "Сілтеме &адресін көшіріп алу"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:285
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:286
 #: src/frame/webengine/akrwebengineviewer.cpp:126
 #, kde-format
 msgctxt "@action"
 msgid "Copy Image URL"
 msgstr ""
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:289
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:290
 #: src/frame/webengine/akrwebengineviewer.cpp:130
 #, kde-format
 msgctxt "@action"
 msgid "Save Image…"
 msgstr ""
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:380
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:382
 #, kde-format
 msgid "Disable"
 msgstr "Болмасын"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:381
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:383
 #, kde-format
 msgid "Keep Enabled"
 msgstr "Бола берсін"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:383
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:385
 #, kde-format
 msgid "Are you sure you want to disable this introduction page?"
 msgstr "Шынымен осы кіріспе бет енді көрсетілмесін бе?"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:384
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:386
 #, fuzzy, kde-format
 #| msgid "Disable Introduction Page"
 msgctxt "@title:window"
 msgid "Disable Introduction Page"
 msgstr "Кіріспе бет болмасын"
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:414
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:416
 #, kde-format
 msgid "This web site is a malware, do you want to continue to show it?"
 msgstr ""
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:415
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:417
 #, kde-format
 msgctxt "@title:window"
 msgid "Malware"
 msgstr ""
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:427
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:429
 #, kde-format
 msgid "The network is broken."
 msgstr ""
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:427
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:430
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:429
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:432
 #, kde-format
 msgctxt "@title:window"
 msgid "Check Phishing Url"
 msgstr ""
 
-#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:430
+#: src/articleviewer-ng/webengine/articleviewerwebengine.cpp:432
 #, kde-format
 msgid "The url %1 is not valid."
 msgstr ""
@@ -2027,7 +2027,7 @@ msgstr ""
 "<qt>Стандартты ақпар тізімі бүлінген (XML қатесі). Сақтық көшірмесі "
 "құрылмады.</qt>"
 
-#: src/crashwidget/crashwidget.cpp:23
+#: src/crashwidget/crashwidget.cpp:25
 #, fuzzy, kde-format
 #| msgid ""
 #| "Akregator did not close correctly. Would you like to restore the previous "
@@ -2038,18 +2038,18 @@ msgid ""
 "session?"
 msgstr "Akregator дұрыс жабылмаған. Алдыңғы сеансын қалпына келтірейік пе?"
 
-#: src/crashwidget/crashwidget.cpp:39
+#: src/crashwidget/crashwidget.cpp:41
 #, kde-format
 msgid "Restore Session"
 msgstr "Өткенге қайту"
 
-#: src/crashwidget/crashwidget.cpp:45
+#: src/crashwidget/crashwidget.cpp:47
 #, fuzzy, kde-format
 #| msgid "Restore Session"
 msgid "Do Not Restore Session"
 msgstr "Өткенге қайту"
 
-#: src/crashwidget/crashwidget.cpp:51
+#: src/crashwidget/crashwidget.cpp:53
 #, fuzzy, kde-format
 #| msgid "Ask Me Later"
 msgid "Ask me later"
@@ -2109,48 +2109,48 @@ msgstr "Негізгі құралдары"
 msgid "&File"
 msgstr "&Файл"
 
-#: src/feed/feedlist.cpp:161
+#: src/feed/feedlist.cpp:162
 #, kde-format
 msgid "All Feeds"
 msgstr "Барлық ақпарлар"
 
-#: src/feed/feedpropertiesdialog.cpp:39
+#: src/feed/feedpropertiesdialog.cpp:40
 #, kde-format
 msgid "Activities"
 msgstr ""
 
-#: src/feed/feedpropertiesdialog.cpp:64 src/feed/feedpropertiesdialog.cpp:118
+#: src/feed/feedpropertiesdialog.cpp:65 src/feed/feedpropertiesdialog.cpp:119
 #, kde-format
 msgid "Minute"
 msgid_plural "Minutes"
 msgstr[0] "минут"
 
-#: src/feed/feedpropertiesdialog.cpp:65 src/feed/feedpropertiesdialog.cpp:119
+#: src/feed/feedpropertiesdialog.cpp:66 src/feed/feedpropertiesdialog.cpp:120
 #, kde-format
 msgid "Hour"
 msgid_plural "Hours"
 msgstr[0] "сағат"
 
-#: src/feed/feedpropertiesdialog.cpp:66 src/feed/feedpropertiesdialog.cpp:120
+#: src/feed/feedpropertiesdialog.cpp:67 src/feed/feedpropertiesdialog.cpp:121
 #, kde-format
 msgid "Day"
 msgid_plural "Days"
 msgstr[0] "күн"
 
-#: src/feed/feedpropertiesdialog.cpp:96 src/feed/feedpropertiesdialog.cpp:158
+#: src/feed/feedpropertiesdialog.cpp:97 src/feed/feedpropertiesdialog.cpp:159
 #, fuzzy, kde-format
 #| msgid "Feed Properties"
 msgctxt "@title:window"
 msgid "Feed Properties"
 msgstr "Ақпардың қасиеттері"
 
-#: src/feed/feedpropertiesdialog.cpp:121
+#: src/feed/feedpropertiesdialog.cpp:122
 #, kde-format
 msgctxt "never fetch new articles"
 msgid "Never"
 msgstr "Ешқашанда"
 
-#: src/feed/feedpropertiesdialog.cpp:123
+#: src/feed/feedpropertiesdialog.cpp:124
 #, fuzzy, kde-format
 #| msgid " day"
 #| msgid_plural " days"
@@ -2158,7 +2158,7 @@ msgid "%v day"
 msgid_plural "%v days"
 msgstr[0] " күн"
 
-#: src/feed/feedpropertiesdialog.cpp:124
+#: src/feed/feedpropertiesdialog.cpp:125
 #, fuzzy, kde-format
 #| msgid " article"
 #| msgid_plural " articles"
@@ -2166,7 +2166,7 @@ msgid "%v article"
 msgid_plural "%v articles"
 msgstr[0] " мақала"
 
-#: src/feed/feedpropertiesdialog.cpp:158
+#: src/feed/feedpropertiesdialog.cpp:159
 #, fuzzy, kde-format
 #| msgid "Properties of %1"
 msgctxt "@title:window"
@@ -2178,59 +2178,59 @@ msgstr "%1 қасиеттері"
 msgid "(%1, %2)"
 msgstr "(%1, %2)"
 
-#: src/formatter/grantleeviewformatter.cpp:171
-#: src/formatter/grantleeviewformatter.cpp:230
+#: src/formatter/grantleeviewformatter.cpp:164
+#: src/formatter/grantleeviewformatter.cpp:223
 #, kde-format
 msgid " (no unread articles)"
 msgstr " (оқылмаған мақала жоқ)"
 
-#: src/formatter/grantleeviewformatter.cpp:173
-#: src/formatter/grantleeviewformatter.cpp:232
+#: src/formatter/grantleeviewformatter.cpp:166
+#: src/formatter/grantleeviewformatter.cpp:225
 #, kde-format
 msgid " (1 unread article)"
 msgid_plural " (%1 unread articles)"
 msgstr[0] " (%1 оқылмаған мақала)"
 
-#: src/formatter/grantleeviewformatter.cpp:188
+#: src/formatter/grantleeviewformatter.cpp:181
 #, fuzzy, kde-format
 #| msgid "<b>Description:</b> %1<br /><br />"
 msgid "<b>Description:</b> %1<br />"
 msgstr "<b>Сипаттамасы:</b> %1<br /><br />"
 
-#: src/formatter/grantleeviewformatter.cpp:195
+#: src/formatter/grantleeviewformatter.cpp:188
 #, fuzzy, kde-format
 #| msgid "<b>Homepage:</b> <a href=\"%1\">%2</a>"
 msgid "<b>Homepage:</b> <a href=\"%1\">%1</a>"
 msgstr "<b>Мекен парақшасы:</b> <a href=\"%1\">%2</a>"
 
-#: src/formatter/grantleeviewformatter.cpp:202
+#: src/formatter/grantleeviewformatter.cpp:195
 #, fuzzy, kde-format
 #| msgid "<b>Description:</b> %1<br /><br />"
 msgid "<b>Copyright:</b> %1"
 msgstr "<b>Сипаттамасы:</b> %1<br /><br />"
 
-#: src/formatter/grantleeviewformatter.cpp:265
+#: src/formatter/grantleeviewformatter.cpp:258
 #, kde-format
 msgid "Date"
 msgstr "Күні"
 
-#: src/formatter/grantleeviewformatter.cpp:266
+#: src/formatter/grantleeviewformatter.cpp:259
 #, fuzzy, kde-format
 #| msgid "Comments"
 msgid "Comment"
 msgstr "Түсініктемелері"
 
-#: src/formatter/grantleeviewformatter.cpp:267
+#: src/formatter/grantleeviewformatter.cpp:260
 #, kde-format
 msgid "Complete Story"
 msgstr "Толық әңгімесі"
 
-#: src/formatter/grantleeviewformatter.cpp:268
+#: src/formatter/grantleeviewformatter.cpp:261
 #, kde-format
 msgid "Author"
 msgstr "Авторы"
 
-#: src/formatter/grantleeviewformatter.cpp:269
+#: src/formatter/grantleeviewformatter.cpp:262
 #, kde-format
 msgid "Enclosure"
 msgstr "Салымдары"
@@ -2256,12 +2256,12 @@ msgstr "Жүктеу доғарылған"
 msgid "Loading completed"
 msgstr "Жүктеу аяқталды"
 
-#: src/mainwidget.cpp:190
+#: src/mainwidget.cpp:191
 #, kde-format
 msgid "You can view multiple articles in several open tabs."
 msgstr "Бірнеше мақалаларды бөлек қойындыларда қарай аласыз."
 
-#: src/mainwidget.cpp:194
+#: src/mainwidget.cpp:195
 #, kde-format
 msgid "Articles list."
 msgstr "Мақалалар тізімі."
@@ -2276,7 +2276,7 @@ msgstr "Мақалалар"
 msgid "About"
 msgstr "Осы туралы"
 
-#: src/mainwidget.cpp:819
+#: src/mainwidget.cpp:820
 #, fuzzy, kde-format
 #| msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
 msgid ""
@@ -2284,20 +2284,20 @@ msgid ""
 "qt>"
 msgstr "<qt>Шынымен <b>%1</b> ақпарын өшірмексіз бе?</qt>"
 
-#: src/mainwidget.cpp:820
+#: src/mainwidget.cpp:821
 #, fuzzy, kde-format
 #| msgid "&Mark Feed as Read"
 msgctxt "@title:window"
 msgid "Mark Feed as Read"
 msgstr "Ақпарды оқылған д&еу"
 
-#: src/mainwidget.cpp:823
+#: src/mainwidget.cpp:824
 #, fuzzy, kde-format
 #| msgid "<qt>Are you sure you want to delete feed <b>%1</b>?</qt>"
 msgid "<qt>Are you sure you want to mark <b>all feeds</b> as read?</qt>"
 msgstr "<qt>Шынымен <b>%1</b> ақпарын өшірмексіз бе?</qt>"
 
-#: src/mainwidget.cpp:825
+#: src/mainwidget.cpp:826
 #, fuzzy, kde-format
 #| msgid "<qt>Are you sure you want to delete this feed?</qt>"
 msgid ""
@@ -2305,44 +2305,44 @@ msgid ""
 "qt>"
 msgstr "<qt>Шынымен осы ақпарды өшірмексіз бе?</qt>"
 
-#: src/mainwidget.cpp:827
+#: src/mainwidget.cpp:828
 #, fuzzy, kde-format
 #| msgid "&Mark Feeds as Read"
 msgctxt "@title:window"
 msgid "Mark Feeds as Read"
 msgstr "Ақпарларды оқылған д&еу"
 
-#: src/mainwidget.cpp:891 src/mainwidget.cpp:900 src/mainwidget.cpp:1301
+#: src/mainwidget.cpp:893 src/mainwidget.cpp:902 src/mainwidget.cpp:1303
 #, kde-format
 msgid "Networking is not available."
 msgstr "Желіде істеуге боламайды."
 
-#: src/mainwidget.cpp:908
+#: src/mainwidget.cpp:910
 #, fuzzy, kde-format
 #| msgid "Fetching Feeds..."
 msgid "Fetching Feeds…"
 msgstr "Ақпарларды қабылдау..."
 
-#: src/mainwidget.cpp:1106
+#: src/mainwidget.cpp:1108
 #, kde-format
 msgid "<qt>Are you sure you want to delete article <b>%1</b>?</qt>"
 msgstr "<qt>Шынымен <b>%1</b> мақаласын өшірмексіз бе?</qt>"
 
-#: src/mainwidget.cpp:1109
+#: src/mainwidget.cpp:1111
 #, kde-format
 msgid "<qt>Are you sure you want to delete the selected article?</qt>"
 msgid_plural ""
 "<qt>Are you sure you want to delete the %1 selected articles?</qt>"
 msgstr[0] "<qt>Шынымен осы %1 таңдалған ақпарды өшірмексіз бе?</qt>"
 
-#: src/mainwidget.cpp:1116
+#: src/mainwidget.cpp:1118
 #, fuzzy, kde-format
 #| msgid "Delete Article"
 msgctxt "@title:window"
 msgid "Delete Article"
 msgstr "Мақаланы өшіру"
 
-#: src/mainwidget.cpp:1298
+#: src/mainwidget.cpp:1300
 #, kde-format
 msgid "Networking is available now."
 msgstr "Енді желіде істеуге болады."
@@ -2369,7 +2369,7 @@ msgstr ""
 "Akregator бөлшегі жоқ, орнатуын тексеріңіз.\n"
 "%1"
 
-#: src/notificationmanager.cpp:50
+#: src/notificationmanager.cpp:51
 #, kde-format
 msgid ""
 "Feed added:\n"
@@ -2378,7 +2378,7 @@ msgstr ""
 "Келесі ақпар қосылды:\n"
 " %1"
 
-#: src/notificationmanager.cpp:57
+#: src/notificationmanager.cpp:54
 #, kde-format
 msgid ""
 "Feeds added:\n"
@@ -2387,14 +2387,14 @@ msgstr ""
 "Келесі ақпарлар қосылды:\n"
 " %1"
 
-#: src/notificationmanager.cpp:71
+#: src/notificationmanager.cpp:68
 #, kde-format
 msgid "<i>and 1 other</i>"
 msgid_plural "<i>and %1 others</i>"
 msgstr[0] ""
 
 #: src/plugins/addaccountwizard.cpp:22
-#: src/plugins/miniflux/minifluxplugin.cpp:89
+#: src/plugins/miniflux/minifluxplugin.cpp:90
 #, fuzzy, kde-format
 #| msgid "Modify Online Reader Account"
 msgctxt "@title:window"
@@ -2414,7 +2414,7 @@ msgctxt "@title:tab, wizard page with the account settings"
 msgid "Account Settings"
 msgstr "Панель параметрлері"
 
-#: src/plugins/miniflux/minifluxaccountdialog.cpp:20
+#: src/plugins/miniflux/minifluxaccountdialog.cpp:21
 #, kde-format
 msgctxt "@title:window"
 msgid "Miniflux Account Settings"
@@ -2448,34 +2448,34 @@ msgstr "Қызметтің URL-і:"
 msgid "API Token:"
 msgstr ""
 
-#: src/plugins/miniflux/minifluxaccountwidget.cpp:100
+#: src/plugins/miniflux/minifluxaccountwidget.cpp:101
 #, kde-format
 msgid "Please enter a valid server URL and API token."
 msgstr ""
 
-#: src/plugins/miniflux/minifluxaccountwidget.cpp:100
+#: src/plugins/miniflux/minifluxaccountwidget.cpp:101
 #, kde-format
 msgctxt "@title:window"
 msgid "Invalid Input"
 msgstr ""
 
-#: src/plugins/miniflux/minifluxaccountwidget.cpp:111
+#: src/plugins/miniflux/minifluxaccountwidget.cpp:110
 #, kde-format
 msgid "Successfully connected to the Miniflux server."
 msgstr ""
 
-#: src/plugins/miniflux/minifluxaccountwidget.cpp:111
+#: src/plugins/miniflux/minifluxaccountwidget.cpp:110
 #, kde-format
 msgctxt "@title:window"
 msgid "Connection Successful"
 msgstr ""
 
-#: src/plugins/miniflux/minifluxaccountwidget.cpp:113
+#: src/plugins/miniflux/minifluxaccountwidget.cpp:112
 #, kde-format
 msgid "Failed to connect: %1"
 msgstr ""
 
-#: src/plugins/miniflux/minifluxaccountwidget.cpp:113
+#: src/plugins/miniflux/minifluxaccountwidget.cpp:112
 #, kde-format
 msgctxt "@title:window"
 msgid "Connection Failed"
@@ -2486,27 +2486,27 @@ msgstr ""
 msgid "HTTP error %1"
 msgstr ""
 
-#: src/plugins/miniflux/minifluxplugin.cpp:72
+#: src/plugins/miniflux/minifluxplugin.cpp:73
 #, kde-format
 msgid "Miniflux"
 msgstr ""
 
-#: src/plugins/miniflux/minifluxplugin.cpp:89
+#: src/plugins/miniflux/minifluxplugin.cpp:90
 #, kde-format
 msgid "An account named “%1” already exists."
 msgstr ""
 
-#: src/progressmanager.cpp:127
+#: src/progressmanager.cpp:124
 #, kde-format
 msgid "Fetch completed"
 msgstr "Қабылдау аяқталды"
 
-#: src/progressmanager.cpp:136
+#: src/progressmanager.cpp:133
 #, kde-format
 msgid "Fetch error"
 msgstr "Қабылдау қатесі"
 
-#: src/progressmanager.cpp:145
+#: src/progressmanager.cpp:142
 #, kde-format
 msgid "Fetch aborted"
 msgstr "Қабылдау доғарылды"
@@ -2766,91 +2766,91 @@ msgstr "Мақалалар т&олығымен қабылдансын"
 msgid "Mar&k articles as read when they arrive"
 msgstr "Қабылданған мақала оқылған деп &белгіленсін"
 
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:42
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:44
 #, fuzzy, kde-format
 #| msgid "Disable Introduction Page"
 msgid "Disable Introduction"
 msgstr "Кіріспе бет болмасын"
 
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:60
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:62
 #, fuzzy, kde-format
 #| msgid "Copy Link Address"
 msgid "&Copy Email Address"
 msgstr "Сілтеме адресін көшіріп алу"
 
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:69
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:71
 #, kde-format
 msgid "Address copied to clipboard."
 msgstr ""
 
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:100
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:101
 #, fuzzy, kde-format
 #| msgid "Ma&rk All Feeds as Read"
 msgid "Mark Article as Read"
 msgstr "Барлық ақпарларды оқылған д&еу"
 
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:102
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:103
 #, fuzzy, kde-format
 #| msgid "Mark selected article as unread"
 msgid "Mark Article as Unread"
 msgstr "Таңдалған мақаланы оқылмаған деп белгілеу"
 
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:104
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:105
 #, fuzzy, kde-format
 #| msgid "Remove &Important Mark"
 msgid "Change Important Flag"
 msgstr "&Маңыздық белгісін жою"
 
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:106
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:107
 #, fuzzy, kde-format
 #| msgid "Share Article"
 msgid "Send the URL of the article"
 msgstr "Мақаланы ортақтастыру"
 
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:108
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:109
 #, fuzzy, kde-format
 #| msgid "Share Article"
 msgid "Send the Html Page of Article"
 msgstr "Мақаланы ортақтастыру"
 
-#: src/urlhandler/webengine/urlhandlerwebengine.cpp:110
+#: src/urlhandler/webengine/urlhandlerwebengine.cpp:111
 #, fuzzy, kde-format
 #| msgid "Open in External Browser"
 msgid "Open In External Browser"
 msgstr "Сыртқы шолғышта ашу"
 
-#: src/widgets/searchbar.cpp:42
+#: src/widgets/searchbar.cpp:41
 #, fuzzy, kde-format
 #| msgid " articles"
 msgctxt "@info:placeholder"
 msgid "Search articles…"
 msgstr " мақала"
 
-#: src/widgets/searchbar.cpp:123
+#: src/widgets/searchbar.cpp:122
 #, fuzzy, kde-format
 #| msgid " articles"
 msgctxt "@info:placeholder"
 msgid "Search articles…<%1>"
 msgstr " мақала"
 
-#: src/widgets/statussearchbuttons.cpp:31
+#: src/widgets/statussearchbuttons.cpp:30
 #, kde-format
 msgid "All Articles"
 msgstr "Барлық мақалалар"
 
-#: src/widgets/statussearchbuttons.cpp:41
+#: src/widgets/statussearchbuttons.cpp:40
 #, kde-format
 msgctxt "New articles filter"
 msgid "New"
 msgstr "Жаңа"
 
-#: src/widgets/statussearchbuttons.cpp:50
+#: src/widgets/statussearchbuttons.cpp:49
 #, kde-format
 msgctxt "Unread articles filter"
 msgid "Unread"
 msgstr "Оқылмаған"
 
-#: src/widgets/statussearchbuttons.cpp:59
+#: src/widgets/statussearchbuttons.cpp:58
 #, fuzzy, kde-format
 #| msgctxt "as in: mark as read"
 #| msgid "&Read"
@@ -2858,7 +2858,7 @@ msgctxt "Read articles filter"
 msgid "Read"
 msgstr "Оқ&ылған"
 
-#: src/widgets/statussearchbuttons.cpp:68
+#: src/widgets/statussearchbuttons.cpp:67
 #, kde-format
 msgctxt "Important articles filter"
 msgid "Important"
