@@ -405,7 +405,7 @@
     <release version="6.0.0" date="2024-02-28">
       <url>https://kde.org/announcements/megarelease/6/</url>
       <description>
-        <p>This release port Akgregator to Qt6 and tweak a bit the design of the app.</p>
+        <p>Ported to Qt6.</p>
         <p xml:lang="ar">هذه النسخة تنقل أكريغاتور إلى Qt6 وتعدل قليلًا تصميم التطبيق.</p>
         <p xml:lang="bg">Тази версия портира Akgregator към Qt6 и променя леко дизайна на приложението.</p>
         <p xml:lang="ca">Aquesta versió adapta l'Akgregator a les Qt6 i ajusta una mica el disseny de l'aplicació.</p>
